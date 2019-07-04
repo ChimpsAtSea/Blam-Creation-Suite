@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Opus", "Opus\Opus.vcxproj", "{A29A7EC0-5519-47B4-AB28-1573CE15902C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Orus", "Orus\Orus.vcxproj", "{0D2234CA-029E-4055-944E-DB8B67498309}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A29A7EC0-5519-47B4-AB28-1573CE15902C}.Debug|x64.ActiveCfg = Debug|x64
+		{A29A7EC0-5519-47B4-AB28-1573CE15902C}.Debug|x64.Build.0 = Debug|x64
+		{A29A7EC0-5519-47B4-AB28-1573CE15902C}.Release|x64.ActiveCfg = Release|x64
+		{A29A7EC0-5519-47B4-AB28-1573CE15902C}.Release|x64.Build.0 = Release|x64
+		{0D2234CA-029E-4055-944E-DB8B67498309}.Debug|x64.ActiveCfg = Debug|x64
+		{0D2234CA-029E-4055-944E-DB8B67498309}.Debug|x64.Build.0 = Debug|x64
+		{0D2234CA-029E-4055-944E-DB8B67498309}.Release|x64.ActiveCfg = Release|x64
+		{0D2234CA-029E-4055-944E-DB8B67498309}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33E522C6-5EB6-4D26-9CA9-6843F5B8FA86}
+	EndGlobalSection
+EndGlobal
