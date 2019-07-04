@@ -1,5 +1,4 @@
-#include <windows.h>
-#include <assert.h>
+#include "opus-private-pch.h"
 
 enum Realm;
 struct NetworkID;

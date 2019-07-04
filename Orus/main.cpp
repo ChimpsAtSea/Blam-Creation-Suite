@@ -1,7 +1,4 @@
-#include <windows.h>
-#include <stdio.h>
-#include <assert.h>
-#include <malloc.h>
+#include "orus-private-pch.h"
 
 HMODULE HaloReach; //haloreach.dll
 
@@ -23,13 +20,13 @@ void init_haloreach()
 
 	if (pHaloReachEngine)
 	{
-
+		// create graphics
 		(**(void(__fastcall * **)(ULONG_PTR, __int64, __int64, __int64, __int64))pHaloReachEngine)(
 			reinterpret_cast<ULONG_PTR>(pHaloReachEngine),
 			0,
 			0,
 			0,
-			0);
+			0); // create device
 
 		(*(void(__fastcall * *)(ULONG_PTR, __int64*, __int64*))(*(__int64*)pHaloReachEngine + 8i64))(
 			reinterpret_cast<ULONG_PTR>(pHaloReachEngine),
