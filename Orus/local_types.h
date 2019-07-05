@@ -16,12 +16,16 @@ struct _RTL_CRITICAL_SECTION_DEBUG;
 struct IGameEngine;
 struct GameEvents_vftbl;
 struct GameEvents;
+struct GameEngineHostCallback_vftbl;
+struct GameEngineHostCallback;
+
+typedef void(NullSubFunc)();
 
 /* 514 */
 struct __declspec(align(8)) IGameEngine_vftbl
 {
 	void(__fastcall* init_graphics)(IGameEngine*, __int64, __int64, __int64, __int64);
-	void(__fastcall* init_thread)(IGameEngine*, GameEvents*, __int64);
+	void(__fastcall* init_thread)(IGameEngine*, GameEngineHostCallback *, __int64);
 	void* function3;
 	void* function4;
 	void* function5;
@@ -48,49 +52,49 @@ struct IGameEngine
 /* 516 */
 struct GameEngineHostCallback_vftbl
 {
-	void* function1;
-	void* function2;
-	void* function3;
-	void* function4;
-	void* function5;
-	void* function6;
-	void* function7;
-	void* function8;
-	void* function9;
-	void* function10;
-	void* function11;
-	void* function12;
-	void* function13;
-	void* function14;
-	void* function15;
-	void* function16;
-	void* function17;
-	void* function18;
-	void* function19;
-	void* function20;
-	void* function21;
-	void* function22;
-	void* function23;
-	void* function24;
-	void* function25;
-	void* function26;
-	void* function27;
-	void* function28;
-	void* function29;
-	void* function30;
-	void* function31;
-	void* function32;
-	void* function33;
-	void* function34;
-	void* function35;
-	void* function36;
-	void* function37;
-	void* function38;
-	void* function39;
-	void* function40;
-	void* function41;
-	void* function42;
-	void* function43;
+	NullSubFunc *Member00;
+	NullSubFunc *Member01;
+	NullSubFunc *Member02;
+	NullSubFunc *Member03;
+	NullSubFunc *Member04;
+	NullSubFunc *Member05;
+	NullSubFunc *Member06;
+	NullSubFunc *Member07;
+	NullSubFunc *Member08;
+	NullSubFunc *Member09;
+	NullSubFunc *Member10;
+	NullSubFunc *Member11;
+	NullSubFunc *Member12;
+	NullSubFunc *Member13;
+	NullSubFunc *Member14;
+	NullSubFunc *Member15;
+	NullSubFunc *Member16;
+	NullSubFunc *Member17;
+	NullSubFunc *Member18;
+	NullSubFunc *Member19;
+	NullSubFunc *Member20;
+	NullSubFunc *Member21;
+	NullSubFunc *Member22;
+	NullSubFunc *Member23;
+	NullSubFunc *Member24;
+	NullSubFunc *Member25;
+	NullSubFunc *Member26;
+	NullSubFunc *Member27;
+	NullSubFunc *Member28;
+	NullSubFunc *Member29;
+	NullSubFunc *Member30;
+	NullSubFunc *Member31;
+	NullSubFunc *Member32;
+	NullSubFunc *Member33;
+	NullSubFunc *Member34;
+	NullSubFunc *Member35;
+	NullSubFunc *Member36;
+	NullSubFunc *Member37;
+	NullSubFunc *Member38;
+	NullSubFunc *Member39;
+	NullSubFunc *Member40;
+	NullSubFunc *Member41;
+	NullSubFunc *Member42;
 };
 
 /* 517 */
@@ -158,8 +162,6 @@ struct GameEvents
 	_QWORD qwordA;
 	_QWORD qwordB;
 };
-
-typedef void(NullSubFunc)();
 
 /* 518 */
 struct __declspec(align(8)) GameEvents_vftbl

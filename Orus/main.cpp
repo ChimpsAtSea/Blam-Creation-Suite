@@ -13,6 +13,8 @@ __int64 buffer[1024 * 1024 * 32] = {};
 __int64 buffer2[1024 * 1024 * 64] = {};
 
 
+GameEngineHostCallback gameEngineHostCallback;
+GameEngineHostCallback_vftbl gameEngineHostCallbackVftbl;
 GameEvents gameEvents;
 GameEvents_vftbl gameEventsVftbl;
 
@@ -32,6 +34,61 @@ GUID* __fastcall GetGuid(GameEvents* this, GUID* rGuid)
 
 void init_haloreach()
 {
+	//=========================================================
+	//             game engine host callback
+	//=========================================================
+
+	gameEngineHostCallback.vftbl = &gameEngineHostCallbackVftbl;
+
+	gameEngineHostCallbackVftbl.Member00 = nullsub;
+	gameEngineHostCallbackVftbl.Member01 = nullsub;
+	gameEngineHostCallbackVftbl.Member02 = nullsub;
+	gameEngineHostCallbackVftbl.Member03 = nullsub;
+	gameEngineHostCallbackVftbl.Member04 = nullsub;
+	gameEngineHostCallbackVftbl.Member05 = nullsub;
+	gameEngineHostCallbackVftbl.Member06 = nullsub;
+	gameEngineHostCallbackVftbl.Member07 = nullsub;
+	gameEngineHostCallbackVftbl.Member08 = nullsub;
+	gameEngineHostCallbackVftbl.Member09 = nullsub;
+	gameEngineHostCallbackVftbl.Member10 = nullsub;
+	gameEngineHostCallbackVftbl.Member11 = nullsub;
+	gameEngineHostCallbackVftbl.Member12 = nullsub;
+	gameEngineHostCallbackVftbl.Member13 = nullsub;
+	gameEngineHostCallbackVftbl.Member14 = nullsub;
+	gameEngineHostCallbackVftbl.Member15 = nullsub;
+	gameEngineHostCallbackVftbl.Member16 = nullsub;
+	gameEngineHostCallbackVftbl.Member17 = nullsub;
+	gameEngineHostCallbackVftbl.Member18 = nullsub;
+	gameEngineHostCallbackVftbl.Member19 = nullsub;
+	gameEngineHostCallbackVftbl.Member20 = nullsub;
+	gameEngineHostCallbackVftbl.Member21 = nullsub;
+	gameEngineHostCallbackVftbl.Member22 = nullsub;
+	gameEngineHostCallbackVftbl.Member23 = nullsub;
+	gameEngineHostCallbackVftbl.Member24 = nullsub;
+	gameEngineHostCallbackVftbl.Member25 = nullsub;
+	gameEngineHostCallbackVftbl.Member26 = nullsub;
+	gameEngineHostCallbackVftbl.Member27 = nullsub;
+	gameEngineHostCallbackVftbl.Member28 = nullsub;
+	gameEngineHostCallbackVftbl.Member29 = nullsub;
+	gameEngineHostCallbackVftbl.Member30 = nullsub;
+	gameEngineHostCallbackVftbl.Member31 = nullsub;
+	gameEngineHostCallbackVftbl.Member32 = nullsub;
+	gameEngineHostCallbackVftbl.Member33 = nullsub;
+	gameEngineHostCallbackVftbl.Member34 = nullsub;
+	gameEngineHostCallbackVftbl.Member35 = nullsub;
+	gameEngineHostCallbackVftbl.Member36 = nullsub;
+	gameEngineHostCallbackVftbl.Member37 = nullsub;
+	gameEngineHostCallbackVftbl.Member38 = nullsub;
+	gameEngineHostCallbackVftbl.Member39 = nullsub;
+	gameEngineHostCallbackVftbl.Member40 = nullsub;
+	gameEngineHostCallbackVftbl.Member41 = nullsub;
+	gameEngineHostCallbackVftbl.Member42 = nullsub;
+
+	//=========================================================
+	//                    game events
+	//=========================================================
+
+	gameEngineHostCallback.pGameEvents = &gameEvents;
 	gameEvents.vftbl = &gameEventsVftbl;
 
 	gameEventsVftbl.Member00 = nullsub;
@@ -173,6 +230,10 @@ void init_haloreach()
 	gameEventsVftbl.Member124 = nullsub;
 	gameEventsVftbl.Member125 = nullsub;
 
+	//=========================================================
+	//                  rest of function
+	//=========================================================
+
 	HaloReach = LoadLibraryA("haloreach.dll");
 
 	printf("0x%p", HaloReach);
@@ -187,7 +248,7 @@ void init_haloreach()
 	if (pHaloReachEngine)
 	{
 		pHaloReachEngine->vftbl->init_graphics(pHaloReachEngine, 0, 0, 0, 0);
-		pHaloReachEngine->vftbl->init_thread(pHaloReachEngine, &gameEvents, reinterpret_cast<long long>(buffer2));
+		pHaloReachEngine->vftbl->init_thread(pHaloReachEngine, &gameEngineHostCallback, reinterpret_cast<long long>(buffer2));
 
 	}
 
