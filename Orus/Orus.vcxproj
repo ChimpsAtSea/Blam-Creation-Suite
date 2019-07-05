@@ -46,11 +46,13 @@
     <TargetName>HaloReach</TargetName>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>\\RemotePC\!MCC\haloreach\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>HaloReach</TargetName>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>\\RemotePC\!MCC\haloreach\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -92,6 +94,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="defs.h" />
+    <ClInclude Include="local_types.h" />
     <ClInclude Include="orus-private-pch.h" />
     <ClInclude Include="orus-public-pch.h" />
   </ItemGroup>

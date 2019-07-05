@@ -29,5 +29,11 @@
     <ClInclude Include="orus-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="local_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="defs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

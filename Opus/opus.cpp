@@ -1,9 +1,14 @@
 #include "opus-private-pch.h"
 
+
+
 Opus::Opus()
 {
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
+
+
+
 
 
 
@@ -12,6 +17,9 @@ Opus::Opus()
 
 Opus::~Opus()
 {
+
+
+
 
 }
 

@@ -8,4 +8,8 @@
 
 #include <detours.h>
 
+
+#include "defs.h"
+#include "local_types.h"
+
 #include "orus-public-pch.h"
