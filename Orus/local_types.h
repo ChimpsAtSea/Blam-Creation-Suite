@@ -57,14 +57,14 @@ struct GameEngineHostCallback_vftbl
 	NullSubFunc *Member02;
 	NullSubFunc *Member03;
 	NullSubFunc *Member04;
-	NullSubFunc *Member05;
+	void(__fastcall *WriteGameState)(GameEngineHostCallback *, LPVOID, size_t);
 	NullSubFunc *Member06;
 	NullSubFunc *Member07;
 	NullSubFunc *Member08;
 	NullSubFunc *Member09;
 	NullSubFunc *Member10;
-	NullSubFunc *Member11;
-	NullSubFunc *Member12;
+	NullSubFunc *Member11; // DataAccessGameVariant
+	NullSubFunc *Member12; // DataAccessMapVariant
 	NullSubFunc *Member13;
 	NullSubFunc *Member14;
 	NullSubFunc *Member15;

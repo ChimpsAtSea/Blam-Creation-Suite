@@ -45,7 +45,10 @@ void init_haloreach()
 	gameEngineHostCallbackVftbl.Member02 = nullsub;
 	gameEngineHostCallbackVftbl.Member03 = nullsub;
 	gameEngineHostCallbackVftbl.Member04 = nullsub;
-	gameEngineHostCallbackVftbl.Member05 = nullsub;
+
+	typedef void(__fastcall WriteGameStateFunc)(GameEngineHostCallback *, LPVOID, size_t);
+	gameEngineHostCallbackVftbl.WriteGameState = (WriteGameStateFunc*)nullsub;
+
 	gameEngineHostCallbackVftbl.Member06 = nullsub;
 	gameEngineHostCallbackVftbl.Member07 = nullsub;
 	gameEngineHostCallbackVftbl.Member08 = nullsub;
