@@ -1,5 +1,6 @@
 #include "orus-private-pch.h"
 #include <stdio.h>
+#include "detour_helpers.h"
 
 #define this _this
 
@@ -34,8 +35,263 @@ GUID* __fastcall GetGuid(GameEvents* this, GUID* rGuid)
 
 #define NULLSUB_LAMBDA_CUSTOM(message) []() { printf(message"\n"); }
 
+#define WriteLineVerbose(str, ...) printf(str, ##__VA_ARGS__); printf("\n");
+#define WriteVerbose(str, ...) printf(str, ##__VA_ARGS__);
+
+
+typedef void(*rasterizer_initialize_func)();
+rasterizer_initialize_func rasterizer_initialize = nullptr;
+void rasterizer_initialize_hook()
+{
+	printf("Calling rasterizer_initialize\n");
+	rasterizer_initialize();
+}
+void create_rasterizer_initialize_hook()
+{
+	// Find the function address
+	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	const char* const pFunctionAddress = pBaseAddress + (0x1806C18A0 - 0x180000000);
+
+	rasterizer_initialize = (rasterizer_initialize_func)(pFunctionAddress);
+
+	PVOID* ppPointer = reinterpret_cast<void**>(&rasterizer_initialize);
+	PVOID pDetour = reinterpret_cast<void*>(::rasterizer_initialize_hook);
+	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+
+	if (detourAttachResult)
+	{
+		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+		WriteLineVerbose("Failed to hook rasterizer_initialize. Reason: %s", detourAttachResultStr);
+	}
+	else
+	{
+		WriteLineVerbose("Successfully hooked rasterizer_initialize");
+	}
+}
+
+typedef char(*create_device_func)();
+create_device_func create_device = nullptr;
+char create_device_hook()
+{
+	printf("Calling create_device\n");
+	return create_device();
+}
+void create_create_device_hook()
+{
+	// Find the function address
+	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	const char* const pFunctionAddress = pBaseAddress + (0x1806C2C30 - 0x180000000);
+
+	create_device = (create_device_func)(pFunctionAddress);
+
+	PVOID* ppPointer = reinterpret_cast<void**>(&create_device);
+	PVOID pDetour = reinterpret_cast<void*>(::create_device_hook);
+	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+
+	if (detourAttachResult)
+	{
+		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+		WriteLineVerbose("Failed to hook create_device. Reason: %s", detourAttachResultStr);
+	}
+	else
+	{
+		WriteLineVerbose("Successfully hooked create_device");
+	}
+}
+
+typedef HWND(*create_window_func)();
+create_window_func create_window = nullptr;
+HWND create_window_hook()
+{
+	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
+	HWND& g_windowHWND = *reinterpret_cast<HWND*>(pBaseAddress + (0x1810EC5D8 - 0x180000000));
+
+	auto before = pGameEngineHostCallback;
+	pGameEngineHostCallback = nullptr;
+
+	printf("Calling create_window\n");
+	HWND hwnd = create_window();
+
+	pGameEngineHostCallback = before;
+
+	ShowWindow(hwnd, SW_SHOW);
+	return hwnd;
+}
+
+void create_create_window_hook()
+{
+	// Find the function address
+	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	const char* const pFunctionAddress = pBaseAddress + (0x1806C2890 - 0x180000000);
+
+	create_window = (create_window_func)(pFunctionAddress);
+
+	PVOID* ppPointer = reinterpret_cast<void**>(&create_window);
+	PVOID pDetour = reinterpret_cast<void*>(::create_window_hook);
+	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+
+	if (detourAttachResult)
+	{
+		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+		WriteLineVerbose("Failed to hook create_window. Reason: %s", detourAttachResultStr);
+	}
+	else
+	{
+		WriteLineVerbose("Successfully hooked create_window");
+	}
+}
+
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	switch (msg)
+	{
+	case WM_DESTROY:
+		PostQuitMessage(WM_QUIT);
+		break;
+	default:
+		return DefWindowProc(hwnd, msg, wParam, lParam);
+	}
+	return 0;
+}
+
+typedef ATOM(WINAPI* RegisterClassExA_Func)(_In_ CONST WNDCLASSEXA*);
+RegisterClassExA_Func RegisterClassExA_Original = nullptr;
+ATOM WINAPI RegisterClassExA_Hook(_In_ WNDCLASSEXA* arg)
+{
+	assert(arg->cbSize == sizeof(WNDCLASSEXA));
+
+	arg->cbSize = sizeof(WNDCLASSEXA);
+	arg->style = CS_HREDRAW | CS_VREDRAW;
+	arg->lpfnWndProc = WndProc;
+	arg->cbClsExtra = 0;
+	arg->cbWndExtra = 0;
+	arg->hInstance = HaloReach;
+
+	memcpy((char*)arg->lpszClassName, "HaloReach", sizeof("HaloReach"));
+
+	//arg->lpszClassName = "HaloReach";
+
+	return RegisterClassExA_Original(arg);
+}
+
+void create_RegisterClassExA_hook()
+{
+	// Find the function address
+	HMODULE user32 = GetModuleHandleA("USER32.dll");
+	assert(user32);
+	FARPROC RegisterClassExAProc = GetProcAddress(user32, "RegisterClassExA");
+	assert(RegisterClassExAProc);
+
+	RegisterClassExA_Original = (RegisterClassExA_Func)(RegisterClassExAProc);
+
+	PVOID* ppPointer = reinterpret_cast<void**>(&RegisterClassExA_Original);
+	PVOID pDetour = reinterpret_cast<void*>(::RegisterClassExA_Hook);
+	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+
+	if (detourAttachResult)
+	{
+		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+		WriteLineVerbose("Failed to hook RegisterClassExA. Reason: %s", detourAttachResultStr);
+	}
+	else
+	{
+		WriteLineVerbose("Successfully hooked RegisterClassExA");
+	}
+}
+
+typedef HWND(WINAPI* CreateWindowExA_Func)(
+	_In_ DWORD dwExStyle,
+	_In_opt_ LPCSTR lpClassName,
+	_In_opt_ LPCSTR lpWindowName,
+	_In_ DWORD dwStyle,
+	_In_ int X,
+	_In_ int Y,
+	_In_ int nWidth,
+	_In_ int nHeight,
+	_In_opt_ HWND hWndParent,
+	_In_opt_ HMENU hMenu,
+	_In_opt_ HINSTANCE hInstance,
+	_In_opt_ LPVOID lpParam);
+CreateWindowExA_Func CreateWindowExA_Original = nullptr;
+HWND WINAPI CreateWindowExA_Hook(
+	_In_ DWORD dwExStyle,
+	_In_opt_ LPCSTR lpClassName,
+	_In_opt_ LPCSTR lpWindowName,
+	_In_ DWORD dwStyle,
+	_In_ int X,
+	_In_ int Y,
+	_In_ int nWidth,
+	_In_ int nHeight,
+	_In_opt_ HWND hWndParent,
+	_In_opt_ HMENU hMenu,
+	_In_opt_ HINSTANCE hInstance,
+	_In_opt_ LPVOID lpParam)
+{
+	HWND result = CreateWindowExA_Original(
+		dwExStyle,
+		lpClassName,
+		"Halo Reach",
+		dwStyle,
+		X,
+		Y,
+		nWidth,
+		nHeight,
+		hWndParent,
+		hMenu,
+		hInstance,
+		lpParam);
+	return result;
+}
+
+void create_CreateWindowExA_hook()
+{
+	// Find the function address
+	HMODULE user32 = GetModuleHandleA("USER32.dll");
+	assert(user32);
+	FARPROC CreateWindowExAProc = GetProcAddress(user32, "CreateWindowExA");
+	assert(CreateWindowExAProc);
+
+	CreateWindowExA_Original = (CreateWindowExA_Func)(CreateWindowExAProc);
+
+	PVOID* ppPointer = reinterpret_cast<void**>(&CreateWindowExA_Original);
+	PVOID pDetour = reinterpret_cast<void*>(::CreateWindowExA_Hook);
+	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+
+	if (detourAttachResult)
+	{
+		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+		WriteLineVerbose("Failed to hook CreateWindowExA. Reason: %s", detourAttachResultStr);
+	}
+	else
+	{
+		WriteLineVerbose("Successfully hooked CreateWindowExA");
+	}
+}
+
+
 void init_haloreach()
 {
+	HaloReach = LoadLibraryA("haloreach.dll");
+
+	printf("0x%p\n", HaloReach);
+	printf("0x180000000\n");
+	assert(HaloReach);
+
+	DetourTransactionBegin();
+	DetourUpdateThread(GetCurrentThread());
+
+	create_RegisterClassExA_hook();
+	create_CreateWindowExA_hook();
+	create_rasterizer_initialize_hook();
+	create_create_device_hook();
+	create_create_window_hook();
+	
+
+
+
+	DetourTransactionCommit();
+
 	//=========================================================
 	//             game engine host callback
 	//=========================================================
@@ -108,7 +364,7 @@ void init_haloreach()
 	gameEventsVftbl.AudioLogClaimed							= NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::AudioLogClaimed");
 	gameEventsVftbl.Base									= NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::Base");
 	gameEventsVftbl.Betrayal								= NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::Betrayal");
-	gameEventsVftbl.BIFactControllerSettings = [](GameEvents*, unsigned __int64*, GUID*, _QWORD, __int64, _DWORD, int, int) { printf("GameEvents::vftable::BIFactControllerSettings""\n"); return __int64(0); };
+	gameEventsVftbl.BIFactControllerSettings				= [](GameEvents*, unsigned __int64*, GUID*, _QWORD, __int64, _DWORD, int, int) { printf("GameEvents::vftable::BIFactControllerSettings""\n"); return __int64(0); };
 	gameEventsVftbl.BIFactDeepLinkRecieve					= NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BIFactDeepLinkRecieve");
 	gameEventsVftbl.BIFactDeepLinkSend						= [](GameEvents*, _QWORD*, GUID*, _QWORD*, __int64*) { printf("GameEvents::vftable::BIFactDeepLinkSend""\n"); };
 	gameEventsVftbl.BIFactDualWield							= NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BIFactDualWield");
@@ -233,11 +489,6 @@ void init_haloreach()
 	//                  rest of function
 	//=========================================================
 
-	HaloReach = LoadLibraryA("haloreach.dll");
-
-	printf("0x%p", HaloReach);
-	printf("0x180000000");
-	assert(HaloReach);
 
 
 	CreateGameEngine = (CreateGameEngineFunc*)GetProcAddress(HaloReach, "CreateGameEngine");
@@ -247,7 +498,7 @@ void init_haloreach()
 	if (pHaloReachEngine)
 	{
 		pHaloReachEngine->vftbl->init_graphics(pHaloReachEngine, 0, 0, 0, 0);
-		pHaloReachEngine->vftbl->init_thread(pHaloReachEngine, &gameEngineHostCallback, reinterpret_cast<long long>(buffer2));
+		pHaloReachEngine->vftbl->init_thread(pHaloReachEngine, nullptr, reinterpret_cast<long long>(buffer2));
 
 	}
 

@@ -87,6 +87,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="detour_helpers.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="orus-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -95,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defs.h" />
+    <ClInclude Include="detour_helpers.h" />
     <ClInclude Include="local_types.h" />
     <ClInclude Include="orus-private-pch.h" />
     <ClInclude Include="orus-public-pch.h" />
