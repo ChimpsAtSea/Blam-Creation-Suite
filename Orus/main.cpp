@@ -16,10 +16,64 @@ __int64 buffer[1024 * 1024 * 32] = {};
 __int64 buffer2[1024 * 1024 * 64] = {};
 
 
+#define NULLSUB_LAMBDA_CUSTOM(message) []() { printf(message"\n"); }
+
+#define WriteLineVerbose(str, ...) printf(str, ##__VA_ARGS__); printf("\n");
+#define WriteVerbose(str, ...) printf(str, ##__VA_ARGS__);
+
 GameEngineHostCallback gameEngineHostCallback;
 GameEngineHostCallback_vftbl gameEngineHostCallbackVftbl;
 GameEvents gameEvents;
 GameEvents_vftbl gameEventsVftbl;
+
+template<size_t O, typename Ta, typename Tb>
+void create_hook(const char* name, Ta& originalStorage, Tb hookFunction)
+{
+	originalStorage = (Ta)(reinterpret_cast<char*>(HaloReach) + (O - 0x180000000));
+
+	PVOID* ppPointer = reinterpret_cast<void**>(&originalStorage);
+	PVOID pDetour = reinterpret_cast<void*>(hookFunction);
+	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+
+	if (detourAttachResult)
+	{
+		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+		WriteLineVerbose("Failed to hook %s. Reason: %s", name, detourAttachResultStr);
+	}
+	else
+	{
+		WriteLineVerbose("Successfully hooked %s", name);
+	}
+}
+
+template<typename Ta, typename Tb>
+void create_dll_hook(const char* _module, const char* procedure, Ta& originalStorage, Tb hookFunction)
+{
+	// Find the function address
+	HMODULE hModule = GetModuleHandleA(_module);
+	assert(hModule);
+	FARPROC RegisterClassExAProc = GetProcAddress(hModule, procedure);
+	assert(RegisterClassExAProc);
+
+	originalStorage = (Ta)RegisterClassExAProc;
+
+	if (hookFunction)
+	{
+		PVOID* ppPointer = reinterpret_cast<void**>(&originalStorage);
+		PVOID pDetour = reinterpret_cast<void*>(hookFunction);
+		LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+
+		if (detourAttachResult)
+		{
+			const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+			WriteLineVerbose("Failed to hook %s %s. Reason: %s", _module, procedure, detourAttachResultStr);
+		}
+		else
+		{
+			WriteLineVerbose("Successfully hooked %s %s", _module, procedure);
+		}
+	}
+}
 
 void nullsub()
 {
@@ -35,10 +89,6 @@ GUID* __fastcall GetGuid(GameEvents* this, GUID* rGuid)
 	return result;
 }
 
-#define NULLSUB_LAMBDA_CUSTOM(message) []() { printf(message"\n"); }
-
-#define WriteLineVerbose(str, ...) printf(str, ##__VA_ARGS__); printf("\n");
-#define WriteVerbose(str, ...) printf(str, ##__VA_ARGS__);
 
 void setup_game_engine_host_callback()
 {
@@ -249,28 +299,6 @@ void rasterizer_initialize_hook()
 	printf("Calling rasterizer_initialize\n");
 	rasterizer_initialize();
 }
-void create_rasterizer_initialize_hook()
-{
-	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (0x1806C18A0 - 0x180000000);
-
-	rasterizer_initialize = (rasterizer_initialize_func)(pFunctionAddress);
-
-	PVOID* ppPointer = reinterpret_cast<void**>(&rasterizer_initialize);
-	PVOID pDetour = reinterpret_cast<void*>(::rasterizer_initialize_hook);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
-
-	if (detourAttachResult)
-	{
-		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		WriteLineVerbose("Failed to hook rasterizer_initialize. Reason: %s", detourAttachResultStr);
-	}
-	else
-	{
-		WriteLineVerbose("Successfully hooked rasterizer_initialize");
-	}
-}
 
 typedef char(*create_device_func)();
 create_device_func create_device = nullptr;
@@ -278,28 +306,6 @@ char create_device_hook()
 {
 	printf("Calling create_device\n");
 	return create_device();
-}
-void create_create_device_hook()
-{
-	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (0x1806C2C30 - 0x180000000);
-
-	create_device = (create_device_func)(pFunctionAddress);
-
-	PVOID* ppPointer = reinterpret_cast<void**>(&create_device);
-	PVOID pDetour = reinterpret_cast<void*>(::create_device_hook);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
-
-	if (detourAttachResult)
-	{
-		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		WriteLineVerbose("Failed to hook create_device. Reason: %s", detourAttachResultStr);
-	}
-	else
-	{
-		WriteLineVerbose("Successfully hooked create_device");
-	}
 }
 
 typedef HWND(*create_window_func)();
@@ -322,28 +328,7 @@ HWND create_window_hook()
 	return hwnd;
 }
 
-void create_create_window_hook()
-{
-	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (0x1806C2890 - 0x180000000);
 
-	create_window = (create_window_func)(pFunctionAddress);
-
-	PVOID* ppPointer = reinterpret_cast<void**>(&create_window);
-	PVOID pDetour = reinterpret_cast<void*>(::create_window_hook);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
-
-	if (detourAttachResult)
-	{
-		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		WriteLineVerbose("Failed to hook create_window. Reason: %s", detourAttachResultStr);
-	}
-	else
-	{
-		WriteLineVerbose("Successfully hooked create_window");
-	}
-}
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -376,31 +361,6 @@ ATOM WINAPI RegisterClassExA_Hook(_In_ WNDCLASSEXA* arg)
 	//arg->lpszClassName = "HaloReach";
 
 	return RegisterClassExA_Original(arg);
-}
-
-void create_RegisterClassExA_hook()
-{
-	// Find the function address
-	HMODULE user32 = GetModuleHandleA("USER32.dll");
-	assert(user32);
-	FARPROC RegisterClassExAProc = GetProcAddress(user32, "RegisterClassExA");
-	assert(RegisterClassExAProc);
-
-	RegisterClassExA_Original = (RegisterClassExA_Func)(RegisterClassExAProc);
-
-	PVOID* ppPointer = reinterpret_cast<void**>(&RegisterClassExA_Original);
-	PVOID pDetour = reinterpret_cast<void*>(::RegisterClassExA_Hook);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
-
-	if (detourAttachResult)
-	{
-		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		WriteLineVerbose("Failed to hook RegisterClassExA. Reason: %s", detourAttachResultStr);
-	}
-	else
-	{
-		WriteLineVerbose("Successfully hooked RegisterClassExA");
-	}
 }
 
 std::thread windowThread;
@@ -466,31 +426,6 @@ HWND WINAPI CreateWindowExA_Hook(
 	return result;
 }
 
-void create_CreateWindowExA_hook()
-{
-	// Find the function address
-	HMODULE user32 = GetModuleHandleA("USER32.dll");
-	assert(user32);
-	FARPROC CreateWindowExAProc = GetProcAddress(user32, "CreateWindowExA");
-	assert(CreateWindowExAProc);
-
-	CreateWindowExA_Original = (CreateWindowExA_Func)(CreateWindowExAProc);
-
-	PVOID* ppPointer = reinterpret_cast<void**>(&CreateWindowExA_Original);
-	PVOID pDetour = reinterpret_cast<void*>(::CreateWindowExA_Hook);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
-
-	if (detourAttachResult)
-	{
-		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		WriteLineVerbose("Failed to hook CreateWindowExA. Reason: %s", detourAttachResultStr);
-	}
-	else
-	{
-		WriteLineVerbose("Successfully hooked CreateWindowExA");
-	}
-}
-
 typedef __int64 (__fastcall *sub_180012B60_Func)(__int64 a1, __int64 a2);
 sub_180012B60_Func sub_180012B60 = nullptr;
 __int64 __fastcall sub_180012B60_Hook(__int64 a1, __int64 a2)
@@ -507,29 +442,6 @@ __int64 __fastcall sub_180012B60_Hook(__int64 a1, __int64 a2)
 	return result;
 }
 
-void create_sub_180012B60_hook()
-{
-	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (0x180012B60 - 0x180000000);
-
-	sub_180012B60 = (sub_180012B60_Func)(pFunctionAddress);
-
-	PVOID* ppPointer = reinterpret_cast<void**>(&sub_180012B60);
-	PVOID pDetour = reinterpret_cast<void*>(::sub_180012B60_Hook);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
-
-	if (detourAttachResult)
-	{
-		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		WriteLineVerbose("Failed to hook sub_180012B60. Reason: %s", detourAttachResultStr);
-	}
-	else
-	{
-		WriteLineVerbose("Successfully hooked sub_180012B60");
-	}
-}
-
 typedef __int64 (*s_static_string_256_print_func)(char* dst, char* format, ...);
 s_static_string_256_print_func s_static_string_256_print = nullptr;
 char* s_static_string_256_print_hook(char* dst, char* format, ...)
@@ -537,35 +449,12 @@ char* s_static_string_256_print_hook(char* dst, char* format, ...)
 	va_list args;
 	va_start(args, format);
 
-	vprintf(format, args);
-	printf("\n");
+	//vprintf(format, args); printf("\n");
 	vsnprintf(dst, 256i64, format, args);
 
 	va_end(args);
 
 	return dst;
-}
-void create_s_static_string_256_print_hook()
-{
-	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (0x18004AFC0 - 0x180000000);
-
-	s_static_string_256_print = (s_static_string_256_print_func)(pFunctionAddress);
-
-	PVOID* ppPointer = reinterpret_cast<void**>(&s_static_string_256_print);
-	PVOID pDetour = reinterpret_cast<void*>(::s_static_string_256_print_hook);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
-
-	if (detourAttachResult)
-	{
-		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		WriteLineVerbose("Failed to hook s_static_string_256_print. Reason: %s", detourAttachResultStr);
-	}
-	else
-	{
-		WriteLineVerbose("Successfully hooked s_static_string_256_print");
-	}
 }
 
 typedef char*(*game_get_haloreach_path_func)();
@@ -573,28 +462,6 @@ game_get_haloreach_path_func game_get_haloreach_path = nullptr;
 const char* game_get_haloreach_path_hook()
 {
 	return "";
-}
-void create_game_get_haloreach_path_hook()
-{
-	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (0x180012730 - 0x180000000);
-
-	game_get_haloreach_path = (game_get_haloreach_path_func)(pFunctionAddress);
-
-	PVOID* ppPointer = reinterpret_cast<void**>(&game_get_haloreach_path);
-	PVOID pDetour = reinterpret_cast<void*>(::game_get_haloreach_path_hook);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
-
-	if (detourAttachResult)
-	{
-		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		WriteLineVerbose("Failed to hook game_get_haloreach_path. Reason: %s", detourAttachResultStr);
-	}
-	else
-	{
-		WriteLineVerbose("Successfully hooked game_get_haloreach_path");
-	}
 }
 
 enum e_scenario_type : __int32
@@ -636,14 +503,12 @@ struct __declspec(align(4)) s_game_options
 
 typedef __int64(__fastcall* game_options_new_func)(s_game_options* a1);
 game_options_new_func game_options_new = nullptr;
-void get_game_options_new()
-{
-	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (0x18034A630 - 0x180000000);
 
-	game_options_new = (game_options_new_func)(pFunctionAddress);
-}
+
+
+
+
+
 
 typedef __int64 (__fastcall *load_scenario_into_game_options_func)(s_game_options* a1);
 load_scenario_into_game_options_func load_scenario_into_game_options = nullptr;
@@ -655,30 +520,223 @@ __int64 __fastcall load_scenario_into_game_options_hook(s_game_options* a1)
 
 	return result;
 }
-void create_load_scenario_into_game_options_hook()
+
+typedef void (*sub_18078C550_func)(__int64 a1, ...);
+sub_18078C550_func sub_18078C550 = nullptr;
+void sub_18078C550_hook(const char* format, ...)
+{
+	va_list args;
+	va_start(args, format);
+
+	char buffer[8192] = {};
+	vsnprintf(buffer, 8192, format, args);
+	buffer[sizeof(buffer) - 1] = 0;
+
+	va_end(args);
+
+	MessageBox(hWnd, "dirty_disk_error", buffer, MB_ICONERROR);
+
+	//return sub_18078C550(a1, );
+}
+
+typedef void (*main_status_func)(__int64 a1, ...);
+main_status_func main_status = nullptr;
+void main_status_hook(__int64 a1, ...)
+{
+	va_list args;
+	va_start(args, a1);
+
+	auto count1 = va_arg(args, __int64);
+	assert(count1 == 0);
+
+	const char* str0 = va_arg(args, const char*);
+
+	auto count2 = va_arg(args, __int64);
+
+	printf("status[%lli]: %s", count1, str0);
+
+	for (int i = 0; i < count2; i++)
+	{
+		const char* str1 = va_arg(args, const char*);
+		printf(" %s", str1);
+	}
+	printf("\n");
+
+	va_end(args);
+}
+
+typedef char (__fastcall *sub_180013EA0_func)(__int64 a1, __int64 a2);
+sub_180013EA0_func sub_180013EA0 = nullptr;
+char __fastcall sub_180013EA0_hook(__int64 a1, __int64 a2)
+{
+	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	DWORD& dword_1810EC5A4 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
+	static DWORD previous_dword_1810EC5A4 = -1;
+
+	if (dword_1810EC5A4 != previous_dword_1810EC5A4)
+	{
+		previous_dword_1810EC5A4 = dword_1810EC5A4;
+		printf("dword_1810EC5A4 changed to: %d\n", dword_1810EC5A4);
+	}
+
+	auto result = sub_180013EA0(a1, a2);
+
+	if (dword_1810EC5A4 != previous_dword_1810EC5A4)
+	{
+		previous_dword_1810EC5A4 = dword_1810EC5A4;
+		printf("dword_1810EC5A4 changed to: %d\n", dword_1810EC5A4);
+	}
+
+	return result;
+}
+
+typedef __int64(__fastcall* cache_files_get_file_status_func)(const char* a1);
+cache_files_get_file_status_func cache_files_get_file_status = nullptr;
+void get_cache_files_get_file_status()
 {
 	// Find the function address
 	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (0x1803C9220 - 0x180000000);
+	const char* const pFunctionAddress = pBaseAddress + (0x180352340 - 0x180000000);
 
-	load_scenario_into_game_options = (load_scenario_into_game_options_func)(pFunctionAddress);
+	cache_files_get_file_status = (cache_files_get_file_status_func)(pFunctionAddress);
+}
 
-	PVOID* ppPointer = reinterpret_cast<void**>(&load_scenario_into_game_options);
-	PVOID pDetour = reinterpret_cast<void*>(::load_scenario_into_game_options_hook);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+typedef __int64 (*sub_180012C30_func)();
+sub_180012C30_func sub_180012C30 = nullptr;
+__int64 sub_180012C30_hook()
+{
 
-	if (detourAttachResult)
+	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+
+	DWORD& dword_180FAEE10 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x180FAEE10 - 0x180000000));
+	DWORD& dword_18342E560 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x18342E560 - 0x180000000));
+	QWORD& qword_183459988 = *reinterpret_cast<QWORD*>(pBaseAddress + (0x183459988 - 0x180000000));
+	const char*& qword_183459998 = *reinterpret_cast<const char**>(pBaseAddress + (0x183459998 - 0x180000000));
+	DWORD& global_state_dword_1810EC5A4 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
+	
+	int v0; // ebx
+	__int64 result; // rax
+
+	v0 = cache_files_get_file_status("levels\\shared\\shared\\shared");
+	result = cache_files_get_file_status("levels\\shared\\shared\\campaign");
+	if ((v0 - 3) <= 1 && ((result - 3) <= 1 || !result))
 	{
-		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		WriteLineVerbose("Failed to hook load_scenario_into_game_options. Reason: %s", detourAttachResultStr);
+		if (dword_18342E560)
+		{
+			if (dword_18342E560 == 1)
+			{
+				result = 1i64;
+			}
+			else if (dword_18342E560 == 3)
+			{
+				result = 3i64;
+			}
+			else if (dword_18342E560 != 4 && dword_18342E560 == 5)
+			{
+				result = 2i64;
+			}
+			else
+			{
+				result = 4i64;
+			}
+		}
+		else
+		{
+			result = 0i64;
+		}
+		qword_183459998 = "maps\\m35.map";
+		if (qword_183459998)
+		{
+			result = timeGetTime();
+			dword_180FAEE10 = result;
+			global_state_dword_1810EC5A4 = 3;
+		}
+		else
+		{
+			switch (result)
+			{
+			case 1:
+				if (qword_183459988)
+				{
+					result = timeGetTime();
+					dword_180FAEE10 = result;
+					global_state_dword_1810EC5A4 = 5;
+				}
+				else
+				{
+					result = timeGetTime();
+					dword_180FAEE10 = result;
+					global_state_dword_1810EC5A4 = 4;
+				}
+				break;
+			case 3:
+				result = timeGetTime();
+				dword_180FAEE10 = result;
+				global_state_dword_1810EC5A4 = 6;
+				break;
+			case 2:
+				result = timeGetTime();
+				dword_180FAEE10 = result;
+				global_state_dword_1810EC5A4 = 7;
+				break;
+			}
+		}
 	}
-	else
-	{
-		WriteLineVerbose("Successfully hooked load_scenario_into_game_options");
-	}
+	return result;
 }
 
 
+typedef __int64 (*sub_180012D60_func)();
+sub_180012D60_func sub_180012D60 = nullptr;
+__int64 sub_180012D60_hook()
+{
+	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
+
+	pGameEngineHostCallback = &gameEngineHostCallback;
+
+	auto result = sub_180012D60();
+
+	pGameEngineHostCallback = nullptr;
+
+	return result;
+}
+
+typedef __int64 (*sub_180013CD0_func)();
+sub_180013CD0_func sub_180013CD0 = nullptr;
+__int64 sub_180013CD0_hook()
+{
+	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
+
+	pGameEngineHostCallback = &gameEngineHostCallback;
+
+	auto result = sub_180013CD0();
+
+	pGameEngineHostCallback = nullptr;
+
+	return result;
+}
+
+
+template<size_t offset, typename T>
+void populate_function_ptr(T& dest)
+{
+	// Find the function address
+	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	const char* const pFunctionAddress = pBaseAddress + (offset - 0x180000000);
+
+	dest = reinterpret_cast<T>(pFunctionAddress);
+}
+
+void get_game_options_new()
+{
+	// Find the function address
+	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	const char* const pFunctionAddress = pBaseAddress + (0x18034A630 - 0x180000000);
+
+	game_options_new = (game_options_new_func)(pFunctionAddress);
+}
 
 void init_haloreach()
 {
@@ -694,16 +752,25 @@ void init_haloreach()
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 
-	create_game_get_haloreach_path_hook();
-	create_RegisterClassExA_hook();
-	create_CreateWindowExA_hook();
-	create_rasterizer_initialize_hook();
-	create_create_device_hook();
-	create_create_window_hook();
-	create_sub_180012B60_hook();
-	create_s_static_string_256_print_hook();
-	get_game_options_new();
-	create_load_scenario_into_game_options_hook();
+	create_dll_hook("USER32.dll", "RegisterClassExA", RegisterClassExA_Original, RegisterClassExA_Hook);
+	create_dll_hook("USER32.dll", "CreateWindowExA", CreateWindowExA_Original, CreateWindowExA_Hook);
+
+	create_hook<0x180012730>("game_get_haloreach_path", game_get_haloreach_path, game_get_haloreach_path_hook);
+	create_hook<0x1806C18A0>("game_get_haloreach_path", rasterizer_initialize, rasterizer_initialize_hook);
+	create_hook<0x1806C2C30>("create_device", create_device, create_device_hook);
+	create_hook<0x1806C2890>("create_window", create_window, create_window_hook);
+	create_hook<0x180012B60>("sub_180012B60", sub_180012B60, sub_180012B60_Hook);
+	create_hook<0x180013CD0>("sub_180013CD0", sub_180013CD0, sub_180013CD0_hook);
+	create_hook<0x180012D60>("sub_180012D60", sub_180012D60, sub_180012D60_hook);
+	create_hook<0x180012C30>("sub_180012C30", sub_180012C30, sub_180012C30_hook);
+	create_hook<0x180013EA0>("sub_180013EA0", sub_180013EA0, sub_180013EA0_hook);
+	create_hook<0x1804EA850>("main_status", main_status, main_status_hook);
+	create_hook<0x18078C550>("sub_18078C550", sub_18078C550, sub_18078C550_hook);
+	create_hook<0x1803C9220>("load_scenario_into_game_options", load_scenario_into_game_options, load_scenario_into_game_options_hook);
+	create_hook<0x18004AFC0>("s_static_string_256_print", s_static_string_256_print, s_static_string_256_print_hook);
+
+	populate_function_ptr<0x18034A630>(game_options_new);
+	populate_function_ptr<0x180352340>(cache_files_get_file_status);
 
 	DetourTransactionCommit();
 
