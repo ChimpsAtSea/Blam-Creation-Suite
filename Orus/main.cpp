@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "detour_helpers.h"
 #include <thread>
+#include <stdio.h>
 
 #define this _this
 
@@ -529,6 +530,153 @@ void create_sub_180012B60_hook()
 	}
 }
 
+typedef __int64 (*s_static_string_256_print_func)(char* dst, char* format, ...);
+s_static_string_256_print_func s_static_string_256_print = nullptr;
+char* s_static_string_256_print_hook(char* dst, char* format, ...)
+{
+	va_list args;
+	va_start(args, format);
+
+	vprintf(format, args);
+	printf("\n");
+	vsnprintf(dst, 256i64, format, args);
+
+	va_end(args);
+
+	return dst;
+}
+void create_s_static_string_256_print_hook()
+{
+	// Find the function address
+	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	const char* const pFunctionAddress = pBaseAddress + (0x18004AFC0 - 0x180000000);
+
+	s_static_string_256_print = (s_static_string_256_print_func)(pFunctionAddress);
+
+	PVOID* ppPointer = reinterpret_cast<void**>(&s_static_string_256_print);
+	PVOID pDetour = reinterpret_cast<void*>(::s_static_string_256_print_hook);
+	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+
+	if (detourAttachResult)
+	{
+		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+		WriteLineVerbose("Failed to hook s_static_string_256_print. Reason: %s", detourAttachResultStr);
+	}
+	else
+	{
+		WriteLineVerbose("Successfully hooked s_static_string_256_print");
+	}
+}
+
+typedef char*(*game_get_haloreach_path_func)();
+game_get_haloreach_path_func game_get_haloreach_path = nullptr;
+const char* game_get_haloreach_path_hook()
+{
+	return "";
+}
+void create_game_get_haloreach_path_hook()
+{
+	// Find the function address
+	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	const char* const pFunctionAddress = pBaseAddress + (0x180012730 - 0x180000000);
+
+	game_get_haloreach_path = (game_get_haloreach_path_func)(pFunctionAddress);
+
+	PVOID* ppPointer = reinterpret_cast<void**>(&game_get_haloreach_path);
+	PVOID pDetour = reinterpret_cast<void*>(::game_get_haloreach_path_hook);
+	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+
+	if (detourAttachResult)
+	{
+		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+		WriteLineVerbose("Failed to hook game_get_haloreach_path. Reason: %s", detourAttachResultStr);
+	}
+	else
+	{
+		WriteLineVerbose("Successfully hooked game_get_haloreach_path");
+	}
+}
+
+enum e_scenario_type : __int32
+{
+	_scenario_type_none = 0x0,
+	_scenario_type_campaign = 0x1,
+	_scenario_type_multiplayer = 0x2,
+	_scenario_type_mainmenu = 0x3,
+	_scenario_type_shared = 0x4,
+	_scenario_type_shared_campaign = 0x5,
+	_scenario_type_unused5 = 0x6,
+	_scenario_type_unused6 = 0x7,
+	k_number_of_scenario_types = 0x8,
+};
+
+
+struct __declspec(align(4)) s_game_options
+{
+	e_scenario_type scenario_type;
+	BYTE game_simulation[8];
+	WORD frame_limit;
+	WORD unknownE;
+	BYTE game_instance[8];
+	DWORD random_seed;
+	DWORD language;
+	BYTE campaign_id;
+	DWORD determinism_version;
+	BYTE game_variant[64516];
+	DWORD map_id;
+	BYTE unknownFC30[4];
+	char scenario_path[260];
+	BYTE unknownFE94[129];
+	BYTE game_is_playtest;
+	BYTE unknownFF16[18];
+	DWORD campaign_difficulty;
+	BYTE unknownFF2C[60368];
+};
+
+
+typedef __int64(__fastcall* game_options_new_func)(s_game_options* a1);
+game_options_new_func game_options_new = nullptr;
+void get_game_options_new()
+{
+	// Find the function address
+	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	const char* const pFunctionAddress = pBaseAddress + (0x18034A630 - 0x180000000);
+
+	game_options_new = (game_options_new_func)(pFunctionAddress);
+}
+
+typedef __int64 (__fastcall *load_scenario_into_game_options_func)(s_game_options* a1);
+load_scenario_into_game_options_func load_scenario_into_game_options = nullptr;
+__int64 __fastcall load_scenario_into_game_options_hook(s_game_options* a1)
+{
+	auto result = load_scenario_into_game_options(a1);
+
+	// TODO
+
+	return result;
+}
+void create_load_scenario_into_game_options_hook()
+{
+	// Find the function address
+	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	const char* const pFunctionAddress = pBaseAddress + (0x1803C9220 - 0x180000000);
+
+	load_scenario_into_game_options = (load_scenario_into_game_options_func)(pFunctionAddress);
+
+	PVOID* ppPointer = reinterpret_cast<void**>(&load_scenario_into_game_options);
+	PVOID pDetour = reinterpret_cast<void*>(::load_scenario_into_game_options_hook);
+	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
+
+	if (detourAttachResult)
+	{
+		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+		WriteLineVerbose("Failed to hook load_scenario_into_game_options. Reason: %s", detourAttachResultStr);
+	}
+	else
+	{
+		WriteLineVerbose("Successfully hooked load_scenario_into_game_options");
+	}
+}
 
 
 
@@ -546,14 +694,16 @@ void init_haloreach()
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 
+	create_game_get_haloreach_path_hook();
 	create_RegisterClassExA_hook();
 	create_CreateWindowExA_hook();
 	create_rasterizer_initialize_hook();
 	create_create_device_hook();
 	create_create_window_hook();
 	create_sub_180012B60_hook();
-
-
+	create_s_static_string_256_print_hook();
+	get_game_options_new();
+	create_load_scenario_into_game_options_hook();
 
 	DetourTransactionCommit();
 
