@@ -75,6 +75,16 @@ void create_dll_hook(const char* _module, const char* procedure, Ta& originalSto
 	}
 }
 
+template<size_t offset, typename T>
+void populate_function_ptr(T& dest)
+{
+	// Find the function address
+	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	const char* const pFunctionAddress = pBaseAddress + (offset - 0x180000000);
+
+	dest = reinterpret_cast<T>(pFunctionAddress);
+}
+
 void nullsub()
 {
 
@@ -571,6 +581,9 @@ char __fastcall sub_180013EA0_hook(__int64 a1, __int64 a2)
 {
 	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
 	DWORD& dword_1810EC5A4 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
+	//GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
+
+	//pGameEngineHostCallback = &gameEngineHostCallback;
 	static DWORD previous_dword_1810EC5A4 = -1;
 
 	if (dword_1810EC5A4 != previous_dword_1810EC5A4)
@@ -587,6 +600,7 @@ char __fastcall sub_180013EA0_hook(__int64 a1, __int64 a2)
 		printf("dword_1810EC5A4 changed to: %d\n", dword_1810EC5A4);
 	}
 
+	//pGameEngineHostCallback = nullptr;
 	return result;
 }
 
@@ -621,6 +635,7 @@ __int64 sub_180012C30_hook()
 	result = cache_files_get_file_status("levels\\shared\\shared\\campaign");
 	if ((v0 - 3) <= 1 && ((result - 3) <= 1 || !result))
 	{
+		// dword_18342E560 = 1; // hack, goes through 2, 4, 9, 12
 		if (dword_18342E560)
 		{
 			if (dword_18342E560 == 1)
@@ -644,7 +659,7 @@ __int64 sub_180012C30_hook()
 		{
 			result = 0i64;
 		}
-		qword_183459998 = "maps\\m35.map";
+		//qword_183459998 = "maps\\m35.map";
 		if (qword_183459998)
 		{
 			result = timeGetTime();
@@ -719,23 +734,20 @@ __int64 sub_180013CD0_hook()
 }
 
 
-template<size_t offset, typename T>
-void populate_function_ptr(T& dest)
+typedef __int64 (__fastcall *sub_180013BF0_func)(__int64 a1);
+sub_180013BF0_func sub_180013BF0 = nullptr;
+__int64 __fastcall sub_180013BF0_hook(__int64 a1)
 {
-	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (offset - 0x180000000);
+	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
 
-	dest = reinterpret_cast<T>(pFunctionAddress);
-}
+	pGameEngineHostCallback = &gameEngineHostCallback;
 
-void get_game_options_new()
-{
-	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (0x18034A630 - 0x180000000);
+	auto result = sub_180013BF0(a1);
 
-	game_options_new = (game_options_new_func)(pFunctionAddress);
+	pGameEngineHostCallback = nullptr;
+
+	return result;
 }
 
 void init_haloreach()
@@ -768,14 +780,12 @@ void init_haloreach()
 	create_hook<0x18078C550>("sub_18078C550", sub_18078C550, sub_18078C550_hook);
 	create_hook<0x1803C9220>("load_scenario_into_game_options", load_scenario_into_game_options, load_scenario_into_game_options_hook);
 	create_hook<0x18004AFC0>("s_static_string_256_print", s_static_string_256_print, s_static_string_256_print_hook);
-
+	create_hook<0x180013BF0>("sub_180013BF0", sub_180013BF0, sub_180013BF0_hook);
+	
 	populate_function_ptr<0x18034A630>(game_options_new);
 	populate_function_ptr<0x180352340>(cache_files_get_file_status);
 
 	DetourTransactionCommit();
-
-	
-
 	
 
 	//=========================================================
@@ -799,7 +809,6 @@ void init_haloreach()
 
 void deinit_haloreach()
 {
-
 	FreeLibrary(HaloReach);
 }
 
