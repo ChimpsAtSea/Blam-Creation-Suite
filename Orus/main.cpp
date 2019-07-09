@@ -8,10 +8,10 @@
 
 HMODULE HaloReach; //haloreach.dll
 
-typedef signed __int64(__fastcall CreateGameEngineFunc)(IGameEngine** ppGameEngine);
-CreateGameEngineFunc* CreateGameEngine = nullptr;
+typedef signed __int64(__fastcall CreateGameEngineFunc)(IGameEngine **ppGameEngine);
+CreateGameEngineFunc *CreateGameEngine = nullptr;
 
-IGameEngine* pHaloReachEngine = nullptr;
+IGameEngine *pHaloReachEngine = nullptr;
 __int64 buffer[1024 * 1024 * 32] = {};
 __int64 buffer2[1024 * 1024 * 64] = {};
 
@@ -27,17 +27,17 @@ GameEvents gameEvents;
 GameEvents_vftbl gameEventsVftbl;
 
 template<size_t O, typename Ta, typename Tb>
-void create_hook(const char* name, Ta& originalStorage, Tb hookFunction)
+void create_hook(const char *name, Ta &originalStorage, Tb hookFunction)
 {
-	originalStorage = (Ta)(reinterpret_cast<char*>(HaloReach) + (O - 0x180000000));
+	originalStorage = (Ta)(reinterpret_cast<char *>(HaloReach) + (O - 0x180000000));
 
-	PVOID* ppPointer = reinterpret_cast<void**>(&originalStorage);
-	PVOID pDetour = reinterpret_cast<void*>(hookFunction);
+	PVOID *ppPointer = reinterpret_cast<void **>(&originalStorage);
+	PVOID pDetour = reinterpret_cast<void *>(hookFunction);
 	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
 
 	if (detourAttachResult)
 	{
-		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+		const char *detourAttachResultStr = GetDetourResultStr(detourAttachResult);
 		WriteLineVerbose("Failed to hook %s. Reason: %s", name, detourAttachResultStr);
 	}
 	else
@@ -47,40 +47,40 @@ void create_hook(const char* name, Ta& originalStorage, Tb hookFunction)
 }
 
 template<typename Ta, typename Tb>
-void create_dll_hook(const char* _module, const char* procedure, Ta& originalStorage, Tb hookFunction)
+void create_dll_hook(const char *moduleName, const char *procedureName, Ta &originalStorage, Tb hookFunction)
 {
 	// Find the function address
-	HMODULE hModule = GetModuleHandleA(_module);
+	HMODULE hModule = GetModuleHandleA(moduleName);
 	assert(hModule);
-	FARPROC RegisterClassExAProc = GetProcAddress(hModule, procedure);
+	FARPROC RegisterClassExAProc = GetProcAddress(hModule, procedureName);
 	assert(RegisterClassExAProc);
 
 	originalStorage = (Ta)RegisterClassExAProc;
 
 	if (hookFunction)
 	{
-		PVOID* ppPointer = reinterpret_cast<void**>(&originalStorage);
-		PVOID pDetour = reinterpret_cast<void*>(hookFunction);
+		PVOID *ppPointer = reinterpret_cast<void **>(&originalStorage);
+		PVOID pDetour = reinterpret_cast<void *>(hookFunction);
 		LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
 
 		if (detourAttachResult)
 		{
-			const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-			WriteLineVerbose("Failed to hook %s %s. Reason: %s", _module, procedure, detourAttachResultStr);
+			const char *detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+			WriteLineVerbose("Failed to hook %s %s. Reason: %s", moduleName, procedureName, detourAttachResultStr);
 		}
 		else
 		{
-			WriteLineVerbose("Successfully hooked %s %s", _module, procedure);
+			WriteLineVerbose("Successfully hooked %s %s", moduleName, procedureName);
 		}
 	}
 }
 
 template<size_t offset, typename T>
-void populate_function_ptr(T& dest)
+void populate_function_ptr(T &dest)
 {
 	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (offset - 0x180000000);
+	const char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
+	const char *const pFunctionAddress = pBaseAddress + (offset - 0x180000000);
 
 	dest = reinterpret_cast<T>(pFunctionAddress);
 }
@@ -90,9 +90,9 @@ void nullsub()
 
 }
 
-GUID* __fastcall GetGuid(GameEvents* this, GUID* rGuid)
+GUID *__fastcall GetGuid(GameEvents *this, GUID *rGuid)
 {
-	GUID* result; // rax
+	GUID *result; // rax
 
 	result = rGuid;
 	*rGuid = this->guid;
@@ -114,8 +114,8 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member03 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[03]");
 	gameEngineHostCallbackVftbl.Member04 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[04]");
 
-	typedef void(__fastcall WriteGameStateFunc)(GameEngineHostCallback*, LPVOID, size_t);
-	gameEngineHostCallbackVftbl.WriteGameState = (WriteGameStateFunc*)nullsub;
+	typedef void(__fastcall WriteGameStateFunc)(GameEngineHostCallback *, LPVOID, size_t);
+	gameEngineHostCallbackVftbl.WriteGameState = (WriteGameStateFunc *)nullsub;
 
 	gameEngineHostCallbackVftbl.Member06 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[06]");
 	gameEngineHostCallbackVftbl.Member07 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[07]");
@@ -167,10 +167,10 @@ void setup_game_events()
 	gameEvents.vftbl = &gameEventsVftbl;
 
 
-	typedef void(__fastcall BIFactDeepLinkSendFunc)(GameEvents*, _QWORD*, GUID*, _QWORD*, __int64*);
-	typedef void(__fastcall BroadcastingStartFunc)(GameEvents*, _QWORD, _QWORD, _QWORD, _QWORD, _DWORD, _QWORD, _QWORD, _DWORD, _QWORD);
-	typedef __int64(__fastcall BIFactControllerSettingsFunc)(GameEvents*, unsigned __int64*, GUID*, _QWORD, __int64, _DWORD, int, int);
-	typedef __int64(__fastcall Member120Func)(GameEvents*, _QWORD);
+	typedef void(__fastcall BIFactDeepLinkSendFunc)(GameEvents *, _QWORD *, GUID *, _QWORD *, __int64 *);
+	typedef void(__fastcall BroadcastingStartFunc)(GameEvents *, _QWORD, _QWORD, _QWORD, _QWORD, _DWORD, _QWORD, _QWORD, _DWORD, _QWORD);
+	typedef __int64(__fastcall BIFactControllerSettingsFunc)(GameEvents *, unsigned __int64 *, GUID *, _QWORD, __int64, _DWORD, int, int);
+	typedef __int64(__fastcall Member120Func)(GameEvents *, _QWORD);
 
 	gameEventsVftbl.Member00 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[0]");
 	gameEventsVftbl.AshesToAshes = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::AshesToAshes");
@@ -178,9 +178,9 @@ void setup_game_events()
 	gameEventsVftbl.AudioLogClaimed = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::AudioLogClaimed");
 	gameEventsVftbl.Base = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::Base");
 	gameEventsVftbl.Betrayal = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::Betrayal");
-	gameEventsVftbl.BIFactControllerSettings = [](GameEvents*, unsigned __int64*, GUID*, _QWORD, __int64, _DWORD, int, int) { printf("GameEvents::vftable::BIFactControllerSettings""\n"); return __int64(0); };
+	gameEventsVftbl.BIFactControllerSettings = [](GameEvents *, unsigned __int64 *, GUID *, _QWORD, __int64, _DWORD, int, int) { printf("GameEvents::vftable::BIFactControllerSettings""\n"); return __int64(0); };
 	gameEventsVftbl.BIFactDeepLinkRecieve = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BIFactDeepLinkRecieve");
-	gameEventsVftbl.BIFactDeepLinkSend = [](GameEvents*, _QWORD*, GUID*, _QWORD*, __int64*) { printf("GameEvents::vftable::BIFactDeepLinkSend""\n"); };
+	gameEventsVftbl.BIFactDeepLinkSend = [](GameEvents *, _QWORD *, GUID *, _QWORD *, __int64 *) { printf("GameEvents::vftable::BIFactDeepLinkSend""\n"); };
 	gameEventsVftbl.BIFactDualWield = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BIFactDualWield");
 	gameEventsVftbl.BIFactGameSession = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BIFactGameSession");
 	gameEventsVftbl.BIFactLoadout = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BIFactLoadout");
@@ -203,7 +203,7 @@ void setup_game_events()
 	gameEventsVftbl.BroadcastingPlayerSpawn = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BroadcastingPlayerSpawn");
 	gameEventsVftbl.BroadcastingPlayerSwitchedTeams = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BroadcastingPlayerSwitchedTeams");
 	gameEventsVftbl.BroadcastingScore = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BroadcastingScore");
-	gameEventsVftbl.BroadcastingStart = [](GameEvents*, _QWORD, _QWORD, _QWORD, _QWORD, _DWORD, _QWORD, _QWORD, _DWORD, _QWORD) { printf("GameEvents::vftable::BroadcastingStart""\n"); };
+	gameEventsVftbl.BroadcastingStart = [](GameEvents *, _QWORD, _QWORD, _QWORD, _QWORD, _DWORD, _QWORD, _QWORD, _DWORD, _QWORD) { printf("GameEvents::vftable::BroadcastingStart""\n"); };
 	gameEventsVftbl.ChallengeCompleted = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::ChallengeCompleted");
 	gameEventsVftbl.ClassicModeSwitched = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::ClassicModeSwitched");
 	gameEventsVftbl.CleverGirl = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::CleverGirl");
@@ -292,7 +292,7 @@ void setup_game_events()
 	gameEventsVftbl.Member117 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[117]");
 	gameEventsVftbl.Member118 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[118]");
 	gameEventsVftbl.Member119 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[119]");
-	gameEventsVftbl.Member120 = [](GameEvents*, _QWORD) { printf("GameEvents::vftable::Member120Func""\n"); return __int64(0); };
+	gameEventsVftbl.Member120 = [](GameEvents *, _QWORD) { printf("GameEvents::vftable::Member120Func""\n"); return __int64(0); };
 	gameEventsVftbl.Member121 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[121]");
 	gameEventsVftbl.GetGuid = GetGuid;
 	gameEventsVftbl.Member123 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[123]");
@@ -322,9 +322,9 @@ typedef HWND(*create_window_func)();
 create_window_func create_window = nullptr;
 HWND create_window_hook()
 {
-	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
-	HWND& g_windowHWND = *reinterpret_cast<HWND*>(pBaseAddress + (0x1810EC5D8 - 0x180000000));
+	char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
+	GameEngineHostCallback *&pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
+	HWND &g_windowHWND = *reinterpret_cast<HWND *>(pBaseAddress + (0x1810EC5D8 - 0x180000000));
 
 	auto before = pGameEngineHostCallback;
 	pGameEngineHostCallback = nullptr;
@@ -353,9 +353,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-typedef ATOM(WINAPI* RegisterClassExA_Func)(_In_ CONST WNDCLASSEXA*);
+typedef ATOM(WINAPI *RegisterClassExA_Func)(_In_ CONST WNDCLASSEXA *);
 RegisterClassExA_Func RegisterClassExA_Original = nullptr;
-ATOM WINAPI RegisterClassExA_Hook(_In_ WNDCLASSEXA* arg)
+ATOM WINAPI RegisterClassExA_Hook(_In_ WNDCLASSEXA *arg)
 {
 	assert(arg->cbSize == sizeof(WNDCLASSEXA));
 
@@ -366,7 +366,7 @@ ATOM WINAPI RegisterClassExA_Hook(_In_ WNDCLASSEXA* arg)
 	arg->cbWndExtra = 0;
 	arg->hInstance = HaloReach;
 
-	memcpy((char*)arg->lpszClassName, "HaloReach", sizeof("HaloReach"));
+	memcpy((char *)arg->lpszClassName, "HaloReach", sizeof("HaloReach"));
 
 	//arg->lpszClassName = "HaloReach";
 
@@ -387,7 +387,7 @@ void process_window_events()
 	}
 }
 
-typedef HWND(WINAPI* CreateWindowExA_Func)(
+typedef HWND(WINAPI *CreateWindowExA_Func)(
 	_In_ DWORD dwExStyle,
 	_In_opt_ LPCSTR lpClassName,
 	_In_opt_ LPCSTR lpWindowName,
@@ -436,12 +436,12 @@ HWND WINAPI CreateWindowExA_Hook(
 	return result;
 }
 
-typedef __int64 (__fastcall *sub_180012B60_Func)(__int64 a1, __int64 a2);
+typedef __int64(__fastcall *sub_180012B60_Func)(__int64 a1, __int64 a2);
 sub_180012B60_Func sub_180012B60 = nullptr;
 __int64 __fastcall sub_180012B60_Hook(__int64 a1, __int64 a2)
 {
-	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
+	char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
+	GameEngineHostCallback *&pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
 
 	pGameEngineHostCallback = &gameEngineHostCallback;
 
@@ -452,9 +452,9 @@ __int64 __fastcall sub_180012B60_Hook(__int64 a1, __int64 a2)
 	return result;
 }
 
-typedef __int64 (*s_static_string_256_print_func)(char* dst, char* format, ...);
+typedef __int64 (*s_static_string_256_print_func)(char *dst, char *format, ...);
 s_static_string_256_print_func s_static_string_256_print = nullptr;
-char* s_static_string_256_print_hook(char* dst, char* format, ...)
+char *s_static_string_256_print_hook(char *dst, char *format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -467,9 +467,9 @@ char* s_static_string_256_print_hook(char* dst, char* format, ...)
 	return dst;
 }
 
-typedef char*(*game_get_haloreach_path_func)();
+typedef char *(*game_get_haloreach_path_func)();
 game_get_haloreach_path_func game_get_haloreach_path = nullptr;
-const char* game_get_haloreach_path_hook()
+const char *game_get_haloreach_path_hook()
 {
 	return "";
 }
@@ -511,7 +511,7 @@ struct __declspec(align(4)) s_game_options
 };
 
 
-typedef __int64(__fastcall* game_options_new_func)(s_game_options* a1);
+typedef __int64(__fastcall *game_options_new_func)(s_game_options *a1);
 game_options_new_func game_options_new = nullptr;
 
 
@@ -520,9 +520,9 @@ game_options_new_func game_options_new = nullptr;
 
 
 
-typedef __int64 (__fastcall *load_scenario_into_game_options_func)(s_game_options* a1);
+typedef __int64(__fastcall *load_scenario_into_game_options_func)(s_game_options *a1);
 load_scenario_into_game_options_func load_scenario_into_game_options = nullptr;
-__int64 __fastcall load_scenario_into_game_options_hook(s_game_options* a1)
+__int64 __fastcall load_scenario_into_game_options_hook(s_game_options *a1)
 {
 	auto result = load_scenario_into_game_options(a1);
 
@@ -533,7 +533,7 @@ __int64 __fastcall load_scenario_into_game_options_hook(s_game_options* a1)
 
 typedef void (*sub_18078C550_func)(__int64 a1, ...);
 sub_18078C550_func sub_18078C550 = nullptr;
-void sub_18078C550_hook(const char* format, ...)
+void sub_18078C550_hook(const char *format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -559,7 +559,7 @@ void main_status_hook(__int64 a1, ...)
 	auto count1 = va_arg(args, __int64);
 	assert(count1 == 0);
 
-	const char* str0 = va_arg(args, const char*);
+	const char *str0 = va_arg(args, const char *);
 
 	auto count2 = va_arg(args, __int64);
 
@@ -567,7 +567,7 @@ void main_status_hook(__int64 a1, ...)
 
 	for (int i = 0; i < count2; i++)
 	{
-		const char* str1 = va_arg(args, const char*);
+		const char *str1 = va_arg(args, const char *);
 		printf(" %s", str1);
 	}
 	printf("\n");
@@ -575,12 +575,12 @@ void main_status_hook(__int64 a1, ...)
 	va_end(args);
 }
 
-typedef char (__fastcall *sub_180013EA0_func)(__int64 a1, __int64 a2);
+typedef char(__fastcall *sub_180013EA0_func)(__int64 a1, __int64 a2);
 sub_180013EA0_func sub_180013EA0 = nullptr;
 char __fastcall sub_180013EA0_hook(__int64 a1, __int64 a2)
 {
-	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	DWORD& dword_1810EC5A4 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
+	char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
+	DWORD &dword_1810EC5A4 = *reinterpret_cast<DWORD *>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
 	//GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
 
 	//pGameEngineHostCallback = &gameEngineHostCallback;
@@ -604,13 +604,13 @@ char __fastcall sub_180013EA0_hook(__int64 a1, __int64 a2)
 	return result;
 }
 
-typedef __int64(__fastcall* cache_files_get_file_status_func)(const char* a1);
+typedef __int64(__fastcall *cache_files_get_file_status_func)(const char *a1);
 cache_files_get_file_status_func cache_files_get_file_status = nullptr;
 void get_cache_files_get_file_status()
 {
 	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	const char* const pFunctionAddress = pBaseAddress + (0x180352340 - 0x180000000);
+	const char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
+	const char *const pFunctionAddress = pBaseAddress + (0x180352340 - 0x180000000);
 
 	cache_files_get_file_status = (cache_files_get_file_status_func)(pFunctionAddress);
 }
@@ -620,14 +620,14 @@ sub_180012C30_func sub_180012C30 = nullptr;
 __int64 sub_180012C30_hook()
 {
 
-	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
+	char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
 
-	DWORD& dword_180FAEE10 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x180FAEE10 - 0x180000000));
-	DWORD& dword_18342E560 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x18342E560 - 0x180000000));
-	QWORD& qword_183459988 = *reinterpret_cast<QWORD*>(pBaseAddress + (0x183459988 - 0x180000000));
-	const char*& qword_183459998 = *reinterpret_cast<const char**>(pBaseAddress + (0x183459998 - 0x180000000));
-	DWORD& global_state_dword_1810EC5A4 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
-	
+	DWORD &dword_180FAEE10 = *reinterpret_cast<DWORD *>(pBaseAddress + (0x180FAEE10 - 0x180000000));
+	DWORD &dword_18342E560 = *reinterpret_cast<DWORD *>(pBaseAddress + (0x18342E560 - 0x180000000));
+	QWORD &qword_183459988 = *reinterpret_cast<QWORD *>(pBaseAddress + (0x183459988 - 0x180000000));
+	const char *&qword_183459998 = *reinterpret_cast<const char **>(pBaseAddress + (0x183459998 - 0x180000000));
+	DWORD &global_state_dword_1810EC5A4 = *reinterpret_cast<DWORD *>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
+
 	int v0; // ebx
 	__int64 result; // rax
 
@@ -705,8 +705,8 @@ typedef __int64 (*sub_180012D60_func)();
 sub_180012D60_func sub_180012D60 = nullptr;
 __int64 sub_180012D60_hook()
 {
-	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
+	char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
+	GameEngineHostCallback *&pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
 
 	pGameEngineHostCallback = &gameEngineHostCallback;
 
@@ -721,8 +721,8 @@ typedef __int64 (*sub_180013CD0_func)();
 sub_180013CD0_func sub_180013CD0 = nullptr;
 __int64 sub_180013CD0_hook()
 {
-	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
+	char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
+	GameEngineHostCallback *&pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
 
 	pGameEngineHostCallback = &gameEngineHostCallback;
 
@@ -734,12 +734,12 @@ __int64 sub_180013CD0_hook()
 }
 
 
-typedef __int64 (__fastcall *sub_180013BF0_func)(__int64 a1);
+typedef __int64(__fastcall *sub_180013BF0_func)(__int64 a1);
 sub_180013BF0_func sub_180013BF0 = nullptr;
 __int64 __fastcall sub_180013BF0_hook(__int64 a1)
 {
-	char* const pBaseAddress = reinterpret_cast<char*>(HaloReach);
-	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
+	char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
+	GameEngineHostCallback *&pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
 
 	pGameEngineHostCallback = &gameEngineHostCallback;
 
@@ -747,6 +747,15 @@ __int64 __fastcall sub_180013BF0_hook(__int64 a1)
 
 	pGameEngineHostCallback = nullptr;
 
+	return result;
+}
+
+typedef char *(__fastcall *simulation_watcher_get_status_func)(uint8_t *pSimulationWatcher, char *dst);
+simulation_watcher_get_status_func simulation_watcher_get_status = nullptr;
+char *__fastcall simulation_watcher_get_status_hook(uint8_t *pSimulationWatcher, char *dst)
+{
+	auto result = simulation_watcher_get_status(pSimulationWatcher, dst);
+	printf("%s\n%s\n", dst, result);
 	return result;
 }
 
@@ -781,12 +790,13 @@ void init_haloreach()
 	create_hook<0x1803C9220>("load_scenario_into_game_options", load_scenario_into_game_options, load_scenario_into_game_options_hook);
 	create_hook<0x18004AFC0>("s_static_string_256_print", s_static_string_256_print, s_static_string_256_print_hook);
 	create_hook<0x180013BF0>("sub_180013BF0", sub_180013BF0, sub_180013BF0_hook);
-	
+	create_hook<0x180108FB0>("simulation_watcher_get_status", simulation_watcher_get_status, simulation_watcher_get_status_hook); // untested
+
 	populate_function_ptr<0x18034A630>(game_options_new);
 	populate_function_ptr<0x180352340>(cache_files_get_file_status);
 
 	DetourTransactionCommit();
-	
+
 
 	//=========================================================
 	//                  rest of function
@@ -794,14 +804,14 @@ void init_haloreach()
 
 
 
-	CreateGameEngine = (CreateGameEngineFunc*)GetProcAddress(HaloReach, "CreateGameEngine");
+	CreateGameEngine = (CreateGameEngineFunc *)GetProcAddress(HaloReach, "CreateGameEngine");
 
 	__int64 result = CreateGameEngine(&pHaloReachEngine);
 
 	if (pHaloReachEngine)
 	{
-		pHaloReachEngine->vftbl->init_graphics(pHaloReachEngine, 0, 0, 0, 0);
-		pHaloReachEngine->vftbl->init_thread(pHaloReachEngine, nullptr, reinterpret_cast<long long>(buffer2));
+		pHaloReachEngine->InitGraphics(0, 0, 0, 0);
+		pHaloReachEngine->InitThread(nullptr, reinterpret_cast<long long>(buffer2));
 
 	}
 

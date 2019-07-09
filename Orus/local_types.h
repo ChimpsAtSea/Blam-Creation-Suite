@@ -24,17 +24,17 @@ typedef void(NullSubFunc)();
 /* 514 */
 struct __declspec(align(8)) IGameEngine_vftbl
 {
-	void(__fastcall* init_graphics)(IGameEngine*, __int64, __int64, __int64, __int64);
-	void(__fastcall* init_thread)(IGameEngine*, GameEngineHostCallback *, __int64);
-	void* function3;
-	void* function4;
-	void* function5;
-	void* function6;
-	void* function7;
-	void* function8;
-	void* function9;
-	void* function10;
-	void* function11;
+	void(__fastcall *InitGraphics)(IGameEngine *, __int64, __int64, __int64 , __int64);
+	void(__fastcall *InitThread)(IGameEngine *, GameEngineHostCallback *, __int64);
+	void *Member02;
+	void *Member03;
+	void *Member04;
+	void *Member05;
+	void *Member06;
+	void *Member07;
+	void *Member08;
+	void *Member09;
+	void *Member10;
 };
 
 /* 17 */
@@ -43,10 +43,19 @@ struct __declspec(align(8)) IGameEngine_vftbl
 /* 515 */
 struct IGameEngine
 {
-	IGameEngine_vftbl* vftbl;
+	IGameEngine_vftbl *vftbl;
 	DWORD unknown0;
 	float unknown1;
 	char unknown2[454];
+
+	void InitGraphics(__int64 a1, __int64 a2, __int64 /*IDXGISwapChain **/pSwapChain, __int64 a4)
+	{
+		vftbl->InitGraphics(this, a1, a2, pSwapChain, a4);
+	}
+	void InitThread(GameEngineHostCallback *gameEngineHostCallback, __int64 a2)
+	{
+		vftbl->InitThread(this, gameEngineHostCallback, a2);
+	}
 };
 
 /* 516 */
@@ -100,8 +109,8 @@ struct GameEngineHostCallback_vftbl
 /* 517 */
 struct __declspec(align(8)) GameEngineHostCallback
 {
-	GameEngineHostCallback_vftbl* vftbl;
-	GameEvents* pGameEvents;
+	GameEngineHostCallback_vftbl *vftbl;
+	GameEvents *pGameEvents;
 	QWORD data1[5863];
 };
 
@@ -110,11 +119,11 @@ struct __declspec(align(8)) GameEngineHostCallback
 typedef struct _GUID GUID;
 
 /* 23 */
-typedef _RTL_CRITICAL_SECTION_DEBUG* PRTL_CRITICAL_SECTION_DEBUG;
+typedef _RTL_CRITICAL_SECTION_DEBUG *PRTL_CRITICAL_SECTION_DEBUG;
 
 
 /* 28 */
-typedef void* HANDLE;
+typedef void *HANDLE;
 
 /* 29 */
 typedef unsigned __int64 ULONG_PTR;
@@ -124,13 +133,13 @@ typedef unsigned __int64 ULONG_PTR;
 struct __declspec(align(8)) UnknownType0
 {
 	QWORD qword0;
-	QWORD* qword1;
-	QWORD* qword2;
+	QWORD *qword1;
+	QWORD *qword2;
 	DWORD dword0;
 	DWORD dword1;
 	QWORD qword4;
-	QWORD* qword5;
-	QWORD* qword6;
+	QWORD *qword5;
+	QWORD *qword6;
 	DWORD dword2;
 	DWORD dword3;
 	DWORD dword4;
@@ -140,7 +149,7 @@ struct __declspec(align(8)) UnknownType0
 /* 519 */
 struct GameEvents
 {
-	GameEvents_vftbl* vftbl;
+	GameEvents_vftbl *vftbl;
 	_WORD word0;
 	_WORD word1;
 	GUID guid;
