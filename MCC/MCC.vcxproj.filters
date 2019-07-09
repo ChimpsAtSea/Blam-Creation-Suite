@@ -21,10 +21,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="opus.cpp">
+    <ClCompile Include="MCC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="opus-private-pch.cpp">
+    <ClCompile Include="MCC-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="detour_helpers.cpp">
@@ -32,13 +32,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="opus.h">
+    <ClInclude Include="MCC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opus-public-pch.h">
+    <ClInclude Include="MCC-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opus-private-pch.h">
+    <ClInclude Include="MCC-private-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="detour_helpers.h">

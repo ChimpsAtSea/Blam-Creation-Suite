@@ -43,12 +43,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>opus</TargetName>
+    <TargetName>MCC</TargetName>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetName>opus</TargetName>
+    <TargetName>MCC</TargetName>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -59,7 +59,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>opus-private-pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>mcc-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -75,7 +75,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>opus-private-pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>mcc-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -86,19 +86,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="detour_helpers.cpp" />
-    <ClCompile Include="opus-private-pch.cpp">
+    <ClCompile Include="mcc-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="opus.cpp" />
+    <ClCompile Include="mcc.cpp" />
     <ClCompile Include="simplenetwork.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="detour_helpers.h" />
-    <ClInclude Include="opus-private-pch.h" />
-    <ClInclude Include="opus-public-pch.h" />
-    <ClInclude Include="opus.h" />
+    <ClInclude Include="mcc-private-pch.h" />
+    <ClInclude Include="mcc-public-pch.h" />
+    <ClInclude Include="mcc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
