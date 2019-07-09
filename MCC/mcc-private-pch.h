@@ -7,4 +7,7 @@
 
 #include <detours.h>
 
-#include "opus-public-pch.h"
+#include "mcc-public-pch.h"
+
+#include "mcc.h"
+
