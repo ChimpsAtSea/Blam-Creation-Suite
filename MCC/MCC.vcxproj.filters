@@ -44,5 +44,8 @@
     <ClInclude Include="detour_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mcctypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,8 +1,4 @@
-#include "orus-private-pch.h"
-#include <stdio.h>
-#include "detour_helpers.h"
-#include <thread>
-#include <stdio.h>
+#include "haloreach-private-pch.h"
 
 #define this _this
 
@@ -25,70 +21,6 @@ GameEngineHostCallback gameEngineHostCallback;
 GameEngineHostCallback_vftbl gameEngineHostCallbackVftbl;
 GameEvents gameEvents;
 GameEvents_vftbl gameEventsVftbl;
-
-template<size_t O, typename Ta, typename Tb>
-void create_hook(const char *name, Ta &originalStorage, Tb hookFunction)
-{
-	originalStorage = (Ta)(reinterpret_cast<char *>(HaloReach) + (O - 0x180000000));
-
-	PVOID *ppPointer = reinterpret_cast<void **>(&originalStorage);
-	PVOID pDetour = reinterpret_cast<void *>(hookFunction);
-	LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
-
-	if (detourAttachResult)
-	{
-		const char *detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		WriteLineVerbose("Failed to hook %s. Reason: %s", name, detourAttachResultStr);
-	}
-	else
-	{
-		WriteLineVerbose("Successfully hooked %s", name);
-	}
-}
-
-template<typename Ta, typename Tb>
-void create_dll_hook(const char *moduleName, const char *procedureName, Ta &originalStorage, Tb hookFunction)
-{
-	// Find the function address
-	HMODULE hModule = GetModuleHandleA(moduleName);
-	assert(hModule);
-	FARPROC RegisterClassExAProc = GetProcAddress(hModule, procedureName);
-	assert(RegisterClassExAProc);
-
-	originalStorage = (Ta)RegisterClassExAProc;
-
-	if (hookFunction)
-	{
-		PVOID *ppPointer = reinterpret_cast<void **>(&originalStorage);
-		PVOID pDetour = reinterpret_cast<void *>(hookFunction);
-		LONG detourAttachResult = DetourAttach(ppPointer, pDetour);
-
-		if (detourAttachResult)
-		{
-			const char *detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-			WriteLineVerbose("Failed to hook %s %s. Reason: %s", moduleName, procedureName, detourAttachResultStr);
-		}
-		else
-		{
-			WriteLineVerbose("Successfully hooked %s %s", moduleName, procedureName);
-		}
-	}
-}
-
-template<size_t offset, typename T>
-void populate_function_ptr(T &dest)
-{
-	// Find the function address
-	const char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
-	const char *const pFunctionAddress = pBaseAddress + (offset - 0x180000000);
-
-	dest = reinterpret_cast<T>(pFunctionAddress);
-}
-
-void nullsub()
-{
-
-}
 
 GUID *__fastcall GetGuid(GameEvents *this, GUID *rGuid)
 {
@@ -377,7 +309,6 @@ std::thread windowThread;
 HWND hWnd;
 void process_window_events()
 {
-	BOOL bRet;
 	MSG msg;
 
 	while (GetMessage(&msg, hWnd, 0, 0) > 0)
@@ -514,12 +445,6 @@ struct __declspec(align(4)) s_game_options
 typedef __int64(__fastcall *game_options_new_func)(s_game_options *a1);
 game_options_new_func game_options_new = nullptr;
 
-
-
-
-
-
-
 typedef __int64(__fastcall *load_scenario_into_game_options_func)(s_game_options *a1);
 load_scenario_into_game_options_func load_scenario_into_game_options = nullptr;
 __int64 __fastcall load_scenario_into_game_options_hook(s_game_options *a1)
@@ -619,6 +544,9 @@ typedef __int64 (*sub_180012C30_func)();
 sub_180012C30_func sub_180012C30 = nullptr;
 __int64 sub_180012C30_hook()
 {
+#pragma warning( push )
+#pragma warning( disable : 4244)
+
 
 	char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
 
@@ -698,6 +626,7 @@ __int64 sub_180012C30_hook()
 		}
 	}
 	return result;
+#pragma warning( pop ) 
 }
 
 
@@ -759,43 +688,46 @@ char *__fastcall simulation_watcher_get_status_hook(uint8_t *pSimulationWatcher,
 	return result;
 }
 
-void init_haloreach()
+void load_haloreach_dll()
 {
 	HaloReach = LoadLibraryA("haloreach.dll");
 
 	printf("0x%p\n", HaloReach);
 	printf("0x180000000\n");
 	assert(HaloReach);
+}
+
+void init_haloreach()
+{
+	load_haloreach_dll();
+	init_detours();
 
 	setup_game_events();
 	setup_game_engine_host_callback();
 
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
+#define HaloReachDLL "HaloReach.dll", 0x180000000
 
-	create_dll_hook("USER32.dll", "RegisterClassExA", RegisterClassExA_Original, RegisterClassExA_Hook);
-	create_dll_hook("USER32.dll", "CreateWindowExA", CreateWindowExA_Original, CreateWindowExA_Hook);
+	create_dll_hook("USER32.dll", "RegisterClassExA",	RegisterClassExA_Hook,	RegisterClassExA_Original);
+	create_dll_hook("USER32.dll", "CreateWindowExA",	CreateWindowExA_Hook,	CreateWindowExA_Original);
 
-	create_hook<0x180012730>("game_get_haloreach_path", game_get_haloreach_path, game_get_haloreach_path_hook);
-	create_hook<0x1806C18A0>("game_get_haloreach_path", rasterizer_initialize, rasterizer_initialize_hook);
-	create_hook<0x1806C2C30>("create_device", create_device, create_device_hook);
-	create_hook<0x1806C2890>("create_window", create_window, create_window_hook);
-	create_hook<0x180012B60>("sub_180012B60", sub_180012B60, sub_180012B60_Hook);
-	create_hook<0x180013CD0>("sub_180013CD0", sub_180013CD0, sub_180013CD0_hook);
-	create_hook<0x180012D60>("sub_180012D60", sub_180012D60, sub_180012D60_hook);
-	create_hook<0x180012C30>("sub_180012C30", sub_180012C30, sub_180012C30_hook);
-	create_hook<0x180013EA0>("sub_180013EA0", sub_180013EA0, sub_180013EA0_hook);
-	create_hook<0x1804EA850>("main_status", main_status, main_status_hook);
-	create_hook<0x18078C550>("sub_18078C550", sub_18078C550, sub_18078C550_hook);
-	create_hook<0x1803C9220>("load_scenario_into_game_options", load_scenario_into_game_options, load_scenario_into_game_options_hook);
-	create_hook<0x18004AFC0>("s_static_string_256_print", s_static_string_256_print, s_static_string_256_print_hook);
-	create_hook<0x180013BF0>("sub_180013BF0", sub_180013BF0, sub_180013BF0_hook);
-	create_hook<0x180108FB0>("simulation_watcher_get_status", simulation_watcher_get_status, simulation_watcher_get_status_hook); // untested
+	create_hook<0x180012730>(HaloReachDLL, "game_get_haloreach_path",			game_get_haloreach_path_hook,							game_get_haloreach_path);			
+	create_hook<0x1806C18A0>(HaloReachDLL, "game_get_haloreach_path",			rasterizer_initialize_hook,								rasterizer_initialize);				
+	create_hook<0x1806C2C30>(HaloReachDLL, "create_device",						create_device_hook,										create_device);						
+	create_hook<0x1806C2890>(HaloReachDLL, "create_window",						create_window_hook,										create_window);						
+	create_hook<0x180012B60>(HaloReachDLL, "sub_180012B60",						sub_180012B60_Hook,										sub_180012B60);						
+	create_hook<0x180013CD0>(HaloReachDLL, "sub_180013CD0",						sub_180013CD0_hook,										sub_180013CD0);						
+	create_hook<0x180012D60>(HaloReachDLL, "sub_180012D60",						sub_180012D60_hook,										sub_180012D60);						
+	create_hook<0x180012C30>(HaloReachDLL, "sub_180012C30",						sub_180012C30_hook,										sub_180012C30);						
+	create_hook<0x180013EA0>(HaloReachDLL, "sub_180013EA0",						sub_180013EA0_hook,										sub_180013EA0);						
+	create_hook<0x1804EA850>(HaloReachDLL, "main_status",						main_status_hook,										main_status);						
+	create_hook<0x18078C550>(HaloReachDLL, "sub_18078C550",						sub_18078C550_hook,										sub_18078C550);						
+	create_hook<0x1803C9220>(HaloReachDLL, "load_scenario_into_game_options",	load_scenario_into_game_options_hook,					load_scenario_into_game_options);	
+	create_hook<0x18004AFC0>(HaloReachDLL, "s_static_string_256_print",			s_static_string_256_print_hook,							s_static_string_256_print);			
+	create_hook<0x180013BF0>(HaloReachDLL, "sub_180013BF0",						sub_180013BF0_hook,										sub_180013BF0);						
+	create_hook<0x180108FB0>(HaloReachDLL, "simulation_watcher_get_status",		simulation_watcher_get_status_hook, 					simulation_watcher_get_status); // untested
 
-	populate_function_ptr<0x18034A630>(game_options_new);
-	populate_function_ptr<0x180352340>(cache_files_get_file_status);
-
-	DetourTransactionCommit();
+	populate_function_ptr<0x18034A630>(HaloReachDLL,	game_options_new);
+	populate_function_ptr<0x180352340>(HaloReachDLL,	cache_files_get_file_status);
 
 
 	//=========================================================
@@ -815,6 +747,7 @@ void init_haloreach()
 
 	}
 
+	end_detours();
 }
 
 void deinit_haloreach()

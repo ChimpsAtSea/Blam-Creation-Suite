@@ -6,21 +6,51 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MCC", "MCC\MCC.vcxproj", "{A29A7EC0-5519-47B4-AB28-1573CE15902C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HaloReach", "HaloReach\HaloReach.vcxproj", "{0D2234CA-029E-4055-944E-DB8B67498309}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AE51B536-60FF-41C6-91E5-AC98001924A6} = {AE51B536-60FF-41C6-91E5-AC98001924A6}
+		{91D344E6-BECA-4173-A875-EAE40D504152} = {91D344E6-BECA-4173-A875-EAE40D504152}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HaloShared", "HaloShared\HaloShared.vcxproj", "{91D344E6-BECA-4173-A875-EAE40D504152}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HaloUtilities", "HaloUtilities\HaloUtilities.vcxproj", "{AE51B536-60FF-41C6-91E5-AC98001924A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A29A7EC0-5519-47B4-AB28-1573CE15902C}.Debug|x64.ActiveCfg = Debug|x64
 		{A29A7EC0-5519-47B4-AB28-1573CE15902C}.Debug|x64.Build.0 = Debug|x64
+		{A29A7EC0-5519-47B4-AB28-1573CE15902C}.Debug|x86.ActiveCfg = Debug|x64
 		{A29A7EC0-5519-47B4-AB28-1573CE15902C}.Release|x64.ActiveCfg = Release|x64
 		{A29A7EC0-5519-47B4-AB28-1573CE15902C}.Release|x64.Build.0 = Release|x64
+		{A29A7EC0-5519-47B4-AB28-1573CE15902C}.Release|x86.ActiveCfg = Release|x64
 		{0D2234CA-029E-4055-944E-DB8B67498309}.Debug|x64.ActiveCfg = Debug|x64
 		{0D2234CA-029E-4055-944E-DB8B67498309}.Debug|x64.Build.0 = Debug|x64
+		{0D2234CA-029E-4055-944E-DB8B67498309}.Debug|x86.ActiveCfg = Debug|x64
 		{0D2234CA-029E-4055-944E-DB8B67498309}.Release|x64.ActiveCfg = Release|x64
 		{0D2234CA-029E-4055-944E-DB8B67498309}.Release|x64.Build.0 = Release|x64
+		{0D2234CA-029E-4055-944E-DB8B67498309}.Release|x86.ActiveCfg = Release|x64
+		{91D344E6-BECA-4173-A875-EAE40D504152}.Debug|x64.ActiveCfg = Debug|x64
+		{91D344E6-BECA-4173-A875-EAE40D504152}.Debug|x64.Build.0 = Debug|x64
+		{91D344E6-BECA-4173-A875-EAE40D504152}.Debug|x86.ActiveCfg = Debug|Win32
+		{91D344E6-BECA-4173-A875-EAE40D504152}.Debug|x86.Build.0 = Debug|Win32
+		{91D344E6-BECA-4173-A875-EAE40D504152}.Release|x64.ActiveCfg = Release|x64
+		{91D344E6-BECA-4173-A875-EAE40D504152}.Release|x64.Build.0 = Release|x64
+		{91D344E6-BECA-4173-A875-EAE40D504152}.Release|x86.ActiveCfg = Release|Win32
+		{91D344E6-BECA-4173-A875-EAE40D504152}.Release|x86.Build.0 = Release|Win32
+		{AE51B536-60FF-41C6-91E5-AC98001924A6}.Debug|x64.ActiveCfg = Debug|x64
+		{AE51B536-60FF-41C6-91E5-AC98001924A6}.Debug|x64.Build.0 = Debug|x64
+		{AE51B536-60FF-41C6-91E5-AC98001924A6}.Debug|x86.ActiveCfg = Debug|Win32
+		{AE51B536-60FF-41C6-91E5-AC98001924A6}.Debug|x86.Build.0 = Debug|Win32
+		{AE51B536-60FF-41C6-91E5-AC98001924A6}.Release|x64.ActiveCfg = Release|x64
+		{AE51B536-60FF-41C6-91E5-AC98001924A6}.Release|x64.Build.0 = Release|x64
+		{AE51B536-60FF-41C6-91E5-AC98001924A6}.Release|x86.ActiveCfg = Release|Win32
+		{AE51B536-60FF-41C6-91E5-AC98001924A6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
