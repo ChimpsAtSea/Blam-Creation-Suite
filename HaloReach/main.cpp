@@ -235,7 +235,7 @@ void setup_game_events()
 
 
 typedef void(*rasterizer_initialize_func)();
-rasterizer_initialize_func rasterizer_initialize = nullptr;
+static rasterizer_initialize_func rasterizer_initialize = nullptr;
 void rasterizer_initialize_hook()
 {
 	printf("Calling rasterizer_initialize\n");
@@ -705,29 +705,30 @@ void init_haloreach()
 	setup_game_events();
 	setup_game_engine_host_callback();
 
-#define HaloReachDLL "HaloReach.dll", 0x180000000
+#define HaloReachDLL "HaloReach.dll"
+#define HaloReachBase 0x180000000
 
 	create_dll_hook("USER32.dll", "RegisterClassExA",	RegisterClassExA_Hook,	RegisterClassExA_Original);
 	create_dll_hook("USER32.dll", "CreateWindowExA",	CreateWindowExA_Hook,	CreateWindowExA_Original);
 
-	create_hook<0x180012730>(HaloReachDLL, "game_get_haloreach_path",			game_get_haloreach_path_hook,							game_get_haloreach_path);			
-	create_hook<0x1806C18A0>(HaloReachDLL, "game_get_haloreach_path",			rasterizer_initialize_hook,								rasterizer_initialize);				
-	create_hook<0x1806C2C30>(HaloReachDLL, "create_device",						create_device_hook,										create_device);						
-	create_hook<0x1806C2890>(HaloReachDLL, "create_window",						create_window_hook,										create_window);						
-	create_hook<0x180012B60>(HaloReachDLL, "sub_180012B60",						sub_180012B60_Hook,										sub_180012B60);						
-	create_hook<0x180013CD0>(HaloReachDLL, "sub_180013CD0",						sub_180013CD0_hook,										sub_180013CD0);						
-	create_hook<0x180012D60>(HaloReachDLL, "sub_180012D60",						sub_180012D60_hook,										sub_180012D60);						
-	create_hook<0x180012C30>(HaloReachDLL, "sub_180012C30",						sub_180012C30_hook,										sub_180012C30);						
-	create_hook<0x180013EA0>(HaloReachDLL, "sub_180013EA0",						sub_180013EA0_hook,										sub_180013EA0);						
-	create_hook<0x1804EA850>(HaloReachDLL, "main_status",						main_status_hook,										main_status);						
-	create_hook<0x18078C550>(HaloReachDLL, "sub_18078C550",						sub_18078C550_hook,										sub_18078C550);						
-	create_hook<0x1803C9220>(HaloReachDLL, "load_scenario_into_game_options",	load_scenario_into_game_options_hook,					load_scenario_into_game_options);	
-	create_hook<0x18004AFC0>(HaloReachDLL, "s_static_string_256_print",			s_static_string_256_print_hook,							s_static_string_256_print);			
-	create_hook<0x180013BF0>(HaloReachDLL, "sub_180013BF0",						sub_180013BF0_hook,										sub_180013BF0);						
-	create_hook<0x180108FB0>(HaloReachDLL, "simulation_watcher_get_status",		simulation_watcher_get_status_hook, 					simulation_watcher_get_status); // untested
+	create_hook<0x180012730>(HaloReachDLL, HaloReachBase, "game_get_haloreach_path",			game_get_haloreach_path_hook,							game_get_haloreach_path);			
+	create_hook<0x1806C18A0>(HaloReachDLL, HaloReachBase, "rasterizer_initialize",				rasterizer_initialize_hook,								rasterizer_initialize);				
+	create_hook<0x1806C2C30>(HaloReachDLL, HaloReachBase, "create_device",						create_device_hook,										create_device);						
+	create_hook<0x1806C2890>(HaloReachDLL, HaloReachBase, "create_window",						create_window_hook,										create_window);						
+	create_hook<0x180012B60>(HaloReachDLL, HaloReachBase, "sub_180012B60",						sub_180012B60_Hook,										sub_180012B60);						
+	create_hook<0x180013CD0>(HaloReachDLL, HaloReachBase, "sub_180013CD0",						sub_180013CD0_hook,										sub_180013CD0);						
+	create_hook<0x180012D60>(HaloReachDLL, HaloReachBase, "sub_180012D60",						sub_180012D60_hook,										sub_180012D60);						
+	create_hook<0x180012C30>(HaloReachDLL, HaloReachBase, "sub_180012C30",						sub_180012C30_hook,										sub_180012C30);						
+	create_hook<0x180013EA0>(HaloReachDLL, HaloReachBase, "sub_180013EA0",						sub_180013EA0_hook,										sub_180013EA0);						
+	create_hook<0x1804EA850>(HaloReachDLL, HaloReachBase, "main_status",						main_status_hook,										main_status);						
+	create_hook<0x18078C550>(HaloReachDLL, HaloReachBase, "sub_18078C550",						sub_18078C550_hook,										sub_18078C550);						
+	create_hook<0x1803C9220>(HaloReachDLL, HaloReachBase, "load_scenario_into_game_options",	load_scenario_into_game_options_hook,					load_scenario_into_game_options);	
+	create_hook<0x18004AFC0>(HaloReachDLL, HaloReachBase, "s_static_string_256_print",			s_static_string_256_print_hook,							s_static_string_256_print);			
+	create_hook<0x180013BF0>(HaloReachDLL, HaloReachBase, "sub_180013BF0",						sub_180013BF0_hook,										sub_180013BF0);						
+	//create_hook<0x180108FB0>(HaloReachDLL, HaloReachBase, "simulation_watcher_get_status",		simulation_watcher_get_status_hook, 					simulation_watcher_get_status); // untested
 
-	populate_function_ptr<0x18034A630>(HaloReachDLL,	game_options_new);
-	populate_function_ptr<0x180352340>(HaloReachDLL,	cache_files_get_file_status);
+	populate_function_ptr<0x18034A630>(HaloReachDLL, HaloReachBase,	game_options_new);
+	populate_function_ptr<0x180352340>(HaloReachDLL, HaloReachBase,	cache_files_get_file_status);
 
 
 	//=========================================================
