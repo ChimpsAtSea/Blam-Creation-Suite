@@ -1,5 +1,10 @@
 #include "haloshared-private-pch.h"
 
+
+
+static e_game_load_status last_game_load_status;
+static std::string last_game_load_status_str;
+
 bool useCustomGameEngineHostCallback = false;
 bool useCustomGameWindow = false;
 
@@ -346,7 +351,7 @@ __int64 sub_180012C30_hook()
 
 __int64 sub_180012D60_hook()
 {
-	auto result =  GameEngineHostCallbackNullsubBypass([]() {
+	auto result = GameEngineHostCallbackNullsubBypass([]() {
 		return sub_180012D60();
 		});
 	return result;
@@ -387,12 +392,113 @@ void* __stdcall main_thread_routine_hook()
 	g_CurrentGameState = CurrentState::eRunning;
 	isHooked = true;
 	auto result = main_thread_routine();
-	WriteLineVerbose("Starting finished...");
+	WriteLineVerbose("Game finished...");
+	WriteLineVerbose("Last status: [0x%X] %s", last_game_load_status, last_game_load_status_str.c_str());
 	g_CurrentGameState = CurrentState::eFinished;
 	isHooked = false;
 	return result;
 }
 
+typedef const char* (__fastcall* sub_180071100_func)(e_game_load_status game_load_status);
+sub_180071100_func sub_180071100 = nullptr;
+const char* __fastcall sub_180071100_hook(e_game_load_status game_load_status)
+{
+	auto pGameLoadStatusStr = sub_180071100(game_load_status);
+
+	// this is to prevent spam
+	last_game_load_status = game_load_status;
+	bool isSame = last_game_load_status_str == pGameLoadStatusStr;
+	last_game_load_status_str = pGameLoadStatusStr;
+	bool allowRepeat = false;
+
+	switch (game_load_status)
+	{
+	case _map_load_precaching:
+		allowRepeat = false;
+		break;
+	case _none:
+	case _network_configuration_unavailable:
+	case _file_manifest_unavailable:
+	case _banhammer_unavailable:
+	case _player_stats_unavailable:
+	case _lsp_stats_unavailable:
+	case _master_hopper_file_unavailable:
+	case _hopper_specific_file_unavailable:
+	case _network_configuration_pending:
+	case _file_manifest_pending:
+	case _dlc_map_manifest_pending:
+	case _dlc_enumeration_pending:
+	case _banhammer_pending:
+	case _player_stats_pending:
+	case _lsp_stats_pending:
+	case _master_hopper_file_pending:
+	case _hopper_specific_file_pending:
+	case _no_map_selected:
+	case _no_game_selected:
+	case _map_load_failure:
+	case _invalid_film_selected:
+	case _no_film_selected:
+	case _too_many_teams:
+	case _all_observers:
+	case _too_many_for_local_coop:
+	case _too_many_for_net_coop:
+	case _incompatible_for_net_coop:
+	case _account_not_online_enabled:
+	case _all_profiles_must_by_live_gold:
+	case _must_be_connect_to_live:
+	case _must_be_in_a_live_lobby:
+	case _invalid_hopper:
+	case _squad_too_large:
+	case _squad_too_small:
+	case _too_many_local_players:
+	case _too_few_local_players:
+	case _non_local_players_exist:
+	case _games_played_too_low:
+	case _games_played_too_high:
+	case _grade_too_low:
+	case _grade_too_high:
+	case _access_bit_not_set:
+	case _unpaid_in_paid_hopper:
+	case _paid_in_unpaid_hopper:
+	case _guest_not_allowed:
+	case _player_missing_files:
+	case _player_missing_required_maps:
+	case _player_banned_from_matchmaking:
+	case _matchmaking_ban_quitting:
+	case _not_yet_start_time:
+	case _end_time_has_passed:
+	case _arena_hopper_no_longer_available:
+	case _hd_required_for_playlist:
+	case _custom_games_are_disabled:
+	case _multiplayer_split_screen:
+	case _no_live_in_live_lobby:
+	case _must_have_live_for_alpha:
+	case _only_one_player_in_theater_alpha:
+	case _theater_too_many_players:
+	case _theater_must_have_hard_drive:
+	case _theater_leader_must_be_host:
+	case _theater_all_not_compatible:
+	case _too_many_players_in_forge:
+	case _user_content_not_permitted:
+	case _coop_player_missind_hdd:
+	case _coop_player_hdd_mismatch:
+	case _coop_player_language_mismatch:
+	case _invalid_film_language:
+	case _controller_not_attached:
+	case _survival_too_any_players:
+	case _queued_join_expected:
+	case _mapand_game_incompatible:
+	default:
+		allowRepeat = true;
+	}
+
+	if (isSame && allowRepeat)
+	{
+		printf("status [0x%X] %s\n", game_load_status, pGameLoadStatusStr);
+	}
+
+	return pGameLoadStatusStr;
+}
 
 
 void init_haloreach_hooks()
@@ -416,6 +522,10 @@ void init_haloreach_hooks()
 	create_hook<0x180108FB0>(HaloReachDLL, HaloReachBase, "simulation_watcher_get_status", simulation_watcher_get_status_hook, simulation_watcher_get_status); // untested
 	create_hook<0x18000E9D0>(HaloReachDLL, HaloReachBase, "shell_dispose", shell_dispose_hook, shell_dispose);
 	create_hook<0x1800129B0>(HaloReachDLL, HaloReachBase, "main_thread_routine", main_thread_routine_hook, main_thread_routine);
+	create_hook<0x180071100>(HaloReachDLL, HaloReachBase, "sub_180071100", sub_180071100_hook, sub_180071100);
+
+
+
 
 	if (useCustomGameWindow)
 	{

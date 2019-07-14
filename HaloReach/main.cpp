@@ -286,6 +286,10 @@ void deinit_haloreach()
 
 int main()
 {
+#if _DEBUG
+	while (!IsDebuggerPresent()) { Sleep(1); }
+#endif
+
 	initialize_custom_halo_reach_stuff();
 
 #if _DEBUG
