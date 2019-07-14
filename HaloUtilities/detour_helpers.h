@@ -61,11 +61,21 @@ template<size_t offset, typename T>
 void populate_function_ptr(const char pModuleName[], size_t baseAddress, T& dest)
 {
 	// Find the function address
-	const char* const pBaseAddress = reinterpret_cast<char*>(GetModuleHandleA(pModuleName));
-	const char* const pFunctionAddress = pBaseAddress + (offset - baseAddress);
+	char* const pBaseAddress = reinterpret_cast<char*>(GetModuleHandleA(pModuleName));
+	char* const pFunctionAddress = pBaseAddress + (offset - baseAddress);
 
 	dest = reinterpret_cast<T>(pFunctionAddress);
 }
 
-extern void nullsub();
+template<size_t offset>
+void nop_address(const char pModuleName[], size_t baseAddress, size_t count)
+{
+	// Find the function address
+	char* const pBaseAddress = reinterpret_cast<char*>(GetModuleHandleA(pModuleName));
+	char* const pDataAddress = pBaseAddress + (offset - baseAddress);
 
+	for (size_t i = 0; i < count; i++)
+	{
+		pDataAddress[i] = 0x90;
+	}
+}

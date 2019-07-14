@@ -11,7 +11,3 @@ void end_detours()
 	DetourTransactionCommit();
 }
 
-void nullsub()
-{
-
-}

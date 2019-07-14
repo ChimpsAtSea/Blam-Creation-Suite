@@ -2,6 +2,12 @@
 
 #define this _this
 
+
+void nullsub()
+{
+	
+}
+
 HMODULE HaloReach; //haloreach.dll
 
 typedef signed __int64(__fastcall CreateGameEngineFunc)(IGameEngine **ppGameEngine);
@@ -725,11 +731,15 @@ void init_haloreach()
 	create_hook<0x1803C9220>(HaloReachDLL, HaloReachBase, "load_scenario_into_game_options",	load_scenario_into_game_options_hook,					load_scenario_into_game_options);	
 	create_hook<0x18004AFC0>(HaloReachDLL, HaloReachBase, "s_static_string_256_print",			s_static_string_256_print_hook,							s_static_string_256_print);			
 	create_hook<0x180013BF0>(HaloReachDLL, HaloReachBase, "sub_180013BF0",						sub_180013BF0_hook,										sub_180013BF0);						
-	//create_hook<0x180108FB0>(HaloReachDLL, HaloReachBase, "simulation_watcher_get_status",		simulation_watcher_get_status_hook, 					simulation_watcher_get_status); // untested
+	create_hook<0x180108FB0>(HaloReachDLL, HaloReachBase, "simulation_watcher_get_status",		simulation_watcher_get_status_hook, 					simulation_watcher_get_status); // untested
 
 	populate_function_ptr<0x18034A630>(HaloReachDLL, HaloReachBase,	game_options_new);
 	populate_function_ptr<0x180352340>(HaloReachDLL, HaloReachBase,	cache_files_get_file_status);
 
+	//nop_address<0x180012C0E>(HaloReachDLL, HaloReachBase, 29);
+	//char* retnaddress = nullptr;
+	//populate_function_ptr<0x180012C0E>(HaloReachDLL, HaloReachBase, retnaddress);
+	//retnaddress[0] = 0xC3;
 
 	//=========================================================
 	//                  rest of function
@@ -747,6 +757,8 @@ void init_haloreach()
 		pHaloReachEngine->InitThread(nullptr, reinterpret_cast<long long>(buffer2));
 
 	}
+
+
 
 	end_detours();
 }
