@@ -3,6 +3,11 @@
 #define this _this
 
 
+#define HaloReachDLL "HaloReach.dll"
+#define HaloReachBase 0x180000000
+
+
+
 void nullsub()
 {
 	
@@ -10,12 +15,12 @@ void nullsub()
 
 HMODULE HaloReach; //haloreach.dll
 
+typedef errno_t(__fastcall* SetLibrarySettingsFunc)(wchar_t* Src);
+SetLibrarySettingsFunc* SetLibrarySettings = nullptr;
 typedef signed __int64(__fastcall CreateGameEngineFunc)(IGameEngine **ppGameEngine);
 CreateGameEngineFunc *CreateGameEngine = nullptr;
 
 IGameEngine *pHaloReachEngine = nullptr;
-__int64 buffer[1024 * 1024 * 32] = {};
-__int64 buffer2[1024 * 1024 * 64] = {};
 
 
 #define NULLSUB_LAMBDA_CUSTOM(message) []() { printf(message"\n"); }
@@ -552,12 +557,10 @@ __int64 sub_180012C30_hook()
 {
 #pragma warning( push )
 #pragma warning( disable : 4244)
-
-
 	char *const pBaseAddress = reinterpret_cast<char *>(HaloReach);
-
 	DWORD &dword_180FAEE10 = *reinterpret_cast<DWORD *>(pBaseAddress + (0x180FAEE10 - 0x180000000));
-	DWORD &dword_18342E560 = *reinterpret_cast<DWORD *>(pBaseAddress + (0x18342E560 - 0x180000000));
+	//DWORD &dword_18342E560 = *reinterpret_cast<DWORD *>(pBaseAddress + (0x18342E560 - 0x180000000));
+	struct_b1 &stru_18342E560 = *reinterpret_cast<struct_b1 *>(pBaseAddress + (0x18342E560 - 0x180000000));
 	QWORD &qword_183459988 = *reinterpret_cast<QWORD *>(pBaseAddress + (0x183459988 - 0x180000000));
 	const char *&qword_183459998 = *reinterpret_cast<const char **>(pBaseAddress + (0x183459998 - 0x180000000));
 	DWORD &global_state_dword_1810EC5A4 = *reinterpret_cast<DWORD *>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
@@ -567,20 +570,19 @@ __int64 sub_180012C30_hook()
 
 	v0 = cache_files_get_file_status("levels\\shared\\shared\\shared");
 	result = cache_files_get_file_status("levels\\shared\\shared\\campaign");
-	if ((v0 - 3) <= 1 && ((result - 3) <= 1 || !result))
+	if ((unsigned int)(v0 - 3) <= 1 && ((unsigned int)(result - 3) <= 1 || !(_DWORD)result))
 	{
-		// dword_18342E560 = 1; // hack, goes through 2, 4, 9, 12
-		if (dword_18342E560)
+		if (stru_18342E560.unknown0)
 		{
-			if (dword_18342E560 == 1)
+			if (stru_18342E560.unknown0 == 1)
 			{
 				result = 1i64;
 			}
-			else if (dword_18342E560 == 3)
+			else if (stru_18342E560.unknown0 == 3)
 			{
 				result = 3i64;
 			}
-			else if (dword_18342E560 != 4 && dword_18342E560 == 5)
+			else if (stru_18342E560.unknown0 != 4 && stru_18342E560.unknown0 == 5)
 			{
 				result = 2i64;
 			}
@@ -593,8 +595,7 @@ __int64 sub_180012C30_hook()
 		{
 			result = 0i64;
 		}
-		//qword_183459998 = "maps\\m35.map";
-		if (qword_183459998)
+		if (stru_18342E560.unknownQword)
 		{
 			result = timeGetTime();
 			dword_180FAEE10 = result;
@@ -602,10 +603,10 @@ __int64 sub_180012C30_hook()
 		}
 		else
 		{
-			switch (result)
+			switch ((_DWORD)result)
 			{
 			case 1:
-				if (qword_183459988)
+				if (stru_18342E560.qword2B430)
 				{
 					result = timeGetTime();
 					dword_180FAEE10 = result;
@@ -685,14 +686,44 @@ __int64 __fastcall sub_180013BF0_hook(__int64 a1)
 	return result;
 }
 
-typedef char *(__fastcall *simulation_watcher_get_status_func)(uint8_t *pSimulationWatcher, char *dst);
+typedef char* (__fastcall* simulation_watcher_get_status_func)(uint8_t* pSimulationWatcher, char* dst);
 simulation_watcher_get_status_func simulation_watcher_get_status = nullptr;
-char *__fastcall simulation_watcher_get_status_hook(uint8_t *pSimulationWatcher, char *dst)
+char* __fastcall simulation_watcher_get_status_hook(uint8_t* pSimulationWatcher, char* dst)
 {
 	auto result = simulation_watcher_get_status(pSimulationWatcher, dst);
 	printf("%s\n%s\n", dst, result);
 	return result;
 }
+
+typedef __int64(__stdcall* shell_dispose_func)();
+shell_dispose_func shell_dispose = nullptr;
+__int64 __stdcall shell_dispose_hook()
+{
+	auto result = shell_dispose();
+	return result;
+}
+
+enum class CurrentState
+{
+	eInactive,
+	eRunning,
+	eFinished
+};
+CurrentState g_CurrentGameState = CurrentState::eInactive;
+
+typedef void* (__stdcall* main_thread_routine_func)();
+main_thread_routine_func main_thread_routine = nullptr;
+void* __stdcall main_thread_routine_hook()
+{
+	WriteLineVerbose("Starting game...");
+	g_CurrentGameState = CurrentState::eRunning;
+	auto result = main_thread_routine();
+	WriteLineVerbose("Starting finished...");
+	g_CurrentGameState = CurrentState::eFinished;
+	return result;
+}
+
+
 
 void load_haloreach_dll()
 {
@@ -701,7 +732,16 @@ void load_haloreach_dll()
 	printf("0x%p\n", HaloReach);
 	printf("0x180000000\n");
 	assert(HaloReach);
+
+	CreateGameEngine = (CreateGameEngineFunc*)GetProcAddress(HaloReach, "CreateGameEngine");
+	SetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(HaloReach, "SetLibrarySettings");
 }
+
+
+
+
+struct_b1 b1 = struct_b1();
+char buffer[1024 * 1024 * 128] = {};
 
 void init_haloreach()
 {
@@ -710,9 +750,6 @@ void init_haloreach()
 
 	setup_game_events();
 	setup_game_engine_host_callback();
-
-#define HaloReachDLL "HaloReach.dll"
-#define HaloReachBase 0x180000000
 
 	create_dll_hook("USER32.dll", "RegisterClassExA",	RegisterClassExA_Hook,	RegisterClassExA_Original);
 	create_dll_hook("USER32.dll", "CreateWindowExA",	CreateWindowExA_Hook,	CreateWindowExA_Original);
@@ -731,7 +768,9 @@ void init_haloreach()
 	create_hook<0x1803C9220>(HaloReachDLL, HaloReachBase, "load_scenario_into_game_options",	load_scenario_into_game_options_hook,					load_scenario_into_game_options);	
 	create_hook<0x18004AFC0>(HaloReachDLL, HaloReachBase, "s_static_string_256_print",			s_static_string_256_print_hook,							s_static_string_256_print);			
 	create_hook<0x180013BF0>(HaloReachDLL, HaloReachBase, "sub_180013BF0",						sub_180013BF0_hook,										sub_180013BF0);						
-	create_hook<0x180108FB0>(HaloReachDLL, HaloReachBase, "simulation_watcher_get_status",		simulation_watcher_get_status_hook, 					simulation_watcher_get_status); // untested
+	create_hook<0x180108FB0>(HaloReachDLL, HaloReachBase, "simulation_watcher_get_status",		simulation_watcher_get_status_hook, simulation_watcher_get_status); // untested
+	create_hook<0x18000E9D0>(HaloReachDLL, HaloReachBase, "shell_dispose",						shell_dispose_hook, shell_dispose); 
+	create_hook<0x1800129B0>(HaloReachDLL, HaloReachBase, "main_thread_routine",				main_thread_routine_hook, main_thread_routine);
 
 	populate_function_ptr<0x18034A630>(HaloReachDLL, HaloReachBase,	game_options_new);
 	populate_function_ptr<0x180352340>(HaloReachDLL, HaloReachBase,	cache_files_get_file_status);
@@ -746,15 +785,19 @@ void init_haloreach()
 	//=========================================================
 
 
-
-	CreateGameEngine = (CreateGameEngineFunc *)GetProcAddress(HaloReach, "CreateGameEngine");
-
 	__int64 result = CreateGameEngine(&pHaloReachEngine);
 
 	if (pHaloReachEngine)
 	{
 		pHaloReachEngine->InitGraphics(0, 0, 0, 0);
-		pHaloReachEngine->InitThread(nullptr, reinterpret_cast<long long>(buffer2));
+
+		LanguageShortstrings shortstrings;
+
+
+		// setup data for b1
+
+		//pHaloReachEngine->InitThread(nullptr, (__int64)&b1);
+		pHaloReachEngine->InitThread(nullptr, (__int64)&b1);
 
 	}
 
@@ -772,7 +815,11 @@ int main()
 {
 	init_haloreach();
 
+#if _DEBUG
 	while (true)
+#else
+	while (g_CurrentGameState != CurrentState::eFinished)
+#endif
 	{
 		Sleep(1);
 	}
