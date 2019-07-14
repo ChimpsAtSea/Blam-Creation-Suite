@@ -18,12 +18,18 @@
     <ClCompile Include="haloshared-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HaloReach.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="haloshared-private-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="haloshared-public-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HaloReach.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

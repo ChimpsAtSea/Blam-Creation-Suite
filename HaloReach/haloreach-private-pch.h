@@ -12,7 +12,6 @@
 #include <HaloUtilities/detour_helpers_private.h>
 
 #include <HaloUtilities/haloutilities-public-pch.h>
-#include <HaloShared/haloshared-public-pch.h>
 #include <MCC/mcc-public-pch.h>
 #include "haloreach-public-pch.h"
 
@@ -23,4 +22,5 @@
 #include <thread>
 
 #include "local_types.h"
+#include <HaloShared/haloshared-public-pch.h>
 

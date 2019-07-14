@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MCC", "MCC\MCC.vcxproj", "{A29A7EC0-5519-47B4-AB28-1573CE15902C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AE51B536-60FF-41C6-91E5-AC98001924A6} = {AE51B536-60FF-41C6-91E5-AC98001924A6}
+		{91D344E6-BECA-4173-A875-EAE40D504152} = {91D344E6-BECA-4173-A875-EAE40D504152}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HaloReach", "HaloReach\HaloReach.vcxproj", "{0D2234CA-029E-4055-944E-DB8B67498309}"
 	ProjectSection(ProjectDependencies) = postProject
