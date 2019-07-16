@@ -20,8 +20,12 @@ unsigned __int64 checksum(void* data, size_t size)
 	return sum;
 }
 
-void(__fastcall* InitThreadPtr)(IGameEngine*, GameEngineHostCallback*, struct_b1& data);
-void __fastcall InitThreadHook(IGameEngine* _this, GameEngineHostCallback* a1, struct_b1& data)
+char currentTest[256] = "C:\\!MCC\\haloreach\\maps\\m35.map";
+
+#include <new>
+
+void(__fastcall* InitThreadPtr)(IGameEngine*, GameEngineHostCallback*, struct_b1* data);
+void __fastcall InitThreadHook(IGameEngine* _this, GameEngineHostCallback* a1, struct_b1* data)
 {
 	InitThreadPtr(_this, a1, data);
 }
@@ -74,6 +78,11 @@ FARPROC __stdcall GetProcAddressHook(HMODULE hModule, LPCSTR lpProcName)
 
 }
 
+void nullsub()
+{
+
+}
+
 void haloreach_dll_loaded_callback()
 {
 	useCustomGameEngineHostCallback = false;
@@ -83,6 +92,8 @@ void haloreach_dll_loaded_callback()
 
 	init_detours();
 	create_dll_hook(HaloReachDLL, "CreateGameEngine", CreateGameEngineHook, CreateGameEngine);
+	printf("0x%p\n", GetModuleHandleA(HaloReachDLL));
+	printf("0x180000000\n");
 	end_detours();
 }
 
@@ -92,6 +103,10 @@ Opus::Opus()
 	(void)(freopen("CONOUT$", "w", stdout));
 
 	init_detours();
+	static void* OutputDebugStringW_Original;
+	create_dll_hook("KERNEL32.dll", "OutputDebugStringW", nullsub, OutputDebugStringW_Original);
+	static void* OutputDebugStringA_Original;
+	create_dll_hook("KERNEL32.dll", "OutputDebugStringA", nullsub, OutputDebugStringA_Original);
 	create_dll_hook("KERNEL32.dll", "GetProcAddress", GetProcAddressHook, GetProcAddressPtr);
 	end_detours();
 }

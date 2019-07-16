@@ -263,6 +263,8 @@ void initialize_custom_halo_reach_stuff()
 	useCustomGameWindow = true;
 	init_haloreach_hooks();
 
+	b1.unknownQword0 = "C:\\!MCC\\haloreach\\maps\\m35";
+
 
 	__int64 result = CreateGameEngine(&pHaloReachEngine);
 

@@ -2,7 +2,7 @@
 
 
 
-static e_game_load_status last_game_load_status;
+static e_peer_property last_game_load_status;
 static std::string last_game_load_status_str;
 
 bool useCustomGameEngineHostCallback = false;
@@ -16,19 +16,19 @@ rasterizer_initialize_func rasterizer_initialize = nullptr;
 create_device_func create_device = nullptr;
 create_window_func create_window = nullptr;
 RegisterClassExA_Func RegisterClassExA_Original = nullptr;
-sub_180012B60_Func sub_180012B60 = nullptr;
+game_launch_mode_1_Func game_launch_mode_1 = nullptr;
 s_static_string_256_print_func s_static_string_256_print = nullptr;
 game_get_haloreach_path_func game_get_haloreach_path = nullptr;
 game_options_new_func game_options_new = nullptr;
 load_scenario_into_game_options_func load_scenario_into_game_options = nullptr;
 sub_18078C550_func sub_18078C550 = nullptr;
 main_status_func main_status = nullptr;
-sub_180013EA0_func sub_180013EA0 = nullptr;
+main_game_launch_func main_game_launch = nullptr;
 cache_files_get_file_status_func cache_files_get_file_status = nullptr;
-sub_180012C30_func sub_180012C30 = nullptr;
-sub_180012D60_func sub_180012D60 = nullptr;
-sub_180013CD0_func sub_180013CD0 = nullptr;
-sub_180013BF0_func sub_180013BF0 = nullptr;
+game_launch_mode_2_func game_launch_mode_2 = nullptr;
+game_launch_mode_3_func game_launch_mode_3 = nullptr;
+game_launch_mode_11_func game_launch_mode_11 = nullptr;
+game_launch_mode_9_func game_launch_mode_9 = nullptr;
 simulation_watcher_get_status_func simulation_watcher_get_status = nullptr;
 shell_dispose_func shell_dispose = nullptr;
 main_thread_routine_func main_thread_routine = nullptr;
@@ -148,15 +148,15 @@ HWND WINAPI CreateWindowExA_Hook(
 	return result;
 }
 
-__int64 __fastcall sub_180012B60_Hook(__int64 a1, __int64 a2)
+__int64 __fastcall game_launch_mode_1_hook(__int64 a1, __int64 a2)
 {
 	std::function<__int64()> x = [a1, a2]() {
-		auto result = sub_180012B60(a1, a2);
+		auto result = game_launch_mode_1(a1, a2);
 		return result;
 	};
 
 	auto result = GameEngineHostCallbackNullsubBypass([a1, a2]() {
-		return sub_180012B60(a1, a2);
+		return game_launch_mode_1(a1, a2);
 		});
 
 	return result;
@@ -229,30 +229,31 @@ void main_status_hook(__int64 a1, ...)
 	va_end(args);
 }
 
-char __fastcall sub_180013EA0_hook(__int64 a1, __int64 a2)
+char __fastcall main_game_launch_hook(__int64 a1, __int64 a2)
 {
 	char* const pBaseAddress = HaloReachBaseAddressPtr;
-	DWORD& dword_1810EC5A4 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
-	//GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
+	const DWORD& dword_1810EC5A4 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
 
-	//pGameEngineHostCallback = &gameEngineHostCallback;
-	static DWORD previous_dword_1810EC5A4 = -1;
+	auto result = GameEngineHostCallbackNullsubBypass([a1, a2, &dword_1810EC5A4]() {
 
-	if (dword_1810EC5A4 != previous_dword_1810EC5A4)
-	{
-		previous_dword_1810EC5A4 = dword_1810EC5A4;
-		printf("dword_1810EC5A4 changed to: %d\n", dword_1810EC5A4);
-	}
+		static DWORD previous_dword_1810EC5A4 = -1;
 
-	auto result = sub_180013EA0(a1, a2);
+		if (dword_1810EC5A4 != previous_dword_1810EC5A4)
+		{
+			previous_dword_1810EC5A4 = dword_1810EC5A4;
+			printf("dword_1810EC5A4 changed to: %d\n", dword_1810EC5A4);
+		}
 
-	if (dword_1810EC5A4 != previous_dword_1810EC5A4)
-	{
-		previous_dword_1810EC5A4 = dword_1810EC5A4;
-		printf("dword_1810EC5A4 changed to: %d\n", dword_1810EC5A4);
-	}
+		auto result = main_game_launch(a1, a2);
 
-	//pGameEngineHostCallback = nullptr;
+		if (dword_1810EC5A4 != previous_dword_1810EC5A4)
+		{
+			previous_dword_1810EC5A4 = dword_1810EC5A4;
+			printf("dword_1810EC5A4 changed to: %d\n", dword_1810EC5A4);
+		}
+
+		return result;
+		}, !(dword_1810EC5A4 == 3 || dword_1810EC5A4 == 11));
 	return result;
 }
 
@@ -265,110 +266,36 @@ void get_cache_files_get_file_status()
 	cache_files_get_file_status = (cache_files_get_file_status_func)(pFunctionAddress);
 }
 
-__int64 sub_180012C30_hook()
-{
-#pragma warning( push )
-#pragma warning( disable : 4244)
-	char* const pBaseAddress = HaloReachBaseAddressPtr;
-	DWORD& dword_180FAEE10 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x180FAEE10 - 0x180000000));
-	//DWORD &dword_18342E560 = *reinterpret_cast<DWORD *>(pBaseAddress + (0x18342E560 - 0x180000000));
-	struct_b1& stru_18342E560 = *reinterpret_cast<struct_b1*>(pBaseAddress + (0x18342E560 - 0x180000000));
-	QWORD& qword_183459988 = *reinterpret_cast<QWORD*>(pBaseAddress + (0x183459988 - 0x180000000));
-	const char*& qword_183459998 = *reinterpret_cast<const char**>(pBaseAddress + (0x183459998 - 0x180000000));
-	DWORD& global_state_dword_1810EC5A4 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
-
-	int v0; // ebx
-	__int64 result; // rax
-
-	v0 = cache_files_get_file_status("levels\\shared\\shared\\shared");
-	result = cache_files_get_file_status("levels\\shared\\shared\\campaign");
-	if ((unsigned int)(v0 - 3) <= 1 && ((unsigned int)(result - 3) <= 1 || !(_DWORD)result))
-	{
-		if (stru_18342E560.unknown0)
-		{
-			if (stru_18342E560.unknown0 == 1)
-			{
-				result = 1i64;
-			}
-			else if (stru_18342E560.unknown0 == 3)
-			{
-				result = 3i64;
-			}
-			else if (stru_18342E560.unknown0 != 4 && stru_18342E560.unknown0 == 5)
-			{
-				result = 2i64;
-			}
-			else
-			{
-				result = 4i64;
-			}
-		}
-		else
-		{
-			result = 0i64;
-		}
-		if (stru_18342E560.unknownQword0)
-		{
-			result = timeGetTime();
-			dword_180FAEE10 = result;
-			global_state_dword_1810EC5A4 = 3;
-		}
-		else
-		{
-			switch ((_DWORD)result)
-			{
-			case 1:
-				if (stru_18342E560.qword2B430)
-				{
-					result = timeGetTime();
-					dword_180FAEE10 = result;
-					global_state_dword_1810EC5A4 = 5;
-				}
-				else
-				{
-					result = timeGetTime();
-					dword_180FAEE10 = result;
-					global_state_dword_1810EC5A4 = 4;
-				}
-				break;
-			case 3:
-				result = timeGetTime();
-				dword_180FAEE10 = result;
-				global_state_dword_1810EC5A4 = 6;
-				break;
-			case 2:
-				result = timeGetTime();
-				dword_180FAEE10 = result;
-				global_state_dword_1810EC5A4 = 7;
-				break;
-			}
-		}
-	}
-	return result;
-#pragma warning( pop ) 
-}
-
-
-__int64 sub_180012D60_hook()
+__int64 game_launch_mode_2_hook()
 {
 	auto result = GameEngineHostCallbackNullsubBypass([]() {
-		return sub_180012D60();
+		return game_launch_mode_2();
+		});
+	auto err = GetLastError();
+	return result;
+}
+
+__int64 game_launch_mode_3_hook()
+{
+	auto result = GameEngineHostCallbackNullsubBypass([]() {
+		return game_launch_mode_3();
+		});
+	auto err = GetLastError();
+	return result;
+}
+
+__int64 game_launch_mode_11_hook()
+{
+	auto result = GameEngineHostCallbackNullsubBypass([]() {
+		return game_launch_mode_11();
 		});
 	return result;
 }
 
-__int64 sub_180013CD0_hook()
-{
-	auto result = GameEngineHostCallbackNullsubBypass([]() {
-		return sub_180013CD0();
-		});
-	return result;
-}
-
-__int64 __fastcall sub_180013BF0_hook(__int64 a1)
+__int64 __fastcall game_launch_mode_9_hook(__int64 a1)
 {
 	auto result = GameEngineHostCallbackNullsubBypass([a1]() {
-		return sub_180013BF0(a1);
+		return game_launch_mode_9(a1);
 		});
 	return result;
 }
@@ -399,9 +326,9 @@ void* __stdcall main_thread_routine_hook()
 	return result;
 }
 
-typedef const char* (__fastcall* sub_180071100_func)(e_game_load_status game_load_status);
+typedef const char* (__fastcall* sub_180071100_func)(e_peer_property game_load_status);
 sub_180071100_func sub_180071100 = nullptr;
-const char* __fastcall sub_180071100_hook(e_game_load_status game_load_status)
+const char* __fastcall sub_180071100_hook(e_peer_property game_load_status)
 {
 	auto pGameLoadStatusStr = sub_180071100(game_load_status);
 
@@ -480,12 +407,12 @@ const char* __fastcall sub_180071100_hook(e_game_load_status game_load_status)
 	case _theater_all_not_compatible:
 	case _too_many_players_in_forge:
 	case _user_content_not_permitted:
-	case _coop_player_missind_hdd:
+	case _coop_player_missing_hdd:
 	case _coop_player_hdd_mismatch:
 	case _coop_player_language_mismatch:
 	case _invalid_film_language:
 	case _controller_not_attached:
-	case _survival_too_any_players:
+	case _survival_too_many_players:
 	case _queued_join_expected:
 	case _mapand_game_incompatible:
 	default:
@@ -500,6 +427,24 @@ const char* __fastcall sub_180071100_hook(e_game_load_status game_load_status)
 	return pGameLoadStatusStr;
 }
 
+typedef __int64(__fastcall* sub_180013090_func)(__int64 a1);
+sub_180013090_func sub_180013090 = nullptr;
+__int64 __fastcall sub_180013090_hook(__int64 a1)
+{
+	auto result = sub_180013090(a1);
+	auto game_options = (s_game_options*)(a1 + 2280);
+	return result;
+}
+
+typedef bool(__fastcall* game_options_verify_func)(s_game_options* a1);
+game_options_verify_func game_options_verify;
+bool __fastcall game_options_verify_hook(s_game_options* a1)
+{
+	auto result = game_options_verify(a1);
+	printf("s_game_options::scenario_path: %s", a1->scenario_path);
+	return result;
+}
+
 
 void init_haloreach_hooks()
 {
@@ -507,25 +452,32 @@ void init_haloreach_hooks()
 
 	create_dll_hook("USER32.dll", "RegisterClassExA", RegisterClassExA_Hook, RegisterClassExA_Original);
 	create_dll_hook("USER32.dll", "CreateWindowExA", CreateWindowExA_Hook, CreateWindowExA_Original);
+	
+	
 
 	create_hook<0x180012730>(HaloReachDLL, HaloReachBase, "game_get_haloreach_path", game_get_haloreach_path_hook, game_get_haloreach_path);
-	create_hook<0x180012B60>(HaloReachDLL, HaloReachBase, "sub_180012B60", sub_180012B60_Hook, sub_180012B60);
-	create_hook<0x180013CD0>(HaloReachDLL, HaloReachBase, "sub_180013CD0", sub_180013CD0_hook, sub_180013CD0);
-	create_hook<0x180012D60>(HaloReachDLL, HaloReachBase, "sub_180012D60", sub_180012D60_hook, sub_180012D60);
-	//create_hook<0x180012C30>(HaloReachDLL, HaloReachBase, "sub_180012C30", sub_180012C30_hook, sub_180012C30);
-	create_hook<0x180013EA0>(HaloReachDLL, HaloReachBase, "sub_180013EA0", sub_180013EA0_hook, sub_180013EA0);
+	create_hook<0x180013EA0>(HaloReachDLL, HaloReachBase, "main_game_launch", main_game_launch_hook, main_game_launch);
 	//create_hook<0x1804EA850>(HaloReachDLL, HaloReachBase, "main_status", main_status_hook, main_status);
 	create_hook<0x18078C550>(HaloReachDLL, HaloReachBase, "sub_18078C550", sub_18078C550_hook, sub_18078C550);
 	create_hook<0x1803C9220>(HaloReachDLL, HaloReachBase, "load_scenario_into_game_options", load_scenario_into_game_options_hook, load_scenario_into_game_options);
 	create_hook<0x18004AFC0>(HaloReachDLL, HaloReachBase, "s_static_string_256_print", s_static_string_256_print_hook, s_static_string_256_print);
-	create_hook<0x180013BF0>(HaloReachDLL, HaloReachBase, "sub_180013BF0", sub_180013BF0_hook, sub_180013BF0);
 	create_hook<0x180108FB0>(HaloReachDLL, HaloReachBase, "simulation_watcher_get_status", simulation_watcher_get_status_hook, simulation_watcher_get_status); // untested
 	create_hook<0x18000E9D0>(HaloReachDLL, HaloReachBase, "shell_dispose", shell_dispose_hook, shell_dispose);
 	create_hook<0x1800129B0>(HaloReachDLL, HaloReachBase, "main_thread_routine", main_thread_routine_hook, main_thread_routine);
 	create_hook<0x180071100>(HaloReachDLL, HaloReachBase, "sub_180071100", sub_180071100_hook, sub_180071100);
+	create_hook<0x180013090>(HaloReachDLL, HaloReachBase, "sub_180013090", sub_180013090_hook, sub_180013090);
+	create_hook<0x18034A7E0>(HaloReachDLL, HaloReachBase, "game_options_verify", game_options_verify_hook, game_options_verify);
 
-
-
+	create_hook<0x180012B60>(HaloReachDLL, HaloReachBase, "game_launch_mode_1", game_launch_mode_1_hook, game_launch_mode_1);
+	create_hook<0x180012C30>(HaloReachDLL, HaloReachBase, "game_launch_mode_2", game_launch_mode_2_hook, game_launch_mode_2);
+	//create_hook<0x180012D60>(HaloReachDLL, HaloReachBase, "game_launch_mode_3", game_launch_mode_3_hook, game_launch_mode_3);
+	//create_hook<0x180013210>(HaloReachDLL, HaloReachBase, "game_launch_mode_4", game_launch_mode_4_hook, game_launch_mode_4);
+	//create_hook<0x1800133F0>(HaloReachDLL, HaloReachBase, "game_launch_mode_5", game_launch_mode_5_hook, game_launch_mode_5);
+	//create_hook<0x180013790>(HaloReachDLL, HaloReachBase, "game_launch_mode_6", game_launch_mode_6_hook, game_launch_mode_6);
+	//create_hook<0x180013940>(HaloReachDLL, HaloReachBase, "game_launch_mode_7", game_launch_mode_7_hook, game_launch_mode_7);
+	//create_hook<0x180013B20>(HaloReachDLL, HaloReachBase, "game_launch_mode_8", game_launch_mode_8_hook, game_launch_mode_8);
+	create_hook<0x180013BF0>(HaloReachDLL, HaloReachBase, "game_launch_mode_9", game_launch_mode_9_hook, game_launch_mode_9);
+	//create_hook<0x180013CD0>(HaloReachDLL, HaloReachBase, "game_launch_mode_11", game_launch_mode_11_hook, game_launch_mode_11);
 
 	if (useCustomGameWindow)
 	{

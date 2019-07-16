@@ -348,14 +348,6 @@ struct GameLauncher
 #pragma pack(pop)
 
 
-
-struct LanguageShortstrings
-{
-	wchar_t a[0x55];
-	wchar_t b[0x55];
-	wchar_t c[0x55];
-};
-
 struct struct_b1_memzero
 {
 	struct_b1_memzero(size_t size)
@@ -369,37 +361,37 @@ struct __cppobj struct_b1 : struct_b1_memzero
 {
 	struct_b1()
 		: struct_b1_memzero(sizeof(struct_b1))
-		, unknown0(1)
-		//gap0
-		, dword2B40C(182)
-		, unsigned2B410(0)
-		//gap2B414
-		, qword2B430(0)
-		, dword2B438(0)
-		, dword2B43C(0)
-		, unknownQword0(0)
-		, unknownQword1(0)
-		, a()
-		, b(1)
-		//gap2B460
-		//byte2B680
-		, languageString(L"en-US")
-		//unknown6bytes1
-		//phinstance__2B748
-		, dword2B750(1525022720)
-		, dword2B754(32763)
-		//gap2B758
-		//pqword2B798
-		, dword2B7A0(812910640)
-		, qword2B7A8(47244641008)
+		//, unknown0(1)
+		////gap0
+		//, dword2B40C(182)
+		//, unsigned2B410(0)
+		////gap2B414
+		//, qword2B430(0)
+		//, dword2B438(0)
+		//, dword2B43C(0)
+		//, unknownQword0(0)
+		//, unknownQword1(0)
+		//, a()
+		//, b(1)
+		////gap2B460
+		////byte2B680
+		//, languageString(L"en-US")
+		////unknown6bytes1
+		////phinstance__2B748
+		//, dword2B750(1525022720)
+		//, dword2B754(32763)
+		////gap2B758
+		////pqword2B798
+		//, dword2B7A0(812910640)
+		//, qword2B7A8(47244641008)
 	{
 
 
-		memset(gameVariantData, 0, sizeof(gameVariantData));
-		memset(gap2B414, 0, sizeof(gap2B414));
-		memset(gap2B460, 0, sizeof(gap2B460));
-		memset(byte2B680, 0, sizeof(byte2B680));
-		memset(gap2B758, 0, sizeof(gap2B758));
+		//memset(gameVariantData, 0, sizeof(gameVariantData));
+		//memset(gap2B414, 0, sizeof(gap2B414));
+		//memset(gap2B460, 0, sizeof(gap2B460));
+		//memset(byte2B680, 0, sizeof(byte2B680));
+		//memset(gap2B758, 0, sizeof(gap2B758));
 
 		//------------------------------------------------------------
 		//-----------       Created with 010 Editor        -----------
@@ -448,9 +440,9 @@ struct __cppobj struct_b1 : struct_b1_memzero
 		static_assert(sizeof(gap2B460) == sizeof(gap2B460Data), "This should match");
 		memcpy(gap2B460, gap2B460Data, sizeof(gap2B460));
 
-		FILE* pFile = fopen("C:\\!MCC\\output2.bin", "r");
-		fread(this, 1, sizeof(this), pFile);
-		fclose(pFile);
+		//FILE* pFile = fopen("C:\\!MCC\\output2.bin", "r");
+		//fread(this, 1, sizeof(this), pFile);
+		//fclose(pFile);
 
 	}
 
