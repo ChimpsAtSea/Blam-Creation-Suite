@@ -264,8 +264,8 @@ void initialize_custom_halo_reach_stuff()
 
 	__int64 result = CreateGameEngine(&pHaloReachEngine);
 
-	static struct_b1 b1 = struct_b1();
-	b1.unknownQword0 = "C:\\!MCC\\haloreach\\maps\\m35.map";
+	static s_game_launch_data game_launch_data = s_game_launch_data();
+	game_launch_data.unknown2B438 = "C:\\!MCC\\haloreach\\maps\\m35.map";
 
 	if (pHaloReachEngine)
 	{
@@ -274,8 +274,8 @@ void initialize_custom_halo_reach_stuff()
 
 		// setup data for b1
 
-		//pHaloReachEngine->InitThread(nullptr, (__int64)&b1);
-		pHaloReachEngine->InitThread(nullptr, (__int64)&b1);
+		//pHaloReachEngine->InitThread(nullptr, (__int64)&game_launch_data);
+		pHaloReachEngine->InitThread(nullptr, (__int64)&game_launch_data);
 
 	}
 }

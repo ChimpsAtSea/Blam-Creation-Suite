@@ -20,12 +20,12 @@ unsigned __int64 checksum(void* data, size_t size)
 	return sum;
 }
 
-void(__fastcall* InitThreadPtr)(IGameEngine*, GameEngineHostCallback*, struct_b1& data);
-void __fastcall InitThreadHook(IGameEngine* _this, GameEngineHostCallback* a1, struct_b1& data)
+void(__fastcall* InitThreadPtr)(IGameEngine*, GameEngineHostCallback*, s_game_launch_data& data);
+void __fastcall InitThreadHook(IGameEngine* _this, GameEngineHostCallback* a1, s_game_launch_data& data)
 {
-	static struct_b1 new_struct = struct_b1(data);
+	static s_game_launch_data game_launch_data = s_game_launch_data(data);
 
-	InitThreadPtr(_this, a1, new_struct);
+	InitThreadPtr(_this, a1, game_launch_data);
 }
 
 

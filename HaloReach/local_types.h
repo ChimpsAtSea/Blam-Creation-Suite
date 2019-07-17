@@ -348,24 +348,24 @@ struct GameLauncher
 #pragma pack(pop)
 
 
-struct struct_b1_memzero
+struct s_game_launch_data_memzero
 {
-	struct_b1_memzero()
+	s_game_launch_data_memzero()
 	{
 
 	}
-	struct_b1_memzero(size_t size)
+	s_game_launch_data_memzero(size_t size)
 	{
 		memset(this, 0, size);
 	}
 };
 
-struct __cppobj __declspec(align(8)) struct_b1 : struct_b1_memzero
+struct __cppobj __declspec(align(8)) s_game_launch_data : s_game_launch_data_memzero
 {
 
 
 
-	struct_b1(const struct_b1& original)
+	s_game_launch_data(const s_game_launch_data& original)
 		: pGameHandle(GetModuleHandleA("HaloReach.dll"))
 	{
 		
@@ -378,8 +378,8 @@ struct __cppobj __declspec(align(8)) struct_b1 : struct_b1_memzero
 
 
 
-	struct_b1()
-		: struct_b1_memzero(sizeof(struct_b1))
+	s_game_launch_data()
+		: s_game_launch_data_memzero(sizeof(s_game_launch_data))
 		, pGameHandle(GetModuleHandleA("HaloReach.dll"))
 		//, unknown0(1)
 		////gap0
@@ -421,7 +421,7 @@ struct __cppobj __declspec(align(8)) struct_b1 : struct_b1_memzero
 		// Address : 177240 (0x2B458)
 		// Size    : 544 (0x220)
 		//------------------------------------------------------------
-		unsigned char gap2B460Data[544] = {
+		unsigned char byte2B458Data[544] = {
 			0x02, 0x97, 0x79, 0x37, 0xB8, 0xBA, 0x98, 0xED, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -457,8 +457,8 @@ struct __cppobj __declspec(align(8)) struct_b1 : struct_b1_memzero
 			0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 			0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 		};
-		static_assert(sizeof(gap2B460) == sizeof(gap2B460Data), "This should match");
-		memcpy(gap2B460, gap2B460Data, sizeof(gap2B460));
+		static_assert(sizeof(byte2B458) == sizeof(byte2B458Data), "This should match");
+		memcpy(byte2B458, byte2B458Data, sizeof(byte2B458));
 
 		//FILE* pFile = fopen("C:\\!MCC\\output2.bin", "r");
 		//fread(this, 1, sizeof(this), pFile);
@@ -482,22 +482,27 @@ struct __cppobj __declspec(align(8)) struct_b1 : struct_b1_memzero
 #define COLOR5
 #endif
 
-	_DWORD unknown0 = 1;
-	_BYTE gameVariantData[173 * 1024] = {};
-	_DWORD dword2B40C = 182;
-	unsigned int unsigned2B410 = 0;
-	_BYTE gap2B414[28] = {
-		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-		0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+	_DWORD GameType = 1;
+	_BYTE GameVariantData[173 * 1024] = {};
+	_DWORD MapId = 182; // this is the mcc map id and is converted to 5035 inside 0x180330500, mcc_id_to_reach_map_id https://pastebin.com/r3ihQagj, mcc_id_to_reach_map_name https://pastebin.com/Qx72e0G6
+	_DWORD CampaignDifficultyLevel = 0;
+	_BYTE byte2B40C[12] = {
+		0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 	};
-	_QWORD qword2B430 = 0;
-	_DWORD dword2B438 = 0;
-	_DWORD dword2B43C = 0;
-	const char* unknownQword0 = nullptr;
-	_QWORD unknownQword1 = 0; // changes
-	_QWORD a = 17120639283816404738;
-	_QWORD b = 1;
-	_BYTE gap2B460[544] = {
+	_BYTE GameSkullFlags;
+	_BYTE byte2B419[15] = {
+		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+	};
+	_QWORD qword2B428 = 0;
+	_DWORD dword2B430 = 0;
+	_DWORD dword2B434 = 0;
+	const char* unknown2B438 = nullptr;
+	_QWORD qword2B440 = 0; // changes
+	_QWORD qword2B448 = 17120639283816404738;
+	_QWORD qword2B450 = 1;
+	_BYTE byte2B458[544] = {
 		0x02, 0x97, 0x79, 0x37, 0xB8, 0xBA, 0x98, 0xED, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -533,35 +538,35 @@ struct __cppobj __declspec(align(8)) struct_b1 : struct_b1_memzero
 		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 	};
-	_BYTE byte2B680[16] = {
+	_BYTE byte2B678[16] = {
 		0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 	};
 	wchar_t languageString[0x55] = L"en-US";
 	_BYTE unknown6bytes1[6] = {};
-	_DWORD unknownXXX0 = 1;
-	_DWORD unknownXXX1 = 1;
+	_DWORD dword2B738 = 1;
+	_DWORD dword2B73C = 1;
 	HMODULE pGameHandle = 0;
 	_DWORD EngineIndex0 = 6;
 	_DWORD EngineIndex1 = 6;
-	char unknownStruct2B758[48] = {}; // changes
+	char unknownStruct2B750[48] = {}; // changes
+	_QWORD qword2B780 = 0;
 	_QWORD qword2B788 = 0;
-	_QWORD qword2B790 = 0;
 	struct RallyPointLoader* pRallyPointLoader = nullptr; // changes // WARNING: this is needed for MCC to run don't overwrite
-	_DWORD dword2B7A0 = 11;
-	_DWORD dword2B7A4 = 0;
-	_QWORD qword2B7A8 = 0; // changes
-	_QWORD qword2B7B0 = 0;
-	_BYTE byte2B7B8 = 0;
-	_BYTE byte2B7B9 = 0;
-	_WORD word2B7BA = 0;
-	_WORD word2B7BC = 0;
-	_WORD word2B7BE = 0;
-	_QWORD qword2B7C0 = 0; // changes
-	_DWORD dword2B7C8 = 0;
-	_DWORD dword2B7CC = 0;
+	_DWORD dword2B798 = 11;
+	_DWORD dword2B79C = 0;
+	_QWORD qword2B7A0 = 0; // changes
+	_QWORD qword2B7A8 = 0;
+	_BYTE byte2B7B0 = 0;
+	_BYTE byte2B7B1 = 0;
+	_WORD word2B7B2 = 0;
+	_WORD word2B7B4 = 0;
+	_WORD word2B7B6 = 0;
+	_QWORD qword2B7B8 = 0; // changes
+	_DWORD dword2B7C0 = 0;
+	_DWORD dword2B7C4 = 0;
 };
 
-static constexpr size_t struct_b1_size = sizeof(struct_b1);
-static_assert(struct_b1_size == 0x2B7C8, "");
-static constexpr size_t struct_b1_gamehandleoffset = offsetof(struct_b1, struct_b1::pGameHandle);
-static_assert(struct_b1_gamehandleoffset == 177984, "");
+static constexpr size_t game_launch_data_size = sizeof(s_game_launch_data);
+static_assert(game_launch_data_size == 0x2B7C8, "");
+static constexpr size_t game_launch_data_gamehandleoffset = offsetof(s_game_launch_data, s_game_launch_data::pGameHandle);
+static_assert(game_launch_data_gamehandleoffset == 177984, "");
