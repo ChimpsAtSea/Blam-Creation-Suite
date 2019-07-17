@@ -20,14 +20,12 @@ unsigned __int64 checksum(void* data, size_t size)
 	return sum;
 }
 
-char currentTest[256] = "C:\\!MCC\\haloreach\\maps\\m35.map";
-
-#include <new>
-
-void(__fastcall* InitThreadPtr)(IGameEngine*, GameEngineHostCallback*, struct_b1* data);
-void __fastcall InitThreadHook(IGameEngine* _this, GameEngineHostCallback* a1, struct_b1* data)
+void(__fastcall* InitThreadPtr)(IGameEngine*, GameEngineHostCallback*, struct_b1& data);
+void __fastcall InitThreadHook(IGameEngine* _this, GameEngineHostCallback* a1, struct_b1& data)
 {
-	InitThreadPtr(_this, a1, data);
+	static struct_b1 new_struct = struct_b1(data);
+
+	InitThreadPtr(_this, a1, new_struct);
 }
 
 

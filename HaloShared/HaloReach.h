@@ -145,7 +145,7 @@ typedef HWND(WINAPI* CreateWindowExA_Func)(
 	_In_opt_ HMENU hMenu,
 	_In_opt_ HINSTANCE hInstance,
 	_In_opt_ LPVOID lpParam);
-typedef __int64(__fastcall* game_launch_mode_1_Func)(__int64 a1, __int64 a2);
+typedef __int64(__fastcall* main_game_launch_sequence1_Func)(__int64 a1, __int64 a2);
 typedef __int64 (*s_static_string_256_print_func)(char* dst, char* format, ...);
 typedef char* (*game_get_haloreach_path_func)();
 
@@ -155,10 +155,10 @@ typedef void (*sub_18078C550_func)(__int64 a1, ...);
 typedef void (*main_status_func)(__int64 a1, ...);
 typedef char(__fastcall* main_game_launch_func)(__int64 a1, __int64 a2);
 typedef __int64(__fastcall* cache_files_get_file_status_func)(const char* a1);
-typedef __int64 (*game_launch_mode_2_func)();
-typedef __int64 (*game_launch_mode_3_func)();
-typedef __int64 (*game_launch_mode_11_func)();
-typedef __int64(__fastcall* game_launch_mode_9_func)(__int64 a1);
+typedef __int64 (*main_game_launch_sequence2_func)();
+typedef __int64 (*main_game_launch_sequence3_func)();
+typedef __int64 (*main_game_launch_sequence11_func)();
+typedef __int64(__fastcall* main_game_launch_sequence9_func)(__int64 a1);
 typedef char* (__fastcall* simulation_watcher_get_status_func)(uint8_t* pSimulationWatcher, char* dst);
 typedef __int64(__stdcall* shell_dispose_func)();
 typedef void* (__stdcall* main_thread_routine_func)();
@@ -179,7 +179,7 @@ extern rasterizer_initialize_func rasterizer_initialize;
 extern create_device_func create_device;
 extern create_window_func create_window;
 extern RegisterClassExA_Func RegisterClassExA_Original;
-extern game_launch_mode_1_Func game_launch_mode_1;
+extern main_game_launch_sequence1_Func main_game_launch_sequence1;
 extern s_static_string_256_print_func s_static_string_256_print;
 extern game_get_haloreach_path_func game_get_haloreach_path;
 extern game_options_new_func game_options_new;
@@ -188,10 +188,10 @@ extern sub_18078C550_func sub_18078C550;
 extern main_status_func main_status;
 extern main_game_launch_func main_game_launch;
 extern cache_files_get_file_status_func cache_files_get_file_status;
-extern game_launch_mode_2_func game_launch_mode_2;
-extern game_launch_mode_3_func game_launch_mode_3;
-extern game_launch_mode_11_func game_launch_mode_11;
-extern game_launch_mode_9_func game_launch_mode_9;
+extern main_game_launch_sequence2_func main_game_launch_sequence2;
+extern main_game_launch_sequence3_func main_game_launch_sequence3;
+extern main_game_launch_sequence11_func main_game_launch_sequence11;
+extern main_game_launch_sequence9_func main_game_launch_sequence9;
 extern simulation_watcher_get_status_func simulation_watcher_get_status;
 extern shell_dispose_func shell_dispose;
 extern main_thread_routine_func main_thread_routine;

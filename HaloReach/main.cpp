@@ -251,7 +251,6 @@ void load_haloreach_dll()
 	SetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(HaloReach, "SetLibrarySettings");
 }
 
-struct_b1 b1 = struct_b1();
 
 void initialize_custom_halo_reach_stuff()
 {
@@ -263,10 +262,10 @@ void initialize_custom_halo_reach_stuff()
 	useCustomGameWindow = true;
 	init_haloreach_hooks();
 
-	b1.unknownQword0 = "C:\\!MCC\\haloreach\\maps\\m35";
-
-
 	__int64 result = CreateGameEngine(&pHaloReachEngine);
+
+	static struct_b1 b1 = struct_b1();
+	b1.unknownQword0 = "C:\\!MCC\\haloreach\\maps\\m35.map";
 
 	if (pHaloReachEngine)
 	{

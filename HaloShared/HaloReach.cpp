@@ -16,7 +16,7 @@ rasterizer_initialize_func rasterizer_initialize = nullptr;
 create_device_func create_device = nullptr;
 create_window_func create_window = nullptr;
 RegisterClassExA_Func RegisterClassExA_Original = nullptr;
-game_launch_mode_1_Func game_launch_mode_1 = nullptr;
+main_game_launch_sequence1_Func main_game_launch_sequence1 = nullptr;
 s_static_string_256_print_func s_static_string_256_print = nullptr;
 game_get_haloreach_path_func game_get_haloreach_path = nullptr;
 game_options_new_func game_options_new = nullptr;
@@ -25,10 +25,10 @@ sub_18078C550_func sub_18078C550 = nullptr;
 main_status_func main_status = nullptr;
 main_game_launch_func main_game_launch = nullptr;
 cache_files_get_file_status_func cache_files_get_file_status = nullptr;
-game_launch_mode_2_func game_launch_mode_2 = nullptr;
-game_launch_mode_3_func game_launch_mode_3 = nullptr;
-game_launch_mode_11_func game_launch_mode_11 = nullptr;
-game_launch_mode_9_func game_launch_mode_9 = nullptr;
+main_game_launch_sequence2_func main_game_launch_sequence2 = nullptr;
+main_game_launch_sequence3_func main_game_launch_sequence3 = nullptr;
+main_game_launch_sequence11_func main_game_launch_sequence11 = nullptr;
+main_game_launch_sequence9_func main_game_launch_sequence9 = nullptr;
 simulation_watcher_get_status_func simulation_watcher_get_status = nullptr;
 shell_dispose_func shell_dispose = nullptr;
 main_thread_routine_func main_thread_routine = nullptr;
@@ -148,15 +148,15 @@ HWND WINAPI CreateWindowExA_Hook(
 	return result;
 }
 
-__int64 __fastcall game_launch_mode_1_hook(__int64 a1, __int64 a2)
+__int64 __fastcall main_game_launch_sequence1_hook(__int64 a1, __int64 a2)
 {
 	std::function<__int64()> x = [a1, a2]() {
-		auto result = game_launch_mode_1(a1, a2);
+		auto result = main_game_launch_sequence1(a1, a2);
 		return result;
 	};
 
 	auto result = GameEngineHostCallbackNullsubBypass([a1, a2]() {
-		return game_launch_mode_1(a1, a2);
+		return main_game_launch_sequence1(a1, a2);
 		});
 
 	return result;
@@ -266,36 +266,36 @@ void get_cache_files_get_file_status()
 	cache_files_get_file_status = (cache_files_get_file_status_func)(pFunctionAddress);
 }
 
-__int64 game_launch_mode_2_hook()
+__int64 main_game_launch_sequence2_hook()
 {
 	auto result = GameEngineHostCallbackNullsubBypass([]() {
-		return game_launch_mode_2();
+		return main_game_launch_sequence2();
 		});
 	auto err = GetLastError();
 	return result;
 }
 
-__int64 game_launch_mode_3_hook()
+__int64 main_game_launch_sequence3_hook()
 {
 	auto result = GameEngineHostCallbackNullsubBypass([]() {
-		return game_launch_mode_3();
+		return main_game_launch_sequence3();
 		});
 	auto err = GetLastError();
 	return result;
 }
 
-__int64 game_launch_mode_11_hook()
+__int64 main_game_launch_sequence11_hook()
 {
 	auto result = GameEngineHostCallbackNullsubBypass([]() {
-		return game_launch_mode_11();
+		return main_game_launch_sequence11();
 		});
 	return result;
 }
 
-__int64 __fastcall game_launch_mode_9_hook(__int64 a1)
+__int64 __fastcall main_game_launch_sequence9_hook(__int64 a1)
 {
 	auto result = GameEngineHostCallbackNullsubBypass([a1]() {
-		return game_launch_mode_9(a1);
+		return main_game_launch_sequence9(a1);
 		});
 	return result;
 }
@@ -468,16 +468,16 @@ void init_haloreach_hooks()
 	create_hook<0x180013090>(HaloReachDLL, HaloReachBase, "sub_180013090", sub_180013090_hook, sub_180013090);
 	create_hook<0x18034A7E0>(HaloReachDLL, HaloReachBase, "game_options_verify", game_options_verify_hook, game_options_verify);
 
-	create_hook<0x180012B60>(HaloReachDLL, HaloReachBase, "game_launch_mode_1", game_launch_mode_1_hook, game_launch_mode_1);
-	create_hook<0x180012C30>(HaloReachDLL, HaloReachBase, "game_launch_mode_2", game_launch_mode_2_hook, game_launch_mode_2);
-	//create_hook<0x180012D60>(HaloReachDLL, HaloReachBase, "game_launch_mode_3", game_launch_mode_3_hook, game_launch_mode_3);
-	//create_hook<0x180013210>(HaloReachDLL, HaloReachBase, "game_launch_mode_4", game_launch_mode_4_hook, game_launch_mode_4);
-	//create_hook<0x1800133F0>(HaloReachDLL, HaloReachBase, "game_launch_mode_5", game_launch_mode_5_hook, game_launch_mode_5);
-	//create_hook<0x180013790>(HaloReachDLL, HaloReachBase, "game_launch_mode_6", game_launch_mode_6_hook, game_launch_mode_6);
-	//create_hook<0x180013940>(HaloReachDLL, HaloReachBase, "game_launch_mode_7", game_launch_mode_7_hook, game_launch_mode_7);
-	//create_hook<0x180013B20>(HaloReachDLL, HaloReachBase, "game_launch_mode_8", game_launch_mode_8_hook, game_launch_mode_8);
-	create_hook<0x180013BF0>(HaloReachDLL, HaloReachBase, "game_launch_mode_9", game_launch_mode_9_hook, game_launch_mode_9);
-	//create_hook<0x180013CD0>(HaloReachDLL, HaloReachBase, "game_launch_mode_11", game_launch_mode_11_hook, game_launch_mode_11);
+	create_hook<0x180012B60>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence1", main_game_launch_sequence1_hook, main_game_launch_sequence1);
+	create_hook<0x180012C30>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence2", main_game_launch_sequence2_hook, main_game_launch_sequence2);
+	//create_hook<0x180012D60>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence3", main_game_launch_sequence3_hook, main_game_launch_sequence3);
+	//create_hook<0x180013210>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence4", main_game_launch_sequence4_hook, main_game_launch_sequence4);
+	//create_hook<0x1800133F0>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence5", main_game_launch_sequence5_hook, main_game_launch_sequence5);
+	//create_hook<0x180013790>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence6", main_game_launch_sequence6_hook, main_game_launch_sequence6);
+	//create_hook<0x180013940>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence7", main_game_launch_sequence7_hook, main_game_launch_sequence7);
+	//create_hook<0x180013B20>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence8", main_game_launch_sequence8_hook, main_game_launch_sequence8);
+	create_hook<0x180013BF0>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence9", main_game_launch_sequence9_hook, main_game_launch_sequence9);
+	//create_hook<0x180013CD0>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence11", main_game_launch_sequence11_hook, main_game_launch_sequence11);
 
 	if (useCustomGameWindow)
 	{
