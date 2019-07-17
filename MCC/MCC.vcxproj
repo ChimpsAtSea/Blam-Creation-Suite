@@ -46,13 +46,15 @@
     <TargetName>opus</TargetName>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(SolutionDir)$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
-    <OutDir>\\192.168.1.243\!MCC\MCC\Binaries\Win64</OutDir>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>opus</TargetName>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(SolutionDir)$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
-    <OutDir>\\192.168.1.243\!MCC\MCC\Binaries\Win64</OutDir>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -68,6 +70,9 @@
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>detours.lib;syelog.lib;Winmm.lib;HaloUtilities.lib;HaloShared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>echo f| $(TargetPath) \\192.168.1.243\!MCC\MCC\Binaries\Win64\*</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -87,6 +92,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>detours.lib;syelog.lib;Winmm.lib;HaloUtilities.lib;HaloShared.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>echo f| $(TargetPath) \\192.168.1.243\!MCC\MCC\Binaries\Win64\*</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="detour_helpers.cpp" />

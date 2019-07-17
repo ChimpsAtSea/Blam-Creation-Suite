@@ -318,34 +318,67 @@ struct UnknownStringType
 	char data[48];
 };
 
-/* 523 */
-#pragma pack(push, 1)
-struct GameLauncher
+enum e_campaign_difficulty_level : int
 {
-	_DWORD dword0;
-	_DWORD dword1;
-	char unknownStruct0[177976];
-	_DWORD dword2;
-	_DWORD dword3;
-	_QWORD qword0;
-	_QWORD qword1;
-	char unknownStruct1[48];
-	_QWORD qword2;
-	_QWORD qword3;
-	_QWORD qword4;
-	_DWORD dword4;
-	_DWORD dword5;
-	_QWORD qword5;
-	_QWORD qword6;
-	_WORD word0;
-	_WORD word1;
-	_WORD word2;
-	_WORD word3;
-	_QWORD qword7;
-	_DWORD dword6;
-	_DWORD dword7;
+	_campaign_difficulty_level_easy,
+	_campaign_difficulty_level_normal,
+	_campaign_difficulty_level_heroic,
+	_campaign_difficulty_level_legendary,
+
+	k_number_of_campaign_difficulty_levels,
 };
-#pragma pack(pop)
+
+
+enum e_map_id : int
+{
+	// TODO: add other games
+
+	// reach
+	_map_id_m05 = 178,
+	_map_id_m10,
+	_map_id_m20,
+	_map_id_m30,
+	_map_id_m35,
+	_map_id_m45,
+	_map_id_m50,
+	_map_id_m52,
+	_map_id_m60,
+	_map_id_m70,
+	_map_id_m70_a,
+	_map_id_m70_bonus,
+	_map_id_50_panopticon,
+	_map_id_70_boneyard,
+	_map_id_45_launch_station,
+	_map_id_30_settlement,
+	_map_id_52_ivory_tower,
+	_map_id_35_island,
+	_map_id_20_sword_slayer,
+	_map_id_45_aftship,
+	_map_id_dlc_slayer,
+	_map_id_dlc_invasion,
+	_map_id_dlc_medium,
+	_map_id_condemned,
+	_map_id_trainingpreserve,
+	_map_id_cex_beaver_creek,
+	_map_id_cex_damnation,
+	_map_id_cex_timberland,
+	_map_id_cex_prisoner,
+	_map_id_cex_hangemhigh,
+	_map_id_cex_headlong,
+	_map_id_forge_halo,
+	_map_id_ff50_park,
+	_map_id_ff45_corvette,
+	_map_id_ff20_courtyard,
+	_map_id_ff60_icecave,
+	_map_id_ff70_holdout,
+	_map_id_ff60_ruins,
+	_map_id_ff10_prototype,
+	_map_id_ff30_waterfront,
+	_map_id_ff_unearthed,
+	_map_id_cex_ff_halo,
+
+	k_number_of_map_ids
+};
 
 
 struct s_game_launch_data_memzero
@@ -482,10 +515,12 @@ struct __cppobj __declspec(align(8)) s_game_launch_data : s_game_launch_data_mem
 #define COLOR5
 #endif
 
-	_DWORD GameType = 1;
+	_DWORD GameMode = 1;
 	_BYTE GameVariantData[173 * 1024] = {};
-	_DWORD MapId = 182; // this is the mcc map id and is converted to 5035 inside 0x180330500, mcc_id_to_reach_map_id https://pastebin.com/r3ihQagj, mcc_id_to_reach_map_name https://pastebin.com/Qx72e0G6
-	_DWORD CampaignDifficultyLevel = 0;
+	// [0x180330500, mcc_id_to_reach_map_id, https://pastebin.com/r3ihQagj]
+	// [180330BD0, mcc_id_to_reach_map_name, https://pastebin.com/Qx72e0G6]
+	e_map_id MapId = _map_id_m35;
+	e_campaign_difficulty_level CampaignDifficultyLevel = _campaign_difficulty_level_easy;
 	_BYTE byte2B40C[12] = {
 		0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		0x00, 0x00, 0x00, 0x00, 0x00, 0x00
@@ -495,7 +530,7 @@ struct __cppobj __declspec(align(8)) s_game_launch_data : s_game_launch_data_mem
 		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 	};
-	_QWORD qword2B428 = 0;
+	struct unknown* pUnknown2B428 = nullptr;
 	_DWORD dword2B430 = 0;
 	_DWORD dword2B434 = 0;
 	const char* unknown2B438 = nullptr;
@@ -565,8 +600,13 @@ struct __cppobj __declspec(align(8)) s_game_launch_data : s_game_launch_data_mem
 	_DWORD dword2B7C0 = 0;
 	_DWORD dword2B7C4 = 0;
 };
+static_assert(sizeof(s_game_launch_data) == 0x2B7C8, "");
+static_assert(offsetof(s_game_launch_data, s_game_launch_data::pGameHandle) == 0x2B740, "");
 
-static constexpr size_t game_launch_data_size = sizeof(s_game_launch_data);
-static_assert(game_launch_data_size == 0x2B7C8, "");
-static constexpr size_t game_launch_data_gamehandleoffset = offsetof(s_game_launch_data, s_game_launch_data::pGameHandle);
-static_assert(game_launch_data_gamehandleoffset == 177984, "");
+struct s_game_launcher
+{
+	_DWORD dword0;
+	_DWORD dword4;
+	s_game_launch_data GameLaunchData;
+};
+static_assert(sizeof(s_game_launcher) == 0x2B7D0, "");
