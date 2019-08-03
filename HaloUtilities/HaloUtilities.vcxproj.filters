@@ -33,6 +33,9 @@
     <ClInclude Include="logging.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DataReference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="haloutilities-private-pch.cpp">
@@ -44,5 +47,8 @@
     <ClCompile Include="detour_helpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="DataReference.natvis" />
   </ItemGroup>
 </Project>

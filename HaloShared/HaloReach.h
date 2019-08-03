@@ -2,8 +2,8 @@
 
 #define HaloReachDLL "HaloReach.dll"
 #define HaloReachBase 0x180000000
-#define HaloReachModule GetModuleHandleA(HaloReachDLL)
-#define HaloReachBaseAddressPtr reinterpret_cast<char*>(HaloReachModule)
+#define HaloReachModule ModulePtr(HaloReachDLL)
+#define HaloReachBaseAddressPtr ModuleCharPtr(HaloReachDLL)
 
 enum e_peer_property
 {

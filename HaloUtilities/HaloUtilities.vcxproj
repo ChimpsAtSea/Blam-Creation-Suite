@@ -144,12 +144,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataReference.h" />
     <ClInclude Include="defs.h" />
     <ClInclude Include="detour_helpers.h" />
     <ClInclude Include="detour_helpers_private.h" />
     <ClInclude Include="haloutilities-private-pch.h" />
     <ClInclude Include="haloutilities-public-pch.h" />
     <ClInclude Include="logging.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="DataReference.natvis" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

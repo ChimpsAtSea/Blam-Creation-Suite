@@ -265,7 +265,7 @@ void initialize_custom_halo_reach_stuff()
 	__int64 result = CreateGameEngine(&pHaloReachEngine);
 
 	static s_game_launch_data game_launch_data = s_game_launch_data();
-	game_launch_data.unknown2B438 = "C:\\!MCC\\haloreach\\maps\\m35.map";
+	//game_launch_data.unknown2B438 = "C:\\!MCC\\haloreach\\maps\\m35.map";
 
 	if (pHaloReachEngine)
 	{

@@ -2,6 +2,8 @@
 
 
 
+
+
 static e_peer_property last_game_load_status;
 static std::string last_game_load_status_str;
 
@@ -445,15 +447,195 @@ bool __fastcall game_options_verify_hook(s_game_options* a1)
 	return result;
 }
 
+enum class HaloGameID
+{
+	Halo,
+	Halo2,
+	Halo3,
+	Halo3ODST,
+	HaloReach,
+};
+
+class DataReferenceBaseBase
+{
+public:
+
+	static constexpr const char* HaloGameIDDLLStr(HaloGameID gameid)
+	{
+		switch (gameid)
+		{
+		case HaloGameID::Halo:
+			throw 1;
+			break;
+		case HaloGameID::Halo2:
+			throw 1;
+			break;
+		case HaloGameID::Halo3:
+			throw 1;
+			break;
+		case HaloGameID::Halo3ODST:
+			throw 1;
+			break;
+		case HaloGameID::HaloReach:
+			return HaloReachDLL;
+			break;
+		default:
+			throw 1;
+		}
+		return nullptr;
+	}
+
+	DataReferenceBaseBase(
+		HaloGameID gameid2,
+		size_t baseAddress2,
+		size_t offset2
+	)
+		: m_pModuleName(HaloGameIDDLLStr(gameid2)),
+		m_baseAddress(baseAddress2),
+		m_offset(offset2),
+		m_pPtr(nullptr)
+	{
+		if (g_pDataReferenceBaseBaseFirst == nullptr)
+		{
+			g_pDataReferenceBaseBaseFirst = this;
+			g_pDataReferenceBaseBaseLast = this;
+		}
+		else
+		{
+			g_pDataReferenceBaseBaseLast->m_pNextDataReference = this;
+			g_pDataReferenceBaseBaseLast = this;
+		}
+	}
+
+	const char* m_pModuleName;
+	size_t m_baseAddress;
+	size_t m_offset;
+	void* m_pPtr;
+
+	static DataReferenceBaseBase* g_pDataReferenceBaseBaseFirst;
+	static DataReferenceBaseBase* g_pDataReferenceBaseBaseLast;
+	DataReferenceBaseBase* m_pNextDataReference;
+
+	char* getptr(const char* pModuleName) const
+	{
+		char* const pBaseAddress = ModuleCharPtr(pModuleName);
+		char* ptr = reinterpret_cast<char*>(pBaseAddress + (m_offset - m_baseAddress));
+		return ptr;
+	}
+
+	void ProcessNode(const char* pModuleName)
+	{
+		if (strcmp(m_pModuleName, pModuleName) == 0)
+		{
+			m_pPtr = getptr(m_pModuleName);
+
+			// process the node
+
+			printf("TEST");
+		}
+		if (m_pNextDataReference)
+		{
+			m_pNextDataReference->ProcessNode(pModuleName);
+		}
+	}
+
+	static void ProcessTree(const char* pModuleName)
+	{
+		if (!g_pDataReferenceBaseBaseFirst)
+		{
+			return;
+		}
+		g_pDataReferenceBaseBaseFirst->ProcessNode(pModuleName);
+	}
+};
+DataReferenceBaseBase* DataReferenceBaseBase::g_pDataReferenceBaseBaseFirst = nullptr;
+DataReferenceBaseBase* DataReferenceBaseBase::g_pDataReferenceBaseBaseLast = nullptr;
+
+template<HaloGameID gameid, size_t baseAddress, typename T, size_t offset>
+class DataReferenceBase : DataReferenceBaseBase
+{
+private:
+public:
+	DataReferenceBase(const DataReferenceBase&) = delete;
+	DataReferenceBase()
+		: DataReferenceBaseBase(gameid, baseAddress, offset)
+	{
+
+	}
+
+	T& get() const
+	{
+		T& pGameEngineHostCallback = *reinterpret_cast<T*>(getptr(HaloGameIDDLLStr(gameid)));
+
+		return pGameEngineHostCallback;
+	}
+
+	T& operator=(T value)
+	{
+		T& reference = get();
+		reference = value;
+		return reference;
+	}
+
+	T& operator->()
+	{
+		return get();
+	}
+
+	T const& operator->() const
+	{
+		return get();
+	}
+
+	operator T& () const
+	{
+		return get();
+	}
+
+	operator int* () const { return nullptr; }
+};
+
+
+
+
+template<typename T, size_t offset>
+using HaloReachReference = DataReferenceBase<HaloGameID::HaloReach, 0x180000000, T, offset>;
+
+
+
+
+
+
+//#TODO: Natvis and template
+HaloReachReference<GameEngineHostCallback*, 0x1810EC5C0> g_gameEngineHostCallback;
+HaloReachReference<int, 0x18102F2A4> g_render_thread_mode;
+
+
+typedef __int64(__fastcall* sub_180012200_func)(__int64 a1);
+sub_180012200_func sub_180012200;
+__int64 __fastcall sub_180012200_hook(__int64 a1)
+{
+	GameEngineHostCallback* pGameEngineHostCallbackBefore = g_gameEngineHostCallback;
+	g_gameEngineHostCallback = nullptr;
+
+	auto result = sub_180012200(a1);
+
+	g_gameEngineHostCallback = pGameEngineHostCallbackBefore;
+
+	return result;
+}
 
 void init_haloreach_hooks()
 {
+	DataReferenceBaseBase::ProcessTree(HaloReachDLL);
+
 	init_detours();
 
 	create_dll_hook("USER32.dll", "RegisterClassExA", RegisterClassExA_Hook, RegisterClassExA_Original);
 	create_dll_hook("USER32.dll", "CreateWindowExA", CreateWindowExA_Hook, CreateWindowExA_Original);
-	
-	
+
+	create_hook<0x180012200>(HaloReachDLL, HaloReachBase, "sub_1800122000", sub_180012200_hook, sub_180012200);
+
 
 	create_hook<0x180012730>(HaloReachDLL, HaloReachBase, "game_get_haloreach_path", game_get_haloreach_path_hook, game_get_haloreach_path);
 	create_hook<0x180013EA0>(HaloReachDLL, HaloReachBase, "main_game_launch", main_game_launch_hook, main_game_launch);

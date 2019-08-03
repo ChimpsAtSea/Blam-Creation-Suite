@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
+
+  <Type Name="DataReferenceBase&lt;*&gt;">
+    <SmartPointer Usage="Minimal">($T3*)(m_pPtr)</SmartPointer>
+    <DisplayString>{*($T3*)(m_pPtr)}</DisplayString>
+  </Type>
+  
+</AutoVisualizer>
