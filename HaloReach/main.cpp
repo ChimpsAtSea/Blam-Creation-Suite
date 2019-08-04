@@ -287,6 +287,8 @@ void deinit_haloreach()
 	FreeLibrary(HaloReach);
 }
 
+HICON g_icon = NULL;
+
 int WINAPI WinMain(
 	HINSTANCE hInstance,     
 	HINSTANCE hPrevInstance, 
@@ -294,6 +296,7 @@ int WINAPI WinMain(
 	int nCmdShow             
 )
 {
+	g_icon = LoadIconA(GetModuleHandle(NULL), MAKEINTRESOURCEA(IDI_ICON1));
 	SetProcessDPIAware();
 
 #if _DEBUG

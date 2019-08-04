@@ -296,6 +296,7 @@ ATOM WINAPI RegisterClassExA_Hook(_In_ WNDCLASSEXA* arg)
 	arg->cbWndExtra = 0;
 	arg->hInstance = HaloReachModule;
 	arg->hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	arg->hIcon = g_icon;
 
 	// #NOTE: Use existing provided pointer as its memory inside the game itself
 	//arg->lpszClassName = "HaloReach";

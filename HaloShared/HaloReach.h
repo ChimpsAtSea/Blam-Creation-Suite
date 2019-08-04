@@ -130,6 +130,7 @@ enum class CurrentState
 extern CurrentState g_CurrentGameState;
 extern bool g_gameManuallyKilled;
 extern bool isHooked;
+extern HICON g_icon;
 
 typedef void(*rasterizer_initialize_func)();
 typedef char(*create_device_func)();
