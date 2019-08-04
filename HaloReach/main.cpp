@@ -10,17 +10,17 @@
 
 void nullsub()
 {
-	
+
 }
 
 HMODULE HaloReach; //haloreach.dll
 
 typedef errno_t(__fastcall* SetLibrarySettingsFunc)(wchar_t* Src);
 SetLibrarySettingsFunc* SetLibrarySettings = nullptr;
-typedef signed __int64(__fastcall CreateGameEngineFunc)(IGameEngine **ppGameEngine);
-CreateGameEngineFunc *CreateGameEngine = nullptr;
+typedef signed __int64(__fastcall CreateGameEngineFunc)(IGameEngine** ppGameEngine);
+CreateGameEngineFunc* CreateGameEngine = nullptr;
 
-IGameEngine *pHaloReachEngine = nullptr;
+IGameEngine* pHaloReachEngine = nullptr;
 
 
 #define NULLSUB_LAMBDA_CUSTOM(message) []() { printf(message"\n"); }
@@ -29,9 +29,9 @@ IGameEngine *pHaloReachEngine = nullptr;
 #define WriteVerbose(str, ...) printf(str, ##__VA_ARGS__);
 
 
-GUID *__fastcall GetGuid(GameEvents *this, GUID *rGuid)
+GUID* __fastcall GetGuid(GameEvents* this, GUID* rGuid)
 {
-	GUID *result; // rax
+	GUID* result; // rax
 
 	result = rGuid;
 	*rGuid = this->guid;
@@ -53,8 +53,8 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member03 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[03]");
 	gameEngineHostCallbackVftbl.Member04 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[04]");
 
-	typedef void(__fastcall WriteGameStateFunc)(GameEngineHostCallback *, LPVOID, size_t);
-	gameEngineHostCallbackVftbl.WriteGameState = (WriteGameStateFunc *)nullsub;
+	typedef void(__fastcall WriteGameStateFunc)(GameEngineHostCallback*, LPVOID, size_t);
+	gameEngineHostCallbackVftbl.WriteGameState = (WriteGameStateFunc*)nullsub;
 
 	gameEngineHostCallbackVftbl.Member06 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[06]");
 	gameEngineHostCallbackVftbl.Member07 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[07]");
@@ -106,10 +106,10 @@ void setup_game_events()
 	gameEvents.vftbl = &gameEventsVftbl;
 
 
-	typedef void(__fastcall BIFactDeepLinkSendFunc)(GameEvents *, _QWORD *, GUID *, _QWORD *, __int64 *);
-	typedef void(__fastcall BroadcastingStartFunc)(GameEvents *, _QWORD, _QWORD, _QWORD, _QWORD, _DWORD, _QWORD, _QWORD, _DWORD, _QWORD);
-	typedef __int64(__fastcall BIFactControllerSettingsFunc)(GameEvents *, unsigned __int64 *, GUID *, _QWORD, __int64, _DWORD, int, int);
-	typedef __int64(__fastcall Member120Func)(GameEvents *, _QWORD);
+	typedef void(__fastcall BIFactDeepLinkSendFunc)(GameEvents*, _QWORD*, GUID*, _QWORD*, __int64*);
+	typedef void(__fastcall BroadcastingStartFunc)(GameEvents*, _QWORD, _QWORD, _QWORD, _QWORD, _DWORD, _QWORD, _QWORD, _DWORD, _QWORD);
+	typedef __int64(__fastcall BIFactControllerSettingsFunc)(GameEvents*, unsigned __int64*, GUID*, _QWORD, __int64, _DWORD, int, int);
+	typedef __int64(__fastcall Member120Func)(GameEvents*, _QWORD);
 
 	gameEventsVftbl.Member00 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[0]");
 	gameEventsVftbl.AshesToAshes = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::AshesToAshes");
@@ -117,9 +117,9 @@ void setup_game_events()
 	gameEventsVftbl.AudioLogClaimed = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::AudioLogClaimed");
 	gameEventsVftbl.Base = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::Base");
 	gameEventsVftbl.Betrayal = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::Betrayal");
-	gameEventsVftbl.BIFactControllerSettings = [](GameEvents *, unsigned __int64 *, GUID *, _QWORD, __int64, _DWORD, int, int) { printf("GameEvents::vftable::BIFactControllerSettings""\n"); return __int64(0); };
+	gameEventsVftbl.BIFactControllerSettings = [](GameEvents*, unsigned __int64*, GUID*, _QWORD, __int64, _DWORD, int, int) { printf("GameEvents::vftable::BIFactControllerSettings""\n"); return __int64(0); };
 	gameEventsVftbl.BIFactDeepLinkRecieve = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BIFactDeepLinkRecieve");
-	gameEventsVftbl.BIFactDeepLinkSend = [](GameEvents *, _QWORD *, GUID *, _QWORD *, __int64 *) { printf("GameEvents::vftable::BIFactDeepLinkSend""\n"); };
+	gameEventsVftbl.BIFactDeepLinkSend = [](GameEvents*, _QWORD*, GUID*, _QWORD*, __int64*) { printf("GameEvents::vftable::BIFactDeepLinkSend""\n"); };
 	gameEventsVftbl.BIFactDualWield = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BIFactDualWield");
 	gameEventsVftbl.BIFactGameSession = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BIFactGameSession");
 	gameEventsVftbl.BIFactLoadout = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BIFactLoadout");
@@ -142,7 +142,7 @@ void setup_game_events()
 	gameEventsVftbl.BroadcastingPlayerSpawn = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BroadcastingPlayerSpawn");
 	gameEventsVftbl.BroadcastingPlayerSwitchedTeams = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BroadcastingPlayerSwitchedTeams");
 	gameEventsVftbl.BroadcastingScore = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::BroadcastingScore");
-	gameEventsVftbl.BroadcastingStart = [](GameEvents *, _QWORD, _QWORD, _QWORD, _QWORD, _DWORD, _QWORD, _QWORD, _DWORD, _QWORD) { printf("GameEvents::vftable::BroadcastingStart""\n"); };
+	gameEventsVftbl.BroadcastingStart = [](GameEvents*, _QWORD, _QWORD, _QWORD, _QWORD, _DWORD, _QWORD, _QWORD, _DWORD, _QWORD) { printf("GameEvents::vftable::BroadcastingStart""\n"); };
 	gameEventsVftbl.ChallengeCompleted = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::ChallengeCompleted");
 	gameEventsVftbl.ClassicModeSwitched = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::ClassicModeSwitched");
 	gameEventsVftbl.CleverGirl = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::CleverGirl");
@@ -231,7 +231,7 @@ void setup_game_events()
 	gameEventsVftbl.Member117 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[117]");
 	gameEventsVftbl.Member118 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[118]");
 	gameEventsVftbl.Member119 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[119]");
-	gameEventsVftbl.Member120 = [](GameEvents *, _QWORD) { printf("GameEvents::vftable::Member120Func""\n"); return __int64(0); };
+	gameEventsVftbl.Member120 = [](GameEvents*, _QWORD) { printf("GameEvents::vftable::Member120Func""\n"); return __int64(0); };
 	gameEventsVftbl.Member121 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[121]");
 	gameEventsVftbl.GetGuid = GetGuid;
 	gameEventsVftbl.Member123 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[123]");
@@ -242,10 +242,12 @@ void setup_game_events()
 void load_haloreach_dll()
 {
 	HaloReach = LoadLibraryA("haloreach.dll");
-
-	printf("0x%p\n", HaloReach);
-	printf("0x180000000\n");
+	if (HaloReach == nullptr)
+	{
+		WriteLineVerbose("Failed to load haloreach.dll");
+	}
 	assert(HaloReach);
+	WriteLineVerbose("haloreach.dll: 0x%p", HaloReach);
 
 	CreateGameEngine = (CreateGameEngineFunc*)GetProcAddress(HaloReach, "CreateGameEngine");
 	SetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(HaloReach, "SetLibrarySettings");
@@ -275,7 +277,7 @@ void initialize_custom_halo_reach_stuff()
 		// setup data for b1
 
 		//pHaloReachEngine->InitThread(nullptr, (__int64)&game_launch_data);
-		pHaloReachEngine->InitThread(nullptr, (__int64)&game_launch_data);
+		pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);
 
 	}
 }
@@ -285,11 +287,26 @@ void deinit_haloreach()
 	FreeLibrary(HaloReach);
 }
 
-int main()
+int WINAPI WinMain(
+	HINSTANCE hInstance,     
+	HINSTANCE hPrevInstance, 
+	LPSTR lpCmdLine,         
+	int nCmdShow             
+)
 {
 #if _DEBUG
+	bool isDebug = true;
 	while (!IsDebuggerPresent()) { Sleep(1); }
+#else
+	bool isDebug = false;
 #endif
+
+	if (strstr(lpCmdLine, "showconsole") || isDebug)
+	{
+		AllocConsole();
+		freopen("CONOUT$", "w", stdout);
+	}
+
 
 	initialize_custom_halo_reach_stuff();
 

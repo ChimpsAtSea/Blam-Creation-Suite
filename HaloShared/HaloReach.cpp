@@ -1,5 +1,202 @@
 #include "haloshared-private-pch.h"
 
+#include <intrin.h>
+#include <immintrin.h>
+
+
+
+enum class HaloGameID
+{
+	Halo,
+	Halo2,
+	Halo3,
+	Halo3ODST,
+	HaloReach,
+};
+
+class DataReferenceBaseBase
+{
+public:
+
+	static constexpr const char* HaloGameIDDLLStr(HaloGameID gameid)
+	{
+		switch (gameid)
+		{
+		case HaloGameID::Halo:
+			throw 1;
+			break;
+		case HaloGameID::Halo2:
+			throw 1;
+			break;
+		case HaloGameID::Halo3:
+			throw 1;
+			break;
+		case HaloGameID::Halo3ODST:
+			throw 1;
+			break;
+		case HaloGameID::HaloReach:
+			return HaloReachDLL;
+			break;
+		default:
+			throw 1;
+		}
+		return nullptr;
+	}
+
+	DataReferenceBaseBase(
+		HaloGameID gameid2,
+		size_t baseAddress2,
+		size_t offset2
+	)
+		: m_pModuleName(HaloGameIDDLLStr(gameid2)),
+		m_baseAddress(baseAddress2),
+		m_offset(offset2),
+		m_pPtr(nullptr)
+	{
+		if (g_pDataReferenceBaseBaseFirst == nullptr)
+		{
+			g_pDataReferenceBaseBaseFirst = this;
+			g_pDataReferenceBaseBaseLast = this;
+		}
+		else
+		{
+			g_pDataReferenceBaseBaseLast->m_pNextDataReference = this;
+			g_pDataReferenceBaseBaseLast = this;
+		}
+	}
+
+	const char* m_pModuleName;
+	size_t m_baseAddress;
+	size_t m_offset;
+	void* m_pPtr;
+
+	static DataReferenceBaseBase* g_pDataReferenceBaseBaseFirst;
+	static DataReferenceBaseBase* g_pDataReferenceBaseBaseLast;
+	DataReferenceBaseBase* m_pNextDataReference;
+
+	char* getptr(const char* pModuleName) const
+	{
+		char* const pBaseAddress = ModuleCharPtr(pModuleName);
+		char* ptr = reinterpret_cast<char*>(pBaseAddress + (m_offset - m_baseAddress));
+		return ptr;
+	}
+
+	void ProcessNode(const char* pModuleName)
+	{
+		if (strcmp(m_pModuleName, pModuleName) == 0)
+		{
+			m_pPtr = getptr(m_pModuleName);
+
+			// process the node
+
+			printf("TEST");
+		}
+		if (m_pNextDataReference)
+		{
+			m_pNextDataReference->ProcessNode(pModuleName);
+		}
+	}
+
+	static void ProcessTree(const char* pModuleName)
+	{
+		if (!g_pDataReferenceBaseBaseFirst)
+		{
+			return;
+		}
+		g_pDataReferenceBaseBaseFirst->ProcessNode(pModuleName);
+	}
+};
+DataReferenceBaseBase* DataReferenceBaseBase::g_pDataReferenceBaseBaseFirst = nullptr;
+DataReferenceBaseBase* DataReferenceBaseBase::g_pDataReferenceBaseBaseLast = nullptr;
+
+template<HaloGameID gameid, size_t baseAddress, typename T, size_t offset>
+class DataReferenceBase : DataReferenceBaseBase
+{
+private:
+public:
+	DataReferenceBase(const DataReferenceBase&) = delete;
+	DataReferenceBase()
+		: DataReferenceBaseBase(gameid, baseAddress, offset)
+	{
+
+	}
+
+	T* ptr() const
+	{
+		T* ptr = reinterpret_cast<T*>(getptr(HaloGameIDDLLStr(gameid)));
+		return ptr;
+	}
+
+	volatile T* volatile_ptr() const
+	{
+		return static_cast<volatile T*>(ptr());
+	}
+
+	T& ref() const
+	{
+		return *ptr();
+	}
+
+	T& operator=(T value)
+	{
+		T& reference = ref();
+		reference = value;
+		return reference;
+	}
+
+	T& operator->()
+	{
+		return ref();
+	}
+
+	T const& operator->() const
+	{
+		return ref();
+	}
+
+	operator T& () const
+	{
+		return ref();
+	}
+
+	operator bool() const
+	{
+		T& r = ref();
+		return (bool)r;
+	}
+};
+
+template<typename T, size_t offset>
+using HaloReachReference = DataReferenceBase<HaloGameID::HaloReach, 0x180000000, T, offset>;
+
+//#TODO: Natvis and template
+HaloReachReference<GameEngineHostCallback*, 0x1810EC5C0> g_gameEngineHostCallback;
+HaloReachReference<LONG, 0x18102F2A4> g_render_thread_mode;
+HaloReachReference<DWORD, 0x1810EC584> dword_1810EC584;
+HaloReachReference<BYTE, 0x18342E55D> byte_18342E55D;
+HaloReachReference<BYTE, 0x183984DE4> byte_183984DE4;
+HaloReachReference<DWORD, 0x1810524AC> dword_1810524AC;
+
+typedef __int64 (*wait_for_render_thread_func)();
+wait_for_render_thread_func wait_for_render_thread = nullptr;
+
+typedef __int64(__fastcall* physical_memory_stage_push_func)(int a1);
+physical_memory_stage_push_func physical_memory_stage_push = nullptr;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -447,188 +644,12 @@ bool __fastcall game_options_verify_hook(s_game_options* a1)
 	return result;
 }
 
-enum class HaloGameID
-{
-	Halo,
-	Halo2,
-	Halo3,
-	Halo3ODST,
-	HaloReach,
-};
 
-class DataReferenceBaseBase
-{
-public:
-
-	static constexpr const char* HaloGameIDDLLStr(HaloGameID gameid)
-	{
-		switch (gameid)
-		{
-		case HaloGameID::Halo:
-			throw 1;
-			break;
-		case HaloGameID::Halo2:
-			throw 1;
-			break;
-		case HaloGameID::Halo3:
-			throw 1;
-			break;
-		case HaloGameID::Halo3ODST:
-			throw 1;
-			break;
-		case HaloGameID::HaloReach:
-			return HaloReachDLL;
-			break;
-		default:
-			throw 1;
-		}
-		return nullptr;
-	}
-
-	DataReferenceBaseBase(
-		HaloGameID gameid2,
-		size_t baseAddress2,
-		size_t offset2
-	)
-		: m_pModuleName(HaloGameIDDLLStr(gameid2)),
-		m_baseAddress(baseAddress2),
-		m_offset(offset2),
-		m_pPtr(nullptr)
-	{
-		if (g_pDataReferenceBaseBaseFirst == nullptr)
-		{
-			g_pDataReferenceBaseBaseFirst = this;
-			g_pDataReferenceBaseBaseLast = this;
-		}
-		else
-		{
-			g_pDataReferenceBaseBaseLast->m_pNextDataReference = this;
-			g_pDataReferenceBaseBaseLast = this;
-		}
-	}
-
-	const char* m_pModuleName;
-	size_t m_baseAddress;
-	size_t m_offset;
-	void* m_pPtr;
-
-	static DataReferenceBaseBase* g_pDataReferenceBaseBaseFirst;
-	static DataReferenceBaseBase* g_pDataReferenceBaseBaseLast;
-	DataReferenceBaseBase* m_pNextDataReference;
-
-	char* getptr(const char* pModuleName) const
-	{
-		char* const pBaseAddress = ModuleCharPtr(pModuleName);
-		char* ptr = reinterpret_cast<char*>(pBaseAddress + (m_offset - m_baseAddress));
-		return ptr;
-	}
-
-	void ProcessNode(const char* pModuleName)
-	{
-		if (strcmp(m_pModuleName, pModuleName) == 0)
-		{
-			m_pPtr = getptr(m_pModuleName);
-
-			// process the node
-
-			printf("TEST");
-		}
-		if (m_pNextDataReference)
-		{
-			m_pNextDataReference->ProcessNode(pModuleName);
-		}
-	}
-
-	static void ProcessTree(const char* pModuleName)
-	{
-		if (!g_pDataReferenceBaseBaseFirst)
-		{
-			return;
-		}
-		g_pDataReferenceBaseBaseFirst->ProcessNode(pModuleName);
-	}
-};
-DataReferenceBaseBase* DataReferenceBaseBase::g_pDataReferenceBaseBaseFirst = nullptr;
-DataReferenceBaseBase* DataReferenceBaseBase::g_pDataReferenceBaseBaseLast = nullptr;
-
-template<HaloGameID gameid, size_t baseAddress, typename T, size_t offset>
-class DataReferenceBase : DataReferenceBaseBase
-{
-private:
-public:
-	DataReferenceBase(const DataReferenceBase&) = delete;
-	DataReferenceBase()
-		: DataReferenceBaseBase(gameid, baseAddress, offset)
-	{
-
-	}
-
-	T& get() const
-	{
-		T& pGameEngineHostCallback = *reinterpret_cast<T*>(getptr(HaloGameIDDLLStr(gameid)));
-
-		return pGameEngineHostCallback;
-	}
-
-	T& operator=(T value)
-	{
-		T& reference = get();
-		reference = value;
-		return reference;
-	}
-
-	T& operator->()
-	{
-		return get();
-	}
-
-	T const& operator->() const
-	{
-		return get();
-	}
-
-	operator T& () const
-	{
-		return get();
-	}
-
-	operator int* () const { return nullptr; }
-};
-
-
-
-
-template<typename T, size_t offset>
-using HaloReachReference = DataReferenceBase<HaloGameID::HaloReach, 0x180000000, T, offset>;
-
-
-
-
-
-
-//#TODO: Natvis and template
-HaloReachReference<GameEngineHostCallback*, 0x1810EC5C0> g_gameEngineHostCallback;
-HaloReachReference<LONG, 0x18102F2A4> g_render_thread_mode;
-HaloReachReference<DWORD, 0x1810EC584> dword_1810EC584;
-HaloReachReference<BYTE, 0x18342E55D> byte_18342E55D;
-HaloReachReference<BYTE, 0x183984DE4> byte_183984DE4;
-HaloReachReference<DWORD, 0x1810524AC> dword_1810524AC;
-
-typedef __int64 (*wait_for_render_thread_func)();
-wait_for_render_thread_func wait_for_render_thread = nullptr;
-
-typedef __int64(__fastcall* physical_memory_stage_push_func)(int a1);
-
-
-#include <intrin.h>
-#include <immintrin.h>
 
 typedef __int64(__fastcall* sub_180012200_func)(__int64 a1);
 sub_180012200_func sub_180012200;
 __int64 __fastcall sub_180012200_hook(__int64 a1)
 {
-	physical_memory_stage_push_func physical_memory_stage_push = get_function_ptr<0x1803FB790, physical_memory_stage_push_func>(HaloReachDLL, HaloReachBase);
-
 	DWORD result; // rax
 	char v2; // bl
 
@@ -636,8 +657,10 @@ __int64 __fastcall sub_180012200_hook(__int64 a1)
 	if (!dword_1810EC584)
 		result = a1;
 	dword_1810EC584 = result;
-	if (g_gameEngineHostCallback || true)
+	if (g_gameEngineHostCallback)
 	{
+		WriteLineVerbose("sub_180012200: Aborting!");
+
 		byte_18342E55D = 1;
 		result = wait_for_render_thread();
 		v2 = result;
@@ -651,32 +674,73 @@ __int64 __fastcall sub_180012200_hook(__int64 a1)
 		if (v2 & 2)
 			result = _InterlockedCompareExchange(g_render_thread_mode.volatile_ptr(), 1, 0);
 	}
+
 	return result;
+}
+
+typedef char* (__fastcall* sub_1803A6B30_func)(int a1, unsigned int a2, char* a3, int a4);
+sub_1803A6B30_func sub_1803A6B30 = nullptr;
+char* __fastcall sub_1803A6B30_hook(int a1, unsigned int a2, char* a3, int a4)
+{
+	a2 = 0x10231971; // force the default map load code path
+
+	auto result = sub_1803A6B30(a1, a2, a3, a4);
 
 
+	if (strlen(a3) == 0)
+	{
+		WriteLineVerbose("WARNING: The map name is not set!");
+		WriteLineVerbose("SELECTED MAP: <none>");
+		ThrowDebugger();
+	}
+	else
+	{
+		WriteLineVerbose("SELECTED MAP: %s", a3);
+	}
+
+	// forceload a different map file
+	char customMapName[] = "maps\\m35";
+	memcpy(a3, customMapName, sizeof(customMapName));
+
+	WriteLineVerbose("MAP OVERRIDE: %s", a3);
+
+	return result;
+}
+
+typedef int (*sub_1800122F0_func)();
+sub_1800122F0_func sub_1800122F0 = nullptr;
+int sub_1800122F0_hook()
+{
+	auto result = GameEngineHostCallbackNullsubBypass([]() {
+
+		return sub_1800122F0();
+
+		});
+	return result;
+}
 
 
+#define OFFSETHOOK(offset) create_hook<0x##offset>(HaloReachDLL, HaloReachBase, "sub_" #offset, sub_##offset##_hook, sub_##offset);
 
+HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
 
-
-
-
-
-
-
-	//GameEngineHostCallback* pGameEngineHostCallbackBefore = g_gameEngineHostCallback;
-	////g_gameEngineHostCallback = nullptr;
-	//g_gameEngineHostCallback = &gameEngineHostCallback;
-
-	//wait_for_render_thread = get_function_ptr<0x18031F6A0, wait_for_render_thread_func>(HaloReachDLL, HaloReachBase);
-
-	//auto wait_for_thread_result = wait_for_render_thread();
-	//__int64 result = 1;
-	////auto result = sub_180012200(a1);
-
-	//g_gameEngineHostCallback = pGameEngineHostCallbackBefore;
-	//
-	//return result;
+void memcpy_virtual(
+	void* dst,
+	const void* src,
+	size_t size
+)
+{
+	if (dst && src && size)
+	{
+		DWORD oldProtect;
+		VirtualProtect(dst, size, PAGE_EXECUTE_READWRITE, &oldProtect);
+		memcpy(dst, src, size);
+		VirtualProtect(dst, size, oldProtect, &oldProtect);
+	}
+	else
+	{
+		assert(dst, "Must be a valid destination");
+	}
 }
 
 void init_haloreach_hooks()
@@ -688,6 +752,8 @@ void init_haloreach_hooks()
 	create_dll_hook("USER32.dll", "RegisterClassExA", RegisterClassExA_Hook, RegisterClassExA_Original);
 	create_dll_hook("USER32.dll", "CreateWindowExA", CreateWindowExA_Hook, CreateWindowExA_Original);
 
+	OFFSETHOOK(1800122F0);
+	create_hook<0x1803A6B30>(HaloReachDLL, HaloReachBase, "sub_1803A6B30", sub_1803A6B30_hook, sub_1803A6B30);
 	create_hook<0x180012200>(HaloReachDLL, HaloReachBase, "sub_180012200", sub_180012200_hook, sub_180012200);
 
 
@@ -724,6 +790,13 @@ void init_haloreach_hooks()
 
 	populate_function_ptr<0x18034A630>(HaloReachDLL, HaloReachBase, game_options_new);
 	populate_function_ptr<0x180352340>(HaloReachDLL, HaloReachBase, cache_files_get_file_status);
+
+	physical_memory_stage_push = get_function_ptr<0x1803FB790, physical_memory_stage_push_func>(HaloReachDLL, HaloReachBase);
+	wait_for_render_thread = get_function_ptr<0x18031F6A0, wait_for_render_thread_func>(HaloReachDLL, HaloReachBase);
+
+	char* level_name = level_name_to_patch.ptr();
+	const char new_level_name[] = "levels\\solo\\m35\\m35";
+	memcpy_virtual(level_name, new_level_name, sizeof(new_level_name));
 
 	end_detours();
 }
