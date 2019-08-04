@@ -77,8 +77,7 @@
 echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y
 ) else (
 echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-)
-echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y</Command>
+)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -106,8 +105,7 @@ echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y</Co
 echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y
 ) else (
 echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-)
-echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y</Command>
+)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
