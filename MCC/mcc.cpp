@@ -95,6 +95,106 @@ void haloreach_dll_loaded_callback()
 	end_detours();
 }
 
+enum XalFunctionName
+{
+	eActivateNativeBrowserOperation,
+	eAddUser,
+	eAuthorizeWithSisu,
+	eClearCacheData,
+	eClosePromptPlatformOperation,
+	eCredManager,
+	eFetchGamerpicOperation,
+	eFinishSignIn,
+	eFinishUrl,
+	eGetDefaultUser,
+	eGetDtoken,
+	eGetDTXtoken,
+	eGetGamerPicture,
+	eGetMsaTicket,
+	eGetTokenAndSignature,
+	eGetTokenForExternalTelemetry,
+	eGetTtoken,
+	eGetWebAccountToken,
+	eGetXtoken,
+	eInitializeComponents,
+	eInitializeTokenStack,
+	eLoadClockSkew,
+	eLoadDefaultUser,
+	eLoadDeviceIdentity,
+	eLoadTokensForUser,
+	eMobileWebViewOperation,
+	eMobileWebViewValidateOperation,
+	eMsaCacheWin32,
+	eNativeClearOperation,
+	eNativeReadOperation,
+	eNativeWriteOperation,
+	eNsalDb,
+	eNsalDb_LoadDefaultNsal,
+	eNsalDb_LoadTitleNsal,
+	ePresenceHeartbeat,
+	eRefreshDtoken,
+	eRefreshTtoken,
+	eRefreshUtoken,
+	eRefreshXtoken,
+	eRefreshUser,
+	eRemotePollOperation,
+	eRemotePromptOperation,
+	eRemoveUser,
+	eResolveTokenIssue,
+	eSaveClockSkew,
+	eSignIn,
+	eSignOut,
+	eSignOutUser,
+	eShowPromptPlatformOperation,
+	eStateFinishUrl,
+	eStateGetTokenAndSignature,
+	eStorageClearPlatformOperation,
+	eStorageReadPlatformOperation,
+	eStorageWritePlatformOperation,
+	eSwitchUser,
+	eTokenStack,
+	eTryAddFirstUserSilently,
+	eWebViewPlatformOperation,
+	eWriteCacheData,
+	eWriteTicketSet,
+	eXalAddUserAsync,
+	eXalFindUserByLocalId,
+	eXalGetCurrentUsers,
+	eXalGetDeviceUser,
+	eXalGetMaxUsers,
+	eXalPlatformRemoteConnectCancelPrompt,
+	eXalPlatformStorageClearComplete,
+	eXalPlatformStorageReadComplete,
+	eXalPlatformStorageWriteComplete,
+	eXalPlatformWebFinishUrlAsync,
+	eXalPlatformWebShowUrlComplete,
+	eXalRemoveUserAsync,
+	eXalSignOutUserAsync,
+	eXalSwitchUserAsync,
+	eXalSwitchUserAndSignOutAsync,
+	eXalTryAddFirstUserSilentlyAsync,
+	eXalUserCheckPrivilege,
+	eXalUserGetGamerPictureAsync,
+	eXalUserGetTokenAndSignatureSilentlyAsyn,
+	eXalUserGetWebAccountTokenSilentlyAsync,
+	eXalUserGetWebAccountTokenWithUiAsync,
+	eXalUserRegisterChangeEventHandler,
+	eXalUserResolveTokenIssueAsync,
+	eXalWriteEvent,
+	eXboxCacheWin32,
+};
+
+typedef char* (__fastcall *get_xal_function_string_func)(XalFunctionName functionName);
+get_xal_function_string_func get_xal_function_string = nullptr;
+
+// get_xal_function_string
+char* __fastcall get_xal_function_string_hook(XalFunctionName functionNameID)
+{
+	auto functionName = get_xal_function_string(functionNameID);
+	WriteLineVerbose("get_xal_function: %s", functionName);
+	return functionName;
+}
+
 Opus::Opus()
 {
 	AllocConsole();
@@ -106,6 +206,9 @@ Opus::Opus()
 	static void* OutputDebugStringA_Original;
 	create_dll_hook("KERNEL32.dll", "OutputDebugStringA", nullsub, OutputDebugStringA_Original);
 	create_dll_hook("KERNEL32.dll", "GetProcAddress", GetProcAddressHook, GetProcAddressPtr);
+
+	create_hook<0x142089754>(MCCExecutable, MCCBaseAddress, "get_xal_function_string", get_xal_function_string_hook, get_xal_function_string);
+
 	end_detours();
 }
 

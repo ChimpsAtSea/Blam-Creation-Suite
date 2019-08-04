@@ -84,6 +84,14 @@ void populate_function_ptr(const char pModuleName[], size_t baseAddress, T& dest
 	dest = reinterpret_cast<T>(pFunctionAddress);
 }
 
+template<size_t offset, typename T>
+T get_function_ptr(const char pModuleName[], size_t baseAddress)
+{
+	T result = nullptr;
+	populate_function_ptr<offset, T>(pModuleName, baseAddress, result);
+	return result;
+}
+
 template<size_t offset>
 void nop_address(const char pModuleName[], size_t baseAddress, size_t count)
 {

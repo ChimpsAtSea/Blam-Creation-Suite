@@ -608,21 +608,75 @@ using HaloReachReference = DataReferenceBase<HaloGameID::HaloReach, 0x180000000,
 
 //#TODO: Natvis and template
 HaloReachReference<GameEngineHostCallback*, 0x1810EC5C0> g_gameEngineHostCallback;
-HaloReachReference<int, 0x18102F2A4> g_render_thread_mode;
+HaloReachReference<LONG, 0x18102F2A4> g_render_thread_mode;
+HaloReachReference<DWORD, 0x1810EC584> dword_1810EC584;
+HaloReachReference<BYTE, 0x18342E55D> byte_18342E55D;
+HaloReachReference<BYTE, 0x183984DE4> byte_183984DE4;
+HaloReachReference<DWORD, 0x1810524AC> dword_1810524AC;
 
+typedef __int64 (*wait_for_render_thread_func)();
+wait_for_render_thread_func wait_for_render_thread = nullptr;
+
+typedef __int64(__fastcall* physical_memory_stage_push_func)(int a1);
+
+
+#include <intrin.h>
+#include <immintrin.h>
 
 typedef __int64(__fastcall* sub_180012200_func)(__int64 a1);
 sub_180012200_func sub_180012200;
 __int64 __fastcall sub_180012200_hook(__int64 a1)
 {
-	GameEngineHostCallback* pGameEngineHostCallbackBefore = g_gameEngineHostCallback;
-	g_gameEngineHostCallback = nullptr;
+	physical_memory_stage_push_func physical_memory_stage_push = get_function_ptr<0x1803FB790, physical_memory_stage_push_func>(HaloReachDLL, HaloReachBase);
 
-	auto result = sub_180012200(a1);
+	DWORD result; // rax
+	char v2; // bl
 
-	g_gameEngineHostCallback = pGameEngineHostCallbackBefore;
-
+	result = dword_1810EC584;
+	if (!dword_1810EC584)
+		result = a1;
+	dword_1810EC584 = result;
+	if (g_gameEngineHostCallback || true)
+	{
+		byte_18342E55D = 1;
+		result = wait_for_render_thread();
+		v2 = result;
+		byte_183984DE4 = 1;
+		if (result & 1)
+		{
+			_InterlockedExchange(dword_1810524AC.ptr(), -1);
+			physical_memory_stage_push(6);
+			result = physical_memory_stage_push(3);
+		}
+		if (v2 & 2)
+			result = _InterlockedCompareExchange(g_render_thread_mode.volatile_ptr(), 1, 0);
+	}
 	return result;
+
+
+
+
+
+
+
+
+
+
+
+
+	//GameEngineHostCallback* pGameEngineHostCallbackBefore = g_gameEngineHostCallback;
+	////g_gameEngineHostCallback = nullptr;
+	//g_gameEngineHostCallback = &gameEngineHostCallback;
+
+	//wait_for_render_thread = get_function_ptr<0x18031F6A0, wait_for_render_thread_func>(HaloReachDLL, HaloReachBase);
+
+	//auto wait_for_thread_result = wait_for_render_thread();
+	//__int64 result = 1;
+	////auto result = sub_180012200(a1);
+
+	//g_gameEngineHostCallback = pGameEngineHostCallbackBefore;
+	//
+	//return result;
 }
 
 void init_haloreach_hooks()
@@ -634,7 +688,7 @@ void init_haloreach_hooks()
 	create_dll_hook("USER32.dll", "RegisterClassExA", RegisterClassExA_Hook, RegisterClassExA_Original);
 	create_dll_hook("USER32.dll", "CreateWindowExA", CreateWindowExA_Hook, CreateWindowExA_Original);
 
-	create_hook<0x180012200>(HaloReachDLL, HaloReachBase, "sub_1800122000", sub_180012200_hook, sub_180012200);
+	create_hook<0x180012200>(HaloReachDLL, HaloReachBase, "sub_180012200", sub_180012200_hook, sub_180012200);
 
 
 	create_hook<0x180012730>(HaloReachDLL, HaloReachBase, "game_get_haloreach_path", game_get_haloreach_path_hook, game_get_haloreach_path);
