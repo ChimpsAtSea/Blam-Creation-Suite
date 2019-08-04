@@ -277,6 +277,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(WM_QUIT);
 		break;
+	case WM_QUIT:
+		break;
 	default:
 		return DefWindowProc(hwnd, msg, wParam, lParam);
 	}
@@ -306,10 +308,14 @@ void process_window_events()
 {
 	MSG msg;
 
-	while (GetMessage(&msg, hWnd, 0, 0) > 0)
+	while (g_CurrentGameState == CurrentState::eRunning)
 	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
+		while (PeekMessage(&msg, hWnd, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+		}
+		Sleep(1);
 	}
 }
 
@@ -769,7 +775,11 @@ HMODULE LoadLibraryW_Hook(LPCWSTR lpLibFileName)
 
 void check_library_can_load(const char* pLibName)
 {
-	HMODULE hModule = LoadLibraryA(pLibName);
+	HMODULE hModule = GetModuleHandleA(pLibName);
+	if (!hModule)
+	{
+		hModule = LoadLibraryA(pLibName);
+	}
 	if (!hModule)
 	{
 		MessageBox(hWnd, pLibName, "failed to load library", MB_ICONERROR);
