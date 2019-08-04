@@ -318,16 +318,19 @@ int WINAPI WinMain(
 
 	initialize_custom_halo_reach_stuff();
 
-#if _DEBUG
-	while (true)
-#else
+
 	while (g_CurrentGameState != CurrentState::eFinished)
-#endif
 	{
 		Sleep(1);
 	}
 
-	//_aligned_free(pHaloReachEngine);
-
-	//deinit_haloreach();
+#if _DEBUG
+	while (g_gameManuallyKilled == false)
+	{
+		if (GetAsyncKeyState(VK_F11))
+		{
+			g_gameManuallyKilled = true;
+		}
+	}
+#endif
 }

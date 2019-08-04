@@ -128,6 +128,7 @@ enum class CurrentState
 	eFinished
 };
 extern CurrentState g_CurrentGameState;
+extern bool g_gameManuallyKilled;
 extern bool isHooked;
 
 typedef void(*rasterizer_initialize_func)();

@@ -4,7 +4,6 @@
 #include <immintrin.h>
 
 
-
 enum class HaloGameID
 {
 	Halo,
@@ -233,6 +232,7 @@ shell_dispose_func shell_dispose = nullptr;
 main_thread_routine_func main_thread_routine = nullptr;
 const char* halo_reach_path = "";
 CurrentState g_CurrentGameState = CurrentState::eInactive;
+bool g_gameManuallyKilled = false;
 bool isHooked = false;
 
 GameEngineHostCallback gameEngineHostCallback;
@@ -316,6 +316,14 @@ void process_window_events()
 			DispatchMessage(&msg);
 		}
 		Sleep(1);
+
+		{
+			if (GetAsyncKeyState(VK_F11))
+			{
+				byte_183984DE4 = 1;
+				g_gameManuallyKilled = true;
+			}
+		}
 	}
 }
 
