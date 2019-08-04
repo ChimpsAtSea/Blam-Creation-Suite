@@ -751,6 +751,32 @@ void memcpy_virtual(
 	}
 }
 
+typedef HMODULE(*LoadLibraryA_Func)(LPCSTR lpLibFileName);
+LoadLibraryA_Func LoadLibraryA_Original = nullptr;
+HMODULE LoadLibraryA_Hook(LPCSTR lpLibFileName)
+{
+	HMODULE hModule = LoadLibraryA_Original(lpLibFileName);
+	return hModule;
+}
+
+typedef HMODULE(*LoadLibraryW_Func)(LPCWSTR lpLibFileName);
+LoadLibraryW_Func LoadLibraryW_Original = nullptr;
+HMODULE LoadLibraryW_Hook(LPCWSTR lpLibFileName)
+{
+	HMODULE hModule = LoadLibraryW_Original(lpLibFileName);
+	return hModule;
+}
+
+void check_library_can_load(const char* pLibName)
+{
+	HMODULE hModule = LoadLibraryA(pLibName);
+	if (!hModule)
+	{
+		MessageBox(hWnd, pLibName, "failed to load library", MB_ICONERROR);
+	}
+	assert(hModule);
+}
+
 void init_haloreach_hooks()
 {
 	DataReferenceBaseBase::ProcessTree(HaloReachDLL);
@@ -759,6 +785,11 @@ void init_haloreach_hooks()
 
 	create_dll_hook("USER32.dll", "RegisterClassExA", RegisterClassExA_Hook, RegisterClassExA_Original);
 	create_dll_hook("USER32.dll", "CreateWindowExA", CreateWindowExA_Hook, CreateWindowExA_Original);
+	create_dll_hook("KERNEL32.dll", "LoadLibraryA", LoadLibraryA_Hook, LoadLibraryA_Original);
+	create_dll_hook("KERNEL32.dll", "LoadLibraryW", LoadLibraryW_Hook, LoadLibraryW_Original);
+
+	check_library_can_load("bink2w64.dll");
+	
 
 	OFFSETHOOK(1800122F0);
 	create_hook<0x1803A6B30>(HaloReachDLL, HaloReachBase, "sub_1803A6B30", sub_1803A6B30_hook, sub_1803A6B30);

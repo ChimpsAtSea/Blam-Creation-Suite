@@ -296,7 +296,6 @@ int WINAPI WinMain(
 {
 #if _DEBUG
 	bool isDebug = true;
-	while (!IsDebuggerPresent()) { Sleep(1); }
 #else
 	bool isDebug = false;
 #endif
@@ -308,6 +307,12 @@ int WINAPI WinMain(
 		assert(pStdOut);
 	}
 
+	if (strstr(lpCmdLine, "-waitfordebugger"))
+	{
+		WriteLineVerbose("Waiting for debugger to attach");
+		while (!IsDebuggerPresent()) { Sleep(1); }
+		WriteLineVerbose("Debugger attached");
+	}
 
 	initialize_custom_halo_reach_stuff();
 
