@@ -73,7 +73,12 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y</Command>
+      <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
+echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y
+) else (
+echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
+)
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -97,7 +102,12 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y</Command>
+      <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
+echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y
+) else (
+echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
+)
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

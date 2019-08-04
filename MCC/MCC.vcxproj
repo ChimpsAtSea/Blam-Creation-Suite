@@ -72,7 +72,11 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\* /Y</Command>
+      <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
+echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\* /Y
+) else (
+exit /b 1
+)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -95,7 +99,11 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\* /Y</Command>
+      <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
+echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\* /Y
+) else (
+exit /b 1
+)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -294,6 +294,8 @@ int WINAPI WinMain(
 	int nCmdShow             
 )
 {
+	SetProcessDPIAware();
+
 #if _DEBUG
 	bool isDebug = true;
 #else

@@ -800,8 +800,7 @@ void init_haloreach_hooks()
 
 	check_library_can_load("bink2w64.dll");
 	
-
-	OFFSETHOOK(1800122F0);
+	create_hook<0x1800122F0>(HaloReachDLL, HaloReachBase, "sub_1800122F0", sub_1800122F0_hook, sub_1800122F0);
 	create_hook<0x1803A6B30>(HaloReachDLL, HaloReachBase, "sub_1803A6B30", sub_1803A6B30_hook, sub_1803A6B30);
 	create_hook<0x180012200>(HaloReachDLL, HaloReachBase, "sub_180012200", sub_180012200_hook, sub_180012200);
 
