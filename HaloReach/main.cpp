@@ -301,10 +301,11 @@ int WINAPI WinMain(
 	bool isDebug = false;
 #endif
 
-	if (strstr(lpCmdLine, "showconsole") || isDebug)
+	if (strstr(lpCmdLine, "-showconsole") || isDebug)
 	{
 		AllocConsole();
-		freopen("CONOUT$", "w", stdout);
+		FILE* pStdOut = freopen("CONOUT$", "w", stdout);
+		assert(pStdOut);
 	}
 
 

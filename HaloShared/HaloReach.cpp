@@ -650,29 +650,36 @@ typedef __int64(__fastcall* sub_180012200_func)(__int64 a1);
 sub_180012200_func sub_180012200;
 __int64 __fastcall sub_180012200_hook(__int64 a1)
 {
-	DWORD result; // rax
-	char v2; // bl
+	// g_gameEngineHostCallback is normally nulled out by other code.
+	// it is perfectly okay to just use a bypass here but I have
+	// left it out just in case as it is currently not exploding
 
-	result = dword_1810EC584;
+	__int64 result; // rax
+	char wait_for_render_thread_result; // bl
+
+	result = static_cast<DWORD>(dword_1810EC584);
 	if (!dword_1810EC584)
+	{
 		result = a1;
-	dword_1810EC584 = result;
-	if (g_gameEngineHostCallback)
+	}
+	dword_1810EC584 = static_cast<DWORD>(result);
+	if (g_gameEngineHostCallback) 
 	{
 		WriteLineVerbose("sub_180012200: Aborting!");
 
 		byte_18342E55D = 1;
-		result = wait_for_render_thread();
-		v2 = result;
-		byte_183984DE4 = 1;
+		__int64 wait_for_render_thread_result = wait_for_render_thread();
+		byte_183984DE4 = 1; // this instructs the main_loop to exit
 		if (result & 1)
 		{
 			_InterlockedExchange(dword_1810524AC.ptr(), -1);
 			physical_memory_stage_push(6);
 			result = physical_memory_stage_push(3);
 		}
-		if (v2 & 2)
+		if (wait_for_render_thread_result & 2)
+		{
 			result = _InterlockedCompareExchange(g_render_thread_mode.volatile_ptr(), 1, 0);
+		}
 	}
 
 	return result;
