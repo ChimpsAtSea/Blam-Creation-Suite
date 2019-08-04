@@ -293,10 +293,11 @@ ATOM WINAPI RegisterClassExA_Hook(_In_ WNDCLASSEXA* arg)
 	arg->cbClsExtra = 0;
 	arg->cbWndExtra = 0;
 	arg->hInstance = HaloReachModule;
+	arg->hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 
-	memcpy((char*)arg->lpszClassName, "HaloReach", sizeof("HaloReach"));
-
+	// #NOTE: Use existing provided pointer as its memory inside the game itself
 	//arg->lpszClassName = "HaloReach";
+	memcpy(const_cast<LPSTR>(arg->lpszClassName), "HaloReach", sizeof("HaloReach"));
 
 	return RegisterClassExA_Original(arg);
 }
@@ -731,7 +732,7 @@ int sub_1800122F0_hook()
 HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
 
 void memcpy_virtual(
-	void* dst,
+	const void* dst,
 	const void* src,
 	size_t size
 )
@@ -739,9 +740,9 @@ void memcpy_virtual(
 	if (dst && src && size)
 	{
 		DWORD oldProtect;
-		VirtualProtect(dst, size, PAGE_EXECUTE_READWRITE, &oldProtect);
-		memcpy(dst, src, size);
-		VirtualProtect(dst, size, oldProtect, &oldProtect);
+		VirtualProtect(const_cast<void*>(dst), size, PAGE_EXECUTE_READWRITE, &oldProtect);
+		memcpy(const_cast<void*>(dst), src, size);
+		VirtualProtect(const_cast<void*>(dst), size, oldProtect, &oldProtect);
 	}
 	else
 	{
