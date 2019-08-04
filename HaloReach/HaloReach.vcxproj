@@ -78,7 +78,7 @@ echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y
 ) else (
 echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
 )
-</Command>
+echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -107,7 +107,7 @@ echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y
 ) else (
 echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
 )
-</Command>
+echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -121,6 +121,13 @@ echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
     <ClInclude Include="local_types.h" />
     <ClInclude Include="haloreach-private-pch.h" />
     <ClInclude Include="haloreach-public-pch.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\reach_icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

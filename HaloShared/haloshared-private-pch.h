@@ -12,6 +12,8 @@
 #include <malloc.h>
 #include <thread>
 #include <functional>
+#include <intrin.h>
+#include <immintrin.h>
 
 // External headers
 

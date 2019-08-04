@@ -1,7 +1,6 @@
 #include "haloshared-private-pch.h"
 
-#include <intrin.h>
-#include <immintrin.h>
+
 
 
 enum class HaloGameID
@@ -206,7 +205,6 @@ static std::string last_game_load_status_str;
 bool useCustomGameEngineHostCallback = false;
 bool useCustomGameWindow = false;
 
-std::thread windowThread;
 HWND hWnd;
 
 CreateWindowExA_Func CreateWindowExA_Original = nullptr;
@@ -275,9 +273,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	switch (msg)
 	{
 	case WM_DESTROY:
+		byte_183984DE4 = 1;
+		g_gameManuallyKilled = true;
 		PostQuitMessage(WM_QUIT);
-		break;
-	case WM_QUIT:
 		break;
 	default:
 		return DefWindowProc(hwnd, msg, wParam, lParam);
@@ -305,26 +303,20 @@ ATOM WINAPI RegisterClassExA_Hook(_In_ WNDCLASSEXA* arg)
 	return RegisterClassExA_Original(arg);
 }
 
-void process_window_events()
+void update_window_events()
 {
 	MSG msg;
 
-	while (g_CurrentGameState == CurrentState::eRunning)
+	while (PeekMessage(&msg, hWnd, 0, 0, PM_REMOVE))
 	{
-		while (PeekMessage(&msg, hWnd, 0, 0, PM_REMOVE))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		Sleep(1);
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
 
-		{
-			if (GetAsyncKeyState(VK_F11))
-			{
-				byte_183984DE4 = 1;
-				g_gameManuallyKilled = true;
-			}
-		}
+	if (GetAsyncKeyState(VK_F11))
+	{
+		byte_183984DE4 = 1;
+		g_gameManuallyKilled = true;
 	}
 }
 
@@ -357,8 +349,6 @@ HWND WINAPI CreateWindowExA_Hook(
 		lpParam);
 
 	hWnd = result;
-	windowThread = std::thread(process_window_events);
-	windowThread.detach();
 
 	return result;
 }
@@ -678,7 +668,7 @@ __int64 __fastcall sub_180012200_hook(__int64 a1)
 		result = a1;
 	}
 	dword_1810EC584 = static_cast<DWORD>(result);
-	if (g_gameEngineHostCallback) 
+	if (g_gameEngineHostCallback)
 	{
 		WriteLineVerbose("sub_180012200: Aborting!");
 
@@ -796,6 +786,146 @@ void check_library_can_load(const char* pLibName)
 	assert(hModule);
 }
 
+enum KeyCode : uint16_t
+{
+	eKeyCodeEscape,
+	eKeyCodeF1,
+	eKeyCodeF2,
+	eKeyCodeF3,
+	eKeyCodeF4,
+	eKeyCodeF5,
+	eKeyCodeF6,
+	eKeyCodeF7,
+	eKeyCodeF8,
+	eKeyCodeF9,
+	eKeyCodeF10,
+	eKeyCodeF11,
+	eKeyCodeF12,
+	eKeyCodePrintScreen,
+	eKeyCodeF14,
+	eKeyCodeF15,
+	eKeyCodeTilde, // VK_OEM_3
+	eKeyCode1,
+	eKeyCode2,
+	eKeyCode3,
+	eKeyCode4,
+	eKeyCode5,
+	eKeyCode6,
+	eKeyCode7,
+	eKeyCode8,
+	eKeyCode9,
+	eKeyCode0,
+	eKeyCodeMinus,
+	eKeyCodePlus,
+	eKeyCodeBack,
+	eKeyCodeTab,
+	eKeyCodeQ,
+	eKeyCodeW,
+	eKeyCodeE,
+	eKeyCodeR,
+	eKeyCodeT,
+	eKeyCodeY,
+	eKeyCodeU,
+	eKeyCodeI,
+	eKeyCodeO,
+	eKeyCodeP,
+	eKeyCodeLBracket, // VK_OEM_4
+	eKeyCodeRBracket, // VK_OEM_6
+	eKeyCodePipe, // VK_OEM_5
+	eKeyCodeCapital,
+	eKeyCodeA,
+	eKeyCodeS,
+	eKeyCodeD,
+	eKeyCodeF,
+	eKeyCodeG,
+	eKeyCodeH,
+	eKeyCodeJ,
+	eKeyCodeK,
+	eKeyCodeL,
+	eKeyCodeColon, // VK_OEM_1
+	eKeyCodeQuote, // VK_OEM_7
+	eKeyCodeEnter,
+	eKeyCodeLShift,
+	eKeyCodeZ,
+	eKeyCodeX,
+	eKeyCodeC,
+	eKeyCodeV,
+	eKeyCodeB,
+	eKeyCodeN,
+	eKeyCodeM,
+	eKeyCodeComma,
+	eKeyCodePeriod,
+	eKeyCodeQuestion, // VK_OEM_2
+	eKeyCodeRShift,
+	eKeyCodeLControl,
+	eKeyCodeUnused46, // Left Windows key, but will always fail
+	eKeyCodeLAlt,
+	eKeyCodeSpace,
+	eKeyCodeRAlt,
+	eKeyCodeUnused4A, // Right Windows key, but will always fail
+	eKeyCodeApps,
+	eKeyCodeRcontrol,
+	eKeyCodeUp,
+	eKeyCodeDown,
+	eKeyCodeLeft,
+	eKeyCodeRight,
+	eKeyCodeInsert,
+	eKeyCodeHome,
+	eKeyCodePageUp,
+	eKeyCodeDelete,
+	eKeyCodeEnd,
+	eKeyCodePageDown,
+	eKeyCodeNumLock,
+	eKeyCodeDivide,
+	eKeyCodeMultiply,
+	eKeyCodeNumpad0,
+	eKeyCodeNumpad1,
+	eKeyCodeNumpad2,
+	eKeyCodeNumpad3,
+	eKeyCodeNumpad4,
+	eKeyCodeNumpad5,
+	eKeyCodeNumpad6,
+	eKeyCodeNumpad7,
+	eKeyCodeNumpad8,
+	eKeyCodeNumpad9,
+	eKeyCodeSubtract,
+	eKeyCodeAdd,
+	eKeyCodeNumpadEnter,
+	eKeyCodeDecimal,
+	eKeyCodeUnused68,
+	eKeyCodeShift,
+	eKeyCodeCtrl,
+	eKeyCodeUnused6B, // Windows key, but will always fail
+	eKeyCodeAlt,
+
+	eKeyCode_Count,
+	eKeyCode_None = 0xFF, // An invalid key code (for use in unset bindings)
+};
+
+static BYTE s_customKeyState[256] = {};
+typedef char(__fastcall* input_update_func)();
+input_update_func input_update = nullptr;
+char __fastcall input_update_hook()
+{
+	update_window_events();
+
+	return input_update();
+}
+
+typedef char(__fastcall* sub_1803080A0_func)(KeyCode a1);
+sub_1803080A0_func sub_1803080A0 = nullptr;
+char __fastcall sub_1803080A0_hook(KeyCode a1)
+{
+	auto result = sub_1803080A0(a1);
+
+	switch (a1)
+	{
+
+	}
+
+	return result;
+}
+
 void init_haloreach_hooks()
 {
 	DataReferenceBaseBase::ProcessTree(HaloReachDLL);
@@ -808,7 +938,9 @@ void init_haloreach_hooks()
 	create_dll_hook("KERNEL32.dll", "LoadLibraryW", LoadLibraryW_Hook, LoadLibraryW_Original);
 
 	check_library_can_load("bink2w64.dll");
-	
+
+	create_hook<0x180307B10>(HaloReachDLL, HaloReachBase, "input_update", input_update_hook, input_update);
+	create_hook<0x1803080A0>(HaloReachDLL, HaloReachBase, "sub_1803080A0", sub_1803080A0_hook, sub_1803080A0);
 	create_hook<0x1800122F0>(HaloReachDLL, HaloReachBase, "sub_1800122F0", sub_1800122F0_hook, sub_1800122F0);
 	create_hook<0x1803A6B30>(HaloReachDLL, HaloReachBase, "sub_1803A6B30", sub_1803A6B30_hook, sub_1803A6B30);
 	create_hook<0x180012200>(HaloReachDLL, HaloReachBase, "sub_180012200", sub_180012200_hook, sub_180012200);
