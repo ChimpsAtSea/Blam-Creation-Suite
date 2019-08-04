@@ -655,7 +655,6 @@ __int64 __fastcall sub_180012200_hook(__int64 a1)
 	// left it out just in case as it is currently not exploding
 
 	__int64 result; // rax
-	char wait_for_render_thread_result; // bl
 
 	result = static_cast<DWORD>(dword_1810EC584);
 	if (!dword_1810EC584)
@@ -746,7 +745,8 @@ void memcpy_virtual(
 	}
 	else
 	{
-		assert(dst, "Must be a valid destination");
+		WriteLineVerbose("dst must not be null");
+		assert(dst);
 	}
 }
 
@@ -801,9 +801,13 @@ void init_haloreach_hooks()
 	physical_memory_stage_push = get_function_ptr<0x1803FB790, physical_memory_stage_push_func>(HaloReachDLL, HaloReachBase);
 	wait_for_render_thread = get_function_ptr<0x18031F6A0, wait_for_render_thread_func>(HaloReachDLL, HaloReachBase);
 
-	char* level_name = level_name_to_patch.ptr();
-	const char new_level_name[] = "levels\\solo\\m35\\m35";
-	memcpy_virtual(level_name, new_level_name, sizeof(new_level_name));
+	// this doesn't appear to do anything?
+	{
+		//char* level_name = level_name_to_patch.ptr();
+		//const char new_level_name[] = "levels\\solo\\m35\\m35";
+		//memcpy_virtual(level_name, new_level_name, sizeof(new_level_name));
+	}
+
 
 	end_detours();
 }
