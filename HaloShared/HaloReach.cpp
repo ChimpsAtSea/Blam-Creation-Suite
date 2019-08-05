@@ -442,6 +442,12 @@ FunctionHook<HaloGameID::HaloReach, 0x1803080A0, char(__fastcall)(KeyCode a1)> s
 	return result;
 };
 
+FunctionHook<HaloGameID::HaloReach, 0x180780D90, preferences_set_bindings_func> preferences_set_bindings_type = [](preferences_set_bindings_args)
+{
+	auto result = preferences_set_bindings_type(preferences_set_bindings_vals);
+	return result;
+};
+
 void init_haloreach_hooks()
 {
 	check_library_can_load("bink2w64.dll");
