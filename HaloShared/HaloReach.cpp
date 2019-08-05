@@ -702,16 +702,16 @@ __int64 __fastcall sub_180012200_hook(__int64 a1)
 	return result;
 }
 
-typedef char* (__fastcall* sub_1803A6B30_func)(int a1, unsigned int a2, char* a3, int a4);
-sub_1803A6B30_func sub_1803A6B30 = nullptr;
-char* __fastcall sub_1803A6B30_hook(int a1, unsigned int a2, char* a3, int a4)
+typedef char* (__fastcall*levels_try_and_get_scenario_path_by_campaign_and_map_id_func)(int a1, unsigned int a2, char* a3, int a4);
+levels_try_and_get_scenario_path_by_campaign_and_map_id_func levels_try_and_get_scenario_path_by_campaign_and_map_id = nullptr;
+char* __fastcall levels_try_and_get_scenario_path_by_campaign_and_map_id_hook(int campaign_id, unsigned int map_id, char* scenario_path, int size)
 {
-	a2 = 0x10231971; // force the default map load code path
+	map_id = 0x10231971; // force the default map load code path
 
-	auto result = sub_1803A6B30(a1, a2, a3, a4);
+	auto result = levels_try_and_get_scenario_path_by_campaign_and_map_id_hook(campaign_id, map_id, scenario_path, size);
 
 
-	if (strlen(a3) == 0)
+	if (strlen(scenario_path) == 0)
 	{
 		WriteLineVerbose("WARNING: The map name is not set!");
 		WriteLineVerbose("SELECTED MAP: <none>");
@@ -719,14 +719,14 @@ char* __fastcall sub_1803A6B30_hook(int a1, unsigned int a2, char* a3, int a4)
 	}
 	else
 	{
-		WriteLineVerbose("SELECTED MAP: %s", a3);
+		WriteLineVerbose("SELECTED MAP: %s", scenario_path);
 	}
 
 	// forceload a different map file
 	char customMapName[] = "levels\\solo\\m35\\m35";
-	memcpy(a3, customMapName, sizeof(customMapName));
+	memcpy(scenario_path, customMapName, sizeof(customMapName));
 
-	WriteLineVerbose("MAP OVERRIDE: %s", a3);
+	WriteLineVerbose("MAP OVERRIDE: %s", scenario_path);
 
 	return result;
 }
@@ -958,7 +958,7 @@ void init_haloreach_hooks()
 	create_hook<0x180307B10>(HaloReachDLL, HaloReachBase, "input_update", input_update_hook, input_update);
 	create_hook<0x1803080A0>(HaloReachDLL, HaloReachBase, "sub_1803080A0", sub_1803080A0_hook, sub_1803080A0);
 	create_hook<0x1800122F0>(HaloReachDLL, HaloReachBase, "sub_1800122F0", sub_1800122F0_hook, sub_1800122F0);
-	create_hook<0x1803A6B30>(HaloReachDLL, HaloReachBase, "sub_1803A6B30", sub_1803A6B30_hook, sub_1803A6B30);
+	create_hook<0x1803A6B30>(HaloReachDLL, HaloReachBase, "levels_try_and_get_scenario_path_by_campaign_and_map_id", levels_try_and_get_scenario_path_by_campaign_and_map_id_hook, levels_try_and_get_scenario_path_by_campaign_and_map_id);
 	create_hook<0x180012200>(HaloReachDLL, HaloReachBase, "sub_180012200", sub_180012200_hook, sub_180012200);
 
 
