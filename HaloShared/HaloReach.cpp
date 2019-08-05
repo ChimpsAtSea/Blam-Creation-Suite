@@ -176,6 +176,7 @@ HaloReachReference<BYTE, 0x183984DE4> byte_183984DE4;
 HaloReachReference<DWORD, 0x1810524AC> dword_1810524AC;
 HaloReachReference<s_player_profile[4], 0x183D43560> g_player_profiles;
 HaloReachReference<s_game_options, 0x183B0FB70> g_game_options;
+HaloReachReference<wchar_t[4][32], 0x183DE6FB0> g_player_names;
 
 typedef __int64 (*wait_for_render_thread_func)();
 wait_for_render_thread_func wait_for_render_thread = nullptr;
@@ -914,6 +915,18 @@ enum KeyCode : uint16_t
 	eKeyCode_None = 0xFF, // An invalid key code (for use in unset bindings)
 };
 
+bool SetPlayerName(int index, const wchar_t name[16])
+{
+	if (wcsncmp(g_player_names[index], name, 16) == 0)
+		return false;
+
+	printf("Set player[%d].Name: %S to ", index, g_player_names[index]);
+	wcsncpy_s(g_player_names[index], 32, name, 16);
+	printf("%S\n", g_player_names[index]);
+
+	return true;
+}
+
 static BYTE s_customKeyState[256] = {};
 typedef char(__fastcall* input_update_func)();
 input_update_func input_update = nullptr;
@@ -924,6 +937,8 @@ char __fastcall input_update_hook()
 	//test print on tick update
 	//printf("player[%d].Name: %S\n", 0, g_player_profiles[0].Name);
 	//printf("g_game_options->frame_limit: %d\n", g_game_options.ptr()->frame_limit);
+
+	SetPlayerName(0, L"User USER"); // TODO: get this from a config file
 
 	return input_update();
 }

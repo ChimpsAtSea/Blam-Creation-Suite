@@ -71,7 +71,7 @@ struct GameEngineHostCallback_vftbl
 	NullSubFunc* Member07;
 	NullSubFunc* Member08;
 	NullSubFunc* Member09;
-	NullSubFunc* Member10;
+	NullSubFunc* GetGameEvents;
 	NullSubFunc* Member11; // DataAccessGameVariant
 	NullSubFunc* Member12; // DataAccessMapVariant
 	NullSubFunc* Member13;
@@ -91,7 +91,7 @@ struct GameEngineHostCallback_vftbl
 	NullSubFunc* Member27;
 	NullSubFunc* Member28;
 	NullSubFunc* Member29;
-	NullSubFunc* Member30;
+	NullSubFunc* GetPlayerName;
 	NullSubFunc* Member31;
 	NullSubFunc* Member32;
 	NullSubFunc* Member33;
@@ -175,7 +175,7 @@ struct GameEvents
 /* 518 */
 struct __declspec(align(8)) GameEvents_vftbl
 {
-	NullSubFunc* Member00;
+	NullSubFunc* AchievementEarned;
 	NullSubFunc* AshesToAshes;
 	NullSubFunc* Assist;
 	NullSubFunc* AudioLogClaimed;

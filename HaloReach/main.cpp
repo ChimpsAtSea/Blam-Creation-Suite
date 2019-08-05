@@ -60,7 +60,7 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member07 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[07]");
 	gameEngineHostCallbackVftbl.Member08 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[08]");
 	gameEngineHostCallbackVftbl.Member09 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[09]");
-	gameEngineHostCallbackVftbl.Member10 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[10]");
+	gameEngineHostCallbackVftbl.GetGameEvents = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::GetGameEvents");
 	gameEngineHostCallbackVftbl.Member11 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[11]");
 	gameEngineHostCallbackVftbl.Member12 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[12]");
 	gameEngineHostCallbackVftbl.Member13 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[13]");
@@ -80,7 +80,7 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member27 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[27]");
 	gameEngineHostCallbackVftbl.Member28 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[28]");
 	gameEngineHostCallbackVftbl.Member29 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[29]");
-	gameEngineHostCallbackVftbl.Member30 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[30]");
+	gameEngineHostCallbackVftbl.GetPlayerName = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::GetPlayerName");
 	gameEngineHostCallbackVftbl.Member31 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[31]");
 	gameEngineHostCallbackVftbl.Member32 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[32]");
 	gameEngineHostCallbackVftbl.Member33 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[33]");
@@ -111,7 +111,7 @@ void setup_game_events()
 	typedef __int64(__fastcall BIFactControllerSettingsFunc)(GameEvents*, unsigned __int64*, GUID*, _QWORD, __int64, _DWORD, int, int);
 	typedef __int64(__fastcall Member120Func)(GameEvents*, _QWORD);
 
-	gameEventsVftbl.Member00 = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[0]");
+	gameEventsVftbl.AchievementEarned = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable[0]");
 	gameEventsVftbl.AshesToAshes = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::AshesToAshes");
 	gameEventsVftbl.Assist = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::Assist");
 	gameEventsVftbl.AudioLogClaimed = NULLSUB_LAMBDA_CUSTOM("GameEvents::vftable::AudioLogClaimed");
