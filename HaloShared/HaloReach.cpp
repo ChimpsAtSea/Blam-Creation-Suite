@@ -34,15 +34,6 @@ HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
 
 typedef __int64 (*wait_for_render_thread_func)();
 typedef __int64(__fastcall* physical_memory_stage_push_func)(int a1);
-
-rasterizer_initialize_func rasterizer_initialize = nullptr;
-create_device_func create_device = nullptr;
-//create_window_func create_window = nullptr;
-main_status_func main_status = nullptr;
-cache_files_get_file_status_func cache_files_get_file_status = nullptr;
-main_game_launch_sequence2_func main_game_launch_sequence2 = nullptr;
-main_game_launch_sequence3_func main_game_launch_sequence3 = nullptr;
-main_game_launch_sequence11_func main_game_launch_sequence11 = nullptr;
 wait_for_render_thread_func wait_for_render_thread = nullptr;
 physical_memory_stage_push_func physical_memory_stage_push = nullptr;
 
@@ -306,17 +297,6 @@ FunctionHook<HaloGameID::HaloReach, 0x180013EA0, char __fastcall (__int64 a1, __
 	return result;
 };
 
-void get_cache_files_get_file_status()
-{
-	cache_files_get_file_status = get_function_ptr<HaloGameID::HaloReach, 0x180352340, cache_files_get_file_status_func>();
-
-	// Find the function address
-	char* pModule = reinterpret_cast<char*>(GetHaloExecutable(HaloGameID::HaloReach));
-	const char* const pFunctionAddress = pModule + (0x180352340 - 0x180000000);
-
-	cache_files_get_file_status = (cache_files_get_file_status_func)(pFunctionAddress);
-}
-
 FunctionHook<HaloGameID::HaloReach, 0x180108FB0, char* __fastcall (uint8_t* pSimulationWatcher, char* dst)> simulation_watcher_get_status = [](uint8_t* pSimulationWatcher, char* dst)
 {
 	auto result = simulation_watcher_get_status(pSimulationWatcher, dst);
@@ -523,10 +503,6 @@ FunctionHook<HaloGameID::HaloReach, 0x1800122F0, int()> sub_1800122F0 = []()
 	return result;
 };
 
-#define OFFSETHOOK(offset) create_hook<0x##offset>(HaloReachDLL, HaloReachBase, "sub_" #offset, sub_##offset##_hook, sub_##offset);
-
-
-
 void memcpy_virtual(
 	const void* dst,
 	const void* src,
@@ -564,7 +540,7 @@ void check_library_can_load(const char* pLibName)
 bool SetPlayerName(int index, const wchar_t name[16])
 {
 	// #TODO: Lets look into a version of this that doesn't run every frame
-	WriteLineVerbose("Set player[%d].Name: %ls to ", index, name);
+	// WriteLineVerbose("Set player[%d].Name: %ls to ", index, name);
 
 	if (wcsncmp(g_player_names[index], name, 16) == 0)
 	{
@@ -604,7 +580,6 @@ void init_haloreach_hooks()
 
 	create_window.SetIsActive(useCustomGameWindow);
 
-	populate_function_ptr<HaloGameID::HaloReach, 0x180352340>(cache_files_get_file_status);
 	physical_memory_stage_push = get_function_ptr<HaloGameID::HaloReach, 0x1803FB790, physical_memory_stage_push_func>();
 	wait_for_render_thread = get_function_ptr<HaloGameID::HaloReach, 0x18031F6A0, wait_for_render_thread_func>();
 

@@ -259,7 +259,6 @@ typedef __int64(__fastcall* load_scenario_into_game_options_func)(s_game_options
 typedef void (*sub_18078C550_func)(__int64 a1, ...);
 typedef void (*main_status_func)(__int64 a1, ...);
 typedef char(__fastcall* main_game_launch_func)(__int64 a1, __int64 a2);
-typedef __int64(__fastcall* cache_files_get_file_status_func)(const char* a1);
 typedef __int64 (*main_game_launch_sequence2_func)();
 typedef __int64 (*main_game_launch_sequence3_func)();
 typedef __int64 (*main_game_launch_sequence11_func)();
@@ -299,11 +298,6 @@ extern void init_haloreach_hooks();
 extern rasterizer_initialize_func rasterizer_initialize;
 extern create_device_func create_device;
 //extern create_window_func create_window;
-extern main_status_func main_status;
-extern cache_files_get_file_status_func cache_files_get_file_status;
-extern main_game_launch_sequence2_func main_game_launch_sequence2;
-extern main_game_launch_sequence3_func main_game_launch_sequence3;
-extern main_game_launch_sequence11_func main_game_launch_sequence11;
 extern const char* halo_reach_path;
 
 template<typename T>
