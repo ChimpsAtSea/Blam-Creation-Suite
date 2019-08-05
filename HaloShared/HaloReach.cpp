@@ -15,7 +15,6 @@ CurrentState g_CurrentGameState = CurrentState::eInactive;
 bool g_gameManuallyKilled = false;
 bool isHooked = false;
 WORD g_frameLimit = 60;
-HWND hWnd;
 
 // Halo Reach Variables
 
@@ -35,11 +34,9 @@ HaloReachReference<HWND, 0x1810EC5E0> g_hwnd;
 typedef __int64 (*wait_for_render_thread_func)();
 typedef __int64(__fastcall* physical_memory_stage_push_func)(int a1);
 
-CreateWindowExA_Func CreateWindowExA_Original = nullptr;
 rasterizer_initialize_func rasterizer_initialize = nullptr;
 create_device_func create_device = nullptr;
 //create_window_func create_window = nullptr;
-RegisterClassExA_Func RegisterClassExA_Original = nullptr;
 main_game_launch_sequence1_Func main_game_launch_sequence1 = nullptr;
 s_static_string_256_print_func s_static_string_256_print = nullptr;
 game_get_haloreach_path_func game_get_haloreach_path = nullptr;
@@ -58,9 +55,6 @@ shell_dispose_func shell_dispose = nullptr;
 main_thread_routine_func main_thread_routine = nullptr;
 wait_for_render_thread_func wait_for_render_thread = nullptr;
 physical_memory_stage_push_func physical_memory_stage_push = nullptr;
-
-template<HaloGameID gameID, size_t offset, typename base_type>
-class FunctionHook;
 
 class FunctionHookBase
 {
@@ -126,12 +120,12 @@ public:
 		:FunctionHookBase(gameID, offset)
 		, hook(func)
 	{
-		
+
 	}
 
 	base_type* const hook = nullptr;
 	base_type* const base = nullptr;
-	
+
 
 private:
 	void SetHook(base_type* ptr)
@@ -153,7 +147,7 @@ private:
 
 	base_type*& GetBase()
 	{
-		return *const_cast<base_type**>(&base);
+		return *const_cast<base_type * *>(&base);
 	}
 };
 
@@ -189,9 +183,7 @@ char create_device_hook()
 	return create_device();
 }
 
-HWND create_window_hook();
-static FunctionHook<HaloGameID::HaloReach, 0x1806C2890, HWND()> create_window = create_window_hook;
-HWND create_window_hook()
+static FunctionHook<HaloGameID::HaloReach, 0x1806C2890, HWND()> create_window = []()
 {
 	char* pBaseAddress = (char*)GetHaloExecutable(HaloGameID::HaloReach);
 	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
@@ -207,105 +199,7 @@ HWND create_window_hook()
 
 	ShowWindow(hwnd, SW_SHOW);
 	return hwnd;
-
-	//return GameEngineHostCallback_Bypass([]() {
-
-	//	WriteLineVerbose("Calling create_window");
-	//	HWND hwnd = create_window();
-	//	ShowWindow(hwnd, SW_SHOW);
-	//	return hwnd;
-
-	//	}
-	//);
-}
-
-LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
-	switch (msg)
-	{
-	case WM_DESTROY:
-		byte_183984DE4 = 1;
-		g_gameManuallyKilled = true;
-		PostQuitMessage(WM_QUIT);
-		break;
-	default:
-		return DefWindowProc(hwnd, msg, wParam, lParam);
-	}
-	return 0;
-}
-
-ATOM WINAPI RegisterClassExA_Hook(_In_ WNDCLASSEXA* arg)
-{
-	assert(arg->cbSize == sizeof(WNDCLASSEXA));
-
-	HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach));
-	assert(hHaloReachModule);
-
-	arg->cbSize = sizeof(WNDCLASSEXA);
-	arg->style = CS_HREDRAW | CS_VREDRAW;
-	arg->lpfnWndProc = WndProc;
-	arg->cbClsExtra = 0;
-	arg->cbWndExtra = 0;
-	arg->hInstance = hHaloReachModule;
-	arg->hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	arg->hIcon = g_icon;
-
-	// #NOTE: Use existing provided pointer as its memory inside the game itself
-	//arg->lpszClassName = "HaloReach";
-	memcpy(const_cast<LPSTR>(arg->lpszClassName), "HaloReach", sizeof("HaloReach"));
-
-	return RegisterClassExA_Original(arg);
-}
-
-void update_window_events()
-{
-	MSG msg;
-
-	while (PeekMessage(&msg, hWnd, 0, 0, PM_REMOVE))
-	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
-
-	if (GetAsyncKeyState(VK_F11))
-	{
-		byte_183984DE4 = 1;
-		g_gameManuallyKilled = true;
-	}
-}
-
-HWND WINAPI CreateWindowExA_Hook(
-	_In_ DWORD dwExStyle,
-	_In_opt_ LPCSTR lpClassName,
-	_In_opt_ LPCSTR lpWindowName,
-	_In_ DWORD dwStyle,
-	_In_ int X,
-	_In_ int Y,
-	_In_ int nWidth,
-	_In_ int nHeight,
-	_In_opt_ HWND hWndParent,
-	_In_opt_ HMENU hMenu,
-	_In_opt_ HINSTANCE hInstance,
-	_In_opt_ LPVOID lpParam)
-{
-	HWND result = CreateWindowExA_Original(
-		dwExStyle,
-		lpClassName,
-		"Halo Reach",
-		dwStyle,
-		X,
-		Y,
-		nWidth,
-		nHeight,
-		hWndParent,
-		hMenu,
-		hInstance,
-		lpParam);
-
-	hWnd = result;
-
-	return result;
-}
+};
 
 __int64 __fastcall main_game_launch_sequence1_hook(__int64 a1, __int64 a2)
 {
@@ -368,7 +262,7 @@ void sub_18078C550_hook(const char* format, ...)
 
 	va_end(args);
 
-	MessageBox(hWnd, "dirty_disk_error", buffer, MB_ICONERROR);
+	MessageBox(CustomWindow::GetWindowHandle(), "dirty_disk_error", buffer, MB_ICONERROR);
 
 	//return sub_18078C550(a1, );
 }
@@ -731,7 +625,7 @@ void check_library_can_load(const char* pLibName)
 	}
 	if (!hModule)
 	{
-		MessageBox(hWnd, pLibName, "failed to load library", MB_ICONERROR);
+		MessageBox(CustomWindow::GetWindowHandle(), pLibName, "failed to load library", MB_ICONERROR);
 	}
 	assert(hModule);
 }
@@ -756,7 +650,7 @@ typedef char(__fastcall* input_update_func)();
 input_update_func input_update = nullptr;
 char __fastcall input_update_hook()
 {
-	update_window_events();
+	CustomWindow::Update();
 
 	//test print on tick update
 	//printf("player[%d].Name: %S\n", 0, g_player_profiles[0].Name);
@@ -830,8 +724,7 @@ void init_haloreach_hooks()
 	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
 	FunctionHookBase::ProcessTree(HaloGameID::HaloReach);
 
-	create_dll_hook("USER32.dll", "RegisterClassExA", RegisterClassExA_Hook, RegisterClassExA_Original);
-	create_dll_hook("USER32.dll", "CreateWindowExA", CreateWindowExA_Hook, CreateWindowExA_Original);
+	CustomWindow::SetupHooks();
 
 	check_library_can_load("bink2w64.dll");
 

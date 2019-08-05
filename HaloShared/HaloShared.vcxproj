@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CustomWindow.cpp" />
     <ClCompile Include="DataReference.cpp" />
     <ClCompile Include="HaloReach.cpp" />
     <ClCompile Include="haloshared-private-pch.cpp">
@@ -144,6 +145,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CustomWindow.h" />
     <ClInclude Include="DataReference.h" />
     <ClInclude Include="HaloReach.h" />
     <ClInclude Include="haloshared-private-pch.h" />

@@ -250,20 +250,6 @@ extern HICON g_icon;
 typedef void(*rasterizer_initialize_func)();
 typedef char(*create_device_func)();
 typedef HWND(*create_window_func)();
-typedef ATOM(WINAPI* RegisterClassExA_Func)(_In_ CONST WNDCLASSEXA*);
-typedef HWND(WINAPI* CreateWindowExA_Func)(
-	_In_ DWORD dwExStyle,
-	_In_opt_ LPCSTR lpClassName,
-	_In_opt_ LPCSTR lpWindowName,
-	_In_ DWORD dwStyle,
-	_In_ int X,
-	_In_ int Y,
-	_In_ int nWidth,
-	_In_ int nHeight,
-	_In_opt_ HWND hWndParent,
-	_In_opt_ HMENU hMenu,
-	_In_opt_ HINSTANCE hInstance,
-	_In_opt_ LPVOID lpParam);
 typedef __int64(__fastcall* main_game_launch_sequence1_Func)(__int64 a1, __int64 a2);
 typedef __int64 (*s_static_string_256_print_func)(char* dst, char* format, ...);
 typedef char* (*game_get_haloreach_path_func)();
@@ -282,6 +268,25 @@ typedef char* (__fastcall* simulation_watcher_get_status_func)(uint8_t* pSimulat
 typedef __int64(__stdcall* shell_dispose_func)();
 typedef void* (__stdcall* main_thread_routine_func)();
 
+// Halo Reach Variables
+
+
+extern HaloReachReference<GameEngineHostCallback*, 0x1810EC5C0> g_gameEngineHostCallback;
+extern HaloReachReference<LONG, 0x18102F2A4> g_render_thread_mode;
+extern HaloReachReference<DWORD, 0x1810EC584> dword_1810EC584;
+extern HaloReachReference<BYTE, 0x18342E55D> byte_18342E55D;
+extern HaloReachReference<BYTE, 0x183984DE4> byte_183984DE4;
+extern HaloReachReference<DWORD, 0x1810524AC> dword_1810524AC;
+extern HaloReachReference<s_player_profile[4], 0x183D43560> g_player_profiles;
+extern HaloReachReference<s_game_options, 0x183B0FB70> g_game_options;
+extern HaloReachReference<wchar_t[4][32], 0x183DE6FB0> g_player_names;
+extern HaloReachReference<HWND, 0x1810EC5E0> g_hwnd;
+
+
+
+
+
+
 
 // config flags
 extern bool useCustomGameEngineHostCallback;
@@ -291,13 +296,9 @@ extern GameEngineHostCallback_vftbl gameEngineHostCallbackVftbl;
 extern GameEvents gameEvents;
 extern GameEvents_vftbl gameEventsVftbl;
 extern void init_haloreach_hooks();
-extern std::thread windowThread;
-extern HWND hWnd;
-extern CreateWindowExA_Func CreateWindowExA_Original;
 extern rasterizer_initialize_func rasterizer_initialize;
 extern create_device_func create_device;
 //extern create_window_func create_window;
-extern RegisterClassExA_Func RegisterClassExA_Original;
 extern main_game_launch_sequence1_Func main_game_launch_sequence1;
 extern s_static_string_256_print_func s_static_string_256_print;
 extern game_get_haloreach_path_func game_get_haloreach_path;
