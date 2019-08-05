@@ -38,19 +38,11 @@ typedef __int64(__fastcall* physical_memory_stage_push_func)(int a1);
 rasterizer_initialize_func rasterizer_initialize = nullptr;
 create_device_func create_device = nullptr;
 //create_window_func create_window = nullptr;
-main_game_launch_sequence1_Func main_game_launch_sequence1 = nullptr;
-s_static_string_256_print_func s_static_string_256_print = nullptr;
-game_options_new_func game_options_new = nullptr;
-load_scenario_into_game_options_func load_scenario_into_game_options = nullptr;
 main_status_func main_status = nullptr;
 cache_files_get_file_status_func cache_files_get_file_status = nullptr;
 main_game_launch_sequence2_func main_game_launch_sequence2 = nullptr;
 main_game_launch_sequence3_func main_game_launch_sequence3 = nullptr;
 main_game_launch_sequence11_func main_game_launch_sequence11 = nullptr;
-main_game_launch_sequence9_func main_game_launch_sequence9 = nullptr;
-simulation_watcher_get_status_func simulation_watcher_get_status = nullptr;
-shell_dispose_func shell_dispose = nullptr;
-main_thread_routine_func main_thread_routine = nullptr;
 wait_for_render_thread_func wait_for_render_thread = nullptr;
 physical_memory_stage_push_func physical_memory_stage_push = nullptr;
 
@@ -61,6 +53,7 @@ public:
 		: m_gameID(gameID)
 		, m_offset(offset)
 		, m_pNextFunctionHook(nullptr)
+		, m_isActive(true)
 	{
 		if (g_pFirstFunctionHook == nullptr)
 		{
@@ -76,6 +69,8 @@ public:
 
 	size_t m_offset;
 	HaloGameID m_gameID;
+	bool m_isActive;
+
 	FunctionHookBase* m_pNextFunctionHook;
 	static FunctionHookBase* g_pFirstFunctionHook;
 	static FunctionHookBase* g_pLastFunctionHook;
@@ -132,6 +127,10 @@ public:
 	base_type* const hook = nullptr;
 	base_type* const base = nullptr;
 
+	void SetIsActive(bool isActive)
+	{
+		m_isActive = isActive;
+	}
 
 private:
 	void SetHook(base_type* ptr)
@@ -159,7 +158,7 @@ private:
 
 void FunctionHookBase::ProcessNode(HaloGameID gameID)
 {
-	if (gameID == m_gameID)
+	if (gameID == m_gameID && m_isActive)
 	{
 		FunctionHook<HaloGameID::NotSet, 0, void>& rVoidThis = reinterpret_cast<FunctionHook<HaloGameID::NotSet, 0, void>&>(*this);
 
@@ -175,18 +174,6 @@ void FunctionHookBase::ProcessNode(HaloGameID gameID)
 	{
 		m_pNextFunctionHook->ProcessNode(gameID);
 	}
-}
-
-void rasterizer_initialize_hook()
-{
-	printf("Calling rasterizer_initialize\n");
-	rasterizer_initialize();
-}
-
-char create_device_hook()
-{
-	printf("Calling create_device\n");
-	return create_device();
 }
 
 static FunctionHook<HaloGameID::HaloReach, 0x1806C2890, HWND()> create_window = []()
@@ -207,21 +194,16 @@ static FunctionHook<HaloGameID::HaloReach, 0x1806C2890, HWND()> create_window = 
 	return hwnd;
 };
 
-__int64 __fastcall main_game_launch_sequence1_hook(__int64 a1, __int64 a2)
+FunctionHook<HaloGameID::HaloReach, 0x180012B60, __int64 __fastcall (__int64 a1, __int64 a2)> main_game_launch_sequence1 = [](__int64 a1, __int64 a2)
 {
-	std::function<__int64()> x = [a1, a2]() {
-		auto result = main_game_launch_sequence1(a1, a2);
-		return result;
-	};
-
 	auto result = GameEngineHostCallback_Bypass([a1, a2]() {
 		return main_game_launch_sequence1(a1, a2);
 		});
 
 	return result;
-}
+};
 
-char* s_static_string_256_print_hook(char* dst, char* format, ...)
+FunctionHook<HaloGameID::HaloReach, 0x18004AFC0, char* (char* dst, char* format, ...)> s_static_string_256_print = [](char* dst, char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -232,30 +214,30 @@ char* s_static_string_256_print_hook(char* dst, char* format, ...)
 	va_end(args);
 
 	return dst;
-}
+};
 
 FunctionHook<HaloGameID::HaloReach, 0x180012730, const char* ()> game_get_haloreach_path = []()
 {
 	return halo_reach_path;
 };
 
-__int64 __fastcall game_options_new_hook(s_game_options* game_options)
+FunctionHook<HaloGameID::HaloReach, 0x18034A630, __int64 __fastcall (s_game_options* game_options)> game_options_new = [](s_game_options* game_options)
 {
 	auto result = game_options_new(game_options);
 
 	game_options->frame_limit = g_frameLimit;
 
 	return result;
-}
+};
 
-__int64 __fastcall load_scenario_into_game_options_hook(s_game_options* a1)
+FunctionHook<HaloGameID::HaloReach, 0x1803C9220, __int64 __fastcall (s_game_options* a1)> load_scenario_into_game_options = [](s_game_options* a1)
 {
 	auto result = load_scenario_into_game_options(a1);
 
 	// TODO
 
 	return result;
-}
+};
 
 FunctionHook<HaloGameID::HaloReach, 0x18078C550, void(const char* format, ...)> sub_18078C550 = [](const char* format, ...)
 {
@@ -320,7 +302,7 @@ FunctionHook<HaloGameID::HaloReach, 0x180013EA0, char __fastcall (__int64 a1, __
 		}
 
 		return result;
-		}, !(dword_1810EC5A4 == 3 || dword_1810EC5A4 == 11));
+		});
 	return result;
 };
 
@@ -335,54 +317,14 @@ void get_cache_files_get_file_status()
 	cache_files_get_file_status = (cache_files_get_file_status_func)(pFunctionAddress);
 }
 
-__int64 main_game_launch_sequence2_hook()
-{
-	auto result = GameEngineHostCallback_Bypass([]() {
-		return main_game_launch_sequence2();
-		});
-	auto err = GetLastError();
-	return result;
-}
-
-__int64 main_game_launch_sequence3_hook()
-{
-	auto result = GameEngineHostCallback_Bypass([]() {
-		return main_game_launch_sequence3();
-		});
-	auto err = GetLastError();
-	return result;
-}
-
-__int64 main_game_launch_sequence11_hook()
-{
-	auto result = GameEngineHostCallback_Bypass([]() {
-		return main_game_launch_sequence11();
-		});
-	return result;
-}
-
-__int64 __fastcall main_game_launch_sequence9_hook(__int64 a1)
-{
-	auto result = GameEngineHostCallback_Bypass([a1]() {
-		return main_game_launch_sequence9(a1);
-		});
-	return result;
-}
-
-char* __fastcall simulation_watcher_get_status_hook(uint8_t* pSimulationWatcher, char* dst)
+FunctionHook<HaloGameID::HaloReach, 0x180108FB0, char* __fastcall (uint8_t* pSimulationWatcher, char* dst)> simulation_watcher_get_status = [](uint8_t* pSimulationWatcher, char* dst)
 {
 	auto result = simulation_watcher_get_status(pSimulationWatcher, dst);
 	printf("%s\n%s\n", dst, result);
 	return result;
-}
+};
 
-__int64 __stdcall shell_dispose_hook()
-{
-	auto result = shell_dispose();
-	return result;
-}
-
-void* __stdcall main_thread_routine_hook()
+FunctionHook<HaloGameID::HaloReach, 0x1800129B0, void* __stdcall ()> main_thread_routine = []()
 {
 	WriteLineVerbose("Starting game...");
 	g_CurrentGameState = CurrentState::eRunning;
@@ -393,11 +335,9 @@ void* __stdcall main_thread_routine_hook()
 	g_CurrentGameState = CurrentState::eFinished;
 	isHooked = false;
 	return result;
-}
+};
 
-typedef const char* (__fastcall* sub_180071100_func)(e_peer_property game_load_status);
-sub_180071100_func sub_180071100 = nullptr;
-const char* __fastcall sub_180071100_hook(e_peer_property game_load_status)
+FunctionHook<HaloGameID::HaloReach, 0x180013EA0, const char* __fastcall (e_peer_property game_load_status)> sub_180071100 = [](e_peer_property game_load_status)
 {
 	auto pGameLoadStatusStr = sub_180071100(game_load_status);
 
@@ -494,25 +434,21 @@ const char* __fastcall sub_180071100_hook(e_peer_property game_load_status)
 	}
 
 	return pGameLoadStatusStr;
-}
+};
 
-typedef __int64(__fastcall* sub_180013090_func)(__int64 a1);
-sub_180013090_func sub_180013090 = nullptr;
-__int64 __fastcall sub_180013090_hook(__int64 a1)
+FunctionHook<HaloGameID::HaloReach, 0x180013090, __int64 __fastcall (__int64 a1)> sub_180013090 = [](__int64 a1)
 {
 	auto result = sub_180013090(a1);
 	auto game_options = (s_game_options*)(a1 + 2280);
 	return result;
-}
+};
 
-typedef bool(__fastcall* game_options_verify_func)(s_game_options* a1);
-game_options_verify_func game_options_verify;
-bool __fastcall game_options_verify_hook(s_game_options* a1)
+FunctionHook<HaloGameID::HaloReach, 0x18034A7E0, bool __fastcall (s_game_options* a1)> game_options_verify = [](s_game_options* a1)
 {
 	auto result = game_options_verify(a1);
-	printf("s_game_options::scenario_path: %s\n", a1->scenario_path);
+	WriteLineVerbose("s_game_options::scenario_path: %s", a1->scenario_path);
 	return result;
-}
+};
 
 FunctionHook<HaloGameID::HaloReach, 0x180012200, __int64(__fastcall)(__int64 a1)> sub_180012200 = [](__int64 a1)
 {
@@ -640,8 +576,6 @@ bool SetPlayerName(int index, const wchar_t name[16])
 	return true;
 }
 
-
-
 FunctionHook<HaloGameID::HaloReach, 0x180307B10, char(__fastcall)()> input_update = []() {
 
 	CustomWindow::Update();
@@ -664,62 +598,21 @@ FunctionHook<HaloGameID::HaloReach, 0x1803080A0, char(__fastcall)(KeyCode a1)> s
 
 void init_haloreach_hooks()
 {
-	init_detours();
-
-	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
-	FunctionHookBase::ProcessTree(HaloGameID::HaloReach);
-
-	CustomWindow::SetupHooks();
-
 	check_library_can_load("bink2w64.dll");
 
-	//create_hook<HaloGameID::HaloReach, 0x180307B10>("input_update", input_update_hook, input_update);
-	//create_hook<HaloGameID::HaloReach, 0x1803080A0>("sub_1803080A0", sub_1803080A0_hook, sub_1803080A0);
-	//create_hook<HaloGameID::HaloReach, 0x1800122F0>("sub_1800122F0", sub_1800122F0_hook, sub_1800122F0);
-	//create_hook<HaloGameID::HaloReach, 0x1803A6B30>("levels_try_and_get_scenario_path", levels_try_and_get_scenario_path_hook, levels_try_and_get_scenario_path);
-	//create_hook<HaloGameID::HaloReach, 0x180012200>("sub_180012200", sub_180012200_hook, sub_180012200);
+	init_detours();
 
-
-	//create_hook<HaloGameID::HaloReach, 0x180012730>("game_get_haloreach_path", game_get_haloreach_path_hook, game_get_haloreach_path);
-	//create_hook<HaloGameID::HaloReach, 0x180013EA0>("main_game_launch", main_game_launch_hook, main_game_launch);
-	//create_hook<HaloGameID::HaloReach, 0x1804EA850>("main_status", main_status_hook, main_status);
-	//create_hook<HaloGameID::HaloReach, 0x18078C550>("sub_18078C550", sub_18078C550_hook, sub_18078C550);
-	create_hook<HaloGameID::HaloReach, 0x1803C9220>("load_scenario_into_game_options", load_scenario_into_game_options_hook, load_scenario_into_game_options);
-	create_hook<HaloGameID::HaloReach, 0x18004AFC0>("s_static_string_256_print", s_static_string_256_print_hook, s_static_string_256_print);
-	create_hook<HaloGameID::HaloReach, 0x180108FB0>("simulation_watcher_get_status", simulation_watcher_get_status_hook, simulation_watcher_get_status); // untested
-	create_hook<HaloGameID::HaloReach, 0x18000E9D0>("shell_dispose", shell_dispose_hook, shell_dispose);
-	create_hook<HaloGameID::HaloReach, 0x1800129B0>("main_thread_routine", main_thread_routine_hook, main_thread_routine);
-	create_hook<HaloGameID::HaloReach, 0x180071100>("sub_180071100", sub_180071100_hook, sub_180071100);
-	create_hook<HaloGameID::HaloReach, 0x180013090>("sub_180013090", sub_180013090_hook, sub_180013090);
-
-	create_hook<HaloGameID::HaloReach, 0x18034A7E0>("game_options_verify", game_options_verify_hook, game_options_verify);
-	create_hook<HaloGameID::HaloReach, 0x18034A630>("game_options_new", game_options_new_hook, game_options_new);
-
-	create_hook<HaloGameID::HaloReach, 0x180012B60>("main_game_launch_sequence1", main_game_launch_sequence1_hook, main_game_launch_sequence1);
-	create_hook<HaloGameID::HaloReach, 0x180012C30>("main_game_launch_sequence2", main_game_launch_sequence2_hook, main_game_launch_sequence2);
-	//create_hook<HaloGameID::HaloReach, 0x180012D60>("main_game_launch_sequence3", main_game_launch_sequence3_hook, main_game_launch_sequence3);
-	//create_hook<HaloGameID::HaloReach, 0x180013210>("main_game_launch_sequence4", main_game_launch_sequence4_hook, main_game_launch_sequence4);
-	//create_hook<HaloGameID::HaloReach, 0x1800133F0>("main_game_launch_sequence5", main_game_launch_sequence5_hook, main_game_launch_sequence5);
-	//create_hook<HaloGameID::HaloReach, 0x180013790>("main_game_launch_sequence6", main_game_launch_sequence6_hook, main_game_launch_sequence6);
-	//create_hook<HaloGameID::HaloReach, 0x180013940>("main_game_launch_sequence7", main_game_launch_sequence7_hook, main_game_launch_sequence7);
-	//create_hook<HaloGameID::HaloReach, 0x180013B20>("main_game_launch_sequence8", main_game_launch_sequence8_hook, main_game_launch_sequence8);
-	create_hook<HaloGameID::HaloReach, 0x180013BF0>("main_game_launch_sequence9", main_game_launch_sequence9_hook, main_game_launch_sequence9);
-	//create_hook<HaloGameID::HaloReach, 0x180013CD0>("main_game_launch_sequence11", main_game_launch_sequence11_hook, main_game_launch_sequence11);
-
-	if (useCustomGameWindow)
-	{
-		create_hook<HaloGameID::HaloReach, 0x1806C18A0>("rasterizer_initialize", rasterizer_initialize_hook, rasterizer_initialize);
-		create_hook<HaloGameID::HaloReach, 0x1806C2C30>("create_device", create_device_hook, create_device);
-		//create_hook<HaloGameID::HaloReach, 0x1806C2890>("create_window", create_window_hook, create_window);
-	}
+	create_window.SetIsActive(useCustomGameWindow);
 
 	populate_function_ptr<HaloGameID::HaloReach, 0x180352340>(cache_files_get_file_status);
-
 	physical_memory_stage_push = get_function_ptr<HaloGameID::HaloReach, 0x1803FB790, physical_memory_stage_push_func>();
 	wait_for_render_thread = get_function_ptr<HaloGameID::HaloReach, 0x18031F6A0, wait_for_render_thread_func>();
 
-	//g_frameLimit = 98; // update this here
+	g_frameLimit = 98; // update this here
 
+	CustomWindow::SetupHooks();
+	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
+	FunctionHookBase::ProcessTree(HaloGameID::HaloReach);
 
 	end_detours();
 }

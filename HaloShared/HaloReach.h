@@ -299,19 +299,11 @@ extern void init_haloreach_hooks();
 extern rasterizer_initialize_func rasterizer_initialize;
 extern create_device_func create_device;
 //extern create_window_func create_window;
-extern main_game_launch_sequence1_Func main_game_launch_sequence1;
-extern s_static_string_256_print_func s_static_string_256_print;
-extern game_options_new_func game_options_new;
-extern load_scenario_into_game_options_func load_scenario_into_game_options;
 extern main_status_func main_status;
 extern cache_files_get_file_status_func cache_files_get_file_status;
 extern main_game_launch_sequence2_func main_game_launch_sequence2;
 extern main_game_launch_sequence3_func main_game_launch_sequence3;
 extern main_game_launch_sequence11_func main_game_launch_sequence11;
-extern main_game_launch_sequence9_func main_game_launch_sequence9;
-extern simulation_watcher_get_status_func simulation_watcher_get_status;
-extern shell_dispose_func shell_dispose;
-extern main_thread_routine_func main_thread_routine;
 extern const char* halo_reach_path;
 
 template<typename T>
