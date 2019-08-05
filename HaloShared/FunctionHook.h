@@ -57,32 +57,26 @@ public:
 	__forceinline decltype(auto) operator()(Args... args)
 	{
 		size_t x = 0; // needed to fix register issue on debug
-		decltype(auto) result = base(args...);
-		if (m_pCallback)
+
+		using return_type = decltype(base(args...));
+
+		if constexpr (std::is_same<return_type, void>::value)
 		{
-			m_pCallback(m_pCallbackUserData);
+			base(args...);
+			if (m_pCallback)
+			{
+				m_pCallback(m_pCallbackUserData);
+			}
 		}
-		return result;
-
-		//using return_type = decltype(base(args...));
-
-		//if constexpr (std::is_same<return_type, void>::value)
-		//{
-		//	base(args...);
-		//	if (m_pCallback)
-		//	{
-		//		m_pCallback(m_pCallbackUserData);
-		//	}
-		//}
-		//else
-		//{
-		//	auto result = base(args...);
-		//	if (m_pCallback)
-		//	{
-		//		m_pCallback(m_pCallbackUserData);
-		//	}
-		//	return result;
-		//}
+		else
+		{
+			auto result = base(args...);
+			if (m_pCallback)
+			{
+				m_pCallback(m_pCallbackUserData);
+			}
+			return result;
+		}
 	}
 
 	friend class FunctionHookBase;
