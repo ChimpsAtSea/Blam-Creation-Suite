@@ -25,10 +25,13 @@ void create_hook(const char pName[], void* pTargetFunction, Ta hook, Tb& rOrigin
 	}
 }
 
-template<size_t offset, typename Ta, typename Tb>
-void create_hook(const char pModuleName[], size_t baseAddress, const char pName[], Ta hook, Tb& rOriginal)
+template<typename Ta, typename Tb>
+LONG create_hook(HaloGameID gameID, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
 {
-	rOriginal = (Tb)(reinterpret_cast<char*>(GetModuleHandleA(pModuleName)) + (offset - baseAddress));
+	char* const pModule = reinterpret_cast<char*>(GetHaloExecutable(gameID));
+	size_t const baseAddress = GetHaloBaseAddress(gameID);
+
+	rOriginal = (Tb)(pModule + (offset - baseAddress));
 
 	PVOID* ppPointer = reinterpret_cast<void**>(&rOriginal);
 	PVOID pDetour = reinterpret_cast<void*>(hook);
@@ -43,6 +46,13 @@ void create_hook(const char pModuleName[], size_t baseAddress, const char pName[
 	{
 		WriteLineVerbose("Successfully hooked %s", pName);
 	}
+	return detourAttachResult;
+}
+
+template<HaloGameID gameID, size_t offset, typename Ta, typename Tb>
+LONG create_hook(const char pName[], Ta hook, Tb& rOriginal)
+{
+	return create_hook(gameID, offset, pName, hook, rOriginal);
 }
 
 template<typename Ta, typename Tb>
@@ -84,11 +94,30 @@ void populate_function_ptr(const char pModuleName[], size_t baseAddress, T& dest
 	dest = reinterpret_cast<T>(pFunctionAddress);
 }
 
+template<HaloGameID gameID, size_t offset, typename T>
+void populate_function_ptr(T& dest)
+{
+	// Find the function address
+	char* const pModule = reinterpret_cast<char*>(GetHaloExecutable(gameID));
+	size_t const baseAddress = GetHaloBaseAddress(gameID);
+	char* const pFunctionAddress = pModule + (offset - baseAddress);
+
+	dest = reinterpret_cast<T>(pFunctionAddress);
+}
+
 template<size_t offset, typename T>
 T get_function_ptr(const char pModuleName[], size_t baseAddress)
 {
 	T result = nullptr;
 	populate_function_ptr<offset, T>(pModuleName, baseAddress, result);
+	return result;
+}
+
+template<HaloGameID gameID, size_t offset, typename T>
+T get_function_ptr()
+{
+	T result = nullptr;
+	populate_function_ptr<gameID, offset, T>(result);
 	return result;
 }
 

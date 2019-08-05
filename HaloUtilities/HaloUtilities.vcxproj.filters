@@ -33,7 +33,7 @@
     <ClInclude Include="logging.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataReference.h">
+    <ClInclude Include="HaloGameID.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,8 +47,8 @@
     <ClCompile Include="detour_helpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Natvis Include="DataReference.natvis" />
+    <ClCompile Include="HaloGameID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

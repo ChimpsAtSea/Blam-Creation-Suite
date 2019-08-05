@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataReference.cpp" />
     <ClCompile Include="HaloReach.cpp" />
     <ClCompile Include="haloshared-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -143,9 +144,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataReference.h" />
     <ClInclude Include="HaloReach.h" />
     <ClInclude Include="haloshared-private-pch.h" />
     <ClInclude Include="haloshared-public-pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="DataReference.natvis" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

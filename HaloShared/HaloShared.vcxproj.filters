@@ -21,6 +21,9 @@
     <ClCompile Include="HaloReach.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DataReference.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="haloshared-private-pch.h">
@@ -32,5 +35,11 @@
     <ClInclude Include="HaloReach.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DataReference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="DataReference.natvis" />
   </ItemGroup>
 </Project>
