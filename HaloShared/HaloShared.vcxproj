@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="CustomWindow.cpp" />
     <ClCompile Include="DataReference.cpp" />
+    <ClCompile Include="FunctionHook.cpp" />
     <ClCompile Include="HaloReach.cpp" />
     <ClCompile Include="haloshared-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="CustomWindow.h" />
     <ClInclude Include="DataReference.h" />
+    <ClInclude Include="FunctionHook.h" />
     <ClInclude Include="HaloReach.h" />
     <ClInclude Include="haloshared-private-pch.h" />
     <ClInclude Include="haloshared-public-pch.h" />

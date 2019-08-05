@@ -7,5 +7,6 @@
 // #ENDTODO FIND A HOME
 
 #include "DataReference.h"
+#include "FunctionHook.h"
 #include "CustomWindow.h"
 #include "HaloReach.h"
