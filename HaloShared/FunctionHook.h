@@ -1,5 +1,7 @@
 #pragma once
 
+typedef void(FunctionHookCallback)(void* pUserData);
+
 class FunctionHookBase
 {
 public:
@@ -24,6 +26,8 @@ public:
 	size_t m_offset;
 	HaloGameID m_gameID;
 	bool m_isActive;
+	FunctionHookCallback* m_pCallback;
+	void* m_pCallbackUserData;
 
 	FunctionHookBase* m_pNextFunctionHook;
 	static FunctionHookBase* g_pFirstFunctionHook;
@@ -31,19 +35,54 @@ public:
 
 	void ProcessNode(HaloGameID gameID);
 	static void ProcessTree(HaloGameID gameID);
+
+	void SetIsActive(bool isActive)
+	{
+		m_isActive = isActive;
+	}
+
+	void SetCallback(FunctionHookCallback* pCallback, void* pCallbackUserData)
+	{
+		m_pCallback = pCallback;
+		m_pCallbackUserData = pCallbackUserData;
+	}
 };
 
 template<HaloGameID gameID, size_t offset, typename base_type>
-class FunctionHook : FunctionHookBase
+class FunctionHook : public FunctionHookBase
 {
 public:
 
-	// #TODO: Improve this template 
-	// can we extract the arguments and return type from the base_type???
 	template<typename ...Args>
-	decltype(auto) operator()(Args... args)
+	__forceinline decltype(auto) operator()(Args... args)
 	{
-		return base(args...);
+		size_t x = 0; // needed to fix register issue on debug
+		decltype(auto) result = base(args...);
+		if (m_pCallback)
+		{
+			m_pCallback(m_pCallbackUserData);
+		}
+		return result;
+
+		//using return_type = decltype(base(args...));
+
+		//if constexpr (std::is_same<return_type, void>::value)
+		//{
+		//	base(args...);
+		//	if (m_pCallback)
+		//	{
+		//		m_pCallback(m_pCallbackUserData);
+		//	}
+		//}
+		//else
+		//{
+		//	auto result = base(args...);
+		//	if (m_pCallback)
+		//	{
+		//		m_pCallback(m_pCallbackUserData);
+		//	}
+		//	return result;
+		//}
 	}
 
 	friend class FunctionHookBase;
@@ -65,11 +104,6 @@ public:
 
 	base_type* const hook = nullptr;
 	base_type* const base = nullptr;
-
-	void SetIsActive(bool isActive)
-	{
-		m_isActive = isActive;
-	}
 
 private:
 	void SetHook(base_type* ptr)
