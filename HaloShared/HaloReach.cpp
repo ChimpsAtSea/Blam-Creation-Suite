@@ -702,13 +702,13 @@ __int64 __fastcall sub_180012200_hook(__int64 a1)
 	return result;
 }
 
-typedef char* (__fastcall*levels_try_and_get_scenario_path_by_campaign_and_map_id_func)(int a1, unsigned int a2, char* a3, int a4);
-levels_try_and_get_scenario_path_by_campaign_and_map_id_func levels_try_and_get_scenario_path_by_campaign_and_map_id = nullptr;
-char* __fastcall levels_try_and_get_scenario_path_by_campaign_and_map_id_hook(int campaign_id, unsigned int map_id, char* scenario_path, int size)
+typedef char* (__fastcall*levels_try_and_get_scenario_path_func)(int a1, unsigned int a2, char* a3, int a4);
+levels_try_and_get_scenario_path_func levels_try_and_get_scenario_path = nullptr;
+char* __fastcall levels_try_and_get_scenario_path_hook(int campaign_id, unsigned int map_id, char* scenario_path, int size)
 {
 	map_id = 0x10231971; // force the default map load code path
 
-	auto result = levels_try_and_get_scenario_path_by_campaign_and_map_id_hook(campaign_id, map_id, scenario_path, size);
+	auto result = levels_try_and_get_scenario_path(campaign_id, map_id, scenario_path, size);
 
 
 	if (strlen(scenario_path) == 0)
@@ -958,7 +958,7 @@ void init_haloreach_hooks()
 	create_hook<0x180307B10>(HaloReachDLL, HaloReachBase, "input_update", input_update_hook, input_update);
 	create_hook<0x1803080A0>(HaloReachDLL, HaloReachBase, "sub_1803080A0", sub_1803080A0_hook, sub_1803080A0);
 	create_hook<0x1800122F0>(HaloReachDLL, HaloReachBase, "sub_1800122F0", sub_1800122F0_hook, sub_1800122F0);
-	create_hook<0x1803A6B30>(HaloReachDLL, HaloReachBase, "levels_try_and_get_scenario_path_by_campaign_and_map_id", levels_try_and_get_scenario_path_by_campaign_and_map_id_hook, levels_try_and_get_scenario_path_by_campaign_and_map_id);
+	create_hook<0x1803A6B30>(HaloReachDLL, HaloReachBase, "levels_try_and_get_scenario_path", levels_try_and_get_scenario_path_hook, levels_try_and_get_scenario_path);
 	create_hook<0x180012200>(HaloReachDLL, HaloReachBase, "sub_180012200", sub_180012200_hook, sub_180012200);
 
 
