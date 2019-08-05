@@ -103,9 +103,6 @@ template<HaloGameID gameID, size_t offset, typename base_type>
 class FunctionHook : FunctionHookBase
 {
 public:
-	{
-
-	}
 
 	// #TODO: Improve this template 
 	// can we extract the arguments and return type from the base_type???
