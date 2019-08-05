@@ -281,7 +281,7 @@ extern HaloReachReference<s_player_profile[4], 0x183D43560> g_player_profiles;
 extern HaloReachReference<s_game_options, 0x183B0FB70> g_game_options;
 extern HaloReachReference<wchar_t[4][32], 0x183DE6FB0> g_player_names;
 extern HaloReachReference<HWND, 0x1810EC5E0> g_hwnd;
-
+extern HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
 
 
 
@@ -301,12 +301,9 @@ extern create_device_func create_device;
 //extern create_window_func create_window;
 extern main_game_launch_sequence1_Func main_game_launch_sequence1;
 extern s_static_string_256_print_func s_static_string_256_print;
-extern game_get_haloreach_path_func game_get_haloreach_path;
 extern game_options_new_func game_options_new;
 extern load_scenario_into_game_options_func load_scenario_into_game_options;
-extern sub_18078C550_func sub_18078C550;
 extern main_status_func main_status;
-extern main_game_launch_func main_game_launch;
 extern cache_files_get_file_status_func cache_files_get_file_status;
 extern main_game_launch_sequence2_func main_game_launch_sequence2;
 extern main_game_launch_sequence3_func main_game_launch_sequence3;
