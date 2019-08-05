@@ -610,3 +610,12 @@ struct s_game_launcher
 	s_game_launch_data GameLaunchData;
 };
 static_assert(sizeof(s_game_launcher) == 0x2B7D0, "");
+
+struct s_player_profile
+{
+	int Flags;
+	int ControllerIndex;
+	char unknown8[2872];
+	wchar_t Name[16];
+	char unknownB60[88];
+};

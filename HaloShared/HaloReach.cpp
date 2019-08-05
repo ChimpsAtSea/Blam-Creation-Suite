@@ -87,7 +87,7 @@ public:
 
 			// process the node
 
-			printf("TEST");
+			printf("TEST\n");
 		}
 		if (m_pNextDataReference)
 		{
@@ -174,6 +174,8 @@ HaloReachReference<DWORD, 0x1810EC584> dword_1810EC584;
 HaloReachReference<BYTE, 0x18342E55D> byte_18342E55D;
 HaloReachReference<BYTE, 0x183984DE4> byte_183984DE4;
 HaloReachReference<DWORD, 0x1810524AC> dword_1810524AC;
+HaloReachReference<s_player_profile[4], 0x183D43560> g_player_profiles;
+HaloReachReference<s_game_options, 0x183B0FB70> g_game_options;
 
 typedef __int64 (*wait_for_render_thread_func)();
 wait_for_render_thread_func wait_for_render_thread = nullptr;
@@ -232,6 +234,7 @@ const char* halo_reach_path = "";
 CurrentState g_CurrentGameState = CurrentState::eInactive;
 bool g_gameManuallyKilled = false;
 bool isHooked = false;
+WORD g_frameLimit = 60;
 
 GameEngineHostCallback gameEngineHostCallback;
 GameEngineHostCallback_vftbl gameEngineHostCallbackVftbl;
@@ -383,6 +386,15 @@ char* s_static_string_256_print_hook(char* dst, char* format, ...)
 const char* game_get_haloreach_path_hook()
 {
 	return halo_reach_path;
+}
+
+__int64 __fastcall game_options_new_hook(s_game_options *game_options)
+{
+	auto result = game_options_new(game_options);
+
+	game_options->frame_limit = g_frameLimit;
+
+	return result;
 }
 
 __int64 __fastcall load_scenario_into_game_options_hook(s_game_options* a1)
@@ -646,7 +658,7 @@ game_options_verify_func game_options_verify;
 bool __fastcall game_options_verify_hook(s_game_options* a1)
 {
 	auto result = game_options_verify(a1);
-	printf("s_game_options::scenario_path: %s", a1->scenario_path);
+	printf("s_game_options::scenario_path: %s\n", a1->scenario_path);
 	return result;
 }
 
@@ -711,7 +723,7 @@ char* __fastcall sub_1803A6B30_hook(int a1, unsigned int a2, char* a3, int a4)
 	}
 
 	// forceload a different map file
-	char customMapName[] = "maps\\m35";
+	char customMapName[] = "levels\\solo\\m35\\m35";
 	memcpy(a3, customMapName, sizeof(customMapName));
 
 	WriteLineVerbose("MAP OVERRIDE: %s", a3);
@@ -909,6 +921,10 @@ char __fastcall input_update_hook()
 {
 	update_window_events();
 
+	//test print on tick update
+	//printf("player[%d].Name: %S\n", 0, g_player_profiles[0].Name);
+	//printf("g_game_options->frame_limit: %d\n", g_game_options.ptr()->frame_limit);
+
 	return input_update();
 }
 
@@ -957,7 +973,9 @@ void init_haloreach_hooks()
 	create_hook<0x1800129B0>(HaloReachDLL, HaloReachBase, "main_thread_routine", main_thread_routine_hook, main_thread_routine);
 	create_hook<0x180071100>(HaloReachDLL, HaloReachBase, "sub_180071100", sub_180071100_hook, sub_180071100);
 	create_hook<0x180013090>(HaloReachDLL, HaloReachBase, "sub_180013090", sub_180013090_hook, sub_180013090);
+
 	create_hook<0x18034A7E0>(HaloReachDLL, HaloReachBase, "game_options_verify", game_options_verify_hook, game_options_verify);
+	create_hook<0x18034A630>(HaloReachDLL, HaloReachBase, "game_options_new", game_options_new_hook, game_options_new);
 
 	create_hook<0x180012B60>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence1", main_game_launch_sequence1_hook, main_game_launch_sequence1);
 	create_hook<0x180012C30>(HaloReachDLL, HaloReachBase, "main_game_launch_sequence2", main_game_launch_sequence2_hook, main_game_launch_sequence2);
@@ -977,7 +995,6 @@ void init_haloreach_hooks()
 		create_hook<0x1806C2890>(HaloReachDLL, HaloReachBase, "create_window", create_window_hook, create_window);
 	}
 
-	populate_function_ptr<0x18034A630>(HaloReachDLL, HaloReachBase, game_options_new);
 	populate_function_ptr<0x180352340>(HaloReachDLL, HaloReachBase, cache_files_get_file_status);
 
 	physical_memory_stage_push = get_function_ptr<0x1803FB790, physical_memory_stage_push_func>(HaloReachDLL, HaloReachBase);
@@ -989,6 +1006,8 @@ void init_haloreach_hooks()
 		//const char new_level_name[] = "levels\\solo\\m35\\m35";
 		//memcpy_virtual(level_name, new_level_name, sizeof(new_level_name));
 	}
+
+	//g_frameLimit = 144; // update this here
 
 
 	end_detours();

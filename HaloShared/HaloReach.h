@@ -98,7 +98,7 @@ enum e_scenario_type : int
 	k_number_of_scenario_types,
 };
 
-struct __declspec(align(4)) s_game_options
+struct s_game_options
 {
 	e_scenario_type scenario_type;
 	BYTE game_simulation[8];
@@ -109,7 +109,7 @@ struct __declspec(align(4)) s_game_options
 	DWORD language;
 	BYTE campaign_id;
 	DWORD determinism_version;
-	BYTE game_variant[64516];
+	BYTE game_variant[0xFC04];
 	DWORD map_id;
 	BYTE unknownFC30[4];
 	char scenario_path[260];
@@ -117,9 +117,12 @@ struct __declspec(align(4)) s_game_options
 	BYTE game_is_playtest;
 	BYTE unknownFF16[18];
 	DWORD campaign_difficulty;
-	BYTE unknownFF2C[60368];
+	BYTE unknownFF2C[299];
+	BYTE map_variant[0xD9AC];
+	BYTE unknown1DA03[4345];
 };
-typedef __int64(__fastcall* game_options_new_func)(s_game_options* a1);
+static_assert(sizeof(s_game_options) == 0x1E9A0, "");
+typedef __int64(__fastcall* game_options_new_func)(s_game_options* game_options);
 
 enum class CurrentState
 {
@@ -130,6 +133,7 @@ enum class CurrentState
 extern CurrentState g_CurrentGameState;
 extern bool g_gameManuallyKilled;
 extern bool isHooked;
+extern WORD g_frameLimit;
 extern HICON g_icon;
 
 typedef void(*rasterizer_initialize_func)();
