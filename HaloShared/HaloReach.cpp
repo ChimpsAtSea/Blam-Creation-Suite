@@ -16,6 +16,7 @@ bool g_gameManuallyKilled = false;
 bool isHooked = false;
 WORD g_frameLimit = 60;
 int g_fieldOfView = 78;
+int g_controlsLayout = 0;
 
 // Halo Reach Variables
 
@@ -557,9 +558,9 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		Jump,
 		SwitchNade,
 		SwitchWeapon,
-		Use,
+		Action,
 		Melee,
-		Ability,
+		Equipment,
 		ThrowGrenade,
 		Fire,
 		Crouch,
@@ -581,8 +582,8 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		Unknown10,
 		Unknown11,
 		Unknown12,
-		Unknown13,
-		Unknown14,
+		UnknownPhysicsDebug1, // makes vehicles move a bit when pressed right next to it
+		UnknownPhysicsDebug2, // makes vehicles move a bit when pressed right next to it
 		Unknown15,
 		SkipCutsceneConfirm,
 		Unknown17,
@@ -597,13 +598,13 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		Unknown26,
 	};
 
-	// default ordering
+	// default expected ordering
 	assert(a1->unknown18[Jump] == eControllerButtonA);
 	assert(a1->unknown18[SwitchNade] == eControllerButtonB);
 	assert(a1->unknown18[SwitchWeapon] == eControllerButtonY);
-	assert(a1->unknown18[Use] == eControllerButtonX);
+	assert(a1->unknown18[Action] == eControllerButtonX);
 	assert(a1->unknown18[Melee] == eControllerButtonRightBumper);
-	assert(a1->unknown18[Ability] == eControllerButtonLeftBumper);
+	assert(a1->unknown18[Equipment] == eControllerButtonLeftBumper);
 	assert(a1->unknown18[ThrowGrenade] == eControllerButtonLeftTrigger);
 	assert(a1->unknown18[Fire] == eControllerButtonRightTrigger);
 	assert(a1->unknown18[Crouch] == eControllerButtonLeftStick);
@@ -622,33 +623,38 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	assert(a1->unknown18[SkipCutscene] == eControllerButtonA);
 	assert(a1->unknown18[Unknown8] == eControllerButtonB);
 	assert(a1->unknown18[Unknown9] == eControllerButtonDpadDown);
-	assert(a1->unknown18[Unknown10]== eControllerButtonDpadUp);
-	assert(a1->unknown18[Unknown11]== eControllerButtonDpadLeft);
-	assert(a1->unknown18[Unknown12]== eControllerButtonDpadRight);
-	assert(a1->unknown18[Unknown13]== eControllerButtonRightBumper);
-	assert(a1->unknown18[Unknown14]== eControllerButtonLeftBumper);
-	assert(a1->unknown18[Unknown15]== eControllerButtonDpadUp);
-	assert(a1->unknown18[SkipCutsceneConfirm]== eControllerButtonY);
-	assert(a1->unknown18[Unknown17]== eControllerButtonDpadUp);
-	assert(a1->unknown18[Unknown18]== eControllerButtonDpadDown);
-	assert(a1->unknown18[Unknown19]== eControllerButtonSelect);
-	assert(a1->unknown18[Unknown20]== eControllerButtonDpadLeft);
-	assert(a1->unknown18[Unknown21]== eControllerButtonX);
-	assert(a1->unknown18[Unknown22]== eControllerButtonSelect);
-	assert(a1->unknown18[Unknown23]== eControllerButtonDpadUp);
-	assert(a1->unknown18[Unknown24]== eControllerButtonX);
-	assert(a1->unknown18[Unknown25]== eControllerButtonB);
-	assert(a1->unknown18[Unknown26]== eControllerButtonB);
+	assert(a1->unknown18[Unknown10] == eControllerButtonDpadUp);
+	assert(a1->unknown18[Unknown11] == eControllerButtonDpadLeft);
+	assert(a1->unknown18[Unknown12] == eControllerButtonDpadRight);
+	assert(a1->unknown18[UnknownPhysicsDebug1] == eControllerButtonRightBumper);
+	assert(a1->unknown18[UnknownPhysicsDebug2] == eControllerButtonLeftBumper);
+	assert(a1->unknown18[Unknown15] == eControllerButtonDpadUp);
+	assert(a1->unknown18[SkipCutsceneConfirm] == eControllerButtonY);
+	assert(a1->unknown18[Unknown17] == eControllerButtonDpadUp);
+	assert(a1->unknown18[Unknown18] == eControllerButtonDpadDown);
+	assert(a1->unknown18[Unknown19] == eControllerButtonSelect);
+	assert(a1->unknown18[Unknown20] == eControllerButtonDpadLeft);
+	assert(a1->unknown18[Unknown21] == eControllerButtonX);
+	assert(a1->unknown18[Unknown22] == eControllerButtonSelect);
+	assert(a1->unknown18[Unknown23] == eControllerButtonDpadUp);
+	assert(a1->unknown18[Unknown24] == eControllerButtonX);
+	assert(a1->unknown18[Unknown25] == eControllerButtonB);
+	assert(a1->unknown18[Unknown26] == eControllerButtonB);
 
-	//for (int i = 0; i < _countof(a1->unknown18); i++)
-	//{
-	//	a1->unknown18[i] = ControllerButton32::eControllerButtonLeftTrigger;
-	//}
-
-	a1->unknown18[SwitchNade] = eControllerButtonDpadRight;
-
-
-	//a1->unknown18[test_button] = ControllerButton32::eControllerButtonX;
+	if (g_controlsLayout != 0) // #TODO: Implement enum
+	{
+		// RECON 
+		a1->unknown18[Jump] = eControllerButtonA;
+		a1->unknown18[Melee] = eControllerButtonB;
+		a1->unknown18[SwitchWeapon] = eControllerButtonY;
+		a1->unknown18[SwitchNade] = eControllerButtonX;
+		a1->unknown18[Equipment] = eControllerButtonLeftBumper;
+		a1->unknown18[Action] = eControllerButtonRightBumper;
+		a1->unknown18[Fire] = eControllerButtonRightTrigger;
+		a1->unknown18[ThrowGrenade] = eControllerButtonLeftTrigger;
+		a1->unknown18[Zoom] = eControllerButtonRightStick;
+		a1->unknown18[Crouch] = eControllerButtonLeftStick;
+	}
 
 	return result;
 };
@@ -669,6 +675,7 @@ void init_haloreach_hooks()
 	static wchar_t player_name[16] = {};
 	GetPrivateProfileStringW(L"Player", L"Name", L"Player", player_name, 16, L".\\Settings.ini");
 	input_update.SetCallback([](void*) { SetPlayerName(0, player_name); }, nullptr);
+	g_controlsLayout = GetPrivateProfileIntW(L"Player", L"ControlsLayout", 0, L".\\Settings.ini");
 
 	CustomWindow::SetupHooks();
 	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
