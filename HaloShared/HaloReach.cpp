@@ -471,8 +471,8 @@ HaloReachHook<0x180306D50, _BYTE* ()> preferences_initialize = []()
 
 HaloReachHook<0x1803E3510, __int64(__fastcall)(uint8_t *, int, float, char)> camera_new = [](uint8_t *director, int camera_type, float camera_speed, char force_update)
 {
-	if (camera_type == 4) // on death set the camera_mode to flying
-		camera_type = 2;
+	//if (camera_type == 4) // on death set the camera_mode to flying
+	//	camera_type = 2;
 
 	auto result = camera_new(director, camera_type, camera_speed, force_update);
 	return result;
@@ -500,8 +500,9 @@ void init_haloreach_hooks()
 
 	g_frameLimit = GetPrivateProfileIntW(L"Game", L"FrameLimit", 60, L".\\Settings.ini");
 	g_fieldOfView = GetPrivateProfileIntW(L"Camera", L"FieldOfView", 78, L".\\Settings.ini");
-	//wchar_t player_name[16]; GetPrivateProfileStringW(L"Player", L"Name", L"Swiggity Swooty", player_name, 16, L".\\Settings.ini");
-	input_update.SetCallback([/*player_name*/](void *) { SetPlayerName(0, L"Swiggity Swooty"); }, nullptr); // this won't let me pass player_name as an arg Bit Trigg please help
+	static wchar_t player_name[16] = {};
+	GetPrivateProfileStringW(L"Player", L"Name", L"Player", player_name, 16, L".\\Settings.ini");
+	input_update.SetCallback([](void *) { SetPlayerName(0, player_name); }, nullptr);
 
 	CustomWindow::SetupHooks();
 	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
