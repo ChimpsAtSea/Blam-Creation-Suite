@@ -23,7 +23,7 @@ CreateGameEngineFunc* CreateGameEngine = nullptr;
 IGameEngine* pHaloReachEngine = nullptr;
 
 
-#define NULLSUB_LAMBDA_CUSTOM(message) []() { printf(message"\n"); }
+#define NULLSUB_LAMBDA_CUSTOM(message) []() { WriteLineVerbose(message); }
 
 #define WriteLineVerbose(str, ...) printf(str, ##__VA_ARGS__); printf("\n");
 #define WriteVerbose(str, ...) printf(str, ##__VA_ARGS__);
@@ -69,7 +69,11 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member16 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[16]");
 	gameEngineHostCallbackVftbl.Member17 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[17]");
 	gameEngineHostCallbackVftbl.Member18 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[18]");
-	gameEngineHostCallbackVftbl.Member19 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[19]");
+	//gameEngineHostCallbackVftbl.Member19 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[19]");
+	gameEngineHostCallbackVftbl.Member19 = [](GameEngineHostCallback* a1, __int64 a2) {
+		WriteLineVerbose("GameEngineHostCallback::vftable[19] %p", a2);
+		return __int64(0);
+	};
 	gameEngineHostCallbackVftbl.Member20 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[20]");
 	gameEngineHostCallbackVftbl.Member21 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[21]");
 	gameEngineHostCallbackVftbl.Member22 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[22]");

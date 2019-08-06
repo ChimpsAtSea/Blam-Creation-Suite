@@ -80,7 +80,8 @@ struct GameEngineHostCallback_vftbl
 	NullSubFunc* Member16;
 	NullSubFunc* Member17;
 	NullSubFunc* Member18;
-	NullSubFunc* Member19;
+	//NullSubFunc* Member19;
+	__int64(__fastcall* Member19)(GameEngineHostCallback*, __int64/*, __int64, __int64*/);
 	NullSubFunc* Member20;
 	NullSubFunc* Member21;
 	NullSubFunc* Member22;
