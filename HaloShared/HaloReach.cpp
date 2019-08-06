@@ -555,7 +555,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	enum Action
 	{
 		Jump,
-		MaybeSwitchNade,
+		SwitchNade,
 		SwitchWeapon,
 		Use,
 		Melee,
@@ -599,7 +599,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 
 	// default ordering
 	assert(a1->unknown18[Jump] == eControllerButtonA);
-	assert(a1->unknown18[MaybeSwitchNade] == eControllerButtonB);
+	assert(a1->unknown18[SwitchNade] == eControllerButtonB);
 	assert(a1->unknown18[SwitchWeapon] == eControllerButtonY);
 	assert(a1->unknown18[Use] == eControllerButtonX);
 	assert(a1->unknown18[Melee] == eControllerButtonRightBumper);
@@ -640,52 +640,12 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	assert(a1->unknown18[Unknown25]== eControllerButtonB);
 	assert(a1->unknown18[Unknown26]== eControllerButtonB);
 
-	for (int i = 0; i < _countof(a1->unknown18); i++)
-	{
-		a1->unknown18[i] = ControllerButton32::eControllerButtonLeftTrigger;
-	}
+	//for (int i = 0; i < _countof(a1->unknown18); i++)
+	//{
+	//	a1->unknown18[i] = ControllerButton32::eControllerButtonLeftTrigger;
+	//}
 
-	//a1->unknown18[Jump] = eControllerButtonB;
-	//a1->unknown18[MaybeSwitchNade] = eControllerButtonB; // unknown
-	//a1->unknown18[SwitchWeapon] = eControllerButtonB;
-	//a1->unknown18[Use] = eControllerButtonB;
-	//a1->unknown18[Melee] = eControllerButtonA; // meele
-	//a1->unknown18[Ability] = eControllerButtonB; // spartan ability
-	//a1->unknown18[ThrowGrenade] = eControllerButtonX; // gnade
-	//a1->unknown18[Fire] = eControllerButtonY; // shoot
-	//a1->unknown18[Crouch] = eControllerButtonA; // crouch
-	//a1->unknown18[Zoom] = eControllerButtonB;  // zoom
-	//a1->unknown18[BrakeVehicle] = eControllerButtonX;  // brake vehicle
-	//a1->unknown18[Unknown] = eControllerButtonY;  // UNKNOWN
-	//a1->unknown18[BrakeVehicle2] = eControllerButtonA; // brake vehicle?
-	//a1->unknown18[Unknown1] = eControllerButtonB; // Unknown
-	//a1->unknown18[Unknown2] = eControllerButtonX; // Unknown
-	//a1->unknown18[Unknown3] = eControllerButtonY; // Unknown
-	//a1->unknown18[Unknown4] = eControllerButtonA;
-	//a1->unknown18[ShowWeaponDetails] = eControllerButtonB; // weapon details
-	//a1->unknown18[Unknown5] = eControllerButtonX;
-	//a1->unknown18[Unknown6] = eControllerButtonY;
-	//a1->unknown18[Visor] = eControllerButtonA; // visor
-	//a1->unknown18[SkipCutscene] = eControllerButtonA;
-	//a1->unknown18[Unknown8] = eControllerButtonX;
-	//a1->unknown18[Unknown9] = eControllerButtonY;
-	//a1->unknown18[Unknown10] = eControllerButtonA;
-	//a1->unknown18[Unknown11] = eControllerButtonB;
-	//a1->unknown18[Unknown12] = eControllerButtonX;
-	//a1->unknown18[Unknown13] = eControllerButtonY;
-	//a1->unknown18[Unknown14] = eControllerButtonA;
-	//a1->unknown18[Unknown15] = eControllerButtonB;
-	//a1->unknown18[SkipCutsceneConfirm] = eControllerButtonX;
-	//a1->unknown18[Unknown17] = eControllerButtonY;
-	//a1->unknown18[Unknown18] = eControllerButtonA;
-	//a1->unknown18[Unknown19] = eControllerButtonB;
-	//a1->unknown18[Unknown20] = eControllerButtonX;
-	//a1->unknown18[Unknown21] = eControllerButtonY;
-	//a1->unknown18[Unknown22] = eControllerButtonA;
-	//a1->unknown18[Unknown23] = eControllerButtonB;
-	//a1->unknown18[Unknown24] = eControllerButtonX;
-	//a1->unknown18[Unknown25] = eControllerButtonY;
-	//a1->unknown18[Unknown26] = eControllerButtonLeftBumper;
+	a1->unknown18[SwitchNade] = eControllerButtonDpadRight;
 
 
 	//a1->unknown18[test_button] = ControllerButton32::eControllerButtonX;
