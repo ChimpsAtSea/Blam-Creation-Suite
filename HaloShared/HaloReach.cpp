@@ -575,7 +575,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		Unknown5,
 		Unknown6,
 		Visor,
-		Unknown7,
+		SkipCutscene,
 		Unknown8,
 		Unknown9,
 		Unknown10,
@@ -584,7 +584,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		Unknown13,
 		Unknown14,
 		Unknown15,
-		Unknown16,
+		SkipCutsceneConfirm,
 		Unknown17,
 		Unknown18,
 		Unknown19,
@@ -619,7 +619,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	assert(a1->unknown18[Unknown5] == eControllerButtonDpadLeft);
 	assert(a1->unknown18[Unknown6] == eControllerButtonDpadRight);
 	assert(a1->unknown18[Visor] == eControllerButtonDpadLeft);
-	assert(a1->unknown18[Unknown7] == eControllerButtonA);
+	assert(a1->unknown18[SkipCutscene] == eControllerButtonA);
 	assert(a1->unknown18[Unknown8] == eControllerButtonB);
 	assert(a1->unknown18[Unknown9] == eControllerButtonDpadDown);
 	assert(a1->unknown18[Unknown10]== eControllerButtonDpadUp);
@@ -628,7 +628,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	assert(a1->unknown18[Unknown13]== eControllerButtonRightBumper);
 	assert(a1->unknown18[Unknown14]== eControllerButtonLeftBumper);
 	assert(a1->unknown18[Unknown15]== eControllerButtonDpadUp);
-	assert(a1->unknown18[Unknown16]== eControllerButtonY);
+	assert(a1->unknown18[SkipCutsceneConfirm]== eControllerButtonY);
 	assert(a1->unknown18[Unknown17]== eControllerButtonDpadUp);
 	assert(a1->unknown18[Unknown18]== eControllerButtonDpadDown);
 	assert(a1->unknown18[Unknown19]== eControllerButtonSelect);
@@ -666,7 +666,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	//a1->unknown18[Unknown5] = eControllerButtonX;
 	//a1->unknown18[Unknown6] = eControllerButtonY;
 	//a1->unknown18[Visor] = eControllerButtonA; // visor
-	//a1->unknown18[Unknown7] = eControllerButtonB;
+	//a1->unknown18[SkipCutscene] = eControllerButtonA;
 	//a1->unknown18[Unknown8] = eControllerButtonX;
 	//a1->unknown18[Unknown9] = eControllerButtonY;
 	//a1->unknown18[Unknown10] = eControllerButtonA;
@@ -675,7 +675,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	//a1->unknown18[Unknown13] = eControllerButtonY;
 	//a1->unknown18[Unknown14] = eControllerButtonA;
 	//a1->unknown18[Unknown15] = eControllerButtonB;
-	//a1->unknown18[Unknown16] = eControllerButtonX;
+	//a1->unknown18[SkipCutsceneConfirm] = eControllerButtonX;
 	//a1->unknown18[Unknown17] = eControllerButtonY;
 	//a1->unknown18[Unknown18] = eControllerButtonA;
 	//a1->unknown18[Unknown19] = eControllerButtonB;
