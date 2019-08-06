@@ -60,7 +60,7 @@ HaloReachHook<0x180012B60, __int64 __fastcall (__int64 a1, __int64 a2)> main_gam
 {
 	auto result = GameEngineHostCallback_Bypass([a1, a2]() {
 		return main_game_launch_create_local_squad(a1, a2);
-	});
+		});
 
 	return result;
 };
@@ -107,7 +107,7 @@ HaloReachHook<0x18078C550, void(const char* format, ...)> DamagedMediaHaltAndDis
 	va_start(args, format);
 
 	// #TODO: Assuming this buffer is big enough
-	char buffer[8192] = {}; 
+	char buffer[8192] = {};
 	vsnprintf(buffer, 8192, format, args);
 	buffer[sizeof(buffer) - 1] = 0;
 
@@ -145,7 +145,7 @@ HaloReachHook<0x180013EA0, char __fastcall (__int64 a1, __int64 a2)> main_game_l
 	char* const pBaseAddress = reinterpret_cast<char*>(GetHaloExecutable(HaloGameID::HaloReach));
 	const int& load_state = *reinterpret_cast<int*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
 
-	const char *load_state_names[] =
+	const char* load_state_names[] =
 	{
 		"initial",
 		"create_local_squad",
@@ -162,26 +162,26 @@ HaloReachHook<0x180013EA0, char __fastcall (__int64 a1, __int64 a2)> main_game_l
 		"terminate"
 	};
 
-	auto result = GameEngineHostCallback_Bypass([a1, a2, load_state, load_state_names]() 
+	auto result = GameEngineHostCallback_Bypass([a1, a2, load_state, load_state_names]()
 		{
 
-		static int previous_load_state = k_load_state_invalid;
+			static int previous_load_state = k_load_state_invalid;
 
-		if (load_state != previous_load_state)
-		{
-			previous_load_state = load_state;
-			printf("load_state changed to: %s\n", load_state_names[load_state]);
-		}
+			if (load_state != previous_load_state)
+			{
+				previous_load_state = load_state;
+				printf("load_state changed to: %s\n", load_state_names[load_state]);
+			}
 
-		auto result = main_game_launch(a1, a2);
+			auto result = main_game_launch(a1, a2);
 
-		if (load_state != previous_load_state)
-		{
-			previous_load_state = load_state;
-			printf("load_state changed to: %s\n", load_state_names[load_state]);
-		}
+			if (load_state != previous_load_state)
+			{
+				previous_load_state = load_state;
+				printf("load_state changed to: %s\n", load_state_names[load_state]);
+			}
 
-		return result;
+			return result;
 		}
 	);
 	return result;
@@ -389,7 +389,7 @@ HaloReachHook<0x1800122F0, int()> sub_1800122F0 = []()
 
 		return sub_1800122F0();
 
-	});
+		});
 	return result;
 };
 
@@ -469,7 +469,7 @@ HaloReachHook<0x180306D50, _BYTE* ()> preferences_initialize = []()
 	return result;
 };
 
-HaloReachHook<0x1803E3510, __int64(__fastcall)(uint8_t *, int, float, char)> camera_new = [](uint8_t *director, int camera_type, float camera_speed, char force_update)
+HaloReachHook<0x1803E3510, __int64(__fastcall)(uint8_t*, int, float, char)> camera_new = [](uint8_t* director, int camera_type, float camera_speed, char force_update)
 {
 	//if (camera_type == 4) // on death set the camera_mode to flying
 	//	camera_type = 2;
@@ -483,7 +483,184 @@ HaloReachHook<0x1804DA240, float(__stdcall)()> observer_get_suggested_field_of_v
 	auto result = observer_get_suggested_field_of_view();
 
 	return g_fieldOfView * 0.017453292f;
-	
+
+	return result;
+};
+
+enum ControllerButton32 : uint32_t
+{
+	eControllerButtonLeftTrigger,
+	eControllerButtonRightTrigger,
+	eControllerButtonDpadUp,
+	eControllerButtonDpadDown,
+	eControllerButtonDpadLeft,
+	eControllerButtonDpadRight,
+	eControllerButtonStart,
+	eControllerButtonSelect,
+	eControllerButtonLeftStick,
+	eControllerButtonRightStick,
+	eControllerButtonA,
+	eControllerButtonB,
+	eControllerButtonX,
+	eControllerButtonY,
+	eControllerButtonLeftBumper,
+	eControllerButtonRightBumper,
+
+	eControllerButton_Count,
+	eControllerButton_None = 0xFF, // An invalid controller button (for use in unset bindings)
+};
+
+#pragma pack(push, 1)
+struct s_bindings_table
+{
+	float ControllerSensitivityX;
+	float ControllerSensitivityY;
+	float unknown8;
+	float unknownC;
+	float unknown10;
+	BYTE unknown14;
+	BYTE __padding15[3];
+	ControllerButton32 unknown18[41];
+	WORD unknownBC;
+	BYTE unknownBE;
+	BYTE unknownBF;
+	WORD unknownC0;
+	BYTE unknownC2;
+	BYTE unknownC3;
+	WORD unknownC4;
+	BYTE __paddingC6[2];
+	float unknownC8;
+	float unknownCC;
+	float unknownD0;
+	float unknownD4;
+};
+#pragma pack(pop)
+static_assert(sizeof(s_bindings_table) == 0xD8, "");
+
+static int test_button = 0;
+
+HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_set_default = [](s_bindings_table* a1)
+{
+	auto result = bindings_set_default(a1);
+
+	// 0 for left trigger
+	// 1 for right trigger
+
+	//memset(a1->unknown18, 0, sizeof(a1->unknown18));
+	//for (int i = 0; i < _countof(a1->unknown18); i++)
+	//{
+	//	a1->unknown18[i] = ControllerButton32::eControllerButtonLeftTrigger;
+	//}
+
+	enum Action
+	{
+		Jump,
+		MaybeSwitchNade,
+		SwitchWeapon,
+		Use,
+		Melee,
+		Ability,
+		ThrowGrenade,
+		Fire,
+		Crouch,
+		Zoom,
+		VehicleBrake,
+		Unknown,
+	};
+
+	// default ordering
+	assert(a1->unknown18[Jump] == eControllerButtonA);
+	assert(a1->unknown18[MaybeSwitchNade] == eControllerButtonB);
+	assert(a1->unknown18[SwitchWeapon] == eControllerButtonY);
+	assert(a1->unknown18[Use] == eControllerButtonX);
+	assert(a1->unknown18[Melee] == eControllerButtonRightBumper);
+	assert(a1->unknown18[Ability] == eControllerButtonLeftBumper);
+	assert(a1->unknown18[ThrowGrenade] == eControllerButtonLeftTrigger);
+	assert(a1->unknown18[Fire] == eControllerButtonRightTrigger);
+	assert(a1->unknown18[Crouch] == eControllerButtonLeftStick);
+	assert(a1->unknown18[Zoom] == eControllerButtonRightStick);
+	assert(a1->unknown18[VehicleBrake] == eControllerButtonLeftTrigger);
+	assert(a1->unknown18[Unknown] == eControllerButtonB);
+	assert(a1->unknown18[12] == eControllerButtonRightBumper);
+	assert(a1->unknown18[13] == eControllerButtonLeftBumper);
+	assert(a1->unknown18[14] == eControllerButtonB);
+	assert(a1->unknown18[15] == eControllerButtonDpadUp);
+	assert(a1->unknown18[16] == eControllerButtonStart);
+	assert(a1->unknown18[17] == eControllerButtonSelect);
+	assert(a1->unknown18[18] == eControllerButtonDpadLeft);
+	assert(a1->unknown18[19] == eControllerButtonDpadRight);
+	assert(a1->unknown18[20] == eControllerButtonDpadLeft);
+	assert(a1->unknown18[21] == eControllerButtonA);
+	assert(a1->unknown18[22] == eControllerButtonB);
+	assert(a1->unknown18[23] == eControllerButtonDpadDown);
+	assert(a1->unknown18[24] == eControllerButtonDpadUp);
+	assert(a1->unknown18[25] == eControllerButtonDpadLeft);
+	assert(a1->unknown18[26] == eControllerButtonDpadRight);
+	assert(a1->unknown18[27] == eControllerButtonRightBumper);
+	assert(a1->unknown18[28] == eControllerButtonLeftBumper);
+	assert(a1->unknown18[29] == eControllerButtonDpadUp);
+	assert(a1->unknown18[30] == eControllerButtonY);
+	assert(a1->unknown18[31] == eControllerButtonDpadUp);
+	assert(a1->unknown18[32] == eControllerButtonDpadDown);
+	assert(a1->unknown18[33] == eControllerButtonSelect);
+	assert(a1->unknown18[34] == eControllerButtonDpadLeft);
+	assert(a1->unknown18[35] == eControllerButtonX);
+	assert(a1->unknown18[36] == eControllerButtonSelect);
+	assert(a1->unknown18[37] == eControllerButtonDpadUp);
+	assert(a1->unknown18[38] == eControllerButtonX);
+	assert(a1->unknown18[39] == eControllerButtonB);
+	assert(a1->unknown18[40] == eControllerButtonB);
+
+	for (int i = 0; i < _countof(a1->unknown18); i++)
+	{
+		a1->unknown18[i] = ControllerButton32::eControllerButtonLeftTrigger;
+	}
+
+	//a1->unknown18[Jump] = eControllerButtonB;
+	//a1->unknown18[MaybeSwitchNade] = eControllerButtonB; // unknown
+	//a1->unknown18[SwitchWeapon] = eControllerButtonB;
+	//a1->unknown18[Use] = eControllerButtonB;
+	//a1->unknown18[Melee] = eControllerButtonA; // meele
+	//a1->unknown18[Ability] = eControllerButtonB; // spartan ability
+	//a1->unknown18[ThrowGrenade] = eControllerButtonX; // gnade
+	//a1->unknown18[Fire] = eControllerButtonY; // shoot
+	//a1->unknown18[8] = eControllerButtonA; // crouch
+	//a1->unknown18[9] = eControllerButtonB;  // zoom
+	//a1->unknown18[10] = eControllerButtonX;  // brake vehicle
+	//a1->unknown18[11] = eControllerButtonY;  // UNKNOWN
+	a1->unknown18[12] = eControllerButtonA; // eControlbrake vehiclelerButtonRightBumper);
+	a1->unknown18[13] = eControllerButtonB; // eControllerButtonLeftBumper);
+	a1->unknown18[14] = eControllerButtonX; // eControllerButtonB);
+	a1->unknown18[15] = eControllerButtonY; // eControllerButtonDpadUp);
+	//a1->unknown18[16] = eControllerButtonB;
+	//a1->unknown18[17] = eControllerButtonB;
+	//a1->unknown18[18] = eControllerButtonB;
+	//a1->unknown18[19] = eControllerButtonB;
+	//a1->unknown18[20] = eControllerButtonB;
+	//a1->unknown18[21] = eControllerButtonB;
+	//a1->unknown18[22] = eControllerButtonB;
+	//a1->unknown18[23] = eControllerButtonB;
+	//a1->unknown18[24] = eControllerButtonB;
+	//a1->unknown18[25] = eControllerButtonB;
+	//a1->unknown18[26] = eControllerButtonB;
+	//a1->unknown18[27] = eControllerButtonB;
+	//a1->unknown18[28] = eControllerButtonB;
+	//a1->unknown18[29] = eControllerButtonB;
+	//a1->unknown18[30] = eControllerButtonB;
+	//a1->unknown18[31] = eControllerButtonB;
+	//a1->unknown18[32] = eControllerButtonB;
+	//a1->unknown18[33] = eControllerButtonB;
+	//a1->unknown18[34] = eControllerButtonB;
+	//a1->unknown18[35] = eControllerButtonB;
+	//a1->unknown18[36] = eControllerButtonB;
+	//a1->unknown18[37] = eControllerButtonB;
+	//a1->unknown18[38] = eControllerButtonB;
+	//a1->unknown18[39] = eControllerButtonB;
+	//a1->unknown18[40] = eControllerButtonB;
+
+
+	//a1->unknown18[test_button] = ControllerButton32::eControllerButtonX;
+
 	return result;
 };
 
@@ -502,7 +679,7 @@ void init_haloreach_hooks()
 	g_fieldOfView = GetPrivateProfileIntW(L"Camera", L"FieldOfView", 78, L".\\Settings.ini");
 	static wchar_t player_name[16] = {};
 	GetPrivateProfileStringW(L"Player", L"Name", L"Player", player_name, 16, L".\\Settings.ini");
-	input_update.SetCallback([](void *) { SetPlayerName(0, player_name); }, nullptr);
+	input_update.SetCallback([](void*) { SetPlayerName(0, player_name); }, nullptr);
 
 	CustomWindow::SetupHooks();
 	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
