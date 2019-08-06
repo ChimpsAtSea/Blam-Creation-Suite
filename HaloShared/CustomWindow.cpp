@@ -41,10 +41,11 @@ LRESULT CALLBACK CustomWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 		g_gameManuallyKilled = true;
 		PostQuitMessage(WM_QUIT);
 		break;
-	default:
-		return DefWindowProc(hwnd, msg, wParam, lParam);
+	case WM_SIZE:
+		// #TODO: tell game to resize
+		break;
 	}
-	return 0;
+	return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
 ATOM WINAPI CustomWindow::CustomRegisterClassExA(_In_ WNDCLASSEXA* arg)
@@ -88,7 +89,7 @@ HWND WINAPI CustomWindow::CustomCreateWindowExA(
 		dwExStyle,
 		lpClassName,
 		"Halo Reach",
-		dwStyle,
+		dwStyle | WS_SIZEBOX,
 		X,
 		Y,
 		nWidth,
