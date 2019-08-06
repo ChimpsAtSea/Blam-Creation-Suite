@@ -15,6 +15,7 @@ CurrentState g_CurrentGameState = CurrentState::eInactive;
 bool g_gameManuallyKilled = false;
 bool isHooked = false;
 WORD g_frameLimit = 60;
+int g_fieldOfView = 78;
 
 // Halo Reach Variables
 
@@ -55,22 +56,22 @@ static FunctionHook<HaloGameID::HaloReach, 0x1806C2890, HWND()> create_window = 
 	return hwnd;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x180012B60, __int64 __fastcall (__int64 a1, __int64 a2)> main_game_launch_sequence1 = [](__int64 a1, __int64 a2)
+FunctionHook<HaloGameID::HaloReach, 0x180012B60, __int64 __fastcall (__int64 a1, __int64 a2)> main_game_launch_create_local_squad = [](__int64 a1, __int64 a2)
 {
 	auto result = GameEngineHostCallback_Bypass([a1, a2]() {
-		return main_game_launch_sequence1(a1, a2);
-		});
+		return main_game_launch_create_local_squad(a1, a2);
+	});
 
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x18004AFC0, char* (char* dst, char* format, ...)> s_static_string_256_print = [](char* dst, char* format, ...)
+FunctionHook<HaloGameID::HaloReach, 0x18004AFC0, char* (char* dst, char* format, ...)> sprintf_256 = [](char* dst, char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
 
 	//vprintf(format, args); printf("\n");
-	vsnprintf(dst, 256i64, format, args);
+	vsnprintf(dst, 256, format, args);
 
 	va_end(args);
 
@@ -100,7 +101,7 @@ FunctionHook<HaloGameID::HaloReach, 0x1803C9220, __int64 __fastcall (s_game_opti
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x18078C550, void(const char* format, ...)> sub_18078C550 = [](const char* format, ...)
+FunctionHook<HaloGameID::HaloReach, 0x18078C550, void(const char* format, ...)> DamagedMediaHaltAndDisplayError = [](const char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -142,35 +143,45 @@ void main_status_hook(__int64 a1, ...)
 FunctionHook<HaloGameID::HaloReach, 0x180013EA0, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = [](__int64 a1, __int64 a2)
 {
 	char* const pBaseAddress = reinterpret_cast<char*>(GetHaloExecutable(HaloGameID::HaloReach));
-	const DWORD& dword_1810EC5A4 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
+	const int& load_state = *reinterpret_cast<int*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
 
-	auto result = GameEngineHostCallback_Bypass([a1, a2, &dword_1810EC5A4]() {
+	const char *load_state_names[] =
+	{
+		"initial",
+		"create_local_squad",
+		"select_game_mode",
+		"saved_film",
+		"campaign",
+		"previous_game_state",
+		"multiplayer",
+		"survival",
+		"wait_for_party",
+		"join_remote_squad",
+		"unused",
+		"start_game",
+		"terminate"
+	};
 
-		static DWORD previous_dword_1810EC5A4 = -1;
+	auto result = GameEngineHostCallback_Bypass([a1, a2, load_state, load_state_names]() {
 
-		if (dword_1810EC5A4 != previous_dword_1810EC5A4)
+		static int previous_load_state = k_load_state_invalid;
+
+		if (load_state != previous_load_state)
 		{
-			previous_dword_1810EC5A4 = dword_1810EC5A4;
-			printf("dword_1810EC5A4 changed to: %d\n", dword_1810EC5A4);
+			previous_load_state = load_state;
+			printf("load_state changed to: %s\n", load_state_names[load_state]);
 		}
 
 		auto result = main_game_launch(a1, a2);
 
-		if (dword_1810EC5A4 != previous_dword_1810EC5A4)
+		if (load_state != previous_load_state)
 		{
-			previous_dword_1810EC5A4 = dword_1810EC5A4;
-			printf("dword_1810EC5A4 changed to: %d\n", dword_1810EC5A4);
+			previous_load_state = load_state;
+			printf("load_state changed to: %s\n", load_state_names[load_state]);
 		}
 
 		return result;
-		});
-	return result;
-};
-
-FunctionHook<HaloGameID::HaloReach, 0x180108FB0, char* __fastcall (uint8_t* pSimulationWatcher, char* dst)> simulation_watcher_get_status = [](uint8_t* pSimulationWatcher, char* dst)
-{
-	auto result = simulation_watcher_get_status(pSimulationWatcher, dst);
-	printf("%s\n%s\n", dst, result);
+	});
 	return result;
 };
 
@@ -187,9 +198,9 @@ FunctionHook<HaloGameID::HaloReach, 0x1800129B0, void* __stdcall ()> main_thread
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x180013EA0, const char* __fastcall (e_peer_property game_load_status)> sub_180071100 = [](e_peer_property game_load_status)
+FunctionHook<HaloGameID::HaloReach, 0x180013EA0, const char* __fastcall (e_peer_property game_load_status)> peer_property_get_string = [](e_peer_property game_load_status)
 {
-	auto pGameLoadStatusStr = sub_180071100(game_load_status);
+	auto pGameLoadStatusStr = peer_property_get_string(game_load_status);
 
 	// this is to prevent spam
 	last_game_load_status = game_load_status;
@@ -286,20 +297,6 @@ FunctionHook<HaloGameID::HaloReach, 0x180013EA0, const char* __fastcall (e_peer_
 	return pGameLoadStatusStr;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x180013090, __int64 __fastcall (__int64 a1)> sub_180013090 = [](__int64 a1)
-{
-	auto result = sub_180013090(a1);
-	auto game_options = (s_game_options*)(a1 + 2280);
-	return result;
-};
-
-FunctionHook<HaloGameID::HaloReach, 0x18034A7E0, bool __fastcall (s_game_options* a1)> game_options_verify = [](s_game_options* a1)
-{
-	auto result = game_options_verify(a1);
-	WriteLineVerbose("s_game_options::scenario_path: %s", a1->scenario_path);
-	return result;
-};
-
 FunctionHook<HaloGameID::HaloReach, 0x180012200, __int64(__fastcall)(__int64 a1)> sub_180012200 = [](__int64 a1)
 {
 	// g_gameEngineHostCallback is normally nulled out by other code.
@@ -369,7 +366,7 @@ FunctionHook<HaloGameID::HaloReach, 0x1800122F0, int()> sub_1800122F0 = []()
 
 		return sub_1800122F0();
 
-		});
+	});
 	return result;
 };
 
@@ -426,12 +423,6 @@ FunctionHook<HaloGameID::HaloReach, 0x180307B10, char(__fastcall)()> input_updat
 
 	CustomWindow::Update();
 
-	//test print on tick update
-	//printf("player[%d].Name: %S\n", 0, g_player_profiles[0].Name);
-	//printf("g_game_options->frame_limit: %d\n", g_game_options.ptr()->frame_limit);
-
-	SetPlayerName(0, L"Squaresome"); // TODO: get this from a config file
-
 	return input_update();
 
 };
@@ -448,6 +439,24 @@ FunctionHook<HaloGameID::HaloReach, 0x180780D90, preferences_set_bindings_func> 
 	return result;
 };
 
+FunctionHook<HaloGameID::HaloReach, 0x1803E3510, __int64(__fastcall)(uint8_t *, int, float, char)> camera_new = [](uint8_t *director, int camera_type, float camera_speed, char force_update)
+{
+	if (camera_type == 4) // on death set the camera_mode to flying
+		camera_type = 2;
+
+	auto result = camera_new(director, camera_type, camera_speed, force_update);
+	return result;
+};
+
+FunctionHook<HaloGameID::HaloReach, 0x1804DA240, float(__stdcall)()> observer_get_suggested_field_of_view = []()
+{
+	auto result = observer_get_suggested_field_of_view();
+
+	return g_fieldOfView * 0.017453292f;
+
+	return result;
+};
+
 void init_haloreach_hooks()
 {
 	check_library_can_load("bink2w64.dll");
@@ -459,7 +468,10 @@ void init_haloreach_hooks()
 	physical_memory_stage_push = get_function_ptr<HaloGameID::HaloReach, 0x1803FB790, physical_memory_stage_push_func>();
 	wait_for_render_thread = get_function_ptr<HaloGameID::HaloReach, 0x18031F6A0, wait_for_render_thread_func>();
 
-	g_frameLimit = 98; // update this here
+	// TODO: read these from config
+	g_frameLimit = 98;
+	g_fieldOfView = 90;
+	input_update.SetCallback([](void *) { SetPlayerName(0, L"Twister"); }, nullptr);
 
 	CustomWindow::SetupHooks();
 	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
