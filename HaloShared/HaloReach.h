@@ -245,6 +245,7 @@ extern CurrentState g_CurrentGameState;
 extern bool g_gameManuallyKilled;
 extern bool isHooked;
 extern WORD g_frameLimit;
+extern int g_fieldOfView;
 extern HICON g_icon;
 
 typedef void(*rasterizer_initialize_func)();

@@ -10,6 +10,7 @@
 #include <malloc.h>
 #include <thread>
 #include <assert.h>
+#include <inttypes.h>
 
 #include "resource.h"
 

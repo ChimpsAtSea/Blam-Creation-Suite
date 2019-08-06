@@ -71,7 +71,7 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member18 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[18]");
 	//gameEngineHostCallbackVftbl.Member19 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[19]");
 	gameEngineHostCallbackVftbl.Member19 = [](GameEngineHostCallback* a1, __int64 a2) {
-		WriteLineVerbose("GameEngineHostCallback::vftable[19] %p", a2);
+		WriteLineVerbose("GameEngineHostCallback::vftable[19] %016llx", a2);
 		return __int64(0);
 	};
 	gameEngineHostCallbackVftbl.Member20 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[20]");
