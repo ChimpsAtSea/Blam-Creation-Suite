@@ -468,10 +468,10 @@ void init_haloreach_hooks()
 	physical_memory_stage_push = get_function_ptr<HaloGameID::HaloReach, 0x1803FB790, physical_memory_stage_push_func>();
 	wait_for_render_thread = get_function_ptr<HaloGameID::HaloReach, 0x18031F6A0, wait_for_render_thread_func>();
 
-	// TODO: read these from config
-	g_frameLimit = 98;
-	g_fieldOfView = 90;
-	input_update.SetCallback([](void *) { SetPlayerName(0, L"Twister"); }, nullptr);
+	g_frameLimit = GetPrivateProfileIntW(L"Game", L"FrameLimit", 60, L".\\Settings.ini");
+	g_fieldOfView = GetPrivateProfileIntW(L"Camera", L"FieldOfView", 78, L".\\Settings.ini");
+	//wchar_t player_name[16]; GetPrivateProfileStringW(L"Player", L"Name", L"Swiggity Swooty", player_name, 16, L".\\Settings.ini");
+	input_update.SetCallback([/*player_name*/](void *) { SetPlayerName(0, L"Swiggity Swooty"); }, nullptr); // this won't let me pass player_name as an arg Bit Trigg please help
 
 	CustomWindow::SetupHooks();
 	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
