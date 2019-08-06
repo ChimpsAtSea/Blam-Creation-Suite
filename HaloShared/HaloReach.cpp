@@ -521,7 +521,7 @@ struct s_bindings_table
 	float unknown10;
 	BYTE unknown14;
 	BYTE __padding15[3];
-	ControllerButton32 unknown18[41];
+	ControllerButton32 ControllerButtons[41];
 	WORD unknownBC;
 	BYTE unknownBE;
 	BYTE unknownBF;
@@ -547,10 +547,10 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	// 0 for left trigger
 	// 1 for right trigger
 
-	//memset(a1->unknown18, 0, sizeof(a1->unknown18));
-	//for (int i = 0; i < _countof(a1->unknown18); i++)
+	//memset(a1->ControllerButtons, 0, sizeof(a1->ControllerButtons));
+	//for (int i = 0; i < _countof(a1->ControllerButtons); i++)
 	//{
-	//	a1->unknown18[i] = ControllerButton32::eControllerButtonLeftTrigger;
+	//	a1->ControllerButtons[i] = ControllerButton32::eControllerButtonLeftTrigger;
 	//}
 
 	enum Action
@@ -599,61 +599,122 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	};
 
 	// default expected ordering
-	assert(a1->unknown18[Jump] == eControllerButtonA);
-	assert(a1->unknown18[SwitchNade] == eControllerButtonB);
-	assert(a1->unknown18[SwitchWeapon] == eControllerButtonY);
-	assert(a1->unknown18[Action] == eControllerButtonX);
-	assert(a1->unknown18[Melee] == eControllerButtonRightBumper);
-	assert(a1->unknown18[Equipment] == eControllerButtonLeftBumper);
-	assert(a1->unknown18[ThrowGrenade] == eControllerButtonLeftTrigger);
-	assert(a1->unknown18[Fire] == eControllerButtonRightTrigger);
-	assert(a1->unknown18[Crouch] == eControllerButtonLeftStick);
-	assert(a1->unknown18[Zoom] == eControllerButtonRightStick);
-	assert(a1->unknown18[VehicleBrake] == eControllerButtonLeftTrigger);
-	assert(a1->unknown18[Unknown] == eControllerButtonB);
-	assert(a1->unknown18[BrakeVehicle2] == eControllerButtonRightBumper);
-	assert(a1->unknown18[Unknown1] == eControllerButtonLeftBumper);
-	assert(a1->unknown18[Unknown2] == eControllerButtonB);
-	assert(a1->unknown18[Unknown3] == eControllerButtonDpadUp);
-	assert(a1->unknown18[Unknown4] == eControllerButtonStart);
-	assert(a1->unknown18[ShowWeaponDetails] == eControllerButtonSelect);
-	assert(a1->unknown18[Unknown5] == eControllerButtonDpadLeft);
-	assert(a1->unknown18[Unknown6] == eControllerButtonDpadRight);
-	assert(a1->unknown18[Visor] == eControllerButtonDpadLeft);
-	assert(a1->unknown18[SkipCutscene] == eControllerButtonA);
-	assert(a1->unknown18[Unknown8] == eControllerButtonB);
-	assert(a1->unknown18[Unknown9] == eControllerButtonDpadDown);
-	assert(a1->unknown18[Unknown10] == eControllerButtonDpadUp);
-	assert(a1->unknown18[Unknown11] == eControllerButtonDpadLeft);
-	assert(a1->unknown18[Unknown12] == eControllerButtonDpadRight);
-	assert(a1->unknown18[UnknownPhysicsDebug1] == eControllerButtonRightBumper);
-	assert(a1->unknown18[UnknownPhysicsDebug2] == eControllerButtonLeftBumper);
-	assert(a1->unknown18[Unknown15] == eControllerButtonDpadUp);
-	assert(a1->unknown18[SkipCutsceneConfirm] == eControllerButtonY);
-	assert(a1->unknown18[Unknown17] == eControllerButtonDpadUp);
-	assert(a1->unknown18[Unknown18] == eControllerButtonDpadDown);
-	assert(a1->unknown18[Unknown19] == eControllerButtonSelect);
-	assert(a1->unknown18[Unknown20] == eControllerButtonDpadLeft);
-	assert(a1->unknown18[Unknown21] == eControllerButtonX);
-	assert(a1->unknown18[Unknown22] == eControllerButtonSelect);
-	assert(a1->unknown18[Unknown23] == eControllerButtonDpadUp);
-	assert(a1->unknown18[Unknown24] == eControllerButtonX);
-	assert(a1->unknown18[Unknown25] == eControllerButtonB);
-	assert(a1->unknown18[Unknown26] == eControllerButtonB);
+	assert(a1->ControllerButtons[Jump] == eControllerButtonA);
+	assert(a1->ControllerButtons[SwitchNade] == eControllerButtonB);
+	assert(a1->ControllerButtons[SwitchWeapon] == eControllerButtonY);
+	assert(a1->ControllerButtons[Action] == eControllerButtonX);
+	assert(a1->ControllerButtons[Melee] == eControllerButtonRightBumper);
+	assert(a1->ControllerButtons[Equipment] == eControllerButtonLeftBumper);
+	assert(a1->ControllerButtons[ThrowGrenade] == eControllerButtonLeftTrigger);
+	assert(a1->ControllerButtons[Fire] == eControllerButtonRightTrigger);
+	assert(a1->ControllerButtons[Crouch] == eControllerButtonLeftStick);
+	assert(a1->ControllerButtons[Zoom] == eControllerButtonRightStick);
+	assert(a1->ControllerButtons[VehicleBrake] == eControllerButtonLeftTrigger);
+	assert(a1->ControllerButtons[Unknown] == eControllerButtonB);
+	assert(a1->ControllerButtons[BrakeVehicle2] == eControllerButtonRightBumper);
+	assert(a1->ControllerButtons[Unknown1] == eControllerButtonLeftBumper);
+	assert(a1->ControllerButtons[Unknown2] == eControllerButtonB);
+	assert(a1->ControllerButtons[Unknown3] == eControllerButtonDpadUp);
+	assert(a1->ControllerButtons[Unknown4] == eControllerButtonStart);
+	assert(a1->ControllerButtons[ShowWeaponDetails] == eControllerButtonSelect);
+	assert(a1->ControllerButtons[Unknown5] == eControllerButtonDpadLeft);
+	assert(a1->ControllerButtons[Unknown6] == eControllerButtonDpadRight);
+	assert(a1->ControllerButtons[Visor] == eControllerButtonDpadLeft);
+	assert(a1->ControllerButtons[SkipCutscene] == eControllerButtonA);
+	assert(a1->ControllerButtons[Unknown8] == eControllerButtonB);
+	assert(a1->ControllerButtons[Unknown9] == eControllerButtonDpadDown);
+	assert(a1->ControllerButtons[Unknown10] == eControllerButtonDpadUp);
+	assert(a1->ControllerButtons[Unknown11] == eControllerButtonDpadLeft);
+	assert(a1->ControllerButtons[Unknown12] == eControllerButtonDpadRight);
+	assert(a1->ControllerButtons[UnknownPhysicsDebug1] == eControllerButtonRightBumper);
+	assert(a1->ControllerButtons[UnknownPhysicsDebug2] == eControllerButtonLeftBumper);
+	assert(a1->ControllerButtons[Unknown15] == eControllerButtonDpadUp);
+	assert(a1->ControllerButtons[SkipCutsceneConfirm] == eControllerButtonY);
+	assert(a1->ControllerButtons[Unknown17] == eControllerButtonDpadUp);
+	assert(a1->ControllerButtons[Unknown18] == eControllerButtonDpadDown);
+	assert(a1->ControllerButtons[Unknown19] == eControllerButtonSelect);
+	assert(a1->ControllerButtons[Unknown20] == eControllerButtonDpadLeft);
+	assert(a1->ControllerButtons[Unknown21] == eControllerButtonX);
+	assert(a1->ControllerButtons[Unknown22] == eControllerButtonSelect);
+	assert(a1->ControllerButtons[Unknown23] == eControllerButtonDpadUp);
+	assert(a1->ControllerButtons[Unknown24] == eControllerButtonX);
+	assert(a1->ControllerButtons[Unknown25] == eControllerButtonB);
+	assert(a1->ControllerButtons[Unknown26] == eControllerButtonB);
 
-	if (g_controlsLayout != 0) // #TODO: Implement enum
+	enum ControlsLayout
 	{
-		// RECON 
-		a1->unknown18[Jump] = eControllerButtonA;
-		a1->unknown18[Melee] = eControllerButtonB;
-		a1->unknown18[SwitchWeapon] = eControllerButtonY;
-		a1->unknown18[SwitchNade] = eControllerButtonX;
-		a1->unknown18[Equipment] = eControllerButtonLeftBumper;
-		a1->unknown18[Action] = eControllerButtonRightBumper;
-		a1->unknown18[Fire] = eControllerButtonRightTrigger;
-		a1->unknown18[ThrowGrenade] = eControllerButtonLeftTrigger;
-		a1->unknown18[Zoom] = eControllerButtonRightStick;
-		a1->unknown18[Crouch] = eControllerButtonLeftStick;
+		Default,
+		SouthPaw,
+		Boxer,
+		GreenThumb,
+		BumperJumper,
+		Recon
+	};
+
+	switch (g_controlsLayout)
+	{
+	case SouthPaw:
+		a1->ControllerButtons[Jump] = eControllerButtonA;
+		a1->ControllerButtons[Melee] = eControllerButtonLeftBumper;
+		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
+		a1->ControllerButtons[SwitchNade] = eControllerButtonB;
+		a1->ControllerButtons[Equipment] = eControllerButtonRightBumper;
+		a1->ControllerButtons[Action] = eControllerButtonX;
+		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
+		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
+		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
+		a1->ControllerButtons[Crouch] = eControllerButtonLeftStick;
+		break;
+	case Boxer:
+		a1->ControllerButtons[Jump] = eControllerButtonA;
+		a1->ControllerButtons[Melee] = eControllerButtonLeftTrigger;
+		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
+		a1->ControllerButtons[SwitchNade] = eControllerButtonB;
+		a1->ControllerButtons[Equipment] = eControllerButtonLeftBumper;
+		a1->ControllerButtons[Action] = eControllerButtonX;
+		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
+		a1->ControllerButtons[ThrowGrenade] = eControllerButtonRightBumper;
+		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
+		a1->ControllerButtons[Crouch] = eControllerButtonLeftStick;
+		break;
+	case GreenThumb:
+		a1->ControllerButtons[Jump] = eControllerButtonA;
+		a1->ControllerButtons[Melee] = eControllerButtonRightStick;
+		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
+		a1->ControllerButtons[SwitchNade] = eControllerButtonB;
+		a1->ControllerButtons[Equipment] = eControllerButtonLeftBumper;
+		a1->ControllerButtons[Action] = eControllerButtonX;
+		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
+		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
+		a1->ControllerButtons[Zoom] = eControllerButtonRightBumper;
+		a1->ControllerButtons[Crouch] = eControllerButtonLeftStick;
+		break;
+	case BumperJumper:
+		a1->ControllerButtons[Jump] = eControllerButtonLeftBumper;
+		a1->ControllerButtons[Melee] = eControllerButtonRightBumper;
+		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
+		a1->ControllerButtons[SwitchNade] = eControllerButtonA;
+		a1->ControllerButtons[Equipment] = eControllerButtonX;
+		a1->ControllerButtons[Action] = eControllerButtonB;
+		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
+		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
+		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
+		a1->ControllerButtons[Crouch] = eControllerButtonLeftStick;
+		break;
+	case Recon:
+		a1->ControllerButtons[Jump] = eControllerButtonA;
+		a1->ControllerButtons[Melee] = eControllerButtonB;
+		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
+		a1->ControllerButtons[SwitchNade] = eControllerButtonX;
+		a1->ControllerButtons[Equipment] = eControllerButtonLeftBumper;
+		a1->ControllerButtons[Action] = eControllerButtonRightBumper;
+		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
+		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
+		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
+		a1->ControllerButtons[Crouch] = eControllerButtonLeftStick;
+		break;
+	default:
+		break;
 	}
 
 	return result;
