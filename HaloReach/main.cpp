@@ -25,8 +25,6 @@ IGameEngine* pHaloReachEngine = nullptr;
 
 #define NULLSUB_LAMBDA_CUSTOM(message) []() { WriteLineVerbose(message); }
 
-#define WriteLineVerbose(str, ...) printf(str, ##__VA_ARGS__); printf("\n");
-#define WriteVerbose(str, ...) printf(str, ##__VA_ARGS__);
 
 
 GUID* __fastcall GetGuid(GameEvents* this, GUID* rGuid)
@@ -314,6 +312,7 @@ int WINAPI WinMain(
 		AllocConsole();
 		FILE* pStdOut = freopen("CONOUT$", "w", stdout);
 		assert(pStdOut);
+		SetConsoleTitleA("Halo Reach Console");
 	}
 
 	if (strstr(lpCmdLine, "-waitfordebugger"))
@@ -328,7 +327,7 @@ int WINAPI WinMain(
 
 	while (g_CurrentGameState != CurrentState::eFinished)
 	{
-		Sleep(1);
+		Sleep(10);
 	}
 
 #if _DEBUG

@@ -119,17 +119,6 @@ public:
 	base_type* const base = nullptr;
 
 private:
-	void SetHook(base_type* ptr)
-	{
-		base_type*& rHook = GetHook();
-		rHook = reinterpret_cast<base_type*>(ptr);
-	}
-
-	void SetBase(base_type* ptr)
-	{
-		base_type*& rBase = GetBase();
-		rBase = reinterpret_cast<base_type*>(ptr);
-	}
 
 	base_type*& GetHook()
 	{

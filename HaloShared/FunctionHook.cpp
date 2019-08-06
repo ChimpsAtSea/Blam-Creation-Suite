@@ -23,7 +23,7 @@ void FunctionHookBase::ProcessNode(HaloGameID gameID)
 		assert(rHook);
 
 		auto result = create_hook(m_gameID, m_offset, "FunctionHookBase", rHook, rBase);
-		printf("%i", result);
+		assert(result == 0);
 	}
 	if (m_pNextFunctionHook)
 	{
