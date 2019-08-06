@@ -566,6 +566,35 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		Zoom,
 		VehicleBrake,
 		Unknown,
+		BrakeVehicle2,
+		Unknown1,
+		Unknown2,
+		Unknown3,
+		Unknown4,
+		ShowWeaponDetails,
+		Unknown5,
+		Unknown6,
+		Visor,
+		Unknown7,
+		Unknown8,
+		Unknown9,
+		Unknown10,
+		Unknown11,
+		Unknown12,
+		Unknown13,
+		Unknown14,
+		Unknown15,
+		Unknown16,
+		Unknown17,
+		Unknown18,
+		Unknown19,
+		Unknown20,
+		Unknown21,
+		Unknown22,
+		Unknown23,
+		Unknown24,
+		Unknown25,
+		Unknown26,
 	};
 
 	// default ordering
@@ -581,35 +610,35 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	assert(a1->unknown18[Zoom] == eControllerButtonRightStick);
 	assert(a1->unknown18[VehicleBrake] == eControllerButtonLeftTrigger);
 	assert(a1->unknown18[Unknown] == eControllerButtonB);
-	assert(a1->unknown18[12] == eControllerButtonRightBumper);
-	assert(a1->unknown18[13] == eControllerButtonLeftBumper);
-	assert(a1->unknown18[14] == eControllerButtonB);
-	assert(a1->unknown18[15] == eControllerButtonDpadUp);
-	assert(a1->unknown18[16] == eControllerButtonStart);
-	assert(a1->unknown18[17] == eControllerButtonSelect);
-	assert(a1->unknown18[18] == eControllerButtonDpadLeft);
-	assert(a1->unknown18[19] == eControllerButtonDpadRight);
-	assert(a1->unknown18[20] == eControllerButtonDpadLeft);
-	assert(a1->unknown18[21] == eControllerButtonA);
-	assert(a1->unknown18[22] == eControllerButtonB);
-	assert(a1->unknown18[23] == eControllerButtonDpadDown);
-	assert(a1->unknown18[24] == eControllerButtonDpadUp);
-	assert(a1->unknown18[25] == eControllerButtonDpadLeft);
-	assert(a1->unknown18[26] == eControllerButtonDpadRight);
-	assert(a1->unknown18[27] == eControllerButtonRightBumper);
-	assert(a1->unknown18[28] == eControllerButtonLeftBumper);
-	assert(a1->unknown18[29] == eControllerButtonDpadUp);
-	assert(a1->unknown18[30] == eControllerButtonY);
-	assert(a1->unknown18[31] == eControllerButtonDpadUp);
-	assert(a1->unknown18[32] == eControllerButtonDpadDown);
-	assert(a1->unknown18[33] == eControllerButtonSelect);
-	assert(a1->unknown18[34] == eControllerButtonDpadLeft);
-	assert(a1->unknown18[35] == eControllerButtonX);
-	assert(a1->unknown18[36] == eControllerButtonSelect);
-	assert(a1->unknown18[37] == eControllerButtonDpadUp);
-	assert(a1->unknown18[38] == eControllerButtonX);
-	assert(a1->unknown18[39] == eControllerButtonB);
-	assert(a1->unknown18[40] == eControllerButtonB);
+	assert(a1->unknown18[BrakeVehicle2] == eControllerButtonRightBumper);
+	assert(a1->unknown18[Unknown1] == eControllerButtonLeftBumper);
+	assert(a1->unknown18[Unknown2] == eControllerButtonB);
+	assert(a1->unknown18[Unknown3] == eControllerButtonDpadUp);
+	assert(a1->unknown18[Unknown4] == eControllerButtonStart);
+	assert(a1->unknown18[ShowWeaponDetails] == eControllerButtonSelect);
+	assert(a1->unknown18[Unknown5] == eControllerButtonDpadLeft);
+	assert(a1->unknown18[Unknown6] == eControllerButtonDpadRight);
+	assert(a1->unknown18[Visor] == eControllerButtonDpadLeft);
+	assert(a1->unknown18[Unknown7] == eControllerButtonA);
+	assert(a1->unknown18[Unknown8] == eControllerButtonB);
+	assert(a1->unknown18[Unknown9] == eControllerButtonDpadDown);
+	assert(a1->unknown18[Unknown10]== eControllerButtonDpadUp);
+	assert(a1->unknown18[Unknown11]== eControllerButtonDpadLeft);
+	assert(a1->unknown18[Unknown12]== eControllerButtonDpadRight);
+	assert(a1->unknown18[Unknown13]== eControllerButtonRightBumper);
+	assert(a1->unknown18[Unknown14]== eControllerButtonLeftBumper);
+	assert(a1->unknown18[Unknown15]== eControllerButtonDpadUp);
+	assert(a1->unknown18[Unknown16]== eControllerButtonY);
+	assert(a1->unknown18[Unknown17]== eControllerButtonDpadUp);
+	assert(a1->unknown18[Unknown18]== eControllerButtonDpadDown);
+	assert(a1->unknown18[Unknown19]== eControllerButtonSelect);
+	assert(a1->unknown18[Unknown20]== eControllerButtonDpadLeft);
+	assert(a1->unknown18[Unknown21]== eControllerButtonX);
+	assert(a1->unknown18[Unknown22]== eControllerButtonSelect);
+	assert(a1->unknown18[Unknown23]== eControllerButtonDpadUp);
+	assert(a1->unknown18[Unknown24]== eControllerButtonX);
+	assert(a1->unknown18[Unknown25]== eControllerButtonB);
+	assert(a1->unknown18[Unknown26]== eControllerButtonB);
 
 	for (int i = 0; i < _countof(a1->unknown18); i++)
 	{
@@ -624,39 +653,39 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	//a1->unknown18[Ability] = eControllerButtonB; // spartan ability
 	//a1->unknown18[ThrowGrenade] = eControllerButtonX; // gnade
 	//a1->unknown18[Fire] = eControllerButtonY; // shoot
-	//a1->unknown18[8] = eControllerButtonA; // crouch
-	//a1->unknown18[9] = eControllerButtonB;  // zoom
-	//a1->unknown18[10] = eControllerButtonX;  // brake vehicle
-	//a1->unknown18[11] = eControllerButtonY;  // UNKNOWN
-	a1->unknown18[12] = eControllerButtonA; // eControlbrake vehiclelerButtonRightBumper);
-	a1->unknown18[13] = eControllerButtonB; // eControllerButtonLeftBumper);
-	a1->unknown18[14] = eControllerButtonX; // eControllerButtonB);
-	a1->unknown18[15] = eControllerButtonY; // eControllerButtonDpadUp);
-	//a1->unknown18[16] = eControllerButtonB;
-	//a1->unknown18[17] = eControllerButtonB;
-	//a1->unknown18[18] = eControllerButtonB;
-	//a1->unknown18[19] = eControllerButtonB;
-	//a1->unknown18[20] = eControllerButtonB;
-	//a1->unknown18[21] = eControllerButtonB;
-	//a1->unknown18[22] = eControllerButtonB;
-	//a1->unknown18[23] = eControllerButtonB;
-	//a1->unknown18[24] = eControllerButtonB;
-	//a1->unknown18[25] = eControllerButtonB;
-	//a1->unknown18[26] = eControllerButtonB;
-	//a1->unknown18[27] = eControllerButtonB;
-	//a1->unknown18[28] = eControllerButtonB;
-	//a1->unknown18[29] = eControllerButtonB;
-	//a1->unknown18[30] = eControllerButtonB;
-	//a1->unknown18[31] = eControllerButtonB;
-	//a1->unknown18[32] = eControllerButtonB;
-	//a1->unknown18[33] = eControllerButtonB;
-	//a1->unknown18[34] = eControllerButtonB;
-	//a1->unknown18[35] = eControllerButtonB;
-	//a1->unknown18[36] = eControllerButtonB;
-	//a1->unknown18[37] = eControllerButtonB;
-	//a1->unknown18[38] = eControllerButtonB;
-	//a1->unknown18[39] = eControllerButtonB;
-	//a1->unknown18[40] = eControllerButtonB;
+	//a1->unknown18[Crouch] = eControllerButtonA; // crouch
+	//a1->unknown18[Zoom] = eControllerButtonB;  // zoom
+	//a1->unknown18[BrakeVehicle] = eControllerButtonX;  // brake vehicle
+	//a1->unknown18[Unknown] = eControllerButtonY;  // UNKNOWN
+	//a1->unknown18[BrakeVehicle2] = eControllerButtonA; // brake vehicle?
+	//a1->unknown18[Unknown1] = eControllerButtonB; // Unknown
+	//a1->unknown18[Unknown2] = eControllerButtonX; // Unknown
+	//a1->unknown18[Unknown3] = eControllerButtonY; // Unknown
+	//a1->unknown18[Unknown4] = eControllerButtonA;
+	//a1->unknown18[ShowWeaponDetails] = eControllerButtonB; // weapon details
+	//a1->unknown18[Unknown5] = eControllerButtonX;
+	//a1->unknown18[Unknown6] = eControllerButtonY;
+	//a1->unknown18[Visor] = eControllerButtonA; // visor
+	//a1->unknown18[Unknown7] = eControllerButtonB;
+	//a1->unknown18[Unknown8] = eControllerButtonX;
+	//a1->unknown18[Unknown9] = eControllerButtonY;
+	//a1->unknown18[Unknown10] = eControllerButtonA;
+	//a1->unknown18[Unknown11] = eControllerButtonB;
+	//a1->unknown18[Unknown12] = eControllerButtonX;
+	//a1->unknown18[Unknown13] = eControllerButtonY;
+	//a1->unknown18[Unknown14] = eControllerButtonA;
+	//a1->unknown18[Unknown15] = eControllerButtonB;
+	//a1->unknown18[Unknown16] = eControllerButtonX;
+	//a1->unknown18[Unknown17] = eControllerButtonY;
+	//a1->unknown18[Unknown18] = eControllerButtonA;
+	//a1->unknown18[Unknown19] = eControllerButtonB;
+	//a1->unknown18[Unknown20] = eControllerButtonX;
+	//a1->unknown18[Unknown21] = eControllerButtonY;
+	//a1->unknown18[Unknown22] = eControllerButtonA;
+	//a1->unknown18[Unknown23] = eControllerButtonB;
+	//a1->unknown18[Unknown24] = eControllerButtonX;
+	//a1->unknown18[Unknown25] = eControllerButtonY;
+	//a1->unknown18[Unknown26] = eControllerButtonLeftBumper;
 
 
 	//a1->unknown18[test_button] = ControllerButton32::eControllerButtonX;
