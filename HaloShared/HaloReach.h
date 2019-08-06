@@ -287,7 +287,7 @@ a41,a42,a43,a44,a45,a46,a47,a48, \
 a49,a50,a51,a52,a53,a54,a55,a56, \
 a57,a58,a59,a60,a61,a62,a63
 typedef char __fastcall preferences_set_bindings_func(preferences_set_bindings_args);
-extern FunctionHook<HaloGameID::HaloReach, 0x180780D90, preferences_set_bindings_func> preferences_set_bindings_type;
+extern HaloReachHook<0x180780D90, preferences_set_bindings_func> preferences_set_bindings_type;
 
 // Halo Reach Variables
 

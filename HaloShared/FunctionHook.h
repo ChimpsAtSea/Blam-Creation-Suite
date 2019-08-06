@@ -18,6 +18,9 @@ public:
 		}
 		else
 		{
+			bool hookOffsetExists = g_pLastFunctionHook->DoesOffsetExist(gameID, offset);
+			assert(hookOffsetExists == false);
+
 			g_pLastFunctionHook->m_pNextFunctionHook = this;
 			g_pLastFunctionHook = this;
 		}
@@ -46,13 +49,29 @@ public:
 		m_pCallback = pCallback;
 		m_pCallbackUserData = pCallbackUserData;
 	}
+
+private:
+	bool DoesOffsetExist(HaloGameID gameID, size_t offset)
+	{
+		if (m_gameID == gameID && offset == m_offset)
+		{
+			return true;
+		}
+		if (m_pNextFunctionHook)
+		{
+			return m_pNextFunctionHook->DoesOffsetExist(gameID, offset);
+		}
+		return false;
+	}
 };
 
 template<HaloGameID gameID, size_t offset, typename base_type>
 class FunctionHook : public FunctionHookBase
 {
 public:
-
+	static_assert(gameID == HaloGameID::NotSet || offset >= GetHaloBaseAddress(gameID), "Offset is out of bounds");
+	static_assert(gameID == HaloGameID::NotSet || offset < GetHaloTopAddress(gameID), "Offset is out of bounds");
+	
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args)
 	{
@@ -124,3 +143,5 @@ private:
 };
 
 
+template<size_t offset, typename base_type>
+using HaloReachHook = FunctionHook<HaloGameID::HaloReach, offset, base_type>;

@@ -37,7 +37,7 @@ typedef __int64(__fastcall* physical_memory_stage_push_func)(int a1);
 wait_for_render_thread_func wait_for_render_thread = nullptr;
 physical_memory_stage_push_func physical_memory_stage_push = nullptr;
 
-static FunctionHook<HaloGameID::HaloReach, 0x1806C2890, HWND()> create_window = []()
+static HaloReachHook<0x1806C2890, HWND()> create_window = []()
 {
 	char* pBaseAddress = (char*)GetHaloExecutable(HaloGameID::HaloReach);
 	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
@@ -55,7 +55,7 @@ static FunctionHook<HaloGameID::HaloReach, 0x1806C2890, HWND()> create_window = 
 	return hwnd;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x180012B60, __int64 __fastcall (__int64 a1, __int64 a2)> main_game_launch_sequence1 = [](__int64 a1, __int64 a2)
+HaloReachHook<0x180012B60, __int64 __fastcall (__int64 a1, __int64 a2)> main_game_launch_sequence1 = [](__int64 a1, __int64 a2)
 {
 	auto result = GameEngineHostCallback_Bypass([a1, a2]() {
 		return main_game_launch_sequence1(a1, a2);
@@ -64,7 +64,7 @@ FunctionHook<HaloGameID::HaloReach, 0x180012B60, __int64 __fastcall (__int64 a1,
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x18004AFC0, char* (char* dst, char* format, ...)> s_static_string_256_print = [](char* dst, char* format, ...)
+HaloReachHook<0x18004AFC0, char* (char* dst, char* format, ...)> s_static_string_256_print = [](char* dst, char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -77,12 +77,12 @@ FunctionHook<HaloGameID::HaloReach, 0x18004AFC0, char* (char* dst, char* format,
 	return dst;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x180012730, const char* ()> game_get_haloreach_path = []()
+HaloReachHook<0x180012730, const char* ()> game_get_haloreach_path = []()
 {
 	return halo_reach_path;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x18034A630, __int64 __fastcall (s_game_options* game_options)> game_options_new = [](s_game_options* game_options)
+HaloReachHook<0x18034A630, __int64 __fastcall (s_game_options* game_options)> game_options_new = [](s_game_options* game_options)
 {
 	auto result = game_options_new(game_options);
 
@@ -91,7 +91,7 @@ FunctionHook<HaloGameID::HaloReach, 0x18034A630, __int64 __fastcall (s_game_opti
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x1803C9220, __int64 __fastcall (s_game_options* a1)> load_scenario_into_game_options = [](s_game_options* a1)
+HaloReachHook<0x1803C9220, __int64 __fastcall (s_game_options* a1)> load_scenario_into_game_options = [](s_game_options* a1)
 {
 	auto result = load_scenario_into_game_options(a1);
 
@@ -100,7 +100,7 @@ FunctionHook<HaloGameID::HaloReach, 0x1803C9220, __int64 __fastcall (s_game_opti
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x18078C550, void(const char* format, ...)> sub_18078C550 = [](const char* format, ...)
+HaloReachHook<0x18078C550, void(const char* format, ...)> sub_18078C550 = [](const char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -139,7 +139,7 @@ void main_status_hook(__int64 a1, ...)
 	va_end(args);
 }
 
-FunctionHook<HaloGameID::HaloReach, 0x180013EA0, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = [](__int64 a1, __int64 a2)
+HaloReachHook<0x180013EA0, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = [](__int64 a1, __int64 a2)
 {
 	char* const pBaseAddress = reinterpret_cast<char*>(GetHaloExecutable(HaloGameID::HaloReach));
 	const DWORD& dword_1810EC5A4 = *reinterpret_cast<DWORD*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
@@ -167,14 +167,14 @@ FunctionHook<HaloGameID::HaloReach, 0x180013EA0, char __fastcall (__int64 a1, __
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x180108FB0, char* __fastcall (uint8_t* pSimulationWatcher, char* dst)> simulation_watcher_get_status = [](uint8_t* pSimulationWatcher, char* dst)
+HaloReachHook<0x180108FB0, char* __fastcall (uint8_t* pSimulationWatcher, char* dst)> simulation_watcher_get_status = [](uint8_t* pSimulationWatcher, char* dst)
 {
 	auto result = simulation_watcher_get_status(pSimulationWatcher, dst);
 	printf("%s\n%s\n", dst, result);
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x1800129B0, void* __stdcall ()> main_thread_routine = []()
+HaloReachHook<0x1800129B0, void* __stdcall ()> main_thread_routine = []()
 {
 	WriteLineVerbose("Starting game...");
 	g_CurrentGameState = CurrentState::eRunning;
@@ -187,7 +187,7 @@ FunctionHook<HaloGameID::HaloReach, 0x1800129B0, void* __stdcall ()> main_thread
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x180013EA0, const char* __fastcall (e_peer_property game_load_status)> sub_180071100 = [](e_peer_property game_load_status)
+HaloReachHook<0x180013EA0, const char* __fastcall (e_peer_property game_load_status)> sub_180071100 = [](e_peer_property game_load_status)
 {
 	auto pGameLoadStatusStr = sub_180071100(game_load_status);
 
@@ -286,21 +286,21 @@ FunctionHook<HaloGameID::HaloReach, 0x180013EA0, const char* __fastcall (e_peer_
 	return pGameLoadStatusStr;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x180013090, __int64 __fastcall (__int64 a1)> sub_180013090 = [](__int64 a1)
+HaloReachHook<0x180013090, __int64 __fastcall (__int64 a1)> sub_180013090 = [](__int64 a1)
 {
 	auto result = sub_180013090(a1);
 	auto game_options = (s_game_options*)(a1 + 2280);
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x18034A7E0, bool __fastcall (s_game_options* a1)> game_options_verify = [](s_game_options* a1)
+HaloReachHook<0x18034A7E0, bool __fastcall (s_game_options* a1)> game_options_verify = [](s_game_options* a1)
 {
 	auto result = game_options_verify(a1);
 	WriteLineVerbose("s_game_options::scenario_path: %s", a1->scenario_path);
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x180012200, __int64(__fastcall)(__int64 a1)> sub_180012200 = [](__int64 a1)
+HaloReachHook<0x180012200, __int64(__fastcall)(__int64 a1)> sub_180012200 = [](__int64 a1)
 {
 	// g_gameEngineHostCallback is normally nulled out by other code.
 	// it is perfectly okay to just use a bypass here but I have
@@ -337,7 +337,7 @@ FunctionHook<HaloGameID::HaloReach, 0x180012200, __int64(__fastcall)(__int64 a1)
 };
 
 typedef char* (__fastcall levels_try_and_get_scenario_path_func)(int campaign_id, unsigned int map_id, char* scenario_path, int size);
-FunctionHook<HaloGameID::HaloReach, 0x1803A6B30, levels_try_and_get_scenario_path_func> levels_try_and_get_scenario_path = [](int campaign_id, unsigned int map_id, char* scenario_path, int size)
+HaloReachHook<0x1803A6B30, levels_try_and_get_scenario_path_func> levels_try_and_get_scenario_path = [](int campaign_id, unsigned int map_id, char* scenario_path, int size)
 {
 	map_id = 0x10231971; // force the default map load code path
 
@@ -363,7 +363,7 @@ FunctionHook<HaloGameID::HaloReach, 0x1803A6B30, levels_try_and_get_scenario_pat
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x1800122F0, int()> sub_1800122F0 = []()
+HaloReachHook<0x1800122F0, int()> sub_1800122F0 = []()
 {
 	auto result = GameEngineHostCallback_Bypass([]() {
 
@@ -422,7 +422,7 @@ bool SetPlayerName(int index, const wchar_t name[16])
 	return true;
 }
 
-FunctionHook<HaloGameID::HaloReach, 0x180307B10, char(__fastcall)()> input_update = []() {
+HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 
 	CustomWindow::Update();
 
@@ -436,15 +436,22 @@ FunctionHook<HaloGameID::HaloReach, 0x180307B10, char(__fastcall)()> input_updat
 
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x1803080A0, char(__fastcall)(KeyCode a1)> sub_1803080A0 = [](KeyCode a1)
+HaloReachHook<0x1803080A0, char(__fastcall)(KeyCode a1)> sub_1803080A0 = [](KeyCode a1)
 {
 	auto result = sub_1803080A0(a1);
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach, 0x180780D90, preferences_set_bindings_func> preferences_set_bindings_type = [](preferences_set_bindings_args)
+HaloReachHook<0x180780D90, preferences_set_bindings_func> preferences_set_bindings_type = [](preferences_set_bindings_args)
 {
 	auto result = preferences_set_bindings_type(preferences_set_bindings_vals);
+	return result;
+};
+
+HaloReachHook<0x180306D50, _BYTE* ()> preferences_initialize = []()
+{
+	auto result = preferences_initialize();
+	WriteLineVerbose("preferences_initialize: %p", result);
 	return result;
 };
 

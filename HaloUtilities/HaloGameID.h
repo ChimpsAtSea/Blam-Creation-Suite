@@ -13,7 +13,17 @@ constexpr uint64_t GetHaloBaseAddress(HaloGameID gameID)
 	case HaloGameID::HaloReach:
 		return 0x180000000;
 	}
-	FATAL_ERROR("Unsupported HaloGameID");
+	return ~uint64_t();
+}
+
+constexpr uint64_t GetHaloTopAddress(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach:
+		return 0x184925000;
+	}
+	return ~uint64_t();
 }
 
 constexpr const char* GetHaloExecutableString(HaloGameID gameID)
