@@ -267,21 +267,12 @@ void initialize_custom_halo_reach_stuff()
 	init_haloreach_hooks();
 
 	__int64 result = CreateGameEngine(&pHaloReachEngine);
+	assert(pHaloReachEngine);
 
 	static s_game_launch_data game_launch_data = s_game_launch_data();
-	//game_launch_data.unknown2B438 = "C:\\!MCC\\haloreach\\maps\\m35.map";
 
-	if (pHaloReachEngine)
-	{
-		pHaloReachEngine->InitGraphics(0, 0, 0, 0);
-
-
-		// setup data for b1
-
-		//pHaloReachEngine->InitThread(nullptr, (__int64)&game_launch_data);
-		pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);
-
-	}
+	pHaloReachEngine->InitGraphics(0, 0, 0, 0);
+	pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);
 }
 
 void deinit_haloreach()
