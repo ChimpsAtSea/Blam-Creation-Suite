@@ -283,10 +283,10 @@ void deinit_haloreach()
 HICON g_icon = NULL;
 
 int WINAPI WinMain(
-	HINSTANCE hInstance,     
-	HINSTANCE hPrevInstance, 
-	LPSTR lpCmdLine,         
-	int nCmdShow             
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPSTR lpCmdLine,
+	_In_ int nShowCmd
 )
 {
 	g_icon = LoadIconA(GetModuleHandle(NULL), MAKEINTRESOURCEA(IDI_ICON1));
