@@ -396,21 +396,11 @@ struct s_game_launch_data_memzero
 
 struct __cppobj __declspec(align(8)) s_game_launch_data : s_game_launch_data_memzero
 {
-
-
-
 	s_game_launch_data(const s_game_launch_data& original)
 		: pGameHandle(GetModuleHandleA("HaloReach.dll"))
 	{
 		
 	}
-
-
-
-
-
-
-
 
 	s_game_launch_data()
 		: s_game_launch_data_memzero(sizeof(s_game_launch_data))
