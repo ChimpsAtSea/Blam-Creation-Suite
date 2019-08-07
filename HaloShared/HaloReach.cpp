@@ -26,7 +26,7 @@ HaloReachReference<DWORD, 0x1810EC584> dword_1810EC584;
 HaloReachReference<BYTE, 0x18342E55D> byte_18342E55D;
 HaloReachReference<BYTE, 0x183984DE4> byte_183984DE4;
 HaloReachReference<DWORD, 0x1810524AC> dword_1810524AC;
-HaloReachReference<s_player_profile[4], 0x183D43560> g_player_profiles;
+HaloReachReference<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
 HaloReachReference<s_game_options, 0x183B0FB70> g_game_options;
 HaloReachReference<wchar_t[4][32], 0x183DE6FB0> g_player_names;
 HaloReachReference<HWND, 0x1810EC5E0> g_hwnd;
@@ -723,6 +723,17 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	return result;
 };
 
+void WriteGameState()
+{
+	if (GetAsyncKeyState(VK_F8))
+	{
+		FILE *pGameStateFile = fopen("gamestate.hdr", "w+b");
+		auto pGameStateHeader = *(s_game_state_header **)0x183841B18;
+		fwrite(pGameStateHeader, 1, sizeof(s_game_state_header), pGameStateFile);
+		fclose(pGameStateFile);
+	}
+}
+
 void init_haloreach_hooks()
 {
 	check_library_can_load("bink2w64.dll");
@@ -737,6 +748,8 @@ void init_haloreach_hooks()
 	g_frameLimit = GetPrivateProfileIntW(L"Game", L"FrameLimit", 60, L".\\Settings.ini");
 	g_fieldOfView = GetPrivateProfileIntW(L"Camera", L"FieldOfView", 78, L".\\Settings.ini");
 	g_controlsLayout = GetPrivateProfileIntW(L"Player", L"ControlsLayout", 0, L".\\Settings.ini");
+
+	//input_update.SetCallback([](void *) { WriteGameState(); }, nullptr);
 
 	CustomWindow::SetupHooks();
 	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);

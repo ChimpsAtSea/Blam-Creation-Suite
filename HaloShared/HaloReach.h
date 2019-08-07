@@ -318,6 +318,19 @@ struct s_game_options
 static_assert(sizeof(s_game_options) == 0x1E9A0, "");
 typedef __int64(__fastcall* game_options_new_func)(s_game_options* game_options);
 
+struct s_game_state_header
+{
+	DWORD *unknown0;
+	char source_file[256];
+	char build[32];
+	DWORD unknown108;
+	BYTE unknown10C[4];
+	s_game_options game_options;
+	BYTE scenario_game_state[24];
+	BYTE unknown24C90[64];
+};
+static_assert(sizeof(s_game_state_header) == 0x1EB28, "");
+
 enum class CurrentState
 {
 	eInactive,
@@ -382,7 +395,7 @@ extern HaloReachReference<DWORD, 0x1810EC584> dword_1810EC584;
 extern HaloReachReference<BYTE, 0x18342E55D> byte_18342E55D;
 extern HaloReachReference<BYTE, 0x183984DE4> byte_183984DE4;
 extern HaloReachReference<DWORD, 0x1810524AC> dword_1810524AC;
-extern HaloReachReference<s_player_profile[4], 0x183D43560> g_player_profiles;
+extern HaloReachReference<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
 extern HaloReachReference<s_game_options, 0x183B0FB70> g_game_options;
 extern HaloReachReference<wchar_t[4][32], 0x183DE6FB0> g_player_names;
 extern HaloReachReference<HWND, 0x1810EC5E0> g_hwnd;

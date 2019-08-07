@@ -504,7 +504,7 @@ struct __cppobj __declspec(align(8)) s_game_launch_data : s_game_launch_data_mem
 		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 	};
-	struct unknown* pGameStateHeader = nullptr;
+	uint8_t* pGameStateHeader = nullptr;
 	_DWORD GameStateHeaderSize = 0;
 	_DWORD dword2B434 = 0;
 	const char* SavedFilmPath = nullptr;
@@ -588,7 +588,7 @@ struct s_game_launcher
 };
 static_assert(sizeof(s_game_launcher) == 0x2B7D0, "");
 
-struct s_player_profile
+struct c_controller_interface
 {
 	int Flags;
 	int ControllerIndex;

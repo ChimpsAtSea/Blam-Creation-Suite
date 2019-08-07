@@ -271,6 +271,16 @@ void initialize_custom_halo_reach_stuff()
 
 	static s_game_launch_data game_launch_data = s_game_launch_data();
 
+	if (FILE *pGameStateFile = fopen("gamestate.hdr", "r"))
+	{
+		s_game_state_header game_state_header = {};
+		fread(&game_state_header, 1, sizeof(s_game_state_header), pGameStateFile);
+		fclose(pGameStateFile);
+
+		game_launch_data.pGameStateHeader = reinterpret_cast<uint8 *>(&game_state_header);
+		game_launch_data.GameStateHeaderSize = sizeof(s_game_state_header);
+	}
+
 	pHaloReachEngine->InitGraphics(0, 0, 0, 0);
 	pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);
 }
