@@ -428,18 +428,21 @@ void check_library_can_load(const char* pLibName)
 	assert(hModule);
 }
 
-bool SetPlayerName(int index, const wchar_t name[16])
+bool SetPlayerName()
 {
-	// #TODO: Lets look into a version of this that doesn't run every frame
-	// WriteLineVerbose("Set player[%d].Name: %ls to ", index, name);
+	wchar_t name[16] = {};
+	GetPrivateProfileStringW(L"Player", L"Name", L"Player", name, 16, L".\\Settings.ini");
+	int index = 0; // GetPrivateProfileIntW(L"Player", L"Index", 0, L".\\Settings.ini");
 
 	if (wcsncmp(g_player_names[index], name, 16) == 0)
 	{
+		WriteLineVerbose("player[%d].Name already set", index);
 		return false;
 	}
 
 	wcsncpy_s(g_player_names[index], 32, name, 16);
 
+	WriteLineVerbose("player[%d].Name: set %ls", index, name);
 	return true;
 }
 
@@ -733,9 +736,6 @@ void init_haloreach_hooks()
 
 	g_frameLimit = GetPrivateProfileIntW(L"Game", L"FrameLimit", 60, L".\\Settings.ini");
 	g_fieldOfView = GetPrivateProfileIntW(L"Camera", L"FieldOfView", 78, L".\\Settings.ini");
-	static wchar_t player_name[16] = {};
-	GetPrivateProfileStringW(L"Player", L"Name", L"Player", player_name, 16, L".\\Settings.ini");
-	input_update.SetCallback([](void*) { SetPlayerName(0, player_name); }, nullptr);
 	g_controlsLayout = GetPrivateProfileIntW(L"Player", L"ControlsLayout", 0, L".\\Settings.ini");
 
 	CustomWindow::SetupHooks();

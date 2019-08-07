@@ -430,4 +430,6 @@ decltype(auto) GameEngineHostCallback_Bypass(T functionPtr, bool forceDisable = 
 }
 
 
+// callback functions
+extern bool SetPlayerName();
 

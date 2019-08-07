@@ -92,7 +92,7 @@ struct GameEngineHostCallback_vftbl
 	NullSubFunc* Member27;
 	NullSubFunc* Member28;
 	NullSubFunc* Member29;
-	NullSubFunc* GetPlayerName;
+	NullSubFunc* SetPlayerName;
 	NullSubFunc* Member31;
 	NullSubFunc* Member32;
 	NullSubFunc* Member33;
