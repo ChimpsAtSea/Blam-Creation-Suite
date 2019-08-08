@@ -1,6 +1,7 @@
 #include "haloshared-private-pch.h"
 
 // Custom Stuff
+
 bool useCustomGameEngineHostCallback = false;
 bool useCustomGameWindow = false;
 GameEngineHostCallback gameEngineHostCallback;
@@ -17,6 +18,7 @@ bool isHooked = false;
 WORD g_frameLimit = 60;
 int g_fieldOfView = 78;
 int g_controlsLayout = 0;
+bool g_pancamEnabled = false;
 
 // Halo Reach Variables
 
@@ -450,8 +452,9 @@ HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 
 	CustomWindow::Update();
 
-	return input_update();
 
+
+	return input_update();
 };
 
 HaloReachHook<0x1803080A0, char(__fastcall)(KeyCode a1)> sub_1803080A0 = [](KeyCode a1)
@@ -725,7 +728,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 
 void WriteGameState()
 {
-	if (GetAsyncKeyState(VK_F8))
+	if (GetAsyncKeyState(VK_F8)) 
 	{
 		FILE *pGameStateFile = fopen("gamestate.hdr", "w+b");
 		auto pGameStateHeader = *(s_game_state_header **)0x183841B18;
@@ -733,6 +736,15 @@ void WriteGameState()
 		fclose(pGameStateFile);
 	}
 }
+
+HaloReachHook<0x180450C20, char(__stdcall)()> pan_cam_enabled = []()
+{
+	auto result = pan_cam_enabled();
+
+	result = g_pancamEnabled;
+
+	return result;
+};
 
 void init_haloreach_hooks()
 {
@@ -748,6 +760,7 @@ void init_haloreach_hooks()
 	g_frameLimit = GetPrivateProfileIntW(L"Game", L"FrameLimit", 60, L".\\Settings.ini");
 	g_fieldOfView = GetPrivateProfileIntW(L"Camera", L"FieldOfView", 78, L".\\Settings.ini");
 	g_controlsLayout = GetPrivateProfileIntW(L"Player", L"ControlsLayout", 0, L".\\Settings.ini");
+	g_pancamEnabled = (bool)GetPrivateProfileIntW(L"Debug", L"PancamEnabled", 0, L".\\Settings.ini");
 
 	//input_update.SetCallback([](void *) { WriteGameState(); }, nullptr);
 
