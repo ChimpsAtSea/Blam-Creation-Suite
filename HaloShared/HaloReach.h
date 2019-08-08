@@ -5,11 +5,11 @@
 enum e_tls_offset
 {
 	// tls offsets for version 1.887.0.0 of haloreach.dll
-	// 0x0
+	// 0x0 unknown is this even one?
 	_tls_offset_object_header_data = 0x8,
 	_tls_offset_player_data = 0x18,
 	_tls_offset_game_engine_globals = 0x20,
-	// 0x28
+	// 0x28 threading related?
 	_tls_offset_ai_globals = 0x30,
 	_tls_offset_prop_ref_data = 0x38,
 	_tls_offset_hs_thread_deterministic_data = 0x40,
@@ -41,7 +41,7 @@ enum e_tls_offset
 	_tls_offset_boids_data = 0x118,
 	_tls_offset_players_globals = 0x120,
 	_tls_offset_main_gamestate_timing_data = 0x128,
-	// 0x130
+	// 0x130 threading or font_cache related?
 	_tls_offset_players_per_map_globals = 0x138,
 	_tls_offset_fire_team_data = 0x140,
 	_tls_offset_looping_sound_data = 0x148,
@@ -79,7 +79,7 @@ enum e_tls_offset
 	_tls_offset_hs_runtime_globals = 0x240,
 	_tls_offset_object_scripting_state = 0x248,
 	_tls_offset_particle_system_data_array = 0x250,
-	// 0x258
+	// 0x258 complete mystery??!
 	_tls_offset_effect_counts = 0x260,
 	_tls_offset_breakable_surface_set_broken_event = 0x268,
 	_tls_offset_cloth_data = 0x270,
@@ -112,7 +112,7 @@ enum e_tls_offset
 	_tls_offset_hud_camera_globals = 0x340,
 	_tls_offset_decal_system = 0x348,
 	_tls_offsetemory_pool_address = 0x350,
-	// 0x358
+	// 0x358 c_cache_file_tag_runtime_resource related?
 	_tls_offset_prop_search_data = 0x360,
 	_tls_offset_bbsquad = 0x368,
 	_tls_offset_effect_lightprobe_slot_data = 0x370,
@@ -151,7 +151,7 @@ enum e_tls_offset
 	_tls_offset_ai_reference_frame_data = 0x470,
 	_tls_offset_beam_gpu_data_array = 0x478,
 	_tls_offset_light_volume_gpu_data_array = 0x480,
-	// 0x488
+	// 0x488 structure_bsp related?
 	_tls_offset_campaign_metagame_secondary = 0x490,
 	_tls_offset_performance_runtime_definition_data = 0x498,
 	_tls_offset_contrail_gpu__s_row_data_array = 0x4A0,
