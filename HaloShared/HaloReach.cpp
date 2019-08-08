@@ -373,6 +373,10 @@ HaloReachHook<0x1803A6B30, levels_try_and_get_scenario_path_func> levels_try_and
 		WriteLineVerbose("SELECTED MAP: <none>");
 		ThrowDebugger();
 	}
+	else if (strstr(scenario_path, "mainmenu") != 0)
+	{
+		WriteLineVerbose("WARNING: The mainmenu is not supported!");
+	}
 	else
 	{
 		WriteLineVerbose("SELECTED MAP: %s", scenario_path);
@@ -459,7 +463,7 @@ HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 	{
 		assert(game_globals = ThreadLocalStorage.Get<s_game_globals *>(_tls_offset_game_globals));
 
-		WriteLineVerbose("game_globals->game_options.scenario_path: %s", game_globals->game_options.scenario_path)
+		//WriteLineVerbose("game_globals->game_options.scenario_path: %s", game_globals->game_options.scenario_path)
 	}
 
 	return input_update();
