@@ -277,7 +277,7 @@ void initialize_custom_halo_reach_stuff()
 		fread(&game_state_header, 1, sizeof(s_game_state_header), pGameStateFile);
 		fclose(pGameStateFile);
 
-		game_launch_data.pGameStateHeader = reinterpret_cast<uint8 *>(&game_state_header);
+		game_launch_data.pGameStateHeader = reinterpret_cast<uint8_t *>(&game_state_header);
 		game_launch_data.GameStateHeaderSize = sizeof(s_game_state_header);
 	}
 

@@ -8,6 +8,7 @@ GameEngineHostCallback gameEngineHostCallback;
 GameEngineHostCallback_vftbl gameEngineHostCallbackVftbl;
 GameEvents gameEvents;
 GameEvents_vftbl gameEventsVftbl;
+s_thread_local_storage ThreadLocalStorage;
 
 e_peer_property last_game_load_status;
 std::string last_game_load_status_str;
@@ -448,11 +449,18 @@ bool SetPlayerName()
 	return true;
 }
 
+static s_game_globals *game_globals;
+
 HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 
 	CustomWindow::Update();
 
+	if (ThreadLocalStorage.IsValid())
+	{
+		assert(game_globals = ThreadLocalStorage.Get<s_game_globals *>(0x50));
 
+		//WriteLineVerbose("game_globals->game_options.scenario_path: %s", game_globals->game_options.scenario_path)
+	}
 
 	return input_update();
 };

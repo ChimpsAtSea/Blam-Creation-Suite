@@ -1,6 +1,36 @@
 #pragma once
 
 
+// TODO: find a better place for this?
+struct s_thread_local_storage
+{
+	uint64_t Address = NULL;
+
+	template<typename T = uint64_t>
+	T Get(size_t offset = 0)
+	{
+		if (Address == NULL)
+		{
+			Address = *(uint64_t *)(__readgsqword(0x58u) + *(uint64_t *)0x1810A3098 * sizeof(void *));
+			assert(Address);
+		}
+
+		if (offset)
+		{
+			return *(T *)(Address + offset);
+		}
+
+		return (T)Address;
+	}
+
+	bool IsValid()
+	{
+		return Get() != NULL;
+	}
+};
+
+extern s_thread_local_storage ThreadLocalStorage;
+
 enum GameAction : uint8_t // warning: copied from ed
 {
 	// These actions mirror the ControllerButton enum
