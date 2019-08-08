@@ -797,3 +797,18 @@ struct s_camera
 		return position || positionShift || look || lookShift || depth || fovRadians || forward || up || direction;
 	}
 };
+
+struct s_player_control_globals
+{
+	BYTE unknown0[0x94];
+	float hLookAngle;
+	float vLookAngle;
+	BYTE unknown9C[0x894];
+};
+static_assert(sizeof(s_player_control_globals) == 0x930, "");
+
+struct s_director_globals
+{
+	BYTE unknown0[0x6F0];
+};
+static_assert(sizeof(s_director_globals) == 0x6F0, "");
