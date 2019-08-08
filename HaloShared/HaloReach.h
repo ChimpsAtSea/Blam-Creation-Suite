@@ -2,6 +2,237 @@
 
 
 // TODO: find a better place for this?
+enum e_tls_offset
+{
+	// tls offsets for version 1.887.0.0 of haloreach.dll
+	// unknown
+	_tls_offset_object_header_data = 0x8,
+	_tls_offset_player_data = 0x18,
+	_tls_offset_game_engine_globals = 0x20,
+	// unknown
+	_tls_offset_ai_globals = 0x30,
+	_tls_offset_prop_ref_data = 0x38,
+	_tls_offset_hs_thread_deterministic_data = 0x40,
+	_tls_offset_squad_data = 0x48,
+	_tls_offset_game_globals = 0x50,
+	_tls_offset_prop_data = 0x58,
+	_tls_offset_camera_script_globals = 0x60,
+	_tls_offset_effect_data = 0x68,
+	_tls_offset_command_script = 0x70,
+	_tls_offset_cinematic_new_globals = 0x78,
+	_tls_offset_sound_data = 0x90,
+	_tls_offset_incident_globals = 0x98,
+	// unknown
+	// unknown
+	_tls_offset_flocks_data = 0xB0,
+	_tls_offset_render_texture_camera_globals = 0xB8,
+	_tls_offset_game_time_globals = 0xC0,
+	_tls_offset_rasterizer_game_states = 0xC8,
+	_tls_offset_game_looping_sound_data = 0xD0,
+	_tls_offset_player_control_globals = 0xD8,
+	_tls_offset_performance_data = 0xE0,
+	_tls_offset_cinematic_globals = 0xE8,
+	_tls_offset_event_data = 0xF0,
+	_tls_offset_light_data = 0xF8,
+	
+	_tls_offset_simulation_object_glue_data = 0x100,
+	_tls_offset_stimulus_data = 0x108,
+	_tls_offset_breakable_surface_globals = 0x110,
+	_tls_offset_boids_data = 0x118,
+	_tls_offset_players_globals = 0x120,
+	_tls_offset_main_gamestate_timing_data = 0x128,
+	// unknown
+	_tls_offset_players_per_map_globals = 0x138,
+	// unknown
+	_tls_offset_looping_sound_data = 0x148,
+	_tls_offset_player_mapping_globals = 0x150,
+	_tls_offset_joint_data = 0x158,
+	_tls_offset_object_globals = 0x160,
+	_tls_offset_game_save_globals = 0x168,
+	_tls_offset_player_training_globals = 0x170,
+	_tls_offset_ai_directive_data = 0x178,
+	_tls_offset_chud_draw_user_globals = 0x180,
+	_tls_offset_game_allegiance_globals = 0x188,
+	_tls_offset_collision_hierarchy_node_data = 0x190,
+	_tls_offset_director_globals = 0x198,
+	_tls_offset_campaign_metagame = 0x1A0,
+	_tls_offset_effect_location_data = 0x1A8,
+	_tls_offset_recycling_groups = 0x1B0,
+	// unknown
+	_tls_offset_vocalization_record = 0x1C0,
+	// unknown
+	_tls_offset_impact_data = 0x1D0,
+	_tls_offset_player_effect_globals = 0x1D8,
+	_tls_offset_collision_hierarchy_element_data = 0x1E0,
+	_tls_offset_scripted_exposure_game_globals = 0x1E8,
+	_tls_offset_recycling_volumes = 0x1F0,
+	_tls_offset_airstrike_system = 0x1F8,
+
+	_tls_offset_object_early_movers_globals = 0x200,
+	_tls_offset_game_sound_globals = 0x208,
+	_tls_offset_cached_object_render_states = 0x210,
+	_tls_offset_device_groups_data = 0x218,
+	// unknown
+	_tls_offset_objectives_data = 0x228,
+	_tls_offset_ai_sync_action_arranger_data = 0x230,
+	_tls_offset_swarm_data = 0x238,
+	_tls_offset_hs_runtime_globals = 0x240,
+	_tls_offset_object_scripting_state = 0x248,
+	_tls_offset_particle_system_data_array = 0x250,
+	// unknown
+	_tls_offset_effect_counts = 0x260,
+	_tls_offset_breakable_surface_set_broken_event = 0x268,
+	_tls_offset_cloth_data = 0x270,
+	_tls_offset_squad_group_data = 0x278,
+	_tls_offset_main_time_globals = 0x280,
+	_tls_offset_sound_effect_data = 0x288,
+	_tls_offset_impact_globals = 0x290,
+	_tls_offset_widget_data = 0x298,
+	_tls_offset_local_game_engine_globals = 0x2A0,
+	_tls_offset_particle_emitter_data_array = 0x2A8,
+	// unknown
+	_tls_offset_rumble_globals = 0x2B8,
+	_tls_offset_havok_proxy_data = 0x2C0,
+	_tls_offset_damage_globals = 0x2C8,
+	_tls_offset_squad_patrol_data = 0x2D0,
+	_tls_offset_sound_playback_controller_data = 0x2D8,
+	_tls_offset_leaf_system_data = 0x2E0,
+	_tls_offset_dynamic_firing_set = 0x2E8,
+	_tls_offset_depth_of_field_game_globals = 0x2F0,
+	_tls_offset_beam_system = 0x2F8,
+
+	_tls_offset_light_volume_system = 0x300,
+	_tls_offset_contrail_system = 0x308,
+	_tls_offset_path_influence_data = 0x310,
+	_tls_offset_tracking_data = 0x318,
+	_tls_offset_stimulus_ref = 0x320,
+	_tls_offset_physics_constants = 0x328,
+	_tls_offset_screen_effect_data = 0x330,
+	_tls_offset_objectives = 0x338,
+	_tls_offset_hud_camera_globals = 0x340,
+	_tls_offset_decal_system = 0x348,
+	_tls_offsetemory_pool_address = 0x350,
+	// unknown
+	_tls_offset_prop_search_data = 0x360,
+	_tls_offset_bbsquad = 0x368,
+	_tls_offset_effect_lightprobe_slot_data = 0x370,
+	_tls_offset_main_render_timing_data = 0x378,
+	_tls_offset_formation_data = 0x380,
+	_tls_offset_particle_emitter_gpu_data_array = 0x388,
+	_tls_offset_object_list_header_data = 0x390,
+	_tls_offset_hs_global_data = 0x398,
+	_tls_offset_object_schedule_globals = 0x3A0,
+	_tls_offset_swarm_spawners = 0x3A8,
+	// unknown
+	_tls_offset_light_volume_location = 0x3B8,
+	_tls_offset_memory_pool = 0x3C0,
+	_tls_offset_cheap_particle_emitter_from_update_thread_data = 0x3C8,
+	_tls_offset_impact_array_data = 0x3D0,
+	_tls_offset_game_sound_scripted_impulses = 0x3D8,
+	_tls_offset_particle_emitter_gpu__s_row_data_array = 0x3E0,
+	_tls_offset_rasterizer_implicit_geometry_data = 0x3E8,
+	_tls_offset_beam_location = 0x3F0,
+	_tls_offset_contrail_location = 0x3F8,
+
+	_tls_offset_looping_sound_restore_data = 0x400,
+	_tls_offset_water_physics_cache_data = 0x408,
+	_tls_offset_antenna_data = 0x410,
+	_tls_offset_object_render_globals = 0x418,
+	_tls_offset_light_volume = 0x420,
+	// unknown
+	_tls_offset_ai_cue_data = 0x430,
+	_tls_offset_water_interaction_event = 0x438,
+	_tls_offset_shield_render_cache_data = 0x440,
+	_tls_offset_beam = 0x448,
+	_tls_offset_contrail = 0x450,
+	_tls_offset_ragdoll_data = 0x458,
+	_tls_offset_cinematic_globals_non_deterministic = 0x460,
+	_tls_offset_character_properties_cache = 0x468,
+	_tls_offset_ai_reference_frame_data = 0x470,
+	_tls_offset_beam_gpu_data_array = 0x478,
+	_tls_offset_light_volume_gpu_data_array = 0x480,
+	// unknown
+	_tls_offset_campaign_metagame_secondary = 0x490,
+	_tls_offset_performance_runtime_definition_data = 0x498,
+	_tls_offset_contrail_gpu__s_row_data_array = 0x4A0,
+	_tls_offset_contrail_gpu_data_array = 0x4A8,
+	_tls_offset_animation_threads = 0x4B0,
+	_tls_offset_scenario_kill_trigger_volumes_state = 0x4B8,
+	_tls_offset_object_activation_region_data = 0x4C0,
+	_tls_offset_lights_game_globals = 0x4C8,
+	_tls_offset_beam_gpu__s_row_data_array = 0x4D0,
+	_tls_offset_light_volume_gpu__s_row_data_array = 0x4D8,
+	_tls_offset_weather_state_render = 0x4E0,
+	// unknown
+	_tls_offset_sound_class_data = 0x4F0,
+	_tls_offset_game_sound_multithreading_globals = 0x4F8,
+
+	_tls_offset_megalo_object_data = 0x500,
+	_tls_offset_actor_firing_position_hash_set = 0x508,
+	_tls_offset_weather_state_shared = 0x510,
+	_tls_offset_hue_saturation_control = 0x518,
+	_tls_offset_decal_array = 0x520,
+	_tls_offset_object_list_data = 0x528,
+	_tls_offset_object_name_list = 0x530,
+	_tls_offset_bink_globals = 0x538,
+	_tls_offset_collision_hierarchy_node_hash_table_data = 0x540,
+	_tls_offset_collision_hierarchy_globals = 0x548,
+	_tls_offset_player_control_globals_deterministic = 0x550,
+	_tls_offset_effect_message_queue = 0x558,
+	_tls_offset_object_placement_globals = 0x560,
+	// unknown
+	_tls_offset_team_dialogue_state = 0x570,
+	_tls_offset_simulated_input_globals = 0x578,
+	_tls_offset_future_development = 0x580,
+	_tls_offset_hs_thread_non_deterministic_data = 0x588,
+	_tls_offset_decal_message_queue = 0x590,
+	_tls_offset_havok_game_state = 0x598,
+	_tls_offset_hs_distributed_global_data = 0x5A0,
+	_tls_offset_director_camera_scripted = 0x5A8,
+	_tls_offset_deterministic_random_seed_ptr = 0x5B0,
+	_tls_offset_object_message_queue = 0x5B8,
+	_tls_offset_chud_persistent_global_data = 0x5C0,
+	// unknown
+	_tls_offset_scenario_interpolator_globals = 0x5D0,
+	_tls_offset_muffin_data = 0x5D8,
+	_tls_offset_observer_gamestate_globals = 0x5E8,
+	_tls_offset_chud_persistent_user_data = 0x5F0,
+
+	// unknown
+	// unknown
+	// unknown
+	// unknown
+	_tls_offset_player_effects_globals = 0x620,
+	_tls_offset_scenario_soft_ceilings = 0x628,
+	_tls_offset_breakable_surface_redirection_globals = 0x630,
+	_tls_offset_tasks_data = 0x638,
+	// unknown
+	_tls_offset_game_heat_globals = 0x648,
+	_tls_offset_active_portal_bitvectors = 0x650,
+	_tls_offset_cinematic_light_globals = 0x658,
+	_tls_offset_vision_mode_state = 0x680,
+	// unknown
+	_tls_offset_observer_globals = 0x690,
+	_tls_offset_cloth_globals = 0x698,
+	_tls_offset_object_render_data = 0x6A0,
+	_tls_offset_first_person_weapons = 0x6A8,
+	_tls_offset_havok_contact_point_globals = 0x6B8,
+	// unknown
+	// unknown
+	// unknown
+	// unknown
+	// unknown
+	// unknown
+
+	// unknown
+	_tls_offset_user_widgets = 0x708,
+	// unknown
+	// unknown
+	// unknown
+	_tls_offset_usability_globals_backup = 0x728,
+	_tls_offset_start_menu_campaign_objectives = 0x730
+	// unsure if more exist after 0x730
+};
 struct s_thread_local_storage
 {
 	uint64_t Address = NULL;

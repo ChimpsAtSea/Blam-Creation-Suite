@@ -457,9 +457,9 @@ HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 
 	if (ThreadLocalStorage.IsValid())
 	{
-		assert(game_globals = ThreadLocalStorage.Get<s_game_globals *>(0x50));
+		assert(game_globals = ThreadLocalStorage.Get<s_game_globals *>(_tls_offset_game_globals));
 
-		//WriteLineVerbose("game_globals->game_options.scenario_path: %s", game_globals->game_options.scenario_path)
+		WriteLineVerbose("game_globals->game_options.scenario_path: %s", game_globals->game_options.scenario_path)
 	}
 
 	return input_update();
