@@ -37,6 +37,7 @@ HaloReachReference<HWND, 0x1810EC5E0> g_hwnd;
 HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
 HaloReachReference<uint32_t, 0x1810A3098> TlsIndex;
 HaloReachReference<float, 0x183DF5830> dword_183DF5830;
+HaloReachReference<_QWORD, 0x183461018> qword_183461018;
 
 // Halo Reach Functions
 
@@ -49,6 +50,9 @@ HaloReachReference<char[64], 0x1810EC600> ClassName;
 HaloReachReference<char[64], 0x1810EC640> WindowName;
 HaloReachReference<WNDPROC, 0x1810EC5F0> qword_1810EC5F0;
 HaloReachReference<HINSTANCE, 0x1810EC5D0> qword_1810EC5D0;
+HaloReachReference<char*, 0x183461000> g_shell_command_line;
+
+
 
 HaloReachHook<0x1806C2890, HWND()> initialize_window = []()
 {
@@ -815,6 +819,19 @@ HaloReachHook<0x180450C20, char(__stdcall)()> pan_cam_enabled = []()
 	return result;
 };
 
+
+
+HaloReachHook<0x1806C2C30, char()> initialize_device = []()
+{
+	qword_183461018 = 0x10;
+
+	auto result = initialize_device();
+
+	return result;
+};
+
+
+
 void init_haloreach_hooks()
 {
 	check_library_can_load("bink2w64.dll");
@@ -836,6 +853,8 @@ void init_haloreach_hooks()
 
 	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
 	FunctionHookBase::ProcessTree(HaloGameID::HaloReach);
+
+	g_shell_command_line = GetCommandLineA();
 
 	end_detours();
 }
