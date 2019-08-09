@@ -9,8 +9,6 @@ public:
 	static int inputDeltaX;
 	static int inputDeltaY;
 
-private:
-
 	typedef ATOM(WINAPI* RegisterClassExA_Func)(_In_ CONST WNDCLASSEXA*);
 	typedef HWND(WINAPI* CreateWindowExA_Func)(
 		_In_ DWORD dwExStyle,

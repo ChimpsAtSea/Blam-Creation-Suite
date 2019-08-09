@@ -45,7 +45,12 @@ typedef __int64(__fastcall* physical_memory_stage_push_func)(int a1);
 wait_for_render_thread_func wait_for_render_thread = nullptr;
 physical_memory_stage_push_func physical_memory_stage_push = nullptr;
 
-static HaloReachHook<0x1806C2890, HWND()> create_window = []()
+HaloReachReference<char[64], 0x1810EC600> ClassName;
+HaloReachReference<char[64], 0x1810EC640> WindowName;
+HaloReachReference<WNDPROC, 0x1810EC5F0> qword_1810EC5F0;
+HaloReachReference<HINSTANCE, 0x1810EC5D0> qword_1810EC5D0;
+
+HaloReachHook<0x1806C2890, HWND()> initialize_window = []()
 {
 	char* pBaseAddress = (char*)GetHaloExecutable(HaloGameID::HaloReach);
 	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
@@ -54,12 +59,22 @@ static HaloReachHook<0x1806C2890, HWND()> create_window = []()
 	auto before = pGameEngineHostCallback;
 	pGameEngineHostCallback = nullptr;
 
-	printf("Calling create_window\n");
-	HWND hwnd = create_window();
+	HWND hwnd;
+	{
+		HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach));
+		assert(hHaloReachModule);
+
+		qword_1810EC5F0 = CustomWindow::WndProc;
+		qword_1810EC5D0 = hHaloReachModule;
+
+		memcpy(&ClassName[0], "HaloReach", sizeof("HaloReach"));
+		memcpy(&WindowName[0], "HaloReach", sizeof("HaloReach"));
+
+		hwnd = initialize_window();
+	}
+	ShowWindow(hwnd, SW_SHOW);
 
 	pGameEngineHostCallback = before;
-
-	ShowWindow(hwnd, SW_SHOW);
 	return hwnd;
 };
 
@@ -806,7 +821,7 @@ void init_haloreach_hooks()
 
 	init_detours();
 
-	create_window.SetIsActive(useCustomGameWindow);
+	initialize_window.SetIsActive(useCustomGameWindow);
 
 	physical_memory_stage_push = get_function_ptr<HaloGameID::HaloReach, 0x1803FB790, physical_memory_stage_push_func>();
 	wait_for_render_thread = get_function_ptr<HaloGameID::HaloReach, 0x18031F6A0, wait_for_render_thread_func>();
@@ -819,7 +834,6 @@ void init_haloreach_hooks()
 
 	//input_update.SetCallback([](void *) { WriteGameState(); }, nullptr);
 
-	CustomWindow::SetupHooks();
 	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
 	FunctionHookBase::ProcessTree(HaloGameID::HaloReach);
 
