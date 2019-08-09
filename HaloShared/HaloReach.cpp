@@ -34,6 +34,7 @@ HaloReachReference<s_game_options, 0x183B0FB70> g_game_options;
 HaloReachReference<wchar_t[4][32], 0x183DE6FB0> g_player_names;
 HaloReachReference<HWND, 0x1810EC5E0> g_hwnd;
 HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
+HaloReachReference<uint32_t, 0x1810A3098> TlsIndex;
 
 // Halo Reach Functions
 
@@ -470,14 +471,14 @@ HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 		assert(player_control_globals = ThreadLocalStorage.Get<s_player_control_globals *>(_tls_offset_player_control_globals));
 		assert(director_globals = ThreadLocalStorage.Get<s_director_globals *>(_tls_offset_director_globals));
 
-		float mov = 0.042;
+		float mov = 0.042f;
 
 		// up
 		if (GetAsyncKeyState('U') & 0x8000)
-			player_control_globals->vLookAngle -= mov;
+			player_control_globals->vLookAngle += mov;
 		// down
 		if (GetAsyncKeyState('J') & 0x8000)
-			player_control_globals->vLookAngle += mov;
+			player_control_globals->vLookAngle -= mov;
 		// left
 		if (GetAsyncKeyState('H') & 0x8000)
 			player_control_globals->hLookAngle += mov;

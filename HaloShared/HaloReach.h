@@ -241,6 +241,8 @@ enum e_tls_offset
 	_tls_offset_start_menu_campaign_objectives = 0x730
 	// unsure if more exist after 0x730
 };
+
+extern HaloReachReference<uint32_t, 0x1810A3098> TlsIndex;
 struct s_thread_local_storage
 {
 	uint64_t Address = NULL;
@@ -248,16 +250,13 @@ struct s_thread_local_storage
 	template<typename T = uint64_t>
 	T Get(size_t offset = 0)
 	{
-		if (Address == NULL)
-		{
-			Address = *(uint64_t *)(__readgsqword(0x58u) + *(uint64_t *)0x1810A3098 * sizeof(void *));
-			assert(Address);
-		}
+		Address = *(uint64_t *)(__readgsqword(0x58u) + (uint32_t)TlsIndex * sizeof(void *));
+
+		if (!Address)
+			return uint64_t(0);
 
 		if (offset)
-		{
 			return *(T *)(Address + offset);
-		}
 
 		return (T)Address;
 	}
