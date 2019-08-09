@@ -15,7 +15,7 @@ void FunctionHookBase::ProcessNode(HaloGameID gameID)
 {
 	if (gameID == m_gameID && m_isActive)
 	{
-		FunctionHook<HaloGameID::NotSet, 0, void>& rVoidThis = reinterpret_cast<FunctionHook<HaloGameID::NotSet, 0, void>&>(*this);
+		FunctionHookVarArgs<HaloGameID::NotSet, 0, void>& rVoidThis = reinterpret_cast<FunctionHookVarArgs<HaloGameID::NotSet, 0, void>&>(*this);
 
 		void*& rBase = rVoidThis.GetBase();
 		void*& rHook = rVoidThis.GetHook();

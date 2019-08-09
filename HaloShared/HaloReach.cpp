@@ -18,7 +18,9 @@ bool isHooked = false;
 WORD g_frameLimit = 60;
 int g_fieldOfView = 78;
 int g_controlsLayout = 0;
+int g_useController = 0;
 bool g_pancamEnabled = false;
+bool g_waitingForInputUpdate = false;
 
 // Halo Reach Variables
 
@@ -34,6 +36,7 @@ HaloReachReference<wchar_t[4][32], 0x183DE6FB0> g_player_names;
 HaloReachReference<HWND, 0x1810EC5E0> g_hwnd;
 HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
 HaloReachReference<uint32_t, 0x1810A3098> TlsIndex;
+HaloReachReference<float, 0x183DF5830> dword_183DF5830;
 
 // Halo Reach Functions
 
@@ -69,7 +72,7 @@ HaloReachHook<0x180012B60, __int64 __fastcall (__int64 a1, __int64 a2)> main_gam
 	return result;
 };
 
-HaloReachHook<0x18004AFC0, char* (char* dst, char* format, ...)> sprintf_256 = [](char* dst, char* format, ...)
+HaloReachHookVarArgs<0x18004AFC0, char* (char* dst, char* format, ...)> sprintf_256 = [](char* dst, char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -105,7 +108,7 @@ HaloReachHook<0x1803C9220, __int64 __fastcall (s_game_options* a1)> load_scenari
 	return result;
 };
 
-HaloReachHook<0x18078C550, void(const char* format, ...)> DamagedMediaHaltAndDisplayError = [](const char* format, ...)
+HaloReachHookVarArgs<0x18078C550, void(const char* format, ...)> DamagedMediaHaltAndDisplayError = [](const char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -363,6 +366,9 @@ HaloReachHook<0x180012200, __int64(__fastcall)(__int64 a1)> sub_180012200 = [](_
 typedef char* (__fastcall levels_try_and_get_scenario_path_func)(int campaign_id, unsigned int map_id, char* scenario_path, int size);
 HaloReachHook<0x1803A6B30, levels_try_and_get_scenario_path_func> levels_try_and_get_scenario_path = [](int campaign_id, unsigned int map_id, char* scenario_path, int size)
 {
+	// #HACK #TODO: Figure out the best home for this incase this is incorrect
+	g_waitingForInputUpdate = true;
+
 	map_id = 0x10231971; // force the default map load code path
 
 	auto result = levels_try_and_get_scenario_path(campaign_id, map_id, scenario_path, size);
@@ -456,6 +462,12 @@ bool SetPlayerName()
 static s_game_globals* game_globals;
 static s_player_control_globals* player_control_globals;
 static s_director_globals* director_globals;
+
+HaloReachHook<0x180308BD0, __int64 __fastcall (__int64 a1, __int64 a2, int a3)> sub_180308BD0 = [](__int64 a1, __int64 a2, int a3) {
+	auto result = sub_180308BD0(a1, a2, a3);
+
+	return result;
+};
 
 HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 
@@ -803,6 +815,7 @@ void init_haloreach_hooks()
 	g_fieldOfView = GetPrivateProfileIntW(L"Camera", L"FieldOfView", 78, L".\\Settings.ini");
 	g_controlsLayout = GetPrivateProfileIntW(L"Player", L"ControlsLayout", 0, L".\\Settings.ini");
 	g_pancamEnabled = (bool)GetPrivateProfileIntW(L"Debug", L"PancamEnabled", 0, L".\\Settings.ini");
+	g_useController = GetPrivateProfileIntW(L"Player", L"UseController", 0, L".\\Settings.ini");
 
 	//input_update.SetCallback([](void *) { WriteGameState(); }, nullptr);
 

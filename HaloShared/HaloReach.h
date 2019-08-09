@@ -482,6 +482,9 @@ extern WORD g_frameLimit;
 extern int g_fieldOfView;
 extern HICON g_icon;
 extern bool g_pancamEnabled;
+extern int g_controlsLayout;
+extern int g_useController;
+extern bool g_waitingForInputUpdate;
 
 // Halo Reach Functions
 

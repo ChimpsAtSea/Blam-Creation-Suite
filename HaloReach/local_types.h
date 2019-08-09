@@ -58,6 +58,15 @@ struct IGameEngine
 	}
 };
 
+struct Mmeber29UnknownStruct
+{
+	int something;
+	char data0[256];
+	char data1[20];
+	char data2[16];
+};
+static_assert(sizeof(Mmeber29UnknownStruct) == 0x128, "");
+
 /* 516 */
 struct GameEngineHostCallback_vftbl
 {
@@ -91,7 +100,7 @@ struct GameEngineHostCallback_vftbl
 	NullSubFunc* Member26;
 	NullSubFunc* Member27;
 	NullSubFunc* Member28;
-	unsigned __int8(__fastcall* Member29)(GameEngineHostCallback*, _QWORD, unsigned int*);
+	unsigned __int8(__fastcall* Member29)(GameEngineHostCallback*, _QWORD, Mmeber29UnknownStruct* pUnknown);
 	NullSubFunc* SetPlayerName;
 	NullSubFunc* Member31;
 	NullSubFunc* Member32;

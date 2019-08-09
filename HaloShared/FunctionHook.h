@@ -65,13 +65,85 @@ private:
 	}
 };
 
+#include <functional>
+
+template<HaloGameID gameID, size_t offset, typename T>
+struct FunctionHook;
+
+template<HaloGameID gameID, size_t offset, typename R, typename ...Args>
+struct FunctionHook<gameID, offset, R(Args...)> : FunctionHookBase
+{
+public:
+	typedef R(base_type)(Args...);
+
+	static_assert(gameID == HaloGameID::NotSet || offset >= GetHaloBaseAddress(gameID), "Offset is out of bounds");
+	static_assert(gameID == HaloGameID::NotSet || offset < GetHaloTopAddress(gameID), "Offset is out of bounds");
+
+	__forceinline decltype(auto) operator()(Args... arg)
+	{
+		size_t x = 0; // needed to fix register issue on debug
+
+		using return_type = decltype(base(arg...));
+
+		if constexpr (std::is_same<return_type, void>::value)
+		{
+			base(arg...);
+			if (m_pCallback)
+			{
+				m_pCallback(m_pCallbackUserData);
+			}
+		}
+		else
+		{
+			auto result = base(arg...);
+			if (m_pCallback)
+			{
+				m_pCallback(m_pCallbackUserData);
+			}
+			return result;
+		}
+	}
+
+	friend class FunctionHookBase;
+
+	template<typename hook_assignment_type>
+	FunctionHook(hook_assignment_type func)
+		:FunctionHookBase(gameID, offset)
+		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
+	{
+
+	}
+
+	FunctionHook(R(*func)(Args...))
+		:FunctionHookBase(gameID, offset)
+		, hook(func)
+	{
+
+	}
+
+	base_type* const hook = nullptr;
+	base_type* const base = nullptr;
+
+private:
+
+	base_type*& GetHook()
+	{
+		return *const_cast<base_type * *>(&hook);
+	}
+
+	base_type*& GetBase()
+	{
+		return *const_cast<base_type * *>(&base);
+	}
+};
+
 template<HaloGameID gameID, size_t offset, typename base_type>
-class FunctionHook : public FunctionHookBase
+struct FunctionHookVarArgs : public FunctionHookBase
 {
 public:
 	static_assert(gameID == HaloGameID::NotSet || offset >= GetHaloBaseAddress(gameID), "Offset is out of bounds");
 	static_assert(gameID == HaloGameID::NotSet || offset < GetHaloTopAddress(gameID), "Offset is out of bounds");
-	
+
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args)
 	{
@@ -101,14 +173,14 @@ public:
 	friend class FunctionHookBase;
 
 	template<typename hook_assignment_type>
-	FunctionHook(hook_assignment_type func)
+	FunctionHookVarArgs(hook_assignment_type func)
 		:FunctionHookBase(gameID, offset)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
-	FunctionHook(base_type* func)
+	FunctionHookVarArgs(base_type* func)
 		:FunctionHookBase(gameID, offset)
 		, hook(func)
 	{
@@ -134,3 +206,8 @@ private:
 
 template<size_t offset, typename base_type>
 using HaloReachHook = FunctionHook<HaloGameID::HaloReach, offset, base_type>;
+template<size_t offset, typename base_type>
+using HaloReachHookVarArgs = FunctionHookVarArgs<HaloGameID::HaloReach, offset, base_type>;
+
+
+
