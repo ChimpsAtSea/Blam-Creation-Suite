@@ -81,7 +81,28 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member26 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[26]");
 	gameEngineHostCallbackVftbl.Member27 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[27]");
 	gameEngineHostCallbackVftbl.Member28 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[28]");
-	gameEngineHostCallbackVftbl.Member29 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[29]");
+	gameEngineHostCallbackVftbl.Member29 = [](GameEngineHostCallback*, _QWORD, unsigned int ptr[74]) {
+		NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[29]")();
+
+		bool key = !!GetAsyncKeyState(VK_F3);
+
+		for (int i = 0; i < 74; i++)
+		{
+			ptr[i] = i;
+		}
+
+		memset(ptr, 0, 296);
+		*ptr = 1;
+
+		static int once = 0;
+		if (!once)
+		{
+			once = 1;
+			return unsigned __int8(1);
+		}
+		return unsigned __int8(0);
+		
+	};
 	gameEngineHostCallbackVftbl.SetPlayerName = []() { SetPlayerName(); };
 	gameEngineHostCallbackVftbl.Member31 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[31]");
 	gameEngineHostCallbackVftbl.Member32 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[32]");

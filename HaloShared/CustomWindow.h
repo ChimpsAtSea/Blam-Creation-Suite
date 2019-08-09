@@ -6,6 +6,9 @@ public:
 	static void Update();
 	static HWND GetWindowHandle();
 
+	static int inputDeltaX;
+	static int inputDeltaY;
+
 private:
 
 	typedef ATOM(WINAPI* RegisterClassExA_Func)(_In_ CONST WNDCLASSEXA*);

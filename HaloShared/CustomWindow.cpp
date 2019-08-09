@@ -4,6 +4,9 @@ CustomWindow::CreateWindowExA_Func CustomWindow::CreateWindowExA = nullptr;
 CustomWindow::RegisterClassExA_Func CustomWindow::RegisterClassExA = nullptr;
 HWND CustomWindow::s_hwnd;
 
+int CustomWindow::inputDeltaX = 0;
+int CustomWindow::inputDeltaY = 0;
+
 void CustomWindow::SetupHooks()
 {
 	create_dll_hook("USER32.dll", "RegisterClassExA", CustomWindow::CustomRegisterClassExA, RegisterClassExA);
@@ -36,6 +39,22 @@ LRESULT CALLBACK CustomWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 {
 	switch (msg)
 	{
+	case WM_MOUSEMOVE:
+	{
+		int xPosAbsolute = LOWORD(lParam);
+		int yPosAbsolute = HIWORD(lParam);
+		static int xPosAbsoluteLast = xPosAbsolute;
+		static int yPosAbsoluteLast = yPosAbsolute;
+
+		inputDeltaX = xPosAbsolute - xPosAbsoluteLast;
+		inputDeltaY = yPosAbsolute - yPosAbsoluteLast;
+
+		xPosAbsoluteLast = xPosAbsolute;
+		yPosAbsoluteLast = yPosAbsolute;
+
+		// ...
+		break;
+	}
 	case WM_DESTROY:
 		byte_183984DE4 = 1;
 		g_gameManuallyKilled = true;

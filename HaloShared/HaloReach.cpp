@@ -1,5 +1,4 @@
 #include "haloshared-private-pch.h"
-
 // Custom Stuff
 
 bool useCustomGameEngineHostCallback = false;
@@ -454,40 +453,50 @@ bool SetPlayerName()
 	return true;
 }
 
-static s_game_globals *game_globals;
-static s_player_control_globals *player_control_globals;
-static s_director_globals *director_globals;
+static s_game_globals* game_globals;
+static s_player_control_globals* player_control_globals;
+static s_director_globals* director_globals;
 
 HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 
-	CustomWindow::Update();
+	auto result = GameEngineHostCallback_Bypass([]()
+		{
+			CustomWindow::inputDeltaX = 0;
+			CustomWindow::inputDeltaY = 0;
 
-	if (ThreadLocalStorage.IsValid())
-	{
-		//assert(game_globals = ThreadLocalStorage.Get<s_game_globals *>(_tls_offset_game_globals));
+			CustomWindow::Update();
 
-		//WriteLineVerbose("game_globals->game_options.scenario_path: %s", game_globals->game_options.scenario_path)
+			if (ThreadLocalStorage.IsValid())
+			{
+				//assert(game_globals = ThreadLocalStorage.Get<s_game_globals *>(_tls_offset_game_globals));
 
-		assert(player_control_globals = ThreadLocalStorage.Get<s_player_control_globals *>(_tls_offset_player_control_globals));
-		assert(director_globals = ThreadLocalStorage.Get<s_director_globals *>(_tls_offset_director_globals));
+				//WriteLineVerbose("game_globals->game_options.scenario_path: %s", game_globals->game_options.scenario_path)
 
-		float mov = 0.042f;
+				assert(player_control_globals = ThreadLocalStorage.Get<s_player_control_globals*>(_tls_offset_player_control_globals));
+				assert(director_globals = ThreadLocalStorage.Get<s_director_globals*>(_tls_offset_director_globals));
 
-		// up
-		if (GetAsyncKeyState('U') & 0x8000)
-			player_control_globals->vLookAngle += mov;
-		// down
-		if (GetAsyncKeyState('J') & 0x8000)
-			player_control_globals->vLookAngle -= mov;
-		// left
-		if (GetAsyncKeyState('H') & 0x8000)
-			player_control_globals->hLookAngle += mov;
-		// right
-		if (GetAsyncKeyState('K') & 0x8000)
-			player_control_globals->hLookAngle -= mov;
-	}
+				float mov = 0.042f;
 
-	return input_update();
+				//player_control_globals->hLookAngle += float(CustomWindow::inputDeltaX) * 0.001;
+				//player_control_globals->vLookAngle += float(CustomWindow::inputDeltaY) * 0.001;
+
+				// up
+				if (GetAsyncKeyState('U') & 0x8000)
+					player_control_globals->vLookAngle += mov;
+				// down
+				if (GetAsyncKeyState('J') & 0x8000)
+					player_control_globals->vLookAngle -= mov;
+				// left
+				if (GetAsyncKeyState('H') & 0x8000)
+					player_control_globals->hLookAngle += mov;
+				// right
+				if (GetAsyncKeyState('K') & 0x8000)
+					player_control_globals->hLookAngle -= mov;
+			}
+			return input_update();
+		}
+	);
+	return result;
 };
 
 HaloReachHook<0x1803080A0, char(__fastcall)(KeyCode a1)> sub_1803080A0 = [](KeyCode a1)
@@ -761,10 +770,10 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 
 void WriteGameState()
 {
-	if (GetAsyncKeyState(VK_F8)) 
+	if (GetAsyncKeyState(VK_F8))
 	{
-		FILE *pGameStateFile = fopen("gamestate.hdr", "w+b");
-		auto pGameStateHeader = *(s_game_state_header **)0x183841B18;
+		FILE* pGameStateFile = fopen("gamestate.hdr", "w+b");
+		auto pGameStateHeader = *(s_game_state_header * *)0x183841B18;
 		fwrite(pGameStateHeader, 1, sizeof(s_game_state_header), pGameStateFile);
 		fclose(pGameStateFile);
 	}
