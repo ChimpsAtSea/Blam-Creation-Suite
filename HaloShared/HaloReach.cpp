@@ -20,11 +20,13 @@ int g_fieldOfView = 78;
 int g_controlsLayout = 0;
 int g_useController = 0;
 bool g_pancamEnabled = false;
+bool g_keyboardPrintKeyState = false;
 bool g_waitingForInputUpdate = false;
 
 // Halo Reach Variables
 
-HaloReachReference<GameEngineHostCallback*, 0x1810EC5C0> g_gameEngineHostCallback;
+HaloReachReference<uint32_t, 0x1810A3098> TlsIndex;
+HaloReachReference<GameEngineHostCallback*, 0x1810EC5C0> g_GameEngineHostCallback;
 HaloReachReference<LONG, 0x18102F2A4> g_render_thread_mode;
 HaloReachReference<DWORD, 0x1810EC584> dword_1810EC584;
 HaloReachReference<BYTE, 0x18342E55D> byte_18342E55D;
@@ -35,10 +37,10 @@ HaloReachReference<s_game_options, 0x183B0FB70> g_game_options;
 HaloReachReference<wchar_t[4][32], 0x183DE6FB0> g_player_names;
 HaloReachReference<HWND, 0x1810EC5E0> g_hwnd;
 HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
-HaloReachReference<uint32_t, 0x1810A3098> TlsIndex;
 HaloReachReference<float, 0x183DF5830> dword_183DF5830;
 HaloReachReference<_QWORD, 0x183461018> qword_183461018;
-HaloReachReference<s_gamepad_globals, 0x183DF54E0> g_GamepadGlobals;
+HaloReachReference<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
+HaloReachReference<s_input_abstraction, 0x183DF54E0> g_input_abstraction;
 
 // Halo Reach Functions
 
@@ -361,7 +363,7 @@ HaloReachHook<0x180012200, __int64(__fastcall)(__int64 a1)> sub_180012200 = [](_
 		result = a1;
 	}
 	dword_1810EC584 = static_cast<DWORD>(result);
-	if (g_gameEngineHostCallback)
+	if (g_GameEngineHostCallback)
 	{
 		WriteLineVerbose("sub_180012200: Aborting!");
 
@@ -489,7 +491,21 @@ HaloReachHook<0x180308BD0, __int64 __fastcall (__int64 a1, __int64 a2, int a3)> 
 	return result;
 };
 
+
 HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
+
+	auto& bindingsTable = g_input_abstraction.ptr()->BindingsTable[0];
+
+	if (g_keyboardPrintKeyState)
+	{
+		for (int i = 0; i < _countof(bindingsTable.ControllerButtons); i++)
+		{
+			if (bindingsTable.ControllerButtons[i])
+			{
+				WriteLineVerbose("binding table %08lx was pressed value %08lx", i, bindingsTable.ControllerButtons[i]);
+			}
+		}
+	}
 
 	auto result = GameEngineHostCallback_Bypass([]()
 		{
@@ -568,57 +584,51 @@ HaloReachHook<0x1804DA240, float(__stdcall)()> observer_get_suggested_field_of_v
 	return result;
 };
 
-enum ControllerButton32 : uint32_t
+
+enum Action
 {
-	eControllerButtonLeftTrigger,
-	eControllerButtonRightTrigger,
-	eControllerButtonDpadUp,
-	eControllerButtonDpadDown,
-	eControllerButtonDpadLeft,
-	eControllerButtonDpadRight,
-	eControllerButtonStart,
-	eControllerButtonSelect,
-	eControllerButtonLeftStick,
-	eControllerButtonRightStick,
-	eControllerButtonA,
-	eControllerButtonB,
-	eControllerButtonX,
-	eControllerButtonY,
-	eControllerButtonLeftBumper,
-	eControllerButtonRightBumper,
-
-	eControllerButton_Count,
-	eControllerButton_None = 0xFF, // An invalid controller button (for use in unset bindings)
+	Jump,
+	SwitchNade,
+	SwitchWeapon,
+	eAction,
+	Melee,
+	Equipment,
+	ThrowGrenade,
+	Fire,
+	Crouch,
+	Zoom,
+	VehicleBrake,
+	Unknown0,
+	BrakeVehicle2,
+	Unknown1,
+	Unknown2,
+	Unknown3,
+	Unknown4,
+	ShowWeaponDetails,
+	Unknown5,
+	Unknown6,
+	Visor,
+	SkipCutscene,
+	Unknown8,
+	Unknown9,
+	Unknown10,
+	Unknown11,
+	Unknown12,
+	UnknownPhysicsDebug1, // makes vehicles move a bit when pressed right next to it
+	UnknownPhysicsDebug2, // makes vehicles move a bit when pressed right next to it
+	Unknown15,
+	SkipCutsceneConfirm,
+	Unknown17,
+	Unknown18,
+	Unknown19,
+	Unknown20,
+	Unknown21,
+	Unknown22,
+	Unknown23,
+	Unknown24,
+	Unknown25,
+	Unknown26,
 };
-
-#pragma pack(push, 1)
-struct s_bindings_table
-{
-	float ControllerSensitivityX;
-	float ControllerSensitivityY;
-	float unknown8;
-	float unknownC;
-	float unknown10;
-	BYTE unknown14;
-	BYTE __padding15[3];
-	ControllerButton32 ControllerButtons[41];
-	WORD unknownBC;
-	BYTE unknownBE;
-	BYTE unknownBF;
-	WORD unknownC0;
-	BYTE unknownC2;
-	BYTE unknownC3;
-	WORD unknownC4;
-	BYTE __paddingC6[2];
-	float unknownC8;
-	float unknownCC;
-	float unknownD0;
-	float unknownD4;
-};
-#pragma pack(pop)
-static_assert(sizeof(s_bindings_table) == 0xD8, "");
-
-static int test_button = 0;
 
 HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_set_default = [](s_bindings_table* a1)
 {
@@ -633,56 +643,11 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	//	a1->ControllerButtons[i] = ControllerButton32::eControllerButtonLeftTrigger;
 	//}
 
-	enum Action
-	{
-		Jump,
-		SwitchNade,
-		SwitchWeapon,
-		Action,
-		Melee,
-		Equipment,
-		ThrowGrenade,
-		Fire,
-		Crouch,
-		Zoom,
-		VehicleBrake,
-		Unknown,
-		BrakeVehicle2,
-		Unknown1,
-		Unknown2,
-		Unknown3,
-		Unknown4,
-		ShowWeaponDetails,
-		Unknown5,
-		Unknown6,
-		Visor,
-		SkipCutscene,
-		Unknown8,
-		Unknown9,
-		Unknown10,
-		Unknown11,
-		Unknown12,
-		UnknownPhysicsDebug1, // makes vehicles move a bit when pressed right next to it
-		UnknownPhysicsDebug2, // makes vehicles move a bit when pressed right next to it
-		Unknown15,
-		SkipCutsceneConfirm,
-		Unknown17,
-		Unknown18,
-		Unknown19,
-		Unknown20,
-		Unknown21,
-		Unknown22,
-		Unknown23,
-		Unknown24,
-		Unknown25,
-		Unknown26,
-	};
-
 	// default expected ordering
 	assert(a1->ControllerButtons[Jump] == eControllerButtonA);
 	assert(a1->ControllerButtons[SwitchNade] == eControllerButtonB);
 	assert(a1->ControllerButtons[SwitchWeapon] == eControllerButtonY);
-	assert(a1->ControllerButtons[Action] == eControllerButtonX);
+	assert(a1->ControllerButtons[eAction] == eControllerButtonX);
 	assert(a1->ControllerButtons[Melee] == eControllerButtonRightBumper);
 	assert(a1->ControllerButtons[Equipment] == eControllerButtonLeftBumper);
 	assert(a1->ControllerButtons[ThrowGrenade] == eControllerButtonLeftTrigger);
@@ -690,7 +655,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	assert(a1->ControllerButtons[Crouch] == eControllerButtonLeftStick);
 	assert(a1->ControllerButtons[Zoom] == eControllerButtonRightStick);
 	assert(a1->ControllerButtons[VehicleBrake] == eControllerButtonLeftTrigger);
-	assert(a1->ControllerButtons[Unknown] == eControllerButtonB);
+	assert(a1->ControllerButtons[Unknown0] == eControllerButtonB);
 	assert(a1->ControllerButtons[BrakeVehicle2] == eControllerButtonRightBumper);
 	assert(a1->ControllerButtons[Unknown1] == eControllerButtonLeftBumper);
 	assert(a1->ControllerButtons[Unknown2] == eControllerButtonB);
@@ -739,7 +704,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
 		a1->ControllerButtons[SwitchNade] = eControllerButtonB;
 		a1->ControllerButtons[Equipment] = eControllerButtonRightBumper;
-		a1->ControllerButtons[Action] = eControllerButtonX;
+		a1->ControllerButtons[eAction] = eControllerButtonX;
 		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
 		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
 		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
@@ -751,7 +716,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
 		a1->ControllerButtons[SwitchNade] = eControllerButtonB;
 		a1->ControllerButtons[Equipment] = eControllerButtonLeftBumper;
-		a1->ControllerButtons[Action] = eControllerButtonX;
+		a1->ControllerButtons[eAction] = eControllerButtonX;
 		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
 		a1->ControllerButtons[ThrowGrenade] = eControllerButtonRightBumper;
 		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
@@ -763,7 +728,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
 		a1->ControllerButtons[SwitchNade] = eControllerButtonB;
 		a1->ControllerButtons[Equipment] = eControllerButtonLeftBumper;
-		a1->ControllerButtons[Action] = eControllerButtonX;
+		a1->ControllerButtons[eAction] = eControllerButtonX;
 		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
 		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
 		a1->ControllerButtons[Zoom] = eControllerButtonRightBumper;
@@ -775,7 +740,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
 		a1->ControllerButtons[SwitchNade] = eControllerButtonA;
 		a1->ControllerButtons[Equipment] = eControllerButtonX;
-		a1->ControllerButtons[Action] = eControllerButtonB;
+		a1->ControllerButtons[eAction] = eControllerButtonB;
 		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
 		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
 		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
@@ -787,7 +752,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
 		a1->ControllerButtons[SwitchNade] = eControllerButtonX;
 		a1->ControllerButtons[Equipment] = eControllerButtonLeftBumper;
-		a1->ControllerButtons[Action] = eControllerButtonRightBumper;
+		a1->ControllerButtons[eAction] = eControllerButtonRightBumper;
 		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
 		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
 		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
@@ -805,7 +770,7 @@ void WriteGameState()
 	if (GetAsyncKeyState(VK_F8))
 	{
 		FILE* pGameStateFile = fopen("gamestate.hdr", "w+b");
-		HaloReachReference<s_game_state_header *, 0x183841B18> pGameStateHeader;
+		HaloReachReference<s_game_state_header*, 0x183841B18> pGameStateHeader;
 		fwrite(pGameStateHeader, 1, sizeof(s_game_state_header), pGameStateFile);
 		fclose(pGameStateFile);
 	}
@@ -833,6 +798,164 @@ HaloReachHook<0x1806C2C30, char()> initialize_device = []()
 
 
 
+enum GameActionV3 : DWORD
+{
+	game_action_jump,
+	game_action_switch_grenade,
+	game_action_switch_weapon,
+	game_action_action,
+	game_action_meele_attack,
+	game_action_equipment,
+	game_action_throw_grenade,
+	game_action_fire_primary,
+	game_action_crouch,
+	game_action_scope_zoom,
+	game_action_vehicle_brake, // maybe vehicle trick primary
+	game_action_11,
+	game_action_vehicle_brake2,
+	game_action_13,
+	game_action_14,
+	game_action_15,
+	game_action_16,
+	game_action_show_weapon_details,
+	game_action_18,
+	game_action_19,
+	game_action_night_vision,
+	game_action_skip_cutscene,
+	game_action_22,
+	game_action_23,
+	game_action_24,
+	game_action_25,
+	game_action_26,
+	game_action_27,
+	game_action_28,
+	game_action_29,
+	game_action_skip_cutscene_confirm,
+	game_action_31,
+	game_action_32,
+	game_action_33,
+	game_action_34,
+	game_action_35,
+	game_action_36,
+	game_action_37,
+	game_action_reload,
+	game_action_39,
+	game_action_40,
+	game_action_move_forward,
+	game_action_move_backwards,
+	game_action_move_left,
+	game_action_move_right,
+	game_action_mouse_axis_unknown45,
+	game_action_mouse_axis_unknown46,
+	game_action_mouse_axis_unknown47,
+	game_action_mouse_axis_unknown48,
+	game_action_count
+};
+
+
+struct MouseBinding
+{
+	DWORD primary;
+	DWORD secondary;
+};
+
+struct MouseAxisBinding
+{
+	DWORD primary;
+	DWORD seconday;
+};
+
+struct KeyboardBinding
+{
+	DWORD primary;
+	DWORD seconday;
+};
+
+struct GameBindings
+{
+	MouseBinding mouseBindings[game_action_count];
+	MouseAxisBinding mouseAxisBindings[game_action_count];
+	KeyboardBinding keyboardBindings[game_action_count];
+};
+static_assert(sizeof(GameBindings) == sizeof(DWORD) * 98 * 3, "GameBindings incorrect size");
+
+HaloReachHook<0x1803D8640, __int64 __fastcall (GameBindings& a1)> sub_1803D8640 = [](GameBindings& a1)
+{
+	auto result = sub_1803D8640(a1);
+
+	bool isSame = true;
+
+	// mouse buttons
+	a1.mouseBindings[game_action_vehicle_brake].primary = Mouse::eMouseButton3;
+	a1.mouseBindings[game_action_fire_primary].primary = Mouse::eMouseButton1;
+	a1.mouseBindings[game_action_scope_zoom].primary = Mouse::eMouseButton3;
+
+
+	// mouse axis								
+	a1.mouseAxisBindings[game_action_mouse_axis_unknown45].primary = MouseAxis::eMouseAxisUnknown2;
+	a1.mouseAxisBindings[game_action_mouse_axis_unknown46].primary = MouseAxis::eMouseAxisUnknown3;
+	a1.mouseAxisBindings[game_action_mouse_axis_unknown47].primary = MouseAxis::eMouseAxisUnknown1;
+	a1.mouseAxisBindings[game_action_mouse_axis_unknown48].primary = MouseAxis::eMouseAxisUnknown0;
+
+	// keyboard
+	a1.keyboardBindings[game_action_jump].primary = eKeyCodeSpace;
+	a1.keyboardBindings[game_action_switch_grenade].primary = eKeyCodeG;
+	a1.keyboardBindings[game_action_switch_weapon].primary = eKeyCodeC;
+	a1.keyboardBindings[game_action_action].primary = eKeyCodeE;
+	a1.keyboardBindings[game_action_meele_attack].primary = eKeyCodeQ;
+	a1.keyboardBindings[game_action_equipment].primary = eKeyCodeLShift;
+	a1.keyboardBindings[game_action_throw_grenade].primary = eKeyCodeF; // throw gnade		
+	a1.keyboardBindings[game_action_crouch].primary = eKeyCodeLControl;
+	a1.keyboardBindings[game_action_vehicle_brake2].primary = eKeyCodeLBracket;
+	a1.keyboardBindings[game_action_13].primary = eKeyCodeRBracket;
+	a1.keyboardBindings[game_action_16].primary = eKeyCodeEscape;
+	a1.keyboardBindings[game_action_show_weapon_details].primary = eKeyCodeBack;
+	a1.keyboardBindings[game_action_night_vision].primary = eKeyCodeM;
+	a1.keyboardBindings[game_action_skip_cutscene].primary = eKeyCodeEnter;
+	a1.keyboardBindings[game_action_skip_cutscene_confirm].primary = eKeyCodeSpace;
+	a1.keyboardBindings[game_action_35].primary = eKeyCodeSpace; // banshee flip?
+	a1.keyboardBindings[game_action_36].primary = eKeyCodeTab;
+	a1.keyboardBindings[game_action_37].primary = eKeyCodeZ; // banshee bomb?
+	a1.keyboardBindings[game_action_reload].primary = eKeyCodeR;
+	a1.keyboardBindings[game_action_move_forward].primary = eKeyCodeW;
+	a1.keyboardBindings[game_action_move_backwards].primary = eKeyCodeS;
+	a1.keyboardBindings[game_action_move_left].primary = eKeyCodeA;
+	a1.keyboardBindings[game_action_move_right].primary = eKeyCodeD;
+
+	//a1.keyboardBindings[game_action_11].primary = eKeyCode1;
+	//a1.keyboardBindings[game_action_13].primary = eKeyCode2;
+	//a1.keyboardBindings[game_action_14].primary = eKeyCode3;
+	//a1.keyboardBindings[game_action_15].primary = eKeyCode4;
+	//a1.keyboardBindings[game_action_16].primary = eKeyCode5;
+	//a1.keyboardBindings[game_action_18].primary = eKeyCode6;
+	//a1.keyboardBindings[game_action_19].primary = eKeyCode7;
+	//a1.keyboardBindings[game_action_22].primary = eKeyCode8;
+	//a1.keyboardBindings[game_action_23].primary = eKeyCode9;
+	//a1.keyboardBindings[game_action_24].primary = eKeyCode0;
+	//a1.keyboardBindings[game_action_25].primary = eKeyCode1;
+	//a1.keyboardBindings[game_action_26].primary = eKeyCode2;
+	//a1.keyboardBindings[game_action_27].primary = eKeyCode3;
+	//a1.keyboardBindings[game_action_28].primary = eKeyCode4;
+	//a1.keyboardBindings[game_action_29].primary = eKeyCode5;
+	//a1.keyboardBindings[game_action_31].primary = eKeyCode6;
+	//a1.keyboardBindings[game_action_32].primary = eKeyCode7;
+	//a1.keyboardBindings[game_action_33].primary = eKeyCode8;
+	//a1.keyboardBindings[game_action_34].primary = eKeyCode9;
+	//a1.keyboardBindings[game_action_35].primary = eKeyCode0;
+	//a1.keyboardBindings[game_action_36].primary = eKeyCode1;
+	//a1.keyboardBindings[game_action_37].primary = eKeyCode2; // switch nade
+	//a1.keyboardBindings[game_action_39].primary = eKeyCode3; // switch nade
+	//a1.keyboardBindings[game_action_40].primary = eKeyCode4;
+
+
+
+	return result;
+};
+
+
+
+
+
 void init_haloreach_hooks()
 {
 	check_library_can_load("bink2w64.dll");
@@ -848,8 +971,8 @@ void init_haloreach_hooks()
 	g_fieldOfView = GetPrivateProfileIntW(L"Camera", L"FieldOfView", 78, L".\\Settings.ini");
 	g_controlsLayout = GetPrivateProfileIntW(L"Player", L"ControlsLayout", 0, L".\\Settings.ini");
 	g_pancamEnabled = (bool)GetPrivateProfileIntW(L"Debug", L"PancamEnabled", 0, L".\\Settings.ini");
+	g_keyboardPrintKeyState = (bool)GetPrivateProfileIntW(L"Debug", L"PrintKeyState", 0, L".\\Settings.ini");
 	g_useController = GetPrivateProfileIntW(L"Player", L"UseController", 0, L".\\Settings.ini");
-
 	//input_update.SetCallback([](void *) { WriteGameState(); }, nullptr);
 
 	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);

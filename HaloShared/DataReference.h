@@ -108,14 +108,14 @@ public:
 		return reference;
 	}
 
-	T& operator->()
+	T* operator->()
 	{
-		return ref();
+		return ptr();
 	}
 
-	T const& operator->() const
+	T const* operator->() const
 	{
-		return ref();
+		return ptr();
 	}
 
 	operator T& () const

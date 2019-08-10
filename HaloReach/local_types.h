@@ -847,7 +847,7 @@ struct XINPUT_VIBRATION
 	WORD wRightMotorSpeed;
 };
 
-#pragma pop
+#pragma pack(pop)
 
 struct s_gamepad_globals
 {
@@ -875,3 +875,271 @@ struct s_gamepad_globals
 	XINPUT_VIBRATION XinputVibration;
 };
 static_assert(sizeof(s_gamepad_globals) == 0x4F8, "");
+
+enum GameAction : uint8_t // warning: copied from ed
+{
+	// These actions mirror the ControllerButton enum
+
+	eGameActionUiLeftTrigger,
+	eGameActionUiRightTrigger,
+	eGameActionUiUp,
+	eGameActionUiDown,
+	eGameActionUiLeft,
+	eGameActionUiRight,
+	eGameActionUiStart,
+	eGameActionUiSelect,
+	eGameActionUiLeftStick,
+	eGameActionUiRightStick,
+	eGameActionUiA,
+	eGameActionUiB,
+	eGameActionUiX,
+	eGameActionUiY,
+	eGameActionUiLeftBumper,
+	eGameActionUiRightBumper,
+
+	// In-game actions
+
+	eGameActionJump,
+	eGameActionSwitchGrenades,
+	eGameActionSwitchWeapons,
+	eGameActionUnk19,
+	eGameActionReloadRight,
+	eGameActionUse,
+	eGameActionReloadLeft,
+	eGameActionPickUpLeft,
+	eGameActionMelee,
+	eGameActionThrowGrenade,
+	eGameActionFireRight,
+	eGameActionFireLeft,
+	eGameActionMeleeFire, // Fires a weapon with a trigger bound to the melee key
+	eGameActionCrouch,
+	eGameActionZoom,
+	eGameActionUnk31,
+	eGameActionUnk32,
+	eGameActionSprint,
+	eGameActionFlashlight,
+	eGameActionUnk35,
+	eGameActionUnk36,
+	eGameActionUnk37,
+	eGameActionUnk38,
+	eGameActionGeneralChat,
+	eGameActionTeamChat,
+	eGameActionVoiceChat,
+	eGameActionUnk42,
+	eGameActionUnk43,
+	eGameActionUseConsumable1,
+	eGameActionUseConsumable2,
+	eGameActionUseConsumable3,
+	eGameActionUseConsumable4,
+	eGameActionVehicleBoost,
+	eGameActionVehicleDive,
+	eGameActionVehicleRaise,
+	eGameActionVehicleAccelerate,
+	eGameActionVehicleBrake,
+	eGameActionVehicleFire,
+	eGameActionVehicleAltFire,
+	eGameActionVehicleExit,
+	eGameActionNextPlayer,
+	eGameActionPrevPlayer,
+	eGameActionUnk58,
+
+	eGameAction_ControllerCount = 59,
+
+	// These actions CANNOT be bound to controller buttons or else you
+	// will overflow the controller bindings array! (Also, it seems
+	// that mouse bindings will ignore these, even though there's room
+	// for them.)
+
+	eGameActionMoveForward = 59,
+	eGameActionMoveBack,
+	eGameActionMoveLeft,
+	eGameActionMoveRight,
+
+	eGameAction_KeyboardMouseCount = 63
+};
+
+enum MouseAxis
+{
+	eMouseAxisUnknown0,
+	eMouseAxisUnknown1,
+	eMouseAxisUnknown2,
+	eMouseAxisUnknown3,
+	eMouseAxisWheelUp,
+	eMouseAxisWheelDown,
+};
+
+enum Mouse : uint16_t
+{
+	eMouseButton1,
+	eMouseButton2,
+	eMouseButton3,
+	eMouseButton4,
+	eMouseButton5,
+	eMouseWheelUp,
+	eMouseWheelDown,
+};
+
+enum KeyCode : uint16_t
+{
+	eKeyCodeEscape,
+	eKeyCodeF1,
+	eKeyCodeF2,
+	eKeyCodeF3,
+	eKeyCodeF4,
+	eKeyCodeF5,
+	eKeyCodeF6,
+	eKeyCodeF7,
+	eKeyCodeF8,
+	eKeyCodeF9,
+	eKeyCodeF10,
+	eKeyCodeF11,
+	eKeyCodeF12,
+	eKeyCodePrintScreen,
+	eKeyCodeF14,
+	eKeyCodeF15,
+	eKeyCodeTilde, // VK_OEM_3
+	eKeyCode1,
+	eKeyCode2,
+	eKeyCode3,
+	eKeyCode4,
+	eKeyCode5,
+	eKeyCode6,
+	eKeyCode7,
+	eKeyCode8,
+	eKeyCode9,
+	eKeyCode0,
+	eKeyCodeMinus,
+	eKeyCodePlus,
+	eKeyCodeBack,
+	eKeyCodeTab,
+	eKeyCodeQ,
+	eKeyCodeW,
+	eKeyCodeE,
+	eKeyCodeR,
+	eKeyCodeT,
+	eKeyCodeY,
+	eKeyCodeU,
+	eKeyCodeI,
+	eKeyCodeO,
+	eKeyCodeP,
+	eKeyCodeLBracket, // VK_OEM_4
+	eKeyCodeRBracket, // VK_OEM_6
+	eKeyCodePipe, // VK_OEM_5
+	eKeyCodeCapital,
+	eKeyCodeA,
+	eKeyCodeS,
+	eKeyCodeD,
+	eKeyCodeF,
+	eKeyCodeG,
+	eKeyCodeH,
+	eKeyCodeJ,
+	eKeyCodeK,
+	eKeyCodeL,
+	eKeyCodeColon, // VK_OEM_1
+	eKeyCodeQuote, // VK_OEM_7
+	eKeyCodeEnter,
+	eKeyCodeLShift,
+	eKeyCodeZ,
+	eKeyCodeX,
+	eKeyCodeC,
+	eKeyCodeV,
+	eKeyCodeB,
+	eKeyCodeN,
+	eKeyCodeM,
+	eKeyCodeComma,
+	eKeyCodePeriod,
+	eKeyCodeQuestion, // VK_OEM_2
+	eKeyCodeRShift,
+	eKeyCodeLControl,
+	eKeyCodeUnused46, // Left Windows key, but will always fail
+	eKeyCodeLAlt,
+	eKeyCodeSpace,
+	eKeyCodeRAlt,
+	eKeyCodeUnused4A, // Right Windows key, but will always fail
+	eKeyCodeApps,
+	eKeyCodeRcontrol,
+	eKeyCodeUp,
+	eKeyCodeDown,
+	eKeyCodeLeft,
+	eKeyCodeRight,
+	eKeyCodeInsert,
+	eKeyCodeHome,
+	eKeyCodePageUp,
+	eKeyCodeDelete,
+	eKeyCodeEnd,
+	eKeyCodePageDown,
+	eKeyCodeNumLock,
+	eKeyCodeDivide,
+	eKeyCodeMultiply,
+	eKeyCodeNumpad0,
+	eKeyCodeNumpad1,
+	eKeyCodeNumpad2,
+	eKeyCodeNumpad3,
+	eKeyCodeNumpad4,
+	eKeyCodeNumpad5,
+	eKeyCodeNumpad6,
+	eKeyCodeNumpad7,
+	eKeyCodeNumpad8,
+	eKeyCodeNumpad9,
+	eKeyCodeSubtract,
+	eKeyCodeAdd,
+	eKeyCodeNumpadEnter,
+	eKeyCodeDecimal,
+	eKeyCodeUnused68,
+	eKeyCodeShift,
+	eKeyCodeCtrl,
+	eKeyCodeUnused6B, // Windows key, but will always fail
+	eKeyCodeAlt,
+
+	eKeyCode_Count,
+	eKeyCode_None = 0xFF, // An invalid key code (for use in unset bindings)
+};
+
+enum ControllerButton32 : uint32_t
+{
+	eControllerButtonLeftTrigger,
+	eControllerButtonRightTrigger,
+	eControllerButtonDpadUp,
+	eControllerButtonDpadDown,
+	eControllerButtonDpadLeft,
+	eControllerButtonDpadRight,
+	eControllerButtonStart,
+	eControllerButtonSelect,
+	eControllerButtonLeftStick,
+	eControllerButtonRightStick,
+	eControllerButtonA,
+	eControllerButtonB,
+	eControllerButtonX,
+	eControllerButtonY,
+	eControllerButtonLeftBumper,
+	eControllerButtonRightBumper,
+
+	eControllerButton_Count,
+	eControllerButton_None = 0xFF, // An invalid controller button (for use in unset bindings)
+};
+
+#pragma pack(push, 1)
+struct s_bindings_table
+{
+	int a;
+	int b;
+	int unknown8;
+	int unknownTime;
+	int unknown; // seed?
+	BYTE unknown14;
+	BYTE __padding15[3];
+	ControllerButton32 ControllerButtons[104];
+	BYTE unknown7F8[70];
+};
+#pragma pack(pop)
+static_assert(sizeof(s_bindings_table) == 0x1FE, "");
+
+#pragma pack(push, 1)
+struct s_input_abstraction
+{
+	s_bindings_table BindingsTable[4];
+	BYTE unknown7F8[4][1148];
+	BYTE unknown19E8[16];
+};
+#pragma pack(pop)
+static_assert(sizeof(s_input_abstraction) == 0x19F8, "");

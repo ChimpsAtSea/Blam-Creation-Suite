@@ -23,7 +23,7 @@ CreateGameEngineFunc* CreateGameEngine = nullptr;
 IGameEngine* pHaloReachEngine = nullptr;
 
 
-#define NULLSUB_LAMBDA_CUSTOM(message) []() { WriteLineVerbose(message); }
+#define NULLSUB_LAMBDA_CUSTOM(message) []() { /*WriteLineVerbose(message);*/ }
 
 
 
@@ -276,7 +276,6 @@ void load_haloreach_dll()
 	CreateGameEngine = (CreateGameEngineFunc*)GetProcAddress(HaloReach, "CreateGameEngine");
 	SetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(HaloReach, "SetLibrarySettings");
 }
-
 
 void initialize_custom_halo_reach_stuff()
 {
