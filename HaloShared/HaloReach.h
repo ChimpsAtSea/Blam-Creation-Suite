@@ -337,27 +337,60 @@ extern GameEvents_vftbl gameEventsVftbl;
 extern void init_haloreach_hooks();
 extern const char* halo_reach_path;
 
-template<typename T>
-decltype(auto) GameEngineHostCallback_Bypass(T functionPtr, bool forceDisable = false)
+
+enum class GEHCBypassType // GameEngineHostCallbackType
 {
+	UseValidPointer,
+	UseNullPointer
+};
+
+
+template<GEHCBypassType type, typename T>
+decltype(auto) GEHCBypass(T functionPtr, bool forceDisable = false) // GameEngineHostCallback
+{
+	using return_type = decltype(functionPtr());
+
 	char* pBaseAddress = reinterpret_cast<char*>(GetHaloExecutable(HaloGameID::HaloReach));
 	assert(pBaseAddress);
 	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
 
 	auto pGameEngineHostCallbackBefore = pGameEngineHostCallback;
-	if (useCustomGameEngineHostCallback && !forceDisable)
+
+	if constexpr (type == GEHCBypassType::UseValidPointer)
 	{
-		pGameEngineHostCallback = &gameEngineHostCallback;
+		if (useCustomGameEngineHostCallback && !forceDisable)
+		{
+			pGameEngineHostCallback = &gameEngineHostCallback;
+		}
+	}
+	else
+	{
+		if (useCustomGameEngineHostCallback && !forceDisable)
+		{
+			pGameEngineHostCallback = nullptr;
+		}
 	}
 
-	decltype(functionPtr()) result = functionPtr();
-
-	if (useCustomGameEngineHostCallback && !forceDisable)
+	if constexpr (std::is_same<return_type, void>::value)
 	{
-		pGameEngineHostCallback = pGameEngineHostCallbackBefore;
-	}
+		functionPtr();
 
-	return result;
+		if (useCustomGameEngineHostCallback && !forceDisable)
+		{
+			pGameEngineHostCallback = pGameEngineHostCallbackBefore;
+		}
+	}
+	else
+	{
+		decltype(functionPtr()) result = functionPtr();
+
+		if (useCustomGameEngineHostCallback && !forceDisable)
+		{
+			pGameEngineHostCallback = pGameEngineHostCallbackBefore;
+		}
+
+		return result;
+	}
 }
 
 

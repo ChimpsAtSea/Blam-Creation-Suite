@@ -62,7 +62,7 @@ struct IGameEngine
 
 struct Mmeber29UnknownStruct
 {
-	int something;
+	int unknown0;
 	char data0[256];
 	char data1[20];
 	char data2[16];
@@ -102,6 +102,7 @@ struct GameEngineHostCallback_vftbl
 	NullSubFunc* Member26;
 	NullSubFunc* Member27;
 	NullSubFunc* Member28;
+	//unsigned __int8(__fastcall* Member28)(GameEngineHostCallback*, __int64, char*);
 	unsigned __int8(__fastcall* Member29)(GameEngineHostCallback*, _QWORD, Mmeber29UnknownStruct* pUnknown);
 	NullSubFunc* SetPlayerName;
 	NullSubFunc* Member31;

@@ -23,7 +23,7 @@ CreateGameEngineFunc* CreateGameEngine = nullptr;
 IGameEngine* pHaloReachEngine = nullptr;
 
 
-#define NULLSUB_LAMBDA_CUSTOM(message) []() { /*WriteLineVerbose(message);*/ }
+#define NULLSUB_LAMBDA_CUSTOM(message) []() { WriteLineVerbose(message); }
 
 
 
@@ -85,17 +85,15 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member26 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[26]");
 	gameEngineHostCallbackVftbl.Member27 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[27]");
 	gameEngineHostCallbackVftbl.Member28 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[28]");
-
-
-
 	gameEngineHostCallbackVftbl.Member29 = [](GameEngineHostCallback*, _QWORD, Mmeber29UnknownStruct* pUnknown) {
-		NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[29]")();
-
-		bool key = !!GetAsyncKeyState(VK_F3);
+		/*
+		When we load the level, we set the g_waitingForInputUpdate to true allowing us
+		to reset the input system. This function sets the engine to use the keyboard
+		or mouse input.
+		*/
 
 		memset(pUnknown, 0, sizeof(*pUnknown));
-		pUnknown->something = 1;
-		memset(pUnknown->data2, 0xFF, sizeof(pUnknown->data2));
+		pUnknown->unknown0 = 1;
 
 		if (g_waitingForInputUpdate)
 		{

@@ -40,7 +40,7 @@ HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
 HaloReachReference<float, 0x183DF5830> dword_183DF5830;
 HaloReachReference<_QWORD, 0x183461018> qword_183461018;
 HaloReachReference<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
-HaloReachReference<s_input_abstraction, 0x183DF54E0> g_input_abstraction;
+HaloReachReference<s_input_abstraction, 0x183B2E510> g_input_abstraction;
 
 // Halo Reach Functions
 
@@ -87,11 +87,8 @@ HaloReachHook<0x1806C2890, HWND()> initialize_window = []()
 
 HaloReachHook<0x180012B60, __int64 __fastcall (__int64 a1, __int64 a2)> main_game_launch_create_local_squad = [](__int64 a1, __int64 a2)
 {
-	auto result = GameEngineHostCallback_Bypass([a1, a2]() {
-		return main_game_launch_create_local_squad(a1, a2);
-		});
-
-	return result;
+	auto callback = [=]() { return main_game_launch_create_local_squad(a1, a2); };
+	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
 };
 
 HaloReachHookVarArgs<0x18004AFC0, char* (char* dst, char* format, ...)> sprintf_256 = [](char* dst, char* format, ...)
@@ -191,7 +188,7 @@ HaloReachHook<0x180013EA0, char __fastcall (__int64 a1, __int64 a2)> main_game_l
 		"terminate"
 	};
 
-	auto result = GameEngineHostCallback_Bypass([a1, a2, load_state, load_state_names]()
+	auto result = GEHCBypass<GEHCBypassType::UseValidPointer>([a1, a2, load_state, load_state_names]()
 		{
 
 			static int previous_load_state = k_load_state_invalid;
@@ -421,12 +418,8 @@ HaloReachHook<0x1803A6B30, levels_try_and_get_scenario_path_func> levels_try_and
 
 HaloReachHook<0x1800122F0, int()> sub_1800122F0 = []()
 {
-	auto result = GameEngineHostCallback_Bypass([]() {
-
-		return sub_1800122F0();
-
-		});
-	return result;
+	auto callback = []() { return sub_1800122F0(); };
+	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
 };
 
 void memcpy_virtual(
@@ -491,10 +484,15 @@ HaloReachHook<0x180308BD0, __int64 __fastcall (__int64 a1, __int64 a2, int a3)> 
 	return result;
 };
 
+HaloReachHook<0x180780C20, __int64 __fastcall (s_binding_preferences* a1, int a2)> sub_180780C20 = [](s_binding_preferences* a1, int a2) 
+{
+	auto callback = [=]() { return sub_180780C20(a1, a2); };
+	return GEHCBypass<GEHCBypassType::UseNullPointer>(callback);
+};
 
 HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 
-	auto& bindingsTable = g_input_abstraction.ptr()->BindingsTable[0];
+	s_bindings_table& bindingsTable = g_input_abstraction.ptr()->BindingsTable[0];
 
 	if (g_keyboardPrintKeyState)
 	{
@@ -507,7 +505,24 @@ HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 		}
 	}
 
-	auto result = GameEngineHostCallback_Bypass([]()
+
+
+
+
+	//for (int i = 0; i < _countof(g_input_abstraction->struct3); i++)
+	//{
+	//	s_input_abstraction_struct3& struct3 = g_input_abstraction->struct3[i];
+
+	//	int sum = 0;
+	//	for (int j = 0xD8; j < _countof(struct3.data); j++)
+	//	{
+	//		sum += static_cast<unsigned __int8>(struct3.data[j]);
+	//	}
+	//	g_input_abstraction->struct3[0].bindingsTableCopy;
+	//	assert(sum == 0);
+	//}
+
+	auto result = GEHCBypass<GEHCBypassType::UseValidPointer>([]()
 		{
 			CustomWindow::inputDeltaX = 0;
 			CustomWindow::inputDeltaY = 0;

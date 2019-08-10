@@ -216,6 +216,19 @@ enum GameAction : DWORD
 	game_action_count
 };
 
+struct __declspec(align(4)) s_binding_preferences
+{
+	WORD Flags;
+	BYTE unknown2[10];
+	int ProfileIndex;
+	BYTE unknown10[8];
+	int ControllerLayout;
+	BYTE unknown1C[84];
+	float LookSensitivity;
+	BYTE unknown74[12];
+	float FieldOfView;
+	BYTE unknown84[2740];
+};
 
 #pragma pack(push, 1)
 struct s_rumble
@@ -282,11 +295,11 @@ static_assert(sizeof(s_gamepad_globals) == 0x4F8, "");
 #pragma pack(push, 1)
 struct s_bindings_table
 {
-	int a;
-	int b;
-	int unknown8;
-	int unknownTime;
-	int unknown; // seed?
+	float a;
+	float b;
+	float unknown8;
+	float unknownTime;
+	float unknown; // seed?
 	BYTE unknown14;
 	BYTE __padding15[3];
 	ControllerButton32 ControllerButtons[41];
@@ -310,7 +323,7 @@ static_assert(s_bindings_table_size == 0xD8, "");
 struct InputBinding
 {
 	DWORD primary;
-	DWORD seconday;
+	DWORD secondary;
 };
 
 struct GameBindings
@@ -318,20 +331,53 @@ struct GameBindings
 	InputBinding mouseBindings[game_action_count];
 	InputBinding mouseAxisBindings[game_action_count];
 	InputBinding keyboardBindings[game_action_count];
-
+	float a;
+	float b;
+	float c;
+	float d;
 };
 static size_t constexpr  GameBindings_size = sizeof(GameBindings);
-static_assert(GameBindings_size == sizeof(InputBinding) * game_action_count * 3, "GameBindings incorrect size");
+static_assert(GameBindings_size == 0x4A8, "GameBindings incorrect size");
+
+enum KeyEventModifiers : uint8_t
+{
+	eKeyEventModifiersShift = 1 << 0,
+	eKeyEventModifiersCtrl = 1 << 1,
+	eKeyEventModifiersalt = 1 << 2,
+};
+
+enum KeyEventType : uint32_t
+{
+	eKeyEventTypeDown, // A key was pressed.
+	eKeyEventTypeUp,   // A key was released.
+	eKeyEventTypeChar  // A character was typed.
+};
+
+struct KeyEvent
+{
+	KeyEventModifiers Modifiers; // Bitfield of modifier keys that are down
+	KeyEventType Type;           // Event type
+	KeyCode Code;                // The key code, or -1 if unavailable
+	char16_t Char;               // For eKeyEventTypeChar events, the character that was typed, or -1 if unavailable
+	bool PreviousState;          // If true, the key was down before this event happened
+};
+
+struct s_input_abstraction_struct3
+{
+	KeyEvent keyevents[16];
+	s_bindings_table bindingsTableCopy;
+	char data[676];
+};
 
 #pragma pack(push, 1)
 struct s_input_abstraction
 {
 	s_bindings_table BindingsTable[4];
-	GameBindings gameBindings[4];
-	char data[1080];
+	GameBindings gameBindings;
+	s_input_abstraction_struct3 struct3[4];
 };
 #pragma pack(pop)
 static constexpr size_t  s_input_abstraction_size = sizeof(s_input_abstraction);
 static_assert(s_input_abstraction_size == 0x19F8, "");
 static_assert(sizeof(s_bindings_table) * 4 == 0x360, "");
-static constexpr size_t s_input_abstraction_remaining_bytes = 0x19F8;
+static constexpr size_t s_input_abstraction_remaining_bytes = 0x19F8 - s_input_abstraction_size;
