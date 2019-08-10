@@ -532,29 +532,8 @@ HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 			if (ThreadLocalStorage.IsValid())
 			{
 				//assert(game_globals = ThreadLocalStorage.Get<s_game_globals *>(_tls_offset_game_globals));
-
-				//WriteLineVerbose("game_globals->game_options.scenario_path: %s", game_globals->game_options.scenario_path)
-
-				assert(player_control_globals = ThreadLocalStorage.Get<s_player_control_globals*>(_tls_offset_player_control_globals));
-				assert(director_globals = ThreadLocalStorage.Get<s_director_globals*>(_tls_offset_director_globals));
-
-				float mov = 0.042f;
-
-				//player_control_globals->hLookAngle += float(CustomWindow::inputDeltaX) * 0.001;
-				//player_control_globals->vLookAngle += float(CustomWindow::inputDeltaY) * 0.001;
-
-				// up
-				if (GetAsyncKeyState('U') & 0x8000)
-					player_control_globals->vLookAngle += mov;
-				// down
-				if (GetAsyncKeyState('J') & 0x8000)
-					player_control_globals->vLookAngle -= mov;
-				// left
-				if (GetAsyncKeyState('H') & 0x8000)
-					player_control_globals->hLookAngle += mov;
-				// right
-				if (GetAsyncKeyState('K') & 0x8000)
-					player_control_globals->hLookAngle -= mov;
+				//assert(player_control_globals = ThreadLocalStorage.Get<s_player_control_globals*>(_tls_offset_player_control_globals));
+				//assert(director_globals = ThreadLocalStorage.Get<s_director_globals*>(_tls_offset_director_globals));
 			}
 			return input_update();
 		}
