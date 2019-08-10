@@ -38,6 +38,7 @@ HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
 HaloReachReference<uint32_t, 0x1810A3098> TlsIndex;
 HaloReachReference<float, 0x183DF5830> dword_183DF5830;
 HaloReachReference<_QWORD, 0x183461018> qword_183461018;
+HaloReachReference<s_gamepad_globals, 0x183DF54E0> g_GamepadGlobals;
 
 // Halo Reach Functions
 
@@ -804,7 +805,7 @@ void WriteGameState()
 	if (GetAsyncKeyState(VK_F8))
 	{
 		FILE* pGameStateFile = fopen("gamestate.hdr", "w+b");
-		auto pGameStateHeader = *(s_game_state_header * *)0x183841B18;
+		HaloReachReference<s_game_state_header *, 0x183841B18> pGameStateHeader;
 		fwrite(pGameStateHeader, 1, sizeof(s_game_state_header), pGameStateFile);
 		fclose(pGameStateFile);
 	}

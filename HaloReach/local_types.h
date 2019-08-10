@@ -85,7 +85,7 @@ struct GameEngineHostCallback_vftbl
 	NullSubFunc* Member12; // DataAccessMapVariant
 	NullSubFunc* Member13;
 	NullSubFunc* Member14;
-	NullSubFunc* Member15;
+	NullSubFunc* GetNextMapId;
 	NullSubFunc* Member16;
 	NullSubFunc* Member17;
 	NullSubFunc* Member18;
@@ -821,3 +821,57 @@ struct s_director_globals
 	BYTE unknown0[0x6F0];
 };
 static_assert(sizeof(s_director_globals) == 0x6F0, "");
+
+#pragma pack(push, 1)
+struct s_rumble
+{
+	BYTE unknown0[52];
+	DWORD unknown34;
+	DWORD unknown38;
+};
+struct s_action_state
+{
+	WORD Msec;
+	BYTE Ticks;
+	BYTE Flags;
+};
+struct s_game_action
+{
+	DWORD unknown0;
+	WORD unknown4;
+};
+
+struct XINPUT_VIBRATION
+{
+	WORD wLeftMotorSpeed;
+	WORD wRightMotorSpeed;
+};
+
+#pragma pop
+
+struct s_gamepad_globals
+{
+	bool XInputLoaded;
+	bool MouseAcquired;
+	BYTE unknown2[2];
+	int ControllerInUse;
+	BYTE unknown8[4];
+	int Time;
+	struct IDirectInput8 *DirectInput8;
+	s_action_state KeyCodes[104];
+	BYTE unknown1A4[2];
+	WORD unknown1A6;
+	WORD GameAction;
+	s_game_action GameActions[64];
+	BYTE unknown32A[2];
+	LPPOINT point;
+	struct IDirectInputDevice8 *DirectInputDevice;
+	float unknown350;
+	DWORD unknown354[24];
+	DWORD Flags;
+	s_rumble Rumbles[4];
+	s_rumble Rumble;
+	XINPUT_VIBRATION XinputVibrations[4];
+	XINPUT_VIBRATION XinputVibration;
+};
+static_assert(sizeof(s_gamepad_globals) == 0x4F8, "");

@@ -63,7 +63,7 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member12 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[12]");
 	gameEngineHostCallbackVftbl.Member13 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[13]");
 	gameEngineHostCallbackVftbl.Member14 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[14]");
-	gameEngineHostCallbackVftbl.Member15 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[15]");
+	gameEngineHostCallbackVftbl.GetNextMapId = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::GetNextMapId");
 	gameEngineHostCallbackVftbl.Member16 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[16]");
 	gameEngineHostCallbackVftbl.Member17 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[17]");
 	gameEngineHostCallbackVftbl.Member18 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[18]");
@@ -76,7 +76,11 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member21 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[21]");
 	gameEngineHostCallbackVftbl.Member22 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[22]");
 	gameEngineHostCallbackVftbl.Member23 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[23]");
-	gameEngineHostCallbackVftbl.Member24 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[24]");
+	gameEngineHostCallbackVftbl.Member24 = []() {
+		// TODO: add splash/loading screen that stops when this is called
+
+		WriteLineVerbose("GameLoaded");
+	};
 	gameEngineHostCallbackVftbl.Member25 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[25]");
 	gameEngineHostCallbackVftbl.Member26 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[26]");
 	gameEngineHostCallbackVftbl.Member27 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[27]");
