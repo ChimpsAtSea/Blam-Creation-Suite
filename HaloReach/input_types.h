@@ -1,219 +1,224 @@
 #pragma once
 
 
-enum MouseAxis
+enum e_mouse_axis
 {
-	eMouseAxisUnknown0,
-	eMouseAxisUnknown1,
-	eMouseAxisUnknown2,
-	eMouseAxisUnknown3,
-	eMouseAxisWheelUp,
-	eMouseAxisWheelDown,
+	_mouse_axis_unknown0,
+	_mouse_axis_unknown1,
+	_mouse_axis_unknown2,
+	_mouse_axis_unknown3,
+	_mouse_axis_wheel_up,
+	_mouse_axis_wheel_down,
+
+	k_number_of_mouse_axis
 };
 
-enum Mouse : uint16_t
+enum e_mouse : uint16_t
 {
-	eMouseButton1,
-	eMouseButton2,
-	eMouseButton3,
-	eMouseButton4,
-	eMouseButton5,
-	eMouseWheelUp,
-	eMouseWheelDown,
+	_mouse_button1,
+	_mouse_button2,
+	_mouse_button3,
+	_mouse_button4,
+	_mouse_button5,
+	_mouse_wheel_up,
+	_mouse_wheel_down,
+
+	k_number_of_mouse_inputs
 };
 
-enum KeyCode : uint16_t
+enum e_key_code : uint16_t
 {
-	eKeyCodeEscape,
-	eKeyCodeF1,
-	eKeyCodeF2,
-	eKeyCodeF3,
-	eKeyCodeF4,
-	eKeyCodeF5,
-	eKeyCodeF6,
-	eKeyCodeF7,
-	eKeyCodeF8,
-	eKeyCodeF9,
-	eKeyCodeF10,
-	eKeyCodeF11,
-	eKeyCodeF12,
-	eKeyCodePrintScreen,
-	eKeyCodeF14,
-	eKeyCodeF15,
-	eKeyCodeTilde, // VK_OEM_3
-	eKeyCode1,
-	eKeyCode2,
-	eKeyCode3,
-	eKeyCode4,
-	eKeyCode5,
-	eKeyCode6,
-	eKeyCode7,
-	eKeyCode8,
-	eKeyCode9,
-	eKeyCode0,
-	eKeyCodeMinus,
-	eKeyCodePlus,
-	eKeyCodeBack,
-	eKeyCodeTab,
-	eKeyCodeQ,
-	eKeyCodeW,
-	eKeyCodeE,
-	eKeyCodeR,
-	eKeyCodeT,
-	eKeyCodeY,
-	eKeyCodeU,
-	eKeyCodeI,
-	eKeyCodeO,
-	eKeyCodeP,
-	eKeyCodeLBracket, // VK_OEM_4
-	eKeyCodeRBracket, // VK_OEM_6
-	eKeyCodePipe, // VK_OEM_5
-	eKeyCodeCapital,
-	eKeyCodeA,
-	eKeyCodeS,
-	eKeyCodeD,
-	eKeyCodeF,
-	eKeyCodeG,
-	eKeyCodeH,
-	eKeyCodeJ,
-	eKeyCodeK,
-	eKeyCodeL,
-	eKeyCodeColon, // VK_OEM_1
-	eKeyCodeQuote, // VK_OEM_7
-	eKeyCodeEnter,
-	eKeyCodeLShift,
-	eKeyCodeZ,
-	eKeyCodeX,
-	eKeyCodeC,
-	eKeyCodeV,
-	eKeyCodeB,
-	eKeyCodeN,
-	eKeyCodeM,
-	eKeyCodeComma,
-	eKeyCodePeriod,
-	eKeyCodeQuestion, // VK_OEM_2
-	eKeyCodeRShift,
-	eKeyCodeLControl,
-	eKeyCodeUnused46, // Left Windows key, but will always fail
-	eKeyCodeLAlt,
-	eKeyCodeSpace,
-	eKeyCodeRAlt,
-	eKeyCodeUnused4A, // Right Windows key, but will always fail
-	eKeyCodeApps,
-	eKeyCodeRcontrol,
-	eKeyCodeUp,
-	eKeyCodeDown,
-	eKeyCodeLeft,
-	eKeyCodeRight,
-	eKeyCodeInsert,
-	eKeyCodeHome,
-	eKeyCodePageUp,
-	eKeyCodeDelete,
-	eKeyCodeEnd,
-	eKeyCodePageDown,
-	eKeyCodeNumLock,
-	eKeyCodeDivide,
-	eKeyCodeMultiply,
-	eKeyCodeNumpad0,
-	eKeyCodeNumpad1,
-	eKeyCodeNumpad2,
-	eKeyCodeNumpad3,
-	eKeyCodeNumpad4,
-	eKeyCodeNumpad5,
-	eKeyCodeNumpad6,
-	eKeyCodeNumpad7,
-	eKeyCodeNumpad8,
-	eKeyCodeNumpad9,
-	eKeyCodeSubtract,
-	eKeyCodeAdd,
-	eKeyCodeNumpadEnter,
-	eKeyCodeDecimal,
-	eKeyCodeUnused68,
-	eKeyCodeShift,
-	eKeyCodeCtrl,
-	eKeyCodeUnused6B, // Windows key, but will always fail
-	eKeyCodeAlt,
+	_key_code_escape,
+	_key_code_f1,
+	_key_code_f2,
+	_key_code_f3,
+	_key_code_f4,
+	_key_code_f5,
+	_key_code_f6,
+	_key_code_f7,
+	_key_code_f8,
+	_key_code_f9,
+	_key_code_f10,
+	_key_code_f11,
+	_key_code_f12,
+	_key_code_print_screen,
+	_key_code_f14,
+	_key_code_f15,
+	_key_code_tilde, // VK_OEM_3
+	_key_code_1,
+	_key_code_2,
+	_key_code_3,
+	_key_code_4,
+	_key_code_5,
+	_key_code_6,
+	_key_code_7,
+	_key_code_8,
+	_key_code_9,
+	_key_code_0,
+	_key_code_minus,
+	_key_code_plus,
+	_key_code_back,
+	_key_code_tab,
+	_key_code_q,
+	_key_code_w,
+	_key_code_e,
+	_key_code_r,
+	_key_code_t,
+	_key_code_y,
+	_key_code_u,
+	_key_code_i,
+	_key_code_o,
+	_key_code_p,
+	_key_code_left_bracket, // VK_OEM_4
+	_key_code_right_bracket, // VK_OEM_6
+	_key_code_pipe, // VK_OEM_5
+	_key_code_capital,
+	_key_code_a,
+	_key_code_s,
+	_key_code_d,
+	_key_code_f,
+	_key_code_g,
+	_key_code_h,
+	_key_code_j,
+	_key_code_k,
+	_key_code_l,
+	_key_code_colon, // VK_OEM_1
+	_key_code_quote, // VK_OEM_7
+	_key_code_enter,
+	_key_code_left_shift,
+	_key_code_z,
+	_key_code_x,
+	_key_code_c,
+	_key_code_v,
+	_key_code_b,
+	_key_code_n,
+	_key_code_m,
+	_key_code_comma,
+	_key_code_period,
+	_key_code_question, // VK_OEM_2
+	_key_code_right_shift,
+	_key_code_left_control,
+	_key_code_left_windows, // will always fail
+	_key_code_left_alt,
+	_key_code_space,
+	_key_code_right_alt,
+	_key_code_right_windows, // will always fail
+	_key_code_apps,
+	_key_code_right_control,
+	_key_code_up,
+	_key_code_down,
+	_key_code_left,
+	_key_code_right,
+	_key_code_insert,
+	_key_code_home,
+	_key_code_page_up,
+	_key_code_delete,
+	_key_code_end,
+	_key_code_page_down,
+	_key_code_number_lock,
+	_key_code_divide,
+	_key_code_multiply,
+	_key_code_numpad_0,
+	_key_code_numpad_1,
+	_key_code_numpad_2,
+	_key_code_numpad_3,
+	_key_code_numpad_4,
+	_key_code_numpad_5,
+	_key_code_numpad_6,
+	_key_code_numpad_7,
+	_key_code_numpad_8,
+	_key_code_numpad_9,
+	_key_code_subtract,
+	_key_code_add,
+	_key_code_numpad_enter,
+	_key_code_decimal,
+	_key_code_unused68,
+	_key_code_shift,
+	_key_code_ctrl,
+	_key_code_windows, // will always fail
+	_key_code_alt,
 
-	eKeyCode_Count,
-	eKeyCode_None = 0xFF, // An invalid key code (for use in unset bindings)
+	k_number_of_key_codes,
+	_key_code_none = 0xFF, // An invalid key code (for use in unset bindings)
 };
 
 
-enum ControllerButton32 : uint32_t
+enum e_controller_button_32 : uint32_t
 {
-	eControllerButtonLeftTrigger,
-	eControllerButtonRightTrigger,
-	eControllerButtonDpadUp,
-	eControllerButtonDpadDown,
-	eControllerButtonDpadLeft,
-	eControllerButtonDpadRight,
-	eControllerButtonStart,
-	eControllerButtonSelect,
-	eControllerButtonLeftStick,
-	eControllerButtonRightStick,
-	eControllerButtonA,
-	eControllerButtonB,
-	eControllerButtonX,
-	eControllerButtonY,
-	eControllerButtonLeftBumper,
-	eControllerButtonRightBumper,
+	_controller_button_left_trigger,
+	_controller_button_right_trigger,
+	_controller_button_dpad_up,
+	_controller_button_dpad_down,
+	_controller_button_dpad_left,
+	_controller_button_dpad_right,
+	_controller_button_start,
+	_controller_button_select,
+	_controller_button_left_stick,
+	_controller_button_right_stick,
+	_controller_button_a,
+	_controller_button_b,
+	_controller_button_x,
+	_controller_button_y,
+	_controller_button_left_bumper,
+	_controller_button_right_bumper,
 
-	eControllerButton_Count,
-	eControllerButton_None = 0xFF, // An invalid controller button (for use in unset bindings)
+	k_number_of__controller_buttons,
+	_controller_button_none = 0xFF, // An invalid controller button (for use in unset bindings)
 };
 
-enum GameAction : DWORD
+enum e_game_action : DWORD
 {
-	game_action_jump,
-	game_action_switch_grenade,
-	game_action_switch_weapon,
-	game_action_action,
-	game_action_meele_attack,
-	game_action_equipment,
-	game_action_throw_grenade,
-	game_action_fire_primary,
-	game_action_crouch,
-	game_action_scope_zoom,
-	game_action_vehicle_brake, // maybe vehicle trick primary
-	game_action_11,
-	game_action_vehicle_brake2,
-	game_action_13,
-	game_action_14,
-	game_action_15,
-	game_action_16,
-	game_action_show_weapon_details,
-	game_action_18,
-	game_action_19,
-	game_action_night_vision,
-	game_action_skip_cutscene,
-	game_action_22,
-	game_action_23,
-	game_action_24,
-	game_action_25,
-	game_action_26,
-	game_action_27,
-	game_action_28,
-	game_action_29,
-	game_action_skip_cutscene_confirm,
-	game_action_31,
-	game_action_32,
-	game_action_33,
-	game_action_34,
-	game_action_35,
-	game_action_36,
-	game_action_37,
-	game_action_reload,
-	game_action_39,
-	game_action_40,
-	game_action_move_forward,
-	game_action_move_backwards,
-	game_action_move_left,
-	game_action_move_right,
-	game_action_mouse_axis_unknown45,
-	game_action_mouse_axis_unknown46,
-	game_action_mouse_axis_unknown47,
-	game_action_mouse_axis_unknown48,
-	game_action_count
+	_game_action_jump,
+	_game_action_switch_grenade,
+	_game_action_switch_weapon,
+	_game_action_action,
+	_game_action_melee_attack,
+	_game_action_equipment,
+	_game_action_throw_grenade,
+	_game_action_fire_primary,
+	_game_action_crouch,
+	_game_action_scope_zoom,
+	_game_action_vehicle_brake, // maybe vehicle trick primary
+	_game_action_11,
+	_game_action_vehicle_brake2,
+	_game_action_13,
+	_game_action_14,
+	_game_action_15,
+	_game_action_16,
+	_game_action_show_weapon_details,
+	_game_action_18,
+	_game_action_19,
+	_game_action_night_vision,
+	_game_action_skip_cutscene,
+	_game_action_22,
+	_game_action_23,
+	_game_action_24,
+	_game_action_25,
+	_game_action_26,
+	_game_action_unknown_physics_debug1,
+	_game_action_unknown_physics_debug2,
+	_game_action_29,
+	_game_action_skip_cutscene_confirm,
+	_game_action_31,
+	_game_action_32,
+	_game_action_33,
+	_game_action_34,
+	_game_action_35,
+	_game_action_36,
+	_game_action_37,
+	_game_action_reload,
+	_game_action_39,
+	_game_action_40,
+	_game_action_move_forward,
+	_game_action_move_backwards,
+	_game_action_move_left,
+	_game_action_move_right,
+	_game_action_mouse_axis_unknown45,
+	_game_action_mouse_axis_unknown46,
+	_game_action_mouse_axis_unknown47,
+	_game_action_mouse_axis_unknown48,
+
+	k_number_of_game_actions
 };
 
 struct __declspec(align(4)) s_binding_preferences
@@ -302,7 +307,7 @@ struct s_bindings_table
 	float unknown; // seed?
 	BYTE unknown14;
 	BYTE __padding15[3];
-	ControllerButton32 ControllerButtons[41];
+	e_controller_button_32 ControllerButtons[41];
 	WORD unknownBC;
 	BYTE unknownBE;
 	BYTE unknownBF;
@@ -328,9 +333,9 @@ struct InputBinding
 
 struct GameBindings
 {
-	InputBinding mouseBindings[game_action_count];
-	InputBinding mouseAxisBindings[game_action_count];
-	InputBinding keyboardBindings[game_action_count];
+	InputBinding MouseBindings[k_number_of_game_actions];
+	InputBinding MouseAxisBindings[k_number_of_game_actions];
+	InputBinding KeyboardBindings[k_number_of_game_actions];
 	float a;
 	float b;
 	float c;
@@ -357,7 +362,7 @@ struct KeyEvent
 {
 	KeyEventModifiers Modifiers; // Bitfield of modifier keys that are down
 	KeyEventType Type;           // Event type
-	KeyCode Code;                // The key code, or -1 if unavailable
+	e_key_code Code;             // The key code, or -1 if unavailable
 	char16_t Char;               // For eKeyEventTypeChar events, the character that was typed, or -1 if unavailable
 	bool PreviousState;          // If true, the key was down before this event happened
 };

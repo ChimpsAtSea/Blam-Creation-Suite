@@ -562,7 +562,7 @@ HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 	return result;
 };
 
-HaloReachHook<0x1803080A0, char(__fastcall)(KeyCode a1)> sub_1803080A0 = [](KeyCode a1)
+HaloReachHook<0x1803080A0, char(__fastcall)(e_key_code a1)> sub_1803080A0 = [](e_key_code a1)
 {
 	auto result = sub_1803080A0(a1);
 	return result;
@@ -599,52 +599,6 @@ HaloReachHook<0x1804DA240, float(__stdcall)()> observer_get_suggested_field_of_v
 	return result;
 };
 
-
-enum Action
-{
-	Jump,
-	SwitchNade,
-	SwitchWeapon,
-	eAction,
-	Melee,
-	Equipment,
-	ThrowGrenade,
-	Fire,
-	Crouch,
-	Zoom,
-	VehicleBrake,
-	Unknown0,
-	BrakeVehicle2,
-	Unknown1,
-	Unknown2,
-	Unknown3,
-	Unknown4,
-	ShowWeaponDetails,
-	Unknown5,
-	Unknown6,
-	Visor,
-	SkipCutscene,
-	Unknown8,
-	Unknown9,
-	Unknown10,
-	Unknown11,
-	Unknown12,
-	UnknownPhysicsDebug1, // makes vehicles move a bit when pressed right next to it
-	UnknownPhysicsDebug2, // makes vehicles move a bit when pressed right next to it
-	Unknown15,
-	SkipCutsceneConfirm,
-	Unknown17,
-	Unknown18,
-	Unknown19,
-	Unknown20,
-	Unknown21,
-	Unknown22,
-	Unknown23,
-	Unknown24,
-	Unknown25,
-	Unknown26,
-};
-
 HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_set_default = [](s_bindings_table* a1)
 {
 	auto result = bindings_set_default(a1);
@@ -655,51 +609,51 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	//memset(a1->ControllerButtons, 0, sizeof(a1->ControllerButtons));
 	//for (int i = 0; i < _countof(a1->ControllerButtons); i++)
 	//{
-	//	a1->ControllerButtons[i] = ControllerButton32::eControllerButtonLeftTrigger;
+	//	a1->ControllerButtons[i] = e_controller_button_32::_controller_button_left_trigger;
 	//}
 
 	// default expected ordering
-	assert(a1->ControllerButtons[Jump] == eControllerButtonA);
-	assert(a1->ControllerButtons[SwitchNade] == eControllerButtonB);
-	assert(a1->ControllerButtons[SwitchWeapon] == eControllerButtonY);
-	assert(a1->ControllerButtons[eAction] == eControllerButtonX);
-	assert(a1->ControllerButtons[Melee] == eControllerButtonRightBumper);
-	assert(a1->ControllerButtons[Equipment] == eControllerButtonLeftBumper);
-	assert(a1->ControllerButtons[ThrowGrenade] == eControllerButtonLeftTrigger);
-	assert(a1->ControllerButtons[Fire] == eControllerButtonRightTrigger);
-	assert(a1->ControllerButtons[Crouch] == eControllerButtonLeftStick);
-	assert(a1->ControllerButtons[Zoom] == eControllerButtonRightStick);
-	assert(a1->ControllerButtons[VehicleBrake] == eControllerButtonLeftTrigger);
-	assert(a1->ControllerButtons[Unknown0] == eControllerButtonB);
-	assert(a1->ControllerButtons[BrakeVehicle2] == eControllerButtonRightBumper);
-	assert(a1->ControllerButtons[Unknown1] == eControllerButtonLeftBumper);
-	assert(a1->ControllerButtons[Unknown2] == eControllerButtonB);
-	assert(a1->ControllerButtons[Unknown3] == eControllerButtonDpadUp);
-	assert(a1->ControllerButtons[Unknown4] == eControllerButtonStart);
-	assert(a1->ControllerButtons[ShowWeaponDetails] == eControllerButtonSelect);
-	assert(a1->ControllerButtons[Unknown5] == eControllerButtonDpadLeft);
-	assert(a1->ControllerButtons[Unknown6] == eControllerButtonDpadRight);
-	assert(a1->ControllerButtons[Visor] == eControllerButtonDpadLeft);
-	assert(a1->ControllerButtons[SkipCutscene] == eControllerButtonA);
-	assert(a1->ControllerButtons[Unknown8] == eControllerButtonB);
-	assert(a1->ControllerButtons[Unknown9] == eControllerButtonDpadDown);
-	assert(a1->ControllerButtons[Unknown10] == eControllerButtonDpadUp);
-	assert(a1->ControllerButtons[Unknown11] == eControllerButtonDpadLeft);
-	assert(a1->ControllerButtons[Unknown12] == eControllerButtonDpadRight);
-	assert(a1->ControllerButtons[UnknownPhysicsDebug1] == eControllerButtonRightBumper);
-	assert(a1->ControllerButtons[UnknownPhysicsDebug2] == eControllerButtonLeftBumper);
-	assert(a1->ControllerButtons[Unknown15] == eControllerButtonDpadUp);
-	assert(a1->ControllerButtons[SkipCutsceneConfirm] == eControllerButtonY);
-	assert(a1->ControllerButtons[Unknown17] == eControllerButtonDpadUp);
-	assert(a1->ControllerButtons[Unknown18] == eControllerButtonDpadDown);
-	assert(a1->ControllerButtons[Unknown19] == eControllerButtonSelect);
-	assert(a1->ControllerButtons[Unknown20] == eControllerButtonDpadLeft);
-	assert(a1->ControllerButtons[Unknown21] == eControllerButtonX);
-	assert(a1->ControllerButtons[Unknown22] == eControllerButtonSelect);
-	assert(a1->ControllerButtons[Unknown23] == eControllerButtonDpadUp);
-	assert(a1->ControllerButtons[Unknown24] == eControllerButtonX);
-	assert(a1->ControllerButtons[Unknown25] == eControllerButtonB);
-	assert(a1->ControllerButtons[Unknown26] == eControllerButtonB);
+	assert(a1->ControllerButtons[_game_action_jump] == _controller_button_a);
+	assert(a1->ControllerButtons[_game_action_switch_grenade] == _controller_button_b);
+	assert(a1->ControllerButtons[_game_action_switch_weapon] == _controller_button_y);
+	assert(a1->ControllerButtons[_game_action_action] == _controller_button_x);
+	assert(a1->ControllerButtons[_game_action_melee_attack] == _controller_button_right_bumper);
+	assert(a1->ControllerButtons[_game_action_equipment] == _controller_button_left_bumper);
+	assert(a1->ControllerButtons[_game_action_throw_grenade] == _controller_button_left_trigger);
+	assert(a1->ControllerButtons[_game_action_fire_primary] == _controller_button_right_trigger);
+	assert(a1->ControllerButtons[_game_action_crouch] == _controller_button_left_stick);
+	assert(a1->ControllerButtons[_game_action_scope_zoom] == _controller_button_right_stick);
+	assert(a1->ControllerButtons[_game_action_vehicle_brake] == _controller_button_left_trigger);
+	assert(a1->ControllerButtons[_game_action_11] == _controller_button_b);
+	assert(a1->ControllerButtons[_game_action_vehicle_brake2] == _controller_button_right_bumper);
+	assert(a1->ControllerButtons[_game_action_13] == _controller_button_left_bumper);
+	assert(a1->ControllerButtons[_game_action_14] == _controller_button_b);
+	assert(a1->ControllerButtons[_game_action_15] == _controller_button_dpad_up);
+	assert(a1->ControllerButtons[_game_action_16] == _controller_button_start);
+	assert(a1->ControllerButtons[_game_action_show_weapon_details] == _controller_button_select);
+	assert(a1->ControllerButtons[_game_action_18] == _controller_button_dpad_left);
+	assert(a1->ControllerButtons[_game_action_19] == _controller_button_dpad_right);
+	assert(a1->ControllerButtons[_game_action_night_vision] == _controller_button_dpad_left);
+	assert(a1->ControllerButtons[_game_action_skip_cutscene] == _controller_button_a);
+	assert(a1->ControllerButtons[_game_action_22] == _controller_button_b);
+	assert(a1->ControllerButtons[_game_action_23] == _controller_button_dpad_down);
+	assert(a1->ControllerButtons[_game_action_24] == _controller_button_dpad_up);
+	assert(a1->ControllerButtons[_game_action_25] == _controller_button_dpad_left);
+	assert(a1->ControllerButtons[_game_action_26] == _controller_button_dpad_right);
+	assert(a1->ControllerButtons[_game_action_unknown_physics_debug1] == _controller_button_right_bumper);
+	assert(a1->ControllerButtons[_game_action_unknown_physics_debug2] == _controller_button_left_bumper);
+	assert(a1->ControllerButtons[_game_action_29] == _controller_button_dpad_up);
+	assert(a1->ControllerButtons[_game_action_skip_cutscene_confirm] == _controller_button_y);
+	assert(a1->ControllerButtons[_game_action_31] == _controller_button_dpad_up);
+	assert(a1->ControllerButtons[_game_action_32] == _controller_button_dpad_down);
+	assert(a1->ControllerButtons[_game_action_33] == _controller_button_select);
+	assert(a1->ControllerButtons[_game_action_34] == _controller_button_dpad_left);
+	assert(a1->ControllerButtons[_game_action_35] == _controller_button_x);
+	assert(a1->ControllerButtons[_game_action_36] == _controller_button_select);
+	assert(a1->ControllerButtons[_game_action_37] == _controller_button_dpad_up);
+	assert(a1->ControllerButtons[_game_action_reload] == _controller_button_x);
+	assert(a1->ControllerButtons[_game_action_39] == _controller_button_b);
+	assert(a1->ControllerButtons[_game_action_40] == _controller_button_b);
 
 	enum ControlsLayout
 	{
@@ -714,64 +668,64 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	switch (g_controlsLayout)
 	{
 	case SouthPaw:
-		a1->ControllerButtons[Jump] = eControllerButtonA;
-		a1->ControllerButtons[Melee] = eControllerButtonLeftBumper;
-		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
-		a1->ControllerButtons[SwitchNade] = eControllerButtonB;
-		a1->ControllerButtons[Equipment] = eControllerButtonRightBumper;
-		a1->ControllerButtons[eAction] = eControllerButtonX;
-		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
-		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
-		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
-		a1->ControllerButtons[Crouch] = eControllerButtonLeftStick;
+		a1->ControllerButtons[_game_action_jump] = _controller_button_a;
+		a1->ControllerButtons[_game_action_melee_attack] = _controller_button_right_bumper;
+		a1->ControllerButtons[_game_action_switch_weapon] = _controller_button_y;
+		a1->ControllerButtons[_game_action_switch_grenade] = _controller_button_b;
+		a1->ControllerButtons[_game_action_equipment] = _controller_button_right_bumper;
+		a1->ControllerButtons[_game_action_action] = _controller_button_x;
+		a1->ControllerButtons[_game_action_fire_primary] = _controller_button_right_trigger;
+		a1->ControllerButtons[_game_action_throw_grenade] = _controller_button_left_trigger;
+		a1->ControllerButtons[_game_action_scope_zoom] = _controller_button_right_stick;
+		a1->ControllerButtons[_game_action_crouch] = _controller_button_left_stick;
 		break;
 	case Boxer:
-		a1->ControllerButtons[Jump] = eControllerButtonA;
-		a1->ControllerButtons[Melee] = eControllerButtonLeftTrigger;
-		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
-		a1->ControllerButtons[SwitchNade] = eControllerButtonB;
-		a1->ControllerButtons[Equipment] = eControllerButtonLeftBumper;
-		a1->ControllerButtons[eAction] = eControllerButtonX;
-		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
-		a1->ControllerButtons[ThrowGrenade] = eControllerButtonRightBumper;
-		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
-		a1->ControllerButtons[Crouch] = eControllerButtonLeftStick;
+		a1->ControllerButtons[_game_action_jump] = _controller_button_a;
+		a1->ControllerButtons[_game_action_melee_attack] = _controller_button_left_trigger;
+		a1->ControllerButtons[_game_action_switch_weapon] = _controller_button_y;
+		a1->ControllerButtons[_game_action_switch_grenade] = _controller_button_b;
+		a1->ControllerButtons[_game_action_equipment] = _controller_button_left_bumper;
+		a1->ControllerButtons[_game_action_action] = _controller_button_x;
+		a1->ControllerButtons[_game_action_fire_primary] = _controller_button_right_trigger;
+		a1->ControllerButtons[_game_action_throw_grenade] = _controller_button_right_bumper;
+		a1->ControllerButtons[_game_action_scope_zoom] = _controller_button_right_stick;
+		a1->ControllerButtons[_game_action_crouch] = _controller_button_left_stick;
 		break;
 	case GreenThumb:
-		a1->ControllerButtons[Jump] = eControllerButtonA;
-		a1->ControllerButtons[Melee] = eControllerButtonRightStick;
-		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
-		a1->ControllerButtons[SwitchNade] = eControllerButtonB;
-		a1->ControllerButtons[Equipment] = eControllerButtonLeftBumper;
-		a1->ControllerButtons[eAction] = eControllerButtonX;
-		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
-		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
-		a1->ControllerButtons[Zoom] = eControllerButtonRightBumper;
-		a1->ControllerButtons[Crouch] = eControllerButtonLeftStick;
+		a1->ControllerButtons[_game_action_jump] = _controller_button_a;
+		a1->ControllerButtons[_game_action_melee_attack] = _controller_button_right_stick;
+		a1->ControllerButtons[_game_action_switch_weapon] = _controller_button_y;
+		a1->ControllerButtons[_game_action_switch_grenade] = _controller_button_b;
+		a1->ControllerButtons[_game_action_equipment] = _controller_button_left_bumper;
+		a1->ControllerButtons[_game_action_action] = _controller_button_x;
+		a1->ControllerButtons[_game_action_fire_primary] = _controller_button_right_trigger;
+		a1->ControllerButtons[_game_action_throw_grenade] = _controller_button_left_trigger;
+		a1->ControllerButtons[_game_action_scope_zoom] = _controller_button_right_bumper;
+		a1->ControllerButtons[_game_action_crouch] = _controller_button_left_stick;
 		break;
 	case BumperJumper:
-		a1->ControllerButtons[Jump] = eControllerButtonLeftBumper;
-		a1->ControllerButtons[Melee] = eControllerButtonRightBumper;
-		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
-		a1->ControllerButtons[SwitchNade] = eControllerButtonA;
-		a1->ControllerButtons[Equipment] = eControllerButtonX;
-		a1->ControllerButtons[eAction] = eControllerButtonB;
-		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
-		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
-		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
-		a1->ControllerButtons[Crouch] = eControllerButtonLeftStick;
+		a1->ControllerButtons[_game_action_jump] = _controller_button_left_bumper;
+		a1->ControllerButtons[_game_action_melee_attack] = _controller_button_right_bumper;
+		a1->ControllerButtons[_game_action_switch_weapon] = _controller_button_y;
+		a1->ControllerButtons[_game_action_switch_grenade] = _controller_button_a;
+		a1->ControllerButtons[_game_action_equipment] = _controller_button_x;
+		a1->ControllerButtons[_game_action_action] = _controller_button_b;
+		a1->ControllerButtons[_game_action_fire_primary] = _controller_button_right_trigger;
+		a1->ControllerButtons[_game_action_throw_grenade] = _controller_button_left_trigger;
+		a1->ControllerButtons[_game_action_scope_zoom] = _controller_button_right_stick;
+		a1->ControllerButtons[_game_action_crouch] = _controller_button_left_stick;
 		break;
 	case Recon:
-		a1->ControllerButtons[Jump] = eControllerButtonA;
-		a1->ControllerButtons[Melee] = eControllerButtonB;
-		a1->ControllerButtons[SwitchWeapon] = eControllerButtonY;
-		a1->ControllerButtons[SwitchNade] = eControllerButtonX;
-		a1->ControllerButtons[Equipment] = eControllerButtonLeftBumper;
-		a1->ControllerButtons[eAction] = eControllerButtonRightBumper;
-		a1->ControllerButtons[Fire] = eControllerButtonRightTrigger;
-		a1->ControllerButtons[ThrowGrenade] = eControllerButtonLeftTrigger;
-		a1->ControllerButtons[Zoom] = eControllerButtonRightStick;
-		a1->ControllerButtons[Crouch] = eControllerButtonLeftStick;
+		a1->ControllerButtons[_game_action_jump] = _controller_button_a;
+		a1->ControllerButtons[_game_action_melee_attack] = _controller_button_b;
+		a1->ControllerButtons[_game_action_switch_weapon] = _controller_button_y;
+		a1->ControllerButtons[_game_action_switch_grenade] = _controller_button_x;
+		a1->ControllerButtons[_game_action_equipment] = _controller_button_left_bumper;
+		a1->ControllerButtons[_game_action_action] = _controller_button_right_bumper;
+		a1->ControllerButtons[_game_action_fire_primary] = _controller_button_right_trigger;
+		a1->ControllerButtons[_game_action_throw_grenade] = _controller_button_left_trigger;
+		a1->ControllerButtons[_game_action_scope_zoom] = _controller_button_right_stick;
+		a1->ControllerButtons[_game_action_crouch] = _controller_button_left_stick;
 		break;
 	default:
 		break;
@@ -816,65 +770,65 @@ HaloReachHook<0x1803D8640, __int64 __fastcall (GameBindings& a1)> sub_1803D8640 
 	auto result = sub_1803D8640(a1);
 
 	// mouse buttons
-	a1.mouseBindings[game_action_vehicle_brake].primary = Mouse::eMouseButton3;
-	a1.mouseBindings[game_action_fire_primary].primary = Mouse::eMouseButton1;
-	a1.mouseBindings[game_action_scope_zoom].primary = Mouse::eMouseButton3;
+	a1.MouseBindings[_game_action_vehicle_brake].primary = e_mouse::_mouse_button3;
+	a1.MouseBindings[_game_action_fire_primary].primary = e_mouse::_mouse_button1;
+	a1.MouseBindings[_game_action_scope_zoom].primary = e_mouse::_mouse_button3;
 
 	// mouse axis								
-	a1.mouseAxisBindings[game_action_mouse_axis_unknown45].primary = MouseAxis::eMouseAxisUnknown2;
-	a1.mouseAxisBindings[game_action_mouse_axis_unknown46].primary = MouseAxis::eMouseAxisUnknown3;
-	a1.mouseAxisBindings[game_action_mouse_axis_unknown47].primary = MouseAxis::eMouseAxisUnknown1;
-	a1.mouseAxisBindings[game_action_mouse_axis_unknown48].primary = MouseAxis::eMouseAxisUnknown0;
+	a1.MouseAxisBindings[_game_action_mouse_axis_unknown45].primary = e_mouse_axis::_mouse_axis_unknown2;
+	a1.MouseAxisBindings[_game_action_mouse_axis_unknown46].primary = e_mouse_axis::_mouse_axis_unknown3;
+	a1.MouseAxisBindings[_game_action_mouse_axis_unknown47].primary = e_mouse_axis::_mouse_axis_unknown1;
+	a1.MouseAxisBindings[_game_action_mouse_axis_unknown48].primary = e_mouse_axis::_mouse_axis_unknown0;
 
 	// keyboard
-	a1.keyboardBindings[game_action_jump].primary = eKeyCodeSpace;
-	a1.keyboardBindings[game_action_switch_grenade].primary = eKeyCodeG;
-	a1.keyboardBindings[game_action_switch_weapon].primary = eKeyCodeC;
-	a1.keyboardBindings[game_action_action].primary = eKeyCodeE;
-	a1.keyboardBindings[game_action_meele_attack].primary = eKeyCodeQ;
-	a1.keyboardBindings[game_action_equipment].primary = eKeyCodeLShift;
-	a1.keyboardBindings[game_action_throw_grenade].primary = eKeyCodeF; // throw gnade		
-	a1.keyboardBindings[game_action_crouch].primary = eKeyCodeLControl;
-	a1.keyboardBindings[game_action_vehicle_brake2].primary = eKeyCodeLBracket;
-	a1.keyboardBindings[game_action_13].primary = eKeyCodeRBracket;
-	a1.keyboardBindings[game_action_16].primary = eKeyCodeEscape;
-	a1.keyboardBindings[game_action_show_weapon_details].primary = eKeyCodeBack;
-	a1.keyboardBindings[game_action_night_vision].primary = eKeyCodeM;
-	a1.keyboardBindings[game_action_skip_cutscene].primary = eKeyCodeEnter;
-	a1.keyboardBindings[game_action_skip_cutscene_confirm].primary = eKeyCodeSpace;
-	a1.keyboardBindings[game_action_35].primary = eKeyCodeSpace; // banshee flip?
-	a1.keyboardBindings[game_action_36].primary = eKeyCodeTab;
-	a1.keyboardBindings[game_action_37].primary = eKeyCodeZ; // banshee bomb?
-	a1.keyboardBindings[game_action_reload].primary = eKeyCodeR;
-	a1.keyboardBindings[game_action_move_forward].primary = eKeyCodeW;
-	a1.keyboardBindings[game_action_move_backwards].primary = eKeyCodeS;
-	a1.keyboardBindings[game_action_move_left].primary = eKeyCodeA;
-	a1.keyboardBindings[game_action_move_right].primary = eKeyCodeD;
+	a1.KeyboardBindings[_game_action_jump].primary = _key_code_space;
+	a1.KeyboardBindings[_game_action_switch_grenade].primary = _key_code_g;
+	a1.KeyboardBindings[_game_action_switch_weapon].primary = _key_code_c;
+	a1.KeyboardBindings[_game_action_action].primary = _key_code_e;
+	a1.KeyboardBindings[_game_action_melee_attack].primary = _key_code_q;
+	a1.KeyboardBindings[_game_action_equipment].primary = _key_code_left_shift;
+	a1.KeyboardBindings[_game_action_throw_grenade].primary = _key_code_f; // throw gnade		
+	a1.KeyboardBindings[_game_action_crouch].primary = _key_code_left_control;
+	a1.KeyboardBindings[_game_action_vehicle_brake2].primary = _key_code_left_bracket;
+	a1.KeyboardBindings[_game_action_13].primary = _key_code_right_bracket;
+	a1.KeyboardBindings[_game_action_16].primary = _key_code_escape;
+	a1.KeyboardBindings[_game_action_show_weapon_details].primary = _key_code_back;
+	a1.KeyboardBindings[_game_action_night_vision].primary = _key_code_m;
+	a1.KeyboardBindings[_game_action_skip_cutscene].primary = _key_code_enter;
+	a1.KeyboardBindings[_game_action_skip_cutscene_confirm].primary = _key_code_space;
+	a1.KeyboardBindings[_game_action_35].primary = _key_code_space; // banshee flip?
+	a1.KeyboardBindings[_game_action_36].primary = _key_code_tab;
+	a1.KeyboardBindings[_game_action_37].primary = _key_code_z; // banshee bomb?
+	a1.KeyboardBindings[_game_action_reload].primary = _key_code_r;
+	a1.KeyboardBindings[_game_action_move_forward].primary = _key_code_w;
+	a1.KeyboardBindings[_game_action_move_backwards].primary = _key_code_s;
+	a1.KeyboardBindings[_game_action_move_left].primary = _key_code_a;
+	a1.KeyboardBindings[_game_action_move_right].primary = _key_code_d;
 
-	//a1.keyboardBindings[game_action_11].primary = eKeyCode1;
-	//a1.keyboardBindings[game_action_13].primary = eKeyCode2;
-	//a1.keyboardBindings[game_action_14].primary = eKeyCode3;
-	//a1.keyboardBindings[game_action_15].primary = eKeyCode4;
-	//a1.keyboardBindings[game_action_16].primary = eKeyCode5;
-	//a1.keyboardBindings[game_action_18].primary = eKeyCode6;
-	//a1.keyboardBindings[game_action_19].primary = eKeyCode7;
-	//a1.keyboardBindings[game_action_22].primary = eKeyCode8;
-	//a1.keyboardBindings[game_action_23].primary = eKeyCode9;
-	//a1.keyboardBindings[game_action_24].primary = eKeyCode0;
-	//a1.keyboardBindings[game_action_25].primary = eKeyCode1;
-	//a1.keyboardBindings[game_action_26].primary = eKeyCode2;
-	//a1.keyboardBindings[game_action_27].primary = eKeyCode3;
-	//a1.keyboardBindings[game_action_28].primary = eKeyCode4;
-	//a1.keyboardBindings[game_action_29].primary = eKeyCode5;
-	//a1.keyboardBindings[game_action_31].primary = eKeyCode6;
-	//a1.keyboardBindings[game_action_32].primary = eKeyCode7;
-	//a1.keyboardBindings[game_action_33].primary = eKeyCode8;
-	//a1.keyboardBindings[game_action_34].primary = eKeyCode9;
-	//a1.keyboardBindings[game_action_35].primary = eKeyCode0;
-	//a1.keyboardBindings[game_action_36].primary = eKeyCode1;
-	//a1.keyboardBindings[game_action_37].primary = eKeyCode2; // switch nade
-	//a1.keyboardBindings[game_action_39].primary = eKeyCode3; // switch nade
-	//a1.keyboardBindings[game_action_40].primary = eKeyCode4;
+	//a1.KeyboardBindings[_game_action_11].primary = _key_code_1;
+	//a1.KeyboardBindings[_game_action_13].primary = _key_code_2;
+	//a1.KeyboardBindings[_game_action_14].primary = _key_code_3;
+	//a1.KeyboardBindings[_game_action_15].primary = _key_code_4;
+	//a1.KeyboardBindings[_game_action_16].primary = _key_code_5;
+	//a1.KeyboardBindings[_game_action_18].primary = _key_code_6;
+	//a1.KeyboardBindings[_game_action_19].primary = _key_code_7;
+	//a1.KeyboardBindings[_game_action_22].primary = _key_code_8;
+	//a1.KeyboardBindings[_game_action_23].primary = _key_code_9;
+	//a1.KeyboardBindings[_game_action_24].primary = _key_code_0;
+	//a1.KeyboardBindings[_game_action_25].primary = _key_code_1;
+	//a1.KeyboardBindings[_game_action_26].primary = _key_code_2;
+	//a1.KeyboardBindings[_game_action_27].primary = _key_code_3;
+	//a1.KeyboardBindings[_game_action_28].primary = _key_code_4;
+	//a1.KeyboardBindings[_game_action_29].primary = _key_code_5;
+	//a1.KeyboardBindings[_game_action_31].primary = _key_code_6;
+	//a1.KeyboardBindings[_game_action_32].primary = _key_code_7;
+	//a1.KeyboardBindings[_game_action_33].primary = _key_code_8;
+	//a1.KeyboardBindings[_game_action_34].primary = _key_code_9;
+	//a1.KeyboardBindings[_game_action_35].primary = _key_code_0;
+	//a1.KeyboardBindings[_game_action_36].primary = _key_code_1;
+	//a1.KeyboardBindings[_game_action_37].primary = _key_code_2; // switch nade
+	//a1.KeyboardBindings[_game_action_39].primary = _key_code_3; // switch nade
+	//a1.KeyboardBindings[_game_action_40].primary = _key_code_4;
 
 	return result;
 };
