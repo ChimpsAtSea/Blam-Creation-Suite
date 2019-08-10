@@ -9,6 +9,9 @@ GameEvents gameEvents;
 GameEvents_vftbl gameEventsVftbl;
 s_thread_local_storage ThreadLocalStorage;
 
+GameBindings g_GameBindings;
+bool g_customBinds = false;
+
 e_peer_property last_game_load_status;
 std::string last_game_load_status_str;
 const char* halo_reach_path = "";
@@ -749,7 +752,7 @@ HaloReachHook<0x1803D8640, __int64 __fastcall (GameBindings& a1)> sub_1803D8640 
 	auto result = sub_1803D8640(a1);
 
 	// mouse buttons
-	a1.MouseBindings[_game_action_vehicle_brake].primary = e_mouse::_mouse_button3;
+	a1.MouseBindings[_game_action_vehicle_brake].primary = e_mouse::_mouse_button3; // power slide
 	a1.MouseBindings[_game_action_fire_primary].primary = e_mouse::_mouse_button1;
 	a1.MouseBindings[_game_action_scope_zoom].primary = e_mouse::_mouse_button3;
 
@@ -766,9 +769,9 @@ HaloReachHook<0x1803D8640, __int64 __fastcall (GameBindings& a1)> sub_1803D8640 
 	a1.KeyboardBindings[_game_action_action].primary = _key_code_e;
 	a1.KeyboardBindings[_game_action_melee_attack].primary = _key_code_q;
 	a1.KeyboardBindings[_game_action_equipment].primary = _key_code_left_shift;
-	a1.KeyboardBindings[_game_action_throw_grenade].primary = _key_code_f; // throw gnade		
+	a1.KeyboardBindings[_game_action_throw_grenade].primary = _key_code_f;
 	a1.KeyboardBindings[_game_action_crouch].primary = _key_code_left_control;
-	a1.KeyboardBindings[_game_action_vehicle_brake2].primary = _key_code_left_bracket;
+	a1.KeyboardBindings[_game_action_vehicle_brake2].primary = _key_code_left_bracket; // vehicle trick
 	a1.KeyboardBindings[_game_action_13].primary = _key_code_right_bracket;
 	a1.KeyboardBindings[_game_action_16].primary = _key_code_escape;
 	a1.KeyboardBindings[_game_action_show_weapon_details].primary = _key_code_back;
@@ -809,8 +812,146 @@ HaloReachHook<0x1803D8640, __int64 __fastcall (GameBindings& a1)> sub_1803D8640 
 	//a1.KeyboardBindings[_game_action_39].primary = _key_code_3; // switch nade
 	//a1.KeyboardBindings[_game_action_40].primary = _key_code_4;
 
+	if (g_customBinds)
+	{
+		for (int i = 0; i < k_number_of_game_actions; i++)
+		{
+			DWORD primary = g_GameBindings.KeyboardBindings[i].primary;
+			if (primary >= 0 && primary < k_number_of_key_codes)
+			{
+				a1.KeyboardBindings[i].primary = primary;
+			}
+		}
+	}
+	
+
 	return result;
 };
+
+
+// TODO: find a better home / move into own file
+#pragma region Config
+
+struct Config
+{
+	char Path[MAX_PATH] = ".\\Settings.ini";
+
+	bool ReadBool(LPCSTR Section, LPCSTR Name, int Default = false)
+	{
+		return !!GetPrivateProfileIntA(Section, Name, Default, Path);
+	}
+	int ReadInt(LPCSTR Section, LPCSTR Name, int Default = -1)
+	{
+		return GetPrivateProfileIntA(Section, Name, Default, Path);
+	}
+	LPSTR ReadString(LPCSTR Section, LPCSTR Name, LPCSTR Default)
+	{
+		char result[MAX_PATH] = "";
+		GetPrivateProfileStringA(Section, Name, Default, result, MAX_PATH, Path);
+		return result;
+	}
+
+	template<int Count, typename T>
+	T IndexOf(const char *Array[], const char *Input)
+	{
+		for (int i = 0; i < Count; i++)
+		{
+			if (strcmp(Array[i], Input) == 0)
+				return (T)i;
+		}
+
+		return (T)0xFF;
+	}
+} g_Config;
+
+#pragma endregion
+
+// TODO: find a better home / move into own file
+#pragma region Binds
+
+struct Binds
+{
+	struct Bind
+	{
+		e_game_action GameAction;
+		e_key_code KeyCode;
+
+		Bind(e_game_action game_action, e_key_code key_code)
+		{
+			KeyCode = key_code;
+			GameAction = game_action;
+		}
+		Bind(e_key_code key_code, e_game_action game_action)
+		{
+			KeyCode = key_code;
+			GameAction = game_action;
+		}
+		e_key_code ReadFromConfig()
+		{
+			LPSTR configResult = g_Config.ReadString("Controls", game_action_strings[GameAction], key_code_strings[KeyCode]);
+			return g_Config.IndexOf<k_number_of_key_codes, e_key_code>(key_code_strings, configResult);
+		}
+	};
+
+	std::vector<Bind> Array;
+	int Count = 0;
+
+	void Add(e_game_action game_action, e_key_code key_code)
+	{
+		Array.push_back(Bind(game_action, key_code));
+		Count++;
+	}
+
+	void ReadBindsFromConfig(GameBindings &gameBindings)
+	{
+		memset(&gameBindings, 0xFF, sizeof(gameBindings));
+
+		for (int i = 0; i < Count; i++)
+		{
+			gameBindings.KeyboardBindings[Array.at(i).GameAction].primary = Array.at(i).ReadFromConfig();
+		}
+	}
+} g_Binds;
+
+void ReadBinds()
+{
+	g_Binds.Add(_game_action_jump, _key_code_space);
+	g_Binds.Add(_game_action_switch_grenade, _key_code_g);
+	g_Binds.Add(_game_action_switch_weapon, _key_code_c);
+	g_Binds.Add(_game_action_action, _key_code_e);
+	g_Binds.Add(_game_action_melee_attack, _key_code_q);
+	g_Binds.Add(_game_action_equipment, _key_code_left_shift);
+	g_Binds.Add(_game_action_throw_grenade, _key_code_f);
+	g_Binds.Add(_game_action_crouch, _key_code_left_control);
+	g_Binds.Add(_game_action_vehicle_brake2, _key_code_left_bracket);
+	g_Binds.Add(_game_action_show_weapon_details, _key_code_back);
+	g_Binds.Add(_game_action_night_vision, _key_code_m);
+	g_Binds.Add(_game_action_skip_cutscene, _key_code_enter);
+	g_Binds.Add(_game_action_skip_cutscene_confirm, _key_code_space);
+	g_Binds.Add(_game_action_reload, _key_code_r);
+	g_Binds.Add(_game_action_move_forward, _key_code_w);
+	g_Binds.Add(_game_action_move_backwards, _key_code_s);
+	g_Binds.Add(_game_action_move_left, _key_code_a);
+	g_Binds.Add(_game_action_move_right, _key_code_d);
+
+	if (g_customBinds = g_Config.ReadBool("Controls", "CustomBinds", true))
+		g_Binds.ReadBindsFromConfig(g_GameBindings);
+}
+
+#pragma endregion
+
+void ReadConfig()
+{
+	g_frameLimit = g_Config.ReadInt("Game", "FrameLimit", 60);
+	g_fieldOfView = g_Config.ReadInt("Camera", "FieldOfView", 78);
+	g_controlsLayout = g_Config.ReadInt("Player", "ControlsLayout", 0);
+	g_pancamEnabled = g_Config.ReadBool("Debug", "PancamEnabled", false);
+	g_keyboardPrintKeyState = g_Config.ReadBool("Debug", "PrintKeyState", 0);
+	g_useController = g_Config.ReadInt("Player", "UseController", 0);
+	//input_update.SetCallback([](void *) { WriteGameState(); }, nullptr);
+
+	ReadBinds();
+}
 
 void init_haloreach_hooks()
 {
@@ -823,13 +964,7 @@ void init_haloreach_hooks()
 	physical_memory_stage_push = get_function_ptr<HaloGameID::HaloReach, 0x1803FB790, physical_memory_stage_push_func>();
 	wait_for_render_thread = get_function_ptr<HaloGameID::HaloReach, 0x18031F6A0, wait_for_render_thread_func>();
 
-	g_frameLimit = GetPrivateProfileIntW(L"Game", L"FrameLimit", 60, L".\\Settings.ini");
-	g_fieldOfView = GetPrivateProfileIntW(L"Camera", L"FieldOfView", 78, L".\\Settings.ini");
-	g_controlsLayout = GetPrivateProfileIntW(L"Player", L"ControlsLayout", 0, L".\\Settings.ini");
-	g_pancamEnabled = (bool)GetPrivateProfileIntW(L"Debug", L"PancamEnabled", 0, L".\\Settings.ini");
-	g_keyboardPrintKeyState = (bool)GetPrivateProfileIntW(L"Debug", L"PrintKeyState", 0, L".\\Settings.ini");
-	g_useController = GetPrivateProfileIntW(L"Player", L"UseController", 0, L".\\Settings.ini");
-	//input_update.SetCallback([](void *) { WriteGameState(); }, nullptr);
+	ReadConfig();
 
 	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
 	FunctionHookBase::ProcessTree(HaloGameID::HaloReach);
