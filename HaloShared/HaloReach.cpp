@@ -883,13 +883,10 @@ HaloReachHook<0x1803D8640, __int64 __fastcall (GameBindings& a1)> sub_1803D8640 
 {
 	auto result = sub_1803D8640(a1);
 
-	bool isSame = true;
-
 	// mouse buttons
 	a1.mouseBindings[game_action_vehicle_brake].primary = Mouse::eMouseButton3;
 	a1.mouseBindings[game_action_fire_primary].primary = Mouse::eMouseButton1;
 	a1.mouseBindings[game_action_scope_zoom].primary = Mouse::eMouseButton3;
-
 
 	// mouse axis								
 	a1.mouseAxisBindings[game_action_mouse_axis_unknown45].primary = MouseAxis::eMouseAxisUnknown2;
@@ -947,14 +944,8 @@ HaloReachHook<0x1803D8640, __int64 __fastcall (GameBindings& a1)> sub_1803D8640 
 	//a1.keyboardBindings[game_action_39].primary = eKeyCode3; // switch nade
 	//a1.keyboardBindings[game_action_40].primary = eKeyCode4;
 
-
-
 	return result;
 };
-
-
-
-
 
 void init_haloreach_hooks()
 {
