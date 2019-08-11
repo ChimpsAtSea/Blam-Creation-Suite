@@ -24,7 +24,7 @@ IGameEngine* pHaloReachEngine = nullptr;
 
 
 #define NULLSUB_LAMBDA_LOG(message) []() { WriteLineVerbose(message); }
-#define NULLSUB_LAMBDA(message) []() { }
+#define NULLSUB_LAMBDA(message) nullsub
 
 typedef __int64(ZeroSubFunc)();
 #define ZEROSUB_LAMBDA(message) (NullSubFunc*)(ZeroSubFunc*)[]() { WriteLineVerbose(message " <zerosub>"); return __int64(0);  }
