@@ -178,7 +178,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	return result;
 };
 
-HaloReachHook<0x1803D8640, __int64 __fastcall (GameBindings& a1)> sub_1803D8640 = [](GameBindings& a1)
+HaloReachHook<0x1803D8640, __int64 __fastcall (s_game_bindings& a1)> sub_1803D8640 = [](s_game_bindings& a1)
 {
 	auto result = sub_1803D8640(a1);
 

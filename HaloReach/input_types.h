@@ -162,7 +162,7 @@ enum e_controller_button_32 : uint32_t
 	_controller_button_left_bumper,
 	_controller_button_right_bumper,
 
-	k_number_of__controller_buttons,
+	k_number_of_controller_buttons,
 	_controller_button_none = 0xFF, // An invalid controller button (for use in unset bindings)
 };
 
@@ -221,10 +221,34 @@ enum e_game_action : DWORD
 	k_number_of_game_actions
 };
 
-struct __declspec(align(4)) s_binding_preferences
+
+enum e_profile_configuration_flags : uint16_t
 {
-	WORD Flags;
-	BYTE unknown2[10];
+	none = 0,
+	look_inverted = 1 << 0,
+	flight_look_inverted = 1 << 1,
+	auto_center_look = 1 << 2,
+	crouch_lock_enabled = 1 << 3,
+	bit4 = 1 << 4,
+	female_voice_enabled = 1 << 5,
+	southpaw = 1 << 6,
+	clench_protection = 1 << 7,
+	bit8 = 1 << 8,
+	bit9 = 1 << 9,
+	bit10 = 1 << 10,
+	bit11 = 1 << 11,
+	bit12 = 1 << 12,
+	bit13 = 1 << 13,
+	bit14 = 1 << 14,
+	bit15 = 1 << 15,
+};
+
+#pragma pack(push, 1)
+struct c_profile_configuration
+{
+	e_profile_configuration_flags Flags;
+	BYTE unknown2[6];
+	int Tick;
 	int ProfileIndex;
 	BYTE unknown10[8];
 	int ControllerLayout;
@@ -234,6 +258,8 @@ struct __declspec(align(4)) s_binding_preferences
 	float FieldOfView;
 	BYTE unknown84[2740];
 };
+#pragma pack(pop)
+static_assert(sizeof(c_profile_configuration) == 0xB38, "");
 
 #pragma pack(push, 1)
 struct s_rumble
@@ -325,43 +351,43 @@ struct s_bindings_table
 static size_t constexpr s_bindings_table_size = sizeof(s_bindings_table);
 static_assert(s_bindings_table_size == 0xD8, "");
 
-struct InputBinding
+struct s_input_binding
 {
 	DWORD primary;
 	DWORD secondary;
 };
 
-struct GameBindings
+struct s_game_bindings
 {
-	InputBinding MouseBindings[k_number_of_game_actions];
-	InputBinding MouseAxisBindings[k_number_of_game_actions];
-	InputBinding KeyboardBindings[k_number_of_game_actions];
+	s_input_binding MouseBindings[k_number_of_game_actions];
+	s_input_binding MouseAxisBindings[k_number_of_game_actions];
+	s_input_binding KeyboardBindings[k_number_of_game_actions];
 	float a;
 	float b;
 	float c;
 	float d;
 };
-static size_t constexpr  GameBindings_size = sizeof(GameBindings);
-static_assert(GameBindings_size == 0x4A8, "GameBindings incorrect size");
+static size_t constexpr  GameBindings_size = sizeof(s_game_bindings);
+static_assert(GameBindings_size == 0x4A8, "s_game_bindings incorrect size");
 
-enum KeyEventModifiers : uint8_t
+enum e_key_event_modifiers : uint8_t
 {
-	eKeyEventModifiersShift = 1 << 0,
-	eKeyEventModifiersCtrl = 1 << 1,
-	eKeyEventModifiersalt = 1 << 2,
+	_key_event_modifiers_shift = 1 << 0,
+	_key_event_modifiers_ctrl = 1 << 1,
+	_key_event_modifiers_alt = 1 << 2,
 };
 
-enum KeyEventType : uint32_t
+enum e_key_event_type : uint32_t
 {
-	eKeyEventTypeDown, // A key was pressed.
-	eKeyEventTypeUp,   // A key was released.
-	eKeyEventTypeChar  // A character was typed.
+	_key_event_type_down, // A key was pressed.
+	_key_event_type_up,   // A key was released.
+	_key_event_type_char  // A character was typed.
 };
 
-struct KeyEvent
+struct s_key_event
 {
-	KeyEventModifiers Modifiers; // Bitfield of modifier keys that are down
-	KeyEventType Type;           // Event type
+	e_key_event_modifiers Modifiers; // Bitfield of modifier keys that are down
+	e_key_event_type Type;           // Event type
 	e_key_code Code;             // The key code, or -1 if unavailable
 	char16_t Char;               // For eKeyEventTypeChar events, the character that was typed, or -1 if unavailable
 	bool PreviousState;          // If true, the key was down before this event happened
@@ -369,7 +395,7 @@ struct KeyEvent
 
 struct s_input_abstraction_struct3
 {
-	KeyEvent keyevents[16];
+	s_key_event keyevents[16];
 	s_bindings_table bindingsTableCopy;
 	char data[676];
 };
@@ -378,7 +404,7 @@ struct s_input_abstraction_struct3
 struct s_input_abstraction
 {
 	s_bindings_table BindingsTable[4];
-	GameBindings gameBindings;
+	s_game_bindings GameBindings;
 	s_input_abstraction_struct3 struct3[4];
 };
 #pragma pack(pop)

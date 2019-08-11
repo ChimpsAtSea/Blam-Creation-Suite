@@ -36,8 +36,9 @@ HaloReachHook<0x1800122F0, int()> sub_1800122F0 = []()
 	this function attempts to check if the GEHC is null and then proceeds to use
 	Member28
 */
-HaloReachHook<0x180780C20, __int64 __fastcall (s_binding_preferences* a1, int a2)> sub_180780C20 = [](s_binding_preferences* a1, int a2)
+HaloReachHook<0x180780C20, __int64 __fastcall (c_profile_configuration* a1, int a2)> sub_180780C20 = [](c_profile_configuration* a1, int a2)
 {
+	SetPlayerName();
 	auto callback = [=]() { return sub_180780C20(a1, a2); };
 	return GEHCBypass<GEHCBypassType::UseNullPointer>(callback);
 };

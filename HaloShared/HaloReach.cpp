@@ -11,7 +11,7 @@ s_thread_local_storage ThreadLocalStorage;
 
 bool g_useCustomGameEngineHostCallback = false;
 bool g_useCustomGameWindow = false;
-GameBindings g_GameBindings;
+s_game_bindings g_GameBindings;
 bool g_customBinds = false;
 e_peer_property g_lastGameLoadStatus;
 std::string g_lastGameLoadStatusStr;
@@ -344,7 +344,7 @@ struct Binds
 		Count++;
 	}
 
-	void ReadBindsFromConfig(GameBindings& gameBindings)
+	void ReadBindsFromConfig(s_game_bindings& gameBindings)
 	{
 		memset(&gameBindings, 0xFF, sizeof(gameBindings));
 
