@@ -1,4 +1,17 @@
 
+// 
+/*
+	force the game to use its own initialization of input rather than MCC
+	this function attempts to check if the GEHC is null and then proceeds to use
+	Member28
+*/
+HaloReachHook<0x180780C20, __int64 __fastcall (c_profile_configuration* a1, int a2)> sub_180780C20 = [](c_profile_configuration* a1, int a2)
+{
+	SetPlayerName();
+	auto callback = [=]() { return sub_180780C20(a1, a2); };
+	return GEHCBypass<GEHCBypassType::UseNullPointer>(callback);
+};
+
 void print_key_state_debug(s_bindings_table& bindingsTable)
 {
 	if (g_keyboardPrintKeyState)
