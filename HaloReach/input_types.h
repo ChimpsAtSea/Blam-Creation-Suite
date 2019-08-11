@@ -256,10 +256,21 @@ struct c_profile_configuration
 	float LookSensitivity;
 	BYTE unknown74[12];
 	float FieldOfView;
-	BYTE unknown84[2740];
+	BYTE unknown84[312];
+	wchar_t ServiceTag[5];
+	BYTE unknown1C6[2418];
 };
 #pragma pack(pop)
 static_assert(sizeof(c_profile_configuration) == 0xB38, "");
+
+struct c_controller_interface
+{
+	int Flags;
+	int ControllerIndex;
+	c_profile_configuration Profile;
+	wchar_t Name[16];
+	char unknownB60[88];
+};
 
 #pragma pack(push, 1)
 struct s_rumble

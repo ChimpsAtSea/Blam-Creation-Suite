@@ -253,10 +253,14 @@ void check_library_can_load(const char* pLibName)
 	assert(hModule);
 }
 
-bool SetPlayerName()
+bool SetPlayerNameAndServiceTag()
 {
 	wchar_t name[16] = {};
+	wchar_t tag[5] = {};
+
 	GetPrivateProfileStringW(L"Player", L"Name", L"Player", name, 16, L".\\Settings.ini");
+	GetPrivateProfileStringW(L"Player", L"ServiceTag", L"UNSC", tag, 5, L".\\Settings.ini");
+
 	int index = 0; // GetPrivateProfileIntW(L"Player", L"Index", 0, L".\\Settings.ini");
 
 	if (wcsncmp(g_player_names[index], name, 16) == 0)
@@ -264,10 +268,17 @@ bool SetPlayerName()
 		WriteLineVerbose("player[%d].Name already set", index);
 		return false;
 	}
+	if (wcsncmp(g_controller_interfaces[index].Profile.ServiceTag, tag, 5) == 0)
+	{
+		WriteLineVerbose("player[%d].Tag already set", index);
+		return false;
+	}
 
 	wcsncpy_s(g_player_names[index], 32, name, 16);
+	wcsncpy(g_controller_interfaces[index].Profile.ServiceTag, tag, 5);
 
 	WriteLineVerbose("player[%d].Name: set %ls", index, name);
+	WriteLineVerbose("player[%d].Tag: set %ls", index, tag);
 	return true;
 }
 

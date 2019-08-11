@@ -601,15 +601,6 @@ struct s_game_launcher
 };
 static_assert(sizeof(s_game_launcher) == 0x2B7D0, "");
 
-struct c_controller_interface
-{
-	int Flags;
-	int ControllerIndex;
-	char unknown8[2872];
-	wchar_t Name[16];
-	char unknownB60[88];
-};
-
 enum e_load_state
 {
 	_load_state_initial,

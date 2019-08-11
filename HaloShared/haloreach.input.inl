@@ -7,7 +7,7 @@
 */
 HaloReachHook<0x180780C20, __int64 __fastcall (c_profile_configuration* a1, int a2)> sub_180780C20 = [](c_profile_configuration* a1, int a2)
 {
-	SetPlayerName();
+	SetPlayerNameAndServiceTag();
 	auto callback = [=]() { return sub_180780C20(a1, a2); };
 	return GEHCBypass<GEHCBypassType::UseNullPointer>(callback);
 };
