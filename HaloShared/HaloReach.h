@@ -279,7 +279,7 @@ enum class CurrentState
 };
 extern CurrentState g_CurrentGameState;
 extern bool g_gameManuallyKilled;
-extern bool isHooked;
+extern bool g_isHooked;
 extern WORD g_frameLimit;
 extern int g_fieldOfView;
 extern HICON g_icon;
@@ -338,14 +338,14 @@ extern HaloReachReference<HWND, 0x1810EC5D8> g_windowHWND;
 
 // config flags
 
-extern bool useCustomGameEngineHostCallback;
-extern bool useCustomGameWindow;
+extern bool g_useCustomGameEngineHostCallback;
+extern bool g_useCustomGameWindow;
 extern GameEngineHostCallback gameEngineHostCallback;
 extern GameEngineHostCallback_vftbl gameEngineHostCallbackVftbl;
 extern GameEvents gameEvents;
 extern GameEvents_vftbl gameEventsVftbl;
 extern void init_haloreach_hooks();
-extern const char* halo_reach_path;
+extern const char* g_haloReachPathOverride;
 
 
 enum class GEHCBypassType // GameEngineHostCallbackType
@@ -368,14 +368,14 @@ decltype(auto) GEHCBypass(T functionPtr, bool forceDisable = false) // GameEngin
 
 	if constexpr (type == GEHCBypassType::UseValidPointer)
 	{
-		if (useCustomGameEngineHostCallback && !forceDisable)
+		if (g_useCustomGameEngineHostCallback && !forceDisable)
 		{
 			pGameEngineHostCallback = &gameEngineHostCallback;
 		}
 	}
 	else
 	{
-		if (useCustomGameEngineHostCallback && !forceDisable)
+		if (g_useCustomGameEngineHostCallback && !forceDisable)
 		{
 			pGameEngineHostCallback = nullptr;
 		}
@@ -385,7 +385,7 @@ decltype(auto) GEHCBypass(T functionPtr, bool forceDisable = false) // GameEngin
 	{
 		functionPtr();
 
-		if (useCustomGameEngineHostCallback && !forceDisable)
+		if (g_useCustomGameEngineHostCallback && !forceDisable)
 		{
 			pGameEngineHostCallback = pGameEngineHostCallbackBefore;
 		}
@@ -394,7 +394,7 @@ decltype(auto) GEHCBypass(T functionPtr, bool forceDisable = false) // GameEngin
 	{
 		decltype(functionPtr()) result = functionPtr();
 
-		if (useCustomGameEngineHostCallback && !forceDisable)
+		if (g_useCustomGameEngineHostCallback && !forceDisable)
 		{
 			pGameEngineHostCallback = pGameEngineHostCallbackBefore;
 		}

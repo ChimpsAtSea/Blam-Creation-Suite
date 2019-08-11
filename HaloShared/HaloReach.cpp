@@ -1,23 +1,24 @@
 #include "haloshared-private-pch.h"
-// Custom Stuff
 
-bool useCustomGameEngineHostCallback = false;
-bool useCustomGameWindow = false;
+// Custom Engine Stuff
 GameEngineHostCallback gameEngineHostCallback;
 GameEngineHostCallback_vftbl gameEngineHostCallbackVftbl;
 GameEvents gameEvents;
 GameEvents_vftbl gameEventsVftbl;
 s_thread_local_storage ThreadLocalStorage;
 
+// Custom Stuff
+
+bool g_useCustomGameEngineHostCallback = false;
+bool g_useCustomGameWindow = false;
 GameBindings g_GameBindings;
 bool g_customBinds = false;
-
-e_peer_property last_game_load_status;
-std::string last_game_load_status_str;
-const char* halo_reach_path = "";
+e_peer_property g_lastGameLoadStatus;
+std::string g_lastGameLoadStatusStr;
+const char* g_haloReachPathOverride = "";
 CurrentState g_CurrentGameState = CurrentState::eInactive;
 bool g_gameManuallyKilled = false;
-bool isHooked = false;
+bool g_isHooked = false;
 WORD g_frameLimit = 60;
 int g_fieldOfView = 78;
 int g_controlsLayout = 0;
@@ -192,11 +193,7 @@ physical_memory_stage_push_func physical_memory_stage_push = nullptr;
 //};
 
 //
-HaloReachHook<0x180780C20, __int64 __fastcall (s_binding_preferences* a1, int a2)> sub_180780C20 = [](s_binding_preferences* a1, int a2)
-{
-	auto callback = [=]() { return sub_180780C20(a1, a2); };
-	return GEHCBypass<GEHCBypassType::UseNullPointer>(callback);
-};
+
 //
 //HaloReachHook<0x180780D90, preferences_set_bindings_func> preferences_set_bindings_type = [](preferences_set_bindings_args)
 //{
@@ -404,7 +401,7 @@ void init_haloreach_hooks()
 
 	init_detours();
 
-	initialize_window.SetIsActive(useCustomGameWindow);
+	initialize_window.SetIsActive(g_useCustomGameWindow);
 
 	physical_memory_stage_push = get_function_ptr<HaloGameID::HaloReach, 0x1803FB790, physical_memory_stage_push_func>();
 	wait_for_render_thread = get_function_ptr<HaloGameID::HaloReach, 0x18031F6A0, wait_for_render_thread_func>();

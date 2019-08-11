@@ -286,8 +286,8 @@ void initialize_custom_halo_reach_stuff()
 	setup_game_events();
 	setup_game_engine_host_callback();
 
-	useCustomGameEngineHostCallback = true;
-	useCustomGameWindow = true;
+	g_useCustomGameEngineHostCallback = true;
+	g_useCustomGameWindow = true;
 	init_haloreach_hooks();
 
 	__int64 result = CreateGameEngine(&pHaloReachEngine);

@@ -1,26 +1,45 @@
 
+/*
+	this function is the games main routine. inside of here sits the
+	main_loop function call
+*/
 HaloReachHook<0x1800129B0, void* __stdcall ()> main_thread_routine = []()
 {
 	WriteLineVerbose("Starting game...");
 	g_CurrentGameState = CurrentState::eRunning;
-	isHooked = true;
+	g_isHooked = true;
 	auto result = main_thread_routine();
 	WriteLineVerbose("Game finished...");
-	WriteLineVerbose("Last status: [0x%X] %s", last_game_load_status, last_game_load_status_str.c_str());
+	WriteLineVerbose("Last status: [0x%X] %s", g_lastGameLoadStatus, g_lastGameLoadStatusStr.c_str());
 	g_CurrentGameState = CurrentState::eFinished;
-	isHooked = false;
+	g_isHooked = false;
 	return result;
 };
 
+/*
+	override for the halo reach default path
+*/
 HaloReachHook<0x180012730, const char* ()> game_get_haloreach_path = []()
 {
-	return halo_reach_path;
+	return g_haloReachPathOverride;
 };
 
 HaloReachHook<0x1800122F0, int()> sub_1800122F0 = []()
 {
 	auto callback = []() { return sub_1800122F0(); };
 	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
+};
+
+// 
+/*
+	force the game to use its own initialization of input rather than MCC
+	this function attempts to check if the GEHC is null and then proceeds to use
+	Member28
+*/
+HaloReachHook<0x180780C20, __int64 __fastcall (s_binding_preferences* a1, int a2)> sub_180780C20 = [](s_binding_preferences* a1, int a2)
+{
+	auto callback = [=]() { return sub_180780C20(a1, a2); };
+	return GEHCBypass<GEHCBypassType::UseNullPointer>(callback);
 };
 
 HaloReachHook<0x1806C2890, HWND()> initialize_window = []()

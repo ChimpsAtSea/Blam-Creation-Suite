@@ -58,12 +58,12 @@ FARPROC __stdcall GetProcAddressHook(HMODULE hModule, LPCSTR lpProcName)
 
 	auto farproc = GetProcAddressPtr(hModule, lpProcName);
 
-	if (!isHooked)
+	if (!g_isHooked)
 	{
 		bool isHaloReach = strstr(pModuleFilename, "haloreach.dll") != nullptr;
 		if (isHaloReach)
 		{
-			isHooked = true;
+			g_isHooked = true;
 
 			// reset hook states
 			initThreadIsHooked = false;
@@ -83,9 +83,9 @@ void nullsub()
 
 void haloreach_dll_loaded_callback()
 {
-	useCustomGameEngineHostCallback = false;
-	useCustomGameWindow = false;
-	halo_reach_path = "haloreach\\";
+	g_useCustomGameEngineHostCallback = false;
+	g_useCustomGameWindow = false;
+	g_haloReachPathOverride = "haloreach\\";
 	init_haloreach_hooks();
 
 	init_detours();
