@@ -5,9 +5,7 @@ public:
 	static void	SetupHooks();
 	static void Update();
 	static HWND GetWindowHandle();
-
-	static int inputDeltaX;
-	static int inputDeltaY;
+	static void ShowWindow();
 
 	typedef ATOM(WINAPI* RegisterClassExA_Func)(_In_ CONST WNDCLASSEXA*);
 	typedef HWND(WINAPI* CreateWindowExA_Func)(

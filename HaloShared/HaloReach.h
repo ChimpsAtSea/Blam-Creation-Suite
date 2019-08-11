@@ -287,6 +287,7 @@ extern bool g_pancamEnabled;
 extern int g_controlsLayout;
 extern int g_useController;
 extern bool g_waitingForInputUpdate;
+extern bool g_hideWindowOnStartup;
 
 // Halo Reach Functions
 
@@ -324,7 +325,16 @@ extern HaloReachReference<s_game_options, 0x183B0FB70> g_game_options;
 extern HaloReachReference<wchar_t[4][32], 0x183DE6FB0> g_player_names;
 extern HaloReachReference<HWND, 0x1810EC5E0> g_hwnd;
 extern HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
-
+extern HaloReachReference<float, 0x183DF5830> dword_183DF5830;
+extern HaloReachReference<_QWORD, 0x183461018> qword_183461018;
+extern HaloReachReference<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
+extern HaloReachReference<s_input_abstraction, 0x183B2E510> g_input_abstraction;
+extern HaloReachReference<char[64], 0x1810EC600> ClassName;
+extern HaloReachReference<char[64], 0x1810EC640> WindowName;
+extern HaloReachReference<WNDPROC, 0x1810EC5F0> qword_1810EC5F0;
+extern HaloReachReference<HINSTANCE, 0x1810EC5D0> qword_1810EC5D0;
+extern HaloReachReference<char*, 0x183461000> g_shell_command_line;
+extern HaloReachReference<HWND, 0x1810EC5D8> g_windowHWND;
 
 // config flags
 

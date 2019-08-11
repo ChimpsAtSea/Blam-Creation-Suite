@@ -21,6 +21,9 @@
     <ClCompile Include="haloreach-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="splash_screen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="local_types.h">
@@ -38,10 +41,21 @@
     <ClInclude Include="input_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="splash_screen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="splash_screen.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="reach_icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

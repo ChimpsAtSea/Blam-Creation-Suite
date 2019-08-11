@@ -22,6 +22,7 @@ struct GameEngineHostCallback_vftbl;
 struct GameEngineHostCallback;
 
 typedef void(NullSubFunc)();
+typedef __int64(ZeroSubFunc)();
 
 /* 514 */
 struct __declspec(align(8)) IGameEngine_vftbl

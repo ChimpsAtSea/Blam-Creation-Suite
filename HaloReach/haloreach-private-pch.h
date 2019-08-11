@@ -4,6 +4,9 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define WIN32_MEAN_AND_LEAN
 #include <windows.h>
+#include <objidl.h>
+#include <gdiplus.h>
+
 #include <stdint.h>
 #include <stdio.h>
 #include <assert.h>
@@ -11,8 +14,10 @@
 #include <thread>
 #include <assert.h>
 #include <inttypes.h>
+#include <atomic>
 
 #include "resource.h"
+#include "splash_screen.h"
 
 #include <detours.h>
 #include <HaloUtilities/logging.h>

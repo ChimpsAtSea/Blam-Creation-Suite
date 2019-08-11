@@ -158,6 +158,13 @@
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="haloreach.core.inl" />
+    <None Include="haloreach.game.inl" />
+    <None Include="haloreach.input.inl" />
+    <None Include="haloreach.log.inl" />
+    <None Include="haloreach.render.inl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

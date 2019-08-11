@@ -1,5 +1,8 @@
 #pragma once
 
+#pragma optimize("", off)
+
+
 typedef void(FunctionHookCallback)(void* pUserData);
 
 class FunctionHookBase
@@ -203,6 +206,7 @@ private:
 	}
 };
 
+#pragma optimize("", on)
 
 template<size_t offset, typename base_type>
 using HaloReachHook = FunctionHook<HaloGameID::HaloReach, offset, base_type>;

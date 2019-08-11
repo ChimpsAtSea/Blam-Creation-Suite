@@ -26,7 +26,8 @@ IGameEngine* pHaloReachEngine = nullptr;
 #define NULLSUB_LAMBDA_LOG(message) []() { WriteLineVerbose(message); }
 #define NULLSUB_LAMBDA(message) []() { }
 
-
+typedef __int64(ZeroSubFunc)();
+#define ZEROSUB_LAMBDA(message) (NullSubFunc*)(ZeroSubFunc*)[]() { WriteLineVerbose(message " <zerosub>"); return __int64(0);  }
 
 GUID* __fastcall GetGuid(GameEvents* this, GUID* rGuid)
 {
@@ -46,8 +47,8 @@ void setup_game_engine_host_callback()
 
 	gameEngineHostCallback.vftbl = &gameEngineHostCallbackVftbl;
 
-	gameEngineHostCallbackVftbl.Member00 = NULLSUB_LAMBDA("GameEngineHostCallback::vftable[00]");
-	gameEngineHostCallbackVftbl.Member01 = NULLSUB_LAMBDA("GameEngineHostCallback::vftable[01]");
+	gameEngineHostCallbackVftbl.Member00 = ZEROSUB_LAMBDA("GameEngineHostCallback::vftable[00]");
+	gameEngineHostCallbackVftbl.Member01 = ZEROSUB_LAMBDA("GameEngineHostCallback::vftable[01]");
 	gameEngineHostCallbackVftbl.Member02 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[02]");
 	gameEngineHostCallbackVftbl.Member03 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[03]");
 	gameEngineHostCallbackVftbl.Member04 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[04]");
@@ -81,6 +82,9 @@ void setup_game_engine_host_callback()
 		// TODO: add splash/loading screen that stops when this is called
 
 		WriteLineVerbose("GameLoaded");
+		splash_screen::Destroy();
+		ShowWindow(g_windowHWND, SW_SHOW);
+		SetFocus(g_windowHWND);
 	};
 	gameEngineHostCallbackVftbl.Member25 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[25]");
 	gameEngineHostCallbackVftbl.Member26 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[26]");
@@ -107,7 +111,7 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member31 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[31]");
 	gameEngineHostCallbackVftbl.Member32 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[32]");
 	gameEngineHostCallbackVftbl.Member33 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[33]");
-	gameEngineHostCallbackVftbl.Member34 = NULLSUB_LAMBDA("GameEngineHostCallback::vftable[34]");
+	gameEngineHostCallbackVftbl.Member34 = ZEROSUB_LAMBDA("GameEngineHostCallback::vftable[34]");
 	gameEngineHostCallbackVftbl.Member35 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[35]");
 	gameEngineHostCallbackVftbl.Member36 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[36]");
 	gameEngineHostCallbackVftbl.Member37 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[37]");
@@ -291,13 +295,13 @@ void initialize_custom_halo_reach_stuff()
 
 	static s_game_launch_data game_launch_data = s_game_launch_data();
 
-	if (FILE *pGameStateFile = fopen("gamestate.hdr", "r"))
+	if (FILE * pGameStateFile = fopen("gamestate.hdr", "r"))
 	{
 		s_game_state_header game_state_header = {};
 		fread(&game_state_header, 1, sizeof(s_game_state_header), pGameStateFile);
 		fclose(pGameStateFile);
 
-		game_launch_data.pGameStateHeader = reinterpret_cast<uint8_t *>(&game_state_header);
+		game_launch_data.pGameStateHeader = reinterpret_cast<uint8_t*>(&game_state_header);
 		game_launch_data.GameStateHeaderSize = sizeof(s_game_state_header);
 	}
 
@@ -328,6 +332,12 @@ int WINAPI WinMain(
 	bool isDebug = false;
 #endif
 
+	if (strstr(lpCmdLine, "-hidesplash") == nullptr)
+	{
+		splash_screen::Create();
+		g_hideWindowOnStartup = true;
+	}
+
 	if (strstr(lpCmdLine, "-showconsole") || isDebug)
 	{
 		AllocConsole();
@@ -344,7 +354,6 @@ int WINAPI WinMain(
 	}
 
 	initialize_custom_halo_reach_stuff();
-
 
 	while (g_CurrentGameState != CurrentState::eFinished)
 	{

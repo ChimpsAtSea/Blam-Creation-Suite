@@ -54,4 +54,21 @@
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="haloreach.core.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="haloreach.input.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="haloreach.render.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="haloreach.log.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="haloreach.game.inl">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
