@@ -154,9 +154,9 @@ void splash_screen::WindowThreadProc()
 	{
 		RECT windowRect;
 		GetWindowRect(s_hWnd, &windowRect);
-		int xPos = (GetSystemMetrics(SM_CXSCREEN) - windowRect.right) / 2;
-		int yPos = (GetSystemMetrics(SM_CYSCREEN) - windowRect.bottom) / 2;
-		SetWindowPos(s_hWnd, 0, xPos, yPos, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+		int xPos = (GetSystemMetrics(SM_CXSCREEN) - (windowRect.right - windowRect.left)) / 2;
+		int yPos = (GetSystemMetrics(SM_CYSCREEN) - (windowRect.bottom - windowRect.top)) / 2;
+		SetWindowPos(s_hWnd, GetForegroundWindow(), xPos, yPos, 0, 0, SWP_NOSIZE);
 	}
 	ShowWindow(s_hWnd, SW_SHOW);
 	UpdateWindow(s_hWnd);
