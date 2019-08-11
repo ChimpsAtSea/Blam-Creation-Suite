@@ -371,7 +371,7 @@ void ReadBinds()
 	g_Binds.Add(_game_action_jump, _key_code_space);
 	g_Binds.Add(_game_action_switch_grenade, _key_code_g);
 	g_Binds.Add(_game_action_switch_weapon, _key_code_c);
-	g_Binds.Add(_game_action_action, _key_code_e);
+	g_Binds.Add(_game_action_context_primary, _key_code_e);
 	g_Binds.Add(_game_action_melee_attack, _key_code_q);
 	g_Binds.Add(_game_action_equipment, _key_code_left_shift);
 	g_Binds.Add(_game_action_throw_grenade, _key_code_f);
