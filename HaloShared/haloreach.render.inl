@@ -1,4 +1,4 @@
-//
+
 //// allow the game to read the command line to use -width and -height
 //HaloReachHook<0x1806C2C30, char()> initialize_device = []()
 //{

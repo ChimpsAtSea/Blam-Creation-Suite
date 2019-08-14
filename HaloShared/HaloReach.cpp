@@ -30,28 +30,28 @@ bool g_hideWindowOnStartup = false;
 
 // Halo Reach Variables
 
-HaloReachReference<uint32_t, 0x1810A3098> TlsIndex;
-HaloReachReference<GameEngineHostCallback*, 0x1810EC5C0> g_GameEngineHostCallback;
-HaloReachReference<LONG, 0x18102F2A4> g_render_thread_mode;
-HaloReachReference<DWORD, 0x1810EC584> dword_1810EC584;
-HaloReachReference<BYTE, 0x18342E55D> byte_18342E55D;
-HaloReachReference<BYTE, 0x183984DE4> byte_183984DE4;
-HaloReachReference<DWORD, 0x1810524AC> dword_1810524AC;
-HaloReachReference<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
-HaloReachReference<s_game_options, 0x183B0FB70> g_game_options;
-HaloReachReference<wchar_t[4][32], 0x183DE6FB0> g_player_names;
-HaloReachReference<HWND, 0x1810EC5E0> g_hwnd;
-HaloReachReference<char, 0x180DC64A8> level_name_to_patch;
-HaloReachReference<float, 0x183DF5830> dword_183DF5830;
-HaloReachReference<_QWORD, 0x183461018> qword_183461018;
-HaloReachReference<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
-HaloReachReference<s_input_abstraction, 0x183B2E510> g_input_abstraction;
-HaloReachReference<char[64], 0x1810EC600> ClassName;
-HaloReachReference<char[64], 0x1810EC640> WindowName;
-HaloReachReference<WNDPROC, 0x1810EC5F0> qword_1810EC5F0;
-HaloReachReference<HINSTANCE, 0x1810EC5D0> qword_1810EC5D0;
-HaloReachReference<char*, 0x183461000> g_shell_command_line;
-HaloReachReference<HWND, 0x1810EC5D8> g_windowHWND;
+ReachData<uint32_t, 0x1810A3098> TlsIndex;
+ReachData<GameEngineHostCallback*, 0x1810EC5C0> g_GameEngineHostCallback;
+ReachData<LONG, 0x18102F2A4> g_render_thread_mode;
+ReachData<DWORD, 0x1810EC584> dword_1810EC584;
+ReachData<BYTE, 0x18342E55D> byte_18342E55D;
+ReachData<BYTE, 0x183984DE4> byte_183984DE4;
+ReachData<DWORD, 0x1810524AC> dword_1810524AC;
+ReachData<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
+ReachData<s_game_options, 0x183B0FB70> g_game_options;
+ReachData<wchar_t[4][32], 0x183DE6FB0> g_player_names;
+ReachData<HWND, 0x1810EC5E0> g_hwnd;
+ReachData<char, 0x180DC64A8> level_name_to_patch;
+ReachData<float, 0x183DF5830> dword_183DF5830;
+ReachData<_QWORD, 0x183461018> qword_183461018;
+ReachData<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
+ReachData<s_input_abstraction, 0x183B2E510> g_input_abstraction;
+ReachData<char[64], 0x1810EC600> ClassName;
+ReachData<char[64], 0x1810EC640> WindowName;
+ReachData<WNDPROC, 0x1810EC5F0> qword_1810EC5F0;
+ReachData<HINSTANCE, 0x1810EC5D0> qword_1810EC5D0;
+ReachData<char*, 0x183461000> g_shell_command_line;
+ReachData<HWND, 0x1810EC5D8> g_windowHWND;
 
 // Halo Reach Functions
 
@@ -76,6 +76,55 @@ physical_memory_stage_push_func physical_memory_stage_push = nullptr;
 #include "haloreach.game.inl"
 
 // --- WORK IN PROGRESS BELOW ---
+
+#pragma region RenderingWIP
+
+#include <dxgi.h>
+#include <d3d11_4.h>
+
+ReachData<void*, 0x1810EC5B0> g_pIDXGISwapChain;
+ReachPointer<IDXGISwapChain*, 0x18112D378> g_pSwapChain;
+ReachData<IID, 0x180E0B2A8> stru_180E0B2A8;
+ReachPointer<IDXGIFactory1*, 0x18112D368> ppFactory;
+ReachPointer<ID3D11Device*, 0x18112D588> g_pDevice;
+
+
+#include <functional>
+
+ 
+
+
+
+// allow the game to read the command line to use -width and -height
+HaloReachHook<0x1806C2C30, char()> initialize_device = []()
+{
+
+	qword_183461018 = 0x10;
+
+	auto result = initialize_device();
+
+	bool isCurrent = ppFactory->IsCurrent();
+	assert(isCurrent);
+	ID3D11DeviceContext* pD3DContext = nullptr;
+	g_pDevice->GetImmediateContext(&pD3DContext);
+
+	return result;
+};
+
+#pragma endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //HaloReachHook<0x180013EA0, const char* __fastcall (e_peer_property game_load_status)> peer_property_get_string = [](e_peer_property game_load_status)
 //{
@@ -213,7 +262,7 @@ void WriteGameState()
 	if (GetAsyncKeyState(VK_F8))
 	{
 		FILE* pGameStateFile = fopen("gamestate.hdr", "w+b");
-		HaloReachReference<s_game_state_header*, 0x183841B18> pGameStateHeader;
+		ReachData<s_game_state_header*, 0x183841B18> pGameStateHeader;
 		fwrite(pGameStateHeader, 1, sizeof(s_game_state_header), pGameStateFile);
 		fclose(pGameStateFile);
 	}

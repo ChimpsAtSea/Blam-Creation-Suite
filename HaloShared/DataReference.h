@@ -74,9 +74,8 @@ private:
 };
 
 template<HaloGameID gameid, typename T, size_t offset>
-class DataReference : DataReferenceBase
+class DataReference : public DataReferenceBase
 {
-private:
 public:
 	DataReference(const DataReference&) = delete;
 	DataReference()
@@ -96,14 +95,63 @@ public:
 		return static_cast<volatile T*>(ptr());
 	}
 
-	T& ref() const
+	T& PointerReference() const
+	{
+		return *ptr();
+	}
+
+	T* operator->()
+	{
+		return ptr();
+	}
+
+	T const* operator->() const
+	{
+		return ptr();
+	}
+
+	operator T& () const
+	{
+		return PointerReference();
+	}
+
+	operator bool() const
+	{
+		T& r = PointerReference();
+		return (bool)r;
+	}
+};
+
+template<HaloGameID gameid, typename T, size_t offset>
+class DataReferenceEx : public DataReferenceBase
+{
+public:
+	DataReferenceEx(const DataReferenceEx&) = delete;
+	DataReferenceEx()
+		: DataReferenceBase(gameid, offset)
+	{
+
+	}
+
+	T* ptr() const
+	{
+		T* ptr = reinterpret_cast<T*>(m_pPtr);
+		return ptr;
+	}
+
+	volatile T* volatile_ptr() const
+	{
+		return static_cast<volatile T*>(ptr());
+	}
+
+	T& PointerReference() const
 	{
 		return *ptr();
 	}
 
 	T& operator=(T value)
 	{
-		T& reference = ref();
+		T& reference = PointerReference();
 		reference = value;
 		return reference;
 	}
@@ -120,15 +168,60 @@ public:
 
 	operator T& () const
 	{
-		return ref();
+		return PointerReference();
 	}
 
 	operator bool() const
 	{
-		T& r = ref();
+		T& r = PointerReference();
 		return (bool)r;
 	}
 };
 
+template<HaloGameID gameid, typename T, size_t offset>
+class DataPointer : public DataReferenceBase
+{
+public:
+	DataPointer(const DataPointer&) = delete;
+	DataPointer()
+		: DataReferenceBase(gameid, offset)
+	{
+
+	}
+
+	T& Reference() const
+	{
+		return *PointerToPointer();
+	}
+
+	volatile T volatile_ptr() const
+	{
+		return static_cast<volatile T>(Reference());
+	}
+
+	T operator->()
+	{
+		return Reference();
+	}
+
+	operator bool() const
+	{
+		return !!this->operator->();
+	}
+
+protected:
+	T* PointerToPointer() const
+	{
+		T* ptr = reinterpret_cast<T*>(m_pPtr);
+		return ptr;
+	}
+};
+
 template<typename T, size_t offset>
-using HaloReachReference = DataReference<HaloGameID::HaloReach, T, offset>;
+using ReachPointer = DataPointer<HaloGameID::HaloReach, T, offset>;
+
+template<typename T, size_t offset>
+using ReachBasicData = DataReference<HaloGameID::HaloReach, T, offset>;
+
+template<typename T, size_t offset>
+using ReachData = DataReferenceEx<HaloGameID::HaloReach, T, offset>;

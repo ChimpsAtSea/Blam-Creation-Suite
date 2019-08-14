@@ -5,5 +5,10 @@
     <SmartPointer Usage="Minimal">($T2*)(m_pPtr)</SmartPointer>
     <DisplayString>{*($T2*)(m_pPtr)}</DisplayString>
   </Type>
+
+  <Type Name="DataReferenceEx&lt;*&gt;">
+    <SmartPointer Usage="Minimal">($T2*)(m_pPtr)</SmartPointer>
+    <DisplayString>{*($T2*)(m_pPtr)}</DisplayString>
+  </Type>
   
 </AutoVisualizer>
