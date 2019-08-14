@@ -107,7 +107,7 @@ void setup_game_engine_host_callback()
 		}
 		return unsigned __int8(0);
 	};
-	gameEngineHostCallbackVftbl.SetPlayerName = []() { SetPlayerName(); };
+	gameEngineHostCallbackVftbl.SetPlayerName = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::SetPlayerName");
 	gameEngineHostCallbackVftbl.Member31 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[31]");
 	gameEngineHostCallbackVftbl.Member32 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[32]");
 	gameEngineHostCallbackVftbl.Member33 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[33]");

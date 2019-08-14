@@ -7,7 +7,7 @@
 */
 HaloReachHook<0x180780C20, __int64 __fastcall (c_profile_configuration* a1, int a2)> sub_180780C20 = [](c_profile_configuration* a1, int a2)
 {
-	SetPlayerName();
+	SetPlayerNameAndServiceTag();
 	auto callback = [=]() { return sub_180780C20(a1, a2); };
 	return GEHCBypass<GEHCBypassType::UseNullPointer>(callback);
 };
@@ -73,7 +73,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	assert(a1->ControllerButtons[_game_action_jump] == _controller_button_a);
 	assert(a1->ControllerButtons[_game_action_switch_grenade] == _controller_button_b);
 	assert(a1->ControllerButtons[_game_action_switch_weapon] == _controller_button_y);
-	assert(a1->ControllerButtons[_game_action_action] == _controller_button_x);
+	assert(a1->ControllerButtons[_game_action_context_primary] == _controller_button_x);
 	assert(a1->ControllerButtons[_game_action_melee_attack] == _controller_button_right_bumper);
 	assert(a1->ControllerButtons[_game_action_equipment] == _controller_button_left_bumper);
 	assert(a1->ControllerButtons[_game_action_throw_grenade] == _controller_button_left_trigger);
@@ -130,7 +130,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		a1->ControllerButtons[_game_action_switch_weapon] = _controller_button_y;
 		a1->ControllerButtons[_game_action_switch_grenade] = _controller_button_b;
 		a1->ControllerButtons[_game_action_equipment] = _controller_button_right_bumper;
-		a1->ControllerButtons[_game_action_action] = _controller_button_x;
+		a1->ControllerButtons[_game_action_context_primary] = _controller_button_x;
 		a1->ControllerButtons[_game_action_fire_primary] = _controller_button_right_trigger;
 		a1->ControllerButtons[_game_action_throw_grenade] = _controller_button_left_trigger;
 		a1->ControllerButtons[_game_action_scope_zoom] = _controller_button_right_stick;
@@ -142,7 +142,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		a1->ControllerButtons[_game_action_switch_weapon] = _controller_button_y;
 		a1->ControllerButtons[_game_action_switch_grenade] = _controller_button_b;
 		a1->ControllerButtons[_game_action_equipment] = _controller_button_left_bumper;
-		a1->ControllerButtons[_game_action_action] = _controller_button_x;
+		a1->ControllerButtons[_game_action_context_primary] = _controller_button_x;
 		a1->ControllerButtons[_game_action_fire_primary] = _controller_button_right_trigger;
 		a1->ControllerButtons[_game_action_throw_grenade] = _controller_button_right_bumper;
 		a1->ControllerButtons[_game_action_scope_zoom] = _controller_button_right_stick;
@@ -154,7 +154,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		a1->ControllerButtons[_game_action_switch_weapon] = _controller_button_y;
 		a1->ControllerButtons[_game_action_switch_grenade] = _controller_button_b;
 		a1->ControllerButtons[_game_action_equipment] = _controller_button_left_bumper;
-		a1->ControllerButtons[_game_action_action] = _controller_button_x;
+		a1->ControllerButtons[_game_action_context_primary] = _controller_button_x;
 		a1->ControllerButtons[_game_action_fire_primary] = _controller_button_right_trigger;
 		a1->ControllerButtons[_game_action_throw_grenade] = _controller_button_left_trigger;
 		a1->ControllerButtons[_game_action_scope_zoom] = _controller_button_right_bumper;
@@ -166,7 +166,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		a1->ControllerButtons[_game_action_switch_weapon] = _controller_button_y;
 		a1->ControllerButtons[_game_action_switch_grenade] = _controller_button_a;
 		a1->ControllerButtons[_game_action_equipment] = _controller_button_x;
-		a1->ControllerButtons[_game_action_action] = _controller_button_b;
+		a1->ControllerButtons[_game_action_context_primary] = _controller_button_b;
 		a1->ControllerButtons[_game_action_fire_primary] = _controller_button_right_trigger;
 		a1->ControllerButtons[_game_action_throw_grenade] = _controller_button_left_trigger;
 		a1->ControllerButtons[_game_action_scope_zoom] = _controller_button_right_stick;
@@ -178,7 +178,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 		a1->ControllerButtons[_game_action_switch_weapon] = _controller_button_y;
 		a1->ControllerButtons[_game_action_switch_grenade] = _controller_button_x;
 		a1->ControllerButtons[_game_action_equipment] = _controller_button_left_bumper;
-		a1->ControllerButtons[_game_action_action] = _controller_button_right_bumper;
+		a1->ControllerButtons[_game_action_context_primary] = _controller_button_right_bumper;
 		a1->ControllerButtons[_game_action_fire_primary] = _controller_button_right_trigger;
 		a1->ControllerButtons[_game_action_throw_grenade] = _controller_button_left_trigger;
 		a1->ControllerButtons[_game_action_scope_zoom] = _controller_button_right_stick;
@@ -210,7 +210,7 @@ HaloReachHook<0x1803D8640, __int64 __fastcall (s_game_bindings& a1)> sub_1803D86
 	a1.KeyboardBindings[_game_action_jump].primary = _key_code_space;
 	a1.KeyboardBindings[_game_action_switch_grenade].primary = _key_code_g;
 	a1.KeyboardBindings[_game_action_switch_weapon].primary = _key_code_c;
-	a1.KeyboardBindings[_game_action_action].primary = _key_code_e;
+	a1.KeyboardBindings[_game_action_context_primary].primary = _key_code_e;
 	a1.KeyboardBindings[_game_action_melee_attack].primary = _key_code_q;
 	a1.KeyboardBindings[_game_action_equipment].primary = _key_code_left_shift;
 	a1.KeyboardBindings[_game_action_throw_grenade].primary = _key_code_f;

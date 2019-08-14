@@ -171,7 +171,7 @@ enum e_game_action : DWORD
 	_game_action_jump,
 	_game_action_switch_grenade,
 	_game_action_switch_weapon,
-	_game_action_action,
+	_game_action_context_primary,
 	_game_action_melee_attack,
 	_game_action_equipment,
 	_game_action_throw_grenade,
@@ -221,32 +221,30 @@ enum e_game_action : DWORD
 	k_number_of_game_actions
 };
 
-
-enum e_profile_configuration_flags : uint16_t
+enum e_profile_configuration_bit : uint16_t
 {
-	none = 0,
-	look_inverted = 1 << 0,
-	flight_look_inverted = 1 << 1,
-	auto_center_look = 1 << 2,
-	crouch_lock_enabled = 1 << 3,
-	bit4 = 1 << 4,
-	female_voice_enabled = 1 << 5,
-	southpaw = 1 << 6,
-	clench_protection = 1 << 7,
-	bit8 = 1 << 8,
-	bit9 = 1 << 9,
-	bit10 = 1 << 10,
-	bit11 = 1 << 11,
-	bit12 = 1 << 12,
-	bit13 = 1 << 13,
-	bit14 = 1 << 14,
-	bit15 = 1 << 15,
+	look_inverted,
+	flight_look_inverted,
+	auto_center_look,
+	crouch_lock_enabled,
+	bit4,
+	female_voice_enabled,
+	southpaw,
+	clench_protection,
+	bit8,
+	bit9,
+	bit10,
+	bit11,
+	bit12,
+	bit13,
+	bit14,
+	bit15
 };
 
 #pragma pack(push, 1)
 struct c_profile_configuration
 {
-	e_profile_configuration_flags Flags;
+	WORD Flags;
 	BYTE unknown2[6];
 	int Tick;
 	int ProfileIndex;
@@ -256,10 +254,21 @@ struct c_profile_configuration
 	float LookSensitivity;
 	BYTE unknown74[12];
 	float FieldOfView;
-	BYTE unknown84[2740];
+	BYTE unknown84[312];
+	wchar_t ServiceTag[5];
+	BYTE unknown1C6[2418];
 };
 #pragma pack(pop)
 static_assert(sizeof(c_profile_configuration) == 0xB38, "");
+
+struct c_controller_interface
+{
+	int Flags;
+	int ControllerIndex;
+	c_profile_configuration Profile;
+	wchar_t Name[16];
+	char unknownB60[88];
+};
 
 #pragma pack(push, 1)
 struct s_rumble
@@ -534,7 +543,7 @@ static const char *game_action_strings[k_number_of_game_actions]
 	"_game_action_jump",
 	"_game_action_switch_grenade",
 	"_game_action_switch_weapon",
-	"_game_action_action",
+	"_game_action_context_primary",
 	"_game_action_melee_attack",
 	"_game_action_equipment",
 	"_game_action_throw_grenade",

@@ -405,5 +405,5 @@ decltype(auto) GEHCBypass(T functionPtr, bool forceDisable = false) // GameEngin
 
 
 // callback functions
-extern bool SetPlayerName();
+extern bool SetPlayerNameAndServiceTag();
 
