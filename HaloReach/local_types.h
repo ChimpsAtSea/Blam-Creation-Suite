@@ -103,6 +103,9 @@ struct GameEngineHostCallback_vftbl
 	NullSubFunc* Member26;
 	NullSubFunc* Member27;
 	NullSubFunc* Member28;
+
+	NullSubFunc* Member29NewPaddingBecauseThisHasChanged;
+
 	//unsigned __int8(__fastcall* Member28)(GameEngineHostCallback*, __int64, char*);
 	unsigned __int8(__fastcall* Member29)(GameEngineHostCallback*, _QWORD, Mmeber29UnknownStruct* pUnknown);
 	NullSubFunc* SetPlayerName;

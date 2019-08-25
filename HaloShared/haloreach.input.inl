@@ -1,14 +1,30 @@
 
-// 
-/*
-	force the game to use its own initialization of input rather than MCC
-	this function attempts to check if the GEHC is null and then proceeds to use
-	Member28
-*/
-HaloReach_2019_Jun_24_Hook<0x180780C20, __int64 __fastcall (c_profile_configuration* a1, int a2)> sub_180780C20 = [](c_profile_configuration* a1, int a2)
+//// 
+///*
+//	force the game to use its own initialization of input rather than MCC
+//	this function attempts to check if the GEHC is null and then proceeds to use
+//	Member28
+//*/
+//HaloReach_2019_Jun_24_Hook<0x180780C20, __int64 __fastcall (c_profile_configuration* a1, int a2)> sub_180780C20 = [](c_profile_configuration* a1, int a2)
+//{
+//	SetPlayerNameAndServiceTag();
+//	auto callback = [=]() { return sub_180780C20(a1, a2); };
+//	return GEHCBypass<GEHCBypassType::UseNullPointer>(callback);
+//};
+
+intptr_t sub_18077D160_offset(HaloGameID gameID)
 {
-	SetPlayerNameAndServiceTag();
-	auto callback = [=]() { return sub_180780C20(a1, a2); };
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x18077D160;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180495CC0;
+	}
+	return ~intptr_t();
+}
+
+FunctionHookEx<sub_18077D160_offset, __int16 __fastcall (__int64 a1, __int16* a2)> sub_18077D160 = [](__int64 a1, __int16* a2)
+{
+	auto callback = [=]() { return sub_18077D160(a1, a2); };
 	return GEHCBypass<GEHCBypassType::UseNullPointer>(callback);
 };
 
@@ -26,7 +42,17 @@ void print_key_state_debug(s_bindings_table& bindingsTable)
 	}
 }
 
-HaloReach_2019_Jun_24_Hook<0x180307B10, char(__fastcall)()> input_update = []() {
+intptr_t input_update_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x180307B10;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18014C400;
+	}
+	return ~intptr_t();
+}
+
+HaloReachHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 
 	print_key_state_debug(g_input_abstraction.ptr()->BindingsTable[0]);
 	CustomWindow::Update();
@@ -34,12 +60,12 @@ HaloReach_2019_Jun_24_Hook<0x180307B10, char(__fastcall)()> input_update = []() 
 	auto result = GEHCBypass<GEHCBypassType::UseValidPointer>([]()
 		{
 
-			if (ThreadLocalStorage.IsValid())
-			{
-				//assert(game_globals = ThreadLocalStorage.Get<s_game_globals *>(_tls_offset_game_globals));
-				//assert(player_control_globals = ThreadLocalStorage.Get<s_player_control_globals*>(_tls_offset_player_control_globals));
-				//assert(director_globals = ThreadLocalStorage.Get<s_director_globals*>(_tls_offset_director_globals));
-			}
+			//if (ThreadLocalStorage.IsValid())
+			//{
+			//	//assert(game_globals = ThreadLocalStorage.Get<s_game_globals *>(_tls_offset_game_globals));
+			//	//assert(player_control_globals = ThreadLocalStorage.Get<s_player_control_globals*>(_tls_offset_player_control_globals));
+			//	//assert(director_globals = ThreadLocalStorage.Get<s_director_globals*>(_tls_offset_director_globals));
+			//}
 			return input_update();
 		}
 	);
@@ -55,10 +81,18 @@ HaloReach_2019_Jun_24_Hook<0x180450C20, char(__stdcall)()> pan_cam_enabled = [](
 	return result;
 };
 
-
-HaloReach_2019_Jun_24_Hook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_set_default = [](s_bindings_table* a1)
+intptr_t input_abstraction_get_default_preferences_offset(HaloGameID gameID)
 {
-	auto result = bindings_set_default(a1);
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1803D8480;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1801E80F0;
+	}
+	return ~intptr_t();
+}
+HaloReachHookEx<input_abstraction_get_default_preferences_offset, __int64 __fastcall (s_bindings_table* a1)> input_abstraction_get_default_preferences = { "input_abstraction_get_default_preferences", [](s_bindings_table* a1)
+{
+	auto result = input_abstraction_get_default_preferences(a1);
 
 	// 0 for left trigger
 	// 1 for right trigger
@@ -189,11 +223,20 @@ HaloReach_2019_Jun_24_Hook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1
 	}
 
 	return result;
-};
+} };
 
-HaloReach_2019_Jun_24_Hook<0x1803D8640, __int64 __fastcall (s_game_bindings& a1)> sub_1803D8640 = [](s_game_bindings& a1)
+intptr_t input_abstraction_get_default_keyboard_preferences_offset(HaloGameID gameID)
 {
-	auto result = sub_1803D8640(a1);
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1803D8640;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1801E82B0;
+	}
+	return ~intptr_t();
+}
+HaloReachHookEx<input_abstraction_get_default_keyboard_preferences_offset, __int64 __fastcall (s_game_bindings& a1)> input_abstraction_get_default_keyboard_preferences = { "input_abstraction_get_default_keyboard_preferences", [](s_game_bindings& a1)
+{
+	auto result = input_abstraction_get_default_keyboard_preferences(a1);
 
 	// mouse buttons
 	a1.MouseBindings[_game_action_vehicle_brake].primary = e_mouse::_mouse_button3; // power slide
@@ -270,4 +313,4 @@ HaloReach_2019_Jun_24_Hook<0x1803D8640, __int64 __fastcall (s_game_bindings& a1)
 
 
 	return result;
-};
+} };

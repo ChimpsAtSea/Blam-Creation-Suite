@@ -192,9 +192,9 @@ HaloReachHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restri
 // core functionality required for the game to run
 #include "haloreach.core.inl"
 
-//// input functionality
-//#include "haloreach.input.inl"
-//
+// input functionality
+#include "haloreach.input.inl"
+
 //// rendering functionality
 //#include "haloreach.render.inl"
 //
@@ -267,13 +267,49 @@ FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18000F8D0, int()> sub_18000F8D
 	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
 };
 
-// don't run stuff that crashes fix but we should remove this
-FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180310430, __int64()> sub_180310430 = []()
+extern s_game_launch_data* p_game_launch_data;
+
+
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18030EC20, char()> sub_18030EC20 = []()
 {
-	return __int64(0);
+	return sub_18030EC20();
 };
 
+// don't run stuff that crashes fix but we should remove this
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x1802C4370, char* __fastcall (__int64 a1, int a2)> sub_1802C4370 = [](__int64 a1, int a2)
+{
+	if (a1)
+	{
+		static bool first = false;
+		if (!first)
+		{
+			first = true;
+			sub_18030EC20();
+		}
+		auto result = sub_1802C4370(a1, a2);
+		return result;
+	}
+	else
+	{
+		return (char*)"";
+	}
+};
 
+Data<HaloGameID::HaloReach_2019_Aug_20, char*, 0x18445DB98> qword_18445DB98;
+
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18030FF30, void()> sub_18030FF30 = []()
+{
+	static char bigbuffer[1024 * 1024 * 1024] = {  };
+	memset(bigbuffer, 1, sizeof(bigbuffer));
+	qword_18445DB98 = bigbuffer;
+	sub_18030FF30();
+};
+
+//// don't run stuff that crashes fix but we should remove this
+//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180310430, __int64()> sub_180310430 = []()
+//{
+//	return __int64(0);
+//};
 
 
 

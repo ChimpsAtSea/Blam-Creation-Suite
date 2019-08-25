@@ -90,6 +90,8 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member26 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[26]");
 	gameEngineHostCallbackVftbl.Member27 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[27]");
 	gameEngineHostCallbackVftbl.Member28 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[28]");
+	gameEngineHostCallbackVftbl.Member29NewPaddingBecauseThisHasChanged = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[Member29NewPaddingBecauseThisHasChanged]");
+	
 	gameEngineHostCallbackVftbl.Member29 = [](GameEngineHostCallback*, _QWORD, Mmeber29UnknownStruct* pUnknown) {
 		/*
 		When we load the level, we set the g_waitingForInputUpdate to true allowing us
@@ -280,6 +282,8 @@ void load_haloreach_dll()
 	SetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(HaloReach, "SetLibrarySettings");
 }
 
+s_game_launch_data* p_game_launch_data = nullptr;
+
 void initialize_custom_halo_reach_stuff()
 {
 	load_haloreach_dll();
@@ -294,6 +298,7 @@ void initialize_custom_halo_reach_stuff()
 	assert(pHaloReachEngine);
 
 	static s_game_launch_data game_launch_data = s_game_launch_data();
+	p_game_launch_data = &game_launch_data;
 
 	if (FILE * pGameStateFile = fopen("gamestate.hdr", "r"))
 	{
@@ -308,18 +313,18 @@ void initialize_custom_halo_reach_stuff()
 	game_launch_data.GameMode = 1;
 	game_launch_data.CampaignDifficultyLevel = _campaign_difficulty_level_normal;
 
-	//// load game variant
-	//{
-	//	FILE* pFile = fopen("hopper_game_variants\\campaign_default_054.bin", "r");
-	//	assert(pFile);
-	//	fseek(pFile, 0, SEEK_END);
-	//	size_t variant_size = ftell(pFile);
-	//	fseek(pFile, 0L, SEEK_SET);
-	//	assert(variant_size <= sizeof(game_launch_data.GameVariant));
-	//	fread(game_launch_data.GameVariant, 1, variant_size, pFile);
-	//	fclose(pFile);
-	//	
-	//}
+	// load game variant
+	{
+		FILE* pFile = fopen("hopper_game_variants\\ff_firefight_054.bin", "r");
+		assert(pFile);
+		fseek(pFile, 0, SEEK_END);
+		size_t variant_size = ftell(pFile);
+		fseek(pFile, 0L, SEEK_SET);
+		assert(variant_size <= sizeof(game_launch_data.GameVariant));
+		fread(game_launch_data.GameVariant, 1, variant_size, pFile);
+		fclose(pFile);
+		
+	}
 
 	//pHaloReachEngine->InitGraphics(0, 0, 0, 0);
 	pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);
