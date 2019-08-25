@@ -51,9 +51,9 @@ struct IGameEngine
 	float unknown1;
 	char unknown2[454];
 
-	void InitGraphics(__int64 a1, __int64 a2, __int64 /*IDXGISwapChain **/pSwapChain, __int64 a4)
+	void InitGraphics(__int64 /*ID3D11Device **/pID3D11Device, __int64 /*ID3D11DeviceContext **/pContext, __int64 /*IDXGISwapChain **/pSwapChain, __int64 /*IDXGISwapChain **/pSwapChainFallback)
 	{
-		vftbl->InitGraphics(this, a1, a2, pSwapChain, a4);
+		vftbl->InitGraphics(this, pID3D11Device, pContext, pSwapChain, pSwapChainFallback);
 	}
 	void InitThread(GameEngineHostCallback* gameEngineHostCallback, __int64 a2)
 	{
