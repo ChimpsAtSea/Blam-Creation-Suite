@@ -39,10 +39,18 @@ intptr_t GetGameEngineHostCallbackOffset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-
 HaloReachDataEx<GameEngineHostCallback*, GetGameEngineHostCallbackOffset> g_GameEngineHostCallback;
 
-HaloReach_2019_Jun_24_Data<uint32_t, 0x1810A3098> TlsIndex;
+intptr_t TlsIndex_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810A3098;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180CF6998;
+	}
+	return ~intptr_t();
+}
+DataEx<uint32_t, TlsIndex_offset> TlsIndex;
 
 intptr_t g_render_thread_mode_offset(HaloGameID gameID)
 {
@@ -98,16 +106,86 @@ intptr_t dword_1810524AC_offset(HaloGameID gameID)
 	return ~intptr_t();
 }
 DataEx<DWORD, dword_1810524AC_offset> dword_1810524AC;
-HaloReach_2019_Jun_24_Data<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
-HaloReach_2019_Jun_24_Data<s_game_options, 0x183B0FB70> g_game_options;
-HaloReach_2019_Jun_24_Data<wchar_t[4][32], 0x183DE6FB0> g_player_names;
-HaloReach_2019_Jun_24_Data<HWND, 0x1810EC5E0> g_hwnd;
-HaloReach_2019_Jun_24_Data<char, 0x180DC64A8> level_name_to_patch;
-HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830;
-HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018;
-HaloReach_2019_Jun_24_Data<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
-HaloReach_2019_Jun_24_Data<s_input_abstraction, 0x183B2E510> g_input_abstraction;
 
+intptr_t g_controller_interfaces_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x183D43560;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x183945FC0;
+	}
+	return ~intptr_t();
+}
+DataEx<c_controller_interface[4], g_controller_interfaces_offset> g_controller_interfaces;
+
+intptr_t g_game_options_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x183B0FB70;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x183719E50;
+	}
+	return ~intptr_t();
+}
+DataEx<s_game_options, g_game_options_offset> g_game_options;
+
+intptr_t g_player_names_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x183DE6FB0;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1839EB850;
+	}
+	return ~intptr_t();
+}
+DataEx<wchar_t[4][32], g_player_names_offset> g_player_names;
+
+intptr_t g_hwnd_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810EC5E0;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37B10;
+	}
+	return ~intptr_t();
+}
+DataEx<HWND, g_hwnd_offset> g_hwnd;
+
+intptr_t level_name_to_patch_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x180DC64A8;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180A48E60;
+	}
+	return ~intptr_t();
+}
+DataEx<char, level_name_to_patch_offset> level_name_to_patch;
+
+// HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830; g_gamepad_globals->unknown350
+HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018; // no equivalent
+
+intptr_t g_gamepad_globals_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x183DF54E0;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1839EBDE0;
+	}
+	return ~intptr_t();
+}
+DataEx<s_gamepad_globals, g_gamepad_globals_offset> g_gamepad_globals;
+
+intptr_t g_input_abstraction_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x183B2E510;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1837387F0;
+	}
+	return ~intptr_t();
+}
+DataEx<s_input_abstraction, g_input_abstraction_offset> g_input_abstraction;
 
 intptr_t g_WndProc_offset(HaloGameID gameID)
 {
@@ -152,7 +230,7 @@ intptr_t WindowName_offset(HaloGameID gameID)
 }
 HaloReachDataEx<char[64], WindowName_offset> WindowName;
 
-HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line;
+HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line; // no equivalent
 
 intptr_t g_createdWindow_offset(HaloGameID gameID)
 {
@@ -431,9 +509,9 @@ FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18030FF30, void()> sub_18030FF
 //
 
 //
-//HaloReachHook<0x180780D90, preferences_set_bindings_func> preferences_set_bindings_type = [](preferences_set_bindings_args)
+//HaloReachHook<0x180780D90, profile_configuration_update_func> profile_configuration_update_type = [](profile_configuration_update_args)
 //{
-//	auto result = preferences_set_bindings_type(preferences_set_bindings_vals);
+//	auto result = profile_configuration_update_type(profile_configuration_update_vals);
 //	return result;
 //};
 //

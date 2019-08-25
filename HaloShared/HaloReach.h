@@ -242,7 +242,8 @@ enum e_tls_offset
 	// unsure if more exist after 0x730
 };
 
-extern HaloReach_2019_Jun_24_Data<uint32_t, 0x1810A3098> TlsIndex;
+extern intptr_t TlsIndex_offset(HaloGameID gameID);
+extern DataEx<uint32_t, TlsIndex_offset> TlsIndex;
 struct s_thread_local_storage
 {
 	uint64_t Address = NULL;
@@ -291,7 +292,7 @@ extern bool g_hideWindowOnStartup;
 
 // Halo Reach Functions
 
-#define preferences_set_bindings_args \
+#define profile_configuration_update_args \
 __int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 a5, __int64 a6, __int64 a7, __int64 a8,	\
 __int64 a9, __int64 a10, __int64 a11, __int64 a12, __int64 a13, __int64 a14, __int64 a15, __int64 a16,	\
 __int64 a17, __int64 a18, __int64 a19, __int64 a20, __int64 a21, __int64 a22, __int64 a23, __int64 a24,	\
@@ -300,7 +301,7 @@ __int64 a33, __int64 a34, __int64 a35, __int64 a36, __int64 a37, __int64 a38, __
 __int64 a41, __int64 a42, __int64 a43, __int64 a44, __int64 a45, __int64 a46, __int64 a47, __int64 a48,	\
 __int64 a49, __int64 a50, __int64 a51, __int64 a52, __int64 a53, __int64 a54, __int64 a55, __int64 a56,	\
 __int64 a57, __int64 a58, __int64 a59, __int64 a60, __int64 a61, __int64 a62, __int64 a63
-#define preferences_set_bindings_vals \
+#define profile_configuration_update_vals \
 a1,a2,a3,a4,a5,a6,a7,a8, \
 a9,a10,a11,a12,a13,a14,a15,a16, \
 a17,a18,a19,a20,a21,a22,a23,a24, \
@@ -309,8 +310,8 @@ a33,a34,a35,a36,a37,a38,a39,a40, \
 a41,a42,a43,a44,a45,a46,a47,a48, \
 a49,a50,a51,a52,a53,a54,a55,a56, \
 a57,a58,a59,a60,a61,a62,a63
-typedef char __fastcall preferences_set_bindings_func(preferences_set_bindings_args);
-extern HaloReach_2019_Jun_24_Hook<0x180780D90, preferences_set_bindings_func> preferences_set_bindings_type;
+typedef char __fastcall profile_configuration_update_func(profile_configuration_update_args);
+extern HaloReach_2019_Jun_24_Hook<0x180780D90, profile_configuration_update_func> profile_configuration_update_type; // 0x180497FD0
 
 // Halo Reach Variables
 
@@ -319,16 +320,23 @@ extern HaloReachDataEx<GameEngineHostCallback*, GetGameEngineHostCallbackOffset>
 
 extern intptr_t g_render_thread_mode_offset(HaloGameID gameID);
 extern DataEx<LONG, g_render_thread_mode_offset> g_render_thread_mode;
-extern HaloReach_2019_Jun_24_Data<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
-extern HaloReach_2019_Jun_24_Data<s_game_options, 0x183B0FB70> g_game_options;
-extern HaloReach_2019_Jun_24_Data<wchar_t[4][32], 0x183DE6FB0> g_player_names;
-extern HaloReach_2019_Jun_24_Data<HWND, 0x1810EC5E0> g_hwnd;
-extern HaloReach_2019_Jun_24_Data<char, 0x180DC64A8> level_name_to_patch;
-extern HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830;
-extern HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018;
-extern HaloReach_2019_Jun_24_Data<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
-extern HaloReach_2019_Jun_24_Data<s_input_abstraction, 0x183B2E510> g_input_abstraction;
-extern HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line;
+extern intptr_t g_controller_interfaces_offset(HaloGameID gameID);
+extern DataEx<c_controller_interface[4], g_controller_interfaces_offset> g_controller_interfaces;
+extern intptr_t g_game_options_offset(HaloGameID gameID);
+extern DataEx<s_game_options, g_game_options_offset> g_game_options;
+extern intptr_t g_player_names_offset(HaloGameID gameID);
+extern DataEx<wchar_t[4][32], g_player_names_offset> g_player_names;
+extern intptr_t g_hwnd_offset(HaloGameID gameID);
+extern DataEx<HWND, g_hwnd_offset> g_hwnd;
+extern intptr_t level_name_to_patch_offset(HaloGameID gameID);
+extern DataEx<char, level_name_to_patch_offset> level_name_to_patch;
+//extern HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830; g_gamepad_globals->unknown350
+extern HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018; // no equivalent
+extern intptr_t g_gamepad_globals_offset(HaloGameID gameID);
+extern DataEx<s_gamepad_globals, g_gamepad_globals_offset> g_gamepad_globals;
+extern intptr_t g_input_abstraction_offset(HaloGameID gameID);
+extern DataEx<s_input_abstraction, g_input_abstraction_offset> g_input_abstraction;
+extern HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line; // no equivalent
 extern intptr_t g_createdWindow_offset(HaloGameID gameID);
 extern DataEx<HWND, g_createdWindow_offset> g_createdWindow;
 
