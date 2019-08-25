@@ -18,14 +18,14 @@ intptr_t game_options_new_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachHookEx<game_options_new_offset, __int64 __fastcall (s_game_options *game_options)> game_options_new = [](s_game_options *game_options) {
+HaloReachHookEx<game_options_new_offset, __int64 __fastcall (s_game_options *game_options)> game_options_new = { "game_options_new", [](s_game_options *game_options) {
 
 	auto result = game_options_new(game_options);
 
 	game_options->frame_limit = g_frameLimit;
 
 	return result;
-};
+} };
 
 intptr_t observer_get_suggested_field_of_view_offset(HaloGameID gameID)
 {
@@ -36,14 +36,14 @@ intptr_t observer_get_suggested_field_of_view_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachHookEx<observer_get_suggested_field_of_view_offset, float(__stdcall)()> observer_get_suggested_field_of_view = []() {
+HaloReachHookEx<observer_get_suggested_field_of_view_offset, float(__stdcall)()> observer_get_suggested_field_of_view = { "observer_get_suggested_field_of_view", []() {
 
 	auto result = observer_get_suggested_field_of_view();
 
 	return g_fieldOfView * 0.017453292f;
 
 	return result;
-};
+} };
 
 intptr_t camera_new_offset(HaloGameID gameID)
 {
@@ -54,12 +54,12 @@ intptr_t camera_new_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachHookEx<camera_new_offset, __int64(__fastcall)(uint8_t *, int, float, char)> camera_new = [](uint8_t *director, int camera_type, float camera_speed, char force_update) {
+HaloReachHookEx<camera_new_offset, __int64(__fastcall)(uint8_t *, int, float, char)> camera_new = { "camera_new", [](uint8_t *director, int camera_type, float camera_speed, char force_update) {
 
 	//if (camera_type == 4) // on death set the camera_mode to flying
 	//	camera_type = 2;
 
 	auto result = camera_new(director, camera_type, camera_speed, force_update);
 	return result;
-};
+} };
 
