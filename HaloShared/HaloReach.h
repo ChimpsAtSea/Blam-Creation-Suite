@@ -314,7 +314,9 @@ extern HaloReach_2019_Jun_24_Hook<0x180780D90, preferences_set_bindings_func> pr
 
 // Halo Reach Variables
 
-extern HaloReach_2019_Jun_24_Data<GameEngineHostCallback*, 0x1810EC5C0> g_GameEngineHostCallback;
+extern intptr_t GetGameEngineHostCallbackOffset(HaloGameID gameID);
+extern HaloReachDataEx<GameEngineHostCallback*, GetGameEngineHostCallbackOffset> g_GameEngineHostCallback;
+
 extern HaloReach_2019_Jun_24_Data<LONG, 0x18102F2A4> g_render_thread_mode;
 extern HaloReach_2019_Jun_24_Data<DWORD, 0x1810EC584> dword_1810EC584;
 extern HaloReach_2019_Jun_24_Data<BYTE, 0x18342E55D> byte_18342E55D;
@@ -359,25 +361,21 @@ template<GEHCBypassType type, typename T>
 decltype(auto) GEHCBypass(T functionPtr, bool forceDisable = false) // GameEngineHostCallback
 {
 	using return_type = decltype(functionPtr());
-
-	char* pBaseAddress = reinterpret_cast<char*>(GetHaloExecutable(HaloGameID::HaloReach_2019_Jun_24));
-	assert(pBaseAddress);
-	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
-
-	auto pGameEngineHostCallbackBefore = pGameEngineHostCallback;
+	
+	GameEngineHostCallback* pGameEngineHostCallbackBefore = g_GameEngineHostCallback;
 
 	if constexpr (type == GEHCBypassType::UseValidPointer)
 	{
 		if (g_useCustomGameEngineHostCallback && !forceDisable)
 		{
-			pGameEngineHostCallback = &gameEngineHostCallback;
+			g_GameEngineHostCallback = &gameEngineHostCallback;
 		}
 	}
 	else
 	{
 		if (g_useCustomGameEngineHostCallback && !forceDisable)
 		{
-			pGameEngineHostCallback = nullptr;
+			g_GameEngineHostCallback = nullptr;
 		}
 	}
 
@@ -387,7 +385,7 @@ decltype(auto) GEHCBypass(T functionPtr, bool forceDisable = false) // GameEngin
 
 		if (g_useCustomGameEngineHostCallback && !forceDisable)
 		{
-			pGameEngineHostCallback = pGameEngineHostCallbackBefore;
+			g_GameEngineHostCallback = pGameEngineHostCallbackBefore;
 		}
 	}
 	else
@@ -396,7 +394,7 @@ decltype(auto) GEHCBypass(T functionPtr, bool forceDisable = false) // GameEngin
 
 		if (g_useCustomGameEngineHostCallback && !forceDisable)
 		{
-			pGameEngineHostCallback = pGameEngineHostCallbackBefore;
+			g_GameEngineHostCallback = pGameEngineHostCallbackBefore;
 		}
 
 		return result;

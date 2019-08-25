@@ -21,13 +21,13 @@
     <ClCompile Include="HaloReach.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DataReference.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CustomWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FunctionHook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,13 +41,13 @@
     <ClInclude Include="HaloReach.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataReference.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CustomWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FunctionHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

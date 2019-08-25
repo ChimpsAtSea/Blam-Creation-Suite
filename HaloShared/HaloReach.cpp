@@ -30,8 +30,19 @@ bool g_hideWindowOnStartup = false;
 
 // Halo Reach Variables
 
+intptr_t GetGameEngineHostCallbackOffset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810EC5C0;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37AA8;
+	}
+	return ~intptr_t();
+}
+
+HaloReachDataEx<GameEngineHostCallback*, GetGameEngineHostCallbackOffset> g_GameEngineHostCallback;
+
 HaloReach_2019_Jun_24_Data<uint32_t, 0x1810A3098> TlsIndex;
-HaloReach_2019_Jun_24_Data<GameEngineHostCallback*, 0x1810EC5C0> g_GameEngineHostCallback;
 HaloReach_2019_Jun_24_Data<LONG, 0x18102F2A4> g_render_thread_mode;
 HaloReach_2019_Jun_24_Data<DWORD, 0x1810EC584> dword_1810EC584;
 HaloReach_2019_Jun_24_Data<BYTE, 0x18342E55D> byte_18342E55D;
@@ -63,17 +74,17 @@ physical_memory_stage_push_func physical_memory_stage_push = nullptr;
 // core functionality required for the game to run
 #include "haloreach.core.inl"
 
-// input functionality
-#include "haloreach.input.inl"
-
-// rendering functionality
-#include "haloreach.render.inl"
-
-// log and text manipulation functionality
-#include "haloreach.log.inl"
-
-// game functionality
-#include "haloreach.game.inl"
+//// input functionality
+//#include "haloreach.input.inl"
+//
+//// rendering functionality
+//#include "haloreach.render.inl"
+//
+//// log and text manipulation functionality
+//#include "haloreach.log.inl"
+//
+//// game functionality
+//#include "haloreach.game.inl"
 
 // --- WORK IN PROGRESS BELOW ---
 
@@ -88,15 +99,8 @@ HaloReach_2019_Jun_24_Data<IID, 0x180E0B2A8> stru_180E0B2A8;
 HaloReach_2019_Jun_24_Pointer<IDXGIFactory1*, 0x18112D368> ppFactory;
 HaloReach_2019_Jun_24_Pointer<ID3D11Device*, 0x18112D588> g_pDevice;
 
-intptr_t initialize_device_offset(HaloGameID gameID)
-{
-	switch (gameID)
-	{
-		case HaloGameID::HaloReach_2019_Jun_24: return 0x1806C2C30;
-		case HaloGameID::HaloReach_2019_Aug_20: return 0x18040C8C0;
-	}
-	return ~intptr_t();
-}
+extern intptr_t initialize_device_offset(HaloGameID gameID);
+extern HaloReachHookEx<initialize_device_offset, char()> initialize_device;
 
 // allow the game to read the command line to use -width and -height
 HaloReachHookEx<initialize_device_offset, char()> initialize_device = { "initialize_device", []()
@@ -105,13 +109,23 @@ HaloReachHookEx<initialize_device_offset, char()> initialize_device = { "initial
 
 	auto result = initialize_device();
 
-	bool isCurrent = ppFactory->IsCurrent();
-	assert(isCurrent);
-	ID3D11DeviceContext* pD3DContext = nullptr;
-	g_pDevice->GetImmediateContext(&pD3DContext);
+	//bool isCurrent = ppFactory->IsCurrent();
+	//assert(isCurrent);
+	//ID3D11DeviceContext* pD3DContext = nullptr;
+	//g_pDevice->GetImmediateContext(&pD3DContext);
 
 	return result;
 } };
+
+intptr_t initialize_device_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1806C2C30;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18040C8C0;
+	}
+	return ~intptr_t();
+}
 
 #pragma endregion
 
