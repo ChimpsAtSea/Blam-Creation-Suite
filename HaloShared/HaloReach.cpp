@@ -153,7 +153,17 @@ intptr_t WindowName_offset(HaloGameID gameID)
 HaloReachDataEx<char[64], WindowName_offset> WindowName;
 
 HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line;
-HaloReach_2019_Jun_24_Data<HWND, 0x1810EC5D8> g_windowHWND;
+
+intptr_t g_createdWindow_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810EC5D8;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37B08;
+	}
+	return ~intptr_t();
+}
+DataEx<HWND, g_createdWindow_offset> g_createdWindow;
 
 // Halo Reach Functions
 
@@ -251,14 +261,17 @@ intptr_t initialize_device_offset(HaloGameID gameID)
 
 #pragma endregion
 
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18000F8D0, int()> sub_18000F8D0 = []()
+{
+	auto callback = [=]() { return sub_18000F8D0(); };
+	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
+};
 
-
-
-
-
-
-
-
+// don't run stuff that crashes fix but we should remove this
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180310430, __int64()> sub_180310430 = []()
+{
+	return __int64(0);
+};
 
 
 

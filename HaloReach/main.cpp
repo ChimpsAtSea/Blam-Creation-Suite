@@ -83,8 +83,8 @@ void setup_game_engine_host_callback()
 
 		WriteLineVerbose("GameLoaded");
 		splash_screen::Destroy();
-		ShowWindow(g_windowHWND, SW_SHOW);
-		SetFocus(g_windowHWND);
+		ShowWindow(g_createdWindow, SW_SHOW);
+		SetFocus(g_createdWindow);
 	};
 	gameEngineHostCallbackVftbl.Member25 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[25]");
 	gameEngineHostCallbackVftbl.Member26 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[26]");
@@ -304,6 +304,22 @@ void initialize_custom_halo_reach_stuff()
 		game_launch_data.pGameStateHeader = reinterpret_cast<uint8_t*>(&game_state_header);
 		game_launch_data.GameStateHeaderSize = sizeof(s_game_state_header);
 	}
+	game_launch_data.MapId = _map_id_ff50_park;
+	game_launch_data.GameMode = 1;
+	game_launch_data.CampaignDifficultyLevel = _campaign_difficulty_level_normal;
+
+	//// load game variant
+	//{
+	//	FILE* pFile = fopen("hopper_game_variants\\campaign_default_054.bin", "r");
+	//	assert(pFile);
+	//	fseek(pFile, 0, SEEK_END);
+	//	size_t variant_size = ftell(pFile);
+	//	fseek(pFile, 0L, SEEK_SET);
+	//	assert(variant_size <= sizeof(game_launch_data.GameVariant));
+	//	fread(game_launch_data.GameVariant, 1, variant_size, pFile);
+	//	fclose(pFile);
+	//	
+	//}
 
 	//pHaloReachEngine->InitGraphics(0, 0, 0, 0);
 	pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);

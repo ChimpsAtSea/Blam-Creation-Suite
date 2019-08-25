@@ -495,7 +495,8 @@ struct __cppobj __declspec(align(8)) s_game_launch_data : s_game_launch_data_mem
 #endif
 
 	_DWORD GameMode = 1;
-	_BYTE GameVariantData[173 * 1024] = {};
+	_BYTE GameVariant[115 * 1024] = {};
+	_BYTE MapVariant[58 * 1024] = {};
 	// [0x180330500, mcc_id_to_reach_map_id, https://pastebin.com/r3ihQagj]
 	// [180330BD0, mcc_id_to_reach_map_name, https://pastebin.com/Qx72e0G6]
 	e_map_id MapId = _map_id_m35;

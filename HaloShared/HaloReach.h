@@ -329,7 +329,8 @@ extern HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018;
 extern HaloReach_2019_Jun_24_Data<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
 extern HaloReach_2019_Jun_24_Data<s_input_abstraction, 0x183B2E510> g_input_abstraction;
 extern HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line;
-extern HaloReach_2019_Jun_24_Data<HWND, 0x1810EC5D8> g_windowHWND;
+extern intptr_t g_createdWindow_offset(HaloGameID gameID);
+extern DataEx<HWND, g_createdWindow_offset> g_createdWindow;
 
 
 extern intptr_t dword_1810EC584_offset(HaloGameID gameID);
