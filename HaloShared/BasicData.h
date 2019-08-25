@@ -80,11 +80,11 @@ private:
 		if (offset == 0 && m_find_offset_func)
 		{
 			offset = m_find_offset_func(gameID);
-		}
 
-		assert(m_gameID == HaloGameID::NotSet && offset >= GetHaloBaseAddress(gameID)/*, "Offset is out of bounds"*/);
-		assert(m_gameID == HaloGameID::NotSet && offset < GetHaloTopAddress(gameID)/*, "Offset is out of bounds"*/);
-		assert(m_gameID == HaloGameID::NotSet && (offset + m_dataSize) < GetHaloTopAddress(gameID)/*, "Offset is out of bounds"*/);
+			assert(m_gameID == HaloGameID::NotSet && offset >= GetHaloBaseAddress(gameID)/*, "Offset is out of bounds"*/);
+			assert(m_gameID == HaloGameID::NotSet && offset < GetHaloTopAddress(gameID)/*, "Offset is out of bounds"*/);
+			assert(m_gameID == HaloGameID::NotSet && (offset + m_dataSize) < GetHaloTopAddress(gameID)/*, "Offset is out of bounds"*/);
+		}
 
 		HMODULE hModule = GetModuleHandleA(GetHaloExecutableString(gameID));
 		char* pBaseAddress = reinterpret_cast<char*>(hModule);

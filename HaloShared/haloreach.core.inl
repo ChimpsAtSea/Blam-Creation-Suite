@@ -1,9 +1,16 @@
-
 /*
 	this function is the games main routine. inside of here sits the
 	main_loop function call
-*/
-HaloReach_2019_Jun_24_Hook<0x1800129B0, void* __stdcall ()> main_thread_routine = []()
+*/intptr_t main_thread_routine_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1800129B0;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18000FF50;
+	}
+	return ~intptr_t();
+}
+HaloReachHookEx<main_thread_routine_offset, void *__stdcall ()> main_thread_routine = { "main_thread_routine", []()
 {
 	WriteLineVerbose("Starting game...");
 	g_CurrentGameState = CurrentState::eRunning;
@@ -14,42 +21,69 @@ HaloReach_2019_Jun_24_Hook<0x1800129B0, void* __stdcall ()> main_thread_routine 
 	g_CurrentGameState = CurrentState::eFinished;
 	g_isHooked = false;
 	return result;
-};
+} };
 
 /*
 	override for the halo reach default path
-*/
-HaloReach_2019_Jun_24_Hook<0x180012730, const char* ()> game_get_haloreach_path = []()
+*/intptr_t game_get_haloreach_path_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x180012730;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18000FD20;
+	}
+	return ~intptr_t();
+}
+HaloReachHookEx<game_get_haloreach_path_offset, const char *()> game_get_haloreach_path = { "game_get_haloreach_path", []()
 {
 	return g_haloReachPathOverride;
-};
+} };
 
-HaloReach_2019_Jun_24_Hook<0x1800122F0, int()> sub_1800122F0 = []()
+intptr_t sub_1800122F0_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1800122F0;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18000FD20;
+	}
+	return ~intptr_t();
+}
+HaloReachHookEx<sub_1800122F0_offset, int()> sub_1800122F0 = { "sub_1800122F0", []() // TODO: add proper name
 {
 	auto callback = []() { return sub_1800122F0(); };
 	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
-};
+} };
 
-HaloReach_2019_Jun_24_Hook<0x1806C2890, HWND()> initialize_window = []()
+intptr_t initialize_window_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1806C2890;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18040C5E0;
+	}
+	return ~intptr_t();
+}
+HaloReachHookEx<initialize_window_offset, HWND()> initialize_window = []()
 {
 	return GEHCBypass<GEHCBypassType::UseNullPointer>([]()
 		{
 			HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach_2019_Jun_24));
 			assert(hHaloReachModule);
 
-			qword_1810EC5F0 = CustomWindow::WndProc;
-			qword_1810EC5D0 = hHaloReachModule;
+			g_WndProc = CustomWindow::WndProc;
+			g_hInstance = hHaloReachModule;
 
 			memcpy(&ClassName[0], "HaloReach", sizeof("HaloReach"));
 			memcpy(&WindowName[0], "HaloReach", sizeof("HaloReach"));
 
 			HWND hWnd = initialize_window();
 
-			SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)g_icon);
 			if (g_hideWindowOnStartup == false)
 			{
 				ShowWindow(hWnd, SW_SHOW);
 			}
+
+			SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)g_icon);
 			return hWnd;
 		}
 	);
@@ -61,12 +95,21 @@ HaloReach_2019_Jun_24_Hook<0x1806C2890, HWND()> initialize_window = []()
 //	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
 //};
 
-HaloReach_2019_Jun_24_Hook<0x180013EA0, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = [](__int64 a1, __int64 a2)
+intptr_t main_game_launch_offset(HaloGameID gameID)
 {
-	char* const pBaseAddress = reinterpret_cast<char*>(GetHaloExecutable(HaloGameID::HaloReach_2019_Jun_24));
-	const int& load_state = *reinterpret_cast<int*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x180013EA0;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800113F0;
+	}
+	return ~intptr_t();
+}
+HaloReachHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = { "main_game_launch", [](__int64 a1, __int64 a2)
+{
+	char *const pBaseAddress = reinterpret_cast<char *>(GetHaloExecutable(HaloGameID::HaloReach_2019_Jun_24));
+	const int &load_state = *reinterpret_cast<int *>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
 
-	const char* load_state_names[] =
+	const char *load_state_names[] =
 	{
 		"initial",
 		"create_local_squad",
@@ -106,9 +149,18 @@ HaloReach_2019_Jun_24_Hook<0x180013EA0, char __fastcall (__int64 a1, __int64 a2)
 		}
 	);
 	return result;
-};
+} };
 
-HaloReach_2019_Jun_24_HookVarArgs<0x18078C550, void(const char* format, ...)> DamagedMediaHaltAndDisplayError = [](const char* format, ...)
+/*intptr_t DamagedMediaHaltAndDisplayError_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x18078C550;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18049FBB0;
+	}
+	return ~intptr_t();
+}
+HaloReachHookVarArgsEx<DamagedMediaHaltAndDisplayError_offset, void(const char *format, ...)> DamagedMediaHaltAndDisplayError = { "DamagedMediaHaltAndDisplayError", [](const char *format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -121,9 +173,18 @@ HaloReach_2019_Jun_24_HookVarArgs<0x18078C550, void(const char* format, ...)> Da
 	va_end(args);
 
 	MessageBox(CustomWindow::GetWindowHandle(), "dirty_disk_error", buffer, MB_ICONERROR);
-};
+} };*/
 
-HaloReach_2019_Jun_24_Hook<0x180012200, __int64(__fastcall)(__int64 a1)> sub_180012200 = [](__int64 a1)
+intptr_t sub_180012200_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x180012200;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18000F850;
+	}
+	return ~intptr_t();
+}
+HaloReachHookEx<sub_180012200_offset, __int64(__fastcall)(__int64 a1)> sub_180012200 = { "sub_180012200", [](__int64 a1) // TODO: add proper name
 {
 	// g_gameEngineHostCallback is normally nulled out by other code.
 	// it is perfectly okay to just use a bypass here but I have
@@ -147,8 +208,8 @@ HaloReach_2019_Jun_24_Hook<0x180012200, __int64(__fastcall)(__int64 a1)> sub_180
 		if (result & 1)
 		{
 			_InterlockedExchange(dword_1810524AC.ptr(), -1);
-			physical_memory_stage_push(6);
-			result = physical_memory_stage_push(3);
+			restricted_region_unlock_primary(6);
+			result = restricted_region_unlock_primary(3);
 		}
 		if (wait_for_render_thread_result & 2)
 		{
@@ -157,10 +218,19 @@ HaloReach_2019_Jun_24_Hook<0x180012200, __int64(__fastcall)(__int64 a1)> sub_180
 	}
 
 	return result;
-};
+} };
 
-typedef char* (__fastcall levels_try_and_get_scenario_path_func)(int campaign_id, unsigned int map_id, char* scenario_path, int size);
-HaloReach_2019_Jun_24_Hook<0x1803A6B30, levels_try_and_get_scenario_path_func> levels_try_and_get_scenario_path = [](int campaign_id, unsigned int map_id, char* scenario_path, int size)
+intptr_t levels_try_and_get_scenario_path_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1803A6B30;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1801C3660;
+	}
+	return ~intptr_t();
+}
+typedef char *(__fastcall levels_try_and_get_scenario_path_func)(int campaign_id, unsigned int map_id, char *scenario_path, int size);
+HaloReachHookEx<levels_try_and_get_scenario_path_offset, levels_try_and_get_scenario_path_func> levels_try_and_get_scenario_path = { "levels_try_and_get_scenario_path", [](int campaign_id, unsigned int map_id, char* scenario_path, int size)
 {
 	// #HACK #TODO: Figure out the best home for this incase this is incorrect
 	g_waitingForInputUpdate = true;
@@ -185,11 +255,10 @@ HaloReach_2019_Jun_24_Hook<0x1803A6B30, levels_try_and_get_scenario_path_func> l
 	}
 
 	// forceload a different map file
-	char customMapName[] = "levels\\solo\\m35\\m35";
+	char customMapName[] = "ff45_corvette";
 	memcpy(scenario_path, customMapName, sizeof(customMapName));
 
 	WriteLineVerbose("MAP OVERRIDE: %s", scenario_path);
 
 	return result;
-};
-
+} };

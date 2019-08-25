@@ -60,6 +60,10 @@ public:
 private:
 	bool DoesOffsetExist(HaloGameID gameID, size_t offset)
 	{
+		if (gameID == HaloGameID::NotSet)
+		{
+			return false;
+		}
 		if (m_gameID == gameID && offset == m_offset)
 		{
 			return true;
@@ -194,6 +198,13 @@ public:
 	}
 
 	friend class FunctionHookBase;
+
+	FunctionHookEx()
+		: FunctionHookBase(nullptr, HaloGameID::NotSet, 0, find_offset_func)
+		, hook(nullptr)
+	{
+
+	}
 
 	template<typename hook_assignment_type>
 	FunctionHookEx(hook_assignment_type func)

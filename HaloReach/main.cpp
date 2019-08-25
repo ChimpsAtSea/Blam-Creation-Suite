@@ -305,7 +305,7 @@ void initialize_custom_halo_reach_stuff()
 		game_launch_data.GameStateHeaderSize = sizeof(s_game_state_header);
 	}
 
-	pHaloReachEngine->InitGraphics(0, 0, 0, 0);
+	//pHaloReachEngine->InitGraphics(0, 0, 0, 0);
 	pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);
 }
 

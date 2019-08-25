@@ -84,14 +84,20 @@ void create_dll_hook(const char pModuleName[], const char* pProcedureName, Ta ho
 	}
 }
 
-template<size_t offset, typename T>
-void populate_function_ptr(const char pModuleName[], size_t baseAddress, T& dest)
+template<typename T>
+void populate_function_ptr(const char pModuleName[], size_t baseAddress, size_t offset, T& dest)
 {
 	// Find the function address
 	char* const pBaseAddress = reinterpret_cast<char*>(GetModuleHandleA(pModuleName));
 	char* const pFunctionAddress = pBaseAddress + (offset - baseAddress);
 
 	dest = reinterpret_cast<T>(pFunctionAddress);
+}
+
+template<size_t offset, typename T>
+void populate_function_ptr(const char pModuleName[], size_t baseAddress, T& dest)
+{
+	populate_function_ptr(pModuleName, baseAddress, offset, dest);
 }
 
 template<HaloGameID gameID, size_t offset, typename T>

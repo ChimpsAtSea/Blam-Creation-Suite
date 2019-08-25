@@ -29,10 +29,6 @@ void FunctionHookBase::ProcessNode(HaloGameID gameID)
 		void*& rBase = rVoidThis.GetBase();
 		void*& rHook = rVoidThis.GetHook();
 
-		assert(rHook);
-
-		
-
 		const char* pFunctionName = m_name;
 		char pUnknownFunctionNameBuffer[256] = {};
 		if (pFunctionName == nullptr)
@@ -42,8 +38,16 @@ void FunctionHookBase::ProcessNode(HaloGameID gameID)
 			pFunctionName = pUnknownFunctionNameBuffer;
 		}
 
-		auto result = create_hook(gameID, m_offset, pFunctionName, rHook, rBase);
-		assert(result == 0);
+		if (rHook)
+		{
+			auto result = create_hook(gameID, m_offset, pFunctionName, rHook, rBase);
+			assert(result == 0);
+		}
+		else
+		{
+			populate_function_ptr(GetHaloExecutableString(gameID), GetHaloBaseAddress(gameID), m_offset, rBase);
+			WriteLineVerbose("Created function pointer for %s", pFunctionName);
+		}
 	}
 	if (m_pNextFunctionHook)
 	{

@@ -43,11 +43,61 @@ intptr_t GetGameEngineHostCallbackOffset(HaloGameID gameID)
 HaloReachDataEx<GameEngineHostCallback*, GetGameEngineHostCallbackOffset> g_GameEngineHostCallback;
 
 HaloReach_2019_Jun_24_Data<uint32_t, 0x1810A3098> TlsIndex;
-HaloReach_2019_Jun_24_Data<LONG, 0x18102F2A4> g_render_thread_mode;
-HaloReach_2019_Jun_24_Data<DWORD, 0x1810EC584> dword_1810EC584;
-HaloReach_2019_Jun_24_Data<BYTE, 0x18342E55D> byte_18342E55D;
-HaloReach_2019_Jun_24_Data<BYTE, 0x183984DE4> byte_183984DE4;
-HaloReach_2019_Jun_24_Data<DWORD, 0x1810524AC> dword_1810524AC;
+
+intptr_t g_render_thread_mode_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x18102F2A4;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180C79B28;
+	}
+	return ~intptr_t();
+}
+DataEx<LONG, g_render_thread_mode_offset> g_render_thread_mode;
+
+intptr_t dword_1810EC584_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810EC584;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37A78;
+	}
+	return ~intptr_t();
+}
+DataEx<DWORD, dword_1810EC584_offset> dword_1810EC584;
+
+intptr_t byte_18342E55D_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x18342E55D;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18340E4CB;
+	}
+	return ~intptr_t();
+}
+DataEx<BYTE, byte_18342E55D_offset> byte_18342E55D;
+
+intptr_t byte_183984DE4_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x183984DE4;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18358EF04;
+	}
+	return ~intptr_t();
+}
+DataEx<BYTE, byte_183984DE4_offset> byte_183984DE4;
+
+intptr_t dword_1810524AC_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810524AC;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180CA20A8;
+	}
+	return ~intptr_t();
+}
+DataEx<DWORD, dword_1810524AC_offset> dword_1810524AC;
 HaloReach_2019_Jun_24_Data<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
 HaloReach_2019_Jun_24_Data<s_game_options, 0x183B0FB70> g_game_options;
 HaloReach_2019_Jun_24_Data<wchar_t[4][32], 0x183DE6FB0> g_player_names;
@@ -57,19 +107,77 @@ HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830;
 HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018;
 HaloReach_2019_Jun_24_Data<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
 HaloReach_2019_Jun_24_Data<s_input_abstraction, 0x183B2E510> g_input_abstraction;
-HaloReach_2019_Jun_24_Data<char[64], 0x1810EC600> ClassName;
-HaloReach_2019_Jun_24_Data<char[64], 0x1810EC640> WindowName;
-HaloReach_2019_Jun_24_Data<WNDPROC, 0x1810EC5F0> qword_1810EC5F0;
-HaloReach_2019_Jun_24_Data<HINSTANCE, 0x1810EC5D0> qword_1810EC5D0;
+
+
+intptr_t g_WndProc_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810EC5F0;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37B20;
+	}
+	return ~intptr_t();
+}
+HaloReachDataEx<WNDPROC, g_WndProc_offset> g_WndProc;
+
+intptr_t g_hInstance_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810EC5D0;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37B00;
+	}
+	return ~intptr_t();
+}
+HaloReachDataEx<HINSTANCE, g_hInstance_offset> g_hInstance;
+
+intptr_t ClassName_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810EC600;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37B30;
+	}
+	return ~intptr_t();
+}
+HaloReachDataEx<char[64], ClassName_offset> ClassName;
+intptr_t WindowName_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810EC640;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37B70;
+	}
+	return ~intptr_t();
+}
+HaloReachDataEx<char[64], WindowName_offset> WindowName;
+
 HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line;
 HaloReach_2019_Jun_24_Data<HWND, 0x1810EC5D8> g_windowHWND;
 
 // Halo Reach Functions
 
-typedef __int64 (*wait_for_render_thread_func)();
-typedef __int64(__fastcall* physical_memory_stage_push_func)(int a1);
-wait_for_render_thread_func wait_for_render_thread = nullptr;
-physical_memory_stage_push_func physical_memory_stage_push = nullptr;
+intptr_t wait_for_render_thread_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x18031F6A0;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18015D360;
+	}
+	return ~intptr_t();
+}
+HaloReachHookEx<wait_for_render_thread_offset, __int64()> wait_for_render_thread;
+
+intptr_t restricted_region_unlock_primary_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1803FB790;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1802041F0;
+	}
+	return ~intptr_t();
+}
+HaloReachHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restricted_region_unlock_primary;
 
 // core functionality required for the game to run
 #include "haloreach.core.inl"
@@ -102,19 +210,33 @@ HaloReach_2019_Jun_24_Pointer<ID3D11Device*, 0x18112D588> g_pDevice;
 extern intptr_t initialize_device_offset(HaloGameID gameID);
 extern HaloReachHookEx<initialize_device_offset, char()> initialize_device;
 
+Data<HaloGameID::HaloReach_2019_Aug_20, ID3D11Device*, 0x180D37AA0> qword_180D37AA0;
+
 // allow the game to read the command line to use -width and -height
 HaloReachHookEx<initialize_device_offset, char()> initialize_device = { "initialize_device", []()
 {
-	//qword_183461018 = 0x10;
+	D3D_FEATURE_LEVEL pFeatureLevels[] = {
+		D3D_FEATURE_LEVEL_11_1,
+		D3D_FEATURE_LEVEL_11_0,
+		D3D_FEATURE_LEVEL_10_0,
+	};
 
-	auto result = initialize_device();
+  ID3D11Device* pDevice = nullptr;
+  ID3D11DeviceContext* pImmediateContext = nullptr;
+  D3D_FEATURE_LEVEL FeatureLevel = {};
+  auto D3D11CreateDeviceResult = D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, pFeatureLevels, _countof(pFeatureLevels), D3D11_SDK_VERSION, &pDevice, &FeatureLevel, &pImmediateContext);
+  assert(D3D11CreateDeviceResult == S_OK);
 
-	//bool isCurrent = ppFactory->IsCurrent();
-	//assert(isCurrent);
-	//ID3D11DeviceContext* pD3DContext = nullptr;
-	//g_pDevice->GetImmediateContext(&pD3DContext);
+  qword_180D37AA0 = pDevice;
 
-	return result;
+  auto result = initialize_device();
+
+  //bool isCurrent = ppFactory->IsCurrent();
+  //assert(isCurrent);
+  //ID3D11DeviceContext* pD3DContext = nullptr;
+  //g_pDevice->GetImmediateContext(&pD3DContext);
+
+  return result;
 } };
 
 intptr_t initialize_device_offset(HaloGameID gameID)
@@ -525,7 +647,7 @@ void init_haloreach_hooks()
 
 	init_detours();
 
-	initialize_window.SetIsActive(g_useCustomGameWindow);
+	//initialize_window.SetIsActive(g_useCustomGameWindow);
 
 	ReadConfig();
 
@@ -538,8 +660,6 @@ void init_haloreach_hooks()
 	switch (gameID)
 	{
 	case HaloGameID::HaloReach_2019_Jun_24:
-		physical_memory_stage_push = get_function_ptr<HaloGameID::HaloReach_2019_Jun_24, 0x1803FB790, physical_memory_stage_push_func>();
-		wait_for_render_thread = get_function_ptr<HaloGameID::HaloReach_2019_Jun_24, 0x18031F6A0, wait_for_render_thread_func>();
 		g_shell_command_line = GetCommandLineA();
 		break;
 	}

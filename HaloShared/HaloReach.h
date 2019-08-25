@@ -317,11 +317,8 @@ extern HaloReach_2019_Jun_24_Hook<0x180780D90, preferences_set_bindings_func> pr
 extern intptr_t GetGameEngineHostCallbackOffset(HaloGameID gameID);
 extern HaloReachDataEx<GameEngineHostCallback*, GetGameEngineHostCallbackOffset> g_GameEngineHostCallback;
 
-extern HaloReach_2019_Jun_24_Data<LONG, 0x18102F2A4> g_render_thread_mode;
-extern HaloReach_2019_Jun_24_Data<DWORD, 0x1810EC584> dword_1810EC584;
-extern HaloReach_2019_Jun_24_Data<BYTE, 0x18342E55D> byte_18342E55D;
-extern HaloReach_2019_Jun_24_Data<BYTE, 0x183984DE4> byte_183984DE4;
-extern HaloReach_2019_Jun_24_Data<DWORD, 0x1810524AC> dword_1810524AC;
+extern intptr_t g_render_thread_mode_offset(HaloGameID gameID);
+extern DataEx<LONG, g_render_thread_mode_offset> g_render_thread_mode;
 extern HaloReach_2019_Jun_24_Data<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
 extern HaloReach_2019_Jun_24_Data<s_game_options, 0x183B0FB70> g_game_options;
 extern HaloReach_2019_Jun_24_Data<wchar_t[4][32], 0x183DE6FB0> g_player_names;
@@ -331,12 +328,27 @@ extern HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830;
 extern HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018;
 extern HaloReach_2019_Jun_24_Data<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
 extern HaloReach_2019_Jun_24_Data<s_input_abstraction, 0x183B2E510> g_input_abstraction;
-extern HaloReach_2019_Jun_24_Data<char[64], 0x1810EC600> ClassName;
-extern HaloReach_2019_Jun_24_Data<char[64], 0x1810EC640> WindowName;
-extern HaloReach_2019_Jun_24_Data<WNDPROC, 0x1810EC5F0> qword_1810EC5F0;
-extern HaloReach_2019_Jun_24_Data<HINSTANCE, 0x1810EC5D0> qword_1810EC5D0;
 extern HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line;
 extern HaloReach_2019_Jun_24_Data<HWND, 0x1810EC5D8> g_windowHWND;
+
+
+extern intptr_t dword_1810EC584_offset(HaloGameID gameID);
+extern DataEx<DWORD, dword_1810EC584_offset> dword_1810EC584;
+extern intptr_t byte_18342E55D_offset(HaloGameID gameID);
+extern DataEx<BYTE, byte_18342E55D_offset> byte_18342E55D;
+extern intptr_t byte_183984DE4_offset(HaloGameID gameID);
+extern DataEx<BYTE, byte_183984DE4_offset> byte_183984DE4;
+extern intptr_t dword_1810524AC_offset(HaloGameID gameID);
+extern DataEx<DWORD, dword_1810524AC_offset> dword_1810524AC;
+
+extern intptr_t ClassName_offset(HaloGameID gameID);
+extern HaloReachDataEx<char[64], ClassName_offset> ClassName;
+extern intptr_t WindowName_offset(HaloGameID gameID);
+extern HaloReachDataEx<char[64], WindowName_offset> WindowName;
+extern intptr_t g_WndProc_offset(HaloGameID gameID);
+extern HaloReachDataEx<WNDPROC, g_WndProc_offset> g_WndProc;
+extern intptr_t g_hInstance_offset(HaloGameID gameID);
+extern HaloReachDataEx<HINSTANCE, g_hInstance_offset> g_hInstance;
 
 // config flags
 
