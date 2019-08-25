@@ -302,29 +302,39 @@ void initialize_custom_halo_reach_stuff()
 
 	if (FILE * pGameStateFile = fopen("gamestate.hdr", "r"))
 	{
-		s_game_state_header game_state_header = {};
+		static s_game_state_header game_state_header = {};
 		fread(&game_state_header, 1, sizeof(s_game_state_header), pGameStateFile);
 		fclose(pGameStateFile);
 
 		game_launch_data.pGameStateHeader = reinterpret_cast<uint8_t*>(&game_state_header);
 		game_launch_data.GameStateHeaderSize = sizeof(s_game_state_header);
 	}
-	game_launch_data.MapId = _map_id_ff50_park;
-	game_launch_data.GameMode = 1;
+
+	game_launch_data.MapId = _map_id_ff45_corvette;
+	game_launch_data.GameMode = 5;
 	game_launch_data.CampaignDifficultyLevel = _campaign_difficulty_level_normal;
 
-	// load game variant
-	{
-		FILE* pFile = fopen("hopper_game_variants\\ff_firefight_054.bin", "r");
-		assert(pFile);
-		fseek(pFile, 0, SEEK_END);
-		size_t variant_size = ftell(pFile);
-		fseek(pFile, 0L, SEEK_SET);
-		assert(variant_size <= sizeof(game_launch_data.GameVariant));
-		fread(game_launch_data.GameVariant, 1, variant_size, pFile);
-		fclose(pFile);
-		
-	}
+	*(int*)(game_launch_data.GameVariant) = 4;
+
+	//static char game_variant_buffer[1024 * 1024 * 1024] = {};
+	//struct game_variant_file
+	//{
+	//	char blf_signature[0x30];
+
+	//};
+	//game_variant_file& game_variant = *(game_variant_file*)game_variant_buffer;
+	//// load game variant
+	//{
+	//	FILE* pFile = fopen("game_variants\\firefight_gruntpocalypse_054.bin", "r");
+	//	assert(pFile);
+	//	fseek(pFile, 0, SEEK_END);
+	//	size_t variant_size = ftell(pFile);
+	//	fseek(pFile, 0L, SEEK_SET);
+	//	assert(variant_size <= sizeof(game_launch_data.GameVariant));
+	//	fread(game_variant_buffer, 1, variant_size, pFile);
+	//	fclose(pFile);
+	//	
+	//}
 
 	//pHaloReachEngine->InitGraphics(0, 0, 0, 0);
 	pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);

@@ -348,40 +348,30 @@ FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18000F8D0, int()> sub_18000F8D
 extern s_game_launch_data* p_game_launch_data;
 
 
-FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18030EC20, char()> sub_18030EC20 = []()
+//Data<HaloGameID::HaloReach_2019_Aug_20, __int64, 0x18445DB98> qword_18445DB98;
+//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18030EC20, char()> survival_engine_member8 = []()
+//{
+//	auto result = survival_engine_member8();
+//	return result;
+//};
+
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180161FF0, void __fastcall(__int64 a1, unsigned int a2)> c_game_engine_variant_ctor = [](__int64 a1, unsigned int a2)
 {
-	return sub_18030EC20();
+	return c_game_engine_variant_ctor(a1, a2);
 };
 
-// don't run stuff that crashes fix but we should remove this
-FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x1802C4370, char* __fastcall (__int64 a1, int a2)> sub_1802C4370 = [](__int64 a1, int a2)
-{
-	if (a1)
-	{
-		static bool first = false;
-		if (!first)
-		{
-			first = true;
-			sub_18030EC20();
-		}
-		auto result = sub_1802C4370(a1, a2);
-		return result;
-	}
-	else
-	{
-		return (char*)"";
-	}
-};
+//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180010770, __int64()> main_game_launch_campaign = []()
+//{
+//	return main_game_launch_campaign();
+//};
+//
+//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180010EA0, __int64()> main_game_launch_survival = []()
+//{
+//	return main_game_launch_survival();
+//};
 
-Data<HaloGameID::HaloReach_2019_Aug_20, char*, 0x18445DB98> qword_18445DB98;
+//sub_180488C90
 
-FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18030FF30, void()> sub_18030FF30 = []()
-{
-	static char bigbuffer[1024 * 1024 * 1024] = {  };
-	memset(bigbuffer, 1, sizeof(bigbuffer));
-	qword_18445DB98 = bigbuffer;
-	sub_18030FF30();
-};
 
 //// don't run stuff that crashes fix but we should remove this
 //FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180310430, __int64()> sub_180310430 = []()
