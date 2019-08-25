@@ -311,7 +311,7 @@ void initialize_custom_halo_reach_stuff()
 	}
 
 	game_launch_data.MapId = _map_id_ff45_corvette;
-	game_launch_data.GameMode = 5;
+	game_launch_data.GameMode = _game_mode_survival;
 	game_launch_data.CampaignDifficultyLevel = _campaign_difficulty_level_normal;
 
 	*(int*)(game_launch_data.GameVariant) = 4;
