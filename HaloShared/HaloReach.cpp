@@ -30,28 +30,28 @@ bool g_hideWindowOnStartup = false;
 
 // Halo Reach Variables
 
-ReachData<uint32_t, 0x1810A3098> TlsIndex;
-ReachData<GameEngineHostCallback*, 0x1810EC5C0> g_GameEngineHostCallback;
-ReachData<LONG, 0x18102F2A4> g_render_thread_mode;
-ReachData<DWORD, 0x1810EC584> dword_1810EC584;
-ReachData<BYTE, 0x18342E55D> byte_18342E55D;
-ReachData<BYTE, 0x183984DE4> byte_183984DE4;
-ReachData<DWORD, 0x1810524AC> dword_1810524AC;
-ReachData<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
-ReachData<s_game_options, 0x183B0FB70> g_game_options;
-ReachData<wchar_t[4][32], 0x183DE6FB0> g_player_names;
-ReachData<HWND, 0x1810EC5E0> g_hwnd;
-ReachData<char, 0x180DC64A8> level_name_to_patch;
-ReachData<float, 0x183DF5830> dword_183DF5830;
-ReachData<_QWORD, 0x183461018> qword_183461018;
-ReachData<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
-ReachData<s_input_abstraction, 0x183B2E510> g_input_abstraction;
-ReachData<char[64], 0x1810EC600> ClassName;
-ReachData<char[64], 0x1810EC640> WindowName;
-ReachData<WNDPROC, 0x1810EC5F0> qword_1810EC5F0;
-ReachData<HINSTANCE, 0x1810EC5D0> qword_1810EC5D0;
-ReachData<char*, 0x183461000> g_shell_command_line;
-ReachData<HWND, 0x1810EC5D8> g_windowHWND;
+HaloReach_2019_Jun_24_Data<uint32_t, 0x1810A3098> TlsIndex;
+HaloReach_2019_Jun_24_Data<GameEngineHostCallback*, 0x1810EC5C0> g_GameEngineHostCallback;
+HaloReach_2019_Jun_24_Data<LONG, 0x18102F2A4> g_render_thread_mode;
+HaloReach_2019_Jun_24_Data<DWORD, 0x1810EC584> dword_1810EC584;
+HaloReach_2019_Jun_24_Data<BYTE, 0x18342E55D> byte_18342E55D;
+HaloReach_2019_Jun_24_Data<BYTE, 0x183984DE4> byte_183984DE4;
+HaloReach_2019_Jun_24_Data<DWORD, 0x1810524AC> dword_1810524AC;
+HaloReach_2019_Jun_24_Data<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
+HaloReach_2019_Jun_24_Data<s_game_options, 0x183B0FB70> g_game_options;
+HaloReach_2019_Jun_24_Data<wchar_t[4][32], 0x183DE6FB0> g_player_names;
+HaloReach_2019_Jun_24_Data<HWND, 0x1810EC5E0> g_hwnd;
+HaloReach_2019_Jun_24_Data<char, 0x180DC64A8> level_name_to_patch;
+HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830;
+HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018;
+HaloReach_2019_Jun_24_Data<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
+HaloReach_2019_Jun_24_Data<s_input_abstraction, 0x183B2E510> g_input_abstraction;
+HaloReach_2019_Jun_24_Data<char[64], 0x1810EC600> ClassName;
+HaloReach_2019_Jun_24_Data<char[64], 0x1810EC640> WindowName;
+HaloReach_2019_Jun_24_Data<WNDPROC, 0x1810EC5F0> qword_1810EC5F0;
+HaloReach_2019_Jun_24_Data<HINSTANCE, 0x1810EC5D0> qword_1810EC5D0;
+HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line;
+HaloReach_2019_Jun_24_Data<HWND, 0x1810EC5D8> g_windowHWND;
 
 // Halo Reach Functions
 
@@ -82,24 +82,26 @@ physical_memory_stage_push_func physical_memory_stage_push = nullptr;
 #include <dxgi.h>
 #include <d3d11_4.h>
 
-ReachData<void*, 0x1810EC5B0> g_pIDXGISwapChain;
-ReachPointer<IDXGISwapChain*, 0x18112D378> g_pSwapChain;
-ReachData<IID, 0x180E0B2A8> stru_180E0B2A8;
-ReachPointer<IDXGIFactory1*, 0x18112D368> ppFactory;
-ReachPointer<ID3D11Device*, 0x18112D588> g_pDevice;
+HaloReach_2019_Jun_24_Data<void*, 0x1810EC5B0> g_pIDXGISwapChain;
+HaloReach_2019_Jun_24_Pointer<IDXGISwapChain*, 0x18112D378> g_pSwapChain;
+HaloReach_2019_Jun_24_Data<IID, 0x180E0B2A8> stru_180E0B2A8;
+HaloReach_2019_Jun_24_Pointer<IDXGIFactory1*, 0x18112D368> ppFactory;
+HaloReach_2019_Jun_24_Pointer<ID3D11Device*, 0x18112D588> g_pDevice;
 
-
-#include <functional>
-
- 
-
-
+intptr_t initialize_device_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+		case HaloGameID::HaloReach_2019_Jun_24: return 0x1806C2C30;
+		case HaloGameID::HaloReach_2019_Aug_20: return 0x18040C8C0;
+	}
+	return ~intptr_t();
+}
 
 // allow the game to read the command line to use -width and -height
-HaloReachHook<0x1806C2C30, char()> initialize_device = []()
+HaloReachHookEx<initialize_device_offset, char()> initialize_device = { "initialize_device", []()
 {
-
-	qword_183461018 = 0x10;
+	//qword_183461018 = 0x10;
 
 	auto result = initialize_device();
 
@@ -109,7 +111,7 @@ HaloReachHook<0x1806C2C30, char()> initialize_device = []()
 	g_pDevice->GetImmediateContext(&pD3DContext);
 
 	return result;
-};
+} };
 
 #pragma endregion
 
@@ -262,7 +264,7 @@ void WriteGameState()
 	if (GetAsyncKeyState(VK_F8))
 	{
 		FILE* pGameStateFile = fopen("gamestate.hdr", "w+b");
-		ReachData<s_game_state_header*, 0x183841B18> pGameStateHeader;
+		HaloReach_2019_Jun_24_Data<s_game_state_header*, 0x183841B18> pGameStateHeader;
 		fwrite(pGameStateHeader, 1, sizeof(s_game_state_header), pGameStateFile);
 		fclose(pGameStateFile);
 	}
@@ -455,23 +457,77 @@ void ReadConfig()
 	ReadBinds();
 }
 
+uint64_t GetVersionID(const char* pFilename)
+{
+	uint64_t result = 0;
+	DWORD  verHandle = 0;
+	UINT   size = 0;
+	LPBYTE lpBuffer = NULL;
+	DWORD  verSize = GetFileVersionInfoSize(pFilename, &verHandle);
+
+	if (verSize != NULL)
+	{
+		char* verData = static_cast<char*>(alloca(verSize));
+
+		if (GetFileVersionInfo(pFilename, verHandle, verSize, verData))
+		{
+			if (VerQueryValue(verData, "\\", (VOID FAR * FAR*) & lpBuffer, &size))
+			{
+				if (size)
+				{
+					VS_FIXEDFILEINFO* verInfo = (VS_FIXEDFILEINFO*)lpBuffer;
+					if (verInfo->dwSignature == 0xfeef04bd)
+					{
+						result |= uint64_t(verInfo->dwFileVersionMS);
+						result <<= 32;
+						result |= uint64_t(verInfo->dwFileVersionLS);
+
+					}
+				}
+			}
+		}
+	}
+	return result;
+}
+
+#define MAKE_FILE_VERSION(a, b, c, d) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 16) | (uint64_t(d) << 0))
+
 void init_haloreach_hooks()
 {
 	check_library_can_load("bink2w64.dll");
+
+	HaloGameID gameID = HaloGameID::NotSet;
+
+	uint64_t haloReachVersion = GetVersionID("HaloReach.dll");
+	switch (haloReachVersion)
+	{
+	case MAKE_FILE_VERSION(1, 1035, 0, 0):
+		gameID = HaloGameID::HaloReach_2019_Aug_20;
+		break;
+	case MAKE_FILE_VERSION(1, 887, 0, 0):
+		gameID = HaloGameID::HaloReach_2019_Jun_24;
+		break;
+	}
 
 	init_detours();
 
 	initialize_window.SetIsActive(g_useCustomGameWindow);
 
-	physical_memory_stage_push = get_function_ptr<HaloGameID::HaloReach, 0x1803FB790, physical_memory_stage_push_func>();
-	wait_for_render_thread = get_function_ptr<HaloGameID::HaloReach, 0x18031F6A0, wait_for_render_thread_func>();
-
 	ReadConfig();
 
-	DataReferenceBase::ProcessTree(HaloGameID::HaloReach);
-	FunctionHookBase::ProcessTree(HaloGameID::HaloReach);
-
-	g_shell_command_line = GetCommandLineA();
+	DataReferenceBase::ProcessTree(gameID);
+	FunctionHookBase::ProcessTree(gameID);
 
 	end_detours();
+
+	// #TODO: Remove this
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24:
+		physical_memory_stage_push = get_function_ptr<HaloGameID::HaloReach_2019_Jun_24, 0x1803FB790, physical_memory_stage_push_func>();
+		wait_for_render_thread = get_function_ptr<HaloGameID::HaloReach_2019_Jun_24, 0x18031F6A0, wait_for_render_thread_func>();
+		g_shell_command_line = GetCommandLineA();
+		break;
+	}
+
 }

@@ -3,7 +3,7 @@
 	this function is the games main routine. inside of here sits the
 	main_loop function call
 */
-HaloReachHook<0x1800129B0, void* __stdcall ()> main_thread_routine = []()
+HaloReach_2019_Jun_24_Hook<0x1800129B0, void* __stdcall ()> main_thread_routine = []()
 {
 	WriteLineVerbose("Starting game...");
 	g_CurrentGameState = CurrentState::eRunning;
@@ -19,22 +19,22 @@ HaloReachHook<0x1800129B0, void* __stdcall ()> main_thread_routine = []()
 /*
 	override for the halo reach default path
 */
-HaloReachHook<0x180012730, const char* ()> game_get_haloreach_path = []()
+HaloReach_2019_Jun_24_Hook<0x180012730, const char* ()> game_get_haloreach_path = []()
 {
 	return g_haloReachPathOverride;
 };
 
-HaloReachHook<0x1800122F0, int()> sub_1800122F0 = []()
+HaloReach_2019_Jun_24_Hook<0x1800122F0, int()> sub_1800122F0 = []()
 {
 	auto callback = []() { return sub_1800122F0(); };
 	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
 };
 
-HaloReachHook<0x1806C2890, HWND()> initialize_window = []()
+HaloReach_2019_Jun_24_Hook<0x1806C2890, HWND()> initialize_window = []()
 {
 	return GEHCBypass<GEHCBypassType::UseNullPointer>([]()
 		{
-			HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach));
+			HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach_2019_Jun_24));
 			assert(hHaloReachModule);
 
 			qword_1810EC5F0 = CustomWindow::WndProc;
@@ -61,9 +61,9 @@ HaloReachHook<0x1806C2890, HWND()> initialize_window = []()
 //	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
 //};
 
-HaloReachHook<0x180013EA0, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = [](__int64 a1, __int64 a2)
+HaloReach_2019_Jun_24_Hook<0x180013EA0, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = [](__int64 a1, __int64 a2)
 {
-	char* const pBaseAddress = reinterpret_cast<char*>(GetHaloExecutable(HaloGameID::HaloReach));
+	char* const pBaseAddress = reinterpret_cast<char*>(GetHaloExecutable(HaloGameID::HaloReach_2019_Jun_24));
 	const int& load_state = *reinterpret_cast<int*>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
 
 	const char* load_state_names[] =
@@ -108,7 +108,7 @@ HaloReachHook<0x180013EA0, char __fastcall (__int64 a1, __int64 a2)> main_game_l
 	return result;
 };
 
-HaloReachHookVarArgs<0x18078C550, void(const char* format, ...)> DamagedMediaHaltAndDisplayError = [](const char* format, ...)
+HaloReach_2019_Jun_24_HookVarArgs<0x18078C550, void(const char* format, ...)> DamagedMediaHaltAndDisplayError = [](const char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -123,7 +123,7 @@ HaloReachHookVarArgs<0x18078C550, void(const char* format, ...)> DamagedMediaHal
 	MessageBox(CustomWindow::GetWindowHandle(), "dirty_disk_error", buffer, MB_ICONERROR);
 };
 
-HaloReachHook<0x180012200, __int64(__fastcall)(__int64 a1)> sub_180012200 = [](__int64 a1)
+HaloReach_2019_Jun_24_Hook<0x180012200, __int64(__fastcall)(__int64 a1)> sub_180012200 = [](__int64 a1)
 {
 	// g_gameEngineHostCallback is normally nulled out by other code.
 	// it is perfectly okay to just use a bypass here but I have
@@ -160,7 +160,7 @@ HaloReachHook<0x180012200, __int64(__fastcall)(__int64 a1)> sub_180012200 = [](_
 };
 
 typedef char* (__fastcall levels_try_and_get_scenario_path_func)(int campaign_id, unsigned int map_id, char* scenario_path, int size);
-HaloReachHook<0x1803A6B30, levels_try_and_get_scenario_path_func> levels_try_and_get_scenario_path = [](int campaign_id, unsigned int map_id, char* scenario_path, int size)
+HaloReach_2019_Jun_24_Hook<0x1803A6B30, levels_try_and_get_scenario_path_func> levels_try_and_get_scenario_path = [](int campaign_id, unsigned int map_id, char* scenario_path, int size)
 {
 	// #HACK #TODO: Figure out the best home for this incase this is incorrect
 	g_waitingForInputUpdate = true;

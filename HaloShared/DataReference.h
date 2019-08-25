@@ -218,10 +218,10 @@ protected:
 };
 
 template<typename T, size_t offset>
-using ReachPointer = DataPointer<HaloGameID::HaloReach, T, offset>;
+using HaloReach_2019_Jun_24_Pointer = DataPointer<HaloGameID::HaloReach_2019_Jun_24, T, offset>;
 
 template<typename T, size_t offset>
-using ReachBasicData = DataReference<HaloGameID::HaloReach, T, offset>;
+using HaloReach_2019_Jun_24_BasicData = DataReference<HaloGameID::HaloReach_2019_Jun_24, T, offset>;
 
 template<typename T, size_t offset>
-using ReachData = DataReferenceEx<HaloGameID::HaloReach, T, offset>;
+using HaloReach_2019_Jun_24_Data = DataReferenceEx<HaloGameID::HaloReach_2019_Jun_24, T, offset>;

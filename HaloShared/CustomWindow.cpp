@@ -57,7 +57,7 @@ ATOM WINAPI CustomWindow::CustomRegisterClassExA(_In_ WNDCLASSEXA* arg)
 {
 	assert(arg->cbSize == sizeof(WNDCLASSEXA));
 
-	HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach));
+	HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach_2019_Jun_24));
 	assert(hHaloReachModule);
 
 	arg->cbSize = sizeof(WNDCLASSEXA);

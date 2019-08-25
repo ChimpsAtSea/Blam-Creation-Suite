@@ -9,7 +9,7 @@
 //	return result;
 //};
 
-HaloReachHook<0x18034A630, __int64 __fastcall (s_game_options* game_options)> game_options_new = [](s_game_options* game_options)
+HaloReach_2019_Jun_24_Hook<0x18034A630, __int64 __fastcall (s_game_options* game_options)> game_options_new = [](s_game_options* game_options)
 {
 	auto result = game_options_new(game_options);
 
@@ -18,7 +18,7 @@ HaloReachHook<0x18034A630, __int64 __fastcall (s_game_options* game_options)> ga
 	return result;
 };
 
-HaloReachHook<0x1804DA240, float(__stdcall)()> observer_get_suggested_field_of_view = []()
+HaloReach_2019_Jun_24_Hook<0x1804DA240, float(__stdcall)()> observer_get_suggested_field_of_view = []()
 {
 	auto result = observer_get_suggested_field_of_view();
 
@@ -27,7 +27,7 @@ HaloReachHook<0x1804DA240, float(__stdcall)()> observer_get_suggested_field_of_v
 	return result;
 };
 
-HaloReachHook<0x1803E3510, __int64(__fastcall)(uint8_t*, int, float, char)> camera_new = [](uint8_t* director, int camera_type, float camera_speed, char force_update)
+HaloReach_2019_Jun_24_Hook<0x1803E3510, __int64(__fastcall)(uint8_t*, int, float, char)> camera_new = [](uint8_t* director, int camera_type, float camera_speed, char force_update)
 {
 	//if (camera_type == 4) // on death set the camera_mode to flying
 	//	camera_type = 2;

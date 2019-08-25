@@ -242,7 +242,7 @@ enum e_tls_offset
 	// unsure if more exist after 0x730
 };
 
-extern ReachData<uint32_t, 0x1810A3098> TlsIndex;
+extern HaloReach_2019_Jun_24_Data<uint32_t, 0x1810A3098> TlsIndex;
 struct s_thread_local_storage
 {
 	uint64_t Address = NULL;
@@ -310,31 +310,31 @@ a41,a42,a43,a44,a45,a46,a47,a48, \
 a49,a50,a51,a52,a53,a54,a55,a56, \
 a57,a58,a59,a60,a61,a62,a63
 typedef char __fastcall preferences_set_bindings_func(preferences_set_bindings_args);
-extern HaloReachHook<0x180780D90, preferences_set_bindings_func> preferences_set_bindings_type;
+extern HaloReach_2019_Jun_24_Hook<0x180780D90, preferences_set_bindings_func> preferences_set_bindings_type;
 
 // Halo Reach Variables
 
-extern ReachData<GameEngineHostCallback*, 0x1810EC5C0> g_GameEngineHostCallback;
-extern ReachData<LONG, 0x18102F2A4> g_render_thread_mode;
-extern ReachData<DWORD, 0x1810EC584> dword_1810EC584;
-extern ReachData<BYTE, 0x18342E55D> byte_18342E55D;
-extern ReachData<BYTE, 0x183984DE4> byte_183984DE4;
-extern ReachData<DWORD, 0x1810524AC> dword_1810524AC;
-extern ReachData<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
-extern ReachData<s_game_options, 0x183B0FB70> g_game_options;
-extern ReachData<wchar_t[4][32], 0x183DE6FB0> g_player_names;
-extern ReachData<HWND, 0x1810EC5E0> g_hwnd;
-extern ReachData<char, 0x180DC64A8> level_name_to_patch;
-extern ReachData<float, 0x183DF5830> dword_183DF5830;
-extern ReachData<_QWORD, 0x183461018> qword_183461018;
-extern ReachData<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
-extern ReachData<s_input_abstraction, 0x183B2E510> g_input_abstraction;
-extern ReachData<char[64], 0x1810EC600> ClassName;
-extern ReachData<char[64], 0x1810EC640> WindowName;
-extern ReachData<WNDPROC, 0x1810EC5F0> qword_1810EC5F0;
-extern ReachData<HINSTANCE, 0x1810EC5D0> qword_1810EC5D0;
-extern ReachData<char*, 0x183461000> g_shell_command_line;
-extern ReachData<HWND, 0x1810EC5D8> g_windowHWND;
+extern HaloReach_2019_Jun_24_Data<GameEngineHostCallback*, 0x1810EC5C0> g_GameEngineHostCallback;
+extern HaloReach_2019_Jun_24_Data<LONG, 0x18102F2A4> g_render_thread_mode;
+extern HaloReach_2019_Jun_24_Data<DWORD, 0x1810EC584> dword_1810EC584;
+extern HaloReach_2019_Jun_24_Data<BYTE, 0x18342E55D> byte_18342E55D;
+extern HaloReach_2019_Jun_24_Data<BYTE, 0x183984DE4> byte_183984DE4;
+extern HaloReach_2019_Jun_24_Data<DWORD, 0x1810524AC> dword_1810524AC;
+extern HaloReach_2019_Jun_24_Data<c_controller_interface[4], 0x183D43560> g_controller_interfaces;
+extern HaloReach_2019_Jun_24_Data<s_game_options, 0x183B0FB70> g_game_options;
+extern HaloReach_2019_Jun_24_Data<wchar_t[4][32], 0x183DE6FB0> g_player_names;
+extern HaloReach_2019_Jun_24_Data<HWND, 0x1810EC5E0> g_hwnd;
+extern HaloReach_2019_Jun_24_Data<char, 0x180DC64A8> level_name_to_patch;
+extern HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830;
+extern HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018;
+extern HaloReach_2019_Jun_24_Data<s_gamepad_globals, 0x183DF54E0> g_gamepad_globals;
+extern HaloReach_2019_Jun_24_Data<s_input_abstraction, 0x183B2E510> g_input_abstraction;
+extern HaloReach_2019_Jun_24_Data<char[64], 0x1810EC600> ClassName;
+extern HaloReach_2019_Jun_24_Data<char[64], 0x1810EC640> WindowName;
+extern HaloReach_2019_Jun_24_Data<WNDPROC, 0x1810EC5F0> qword_1810EC5F0;
+extern HaloReach_2019_Jun_24_Data<HINSTANCE, 0x1810EC5D0> qword_1810EC5D0;
+extern HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line;
+extern HaloReach_2019_Jun_24_Data<HWND, 0x1810EC5D8> g_windowHWND;
 
 // config flags
 
@@ -360,7 +360,7 @@ decltype(auto) GEHCBypass(T functionPtr, bool forceDisable = false) // GameEngin
 {
 	using return_type = decltype(functionPtr());
 
-	char* pBaseAddress = reinterpret_cast<char*>(GetHaloExecutable(HaloGameID::HaloReach));
+	char* pBaseAddress = reinterpret_cast<char*>(GetHaloExecutable(HaloGameID::HaloReach_2019_Jun_24));
 	assert(pBaseAddress);
 	GameEngineHostCallback*& pGameEngineHostCallback = *reinterpret_cast<GameEngineHostCallback * *>(pBaseAddress + (0x1810EC5C0 - 0x180000000));
 

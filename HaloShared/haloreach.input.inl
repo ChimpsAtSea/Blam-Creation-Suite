@@ -5,7 +5,7 @@
 	this function attempts to check if the GEHC is null and then proceeds to use
 	Member28
 */
-HaloReachHook<0x180780C20, __int64 __fastcall (c_profile_configuration* a1, int a2)> sub_180780C20 = [](c_profile_configuration* a1, int a2)
+HaloReach_2019_Jun_24_Hook<0x180780C20, __int64 __fastcall (c_profile_configuration* a1, int a2)> sub_180780C20 = [](c_profile_configuration* a1, int a2)
 {
 	SetPlayerNameAndServiceTag();
 	auto callback = [=]() { return sub_180780C20(a1, a2); };
@@ -26,7 +26,7 @@ void print_key_state_debug(s_bindings_table& bindingsTable)
 	}
 }
 
-HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
+HaloReach_2019_Jun_24_Hook<0x180307B10, char(__fastcall)()> input_update = []() {
 
 	print_key_state_debug(g_input_abstraction.ptr()->BindingsTable[0]);
 	CustomWindow::Update();
@@ -46,7 +46,7 @@ HaloReachHook<0x180307B10, char(__fastcall)()> input_update = []() {
 	return result;
 };
 
-HaloReachHook<0x180450C20, char(__stdcall)()> pan_cam_enabled = []()
+HaloReach_2019_Jun_24_Hook<0x180450C20, char(__stdcall)()> pan_cam_enabled = []()
 {
 	auto result = pan_cam_enabled();
 
@@ -56,7 +56,7 @@ HaloReachHook<0x180450C20, char(__stdcall)()> pan_cam_enabled = []()
 };
 
 
-HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_set_default = [](s_bindings_table* a1)
+HaloReach_2019_Jun_24_Hook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_set_default = [](s_bindings_table* a1)
 {
 	auto result = bindings_set_default(a1);
 
@@ -191,7 +191,7 @@ HaloReachHook<0x1803D8480, __int64 __fastcall (s_bindings_table* a1)> bindings_s
 	return result;
 };
 
-HaloReachHook<0x1803D8640, __int64 __fastcall (s_game_bindings& a1)> sub_1803D8640 = [](s_game_bindings& a1)
+HaloReach_2019_Jun_24_Hook<0x1803D8640, __int64 __fastcall (s_game_bindings& a1)> sub_1803D8640 = [](s_game_bindings& a1)
 {
 	auto result = sub_1803D8640(a1);
 
