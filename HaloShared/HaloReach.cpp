@@ -294,11 +294,17 @@ HaloReach_2019_Jun_24_Pointer<IDXGISwapChain*, 0x18112D378> g_pSwapChain;
 HaloReach_2019_Jun_24_Data<IID, 0x180E0B2A8> stru_180E0B2A8;
 HaloReach_2019_Jun_24_Pointer<IDXGIFactory1*, 0x18112D368> ppFactory;
 HaloReach_2019_Jun_24_Pointer<ID3D11Device*, 0x18112D588> g_pDevice;
-
-extern intptr_t initialize_device_offset(HaloGameID gameID);
-extern HaloReachHookEx<initialize_device_offset, char()> initialize_device;
-
 Data<HaloGameID::HaloReach_2019_Aug_20, ID3D11Device*, 0x180D37AA0> qword_180D37AA0;
+
+intptr_t initialize_device_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1806C2C30;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18040C8C0;
+	}
+	return ~intptr_t();
+}
 
 // allow the game to read the command line to use -width and -height
 HaloReachHookEx<initialize_device_offset, char()> initialize_device = { "initialize_device", []()
@@ -327,194 +333,7 @@ HaloReachHookEx<initialize_device_offset, char()> initialize_device = { "initial
   return result;
 } };
 
-intptr_t initialize_device_offset(HaloGameID gameID)
-{
-	switch (gameID)
-	{
-	case HaloGameID::HaloReach_2019_Jun_24: return 0x1806C2C30;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18040C8C0;
-	}
-	return ~intptr_t();
-}
-
 #pragma endregion
-
-FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18000F8D0, int()> sub_18000F8D0 = []()
-{
-	auto callback = [=]() { return sub_18000F8D0(); };
-	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
-};
-
-
-//Data<HaloGameID::HaloReach_2019_Aug_20, __int64, 0x18445DB98> qword_18445DB98;
-//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18030EC20, char()> survival_engine_member8 = []()
-//{
-//	auto result = survival_engine_member8();
-//	return result;
-//};
-
-FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180161FF0, void __fastcall(__int64, unsigned int)> c_game_engine_variant_ctor = [](__int64 a1, unsigned int game_engine_index)
-{
-	return c_game_engine_variant_ctor(a1, game_engine_index);
-};
-
-FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180161EA0, __int64 __fastcall (s_game_variant* out_game_variant, s_game_variant* game_variant)> game_variant_make_new = [](s_game_variant* out_game_variant, s_game_variant* game_variant)
-{
-	auto result = game_variant_make_new(out_game_variant, game_variant);
-	return result;
-};
-
-//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180010770, __int64()> main_game_launch_campaign = []()
-//{
-//	return main_game_launch_campaign();
-//};
-//
-//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180010EA0, __int64()> main_game_launch_survival = []()
-//{
-//	return main_game_launch_survival();
-//};
-
-//sub_180488C90
-
-
-//// don't run stuff that crashes fix but we should remove this
-//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180310430, __int64()> sub_180310430 = []()
-//{
-//	return __int64(0);
-//};
-
-
-
-//HaloReachHook<0x180013EA0, const char* __fastcall (e_peer_property game_load_status)> peer_property_get_string = [](e_peer_property game_load_status)
-//{
-//	auto pGameLoadStatusStr = peer_property_get_string(game_load_status);
-//
-//	// this is to prevent spam
-//	last_game_load_status = game_load_status;
-//	bool isSame = last_game_load_status_str == pGameLoadStatusStr;
-//	last_game_load_status_str = pGameLoadStatusStr;
-//	bool allowRepeat = false;
-//
-//	switch (game_load_status)
-//	{
-//	case _peer_property_map_load_precaching:
-//		allowRepeat = false;
-//		break;
-//	case _peer_property_none:
-//	case _peer_property_network_configuration_unavailable:
-//	case _peer_property_file_manifest_unavailable:
-//	case _peer_property_banhammer_unavailable:
-//	case _peer_property_player_stats_unavailable:
-//	case _peer_property_lsp_stats_unavailable:
-//	case _peer_property_master_hopper_file_unavailable:
-//	case _peer_property_hopper_specific_file_unavailable:
-//	case _peer_property_network_configuration_pending:
-//	case _peer_property_file_manifest_pending:
-//	case _peer_property_dlc_map_manifest_pending:
-//	case _peer_property_dlc_enumeration_pending:
-//	case _peer_property_banhammer_pending:
-//	case _peer_property_player_stats_pending:
-//	case _peer_property_lsp_stats_pending:
-//	case _peer_property_master_hopper_file_pending:
-//	case _peer_property_hopper_specific_file_pending:
-//	case _peer_property_no_map_selected:
-//	case _peer_property_no_game_selected:
-//	case _peer_property_map_load_failure:
-//	case _peer_property_invalid_film_selected:
-//	case _peer_property_no_film_selected:
-//	case _peer_property_too_many_teams:
-//	case _peer_property_all_observers:
-//	case _peer_property_too_many_for_local_coop:
-//	case _peer_property_too_many_for_net_coop:
-//	case _peer_property_incompatible_for_net_coop:
-//	case _peer_property_account_not_online_enabled:
-//	case _peer_property_all_profiles_must_by_live_gold:
-//	case _peer_property_must_be_connect_to_live:
-//	case _peer_property_must_be_in_a_live_lobby:
-//	case _peer_property_invalid_hopper:
-//	case _peer_property_squad_too_large:
-//	case _peer_property_squad_too_small:
-//	case _peer_property_too_many_local_players:
-//	case _peer_property_too_few_local_players:
-//	case _peer_property_non_local_players_exist:
-//	case _peer_property_games_played_too_low:
-//	case _peer_property_games_played_too_high:
-//	case _peer_property_grade_too_low:
-//	case _peer_property_grade_too_high:
-//	case _peer_property_access_bit_not_set:
-//	case _peer_property_unpaid_in_paid_hopper:
-//	case _peer_property_paid_in_unpaid_hopper:
-//	case _peer_property_guest_not_allowed:
-//	case _peer_property_player_missing_files:
-//	case _peer_property_player_missing_required_maps:
-//	case _peer_property_player_banned_from_matchmaking:
-//	case _peer_property_matchmaking_ban_quitting:
-//	case _peer_property_not_yet_start_time:
-//	case _peer_property_end_time_has_passed:
-//	case _peer_property_arena_hopper_no_longer_available:
-//	case _peer_property_hd_required_for_playlist:
-//	case _peer_property_custom_games_are_disabled:
-//	case _peer_property_multiplayer_split_screen:
-//	case _peer_property_no_live_in_live_lobby:
-//	case _peer_property_must_have_live_for_alpha:
-//	case _peer_property_only_one_player_in_theater_alpha:
-//	case _peer_property_theater_too_many_players:
-//	case _peer_property_theater_must_have_hard_drive:
-//	case _peer_property_theater_leader_must_be_host:
-//	case _peer_property_theater_all_not_compatible:
-//	case _peer_property_too_many_players_in_forge:
-//	case _peer_property_user_content_not_permitted:
-//	case _peer_property_coop_player_missing_hdd:
-//	case _peer_property_coop_player_hdd_mismatch:
-//	case _peer_property_coop_player_language_mismatch:
-//	case _peer_property_invalid_film_language:
-//	case _peer_property_controller_not_attached:
-//	case _peer_property_survival_too_many_players:
-//	case _peer_property_queued_join_expected:
-//	case _peer_property_map_and_game_incompatible:
-//	default:
-//		allowRepeat = true;
-//	}
-//
-//	if (isSame && allowRepeat)
-//	{
-//		printf("status [0x%X] %s\n", game_load_status, pGameLoadStatusStr);
-//	}
-//
-//	return pGameLoadStatusStr;
-//};
-
-//static s_game_globals* game_globals;
-//static s_player_control_globals* player_control_globals;
-//static s_director_globals* director_globals;
-//
-//HaloReachHook<0x180308BD0, __int64 __fastcall (__int64 a1, __int64 a2, int a3)> sub_180308BD0 = [](__int64 a1, __int64 a2, int a3) {
-//	auto result = sub_180308BD0(a1, a2, a3);
-//
-//	return result;
-//};
-
-//HaloReachHook<0x1803080A0, char(__fastcall)(e_key_code a1)> sub_1803080A0 = [](e_key_code a1)
-//{
-//	auto result = sub_1803080A0(a1);
-//	return result;
-//};
-
-//
-
-//
-//HaloReachHook<0x180780D90, profile_configuration_update_func> profile_configuration_update_type = [](profile_configuration_update_args)
-//{
-//	auto result = profile_configuration_update_type(profile_configuration_update_vals);
-//	return result;
-//};
-//
-//HaloReachHook<0x180306D50, _BYTE* ()> preferences_initialize = []()
-//{
-//	auto result = preferences_initialize();
-//	WriteLineVerbose("preferences_initialize: %p", result);
-//	return result;
-//};
 
 void WriteGameState()
 {

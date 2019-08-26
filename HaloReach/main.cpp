@@ -376,11 +376,11 @@ void initialize_custom_halo_reach_stuff()
 	game_launch_data.GameMode = _game_mode_survival;
 	game_launch_data.CampaignDifficultyLevel = _campaign_difficulty_level_easy;
 
-	load_hopper_game_variant("ff_generator_defense_054.bin", game_launch_data.halo_reach_game_variant);
+	load_hopper_game_variant("ff_gruntpocalypse_054.bin", game_launch_data.halo_reach_game_variant);
 	load_previous_gamestate("gamestate.hdr", game_launch_data);
 
 	//pHaloReachEngine->InitGraphics(0, 0, 0, 0); // #TODO: Correct MCC graphics initialization
-	pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);
+	pHaloReachEngine->InitThread(nullptr, (__int64)&game_launch_data);
 }
 
 void deinit_haloreach()

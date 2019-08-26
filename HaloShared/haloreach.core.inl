@@ -89,11 +89,11 @@ HaloReachHookEx<initialize_window_offset, HWND()> initialize_window = []()
 	);
 };
 
-//HaloReachHook<0x180012B60, __int64 __fastcall (__int64 a1, __int64 a2)> main_game_launch_create_local_squad = [](__int64 a1, __int64 a2)
-//{
-//	auto callback = [=]() { return main_game_launch_create_local_squad(a1, a2); };
-//	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
-//};
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18000F8D0, int()> sub_18000F8D0 = []()
+{
+	auto callback = [=]() { return sub_18000F8D0(); };
+	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
+};
 
 intptr_t main_game_launch_offset(HaloGameID gameID)
 {
