@@ -58,19 +58,22 @@ private:
 
 	void processNode(HaloGameID gameID)
 	{
-		if (m_gameID == HaloGameID::NotSet)
+		if (m_pPtr == nullptr)
 		{
-			assert(m_find_offset_func);
-			m_pPtr = getPointer(gameID);
-		}
-		if (m_gameID == gameID)
-		{
-			m_pPtr = getPointer(gameID);
-			assert(m_pPtr);
-		}
-		if (m_pNextDataReference)
-		{
-			m_pNextDataReference->processNode(gameID);
+			if (m_gameID == HaloGameID::NotSet)
+			{
+				assert(m_find_offset_func);
+				m_pPtr = getPointer(gameID);
+			}
+			if (m_gameID == gameID)
+			{
+				m_pPtr = getPointer(gameID);
+				assert(m_pPtr);
+			}
+			if (m_pNextDataReference)
+			{
+				m_pNextDataReference->processNode(gameID);
+			}
 		}
 	}
 

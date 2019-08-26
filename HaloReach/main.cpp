@@ -314,15 +314,28 @@ void initialize_custom_halo_reach_stuff()
 	game_launch_data.GameMode = 5;
 	game_launch_data.CampaignDifficultyLevel = _campaign_difficulty_level_normal;
 
-	*(int*)(game_launch_data.GameVariant) = 4;
+	// load game variant
+	{
+		FILE* pFile = fopen("output.bin", "r");
+		if (pFile)
+		{
+			assert(pFile);
+			fseek(pFile, 0, SEEK_END);
+			size_t variant_size = ftell(pFile);
+			fseek(pFile, 0L, SEEK_SET);
+			assert(variant_size <= sizeof(game_launch_data.GameVariant));
+			fread(game_launch_data.GameVariant, 1, variant_size, pFile);
+			fclose(pFile);
+		}
+	}
+
+	//*(int*)(game_launch_data.GameVariant) = 4;
 
 	//static char game_variant_buffer[1024 * 1024 * 1024] = {};
 	//struct game_variant_file
 	//{
 	//	char blf_signature[0x30];
 
-	//};
-	//game_variant_file& game_variant = *(game_variant_file*)game_variant_buffer;
 	//// load game variant
 	//{
 	//	FILE* pFile = fopen("game_variants\\firefight_gruntpocalypse_054.bin", "r");
@@ -331,7 +344,7 @@ void initialize_custom_halo_reach_stuff()
 	//	size_t variant_size = ftell(pFile);
 	//	fseek(pFile, 0L, SEEK_SET);
 	//	assert(variant_size <= sizeof(game_launch_data.GameVariant));
-	//	fread(game_variant_buffer, 1, variant_size, pFile);
+	//	fread(&game_launch_data.GameVariant[4], 1, variant_size, pFile);
 	//	fclose(pFile);
 	//	
 	//}

@@ -355,9 +355,57 @@ extern s_game_launch_data* p_game_launch_data;
 //	return result;
 //};
 
-FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180161FF0, void __fastcall(__int64 a1, unsigned int a2)> c_game_engine_variant_ctor = [](__int64 a1, unsigned int a2)
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180161FF0, void __fastcall(__int64, unsigned int)> c_game_engine_variant_ctor = [](__int64 a1, unsigned int game_engine_index)
 {
-	return c_game_engine_variant_ctor(a1, a2);
+	game_engine_index = 4; // force firefight engine
+	return c_game_engine_variant_ctor(a1, game_engine_index);
+};
+
+struct c_game_engine_variant;
+
+struct __declspec(align(8)) c_game_engine_variant_vtbl
+{
+	__int64(__fastcall* Member00)(c_game_engine_variant*);
+	void* Member01;
+	void(__fastcall* Member02)(c_game_engine_variant*);
+	__int64(__fastcall* Member03)(c_game_engine_variant*);
+	void* Member04;
+	void* Member05;
+	void* Member06;
+	void* Member07;
+	void* Member08;
+	void* Member09;
+	void* Member10;
+	void* Member11;
+	void(__fastcall* initialize_for_new_map)(c_game_engine_variant*, __int64, c_game_engine_variant**);
+	void* Member13;
+	void* Member14;
+	__int64(__fastcall* Member15)(c_game_engine_variant*);
+	void* Member16;
+	__int64(__fastcall* Member17)(c_game_engine_variant*, _QWORD, _QWORD);
+	void* Member18;
+	void* Member19;
+	void* Member20;
+	void* Member21;
+	unsigned __int8(__fastcall* Member22)(c_game_engine_variant*, __int64, __int64*, unsigned __int64);
+};
+
+struct c_game_engine_variant
+{
+	c_game_engine_variant_vtbl* __vftable /*VFT*/;
+	BYTE data[64504];
+};
+
+struct s_game_variant
+{
+	DWORD game_engine_index;
+	c_game_engine_variant game_engine_variant;
+};
+
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180161EA0, __int64 __fastcall (s_game_variant* out_game_variant, s_game_variant* game_variant)> game_variant_make_new = [](s_game_variant* out_game_variant, s_game_variant* game_variant)
+{
+	auto result = game_variant_make_new(out_game_variant, game_variant);
+	return result;
 };
 
 //FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180010770, __int64()> main_game_launch_campaign = []()
@@ -749,6 +797,14 @@ void init_haloreach_hooks()
 {
 	check_library_can_load("bink2w64.dll");
 
+
+
+	init_detours();
+
+	//initialize_window.SetIsActive(g_useCustomGameWindow);
+
+	ReadConfig();
+
 	HaloGameID gameID = HaloGameID::NotSet;
 
 	uint64_t haloReachVersion = GetVersionID("HaloReach.dll");
@@ -761,12 +817,6 @@ void init_haloreach_hooks()
 		gameID = HaloGameID::HaloReach_2019_Jun_24;
 		break;
 	}
-
-	init_detours();
-
-	//initialize_window.SetIsActive(g_useCustomGameWindow);
-
-	ReadConfig();
 
 	DataReferenceBase::ProcessTree(gameID);
 	FunctionHookBase::ProcessTree(gameID);
