@@ -19,8 +19,12 @@ typedef errno_t(__fastcall* SetLibrarySettingsFunc)(wchar_t* Src);
 SetLibrarySettingsFunc* SetLibrarySettings = nullptr;
 typedef signed __int64(__fastcall CreateGameEngineFunc)(IGameEngine** ppGameEngine);
 CreateGameEngineFunc* CreateGameEngine = nullptr;
+typedef __int64(__fastcall CreateDataAccessFunc)(IDataAccess** ppDataAccess);
+CreateDataAccessFunc* CreateDataAccess = nullptr;
+
 
 IGameEngine* pHaloReachEngine = nullptr;
+IDataAccess* pHaloReachDataAccess = nullptr;
 
 
 #define NULLSUB_LAMBDA_LOG(message) []() { WriteLineVerbose(message); }
@@ -91,7 +95,7 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member27 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[27]");
 	gameEngineHostCallbackVftbl.Member28 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[28]");
 	gameEngineHostCallbackVftbl.Member29NewPaddingBecauseThisHasChanged = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[Member29NewPaddingBecauseThisHasChanged]");
-	
+
 	gameEngineHostCallbackVftbl.Member29 = [](GameEngineHostCallback*, _QWORD, Mmeber29UnknownStruct* pUnknown) {
 		/*
 		When we load the level, we set the g_waitingForInputUpdate to true allowing us
@@ -279,10 +283,78 @@ void load_haloreach_dll()
 	WriteLineVerbose("haloreach.dll: 0x%p", HaloReach);
 
 	CreateGameEngine = (CreateGameEngineFunc*)GetProcAddress(HaloReach, "CreateGameEngine");
+	CreateDataAccess = (CreateDataAccessFunc*)GetProcAddress(HaloReach, "CreateDataAccess");
+
 	SetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(HaloReach, "SetLibrarySettings");
 }
 
-s_game_launch_data* p_game_launch_data = nullptr;
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180021810, char __fastcall (char*, int, s_game_variant*)> sub_180021810 = [](char* file_data, int file_length, s_game_variant* game_variant)
+{
+	return sub_180021810(file_data, file_length, game_variant);
+};
+
+size_t get_file_size(FILE* pFile)
+{
+	assert(pFile);
+	fseek(pFile, 0, SEEK_END);
+	size_t variantSize = ftell(pFile);
+	fseek(pFile, 0L, SEEK_SET);
+	return variantSize;
+}
+
+void read_file_to_buffer(FILE* pFile, char* pBuffer, size_t length)
+{
+	assert(pFile);
+	fseek(pFile, 0L, SEEK_SET);
+
+	size_t totalBytesRead = 0;
+	do
+	{
+		size_t bytesToRead = length - totalBytesRead;
+		fseek(pFile, totalBytesRead, SEEK_SET);
+		size_t bytesRead = fread(pBuffer + totalBytesRead, 1, bytesToRead, pFile);;
+		totalBytesRead += bytesRead;
+	} while (totalBytesRead < length);
+
+}
+
+void load_hopper_game_variant(const char* pHopperGameVariantName, s_game_variant& out_game_variant)
+{
+	char pFilename[MAX_PATH] = {};
+	sprintf(pFilename, "hopper_game_variants\\%s", pHopperGameVariantName);
+	pFilename[MAX_PATH - 1] = 0;
+
+	FILE* pVariantFile = fopen(pFilename, "rb");
+	if (pVariantFile)
+	{
+		size_t variantSize = get_file_size(pVariantFile);
+		char* pVariantBuffer = (char*)alloca(variantSize);
+		memset(pVariantBuffer, 0x00, variantSize);
+		read_file_to_buffer(pVariantFile, pVariantBuffer, variantSize);
+		fclose(pVariantFile);
+
+		__int64 result = pHaloReachDataAccess->CreateGameVariantFromFile(pVariantBuffer, variantSize);
+
+		// #TODO: MCC STRUCTURE FOR THIS
+		// #TODO: First 8 bytes appear to be a pointer to something in base game
+		s_game_variant* variant = (s_game_variant*)(result + 8); 
+
+		out_game_variant = *variant;
+	}
+}
+
+void load_previous_gamestate(const char* pFilename, s_game_launch_data& game_launch_data)
+{
+	if (FILE * pGameStateFile = fopen(pFilename, "r"))
+	{
+		static s_game_state_header game_state_header = {};
+		fread(&game_state_header, 1, sizeof(s_game_state_header), pGameStateFile);
+		fclose(pGameStateFile);
+
+		game_launch_data.pGameStateHeader = reinterpret_cast<uint8_t*>(&game_state_header);
+		game_launch_data.GameStateHeaderSize = sizeof(s_game_state_header);
+	}
+}
 
 void initialize_custom_halo_reach_stuff()
 {
@@ -294,62 +366,20 @@ void initialize_custom_halo_reach_stuff()
 	g_useCustomGameWindow = true;
 	init_haloreach_hooks();
 
-	__int64 result = CreateGameEngine(&pHaloReachEngine);
+	__int64 createGameEngineResult = CreateGameEngine(&pHaloReachEngine);
 	assert(pHaloReachEngine);
+	__int64 createDataAccessResult = CreateDataAccess(&pHaloReachDataAccess);
+	assert(pHaloReachDataAccess);
 
 	static s_game_launch_data game_launch_data = s_game_launch_data();
-	p_game_launch_data = &game_launch_data;
-
-	if (FILE * pGameStateFile = fopen("gamestate.hdr", "r"))
-	{
-		static s_game_state_header game_state_header = {};
-		fread(&game_state_header, 1, sizeof(s_game_state_header), pGameStateFile);
-		fclose(pGameStateFile);
-
-		game_launch_data.pGameStateHeader = reinterpret_cast<uint8_t*>(&game_state_header);
-		game_launch_data.GameStateHeaderSize = sizeof(s_game_state_header);
-	}
-
 	game_launch_data.MapId = _map_id_ff45_corvette;
 	game_launch_data.GameMode = _game_mode_survival;
-	game_launch_data.CampaignDifficultyLevel = _campaign_difficulty_level_normal;
+	game_launch_data.CampaignDifficultyLevel = _campaign_difficulty_level_easy;
 
-	// load game variant
-	{
-		FILE* pFile = fopen("output.bin", "r");
-		if (pFile)
-		{
-			assert(pFile);
-			fseek(pFile, 0, SEEK_END);
-			size_t variant_size = ftell(pFile);
-			fseek(pFile, 0L, SEEK_SET);
-			assert(variant_size <= sizeof(game_launch_data.GameVariant));
-			fread(game_launch_data.GameVariant, 1, variant_size, pFile);
-			fclose(pFile);
-		}
-	}
+	load_hopper_game_variant("ff_generator_defense_054.bin", game_launch_data.halo_reach_game_variant);
+	load_previous_gamestate("gamestate.hdr", game_launch_data);
 
-	//*(int*)(game_launch_data.GameVariant) = 4;
-
-	//static char game_variant_buffer[1024 * 1024 * 1024] = {};
-	//struct game_variant_file
-	//{
-	//	char blf_signature[0x30];
-
-	//// load game variant
-	//{
-	//	FILE* pFile = fopen("game_variants\\firefight_gruntpocalypse_054.bin", "r");
-	//	assert(pFile);
-	//	fseek(pFile, 0, SEEK_END);
-	//	size_t variant_size = ftell(pFile);
-	//	fseek(pFile, 0L, SEEK_SET);
-	//	assert(variant_size <= sizeof(game_launch_data.GameVariant));
-	//	fread(&game_launch_data.GameVariant[4], 1, variant_size, pFile);
-	//	fclose(pFile);
-	//	
-	//}
-
-	//pHaloReachEngine->InitGraphics(0, 0, 0, 0);
+	//pHaloReachEngine->InitGraphics(0, 0, 0, 0); // #TODO: Correct MCC graphics initialization
 	pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);
 }
 

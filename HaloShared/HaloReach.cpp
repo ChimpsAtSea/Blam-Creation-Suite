@@ -345,8 +345,6 @@ FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18000F8D0, int()> sub_18000F8D
 	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
 };
 
-extern s_game_launch_data* p_game_launch_data;
-
 
 //Data<HaloGameID::HaloReach_2019_Aug_20, __int64, 0x18445DB98> qword_18445DB98;
 //FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18030EC20, char()> survival_engine_member8 = []()
@@ -357,49 +355,7 @@ extern s_game_launch_data* p_game_launch_data;
 
 FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180161FF0, void __fastcall(__int64, unsigned int)> c_game_engine_variant_ctor = [](__int64 a1, unsigned int game_engine_index)
 {
-	game_engine_index = 4; // force firefight engine
 	return c_game_engine_variant_ctor(a1, game_engine_index);
-};
-
-struct c_game_engine_variant;
-
-struct __declspec(align(8)) c_game_engine_variant_vtbl
-{
-	__int64(__fastcall* Member00)(c_game_engine_variant*);
-	void* Member01;
-	void(__fastcall* Member02)(c_game_engine_variant*);
-	__int64(__fastcall* Member03)(c_game_engine_variant*);
-	void* Member04;
-	void* Member05;
-	void* Member06;
-	void* Member07;
-	void* Member08;
-	void* Member09;
-	void* Member10;
-	void* Member11;
-	void(__fastcall* initialize_for_new_map)(c_game_engine_variant*, __int64, c_game_engine_variant**);
-	void* Member13;
-	void* Member14;
-	__int64(__fastcall* Member15)(c_game_engine_variant*);
-	void* Member16;
-	__int64(__fastcall* Member17)(c_game_engine_variant*, _QWORD, _QWORD);
-	void* Member18;
-	void* Member19;
-	void* Member20;
-	void* Member21;
-	unsigned __int8(__fastcall* Member22)(c_game_engine_variant*, __int64, __int64*, unsigned __int64);
-};
-
-struct c_game_engine_variant
-{
-	c_game_engine_variant_vtbl* __vftable /*VFT*/;
-	BYTE data[64504];
-};
-
-struct s_game_variant
-{
-	DWORD game_engine_index;
-	c_game_engine_variant game_engine_variant;
 };
 
 FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180161EA0, __int64 __fastcall (s_game_variant* out_game_variant, s_game_variant* game_variant)> game_variant_make_new = [](s_game_variant* out_game_variant, s_game_variant* game_variant)

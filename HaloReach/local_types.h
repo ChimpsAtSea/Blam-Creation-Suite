@@ -61,6 +61,32 @@ struct IGameEngine
 	}
 };
 
+struct __declspec(align(8)) IDataAccess_vtbl
+{
+	void* Member00;
+	void* CreateMapVariantFromFile;
+	void* CreateMapVariantDefault;
+	__int64 (*CreateGameVariantFromFile)(struct IDataAccess* _this, char* file_data, __int32 file_length);
+	void* CreateGameVariantDefault;
+	void* LoadMapById;
+	void* Member06;
+	void* Free;
+};
+
+struct IDataAccess
+{
+	IDataAccess_vtbl* __vftable /*VFT*/;
+	void* function0;
+	void* function1;
+	void* function2;
+	void* function3;
+
+	__int64 CreateGameVariantFromFile(char* file_data, __int32 file_length)
+	{
+		return __vftable->CreateGameVariantFromFile(this, file_data, file_length);
+	}
+};
+
 struct Mmeber29UnknownStruct
 {
 	int unknown0;
@@ -413,6 +439,46 @@ enum e_game_mode : int
 	k_number_of_game_modes,
 };
 
+struct c_game_engine_variant;
+
+struct __declspec(align(8)) c_game_engine_variant_vtbl
+{
+	__int64(__fastcall* Member00)(c_game_engine_variant*);
+	void* Member01;
+	void(__fastcall* Member02)(c_game_engine_variant*);
+	__int64(__fastcall* Member03)(c_game_engine_variant*);
+	void* Member04;
+	void* Member05;
+	void* Member06;
+	void* Member07;
+	void* Member08;
+	void* Member09;
+	void* Member10;
+	void* Member11;
+	void(__fastcall* initialize_for_new_map)(c_game_engine_variant*, __int64, c_game_engine_variant**);
+	void* Member13;
+	void* Member14;
+	__int64(__fastcall* Member15)(c_game_engine_variant*);
+	void* Member16;
+	__int64(__fastcall* Member17)(c_game_engine_variant*, _QWORD, _QWORD);
+	void* Member18;
+	void* Member19;
+	void* Member20;
+	void* Member21;
+	unsigned __int8(__fastcall* Member22)(c_game_engine_variant*, __int64, __int64*, unsigned __int64);
+};
+
+struct c_game_engine_variant
+{
+	c_game_engine_variant_vtbl* __vftable /*VFT*/;
+	BYTE data[64504];
+};
+
+struct s_game_variant
+{
+	DWORD game_engine_index;
+	c_game_engine_variant game_engine_variant;
+};
 
 struct s_game_launch_data_memzero
 {
@@ -426,7 +492,8 @@ struct s_game_launch_data_memzero
 	}
 };
 
-struct __cppobj __declspec(align(8)) s_game_launch_data : s_game_launch_data_memzero
+#pragma pack(push, 1)
+struct __cppobj s_game_launch_data : s_game_launch_data_memzero
 {
 	s_game_launch_data(const s_game_launch_data& original)
 		: pGameHandle(GetModuleHandleA("HaloReach.dll"))
@@ -514,7 +581,11 @@ struct __cppobj __declspec(align(8)) s_game_launch_data : s_game_launch_data_mem
 #endif
 
 	_DWORD GameMode = _game_mode_campaign;
-	_BYTE GameVariant[115 * 1024] = {};
+	union
+	{
+		_BYTE GameVariantBuffer[115 * 1024] = {};
+		s_game_variant halo_reach_game_variant;
+	};
 	_BYTE MapVariant[58 * 1024] = {};
 	// [0x180330500, mcc_id_to_reach_map_id, https://pastebin.com/r3ihQagj]
 	// [180330BD0, mcc_id_to_reach_map_name, https://pastebin.com/Qx72e0G6]
@@ -597,7 +668,9 @@ struct __cppobj __declspec(align(8)) s_game_launch_data : s_game_launch_data_mem
 	_DWORD dword2B7C0 = 0;
 	_DWORD dword2B7C4 = 0;
 };
-static_assert(sizeof(s_game_launch_data) == 0x2B7C8, "");
+#pragma pack(pop)
+static constexpr size_t s_game_launch_data_size = sizeof(s_game_launch_data);
+static_assert(s_game_launch_data_size == 0x2B7C8, "");
 static_assert(offsetof(s_game_launch_data, s_game_launch_data::pGameHandle) == 0x2B740, "");
 
 struct s_game_launcher
