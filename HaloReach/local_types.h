@@ -397,6 +397,22 @@ enum e_map_id : int
 	k_number_of_map_ids
 };
 
+enum e_game_mode : int
+{
+	_game_mode_none,
+
+	_game_mode_campaign,
+	_game_mode_multiplayer,
+
+	// we assume these
+	//_game_mode_map_editor,
+	//_game_mode_saved_film,
+
+	_game_mode_survival = 5,
+
+	k_number_of_game_modes,
+};
+
 
 struct s_game_launch_data_memzero
 {
@@ -497,7 +513,7 @@ struct __cppobj __declspec(align(8)) s_game_launch_data : s_game_launch_data_mem
 #define COLOR5
 #endif
 
-	_DWORD GameMode = 1;
+	_DWORD GameMode = _game_mode_campaign;
 	_BYTE GameVariant[115 * 1024] = {};
 	_BYTE MapVariant[58 * 1024] = {};
 	// [0x180330500, mcc_id_to_reach_map_id, https://pastebin.com/r3ihQagj]
