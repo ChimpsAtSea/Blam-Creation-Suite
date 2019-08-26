@@ -30,6 +30,8 @@ bool g_hideWindowOnStartup = false;
 
 // Halo Reach Variables
 
+Pointer<HaloGameID::HaloReach_2019_Aug_20, IDirectInputDevice8*, 0x1839EC128> qword_1839EC128;
+
 intptr_t GetGameEngineHostCallbackOffset(HaloGameID gameID)
 {
 	switch (gameID)
@@ -286,15 +288,25 @@ HaloReachHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restri
 
 #pragma region RenderingWIP
 
-#include <dxgi.h>
-#include <d3d11_4.h>
 
 HaloReach_2019_Jun_24_Data<void*, 0x1810EC5B0> g_pIDXGISwapChain;
-HaloReach_2019_Jun_24_Pointer<IDXGISwapChain*, 0x18112D378> g_pSwapChain;
+
 HaloReach_2019_Jun_24_Data<IID, 0x180E0B2A8> stru_180E0B2A8;
 HaloReach_2019_Jun_24_Pointer<IDXGIFactory1*, 0x18112D368> ppFactory;
 HaloReach_2019_Jun_24_Pointer<ID3D11Device*, 0x18112D588> g_pDevice;
+
 Data<HaloGameID::HaloReach_2019_Aug_20, ID3D11Device*, 0x180D37AA0> qword_180D37AA0;
+
+intptr_t g_pSwapChain_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x18112D378;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x184465D68;
+	}
+	return ~intptr_t();
+}
+PointerEx<IDXGISwapChain*, g_pSwapChain_offset> g_pSwapChain;
 
 intptr_t initialize_device_offset(HaloGameID gameID)
 {
@@ -309,7 +321,8 @@ intptr_t initialize_device_offset(HaloGameID gameID)
 // allow the game to read the command line to use -width and -height
 HaloReachHookEx<initialize_device_offset, char()> initialize_device = { "initialize_device", []()
 {
-	D3D_FEATURE_LEVEL pFeatureLevels[] = {
+	D3D_FEATURE_LEVEL pFeatureLevels[] =
+	{
 		D3D_FEATURE_LEVEL_11_1,
 		D3D_FEATURE_LEVEL_11_0,
 		D3D_FEATURE_LEVEL_10_0,
@@ -324,11 +337,9 @@ HaloReachHookEx<initialize_device_offset, char()> initialize_device = { "initial
   qword_180D37AA0 = pDevice;
 
   auto result = initialize_device();
+  IDXGISwapChain* pSwapChain = g_pSwapChain;
 
-  //bool isCurrent = ppFactory->IsCurrent();
-  //assert(isCurrent);
-  //ID3D11DeviceContext* pD3DContext = nullptr;
-  //g_pDevice->GetImmediateContext(&pD3DContext);
+  DebugUI::Setup(pSwapChain, pDevice, pImmediateContext);
 
   return result;
 } };
@@ -606,4 +617,5 @@ void init_haloreach_hooks()
 		break;
 	}
 
+	end_detours();
 }

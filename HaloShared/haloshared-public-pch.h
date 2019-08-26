@@ -10,3 +10,4 @@
 #include "FunctionHook.h"
 #include "CustomWindow.h"
 #include "HaloReach.h"
+#include "DebugUI.h"

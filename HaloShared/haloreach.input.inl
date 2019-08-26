@@ -1,4 +1,6 @@
 
+Data<HaloGameID::HaloReach_2019_Aug_20, char, 0x1839EBDE1> mouse_acquired;
+
 //// 
 ///*
 //	force the game to use its own initialization of input rather than MCC
@@ -54,6 +56,31 @@ intptr_t input_update_offset(HaloGameID gameID)
 
 HaloReachHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 
+	if (qword_1839EC128)
+	{
+		static int s_currentMouseCooperativeLevel = -1;
+		int expectedMouseCooperativeLevel = DebugUI::IsVisible() ? DISCL_FOREGROUND | DISCL_NONEXCLUSIVE : DISCL_FOREGROUND | DISCL_EXCLUSIVE;
+
+		if (s_currentMouseCooperativeLevel != expectedMouseCooperativeLevel)
+		{
+			qword_1839EC128->Unacquire();
+			auto SetCooperativeLevelResult = qword_1839EC128->SetCooperativeLevel(g_createdWindow, expectedMouseCooperativeLevel);
+			if (SetCooperativeLevelResult == DI_OK)
+			{
+				s_currentMouseCooperativeLevel = expectedMouseCooperativeLevel;
+			}
+
+			if (DebugUI::IsVisible())
+			{
+				POINT mousePosition = { 960, 540 }; // #TODO: Get width and height
+				ClientToScreen(g_createdWindow, &mousePosition); //stores our on screen mouse coordinates
+				SetCursorPos(mousePosition.x, mousePosition.y);
+			}
+
+			qword_1839EC128->Acquire();
+		}
+	}
+
 	print_key_state_debug(g_input_abstraction.ptr()->BindingsTable[0]);
 	CustomWindow::Update();
 
@@ -64,18 +91,8 @@ HaloReachHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 		name_and_tag_set = true;
 	}
 
-	auto result = GEHCBypass<GEHCBypassType::UseValidPointer>([]()
-		{
-
-			//if (ThreadLocalStorage.IsValid())
-			//{
-			//	//assert(game_globals = ThreadLocalStorage.Get<s_game_globals *>(_tls_offset_game_globals));
-			//	//assert(player_control_globals = ThreadLocalStorage.Get<s_player_control_globals*>(_tls_offset_player_control_globals));
-			//	//assert(director_globals = ThreadLocalStorage.Get<s_director_globals*>(_tls_offset_director_globals));
-			//}
-			return input_update();
-		}
-	);
+	char result = GEHCBypass<GEHCBypassType::UseValidPointer>([]() {return input_update(); });
+	
 	return result;
 };
 

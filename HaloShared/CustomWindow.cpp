@@ -7,7 +7,7 @@ HWND CustomWindow::s_hwnd;
 void CustomWindow::SetupHooks()
 {
 	create_dll_hook("USER32.dll", "RegisterClassExA", CustomWindow::CustomRegisterClassExA, RegisterClassExA);
-	create_dll_hook("USER32.dll", "CreateWindowExA", CustomWindow::CustomCreateWindowExA, CreateWindowExA);
+	//create_dll_hook("USER32.dll", "CreateWindowExA", CustomWindow::CustomCreateWindowExA, CreateWindowExA);
 }
 
 void CustomWindow::Update()
@@ -39,8 +39,16 @@ void CustomWindow::ShowWindow()
 
 LRESULT CALLBACK CustomWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+	DebugUI::WndProc(hwnd, msg, wParam, lParam);
+
 	switch (msg)
 	{
+	case WM_SYSCOMMAND:
+		if ((wParam & 0xfff0) == SC_KEYMENU)
+		{
+			return 0;
+		}
+		break;
 	case WM_DESTROY:
 		byte_183984DE4 = 1;
 		g_gameManuallyKilled = true;
@@ -55,25 +63,29 @@ LRESULT CALLBACK CustomWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 
 ATOM WINAPI CustomWindow::CustomRegisterClassExA(_In_ WNDCLASSEXA* arg)
 {
-	assert(arg->cbSize == sizeof(WNDCLASSEXA));
-
-	HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach_2019_Jun_24));
-	assert(hHaloReachModule);
-
-	arg->cbSize = sizeof(WNDCLASSEXA);
-	arg->style = CS_HREDRAW | CS_VREDRAW;
-	arg->lpfnWndProc = WndProc;
-	arg->cbClsExtra = 0;
-	arg->cbWndExtra = 0;
-	arg->hInstance = hHaloReachModule;
-	arg->hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	arg->hIcon = g_icon;
-
-	// #NOTE: Use existing provided pointer as its memory inside the game itself
-	//arg->lpszClassName = "HaloReach";
-	memcpy(const_cast<LPSTR>(arg->lpszClassName), "HaloReach", sizeof("HaloReach"));
-
+	arg->hCursor = LoadCursor(NULL, IDC_ARROW);
 	return RegisterClassExA(arg);
+
+	//assert(arg->cbSize == sizeof(WNDCLASSEXA));
+
+	//HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach_2019_Jun_24));
+	//assert(hHaloReachModule);
+
+	//arg->cbSize = sizeof(WNDCLASSEXA);
+	//arg->style = CS_HREDRAW | CS_VREDRAW;
+	//arg->lpfnWndProc = WndProc;
+	//arg->cbClsExtra = 0;
+	//arg->cbWndExtra = 0;
+	//arg->hInstance = hHaloReachModule;
+	//arg->hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	//arg->hIcon = g_icon;
+	//
+	//
+	//// #NOTE: Use existing provided pointer as its memory inside the game itself
+	////arg->lpszClassName = "HaloReach";
+	//memcpy(const_cast<LPSTR>(arg->lpszClassName), "HaloReach", sizeof("HaloReach"));
+
+	//return RegisterClassExA(arg);
 }
 
 HWND WINAPI CustomWindow::CustomCreateWindowExA(

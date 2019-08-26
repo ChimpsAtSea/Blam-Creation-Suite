@@ -87,14 +87,14 @@ struct IDataAccess
 	}
 };
 
-struct Mmeber29UnknownStruct
+struct Member29UnknownStruct
 {
 	int unknown0;
 	char data0[256];
 	char data1[20];
 	char data2[16];
 };
-static_assert(sizeof(Mmeber29UnknownStruct) == 0x128, "");
+static_assert(sizeof(Member29UnknownStruct) == 0x128, "");
 
 /* 516 */
 struct GameEngineHostCallback_vftbl
@@ -133,7 +133,7 @@ struct GameEngineHostCallback_vftbl
 	NullSubFunc* Member29NewPaddingBecauseThisHasChanged;
 
 	//unsigned __int8(__fastcall* Member28)(GameEngineHostCallback*, __int64, char*);
-	unsigned __int8(__fastcall* Member29)(GameEngineHostCallback*, _QWORD, Mmeber29UnknownStruct* pUnknown);
+	unsigned __int8(__fastcall* Member29)(GameEngineHostCallback*, _QWORD, Member29UnknownStruct* pUnknown);
 	NullSubFunc* SetPlayerName;
 	NullSubFunc* Member31;
 	NullSubFunc* Member32;

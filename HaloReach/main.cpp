@@ -96,7 +96,7 @@ void setup_game_engine_host_callback()
 	gameEngineHostCallbackVftbl.Member28 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[28]");
 	gameEngineHostCallbackVftbl.Member29NewPaddingBecauseThisHasChanged = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[Member29NewPaddingBecauseThisHasChanged]");
 
-	gameEngineHostCallbackVftbl.Member29 = [](GameEngineHostCallback*, _QWORD, Mmeber29UnknownStruct* pUnknown) {
+	gameEngineHostCallbackVftbl.Member29 = [](GameEngineHostCallback*, _QWORD, Member29UnknownStruct* pUnknown) {
 		/*
 		When we load the level, we set the g_waitingForInputUpdate to true allowing us
 		to reset the input system. This function sets the engine to use the keyboard
@@ -106,7 +106,25 @@ void setup_game_engine_host_callback()
 		memset(pUnknown, 0, sizeof(*pUnknown));
 		pUnknown->unknown0 = 1;
 
-		if (g_waitingForInputUpdate)
+		// don't update and return an empty zero buffer
+		if (DebugUI::IsVisible())
+		{
+			return unsigned __int8(1);
+		}
+
+		// get keyboard state
+		{
+			BYTE keyboardState[256] = {};
+			if (GetKeyboardState(keyboardState))
+			{
+				for (int i = 0; i < 256; i++)
+				{
+					pUnknown->data0[i] = (keyboardState[i] & 0b10000000) != 0;
+				}
+			}
+		}
+
+		if (g_waitingForInputUpdate) // #TODO: Remove when mouse input is figured out
 		{
 			g_waitingForInputUpdate = false;
 			return unsigned __int8(1);
@@ -311,7 +329,7 @@ void read_file_to_buffer(FILE* pFile, char* pBuffer, size_t length)
 	do
 	{
 		size_t bytesToRead = length - totalBytesRead;
-		fseek(pFile, totalBytesRead, SEEK_SET);
+		fseek(pFile, static_cast<long>(totalBytesRead), SEEK_SET);
 		size_t bytesRead = fread(pBuffer + totalBytesRead, 1, bytesToRead, pFile);;
 		totalBytesRead += bytesRead;
 	} while (totalBytesRead < length);
@@ -333,11 +351,11 @@ void load_hopper_game_variant(const char* pHopperGameVariantName, s_game_variant
 		read_file_to_buffer(pVariantFile, pVariantBuffer, variantSize);
 		fclose(pVariantFile);
 
-		__int64 result = pHaloReachDataAccess->CreateGameVariantFromFile(pVariantBuffer, variantSize);
+		__int64 result = pHaloReachDataAccess->CreateGameVariantFromFile(pVariantBuffer, static_cast<int>(variantSize));
 
 		// #TODO: MCC STRUCTURE FOR THIS
 		// #TODO: First 8 bytes appear to be a pointer to something in base game
-		s_game_variant* variant = (s_game_variant*)(result + 8); 
+		s_game_variant* variant = (s_game_variant*)(result + 8);
 
 		out_game_variant = *variant;
 	}
@@ -380,7 +398,7 @@ void initialize_custom_halo_reach_stuff()
 	load_previous_gamestate("gamestate.hdr", game_launch_data);
 
 	//pHaloReachEngine->InitGraphics(0, 0, 0, 0); // #TODO: Correct MCC graphics initialization
-	pHaloReachEngine->InitThread(nullptr, (__int64)&game_launch_data);
+	pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);
 }
 
 void deinit_haloreach()

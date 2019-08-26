@@ -214,27 +214,39 @@ public:
 
 	}
 
-	T& Reference() const
-	{
-		return *PointerToPointer();
-	}
-
 	volatile T volatile_ptr() const
 	{
-		return static_cast<volatile T>(Reference());
+		return static_cast<volatile T>(impl_ref());
 	}
 
 	T operator->()
 	{
-		return Reference();
+		return impl_ref();
 	}
 
-	operator bool() const
+	T ptr()
+	{
+		assert(m_pPtr != nullptr);
+		return impl_ref();
+	}
+
+	T& ref()
+	{
+		assert(m_pPtr != nullptr);
+		return impl_ref();
+	}
+
+	operator bool()
 	{
 		return !!this->operator->();
 	}
 
 protected:
+	T& impl_ref() const
+	{
+		return *PointerToPointer();
+	}
+
 	T* PointerToPointer() const
 	{
 		T* ptr = reinterpret_cast<T*>(m_pPtr);
@@ -376,6 +388,11 @@ public:
 	operator bool() const
 	{
 		return !!this->operator->();
+	}
+
+	operator T& () const
+	{
+		return Reference();
 	}
 
 protected:
