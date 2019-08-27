@@ -9,7 +9,7 @@ Data<HaloGameID::HaloReach_2019_Aug_20, char, 0x1839EBDE1> mouse_acquired;
 //*/
 //HaloReach_2019_Jun_24_Hook<0x180780C20, __int64 __fastcall (c_profile_configuration* a1, int a2)> sub_180780C20 = [](c_profile_configuration* a1, int a2)
 //{
-//	SetPlayerNameAndServiceTag();
+//	set_player_name_and_tag();
 //	auto callback = [=]() { return sub_180780C20(a1, a2); };
 //	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(callback);
 //};
@@ -87,7 +87,7 @@ HaloReachHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 	static bool name_and_tag_set = false;
 	if (!name_and_tag_set)
 	{
-		SetPlayerNameAndServiceTag();
+		set_player_name_and_tag();
 		name_and_tag_set = true;
 	}
 
