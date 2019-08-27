@@ -141,25 +141,38 @@
     <ClCompile Include="CustomWindow.cpp" />
     <ClCompile Include="BasicData.cpp" />
     <ClCompile Include="DebugUI.cpp" />
+    <ClCompile Include="detour_helpers.cpp" />
     <ClCompile Include="dx11_c_code.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="FunctionHook.cpp" />
+    <ClCompile Include="HaloGameID.cpp" />
     <ClCompile Include="HaloReach.cpp" />
     <ClCompile Include="haloshared-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="IGameEngineHost.cpp" />
+    <ClCompile Include="SplashScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomWindow.h" />
     <ClInclude Include="BasicData.h" />
     <ClInclude Include="DebugUI.h" />
+    <ClInclude Include="detour_helpers.h" />
+    <ClInclude Include="hexrays_defs.h" />
     <ClInclude Include="FunctionHook.h" />
+    <ClInclude Include="HaloGameID.h" />
     <ClInclude Include="HaloReach.h" />
     <ClInclude Include="haloshared-private-pch.h" />
     <ClInclude Include="haloshared-public-pch.h" />
+    <ClInclude Include="haloshared-system-pch.h" />
+    <ClInclude Include="IGameEngineHost.h" />
+    <ClInclude Include="input_types.h" />
+    <ClInclude Include="local_types.h" />
+    <ClInclude Include="logging.h" />
+    <ClInclude Include="SplashScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />

@@ -1,5 +1,6 @@
 #pragma once
-class splash_screen
+
+class SplashScreen
 {
 public:
 	static void Create();

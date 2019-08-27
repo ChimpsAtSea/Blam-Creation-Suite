@@ -2,15 +2,8 @@
 
 #define this _this
 
-
-#define HaloReachDLL "HaloReach.dll"
-#define HaloReachBase 0x180000000
-
-
-
 void nullsub()
 {
-
 }
 
 HMODULE HaloReach; //haloreach.dll
@@ -45,107 +38,7 @@ GUID* __fastcall GetGuid(GameEvents* this, GUID* rGuid)
 
 void setup_game_engine_host_callback()
 {
-	//=========================================================
-	//             game engine host callback
-	//=========================================================
-
-	gameEngineHostCallback.vftbl = &gameEngineHostCallbackVftbl;
-
-	gameEngineHostCallbackVftbl.Member00 = ZEROSUB_LAMBDA("GameEngineHostCallback::vftable[00]");
-	gameEngineHostCallbackVftbl.Member01 = ZEROSUB_LAMBDA("GameEngineHostCallback::vftable[01]");
-	gameEngineHostCallbackVftbl.Member02 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[02]");
-	gameEngineHostCallbackVftbl.Member03 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[03]");
-	gameEngineHostCallbackVftbl.Member04 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[04]");
-
-	typedef void(__fastcall WriteGameStateFunc)(GameEngineHostCallback*, LPVOID, size_t);
-	gameEngineHostCallbackVftbl.WriteGameState = (WriteGameStateFunc*)nullsub;
-
-	gameEngineHostCallbackVftbl.Member06 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[06]");
-	gameEngineHostCallbackVftbl.Member07 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[07]");
-	gameEngineHostCallbackVftbl.Member08 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[08]");
-	gameEngineHostCallbackVftbl.Member09 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[09]");
-	gameEngineHostCallbackVftbl.GetGameEvents = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::GetGameEvents");
-	gameEngineHostCallbackVftbl.Member11 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[11]");
-	gameEngineHostCallbackVftbl.Member12 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[12]");
-	gameEngineHostCallbackVftbl.Member13 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[13]");
-	gameEngineHostCallbackVftbl.Member14 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[14]");
-	gameEngineHostCallbackVftbl.GetNextMapId = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::GetNextMapId");
-	gameEngineHostCallbackVftbl.Member16 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[16]");
-	gameEngineHostCallbackVftbl.Member17 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[17]");
-	gameEngineHostCallbackVftbl.Member18 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[18]");
-	//gameEngineHostCallbackVftbl.Member19 = NULLSUB_LAMBDA_CUSTOM("GameEngineHostCallback::vftable[19]");
-	gameEngineHostCallbackVftbl.Member19 = [](GameEngineHostCallback* a1, __int64 a2) {
-		WriteLineVerbose("GameEngineHostCallback::vftable[19] %016llx", a2);
-		return __int64(0);
-	};
-	gameEngineHostCallbackVftbl.Member20 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[20]");
-	gameEngineHostCallbackVftbl.Member21 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[21]");
-	gameEngineHostCallbackVftbl.Member22 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[22]");
-	gameEngineHostCallbackVftbl.Member23 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[23]");
-	gameEngineHostCallbackVftbl.Member24 = []() {
-		// TODO: add splash/loading screen that stops when this is called
-
-		WriteLineVerbose("GameLoaded");
-		splash_screen::Destroy();
-		ShowWindow(g_createdWindow, SW_SHOW);
-		SetFocus(g_createdWindow);
-	};
-	gameEngineHostCallbackVftbl.Member25 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[25]");
-	gameEngineHostCallbackVftbl.Member26 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[26]");
-	gameEngineHostCallbackVftbl.Member27 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[27]");
-	gameEngineHostCallbackVftbl.Member28 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[28]");
-	gameEngineHostCallbackVftbl.Member29NewPaddingBecauseThisHasChanged = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[Member29NewPaddingBecauseThisHasChanged]");
-
-	gameEngineHostCallbackVftbl.Member29 = [](GameEngineHostCallback*, _QWORD, Member29UnknownStruct* pUnknown) {
-		/*
-		When we load the level, we set the g_waitingForInputUpdate to true allowing us
-		to reset the input system. This function sets the engine to use the keyboard
-		or mouse input.
-		*/
-
-		memset(pUnknown, 0, sizeof(*pUnknown));
-		pUnknown->unknown0 = 1;
-
-		// don't update and return an empty zero buffer
-		if (DebugUI::IsVisible())
-		{
-			return unsigned __int8(1);
-		}
-
-		// get keyboard state
-		{
-			BYTE keyboardState[256] = {};
-			if (GetKeyboardState(keyboardState))
-			{
-				for (int i = 0; i < 256; i++)
-				{
-					pUnknown->data0[i] = (keyboardState[i] & 0b10000000) != 0;
-				}
-			}
-		}
-
-		if (g_waitingForInputUpdate) // #TODO: Remove when mouse input is figured out
-		{
-			g_waitingForInputUpdate = false;
-			return unsigned __int8(1);
-		}
-		return unsigned __int8(0);
-	};
-	gameEngineHostCallbackVftbl.SetPlayerName = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::SetPlayerName");
-	gameEngineHostCallbackVftbl.Member31 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[31]");
-	gameEngineHostCallbackVftbl.Member32 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[32]");
-	gameEngineHostCallbackVftbl.Member33 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[33]");
-	gameEngineHostCallbackVftbl.Member34 = ZEROSUB_LAMBDA("GameEngineHostCallback::vftable[34]");
-	gameEngineHostCallbackVftbl.Member35 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[35]");
-	gameEngineHostCallbackVftbl.Member36 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[36]");
-	gameEngineHostCallbackVftbl.Member37 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[37]");
-	gameEngineHostCallbackVftbl.Member38 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[38]");
-	gameEngineHostCallbackVftbl.Member39 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[39]");
-	gameEngineHostCallbackVftbl.Member40 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[40]");
-	gameEngineHostCallbackVftbl.Member41 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[41]");
-	gameEngineHostCallbackVftbl.Member42 = NULLSUB_LAMBDA_LOG("GameEngineHostCallback::vftable[42]");
-
-	gameEngineHostCallback.pGameEvents = &gameEvents;
+	IGameEngineHost::g_gameEngineHost.pGameEvents = &gameEvents;
 }
 
 void setup_game_events()
@@ -380,7 +273,7 @@ void initialize_custom_halo_reach_stuff()
 	setup_game_events();
 	setup_game_engine_host_callback();
 
-	g_useCustomGameEngineHostCallback = true;
+	g_enableGameEngineHostOverride = true;
 	g_useCustomGameWindow = true;
 	init_haloreach_hooks();
 
@@ -426,7 +319,7 @@ int WINAPI WinMain(
 
 	if (strstr(lpCmdLine, "-hidesplash") == nullptr)
 	{
-		splash_screen::Create();
+		SplashScreen::Create();
 		g_hideWindowOnStartup = true;
 	}
 

@@ -1,4 +1,4 @@
-#include "haloutilities-private-pch.h"
+#include "haloshared-private-pch.h"
 
 bool IsHaloExecutableLoaded(HaloGameID gameID)
 {

@@ -1,5 +1,8 @@
 #pragma once
 
+#include "local_types.h"
+
+class IGameEngineHost;
 
 // TODO: find a better place for this?
 enum e_tls_offset
@@ -315,11 +318,13 @@ extern HaloReach_2019_Jun_24_Hook<0x180780D90, profile_configuration_update_func
 
 // Halo Reach Variables
 
-extern intptr_t GetGameEngineHostCallbackOffset(HaloGameID gameID);
-extern HaloReachDataEx<GameEngineHostCallback*, GetGameEngineHostCallbackOffset> g_GameEngineHostCallback;
+extern intptr_t get_game_engine_host_offset(HaloGameID gameID);
+extern DataEx<IGameEngineHost*, get_game_engine_host_offset> g_game_engine_host_pointer;
+extern intptr_t get_render_thread_mode_offset(HaloGameID gameID);
+extern DataEx<LONG, get_render_thread_mode_offset> g_render_thread_mode;
 
-extern intptr_t g_render_thread_mode_offset(HaloGameID gameID);
-extern DataEx<LONG, g_render_thread_mode_offset> g_render_thread_mode;
+// #TODO: Cleanup --------------- (Make all of these match naming conventions)
+
 extern intptr_t g_controller_interfaces_offset(HaloGameID gameID);
 extern DataEx<c_controller_interface[4], g_controller_interfaces_offset> g_controller_interfaces;
 extern intptr_t g_game_options_offset(HaloGameID gameID);
@@ -330,7 +335,6 @@ extern intptr_t g_hwnd_offset(HaloGameID gameID);
 extern DataEx<HWND, g_hwnd_offset> g_hwnd;
 extern intptr_t level_name_to_patch_offset(HaloGameID gameID);
 extern DataEx<char, level_name_to_patch_offset> level_name_to_patch;
-//extern HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830; g_gamepad_globals->unknown350
 extern HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018; // no equivalent
 extern intptr_t g_gamepad_globals_offset(HaloGameID gameID);
 extern DataEx<s_gamepad_globals, g_gamepad_globals_offset> g_gamepad_globals;
@@ -339,8 +343,6 @@ extern DataEx<s_input_abstraction, g_input_abstraction_offset> g_input_abstracti
 extern HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line; // no equivalent
 extern intptr_t g_createdWindow_offset(HaloGameID gameID);
 extern DataEx<HWND, g_createdWindow_offset> g_createdWindow;
-
-
 extern intptr_t dword_1810EC584_offset(HaloGameID gameID);
 extern DataEx<DWORD, dword_1810EC584_offset> dword_1810EC584;
 extern intptr_t byte_18342E55D_offset(HaloGameID gameID);
@@ -349,78 +351,36 @@ extern intptr_t byte_183984DE4_offset(HaloGameID gameID);
 extern DataEx<BYTE, byte_183984DE4_offset> byte_183984DE4;
 extern intptr_t dword_1810524AC_offset(HaloGameID gameID);
 extern DataEx<DWORD, dword_1810524AC_offset> dword_1810524AC;
-
 extern intptr_t ClassName_offset(HaloGameID gameID);
-extern HaloReachDataEx<char[64], ClassName_offset> ClassName;
+extern DataEx<char[64], ClassName_offset> ClassName;
 extern intptr_t WindowName_offset(HaloGameID gameID);
-extern HaloReachDataEx<char[64], WindowName_offset> WindowName;
+extern DataEx<char[64], WindowName_offset> WindowName;
 extern intptr_t g_WndProc_offset(HaloGameID gameID);
-extern HaloReachDataEx<WNDPROC, g_WndProc_offset> g_WndProc;
+extern DataEx<WNDPROC, g_WndProc_offset> g_WndProc;
 extern intptr_t g_hInstance_offset(HaloGameID gameID);
-extern HaloReachDataEx<HINSTANCE, g_hInstance_offset> g_hInstance;
+extern DataEx<HINSTANCE, g_hInstance_offset> g_hInstance;
+
+// #TODO: End Cleanup -----------
+
+
+
+
+
+
+
+
 
 // config flags
 
-extern bool g_useCustomGameEngineHostCallback;
+extern bool g_enableGameEngineHostOverride;
 extern bool g_useCustomGameWindow;
-extern GameEngineHostCallback gameEngineHostCallback;
-extern GameEngineHostCallback_vftbl gameEngineHostCallbackVftbl;
+extern IGameEngineHost gameEngineHost;
 extern GameEvents gameEvents;
 extern GameEvents_vftbl gameEventsVftbl;
 extern void init_haloreach_hooks();
 extern const char* g_haloReachPathOverride;
 
 
-enum class GEHCBypassType // GameEngineHostCallbackType
-{
-	UseValidPointer,
-	UseNullPointer
-};
-
-
-template<GEHCBypassType type, typename T>
-decltype(auto) GEHCBypass(T functionPtr, bool forceDisable = false) // GameEngineHostCallback
-{
-	using return_type = decltype(functionPtr());
-	
-	GameEngineHostCallback* pGameEngineHostCallbackBefore = g_GameEngineHostCallback;
-
-	if constexpr (type == GEHCBypassType::UseValidPointer)
-	{
-		if (g_useCustomGameEngineHostCallback && !forceDisable)
-		{
-			g_GameEngineHostCallback = &gameEngineHostCallback;
-		}
-	}
-	else
-	{
-		if (g_useCustomGameEngineHostCallback && !forceDisable)
-		{
-			g_GameEngineHostCallback = nullptr;
-		}
-	}
-
-	if constexpr (std::is_same<return_type, void>::value)
-	{
-		functionPtr();
-
-		if (g_useCustomGameEngineHostCallback && !forceDisable)
-		{
-			g_GameEngineHostCallback = pGameEngineHostCallbackBefore;
-		}
-	}
-	else
-	{
-		decltype(functionPtr()) result = functionPtr();
-
-		if (g_useCustomGameEngineHostCallback && !forceDisable)
-		{
-			g_GameEngineHostCallback = pGameEngineHostCallbackBefore;
-		}
-
-		return result;
-	}
-}
 
 
 // callback functions

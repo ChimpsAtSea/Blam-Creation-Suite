@@ -1,19 +1,19 @@
-#include "haloreach-private-pch.h"
+#include "haloshared-private-pch.h"
 
 using namespace Gdiplus;
 #pragma comment (lib,"Gdiplus.lib")
 
-HINSTANCE			splash_screen::s_hInstance = 0;
-HWND                splash_screen::s_hWnd = 0;
-MSG                 splash_screen::s_msg = {};
-WNDCLASS            splash_screen::s_wndClass = {};
-GdiplusStartupInput splash_screen::s_gdiplusStartupInput = {};
-ULONG_PTR           splash_screen::s_gdiplusToken = 0;
-std::thread			splash_screen::s_windowThread;
-std::atomic<bool>	splash_screen::s_isAlive = false;
-DWORD				splash_screen::s_threadID = -1;
+HINSTANCE			SplashScreen::s_hInstance = 0;
+HWND                SplashScreen::s_hWnd = 0;
+MSG                 SplashScreen::s_msg = {};
+WNDCLASS            SplashScreen::s_wndClass = {};
+GdiplusStartupInput SplashScreen::s_gdiplusStartupInput = {};
+ULONG_PTR           SplashScreen::s_gdiplusToken = 0;
+std::thread			SplashScreen::s_windowThread;
+std::atomic<bool>	SplashScreen::s_isAlive = false;
+DWORD				SplashScreen::s_threadID = -1;
 
-void splash_screen::LoadBitmapFromPNG(UINT uResourceID, Bitmap** ppBitmapOut, HINSTANCE hInstance /*= NULL*/)
+void SplashScreen::LoadBitmapFromPNG(UINT uResourceID, Bitmap** ppBitmapOut, HINSTANCE hInstance /*= NULL*/)
 {
 	HRSRC hResourceHandle = ::FindResource(hInstance, MAKEINTRESOURCE(uResourceID), "PNG");
 	assert(hResourceHandle);
@@ -53,7 +53,7 @@ void splash_screen::LoadBitmapFromPNG(UINT uResourceID, Bitmap** ppBitmapOut, HI
 	FreeResource(hResourceInstance);
 }
 
-LRESULT CALLBACK splash_screen::WndProc(HWND hWnd, UINT message,
+LRESULT CALLBACK SplashScreen::WndProc(HWND hWnd, UINT message,
 	WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
@@ -75,7 +75,7 @@ LRESULT CALLBACK splash_screen::WndProc(HWND hWnd, UINT message,
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
-VOID splash_screen::OnPaint(HDC hdc)
+VOID SplashScreen::OnPaint(HDC hdc)
 {
 	Graphics graphics(hdc);
 
@@ -91,12 +91,12 @@ VOID splash_screen::OnPaint(HDC hdc)
 	delete pBitmap;
 }
 
-void splash_screen::Create()
+void SplashScreen::Create()
 {
 	s_windowThread = std::thread(WindowThreadProc);
 }
 
-void splash_screen::Destroy()
+void SplashScreen::Destroy()
 {
 	if (s_hWnd)
 	{
@@ -105,12 +105,12 @@ void splash_screen::Destroy()
 	}
 }
 
-bool splash_screen::IsAlive()
+bool SplashScreen::IsAlive()
 {
 	return s_hWnd != 0;
 }
 
-void splash_screen::WindowThreadProc()
+void SplashScreen::WindowThreadProc()
 {
 	SetProcessDPIAware();
 

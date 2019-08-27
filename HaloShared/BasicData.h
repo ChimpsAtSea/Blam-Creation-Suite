@@ -411,12 +411,3 @@ using HaloReach_2019_Jun_24_BasicData = BasicData<HaloGameID::HaloReach_2019_Jun
 
 template<typename T, size_t offset>
 using HaloReach_2019_Jun_24_Data = Data<HaloGameID::HaloReach_2019_Jun_24, T, offset>;
-
-template<typename T, intptr_t(find_offset_func)(HaloGameID gameID)>
-using HaloReachPointerEx = PointerEx<T, find_offset_func>;
-
-template<typename T, intptr_t(find_offset_func)(HaloGameID gameID)>
-using HaloReachBasicDataEx = BasicDataEx<T, find_offset_func>;
-
-template<typename T, intptr_t(find_offset_func)(HaloGameID gameID)>
-using HaloReachDataEx = DataEx<T, find_offset_func>;

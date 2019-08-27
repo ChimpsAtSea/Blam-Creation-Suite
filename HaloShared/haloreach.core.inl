@@ -51,7 +51,7 @@ intptr_t sub_1800122F0_offset(HaloGameID gameID)
 HaloReachHookEx<sub_1800122F0_offset, int()> sub_1800122F0 = { "sub_1800122F0", []() // TODO: add proper name
 {
 	auto callback = []() { return sub_1800122F0(); };
-	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
+	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>(callback);
 } };
 
 intptr_t initialize_window_offset(HaloGameID gameID)
@@ -65,7 +65,7 @@ intptr_t initialize_window_offset(HaloGameID gameID)
 }
 HaloReachHookEx<initialize_window_offset, HWND()> initialize_window = []()
 {
-	return GEHCBypass<GEHCBypassType::UseNullPointer>([]()
+	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>([]()
 		{
 			HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach_2019_Jun_24));
 			assert(hHaloReachModule);
@@ -92,7 +92,7 @@ HaloReachHookEx<initialize_window_offset, HWND()> initialize_window = []()
 FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18000F8D0, int()> sub_18000F8D0 = []()
 {
 	auto callback = [=]() { return sub_18000F8D0(); };
-	return GEHCBypass<GEHCBypassType::UseValidPointer>(callback);
+	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>(callback);
 };
 
 intptr_t main_game_launch_offset(HaloGameID gameID)
@@ -126,7 +126,7 @@ HaloReachHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2
 		"terminate"
 	};
 
-	auto result = GEHCBypass<GEHCBypassType::UseValidPointer>([a1, a2, load_state, load_state_names]()
+	auto result = IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>([a1, a2, load_state, load_state_names]()
 		{
 
 			static int previous_load_state = k_load_state_invalid;
@@ -198,7 +198,7 @@ HaloReachHookEx<sub_180012200_offset, __int64(__fastcall)(__int64 a1)> sub_18001
 		result = a1;
 	}
 	dword_1810EC584 = static_cast<DWORD>(result);
-	if (g_GameEngineHostCallback)
+	if (g_game_engine_host_pointer)
 	{
 		WriteLineVerbose("sub_180012200: Aborting!");
 
@@ -220,45 +220,45 @@ HaloReachHookEx<sub_180012200_offset, __int64(__fastcall)(__int64 a1)> sub_18001
 	return result;
 } };
 
-intptr_t levels_try_and_get_scenario_path_offset(HaloGameID gameID)
-{
-	switch (gameID)
-	{
-	case HaloGameID::HaloReach_2019_Jun_24: return 0x1803A6B30;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x1801C3660;
-	}
-	return ~intptr_t();
-}
-typedef char *(__fastcall levels_try_and_get_scenario_path_func)(int campaign_id, unsigned int map_id, char *scenario_path, int size);
-HaloReachHookEx<levels_try_and_get_scenario_path_offset, levels_try_and_get_scenario_path_func> levels_try_and_get_scenario_path = { "levels_try_and_get_scenario_path", [](int campaign_id, unsigned int map_id, char* scenario_path, int size)
-{
-	// #HACK #TODO: Figure out the best home for this incase this is incorrect
-	g_waitingForInputUpdate = true;
-
-	map_id = 0x10231971; // force the default map load code path
-
-	auto result = levels_try_and_get_scenario_path(campaign_id, map_id, scenario_path, size);
-
-	if (strlen(scenario_path) == 0)
-	{
-		WriteLineVerbose("WARNING: The map name is not set!");
-		WriteLineVerbose("SELECTED MAP: <none>");
-		ThrowDebugger();
-	}
-	else if (strstr(scenario_path, "mainmenu") != 0)
-	{
-		WriteLineVerbose("WARNING: The mainmenu is not supported!");
-	}
-	else
-	{
-		WriteLineVerbose("SELECTED MAP: %s", scenario_path);
-	}
-
-	// forceload a different map file
-	char customMapName[] = "ff45_corvette";
-	memcpy(scenario_path, customMapName, sizeof(customMapName));
-
-	WriteLineVerbose("MAP OVERRIDE: %s", scenario_path);
-
-	return result;
-} };
+//intptr_t levels_try_and_get_scenario_path_offset(HaloGameID gameID)
+//{
+//	switch (gameID)
+//	{
+//	case HaloGameID::HaloReach_2019_Jun_24: return 0x1803A6B30;
+//	case HaloGameID::HaloReach_2019_Aug_20: return 0x1801C3660;
+//	}
+//	return ~intptr_t();
+//}
+//typedef char *(__fastcall levels_try_and_get_scenario_path_func)(int campaign_id, unsigned int map_id, char *scenario_path, int size);
+//HaloReachHookEx<levels_try_and_get_scenario_path_offset, levels_try_and_get_scenario_path_func> levels_try_and_get_scenario_path = { "levels_try_and_get_scenario_path", [](int campaign_id, unsigned int map_id, char* scenario_path, int size)
+//{
+//	// #HACK #TODO: Figure out the best home for this incase this is incorrect
+//	g_waitingForInputUpdate = true;
+//
+//	map_id = 0x10231971; // force the default map load code path
+//
+//	auto result = levels_try_and_get_scenario_path(campaign_id, map_id, scenario_path, size);
+//
+//	if (strlen(scenario_path) == 0)
+//	{
+//		WriteLineVerbose("WARNING: The map name is not set!");
+//		WriteLineVerbose("SELECTED MAP: <none>");
+//		ThrowDebugger();
+//	}
+//	else if (strstr(scenario_path, "mainmenu") != 0)
+//	{
+//		WriteLineVerbose("WARNING: The mainmenu is not supported!");
+//	}
+//	else
+//	{
+//		WriteLineVerbose("SELECTED MAP: %s", scenario_path);
+//	}
+//
+//	// forceload a different map file
+//	char customMapName[] = "ff45_corvette";
+//	memcpy(scenario_path, customMapName, sizeof(customMapName));
+//
+//	WriteLineVerbose("MAP OVERRIDE: %s", scenario_path);
+//
+//	return result;
+//} };

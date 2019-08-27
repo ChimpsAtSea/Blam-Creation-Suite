@@ -1,15 +1,14 @@
 #include "haloshared-private-pch.h"
 
 // Custom Engine Stuff
-GameEngineHostCallback gameEngineHostCallback;
-GameEngineHostCallback_vftbl gameEngineHostCallbackVftbl;
+IGameEngineHost gameEngineHost;
 GameEvents gameEvents;
 GameEvents_vftbl gameEventsVftbl;
 s_thread_local_storage ThreadLocalStorage;
 
 // Custom Stuff
 
-bool g_useCustomGameEngineHostCallback = false;
+bool g_enableGameEngineHostOverride = false;
 bool g_useCustomGameWindow = false;
 s_game_bindings g_GameBindings;
 bool g_customBinds = false;
@@ -32,7 +31,7 @@ bool g_hideWindowOnStartup = false;
 
 Pointer<HaloGameID::HaloReach_2019_Aug_20, IDirectInputDevice8*, 0x1839EC128> qword_1839EC128;
 
-intptr_t GetGameEngineHostCallbackOffset(HaloGameID gameID)
+intptr_t get_game_engine_host_offset(HaloGameID gameID)
 {
 	switch (gameID)
 	{
@@ -41,7 +40,7 @@ intptr_t GetGameEngineHostCallbackOffset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachDataEx<GameEngineHostCallback*, GetGameEngineHostCallbackOffset> g_GameEngineHostCallback;
+DataEx<IGameEngineHost*, get_game_engine_host_offset> g_game_engine_host_pointer;
 
 intptr_t TlsIndex_offset(HaloGameID gameID)
 {
@@ -54,7 +53,7 @@ intptr_t TlsIndex_offset(HaloGameID gameID)
 }
 DataEx<uint32_t, TlsIndex_offset> TlsIndex;
 
-intptr_t g_render_thread_mode_offset(HaloGameID gameID)
+intptr_t get_render_thread_mode_offset(HaloGameID gameID)
 {
 	switch (gameID)
 	{
@@ -63,7 +62,7 @@ intptr_t g_render_thread_mode_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-DataEx<LONG, g_render_thread_mode_offset> g_render_thread_mode;
+DataEx<LONG, get_render_thread_mode_offset> g_render_thread_mode;
 
 intptr_t dword_1810EC584_offset(HaloGameID gameID)
 {
@@ -198,7 +197,7 @@ intptr_t g_WndProc_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachDataEx<WNDPROC, g_WndProc_offset> g_WndProc;
+DataEx<WNDPROC, g_WndProc_offset> g_WndProc;
 
 intptr_t g_hInstance_offset(HaloGameID gameID)
 {
@@ -209,7 +208,7 @@ intptr_t g_hInstance_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachDataEx<HINSTANCE, g_hInstance_offset> g_hInstance;
+DataEx<HINSTANCE, g_hInstance_offset> g_hInstance;
 
 intptr_t ClassName_offset(HaloGameID gameID)
 {
@@ -220,7 +219,7 @@ intptr_t ClassName_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachDataEx<char[64], ClassName_offset> ClassName;
+DataEx<char[64], ClassName_offset> ClassName;
 intptr_t WindowName_offset(HaloGameID gameID)
 {
 	switch (gameID)
@@ -230,7 +229,7 @@ intptr_t WindowName_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachDataEx<char[64], WindowName_offset> WindowName;
+DataEx<char[64], WindowName_offset> WindowName;
 
 HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line; // no equivalent
 
