@@ -54,6 +54,7 @@ intptr_t input_update_offset(HaloGameID gameID)
 	return ~intptr_t();
 }
 
+#pragma optimize("", off)
 HaloReachHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 
 	if (qword_1839EC128)
@@ -95,6 +96,7 @@ HaloReachHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 	
 	return result;
 };
+#pragma optimize("", on)
 
 HaloReach_2019_Jun_24_Hook<0x180450C20, char(__stdcall)()> pan_cam_enabled = []()
 {
