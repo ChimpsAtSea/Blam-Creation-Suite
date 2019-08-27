@@ -173,6 +173,14 @@
     <ClInclude Include="local_types.h" />
     <ClInclude Include="logging.h" />
     <ClInclude Include="SplashScreen.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="reach_icon.ico" />
+    <Image Include="splash_screen.png" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />

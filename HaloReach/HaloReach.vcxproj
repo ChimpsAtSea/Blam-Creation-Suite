@@ -120,14 +120,6 @@ echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
   <ItemGroup>
     <ClInclude Include="haloreach-private-pch.h" />
     <ClInclude Include="haloreach-public-pch.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="reach_icon.ico" />
-    <Image Include="splash_screen.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
