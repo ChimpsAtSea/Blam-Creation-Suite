@@ -380,5 +380,5 @@ extern const char* g_haloReachPathOverride;
 
 
 // callback functions
-extern bool SetPlayerNameAndServiceTag();
+extern void set_player_name_and_tag();
 
