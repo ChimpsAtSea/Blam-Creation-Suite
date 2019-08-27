@@ -18,9 +18,6 @@
     <ClCompile Include="haloshared-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HaloReach.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CustomWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,9 +51,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="haloshared-public-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HaloReach.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CustomWindow.h">
@@ -98,25 +92,24 @@
     <ClInclude Include="logging.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="haloreach.core.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="haloreach.input.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="haloreach.render.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="haloreach.log.inl">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="haloreach.game.inl">
-      <Filter>Header Files</Filter>
-    </None>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="reach_icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="splash_screen.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

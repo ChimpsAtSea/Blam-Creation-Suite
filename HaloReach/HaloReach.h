@@ -1,6 +1,6 @@
 #pragma once
 
-#include "local_types.h"
+#include <HaloShared/local_types.h>
 
 class IGameEngineHost;
 
@@ -286,11 +286,9 @@ extern bool g_gameManuallyKilled;
 extern bool g_isHooked;
 extern WORD g_frameLimit;
 extern int g_fieldOfView;
-extern HICON g_icon;
 extern bool g_pancamEnabled;
 extern int g_controlsLayout;
 extern int g_useController;
-extern bool g_waitingForInputUpdate;
 extern bool g_hideWindowOnStartup;
 
 // Halo Reach Functions
@@ -372,9 +370,7 @@ extern DataEx<HINSTANCE, g_hInstance_offset> g_hInstance;
 
 // config flags
 
-extern bool g_enableGameEngineHostOverride;
 extern bool g_useCustomGameWindow;
-extern IGameEngineHost gameEngineHost;
 extern GameEvents gameEvents;
 extern GameEvents_vftbl gameEventsVftbl;
 extern void init_haloreach_hooks();

@@ -1,14 +1,12 @@
-#include "haloshared-private-pch.h"
+#include "haloreach-private-pch.h"
 
 // Custom Engine Stuff
-IGameEngineHost gameEngineHost;
 GameEvents gameEvents;
 GameEvents_vftbl gameEventsVftbl;
 s_thread_local_storage ThreadLocalStorage;
 
 // Custom Stuff
 
-bool g_enableGameEngineHostOverride = false;
 bool g_useCustomGameWindow = false;
 s_game_bindings g_GameBindings;
 bool g_customBinds = false;
@@ -24,7 +22,6 @@ int g_controlsLayout = 0;
 int g_useController = 0;
 bool g_pancamEnabled = false;
 bool g_keyboardPrintKeyState = false;
-bool g_waitingForInputUpdate = false;
 bool g_hideWindowOnStartup = false;
 
 // Halo Reach Variables
@@ -605,8 +602,6 @@ void init_haloreach_hooks()
 
 	DataReferenceBase::ProcessTree(gameID);
 	FunctionHookBase::ProcessTree(gameID);
-
-	end_detours();
 
 	// #TODO: Remove this
 	switch (gameID)

@@ -1,5 +1,7 @@
 #include "haloshared-private-pch.h"
 
+bool IGameEngineHost::g_enableGameEngineHostOverride = false;
+bool IGameEngineHost::g_waitingForInputUpdate = false;
 IGameEngineHost IGameEngineHost::g_gameEngineHost;
 
 IGameEngineHost::IGameEngineHost()
@@ -52,8 +54,8 @@ void IGameEngineHost::Member24()
 {
 	WriteLineVerbose("GameLoaded");
 	SplashScreen::Destroy();
-	ShowWindow(g_createdWindow, SW_SHOW);
-	SetFocus(g_createdWindow);
+	ShowWindow(CustomWindow::s_hwnd, SW_SHOW);
+	SetFocus(CustomWindow::s_hwnd);
 };
 
 void IGameEngineHost::Member25() {};
@@ -91,9 +93,9 @@ unsigned __int8 __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInput
 		}
 	}
 
-	if (g_waitingForInputUpdate) // #TODO: Remove when mouse input is figured out
+	if (IGameEngineHost::g_waitingForInputUpdate) // #TODO: Remove when mouse input is figured out
 	{
-		g_waitingForInputUpdate = false;
+		IGameEngineHost::g_waitingForInputUpdate = false;
 		return unsigned __int8(1);
 	}
 	return unsigned __int8(0);

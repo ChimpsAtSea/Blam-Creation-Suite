@@ -1,9 +1,14 @@
 #pragma once
 
+class GameEvents;
+
 class IGameEngineHost
 {
 public:
 
+	static bool g_enableGameEngineHostOverride;
+	static bool g_waitingForInputUpdate;
+	
 	static IGameEngineHost g_gameEngineHost;
 
 	struct InputBuffer
@@ -77,25 +82,25 @@ public:
 		UseNullPointer
 	};
 
-	template<GEHCBypassType type, typename T>
-	static decltype(auto) GEHCBypass(T functionPtr, bool forceDisable = false) // GameEngineHostCallback
+	template<GEHCBypassType type, typename T, typename IGameEngineHostRefType>
+	static decltype(auto) GEHCBypass(IGameEngineHostRefType& game_engine_host_pointer, T functionPtr, bool forceDisable = false) // GameEngineHostCallback
 	{
 		using return_type = decltype(functionPtr());
 
-		IGameEngineHost* pGameEngineHostBefore = g_game_engine_host_pointer;
+		IGameEngineHost* pGameEngineHostBefore = game_engine_host_pointer;
 
 		if constexpr (type == GEHCBypassType::UseValidPointer)
 		{
 			if (g_enableGameEngineHostOverride && !forceDisable)
 			{
-				g_game_engine_host_pointer = &gameEngineHost;
+				game_engine_host_pointer = &g_gameEngineHost;
 			}
 		}
 		else
 		{
 			if (g_enableGameEngineHostOverride && !forceDisable)
 			{
-				g_game_engine_host_pointer = nullptr;
+				game_engine_host_pointer = nullptr;
 			}
 		}
 
@@ -105,7 +110,7 @@ public:
 
 			if (g_enableGameEngineHostOverride && !forceDisable)
 			{
-				g_game_engine_host_pointer = pGameEngineHostBefore;
+				game_engine_host_pointer = pGameEngineHostBefore;
 			}
 		}
 		else
@@ -114,7 +119,7 @@ public:
 
 			if (g_enableGameEngineHostOverride && !forceDisable)
 			{
-				g_game_engine_host_pointer = pGameEngineHostBefore;
+				game_engine_host_pointer = pGameEngineHostBefore;
 			}
 
 			return result;

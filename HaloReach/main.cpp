@@ -273,7 +273,7 @@ void initialize_custom_halo_reach_stuff()
 	setup_game_events();
 	setup_game_engine_host_callback();
 
-	g_enableGameEngineHostOverride = true;
+	IGameEngineHost::g_enableGameEngineHostOverride = true;
 	g_useCustomGameWindow = true;
 	init_haloreach_hooks();
 
@@ -310,6 +310,13 @@ int WINAPI WinMain(
 {
 	g_icon = LoadIconA(GetModuleHandle(NULL), MAKEINTRESOURCEA(IDI_ICON1));
 	SetProcessDPIAware();
+
+	CustomWindow::SetOnDestroyCallback([]()
+		{
+			byte_183984DE4 = 1;
+			g_gameManuallyKilled = true;
+		}
+	);
 
 #if _DEBUG
 	bool isDebug = true;

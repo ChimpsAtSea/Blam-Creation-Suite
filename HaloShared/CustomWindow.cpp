@@ -2,7 +2,32 @@
 
 CustomWindow::CreateWindowExA_Func CustomWindow::CreateWindowExA = nullptr;
 CustomWindow::RegisterClassExA_Func CustomWindow::RegisterClassExA = nullptr;
-HWND CustomWindow::s_hwnd;
+HWND CustomWindow::s_hwnd = NULL;
+void(*CustomWindow::s_OnDestroyCallback)() = nullptr;
+HICON CustomWindow::s_hIcon = NULL;
+
+HICON CustomWindow::GetIcon()
+{
+	return s_hIcon;
+}
+
+void CustomWindow::SetIcon(HICON hIcon)
+{
+	s_hIcon = hIcon;
+}
+
+void CustomWindow::SetOnDestroyCallback(void(*callback)())
+{
+	s_OnDestroyCallback = callback;
+}
+
+void CustomWindow::OnDestroyCallback()
+{
+	if (s_OnDestroyCallback)
+	{
+		s_OnDestroyCallback();
+	}
+}
 
 void CustomWindow::SetupHooks()
 {
@@ -22,8 +47,7 @@ void CustomWindow::Update()
 
 	if (GetAsyncKeyState(VK_F11))
 	{
-		byte_183984DE4 = 1;
-		g_gameManuallyKilled = true;
+		OnDestroyCallback();
 	}
 }
 
@@ -50,8 +74,7 @@ LRESULT CALLBACK CustomWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 		}
 		break;
 	case WM_DESTROY:
-		byte_183984DE4 = 1;
-		g_gameManuallyKilled = true;
+		OnDestroyCallback();
 		PostQuitMessage(WM_QUIT);
 		break;
 	case WM_SIZE:

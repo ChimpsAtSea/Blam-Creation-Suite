@@ -127,7 +127,7 @@ void SplashScreen::WindowThreadProc()
 	s_wndClass.cbClsExtra = 0;
 	s_wndClass.cbWndExtra = 0;
 	s_wndClass.hInstance = s_hInstance;
-	s_wndClass.hIcon = g_icon;
+	s_wndClass.hIcon = CustomWindow::GetIcon();
 	s_wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 	s_wndClass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	s_wndClass.lpszMenuName = NULL;

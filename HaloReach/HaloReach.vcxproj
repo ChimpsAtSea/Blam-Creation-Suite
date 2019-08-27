@@ -69,7 +69,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>imgui.lib;detours.lib;syelog.lib;Winmm.lib;HaloUtilities.lib;HaloShared.lib;Version.lib;D3D11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imgui.lib;detours.lib;syelog.lib;Winmm.lib;HaloShared.lib;Version.lib;D3D11.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
@@ -98,7 +98,7 @@ echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>imgui.lib;detours.lib;syelog.lib;Winmm.lib;HaloUtilities.lib;HaloShared.lib;Version.lib;D3D11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imgui.lib;detours.lib;syelog.lib;Winmm.lib;HaloShared.lib;Version.lib;D3D11.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
@@ -111,6 +111,7 @@ echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HaloReach.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="haloreach-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -120,6 +121,14 @@ echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
   <ItemGroup>
     <ClInclude Include="haloreach-private-pch.h" />
     <ClInclude Include="haloreach-public-pch.h" />
+    <ClInclude Include="HaloReach.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="haloreach.core.inl" />
+    <None Include="haloreach.game.inl" />
+    <None Include="haloreach.input.inl" />
+    <None Include="haloreach.log.inl" />
+    <None Include="haloreach.render.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

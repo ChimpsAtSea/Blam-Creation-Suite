@@ -2,10 +2,18 @@
 class CustomWindow
 {
 public:
+	static HICON GetIcon();
+	static void SetIcon(HICON hIcon);
+	static void SetOnDestroyCallback(void(*callback)());
+	static void OnDestroyCallback();
 	static void	SetupHooks();
 	static void Update();
 	static HWND GetWindowHandle();
 	static void ShowWindow();
+
+	static HICON	s_hIcon;
+	static HWND		s_hwnd;
+	static void(*s_OnDestroyCallback)();
 
 	typedef ATOM(WINAPI* RegisterClassExA_Func)(_In_ CONST WNDCLASSEXA*);
 	typedef HWND(WINAPI* CreateWindowExA_Func)(
@@ -24,7 +32,6 @@ public:
 
 	static CreateWindowExA_Func CreateWindowExA;
 	static RegisterClassExA_Func RegisterClassExA;
-	static HWND s_hwnd;
 
 	static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static ATOM WINAPI CustomRegisterClassExA(_In_ WNDCLASSEXA* arg);

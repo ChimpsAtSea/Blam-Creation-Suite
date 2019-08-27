@@ -148,7 +148,6 @@
     </ClCompile>
     <ClCompile Include="FunctionHook.cpp" />
     <ClCompile Include="HaloGameID.cpp" />
-    <ClCompile Include="HaloReach.cpp" />
     <ClCompile Include="haloshared-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -164,7 +163,6 @@
     <ClInclude Include="hexrays_defs.h" />
     <ClInclude Include="FunctionHook.h" />
     <ClInclude Include="HaloGameID.h" />
-    <ClInclude Include="HaloReach.h" />
     <ClInclude Include="haloshared-private-pch.h" />
     <ClInclude Include="haloshared-public-pch.h" />
     <ClInclude Include="haloshared-system-pch.h" />
@@ -184,13 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="haloreach.core.inl" />
-    <None Include="haloreach.game.inl" />
-    <None Include="haloreach.input.inl" />
-    <None Include="haloreach.log.inl" />
-    <None Include="haloreach.render.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

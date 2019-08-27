@@ -6,8 +6,9 @@
 #include "BasicData.h"
 #include "FunctionHook.h"
 #include "CustomWindow.h"
-#include "HaloReach.h"
+
+
+
 #include "DebugUI.h"
 #include "SplashScreen.h"
 #include "IGameEngineHost.h"
-

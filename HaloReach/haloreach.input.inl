@@ -27,7 +27,7 @@ intptr_t sub_18077D160_offset(HaloGameID gameID)
 FunctionHookEx<sub_18077D160_offset, __int16 __fastcall (__int64 a1, __int16* a2)> sub_18077D160 = [](__int64 a1, __int16* a2)
 {
 	auto callback = [=]() { return sub_18077D160(a1, a2); };
-	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(callback);
+	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, callback);
 };
 
 void print_key_state_debug(s_bindings_table& bindingsTable)
@@ -91,7 +91,7 @@ HaloReachHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 		name_and_tag_set = true;
 	}
 
-	char result = IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>([]() {return input_update(); });
+	char result = IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>(g_game_engine_host_pointer, []() {return input_update(); });
 	
 	return result;
 };
