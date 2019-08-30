@@ -291,6 +291,12 @@ extern int g_controlsLayout;
 extern int g_useController;
 extern bool g_hideWindowOnStartup;
 
+extern char g_LaunchMapName[256];
+extern e_map_id g_LaunchMapId;
+extern int g_LaunchGameMode;
+extern e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel;
+extern const char *g_LaunchHopperGameVariant;
+
 // Halo Reach Functions
 
 #define profile_configuration_update_args \
@@ -382,3 +388,11 @@ extern const char* g_haloReachPathOverride;
 // callback functions
 extern void set_player_name_and_tag();
 
+
+// ...
+extern const char *game_mode_to_string(int game_mode);
+extern e_game_mode string_to_game_mode(const char *string);
+extern const char *campaign_difficulty_level_to_string(int campaign_difficulty_level);
+extern e_campaign_difficulty_level string_to_campaign_difficulty_level(const char *string);
+extern const char *map_id_to_string(int map_id);
+extern e_map_id string_to_map_id(const char *string);

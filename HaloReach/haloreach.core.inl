@@ -258,8 +258,7 @@ HaloReachHookEx<levels_try_and_get_scenario_path_offset, levels_try_and_get_scen
 	}
 
 	// forceload a different map file
-	char customMapName[] = "ff45_corvette";
-	memcpy(scenario_path, customMapName, sizeof(customMapName));
+	sprintf(scenario_path, "maps\\%s.map", g_LaunchMapName);
 
 	WriteLineVerbose("MAP OVERRIDE: %s", scenario_path);
 

@@ -257,7 +257,7 @@ void load_hopper_map_variant(const char *pHopperGameVariantName, s_map_variant &
 void load_hopper_game_variant(const char* pHopperGameVariantName, s_game_variant& out_game_variant)
 {
 	char pFilename[MAX_PATH] = {};
-	sprintf(pFilename, "hopper_game_variants\\%s", pHopperGameVariantName);
+	sprintf(pFilename, "hopper_game_variants\\%s.bin", pHopperGameVariantName);
 	pFilename[MAX_PATH - 1] = 0;
 
 	FILE* pVariantFile = fopen(pFilename, "rb");
@@ -326,11 +326,11 @@ void initialize_custom_halo_reach_stuff()
 	assert(pHaloReachDataAccess);
 
 	static s_game_launch_data game_launch_data = s_game_launch_data();
-	game_launch_data.MapId = _map_id_ff45_corvette;
-	game_launch_data.GameMode = _game_mode_survival;
-	game_launch_data.CampaignDifficultyLevel = _campaign_difficulty_level_easy;
+	game_launch_data.MapId = g_LaunchMapId;
+	game_launch_data.GameMode = g_LaunchGameMode;
+	game_launch_data.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
 
-	load_hopper_game_variant("ff_gruntpocalypse_054.bin", game_launch_data.halo_reach_game_variant);
+	load_hopper_game_variant(g_LaunchHopperGameVariant, game_launch_data.halo_reach_game_variant);
 	//load_hopper_map_variant("the_cage.mvar", game_launch_data.halo_reach_map_variant);
 	load_previous_gamestate("gamestate.hdr", game_launch_data);
 

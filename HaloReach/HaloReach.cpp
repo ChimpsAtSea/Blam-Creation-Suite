@@ -24,6 +24,12 @@ bool g_pancamEnabled = false;
 bool g_keyboardPrintKeyState = false;
 bool g_hideWindowOnStartup = false;
 
+char g_LaunchMapName[256] = "ff45_corvette";
+e_map_id g_LaunchMapId = _map_id_ff45_corvette;
+int g_LaunchGameMode = _game_mode_survival;
+e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
+const char *g_LaunchHopperGameVariant = "ff_gruntpocalypse_054";
+
 // Halo Reach Variables
 
 Pointer<HaloGameID::HaloReach_2019_Aug_20, IDirectInputDevice8*, 0x1839EC128> qword_1839EC128;
@@ -550,6 +556,12 @@ void ReadConfig()
 	//input_update.SetCallback([](void *) { WriteGameState(); }, nullptr);
 
 	ReadBinds();
+
+	strcpy_s(g_LaunchMapName, sizeof(g_LaunchMapName), g_Config.ReadString("Launch", "Map", "ff45_corvette"));
+	g_LaunchMapId = string_to_map_id(g_LaunchMapName);
+	g_LaunchGameMode = string_to_game_mode(g_Config.ReadString("Launch", "GameMode", "survival"));
+	g_LaunchCampaignDifficultyLevel = string_to_campaign_difficulty_level(g_Config.ReadString("Launch", "CampaignDifficultyLevel", "easy"));
+	g_LaunchHopperGameVariant = g_Config.ReadString("Launch", "HopperGameVariant", "ff_gruntpocalypse_054");
 }
 
 uint64_t GetVersionID(const char* pFilename)
@@ -624,4 +636,157 @@ void init_haloreach_hooks()
 	}
 
 	end_detours();
+}
+
+
+const char *game_mode_to_string(int game_mode)
+{
+	switch (game_mode)
+	{
+	case _game_mode_none:
+		return "none";
+	case _game_mode_campaign:
+		return "campaign";
+	case _game_mode_multiplayer:
+		return "multiplayer";
+	case _game_mode_survival:
+		return "survival";
+	}
+	return "<unknown>";
+}
+e_game_mode string_to_game_mode(const char *string)
+{
+	int result = _game_mode_survival;
+	for (int i = _game_mode_none; i < k_number_of_game_modes; i++)
+	{
+		if (strcmp(string, game_mode_to_string(i)) == 0)
+			result = i;
+	}
+	return (e_game_mode)result;
+}
+const char *campaign_difficulty_level_to_string(int campaign_difficulty_level)
+{
+	switch (campaign_difficulty_level)
+	{
+	case _campaign_difficulty_level_easy:
+		return "easy";
+	case _campaign_difficulty_level_normal:
+		return "normal";
+	case _campaign_difficulty_level_heroic:
+		return "heroic";
+	case _campaign_difficulty_level_legendary:
+		return "legendary";
+	}
+	return "<unknown>";
+}
+e_campaign_difficulty_level string_to_campaign_difficulty_level(const char *string)
+{
+	int result = _campaign_difficulty_level_normal;
+	for (int i = _campaign_difficulty_level_easy; i < k_number_of_campaign_difficulty_levels; i++)
+	{
+		if (strcmp(string, campaign_difficulty_level_to_string(i)) == 0)
+			result = i;
+	}
+	return (e_campaign_difficulty_level)result;
+}
+const char *map_id_to_string(int map_id)
+{
+	switch (map_id)
+	{
+	case _map_id_m05:
+		return "m05";
+	case _map_id_m10:
+		return "m10";
+	case _map_id_m20:
+		return "m20";
+	case _map_id_m30:
+		return "m30";
+	case _map_id_m35:
+		return "m35";
+	case _map_id_m45:
+		return "m45";
+	case _map_id_m50:
+		return "m50";
+	case _map_id_m52:
+		return "m52";
+	case _map_id_m60:
+		return "m60";
+	case _map_id_m70:
+		return "m70";
+	case _map_id_m70_a:
+		return "m70_a";
+	case _map_id_m70_bonus:
+		return "m70_bonus";
+	case _map_id_50_panopticon:
+		return "50_panopticon";
+	case _map_id_70_boneyard:
+		return "70_boneyard";
+	case _map_id_45_launch_station:
+		return "45_launch_station";
+	case _map_id_30_settlement:
+		return "30_settlement";
+	case _map_id_52_ivory_tower:
+		return "52_ivory_tower";
+	case _map_id_35_island:
+		return "35_island";
+	case _map_id_20_sword_slayer:
+		return "20_sword_slayer";
+	case _map_id_45_aftship:
+		return "45_aftship";
+	case _map_id_dlc_slayer:
+		return "dlc_slayer";
+	case _map_id_dlc_invasion:
+		return "dlc_invasion";
+	case _map_id_dlc_medium:
+		return "dlc_medium";
+	case _map_id_condemned:
+		return "condemned";
+	case _map_id_trainingpreserve:
+		return "trainingpreserve";
+	case _map_id_cex_beaver_creek:
+		return "cex_beaver_creek";
+	case _map_id_cex_damnation:
+		return "cex_damnation";
+	case _map_id_cex_timberland:
+		return "cex_timberland";
+	case _map_id_cex_prisoner:
+		return "cex_prisoner";
+	case _map_id_cex_hangemhigh:
+		return "cex_hangemhigh";
+	case _map_id_cex_headlong:
+		return "cex_headlong";
+	case _map_id_forge_halo:
+		return "forge_halo";
+	case _map_id_ff50_park:
+		return "ff50_park";
+	case _map_id_ff45_corvette:
+		return "ff45_corvette";
+	case _map_id_ff20_courtyard:
+		return "ff20_courtyard";
+	case _map_id_ff60_icecave:
+		return "ff60_icecave";
+	case _map_id_ff70_holdout:
+		return "ff70_holdout";
+	case _map_id_ff60_ruins:
+		return "ff60_ruins";
+	case _map_id_ff10_prototype:
+		return "ff10_prototype";
+	case _map_id_ff30_waterfront:
+		return "ff30_waterfront";
+	case _map_id_ff_unearthed:
+		return "ff_unearthed";
+	case _map_id_cex_ff_halo:
+		return "cex_ff_halo";
+	}
+	return "<unknown>";
+}
+e_map_id string_to_map_id(const char *string)
+{
+	int result = _map_id_ff45_corvette;
+	for (int i = _map_id_m05; i < k_number_of_map_ids; i++)
+	{
+		if (strcmp(string, map_id_to_string(i)) == 0)
+			result = i;
+	}
+	return (e_map_id)result;
 }
