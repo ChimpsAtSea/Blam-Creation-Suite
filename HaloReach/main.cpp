@@ -306,7 +306,7 @@ void load_previous_gamestate(const char* pFilename, s_game_launch_data& game_lau
 		fclose(pGameStateFile);
 
 		game_launch_data.pGameStateHeader = reinterpret_cast<uint8_t*>(&pGameStateBuffer);
-		game_launch_data.GameStateHeaderSize = (_DWORD)gameStateSize;
+		game_launch_data.GameStateHeaderSize = gameStateSize;
 	}
 }
 
