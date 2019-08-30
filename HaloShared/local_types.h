@@ -17,26 +17,25 @@ struct _RTL_CRITICAL_SECTION_DEBUG;
 struct IGameEngine;
 struct GameEvents_vftbl;
 struct GameEvents;
-struct GameEngineHostCallback_vftbl;
-struct GameEngineHostCallback;
+struct s_game_launch_data;
 
 typedef void(NullSubFunc)();
 typedef __int64(ZeroSubFunc)();
 
 /* 514 */
-struct __declspec(align(8)) IGameEngine_vftbl
+struct /*VFT*/ IGameEngine_vtbl
 {
-	void(__fastcall* InitGraphics)(IGameEngine*, __int64, __int64, __int64, __int64);
-	void(__fastcall* InitThread)(IGameEngine*, GameEngineHostCallback*, __int64);
-	void* Member02;
-	void* Member03;
-	void* Member04;
-	void* Member05;
-	void* Member06;
-	void* Member07;
-	void* Member08;
-	void* Member09;
-	void* Member10;
+	__int64(__fastcall *InitGraphics)(IGameEngine *, ID3D11Device *, ID3D11DeviceContext *, IDXGISwapChain *, IDXGISwapChain *);
+	__int64(__fastcall *InitThread)(IGameEngine *, struct IGameEngineHost *, s_game_launch_data *);
+	__int64(__fastcall *Member02)(IGameEngine *, int, _QWORD *);
+	__int64(__fastcall *Destructor)(IGameEngine *);
+	void(__fastcall *Member04)();
+	void(__fastcall *Member05)();
+	void(__fastcall *Member06)();
+	void(__fastcall *Member07)();
+	void(__fastcall *Member08)();
+	__int64(__fastcall *Member09)(IGameEngine *, const char *);
+	__int64(__fastcall *Member10)();
 };
 
 /* 17 */
@@ -45,117 +44,166 @@ struct __declspec(align(8)) IGameEngine_vftbl
 /* 515 */
 struct IGameEngine
 {
-	IGameEngine_vftbl* vftbl;
+	IGameEngine_vtbl *__vftable;
 	DWORD unknown0;
 	float unknown1;
 	char unknown2[454];
 
-	void InitGraphics(__int64 /*ID3D11Device **/pID3D11Device, __int64 /*ID3D11DeviceContext **/pContext, __int64 /*IDXGISwapChain **/pSwapChain, __int64 /*IDXGISwapChain **/pSwapChainFallback)
+	void InitGraphics(ID3D11Device *pID3D11Device, ID3D11DeviceContext *pContext, IDXGISwapChain *pSwapChain, IDXGISwapChain *pSwapChainFallback)
 	{
-		vftbl->InitGraphics(this, pID3D11Device, pContext, pSwapChain, pSwapChainFallback);
+		__vftable->InitGraphics(this, pID3D11Device, pContext, pSwapChain, pSwapChainFallback);
 	}
-	void InitThread(GameEngineHostCallback* gameEngineHostCallback, __int64 a2)
+	void InitThread(IGameEngineHost* gameEngineHostCallback, s_game_launch_data *gameLaunchData)
 	{
-		vftbl->InitThread(this, gameEngineHostCallback, a2);
+		__vftable->InitThread(this, gameEngineHostCallback, gameLaunchData);
 	}
 };
 
-struct __declspec(align(8)) IDataAccess_vtbl
+struct c_game_engine_variant;
+struct __declspec(align(8)) c_game_engine_variant_vtbl
 {
-	void* Member00;
-	void* CreateMapVariantFromFile;
-	void* CreateMapVariantDefault;
-	__int64 (*CreateGameVariantFromFile)(struct IDataAccess* _this, char* file_data, __int32 file_length);
-	void* CreateGameVariantDefault;
-	void* LoadMapById;
-	void* Member06;
-	void* Free;
+	__int64(__fastcall *Member00)(c_game_engine_variant *);
+	void *Member01;
+	void(__fastcall *Member02)(c_game_engine_variant *);
+	__int64(__fastcall *Member03)(c_game_engine_variant *);
+	void *Member04;
+	void *Member05;
+	void *Member06;
+	void *Member07;
+	void *Member08;
+	void *Member09;
+	void *Member10;
+	void *Member11;
+	void(__fastcall *initialize_for_new_map)(c_game_engine_variant *, __int64, c_game_engine_variant **);
+	void *Member13;
+	void *Member14;
+	__int64(__fastcall *Member15)(c_game_engine_variant *);
+	void *Member16;
+	__int64(__fastcall *Member17)(c_game_engine_variant *, _QWORD, _QWORD);
+	void *Member18;
+	void *Member19;
+	void *Member20;
+	void *Member21;
+	unsigned __int8(__fastcall *Member22)(c_game_engine_variant *, __int64, __int64 *, unsigned __int64);
+};
+
+struct c_game_engine_variant
+{
+	c_game_engine_variant_vtbl *__vftable /*VFT*/;
+	BYTE data[64504];
+};
+
+struct s_game_variant
+{
+	DWORD game_engine_index;
+	c_game_engine_variant game_engine_variant;
+};
+
+struct s_map_variant
+{
+	BYTE data[55724];
+};
+
+struct ISaveFilmMetadata;
+struct /*VFT*/ ISaveFilmMetadata_vtbl
+{
+	__int64(__fastcall *Member00)(ISaveFilmMetadata *);
+	__int64(__fastcall *Member01)(ISaveFilmMetadata *);
+	__int64(__fastcall *GetMapId)(ISaveFilmMetadata *);
+	BYTE *(__fastcall *Member03)(ISaveFilmMetadata *);
+	BYTE *(__fastcall *Member04)(ISaveFilmMetadata *);
+	BYTE *(__fastcall *Member05)(ISaveFilmMetadata *);
+	void(__fastcall *Free)(ISaveFilmMetadata *);
+};
+struct ISaveFilmMetadata
+{
+	ISaveFilmMetadata_vtbl *__vftable /*VFT*/;
+	BYTE data[128936];
+};
+
+struct IMapVariant;
+struct /*VFT*/ IMapVariant_vtbl
+{
+	__int64(__fastcall *GetMCCMapId)(IMapVariant *);
+	bool(__fastcall *Member01)(IMapVariant *);
+	BYTE *(__fastcall *Member02)(IMapVariant *);
+	BYTE *(__fastcall *Member03)(IMapVariant *);
+	__int64(__fastcall *Member04)(IMapVariant *, wchar_t *);
+	__int64(__fastcall *Member05)(IMapVariant *, wchar_t *);
+	BYTE *(__fastcall *Member06)(IMapVariant *, struct s_unknown *);
+	bool(__fastcall *Member07)(IMapVariant *, struct s_unknown *);
+	bool(__fastcall *Member08)(IMapVariant *, struct s_unknown *);
+	bool(__fastcall *Member09)(IMapVariant *, struct content_item_map_variant *, size_t *);
+	void(__fastcall *Free)(IMapVariant *);
+};
+struct IMapVariant
+{
+	IMapVariant_vtbl *__vftable /*VFT*/;
+	s_map_variant MapVariant;
+	BYTE data[29484];
+};
+
+struct IGameVariant;
+struct /*VFT*/ IGameVariant_vtbl
+{
+	BYTE *(__fastcall *Member00)(IGameVariant *);
+	BYTE *(__fastcall *Member01)(IGameVariant *);
+	__int64(__fastcall *Member02)(IGameVariant *, wchar_t *);
+	__int64(__fastcall *Member03)(IGameVariant *, wchar_t *);
+	BYTE *(__fastcall *Member04)(IGameVariant *);
+	__int64(__fastcall *Member05)(IGameVariant *);
+	__int64(__fastcall *Member06)(IGameVariant *, struct s_unknown *);
+	bool(__fastcall *IsSandboxVariant)(IGameVariant *);
+	char(__fastcall *Member08)(IGameVariant *);
+	__int64(__fastcall *Member09)(IGameVariant *);
+	IGameVariant *(__fastcall *Create)(IGameVariant *);
+	__int64(__fastcall *Member11)(IGameVariant *, struct s_unknown *, struct s_unknown *);
+	__int64(__fastcall *Member12)(IGameVariant *, struct s_unknown *, struct s_unknown *);
+	bool(__fastcall *Member13)(IGameVariant *, struct s_unknown *, struct s_unknown *);
+	bool(__fastcall *Member14)(IGameVariant *, struct s_unknown *, struct s_unknown *);
+	bool(__fastcall *Member15)(IGameVariant *, struct s_unknown *, struct s_unknown *);
+	bool(__fastcall *Member16)(IGameVariant *, struct s_unknown *);
+	bool(__fastcall *Member17)(IGameVariant *, struct s_unknown *);
+	bool(__fastcall *Member18)(IGameVariant *, struct content_item_game_variant *, size_t *);
+	void(__fastcall *Free)(IGameVariant *);
+};
+struct IGameVariant
+{
+	IGameVariant_vtbl *__vftable /*VFT*/;
+	s_game_variant GameVariant;
+	BYTE data[22060];
+};
+
+struct IDataAccess;
+struct IDataAccess_vtbl
+{
+	struct IMapVariant *(__fastcall *CreateMapVariantFromFile)(IDataAccess *, /*struct content_item_map_variant **/char *, size_t);
+	struct IMapVariant *(__fastcall *CreateMapVariantFromMCCMapId)(IDataAccess *, __int64);
+	struct IMapVariant *(__fastcall *CreateMapVariant)(IDataAccess *, struct s_map_variant *);
+	struct IGameVariant *(__fastcall *CreateGameVariantFromFile)(IDataAccess *, /*struct content_item_game_variant **/char *, size_t);
+	struct IGameVariant *(__fastcall *CreateGameVariant)(IDataAccess *, struct s_game_variant *);
+	bool (__fastcall *Member05)(IDataAccess *, struct s_unknown *, void *);
+	struct ISaveFilmMetadata *(__fastcall *CreateSaveFilmMetadataFromFile)(IDataAccess *, /*struct content_item_film_description **/char *, size_t);
+	void (__fastcall *Free)(IDataAccess *);
 };
 
 struct IDataAccess
 {
 	IDataAccess_vtbl* __vftable /*VFT*/;
-	void* function0;
+	void* c_heap_allocation;
 	void* function1;
-	void* function2;
+	void* c_heap_allocation_size;
 	void* function3;
 
-	__int64 CreateGameVariantFromFile(char* file_data, __int32 file_length)
+	__int64 CreateMapVariantFromFile(char* content_item_map_variant, size_t file_length)
 	{
-		return __vftable->CreateGameVariantFromFile(this, file_data, file_length);
+		return (__int64)__vftable->CreateMapVariantFromFile(this, content_item_map_variant, file_length);
+	}
+	__int64 CreateGameVariantFromFile(char* content_item_game_variant, size_t file_length)
+	{
+		return (__int64)__vftable->CreateGameVariantFromFile(this, content_item_game_variant, file_length);
 	}
 };
-
-struct Member29UnknownStruct
-{
-	int unknown0;
-	char data0[256];
-	char data1[20];
-	char data2[16];
-};
-static_assert(sizeof(Member29UnknownStruct) == 0x128, "");
-
-/* 516 */
-struct GameEngineHostCallback_vftbl
-{
-	NullSubFunc* Member00;
-	NullSubFunc* Member01;
-	NullSubFunc* Member02;
-	NullSubFunc* Member03;
-	NullSubFunc* Member04;
-	void(__fastcall* WriteGameState)(GameEngineHostCallback*, LPVOID, size_t);
-	NullSubFunc* Member06;
-	NullSubFunc* Member07;
-	NullSubFunc* Member08;
-	NullSubFunc* Member09;
-	NullSubFunc* GetGameEvents;
-	NullSubFunc* Member11; // DataAccessGameVariant
-	NullSubFunc* Member12; // DataAccessMapVariant
-	NullSubFunc* Member13;
-	NullSubFunc* Member14;
-	NullSubFunc* GetNextMapId;
-	NullSubFunc* Member16;
-	NullSubFunc* Member17;
-	NullSubFunc* Member18;
-	//NullSubFunc* Member19;
-	__int64(__fastcall* Member19)(GameEngineHostCallback*, __int64/*, __int64, __int64*/);
-	NullSubFunc* Member20;
-	NullSubFunc* Member21;
-	NullSubFunc* Member22;
-	NullSubFunc* Member23;
-	NullSubFunc* Member24;
-	NullSubFunc* Member25;
-	NullSubFunc* Member26;
-	NullSubFunc* Member27;
-	NullSubFunc* Member28;
-
-	NullSubFunc* Member29NewPaddingBecauseThisHasChanged;
-
-	//unsigned __int8(__fastcall* Member28)(GameEngineHostCallback*, __int64, char*);
-	unsigned __int8(__fastcall* Member29)(GameEngineHostCallback*, _QWORD, Member29UnknownStruct* pUnknown);
-	NullSubFunc* SetPlayerName;
-	NullSubFunc* Member31;
-	NullSubFunc* Member32;
-	NullSubFunc* Member33;
-	NullSubFunc* Member34;
-	NullSubFunc* Member35;
-	NullSubFunc* Member36;
-	NullSubFunc* Member37;
-	NullSubFunc* Member38;
-	NullSubFunc* Member39;
-	NullSubFunc* Member40;
-	NullSubFunc* Member41;
-	NullSubFunc* Member42;
-};
-
-/* 517 */
-struct __declspec(align(8)) GameEngineHostCallback
-{
-	GameEngineHostCallback_vftbl* vftbl;
-	GameEvents* pGameEvents;
-	QWORD data1[5863];
-};
-
 
 /* 4 */
 typedef struct _GUID GUID;
@@ -438,47 +486,6 @@ enum e_game_mode : int
 	k_number_of_game_modes,
 };
 
-struct c_game_engine_variant;
-
-struct __declspec(align(8)) c_game_engine_variant_vtbl
-{
-	__int64(__fastcall* Member00)(c_game_engine_variant*);
-	void* Member01;
-	void(__fastcall* Member02)(c_game_engine_variant*);
-	__int64(__fastcall* Member03)(c_game_engine_variant*);
-	void* Member04;
-	void* Member05;
-	void* Member06;
-	void* Member07;
-	void* Member08;
-	void* Member09;
-	void* Member10;
-	void* Member11;
-	void(__fastcall* initialize_for_new_map)(c_game_engine_variant*, __int64, c_game_engine_variant**);
-	void* Member13;
-	void* Member14;
-	__int64(__fastcall* Member15)(c_game_engine_variant*);
-	void* Member16;
-	__int64(__fastcall* Member17)(c_game_engine_variant*, _QWORD, _QWORD);
-	void* Member18;
-	void* Member19;
-	void* Member20;
-	void* Member21;
-	unsigned __int8(__fastcall* Member22)(c_game_engine_variant*, __int64, __int64*, unsigned __int64);
-};
-
-struct c_game_engine_variant
-{
-	c_game_engine_variant_vtbl* __vftable /*VFT*/;
-	BYTE data[64504];
-};
-
-struct s_game_variant
-{
-	DWORD game_engine_index;
-	c_game_engine_variant game_engine_variant;
-};
-
 struct s_game_launch_data_memzero
 {
 	s_game_launch_data_memzero()
@@ -585,7 +592,11 @@ struct __cppobj s_game_launch_data : s_game_launch_data_memzero
 		_BYTE GameVariantBuffer[115 * 1024] = {};
 		s_game_variant halo_reach_game_variant;
 	};
-	_BYTE MapVariant[58 * 1024] = {};
+	union
+	{
+		_BYTE MapVariantBuffer[58 * 1024] = {};
+		s_map_variant halo_reach_map_variant;
+	};
 	// [0x180330500, mcc_id_to_reach_map_id, https://pastebin.com/r3ihQagj]
 	// [180330BD0, mcc_id_to_reach_map_name, https://pastebin.com/Qx72e0G6]
 	e_map_id MapId = _map_id_m35;

@@ -229,6 +229,31 @@ void read_file_to_buffer(FILE* pFile, char* pBuffer, size_t length)
 
 }
 
+void load_hopper_map_variant(const char *pHopperGameVariantName, s_map_variant &out_map_variant)
+{
+	char pFilename[MAX_PATH] = {};
+	sprintf(pFilename, "hopper_map_variants\\%s", pHopperGameVariantName);
+	pFilename[MAX_PATH - 1] = 0;
+
+	FILE *pVariantFile = fopen(pFilename, "rb");
+	if (pVariantFile)
+	{
+		size_t variantSize = get_file_size(pVariantFile);
+		char *pVariantBuffer = (char *)alloca(variantSize);
+		memset(pVariantBuffer, 0x00, variantSize);
+		read_file_to_buffer(pVariantFile, pVariantBuffer, variantSize);
+		fclose(pVariantFile);
+
+		__int64 result = pHaloReachDataAccess->CreateMapVariantFromFile(pVariantBuffer, static_cast<int>(variantSize));
+
+		// #TODO: MCC STRUCTURE FOR THIS
+		// #TODO: First 8 bytes appear to be a pointer to something in base game
+		s_map_variant *variant = (s_map_variant *)(result + 8);
+
+		out_map_variant = *variant;
+	}
+}
+
 void load_hopper_game_variant(const char* pHopperGameVariantName, s_game_variant& out_game_variant)
 {
 	char pFilename[MAX_PATH] = {};
@@ -254,6 +279,7 @@ void load_hopper_game_variant(const char* pHopperGameVariantName, s_game_variant
 	}
 }
 
+/*
 void load_previous_gamestate(const char* pFilename, s_game_launch_data& game_launch_data)
 {
 	if (FILE * pGameStateFile = fopen(pFilename, "r"))
@@ -264,6 +290,23 @@ void load_previous_gamestate(const char* pFilename, s_game_launch_data& game_lau
 
 		game_launch_data.pGameStateHeader = reinterpret_cast<uint8_t*>(&game_state_header);
 		game_launch_data.GameStateHeaderSize = sizeof(s_game_state_header);
+	}
+}
+*/
+
+void load_previous_gamestate(const char* pFilename, s_game_launch_data& game_launch_data)
+{
+	FILE *pGameStateFile = fopen(pFilename, "rb");
+	if (pGameStateFile)
+	{
+		size_t gameStateSize = get_file_size(pGameStateFile);
+		char *pGameStateBuffer = (char *)alloca(gameStateSize);
+		memset(pGameStateBuffer, 0x00, gameStateSize);
+		read_file_to_buffer(pGameStateFile, pGameStateBuffer, gameStateSize);
+		fclose(pGameStateFile);
+
+		game_launch_data.pGameStateHeader = reinterpret_cast<uint8_t*>(&pGameStateBuffer);
+		game_launch_data.GameStateHeaderSize = (_DWORD)gameStateSize;
 	}
 }
 
@@ -288,10 +331,11 @@ void initialize_custom_halo_reach_stuff()
 	game_launch_data.CampaignDifficultyLevel = _campaign_difficulty_level_easy;
 
 	load_hopper_game_variant("ff_gruntpocalypse_054.bin", game_launch_data.halo_reach_game_variant);
+	//load_hopper_map_variant("the_cage.mvar", game_launch_data.halo_reach_map_variant);
 	load_previous_gamestate("gamestate.hdr", game_launch_data);
 
 	//pHaloReachEngine->InitGraphics(0, 0, 0, 0); // #TODO: Correct MCC graphics initialization
-	pHaloReachEngine->InitThread(nullptr, (__int64)& game_launch_data);
+	pHaloReachEngine->InitThread(nullptr, &game_launch_data);
 }
 
 void deinit_haloreach()
