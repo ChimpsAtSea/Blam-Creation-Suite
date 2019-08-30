@@ -379,12 +379,24 @@ void memcpy_virtual(
 	}
 }
 
-void check_library_can_load(const char* pLibName)
+void check_library_can_load(const char* pLibName, const char* pFallbackDir = "")
 {
 	HMODULE hModule = GetModuleHandleA(pLibName);
 	if (!hModule)
 	{
 		hModule = LoadLibraryA(pLibName);
+
+		// use fallback if 
+		if (!hModule && pFallbackDir[0])
+		{
+			char fallbackPath[MAX_PATH] = {};
+			sprintf(fallbackPath, "%s\\%s", pFallbackDir, pLibName);
+			hModule = GetModuleHandleA(fallbackPath);
+			if (!hModule)
+			{
+				hModule = LoadLibraryA(fallbackPath);
+			}
+		}
 	}
 	if (!hModule)
 	{
@@ -601,7 +613,7 @@ uint64_t GetVersionID(const char* pFilename)
 
 void init_haloreach_hooks()
 {
-	check_library_can_load("bink2w64.dll");
+	check_library_can_load("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
 
 
 
