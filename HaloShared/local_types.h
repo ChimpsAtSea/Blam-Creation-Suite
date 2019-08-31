@@ -486,13 +486,13 @@ enum e_game_mode : int
 	k_number_of_game_modes,
 };
 
-struct s_peer_id
+struct XnkId
 {
-	uint8_t data[8];
+	uint8_t Data[8];
 };
-struct s_player_id
+struct XnkAddr
 {
-	uint8_t data[24];
+	uint8_t Data[24];
 };
 
 struct s_game_launch_data_memzero
@@ -606,7 +606,7 @@ struct __cppobj s_game_launch_data : s_game_launch_data_memzero
 		uint8_t MapVariantBuffer[58 * 1024] = {};
 		s_map_variant halo_reach_map_variant;
 	};
-	// [0x180330500, mcc_id_to_reach_map_id, https://pastebin.com/r3ihQagj]
+	// [180330500, mcc_id_to_reach_map_id,   https://pastebin.com/r3ihQagj]
 	// [180330BD0, mcc_id_to_reach_map_name, https://pastebin.com/Qx72e0G6]
 	e_map_id MapId = _map_id_m35;
 	e_campaign_difficulty_level CampaignDifficultyLevel = _campaign_difficulty_level_easy;
@@ -617,27 +617,21 @@ struct __cppobj s_game_launch_data : s_game_launch_data_memzero
 	uint8_t* pGameStateHeader = nullptr;
 	size_t GameStateHeaderSize = 0;
 	const char* SavedFilmPath = nullptr;
-	s_peer_id SquadID = {
-		0x3E, 0xF3, 0xD4, 0x95, 0x2E, 0x5E, 0x38, 0x2F
-	};
-	s_peer_id LocalPeerID = {
-		0x02, 0x72, 0x57, 0xEE, 0xB0, 0x86, 0x7F, 0x7F
-	};
-	bool IsLocalSquad = true; // false if client
-	uint8_t : 8;
-	uint16_t : 16;
-	uint32_t : 32;
-	s_peer_id PeerIDs[17] = { // null if client
-		{ 0x02, 0x72, 0x57, 0xEE, 0xB0, 0x86, 0x7F, 0x7F }
-	};
-	int32_t PeerCount = 1; // 0 if client
-	uint32_t : 32;
-	s_player_id PlayerIDs[16] = { // null if client
-		{ 0xC8, 0x5A, 0xD7, 0x02, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
-	};
-	int32_t PlayerCount = 1; // null if client
-	uint32_t : 32;
-	s_peer_id SomePeerID = {}; // LeaderID?, LocalPeerID if client
+	struct
+	{
+		XnkId SquadId = { 0x3E, 0xF3, 0xD4, 0x95, 0x2E, 0x5E, 0x38, 0x2F };
+		XnkId LocalId = { 0x02, 0x72, 0x57, 0xEE, 0xB0, 0x86, 0x7F, 0x7F };
+		union { uint64_t : 64; bool IsLocalSquad = true; }; // if client, is false
+		XnkId PeerIds[17] = { // if client, is null
+			{ 0x02, 0x72, 0x57, 0xEE, 0xB0, 0x86, 0x7F, 0x7F }
+		};
+		union { uint64_t : 64; int32_t PeerCount = 1; }; // if client, is 0
+		XnkAddr PlayerIds[16] = { // if client, is null
+			{ 0xC8, 0x5A, 0xD7, 0x02, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
+		};
+		union { uint64_t : 64; int32_t PlayerCount = 1; }; // if client, is 0
+		XnkId HostId = {}; // if client, is LocalId
+	} PartyData;
 	uint8_t byte2B678[8] = {
 		0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 	};

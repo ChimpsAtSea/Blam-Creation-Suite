@@ -34,7 +34,7 @@ void IGameEngineHost::Member11() {};
 void IGameEngineHost::Member12() {};
 void IGameEngineHost::Member13() {};
 void IGameEngineHost::Member14() {};
-void IGameEngineHost::GetNextMapId() {};
+void IGameEngineHost::GetNextLevelInfo() {};
 void IGameEngineHost::Member16() {};
 void IGameEngineHost::Member17() {};
 void IGameEngineHost::Member18() {};
@@ -104,15 +104,15 @@ unsigned __int8 __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInput
 void IGameEngineHost::SetPlayerName() {};
 void IGameEngineHost::Member32() {};
 void IGameEngineHost::Member33() {};
-void IGameEngineHost::Member34() {};
-void IGameEngineHost::Member35() {};
+void IGameEngineHost::NetworkSendTo() {};
+void IGameEngineHost::NetworkReceiveFrom() {};
 void IGameEngineHost::Member36() {};
 void IGameEngineHost::Member37() {};
 void IGameEngineHost::Member38() {};
 void IGameEngineHost::Member39() {};
 void IGameEngineHost::Member40() {};
 void IGameEngineHost::Member41() {};
-void IGameEngineHost::Member42() {};
+void IGameEngineHost::FileAccessed() {};
 void IGameEngineHost::Member43() {};
 
 
