@@ -1,13 +1,67 @@
 
-//// allow the game to read the command line to use -width and -height
-//HaloReachHook<0x1806C2C30, char()> initialize_device = []()
-//{
-//	qword_183461018 = 0x10;
-//
-//	auto result = initialize_device();
-//
-//	return result;
-//};
+HaloReach_2019_Jun_24_Data<void*, 0x1810EC5B0> g_pIDXGISwapChain;
+HaloReach_2019_Jun_24_Data<IID, 0x180E0B2A8> stru_180E0B2A8;
+HaloReach_2019_Jun_24_Pointer<IDXGIFactory1*, 0x18112D368> ppFactory;
+
+intptr_t g_pDevice_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x18112D588;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37AA0;
+	}
+	return ~intptr_t();
+}
+// #TODO: Remove this and create the device at the MCC layer
+DataEx<ID3D11Device*, g_pDevice_offset> g_pDevice;
+
+intptr_t g_pSwapChain_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x18112D378;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x184465D68;
+	}
+	return ~intptr_t();
+}
+// #TODO: Remove this and create the device at the MCC layer
+PointerEx<IDXGISwapChain*, g_pSwapChain_offset> g_pSwapChain;
+
+intptr_t initialize_device_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1806C2C30;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18040C8C0;
+	}
+	return ~intptr_t();
+}
+
+// allow the game to read the command line to use -width and -height
+HaloReachHookEx<initialize_device_offset, char()> initialize_device = { "initialize_device", []()
+{
+	D3D_FEATURE_LEVEL pFeatureLevels[] =
+	{
+		D3D_FEATURE_LEVEL_11_1,
+		D3D_FEATURE_LEVEL_11_0,
+		D3D_FEATURE_LEVEL_10_0,
+	};
+
+  ID3D11Device* pDevice = nullptr;
+  ID3D11DeviceContext* pImmediateContext = nullptr;
+  D3D_FEATURE_LEVEL FeatureLevel = {};
+  auto D3D11CreateDeviceResult = D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, pFeatureLevels, _countof(pFeatureLevels), D3D11_SDK_VERSION, &pDevice, &FeatureLevel, &pImmediateContext);
+  assert(D3D11CreateDeviceResult == S_OK);
+
+  g_pDevice = pDevice;
+
+  auto result = initialize_device();
+  IDXGISwapChain* pSwapChain = g_pSwapChain;
+
+  DebugUI::Setup(pSwapChain, pDevice, pImmediateContext);
+
+  return result;
+} };
 
 intptr_t game_options_new_offset(HaloGameID gameID)
 {

@@ -277,9 +277,9 @@ HaloReachHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restri
 // input functionality
 #include "haloreach.input.inl"
 
-//// rendering functionality
-//#include "haloreach.render.inl"
-//
+// rendering functionality
+#include "haloreach.render.inl"
+
 //// log and text manipulation functionality
 //#include "haloreach.log.inl"
 //
@@ -288,65 +288,7 @@ HaloReachHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restri
 
 // --- WORK IN PROGRESS BELOW ---
 
-#pragma region RenderingWIP
 
-
-HaloReach_2019_Jun_24_Data<void*, 0x1810EC5B0> g_pIDXGISwapChain;
-
-HaloReach_2019_Jun_24_Data<IID, 0x180E0B2A8> stru_180E0B2A8;
-HaloReach_2019_Jun_24_Pointer<IDXGIFactory1*, 0x18112D368> ppFactory;
-HaloReach_2019_Jun_24_Pointer<ID3D11Device*, 0x18112D588> g_pDevice;
-
-Data<HaloGameID::HaloReach_2019_Aug_20, ID3D11Device*, 0x180D37AA0> qword_180D37AA0;
-
-intptr_t g_pSwapChain_offset(HaloGameID gameID)
-{
-	switch (gameID)
-	{
-	case HaloGameID::HaloReach_2019_Jun_24: return 0x18112D378;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x184465D68;
-	}
-	return ~intptr_t();
-}
-PointerEx<IDXGISwapChain*, g_pSwapChain_offset> g_pSwapChain;
-
-intptr_t initialize_device_offset(HaloGameID gameID)
-{
-	switch (gameID)
-	{
-	case HaloGameID::HaloReach_2019_Jun_24: return 0x1806C2C30;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18040C8C0;
-	}
-	return ~intptr_t();
-}
-
-// allow the game to read the command line to use -width and -height
-HaloReachHookEx<initialize_device_offset, char()> initialize_device = { "initialize_device", []()
-{
-	D3D_FEATURE_LEVEL pFeatureLevels[] =
-	{
-		D3D_FEATURE_LEVEL_11_1,
-		D3D_FEATURE_LEVEL_11_0,
-		D3D_FEATURE_LEVEL_10_0,
-	};
-
-  ID3D11Device* pDevice = nullptr;
-  ID3D11DeviceContext* pImmediateContext = nullptr;
-  D3D_FEATURE_LEVEL FeatureLevel = {};
-  auto D3D11CreateDeviceResult = D3D11CreateDevice(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, 0, pFeatureLevels, _countof(pFeatureLevels), D3D11_SDK_VERSION, &pDevice, &FeatureLevel, &pImmediateContext);
-  assert(D3D11CreateDeviceResult == S_OK);
-
-  qword_180D37AA0 = pDevice;
-
-  auto result = initialize_device();
-  IDXGISwapChain* pSwapChain = g_pSwapChain;
-
-  DebugUI::Setup(pSwapChain, pDevice, pImmediateContext);
-
-  return result;
-} };
-
-#pragma endregion
 
 void WriteGameState()
 {
