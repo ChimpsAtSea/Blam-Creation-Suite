@@ -44,22 +44,6 @@ void print_key_state_debug(s_bindings_table& bindingsTable)
 	}
 }
 
-intptr_t input_initialize_offset(HaloGameID gameID)
-{
-	switch (gameID)
-	{
-	case HaloGameID::HaloReach_2019_Jun_24: FATAL_ERROR("input_update_offset HaloReach_2019_Jun_24"); return 0;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18014C240;
-	}
-	return ~intptr_t();
-}
-
-
-HaloReachHookEx<input_initialize_offset, char()> input_initialize = []()
-{
-	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, input_initialize);
-};
-
 intptr_t input_update_offset(HaloGameID gameID)
 {
 	switch (gameID)
