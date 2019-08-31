@@ -39,7 +39,7 @@ public:
 	virtual void Member12(); // DataAccessMapVariant
 	virtual void Member13();
 	virtual void Member14();
-	virtual void GetNextMapId();
+	virtual void GetNextLevelInfo();
 	virtual void Member16();
 	virtual void Member17();
 	virtual void Member18();
@@ -54,19 +54,19 @@ public:
 	virtual void Member27();
 	virtual void Member28();
 	virtual void Member29();
-	virtual unsigned __int8 __fastcall Member30(_QWORD, InputBuffer* pInputBuffer);
+	virtual unsigned __int8 __fastcall Member30(_QWORD, InputBuffer *pInputBuffer);
 	virtual void SetPlayerName();
 	virtual void Member32();
 	virtual void Member33();
-	virtual void Member34();
-	virtual void Member35();
+	virtual void NetworkSendTo();
+	virtual void NetworkReceiveFrom();
 	virtual void Member36();
 	virtual void Member37();
 	virtual void Member38();
 	virtual void Member39();
 	virtual void Member40();
 	virtual void Member41();
-	virtual void Member42();
+	virtual void FileAccessed();
 	virtual void Member43();
 
 	// DATA
