@@ -26,7 +26,7 @@ typedef __int64(ZeroSubFunc)();
 struct /*VFT*/ IGameEngine_vtbl
 {
 	__int64(__fastcall *InitGraphics)(IGameEngine *, ID3D11Device *, ID3D11DeviceContext *, IDXGISwapChain *, IDXGISwapChain *);
-	__int64(__fastcall *InitThread)(IGameEngine *, struct IGameEngineHost *, s_game_launch_data *);
+	__int64(__fastcall *InitThread)(IGameEngine *, class IGameEngineHost *, s_game_launch_data *);
 	__int64(__fastcall *Member02)(IGameEngine *, int, _QWORD *);
 	__int64(__fastcall *Destructor)(IGameEngine *);
 	void(__fastcall *Member04)();

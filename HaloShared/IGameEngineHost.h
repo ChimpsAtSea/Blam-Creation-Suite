@@ -1,6 +1,6 @@
 #pragma once
 
-class GameEvents;
+struct GameEvents;
 
 class IGameEngineHost
 {
