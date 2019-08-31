@@ -23,12 +23,66 @@ int g_useController = 0;
 bool g_pancamEnabled = false;
 bool g_keyboardPrintKeyState = false;
 bool g_hideWindowOnStartup = false;
+HaloGameID g_currentGameID = HaloGameID::NotSet;
 
 char g_LaunchMapName[256] = "ff45_corvette";
 e_map_id g_LaunchMapId = _map_id_ff45_corvette;
 int g_LaunchGameMode = _game_mode_survival;
 e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
 const char* g_LaunchHopperGameVariant = "ff_gruntpocalypse_054";
+
+// Assembly hacks
+
+void memcpy_virtual(
+	const void* dst,
+	const void* src,
+	size_t size
+)
+{
+	if (dst && src && size)
+	{
+		DWORD oldProtect;
+		VirtualProtect(const_cast<void*>(dst), size, PAGE_EXECUTE_READWRITE, &oldProtect);
+		memcpy(const_cast<void*>(dst), src, size);
+		VirtualProtect(const_cast<void*>(dst), size, oldProtect, &oldProtect);
+	}
+	else
+	{
+		WriteLineVerbose("dst must not be null");
+		assert(dst);
+	}
+}
+
+void patch_out_gameenginehostcallback_mov(HaloGameID id, intptr_t offset)
+{
+	char* pBeginning = (char*)GetHaloExecutable(id);
+
+	char* pMovAttack = pBeginning + (offset - 0x180000000);
+	// 48 8B 0D A3 9B C8 00
+	// mov    rcx,QWORD PTR [rip+0xc89ba3]
+	// change to
+	// 48 31 c9
+	// xor rcx, rcx
+	// nop 
+	// nop 
+	// nop 
+	// nop
+
+	assert(pMovAttack[0] == 0x48i8);
+	assert(pMovAttack[1] == 0x8Bi8);
+	assert(pMovAttack[2] == 0x0Di8);
+
+	char bytes[] =
+	{
+		0x48, 0x31, 0xc9,	// xor rcx, rcx
+		0x90,				// nop
+		0x90,				// nop
+		0x90,				// nop
+		0x90,				// nop
+	};
+
+	memcpy_virtual(pMovAttack, bytes, 7);
+}
 
 // Halo Reach Variables
 
@@ -291,10 +345,10 @@ HaloReachHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restri
 
 Pointer<HaloGameID::HaloReach_2019_Aug_20, _QWORD, 0x18306F898> qword_18306F898;
 
-FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18008FC30, __int64()> network_update = []()
-{
-	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>(g_game_engine_host_pointer, network_update);
-};
+//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18008FC30, __int64()> network_update = []()
+//{
+//	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>(g_game_engine_host_pointer, network_update);
+//};
 
 FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18090A0E0, __int64 __fastcall (PCSTR, unsigned __int16, char, SOCKET*)> sub_18090A0E0 = [](PCSTR pNodeName, unsigned __int16 a2, char a3, SOCKET* a4)
 {
@@ -326,26 +380,6 @@ void WriteGameState()
 		HaloReach_2019_Jun_24_Data<s_game_state_header*, 0x183841B18> pGameStateHeader;
 		fwrite(pGameStateHeader, 1, sizeof(s_game_state_header), pGameStateFile);
 		fclose(pGameStateFile);
-	}
-}
-
-void memcpy_virtual(
-	const void* dst,
-	const void* src,
-	size_t size
-)
-{
-	if (dst && src && size)
-	{
-		DWORD oldProtect;
-		VirtualProtect(const_cast<void*>(dst), size, PAGE_EXECUTE_READWRITE, &oldProtect);
-		memcpy(const_cast<void*>(dst), src, size);
-		VirtualProtect(const_cast<void*>(dst), size, oldProtect, &oldProtect);
-	}
-	else
-	{
-		WriteLineVerbose("dst must not be null");
-		assert(dst);
 	}
 }
 
@@ -671,73 +705,10 @@ void init_haloreach_hooks()
 		gameID = HaloGameID::HaloReach_2019_Jun_24;
 		break;
 	}
+	g_currentGameID = gameID;
 
 	DataReferenceBase::ProcessTree(gameID);
 	FunctionHookBase::ProcessTree(gameID);
-
-	//char* pBeginning = (char*)GetHaloExecutable(HaloGameID::HaloReach_2019_Aug_20);
-
-	//{
-	//	char* pMovAttack = pBeginning + (0x1800ADEFE - 0x180000000);
-	//	// 48 8B 0D A3 9B C8 00
-	//	// mov    rcx,QWORD PTR [rip+0xc89ba3]
-	//	// change to
-	//	// 48 31 c9
-	//	// xor rcx, rcx
-	//	// nop 
-	//	// nop 
-	//	// nop 
-	//	// nop
-
-	//	assert(pMovAttack[0] == 0x48i8);
-	//	assert(pMovAttack[1] == 0x8Bi8);
-	//	assert(pMovAttack[2] == 0x0Di8);
-	//	assert(pMovAttack[3] == 0xA3i8);
-	//	assert(pMovAttack[4] == 0x9Bi8);
-	//	assert(pMovAttack[5] == 0xC8i8);
-	//	assert(pMovAttack[6] == 0x00i8);
-
-	//	char bytes[] =
-	//	{
-	//		0x48, 0x31, 0xc9,	// xor rcx, rcx
-	//		0x90,				// nop
-	//		0x90,				// nop
-	//		0x90,				// nop
-	//		0x90,				// nop
-	//	};
-
-	//	memcpy_virtual(pMovAttack, bytes, 7);
-	//}
-
-	//{
-
-	//	char* pMovAttack = pBeginning + (0x180100D54 - 0x180000000);
-	//	// 48 8B 0D A3 9B C8 00
-	//	// mov    rcx,QWORD PTR [rip+0xc89ba3]
-	//	// change to
-	//	// 48 31 c9
-	//	// xor rcx, rcx
-	//	// nop 
-	//	// nop 
-	//	// nop 
-	//	// nop
-
-	//	assert(pMovAttack[0] == 0x48i8);
-	//	assert(pMovAttack[1] == 0x8Bi8);
-	//	assert(pMovAttack[2] == 0x0Di8);
-
-	//	char bytes[] =
-	//	{
-	//		0x48, 0x31, 0xc9,	// xor rcx, rcx
-	//		0x90,				// nop
-	//		0x90,				// nop
-	//		0x90,				// nop
-	//		0x90,				// nop
-	//	};
-
-	//	memcpy_virtual(pMovAttack, bytes, 7);
-	//}
-
 
 	// #TODO: Remove this
 	switch (gameID)
@@ -746,8 +717,6 @@ void init_haloreach_hooks()
 		g_shell_command_line = GetCommandLineA();
 		break;
 	}
-
-
 
 	create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer);
 

@@ -7,16 +7,25 @@ class IGameEngineHost
 public:
 
 	static bool g_enableGameEngineHostOverride;
-	static bool g_waitingForInputUpdate;
+
+	enum InputUpdatePatchState
+	{
+		WaitingForRun,
+		WaitingForPatch,
+		Patched
+	};
+	static InputUpdatePatchState g_inputUpdatePatchState;
 	
 	static IGameEngineHost g_gameEngineHost;
 
 	struct InputBuffer
 	{
 		int unknown0;
-		char data0[256];
-		char data1[20];
-		char data2[16];
+		char keyboardState[256];
+		float MouseX;
+		float MouseY;
+		char data2[12];
+		char data3[16];
 	};
 	static_assert(sizeof(InputBuffer) == 0x128, "");
 
@@ -28,13 +37,13 @@ public:
 	virtual void Member01();
 	virtual void Member02();
 	virtual void Member03();
-	virtual void Member04();
+	virtual void GameRestart();
 	virtual void __fastcall WriteGameState(LPVOID, size_t);
 	virtual void Member06();
 	virtual void Member07();
 	virtual void Member08();
 	virtual void Member09();
-	virtual void GetGameEvents();
+	virtual GameEvents* GetGameEvents();
 	virtual void Member11(); // DataAccessGameVariant
 	virtual void Member12(); // DataAccessMapVariant
 	virtual void Member13();
@@ -60,8 +69,8 @@ public:
 	virtual void Member25(Member25Struct& a1, uint32_t a2);
 	virtual void Member26();
 	virtual void Member27();
-	virtual void Member28();
-	virtual void Member29();
+	virtual bool Member28();
+	virtual bool Member29();
 	virtual unsigned __int8 __fastcall Member30(_QWORD, InputBuffer *pInputBuffer);
 	virtual bool __fastcall SetPlayerName(__int64*, wchar_t playerNames[4][32], size_t);
 	virtual void Member32();

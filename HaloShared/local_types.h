@@ -25,17 +25,17 @@ typedef __int64(ZeroSubFunc)();
 /* 514 */
 struct /*VFT*/ IGameEngine_vtbl
 {
-	__int64(__fastcall *InitGraphics)(IGameEngine *, ID3D11Device *, ID3D11DeviceContext *, IDXGISwapChain *, IDXGISwapChain *);
-	__int64(__fastcall *InitThread)(IGameEngine *, class IGameEngineHost *, s_game_launch_data *);
-	__int64(__fastcall *Member02)(IGameEngine *, int, _QWORD *);
-	__int64(__fastcall *Destructor)(IGameEngine *);
-	void(__fastcall *Member04)();
-	void(__fastcall *Member05)();
-	void(__fastcall *Member06)();
-	void(__fastcall *Member07)();
-	void(__fastcall *Member08)();
-	__int64(__fastcall *Member09)(IGameEngine *, const char *);
-	__int64(__fastcall *Member10)();
+	__int64(__fastcall* InitGraphics)(IGameEngine*, ID3D11Device*, ID3D11DeviceContext*, IDXGISwapChain*, IDXGISwapChain*);
+	__int64(__fastcall* InitThread)(IGameEngine*, class IGameEngineHost*, s_game_launch_data*);
+	__int64(__fastcall* Member02)(IGameEngine*, int, _QWORD*);
+	__int64(__fastcall* Destructor)(IGameEngine*);
+	void(__fastcall* Member04)();
+	void(__fastcall* Member05)();
+	void(__fastcall* Member06)();
+	void(__fastcall* Member07)();
+	void(__fastcall* Member08)();
+	__int64(__fastcall* Member09)(IGameEngine*, const char*);
+	__int64(__fastcall* Member10)();
 };
 
 /* 17 */
@@ -44,16 +44,16 @@ struct /*VFT*/ IGameEngine_vtbl
 /* 515 */
 struct IGameEngine
 {
-	IGameEngine_vtbl *__vftable;
+	IGameEngine_vtbl* __vftable;
 	DWORD unknown0;
 	float unknown1;
 	char unknown2[454];
 
-	void InitGraphics(ID3D11Device *pID3D11Device, ID3D11DeviceContext *pContext, IDXGISwapChain *pSwapChain, IDXGISwapChain *pSwapChainFallback)
+	void InitGraphics(ID3D11Device* pID3D11Device, ID3D11DeviceContext* pContext, IDXGISwapChain* pSwapChain, IDXGISwapChain* pSwapChainFallback)
 	{
 		__vftable->InitGraphics(this, pID3D11Device, pContext, pSwapChain, pSwapChainFallback);
 	}
-	void InitThread(IGameEngineHost* gameEngineHostCallback, s_game_launch_data *gameLaunchData)
+	void InitThread(IGameEngineHost* gameEngineHostCallback, s_game_launch_data* gameLaunchData)
 	{
 		__vftable->InitThread(this, gameEngineHostCallback, gameLaunchData);
 	}
@@ -62,34 +62,34 @@ struct IGameEngine
 struct c_game_engine_variant;
 struct __declspec(align(8)) c_game_engine_variant_vtbl
 {
-	__int64(__fastcall *Member00)(c_game_engine_variant *);
-	void *Member01;
-	void(__fastcall *Member02)(c_game_engine_variant *);
-	__int64(__fastcall *Member03)(c_game_engine_variant *);
-	void *Member04;
-	void *Member05;
-	void *Member06;
-	void *Member07;
-	void *Member08;
-	void *Member09;
-	void *Member10;
-	void *Member11;
-	void(__fastcall *initialize_for_new_map)(c_game_engine_variant *, __int64, c_game_engine_variant **);
-	void *Member13;
-	void *Member14;
-	__int64(__fastcall *Member15)(c_game_engine_variant *);
-	void *Member16;
-	__int64(__fastcall *Member17)(c_game_engine_variant *, _QWORD, _QWORD);
-	void *Member18;
-	void *Member19;
-	void *Member20;
-	void *Member21;
-	unsigned __int8(__fastcall *Member22)(c_game_engine_variant *, __int64, __int64 *, unsigned __int64);
+	__int64(__fastcall* Member00)(c_game_engine_variant*);
+	void* Member01;
+	void(__fastcall* Member02)(c_game_engine_variant*);
+	__int64(__fastcall* Member03)(c_game_engine_variant*);
+	void* Member04;
+	void* Member05;
+	void* Member06;
+	void* Member07;
+	void* Member08;
+	void* Member09;
+	void* Member10;
+	void* Member11;
+	void(__fastcall* initialize_for_new_map)(c_game_engine_variant*, __int64, c_game_engine_variant**);
+	void* Member13;
+	void* Member14;
+	__int64(__fastcall* Member15)(c_game_engine_variant*);
+	void* Member16;
+	__int64(__fastcall* Member17)(c_game_engine_variant*, _QWORD, _QWORD);
+	void* Member18;
+	void* Member19;
+	void* Member20;
+	void* Member21;
+	unsigned __int8(__fastcall* Member22)(c_game_engine_variant*, __int64, __int64*, unsigned __int64);
 };
 
 struct c_game_engine_variant
 {
-	c_game_engine_variant_vtbl *__vftable /*VFT*/;
+	c_game_engine_variant_vtbl* __vftable /*VFT*/;
 	BYTE data[64504];
 };
 
@@ -107,38 +107,38 @@ struct s_map_variant
 struct ISaveFilmMetadata;
 struct /*VFT*/ ISaveFilmMetadata_vtbl
 {
-	__int64(__fastcall *Member00)(ISaveFilmMetadata *);
-	__int64(__fastcall *Member01)(ISaveFilmMetadata *);
-	__int64(__fastcall *GetMapId)(ISaveFilmMetadata *);
-	BYTE *(__fastcall *Member03)(ISaveFilmMetadata *);
-	BYTE *(__fastcall *Member04)(ISaveFilmMetadata *);
-	BYTE *(__fastcall *Member05)(ISaveFilmMetadata *);
-	void(__fastcall *Free)(ISaveFilmMetadata *);
+	__int64(__fastcall* Member00)(ISaveFilmMetadata*);
+	__int64(__fastcall* Member01)(ISaveFilmMetadata*);
+	__int64(__fastcall* GetMapId)(ISaveFilmMetadata*);
+	BYTE* (__fastcall* Member03)(ISaveFilmMetadata*);
+	BYTE* (__fastcall* Member04)(ISaveFilmMetadata*);
+	BYTE* (__fastcall* Member05)(ISaveFilmMetadata*);
+	void(__fastcall* Free)(ISaveFilmMetadata*);
 };
 struct ISaveFilmMetadata
 {
-	ISaveFilmMetadata_vtbl *__vftable /*VFT*/;
+	ISaveFilmMetadata_vtbl* __vftable /*VFT*/;
 	BYTE data[128936];
 };
 
 struct IMapVariant;
 struct /*VFT*/ IMapVariant_vtbl
 {
-	__int64(__fastcall *GetMCCMapId)(IMapVariant *);
-	bool(__fastcall *Member01)(IMapVariant *);
-	BYTE *(__fastcall *Member02)(IMapVariant *);
-	BYTE *(__fastcall *Member03)(IMapVariant *);
-	__int64(__fastcall *Member04)(IMapVariant *, wchar_t *);
-	__int64(__fastcall *Member05)(IMapVariant *, wchar_t *);
-	BYTE *(__fastcall *Member06)(IMapVariant *, struct s_unknown *);
-	bool(__fastcall *Member07)(IMapVariant *, struct s_unknown *);
-	bool(__fastcall *Member08)(IMapVariant *, struct s_unknown *);
-	bool(__fastcall *Member09)(IMapVariant *, struct content_item_map_variant *, size_t *);
-	void(__fastcall *Free)(IMapVariant *);
+	__int64(__fastcall* GetMCCMapId)(IMapVariant*);
+	bool(__fastcall* Member01)(IMapVariant*);
+	BYTE* (__fastcall* Member02)(IMapVariant*);
+	BYTE* (__fastcall* Member03)(IMapVariant*);
+	__int64(__fastcall* Member04)(IMapVariant*, wchar_t*);
+	__int64(__fastcall* Member05)(IMapVariant*, wchar_t*);
+	BYTE* (__fastcall* Member06)(IMapVariant*, struct s_unknown*);
+	bool(__fastcall* Member07)(IMapVariant*, struct s_unknown*);
+	bool(__fastcall* Member08)(IMapVariant*, struct s_unknown*);
+	bool(__fastcall* Member09)(IMapVariant*, struct content_item_map_variant*, size_t*);
+	void(__fastcall* Free)(IMapVariant*);
 };
 struct IMapVariant
 {
-	IMapVariant_vtbl *__vftable /*VFT*/;
+	IMapVariant_vtbl* __vftable /*VFT*/;
 	s_map_variant MapVariant;
 	BYTE data[29484];
 };
@@ -146,30 +146,30 @@ struct IMapVariant
 struct IGameVariant;
 struct /*VFT*/ IGameVariant_vtbl
 {
-	BYTE *(__fastcall *Member00)(IGameVariant *);
-	BYTE *(__fastcall *Member01)(IGameVariant *);
-	__int64(__fastcall *Member02)(IGameVariant *, wchar_t *);
-	__int64(__fastcall *Member03)(IGameVariant *, wchar_t *);
-	BYTE *(__fastcall *Member04)(IGameVariant *);
-	__int64(__fastcall *Member05)(IGameVariant *);
-	__int64(__fastcall *Member06)(IGameVariant *, struct s_unknown *);
-	bool(__fastcall *IsSandboxVariant)(IGameVariant *);
-	char(__fastcall *Member08)(IGameVariant *);
-	__int64(__fastcall *Member09)(IGameVariant *);
-	IGameVariant *(__fastcall *Create)(IGameVariant *);
-	__int64(__fastcall *Member11)(IGameVariant *, struct s_unknown *, struct s_unknown *);
-	__int64(__fastcall *Member12)(IGameVariant *, struct s_unknown *, struct s_unknown *);
-	bool(__fastcall *Member13)(IGameVariant *, struct s_unknown *, struct s_unknown *);
-	bool(__fastcall *Member14)(IGameVariant *, struct s_unknown *, struct s_unknown *);
-	bool(__fastcall *Member15)(IGameVariant *, struct s_unknown *, struct s_unknown *);
-	bool(__fastcall *Member16)(IGameVariant *, struct s_unknown *);
-	bool(__fastcall *Member17)(IGameVariant *, struct s_unknown *);
-	bool(__fastcall *Member18)(IGameVariant *, struct content_item_game_variant *, size_t *);
-	void(__fastcall *Free)(IGameVariant *);
+	BYTE* (__fastcall* Member00)(IGameVariant*);
+	BYTE* (__fastcall* Member01)(IGameVariant*);
+	__int64(__fastcall* Member02)(IGameVariant*, wchar_t*);
+	__int64(__fastcall* Member03)(IGameVariant*, wchar_t*);
+	BYTE* (__fastcall* Member04)(IGameVariant*);
+	__int64(__fastcall* Member05)(IGameVariant*);
+	__int64(__fastcall* Member06)(IGameVariant*, struct s_unknown*);
+	bool(__fastcall* IsSandboxVariant)(IGameVariant*);
+	char(__fastcall* Member08)(IGameVariant*);
+	__int64(__fastcall* Member09)(IGameVariant*);
+	IGameVariant* (__fastcall* Create)(IGameVariant*);
+	__int64(__fastcall* Member11)(IGameVariant*, struct s_unknown*, struct s_unknown*);
+	__int64(__fastcall* Member12)(IGameVariant*, struct s_unknown*, struct s_unknown*);
+	bool(__fastcall* Member13)(IGameVariant*, struct s_unknown*, struct s_unknown*);
+	bool(__fastcall* Member14)(IGameVariant*, struct s_unknown*, struct s_unknown*);
+	bool(__fastcall* Member15)(IGameVariant*, struct s_unknown*, struct s_unknown*);
+	bool(__fastcall* Member16)(IGameVariant*, struct s_unknown*);
+	bool(__fastcall* Member17)(IGameVariant*, struct s_unknown*);
+	bool(__fastcall* Member18)(IGameVariant*, struct content_item_game_variant*, size_t*);
+	void(__fastcall* Free)(IGameVariant*);
 };
 struct IGameVariant
 {
-	IGameVariant_vtbl *__vftable /*VFT*/;
+	IGameVariant_vtbl* __vftable /*VFT*/;
 	s_game_variant GameVariant;
 	BYTE data[22060];
 };
@@ -177,14 +177,14 @@ struct IGameVariant
 struct IDataAccess;
 struct IDataAccess_vtbl
 {
-	struct IMapVariant *(__fastcall *CreateMapVariantFromFile)(IDataAccess *, /*struct content_item_map_variant **/char *, size_t);
-	struct IMapVariant *(__fastcall *CreateMapVariantFromMCCMapId)(IDataAccess *, __int64);
-	struct IMapVariant *(__fastcall *CreateMapVariant)(IDataAccess *, struct s_map_variant *);
-	struct IGameVariant *(__fastcall *CreateGameVariantFromFile)(IDataAccess *, /*struct content_item_game_variant **/char *, size_t);
-	struct IGameVariant *(__fastcall *CreateGameVariant)(IDataAccess *, struct s_game_variant *);
-	bool (__fastcall *Member05)(IDataAccess *, struct s_unknown *, void *);
-	struct ISaveFilmMetadata *(__fastcall *CreateSaveFilmMetadataFromFile)(IDataAccess *, /*struct content_item_film_description **/char *, size_t);
-	void (__fastcall *Free)(IDataAccess *);
+	struct IMapVariant* (__fastcall* CreateMapVariantFromFile)(IDataAccess*, /*struct content_item_map_variant **/char*, size_t);
+	struct IMapVariant* (__fastcall* CreateMapVariantFromMCCMapId)(IDataAccess*, __int64);
+	struct IMapVariant* (__fastcall* CreateMapVariant)(IDataAccess*, struct s_map_variant*);
+	struct IGameVariant* (__fastcall* CreateGameVariantFromFile)(IDataAccess*, /*struct content_item_game_variant **/char*, size_t);
+	struct IGameVariant* (__fastcall* CreateGameVariant)(IDataAccess*, struct s_game_variant*);
+	bool(__fastcall* Member05)(IDataAccess*, struct s_unknown*, void*);
+	struct ISaveFilmMetadata* (__fastcall* CreateSaveFilmMetadataFromFile)(IDataAccess*, /*struct content_item_film_description **/char*, size_t);
+	void(__fastcall* Free)(IDataAccess*);
 };
 
 struct IDataAccess
@@ -272,6 +272,7 @@ struct __declspec(align(8)) GameEvents_vftbl
 	NullSubFunc* Base;
 	NullSubFunc* Betrayal;
 	__int64(__fastcall* BIFactControllerSettings)(GameEvents*, unsigned __int64*, GUID*, _QWORD, __int64, _DWORD, int, int);
+	NullSubFunc* BIFactDeepLink;
 	NullSubFunc* BIFactDeepLinkRecieve;
 	void(__fastcall* BIFactDeepLinkSend)(GameEvents*, _QWORD*, GUID*, _QWORD*, __int64*);
 	NullSubFunc* BIFactDualWield;
@@ -297,20 +298,25 @@ struct __declspec(align(8)) GameEvents_vftbl
 	NullSubFunc* BroadcastingPlayerSwitchedTeams;
 	NullSubFunc* BroadcastingScore;
 	void(__fastcall* BroadcastingStart)(GameEvents*, _QWORD, _QWORD, _QWORD, _QWORD, _DWORD, _QWORD, _QWORD, _DWORD, _QWORD);
+	NullSubFunc* CampaignDifficulty;
 	NullSubFunc* ChallengeCompleted;
 	NullSubFunc* ClassicModeSwitched;
 	NullSubFunc* CleverGirl;
 	NullSubFunc* ClueClaimed;
 	NullSubFunc* CompletionCount;
+	NullSubFunc* CoopMissionCompleted;
+	NullSubFunc* CoopSpartanOpsMissionCompleted;
 	NullSubFunc* Customization;
 	NullSubFunc* DashboardContext;
 	NullSubFunc* Death;
 	NullSubFunc* DollFound;
 	NullSubFunc* EliteWin;
+	NullSubFunc* Emblem;
 	NullSubFunc* EnemyDefeated;
 	NullSubFunc* FriendsBestedOnHeroLeaderboard;
 	NullSubFunc* GameProgress;
 	NullSubFunc* GameVarSaved;
+	NullSubFunc* GrenadeStick;
 	NullSubFunc* HelloNurse;
 	NullSubFunc* InGamePresence;
 	NullSubFunc* ISeeYou;
@@ -327,6 +333,7 @@ struct __declspec(align(8)) GameEvents_vftbl
 	NullSubFunc* MissionCompleted;
 	NullSubFunc* MortardomWraithsKilled;
 	NullSubFunc* MultiplayerGameEngine;
+	NullSubFunc* MultiplayerMap;
 	NullSubFunc* MultiplayerRoundEnd_0;
 	NullSubFunc* MultiplayerRoundStart_0;
 	NullSubFunc* NappersCaught;
@@ -341,6 +348,7 @@ struct __declspec(align(8)) GameEvents_vftbl
 	NullSubFunc* PlayerDefeated;
 	NullSubFunc* PlayerGameResults;
 	NullSubFunc* PlayerGameResultsDamageStat;
+	NullSubFunc* PlayerGameResultsGriefingStat;
 	NullSubFunc* PlayerGameResultsGriefingStats;
 	NullSubFunc* PlayerGameResultsInterestStats;
 	NullSubFunc* PlayerGameResultsMedal;
@@ -367,8 +375,13 @@ struct __declspec(align(8)) GameEvents_vftbl
 	NullSubFunc* SizeIsEverything;
 	NullSubFunc* SkeetShooter;
 	NullSubFunc* SkullClaimed;
+	NullSubFunc* SoloMissionCompleted;
+	NullSubFunc* SoloSpartanOpsMissionCompleted;
 	NullSubFunc* SpartanOpsMissionCompleted;
+	NullSubFunc* Supercombine;
+	NullSubFunc* SurvivalSpace;
 	NullSubFunc* TerminalFound;
+	NullSubFunc* TerminalId;
 	NullSubFunc* TicketsEarned;
 	NullSubFunc* TitleCompleted;
 	NullSubFunc* TitleLaunched;
@@ -379,18 +392,18 @@ struct __declspec(align(8)) GameEvents_vftbl
 	NullSubFunc* WonWarGame;
 	NullSubFunc* ZanzibarSign;
 	NullSubFunc* EnemyDefeated_0;
-	NullSubFunc* Member114;
-	NullSubFunc* Member115;
-	NullSubFunc* Member116;
-	NullSubFunc* Member117;
-	NullSubFunc* Member118;
-	NullSubFunc* Member119;
-	__int64(__fastcall* Member120)(GameEvents*, _QWORD);
-	NullSubFunc* Member121;
+	NullSubFunc* Member127;
+	NullSubFunc* Member128;
+	NullSubFunc* Member129;
+	NullSubFunc* Member130;
+	NullSubFunc* Member131;
+	NullSubFunc* Member132;
+	__int64(__fastcall* Member133)(GameEvents*, _QWORD);
+	NullSubFunc* Member134;
 	GUID* (__fastcall* GetGuid)(GameEvents*, GUID*);
-	NullSubFunc* Member123;
-	NullSubFunc* Member124;
-	NullSubFunc* Member125;
+	NullSubFunc* Member136;
+	NullSubFunc* Member137;
+	NullSubFunc* Member138;
 };
 
 /* 20 */
@@ -632,40 +645,40 @@ struct __cppobj s_game_launch_data : s_game_launch_data_memzero
 	e_campaign_difficulty_level CampaignDifficultyLevel = _campaign_difficulty_level_easy;
 	int16_t CampaignInsertionPoint = 0;
 	uint16_t : 16;
-	uint64_t : 64;
-	int8_t GameSkullFlags[16] = {};
-	uint8_t* pGameStateHeader = nullptr;
-	size_t GameStateHeaderSize = 0;
-	const char* SavedFilmPath = nullptr;
+			   uint64_t : 64;
+						  int8_t GameSkullFlags[16] = {};
+						  uint8_t* pGameStateHeader = nullptr;
+						  size_t GameStateHeaderSize = 0;
+						  const char* SavedFilmPath = nullptr;
 
-	s_party_data PartyData;
+						  s_party_data PartyData;
 
-	uint8_t byte2B678[8] = {
-		0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-	};
-	const wchar_t *GamePath = nullptr;
-	wchar_t Locale[88] = L"en-US";
-	uint32_t dword2B738 = 1;
-	uint32_t dword2B73C = 1;
-	HMODULE pGameHandle = 0;
-	uint32_t EngineIndex0 = 6;
-	uint32_t EngineIndex1 = 6;
-	uint8_t unknownStruct2B750[48] = {}; // changes
-	uint64_t qword2B780 = 0;
-	uint64_t qword2B788 = 0;
-	struct RallyPointLoader* pRallyPointLoader = nullptr; // changes // WARNING: this is needed for MCC to run don't overwrite
-	uint32_t dword2B798 = 11;
-	uint32_t dword2B79C = 0;
-	uint64_t qword2B7A0 = 0; // changes
-	uint64_t qword2B7A8 = 0;
-	uint8_t byte2B7B0 = 0;
-	uint8_t byte2B7B1 = 0;
-	uint16_t word2B7B2 = 0;
-	uint16_t word2B7B4 = 0;
-	uint16_t word2B7B6 = 0;
-	uint64_t qword2B7B8 = 0; // changes
-	uint32_t dword2B7C0 = 0;
-	uint32_t dword2B7C4 = 0;
+						  uint8_t byte2B678[8] = {
+							  0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+						  };
+						  const wchar_t* GamePath = nullptr;
+						  wchar_t Locale[88] = L"en-US";
+						  uint32_t dword2B738 = 1;
+						  uint32_t dword2B73C = 1;
+						  HMODULE pGameHandle = 0;
+						  uint32_t EngineIndex0 = 6;
+						  uint32_t EngineIndex1 = 6;
+						  uint8_t unknownStruct2B750[48] = {}; // changes
+						  uint64_t qword2B780 = 0;
+						  uint64_t qword2B788 = 0;
+						  struct RallyPointLoader* pRallyPointLoader = nullptr; // changes // WARNING: this is needed for MCC to run don't overwrite
+						  uint32_t dword2B798 = 11;
+						  uint32_t dword2B79C = 0;
+						  uint64_t qword2B7A0 = 0; // changes
+						  uint64_t qword2B7A8 = 0;
+						  uint8_t byte2B7B0 = 0;
+						  uint8_t byte2B7B1 = 0;
+						  uint16_t word2B7B2 = 0;
+						  uint16_t word2B7B4 = 0;
+						  uint16_t word2B7B6 = 0;
+						  uint64_t qword2B7B8 = 0; // changes
+						  uint32_t dword2B7C0 = 0;
+						  uint32_t dword2B7C4 = 0;
 };
 #pragma pack(pop)
 static constexpr size_t s_game_launch_data_size = sizeof(s_game_launch_data);

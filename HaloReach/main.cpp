@@ -62,6 +62,7 @@ void setup_game_events()
 	gameEventsVftbl.Base = NULLSUB_LAMBDA_LOG("GameEvents::vftable::Base");
 	gameEventsVftbl.Betrayal = NULLSUB_LAMBDA_LOG("GameEvents::vftable::Betrayal");
 	gameEventsVftbl.BIFactControllerSettings = [](GameEvents*, unsigned __int64*, GUID*, _QWORD, __int64, _DWORD, int, int) { printf("GameEvents::vftable::BIFactControllerSettings""\n"); return __int64(0); };
+	gameEventsVftbl.BIFactDeepLink = NULLSUB_LAMBDA_LOG("GameEvents::vftable::BIFactDeepLink");
 	gameEventsVftbl.BIFactDeepLinkRecieve = NULLSUB_LAMBDA_LOG("GameEvents::vftable::BIFactDeepLinkRecieve");
 	gameEventsVftbl.BIFactDeepLinkSend = [](GameEvents*, _QWORD*, GUID*, _QWORD*, __int64*) { printf("GameEvents::vftable::BIFactDeepLinkSend""\n"); };
 	gameEventsVftbl.BIFactDualWield = NULLSUB_LAMBDA_LOG("GameEvents::vftable::BIFactDualWield");
@@ -87,20 +88,25 @@ void setup_game_events()
 	gameEventsVftbl.BroadcastingPlayerSwitchedTeams = NULLSUB_LAMBDA_LOG("GameEvents::vftable::BroadcastingPlayerSwitchedTeams");
 	gameEventsVftbl.BroadcastingScore = NULLSUB_LAMBDA_LOG("GameEvents::vftable::BroadcastingScore");
 	gameEventsVftbl.BroadcastingStart = [](GameEvents*, _QWORD, _QWORD, _QWORD, _QWORD, _DWORD, _QWORD, _QWORD, _DWORD, _QWORD) { printf("GameEvents::vftable::BroadcastingStart""\n"); };
+	gameEventsVftbl.CampaignDifficulty = NULLSUB_LAMBDA_LOG("GameEvents::vftable::CampaignDifficulty");
 	gameEventsVftbl.ChallengeCompleted = NULLSUB_LAMBDA_LOG("GameEvents::vftable::ChallengeCompleted");
 	gameEventsVftbl.ClassicModeSwitched = NULLSUB_LAMBDA_LOG("GameEvents::vftable::ClassicModeSwitched");
 	gameEventsVftbl.CleverGirl = NULLSUB_LAMBDA_LOG("GameEvents::vftable::CleverGirl");
 	gameEventsVftbl.ClueClaimed = NULLSUB_LAMBDA_LOG("GameEvents::vftable::ClueClaimed");
+	gameEventsVftbl.CoopMissionCompleted = NULLSUB_LAMBDA_LOG("GameEvents::vftable::CoopMissionCompleted");
+	gameEventsVftbl.CoopSpartanOpsMissionCompleted = NULLSUB_LAMBDA_LOG("GameEvents::vftable::CoopSpartanOpsMissionCompleted");
 	gameEventsVftbl.CompletionCount = NULLSUB_LAMBDA_LOG("GameEvents::vftable::CompletionCount");
 	gameEventsVftbl.Customization = NULLSUB_LAMBDA_LOG("GameEvents::vftable::Customization");
 	gameEventsVftbl.DashboardContext = NULLSUB_LAMBDA_LOG("GameEvents::vftable::DashboardContext");
 	gameEventsVftbl.Death = NULLSUB_LAMBDA_LOG("GameEvents::vftable::Death");
 	gameEventsVftbl.DollFound = NULLSUB_LAMBDA_LOG("GameEvents::vftable::DollFound");
 	gameEventsVftbl.EliteWin = NULLSUB_LAMBDA_LOG("GameEvents::vftable::EliteWin");
+	gameEventsVftbl.Emblem = NULLSUB_LAMBDA_LOG("GameEvents::vftable::Emblem");
 	gameEventsVftbl.EnemyDefeated = NULLSUB_LAMBDA_LOG("GameEvents::vftable::EnemyDefeated");
 	gameEventsVftbl.FriendsBestedOnHeroLeaderboard = NULLSUB_LAMBDA_LOG("GameEvents::vftable::FriendsBestedOnHeroLeaderboard");
 	gameEventsVftbl.GameProgress = NULLSUB_LAMBDA_LOG("GameEvents::vftable::GameProgress");
 	gameEventsVftbl.GameVarSaved = NULLSUB_LAMBDA_LOG("GameEvents::vftable::GameVarSaved");
+	gameEventsVftbl.GrenadeStick = NULLSUB_LAMBDA_LOG("GameEvents::vftable::GrenadeStick");
 	gameEventsVftbl.HelloNurse = NULLSUB_LAMBDA_LOG("GameEvents::vftable::HelloNurse");
 	gameEventsVftbl.InGamePresence = NULLSUB_LAMBDA_LOG("GameEvents::vftable::InGamePresence");
 	gameEventsVftbl.ISeeYou = NULLSUB_LAMBDA_LOG("GameEvents::vftable::ISeeYou");
@@ -117,8 +123,9 @@ void setup_game_events()
 	gameEventsVftbl.MissionCompleted = NULLSUB_LAMBDA_LOG("GameEvents::vftable::MissionCompleted");
 	gameEventsVftbl.MortardomWraithsKilled = NULLSUB_LAMBDA_LOG("GameEvents::vftable::MortardomWraithsKilled");
 	gameEventsVftbl.MultiplayerGameEngine = NULLSUB_LAMBDA_LOG("GameEvents::vftable::MultiplayerGameEngine");
-	gameEventsVftbl.MultiplayerRoundEnd_0 = NULLSUB_LAMBDA_LOG("GameEvents::vftable::MultiplayerRoundEnd_0");
-	gameEventsVftbl.MultiplayerRoundStart_0 = NULLSUB_LAMBDA_LOG("GameEvents::vftable::MultiplayerRoundStart_0");
+	gameEventsVftbl.MultiplayerMap = NULLSUB_LAMBDA_LOG("GameEvents::vftable::MultiplayerMap");
+	gameEventsVftbl.MultiplayerRoundEnd = NULLSUB_LAMBDA_LOG("GameEvents::vftable::MultiplayerRoundEnd");
+	gameEventsVftbl.MultiplayerRoundStart = NULLSUB_LAMBDA_LOG("GameEvents::vftable::MultiplayerRoundStart");
 	gameEventsVftbl.NappersCaught = NULLSUB_LAMBDA_LOG("GameEvents::vftable::NappersCaught");
 	gameEventsVftbl.NewsStoryRead = NULLSUB_LAMBDA_LOG("GameEvents::vftable::NewsStoryRead");
 	gameEventsVftbl.ObjectiveEnd = NULLSUB_LAMBDA_LOG("GameEvents::vftable::ObjectiveEnd");
@@ -131,6 +138,7 @@ void setup_game_events()
 	gameEventsVftbl.PlayerDefeated = NULLSUB_LAMBDA_LOG("GameEvents::vftable::PlayerDefeated");
 	gameEventsVftbl.PlayerGameResults = NULLSUB_LAMBDA_LOG("GameEvents::vftable::PlayerGameResults");
 	gameEventsVftbl.PlayerGameResultsDamageStat = NULLSUB_LAMBDA_LOG("GameEvents::vftable::PlayerGameResultsDamageStat");
+	gameEventsVftbl.PlayerGameResultsGriefingStat = NULLSUB_LAMBDA_LOG("GameEvents::vftable::PlayerGameResultsGriefingStat");
 	gameEventsVftbl.PlayerGameResultsGriefingStats = NULLSUB_LAMBDA_LOG("GameEvents::vftable::PlayerGameResultsGriefingStats");
 	gameEventsVftbl.PlayerGameResultsInterestStats = NULLSUB_LAMBDA_LOG("GameEvents::vftable::PlayerGameResultsInterestStats");
 	gameEventsVftbl.PlayerGameResultsMedal = NULLSUB_LAMBDA_LOG("GameEvents::vftable::PlayerGameResultsMedal");
@@ -157,8 +165,13 @@ void setup_game_events()
 	gameEventsVftbl.SizeIsEverything = NULLSUB_LAMBDA_LOG("GameEvents::vftable::SizeIsEverything");
 	gameEventsVftbl.SkeetShooter = NULLSUB_LAMBDA_LOG("GameEvents::vftable::SkeetShooter");
 	gameEventsVftbl.SkullClaimed = NULLSUB_LAMBDA_LOG("GameEvents::vftable::SkullClaimed");
+	gameEventsVftbl.SoloMissionCompleted = NULLSUB_LAMBDA_LOG("GameEvents::vftable::SoloMissionCompleted");
+	gameEventsVftbl.SoloSpartanOpsMissionCompleted = NULLSUB_LAMBDA_LOG("GameEvents::vftable::SoloSpartanOpsMissionCompleted");
 	gameEventsVftbl.SpartanOpsMissionCompleted = NULLSUB_LAMBDA_LOG("GameEvents::vftable::SpartanOpsMissionCompleted");
+	gameEventsVftbl.Supercombine = NULLSUB_LAMBDA_LOG("GameEvents::vftable::Supercombine");
+	gameEventsVftbl.SurvivalSpace = NULLSUB_LAMBDA_LOG("GameEvents::vftable::SurvivalSpace");
 	gameEventsVftbl.TerminalFound = NULLSUB_LAMBDA_LOG("GameEvents::vftable::TerminalFound");
+	gameEventsVftbl.TerminalId = NULLSUB_LAMBDA_LOG("GameEvents::vftable::TerminalId");
 	gameEventsVftbl.TicketsEarned = NULLSUB_LAMBDA_LOG("GameEvents::vftable::TicketsEarned");
 	gameEventsVftbl.TitleCompleted = NULLSUB_LAMBDA_LOG("GameEvents::vftable::TitleCompleted");
 	gameEventsVftbl.TitleLaunched = NULLSUB_LAMBDA_LOG("GameEvents::vftable::TitleLaunched");
@@ -169,18 +182,18 @@ void setup_game_events()
 	gameEventsVftbl.WonWarGame = NULLSUB_LAMBDA_LOG("GameEvents::vftable::WonWarGame");
 	gameEventsVftbl.ZanzibarSign = NULLSUB_LAMBDA_LOG("GameEvents::vftable::ZanzibarSign");
 	gameEventsVftbl.EnemyDefeated_0 = NULLSUB_LAMBDA_LOG("GameEvents::vftable::EnemyDefeated_0");
-	gameEventsVftbl.Member114 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[114]");
-	gameEventsVftbl.Member115 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[115]");
-	gameEventsVftbl.Member116 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[116]");
-	gameEventsVftbl.Member117 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[117]");
-	gameEventsVftbl.Member118 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[118]");
-	gameEventsVftbl.Member119 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[119]");
-	gameEventsVftbl.Member120 = [](GameEvents*, _QWORD) { printf("GameEvents::vftable::Member120Func""\n"); return __int64(0); };
-	gameEventsVftbl.Member121 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[121]");
+	gameEventsVftbl.Member127 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[127]");
+	gameEventsVftbl.Member128 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[128]");
+	gameEventsVftbl.Member129 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[129]");
+	gameEventsVftbl.Member130 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[130]");
+	gameEventsVftbl.Member131 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[131]");
+	gameEventsVftbl.Member132 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[132]");
+	gameEventsVftbl.Member133 = [](GameEvents*, _QWORD) { WriteLineVerbose("GameEvents::vftable[133]"); return __int64(0); };
+	gameEventsVftbl.Member134 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[134]");
 	gameEventsVftbl.GetGuid = GetGuid;
-	gameEventsVftbl.Member123 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[123]");
-	gameEventsVftbl.Member124 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[124]");
-	gameEventsVftbl.Member125 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[125]");
+	gameEventsVftbl.Member136 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[136]");
+	gameEventsVftbl.Member137 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[137]");
+	gameEventsVftbl.Member138 = NULLSUB_LAMBDA_LOG("GameEvents::vftable[138]");
 }
 
 void load_haloreach_dll()
@@ -338,7 +351,7 @@ void initialize_custom_halo_reach_stuff()
 
 	game_launch_data.PartyData.SquadId = SquadID; // this is set
 	
-	game_launch_data.PartyData.IsHost = false; // if client, is false
+	game_launch_data.PartyData.IsHost = true; // if client, is false
 
 	int localhost = inet_addr("127.0.0.1");
 	if(game_launch_data.PartyData.IsHost)
@@ -346,12 +359,12 @@ void initialize_custom_halo_reach_stuff()
 		game_launch_data.PartyData.LocalId = LocalId; // this is set
 		game_launch_data.PartyData.PeerIds[0] = LocalId;
 		game_launch_data.PartyData.PeerIds[1] = ExternalId;
-		game_launch_data.PartyData.PeerCount = 2;
+		game_launch_data.PartyData.PeerCount = 1;
 
 		game_launch_data.PartyData.PlayerIds[0] = { 0x02D75AC8, { 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } };
 		game_launch_data.PartyData.PlayerIds[1] = { 0x02D75AC9, { 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } };
 		memset(game_launch_data.PartyData.PlayerIds[1].Data, 0xCC, sizeof(game_launch_data.PartyData.PlayerIds[1].Data));
-		game_launch_data.PartyData.PlayerCount = 2;
+		game_launch_data.PartyData.PlayerCount = 1;
 
 		load_hopper_game_variant(g_LaunchHopperGameVariant, game_launch_data.halo_reach_game_variant);
 		//load_hopper_map_variant("the_cage.mvar", game_launch_data.halo_reach_map_variant);
@@ -365,7 +378,7 @@ void initialize_custom_halo_reach_stuff()
 	}
 
 	//pHaloReachEngine->InitGraphics(0, 0, 0, 0); // #TODO: Correct MCC graphics initialization
-	pHaloReachEngine->InitThread(nullptr, &game_launch_data);
+	pHaloReachEngine->InitThread(&IGameEngineHost::g_gameEngineHost, &game_launch_data);
 }
 
 void deinit_haloreach()

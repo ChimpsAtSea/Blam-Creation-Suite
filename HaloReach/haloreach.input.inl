@@ -14,21 +14,21 @@ Data<HaloGameID::HaloReach_2019_Aug_20, char, 0x1839EBDE1> mouse_acquired;
 //	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(callback);
 //};
 
-intptr_t sub_18077D160_offset(HaloGameID gameID)
-{
-	switch (gameID)
-	{
-	case HaloGameID::HaloReach_2019_Jun_24: return 0x18077D160;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x180495CC0;
-	}
-	return ~intptr_t();
-}
-
-FunctionHookEx<sub_18077D160_offset, __int16 __fastcall (__int64 a1, __int16* a2)> sub_18077D160 = [](__int64 a1, __int16* a2)
-{
-	auto callback = [=]() { return sub_18077D160(a1, a2); };
-	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, callback);
-};
+//intptr_t sub_18077D160_offset(HaloGameID gameID)
+//{
+//	switch (gameID)
+//	{
+//	case HaloGameID::HaloReach_2019_Jun_24: return 0x18077D160;
+//	case HaloGameID::HaloReach_2019_Aug_20: return 0x180495CC0;
+//	}
+//	return ~intptr_t();
+//}
+//
+//FunctionHookEx<sub_18077D160_offset, __int16 __fastcall (__int64 a1, __int16* a2)> sub_18077D160 = [](__int64 a1, __int16* a2)
+//{
+//	auto callback = [=]() { return sub_18077D160(a1, a2); };
+//	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, callback);
+//};
 
 void print_key_state_debug(s_bindings_table& bindingsTable)
 {
@@ -43,6 +43,22 @@ void print_key_state_debug(s_bindings_table& bindingsTable)
 		}
 	}
 }
+
+intptr_t input_initialize_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: FATAL_ERROR("input_update_offset HaloReach_2019_Jun_24"); return 0;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18014C240;
+	}
+	return ~intptr_t();
+}
+
+
+HaloReachHookEx<input_initialize_offset, char()> input_initialize = []()
+{
+	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, input_initialize);
+};
 
 intptr_t input_update_offset(HaloGameID gameID)
 {
@@ -82,6 +98,9 @@ HaloReachHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 		}
 	}
 
+	HWND currentWindow = g_createdWindow;
+	assert(currentWindow);
+
 	print_key_state_debug(g_input_abstraction.ptr()->BindingsTable[0]);
 	CustomWindow::Update();
 
@@ -92,7 +111,17 @@ HaloReachHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 	//	name_and_tag_set = true;
 	//}
 
-	char result = IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>(g_game_engine_host_pointer, []() {return input_update(); });
+	char result = input_update();
+
+	//// #TODO: Remove when MCC input is figured out
+	//if (IGameEngineHost::g_inputUpdatePatchState == IGameEngineHost::WaitingForPatch)
+	//{
+	//	IGameEngineHost::g_inputUpdatePatchState = IGameEngineHost::Patched;
+	//	if (g_currentGameID == HaloGameID::HaloReach_2019_Aug_20)
+	//	{
+	//		patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x18014C498);
+	//	}
+	//}
 	
 	return result;
 };
