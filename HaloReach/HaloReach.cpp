@@ -74,11 +74,11 @@ void patch_out_gameenginehostcallback_mov(HaloGameID id, intptr_t offset)
 
 	char bytes[] =
 	{
-		0x48, 0x31, 0xc9,	// xor rcx, rcx
-		0x90,				// nop
-		0x90,				// nop
-		0x90,				// nop
-		0x90,				// nop
+		0x48i8, 0x31i8, 0xc9i8,	// xor rcx, rcx
+		0x90i8,					// nop
+		0x90i8,					// nop
+		0x90i8,					// nop
+		0x90i8,					// nop
 	};
 
 	memcpy_virtual(pMovAttack, bytes, 7);

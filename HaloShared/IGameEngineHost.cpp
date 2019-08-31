@@ -110,10 +110,10 @@ unsigned __int8 __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInput
 	}
 
 
-	pInputBuffer->MouseX += GetAsyncKeyState(VK_F5) ? 0.1 : 0;
-	pInputBuffer->MouseX -= GetAsyncKeyState(VK_F6) ? 0.1 : 0;
-	pInputBuffer->MouseY += GetAsyncKeyState(VK_F7) ? 0.1 : 0;
-	pInputBuffer->MouseY -= GetAsyncKeyState(VK_F8) ? 0.1 : 0;
+	pInputBuffer->MouseX += GetAsyncKeyState(VK_F5) ? 0.1f : 0;
+	pInputBuffer->MouseX -= GetAsyncKeyState(VK_F6) ? 0.1f : 0;
+	pInputBuffer->MouseY += GetAsyncKeyState(VK_F7) ? 0.1f : 0;
+	pInputBuffer->MouseY -= GetAsyncKeyState(VK_F8) ? 0.1f : 0;
 
 	pInputBuffer->data2[8] = GetAsyncKeyState(VK_F1) ? -1 : 0; // MOUSE BUTTONS
 	pInputBuffer->data2[9] = GetAsyncKeyState(VK_F2) ? -1 : 0;
