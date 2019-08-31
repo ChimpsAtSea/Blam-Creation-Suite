@@ -330,9 +330,39 @@ void initialize_custom_halo_reach_stuff()
 	game_launch_data.GameMode = g_LaunchGameMode;
 	game_launch_data.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
 
-	load_hopper_game_variant(g_LaunchHopperGameVariant, game_launch_data.halo_reach_game_variant);
-	//load_hopper_map_variant("the_cage.mvar", game_launch_data.halo_reach_map_variant);
-	load_previous_gamestate("gamestate.hdr", game_launch_data);
+	memset(&game_launch_data.PartyData, 0, sizeof(game_launch_data.PartyData));
+
+	uint64_t SquadID = 0x2F385E2E95D4F33E;
+	uint64_t LocalId = 0x7F7F86B0EE577202;
+	uint64_t ExternalId = 0x7F7Faf4521cdad53;
+
+	game_launch_data.PartyData.SquadId = SquadID; // this is set
+	
+	game_launch_data.PartyData.IsHost = false; // if client, is false
+
+	int localhost = inet_addr("127.0.0.1");
+	if(game_launch_data.PartyData.IsHost)
+	{
+		game_launch_data.PartyData.LocalId = LocalId; // this is set
+		game_launch_data.PartyData.PeerIds[0] = LocalId;
+		game_launch_data.PartyData.PeerIds[1] = ExternalId;
+		game_launch_data.PartyData.PeerCount = 2;
+
+		game_launch_data.PartyData.PlayerIds[0] = { 0x02D75AC8, { 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } };
+		game_launch_data.PartyData.PlayerIds[1] = { 0x02D75AC9, { 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } };
+		memset(game_launch_data.PartyData.PlayerIds[1].Data, 0xCC, sizeof(game_launch_data.PartyData.PlayerIds[1].Data));
+		game_launch_data.PartyData.PlayerCount = 2;
+
+		load_hopper_game_variant(g_LaunchHopperGameVariant, game_launch_data.halo_reach_game_variant);
+		//load_hopper_map_variant("the_cage.mvar", game_launch_data.halo_reach_map_variant);
+		load_previous_gamestate("gamestate.hdr", game_launch_data);
+
+	}
+	else
+	{
+		game_launch_data.PartyData.LocalId = ExternalId; // this is set
+		game_launch_data.PartyData.HostId = localhost;
+	}
 
 	//pHaloReachEngine->InitGraphics(0, 0, 0, 0); // #TODO: Correct MCC graphics initialization
 	pHaloReachEngine->InitThread(nullptr, &game_launch_data);

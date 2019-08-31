@@ -49,17 +49,25 @@ public:
 	virtual void Member22();
 	virtual void Member23();
 	virtual void Member24();
-	virtual void Member25();
+
+	struct Member25Struct
+	{
+		char data[0x180];
+		int unknown;
+		int unknown2;
+	};
+
+	virtual void Member25(Member25Struct& a1, uint32_t a2);
 	virtual void Member26();
 	virtual void Member27();
 	virtual void Member28();
 	virtual void Member29();
 	virtual unsigned __int8 __fastcall Member30(_QWORD, InputBuffer *pInputBuffer);
-	virtual void SetPlayerName();
+	virtual bool __fastcall SetPlayerName(__int64*, wchar_t playerNames[4][32], size_t);
 	virtual void Member32();
 	virtual void Member33();
 	virtual void NetworkSendTo();
-	virtual void NetworkReceiveFrom();
+	virtual __int64 NetworkReceiveFrom(char* buffer, uint32_t buffersize, __int64 a4, int a5);
 	virtual void Member36();
 	virtual void Member37();
 	virtual void Member38();
@@ -74,7 +82,7 @@ public:
 	GameEvents* pGameEvents;
 	QWORD data1[5863];
 
-	// IGameEngineHost bypass functions 
+	// IGameEngineHost bypass functions
 
 	enum class GEHCBypassType // GameEngineHostCallbackType
 	{
@@ -83,7 +91,7 @@ public:
 	};
 
 	template<GEHCBypassType type, typename T, typename IGameEngineHostRefType>
-	static decltype(auto) GEHCBypass(IGameEngineHostRefType& game_engine_host_pointer, T functionPtr, bool forceDisable = false) // GameEngineHostCallback
+	static decltype(auto) GEHCBypass(IGameEngineHostRefType& game_engine_host_pointer, T&& functionPtr, bool forceDisable = false) // GameEngineHostCallback
 	{
 		using return_type = decltype(functionPtr());
 

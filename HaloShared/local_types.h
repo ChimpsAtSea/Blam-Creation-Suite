@@ -486,13 +486,11 @@ enum e_game_mode : int
 	k_number_of_game_modes,
 };
 
-struct XnkId
-{
-	uint8_t Data[8];
-};
+typedef uint64_t XnkId;
 struct XnkAddr
 {
-	uint8_t Data[24];
+	int maybeip;
+	uint8_t Data[20];
 };
 
 struct s_game_launch_data_memzero
@@ -506,6 +504,28 @@ struct s_game_launch_data_memzero
 		memset(this, 0, size);
 	}
 };
+
+struct s_party_data
+{
+	XnkId SquadId;
+	XnkId LocalId;
+	bool IsHost; // if client, is false
+	__declspec(align(8)) struct
+	{
+		XnkId PeerIds[17];
+		uint32_t PeerCount; // if client, is 0
+	};
+	__declspec(align(8)) struct
+	{
+		XnkAddr PlayerIds[16];
+		int64_t PlayerCount; // if client, is 0
+	};
+	XnkId HostId; // if client, is LocalId
+};
+static constexpr size_t PartyData_HostId_Offset = offsetof(s_party_data, s_party_data::HostId);
+static_assert(PartyData_HostId_Offset == 0x230);
+static constexpr size_t PartyDataSize = sizeof(s_party_data);
+static_assert(PartyDataSize == 0x238);
 
 #pragma pack(push, 1)
 struct __cppobj s_game_launch_data : s_game_launch_data_memzero
@@ -617,21 +637,9 @@ struct __cppobj s_game_launch_data : s_game_launch_data_memzero
 	uint8_t* pGameStateHeader = nullptr;
 	size_t GameStateHeaderSize = 0;
 	const char* SavedFilmPath = nullptr;
-	struct
-	{
-		XnkId SquadId = { 0x3E, 0xF3, 0xD4, 0x95, 0x2E, 0x5E, 0x38, 0x2F };
-		XnkId LocalId = { 0x02, 0x72, 0x57, 0xEE, 0xB0, 0x86, 0x7F, 0x7F };
-		union { uint64_t : 64; bool IsLocalSquad = true; }; // if client, is false
-		XnkId PeerIds[17] = { // if client, is null
-			{ 0x02, 0x72, 0x57, 0xEE, 0xB0, 0x86, 0x7F, 0x7F }
-		};
-		union { uint64_t : 64; int32_t PeerCount = 1; }; // if client, is 0
-		XnkAddr PlayerIds[16] = { // if client, is null
-			{ 0xC8, 0x5A, 0xD7, 0x02, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }
-		};
-		union { uint64_t : 64; int32_t PlayerCount = 1; }; // if client, is 0
-		XnkId HostId = {}; // if client, is LocalId
-	} PartyData;
+
+	s_party_data PartyData;
+
 	uint8_t byte2B678[8] = {
 		0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 	};

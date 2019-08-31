@@ -4,6 +4,8 @@
 #define WIN32_MEAN_AND_LEAN
 #define DIRECTINPUT_VERSION 0x0800
 
+#include <winsock2.h>
+#include <ws2tcpip.h>
 #include <windows.h>
 #include <objidl.h>
 #include <gdiplus.h>

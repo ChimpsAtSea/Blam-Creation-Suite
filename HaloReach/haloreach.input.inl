@@ -85,12 +85,12 @@ HaloReachHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 	print_key_state_debug(g_input_abstraction.ptr()->BindingsTable[0]);
 	CustomWindow::Update();
 
-	static bool name_and_tag_set = false;
-	if (!name_and_tag_set)
-	{
-		set_player_name_and_tag();
-		name_and_tag_set = true;
-	}
+	//static bool name_and_tag_set = false;
+	//if (!name_and_tag_set)
+	//{
+	//	set_player_name_and_tag();
+	//	name_and_tag_set = true;
+	//}
 
 	char result = IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>(g_game_engine_host_pointer, []() {return input_update(); });
 	

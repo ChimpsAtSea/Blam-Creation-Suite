@@ -28,7 +28,7 @@ char g_LaunchMapName[256] = "ff45_corvette";
 e_map_id g_LaunchMapId = _map_id_ff45_corvette;
 int g_LaunchGameMode = _game_mode_survival;
 e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
-const char *g_LaunchHopperGameVariant = "ff_gruntpocalypse_054";
+const char* g_LaunchHopperGameVariant = "ff_gruntpocalypse_054";
 
 // Halo Reach Variables
 
@@ -288,6 +288,34 @@ HaloReachHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restri
 
 // --- WORK IN PROGRESS BELOW ---
 
+
+Pointer<HaloGameID::HaloReach_2019_Aug_20, _QWORD, 0x18306F898> qword_18306F898;
+
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18008FC30, __int64()> network_update = []()
+{
+	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>(g_game_engine_host_pointer, network_update);
+};
+
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18090A0E0, __int64 __fastcall (PCSTR, unsigned __int16, char, SOCKET*)> sub_18090A0E0 = [](PCSTR pNodeName, unsigned __int16 a2, char a3, SOCKET* a4)
+{
+	return sub_18090A0E0(pNodeName, a2, a3, a4);
+};
+
+//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180100C90, void()> sub_180100C90 = []()
+//{
+//	auto callback = []() {
+//		sub_180100C90();
+//	};
+//	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, callback);
+//};
+//
+//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x1800ADE20, void()> sub_1800ADE20 = []()
+//{
+//	auto callback = []() {
+//		sub_1800ADE20();
+//	};
+//	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, callback);
+//};
 
 
 void WriteGameState()
@@ -553,11 +581,77 @@ uint64_t GetVersionID(const char* pFilename)
 
 #define MAKE_FILE_VERSION(a, b, c, d) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 16) | (uint64_t(d) << 0))
 
+void log_socket_info(struct sockaddr* from)
+{
+	switch (from->sa_family)
+	{
+	case AF_INET:
+	{
+		sockaddr_in& sockaddr = *(sockaddr_in*)from;
+		char* pIPv4 = inet_ntoa(sockaddr.sin_addr);
+		WriteLineVerbose("IPv4 %s:%i", pIPv4, sockaddr.sin_port);
+	}
+	break;
+	case AF_INET6:
+	{
+		sockaddr_in6& sockaddr6 = *(sockaddr_in6*)from;
+		char IPv6[INET6_ADDRSTRLEN] = {};
+		inet_ntop(AF_INET6, &sockaddr6.sin6_addr, IPv6, INET6_ADDRSTRLEN);
+		WriteLineVerbose("IPv6 [%s]:%i", IPv6, sockaddr6.sin6_port);
+	}
+	break;
+	default:
+		FATAL_ERROR("Unsupported address family");
+	}
+}
+
+typedef int(__stdcall recvfrom_Func)(
+	_In_ SOCKET s,
+	_Out_writes_bytes_to_(len, return) __out_data_source(NETWORK) char FAR* buf,
+	_In_ int len,
+	_In_ int flags,
+	_Out_writes_bytes_to_opt_(*fromlen, *fromlen) struct sockaddr FAR* from,
+	_Inout_opt_ int FAR* fromlen
+	);
+static recvfrom_Func* recvfromPointer;
+int __stdcall recvfromHook(
+	_In_ SOCKET s,
+	_Out_writes_bytes_to_(len, return) __out_data_source(NETWORK) char FAR* buf,
+	_In_ int len,
+	_In_ int flags,
+	_Out_writes_bytes_to_opt_(*fromlen, *fromlen) struct sockaddr FAR* from,
+	_Inout_opt_ int FAR* fromlen
+)
+{
+	sockaddr* pSocketAddressBuffer = (sockaddr*)alloca(32 * 1024);
+	int length = 32 * 1024;
+	memset(pSocketAddressBuffer, 0, length);
+	getsockname(s, pSocketAddressBuffer, &length);
+	log_socket_info(pSocketAddressBuffer);
+
+	auto result = recvfromPointer(s, buf, len, flags, from, fromlen);
+
+	if (result == -1)
+	{
+		wchar_t* errorMessage = NULL;
+		FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+			NULL, WSAGetLastError(),
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			(LPWSTR)& errorMessage, 0, NULL);
+
+		LocalFree(errorMessage);
+
+		return result;
+	}
+
+	log_socket_info(from);
+
+	return result;
+}
+
 void init_haloreach_hooks()
 {
 	check_library_can_load("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
-
-
 
 	init_detours();
 
@@ -581,6 +675,70 @@ void init_haloreach_hooks()
 	DataReferenceBase::ProcessTree(gameID);
 	FunctionHookBase::ProcessTree(gameID);
 
+	//char* pBeginning = (char*)GetHaloExecutable(HaloGameID::HaloReach_2019_Aug_20);
+
+	//{
+	//	char* pMovAttack = pBeginning + (0x1800ADEFE - 0x180000000);
+	//	// 48 8B 0D A3 9B C8 00
+	//	// mov    rcx,QWORD PTR [rip+0xc89ba3]
+	//	// change to
+	//	// 48 31 c9
+	//	// xor rcx, rcx
+	//	// nop 
+	//	// nop 
+	//	// nop 
+	//	// nop
+
+	//	assert(pMovAttack[0] == 0x48i8);
+	//	assert(pMovAttack[1] == 0x8Bi8);
+	//	assert(pMovAttack[2] == 0x0Di8);
+	//	assert(pMovAttack[3] == 0xA3i8);
+	//	assert(pMovAttack[4] == 0x9Bi8);
+	//	assert(pMovAttack[5] == 0xC8i8);
+	//	assert(pMovAttack[6] == 0x00i8);
+
+	//	char bytes[] =
+	//	{
+	//		0x48, 0x31, 0xc9,	// xor rcx, rcx
+	//		0x90,				// nop
+	//		0x90,				// nop
+	//		0x90,				// nop
+	//		0x90,				// nop
+	//	};
+
+	//	memcpy_virtual(pMovAttack, bytes, 7);
+	//}
+
+	//{
+
+	//	char* pMovAttack = pBeginning + (0x180100D54 - 0x180000000);
+	//	// 48 8B 0D A3 9B C8 00
+	//	// mov    rcx,QWORD PTR [rip+0xc89ba3]
+	//	// change to
+	//	// 48 31 c9
+	//	// xor rcx, rcx
+	//	// nop 
+	//	// nop 
+	//	// nop 
+	//	// nop
+
+	//	assert(pMovAttack[0] == 0x48i8);
+	//	assert(pMovAttack[1] == 0x8Bi8);
+	//	assert(pMovAttack[2] == 0x0Di8);
+
+	//	char bytes[] =
+	//	{
+	//		0x48, 0x31, 0xc9,	// xor rcx, rcx
+	//		0x90,				// nop
+	//		0x90,				// nop
+	//		0x90,				// nop
+	//		0x90,				// nop
+	//	};
+
+	//	memcpy_virtual(pMovAttack, bytes, 7);
+	//}
+
+
 	// #TODO: Remove this
 	switch (gameID)
 	{
@@ -589,11 +747,15 @@ void init_haloreach_hooks()
 		break;
 	}
 
+
+
+	create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer);
+
 	end_detours();
 }
 
 
-const char *game_mode_to_string(int game_mode)
+const char* game_mode_to_string(int game_mode)
 {
 	switch (game_mode)
 	{
@@ -608,7 +770,7 @@ const char *game_mode_to_string(int game_mode)
 	}
 	return "<unknown>";
 }
-e_game_mode string_to_game_mode(const char *string)
+e_game_mode string_to_game_mode(const char* string)
 {
 	int result = _game_mode_survival;
 	for (int i = _game_mode_none; i < k_number_of_game_modes; i++)
@@ -618,7 +780,7 @@ e_game_mode string_to_game_mode(const char *string)
 	}
 	return (e_game_mode)result;
 }
-const char *campaign_difficulty_level_to_string(int campaign_difficulty_level)
+const char* campaign_difficulty_level_to_string(int campaign_difficulty_level)
 {
 	switch (campaign_difficulty_level)
 	{
@@ -633,7 +795,7 @@ const char *campaign_difficulty_level_to_string(int campaign_difficulty_level)
 	}
 	return "<unknown>";
 }
-e_campaign_difficulty_level string_to_campaign_difficulty_level(const char *string)
+e_campaign_difficulty_level string_to_campaign_difficulty_level(const char* string)
 {
 	int result = _campaign_difficulty_level_normal;
 	for (int i = _campaign_difficulty_level_easy; i < k_number_of_campaign_difficulty_levels; i++)
@@ -643,7 +805,7 @@ e_campaign_difficulty_level string_to_campaign_difficulty_level(const char *stri
 	}
 	return (e_campaign_difficulty_level)result;
 }
-const char *map_id_to_string(int map_id)
+const char* map_id_to_string(int map_id)
 {
 	switch (map_id)
 	{
@@ -734,7 +896,7 @@ const char *map_id_to_string(int map_id)
 	}
 	return "<unknown>";
 }
-e_map_id string_to_map_id(const char *string)
+e_map_id string_to_map_id(const char* string)
 {
 	int result = _map_id_ff45_corvette;
 	for (int i = _map_id_m05; i < k_number_of_map_ids; i++)
