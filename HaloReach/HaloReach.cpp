@@ -617,6 +617,11 @@ uint64_t GetVersionID(const char* pFilename)
 
 void log_socket_info(struct sockaddr* from)
 {
+	if (!from)
+	{
+		return;
+	}
+
 	switch (from->sa_family)
 	{
 	case AF_INET:
@@ -634,8 +639,6 @@ void log_socket_info(struct sockaddr* from)
 		WriteLineVerbose("IPv6 [%s]:%i", IPv6, sockaddr6.sin6_port);
 	}
 	break;
-	default:
-		FATAL_ERROR("Unsupported address family");
 	}
 }
 
@@ -718,7 +721,12 @@ void init_haloreach_hooks()
 		break;
 	}
 
-	create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer);
+	//patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x1800AE684);
+	//patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x180100D54);
+	//patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x1800ADEFE);
+	
+		
+	//create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer);
 
 	end_detours();
 }

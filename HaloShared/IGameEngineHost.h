@@ -6,6 +6,9 @@ class IGameEngineHost
 {
 public:
 
+	static void CreateClientConnection(int port = 0);
+	static void CreateServerConnection();
+
 	static bool g_enableGameEngineHostOverride;
 
 	enum InputUpdatePatchState
@@ -75,7 +78,7 @@ public:
 	virtual bool __fastcall SetPlayerName(__int64*, wchar_t playerNames[4][32], size_t);
 	virtual void Member32();
 	virtual void Member33();
-	virtual void NetworkSendTo();
+	virtual __int64 __fastcall NetworkSendTo(__int64 a2, char* buffer, uint32_t buffersize, int a5);
 	virtual __int64 NetworkReceiveFrom(char* buffer, uint32_t buffersize, __int64 a4, int a5);
 	virtual void Member36();
 	virtual void Member37();

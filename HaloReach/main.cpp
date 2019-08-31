@@ -323,6 +323,8 @@ void load_previous_gamestate(const char* pFilename, s_game_launch_data& game_lau
 	}
 }
 
+static s_game_launch_data game_launch_data = s_game_launch_data();
+
 void initialize_custom_halo_reach_stuff()
 {
 	load_haloreach_dll();
@@ -338,7 +340,7 @@ void initialize_custom_halo_reach_stuff()
 	__int64 createDataAccessResult = CreateDataAccess(&pHaloReachDataAccess);
 	assert(pHaloReachDataAccess);
 
-	static s_game_launch_data game_launch_data = s_game_launch_data();
+	game_launch_data = s_game_launch_data();
 	game_launch_data.MapId = g_LaunchMapId;
 	game_launch_data.GameMode = g_LaunchGameMode;
 	game_launch_data.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
@@ -346,36 +348,40 @@ void initialize_custom_halo_reach_stuff()
 	memset(&game_launch_data.PartyData, 0, sizeof(game_launch_data.PartyData));
 
 	uint64_t SquadID = 0x2F385E2E95D4F33E;
-	uint64_t LocalId = 0x7F7F86B0EE577202;
-	uint64_t ExternalId = 0x7F7Faf4521cdad53;
+	uint64_t HostId = 0x7F7F86B0EE577202;
+	uint64_t ClientId = 0x7F7Faf4521cdad53;
 
 	game_launch_data.PartyData.SquadId = SquadID; // this is set
 	
-	game_launch_data.PartyData.IsHost = true; // if client, is false
+	game_launch_data.PartyData.IsHost = strstr(GetCommandLineA(), "-host"); // if client, is false
 
 	int localhost = inet_addr("127.0.0.1");
 	if(game_launch_data.PartyData.IsHost)
 	{
-		game_launch_data.PartyData.LocalId = LocalId; // this is set
-		game_launch_data.PartyData.PeerIds[0] = LocalId;
-		game_launch_data.PartyData.PeerIds[1] = ExternalId;
-		game_launch_data.PartyData.PeerCount = 1;
+		IGameEngineHost::CreateServerConnection();
+		
+		SetConsoleTitleA("Halo Reach Console | HOST");
+		game_launch_data.PartyData.LocalId = HostId; // this is set
+		game_launch_data.PartyData.PeerIds[0] = HostId;
+		game_launch_data.PartyData.PeerIds[1] = ClientId;
+		game_launch_data.PartyData.PeerCount = 2;
 
 		game_launch_data.PartyData.PlayerIds[0] = { 0x02D75AC8, { 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } };
 		game_launch_data.PartyData.PlayerIds[1] = { 0x02D75AC9, { 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } };
-		memset(game_launch_data.PartyData.PlayerIds[1].Data, 0xCC, sizeof(game_launch_data.PartyData.PlayerIds[1].Data));
-		game_launch_data.PartyData.PlayerCount = 1;
-
-		load_hopper_game_variant(g_LaunchHopperGameVariant, game_launch_data.halo_reach_game_variant);
-		//load_hopper_map_variant("the_cage.mvar", game_launch_data.halo_reach_map_variant);
-		load_previous_gamestate("gamestate.hdr", game_launch_data);
-
+		
+		game_launch_data.PartyData.PlayerCount = 2;
 	}
 	else
 	{
-		game_launch_data.PartyData.LocalId = ExternalId; // this is set
-		game_launch_data.PartyData.HostId = localhost;
+		IGameEngineHost::CreateClientConnection();
+
+		game_launch_data.PartyData.LocalId = ClientId; // this is set
+		game_launch_data.PartyData.HostId = HostId;
 	}
+
+	load_hopper_game_variant(g_LaunchHopperGameVariant, game_launch_data.halo_reach_game_variant);
+	//load_hopper_map_variant("the_cage.mvar", game_launch_data.halo_reach_map_variant);
+	load_previous_gamestate("gamestate.hdr", game_launch_data);
 
 	//pHaloReachEngine->InitGraphics(0, 0, 0, 0); // #TODO: Correct MCC graphics initialization
 	pHaloReachEngine->InitThread(&IGameEngineHost::g_gameEngineHost, &game_launch_data);
@@ -395,6 +401,14 @@ int WINAPI WinMain(
 	_In_ int nShowCmd
 )
 {
+	WSADATA wsaData = {};
+	// Initialize Winsock
+	auto WSAStartupResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
+	if (WSAStartupResult != 0) {
+		printf("WSAStartup failed with error: %d\n", WSAStartupResult);
+		return 1;
+	}
+
 	g_icon = LoadIconA(GetModuleHandle(NULL), MAKEINTRESOURCEA(IDI_ICON1));
 	SetProcessDPIAware();
 
@@ -448,4 +462,6 @@ int WINAPI WinMain(
 		}
 	}
 #endif
+
+	return 0;
 }

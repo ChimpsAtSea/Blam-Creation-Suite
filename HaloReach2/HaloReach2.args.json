@@ -1,0 +1,18 @@
+{
+  "FileVersion": 2,
+  "Id": "d3fc28c9-77d8-4b91-a5d8-6466790bda38",
+  "Items": [
+    {
+      "Id": "e92bb52a-65cd-4ca2-bfd1-6dd49619615e",
+      "Command": "-waitfordebugger"
+    },
+    {
+      "Id": "a7648016-4ca5-4851-92ba-f338d052438e",
+      "Command": "-showconsole"
+    },
+    {
+      "Id": "a07c1d68-d81f-43a6-aa1e-e4446abca25e",
+      "Command": "-hidesplash"
+    }
+  ]
+}

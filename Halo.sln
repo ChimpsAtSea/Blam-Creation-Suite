@@ -18,6 +18,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HaloShared", "HaloShared\Ha
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imgui", "imgui\imgui.vcxproj", "{30DA9BA2-7EFA-4B89-8A0E-61C7DD5A2ADB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HaloReach2", "HaloReach2\HaloReach2.vcxproj", "{D3FC28C9-77D8-4B91-A5D8-6466790BDA38}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D2234CA-029E-4055-944E-DB8B67498309} = {0D2234CA-029E-4055-944E-DB8B67498309}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -54,6 +59,14 @@ Global
 		{30DA9BA2-7EFA-4B89-8A0E-61C7DD5A2ADB}.Release|x64.Build.0 = Release|x64
 		{30DA9BA2-7EFA-4B89-8A0E-61C7DD5A2ADB}.Release|x86.ActiveCfg = Release|Win32
 		{30DA9BA2-7EFA-4B89-8A0E-61C7DD5A2ADB}.Release|x86.Build.0 = Release|Win32
+		{D3FC28C9-77D8-4B91-A5D8-6466790BDA38}.Debug|x64.ActiveCfg = Debug|x64
+		{D3FC28C9-77D8-4B91-A5D8-6466790BDA38}.Debug|x64.Build.0 = Debug|x64
+		{D3FC28C9-77D8-4B91-A5D8-6466790BDA38}.Debug|x86.ActiveCfg = Debug|Win32
+		{D3FC28C9-77D8-4B91-A5D8-6466790BDA38}.Debug|x86.Build.0 = Debug|Win32
+		{D3FC28C9-77D8-4B91-A5D8-6466790BDA38}.Release|x64.ActiveCfg = Release|x64
+		{D3FC28C9-77D8-4B91-A5D8-6466790BDA38}.Release|x64.Build.0 = Release|x64
+		{D3FC28C9-77D8-4B91-A5D8-6466790BDA38}.Release|x86.ActiveCfg = Release|Win32
+		{D3FC28C9-77D8-4B91-A5D8-6466790BDA38}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

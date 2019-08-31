@@ -13,6 +13,10 @@
     {
       "Id": "0053b248-bb22-4acf-bd03-f50703be9f02",
       "Command": "-hidesplash"
+    },
+    {
+      "Id": "7ddf1006-d23d-4345-ad15-3bf3ec42a0e0",
+      "Command": "-host"
     }
   ]
 }
