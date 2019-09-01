@@ -536,7 +536,7 @@ void ReadConfig()
 	g_LaunchGameMode = string_to_game_mode(pLaunchGameModeBuffer);
 
 	char pLaunchCampaignDifficultyLevelBuffer[256] = {};
-	Settings::ReadStringValue(SettingsSection::Launch, "CampaignDifficultyLevel", pLaunchCampaignDifficultyLevelBuffer, sizeof(pLaunchCampaignDifficultyLevelBuffer), "normal");
+	Settings::ReadStringValue(SettingsSection::Launch, "DifficultyLevel", pLaunchCampaignDifficultyLevelBuffer, sizeof(pLaunchCampaignDifficultyLevelBuffer), "normal");
 	g_LaunchCampaignDifficultyLevel = string_to_campaign_difficulty_level(pLaunchCampaignDifficultyLevelBuffer);
 
 	// #TODO: This must persist outside of the read
