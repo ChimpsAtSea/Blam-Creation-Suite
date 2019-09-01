@@ -59,6 +59,7 @@ typedef ull             uint64;
 #define _WORD  uint16
 #define _DWORD uint32
 #define _QWORD uint64
+#define _OWORD __int128
 #if !defined(_MSC_VER)
 #define _LONGLONG __int128
 #endif

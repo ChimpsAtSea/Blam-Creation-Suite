@@ -242,17 +242,17 @@ void read_file_to_buffer(FILE* pFile, char* pBuffer, size_t length)
 
 }
 
-void load_hopper_map_variant(const char *pHopperGameVariantName, s_map_variant &out_map_variant)
+void load_hopper_map_variant(const char* pHopperGameVariantName, s_map_variant& out_map_variant)
 {
 	char pFilename[MAX_PATH] = {};
 	sprintf(pFilename, "hopper_map_variants\\%s", pHopperGameVariantName);
 	pFilename[MAX_PATH - 1] = 0;
 
-	FILE *pVariantFile = fopen(pFilename, "rb");
+	FILE* pVariantFile = fopen(pFilename, "rb");
 	if (pVariantFile)
 	{
 		size_t variantSize = get_file_size(pVariantFile);
-		char *pVariantBuffer = (char *)alloca(variantSize);
+		char* pVariantBuffer = (char*)alloca(variantSize);
 		memset(pVariantBuffer, 0x00, variantSize);
 		read_file_to_buffer(pVariantFile, pVariantBuffer, variantSize);
 		fclose(pVariantFile);
@@ -261,7 +261,7 @@ void load_hopper_map_variant(const char *pHopperGameVariantName, s_map_variant &
 
 		// #TODO: MCC STRUCTURE FOR THIS
 		// #TODO: First 8 bytes appear to be a pointer to something in base game
-		s_map_variant *variant = (s_map_variant *)(result + 8);
+		s_map_variant* variant = (s_map_variant*)(result + 8);
 
 		out_map_variant = *variant;
 	}
@@ -309,11 +309,11 @@ void load_previous_gamestate(const char* pFilename, s_game_launch_data& game_lau
 
 void load_previous_gamestate(const char* pFilename, s_game_launch_data& game_launch_data)
 {
-	FILE *pGameStateFile = fopen(pFilename, "rb");
+	FILE* pGameStateFile = fopen(pFilename, "rb");
 	if (pGameStateFile)
 	{
 		size_t gameStateSize = get_file_size(pGameStateFile);
-		char *pGameStateBuffer = (char *)alloca(gameStateSize);
+		char* pGameStateBuffer = (char*)alloca(gameStateSize);
 		memset(pGameStateBuffer, 0x00, gameStateSize);
 		read_file_to_buffer(pGameStateFile, pGameStateBuffer, gameStateSize);
 		fclose(pGameStateFile);
@@ -323,7 +323,7 @@ void load_previous_gamestate(const char* pFilename, s_game_launch_data& game_lau
 	}
 }
 
-static s_game_launch_data game_launch_data = s_game_launch_data();
+s_game_launch_data game_launch_data = s_game_launch_data();
 
 void initialize_custom_halo_reach_stuff()
 {
@@ -350,23 +350,24 @@ void initialize_custom_halo_reach_stuff()
 	uint64_t ClientId = 0x7F7Faf4521cdad53;
 
 	game_launch_data.PartyData.SquadId = SquadID; // this is set
-	
+
 	game_launch_data.PartyData.IsHost = strstr(GetCommandLineA(), "-host"); // if client, is false
 
 	int localhost = inet_addr("127.0.0.1");
-	if(game_launch_data.PartyData.IsHost)
+	if (game_launch_data.PartyData.IsHost)
 	{
 		IGameEngineHost::CreateServerConnection();
-		
+
 		SetConsoleTitleA("Halo Reach Console | HOST");
 		game_launch_data.PartyData.LocalId = HostId; // this is set
 		game_launch_data.PartyData.PeerIds[0] = HostId;
 		game_launch_data.PartyData.PeerIds[1] = ClientId;
 		game_launch_data.PartyData.PeerCount = 2;
 
-		game_launch_data.PartyData.PlayerIds[0] = { 0x02D75AC8, { 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } };
-		game_launch_data.PartyData.PlayerIds[1] = { 0x02D75AC9, { 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } };
-		
+		game_launch_data.PartyData.PlayerIds[0] = { 0x0009000002D75AC8, 0x00000000, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+		game_launch_data.PartyData.PlayerIds[1] = { 0x000901FE31A851C0, 0x00000000, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+
+
 		game_launch_data.PartyData.PlayerCount = 2;
 
 		game_launch_data.MapId = g_LaunchMapId;

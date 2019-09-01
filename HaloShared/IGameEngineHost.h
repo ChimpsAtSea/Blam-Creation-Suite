@@ -62,9 +62,14 @@ public:
 	virtual void Member23();
 	virtual void Member24();
 
+	struct unknown_network_type
+	{
+		char data[24];
+	};
+
 	struct Member25Struct
 	{
-		char data[0x180];
+		unknown_network_type data[16];
 		int unknown;
 		int unknown2;
 	};
@@ -86,7 +91,7 @@ public:
 	virtual void Member39();
 	virtual void Member40();
 	virtual void Member41();
-	virtual void FileAccessed();
+	virtual unsigned __int8 __fastcall FileAccessed(_QWORD, WCHAR*, __int64);
 	virtual void Member43();
 
 	// DATA

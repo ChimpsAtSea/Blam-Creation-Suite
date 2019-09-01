@@ -4,6 +4,19 @@
 #define WIN32_MEAN_AND_LEAN
 #define DIRECTINPUT_VERSION 0x0800
 
+#include <mmintrin.h>
+#include <xmmintrin.h>
+#include <emmintrin.h>
+#include <pmmintrin.h>
+#include <tmmintrin.h>
+#include <smmintrin.h>
+#include <nmmintrin.h>
+//#include <ammintrin.h>
+//#include <wmmintrin.h>
+//#include <immintrin.h>
+
+#define __int128 __m128
+
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>

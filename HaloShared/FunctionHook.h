@@ -422,11 +422,5 @@ template<size_t offset, typename base_type>
 using HaloReach_2019_Jun_24_HookVarArgs = FunctionHookVarArgs<HaloGameID::HaloReach_2019_Jun_24, offset, base_type>;
 
 
-template<intptr_t(find_offset_func)(HaloGameID gameID), typename base_type>
-using HaloReachHookEx = FunctionHookEx<find_offset_func, base_type>;
-
-template<intptr_t(find_offset_func)(HaloGameID gameID), typename base_type>
-using HaloReachHookVarArgsEx = FunctionHookVarArgsEx<find_offset_func, base_type>;
-
 
 

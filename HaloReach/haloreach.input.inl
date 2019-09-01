@@ -55,7 +55,7 @@ intptr_t input_update_offset(HaloGameID gameID)
 }
 
 #pragma optimize("", off)
-HaloReachHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
+FunctionHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 
 	if (qword_1839EC128)
 	{
@@ -129,7 +129,7 @@ intptr_t input_abstraction_get_default_preferences_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachHookEx<input_abstraction_get_default_preferences_offset, __int64 __fastcall (s_bindings_table* a1)> input_abstraction_get_default_preferences = { "input_abstraction_get_default_preferences", [](s_bindings_table* a1)
+FunctionHookEx<input_abstraction_get_default_preferences_offset, __int64 __fastcall (s_bindings_table* a1)> input_abstraction_get_default_preferences = { "input_abstraction_get_default_preferences", [](s_bindings_table* a1)
 {
 	auto result = input_abstraction_get_default_preferences(a1);
 
@@ -273,7 +273,7 @@ intptr_t input_abstraction_get_default_keyboard_preferences_offset(HaloGameID ga
 	}
 	return ~intptr_t();
 }
-HaloReachHookEx<input_abstraction_get_default_keyboard_preferences_offset, __int64 __fastcall (s_game_bindings& a1)> input_abstraction_get_default_keyboard_preferences = { "input_abstraction_get_default_keyboard_preferences", [](s_game_bindings& a1)
+FunctionHookEx<input_abstraction_get_default_keyboard_preferences_offset, __int64 __fastcall (s_game_bindings& a1)> input_abstraction_get_default_keyboard_preferences = { "input_abstraction_get_default_keyboard_preferences", [](s_game_bindings& a1)
 {
 	auto result = input_abstraction_get_default_keyboard_preferences(a1);
 

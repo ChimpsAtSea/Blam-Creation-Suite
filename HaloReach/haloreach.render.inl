@@ -38,7 +38,7 @@ intptr_t initialize_device_offset(HaloGameID gameID)
 }
 
 // allow the game to read the command line to use -width and -height
-HaloReachHookEx<initialize_device_offset, char()> initialize_device = { "initialize_device", []()
+FunctionHookEx<initialize_device_offset, char()> initialize_device = { "initialize_device", []()
 {
 	D3D_FEATURE_LEVEL pFeatureLevels[] =
 	{
@@ -72,7 +72,7 @@ intptr_t game_options_new_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachHookEx<game_options_new_offset, __int64 __fastcall (s_game_options *game_options)> game_options_new = { "game_options_new", [](s_game_options *game_options) {
+FunctionHookEx<game_options_new_offset, __int64 __fastcall (s_game_options *game_options)> game_options_new = { "game_options_new", [](s_game_options *game_options) {
 
 	auto result = game_options_new(game_options);
 
@@ -90,7 +90,7 @@ intptr_t observer_get_suggested_field_of_view_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachHookEx<observer_get_suggested_field_of_view_offset, float(__stdcall)()> observer_get_suggested_field_of_view = { "observer_get_suggested_field_of_view", []() {
+FunctionHookEx<observer_get_suggested_field_of_view_offset, float(__stdcall)()> observer_get_suggested_field_of_view = { "observer_get_suggested_field_of_view", []() {
 
 	auto result = observer_get_suggested_field_of_view();
 
@@ -108,7 +108,7 @@ intptr_t camera_new_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachHookEx<camera_new_offset, __int64(__fastcall)(uint8_t *, int, float, char)> camera_new = { "camera_new", [](uint8_t *director, int camera_type, float camera_speed, char force_update) {
+FunctionHookEx<camera_new_offset, __int64(__fastcall)(uint8_t *, int, float, char)> camera_new = { "camera_new", [](uint8_t *director, int camera_type, float camera_speed, char force_update) {
 
 	//if (camera_type == 4) // on death set the camera_mode to flying
 	//	camera_type = 2;

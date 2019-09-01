@@ -500,11 +500,28 @@ enum e_game_mode : int
 };
 
 typedef uint64_t XnkId;
+#pragma pack(push, 1)
 struct XnkAddr
 {
-	int maybeip;
-	uint8_t Data[20];
+	QWORD qword0;
+	DWORD dword8;
+	uint8_t unknownC[12];
 };
+#pragma pack(pop)
+static_assert(sizeof(XnkAddr) == 24, "");
+
+//typedef struct {
+//	IN_ADDR     ina;                            // IP address (zero if not static/DHCP)
+//	IN_ADDR     inaOnline;                      // Online IP address (zero if not online)
+//	WORD        wPortOnline;                    // Online port
+//	BYTE        abEnet[6];                      // Ethernet MAC address
+//	BYTE        abOnline[20];                   // Online identification
+//} XNADDR;
+
+//typedef struct {
+//	BYTE        ab[8];                          // xbox to xbox key identifier
+//} XNKID;
+typedef uint64_t XNKID;
 
 struct s_game_launch_data_memzero
 {
@@ -520,12 +537,12 @@ struct s_game_launch_data_memzero
 
 struct s_party_data
 {
-	XnkId SquadId;
-	XnkId LocalId;
+	XNKID SquadId;
+	XNKID LocalId;
 	bool IsHost; // if client, is false
 	__declspec(align(8)) struct
 	{
-		XnkId PeerIds[17];
+		XNKID PeerIds[17];
 		uint32_t PeerCount; // if client, is 0
 	};
 	__declspec(align(8)) struct
@@ -533,7 +550,7 @@ struct s_party_data
 		XnkAddr PlayerIds[16];
 		int64_t PlayerCount; // if client, is 0
 	};
-	XnkId HostId; // if client, is LocalId
+	XNKID HostId; // if client, is LocalId
 };
 static constexpr size_t PartyData_HostId_Offset = offsetof(s_party_data, s_party_data::HostId);
 static_assert(PartyData_HostId_Offset == 0x230);

@@ -58,11 +58,19 @@ void nop_address(HaloGameID id, intptr_t offset, size_t count)
 	char* pBeginning = (char*)GetHaloExecutable(id);
 	char* pNopAttack = pBeginning + (offset - 0x180000000);
 
-	char nop = 0x90;
+	char nop = 0x90i8;
 	for (int i = 0; i < count; i++)
 	{
 		memcpy_virtual(pNopAttack + i, &nop, 1);
 	}
+}
+
+void copy_to_address(HaloGameID id, intptr_t offset, void* data, size_t length)
+{
+	char* pBeginning = (char*)GetHaloExecutable(id);
+	char* pDataAttack = pBeginning + (offset - 0x180000000);
+
+	memcpy_virtual(pDataAttack, data, length);
 }
 
 void patch_out_gameenginehostcallback_mov(HaloGameID id, intptr_t offset)
@@ -324,7 +332,7 @@ intptr_t wait_for_render_thread_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachHookEx<wait_for_render_thread_offset, __int64()> wait_for_render_thread;
+FunctionHookEx<wait_for_render_thread_offset, __int64()> wait_for_render_thread;
 
 intptr_t restricted_region_unlock_primary_offset(HaloGameID gameID)
 {
@@ -335,7 +343,7 @@ intptr_t restricted_region_unlock_primary_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-HaloReachHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restricted_region_unlock_primary;
+FunctionHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restricted_region_unlock_primary;
 
 // core functionality required for the game to run
 #include "haloreach.core.inl"
@@ -391,7 +399,7 @@ FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18090A0E0, __int64 __fastcall 
 //	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, callback);
 //};
 
-struct __declspec(align(2)) struct_v4
+struct struct_v4
 {
 	SOCKET socket;
 	_DWORD dword8;
@@ -400,6 +408,7 @@ struct __declspec(align(2)) struct_v4
 	_WORD word14;
 	_WORD port;
 };
+static_assert(sizeof(struct_v4) == 0x18, "");
 
 
 FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x1800ADAB0, bool __fastcall (int, __int16, char, struct_v4*&)> create_endpoint = [](int a1, __int16 port, char a3, struct_v4*& transport_endpoint_out)
@@ -408,6 +417,53 @@ FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x1800ADAB0, bool __fastcall (in
 	return result;
 };
 
+Pointer<HaloGameID::HaloReach_2019_Aug_20, _QWORD, 0x18393C028> qword_18393C028;
+
+
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180492500, char __fastcall (__int64 a1, __int64 a2, XnkId* squadAddr, XnkId* hostAddr, void* a5)> join_party = [](__int64 a1, __int64 a2, XnkId* squadAddr, XnkId* hostAddr, void* a5)
+{
+	auto result = join_party(a1, a2, squadAddr, hostAddr, a5);
+	return result;
+};
+
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180031CE0, char __fastcall (__int64, char, char, char, __int64, XnkId*, void*, XnkId*)> network_join_to_remote_squad = [](__int64 a1, char a2, char a3, char a4, __int64 a5, XnkId* squadAddr, void* a7, XnkId* hostAddr)
+{
+	auto result = network_join_to_remote_squad(a1, a2, a3, a4, a5, squadAddr, a7, hostAddr);
+	return result;
+};
+
+class c_network_session;
+#define join_remote_session_args c_network_session *_this, unsigned __int8 a2, unsigned int a3, unsigned int a4, _QWORD *a5, _OWORD *a6, XnkId *a7, __int64 a8, _DWORD *a9, __int128 *a10, __int64 a11, int a12, char a13
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180028150, char __fastcall (join_remote_session_args)> join_remote_session = [](join_remote_session_args)
+{
+	auto result = join_remote_session(_this, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
+	return result;
+};
+
+#define managed_session_create_host_args c_network_session* _this, unsigned __int8 a2, int a3, unsigned int a4, XnkId* squadAddr, _OWORD* a6, XnkId* hostAddr, __int64 a8, __int64 a9, __int64 a10, void* a11, int a12
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x1800288B0, __int64 __fastcall (managed_session_create_host_args)> managed_session_create_host = [](managed_session_create_host_args)
+{
+	auto result = managed_session_create_host(_this, a2, a3, a4, squadAddr, a6, hostAddr, a8, a9, a10, a11, a12);
+	return result;
+};
+
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18002AD80, __int64 __fastcall (_DWORD* a1, int a2, _QWORD* a3, int a4, int a5, __int64 a6, __int128* a7)> peer_request_player_add = [](_DWORD* a1, int a2, _QWORD* a3, int a4, int a5, __int64 a6, __int128* a7)
+{
+	WriteLineVerbose("peer_request_player_add");
+	auto result = peer_request_player_add(a1, a2, a3, a4, a5, a6, a7);
+	return result;
+};
+
+
+//class c_network_session;
+//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18005CE70, c_network_session* __fastcall (c_network_session** a1, _QWORD* a2)> squad_in_session = [](c_network_session** a1, _QWORD* a2)
+//{
+//	auto result = squad_in_session(a1, a2);
+//	
+//	WriteLineVerbose("squad_in_session: %s", result ? "true" : "false");
+//
+//	return result;
+//};
 void WriteGameState()
 {
 	if (GetAsyncKeyState(VK_F8))
@@ -693,7 +749,7 @@ typedef int (WSAAPI bindFunc)(
 	_In_ SOCKET s,
 	_In_reads_bytes_(namelen) const struct sockaddr FAR* name,
 	_In_ int namelen
-);
+	);
 static bindFunc* bindPointer;
 int WSAAPI bindHook(
 	_In_ SOCKET s,
@@ -806,6 +862,10 @@ void init_haloreach_hooks()
 	//patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x180100D54);
 	//patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x1800ADEFE);
 	//nop_address(HaloGameID::HaloReach_2019_Aug_20, 0x1800ADB4F, 6);
+	int32_t host_wait_for_party_timeout = 45000000;
+	copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011090, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
+	copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011431, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
+	copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011458, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
 	
 
 	//create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer);

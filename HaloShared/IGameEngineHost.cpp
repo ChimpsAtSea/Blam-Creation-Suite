@@ -96,6 +96,34 @@ void IGameEngineHost::Member24()
 
 void IGameEngineHost::Member25(Member25Struct* unk2, uint32_t a3)
 {
+	_QWORD* a2 = (_QWORD*)unk2;
+
+	char* v3; // rcx
+	__int64 v4; // rax
+	__int64 v5; // rax
+	char* v6; // rdx
+	char v7; // [rsp+40h] [rbp-1D8h]
+	char* v8; // [rsp+78h] [rbp-1A0h]
+	char v9[392]; // [rsp+80h] [rbp-198h]
+
+	v3 = v9;
+	v4 = 3i64;
+	do
+	{
+		*v3 = *a2;
+		*(v3 + 1) = *(a2 + 1);
+		*(v3 + 2) = *(a2 + 2);
+		*(v3 + 3) = *(a2 + 3);
+		*(v3 + 4) = *(a2 + 4);
+		*(v3 + 5) = *(a2 + 5);
+		*(v3 + 6) = *(a2 + 6);
+		v3 += 128;
+		*(v3 - 1) = *(a2 + 7);
+		a2 += 16;
+		--v4;
+	} while (v4);
+	*v3 = *a2;
+
 	WriteLineVerbose("IGameEngineHost::Member25");
 };
 
@@ -254,6 +282,12 @@ void IGameEngineHost::Member38() { WriteLineVerbose("IGameEngineHost::Member38")
 void IGameEngineHost::Member39() { WriteLineVerbose("IGameEngineHost::Member39"); };
 void IGameEngineHost::Member40() { WriteLineVerbose("IGameEngineHost::Member40"); };
 void IGameEngineHost::Member41() { WriteLineVerbose("IGameEngineHost::Member41"); };
-void IGameEngineHost::FileAccessed() { WriteLineVerbose("IGameEngineHost::FileAccessed"); };
+
+unsigned __int8 __fastcall IGameEngineHost::FileAccessed(_QWORD, WCHAR* buffer, __int64 bufferlength)
+{
+	memset(buffer, 0, bufferlength * (sizeof(WCHAR)));
+	return 1;
+};
+
 void IGameEngineHost::Member43() { WriteLineVerbose("IGameEngineHost::Member43"); };
 
