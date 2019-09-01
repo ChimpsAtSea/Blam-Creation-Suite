@@ -353,3 +353,93 @@ FunctionHookEx<input_abstraction_get_default_keyboard_preferences_offset, __int6
 
 	return result;
 } };
+
+// TODO: find a better home / move into own file
+#pragma region Binds
+
+struct Binds
+{
+	struct Bind
+	{
+		e_game_action GameAction;
+		e_key_code KeyCode;
+
+		Bind(e_game_action game_action, e_key_code key_code)
+		{
+			KeyCode = key_code;
+			GameAction = game_action;
+		}
+		Bind(e_key_code key_code, e_game_action game_action)
+		{
+			KeyCode = key_code;
+			GameAction = game_action;
+		}
+
+		template<int Count, typename T>
+		T IndexOf(const char* Array[], const char* Input)
+		{
+			for (int i = 0; i < Count; i++)
+			{
+				if (strcmp(Array[i], Input) == 0)
+					return (T)i;
+			}
+
+			return (T)0xFF;
+		}
+
+		e_key_code ReadFromConfig()
+		{
+			const char* pGameActionString = game_action_strings[GameAction];
+			const char* pKeyCodeString = key_code_strings[KeyCode];
+			char configResult[1024] = {};
+			Settings::ReadStringValue(SettingsSection::Controls, pGameActionString, configResult, sizeof(configResult), pKeyCodeString);
+			return IndexOf<k_number_of_key_codes, e_key_code>(key_code_strings, configResult);
+		}
+	};
+
+	std::vector<Bind> Array;
+	int Count = 0;
+
+	void Add(e_game_action game_action, e_key_code key_code)
+	{
+		Array.push_back(Bind(game_action, key_code));
+		Count++;
+	}
+
+	void ReadBindsFromConfig(s_game_bindings& gameBindings)
+	{
+		memset(&gameBindings, 0xFF, sizeof(gameBindings));
+
+		for (int i = 0; i < Count; i++)
+		{
+			gameBindings.KeyboardBindings[Array.at(i).GameAction].primary = Array.at(i).ReadFromConfig();
+		}
+	}
+} g_Binds;
+
+void ReadInputBindings()
+{
+	g_Binds.Add(_game_action_jump, _key_code_space);
+	g_Binds.Add(_game_action_switch_grenade, _key_code_g);
+	g_Binds.Add(_game_action_switch_weapon, _key_code_c);
+	g_Binds.Add(_game_action_context_primary, _key_code_e);
+	g_Binds.Add(_game_action_melee_attack, _key_code_q);
+	g_Binds.Add(_game_action_equipment, _key_code_left_shift);
+	g_Binds.Add(_game_action_throw_grenade, _key_code_f);
+	g_Binds.Add(_game_action_crouch, _key_code_left_control);
+	g_Binds.Add(_game_action_vehicle_brake2, _key_code_left_bracket);
+	g_Binds.Add(_game_action_show_weapon_details, _key_code_back);
+	g_Binds.Add(_game_action_night_vision, _key_code_4);
+	g_Binds.Add(_game_action_skip_cutscene, _key_code_enter);
+	g_Binds.Add(_game_action_skip_cutscene_confirm, _key_code_space);
+	g_Binds.Add(_game_action_reload, _key_code_r);
+	g_Binds.Add(_game_action_move_forward, _key_code_w);
+	g_Binds.Add(_game_action_move_backwards, _key_code_s);
+	g_Binds.Add(_game_action_move_left, _key_code_a);
+	g_Binds.Add(_game_action_move_right, _key_code_d);
+
+	if (g_customBinds = Settings::ReadBoolValue(SettingsSection::Controls, "CustomBinds", true))
+		g_Binds.ReadBindsFromConfig(g_GameBindings);
+}
+
+#pragma endregion

@@ -24,6 +24,15 @@
     <ClCompile Include="HaloReach.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="map_id.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="campaign_difficulty_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game_mode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="haloreach-private-pch.h">
@@ -33,6 +42,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HaloReach.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_id.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="campaign_difficulty_level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game_mode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

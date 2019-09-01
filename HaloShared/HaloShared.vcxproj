@@ -166,7 +166,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="IGameEngine.cpp" />
     <ClCompile Include="IGameEngineHost.cpp" />
+    <ClCompile Include="IGameEvents.cpp" />
+    <ClCompile Include="settings.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,10 +183,13 @@
     <ClInclude Include="haloshared-private-pch.h" />
     <ClInclude Include="haloshared-public-pch.h" />
     <ClInclude Include="haloshared-system-pch.h" />
+    <ClInclude Include="IGameEngine.h" />
     <ClInclude Include="IGameEngineHost.h" />
+    <ClInclude Include="IGameEvents.h" />
     <ClInclude Include="input_types.h" />
     <ClInclude Include="local_types.h" />
     <ClInclude Include="logging.h" />
+    <ClInclude Include="settings.h" />
     <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

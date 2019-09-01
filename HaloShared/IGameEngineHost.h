@@ -1,7 +1,5 @@
 #pragma once
 
-struct GameEvents;
-
 class IGameEngineHost
 {
 public:
@@ -46,7 +44,7 @@ public:
 	virtual void Member07();
 	virtual void Member08();
 	virtual void Member09();
-	virtual GameEvents* GetGameEvents();
+	virtual IGameEvents* GetGameEvents();
 	virtual void Member11(); // DataAccessGameVariant
 	virtual void Member12(); // DataAccessMapVariant
 	virtual void Member13();
@@ -80,7 +78,7 @@ public:
 	virtual bool Member28(__int64 a2);
 	virtual bool Member29(__int64 a2, __int64 a3);
 	virtual unsigned __int8 __fastcall Member30(_QWORD, InputBuffer *pInputBuffer);
-	virtual bool __fastcall SetPlayerName(__int64*, wchar_t playerNames[4][32], size_t);
+	virtual bool __fastcall GetPlayerName(__int64*, wchar_t playerNames[4][32], size_t);
 	virtual void Member32();
 	virtual void Member33();
 	virtual __int64 __fastcall NetworkSendTo(__int64 a2, char* buffer, uint32_t buffersize, int a5);
@@ -96,7 +94,7 @@ public:
 
 	// DATA
 
-	GameEvents* pGameEvents;
+	IGameEvents* pGameEvents;
 	QWORD data1[5863];
 
 	// IGameEngineHost bypass functions

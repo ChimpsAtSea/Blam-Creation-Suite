@@ -1,8 +1,6 @@
 #include "haloreach-private-pch.h"
 
 // Custom Engine Stuff
-GameEvents gameEvents;
-GameEvents_vftbl gameEventsVftbl;
 s_thread_local_storage ThreadLocalStorage;
 
 // Custom Stuff
@@ -25,7 +23,6 @@ bool g_keyboardPrintKeyState = false;
 bool g_hideWindowOnStartup = false;
 HaloGameID g_currentGameID = HaloGameID::NotSet;
 
-char g_LaunchMapName[256] = "ff45_corvette";
 e_map_id g_LaunchMapId = _map_id_ff45_corvette;
 int g_LaunchGameMode = _game_mode_survival;
 e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
@@ -420,27 +417,27 @@ FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x1800ADAB0, bool __fastcall (in
 Pointer<HaloGameID::HaloReach_2019_Aug_20, _QWORD, 0x18393C028> qword_18393C028;
 
 
-FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180492500, char __fastcall (__int64 a1, __int64 a2, XnkId* squadAddr, XnkId* hostAddr, void* a5)> join_party = [](__int64 a1, __int64 a2, XnkId* squadAddr, XnkId* hostAddr, void* a5)
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180492500, char __fastcall (__int64 a1, __int64 a2, PeerUUID* squadAddr, PeerUUID* hostAddr, void* a5)> join_party = [](__int64 a1, __int64 a2, PeerUUID* squadAddr, PeerUUID* hostAddr, void* a5)
 {
 	auto result = join_party(a1, a2, squadAddr, hostAddr, a5);
 	return result;
 };
 
-FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180031CE0, char __fastcall (__int64, char, char, char, __int64, XnkId*, void*, XnkId*)> network_join_to_remote_squad = [](__int64 a1, char a2, char a3, char a4, __int64 a5, XnkId* squadAddr, void* a7, XnkId* hostAddr)
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180031CE0, char __fastcall (__int64, char, char, char, __int64, PeerUUID*, void*, PeerUUID*)> network_join_to_remote_squad = [](__int64 a1, char a2, char a3, char a4, __int64 a5, PeerUUID* squadAddr, void* a7, PeerUUID* hostAddr)
 {
 	auto result = network_join_to_remote_squad(a1, a2, a3, a4, a5, squadAddr, a7, hostAddr);
 	return result;
 };
 
 class c_network_session;
-#define join_remote_session_args c_network_session *_this, unsigned __int8 a2, unsigned int a3, unsigned int a4, _QWORD *a5, _OWORD *a6, XnkId *a7, __int64 a8, _DWORD *a9, __int128 *a10, __int64 a11, int a12, char a13
+#define join_remote_session_args c_network_session *_this, unsigned __int8 a2, unsigned int a3, unsigned int a4, _QWORD *a5, _OWORD *a6, PeerUUID *a7, __int64 a8, _DWORD *a9, __int128 *a10, __int64 a11, int a12, char a13
 FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x180028150, char __fastcall (join_remote_session_args)> join_remote_session = [](join_remote_session_args)
 {
 	auto result = join_remote_session(_this, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 	return result;
 };
 
-#define managed_session_create_host_args c_network_session* _this, unsigned __int8 a2, int a3, unsigned int a4, XnkId* squadAddr, _OWORD* a6, XnkId* hostAddr, __int64 a8, __int64 a9, __int64 a10, void* a11, int a12
+#define managed_session_create_host_args c_network_session* _this, unsigned __int8 a2, int a3, unsigned int a4, PeerUUID* squadAddr, _OWORD* a6, PeerUUID* hostAddr, __int64 a8, __int64 a9, __int64 a10, void* a11, int a12
 FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x1800288B0, __int64 __fastcall (managed_session_create_host_args)> managed_session_create_host = [](managed_session_create_host_args)
 {
 	auto result = managed_session_create_host(_this, a2, a3, a4, squadAddr, a6, hostAddr, a8, a9, a10, a11, a12);
@@ -501,175 +498,51 @@ void check_library_can_load(const char* pLibName, const char* pFallbackDir = "")
 	assert(hModule);
 }
 
-
-void set_player_name(int index)
-{
-	static wchar_t name[16] = L"";
-	if (GetPrivateProfileStringW(L"Player", L"Name", L"Player", name, 16, L".\\Settings.ini") != 2)
-	{
-		if (wcsncmp(g_player_names[index], name, 16) == 0)
-		{
-			WriteLineVerbose("player[%d].Name already set", index);
-			return;
-		}
-		wcsncpy_s(g_player_names[index], 32, name, 16);
-		WriteLineVerbose("player[%d].Name: set %ls", index, name);
-	}
-}
 void set_service_tag(int index)
 {
-	static wchar_t tag[5] = L"";
-	if (GetPrivateProfileStringW(L"Player", L"ServiceTag", L"UNSC", tag, 5, L".\\Settings.ini") != 2)
-	{
-		if (wcsncmp(g_controller_interfaces[index].Profile.ServiceTag, tag, 5) == 0)
-		{
-			WriteLineVerbose("player[%d].Tag already set", index);
-			return;
-		}
-		wcsncpy(g_controller_interfaces[index].Profile.ServiceTag, tag, 5);
-		WriteLineVerbose("player[%d].Tag: set %ls", index, tag);
-	}
-}
-
-void set_player_name_and_tag()
-{
-	int index = 0; // GetPrivateProfileIntW(L"Player", L"Index", 0, L".\\Settings.ini");
-
-	if (g_player_names.ptr())
-		set_player_name(index);
-
 	if (g_controller_interfaces.ptr())
-		set_service_tag(index);
+	{
+		static wchar_t tag[5] = L"";
+		if (GetPrivateProfileStringW(L"Player", L"ServiceTag", L"UNSC", tag, 5, L".\\Settings.ini") != 2)
+		{
+			if (wcsncmp(g_controller_interfaces[index].Profile.ServiceTag, tag, 5) == 0)
+			{
+				WriteLineVerbose("player[%d].Tag already set", index);
+				return;
+			}
+			wcsncpy(g_controller_interfaces[index].Profile.ServiceTag, tag, 5);
+			WriteLineVerbose("player[%d].Tag: set %ls", index, tag);
+		}
+	}
 }
-
-// TODO: find a better home / move into own file
-#pragma region Config
-
-struct Config
-{
-	char Path[MAX_PATH] = ".\\Settings.ini";
-
-	bool ReadBool(LPCSTR Section, LPCSTR Name, int Default = false)
-	{
-		return !!GetPrivateProfileIntA(Section, Name, Default, Path);
-	}
-	int ReadInt(LPCSTR Section, LPCSTR Name, int Default = -1)
-	{
-		return GetPrivateProfileIntA(Section, Name, Default, Path);
-	}
-	LPSTR ReadString(LPCSTR Section, LPCSTR Name, LPCSTR Default)
-	{
-		static char result[MAX_PATH] = "";
-		GetPrivateProfileStringA(Section, Name, Default, result, MAX_PATH, Path);
-		return result;
-	}
-
-	template<int Count, typename T>
-	T IndexOf(const char* Array[], const char* Input)
-	{
-		for (int i = 0; i < Count; i++)
-		{
-			if (strcmp(Array[i], Input) == 0)
-				return (T)i;
-		}
-
-		return (T)0xFF;
-	}
-} g_Config;
-
-#pragma endregion
-
-// TODO: find a better home / move into own file
-#pragma region Binds
-
-struct Binds
-{
-	struct Bind
-	{
-		e_game_action GameAction;
-		e_key_code KeyCode;
-
-		Bind(e_game_action game_action, e_key_code key_code)
-		{
-			KeyCode = key_code;
-			GameAction = game_action;
-		}
-		Bind(e_key_code key_code, e_game_action game_action)
-		{
-			KeyCode = key_code;
-			GameAction = game_action;
-		}
-		e_key_code ReadFromConfig()
-		{
-			LPSTR configResult = g_Config.ReadString("Controls", game_action_strings[GameAction], key_code_strings[KeyCode]);
-			return g_Config.IndexOf<k_number_of_key_codes, e_key_code>(key_code_strings, configResult);
-		}
-	};
-
-	std::vector<Bind> Array;
-	int Count = 0;
-
-	void Add(e_game_action game_action, e_key_code key_code)
-	{
-		Array.push_back(Bind(game_action, key_code));
-		Count++;
-	}
-
-	void ReadBindsFromConfig(s_game_bindings& gameBindings)
-	{
-		memset(&gameBindings, 0xFF, sizeof(gameBindings));
-
-		for (int i = 0; i < Count; i++)
-		{
-			gameBindings.KeyboardBindings[Array.at(i).GameAction].primary = Array.at(i).ReadFromConfig();
-		}
-	}
-} g_Binds;
-
-void ReadBinds()
-{
-	g_Binds.Add(_game_action_jump, _key_code_space);
-	g_Binds.Add(_game_action_switch_grenade, _key_code_g);
-	g_Binds.Add(_game_action_switch_weapon, _key_code_c);
-	g_Binds.Add(_game_action_context_primary, _key_code_e);
-	g_Binds.Add(_game_action_melee_attack, _key_code_q);
-	g_Binds.Add(_game_action_equipment, _key_code_left_shift);
-	g_Binds.Add(_game_action_throw_grenade, _key_code_f);
-	g_Binds.Add(_game_action_crouch, _key_code_left_control);
-	g_Binds.Add(_game_action_vehicle_brake2, _key_code_left_bracket);
-	g_Binds.Add(_game_action_show_weapon_details, _key_code_back);
-	g_Binds.Add(_game_action_night_vision, _key_code_4);
-	g_Binds.Add(_game_action_skip_cutscene, _key_code_enter);
-	g_Binds.Add(_game_action_skip_cutscene_confirm, _key_code_space);
-	g_Binds.Add(_game_action_reload, _key_code_r);
-	g_Binds.Add(_game_action_move_forward, _key_code_w);
-	g_Binds.Add(_game_action_move_backwards, _key_code_s);
-	g_Binds.Add(_game_action_move_left, _key_code_a);
-	g_Binds.Add(_game_action_move_right, _key_code_d);
-
-	if (g_customBinds = g_Config.ReadBool("Controls", "CustomBinds", true))
-		g_Binds.ReadBindsFromConfig(g_GameBindings);
-}
-
-#pragma endregion
 
 void ReadConfig()
 {
-	g_frameLimit = g_Config.ReadInt("Game", "FrameLimit", 60);
-	g_fieldOfView = g_Config.ReadInt("Camera", "FieldOfView", 78);
-	g_controlsLayout = g_Config.ReadInt("Player", "ControlsLayout", 0);
-	g_pancamEnabled = g_Config.ReadBool("Debug", "PancamEnabled", false);
-	g_keyboardPrintKeyState = g_Config.ReadBool("Debug", "PrintKeyState", 0);
-	g_useController = g_Config.ReadInt("Player", "UseController", 0);
-	//input_update.SetCallback([](void *) { WriteGameState(); }, nullptr);
+	g_frameLimit = Settings::ReadIntegerValue(SettingsSection::Game, "FrameLimit", 60);
+	g_fieldOfView = Settings::ReadIntegerValue(SettingsSection::Camera, "FieldOfView", 78);
+	g_controlsLayout = Settings::ReadIntegerValue(SettingsSection::Player, "ControlsLayout", 0);
+	g_pancamEnabled = Settings::ReadBoolValue(SettingsSection::Debug, "PancamEnabled", false);
+	g_keyboardPrintKeyState = Settings::ReadBoolValue(SettingsSection::Debug, "PrintKeyState", 0);
+	g_useController = Settings::ReadIntegerValue(SettingsSection::Player, "UseController", 0);
 
-	ReadBinds();
+	char pLaunchMapNameBuffer[256] = {};
+	Settings::ReadStringValue(SettingsSection::Launch, "Map", pLaunchMapNameBuffer, sizeof(pLaunchMapNameBuffer), "ff45_corvette");
+	g_LaunchMapId = string_to_map_id(pLaunchMapNameBuffer);
 
-	strcpy_s(g_LaunchMapName, sizeof(g_LaunchMapName), g_Config.ReadString("Launch", "Map", "ff45_corvette"));
-	g_LaunchMapId = string_to_map_id(g_LaunchMapName);
-	g_LaunchGameMode = string_to_game_mode(g_Config.ReadString("Launch", "GameMode", "survival"));
-	g_LaunchCampaignDifficultyLevel = string_to_campaign_difficulty_level(g_Config.ReadString("Launch", "CampaignDifficultyLevel", "easy"));
-	g_LaunchHopperGameVariant = g_Config.ReadString("Launch", "HopperGameVariant", "ff_gruntpocalypse_054");
+	ReadInputBindings();
+
+	char pLaunchGameModeBuffer[256] = {};
+	Settings::ReadStringValue(SettingsSection::Launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "survival");
+	g_LaunchGameMode = string_to_game_mode(pLaunchGameModeBuffer);
+
+	char pLaunchCampaignDifficultyLevelBuffer[256] = {};
+	Settings::ReadStringValue(SettingsSection::Launch, "CampaignDifficultyLevel", pLaunchCampaignDifficultyLevelBuffer, sizeof(pLaunchCampaignDifficultyLevelBuffer), "normal");
+	g_LaunchCampaignDifficultyLevel = string_to_campaign_difficulty_level(pLaunchCampaignDifficultyLevelBuffer);
+
+	// #TODO: This must persist outside of the read
+	static char pLaunchHopperGameVariantBuffer[256] = {};
+	Settings::ReadStringValue(SettingsSection::Launch, "HopperGameVariant", pLaunchHopperGameVariantBuffer, sizeof(pLaunchHopperGameVariantBuffer), "ff_gruntpocalypse_054");
+	g_LaunchHopperGameVariant = pLaunchHopperGameVariantBuffer;
 }
 
 uint64_t GetVersionID(const char* pFilename)
@@ -684,7 +557,7 @@ uint64_t GetVersionID(const char* pFilename)
 	{
 		char* verData = static_cast<char*>(alloca(verSize));
 
-		if (GetFileVersionInfo(pFilename, verHandle, verSize, verData))
+		if (GetFileVersionInfo(pFilename, NULL, verSize, verData) != 0)
 		{
 			if (VerQueryValue(verData, "\\", (VOID FAR * FAR*) & lpBuffer, &size))
 			{
@@ -872,158 +745,4 @@ void init_haloreach_hooks()
 	create_dll_hook("WS2_32.dll", "bind", bindHook, bindPointer);
 
 	end_detours();
-}
-
-static constexpr size_t x = sizeof(SOCKADDR_IN);
-
-const char* game_mode_to_string(int game_mode)
-{
-	switch (game_mode)
-	{
-	case _game_mode_none:
-		return "none";
-	case _game_mode_campaign:
-		return "campaign";
-	case _game_mode_multiplayer:
-		return "multiplayer";
-	case _game_mode_survival:
-		return "survival";
-	}
-	return "<unknown>";
-}
-e_game_mode string_to_game_mode(const char* string)
-{
-	int result = _game_mode_survival;
-	for (int i = _game_mode_none; i < k_number_of_game_modes; i++)
-	{
-		if (strcmp(string, game_mode_to_string(i)) == 0)
-			result = i;
-	}
-	return (e_game_mode)result;
-}
-const char* campaign_difficulty_level_to_string(int campaign_difficulty_level)
-{
-	switch (campaign_difficulty_level)
-	{
-	case _campaign_difficulty_level_easy:
-		return "easy";
-	case _campaign_difficulty_level_normal:
-		return "normal";
-	case _campaign_difficulty_level_heroic:
-		return "heroic";
-	case _campaign_difficulty_level_legendary:
-		return "legendary";
-	}
-	return "<unknown>";
-}
-e_campaign_difficulty_level string_to_campaign_difficulty_level(const char* string)
-{
-	int result = _campaign_difficulty_level_normal;
-	for (int i = _campaign_difficulty_level_easy; i < k_number_of_campaign_difficulty_levels; i++)
-	{
-		if (strcmp(string, campaign_difficulty_level_to_string(i)) == 0)
-			result = i;
-	}
-	return (e_campaign_difficulty_level)result;
-}
-const char* map_id_to_string(int map_id)
-{
-	switch (map_id)
-	{
-	case _map_id_m05:
-		return "m05";
-	case _map_id_m10:
-		return "m10";
-	case _map_id_m20:
-		return "m20";
-	case _map_id_m30:
-		return "m30";
-	case _map_id_m35:
-		return "m35";
-	case _map_id_m45:
-		return "m45";
-	case _map_id_m50:
-		return "m50";
-	case _map_id_m52:
-		return "m52";
-	case _map_id_m60:
-		return "m60";
-	case _map_id_m70:
-		return "m70";
-	case _map_id_m70_a:
-		return "m70_a";
-	case _map_id_m70_bonus:
-		return "m70_bonus";
-	case _map_id_50_panopticon:
-		return "50_panopticon";
-	case _map_id_70_boneyard:
-		return "70_boneyard";
-	case _map_id_45_launch_station:
-		return "45_launch_station";
-	case _map_id_30_settlement:
-		return "30_settlement";
-	case _map_id_52_ivory_tower:
-		return "52_ivory_tower";
-	case _map_id_35_island:
-		return "35_island";
-	case _map_id_20_sword_slayer:
-		return "20_sword_slayer";
-	case _map_id_45_aftship:
-		return "45_aftship";
-	case _map_id_dlc_slayer:
-		return "dlc_slayer";
-	case _map_id_dlc_invasion:
-		return "dlc_invasion";
-	case _map_id_dlc_medium:
-		return "dlc_medium";
-	case _map_id_condemned:
-		return "condemned";
-	case _map_id_trainingpreserve:
-		return "trainingpreserve";
-	case _map_id_cex_beaver_creek:
-		return "cex_beaver_creek";
-	case _map_id_cex_damnation:
-		return "cex_damnation";
-	case _map_id_cex_timberland:
-		return "cex_timberland";
-	case _map_id_cex_prisoner:
-		return "cex_prisoner";
-	case _map_id_cex_hangemhigh:
-		return "cex_hangemhigh";
-	case _map_id_cex_headlong:
-		return "cex_headlong";
-	case _map_id_forge_halo:
-		return "forge_halo";
-	case _map_id_ff50_park:
-		return "ff50_park";
-	case _map_id_ff45_corvette:
-		return "ff45_corvette";
-	case _map_id_ff20_courtyard:
-		return "ff20_courtyard";
-	case _map_id_ff60_icecave:
-		return "ff60_icecave";
-	case _map_id_ff70_holdout:
-		return "ff70_holdout";
-	case _map_id_ff60_ruins:
-		return "ff60_ruins";
-	case _map_id_ff10_prototype:
-		return "ff10_prototype";
-	case _map_id_ff30_waterfront:
-		return "ff30_waterfront";
-	case _map_id_ff_unearthed:
-		return "ff_unearthed";
-	case _map_id_cex_ff_halo:
-		return "cex_ff_halo";
-	}
-	return "<unknown>";
-}
-e_map_id string_to_map_id(const char* string)
-{
-	int result = _map_id_ff45_corvette;
-	for (int i = _map_id_m05; i < k_number_of_map_ids; i++)
-	{
-		if (strcmp(string, map_id_to_string(i)) == 0)
-			result = i;
-	}
-	return (e_map_id)result;
 }

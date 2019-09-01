@@ -37,6 +37,7 @@ IGameEngineHost::InputUpdatePatchState IGameEngineHost::g_inputUpdatePatchState 
 IGameEngineHost IGameEngineHost::g_gameEngineHost;
 
 IGameEngineHost::IGameEngineHost()
+	:pGameEvents(&IGameEvents::g_gameEvents)
 {
 
 }
@@ -61,9 +62,9 @@ void IGameEngineHost::Member06() { WriteLineVerbose("IGameEngineHost::Member06")
 void IGameEngineHost::Member07() { WriteLineVerbose("IGameEngineHost::Member07"); };
 void IGameEngineHost::Member08() { WriteLineVerbose("IGameEngineHost::Member08"); };
 void IGameEngineHost::Member09() { WriteLineVerbose("IGameEngineHost::Member09"); };
-GameEvents* IGameEngineHost::GetGameEvents()
+IGameEvents* IGameEngineHost::GetGameEvents()
 {
-	return this->pGameEvents;
+	return pGameEvents;
 };
 void IGameEngineHost::Member11() { WriteLineVerbose("IGameEngineHost::Member10"); };
 void IGameEngineHost::Member12() { WriteLineVerbose("IGameEngineHost::Member11"); };
@@ -96,34 +97,6 @@ void IGameEngineHost::Member24()
 
 void IGameEngineHost::Member25(Member25Struct* unk2, uint32_t a3)
 {
-	_QWORD* a2 = (_QWORD*)unk2;
-
-	char* v3; // rcx
-	__int64 v4; // rax
-	__int64 v5; // rax
-	char* v6; // rdx
-	char v7; // [rsp+40h] [rbp-1D8h]
-	char* v8; // [rsp+78h] [rbp-1A0h]
-	char v9[392]; // [rsp+80h] [rbp-198h]
-
-	v3 = v9;
-	v4 = 3i64;
-	do
-	{
-		*v3 = *a2;
-		*(v3 + 1) = *(a2 + 1);
-		*(v3 + 2) = *(a2 + 2);
-		*(v3 + 3) = *(a2 + 3);
-		*(v3 + 4) = *(a2 + 4);
-		*(v3 + 5) = *(a2 + 5);
-		*(v3 + 6) = *(a2 + 6);
-		v3 += 128;
-		*(v3 - 1) = *(a2 + 7);
-		a2 += 16;
-		--v4;
-	} while (v4);
-	*v3 = *a2;
-
 	WriteLineVerbose("IGameEngineHost::Member25");
 };
 
@@ -194,42 +167,27 @@ unsigned __int8 __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInput
 };
 
 
-bool __fastcall IGameEngineHost::SetPlayerName(__int64*, wchar_t playerNames[4][32], size_t dataSize)
+bool __fastcall IGameEngineHost::GetPlayerName(__int64*, wchar_t playerNames[4][32], size_t dataSize)
 {
 	if (playerNames && dataSize)
 	{
 		int index = 0;
-		static wchar_t nameBuffer[16] = L"";
-		if (nameBuffer[0] == 0)
+		static wchar_t pPlayerNameBuffer[16] = L"";
+		if (pPlayerNameBuffer[0] == 0)
 		{
-			if (GetPrivateProfileStringW(L"Player", L"Name", L"Player", nameBuffer, 16, L".\\Settings.ini") != 2)
+			if (Settings::ReadStringValueW(SettingsSection::Player, "Name", pPlayerNameBuffer, sizeof(pPlayerNameBuffer), L"Player") > 0)
 			{
-				if (wcsncmp(playerNames[index], nameBuffer, 16) == 0)
+				if (wcsncmp(playerNames[index], pPlayerNameBuffer, 16) == 0)
 				{
 					WriteLineVerbose("player[%d].Name already set", index);
 					return true;
 				}
-				wcsncpy_s(playerNames[index], 32, nameBuffer, 16);
-				WriteLineVerbose("player[%d].Name: set %ls", index, nameBuffer);
+				wcsncpy_s(playerNames[index], 32, pPlayerNameBuffer, 16);
+				WriteLineVerbose("player[%d].Name: set %ls", index, pPlayerNameBuffer);
 			}
 		}
 		return true;
 	}
-	//
-
-	//if (playerNames && dataSize)
-	//{
-	//	// #TODO: Clean this up and support multiple player indices
-
-	//	size_t maxChars = (dataSize / sizeof(wchar_t));
-	//	size_t maxLength = maxChars - 1;
-	//	assert(maxLength == 31);
-	//	assert(maxChars == 32);
-	//	wcsncpy(playerNames[0], L"Squaresome", maxLength);
-	//	playerNames[0][maxLength] = 0;
-
-	//	return true;
-	//}
 	return false;
 };
 void IGameEngineHost::Member32() { WriteLineVerbose("IGameEngineHost::Member32"); };
