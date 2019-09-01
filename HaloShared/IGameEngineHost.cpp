@@ -94,19 +94,23 @@ void IGameEngineHost::Member24()
 	SetFocus(CustomWindow::s_hwnd);
 };
 
-void IGameEngineHost::Member25(Member25Struct& a1, uint32_t a2)
+void IGameEngineHost::Member25(Member25Struct* unk2, uint32_t a3)
 {
 	WriteLineVerbose("IGameEngineHost::Member25");
 };
 
 void IGameEngineHost::Member26() { WriteLineVerbose("IGameEngineHost::Member26"); };
 void IGameEngineHost::Member27() { /*WriteLineVerbose("IGameEngineHost::Member27");*/ };
-bool IGameEngineHost::Member28()
+bool IGameEngineHost::Member28(__int64 a2)
 {
+	if (!a2)
+	{
+		return false;
+	}
 	WriteLineVerbose("IGameEngineHost::Member28");
-	return false;
+	return true;
 };
-bool IGameEngineHost::Member29()
+bool IGameEngineHost::Member29(__int64 a2, __int64 a3)
 {
 	WriteLineVerbose("IGameEngineHost::Member29");
 	return false;

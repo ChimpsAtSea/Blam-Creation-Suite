@@ -341,9 +341,7 @@ void initialize_custom_halo_reach_stuff()
 	assert(pHaloReachDataAccess);
 
 	game_launch_data = s_game_launch_data();
-	game_launch_data.MapId = g_LaunchMapId;
-	game_launch_data.GameMode = g_LaunchGameMode;
-	game_launch_data.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
+
 
 	memset(&game_launch_data.PartyData, 0, sizeof(game_launch_data.PartyData));
 
@@ -370,6 +368,14 @@ void initialize_custom_halo_reach_stuff()
 		game_launch_data.PartyData.PlayerIds[1] = { 0x02D75AC9, { 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } };
 		
 		game_launch_data.PartyData.PlayerCount = 2;
+
+		game_launch_data.MapId = g_LaunchMapId;
+		game_launch_data.GameMode = g_LaunchGameMode;
+		game_launch_data.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
+
+		load_hopper_game_variant(g_LaunchHopperGameVariant, game_launch_data.halo_reach_game_variant);
+		//load_hopper_map_variant("the_cage.mvar", game_launch_data.halo_reach_map_variant);
+		load_previous_gamestate("gamestate.hdr", game_launch_data);
 	}
 	else
 	{
@@ -379,9 +385,7 @@ void initialize_custom_halo_reach_stuff()
 		game_launch_data.PartyData.HostId = HostId;
 	}
 
-	load_hopper_game_variant(g_LaunchHopperGameVariant, game_launch_data.halo_reach_game_variant);
-	//load_hopper_map_variant("the_cage.mvar", game_launch_data.halo_reach_map_variant);
-	load_previous_gamestate("gamestate.hdr", game_launch_data);
+
 
 	//pHaloReachEngine->InitGraphics(0, 0, 0, 0); // #TODO: Correct MCC graphics initialization
 	pHaloReachEngine->InitThread(&IGameEngineHost::g_gameEngineHost, &game_launch_data);

@@ -53,6 +53,18 @@ void memcpy_virtual(
 	}
 }
 
+void nop_address(HaloGameID id, intptr_t offset, size_t count)
+{
+	char* pBeginning = (char*)GetHaloExecutable(id);
+	char* pNopAttack = pBeginning + (offset - 0x180000000);
+
+	char nop = 0x90;
+	for (int i = 0; i < count; i++)
+	{
+		memcpy_virtual(pNopAttack + i, &nop, 1);
+	}
+}
+
 void patch_out_gameenginehostcallback_mov(HaloGameID id, intptr_t offset)
 {
 	char* pBeginning = (char*)GetHaloExecutable(id);
@@ -350,6 +362,14 @@ Pointer<HaloGameID::HaloReach_2019_Aug_20, _QWORD, 0x18306F898> qword_18306F898;
 //	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>(g_game_engine_host_pointer, network_update);
 //};
 
+//FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x1800ADAB0, __int64 __fastcall (int a1, __int16 a2, char a3, __int64* a4)> sub_1800ADAB0 = [](int a1, __int16 a2, char a3, __int64* a4)
+//{
+//	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, [=]()
+//		{
+//			return sub_1800ADAB0(a1, a2, a3, a4);
+//		});
+//};
+
 FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18090A0E0, __int64 __fastcall (PCSTR, unsigned __int16, char, SOCKET*)> sub_18090A0E0 = [](PCSTR pNodeName, unsigned __int16 a2, char a3, SOCKET* a4)
 {
 	return sub_18090A0E0(pNodeName, a2, a3, a4);
@@ -371,6 +391,22 @@ FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x18090A0E0, __int64 __fastcall 
 //	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, callback);
 //};
 
+struct __declspec(align(2)) struct_v4
+{
+	SOCKET socket;
+	_DWORD dword8;
+	_DWORD dwordC;
+	_DWORD dword10;
+	_WORD word14;
+	_WORD port;
+};
+
+
+FunctionHook<HaloGameID::HaloReach_2019_Aug_20, 0x1800ADAB0, bool __fastcall (int, __int16, char, struct_v4*&)> create_endpoint = [](int a1, __int16 port, char a3, struct_v4*& transport_endpoint_out)
+{
+	auto result = create_endpoint(a1, port, a3, transport_endpoint_out);
+	return result;
+};
 
 void WriteGameState()
 {
@@ -615,7 +651,7 @@ uint64_t GetVersionID(const char* pFilename)
 
 #define MAKE_FILE_VERSION(a, b, c, d) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 16) | (uint64_t(d) << 0))
 
-void log_socket_info(struct sockaddr* from)
+void log_socket_info(const struct sockaddr* from, int bytes = 0)
 {
 	if (!from)
 	{
@@ -628,7 +664,12 @@ void log_socket_info(struct sockaddr* from)
 	{
 		sockaddr_in& sockaddr = *(sockaddr_in*)from;
 		char* pIPv4 = inet_ntoa(sockaddr.sin_addr);
-		WriteLineVerbose("IPv4 %s:%i", pIPv4, sockaddr.sin_port);
+		WriteVerbose("IPv4 %s:%i", pIPv4, sockaddr.sin_port);
+		if (bytes > 0)
+		{
+			WriteVerbose(" [%i bytes]", bytes);
+		}
+		WriteLineVerbose("");
 	}
 	break;
 	case AF_INET6:
@@ -636,11 +677,38 @@ void log_socket_info(struct sockaddr* from)
 		sockaddr_in6& sockaddr6 = *(sockaddr_in6*)from;
 		char IPv6[INET6_ADDRSTRLEN] = {};
 		inet_ntop(AF_INET6, &sockaddr6.sin6_addr, IPv6, INET6_ADDRSTRLEN);
-		WriteLineVerbose("IPv6 [%s]:%i", IPv6, sockaddr6.sin6_port);
+		WriteVerbose("IPv6 [%s]:%i", IPv6, sockaddr6.sin6_port);
+		if (bytes > 0)
+		{
+			WriteVerbose(" [%i bytes]", bytes);
+		}
+		WriteLineVerbose("");
 	}
 	break;
 	}
 }
+
+
+typedef int (WSAAPI bindFunc)(
+	_In_ SOCKET s,
+	_In_reads_bytes_(namelen) const struct sockaddr FAR* name,
+	_In_ int namelen
+);
+static bindFunc* bindPointer;
+int WSAAPI bindHook(
+	_In_ SOCKET s,
+	_In_reads_bytes_(namelen) const struct sockaddr FAR* name,
+	_In_ int namelen
+)
+{
+	sockaddr_in& in = *(sockaddr_in*)name;
+	__int64 x = __ROR2__(in.sin_port, 8);
+	{
+		log_socket_info(name);
+	}
+	return bindPointer(s, name, namelen);
+}
+
 
 typedef int(__stdcall recvfrom_Func)(
 	_In_ SOCKET s,
@@ -660,13 +728,26 @@ int __stdcall recvfromHook(
 	_Inout_opt_ int FAR* fromlen
 )
 {
-	sockaddr* pSocketAddressBuffer = (sockaddr*)alloca(32 * 1024);
-	int length = 32 * 1024;
-	memset(pSocketAddressBuffer, 0, length);
-	getsockname(s, pSocketAddressBuffer, &length);
-	log_socket_info(pSocketAddressBuffer);
-
 	auto result = recvfromPointer(s, buf, len, flags, from, fromlen);
+
+	//if (result > 0)
+	//{
+	//	{
+	//		sockaddr* pSocketAddressBuffer = (sockaddr*)alloca(32 * 1024);
+	//		int length = 32 * 1024;
+	//		memset(pSocketAddressBuffer, 0, length);
+	//		getsockname(s, pSocketAddressBuffer, &length);
+	//		log_socket_info(pSocketAddressBuffer);
+	//	}
+
+	//	{
+	//		sockaddr* pSocketAddressBuffer = (sockaddr*)alloca(32 * 1024);
+	//		int length = 32 * 1024;
+	//		memset(pSocketAddressBuffer, 0, length);
+	//		getpeername(s, pSocketAddressBuffer, &length);
+	//		log_socket_info(pSocketAddressBuffer);
+	//	}
+	//}
 
 	if (result == -1)
 	{
@@ -724,13 +805,16 @@ void init_haloreach_hooks()
 	//patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x1800AE684);
 	//patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x180100D54);
 	//patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x1800ADEFE);
+	//nop_address(HaloGameID::HaloReach_2019_Aug_20, 0x1800ADB4F, 6);
 	
-		
+
 	//create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer);
+	create_dll_hook("WS2_32.dll", "bind", bindHook, bindPointer);
 
 	end_detours();
 }
 
+static constexpr size_t x = sizeof(SOCKADDR_IN);
 
 const char* game_mode_to_string(int game_mode)
 {

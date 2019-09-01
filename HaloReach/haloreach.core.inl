@@ -98,6 +98,17 @@ HaloReachHookEx<initialize_window_offset, HWND()> initialize_window = []()
 //	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseValidPointer>(g_game_engine_host_pointer, callback);
 //};
 
+intptr_t load_state_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810EC5A4;
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37AB0;
+	}
+	return ~intptr_t();
+}
+DataEx<int, load_state_offset> load_state;
+
 intptr_t main_game_launch_offset(HaloGameID gameID)
 {
 	switch (gameID)
@@ -107,11 +118,12 @@ intptr_t main_game_launch_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
+
+
+
+
 HaloReachHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = { "main_game_launch", [](__int64 a1, __int64 a2)
 {
-	char *const pBaseAddress = reinterpret_cast<char *>(GetHaloExecutable(HaloGameID::HaloReach_2019_Jun_24));
-	const int &load_state = *reinterpret_cast<int *>(pBaseAddress + (0x1810EC5A4 - 0x180000000));
-
 	const char *load_state_names[] =
 	{
 		"initial",
@@ -126,23 +138,23 @@ HaloReachHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2
 		"join_remote_squad",
 		"unused",
 		"start_game",
-		"terminate"
+		"finished"
 	};
 
 	static int previous_load_state = k_load_state_invalid;
 
-	if (load_state != previous_load_state)
+	if ((int)load_state != previous_load_state)
 	{
 		previous_load_state = load_state;
-		printf("load_state changed to: %s\n", load_state_names[load_state]);
+		printf("load_state changed to: %s\n", load_state_names[(int)load_state]);
 	}
 
 	auto result = main_game_launch(a1, a2);
 
-	if (load_state != previous_load_state)
+	if ((int)load_state != previous_load_state)
 	{
 		previous_load_state = load_state;
-		printf("load_state changed to: %s\n", load_state_names[load_state]);
+		printf("load_state changed to: %s\n", load_state_names[(int)load_state]);
 	}
 
 	return result;

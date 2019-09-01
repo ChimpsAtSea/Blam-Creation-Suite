@@ -69,11 +69,11 @@ public:
 		int unknown2;
 	};
 
-	virtual void Member25(Member25Struct& a1, uint32_t a2);
+	virtual void Member25(Member25Struct* a1, uint32_t a2);
 	virtual void Member26();
 	virtual void Member27();
-	virtual bool Member28();
-	virtual bool Member29();
+	virtual bool Member28(__int64 a2);
+	virtual bool Member29(__int64 a2, __int64 a3);
 	virtual unsigned __int8 __fastcall Member30(_QWORD, InputBuffer *pInputBuffer);
 	virtual bool __fastcall SetPlayerName(__int64*, wchar_t playerNames[4][32], size_t);
 	virtual void Member32();
