@@ -55,7 +55,7 @@ public:
 	virtual void Member18();
 	virtual __int64 __fastcall Member19(__int64/*, __int64, __int64*/);
 	virtual void Member20();
-	virtual void Member21();
+	virtual __int64 __fastcall Member21(_QWORD);
 	virtual void Member22();
 	virtual void Member23();
 	virtual void Member24();
@@ -90,7 +90,7 @@ public:
 	virtual void Member40();
 	virtual void Member41();
 	virtual unsigned __int8 __fastcall FileAccessed(_QWORD, WCHAR*, __int64);
-	virtual void Member43();
+	virtual unsigned __int8* Member43(__int64, char*);
 
 	// DATA
 

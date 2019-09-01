@@ -82,7 +82,12 @@ __int64 __fastcall IGameEngineHost::Member19(__int64 arg)
 };
 
 void IGameEngineHost::Member20() { WriteLineVerbose("IGameEngineHost::Member20"); };
-void IGameEngineHost::Member21() { WriteLineVerbose("IGameEngineHost::Member21"); };
+
+__int64 __fastcall IGameEngineHost::Member21(_QWORD)
+{ 
+	return 0;
+};
+
 void IGameEngineHost::Member22() { WriteLineVerbose("IGameEngineHost::Member22"); };
 void IGameEngineHost::Member23() { WriteLineVerbose("IGameEngineHost::Member23"); };
 
@@ -247,5 +252,8 @@ unsigned __int8 __fastcall IGameEngineHost::FileAccessed(_QWORD, WCHAR* buffer, 
 	return 1;
 };
 
-void IGameEngineHost::Member43() { WriteLineVerbose("IGameEngineHost::Member43"); };
+unsigned __int8* IGameEngineHost::Member43(__int64, char*)
+{
+	return 0;
+};
 
