@@ -3,5 +3,9 @@
 
 void* GetIDXGISwapChainPresent(IDXGISwapChain* pSwapchain)
 {
-	return pSwapchain->lpVtbl->Present;
+	if (pSwapchain)
+	{
+		return pSwapchain->lpVtbl->Present;
+	}
+	return 0;
 }

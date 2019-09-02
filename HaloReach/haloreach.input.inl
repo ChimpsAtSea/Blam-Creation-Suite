@@ -86,14 +86,6 @@ FunctionHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
 	assert(currentWindow);
 
 	print_key_state_debug(g_input_abstraction.ptr()->BindingsTable[0]);
-	CustomWindow::Update();
-
-	//static bool name_and_tag_set = false;
-	//if (!name_and_tag_set)
-	//{
-	//	set_player_name_and_tag();
-	//	name_and_tag_set = true;
-	//}
 
 	char result = input_update();
 
@@ -364,6 +356,11 @@ struct Binds
 		e_game_action GameAction;
 		e_key_code KeyCode;
 
+		Bind()
+		{
+
+		}
+
 		Bind(e_game_action game_action, e_key_code key_code)
 		{
 			KeyCode = key_code;
@@ -397,13 +394,13 @@ struct Binds
 		}
 	};
 
-	std::vector<Bind> Array;
+	Bind bindingsBuffer[256];
 	int Count = 0;
 
 	void Add(e_game_action game_action, e_key_code key_code)
 	{
-		Array.push_back(Bind(game_action, key_code));
-		Count++;
+		assert(Count < _countof(bindingsBuffer));
+		bindingsBuffer[Count++] = Bind(game_action, key_code);
 	}
 
 	void ReadBindsFromConfig(s_game_bindings& gameBindings)
@@ -412,7 +409,7 @@ struct Binds
 
 		for (int i = 0; i < Count; i++)
 		{
-			gameBindings.KeyboardBindings[Array.at(i).GameAction].primary = Array.at(i).ReadFromConfig();
+			gameBindings.KeyboardBindings[bindingsBuffer[i].GameAction].primary = bindingsBuffer[i].ReadFromConfig();
 		}
 	}
 } g_Binds;

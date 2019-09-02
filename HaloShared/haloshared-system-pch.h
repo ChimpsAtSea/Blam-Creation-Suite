@@ -50,5 +50,5 @@
 #include "hexrays_defs.h"
 #include "resource.h"
 
-#define FATAL_ERROR(reason) _wassert(_CRT_WIDE(reason), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)); throw
+#define FATAL_ERROR(reason, ...) _wassert(_CRT_WIDE(reason), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)); throw
 

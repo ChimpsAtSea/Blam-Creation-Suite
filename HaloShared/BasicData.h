@@ -29,7 +29,7 @@ public:
 
 		if (gameID != HaloGameID::NotSet && IsHaloExecutableLoaded(gameID))
 		{
-			processNode(gameID);
+			initNode(gameID);
 		}
 	}
 
@@ -45,18 +45,31 @@ private:
 	DataReferenceBase* m_pNextDataReference;
 
 public:
-	static void ProcessTree(HaloGameID gameID)
+	static void InitTree(HaloGameID gameID)
 	{
-		if (!g_pDataReferenceBaseBaseFirst)
+		// this iteration avoids having to do this recursively
+
+		DataReferenceBase* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
+		while (pCurrentDataReferenceBase)
 		{
-			return;
+			pCurrentDataReferenceBase = pCurrentDataReferenceBase->initNode(gameID);
 		}
-		g_pDataReferenceBaseBaseFirst->processNode(gameID);
+	}
+
+	static void DeinitTree(HaloGameID gameID)
+	{
+		// this iteration avoids having to do this recursively
+
+		DataReferenceBase* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
+		while (pCurrentDataReferenceBase)
+		{
+			pCurrentDataReferenceBase = pCurrentDataReferenceBase->deinitNode(gameID);
+		}
 	}
 
 private:
 
-	void processNode(HaloGameID gameID)
+	DataReferenceBase* initNode(HaloGameID gameID)
 	{
 		if (m_pPtr == nullptr)
 		{
@@ -70,11 +83,16 @@ private:
 				m_pPtr = getPointer(gameID);
 				assert(m_pPtr);
 			}
-			if (m_pNextDataReference)
-			{
-				m_pNextDataReference->processNode(gameID);
-			}
 		}
+		return m_pNextDataReference;
+	}
+	DataReferenceBase* deinitNode(HaloGameID gameID)
+	{
+		if (m_pPtr == nullptr)
+		{
+			
+		}
+		return m_pNextDataReference;
 	}
 
 	void* getPointer(HaloGameID gameID)

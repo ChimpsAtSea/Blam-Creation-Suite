@@ -5,25 +5,27 @@ int send_to_port = 2000;
 
 void IGameEngineHost::CreateClientConnection(int port)
 {
-	/* Open a datagram socket */
-	LocalSocket = socket(AF_INET, SOCK_DGRAM, 0);
 	if (LocalSocket == INVALID_SOCKET)
 	{
-		FATAL_ERROR("Could not create socket.");
-		WSACleanup();
-		exit(0);
+		/* Open a datagram socket */
+		LocalSocket = socket(AF_INET, SOCK_DGRAM, 0);
+		if (LocalSocket == INVALID_SOCKET)
+		{
+			FATAL_ERROR("Could not create socket.");
+			WSACleanup();
+			exit(0);
+		}
+
+		u_long nonblocking_enabled = TRUE;
+		ioctlsocket(LocalSocket, FIONBIO, &nonblocking_enabled);
+
+		sockaddr_in addr = {};
+		addr.sin_family = AF_INET;
+		addr.sin_port = port ? port : 2001;
+		addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+		auto bind_result = bind(LocalSocket, (sockaddr*)& addr, sizeof(addr));
+		assert(bind_result == 0);
 	}
-
-	u_long nonblocking_enabled = TRUE;
-	ioctlsocket(LocalSocket, FIONBIO, &nonblocking_enabled);
-
-	sockaddr_in addr = {};
-	addr.sin_family = AF_INET;
-	addr.sin_port = port ? port : 2001;
-	addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-	auto bind_result = bind(LocalSocket, (sockaddr*)& addr, sizeof(addr));
-	assert(bind_result == 0);
-
 }
 
 void IGameEngineHost::CreateServerConnection()
@@ -96,8 +98,8 @@ void IGameEngineHost::Member24()
 	WriteVerbose("IGameEngineHost::Member24 ");
 	WriteLineVerbose("GameLoaded");
 	SplashScreen::Destroy();
-	ShowWindow(CustomWindow::s_hwnd, SW_SHOW);
-	SetFocus(CustomWindow::s_hwnd);
+	ShowWindow(CustomWindow::GetWindowHandle(), SW_SHOW);
+	SetFocus(CustomWindow::GetWindowHandle());
 };
 
 void IGameEngineHost::Member25(Member25Struct* unk2, uint32_t a3)

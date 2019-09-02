@@ -19,6 +19,7 @@ bool DebugUI::IsVisible()
 
 void DebugUI::Init()
 {
+	return;
 	if (s_initialised)
 	{
 		return;
@@ -50,6 +51,8 @@ void DebugUI::Init()
 
 void DebugUI::RenderFrame()
 {
+	return;
+
 	if (s_visible)
 	{
 		// #TODO: Very inefficient
@@ -89,6 +92,17 @@ HRESULT __fastcall DebugUI::DXGISwapChainPresentHook(IDXGISwapChain* pChain, UIN
 
 void DebugUI::Setup(IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
+	return;
+
+	s_pSwapChain = nullptr;
+	s_pDevice = nullptr;
+	s_pContext = nullptr;
+
+	if (!(pSwapChain && pDevice && pContext))
+	{
+		return;
+	}
+
 	IDXGISwapChainPresentPointer = (IDXGISwapChainPresent)GetIDXGISwapChainPresent(pSwapChain);
 
 	s_pSwapChain = pSwapChain;
@@ -97,40 +111,51 @@ void DebugUI::Setup(IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11Dev
 
 	WriteLineVerbose("DebugUI::Setup");
 
-	DetourTransactionBegin();
-	DetourUpdateThread(GetCurrentThread());
-
-	LONG detourAttachResult = DetourAttach(&(LPVOID&)IDXGISwapChainPresentPointer, (PBYTE)DXGISwapChainPresentHook);
-	const char* pName = "IDXGISwapChain::Present";
-	if (detourAttachResult)
+	static bool IDXGISwapChainPatched = false;
+	if (!IDXGISwapChainPatched)
 	{
-		const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-		WriteLineVerbose("Failed to hook %s. Reason: %s", pName, detourAttachResultStr);
-	}
-	else
-	{
-		WriteLineVerbose("Successfully hooked %s", pName);
-	}
+		DetourTransactionBegin();
+		DetourUpdateThread(GetCurrentThread());
 
-	DetourTransactionCommit();
+		LONG detourAttachResult = DetourAttach(&(LPVOID&)IDXGISwapChainPresentPointer, (PBYTE)DXGISwapChainPresentHook);
+		const char* pName = "IDXGISwapChain::Present";
+		if (detourAttachResult)
+		{
+			const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
+			WriteLineVerbose("Failed to hook %s. Reason: %s", pName, detourAttachResultStr);
+		}
+		else
+		{
+			WriteLineVerbose("Successfully hooked %s", pName);
+		}
+
+		DetourTransactionCommit();
+	}
 }
 
 void DebugUI::ToggleUI()
 {
+	return;
+
 	s_visible = !s_visible;
 }
 
 void DebugUI::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam);
+	return;
 
-	switch (msg)
+	if (s_initialised)
 	{
-	case WM_KEYUP:
-		if (wParam == VK_HOME)
+		ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam);
+
+		switch (msg)
 		{
-			DebugUI::ToggleUI();
+		case WM_KEYUP:
+			if (wParam == VK_HOME)
+			{
+				DebugUI::ToggleUI();
+			}
+			break;
 		}
-		break;
 	}
 }

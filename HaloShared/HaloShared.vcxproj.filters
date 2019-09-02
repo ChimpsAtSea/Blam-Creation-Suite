@@ -18,9 +18,6 @@
     <ClCompile Include="haloshared-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CustomWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FunctionHook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,15 +51,33 @@
     <ClCompile Include="IGameEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gamelauncher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameinterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="campaign_difficulty_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game_mode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="map_id.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="customwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="haloshared-private-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="haloshared-public-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CustomWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FunctionHook.h">
@@ -111,6 +126,39 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IGameEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gamelauncher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameinterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="campaign_difficulty_level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game_mode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_id.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDataAccess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameVariant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IMapVariant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISaveFilmMetadata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="customwindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

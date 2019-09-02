@@ -3,15 +3,29 @@
 FunctionHookBase* FunctionHookBase::g_pFirstFunctionHook = nullptr;
 FunctionHookBase* FunctionHookBase::g_pLastFunctionHook = nullptr;
 
-void FunctionHookBase::ProcessTree(HaloGameID gameID)
+void FunctionHookBase::InitTree(HaloGameID gameID)
 {
-	if (g_pFirstFunctionHook)
+	// this iteration avoids having to do this recursively
+
+	FunctionHookBase* pCurrentFunctionHook = g_pFirstFunctionHook;
+	while (pCurrentFunctionHook)
 	{
-		g_pFirstFunctionHook->ProcessNode(gameID);
+		pCurrentFunctionHook = pCurrentFunctionHook->InitNode(gameID);
 	}
 }
 
-void FunctionHookBase::ProcessNode(HaloGameID gameID)
+void FunctionHookBase::DeinitTree(HaloGameID gameID)
+{
+	// this iteration avoids having to do this recursively
+
+	FunctionHookBase* pCurrentFunctionHook = g_pFirstFunctionHook;
+	while (pCurrentFunctionHook)
+	{
+		pCurrentFunctionHook = pCurrentFunctionHook->DeinitNode(gameID);
+	}
+}
+
+FunctionHookBase* FunctionHookBase::InitNode(HaloGameID gameID)
 {
 	if ((gameID == m_gameID || (m_gameID == HaloGameID::NotSet && m_find_offset_func)) && m_isActive)
 	{
@@ -49,8 +63,11 @@ void FunctionHookBase::ProcessNode(HaloGameID gameID)
 			WriteLineVerbose("Created function pointer for %s", pFunctionName);
 		}
 	}
-	if (m_pNextFunctionHook)
-	{
-		m_pNextFunctionHook->ProcessNode(gameID);
-	}
+	return m_pNextFunctionHook;
+}
+
+
+FunctionHookBase* FunctionHookBase::DeinitNode(HaloGameID gameID)
+{
+	return m_pNextFunctionHook;
 }

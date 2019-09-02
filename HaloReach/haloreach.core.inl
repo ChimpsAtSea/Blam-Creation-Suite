@@ -13,13 +13,14 @@ intptr_t main_thread_routine_offset(HaloGameID gameID)
 }
 FunctionHookEx<main_thread_routine_offset, void *__stdcall ()> main_thread_routine = { "main_thread_routine", []()
 {
+	// #TODO: Move GameLauncher::g_CurrentGameState
 	WriteLineVerbose("Starting game...");
-	g_CurrentGameState = CurrentState::eRunning;
+	GameLauncher::s_currentGameState = GameLauncher::CurrentState::eRunning;
 	g_isHooked = true;
 	auto result = main_thread_routine();
 	WriteLineVerbose("Game finished...");
-	WriteLineVerbose("Last status: [0x%X] %s", g_lastGameLoadStatus, g_lastGameLoadStatusStr.c_str());
-	g_CurrentGameState = CurrentState::eFinished;
+	WriteLineVerbose("Last status: [0x%X] %s", g_lastGameLoadStatus, g_lastGameLoadStatusStr);
+	GameLauncher::s_currentGameState = GameLauncher::CurrentState::eFinished;
 	g_isHooked = false;
 	return result;
 } };
@@ -41,43 +42,44 @@ FunctionHookEx<game_get_haloreach_path_offset, const char *()> game_get_haloreac
 	return g_haloReachPathOverride;
 } };
 
-intptr_t initialize_window_offset(HaloGameID gameID)
-{
-	switch (gameID)
-	{
-	case HaloGameID::HaloReach_2019_Jun_24: return 0x1806C2890;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18040C5E0;
-	}
-	return ~intptr_t();
-}
-FunctionHookEx<initialize_window_offset, HWND()> initialize_window = []()
-{
-	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, []()
-		{
-			HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach_2019_Jun_24));
-			assert(hHaloReachModule);
-
-			g_WndProc = CustomWindow::WndProc;
-			g_hInstance = hHaloReachModule;
-
-			memcpy(&ClassName[0], "HaloReach", sizeof("HaloReach"));
-			memcpy(&WindowName[0], "HaloReach", sizeof("HaloReach"));
-
-			HWND hWnd = initialize_window();
-
-			if (g_hideWindowOnStartup == false)
-			{
-				ShowWindow(hWnd, SW_SHOW);
-			}
-
-			// #TODO: Use callbacks to create the window upfront!
-			CustomWindow::s_hwnd = hWnd;
-
-			SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)CustomWindow::GetIcon());
-			return hWnd;
-		}
-	);
-};
+//intptr_t initialize_window_offset(HaloGameID gameID)
+//{
+//	switch (gameID)
+//	{
+//	case HaloGameID::HaloReach_2019_Jun_24: return 0x1806C2890;
+//	case HaloGameID::HaloReach_2019_Aug_20: return 0x18040C5E0;
+//	}
+//	return ~intptr_t();
+//}
+//FunctionHookEx<initialize_window_offset, HWND()> initialize_window = []()
+//{
+//	return initialize_window();
+//	//return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, []()
+//	//	{
+//	//		HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach_2019_Jun_24));
+//	//		assert(hHaloReachModule);
+//
+//	//		g_WndProc = CustomWindow::WndProc;
+//	//		g_hInstance = hHaloReachModule;
+//
+//	//		memcpy(&ClassName[0], "HaloReach", sizeof("HaloReach"));
+//	//		memcpy(&WindowName[0], "HaloReach", sizeof("HaloReach"));
+//
+//	//		HWND hWnd = initialize_window();
+//
+//	//		if (GameLauncher::s_hideWindowOnStartup == false)
+//	//		{
+//	//			ShowWindow(hWnd, SW_SHOW);
+//	//		}
+//
+//	//		// #TODO: Use callbacks to create the window upfront!
+//	//		CustomWindow::s_hHWND = hWnd;
+//
+//	//		SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)CustomWindow2::GetIcon());
+//	//		return hWnd;
+//	//	}
+//	//);
+//};
 
 intptr_t load_state_offset(HaloGameID gameID)
 {

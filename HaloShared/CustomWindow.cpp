@@ -1,10 +1,14 @@
 #include "haloshared-private-pch.h"
 
-CustomWindow::CreateWindowExA_Func CustomWindow::CreateWindowExA = nullptr;
-CustomWindow::RegisterClassExA_Func CustomWindow::RegisterClassExA = nullptr;
-HWND CustomWindow::s_hwnd = NULL;
-void(*CustomWindow::s_OnDestroyCallback)() = nullptr;
 HICON CustomWindow::s_hIcon = NULL;
+HWND CustomWindow::s_hHWND = NULL;
+HINSTANCE CustomWindow::s_hInstance = NULL;
+void(*CustomWindow::s_OnDestroyCallback)() = nullptr;
+
+HWND CustomWindow::GetWindowHandle()
+{
+	return s_hHWND;
+}
 
 HICON CustomWindow::GetIcon()
 {
@@ -16,7 +20,7 @@ void CustomWindow::SetIcon(HICON hIcon)
 	s_hIcon = hIcon;
 }
 
-void CustomWindow::SetOnDestroyCallback(void(*callback)())
+void CustomWindow::SetOnDestroyCallback(void(callback)())
 {
 	s_OnDestroyCallback = callback;
 }
@@ -27,38 +31,6 @@ void CustomWindow::OnDestroyCallback()
 	{
 		s_OnDestroyCallback();
 	}
-}
-
-void CustomWindow::SetupHooks()
-{
-	create_dll_hook("USER32.dll", "RegisterClassExA", CustomWindow::CustomRegisterClassExA, RegisterClassExA);
-	//create_dll_hook("USER32.dll", "CreateWindowExA", CustomWindow::CustomCreateWindowExA, CreateWindowExA);
-}
-
-void CustomWindow::Update()
-{
-	MSG msg = {};
-
-	while (PeekMessage(&msg, s_hwnd, 0, 0, PM_REMOVE))
-	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
-
-	if (GetAsyncKeyState(VK_F11))
-	{
-		OnDestroyCallback();
-	}
-}
-
-HWND CustomWindow::GetWindowHandle()
-{
-	return s_hwnd;
-}
-
-void CustomWindow::ShowWindow()
-{
-	::ShowWindow(s_hwnd, SW_SHOW);
 }
 
 LRESULT CALLBACK CustomWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -84,63 +56,75 @@ LRESULT CALLBACK CustomWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 	return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
-ATOM WINAPI CustomWindow::CustomRegisterClassExA(_In_ WNDCLASSEXA* arg)
+void CustomWindow::Init()
 {
-	arg->hCursor = LoadCursor(NULL, IDC_ARROW);
-	return RegisterClassExA(arg);
+	SetProcessDPIAware();
 
-	//assert(arg->cbSize == sizeof(WNDCLASSEXA));
+	s_hInstance = GetModuleHandle(NULL);
 
-	//HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach_2019_Jun_24));
-	//assert(hHaloReachModule);
+	// Register the window class.
 
-	//arg->cbSize = sizeof(WNDCLASSEXA);
-	//arg->style = CS_HREDRAW | CS_VREDRAW;
-	//arg->lpfnWndProc = WndProc;
-	//arg->cbClsExtra = 0;
-	//arg->cbWndExtra = 0;
-	//arg->hInstance = hHaloReachModule;
-	//arg->hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	//arg->hIcon = g_icon;
-	//
-	//
-	//// #NOTE: Use existing provided pointer as its memory inside the game itself
-	////arg->lpszClassName = "HaloReach";
-	//memcpy(const_cast<LPSTR>(arg->lpszClassName), "HaloReach", sizeof("HaloReach"));
+	WNDCLASS wc = { };
 
-	//return RegisterClassExA(arg);
+	wc.style = CS_HREDRAW | CS_VREDRAW;
+	wc.lpfnWndProc = WndProc;
+	wc.cbClsExtra = 0;
+	wc.cbWndExtra = 0;
+	wc.hInstance = s_hInstance;
+	wc.hIcon = CustomWindow::GetIcon();
+	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	wc.lpszMenuName = NULL;
+	wc.lpszClassName = "opus_window_class";
+
+	RegisterClass(&wc);
+
+	// Create the window.
+
+	s_hHWND = CreateWindowEx(
+		0,                              // Optional window styles.
+		"opus_window_class",                     // Window class
+		"Opus",    // Window text
+		WS_OVERLAPPEDWINDOW,            // Window style
+
+		// Size and position
+		CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+
+		NULL,       // Parent window    
+		NULL,       // Menu
+		s_hInstance,  // Instance handle
+		NULL        // Additional application data
+	);
+
+	if (s_hHWND == NULL)
+	{
+		int err = GetLastError();
+		FATAL_ERROR("Failed to create window [%i]", err);
+	}
+
+	ShowWindow(s_hHWND, SW_SHOW);
+	SetFocus(s_hHWND);
 }
 
-HWND WINAPI CustomWindow::CustomCreateWindowExA(
-	_In_ DWORD dwExStyle,
-	_In_opt_ LPCSTR lpClassName,
-	_In_opt_ LPCSTR lpWindowName,
-	_In_ DWORD dwStyle,
-	_In_ int X,
-	_In_ int Y,
-	_In_ int nWidth,
-	_In_ int nHeight,
-	_In_opt_ HWND hWndParent,
-	_In_opt_ HMENU hMenu,
-	_In_opt_ HINSTANCE hInstance,
-	_In_opt_ LPVOID lpParam)
+void CustomWindow::Deinit()
 {
-	HWND result = CreateWindowExA(
-		dwExStyle,
-		lpClassName,
-		"Halo Reach",
-		dwStyle | WS_SIZEBOX,
-		X,
-		Y,
-		nWidth,
-		nHeight,
-		hWndParent,
-		hMenu,
-		hInstance,
-		lpParam);
-
-	// #TODO: MOVE THIS TO GAME CODE
-	s_hwnd = result;
-
-	return result;
+	CloseWindow(s_hHWND);
+	UnregisterClassA("opus_window_class", s_hInstance);
 }
+
+void CustomWindow::Update()
+{
+	MSG msg = {};
+
+	while (PeekMessage(&msg, s_hHWND, 0, 0, PM_REMOVE))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+
+	if (GetAsyncKeyState(VK_F11))
+	{
+		OnDestroyCallback();
+	}
+}
+

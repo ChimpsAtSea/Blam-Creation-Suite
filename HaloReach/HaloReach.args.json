@@ -3,6 +3,10 @@
   "Id": "0d2234ca-029e-4055-944e-db8b67498309",
   "Items": [
     {
+      "Id": "df201d13-5a3a-49eb-88e6-7c658018031d",
+      "Command": "-hideconsole"
+    },
+    {
       "Id": "9985c0b3-d49d-4c7a-9609-534193ad0bd1",
       "Command": "-waitfordebugger"
     },

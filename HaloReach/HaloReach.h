@@ -275,26 +275,13 @@ extern s_thread_local_storage ThreadLocalStorage;
 
 // Custom Stuff
 
-enum class CurrentState
-{
-	eInactive,
-	eRunning,
-	eFinished
-};
-extern CurrentState g_CurrentGameState;
-extern bool g_gameManuallyKilled;
 extern bool g_isHooked;
 extern WORD g_frameLimit;
 extern int g_fieldOfView;
 extern bool g_pancamEnabled;
 extern int g_controlsLayout;
 extern int g_useController;
-extern bool g_hideWindowOnStartup;
 
-extern e_map_id g_LaunchMapId;
-extern int g_LaunchGameMode;
-extern e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel;
-extern const char *g_LaunchHopperGameVariant;
 
 // Halo Reach Functions
 
@@ -375,8 +362,6 @@ extern DataEx<HINSTANCE, g_hInstance_offset> g_hInstance;
 
 // config flags
 
-extern bool g_useCustomGameWindow;
-extern void init_haloreach_hooks();
 extern const char* g_haloReachPathOverride;
 
 

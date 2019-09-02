@@ -43,8 +43,11 @@ public:
 	static FunctionHookBase* g_pFirstFunctionHook;
 	static FunctionHookBase* g_pLastFunctionHook;
 
-	void ProcessNode(HaloGameID gameID);
-	static void ProcessTree(HaloGameID gameID);
+	[[nodiscard]] FunctionHookBase* InitNode(HaloGameID gameID);
+	[[nodiscard]] FunctionHookBase* DeinitNode(HaloGameID gameID);
+
+	static void InitTree(HaloGameID gameID);
+	static void DeinitTree(HaloGameID gameID);
 
 	void SetIsActive(bool isActive)
 	{
