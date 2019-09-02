@@ -9,6 +9,14 @@ DWORD CustomWindow::s_hPostMessageThreadId = NULL;
 
 void(*CustomWindow::s_OnDestroyCallback)() = nullptr;
 
+void CustomWindow::GetWindowSize(SIZE& rSize)
+{
+	RECT rect = {};
+	GetClientRect(s_hWnd, &rect);
+	rSize.cx = rect.right - rect.left;
+	rSize.cy = rect.bottom - rect.top;
+}
+
 void CustomWindow::SetPostMessageThreadId(HANDLE hThread)
 {
 	s_hPostMessageThread = hThread;

@@ -6,6 +6,15 @@ extern const char* GetDetourResultStr(LONG detourAttachResult);
 extern void init_detours();
 extern void end_detours();
 
+extern void memcpy_virtual(
+	const void* dst,
+	const void* src,
+	size_t size
+);
+
+extern void copy_to_address(HaloGameID id, intptr_t offset, void* data, size_t length);
+extern void nop_address(HaloGameID id, intptr_t offset, size_t count);
+
 #define roundup(n, denominator) (((n + denominator - 1) / denominator ) * denominator )
 
 //TODO: Accept an instruction type to look for

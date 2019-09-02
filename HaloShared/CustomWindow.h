@@ -27,5 +27,7 @@ private:
 	static HANDLE s_hPostMessageThread;
 	static DWORD s_hPostMessageThreadId;
 	static void(*s_OnDestroyCallback)();
+public:
+	static void GetWindowSize(SIZE& rSize);
 };
 

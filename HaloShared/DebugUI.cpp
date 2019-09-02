@@ -102,15 +102,11 @@ void DebugUI::RenderFrame()
 
 void DebugUI::ToggleUI()
 {
-	return;
-
 	s_visible = !s_visible;
 }
 
 void DebugUI::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	return;
-
 	if (s_initialised)
 	{
 		ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam);

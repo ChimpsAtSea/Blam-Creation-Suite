@@ -56,15 +56,15 @@ char __fastcall IGameEngineHost::Member00()
 };
 
 void __fastcall IGameEngineHost::Member01(IDXGISwapChain *pSwapChain, _QWORD a2) 
-{ 
+{
 	DebugUI::RenderFrame();
 
-	WriteLineVerbose("IGameEngineHost::Member01 0x%p 0x%llx", pSwapChain, a2);
+	//WriteLineVerbose("IGameEngineHost::Member01 0x%p 0x%llx", pSwapChain, a2);
 };
 
 void __fastcall IGameEngineHost::Member02(__int64 a1, unsigned int a2, __int64 a3, float a4, float a5, float a6, float a7)
 {
-	WriteLineVerbose("IGameEngineHost::Member02");
+	//WriteLineVerbose("IGameEngineHost::Member02");
 };
 
 void __fastcall IGameEngineHost::GameStatusUpdated(unsigned int a1)

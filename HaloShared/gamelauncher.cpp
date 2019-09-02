@@ -219,7 +219,7 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 		}
 	}
 
-	pHaloReachEngine->InitGraphics(GameRender::s_pDevice, GameRender::s_pDeviceContext, GameRender::s_pSwapChain, GameRender::s_pSwapChain); // #TODO: Correct MCC graphics initialization
+	pHaloReachEngine->InitGraphics(GameRender::s_pDevice, GameRender::s_pDeviceContext, GameRender::s_pSwapChain, GameRender::s_pSwapChain);
 	HANDLE hMainGameThread = pHaloReachEngine->InitThread(&IGameEngineHost::g_gameEngineHost, &game_launch_data);
 
 	CustomWindow::SetPostMessageThreadId(hMainGameThread);
@@ -245,7 +245,7 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 void GameLauncher::Update()
 {
-	Sleep(10);
+	Sleep(5); // prevent 100% CPU
 }
 
 void GameLauncher::InitSockets()
