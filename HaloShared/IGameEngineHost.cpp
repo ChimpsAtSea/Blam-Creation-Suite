@@ -142,17 +142,14 @@ unsigned __int8 __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInput
 	}
 
 	// get keyboard state
+	BYTE keyboardState[256] = {};
+	if (GetKeyboardState(keyboardState))
 	{
-		BYTE keyboardState[256] = {};
-		if (GetKeyboardState(keyboardState))
+		for (int i = 0; i < 256; i++)
 		{
-			for (int i = 0; i < 256; i++)
-			{
-				pInputBuffer->keyboardState[i] = (keyboardState[i] & 0b10000000) != 0;
-			}
+			pInputBuffer->keyboardState[i] = (keyboardState[i] & 0b10000000) != 0;
 		}
 	}
-
 
 	pInputBuffer->MouseX += GetAsyncKeyState(VK_F5) ? 0.1f : 0;
 	pInputBuffer->MouseX -= GetAsyncKeyState(VK_F6) ? 0.1f : 0;
@@ -170,7 +167,7 @@ unsigned __int8 __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInput
 		IGameEngineHost::g_inputUpdatePatchState = IGameEngineHost::InputUpdatePatchState::Patched;
 		return unsigned __int8(1);
 	}
-	return unsigned __int8(1);
+	return unsigned __int8(0);
 };
 
 

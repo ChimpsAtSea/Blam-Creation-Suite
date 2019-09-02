@@ -225,7 +225,9 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 
 	pHaloReachEngine->InitGraphics(GameRender::pDevice, GameRender::pImmediateContext, nullptr, nullptr); // #TODO: Correct MCC graphics initialization
-	pHaloReachEngine->InitThread(&IGameEngineHost::g_gameEngineHost, &game_launch_data);
+	HANDLE hMainGameThread = pHaloReachEngine->InitThread(&IGameEngineHost::g_gameEngineHost, &game_launch_data);
+
+	CustomWindow::SetPostMessageThreadId(hMainGameThread);
 
 	while (s_currentGameState != CurrentState::eFinished)
 	{
@@ -233,12 +235,12 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 		Update();
 	}
 
+	WaitForSingleObject(hMainGameThread, INFINITE);
+
 	if (s_gameShutdownCallback)
 	{
 		s_gameShutdownCallback(gameID);
 	}
-
-	Sleep(1000);
 
 	pHaloReachEngine->Destructor();
 	//free(pHaloReachEngine);

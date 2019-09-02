@@ -1,13 +1,22 @@
 #include "haloshared-private-pch.h"
 
 HICON CustomWindow::s_hIcon = NULL;
-HWND CustomWindow::s_hHWND = NULL;
+HWND CustomWindow::s_hWnd = NULL;
 HINSTANCE CustomWindow::s_hInstance = NULL;
+HANDLE CustomWindow::s_hPostMessageThread = NULL;
+DWORD CustomWindow::s_hPostMessageThreadId = NULL;
+
 void(*CustomWindow::s_OnDestroyCallback)() = nullptr;
+
+void CustomWindow::SetPostMessageThreadId(HANDLE hThread)
+{
+	s_hPostMessageThread = hThread;
+	s_hPostMessageThreadId = GetThreadId(s_hPostMessageThread);
+}
 
 HWND CustomWindow::GetWindowHandle()
 {
-	return s_hHWND;
+	return s_hWnd;
 }
 
 HICON CustomWindow::GetIcon()
@@ -52,6 +61,13 @@ LRESULT CALLBACK CustomWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 	case WM_SIZE:
 		// #TODO: tell game to resize
 		break;
+	case WM_KEYDOWN:
+	case WM_KEYUP:
+		if (s_hPostMessageThreadId)
+		{
+			PostThreadMessage(s_hPostMessageThreadId, msg, wParam, lParam);
+		}
+		break;
 	}
 	return DefWindowProc(hwnd, msg, wParam, lParam);
 }
@@ -81,14 +97,14 @@ void CustomWindow::Init()
 
 	// Create the window.
 
-	s_hHWND = CreateWindowEx(
+	s_hWnd = CreateWindowEx(
 		0,                              // Optional window styles.
 		"opus_window_class",                     // Window class
 		"Opus",    // Window text
 		WS_OVERLAPPEDWINDOW,            // Window style
 
 		// Size and position
-		CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+		CW_USEDEFAULT, CW_USEDEFAULT, 1920, 1080,
 
 		NULL,       // Parent window    
 		NULL,       // Menu
@@ -96,19 +112,19 @@ void CustomWindow::Init()
 		NULL        // Additional application data
 	);
 
-	if (s_hHWND == NULL)
+	if (s_hWnd == NULL)
 	{
 		int err = GetLastError();
 		FATAL_ERROR("Failed to create window [%i]", err);
 	}
 
-	ShowWindow(s_hHWND, SW_SHOW);
-	SetFocus(s_hHWND);
+	ShowWindow(s_hWnd, SW_SHOW);
+	SetFocus(s_hWnd);
 }
 
 void CustomWindow::Deinit()
 {
-	CloseWindow(s_hHWND);
+	CloseWindow(s_hWnd);
 	UnregisterClassA("opus_window_class", s_hInstance);
 }
 
@@ -116,7 +132,7 @@ void CustomWindow::Update()
 {
 	MSG msg = {};
 
-	while (PeekMessage(&msg, s_hHWND, 0, 0, PM_REMOVE))
+	while (PeekMessage(&msg, s_hWnd, 0, 0, PM_REMOVE))
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);

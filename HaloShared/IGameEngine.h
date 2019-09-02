@@ -90,7 +90,7 @@ class IGameEngine
 {
 public:
 	virtual __int64 __fastcall InitGraphics(ID3D11Device*, ID3D11DeviceContext*, IDXGISwapChain*, IDXGISwapChain*) = 0;
-	virtual __int64 __fastcall InitThread(class IGameEngineHost*, s_game_launch_data*) = 0;
+	virtual HANDLE __fastcall InitThread(class IGameEngineHost*, s_game_launch_data*) = 0;
 	virtual __int64 __fastcall Member02(int, _QWORD*) = 0;
 	virtual __int64 __fastcall Destructor() = 0;
 	virtual void __fastcall Member04() = 0;
