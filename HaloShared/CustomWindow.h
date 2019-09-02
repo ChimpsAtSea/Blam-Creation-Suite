@@ -7,6 +7,7 @@ public:
 	static HICON GetIcon();
 	static void SetIcon(HICON hIcon);
 	static HWND GetWindowHandle();
+	static bool IsWindowFocused();
 	static void SetOnDestroyCallback(void(callback)());
 	static void OnDestroyCallback();
 	static void Init();
@@ -20,7 +21,8 @@ public:
 private:
 
 	static HICON	s_hIcon;
-	static HWND		s_hWnd;
+	static HWND		s_hWnd; 
+	static HWND		s_hFocusWnd; 
 	static HINSTANCE s_hInstance;
 	static HANDLE s_hPostMessageThread;
 	static DWORD s_hPostMessageThreadId;

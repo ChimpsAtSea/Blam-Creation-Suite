@@ -6,10 +6,12 @@ extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam
 
 BOOL DebugUI::s_initialised = false;
 bool DebugUI::s_visible = false;
-ID3D11DeviceContext* DebugUI::s_pContext = NULL;
-ID3D11Device* DebugUI::s_pDevice = NULL;
-ID3D11RenderTargetView* DebugUI::mainRenderTargetView;
-IDXGISwapChain* DebugUI::s_pSwapChain = NULL;
+ID3D11DeviceContext* DebugUI::s_pContext = nullptr;
+ID3D11Device* DebugUI::s_pDevice = nullptr;
+ID3D11RenderTargetView* DebugUI::mainRenderTargetView = nullptr;
+IDXGISwapChain* DebugUI::s_pSwapChain = nullptr;
+DXGI_SWAP_CHAIN_DESC  DebugUI::s_swapChainDescription = {};
+
 DebugUI::IDXGISwapChainPresent DebugUI::IDXGISwapChainPresentPointer;
 
 bool DebugUI::IsVisible()
@@ -17,31 +19,30 @@ bool DebugUI::IsVisible()
 	return s_visible;
 }
 
-void DebugUI::Init()
+void DebugUI::Init(IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
-	return;
-	if (s_initialised)
-	{
-		return;
-	}
+	assert(s_initialised == false);
+	s_initialised = true;
 
-	WriteLineVerbose("Initializing DXGISwapChainPresentHook");
+	WriteLineVerbose("DebugUI::Init");
 
-	DXGI_SWAP_CHAIN_DESC sd;
-	s_pSwapChain->GetDesc(&sd);
+	s_pSwapChain = pSwapChain;
+	s_pDevice = pDevice;
+	s_pContext = pContext;
+
+	s_pSwapChain->GetDesc(&s_swapChainDescription);
+
 	ImGui::CreateContext();
 	ImGuiIO& rImguiIO = ImGui::GetIO(); (void)rImguiIO;
 	rImguiIO.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableSetMousePos | ImGuiConfigFlags_NavEnableGamepad;
 
-	//Set OriginalWndProcHandler to the Address of the Original WndProc function
-	//OriginalWndProcHandler = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)hWndProc);
-
-	ImGui_ImplWin32_Init(sd.OutputWindow);
+	ImGui_ImplWin32_Init(s_swapChainDescription.OutputWindow);
 	ImGui_ImplDX11_Init(s_pDevice, s_pContext);
-	ImGui::GetIO().ImeWindowHandle = sd.OutputWindow;
+
+	ImGui::GetIO().ImeWindowHandle = s_swapChainDescription.OutputWindow;
 
 	ID3D11Texture2D* pBackBuffer = nullptr;
-	s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)& pBackBuffer);
+	s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
 	assert(pBackBuffer);
 	s_pDevice->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView);
 	pBackBuffer->Release();
@@ -49,88 +50,54 @@ void DebugUI::Init()
 	s_initialised = true;
 }
 
+void DebugUI::Deinit()
+{
+	assert(s_initialised);
+
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+
+	s_initialised = false;
+	s_visible = false;
+	s_pContext = nullptr;
+	s_pDevice = nullptr;
+	mainRenderTargetView = nullptr;
+	s_pSwapChain = nullptr;
+	s_swapChainDescription = {};
+}
+
 void DebugUI::RenderFrame()
 {
-	return;
-
-	if (s_visible)
-	{
-		// #TODO: Very inefficient
-		if (s_initialised)
-		{
-			ImGuiIO& rImguiIO = ImGui::GetIO();
-			rImguiIO.MouseDown[0] = GetAsyncKeyState(VK_LBUTTON);
-		}
-
-		ImGui_ImplDX11_NewFrame();
-		ImGui_ImplWin32_NewFrame();
-
-		ImGui::NewFrame();
-		//Menu is displayed when g_ShowMenu is TRUE
-		if (s_visible)
-		{
-			bool bShow = true;
-			ImGui::ShowDemoWindow(&bShow);
-		}
-		ImGui::EndFrame();
-		ImGui::Render();
-
-		s_pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
-		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-	}
-}
-
-
-
-HRESULT __fastcall DebugUI::DXGISwapChainPresentHook(IDXGISwapChain* pChain, UINT SyncInterval, UINT Flags)
-{
-	DebugUI::Init();
-	DebugUI::RenderFrame();
-
-	return IDXGISwapChainPresentPointer(pChain, SyncInterval, Flags);
-}
-
-void DebugUI::Setup(IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
-{
-	return;
-
-	s_pSwapChain = nullptr;
-	s_pDevice = nullptr;
-	s_pContext = nullptr;
-
-	if (!(pSwapChain && pDevice && pContext))
+	if (s_initialised == false)
 	{
 		return;
 	}
 
-	IDXGISwapChainPresentPointer = (IDXGISwapChainPresent)GetIDXGISwapChainPresent(pSwapChain);
-
-	s_pSwapChain = pSwapChain;
-	s_pDevice = pDevice;
-	s_pContext = pContext;
-
-	WriteLineVerbose("DebugUI::Setup");
-
-	static bool IDXGISwapChainPatched = false;
-	if (!IDXGISwapChainPatched)
+	if (s_visible == false)
 	{
-		DetourTransactionBegin();
-		DetourUpdateThread(GetCurrentThread());
-
-		LONG detourAttachResult = DetourAttach(&(LPVOID&)IDXGISwapChainPresentPointer, (PBYTE)DXGISwapChainPresentHook);
-		const char* pName = "IDXGISwapChain::Present";
-		if (detourAttachResult)
-		{
-			const char* detourAttachResultStr = GetDetourResultStr(detourAttachResult);
-			WriteLineVerbose("Failed to hook %s. Reason: %s", pName, detourAttachResultStr);
-		}
-		else
-		{
-			WriteLineVerbose("Successfully hooked %s", pName);
-		}
-
-		DetourTransactionCommit();
+		return;
 	}
+
+	// #TODO: Very inefficient
+	ImGuiIO& rImguiIO = ImGui::GetIO();
+	rImguiIO.MouseDown[0] = GetAsyncKeyState(VK_LBUTTON);
+
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+
+	ImGui::NewFrame();
+
+	//Menu is displayed when g_ShowMenu is TRUE
+	if (s_visible)
+	{
+		bool bShow = true;
+		ImGui::ShowDemoWindow(&bShow);
+	}
+	ImGui::EndFrame();
+	ImGui::Render();
+
+	s_pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 }
 
 void DebugUI::ToggleUI()

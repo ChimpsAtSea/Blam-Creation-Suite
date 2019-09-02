@@ -2,6 +2,7 @@
 
 HICON CustomWindow::s_hIcon = NULL;
 HWND CustomWindow::s_hWnd = NULL;
+HWND CustomWindow::s_hFocusWnd = NULL;
 HINSTANCE CustomWindow::s_hInstance = NULL;
 HANDLE CustomWindow::s_hPostMessageThread = NULL;
 DWORD CustomWindow::s_hPostMessageThreadId = NULL;
@@ -17,6 +18,11 @@ void CustomWindow::SetPostMessageThreadId(HANDLE hThread)
 HWND CustomWindow::GetWindowHandle()
 {
 	return s_hWnd;
+}
+
+bool CustomWindow::IsWindowFocused()
+{
+	return s_hWnd == s_hFocusWnd;
 }
 
 HICON CustomWindow::GetIcon()
@@ -61,12 +67,11 @@ LRESULT CALLBACK CustomWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 	case WM_SIZE:
 		// #TODO: tell game to resize
 		break;
-	case WM_KEYDOWN:
-	case WM_KEYUP:
-		if (s_hPostMessageThreadId)
-		{
-			PostThreadMessage(s_hPostMessageThreadId, msg, wParam, lParam);
-		}
+	case WM_SETFOCUS:
+		s_hFocusWnd = GetFocus();
+		break;
+	case WM_KILLFOCUS:
+		s_hFocusWnd = reinterpret_cast<HWND>(lParam);
 		break;
 	}
 	return DefWindowProc(hwnd, msg, wParam, lParam);

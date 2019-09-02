@@ -40,14 +40,11 @@ intptr_t initialize_device_offset(HaloGameID gameID)
 // allow the game to read the command line to use -width and -height
 FunctionHookEx<initialize_device_offset, char()> initialize_device = { "initialize_device", []()
 {
-	GameRender::Init();
-	g_pDevice = GameRender::pDevice;
+	//g_pDevice = GameRender::s_pDevice;
 
 	auto result = initialize_device();
-	IDXGISwapChain* pSwapChain = g_pSwapChain;
-
-	DebugUI::Setup(pSwapChain, GameRender::pDevice, GameRender::pImmediateContext);
-
+	//IDXGISwapChain* pSwapChain = g_pSwapChain;
+	assert(result == 1);
   return result;
 } };
 

@@ -49,10 +49,21 @@ IGameEngineHost::~IGameEngineHost()
 
 }
 
-void IGameEngineHost::Member00() { /*WriteLineVerbose("IGameEngineHost::Member00");*/ };
-void IGameEngineHost::Member01() { /*WriteLineVerbose("IGameEngineHost::Member01");*/ };
+void IGameEngineHost::Member00() 
+{ 
+	WriteLineVerbose("IGameEngineHost::Member00");
+};
+void IGameEngineHost::Member01(IDXGISwapChain* pSwapChain, _QWORD a2) 
+{ 
+	DebugUI::RenderFrame();
+
+	WriteLineVerbose("IGameEngineHost::Member01 0x%p 0x%llx", pSwapChain, a2);
+};
 void IGameEngineHost::Member02() { WriteLineVerbose("IGameEngineHost::Member02"); };
-void IGameEngineHost::Member03() { /*WriteLineVerbose("IGameEngineHost::Member03");*/ };
+void IGameEngineHost::Member03(__int64 a1) 
+{ 
+	WriteLineVerbose("IGameEngineHost::Member03 0x%llx ", a1);
+};
 void IGameEngineHost::GameRestart() { WriteLineVerbose("IGameEngineHost::GameRestart"); };
 
 void __fastcall IGameEngineHost::WriteGameState(LPVOID a1, size_t a2)
@@ -143,11 +154,15 @@ unsigned __int8 __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInput
 
 	// get keyboard state
 	BYTE keyboardState[256] = {};
-	if (GetKeyboardState(keyboardState))
+	if (CustomWindow::IsWindowFocused())
 	{
-		for (int i = 0; i < 256; i++)
+		GetKeyState(-1); // force keys to update
+		if (GetKeyboardState(keyboardState))
 		{
-			pInputBuffer->keyboardState[i] = (keyboardState[i] & 0b10000000) != 0;
+			for (int i = 0; i < 256; i++)
+			{
+				pInputBuffer->keyboardState[i] = (keyboardState[i] & 0b10000000) != 0;
+			}
 		}
 	}
 
@@ -167,7 +182,7 @@ unsigned __int8 __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInput
 		IGameEngineHost::g_inputUpdatePatchState = IGameEngineHost::InputUpdatePatchState::Patched;
 		return unsigned __int8(1);
 	}
-	return unsigned __int8(0);
+	return unsigned __int8(1);
 };
 
 

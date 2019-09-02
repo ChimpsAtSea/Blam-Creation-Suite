@@ -35,9 +35,9 @@ public:
 
 	// VFTBL
 	virtual void Member00();
-	virtual void Member01();
+	virtual void Member01(IDXGISwapChain* pSwapChain, _QWORD);
 	virtual void Member02();
-	virtual void Member03();
+	virtual void Member03(__int64);
 	virtual void GameRestart();
 	virtual void __fastcall WriteGameState(LPVOID, size_t);
 	virtual void Member06();
