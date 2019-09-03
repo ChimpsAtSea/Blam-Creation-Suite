@@ -16,7 +16,7 @@ int Settings::ReadIntegerValue(SettingsSection section, const char* pName, int d
 float Settings::ReadFloatValue(SettingsSection section, const char* pName, float defaultValue /*= 0.0*/)
 {
 	char floatBuffer[32] = {};
-	uint32_t length = ReadStringValue(section, pName, floatBuffer, sizeof(floatBuffer), "0.0");
+	uint32_t length = ReadStringValue(section, pName, floatBuffer, sizeof(floatBuffer), "");
 
 	if (length)
 	{
