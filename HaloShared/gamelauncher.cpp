@@ -184,7 +184,7 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 		uint64_t ClientId = 0x7F7Faf4521cdad53;
 
 		game_launch_data.PartyData.SquadId = SquadID; // this is set
-		game_launch_data.PartyData.IsHost = strstr(GetCommandLineA(), "-host"); // if client, is false
+		game_launch_data.PartyData.IsHost = !strstr(GetCommandLineA(), "-client"); // if client, is false
 
 		if (game_launch_data.PartyData.IsHost)
 		{

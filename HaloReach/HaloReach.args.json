@@ -20,7 +20,7 @@
     },
     {
       "Id": "7ddf1006-d23d-4345-ad15-3bf3ec42a0e0",
-      "Command": "-host"
+      "Command": "-client"
     }
   ]
 }
