@@ -153,8 +153,7 @@ __int64 __fastcall IGameEngineHost::Member24(BYTE *a1)
 	WriteVerbose("IGameEngineHost::Member24 ");
 	WriteLineVerbose("GameLoaded");
 	SplashScreen::Destroy();
-	ShowWindow(CustomWindow::GetWindowHandle(), SW_SHOW);
-	SetFocus(CustomWindow::GetWindowHandle());
+	CustomWindow::Show();
 
 	return __int64(0);
 };

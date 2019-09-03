@@ -22,6 +22,13 @@ void CustomWindow::SetWindowTitle(const char* pTitle)
 	::SetWindowTextA(s_hWnd, pTitle);
 }
 
+void CustomWindow::Show()
+{
+	ShowWindow(GetWindowHandle(), SW_SHOW);
+	SetFocus(GetWindowHandle());
+	SetForegroundWindow(GetWindowHandle());
+}
+
 void CustomWindow::SetPostMessageThreadId(HANDLE hThread)
 {
 	s_hPostMessageThread = hThread;
@@ -136,8 +143,11 @@ void CustomWindow::Init()
 		FATAL_ERROR("Failed to create window [%i]", err);
 	}
 
-	ShowWindow(s_hWnd, SW_SHOW);
-	SetFocus(s_hWnd);
+	if (!GameLauncher::s_hideWindowOnStartup)
+	{
+		ShowWindow(s_hWnd, SW_SHOW);
+		SetFocus(s_hWnd);
+	}
 }
 
 void CustomWindow::Deinit()

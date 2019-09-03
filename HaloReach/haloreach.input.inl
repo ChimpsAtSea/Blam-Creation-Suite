@@ -55,49 +55,11 @@ intptr_t input_update_offset(HaloGameID gameID)
 }
 
 #pragma optimize("", off)
-FunctionHookEx<input_update_offset, char(__fastcall)()> input_update = []() {
-
-	if (qword_1839EC128)
-	{
-		static int s_currentMouseCooperativeLevel = -1;
-		int expectedMouseCooperativeLevel = DebugUI::IsVisible() ? DISCL_FOREGROUND | DISCL_NONEXCLUSIVE : DISCL_FOREGROUND | DISCL_EXCLUSIVE;
-
-		if (s_currentMouseCooperativeLevel != expectedMouseCooperativeLevel)
-		{
-			qword_1839EC128->Unacquire();
-			auto SetCooperativeLevelResult = qword_1839EC128->SetCooperativeLevel(g_createdWindow, expectedMouseCooperativeLevel);
-			if (SetCooperativeLevelResult == DI_OK)
-			{
-				s_currentMouseCooperativeLevel = expectedMouseCooperativeLevel;
-			}
-
-			if (DebugUI::IsVisible())
-			{
-				POINT mousePosition = { 960, 540 }; // #TODO: Get width and height
-				ClientToScreen(g_createdWindow, &mousePosition); //stores our on screen mouse coordinates
-				SetCursorPos(mousePosition.x, mousePosition.y);
-			}
-
-			qword_1839EC128->Acquire();
-		}
-	}
-
-	HWND currentWindow = g_createdWindow;
-	assert(currentWindow);
-
+FunctionHookEx<input_update_offset, char(__fastcall)()> input_update = []() 
+{
 	print_key_state_debug(g_input_abstraction.ptr()->BindingsTable[0]);
 
 	char result = input_update();
-
-	//// #TODO: Remove when MCC input is figured out
-	//if (IGameEngineHost::g_inputUpdatePatchState == IGameEngineHost::WaitingForPatch)
-	//{
-	//	IGameEngineHost::g_inputUpdatePatchState = IGameEngineHost::Patched;
-	//	if (g_currentGameID == HaloGameID::HaloReach_2019_Aug_20)
-	//	{
-	//		patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x18014C498);
-	//	}
-	//}
 	
 	return result;
 };

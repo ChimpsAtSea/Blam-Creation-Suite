@@ -23,6 +23,7 @@ BOOL EnumWindowsHook(
 )
 {
 	static thread_local WNDENUMPROC s_lpEnumFunc = nullptr;
+	static thread_local bool s_processedCustomWindow = false;
 
 	assert(s_lpEnumFunc == nullptr);
 	assert(EnumWindowsPointer != nullptr);
@@ -30,11 +31,22 @@ BOOL EnumWindowsHook(
 	s_lpEnumFunc = lpEnumFunc;
 
 	auto callback = [](HWND hWnd, LPARAM lParam) {
-		if (hWnd != GetConsoleWindow())
+
+		bool isExcluded = false;
+		isExcluded |= hWnd == GetConsoleWindow();
+		isExcluded |= hWnd == SplashScreen::GetWindowHandle();
+
+		if (hWnd == CustomWindow::GetWindowHandle())
 		{
-			return s_lpEnumFunc(hWnd, lParam);
+			s_processedCustomWindow = true;
 		}
-		return TRUE;
+
+		if (isExcluded)
+		{
+			return TRUE;
+		}
+
+		return s_lpEnumFunc(hWnd, lParam);
 	};
 
 	auto result = EnumWindowsPointer(callback, lParam);
@@ -51,12 +63,11 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 	bool isDebug = false;
 #endif
 
-	// #TODO: Fix enumerate windows as the game is getting the console and splash screen which is incorrect
-	//if (strstr(lpCmdLine, "-hidesplash") == nullptr)
-	//{
-	//	SplashScreen::Create();
-	//	s_hideWindowOnStartup = true;
-	//}
+	if (strstr(lpCmdLine, "-hidesplash") == nullptr)
+	{
+		SplashScreen::Create();
+		s_hideWindowOnStartup = true;
+	}
 
 	if ((strstr(lpCmdLine, "-showconsole") || isDebug) && !strstr(lpCmdLine, "-hideconsole"))
 	{
@@ -76,8 +87,10 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 	static bool patchedEnumWindows = false;
 	if (!patchedEnumWindows)
 	{
+		init_detours();
 		create_dll_hook("USER32.dll", "EnumWindows", EnumWindowsHook, EnumWindowsPointer);
 		patchedEnumWindows = true;
+		end_detours();
 	}
 
 	IGameEngineHost::g_enableGameEngineHostOverride = true;

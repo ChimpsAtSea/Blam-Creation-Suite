@@ -30,5 +30,6 @@ private:
 public:
 	static void GetWindowSize(SIZE& rSize);
 	static void SetWindowTitle(const char* pTitle);
+	static void Show();
 };
 
