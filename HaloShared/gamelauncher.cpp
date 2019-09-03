@@ -51,11 +51,12 @@ void GameLauncher::Init(LPSTR lpCmdLine)
 	bool isDebug = false;
 #endif
 
-	if (strstr(lpCmdLine, "-hidesplash") == nullptr)
-	{
-		SplashScreen::Create();
-		s_hideWindowOnStartup = true;
-	}
+	// #TODO: Fix enumerate windows as the game is getting the console and splash screen which is incorrect
+	//if (strstr(lpCmdLine, "-hidesplash") == nullptr)
+	//{
+	//	SplashScreen::Create();
+	//	s_hideWindowOnStartup = true;
+	//}
 
 	if ((strstr(lpCmdLine, "-showconsole") || isDebug) && !strstr(lpCmdLine, "-hideconsole"))
 	{
