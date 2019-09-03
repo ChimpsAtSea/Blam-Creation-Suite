@@ -18,6 +18,7 @@ public:
 
 	static bool ReadBoolValue(SettingsSection section, const char* pName, bool defaultValue = false);
 	static int ReadIntegerValue(SettingsSection section, const char* pName, int defaultValue = 0);
+	static float ReadFloatValue(SettingsSection section, const char* pName, float defaultValue = 0.0);
 	static uint32_t ReadStringValue(SettingsSection section, const char* pName, char* pBuffer, uint32_t bufferSize, const char* pDefaultValue = nullptr);
 	static uint32_t ReadStringValueW(SettingsSection section, const char* pName, wchar_t* pBuffer, uint32_t bufferSize, const wchar_t* pDefaultValue = nullptr);
 

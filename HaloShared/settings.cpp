@@ -13,6 +13,19 @@ int Settings::ReadIntegerValue(SettingsSection section, const char* pName, int d
 	return GetPrivateProfileIntA(pSectionName, pName, defaultValue, k_pSettingsPath);
 }
 
+float Settings::ReadFloatValue(SettingsSection section, const char* pName, float defaultValue /*= 0.0*/)
+{
+	char floatBuffer[32] = {};
+	uint32_t length = ReadStringValue(section, pName, floatBuffer, sizeof(floatBuffer), "0.0");
+
+	if (length)
+	{
+		float value = static_cast<float>(atof(floatBuffer));
+		return value;
+	}
+	return defaultValue;
+}
+
 uint32_t Settings::ReadStringValue(SettingsSection section, const char* pName, char* pBuffer, uint32_t bufferSize, const char* pDefaultValue /*= nullptr*/)
 {
 	if (bufferSize > 0)

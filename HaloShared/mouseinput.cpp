@@ -55,6 +55,14 @@ void MouseInput::Init(HINSTANCE hInstance)
 	assert(m_pDirectInput8 == nullptr);
 	assert(m_pDirectInput8Mouse == nullptr);
 
+	s_horizontalSensitivity = Settings::ReadFloatValue(SettingsSection::Controls, "HorizontalSensitivity", 1.0f);
+	s_verticalSensitivity = Settings::ReadFloatValue(SettingsSection::Controls, "VerticalSensitivity", 1.0f);
+
+	if (s_horizontalSensitivity > 1.0f) s_horizontalSensitivity = 1.0f;
+	if (s_verticalSensitivity > 1.0f) s_verticalSensitivity = 1.0f;
+	if (s_horizontalSensitivity < 0.0f) s_horizontalSensitivity = 0.0f;
+	if (s_verticalSensitivity < 0.0f) s_verticalSensitivity = 0.0f;
+
 	SetExclusiveMode(true);
 
 	HRESULT DirectInput8CreateResult = DirectInput8Create(hInstance, DIRECTINPUT_VERSION, IID_IDirectInput8, (LPVOID*)& m_pDirectInput8, NULL);
