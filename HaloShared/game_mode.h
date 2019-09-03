@@ -5,7 +5,7 @@ enum e_game_mode : int
 	_game_mode_none,
 
 	_game_mode_campaign,
-	_game_mode_multiplayer,
+	_game_mode_multiplayer = 3,
 
 	// we assume these
 	//_game_mode_map_editor,

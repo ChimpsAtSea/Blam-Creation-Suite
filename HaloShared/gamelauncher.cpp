@@ -11,9 +11,10 @@ GameLauncher::GameShutdownCallback* GameLauncher::s_gameShutdownCallback;
 char* GameLauncher::s_pTerminationFlag = nullptr;
 
 e_map_id g_LaunchMapId = _map_id_ff45_corvette;
-int g_LaunchGameMode = _game_mode_survival;
+e_game_mode g_LaunchGameMode = _game_mode_survival;
 e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
-const char* g_LaunchHopperGameVariant = "ff_gruntpocalypse_054";
+const char* g_LaunchHopperGameVariant = nullptr;
+const char* g_LaunchHopperMapVariant = nullptr;
 
 typedef BOOL(EnumWindowsFunc)(WNDENUMPROC lpEnumFunc, LPARAM lParam);
 EnumWindowsFunc* EnumWindowsPointer = nullptr;
@@ -154,17 +155,51 @@ void GameLauncher::LoadSettings()
 	g_LaunchMapId = string_to_map_id(pLaunchMapNameBuffer);
 
 	char pLaunchGameModeBuffer[256] = {};
-	Settings::ReadStringValue(SettingsSection::Launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "survival");
+	Settings::ReadStringValue(SettingsSection::Launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "");
 	g_LaunchGameMode = string_to_game_mode(pLaunchGameModeBuffer);
 
 	char pLaunchCampaignDifficultyLevelBuffer[256] = {};
 	Settings::ReadStringValue(SettingsSection::Launch, "DifficultyLevel", pLaunchCampaignDifficultyLevelBuffer, sizeof(pLaunchCampaignDifficultyLevelBuffer), "normal");
 	g_LaunchCampaignDifficultyLevel = string_to_campaign_difficulty_level(pLaunchCampaignDifficultyLevelBuffer);
 
+	const char* pDefaultHopperGameVariant = "";
+	switch (g_LaunchGameMode)
+	{
+		break;
+	case _game_mode_campaign:
+		pDefaultHopperGameVariant = "campaign_default_054";
+		break;
+	case _game_mode_multiplayer:
+		pDefaultHopperGameVariant = "slayer_054";
+		break;
+	case _game_mode_survival:
+		pDefaultHopperGameVariant = "ff_firefight_054";
+		break;
+	}
+
 	// #TODO: This must persist outside of the read
 	static char pLaunchHopperGameVariantBuffer[256] = {};
-	Settings::ReadStringValue(SettingsSection::Launch, "HopperGameVariant", pLaunchHopperGameVariantBuffer, sizeof(pLaunchHopperGameVariantBuffer), "ff_gruntpocalypse_054");
-	g_LaunchHopperGameVariant = pLaunchHopperGameVariantBuffer;
+	uint32_t LaunchHopperGameVariantLength = Settings::ReadStringValue(SettingsSection::Launch, "HopperGameVariant", pLaunchHopperGameVariantBuffer, sizeof(pLaunchHopperGameVariantBuffer), pDefaultHopperGameVariant);
+	if (LaunchHopperGameVariantLength > 0)
+	{
+		g_LaunchHopperGameVariant = pLaunchHopperGameVariantBuffer;
+	}
+	else
+	{
+		g_LaunchHopperGameVariant = nullptr;
+	}
+
+	// #TODO: This must persist outside of the read
+	static char pLaunchHopperMapVariantBuffer[256] = {};
+	uint32_t LaunchHopperMapVariantLength = Settings::ReadStringValue(SettingsSection::Launch, "HopperMapVariant", pLaunchHopperMapVariantBuffer, sizeof(pLaunchHopperMapVariantBuffer), "");
+	if (LaunchHopperMapVariantLength > 0)
+	{
+		g_LaunchHopperMapVariant = pLaunchHopperMapVariantBuffer;
+	}
+	else
+	{
+		g_LaunchHopperMapVariant = nullptr;
+	}
 }
 
 void GameLauncher::LaunchGame(const char* pGameLibrary)
@@ -225,7 +260,7 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 			game_launch_data.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
 
 			LoadHopperGameVariant(pHaloReachDataAccess, g_LaunchHopperGameVariant, *reinterpret_cast<s_game_variant*>(game_launch_data.GameVariantBuffer));
-			//load_hopper_map_variant(pHaloReachDataAccess, "the_cage.mvar", game_launch_data.halo_reach_map_variant);
+			LoadHopperMapVariant(pHaloReachDataAccess, g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(game_launch_data.MapVariantBuffer));
 			LoadPreviousGamestate("gamestate.hdr", game_launch_data);
 		}
 		else
@@ -262,8 +297,16 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 void GameLauncher::Update()
 {
+	
 	MouseInput::Acquire(); // have to try to acquire mouse here as this thread updates the window messages
 	CustomWindow::Update();
+
+	// keep updating state while the game is not running
+	if (s_currentGameState == CurrentState::eFinished)
+	{
+		MouseInput::Read();
+	}
+
 	Sleep(1); // prevent 100% CPU
 }
 
@@ -353,15 +396,16 @@ static void read_file_to_buffer(FILE* pFile, char* pBuffer, size_t length)
 
 }
 
-void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pHopperGameVariantName, s_map_variant& out_map_variant)
+void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pHopperMapVariantName, s_map_variant& out_map_variant)
 {
 	char pFilename[MAX_PATH] = {};
-	sprintf(pFilename, "hopper_map_variants\\%s", pHopperGameVariantName);
+	sprintf(pFilename, "hopper_map_variants\\%s.mvar", pHopperMapVariantName);
 	pFilename[MAX_PATH - 1] = 0;
 
 	FILE* pVariantFile = fopen(pFilename, "rb");
 	if (pVariantFile)
 	{
+		WriteLineVerbose("Loading map variant [%s]", pFilename);
 		size_t variantSize = get_file_size(pVariantFile);
 		char* pVariantBuffer = (char*)alloca(variantSize);
 		memset(pVariantBuffer, 0x00, variantSize);
@@ -370,11 +414,9 @@ void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pH
 
 		__int64 result = pDataAccess->CreateMapVariantFromFile(pVariantBuffer, static_cast<int>(variantSize));
 
-		// #TODO: MCC STRUCTURE FOR THIS
-		// #TODO: First 8 bytes appear to be a pointer to something in base game
-		s_map_variant* variant = (s_map_variant*)(result + 8);
+		s_map_variant* pGameVariant = (s_map_variant*)(result + 8);
 
-		out_map_variant = *variant;
+		out_map_variant = *pGameVariant;
 	}
 }
 
@@ -387,6 +429,7 @@ void GameLauncher::LoadHopperGameVariant(IDataAccess* pDataAccess, const char* p
 	FILE* pVariantFile = fopen(pFilename, "rb");
 	if (pVariantFile)
 	{
+		WriteLineVerbose("Loading game variant [%s]", pFilename);
 		size_t variantSize = get_file_size(pVariantFile);
 		char* pVariantBuffer = (char*)alloca(variantSize);
 		memset(pVariantBuffer, 0x00, variantSize);
@@ -395,11 +438,9 @@ void GameLauncher::LoadHopperGameVariant(IDataAccess* pDataAccess, const char* p
 
 		__int64 result = pDataAccess->CreateGameVariantFromFile(pVariantBuffer, static_cast<int>(variantSize));
 
-		// #TODO: MCC STRUCTURE FOR THIS
-		// #TODO: First 8 bytes appear to be a pointer to something in base game
-		s_game_variant* variant = (s_game_variant*)(result + 8);
+		s_game_variant* pGameVariant = (s_game_variant*)(result + 8);
 
-		out_game_variant = *variant;
+		out_game_variant = *pGameVariant;
 	}
 }
 

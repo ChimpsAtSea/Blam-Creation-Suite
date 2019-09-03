@@ -74,6 +74,9 @@ void __fastcall IGameEngineHost::GameStatusUpdated(unsigned int a1)
 
 __int64 __fastcall IGameEngineHost::GameExited(int a1, int a2, int a3)
 {
+	GameLauncher::s_currentGameState = GameLauncher::CurrentState::eFinished;
+	SplashScreen::Destroy();
+
 	WriteLineVerbose("IGameEngineHost::Member04 GameExited");
 	return __int64(0);
 };
