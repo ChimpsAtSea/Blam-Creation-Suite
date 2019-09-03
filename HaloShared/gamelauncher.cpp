@@ -44,12 +44,6 @@ BOOL EnumWindowsHook(
 
 void GameLauncher::Init(LPSTR lpCmdLine)
 {
-	static bool patchedEnumWindows = false;
-	if (!patchedEnumWindows)
-	{
-		create_dll_hook("USER32.dll", "EnumWindows", EnumWindowsHook, EnumWindowsPointer);
-		patchedEnumWindows = true;
-	}
 
 #if _DEBUG
 	bool isDebug = true;
@@ -76,6 +70,13 @@ void GameLauncher::Init(LPSTR lpCmdLine)
 		WriteLineVerbose("Waiting for debugger to attach");
 		while (!IsDebuggerPresent()) { Sleep(1); }
 		WriteLineVerbose("Debugger attached");
+	}
+
+	static bool patchedEnumWindows = false;
+	if (!patchedEnumWindows)
+	{
+		create_dll_hook("USER32.dll", "EnumWindows", EnumWindowsHook, EnumWindowsPointer);
+		patchedEnumWindows = true;
 	}
 
 	IGameEngineHost::g_enableGameEngineHostOverride = true;
