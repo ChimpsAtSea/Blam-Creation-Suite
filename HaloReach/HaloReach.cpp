@@ -367,6 +367,8 @@ void init_halo_reach(HaloGameID gameID)
 	DataReferenceBase::InitTree(gameID);
 	FunctionHookBase::InitTree(gameID);
 	
+	GameLauncher::RegisterTerminationValue(*reinterpret_cast<char*>(byte_183984DE4.ptr()));
+
 	if (gameID == HaloGameID::HaloReach_2019_Jun_24)
 	{
 		g_shell_command_line = GetCommandLineA();
