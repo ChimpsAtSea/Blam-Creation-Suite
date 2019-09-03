@@ -13,6 +13,11 @@ std::thread			SplashScreen::s_windowThread;
 std::atomic<bool>	SplashScreen::s_isAlive = false;
 DWORD				SplashScreen::s_threadID = -1;
 
+HWND SplashScreen::GetWindowHandle()
+{
+	return s_hWnd;
+}
+
 void SplashScreen::LoadBitmapFromPNG(UINT uResourceID, Bitmap** ppBitmapOut, HINSTANCE hInstance /*= NULL*/)
 {
 	HRSRC hResourceHandle = ::FindResource(hInstance, MAKEINTRESOURCE(uResourceID), "PNG");

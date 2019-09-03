@@ -6,6 +6,7 @@ public:
 	static void Create();
 	static void Destroy();
 	static bool IsAlive();
+	static HWND GetWindowHandle();
 
 private:
 	static void WindowThreadProc();
