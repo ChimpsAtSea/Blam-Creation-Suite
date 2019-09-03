@@ -42,7 +42,7 @@ BOOL EnumWindowsHook(
 	return result;
 }
 
-void GameLauncher::Init(LPSTR lpCmdLine)
+void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 {
 
 #if _DEBUG
@@ -82,7 +82,8 @@ void GameLauncher::Init(LPSTR lpCmdLine)
 
 	IGameEngineHost::g_enableGameEngineHostOverride = true;
 	CustomWindow::Init();
-	GameRender::Init();
+	GameRender::Init(); 
+	MouseInput::Init(hInstance);
 	InitSockets();
 
 	CustomWindow::SetOnDestroyCallback(GameLauncher::Terminate);
@@ -91,6 +92,8 @@ void GameLauncher::Init(LPSTR lpCmdLine)
 void GameLauncher::Deinit()
 {
 	DeinitSockets();
+	MouseInput::Deinit();
+	GameRender::Deinit();
 	CustomWindow::Deinit();
 
 	// when debugging make sure to manually quit the game
@@ -228,7 +231,6 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 	while (s_currentGameState != CurrentState::eFinished)
 	{
-		CustomWindow::Update();
 		Update();
 	}
 
@@ -247,6 +249,8 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 void GameLauncher::Update()
 {
+	MouseInput::Acquire(); // have to try to acquire mouse here as this thread updates the window messages
+	CustomWindow::Update();
 	Sleep(1); // prevent 100% CPU
 }
 

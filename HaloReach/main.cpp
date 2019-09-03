@@ -45,7 +45,7 @@ int WINAPI WinMain(
 
 	CustomWindow::SetIcon(LoadIconA(GetModuleHandle(NULL), MAKEINTRESOURCEA(IDI_ICON1)));
 
-	GameLauncher::Init(lpCmdLine);
+	GameLauncher::Init(hInstance, lpCmdLine);
 
 	for (int i = 0; i < 1; i++)
 	{

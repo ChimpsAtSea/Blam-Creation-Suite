@@ -12,6 +12,7 @@
 #include "FunctionHook.h"
 
 #include "customwindow.h"
+#include "mouseinput.h"
 #include "DebugUI.h"
 #include "SplashScreen.h"
 

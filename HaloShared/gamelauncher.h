@@ -7,7 +7,7 @@ public:
 	typedef void(GameLaunchCallback)(HaloGameID gameID);
 	typedef void(GameShutdownCallback)(HaloGameID gameID);
 
-	static void Init(LPSTR lpCmdLine);
+	static void Init(HINSTANCE hInstance, LPSTR lpCmdLine);
 	static void Deinit();
 	static void RegisterTerminationValue(char& rTerminationReference);
 

@@ -19,16 +19,20 @@ public:
 	
 	static IGameEngineHost g_gameEngineHost;
 
+#pragma pack(push, 1)
 	struct InputBuffer
 	{
 		int unknown0;
 		char keyboardState[256];
 		float MouseX;
 		float MouseY;
-		char data2[12];
-		char data3[16];
+		_QWORD unknown10C;
+		char mouseButtonBits;
+		char unknown115[19];
 	};
-	static_assert(sizeof(InputBuffer) == 0x128, "");
+#pragma pack(pop)
+	static constexpr size_t InputBufferSize = sizeof(InputBuffer);
+	static_assert(InputBufferSize == 0x128, "InputBuffer is incorrect size");
 	
 	IGameEngineHost();
 	~IGameEngineHost();
@@ -118,23 +122,6 @@ public:
 
 	IGameEvents* pGameEvents;
 	QWORD data1[5863];
-
-
-
-	IDirectInput8* m_pDirectInput8 = nullptr;
-	IDirectInputDevice8* m_pDirectInput8Mouse = nullptr;
-	DIMOUSESTATE2 m_mouseState2 = {};
-	bool ReadMouse();
-
-
-
-
-
-
-
-
-
-
 
 	// IGameEngineHost bypass functions
 

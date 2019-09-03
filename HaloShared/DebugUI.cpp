@@ -109,7 +109,10 @@ void DebugUI::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	if (s_initialised)
 	{
-		ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam);
+		if (IsVisible())
+		{
+			ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam);
+		}
 
 		switch (msg)
 		{

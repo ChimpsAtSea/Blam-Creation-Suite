@@ -198,8 +198,13 @@ bool __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInputBuffer)
 	memset(pInputBuffer, 0, sizeof(*pInputBuffer));
 	pInputBuffer->unknown0 = 1;
 
+	bool debugUIVisible = DebugUI::IsVisible();
+	bool windowFocused = CustomWindow::IsWindowFocused();
+
+	MouseInput::SetExclusiveMode(!debugUIVisible && windowFocused);
+
 	// don't update and return an empty zero buffer
-	if (DebugUI::IsVisible())
+	if (debugUIVisible)
 	{
 		return unsigned __int8(1);
 	}
@@ -208,9 +213,9 @@ bool __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInputBuffer)
 	BYTE keyboardState[256] = {};
 	pInputBuffer->MouseX = 0.0f;
 	pInputBuffer->MouseY = 0.0f;
-	pInputBuffer->data2[8] = 0;
+	pInputBuffer->mouseButtonBits = 0;
 
-	if (CustomWindow::IsWindowFocused())
+	if (windowFocused)
 	{
 		GetKeyState(-1); // force keys to update
 		if (GetKeyboardState(keyboardState))
@@ -221,33 +226,24 @@ bool __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInputBuffer)
 			}
 		}
 
-		bool mouseConnected = ReadMouse();
+		bool mouseConnected = MouseInput::Read();
 		if (mouseConnected)
 		{
-			float mouseInputX = float(m_mouseState2.lX) * 0.005;
-			float mouseInputY = float(m_mouseState2.lY) * 0.005; // 2x scaling compared to X, vertical is 180 degrees while horizontal is 360
-			
-			float sensitivity = 0.75;
+			float mouseInputX = MouseInput::GetMouseX();
+			float mouseInputY = MouseInput::GetMouseY();
 
-			pInputBuffer->MouseX += mouseInputX * sensitivity;
-			pInputBuffer->MouseY += mouseInputY * sensitivity;
+			pInputBuffer->MouseX += mouseInputX;
+			pInputBuffer->MouseY += mouseInputY;
 
-			bool leftButtonPressed = (m_mouseState2.rgbButtons[0] & 0b10000000) != 0;
-			bool rightButtonPressed = (m_mouseState2.rgbButtons[1] & 0b10000000) != 0;
-			bool middleButtonPressed = (m_mouseState2.rgbButtons[2] & 0b10000000) != 0;
+			bool leftButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Left);
+			bool rightButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Right);
+			bool middleButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Middle);
 
-
-			pInputBuffer->data2[8] |= BYTE(leftButtonPressed) << 0;
-			pInputBuffer->data2[8] |= BYTE(middleButtonPressed) << 1;
-			pInputBuffer->data2[8] |= BYTE(rightButtonPressed) << 2;
+			pInputBuffer->mouseButtonBits |= BYTE(leftButtonPressed) << 0;
+			pInputBuffer->mouseButtonBits |= BYTE(middleButtonPressed) << 1;
+			pInputBuffer->mouseButtonBits |= BYTE(rightButtonPressed) << 2;
 		}
 	}
-
-	pInputBuffer->data2[8] |= GetAsyncKeyState(VK_F1) ? -1 : 0; // MOUSE BUTTONS
-	pInputBuffer->data2[9] = GetAsyncKeyState(VK_F2) ? -1 : 0;
-	pInputBuffer->data2[10] = GetAsyncKeyState(VK_F3) ? -1 : 0;
-	pInputBuffer->data2[11] = GetAsyncKeyState(VK_F4) ? -1 : 0;
-
 
 	if (g_inputUpdatePatchState == IGameEngineHost::InputUpdatePatchState::WaitingForRun)
 	{
@@ -393,86 +389,3 @@ unsigned __int8* IGameEngineHost::Member43(_QWORD a1, char *a2, _QWORD a3)
 {
 	return 0;
 };
-
-bool IGameEngineHost::ReadMouse()
-{
-	m_mouseState2 = {};
-
-	if (m_pDirectInput8 == nullptr)
-	{
-		HRESULT DirectInput8CreateResult = DirectInput8Create(GetModuleHandle("haloreach.dll"), DIRECTINPUT_VERSION, IID_IDirectInput8, (LPVOID*)&m_pDirectInput8, NULL);
-		assert(!FAILED(DirectInput8CreateResult));
-	}
-	if (m_pDirectInput8Mouse == nullptr)
-	{
-		// Initialize the direct input interface for the mouse.
-		HRESULT CreateDeviceResult = m_pDirectInput8->CreateDevice(GUID_SysMouse, &m_pDirectInput8Mouse, NULL);
-		assert(!FAILED(CreateDeviceResult));
-
-		// Set the data format for the mouse using the pre-defined mouse data format.
-		HRESULT SetDataFormatResult = m_pDirectInput8Mouse->SetDataFormat(&c_dfDIMouse2);
-		assert(!FAILED(SetDataFormatResult));
-
-		//// Set the cooperative level of the mouse to share with other programs.
-		HWND hWnd = CustomWindow::GetWindowHandle();
-		HRESULT SetCooperativeLevelResult = m_pDirectInput8Mouse->SetCooperativeLevel(hWnd, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
-		assert(!FAILED(SetCooperativeLevelResult));
-		
-		bool bImmediate = false;
-		if (!bImmediate)
-		{
-			DIPROPDWORD dipdw;
-			dipdw.diph.dwSize = sizeof(DIPROPDWORD);
-			dipdw.diph.dwHeaderSize = sizeof(DIPROPHEADER);
-			dipdw.diph.dwObj = 0;
-			dipdw.diph.dwHow = DIPH_DEVICE;
-			dipdw.dwData = 64; // Arbitrary buffer size
-
-			HRESULT SetPropertyResult = m_pDirectInput8Mouse->SetProperty(DIPROP_BUFFERSIZE, &dipdw.diph);
-			assert(!FAILED(SetPropertyResult));
-		}
-
-		// Acquire the mouse.
-		HRESULT AcquireResult = m_pDirectInput8Mouse->Acquire();
-		//assert(!FAILED(AcquireResult)); // it is okay to fail here, as we'll try again each frame
-	}
-	
-	ZeroMemory(&m_mouseState2, sizeof(m_mouseState2));
-
-	// Read the mouse device.
-	HRESULT GetDeviceStateResult = m_pDirectInput8Mouse->GetDeviceState(sizeof(DIMOUSESTATE2), (LPVOID)&m_mouseState2);
-	if (FAILED(GetDeviceStateResult))
-	{
-		// If the mouse lost focus or was not acquired then try to get control back.
-		if ((GetDeviceStateResult == DIERR_INPUTLOST) || (GetDeviceStateResult == DIERR_NOTACQUIRED))
-		{
-			m_pDirectInput8Mouse->Acquire();
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	//if (false)
-	//{
-	//	// Release the mouse.
-	//	if (m_pDirectInput8Mouse)
-	//	{
-	//		m_pDirectInput8Mouse->Unacquire();
-	//		m_pDirectInput8Mouse->Release();
-	//		m_pDirectInput8Mouse = 0;
-	//	}
-
-	//	// Release the main interface to direct input.
-	//	if (m_pDirectInput8)
-	//	{
-	//		m_pDirectInput8->Release();
-	//		m_pDirectInput8 = 0;
-	//	}
-	//}
-
-	return true;
-}
-
-
