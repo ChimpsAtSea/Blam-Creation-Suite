@@ -29,5 +29,6 @@ private:
 	static void(*s_OnDestroyCallback)();
 public:
 	static void GetWindowSize(SIZE& rSize);
+	static void SetWindowTitle(const char* pTitle);
 };
 

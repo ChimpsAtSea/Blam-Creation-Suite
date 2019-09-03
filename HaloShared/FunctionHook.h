@@ -15,6 +15,8 @@ public:
 		, m_isActive(true)
 		, m_name(pName)
 		, m_find_offset_func(find_offset_func)
+		, m_pCallback(nullptr)
+		, m_pCallbackUserData(nullptr)
 	{
 		if (g_pFirstFunctionHook == nullptr)
 		{

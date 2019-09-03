@@ -119,6 +119,23 @@ public:
 	IGameEvents* pGameEvents;
 	QWORD data1[5863];
 
+
+
+	IDirectInput8* m_pDirectInput8 = nullptr;
+	IDirectInputDevice8* m_pDirectInput8Mouse = nullptr;
+	DIMOUSESTATE2 m_mouseState2 = {};
+	bool ReadMouse();
+
+
+
+
+
+
+
+
+
+
+
 	// IGameEngineHost bypass functions
 
 	enum class GEHCBypassType // GameEngineHostCallbackType
@@ -171,5 +188,5 @@ public:
 		}
 	}
 };
-static constexpr size_t IGameEngineHostSize = sizeof(IGameEngineHost);
-static_assert(IGameEngineHostSize == 0xB748, "IGameEngineHost is incorrect");
+//static constexpr size_t IGameEngineHostSize = sizeof(IGameEngineHost);
+//static_assert(IGameEngineHostSize == 0xB748, "IGameEngineHost is incorrect");

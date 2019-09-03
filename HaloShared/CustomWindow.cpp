@@ -17,6 +17,11 @@ void CustomWindow::GetWindowSize(SIZE& rSize)
 	rSize.cy = rect.bottom - rect.top;
 }
 
+void CustomWindow::SetWindowTitle(const char* pTitle)
+{
+	::SetWindowTextA(s_hWnd, pTitle);
+}
+
 void CustomWindow::SetPostMessageThreadId(HANDLE hThread)
 {
 	s_hPostMessageThread = hThread;

@@ -247,7 +247,7 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 void GameLauncher::Update()
 {
-	Sleep(5); // prevent 100% CPU
+	Sleep(1); // prevent 100% CPU
 }
 
 void GameLauncher::InitSockets()
