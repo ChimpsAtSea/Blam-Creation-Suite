@@ -23,19 +23,27 @@ enum e_network_session_class
 typedef unsigned __int8 BYTE;
 
 /* 367 */
+#pragma pack(push, 1)
 struct s_network_session_peer
 {
-	BYTE unknown0[352];
+	_QWORD machine_identifier;
+	DWORD unknown8;
+	BYTE unknownC[340];
 };
+#pragma pack(pop)
+static_assert(sizeof(s_network_session_peer) == 352, "s_network_session_peer invalid size");
 
 /* 365 */
-struct __declspec(align(4)) s_network_session_player
+#pragma pack(push, 1)
+struct s_network_session_player
 {
 	int desired_configuration_version;
 	_QWORD player_identifier;
 	int peer_index;
 	char unknown10[264];
 };
+#pragma pack(pop)
+static_assert(sizeof(s_network_session_player) == 0x118, "s_network_session_player invalid size");
 
 /* 366 */
 struct c_network_session_membership

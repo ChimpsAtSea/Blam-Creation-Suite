@@ -563,6 +563,39 @@ FunctionHookEx<sub_18006DAE0_offset, int __fastcall (c_network_session* a1, BOOL
 	return result;
 } };
 
+
+const char* ppNetworkSessionNames[] = { "Squad Session", "Posse Session", "Group Session", "Target Session" };
+
+intptr_t c_network_session_abort_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18006CB40;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<c_network_session_abort_offset, __int64 __fastcall (c_network_session* a1)> c_network_session_abort = { "sub_18006CB40", [](c_network_session* _this)
+{
+	WriteLineVerbose("c_network_session_abort [%s]", ppNetworkSessionNames[_this->m_session_index]);
+	auto result = c_network_session_abort(_this);
+	return result;
+} };
+
+intptr_t c_network_session_handle_peer_joining_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18006DC10;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<c_network_session_handle_peer_joining_offset, void __fastcall (c_network_session* _this)> c_network_session_handle_peer_joining = { "c_network_session::handle_peer_joining", [](c_network_session* _this)
+{
+	WriteLineVerbose("c_network_session_handle_peer_joining_offset [%s]", ppNetworkSessionNames[_this->m_session_index]);
+	_this->m_session_membership.m_baseline_update_number = 12;
+	c_network_session_handle_peer_joining(_this);
+} };
+
 void halo_reach_debug_callback()
 {
 	ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiCond_FirstUseEver);
@@ -579,7 +612,6 @@ void halo_reach_debug_callback()
 
 	ImGui::Columns(3, "g_networkSessions", false);
 	ImGui::Separator();
-	const char* ppNetworkSessionNames[] = { "Squad Session", "Posse Session", "Group Session", "Target Session" };
 	ImGui::Selectable("Session Name");
 	ImGui::NextColumn();
 	ImGui::Selectable("Address");
@@ -625,28 +657,32 @@ void halo_reach_debug_callback()
 			{
 				auto& rSessionMembership = rNetworkSession.m_session_membership;
 
-				ImGui::Text("m_session: %p", rSessionMembership.m_session); c_network_session* m_session;
-				ImGui::Text("m_baseline_update_number: %i", rSessionMembership.m_baseline_update_number); int m_baseline_update_number;
-				ImGui::Text("m_leader_peer_index: %i", rSessionMembership.m_leader_peer_index); int m_leader_peer_index;
-				ImGui::Text("m_host_peer_index: %i", rSessionMembership.m_host_peer_index); int m_host_peer_index;
-				ImGui::Text("unknown14: %i", rSessionMembership.unknown14); int unknown14;
-				ImGui::Text("m_private_slot_count: %i", rSessionMembership.m_private_slot_count); int m_private_slot_count;
-				ImGui::Text("m_public_slot_count: %i", rSessionMembership.m_public_slot_count); int m_public_slot_count;
-				ImGui::Text("m_friends_only: %lli", rSessionMembership.m_friends_only); __int64 m_friends_only;
-				ImGui::Text("m_peer_count: %i", rSessionMembership.m_peer_count); int m_peer_count;
-				ImGui::Text("m_valid_peer_mask: %i", rSessionMembership.m_valid_peer_mask); int m_valid_peer_mask;
-				ImGui::Text("m_player_count: %i", rSessionMembership.m_player_count); int m_player_count;
-				ImGui::Text("m_valid_player_mask: %i", rSessionMembership.m_valid_player_mask); int m_valid_player_mask;
-				ImGui::Text("m_player_sequence_number: %i", rSessionMembership.m_player_sequence_number); int m_player_sequence_number;
-				ImGui::Text("unknown291C: %i", rSessionMembership.unknown291C); int unknown291C;
-				ImGui::Text("m_incremental_update_buffers: %u", (uint32_t)rSessionMembership.m_incremental_update_buffers); BYTE m_incremental_update_buffers[10460];
-				ImGui::Text("m_incremental_updates: %i", rSessionMembership.m_incremental_updates); int m_incremental_updates[17];
-				ImGui::Text("unknown5240: %i", rSessionMembership.unknown5240); int unknown5240;
-				ImGui::Text("m_local_peer_index: %i", rSessionMembership.m_local_peer_index); int m_local_peer_index;
+				ImGui::Text("m_session: %p", rSessionMembership.m_session);
+				ImGui::Text("m_baseline_update_number: %i", rSessionMembership.m_baseline_update_number); 
+				ImGui::Text("m_leader_peer_index: %i", rSessionMembership.m_leader_peer_index);
+				ImGui::Text("m_host_peer_index: %i", rSessionMembership.m_host_peer_index); 
+				ImGui::Text("unknown14: %i", rSessionMembership.unknown14); 
+				ImGui::Text("m_private_slot_count: %i", rSessionMembership.m_private_slot_count); 
+				ImGui::Text("m_public_slot_count: %i", rSessionMembership.m_public_slot_count); 
+				ImGui::Text("m_friends_only: %lli", rSessionMembership.m_friends_only); 
+				ImGui::Text("m_peer_count: %i", rSessionMembership.m_peer_count);
+				ImGui::Text("m_valid_peer_mask: %i", rSessionMembership.m_valid_peer_mask);
+				ImGui::Text("m_player_count: %i", rSessionMembership.m_player_count); 
+				ImGui::Text("m_valid_player_mask: %i", rSessionMembership.m_valid_player_mask);
+				ImGui::Text("m_player_sequence_number: %i", rSessionMembership.m_player_sequence_number);
+				ImGui::Text("unknown291C: %i", rSessionMembership.unknown291C); 
+				ImGui::Text("m_incremental_updates: %i", rSessionMembership.m_incremental_updates);
+				ImGui::Text("unknown5240: %i", rSessionMembership.unknown5240); 
+				ImGui::Text("m_local_peer_index: %i", rSessionMembership.m_local_peer_index);
 
 				if (ImGui::CollapsingHeader("m_peers"))
 				{
-					//ImGui::Text("m_peers: %p", rSessionMembership.m_peers); s_network_session_peer m_peers[17];
+					auto& rPeers = rSessionMembership.m_peers;
+					for (int i = 0; i < __min(rSessionMembership.m_peer_count, _countof(rPeers)); i++)
+					{
+						ImGui::Text("machine_identifier: %llu", rPeers[i].machine_identifier);
+						ImGui::Text("unknown8: %u", rPeers[i].unknown8);
+					}
 				}
 				if (ImGui::CollapsingHeader("m_players"))
 				{
