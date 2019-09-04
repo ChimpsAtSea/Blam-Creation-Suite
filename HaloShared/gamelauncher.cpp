@@ -232,28 +232,28 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 	memcpy(game_launch_data.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
 
 	{
-		uint64_t SquadID = 0x2F385E2E95D4F33E;
-		uint64_t HostId = 0x7F7F86B0EE577202;
-		uint64_t ClientId = 0x7F7Faf4521cdad53;
+		uint64_t SquadAddress = 0x2F385E2E95D4F33E;
+		uint64_t HostAddress = 0x7F7F86B0EE577202;
+		uint64_t ClientAddress = 0x7F7Faf4521cdad53;
 
-		game_launch_data.PartyData.SquadId = SquadID; // this is set
-		game_launch_data.PartyData.IsHost = !strstr(GetCommandLineA(), "-client"); // if client, is false
+		game_launch_data.SessionInfo.SquadAddress = SquadAddress; // this is set
+		game_launch_data.SessionInfo.IsHost = !strstr(GetCommandLineA(), "-client"); // if client, is false
 
-		if (game_launch_data.PartyData.IsHost)
+		if (game_launch_data.SessionInfo.IsHost)
 		{
 			IGameEngineHost::CreateServerConnection();
 
 			SetConsoleTitleA("Halo Reach Console | HOST");
-			game_launch_data.PartyData.LocalId = HostId; // this is set
-			game_launch_data.PartyData.PeerIds[0] = HostId;
-			game_launch_data.PartyData.PeerIds[1] = ClientId;
-			game_launch_data.PartyData.PeerCount = 1;
+			game_launch_data.SessionInfo.LocalAddress = HostAddress; // this is set
+			game_launch_data.SessionInfo.PeerIdentifiers[0] = HostAddress;
+			game_launch_data.SessionInfo.PeerIdentifiers[1] = ClientAddress;
+			game_launch_data.SessionInfo.PeerIdentifierCount = 1;
 
-			game_launch_data.PartyData.PlayerIds[0] = { 0x0009000002D75AC8, 0x00000000, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-			game_launch_data.PartyData.PlayerIds[1] = { 0x000901FE31A851C0, 0x00000000, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+			game_launch_data.SessionInfo.PlayerMemberships[0] = { 0x0009000002D75AC8, 0, 0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+			game_launch_data.SessionInfo.PlayerMemberships[1] = { 0x000901FE31A851C0, 1, 1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
 
-			game_launch_data.PartyData.PlayerCount = 1;
+			game_launch_data.SessionInfo.PlayerMembershipCount = 1;
 
 			game_launch_data.MapId = g_LaunchMapId;
 			game_launch_data.GameMode = g_LaunchGameMode;
@@ -267,8 +267,8 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 		{
 			IGameEngineHost::CreateClientConnection();
 
-			game_launch_data.PartyData.LocalId = ClientId; // this is set
-			game_launch_data.PartyData.HostId = HostId;
+			game_launch_data.SessionInfo.LocalAddress = ClientAddress; // this is set
+			game_launch_data.SessionInfo.HostAddress = HostAddress;
 		}
 	}
 

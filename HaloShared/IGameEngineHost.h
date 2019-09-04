@@ -41,23 +41,41 @@ public:
 	{
 		BYTE data[0x584B8]; // game results??
 	};
+	static constexpr size_t Member06StructSize = sizeof(Member06Struct);
+	static_assert(Member06StructSize == 0x584B8, "Member06Struct is incorrect size");
 	
 	struct Member22Struct
 	{
 		BYTE data[0x110];
 	};
-	
-	struct unknown_network_type
+	static constexpr size_t Member22StructSize = sizeof(Member22Struct);
+	static_assert(Member22StructSize == 0x110, "Member22Struct is incorrect size");
+
+	struct s_member_info
 	{
-		char data[24];
+		QWORD MachineIdentifier;
+		long Team;
+		long PlayerAssignedTeam;
+		QWORD SecureAddress;
 	};
 
-	struct Member25Struct
+	struct s_session_membership
 	{
-		unknown_network_type data[16];
-		int unknown;
-		int unknown2;
+		s_member_info Members[16];
+		int Count;
+		int : 32;
 	};
+	static constexpr size_t s_session_membership_size = sizeof(s_session_membership);
+	static_assert(s_session_membership_size == 0x188, "s_session_membership is incorrect size");
+	
+	struct s_session_info_part
+	{
+		QWORD SquadAddress; // c_managed_session offset 0x3E0
+		QWORD SecureAddress; // s_network_session_peer offset 0, type s_transport_secure_address
+		s_session_membership SessionMembership;
+	};
+	static constexpr size_t s_session_info_part_size = sizeof(s_session_info_part);
+	static_assert(s_session_info_part_size == 0x198, "s_session_info_part is incorrect size");
 	
 	struct Member28Struct
 	{
@@ -65,11 +83,15 @@ public:
 		int height;
 		BYTE data8[0x178];
 	};
+	static constexpr size_t Member28StructSize = sizeof(Member28Struct);
+	static_assert(Member28StructSize == 0x180, "Member28Struct is incorrect size");
 	
 	struct Member29Struct
 	{
 		BYTE data[0x664];
 	};
+	static constexpr size_t Member29StructSize = sizeof(Member29Struct);
+	static_assert(Member29StructSize == 0x664, "Member29Struct is incorrect size");
 	
 	struct s_transport_address;
 	
@@ -97,8 +119,8 @@ public:
 	virtual __int64 __fastcall Member21(_QWORD);
 	virtual __int64 Member22(Member22Struct *buffer, __int64);
 	virtual char Member23(__int64, __int64);
-	virtual __int64 Member24(BYTE *);
-	virtual void __fastcall MembershipUpdate(Member25Struct *buffer, uint32_t playercount);
+	virtual __int64 GetSessionInfo(s_session_info_part *buffer);
+	virtual void __fastcall MembershipUpdate(s_session_membership *buffer, uint32_t playercount);
 	virtual bool __fastcall Member26();
 	virtual void __fastcall Member27();
 	virtual bool __fastcall Member28(Member28Struct *buffer);

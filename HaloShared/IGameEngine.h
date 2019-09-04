@@ -3,38 +3,37 @@
 enum e_map_id : int;
 enum e_campaign_difficulty_level : int;
 
-typedef uint64_t PeerUUID;
-#pragma pack(push, 1)
-struct PlayerUUID
+struct PlayerUUID // copy of `s_session_membership` currently in IGameEngineHost.h
 {
-	QWORD qword0;
-	DWORD dword8;
-	uint8_t unknownC[12];
+	QWORD MachineIdentifier;
+	DWORD Team;
+	DWORD PlayerAssignedTeam;
+	BYTE SecureAddress[8];
 };
-#pragma pack(pop)
-static_assert(sizeof(PlayerUUID) == 24, "");
+static constexpr size_t PlayerUUIDSize = sizeof(PlayerUUID);
+static_assert(PlayerUUIDSize == 24, "");
 
-struct s_party_data
+struct s_session_info
 {
-	PeerUUID SquadId;
-	PeerUUID LocalId;
+	QWORD SquadAddress;
+	QWORD LocalAddress;
 	bool IsHost; // if client, is false
 	__declspec(align(8)) struct
 	{
-		PeerUUID PeerIds[17];
-		uint32_t PeerCount; // if client, is 0
+		QWORD PeerIdentifiers[17];
+		uint32_t PeerIdentifierCount; // if client, is 0
 	};
 	__declspec(align(8)) struct
 	{
-		PlayerUUID PlayerIds[16];
-		int64_t PlayerCount; // if client, is 0
+		PlayerUUID PlayerMemberships[16];
+		int64_t PlayerMembershipCount; // if client, is 0
 	};
-	PeerUUID HostId; // if client, is LocalId
+	QWORD HostAddress; // if client, is LocalId
 };
-static constexpr size_t PartyData_HostId_Offset = offsetof(s_party_data, s_party_data::HostId);
-static_assert(PartyData_HostId_Offset == 0x230);
-static constexpr size_t PartyDataSize = sizeof(s_party_data);
-static_assert(PartyDataSize == 0x238);
+static constexpr size_t SessionInfo_HostAddress_Offset = offsetof(s_session_info, s_session_info::HostAddress);
+static_assert(SessionInfo_HostAddress_Offset == 0x230);
+static constexpr size_t SessionInfoSize = sizeof(s_session_info);
+static_assert(SessionInfoSize == 0x238);
 
 
 
@@ -55,7 +54,7 @@ struct s_game_launch_data
 	uint8_t* pGameStateHeader;
 	size_t GameStateHeaderSize;
 	const char* SavedFilmPath;
-	s_party_data PartyData;
+	s_session_info SessionInfo;
 	uint8_t byte2B678[8];
 	const wchar_t* GamePath = nullptr;
 	wchar_t Locale[88] = L"en-US";
