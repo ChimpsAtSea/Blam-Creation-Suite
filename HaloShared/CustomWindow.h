@@ -21,8 +21,9 @@ public:
 private:
 
 	static HICON	s_hIcon;
-	static HWND		s_hWnd; 
-	static HWND		s_hFocusWnd; 
+	static HWND		s_hWnd;
+	static HWND		s_hFocusWnd;
+	static HWND		s_hForegroundWnd;
 	static HINSTANCE s_hInstance;
 	static HANDLE s_hPostMessageThread;
 	static DWORD s_hPostMessageThreadId;

@@ -7,6 +7,13 @@ enum MouseInputButton
 	Middle,
 };
 
+enum MouseAcquireMode
+{
+	None,
+	UI,
+	Exclusive
+};
+
 class MouseInput
 {
 public:
@@ -18,7 +25,7 @@ public:
 	static float GetMouseX();
 	static float GetMouseY();
 	static bool GetMouseButton(MouseInputButton button);
-	static void SetExclusiveMode(bool isExclusive);
+	static void SetAcquireMode(MouseAcquireMode acquireMode);
 	static void Acquire();
 private:
 	static float s_horizontalSensitivity;

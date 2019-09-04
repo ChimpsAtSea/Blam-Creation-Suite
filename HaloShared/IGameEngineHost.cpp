@@ -203,7 +203,12 @@ bool __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInputBuffer)
 	bool debugUIVisible = DebugUI::IsVisible();
 	bool windowFocused = CustomWindow::IsWindowFocused();
 
-	MouseInput::SetExclusiveMode(!debugUIVisible && windowFocused);
+	MouseAcquireMode acquireMode = MouseAcquireMode::None;
+	if (windowFocused)
+	{
+		acquireMode = debugUIVisible ? MouseAcquireMode::UI : MouseAcquireMode::Exclusive;
+	}
+	MouseInput::SetAcquireMode(acquireMode);
 
 	// don't update and return an empty zero buffer
 	if (debugUIVisible)

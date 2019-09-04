@@ -3,6 +3,7 @@
 HICON CustomWindow::s_hIcon = NULL;
 HWND CustomWindow::s_hWnd = NULL;
 HWND CustomWindow::s_hFocusWnd = NULL;
+HWND CustomWindow::s_hForegroundWnd = NULL;
 HINSTANCE CustomWindow::s_hInstance = NULL;
 HANDLE CustomWindow::s_hPostMessageThread = NULL;
 DWORD CustomWindow::s_hPostMessageThreadId = NULL;
@@ -87,11 +88,10 @@ LRESULT CALLBACK CustomWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 	case WM_SIZE:
 		// #TODO: tell game to resize
 		break;
+	case WM_KILLFOCUS:
 	case WM_SETFOCUS:
 		s_hFocusWnd = GetFocus();
-		break;
-	case WM_KILLFOCUS:
-		s_hFocusWnd = reinterpret_cast<HWND>(lParam);
+		s_hForegroundWnd = GetForegroundWindow();
 		break;
 	}
 	return DefWindowProc(hwnd, msg, wParam, lParam);

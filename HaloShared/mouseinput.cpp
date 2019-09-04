@@ -8,15 +8,20 @@ DIMOUSESTATE2 MouseInput::s_mouseState2 = {};
 std::atomic<DWORD> MouseInput::s_currentAcquireMode = 0;
 DWORD MouseInput::s_targetAcquireMode = 0;
 
-void MouseInput::SetExclusiveMode(bool isExclusive)
+void MouseInput::SetAcquireMode(MouseAcquireMode acquireMode)
 {
-	if (isExclusive)
+	switch (acquireMode)
 	{
-		s_targetAcquireMode = DISCL_FOREGROUND | DISCL_EXCLUSIVE;
-	}
-	else
-	{
+	case UI:
 		s_targetAcquireMode = DISCL_BACKGROUND | DISCL_NONEXCLUSIVE;
+		break;
+	case Exclusive:
+		s_targetAcquireMode = DISCL_FOREGROUND | DISCL_EXCLUSIVE;
+		break;
+	case None:
+	default:
+		s_targetAcquireMode = 0;
+		break;
 	}
 }
 
@@ -24,27 +29,38 @@ void MouseInput::Acquire()
 {
 	if (s_currentAcquireMode != s_targetAcquireMode)
 	{
-		if (s_currentAcquireMode)
+		if (s_targetAcquireMode)
 		{
-			HRESULT UnacquireResult = m_pDirectInput8Mouse->Unacquire();
-			s_currentAcquireMode = 0;
-		}
+			// attempt to acquire the mouse
 
-		//// Set the cooperative level of the mouse to share with other programs.
-		HWND hWnd = CustomWindow::GetWindowHandle();
-		HRESULT SetCooperativeLevelResult = m_pDirectInput8Mouse->SetCooperativeLevel(hWnd, s_targetAcquireMode);
-		assert(!FAILED(SetCooperativeLevelResult));
+			if (s_currentAcquireMode)
+			{
+				HRESULT UnacquireResult = m_pDirectInput8Mouse->Unacquire();
+				s_currentAcquireMode = 0;
+			}
 
-		// Acquire the mouse.
-		HRESULT AcquireResult = m_pDirectInput8Mouse->Acquire();
-		//assert(!FAILED(AcquireResult)); // it is okay to fail here, as we'll try again each frame
+			//// Set the cooperative level of the mouse to share with other programs.
+			HWND hWnd = CustomWindow::GetWindowHandle();
+			HRESULT SetCooperativeLevelResult = m_pDirectInput8Mouse->SetCooperativeLevel(hWnd, s_targetAcquireMode);
+			assert(!FAILED(SetCooperativeLevelResult));
 
-		if (!FAILED(AcquireResult))
-		{
-			s_currentAcquireMode = s_targetAcquireMode;
+			// Acquire the mouse.
+			HRESULT AcquireResult = m_pDirectInput8Mouse->Acquire();
+			//assert(!FAILED(AcquireResult)); // it is okay to fail here, as we'll try again each frame
+
+			if (!FAILED(AcquireResult))
+			{
+				s_currentAcquireMode = s_targetAcquireMode;
+			}
+			else
+			{
+				s_currentAcquireMode = 0;
+			}
 		}
 		else
 		{
+			// attempt to release the mouse as we currently have specified that we don't want it
+			HRESULT UnacquireResult = m_pDirectInput8Mouse->Unacquire();
 			s_currentAcquireMode = 0;
 		}
 	}
@@ -63,7 +79,7 @@ void MouseInput::Init(HINSTANCE hInstance)
 	if (s_horizontalSensitivity < 0.0f) s_horizontalSensitivity = 0.0f;
 	if (s_verticalSensitivity < 0.0f) s_verticalSensitivity = 0.0f;
 
-	SetExclusiveMode(true);
+	SetAcquireMode(MouseAcquireMode::UI);
 
 	HRESULT DirectInput8CreateResult = DirectInput8Create(hInstance, DIRECTINPUT_VERSION, IID_IDirectInput8, (LPVOID*)& m_pDirectInput8, NULL);
 	assert(!FAILED(DirectInput8CreateResult));
