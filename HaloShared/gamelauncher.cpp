@@ -251,10 +251,6 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 		game_launch_data.SessionInfo.SquadAddress = SquadAddress; // this is set
 		game_launch_data.SessionInfo.IsHost = !strstr(GetCommandLineA(), "-client"); // if client, is false
-		if (game_launch_data.SessionInfo.IsHost)
-		{
-			Sleep(1000);
-		}
 
 		game_launch_data.GameMode = g_LaunchGameMode;
 
@@ -263,13 +259,9 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 		int playerCount = strstr(GetCommandLineA(), "-multiplayer") ? 2 : 1;
 		game_launch_data.SessionInfo.PeerIdentifierCount = playerCount;
 		game_launch_data.SessionInfo.SessionMembership.Count = playerCount;
-		game_launch_data.SessionInfo.LocalAddress = 0; // this is set
-
-
 
 		game_launch_data.SessionInfo.PeerIdentifiers[0] = 0;
 		game_launch_data.SessionInfo.PeerIdentifiers[1] = 0;
-
 		{
 			game_launch_data.SessionInfo.SessionMembership.Members[0].MachineIdentifier = 0;
 			game_launch_data.SessionInfo.SessionMembership.Members[0].Team = 0;
@@ -303,16 +295,18 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 			LoadHopperMapVariant(pHaloReachDataAccess, g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(game_launch_data.MapVariantBuffer));
 			LoadPreviousGamestate("gamestate.hdr", game_launch_data);
 
-			
-
+			game_launch_data.SessionInfo.LocalMachineID = HostAddress; // this is set
+			//game_launch_data.SessionInfo.LocalMachineID = HostAddress; // this is set
+			//game_launch_data.SessionInfo.HostAddress = HostAddress;
 		}
 		else
 		{
 			IGameEngineHost::CreateClientConnection();
 
-			game_launch_data.SessionInfo.LocalAddress = ClientAddress; // this is set
+			game_launch_data.SessionInfo.LocalMachineID = ClientAddress; // this is set
 			game_launch_data.SessionInfo.HostAddress = HostAddress;
 		}
+		IGameEngineHost::g_isHost = game_launch_data.SessionInfo.IsHost;
 	}
 
 	pHaloReachEngine->InitGraphics(GameRender::s_pDevice, GameRender::s_pDeviceContext, GameRender::s_pSwapChain, GameRender::s_pSwapChain);

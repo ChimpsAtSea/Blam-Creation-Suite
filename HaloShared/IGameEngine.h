@@ -32,7 +32,7 @@ static_assert(s_session_info_part_size == 0x198, "s_session_info_part is incorre
 struct s_session_info
 {
 	QWORD SquadAddress;
-	QWORD LocalAddress;
+	QWORD LocalMachineID;
 	bool IsHost; // if client, is false
 	__declspec(align(8)) struct
 	{

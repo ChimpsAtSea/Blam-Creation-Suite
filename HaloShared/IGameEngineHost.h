@@ -3,7 +3,7 @@
 class IGameEngineHost
 {
 public:
-
+	static bool g_isHost;
 	static void CreateClientConnection(u_short port = 0);
 	static void CreateServerConnection();
 

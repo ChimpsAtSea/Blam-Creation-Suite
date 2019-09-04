@@ -3,6 +3,8 @@
 SOCKET LocalSocket = INVALID_SOCKET;
 int send_to_port = 2000;
 
+bool IGameEngineHost::g_isHost;
+
 void IGameEngineHost::CreateClientConnection(u_short port)
 {
 	if (LocalSocket == INVALID_SOCKET)
@@ -163,16 +165,29 @@ void __fastcall IGameEngineHost::GetSessionInfo(s_session_info_part *buffer)
 	CustomWindow::Show();
 };
 
+#include <HaloReach/c_network.h>
+
+extern Pointer<HaloGameID::HaloReach_2019_Aug_20, void*, 0x1830DC4E0> g_pNetworkSquadSession;
+extern Data<HaloGameID::HaloReach_2019_Aug_20, c_network_session[4], 0x18324F378> g_networkSessions;
+
 void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership *pSessionMembership, uint32_t playercount)
 {
-	auto x = &pSessionMembership->Members[0].SecureAddress;
-
 	WriteLineVerbose("s_session_membership count: %i", pSessionMembership->Count);
 	for (int i = 0; i < pSessionMembership->Count; i++)
 	{
 		WriteLineVerbose("MachineIdentifier[%i]: 0x%llx", i, pSessionMembership->Members[i].MachineIdentifier);
-		//pSessionMembership->Members[i].SecureAddress = (void*)1;
 	}
+
+	//if (g_isHost)
+	//{
+	//	pSessionMembership->Count = 2;
+	//	static int x = 1;
+	//	pSessionMembership->Members[1].MachineIdentifier = x;
+	//}
+
+	//auto x = &pSessionMembership->Members[0].SecureAddress;
+
+	
 
 	WriteLineVerbose("IGameEngineHost::Member25 MembershipUpdate");
 };
