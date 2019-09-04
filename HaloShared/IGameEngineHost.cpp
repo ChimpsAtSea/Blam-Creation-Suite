@@ -62,7 +62,7 @@ void __fastcall IGameEngineHost::Member01(IDXGISwapChain *pSwapChain, _QWORD a2)
 	//WriteLineVerbose("IGameEngineHost::Member01 0x%p 0x%llx", pSwapChain, a2);
 };
 
-void __fastcall IGameEngineHost::Member02(__int64 a1, unsigned int a2, __int64 a3, float a4, float a5, float a6, float a7)
+void __fastcall IGameEngineHost::Member02(__int64 player_identifier, unsigned int a2, __int64 a3, float a4, float a5, float a6, float a7)
 {
 	//WriteLineVerbose("IGameEngineHost::Member02");
 };
@@ -137,7 +137,7 @@ void __fastcall IGameEngineHost::Member20(__int64 a1, __int8 a2) { WriteLineVerb
 
 __int64 __fastcall IGameEngineHost::Member21(_QWORD a1)
 {
-	return __int64(0);
+	return __int64(0); // player (datum?) index
 };
 
 __int64 __fastcall IGameEngineHost::Member22(Member22Struct *buffer, __int64 a2)
@@ -148,10 +148,12 @@ __int64 __fastcall IGameEngineHost::Member22(Member22Struct *buffer, __int64 a2)
 char __fastcall IGameEngineHost::Member23(__int64 a1, __int64 a2)
 {
 	WriteLineVerbose("IGameEngineHost::Member23");
-	return 0;
+	return 1;
 };
 
-__int64 __fastcall IGameEngineHost::Member24(BYTE *a1)
+Pointer<HaloGameID::HaloReach_2019_Aug_20, void *, 0x1830DC4E0> g_pNetworkSquadSession;
+
+__int64 __fastcall IGameEngineHost::GetSessionInfo(s_session_info_part *buffer)
 {
 	WriteVerbose("IGameEngineHost::Member24 ");
 	WriteLineVerbose("GameLoaded");
@@ -161,7 +163,7 @@ __int64 __fastcall IGameEngineHost::Member24(BYTE *a1)
 	return __int64(0);
 };
 
-void __fastcall IGameEngineHost::MembershipUpdate(Member25Struct* buffer, uint32_t playercount)
+void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership *buffer, uint32_t playercount)
 {
 	WriteLineVerbose("IGameEngineHost::Member25 MembershipUpdate");
 };
