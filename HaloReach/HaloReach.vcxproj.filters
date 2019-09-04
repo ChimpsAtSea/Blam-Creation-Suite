@@ -35,6 +35,9 @@
     <ClInclude Include="HaloReach.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="c_network.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="haloreach.core.inl">

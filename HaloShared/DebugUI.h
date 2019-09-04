@@ -2,6 +2,9 @@
 class DebugUI
 {
 public:
+
+	typedef void(DebugUICallback)();
+
 	static bool IsVisible();
 
 
@@ -9,7 +12,10 @@ public:
 	static void Deinit();
 	static void RenderFrame();
 	static void ToggleUI();
+	static void Show();
 	static void WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+	static void RegisterCallback(DebugUICallback* pDebugUICallback);
+	static void RemoveCallback(DebugUICallback* pDebugUICallback);
 
 private:
 	typedef HRESULT(__fastcall* IDXGISwapChainPresent)(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
@@ -20,7 +26,8 @@ private:
 	static ID3D11Device* s_pDevice;
 	static IDXGISwapChain* s_pSwapChain;
 	static DXGI_SWAP_CHAIN_DESC s_swapChainDescription;
-	static ID3D11RenderTargetView* mainRenderTargetView;
-	static IDXGISwapChainPresent IDXGISwapChainPresentPointer;
+	static ID3D11RenderTargetView* s_mainRenderTargetView;
+	static IDXGISwapChainPresent s_IDXGISwapChainPresentPointer;
+	static std::vector<DebugUICallback*> s_pCallbacks;
 };
 

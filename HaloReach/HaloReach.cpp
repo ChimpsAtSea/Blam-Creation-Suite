@@ -314,6 +314,26 @@ FunctionHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restric
 //// game functionality
 //#include "haloreach.game.inl"
 
+intptr_t sub_1800AE4E0_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800AE4E0;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<sub_1800AE4E0_offset, int __fastcall (__int64 a1, char* a2)> sub_1800AE4E0 = { "sub_1800AE4E0", [](__int64 a1, char* a2)
+{
+	auto v2 = a2;
+	auto& v18 = *(_QWORD*)(v2 + 24);
+	SWORD& v18sword = SWORD1(v18);
+	v18sword = 4;
+	auto result = sub_1800AE4E0(a1, a2);
+	return result;
+} };
+
+
+
 
 // #TODO: Move inside of gamehostcallback
 void WriteGameState()
@@ -356,34 +376,332 @@ void ReadConfig()
 	ReadInputBindings();
 }
 
+
+void log_socket_info(const struct sockaddr* from, int bytes = 0, const char* pPrefix = "")
+{
+	if (!from)
+	{
+		return;
+	}
+
+	switch (from->sa_family)
+	{
+	case AF_INET:
+	{
+		sockaddr_in& sockaddr = *(sockaddr_in*)from;
+		char* pIPv4 = inet_ntoa(sockaddr.sin_addr);
+		u_short port = htons(sockaddr.sin_port);
+		WriteVerbose("%s IPv4 %s:%i", pPrefix, pIPv4, port);
+		if (bytes > 0)
+		{
+			WriteVerbose(" [%i bytes]", bytes);
+		}
+		WriteLineVerbose("");
+	}
+	break;
+	case AF_INET6:
+	{
+		sockaddr_in6& sockaddr6 = *(sockaddr_in6*)from;
+		char IPv6[INET6_ADDRSTRLEN] = {};
+		inet_ntop(AF_INET6, &sockaddr6.sin6_addr, IPv6, INET6_ADDRSTRLEN);
+		WriteVerbose("IPv6 [%s]:%i", IPv6, sockaddr6.sin6_port);
+		if (bytes > 0)
+		{
+			WriteVerbose(" [%i bytes]", bytes);
+		}
+		WriteLineVerbose("");
+	}
+	break;
+	}
+}
+
+
+typedef int (WSAAPI bindFunc)(
+	_In_ SOCKET s,
+	_In_reads_bytes_(namelen) const struct sockaddr FAR* name,
+	_In_ int namelen
+	);
+static bindFunc* bindPointer;
+int WSAAPI bindHook(
+	_In_ SOCKET s,
+	_In_reads_bytes_(namelen) const struct sockaddr FAR* name,
+	_In_ int namelen
+)
+{
+	sockaddr_in& in = *(sockaddr_in*)name;
+	__int64 x = __ROR2__(in.sin_port, 8);
+	{
+		log_socket_info(name, 0, "bind");
+	}
+	return bindPointer(s, name, namelen);
+}
+
+
+
+
+typedef int(__stdcall recvfrom_Func)(
+	_In_ SOCKET s,
+	_Out_writes_bytes_to_(len, return) __out_data_source(NETWORK) char FAR* buf,
+	_In_ int len,
+	_In_ int flags,
+	_Out_writes_bytes_to_opt_(*fromlen, *fromlen) struct sockaddr FAR* from,
+	_Inout_opt_ int FAR* fromlen
+	);
+static recvfrom_Func* recvfromPointer;
+int __stdcall recvfromHook(
+	_In_ SOCKET s,
+	_Out_writes_bytes_to_(len, return) __out_data_source(NETWORK) char FAR* buf,
+	_In_ int len,
+	_In_ int flags,
+	_Out_writes_bytes_to_opt_(*fromlen, *fromlen) struct sockaddr FAR* from,
+	_Inout_opt_ int FAR* fromlen
+)
+{
+	auto result = recvfromPointer(s, buf, len, flags, from, fromlen);
+
+	//if (result > 0)
+	//{
+	//	{
+	//		sockaddr* pSocketAddressBuffer = (sockaddr*)alloca(32 * 1024);
+	//		int length = 32 * 1024;
+	//		memset(pSocketAddressBuffer, 0, length);
+	//		getsockname(s, pSocketAddressBuffer, &length);
+	//		log_socket_info(pSocketAddressBuffer);
+	//	}
+
+	//	{
+	//		sockaddr* pSocketAddressBuffer = (sockaddr*)alloca(32 * 1024);
+	//		int length = 32 * 1024;
+	//		memset(pSocketAddressBuffer, 0, length);
+	//		getpeername(s, pSocketAddressBuffer, &length);
+	//		log_socket_info(pSocketAddressBuffer);
+	//	}
+	//}
+
+	if (result == -1)
+	{
+		wchar_t* errorMessage = NULL;
+		FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+			NULL, WSAGetLastError(),
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			(LPWSTR)& errorMessage, 0, NULL);
+
+		LocalFree(errorMessage);
+
+		return result;
+	}
+
+	log_socket_info(from, result, "recvfrom");
+
+	return result;
+}
+
+typedef
+int
+(WSAAPI sendtoFunc)(
+	_In_ SOCKET s,
+	_In_reads_bytes_(len) const char FAR* buf,
+	_In_ int len,
+	_In_ int flags,
+	_In_reads_bytes_(tolen) const struct sockaddr FAR* to,
+	_In_ int tolen
+	);
+sendtoFunc* sendtoPointer = nullptr;
+
+int
+sendtoHook(
+	_In_ SOCKET s,
+	_In_reads_bytes_(len) const char FAR* buf,
+	_In_ int len,
+	_In_ int flags,
+	_In_reads_bytes_(tolen) const struct sockaddr FAR* to,
+	_In_ int tolen
+)
+{
+	auto result = sendtoPointer(s, buf, len, flags, to, tolen);
+	log_socket_info(to, result, "sendto");
+	return result;
+}
+
+Pointer<HaloGameID::HaloReach_2019_Aug_20, void*, 0x1830DC4E0> g_pNetworkSquadSession;
+Data<HaloGameID::HaloReach_2019_Aug_20, c_network_session[4], 0x18324F378> g_networkSessions;
+
+const char* network_session_state_to_string(e_network_session_state network_session_state)
+{
+	switch (network_session_state)
+	{
+	case _network_session_state_uninitialized:			return "_network_session_state_uninitialized";
+	case _network_session_state_none:					return "_network_session_state_none";
+	case _network_session_state_peer_creating:			return "_network_session_state_peer_creating";
+	case _network_session_state_peer_joining:			return "_network_session_state_peer_joining";
+	case _network_session_state_peer_join_abort:		return "_network_session_state_peer_join_abort";
+	case _network_session_state_peer_peer_established:	return "_network_session_state_peer_peer_established";
+	case _network_session_state_peer_leaving:			return "_network_session_state_peer_leaving";
+	case _network_session_state_host_established:		return "_network_session_state_host_established";
+	case _network_session_state_host_disband:			return "_network_session_state_host_disband";
+	case _network_session_state_host_handoff:			return "_network_session_state_host_handoff";
+	case _network_session_state_host_reestablish:		return "_network_session_state_host_reestablish";
+	case _network_session_state_election:				return "_network_session_state_election";
+	case _network_session_state_host_disconnected:		return "_network_session_state_host_disconnected";
+	default:
+		return "<unknown>";
+		break;
+	}
+}
+
+intptr_t sub_18006DAE0_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18006DAE0;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<sub_18006DAE0_offset, int __fastcall (c_network_session* a1, BOOL a2)> sub_18006DAE0 = { "sub_18006DAE0", [](c_network_session* a1, BOOL a2)
+{
+	auto result = sub_18006DAE0(a1, a2);
+	return result;
+} };
+
+void halo_reach_debug_callback()
+{
+	ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(550, 680), ImGuiCond_FirstUseEver);
+
+	// Main body of the Demo window starts here.
+	static bool isReachDebugWindowOpen = true;
+	if (!ImGui::Begin("Halo Reach Debug", &isReachDebugWindowOpen, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
+	{
+		// Early out if the window is collapsed, as an optimization.
+		ImGui::End();
+		return;
+	}
+
+	ImGui::Columns(3, "g_networkSessions", false);
+	ImGui::Separator();
+	const char* ppNetworkSessionNames[] = { "Squad Session", "Posse Session", "Group Session", "Target Session" };
+	ImGui::Selectable("Session Name");
+	ImGui::NextColumn();
+	ImGui::Selectable("Address");
+	ImGui::NextColumn();
+	ImGui::Selectable("State");
+	ImGui::NextColumn();
+	for (int i = 0; i < 4; i++)
+	{
+		auto& rNetworkSession = g_networkSessions[i];
+		auto pNetworkSessionName = ppNetworkSessionNames[i];
+		const char* local_state_str = network_session_state_to_string(rNetworkSession.m_local_state);
+
+		ImGui::Text(pNetworkSessionName);
+		ImGui::NextColumn();
+		ImGui::Text("0x%p", &rNetworkSession);
+		ImGui::NextColumn();
+		ImGui::Text(local_state_str);
+		ImGui::NextColumn();
+	}
+
+	ImGui::PushID("g_networkSessions"); //Just to be sure !
+	for (int i = 0; i < 4; i++)
+	{
+		auto& rNetworkSession = g_networkSessions[i];
+		auto pNetworkSessionName = ppNetworkSessionNames[i];
+
+		ImGui::PushID(i);
+		if (ImGui::CollapsingHeader(pNetworkSessionName))
+		{
+			ImGui::Text("m_message_gateway: %p", rNetworkSession.m_message_gateway);
+			ImGui::Text("m_observer: %p", rNetworkSession.m_observer);
+			ImGui::Text("m_session_manager: %p", rNetworkSession.m_session_manager);
+			ImGui::Text("ppSession: %p", rNetworkSession.ppSession);
+			ImGui::Text("m_session_index: %i", rNetworkSession.m_session_index);
+			ImGui::Text("m_session_type: %i", rNetworkSession.m_session_type);
+			ImGui::Text("m_session_class: %i", rNetworkSession.m_session_class);
+			ImGui::Text("unknown2C: %i", rNetworkSession.unknown2C);
+			ImGui::Text("m_local_state: %i", rNetworkSession.m_local_state);
+			ImGui::Text("m_managed_session_index: %i", rNetworkSession.m_managed_session_index);
+			ImGui::Text("pSession: %p", rNetworkSession.pSession);
+
+			if (ImGui::CollapsingHeader("m_session_membership"))
+			{
+				auto& rSessionMembership = rNetworkSession.m_session_membership;
+
+				ImGui::Text("m_session: %p", rSessionMembership.m_session); c_network_session* m_session;
+				ImGui::Text("m_baseline_update_number: %i", rSessionMembership.m_baseline_update_number); int m_baseline_update_number;
+				ImGui::Text("m_leader_peer_index: %i", rSessionMembership.m_leader_peer_index); int m_leader_peer_index;
+				ImGui::Text("m_host_peer_index: %i", rSessionMembership.m_host_peer_index); int m_host_peer_index;
+				ImGui::Text("unknown14: %i", rSessionMembership.unknown14); int unknown14;
+				ImGui::Text("m_private_slot_count: %i", rSessionMembership.m_private_slot_count); int m_private_slot_count;
+				ImGui::Text("m_public_slot_count: %i", rSessionMembership.m_public_slot_count); int m_public_slot_count;
+				ImGui::Text("m_friends_only: %lli", rSessionMembership.m_friends_only); __int64 m_friends_only;
+				ImGui::Text("m_peer_count: %i", rSessionMembership.m_peer_count); int m_peer_count;
+				ImGui::Text("m_valid_peer_mask: %i", rSessionMembership.m_valid_peer_mask); int m_valid_peer_mask;
+				ImGui::Text("m_player_count: %i", rSessionMembership.m_player_count); int m_player_count;
+				ImGui::Text("m_valid_player_mask: %i", rSessionMembership.m_valid_player_mask); int m_valid_player_mask;
+				ImGui::Text("m_player_sequence_number: %i", rSessionMembership.m_player_sequence_number); int m_player_sequence_number;
+				ImGui::Text("unknown291C: %i", rSessionMembership.unknown291C); int unknown291C;
+				ImGui::Text("m_incremental_update_buffers: %u", (uint32_t)rSessionMembership.m_incremental_update_buffers); BYTE m_incremental_update_buffers[10460];
+				ImGui::Text("m_incremental_updates: %i", rSessionMembership.m_incremental_updates); int m_incremental_updates[17];
+				ImGui::Text("unknown5240: %i", rSessionMembership.unknown5240); int unknown5240;
+				ImGui::Text("m_local_peer_index: %i", rSessionMembership.m_local_peer_index); int m_local_peer_index;
+
+				if (ImGui::CollapsingHeader("m_peers"))
+				{
+					//ImGui::Text("m_peers: %p", rSessionMembership.m_peers); s_network_session_peer m_peers[17];
+				}
+				if (ImGui::CollapsingHeader("m_players"))
+				{
+					auto& rPlayers = rSessionMembership.m_players;
+					for (int i = 0; i < __min(rSessionMembership.m_player_count, _countof(rPlayers)); i++)
+					{
+						ImGui::Text("desired_configuration_version: %i", rPlayers[i].desired_configuration_version);
+						ImGui::Text("player_identifier: %llu", rPlayers[i].player_identifier);
+						ImGui::Text("peer_index: %i", rPlayers[i].peer_index);
+					}
+				}
+			}
+		}
+		ImGui::PopID();
+	}
+	ImGui::PopID();
+
+	ImGui::End();
+}
+
 void init_halo_reach(HaloGameID gameID)
 {
 	g_currentGameID = gameID;
-
-	init_detours();
-
-	ReadConfig();
-
-	DataReferenceBase::InitTree(gameID);
-	FunctionHookBase::InitTree(gameID);
-	
 	CustomWindow::SetWindowTitle("Halo Reach");
 	GameLauncher::RegisterTerminationValue(*reinterpret_cast<char*>(byte_183984DE4.ptr()));
+	ReadConfig();
+	DebugUI::RegisterCallback(halo_reach_debug_callback);
+
+	init_detours();
 
 	if (gameID == HaloGameID::HaloReach_2019_Jun_24)
 	{
 		g_shell_command_line = GetCommandLineA();
 	}
 
-	//patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x1800AE684);
-	//patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x180100D54);
-	//patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x1800ADEFE);
-	//nop_address(HaloGameID::HaloReach_2019_Aug_20, 0x1800ADB4F, 6);
-	int32_t host_wait_for_party_timeout = 45000000;
-	copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011090, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
-	copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011431, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
-	copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011458, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
+	bool isNetworkingPatchActive = true;
+	if (isNetworkingPatchActive)
+	{
+		patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x1800AE684);
+		patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x180100D54);
+		patch_out_gameenginehostcallback_mov(HaloGameID::HaloReach_2019_Aug_20, 0x1800ADEFE);
+		nop_address(HaloGameID::HaloReach_2019_Aug_20, 0x1800ADB4F, 6);
+		int32_t host_wait_for_party_timeout = 45000000;
+		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011090, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
+		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011431, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
+		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011458, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
 
+		create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer);
+		create_dll_hook("WS2_32.dll", "bind", bindHook, bindPointer);
+		create_dll_hook("WS2_32.dll", "sendto", sendtoHook, sendtoPointer);
+	}
+	sub_1800AE4E0.SetIsActive(isNetworkingPatchActive);
+
+	DataReferenceBase::InitTree(gameID);
+	FunctionHookBase::InitTree(gameID);
 	end_detours();
 }
 
@@ -393,6 +711,6 @@ void deinit_halo_reach(HaloGameID gameID)
 
 	FunctionHookBase::DeinitTree(gameID);
 	DataReferenceBase::DeinitTree(gameID);
-	
+
 	end_detours();
 }

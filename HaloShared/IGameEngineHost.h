@@ -4,7 +4,7 @@ class IGameEngineHost
 {
 public:
 
-	static void CreateClientConnection(int port = 0);
+	static void CreateClientConnection(u_short port = 0);
 	static void CreateServerConnection();
 
 	static bool g_enableGameEngineHostOverride;
@@ -50,32 +50,6 @@ public:
 	};
 	static constexpr size_t Member22StructSize = sizeof(Member22Struct);
 	static_assert(Member22StructSize == 0x110, "Member22Struct is incorrect size");
-
-	struct s_member_info
-	{
-		QWORD MachineIdentifier;
-		long Team;
-		long PlayerAssignedTeam;
-		QWORD SecureAddress;
-	};
-
-	struct s_session_membership
-	{
-		s_member_info Members[16];
-		int Count;
-		int : 32;
-	};
-	static constexpr size_t s_session_membership_size = sizeof(s_session_membership);
-	static_assert(s_session_membership_size == 0x188, "s_session_membership is incorrect size");
-	
-	struct s_session_info_part
-	{
-		QWORD SquadAddress; // c_managed_session offset 0x3E0
-		QWORD SecureAddress; // s_network_session_peer offset 0, type s_transport_secure_address
-		s_session_membership SessionMembership;
-	};
-	static constexpr size_t s_session_info_part_size = sizeof(s_session_info_part);
-	static_assert(s_session_info_part_size == 0x198, "s_session_info_part is incorrect size");
 	
 	struct Member28Struct
 	{
@@ -119,7 +93,7 @@ public:
 	virtual __int64 __fastcall Member21(_QWORD);
 	virtual __int64 Member22(Member22Struct *buffer, __int64);
 	virtual char Member23(__int64, __int64);
-	virtual __int64 GetSessionInfo(s_session_info_part *buffer);
+	virtual void GetSessionInfo(s_session_info_part *buffer);
 	virtual void __fastcall MembershipUpdate(s_session_membership *buffer, uint32_t playercount);
 	virtual bool __fastcall Member26();
 	virtual void __fastcall Member27();
@@ -129,7 +103,17 @@ public:
 	virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t playerNames[4][32], size_t dataSize);
 	virtual void __fastcall Member32(const wchar_t *, const wchar_t *);
 	virtual bool __fastcall Member33(wchar_t *, __int64);
-	virtual __int64 __fastcall NetworkSendTo(__int64 a2, char* buffer, uint32_t buffersize, int a5);
+
+	enum NetworkID : unsigned __int64
+	{
+		Invalid,
+		Unknown1,
+		Unknown2,
+		Unknown3,
+		k_NumNetworkID
+	};
+
+	virtual __int64 __fastcall NetworkSendTo(NetworkID networkID, char* buffer, uint32_t buffersize, int a5);
 	virtual __int64 __fastcall NetworkReceiveFrom(char* buffer, uint32_t buffersize, __int64 a4, s_transport_address *transport_address);
 	virtual char *__fastcall Member36(unsigned int);
 	virtual int __fastcall Member37(BYTE *buffer);

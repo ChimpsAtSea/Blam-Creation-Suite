@@ -233,35 +233,78 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 	{
 		uint64_t SquadAddress = 0x2F385E2E95D4F33E;
-		uint64_t HostAddress = 0x7F7F86B0EE577202;
-		uint64_t ClientAddress = 0x7F7Faf4521cdad53;
+		uint64_t HostAddress = 0xDEADBEEFDEADBEEF;
+		uint64_t ClientAddress = 0xCAFEBABECAFEBABE;
+
+		{
+			int ipv4_address = 0;
+			inet_pton(AF_INET, "10.255.0.2", &ipv4_address);
+			ipv4_address = htonl(ipv4_address);
+			ClientAddress = ipv4_address;
+		}
+		{
+			int ipv4_address = 0;
+			inet_pton(AF_INET, "10.255.0.1", &ipv4_address);
+			ipv4_address = htonl(ipv4_address);
+			HostAddress = ipv4_address;
+		}
 
 		game_launch_data.SessionInfo.SquadAddress = SquadAddress; // this is set
 		game_launch_data.SessionInfo.IsHost = !strstr(GetCommandLineA(), "-client"); // if client, is false
+		if (game_launch_data.SessionInfo.IsHost)
+		{
+			Sleep(1000);
+		}
+
+		game_launch_data.GameMode = g_LaunchGameMode;
+
+
+
+		int playerCount = strstr(GetCommandLineA(), "-multiplayer") ? 2 : 1;
+		game_launch_data.SessionInfo.PeerIdentifierCount = playerCount;
+		game_launch_data.SessionInfo.SessionMembership.Count = playerCount;
+		game_launch_data.SessionInfo.LocalAddress = 0; // this is set
+
+
+
+		game_launch_data.SessionInfo.PeerIdentifiers[0] = 0;
+		game_launch_data.SessionInfo.PeerIdentifiers[1] = 0;
+
+		{
+			game_launch_data.SessionInfo.SessionMembership.Members[0].MachineIdentifier = 0;
+			game_launch_data.SessionInfo.SessionMembership.Members[0].Team = 0;
+			game_launch_data.SessionInfo.SessionMembership.Members[0].PlayerAssignedTeam = 0;
+			game_launch_data.SessionInfo.SessionMembership.Members[0].SecureAddress = (void*)HostAddress;
+		}
+		if (game_launch_data.SessionInfo.SessionMembership.Count > 1)
+		{
+			game_launch_data.SessionInfo.SessionMembership.Members[1].MachineIdentifier = 0;
+			game_launch_data.SessionInfo.SessionMembership.Members[1].Team = 0;
+			game_launch_data.SessionInfo.SessionMembership.Members[1].PlayerAssignedTeam = 0;
+			game_launch_data.SessionInfo.SessionMembership.Members[1].SecureAddress = (void*)ClientAddress;
+		}
+		if (game_launch_data.SessionInfo.SessionMembership.Count > 2)
+		{
+			FATAL_ERROR("Too many people need to add more data");
+		}
+
+
 
 		if (game_launch_data.SessionInfo.IsHost)
 		{
 			IGameEngineHost::CreateServerConnection();
 
 			SetConsoleTitleA("Halo Reach Console | HOST");
-			game_launch_data.SessionInfo.LocalAddress = HostAddress; // this is set
-			game_launch_data.SessionInfo.PeerIdentifiers[0] = HostAddress;
-			game_launch_data.SessionInfo.PeerIdentifiers[1] = ClientAddress;
-			game_launch_data.SessionInfo.PeerIdentifierCount = 1;
-
-			game_launch_data.SessionInfo.PlayerMemberships[0] = { 0x0009000002D75AC8, 0, 0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-			game_launch_data.SessionInfo.PlayerMemberships[1] = { 0x000901FE31A851C0, 1, 1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-
-
-			game_launch_data.SessionInfo.PlayerMembershipCount = 1;
 
 			game_launch_data.MapId = g_LaunchMapId;
-			game_launch_data.GameMode = g_LaunchGameMode;
 			game_launch_data.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
 
 			LoadHopperGameVariant(pHaloReachDataAccess, g_LaunchHopperGameVariant, *reinterpret_cast<s_game_variant*>(game_launch_data.GameVariantBuffer));
 			LoadHopperMapVariant(pHaloReachDataAccess, g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(game_launch_data.MapVariantBuffer));
 			LoadPreviousGamestate("gamestate.hdr", game_launch_data);
+
+			
+
 		}
 		else
 		{

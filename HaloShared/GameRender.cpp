@@ -276,6 +276,10 @@ void GameRender::Init()
 	}
 
 	DebugUI::Init(s_pSwapChain, s_pDevice, s_pDeviceContext);
+	if (strstr(GetCommandLineA(), "-showui"))
+	{
+		DebugUI::Show();
+	}
 }
 
 void GameRender::Deinit()

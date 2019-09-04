@@ -8,11 +8,11 @@ BOOL DebugUI::s_initialised = false;
 bool DebugUI::s_visible = false;
 ID3D11DeviceContext* DebugUI::s_pContext = nullptr;
 ID3D11Device* DebugUI::s_pDevice = nullptr;
-ID3D11RenderTargetView* DebugUI::mainRenderTargetView = nullptr;
+ID3D11RenderTargetView* DebugUI::s_mainRenderTargetView = nullptr;
 IDXGISwapChain* DebugUI::s_pSwapChain = nullptr;
 DXGI_SWAP_CHAIN_DESC  DebugUI::s_swapChainDescription = {};
-
-DebugUI::IDXGISwapChainPresent DebugUI::IDXGISwapChainPresentPointer;
+DebugUI::IDXGISwapChainPresent DebugUI::s_IDXGISwapChainPresentPointer;
+std::vector<DebugUI::DebugUICallback*> DebugUI::s_pCallbacks;
 
 bool DebugUI::IsVisible()
 {
@@ -44,7 +44,7 @@ void DebugUI::Init(IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11Devi
 	ID3D11Texture2D* pBackBuffer = nullptr;
 	s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
 	assert(pBackBuffer);
-	s_pDevice->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView);
+	s_pDevice->CreateRenderTargetView(pBackBuffer, NULL, &s_mainRenderTargetView);
 	pBackBuffer->Release();
 
 	s_initialised = true;
@@ -61,7 +61,7 @@ void DebugUI::Deinit()
 	s_visible = false;
 	s_pContext = nullptr;
 	s_pDevice = nullptr;
-	mainRenderTargetView = nullptr;
+	s_mainRenderTargetView = nullptr;
 	s_pSwapChain = nullptr;
 	s_swapChainDescription = {};
 }
@@ -90,19 +90,28 @@ void DebugUI::RenderFrame()
 	//Menu is displayed when g_ShowMenu is TRUE
 	if (s_visible)
 	{
-		bool bShow = true;
-		ImGui::ShowDemoWindow(&bShow);
+		for (DebugUICallback* pCurrentCallback : s_pCallbacks)
+		{
+			pCurrentCallback();
+		}
+		//bool bShow = true;
+		//ImGui::ShowDemoWindow(&bShow);
 	}
 	ImGui::EndFrame();
 	ImGui::Render();
 
-	s_pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
+	s_pContext->OMSetRenderTargets(1, &s_mainRenderTargetView, NULL);
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 }
 
 void DebugUI::ToggleUI()
 {
 	s_visible = !s_visible;
+}
+
+void DebugUI::Show()
+{
+	s_visible = true;
 }
 
 void DebugUI::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -122,6 +131,29 @@ void DebugUI::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 				DebugUI::ToggleUI();
 			}
 			break;
+		}
+	}
+}
+
+void DebugUI::RegisterCallback(DebugUICallback* pDebugUICallback)
+{
+	for (DebugUICallback* pCurrentCallback : s_pCallbacks)
+	{
+		if (pCurrentCallback == pDebugUICallback)
+		{
+			return;
+		}
+	}
+	s_pCallbacks.push_back(pDebugUICallback);
+}
+
+void DebugUI::RemoveCallback(DebugUICallback* pDebugUICallback)
+{
+	for (DebugUICallback* pCurrentCallback : s_pCallbacks)
+	{
+		if (pCurrentCallback == pDebugUICallback)
+		{
+			// #TODO: Remove the callback
 		}
 	}
 }

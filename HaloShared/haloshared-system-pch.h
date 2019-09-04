@@ -22,6 +22,7 @@
 #include <windows.h>
 #include <objidl.h>
 #include <gdiplus.h>
+#include <sqltypes.h>
 
 #include <dinput.h>
 #include <D3Dcompiler.h>

@@ -3,15 +3,31 @@
 enum e_map_id : int;
 enum e_campaign_difficulty_level : int;
 
-struct PlayerUUID // copy of `s_session_membership` currently in IGameEngineHost.h
+struct s_member_info
 {
 	QWORD MachineIdentifier;
-	DWORD Team;
-	DWORD PlayerAssignedTeam;
-	BYTE SecureAddress[8];
+	long Team;
+	long PlayerAssignedTeam;
+	void* SecureAddress;
 };
-static constexpr size_t PlayerUUIDSize = sizeof(PlayerUUID);
-static_assert(PlayerUUIDSize == 24, "");
+
+struct s_session_membership
+{
+	s_member_info Members[16];
+	int Count;
+	int : 32;
+};
+static constexpr size_t s_session_membership_size = sizeof(s_session_membership);
+static_assert(s_session_membership_size == 0x188, "s_session_membership is incorrect size");
+
+struct s_session_info_part
+{
+	QWORD SquadAddress; // c_managed_session offset 0x3E0
+	QWORD SecureAddress; // s_network_session_peer offset 0, type s_transport_secure_address
+	s_session_membership SessionMembership;
+};
+static constexpr size_t s_session_info_part_size = sizeof(s_session_info_part);
+static_assert(s_session_info_part_size == 0x198, "s_session_info_part is incorrect size");
 
 struct s_session_info
 {
@@ -23,11 +39,7 @@ struct s_session_info
 		QWORD PeerIdentifiers[17];
 		uint32_t PeerIdentifierCount; // if client, is 0
 	};
-	__declspec(align(8)) struct
-	{
-		PlayerUUID PlayerMemberships[16];
-		int64_t PlayerMembershipCount; // if client, is 0
-	};
+	s_session_membership SessionMembership;
 	QWORD HostAddress; // if client, is LocalId
 };
 static constexpr size_t SessionInfo_HostAddress_Offset = offsetof(s_session_info, s_session_info::HostAddress);

@@ -3,6 +3,10 @@
   "Id": "0d2234ca-029e-4055-944e-db8b67498309",
   "Items": [
     {
+      "Id": "057c726e-2150-4847-836d-79cc377ea6b9",
+      "Command": "-multiplayer"
+    },
+    {
       "Id": "df201d13-5a3a-49eb-88e6-7c658018031d",
       "Command": "-hideconsole"
     },
@@ -19,8 +23,8 @@
       "Command": "-hidesplash"
     },
     {
-      "Id": "7ddf1006-d23d-4345-ad15-3bf3ec42a0e0",
-      "Command": "-client"
+      "Id": "61c25276-1e65-47ee-95f7-633869aa4090",
+      "Command": "-showui"
     }
   ]
 }

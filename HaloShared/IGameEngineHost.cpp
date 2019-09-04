@@ -3,7 +3,7 @@
 SOCKET LocalSocket = INVALID_SOCKET;
 int send_to_port = 2000;
 
-void IGameEngineHost::CreateClientConnection(int port)
+void IGameEngineHost::CreateClientConnection(u_short port)
 {
 	if (LocalSocket == INVALID_SOCKET)
 	{
@@ -19,10 +19,13 @@ void IGameEngineHost::CreateClientConnection(int port)
 		u_long nonblocking_enabled = TRUE;
 		ioctlsocket(LocalSocket, FIONBIO, &nonblocking_enabled);
 
+		int nbo_ipv4 = inet_addr("127.0.0.1");
+		u_short nbo_port = htons(port ? port : 2001);
+
 		sockaddr_in addr = {};
 		addr.sin_family = AF_INET;
-		addr.sin_port = port ? port : 2001;
-		addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+		addr.sin_port = nbo_port;
+		addr.sin_addr.s_addr = nbo_ipv4;
 		auto bind_result = bind(LocalSocket, (sockaddr*)& addr, sizeof(addr));
 		assert(bind_result == 0);
 	}
@@ -151,20 +154,26 @@ char __fastcall IGameEngineHost::Member23(__int64 a1, __int64 a2)
 	return 1;
 };
 
-Pointer<HaloGameID::HaloReach_2019_Aug_20, void *, 0x1830DC4E0> g_pNetworkSquadSession;
 
-__int64 __fastcall IGameEngineHost::GetSessionInfo(s_session_info_part *buffer)
+void __fastcall IGameEngineHost::GetSessionInfo(s_session_info_part *buffer)
 {
 	WriteVerbose("IGameEngineHost::Member24 ");
 	WriteLineVerbose("GameLoaded");
 	SplashScreen::Destroy();
 	CustomWindow::Show();
-
-	return __int64(0);
 };
 
-void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership *buffer, uint32_t playercount)
+void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership *pSessionMembership, uint32_t playercount)
 {
+	auto x = &pSessionMembership->Members[0].SecureAddress;
+
+	WriteLineVerbose("s_session_membership count: %i", pSessionMembership->Count);
+	for (int i = 0; i < pSessionMembership->Count; i++)
+	{
+		WriteLineVerbose("MachineIdentifier[%i]: 0x%llx", i, pSessionMembership->Members[i].MachineIdentifier);
+		//pSessionMembership->Members[i].SecureAddress = (void*)1;
+	}
+
 	WriteLineVerbose("IGameEngineHost::Member25 MembershipUpdate");
 };
 
@@ -294,14 +303,17 @@ bool IGameEngineHost::Member33(wchar_t *, __int64)
 	return 0;
 };
 
-__int64 __fastcall IGameEngineHost::NetworkSendTo(__int64 a2, char* buffer, uint32_t buffersize, int a5)
+__int64 __fastcall IGameEngineHost::NetworkSendTo(NetworkID networkID, char* buffer, uint32_t buffersize, int a5)
 {
+	//assert(networkID != NetworkID::Invalid && networkID < NetworkID::k_NumNetworkID);
+
 	sockaddr_in addr = {};
 	addr.sin_family = AF_INET;
 	addr.sin_port = send_to_port;
-	addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+	//addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+	addr.sin_addr.s_addr = networkID;
 	auto result = sendto(LocalSocket, buffer, buffersize, 0, (sockaddr*)& addr, sizeof(addr));
-	assert(result == buffersize);
+	//assert(result == buffersize);
 
 	// recvfrom
 	WriteLineVerbose("IGameEngineHost::NetworkSendTo %i", result);
