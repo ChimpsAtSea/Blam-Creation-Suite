@@ -501,6 +501,23 @@ int __stdcall recvfromHook(
 {
 	auto result = recvfromPointer(s, buf, len, flags, from, fromlen);
 
+	// for writing an output dump of network traffic
+	//if (result > 0)
+	//{
+	//	FILE* pFile = nullptr;
+	//	if (IGameEngineHost::g_isHost)
+	//	{
+	//		pFile = fopen("host_recieve.bin", "a");
+	//	}
+	//	else
+	//	{
+	//		pFile = fopen("client_recieve.bin", "a");
+	//	}
+
+	//	fwrite(buf, 1, result, pFile);
+	//	fclose(pFile);
+	//}
+
 	uint32_t id = -1;
 	if (result > 2)
 	{
@@ -572,6 +589,7 @@ sendtoHook(
 	}
 
 	auto result = sendtoPointer(s, buf, len, flags, to, tolen);
+
 	log_socket_info(to, result, "send", id);
 	return result;
 }
@@ -649,10 +667,53 @@ FunctionHookEx<c_network_session_handle_peer_joining_offset, void __fastcall (c_
 	c_network_session_handle_peer_joining(_this);
 } };
 
+intptr_t sub_180029B70_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180029B70;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<sub_180029B70_offset, void __fastcall (c_network_session* _this, __int64 a2, BOOL a3)> sub_180029B70 = { "sub_180029B70::handle_peer_joining", [](c_network_session* _this, __int64 a2, BOOL a3)
+{
+	//WriteLineVerbose("sub_180029B70 called");
+	return sub_180029B70(_this, a2, a3);
+} };
+
+intptr_t sub_180019F00_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180019F00;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<sub_180019F00_offset, BYTE* __fastcall (c_network_session_membership* a1)> sub_180019F00 = { "sub_180029B70", [](c_network_session_membership* a1)
+{
+	WriteLineVerbose("sub_180019F00 called");
+	return sub_180019F00(a1);
+} };
+
+intptr_t sub_18002E040_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18002E040;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<sub_18002E040_offset, __int64 __fastcall (c_network_session_membership* a1, BOOL a2)> sub_18002E040 = { "sub_18002E040", [](c_network_session_membership* a1, BOOL a2)
+{
+	WriteLineVerbose("sub_18002E040 called");
+	return sub_18002E040(a1, a2);
+} };
+
+
 void halo_reach_debug_callback()
 {
-	ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiCond_FirstUseEver);
-	ImGui::SetNextWindowSize(ImVec2(550, 680), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);
 
 	// Main body of the Demo window starts here.
 	static bool isReachDebugWindowOpen = true;
@@ -663,13 +724,17 @@ void halo_reach_debug_callback()
 		return;
 	}
 
-	ImGui::Columns(3, "g_networkSessions", false);
+	ImGui::Columns(5, "g_networkSessions", false);
 	ImGui::Separator();
 	ImGui::Selectable("Session Name");
 	ImGui::NextColumn();
 	ImGui::Selectable("Address");
 	ImGui::NextColumn();
 	ImGui::Selectable("State");
+	ImGui::NextColumn();
+	ImGui::Selectable("PeerCount");
+	ImGui::NextColumn();
+	ImGui::Selectable("PlayerCount");
 	ImGui::NextColumn();
 	for (int i = 0; i < 4; i++)
 	{
@@ -683,84 +748,177 @@ void halo_reach_debug_callback()
 		ImGui::NextColumn();
 		ImGui::Text(local_state_str);
 		ImGui::NextColumn();
+		ImGui::Text("%i", rNetworkSession.m_session_membership.m_peer_count);
+		ImGui::NextColumn();
+		ImGui::Text("%i", rNetworkSession.m_session_membership.m_player_count);
+		ImGui::NextColumn();
 	}
-
-	ImGui::PushID("g_networkSessions"); //Just to be sure !
+	ImGui::Columns(1);
 	for (int i = 0; i < 4; i++)
 	{
 		auto& rNetworkSession = g_networkSessions[i];
 		auto pNetworkSessionName = ppNetworkSessionNames[i];
 
-		ImGui::PushID(i);
-		if (ImGui::CollapsingHeader(pNetworkSessionName))
+		bool header = ImGui::CollapsingHeader(pNetworkSessionName);
+
+		// quick view
 		{
-			ImGui::Text("m_message_gateway: %p", rNetworkSession.m_message_gateway);
-			ImGui::Text("m_observer: %p", rNetworkSession.m_observer);
-			ImGui::Text("m_session_manager: %p", rNetworkSession.m_session_manager);
-			ImGui::Text("ppSession: %p", rNetworkSession.ppSession);
-			ImGui::Text("m_session_index: %i", rNetworkSession.m_session_index);
-			ImGui::Text("m_session_type: %i", rNetworkSession.m_session_type);
-			ImGui::Text("m_session_class: %i", rNetworkSession.m_session_class);
-			ImGui::Text("unknown2C: %i", rNetworkSession.unknown2C);
-			ImGui::Text("m_local_state: %i", rNetworkSession.m_local_state);
-			ImGui::Text("m_managed_session_index: %i", rNetworkSession.m_managed_session_index);
-			ImGui::Text("pSession: %p", rNetworkSession.pSession);
-			
-			if (ImGui::CollapsingHeader("m_session_parameters"))
+			auto& rNetworkSession = g_networkSessions[i];
+			auto pNetworkSessionName = ppNetworkSessionNames[i];
+			ImGui::Columns(7, pNetworkSessionName, false);
+			ImGui::Separator();
+			ImGui::Selectable("peer_index");
+			ImGui::NextColumn();
+			ImGui::Selectable("player_identifier");
+			ImGui::NextColumn();
+			ImGui::Text("desired_configuration_version");
+			ImGui::NextColumn();
+			ImGui::Selectable("player_name");
+			ImGui::NextColumn();
+			ImGui::Selectable("service_tag");
+			ImGui::NextColumn();
+			ImGui::Selectable("machine_id");
+			ImGui::NextColumn();
+			ImGui::Selectable("unknown_state");
+			ImGui::NextColumn();
+
+			auto& rSessionMembership = rNetworkSession.m_session_membership;
+			auto& rPeers = rSessionMembership.m_peers;
+			auto& rPlayers = rSessionMembership.m_players;
+
+			for (int i = 0; i < __min(rSessionMembership.m_player_count, _countof(rPlayers)); i++)
 			{
-				auto& rSessionParameters = rNetworkSession.m_session_parameters;
-
-				ImGui::Text("session: %p", rSessionParameters.session);
-				ImGui::Text("observer: %p", rSessionParameters.observer);
-				ImGui::Text("flags: 0x%08x", rSessionParameters.flags);
-				ImGui::Text("initial_parameters_update_mask: 0x%08x", rSessionParameters.initial_parameters_update_mask);
-			}
-			if (ImGui::CollapsingHeader("m_session_membership"))
-			{
-				auto& rSessionMembership = rNetworkSession.m_session_membership;
-
-				ImGui::Text("m_session: %p", rSessionMembership.m_session);
-				ImGui::Text("m_baseline_update_number: %i", rSessionMembership.m_baseline_update_number); 
-				ImGui::Text("m_leader_peer_index: %i", rSessionMembership.m_leader_peer_index);
-				ImGui::Text("m_host_peer_index: %i", rSessionMembership.m_host_peer_index); 
-				ImGui::Text("unknown14: %i", rSessionMembership.unknown14); 
-				ImGui::Text("m_private_slot_count: %i", rSessionMembership.m_private_slot_count); 
-				ImGui::Text("m_public_slot_count: %i", rSessionMembership.m_public_slot_count); 
-				ImGui::Text("m_friends_only: %lli", rSessionMembership.m_friends_only); 
-				ImGui::Text("m_peer_count: %i", rSessionMembership.m_peer_count);
-				ImGui::Text("m_valid_peer_mask: %i", rSessionMembership.m_valid_peer_mask);
-				ImGui::Text("m_player_count: %i", rSessionMembership.m_player_count); 
-				ImGui::Text("m_valid_player_mask: %i", rSessionMembership.m_valid_player_mask);
-				ImGui::Text("m_player_sequence_number: %i", rSessionMembership.m_player_sequence_number);
-				ImGui::Text("unknown291C: %i", rSessionMembership.unknown291C); 
-				ImGui::Text("m_incremental_updates: %i", rSessionMembership.m_incremental_updates);
-				ImGui::Text("unknown5240: %i", rSessionMembership.unknown5240); 
-				ImGui::Text("m_local_peer_index: %i", rSessionMembership.m_local_peer_index);
-
-				if (ImGui::CollapsingHeader("m_peers"))
+				ImGui::Text("%i", rPlayers[i].peer_index);
+				ImGui::NextColumn();
+				ImGui::Text("%llu", rPlayers[i].player_identifier);
+				ImGui::NextColumn();
+				ImGui::Text("%i", rPlayers[i].desired_configuration_version);
+				ImGui::NextColumn();
+				ImGui::Text("%S", rPlayers[i].player_name);
+				ImGui::NextColumn();
+				ImGui::Text("%S", rPlayers[i].service_tag);
+				ImGui::NextColumn();
+				ImGui::Text("0x%llX", rPeers[rPlayers[i].peer_index].machine_identifier);
+				ImGui::NextColumn();
+				if (rPeers[rPlayers[i].peer_index].unknown8 < 8)
 				{
-					auto& rPeers = rSessionMembership.m_peers;
-					for (int i = 0; i < __min(rSessionMembership.m_peer_count, _countof(rPeers)); i++)
-					{
-						ImGui::Text("machine_identifier: %llu", rPeers[i].machine_identifier);
-						ImGui::Text("unknown8: %u", rPeers[i].unknown8);
-					}
+					ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.2f, 0.2f, 1.0f));
 				}
-				if (ImGui::CollapsingHeader("m_players"))
+				ImGui::Text("%u", rPeers[rPlayers[i].peer_index].unknown8);
+				if (rPeers[rPlayers[i].peer_index].unknown8 < 8)
 				{
-					auto& rPlayers = rSessionMembership.m_players;
-					for (int i = 0; i < __min(rSessionMembership.m_player_count, _countof(rPlayers)); i++)
-					{
-						ImGui::Text("desired_configuration_version: %i", rPlayers[i].desired_configuration_version);
-						ImGui::Text("player_identifier: %llu", rPlayers[i].player_identifier);
-						ImGui::Text("peer_index: %i", rPlayers[i].peer_index);
-					}
+					ImGui::PopStyleColor();
 				}
+				ImGui::NextColumn();
 			}
+
+			ImGui::Columns(1);
+			ImGui::Separator();
 		}
-		ImGui::PopID();
+
+		if (header)
+		{
+			ImGui::Dummy(ImVec2(10.0f, 0.0f));
+			ImGui::SameLine();
+			ImGui::BeginGroup();
+			{
+				ImGui::Text("m_message_gateway: %p", rNetworkSession.m_message_gateway);
+				ImGui::Text("m_observer: %p", rNetworkSession.m_observer);
+				ImGui::Text("m_session_manager: %p", rNetworkSession.m_session_manager);
+				ImGui::Text("ppSession: %p", rNetworkSession.ppSession);
+				ImGui::Text("m_session_index: %i", rNetworkSession.m_session_index);
+				ImGui::Text("m_session_type: %i", rNetworkSession.m_session_type);
+				ImGui::Text("m_session_class: %i", rNetworkSession.m_session_class);
+				ImGui::Text("unknown2C: %i", rNetworkSession.unknown2C);
+				ImGui::Text("m_local_state: %i", rNetworkSession.m_local_state);
+				ImGui::Text("m_managed_session_index: %i", rNetworkSession.m_managed_session_index);
+				ImGui::Text("pSession: %p", rNetworkSession.pSession);
+
+				if (ImGui::CollapsingHeader("m_session_parameters"))
+				{
+					ImGui::Dummy(ImVec2(10.0f, 0.0f));
+					ImGui::SameLine();
+					ImGui::BeginGroup();
+					{
+						auto& rSessionParameters = rNetworkSession.m_session_parameters;
+
+						ImGui::Text("session_size.max_players: %p", rSessionParameters.session_size.max_players);
+						ImGui::Text("session: %p", rSessionParameters.session);
+						ImGui::Text("observer: %p", rSessionParameters.observer);
+						ImGui::Text("flags: 0x%08x", rSessionParameters.flags);
+						ImGui::Text("initial_parameters_update_mask: 0x%08x", rSessionParameters.initial_parameters_update_mask);
+					}
+					ImGui::EndGroup();
+				}
+				if (ImGui::CollapsingHeader("m_session_membership"))
+				{
+					ImGui::Dummy(ImVec2(10.0f, 0.0f));
+					ImGui::SameLine();
+					ImGui::BeginGroup();
+					{
+						auto& rSessionMembership = rNetworkSession.m_session_membership;
+
+						ImGui::Text("m_session: %p", rSessionMembership.m_session);
+						ImGui::Text("m_baseline_update_number: %i", rSessionMembership.m_baseline_update_number);
+						ImGui::Text("m_leader_peer_index: %i", rSessionMembership.m_leader_peer_index);
+						ImGui::Text("m_host_peer_index: %i", rSessionMembership.m_host_peer_index);
+						ImGui::Text("unknown14: %i", rSessionMembership.unknown14);
+						ImGui::Text("m_private_slot_count: %i", rSessionMembership.m_private_slot_count);
+						ImGui::Text("m_public_slot_count: %i", rSessionMembership.m_public_slot_count);
+						ImGui::Text("m_friends_only: %lli", rSessionMembership.m_friends_only);
+						ImGui::Text("m_peer_count: %i", rSessionMembership.m_peer_count);
+						ImGui::Text("m_valid_peer_mask: %i", rSessionMembership.m_valid_peer_mask);
+						ImGui::Text("m_player_count: %i", rSessionMembership.m_player_count);
+						ImGui::Text("m_valid_player_mask: %i", rSessionMembership.m_valid_player_mask);
+						ImGui::Text("m_player_sequence_number: %i", rSessionMembership.m_player_sequence_number);
+						ImGui::Text("unknown291C: %i", rSessionMembership.unknown291C);
+						ImGui::Text("m_incremental_updates: %i", rSessionMembership.m_incremental_updates);
+						ImGui::Text("unknown5240: %i", rSessionMembership.unknown5240);
+						ImGui::Text("m_local_peer_index: %i", rSessionMembership.m_local_peer_index);
+
+						if (ImGui::CollapsingHeader("m_peers"))
+						{
+							ImGui::Dummy(ImVec2(10.0f, 0.0f));
+							ImGui::SameLine();
+							ImGui::BeginGroup();
+							{
+								auto& rPeers = rSessionMembership.m_peers;
+								for (int i = 0; i < __min(rSessionMembership.m_peer_count, _countof(rPeers)); i++)
+								{
+									ImGui::Text("machine_identifier: 0x%llX", rPeers[i].machine_identifier);
+									ImGui::Text("unknown8: %u", rPeers[i].unknown8);
+									ImGui::Dummy(ImVec2(0.0f, 5.0f));
+								}
+							}
+							ImGui::EndGroup();
+						}
+						if (ImGui::CollapsingHeader("m_players"))
+						{
+							ImGui::Dummy(ImVec2(10.0f, 0.0f));
+							ImGui::SameLine();
+							ImGui::BeginGroup();
+							{
+								auto& rPlayers = rSessionMembership.m_players;
+								for (int i = 0; i < __min(rSessionMembership.m_player_count, _countof(rPlayers)); i++)
+								{
+									ImGui::Text("desired_configuration_version: %i", rPlayers[i].desired_configuration_version);
+									ImGui::Text("player_identifier: %llu", rPlayers[i].player_identifier);
+									ImGui::Text("peer_index: %i", rPlayers[i].peer_index);
+									ImGui::Text("player_name: %S", rPlayers[i].player_name);
+									ImGui::Text("service_tag: %S", rPlayers[i].service_tag);
+									ImGui::Text("player_name2: %S", rPlayers[i].player_name2);
+									ImGui::Dummy(ImVec2(0.0f, 5.0f));
+								}
+							}
+							ImGui::EndGroup();
+						}
+					}
+					ImGui::EndGroup();
+				}
+			}
+			ImGui::EndGroup();
+		}
 	}
-	ImGui::PopID();
 
 	ImGui::End();
 }
@@ -769,7 +927,6 @@ void init_halo_reach(HaloGameID gameID)
 {
 	g_currentGameID = gameID;
 	CustomWindow::SetWindowTitle("Halo Reach");
-	GameLauncher::RegisterTerminationValue(*reinterpret_cast<char*>(byte_183984DE4.ptr()));
 	ReadConfig();
 	DebugUI::RegisterCallback(halo_reach_debug_callback);
 
@@ -802,6 +959,8 @@ void init_halo_reach(HaloGameID gameID)
 	DataReferenceBase::InitTree(gameID);
 	FunctionHookBase::InitTree(gameID);
 	end_detours();
+
+	GameLauncher::RegisterTerminationValue(*reinterpret_cast<char*>(byte_183984DE4.ptr()));
 }
 
 void deinit_halo_reach(HaloGameID gameID)

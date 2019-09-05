@@ -40,7 +40,12 @@ struct s_network_session_player
 	int desired_configuration_version;
 	_QWORD player_identifier;
 	int peer_index;
-	char unknown10[264];
+	char unknown10[16];
+	wchar_t player_name[32];
+	char unknown60[4];
+	wchar_t service_tag[6]; // not sure if 6 bytes big
+	char unknownA0[104];
+	wchar_t player_name2[32];
 };
 #pragma pack(pop)
 static_assert(sizeof(s_network_session_player) == 0x118, "s_network_session_player invalid size");
@@ -150,7 +155,9 @@ struct c_network_session_parameter_base
 /* 372 */
 struct __cppobj c_network_session_parameter_session_size : c_network_session_parameter_base
 {
-	BYTE data[16];
+	BYTE unknown0[4];
+	DWORD max_players;
+	BYTE unknown8[8];
 };
 
 /* 373 */

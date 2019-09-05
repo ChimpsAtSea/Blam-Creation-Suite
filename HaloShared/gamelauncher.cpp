@@ -261,7 +261,7 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 		game_launch_data.SessionInfo.SessionMembership.Count = playerCount;
 
 		game_launch_data.SessionInfo.PeerIdentifiers[0] = 0;
-		game_launch_data.SessionInfo.PeerIdentifiers[1] = 0;
+		game_launch_data.SessionInfo.PeerIdentifiers[1] = 1;
 		{
 			game_launch_data.SessionInfo.SessionMembership.Members[0].MachineIdentifier = 0;
 			game_launch_data.SessionInfo.SessionMembership.Members[0].Team = 0;
@@ -279,8 +279,6 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 		{
 			FATAL_ERROR("Too many people need to add more data");
 		}
-
-
 
 		if (game_launch_data.SessionInfo.IsHost)
 		{
