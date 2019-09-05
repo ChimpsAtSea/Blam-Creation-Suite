@@ -408,52 +408,55 @@ void ReadConfig()
 
 void log_socket_info(const struct sockaddr* from, int bytes, const char* pPrefix, uint32_t packetID)
 {
-	if (!from)
+	if (strstr(GetCommandLineA(), "-shownetworktraffic"))
 	{
-		return;
-	}
-
-	switch (from->sa_family)
-	{
-	case AF_INET:
-	{
-		sockaddr_in& sockaddr = *(sockaddr_in*)from;
-		char* pIPv4 = inet_ntoa(sockaddr.sin_addr);
-		u_short port = htons(sockaddr.sin_port);
-		WriteVerbose("%s IPv4 %s:%i", pPrefix, pIPv4, port);
-		if (bytes > 0)
+		if (!from)
 		{
-			if (bytes < 10)
+			return;
+		}
+
+		switch (from->sa_family)
+		{
+		case AF_INET:
+		{
+			sockaddr_in& sockaddr = *(sockaddr_in*)from;
+			char* pIPv4 = inet_ntoa(sockaddr.sin_addr);
+			u_short port = htons(sockaddr.sin_port);
+			WriteVerbose("%s IPv4 %s:%i", pPrefix, pIPv4, port);
+			if (bytes > 0)
 			{
-				WriteVerbose(" [0%i bytes]", bytes);
+				if (bytes < 10)
+				{
+					WriteVerbose(" [0%i bytes]", bytes);
+				}
+				else
+				{
+					WriteVerbose(" [%i bytes]", bytes);
+				}
 			}
-			else
+			if (packetID <= UINT16_MAX)
+			{
+				WriteVerbose(" id:%04x", packetID);
+				WriteVerbose(" id:%u", packetID);
+				WriteVerbose(" id_nbo:%04x", uint32_t(ntohs(packetID)));
+			}
+			WriteLineVerbose("");
+		}
+		break;
+		case AF_INET6:
+		{
+			sockaddr_in6& sockaddr6 = *(sockaddr_in6*)from;
+			char IPv6[INET6_ADDRSTRLEN] = {};
+			inet_ntop(AF_INET6, &sockaddr6.sin6_addr, IPv6, INET6_ADDRSTRLEN);
+			WriteVerbose("IPv6 [%s]:%i", IPv6, sockaddr6.sin6_port);
+			if (bytes > 0)
 			{
 				WriteVerbose(" [%i bytes]", bytes);
 			}
+			WriteLineVerbose("");
 		}
-		if (packetID <= UINT16_MAX)
-		{
-			WriteVerbose(" id:%04x", packetID);
-			WriteVerbose(" id:%u", packetID);
-			WriteVerbose(" id_nbo:%04x", uint32_t(ntohs(packetID)));
+		break;
 		}
-		WriteLineVerbose("");
-	}
-	break;
-	case AF_INET6:
-	{
-		sockaddr_in6& sockaddr6 = *(sockaddr_in6*)from;
-		char IPv6[INET6_ADDRSTRLEN] = {};
-		inet_ntop(AF_INET6, &sockaddr6.sin6_addr, IPv6, INET6_ADDRSTRLEN);
-		WriteVerbose("IPv6 [%s]:%i", IPv6, sockaddr6.sin6_port);
-		if (bytes > 0)
-		{
-			WriteVerbose(" [%i bytes]", bytes);
-		}
-		WriteLineVerbose("");
-	}
-	break;
 	}
 }
 
@@ -710,6 +713,126 @@ FunctionHookEx<sub_18002E040_offset, __int64 __fastcall (c_network_session_membe
 } };
 
 
+
+intptr_t c_network_session_process_pending_joins_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180028D00;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<c_network_session_process_pending_joins_offset, unsigned __int64 __fastcall (c_network_session*)> c_network_session_process_pending_joins = { "c_network_session::process_pending_joins", [](c_network_session* _this)
+{
+	auto network_session_membership = &_this->m_session_membership;
+	auto v36 = 1;
+	auto v29 = network_session_membership->m_valid_peer_mask;
+
+	auto v37 = &network_session_membership->m_peers[0].join_nonce;
+	auto v84 = &network_session_membership->m_peers[0].join_nonce;
+	while (!(v36 & v29))
+	{
+		v37 += 0x2C;
+		v36 *= 2;
+		v84 = v37;
+		if (!v29)
+			break;
+	}
+	auto& v38 = *((_DWORD*)v37 - 78);
+
+  if (v38 == 4)
+  {
+	  //v38 = 0;
+  }
+	return c_network_session_process_pending_joins(_this);
+} };
+
+intptr_t c_network_session_add_pending_join_to_session_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180029650;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<c_network_session_add_pending_join_to_session_offset, __int64 __fastcall (c_network_session*, unsigned __int64)> c_network_session_add_pending_join_to_session = { "c_network_session::add_pending_join_to_session", [](c_network_session* _this, unsigned __int64 join_nonce)
+{
+	WriteLineNoSpamVerbose("c_network_session::add_pending_join_to_session [ join_nonce:0x%llx ]", join_nonce);
+	return c_network_session_add_pending_join_to_session(_this, join_nonce);
+} };
+
+intptr_t c_network_message_handler_handle_channel_message_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800D1C70;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<c_network_message_handler_handle_channel_message_offset, void __fastcall(__int64 a1, __int64 a2, __int64 a3, int a4, __int64 rsi, int a5)> c_network_message_handler_handle_channel_message = { "c_network_message_handler::handle_channel_message",
+[](__int64 a1, __int64 a2, __int64 a3, int a4, __int64 rsi, int a5)
+{
+	WriteLineNoSpamVerbose("c_network_message_handler::handle_channel_message [ %i ]", a4);
+	c_network_message_handler_handle_channel_message(
+		 a1,
+		 a2,
+		 a3,
+		 a4,
+		 rsi,
+		 a5
+	);
+} };
+
+intptr_t c_network_channel_receive_packet_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800A55C0;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<c_network_channel_receive_packet_offset, __int64 __fastcall (__int64 a1, __int64 a2, unsigned int a3, unsigned int a4)> c_network_channel_receive_packet = { "c_network_channel::receive_packet",
+[](__int64 a1, __int64 a2, unsigned int a3, unsigned int a4)
+{
+	WriteLineVerbose("c_network_channel::receive_packet [  ]");
+	return c_network_channel_receive_packet(a1, a2, a3, a4);
+} };
+
+
+
+
+intptr_t c_network_link_process_packet_internal_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800AE850;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<c_network_link_process_packet_internal_offset, __int64 __fastcall (struct c_network_link* a1, _DWORD* a2)> c_network_link_process_packet_internal =
+{ "c_network_link::process_packet_internal", [](struct c_network_link* a1, _DWORD* a2)
+{
+	WriteLineVerbose("c_network_link::process_packet_internal [  ]");
+	return c_network_link_process_packet_internal(a1, a2);
+} };
+
+
+
+intptr_t c_network_channel_allocate_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800A4A90;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<c_network_channel_allocate_offset, signed __int64 __fastcall (__int64, __int64, __int64, __int64, __int64, __int64, __int64, __int64, __int64)> c_network_channel_allocate =
+{ "c_network_channel::allocate", [](__int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 a5, __int64 a6, __int64 a7, __int64 a8, __int64 a9)
+{
+	WriteLineVerbose("c_network_channel::allocate [ 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx ]", a1,  a2,  a3,  a4,  a5,  a6,  a7,  a8,  a9);
+	return c_network_channel_allocate(a1,  a2,  a3,  a4,  a5,  a6,  a7,  a8,  a9);
+} };
+
 void halo_reach_debug_callback()
 {
 	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
@@ -765,7 +888,7 @@ void halo_reach_debug_callback()
 		{
 			auto& rNetworkSession = g_networkSessions[i];
 			auto pNetworkSessionName = ppNetworkSessionNames[i];
-			ImGui::Columns(7, pNetworkSessionName, false);
+			ImGui::Columns(8, pNetworkSessionName, false);
 			ImGui::Separator();
 			ImGui::Selectable("peer_index");
 			ImGui::NextColumn();
@@ -779,7 +902,9 @@ void halo_reach_debug_callback()
 			ImGui::NextColumn();
 			ImGui::Selectable("machine_id");
 			ImGui::NextColumn();
-			ImGui::Selectable("unknown_state");
+			ImGui::Selectable("network_session_peer_state");
+			ImGui::NextColumn();
+			ImGui::Selectable("join_nonce");
 			ImGui::NextColumn();
 
 			auto& rSessionMembership = rNetworkSession.m_session_membership;
@@ -800,16 +925,19 @@ void halo_reach_debug_callback()
 				ImGui::NextColumn();
 				ImGui::Text("0x%llX", rPeers[rPlayers[i].peer_index].machine_identifier);
 				ImGui::NextColumn();
-				if (rPeers[rPlayers[i].peer_index].unknown8 < 8)
+				if (rPeers[rPlayers[i].peer_index].network_session_peer_state < 8)
 				{
 					ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.2f, 0.2f, 1.0f));
 				}
-				ImGui::Text("%u", rPeers[rPlayers[i].peer_index].unknown8);
-				if (rPeers[rPlayers[i].peer_index].unknown8 < 8)
+				ImGui::Text("%u", rPeers[rPlayers[i].peer_index].network_session_peer_state);
+				if (rPeers[rPlayers[i].peer_index].network_session_peer_state < 8)
 				{
 					ImGui::PopStyleColor();
 				}
 				ImGui::NextColumn();
+				ImGui::Text("%llx", rPeers[rPlayers[i].peer_index].join_nonce);
+				ImGui::NextColumn();
+
 			}
 
 			ImGui::Columns(1);
@@ -875,6 +1003,8 @@ void halo_reach_debug_callback()
 						ImGui::Text("m_incremental_updates: %i", rSessionMembership.m_incremental_updates);
 						ImGui::Text("unknown5240: %i", rSessionMembership.unknown5240);
 						ImGui::Text("m_local_peer_index: %i", rSessionMembership.m_local_peer_index);
+						ImGui::Text("dword5248: %u", rSessionMembership.dword5248);
+
 
 						if (ImGui::CollapsingHeader("m_peers"))
 						{
@@ -886,7 +1016,8 @@ void halo_reach_debug_callback()
 								for (int i = 0; i < __min(rSessionMembership.m_peer_count, _countof(rPeers)); i++)
 								{
 									ImGui::Text("machine_identifier: 0x%llX", rPeers[i].machine_identifier);
-									ImGui::Text("unknown8: %u", rPeers[i].unknown8);
+									ImGui::Text("dword8: %u", rPeers[i].network_session_peer_state);
+									ImGui::Text("join_nonce: %u", rPeers[i].join_nonce);
 									ImGui::Dummy(ImVec2(0.0f, 5.0f));
 								}
 							}
@@ -949,6 +1080,11 @@ void init_halo_reach(HaloGameID gameID)
 		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011090, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
 		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011431, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
 		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011458, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
+
+		char jne = 0x75i8;
+		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x1800AE91D, &jne, sizeof(jne));
+
+
 
 		create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer);
 		create_dll_hook("WS2_32.dll", "bind", bindHook, bindPointer);

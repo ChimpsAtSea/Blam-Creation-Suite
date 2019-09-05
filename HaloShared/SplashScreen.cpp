@@ -107,6 +107,7 @@ void SplashScreen::Destroy()
 	{
 		SendMessage(s_hWnd, WM_CLOSE, 0, 0);
 		s_windowThread.join();
+		CustomWindow::Show();
 	}
 }
 

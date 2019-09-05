@@ -3,6 +3,10 @@
   "Id": "d3fc28c9-77d8-4b91-a5d8-6466790bda38",
   "Items": [
     {
+      "Id": "6d525b48-5b89-4134-a431-151704127511",
+      "Command": "-shownetworktraffic"
+    },
+    {
       "Id": "e92bb52a-65cd-4ca2-bfd1-6dd49619615e",
       "Command": "-waitfordebugger"
     },

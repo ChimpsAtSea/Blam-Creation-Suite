@@ -159,10 +159,7 @@ char __fastcall IGameEngineHost::Member23(__int64 a1, __int64 a2)
 
 void __fastcall IGameEngineHost::GetSessionInfo(s_session_info_part *buffer)
 {
-	WriteVerbose("IGameEngineHost::Member24 ");
-	WriteLineVerbose("GameLoaded");
-	SplashScreen::Destroy();
-	CustomWindow::Show();
+	WriteVerbose("IGameEngineHost::GetSessionInfo");
 };
 
 #include <HaloReach/c_network.h>
@@ -211,6 +208,9 @@ bool __fastcall IGameEngineHost::Member28(Member28Struct *buffer)
 
 __int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member29Struct *buffer)
 {
+	// todo: find a good home for this
+	SplashScreen::Destroy();
+
 	WriteLineVerbose("IGameEngineHost::Member29");
 	return __int64(0);
 };

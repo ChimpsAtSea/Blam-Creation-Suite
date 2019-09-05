@@ -332,7 +332,6 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 void GameLauncher::Update()
 {
-	
 	MouseInput::Acquire(); // have to try to acquire mouse here as this thread updates the window messages
 	CustomWindow::Update();
 

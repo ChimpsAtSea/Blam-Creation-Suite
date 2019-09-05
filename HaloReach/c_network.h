@@ -22,13 +22,22 @@ enum e_network_session_class
 /* 70 */
 typedef unsigned __int8 BYTE;
 
+enum e_network_session_peer_state : DWORD
+{
+	_network_session_peer_state_connected = 4,
+	_network_session_peer_state_waiting = 7,
+	_network_session_peer_state_established = 8,
+};
+
 /* 367 */
 #pragma pack(push, 1)
 struct s_network_session_peer
 {
 	_QWORD machine_identifier;
-	DWORD unknown8;
-	BYTE unknownC[340];
+	e_network_session_peer_state network_session_peer_state;
+	BYTE unknownC[308];
+	_QWORD join_nonce;
+	BYTE unknown148[24];
 };
 #pragma pack(pop)
 static_assert(sizeof(s_network_session_peer) == 352, "s_network_session_peer invalid size");
@@ -73,7 +82,8 @@ struct c_network_session_membership
 	int m_incremental_updates[17];
 	int unknown5240;
 	int m_local_peer_index;
-	BYTE unknown5248[1120];
+	_DWORD dword5248;
+	BYTE unknown524C[1116];
 };
 
 /* 370 */
