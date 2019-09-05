@@ -58,7 +58,7 @@ BOOL EnumWindowsHook(
 void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 {
 
-#if _DEBUG
+#ifdef _DEBUG
 	bool isDebug = true;
 #else
 	bool isDebug = false;
