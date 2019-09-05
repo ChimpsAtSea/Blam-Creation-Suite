@@ -140,9 +140,9 @@ __int64 __fastcall IGameEngineHost::MapLoadPecentStatus(__int64 a1, __int64 a2, 
 
 void __fastcall IGameEngineHost::Member20(__int64 a1, __int8 a2) { WriteLineVerbose("IGameEngineHost::Member20"); };
 
-__int64 __fastcall IGameEngineHost::Member21(_QWORD a1)
+__int64 __fastcall IGameEngineHost::GetMachineIdentifier(_QWORD a1)
 {
-	return __int64(0); // player (datum?) index
+	return __int64(0);
 };
 
 __int64 __fastcall IGameEngineHost::Member22(Member22Struct *buffer, __int64 a2)
@@ -392,10 +392,26 @@ BOOL __fastcall IGameEngineHost::Member40(__int64, __int64)
 	return 0;
 };
 
-bool __fastcall IGameEngineHost::GetPathByType(int pathType, wchar_t *buffer, size_t bufferlength)
+bool __fastcall IGameEngineHost::GetPathByType(int pathType, char *buffer, size_t bufferlength)
 {
-	WriteLineVerbose("IGameEngineHost::Member41 GetPathByType");
-	return 0;
+	// this this should be in its function
+	switch (pathType)
+	{
+	case 0:
+		sprintf_s(buffer, bufferlength, "DebugLogs\\");
+		break;
+	case 1:
+		sprintf_s(buffer, bufferlength, "Config\\");
+		break;
+	case 2:
+		sprintf_s(buffer, bufferlength, "Temp\\");
+		break;
+	case 3:
+		sprintf_s(buffer, bufferlength, "\\");
+		break;
+	}
+
+	return 1;
 };
 
 // this is correct implementation inline with MCC
@@ -405,16 +421,16 @@ bool __fastcall IGameEngineHost::GetWidePathByType(int pathType, wchar_t *buffer
 	switch (pathType)
 	{
 	case 0:
-		swprintf(buffer, bufferlength, L"DebugLogs\\");
+		swprintf_s(buffer, bufferlength, L"DebugLogs\\");
 		break;
 	case 1:
-		swprintf(buffer, bufferlength, L"Config\\");
+		swprintf_s(buffer, bufferlength, L"Config\\");
 		break;
 	case 2:
-		swprintf(buffer, bufferlength, L"Temp\\");
+		swprintf_s(buffer, bufferlength, L"Temp\\");
 		break;
 	case 3:
-		swprintf(buffer, bufferlength, L"\\");
+		swprintf_s(buffer, bufferlength, L"\\");
 		break;
 	}
 

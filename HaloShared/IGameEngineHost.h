@@ -90,7 +90,7 @@ public:
 	virtual void Member18(int);
 	virtual __int64 __fastcall MapLoadPecentStatus(__int64, __int64, float);
 	virtual void Member20(__int64, __int8);
-	virtual __int64 __fastcall Member21(_QWORD);
+	virtual __int64 __fastcall GetMachineIdentifier(_QWORD);
 	virtual __int64 Member22(Member22Struct *buffer, __int64);
 	virtual char Member23(__int64, __int64);
 	virtual void GetSessionInfo(s_session_info_part *buffer);
@@ -120,7 +120,7 @@ public:
 	virtual bool __fastcall Member38(signed int, __int64, __int64);
 	virtual void __fastcall FireFightNew(__int64, float);
 	virtual BOOL __fastcall Member40(__int64, __int64);
-	virtual bool __fastcall GetPathByType(int pathType, wchar_t *buffer, size_t bufferlength);
+	virtual bool __fastcall GetPathByType(int pathType, char *buffer, size_t bufferlength);
 	virtual bool __fastcall GetWidePathByType(int pathType, wchar_t *buffer, size_t bufferlength);
 	virtual unsigned __int8*__fastcall Member43(_QWORD, char *, _QWORD);
 
