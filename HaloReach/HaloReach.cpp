@@ -228,6 +228,9 @@ HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018; // no equivalen
 
 intptr_t g_gamepad_globals_offset(HaloGameID gameID)
 {
+	auto x = &qword_183461018;
+
+
 	switch (gameID)
 	{
 	case HaloGameID::HaloReach_2019_Jun_24: return 0x183DF54E0;
@@ -1054,8 +1057,59 @@ void halo_reach_debug_callback()
 	ImGui::End();
 }
 
+
+//
+//
+//class GlobalReference
+//{
+//public:
+//	GlobalReference(HaloGameID gameID, intptr_t offset, const char* pReferenceName)
+//		:m_gameID(gameID)
+//		, m_offset(offset)
+//		, m_pReferenceName(pReferenceName)
+//	{
+//
+//	}
+//
+//	static void ProcessGlobalReferences()
+//	{
+//
+//	}
+//
+//	static GlobalReference* s_p
+//
+//private:
+//	HaloGameID m_gameID;
+//	intptr_t m_offset;
+//	const char* m_pReferenceName;
+//};
+//
+//#define STRINGIFY(x) #x
+//#define COMBINE1(X,Y) X##Y  // helper macro
+//#define COMBINE(X,Y) COMBINE1(X,Y)
+//#define DATA(Type, Name, GameID, Offset) Type& Name = *reinterpret_cast<Type*>(intptr_t()); GlobalReference COMBINE(__global_reference_##Name, __LINE__) = GlobalReference(GameID, Offset, STRINGIFY(Name));
+//
+//
+//DATA(_QWORD, xqword_183461018, HaloGameID::HaloReach_2019_Aug_20, 0x183461018);
+//
+
+
+//
+//_QWORD * *GetReferencePointer(char* pReferenceName)
+//{
+//	PublicSymbol* pPublicSymbol = MappingFileParser::GetPublicSymbolByName("xqword_183461018");
+//	if (pPublicSymbol)
+//	{
+//		pPublicSymbol->m_virtualAddress
+//	}
+//	return nullptr;
+//}
+
 void init_halo_reach(HaloGameID gameID)
 {
+
+
+
 	g_currentGameID = gameID;
 	CustomWindow::SetWindowTitle("Halo Reach");
 	ReadConfig();

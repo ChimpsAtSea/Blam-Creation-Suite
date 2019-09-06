@@ -75,6 +75,9 @@
     <ClCompile Include="mouseinput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MappingFileParser\MappingFileParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="haloshared-private-pch.h">
@@ -165,6 +168,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mouseinput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MappingFileParser\MappingFileParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
