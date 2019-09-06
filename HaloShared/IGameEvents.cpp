@@ -33,8 +33,8 @@ void IGameEvents::BroadcastingMedal() { if (g_logGameEventMessages) { WriteLineV
 void IGameEvents::BroadcastingPlayerJoined() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingPlayerJoined"); } }
 void IGameEvents::BroadcastingPlayerLeft() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingPlayerLeft"); } }
 void IGameEvents::BroadcastingPlayerSpawn() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingPlayerSpawn"); } }
-void IGameEvents::BroadcastingPlayerSwitchedTeams() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingPlayerSwitchedTeams"); } }
-void IGameEvents::BroadcastingScore() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingScore"); } }
+void IGameEvents::BroadcastingPlayerSwitchedTeams() { if (g_logGameEventMessages) { /*WriteLineVerbose("GameEvent: BroadcastingPlayerSwitchedTeams"); // spams console*/ } }
+void IGameEvents::BroadcastingScore() { if (g_logGameEventMessages) { /*WriteLineVerbose("GameEvent: BroadcastingScore"); // spams console*/ } }
 void IGameEvents::BroadcastingStart(_QWORD, _QWORD, _QWORD, _QWORD, _DWORD, _QWORD, _QWORD, _DWORD, _QWORD) { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingStart"); } }
 void IGameEvents::CampaignDifficulty() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: CampaignDifficulty"); } }
 void IGameEvents::ChallengeCompleted() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: ChallengeCompleted"); } }
@@ -134,8 +134,8 @@ void IGameEvents::Member127() { if (g_logGameEventMessages) { WriteLineVerbose("
 void IGameEvents::Member128() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member128"); } }
 void IGameEvents::Member129() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member129"); } }
 void IGameEvents::Member130() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member130"); } }
-void IGameEvents::Member131() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member131"); } }
-void IGameEvents::Member132() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member132"); } }
+void IGameEvents::Member131() { if (g_logGameEventMessages) { /*WriteLineVerbose("IGameEvents::Member131"); // spams console*/ } }
+void IGameEvents::Member132() { if (g_logGameEventMessages) { /*WriteLineVerbose("IGameEvents::Member132"); // spams console*/ } }
 __int64 IGameEvents::Member133(_QWORD)
 {
 	if (g_logGameEventMessages) 
