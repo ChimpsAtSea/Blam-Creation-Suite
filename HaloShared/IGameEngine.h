@@ -8,7 +8,7 @@ struct s_member_info
 	QWORD MachineIdentifier;
 	long Team;
 	long PlayerAssignedTeam;
-	void* SecureAddress;
+	_QWORD SecureAddress;
 };
 
 struct s_session_membership

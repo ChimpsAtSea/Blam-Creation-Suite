@@ -798,9 +798,6 @@ FunctionHookEx<c_network_channel_receive_packet_offset, __int64 __fastcall (__in
 	return c_network_channel_receive_packet(a1, a2, a3, a4);
 } };
 
-
-
-
 intptr_t c_network_link_process_packet_internal_offset(HaloGameID gameID)
 {
 	switch (gameID)
@@ -812,11 +809,9 @@ intptr_t c_network_link_process_packet_internal_offset(HaloGameID gameID)
 FunctionHookEx<c_network_link_process_packet_internal_offset, __int64 __fastcall (struct c_network_link* a1, _DWORD* a2)> c_network_link_process_packet_internal =
 { "c_network_link::process_packet_internal", [](struct c_network_link* a1, _DWORD* a2)
 {
-	WriteLineVerbose("c_network_link::process_packet_internal [  ]");
+	//WriteLineVerbose("c_network_link::process_packet_internal [  ]");
 	return c_network_link_process_packet_internal(a1, a2);
 } };
-
-
 
 intptr_t c_network_channel_allocate_offset(HaloGameID gameID)
 {
@@ -832,6 +827,61 @@ FunctionHookEx<c_network_channel_allocate_offset, signed __int64 __fastcall (__i
 	WriteLineVerbose("c_network_channel::allocate [ 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx ]", a1,  a2,  a3,  a4,  a5,  a6,  a7,  a8,  a9);
 	return c_network_channel_allocate(a1,  a2,  a3,  a4,  a5,  a6,  a7,  a8,  a9);
 } };
+
+
+intptr_t c_network_channel_manager_recreate_channels_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18003BD20;
+	}
+	return ~intptr_t();
+}
+
+Data<HaloGameID::HaloReach_2019_Aug_20, char[1024], 0x18311BA86> unk_18311BA86;
+
+FunctionHookEx<c_network_channel_manager_recreate_channels_offset, void __fastcall (__int64 a1)> c_network_channel_manager_recreate_channels =
+{ "c_network_channel_manager::recreate_channels", [](__int64 a1)
+{
+	WriteLineVerbose("c_network_channel_manager::recreate_channels [ 0x%llx ]", a1);
+	c_network_channel_manager_recreate_channels(a1);
+} };
+
+
+intptr_t sub_18003A740_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x18003A740;
+	}
+	return ~intptr_t();
+}
+
+struct c_network_channel_manager
+{
+
+};
+Pointer<HaloGameID::HaloReach_2019_Aug_20, c_network_channel_manager*, 0x18311A750> g_network_channel_manager;
+
+FunctionHookEx<sub_18003A740_offset, char __fastcall (__int64, __int64, __int64, __int64, __int64, __int64)> sub_18003A740 =
+{ "sub_18003A740", [](__int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 a5, __int64 a6)
+{
+	WriteLineVerbose("sub_18003A740 [ 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx 0x%llx ]", a1,  a2,  a3,  a4,  a5,  a6);
+	auto result = sub_18003A740(a1, a2, a3, a4, a5, a6);
+	return result;
+} };
+
+
+
+
+
+
+
+
+
+
+
+
 
 void halo_reach_debug_callback()
 {
@@ -879,6 +929,7 @@ void halo_reach_debug_callback()
 	ImGui::Columns(1);
 	for (int i = 0; i < 4; i++)
 	{
+		ImGui::PushID(i);
 		auto& rNetworkSession = g_networkSessions[i];
 		auto pNetworkSessionName = ppNetworkSessionNames[i];
 
@@ -1049,6 +1100,7 @@ void halo_reach_debug_callback()
 			}
 			ImGui::EndGroup();
 		}
+		ImGui::PopID();
 	}
 
 	ImGui::End();
@@ -1081,15 +1133,18 @@ void init_halo_reach(HaloGameID gameID)
 		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011431, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
 		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011458, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
 
-		char jne = 0x75i8;
-		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x1800AE91D, &jne, sizeof(jne));
+		//if (!IGameEngineHost::g_isHost)
+		//{
+		//	char jne = 0x75i8;
+		//	copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x1800AE91D, &jne, sizeof(jne));
+		//}
 
 
-
-		create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer);
-		create_dll_hook("WS2_32.dll", "bind", bindHook, bindPointer);
-		create_dll_hook("WS2_32.dll", "sendto", sendtoHook, sendtoPointer);
 	}
+
+	create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer);
+	create_dll_hook("WS2_32.dll", "bind", bindHook, bindPointer);
+	create_dll_hook("WS2_32.dll", "sendto", sendtoHook, sendtoPointer);
 	sub_1800AE4E0.SetIsActive(isNetworkingPatchActive);
 
 	DataReferenceBase::InitTree(gameID);

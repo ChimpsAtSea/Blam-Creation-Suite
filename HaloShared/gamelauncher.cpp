@@ -266,14 +266,14 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 			game_launch_data.SessionInfo.SessionMembership.Members[0].MachineIdentifier = 0;
 			game_launch_data.SessionInfo.SessionMembership.Members[0].Team = 0;
 			game_launch_data.SessionInfo.SessionMembership.Members[0].PlayerAssignedTeam = 0;
-			game_launch_data.SessionInfo.SessionMembership.Members[0].SecureAddress = (void*)HostAddress;
+			game_launch_data.SessionInfo.SessionMembership.Members[0].SecureAddress = HostAddress;
 		}
 		if (game_launch_data.SessionInfo.SessionMembership.Count > 1)
 		{
 			game_launch_data.SessionInfo.SessionMembership.Members[1].MachineIdentifier = 0;
 			game_launch_data.SessionInfo.SessionMembership.Members[1].Team = 0;
 			game_launch_data.SessionInfo.SessionMembership.Members[1].PlayerAssignedTeam = 0;
-			game_launch_data.SessionInfo.SessionMembership.Members[1].SecureAddress = (void*)ClientAddress;
+			game_launch_data.SessionInfo.SessionMembership.Members[1].SecureAddress = ClientAddress;
 		}
 		if (game_launch_data.SessionInfo.SessionMembership.Count > 2)
 		{
