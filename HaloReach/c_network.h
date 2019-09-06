@@ -6,6 +6,62 @@
    the type library 'haloreach.dll'
 */
 
+enum e_network_message_type
+{
+	_network_message_type_ping = 0,
+	_network_message_type_pong,
+	_network_message_type_broadcast_search,
+	_network_message_type_broadcast_reply,
+	_network_message_type_connect_request,
+	_network_message_type_connect_refuse,
+	_network_message_type_connect_establish,
+	_network_message_type_connect_closed,
+	_network_message_type_join_request,
+	_network_message_type_peer_connect,
+	_network_message_type_join_abort,
+	_network_message_type_join_refuse,
+	_network_message_type_leave_session,
+	_network_message_type_leave_acknowledge,
+	_network_message_type_session_disband,
+	_network_message_type_session_boot,
+	_network_message_type_host_handoff,
+	_network_message_type_peer_handoff,
+	_network_message_type_host_transition,
+	_network_message_type_host_reestablish,
+	_network_message_type_host_decline,
+	_network_message_type_peer_reestablish,
+	_network_message_type_peer_establish,
+	_network_message_type_election,
+	_network_message_type_election_refuse,
+	_network_message_type_time_synchronize,
+	_network_message_type_membership_update,
+	_network_message_type_peer_properties,
+	_network_message_type_delegate_leadership,
+	_network_message_type_boot_machine,
+	_network_message_type_player_add,
+	_network_message_type_player_refuse,
+	_network_message_type_player_remove,
+	_network_message_type_player_properties,
+	_network_message_type_parameters_update,
+	_network_message_type_parameters_request,
+	_network_message_type_security,
+	_network_message_type_view_establishment,
+	_network_message_type_player_acknowledge,
+	_network_message_type_synchronous_update,
+	_network_message_type_synchronous_playback_control,
+	_network_message_type_synchronous_actions,
+	_network_message_type_synchronous_acknowledge,
+	_network_message_type_synchronous_join_catchup,
+	_network_message_type_game_results,
+	_network_message_type_update_queue_element,
+	_network_message_type_end_game,
+	_network_message_type_update_queue_element1, // same name as _network_message_type_update_queue_element
+	_network_message_type_test,
+	_network_message_type_test_force_host_machine_name,
+
+	k_number_of_network_message_types
+};
+
 struct c_network_session;
 struct c_network_session_parameter_base_vtbl;
 
@@ -35,12 +91,33 @@ struct s_network_session_peer
 {
 	_QWORD machine_identifier;
 	e_network_session_peer_state network_session_peer_state;
-	BYTE unknownC[308];
+	BYTE unknownC[160];
+	int map_id;
+	BYTE unknownB0[144];
 	_QWORD join_nonce;
 	BYTE unknown148[24];
 };
 #pragma pack(pop)
 static_assert(sizeof(s_network_session_peer) == 352, "s_network_session_peer invalid size");
+
+struct s_player_configuration_from_client
+{
+	// contains name, ...
+	BYTE data[0x4]; // determine size, set to 0x4 so vs compiles without error
+};
+
+struct s_player_configuration_from_host
+{
+	// contains name and tag, ...
+	BYTE data[0x4]; // determine size, set to 0x4 so vs compiles without error
+};
+
+struct s_player_configuration
+{
+	// client and host might be swapped
+	s_player_configuration_from_client client;
+	s_player_configuration_from_host host;
+};
 
 /* 365 */
 #pragma pack(push, 1)
@@ -50,6 +127,8 @@ struct s_network_session_player
 	_QWORD player_identifier;
 	int peer_index;
 	char unknown10[16];
+
+	// contains s_player_configuration
 	wchar_t player_name[32];
 	char unknown60[4];
 	wchar_t service_tag[6]; // not sure if 6 bytes big
@@ -59,7 +138,21 @@ struct s_network_session_player
 #pragma pack(pop)
 static_assert(sizeof(s_network_session_player) == 0x118, "s_network_session_player invalid size");
 
+struct s_network_session_peer_channel
+{
+	uint32_t flags;
+	int32_t channel_index;
+	uint32_t expected_update_number;
+};
+
+struct s_player_add_queue_entry
+{
+	BYTE data[0xE0]; // contains s_player_configuration_from_(client||host)
+};
+static_assert(sizeof(s_player_add_queue_entry) == 0xE0, "s_player_add_queue_entry invalid size");
+
 /* 366 */
+#pragma pack(push, 1)
 struct c_network_session_membership
 {
 	c_network_session* m_session;
@@ -82,9 +175,13 @@ struct c_network_session_membership
 	int m_incremental_updates[17];
 	int unknown5240;
 	int m_local_peer_index;
-	_DWORD dword5248;
-	BYTE unknown524C[1116];
+	int m_player_configuration_version;
+	s_network_session_peer_channel m_peer_channels[17];
+	s_player_add_queue_entry m_player_add_queue[4];
+	BYTE unknown569C[16];
 };
+#pragma pack(pop)
+static_assert(sizeof(c_network_session_membership) == 0x56A8, "c_network_session_membership invalid size");
 
 /* 370 */
 enum e_network_session_parameter_type

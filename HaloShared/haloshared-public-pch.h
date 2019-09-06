@@ -27,3 +27,5 @@
 #include "gameinterface.h"
 #include "gamerender.h"
 #include "gamelauncher.h"
+
+#include "MappingFileParser/MappingFileParser.h"

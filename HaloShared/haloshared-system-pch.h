@@ -23,6 +23,7 @@
 #include <objidl.h>
 #include <gdiplus.h>
 #include <sqltypes.h>
+#include <shlwapi.h>
 
 #include <dinput.h>
 #include <D3Dcompiler.h>
@@ -40,6 +41,11 @@
 #include <intrin.h>
 #include <immintrin.h>
 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <sstream>
 #include <thread>
 #include <atomic>
 #include <functional>

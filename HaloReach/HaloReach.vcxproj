@@ -70,22 +70,22 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>imgui.lib;detours.lib;Winmm.lib;HaloShared.lib;Version.lib;D3D11.lib;DXGI.lib;dinput8.lib;dxguid.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imgui.lib;detours.lib;winmm.lib;haloshared.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <PostBuildEvent>
       <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
-echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y
-echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC_F1\haloreach\* /Y
+echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\haloreach\*" /Y
+echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC_F1\haloreach\*" /Y
+echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC_F1\haloreach\*" /Y
+echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\haloreach\*" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).map" "$(LocalDebuggerWorkingDirectory)" /Y
  )
-)
-
-echo f|xcopy $(SolutionDir)$(Platform)\$(Configuration)\haloreach.exe \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y
-
-echo f|xcopy $(SolutionDir)$(Platform)\$(Configuration)\haloreach.exe \\$(RemoteDebuggerServerName)\!MCC_F1\haloreach\* /Y</Command>
+)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -106,22 +106,22 @@ echo f|xcopy $(SolutionDir)$(Platform)\$(Configuration)\haloreach.exe \\$(Remote
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>imgui.lib;detours.lib;Winmm.lib;HaloShared.lib;Version.lib;D3D11.lib;DXGI.lib;dinput8.lib;dxguid.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imgui.lib;detours.lib;winmm.lib;haloshared.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <PostBuildEvent>
       <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
-echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y
-echo f|xcopy $(TargetPath) \\$(RemoteDebuggerServerName)\!MCC_F1\haloreach\* /Y
+echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\haloreach\*" /Y
+echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC_F1\haloreach\*" /Y
+echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC_F1\haloreach\*" /Y
+echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\haloreach\*" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).map" "$(LocalDebuggerWorkingDirectory)" /Y
  )
-)
-
-echo f|xcopy $(SolutionDir)$(Platform)\$(Configuration)\haloreach.exe \\$(RemoteDebuggerServerName)\!MCC\haloreach\* /Y
-
-echo f|xcopy $(SolutionDir)$(Platform)\$(Configuration)\haloreach.exe \\$(RemoteDebuggerServerName)\!MCC_F1\haloreach\* /Y</Command>
+)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
