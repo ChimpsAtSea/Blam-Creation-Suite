@@ -143,6 +143,7 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
     <None Include="haloreach.game.inl" />
     <None Include="haloreach.input.inl" />
     <None Include="haloreach.log.inl" />
+    <None Include="haloreach.network.inl" />
     <None Include="haloreach.render.inl" />
   </ItemGroup>
   <ItemGroup>

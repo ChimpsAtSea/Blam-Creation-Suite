@@ -55,6 +55,9 @@
     <None Include="haloreach.log.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="haloreach.network.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\HaloShared\Resource.rc">

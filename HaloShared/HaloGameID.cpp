@@ -6,7 +6,7 @@ bool IsHaloExecutableLoaded(HaloGameID gameID)
 	return GetModuleHandle(pGameExecutableStr);
 }
 
-void* GetHaloExecutable(HaloGameID gameID)
+void* GetLoadedHaloModule(HaloGameID gameID)
 {
 	const char* pGameExecutableStr = GetHaloExecutableString(gameID);
 	HMODULE hModule = GetModuleHandleA(pGameExecutableStr);

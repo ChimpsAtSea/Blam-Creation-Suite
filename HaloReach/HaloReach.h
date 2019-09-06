@@ -282,7 +282,6 @@ extern bool g_pancamEnabled;
 extern int g_controlsLayout;
 extern int g_useController;
 
-
 // Halo Reach Functions
 
 #define profile_configuration_update_args \
@@ -308,62 +307,11 @@ extern HaloReach_2019_Jun_24_Hook<0x180780D90, profile_configuration_update_func
 
 // Halo Reach Variables
 
-extern intptr_t get_game_engine_host_offset(HaloGameID gameID);
-extern DataEx<IGameEngineHost*, get_game_engine_host_offset> g_game_engine_host_pointer;
-extern intptr_t get_render_thread_mode_offset(HaloGameID gameID);
-extern DataEx<LONG, get_render_thread_mode_offset> g_render_thread_mode;
-
-// #TODO: Cleanup --------------- (Make all of these match naming conventions)
-
-extern intptr_t g_controller_interfaces_offset(HaloGameID gameID);
-extern DataEx<c_controller_interface[4], g_controller_interfaces_offset> g_controller_interfaces;
-extern intptr_t g_game_options_offset(HaloGameID gameID);
-extern DataEx<s_game_options, g_game_options_offset> g_game_options;
-extern intptr_t g_player_names_offset(HaloGameID gameID);
-extern DataEx<wchar_t[4][32], g_player_names_offset> g_player_names;
-extern intptr_t g_hwnd_offset(HaloGameID gameID);
-extern DataEx<HWND, g_hwnd_offset> g_hwnd;
-extern intptr_t level_name_to_patch_offset(HaloGameID gameID);
-extern DataEx<char, level_name_to_patch_offset> level_name_to_patch;
-extern HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018; // no equivalent
-extern intptr_t g_gamepad_globals_offset(HaloGameID gameID);
-extern DataEx<s_gamepad_globals, g_gamepad_globals_offset> g_gamepad_globals;
+extern HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line; // no equivalent
 extern intptr_t g_input_abstraction_offset(HaloGameID gameID);
 extern DataEx<s_input_abstraction, g_input_abstraction_offset> g_input_abstraction;
-extern HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line; // no equivalent
-extern intptr_t g_createdWindow_offset(HaloGameID gameID);
-extern DataEx<HWND, g_createdWindow_offset> g_createdWindow;
-extern intptr_t dword_1810EC584_offset(HaloGameID gameID);
-extern DataEx<DWORD, dword_1810EC584_offset> dword_1810EC584;
-extern intptr_t byte_18342E55D_offset(HaloGameID gameID);
-extern DataEx<BYTE, byte_18342E55D_offset> byte_18342E55D;
-extern intptr_t byte_183984DE4_offset(HaloGameID gameID);
-extern DataEx<BYTE, byte_183984DE4_offset> byte_183984DE4;
-extern intptr_t dword_1810524AC_offset(HaloGameID gameID);
-extern DataEx<DWORD, dword_1810524AC_offset> dword_1810524AC;
-extern intptr_t ClassName_offset(HaloGameID gameID);
-extern DataEx<char[64], ClassName_offset> ClassName;
-extern intptr_t WindowName_offset(HaloGameID gameID);
-extern DataEx<char[64], WindowName_offset> WindowName;
-extern intptr_t g_WndProc_offset(HaloGameID gameID);
-extern DataEx<WNDPROC, g_WndProc_offset> g_WndProc;
-extern intptr_t g_hInstance_offset(HaloGameID gameID);
-extern DataEx<HINSTANCE, g_hInstance_offset> g_hInstance;
-
-// #TODO: End Cleanup -----------
-
-
-
-
-
-
-
-
+extern intptr_t g_termination_value_offset(HaloGameID gameID);
 
 // config flags
 
 extern const char* g_haloReachPathOverride;
-
-
-
-

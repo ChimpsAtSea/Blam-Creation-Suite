@@ -75,7 +75,10 @@
     <ClCompile Include="mouseinput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MappingFileParser\MappingFileParser.cpp">
+    <ClCompile Include="application_reflection\globalreference.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="application_reflection\mappingfileparser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,7 +173,16 @@
     <ClInclude Include="mouseinput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MappingFileParser\MappingFileParser.h">
+    <ClInclude Include="application_reflection\globalreference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application_reflection\mappingfileparser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application_reflection\referencesymbol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application_reflection\offsetfunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -43,4 +43,4 @@ constexpr const char* GetHaloExecutableString(HaloGameID gameID)
 }
 
 extern bool IsHaloExecutableLoaded(HaloGameID gameID);
-extern void* GetHaloExecutable(HaloGameID gameID);
+extern void* GetLoadedHaloModule(HaloGameID gameID);

@@ -52,7 +52,7 @@ void memcpy_virtual(
 
 void nop_address(HaloGameID id, intptr_t offset, size_t count)
 {
-	char* pBeginning = (char*)GetHaloExecutable(id);
+	char* pBeginning = (char*)GetLoadedHaloModule(id);
 	char* pNopAttack = pBeginning + (offset - 0x180000000);
 
 	char nop = 0x90i8;
@@ -64,7 +64,7 @@ void nop_address(HaloGameID id, intptr_t offset, size_t count)
 
 void copy_to_address(HaloGameID id, intptr_t offset, void* data, size_t length)
 {
-	char* pBeginning = (char*)GetHaloExecutable(id);
+	char* pBeginning = (char*)GetLoadedHaloModule(id);
 	char* pDataAttack = pBeginning + (offset - 0x180000000);
 
 	memcpy_virtual(pDataAttack, data, length);

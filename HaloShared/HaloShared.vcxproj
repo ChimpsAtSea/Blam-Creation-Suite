@@ -166,6 +166,7 @@
     <ClCompile Include="gamelauncher.cpp" />
     <ClCompile Include="GameRender.cpp" />
     <ClCompile Include="game_mode.cpp" />
+    <ClCompile Include="application_reflection\globalreference.cpp" />
     <ClCompile Include="HaloGameID.cpp" />
     <ClCompile Include="haloshared-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -174,13 +175,14 @@
     <ClCompile Include="IGameEngine.cpp" />
     <ClCompile Include="IGameEngineHost.cpp" />
     <ClCompile Include="IGameEvents.cpp" />
-    <ClCompile Include="MappingFileParser\MappingFileParser.cpp" />
+    <ClCompile Include="application_reflection\mappingfileparser.cpp" />
     <ClCompile Include="map_id.cpp" />
     <ClCompile Include="mouseinput.cpp" />
     <ClCompile Include="settings.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="application_reflection\offsetfunction.h" />
     <ClInclude Include="campaign_difficulty_level.h" />
     <ClInclude Include="customwindow.h" />
     <ClInclude Include="BasicData.h" />
@@ -190,6 +192,7 @@
     <ClInclude Include="gamelauncher.h" />
     <ClInclude Include="GameRender.h" />
     <ClInclude Include="game_mode.h" />
+    <ClInclude Include="application_reflection\globalreference.h" />
     <ClInclude Include="hexrays_defs.h" />
     <ClInclude Include="FunctionHook.h" />
     <ClInclude Include="HaloGameID.h" />
@@ -206,9 +209,10 @@
     <ClInclude Include="ISaveFilmMetadata.h" />
     <ClInclude Include="local_types.h" />
     <ClInclude Include="logging.h" />
-    <ClInclude Include="MappingFileParser\MappingFileParser.h" />
+    <ClInclude Include="application_reflection\mappingfileparser.h" />
     <ClInclude Include="map_id.h" />
     <ClInclude Include="mouseinput.h" />
+    <ClInclude Include="application_reflection\referencesymbol.h" />
     <ClInclude Include="settings.h" />
     <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="resource.h" />

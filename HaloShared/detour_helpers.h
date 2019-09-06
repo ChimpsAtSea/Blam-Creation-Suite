@@ -78,7 +78,7 @@ void create_hook(const char pName[], void* pTargetFunction, Ta hook, Tb& rOrigin
 template<typename Ta, typename Tb>
 LONG create_hook(HaloGameID gameID, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
 {
-	char* const pModule = reinterpret_cast<char*>(GetHaloExecutable(gameID));
+	char* const pModule = reinterpret_cast<char*>(GetLoadedHaloModule(gameID));
 	size_t const baseAddress = GetHaloBaseAddress(gameID);
 
 	rOriginal = (Tb)(pModule + (offset - baseAddress));
@@ -154,7 +154,7 @@ template<HaloGameID gameID, size_t offset, typename T>
 void populate_function_ptr(T& dest)
 {
 	// Find the function address
-	char* const pModule = reinterpret_cast<char*>(GetHaloExecutable(gameID));
+	char* const pModule = reinterpret_cast<char*>(GetLoadedHaloModule(gameID));
 	size_t const baseAddress = GetHaloBaseAddress(gameID);
 	char* const pFunctionAddress = pModule + (offset - baseAddress);
 

@@ -253,6 +253,11 @@ void MappingFileParser::Parse(std::string filename)
 	}
 }
 
+uint64_t MappingFileParser::GetBaseVirtualAddress()
+{
+	return g_mappingFileParser.m_baseVirtualAddress;
+}
+
 PublicSymbol* MappingFileParser::GetPublicSymbolByName(std::string rName)
 {
 	return g_mappingFileParser.getPublicSymbolByName(rName);
@@ -272,6 +277,7 @@ PublicSymbol* MappingFileParser::getPublicSymbolByName(std::string rName)
 	// lazy search where rPublicSymbol.m_name begins with rName with a question mark out the front (most likely use case of this function)
 	std::string lazySearch1 = "?";
 	lazySearch1 += rName;
+	lazySearch1 += "@";
 	for (PublicSymbol& rPublicSymbol : m_publicSymbols)
 	{
 		if (rPublicSymbol.m_name.find(lazySearch1) != std::string::npos)
@@ -279,6 +285,18 @@ PublicSymbol* MappingFileParser::getPublicSymbolByName(std::string rName)
 			return &rPublicSymbol;
 		}
 	}
+
+	// lazy search where rPublicSymbol.m_name begins with rName with a question mark out the front (likely use case of this function)
+	std::string lazySearch2 = "?";
+	lazySearch2 += rName;
+	for (PublicSymbol& rPublicSymbol : m_publicSymbols)
+	{
+		if (rPublicSymbol.m_name.find(lazySearch2) != std::string::npos)
+		{
+			return &rPublicSymbol;
+		}
+	}
+
 	// lazy search where rPublicSymbol.m_name contains rName
 	for (PublicSymbol& rPublicSymbol : m_publicSymbols)
 	{
