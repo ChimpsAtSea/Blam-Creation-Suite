@@ -96,7 +96,7 @@ public:
 	virtual void GetSessionInfo(s_session_info_part *buffer);
 	virtual void __fastcall MembershipUpdate(s_session_membership *buffer, uint32_t playercount);
 	virtual bool __fastcall Member26();
-	virtual void __fastcall Member27();
+	virtual bool __fastcall Member27();
 	virtual bool __fastcall Member28(Member28Struct *buffer);
 	virtual __int64 __fastcall Member29(wchar_t playerNames[4][32], Member29Struct *buffer);
 	virtual bool __fastcall __fastcall Member30(_QWORD, InputBuffer *pInputBuffer);
@@ -122,7 +122,7 @@ public:
 	virtual BOOL __fastcall Member40(__int64, __int64);
 	virtual bool __fastcall GetPathByType(int pathType, char *buffer, size_t bufferlength);
 	virtual bool __fastcall GetWidePathByType(int pathType, wchar_t *buffer, size_t bufferlength);
-	virtual unsigned __int8*__fastcall Member43(_QWORD, char *, _QWORD);
+	virtual unsigned __int8*__fastcall Member43(_QWORD, unsigned __int8 *, _QWORD);
 
 	// DATA
 
