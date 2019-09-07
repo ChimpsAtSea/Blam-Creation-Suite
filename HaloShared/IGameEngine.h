@@ -182,7 +182,7 @@ private:
 	struct /*VFT*/ IGameEngine_vtbl
 	{
 		__int64(__fastcall* InitGraphics)(IGameEngine*, struct ID3D11Device*, struct ID3D11DeviceContext*, struct IDXGISwapChain*, struct IDXGISwapChain*);
-		HANDLE(__fastcall* InitThread)(IGameEngine*, struct IGameEngineHost*, struct s_game_launch_data*);
+		HANDLE(__fastcall* InitThread)(IGameEngine*, IGameEngineHost*, s_game_launch_data*);
 		__int64(__fastcall* Member02)(IGameEngine*, int, _QWORD*);
 		__int64(__fastcall* Destructor)(IGameEngine*);
 		void(__fastcall* Member04)(IGameEngine*);
