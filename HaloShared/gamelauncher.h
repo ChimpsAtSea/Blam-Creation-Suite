@@ -42,7 +42,7 @@ public:
 	static uint64_t GetLibraryFileVersion(const char* pFilename);
 	static void LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pHopperGameVariantName, s_map_variant& out_map_variant);
 	static void LoadHopperGameVariant(IDataAccess* pDataAccess, const char* pHopperGameVariantName, s_game_variant& out_game_variant);
-	static void LoadPreviousGamestate(const char* pFilename, s_game_launch_data& game_launch_data);
+	static void LoadPreviousGamestate(const char* pFilename, GameContext& gameContext);
 	static char* s_pTerminationFlag;
 	static bool s_gameManuallyKilled;
 	static bool s_hideWindowOnStartup; 

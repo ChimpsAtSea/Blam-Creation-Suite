@@ -50,7 +50,7 @@ static_assert(SessionInfoSize == 0x238);
 
 
 #pragma pack(push, 1)
-struct s_game_launch_data
+struct GameContext
 {
 	int32_t GameMode;
 	uint8_t GameVariantBuffer[115 * 1024] = {};
@@ -93,15 +93,15 @@ struct s_game_launch_data
 	uint32_t dword2B7C4 = 0;
 };
 #pragma pack(pop)
-static constexpr size_t s_game_launch_data_size = sizeof(s_game_launch_data);
-static_assert(s_game_launch_data_size == 0x2B7C8, "");
-static_assert(offsetof(s_game_launch_data, s_game_launch_data::pGameHandle) == 0x2B740, "");
+static constexpr size_t GameContext_size = sizeof(GameContext);
+static_assert(GameContext_size == 0x2B7C8, "");
+static_assert(offsetof(GameContext, GameContext::pGameHandle) == 0x2B740, "");
 
 class IGameEngine
 {
 public:
 	virtual __int64 __fastcall InitGraphics(ID3D11Device*, ID3D11DeviceContext*, IDXGISwapChain*, IDXGISwapChain*) = 0;
-	virtual HANDLE __fastcall InitThread(class IGameEngineHost*, s_game_launch_data*) = 0;
+	virtual HANDLE __fastcall InitThread(class IGameEngineHost*, GameContext*) = 0;
 	virtual __int64 __fastcall Member02(int, _QWORD*) = 0;
 	virtual __int64 __fastcall Destructor() = 0;
 	virtual void __fastcall Member04() = 0;
