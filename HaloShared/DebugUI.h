@@ -13,9 +13,10 @@ public:
 	static void RenderFrame();
 	static void ToggleUI();
 	static void Show();
+	static void Hide();
 	static void WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static void RegisterCallback(DebugUICallback* pDebugUICallback);
-	static void RemoveCallback(DebugUICallback* pDebugUICallback);
+	static void UnregisterCallback(DebugUICallback* pDebugUICallback);
 
 private:
 	typedef HRESULT(__fastcall* IDXGISwapChainPresent)(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);

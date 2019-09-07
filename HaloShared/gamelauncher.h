@@ -3,6 +3,14 @@
 class GameLauncher
 {
 public:
+	enum class CurrentState
+	{
+		eInactive,
+		eMainMenu,
+		eWaitingToRun,
+		eRunning,
+		eFinished
+	};
 
 	typedef void(GameLaunchCallback)(HaloGameID gameID);
 	typedef void(GameShutdownCallback)(HaloGameID gameID);
@@ -11,12 +19,19 @@ public:
 	static void Deinit();
 	static void RegisterTerminationValue(char& rTerminationReference);
 
+	static bool HasCommandLineArg(const char* pArgument);
 	static void Terminate();
 	static void RegisterGameLaunchCallback(HaloGameID gameID, GameLaunchCallback gameLaunchCallback);
 	static void RegisterGameShutdownCallback(HaloGameID gameID, GameShutdownCallback gameShutdownCallback);
 	static void LoadSettings();
+	static int Run(HINSTANCE hInstance, LPSTR lpCmdLine);
 	static void LaunchGame(const char* pGameLibrary);
+	static void SetState(CurrentState state);
 	static void Update();
+	static void Render();
+	static void BeginRender();
+	static void EndRender();
+	static void DrawMenu();
 	
 
 
@@ -32,13 +47,8 @@ public:
 	static bool s_gameManuallyKilled;
 	static bool s_hideWindowOnStartup; 
 
-	enum class CurrentState
-	{
-		eInactive,
-		eRunning,
-		eFinished
-	};
-	static CurrentState s_currentGameState;
+
+	static CurrentState s_currentState;
 	// #TODO: Implement a map and vector for this!!!
 	static GameLaunchCallback* s_gameLaunchCallback;
 	static GameShutdownCallback* s_gameShutdownCallback;

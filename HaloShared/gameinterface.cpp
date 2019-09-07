@@ -18,5 +18,5 @@ GameInterface::GameInterface(const char* pLibFileName)
 
 GameInterface::~GameInterface()
 {
-	FreeLibrary(hGameModule);
+	//FreeLibrary(hGameModule);
 }

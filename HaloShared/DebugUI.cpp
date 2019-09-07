@@ -114,6 +114,11 @@ void DebugUI::Show()
 	s_visible = true;
 }
 
+void DebugUI::Hide()
+{
+	s_visible = false;
+}
+
 void DebugUI::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	if (s_initialised)
@@ -147,13 +152,8 @@ void DebugUI::RegisterCallback(DebugUICallback* pDebugUICallback)
 	s_pCallbacks.push_back(pDebugUICallback);
 }
 
-void DebugUI::RemoveCallback(DebugUICallback* pDebugUICallback)
+void DebugUI::UnregisterCallback(DebugUICallback* pDebugUICallback)
 {
-	for (DebugUICallback* pCurrentCallback : s_pCallbacks)
-	{
-		if (pCurrentCallback == pDebugUICallback)
-		{
-			// #TODO: Remove the callback
-		}
-	}
+	auto callbacksNewEnd = std::remove(s_pCallbacks.begin(), s_pCallbacks.end(), pDebugUICallback);
+	s_pCallbacks.erase(callbacksNewEnd, s_pCallbacks.end());
 }

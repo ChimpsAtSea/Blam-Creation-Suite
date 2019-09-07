@@ -13,6 +13,7 @@ public:
 		, m_offset(offset)
 		, m_pNextFunctionHook(nullptr)
 		, m_isActive(true)
+		, m_isHooked(false)
 		, m_name(pName)
 		, m_find_offset_func(find_offset_func)
 		, m_pCallback(nullptr)
@@ -37,6 +38,7 @@ public:
 	size_t m_offset;
 	HaloGameID m_gameID;
 	bool m_isActive;
+	bool m_isHooked;
 	FunctionHookCallback* m_pCallback;
 	void* m_pCallbackUserData;
 	const char* m_name;

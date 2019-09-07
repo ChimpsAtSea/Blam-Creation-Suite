@@ -42,9 +42,6 @@ void patch_out_gameenginehostcallback_mov_rcx(HaloGameID id, intptr_t offset)
 	// nop
 	// nop
 
-	assert(pMovAttack[0] == 0x48i8);
-	assert(pMovAttack[1] == 0x8Bi8);
-
 	char bytes[] =
 	{
 		0x48i8, 0x31i8, 0xc9i8,	// xor rcx, rcx
@@ -71,9 +68,6 @@ void patch_out_gameenginehostcallback_mov_rsi(HaloGameID id, intptr_t offset)
 	// nop
 	// nop
 	// nop
-
-	assert(pMovAttack[0] == 0x48i8);
-	assert(pMovAttack[1] == 0x8Bi8);
 
 	char bytes[] =
 	{
@@ -194,6 +188,15 @@ FunctionHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restric
 // network functionality
 #include "haloreach.network.inl"
 
+#define COMBINE1(X,Y) X##Y
+#define COMBINE(X,Y) COMBINE1(X,Y)
+#define RUNONCE(...) \
+static bool COMBINE(__runonceflag_, __LINE__) = false; \
+if (COMBINE(__runonceflag_, __LINE__) == false) \
+{ \
+	__VA_ARGS__; \
+	COMBINE(__runonceflag_, __LINE__) = true; \
+} (void)(0)
 
 
 // #TODO: Move inside of gamehostcallback
@@ -498,9 +501,9 @@ void init_halo_reach(HaloGameID gameID)
 
 	}
 
-	create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer);
-	create_dll_hook("WS2_32.dll", "bind", bindHook, bindPointer);
-	create_dll_hook("WS2_32.dll", "sendto", sendtoHook, sendtoPointer);
+	RUNONCE(create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer));
+	RUNONCE(create_dll_hook("WS2_32.dll", "bind", bindHook, bindPointer));
+	RUNONCE(create_dll_hook("WS2_32.dll", "sendto", sendtoHook, sendtoPointer));
 	sub_1800AE4E0.SetIsActive(isNetworkingPatchActive);
 
 	DataReferenceBase::InitTree(gameID);
@@ -513,6 +516,8 @@ void init_halo_reach(HaloGameID gameID)
 
 void deinit_halo_reach(HaloGameID gameID)
 {
+	DebugUI::UnregisterCallback(halo_reach_debug_callback);
+
 	init_detours();
 
 	FunctionHookBase::DeinitTree(gameID);

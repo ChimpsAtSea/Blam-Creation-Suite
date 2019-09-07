@@ -27,7 +27,7 @@ void FunctionHookBase::DeinitTree(HaloGameID gameID)
 
 FunctionHookBase* FunctionHookBase::InitNode(HaloGameID gameID)
 {
-	if ((gameID == m_gameID || (m_gameID == HaloGameID::NotSet && m_find_offset_func)) && m_isActive)
+	if ((gameID == m_gameID || (m_gameID == HaloGameID::NotSet && m_find_offset_func)) && m_isActive && !m_isHooked)
 	{
 		if (m_offset == 0 && m_find_offset_func)
 		{
@@ -62,6 +62,8 @@ FunctionHookBase* FunctionHookBase::InitNode(HaloGameID gameID)
 			populate_function_ptr(GetHaloExecutableString(gameID), GetHaloBaseAddress(gameID), m_offset, rBase);
 			WriteLineVerbose("Created function pointer for %s", pFunctionName);
 		}
+
+		m_isHooked = true;
 	}
 	return m_pNextFunctionHook;
 }

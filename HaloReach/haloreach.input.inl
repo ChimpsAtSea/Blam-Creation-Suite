@@ -359,6 +359,12 @@ struct Binds
 	Bind bindingsBuffer[256];
 	int Count = 0;
 
+	void Reset()
+	{
+		ZeroMemory(&bindingsBuffer, sizeof(bindingsBuffer));
+		Count = 0;
+	}
+
 	void Add(e_game_action game_action, e_key_code key_code)
 	{
 		assert(Count < _countof(bindingsBuffer));
@@ -378,6 +384,7 @@ struct Binds
 
 void ReadInputBindings()
 {
+	g_Binds.Reset();
 	g_Binds.Add(_game_action_jump, _key_code_space);
 	g_Binds.Add(_game_action_switch_grenade, _key_code_g);
 	g_Binds.Add(_game_action_switch_weapon, _key_code_c);

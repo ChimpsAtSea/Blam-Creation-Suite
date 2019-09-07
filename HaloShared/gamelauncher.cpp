@@ -4,7 +4,7 @@
 
 bool GameLauncher::s_gameManuallyKilled = false;
 bool GameLauncher::s_hideWindowOnStartup = false;
-GameLauncher::CurrentState GameLauncher::s_currentGameState = GameLauncher::CurrentState::eInactive;
+GameLauncher::CurrentState GameLauncher::s_currentState = GameLauncher::CurrentState::eInactive;
 GameLauncher::GameLaunchCallback* GameLauncher::s_gameLaunchCallback = nullptr;
 GameLauncher::GameShutdownCallback* GameLauncher::s_gameShutdownCallback;
 
@@ -64,21 +64,21 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 	bool isDebug = false;
 #endif
 
-	if (strstr(lpCmdLine, "-hidesplash") == nullptr)
+	if (GameLauncher::HasCommandLineArg("-hidesplash"))
 	{
 		SplashScreen::Create();
 		s_hideWindowOnStartup = true;
 	}
 
-	if ((strstr(lpCmdLine, "-showconsole") || isDebug) && !strstr(lpCmdLine, "-hideconsole"))
+	if ((GameLauncher::HasCommandLineArg("-showconsole") || isDebug) && !GameLauncher::HasCommandLineArg("-hideconsole"))
 	{
 		AllocConsole();
 		FILE* pStdOut = freopen("CONOUT$", "w", stdout);
 		assert(pStdOut);
-		SetConsoleTitleA("Halo Reach Console");
+		SetConsoleTitleA("Opus");
 	}
 
-	if (strstr(lpCmdLine, "-waitfordebugger"))
+	if (GameLauncher::HasCommandLineArg("-waitfordebugger"))
 	{
 		WriteLineVerbose("Waiting for debugger to attach");
 		while (!IsDebuggerPresent()) { Sleep(1); }
@@ -126,6 +126,11 @@ void GameLauncher::Deinit()
 void GameLauncher::RegisterTerminationValue(char& rTerminationReference)
 {
 	s_pTerminationFlag = &rTerminationReference;
+}
+
+bool GameLauncher::HasCommandLineArg(const char* pArgument)
+{
+	return strstr(GetCommandLineA(), pArgument) != 0;
 }
 
 void GameLauncher::Terminate()
@@ -202,11 +207,54 @@ void GameLauncher::LoadSettings()
 	}
 }
 
+void CreateSwapchainAndBackbuffer(IDXGISwapChain*& pSwapchain, ID3D11RenderTargetView*& pBackBuffer)
+{
+	if (!pSwapchain)
+	{
+		GameRender::CreateSwapchain(pSwapchain);
+	}
+
+	// get the address of the back buffer
+	ID3D11Texture2D* pBackBufferTexture;
+	pSwapchain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)& pBackBufferTexture);
+
+	// use the back buffer address to create the render target
+	GameRender::s_pDevice->CreateRenderTargetView(pBackBufferTexture, NULL, &pBackBuffer);
+	pBackBufferTexture->Release();
+
+	// set the render target as the back buffer
+	GameRender::s_pDeviceContext->OMSetRenderTargets(1, &pBackBuffer, NULL);
+}
+
+
+
+
+ID3D11RenderTargetView* s_pMenuBackBuffer;    // global declaration
+
+int GameLauncher::Run(HINSTANCE hInstance, LPSTR lpCmdLine)
+{
+	SetState(CurrentState::eMainMenu);
+
+	GameLauncher::Init(hInstance, lpCmdLine);
+	//GameLauncher::LaunchGame("haloreach.dll");
+
+	CreateSwapchainAndBackbuffer(GameRender::s_pSwapChain, s_pMenuBackBuffer);
+
+	while (true)
+	{
+		SplashScreen::Destroy();
+		Update();
+		Render();
+	}
+	GameLauncher::Deinit();
+	return 0;
+}
+
 void GameLauncher::LaunchGame(const char* pGameLibrary)
 {
 	LoadSettings(); // #TODO: Replace with UI
 
-	s_currentGameState = CurrentState::eInactive;
+	s_currentState = CurrentState::eInactive;
 
 	GameInterface gameInterface = GameInterface(pGameLibrary);
 	HaloGameID gameID = GetLibraryHaloGameID(pGameLibrary);
@@ -256,7 +304,7 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 
 
-		int playerCount = strstr(GetCommandLineA(), "-multiplayer") ? 2 : 1;
+		int playerCount = GameLauncher::HasCommandLineArg("-multiplayer") ? 2 : 1;
 		game_launch_data.SessionInfo.PeerIdentifierCount = playerCount;
 		game_launch_data.SessionInfo.SessionMembership.Count = playerCount;
 
@@ -284,7 +332,7 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 		{
 			IGameEngineHost::CreateServerConnection();
 
-			SetConsoleTitleA("Halo Reach Console | HOST");
+			SetConsoleTitleA("Opus | HOST");
 
 			game_launch_data.MapId = g_LaunchMapId;
 			game_launch_data.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
@@ -312,9 +360,17 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 	CustomWindow::SetPostMessageThreadId(hMainGameThread);
 
-	while (s_currentGameState != CurrentState::eFinished)
+	while (true)
 	{
-		Update();
+		switch (s_currentState)
+		{
+		case GameLauncher::CurrentState::eWaitingToRun:
+		case GameLauncher::CurrentState::eRunning:
+		case GameLauncher::CurrentState::eInactive:
+			Update();
+			continue;
+		}
+		break;
 	}
 
 	WaitForSingleObject(hMainGameThread, INFINITE);
@@ -330,18 +386,109 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 	//free(pHaloReachDataAccess);
 }
 
+void GameLauncher::SetState(CurrentState state)
+{
+	if (s_currentState == state)
+	{
+		return;
+	}
+
+	s_currentState = state;
+
+	switch (state)
+	{
+	case CurrentState::eInactive:
+		break;
+	case CurrentState::eMainMenu:
+		DebugUI::RegisterCallback(DrawMenu);
+		break;
+	case CurrentState::eWaitingToRun:
+		break;
+	case CurrentState::eRunning:
+		DebugUI::UnregisterCallback(DrawMenu);
+		DebugUI::Hide();
+		LaunchGame("haloreach.dll");
+		break;
+	case CurrentState::eFinished:
+		break;
+	}
+}
+
 void GameLauncher::Update()
 {
 	MouseInput::Acquire(); // have to try to acquire mouse here as this thread updates the window messages
 	CustomWindow::Update();
 
-	// keep updating state while the game is not running
-	if (s_currentGameState == CurrentState::eFinished)
+	switch (GameLauncher::s_currentState)
 	{
+	case CurrentState::eRunning:
+		
+		break;
+	case CurrentState::eWaitingToRun:
+		SetState(CurrentState::eRunning);
+		break;
+	case CurrentState::eInactive:
+	case CurrentState::eFinished:
+		SetState(CurrentState::eMainMenu);
+		break;
+	case CurrentState::eMainMenu:
+		MouseInput::SetAcquireMode(MouseAcquireMode::UI);
+		DebugUI::Show();
 		MouseInput::Read();
+		break;
 	}
 
 	Sleep(1); // prevent 100% CPU
+}
+
+void GameLauncher::Render()
+{
+	BeginRender();
+	DebugUI::RenderFrame();
+	EndRender();
+}
+
+void GameLauncher::BeginRender()
+{
+	// clear the back buffer to a deep blue
+	float clearColor[] = { 0.0f, 0.2f, 0.4f, 1.0f };
+	GameRender::s_pDeviceContext->ClearRenderTargetView(s_pMenuBackBuffer, clearColor);
+}
+
+void GameLauncher::EndRender()
+{
+	GameRender::s_pSwapChain->Present(0, 0);
+}
+
+void GameLauncher::DrawMenu()
+{
+	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(1876, 1000), ImGuiCond_FirstUseEver);
+
+	// Main body of the Demo window starts here.
+	static bool isReachDebugWindowOpen = true;
+	int windowFlags = 0;
+	windowFlags |= ImGuiWindowFlags_MenuBar;
+	windowFlags |= ImGuiWindowFlags_NoCollapse;
+	windowFlags |= ImGuiWindowFlags_NoTitleBar;
+	windowFlags |= ImGuiWindowFlags_NoMove;
+	windowFlags |= ImGuiWindowFlags_NoResize;
+	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
+	//windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
+	
+	if (!ImGui::Begin("Main Menu", &isReachDebugWindowOpen, windowFlags))
+	{
+		// Early out if the window is collapsed, as an optimization.
+		ImGui::End();
+		return;
+	}
+
+	if (ImGui::Button("Start game")) 
+	{
+		SetState(CurrentState::eWaitingToRun);
+	}
+
+	ImGui::End();
 }
 
 void GameLauncher::InitSockets()

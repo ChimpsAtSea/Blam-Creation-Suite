@@ -12,13 +12,13 @@ void MouseInput::SetAcquireMode(MouseAcquireMode acquireMode)
 {
 	switch (acquireMode)
 	{
-	case UI:
+	case MouseAcquireMode::UI:
 		s_targetAcquireMode = DISCL_BACKGROUND | DISCL_NONEXCLUSIVE;
 		break;
-	case Exclusive:
+	case MouseAcquireMode::Exclusive:
 		s_targetAcquireMode = DISCL_FOREGROUND | DISCL_EXCLUSIVE;
 		break;
-	case None:
+	case MouseAcquireMode::None:
 	default:
 		s_targetAcquireMode = 0;
 		break;
@@ -168,6 +168,6 @@ float MouseInput::GetMouseY()
 
 bool MouseInput::GetMouseButton(MouseInputButton button)
 {
-	bool buttonPressed = (s_mouseState2.rgbButtons[button] & 0b10000000) != 0;
+	bool buttonPressed = (s_mouseState2.rgbButtons[uint32_t(button)] & 0b10000000) != 0;
 	return buttonPressed;
 }

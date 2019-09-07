@@ -189,6 +189,33 @@ HRESULT CreateSwapChainDetour(
 	return CreateSwapChainResult;
 }
 
+void GameRender::CreateSwapchain(IDXGISwapChain*& prSwapChain)
+{
+	s_SwapchainDescription = {};
+
+	SIZE size = {};
+	CustomWindow::GetWindowSize(size);
+
+	s_SwapchainDescription.BufferDesc.Width = size.cx;
+	s_SwapchainDescription.BufferDesc.Height = size.cy;
+	s_SwapchainDescription.BufferDesc.RefreshRate.Numerator = 0;
+	s_SwapchainDescription.BufferDesc.RefreshRate.Denominator = 0;
+	s_SwapchainDescription.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	s_SwapchainDescription.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+	s_SwapchainDescription.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+	s_SwapchainDescription.SampleDesc.Count = 1;
+	s_SwapchainDescription.SampleDesc.Quality = 0;
+	s_SwapchainDescription.BufferUsage = DXGI_USAGE_SHADER_INPUT | DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	s_SwapchainDescription.BufferCount = 1;
+	s_SwapchainDescription.OutputWindow = CustomWindow::GetWindowHandle();
+	s_SwapchainDescription.Windowed = 1;
+	s_SwapchainDescription.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+	s_SwapchainDescription.Flags = 0;
+
+	s_pFactory->CreateSwapChain(s_pDevice, &s_SwapchainDescription, &prSwapChain);
+	assert(prSwapChain != nullptr);
+}
+
 void GameRender::Init()
 {
 
@@ -250,33 +277,11 @@ void GameRender::Init()
 
 	if (createSwapchain)
 	{
-		s_SwapchainDescription = {};
-
-		SIZE size = {};
-		CustomWindow::GetWindowSize(size);
-
-		s_SwapchainDescription.BufferDesc.Width = size.cx;
-		s_SwapchainDescription.BufferDesc.Height = size.cy;
-		s_SwapchainDescription.BufferDesc.RefreshRate.Numerator = 0;
-		s_SwapchainDescription.BufferDesc.RefreshRate.Denominator = 0;
-		s_SwapchainDescription.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-		s_SwapchainDescription.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-		s_SwapchainDescription.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-		s_SwapchainDescription.SampleDesc.Count = 1;
-		s_SwapchainDescription.SampleDesc.Quality = 0;
-		s_SwapchainDescription.BufferUsage = DXGI_USAGE_SHADER_INPUT | DXGI_USAGE_RENDER_TARGET_OUTPUT;
-		s_SwapchainDescription.BufferCount = 1;
-		s_SwapchainDescription.OutputWindow = CustomWindow::GetWindowHandle();
-		s_SwapchainDescription.Windowed = 1;
-		s_SwapchainDescription.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-		s_SwapchainDescription.Flags = 0;
-
-		s_pFactory->CreateSwapChain(s_pDevice, &s_SwapchainDescription, &s_pSwapChain);
-		assert(s_pSwapChain != nullptr);
+		CreateSwapchain(s_pSwapChain);
 	}
 
 	DebugUI::Init(s_pSwapChain, s_pDevice, s_pDeviceContext);
-	if (strstr(GetCommandLineA(), "-showui"))
+	if (GameLauncher::HasCommandLineArg("-showui"))
 	{
 		DebugUI::Show();
 	}

@@ -9,6 +9,7 @@ public:
 	static DXGI_SWAP_CHAIN_DESC s_SwapchainDescription;
 	static IDXGIFactory1* s_pFactory;
 
+	static void CreateSwapchain(IDXGISwapChain*& s_pSwapChain);
 	static void Init();
 	static void Deinit();
 };

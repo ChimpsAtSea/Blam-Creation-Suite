@@ -1,13 +1,13 @@
 #pragma once
 
-enum MouseInputButton
+enum class MouseInputButton
 {
 	Left,
 	Right,
 	Middle,
 };
 
-enum MouseAcquireMode
+enum class MouseAcquireMode
 {
 	None,
 	UI,

@@ -15,12 +15,12 @@ FunctionHookEx<main_thread_routine_offset, void *__stdcall ()> main_thread_routi
 {
 	// #TODO: Move GameLauncher::g_CurrentGameState
 	WriteLineVerbose("Starting game...");
-	GameLauncher::s_currentGameState = GameLauncher::CurrentState::eRunning;
+	GameLauncher::s_currentState = GameLauncher::CurrentState::eRunning;
 	g_isHooked = true;
 	auto result = main_thread_routine();
 	WriteLineVerbose("Game finished...");
 	WriteLineVerbose("Last status: [0x%X] %s", g_lastGameLoadStatus, g_lastGameLoadStatusStr);
-	GameLauncher::s_currentGameState = GameLauncher::CurrentState::eFinished;
+	GameLauncher::s_currentState = GameLauncher::CurrentState::eFinished;
 	g_isHooked = false;
 	return result;
 } };
