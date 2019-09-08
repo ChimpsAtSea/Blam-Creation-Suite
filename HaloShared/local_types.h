@@ -15,7 +15,7 @@
 
 struct _RTL_CRITICAL_SECTION_DEBUG;
 struct IGameEngineOld;
-struct s_game_launch_data;
+struct GameContext;
 
 typedef void(NullSubFunc)();
 typedef __int64(ZeroSubFunc)();
@@ -66,13 +66,13 @@ struct UnknownStringType
 
 
 
-//struct s_game_launcher
+//struct GameLauncher
 //{
 //	_DWORD dword0;
 //	_DWORD dword4;
-//	s_game_launch_data GameLaunchData;
+//	GameContext m_GameContext;
 //};
-//static_assert(sizeof(s_game_launcher) == 0x2B7D0, "");
+//static_assert(sizeof(GameLauncher) == 0x2B7D0, "");
 
 enum e_load_state
 {
