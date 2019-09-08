@@ -7,6 +7,10 @@ bool GameLauncher::s_hideWindowOnStartup = false;
 GameLauncher::CurrentState GameLauncher::s_currentState = GameLauncher::CurrentState::eInactive;
 GameLauncher::GameLaunchCallback* GameLauncher::s_gameLaunchCallback = nullptr;
 GameLauncher::GameShutdownCallback* GameLauncher::s_gameShutdownCallback;
+GameInterface* GameLauncher::s_pGameInterface = nullptr;
+HaloGameID GameLauncher::s_gameID = HaloGameID::NotSet;
+IGameEngine* GameLauncher::s_pHaloReachEngine = nullptr;
+IDataAccess* GameLauncher::s_pHaloReachDataAccess = nullptr;
 
 char* GameLauncher::s_pTerminationFlag = nullptr;
 
@@ -15,6 +19,73 @@ e_game_mode g_LaunchGameMode = _game_mode_survival;
 e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
 const char* g_LaunchHopperGameVariant = nullptr;
 const char* g_LaunchHopperMapVariant = nullptr;
+
+void GameLauncher::LaunchGame(const char* pGameLibrary)
+{
+	// make sure the runtime information is in a valid state before trying to run another game
+	assert(s_pHaloReachEngine == nullptr);
+	assert(s_pHaloReachDataAccess == nullptr);
+	assert(s_gameID == HaloGameID::NotSet);
+	assert(s_pGameInterface == nullptr);
+
+	LoadSettings(); // #TODO: Replace with UI
+
+	s_currentState = CurrentState::eInactive;
+
+	GameInterface gameInterface = GameInterface(pGameLibrary);
+	s_pGameInterface = &gameInterface;
+	s_gameID = GetLibraryHaloGameID(pGameLibrary);
+
+	// #TODO: Game specific version of this!!!
+	if (s_gameLaunchCallback != nullptr)
+	{
+		s_gameLaunchCallback(s_gameID);
+	}
+
+	__int64 createGameEngineResult = gameInterface.CreateGameEngine(&s_pHaloReachEngine);
+	__int64 createDataAccessResult = gameInterface.CreateDataAccess(&s_pHaloReachDataAccess);
+	assert(s_pHaloReachEngine);
+	assert(s_pHaloReachDataAccess);
+
+	GameContext gameContext = {};
+	SetupGameContext(gameContext);
+
+	s_pHaloReachEngine->InitGraphics(GameRender::s_pDevice, GameRender::s_pDeviceContext, GameRender::s_pSwapChain, GameRender::s_pSwapChain);
+	HANDLE hMainGameThread = s_pHaloReachEngine->InitThread(&IGameEngineHost::g_gameEngineHost, &gameContext);
+
+	CustomWindow::SetPostMessageThreadId(hMainGameThread);
+
+	while (true)
+	{
+		switch (s_currentState)
+		{
+		case GameLauncher::CurrentState::eWaitingToRun:
+		case GameLauncher::CurrentState::eRunning:
+		case GameLauncher::CurrentState::eInactive:
+			Update();
+			continue;
+		}
+		break;
+	}
+
+	WaitForSingleObject(hMainGameThread, INFINITE);
+
+	if (s_gameShutdownCallback)
+	{
+		s_gameShutdownCallback(s_gameID);
+	}
+
+	s_pHaloReachEngine->Destructor();
+	//free(pHaloReachEngine);
+	s_pHaloReachDataAccess->__vftable->Free(s_pHaloReachDataAccess);
+	//free(pHaloReachDataAccess);
+
+	// reset runtime information after we've destroyed the engine
+	s_pGameInterface = nullptr;
+	s_gameID = HaloGameID::NotSet;
+	s_pHaloReachEngine = nullptr;
+	s_pHaloReachDataAccess = nullptr;
+}
 
 typedef BOOL(EnumWindowsFunc)(WNDENUMPROC lpEnumFunc, LPARAM lParam);
 EnumWindowsFunc* EnumWindowsPointer = nullptr;
@@ -250,34 +321,11 @@ int GameLauncher::Run(HINSTANCE hInstance, LPSTR lpCmdLine)
 	return 0;
 }
 
-void GameLauncher::LaunchGame(const char* pGameLibrary)
+void GameLauncher::SetupGameContext(GameContext& rGameContext)
 {
-	LoadSettings(); // #TODO: Replace with UI
-
-	s_currentState = CurrentState::eInactive;
-
-	GameInterface gameInterface = GameInterface(pGameLibrary);
-	HaloGameID gameID = GetLibraryHaloGameID(pGameLibrary);
-
-	// #TODO: Game specific version of this!!!
-	if (s_gameLaunchCallback != nullptr)
-	{
-		s_gameLaunchCallback(gameID);
-	}
-
-	IGameEngine* pHaloReachEngine = nullptr;
-	IDataAccess* pHaloReachDataAccess = nullptr;
-
-	__int64 createGameEngineResult = gameInterface.CreateGameEngine(&pHaloReachEngine);
-	__int64 createDataAccessResult = gameInterface.CreateDataAccess(&pHaloReachDataAccess);
-
-	assert(pHaloReachEngine);
-	assert(pHaloReachDataAccess);
-
-	GameContext gameContext = {};
-	gameContext.pGameHandle = GetModuleHandle("HaloReach.dll");
+	rGameContext.pGameHandle = GetModuleHandle("HaloReach.dll");
 	char byte2B678Data[] = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-	memcpy(gameContext.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
+	memcpy(rGameContext.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
 
 	{
 		uint64_t SquadAddress = 0x2F385E2E95D4F33E;
@@ -297,93 +345,63 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 			HostAddress = ipv4_address;
 		}
 
-		gameContext.SessionInfo.SquadAddress = SquadAddress; // this is set
-		gameContext.SessionInfo.IsHost = !strstr(GetCommandLineA(), "-client"); // if client, is false
+		rGameContext.SessionInfo.SquadAddress = SquadAddress; // this is set
+		rGameContext.SessionInfo.IsHost = !strstr(GetCommandLineA(), "-client"); // if client, is false
 
-		gameContext.GameMode = g_LaunchGameMode;
+		rGameContext.GameMode = g_LaunchGameMode;
 
 
 
 		int playerCount = GameLauncher::HasCommandLineArg("-multiplayer") ? 2 : 1;
-		gameContext.SessionInfo.PeerIdentifierCount = playerCount;
-		gameContext.SessionInfo.SessionMembership.Count = playerCount;
+		rGameContext.SessionInfo.PeerIdentifierCount = playerCount;
+		rGameContext.SessionInfo.SessionMembership.Count = playerCount;
 
-		gameContext.SessionInfo.PeerIdentifiers[0] = 0;
-		gameContext.SessionInfo.PeerIdentifiers[1] = 1;
+		rGameContext.SessionInfo.PeerIdentifiers[0] = 0;
+		rGameContext.SessionInfo.PeerIdentifiers[1] = 1;
 		{
-			gameContext.SessionInfo.SessionMembership.Members[0].MachineIdentifier = 0;
-			gameContext.SessionInfo.SessionMembership.Members[0].Team = 0;
-			gameContext.SessionInfo.SessionMembership.Members[0].PlayerAssignedTeam = 0;
-			gameContext.SessionInfo.SessionMembership.Members[0].SecureAddress = HostAddress;
+			rGameContext.SessionInfo.SessionMembership.Members[0].MachineIdentifier = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[0].Team = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[0].PlayerAssignedTeam = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[0].SecureAddress = HostAddress;
 		}
-		if (gameContext.SessionInfo.SessionMembership.Count > 1)
+		if (rGameContext.SessionInfo.SessionMembership.Count > 1)
 		{
-			gameContext.SessionInfo.SessionMembership.Members[1].MachineIdentifier = 0;
-			gameContext.SessionInfo.SessionMembership.Members[1].Team = 0;
-			gameContext.SessionInfo.SessionMembership.Members[1].PlayerAssignedTeam = 0;
-			gameContext.SessionInfo.SessionMembership.Members[1].SecureAddress = ClientAddress;
+			rGameContext.SessionInfo.SessionMembership.Members[1].MachineIdentifier = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[1].Team = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[1].PlayerAssignedTeam = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[1].SecureAddress = ClientAddress;
 		}
-		if (gameContext.SessionInfo.SessionMembership.Count > 2)
+		if (rGameContext.SessionInfo.SessionMembership.Count > 2)
 		{
 			FATAL_ERROR("Too many people need to add more data");
 		}
 
-		if (gameContext.SessionInfo.IsHost)
+		if (rGameContext.SessionInfo.IsHost)
 		{
 			IGameEngineHost::CreateServerConnection();
 
 			SetConsoleTitleA("Opus | HOST");
 
-			gameContext.MapId = g_LaunchMapId;
-			gameContext.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
+			rGameContext.MapId = g_LaunchMapId;
+			rGameContext.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
 
-			LoadHopperGameVariant(pHaloReachDataAccess, g_LaunchHopperGameVariant, *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer));
-			LoadHopperMapVariant(pHaloReachDataAccess, g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer));
-			LoadPreviousGamestate("gamestate.hdr", gameContext);
+			LoadHopperGameVariant(s_pHaloReachDataAccess, g_LaunchHopperGameVariant, *reinterpret_cast<s_game_variant*>(rGameContext.GameVariantBuffer));
+			LoadHopperMapVariant(s_pHaloReachDataAccess, g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(rGameContext.MapVariantBuffer));
+			LoadPreviousGamestate("gamestate.hdr", rGameContext);
 
-			gameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
-			//gameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
-			//gameContext.SessionInfo.HostAddress = HostAddress;
+			rGameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
+			//rGameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
+			//rGameContext.SessionInfo.HostAddress = HostAddress;
 		}
 		else
 		{
 			IGameEngineHost::CreateClientConnection();
 
-			gameContext.SessionInfo.LocalMachineID = ClientAddress; // this is set
-			gameContext.SessionInfo.HostAddress = HostAddress;
+			rGameContext.SessionInfo.LocalMachineID = ClientAddress; // this is set
+			rGameContext.SessionInfo.HostAddress = HostAddress;
 		}
-		IGameEngineHost::g_isHost = gameContext.SessionInfo.IsHost;
+		IGameEngineHost::g_isHost = rGameContext.SessionInfo.IsHost;
 	}
-
-	pHaloReachEngine->InitGraphics(GameRender::s_pDevice, GameRender::s_pDeviceContext, GameRender::s_pSwapChain, GameRender::s_pSwapChain);
-	HANDLE hMainGameThread = pHaloReachEngine->InitThread(&IGameEngineHost::g_gameEngineHost, &gameContext);
-
-	CustomWindow::SetPostMessageThreadId(hMainGameThread);
-
-	while (true)
-	{
-		switch (s_currentState)
-		{
-		case GameLauncher::CurrentState::eWaitingToRun:
-		case GameLauncher::CurrentState::eRunning:
-		case GameLauncher::CurrentState::eInactive:
-			Update();
-			continue;
-		}
-		break;
-	}
-
-	WaitForSingleObject(hMainGameThread, INFINITE);
-
-	if (s_gameShutdownCallback)
-	{
-		s_gameShutdownCallback(gameID);
-	}
-
-	pHaloReachEngine->Destructor();
-	//free(pHaloReachEngine);
-	pHaloReachDataAccess->__vftable->Free(pHaloReachDataAccess);
-	//free(pHaloReachDataAccess);
 }
 
 void GameLauncher::SetState(CurrentState state)

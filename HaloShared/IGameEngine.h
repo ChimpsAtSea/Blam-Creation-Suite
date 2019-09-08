@@ -137,9 +137,9 @@ public:
 	{ 
 		return impl.__vftable->InitGraphics(this, pDevice, pDeviceContext, pSwapchain, pFallbackSwapchain);
 	}
-	HANDLE __fastcall InitThread(class IGameEngineHost* pGameEngineHost, s_game_launch_data* pGameLaunchData)
+	HANDLE __fastcall InitThread(class IGameEngineHost* pGameEngineHost, GameContext* pGameContext)
 	{
-		return impl.__vftable->InitThread(this, pGameEngineHost, pGameLaunchData);
+		return impl.__vftable->InitThread(this, pGameEngineHost, pGameContext);
 	}
 	__int64 __fastcall Member02(int a1, _QWORD* a2)
 	{
@@ -201,7 +201,7 @@ private:
 	struct /*VFT*/ IGameEngine_vtbl
 	{
 		__int64(__fastcall* InitGraphics)(IGameEngine*, struct ID3D11Device*, struct ID3D11DeviceContext*, struct IDXGISwapChain*, struct IDXGISwapChain*);
-		HANDLE(__fastcall* InitThread)(IGameEngine*, IGameEngineHost*, s_game_launch_data*);
+		HANDLE(__fastcall* InitThread)(IGameEngine*, IGameEngineHost*, GameContext*);
 		__int64(__fastcall* Member02)(IGameEngine*, int, _QWORD*);
 		__int64(__fastcall* Destructor)(IGameEngine*);
 		void(__fastcall* Member04)(IGameEngine*);

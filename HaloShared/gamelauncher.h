@@ -25,6 +25,7 @@ public:
 	static void RegisterGameShutdownCallback(HaloGameID gameID, GameShutdownCallback gameShutdownCallback);
 	static void LoadSettings();
 	static int Run(HINSTANCE hInstance, LPSTR lpCmdLine);
+	static void SetupGameContext(GameContext& gameContext);
 	static void LaunchGame(const char* pGameLibrary);
 	static void SetState(CurrentState state);
 	static void Update();
@@ -52,6 +53,10 @@ public:
 	// #TODO: Implement a map and vector for this!!!
 	static GameLaunchCallback* s_gameLaunchCallback;
 	static GameShutdownCallback* s_gameShutdownCallback;
+	static GameInterface* s_pGameInterface;
+	static HaloGameID s_gameID;
+	static IGameEngine* s_pHaloReachEngine;
+	static IDataAccess* s_pHaloReachDataAccess;
 	
 };
 
