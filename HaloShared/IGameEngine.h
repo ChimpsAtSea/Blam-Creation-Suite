@@ -179,6 +179,25 @@ public:
 	}
 
 private:
+	//pHaloReachEngine->Member02(0, 0); // pause
+	//pHaloReachEngine->Member02(1, 0); // unpause
+	//pHaloReachEngine->Member02(2, 0); // exit (immediate)
+	//pHaloReachEngine->Member02(3, 0); // restart
+	//pHaloReachEngine->Member02(4, 0); // restart
+	//pHaloReachEngine->Member02(5, 0); // reload controls
+	//pHaloReachEngine->Member02(6, 0); // crash...
+	//pHaloReachEngine->Member02(7, 0); // unknown
+	//pHaloReachEngine->Member02(8, 0); // unknown
+	//pHaloReachEngine->Member02(9, 0); // unknown
+	//pHaloReachEngine->Member02(10, 0); // unknown
+	//pHaloReachEngine->Member02(11, 0); // unknown
+	//pHaloReachEngine->Member02(12, 0); // restart round?
+	//pHaloReachEngine->Member02(13, 0); // unknown
+	//pHaloReachEngine->Member02(14, 0); // unknown, potentially audio related. causes member 40 to run a lot of times. also causes massive memory spike!
+	//pHaloReachEngine->Member02(15, 0);
+	//pHaloReachEngine->Member02(16, (uint64*)200); // unknown this takes some argument
+	// Member09 looks same as Member02 but takes a string argument that is copied with strdup
+
 	struct /*VFT*/ IGameEngine_vtbl
 	{
 		__int64(__fastcall* InitGraphics)(IGameEngine*, struct ID3D11Device*, struct ID3D11DeviceContext*, struct IDXGISwapChain*, struct IDXGISwapChain*);
