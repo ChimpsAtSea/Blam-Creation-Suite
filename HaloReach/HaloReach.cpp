@@ -117,7 +117,7 @@ intptr_t g_controller_interfaces_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-c_controller_interface (&g_controller_interfaces)[4] = reference_symbol<c_controller_interface[4]>("g_controller_interfaces", g_controller_interfaces_offset);
+c_controller_interface(&g_controller_interfaces)[4] = reference_symbol<c_controller_interface[4]>("g_controller_interfaces", g_controller_interfaces_offset);
 
 intptr_t g_game_options_offset(HaloGameID gameID)
 {
@@ -128,7 +128,7 @@ intptr_t g_game_options_offset(HaloGameID gameID)
 	}
 	return ~intptr_t();
 }
-s_game_options&g_game_options = reference_symbol<s_game_options>("g_game_options", g_game_options_offset);
+s_game_options& g_game_options = reference_symbol<s_game_options>("g_game_options", g_game_options_offset);
 
 // HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830; g_gamepad_globals->unknown350
 HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018; // no equivalent
@@ -198,6 +198,16 @@ if (COMBINE(__runonceflag_, __LINE__) == false) \
 	COMBINE(__runonceflag_, __LINE__) = true; \
 } (void)(0)
 
+// this function runs to start the UI when the game engine host callback is null.
+FunctionHookVarArgs<HaloGameID::HaloReach_2019_Aug_20, 0x180495220, char(unsigned int a1, __int64 a2, __int64 a3, IGameEngineHost* a4, __int64 a5, __int64 a6, ...)> sub_180495220 = { "sub_180495220", [](unsigned int a1, __int64 a2, __int64 a3, IGameEngineHost* a4, __int64 a5, __int64 a6, ...)
+{
+	char result = sub_180495220(a1, a2, a3, a4, a5, a6);
+	WriteLineVerbose("sub_180495220: %i", (int)result);
+	return result;
+} };
+
+
+//char sub_180495220()
 
 // #TODO: Move inside of gamehostcallback
 void WriteGameState()
@@ -491,6 +501,18 @@ void init_halo_reach(HaloGameID gameID)
 		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011090, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
 		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011431, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
 		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011458, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
+
+		// this patches out the gameenginehostcallback to get the game to use its original pause menu
+		bool enableOriginalMenu = false;
+		sub_180495220.SetIsActive(enableOriginalMenu);
+		if(enableOriginalMenu)
+		{
+			// patch	mov r9, cs:g_pGameEngineHost
+			// to		xor r9, r9
+			nop_address(HaloGameID::HaloReach_2019_Aug_20, 0x180495158, 7);
+			char xor_r9_r9[] = { 0x4di8, 0x31i8, 0xc9i8 };
+			copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180495158, xor_r9_r9, sizeof(xor_r9_r9));
+		}
 
 		//if (!IGameEngineHost::g_isHost)
 		//{
