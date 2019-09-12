@@ -488,4 +488,76 @@ FunctionHookEx<sub_18003A740_offset, char __fastcall (__int64, __int64, __int64,
 } };
 
 
+intptr_t c_network_message_gateway__send_message_directed_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Aug_20: return 0x180078660;
+	}
+	return ~intptr_t();
+}
+const char *network_message_type_to_string(e_network_message_type network_message_type)
+{
+	switch (network_message_type)
+	{
+	case _network_message_type_ping: return"ping";
+	case _network_message_type_pong: return"pong";
+	case _network_message_type_broadcast_search: return"broadcast_search";
+	case _network_message_type_broadcast_reply: return"broadcast_reply";
+	case _network_message_type_connect_request: return"connect_request";
+	case _network_message_type_connect_refuse: return"connect_refuse";
+	case _network_message_type_connect_establish: return"connect_establish";
+	case _network_message_type_connect_closed: return"connect_closed";
+	case _network_message_type_join_request: return"join_request";
+	case _network_message_type_peer_connect: return"peer_connect";
+	case _network_message_type_join_abort: return"join_abort";
+	case _network_message_type_join_refuse: return"join_refuse";
+	case _network_message_type_leave_session: return"leave_session";
+	case _network_message_type_leave_acknowledge: return"leave_acknowledge";
+	case _network_message_type_session_disband: return"session_disband";
+	case _network_message_type_session_boot: return"session_boot";
+	case _network_message_type_host_handoff: return"host_handoff";
+	case _network_message_type_peer_handoff: return"peer_handoff";
+	case _network_message_type_host_transition: return"host_transition";
+	case _network_message_type_host_reestablish: return"host_reestablish";
+	case _network_message_type_host_decline: return"host_decline";
+	case _network_message_type_peer_reestablish: return"peer_reestablish";
+	case _network_message_type_peer_establish: return"peer_establish";
+	case _network_message_type_election: return"election";
+	case _network_message_type_election_refuse: return"election_refuse";
+	case _network_message_type_time_synchronize: return"time_synchronize";
+	case _network_message_type_membership_update: return"membership_update";
+	case _network_message_type_peer_properties: return"peer_properties";
+	case _network_message_type_delegate_leadership: return"delegate_leadership";
+	case _network_message_type_boot_machine: return"boot_machine";
+	case _network_message_type_player_add: return"player_add";
+	case _network_message_type_player_refuse: return"player_refuse";
+	case _network_message_type_player_remove: return"player_remove";
+	case _network_message_type_player_properties: return"player_properties";
+	case _network_message_type_parameters_update: return"parameters_update";
+	case _network_message_type_parameters_request: return"parameters_request";
+	case _network_message_type_security: return"security";
+	case _network_message_type_view_establishment: return"view_establishment";
+	case _network_message_type_player_acknowledge: return"player_acknowledge";
+	case _network_message_type_synchronous_update: return"synchronous_update";
+	case _network_message_type_synchronous_playback_control: return"synchronous_playback_control";
+	case _network_message_type_synchronous_actions: return"synchronous_actions";
+	case _network_message_type_synchronous_acknowledge: return"synchronous_acknowledge";
+	case _network_message_type_synchronous_join_catchup: return"synchronous_join_catchup";
+	case _network_message_type_game_results: return"game_results";
+	case _network_message_type_end_game: return"end_game";
+	case _network_message_type_test: return"test";
+	case _network_message_type_test_force_host_machine_name: return"test_force_host_machine_name";
+	case _network_message_type_update_queue_element: return "update_queue_element";
+	case _network_message_type_update_queue_element1: return "update_queue_element1";
+	default:
+		return "<unknown>";
+	}
+}
 
+FunctionHookEx<c_network_message_gateway__send_message_directed_offset, char __fastcall (struct c_network_message_gateway *thisptr, _WORD *a2, e_network_message_type network_message_type, unsigned int a4, __int64 a5)> c_network_message_gateway__send_message_directed =
+{ "c_network_message_gateway::send_message_directed", [](struct c_network_message_gateway *thisptr, _WORD *a2, e_network_message_type network_message_type, unsigned int a4, __int64 a5)
+{
+	WriteLineVerbose("c_network_message_gateway::send_message_directed [%s]", network_message_type_to_string(network_message_type));
+	return c_network_message_gateway__send_message_directed(thisptr, a2, network_message_type, a4, a5);
+} };
