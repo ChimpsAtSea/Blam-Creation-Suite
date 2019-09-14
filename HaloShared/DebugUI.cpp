@@ -19,7 +19,7 @@ bool DebugUI::IsVisible()
 	return s_visible;
 }
 
-void DebugUI::Init(IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
 	assert(s_initialised == false);
 	s_initialised = true;
@@ -35,6 +35,39 @@ void DebugUI::Init(IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11Devi
 	ImGui::CreateContext();
 	ImGuiIO& rImguiIO = ImGui::GetIO(); (void)rImguiIO;
 	rImguiIO.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableSetMousePos | ImGuiConfigFlags_NavEnableGamepad;
+
+	{
+		HRSRC hResource = FindResource(hInstance, MAKEINTRESOURCE(IDR_FONT1), RT_RCDATA);
+		assert(hResource);
+		HGLOBAL hMemory = LoadResource(hInstance, hResource);
+		assert(hMemory);
+		DWORD dwSize = SizeofResource(hInstance, hResource);
+		assert(dwSize > 0);
+		LPVOID lpAddress = LockResource(hMemory);
+		assert(lpAddress);
+
+		char* bytes = static_cast<char*>(malloc(dwSize));
+		assert(bytes != nullptr);
+		memcpy(bytes, lpAddress, dwSize);
+
+		float baseSize = 10.0f;
+		if (GameRender::s_deviceMode.dmPelsWidth < GameRender::s_deviceMode.dmPelsHeight)
+		{
+			// width is smallest, scale on width
+			baseSize *= static_cast<float>(GameRender::s_deviceMode.dmPelsWidth) / 1920.0f;
+		}
+		else
+		{
+			// height is smallest, scale on height
+			baseSize *= static_cast<float>(GameRender::s_deviceMode.dmPelsHeight) / 1080.0f;
+		}
+
+		rImguiIO.Fonts->AddFontFromMemoryTTF(bytes, dwSize, 20.0f, NULL, rImguiIO.Fonts->GetGlyphRangesDefault());
+
+		UnlockResource(lpAddress);
+		BOOL freeResourceResult = FreeResource(hMemory);
+		assert(freeResourceResult == 0);
+	}
 
 	ImGui_ImplWin32_Init(s_swapChainDescription.OutputWindow);
 	ImGui_ImplDX11_Init(s_pDevice, s_pContext);

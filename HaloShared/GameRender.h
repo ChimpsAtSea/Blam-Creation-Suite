@@ -8,9 +8,10 @@ public:
 	static IDXGISwapChain* s_pSwapChain;
 	static DXGI_SWAP_CHAIN_DESC s_SwapchainDescription;
 	static IDXGIFactory1* s_pFactory;
+	static DEVMODE s_deviceMode;
 
 	static void CreateSwapchain(IDXGISwapChain*& s_pSwapChain);
-	static void Init();
+	static void Init(HINSTANCE hInstance);
 	static void Deinit();
 };
 

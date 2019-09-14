@@ -238,7 +238,7 @@ void set_service_tag(int index)
 
 void ReadConfig()
 {
-	g_frameLimit = Settings::ReadIntegerValue(SettingsSection::Game, "FrameLimit", 60);
+	g_frameLimit = __max(30, Settings::ReadIntegerValue(SettingsSection::Game, "FrameLimit", GameRender::s_deviceMode.dmDisplayFrequency));
 	g_fieldOfView = Settings::ReadIntegerValue(SettingsSection::Camera, "FieldOfView", 78);
 	g_controlsLayout = Settings::ReadIntegerValue(SettingsSection::Player, "ControlsLayout", 0);
 	g_pancamEnabled = Settings::ReadBoolValue(SettingsSection::Debug, "PancamEnabled", false);

@@ -167,7 +167,7 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 
 	IGameEngineHost::g_enableGameEngineHostOverride = true;
 	CustomWindow::Init();
-	GameRender::Init(); 
+	GameRender::Init(hInstance);
 	MouseInput::Init(hInstance);
 	InitSockets();
 

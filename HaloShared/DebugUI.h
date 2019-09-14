@@ -8,7 +8,7 @@ public:
 	static bool IsVisible();
 
 
-	static void Init(IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	static void Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	static void Deinit();
 	static void RenderFrame();
 	static void ToggleUI();

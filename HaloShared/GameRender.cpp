@@ -5,6 +5,7 @@ ID3D11DeviceContext* GameRender::s_pDeviceContext = nullptr;
 IDXGISwapChain* GameRender::s_pSwapChain = nullptr;
 DXGI_SWAP_CHAIN_DESC GameRender::s_SwapchainDescription = {};
 IDXGIFactory1* GameRender::s_pFactory = nullptr;
+DEVMODE GameRender::s_deviceMode = {};
 
 typedef struct CINTERFACE_IDXGIFactory1Vtbl
 {
@@ -216,12 +217,14 @@ void GameRender::CreateSwapchain(IDXGISwapChain*& prSwapChain)
 	assert(prSwapChain != nullptr);
 }
 
-void GameRender::Init()
+void GameRender::Init(HINSTANCE hInstance)
 {
 
 	assert(s_pDevice == nullptr);
 	assert(s_pDeviceContext == nullptr);
 	assert(s_pSwapChain == nullptr);
+
+	EnumDisplaySettings(nullptr, ENUM_CURRENT_SETTINGS, &s_deviceMode);
 
 	D3D_FEATURE_LEVEL pFeatureLevels[] =
 	{
@@ -280,7 +283,7 @@ void GameRender::Init()
 		CreateSwapchain(s_pSwapChain);
 	}
 
-	DebugUI::Init(s_pSwapChain, s_pDevice, s_pDeviceContext);
+	DebugUI::Init(hInstance, s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
 	if (GameLauncher::HasCommandLineArg("-showui"))
 	{
 		DebugUI::Show();
