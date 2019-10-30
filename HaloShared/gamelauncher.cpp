@@ -561,6 +561,78 @@ void GameLauncher::SelectDifficulty()
 	}
 }
 
+void GameLauncher::SelectGameVariant()
+{
+	static std::string files[2048] = {};
+
+	static char once = false;
+	int count = -1;
+	if (!once)
+	{
+		for (const auto &dirEntry : std::filesystem::directory_iterator("hopper_game_variants"))
+		{
+			++count;
+			files[count] = dirEntry.path().filename().replace_extension().string();
+		}
+	}
+
+	const char *pCurrentGameVariantStr = g_LaunchHopperGameVariant;
+	if (ImGui::BeginCombo("Game Variant", pCurrentGameVariantStr))
+	{
+		for (const auto &file: files)
+		{
+			const char *pGameVariantStr = file.c_str();
+			if (pGameVariantStr)
+			{
+				bool selected = pGameVariantStr == pCurrentGameVariantStr;
+				if (ImGui::Selectable(pGameVariantStr, &selected))
+				{
+					g_LaunchHopperGameVariant = file.c_str();
+					Settings::WriteStringValue(SettingsSection::Launch, "HopperGameVariant", (char *)g_LaunchHopperGameVariant);
+				}
+			}
+		}
+
+		ImGui::EndCombo();
+	}
+}
+
+void GameLauncher::SelectMapVariant()
+{
+	static std::string files[2048] = {};
+
+	static char once = false;
+	int count = -1;
+	if (!once)
+	{
+		for (const auto &dirEntry : std::filesystem::directory_iterator("hopper_map_variants"))
+		{
+			++count;
+			files[count] = dirEntry.path().filename().replace_extension().string();
+		}
+	}
+
+	const char *pCurrentMapVariantStr = g_LaunchHopperMapVariant;
+	if (ImGui::BeginCombo("Map Variant", pCurrentMapVariantStr))
+	{
+		for (const auto &file : files)
+		{
+			const char *pMapVariantStr = file.c_str();
+			if (pMapVariantStr)
+			{
+				bool selected = pMapVariantStr == pCurrentMapVariantStr;
+				if (ImGui::Selectable(pMapVariantStr, &selected))
+				{
+					g_LaunchHopperMapVariant = file.c_str();
+					Settings::WriteStringValue(SettingsSection::Launch, "HopperMapVariant", (char *)g_LaunchHopperMapVariant);
+				}
+			}
+		}
+
+		ImGui::EndCombo();
+	}
+}
+
 void GameLauncher::DrawMenu()
 {
 	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
@@ -587,6 +659,8 @@ void GameLauncher::DrawMenu()
 	SelectGameMode();
 	SelectMap();
 	SelectDifficulty();
+	SelectGameVariant();
+	SelectMapVariant();
 
 	static bool hasAutostarted = false;
 	if (ImGui::Button("Start game") || (GameLauncher::HasCommandLineArg("-autostart") && !hasAutostarted))
