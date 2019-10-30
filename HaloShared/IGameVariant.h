@@ -34,11 +34,14 @@ struct c_game_engine_variant
 	BYTE data[64504];
 };
 
+#pragma pack(push, 1)
 struct s_game_variant
 {
 	DWORD game_engine_index;
 	c_game_engine_variant game_engine_variant;
 };
+#pragma pack(pop)
+
 
 struct IGameVariant;
 struct /*VFT*/ IGameVariant_vtbl
