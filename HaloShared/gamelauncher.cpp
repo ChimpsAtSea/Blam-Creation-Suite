@@ -728,7 +728,7 @@ void GameLauncher::LoadHopperGameVariant(IDataAccess* pDataAccess, const char* p
 		WriteLineVerbose("Loading game variant [%s]", pFilename);
 		size_t variantSize = get_file_size(pVariantFile);
 		char* pVariantBuffer = (char*)alloca(variantSize);
-		memset(pVariantBuffer, 0x00, variantSize);
+		memset(pVariantBuffer, 0xFF, variantSize);
 		read_file_to_buffer(pVariantFile, pVariantBuffer, variantSize);
 		fclose(pVariantFile);
 		__int64 result = pDataAccess->CreateGameVariantFromFile(pVariantBuffer, static_cast<int>(variantSize));
