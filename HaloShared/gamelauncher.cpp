@@ -494,25 +494,19 @@ void GameLauncher::EndRender()
 
 void GameLauncher::SelectGameMode()
 {
-	static const char* s_pGameModesStr[k_number_of_game_modes] = {
-		nullptr,
-		"campaign",
-		nullptr,
-		"multiplayer",
-		nullptr,
-		"survival" };
-	std::string s_pCurrentGameModeStr = game_mode_to_string(g_LaunchGameMode);
-	if (ImGui::BeginCombo("GameMode", s_pCurrentGameModeStr.c_str()))
+	const char* s_pCurrentGameModeStr = game_mode_to_string(g_LaunchGameMode);
+	if (ImGui::BeginCombo("GameMode", s_pCurrentGameModeStr))
 	{
-		for (int i = 0; i < _countof(s_pGameModesStr); i++)
+		for (int i = 1; i < e_game_mode::k_number_of_game_modes; i++)
 		{
-			const char* pGameModeStr = s_pGameModesStr[i];
+			const char* pGameModeStr = game_mode_to_string(static_cast<e_game_mode>(i));
 			if (pGameModeStr)
 			{
 				bool selected = s_pCurrentGameModeStr == pGameModeStr;
 				if (ImGui::Selectable(pGameModeStr, &selected))
 				{
 					g_LaunchGameMode = static_cast<e_game_mode>(i);
+					Settings::WriteStringValue(SettingsSection::Launch, "GameMode", (char*)game_mode_to_string(g_LaunchGameMode));
 				}
 			}
 		}
@@ -535,6 +529,7 @@ void GameLauncher::SelectMap()
 				if (ImGui::Selectable(pMapStr, &selected))
 				{
 					g_LaunchMapId = static_cast<e_map_id>(mapId);
+					Settings::WriteStringValue(SettingsSection::Launch, "Map", (char *)map_id_to_string(g_LaunchMapId));
 				}
 			}
 		}
@@ -557,6 +552,7 @@ void GameLauncher::SelectDifficulty()
 				if (ImGui::Selectable(pDifficultyStr, &selected))
 				{
 					g_LaunchCampaignDifficultyLevel = static_cast<e_campaign_difficulty_level>(difficulty);
+					Settings::WriteStringValue(SettingsSection::Launch, "DifficultyLevel", (char *)campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel));
 				}
 			}
 		}
