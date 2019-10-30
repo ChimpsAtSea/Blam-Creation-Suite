@@ -78,6 +78,12 @@ void create_hook(const char pName[], void* pTargetFunction, Ta hook, Tb& rOrigin
 template<typename Ta, typename Tb>
 LONG create_hook(HaloGameID gameID, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
 {
+	if (offset == -1)
+	{
+		return 0;
+
+	}
+
 	char* const pModule = reinterpret_cast<char*>(GetLoadedHaloModule(gameID));
 	size_t const baseAddress = GetHaloBaseAddress(gameID);
 

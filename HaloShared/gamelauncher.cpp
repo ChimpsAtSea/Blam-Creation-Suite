@@ -371,25 +371,25 @@ void GameLauncher::SetupGameContext(GameContext& rGameContext)
 		rGameContext.SessionInfo.PeerIdentifierCount = playerCount;
 		rGameContext.SessionInfo.SessionMembership.Count = playerCount;
 
-		//rGameContext.SessionInfo.PeerIdentifiers[0] = 0;
-		//rGameContext.SessionInfo.PeerIdentifiers[1] = 1;
-		//{
-		//	rGameContext.SessionInfo.SessionMembership.Members[0].MachineIdentifier = 0;
-		//	rGameContext.SessionInfo.SessionMembership.Members[0].Team = 0;
-		//	rGameContext.SessionInfo.SessionMembership.Members[0].PlayerAssignedTeam = 0;
-		//	rGameContext.SessionInfo.SessionMembership.Members[0].SecureAddress = HostAddress;
-		//}
-		//if (rGameContext.SessionInfo.SessionMembership.Count > 1)
-		//{
-		//	rGameContext.SessionInfo.SessionMembership.Members[1].MachineIdentifier = 0;
-		//	rGameContext.SessionInfo.SessionMembership.Members[1].Team = 0;
-		//	rGameContext.SessionInfo.SessionMembership.Members[1].PlayerAssignedTeam = 0;
-		//	rGameContext.SessionInfo.SessionMembership.Members[1].SecureAddress = ClientAddress;
-		//}
-		//if (rGameContext.SessionInfo.SessionMembership.Count > 2)
-		//{
-		//	FATAL_ERROR("Too many people need to add more data");
-		//}
+		rGameContext.SessionInfo.PeerIdentifiers[0] = 0;
+		rGameContext.SessionInfo.PeerIdentifiers[1] = 1;
+		{
+			rGameContext.SessionInfo.SessionMembership.Members[0].MachineIdentifier = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[0].Team = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[0].PlayerAssignedTeam = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[0].SecureAddress = HostAddress;
+		}
+		if (rGameContext.SessionInfo.SessionMembership.Count > 1)
+		{
+			rGameContext.SessionInfo.SessionMembership.Members[1].MachineIdentifier = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[1].Team = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[1].PlayerAssignedTeam = 0;
+			rGameContext.SessionInfo.SessionMembership.Members[1].SecureAddress = ClientAddress;
+		}
+		if (rGameContext.SessionInfo.SessionMembership.Count > 2)
+		{
+			FATAL_ERROR("Too many people need to add more data");
+		}
 
 		if (rGameContext.SessionInfo.IsHost)
 		{
@@ -401,12 +401,12 @@ void GameLauncher::SetupGameContext(GameContext& rGameContext)
 			rGameContext.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
 
 			LoadHopperGameVariant(s_pHaloReachDataAccess, g_LaunchHopperGameVariant, *reinterpret_cast<s_game_variant*>(rGameContext.GameVariantBuffer));
-			//LoadHopperMapVariant(s_pHaloReachDataAccess, g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(rGameContext.MapVariantBuffer));
+			LoadHopperMapVariant(s_pHaloReachDataAccess, g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(rGameContext.MapVariantBuffer));
 			LoadPreviousGamestate("gamestate.hdr", rGameContext);
+			*reinterpret_cast<int*>(rGameContext.GameVariantBuffer) = 3;
 
 			rGameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
-			//rGameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
-			//rGameContext.SessionInfo.HostAddress = HostAddress;
+			rGameContext.SessionInfo.HostAddress = HostAddress;
 		}
 		else
 		{
@@ -710,9 +710,9 @@ void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pH
 
 		__int64 result = pDataAccess->CreateMapVariantFromFile(pVariantBuffer, static_cast<int>(variantSize));
 
-		s_map_variant* pGameVariant = (s_map_variant*)(result + 8);
+		s_map_variant* pMapVariant = (s_map_variant*)(result + 8);
 
-		out_map_variant = *pGameVariant;
+		out_map_variant = *pMapVariant;
 	}
 }
 
@@ -731,7 +731,6 @@ void GameLauncher::LoadHopperGameVariant(IDataAccess* pDataAccess, const char* p
 		memset(pVariantBuffer, 0x00, variantSize);
 		read_file_to_buffer(pVariantFile, pVariantBuffer, variantSize);
 		fclose(pVariantFile);
-
 		__int64 result = pDataAccess->CreateGameVariantFromFile(pVariantBuffer, static_cast<int>(variantSize));
 
 		s_game_variant* pGameVariant = (s_game_variant*)(result + 8);
