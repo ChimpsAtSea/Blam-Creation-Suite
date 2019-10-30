@@ -403,7 +403,6 @@ void GameLauncher::SetupGameContext(GameContext& rGameContext)
 			LoadHopperGameVariant(s_pHaloReachDataAccess, g_LaunchHopperGameVariant, *reinterpret_cast<s_game_variant*>(rGameContext.GameVariantBuffer));
 			LoadHopperMapVariant(s_pHaloReachDataAccess, g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(rGameContext.MapVariantBuffer));
 			LoadPreviousGamestate("gamestate.hdr", rGameContext);
-			*reinterpret_cast<int*>(rGameContext.GameVariantBuffer) = 3;
 
 			rGameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
 			rGameContext.SessionInfo.HostAddress = HostAddress;
