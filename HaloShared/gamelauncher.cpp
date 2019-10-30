@@ -28,10 +28,6 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 	assert(s_pGameInterface == nullptr);
 	assert(s_gameID == HaloGameID::NotSet);
 
-	LoadSettings(); // #TODO: Replace with UI
-
-	s_currentState = CurrentState::eInactive;
-
 	GameInterface gameInterface = GameInterface(pGameLibrary);
 	s_pGameInterface = &gameInterface;
 	s_gameID = GetLibraryHaloGameID(pGameLibrary);
@@ -183,6 +179,7 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 	}
 
 	IGameEngineHost::g_enableGameEngineHostOverride = true;
+	LoadSettings(); // #TODO: Replace with UI
 	CustomWindow::Init();
 	GameRender::Init(hInstance);
 	MouseInput::Init(hInstance);
@@ -250,7 +247,7 @@ void GameLauncher::LoadSettings()
 	char pLaunchGameModeBuffer[256] = {};
 	Settings::ReadStringValue(SettingsSection::Launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "");
 	g_LaunchGameMode = string_to_game_mode(pLaunchGameModeBuffer);
-
+	
 	char pLaunchCampaignDifficultyLevelBuffer[256] = {};
 	Settings::ReadStringValue(SettingsSection::Launch, "DifficultyLevel", pLaunchCampaignDifficultyLevelBuffer, sizeof(pLaunchCampaignDifficultyLevelBuffer), "normal");
 	g_LaunchCampaignDifficultyLevel = string_to_campaign_difficulty_level(pLaunchCampaignDifficultyLevelBuffer);
@@ -496,6 +493,79 @@ void GameLauncher::EndRender()
 	GameRender::s_pSwapChain->Present(0, 0);
 }
 
+void GameLauncher::SelectGameMode()
+{
+	static const char* s_pGameModesStr[k_number_of_game_modes] = {
+		nullptr,
+		"campaign",
+		nullptr,
+		"multiplayer",
+		nullptr,
+		"survival" };
+	std::string s_pCurrentGameModeStr = game_mode_to_string(g_LaunchGameMode);
+	if (ImGui::BeginCombo("GameMode", s_pCurrentGameModeStr.c_str()))
+	{
+		for (int i = 0; i < _countof(s_pGameModesStr); i++)
+		{
+			const char* pGameModeStr = s_pGameModesStr[i];
+			if (pGameModeStr)
+			{
+				bool selected = s_pCurrentGameModeStr == pGameModeStr;
+				if (ImGui::Selectable(pGameModeStr, &selected))
+				{
+					g_LaunchGameMode = static_cast<e_game_mode>(i);
+				}
+			}
+		}
+
+		ImGui::EndCombo();
+	}
+}
+
+void GameLauncher::SelectMap()
+{
+	const char* pCurrentMapStr = map_id_to_string(g_LaunchMapId);
+	if (ImGui::BeginCombo("Map", pCurrentMapStr))
+	{
+		for (e_map_id mapId = e_map_id::_map_id_m05; mapId < k_number_of_map_ids; reinterpret_cast<int&>(mapId)++)
+		{
+			const char* pMapStr = map_id_to_string(mapId);
+			if (pMapStr)
+			{
+				bool selected = pMapStr == pCurrentMapStr;
+				if (ImGui::Selectable(pMapStr, &selected))
+				{
+					g_LaunchMapId = static_cast<e_map_id>(mapId);
+				}
+			}
+		}
+
+		ImGui::EndCombo();
+	}
+}
+
+void GameLauncher::SelectDifficulty()
+{
+	const char* pCurrentDifficultyStr = campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel);
+	if (ImGui::BeginCombo("Difficulty", pCurrentDifficultyStr))
+	{
+		for (e_campaign_difficulty_level difficulty = e_campaign_difficulty_level::_campaign_difficulty_level_easy; difficulty < k_number_of_campaign_difficulty_levels; reinterpret_cast<int&>(difficulty)++)
+		{
+			const char* pDifficultyStr = campaign_difficulty_level_to_string(difficulty);
+			if (pDifficultyStr)
+			{
+				bool selected = pDifficultyStr == pCurrentDifficultyStr;
+				if (ImGui::Selectable(pDifficultyStr, &selected))
+				{
+					g_LaunchCampaignDifficultyLevel = static_cast<e_campaign_difficulty_level>(difficulty);
+				}
+			}
+		}
+
+		ImGui::EndCombo();
+	}
+}
+
 void GameLauncher::DrawMenu()
 {
 	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
@@ -519,13 +589,19 @@ void GameLauncher::DrawMenu()
 		return;
 	}
 
+	SelectGameMode();
+	SelectMap();
+	SelectDifficulty();
+
 	static bool hasAutostarted = false;
 	if (ImGui::Button("Start game") || (GameLauncher::HasCommandLineArg("-autostart") && !hasAutostarted))
 	{
 		hasAutostarted = true;
 		SetState(CurrentState::eWaitingToRun);
 	}
+	
 
+	
 	ImGui::End();
 }
 

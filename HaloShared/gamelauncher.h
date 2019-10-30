@@ -33,6 +33,10 @@ public:
 	static void BeginRender();
 	static void EndRender();
 	static void DrawMenu();
+
+	static void SelectGameMode();
+	static void SelectMap();
+	static void SelectDifficulty();
 	
 
 

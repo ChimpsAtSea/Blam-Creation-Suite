@@ -129,34 +129,35 @@ void IGameEvents::VIPStatusEarned() { if (g_logGameEventMessages) { WriteLineVer
 void IGameEvents::WhatAboutTanksDestroyed() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: WhatAboutTanksDestroyed"); } }
 void IGameEvents::WonWarGame() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: WonWarGame"); } }
 void IGameEvents::ZanzibarSign() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: ZanzibarSign"); } }
+void IGameEvents::FirefightGameResults() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: FirefightGameResults"); } }
 void IGameEvents::EnemyDefeated_0() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: EnemyDefeated_0"); } }
-void IGameEvents::Member127() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member127"); } }
 void IGameEvents::Member128() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member128"); } }
 void IGameEvents::Member129() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member129"); } }
 void IGameEvents::Member130() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member130"); } }
-void IGameEvents::Member131() { if (g_logGameEventMessages) { /*WriteLineVerbose("IGameEvents::Member131"); // spams console*/ } }
+void IGameEvents::Member131() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member131"); } }
 void IGameEvents::Member132() { if (g_logGameEventMessages) { /*WriteLineVerbose("IGameEvents::Member132"); // spams console*/ } }
-__int64 IGameEvents::Member133(_QWORD)
+void IGameEvents::Member133() { if (g_logGameEventMessages) { /*WriteLineVerbose("IGameEvents::Member133"); // spams console*/ } }
+__int64 IGameEvents::Member134(_QWORD)
 {
 	if (g_logGameEventMessages) 
 	{
-		WriteLineVerbose("IGameEvents::Member133");
+		WriteLineVerbose("IGameEvents::Member134");
 	}
 	return __int64(0);
 }
 
-void IGameEvents::Member134() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member134"); } }
+void IGameEvents::Member135() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member135"); } }
 
 GUID* __fastcall IGameEvents::GetGuid(GUID* pGuid)
 {
-	if (pGuid)
-	{
-		*pGuid = guid;
-	}
-	return pGuid;
+	//if (pGuid)
+	//{
+	//	*pGuid = guid;
+	//}
+	return &guid;
 }
 
-void IGameEvents::Member136() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member136"); } }
 void IGameEvents::Member137() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member137"); } }
 void IGameEvents::Member138() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member138"); } }
+void IGameEvents::Member139() { if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member139"); } }
 
