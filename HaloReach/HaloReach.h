@@ -307,7 +307,7 @@ extern HaloReach_2019_Jun_24_Hook<0x180780D90, profile_configuration_update_func
 
 // Halo Reach Variables
 
-extern HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line; // no equivalent
+//extern HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line; // no equivalent
 extern intptr_t g_input_abstraction_offset(HaloGameID gameID);
 extern DataEx<s_input_abstraction, g_input_abstraction_offset> g_input_abstraction;
 extern intptr_t g_termination_value_offset(HaloGameID gameID);

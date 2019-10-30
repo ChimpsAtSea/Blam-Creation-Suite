@@ -69,40 +69,73 @@ public:
 	
 	struct s_transport_address;
 	
-	virtual char Member00();
-	virtual void Member01(IDXGISwapChain *, _QWORD);
-	virtual void Member02(__int64, unsigned int, __int64, float, float, float, float);
-	virtual void GameStatusUpdated(unsigned int);
-	virtual __int64 GameExited(int, int, int);
-	virtual __int64 __fastcall WriteBufferToFile(LPVOID, size_t);
-	virtual void Member06(Member06Struct *buffer);
-	virtual void Member07(unsigned int);
-	virtual void Member08(const wchar_t *, const wchar_t *);
-	virtual void Member09(wchar_t [1024], wchar_t [1024]);
-	virtual IGameEvents* GetGameEvents();
-	virtual void GameVariantCreated(IGameVariant *);
-	virtual void MapVariantCreated(IMapVariant *);
-	virtual void Member13(const wchar_t *, const wchar_t *, const void *, unsigned int);
-	virtual char Member14(int, BYTE *);
-	virtual char Member15(int, BYTE *);
-	virtual char GetNextLevelInfo(e_map_id *, int *, FILETIME *, _DWORD *);
-	virtual bool Member17(int);
-	virtual void Member18(int);
-	virtual __int64 __fastcall MapLoadPecentStatus(__int64, __int64, float);
-	virtual void Member20(__int64, __int8);
-	virtual __int64 __fastcall GetMachineIdentifier(_QWORD);
-	virtual __int64 Member22(Member22Struct *buffer, __int64);
-	virtual char Member23(__int64, __int64);
-	virtual void GetSessionInfo(s_session_info_part *buffer);
-	virtual void __fastcall MembershipUpdate(s_session_membership *buffer, uint32_t playercount);
-	virtual bool __fastcall Member26();
-	virtual bool __fastcall Member27();
-	virtual bool __fastcall Member28(Member28Struct *buffer);
-	virtual __int64 __fastcall Member29(wchar_t playerNames[4][32], Member29Struct *buffer);
-	virtual bool __fastcall __fastcall Member30(_QWORD, InputBuffer *pInputBuffer);
-	virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t playerNames[4][32], size_t dataSize);
-	virtual void __fastcall Member32(const wchar_t *, const wchar_t *);
-	virtual bool __fastcall Member33(wchar_t *, __int64);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	enum NetworkID : unsigned __int64
 	{
@@ -113,22 +146,59 @@ public:
 		k_NumNetworkID
 	};
 
-	virtual __int64 __fastcall NetworkSendTo(NetworkID networkID, char* buffer, uint32_t buffersize, int a5);
-	virtual __int64 __fastcall NetworkReceiveFrom(char* buffer, uint32_t buffersize, __int64 a4, s_transport_address *transport_address);
-	virtual char *__fastcall Member36(unsigned int);
-	virtual int __fastcall Member37(BYTE *buffer);
-	virtual bool __fastcall Member38(signed int, __int64, __int64);
-	virtual void __fastcall FireFightNew(__int64, float);
-	virtual BOOL __fastcall Member40(__int64, __int64);
-	virtual bool __fastcall GetPathByType(int pathType, char *buffer, size_t bufferlength);
-	virtual bool __fastcall GetWidePathByType(int pathType, wchar_t *buffer, size_t bufferlength);
-	virtual unsigned __int8*__fastcall Member43(_QWORD, unsigned __int8 *, _QWORD);
+
+	/* 0  */ virtual char Member00();
+	/* 1  */ virtual void Member01(IDXGISwapChain *, _QWORD);
+	/* 2  */ virtual void Member02(__int64, unsigned int, __int64, float, float, float, float);
+	/* 3  */ virtual void GameStatusUpdated(unsigned int);
+	/* 4  */ virtual __int64 GameExited(unsigned int a1, char* a2, int);
+	/* 5  */ virtual __int64 __fastcall WriteBufferToFile(LPVOID, size_t);
+	/* 6  */ virtual void Member06(Member06Struct *buffer);
+	/* 7  */ virtual void Member07(unsigned int);
+	/* 8  */ virtual void Member08(const wchar_t *, const wchar_t *);
+	/* 9  */ virtual void Member09(wchar_t [1024], wchar_t [1024]);
+	/* 10 */ virtual IGameEvents* GetGameEvents();
+	/* 11 */ virtual void GameVariantCreated(IGameVariant *);
+	/* 12 */ virtual void MapVariantCreated(IMapVariant *);
+	/* 13 */ virtual void Member13(const wchar_t *, const wchar_t *, const void *, unsigned int);
+	/* 14 */ virtual char Member14(int, BYTE *);
+	/* 15 */ virtual char Member15(int, BYTE *);
+	/* 16 */ virtual char GetNextLevelInfo(e_map_id *, int *, FILETIME *, _DWORD *);
+	/* 17 */ virtual bool Member17(int);
+	/* 18 */ virtual void Member18(int);
+	/* 19 */ virtual __int64 __fastcall MapLoadPecentStatus(__int64, __int64, float);
+	/* 20 */ virtual void Member20(__int64, __int8);
+	/* 21 */ virtual __int64 __fastcall GetMachineIdentifier(_QWORD);
+	/* 22 */ virtual __int64 Member22(Member22Struct *buffer, __int64);
+	/* 23 */ virtual char Member23(__int64, __int64);
+	/* 24 */ virtual void GetSessionInfo(s_session_info_part *buffer);
+	/* 25 */ virtual void __fastcall MembershipUpdate(s_session_membership *buffer, uint32_t playercount);
+	/* 26 */ virtual bool __fastcall Member26();
+	/* 27 */ virtual bool __fastcall Member27();
+	/* 28 */ virtual bool __fastcall Member28(Member28Struct *buffer);
+	/* 29 */ virtual __int64 __fastcall Member29(wchar_t playerNames[4][32], Member29Struct *buffer);
+	/* 30 */ virtual bool __fastcall __fastcall Member30(_QWORD, InputBuffer* pInputBuffer);
+	/* 31 */ virtual void test();
+	/* 32 */ virtual void test2();
+	/* 33 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t playerNames[4][32], size_t dataSize);
+	/* 34 */ virtual void __fastcall Member32(const wchar_t*, const wchar_t*);
+	/* 35 */ virtual bool __fastcall Member33(wchar_t*, __int64);
+	/* 36 */ virtual __int64 __fastcall NetworkSendTo(NetworkID networkID, char* buffer, uint32_t buffersize, int a5);
+	/* 37 */ virtual __int64 __fastcall NetworkReceiveFrom(char* buffer, uint32_t buffersize, __int64 a4, s_transport_address* transport_address);
+	/* 38 */ virtual char* __fastcall Member36(unsigned int);
+	/* 39 */ virtual int __fastcall Member37(BYTE* buffer);
+	/* 40 */ virtual bool __fastcall Member38(signed int, __int64, __int64);
+	/* 41 */ virtual void __fastcall FireFightNew(__int64, float);
+	/* 42 */ virtual BOOL __fastcall Member40(__int64, __int64);
+	/* 43 */ virtual bool __fastcall GetPathByType(int pathType, char* buffer, size_t bufferlength);
+	/* 44 */ virtual bool __fastcall GetWidePathByType(int pathType, wchar_t* buffer, size_t bufferlength); // is now 44
+	/* 45 */ virtual unsigned __int8* __fastcall Member43(_QWORD, unsigned __int8*, _QWORD);
 
 	// DATA
-
+	
 	IGameEvents* pGameEvents;
 	QWORD data1[5863];
-
+	
 	// IGameEngineHost bypass functions
 
 	enum class GEHCBypassType // GameEngineHostCallbackType

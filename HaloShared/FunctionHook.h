@@ -35,7 +35,7 @@ public:
 	}
 
 	intptr_t(*m_find_offset_func)(HaloGameID gameID);
-	size_t m_offset;
+	intptr_t m_offset;
 	HaloGameID m_gameID;
 	bool m_isActive;
 	bool m_isHooked;

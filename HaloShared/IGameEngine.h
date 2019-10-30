@@ -9,7 +9,10 @@ struct s_member_info
 	long Team;
 	long PlayerAssignedTeam;
 	_QWORD SecureAddress;
+	_QWORD unknown;
 };
+static constexpr size_t s_member_info_size = sizeof(s_member_info);
+static_assert(s_member_info_size == 0x20, "s_member_info is incorrect size");
 
 struct s_session_membership
 {
@@ -18,7 +21,7 @@ struct s_session_membership
 	int : 32;
 };
 static constexpr size_t s_session_membership_size = sizeof(s_session_membership);
-static_assert(s_session_membership_size == 0x188, "s_session_membership is incorrect size");
+static_assert(s_session_membership_size == 0x208, "s_session_membership is incorrect size");
 
 struct s_session_info_part
 {
@@ -27,7 +30,7 @@ struct s_session_info_part
 	s_session_membership SessionMembership;
 };
 static constexpr size_t s_session_info_part_size = sizeof(s_session_info_part);
-static_assert(s_session_info_part_size == 0x198, "s_session_info_part is incorrect size");
+static_assert(s_session_info_part_size == 0x218, "s_session_info_part is incorrect size");
 
 struct s_session_info
 {
@@ -42,16 +45,17 @@ struct s_session_info
 	s_session_membership SessionMembership;
 	QWORD HostAddress; // if client, is LocalId
 };
-static constexpr size_t SessionInfo_HostAddress_Offset = offsetof(s_session_info, s_session_info::HostAddress);
-static_assert(SessionInfo_HostAddress_Offset == 0x230);
+//static constexpr size_t SessionInfo_HostAddress_Offset = offsetof(s_session_info, s_session_info::HostAddress);
+//static_assert(SessionInfo_HostAddress_Offset == 0x230);
 static constexpr size_t SessionInfoSize = sizeof(s_session_info);
-static_assert(SessionInfoSize == 0x238);
+static_assert(SessionInfoSize == 0x2B8);
 
 
 
 #pragma pack(push, 1)
 struct GameContext
 {
+	//char shit[32];
 	int32_t GameMode;
 	uint8_t GameVariantBuffer[115 * 1024] = {};
 	uint8_t MapVariantBuffer[58 * 1024] = {};
@@ -93,9 +97,21 @@ struct GameContext
 	uint32_t dword2B7C4 = 0;
 };
 #pragma pack(pop)
-static constexpr size_t GameContext_size = sizeof(GameContext);
-static_assert(GameContext_size == 0x2B7C8, "");
-static_assert(offsetof(GameContext, GameContext::pGameHandle) == 0x2B740, "");
+static constexpr size_t byte2B678_Offset = offsetof(GameContext, GameContext::byte2B678);
+static_assert(byte2B678_Offset + 32 == 177944);
+
+static constexpr size_t SessionInfo_Offset = offsetof(GameContext, GameContext::SessionInfo.HostAddress);
+static_assert(SessionInfo_Offset == 0x2B6F0);
+
+
+
+
+
+
+
+
+//static constexpr size_t GameContext_size = sizeof(GameContext);
+//static_assert(GameContext_size == 0x2B7C8 + 0x70, "");
 
 //// for some reason MSVC doesn't respect the correct size of alignment of this structure
 //// this is supposed to be a SLIST_HEADER

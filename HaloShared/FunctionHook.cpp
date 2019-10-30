@@ -33,6 +33,11 @@ FunctionHookBase* FunctionHookBase::InitNode(HaloGameID gameID)
 		{
 			m_offset = m_find_offset_func(gameID);
 
+			if (m_offset == ~intptr_t())
+			{
+				return m_pNextFunctionHook;
+			}
+
 			assert(m_gameID == HaloGameID::NotSet && m_offset >= GetHaloBaseAddress(gameID)/*, "Offset is out of bounds"*/);
 			assert(m_gameID == HaloGameID::NotSet && m_offset < GetHaloTopAddress(gameID)/*, "Offset is out of bounds"*/);
 		}

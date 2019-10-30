@@ -77,12 +77,12 @@ void __fastcall IGameEngineHost::GameStatusUpdated(unsigned int a1)
 	/*WriteLineVerbose("IGameEngineHost::Member03 GameStatusUpdated %d", a1);*/
 };
 
-__int64 __fastcall IGameEngineHost::GameExited(int a1, int a2, int a3)
+__int64 __fastcall IGameEngineHost::GameExited(unsigned int a1, char* a2, int a3)
 {
 	GameLauncher::s_currentState = GameLauncher::CurrentState::eFinished;
 	SplashScreen::Destroy();
 
-	WriteLineVerbose("IGameEngineHost::Member04 GameExited");
+	WriteLineVerbose("GameExited %u [%s]", a1, a2);
 	return __int64(0);
 };
 
@@ -163,25 +163,25 @@ char __fastcall IGameEngineHost::Member23(__int64 a1, __int64 a2)
 #include <HaloReach/c_network.h>
 
 extern Pointer<HaloGameID::HaloReach_2019_Aug_20, c_network_session *, 0x1830DC4E0> g_pNetworkSquadSession;
-extern Data<HaloGameID::HaloReach_2019_Aug_20, c_network_session *[4], 0x1830DC4E0> g_pNetworkSessions;
+//extern Data<HaloGameID::HaloReach_2019_Aug_20, c_network_session *[4], 0x1830DC4E0> g_pNetworkSessions;
 
 
 void __fastcall IGameEngineHost::GetSessionInfo(s_session_info_part* buffer)
 {
-	c_network_session *&networkSquadSession = g_pNetworkSessions[0];
-	c_network_session *&networkPosseSession = g_pNetworkSessions[1];
-	c_network_session *&networkGroupSession = g_pNetworkSessions[2];
-	c_network_session *&networkTargetSession = g_pNetworkSessions[3];
+	//c_network_session *&networkSquadSession = g_pNetworkSessions[0];
+	//c_network_session *&networkPosseSession = g_pNetworkSessions[1];
+	//c_network_session *&networkGroupSession = g_pNetworkSessions[2];
+	//c_network_session *&networkTargetSession = g_pNetworkSessions[3];
 
 	WriteVerbose("IGameEngineHost::GetSessionInfo");
 };
 
 void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership *pSessionMembership, uint32_t playercount)
 {
-	c_network_session *&networkSquadSession = g_pNetworkSessions[0];
-	c_network_session *&networkPosseSession = g_pNetworkSessions[1];
-	c_network_session *&networkGroupSession = g_pNetworkSessions[2];
-	c_network_session *&networkTargetSession = g_pNetworkSessions[3];
+	//c_network_session *&networkSquadSession = g_pNetworkSessions[0];
+	//c_network_session *&networkPosseSession = g_pNetworkSessions[1];
+	//c_network_session *&networkGroupSession = g_pNetworkSessions[2];
+	//c_network_session *&networkTargetSession = g_pNetworkSessions[3];
 
 	WriteLineVerbose("s_session_membership count: %i", pSessionMembership->Count);
 	for (int i = 0; i < pSessionMembership->Count; i++)
@@ -488,3 +488,13 @@ unsigned __int8* IGameEngineHost::Member43(_QWORD a1, unsigned __int8 *a2, _QWOR
 {
 	return 0;
 };
+
+void IGameEngineHost::test()
+{
+	throw;
+}
+
+void IGameEngineHost::test2()
+{
+	throw;
+}

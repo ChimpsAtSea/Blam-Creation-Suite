@@ -80,6 +80,10 @@ GlobalReference* GlobalReference::initNode(HaloGameID gameID)
 			{
 				targetOffset = m_pOffsetFunction(gameID);
 			}
+			if (targetOffset == ~intptr_t())
+			{
+				return m_pNextGlobalReference;
+			}
 			assert(targetOffset != ~intptr_t());
 
 			void** pReference = nullptr;

@@ -1,4 +1,39 @@
 
+
+// Assembly hacks
+
+
+
+
+
+void patch_out_gameenginehostcallback_mov_rsi(HaloGameID id, intptr_t offset)
+{
+	char* pBeginning = (char*)GetLoadedHaloModule(id);
+
+	char* pMovAttack = pBeginning + (offset - 0x180000000);
+	// 48 8B 0D A3 9B C8 00
+	// mov    rcx,QWORD PTR [rip+0xc89ba3]
+	// change to
+	// 48 31 c9
+	// xor rcx, rcx
+	// nop
+	// nop
+	// nop
+	// nop
+
+	char bytes[] =
+	{
+		0x48i8, 0x31i8, 0xf6i8,	// xor rsi, rsi
+		0x90i8,					// nop
+		0x90i8,					// nop
+		0x90i8,					// nop
+		0x90i8,					// nop
+	};
+
+	memcpy_virtual(pMovAttack, bytes, 7);
+}
+
+
 intptr_t sub_1800AE4E0_offset(HaloGameID gameID)
 {
 	switch (gameID)

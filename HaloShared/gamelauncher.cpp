@@ -25,8 +25,8 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 	// make sure the runtime information is in a valid state before trying to run another game
 	assert(s_pHaloReachEngine == nullptr);
 	assert(s_pHaloReachDataAccess == nullptr);
-	assert(s_gameID == HaloGameID::NotSet);
 	assert(s_pGameInterface == nullptr);
+	assert(s_gameID == HaloGameID::NotSet);
 
 	LoadSettings(); // #TODO: Replace with UI
 
@@ -35,6 +35,8 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 	GameInterface gameInterface = GameInterface(pGameLibrary);
 	s_pGameInterface = &gameInterface;
 	s_gameID = GetLibraryHaloGameID(pGameLibrary);
+	assert(s_pGameInterface != nullptr);
+	assert(s_gameID != HaloGameID::NotSet);
 
 	// #TODO: Game specific version of this!!!
 	if (s_gameLaunchCallback != nullptr)
@@ -51,7 +53,22 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 	SetupGameContext(gameContext);
 
 	s_pHaloReachEngine->InitGraphics(GameRender::s_pDevice, GameRender::s_pDeviceContext, GameRender::s_pSwapChain, GameRender::s_pSwapChain);
-	HANDLE hMainGameThread = s_pHaloReachEngine->InitThread(&IGameEngineHost::g_gameEngineHost, &gameContext);
+
+	IGameEngineHost* pGameEngineHost = &IGameEngineHost::g_gameEngineHost;
+
+	// useful for testing if the gameenginehostcallback vftable is correct or not
+	static constexpr bool kBogusGameEngineHostCallbackVFT = false;
+	if constexpr(kBogusGameEngineHostCallbackVFT)
+	{
+		void*& pGameEngineHostVftable = *reinterpret_cast<void**>(pGameEngineHost);
+		static char data[sizeof(void*) * 1024] = {};
+		memset(data, -1, sizeof(data));
+		static constexpr size_t kNumBytesToCopyFromExistingVFT = 0;
+		memcpy(data, pGameEngineHostVftable, kNumBytesToCopyFromExistingVFT);
+		pGameEngineHostVftable = data;
+	}
+
+	HANDLE hMainGameThread = s_pHaloReachEngine->InitThread(pGameEngineHost, &gameContext);
 
 	CustomWindow::SetPostMessageThreadId(hMainGameThread);
 
@@ -353,28 +370,29 @@ void GameLauncher::SetupGameContext(GameContext& rGameContext)
 
 
 		int playerCount = GameLauncher::HasCommandLineArg("-multiplayer") ? 2 : 1;
+		playerCount = 1;
 		rGameContext.SessionInfo.PeerIdentifierCount = playerCount;
 		rGameContext.SessionInfo.SessionMembership.Count = playerCount;
 
-		rGameContext.SessionInfo.PeerIdentifiers[0] = 0;
-		rGameContext.SessionInfo.PeerIdentifiers[1] = 1;
-		{
-			rGameContext.SessionInfo.SessionMembership.Members[0].MachineIdentifier = 0;
-			rGameContext.SessionInfo.SessionMembership.Members[0].Team = 0;
-			rGameContext.SessionInfo.SessionMembership.Members[0].PlayerAssignedTeam = 0;
-			rGameContext.SessionInfo.SessionMembership.Members[0].SecureAddress = HostAddress;
-		}
-		if (rGameContext.SessionInfo.SessionMembership.Count > 1)
-		{
-			rGameContext.SessionInfo.SessionMembership.Members[1].MachineIdentifier = 0;
-			rGameContext.SessionInfo.SessionMembership.Members[1].Team = 0;
-			rGameContext.SessionInfo.SessionMembership.Members[1].PlayerAssignedTeam = 0;
-			rGameContext.SessionInfo.SessionMembership.Members[1].SecureAddress = ClientAddress;
-		}
-		if (rGameContext.SessionInfo.SessionMembership.Count > 2)
-		{
-			FATAL_ERROR("Too many people need to add more data");
-		}
+		//rGameContext.SessionInfo.PeerIdentifiers[0] = 0;
+		//rGameContext.SessionInfo.PeerIdentifiers[1] = 1;
+		//{
+		//	rGameContext.SessionInfo.SessionMembership.Members[0].MachineIdentifier = 0;
+		//	rGameContext.SessionInfo.SessionMembership.Members[0].Team = 0;
+		//	rGameContext.SessionInfo.SessionMembership.Members[0].PlayerAssignedTeam = 0;
+		//	rGameContext.SessionInfo.SessionMembership.Members[0].SecureAddress = HostAddress;
+		//}
+		//if (rGameContext.SessionInfo.SessionMembership.Count > 1)
+		//{
+		//	rGameContext.SessionInfo.SessionMembership.Members[1].MachineIdentifier = 0;
+		//	rGameContext.SessionInfo.SessionMembership.Members[1].Team = 0;
+		//	rGameContext.SessionInfo.SessionMembership.Members[1].PlayerAssignedTeam = 0;
+		//	rGameContext.SessionInfo.SessionMembership.Members[1].SecureAddress = ClientAddress;
+		//}
+		//if (rGameContext.SessionInfo.SessionMembership.Count > 2)
+		//{
+		//	FATAL_ERROR("Too many people need to add more data");
+		//}
 
 		if (rGameContext.SessionInfo.IsHost)
 		{
@@ -386,7 +404,7 @@ void GameLauncher::SetupGameContext(GameContext& rGameContext)
 			rGameContext.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
 
 			LoadHopperGameVariant(s_pHaloReachDataAccess, g_LaunchHopperGameVariant, *reinterpret_cast<s_game_variant*>(rGameContext.GameVariantBuffer));
-			LoadHopperMapVariant(s_pHaloReachDataAccess, g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(rGameContext.MapVariantBuffer));
+			//LoadHopperMapVariant(s_pHaloReachDataAccess, g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(rGameContext.MapVariantBuffer));
 			LoadPreviousGamestate("gamestate.hdr", rGameContext);
 
 			rGameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
@@ -501,8 +519,10 @@ void GameLauncher::DrawMenu()
 		return;
 	}
 
-	if (ImGui::Button("Start game")) 
+	static bool hasAutostarted = false;
+	if (ImGui::Button("Start game") || (GameLauncher::HasCommandLineArg("-autostart") && !hasAutostarted))
 	{
+		hasAutostarted = true;
 		SetState(CurrentState::eWaitingToRun);
 	}
 
@@ -530,6 +550,7 @@ HaloGameID GameLauncher::GetLibraryHaloGameID(const char* pFilename)
 	uint64_t libraryFileVersion = GetLibraryFileVersion("HaloReach.dll");
 	switch (libraryFileVersion)
 	{
+	case MAKE_FILE_VERSION(1, 1186, 0, 0): return HaloGameID::HaloReach_2019_Oct_30;
 	case MAKE_FILE_VERSION(1, 1035, 0, 0): return HaloGameID::HaloReach_2019_Aug_20;
 	case MAKE_FILE_VERSION(1, 887, 0, 0): return HaloGameID::HaloReach_2019_Jun_24;
 	default:

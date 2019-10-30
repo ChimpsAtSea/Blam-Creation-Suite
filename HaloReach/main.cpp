@@ -40,8 +40,10 @@ int WINAPI WinMain(
 
 	GameLauncher::RegisterGameLaunchCallback(HaloGameID::HaloReach_2019_Jun_24, init_halo_reach);
 	GameLauncher::RegisterGameLaunchCallback(HaloGameID::HaloReach_2019_Aug_20, init_halo_reach);
+	GameLauncher::RegisterGameLaunchCallback(HaloGameID::HaloReach_2019_Oct_30, init_halo_reach);
 	GameLauncher::RegisterGameShutdownCallback(HaloGameID::HaloReach_2019_Jun_24, deinit_halo_reach);
 	GameLauncher::RegisterGameShutdownCallback(HaloGameID::HaloReach_2019_Aug_20, deinit_halo_reach);
+	GameLauncher::RegisterGameShutdownCallback(HaloGameID::HaloReach_2019_Oct_30, deinit_halo_reach);
 
 	CustomWindow::SetIcon(LoadIconA(GetModuleHandle(NULL), MAKEINTRESOURCEA(IDI_ICON1)));
 

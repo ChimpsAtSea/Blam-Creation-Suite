@@ -97,10 +97,15 @@ private:
 
 	void* getPointer(HaloGameID gameID)
 	{
-		size_t offset = m_offset;
+		intptr_t offset = m_offset;
 		if (offset == 0 && m_find_offset_func)
 		{
 			offset = m_find_offset_func(gameID);
+
+			if (offset == ~intptr_t())
+			{
+				return nullptr;
+			}
 
 			assert(m_gameID == HaloGameID::NotSet && offset >= GetHaloBaseAddress(gameID)/*, "Offset is out of bounds"*/);
 			assert(m_gameID == HaloGameID::NotSet && offset < GetHaloTopAddress(gameID)/*, "Offset is out of bounds"*/);
