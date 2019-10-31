@@ -515,15 +515,95 @@ void GameLauncher::SelectGameMode()
 	}
 }
 
+static size_t get_file_size(FILE *pFile)
+{
+	assert(pFile);
+	fseek(pFile, 0, SEEK_END);
+	size_t variantSize = ftell(pFile);
+	fseek(pFile, 0L, SEEK_SET);
+	return variantSize;
+}
+
+static void read_file_to_buffer(FILE *pFile, char *pBuffer, size_t length)
+{
+	assert(pFile);
+	fseek(pFile, 0L, SEEK_SET);
+
+	size_t totalBytesRead = 0;
+	do
+	{
+		size_t bytesToRead = length - totalBytesRead;
+		fseek(pFile, static_cast<long>(totalBytesRead), SEEK_SET);
+		size_t bytesRead = fread(pBuffer + totalBytesRead, 1, bytesToRead, pFile);;
+		totalBytesRead += bytesRead;
+	} while (totalBytesRead < length);
+
+}
+
+void read_map_info(const char *pName, std::string *name, std::string *desc)
+{
+	size_t mapNameOffet = 0x44;
+	size_t mapDescOffet = 0x344;
+
+	int namelen = 64;
+	int desclen = 256;
+
+	char pFilename[MAX_PATH] = {};
+	sprintf(pFilename, "maps\\info\\%s.mapinfo", pName);
+	pFilename[MAX_PATH - 1] = 0;
+
+	FILE *pInfoFile = fopen(pFilename, "rb");
+	if (pInfoFile)
+	{
+		//WriteLineVerbose("Loading map info [%s]", pFilename);
+		size_t infoSize = get_file_size(pInfoFile);
+		char *pInfoBuffer = (char *)alloca(infoSize);
+		memset(pInfoBuffer, 0x00, infoSize);
+		read_file_to_buffer(pInfoFile, pInfoBuffer, infoSize);
+		fclose(pInfoFile);
+
+		for (size_t i = 0; i < namelen; i++)
+		{
+			char *cur = &pInfoBuffer[mapNameOffet + i];
+			if (cur[0])
+			{
+				if (cur[1])
+				{
+					break;
+				}
+				*name += cur;
+			}
+		}
+		for (size_t i = 1; i < desclen; i++)
+		{
+			char *cur = &pInfoBuffer[mapDescOffet + i];
+			if (cur[0])
+			{
+				if (cur[1])
+				{
+					break;
+				}
+				*desc += cur;
+			}
+		}
+	}
+}
+
 void GameLauncher::SelectMap()
 {
-	const char* pCurrentMapStr = map_id_to_string(g_LaunchMapId);
+	std::string curName, curDesc;
+	read_map_info(map_id_to_string(g_LaunchMapId), &curName, &curDesc);
+
+	const char *pCurrentMapStr = curName.c_str();
 	if (ImGui::BeginCombo("Map", pCurrentMapStr))
 	{
 		for (e_map_id mapId = e_map_id::_map_id_m05; mapId < k_number_of_map_ids; reinterpret_cast<int&>(mapId)++)
 		{
-			const char* pMapStr = map_id_to_string(mapId);
-			if (pMapStr)
+			std::string name, desc;
+			read_map_info(map_id_to_string(mapId), &name, &desc);
+
+			const char *pMapStr = name.c_str();
+			if (pMapStr[0])
 			{
 				bool selected = pMapStr == pCurrentMapStr;
 				if (ImGui::Selectable(pMapStr, &selected))
@@ -561,34 +641,67 @@ void GameLauncher::SelectDifficulty()
 	}
 }
 
+struct s_path_array
+{
+	char StringsBuffer[2024][MAX_PATH];
+	int Count = 0;
+
+	const char *LastDirectory = "";
+
+	void Reset()
+	{
+		ZeroMemory(StringsBuffer, sizeof(StringsBuffer));
+		Count = 0;
+	}
+
+	void Add(LPCSTR pPath)
+	{
+		assert(Count < _countof(StringsBuffer));
+		strcpy(StringsBuffer[Count++], pPath);
+	}
+
+	void AddFrom(LPCSTR pDir, bool recursive = false)
+	{
+		if (LastDirectory == pDir)
+			return;
+
+		if (recursive)
+		{
+			for (const auto &dirEntry : std::filesystem::recursive_directory_iterator(pDir))
+				Add(dirEntry.path().filename().replace_extension().string().c_str());
+		}
+		else
+		{
+			for (const auto &dirEntry : std::filesystem::directory_iterator(pDir))
+				Add(dirEntry.path().filename().replace_extension().string().c_str());
+		}
+
+		LastDirectory = pDir;
+	}
+
+	const char *At(int index)
+	{
+		return index < Count ? StringsBuffer[index] : "";
+	}
+};
+
 void GameLauncher::SelectGameVariant()
 {
-	static std::string files[2048] = {};
-
-	static char once = false;
-	if (!once)
-	{
-		int count = -1;
-		for (const auto &dirEntry : std::filesystem::directory_iterator("hopper_game_variants"))
-		{
-			++count;
-			files[count] = dirEntry.path().filename().replace_extension().string();
-			once |= files[count][0];
-		}
-	}
+	static s_path_array files = s_path_array();
+	files.AddFrom("hopper_game_variants");
 
 	const char *pCurrentGameVariantStr = g_LaunchHopperGameVariant;
 	if (ImGui::BeginCombo("Game Variant", pCurrentGameVariantStr))
 	{
-		for (const auto &file : files)
+		for (int i = 0; i < files.Count; i++)
 		{
-			const char *pGameVariantStr = file.c_str();
+			const char *pGameVariantStr = files.At(i);
 			if (pGameVariantStr[0])
 			{
 				bool selected = pGameVariantStr == pCurrentGameVariantStr;
 				if (ImGui::Selectable(pGameVariantStr, &selected))
 				{
-					g_LaunchHopperGameVariant = file.c_str();
+					g_LaunchHopperGameVariant = files.At(i);
 					Settings::WriteStringValue(SettingsSection::Launch, "HopperGameVariant", (char *)g_LaunchHopperGameVariant);
 				}
 			}
@@ -600,38 +713,34 @@ void GameLauncher::SelectGameVariant()
 
 void GameLauncher::SelectMapVariant()
 {
-	static std::string files[2048] = {};
+	static s_path_array files = s_path_array();
+	files.AddFrom("hopper_map_variants");
 
-	static char once = false;
-	if (!once)
+	if (g_LaunchGameMode == e_game_mode::_game_mode_campaign)
 	{
-		int count = -1;
-		for (const auto &dirEntry : std::filesystem::directory_iterator("hopper_map_variants"))
-		{
-			++count;
-			files[count] = dirEntry.path().filename().replace_extension().string();
-			once |= files[count][0];
-		}
+		g_LaunchHopperMapVariant = nullptr;
 	}
-
-	const char *pCurrentMapVariantStr = g_LaunchHopperMapVariant;
-	if (ImGui::BeginCombo("Map Variant", pCurrentMapVariantStr))
+	else
 	{
-		for (const auto &file : files)
+		const char *pCurrentMapVariantStr = g_LaunchHopperMapVariant;
+		if (ImGui::BeginCombo("Map Variant", pCurrentMapVariantStr))
 		{
-			const char *pMapVariantStr = file.c_str();
-			if (pMapVariantStr[0])
+			for (int i = 0; i < files.Count; i++)
 			{
-				bool selected = pMapVariantStr == pCurrentMapVariantStr;
-				if (ImGui::Selectable(pMapVariantStr, &selected))
+				const char *pMapVariantStr = files.At(i);
+				if (pMapVariantStr[0])
 				{
-					g_LaunchHopperMapVariant = file.c_str();
-					Settings::WriteStringValue(SettingsSection::Launch, "HopperMapVariant", (char *)g_LaunchHopperMapVariant);
+					bool selected = pMapVariantStr == pCurrentMapVariantStr;
+					if (ImGui::Selectable(pMapVariantStr, &selected))
+					{
+						g_LaunchHopperMapVariant = files.At(i);
+						Settings::WriteStringValue(SettingsSection::Launch, "HopperMapVariant", (char *)g_LaunchHopperMapVariant);
+					}
 				}
 			}
-		}
 
-		ImGui::EndCombo();
+			ImGui::EndCombo();
+		}
 	}
 }
 
@@ -736,31 +845,6 @@ uint64_t GameLauncher::GetLibraryFileVersion(const char* pFilename)
 		}
 	}
 	return result;
-}
-
-static size_t get_file_size(FILE* pFile)
-{
-	assert(pFile);
-	fseek(pFile, 0, SEEK_END);
-	size_t variantSize = ftell(pFile);
-	fseek(pFile, 0L, SEEK_SET);
-	return variantSize;
-}
-
-static void read_file_to_buffer(FILE* pFile, char* pBuffer, size_t length)
-{
-	assert(pFile);
-	fseek(pFile, 0L, SEEK_SET);
-
-	size_t totalBytesRead = 0;
-	do
-	{
-		size_t bytesToRead = length - totalBytesRead;
-		fseek(pFile, static_cast<long>(totalBytesRead), SEEK_SET);
-		size_t bytesRead = fread(pBuffer + totalBytesRead, 1, bytesToRead, pFile);;
-		totalBytesRead += bytesRead;
-	} while (totalBytesRead < length);
-
 }
 
 void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pHopperMapVariantName, s_map_variant& out_map_variant)
