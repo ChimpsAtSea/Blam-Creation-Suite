@@ -8,14 +8,6 @@ public:
 	static void CreateServerConnection();
 
 	static bool g_enableGameEngineHostOverride;
-
-	enum InputUpdatePatchState
-	{
-		WaitingForRun,
-		WaitingForPatch,
-		Patched
-	};
-	static InputUpdatePatchState g_inputUpdatePatchState;
 	
 	static IGameEngineHost g_gameEngineHost;
 

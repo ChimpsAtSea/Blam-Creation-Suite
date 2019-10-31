@@ -40,7 +40,6 @@ void IGameEngineHost::CreateServerConnection()
 }
 
 bool IGameEngineHost::g_enableGameEngineHostOverride = false;
-IGameEngineHost::InputUpdatePatchState IGameEngineHost::g_inputUpdatePatchState = InputUpdatePatchState::WaitingForRun;
 IGameEngineHost IGameEngineHost::g_gameEngineHost;
 
 IGameEngineHost::IGameEngineHost()
@@ -299,11 +298,6 @@ bool __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInputBuffer)
 		}
 	}
 
-	if (g_inputUpdatePatchState == IGameEngineHost::InputUpdatePatchState::WaitingForRun)
-	{
-		IGameEngineHost::g_inputUpdatePatchState = IGameEngineHost::InputUpdatePatchState::Patched;
-		return unsigned __int8(1);
-	}
 	return unsigned __int8(1);
 };
 
