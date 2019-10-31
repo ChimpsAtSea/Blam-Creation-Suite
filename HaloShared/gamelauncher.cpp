@@ -566,23 +566,24 @@ void GameLauncher::SelectGameVariant()
 	static std::string files[2048] = {};
 
 	static char once = false;
-	int count = -1;
 	if (!once)
 	{
+		int count = -1;
 		for (const auto &dirEntry : std::filesystem::directory_iterator("hopper_game_variants"))
 		{
 			++count;
 			files[count] = dirEntry.path().filename().replace_extension().string();
+			once |= files[count][0];
 		}
 	}
 
 	const char *pCurrentGameVariantStr = g_LaunchHopperGameVariant;
 	if (ImGui::BeginCombo("Game Variant", pCurrentGameVariantStr))
 	{
-		for (const auto &file: files)
+		for (const auto &file : files)
 		{
 			const char *pGameVariantStr = file.c_str();
-			if (pGameVariantStr)
+			if (pGameVariantStr[0])
 			{
 				bool selected = pGameVariantStr == pCurrentGameVariantStr;
 				if (ImGui::Selectable(pGameVariantStr, &selected))
@@ -602,13 +603,14 @@ void GameLauncher::SelectMapVariant()
 	static std::string files[2048] = {};
 
 	static char once = false;
-	int count = -1;
 	if (!once)
 	{
+		int count = -1;
 		for (const auto &dirEntry : std::filesystem::directory_iterator("hopper_map_variants"))
 		{
 			++count;
 			files[count] = dirEntry.path().filename().replace_extension().string();
+			once |= files[count][0];
 		}
 	}
 
@@ -618,7 +620,7 @@ void GameLauncher::SelectMapVariant()
 		for (const auto &file : files)
 		{
 			const char *pMapVariantStr = file.c_str();
-			if (pMapVariantStr)
+			if (pMapVariantStr[0])
 			{
 				bool selected = pMapVariantStr == pCurrentMapVariantStr;
 				if (ImGui::Selectable(pMapVariantStr, &selected))
