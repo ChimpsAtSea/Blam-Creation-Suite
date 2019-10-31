@@ -5,7 +5,9 @@ e_map_id string_to_map_id(const char* string)
 	for (std::underlying_type<e_map_id>::type i = _map_id_m05; i < k_number_of_map_ids; i++)
 	{
 		e_map_id map_id = static_cast<e_map_id>(i);
-		if (strcmp(string, map_id_to_string(map_id)) == 0)
+		const char *map_id_str = map_id_to_string(map_id);
+
+		if (map_id_str != nullptr && (strcmp(string, map_id_str) == 0))
 		{
 			return map_id;
 		}
@@ -102,5 +104,5 @@ const char* map_id_to_string(e_map_id map_id)
 	case _map_id_cex_ff_halo:
 		return "cex_ff_halo";
 	}
-	return "<unknown>";
+	return nullptr;
 }

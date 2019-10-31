@@ -37,6 +37,9 @@ public:
 	static void SelectGameMode();
 	static void SelectMap();
 	static void SelectDifficulty();
+	static void SelectGameVariant();
+	static void SelectMapVariant();
+
 	
 
 

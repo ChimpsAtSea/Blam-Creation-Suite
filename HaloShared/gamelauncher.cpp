@@ -494,25 +494,19 @@ void GameLauncher::EndRender()
 
 void GameLauncher::SelectGameMode()
 {
-	static const char* s_pGameModesStr[k_number_of_game_modes] = {
-		nullptr,
-		"campaign",
-		nullptr,
-		"multiplayer",
-		nullptr,
-		"survival" };
-	std::string s_pCurrentGameModeStr = game_mode_to_string(g_LaunchGameMode);
-	if (ImGui::BeginCombo("GameMode", s_pCurrentGameModeStr.c_str()))
+	const char* s_pCurrentGameModeStr = game_mode_to_string(g_LaunchGameMode);
+	if (ImGui::BeginCombo("GameMode", s_pCurrentGameModeStr))
 	{
-		for (int i = 0; i < _countof(s_pGameModesStr); i++)
+		for (int i = 1; i < e_game_mode::k_number_of_game_modes; i++)
 		{
-			const char* pGameModeStr = s_pGameModesStr[i];
+			const char* pGameModeStr = game_mode_to_string(static_cast<e_game_mode>(i));
 			if (pGameModeStr)
 			{
 				bool selected = s_pCurrentGameModeStr == pGameModeStr;
 				if (ImGui::Selectable(pGameModeStr, &selected))
 				{
 					g_LaunchGameMode = static_cast<e_game_mode>(i);
+					Settings::WriteStringValue(SettingsSection::Launch, "GameMode", (char*)game_mode_to_string(g_LaunchGameMode));
 				}
 			}
 		}
@@ -535,6 +529,7 @@ void GameLauncher::SelectMap()
 				if (ImGui::Selectable(pMapStr, &selected))
 				{
 					g_LaunchMapId = static_cast<e_map_id>(mapId);
+					Settings::WriteStringValue(SettingsSection::Launch, "Map", (char *)map_id_to_string(g_LaunchMapId));
 				}
 			}
 		}
@@ -557,6 +552,81 @@ void GameLauncher::SelectDifficulty()
 				if (ImGui::Selectable(pDifficultyStr, &selected))
 				{
 					g_LaunchCampaignDifficultyLevel = static_cast<e_campaign_difficulty_level>(difficulty);
+					Settings::WriteStringValue(SettingsSection::Launch, "DifficultyLevel", (char *)campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel));
+				}
+			}
+		}
+
+		ImGui::EndCombo();
+	}
+}
+
+void GameLauncher::SelectGameVariant()
+{
+	static std::string files[2048] = {};
+
+	static char once = false;
+	if (!once)
+	{
+		int count = -1;
+		for (const auto &dirEntry : std::filesystem::directory_iterator("hopper_game_variants"))
+		{
+			++count;
+			files[count] = dirEntry.path().filename().replace_extension().string();
+			once |= files[count][0];
+		}
+	}
+
+	const char *pCurrentGameVariantStr = g_LaunchHopperGameVariant;
+	if (ImGui::BeginCombo("Game Variant", pCurrentGameVariantStr))
+	{
+		for (const auto &file : files)
+		{
+			const char *pGameVariantStr = file.c_str();
+			if (pGameVariantStr[0])
+			{
+				bool selected = pGameVariantStr == pCurrentGameVariantStr;
+				if (ImGui::Selectable(pGameVariantStr, &selected))
+				{
+					g_LaunchHopperGameVariant = file.c_str();
+					Settings::WriteStringValue(SettingsSection::Launch, "HopperGameVariant", (char *)g_LaunchHopperGameVariant);
+				}
+			}
+		}
+
+		ImGui::EndCombo();
+	}
+}
+
+void GameLauncher::SelectMapVariant()
+{
+	static std::string files[2048] = {};
+
+	static char once = false;
+	if (!once)
+	{
+		int count = -1;
+		for (const auto &dirEntry : std::filesystem::directory_iterator("hopper_map_variants"))
+		{
+			++count;
+			files[count] = dirEntry.path().filename().replace_extension().string();
+			once |= files[count][0];
+		}
+	}
+
+	const char *pCurrentMapVariantStr = g_LaunchHopperMapVariant;
+	if (ImGui::BeginCombo("Map Variant", pCurrentMapVariantStr))
+	{
+		for (const auto &file : files)
+		{
+			const char *pMapVariantStr = file.c_str();
+			if (pMapVariantStr[0])
+			{
+				bool selected = pMapVariantStr == pCurrentMapVariantStr;
+				if (ImGui::Selectable(pMapVariantStr, &selected))
+				{
+					g_LaunchHopperMapVariant = file.c_str();
+					Settings::WriteStringValue(SettingsSection::Launch, "HopperMapVariant", (char *)g_LaunchHopperMapVariant);
 				}
 			}
 		}
@@ -591,6 +661,8 @@ void GameLauncher::DrawMenu()
 	SelectGameMode();
 	SelectMap();
 	SelectDifficulty();
+	SelectGameVariant();
+	SelectMapVariant();
 
 	static bool hasAutostarted = false;
 	if (ImGui::Button("Start game") || (GameLauncher::HasCommandLineArg("-autostart") && !hasAutostarted))
