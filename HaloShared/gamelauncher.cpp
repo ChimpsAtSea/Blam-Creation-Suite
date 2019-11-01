@@ -863,7 +863,7 @@ void GameLauncher::DrawMenu()
 		SetState(CurrentState::eWaitingToRun);
 	}
 
-	if (ImGui::Button("Exit"))
+	if (ImGui::Button("Exit to Desktop"))
 	{
 		exit(0);
 	}
@@ -951,9 +951,7 @@ void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pH
 		read_file_to_buffer(pVariantFile, pVariantBuffer, variantSize);
 		fclose(pVariantFile);
 
-		auto result = pDataAccess->MapVariantCreateFromFile(pVariantBuffer, static_cast<int>(variantSize));
-
-		out_map_variant = result->MapVariant;
+		out_map_variant = pDataAccess->MapVariantCreateFromFile(pVariantBuffer, static_cast<int>(variantSize))->MapVariant;
 	}
 }
 
