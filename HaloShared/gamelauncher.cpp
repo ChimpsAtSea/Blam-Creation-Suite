@@ -524,69 +524,71 @@ static size_t get_file_size(FILE *pFile)
 	return variantSize;
 }
 
-static void read_file_to_buffer(FILE *pFile, char *pBuffer, size_t length)
+static void read_file_to_buffer(FILE *pFile, char *pBuffer, size_t length, long offset = 0L)
 {
 	assert(pFile);
-	fseek(pFile, 0L, SEEK_SET);
+	fseek(pFile, offset, SEEK_SET);
 
 	size_t totalBytesRead = 0;
 	do
 	{
 		size_t bytesToRead = length - totalBytesRead;
-		fseek(pFile, static_cast<long>(totalBytesRead), SEEK_SET);
-		size_t bytesRead = fread(pBuffer + totalBytesRead, 1, bytesToRead, pFile);;
+		fseek(pFile, offset + static_cast<long>(totalBytesRead), SEEK_SET);
+		size_t bytesRead = fread(pBuffer + totalBytesRead, 1, bytesToRead, pFile);
 		totalBytesRead += bytesRead;
 	} while (totalBytesRead < length);
 
 }
 
-void read_map_info(const char *pName, std::string *name, std::string *desc)
+template<typename T>
+void file_read_type(char *pFilename, T &value, long offset)
 {
-	size_t mapNameOffet = 0x44;
-	size_t mapDescOffet = 0x344;
+	FILE *pFile = fopen(pFilename, "rb");
+	if (pFile)
+	{
+		read_file_to_buffer(pFile, (char *)&value, sizeof(T), offset);
+		fclose(pFile);
+	}
+}
 
-	int namelen = 64;
-	int desclen = 256;
+void file_read_string_long(char *pFilename, std::string *value, size_t length, long offset)
+{
+	FILE *pFile = fopen(pFilename, "rb");
+	if (pFile)
+	{
+		char *pBuffer = (char *)alloca(length);
+		memset(pBuffer, 0x00, length);
+		read_file_to_buffer(pFile, pBuffer, length, offset);
+		fclose(pFile);
 
+		for (size_t i = 0; i < length; i++)
+		{
+			char *cur = &pBuffer[i];
+			if (cur[0])
+			{
+				if (cur[1])
+				{
+					break;
+				}
+				*value += cur;
+			}
+		}
+	}
+}
+
+uint32_t read_map_info(const char *pName, std::string *name, std::string *desc)
+{
 	char pFilename[MAX_PATH] = {};
 	sprintf(pFilename, "maps\\info\\%s.mapinfo", pName);
 	pFilename[MAX_PATH - 1] = 0;
 
-	FILE *pInfoFile = fopen(pFilename, "rb");
-	if (pInfoFile)
-	{
-		//WriteLineVerbose("Loading map info [%s]", pFilename);
-		size_t infoSize = get_file_size(pInfoFile);
-		char *pInfoBuffer = (char *)alloca(infoSize);
-		memset(pInfoBuffer, 0x00, infoSize);
-		read_file_to_buffer(pInfoFile, pInfoBuffer, infoSize);
-		fclose(pInfoFile);
+	file_read_string_long(pFilename, name, 64, 0x44);
+	file_read_string_long(pFilename, desc, 256, 0x344);
 
-		for (size_t i = 0; i < namelen; i++)
-		{
-			char *cur = &pInfoBuffer[mapNameOffet + i];
-			if (cur[0])
-			{
-				if (cur[1])
-				{
-					break;
-				}
-				*name += cur;
-			}
-		}
-		for (size_t i = 1; i < desclen; i++)
-		{
-			char *cur = &pInfoBuffer[mapDescOffet + i];
-			if (cur[0])
-			{
-				if (cur[1])
-				{
-					break;
-				}
-				*desc += cur;
-			}
-		}
-	}
+	uint32_t mapId = -1;
+	file_read_type(pFilename, mapId, 0x3C);
+
+	return mapId;
 }
 
 void GameLauncher::SelectMap()
@@ -685,17 +687,71 @@ struct s_path_array
 	}
 };
 
+void read_game_variant(const char *pName, std::string *name, std::string *desc)
+{
+	char pFilename[MAX_PATH] = {};
+	sprintf(pFilename, "hopper_game_variants\\%s.bin", pName);
+	pFilename[MAX_PATH - 1] = 0;
+
+	uint32_t tag = -1;
+	file_read_type(pFilename, tag, 0x30);
+
+	const uint32_t athr = 'athr';
+
+	if (tag)
+	{
+		if (tag == 'chdr' || tag == 'rdhc')
+		{
+			file_read_string_long(pFilename, name, 256, 0xC0);
+			file_read_string_long(pFilename, desc, 256, 0x1C0);
+
+			if (name->c_str()[0] == '$')
+			{
+				*name += " (NO PROPER NAME)";
+			}
+		}
+		else if ((tag == 'athr' || tag == 'rhta'))
+		{
+			if (strstr(pName, "ff_"))
+			{
+				*name = pName;
+				*name += " (FIREFIGHT)";
+			}
+			else if (strstr(pName, "campaign_"))
+			{
+				*name += pName;
+				*name += " (CAMPAIGN)";
+			}
+			else
+			{
+				*name = pName;
+				*name += " (MEAGLO)";
+			}
+		}
+		else
+		{
+			*name = pName;
+			*name += " (UNKNOWN)";
+		}
+	}
+}
+
 void GameLauncher::SelectGameVariant()
 {
 	static s_path_array files = s_path_array();
 	files.AddFrom("hopper_game_variants");
 
-	const char *pCurrentGameVariantStr = g_LaunchHopperGameVariant;
+	std::string curName, curDesc;
+	read_game_variant(g_LaunchHopperGameVariant, &curName, &curDesc);
+
+	const char *pCurrentGameVariantStr = curName.c_str();
 	if (ImGui::BeginCombo("Game Variant", pCurrentGameVariantStr))
 	{
 		for (int i = 0; i < files.Count; i++)
 		{
-			const char *pGameVariantStr = files.At(i);
+			std::string name, desc;
+			read_game_variant(files.At(i), &name, &desc);
+			const char *pGameVariantStr = name.c_str();
 			if (pGameVariantStr[0])
 			{
 				bool selected = pGameVariantStr == pCurrentGameVariantStr;
@@ -711,24 +767,51 @@ void GameLauncher::SelectGameVariant()
 	}
 }
 
+int read_mvar_info(const char *pName, std::string *name, std::string *desc)
+{
+	static s_map_variant mapVariant;
+	GameLauncher::LoadHopperMapVariant(GameLauncher::s_pHaloReachDataAccess, pName, mapVariant);
+
+	size_t mapIdOffet = 0x2C;
+	int mapId = -1;
+
+	size_t mapNameOffet = 0x44;
+	size_t mapDescOffet = 0x344;
+
+	int namelen = 64;
+	int desclen = 256;
+
+	return mapId;
+}
+
 void GameLauncher::SelectMapVariant()
 {
 	static s_path_array files = s_path_array();
 	files.AddFrom("hopper_map_variants");
 
-	if (g_LaunchGameMode == e_game_mode::_game_mode_campaign)
+	std::string curName, curDesc, curNameLower;
+	read_map_info(map_id_to_string(g_LaunchMapId), &curName, &curDesc);
+
+	curNameLower = curName;
+	for (auto &c : curNameLower)
 	{
-		g_LaunchHopperMapVariant = nullptr;
+		c = tolower(c);
 	}
-	else
+
+	if (g_LaunchGameMode == e_game_mode::_game_mode_multiplayer)
 	{
-		const char *pCurrentMapVariantStr = g_LaunchHopperMapVariant;
+		const char *pCurrentMapVariantStr = strstr(g_LaunchHopperMapVariant, curNameLower.c_str()) ? g_LaunchHopperMapVariant : "";
 		if (ImGui::BeginCombo("Map Variant", pCurrentMapVariantStr))
 		{
 			for (int i = 0; i < files.Count; i++)
 			{
+				//std::string name, desc;
+				//int mapId = read_mvar_info(files.At(i), &name, &desc);
+				//const char *pMapVariantStr = name.c_str();
+
 				const char *pMapVariantStr = files.At(i);
-				if (pMapVariantStr[0])
+				bool match = strstr(pMapVariantStr, curNameLower.c_str());
+				if (pMapVariantStr[0] && match)
 				{
 					bool selected = pMapVariantStr == pCurrentMapVariantStr;
 					if (ImGui::Selectable(pMapVariantStr, &selected))
@@ -778,6 +861,11 @@ void GameLauncher::DrawMenu()
 	{
 		hasAutostarted = true;
 		SetState(CurrentState::eWaitingToRun);
+	}
+
+	if (ImGui::Button("Exit"))
+	{
+		exit(0);
 	}
 	
 
@@ -863,11 +951,9 @@ void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pH
 		read_file_to_buffer(pVariantFile, pVariantBuffer, variantSize);
 		fclose(pVariantFile);
 
-		__int64 result = pDataAccess->CreateMapVariantFromFile(pVariantBuffer, static_cast<int>(variantSize));
+		auto result = pDataAccess->MapVariantCreateFromFile(pVariantBuffer, static_cast<int>(variantSize));
 
-		s_map_variant* pMapVariant = (s_map_variant*)(result + 8);
-
-		out_map_variant = *pMapVariant;
+		out_map_variant = result->MapVariant;
 	}
 }
 
@@ -886,11 +972,8 @@ void GameLauncher::LoadHopperGameVariant(IDataAccess* pDataAccess, const char* p
 		memset(pVariantBuffer, 0xFF, variantSize);
 		read_file_to_buffer(pVariantFile, pVariantBuffer, variantSize);
 		fclose(pVariantFile);
-		__int64 result = pDataAccess->CreateGameVariantFromFile(pVariantBuffer, static_cast<int>(variantSize));
 
-		s_game_variant* pGameVariant = (s_game_variant*)(result + 8);
-
-		out_game_variant = *pGameVariant;
+		out_game_variant = pDataAccess->GameVariantCreateFromFile(pVariantBuffer, static_cast<int>(variantSize))->GameVariant;
 	}
 }
 

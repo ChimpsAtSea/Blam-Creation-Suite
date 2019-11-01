@@ -8,6 +8,7 @@ struct s_map_variant
 struct IMapVariant;
 struct /*VFT*/ IMapVariant_vtbl
 {
+	void(__fastcall* Free)(IMapVariant*);
 	__int64(__fastcall* GetMCCMapId)(IMapVariant*);
 	bool(__fastcall* Member01)(IMapVariant*);
 	BYTE* (__fastcall* Member02)(IMapVariant*);
@@ -18,7 +19,6 @@ struct /*VFT*/ IMapVariant_vtbl
 	bool(__fastcall* Member07)(IMapVariant*, struct s_unknown*);
 	bool(__fastcall* Member08)(IMapVariant*, struct s_unknown*);
 	bool(__fastcall* Member09)(IMapVariant*, struct content_item_map_variant*, size_t*);
-	void(__fastcall* Free)(IMapVariant*);
 };
 struct IMapVariant
 {
