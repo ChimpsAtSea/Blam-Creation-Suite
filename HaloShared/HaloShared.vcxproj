@@ -178,6 +178,7 @@
     <ClCompile Include="application_reflection\mappingfileparser.cpp" />
     <ClCompile Include="map_id.cpp" />
     <ClCompile Include="mouseinput.cpp" />
+    <ClCompile Include="networkmanager.cpp" />
     <ClCompile Include="settings.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
   </ItemGroup>
@@ -213,6 +214,7 @@
     <ClInclude Include="map_id.h" />
     <ClInclude Include="mouseinput.h" />
     <ClInclude Include="application_reflection\referencesymbol.h" />
+    <ClInclude Include="networkmanager.h" />
     <ClInclude Include="settings.h" />
     <ClInclude Include="SplashScreen.h" />
     <ClInclude Include="resource.h" />

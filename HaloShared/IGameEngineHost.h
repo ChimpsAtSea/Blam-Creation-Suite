@@ -60,15 +60,6 @@ public: /* structures and enums */
 
 	struct s_transport_address;
 
-public: /* statics */
-	static bool g_isHost;
-	static bool g_enableGameEngineHostOverride;
-	static IGameEngineHost g_gameEngineHost;
-
-public: /* static functions */
-	static void CreateClientConnection(u_short port = 0);
-	static void CreateServerConnection();
-
 public: /* instance functions */
 	IGameEngineHost();
 	~IGameEngineHost();

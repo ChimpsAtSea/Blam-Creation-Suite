@@ -50,13 +50,13 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 
 	s_pHaloReachEngine->InitGraphics(GameRender::s_pDevice, GameRender::s_pDeviceContext, GameRender::s_pSwapChain, GameRender::s_pSwapChain);
 
-	IGameEngineHost* pGameEngineHost = &IGameEngineHost::g_gameEngineHost;
+	IGameEngineHost gameEngineHost = IGameEngineHost();
 
 	// useful for testing if the gameenginehostcallback vftable is correct or not
 	static constexpr bool kBogusGameEngineHostCallbackVFT = false;
 	if constexpr(kBogusGameEngineHostCallbackVFT)
 	{
-		void*& pGameEngineHostVftable = *reinterpret_cast<void**>(pGameEngineHost);
+		void*& pGameEngineHostVftable = *reinterpret_cast<void**>(&gameEngineHost);
 		static char data[sizeof(void*) * 1024] = {};
 		memset(data, -1, sizeof(data));
 		static constexpr size_t kNumBytesToCopyFromExistingVFT = 0;
@@ -64,7 +64,7 @@ void GameLauncher::LaunchGame(const char* pGameLibrary)
 		pGameEngineHostVftable = data;
 	}
 
-	HANDLE hMainGameThread = s_pHaloReachEngine->InitThread(pGameEngineHost, &gameContext);
+	HANDLE hMainGameThread = s_pHaloReachEngine->InitThread(&gameEngineHost, &gameContext);
 
 	CustomWindow::SetPostMessageThreadId(hMainGameThread);
 
@@ -178,7 +178,6 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 		end_detours();
 	}
 
-	IGameEngineHost::g_enableGameEngineHostOverride = true;
 	LoadSettings(); // #TODO: Replace with UI
 	CustomWindow::Init();
 	GameRender::Init(hInstance);
@@ -393,7 +392,7 @@ void GameLauncher::SetupGameContext(GameContext& rGameContext)
 
 		if (rGameContext.SessionInfo.IsHost)
 		{
-			IGameEngineHost::CreateServerConnection();
+			NetworkManager::CreateServerConnection();
 
 			SetConsoleTitleA("Opus | HOST");
 
@@ -409,12 +408,11 @@ void GameLauncher::SetupGameContext(GameContext& rGameContext)
 		}
 		else
 		{
-			IGameEngineHost::CreateClientConnection();
+			NetworkManager::CreateClientConnection();
 
 			rGameContext.SessionInfo.LocalMachineID = ClientAddress; // this is set
 			rGameContext.SessionInfo.HostAddress = HostAddress;
 		}
-		IGameEngineHost::g_isHost = rGameContext.SessionInfo.IsHost;
 	}
 }
 

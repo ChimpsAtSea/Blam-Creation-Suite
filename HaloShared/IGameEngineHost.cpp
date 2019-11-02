@@ -1,47 +1,5 @@
 #include "haloshared-private-pch.h"
 
-SOCKET LocalSocket = INVALID_SOCKET;
-int send_to_port = 2000;
-
-bool IGameEngineHost::g_isHost;
-
-void IGameEngineHost::CreateClientConnection(u_short port)
-{
-	if (LocalSocket == INVALID_SOCKET)
-	{
-		/* Open a datagram socket */
-		LocalSocket = socket(AF_INET, SOCK_DGRAM, 0);
-		if (LocalSocket == INVALID_SOCKET)
-		{
-			FATAL_ERROR("Could not create socket.");
-			WSACleanup();
-			exit(0);
-		}
-
-		u_long nonblocking_enabled = TRUE;
-		ioctlsocket(LocalSocket, FIONBIO, &nonblocking_enabled);
-
-		int nbo_ipv4 = inet_addr("127.0.0.1");
-		u_short nbo_port = htons(port ? port : 2001);
-
-		sockaddr_in addr = {};
-		addr.sin_family = AF_INET;
-		addr.sin_port = nbo_port;
-		addr.sin_addr.s_addr = nbo_ipv4;
-		auto bind_result = bind(LocalSocket, (sockaddr*)& addr, sizeof(addr));
-		assert(bind_result == 0);
-	}
-}
-
-void IGameEngineHost::CreateServerConnection()
-{
-	CreateClientConnection(2000);
-	send_to_port = 2001;
-}
-
-bool IGameEngineHost::g_enableGameEngineHostOverride = false;
-IGameEngineHost IGameEngineHost::g_gameEngineHost;
-
 IGameEngineHost::IGameEngineHost()
 	:pGameEvents(&IGameEvents::g_gameEvents)
 {
@@ -133,52 +91,53 @@ char __fastcall IGameEngineHost::Member14(int controllerIndex, BYTE* flags)
 {
 	WriteLineVerbose("IGameEngineHost::Member13");
 	return 0;
-};
+}
 
 char __fastcall IGameEngineHost::Member15(int controllerIndex, BYTE* buffer)
 {
 	WriteLineVerbose("IGameEngineHost::Member15");
 	return 0;
-};
+}
 
 char __fastcall IGameEngineHost::GetNextLevelInfo(e_map_id* map_id, int* campaign_insertion_point, FILETIME* filetime, _DWORD*)
 {
 	WriteLineVerbose("IGameEngineHost::Member16 GetNextLevelInfo");
 	return 0;
-};
+}
 
 bool __fastcall IGameEngineHost::Member17(int a1)
 {
 	WriteLineVerbose("IGameEngineHost::Member17");
 	return false;
-};
+}
 
 void __fastcall IGameEngineHost::Member18(int) 
 { 
 	WriteLineVerbose("IGameEngineHost::Member18"); 
-};
+}
 
 __int64 __fastcall IGameEngineHost::MapLoadPecentStatus(__int64 a1, __int64 a2, float a3)
 {
 	/*WriteLineVerbose("GameEngineHostCallback::Member19 MapLoadPecentStatus %016llx", a1);*/
 	return __int64(0);
-};
+}
 
 void __fastcall IGameEngineHost::Member20(__int64 a1, __int8 a2) 
 { 
 	WriteLineVerbose("IGameEngineHost::Member20");
-};
+}
 
 __int64 __fastcall IGameEngineHost::GetMachineIdentifier(_QWORD a1)
 {
 	return __int64(3);
-};
+}
 
 __int64 __fastcall IGameEngineHost::Member22(Member22Struct* buffer, __int64 a2)
 {
 	WriteLineVerbose("IGameEngineHost::Member22");
 	return __int64(0);
-};
+}
+
 char __fastcall IGameEngineHost::Member23(__int64 a1, __int64 a2)
 {
 	WriteLineVerbose("IGameEngineHost::Member23 ScoreboardOpened");
@@ -372,59 +331,12 @@ bool IGameEngineHost::Member35(wchar_t *a1, __int64 a2)
 
 __int64 __fastcall IGameEngineHost::NetworkSendTo(NetworkID networkID, char* buffer, uint32_t buffersize, int a5)
 {
-	//assert(networkID != NetworkID::Invalid && networkID < NetworkID::k_NumNetworkID);
-
-	sockaddr_in addr = {};
-	addr.sin_family = AF_INET;
-	addr.sin_port = send_to_port;
-	//addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-
-	if (IGameEngineHost::g_isHost)
-	{
-		addr.sin_addr.s_addr = inet_addr("10.255.0.2");
-		addr.sin_port = htons(2001);
-	}
-	else
-	{
-		addr.sin_addr.s_addr = inet_addr("10.255.0.1");
-		addr.sin_port = htons(2000);
-	}
-	addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-
-	//addr.sin_addr.s_addr = htonl(networkID);
-	auto result = sendto(LocalSocket, buffer, buffersize, 0, (sockaddr*)& addr, sizeof(addr));
-	//assert(result == buffersize);
-
-	// recvfrom
-	WriteLineVerbose("IGameEngineHost::NetworkSendTo %i", result);
-
-	return result;
+	return NetworkManager::SendTo(buffer, buffersize);
 }
 
 __int64 IGameEngineHost::NetworkReceiveFrom(char* buffer, uint32_t buffersize, __int64 a4, s_transport_address* transport_address)
 {
-	memset(buffer, 0, buffersize);
-
-	auto recvfrom_result = recvfrom(LocalSocket, buffer, buffersize, 0, NULL, 0);
-
-	if (recvfrom_result >= 0)
-	{
-		WriteLineVerbose("IGameEngineHost::NetworkReceiveFrom %i", recvfrom_result);
-		return recvfrom_result;
-	}
-	else
-	{
-		int err = WSAGetLastError();
-		if (err != WSAEWOULDBLOCK)
-		{
-			WriteLineVerbose("IGameEngineHost::NetworkReceiveFrom (error) %i", err);
-			return -1;
-		}
-		else
-		{
-			return 0;
-		}
-	}
+	return NetworkManager::RecieveFrom(buffer, buffersize);
 }
 
 char* __fastcall IGameEngineHost::Member38(unsigned int a1)

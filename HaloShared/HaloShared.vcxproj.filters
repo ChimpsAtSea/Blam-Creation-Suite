@@ -81,6 +81,9 @@
     <ClCompile Include="application_reflection\mappingfileparser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="networkmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="haloshared-private-pch.h">
@@ -183,6 +186,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="application_reflection\offsetfunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="networkmanager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

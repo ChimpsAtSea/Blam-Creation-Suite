@@ -11,6 +11,7 @@
 #include "mouseinput.h"
 #include "DebugUI.h"
 #include "SplashScreen.h"
+#include "networkmanager.h"
 
 #include "application_reflection/offsetfunction.h"
 #include "application_reflection/mappingfileparser.h"
