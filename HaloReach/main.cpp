@@ -47,6 +47,7 @@ int WINAPI WinMain(
 
 	CustomWindow::SetIcon(LoadIconA(GetModuleHandle(NULL), MAKEINTRESOURCEA(IDI_ICON1)));
 
-	int result = GameLauncher::Run(hInstance, lpCmdLine);
+	GameInterface gameInterface = GameInterface("haloreach.dll");
+	int result = GameLauncher::Run(hInstance, lpCmdLine, gameInterface);
 	return result;
 }

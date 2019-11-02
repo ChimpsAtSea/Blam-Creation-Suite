@@ -5,6 +5,9 @@ public:
 	GameInterface(const char* pLibFileName);
 	~GameInterface();
 
+	IDataAccess* GetDataAccess() const { return m_pDataAccess; };
+	HaloGameID GetHaloGameID() const { return m_haloGameID; }
+
 	inline errno_t __fastcall SetLibrarySettings(wchar_t* Src)
 	{
 		assert(pSetLibrarySettings != nullptr);
@@ -24,6 +27,12 @@ public:
 	}
 
 private:
+	void loadLibrary(const char* pLibFileName);
+	static HaloGameID GetLibraryHaloGameID(const char* pFilename);
+	static uint64_t GetLibraryFileVersion(const char* pFilename);
+
+	HaloGameID m_haloGameID = HaloGameID::NotSet;
+	IDataAccess* m_pDataAccess = nullptr;
 	HMODULE hGameModule = NULL;
 	typedef errno_t(__fastcall SetLibrarySettingsFunc)(wchar_t* Src);
 	SetLibrarySettingsFunc* pSetLibrarySettings = nullptr;
