@@ -2,107 +2,136 @@
 
 float MouseInput::s_horizontalSensitivity = 1.0f;
 float MouseInput::s_verticalSensitivity = 1.0f;
-IDirectInput8* MouseInput::m_pDirectInput8;
-IDirectInputDevice8* MouseInput::m_pDirectInput8Mouse;
-DIMOUSESTATE2 MouseInput::s_mouseState2 = {};
-std::atomic<DWORD> MouseInput::s_currentAcquireMode = 0;
-DWORD MouseInput::s_targetAcquireMode = 0;
+MouseMode MouseInput::s_currentMode;
+std::atomic<uint32_t> MouseInput::s_xPositionAccumulator = 0;
+std::atomic<uint32_t> MouseInput::s_yPositionAccumulator = 0;
+std::atomic<int32_t> MouseInput::s_wheelAccumulator = 0;
+bool MouseInput::s_leftButtonPressed = false;
+bool MouseInput::s_rightButtonPressed = false;
+bool MouseInput::s_middleButtonPressed = false;
+bool MouseInput::s_button4Pressed = false;
+bool MouseInput::s_button5Pressed = false;
 
-void MouseInput::SetAcquireMode(MouseAcquireMode acquireMode)
+void MouseInput::InputWindowMessage(LPARAM lParam)
 {
-	switch (acquireMode)
+	RAWINPUT rawInput = {};
+	UINT dwSize = sizeof(rawInput);
+	GetRawInputData(reinterpret_cast<HRAWINPUT>(lParam), RID_INPUT, &rawInput, &dwSize, sizeof(RAWINPUTHEADER));
+
+	switch (rawInput.header.dwType)
 	{
-	case MouseAcquireMode::UI:
-		s_targetAcquireMode = DISCL_BACKGROUND | DISCL_NONEXCLUSIVE;
-		break;
-	case MouseAcquireMode::Exclusive:
-		s_targetAcquireMode = DISCL_FOREGROUND | DISCL_EXCLUSIVE;
-		break;
-	case MouseAcquireMode::None:
+	case RIM_TYPEMOUSE:
+	{
+		RAWMOUSE& rRawMouse = rawInput.data.mouse;
+		if (s_currentMode == MouseMode::Exclusive)
+		{
+			if (rRawMouse.usFlags == MOUSE_MOVE_RELATIVE)
+			{
+				int xPosRelative = rRawMouse.lLastX;
+				int yPosRelative = rRawMouse.lLastY;
+				s_xPositionAccumulator += xPosRelative;
+				s_yPositionAccumulator += yPosRelative;
+			}
+
+			if (rRawMouse.usButtonFlags & RI_MOUSE_WHEEL)
+			{
+				SHORT wheelDelta = static_cast<SHORT>(rRawMouse.usButtonData);
+				s_wheelAccumulator += static_cast<int32_t>(wheelDelta);
+			}
+
+			if (rRawMouse.usButtonFlags & RI_MOUSE_LEFT_BUTTON_DOWN)
+			{
+				s_leftButtonPressed = true;
+			}
+			if (rRawMouse.usButtonFlags & RI_MOUSE_LEFT_BUTTON_UP)
+			{
+				s_leftButtonPressed = false;
+			}
+			if (rRawMouse.usButtonFlags & RI_MOUSE_RIGHT_BUTTON_DOWN)
+			{
+				s_rightButtonPressed = true;
+			}
+			if (rRawMouse.usButtonFlags & RI_MOUSE_RIGHT_BUTTON_UP)
+			{
+				s_rightButtonPressed = false;
+			}
+			if (rRawMouse.usButtonFlags & RI_MOUSE_MIDDLE_BUTTON_DOWN)
+			{
+				s_middleButtonPressed = true;
+			}
+			if (rRawMouse.usButtonFlags & RI_MOUSE_MIDDLE_BUTTON_UP)
+			{
+				s_middleButtonPressed = false;
+			}
+			if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_4_DOWN)
+			{
+				s_button4Pressed = true;
+			}
+			if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_4_UP)
+			{
+				s_button4Pressed = false;
+			}
+			if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_5_DOWN)
+			{
+				s_button5Pressed = true;
+			}
+			if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_5_UP)
+			{
+				s_button5Pressed = false;
+			}
+		}
+	}
+	break;
+	}
+}
+
+bool MouseInput::SetCursorWindowMessage(LPARAM lParam)
+{
+	if (LOWORD(lParam) == HTCLIENT)
+	{
+		static HCURSOR hHandCursor = LoadCursor(NULL, IDC_ARROW);
+		switch (s_currentMode)
+		{
+		case MouseMode::Exclusive:
+			SetCursor(NULL);
+			break;
+		default:
+			SetCursor(hHandCursor);
+			break;
+		}
+		return true;
+	}
+}
+
+void MouseInput::SetMode(MouseMode mode)
+{
+	s_currentMode = mode;
+	switch (mode)
+	{
+	case MouseMode::Exclusive:
+	{
+		HWND hWnd = CustomWindow::GetWindowHandle();
+		RECT rect = {};
+		GetClientRect(hWnd, &rect);
+		POINT ul;
+		ul.x = rect.left;
+		ul.y = rect.top;
+		POINT lr;
+		lr.x = rect.right;
+		lr.y = rect.bottom;
+		MapWindowPoints(hWnd, nullptr, &ul, 1);
+		MapWindowPoints(hWnd, nullptr, &lr, 1);
+		rect.left = ul.x;
+		rect.top = ul.y;
+		rect.right = lr.x;
+		rect.bottom = lr.y;
+		ClipCursor(&rect);
+	}
+	break;
 	default:
-		s_targetAcquireMode = 0;
+		ClipCursor(NULL);
 		break;
 	}
-}
-
-void MouseInput::Acquire()
-{
-	if (s_currentAcquireMode != s_targetAcquireMode)
-	{
-		if (s_targetAcquireMode)
-		{
-			// attempt to acquire the mouse
-
-			if (s_currentAcquireMode)
-			{
-				HRESULT UnacquireResult = m_pDirectInput8Mouse->Unacquire();
-				s_currentAcquireMode = 0;
-			}
-
-			//// Set the cooperative level of the mouse to share with other programs.
-			HWND hWnd = CustomWindow::GetWindowHandle();
-			HRESULT SetCooperativeLevelResult = m_pDirectInput8Mouse->SetCooperativeLevel(hWnd, s_targetAcquireMode);
-			assert(!FAILED(SetCooperativeLevelResult));
-
-			// Acquire the mouse.
-			HRESULT AcquireResult = m_pDirectInput8Mouse->Acquire();
-			//assert(!FAILED(AcquireResult)); // it is okay to fail here, as we'll try again each frame
-
-			if (!FAILED(AcquireResult))
-			{
-				s_currentAcquireMode = s_targetAcquireMode;
-			}
-			else
-			{
-				s_currentAcquireMode = 0;
-			}
-		}
-		else
-		{
-			// attempt to release the mouse as we currently have specified that we don't want it
-			HRESULT UnacquireResult = m_pDirectInput8Mouse->Unacquire();
-			s_currentAcquireMode = 0;
-		}
-	}
-}
-
-void MouseInput::Init(HINSTANCE hInstance)
-{
-	assert(m_pDirectInput8 == nullptr);
-	assert(m_pDirectInput8Mouse == nullptr);
-
-	s_horizontalSensitivity = Settings::ReadFloatValue(SettingsSection::Controls, "HorizontalSensitivity", 1.0f);
-	s_verticalSensitivity = Settings::ReadFloatValue(SettingsSection::Controls, "VerticalSensitivity", 1.0f);
-
-	if (s_horizontalSensitivity > 1.0f) s_horizontalSensitivity = 1.0f;
-	if (s_verticalSensitivity > 1.0f) s_verticalSensitivity = 1.0f;
-	if (s_horizontalSensitivity < 0.0f) s_horizontalSensitivity = 0.0f;
-	if (s_verticalSensitivity < 0.0f) s_verticalSensitivity = 0.0f;
-
-	SetAcquireMode(MouseAcquireMode::UI);
-
-	HRESULT DirectInput8CreateResult = DirectInput8Create(hInstance, DIRECTINPUT_VERSION, IID_IDirectInput8, (LPVOID*)& m_pDirectInput8, NULL);
-	assert(!FAILED(DirectInput8CreateResult));
-
-	// Initialize the direct input interface for the mouse.
-	HRESULT CreateDeviceResult = m_pDirectInput8->CreateDevice(GUID_SysMouse, &m_pDirectInput8Mouse, NULL);
-	assert(!FAILED(CreateDeviceResult));
-
-	// Set the data format for the mouse using the pre-defined mouse data format.
-	HRESULT SetDataFormatResult = m_pDirectInput8Mouse->SetDataFormat(&c_dfDIMouse2);
-	assert(!FAILED(SetDataFormatResult));
-
-	DIPROPDWORD dipdw;
-	dipdw.diph.dwSize = sizeof(DIPROPDWORD);
-	dipdw.diph.dwHeaderSize = sizeof(DIPROPHEADER);
-	dipdw.diph.dwObj = 0;
-	dipdw.diph.dwHow = DIPH_DEVICE;
-	dipdw.dwData = 64; // Arbitrary buffer size
-
-	HRESULT SetPropertyResult = m_pDirectInput8Mouse->SetProperty(DIPROP_BUFFERSIZE, &dipdw.diph);
-	assert(!FAILED(SetPropertyResult));
-
-	Acquire();
 }
 
 void MouseInput::SetSensitivity(float horizontalSensitivity, float verticalSensitivity)
@@ -111,63 +140,28 @@ void MouseInput::SetSensitivity(float horizontalSensitivity, float verticalSensi
 	s_verticalSensitivity = __max(verticalSensitivity, 0.0f);
 }
 
-bool MouseInput::Read()
-{
-	s_mouseState2 = {};
-
-	if (m_pDirectInput8 == nullptr || m_pDirectInput8Mouse == nullptr)
-	{
-		return false;
-	}
-
-	if (s_currentAcquireMode != 0)
-	{
-		// Read the mouse device.
-		HRESULT GetDeviceStateResult = m_pDirectInput8Mouse->GetDeviceState(sizeof(DIMOUSESTATE2), (LPVOID)& s_mouseState2);
-		if (FAILED(GetDeviceStateResult))
-		{
-			// If the mouse lost focus or was not acquired then try to get control back.
-			if ((GetDeviceStateResult == DIERR_INPUTLOST) || (GetDeviceStateResult == DIERR_NOTACQUIRED))
-			{
-				// try to acquire next frame
-				s_currentAcquireMode = 0;
-			}
-			else
-			{
-				return false;
-			}
-		}
-	}
-
-	return true;
-}
-
-void MouseInput::Deinit()
-{
-	// Release the mouse.
-	assert(m_pDirectInput8Mouse != nullptr);
-	m_pDirectInput8Mouse->Unacquire();
-	m_pDirectInput8Mouse->Release();
-	m_pDirectInput8Mouse = nullptr;
-
-	// Release the main interface to direct input.
-	assert(m_pDirectInput8 != nullptr);
-	m_pDirectInput8->Release();
-	m_pDirectInput8 = nullptr;
-}
-
 float MouseInput::GetMouseX()
 {
-	return float(s_mouseState2.lX) * 0.005f * s_horizontalSensitivity;
+	int xRelativeTicks = s_xPositionAccumulator.exchange(0);
+	return float(xRelativeTicks) * 0.0005f * s_horizontalSensitivity;
 }
 
 float MouseInput::GetMouseY()
 {
-	return float(s_mouseState2.lY) * 0.005f * s_horizontalSensitivity;
+	int yRelativeTicks = s_yPositionAccumulator.exchange(0);
+	return float(yRelativeTicks) * 0.0005f * s_horizontalSensitivity;
 }
 
 bool MouseInput::GetMouseButton(MouseInputButton button)
 {
-	bool buttonPressed = (s_mouseState2.rgbButtons[uint32_t(button)] & 0b10000000) != 0;
-	return buttonPressed;
+	switch (button)
+	{
+	case MouseInputButton::Left:
+		return s_leftButtonPressed;
+	case MouseInputButton::Right:
+		return s_rightButtonPressed;
+	case MouseInputButton::Middle:
+		return s_middleButtonPressed;
+	}
+	return false;
 }

@@ -113,8 +113,8 @@ public: /* instance functions */
 	/* 46 */ virtual __int64 __fastcall Member46(_QWORD, __int64);
 
 	// DATA
-	IGameEvents* pGameEvents;
-	QWORD data1[5863];
+	IGameEvents* pGameEvents = nullptr;
+	QWORD data1[5863] = {};
 };
 //static constexpr size_t IGameEngineHostSize = sizeof(IGameEngineHost);
 //static_assert(IGameEngineHostSize == 0xB748, "IGameEngineHost is incorrect");

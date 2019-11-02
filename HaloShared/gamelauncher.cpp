@@ -181,7 +181,6 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 	LoadSettings(); // #TODO: Replace with UI
 	CustomWindow::Init();
 	GameRender::Init(hInstance);
-	MouseInput::Init(hInstance);
 	InitSockets();
 
 	CustomWindow::SetOnDestroyCallback(GameLauncher::Terminate);
@@ -190,7 +189,6 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 void GameLauncher::Deinit()
 {
 	DeinitSockets();
-	MouseInput::Deinit();
 	GameRender::Deinit();
 	CustomWindow::Deinit();
 
@@ -446,7 +444,6 @@ void GameLauncher::SetState(CurrentState state)
 
 void GameLauncher::Update()
 {
-	MouseInput::Acquire(); // have to try to acquire mouse here as this thread updates the window messages
 	CustomWindow::Update();
 
 	switch (GameLauncher::s_currentState)
@@ -462,9 +459,8 @@ void GameLauncher::Update()
 		SetState(CurrentState::eMainMenu);
 		break;
 	case CurrentState::eMainMenu:
-		MouseInput::SetAcquireMode(MouseAcquireMode::UI);
+		MouseInput::SetMode(MouseMode::UI);
 		DebugUI::Show();
-		MouseInput::Read();
 		break;
 	}
 

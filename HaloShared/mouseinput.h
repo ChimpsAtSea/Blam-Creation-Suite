@@ -7,7 +7,7 @@ enum class MouseInputButton
 	Middle,
 };
 
-enum class MouseAcquireMode
+enum class MouseMode
 {
 	None,
 	UI,
@@ -17,23 +17,26 @@ enum class MouseAcquireMode
 class MouseInput
 {
 public:
-	static void Init(HINSTANCE hInstance);
 	static void SetSensitivity(float horizontalSensitivity, float verticalSensitivity);
-	static bool Read();
-	static void Deinit();
 
 	static float GetMouseX();
 	static float GetMouseY();
 	static bool GetMouseButton(MouseInputButton button);
-	static void SetAcquireMode(MouseAcquireMode acquireMode);
-	static void Acquire();
+	static void SetMode(MouseMode mode);
+
+	static void InputWindowMessage(LPARAM lParam);
+	static bool SetCursorWindowMessage(LPARAM lParam);
 private:
+	static MouseMode s_currentMode;
 	static float s_horizontalSensitivity;
 	static float s_verticalSensitivity;
-	static IDirectInput8* m_pDirectInput8;
-	static IDirectInputDevice8* m_pDirectInput8Mouse;
-	static DIMOUSESTATE2 s_mouseState2;
-	static std::atomic<DWORD> s_currentAcquireMode;
-	static DWORD s_targetAcquireMode;
+	static std::atomic<uint32_t> s_xPositionAccumulator;
+	static std::atomic<uint32_t> s_yPositionAccumulator;
+	static std::atomic<int32_t> s_wheelAccumulator;
+	static bool s_leftButtonPressed;
+	static bool s_rightButtonPressed;
+	static bool s_middleButtonPressed;
+	static bool s_button4Pressed;
+	static bool s_button5Pressed;
 };
 

@@ -93,6 +93,15 @@ LRESULT CALLBACK CustomWindow::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 		s_hFocusWnd = GetFocus();
 		s_hForegroundWnd = GetForegroundWindow();
 		break;
+	case WM_INPUT:
+		MouseInput::InputWindowMessage(lParam);
+		break;
+	case WM_SETCURSOR:
+		if (MouseInput::SetCursorWindowMessage(lParam))
+		{
+			return TRUE;
+		}
+		break;
 	}
 	return DefWindowProc(hwnd, msg, wParam, lParam);
 }
@@ -105,29 +114,32 @@ void CustomWindow::Init()
 
 	// Register the window class.
 
-	WNDCLASS wc = { };
-
-	wc.style = CS_HREDRAW | CS_VREDRAW;
-	wc.lpfnWndProc = WndProc;
-	wc.cbClsExtra = 0;
-	wc.cbWndExtra = 0;
-	wc.hInstance = s_hInstance;
-	wc.hIcon = CustomWindow::GetIcon();
-	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	wc.lpszMenuName = NULL;
-	wc.lpszClassName = "opus_window_class";
-
-	RegisterClass(&wc);
+	WNDCLASSEX windowClass = { };
+	windowClass.cbSize = sizeof(WNDCLASSEX);
+	windowClass.style = CS_HREDRAW | CS_VREDRAW;
+	windowClass.lpfnWndProc = WndProc;
+	windowClass.cbClsExtra = 0;
+	windowClass.cbWndExtra = 0;
+	windowClass.hInstance = s_hInstance;
+	windowClass.hIcon = CustomWindow::GetIcon();
+	windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	windowClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	windowClass.lpszMenuName = NULL;
+	windowClass.lpszClassName = "opus_window_class";
+	windowClass.hCursor = NULL;
+	ATOM registerClassExResult = RegisterClassEx(&windowClass);
+	if (registerClassExResult == NULL)
+	{
+		int err = GetLastError();
+		FATAL_ERROR("Failed to register window class [%i]", err);
+	}
 
 	// Create the window.
-
 	s_hWnd = CreateWindowEx(
 		0,                              // Optional window styles.
 		"opus_window_class",                     // Window class
 		"Opus",    // Window text
 		WS_OVERLAPPEDWINDOW,            // Window style
-
 		// Size and position
 		CW_USEDEFAULT, CW_USEDEFAULT, 1920, 1080,
 
@@ -148,6 +160,14 @@ void CustomWindow::Init()
 		ShowWindow(s_hWnd, SW_SHOW);
 		SetFocus(s_hWnd);
 	}
+
+	static RAWINPUTDEVICE mouseInputDevice = {};
+	mouseInputDevice.usUsagePage = HID_USAGE_PAGE_GENERIC;
+	mouseInputDevice.usUsage = HID_USAGE_GENERIC_MOUSE;
+	mouseInputDevice.dwFlags = RIDEV_INPUTSINK;
+	mouseInputDevice.hwndTarget = s_hWnd;
+	static RAWINPUTDEVICE rawInputDevices[] = { mouseInputDevice };
+	RegisterRawInputDevices(rawInputDevices, _countof(rawInputDevices), sizeof(rawInputDevices));
 }
 
 void CustomWindow::Deinit()

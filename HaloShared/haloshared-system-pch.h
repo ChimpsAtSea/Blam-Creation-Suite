@@ -20,6 +20,7 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>
+#include <hidusage.h>
 #include <objidl.h>
 #include <gdiplus.h>
 #include <sqltypes.h>

@@ -29,7 +29,7 @@ void __fastcall IGameEngineHost::Member02(__int64 player_identifier, unsigned in
 
 void __fastcall IGameEngineHost::GameStatusUpdated(unsigned int a1)
 {
-	/*WriteLineVerbose("IGameEngineHost::Member03 GameStatusUpdated %d", a1);*/
+	WriteLineVerbose("IGameEngineHost::Member03 GameStatusUpdated %d", a1);
 }
 
 __int64 __fastcall IGameEngineHost::GameExited(unsigned int a1, char* a2, int a3)
@@ -204,6 +204,16 @@ __int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member2
 
 bool __fastcall IGameEngineHost::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
 {
+	//if (GetAsyncKeyState(VK_F1))
+	//{
+	//	GameLauncher::s_pHaloReachEngine->Member02(IGameEngine::Member02EventEnum::Pause);
+	//}
+	//if (GetAsyncKeyState(VK_F2))
+	//{
+	//	GameLauncher::s_pHaloReachEngine->Member02(IGameEngine::Member02EventEnum::Unpause);
+	//}
+
+
 	/*
 		When we load the level, we set the g_waitingForInputUpdate to true allowing us
 		to reset the input system. This function sets the engine to use the keyboard
@@ -216,12 +226,12 @@ bool __fastcall IGameEngineHost::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
 	bool debugUIVisible = DebugUI::IsVisible();
 	bool windowFocused = CustomWindow::IsWindowFocused();
 
-	MouseAcquireMode acquireMode = MouseAcquireMode::None;
+	MouseMode mode = MouseMode::None;
 	if (windowFocused)
 	{
-		acquireMode = debugUIVisible ? MouseAcquireMode::UI : MouseAcquireMode::Exclusive;
+		mode = debugUIVisible ? MouseMode::UI : MouseMode::Exclusive;
 	}
-	MouseInput::SetAcquireMode(acquireMode);
+	MouseInput::SetMode(mode);
 
 	// don't update and return an empty zero buffer
 	if (debugUIVisible)
@@ -246,8 +256,6 @@ bool __fastcall IGameEngineHost::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
 			}
 		}
 
-		bool mouseConnected = MouseInput::Read();
-		if (mouseConnected)
 		{
 			float mouseInputX = MouseInput::GetMouseX();
 			float mouseInputY = MouseInput::GetMouseY();
