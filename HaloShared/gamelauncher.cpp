@@ -183,6 +183,12 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 	GameRender::Init(hInstance);
 	InitSockets();
 
+	{
+		float horizontalSensitivity = Settings::ReadFloatValue(SettingsSection::Controls, "HorizontalSensitivity", 1.0f);
+		float verticalSensitivity = Settings::ReadFloatValue(SettingsSection::Controls, "VerticalSensitivity", 1.0f);
+		MouseInput::SetSensitivity(horizontalSensitivity, verticalSensitivity);
+	}
+
 	CustomWindow::SetOnDestroyCallback(GameLauncher::Terminate);
 }
 

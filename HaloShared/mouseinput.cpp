@@ -103,12 +103,9 @@ bool MouseInput::SetCursorWindowMessage(LPARAM lParam)
 	}
 }
 
-void MouseInput::SetMode(MouseMode mode)
+void MouseInput::setClipMode(MouseMode mode)
 {
-	s_currentMode = mode;
-	switch (mode)
-	{
-	case MouseMode::Exclusive:
+	if (mode == MouseMode::Exclusive)
 	{
 		HWND hWnd = CustomWindow::GetWindowHandle();
 		RECT rect = {};
@@ -127,10 +124,18 @@ void MouseInput::SetMode(MouseMode mode)
 		rect.bottom = lr.y;
 		ClipCursor(&rect);
 	}
-	break;
-	default:
+	else
+	{
 		ClipCursor(NULL);
-		break;
+	}
+}
+
+void MouseInput::SetMode(MouseMode mode)
+{
+	if (s_currentMode != mode)
+	{
+		s_currentMode = mode;
+		setClipMode(mode);
 	}
 }
 
@@ -138,18 +143,23 @@ void MouseInput::SetSensitivity(float horizontalSensitivity, float verticalSensi
 {
 	s_horizontalSensitivity = __max(horizontalSensitivity, 0.0f);
 	s_verticalSensitivity = __max(verticalSensitivity, 0.0f);
+
+	if (s_horizontalSensitivity > 1.0f) s_horizontalSensitivity = 1.0f;
+	if (s_verticalSensitivity > 1.0f) s_verticalSensitivity = 1.0f;
+	if (s_horizontalSensitivity < 0.0f) s_horizontalSensitivity = 0.0f;
+	if (s_verticalSensitivity < 0.0f) s_verticalSensitivity = 0.0f;
 }
 
 float MouseInput::GetMouseX()
 {
 	int xRelativeTicks = s_xPositionAccumulator.exchange(0);
-	return float(xRelativeTicks) * 0.0005f * s_horizontalSensitivity;
+	return float(xRelativeTicks) * 0.005f * s_horizontalSensitivity;
 }
 
 float MouseInput::GetMouseY()
 {
 	int yRelativeTicks = s_yPositionAccumulator.exchange(0);
-	return float(yRelativeTicks) * 0.0005f * s_horizontalSensitivity;
+	return float(yRelativeTicks) * 0.005f * s_horizontalSensitivity;
 }
 
 bool MouseInput::GetMouseButton(MouseInputButton button)

@@ -23,10 +23,13 @@ public:
 	static float GetMouseY();
 	static bool GetMouseButton(MouseInputButton button);
 	static void SetMode(MouseMode mode);
+	static void Init();
 
 	static void InputWindowMessage(LPARAM lParam);
 	static bool SetCursorWindowMessage(LPARAM lParam);
 private:
+	static void setClipMode(MouseMode mode);
+
 	static MouseMode s_currentMode;
 	static float s_horizontalSensitivity;
 	static float s_verticalSensitivity;
