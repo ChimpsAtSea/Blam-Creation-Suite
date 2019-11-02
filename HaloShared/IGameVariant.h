@@ -34,10 +34,20 @@ struct c_game_engine_variant
 	BYTE data[64504];
 };
 
+enum e_game_engine_type : DWORD
+{
+	_game_engine_type_none,
+	_game_engine_type_sandbox,
+	_game_engine_type_megalo,
+	_game_engine_type_campaign,
+	_game_engine_type_survival,
+	k_number_of_game_engine_types
+};
+
 #pragma pack(push, 1)
 struct s_game_variant
 {
-	DWORD game_engine_index;
+	e_game_engine_type game_engine_index;
 	c_game_engine_variant game_engine_variant;
 };
 #pragma pack(pop)
@@ -46,6 +56,7 @@ struct s_game_variant
 struct IGameVariant;
 struct /*VFT*/ IGameVariant_vtbl
 {
+	void(__fastcall* Free)(IGameVariant*);
 	BYTE* (__fastcall* Member00)(IGameVariant*);
 	BYTE* (__fastcall* Member01)(IGameVariant*);
 	__int64(__fastcall* Member02)(IGameVariant*, wchar_t*);
@@ -65,7 +76,6 @@ struct /*VFT*/ IGameVariant_vtbl
 	bool(__fastcall* Member16)(IGameVariant*, struct s_unknown*);
 	bool(__fastcall* Member17)(IGameVariant*, struct s_unknown*);
 	bool(__fastcall* Member18)(IGameVariant*, struct content_item_game_variant*, size_t*);
-	void(__fastcall* Free)(IGameVariant*);
 };
 struct IGameVariant
 {
