@@ -929,12 +929,12 @@ void GameLauncher::LoadPreviousGamestate(const char* pFilename, GameContext& gam
 	if (pGameStateFile)
 	{
 		size_t gameStateSize = get_file_size(pGameStateFile);
-		char* pGameStateBuffer = (char*)alloca(gameStateSize);
+		char* pGameStateBuffer = new char[gameStateSize];
 		memset(pGameStateBuffer, 0x00, gameStateSize);
 		read_file_to_buffer(pGameStateFile, pGameStateBuffer, gameStateSize);
 		fclose(pGameStateFile);
 
-		gameContext.pGameStateHeader = reinterpret_cast<uint8_t*>(&pGameStateBuffer);
+		gameContext.pGameStateHeader = reinterpret_cast<uint8_t*>(pGameStateBuffer);
 		gameContext.GameStateHeaderSize = gameStateSize;
 	}
 }
