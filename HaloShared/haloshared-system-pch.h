@@ -25,11 +25,13 @@
 #include <sqltypes.h>
 #include <shlwapi.h>
 
+#define DIRECTINPUT_VERSION  0x0800
 #include <dinput.h>
 #include <D3Dcompiler.h>
 #include <dxgi.h>
 #include <d3d11.h>
 #include <d3d11_4.h>
+#include <Xinput.h>
 
 #include <detours.h>
 

@@ -169,22 +169,23 @@ public:
 	/* 27 */ virtual bool __fastcall Member27();
 	/* 28 */ virtual bool __fastcall Member28(Member28Struct *buffer);
 	/* 29 */ virtual __int64 __fastcall Member29(wchar_t playerNames[4][32], Member29Struct *buffer);
-	/* 30 */ virtual bool __fastcall __fastcall Member30(_QWORD, InputBuffer* pInputBuffer);
-	/* 31 */ virtual void test();
-	/* 32 */ virtual void test2();
+	/* 30 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer);
+	/* 31 */ virtual void Member31();
+	/* 32 */ virtual void XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION* pVibration);
 	/* 33 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t playerNames[4][32], size_t dataSize);
-	/* 34 */ virtual void __fastcall Member32(const wchar_t*, const wchar_t*);
-	/* 35 */ virtual bool __fastcall Member33(wchar_t*, __int64);
+	/* 34 */ virtual void __fastcall Member34(const wchar_t*, const wchar_t*);
+	/* 35 */ virtual bool __fastcall Member35(wchar_t*, __int64);
 	/* 36 */ virtual __int64 __fastcall NetworkSendTo(NetworkID networkID, char* buffer, uint32_t buffersize, int a5);
 	/* 37 */ virtual __int64 __fastcall NetworkReceiveFrom(char* buffer, uint32_t buffersize, __int64 a4, s_transport_address* transport_address);
-	/* 38 */ virtual char* __fastcall Member36(unsigned int);
-	/* 39 */ virtual int __fastcall Member37(BYTE* buffer);
-	/* 40 */ virtual bool __fastcall Member38(signed int, __int64, __int64);
-	/* 41 */ virtual void __fastcall FireFightNew(__int64, float);
-	/* 42 */ virtual BOOL __fastcall Member40(__int64, __int64);
+	/* 38 */ virtual char* __fastcall Member38(unsigned int);
+	/* 39 */ virtual int __fastcall Member39(BYTE* buffer);
+	/* 40 */ virtual bool __fastcall Member40(signed int, __int64, __int64);
+	/* 41 */ virtual void __fastcall FirefightNew(__int64, float);
+	/* 42 */ virtual BOOL __fastcall Member42(__int64, __int64);
 	/* 43 */ virtual bool __fastcall GetPathByType(int pathType, char* buffer, size_t bufferlength);
 	/* 44 */ virtual bool __fastcall GetWidePathByType(int pathType, wchar_t* buffer, size_t bufferlength); // is now 44
-	/* 45 */ virtual unsigned __int8* __fastcall Member43(_QWORD, unsigned __int8*, _QWORD);
+	/* 45 */ virtual unsigned __int8* __fastcall Member45(_QWORD, unsigned __int8*, _QWORD);
+	/* 46 */ virtual __int64 __fastcall Member46(_QWORD, __int64);
 
 	// DATA
 	

@@ -57,24 +57,24 @@ char __fastcall IGameEngineHost::Member00()
 {
 	//WriteLineVerbose("IGameEngineHost::Member00");
 	return 0;
-};
+}
 
 void __fastcall IGameEngineHost::Member01(IDXGISwapChain* pSwapChain, _QWORD a2)
 {
 	DebugUI::RenderFrame();
 
 	//WriteLineVerbose("IGameEngineHost::Member01 0x%p 0x%llx", pSwapChain, a2);
-};
+}
 
 void __fastcall IGameEngineHost::Member02(__int64 player_identifier, unsigned int a2, __int64 a3, float a4, float a5, float a6, float a7)
 {
 	//WriteLineVerbose("IGameEngineHost::Member02");
-};
+}
 
 void __fastcall IGameEngineHost::GameStatusUpdated(unsigned int a1)
 {
 	/*WriteLineVerbose("IGameEngineHost::Member03 GameStatusUpdated %d", a1);*/
-};
+}
 
 __int64 __fastcall IGameEngineHost::GameExited(unsigned int a1, char* a2, int a3)
 {
@@ -83,32 +83,53 @@ __int64 __fastcall IGameEngineHost::GameExited(unsigned int a1, char* a2, int a3
 
 	WriteLineVerbose("GameExited %u [%s]", a1, a2);
 	return __int64(0);
-};
+}
 
 __int64 __fastcall IGameEngineHost::WriteBufferToFile(LPVOID pBuffer, size_t bufferSize)
 {
 	WriteLineVerbose("IGameEngineHost::Member05 WriteBufferToFile %p %016llx", pBuffer, bufferSize);
 	return __int64(0);
-};
+}
 
 void __fastcall IGameEngineHost::Member06(Member06Struct* buffer)
 {
 	WriteLineVerbose("IGameEngineHost::Member06");
-};
+}
 
 void __fastcall IGameEngineHost::Member07(unsigned int a1)
 {
 	WriteLineVerbose("IGameEngineHost::Member07 PauseMenuOpened");
-};
-void __fastcall IGameEngineHost::Member08(const wchar_t *, const wchar_t *) { WriteLineVerbose("IGameEngineHost::Member08"); };
-void __fastcall IGameEngineHost::Member09(wchar_t buffer0[1024], wchar_t buffer1[1024]) { WriteLineVerbose("IGameEngineHost::Member09"); };
+}
+
+void __fastcall IGameEngineHost::Member08(const wchar_t *, const wchar_t *) 
+{ 
+	WriteLineVerbose("IGameEngineHost::Member08");
+}
+
+void __fastcall IGameEngineHost::Member09(wchar_t buffer0[1024], wchar_t buffer1[1024])
+{ 
+	WriteLineVerbose("IGameEngineHost::Member09");
+}
+
 IGameEvents* __fastcall IGameEngineHost::GetGameEvents()
 {
 	return pGameEvents;
-};
-void __fastcall IGameEngineHost::GameVariantCreated(IGameVariant* variant) { WriteLineVerbose("IGameEngineHost::Member10 GameVariantCreated"); };
-void __fastcall IGameEngineHost::MapVariantCreated(IMapVariant* variant) { WriteLineVerbose("IGameEngineHost::Member11 MapVariantCreated"); };
-void __fastcall IGameEngineHost::Member13(const wchar_t*, const wchar_t*, const void*, unsigned int) { WriteLineVerbose("IGameEngineHost::Member12"); };
+}
+
+void __fastcall IGameEngineHost::GameVariantCreated(IGameVariant* variant) 
+{ 
+	WriteLineVerbose("IGameEngineHost::Member10 GameVariantCreated");
+}
+
+void __fastcall IGameEngineHost::MapVariantCreated(IMapVariant* variant) 
+{ 
+	WriteLineVerbose("IGameEngineHost::Member11 MapVariantCreated"); 
+}
+
+void __fastcall IGameEngineHost::Member13(const wchar_t*, const wchar_t*, const void*, unsigned int) 
+{ 
+	WriteLineVerbose("IGameEngineHost::Member12");
+}
 
 char __fastcall IGameEngineHost::Member14(int controllerIndex, BYTE* flags)
 {
@@ -133,7 +154,11 @@ bool __fastcall IGameEngineHost::Member17(int a1)
 	WriteLineVerbose("IGameEngineHost::Member17");
 	return false;
 };
-void __fastcall IGameEngineHost::Member18(int) { WriteLineVerbose("IGameEngineHost::Member18"); };
+
+void __fastcall IGameEngineHost::Member18(int) 
+{ 
+	WriteLineVerbose("IGameEngineHost::Member18"); 
+};
 
 __int64 __fastcall IGameEngineHost::MapLoadPecentStatus(__int64 a1, __int64 a2, float a3)
 {
@@ -141,7 +166,10 @@ __int64 __fastcall IGameEngineHost::MapLoadPecentStatus(__int64 a1, __int64 a2, 
 	return __int64(0);
 };
 
-void __fastcall IGameEngineHost::Member20(__int64 a1, __int8 a2) { WriteLineVerbose("IGameEngineHost::Member20"); };
+void __fastcall IGameEngineHost::Member20(__int64 a1, __int8 a2) 
+{ 
+	WriteLineVerbose("IGameEngineHost::Member20");
+};
 
 __int64 __fastcall IGameEngineHost::GetMachineIdentifier(_QWORD a1)
 {
@@ -157,31 +185,15 @@ char __fastcall IGameEngineHost::Member23(__int64 a1, __int64 a2)
 {
 	WriteLineVerbose("IGameEngineHost::Member23 ScoreboardOpened");
 	return 1;
-};
-
-#include <HaloReach/c_network.h>
-
-extern Pointer<HaloGameID::HaloReach_2019_Aug_20, c_network_session *, 0x1830DC4E0> g_pNetworkSquadSession;
-//extern Data<HaloGameID::HaloReach_2019_Aug_20, c_network_session *[4], 0x1830DC4E0> g_pNetworkSessions;
-
+}
 
 void __fastcall IGameEngineHost::GetSessionInfo(s_session_info_part* buffer)
 {
-	//c_network_session *&networkSquadSession = g_pNetworkSessions[0];
-	//c_network_session *&networkPosseSession = g_pNetworkSessions[1];
-	//c_network_session *&networkGroupSession = g_pNetworkSessions[2];
-	//c_network_session *&networkTargetSession = g_pNetworkSessions[3];
-
 	WriteVerbose("IGameEngineHost::GetSessionInfo");
-};
+}
 
 void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership *pSessionMembership, uint32_t playercount)
 {
-	//c_network_session *&networkSquadSession = g_pNetworkSessions[0];
-	//c_network_session *&networkPosseSession = g_pNetworkSessions[1];
-	//c_network_session *&networkGroupSession = g_pNetworkSessions[2];
-	//c_network_session *&networkTargetSession = g_pNetworkSessions[3];
-
 	WriteLineVerbose("s_session_membership count: %i", pSessionMembership->Count);
 	for (int i = 0; i < pSessionMembership->Count; i++)
 	{
@@ -199,8 +211,6 @@ void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership *pSession
 
 	//auto x = &pSessionMembership->Members[0].SecureAddress;
 
-
-
 	WriteLineVerbose("IGameEngineHost::Member25 MembershipUpdate");
 };
 
@@ -208,13 +218,13 @@ bool __fastcall IGameEngineHost::Member26()
 {
 	WriteLineVerbose("IGameEngineHost::Member26");
 	return false;
-};
+}
+
 bool __fastcall IGameEngineHost::Member27()
 {
 	//WriteLineVerbose("IGameEngineHost::Member27");
-
 	return false;
-};
+}
 
 bool __fastcall IGameEngineHost::Member28(Member28Struct* buffer)
 {
@@ -224,7 +234,7 @@ bool __fastcall IGameEngineHost::Member28(Member28Struct* buffer)
 	}
 	WriteLineVerbose("IGameEngineHost::Member28");
 	return true;
-};
+}
 
 __int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member29Struct* buffer)
 {
@@ -233,15 +243,15 @@ __int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member2
 
 	WriteLineVerbose("IGameEngineHost::Member29");
 	return __int64(0);
-};
+}
 
-bool __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInputBuffer)
+bool __fastcall IGameEngineHost::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
 {
 	/*
 		When we load the level, we set the g_waitingForInputUpdate to true allowing us
 		to reset the input system. This function sets the engine to use the keyboard
 		or mouse input.
-		*/
+	*/
 
 	memset(pInputBuffer, 0, sizeof(*pInputBuffer));
 	pInputBuffer->unknown0 = 1;
@@ -299,8 +309,20 @@ bool __fastcall IGameEngineHost::Member30(_QWORD, InputBuffer* pInputBuffer)
 	}
 
 	return unsigned __int8(1);
-};
+}
 
+void IGameEngineHost::Member31()
+{
+	WriteLineVerbose("IGameEngineHost::Member31");
+	// appears to be usermanagement related?
+	// we haven't seen this fire yet and don't know its structure so throw an error
+	throw;
+}
+
+void IGameEngineHost::XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION* pVibration)
+{
+	::XInputSetState(dwUserIndex, pVibration);
+}
 
 bool __fastcall IGameEngineHost::UpdatePlayerNames(__int64* playerIndices, wchar_t playerNames[4][32], size_t dataSize)
 {
@@ -337,14 +359,18 @@ bool __fastcall IGameEngineHost::UpdatePlayerNames(__int64* playerIndices, wchar
 		return true;
 	}
 	return false;
-};
-void IGameEngineHost::Member32(const wchar_t *a1, const wchar_t *a2) { WriteLineVerbose("IGameEngineHost::Member32"); };
+}
 
-bool IGameEngineHost::Member33(wchar_t *a1, __int64 a2)
+void IGameEngineHost::Member34(const wchar_t *a1, const wchar_t *a2) 
+{ 
+	WriteLineVerbose("IGameEngineHost::Member34"); 
+}
+
+bool IGameEngineHost::Member35(wchar_t *a1, __int64 a2)
 {
-	WriteLineVerbose("IGameEngineHost::Member33");
+	WriteLineVerbose("IGameEngineHost::Member35");
 	return 0;
-};
+}
 
 __int64 __fastcall IGameEngineHost::NetworkSendTo(NetworkID networkID, char* buffer, uint32_t buffersize, int a5)
 {
@@ -375,7 +401,7 @@ __int64 __fastcall IGameEngineHost::NetworkSendTo(NetworkID networkID, char* buf
 	WriteLineVerbose("IGameEngineHost::NetworkSendTo %i", result);
 
 	return result;
-};
+}
 
 __int64 IGameEngineHost::NetworkReceiveFrom(char* buffer, uint32_t buffersize, __int64 a4, s_transport_address* transport_address)
 {
@@ -401,37 +427,37 @@ __int64 IGameEngineHost::NetworkReceiveFrom(char* buffer, uint32_t buffersize, _
 			return 0;
 		}
 	}
-};
+}
 
-char* __fastcall IGameEngineHost::Member36(unsigned int a1)
-{
-	WriteLineVerbose("IGameEngineHost::Member36");
-	return 0;
-};
-
-int __fastcall IGameEngineHost::Member37(BYTE* buffer)
-{
-	WriteLineVerbose("IGameEngineHost::Member37");
-	return 0;
-};
-
-bool __fastcall IGameEngineHost::Member38(signed int a1, __int64 a2, __int64 a3)
+char* __fastcall IGameEngineHost::Member38(unsigned int a1)
 {
 	WriteLineVerbose("IGameEngineHost::Member38");
 	return 0;
-};
+}
 
-// new wave/set
-void __fastcall IGameEngineHost::FireFightNew(__int64 a1, float a2)
+int __fastcall IGameEngineHost::Member39(BYTE* buffer)
 {
-	WriteLineVerbose("IGameEngineHost::Member39 FireFightNew");
-};
+	WriteLineVerbose("IGameEngineHost::Member39");
+	return 0;
+}
 
-BOOL __fastcall IGameEngineHost::Member40(__int64 a1, __int64 a2)
+bool __fastcall IGameEngineHost::Member40(signed int a1, __int64 a2, __int64 a3)
 {
 	WriteLineVerbose("IGameEngineHost::Member40");
 	return 0;
-};
+}
+
+// new wave/set
+void __fastcall IGameEngineHost::FirefightNew(__int64 a1, float a2)
+{
+	WriteLineVerbose("IGameEngineHost::FirefightNew");
+}
+
+BOOL __fastcall IGameEngineHost::Member42(__int64 a1, __int64 a2)
+{
+	WriteLineVerbose("IGameEngineHost::Member42");
+	return 0;
+}
 
 bool __fastcall IGameEngineHost::GetPathByType(int pathType, char* buffer, size_t bufferlength)
 {
@@ -453,7 +479,7 @@ bool __fastcall IGameEngineHost::GetPathByType(int pathType, char* buffer, size_
 	}
 
 	return 1;
-};
+}
 
 // this is correct implementation inline with MCC
 bool __fastcall IGameEngineHost::GetWidePathByType(int pathType, wchar_t* buffer, size_t bufferlength)
@@ -476,19 +502,16 @@ bool __fastcall IGameEngineHost::GetWidePathByType(int pathType, wchar_t* buffer
 	}
 
 	return 1;
-};
-
-unsigned __int8* IGameEngineHost::Member43(_QWORD a1, unsigned __int8 *a2, _QWORD a3)
-{
-	return 0;
-};
-
-void IGameEngineHost::test()
-{
-	throw;
 }
 
-void IGameEngineHost::test2()
+unsigned __int8* IGameEngineHost::Member45(_QWORD a1, unsigned __int8 *a2, _QWORD a3)
 {
-	throw;
+	return 0;
+}
+
+__int64 __fastcall IGameEngineHost::Member46(_QWORD, __int64)
+{
+	// appears to be security related
+	WriteLineVerbose("IGameEngineHost::Member46");
+	return 0;
 }

@@ -296,14 +296,6 @@ struct s_game_action
 };
 #pragma pack(pop)
 
-#pragma pack(push, 1)
-struct XINPUT_VIBRATION
-{
-	WORD wLeftMotorSpeed;
-	WORD wRightMotorSpeed;
-};
-#pragma pack(pop)
-
 struct s_gamepad_globals
 {
 	bool XInputLoaded;
