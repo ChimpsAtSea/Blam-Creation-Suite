@@ -71,7 +71,7 @@
     <PostBuildEvent>
       <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\*" /Y
-echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\*" /Y
+echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\MCC-Win64-Shipping.map" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
@@ -103,7 +103,7 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
     <PostBuildEvent>
       <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\*" /Y
-echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\*" /Y
+echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\MCC-Win64-Shipping.map" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y

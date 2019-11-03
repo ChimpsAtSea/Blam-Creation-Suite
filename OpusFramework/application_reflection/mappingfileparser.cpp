@@ -134,7 +134,11 @@ void MappingFileParser::Parse(std::string filename)
 	// Get the contents of file in a vector
 	std::vector<MapLine> RawLines;
 	bool result = getFileContent(filename.c_str(), RawLines);
-
+	if (!result)
+	{
+		FATAL_ERROR("Failed to open mapping file %s", filename);
+	}
+	
 	MapFileEntries entry_list;
 	for (MapLine& line : RawLines)
 	{

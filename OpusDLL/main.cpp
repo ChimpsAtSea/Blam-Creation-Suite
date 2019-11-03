@@ -2,11 +2,11 @@
 
 __declspec(dllexport) void opus() {};
 
-extern void init_halo_reach(HaloGameID gameID);
+extern void init_halo_reach_with_mcc(HaloGameID gameID, bool isMCC);
 extern void deinit_halo_reach(HaloGameID gameID);
 void haloreach_dll_loaded_callback()
 {
-	init_halo_reach(HaloGameID::HaloReach_2019_Oct_30); // #TODO: Detect halo game id
+	init_halo_reach_with_mcc(HaloGameID::HaloReach_2019_Oct_30, true); // #TODO: Detect halo game id
 }
 
 typedef FARPROC(__stdcall GetProcAddressFunc)(HMODULE hModule, LPCSTR lpProcName);
@@ -42,7 +42,7 @@ void init()
 	init_detours();
 
 	LPSTR pCommandLine = GetCommandLineA();
-	printf("Command Line: %s", pCommandLine);
+	WriteLineVerbose("Command Line: %s", pCommandLine);
 
 	{
 		//static void* OutputDebugStringW_Original;

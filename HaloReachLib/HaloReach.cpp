@@ -443,8 +443,43 @@ void halo_reach_debug_callback()
 
 char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", HaloGameID::HaloReach_2019_Aug_20, 0x180A0EE08);
 
-void init_halo_reach(HaloGameID gameID)
+void dump_binary(const char* pFileName, void* pData, size_t size)
 {
+	FILE* pFile = fopen(pFileName, "wb");
+	if (pFileName)
+	{
+		fwrite(pData, 1, size, pFile);
+
+		WriteLineVerbose("Successfully dumped %s", pFileName);
+	}
+	else
+	{
+		WriteLineVerbose("Failed to dump %s", pFileName);
+	}
+}
+
+intptr_t game_start_offset(HaloGameID gameID)
+{
+	switch (gameID)
+	{
+	case HaloGameID::HaloReach_2019_Oct_30: return 0x180011C60;
+	}
+	return ~intptr_t();
+}
+
+#pragma optimize("", off)
+FunctionHookEx<game_start_offset, char(__fastcall)(IGameEngineHaloReach * __this, class IGameEngineHost* pGameEngineHost, GameContext * pGameContext)> game_start = [](IGameEngineHaloReach* __this, class IGameEngineHost* pGameEngineHost, GameContext* pGameContext)
+{
+	dump_binary("gamecontext.bin", pGameContext, sizeof(GameContext));
+	auto result = game_start(__this, pGameEngineHost, pGameContext);
+	return result;
+};
+#pragma optimize("", on)
+
+void init_halo_reach_with_mcc(HaloGameID gameID, bool isMCC)
+{
+	game_start.SetIsActive(isMCC);
+
 	g_currentGameID = gameID;
 	CustomWindow::SetWindowTitle("Halo Reach");
 	ReadConfig();
@@ -509,6 +544,11 @@ void init_halo_reach(HaloGameID gameID)
 	end_detours();
 
 	//GameLauncher::RegisterTerminationValue(g_termination_value);
+}
+
+void init_halo_reach(HaloGameID gameID)
+{
+	init_halo_reach_with_mcc(gameID, false);
 }
 
 void deinit_halo_reach(HaloGameID gameID)
