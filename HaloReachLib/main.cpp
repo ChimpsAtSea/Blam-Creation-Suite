@@ -1,4 +1,4 @@
-#include <HaloReachLib\haloreachlib-private-pch.h>
+#include "haloreachlib-private-pch.h"
 
 void EnsureBink2Win64IsLoaded(const char* pLibName, const char* pFallbackDir = "")
 {

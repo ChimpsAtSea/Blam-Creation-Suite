@@ -20,7 +20,7 @@
 #include <HaloUtilities/haloutilities-public-pch.h>
 #include <MCC/mcc-public-pch.h>
 #include <HaloReach/local_types.h>
-#include <HaloShared/haloshared-public-pch.h>
+#include <OpusFramework/opusframework-public-pch.h>
 
 // Project headers
 

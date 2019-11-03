@@ -12,19 +12,19 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{0D2234CA-029E-4055-944E-DB8B67498309}</ProjectGuid>
+    <ProjectGuid>{9D62395A-734A-44BC-8E87-FE305D52D53C}</ProjectGuid>
     <RootNamespace>HaloReach</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -60,27 +60,19 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>haloreachlib-private-pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;haloreachlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imgui.lib;detours.lib;winmm.lib;haloshared.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
     </Link>
-    <PostBuildEvent>
-      <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
-echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\haloreach\*" /Y
-echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\haloreach\*" /Y
-) else (
- if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
-  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).map" "$(LocalDebuggerWorkingDirectory)" /Y
- )
-)</Command>
-    </PostBuildEvent>
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -90,6 +82,8 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>haloreachlib-private-pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -98,24 +92,33 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;haloreachlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imgui.lib;detours.lib;winmm.lib;haloshared.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
     </Link>
-    <PostBuildEvent>
-      <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
-echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\haloreach\*" /Y
-echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\haloreach\*" /Y
-) else (
- if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
-  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).map" "$(LocalDebuggerWorkingDirectory)" /Y
- )
-)</Command>
-    </PostBuildEvent>
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HaloReach.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="haloreachlib-private-pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="c_network.h" />
+    <ClInclude Include="haloreachlib-private-pch.h" />
+    <ClInclude Include="haloreachlib-public-pch.h" />
+    <ClInclude Include="HaloReach.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="haloreach.core.inl" />
+    <None Include="haloreach.game.inl" />
+    <None Include="haloreach.input.inl" />
+    <None Include="haloreach.log.inl" />
+    <None Include="haloreach.network.inl" />
+    <None Include="haloreach.render.inl" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\OpusFramework\Resource.rc" />

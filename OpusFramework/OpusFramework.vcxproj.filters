@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FunctionHook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dx11_c_code.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IGameEngineHost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SplashScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HaloGameID.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="detour_helpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IGameEvents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IGameEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gamelauncher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameinterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="campaign_difficulty_level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game_mode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="map_id.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="customwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mouseinput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="application_reflection\globalreference.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="application_reflection\mappingfileparser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="networkmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="opusframework-private-pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FunctionHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameEngineHost.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SplashScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HaloGameID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="local_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="input_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hexrays_defs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="detour_helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="logging.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameEvents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gamelauncher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameinterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="campaign_difficulty_level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game_mode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_id.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDataAccess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameVariant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IMapVariant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISaveFilmMetadata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="customwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mouseinput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application_reflection\globalreference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application_reflection\mappingfileparser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application_reflection\referencesymbol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="application_reflection\offsetfunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="networkmanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opusframework-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opusframework-public-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opusframework-system-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="DataReference.natvis" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="reach_icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="splash_screen.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
