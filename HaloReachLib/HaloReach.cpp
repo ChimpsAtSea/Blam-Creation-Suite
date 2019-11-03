@@ -478,7 +478,7 @@ FunctionHookEx<game_start_offset, char(__fastcall)(IGameEngineHaloReach * __this
 
 void init_halo_reach_with_mcc(HaloGameID gameID, bool isMCC)
 {
-	game_start.SetIsActive(isMCC);
+	game_start.SetIsActive(isMCC || GameLauncher::HasCommandLineArg("-dump:gamecontext.bin"));
 
 	g_currentGameID = gameID;
 	CustomWindow::SetWindowTitle("Halo Reach");
