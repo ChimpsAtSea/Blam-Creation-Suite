@@ -33,8 +33,8 @@ public:
 	/* 20  */	virtual void BroadcastingHeartbeat();
 	/* 21  */	virtual void BroadcastingKill();
 	/* 22  */	virtual void BroadcastingMatchEnd();
-	/* 23  */	virtual void MultiplayerRoundEnd_0(); // these are probably named wrong as these are alphabetical
-	/* 24  */	virtual void MultiplayerRoundStart_0(); // these are probably named wrong as these are alphabetical
+	/* 23  */	virtual void BroadcastingMatchRoundEnd(); // these are probably named wrong as these are alphabetical
+	/* 24  */	virtual void BroadcastingMatchRoundStart(); // these are probably named wrong as these are alphabetical
 	/* 25  */	virtual void BroadcastingMatchStart();
 	/* 26  */	virtual void BroadcastingMedal();
 	/* 27  */	virtual void BroadcastingPlayerJoined();

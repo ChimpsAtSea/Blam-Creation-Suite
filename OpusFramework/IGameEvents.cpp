@@ -26,8 +26,8 @@ void IGameEvents::BroadcastingDeath() { if (g_logGameEventMessages) { WriteLineV
 void IGameEvents::BroadcastingHeartbeat() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingHeartbeat"); } }
 void IGameEvents::BroadcastingKill() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingKill"); } }
 void IGameEvents::BroadcastingMatchEnd() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingMatchEnd"); } }
-void IGameEvents::MultiplayerRoundEnd_0() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: MultiplayerRoundEnd_0"); } }
-void IGameEvents::MultiplayerRoundStart_0() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: MultiplayerRoundStart_0"); } }
+void IGameEvents::BroadcastingMatchRoundEnd() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingMatchRoundEnd"); } }
+void IGameEvents::BroadcastingMatchRoundStart() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingMatchRoundStart"); } }
 void IGameEvents::BroadcastingMatchStart() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingMatchStart"); } }
 void IGameEvents::BroadcastingMedal() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingMedal"); } }
 void IGameEvents::BroadcastingPlayerJoined() { if (g_logGameEventMessages) { WriteLineVerbose("GameEvent: BroadcastingPlayerJoined"); } }
