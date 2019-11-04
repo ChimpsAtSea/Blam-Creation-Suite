@@ -31,7 +31,7 @@ struct __declspec(align(8)) c_game_engine_variant_vtbl
 struct c_game_engine_variant
 {
 	c_game_engine_variant_vtbl* __vftable /*VFT*/;
-	BYTE data[64504];
+	char data[64504];
 };
 
 enum e_game_engine_type : DWORD

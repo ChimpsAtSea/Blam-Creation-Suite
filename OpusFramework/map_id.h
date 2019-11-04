@@ -53,3 +53,4 @@ enum e_map_id : int
 
 extern e_map_id string_to_map_id(const char* string);
 extern const char* map_id_to_string(e_map_id map_id);
+extern int map_id_to_engine_specific(e_map_id map_id);

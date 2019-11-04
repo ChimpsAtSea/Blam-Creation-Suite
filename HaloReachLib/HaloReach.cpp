@@ -177,18 +177,6 @@ FunctionHookVarArgs<HaloGameID::HaloReach_2019_Aug_20, 0x180495220, char(unsigne
 
 //char sub_180495220()
 
-// #TODO: Move inside of gamehostcallback
-void WriteGameState()
-{
-	if (GetAsyncKeyState(VK_F8))
-	{
-		FILE* pGameStateFile = fopen("gamestate.hdr", "w+b");
-		HaloReach_2019_Jun_24_Data<s_game_state_header*, 0x183841B18> pGameStateHeader;
-		fwrite(pGameStateHeader, 1, sizeof(s_game_state_header), pGameStateFile);
-		fclose(pGameStateFile);
-	}
-}
-
 void set_service_tag(int index)
 {
 	//static wchar_t tag[5] = L"";

@@ -105,39 +105,49 @@ class IGameEngine
 {
 public:
 
-	enum Member02EventEnum : int
+	enum class eGameStatus : int
 	{
 		Pause,
 		Unpause,
+
 		ImmediateExit,
-		Restart,
-		Restart2,
-		ReloadControls,
-		Unknown6, // crash
-		Unknown7,
-		Unknown8,
-		Unknown9,
-		Unknown10,
-		RestartRound, // not confirmed
-		Unknown12,
-		Unknown13,
-		Unknown14, // potentially audio related. causes member 40 to run a lot of times. also causes massive memory spike!
-		Unknown15,
-		Unknown16, // unknown this takes some extra argument provided to Member02
+		RevertToLastSave,
+		RestartLevel,
+
+		ReloadSettings,
+
+		// 6 and 7 are connected
+		GameLoadStart, // sets a temp variable to `g_render_thread_mode` and sets `g_render_thread_mode` to `0`, sets `g_game_is_loading` to `true` and runs `UpdateGameStatus(RevertToLastSave)`
+		GameLoadEnd, // sets `g_render_thread_mode` to the temp variable and sets the temp variable to `0`, sets `g_game_is_loading` to `false` and runs `UpdateGameStatus(RestartLevel)`
+
+		// 8 and 9 are connected
+		Unknown8, // allocates `c_controller_input_message` (loadout selection is shown) and sets a temp variable to `true`
+		Unknown9, // sets the temp variable to `false` and player spawns
+
+		UpdateGameVariant, // creates a new `IGameVariant` and passes it to `IGameEngineHost::UpdateGameVariant`
+		UpdateMapVariant, // creates a new `IMapVariant` and passes it to `IGameEngineHost::UpdateMapVariant`
+
+		EndRound, // not confirmed
+		EndGame, // not confirmed
+
+		ReloadRenderer, // potentially enhanced graphics. causes member 42 to run, also causes memory spike!
+
+		Unknown15, // unknown
+		Unknown16, // unknown this takes some extra argument provided to UpdateGameStatus
 	};
 
 public: // instance functions
 
 	virtual __forceinline __int64 __fastcall InitGraphics(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext, IDXGISwapChain* pSwapchain, IDXGISwapChain* pFallbackSwapchain) = 0;
 	virtual HANDLE __fastcall InitThread(class IGameEngineHost* pGameEngineHost, GameContext* pGameContext) = 0;
-	virtual __int64 __fastcall Member02(Member02EventEnum event, _QWORD* extraArgument = nullptr) = 0;
+	virtual __int64 __fastcall UpdateGameStatus(eGameStatus status, _QWORD* extraArgument = nullptr) = 0;
 	virtual __int64 __fastcall Destructor() = 0;
 	virtual void __fastcall Member04() = 0;
 	virtual void __fastcall Member05() = 0;
 	virtual void __fastcall Member06() = 0;
 	virtual void __fastcall Member07() = 0;
 	virtual void __fastcall Member08() = 0;
-	virtual __int64 __fastcall Member09(const char* a1) = 0; // Member09 looks same as Member02 but takes a string argument that is copied with strdup
+	virtual __int64 __fastcall Member09(const char* a1) = 0; // Member09 looks same as UpdateGameStatus but takes a string argument that is copied with strdup
 	virtual __int64 __fastcall Member10() = 0;
 };
 static constexpr size_t IGameEngineBaseSize = sizeof(IGameEngine);
@@ -147,7 +157,7 @@ class IGameEngineHaloReach : public IGameEngine
 {
 public:
 	DWORD unknown8;
-	float unknownC;
+	float GameSpeed;
 	char unknown10[1056];
 	SLIST_HEADER header430;
 	SLIST_HEADER header440;

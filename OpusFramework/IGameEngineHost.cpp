@@ -27,9 +27,15 @@ void __fastcall IGameEngineHost::Member02(__int64 player_identifier, unsigned in
 	//WriteLineVerbose("IGameEngineHost::Member02");
 }
 
-void __fastcall IGameEngineHost::GameStatusUpdated(unsigned int a1)
+void __fastcall IGameEngineHost::GameStatusUpdated(IGameEngine::eGameStatus status)
 {
-	WriteLineVerbose("IGameEngineHost::Member03 GameStatusUpdated %d", a1);
+	WriteLineVerbose("IGameEngineHost::GameStatusUpdated(%d)", status);
+
+	// `Unknown16` also needs a second arg so we skip it
+	if (status != IGameEngine::eGameStatus::Unknown16)
+	{
+		GameLauncher::s_pHaloReachEngine->UpdateGameStatus(status);
+	}
 }
 
 __int64 __fastcall IGameEngineHost::GameExited(unsigned int a1, char* a2, int a3)
@@ -72,14 +78,14 @@ IGameEvents* __fastcall IGameEngineHost::GetGameEvents()
 	return pGameEvents;
 }
 
-void __fastcall IGameEngineHost::GameVariantCreated(IGameVariant* variant) 
+void __fastcall IGameEngineHost::UpdateGameVariant(IGameVariant* variant) 
 { 
-	WriteLineVerbose("IGameEngineHost::Member10 GameVariantCreated");
+	WriteLineVerbose("IGameEngineHost::UpdateGameVariant");
 }
 
-void __fastcall IGameEngineHost::MapVariantCreated(IMapVariant* variant) 
+void __fastcall IGameEngineHost::UpdateMapVariant(IMapVariant* variant) 
 { 
-	WriteLineVerbose("IGameEngineHost::Member11 MapVariantCreated"); 
+	WriteLineVerbose("IGameEngineHost::UpdateMapVariant"); 
 }
 
 void __fastcall IGameEngineHost::Member13(const wchar_t*, const wchar_t*, const void*, unsigned int) 

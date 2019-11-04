@@ -2,7 +2,7 @@
 
 struct s_map_variant
 {
-	BYTE data[55724];
+	char data[55724];
 };
 
 struct IMapVariant;

@@ -106,3 +106,95 @@ const char* map_id_to_string(e_map_id map_id)
 	}
 	return nullptr;
 }
+
+int map_id_to_engine_specific(e_map_id map_id)
+{
+	switch (map_id)
+	{
+	case _map_id_m05:
+		return 5005;
+	case _map_id_m10:
+		return 5010;
+	case _map_id_m20:
+		return 5020;
+	case _map_id_m30:
+		return 5030;
+	case _map_id_m35:
+		return 5035;
+	case _map_id_m45:
+		return 5045;
+	case _map_id_m50:
+		return 5050;
+	case _map_id_m52:
+		return 5052;
+	case _map_id_m60:
+		return 5060;
+	case _map_id_m70:
+		return 5070;
+	case _map_id_m70_a:
+		return 5075;
+	case _map_id_m70_bonus:
+		return 5080;
+	case _map_id_50_panopticon:
+		return 1035;
+	case _map_id_70_boneyard:
+		return 1080;
+	case _map_id_45_launch_station:
+		return 1020;
+	case _map_id_30_settlement:
+		return 1055;
+	case _map_id_52_ivory_tower:
+		return 1150;
+	case _map_id_35_island:
+		return 1200;
+	case _map_id_20_sword_slayer:
+		return 1000;
+	case _map_id_45_aftship:
+		return 1040;
+	case _map_id_dlc_slayer:
+		return 2001;
+	case _map_id_dlc_invasion:
+		return 2002;
+	case _map_id_dlc_medium:
+		return 2004;
+	case _map_id_condemned:
+		return 1500;
+	case _map_id_trainingpreserve:
+		return 1510;
+	case _map_id_cex_beaver_creek:
+		return 10020;
+	case _map_id_cex_damnation:
+		return 10010;
+	case _map_id_cex_timberland:
+		return 10030;
+	case _map_id_cex_prisoner:
+		return 10070;
+	case _map_id_cex_hangemhigh:
+		return 10060;
+	case _map_id_cex_headlong:
+		return 10050;
+	case _map_id_forge_halo:
+		return 3006;
+	case _map_id_ff50_park:
+		return 7060;
+	case _map_id_ff45_corvette:
+		return 7110;
+	case _map_id_ff20_courtyard:
+		return 7020;
+	case _map_id_ff60_icecave:
+		return 7130;
+	case _map_id_ff70_holdout:
+		return 7080;
+	case _map_id_ff60_ruins:
+		return 7030;
+	case _map_id_ff10_prototype:
+		return 7000;
+	case _map_id_ff30_waterfront:
+		return 7040;
+	case _map_id_ff_unearthed:
+		return 7500;
+	case _map_id_cex_ff_halo:
+		return 10080;
+	}
+	return -1;
+}

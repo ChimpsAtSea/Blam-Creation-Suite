@@ -46,8 +46,8 @@ public:
 	static void InitSockets();
 	static void DeinitSockets();
 
-	static void LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pHopperGameVariantName, s_map_variant& out_map_variant);
-	static void LoadHopperGameVariant(IDataAccess* pDataAccess, const char* pHopperGameVariantName, s_game_variant& out_game_variant);
+	static void LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pHopperGameVariantName, s_map_variant& out_map_variant, bool print = true);
+	static void LoadHopperGameVariant(IDataAccess* pDataAccess, const char* pHopperGameVariantName, s_game_variant& out_game_variant, bool print = true);
 	static void LoadPreviousGamestate(const char* pFilename, GameContext& gameContext);
 	static char* s_pTerminationFlag;
 	HaloGameID GetCurrentGameID();

@@ -67,7 +67,7 @@ public: /* instance functions */
 	/* 0  */ virtual char Member00();
 	/* 1  */ virtual void FrameEnd(IDXGISwapChain*, _QWORD);
 	/* 2  */ virtual void Member02(__int64, unsigned int, __int64, float, float, float, float);
-	/* 3  */ virtual void GameStatusUpdated(unsigned int);
+	/* 3  */ virtual void GameStatusUpdated(IGameEngine::eGameStatus);
 	/* 4  */ virtual __int64 GameExited(unsigned int a1, char* a2, int);
 	/* 5  */ virtual __int64 __fastcall WriteBufferToFile(LPVOID, size_t);
 	/* 6  */ virtual void Member06(Member06Struct* buffer);
@@ -75,8 +75,8 @@ public: /* instance functions */
 	/* 8  */ virtual void Member08(const wchar_t*, const wchar_t*);
 	/* 9  */ virtual void Member09(wchar_t[1024], wchar_t[1024]);
 	/* 10 */ virtual IGameEvents* GetGameEvents();
-	/* 11 */ virtual void GameVariantCreated(IGameVariant*);
-	/* 12 */ virtual void MapVariantCreated(IMapVariant*);
+	/* 11 */ virtual void UpdateGameVariant(IGameVariant*);
+	/* 12 */ virtual void UpdateMapVariant(IMapVariant*);
 	/* 13 */ virtual void Member13(const wchar_t*, const wchar_t*, const void*, unsigned int);
 	/* 14 */ virtual char Member14(int, BYTE*);
 	/* 15 */ virtual char Member15(int, BYTE*);

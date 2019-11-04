@@ -558,19 +558,15 @@ void file_read_string_long(char* pFilename, std::string* value, size_t length, l
 		for (size_t i = 0; i < length; i++)
 		{
 			char* cur = &pBuffer[i];
-			if (cur[0])
+			if (cur[0] && !cur[1])
 			{
-				if (cur[1])
-				{
-					break;
-				}
 				*value += cur;
 			}
 		}
 	}
 }
 
-uint32_t read_map_info(const char* pName, std::string* name, std::string* desc)
+int read_map_info(const char* pName, std::string* name, std::string* desc)
 {
 	char pFilename[MAX_PATH] = {};
 	sprintf(pFilename, "maps\\info\\%s.mapinfo", pName);
@@ -579,10 +575,10 @@ uint32_t read_map_info(const char* pName, std::string* name, std::string* desc)
 	file_read_string_long(pFilename, name, 64, 0x44);
 	file_read_string_long(pFilename, desc, 256, 0x344);
 
-	uint32_t mapId = -1;
+	int mapId = -1;
 	file_read_type(pFilename, mapId, 0x3C);
 
-	return mapId;
+	return ((mapId >> 24) & 0xff) | ((mapId << 8) & 0xff0000) | ((mapId >> 8) & 0xff00) | ((mapId << 24) & 0xff000000);
 }
 
 void GameLauncher::SelectMap()
@@ -616,24 +612,27 @@ void GameLauncher::SelectMap()
 
 void GameLauncher::SelectDifficulty()
 {
-	const char* pCurrentDifficultyStr = campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel);
-	if (ImGui::BeginCombo("Difficulty", pCurrentDifficultyStr))
+	if (g_LaunchGameMode == e_game_mode::_game_mode_campaign || g_LaunchGameMode == e_game_mode::_game_mode_survival)
 	{
-		for (e_campaign_difficulty_level difficulty = e_campaign_difficulty_level::_campaign_difficulty_level_easy; difficulty < k_number_of_campaign_difficulty_levels; reinterpret_cast<int&>(difficulty)++)
+		const char *pCurrentDifficultyStr = campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel);
+		if (ImGui::BeginCombo("Difficulty", pCurrentDifficultyStr))
 		{
-			const char* pDifficultyStr = campaign_difficulty_level_to_string(difficulty);
-			if (pDifficultyStr)
+			for (e_campaign_difficulty_level difficulty = e_campaign_difficulty_level::_campaign_difficulty_level_easy; difficulty < k_number_of_campaign_difficulty_levels; reinterpret_cast<int &>(difficulty)++)
 			{
-				bool selected = pDifficultyStr == pCurrentDifficultyStr;
-				if (ImGui::Selectable(pDifficultyStr, &selected))
+				const char *pDifficultyStr = campaign_difficulty_level_to_string(difficulty);
+				if (pDifficultyStr)
 				{
-					g_LaunchCampaignDifficultyLevel = static_cast<e_campaign_difficulty_level>(difficulty);
-					Settings::WriteStringValue(SettingsSection::Launch, "DifficultyLevel", (char*)campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel));
+					bool selected = pDifficultyStr == pCurrentDifficultyStr;
+					if (ImGui::Selectable(pDifficultyStr, &selected))
+					{
+						g_LaunchCampaignDifficultyLevel = static_cast<e_campaign_difficulty_level>(difficulty);
+						Settings::WriteStringValue(SettingsSection::Launch, "DifficultyLevel", (char *)campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel));
+					}
 				}
 			}
-		}
 
-		ImGui::EndCombo();
+			ImGui::EndCombo();
+		}
 	}
 }
 
@@ -681,53 +680,49 @@ struct s_path_array
 	}
 };
 
-void read_game_variant(const char* pName, std::string* name, std::string* desc)
+void get_variant_info(char*pBuffer, std::string *name, std::string *desc)
 {
-	char pFilename[MAX_PATH] = {};
-	sprintf(pFilename, "hopper_game_variants\\%s.bin", pName);
-	pFilename[MAX_PATH - 1] = 0;
-
-	uint32_t tag = -1;
-	file_read_type(pFilename, tag, 0x30);
-
-	const uint32_t athr = 'athr';
-
-	if (tag)
+	for (size_t i = 0; i < 256; i++)
 	{
-		if (tag == 'chdr' || tag == 'rdhc')
+		char* nameCur = &pBuffer[0x80 + i];
+		if (nameCur[0] && !nameCur[1])
 		{
-			file_read_string_long(pFilename, name, 256, 0xC0);
-			file_read_string_long(pFilename, desc, 256, 0x1C0);
-
-			if (name->c_str()[0] == '$')
-			{
-				*name += " (NO PROPER NAME)";
-			}
+			*name += nameCur;
 		}
-		else if ((tag == 'athr' || tag == 'rhta'))
+		char* descCur = &pBuffer[0x180 + i];
+		if (descCur[0] && !descCur[1])
 		{
-			if (strstr(pName, "ff_"))
-			{
-				*name = pName;
-				*name += " (FIREFIGHT)";
-			}
-			else if (strstr(pName, "campaign_"))
-			{
-				*name += pName;
-				*name += " (CAMPAIGN)";
-			}
-			else
-			{
-				*name = pName;
-				*name += " (MEAGLO)";
-			}
-		}
-		else
-		{
-			*name = pName;
-			*name += " (UNKNOWN)";
+			*desc += descCur;
 		}
 	}
+}
+
+e_game_engine_type read_game_variant(const char* pName, std::string* name, std::string* desc)
+{
+	static s_game_variant gameVariant;
+	GameLauncher::LoadHopperGameVariant(GameLauncher::s_pCurrentGameInterface->GetDataAccess(), pName, gameVariant, false);
+
+	e_game_engine_type result = gameVariant.game_engine_index;
+
+	get_variant_info(gameVariant.game_engine_variant.data, name, desc);
+
+	if (!(*name).c_str()[0])
+	{
+		*name = pName;
+	}
+
+	return result;
+}
+
+int read_map_variant(const char* pName, std::string *name, std::string *desc)
+{
+	static s_map_variant mapVariant;
+	GameLauncher::LoadHopperMapVariant(GameLauncher::s_pCurrentGameInterface->GetDataAccess(), pName, mapVariant, false);
+
+	int result = *reinterpret_cast<int *>(&mapVariant.data[0x2C]);
+	get_variant_info(mapVariant.data, name, desc);
+
+	return result;
 }
 
 void GameLauncher::SelectGameVariant()
@@ -735,8 +730,12 @@ void GameLauncher::SelectGameVariant()
 	static s_path_array files = s_path_array();
 	files.AddFrom("hopper_game_variants");
 
+	bool isCampaign = g_LaunchGameMode == e_game_mode::_game_mode_campaign;
+	bool isMultiplayer = g_LaunchGameMode == e_game_mode::_game_mode_multiplayer;
+	bool isFirefight = g_LaunchGameMode == e_game_mode::_game_mode_survival;
+
 	std::string curName, curDesc;
-	read_game_variant(g_LaunchHopperGameVariant, &curName, &curDesc);
+	int curEngineIndex = read_game_variant(g_LaunchHopperGameVariant, &curName, &curDesc);
 
 	const char* pCurrentGameVariantStr = curName.c_str();
 	if (ImGui::BeginCombo("Game Variant", pCurrentGameVariantStr))
@@ -744,9 +743,14 @@ void GameLauncher::SelectGameVariant()
 		for (int i = 0; i < files.Count; i++)
 		{
 			std::string name, desc;
-			read_game_variant(files.At(i), &name, &desc);
+			e_game_engine_type engineIndex = read_game_variant(files.At(i), &name, &desc);
 			const char* pGameVariantStr = name.c_str();
-			if (pGameVariantStr[0])
+
+			int shouldShow = isCampaign && engineIndex == _game_engine_type_campaign;
+			shouldShow |= isMultiplayer && engineIndex == _game_engine_type_megalo;
+			shouldShow |= isFirefight && engineIndex == _game_engine_type_survival;
+
+			if (pGameVariantStr[0] && shouldShow)
 			{
 				bool selected = pGameVariantStr == pCurrentGameVariantStr;
 				if (ImGui::Selectable(pGameVariantStr, &selected))
@@ -761,53 +765,27 @@ void GameLauncher::SelectGameVariant()
 	}
 }
 
-int read_mvar_info(const char* pName, std::string* name, std::string* desc)
-{
-	static s_map_variant mapVariant;
-	GameLauncher::LoadHopperMapVariant(GameLauncher::s_pCurrentGameInterface->GetDataAccess(), pName, mapVariant);
-
-	size_t mapIdOffet = 0x2C;
-	int mapId = -1;
-
-	size_t mapNameOffet = 0x44;
-	size_t mapDescOffet = 0x344;
-
-	int namelen = 64;
-	int desclen = 256;
-
-	return mapId;
-}
-
 void GameLauncher::SelectMapVariant()
 {
 	static s_path_array files = s_path_array();
 	files.AddFrom("hopper_map_variants");
 
-	std::string curName, curDesc, curNameLower;
-	read_map_info(map_id_to_string(g_LaunchMapId), &curName, &curDesc);
-
-	curNameLower = curName;
-	for (auto& c : curNameLower)
-	{
-		c = tolower(c);
-	}
-
 	if (g_LaunchGameMode == e_game_mode::_game_mode_multiplayer)
 	{
-		const char* pCurrentMapVariantStr = strstr(g_LaunchHopperMapVariant, curNameLower.c_str()) ? g_LaunchHopperMapVariant : "";
-		if (ImGui::BeginCombo("Map Variant", pCurrentMapVariantStr))
+		std::string curName, curDesc;
+		int curMapId = read_map_variant(g_LaunchHopperMapVariant, &curName, &curDesc);
+		const char* pCurrentMapVariantStr = curName.c_str();
+		if (ImGui::BeginCombo("Map Variant", curMapId == map_id_to_engine_specific(g_LaunchMapId) ? pCurrentMapVariantStr : ""))
 		{
 			for (int i = 0; i < files.Count; i++)
 			{
-				//std::string name, desc;
-				//int mapId = read_mvar_info(files.At(i), &name, &desc);
-				//const char *pMapVariantStr = name.c_str();
+				std::string name, desc;
+				int mapId = read_map_variant(files.At(i), &name, &desc);
+				const char* pMapVariantStr = name.c_str();
 
-				const char* pMapVariantStr = files.At(i);
-				bool match = strstr(pMapVariantStr, curNameLower.c_str());
-				if (pMapVariantStr[0] && match)
+				if (pMapVariantStr[0] && mapId == map_id_to_engine_specific(g_LaunchMapId))
 				{
-					bool selected = pMapVariantStr == pCurrentMapVariantStr;
+					bool selected = files.At(i) == pCurrentMapVariantStr;
 					if (ImGui::Selectable(pMapVariantStr, &selected))
 					{
 						g_LaunchHopperMapVariant = files.At(i);
@@ -883,7 +861,7 @@ void GameLauncher::DeinitSockets()
 
 }
 
-void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pHopperMapVariantName, s_map_variant& out_map_variant)
+void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pHopperMapVariantName, s_map_variant& out_map_variant, bool print)
 {
 	char pFilename[MAX_PATH] = {};
 	sprintf(pFilename, "hopper_map_variants\\%s.mvar", pHopperMapVariantName);
@@ -892,7 +870,11 @@ void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pH
 	FILE* pVariantFile = fopen(pFilename, "rb");
 	if (pVariantFile)
 	{
-		WriteLineVerbose("Loading map variant [%s]", pFilename);
+		if (print)
+		{
+			WriteLineVerbose("Loading map variant [%s]", pFilename);
+		}
+
 		size_t variantSize = get_file_size(pVariantFile);
 		char* pVariantBuffer = (char*)alloca(variantSize);
 		memset(pVariantBuffer, 0x00, variantSize);
@@ -903,7 +885,7 @@ void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pH
 	}
 }
 
-void GameLauncher::LoadHopperGameVariant(IDataAccess* pDataAccess, const char* pHopperGameVariantName, s_game_variant& out_game_variant)
+void GameLauncher::LoadHopperGameVariant(IDataAccess* pDataAccess, const char* pHopperGameVariantName, s_game_variant& out_game_variant, bool print)
 {
 	char pFilename[MAX_PATH] = {};
 	sprintf(pFilename, "hopper_game_variants\\%s.bin", pHopperGameVariantName);
@@ -912,7 +894,11 @@ void GameLauncher::LoadHopperGameVariant(IDataAccess* pDataAccess, const char* p
 	FILE* pVariantFile = fopen(pFilename, "rb");
 	if (pVariantFile)
 	{
-		WriteLineVerbose("Loading game variant [%s]", pFilename);
+		if (print)
+		{
+			WriteLineVerbose("Loading game variant [%s]", pFilename);
+		}
+
 		size_t variantSize = get_file_size(pVariantFile);
 		char* pVariantBuffer = (char*)alloca(variantSize);
 		memset(pVariantBuffer, 0xFF, variantSize);
