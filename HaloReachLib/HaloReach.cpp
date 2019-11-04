@@ -434,10 +434,10 @@ char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", HaloGameID::H
 void dump_binary(const char* pFileName, void* pData, size_t size)
 {
 	FILE* pFile = fopen(pFileName, "wb");
-	if (pFileName)
+	if (pFile)
 	{
 		fwrite(pData, 1, size, pFile);
-
+		fclose(pFile);
 		WriteLineVerbose("Successfully dumped %s", pFileName);
 	}
 	else

@@ -21,9 +21,10 @@ FARPROC __stdcall GetProcAddressHook(HMODULE hModule, LPCSTR lpProcName)
 	static bool isHooked = false;
 	if (!isHooked)
 	{
-		bool isHaloReach = strcmp(pModuleFilename, "haloreach.dll") == 0;
+		bool isHaloReach = strstr(pModuleFilename, "haloreach.dll") != 0;
 		if (isHaloReach)
 		{
+			WriteLineVerbose("%s was hooked", pModuleFilename);
 			isHooked = true;
 
 			haloreach_dll_loaded_callback();

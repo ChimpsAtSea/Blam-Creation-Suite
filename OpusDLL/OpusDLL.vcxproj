@@ -75,7 +75,7 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).map" "$(LocalDebuggerWorkingDirectory)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).map" "$(LocalDebuggerWorkingDirectory)\MCC-Win64-Shipping.map" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -107,7 +107,7 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).map" "$(LocalDebuggerWorkingDirectory)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).map" "$(LocalDebuggerWorkingDirectory)\MCC-Win64-Shipping.map" /Y
  )
 )</Command>
     </PostBuildEvent>
