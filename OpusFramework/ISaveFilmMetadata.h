@@ -14,5 +14,5 @@ struct /*VFT*/ ISaveFilmMetadata_vtbl
 struct ISaveFilmMetadata
 {
 	ISaveFilmMetadata_vtbl* __vftable /*VFT*/;
-	BYTE data[128936];
+	char data[128936];
 };
