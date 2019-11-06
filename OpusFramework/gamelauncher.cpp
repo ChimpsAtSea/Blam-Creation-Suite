@@ -395,8 +395,8 @@ void GameLauncher::SetupGameContext(GameContext& rGameContext)
 			rGameContext.MapId = g_LaunchMapId;
 			rGameContext.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
 
-			LoadHopperGameVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchHopperGameVariant, *reinterpret_cast<s_game_variant*>(rGameContext.GameVariantBuffer));
-			LoadHopperMapVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(rGameContext.MapVariantBuffer));
+			LoadHopperGameVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchHopperGameVariant, *reinterpret_cast<s_game_variant*>(rGameContext.GameVariantBuffer), true);
+			LoadHopperMapVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant*>(rGameContext.MapVariantBuffer), true);
 			LoadPreviousGamestate("gamestate.hdr", rGameContext);
 
 			rGameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
@@ -486,10 +486,203 @@ void GameLauncher::EndRender()
 	GameRender::s_pSwapChain->Present(0, 0);
 }
 
+struct c_file_reference
+{
+	const char* pFileName;
+	FILE *pFile;
+	char *pBuffer;
+	size_t bufferSize;
+
+	c_file_reference(LPCSTR pPath)
+	{
+		pFileName = pPath;
+	}
+
+	bool open_file()
+	{
+		pFile = fopen(pFileName, "rb");
+		if (pFile)
+		{
+			fseek(pFile, 0, SEEK_END);
+			bufferSize = ftell(pFile);
+			fseek(pFile, 0L, SEEK_SET);
+			pBuffer = new char[bufferSize];
+			memset(pBuffer, 0x00, bufferSize);
+
+			fseek(pFile, 0L, SEEK_SET);
+			size_t totalBytesRead = 0;
+			do
+			{
+				size_t bytesToRead = bufferSize - totalBytesRead;
+				fseek(pFile, static_cast<long>(totalBytesRead), SEEK_SET);
+				size_t bytesRead = fread(pBuffer + totalBytesRead, 1, bytesToRead, pFile);
+				totalBytesRead += bytesRead;
+			} while (totalBytesRead < bufferSize);
+
+			return true;
+		}
+
+		return false;
+	}
+
+	void close_file()
+	{
+		if (pFile)
+		{
+			bufferSize = 0;
+			free(pBuffer);
+			fclose(pFile);
+		}
+	}
+
+	template<typename T>
+	void read_type(T *value, long offset = 0)
+	{
+		assert(pFile);
+		*value = *(T *)&pBuffer[offset];
+	}
+
+	void read_int8(__int8 *value, long offset = 0)
+	{
+		read_type(value, offset);
+	}
+
+	void read_uint8(unsigned __int8 *value, long offset = 0)
+	{
+		read_type(value, offset);
+	}
+
+	void read_int16(__int16 *value, long offset = 0, bool swapEndian = false)
+	{
+		__int16 out = *value;
+		read_type(&out, offset);
+		*value = swapEndian ? (out >> 8) | (out << 8) : out;
+	}
+
+	void read_uint16(unsigned __int16 *value, long offset = 0, bool swapEndian = false)
+	{
+		unsigned __int16 out = *value;
+		read_type(&out, offset);
+		*value = swapEndian ? (out >> 8) | (out << 8) : out;
+	}
+
+	void read_int32(__int32 *value, long offset = 0, bool swapEndian = false)
+	{
+		__int32 out = *value;
+		read_type(&out, offset);
+		*value = swapEndian ? ((out >> 24) & 0xff) | ((out << 8) & 0xff0000) | ((out >> 8) & 0xff00) | ((out << 24) & 0xff000000) : out;
+	}
+
+	void read_uint32(unsigned __int32 *value, long offset = 0, bool swapEndian = false)
+	{
+		unsigned __int32 out = *value;
+		read_type(&out, offset);
+		*value = swapEndian ? ((out >> 24) & 0xff) | ((out << 8) & 0xff0000) | ((out >> 8) & 0xff00) | ((out << 24) & 0xff000000) : out;
+	}
+
+	void read_string(std::string *value, size_t length, long offset = 0)
+	{
+		assert(pFile);
+		*value = &pBuffer[offset];
+	}
+
+	void read_string_long(std::wstring *value, size_t length, long offset = 0, bool swapEndian = false)
+	{
+		assert(pFile);
+		*value = (wchar_t *)&pBuffer[swapEndian ? offset + 1 : swapEndian];
+	}
+
+	void read_string_long_as_string(std::string *value, size_t length, long offset = 0, bool swapEndian = false)
+	{
+		std::wstring out; read_string_long(&out, length, offset, swapEndian);
+		*value = std::string(out.begin(), out.end());
+	}
+
+	void read_string_as_string_long(std::wstring *value, size_t length, long offset = 0)
+	{
+		std::string out; read_string(&out, length, offset);
+		*value = std::wstring(out.begin(), out.end());
+	}
+};
+
+int read_map_info(const char *pName, std::string *name, std::string *desc)
+{
+	char pFilename[MAX_PATH] = {};
+	sprintf(pFilename, "maps\\info\\%s.mapinfo", pName);
+	pFilename[MAX_PATH - 1] = 0;
+
+	c_file_reference filo(pFilename);
+	int mapId = -1;
+	if (filo.open_file())
+	{
+		filo.read_string_long_as_string(name, 64, 0x44, true);
+		filo.read_string_long_as_string(desc, 256, 0x344, true);
+
+		filo.read_int32(&mapId, 0x3C, true);
+		filo.close_file();
+	}
+
+	return mapId;
+}
+
+void get_variant_info(char *pBuffer, std::string *name, std::string *desc)
+{
+	for (size_t i = 0; i < 256; i++)
+	{
+		char *nameCur = &pBuffer[0x80 + i];
+		if (nameCur[0] && !nameCur[1])
+		{
+			*name += nameCur;
+		}
+		char *descCur = &pBuffer[0x180 + i];
+		if (descCur[0] && !descCur[1])
+		{
+			*desc += descCur;
+		}
+	}
+}
+
+int read_game_variant(const char *pName, std::string *name, std::string *desc)
+{
+	static s_game_variant gameVariant;
+	GameLauncher::LoadHopperGameVariant(GameLauncher::s_pCurrentGameInterface->GetDataAccess(), pName, gameVariant);
+
+	int result = gameVariant.game_engine_index;
+
+	get_variant_info(gameVariant.game_engine_variant.data, name, desc);
+
+	if (!(*name).c_str()[0])
+	{
+		*name = pName;
+	}
+
+	return result;
+}
+
+int read_map_variant(const char *pName, std::string *name, std::string *desc)
+{
+	static s_map_variant mapVariant;
+	GameLauncher::LoadHopperMapVariant(GameLauncher::s_pCurrentGameInterface->GetDataAccess(), pName, mapVariant);
+
+	int result = *reinterpret_cast<int *>(&mapVariant.data[0x2C]);
+	get_variant_info(mapVariant.data, name, desc);
+
+	return result;
+}
+
+template<typename T>
+struct s_file_info
+{
+	std::string Path;
+	std::string Name;
+	std::string Desc;
+	T Type;
+};
+
 void GameLauncher::SelectGameMode()
 {
 	const char* s_pCurrentGameModeStr = game_mode_to_string(g_LaunchGameMode);
-	if (ImGui::BeginCombo("GameMode", s_pCurrentGameModeStr))
+	if (ImGui::BeginCombo("MODE", s_pCurrentGameModeStr))
 	{
 		for (int i = 1; i < e_game_mode::k_number_of_game_modes; i++)
 		{
@@ -509,99 +702,60 @@ void GameLauncher::SelectGameMode()
 	}
 }
 
-static size_t get_file_size(FILE* pFile)
-{
-	assert(pFile);
-	fseek(pFile, 0, SEEK_END);
-	size_t variantSize = ftell(pFile);
-	fseek(pFile, 0L, SEEK_SET);
-	return variantSize;
-}
-
-static void read_file_to_buffer(FILE* pFile, char* pBuffer, size_t length, long offset = 0L)
-{
-	assert(pFile);
-	fseek(pFile, offset, SEEK_SET);
-
-	size_t totalBytesRead = 0;
-	do
-	{
-		size_t bytesToRead = length - totalBytesRead;
-		fseek(pFile, offset + static_cast<long>(totalBytesRead), SEEK_SET);
-		size_t bytesRead = fread(pBuffer + totalBytesRead, 1, bytesToRead, pFile);
-		totalBytesRead += bytesRead;
-	} while (totalBytesRead < length);
-
-}
-
-template<typename T>
-void file_read_type(char* pFilename, T& value, long offset)
-{
-	FILE* pFile = fopen(pFilename, "rb");
-	if (pFile)
-	{
-		read_file_to_buffer(pFile, (char*)&value, sizeof(T), offset);
-		fclose(pFile);
-	}
-}
-
-void file_read_string_long(char* pFilename, std::string* value, size_t length, long offset)
-{
-	FILE* pFile = fopen(pFilename, "rb");
-	if (pFile)
-	{
-		char* pBuffer = (char*)alloca(length);
-		memset(pBuffer, 0x00, length);
-		read_file_to_buffer(pFile, pBuffer, length, offset);
-		fclose(pFile);
-
-		for (size_t i = 0; i < length; i++)
-		{
-			char* cur = &pBuffer[i];
-			if (cur[0] && !cur[1])
-			{
-				*value += cur;
-			}
-		}
-	}
-}
-
-int read_map_info(const char* pName, std::string* name, std::string* desc)
-{
-	char pFilename[MAX_PATH] = {};
-	sprintf(pFilename, "maps\\info\\%s.mapinfo", pName);
-	pFilename[MAX_PATH - 1] = 0;
-
-	file_read_string_long(pFilename, name, 64, 0x44);
-	file_read_string_long(pFilename, desc, 256, 0x344);
-
-	int mapId = -1;
-	file_read_type(pFilename, mapId, 0x3C);
-
-	return ((mapId >> 24) & 0xff) | ((mapId << 8) & 0xff0000) | ((mapId >> 8) & 0xff00) | ((mapId << 24) & 0xff000000);
-}
-
 void GameLauncher::SelectMap()
 {
+	const char *pDir = "maps\\info";
+	static int file_count = std::distance(std::filesystem::directory_iterator(pDir), std::filesystem::directory_iterator());
+	static s_file_info<int> *files;
+
+	if (!files)
+	{
+		files = new s_file_info<int>[file_count];
+
+		int i = 0;
+		for (const auto &dirEntry : std::filesystem::directory_iterator(pDir))
+		{
+			files[i].Path = dirEntry.path().filename().replace_extension().string();
+			files[i].Type = read_map_info(files[i].Path.c_str(), &files[i].Name, &files[i].Desc);
+
+			while (files[i].Desc.find("|n") != std::string::npos)
+				files[i].Desc.replace(files[i].Desc.find("|n"), _countof("|n") - 1, "\n");
+			i++;
+		}
+	}
+
 	std::string curName, curDesc;
-	read_map_info(map_id_to_string(g_LaunchMapId), &curName, &curDesc);
+	for (int i = 0; i < file_count; i++)
+	{
+		if (files[i].Path.compare(map_id_to_string(g_LaunchMapId)) == 0)
+		{
+			curName = files[i].Name;
+			curDesc = files[i].Desc;
+		}
+	}
 
 	const char* pCurrentMapStr = curName.c_str();
-	if (ImGui::BeginCombo("Map", pCurrentMapStr))
+	if (ImGui::BeginCombo("MAP", pCurrentMapStr))
 	{
-		for (e_map_id mapId = e_map_id::_map_id_m05; mapId < k_number_of_map_ids; reinterpret_cast<int&>(mapId)++)
+		for (int i = 0; i < file_count; i++)
 		{
-			std::string name, desc;
-			read_map_info(map_id_to_string(mapId), &name, &desc);
-
-			const char* pMapStr = name.c_str();
+			const char* pMapStr = files[i].Name.c_str();
 			if (pMapStr[0])
 			{
 				bool selected = pMapStr == pCurrentMapStr;
 				if (ImGui::Selectable(pMapStr, &selected))
 				{
-					g_LaunchMapId = static_cast<e_map_id>(mapId);
-					Settings::WriteStringValue(SettingsSection::Launch, "Map", (char*)map_id_to_string(g_LaunchMapId));
+					g_LaunchMapId = string_to_map_id(files[i].Path.c_str());
+					Settings::WriteStringValue(SettingsSection::Launch, "Map", (char* )map_id_to_string(g_LaunchMapId));
+				}
+
+				if (ImGui::IsItemHovered())
+				{
+					ImGui::BeginTooltip();
+					ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
+					ImGui::Text(files[i].Desc.c_str());
+					ImGui::PopTextWrapPos();
+					ImGui::EndTooltip();
 				}
 			}
 		}
@@ -614,19 +768,19 @@ void GameLauncher::SelectDifficulty()
 {
 	if (g_LaunchGameMode == e_game_mode::_game_mode_campaign || g_LaunchGameMode == e_game_mode::_game_mode_survival)
 	{
-		const char *pCurrentDifficultyStr = campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel);
-		if (ImGui::BeginCombo("Difficulty", pCurrentDifficultyStr))
+		const char* pCurrentDifficultyStr = campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel);
+		if (ImGui::BeginCombo("DIFFICULTY", pCurrentDifficultyStr))
 		{
 			for (e_campaign_difficulty_level difficulty = e_campaign_difficulty_level::_campaign_difficulty_level_easy; difficulty < k_number_of_campaign_difficulty_levels; reinterpret_cast<int &>(difficulty)++)
 			{
-				const char *pDifficultyStr = campaign_difficulty_level_to_string(difficulty);
+				const char* pDifficultyStr = campaign_difficulty_level_to_string(difficulty);
 				if (pDifficultyStr)
 				{
 					bool selected = pDifficultyStr == pCurrentDifficultyStr;
 					if (ImGui::Selectable(pDifficultyStr, &selected))
 					{
 						g_LaunchCampaignDifficultyLevel = static_cast<e_campaign_difficulty_level>(difficulty);
-						Settings::WriteStringValue(SettingsSection::Launch, "DifficultyLevel", (char *)campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel));
+						Settings::WriteStringValue(SettingsSection::Launch, "DifficultyLevel", (char* )campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel));
 					}
 				}
 			}
@@ -636,127 +790,68 @@ void GameLauncher::SelectDifficulty()
 	}
 }
 
-struct s_path_array
-{
-	char StringsBuffer[2024][MAX_PATH];
-	int Count = 0;
-
-	const char* LastDirectory = "";
-
-	void Reset()
-	{
-		ZeroMemory(StringsBuffer, sizeof(StringsBuffer));
-		Count = 0;
-	}
-
-	void Add(LPCSTR pPath)
-	{
-		assert(Count < _countof(StringsBuffer));
-		strcpy(StringsBuffer[Count++], pPath);
-	}
-
-	void AddFrom(LPCSTR pDir, bool recursive = false)
-	{
-		if (LastDirectory == pDir)
-			return;
-
-		if (recursive)
-		{
-			for (const auto& dirEntry : std::filesystem::recursive_directory_iterator(pDir))
-				Add(dirEntry.path().filename().replace_extension().string().c_str());
-		}
-		else
-		{
-			for (const auto& dirEntry : std::filesystem::directory_iterator(pDir))
-				Add(dirEntry.path().filename().replace_extension().string().c_str());
-		}
-
-		LastDirectory = pDir;
-	}
-
-	const char* At(int index)
-	{
-		return index < Count ? StringsBuffer[index] : "";
-	}
-};
-
-void get_variant_info(char*pBuffer, std::string *name, std::string *desc)
-{
-	for (size_t i = 0; i < 256; i++)
-	{
-		char* nameCur = &pBuffer[0x80 + i];
-		if (nameCur[0] && !nameCur[1])
-		{
-			*name += nameCur;
-		}
-		char* descCur = &pBuffer[0x180 + i];
-		if (descCur[0] && !descCur[1])
-		{
-			*desc += descCur;
-		}
-	}
-}
-
-e_game_engine_type read_game_variant(const char* pName, std::string* name, std::string* desc)
-{
-	static s_game_variant gameVariant;
-	GameLauncher::LoadHopperGameVariant(GameLauncher::s_pCurrentGameInterface->GetDataAccess(), pName, gameVariant, false);
-
-	e_game_engine_type result = gameVariant.game_engine_index;
-
-	get_variant_info(gameVariant.game_engine_variant.data, name, desc);
-
-	if (!(*name).c_str()[0])
-	{
-		*name = pName;
-	}
-
-	return result;
-}
-
-int read_map_variant(const char* pName, std::string *name, std::string *desc)
-{
-	static s_map_variant mapVariant;
-	GameLauncher::LoadHopperMapVariant(GameLauncher::s_pCurrentGameInterface->GetDataAccess(), pName, mapVariant, false);
-
-	int result = *reinterpret_cast<int *>(&mapVariant.data[0x2C]);
-	get_variant_info(mapVariant.data, name, desc);
-
-	return result;
-}
-
 void GameLauncher::SelectGameVariant()
 {
-	static s_path_array files = s_path_array();
-	files.AddFrom("hopper_game_variants");
+	const char *pDir = "hopper_game_variants";
+	static int file_count = std::distance(std::filesystem::directory_iterator(pDir), std::filesystem::directory_iterator());
+	static s_file_info<int> *files;
+
+	if (!files)
+	{
+		files = new s_file_info<int>[file_count];
+
+		int i = 0;
+		for (const auto &dirEntry : std::filesystem::directory_iterator(pDir))
+		{
+			files[i].Path = dirEntry.path().filename().replace_extension().string();
+			files[i].Type = read_game_variant(files[i].Path.c_str(), &files[i].Name, &files[i].Desc);
+
+			while (files[i].Desc.find("|n") != std::string::npos)
+				files[i].Desc.replace(files[i].Desc.find("|n"), _countof("|n") - 1, "\n");
+			i++;
+		}
+	}
 
 	bool isCampaign = g_LaunchGameMode == e_game_mode::_game_mode_campaign;
 	bool isMultiplayer = g_LaunchGameMode == e_game_mode::_game_mode_multiplayer;
 	bool isFirefight = g_LaunchGameMode == e_game_mode::_game_mode_survival;
 
 	std::string curName, curDesc;
-	int curEngineIndex = read_game_variant(g_LaunchHopperGameVariant, &curName, &curDesc);
+	for (int i = 0; i < file_count; i++)
+	{
+		if (files[i].Path.compare(g_LaunchHopperGameVariant) == 0)
+		{
+			curName = files[i].Name;
+			curDesc = files[i].Desc;
+		}
+	}
 
 	const char* pCurrentGameVariantStr = curName.c_str();
-	if (ImGui::BeginCombo("Game Variant", pCurrentGameVariantStr))
+	if (ImGui::BeginCombo("GAME VARIANT", pCurrentGameVariantStr))
 	{
-		for (int i = 0; i < files.Count; i++)
+		for (int i = 0; i < file_count; i++)
 		{
-			std::string name, desc;
-			e_game_engine_type engineIndex = read_game_variant(files.At(i), &name, &desc);
-			const char* pGameVariantStr = name.c_str();
+			int shouldShow = isCampaign && files[i].Type == _game_engine_type_campaign;
+			shouldShow |= isMultiplayer && files[i].Type == _game_engine_type_megalo;
+			shouldShow |= isFirefight && files[i].Type == _game_engine_type_survival;
 
-			int shouldShow = isCampaign && engineIndex == _game_engine_type_campaign;
-			shouldShow |= isMultiplayer && engineIndex == _game_engine_type_megalo;
-			shouldShow |= isFirefight && engineIndex == _game_engine_type_survival;
-
+			const char* pGameVariantStr = files[i].Name.c_str();
 			if (pGameVariantStr[0] && shouldShow)
 			{
 				bool selected = pGameVariantStr == pCurrentGameVariantStr;
 				if (ImGui::Selectable(pGameVariantStr, &selected))
 				{
-					g_LaunchHopperGameVariant = files.At(i);
+					g_LaunchHopperGameVariant = files[i].Path.c_str();
 					Settings::WriteStringValue(SettingsSection::Launch, "HopperGameVariant", (char*)g_LaunchHopperGameVariant);
+				}
+
+				if (ImGui::IsItemHovered())
+				{
+					ImGui::BeginTooltip();
+					ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
+					ImGui::TextUnformatted(files[i].Desc.c_str());
+					ImGui::PopTextWrapPos();
+					ImGui::EndTooltip();
 				}
 			}
 		}
@@ -767,29 +862,62 @@ void GameLauncher::SelectGameVariant()
 
 void GameLauncher::SelectMapVariant()
 {
-	static s_path_array files = s_path_array();
-	files.AddFrom("hopper_map_variants");
+	const char *pDir = "hopper_map_variants";
+	static int file_count = std::distance(std::filesystem::directory_iterator(pDir), std::filesystem::directory_iterator());
+	static s_file_info<int> *files;
+
+	if (!files)
+	{
+		files = new s_file_info<int>[file_count];
+
+		int i = 0;
+		for (const auto &dirEntry : std::filesystem::directory_iterator(pDir))
+		{
+			files[i].Path = dirEntry.path().filename().replace_extension().string();
+			files[i].Type = read_map_variant(files[i].Path.c_str(), &files[i].Name, &files[i].Desc);
+
+			while (files[i].Desc.find("|n") != std::string::npos)
+				files[i].Desc.replace(files[i].Desc.find("|n"), _countof("|n") - 1, "\n");
+			i++;
+		}
+	}
+
+	std::string curName, curDesc;
+	int curMapId;
+	for (int i = 0; i < file_count; i++)
+	{
+		if (files[i].Path.compare(g_LaunchHopperMapVariant) == 0)
+		{
+			curName = files[i].Name;
+			curDesc = files[i].Desc;
+			curMapId = files[i].Type;
+		}
+	}
 
 	if (g_LaunchGameMode == e_game_mode::_game_mode_multiplayer)
 	{
-		std::string curName, curDesc;
-		int curMapId = read_map_variant(g_LaunchHopperMapVariant, &curName, &curDesc);
 		const char* pCurrentMapVariantStr = curName.c_str();
-		if (ImGui::BeginCombo("Map Variant", curMapId == map_id_to_engine_specific(g_LaunchMapId) ? pCurrentMapVariantStr : ""))
+		if (ImGui::BeginCombo("MAP VARIANT", pCurrentMapVariantStr))
 		{
-			for (int i = 0; i < files.Count; i++)
+			for (int i = 0; i < file_count; i++)
 			{
-				std::string name, desc;
-				int mapId = read_map_variant(files.At(i), &name, &desc);
-				const char* pMapVariantStr = name.c_str();
-
-				if (pMapVariantStr[0] && mapId == map_id_to_engine_specific(g_LaunchMapId))
+				const char* pMapVariantStr = files[i].Name.c_str();
+				if (pMapVariantStr[0] && files[i].Type == map_id_to_engine_specific(g_LaunchMapId))
 				{
-					bool selected = files.At(i) == pCurrentMapVariantStr;
+					bool selected = files[i].Name == pCurrentMapVariantStr;
 					if (ImGui::Selectable(pMapVariantStr, &selected))
 					{
-						g_LaunchHopperMapVariant = files.At(i);
+						g_LaunchHopperMapVariant = files[i].Path.c_str();
 						Settings::WriteStringValue(SettingsSection::Launch, "HopperMapVariant", (char*)g_LaunchHopperMapVariant);
+					}
+
+					if (ImGui::IsItemHovered())
+					{
+						ImGui::BeginTooltip();
+						ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
+						ImGui::TextUnformatted(files[i].Desc.c_str());
+						ImGui::PopTextWrapPos();
+						ImGui::EndTooltip();
 					}
 				}
 			}
@@ -815,7 +943,7 @@ void GameLauncher::DrawMenu()
 	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
 	//windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
 
-	if (!ImGui::Begin("Main Menu", &isReachDebugWindowOpen, windowFlags))
+	if (!ImGui::Begin("MAIN MENU", &isReachDebugWindowOpen, windowFlags))
 	{
 		// Early out if the window is collapsed, as an optimization.
 		ImGui::End();
@@ -829,13 +957,13 @@ void GameLauncher::DrawMenu()
 	SelectMapVariant();
 
 	static bool hasAutostarted = false;
-	if (ImGui::Button("Start game") || (GameLauncher::HasCommandLineArg("-autostart") && !hasAutostarted))
+	if (ImGui::Button("START GAME") || (GameLauncher::HasCommandLineArg("-autostart") && !hasAutostarted))
 	{
 		hasAutostarted = true;
 		SetState(CurrentState::eWaitingToRun);
 	}
 
-	if (ImGui::Button("Exit to Desktop"))
+	if (ImGui::Button("QUIT TO DESKTOP"))
 	{
 		exit(0);
 	}
@@ -867,21 +995,16 @@ void GameLauncher::LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pH
 	sprintf(pFilename, "hopper_map_variants\\%s.mvar", pHopperMapVariantName);
 	pFilename[MAX_PATH - 1] = 0;
 
-	FILE* pVariantFile = fopen(pFilename, "rb");
-	if (pVariantFile)
+	c_file_reference filo(pFilename);
+	if (filo.open_file())
 	{
 		if (print)
 		{
 			WriteLineVerbose("Loading map variant [%s]", pFilename);
 		}
 
-		size_t variantSize = get_file_size(pVariantFile);
-		char* pVariantBuffer = (char*)alloca(variantSize);
-		memset(pVariantBuffer, 0x00, variantSize);
-		read_file_to_buffer(pVariantFile, pVariantBuffer, variantSize);
-		fclose(pVariantFile);
-
-		out_map_variant = pDataAccess->MapVariantCreateFromFile(pVariantBuffer, static_cast<int>(variantSize))->MapVariant;
+		out_map_variant = pDataAccess->MapVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->MapVariant;
+		filo.close_file();
 	}
 }
 
@@ -891,36 +1014,40 @@ void GameLauncher::LoadHopperGameVariant(IDataAccess* pDataAccess, const char* p
 	sprintf(pFilename, "hopper_game_variants\\%s.bin", pHopperGameVariantName);
 	pFilename[MAX_PATH - 1] = 0;
 
-	FILE* pVariantFile = fopen(pFilename, "rb");
-	if (pVariantFile)
+	c_file_reference filo(pFilename);
+	if (filo.open_file())
 	{
 		if (print)
 		{
 			WriteLineVerbose("Loading game variant [%s]", pFilename);
 		}
 
-		size_t variantSize = get_file_size(pVariantFile);
-		char* pVariantBuffer = (char*)alloca(variantSize);
-		memset(pVariantBuffer, 0xFF, variantSize);
-		read_file_to_buffer(pVariantFile, pVariantBuffer, variantSize);
-		fclose(pVariantFile);
-
-		out_game_variant = pDataAccess->GameVariantCreateFromFile(pVariantBuffer, static_cast<int>(variantSize))->GameVariant;
+		out_game_variant = pDataAccess->GameVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->GameVariant;
+		filo.close_file();
 	}
 }
 
+// TODO: Test, and fix if broke
 void GameLauncher::LoadPreviousGamestate(const char* pFilename, GameContext& gameContext)
 {
 	FILE* pGameStateFile = fopen(pFilename, "rb");
 	if (pGameStateFile)
 	{
-		size_t gameStateSize = get_file_size(pGameStateFile);
-		char* pGameStateBuffer = new char[gameStateSize];
-		memset(pGameStateBuffer, 0x00, gameStateSize);
-		read_file_to_buffer(pGameStateFile, pGameStateBuffer, gameStateSize);
-		fclose(pGameStateFile);
+		char* pGameStateBuffer = {};
+		size_t gameStateSize = {};
 
-		gameContext.pGameStateHeader = reinterpret_cast<uint8_t*>(pGameStateBuffer);
+		c_file_reference filo(pFilename);
+		if (filo.open_file())
+		{
+			gameStateSize = filo.bufferSize;
+			pGameStateBuffer = new char[gameStateSize];
+			memset(pGameStateBuffer, 0x00, gameStateSize);
+
+			memcpy(pGameStateBuffer, filo.pBuffer, gameStateSize);
+			filo.close_file();
+		}
+
+		gameContext.pGameStateHeader = pGameStateBuffer;
 		gameContext.GameStateHeaderSize = gameStateSize;
 	}
 }

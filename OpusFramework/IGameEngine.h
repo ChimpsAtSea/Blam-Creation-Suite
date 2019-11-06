@@ -65,7 +65,7 @@ struct GameContext
 	uint16_t __padding1 : 16;
 	uint64_t __padding2 : 64;
 	int8_t GameSkullFlags[16];
-	uint8_t* pGameStateHeader;
+	char* pGameStateHeader;
 	size_t GameStateHeaderSize;
 	const char* SavedFilmPath;
 	s_session_info SessionInfo;
