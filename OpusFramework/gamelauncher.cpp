@@ -1042,35 +1042,60 @@ void GameLauncher::DrawPauseMenu()
 		return;
 	}
 
+	static bool isPaused = false;
+
 	if (s_pHaloReachEngine)
 	{
-		s_pHaloReachEngine->UpdateEngineState(eEngineState::Pause);
-
-		if (ImGui::Button("RESTART LEVEL"))
+		if (!isPaused)
 		{
-			s_pHaloReachEngine->UpdateEngineState(eEngineState::RestartLevel);
+			s_pHaloReachEngine->UpdateEngineState(eEngineState::Pause);
+			isPaused = true;
 		}
 
-		if (ImGui::Button("REVERT TO LAST SAVE"))
+		if (g_LaunchGameMode == e_game_mode::_game_mode_campaign || g_LaunchGameMode == e_game_mode::_game_mode_survival)
 		{
-			s_pHaloReachEngine->UpdateEngineState(eEngineState::RevertToLastSave);
+			if (ImGui::Button("RESTART LEVEL"))
+			{
+				s_pHaloReachEngine->UpdateEngineState(eEngineState::RestartLevel);
+				isPaused = false;
+			}
 		}
+
+		if (g_LaunchGameMode == e_game_mode::_game_mode_campaign)
+		{
+			if (ImGui::Button("REVERT TO LAST SAVE"))
+			{
+				s_pHaloReachEngine->UpdateEngineState(eEngineState::RevertToLastSave);
+				isPaused = false;
+			}
+		}
+
+		if (g_LaunchGameMode == e_game_mode::_game_mode_multiplayer || g_LaunchGameMode == e_game_mode::_game_mode_survival)
+		{
+			if (ImGui::Button("END ROUND"))
+			{
+				s_pHaloReachEngine->UpdateEngineState(eEngineState::EndRound);
+				isPaused = false;
+			}
+		}
+
 		if (ImGui::Button("END GAME"))
 		{
 			s_pHaloReachEngine->UpdateEngineState(eEngineState::EndGame);
-		}
-
-		if (ImGui::Button("END ROUND"))
-		{
-			s_pHaloReachEngine->UpdateEngineState(eEngineState::EndRound);
+			isPaused = false;
 		}
 
 		if (ImGui::Button("RETURN"))
 		{
+			isPaused = false;
+		}
+
+		if (!isPaused)
+		{
 			s_pHaloReachEngine->UpdateEngineState(eEngineState::Unpause);
 			DebugUI::UnregisterCallback(GameLauncher::DrawPauseMenu);
-			DebugUI::Hide();
 			MouseInput::SetMode(MouseMode::Exclusive);
+			DebugUI::Hide();
 		}
 	}
 
