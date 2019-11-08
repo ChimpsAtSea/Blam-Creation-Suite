@@ -471,7 +471,7 @@ void init_halo_reach_with_mcc(HaloGameID gameID, bool isMCC)
 	g_currentGameID = gameID;
 	CustomWindow::SetWindowTitle("Halo Reach");
 	ReadConfig();
-	DebugUI::RegisterCallback(halo_reach_debug_callback);
+	//DebugUI::RegisterCallback(halo_reach_debug_callback);
 
 	init_detours();
 
@@ -541,7 +541,7 @@ void init_halo_reach(HaloGameID gameID)
 
 void deinit_halo_reach(HaloGameID gameID)
 {
-	DebugUI::UnregisterCallback(halo_reach_debug_callback);
+	//DebugUI::UnregisterCallback(halo_reach_debug_callback);
 
 	init_detours();
 

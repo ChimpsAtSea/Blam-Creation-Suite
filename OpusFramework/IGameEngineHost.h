@@ -67,7 +67,7 @@ public: /* instance functions */
 	/* 0  */ virtual char Member00();
 	/* 1  */ virtual void FrameEnd(IDXGISwapChain*, _QWORD);
 	/* 2  */ virtual void Member02(__int64, unsigned int, __int64, float, float, float, float);
-	/* 3  */ virtual void GameStatusUpdated(IGameEngine::eGameStatus);
+	/* 3  */ virtual void EngineStateUpdate(eEngineState);
 	/* 4  */ virtual __int64 GameExited(unsigned int a1, char* a2, int);
 	/* 5  */ virtual __int64 __fastcall WriteBufferToFile(LPVOID, size_t);
 	/* 6  */ virtual void Member06(Member06Struct* buffer);

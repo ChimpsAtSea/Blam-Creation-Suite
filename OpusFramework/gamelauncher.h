@@ -32,7 +32,8 @@ public:
 	static void Render();
 	static void BeginRender();
 	static void EndRender();
-	static void DrawMenu();
+	static void DrawMainMenu();
+	static void DrawPauseMenu();
 
 	static void SelectGameMode();
 	static void SelectMap();

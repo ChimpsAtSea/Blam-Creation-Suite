@@ -27,14 +27,14 @@ void __fastcall IGameEngineHost::Member02(__int64 player_identifier, unsigned in
 	//WriteLineVerbose("IGameEngineHost::Member02");
 }
 
-void __fastcall IGameEngineHost::GameStatusUpdated(IGameEngine::eGameStatus status)
+void __fastcall IGameEngineHost::EngineStateUpdate(eEngineState state)
 {
-	WriteLineVerbose("IGameEngineHost::GameStatusUpdated(%d)", status);
+	WriteLineVerbose("IGameEngineHost::EngineStateUpdate(%d)", state);
 
 	// `Unknown16` also needs a second arg so we skip it
-	if (status != IGameEngine::eGameStatus::Unknown16)
+	if (state != eEngineState::Unknown16)
 	{
-		GameLauncher::s_pHaloReachEngine->UpdateGameStatus(status);
+		GameLauncher::s_pHaloReachEngine->UpdateEngineState(state);
 	}
 }
 
@@ -61,6 +61,9 @@ void __fastcall IGameEngineHost::Member06(Member06Struct* buffer)
 void __fastcall IGameEngineHost::Member07(unsigned int a1)
 {
 	WriteLineVerbose("IGameEngineHost::Member07 PauseMenuOpened");
+
+	DebugUI::RegisterCallback(GameLauncher::DrawPauseMenu);
+	DebugUI::Show();
 }
 
 void __fastcall IGameEngineHost::Member08(const wchar_t *, const wchar_t *) 
