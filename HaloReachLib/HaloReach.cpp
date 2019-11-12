@@ -451,6 +451,7 @@ intptr_t game_start_offset(HaloGameID gameID)
 	switch (gameID)
 	{
 	case HaloGameID::HaloReach_2019_Oct_30: return 0x180011C60;
+	case HaloGameID::HaloReach_2019_Nov_11: return 0x180011C70;
 	}
 	return ~intptr_t();
 }

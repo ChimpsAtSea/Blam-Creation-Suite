@@ -11,8 +11,8 @@ char *GameLauncher::s_pTerminationFlag = nullptr;
 e_map_id g_LaunchMapId = _map_id_ff45_corvette;
 e_game_mode g_LaunchGameMode = _game_mode_survival;
 e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
-LPCSTR g_LaunchHopperGameVariant = nullptr;
-LPCSTR g_LaunchHopperMapVariant = nullptr;
+LPCSTR g_LaunchHopperGameVariant = "";
+LPCSTR g_LaunchHopperMapVariant = "";
 
 HaloGameID GameLauncher::GetCurrentGameID()
 {
@@ -169,7 +169,6 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 		end_detours();
 	}
 
-	LoadSettings(); // #TODO: Replace with UI
 	CustomWindow::Init();
 	GameRender::Init(hInstance);
 	InitSockets();

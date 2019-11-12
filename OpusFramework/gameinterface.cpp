@@ -50,6 +50,7 @@ HaloGameID GameInterface::GetLibraryHaloGameID(const char* pFilename)
 	uint64_t libraryFileVersion = GetLibraryFileVersion(pFilename);
 	switch (libraryFileVersion)
 	{
+	case MAKE_FILE_VERSION(1, 1211, 0, 0): return HaloGameID::HaloReach_2019_Nov_11;
 	case MAKE_FILE_VERSION(1, 1186, 0, 0): return HaloGameID::HaloReach_2019_Oct_30;
 	case MAKE_FILE_VERSION(1, 1035, 0, 0): return HaloGameID::HaloReach_2019_Aug_20;
 	case MAKE_FILE_VERSION(1, 887, 0, 0): return HaloGameID::HaloReach_2019_Jun_24;

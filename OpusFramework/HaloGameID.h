@@ -6,6 +6,7 @@ enum class HaloGameID
 	HaloReach_2019_Jun_24,
 	HaloReach_2019_Aug_20,
 	HaloReach_2019_Oct_30,
+	HaloReach_2019_Nov_11,
 	Count
 };
 
@@ -16,6 +17,7 @@ constexpr intptr_t GetHaloBaseAddress(HaloGameID gameID)
 	case HaloGameID::HaloReach_2019_Jun_24:
 	case HaloGameID::HaloReach_2019_Aug_20:
 	case HaloGameID::HaloReach_2019_Oct_30:
+	case HaloGameID::HaloReach_2019_Nov_11:
 		return 0x180000000;
 	}
 	return ~intptr_t();
@@ -31,6 +33,8 @@ constexpr intptr_t GetHaloTopAddress(HaloGameID gameID)
 		return 0x18450D000;
 	case HaloGameID::HaloReach_2019_Oct_30:
 		return 0x183985000;
+	case HaloGameID::HaloReach_2019_Nov_11:
+		return 0x183986000;
 	}
 	return ~intptr_t();
 }
@@ -42,6 +46,7 @@ constexpr const char* GetHaloExecutableString(HaloGameID gameID)
 	case HaloGameID::HaloReach_2019_Jun_24:
 	case HaloGameID::HaloReach_2019_Aug_20:
 	case HaloGameID::HaloReach_2019_Oct_30:
+	case HaloGameID::HaloReach_2019_Nov_11:
 		return "haloreach.dll";
 	}
 	FATAL_ERROR("Unsupported HaloGameID");

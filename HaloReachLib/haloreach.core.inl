@@ -35,6 +35,7 @@ intptr_t game_get_haloreach_path_offset(HaloGameID gameID)
 	case HaloGameID::HaloReach_2019_Jun_24: return 0x180012730;
 	case HaloGameID::HaloReach_2019_Aug_20: return 0x18000FD20;
 	case HaloGameID::HaloReach_2019_Oct_30: return 0x180010010;
+	case HaloGameID::HaloReach_2019_Nov_11: return 0x180010020;
 	}
 	return ~intptr_t();
 }
@@ -89,6 +90,7 @@ intptr_t load_state_offset(HaloGameID gameID)
 	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810EC5A4;
 	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37AB0;
 	case HaloGameID::HaloReach_2019_Oct_30: return 0x180D4E674;
+	case HaloGameID::HaloReach_2019_Nov_11: return 0x180D4F674;
 	}
 	return ~intptr_t();
 }
@@ -101,6 +103,7 @@ intptr_t main_game_launch_offset(HaloGameID gameID)
 	case HaloGameID::HaloReach_2019_Jun_24: return 0x180013EA0;
 	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800113F0;
 	case HaloGameID::HaloReach_2019_Oct_30: return 0x180011860;
+	case HaloGameID::HaloReach_2019_Nov_11: return 0x180011870;
 
 	}
 	return ~intptr_t();
