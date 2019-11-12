@@ -914,13 +914,14 @@ void GameLauncher::SelectDifficulty()
 void GameLauncher::SelectGameVariant()
 {
 	static auto files = c_file_array("hopper_game_variants", ".bin", &ReadGameVariant);
-	//static auto files = c_file_array("game_variants", &ReadGameVariant);
+	//static auto files = c_file_array("game_variants", ".bin", &ReadGameVariant);
 
 	if (ImGui::BeginCombo("GAME VARIANT", files.GetName(g_LaunchHopperGameVariant)))
 	{
 		for (int i = 0; i < files.Count; i++)
 		{
-			int shouldShow = g_LaunchGameMode == e_game_mode::_game_mode_campaign && files.pFiles[i].Match(_game_engine_type_campaign);
+			int shouldShow = files.pFiles[i].Match(_game_engine_type_sandbox);
+			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_campaign && files.pFiles[i].Match(_game_engine_type_campaign);
 			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_multiplayer && files.pFiles[i].Match(_game_engine_type_megalo);
 			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_survival && files.pFiles[i].Match(_game_engine_type_survival);
 
@@ -944,7 +945,7 @@ void GameLauncher::SelectGameVariant()
 void GameLauncher::SelectMapVariant()
 {
 	static auto files = c_file_array("hopper_map_variants", ".mvar", &ReadMapVariant);
-	//static auto files = c_file_array("map_variants", &ReadMapVariant);
+	//static auto files = c_file_array("map_variants", ".mvar", &ReadMapVariant);
 
 	if (g_LaunchGameMode == e_game_mode::_game_mode_multiplayer)
 	{
@@ -1124,6 +1125,7 @@ void GameLauncher::LoadHopperMapVariant(IDataAccess *pDataAccess, const char *pH
 {
 	char pFilename[MAX_PATH] = {};
 	sprintf(pFilename, "hopper_map_variants\\%s.mvar", pHopperMapVariantName);
+	//sprintf(pFilename, "map_variants\\%s.mvar", pHopperMapVariantName);
 	pFilename[MAX_PATH - 1] = 0;
 
 	c_file_reference filo(pFilename);
@@ -1143,6 +1145,7 @@ void GameLauncher::LoadHopperGameVariant(IDataAccess *pDataAccess, const char *p
 {
 	char pFilename[MAX_PATH] = {};
 	sprintf(pFilename, "hopper_game_variants\\%s.bin", pHopperGameVariantName);
+	//sprintf(pFilename, "game_variants\\%s.bin", pHopperGameVariantName);
 	pFilename[MAX_PATH - 1] = 0;
 
 	c_file_reference filo(pFilename);
