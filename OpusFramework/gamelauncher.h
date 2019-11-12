@@ -47,8 +47,8 @@ public:
 	static void InitSockets();
 	static void DeinitSockets();
 
-	static void LoadHopperMapVariant(IDataAccess* pDataAccess, const char* pHopperGameVariantName, s_map_variant& out_map_variant, bool print = false);
-	static void LoadHopperGameVariant(IDataAccess* pDataAccess, const char* pHopperGameVariantName, s_game_variant& out_game_variant, bool print = false);
+	static void LoadMapVariant(IDataAccess* pDataAccess, const char* pVariantName, s_map_variant& out_variant, bool print = false);
+	static void LoadGameVariant(IDataAccess* pDataAccess, const char* pVariantName, s_game_variant& out_variant, bool print = false);
 	static void LoadPreviousGamestate(const char* pFilename, GameContext& gameContext);
 	static void LoadSavedFilmMetadata(const char* pSavedFilmName, GameContext &gameContext);
 	static char* s_pTerminationFlag;

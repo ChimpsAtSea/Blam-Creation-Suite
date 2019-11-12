@@ -11,8 +11,10 @@ char *GameLauncher::s_pTerminationFlag = nullptr;
 e_map_id g_LaunchMapId = _map_id_ff45_corvette;
 e_game_mode g_LaunchGameMode = _game_mode_survival;
 e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
-LPCSTR g_LaunchHopperGameVariant = "";
-LPCSTR g_LaunchHopperMapVariant = "";
+LPCSTR g_LaunchGameVariant = "";
+bool g_GameVariantIsHopper = false;
+LPCSTR g_LaunchMapVariant = "";
+bool g_MapVariantIsHopper = false;
 
 HaloGameID GameLauncher::GetCurrentGameID()
 {
@@ -261,28 +263,32 @@ void GameLauncher::LoadSettings()
 	}
 
 	// #TODO: This must persist outside of the read
-	static char pLaunchHopperGameVariantBuffer[256] = {};
-	uint32_t LaunchHopperGameVariantLength = Settings::ReadStringValue(SettingsSection::Launch, "HopperGameVariant", pLaunchHopperGameVariantBuffer, sizeof(pLaunchHopperGameVariantBuffer), pDefaultHopperGameVariant);
-	if (LaunchHopperGameVariantLength > 0)
+	static char pLaunchGameVariantBuffer[256] = {};
+	uint32_t LaunchGameVariantLength = Settings::ReadStringValue(SettingsSection::Launch, "GameVariant", pLaunchGameVariantBuffer, sizeof(pLaunchGameVariantBuffer), pDefaultHopperGameVariant);
+	if (LaunchGameVariantLength > 0)
 	{
-		g_LaunchHopperGameVariant = pLaunchHopperGameVariantBuffer;
+		g_LaunchGameVariant = pLaunchGameVariantBuffer;
 	}
 	else
 	{
-		g_LaunchHopperGameVariant = nullptr;
+		g_LaunchGameVariant = "";
 	}
 
+	g_GameVariantIsHopper = Settings::ReadBoolValue(SettingsSection::Launch, "GameVariantIsHopper", false);
+
 	// #TODO: This must persist outside of the read
-	static char pLaunchHopperMapVariantBuffer[256] = {};
-	uint32_t LaunchHopperMapVariantLength = Settings::ReadStringValue(SettingsSection::Launch, "HopperMapVariant", pLaunchHopperMapVariantBuffer, sizeof(pLaunchHopperMapVariantBuffer), "");
-	if (LaunchHopperMapVariantLength > 0)
+	static char pLaunchMapVariantBuffer[256] = {};
+	uint32_t LaunchMapVariantLength = Settings::ReadStringValue(SettingsSection::Launch, "MapVariant", pLaunchMapVariantBuffer, sizeof(pLaunchMapVariantBuffer), "");
+	if (LaunchMapVariantLength > 0)
 	{
-		g_LaunchHopperMapVariant = pLaunchHopperMapVariantBuffer;
+		g_LaunchMapVariant = pLaunchMapVariantBuffer;
 	}
 	else
 	{
-		g_LaunchHopperMapVariant = nullptr;
+		g_LaunchMapVariant = "";
 	}
+
+	g_MapVariantIsHopper = Settings::ReadBoolValue(SettingsSection::Launch, "MapVariantIsHopper", false);
 }
 
 void CreateSwapchainAndBackbuffer(IDXGISwapChain *&pSwapchain, ID3D11RenderTargetView *&pBackBuffer)
@@ -311,6 +317,7 @@ ID3D11RenderTargetView *s_pMenuBackBuffer;    // global declaration
 
 int GameLauncher::Run(HINSTANCE hInstance, LPSTR lpCmdLine, GameInterface &rGameInterface)
 {
+	LoadSettings();
 	s_pCurrentGameInterface = &rGameInterface;
 	SetState(CurrentState::eMainMenu);
 
@@ -394,8 +401,8 @@ void GameLauncher::SetupGameContext(GameContext &rGameContext)
 			rGameContext.MapId = g_LaunchMapId;
 			rGameContext.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
 
-			LoadHopperGameVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchHopperGameVariant, *reinterpret_cast<s_game_variant *>(rGameContext.GameVariantBuffer), true);
-			LoadHopperMapVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchHopperMapVariant, *reinterpret_cast<s_map_variant *>(rGameContext.MapVariantBuffer), true);
+			LoadGameVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchGameVariant, *reinterpret_cast<s_game_variant *>(rGameContext.GameVariantBuffer), true);
+			LoadMapVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchMapVariant, *reinterpret_cast<s_map_variant *>(rGameContext.MapVariantBuffer), true);
 			//LoadPreviousGamestate("gamestate", rGameContext);
 			//LoadSavedFilmMetadata("asq_ff45_co_514C8755", rGameContext);
 
@@ -616,7 +623,7 @@ struct c_file_array
 
 		bool Match(LPCSTR pStr)
 		{
-			return Path.compare(pStr) == 0 || Name.compare(pStr) == 0 || Desc.compare(pStr) == 0;
+			return !!(strstr(Path.c_str(), pStr) != 0 || strstr(Name.c_str(), pStr) != 0 || strstr(Desc.c_str(), pStr) != 0);
 		}
 
 		bool Match(int type)
@@ -628,7 +635,7 @@ struct c_file_array
 	s_file_info *pFiles = {};
 	int Count = 0;
 
-	c_file_array(LPCSTR pDir, LPCSTR pExtension, int (*read_info_func)(LPCSTR pName, std::string *name, std::string *desc))
+	c_file_array(LPCSTR pDir, LPCSTR pExtension, int (*read_info_func)(LPCSTR pName, std::string *name, std::string *desc, LPCSTR path))
 	{
 		if (!pFiles || !Count)
 		{
@@ -641,14 +648,15 @@ struct c_file_array
 				{
 					if (dirEntry.path().extension().compare(pExtension) == 0)
 					{
-						pFiles[Count].Path = dirEntry.path().filename().replace_extension().string();
-						pFiles[Count].Type = read_info_func(pFiles[Count].Path.c_str(), &pFiles[Count].Name, &pFiles[Count].Desc);
+						pFiles[i].Path = dirEntry.path().filename().replace_extension().string();
+						pFiles[i].Type = read_info_func(pFiles[i].Path.c_str(), &pFiles[i].Name, &pFiles[i].Desc, dirEntry.path().string().c_str());
 
-						while (pFiles[Count].Desc.find("|n") != std::string::npos)
-							pFiles[Count].Desc.replace(pFiles[Count].Desc.find("|n"), _countof("|n") - 1, "\n");
-						Count++;
+						while (pFiles[i].Desc.find("|n") != std::string::npos)
+							pFiles[i].Desc.replace(pFiles[i].Desc.find("|n"), _countof("|n") - 1, "\n");
+						i++;
 					}
 				}
+				Count = i;
 			}
 		}
 	}
@@ -656,12 +664,9 @@ struct c_file_array
 	LPCSTR GetPath(int index)
 	{
 		LPCSTR result = "";
-		for (int i = 0; i < Count; i++)
+		if (index >= 0 && index < Count)
 		{
-			if (i == index)
-			{
-				result = pFiles[i].Path.c_str();
-			}
+			result = pFiles[index].Path.c_str();
 		}
 
 		return result;
@@ -683,12 +688,9 @@ struct c_file_array
 	LPCSTR GetName(int index)
 	{
 		LPCSTR result = "";
-		for (int i = 0; i < Count; i++)
+		if (index >= 0 && index < Count)
 		{
-			if (i == index)
-			{
-				result = pFiles[i].Name.c_str();
-			}
+			result = pFiles[index].Name.c_str();
 		}
 
 		return result;
@@ -710,12 +712,9 @@ struct c_file_array
 	LPCSTR GetDesc(int index)
 	{
 		LPCSTR result = "";
-		for (int i = 0; i < Count; i++)
+		if (index >= 0 && index < Count)
 		{
-			if (i == index)
-			{
-				result = pFiles[i].Desc.c_str();
-			}
+			result = pFiles[index].Desc.c_str();
 		}
 
 		return result;
@@ -728,6 +727,30 @@ struct c_file_array
 			if (pFiles[i].Match(pStr))
 			{
 				result = pFiles[i].Desc.c_str();
+			}
+		}
+
+		return result;
+	}
+
+	int GetType(int index)
+	{
+		int result = -1;
+		if (index >= 0 && index < Count)
+		{
+			result = pFiles[index].Type;
+		}
+
+		return result;
+	}
+	int GetType(LPCSTR pStr)
+	{
+		int result = -1;
+		for (int i = 0; i < Count; i++)
+		{
+			if (pFiles[i].Match(pStr))
+			{
+				result = pFiles[i].Type;
 			}
 		}
 
@@ -760,7 +783,7 @@ struct c_file_array
 	}
 };
 
-int ReadMapInfo(LPCSTR pName, std::string *name, std::string *desc)
+int ReadMapInfo(LPCSTR pName, std::string *name, std::string *desc, LPCSTR pPath)
 {
 	char pFilename[MAX_PATH] = {};
 	sprintf(pFilename, "maps\\info\\%s.mapinfo", pName);
@@ -797,10 +820,12 @@ void GetVariantInfo(char *pBuffer, std::string *name, std::string *desc)
 	}
 }
 
-int ReadGameVariant(LPCSTR pName, std::string *name, std::string *desc)
+int ReadGameVariant(LPCSTR pName, std::string *name, std::string *desc, LPCSTR pPath)
 {
+	g_GameVariantIsHopper = strstr(pPath, "hopper_") != 0;
+
 	static s_game_variant gameVariant;
-	GameLauncher::LoadHopperGameVariant(GameLauncher::s_pCurrentGameInterface->GetDataAccess(), pName, gameVariant);
+	GameLauncher::LoadGameVariant(GameLauncher::s_pCurrentGameInterface->GetDataAccess(), pName, gameVariant);
 
 	int result = gameVariant.game_engine_index;
 
@@ -814,10 +839,11 @@ int ReadGameVariant(LPCSTR pName, std::string *name, std::string *desc)
 	return result;
 }
 
-int ReadMapVariant(LPCSTR pName, std::string *name, std::string *desc)
+int ReadMapVariant(LPCSTR pName, std::string *name, std::string *desc, LPCSTR pPath)
 {
+	g_MapVariantIsHopper = strstr(pPath, "hopper_") != 0;
 	static s_map_variant mapVariant;
-	GameLauncher::LoadHopperMapVariant(GameLauncher::s_pCurrentGameInterface->GetDataAccess(), pName, mapVariant);
+	GameLauncher::LoadMapVariant(GameLauncher::s_pCurrentGameInterface->GetDataAccess(), pName, mapVariant);
 
 	int result = *reinterpret_cast<int *>(&mapVariant.data[0x2C]);
 	GetVariantInfo(mapVariant.data, name, desc);
@@ -913,25 +939,35 @@ void GameLauncher::SelectDifficulty()
 
 void GameLauncher::SelectGameVariant()
 {
-	static auto files = c_file_array("hopper_game_variants", ".bin", &ReadGameVariant);
-	//static auto files = c_file_array("game_variants", ".bin", &ReadGameVariant);
+	static c_file_array hopper_game_variants = c_file_array("hopper_game_variants", ".bin", &ReadGameVariant);
+	static c_file_array game_variants = c_file_array("game_variants", ".bin", &ReadGameVariant);
 
-	if (ImGui::BeginCombo("GAME VARIANT", files.GetName(g_LaunchHopperGameVariant)))
+	static LPCSTR last_hopper_game_variant = g_LaunchGameVariant;
+	static LPCSTR last_game_variant = g_LaunchGameVariant;
+
+	if (ImGui::Button("SWITCH GVAR TYPE"))
+		g_GameVariantIsHopper = !g_GameVariantIsHopper;
+	ImGui::SameLine();
+
+	auto files = g_GameVariantIsHopper ? hopper_game_variants : game_variants;
+	auto last = g_GameVariantIsHopper ? last_hopper_game_variant : last_game_variant;
+	auto label = g_GameVariantIsHopper ? "GAME VARIANT (HOPPER)" : "GAME VARIANT";
+
+	if (ImGui::BeginCombo(label, files.GetName(last)))
 	{
 		for (int i = 0; i < files.Count; i++)
 		{
-			int shouldShow = files.pFiles[i].Match(_game_engine_type_sandbox);
-			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_campaign && files.pFiles[i].Match(_game_engine_type_campaign);
-			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_multiplayer && files.pFiles[i].Match(_game_engine_type_megalo);
-			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_survival && files.pFiles[i].Match(_game_engine_type_survival);
+			int shouldShow = g_LaunchGameMode == e_game_mode::_game_mode_multiplayer && files.GetType(i) == _game_engine_type_sandbox;
+			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_multiplayer && files.GetType(i) == _game_engine_type_megalo;
+			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_campaign && files.GetType(i) == _game_engine_type_campaign;
+			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_survival && files.GetType(i) == _game_engine_type_survival;
 
 			if (files.GetName(i) && shouldShow)
 			{
-				bool selected = files.GetName(i) == files.GetName(g_LaunchHopperGameVariant);
+				bool selected = files.GetName(i) == files.GetName(g_LaunchGameVariant);
 				if (ImGui::Selectable(files.GetName(i), &selected))
 				{
-					g_LaunchHopperGameVariant = files.GetPath(i);
-					Settings::WriteStringValue(SettingsSection::Launch, "HopperGameVariant", (LPSTR)g_LaunchHopperGameVariant);
+					last = files.GetPath(i);
 				}
 
 				RenderHoveredTooltip(files.GetDesc(i));
@@ -940,28 +976,54 @@ void GameLauncher::SelectGameVariant()
 
 		ImGui::EndCombo();
 	}
+
+	if (g_GameVariantIsHopper)
+	{
+		last_hopper_game_variant = last;
+	}
+	else
+	{
+		last_game_variant = last;
+	}
+
+	if (last[0] && g_LaunchGameVariant != last)
+	{
+		g_LaunchGameVariant = last;
+		Settings::WriteStringValue(SettingsSection::Launch, "GameVariant", (LPSTR)g_LaunchGameVariant);
+		Settings::WriteBoolValue(SettingsSection::Launch, "GameVariantIsHopper", g_GameVariantIsHopper);
+	}
 }
 
 void GameLauncher::SelectMapVariant()
 {
-	static auto files = c_file_array("hopper_map_variants", ".mvar", &ReadMapVariant);
-	//static auto files = c_file_array("map_variants", ".mvar", &ReadMapVariant);
+	static auto hopper_map_variants = c_file_array("hopper_map_variants", ".mvar", &ReadMapVariant);
+	static auto map_variants = c_file_array("map_variants", ".mvar", &ReadMapVariant);
+
+	static LPCSTR last_hopper_map_variant = g_LaunchMapVariant;
+	static LPCSTR last_map_variant = g_LaunchMapVariant;
 
 	if (g_LaunchGameMode == e_game_mode::_game_mode_multiplayer)
 	{
-		if (ImGui::BeginCombo("MAP VARIANT", files.GetName(g_LaunchHopperMapVariant)))
+		if (ImGui::Button("SWITCH MVAR TYPE"))
+			g_MapVariantIsHopper = !g_MapVariantIsHopper;
+		ImGui::SameLine();
+
+		auto files = g_MapVariantIsHopper ? hopper_map_variants : map_variants;
+		auto last = g_MapVariantIsHopper ? last_hopper_map_variant : last_map_variant;
+		auto label = g_MapVariantIsHopper ? "MAP VARIANT (HOPPER)" : "MAP VARIANT";
+
+		if (ImGui::BeginCombo(label, files.GetName(last)))
 		{
 			for (int i = 0; i < files.Count; i++)
 			{
-				int shouldShow = files.pFiles[i].Match(map_id_to_engine_specific(g_LaunchMapId));
+				int shouldShow = files.GetType(i) == map_id_to_engine_specific(g_LaunchMapId);
 
 				if (files.GetName(i) && shouldShow)
 				{
-					bool selected = files.GetName(i) == files.GetName(g_LaunchHopperMapVariant);
+					bool selected = files.GetName(i) == files.GetName(g_LaunchMapVariant);
 					if (ImGui::Selectable(files.GetName(i), &selected))
 					{
-						g_LaunchHopperMapVariant = files.GetPath(i);
-						Settings::WriteStringValue(SettingsSection::Launch, "HopperMapVariant", (LPSTR)g_LaunchHopperMapVariant);
+						last = files.GetPath(i);
 					}
 
 					RenderHoveredTooltip(files.GetDesc(i));
@@ -969,6 +1031,22 @@ void GameLauncher::SelectMapVariant()
 			}
 
 			ImGui::EndCombo();
+		}
+
+		if (g_MapVariantIsHopper)
+		{
+			last_hopper_map_variant = last;
+		}
+		else
+		{
+			last_map_variant = last;
+		}
+
+		if (last[0] && g_LaunchMapVariant != last)
+		{
+			g_LaunchMapVariant = last;
+			Settings::WriteStringValue(SettingsSection::Launch, "MapVariant", (LPSTR)g_LaunchMapVariant);
+			Settings::WriteBoolValue(SettingsSection::Launch, "MapVariantIsHopper", g_MapVariantIsHopper);
 		}
 	}
 }
@@ -1007,6 +1085,8 @@ void GameLauncher::DrawMainMenu()
 		hasAutostarted = true;
 		SetState(CurrentState::eWaitingToRun);
 	}
+
+	ImGui::SameLine();
 
 	if (ImGui::Button("QUIT TO DESKTOP"))
 	{
@@ -1121,11 +1201,17 @@ void GameLauncher::DeinitSockets()
 
 }
 
-void GameLauncher::LoadHopperMapVariant(IDataAccess *pDataAccess, const char *pHopperMapVariantName, s_map_variant &out_map_variant, bool print)
+void GameLauncher::LoadMapVariant(IDataAccess *pDataAccess, const char *pVariantName, s_map_variant &out_variant, bool print)
 {
 	char pFilename[MAX_PATH] = {};
-	sprintf(pFilename, "hopper_map_variants\\%s.mvar", pHopperMapVariantName);
-	//sprintf(pFilename, "map_variants\\%s.mvar", pHopperMapVariantName);
+	if (g_MapVariantIsHopper)
+	{
+		sprintf(pFilename, "hopper_map_variants\\%s.mvar", pVariantName);
+	}
+	else
+	{
+		sprintf(pFilename, "map_variants\\%s.mvar", pVariantName);
+	}
 	pFilename[MAX_PATH - 1] = 0;
 
 	c_file_reference filo(pFilename);
@@ -1136,16 +1222,31 @@ void GameLauncher::LoadHopperMapVariant(IDataAccess *pDataAccess, const char *pH
 			WriteLineVerbose("Loading map variant [%s]", pFilename);
 		}
 
-		out_map_variant = pDataAccess->MapVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->MapVariant;
+		out_variant = pDataAccess->MapVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->MapVariant;
 		filo.close_file();
+	}
+	else
+	{
+		if (print)
+		{
+			WriteLineVerbose("Creating map variant for [%s]", map_id_to_string(g_LaunchMapId));
+		}
+
+		out_variant = pDataAccess->MapVariantCreateFromMapId(g_LaunchMapId)->MapVariant;
 	}
 }
 
-void GameLauncher::LoadHopperGameVariant(IDataAccess *pDataAccess, const char *pHopperGameVariantName, s_game_variant &out_game_variant, bool print)
+void GameLauncher::LoadGameVariant(IDataAccess *pDataAccess, const char *pVariantName, s_game_variant &out_variant, bool print)
 {
 	char pFilename[MAX_PATH] = {};
-	sprintf(pFilename, "hopper_game_variants\\%s.bin", pHopperGameVariantName);
-	//sprintf(pFilename, "game_variants\\%s.bin", pHopperGameVariantName);
+	if (g_GameVariantIsHopper)
+	{
+		sprintf(pFilename, "hopper_game_variants\\%s.bin", pVariantName);
+	}
+	else
+	{
+		sprintf(pFilename, "game_variants\\%s.bin", pVariantName);
+	}
 	pFilename[MAX_PATH - 1] = 0;
 
 	c_file_reference filo(pFilename);
@@ -1156,7 +1257,7 @@ void GameLauncher::LoadHopperGameVariant(IDataAccess *pDataAccess, const char *p
 			WriteLineVerbose("Loading game variant [%s]", pFilename);
 		}
 
-		out_game_variant = pDataAccess->GameVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->GameVariant;
+		out_variant = pDataAccess->GameVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->GameVariant;
 		filo.close_file();
 	}
 }
