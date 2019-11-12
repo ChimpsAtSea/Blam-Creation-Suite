@@ -628,7 +628,7 @@ struct c_file_array
 	s_file_info *pFiles = {};
 	int Count = 0;
 
-	c_file_array(LPCSTR pDir, int (*read_info_func)(LPCSTR pName, std::string *name, std::string *desc))
+	c_file_array(LPCSTR pDir, LPCSTR pExtension, int (*read_info_func)(LPCSTR pName, std::string *name, std::string *desc))
 	{
 		if (!pFiles || !Count)
 		{
@@ -639,12 +639,15 @@ struct c_file_array
 				int i = 0;
 				for (const auto &dirEntry : std::filesystem::directory_iterator(pDir))
 				{
-					pFiles[Count].Path = dirEntry.path().filename().replace_extension().string();
-					pFiles[Count].Type = read_info_func(pFiles[Count].Path.c_str(), &pFiles[Count].Name, &pFiles[Count].Desc);
+					if (dirEntry.path().extension().compare(pExtension) == 0)
+					{
+						pFiles[Count].Path = dirEntry.path().filename().replace_extension().string();
+						pFiles[Count].Type = read_info_func(pFiles[Count].Path.c_str(), &pFiles[Count].Name, &pFiles[Count].Desc);
 
-					while (pFiles[Count].Desc.find("|n") != std::string::npos)
-						pFiles[Count].Desc.replace(pFiles[Count].Desc.find("|n"), _countof("|n") - 1, "\n");
-					Count++;
+						while (pFiles[Count].Desc.find("|n") != std::string::npos)
+							pFiles[Count].Desc.replace(pFiles[Count].Desc.find("|n"), _countof("|n") - 1, "\n");
+						Count++;
+					}
 				}
 			}
 		}
@@ -859,7 +862,7 @@ void GameLauncher::SelectGameMode()
 
 void GameLauncher::SelectMap()
 {
-	static auto files = c_file_array("maps\\info", &ReadMapInfo);
+	static auto files = c_file_array("maps\\info", ".mapinfo", &ReadMapInfo);
 
 	if (ImGui::BeginCombo("MAP", files.GetName(map_id_to_string(g_LaunchMapId))))
 	{
@@ -910,7 +913,7 @@ void GameLauncher::SelectDifficulty()
 
 void GameLauncher::SelectGameVariant()
 {
-	static auto files = c_file_array("hopper_game_variants", &ReadGameVariant);
+	static auto files = c_file_array("hopper_game_variants", ".bin", &ReadGameVariant);
 	//static auto files = c_file_array("game_variants", &ReadGameVariant);
 
 	if (ImGui::BeginCombo("GAME VARIANT", files.GetName(g_LaunchHopperGameVariant)))
@@ -940,7 +943,7 @@ void GameLauncher::SelectGameVariant()
 
 void GameLauncher::SelectMapVariant()
 {
-	static auto files = c_file_array("hopper_map_variants", &ReadMapVariant);
+	static auto files = c_file_array("hopper_map_variants", ".mvar", &ReadMapVariant);
 	//static auto files = c_file_array("map_variants", &ReadMapVariant);
 
 	if (g_LaunchGameMode == e_game_mode::_game_mode_multiplayer)
