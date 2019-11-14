@@ -945,8 +945,11 @@ void GameLauncher::SelectGameVariant()
 	static LPCSTR last_hopper_game_variant = g_LaunchGameVariant;
 	static LPCSTR last_game_variant = g_LaunchGameVariant;
 
-	if (ImGui::Button("SWITCH GVAR TYPE"))
+	if (ImGui::Button("SWITCH GVAR TYPE") || GetKeyState('G') & 0x80)
+	{
 		g_GameVariantIsHopper = !g_GameVariantIsHopper;
+		Sleep(50);
+	}
 	ImGui::SameLine();
 
 	auto files = g_GameVariantIsHopper ? hopper_game_variants : game_variants;
@@ -1004,8 +1007,11 @@ void GameLauncher::SelectMapVariant()
 
 	if (g_LaunchGameMode == e_game_mode::_game_mode_multiplayer)
 	{
-		if (ImGui::Button("SWITCH MVAR TYPE"))
+		if (ImGui::Button("SWITCH MVAR TYPE") || GetKeyState('M') & 0x80)
+		{
 			g_MapVariantIsHopper = !g_MapVariantIsHopper;
+			Sleep(50);
+		}
 		ImGui::SameLine();
 
 		auto files = g_MapVariantIsHopper ? hopper_map_variants : map_variants;
@@ -1053,12 +1059,12 @@ void GameLauncher::SelectMapVariant()
 
 void GameLauncher::DrawMainMenu()
 {
-	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
-	ImGui::SetNextWindowSize(ImVec2(1876, 1000), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(1920 * 0.98, 1080 * 0.94), ImGuiCond_FirstUseEver);
 
 	static bool isWindowOpen = true;
 	int windowFlags = 0;
-	windowFlags |= ImGuiWindowFlags_MenuBar;
+	//windowFlags |= ImGuiWindowFlags_MenuBar;
 	windowFlags |= ImGuiWindowFlags_NoCollapse;
 	windowFlags |= ImGuiWindowFlags_NoTitleBar;
 	windowFlags |= ImGuiWindowFlags_NoMove;
@@ -1080,7 +1086,7 @@ void GameLauncher::DrawMainMenu()
 	SelectMapVariant();
 
 	static bool hasAutostarted = false;
-	if (ImGui::Button("START GAME") || (GameLauncher::HasCommandLineArg("-autostart") && !hasAutostarted))
+	if (ImGui::Button("START GAME") || (GameLauncher::HasCommandLineArg("-autostart") && !hasAutostarted) || GetKeyState(VK_RETURN) & 0x80)
 	{
 		hasAutostarted = true;
 		SetState(CurrentState::eWaitingToRun);
@@ -1088,7 +1094,7 @@ void GameLauncher::DrawMainMenu()
 
 	ImGui::SameLine();
 
-	if (ImGui::Button("QUIT TO DESKTOP"))
+	if (ImGui::Button("QUIT TO DESKTOP") || GetKeyState(VK_ESCAPE) & 0x80)
 	{
 		exit(0);
 	}
@@ -1105,8 +1111,8 @@ void GameLauncher::DrawPauseMenu()
 
 	MouseInput::SetMode(MouseMode::UI);
 
-	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
-	ImGui::SetNextWindowSize(ImVec2(1876, 1000), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(1920 / 1.5, 1080 / 1.5), ImGuiCond_FirstUseEver);
 
 	static bool isWindowOpen = true;
 	int windowFlags = 0;
@@ -1117,6 +1123,8 @@ void GameLauncher::DrawPauseMenu()
 	windowFlags |= ImGuiWindowFlags_NoResize;
 	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
 	//windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
+
+	static ImVec2 gridButtonSize = ImVec2((1920 / 1.5) / 5, (1080 / 1.5) / 16);
 
 	if (!ImGui::Begin("PAUSE MENU", &isWindowOpen, windowFlags))
 	{
@@ -1135,18 +1143,14 @@ void GameLauncher::DrawPauseMenu()
 			isPaused = true;
 		}
 
-		if (g_LaunchGameMode == e_game_mode::_game_mode_campaign || g_LaunchGameMode == e_game_mode::_game_mode_survival)
+		if (ImGui::Button("RETURN TO GAME", gridButtonSize))
 		{
-			if (ImGui::Button("RESTART LEVEL"))
-			{
-				s_pHaloReachEngine->UpdateEngineState(eEngineState::RestartLevel);
-				isPaused = false;
-			}
+			isPaused = false;
 		}
 
 		if (g_LaunchGameMode == e_game_mode::_game_mode_campaign)
 		{
-			if (ImGui::Button("REVERT TO LAST SAVE"))
+			if (ImGui::Button("REVERT TO LAST SAVE", gridButtonSize))
 			{
 				s_pHaloReachEngine->UpdateEngineState(eEngineState::RevertToLastSave);
 				isPaused = false;
@@ -1155,21 +1159,25 @@ void GameLauncher::DrawPauseMenu()
 
 		if (g_LaunchGameMode == e_game_mode::_game_mode_multiplayer || g_LaunchGameMode == e_game_mode::_game_mode_survival)
 		{
-			if (ImGui::Button("END ROUND"))
+			if (ImGui::Button("END ROUND", gridButtonSize))
 			{
 				s_pHaloReachEngine->UpdateEngineState(eEngineState::EndRound);
 				isPaused = false;
 			}
 		}
 
-		if (ImGui::Button("END GAME"))
+		if (g_LaunchGameMode == e_game_mode::_game_mode_campaign || g_LaunchGameMode == e_game_mode::_game_mode_survival)
 		{
-			s_pHaloReachEngine->UpdateEngineState(eEngineState::EndGame);
-			isPaused = false;
+			if (ImGui::Button("RESTART GAME", gridButtonSize))
+			{
+				s_pHaloReachEngine->UpdateEngineState(eEngineState::RestartLevel);
+				isPaused = false;
+			}
 		}
 
-		if (ImGui::Button("RETURN"))
+		if (ImGui::Button("RETURN TO MAINMENU", gridButtonSize))
 		{
+			s_pHaloReachEngine->UpdateEngineState(eEngineState::EndGame);
 			isPaused = false;
 		}
 
