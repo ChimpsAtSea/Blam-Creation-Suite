@@ -125,6 +125,7 @@
     <ClInclude Include="customwindow.h" />
     <ClInclude Include="BasicData.h" />
     <ClInclude Include="DebugUI.h" />
+    <ClInclude Include="debug_helpers.h" />
     <ClInclude Include="detour_helpers.h" />
     <ClInclude Include="gameinterface.h" />
     <ClInclude Include="gamelauncher.h" />

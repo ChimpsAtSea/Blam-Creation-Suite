@@ -4,6 +4,7 @@
 #include "logging.h"
 #include "HaloGameID.h"
 #include "detour_helpers.h"
+#include "debug_helpers.h"
 #include "BasicData.h"
 #include "FunctionHook.h"
 

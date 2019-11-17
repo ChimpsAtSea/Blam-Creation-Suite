@@ -191,6 +191,9 @@
     <ClInclude Include="opusframework-system-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="debug_helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />

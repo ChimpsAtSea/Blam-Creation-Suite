@@ -194,6 +194,7 @@ bool __fastcall IGameEngineHost::Member27()
 
 bool __fastcall IGameEngineHost::Member28(Member28Struct* buffer)
 {
+	//WriteStackBackTrace("IGameEngineHost::Member28");
 	if (!buffer)
 	{
 		return false;
