@@ -404,7 +404,7 @@ void GameLauncher::SetupGameContext(GameContext &rGameContext)
 			LoadGameVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchGameVariant, *reinterpret_cast<s_game_variant *>(rGameContext.GameVariantBuffer), true);
 			LoadMapVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchMapVariant, *reinterpret_cast<s_map_variant *>(rGameContext.MapVariantBuffer), true);
 			//LoadPreviousGamestate("gamestate", rGameContext);
-			//LoadSavedFilmMetadata("asq_ff45_co_514C8755", rGameContext);
+			//LoadSavedFilmMetadata("asq_cex_tim_43DC28AA", rGameContext);
 
 			rGameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
 			rGameContext.SessionInfo.HostAddress = HostAddress;
@@ -1301,5 +1301,26 @@ void GameLauncher::LoadSavedFilmMetadata(const char *pSavedFilmName, GameContext
 	sprintf(pFilename, "Temp\\autosave\\%s.film", pSavedFilmName);
 	pFilename[MAX_PATH - 1] = 0;
 
+	if (!PathFileExistsA(pFilename))
+	{
+		sprintf(pFilename, "Temp\\autosave\\%s.mov", pSavedFilmName);
+		pFilename[MAX_PATH - 1] = 0;
+
+		if (!PathFileExistsA(pFilename))
+		{
+			char szBuf[MAX_PATH] = { 0 };
+			::GetEnvironmentVariable("USERPROFILE", szBuf, MAX_PATH);
+			sprintf(pFilename, "%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\HaloReach\\Movie\\%s.mov", szBuf, pSavedFilmName);
+			pFilename[MAX_PATH - 1] = 0;
+
+			if (!PathFileExistsA(pFilename))
+			{
+				char szBuf[MAX_PATH] = { 0 };
+				::GetEnvironmentVariable("USERPROFILE", szBuf, MAX_PATH);
+				sprintf(pFilename, "%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\HaloReach\\Movie\\%s.mov", szBuf, pSavedFilmName);
+				pFilename[MAX_PATH - 1] = 0;
+			}
+		}
+	}
 	gameContext.SavedFilmPath = pFilename;
 }
