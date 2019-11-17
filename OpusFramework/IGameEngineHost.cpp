@@ -53,7 +53,7 @@ __int64 __fastcall IGameEngineHost::WriteBufferToFile(LPVOID pBuffer, size_t buf
 	return __int64(0);
 }
 
-void __fastcall IGameEngineHost::Member06(Member06Struct* buffer)
+void __fastcall IGameEngineHost::Member06(s_game_results * buffer)
 {
 	WriteLineVerbose("IGameEngineHost::Member06");
 }
@@ -205,11 +205,13 @@ bool __fastcall IGameEngineHost::Member28(Member28Struct* buffer)
 
 __int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member29Struct* buffer)
 {
+	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", buffer->ServiceTag, 5, L"UNSC");
+
 	// todo: find a good home for this
 	SplashScreen::Destroy();
 
-	WriteLineVerbose("IGameEngineHost::Member29");
-	return __int64(0);
+	WriteStackBackTrace("IGameEngineHost::Member29");
+	return __int64(1);
 }
 
 bool __fastcall IGameEngineHost::UpdateInput(_QWORD, InputBuffer* pInputBuffer)

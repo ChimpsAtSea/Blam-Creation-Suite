@@ -28,16 +28,16 @@ public: /* structures and enums */
 	static constexpr size_t InputBufferSize = sizeof(InputBuffer);
 	static_assert(InputBufferSize == 0x128, "InputBuffer is incorrect size");
 
-	struct Member06Struct
+	struct s_game_results
 	{
-		BYTE data[0x584B8]; // game results??
+		char unknown0[0x58738];
 	};
-	static constexpr size_t Member06StructSize = sizeof(Member06Struct);
-	static_assert(Member06StructSize == 0x584B8, "Member06Struct is incorrect size");
+	static constexpr size_t s_game_results_size = sizeof(s_game_results);
+	static_assert(s_game_results_size == 0x58738, "s_game_results is incorrect size");
 
 	struct Member22Struct
 	{
-		BYTE data[0x110];
+		char data[0x110];
 	};
 	static constexpr size_t Member22StructSize = sizeof(Member22Struct);
 	static_assert(Member22StructSize == 0x110, "Member22Struct is incorrect size");
@@ -105,7 +105,14 @@ public: /* structures and enums */
 
 	struct Member29Struct
 	{
-		BYTE data[0x664];
+		char unknown0[112];
+		wchar_t ServiceTag[4];
+		char unknown78[8];
+		char unknown80[128];
+		char unknown100[256];
+		char unknown200[512];
+		char unknown400[512];
+		char unknown600[100];
 	};
 	static constexpr size_t Member29StructSize = sizeof(Member29Struct);
 	static_assert(Member29StructSize == 0x664, "Member29Struct is incorrect size");
@@ -122,7 +129,7 @@ public: /* instance functions */
 	/* 3  */ virtual void EngineStateUpdate(eEngineState);
 	/* 4  */ virtual __int64 GameExited(unsigned int a1, char* a2, int);
 	/* 5  */ virtual __int64 __fastcall WriteBufferToFile(LPVOID, size_t);
-	/* 6  */ virtual void Member06(Member06Struct* buffer);
+	/* 6  */ virtual void Member06(s_game_results* buffer);
 	/* 7  */ virtual void Member07(unsigned int);
 	/* 8  */ virtual void Member08(const wchar_t*, const wchar_t*);
 	/* 9  */ virtual void Member09(wchar_t[1024], wchar_t[1024]);
