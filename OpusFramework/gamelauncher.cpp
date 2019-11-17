@@ -1297,7 +1297,7 @@ void GameLauncher::LoadPreviousGamestate(const char *pGamestateName, GameContext
 
 void GameLauncher::LoadSavedFilmMetadata(const char *pSavedFilmName, GameContext &gameContext)
 {
-	char pFilename[MAX_PATH] = {};
+	static char pFilename[MAX_PATH] = {};
 	sprintf(pFilename, "Temp\\autosave\\%s.film", pSavedFilmName);
 	pFilename[MAX_PATH - 1] = 0;
 

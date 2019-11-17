@@ -205,7 +205,7 @@ bool __fastcall IGameEngineHost::Member28(Member28Struct* buffer)
 
 __int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member29Struct* buffer)
 {
-	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", buffer->ServiceTag, 5, L"UNSC");
+	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", buffer->service_tag, 5, L"UNSC");
 
 	// todo: find a good home for this
 	SplashScreen::Destroy();
