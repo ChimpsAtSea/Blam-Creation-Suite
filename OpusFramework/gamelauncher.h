@@ -40,6 +40,7 @@ public:
 	static void SelectDifficulty();
 	static void SelectGameVariant();
 	static void SelectMapVariant();
+	static void SelectSavedFilm();
 
 	
 

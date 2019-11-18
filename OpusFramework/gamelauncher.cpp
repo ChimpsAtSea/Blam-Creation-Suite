@@ -15,6 +15,7 @@ LPCSTR g_LaunchGameVariant = "";
 bool g_GameVariantIsHopper = false;
 LPCSTR g_LaunchMapVariant = "";
 bool g_MapVariantIsHopper = false;
+LPCSTR g_SavedFilm = nullptr;
 
 HaloGameID GameLauncher::GetCurrentGameID()
 {
@@ -404,7 +405,7 @@ void GameLauncher::SetupGameContext(GameContext &rGameContext)
 			LoadGameVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchGameVariant, *reinterpret_cast<s_game_variant *>(rGameContext.GameVariantBuffer), true);
 			LoadMapVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchMapVariant, *reinterpret_cast<s_map_variant *>(rGameContext.MapVariantBuffer), true);
 			//LoadPreviousGamestate("gamestate", rGameContext);
-			//LoadSavedFilmMetadata("asq_cex_tim_43DC28AA", rGameContext);
+			LoadSavedFilmMetadata(g_SavedFilm, rGameContext);
 
 			rGameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
 			rGameContext.SessionInfo.HostAddress = HostAddress;
@@ -596,7 +597,7 @@ struct c_file_reference
 	void read_string_long(std::wstring *value, size_t length, long offset = 0, bool swapEndian = false)
 	{
 		assert(pFile);
-		*value = (wchar_t *)&pBuffer[swapEndian ? offset + 1 : swapEndian];
+		*value = (wchar_t *)&pBuffer[swapEndian ? offset + 1 : offset];
 	}
 
 	void read_string_long_as_string(std::string *value, size_t length, long offset = 0, bool swapEndian = false)
@@ -783,6 +784,30 @@ struct c_file_array
 	}
 };
 
+LPCSTR Format(LPCSTR fmt, ...)
+{
+	static char *buffer;
+
+	va_list args;
+	va_start(args, fmt);
+
+	buffer = new char[1024];
+	memset(buffer, 0, 1024);
+
+	vsprintf(buffer, fmt, args);
+
+	va_end(args);
+
+	return buffer;
+}
+
+LPCSTR GetUserprofileVariable()
+{
+	static char szBuf[MAX_PATH] = { 0 };
+	GetEnvironmentVariable("USERPROFILE", szBuf, MAX_PATH);
+	return szBuf;
+};
+
 int ReadMapInfo(LPCSTR pName, std::string *name, std::string *desc, LPCSTR pPath)
 {
 	char pFilename[MAX_PATH] = {};
@@ -849,6 +874,30 @@ int ReadMapVariant(LPCSTR pName, std::string *name, std::string *desc, LPCSTR pP
 	GetVariantInfo(mapVariant.data, name, desc);
 
 	return result;
+}
+
+int ReadSavedFilm(LPCSTR pName, std::string *name, std::string *desc, LPCSTR pPath)
+{
+	auto pDataAccess = GameLauncher::s_pCurrentGameInterface->GetDataAccess();
+	char *out_data = { 0 };
+
+	c_file_reference filo(pPath);
+	if (filo.open_file())
+	{
+		if (true)
+		{
+			WriteLineVerbose("Loading saved film [%s]", pPath);
+		}
+
+		out_data = pDataAccess->SaveFilmMetadataCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->data;
+
+		filo.read_string_long_as_string(name, 256, 0xC0);
+		filo.read_string_long_as_string(desc, 256, 0x1C0);
+
+		filo.close_file();
+	}
+
+	return -1;
 }
 
 void RenderHoveredTooltip(LPCSTR pText)
@@ -1057,6 +1106,60 @@ void GameLauncher::SelectMapVariant()
 	}
 }
 
+void GameLauncher::SelectSavedFilm()
+{
+	static auto official_saved_films = c_file_array(Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\HaloReach\\Movie\\", GetUserprofileVariable()), ".mov", &ReadSavedFilm);
+	static auto saved_films = c_file_array("Temp\\autosave\\", ".film", &ReadSavedFilm);
+
+	static LPCSTR last_official_saved_film = "";
+	static LPCSTR last_saved_film = "";
+
+	static bool savedFilmIsOfficial = false;
+	if (ImGui::Button("SWITCH FILM PATH") || GetKeyState('F') & 0x80)
+	{
+		savedFilmIsOfficial = !savedFilmIsOfficial;
+		Sleep(50);
+	}
+	ImGui::SameLine();
+
+	auto files = savedFilmIsOfficial ? official_saved_films : saved_films;
+	auto last = savedFilmIsOfficial ? last_official_saved_film : last_saved_film;
+	auto label = savedFilmIsOfficial ? "SAVED FILM (OFFICIAL)" : "SAVED FILM";
+
+	if (ImGui::BeginCombo(label, files.GetDesc(last)))
+	{
+		for (int i = 0; i < files.Count; i++)
+		{
+			if (files.GetName(i))
+			{
+				bool selected = files.GetName(i) == files.GetName(last);
+				if (ImGui::Selectable(files.GetDesc(i), &selected))
+				{
+					last = files.GetPath(i);
+				}
+
+				RenderHoveredTooltip(files.GetName(i));
+			}
+		}
+
+		ImGui::EndCombo();
+	}
+
+	if (savedFilmIsOfficial)
+	{
+		last_official_saved_film = last;
+	}
+	else
+	{
+		last_saved_film = last;
+	}
+
+	if (g_SavedFilm != files.GetPath(last))
+	{
+		g_SavedFilm = files.GetPath(last);
+	}
+}
+
 void GameLauncher::DrawMainMenu()
 {
 	ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
@@ -1079,22 +1182,32 @@ void GameLauncher::DrawMainMenu()
 		return;
 	}
 
+	SelectSavedFilm();
 	SelectGameMode();
 	SelectMap();
 	SelectDifficulty();
 	SelectGameVariant();
 	SelectMapVariant();
 
+	static ImVec2 gridButtonSize = ImVec2((1920 * 0.98f) / 5, (1080 * 0.94f) / 16);
+
+	ImGui::SetCursorPos(ImVec2(gridButtonSize.x * 0.35f, gridButtonSize.y * 8));
 	static bool hasAutostarted = false;
-	if (ImGui::Button("START GAME") || (GameLauncher::HasCommandLineArg("-autostart") && !hasAutostarted) || GetKeyState(VK_RETURN) & 0x80)
+	if (ImGui::Button("START GAME", gridButtonSize) || (GameLauncher::HasCommandLineArg("-autostart") && !hasAutostarted) || GetKeyState(VK_RETURN) & 0x80)
 	{
+		g_SavedFilm = nullptr;
 		hasAutostarted = true;
 		SetState(CurrentState::eWaitingToRun);
 	}
 
-	ImGui::SameLine();
+	ImGui::SetCursorPos(ImVec2(gridButtonSize.x * 0.35f, gridButtonSize.y * 9.1f));
+	if (ImGui::Button("PLAY FILM", gridButtonSize) || GetKeyState('P') & 0x80)
+	{
+		SetState(CurrentState::eWaitingToRun);
+	}
 
-	if (ImGui::Button("QUIT TO DESKTOP") || GetKeyState(VK_ESCAPE) & 0x80)
+	ImGui::SetCursorPos(ImVec2(gridButtonSize.x * 0.35f, gridButtonSize.y * 14));
+	if (ImGui::Button("QUIT TO DESKTOP", gridButtonSize) || GetKeyState(VK_ESCAPE) & 0x80)
 	{
 		exit(0);
 	}
@@ -1297,30 +1410,20 @@ void GameLauncher::LoadPreviousGamestate(const char *pGamestateName, GameContext
 
 void GameLauncher::LoadSavedFilmMetadata(const char *pSavedFilmName, GameContext &gameContext)
 {
-	static char pFilename[MAX_PATH] = {};
-	sprintf(pFilename, "Temp\\autosave\\%s.film", pSavedFilmName);
-	pFilename[MAX_PATH - 1] = 0;
+	if (!pSavedFilmName)
+		return;
 
-	if (!PathFileExistsA(pFilename))
+	static auto pFilename = "";
+	if (!PathFileExists(pFilename = Format("Temp\\autosave\\%s.film", pSavedFilmName)))
 	{
-		sprintf(pFilename, "Temp\\autosave\\%s.mov", pSavedFilmName);
-		pFilename[MAX_PATH - 1] = 0;
-
-		if (!PathFileExistsA(pFilename))
+		if (!PathFileExists(pFilename = Format("Temp\\autosave\\%s.mov", pSavedFilmName)))
 		{
-			char szBuf[MAX_PATH] = { 0 };
-			::GetEnvironmentVariable("USERPROFILE", szBuf, MAX_PATH);
-			sprintf(pFilename, "%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\HaloReach\\Movie\\%s.mov", szBuf, pSavedFilmName);
-			pFilename[MAX_PATH - 1] = 0;
-
-			if (!PathFileExistsA(pFilename))
+			if (!PathFileExists(pFilename = Format("%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\HaloReach\\Movie\\%s.mov", GetUserprofileVariable(), pSavedFilmName)))
 			{
-				char szBuf[MAX_PATH] = { 0 };
-				::GetEnvironmentVariable("USERPROFILE", szBuf, MAX_PATH);
-				sprintf(pFilename, "%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\HaloReach\\Movie\\%s.mov", szBuf, pSavedFilmName);
-				pFilename[MAX_PATH - 1] = 0;
+				pFilename = Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\HaloReach\\Movie\\%s.mov", GetUserprofileVariable(), pSavedFilmName);
 			}
 		}
 	}
+
 	gameContext.SavedFilmPath = pFilename;
 }
