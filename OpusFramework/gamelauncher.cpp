@@ -884,11 +884,6 @@ int ReadSavedFilm(LPCSTR pName, std::string *name, std::string *desc, LPCSTR pPa
 	c_file_reference filo(pPath);
 	if (filo.open_file())
 	{
-		if (true)
-		{
-			WriteLineVerbose("Loading saved film [%s]", pPath);
-		}
-
 		out_data = pDataAccess->SaveFilmMetadataCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->data;
 
 		filo.read_string_long_as_string(name, 256, 0xC0);
@@ -912,10 +907,64 @@ void RenderHoveredTooltip(LPCSTR pText)
 	}
 }
 
+void GameLauncher::SelectSavedFilm()
+{
+	static auto official_saved_films = c_file_array(Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\HaloReach\\Movie\\", GetUserprofileVariable()), ".mov", &ReadSavedFilm);
+	static auto saved_films = c_file_array("Temp\\autosave\\", ".film", &ReadSavedFilm);
+
+	static LPCSTR last_official_saved_film = "";
+	static LPCSTR last_saved_film = "";
+
+	static bool savedFilmIsOfficial = false;
+	auto files = savedFilmIsOfficial ? official_saved_films : saved_films;
+	auto last = savedFilmIsOfficial ? last_official_saved_film : last_saved_film;
+	auto label = savedFilmIsOfficial ? "(OFFICIAL)" : "###SAVED FILM";
+
+	if (g_SavedFilm != files.GetPath(last))
+	{
+		g_SavedFilm = files.GetPath(last);
+	}
+
+	if (ImGui::Button("SAVED FILM  ") || GetKeyState('F') & 0x80)
+	{
+		savedFilmIsOfficial = !savedFilmIsOfficial;
+		Sleep(50);
+	}
+	ImGui::SameLine();
+
+	if (ImGui::BeginCombo(label, files.GetDesc(last)))
+	{
+		for (int i = 0; i < files.Count; i++)
+		{
+			if (files.GetName(i))
+			{
+				bool selected = files.GetName(i) == files.GetName(last);
+				if (ImGui::Selectable(files.GetDesc(i), &selected))
+				{
+					last = files.GetPath(i);
+				}
+
+				RenderHoveredTooltip(files.GetName(i));
+			}
+		}
+
+		ImGui::EndCombo();
+	}
+
+	if (savedFilmIsOfficial)
+	{
+		last_official_saved_film = last;
+	}
+	else
+	{
+		last_saved_film = last;
+	}
+}
+
 void GameLauncher::SelectGameMode()
 {
 	LPCSTR s_pCurrentGameModeStr = game_mode_to_string(g_LaunchGameMode);
-	if (ImGui::BeginCombo("MODE", s_pCurrentGameModeStr))
+	if (ImGui::BeginCombo("###MODE", s_pCurrentGameModeStr))
 	{
 		for (int i = 1; i < e_game_mode::k_number_of_game_modes; i++)
 		{
@@ -939,7 +988,7 @@ void GameLauncher::SelectMap()
 {
 	static auto files = c_file_array("maps\\info", ".mapinfo", &ReadMapInfo);
 
-	if (ImGui::BeginCombo("MAP", files.GetName(map_id_to_string(g_LaunchMapId))))
+	if (ImGui::BeginCombo("###MAP", files.GetName(map_id_to_string(g_LaunchMapId))))
 	{
 		for (int i = 0; i < files.Count; i++)
 		{
@@ -965,7 +1014,7 @@ void GameLauncher::SelectDifficulty()
 	if (g_LaunchGameMode == e_game_mode::_game_mode_campaign || g_LaunchGameMode == e_game_mode::_game_mode_survival)
 	{
 		LPCSTR pCurrentDifficultyStr = campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel);
-		if (ImGui::BeginCombo("DIFFICULTY", pCurrentDifficultyStr))
+		if (ImGui::BeginCombo("###DIFFICULTY", pCurrentDifficultyStr))
 		{
 			for (e_campaign_difficulty_level difficulty = e_campaign_difficulty_level::_campaign_difficulty_level_easy; difficulty < k_number_of_campaign_difficulty_levels; reinterpret_cast<int &>(difficulty)++)
 			{
@@ -994,16 +1043,23 @@ void GameLauncher::SelectGameVariant()
 	static LPCSTR last_hopper_game_variant = g_LaunchGameVariant;
 	static LPCSTR last_game_variant = g_LaunchGameVariant;
 
-	if (ImGui::Button("SWITCH GVAR TYPE") || GetKeyState('G') & 0x80)
+	auto files = g_GameVariantIsHopper ? hopper_game_variants : game_variants;
+	auto last = g_GameVariantIsHopper ? last_hopper_game_variant : last_game_variant;
+	auto label = g_GameVariantIsHopper ? "(HOPPER)###GAME VARIANT" : "###GAME VARIANT";
+
+	if (last[0] && g_LaunchGameVariant != last)
+	{
+		g_LaunchGameVariant = last;
+		Settings::WriteStringValue(SettingsSection::Launch, "GameVariant", (LPSTR)g_LaunchGameVariant);
+		Settings::WriteBoolValue(SettingsSection::Launch, "GameVariantIsHopper", g_GameVariantIsHopper);
+	}
+
+	if (ImGui::Button("GAME VARIANT") || GetKeyState('G') & 0x80)
 	{
 		g_GameVariantIsHopper = !g_GameVariantIsHopper;
 		Sleep(50);
 	}
 	ImGui::SameLine();
-
-	auto files = g_GameVariantIsHopper ? hopper_game_variants : game_variants;
-	auto last = g_GameVariantIsHopper ? last_hopper_game_variant : last_game_variant;
-	auto label = g_GameVariantIsHopper ? "GAME VARIANT (HOPPER)" : "GAME VARIANT";
 
 	if (ImGui::BeginCombo(label, files.GetName(last)))
 	{
@@ -1037,13 +1093,6 @@ void GameLauncher::SelectGameVariant()
 	{
 		last_game_variant = last;
 	}
-
-	if (last[0] && g_LaunchGameVariant != last)
-	{
-		g_LaunchGameVariant = last;
-		Settings::WriteStringValue(SettingsSection::Launch, "GameVariant", (LPSTR)g_LaunchGameVariant);
-		Settings::WriteBoolValue(SettingsSection::Launch, "GameVariantIsHopper", g_GameVariantIsHopper);
-	}
 }
 
 void GameLauncher::SelectMapVariant()
@@ -1056,16 +1105,23 @@ void GameLauncher::SelectMapVariant()
 
 	if (g_LaunchGameMode == e_game_mode::_game_mode_multiplayer)
 	{
-		if (ImGui::Button("SWITCH MVAR TYPE") || GetKeyState('M') & 0x80)
+		auto files = g_MapVariantIsHopper ? hopper_map_variants : map_variants;
+		auto last = g_MapVariantIsHopper ? last_hopper_map_variant : last_map_variant;
+		auto label = g_MapVariantIsHopper ? "(HOPPER)###MAP VARIANT" : "###MAP VARIANT";
+
+		if (last[0] && g_LaunchMapVariant != last)
+		{
+			g_LaunchMapVariant = last;
+			Settings::WriteStringValue(SettingsSection::Launch, "MapVariant", (LPSTR)g_LaunchMapVariant);
+			Settings::WriteBoolValue(SettingsSection::Launch, "MapVariantIsHopper", g_MapVariantIsHopper);
+		}
+
+		if (ImGui::Button("MAP VARIANT ") || GetKeyState('M') & 0x80)
 		{
 			g_MapVariantIsHopper = !g_MapVariantIsHopper;
 			Sleep(50);
 		}
 		ImGui::SameLine();
-
-		auto files = g_MapVariantIsHopper ? hopper_map_variants : map_variants;
-		auto last = g_MapVariantIsHopper ? last_hopper_map_variant : last_map_variant;
-		auto label = g_MapVariantIsHopper ? "MAP VARIANT (HOPPER)" : "MAP VARIANT";
 
 		if (ImGui::BeginCombo(label, files.GetName(last)))
 		{
@@ -1096,74 +1152,14 @@ void GameLauncher::SelectMapVariant()
 		{
 			last_map_variant = last;
 		}
-
-		if (last[0] && g_LaunchMapVariant != last)
-		{
-			g_LaunchMapVariant = last;
-			Settings::WriteStringValue(SettingsSection::Launch, "MapVariant", (LPSTR)g_LaunchMapVariant);
-			Settings::WriteBoolValue(SettingsSection::Launch, "MapVariantIsHopper", g_MapVariantIsHopper);
-		}
-	}
-}
-
-void GameLauncher::SelectSavedFilm()
-{
-	static auto official_saved_films = c_file_array(Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\HaloReach\\Movie\\", GetUserprofileVariable()), ".mov", &ReadSavedFilm);
-	static auto saved_films = c_file_array("Temp\\autosave\\", ".film", &ReadSavedFilm);
-
-	static LPCSTR last_official_saved_film = "";
-	static LPCSTR last_saved_film = "";
-
-	static bool savedFilmIsOfficial = false;
-	if (ImGui::Button("SWITCH FILM PATH") || GetKeyState('F') & 0x80)
-	{
-		savedFilmIsOfficial = !savedFilmIsOfficial;
-		Sleep(50);
-	}
-	ImGui::SameLine();
-
-	auto files = savedFilmIsOfficial ? official_saved_films : saved_films;
-	auto last = savedFilmIsOfficial ? last_official_saved_film : last_saved_film;
-	auto label = savedFilmIsOfficial ? "SAVED FILM (OFFICIAL)" : "SAVED FILM";
-
-	if (ImGui::BeginCombo(label, files.GetDesc(last)))
-	{
-		for (int i = 0; i < files.Count; i++)
-		{
-			if (files.GetName(i))
-			{
-				bool selected = files.GetName(i) == files.GetName(last);
-				if (ImGui::Selectable(files.GetDesc(i), &selected))
-				{
-					last = files.GetPath(i);
-				}
-
-				RenderHoveredTooltip(files.GetName(i));
-			}
-		}
-
-		ImGui::EndCombo();
-	}
-
-	if (savedFilmIsOfficial)
-	{
-		last_official_saved_film = last;
-	}
-	else
-	{
-		last_saved_film = last;
-	}
-
-	if (g_SavedFilm != files.GetPath(last))
-	{
-		g_SavedFilm = files.GetPath(last);
 	}
 }
 
 void GameLauncher::DrawMainMenu()
 {
+	static ImVec2 nextWindowSize = ImVec2(1920 * 0.98f, 1080 * 0.94f);
 	ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
-	ImGui::SetNextWindowSize(ImVec2(1920 * 0.98f, 1080 * 0.94f), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(nextWindowSize, ImGuiCond_FirstUseEver);
 
 	static bool isWindowOpen = true;
 	int windowFlags = 0;
@@ -1183,13 +1179,34 @@ void GameLauncher::DrawMainMenu()
 	}
 
 	SelectSavedFilm();
+
+	ImGui::Separator();
+
+	if (g_LaunchGameMode != e_game_mode::_game_mode_multiplayer)
+	{
+		ImGui::PushItemWidth((1920 / 100) * 25 * 0.948f);
+	}
+	else
+	{
+		ImGui::PushItemWidth((1920 / 100) * 25 * 1.43f);
+	}
 	SelectGameMode();
+	ImGui::SameLine();
 	SelectMap();
+
+	if (g_LaunchGameMode != e_game_mode::_game_mode_multiplayer)
+	{
+		ImGui::SameLine();
+	}
 	SelectDifficulty();
+	ImGui::PopItemWidth();
+
+	ImGui::Separator();
+
 	SelectGameVariant();
 	SelectMapVariant();
 
-	static ImVec2 gridButtonSize = ImVec2((1920 * 0.98f) / 5, (1080 * 0.94f) / 16);
+	static ImVec2 gridButtonSize = ImVec2(nextWindowSize.x / 5, nextWindowSize.y / 16);
 
 	ImGui::SetCursorPos(ImVec2(gridButtonSize.x * 0.35f, gridButtonSize.y * 8));
 	static bool hasAutostarted = false;
@@ -1423,6 +1440,11 @@ void GameLauncher::LoadSavedFilmMetadata(const char *pSavedFilmName, GameContext
 				pFilename = Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\HaloReach\\Movie\\%s.mov", GetUserprofileVariable(), pSavedFilmName);
 			}
 		}
+	}
+
+	if (pFilename)
+	{
+		WriteLineVerbose("Loading saved film [%s]", pFilename);
 	}
 
 	gameContext.SavedFilmPath = pFilename;
