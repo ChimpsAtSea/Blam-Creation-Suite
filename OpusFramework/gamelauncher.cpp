@@ -1271,6 +1271,11 @@ void GameLauncher::DrawPauseMenu()
 
 	static bool isPaused = false;
 
+	while (!isPaused && GetKeyState(VK_ESCAPE) & 0x80)
+	{
+		Sleep(1);
+	}
+
 	if (s_pHaloReachEngine)
 	{
 		if (!isPaused)
@@ -1279,7 +1284,7 @@ void GameLauncher::DrawPauseMenu()
 			isPaused = true;
 		}
 
-		if (ImGui::Button("RETURN TO GAME", gridButtonSize))
+		if (ImGui::Button("RETURN TO GAME", gridButtonSize) || GetKeyState(VK_ESCAPE) & 0x80)
 		{
 			isPaused = false;
 		}
