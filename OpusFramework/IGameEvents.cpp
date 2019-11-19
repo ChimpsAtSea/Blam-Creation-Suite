@@ -680,22 +680,22 @@ void IGameEvents::Member135()
 	if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member135"); } 
 }
 
-GUID* __fastcall IGameEvents::GetGuid(GUID* pGuid)
+GUID* __fastcall IGameEvents::GetPlayerSessionId(GUID* pGuid)
 {
 	//if (pGuid)
 	//{
 	//	*pGuid = guid;
 	//}
-	return &guid;
+	return &playerSessionId;
 }
 
 void IGameEvents::Member137() 
 { 
 	if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member137"); }
 }
-void IGameEvents::Member138() 
+void IGameEvents::CheckpointSaved() 
 { 
-	if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::Member138"); }
+	if (g_logGameEventMessages) { WriteLineVerbose("IGameEvents::CheckpointSaved"); }
 }
 void IGameEvents::Member139() 
 { 

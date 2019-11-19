@@ -1187,11 +1187,11 @@ void GameLauncher::DrawMainMenu()
 
 	if (g_LaunchGameMode != e_game_mode::_game_mode_multiplayer)
 	{
-		ImGui::PushItemWidth((width / 100) * 25 * 0.948f);
+		ImGui::PushItemWidth((width / 100) * 25 * 0.938f);
 	}
 	else
 	{
-		ImGui::PushItemWidth((width / 100) * 25 * 1.43f);
+		ImGui::PushItemWidth((width / 100) * 25 * 1.415f);
 	}
 	SelectGameMode();
 	ImGui::SameLine();

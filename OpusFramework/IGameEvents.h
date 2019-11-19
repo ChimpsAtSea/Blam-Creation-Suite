@@ -146,9 +146,9 @@ public:
 	/* 133 */	virtual void Member133();
 	/* 134 */	virtual __int64 Member134(_QWORD);
 	/* 135 */	virtual void Member135();
-	/* 136 */	virtual GUID* __fastcall GetGuid(GUID* pGuid);
+	/* 136 */	virtual GUID* __fastcall GetPlayerSessionId(GUID* pGuid);
 	/* 137 */	virtual void Member137();
-	/* 138 */	virtual void Member138();
+	/* 138 */	virtual void CheckpointSaved();
 	/* 139 */	virtual void Member139();
 
 	struct __declspec(align(8)) UnknownType
@@ -169,7 +169,7 @@ public:
 
 	_WORD word0;
 	_WORD word1;
-	GUID guid;
+	GUID playerSessionId;
 	__unaligned __declspec(align(1)) _QWORD qword0;
 	__unaligned __declspec(align(1)) _QWORD qword1;
 	__unaligned __declspec(align(1)) _QWORD qword2;
