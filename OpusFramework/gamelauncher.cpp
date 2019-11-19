@@ -1331,6 +1331,27 @@ void GameLauncher::DrawPauseMenu()
 		}
 	}
 
+	auto mouseSensitivity = MouseInput::GetSensitivity();
+	static float MouseSensitivityX = mouseSensitivity.x;
+	static float MouseSensitivityY = mouseSensitivity.y;
+
+	if (ImGui::InputFloat("Mouse Sensitivity X", &MouseSensitivityX, 0.01f, 0.1f, "%.3f"))
+	{
+		if (MouseSensitivityX > 1.0f) MouseSensitivityX = 1.0f;
+		if (MouseSensitivityX < 0.0f) MouseSensitivityX = 0.0f;
+	}
+
+	if (ImGui::InputFloat("Mouse Sensitivity Y", &MouseSensitivityY, 0.01f, 0.1f, "%.3f"))
+	{
+		if (MouseSensitivityY > 1.0f) MouseSensitivityY = 1.0f;
+		if (MouseSensitivityY < 0.0f) MouseSensitivityY = 0.0f;
+	}
+
+	if (MouseSensitivityX != mouseSensitivity.x || MouseSensitivityY != mouseSensitivity.y)
+	{
+		MouseInput::SetSensitivity(MouseSensitivityX, MouseSensitivityY);
+	}
+
 	ImGui::End();
 }
 

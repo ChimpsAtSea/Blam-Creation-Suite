@@ -18,6 +18,7 @@ class MouseInput
 {
 public:
 	static void SetSensitivity(float horizontalSensitivity, float verticalSensitivity);
+	static ImVec2 GetSensitivity();
 
 	static float GetMouseX();
 	static float GetMouseY();

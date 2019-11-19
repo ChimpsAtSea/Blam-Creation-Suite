@@ -151,6 +151,11 @@ void MouseInput::SetSensitivity(float horizontalSensitivity, float verticalSensi
 	if (s_verticalSensitivity < 0.0f) s_verticalSensitivity = 0.0f;
 }
 
+ImVec2 MouseInput::GetSensitivity()
+{
+	return ImVec2(s_horizontalSensitivity, s_verticalSensitivity);
+}
+
 float MouseInput::GetMouseX()
 {
 	int xRelativeTicks = s_xPositionAccumulator.exchange(0);
