@@ -141,7 +141,8 @@ void CustomWindow::Init()
 		"Opus",    // Window text
 		WS_OVERLAPPEDWINDOW,            // Window style
 		// Size and position
-		CW_USEDEFAULT, CW_USEDEFAULT, 1920, 1080,
+		CW_USEDEFAULT, CW_USEDEFAULT,
+		GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN),
 
 		NULL,       // Parent window    
 		NULL,       // Menu

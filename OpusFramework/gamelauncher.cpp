@@ -1157,7 +1157,10 @@ void GameLauncher::SelectMapVariant()
 
 void GameLauncher::DrawMainMenu()
 {
-	static ImVec2 nextWindowSize = ImVec2(1920 * 0.98f, 1080 * 0.94f);
+	auto width = (float)GetSystemMetrics(SM_CXSCREEN);
+	auto height = (float)GetSystemMetrics(SM_CYSCREEN);
+
+	static ImVec2 nextWindowSize = ImVec2(width * 0.98f, height * 0.94f);
 	ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowSize(nextWindowSize, ImGuiCond_FirstUseEver);
 
@@ -1184,11 +1187,11 @@ void GameLauncher::DrawMainMenu()
 
 	if (g_LaunchGameMode != e_game_mode::_game_mode_multiplayer)
 	{
-		ImGui::PushItemWidth((1920 / 100) * 25 * 0.948f);
+		ImGui::PushItemWidth((width / 100) * 25 * 0.948f);
 	}
 	else
 	{
-		ImGui::PushItemWidth((1920 / 100) * 25 * 1.43f);
+		ImGui::PushItemWidth((width / 100) * 25 * 1.43f);
 	}
 	SelectGameMode();
 	ImGui::SameLine();
@@ -1241,8 +1244,11 @@ void GameLauncher::DrawPauseMenu()
 
 	MouseInput::SetMode(MouseMode::UI);
 
+	auto width = (float)GetSystemMetrics(SM_CXSCREEN);
+	auto height = (float)GetSystemMetrics(SM_CYSCREEN);
+
 	ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
-	ImGui::SetNextWindowSize(ImVec2(1920 / 1.5f, 1080 / 1.5f), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(width / 1.5f, height / 1.5f), ImGuiCond_FirstUseEver);
 
 	static bool isWindowOpen = true;
 	int windowFlags = 0;
@@ -1254,7 +1260,7 @@ void GameLauncher::DrawPauseMenu()
 	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
 	//windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
 
-	static ImVec2 gridButtonSize = ImVec2((1920 / 1.5f) / 5, (1080 / 1.5f) / 16);
+	static ImVec2 gridButtonSize = ImVec2((width / 1.5f) / 5, (height / 1.5f) / 16);
 
 	if (!ImGui::Begin("PAUSE MENU", &isWindowOpen, windowFlags))
 	{

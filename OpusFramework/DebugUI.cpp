@@ -54,12 +54,12 @@ void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain*
 		if (GameRender::s_deviceMode.dmPelsWidth < GameRender::s_deviceMode.dmPelsHeight)
 		{
 			// width is smallest, scale on width
-			baseSize *= static_cast<float>(GameRender::s_deviceMode.dmPelsWidth) / 1920.0f;
+			baseSize *= static_cast<float>(GameRender::s_deviceMode.dmPelsWidth) / (float)GetSystemMetrics(SM_CXSCREEN);
 		}
 		else
 		{
 			// height is smallest, scale on height
-			baseSize *= static_cast<float>(GameRender::s_deviceMode.dmPelsHeight) / 1080.0f;
+			baseSize *= static_cast<float>(GameRender::s_deviceMode.dmPelsHeight) / (float)GetSystemMetrics(SM_CYSCREEN);
 		}
 
 		rImguiIO.Fonts->AddFontFromMemoryTTF(bytes, dwSize, 20.0f, NULL, rImguiIO.Fonts->GetGlyphRangesDefault());
