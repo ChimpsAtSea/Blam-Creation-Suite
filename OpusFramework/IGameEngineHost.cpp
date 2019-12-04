@@ -291,6 +291,11 @@ bool __fastcall IGameEngineHost::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
 void IGameEngineHost::Member31()
 {
 	WriteLineVerbose("IGameEngineHost::Member31");
+}
+
+void IGameEngineHost::Member32()
+{
+	WriteLineVerbose("IGameEngineHost::Member32");
 	// appears to be usermanagement related?
 	// we haven't seen this fire yet and don't know its structure so throw an error
 	throw;
@@ -338,14 +343,14 @@ bool __fastcall IGameEngineHost::UpdatePlayerNames(__int64* playerIndices, wchar
 	return false;
 }
 
-void IGameEngineHost::Member34(const wchar_t *a1, const wchar_t *a2) 
+void IGameEngineHost::Member35(const wchar_t *a1, const wchar_t *a2) 
 { 
-	WriteLineVerbose("IGameEngineHost::Member34"); 
+	WriteLineVerbose("IGameEngineHost::Member35"); 
 }
 
-bool IGameEngineHost::Member35(wchar_t *a1, __int64 a2)
+bool IGameEngineHost::Member36(wchar_t *a1, __int64 a2)
 {
-	WriteLineVerbose("IGameEngineHost::Member35");
+	WriteLineVerbose("IGameEngineHost::Member36");
 	return 0;
 }
 
@@ -359,21 +364,21 @@ __int64 IGameEngineHost::NetworkReceiveFrom(char* buffer, uint32_t buffersize, _
 	return NetworkManager::RecieveFrom(buffer, buffersize);
 }
 
-char* __fastcall IGameEngineHost::Member38(unsigned int a1)
-{
-	WriteLineVerbose("IGameEngineHost::Member38");
-	return 0;
-}
-
-int __fastcall IGameEngineHost::Member39(BYTE* buffer)
+char* __fastcall IGameEngineHost::Member39(unsigned int a1)
 {
 	WriteLineVerbose("IGameEngineHost::Member39");
 	return 0;
 }
 
-bool __fastcall IGameEngineHost::Member40(signed int a1, __int64 a2, __int64 a3)
+int __fastcall IGameEngineHost::Member40(BYTE* buffer)
 {
 	WriteLineVerbose("IGameEngineHost::Member40");
+	return 0;
+}
+
+bool __fastcall IGameEngineHost::Member41(signed int a1, __int64 a2, __int64 a3)
+{
+	WriteLineVerbose("IGameEngineHost::Member41");
 	return 0;
 }
 
@@ -383,9 +388,9 @@ void __fastcall IGameEngineHost::FirefightNew(__int64 a1, float a2)
 	WriteLineVerbose("IGameEngineHost::FirefightNew");
 }
 
-BOOL __fastcall IGameEngineHost::Member42(__int64 a1, __int64 a2)
+BOOL __fastcall IGameEngineHost::Member43(__int64 a1, __int64 a2)
 {
-	WriteLineVerbose("IGameEngineHost::Member42");
+	WriteLineVerbose("IGameEngineHost::Member43");
 	return 0;
 }
 
@@ -434,14 +439,14 @@ bool __fastcall IGameEngineHost::GetWidePathByType(int pathType, wchar_t* buffer
 	return 1;
 }
 
-unsigned __int8* IGameEngineHost::Member45(_QWORD a1, unsigned __int8 *a2, _QWORD a3)
+unsigned __int8* IGameEngineHost::Member46(_QWORD a1, unsigned __int8 *a2, _QWORD a3)
 {
 	return 0;
 }
 
-__int64 __fastcall IGameEngineHost::Member46(_QWORD, __int64)
+__int64 __fastcall IGameEngineHost::Member47(_QWORD, __int64)
 {
 	// appears to be security related
-	WriteLineVerbose("IGameEngineHost::Member46");
+	WriteLineVerbose("IGameEngineHost::Member47");
 	return 0;
 }
