@@ -811,7 +811,7 @@ LPCSTR GetUserprofileVariable()
 int ReadMapInfo(LPCSTR pName, std::string *name, std::string *desc, LPCSTR pPath)
 {
 	char pFilename[MAX_PATH] = {};
-	sprintf(pFilename, "maps\\info\\%s.mapinfo", pName);
+	sprintf(pFilename, "HaloReach\\maps\\info\\%s.mapinfo", pName);
 	pFilename[MAX_PATH - 1] = 0;
 
 	c_file_reference filo(pFilename);
@@ -910,7 +910,7 @@ void RenderHoveredTooltip(LPCSTR pText)
 void GameLauncher::SelectSavedFilm()
 {
 	static auto official_saved_films = c_file_array(Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\HaloReach\\Movie\\", GetUserprofileVariable()), ".mov", &ReadSavedFilm);
-	static auto saved_films = c_file_array("Temp\\autosave\\", ".film", &ReadSavedFilm);
+	static auto saved_films = c_file_array("HaloReach\\Temp\\autosave\\", ".film", &ReadSavedFilm);
 
 	static LPCSTR last_official_saved_film = "";
 	static LPCSTR last_saved_film = "";
@@ -986,7 +986,7 @@ void GameLauncher::SelectGameMode()
 
 void GameLauncher::SelectMap()
 {
-	static auto files = c_file_array("maps\\info", ".mapinfo", &ReadMapInfo);
+	static auto files = c_file_array("HaloReach\\maps\\info", ".mapinfo", &ReadMapInfo);
 
 	if (ImGui::BeginCombo("###MAP", files.GetName(map_id_to_string(g_LaunchMapId))))
 	{
@@ -1037,8 +1037,8 @@ void GameLauncher::SelectDifficulty()
 
 void GameLauncher::SelectGameVariant()
 {
-	static c_file_array hopper_game_variants = c_file_array("hopper_game_variants", ".bin", &ReadGameVariant);
-	static c_file_array game_variants = c_file_array("game_variants", ".bin", &ReadGameVariant);
+	static c_file_array hopper_game_variants = c_file_array("HaloReach\\hopper_game_variants", ".bin", &ReadGameVariant);
+	static c_file_array game_variants = c_file_array("HaloReach\\game_variants", ".bin", &ReadGameVariant);
 
 	static LPCSTR last_hopper_game_variant = g_LaunchGameVariant;
 	static LPCSTR last_game_variant = g_LaunchGameVariant;
@@ -1097,8 +1097,8 @@ void GameLauncher::SelectGameVariant()
 
 void GameLauncher::SelectMapVariant()
 {
-	static auto hopper_map_variants = c_file_array("hopper_map_variants", ".mvar", &ReadMapVariant);
-	static auto map_variants = c_file_array("map_variants", ".mvar", &ReadMapVariant);
+	static auto hopper_map_variants = c_file_array("HaloReach\\hopper_map_variants", ".mvar", &ReadMapVariant);
+	static auto map_variants = c_file_array("HaloReach\\map_variants", ".mvar", &ReadMapVariant);
 
 	static LPCSTR last_hopper_map_variant = g_LaunchMapVariant;
 	static LPCSTR last_map_variant = g_LaunchMapVariant;
@@ -1376,11 +1376,11 @@ void GameLauncher::LoadMapVariant(IDataAccess *pDataAccess, const char *pVariant
 	char pFilename[MAX_PATH] = {};
 	if (g_MapVariantIsHopper)
 	{
-		sprintf(pFilename, "hopper_map_variants\\%s.mvar", pVariantName);
+		sprintf(pFilename, "HaloReach\\hopper_map_variants\\%s.mvar", pVariantName);
 	}
 	else
 	{
-		sprintf(pFilename, "map_variants\\%s.mvar", pVariantName);
+		sprintf(pFilename, "HaloReach\\map_variants\\%s.mvar", pVariantName);
 	}
 	pFilename[MAX_PATH - 1] = 0;
 
@@ -1411,11 +1411,11 @@ void GameLauncher::LoadGameVariant(IDataAccess *pDataAccess, const char *pVarian
 	char pFilename[MAX_PATH] = {};
 	if (g_GameVariantIsHopper)
 	{
-		sprintf(pFilename, "hopper_game_variants\\%s.bin", pVariantName);
+		sprintf(pFilename, "HaloReach\\hopper_game_variants\\%s.bin", pVariantName);
 	}
 	else
 	{
-		sprintf(pFilename, "game_variants\\%s.bin", pVariantName);
+		sprintf(pFilename, "HaloReach\\game_variants\\%s.bin", pVariantName);
 	}
 	pFilename[MAX_PATH - 1] = 0;
 
@@ -1463,9 +1463,9 @@ void GameLauncher::LoadSavedFilmMetadata(const char *pSavedFilmName, GameContext
 		return;
 
 	static auto pFilename = "";
-	if (!PathFileExists(pFilename = Format("Temp\\autosave\\%s.film", pSavedFilmName)))
+	if (!PathFileExists(pFilename = Format("HaloReach\\Temp\\autosave\\%s.film", pSavedFilmName)))
 	{
-		if (!PathFileExists(pFilename = Format("Temp\\autosave\\%s.mov", pSavedFilmName)))
+		if (!PathFileExists(pFilename = Format("HaloReach\\Temp\\autosave\\%s.mov", pSavedFilmName)))
 		{
 			if (!PathFileExists(pFilename = Format("%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\HaloReach\\Movie\\%s.mov", GetUserprofileVariable(), pSavedFilmName)))
 			{

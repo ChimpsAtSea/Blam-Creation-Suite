@@ -36,7 +36,7 @@ intptr_t game_get_haloreach_path_offset(HaloGameID gameID)
 	case HaloGameID::HaloReach_2019_Aug_20: return 0x18000FD20;
 	case HaloGameID::HaloReach_2019_Oct_30: return 0x180010010;
 	case HaloGameID::HaloReach_2019_Nov_11: return 0x180010020;
-	case HaloGameID::HaloReach_2019_Dec_03: return 0x180010020;
+	//case HaloGameID::HaloReach_2019_Dec_03: return 0x180010020;
 	}
 	return ~intptr_t();
 }
