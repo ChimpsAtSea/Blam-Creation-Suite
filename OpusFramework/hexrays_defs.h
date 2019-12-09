@@ -40,7 +40,7 @@ typedef unsigned char uchar;
 typedef unsigned short ushort;
 typedef unsigned long ulong;
 
-typedef          char   int8;
+typedef   signed char   int8;
 typedef   signed char   sint8;
 typedef unsigned char   uint8;
 typedef          short  int16;

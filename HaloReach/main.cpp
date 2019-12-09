@@ -1,4 +1,5 @@
 #include <HaloReachLib\haloreachlib-private-pch.h>
+#include <steam/steam_api.h>
 
 void EnsureBink2Win64IsLoaded(const char* pLibName, const char* pFallbackDir = "")
 {
@@ -36,6 +37,13 @@ int WINAPI WinMain(
 	_In_ int nShowCmd
 )
 {
+	bool steamAPIInitResult = SteamAPI_Init();
+	if (!steamAPIInitResult)
+	{
+		MessageBox(NULL, "Fatal Error - Steam failed to initialize", "Fatal Error", MB_OK | MB_ICONWARNING);
+		return 1;
+	}
+
 	EnsureBink2Win64IsLoaded("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
 
 	GameLauncher::RegisterGameLaunchCallback(HaloGameID::HaloReach_2019_Jun_24, init_halo_reach);
