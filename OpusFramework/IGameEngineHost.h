@@ -199,10 +199,10 @@ public: /* instance functions */
 	/* 25 */ virtual void __fastcall MembershipUpdate(s_session_membership* buffer, uint32_t playercount);
 	/* 26 */ virtual bool __fastcall Member26();
 	/* 27 */ virtual bool __fastcall Member27();
-	/* 28 */ virtual bool __fastcall Member28(Member28Struct* buffer);
+	/* 28 */ virtual bool __fastcall UpdateGraphics(Member28Struct* buffer);
 	/* 29 */ virtual __int64 __fastcall Member29(wchar_t playerNames[4][32], Member29Struct* buffer);
 	/* 30 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer);
-	/* 31 */ virtual void Member31();
+	/* 31 */ virtual void Member31(_QWORD, float *);
 	/* 32 */ virtual void Member32();
 	/* 33 */ virtual void XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION *pVibration);
 	/* 34 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64 *, wchar_t playerNames[4][32], size_t dataSize);

@@ -192,15 +192,19 @@ bool __fastcall IGameEngineHost::Member27()
 	return false;
 }
 
-bool __fastcall IGameEngineHost::Member28(Member28Struct* buffer)
+bool __fastcall IGameEngineHost::UpdateGraphics(Member28Struct *buffer)
 {
-	//WriteStackBackTrace("IGameEngineHost::Member28");
-	if (!buffer)
-	{
-		return false;
-	}
-	WriteLineVerbose("IGameEngineHost::Member28");
-	return true;
+	// set resolution to 4k
+	buffer->width = 3840;
+	buffer->height = 2160;
+
+	// set fps to unlocked
+	memset(buffer->unknown28, 0, 4);
+
+	WriteLineVerbose("IGameEngineHost::UpdateGraphics");
+
+	// returning false effectively doubles fps when unlocked
+	return false;
 }
 
 __int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member29Struct* buffer)
@@ -210,7 +214,7 @@ __int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member2
 	// todo: find a good home for this
 	SplashScreen::Destroy();
 
-	WriteStackBackTrace("IGameEngineHost::Member29");
+	//WriteStackBackTrace("IGameEngineHost::Member29");
 	return __int64(1);
 }
 
@@ -288,9 +292,9 @@ bool __fastcall IGameEngineHost::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
 	return unsigned __int8(1);
 }
 
-void IGameEngineHost::Member31()
+void IGameEngineHost::Member31(_QWORD a1, float *a2)
 {
-	WriteLineVerbose("IGameEngineHost::Member31");
+	// WriteLineVerbose("IGameEngineHost::Member31"); // spams if fps is unlocked
 }
 
 void IGameEngineHost::Member32()
