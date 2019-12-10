@@ -198,13 +198,12 @@ bool __fastcall IGameEngineHost::UpdateGraphics(Member28Struct *buffer)
 	buffer->width = 3840;
 	buffer->height = 2160;
 
-	// set fps to unlocked
-	memset(buffer->unknown28, 0, 4);
+	buffer->fps_flags = 0;
 
 	WriteLineVerbose("IGameEngineHost::UpdateGraphics");
 
 	// returning false effectively doubles fps when unlocked
-	return false;
+	return buffer->fps_flags;
 }
 
 __int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member29Struct* buffer)
@@ -294,6 +293,7 @@ bool __fastcall IGameEngineHost::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
 
 void IGameEngineHost::Member31(_QWORD a1, float *a2)
 {
+	*a2 = 0.f;
 	// WriteLineVerbose("IGameEngineHost::Member31"); // spams if fps is unlocked
 }
 

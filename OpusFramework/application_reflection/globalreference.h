@@ -4,18 +4,18 @@ class GlobalReference
 public:
 	
 	GlobalReference(const char* pReferenceName, OffsetFunction offsetFunction);
-	GlobalReference(const char* pReferenceName, HaloGameID gameID, intptr_t offset);
+	GlobalReference(const char* pReferenceName, BuildVersion buildVersion, intptr_t offset);
 
-	static void InitTree(HaloGameID gameID);
-	static void DeinitTree(HaloGameID gameID);
+	static void InitTree(BuildVersion buildVersion);
+	static void DeinitTree(BuildVersion buildVersion);
 	static void DestroyTree();
 private:
 	void init();
-	GlobalReference* initNode(HaloGameID gameID);
-	GlobalReference* deinitNode(HaloGameID gameID);
+	GlobalReference* initNode(BuildVersion buildVersion);
+	GlobalReference* deinitNode(BuildVersion buildVersion);
 
 	GlobalReference* m_pNextGlobalReference;
-	HaloGameID m_gameID;
+	BuildVersion m_buildVersion;
 	intptr_t m_offset;
 	intptr_t m_originalValue;
 	OffsetFunction* m_pOffsetFunction;

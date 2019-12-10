@@ -6,12 +6,12 @@ public:
 	~GameInterface();
 
 	IDataAccess* GetDataAccess() const { return m_pDataAccess; };
-	HaloGameID GetHaloGameID() const { return m_haloGameID; }
+	BuildVersion GetBuildVersion() const { return m_buildVersion; }
 
-	inline errno_t __fastcall SetLibrarySettings(wchar_t* Src)
+	inline __int64 __fastcall CreateDataAccess(IDataAccess **ppDataAccess)
 	{
-		assert(pSetLibrarySettings != nullptr);
-		return pSetLibrarySettings(Src);
+		assert(pCreateDataAccess != nullptr);
+		return pCreateDataAccess(ppDataAccess);
 	}
 
 	inline signed __int64 __fastcall CreateGameEngine(IGameEngine** ppGameEngine)
@@ -20,25 +20,35 @@ public:
 		return pCreateGameEngine(ppGameEngine);
 	}
 
-	inline __int64 __fastcall CreateDataAccess(IDataAccess** ppDataAccess)
+	inline errno_t __fastcall SetLibrarySettings(wchar_t *Src)
 	{
-		assert(pCreateDataAccess != nullptr);
-		return pCreateDataAccess(ppDataAccess);
+		assert(pSetLibrarySettings != nullptr);
+		return pSetLibrarySettings(Src);
+	}
+
+	inline std::string GetEngineName()
+	{
+		auto path = std::string(m_enginePath).substr(std::string(m_enginePath).find_last_of("/\\") + 1);
+		return path.erase(path.find_last_of("."), std::string::npos);
 	}
 
 private:
 	void loadLibrary(const char* pLibFileName);
-	static HaloGameID GetLibraryHaloGameID(const char* pFilename);
+	static BuildVersion GetLibraryBuildVersion(const char* pFilename);
 	static uint64_t GetLibraryFileVersion(const char* pFilename);
 
-	HaloGameID m_haloGameID = HaloGameID::NotSet;
+	LPCSTR m_enginePath = "";
+	BuildVersion m_buildVersion = BuildVersion::NotSet;
 	IDataAccess* m_pDataAccess = nullptr;
 	HMODULE hGameModule = NULL;
-	typedef errno_t(__fastcall SetLibrarySettingsFunc)(wchar_t* Src);
-	SetLibrarySettingsFunc* pSetLibrarySettings = nullptr;
+
+	typedef __int64(__fastcall CreateDataAccessFunc)(IDataAccess **ppDataAccess);
+	CreateDataAccessFunc *pCreateDataAccess = nullptr;
+
 	typedef signed __int64(__fastcall CreateGameEngineFunc)(IGameEngine** ppGameEngine);
 	CreateGameEngineFunc* pCreateGameEngine = nullptr;
-	typedef __int64(__fastcall CreateDataAccessFunc)(IDataAccess** ppDataAccess);
-	CreateDataAccessFunc* pCreateDataAccess = nullptr;
+
+	typedef errno_t(__fastcall SetLibrarySettingsFunc)(wchar_t *Src);
+	SetLibrarySettingsFunc *pSetLibrarySettings = nullptr;
 };
 

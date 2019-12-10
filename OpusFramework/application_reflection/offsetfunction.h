@@ -1,3 +1,3 @@
 #pragma once
 
-typedef intptr_t(OffsetFunction)(HaloGameID);
+typedef intptr_t(OffsetFunction)(BuildVersion);

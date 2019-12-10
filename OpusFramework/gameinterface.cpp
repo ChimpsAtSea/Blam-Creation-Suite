@@ -3,10 +3,10 @@
 #define MAKE_FILE_VERSION(a, b, c, d) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 16) | (uint64_t(d) << 0))
 
 GameInterface::GameInterface(const char* pLibFileName)
-	:m_haloGameID(GetLibraryHaloGameID(pLibFileName))
+	: m_buildVersion(GetLibraryBuildVersion(pLibFileName)), m_enginePath(pLibFileName)
 {
 	
-	if (m_haloGameID == HaloGameID::NotSet)
+	if (m_buildVersion == BuildVersion::NotSet)
 	{
 		return;
 	}
@@ -22,7 +22,7 @@ GameInterface::~GameInterface()
 {
 	if (m_pDataAccess)
 	{
-		m_pDataAccess->__vftable->Free(m_pDataAccess);
+		m_pDataAccess->Free();
 		//delete m_pDataAccess;
 	}
 
@@ -45,18 +45,18 @@ void GameInterface::loadLibrary(const char* pLibFileName)
 	pSetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(hGameModule, "SetLibrarySettings");
 }
 
-HaloGameID GameInterface::GetLibraryHaloGameID(const char* pFilename)
+BuildVersion GameInterface::GetLibraryBuildVersion(const char* pFilename)
 {
 	uint64_t libraryFileVersion = GetLibraryFileVersion(pFilename);
 	switch (libraryFileVersion)
 	{
-	case MAKE_FILE_VERSION(1, 1246, 0, 0): return HaloGameID::HaloReach_2019_Dec_03;
-	case MAKE_FILE_VERSION(1, 1211, 0, 0): return HaloGameID::HaloReach_2019_Nov_11;
-	case MAKE_FILE_VERSION(1, 1186, 0, 0): return HaloGameID::HaloReach_2019_Oct_30;
-	case MAKE_FILE_VERSION(1, 1035, 0, 0): return HaloGameID::HaloReach_2019_Aug_20;
-	case MAKE_FILE_VERSION(1, 887, 0, 0): return HaloGameID::HaloReach_2019_Jun_24;
+	case MAKE_FILE_VERSION(1, 1246, 0, 0): return BuildVersion::Build_1_1246_0_0;
+	case MAKE_FILE_VERSION(1, 1211, 0, 0): return BuildVersion::Build_1_1211_0_0;
+	case MAKE_FILE_VERSION(1, 1186, 0, 0): return BuildVersion::Build_1_1186_0_0;
+	case MAKE_FILE_VERSION(1, 1035, 0, 0): return BuildVersion::Build_1_1035_0_0;
+	case MAKE_FILE_VERSION(1, 887, 0, 0): return BuildVersion::Build_1_887_0_0;
 	default:
-		return HaloGameID::NotSet;
+		return BuildVersion::NotSet;
 	}
 }
 

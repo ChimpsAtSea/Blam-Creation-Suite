@@ -8,8 +8,8 @@ typedef void(FunctionHookCallback)(void* pUserData);
 class FunctionHookBase
 {
 public:
-	FunctionHookBase(const char* pName, HaloGameID gameID, size_t offset, intptr_t(find_offset_func)(HaloGameID gameID))
-		: m_gameID(gameID)
+	FunctionHookBase(const char* pName, BuildVersion buildVersion, size_t offset, intptr_t(find_offset_func)(BuildVersion buildVersion))
+		: m_buildVersion(buildVersion)
 		, m_offset(offset)
 		, m_pNextFunctionHook(nullptr)
 		, m_isActive(true)
@@ -26,7 +26,7 @@ public:
 		}
 		else
 		{
-			bool hookOffsetExists = g_pLastFunctionHook->DoesOffsetExist(gameID, offset);
+			bool hookOffsetExists = g_pLastFunctionHook->DoesOffsetExist(buildVersion, offset);
 			assert(hookOffsetExists == false);
 
 			g_pLastFunctionHook->m_pNextFunctionHook = this;
@@ -34,9 +34,9 @@ public:
 		}
 	}
 
-	intptr_t(*m_find_offset_func)(HaloGameID gameID);
+	intptr_t(*m_find_offset_func)(BuildVersion buildVersion);
 	intptr_t m_offset;
-	HaloGameID m_gameID;
+	BuildVersion m_buildVersion;
 	bool m_isActive;
 	bool m_isHooked;
 	FunctionHookCallback* m_pCallback;
@@ -47,11 +47,11 @@ public:
 	static FunctionHookBase* g_pFirstFunctionHook;
 	static FunctionHookBase* g_pLastFunctionHook;
 
-	[[nodiscard]] FunctionHookBase* InitNode(HaloGameID gameID);
-	[[nodiscard]] FunctionHookBase* DeinitNode(HaloGameID gameID);
+	[[nodiscard]] FunctionHookBase* InitNode(BuildVersion buildVersion);
+	[[nodiscard]] FunctionHookBase* DeinitNode(BuildVersion buildVersion);
 
-	static void InitTree(HaloGameID gameID);
-	static void DeinitTree(HaloGameID gameID);
+	static void InitTree(BuildVersion buildVersion);
+	static void DeinitTree(BuildVersion buildVersion);
 
 	void SetIsActive(bool isActive)
 	{
@@ -65,19 +65,19 @@ public:
 	}
 
 private:
-	bool DoesOffsetExist(HaloGameID gameID, size_t offset)
+	bool DoesOffsetExist(BuildVersion buildVersion, size_t offset)
 	{
-		if (gameID == HaloGameID::NotSet)
+		if (buildVersion == BuildVersion::NotSet)
 		{
 			return false;
 		}
-		if (m_gameID == gameID && offset == m_offset)
+		if (m_buildVersion == buildVersion && offset == m_offset)
 		{
 			return true;
 		}
 		if (m_pNextFunctionHook)
 		{
-			return m_pNextFunctionHook->DoesOffsetExist(gameID, offset);
+			return m_pNextFunctionHook->DoesOffsetExist(buildVersion, offset);
 		}
 		return false;
 	}
@@ -85,17 +85,17 @@ private:
 
 #include <functional>
 
-template<HaloGameID gameID, size_t offset, typename T>
+template<BuildVersion buildVersion, size_t offset, typename T>
 struct FunctionHook;
 
-template<HaloGameID gameID, size_t offset, typename R, typename ...Args>
-struct FunctionHook<gameID, offset, R(Args...)> : FunctionHookBase
+template<BuildVersion buildVersion, size_t offset, typename R, typename ...Args>
+struct FunctionHook<buildVersion, offset, R(Args...)> : FunctionHookBase
 {
 public:
 	typedef R(base_type)(Args...);
 
-	static_assert(gameID == HaloGameID::NotSet || offset >= GetHaloBaseAddress(gameID), "Offset is out of bounds");
-	static_assert(gameID == HaloGameID::NotSet || offset < GetHaloTopAddress(gameID), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetHaloBaseAddress(buildVersion), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset < GetHaloTopAddress(buildVersion), "Offset is out of bounds");
 
 	__forceinline decltype(auto) operator()(Args... arg)
 	{
@@ -126,14 +126,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHook(hook_assignment_type func)
-		:FunctionHookBase(nullptr, gameID, offset, nullptr)
+		:FunctionHookBase(nullptr, buildVersion, offset, nullptr)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHook(R(*func)(Args...))
-		:FunctionHookBase(nullptr, gameID, offset, nullptr)
+		:FunctionHookBase(nullptr, buildVersion, offset, nullptr)
 		, hook(func)
 	{
 
@@ -141,14 +141,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHook(const char pName[], hook_assignment_type func)
-		:FunctionHookBase(pName, gameID, offset, nullptr)
+		:FunctionHookBase(pName, buildVersion, offset, nullptr)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHook(const char pName[], R(*func)(Args...))
-		:FunctionHookBase(pName, gameID, offset, nullptr)
+		:FunctionHookBase(pName, buildVersion, offset, nullptr)
 		, hook(func)
 	{
 
@@ -170,10 +170,10 @@ private:
 	}
 };
 
-template<intptr_t(find_offset_func)(HaloGameID gameID), typename T>
+template<intptr_t(find_offset_func)(BuildVersion buildVersion), typename T>
 struct FunctionHookEx;
 
-template<intptr_t(find_offset_func)(HaloGameID gameID), typename R, typename ...Args>
+template<intptr_t(find_offset_func)(BuildVersion buildVersion), typename R, typename ...Args>
 struct FunctionHookEx<find_offset_func, R(Args...)> : FunctionHookBase
 {
 public:
@@ -207,7 +207,7 @@ public:
 	friend class FunctionHookBase;
 
 	FunctionHookEx()
-		: FunctionHookBase(nullptr, HaloGameID::NotSet, 0, find_offset_func)
+		: FunctionHookBase(nullptr, BuildVersion::NotSet, 0, find_offset_func)
 		, hook(nullptr)
 	{
 
@@ -215,14 +215,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookEx(hook_assignment_type func)
-		:FunctionHookBase(nullptr, HaloGameID::NotSet, 0, find_offset_func)
+		:FunctionHookBase(nullptr, BuildVersion::NotSet, 0, find_offset_func)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookEx(R(*func)(Args...))
-		:FunctionHookBase(nullptr, HaloGameID::NotSet, 0, find_offset_func)
+		:FunctionHookBase(nullptr, BuildVersion::NotSet, 0, find_offset_func)
 		, hook(func)
 	{
 
@@ -230,14 +230,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookEx(const char pName[], hook_assignment_type func)
-		:FunctionHookBase(pName, HaloGameID::NotSet, 0, find_offset_func)
+		:FunctionHookBase(pName, BuildVersion::NotSet, 0, find_offset_func)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookEx(const char pName[], R(*func)(Args...))
-		:FunctionHookBase(pName, HaloGameID::NotSet, 0, find_offset_func)
+		:FunctionHookBase(pName, BuildVersion::NotSet, 0, find_offset_func)
 		, hook(func)
 	{
 
@@ -259,12 +259,12 @@ private:
 	}
 };
 
-template<HaloGameID gameID, size_t offset, typename base_type>
+template<BuildVersion buildVersion, size_t offset, typename base_type>
 struct FunctionHookVarArgs : public FunctionHookBase
 {
 public:
-	static_assert(gameID == HaloGameID::NotSet || offset >= GetHaloBaseAddress(gameID), "Offset is out of bounds");
-	static_assert(gameID == HaloGameID::NotSet || offset < GetHaloTopAddress(gameID), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetHaloBaseAddress(buildVersion), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset < GetHaloTopAddress(buildVersion), "Offset is out of bounds");
 
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args)
@@ -296,14 +296,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgs(hook_assignment_type func)
-		:FunctionHookBase(nullptr, gameID, offset, nullptr)
+		:FunctionHookBase(nullptr, buildVersion, offset, nullptr)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgs(base_type* func)
-		:FunctionHookBase(nullptr, gameID, offset, nullptr)
+		:FunctionHookBase(nullptr, buildVersion, offset, nullptr)
 		, hook(func)
 	{
 
@@ -311,14 +311,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgs(const char* pName, hook_assignment_type func)
-		:FunctionHookBase(pName, gameID, offset, nullptr)
+		:FunctionHookBase(pName, buildVersion, offset, nullptr)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgs(const char* pName, base_type* func)
-		:FunctionHookBase(pName, gameID, offset, nullptr)
+		:FunctionHookBase(pName, buildVersion, offset, nullptr)
 		, hook(func)
 	{
 
@@ -340,12 +340,12 @@ private:
 	}
 };
 
-template<intptr_t(find_offset_func)(HaloGameID gameID), typename base_type>
+template<intptr_t(find_offset_func)(BuildVersion buildVersion), typename base_type>
 struct FunctionHookVarArgsEx : public FunctionHookBase
 {
 public:
-	static_assert(gameID == HaloGameID::NotSet || offset >= GetHaloBaseAddress(gameID), "Offset is out of bounds");
-	static_assert(gameID == HaloGameID::NotSet || offset < GetHaloTopAddress(gameID), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetHaloBaseAddress(buildVersion), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset < GetHaloTopAddress(buildVersion), "Offset is out of bounds");
 
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args)
@@ -377,14 +377,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgsEx(hook_assignment_type func)
-		:FunctionHookBase(nullptr, HaloGameID::NotSet, 0, find_offset_func)
+		:FunctionHookBase(nullptr, BuildVersion::NotSet, 0, find_offset_func)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgsEx(base_type* func)
-		:FunctionHookBase(nullptr, HaloGameID::NotSet, 0, find_offset_func)
+		:FunctionHookBase(nullptr, BuildVersion::NotSet, 0, find_offset_func)
 		, hook(func)
 	{
 
@@ -392,14 +392,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgsEx(const char* pName, hook_assignment_type func)
-		:FunctionHookBase(pName, HaloGameID::NotSet, 0, find_offset_func)
+		:FunctionHookBase(pName, BuildVersion::NotSet, 0, find_offset_func)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgsEx(const char* pName, base_type* func)
-		:FunctionHookBase(pName, HaloGameID::NotSet, 0, find_offset_func)
+		:FunctionHookBase(pName, BuildVersion::NotSet, 0, find_offset_func)
 		, hook(func)
 	{
 
@@ -424,9 +424,9 @@ private:
 #pragma optimize("", on)
 
 template<size_t offset, typename base_type>
-using HaloReach_2019_Jun_24_Hook = FunctionHook<HaloGameID::HaloReach_2019_Jun_24, offset, base_type>;
+using HaloReach_2019_Jun_24_Hook = FunctionHook<BuildVersion::Build_1_887_0_0, offset, base_type>;
 template<size_t offset, typename base_type>
-using HaloReach_2019_Jun_24_HookVarArgs = FunctionHookVarArgs<HaloGameID::HaloReach_2019_Jun_24, offset, base_type>;
+using HaloReach_2019_Jun_24_HookVarArgs = FunctionHookVarArgs<BuildVersion::Build_1_887_0_0, offset, base_type>;
 
 
 

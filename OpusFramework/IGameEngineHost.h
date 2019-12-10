@@ -42,6 +42,7 @@ public: /* structures and enums */
 	static constexpr size_t Member22StructSize = sizeof(Member22Struct);
 	static_assert(Member22StructSize == 0x110, "Member22Struct is incorrect size");
 
+#pragma pack(push, 1)
 	struct Member28Struct
 	{
 		long width;
@@ -54,7 +55,9 @@ public: /* structures and enums */
 		long unknown10_C;
 		long unknown20;
 		long unknown24;
-		char unknown28[4];
+		char unknown28;
+		unsigned short fps_flags;
+		char unknown2B;
 		char unknown2C[168]; // unknown
 		float unknownD4_0;
 		float unknownD4_4;
@@ -100,6 +103,7 @@ public: /* structures and enums */
 		long unknownD4_A4;
 		long unknownD4_A8;
 	};
+#pragma pack(pop)
 	static constexpr size_t Member28StructSize = sizeof(Member28Struct);
 	static_assert(Member28StructSize == 0x180, "Member28Struct is incorrect size");
 

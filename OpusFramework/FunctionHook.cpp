@@ -3,47 +3,47 @@
 FunctionHookBase* FunctionHookBase::g_pFirstFunctionHook = nullptr;
 FunctionHookBase* FunctionHookBase::g_pLastFunctionHook = nullptr;
 
-void FunctionHookBase::InitTree(HaloGameID gameID)
+void FunctionHookBase::InitTree(BuildVersion buildVersion)
 {
 	// this iteration avoids having to do this recursively
 
 	FunctionHookBase* pCurrentFunctionHook = g_pFirstFunctionHook;
 	while (pCurrentFunctionHook)
 	{
-		pCurrentFunctionHook = pCurrentFunctionHook->InitNode(gameID);
+		pCurrentFunctionHook = pCurrentFunctionHook->InitNode(buildVersion);
 	}
 }
 
-void FunctionHookBase::DeinitTree(HaloGameID gameID)
+void FunctionHookBase::DeinitTree(BuildVersion buildVersion)
 {
 	// this iteration avoids having to do this recursively
 
 	FunctionHookBase* pCurrentFunctionHook = g_pFirstFunctionHook;
 	while (pCurrentFunctionHook)
 	{
-		pCurrentFunctionHook = pCurrentFunctionHook->DeinitNode(gameID);
+		pCurrentFunctionHook = pCurrentFunctionHook->DeinitNode(buildVersion);
 	}
 }
 
-FunctionHookBase* FunctionHookBase::InitNode(HaloGameID gameID)
+FunctionHookBase* FunctionHookBase::InitNode(BuildVersion buildVersion)
 {
-	if ((gameID == m_gameID || (m_gameID == HaloGameID::NotSet && m_find_offset_func)) && m_isActive && !m_isHooked)
+	if ((buildVersion == m_buildVersion || (m_buildVersion == BuildVersion::NotSet && m_find_offset_func)) && m_isActive && !m_isHooked)
 	{
 		if (m_offset == 0 && m_find_offset_func)
 		{
-			m_offset = m_find_offset_func(gameID);
+			m_offset = m_find_offset_func(buildVersion);
 
 			if (m_offset == ~intptr_t())
 			{
 				return m_pNextFunctionHook;
 			}
 
-			assert(m_gameID == HaloGameID::NotSet && m_offset >= GetHaloBaseAddress(gameID)/*, "Offset is out of bounds"*/);
-			assert(m_gameID == HaloGameID::NotSet && m_offset < GetHaloTopAddress(gameID)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && m_offset >= GetHaloBaseAddress(buildVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && m_offset < GetHaloTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
 		}
 		assert(m_offset);
 
-		FunctionHookVarArgs<HaloGameID::NotSet, 0, void>& rVoidThis = reinterpret_cast<FunctionHookVarArgs<HaloGameID::NotSet, 0, void>&>(*this);
+		FunctionHookVarArgs<BuildVersion::NotSet, 0, void>& rVoidThis = reinterpret_cast<FunctionHookVarArgs<BuildVersion::NotSet, 0, void>&>(*this);
 
 		void*& rBase = rVoidThis.GetBase();
 		void*& rHook = rVoidThis.GetHook();
@@ -59,12 +59,12 @@ FunctionHookBase* FunctionHookBase::InitNode(HaloGameID gameID)
 
 		if (rHook)
 		{
-			auto result = create_hook(gameID, m_offset, pFunctionName, rHook, rBase);
+			auto result = create_hook(buildVersion, m_offset, pFunctionName, rHook, rBase);
 			assert(result == 0);
 		}
 		else
 		{
-			populate_function_ptr(GetHaloExecutableString(gameID), GetHaloBaseAddress(gameID), m_offset, rBase);
+			populate_function_ptr(GetHaloExecutableString(buildVersion), GetHaloBaseAddress(buildVersion), m_offset, rBase);
 			WriteLineVerbose("Created function pointer for %s", pFunctionName);
 		}
 
@@ -74,7 +74,7 @@ FunctionHookBase* FunctionHookBase::InitNode(HaloGameID gameID)
 }
 
 
-FunctionHookBase* FunctionHookBase::DeinitNode(HaloGameID gameID)
+FunctionHookBase* FunctionHookBase::DeinitNode(BuildVersion buildVersion)
 {
 	return m_pNextFunctionHook;
 }

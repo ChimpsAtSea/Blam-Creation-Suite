@@ -27,8 +27,8 @@ void EnsureBink2Win64IsLoaded(const char* pLibName, const char* pFallbackDir = "
 	assert(hModule);
 }
 
-extern void init_halo_reach(HaloGameID gameID);
-extern void deinit_halo_reach(HaloGameID gameID);
+extern void init_halo_reach(BuildVersion buildVersion);
+extern void deinit_halo_reach(BuildVersion buildVersion);
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -46,14 +46,14 @@ int WINAPI WinMain(
 
 	EnsureBink2Win64IsLoaded("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
 
-	GameLauncher::RegisterGameLaunchCallback(HaloGameID::HaloReach_2019_Jun_24, init_halo_reach);
-	GameLauncher::RegisterGameLaunchCallback(HaloGameID::HaloReach_2019_Aug_20, init_halo_reach);
-	GameLauncher::RegisterGameLaunchCallback(HaloGameID::HaloReach_2019_Oct_30, init_halo_reach);
-	GameLauncher::RegisterGameLaunchCallback(HaloGameID::HaloReach_2019_Nov_11, init_halo_reach);
-	GameLauncher::RegisterGameShutdownCallback(HaloGameID::HaloReach_2019_Jun_24, deinit_halo_reach);
-	GameLauncher::RegisterGameShutdownCallback(HaloGameID::HaloReach_2019_Aug_20, deinit_halo_reach);
-	GameLauncher::RegisterGameShutdownCallback(HaloGameID::HaloReach_2019_Oct_30, deinit_halo_reach);
-	GameLauncher::RegisterGameShutdownCallback(HaloGameID::HaloReach_2019_Nov_11, deinit_halo_reach);
+	GameLauncher::RegisterGameLaunchCallback(BuildVersion::Build_1_887_0_0, init_halo_reach);
+	GameLauncher::RegisterGameLaunchCallback(BuildVersion::Build_1_1035_0_0, init_halo_reach);
+	GameLauncher::RegisterGameLaunchCallback(BuildVersion::Build_1_1186_0_0, init_halo_reach);
+	GameLauncher::RegisterGameLaunchCallback(BuildVersion::Build_1_1211_0_0, init_halo_reach);
+	GameLauncher::RegisterGameShutdownCallback(BuildVersion::Build_1_887_0_0, deinit_halo_reach);
+	GameLauncher::RegisterGameShutdownCallback(BuildVersion::Build_1_1035_0_0, deinit_halo_reach);
+	GameLauncher::RegisterGameShutdownCallback(BuildVersion::Build_1_1186_0_0, deinit_halo_reach);
+	GameLauncher::RegisterGameShutdownCallback(BuildVersion::Build_1_1211_0_0, deinit_halo_reach);
 
 	CustomWindow::SetIcon(LoadIconA(GetModuleHandle(NULL), MAKEINTRESOURCEA(IDI_ICON1)));
 

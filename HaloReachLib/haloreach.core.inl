@@ -2,12 +2,12 @@
 	this function is the games main routine. inside of here sits the
 	main_loop function call
 */
-intptr_t main_thread_routine_offset(HaloGameID gameID)
+intptr_t main_thread_routine_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Jun_24: return 0x1800129B0;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18000FF50;
+	case BuildVersion::Build_1_887_0_0: return 0x1800129B0;
+	case BuildVersion::Build_1_1035_0_0: return 0x18000FF50;
 	}
 	return ~intptr_t();
 }
@@ -28,15 +28,15 @@ FunctionHookEx<main_thread_routine_offset, void *__stdcall ()> main_thread_routi
 /*
 	override for the halo reach default path
 */
-intptr_t game_get_haloreach_path_offset(HaloGameID gameID)
+intptr_t game_get_haloreach_path_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Jun_24: return 0x180012730;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18000FD20;
-	case HaloGameID::HaloReach_2019_Oct_30: return 0x180010010;
-	case HaloGameID::HaloReach_2019_Nov_11: return 0x180010020;
-	//case HaloGameID::HaloReach_2019_Dec_03: return 0x180010020;
+	case BuildVersion::Build_1_887_0_0: return 0x180012730;
+	case BuildVersion::Build_1_1035_0_0: return 0x18000FD20;
+	case BuildVersion::Build_1_1186_0_0: return 0x180010010;
+	case BuildVersion::Build_1_1211_0_0: return 0x180010020;
+	//case BuildVersion::Build_1_1246_0_0: return 0x180010020;
 	}
 	return ~intptr_t();
 }
@@ -45,12 +45,12 @@ FunctionHookEx<game_get_haloreach_path_offset, const char *()> game_get_haloreac
 	return g_haloReachPathOverride;
 } };
 
-//intptr_t initialize_window_offset(HaloGameID gameID)
+//intptr_t initialize_window_offset(BuildVersion buildVersion)
 //{
-//	switch (gameID)
+//	switch (buildVersion)
 //	{
-//	case HaloGameID::HaloReach_2019_Jun_24: return 0x1806C2890;
-//	case HaloGameID::HaloReach_2019_Aug_20: return 0x18040C5E0;
+//	case BuildVersion::Build_1_887_0_0: return 0x1806C2890;
+//	case BuildVersion::Build_1_1035_0_0: return 0x18040C5E0;
 //	}
 //	return ~intptr_t();
 //}
@@ -59,7 +59,7 @@ FunctionHookEx<game_get_haloreach_path_offset, const char *()> game_get_haloreac
 //	return initialize_window();
 //	//return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(g_game_engine_host_pointer, []()
 //	//	{
-//	//		HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(HaloGameID::HaloReach_2019_Jun_24));
+//	//		HMODULE hHaloReachModule = GetModuleHandleA(GetHaloExecutableString(BuildVersion::Build_1_887_0_0));
 //	//		assert(hHaloReachModule);
 //
 //	//		g_WndProc = CustomWindow::WndProc;
@@ -84,29 +84,29 @@ FunctionHookEx<game_get_haloreach_path_offset, const char *()> game_get_haloreac
 //	//);
 //};
 
-intptr_t load_state_offset(HaloGameID gameID)
+intptr_t load_state_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810EC5A4;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x180D37AB0;
-	case HaloGameID::HaloReach_2019_Oct_30: return 0x180D4E674;
-	case HaloGameID::HaloReach_2019_Nov_11: return 0x180D4F674;
-	case HaloGameID::HaloReach_2019_Dec_03: return 0x180D494F4;
+	case BuildVersion::Build_1_887_0_0: return 0x1810EC5A4;
+	case BuildVersion::Build_1_1035_0_0: return 0x180D37AB0;
+	case BuildVersion::Build_1_1186_0_0: return 0x180D4E674;
+	case BuildVersion::Build_1_1211_0_0: return 0x180D4F674;
+	case BuildVersion::Build_1_1246_0_0: return 0x180D494F4;
 	}
 	return ~intptr_t();
 }
 DataEx<int, load_state_offset> load_state;
 
-intptr_t main_game_launch_offset(HaloGameID gameID)
+intptr_t main_game_launch_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Jun_24: return 0x180013EA0;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800113F0;
-	case HaloGameID::HaloReach_2019_Oct_30: return 0x180011860;
-	case HaloGameID::HaloReach_2019_Nov_11: return 0x180011870;
-	case HaloGameID::HaloReach_2019_Dec_03: return 0x180011870;
+	case BuildVersion::Build_1_887_0_0: return 0x180013EA0;
+	case BuildVersion::Build_1_1035_0_0: return 0x1800113F0;
+	case BuildVersion::Build_1_1186_0_0: return 0x180011860;
+	case BuildVersion::Build_1_1211_0_0: return 0x180011870;
+	case BuildVersion::Build_1_1246_0_0: return 0x180011870;
 
 	}
 	return ~intptr_t();
@@ -149,12 +149,12 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 	return result;
 } };
 
-/*intptr_t DamagedMediaHaltAndDisplayError_offset(HaloGameID gameID)
+/*intptr_t DamagedMediaHaltAndDisplayError_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Jun_24: return 0x18078C550;
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18049FBB0;
+	case BuildVersion::Build_1_887_0_0: return 0x18078C550;
+	case BuildVersion::Build_1_1035_0_0: return 0x18049FBB0;
 	}
 	return ~intptr_t();
 }
@@ -173,12 +173,12 @@ FunctionHookVarArgsEx<DamagedMediaHaltAndDisplayError_offset, void(const char *f
 	MessageBox(CustomWindow::GetWindowHandle(), "dirty_disk_error", buffer, MB_ICONERROR);
 } };*/
 
-//intptr_t sub_180012200_offset(HaloGameID gameID)
+//intptr_t sub_180012200_offset(BuildVersion buildVersion)
 //{
-//	switch (gameID)
+//	switch (buildVersion)
 //	{
-//	case HaloGameID::HaloReach_2019_Jun_24: return 0x180012200;
-//	case HaloGameID::HaloReach_2019_Aug_20: return 0x18000F850;
+//	case BuildVersion::Build_1_887_0_0: return 0x180012200;
+//	case BuildVersion::Build_1_1035_0_0: return 0x18000F850;
 //	}
 //	return ~intptr_t();
 //}
@@ -218,12 +218,12 @@ FunctionHookVarArgsEx<DamagedMediaHaltAndDisplayError_offset, void(const char *f
 //	return result;
 //} };
 
-//intptr_t levels_try_and_get_scenario_path_offset(HaloGameID gameID)
+//intptr_t levels_try_and_get_scenario_path_offset(BuildVersion buildVersion)
 //{
-//	switch (gameID)
+//	switch (buildVersion)
 //	{
-//	case HaloGameID::HaloReach_2019_Jun_24: return 0x1803A6B30;
-//	case HaloGameID::HaloReach_2019_Aug_20: return 0x1801C3660;
+//	case BuildVersion::Build_1_887_0_0: return 0x1803A6B30;
+//	case BuildVersion::Build_1_1035_0_0: return 0x1801C3660;
 //	}
 //	return ~intptr_t();
 //}

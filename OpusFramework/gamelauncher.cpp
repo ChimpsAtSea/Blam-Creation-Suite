@@ -17,13 +17,13 @@ LPCSTR g_LaunchMapVariant = "";
 bool g_MapVariantIsHopper = false;
 LPCSTR g_SavedFilm = nullptr;
 
-HaloGameID GameLauncher::GetCurrentGameID()
+BuildVersion GameLauncher::GetCurrentbuildVersion()
 {
 	if (s_pCurrentGameInterface)
 	{
-		return s_pCurrentGameInterface->GetHaloGameID();
+		return s_pCurrentGameInterface->GetBuildVersion();
 	}
-	return HaloGameID::NotSet;
+	return BuildVersion::NotSet;
 }
 
 void GameLauncher::LaunchGame()
@@ -31,12 +31,12 @@ void GameLauncher::LaunchGame()
 	// make sure the runtime information is in a valid state before trying to run another game
 	assert(s_pHaloReachEngine == nullptr);
 	assert(s_pCurrentGameInterface != nullptr);
-	assert(s_pCurrentGameInterface->GetHaloGameID() != HaloGameID::NotSet);
+	assert(s_pCurrentGameInterface->GetBuildVersion() != BuildVersion::NotSet);
 
 	// #TODO: Game specific version of this!!!
 	if (s_gameLaunchCallback != nullptr)
 	{
-		s_gameLaunchCallback(s_pCurrentGameInterface->GetHaloGameID());
+		s_gameLaunchCallback(s_pCurrentGameInterface->GetBuildVersion());
 	}
 
 	__int64 createGameEngineResult = s_pCurrentGameInterface->CreateGameEngine(&s_pHaloReachEngine);
@@ -82,7 +82,7 @@ void GameLauncher::LaunchGame()
 
 	if (s_gameShutdownCallback)
 	{
-		s_gameShutdownCallback(s_pCurrentGameInterface->GetHaloGameID());
+		s_gameShutdownCallback(s_pCurrentGameInterface->GetBuildVersion());
 	}
 
 	s_pHaloReachEngine->Destructor();
@@ -223,13 +223,13 @@ void GameLauncher::Terminate()
 	}
 }
 
-void GameLauncher::RegisterGameLaunchCallback(HaloGameID gameID, GameLaunchCallback gameLaunchCallback)
+void GameLauncher::RegisterGameLaunchCallback(BuildVersion buildVersion, GameLaunchCallback gameLaunchCallback)
 {
 	// #TODO: Multiple game versions!!!
 	s_gameLaunchCallback = gameLaunchCallback;
 }
 
-void GameLauncher::RegisterGameShutdownCallback(HaloGameID gameID, GameShutdownCallback gameShutdownCallback)
+void GameLauncher::RegisterGameShutdownCallback(BuildVersion buildVersion, GameShutdownCallback gameShutdownCallback)
 {
 	s_gameShutdownCallback = gameShutdownCallback;
 }
@@ -494,6 +494,7 @@ void GameLauncher::EndRender()
 	GameRender::s_pSwapChain->Present(0, 0);
 }
 
+// TODO: replace `c_file_reference` with `IFileAccess`
 struct c_file_reference
 {
 	LPCSTR pFileName;
@@ -801,17 +802,10 @@ LPCSTR Format(LPCSTR fmt, ...)
 	return buffer;
 }
 
-LPCSTR GetUserprofileVariable()
-{
-	static char szBuf[MAX_PATH] = { 0 };
-	GetEnvironmentVariable("USERPROFILE", szBuf, MAX_PATH);
-	return szBuf;
-};
-
 int ReadMapInfo(LPCSTR pName, std::string *name, std::string *desc, LPCSTR pPath)
 {
 	char pFilename[MAX_PATH] = {};
-	sprintf(pFilename, "HaloReach\\maps\\info\\%s.mapinfo", pName);
+	sprintf(pFilename, "%s\\maps\\info\\%s.mapinfo", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str(), pName);
 	pFilename[MAX_PATH - 1] = 0;
 
 	c_file_reference filo(pFilename);
@@ -910,7 +904,7 @@ void RenderHoveredTooltip(LPCSTR pText)
 void GameLauncher::SelectSavedFilm()
 {
 	static auto official_saved_films = c_file_array(Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\HaloReach\\Movie\\", GetUserprofileVariable()), ".mov", &ReadSavedFilm);
-	static auto saved_films = c_file_array("HaloReach\\Temp\\autosave\\", ".film", &ReadSavedFilm);
+	static auto saved_films = c_file_array(Format("%s\\Temp\\autosave\\", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".film", &ReadSavedFilm);
 
 	static LPCSTR last_official_saved_film = "";
 	static LPCSTR last_saved_film = "";
@@ -986,7 +980,7 @@ void GameLauncher::SelectGameMode()
 
 void GameLauncher::SelectMap()
 {
-	static auto files = c_file_array("HaloReach\\maps\\info", ".mapinfo", &ReadMapInfo);
+	static auto files = c_file_array(Format("%s\\maps\\info", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mapinfo", &ReadMapInfo);
 
 	if (ImGui::BeginCombo("###MAP", files.GetName(map_id_to_string(g_LaunchMapId))))
 	{
@@ -1037,8 +1031,8 @@ void GameLauncher::SelectDifficulty()
 
 void GameLauncher::SelectGameVariant()
 {
-	static c_file_array hopper_game_variants = c_file_array("HaloReach\\hopper_game_variants", ".bin", &ReadGameVariant);
-	static c_file_array game_variants = c_file_array("HaloReach\\game_variants", ".bin", &ReadGameVariant);
+	static c_file_array hopper_game_variants = c_file_array(Format("%s\\hopper_game_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".bin", &ReadGameVariant);
+	static c_file_array game_variants = c_file_array(Format("%s\\game_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".bin", &ReadGameVariant);
 
 	static LPCSTR last_hopper_game_variant = g_LaunchGameVariant;
 	static LPCSTR last_game_variant = g_LaunchGameVariant;
@@ -1097,8 +1091,8 @@ void GameLauncher::SelectGameVariant()
 
 void GameLauncher::SelectMapVariant()
 {
-	static auto hopper_map_variants = c_file_array("HaloReach\\hopper_map_variants", ".mvar", &ReadMapVariant);
-	static auto map_variants = c_file_array("HaloReach\\map_variants", ".mvar", &ReadMapVariant);
+	static auto hopper_map_variants = c_file_array(Format("%s\\hopper_map_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mvar", &ReadMapVariant);
+	static auto map_variants = c_file_array(Format("%s\\map_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mvar", &ReadMapVariant);
 
 	static LPCSTR last_hopper_map_variant = g_LaunchMapVariant;
 	static LPCSTR last_map_variant = g_LaunchMapVariant;
@@ -1376,11 +1370,11 @@ void GameLauncher::LoadMapVariant(IDataAccess *pDataAccess, const char *pVariant
 	char pFilename[MAX_PATH] = {};
 	if (g_MapVariantIsHopper)
 	{
-		sprintf(pFilename, "HaloReach\\hopper_map_variants\\%s.mvar", pVariantName);
+		sprintf(pFilename, "%s\\hopper_map_variants\\%s.mvar", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
 	}
 	else
 	{
-		sprintf(pFilename, "HaloReach\\map_variants\\%s.mvar", pVariantName);
+		sprintf(pFilename, "%s\\map_variants\\%s.mvar", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
 	}
 	pFilename[MAX_PATH - 1] = 0;
 
@@ -1402,7 +1396,7 @@ void GameLauncher::LoadMapVariant(IDataAccess *pDataAccess, const char *pVariant
 			WriteLineVerbose("Creating map variant for [%s]", map_id_to_string(g_LaunchMapId));
 		}
 
-		out_variant = pDataAccess->MapVariantCreateFromMapId(g_LaunchMapId)->MapVariant;
+		out_variant = pDataAccess->MapVariantCreateFromMapID(g_LaunchMapId)->MapVariant;
 	}
 }
 
@@ -1411,11 +1405,11 @@ void GameLauncher::LoadGameVariant(IDataAccess *pDataAccess, const char *pVarian
 	char pFilename[MAX_PATH] = {};
 	if (g_GameVariantIsHopper)
 	{
-		sprintf(pFilename, "HaloReach\\hopper_game_variants\\%s.bin", pVariantName);
+		sprintf(pFilename, "%s\\hopper_game_variants\\%s.bin", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
 	}
 	else
 	{
-		sprintf(pFilename, "HaloReach\\game_variants\\%s.bin", pVariantName);
+		sprintf(pFilename, "%s\\game_variants\\%s.bin", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
 	}
 	pFilename[MAX_PATH - 1] = 0;
 
@@ -1463,9 +1457,9 @@ void GameLauncher::LoadSavedFilmMetadata(const char *pSavedFilmName, GameContext
 		return;
 
 	static auto pFilename = "";
-	if (!PathFileExists(pFilename = Format("HaloReach\\Temp\\autosave\\%s.film", pSavedFilmName)))
+	if (!PathFileExists(pFilename = Format("%s\\Temp\\autosave\\%s.film", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
 	{
-		if (!PathFileExists(pFilename = Format("HaloReach\\Temp\\autosave\\%s.mov", pSavedFilmName)))
+		if (!PathFileExists(pFilename = Format("%s\\Temp\\autosave\\%s.mov", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
 		{
 			if (!PathFileExists(pFilename = Format("%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\HaloReach\\Movie\\%s.mov", GetUserprofileVariable(), pSavedFilmName)))
 			{

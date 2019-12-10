@@ -19,9 +19,9 @@ int g_controlsLayout = 0;
 int g_useController = 0;
 bool g_pancamEnabled = false;
 bool g_keyboardPrintKeyState = false;
-HaloGameID g_currentGameID = HaloGameID::NotSet;
+BuildVersion g_currentbuildVersion = BuildVersion::NotSet;
 
-void patch_out_gameenginehostcallback_mov_rcx(HaloGameID id, intptr_t offset)
+void patch_out_gameenginehostcallback_mov_rcx(BuildVersion id, intptr_t offset)
 {
 	char* pBeginning = (char*)GetLoadedHaloModule(id);
 
@@ -51,48 +51,48 @@ void patch_out_gameenginehostcallback_mov_rcx(HaloGameID id, intptr_t offset)
 //
 //// Halo Reach Variables
 //
-//Pointer<HaloGameID::HaloReach_2019_Aug_20, IDirectInputDevice8*, 0x1839EC128> qword_1839EC128;
+//Pointer<BuildVersion::Build_1_1035_0_0, IDirectInputDevice8*, 0x1839EC128> qword_1839EC128;
 //
 //
-//intptr_t TlsIndex_offset(HaloGameID gameID)
+//intptr_t TlsIndex_offset(BuildVersion buildVersion)
 //{
-//	switch (gameID)
+//	switch (buildVersion)
 //	{
-//	case HaloGameID::HaloReach_2019_Jun_24: return 0x1810A3098;
-//	case HaloGameID::HaloReach_2019_Aug_20: return 0x180CF6998;
+//	case BuildVersion::Build_1_887_0_0: return 0x1810A3098;
+//	case BuildVersion::Build_1_1035_0_0: return 0x180CF6998;
 //	}
 //	return ~intptr_t();
 //}
 //DataEx<uint32_t, TlsIndex_offset> TlsIndex;
 //
-//intptr_t g_termination_value_offset(HaloGameID gameID)
+//intptr_t g_termination_value_offset(BuildVersion buildVersion)
 //{
-//	switch (gameID)
+//	switch (buildVersion)
 //	{
-//	case HaloGameID::HaloReach_2019_Jun_24: return 0x183984DE4;
-//	case HaloGameID::HaloReach_2019_Aug_20: return 0x18358EF04;
+//	case BuildVersion::Build_1_887_0_0: return 0x183984DE4;
+//	case BuildVersion::Build_1_1035_0_0: return 0x18358EF04;
 //	}
 //	return ~intptr_t();
 //}
 //char& g_termination_value = reference_symbol<char>("g_termination_value", g_termination_value_offset);
 //
-//intptr_t g_controller_interfaces_offset(HaloGameID gameID)
+//intptr_t g_controller_interfaces_offset(BuildVersion buildVersion)
 //{
-//	switch (gameID)
+//	switch (buildVersion)
 //	{
-//	case HaloGameID::HaloReach_2019_Jun_24: return 0x183D43560;
-//	case HaloGameID::HaloReach_2019_Aug_20: return 0x183945FC0;
+//	case BuildVersion::Build_1_887_0_0: return 0x183D43560;
+//	case BuildVersion::Build_1_1035_0_0: return 0x183945FC0;
 //	}
 //	return ~intptr_t();
 //}
 //c_controller_interface(&g_controller_interfaces)[4] = reference_symbol<c_controller_interface[4]>("g_controller_interfaces", g_controller_interfaces_offset);
 //
-//intptr_t g_game_options_offset(HaloGameID gameID)
+//intptr_t g_game_options_offset(BuildVersion buildVersion)
 //{
-//	switch (gameID)
+//	switch (buildVersion)
 //	{
-//	case HaloGameID::HaloReach_2019_Jun_24: return 0x183B0FB70;
-//	case HaloGameID::HaloReach_2019_Aug_20: return 0x183719E50;
+//	case BuildVersion::Build_1_887_0_0: return 0x183B0FB70;
+//	case BuildVersion::Build_1_1035_0_0: return 0x183719E50;
 //	}
 //	return ~intptr_t();
 //}
@@ -101,23 +101,23 @@ void patch_out_gameenginehostcallback_mov_rcx(HaloGameID id, intptr_t offset)
 //// HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830; g_gamepad_globals->unknown350
 //HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018; // no equivalent
 //
-//intptr_t g_gamepad_globals_offset(HaloGameID gameID)
+//intptr_t g_gamepad_globals_offset(BuildVersion buildVersion)
 //{
-//	switch (gameID)
+//	switch (buildVersion)
 //	{
-//	case HaloGameID::HaloReach_2019_Jun_24: return 0x183DF54E0;
-//	case HaloGameID::HaloReach_2019_Aug_20: return 0x1839EBDE0;
+//	case BuildVersion::Build_1_887_0_0: return 0x183DF54E0;
+//	case BuildVersion::Build_1_1035_0_0: return 0x1839EBDE0;
 //	}
 //	return ~intptr_t();
 //}
 //DataEx<s_gamepad_globals, g_gamepad_globals_offset> g_gamepad_globals;
 //
-//intptr_t g_input_abstraction_offset(HaloGameID gameID)
+//intptr_t g_input_abstraction_offset(BuildVersion buildVersion)
 //{
-//	switch (gameID)
+//	switch (buildVersion)
 //	{
-//	case HaloGameID::HaloReach_2019_Jun_24: return 0x183B2E510;
-//	case HaloGameID::HaloReach_2019_Aug_20: return 0x1837387F0;
+//	case BuildVersion::Build_1_887_0_0: return 0x183B2E510;
+//	case BuildVersion::Build_1_1035_0_0: return 0x1837387F0;
 //	}
 //	return ~intptr_t();
 //}
@@ -127,12 +127,12 @@ void patch_out_gameenginehostcallback_mov_rcx(HaloGameID id, intptr_t offset)
 //
 //// Halo Reach Functions
 //
-//intptr_t restricted_region_unlock_primary_offset(HaloGameID gameID)
+//intptr_t restricted_region_unlock_primary_offset(BuildVersion buildVersion)
 //{
-//	switch (gameID)
+//	switch (buildVersion)
 //	{
-//	case HaloGameID::HaloReach_2019_Jun_24: return 0x1803FB790;
-//	case HaloGameID::HaloReach_2019_Aug_20: return 0x1802041F0;
+//	case BuildVersion::Build_1_887_0_0: return 0x1803FB790;
+//	case BuildVersion::Build_1_1035_0_0: return 0x1802041F0;
 //	}
 //	return ~intptr_t();
 //}
@@ -167,7 +167,7 @@ if (COMBINE(__runonceflag_, __LINE__) == false) \
 } (void)(0)
 
 // this function runs to start the UI when the game engine host callback is null.
-FunctionHookVarArgs<HaloGameID::HaloReach_2019_Aug_20, 0x180495220, char(unsigned int a1, __int64 a2, __int64 a3, IGameEngineHost* a4, __int64 a5, __int64 a6, ...)> sub_180495220 = { "sub_180495220", [](unsigned int a1, __int64 a2, __int64 a3, IGameEngineHost* a4, __int64 a5, __int64 a6, ...)
+FunctionHookVarArgs<BuildVersion::Build_1_1035_0_0, 0x180495220, char(unsigned int a1, __int64 a2, __int64 a3, IGameEngineHost* a4, __int64 a5, __int64 a6, ...)> sub_180495220 = { "sub_180495220", [](unsigned int a1, __int64 a2, __int64 a3, IGameEngineHost* a4, __int64 a5, __int64 a6, ...)
 {
 	char result = sub_180495220(a1, a2, a3, a4, a5, a6);
 	WriteLineVerbose("sub_180495220: %i", (int)result);
@@ -429,7 +429,7 @@ void halo_reach_debug_callback()
 	ImGui::End();
 }
 
-char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", HaloGameID::HaloReach_2019_Aug_20, 0x180A0EE08);
+char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", BuildVersion::Build_1_1035_0_0, 0x180A0EE08);
 
 void dump_binary(const char* pFileName, void* pData, size_t size)
 {
@@ -446,12 +446,12 @@ void dump_binary(const char* pFileName, void* pData, size_t size)
 	}
 }
 
-intptr_t game_start_offset(HaloGameID gameID)
+intptr_t game_start_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Oct_30: return 0x180011C60;
-	case HaloGameID::HaloReach_2019_Nov_11: return 0x180011C70;
+	case BuildVersion::Build_1_1186_0_0: return 0x180011C60;
+	case BuildVersion::Build_1_1211_0_0: return 0x180011C70;
 	}
 	return ~intptr_t();
 }
@@ -465,41 +465,41 @@ FunctionHookEx<game_start_offset, char(__fastcall)(IGameEngineHaloReach * __this
 };
 #pragma optimize("", on)
 
-void init_halo_reach_with_mcc(HaloGameID gameID, bool isMCC)
+void init_halo_reach_with_mcc(BuildVersion buildVersion, bool isMCC)
 {
 	game_start.SetIsActive(isMCC || GameLauncher::HasCommandLineArg("-dump:gamecontext.bin"));
 
-	g_currentGameID = gameID;
+	g_currentbuildVersion = buildVersion;
 	CustomWindow::SetWindowTitle("Halo Reach");
 	ReadConfig();
 	//DebugUI::RegisterCallback(halo_reach_debug_callback);
 
 	init_detours();
 
-	//if (gameID == HaloGameID::HaloReach_2019_Jun_24)
+	//if (buildVersion == BuildVersion::Build_1_887_0_0)
 	//{
 	//	g_shell_command_line = GetCommandLineA();
 	//}
 
 	
-	//nop_address(HaloGameID::HaloReach_2019_Oct_30, 0x18002DA56, 7);
-	//patch_out_gameenginehostcallback_mov_rcx(HaloGameID::HaloReach_2019_Oct_30, 0x18002DA81);
+	//nop_address(BuildVersion::Build_1_1186_0_0, 0x18002DA56, 7);
+	//patch_out_gameenginehostcallback_mov_rcx(BuildVersion::Build_1_1186_0_0, 0x18002DA81);
 
 	//unsigned char jnz = 0x75;
-	//copy_to_address(HaloGameID::HaloReach_2019_Oct_30, 0x18002DA5D, &jnz, 1);
+	//copy_to_address(BuildVersion::Build_1_1186_0_0, 0x18002DA5D, &jnz, 1);
 
 	//bool isNetworkingPatchActive = true;
 	//if (isNetworkingPatchActive)
 	//{
-	//	patch_out_gameenginehostcallback_mov_rcx(HaloGameID::HaloReach_2019_Aug_20, 0x1800AE684);
-	//	patch_out_gameenginehostcallback_mov_rcx(HaloGameID::HaloReach_2019_Aug_20, 0x180100D54);
-	//	patch_out_gameenginehostcallback_mov_rcx(HaloGameID::HaloReach_2019_Aug_20, 0x1800ADEFE);
-	//	//patch_out_gameenginehostcallback_mov_rsi(HaloGameID::HaloReach_2019_Aug_20, 0x18002350D); // patch for sub_1800234F0 to bypass member25
-	//	nop_address(HaloGameID::HaloReach_2019_Aug_20, 0x1800ADB4F, 6);
+	//	patch_out_gameenginehostcallback_mov_rcx(BuildVersion::Build_1_1035_0_0, 0x1800AE684);
+	//	patch_out_gameenginehostcallback_mov_rcx(BuildVersion::Build_1_1035_0_0, 0x180100D54);
+	//	patch_out_gameenginehostcallback_mov_rcx(BuildVersion::Build_1_1035_0_0, 0x1800ADEFE);
+	//	//patch_out_gameenginehostcallback_mov_rsi(BuildVersion::Build_1_1035_0_0, 0x18002350D); // patch for sub_1800234F0 to bypass member25
+	//	nop_address(BuildVersion::Build_1_1035_0_0, 0x1800ADB4F, 6);
 	//	int32_t host_wait_for_party_timeout = 45000000;
-	//	copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011090, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
-	//	copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011431, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
-	//	copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180011458, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
+	//	copy_to_address(BuildVersion::Build_1_1035_0_0, 0x180011090, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
+	//	copy_to_address(BuildVersion::Build_1_1035_0_0, 0x180011431, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
+	//	copy_to_address(BuildVersion::Build_1_1035_0_0, 0x180011458, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
 
 	//	// this patches out the gameenginehostcallback to get the game to use its original pause menu
 	//	bool enableOriginalMenu = false;
@@ -508,15 +508,15 @@ void init_halo_reach_with_mcc(HaloGameID gameID, bool isMCC)
 	//	{
 	//		// patch	mov r9, cs:g_pGameEngineHost
 	//		// to		xor r9, r9
-	//		nop_address(HaloGameID::HaloReach_2019_Aug_20, 0x180495158, 7);
+	//		nop_address(BuildVersion::Build_1_1035_0_0, 0x180495158, 7);
 	//		char xor_r9_r9[] = { 0x4di8, 0x31i8, 0xc9i8 };
-	//		copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x180495158, xor_r9_r9, sizeof(xor_r9_r9));
+	//		copy_to_address(BuildVersion::Build_1_1035_0_0, 0x180495158, xor_r9_r9, sizeof(xor_r9_r9));
 	//	}
 
 	//	//if (!IGameEngineHost::g_isHost)
 	//	//{
 	//	//	char jne = 0x75i8;
-	//	//	copy_to_address(HaloGameID::HaloReach_2019_Aug_20, 0x1800AE91D, &jne, sizeof(jne));
+	//	//	copy_to_address(BuildVersion::Build_1_1035_0_0, 0x1800AE91D, &jne, sizeof(jne));
 	//	//}
 
 
@@ -527,27 +527,27 @@ void init_halo_reach_with_mcc(HaloGameID gameID, bool isMCC)
 	//RUNONCE(create_dll_hook("WS2_32.dll", "sendto", sendtoHook, sendtoPointer));
 	//sub_1800AE4E0.SetIsActive(isNetworkingPatchActive);
 
-	DataReferenceBase::InitTree(gameID);
-	FunctionHookBase::InitTree(gameID);
-	GlobalReference::InitTree(gameID);
+	DataReferenceBase::InitTree(buildVersion);
+	FunctionHookBase::InitTree(buildVersion);
+	GlobalReference::InitTree(buildVersion);
 	end_detours();
 
 	//GameLauncher::RegisterTerminationValue(g_termination_value);
 }
 
-void init_halo_reach(HaloGameID gameID)
+void init_halo_reach(BuildVersion buildVersion)
 {
-	init_halo_reach_with_mcc(gameID, false);
+	init_halo_reach_with_mcc(buildVersion, false);
 }
 
-void deinit_halo_reach(HaloGameID gameID)
+void deinit_halo_reach(BuildVersion buildVersion)
 {
 	//DebugUI::UnregisterCallback(halo_reach_debug_callback);
 
 	init_detours();
 
-	FunctionHookBase::DeinitTree(gameID);
-	DataReferenceBase::DeinitTree(gameID);
-	GlobalReference::DeinitTree(gameID);
+	FunctionHookBase::DeinitTree(buildVersion);
+	DataReferenceBase::DeinitTree(buildVersion);
+	GlobalReference::DeinitTree(buildVersion);
 	end_detours();
 }

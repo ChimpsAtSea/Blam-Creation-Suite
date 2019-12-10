@@ -104,8 +104,8 @@
     <ClCompile Include="GameRender.cpp" />
     <ClCompile Include="game_mode.cpp" />
     <ClCompile Include="application_reflection\globalreference.cpp" />
-    <ClCompile Include="HaloGameID.cpp" />
-    <ClCompile Include="IGameEngine.cpp" />
+    <ClCompile Include="BuildVersion.cpp" />
+    <ClCompile Include="IFileAccess.cpp" />
     <ClCompile Include="IGameEngineHost.cpp" />
     <ClCompile Include="IGameEvents.cpp" />
     <ClCompile Include="application_reflection\mappingfileparser.cpp" />
@@ -134,8 +134,9 @@
     <ClInclude Include="application_reflection\globalreference.h" />
     <ClInclude Include="hexrays_defs.h" />
     <ClInclude Include="FunctionHook.h" />
-    <ClInclude Include="HaloGameID.h" />
+    <ClInclude Include="BuildVersion.h" />
     <ClInclude Include="IDataAccess.h" />
+    <ClInclude Include="IFileAccess.h" />
     <ClInclude Include="IGameEngine.h" />
     <ClInclude Include="IGameEngineHost.h" />
     <ClInclude Include="IGameEvents.h" />
@@ -143,6 +144,7 @@
     <ClInclude Include="IMapVariant.h" />
     <ClInclude Include="input_types.h" />
     <ClInclude Include="ISaveFilmMetadata.h" />
+    <ClInclude Include="IVariantAccessorBase.h" />
     <ClInclude Include="local_types.h" />
     <ClInclude Include="logging.h" />
     <ClInclude Include="application_reflection\mappingfileparser.h" />
