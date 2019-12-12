@@ -83,6 +83,7 @@ echo f|xcopy "$(SolutionDir)steam_appid.txt" "\\$(RemoteDebuggerServerName)\!MCC
   echo f|xcopy "$(TargetDir)$(TargetName).bin" "$(LocalDebuggerWorkingDirectory)" /Y
   echo f|xcopy "$(SolutionDir)steam_appid.txt" "$(LocalDebuggerWorkingDirectory)" /Y
  )
+ echo f|xcopy "$(SolutionDir)steam_appid.txt" "$(TargetDir)" /Y
 )</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -118,6 +119,7 @@ echo f|xcopy "$(SolutionDir)steam_appid.txt" "\\$(RemoteDebuggerServerName)\!MCC
   echo f|xcopy "$(TargetDir)$(TargetName).bin" "$(LocalDebuggerWorkingDirectory)" /Y
   echo f|xcopy "$(SolutionDir)steam_appid.txt" "$(LocalDebuggerWorkingDirectory)" /Y
  )
+ echo f|xcopy "$(SolutionDir)steam_appid.txt" "$(TargetDir)" /Y
 )</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
