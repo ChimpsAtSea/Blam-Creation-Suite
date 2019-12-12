@@ -76,10 +76,12 @@
       <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
 echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
+echo f|xcopy "$(SolutionDir)steam_appid.txt" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
   echo f|xcopy "$(TargetDir)$(TargetName).bin" "$(LocalDebuggerWorkingDirectory)" /Y
+  echo f|xcopy "$(SolutionDir)steam_appid.txt" "$(LocalDebuggerWorkingDirectory)" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -109,10 +111,12 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
       <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
 echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
+echo f|xcopy "$(SolutionDir)steam_appid.txt" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
   echo f|xcopy "$(TargetDir)$(TargetName).bin" "$(LocalDebuggerWorkingDirectory)" /Y
+  echo f|xcopy "$(SolutionDir)steam_appid.txt" "$(LocalDebuggerWorkingDirectory)" /Y
  )
 )</Command>
     </PostBuildEvent>
