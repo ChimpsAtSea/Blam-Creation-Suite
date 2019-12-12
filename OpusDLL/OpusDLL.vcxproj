@@ -15,6 +15,7 @@
     <ProjectGuid>{9E83716D-0B37-439D-8355-AF118D670F9D}</ProjectGuid>
     <RootNamespace>OpusDLL</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>OpusDLL (DLL Injection)</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">

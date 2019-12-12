@@ -15,6 +15,7 @@
     <ProjectGuid>{DE06E1FE-E257-48EF-9BEB-A98DDAF0A281}</ProjectGuid>
     <RootNamespace>OpusLauncher</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>OpusLauncher (EAC Bypass)</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
