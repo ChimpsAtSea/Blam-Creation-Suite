@@ -67,6 +67,7 @@
       <AdditionalDependencies>imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;haloreachlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <MapFileName>$(TargetDir)$(TargetName).bin</MapFileName>
     </Link>
     <PostBuildEvent>
       <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
@@ -75,7 +76,7 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).map" "$(LocalDebuggerWorkingDirectory)\MCC-Win64-Shipping.map" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).bin" "$(LocalDebuggerWorkingDirectory)\MCC-Win64-Shipping.map" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -99,6 +100,7 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
       <AdditionalDependencies>imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;haloreachlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <MapFileName>$(TargetDir)$(TargetName).bin</MapFileName>
     </Link>
     <PostBuildEvent>
       <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
@@ -107,7 +109,7 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).map" "$(LocalDebuggerWorkingDirectory)\MCC-Win64-Shipping.map" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).bin" "$(LocalDebuggerWorkingDirectory)\MCC-Win64-Shipping.map" /Y
  )
 )</Command>
     </PostBuildEvent>

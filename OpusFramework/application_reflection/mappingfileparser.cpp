@@ -125,7 +125,7 @@ MappingFileParser::MappingFileParser()
 	CHAR currentModuleNameBuffer[MAX_PATH] = {};
 	GetModuleFileNameA(GetModuleHandleA(NULL), currentModuleNameBuffer, sizeof(currentModuleNameBuffer));
 	PathRemoveExtensionA(currentModuleNameBuffer);
-	PathAddExtension(currentModuleNameBuffer, ".map");
+	PathAddExtension(currentModuleNameBuffer, ".bin");
 	Parse(currentModuleNameBuffer);
 }
 
