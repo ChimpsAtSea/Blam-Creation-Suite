@@ -42,6 +42,7 @@ public: /* structures and enums */
 	static constexpr size_t Member22StructSize = sizeof(Member22Struct);
 	static_assert(Member22StructSize == 0x110, "Member22Struct is incorrect size");
 
+#pragma pack(push, 1)
 	struct Member28Struct
 	{
 		long width;
@@ -54,7 +55,9 @@ public: /* structures and enums */
 		long unknown10_C;
 		long unknown20;
 		long unknown24;
-		char unknown28[4];
+		char unknown28;
+		unsigned short fps_flags;
+		char unknown2B;
 		char unknown2C[168]; // unknown
 		float unknownD4_0;
 		float unknownD4_4;
@@ -100,6 +103,7 @@ public: /* structures and enums */
 		long unknownD4_A4;
 		long unknownD4_A8;
 	};
+#pragma pack(pop)
 	static constexpr size_t Member28StructSize = sizeof(Member28Struct);
 	static_assert(Member28StructSize == 0x180, "Member28Struct is incorrect size");
 
@@ -199,10 +203,10 @@ public: /* instance functions */
 	/* 25 */ virtual void __fastcall MembershipUpdate(s_session_membership* buffer, uint32_t playercount);
 	/* 26 */ virtual bool __fastcall Member26();
 	/* 27 */ virtual bool __fastcall Member27();
-	/* 28 */ virtual bool __fastcall Member28(Member28Struct* buffer);
+	/* 28 */ virtual bool __fastcall UpdateGraphics(Member28Struct* buffer);
 	/* 29 */ virtual __int64 __fastcall Member29(wchar_t playerNames[4][32], Member29Struct* buffer);
 	/* 30 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer);
-	/* 31 */ virtual void Member31();
+	/* 31 */ virtual void Member31(_QWORD, float *);
 	/* 32 */ virtual void Member32();
 	/* 33 */ virtual void XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION *pVibration);
 	/* 34 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64 *, wchar_t playerNames[4][32], size_t dataSize);

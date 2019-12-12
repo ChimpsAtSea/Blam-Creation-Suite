@@ -6,7 +6,7 @@
 
 
 
-void patch_out_gameenginehostcallback_mov_rsi(HaloGameID id, intptr_t offset)
+void patch_out_gameenginehostcallback_mov_rsi(BuildVersion id, intptr_t offset)
 {
 	char* pBeginning = (char*)GetLoadedHaloModule(id);
 
@@ -34,11 +34,11 @@ void patch_out_gameenginehostcallback_mov_rsi(HaloGameID id, intptr_t offset)
 }
 
 
-intptr_t sub_1800AE4E0_offset(HaloGameID gameID)
+intptr_t sub_1800AE4E0_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800AE4E0;
+	case BuildVersion::Build_1_1035_0_0: return 0x1800AE4E0;
 	}
 	return ~intptr_t();
 }
@@ -247,9 +247,9 @@ sendtoHook(
 	return result;
 }
 
-Pointer<HaloGameID::HaloReach_2019_Aug_20, void*, 0x1830DC4E0> g_pNetworkSquadSession;
-//Data<HaloGameID::HaloReach_2019_Aug_20, c_network_session[4], 0x18324F378> g_networkSessions;
-Data<HaloGameID::HaloReach_2019_Aug_20, c_network_session* [4], 0x1830DC4E0> g_pNetworkSessions;
+Pointer<BuildVersion::Build_1_1035_0_0, void*, 0x1830DC4E0> g_pNetworkSquadSession;
+//Data<BuildVersion::Build_1_1035_0_0, c_network_session[4], 0x18324F378> g_networkSessions;
+Data<BuildVersion::Build_1_1035_0_0, c_network_session* [4], 0x1830DC4E0> g_pNetworkSessions;
 
 const char* network_session_state_to_string(e_network_session_state network_session_state)
 {
@@ -274,11 +274,11 @@ const char* network_session_state_to_string(e_network_session_state network_sess
 	}
 }
 
-intptr_t sub_18006DAE0_offset(HaloGameID gameID)
+intptr_t sub_18006DAE0_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18006DAE0;
+	case BuildVersion::Build_1_1035_0_0: return 0x18006DAE0;
 	}
 	return ~intptr_t();
 }
@@ -291,11 +291,11 @@ FunctionHookEx<sub_18006DAE0_offset, int __fastcall (c_network_session* a1, BOOL
 
 const char* ppNetworkSessionNames[] = { "Squad Session", "Posse Session", "Group Session", "Target Session" };
 
-intptr_t c_network_session_abort_offset(HaloGameID gameID)
+intptr_t c_network_session_abort_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18006CB40;
+	case BuildVersion::Build_1_1035_0_0: return 0x18006CB40;
 	}
 	return ~intptr_t();
 }
@@ -306,11 +306,11 @@ FunctionHookEx<c_network_session_abort_offset, __int64 __fastcall (c_network_ses
 	return result;
 } };
 
-intptr_t c_network_session_handle_peer_joining_offset(HaloGameID gameID)
+intptr_t c_network_session_handle_peer_joining_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18006DC10;
+	case BuildVersion::Build_1_1035_0_0: return 0x18006DC10;
 	}
 	return ~intptr_t();
 }
@@ -321,11 +321,11 @@ FunctionHookEx<c_network_session_handle_peer_joining_offset, void __fastcall (c_
 	c_network_session_handle_peer_joining(_this);
 } };
 
-intptr_t sub_180029B70_offset(HaloGameID gameID)
+intptr_t sub_180029B70_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x180029B70;
+	case BuildVersion::Build_1_1035_0_0: return 0x180029B70;
 	}
 	return ~intptr_t();
 }
@@ -335,11 +335,11 @@ FunctionHookEx<sub_180029B70_offset, void __fastcall (c_network_session* _this, 
 	return sub_180029B70(_this, a2, a3);
 } };
 
-intptr_t sub_180019F00_offset(HaloGameID gameID)
+intptr_t sub_180019F00_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x180019F00;
+	case BuildVersion::Build_1_1035_0_0: return 0x180019F00;
 	}
 	return ~intptr_t();
 }
@@ -349,11 +349,11 @@ FunctionHookEx<sub_180019F00_offset, BYTE* __fastcall (c_network_session_members
 	return sub_180019F00(a1);
 } };
 
-intptr_t sub_18002E040_offset(HaloGameID gameID)
+intptr_t sub_18002E040_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18002E040;
+	case BuildVersion::Build_1_1035_0_0: return 0x18002E040;
 	}
 	return ~intptr_t();
 }
@@ -365,11 +365,11 @@ FunctionHookEx<sub_18002E040_offset, __int64 __fastcall (c_network_session_membe
 
 
 
-intptr_t c_network_session_process_pending_joins_offset(HaloGameID gameID)
+intptr_t c_network_session_process_pending_joins_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x180028D00;
+	case BuildVersion::Build_1_1035_0_0: return 0x180028D00;
 	}
 	return ~intptr_t();
 }
@@ -398,11 +398,11 @@ FunctionHookEx<c_network_session_process_pending_joins_offset, unsigned __int64 
 	return c_network_session_process_pending_joins(_this);
 } };
 
-intptr_t c_network_session_add_pending_join_to_session_offset(HaloGameID gameID)
+intptr_t c_network_session_add_pending_join_to_session_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x180029650;
+	case BuildVersion::Build_1_1035_0_0: return 0x180029650;
 	}
 	return ~intptr_t();
 }
@@ -412,11 +412,11 @@ FunctionHookEx<c_network_session_add_pending_join_to_session_offset, __int64 __f
 	return c_network_session_add_pending_join_to_session(_this, join_nonce);
 } };
 
-intptr_t c_network_message_handler_handle_channel_message_offset(HaloGameID gameID)
+intptr_t c_network_message_handler_handle_channel_message_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800D1C70;
+	case BuildVersion::Build_1_1035_0_0: return 0x1800D1C70;
 	}
 	return ~intptr_t();
 }
@@ -434,11 +434,11 @@ FunctionHookEx<c_network_message_handler_handle_channel_message_offset, void __f
 	);
 } };
 
-intptr_t c_network_channel_receive_packet_offset(HaloGameID gameID)
+intptr_t c_network_channel_receive_packet_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800A55C0;
+	case BuildVersion::Build_1_1035_0_0: return 0x1800A55C0;
 	}
 	return ~intptr_t();
 }
@@ -449,11 +449,11 @@ FunctionHookEx<c_network_channel_receive_packet_offset, __int64 __fastcall (__in
 	return c_network_channel_receive_packet(a1, a2, a3, a4);
 } };
 
-intptr_t c_network_link_process_packet_internal_offset(HaloGameID gameID)
+intptr_t c_network_link_process_packet_internal_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800AE850;
+	case BuildVersion::Build_1_1035_0_0: return 0x1800AE850;
 	}
 	return ~intptr_t();
 }
@@ -464,11 +464,11 @@ FunctionHookEx<c_network_link_process_packet_internal_offset, __int64 __fastcall
 	return c_network_link_process_packet_internal(a1, a2);
 } };
 
-intptr_t c_network_channel_allocate_offset(HaloGameID gameID)
+intptr_t c_network_channel_allocate_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x1800A4A90;
+	case BuildVersion::Build_1_1035_0_0: return 0x1800A4A90;
 	}
 	return ~intptr_t();
 }
@@ -480,16 +480,16 @@ FunctionHookEx<c_network_channel_allocate_offset, signed __int64 __fastcall (__i
 } };
 
 
-intptr_t c_network_channel_manager_recreate_channels_offset(HaloGameID gameID)
+intptr_t c_network_channel_manager_recreate_channels_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18003BD20;
+	case BuildVersion::Build_1_1035_0_0: return 0x18003BD20;
 	}
 	return ~intptr_t();
 }
 
-Data<HaloGameID::HaloReach_2019_Aug_20, char[1024], 0x18311BA86> unk_18311BA86;
+Data<BuildVersion::Build_1_1035_0_0, char[1024], 0x18311BA86> unk_18311BA86;
 
 FunctionHookEx<c_network_channel_manager_recreate_channels_offset, void __fastcall (__int64 a1)> c_network_channel_manager_recreate_channels =
 { "c_network_channel_manager::recreate_channels", [](__int64 a1)
@@ -499,11 +499,11 @@ FunctionHookEx<c_network_channel_manager_recreate_channels_offset, void __fastca
 } };
 
 
-intptr_t sub_18003A740_offset(HaloGameID gameID)
+intptr_t sub_18003A740_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x18003A740;
+	case BuildVersion::Build_1_1035_0_0: return 0x18003A740;
 	}
 	return ~intptr_t();
 }
@@ -512,7 +512,7 @@ struct c_network_channel_manager
 {
 
 };
-Pointer<HaloGameID::HaloReach_2019_Aug_20, c_network_channel_manager*, 0x18311A750> g_network_channel_manager;
+Pointer<BuildVersion::Build_1_1035_0_0, c_network_channel_manager*, 0x18311A750> g_network_channel_manager;
 
 FunctionHookEx<sub_18003A740_offset, char __fastcall (__int64, __int64, __int64, __int64, __int64, __int64)> sub_18003A740 =
 { "sub_18003A740", [](__int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 a5, __int64 a6)
@@ -523,11 +523,11 @@ FunctionHookEx<sub_18003A740_offset, char __fastcall (__int64, __int64, __int64,
 } };
 
 
-intptr_t c_network_message_gateway__send_message_directed_offset(HaloGameID gameID)
+intptr_t c_network_message_gateway__send_message_directed_offset(BuildVersion buildVersion)
 {
-	switch (gameID)
+	switch (buildVersion)
 	{
-	case HaloGameID::HaloReach_2019_Aug_20: return 0x180078660;
+	case BuildVersion::Build_1_1035_0_0: return 0x180078660;
 	}
 	return ~intptr_t();
 }

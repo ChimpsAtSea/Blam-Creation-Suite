@@ -52,35 +52,23 @@ struct s_game_variant
 };
 #pragma pack(pop)
 
+class IGameVariant : public IVariantAccessorBase
+{
+public:
+	virtual bool Function9() = 0;
+	virtual INT32 GetID() = 0;
+	virtual bool Function11() = 0;
+	virtual UINT8 Function12() = 0;
+	virtual UINT32 Function13() = 0;
+	virtual IGameVariant *Reset() = 0;
+	virtual INT32 Function15(LPVOID, LPVOID) = 0;
+	virtual UINT32 Function16(LPVOID, LPVOID) = 0;
+	virtual bool Function17(LPVOID, LPVOID) = 0;
+	virtual bool Function18(LPVOID, LPVOID) = 0;
+	virtual bool Function19(LPVOID, LPVOID) = 0;
+	virtual INT32 Function20() = 0;
+	virtual bool Function21(INT32) = 0;
 
-struct IGameVariant;
-struct /*VFT*/ IGameVariant_vtbl
-{
-	void(__fastcall* Free)(IGameVariant*);
-	BYTE* (__fastcall* Member00)(IGameVariant*);
-	BYTE* (__fastcall* Member01)(IGameVariant*);
-	__int64(__fastcall* Member02)(IGameVariant*, wchar_t*);
-	__int64(__fastcall* Member03)(IGameVariant*, wchar_t*);
-	BYTE* (__fastcall* Member04)(IGameVariant*);
-	__int64(__fastcall* Member05)(IGameVariant*);
-	__int64(__fastcall* Member06)(IGameVariant*, struct s_unknown*);
-	bool(__fastcall* IsSandboxVariant)(IGameVariant*);
-	char(__fastcall* Member08)(IGameVariant*);
-	__int64(__fastcall* Member09)(IGameVariant*);
-	IGameVariant* (__fastcall* Create)(IGameVariant*);
-	__int64(__fastcall* Member11)(IGameVariant*, struct s_unknown*, struct s_unknown*);
-	__int64(__fastcall* Member12)(IGameVariant*, struct s_unknown*, struct s_unknown*);
-	bool(__fastcall* Member13)(IGameVariant*, struct s_unknown*, struct s_unknown*);
-	bool(__fastcall* Member14)(IGameVariant*, struct s_unknown*, struct s_unknown*);
-	bool(__fastcall* Member15)(IGameVariant*, struct s_unknown*, struct s_unknown*);
-	bool(__fastcall* Member16)(IGameVariant*, struct s_unknown*);
-	bool(__fastcall* Member17)(IGameVariant*, struct s_unknown*);
-	bool(__fastcall* Member18)(IGameVariant*, struct content_item_game_variant*, size_t*);
-};
-struct IGameVariant
-{
-	IGameVariant_vtbl* __vftable /*VFT*/;
 	s_game_variant GameVariant;
 	BYTE data[22060];
 };
-

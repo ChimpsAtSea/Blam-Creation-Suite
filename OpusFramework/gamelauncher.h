@@ -12,8 +12,8 @@ public:
 		eFinished
 	};
 
-	typedef void(GameLaunchCallback)(HaloGameID gameID);
-	typedef void(GameShutdownCallback)(HaloGameID gameID);
+	typedef void(GameLaunchCallback)(BuildVersion buildVersion);
+	typedef void(GameShutdownCallback)(BuildVersion buildVersion);
 
 	static void Init(HINSTANCE hInstance, LPSTR lpCmdLine);
 	static void Deinit();
@@ -21,8 +21,8 @@ public:
 
 	static bool HasCommandLineArg(const char* pArgument);
 	static void Terminate();
-	static void RegisterGameLaunchCallback(HaloGameID gameID, GameLaunchCallback gameLaunchCallback);
-	static void RegisterGameShutdownCallback(HaloGameID gameID, GameShutdownCallback gameShutdownCallback);
+	static void RegisterGameLaunchCallback(BuildVersion buildVersion, GameLaunchCallback gameLaunchCallback);
+	static void RegisterGameShutdownCallback(BuildVersion buildVersion, GameShutdownCallback gameShutdownCallback);
 	static void LoadSettings();
 	static int Run(HINSTANCE hInstance, LPSTR lpCmdLine, GameInterface& rGameInterface);
 	static void SetupGameContext(GameContext& gameContext);
@@ -53,7 +53,7 @@ public:
 	static void LoadPreviousGamestate(const char* pFilename, GameContext& gameContext);
 	static void LoadSavedFilmMetadata(const char* pSavedFilmName, GameContext &gameContext);
 	static char* s_pTerminationFlag;
-	HaloGameID GetCurrentGameID();
+	BuildVersion GetCurrentbuildVersion();
 	static bool s_gameManuallyKilled;
 	static bool s_hideWindowOnStartup; 
 

@@ -4,12 +4,12 @@ class DataReferenceBase
 {
 public:
 	DataReferenceBase(
-		HaloGameID gameID,
+		BuildVersion buildVersion,
 		size_t dataSize,
 		size_t offset,
-		intptr_t(find_offset_func)(HaloGameID gameID)
+		intptr_t(find_offset_func)(BuildVersion buildVersion)
 	)
-		: m_gameID(gameID),
+		: m_buildVersion(buildVersion),
 		m_dataSize(dataSize),
 		m_offset(offset),
 		m_pPtr(nullptr),
@@ -27,17 +27,17 @@ public:
 			g_pDataReferenceBaseBaseLast = this;
 		}
 
-		if (gameID != HaloGameID::NotSet && IsHaloExecutableLoaded(gameID))
+		if (buildVersion != BuildVersion::NotSet && IsHaloExecutableLoaded(buildVersion))
 		{
-			initNode(gameID);
+			initNode(buildVersion);
 		}
 	}
 
 protected:
 	void* m_pPtr;
 private:
-	intptr_t(*m_find_offset_func)(HaloGameID gameID);
-	HaloGameID m_gameID;
+	intptr_t(*m_find_offset_func)(BuildVersion buildVersion);
+	BuildVersion m_buildVersion;
 	size_t m_dataSize;
 	size_t m_offset;
 	static DataReferenceBase* g_pDataReferenceBaseBaseFirst;
@@ -45,48 +45,48 @@ private:
 	DataReferenceBase* m_pNextDataReference;
 
 public:
-	static void InitTree(HaloGameID gameID)
+	static void InitTree(BuildVersion buildVersion)
 	{
 		// this iteration avoids having to do this recursively
 
 		DataReferenceBase* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
 		while (pCurrentDataReferenceBase)
 		{
-			pCurrentDataReferenceBase = pCurrentDataReferenceBase->initNode(gameID);
+			pCurrentDataReferenceBase = pCurrentDataReferenceBase->initNode(buildVersion);
 		}
 	}
 
-	static void DeinitTree(HaloGameID gameID)
+	static void DeinitTree(BuildVersion buildVersion)
 	{
 		// this iteration avoids having to do this recursively
 
 		DataReferenceBase* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
 		while (pCurrentDataReferenceBase)
 		{
-			pCurrentDataReferenceBase = pCurrentDataReferenceBase->deinitNode(gameID);
+			pCurrentDataReferenceBase = pCurrentDataReferenceBase->deinitNode(buildVersion);
 		}
 	}
 
 private:
 
-	DataReferenceBase* initNode(HaloGameID gameID)
+	DataReferenceBase* initNode(BuildVersion buildVersion)
 	{
 		if (m_pPtr == nullptr)
 		{
-			if (m_gameID == HaloGameID::NotSet)
+			if (m_buildVersion == BuildVersion::NotSet)
 			{
 				assert(m_find_offset_func);
-				m_pPtr = getPointer(gameID);
+				m_pPtr = getPointer(buildVersion);
 			}
-			if (m_gameID == gameID)
+			if (m_buildVersion == buildVersion)
 			{
-				m_pPtr = getPointer(gameID);
+				m_pPtr = getPointer(buildVersion);
 				assert(m_pPtr);
 			}
 		}
 		return m_pNextDataReference;
 	}
-	DataReferenceBase* deinitNode(HaloGameID gameID)
+	DataReferenceBase* deinitNode(BuildVersion buildVersion)
 	{
 		if (m_pPtr == nullptr)
 		{
@@ -95,39 +95,39 @@ private:
 		return m_pNextDataReference;
 	}
 
-	void* getPointer(HaloGameID gameID)
+	void* getPointer(BuildVersion buildVersion)
 	{
 		intptr_t offset = m_offset;
 		if (offset == 0 && m_find_offset_func)
 		{
-			offset = m_find_offset_func(gameID);
+			offset = m_find_offset_func(buildVersion);
 
 			if (offset == ~intptr_t())
 			{
 				return nullptr;
 			}
 
-			assert(m_gameID == HaloGameID::NotSet && offset >= GetHaloBaseAddress(gameID)/*, "Offset is out of bounds"*/);
-			assert(m_gameID == HaloGameID::NotSet && offset < GetHaloTopAddress(gameID)/*, "Offset is out of bounds"*/);
-			assert(m_gameID == HaloGameID::NotSet && static_cast<intptr_t>(offset + m_dataSize) < GetHaloTopAddress(gameID)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && offset >= GetHaloBaseAddress(buildVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && offset < GetHaloTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && static_cast<intptr_t>(offset + m_dataSize) < GetHaloTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
 		}
 
-		HMODULE hModule = GetModuleHandleA(GetHaloExecutableString(gameID));
+		HMODULE hModule = GetModuleHandleA(GetHaloExecutableString(buildVersion));
 		char* pBaseAddress = reinterpret_cast<char*>(hModule);
-		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetHaloBaseAddress(gameID)));
+		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetHaloBaseAddress(buildVersion)));
 		return ptr;
 	}
 
 
 };
 
-template<HaloGameID gameid, typename T, size_t offset>
+template<BuildVersion buildVersion, typename T, size_t offset>
 class BasicData : public DataReferenceBase
 {
 public:
 	BasicData(const BasicData&) = delete;
 	BasicData()
-		: DataReferenceBase(gameid, sizeof(T), offset, nullptr)
+		: DataReferenceBase(buildVersion, sizeof(T), offset, nullptr)
 	{
 
 	}
@@ -170,13 +170,13 @@ public:
 	}
 };
 
-template<HaloGameID gameid, typename T, size_t offset>
+template<BuildVersion buildVersion, typename T, size_t offset>
 class Data : public DataReferenceBase
 {
 public:
 	Data(const Data&) = delete;
 	Data()
-		: DataReferenceBase(gameid, sizeof(T), offset, nullptr)
+		: DataReferenceBase(buildVersion, sizeof(T), offset, nullptr)
 	{
 
 	}
@@ -226,13 +226,13 @@ public:
 	}
 };
 
-template<HaloGameID gameid, typename T, size_t offset>
+template<BuildVersion buildVersion, typename T, size_t offset>
 class Pointer : public DataReferenceBase
 {
 public:
 	Pointer(const Pointer&) = delete;
 	Pointer()
-		: DataReferenceBase(gameid, sizeof(T), offset, nullptr)
+		: DataReferenceBase(buildVersion, sizeof(T), offset, nullptr)
 	{
 
 	}
@@ -277,13 +277,13 @@ protected:
 	}
 };
 
-template<typename T, intptr_t(find_offset_func)(HaloGameID gameID)>
+template<typename T, intptr_t(find_offset_func)(BuildVersion buildVersion)>
 class BasicDataEx : public DataReferenceBase
 {
 public:
 	BasicDataEx(const BasicDataEx&) = delete;
 	BasicDataEx()
-		: DataReferenceBase(HaloGameID::NotSet, sizeof(T), 0, find_offset_func)
+		: DataReferenceBase(BuildVersion::NotSet, sizeof(T), 0, find_offset_func)
 	{
 
 	}
@@ -326,13 +326,13 @@ public:
 	}
 };
 
-template<typename T, intptr_t(find_offset_func)(HaloGameID gameID)>
+template<typename T, intptr_t(find_offset_func)(BuildVersion buildVersion)>
 class DataEx : public DataReferenceBase
 {
 public:
 	DataEx(const DataEx&) = delete;
 	DataEx()
-		: DataReferenceBase(HaloGameID::NotSet, sizeof(T), 0, find_offset_func)
+		: DataReferenceBase(BuildVersion::NotSet, sizeof(T), 0, find_offset_func)
 	{
 
 	}
@@ -382,13 +382,13 @@ public:
 	}
 };
 
-template<typename T, intptr_t(find_offset_func)(HaloGameID gameID)>
+template<typename T, intptr_t(find_offset_func)(BuildVersion buildVersion)>
 class PointerEx : public DataReferenceBase
 {
 public:
 	PointerEx(const PointerEx&) = delete;
 	PointerEx()
-		: DataReferenceBase(HaloGameID::NotSet, sizeof(T), 0, find_offset_func)
+		: DataReferenceBase(BuildVersion::NotSet, sizeof(T), 0, find_offset_func)
 	{
 
 	}
@@ -427,10 +427,10 @@ protected:
 };
 
 template<typename T, size_t offset>
-using HaloReach_2019_Jun_24_Pointer = Pointer<HaloGameID::HaloReach_2019_Jun_24, T, offset>;
+using HaloReach_2019_Jun_24_Pointer = Pointer<BuildVersion::Build_1_887_0_0, T, offset>;
 
 template<typename T, size_t offset>
-using HaloReach_2019_Jun_24_BasicData = BasicData<HaloGameID::HaloReach_2019_Jun_24, T, offset>;
+using HaloReach_2019_Jun_24_BasicData = BasicData<BuildVersion::Build_1_887_0_0, T, offset>;
 
 template<typename T, size_t offset>
-using HaloReach_2019_Jun_24_Data = Data<HaloGameID::HaloReach_2019_Jun_24, T, offset>;
+using HaloReach_2019_Jun_24_Data = Data<BuildVersion::Build_1_887_0_0, T, offset>;

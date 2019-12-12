@@ -12,8 +12,8 @@ extern void memcpy_virtual(
 	size_t size
 );
 
-extern void copy_to_address(HaloGameID id, intptr_t offset, void* data, size_t length);
-extern void nop_address(HaloGameID id, intptr_t offset, size_t count);
+extern void copy_to_address(BuildVersion id, intptr_t offset, void* data, size_t length);
+extern void nop_address(BuildVersion id, intptr_t offset, size_t count);
 
 #define roundup(n, denominator) (((n + denominator - 1) / denominator ) * denominator )
 
@@ -76,7 +76,7 @@ void create_hook(const char pName[], void* pTargetFunction, Ta hook, Tb& rOrigin
 }
 
 template<typename Ta, typename Tb>
-LONG create_hook(HaloGameID gameID, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
+LONG create_hook(BuildVersion buildVersion, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
 {
 	if (offset == -1)
 	{
@@ -84,8 +84,8 @@ LONG create_hook(HaloGameID gameID, size_t offset, const char pName[], Ta hook, 
 
 	}
 
-	char* const pModule = reinterpret_cast<char*>(GetLoadedHaloModule(gameID));
-	size_t const baseAddress = GetHaloBaseAddress(gameID);
+	char* const pModule = reinterpret_cast<char*>(GetLoadedHaloModule(buildVersion));
+	size_t const baseAddress = GetHaloBaseAddress(buildVersion);
 
 	rOriginal = (Tb)(pModule + (offset - baseAddress));
 
@@ -105,10 +105,10 @@ LONG create_hook(HaloGameID gameID, size_t offset, const char pName[], Ta hook, 
 	return detourAttachResult;
 }
 
-template<HaloGameID gameID, size_t offset, typename Ta, typename Tb>
+template<BuildVersion buildVersion, size_t offset, typename Ta, typename Tb>
 LONG create_hook(const char pName[], Ta hook, Tb& rOriginal)
 {
-	return create_hook(gameID, offset, pName, hook, rOriginal);
+	return create_hook(buildVersion, offset, pName, hook, rOriginal);
 }
 
 template<typename Ta, typename Tb>
@@ -156,12 +156,12 @@ void populate_function_ptr(const char pModuleName[], size_t baseAddress, T& dest
 	populate_function_ptr(pModuleName, baseAddress, offset, dest);
 }
 
-template<HaloGameID gameID, size_t offset, typename T>
+template<BuildVersion buildVersion, size_t offset, typename T>
 void populate_function_ptr(T& dest)
 {
 	// Find the function address
-	char* const pModule = reinterpret_cast<char*>(GetLoadedHaloModule(gameID));
-	size_t const baseAddress = GetHaloBaseAddress(gameID);
+	char* const pModule = reinterpret_cast<char*>(GetLoadedHaloModule(buildVersion));
+	size_t const baseAddress = GetHaloBaseAddress(buildVersion);
 	char* const pFunctionAddress = pModule + (offset - baseAddress);
 
 	dest = reinterpret_cast<T>(pFunctionAddress);
@@ -175,11 +175,11 @@ T get_function_ptr(const char pModuleName[], size_t baseAddress)
 	return result;
 }
 
-template<HaloGameID gameID, size_t offset, typename T>
+template<BuildVersion buildVersion, size_t offset, typename T>
 T get_function_ptr()
 {
 	T result = nullptr;
-	populate_function_ptr<gameID, offset, T>(result);
+	populate_function_ptr<buildVersion, offset, T>(result);
 	return result;
 }
 

@@ -5,7 +5,7 @@ GlobalReference* GlobalReference::s_pLastGlobalReference = nullptr;
 
 GlobalReference::GlobalReference(const char* pReferenceName, OffsetFunction offsetFunction)
 	: m_pNextGlobalReference(nullptr)
-	, m_gameID(HaloGameID::NotSet)
+	, m_buildVersion(BuildVersion::NotSet)
 	, m_offset(0)
 	, m_pReferenceName(pReferenceName)
 	, m_pOffsetFunction(offsetFunction)
@@ -13,9 +13,9 @@ GlobalReference::GlobalReference(const char* pReferenceName, OffsetFunction offs
 	init();
 }
 
-GlobalReference::GlobalReference(const char* pReferenceName, HaloGameID gameID, intptr_t offset)
+GlobalReference::GlobalReference(const char* pReferenceName, BuildVersion buildVersion, intptr_t offset)
 	: m_pNextGlobalReference(nullptr)
-	, m_gameID(gameID)
+	, m_buildVersion(buildVersion)
 	, m_offset(offset)
 	, m_pReferenceName(pReferenceName)
 	, m_pOffsetFunction(nullptr)
@@ -37,21 +37,21 @@ void GlobalReference::init()
 	}
 }
 
-void GlobalReference::InitTree(HaloGameID gameID)
+void GlobalReference::InitTree(BuildVersion buildVersion)
 {
 	GlobalReference* pCurrentGlobalReference = s_pFirstGlobalReference;
 	while (pCurrentGlobalReference)
 	{
-		pCurrentGlobalReference = pCurrentGlobalReference->initNode(gameID);
+		pCurrentGlobalReference = pCurrentGlobalReference->initNode(buildVersion);
 	}
 }
 
-void GlobalReference::DeinitTree(HaloGameID gameID)
+void GlobalReference::DeinitTree(BuildVersion buildVersion)
 {
 	GlobalReference* pCurrentGlobalReference = s_pFirstGlobalReference;
 	while (pCurrentGlobalReference)
 	{
-		pCurrentGlobalReference = pCurrentGlobalReference->deinitNode(gameID);
+		pCurrentGlobalReference = pCurrentGlobalReference->deinitNode(buildVersion);
 	}
 }
 
@@ -68,9 +68,9 @@ void GlobalReference::DestroyTree()
 	}
 }
 
-GlobalReference* GlobalReference::initNode(HaloGameID gameID)
+GlobalReference* GlobalReference::initNode(BuildVersion buildVersion)
 {
-	if (m_gameID == HaloGameID::NotSet || m_gameID == gameID)
+	if (m_buildVersion == BuildVersion::NotSet || m_buildVersion == buildVersion)
 	{
 		PublicSymbol* pPublicSymbol = MappingFileParser::GetPublicSymbolByName(m_pReferenceName);
 		if (pPublicSymbol)
@@ -78,7 +78,7 @@ GlobalReference* GlobalReference::initNode(HaloGameID gameID)
 			intptr_t targetOffset = m_offset;
 			if (m_pOffsetFunction)
 			{
-				targetOffset = m_pOffsetFunction(gameID);
+				targetOffset = m_pOffsetFunction(buildVersion);
 			}
 			if (targetOffset == ~intptr_t())
 			{
@@ -98,17 +98,17 @@ GlobalReference* GlobalReference::initNode(HaloGameID gameID)
 
 			void* pDataAddress = nullptr;
 			{
-				uint64_t gameVirtualAddress = GetHaloBaseAddress(gameID);
+				uint64_t gameVirtualAddress = GetHaloBaseAddress(buildVersion);
 				uint64_t dataVirtualAddress = static_cast<uint64_t>(targetOffset);
 				uint64_t dataRelativeVirtualAddress = dataVirtualAddress - gameVirtualAddress;
-				char* pGameBaseAddress = reinterpret_cast<char*>(GetLoadedHaloModule(gameID));
+				char* pGameBaseAddress = reinterpret_cast<char*>(GetLoadedHaloModule(buildVersion));
 				pDataAddress = pGameBaseAddress + dataRelativeVirtualAddress;
 			}
 
 			assert(pReference != nullptr);
 			assert(pDataAddress != nullptr);
 			intptr_t& dataAddressValue = *reinterpret_cast<intptr_t*>(pReference);
-			if (m_gameID != HaloGameID::NotSet) // specific game addresses should be verified
+			if (m_buildVersion != BuildVersion::NotSet) // specific game addresses should be verified
 			{
 				
 				assert(dataAddressValue == targetOffset);
@@ -144,9 +144,9 @@ GlobalReference* GlobalReference::initNode(HaloGameID gameID)
 	return m_pNextGlobalReference;
 }
 
-GlobalReference* GlobalReference::deinitNode(HaloGameID gameID)
+GlobalReference* GlobalReference::deinitNode(BuildVersion buildVersion)
 {
-	if (m_gameID == HaloGameID::NotSet || m_gameID == gameID)
+	if (m_buildVersion == BuildVersion::NotSet || m_buildVersion == buildVersion)
 	{
 		PublicSymbol* pPublicSymbol = MappingFileParser::GetPublicSymbolByName(m_pReferenceName);
 		if (pPublicSymbol)
@@ -154,7 +154,7 @@ GlobalReference* GlobalReference::deinitNode(HaloGameID gameID)
 			intptr_t targetOffset = m_offset;
 			if (m_pOffsetFunction)
 			{
-				targetOffset = m_pOffsetFunction(gameID);
+				targetOffset = m_pOffsetFunction(buildVersion);
 			}
 			assert(targetOffset != ~intptr_t());
 
@@ -170,10 +170,10 @@ GlobalReference* GlobalReference::deinitNode(HaloGameID gameID)
 
 			void* pDataAddress = nullptr;
 			{
-				uint64_t gameVirtualAddress = GetHaloBaseAddress(gameID);
+				uint64_t gameVirtualAddress = GetHaloBaseAddress(buildVersion);
 				uint64_t dataVirtualAddress = static_cast<uint64_t>(targetOffset);
 				uint64_t dataRelativeVirtualAddress = dataVirtualAddress - gameVirtualAddress;
-				char* pGameBaseAddress = reinterpret_cast<char*>(GetLoadedHaloModule(gameID));
+				char* pGameBaseAddress = reinterpret_cast<char*>(GetLoadedHaloModule(buildVersion));
 				pDataAddress = pGameBaseAddress + dataRelativeVirtualAddress;
 			}
 

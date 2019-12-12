@@ -66,3 +66,10 @@ auto WriteStackBackTrace = [=](LPCSTR pCallingFunction, DWORD size = 1024)
 
 	WriteLineVerbose("}");
 };
+
+auto GetUserprofileVariable = [=]()
+{
+	static char szBuf[MAX_PATH] = { 0 };
+	GetEnvironmentVariable("USERPROFILE", szBuf, MAX_PATH);
+	return szBuf;
+};

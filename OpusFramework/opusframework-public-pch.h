@@ -2,7 +2,7 @@
 
 #include "settings.h"
 #include "logging.h"
-#include "HaloGameID.h"
+#include "BuildVersion.h"
 #include "detour_helpers.h"
 #include "debug_helpers.h"
 #include "BasicData.h"
@@ -23,7 +23,9 @@
 #include "map_id.h"
 #include "game_mode.h"
 
+#include "IFileAccess.h"
 #include "ISaveFilmMetadata.h"
+#include "IVariantAccessorBase.h"
 #include "IMapVariant.h"
 #include "IGameVariant.h"
 #include "IDataAccess.h"
