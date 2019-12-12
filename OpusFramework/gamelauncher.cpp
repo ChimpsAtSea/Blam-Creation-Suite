@@ -903,7 +903,7 @@ void RenderHoveredTooltip(LPCSTR pText)
 
 void GameLauncher::SelectSavedFilm()
 {
-	static auto official_saved_films = c_file_array(Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\HaloReach\\Movie\\", GetUserprofileVariable()), ".mov", &ReadSavedFilm);
+	static auto official_saved_films = c_file_array(Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\Movie\\", GetUserprofileVariable(), GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mov", &ReadSavedFilm);
 	static auto saved_films = c_file_array(Format("%s\\Temp\\autosave\\", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".film", &ReadSavedFilm);
 
 	static LPCSTR last_official_saved_film = "";
@@ -1179,24 +1179,24 @@ void GameLauncher::DrawMainMenu()
 
 	ImGui::Separator();
 
-	if (g_LaunchGameMode != e_game_mode::_game_mode_multiplayer)
-	{
-		ImGui::PushItemWidth((width / 100) * 25 * 0.938f);
-	}
-	else
-	{
-		ImGui::PushItemWidth((width / 100) * 25 * 1.415f);
-	}
+	//if (g_LaunchGameMode != e_game_mode::_game_mode_multiplayer)
+	//{
+	//	ImGui::PushItemWidth((width / 100) * 25 * 0.938f);
+	//}
+	//else
+	//{
+	//	ImGui::PushItemWidth((width / 100) * 25 * 1.415f);
+	//}
 	SelectGameMode();
-	ImGui::SameLine();
+	//ImGui::SameLine();
 	SelectMap();
 
-	if (g_LaunchGameMode != e_game_mode::_game_mode_multiplayer)
-	{
-		ImGui::SameLine();
-	}
+	//if (g_LaunchGameMode != e_game_mode::_game_mode_multiplayer)
+	//{
+	//	ImGui::SameLine();
+	//}
 	SelectDifficulty();
-	ImGui::PopItemWidth();
+	//ImGui::PopItemWidth();
 
 	ImGui::Separator();
 
@@ -1461,9 +1461,9 @@ void GameLauncher::LoadSavedFilmMetadata(const char *pSavedFilmName, GameContext
 	{
 		if (!PathFileExists(pFilename = Format("%s\\Temp\\autosave\\%s.mov", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
 		{
-			if (!PathFileExists(pFilename = Format("%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\HaloReach\\Movie\\%s.mov", GetUserprofileVariable(), pSavedFilmName)))
+			if (!PathFileExists(pFilename = Format("%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\%s\\Movie\\%s.mov", GetUserprofileVariable(), s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
 			{
-				pFilename = Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\HaloReach\\Movie\\%s.mov", GetUserprofileVariable(), pSavedFilmName);
+				pFilename = Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\Movie\\%s.mov", GetUserprofileVariable(), s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName);
 			}
 		}
 	}

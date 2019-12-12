@@ -37,6 +37,14 @@ int WINAPI WinMain(
 	_In_ int nShowCmd
 )
 {
+	{
+		FILE *pAppIDFile = fopen("steam_appid.txt", "w");
+		assert(pAppIDFile);
+		constexpr const char *pAppId = "976730";
+		fwrite(pAppId, sizeof(char), strlen(pAppId), pAppIDFile);
+		fclose(pAppIDFile);
+	}
+
 	bool steamAPIInitResult = SteamAPI_Init();
 	if (!steamAPIInitResult)
 	{
