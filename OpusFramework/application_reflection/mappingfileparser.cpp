@@ -136,7 +136,12 @@ void MappingFileParser::Parse(std::string filename)
 	bool result = getFileContent(filename.c_str(), RawLines);
 	if (!result)
 	{
+#if _DEBUG
 		FATAL_ERROR("Failed to open mapping file %s", filename);
+#else
+		MessageBox(NULL, "Fatal Error - Opus.bin not found", "Fatal Error", MB_OK | MB_ICONWARNING);
+		exit(1);
+#endif
 	}
 	
 	MapFileEntries entry_list;
