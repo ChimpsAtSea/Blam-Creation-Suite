@@ -904,7 +904,7 @@ void RenderHoveredTooltip(LPCSTR pText)
 void GameLauncher::SelectSavedFilm()
 {
 	static auto official_saved_films = c_file_array(Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\Movie\\", GetUserprofileVariable(), GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mov", &ReadSavedFilm);
-	static auto saved_films = c_file_array(Format("%s\\Temp\\autosave\\", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".film", &ReadSavedFilm);
+	static auto saved_films = c_file_array(Format("%s\\Temporary\\autosave\\", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".film", &ReadSavedFilm);
 
 	static LPCSTR last_official_saved_film = "";
 	static LPCSTR last_saved_film = "";
@@ -1457,9 +1457,9 @@ void GameLauncher::LoadSavedFilmMetadata(const char *pSavedFilmName, GameContext
 		return;
 
 	static auto pFilename = "";
-	if (!PathFileExists(pFilename = Format("%s\\Temp\\autosave\\%s.film", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
+	if (!PathFileExists(pFilename = Format("%s\\Temporary\\autosave\\%s.film", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
 	{
-		if (!PathFileExists(pFilename = Format("%s\\Temp\\autosave\\%s.mov", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
+		if (!PathFileExists(pFilename = Format("%s\\Temporary\\autosave\\%s.mov", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
 		{
 			if (!PathFileExists(pFilename = Format("%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\%s\\Movie\\%s.mov", GetUserprofileVariable(), s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
 			{

@@ -398,49 +398,37 @@ BOOL __fastcall IGameEngineHost::Member43(__int64 a1, __int64 a2)
 	return 0;
 }
 
-bool __fastcall IGameEngineHost::GetPathByType(int pathType, char* buffer, size_t bufferlength)
+bool __fastcall IGameEngineHost::GetPathByType(int type, LPSTR buf, size_t len)
 {
-	// this this should be in its function
-	switch (pathType)
+	auto pEngineName = GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str();
+
+	// this implementation is inline with MCC
+	switch (type)
 	{
 	case 0:
-		sprintf_s(buffer, bufferlength, "DebugLogs\\");
-		break;
+		sprintf_s(buf, len, "%s\\DebugLogs\\", pEngineName);
+		return true;
 	case 1:
-		sprintf_s(buffer, bufferlength, "Config\\");
-		break;
+		sprintf_s(buf, len, "%s\\Config\\", pEngineName);
+		return true;
 	case 2:
-		sprintf_s(buffer, bufferlength, "Temp\\");
-		break;
+		sprintf_s(buf, len, "%s\\Temporary\\", pEngineName);
+		return true;
 	case 3:
-		sprintf_s(buffer, bufferlength, "\\");
-		break;
+		sprintf_s(buf, len, "%s\\", pEngineName);
+		return true;
 	}
 
-	return 1;
+	return false;
 }
 
-// this is correct implementation inline with MCC
-bool __fastcall IGameEngineHost::GetWidePathByType(int pathType, wchar_t* buffer, size_t bufferlength)
+bool __fastcall IGameEngineHost::GetWidePathByType(int type, LPWSTR wbuf, size_t len)
 {
-	// this this should be in its function
-	switch (pathType)
-	{
-	case 0:
-		swprintf_s(buffer, bufferlength, L"DebugLogs\\");
-		break;
-	case 1:
-		swprintf_s(buffer, bufferlength, L"Config\\");
-		break;
-	case 2:
-		swprintf_s(buffer, bufferlength, L"Temp\\");
-		break;
-	case 3:
-		swprintf_s(buffer, bufferlength, L"\\");
-		break;
-	}
+	LPSTR buf = new char[len];
+	auto result = GetPathByType(type, buf, len);
+	swprintf_s(wbuf, len, L"%S", buf);
 
-	return 1;
+	return result;
 }
 
 unsigned __int8* IGameEngineHost::Member46(_QWORD a1, unsigned __int8 *a2, _QWORD a3)

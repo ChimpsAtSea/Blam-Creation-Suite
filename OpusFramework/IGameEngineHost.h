@@ -219,8 +219,8 @@ public: /* instance functions */
 	/* 41 */ virtual bool __fastcall Member41(signed int, __int64, __int64);
 	/* 42 */ virtual void __fastcall FirefightNew(__int64, float);
 	/* 43 */ virtual BOOL __fastcall Member43(__int64, __int64);
-	/* 44 */ virtual bool __fastcall GetPathByType(int pathType, char *buffer, size_t bufferlength);
-	/* 45 */ virtual bool __fastcall GetWidePathByType(int pathType, wchar_t *buffer, size_t bufferlength);
+	/* 44 */ virtual bool __fastcall GetPathByType(int type, LPSTR buf, size_t len);
+	/* 45 */ virtual bool __fastcall GetWidePathByType(int type, LPWSTR wbuf, size_t len);
 	/* 46 */ virtual unsigned __int8* __fastcall Member46(_QWORD, unsigned __int8*, _QWORD);
 	/* 47 */ virtual __int64 __fastcall Member47(_QWORD, __int64);
 
