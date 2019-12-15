@@ -29,7 +29,7 @@ void __fastcall IGameEngineHost::Member02(__int64 player_identifier, unsigned in
 
 void __fastcall IGameEngineHost::EngineStateUpdate(eEngineState state)
 {
-	const char* pEngineStateString = GetEngineStateString(state);
+	const char* pEngineStateString = engine_state_to_string(state);
 	WriteLineVerbose("IGameEngineHost::EngineStateUpdate (%d):%s", state, pEngineStateString);
 
 	// `Unknown16` also needs a second arg so we skip it
@@ -441,5 +441,5 @@ __int64 __fastcall IGameEngineHost::Member47(_QWORD, __int64)
 {
 	// appears to be security related
 	WriteLineVerbose("IGameEngineHost::Member47");
-	return 0;
+	return 1;
 }

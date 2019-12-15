@@ -1,6 +1,6 @@
 #include "opusframework-private-pch.h"
 
-const char* GetEngineStateString(eEngineState engineState)
+const char* engine_state_to_string(eEngineState engineState)
 {
 	switch (engineState)
 	{
