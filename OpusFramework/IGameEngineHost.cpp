@@ -29,7 +29,8 @@ void __fastcall IGameEngineHost::Member02(__int64 player_identifier, unsigned in
 
 void __fastcall IGameEngineHost::EngineStateUpdate(eEngineState state)
 {
-	WriteLineVerbose("IGameEngineHost::EngineStateUpdate(%d)", state);
+	const char* pEngineStateString = GetEngineStateString(state);
+	WriteLineVerbose("IGameEngineHost::EngineStateUpdate (%d):%s", state, pEngineStateString);
 
 	// `Unknown16` also needs a second arg so we skip it
 	if (state != eEngineState::Unknown16)

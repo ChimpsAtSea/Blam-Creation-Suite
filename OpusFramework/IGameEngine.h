@@ -131,6 +131,8 @@ enum class eEngineState : int
 	Unknown15, // unknown
 	Unknown16, // unknown this takes some extra argument provided to UpdateEngineState
 };
+extern const char* GetEngineStateString(eEngineState engineState);
+
 
 class IGameEngine
 {

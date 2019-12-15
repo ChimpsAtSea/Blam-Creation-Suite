@@ -106,6 +106,7 @@
     <ClCompile Include="application_reflection\globalreference.cpp" />
     <ClCompile Include="BuildVersion.cpp" />
     <ClCompile Include="IFileAccess.cpp" />
+    <ClCompile Include="IGameEngine.cpp" />
     <ClCompile Include="IGameEngineHost.cpp" />
     <ClCompile Include="IGameEvents.cpp" />
     <ClCompile Include="application_reflection\mappingfileparser.cpp" />
