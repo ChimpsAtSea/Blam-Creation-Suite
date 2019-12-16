@@ -64,6 +64,7 @@ public:
 	static GameShutdownCallback* s_gameShutdownCallback;
 	static GameInterface* s_pCurrentGameInterface;
 	static IGameEngine* s_pHaloReachEngine;
+	static std::atomic<int> s_uiStackLength;
 	
 };
 

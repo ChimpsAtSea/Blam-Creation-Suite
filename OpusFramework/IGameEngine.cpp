@@ -12,8 +12,8 @@ const char* engine_state_to_string(eEngineState engineState)
 	case eEngineState::ReloadSettings:				return "ReloadSettings";
 	case eEngineState::GameLoadStart:				return "GameLoadStart";
 	case eEngineState::GameLoadEnd:					return "GameLoadEnd";
-	case eEngineState::Unknown8:					return "Unknown8";
-	case eEngineState::Unknown9:					return "Unknown9";
+	case eEngineState::PushUIPage:					return "Unknown8";
+	case eEngineState::PopUIPage:					return "Unknown9";
 	case eEngineState::UpdateGameVariant:			return "UpdateGameVariant";
 	case eEngineState::UpdateMapVariant:			return "UpdateMapVariant";
 	case eEngineState::EndRound:					return "EndRound";

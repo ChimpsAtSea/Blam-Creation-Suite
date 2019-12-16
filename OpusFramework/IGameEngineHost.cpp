@@ -35,10 +35,21 @@ void __fastcall IGameEngineHost::EngineStateUpdate(eEngineState state)
 {
 	const char* pEngineStateString = engine_state_to_string(state);
 	WriteLineVerbose("IGameEngineHost::EngineStateUpdate (%d):%s", state, pEngineStateString);
-
-	// `Unknown16` also needs a second arg so we skip it
-	if (state != eEngineState::Unknown16)
+	
+	if (state != eEngineState::Unknown16) // `Unknown16` also needs a second arg so we skip it
 	{
+		switch (state)
+		{
+		case eEngineState::PushUIPage:
+			WriteLineVerbose("Push UI stack");
+			GameLauncher::s_uiStackLength++;
+			break;
+		case eEngineState::PopUIPage:
+			WriteLineVerbose("Pop UI stack");
+			GameLauncher::s_uiStackLength--;
+			break;
+		}
+
 		GameLauncher::s_pHaloReachEngine->UpdateEngineState(state);
 	}
 }
@@ -65,10 +76,16 @@ void __fastcall IGameEngineHost::Member06(s_game_results* buffer)
 
 void __fastcall IGameEngineHost::Member07(unsigned int a1)
 {
-	WriteLineVerbose("IGameEngineHost::Member07 PauseMenuOpened");
-
-	DebugUI::RegisterCallback(GameLauncher::DrawPauseMenu);
-	DebugUI::Show();
+	if (GameLauncher::s_uiStackLength == 0)
+	{
+		WriteLineVerbose("IGameEngineHost::Member07 PauseMenuOpened");
+		DebugUI::RegisterCallback(GameLauncher::DrawPauseMenu);
+		DebugUI::Show();
+	}
+	else
+	{
+		WriteLineVerbose("IGameEngineHost::Member07 UI Stack is %i", static_cast<int>(GameLauncher::s_uiStackLength));
+	}
 }
 
 void __fastcall IGameEngineHost::Member08(const wchar_t*, const wchar_t*)

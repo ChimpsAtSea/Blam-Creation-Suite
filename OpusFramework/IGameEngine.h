@@ -117,8 +117,8 @@ enum class eEngineState : int
 	GameLoadEnd, // sets `g_render_thread_mode` to the temp variable and sets the temp variable to `0`, sets `g_game_is_loading` to `false` and runs `UpdateGameStatus(RestartLevel)`
 
 	// 8 and 9 are connected
-	Unknown8, // allocates `c_controller_input_message` (loadout selection is shown) and sets a temp variable to `true`
-	Unknown9, // sets the temp variable to `false` and player spawns
+	PushUIPage, // allocates `c_controller_input_message` (loadout selection is shown) and sets a temp variable to `true`
+	PopUIPage, // sets the temp variable to `false` and player spawns
 
 	UpdateGameVariant, // creates a new `IGameVariant` and passes it to `IGameEngineHost::UpdateGameVariant`
 	UpdateMapVariant, // creates a new `IMapVariant` and passes it to `IGameEngineHost::UpdateMapVariant`

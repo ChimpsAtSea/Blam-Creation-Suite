@@ -5,6 +5,7 @@ bool GameLauncher::s_hideWindowOnStartup = false;
 GameLauncher::CurrentState GameLauncher::s_currentState = GameLauncher::CurrentState::eInactive;
 GameLauncher::GameLaunchCallback* GameLauncher::s_gameLaunchCallback = nullptr;
 GameLauncher::GameShutdownCallback* GameLauncher::s_gameShutdownCallback;
+std::atomic<int> GameLauncher::s_uiStackLength = 0;
 GameInterface* GameLauncher::s_pCurrentGameInterface = nullptr;
 IGameEngine* GameLauncher::s_pHaloReachEngine = nullptr;
 char* GameLauncher::s_pTerminationFlag = nullptr;
