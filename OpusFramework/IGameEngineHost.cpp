@@ -1,5 +1,9 @@
 #include "opusframework-private-pch.h"
 
+#define sign(value) (value < 0 ? -1 : 1)
+#define clamp(value, min_value, max_value) ((value) > (max_value) ? (max_value) : ((value) < (min_value) ? (min_value) : (value)))
+#define CONTROLLER_JOYSTICK_THRESHOLD 0.15f
+
 IGameEngineHost::IGameEngineHost()
 	:pGameEvents(&IGameEvents::g_gameEvents)
 {
@@ -54,7 +58,7 @@ __int64 __fastcall IGameEngineHost::WriteBufferToFile(LPVOID pBuffer, size_t buf
 	return __int64(0);
 }
 
-void __fastcall IGameEngineHost::Member06(s_game_results * buffer)
+void __fastcall IGameEngineHost::Member06(s_game_results* buffer)
 {
 	WriteLineVerbose("IGameEngineHost::Member06");
 }
@@ -67,13 +71,13 @@ void __fastcall IGameEngineHost::Member07(unsigned int a1)
 	DebugUI::Show();
 }
 
-void __fastcall IGameEngineHost::Member08(const wchar_t *, const wchar_t *) 
-{ 
+void __fastcall IGameEngineHost::Member08(const wchar_t*, const wchar_t*)
+{
 	WriteLineVerbose("IGameEngineHost::Member08");
 }
 
 void __fastcall IGameEngineHost::Member09(wchar_t buffer0[1024], wchar_t buffer1[1024])
-{ 
+{
 	WriteLineVerbose("IGameEngineHost::Member09");
 }
 
@@ -82,18 +86,18 @@ IGameEvents* __fastcall IGameEngineHost::GetGameEvents()
 	return pGameEvents;
 }
 
-void __fastcall IGameEngineHost::UpdateGameVariant(IGameVariant* variant) 
-{ 
+void __fastcall IGameEngineHost::UpdateGameVariant(IGameVariant* variant)
+{
 	WriteLineVerbose("IGameEngineHost::UpdateGameVariant");
 }
 
-void __fastcall IGameEngineHost::UpdateMapVariant(IMapVariant* variant) 
-{ 
-	WriteLineVerbose("IGameEngineHost::UpdateMapVariant"); 
+void __fastcall IGameEngineHost::UpdateMapVariant(IMapVariant* variant)
+{
+	WriteLineVerbose("IGameEngineHost::UpdateMapVariant");
 }
 
-void __fastcall IGameEngineHost::Member13(const wchar_t*, const wchar_t*, const void*, unsigned int) 
-{ 
+void __fastcall IGameEngineHost::Member13(const wchar_t*, const wchar_t*, const void*, unsigned int)
+{
 	WriteLineVerbose("IGameEngineHost::Member12");
 }
 
@@ -121,9 +125,9 @@ bool __fastcall IGameEngineHost::Member17(int a1)
 	return false;
 }
 
-void __fastcall IGameEngineHost::Member18(int) 
-{ 
-	WriteLineVerbose("IGameEngineHost::Member18"); 
+void __fastcall IGameEngineHost::Member18(int)
+{
+	WriteLineVerbose("IGameEngineHost::Member18");
 }
 
 __int64 __fastcall IGameEngineHost::MapLoadPecentStatus(__int64 a1, __int64 a2, float a3)
@@ -132,8 +136,8 @@ __int64 __fastcall IGameEngineHost::MapLoadPecentStatus(__int64 a1, __int64 a2, 
 	return __int64(0);
 }
 
-void __fastcall IGameEngineHost::Member20(__int64 a1, __int8 a2) 
-{ 
+void __fastcall IGameEngineHost::Member20(__int64 a1, __int8 a2)
+{
 	WriteLineVerbose("IGameEngineHost::Member20");
 }
 
@@ -159,7 +163,7 @@ void __fastcall IGameEngineHost::GetSessionInfo(s_session_info_part* buffer)
 	WriteVerbose("IGameEngineHost::GetSessionInfo");
 }
 
-void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership *pSessionMembership, uint32_t playercount)
+void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership* pSessionMembership, uint32_t playercount)
 {
 	WriteLineVerbose("s_session_membership count: %i", pSessionMembership->Count);
 	for (int i = 0; i < pSessionMembership->Count; i++)
@@ -193,7 +197,7 @@ bool __fastcall IGameEngineHost::Member27()
 	return false;
 }
 
-bool __fastcall IGameEngineHost::UpdateGraphics(Member28Struct *buffer)
+bool __fastcall IGameEngineHost::UpdateGraphics(Member28Struct* buffer)
 {
 	// set resolution to 4k
 	buffer->width = 3840;
@@ -207,9 +211,12 @@ bool __fastcall IGameEngineHost::UpdateGraphics(Member28Struct *buffer)
 	return buffer->fps_flags;
 }
 
-__int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member29Struct* buffer)
+__int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member29Struct& rMember29)
 {
-	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", buffer->service_tag, 5, L"UNSC");
+	assert(&rMember29);
+	rMember29 = {}; // reset values
+
+	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", rMember29.service_tag, 5, L"UNSC");
 
 	// todo: find a good home for this
 	SplashScreen::Destroy();
@@ -220,24 +227,7 @@ __int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member2
 
 bool __fastcall IGameEngineHost::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
 {
-	//if (GetAsyncKeyState(VK_F1))
-	//{
-	//	GameLauncher::s_pHaloReachEngine->Member02(IGameEngine::Member02EventEnum::Pause);
-	//}
-	//if (GetAsyncKeyState(VK_F2))
-	//{
-	//	GameLauncher::s_pHaloReachEngine->Member02(IGameEngine::Member02EventEnum::Unpause);
-	//}
-
-
-	/*
-		When we load the level, we set the g_waitingForInputUpdate to true allowing us
-		to reset the input system. This function sets the engine to use the keyboard
-		or mouse input.
-	*/
-
 	memset(pInputBuffer, 0, sizeof(*pInputBuffer));
-	pInputBuffer->unknown0 = 1;
 
 	bool debugUIVisible = DebugUI::IsVisible();
 	bool windowFocused = CustomWindow::IsWindowFocused();
@@ -252,47 +242,133 @@ bool __fastcall IGameEngineHost::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
 	// don't update and return an empty zero buffer
 	if (debugUIVisible)
 	{
+		pInputBuffer->inputSource = InputSource::MouseAndKeyboard;
 		return unsigned __int8(1);
 	}
 
-	// get keyboard state
-	BYTE keyboardState[256] = {};
-	pInputBuffer->MouseX = 0.0f;
-	pInputBuffer->MouseY = 0.0f;
-	pInputBuffer->mouseButtonBits = 0;
+	static InputSource sCurrentInputSource = InputSource::MouseAndKeyboard;
 
-	if (windowFocused)
+	// grab controller
+	// grab mouse and keyboard
+	
+	BYTE keyboardState[256] = {};
+	float mouseInputX = 0;
+	float mouseInputY = 0;
+	bool leftButtonPressed = 0;
+	bool rightButtonPressed = 0;
+	bool middleButtonPressed = 0;
+
+	bool hasControllerInput = false;
+	bool hasMouseAndKeyboardInput = false;
+
+	float fThumbLX = 0;
+	float fThumbLY = 0;
+	float fThumbRX = 0;
+	float fThumbRY = 0;
+	float fThumbL_Length = 0;
+	float fThumbR_Length = 0;
+	XINPUT_STATE xinputState = {};
+
+	if (windowFocused || true)
 	{
-		GetKeyState(-1); // force keys to update
-		if (GetKeyboardState(keyboardState))
+		DWORD xinputGetStateResult = XInputGetState(0, &xinputState);
+		if (xinputGetStateResult == ERROR_SUCCESS)
 		{
-			for (int i = 0; i < 256; i++)
+			hasControllerInput |= xinputState.Gamepad.wButtons != 0;
+			hasControllerInput |= xinputState.Gamepad.bLeftTrigger != 0;
+			hasControllerInput |= xinputState.Gamepad.bRightTrigger != 0;
+
+			fThumbLX = static_cast<float>(static_cast<short>(xinputState.Gamepad.sThumbLX));
+			fThumbLY = static_cast<float>(static_cast<short>(xinputState.Gamepad.sThumbLY));
+			fThumbRX = static_cast<float>(static_cast<short>(xinputState.Gamepad.sThumbRX));
+			fThumbRY = static_cast<float>(static_cast<short>(xinputState.Gamepad.sThumbRY));
+
+			fThumbLX /= static_cast<float>(fThumbLX > 0.0f ? INT16_MAX : -INT16_MIN);
+			fThumbLY /= static_cast<float>(fThumbLY > 0.0f ? INT16_MAX : -INT16_MIN);
+			fThumbRX /= static_cast<float>(fThumbRX > 0.0f ? INT16_MAX : -INT16_MIN);
+			fThumbRY /= static_cast<float>(fThumbRY > 0.0f ? INT16_MAX : -INT16_MIN);
+
+			fThumbL_Length = sqrtf(fThumbLX * fThumbLX + fThumbLY * fThumbLY);
+			fThumbR_Length = sqrtf(fThumbRX * fThumbRX + fThumbRY * fThumbRY);
+
+			fThumbLX = sign(fThumbLX) * clamp(abs(fThumbLX) - CONTROLLER_JOYSTICK_THRESHOLD, 0.0f, 1.0f - CONTROLLER_JOYSTICK_THRESHOLD) / (1.0f - CONTROLLER_JOYSTICK_THRESHOLD);
+			fThumbLY = sign(fThumbLY) * clamp(abs(fThumbLY) - CONTROLLER_JOYSTICK_THRESHOLD, 0.0f, 1.0f - CONTROLLER_JOYSTICK_THRESHOLD) / (1.0f - CONTROLLER_JOYSTICK_THRESHOLD);
+			fThumbRX = sign(fThumbRX) * clamp(abs(fThumbRX) - CONTROLLER_JOYSTICK_THRESHOLD, 0.0f, 1.0f - CONTROLLER_JOYSTICK_THRESHOLD) / (1.0f - CONTROLLER_JOYSTICK_THRESHOLD);
+			fThumbRY = sign(fThumbRY) * clamp(abs(fThumbRY) - CONTROLLER_JOYSTICK_THRESHOLD, 0.0f, 1.0f - CONTROLLER_JOYSTICK_THRESHOLD) / (1.0f - CONTROLLER_JOYSTICK_THRESHOLD);
+
+			hasControllerInput |= fThumbL_Length > CONTROLLER_JOYSTICK_THRESHOLD;
+			hasControllerInput |= fThumbR_Length > CONTROLLER_JOYSTICK_THRESHOLD;
+		}
+
+		{
+			GetKeyState(-1); // force keys to update
+			if (!GetKeyboardState(keyboardState))
+				ZeroMemory(keyboardState, sizeof(keyboardState));
+
+			mouseInputX = MouseInput::GetMouseX();
+			mouseInputY = MouseInput::GetMouseY();
+
+			leftButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Left);
+			rightButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Right);
+			middleButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Middle);
+
 			{
-				pInputBuffer->keyboardState[i] = (keyboardState[i] & 0b10000000) != 0;
+				//for (size_t i = 0; i < sizeof(keyboardState); i++)
+				//	hasMouseAndKeyboardInput |= keyboardState[i] != 0;
+
+				hasMouseAndKeyboardInput |= mouseInputX != 0.0f;
+				hasMouseAndKeyboardInput |= mouseInputY != 0.0f;
+				hasMouseAndKeyboardInput |= leftButtonPressed;
+				hasMouseAndKeyboardInput |= rightButtonPressed;
+				hasMouseAndKeyboardInput |= middleButtonPressed;
+
+				if (hasMouseAndKeyboardInput)
+				{
+					sCurrentInputSource = InputSource::MouseAndKeyboard;
+				}
 			}
 		}
-
-		{
-			float mouseInputX = MouseInput::GetMouseX();
-			float mouseInputY = MouseInput::GetMouseY();
-
-			pInputBuffer->MouseX += mouseInputX;
-			pInputBuffer->MouseY += mouseInputY;
-
-			bool leftButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Left);
-			bool rightButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Right);
-			bool middleButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Middle);
-
-			pInputBuffer->mouseButtonBits |= BYTE(leftButtonPressed) << 0;
-			pInputBuffer->mouseButtonBits |= BYTE(middleButtonPressed) << 1;
-			pInputBuffer->mouseButtonBits |= BYTE(rightButtonPressed) << 2;
-		}
 	}
+
+	if (hasControllerInput)
+	{
+		sCurrentInputSource = InputSource::Gamepad;
+	}
+	else if (hasMouseAndKeyboardInput)
+	{
+		sCurrentInputSource = InputSource::MouseAndKeyboard;
+	}
+
+	if (sCurrentInputSource == InputSource::MouseAndKeyboard)
+	{
+		for (int i = 0; i < 256; i++)
+		{
+			pInputBuffer->keyboardState[i] = (keyboardState[i] & 0b10000000) != 0;
+		}
+		pInputBuffer->MouseX += mouseInputX;
+		pInputBuffer->MouseY += mouseInputY;
+		pInputBuffer->mouseButtonBits |= BYTE(leftButtonPressed) << 0;
+		pInputBuffer->mouseButtonBits |= BYTE(middleButtonPressed) << 1;
+		pInputBuffer->mouseButtonBits |= BYTE(rightButtonPressed) << 2;
+	}
+
+	if (sCurrentInputSource == InputSource::Gamepad)
+	{
+		pInputBuffer->wButtons = xinputState.Gamepad.wButtons;
+		pInputBuffer->bLeftTrigger = xinputState.Gamepad.bLeftTrigger;
+		pInputBuffer->bRightTrigger = xinputState.Gamepad.bRightTrigger;
+		pInputBuffer->sThumbLX = fThumbLX * static_cast<float>(fThumbLX > 0 ? INT16_MAX : -INT16_MIN);
+		pInputBuffer->sThumbLY = fThumbLY * static_cast<float>(fThumbLY > 0 ? INT16_MAX : -INT16_MIN);
+		pInputBuffer->sThumbRX = fThumbRX * static_cast<float>(fThumbRX > 0 ? INT16_MAX : -INT16_MIN);
+		pInputBuffer->sThumbRY = fThumbRY * static_cast<float>(fThumbRY > 0 ? INT16_MAX : -INT16_MIN);
+	}
+
+	pInputBuffer->inputSource = sCurrentInputSource;
 
 	return unsigned __int8(1);
 }
 
-void IGameEngineHost::Member31(_QWORD a1, float *a2)
+void IGameEngineHost::Member31(_QWORD a1, float* a2)
 {
 	*a2 = 0.f;
 	// WriteLineVerbose("IGameEngineHost::Member31"); // spams if fps is unlocked
@@ -348,12 +424,12 @@ bool __fastcall IGameEngineHost::UpdatePlayerNames(__int64* playerIndices, wchar
 	return false;
 }
 
-void IGameEngineHost::Member35(const wchar_t *a1, const wchar_t *a2) 
-{ 
-	WriteLineVerbose("IGameEngineHost::Member35"); 
+void IGameEngineHost::Member35(const wchar_t* a1, const wchar_t* a2)
+{
+	WriteLineVerbose("IGameEngineHost::Member35");
 }
 
-bool IGameEngineHost::Member36(wchar_t *a1, __int64 a2)
+bool IGameEngineHost::Member36(wchar_t* a1, __int64 a2)
 {
 	WriteLineVerbose("IGameEngineHost::Member36");
 	return 0;
@@ -432,7 +508,7 @@ bool __fastcall IGameEngineHost::GetWidePathByType(int type, LPWSTR wbuf, size_t
 	return result;
 }
 
-unsigned __int8* IGameEngineHost::Member46(_QWORD a1, unsigned __int8 *a2, _QWORD a3)
+unsigned __int8* IGameEngineHost::Member46(_QWORD a1, unsigned __int8* a2, _QWORD a3)
 {
 	return 0;
 }

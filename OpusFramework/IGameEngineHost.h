@@ -13,16 +13,30 @@ public: /* structures and enums */
 		k_NumNetworkID
 	};
 
+	enum class InputSource : int
+	{
+		Gamepad,
+		MouseAndKeyboard
+	};
+
 #pragma pack(push, 1)
 	struct InputBuffer
 	{
-		int unknown0;
+		InputSource inputSource;
 		char keyboardState[256];
 		float MouseX;
 		float MouseY;
 		_QWORD unknown10C;
 		char mouseButtonBits;
-		char unknown115[19];
+		char __padding[3];
+		DWORD                               wButtons;
+		BYTE                                bLeftTrigger;
+		BYTE                                bRightTrigger;
+		SHORT                               sThumbLX;
+		SHORT                               sThumbLY;
+		SHORT                               sThumbRX;
+		SHORT                               sThumbRY;
+		char __padding2[2];
 	};
 #pragma pack(pop)
 	static constexpr size_t InputBufferSize = sizeof(InputBuffer);
@@ -165,9 +179,10 @@ public: /* structures and enums */
 		char unknown200[512];
 		char unknown400[512];
 		char unknown600[100];
+		char unknown664[0x1C];
 	};
 	static constexpr size_t Member29StructSize = sizeof(Member29Struct);
-	static_assert(Member29StructSize == 0x664, "Member29Struct is incorrect size");
+	static_assert(Member29StructSize == 0x680, "Member29Struct is incorrect size");
 
 	struct s_transport_address;
 
@@ -204,7 +219,7 @@ public: /* instance functions */
 	/* 26 */ virtual bool __fastcall Member26();
 	/* 27 */ virtual bool __fastcall Member27();
 	/* 28 */ virtual bool __fastcall UpdateGraphics(Member28Struct* buffer);
-	/* 29 */ virtual __int64 __fastcall Member29(wchar_t playerNames[4][32], Member29Struct* buffer);
+	/* 29 */ virtual __int64 __fastcall Member29(wchar_t playerNames[4][32], Member29Struct& rMember29);
 	/* 30 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer);
 	/* 31 */ virtual void Member31(_QWORD, float *);
 	/* 32 */ virtual void Member32();
