@@ -4,10 +4,11 @@ class DataReferenceBase
 {
 public:
 	DataReferenceBase(
+		EngineVersion engineVersion,
 		BuildVersion buildVersion,
 		size_t dataSize,
 		size_t offset,
-		intptr_t(find_offset_func)(BuildVersion buildVersion)
+		intptr_t(find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion)
 	)
 		: m_buildVersion(buildVersion),
 		m_dataSize(dataSize),
@@ -27,16 +28,16 @@ public:
 			g_pDataReferenceBaseBaseLast = this;
 		}
 
-		if (buildVersion != BuildVersion::NotSet && IsHaloExecutableLoaded(buildVersion))
+		if (buildVersion != BuildVersion::NotSet && IsHaloExecutableLoaded(engineVersion))
 		{
-			initNode(buildVersion);
+			initNode(engineVersion, buildVersion);
 		}
 	}
 
 protected:
 	void* m_pPtr;
 private:
-	intptr_t(*m_find_offset_func)(BuildVersion buildVersion);
+	intptr_t(*m_find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion);
 	BuildVersion m_buildVersion;
 	size_t m_dataSize;
 	size_t m_offset;
@@ -45,48 +46,48 @@ private:
 	DataReferenceBase* m_pNextDataReference;
 
 public:
-	static void InitTree(BuildVersion buildVersion)
+	static void InitTree(EngineVersion engineVersion, BuildVersion buildVersion)
 	{
 		// this iteration avoids having to do this recursively
 
 		DataReferenceBase* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
 		while (pCurrentDataReferenceBase)
 		{
-			pCurrentDataReferenceBase = pCurrentDataReferenceBase->initNode(buildVersion);
+			pCurrentDataReferenceBase = pCurrentDataReferenceBase->initNode(engineVersion, buildVersion);
 		}
 	}
 
-	static void DeinitTree(BuildVersion buildVersion)
+	static void DeinitTree(EngineVersion engineVersion, BuildVersion buildVersion)
 	{
 		// this iteration avoids having to do this recursively
 
 		DataReferenceBase* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
 		while (pCurrentDataReferenceBase)
 		{
-			pCurrentDataReferenceBase = pCurrentDataReferenceBase->deinitNode(buildVersion);
+			pCurrentDataReferenceBase = pCurrentDataReferenceBase->deinitNode();
 		}
 	}
 
 private:
 
-	DataReferenceBase* initNode(BuildVersion buildVersion)
+	DataReferenceBase* initNode(EngineVersion engineVersion, BuildVersion buildVersion)
 	{
 		if (m_pPtr == nullptr)
 		{
 			if (m_buildVersion == BuildVersion::NotSet)
 			{
 				assert(m_find_offset_func);
-				m_pPtr = getPointer(buildVersion);
+				m_pPtr = getPointer(engineVersion, buildVersion);
 			}
 			if (m_buildVersion == buildVersion)
 			{
-				m_pPtr = getPointer(buildVersion);
+				m_pPtr = getPointer(engineVersion, buildVersion);
 				assert(m_pPtr);
 			}
 		}
 		return m_pNextDataReference;
 	}
-	DataReferenceBase* deinitNode(BuildVersion buildVersion)
+	DataReferenceBase* deinitNode()
 	{
 		if (m_pPtr == nullptr)
 		{
@@ -95,12 +96,12 @@ private:
 		return m_pNextDataReference;
 	}
 
-	void* getPointer(BuildVersion buildVersion)
+	void* getPointer(EngineVersion engineVersion, BuildVersion buildVersion)
 	{
 		intptr_t offset = m_offset;
 		if (offset == 0 && m_find_offset_func)
 		{
-			offset = m_find_offset_func(buildVersion);
+			offset = m_find_offset_func(engineVersion, buildVersion);
 
 			if (offset == ~intptr_t())
 			{
@@ -112,7 +113,7 @@ private:
 			assert(m_buildVersion == BuildVersion::NotSet && static_cast<intptr_t>(offset + m_dataSize) < GetHaloTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
 		}
 
-		HMODULE hModule = GetModuleHandleA(GetHaloExecutableString(buildVersion));
+		HMODULE hModule = GetModuleHandleA(GetHaloExecutableString(engineVersion));
 		char* pBaseAddress = reinterpret_cast<char*>(hModule);
 		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetHaloBaseAddress(buildVersion)));
 		return ptr;
@@ -326,13 +327,13 @@ public:
 	}
 };
 
-template<typename T, intptr_t(find_offset_func)(BuildVersion buildVersion)>
+template<typename T, intptr_t(find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion)>
 class DataEx : public DataReferenceBase
 {
 public:
 	DataEx(const DataEx&) = delete;
 	DataEx()
-		: DataReferenceBase(BuildVersion::NotSet, sizeof(T), 0, find_offset_func)
+		: DataReferenceBase(EngineVersion::NotSet, BuildVersion::NotSet, sizeof(T), 0, find_offset_func)
 	{
 
 	}

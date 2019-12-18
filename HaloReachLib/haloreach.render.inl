@@ -3,7 +3,7 @@ HaloReach_2019_Jun_24_Data<void*, 0x1810EC5B0> g_pIDXGISwapChain;
 HaloReach_2019_Jun_24_Data<IID, 0x180E0B2A8> stru_180E0B2A8;
 HaloReach_2019_Jun_24_Pointer<IDXGIFactory1*, 0x18112D368> ppFactory;
 
-intptr_t g_pDevice_offset(BuildVersion buildVersion)
+intptr_t g_pDevice_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -15,7 +15,7 @@ intptr_t g_pDevice_offset(BuildVersion buildVersion)
 // #TODO: Remove this and create the device at the MCC layer
 DataEx<ID3D11Device*, g_pDevice_offset> g_pDevice;
 
-intptr_t g_pSwapChain_offset(BuildVersion buildVersion)
+intptr_t g_pSwapChain_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -27,7 +27,7 @@ intptr_t g_pSwapChain_offset(BuildVersion buildVersion)
 // #TODO: Remove this and create the device at the MCC layer
 PointerEx<IDXGISwapChain*, g_pSwapChain_offset> g_pSwapChain;
 
-intptr_t initialize_device_offset(BuildVersion buildVersion)
+intptr_t initialize_device_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -48,7 +48,7 @@ FunctionHookEx<initialize_device_offset, char()> initialize_device = { "initiali
   return result;
 } };
 
-intptr_t game_options_new_offset(BuildVersion buildVersion)
+intptr_t game_options_new_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -66,7 +66,7 @@ FunctionHookEx<game_options_new_offset, __int64 __fastcall (s_game_options* game
 	return result;
 } };
 
-intptr_t observer_get_suggested_field_of_view_offset(BuildVersion buildVersion)
+intptr_t observer_get_suggested_field_of_view_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -84,7 +84,7 @@ FunctionHookEx<observer_get_suggested_field_of_view_offset, float(__stdcall)()> 
 	return result;
 } };
 
-intptr_t camera_new_offset(BuildVersion buildVersion)
+intptr_t camera_new_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{

@@ -8,7 +8,7 @@ typedef void(FunctionHookCallback)(void* pUserData);
 class FunctionHookBase
 {
 public:
-	FunctionHookBase(const char* pName, BuildVersion buildVersion, size_t offset, intptr_t(find_offset_func)(BuildVersion buildVersion))
+	FunctionHookBase(const char* pName, BuildVersion buildVersion, size_t offset, intptr_t(find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion))
 		: m_buildVersion(buildVersion)
 		, m_offset(offset)
 		, m_pNextFunctionHook(nullptr)
@@ -34,7 +34,7 @@ public:
 		}
 	}
 
-	intptr_t(*m_find_offset_func)(BuildVersion buildVersion);
+	intptr_t(*m_find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion);
 	intptr_t m_offset;
 	BuildVersion m_buildVersion;
 	bool m_isActive;
@@ -47,11 +47,11 @@ public:
 	static FunctionHookBase* g_pFirstFunctionHook;
 	static FunctionHookBase* g_pLastFunctionHook;
 
-	[[nodiscard]] FunctionHookBase* InitNode(BuildVersion buildVersion);
-	[[nodiscard]] FunctionHookBase* DeinitNode(BuildVersion buildVersion);
+	[[nodiscard]] FunctionHookBase* InitNode(EngineVersion engineVersion, BuildVersion buildVersion);
+	[[nodiscard]] FunctionHookBase* DeinitNode(EngineVersion engineVersion, BuildVersion buildVersion);
 
-	static void InitTree(BuildVersion buildVersion);
-	static void DeinitTree(BuildVersion buildVersion);
+	static void InitTree(EngineVersion engineVersion, BuildVersion buildVersion);
+	static void DeinitTree(EngineVersion engineVersion, BuildVersion buildVersion);
 
 	void SetIsActive(bool isActive)
 	{
@@ -170,10 +170,10 @@ private:
 	}
 };
 
-template<intptr_t(find_offset_func)(BuildVersion buildVersion), typename T>
+template<intptr_t(find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion), typename T>
 struct FunctionHookEx;
 
-template<intptr_t(find_offset_func)(BuildVersion buildVersion), typename R, typename ...Args>
+template<intptr_t(find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion), typename R, typename ...Args>
 struct FunctionHookEx<find_offset_func, R(Args...)> : FunctionHookBase
 {
 public:

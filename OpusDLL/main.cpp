@@ -2,11 +2,11 @@
 
 __declspec(dllexport) void opus() {};
 
-extern void init_halo_reach_with_mcc(BuildVersion buildVersion, bool isMCC);
-extern void deinit_halo_reach(BuildVersion buildVersion);
+extern void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVersion, bool isMCC);
+extern void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
 void haloreach_dll_loaded_callback()
 {
-	init_halo_reach_with_mcc(BuildVersion::Build_1_1211_0_0, true); // #TODO: Detect halo game id
+	init_halo_reach_with_mcc(EngineVersion::HaloReach, BuildVersion::Build_1_1211_0_0, true); // #TODO: Detect halo game id
 }
 
 typedef FARPROC(__stdcall GetProcAddressFunc)(HMODULE hModule, LPCSTR lpProcName);

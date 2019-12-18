@@ -1,5 +1,11 @@
 #pragma once
 
+enum class EngineVersion
+{
+	NotSet,
+	HaloReach
+};
+
 enum class BuildVersion
 {
 	NotSet,
@@ -47,20 +53,15 @@ constexpr intptr_t GetHaloTopAddress(BuildVersion buildVersion)
 	return ~intptr_t();
 }
 
-constexpr const char* GetHaloExecutableString(BuildVersion buildVersion)
+constexpr const char* GetHaloExecutableString(EngineVersion engineVersion)
 {
-	switch (buildVersion)
+	switch (engineVersion)
 	{
-	case BuildVersion::Build_1_887_0_0:
-	case BuildVersion::Build_1_1035_0_0:
-	case BuildVersion::Build_1_1186_0_0:
-	case BuildVersion::Build_1_1211_0_0:
-	case BuildVersion::Build_1_1246_0_0:
-	case BuildVersion::Build_1_1270_0_0:
+	case EngineVersion::HaloReach:
 		return "haloreach.dll";
 	}
-	FATAL_ERROR("Unsupported BuildVersion");
+	FATAL_ERROR("Unsupported GameVersion");
 }
 
-extern bool IsHaloExecutableLoaded(BuildVersion buildVersion);
-extern void* GetLoadedHaloModule(BuildVersion buildVersion);
+extern bool IsHaloExecutableLoaded(EngineVersion engineVersion);
+extern void* GetLoadedHaloModule(EngineVersion engineVersion);

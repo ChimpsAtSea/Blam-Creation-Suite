@@ -6,7 +6,7 @@
 
 
 
-void patch_out_gameenginehostcallback_mov_rsi(BuildVersion id, intptr_t offset)
+void patch_out_gameenginehostcallback_mov_rsi(BuildVersion buildVersion, intptr_t offset)
 {
 	char* pBeginning = (char*)GetLoadedHaloModule(id);
 
@@ -34,7 +34,7 @@ void patch_out_gameenginehostcallback_mov_rsi(BuildVersion id, intptr_t offset)
 }
 
 
-intptr_t sub_1800AE4E0_offset(BuildVersion buildVersion)
+intptr_t sub_1800AE4E0_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -274,7 +274,7 @@ const char* network_session_state_to_string(e_network_session_state network_sess
 	}
 }
 
-intptr_t sub_18006DAE0_offset(BuildVersion buildVersion)
+intptr_t sub_18006DAE0_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -291,7 +291,7 @@ FunctionHookEx<sub_18006DAE0_offset, int __fastcall (c_network_session* a1, BOOL
 
 const char* ppNetworkSessionNames[] = { "Squad Session", "Posse Session", "Group Session", "Target Session" };
 
-intptr_t c_network_session_abort_offset(BuildVersion buildVersion)
+intptr_t c_network_session_abort_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -306,7 +306,7 @@ FunctionHookEx<c_network_session_abort_offset, __int64 __fastcall (c_network_ses
 	return result;
 } };
 
-intptr_t c_network_session_handle_peer_joining_offset(BuildVersion buildVersion)
+intptr_t c_network_session_handle_peer_joining_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -321,7 +321,7 @@ FunctionHookEx<c_network_session_handle_peer_joining_offset, void __fastcall (c_
 	c_network_session_handle_peer_joining(_this);
 } };
 
-intptr_t sub_180029B70_offset(BuildVersion buildVersion)
+intptr_t sub_180029B70_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -335,7 +335,7 @@ FunctionHookEx<sub_180029B70_offset, void __fastcall (c_network_session* _this, 
 	return sub_180029B70(_this, a2, a3);
 } };
 
-intptr_t sub_180019F00_offset(BuildVersion buildVersion)
+intptr_t sub_180019F00_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -349,7 +349,7 @@ FunctionHookEx<sub_180019F00_offset, BYTE* __fastcall (c_network_session_members
 	return sub_180019F00(a1);
 } };
 
-intptr_t sub_18002E040_offset(BuildVersion buildVersion)
+intptr_t sub_18002E040_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -365,7 +365,7 @@ FunctionHookEx<sub_18002E040_offset, __int64 __fastcall (c_network_session_membe
 
 
 
-intptr_t c_network_session_process_pending_joins_offset(BuildVersion buildVersion)
+intptr_t c_network_session_process_pending_joins_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -398,7 +398,7 @@ FunctionHookEx<c_network_session_process_pending_joins_offset, unsigned __int64 
 	return c_network_session_process_pending_joins(_this);
 } };
 
-intptr_t c_network_session_add_pending_join_to_session_offset(BuildVersion buildVersion)
+intptr_t c_network_session_add_pending_join_to_session_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -412,7 +412,7 @@ FunctionHookEx<c_network_session_add_pending_join_to_session_offset, __int64 __f
 	return c_network_session_add_pending_join_to_session(_this, join_nonce);
 } };
 
-intptr_t c_network_message_handler_handle_channel_message_offset(BuildVersion buildVersion)
+intptr_t c_network_message_handler_handle_channel_message_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -434,7 +434,7 @@ FunctionHookEx<c_network_message_handler_handle_channel_message_offset, void __f
 	);
 } };
 
-intptr_t c_network_channel_receive_packet_offset(BuildVersion buildVersion)
+intptr_t c_network_channel_receive_packet_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -449,7 +449,7 @@ FunctionHookEx<c_network_channel_receive_packet_offset, __int64 __fastcall (__in
 	return c_network_channel_receive_packet(a1, a2, a3, a4);
 } };
 
-intptr_t c_network_link_process_packet_internal_offset(BuildVersion buildVersion)
+intptr_t c_network_link_process_packet_internal_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -464,7 +464,7 @@ FunctionHookEx<c_network_link_process_packet_internal_offset, __int64 __fastcall
 	return c_network_link_process_packet_internal(a1, a2);
 } };
 
-intptr_t c_network_channel_allocate_offset(BuildVersion buildVersion)
+intptr_t c_network_channel_allocate_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -480,7 +480,7 @@ FunctionHookEx<c_network_channel_allocate_offset, signed __int64 __fastcall (__i
 } };
 
 
-intptr_t c_network_channel_manager_recreate_channels_offset(BuildVersion buildVersion)
+intptr_t c_network_channel_manager_recreate_channels_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -499,7 +499,7 @@ FunctionHookEx<c_network_channel_manager_recreate_channels_offset, void __fastca
 } };
 
 
-intptr_t sub_18003A740_offset(BuildVersion buildVersion)
+intptr_t sub_18003A740_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -523,7 +523,7 @@ FunctionHookEx<sub_18003A740_offset, char __fastcall (__int64, __int64, __int64,
 } };
 
 
-intptr_t c_network_message_gateway__send_message_directed_offset(BuildVersion buildVersion)
+intptr_t c_network_message_gateway__send_message_directed_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{

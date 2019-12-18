@@ -3,35 +3,35 @@
 FunctionHookBase* FunctionHookBase::g_pFirstFunctionHook = nullptr;
 FunctionHookBase* FunctionHookBase::g_pLastFunctionHook = nullptr;
 
-void FunctionHookBase::InitTree(BuildVersion buildVersion)
+void FunctionHookBase::InitTree(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	// this iteration avoids having to do this recursively
 
 	FunctionHookBase* pCurrentFunctionHook = g_pFirstFunctionHook;
 	while (pCurrentFunctionHook)
 	{
-		pCurrentFunctionHook = pCurrentFunctionHook->InitNode(buildVersion);
+		pCurrentFunctionHook = pCurrentFunctionHook->InitNode(engineVersion, buildVersion);
 	}
 }
 
-void FunctionHookBase::DeinitTree(BuildVersion buildVersion)
+void FunctionHookBase::DeinitTree(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	// this iteration avoids having to do this recursively
 
 	FunctionHookBase* pCurrentFunctionHook = g_pFirstFunctionHook;
 	while (pCurrentFunctionHook)
 	{
-		pCurrentFunctionHook = pCurrentFunctionHook->DeinitNode(buildVersion);
+		pCurrentFunctionHook = pCurrentFunctionHook->DeinitNode(engineVersion, buildVersion);
 	}
 }
 
-FunctionHookBase* FunctionHookBase::InitNode(BuildVersion buildVersion)
+FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	if ((buildVersion == m_buildVersion || (m_buildVersion == BuildVersion::NotSet && m_find_offset_func)) && m_isActive && !m_isHooked)
 	{
 		if (m_offset == 0 && m_find_offset_func)
 		{
-			m_offset = m_find_offset_func(buildVersion);
+			m_offset = m_find_offset_func(engineVersion, buildVersion);
 
 			if (m_offset == ~intptr_t())
 			{
@@ -59,12 +59,12 @@ FunctionHookBase* FunctionHookBase::InitNode(BuildVersion buildVersion)
 
 		if (rHook)
 		{
-			auto result = create_hook(buildVersion, m_offset, pFunctionName, rHook, rBase);
+			auto result = create_hook(engineVersion, buildVersion, m_offset, pFunctionName, rHook, rBase);
 			assert(result == 0);
 		}
 		else
 		{
-			populate_function_ptr(GetHaloExecutableString(buildVersion), GetHaloBaseAddress(buildVersion), m_offset, rBase);
+			populate_function_ptr(GetHaloExecutableString(engineVersion), GetHaloBaseAddress(buildVersion), m_offset, rBase);
 			WriteLineVerbose("Created function pointer for %s", pFunctionName);
 		}
 
@@ -74,7 +74,7 @@ FunctionHookBase* FunctionHookBase::InitNode(BuildVersion buildVersion)
 }
 
 
-FunctionHookBase* FunctionHookBase::DeinitNode(BuildVersion buildVersion)
+FunctionHookBase* FunctionHookBase::DeinitNode(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	return m_pNextFunctionHook;
 }

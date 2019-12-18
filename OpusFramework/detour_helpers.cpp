@@ -50,9 +50,9 @@ void memcpy_virtual(
 	}
 }
 
-void nop_address(BuildVersion id, intptr_t offset, size_t count)
+void nop_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, size_t count)
 {
-	char* pBeginning = (char*)GetLoadedHaloModule(id);
+	char* pBeginning = (char*)GetLoadedHaloModule(engineVersion);
 	char* pNopAttack = pBeginning + (offset - 0x180000000);
 
 	char nop = 0x90i8;
@@ -62,9 +62,9 @@ void nop_address(BuildVersion id, intptr_t offset, size_t count)
 	}
 }
 
-void copy_to_address(BuildVersion id, intptr_t offset, void* data, size_t length)
+void copy_to_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, void* data, size_t length)
 {
-	char* pBeginning = (char*)GetLoadedHaloModule(id);
+	char* pBeginning = (char*)GetLoadedHaloModule(engineVersion);
 	char* pDataAttack = pBeginning + (offset - 0x180000000);
 
 	memcpy_virtual(pDataAttack, data, length);

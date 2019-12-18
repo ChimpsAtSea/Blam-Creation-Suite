@@ -12,8 +12,8 @@ extern void memcpy_virtual(
 	size_t size
 );
 
-extern void copy_to_address(BuildVersion id, intptr_t offset, void* data, size_t length);
-extern void nop_address(BuildVersion id, intptr_t offset, size_t count);
+extern void copy_to_address(BuildVersion buildVersion, intptr_t offset, void* data, size_t length);
+extern void nop_address(BuildVersion buildVersion, intptr_t offset, size_t count);
 
 #define roundup(n, denominator) (((n + denominator - 1) / denominator ) * denominator )
 
@@ -76,7 +76,7 @@ void create_hook(const char pName[], void* pTargetFunction, Ta hook, Tb& rOrigin
 }
 
 template<typename Ta, typename Tb>
-LONG create_hook(BuildVersion buildVersion, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
+LONG create_hook(EngineVersion engineVersion, BuildVersion buildVersion, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
 {
 	if (offset == -1)
 	{
@@ -84,7 +84,7 @@ LONG create_hook(BuildVersion buildVersion, size_t offset, const char pName[], T
 
 	}
 
-	char* const pModule = reinterpret_cast<char*>(GetLoadedHaloModule(buildVersion));
+	char* const pModule = reinterpret_cast<char*>(GetLoadedHaloModule(engineVersion));
 	size_t const baseAddress = GetHaloBaseAddress(buildVersion);
 
 	rOriginal = (Tb)(pModule + (offset - baseAddress));

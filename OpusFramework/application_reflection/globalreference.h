@@ -6,13 +6,13 @@ public:
 	GlobalReference(const char* pReferenceName, OffsetFunction offsetFunction);
 	GlobalReference(const char* pReferenceName, BuildVersion buildVersion, intptr_t offset);
 
-	static void InitTree(BuildVersion buildVersion);
-	static void DeinitTree(BuildVersion buildVersion);
+	static void InitTree(EngineVersion engineVersion, BuildVersion buildVersion);
+	static void DeinitTree(EngineVersion engineVersion, BuildVersion buildVersion);
 	static void DestroyTree();
 private:
 	void init();
-	GlobalReference* initNode(BuildVersion buildVersion);
-	GlobalReference* deinitNode(BuildVersion buildVersion);
+	GlobalReference* initNode(EngineVersion engineVersion, BuildVersion buildVersion);
+	GlobalReference* deinitNode(EngineVersion engineVersion, BuildVersion buildVersion);
 
 	GlobalReference* m_pNextGlobalReference;
 	BuildVersion m_buildVersion;

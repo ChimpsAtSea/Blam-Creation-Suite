@@ -12,8 +12,8 @@ public:
 		eFinished
 	};
 
-	typedef void(GameLaunchCallback)(BuildVersion buildVersion);
-	typedef void(GameShutdownCallback)(BuildVersion buildVersion);
+	typedef void(GameLaunchCallback)(EngineVersion engineVersion, BuildVersion buildVersion);
+	typedef void(GameShutdownCallback)(EngineVersion engineVersion, BuildVersion buildVersion);
 
 	static void Init(HINSTANCE hInstance, LPSTR lpCmdLine);
 	static void Deinit();
@@ -21,8 +21,8 @@ public:
 
 	static bool HasCommandLineArg(const char* pArgument);
 	static void Terminate();
-	static void RegisterGameLaunchCallback(BuildVersion buildVersion, GameLaunchCallback gameLaunchCallback);
-	static void RegisterGameShutdownCallback(BuildVersion buildVersion, GameShutdownCallback gameShutdownCallback);
+	static void RegisterGameLaunchCallback(EngineVersion engineVersion, GameLaunchCallback gameLaunchCallback);
+	static void RegisterGameShutdownCallback(EngineVersion engineVersion, GameShutdownCallback gameShutdownCallback);
 	static void LoadSettings();
 	static int Run(HINSTANCE hInstance, LPSTR lpCmdLine, GameInterface& rGameInterface);
 	static void SetupGameContext(GameContext& gameContext);

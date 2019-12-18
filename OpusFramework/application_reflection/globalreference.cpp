@@ -37,21 +37,21 @@ void GlobalReference::init()
 	}
 }
 
-void GlobalReference::InitTree(BuildVersion buildVersion)
+void GlobalReference::InitTree(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	GlobalReference* pCurrentGlobalReference = s_pFirstGlobalReference;
 	while (pCurrentGlobalReference)
 	{
-		pCurrentGlobalReference = pCurrentGlobalReference->initNode(buildVersion);
+		pCurrentGlobalReference = pCurrentGlobalReference->initNode(engineVersion, buildVersion);
 	}
 }
 
-void GlobalReference::DeinitTree(BuildVersion buildVersion)
+void GlobalReference::DeinitTree(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	GlobalReference* pCurrentGlobalReference = s_pFirstGlobalReference;
 	while (pCurrentGlobalReference)
 	{
-		pCurrentGlobalReference = pCurrentGlobalReference->deinitNode(buildVersion);
+		pCurrentGlobalReference = pCurrentGlobalReference->deinitNode(engineVersion, buildVersion);
 	}
 }
 
@@ -68,7 +68,7 @@ void GlobalReference::DestroyTree()
 	}
 }
 
-GlobalReference* GlobalReference::initNode(BuildVersion buildVersion)
+GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	if (m_buildVersion == BuildVersion::NotSet || m_buildVersion == buildVersion)
 	{
@@ -101,7 +101,7 @@ GlobalReference* GlobalReference::initNode(BuildVersion buildVersion)
 				uint64_t gameVirtualAddress = GetHaloBaseAddress(buildVersion);
 				uint64_t dataVirtualAddress = static_cast<uint64_t>(targetOffset);
 				uint64_t dataRelativeVirtualAddress = dataVirtualAddress - gameVirtualAddress;
-				char* pGameBaseAddress = reinterpret_cast<char*>(GetLoadedHaloModule(buildVersion));
+				char* pGameBaseAddress = reinterpret_cast<char*>(GetLoadedHaloModule(engineVersion));
 				pDataAddress = pGameBaseAddress + dataRelativeVirtualAddress;
 			}
 
@@ -144,7 +144,7 @@ GlobalReference* GlobalReference::initNode(BuildVersion buildVersion)
 	return m_pNextGlobalReference;
 }
 
-GlobalReference* GlobalReference::deinitNode(BuildVersion buildVersion)
+GlobalReference* GlobalReference::deinitNode(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	if (m_buildVersion == BuildVersion::NotSet || m_buildVersion == buildVersion)
 	{
@@ -173,7 +173,7 @@ GlobalReference* GlobalReference::deinitNode(BuildVersion buildVersion)
 				uint64_t gameVirtualAddress = GetHaloBaseAddress(buildVersion);
 				uint64_t dataVirtualAddress = static_cast<uint64_t>(targetOffset);
 				uint64_t dataRelativeVirtualAddress = dataVirtualAddress - gameVirtualAddress;
-				char* pGameBaseAddress = reinterpret_cast<char*>(GetLoadedHaloModule(buildVersion));
+				char* pGameBaseAddress = reinterpret_cast<char*>(GetLoadedHaloModule(engineVersion));
 				pDataAddress = pGameBaseAddress + dataRelativeVirtualAddress;
 			}
 

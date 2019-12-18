@@ -27,8 +27,8 @@ void EnsureBink2Win64IsLoaded(const char* pLibName, const char* pFallbackDir = "
 	assert(hModule);
 }
 
-extern void init_halo_reach(BuildVersion buildVersion);
-extern void deinit_halo_reach(BuildVersion buildVersion);
+extern void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
+extern void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -54,14 +54,8 @@ int WINAPI WinMain(
 
 	EnsureBink2Win64IsLoaded("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
 
-	GameLauncher::RegisterGameLaunchCallback(BuildVersion::Build_1_887_0_0, init_halo_reach);
-	GameLauncher::RegisterGameLaunchCallback(BuildVersion::Build_1_1035_0_0, init_halo_reach);
-	GameLauncher::RegisterGameLaunchCallback(BuildVersion::Build_1_1186_0_0, init_halo_reach);
-	GameLauncher::RegisterGameLaunchCallback(BuildVersion::Build_1_1211_0_0, init_halo_reach);
-	GameLauncher::RegisterGameShutdownCallback(BuildVersion::Build_1_887_0_0, deinit_halo_reach);
-	GameLauncher::RegisterGameShutdownCallback(BuildVersion::Build_1_1035_0_0, deinit_halo_reach);
-	GameLauncher::RegisterGameShutdownCallback(BuildVersion::Build_1_1186_0_0, deinit_halo_reach);
-	GameLauncher::RegisterGameShutdownCallback(BuildVersion::Build_1_1211_0_0, deinit_halo_reach);
+	GameLauncher::RegisterGameLaunchCallback(EngineVersion::HaloReach, init_halo_reach);
+	GameLauncher::RegisterGameShutdownCallback(EngineVersion::HaloReach, deinit_halo_reach);
 
 	CustomWindow::SetIcon(LoadIconA(GetModuleHandle(NULL), MAKEINTRESOURCEA(IDI_ICON1)));
 

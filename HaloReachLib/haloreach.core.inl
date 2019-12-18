@@ -2,7 +2,7 @@
 	this function is the games main routine. inside of here sits the
 	main_loop function call
 */
-intptr_t main_thread_routine_offset(BuildVersion buildVersion)
+intptr_t main_thread_routine_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -28,7 +28,7 @@ FunctionHookEx<main_thread_routine_offset, void *__stdcall ()> main_thread_routi
 /*
 	override for the halo reach default path
 */
-intptr_t game_get_haloreach_path_offset(BuildVersion buildVersion)
+intptr_t game_get_haloreach_path_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -46,7 +46,7 @@ FunctionHookEx<game_get_haloreach_path_offset, const char *()> game_get_haloreac
 	return g_haloReachPathOverride;
 } };
 
-//intptr_t initialize_window_offset(BuildVersion buildVersion)
+//intptr_t initialize_window_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 //{
 //	switch (buildVersion)
 //	{
@@ -85,7 +85,7 @@ FunctionHookEx<game_get_haloreach_path_offset, const char *()> game_get_haloreac
 //	//);
 //};
 
-intptr_t load_state_offset(BuildVersion buildVersion)
+intptr_t load_state_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -100,7 +100,7 @@ intptr_t load_state_offset(BuildVersion buildVersion)
 }
 DataEx<int, load_state_offset> load_state;
 
-intptr_t main_game_launch_offset(BuildVersion buildVersion)
+intptr_t main_game_launch_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -152,7 +152,7 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 	return result;
 } };
 
-/*intptr_t DamagedMediaHaltAndDisplayError_offset(BuildVersion buildVersion)
+/*intptr_t DamagedMediaHaltAndDisplayError_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -176,7 +176,7 @@ FunctionHookVarArgsEx<DamagedMediaHaltAndDisplayError_offset, void(const char *f
 	MessageBox(CustomWindow::GetWindowHandle(), "dirty_disk_error", buffer, MB_ICONERROR);
 } };*/
 
-//intptr_t sub_180012200_offset(BuildVersion buildVersion)
+//intptr_t sub_180012200_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 //{
 //	switch (buildVersion)
 //	{
@@ -221,7 +221,7 @@ FunctionHookVarArgsEx<DamagedMediaHaltAndDisplayError_offset, void(const char *f
 //	return result;
 //} };
 
-//intptr_t levels_try_and_get_scenario_path_offset(BuildVersion buildVersion)
+//intptr_t levels_try_and_get_scenario_path_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 //{
 //	switch (buildVersion)
 //	{

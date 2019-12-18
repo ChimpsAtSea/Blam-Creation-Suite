@@ -37,7 +37,7 @@ void GameLauncher::LaunchGame()
 	// #TODO: Game specific version of this!!!
 	if (s_gameLaunchCallback != nullptr)
 	{
-		s_gameLaunchCallback(s_pCurrentGameInterface->GetBuildVersion());
+		s_gameLaunchCallback(EngineVersion::HaloReach, s_pCurrentGameInterface->GetBuildVersion());
 	}
 
 	__int64 createGameEngineResult = s_pCurrentGameInterface->CreateGameEngine(&s_pHaloReachEngine);
@@ -83,7 +83,7 @@ void GameLauncher::LaunchGame()
 
 	if (s_gameShutdownCallback)
 	{
-		s_gameShutdownCallback(s_pCurrentGameInterface->GetBuildVersion());
+		s_gameShutdownCallback(EngineVersion::HaloReach, s_pCurrentGameInterface->GetBuildVersion());
 	}
 
 	s_pHaloReachEngine->Destructor();
@@ -224,13 +224,13 @@ void GameLauncher::Terminate()
 	}
 }
 
-void GameLauncher::RegisterGameLaunchCallback(BuildVersion buildVersion, GameLaunchCallback gameLaunchCallback)
+void GameLauncher::RegisterGameLaunchCallback(EngineVersion engineVersion, GameLaunchCallback gameLaunchCallback)
 {
 	// #TODO: Multiple game versions!!!
 	s_gameLaunchCallback = gameLaunchCallback;
 }
 
-void GameLauncher::RegisterGameShutdownCallback(BuildVersion buildVersion, GameShutdownCallback gameShutdownCallback)
+void GameLauncher::RegisterGameShutdownCallback(EngineVersion engineVersion, GameShutdownCallback gameShutdownCallback)
 {
 	s_gameShutdownCallback = gameShutdownCallback;
 }

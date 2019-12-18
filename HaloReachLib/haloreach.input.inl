@@ -14,7 +14,7 @@ Data<BuildVersion::Build_1_1035_0_0, char, 0x1839EBDE1> mouse_acquired;
 //	return IGameEngineHost::GEHCBypass<IGameEngineHost::GEHCBypassType::UseNullPointer>(callback);
 //};
 
-//intptr_t sub_18077D160_offset(BuildVersion buildVersion)
+//intptr_t sub_18077D160_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 //{
 //	switch (buildVersion)
 //	{
@@ -44,7 +44,7 @@ void print_key_state_debug(s_bindings_table& bindingsTable)
 	}
 }
 
-intptr_t input_update_offset(BuildVersion buildVersion)
+intptr_t input_update_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -74,7 +74,7 @@ HaloReach_2019_Jun_24_Hook<0x180450C20, char(__stdcall)()> pan_cam_enabled = [](
 	return result;
 };
 
-intptr_t input_abstraction_get_default_preferences_offset(BuildVersion buildVersion)
+intptr_t input_abstraction_get_default_preferences_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -218,7 +218,7 @@ FunctionHookEx<input_abstraction_get_default_preferences_offset, __int64 __fastc
 	return result;
 } };
 
-intptr_t input_abstraction_get_default_keyboard_preferences_offset(BuildVersion buildVersion)
+intptr_t input_abstraction_get_default_keyboard_preferences_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{

@@ -21,9 +21,10 @@ bool g_pancamEnabled = false;
 bool g_keyboardPrintKeyState = false;
 BuildVersion g_currentbuildVersion = BuildVersion::NotSet;
 
-void patch_out_gameenginehostcallback_mov_rcx(BuildVersion id, intptr_t offset)
+void patch_out_gameenginehostcallback_mov_rcx(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset)
 {
-	char* pBeginning = (char*)GetLoadedHaloModule(id);
+
+	char* pBeginning = (char*)GetLoadedHaloModule(engineVersion);
 
 	char* pMovAttack = pBeginning + (offset - 0x180000000);
 	// 48 8B 0D A3 9B C8 00
@@ -54,7 +55,7 @@ void patch_out_gameenginehostcallback_mov_rcx(BuildVersion id, intptr_t offset)
 //Pointer<BuildVersion::Build_1_1035_0_0, IDirectInputDevice8*, 0x1839EC128> qword_1839EC128;
 //
 //
-//intptr_t TlsIndex_offset(BuildVersion buildVersion)
+//intptr_t TlsIndex_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 //{
 //	switch (buildVersion)
 //	{
@@ -65,7 +66,7 @@ void patch_out_gameenginehostcallback_mov_rcx(BuildVersion id, intptr_t offset)
 //}
 //DataEx<uint32_t, TlsIndex_offset> TlsIndex;
 //
-//intptr_t g_termination_value_offset(BuildVersion buildVersion)
+//intptr_t g_termination_value_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 //{
 //	switch (buildVersion)
 //	{
@@ -76,7 +77,7 @@ void patch_out_gameenginehostcallback_mov_rcx(BuildVersion id, intptr_t offset)
 //}
 //char& g_termination_value = reference_symbol<char>("g_termination_value", g_termination_value_offset);
 //
-//intptr_t g_controller_interfaces_offset(BuildVersion buildVersion)
+//intptr_t g_controller_interfaces_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 //{
 //	switch (buildVersion)
 //	{
@@ -87,7 +88,7 @@ void patch_out_gameenginehostcallback_mov_rcx(BuildVersion id, intptr_t offset)
 //}
 //c_controller_interface(&g_controller_interfaces)[4] = reference_symbol<c_controller_interface[4]>("g_controller_interfaces", g_controller_interfaces_offset);
 //
-//intptr_t g_game_options_offset(BuildVersion buildVersion)
+//intptr_t g_game_options_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 //{
 //	switch (buildVersion)
 //	{
@@ -101,7 +102,7 @@ void patch_out_gameenginehostcallback_mov_rcx(BuildVersion id, intptr_t offset)
 //// HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830; g_gamepad_globals->unknown350
 //HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018; // no equivalent
 //
-//intptr_t g_gamepad_globals_offset(BuildVersion buildVersion)
+//intptr_t g_gamepad_globals_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 //{
 //	switch (buildVersion)
 //	{
@@ -112,7 +113,7 @@ void patch_out_gameenginehostcallback_mov_rcx(BuildVersion id, intptr_t offset)
 //}
 //DataEx<s_gamepad_globals, g_gamepad_globals_offset> g_gamepad_globals;
 //
-//intptr_t g_input_abstraction_offset(BuildVersion buildVersion)
+//intptr_t g_input_abstraction_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 //{
 //	switch (buildVersion)
 //	{
@@ -127,7 +128,7 @@ void patch_out_gameenginehostcallback_mov_rcx(BuildVersion id, intptr_t offset)
 //
 //// Halo Reach Functions
 //
-//intptr_t restricted_region_unlock_primary_offset(BuildVersion buildVersion)
+//intptr_t restricted_region_unlock_primary_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 //{
 //	switch (buildVersion)
 //	{
@@ -446,7 +447,7 @@ void dump_binary(const char* pFileName, void* pData, size_t size)
 	}
 }
 
-intptr_t game_start_offset(BuildVersion buildVersion)
+intptr_t game_start_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -465,7 +466,7 @@ FunctionHookEx<game_start_offset, char(__fastcall)(IGameEngineHaloReach * __this
 };
 #pragma optimize("", on)
 
-void init_halo_reach_with_mcc(BuildVersion buildVersion, bool isMCC)
+void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVersion, bool isMCC)
 {
 	game_start.SetIsActive(isMCC || GameLauncher::HasCommandLineArg("-dump:gamecontext.bin"));
 
@@ -527,27 +528,27 @@ void init_halo_reach_with_mcc(BuildVersion buildVersion, bool isMCC)
 	//RUNONCE(create_dll_hook("WS2_32.dll", "sendto", sendtoHook, sendtoPointer));
 	//sub_1800AE4E0.SetIsActive(isNetworkingPatchActive);
 
-	DataReferenceBase::InitTree(buildVersion);
-	FunctionHookBase::InitTree(buildVersion);
-	GlobalReference::InitTree(buildVersion);
+	DataReferenceBase::InitTree(EngineVersion::HaloReach, buildVersion);
+	FunctionHookBase::InitTree(EngineVersion::HaloReach, buildVersion);
+	GlobalReference::InitTree(EngineVersion::HaloReach, buildVersion);
 	end_detours();
 
 	//GameLauncher::RegisterTerminationValue(g_termination_value);
 }
 
-void init_halo_reach(BuildVersion buildVersion)
+void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion)
 {
-	init_halo_reach_with_mcc(buildVersion, false);
+	init_halo_reach_with_mcc(engineVersion, buildVersion, false);
 }
 
-void deinit_halo_reach(BuildVersion buildVersion)
+void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	//DebugUI::UnregisterCallback(halo_reach_debug_callback);
 
 	init_detours();
 
-	FunctionHookBase::DeinitTree(buildVersion);
-	DataReferenceBase::DeinitTree(buildVersion);
-	GlobalReference::DeinitTree(buildVersion);
+	FunctionHookBase::DeinitTree(EngineVersion::HaloReach, buildVersion);
+	DataReferenceBase::DeinitTree(EngineVersion::HaloReach, buildVersion);
+	GlobalReference::DeinitTree(EngineVersion::HaloReach, buildVersion);
 	end_detours();
 }
