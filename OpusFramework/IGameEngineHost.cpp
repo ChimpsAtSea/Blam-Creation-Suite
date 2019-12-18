@@ -228,17 +228,31 @@ bool __fastcall IGameEngineHost::UpdateGraphics(Member28Struct* buffer)
 	return buffer->fps_flags;
 }
 
-__int64 __fastcall IGameEngineHost::Member29(wchar_t playerNames[4][32], Member29Struct& rMember29)
+__int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t playerNames[4][32], s_player_configuration& rPlayerConfiguration)
 {
-	assert(&rMember29);
-	rMember29 = {}; // reset values
+	assert(&rPlayerConfiguration);
+	rPlayerConfiguration = {}; // reset values
 
-	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", rMember29.service_tag, 5, L"UNSC");
+	// sub_18004E800 applies customization conversion from MCC to Reach
+	// TODO: get conversion table from sub_18004E800
+	rPlayerConfiguration.armor_helmet_index = 0;
+	rPlayerConfiguration.armor_left_shoulder_index = 0;
+	rPlayerConfiguration.armor_right_shoulder_index = 0;
+	rPlayerConfiguration.armor_chest_index = 0;
+	rPlayerConfiguration.armor_wrist_index = 0;
+	rPlayerConfiguration.armor_leg_utility_index = 0;
+	rPlayerConfiguration.armor_knee_index = 0;
+	rPlayerConfiguration.armor_effect_dupe_index = 0;
+	rPlayerConfiguration.elite_armor_index = 0;
+	rPlayerConfiguration.armor_effect_index = 0;
+	rPlayerConfiguration.firefight_voice_index = 0;
+
+	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", rPlayerConfiguration.service_tag, 5, L"UNSC");
 
 	// todo: find a good home for this
 	SplashScreen::Destroy();
 
-	//WriteStackBackTrace("IGameEngineHost::Member29");
+	//WriteStackBackTrace("IGameEngineHost::UpdatePlayerConfiguration");
 	return __int64(1);
 }
 
