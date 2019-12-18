@@ -235,17 +235,20 @@ __int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t playerName
 
 	// sub_18004E800 applies customization conversion from MCC to Reach
 	// TODO: get conversion table from sub_18004E800
-	rPlayerConfiguration.armor_helmet_index = 0;
-	rPlayerConfiguration.armor_left_shoulder_index = 0;
-	rPlayerConfiguration.armor_right_shoulder_index = 0;
-	rPlayerConfiguration.armor_chest_index = 0;
-	rPlayerConfiguration.armor_wrist_index = 0;
-	rPlayerConfiguration.armor_leg_utility_index = 0;
-	rPlayerConfiguration.armor_knee_index = 0;
-	rPlayerConfiguration.armor_effect_dupe_index = 0;
-	rPlayerConfiguration.elite_armor_index = 0;
-	rPlayerConfiguration.armor_effect_index = 0;
-	rPlayerConfiguration.firefight_voice_index = 0;
+	rPlayerConfiguration.is_elite 	                 = false;
+	rPlayerConfiguration.armor_helmet_option         = 0;
+	rPlayerConfiguration.armor_left_shoulder_option  = 0;
+	rPlayerConfiguration.armor_right_shoulder_option = 0;
+	rPlayerConfiguration.armor_chest_option          = 0;
+	rPlayerConfiguration.armor_wrist_option          = 0;
+	rPlayerConfiguration.armor_leg_utility_option    = 0;
+	rPlayerConfiguration.armor_knees_option          = 0;
+	rPlayerConfiguration.armor_effect_dupe_option    = 0;
+	rPlayerConfiguration.elite_armor_option          = 0;
+	rPlayerConfiguration.armor_effect_option         = 0;
+	rPlayerConfiguration.firefight_voice_option      = 0;
+	rPlayerConfiguration.primary_color_option        = 13;   // HR_Color_Cobalt
+	rPlayerConfiguration.secondary_color_option      = 25;   // HR_Color_Yellow
 
 	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", rPlayerConfiguration.service_tag, 5, L"UNSC");
 
