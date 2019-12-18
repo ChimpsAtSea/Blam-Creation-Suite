@@ -71,10 +71,10 @@
     <PostBuildEvent>
       <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\*" /Y
-echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\MCC-Win64-Shipping.map" /Y
+echo f|xcopy "$(TargetDir)$(TargetName).bin" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\MCC-Win64-Shipping.bin" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
-  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
+  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
   echo f|xcopy "$(TargetDir)$(TargetName).bin" "$(LocalDebuggerWorkingDirectory)\MCC-Win64-Shipping.map" /Y
  )
 )</Command>
@@ -104,10 +104,10 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
     <PostBuildEvent>
       <Command>if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\*" /Y
-echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\MCC-Win64-Shipping.map" /Y
+echo f|xcopy "$(TargetDir)$(TargetName).bin" "\\$(RemoteDebuggerServerName)\!MCC\MCC\Binaries\Win64\MCC-Win64-Shipping.bin" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
-  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
+  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
   echo f|xcopy "$(TargetDir)$(TargetName).bin" "$(LocalDebuggerWorkingDirectory)\MCC-Win64-Shipping.map" /Y
  )
 )</Command>
@@ -119,6 +119,7 @@ echo f|xcopy "$(TargetDir)$(TargetName).map" "\\$(RemoteDebuggerServerName)\!MCC
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="haloreach_proxy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="opus-private-pch.h" />

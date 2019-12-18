@@ -61,14 +61,19 @@ void deinit()
 
 }
 
+void init_haloreach();
+void deinit_haloreach();
+
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 {
 	switch (fdwReason)
 	{
 	case DLL_PROCESS_ATTACH:
 		init();
+		init_haloreach();
 		break;
 	case DLL_PROCESS_DETACH:
+		deinit_haloreach();
 		deinit();
 		break;
 	case DLL_THREAD_ATTACH:
