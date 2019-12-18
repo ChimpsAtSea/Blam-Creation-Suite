@@ -50,6 +50,7 @@ BuildVersion GameInterface::GetLibraryBuildVersion(const char* pFilename)
 	uint64_t libraryFileVersion = GetLibraryFileVersion(pFilename);
 	switch (libraryFileVersion)
 	{
+	case MAKE_FILE_VERSION(1, 1270, 0, 0): return BuildVersion::Build_1_1270_0_0;
 	case MAKE_FILE_VERSION(1, 1246, 0, 0): return BuildVersion::Build_1_1246_0_0;
 	case MAKE_FILE_VERSION(1, 1211, 0, 0): return BuildVersion::Build_1_1211_0_0;
 	case MAKE_FILE_VERSION(1, 1186, 0, 0): return BuildVersion::Build_1_1186_0_0;

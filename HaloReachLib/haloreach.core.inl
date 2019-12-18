@@ -37,6 +37,7 @@ intptr_t game_get_haloreach_path_offset(BuildVersion buildVersion)
 	case BuildVersion::Build_1_1186_0_0: return 0x180010010;
 	case BuildVersion::Build_1_1211_0_0: return 0x180010020;
 	//case BuildVersion::Build_1_1246_0_0: return 0x180010020;
+	//case BuildVersion::Build_1_1270_0_0: return 0x180010020;
 	}
 	return ~intptr_t();
 }
@@ -93,6 +94,7 @@ intptr_t load_state_offset(BuildVersion buildVersion)
 	case BuildVersion::Build_1_1186_0_0: return 0x180D4E674;
 	case BuildVersion::Build_1_1211_0_0: return 0x180D4F674;
 	case BuildVersion::Build_1_1246_0_0: return 0x180D494F4;
+	case BuildVersion::Build_1_1270_0_0: return 0x180D494F4;
 	}
 	return ~intptr_t();
 }
@@ -107,6 +109,7 @@ intptr_t main_game_launch_offset(BuildVersion buildVersion)
 	case BuildVersion::Build_1_1186_0_0: return 0x180011860;
 	case BuildVersion::Build_1_1211_0_0: return 0x180011870;
 	case BuildVersion::Build_1_1246_0_0: return 0x180011870;
+	case BuildVersion::Build_1_1270_0_0: return 0x180011870;
 
 	}
 	return ~intptr_t();

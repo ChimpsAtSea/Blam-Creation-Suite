@@ -8,6 +8,7 @@ enum class BuildVersion
 	Build_1_1186_0_0,
 	Build_1_1211_0_0,
 	Build_1_1246_0_0,
+	Build_1_1270_0_0,
 	Count
 };
 
@@ -20,6 +21,7 @@ constexpr intptr_t GetHaloBaseAddress(BuildVersion buildVersion)
 	case BuildVersion::Build_1_1186_0_0:
 	case BuildVersion::Build_1_1211_0_0:
 	case BuildVersion::Build_1_1246_0_0:
+	case BuildVersion::Build_1_1270_0_0:
 		return 0x180000000;
 	}
 	return ~intptr_t();
@@ -39,6 +41,8 @@ constexpr intptr_t GetHaloTopAddress(BuildVersion buildVersion)
 		return 0x183986000;
 	case BuildVersion::Build_1_1246_0_0:
 		return 0x18397F000;
+	case BuildVersion::Build_1_1270_0_0:
+		return 0x18397F000;
 	}
 	return ~intptr_t();
 }
@@ -52,6 +56,7 @@ constexpr const char* GetHaloExecutableString(BuildVersion buildVersion)
 	case BuildVersion::Build_1_1186_0_0:
 	case BuildVersion::Build_1_1211_0_0:
 	case BuildVersion::Build_1_1246_0_0:
+	case BuildVersion::Build_1_1270_0_0:
 		return "haloreach.dll";
 	}
 	FATAL_ERROR("Unsupported BuildVersion");
