@@ -30,6 +30,7 @@
 #include <dinput.h>
 #include <D3Dcompiler.h>
 #include <dxgi.h>
+#include <dxgi1_5.h>
 #include <d3d11.h>
 #include <d3d11_4.h>
 #include <Xinput.h>

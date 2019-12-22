@@ -293,7 +293,7 @@ void GameLauncher::LoadSettings()
 	g_MapVariantIsHopper = Settings::ReadBoolValue(SettingsSection::Launch, "MapVariantIsHopper", false);
 }
 
-void CreateSwapchainAndBackbuffer(IDXGISwapChain*& pSwapchain, ID3D11RenderTargetView*& pBackBuffer)
+void CreateSwapchainAndBackbuffer(IDXGISwapChain1*& pSwapchain, ID3D11RenderTargetView*& pBackBuffer)
 {
 	if (!pSwapchain)
 	{

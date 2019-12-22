@@ -2,29 +2,28 @@
 
 ID3D11Device* GameRender::s_pDevice = nullptr;
 ID3D11DeviceContext* GameRender::s_pDeviceContext = nullptr;
-IDXGISwapChain* GameRender::s_pSwapChain = nullptr;
-DXGI_SWAP_CHAIN_DESC GameRender::s_SwapchainDescription = {};
-IDXGIFactory1* GameRender::s_pFactory = nullptr;
+IDXGISwapChain1* GameRender::s_pSwapChain = nullptr;
+IDXGIFactory5* GameRender::s_pFactory = nullptr;
 DEVMODE GameRender::s_deviceMode = {};
 
-typedef struct CINTERFACE_IDXGIFactory1Vtbl
+typedef struct CINTERFACE_IDXGIFactory5Vtbl
 {
 	BEGIN_INTERFACE
 
 		HRESULT(STDMETHODCALLTYPE* QueryInterface)(
-			IDXGIFactory1* This,
+			IDXGIFactory5* This,
 			/* [in] */ REFIID riid,
 			/* [annotation][iid_is][out] */
 			_COM_Outptr_  void** ppvObject);
 
 	ULONG(STDMETHODCALLTYPE* AddRef)(
-		IDXGIFactory1* This);
+		IDXGIFactory5* This);
 
 	ULONG(STDMETHODCALLTYPE* Release)(
-		IDXGIFactory1* This);
+		IDXGIFactory5* This);
 
 	HRESULT(STDMETHODCALLTYPE* SetPrivateData)(
-		IDXGIFactory1* This,
+		IDXGIFactory5* This,
 		/* [annotation][in] */
 		_In_  REFGUID Name,
 		/* [in] */ UINT DataSize,
@@ -32,14 +31,14 @@ typedef struct CINTERFACE_IDXGIFactory1Vtbl
 		_In_reads_bytes_(DataSize)  const void* pData);
 
 	HRESULT(STDMETHODCALLTYPE* SetPrivateDataInterface)(
-		IDXGIFactory1* This,
+		IDXGIFactory5* This,
 		/* [annotation][in] */
 		_In_  REFGUID Name,
 		/* [annotation][in] */
 		_In_opt_  const IUnknown* pUnknown);
 
 	HRESULT(STDMETHODCALLTYPE* GetPrivateData)(
-		IDXGIFactory1* This,
+		IDXGIFactory5* This,
 		/* [annotation][in] */
 		_In_  REFGUID Name,
 		/* [annotation][out][in] */
@@ -48,30 +47,30 @@ typedef struct CINTERFACE_IDXGIFactory1Vtbl
 		_Out_writes_bytes_(*pDataSize)  void* pData);
 
 	HRESULT(STDMETHODCALLTYPE* GetParent)(
-		IDXGIFactory1* This,
+		IDXGIFactory5* This,
 		/* [annotation][in] */
 		_In_  REFIID riid,
 		/* [annotation][retval][out] */
 		_COM_Outptr_  void** ppParent);
 
 	HRESULT(STDMETHODCALLTYPE* EnumAdapters)(
-		IDXGIFactory1* This,
+		IDXGIFactory5* This,
 		/* [in] */ UINT Adapter,
 		/* [annotation][out] */
 		_COM_Outptr_  IDXGIAdapter** ppAdapter);
 
 	HRESULT(STDMETHODCALLTYPE* MakeWindowAssociation)(
-		IDXGIFactory1* This,
+		IDXGIFactory5* This,
 		HWND WindowHandle,
 		UINT Flags);
 
 	HRESULT(STDMETHODCALLTYPE* GetWindowAssociation)(
-		IDXGIFactory1* This,
+		IDXGIFactory5* This,
 		/* [annotation][out] */
 		_Out_  HWND* pWindowHandle);
 
 	HRESULT(STDMETHODCALLTYPE* CreateSwapChain)(
-		IDXGIFactory1* This,
+		IDXGIFactory5* This,
 		/* [annotation][in] */
 		_In_  IUnknown* pDevice,
 		/* [annotation][in] */
@@ -80,26 +79,143 @@ typedef struct CINTERFACE_IDXGIFactory1Vtbl
 		_COM_Outptr_  IDXGISwapChain** ppSwapChain);
 
 	HRESULT(STDMETHODCALLTYPE* CreateSoftwareAdapter)(
-		IDXGIFactory1* This,
+		IDXGIFactory5* This,
 		/* [in] */ HMODULE Module,
 		/* [annotation][out] */
 		_COM_Outptr_  IDXGIAdapter** ppAdapter);
 
 	HRESULT(STDMETHODCALLTYPE* EnumAdapters1)(
-		IDXGIFactory1* This,
+		IDXGIFactory5* This,
 		/* [in] */ UINT Adapter,
 		/* [annotation][out] */
 		_COM_Outptr_  IDXGIAdapter1** ppAdapter);
 
 	BOOL(STDMETHODCALLTYPE* IsCurrent)(
-		IDXGIFactory1* This);
+		IDXGIFactory5* This);
+
+	BOOL(STDMETHODCALLTYPE* IsWindowedStereoEnabled)(
+		IDXGIFactory5* This);
+
+	HRESULT(STDMETHODCALLTYPE* CreateSwapChainForHwnd)(
+		IDXGIFactory5* This,
+		/* [annotation][in] */
+		_In_  IUnknown* pDevice,
+		/* [annotation][in] */
+		_In_  HWND hWnd,
+		/* [annotation][in] */
+		_In_  const DXGI_SWAP_CHAIN_DESC1* pDesc,
+		/* [annotation][in] */
+		_In_opt_  const DXGI_SWAP_CHAIN_FULLSCREEN_DESC* pFullscreenDesc,
+		/* [annotation][in] */
+		_In_opt_  IDXGIOutput* pRestrictToOutput,
+		/* [annotation][out] */
+		_COM_Outptr_  IDXGISwapChain1** ppSwapChain);
+
+	HRESULT(STDMETHODCALLTYPE* CreateSwapChainForCoreWindow)(
+		IDXGIFactory5* This,
+		/* [annotation][in] */
+		_In_  IUnknown* pDevice,
+		/* [annotation][in] */
+		_In_  IUnknown* pWindow,
+		/* [annotation][in] */
+		_In_  const DXGI_SWAP_CHAIN_DESC1* pDesc,
+		/* [annotation][in] */
+		_In_opt_  IDXGIOutput* pRestrictToOutput,
+		/* [annotation][out] */
+		_COM_Outptr_  IDXGISwapChain1** ppSwapChain);
+
+	HRESULT(STDMETHODCALLTYPE* GetSharedResourceAdapterLuid)(
+		IDXGIFactory5* This,
+		/* [annotation] */
+		_In_  HANDLE hResource,
+		/* [annotation] */
+		_Out_  LUID* pLuid);
+
+	HRESULT(STDMETHODCALLTYPE* RegisterStereoStatusWindow)(
+		IDXGIFactory5* This,
+		/* [annotation][in] */
+		_In_  HWND WindowHandle,
+		/* [annotation][in] */
+		_In_  UINT wMsg,
+		/* [annotation][out] */
+		_Out_  DWORD* pdwCookie);
+
+	HRESULT(STDMETHODCALLTYPE* RegisterStereoStatusEvent)(
+		IDXGIFactory5* This,
+		/* [annotation][in] */
+		_In_  HANDLE hEvent,
+		/* [annotation][out] */
+		_Out_  DWORD* pdwCookie);
+
+	void (STDMETHODCALLTYPE* UnregisterStereoStatus)(
+		IDXGIFactory5* This,
+		/* [annotation][in] */
+		_In_  DWORD dwCookie);
+
+	HRESULT(STDMETHODCALLTYPE* RegisterOcclusionStatusWindow)(
+		IDXGIFactory5* This,
+		/* [annotation][in] */
+		_In_  HWND WindowHandle,
+		/* [annotation][in] */
+		_In_  UINT wMsg,
+		/* [annotation][out] */
+		_Out_  DWORD* pdwCookie);
+
+	HRESULT(STDMETHODCALLTYPE* RegisterOcclusionStatusEvent)(
+		IDXGIFactory5* This,
+		/* [annotation][in] */
+		_In_  HANDLE hEvent,
+		/* [annotation][out] */
+		_Out_  DWORD* pdwCookie);
+
+	void (STDMETHODCALLTYPE* UnregisterOcclusionStatus)(
+		IDXGIFactory5* This,
+		/* [annotation][in] */
+		_In_  DWORD dwCookie);
+
+	HRESULT(STDMETHODCALLTYPE* CreateSwapChainForComposition)(
+		IDXGIFactory5* This,
+		/* [annotation][in] */
+		_In_  IUnknown* pDevice,
+		/* [annotation][in] */
+		_In_  const DXGI_SWAP_CHAIN_DESC1* pDesc,
+		/* [annotation][in] */
+		_In_opt_  IDXGIOutput* pRestrictToOutput,
+		/* [annotation][out] */
+		_COM_Outptr_  IDXGISwapChain1** ppSwapChain);
+
+	UINT(STDMETHODCALLTYPE* GetCreationFlags)(
+		IDXGIFactory5* This);
+
+	HRESULT(STDMETHODCALLTYPE* EnumAdapterByLuid)(
+		IDXGIFactory5* This,
+		/* [annotation] */
+		_In_  LUID AdapterLuid,
+		/* [annotation] */
+		_In_  REFIID riid,
+		/* [annotation] */
+		_COM_Outptr_  void** ppvAdapter);
+
+	HRESULT(STDMETHODCALLTYPE* EnumWarpAdapter)(
+		IDXGIFactory5* This,
+		/* [annotation] */
+		_In_  REFIID riid,
+		/* [annotation] */
+		_COM_Outptr_  void** ppvAdapter);
+
+	HRESULT(STDMETHODCALLTYPE* CheckFeatureSupport)(
+		IDXGIFactory5* This,
+		DXGI_FEATURE Feature,
+		/* [annotation] */
+		_Inout_updates_bytes_(FeatureSupportDataSize)  void* pFeatureSupportData,
+		UINT FeatureSupportDataSize);
 
 	END_INTERFACE
-} IDXGIFactory1Vtbl;
+} IDXGIFactory5Vtbl;
 
-interface CINTERFACE_IDXGIFactory1
+interface CINTERFACE_IDXGIFactory5
 {
-	CONST_VTBL struct CINTERFACE_IDXGIFactory1Vtbl* lpVtbl;
+	CONST_VTBL struct CINTERFACE_IDXGIFactory5Vtbl* lpVtbl;
 };
 
 struct ID3D11Device_vtbl
@@ -190,31 +306,38 @@ HRESULT CreateSwapChainDetour(
 	return CreateSwapChainResult;
 }
 
-void GameRender::CreateSwapchain(IDXGISwapChain*& prSwapChain)
+void GameRender::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 {
-	s_SwapchainDescription = {};
-
 	SIZE size = {};
 	CustomWindow::GetWindowSize(size);
 
-	s_SwapchainDescription.BufferDesc.Width = size.cx;
-	s_SwapchainDescription.BufferDesc.Height = size.cy;
-	s_SwapchainDescription.BufferDesc.RefreshRate.Numerator = 0;
-	s_SwapchainDescription.BufferDesc.RefreshRate.Denominator = 0;
-	s_SwapchainDescription.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	s_SwapchainDescription.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-	s_SwapchainDescription.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+	DXGI_SWAP_CHAIN_DESC1 s_SwapchainDescription = {};
+	s_SwapchainDescription.Width = size.cx;
+	s_SwapchainDescription.Height = size.cy;
+	s_SwapchainDescription.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	s_SwapchainDescription.Stereo = false;
 	s_SwapchainDescription.SampleDesc.Count = 1;
 	s_SwapchainDescription.SampleDesc.Quality = 0;
+	s_SwapchainDescription.AlphaMode = DXGI_ALPHA_MODE_IGNORE;
+	s_SwapchainDescription.Flags = DXGI_SWAP_CHAIN_FLAG_FRAME_LATENCY_WAITABLE_OBJECT; // Enable GetFrameLatencyWaitableObject()
 	s_SwapchainDescription.BufferUsage = DXGI_USAGE_SHADER_INPUT | DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	s_SwapchainDescription.BufferCount = 1;
-	s_SwapchainDescription.OutputWindow = CustomWindow::GetWindowHandle();
-	s_SwapchainDescription.Windowed = 1;
-	s_SwapchainDescription.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-	s_SwapchainDescription.Flags = 0;
+	s_SwapchainDescription.BufferCount = 2; // Use double-buffering to minimize latency.
+	s_SwapchainDescription.Scaling = DXGI_SCALING_STRETCH;
+	s_SwapchainDescription.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
 
-	s_pFactory->CreateSwapChain(s_pDevice, &s_SwapchainDescription, &prSwapChain);
-	assert(prSwapChain != nullptr);
+	static constexpr bool createCompositionSwapchain = false;
+	if constexpr(createCompositionSwapchain)
+	{
+		HRESULT createSwapChainForCompositionResult = s_pFactory->CreateSwapChainForComposition(s_pDevice, &s_SwapchainDescription, NULL, &rpSwapChain);
+		assert(SUCCEEDED(createSwapChainForCompositionResult));
+	}
+	else
+	{
+		HWND hWnd = CustomWindow::GetWindowHandle();
+		HRESULT createSwapChainForHwndResult = s_pFactory->CreateSwapChainForHwnd(s_pDevice, hWnd, &s_SwapchainDescription, NULL, NULL, &rpSwapChain);
+		assert(SUCCEEDED(createSwapChainForHwndResult));
+	}
+	assert(rpSwapChain != nullptr);
 }
 
 void GameRender::Init(HINSTANCE hInstance)
@@ -237,13 +360,13 @@ void GameRender::Init(HINSTANCE hInstance)
 
 	bool createSwapchain = true;
 
-	HRESULT CreateDXGIFactory1Result = CreateDXGIFactory1(__uuidof(IDXGIFactory1), (void**)(&s_pFactory));
+	HRESULT CreateDXGIFactory1Result = CreateDXGIFactory2(0, __uuidof(IDXGIFactory5), (void**)(&s_pFactory));
 	assert(CreateDXGIFactory1Result == S_OK);
 	assert(s_pFactory != nullptr);
 
 	// Factory Hooks
 	{
-		CINTERFACE_IDXGIFactory1* pFactory_CINTERFACE = (CINTERFACE_IDXGIFactory1*)s_pFactory;
+		CINTERFACE_IDXGIFactory5* pFactory_CINTERFACE = (CINTERFACE_IDXGIFactory5*)s_pFactory;
 		CreateSwapChainPointer = (CreateSwapChainFunction*)pFactory_CINTERFACE->lpVtbl->CreateSwapChain;
 		void* detour = CreateSwapChainDetour;
 		memcpy_virtual(&pFactory_CINTERFACE->lpVtbl->CreateSwapChain, &detour, 8);
@@ -304,5 +427,4 @@ void GameRender::Deinit()
 	s_pDeviceContext = nullptr;
 	s_pSwapChain = nullptr;
 	s_pFactory = nullptr;
-	s_SwapchainDescription = {};
 }
