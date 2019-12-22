@@ -808,9 +808,9 @@ LPCSTR Format(LPCSTR fmt, ...)
 
 int ReadMapInfo(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
-	char pFilename[MAX_PATH] = {};
-	sprintf(pFilename, "%s\\maps\\info\\%s.mapinfo", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str(), pName);
-	pFilename[MAX_PATH - 1] = 0;
+	char pFilename[MAX_PATH + 1] = {};
+	snprintf(pFilename, MAX_PATH, "%s\\maps\\info\\%s.mapinfo", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str(), pName);
+	pFilename[MAX_PATH] = 0;
 
 	c_file_reference filo(pFilename);
 	int mapId = -1;

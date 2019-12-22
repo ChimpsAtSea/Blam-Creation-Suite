@@ -5,6 +5,7 @@ ID3D11DeviceContext* GameRender::s_pDeviceContext = nullptr;
 IDXGISwapChain1* GameRender::s_pSwapChain = nullptr;
 IDXGIFactory5* GameRender::s_pFactory = nullptr;
 DEVMODE GameRender::s_deviceMode = {};
+bool GameRender::s_directxCustomInit = false;
 
 typedef struct CINTERFACE_IDXGIFactory5Vtbl
 {
@@ -340,9 +341,8 @@ void GameRender::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 	assert(rpSwapChain != nullptr);
 }
 
-void GameRender::Init(HINSTANCE hInstance)
+void GameRender::InitDirectX()
 {
-
 	assert(s_pDevice == nullptr);
 	assert(s_pDeviceContext == nullptr);
 	assert(s_pSwapChain == nullptr);
@@ -405,6 +405,30 @@ void GameRender::Init(HINSTANCE hInstance)
 	{
 		CreateSwapchain(s_pSwapChain);
 	}
+}
+
+void GameRender::Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain)
+{
+	assert(s_pDevice == nullptr);
+	assert(s_pDeviceContext == nullptr);
+	assert(s_pSwapChain == nullptr);
+
+	s_directxCustomInit = true;
+	s_pDevice = pDevice;
+	s_pSwapChain = pSwapChain;
+
+	pDevice->GetImmediateContext(&s_pDeviceContext);
+	assert(s_pDeviceContext != nullptr);
+
+	Init(hInstance);
+}
+
+void GameRender::Init(HINSTANCE hInstance)
+{
+	if (!s_directxCustomInit)
+	{
+		InitDirectX();
+	}
 
 	DebugUI::Init(hInstance, s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
 	if (GameLauncher::HasCommandLineArg("-showui"))
@@ -417,14 +441,19 @@ void GameRender::Deinit()
 {
 	DebugUI::Deinit();
 
-	s_pSwapChain->SetFullscreenState(false, NULL);
-	s_pDevice->Release();
-	s_pDeviceContext->Release();
-	s_pSwapChain->Release();
-	s_pFactory->Release();
+	if (!s_directxCustomInit)
+	{
+		s_pSwapChain->SetFullscreenState(false, NULL);
+		s_pDevice->Release();
+		s_pDeviceContext->Release();
+		s_pSwapChain->Release();
+		s_pFactory->Release();
+	}
 
 	s_pDevice = nullptr;
 	s_pDeviceContext = nullptr;
 	s_pSwapChain = nullptr;
 	s_pFactory = nullptr;
+
+	s_directxCustomInit = false;
 }
