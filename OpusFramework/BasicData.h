@@ -28,7 +28,7 @@ public:
 			g_pDataReferenceBaseBaseLast = this;
 		}
 
-		if (buildVersion != BuildVersion::NotSet && IsHaloExecutableLoaded(engineVersion))
+		if (buildVersion != BuildVersion::NotSet && IsEngineLoaded(engineVersion))
 		{
 			initNode(engineVersion, buildVersion);
 		}
@@ -108,14 +108,14 @@ private:
 				return nullptr;
 			}
 
-			assert(m_buildVersion == BuildVersion::NotSet && offset >= GetHaloBaseAddress(buildVersion)/*, "Offset is out of bounds"*/);
-			assert(m_buildVersion == BuildVersion::NotSet && offset < GetHaloTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
-			assert(m_buildVersion == BuildVersion::NotSet && static_cast<intptr_t>(offset + m_dataSize) < GetHaloTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && offset >= GetBuildBaseAddress(buildVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && offset < GetEngineTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && static_cast<intptr_t>(offset + m_dataSize) < GetEngineTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
 		}
 
-		void* pModule = GetLoadedHaloModule(engineVersion);
+		void* pModule = GetEngineMemoryAddress(engineVersion);
 		char* pBaseAddress = reinterpret_cast<char*>(pModule);
-		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetHaloBaseAddress(buildVersion)));
+		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetBuildBaseAddress(buildVersion)));
 		return ptr;
 	}
 

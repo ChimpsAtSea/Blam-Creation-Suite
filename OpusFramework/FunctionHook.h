@@ -94,8 +94,8 @@ struct FunctionHook<buildVersion, offset, R(Args...)> : FunctionHookBase
 public:
 	typedef R(base_type)(Args...);
 
-	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetHaloBaseAddress(buildVersion), "Offset is out of bounds");
-	static_assert(buildVersion == BuildVersion::NotSet || offset < GetHaloTopAddress(buildVersion), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetBuildBaseAddress(buildVersion), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset < GetEngineTopAddress(buildVersion), "Offset is out of bounds");
 
 	__forceinline decltype(auto) operator()(Args... arg)
 	{
@@ -263,8 +263,8 @@ template<BuildVersion buildVersion, size_t offset, typename base_type>
 struct FunctionHookVarArgs : public FunctionHookBase
 {
 public:
-	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetHaloBaseAddress(buildVersion), "Offset is out of bounds");
-	static_assert(buildVersion == BuildVersion::NotSet || offset < GetHaloTopAddress(buildVersion), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetBuildBaseAddress(buildVersion), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset < GetEngineTopAddress(buildVersion), "Offset is out of bounds");
 
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args)
@@ -344,8 +344,8 @@ template<intptr_t(find_offset_func)(BuildVersion buildVersion), typename base_ty
 struct FunctionHookVarArgsEx : public FunctionHookBase
 {
 public:
-	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetHaloBaseAddress(buildVersion), "Offset is out of bounds");
-	static_assert(buildVersion == BuildVersion::NotSet || offset < GetHaloTopAddress(buildVersion), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetBuildBaseAddress(buildVersion), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset < GetEngineTopAddress(buildVersion), "Offset is out of bounds");
 
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args)

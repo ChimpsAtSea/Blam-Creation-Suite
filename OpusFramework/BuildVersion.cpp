@@ -1,14 +1,14 @@
 #include "opusframework-private-pch.h"
 
-bool IsHaloExecutableLoaded(EngineVersion engineVersion)
+bool IsEngineLoaded(EngineVersion engineVersion)
 {
-	const char* pGameExecutableStr = GetHaloExecutableString(engineVersion);
+	const char* pGameExecutableStr = GetEngineFilename(engineVersion);
 	return GetModuleHandle(pGameExecutableStr);
 }
 
-void* GetLoadedHaloModule(EngineVersion engineVersion)
+void* GetEngineMemoryAddress(EngineVersion engineVersion)
 {
-	const char* pGameExecutableStr = GetHaloExecutableString(engineVersion);
+	const char* pGameExecutableStr = GetEngineFilename(engineVersion);
 	HMODULE hModule = GetModuleHandleA(pGameExecutableStr);
 	return static_cast<void*>(hModule);
 }

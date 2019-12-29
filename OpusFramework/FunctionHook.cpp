@@ -38,8 +38,8 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 				return m_pNextFunctionHook;
 			}
 
-			assert(m_buildVersion == BuildVersion::NotSet && m_offset >= GetHaloBaseAddress(buildVersion)/*, "Offset is out of bounds"*/);
-			assert(m_buildVersion == BuildVersion::NotSet && m_offset < GetHaloTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && m_offset >= GetBuildBaseAddress(buildVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && m_offset < GetEngineTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
 		}
 		assert(m_offset);
 
@@ -64,7 +64,7 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 		}
 		else
 		{
-			populate_function_ptr(GetHaloExecutableString(engineVersion), GetHaloBaseAddress(buildVersion), m_offset, rBase);
+			populate_function_ptr(GetEngineFilename(engineVersion), GetBuildBaseAddress(buildVersion), m_offset, rBase);
 			WriteLineVerbose("Created function pointer for %s", pFunctionName);
 		}
 

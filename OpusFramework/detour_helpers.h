@@ -84,8 +84,8 @@ LONG create_hook(EngineVersion engineVersion, BuildVersion buildVersion, size_t 
 
 	}
 
-	char* const pModule = reinterpret_cast<char*>(GetLoadedHaloModule(engineVersion));
-	size_t const baseAddress = GetHaloBaseAddress(buildVersion);
+	char* const pModule = reinterpret_cast<char*>(GetEngineMemoryAddress(engineVersion));
+	size_t const baseAddress = GetBuildBaseAddress(buildVersion);
 
 	rOriginal = (Tb)(pModule + (offset - baseAddress));
 
@@ -160,8 +160,8 @@ template<BuildVersion buildVersion, size_t offset, typename T>
 void populate_function_ptr(T& dest)
 {
 	// Find the function address
-	char* const pModule = reinterpret_cast<char*>(GetLoadedHaloModule(buildVersion));
-	size_t const baseAddress = GetHaloBaseAddress(buildVersion);
+	char* const pModule = reinterpret_cast<char*>(GetBuildBaseAddress(buildVersion));
+	size_t const baseAddress = GetBuildBaseAddress(buildVersion);
 	char* const pFunctionAddress = pModule + (offset - baseAddress);
 
 	dest = reinterpret_cast<T>(pFunctionAddress);

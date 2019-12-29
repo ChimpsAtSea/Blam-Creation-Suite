@@ -18,7 +18,7 @@ enum class BuildVersion
 	Count
 };
 
-constexpr intptr_t GetHaloBaseAddress(BuildVersion buildVersion)
+constexpr intptr_t GetBuildBaseAddress(BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -33,7 +33,7 @@ constexpr intptr_t GetHaloBaseAddress(BuildVersion buildVersion)
 	return ~intptr_t();
 }
 
-constexpr intptr_t GetHaloTopAddress(BuildVersion buildVersion)
+constexpr intptr_t GetEngineTopAddress(BuildVersion buildVersion)
 {
 	switch (buildVersion)
 	{
@@ -53,7 +53,7 @@ constexpr intptr_t GetHaloTopAddress(BuildVersion buildVersion)
 	return ~intptr_t();
 }
 
-constexpr const char* GetHaloExecutableString(EngineVersion engineVersion)
+constexpr const char* GetEngineFilename(EngineVersion engineVersion)
 {
 	switch (engineVersion)
 	{
@@ -63,5 +63,5 @@ constexpr const char* GetHaloExecutableString(EngineVersion engineVersion)
 	FATAL_ERROR("Unsupported GameVersion");
 }
 
-extern bool IsHaloExecutableLoaded(EngineVersion engineVersion);
-extern void* GetLoadedHaloModule(EngineVersion engineVersion);
+extern bool IsEngineLoaded(EngineVersion engineVersion);
+extern void* GetEngineMemoryAddress(EngineVersion engineVersion);
