@@ -217,7 +217,7 @@ intptr_t main_game_launch_offset(EngineVersion engineVersion, BuildVersion build
 	}
 	else
 	{
-		WriteLineVerbose("ketchup> FAILURE: main_game_launch_offset @0x%x", patternOffset);
+		WriteLineVerbose("ketchup> FAILURE: main_game_launch_offset");
 	}
 
 	switch (buildVersion)
