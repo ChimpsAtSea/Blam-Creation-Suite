@@ -9,18 +9,18 @@ Instruction::Instruction(int length)
 Instruction::Instruction(const char* pMask, bool shouldInit) : m_length(__max(strlen(pMask), 0)) { if (shouldInit) { init(pMask); } }
 Instruction::Instruction(const char* pMask) : Instruction(pMask, true) {}
 
-Instruction::Instruction(const char* pMask, char b0) : m_length(__max(strlen(pMask), 1)) { init(pMask, b0); }
-Instruction::Instruction(const char* pMask, char b0, char b1) : m_length(__max(strlen(pMask), 2)) { init(pMask, b0, b1); }
-Instruction::Instruction(const char* pMask, char b0, char b1, char b2) : m_length(__max(strlen(pMask), 3)) { init(pMask, b0, b1, b2); }
-Instruction::Instruction(const char* pMask, char b0, char b1, char b2, char b3) : m_length(__max(strlen(pMask), 4)) { init(pMask, b0, b1, b2, b3); }
-Instruction::Instruction(const char* pMask, char b0, char b1, char b2, char b3, char b4) : m_length(__max(strlen(pMask), 5)) { init(pMask, b0, b1, b2, b3, b4); }
-Instruction::Instruction(const char* pMask, char b0, char b1, char b2, char b3, char b4, char b5) : m_length(__max(strlen(pMask), 6)) { init(pMask, b0, b1, b2, b3, b4, b5); }
-Instruction::Instruction(const char* pMask, char b0, char b1, char b2, char b3, char b4, char b5, char b6) : m_length(__max(strlen(pMask), 7)) { init(pMask, b0, b1, b2, b3, b4, b5, b6); }
-Instruction::Instruction(const char* pMask, char b0, char b1, char b2, char b3, char b4, char b5, char b6, char b7) : m_length(__max(strlen(pMask), 8)) { init(pMask, b0, b1, b2, b3, b4, b5, b6, b7); }
-Instruction::Instruction(const char* pMask, char b0, char b1, char b2, char b3, char b4, char b5, char b6, char b7, char b8) : m_length(__max(strlen(pMask), 9)) { init(pMask, b0, b1, b2, b3, b4, b5, b6, b7, b8); }
-Instruction::Instruction(const char* pMask, char b0, char b1, char b2, char b3, char b4, char b5, char b6, char b7, char b8, char b9) : m_length(__max(strlen(pMask), 10)) { init(pMask, b0, b1, b2, b3, b4, b5, b6, b7, b8, b9); }
-Instruction::Instruction(const char* pMask, char b0, char b1, char b2, char b3, char b4, char b5, char b6, char b7, char b8, char b9, char b10) : m_length(__max(strlen(pMask), 11)) { init(pMask, b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10); }
-Instruction::Instruction(const char* pMask, char b0, char b1, char b2, char b3, char b4, char b5, char b6, char b7, char b8, char b9, char b10, char b11) : m_length(__max(strlen(pMask), 12)) { init(pMask, b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11); }
+Instruction::Instruction(const char* pMask, int b0) : m_length(__max(strlen(pMask), 1)) { init(pMask, static_cast<char>(b0)); }
+Instruction::Instruction(const char* pMask, int b0, int b1) : m_length(__max(strlen(pMask), 2)) { init(pMask, static_cast<char>(b0), static_cast<char>(b1)); }
+Instruction::Instruction(const char* pMask, int b0, int b1, int b2) : m_length(__max(strlen(pMask), 3)) { init(pMask, static_cast<char>(b0), static_cast<char>(b1), static_cast<char>(b2)); }
+Instruction::Instruction(const char* pMask, int b0, int b1, int b2, int b3) : m_length(__max(strlen(pMask), 4)) { init(pMask, static_cast<char>(b0), static_cast<char>(b1), static_cast<char>(b2), static_cast<char>(b3)); }
+Instruction::Instruction(const char* pMask, int b0, int b1, int b2, int b3, int b4) : m_length(__max(strlen(pMask), 5)) { init(pMask, static_cast<char>(b0), static_cast<char>(b1), static_cast<char>(b2), static_cast<char>(b3), static_cast<char>(b4)); }
+Instruction::Instruction(const char* pMask, int b0, int b1, int b2, int b3, int b4, int b5) : m_length(__max(strlen(pMask), 6)) { init(pMask, static_cast<char>(b0), static_cast<char>(b1), static_cast<char>(b2), static_cast<char>(b3), static_cast<char>(b4), static_cast<char>(b5)); }
+Instruction::Instruction(const char* pMask, int b0, int b1, int b2, int b3, int b4, int b5, int b6) : m_length(__max(strlen(pMask), 7)) { init(pMask, static_cast<char>(b0), static_cast<char>(b1), static_cast<char>(b2), static_cast<char>(b3), static_cast<char>(b4), static_cast<char>(b5), static_cast<char>(b6)); }
+Instruction::Instruction(const char* pMask, int b0, int b1, int b2, int b3, int b4, int b5, int b6, int b7) : m_length(__max(strlen(pMask), 8)) { init(pMask, static_cast<char>(b0), static_cast<char>(b1), static_cast<char>(b2), static_cast<char>(b3), static_cast<char>(b4), static_cast<char>(b5), static_cast<char>(b6), static_cast<char>(b7)); }
+Instruction::Instruction(const char* pMask, int b0, int b1, int b2, int b3, int b4, int b5, int b6, int b7, int b8) : m_length(__max(strlen(pMask), 9)) { init(pMask, static_cast<char>(b0), static_cast<char>(b1), static_cast<char>(b2), static_cast<char>(b3), static_cast<char>(b4), static_cast<char>(b5), static_cast<char>(b6), static_cast<char>(b7), static_cast<char>(b8)); }
+Instruction::Instruction(const char* pMask, int b0, int b1, int b2, int b3, int b4, int b5, int b6, int b7, int b8, int b9) : m_length(__max(strlen(pMask), 10)) { init(pMask, static_cast<char>(b0), static_cast<char>(b1), static_cast<char>(b2), static_cast<char>(b3), static_cast<char>(b4), static_cast<char>(b5), static_cast<char>(b6), static_cast<char>(b7), static_cast<char>(b8), static_cast<char>(b9)); }
+Instruction::Instruction(const char* pMask, int b0, int b1, int b2, int b3, int b4, int b5, int b6, int b7, int b8, int b9, int b10) : m_length(__max(strlen(pMask), 11)) { init(pMask, static_cast<char>(b0), static_cast<char>(b1), static_cast<char>(b2), static_cast<char>(b3), static_cast<char>(b4), static_cast<char>(b5), static_cast<char>(b6), static_cast<char>(b7), static_cast<char>(b8), static_cast<char>(b9), static_cast<char>(b10)); }
+Instruction::Instruction(const char* pMask, int b0, int b1, int b2, int b3, int b4, int b5, int b6, int b7, int b8, int b9, int b10, int b11) : m_length(__max(strlen(pMask), 12)) { init(pMask, static_cast<char>(b0), static_cast<char>(b1), static_cast<char>(b2), static_cast<char>(b3), static_cast<char>(b4), static_cast<char>(b5), static_cast<char>(b6), static_cast<char>(b7), static_cast<char>(b8), static_cast<char>(b9), static_cast<char>(b10), static_cast<char>(b11)); }
 
 
 

@@ -96,7 +96,7 @@ intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVer
 
 	if (pInputMask)
 	{
-		for (intptr_t imageOffset = 0; imageOffset < sizeOfImage; imageOffset++)
+		for (uintptr_t imageOffset = 0; imageOffset < sizeOfImage; imageOffset++)
 		{
 			const char* pCurrentSearchPointer = pStartSearchAddress + imageOffset;
 
@@ -113,20 +113,20 @@ intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVer
 				}
 			}
 
-			return GetBuildBaseAddress(buildVersion) + imageOffset;
+			return GetBuildBaseAddress(buildVersion) + static_cast<intptr_t>(imageOffset);
 		search_fail_im:
 			continue;
 		}
 	}
 	else
 	{
-		for (intptr_t imageOffset = 0; imageOffset < sizeOfImage; imageOffset++)
+		for (uintptr_t imageOffset = 0; imageOffset < sizeOfImage; imageOffset++)
 		{
 			const char* pCurrentSearchPointer = pStartSearchAddress + imageOffset;
 
 			if (memcmp(pCurrentSearchPointer, pInputData, inputDataLength) == 0)
 			{
-				return GetBuildBaseAddress(buildVersion) + imageOffset;
+				return GetBuildBaseAddress(buildVersion) + static_cast<intptr_t>(imageOffset);
 			}
 
 			//	for (size_t currentPatternIndex = 0; currentPatternIndex < inputDataLength; currentPatternIndex++)
