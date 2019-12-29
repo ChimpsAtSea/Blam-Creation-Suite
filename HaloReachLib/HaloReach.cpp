@@ -210,48 +210,14 @@ intptr_t main_game_launch_offset(EngineVersion engineVersion, BuildVersion build
 	ps.AddInstruction(new _mov	("x",						0x48, 0x89, 0x05, 0xEF, 0x7B, 0xD3, 0x00					));	//.text:00000001800118F2	mov			cs:qword_180D494E8, rax
 
 	DWORD patternOffset = ps.FindPattern(0);
-	assert(patternOffset != 0);
 	if (patternOffset)
 	{
-		WriteLineVerbose("ketchup> main_game_launch_offset @0x%x", patternOffset);
-		const char* const pSearchResultPtr = reinterpret_cast<const char*>(GetEngineMemoryAddress(engineVersion)) + patternOffset;
-		int x = pSearchResultPtr[0];
+		WriteLineVerbose("ketchup> SUCCEED: main_game_launch_offset @0x%x", patternOffset);
+		return GetBuildBaseAddress(buildVersion) + patternOffset;
 	}
-
-	const char* pStringPointer = string_search_ptr(engineVersion, buildVersion, "external_launch_overall_timeout");
-	const char pInputData[] = {
-		// HR 1270
-		0x40, 0x57,													//.text:0000000180011870	push		rdi
-		0x48, 0x83, 0xEC, 0x30,										//.text:0000000180011872	sub			rsp, 30h
-		0x48, 0xC7, 0x44, 0x24, 0x20, 0xFE, 0xFF, 0xFF, 0xFF,		//.text:0000000180011876	mov			[rsp+38h+var_18], 0FFFFFFFFFFFFFFFEh
-		0x48, 0x89, 0x5C, 0x24, 0x40,								//.text:000000018001187F	mov			[rsp+38h+arg_0], rbx
-		0x48, 0x89, 0x74, 0x24, 0x48,								//.text:0000000180011884	mov			[rsp+38h+arg_8], rsi
-		0x80, 0x3D, 0x3C, 0x6A, 0xBF, 0x00, 0x00,					//.text:0000000180011889	cmp			cs:byte_180C082CC, 0
-		0x74, 0x1D,													//.text:0000000180011890	jz			short loc_1800118AF
-		0xE8, 0x49, 0x3A, 0x00, 0x00,								//.text:0000000180011892	call		sub_1800152E0
-		0x89, 0x05, 0x3B, 0x6A, 0xBF, 0x00,							//.text:0000000180011897	mov			cs:dword_180C082D8, eax
-		0xE8, 0x3E, 0x3A, 0x00, 0x00,								//.text:000000018001189D	call		sub_1800152E0
-		0x89, 0x05, 0x2C, 0x6A, 0xBF, 0x00, 0xC6,					//.text:00000001800118A2	mov			cs:dword_180C082D4, eax
-		0x05, 0x1D, 0x6A, 0xBF, 0x00, 0x00,							//.text:00000001800118A8	mov			cs:byte_180C082CC, 0
-		0xBE, 0x01, 0x00, 0x00, 0x00,								//.text:00000001800118AF	mov			esi, 1
-		0x8B, 0x05, 0x3A, 0x7C, 0xD3, 0x00,							//.text:00000001800118B4	mov			eax, cs:dword_180D494F4
-		0x83, 0xF8, 0x0C,											//.text:00000001800118BA	cmp			eax, 0Ch
-		0x0F, 0x84, 0x18, 0x01, 0x00, 0x00,							//.text:00000001800118BD	jz			loc_1800119DB									
-		0xE8, 0x18, 0x3A, 0x00, 0x00,								//.text:00000001800118C3	call		sub_1800152E0
-		0x2B, 0x05, 0x0A, 0x6A, 0xBF, 0x00,							//.text:00000001800118C8	sub			eax, cs:dword_180C082D8
-		0x83, 0xCF, 0xFF,											//.text:00000001800118CE	or			edi, 0FFFFFFFFh
-		0x3D, 0x90, 0x5F, 0x01, 0x00,								//.text:00000001800118D1	cmp			eax, 15F90h
-		0x76, 0x6F,													//.text:00000001800118D6	jbe			short loc_180011947
-		0x83, 0x3D, 0x11, 0x7C, 0xD3, 0x00, 0x00,					//.text:00000001800118D8	cmp			cs:dword_180D494F0, 0
-		0x75, 0x18,													//.text:00000001800118DF	jnz			short loc_1800118F9
-		0xC7, 0x05, 0x05, 0x7C, 0xD3, 0x00, 0x04, 0x00, 0x00, 0x00,	//.text:00000001800118E1	mov			cs:dword_180D494F0, 4
-		0x48, 0x8D, 0x05, 0xFE, 0x98, 0xA3, 0x00,					//.text:00000001800118EB	lea			rax, aExternalLaunch ; "external_launch_overall_timeout"
-		0x48, 0x89, 0x05, 0xEF, 0x7B, 0xD3, 0x00,					//.text:00000001800118F2	mov			cs:qword_180D494E8, rax
-	};
-	intptr_t imageOffset = simple_pattern_match(engineVersion, buildVersion, pInputData, sizeof(pInputData), nullptr);
-	if (imageOffset)
+	else
 	{
-		return imageOffset;
+		WriteLineVerbose("ketchup> FAILURE: main_game_launch_offset @0x%x", patternOffset);
 	}
 
 	switch (buildVersion)
