@@ -1,11 +1,19 @@
 #include "haloreachlib-private-pch.h"
 
+#define COMBINE1(X,Y) X##Y
+#define COMBINE(X,Y) COMBINE1(X,Y)
+#define RUNONCE(...) \
+static bool COMBINE(__runonceflag_, __LINE__) = false; \
+if (COMBINE(__runonceflag_, __LINE__) == false) \
+{ \
+	__VA_ARGS__; \
+	COMBINE(__runonceflag_, __LINE__) = true; \
+} (void)(0)
+
 // Custom Engine Stuff
 s_thread_local_storage ThreadLocalStorage;
 
 // Custom Stuff
-
-
 s_game_bindings g_GameBindings;
 bool g_customBinds = false;
 e_peer_property g_lastGameLoadStatus;
@@ -21,177 +29,279 @@ bool g_pancamEnabled = false;
 bool g_keyboardPrintKeyState = false;
 BuildVersion g_currentbuildVersion = BuildVersion::NotSet;
 
-void patch_out_gameenginehostcallback_mov_rcx(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset)
+#include <map>
+
+void _simple_pattern_match_readonly_data_copy(
+	void* pEngineAddress,
+	SIZE_T& rSizeOfImage,
+	void*& rpModuleData)
 {
+	HANDLE hProcess = GetCurrentProcess();
 
-	char* pBeginning = (char*)GetLoadedHaloModule(engineVersion);
-
-	char* pMovAttack = pBeginning + (offset - 0x180000000);
-	// 48 8B 0D A3 9B C8 00
-	// mov    rcx,QWORD PTR [rip+0xc89ba3]
-	// change to
-	// 48 31 c9
-	// xor rcx, rcx
-	// nop
-	// nop
-	// nop
-	// nop
-
-	char bytes[] =
 	{
-		0x48i8, 0x31i8, 0xc9i8,	// xor rcx, rcx
-		0x90i8,					// nop
-		0x90i8,					// nop
-		0x90i8,					// nop
-		0x90i8,					// nop
+		MODULEINFO moduleInfo = {};
+		BOOL getModuleInformationResult = GetModuleInformation(
+			hProcess,
+			static_cast<HMODULE>(pEngineAddress),
+			&moduleInfo,
+			sizeof(moduleInfo)
+		);
+		assert(getModuleInformationResult);
+
+		rSizeOfImage = static_cast<SIZE_T>(moduleInfo.SizeOfImage);
+	}
+
+	static std::map<void*, void*> moduleMaps;
+	std::map<void*, void*>::iterator existingModuleDataCopy = moduleMaps.find(pEngineAddress);
+
+	if (existingModuleDataCopy == moduleMaps.end())
+	{
+		rpModuleData = new char[rSizeOfImage];
+		assert(rpModuleData);
+
+		SIZE_T numBytes = 0;
+		ReadProcessMemory(
+			hProcess,
+			static_cast<HMODULE>(pEngineAddress),
+			rpModuleData,
+			rSizeOfImage,
+			&numBytes
+		);
+		assert(numBytes > 0);
+
+		moduleMaps[pEngineAddress] = rpModuleData;
+	}
+	else
+	{
+		rpModuleData = existingModuleDataCopy->second;
+		assert(rpModuleData);
+	}
+}
+
+intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVersion, const char pInputData[], size_t inputDataLength, const char* pInputMask)
+{
+	void* pEngineAddress = GetEngineMemoryAddress(engineVersion);
+	SIZE_T sizeOfImage = 0;
+	void* pModuleData = nullptr;
+	_simple_pattern_match_readonly_data_copy(pEngineAddress, sizeOfImage, pModuleData);
+
+	if (pInputMask)
+	{
+		size_t inputMaskLength = strlen(pInputMask);
+		assert(inputMaskLength == inputDataLength);
+	}
+
+	const char* pStartSearchAddress = reinterpret_cast<char*>(pModuleData);
+	intptr_t result = 0;
+
+	if (pInputMask)
+	{
+		for (intptr_t imageOffset = 0; imageOffset < sizeOfImage; imageOffset++)
+		{
+			const char* pCurrentSearchPointer = pStartSearchAddress + imageOffset;
+
+			for (size_t currentPatternIndex = 0; currentPatternIndex < inputDataLength; currentPatternIndex++)
+			{
+				if (pInputMask[imageOffset] == '?')
+				{
+					continue;
+				}
+
+				if (pCurrentSearchPointer[currentPatternIndex] != pInputData[currentPatternIndex])
+				{
+					goto search_fail_im;
+				}
+			}
+
+			return GetBuildBaseAddress(buildVersion) + imageOffset;
+		search_fail_im:
+			continue;
+		}
+	}
+	else
+	{
+		for (intptr_t imageOffset = 0; imageOffset < sizeOfImage; imageOffset++)
+		{
+			const char* pCurrentSearchPointer = pStartSearchAddress + imageOffset;
+
+			if (memcmp(pCurrentSearchPointer, pInputData, inputDataLength) == 0)
+			{
+				return GetBuildBaseAddress(buildVersion) + imageOffset;
+			}
+
+			//	for (size_t currentPatternIndex = 0; currentPatternIndex < inputDataLength; currentPatternIndex++)
+			//	{
+			//		if (pCurrentSearchPointer[currentPatternIndex] != pInputData[currentPatternIndex])
+			//		{
+			//			goto search_fail;
+			//		}
+			//	}
+
+			//	return GetBuildBaseAddress(buildVersion) + imageOffset;
+			//search_fail:
+			//	continue;
+		}
+	}
+
+	return 0;
+}
+
+intptr_t string_search(EngineVersion engineVersion, BuildVersion buildVersion, const char* pString)
+{
+	intptr_t imageAddress = simple_pattern_match(engineVersion, buildVersion, pString, strlen(pString) + 1, nullptr);
+	return imageAddress;
+}
+
+const char* string_search_ptr(EngineVersion engineVersion, BuildVersion buildVersion, const char* pString)
+{
+	intptr_t imageAddress = string_search(engineVersion, buildVersion, pString);
+	if (imageAddress)
+	{
+		const char* pStringAddress = reinterpret_cast<const char*>(GetEngineMemoryAddress(engineVersion)) + (imageAddress - GetBuildBaseAddress(buildVersion));
+		return pStringAddress;
+	}
+	return nullptr;
+}
+
+intptr_t load_state_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_887_0_0: return 0x1810EC5A4;
+	case BuildVersion::Build_1_1035_0_0: return 0x180D37AB0;
+	case BuildVersion::Build_1_1186_0_0: return 0x180D4E674;
+	case BuildVersion::Build_1_1211_0_0: return 0x180D4F674;
+	case BuildVersion::Build_1_1246_0_0: return 0x180D494F4;
+	case BuildVersion::Build_1_1270_0_0: return 0x180D494F4;
+	}
+	return ~intptr_t();
+}
+DataEx<int, load_state_offset> load_state;
+
+intptr_t main_game_launch_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	using namespace ketchup;
+	PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engineVersion)));
+	ps.AddInstruction(new _push	("x",						0x40, 0x57													));	//.text:0000000180011870	push		rdi
+	ps.AddInstruction(new _sub	("x",						0x48, 0x83, 0xEC, 0x30										));	//.text:0000000180011872	sub			rsp, 30h
+	ps.AddInstruction(new _mov	("x",						0x48, 0xC7, 0x44, 0x24, 0x20, 0xFE, 0xFF, 0xFF, 0xFF		));	//.text:0000000180011876	mov			[rsp+38h+var_18], 0FFFFFFFFFFFFFFFEh
+	ps.AddInstruction(new _mov	("x",						0x48, 0x89, 0x5C, 0x24, 0x40								));	//.text:000000018001187F	mov			[rsp+38h+arg_0], rbx
+	ps.AddInstruction(new _mov	("x",						0x48, 0x89, 0x74, 0x24, 0x48								));	//.text:0000000180011884	mov			[rsp+38h+arg_8], rsi
+	ps.AddInstruction(new _cmp	("x",						0x80, 0x3D, 0x3C, 0x6A, 0xBF, 0x00, 0x00					));	//.text:0000000180011889	cmp			cs:byte_180C082CC, 0
+	ps.AddInstruction(new _jz	("x", JumpDistance::Short,	0x74, 0x1D													));	//.text:0000000180011890	jz			short loc_1800118AF
+	ps.AddInstruction(new _call	("x",						0xE8, 0x49, 0x3A, 0x00, 0x00								));	//.text:0000000180011892	call		sub_1800152E0
+	ps.AddInstruction(new _mov	("x",						0x89, 0x05, 0x3B, 0x6A, 0xBF, 0x00							));	//.text:0000000180011897	mov			cs:dword_180C082D8, eax
+	ps.AddInstruction(new _call	("x",						0xE8, 0x3E, 0x3A, 0x00, 0x00								));	//.text:000000018001189D	call		sub_1800152E0
+	ps.AddInstruction(new _mov	("x",						0x89, 0x05, 0x2C, 0x6A, 0xBF, 0x00, 0xC6					));	//.text:00000001800118A2	mov			cs:dword_180C082D4, eax
+	ps.AddInstruction(new _mov	("x",						0x05, 0x1D, 0x6A, 0xBF, 0x00, 0x00							));	//.text:00000001800118A8	mov			cs:byte_180C082CC, 0
+	ps.AddInstruction(new _mov	("x",						0xBE, 0x01, 0x00, 0x00, 0x00								));	//.text:00000001800118AF	mov			esi, 1
+	ps.AddInstruction(new _mov	("x",						0x8B, 0x05, 0x3A, 0x7C, 0xD3, 0x00							));	//.text:00000001800118B4	mov			eax, cs:dword_180D494F4
+	ps.AddInstruction(new _cmp	("x",						0x83, 0xF8, 0x0C											));	//.text:00000001800118BA	cmp			eax, 0Ch
+	ps.AddInstruction(new _jz	("x", JumpDistance::Long,	0x0F, 0x84, 0x18, 0x01, 0x00, 0x00							));	//.text:00000001800118BD	jz			loc_1800119DB									
+	ps.AddInstruction(new _call	("x",						0xE8, 0x18, 0x3A, 0x00, 0x00								));	//.text:00000001800118C3	call		sub_1800152E0
+	ps.AddInstruction(new _sub	("x",						0x2B, 0x05, 0x0A, 0x6A, 0xBF, 0x00							));	//.text:00000001800118C8	sub			eax, cs:dword_180C082D8
+	ps.AddInstruction(new _or	("x",						0x83, 0xCF, 0xFF											));	//.text:00000001800118CE	or			edi, 0FFFFFFFFh
+	ps.AddInstruction(new _cmp	("x",						0x3D, 0x90, 0x5F, 0x01, 0x00								));	//.text:00000001800118D1	cmp			eax, 15F90h
+	ps.AddInstruction(new _jbe	("x", JumpDistance::Short,	0x76, 0x6F													));	//.text:00000001800118D6	jbe			short loc_180011947
+	ps.AddInstruction(new _cmp	("x",						0x83, 0x3D, 0x11, 0x7C, 0xD3, 0x00, 0x00					));	//.text:00000001800118D8	cmp			cs:dword_180D494F0, 0
+	ps.AddInstruction(new _jnz	("x", JumpDistance::Short,	0x75, 0x18													));	//.text:00000001800118DF	jnz			short loc_1800118F9
+	ps.AddInstruction(new _mov	("x",						0xC7, 0x05, 0x05, 0x7C, 0xD3, 0x00, 0x04, 0x00, 0x00, 0x00	));	//.text:00000001800118E1	mov			cs:dword_180D494F0, 4
+	ps.AddInstruction(new _lea	("x",						0x48, 0x8D, 0x05, 0xFE, 0x98, 0xA3, 0x00					));	//.text:00000001800118EB	lea			rax, aExternalLaunch ; "external_launch_overall_timeout"
+	ps.AddInstruction(new _mov	("x",						0x48, 0x89, 0x05, 0xEF, 0x7B, 0xD3, 0x00					));	//.text:00000001800118F2	mov			cs:qword_180D494E8, rax
+
+	DWORD patternOffset = ps.FindPattern(0);
+	assert(patternOffset != 0);
+	if (patternOffset)
+	{
+		WriteLineVerbose("ketchup> main_game_launch_offset @0x%x", patternOffset);
+		const char* const pSearchResultPtr = reinterpret_cast<const char*>(GetEngineMemoryAddress(engineVersion)) + patternOffset;
+		int x = pSearchResultPtr[0];
+	}
+
+	const char* pStringPointer = string_search_ptr(engineVersion, buildVersion, "external_launch_overall_timeout");
+	const char pInputData[] = {
+		// HR 1270
+		0x40, 0x57,													//.text:0000000180011870	push		rdi
+		0x48, 0x83, 0xEC, 0x30,										//.text:0000000180011872	sub			rsp, 30h
+		0x48, 0xC7, 0x44, 0x24, 0x20, 0xFE, 0xFF, 0xFF, 0xFF,		//.text:0000000180011876	mov			[rsp+38h+var_18], 0FFFFFFFFFFFFFFFEh
+		0x48, 0x89, 0x5C, 0x24, 0x40,								//.text:000000018001187F	mov			[rsp+38h+arg_0], rbx
+		0x48, 0x89, 0x74, 0x24, 0x48,								//.text:0000000180011884	mov			[rsp+38h+arg_8], rsi
+		0x80, 0x3D, 0x3C, 0x6A, 0xBF, 0x00, 0x00,					//.text:0000000180011889	cmp			cs:byte_180C082CC, 0
+		0x74, 0x1D,													//.text:0000000180011890	jz			short loc_1800118AF
+		0xE8, 0x49, 0x3A, 0x00, 0x00,								//.text:0000000180011892	call		sub_1800152E0
+		0x89, 0x05, 0x3B, 0x6A, 0xBF, 0x00,							//.text:0000000180011897	mov			cs:dword_180C082D8, eax
+		0xE8, 0x3E, 0x3A, 0x00, 0x00,								//.text:000000018001189D	call		sub_1800152E0
+		0x89, 0x05, 0x2C, 0x6A, 0xBF, 0x00, 0xC6,					//.text:00000001800118A2	mov			cs:dword_180C082D4, eax
+		0x05, 0x1D, 0x6A, 0xBF, 0x00, 0x00,							//.text:00000001800118A8	mov			cs:byte_180C082CC, 0
+		0xBE, 0x01, 0x00, 0x00, 0x00,								//.text:00000001800118AF	mov			esi, 1
+		0x8B, 0x05, 0x3A, 0x7C, 0xD3, 0x00,							//.text:00000001800118B4	mov			eax, cs:dword_180D494F4
+		0x83, 0xF8, 0x0C,											//.text:00000001800118BA	cmp			eax, 0Ch
+		0x0F, 0x84, 0x18, 0x01, 0x00, 0x00,							//.text:00000001800118BD	jz			loc_1800119DB									
+		0xE8, 0x18, 0x3A, 0x00, 0x00,								//.text:00000001800118C3	call		sub_1800152E0
+		0x2B, 0x05, 0x0A, 0x6A, 0xBF, 0x00,							//.text:00000001800118C8	sub			eax, cs:dword_180C082D8
+		0x83, 0xCF, 0xFF,											//.text:00000001800118CE	or			edi, 0FFFFFFFFh
+		0x3D, 0x90, 0x5F, 0x01, 0x00,								//.text:00000001800118D1	cmp			eax, 15F90h
+		0x76, 0x6F,													//.text:00000001800118D6	jbe			short loc_180011947
+		0x83, 0x3D, 0x11, 0x7C, 0xD3, 0x00, 0x00,					//.text:00000001800118D8	cmp			cs:dword_180D494F0, 0
+		0x75, 0x18,													//.text:00000001800118DF	jnz			short loc_1800118F9
+		0xC7, 0x05, 0x05, 0x7C, 0xD3, 0x00, 0x04, 0x00, 0x00, 0x00,	//.text:00000001800118E1	mov			cs:dword_180D494F0, 4
+		0x48, 0x8D, 0x05, 0xFE, 0x98, 0xA3, 0x00,					//.text:00000001800118EB	lea			rax, aExternalLaunch ; "external_launch_overall_timeout"
+		0x48, 0x89, 0x05, 0xEF, 0x7B, 0xD3, 0x00,					//.text:00000001800118F2	mov			cs:qword_180D494E8, rax
+	};
+	intptr_t imageOffset = simple_pattern_match(engineVersion, buildVersion, pInputData, sizeof(pInputData), nullptr);
+	if (imageOffset)
+	{
+		return imageOffset;
+	}
+
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_887_0_0: return 0x180013EA0;
+	case BuildVersion::Build_1_1035_0_0: return 0x1800113F0;
+	case BuildVersion::Build_1_1186_0_0: return 0x180011860;
+	case BuildVersion::Build_1_1211_0_0: return 0x180011870;
+	case BuildVersion::Build_1_1246_0_0: return 0x180011870;
+	case BuildVersion::Build_1_1270_0_0: return 0x180011870;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = { "main_game_launch", [](__int64 a1, __int64 a2)
+{
+	const char* load_state_names[] =
+	{
+		"initial",
+		"create_local_squad",
+		"select_game_mode",
+		"saved_film",
+		"campaign",
+		"previous_game_state",
+		"multiplayer",
+		"survival",
+		"wait_for_party",
+		"join_remote_squad",
+		"unused",
+		"start_game",
+		"finished"
 	};
 
-	memcpy_virtual(pMovAttack, bytes, 7);
-}
+	static int previous_load_state = k_load_state_invalid;
 
-//
-//// Halo Reach Variables
-//
-//Pointer<BuildVersion::Build_1_1035_0_0, IDirectInputDevice8*, 0x1839EC128> qword_1839EC128;
-//
-//
-//intptr_t TlsIndex_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-//{
-//	switch (buildVersion)
-//	{
-//	case BuildVersion::Build_1_887_0_0: return 0x1810A3098;
-//	case BuildVersion::Build_1_1035_0_0: return 0x180CF6998;
-//	}
-//	return ~intptr_t();
-//}
-//DataEx<uint32_t, TlsIndex_offset> TlsIndex;
-//
-//intptr_t g_termination_value_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-//{
-//	switch (buildVersion)
-//	{
-//	case BuildVersion::Build_1_887_0_0: return 0x183984DE4;
-//	case BuildVersion::Build_1_1035_0_0: return 0x18358EF04;
-//	}
-//	return ~intptr_t();
-//}
-//char& g_termination_value = reference_symbol<char>("g_termination_value", g_termination_value_offset);
-//
-//intptr_t g_controller_interfaces_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-//{
-//	switch (buildVersion)
-//	{
-//	case BuildVersion::Build_1_887_0_0: return 0x183D43560;
-//	case BuildVersion::Build_1_1035_0_0: return 0x183945FC0;
-//	}
-//	return ~intptr_t();
-//}
-//c_controller_interface(&g_controller_interfaces)[4] = reference_symbol<c_controller_interface[4]>("g_controller_interfaces", g_controller_interfaces_offset);
-//
-//intptr_t g_game_options_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-//{
-//	switch (buildVersion)
-//	{
-//	case BuildVersion::Build_1_887_0_0: return 0x183B0FB70;
-//	case BuildVersion::Build_1_1035_0_0: return 0x183719E50;
-//	}
-//	return ~intptr_t();
-//}
-//s_game_options& g_game_options = reference_symbol<s_game_options>("g_game_options", g_game_options_offset);
-//
-//// HaloReach_2019_Jun_24_Data<float, 0x183DF5830> dword_183DF5830; g_gamepad_globals->unknown350
-//HaloReach_2019_Jun_24_Data<_QWORD, 0x183461018> qword_183461018; // no equivalent
-//
-//intptr_t g_gamepad_globals_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-//{
-//	switch (buildVersion)
-//	{
-//	case BuildVersion::Build_1_887_0_0: return 0x183DF54E0;
-//	case BuildVersion::Build_1_1035_0_0: return 0x1839EBDE0;
-//	}
-//	return ~intptr_t();
-//}
-//DataEx<s_gamepad_globals, g_gamepad_globals_offset> g_gamepad_globals;
-//
-//intptr_t g_input_abstraction_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-//{
-//	switch (buildVersion)
-//	{
-//	case BuildVersion::Build_1_887_0_0: return 0x183B2E510;
-//	case BuildVersion::Build_1_1035_0_0: return 0x1837387F0;
-//	}
-//	return ~intptr_t();
-//}
-//DataEx<s_input_abstraction, g_input_abstraction_offset> g_input_abstraction;
-//
-//HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line; // no equivalent
-//
-//// Halo Reach Functions
-//
-//intptr_t restricted_region_unlock_primary_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-//{
-//	switch (buildVersion)
-//	{
-//	case BuildVersion::Build_1_887_0_0: return 0x1803FB790;
-//	case BuildVersion::Build_1_1035_0_0: return 0x1802041F0;
-//	}
-//	return ~intptr_t();
-//}
-//FunctionHookEx<restricted_region_unlock_primary_offset, __int64(int a1)> restricted_region_unlock_primary;
+	if ((int)load_state != previous_load_state)
+	{
+		previous_load_state = load_state;
+		printf("load_state changed to: %s\n", load_state_names[(int)load_state]);
+	}
 
-// core functionality required for the game to run
-#include "haloreach.core.inl"
+	auto result = main_game_launch(a1, a2);
 
-// input functionality
-//#include "haloreach.input.inl"
+	if ((int)load_state != previous_load_state)
+	{
+		previous_load_state = load_state;
+		printf("load_state changed to: %s\n", load_state_names[(int)load_state]);
+	}
 
-// rendering functionality
-//#include "haloreach.render.inl"
-
-//// log and text manipulation functionality
-//#include "haloreach.log.inl"
-//
-//// game functionality
-//#include "haloreach.game.inl"
-
-// network functionality
-//#include "haloreach.network.inl"
-
-#define COMBINE1(X,Y) X##Y
-#define COMBINE(X,Y) COMBINE1(X,Y)
-#define RUNONCE(...) \
-static bool COMBINE(__runonceflag_, __LINE__) = false; \
-if (COMBINE(__runonceflag_, __LINE__) == false) \
-{ \
-	__VA_ARGS__; \
-	COMBINE(__runonceflag_, __LINE__) = true; \
-} (void)(0)
-
-// this function runs to start the UI when the game engine host callback is null.
-FunctionHookVarArgs<BuildVersion::Build_1_1035_0_0, 0x180495220, char(unsigned int a1, __int64 a2, __int64 a3, IGameEngineHost* a4, __int64 a5, __int64 a6, ...)> sub_180495220 = { "sub_180495220", [](unsigned int a1, __int64 a2, __int64 a3, IGameEngineHost* a4, __int64 a5, __int64 a6, ...)
-{
-	char result = sub_180495220(a1, a2, a3, a4, a5, a6);
-	WriteLineVerbose("sub_180495220: %i", (int)result);
 	return result;
 } };
-
-
-//char sub_180495220()
-
-void set_service_tag(int index)
-{
-	//static wchar_t tag[5] = L"";
-	//if (GetPrivateProfileStringW(L"Player", L"ServiceTag", L"UNSC", tag, 5, L".\\Settings.ini") != 2)
-	//{
-	//	if (wcsncmp(g_controller_interfaces[index].Profile.ServiceTag, tag, 5) == 0)
-	//	{
-	//		WriteLineVerbose("player[%d].Tag already set", index);
-	//		return;
-	//	}
-	//	wcsncpy(g_controller_interfaces[index].Profile.ServiceTag, tag, 5);
-	//	WriteLineVerbose("player[%d].Tag: set %ls", index, tag);
-	//}
-}
 
 void ReadConfig()
 {
@@ -432,101 +542,14 @@ void halo_reach_debug_callback()
 
 char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", BuildVersion::Build_1_1035_0_0, 0x180A0EE08);
 
-void dump_binary(const char* pFileName, void* pData, size_t size)
-{
-	FILE* pFile = fopen(pFileName, "wb");
-	if (pFile)
-	{
-		fwrite(pData, 1, size, pFile);
-		fclose(pFile);
-		WriteLineVerbose("Successfully dumped %s", pFileName);
-	}
-	else
-	{
-		WriteLineVerbose("Failed to dump %s", pFileName);
-	}
-}
-
-intptr_t game_start_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-{
-	switch (buildVersion)
-	{
-	case BuildVersion::Build_1_1186_0_0: return 0x180011C60;
-	case BuildVersion::Build_1_1211_0_0: return 0x180011C70;
-	}
-	return ~intptr_t();
-}
-
-#pragma optimize("", off)
-FunctionHookEx<game_start_offset, char(__fastcall)(IGameEngineHaloReach * __this, class IGameEngineHost* pGameEngineHost, GameContext * pGameContext)> game_start = [](IGameEngineHaloReach* __this, class IGameEngineHost* pGameEngineHost, GameContext* pGameContext)
-{
-	dump_binary("gamecontext.bin", pGameContext, sizeof(GameContext));
-	auto result = game_start(__this, pGameEngineHost, pGameContext);
-	return result;
-};
-#pragma optimize("", on)
-
 void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVersion, bool isMCC)
 {
-	game_start.SetIsActive(isMCC || GameLauncher::HasCommandLineArg("-dump:gamecontext.bin"));
-
 	g_currentbuildVersion = buildVersion;
 	CustomWindow::SetWindowTitle("Halo Reach");
 	ReadConfig();
 	//DebugUI::RegisterCallback(halo_reach_debug_callback);
 
 	init_detours();
-
-	//if (buildVersion == BuildVersion::Build_1_887_0_0)
-	//{
-	//	g_shell_command_line = GetCommandLineA();
-	//}
-
-	
-	//nop_address(BuildVersion::Build_1_1186_0_0, 0x18002DA56, 7);
-	//patch_out_gameenginehostcallback_mov_rcx(BuildVersion::Build_1_1186_0_0, 0x18002DA81);
-
-	//unsigned char jnz = 0x75;
-	//copy_to_address(BuildVersion::Build_1_1186_0_0, 0x18002DA5D, &jnz, 1);
-
-	//bool isNetworkingPatchActive = true;
-	//if (isNetworkingPatchActive)
-	//{
-	//	patch_out_gameenginehostcallback_mov_rcx(BuildVersion::Build_1_1035_0_0, 0x1800AE684);
-	//	patch_out_gameenginehostcallback_mov_rcx(BuildVersion::Build_1_1035_0_0, 0x180100D54);
-	//	patch_out_gameenginehostcallback_mov_rcx(BuildVersion::Build_1_1035_0_0, 0x1800ADEFE);
-	//	//patch_out_gameenginehostcallback_mov_rsi(BuildVersion::Build_1_1035_0_0, 0x18002350D); // patch for sub_1800234F0 to bypass member25
-	//	nop_address(BuildVersion::Build_1_1035_0_0, 0x1800ADB4F, 6);
-	//	int32_t host_wait_for_party_timeout = 45000000;
-	//	copy_to_address(BuildVersion::Build_1_1035_0_0, 0x180011090, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
-	//	copy_to_address(BuildVersion::Build_1_1035_0_0, 0x180011431, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
-	//	copy_to_address(BuildVersion::Build_1_1035_0_0, 0x180011458, &host_wait_for_party_timeout, sizeof(host_wait_for_party_timeout));
-
-	//	// this patches out the gameenginehostcallback to get the game to use its original pause menu
-	//	bool enableOriginalMenu = false;
-	//	sub_180495220.SetIsActive(enableOriginalMenu);
-	//	if(enableOriginalMenu)
-	//	{
-	//		// patch	mov r9, cs:g_pGameEngineHost
-	//		// to		xor r9, r9
-	//		nop_address(BuildVersion::Build_1_1035_0_0, 0x180495158, 7);
-	//		char xor_r9_r9[] = { 0x4di8, 0x31i8, 0xc9i8 };
-	//		copy_to_address(BuildVersion::Build_1_1035_0_0, 0x180495158, xor_r9_r9, sizeof(xor_r9_r9));
-	//	}
-
-	//	//if (!IGameEngineHost::g_isHost)
-	//	//{
-	//	//	char jne = 0x75i8;
-	//	//	copy_to_address(BuildVersion::Build_1_1035_0_0, 0x1800AE91D, &jne, sizeof(jne));
-	//	//}
-
-
-	//}
-
-	//RUNONCE(create_dll_hook("WS2_32.dll", "recvfrom", recvfromHook, recvfromPointer));
-	//RUNONCE(create_dll_hook("WS2_32.dll", "bind", bindHook, bindPointer));
-	//RUNONCE(create_dll_hook("WS2_32.dll", "sendto", sendtoHook, sendtoPointer));
-	//sub_1800AE4E0.SetIsActive(isNetworkingPatchActive);
 
 	DataReferenceBase::InitTree(EngineVersion::HaloReach, buildVersion);
 	FunctionHookBase::InitTree(EngineVersion::HaloReach, buildVersion);
