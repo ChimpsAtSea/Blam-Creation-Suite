@@ -113,8 +113,8 @@ private:
 			assert(m_buildVersion == BuildVersion::NotSet && static_cast<intptr_t>(offset + m_dataSize) < GetHaloTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
 		}
 
-		HMODULE hModule = GetModuleHandleA(GetHaloExecutableString(engineVersion));
-		char* pBaseAddress = reinterpret_cast<char*>(hModule);
+		void* pModule = GetLoadedHaloModule(engineVersion);
+		char* pBaseAddress = reinterpret_cast<char*>(pModule);
 		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetHaloBaseAddress(buildVersion)));
 		return ptr;
 	}

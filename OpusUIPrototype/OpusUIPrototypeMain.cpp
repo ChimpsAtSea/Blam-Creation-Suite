@@ -2,6 +2,10 @@
 #include "OpusUIPrototypeMain.h"
 #include "Common\DirectXHelper.h"
 
+#include <HaloReachLib\haloreachlib-private-pch.h>
+extern void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
+extern void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
+
 using namespace OpusUIPrototype;
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
@@ -14,17 +18,49 @@ OpusUIPrototypeMain::OpusUIPrototypeMain(const std::shared_ptr<DX::DeviceResourc
 	// Register to be notified if the Device is lost or recreated
 	m_deviceResources->RegisterDeviceNotify(this);
 
-	// TODO: Replace this with your app's content initialization.
-	m_sceneRenderer = std::unique_ptr<Sample3DSceneRenderer>(new Sample3DSceneRenderer(m_deviceResources));
+	// might have to hook into the present function to override behavior allowing us to call m_deviceResources->Present()
+	// this would require a copy of the vftable to be created to leave the original present function in place
 
-	m_fpsTextRenderer = std::unique_ptr<SampleFpsTextRenderer>(new SampleFpsTextRenderer(m_deviceResources));
+	//{
+	//	IAsyncAction^ m_renderLoopWorker = nullptr;
+	//	// If the animation render loop is already running then do not start another thread.
+	//	if (m_renderLoopWorker != nullptr && m_renderLoopWorker->Status == AsyncStatus::Started)
+	//	{
+	//		return;
+	//	}
 
-	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
-	// e.g. for 60 FPS fixed timestep update logic, call:
-	/*
-	m_timer.SetFixedTimeStep(true);
-	m_timer.SetTargetElapsedSeconds(1.0 / 60);
-	*/
+	//	// Create a task that will be run on a background thread.
+	//	auto workItemHandler = ref new WorkItemHandler([this](IAsyncAction^ action)
+	//		{
+	//			// Calculate the updated frame and render once per vertical blanking interval.
+	//			while (action->Status == AsyncStatus::Started)
+	//			{
+	//				critical_section::scoped_lock lock(m_criticalSection);
+	//				Update();
+	//				if (Render())
+	//				{
+	//					m_deviceResources->Present();
+	//				}
+	//			}
+	//		});
+
+	//	// Run task on a dedicated high priority background thread.
+	//	m_renderLoopWorker = ThreadPool::RunAsync(workItemHandler, WorkItemPriority::High, WorkItemOptions::TimeSliced);
+	//}
+
+	//GameLauncher::CheckSteamAPI();
+
+	//GameLauncher::EnsureBink2Win64IsLoaded("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
+
+	//GameLauncher::RegisterGameLaunchCallback(EngineVersion::HaloReach, init_halo_reach);
+	//GameLauncher::RegisterGameShutdownCallback(EngineVersion::HaloReach, deinit_halo_reach);
+
+	//CustomWindow::SetIcon(LoadIconA(GetModuleHandle(NULL), MAKEINTRESOURCEA(IDI_ICON1)));
+
+	//GameRender::Init(hInstance, NULL, NULL);
+
+	//GameInterface gameInterface = GameInterface("HaloReach\\haloreach.dll");
+	//int result = GameLauncher::Run(NULL, NULL, gameInterface);
 }
 
 OpusUIPrototypeMain::~OpusUIPrototypeMain()
@@ -37,72 +73,24 @@ OpusUIPrototypeMain::~OpusUIPrototypeMain()
 void OpusUIPrototypeMain::CreateWindowSizeDependentResources() 
 {
 	// TODO: Replace this with the size-dependent initialization of your app's content.
-	m_sceneRenderer->CreateWindowSizeDependentResources();
-}
-
-void OpusUIPrototypeMain::StartRenderLoop()
-{
-	// If the animation render loop is already running then do not start another thread.
-	if (m_renderLoopWorker != nullptr && m_renderLoopWorker->Status == AsyncStatus::Started)
-	{
-		return;
-	}
-
-	// Create a task that will be run on a background thread.
-	auto workItemHandler = ref new WorkItemHandler([this](IAsyncAction ^ action)
-	{
-		// Calculate the updated frame and render once per vertical blanking interval.
-		while (action->Status == AsyncStatus::Started)
-		{
-			critical_section::scoped_lock lock(m_criticalSection);
-			Update();
-			if (Render())
-			{
-				m_deviceResources->Present();
-			}
-		}
-	});
-
-	// Run task on a dedicated high priority background thread.
-	m_renderLoopWorker = ThreadPool::RunAsync(workItemHandler, WorkItemPriority::High, WorkItemOptions::TimeSliced);
-}
-
-void OpusUIPrototypeMain::StopRenderLoop()
-{
-	m_renderLoopWorker->Cancel();
 }
 
 // Updates the application state once per frame.
 void OpusUIPrototypeMain::Update() 
 {
 	ProcessInput();
-
-	// Update scene objects.
-	m_timer.Tick([&]()
-	{
-		// TODO: Replace this with your app's content update functions.
-		m_sceneRenderer->Update(m_timer);
-		m_fpsTextRenderer->Update(m_timer);
-	});
 }
 
 // Process all input from the user before updating game state
 void OpusUIPrototypeMain::ProcessInput()
 {
 	// TODO: Add per frame input handling here.
-	m_sceneRenderer->TrackingUpdate(m_pointerLocationX);
 }
 
 // Renders the current frame according to the current application state.
 // Returns true if the frame was rendered and is ready to be displayed.
 bool OpusUIPrototypeMain::Render() 
 {
-	// Don't try to render anything before the first Update.
-	if (m_timer.GetFrameCount() == 0)
-	{
-		return false;
-	}
-
 	auto context = m_deviceResources->GetD3DDeviceContext();
 
 	// Reset the viewport to target the whole screen.
@@ -119,8 +107,6 @@ bool OpusUIPrototypeMain::Render()
 
 	// Render the scene objects.
 	// TODO: Replace this with your app's content rendering functions.
-	m_sceneRenderer->Render();
-	m_fpsTextRenderer->Render();
 
 	return true;
 }
@@ -128,14 +114,11 @@ bool OpusUIPrototypeMain::Render()
 // Notifies renderers that device resources need to be released.
 void OpusUIPrototypeMain::OnDeviceLost()
 {
-	m_sceneRenderer->ReleaseDeviceDependentResources();
-	m_fpsTextRenderer->ReleaseDeviceDependentResources();
+
 }
 
 // Notifies renderers that device resources may now be recreated.
 void OpusUIPrototypeMain::OnDeviceRestored()
 {
-	m_sceneRenderer->CreateDeviceDependentResources();
-	m_fpsTextRenderer->CreateDeviceDependentResources();
 	CreateWindowSizeDependentResources();
 }

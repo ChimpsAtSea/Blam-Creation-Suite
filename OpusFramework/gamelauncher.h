@@ -21,6 +21,7 @@ public:
 
 	static bool HasCommandLineArg(const char* pArgument);
 	static void Terminate();
+	static void EnsureBink2Win64IsLoaded(const char* pLibName, const char* pFallbackDir = "");
 	static void RegisterGameLaunchCallback(EngineVersion engineVersion, GameLaunchCallback gameLaunchCallback);
 	static void RegisterGameShutdownCallback(EngineVersion engineVersion, GameShutdownCallback gameShutdownCallback);
 	static void LoadSettings();
@@ -66,5 +67,6 @@ public:
 	static IGameEngine* s_pHaloReachEngine;
 	static std::atomic<int> s_uiStackLength;
 	
+	static void CheckSteamAPI();
 };
 

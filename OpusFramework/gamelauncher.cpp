@@ -6,6 +6,7 @@ GameLauncher::CurrentState GameLauncher::s_currentState = GameLauncher::CurrentS
 GameLauncher::GameLaunchCallback* GameLauncher::s_gameLaunchCallback = nullptr;
 GameLauncher::GameShutdownCallback* GameLauncher::s_gameShutdownCallback;
 std::atomic<int> GameLauncher::s_uiStackLength = 0;
+
 GameInterface* GameLauncher::s_pCurrentGameInterface = nullptr;
 IGameEngine* GameLauncher::s_pHaloReachEngine = nullptr;
 char* GameLauncher::s_pTerminationFlag = nullptr;
@@ -25,6 +26,24 @@ BuildVersion GameLauncher::GetCurrentbuildVersion()
 		return s_pCurrentGameInterface->GetBuildVersion();
 	}
 	return BuildVersion::NotSet;
+}
+
+void GameLauncher::CheckSteamAPI()
+{
+	{
+		FILE* pAppIDFile = fopen("steam_appid.txt", "w");
+		assert(pAppIDFile);
+		constexpr const char* pAppId = "976730";
+		fwrite(pAppId, sizeof(char), strlen(pAppId), pAppIDFile);
+		fclose(pAppIDFile);
+	}
+
+	bool steamAPIInitResult = SteamAPI_Init();
+	if (!steamAPIInitResult)
+	{
+		MessageBox(NULL, "Fatal Error - Steam failed to initialize", "Fatal Error", MB_OK | MB_ICONWARNING);
+		exit(1);
+	}
 }
 
 void GameLauncher::LaunchGame()
@@ -224,6 +243,32 @@ void GameLauncher::Terminate()
 	}
 }
 
+void GameLauncher::EnsureBink2Win64IsLoaded(const char* pLibName, const char* pFallbackDir)
+{
+	HMODULE hModule = GetModuleHandleA(pLibName);
+	if (!hModule)
+	{
+		hModule = LoadLibraryA(pLibName);
+
+		// use fallback if 
+		if (!hModule && pFallbackDir[0])
+		{
+			char fallbackPath[MAX_PATH] = {};
+			sprintf(fallbackPath, "%s\\%s", pFallbackDir, pLibName);
+			hModule = GetModuleHandleA(fallbackPath);
+			if (!hModule)
+			{
+				hModule = LoadLibraryA(fallbackPath);
+			}
+		}
+	}
+	if (!hModule)
+	{
+		MessageBox(CustomWindow::GetWindowHandle(), pLibName, "failed to load library", MB_ICONERROR);
+	}
+	assert(hModule);
+}
+
 void GameLauncher::RegisterGameLaunchCallback(EngineVersion engineVersion, GameLaunchCallback gameLaunchCallback)
 {
 	// #TODO: Multiple game versions!!!
@@ -319,6 +364,11 @@ ID3D11RenderTargetView* s_pMenuBackBuffer;    // global declaration
 
 int GameLauncher::Run(HINSTANCE hInstance, LPSTR lpCmdLine, GameInterface& rGameInterface)
 {
+	if (hInstance == NULL)
+		hInstance = GetModuleHandle(NULL);
+	if (lpCmdLine == nullptr)
+		lpCmdLine = GetCommandLineA();
+
 	LoadSettings();
 	s_pCurrentGameInterface = &rGameInterface;
 	SetState(CurrentState::eMainMenu);
@@ -907,20 +957,20 @@ void RenderHoveredTooltip(LPCSTR pText)
 
 void GameLauncher::SelectSavedFilm()
 {
-	static auto official_saved_films = c_file_array(Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\Movie\\", GetUserprofileVariable(), GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mov", &ReadSavedFilm);
-	static auto saved_films = c_file_array(Format("%s\\Temporary\\autosave\\", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".film", &ReadSavedFilm);
+	static c_file_array official_saved_films = c_file_array(Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\Movie\\", GetUserprofileVariable(), GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mov", &ReadSavedFilm);
+	static c_file_array saved_films = c_file_array(Format("%s\\Temporary\\autosave\\", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".film", &ReadSavedFilm);
 
 	static LPCSTR last_official_saved_film = "";
 	static LPCSTR last_saved_film = "";
 
 	static bool savedFilmIsOfficial = false;
-	auto files = savedFilmIsOfficial ? official_saved_films : saved_films;
-	auto last = savedFilmIsOfficial ? last_official_saved_film : last_saved_film;
-	auto label = savedFilmIsOfficial ? "(OFFICIAL)" : "###SAVED FILM";
+	c_file_array& rFiles = savedFilmIsOfficial ? official_saved_films : saved_films;
+	LPCSTR& pLast = savedFilmIsOfficial ? last_official_saved_film : last_saved_film;
+	const char* pLabel = savedFilmIsOfficial ? "(OFFICIAL)" : "###SAVED FILM";
 
-	if (g_SavedFilm != files.GetPath(last))
+	if (g_SavedFilm != rFiles.GetPath(pLast))
 	{
-		g_SavedFilm = files.GetPath(last);
+		g_SavedFilm = rFiles.GetPath(pLast);
 	}
 
 	if (ImGui::Button("SAVED FILM  ") || GetKeyState('F') & 0x80)
@@ -930,19 +980,19 @@ void GameLauncher::SelectSavedFilm()
 	}
 	ImGui::SameLine();
 
-	if (ImGui::BeginCombo(label, files.GetDesc(last)))
+	if (ImGui::BeginCombo(pLabel, rFiles.GetDesc(pLast)))
 	{
-		for (int i = 0; i < files.Count; i++)
+		for (int i = 0; i < rFiles.Count; i++)
 		{
-			if (files.GetName(i))
+			if (rFiles.GetName(i))
 			{
-				bool selected = files.GetName(i) == files.GetName(last);
-				if (ImGui::Selectable(files.GetDesc(i), &selected))
+				bool selected = rFiles.GetName(i) == rFiles.GetName(pLast);
+				if (ImGui::Selectable(rFiles.GetDesc(i), &selected))
 				{
-					last = files.GetPath(i);
+					pLast = rFiles.GetPath(i);
 				}
 
-				RenderHoveredTooltip(files.GetName(i));
+				RenderHoveredTooltip(rFiles.GetName(i));
 			}
 		}
 
@@ -951,11 +1001,11 @@ void GameLauncher::SelectSavedFilm()
 
 	if (savedFilmIsOfficial)
 	{
-		last_official_saved_film = last;
+		last_official_saved_film = pLast;
 	}
 	else
 	{
-		last_saved_film = last;
+		last_saved_film = pLast;
 	}
 }
 

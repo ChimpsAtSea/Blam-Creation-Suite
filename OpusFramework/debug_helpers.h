@@ -1,5 +1,7 @@
 #pragma once
 
+#ifndef UWP_PLATFORM
+
 auto WriteStackBackTrace = [=](LPCSTR pCallingFunction, DWORD size = 1024)
 {
 	auto FileGetImageBase = [](LPSTR filename)
@@ -32,7 +34,7 @@ auto WriteStackBackTrace = [=](LPCSTR pCallingFunction, DWORD size = 1024)
 	WriteLineVerbose("TRACE(%s)", pCallingFunction);
 	WriteLineVerbose("{");
 
-	auto *traces = new LPVOID[size];
+	auto* traces = new LPVOID[size];
 	for (int traceIndex = 0; traceIndex < CaptureStackBackTrace(0, size, traces, NULL); traceIndex++)
 	{
 		auto hProcess = GetCurrentProcess();
@@ -73,3 +75,6 @@ auto GetUserprofileVariable = [=]()
 	GetEnvironmentVariable("USERPROFILE", szBuf, MAX_PATH);
 	return szBuf;
 };
+
+#endif
+

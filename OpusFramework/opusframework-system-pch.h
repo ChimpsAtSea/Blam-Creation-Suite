@@ -57,6 +57,11 @@
 #include <filesystem>
 #include <psapi.h>
 
+#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+#else
+#define UWP_PLATFORM
+#endif
+
 #include <imgui\imgui.h>
 #include <imgui\imgui_impl_win32.h>
 #include <imgui\imgui_impl_dx11.h>
@@ -64,5 +69,10 @@
 #include "hexrays_defs.h"
 #include "resource.h"
 
+#if !defined(_DEBUG) && defined(UWP_PLATFORM)
+#define FATAL_ERROR(reason, ...) throw
+#else
 #define FATAL_ERROR(reason, ...) _wassert(_CRT_WIDE(reason), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)); throw
+#endif
+
 

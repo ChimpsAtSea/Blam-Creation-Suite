@@ -8,6 +8,7 @@ public:
 	static bool IsAlive();
 	static HWND GetWindowHandle();
 
+#ifndef UWP_PLATFORM
 private:
 	static void WindowThreadProc();
 	static constexpr const char WindowClassName[] = "HaloReachSplashScreen";
@@ -24,5 +25,6 @@ private:
 	static std::thread					s_windowThread;
 	static DWORD						s_threadID;
 	static std::atomic<bool>			s_isAlive;
+#endif
 };
 
