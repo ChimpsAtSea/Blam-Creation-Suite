@@ -4,14 +4,30 @@ const char* game_mode_to_string(e_game_mode game_mode)
 {
 	switch (game_mode)
 	{
-	case _game_mode_none:
+		case _game_mode_none:
 		return "none";
-	case _game_mode_campaign:
-		return "campaign";
-	case _game_mode_multiplayer:
-		return "multiplayer";
-	case _game_mode_survival:
-		return "survival";
+		case _game_mode_campaign:
+			return "campaign";
+#ifdef _DEBUG
+		case _game_mode_unknown2:
+			return "unknown2";
+#endif
+		case _game_mode_multiplayer:
+			return "multiplayer";
+#ifdef _DEBUG
+		case _game_mode_unknown4:
+			return "unknown4";
+#endif
+		case _game_mode_survival:
+			return "survival";
+#ifdef _DEBUG
+		case _game_mode_unknown6:
+			return "unknown6";
+		case _game_mode_unknown7:
+			return "unknown7";
+		case _game_mode_unknown8:
+			return "unknown8";
+#endif
 	}
 	return nullptr;
 }

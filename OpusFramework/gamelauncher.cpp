@@ -1014,7 +1014,7 @@ void GameLauncher::SelectGameMode()
 	LPCSTR s_pCurrentGameModeStr = game_mode_to_string(g_LaunchGameMode);
 	if (ImGui::BeginCombo("###MODE", s_pCurrentGameModeStr))
 	{
-		for (int i = 1; i < e_game_mode::k_number_of_game_modes; i++)
+		for (int i = 0; i < e_game_mode::k_number_of_game_modes; i++)
 		{
 			LPCSTR pGameModeStr = game_mode_to_string(static_cast<e_game_mode>(i));
 			if (pGameModeStr)
@@ -1045,7 +1045,8 @@ void GameLauncher::SelectMap()
 				bool selected = files.GetName(i) == files.GetName(map_id_to_string(g_LaunchMapId));
 				if (ImGui::Selectable(files.GetName(i), &selected))
 				{
-					g_LaunchMapId = string_to_map_id(files.GetPath(i));
+					const char* pMapFileName = files.GetPath(i);
+					g_LaunchMapId = string_to_map_id(pMapFileName);
 					Settings::WriteStringValue(SettingsSection::Launch, "Map", (LPSTR)map_id_to_string(g_LaunchMapId));
 				}
 

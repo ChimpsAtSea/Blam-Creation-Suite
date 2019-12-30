@@ -75,4 +75,13 @@
 #define FATAL_ERROR(reason, ...) _wassert(_CRT_WIDE(reason), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)); throw
 #endif
 
+#define COMBINE1(X,Y) X##Y
+#define COMBINE(X,Y) COMBINE1(X,Y)
+#define RUNONCE(...) \
+static bool COMBINE(__runonceflag_, __LINE__) = false; \
+if (COMBINE(__runonceflag_, __LINE__) == false) \
+{ \
+	__VA_ARGS__; \
+	COMBINE(__runonceflag_, __LINE__) = true; \
+} (void)(0)
 

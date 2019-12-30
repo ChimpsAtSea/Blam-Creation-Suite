@@ -4,6 +4,8 @@ enum e_map_id : int
 {
 	// TODO: add other games
 
+	_map_id_mainmenu = 0x10231971,
+
 	// reach
 	_map_id_m05 = 178,
 	_map_id_m10,

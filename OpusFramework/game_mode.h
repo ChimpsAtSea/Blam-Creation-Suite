@@ -3,15 +3,14 @@
 enum e_game_mode : int
 {
 	_game_mode_none,
-
 	_game_mode_campaign,
-	_game_mode_multiplayer = 3,
-
-	// we assume these
-	//_game_mode_map_editor,
-	//_game_mode_saved_film,
-
-	_game_mode_survival = 5,
+	_game_mode_unknown2,
+	_game_mode_multiplayer,
+	_game_mode_unknown4,
+	_game_mode_survival,
+	_game_mode_unknown6,
+	_game_mode_unknown7,
+	_game_mode_unknown8,
 
 	k_number_of_game_modes,
 };

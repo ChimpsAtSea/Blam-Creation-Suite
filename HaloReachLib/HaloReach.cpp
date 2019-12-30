@@ -1,15 +1,5 @@
 #include "haloreachlib-private-pch.h"
 
-#define COMBINE1(X,Y) X##Y
-#define COMBINE(X,Y) COMBINE1(X,Y)
-#define RUNONCE(...) \
-static bool COMBINE(__runonceflag_, __LINE__) = false; \
-if (COMBINE(__runonceflag_, __LINE__) == false) \
-{ \
-	__VA_ARGS__; \
-	COMBINE(__runonceflag_, __LINE__) = true; \
-} (void)(0)
-
 // Custom Engine Stuff
 s_thread_local_storage ThreadLocalStorage;
 
@@ -268,6 +258,49 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 
 	return result;
 } };
+
+intptr_t convert_mcc_map_id_to_reach_map_id_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x18004BF10;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<convert_mcc_map_id_to_reach_map_id_offset, int __fastcall (int a1)> convert_mcc_map_id_to_reach_map_id = { "convert_mcc_map_id_to_reach_map_id", [](int a1)
+{
+	int result = convert_mcc_map_id_to_reach_map_id(a1);
+	if (result == -1)
+	{
+		return a1; // return the raw map id on conversion failure
+	}
+	else
+	{
+		return result;
+	}
+} };
+
+intptr_t convert_reach_map_id_to_mcc_map_id_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x18004C140;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<convert_reach_map_id_to_mcc_map_id_offset, int __fastcall (int a1)> convert_reach_map_id_to_mcc_map_id = { "convert_reach_map_id_to_mcc_map_id", [](int a1)
+{
+	int result = convert_reach_map_id_to_mcc_map_id(a1);
+	if (result == -1)
+	{
+		return a1; // return the raw map id on conversion failure
+	}
+	else
+	{
+		return result;
+	}
+} };
+
 
 void ReadConfig()
 {
