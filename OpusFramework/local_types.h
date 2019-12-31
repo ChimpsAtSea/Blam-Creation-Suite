@@ -261,15 +261,15 @@ struct s_camera
 
 	bool Compare(s_camera* camera)
 	{
-		auto position = Position.X != camera->Position.X || Position.Y != camera->Position.Y || Position.Z != camera->Position.Z;
-		auto positionShift = PositionShift.X != camera->PositionShift.X || PositionShift.Y != camera->PositionShift.Y || PositionShift.Z != camera->PositionShift.Z;
-		auto look = Look != camera->Look;
-		auto lookShift = LookShift != camera->LookShift;
-		auto depth = Depth != camera->Depth;
-		auto fovRadians = FOVRadians != camera->FOVRadians;
-		auto forward = Forward.I != camera->Forward.I || Forward.J != camera->Forward.J || Forward.K != camera->Forward.K;
-		auto up = Up.I != camera->Up.I || Up.J != camera->Up.J || Up.K != camera->Up.K;
-		auto direction = Direction.I != camera->Direction.I || Direction.J != camera->Direction.J || Direction.K != camera->Direction.K;
+		bool position = Position.X != camera->Position.X || Position.Y != camera->Position.Y || Position.Z != camera->Position.Z;
+		bool positionShift = PositionShift.X != camera->PositionShift.X || PositionShift.Y != camera->PositionShift.Y || PositionShift.Z != camera->PositionShift.Z;
+		bool look = Look != camera->Look;
+		bool lookShift = LookShift != camera->LookShift;
+		bool depth = Depth != camera->Depth;
+		bool fovRadians = FOVRadians != camera->FOVRadians;
+		bool forward = Forward.I != camera->Forward.I || Forward.J != camera->Forward.J || Forward.K != camera->Forward.K;
+		bool up = Up.I != camera->Up.I || Up.J != camera->Up.J || Up.K != camera->Up.K;
+		bool direction = Direction.I != camera->Direction.I || Direction.J != camera->Direction.J || Direction.K != camera->Direction.K;
 
 		return position || positionShift || look || lookShift || depth || fovRadians || forward || up || direction;
 	}

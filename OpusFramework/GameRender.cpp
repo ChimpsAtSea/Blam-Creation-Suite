@@ -286,10 +286,10 @@ HRESULT CreateRenderTargetViewDetour(
 {
 	// its important that we never fail to to run this function as the game does not correctly check this
 
-	auto CreateRenderTargetViewResult = CreateRenderTargetViewPointer(_this, pResource, pDesc, ppRTView);
-	assert(CreateRenderTargetViewResult != E_INVALIDARG);
-	assert(CreateRenderTargetViewResult == S_OK);
-	return CreateRenderTargetViewResult;
+	HRESULT createRenderTargetViewResult = CreateRenderTargetViewPointer(_this, pResource, pDesc, ppRTView);
+	assert(createRenderTargetViewResult != E_INVALIDARG);
+	assert(createRenderTargetViewResult == S_OK);
+	return createRenderTargetViewResult;
 }
 
 typedef HRESULT(CreateSwapChainFunction)(IDXGIFactory1* _this, IUnknown* pDevice, DXGI_SWAP_CHAIN_DESC* pDesc, IDXGISwapChain** ppSwapChain);
@@ -301,10 +301,10 @@ HRESULT CreateSwapChainDetour(
 	IDXGISwapChain** ppSwapChain
 )
 {
-	auto CreateSwapChainResult = CreateSwapChainPointer(_this, pDevice, pDesc, ppSwapChain);
-	assert(CreateSwapChainResult != E_INVALIDARG);
-	assert(CreateSwapChainResult == S_OK);
-	return CreateSwapChainResult;
+	HRESULT createSwapChainResult = CreateSwapChainPointer(_this, pDevice, pDesc, ppSwapChain);
+	assert(createSwapChainResult != E_INVALIDARG);
+	assert(createSwapChainResult == S_OK);
+	return createSwapChainResult;
 }
 
 void GameRender::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
@@ -327,7 +327,7 @@ void GameRender::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 	s_SwapchainDescription.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
 
 	static constexpr bool createCompositionSwapchain = false;
-	if constexpr(createCompositionSwapchain)
+	if constexpr (createCompositionSwapchain)
 	{
 		HRESULT createSwapChainForCompositionResult = s_pFactory->CreateSwapChainForComposition(s_pDevice, &s_SwapchainDescription, NULL, &rpSwapChain);
 		assert(SUCCEEDED(createSwapChainForCompositionResult));

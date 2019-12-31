@@ -91,19 +91,19 @@ void OpusUIPrototypeMain::ProcessInput()
 // Returns true if the frame was rendered and is ready to be displayed.
 bool OpusUIPrototypeMain::Render() 
 {
-	auto context = m_deviceResources->GetD3DDeviceContext();
+	ID3D11DeviceContext3* pDeviceContext = m_deviceResources->GetD3DDeviceContext();
 
 	// Reset the viewport to target the whole screen.
-	auto viewport = m_deviceResources->GetScreenViewport();
-	context->RSSetViewports(1, &viewport);
+	const D3D11_VIEWPORT& rViewport = m_deviceResources->GetScreenViewport();
+	pDeviceContext->RSSetViewports(1, &rViewport);
 
 	// Reset render targets to the screen.
 	ID3D11RenderTargetView *const targets[1] = { m_deviceResources->GetBackBufferRenderTargetView() };
-	context->OMSetRenderTargets(1, targets, m_deviceResources->GetDepthStencilView());
+	pDeviceContext->OMSetRenderTargets(1, targets, m_deviceResources->GetDepthStencilView());
 
 	// Clear the back buffer and depth stencil view.
-	context->ClearRenderTargetView(m_deviceResources->GetBackBufferRenderTargetView(), DirectX::Colors::CornflowerBlue);
-	context->ClearDepthStencilView(m_deviceResources->GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	pDeviceContext->ClearRenderTargetView(m_deviceResources->GetBackBufferRenderTargetView(), DirectX::Colors::CornflowerBlue);
+	pDeviceContext->ClearDepthStencilView(m_deviceResources->GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 	// Render the scene objects.
 	// TODO: Replace this with your app's content rendering functions.

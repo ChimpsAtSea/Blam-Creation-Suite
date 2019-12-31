@@ -28,7 +28,7 @@ public:
 
 	inline std::string GetEngineName()
 	{
-		auto path = std::string(m_enginePath).substr(std::string(m_enginePath).find_last_of("/\\") + 1);
+		std::string path = std::string(m_enginePath).substr(std::string(m_enginePath).find_last_of("/\\") + 1);
 		return path.erase(path.find_last_of("."), std::string::npos);
 	}
 

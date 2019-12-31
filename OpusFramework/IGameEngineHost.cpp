@@ -511,7 +511,7 @@ BOOL __fastcall IGameEngineHost::Member43(__int64 a1, __int64 a2)
 
 bool __fastcall IGameEngineHost::GetPathByType(int type, LPSTR buf, size_t len)
 {
-	auto pEngineName = GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str();
+	const char* pEngineName = GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str();
 
 	// this implementation is inline with MCC
 	switch (type)
@@ -536,7 +536,7 @@ bool __fastcall IGameEngineHost::GetPathByType(int type, LPSTR buf, size_t len)
 bool __fastcall IGameEngineHost::GetWidePathByType(int type, LPWSTR wbuf, size_t len)
 {
 	LPSTR buf = new char[len];
-	auto result = GetPathByType(type, buf, len);
+	bool result = GetPathByType(type, buf, len);
 	swprintf_s(wbuf, len, L"%S", buf);
 
 	return result;

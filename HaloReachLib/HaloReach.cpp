@@ -19,8 +19,6 @@ bool g_pancamEnabled = false;
 bool g_keyboardPrintKeyState = false;
 BuildVersion g_currentbuildVersion = BuildVersion::NotSet;
 
-#include <map>
-
 void _simple_pattern_match_readonly_data_copy(
 	void* pEngineAddress,
 	SIZE_T& rSizeOfImage,
@@ -248,7 +246,7 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 		printf("load_state changed to: %s\n", load_state_names[(int)load_state]);
 	}
 
-	auto result = main_game_launch(a1, a2);
+	char result = main_game_launch(a1, a2);
 
 	if ((int)load_state != previous_load_state)
 	{
@@ -258,6 +256,7 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 
 	return result;
 } };
+
 
 intptr_t convert_mcc_map_id_to_reach_map_id_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {

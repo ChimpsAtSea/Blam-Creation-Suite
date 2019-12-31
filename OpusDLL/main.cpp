@@ -16,7 +16,7 @@ FARPROC __stdcall GetProcAddressHook(HMODULE hModule, LPCSTR lpProcName)
 	char pModuleFilename[MAX_PATH] = {};
 	GetModuleFileNameA(hModule, pModuleFilename, sizeof(pModuleFilename));
 
-	auto farproc = GetProcAddressPtr(hModule, lpProcName);
+	FARPROC farproc = GetProcAddressPtr(hModule, lpProcName);
 
 	static bool isHooked = false;
 	if (!isHooked)

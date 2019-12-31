@@ -114,6 +114,27 @@ void GameLauncher::LaunchGame()
 	s_pHaloReachEngine = nullptr;
 }
 
+static thread_local WNDENUMPROC s_lpEnumFunc = nullptr;
+static thread_local bool s_processedCustomWindow = false;
+BOOL EnumWindowsSort(HWND hWnd, LPARAM lParam)
+{
+	bool isExcluded = false;
+	isExcluded |= hWnd == GetConsoleWindow();
+	isExcluded |= hWnd == SplashScreen::GetWindowHandle();
+
+	if (hWnd == CustomWindow::GetWindowHandle())
+	{
+		s_processedCustomWindow = true;
+	}
+
+	if (isExcluded)
+	{
+		return TRUE;
+	}
+
+	return s_lpEnumFunc(hWnd, lParam);
+}
+
 typedef BOOL(EnumWindowsFunc)(WNDENUMPROC lpEnumFunc, LPARAM lParam);
 EnumWindowsFunc* EnumWindowsPointer = nullptr;
 BOOL EnumWindowsHook(
@@ -121,41 +142,19 @@ BOOL EnumWindowsHook(
 	LPARAM      lParam
 )
 {
-	static thread_local WNDENUMPROC s_lpEnumFunc = nullptr;
-	static thread_local bool s_processedCustomWindow = false;
-
 	assert(s_lpEnumFunc == nullptr);
 	assert(EnumWindowsPointer != nullptr);
 
+	s_processedCustomWindow = false;
 	s_lpEnumFunc = lpEnumFunc;
 
-	auto callback = [](HWND hWnd, LPARAM lParam) {
-
-		bool isExcluded = false;
-		isExcluded |= hWnd == GetConsoleWindow();
-		isExcluded |= hWnd == SplashScreen::GetWindowHandle();
-
-		if (hWnd == CustomWindow::GetWindowHandle())
-		{
-			s_processedCustomWindow = true;
-		}
-
-		if (isExcluded)
-		{
-			return TRUE;
-		}
-
-		return s_lpEnumFunc(hWnd, lParam);
-	};
-
-	auto result = EnumWindowsPointer(callback, lParam);
+	BOOL result = EnumWindowsPointer(EnumWindowsSort, lParam);
 	s_lpEnumFunc = nullptr;
 	return result;
 }
 
 void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 {
-
 #ifdef _DEBUG
 	bool isDebug = true;
 #else
@@ -688,7 +687,7 @@ struct c_file_array
 	s_file_info* pFiles = {};
 	int Count = 0;
 
-	c_file_array(LPCSTR pDir, LPCSTR pExtension, int (*read_info_func)(LPCSTR pName, std::string* name, std::string* desc, LPCSTR path))
+	c_file_array(LPCSTR pDir, LPCSTR pExtension, int (*pReadInfoFunction)(LPCSTR pName, std::string* name, std::string* desc, LPCSTR path))
 	{
 		if (!pFiles || !Count)
 		{
@@ -697,12 +696,12 @@ struct c_file_array
 				pFiles = new s_file_info[std::distance(std::filesystem::directory_iterator(pDir), std::filesystem::directory_iterator())];
 
 				int i = 0;
-				for (const auto& dirEntry : std::filesystem::directory_iterator(pDir))
+				for (const std::filesystem::directory_entry& rDirectoryEntry : std::filesystem::directory_iterator(pDir))
 				{
-					if (dirEntry.path().extension().compare(pExtension) == 0)
+					if (rDirectoryEntry.path().extension().compare(pExtension) == 0)
 					{
-						pFiles[i].Path = dirEntry.path().filename().replace_extension().string();
-						pFiles[i].Type = read_info_func(pFiles[i].Path.c_str(), &pFiles[i].Name, &pFiles[i].Desc, dirEntry.path().string().c_str());
+						pFiles[i].Path = rDirectoryEntry.path().filename().replace_extension().string();
+						pFiles[i].Type = pReadInfoFunction(pFiles[i].Path.c_str(), &pFiles[i].Name, &pFiles[i].Desc, rDirectoryEntry.path().string().c_str());
 
 						while (pFiles[i].Desc.find("|n") != std::string::npos)
 							pFiles[i].Desc.replace(pFiles[i].Desc.find("|n"), _countof("|n") - 1, "\n");
@@ -926,7 +925,7 @@ int ReadMapVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pP
 
 int ReadSavedFilm(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
-	auto pDataAccess = GameLauncher::s_pCurrentGameInterface->GetDataAccess();
+	IDataAccess* pDataAccess = GameLauncher::s_pCurrentGameInterface->GetDataAccess();
 	char* out_data = { 0 };
 
 	c_file_reference filo(pPath);
@@ -1034,7 +1033,7 @@ void GameLauncher::SelectGameMode()
 
 void GameLauncher::SelectMap()
 {
-	static auto files = c_file_array(Format("%s\\maps\\info", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mapinfo", &ReadMapInfo);
+	static c_file_array files(Format("%s\\maps\\info", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mapinfo", &ReadMapInfo);
 
 	if (ImGui::BeginCombo("###MAP", files.GetName(map_id_to_string(g_LaunchMapId))))
 	{
@@ -1086,19 +1085,19 @@ void GameLauncher::SelectDifficulty()
 
 void GameLauncher::SelectGameVariant()
 {
-	static c_file_array hopper_game_variants = c_file_array(Format("%s\\hopper_game_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".bin", &ReadGameVariant);
-	static c_file_array game_variants = c_file_array(Format("%s\\game_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".bin", &ReadGameVariant);
+	static c_file_array hopperGameVariantsFileArray(Format("%s\\hopper_game_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".bin", &ReadGameVariant);
+	static c_file_array gameVariantsFileArray(Format("%s\\game_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".bin", &ReadGameVariant);
 
-	static LPCSTR last_hopper_game_variant = g_LaunchGameVariant;
-	static LPCSTR last_game_variant = g_LaunchGameVariant;
+	static LPCSTR pLastSelectedHopperGameVariant = g_LaunchGameVariant;
+	static LPCSTR pLastSelectedGameVariant = g_LaunchGameVariant;
 
-	auto files = g_GameVariantIsHopper ? hopper_game_variants : game_variants;
-	auto last = g_GameVariantIsHopper ? last_hopper_game_variant : last_game_variant;
-	auto label = g_GameVariantIsHopper ? "(HOPPER)###GAME VARIANT" : "###GAME VARIANT";
+	c_file_array&	rFileArray = g_GameVariantIsHopper ? hopperGameVariantsFileArray : gameVariantsFileArray;
+	LPCSTR&			rpLastSelectedVariant = g_GameVariantIsHopper ? pLastSelectedHopperGameVariant : pLastSelectedGameVariant;
+	const char*		pVariantLabel = g_GameVariantIsHopper ? "(HOPPER)###GAME VARIANT" : "###GAME VARIANT";
 
-	if (last[0] && g_LaunchGameVariant != last)
+	if (rpLastSelectedVariant[0] && g_LaunchGameVariant != rpLastSelectedVariant)
 	{
-		g_LaunchGameVariant = last;
+		g_LaunchGameVariant = rpLastSelectedVariant;
 		Settings::WriteStringValue(SettingsSection::Launch, "GameVariant", (LPSTR)g_LaunchGameVariant);
 		Settings::WriteBoolValue(SettingsSection::Launch, "GameVariantIsHopper", g_GameVariantIsHopper);
 	}
@@ -1110,24 +1109,24 @@ void GameLauncher::SelectGameVariant()
 	}
 	ImGui::SameLine();
 
-	if (ImGui::BeginCombo(label, files.GetName(last)))
+	if (ImGui::BeginCombo(pVariantLabel, rFileArray.GetName(rpLastSelectedVariant)))
 	{
-		for (int i = 0; i < files.Count; i++)
+		for (int i = 0; i < rFileArray.Count; i++)
 		{
-			int shouldShow = g_LaunchGameMode == e_game_mode::_game_mode_multiplayer && files.GetType(i) == _game_engine_type_sandbox;
-			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_multiplayer && files.GetType(i) == _game_engine_type_megalo;
-			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_campaign && files.GetType(i) == _game_engine_type_campaign;
-			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_survival && files.GetType(i) == _game_engine_type_survival;
+			int shouldShow = g_LaunchGameMode == e_game_mode::_game_mode_multiplayer && rFileArray.GetType(i) == _game_engine_type_sandbox;
+			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_multiplayer && rFileArray.GetType(i) == _game_engine_type_megalo;
+			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_campaign && rFileArray.GetType(i) == _game_engine_type_campaign;
+			shouldShow |= g_LaunchGameMode == e_game_mode::_game_mode_survival && rFileArray.GetType(i) == _game_engine_type_survival;
 
-			if (files.GetName(i) && shouldShow)
+			if (rFileArray.GetName(i) && shouldShow)
 			{
-				bool selected = files.GetName(i) == files.GetName(g_LaunchGameVariant);
-				if (ImGui::Selectable(files.GetName(i), &selected))
+				bool selected = rFileArray.GetName(i) == rFileArray.GetName(g_LaunchGameVariant);
+				if (ImGui::Selectable(rFileArray.GetName(i), &selected))
 				{
-					last = files.GetPath(i);
+					rpLastSelectedVariant = rFileArray.GetPath(i);
 				}
 
-				RenderHoveredTooltip(files.GetDesc(i));
+				RenderHoveredTooltip(rFileArray.GetDesc(i));
 			}
 		}
 
@@ -1136,90 +1135,92 @@ void GameLauncher::SelectGameVariant()
 
 	if (g_GameVariantIsHopper)
 	{
-		last_hopper_game_variant = last;
+		pLastSelectedHopperGameVariant = rpLastSelectedVariant;
 	}
 	else
 	{
-		last_game_variant = last;
+		pLastSelectedGameVariant = rpLastSelectedVariant;
 	}
 }
 
 void GameLauncher::SelectMapVariant()
 {
-	static auto hopper_map_variants = c_file_array(Format("%s\\hopper_map_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mvar", &ReadMapVariant);
-	static auto map_variants = c_file_array(Format("%s\\map_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mvar", &ReadMapVariant);
+	static c_file_array hopperMapVariantsFileArray(Format("%s\\hopper_map_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mvar", &ReadMapVariant);
+	static c_file_array mapVariantsFileArray(Format("%s\\map_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mvar", &ReadMapVariant);
 
-	static LPCSTR last_hopper_map_variant = g_LaunchMapVariant;
-	static LPCSTR last_map_variant = g_LaunchMapVariant;
+	static LPCSTR pLastSelectedHopperMapVariant = g_LaunchMapVariant;
+	static LPCSTR pLastSelectedMapVariant = g_LaunchMapVariant;
 
-	if (g_LaunchGameMode == e_game_mode::_game_mode_multiplayer)
+	if (g_LaunchGameMode != e_game_mode::_game_mode_multiplayer)
 	{
-		auto files = g_MapVariantIsHopper ? hopper_map_variants : map_variants;
-		auto last = g_MapVariantIsHopper ? last_hopper_map_variant : last_map_variant;
-		auto label = g_MapVariantIsHopper ? "(HOPPER)###MAP VARIANT" : "###MAP VARIANT";
+		return;
+	}
 
-		if (g_LaunchMapVariant != last)
+	c_file_array& rFileArray = g_MapVariantIsHopper ? hopperMapVariantsFileArray : mapVariantsFileArray;
+	LPCSTR& rpLastSelectedVariant = g_MapVariantIsHopper ? pLastSelectedHopperMapVariant : pLastSelectedMapVariant;
+	const char* pVariantLabel = g_MapVariantIsHopper ? "(HOPPER)###MAP VARIANT" : "###MAP VARIANT";
+
+	if (g_LaunchMapVariant != rpLastSelectedVariant)
+	{
+		g_LaunchMapVariant = rpLastSelectedVariant;
+		Settings::WriteStringValue(SettingsSection::Launch, "MapVariant", (LPSTR)g_LaunchMapVariant);
+		Settings::WriteBoolValue(SettingsSection::Launch, "MapVariantIsHopper", g_MapVariantIsHopper);
+	}
+
+	if (ImGui::Button("MAP VARIANT ") || GetKeyState('M') & 0x80)
+	{
+		g_MapVariantIsHopper = !g_MapVariantIsHopper;
+		Sleep(50);
+	}
+	ImGui::SameLine();
+
+	LPCSTR lastMapName = rFileArray.GetName(rpLastSelectedVariant);
+	if (!lastMapName || strlen(lastMapName) == 0)
+	{
+		rpLastSelectedVariant = nullptr;
+		lastMapName = "<Default Variant>";
+	}
+	if (ImGui::BeginCombo(pVariantLabel, lastMapName))
+	{
+		bool defaultDelected = false;
+		if (ImGui::Selectable("<Default Variant>", &defaultDelected))
 		{
-			g_LaunchMapVariant = last;
-			Settings::WriteStringValue(SettingsSection::Launch, "MapVariant", (LPSTR)g_LaunchMapVariant);
-			Settings::WriteBoolValue(SettingsSection::Launch, "MapVariantIsHopper", g_MapVariantIsHopper);
+			rpLastSelectedVariant = nullptr;
 		}
 
-		if (ImGui::Button("MAP VARIANT ") || GetKeyState('M') & 0x80)
+		for (int i = 0; i < rFileArray.Count; i++)
 		{
-			g_MapVariantIsHopper = !g_MapVariantIsHopper;
-			Sleep(50);
-		}
-		ImGui::SameLine();
+			int shouldShow = rFileArray.GetType(i) == map_id_to_engine_specific(g_LaunchMapId);
 
-		LPCSTR lastMapName = files.GetName(last);
-		if (!lastMapName || strlen(lastMapName) == 0)
-		{
-			last = nullptr;
-			lastMapName = "<Default Variant>";
-		}
-		if (ImGui::BeginCombo(label, lastMapName))
-		{
-			bool defaultDelected = false;
-			if (ImGui::Selectable("<Default Variant>", &defaultDelected))
+			if (rFileArray.GetName(i) && shouldShow)
 			{
-				last = nullptr;
-			}
-
-			for (int i = 0; i < files.Count; i++)
-			{
-				int shouldShow = files.GetType(i) == map_id_to_engine_specific(g_LaunchMapId);
-
-				if (files.GetName(i) && shouldShow)
+				bool selected = rFileArray.GetName(i) == rFileArray.GetName(g_LaunchMapVariant);
+				if (ImGui::Selectable(rFileArray.GetName(i), &selected) && !defaultDelected)
 				{
-					bool selected = files.GetName(i) == files.GetName(g_LaunchMapVariant);
-					if (ImGui::Selectable(files.GetName(i), &selected) && !defaultDelected)
-					{
-						last = files.GetPath(i);
-					}
-
-					RenderHoveredTooltip(files.GetDesc(i));
+					rpLastSelectedVariant = rFileArray.GetPath(i);
 				}
+
+				RenderHoveredTooltip(rFileArray.GetDesc(i));
 			}
-
-			ImGui::EndCombo();
 		}
 
-		if (g_MapVariantIsHopper)
-		{
-			last_hopper_map_variant = last;
-		}
-		else
-		{
-			last_map_variant = last;
-		}
+		ImGui::EndCombo();
+	}
+
+	if (g_MapVariantIsHopper)
+	{
+		pLastSelectedHopperMapVariant = rpLastSelectedVariant;
+	}
+	else
+	{
+		pLastSelectedMapVariant = rpLastSelectedVariant;
 	}
 }
 
 void GameLauncher::DrawMainMenu()
 {
-	auto width = (float)GetSystemMetrics(SM_CXSCREEN);
-	auto height = (float)GetSystemMetrics(SM_CYSCREEN);
+	float width =	static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
+	float height =	static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
 	static ImVec2 nextWindowSize = ImVec2(width * 0.98f, height * 0.94f);
 	ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
@@ -1305,8 +1306,8 @@ void GameLauncher::DrawPauseMenu()
 
 	MouseInput::SetMode(MouseMode::UI);
 
-	auto width = (float)GetSystemMetrics(SM_CXSCREEN);
-	auto height = (float)GetSystemMetrics(SM_CYSCREEN);
+	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
+	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
 	ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowSize(ImVec2(width / 1.5f, height / 1.5f), ImGuiCond_FirstUseEver);
@@ -1392,7 +1393,7 @@ void GameLauncher::DrawPauseMenu()
 		}
 	}
 
-	auto mouseSensitivity = MouseInput::GetSensitivity();
+	ImVec2 mouseSensitivity = MouseInput::GetSensitivity();
 	static float MouseSensitivityX = mouseSensitivity.x;
 	static float MouseSensitivityY = mouseSensitivity.y;
 
@@ -1420,7 +1421,7 @@ void GameLauncher::InitSockets()
 {
 	WSADATA wsaData = {};
 	// Initialize Winsock
-	auto WSAStartupResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
+	int WSAStartupResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
 	if (WSAStartupResult != 0)
 	{
 		FATAL_ERROR("WSAStartup failed with error: %d\n", WSAStartupResult);
@@ -1535,7 +1536,7 @@ void GameLauncher::LoadSavedFilmMetadata(const char* pSavedFilmName, GameContext
 	if (!pSavedFilmName)
 		return;
 
-	static auto pFilename = "";
+	static LPCSTR pFilename = "";
 	if (!PathFileExists(pFilename = Format("%s\\Temporary\\autosave\\%s.film", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
 	{
 		if (!PathFileExists(pFilename = Format("%s\\Temporary\\autosave\\%s.mov", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))

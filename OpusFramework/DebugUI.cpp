@@ -187,6 +187,6 @@ void DebugUI::RegisterCallback(DebugUICallback* pDebugUICallback)
 
 void DebugUI::UnregisterCallback(DebugUICallback* pDebugUICallback)
 {
-	auto callbacksNewEnd = std::remove(s_pCallbacks.begin(), s_pCallbacks.end(), pDebugUICallback);
-	s_pCallbacks.erase(callbacksNewEnd, s_pCallbacks.end());
+	std::vector<DebugUI::DebugUICallback*>::iterator itCallbacksEnd = std::remove(s_pCallbacks.begin(), s_pCallbacks.end(), pDebugUICallback);
+	s_pCallbacks.erase(itCallbacksEnd, s_pCallbacks.end());
 }

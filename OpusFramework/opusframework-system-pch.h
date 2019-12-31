@@ -56,6 +56,7 @@
 #include <algorithm>
 #include <filesystem>
 #include <psapi.h>
+#include <map>
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #else
@@ -85,3 +86,4 @@ if (COMBINE(__runonceflag_, __LINE__) == false) \
 	COMBINE(__runonceflag_, __LINE__) = true; \
 } (void)(0)
 
+#define auto auto_is_banned

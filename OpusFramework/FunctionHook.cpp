@@ -59,7 +59,7 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 
 		if (rHook)
 		{
-			auto result = create_hook(engineVersion, buildVersion, m_offset, pFunctionName, rHook, rBase);
+			LONG result = create_hook(engineVersion, buildVersion, m_offset, pFunctionName, rHook, rBase);
 			assert(result == 0);
 		}
 		else

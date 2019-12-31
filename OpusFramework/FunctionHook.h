@@ -1,7 +1,11 @@
 #pragma once
 
-#pragma optimize("", off)
+#ifdef auto
+#define __BYPASS_AUTO_BAN__
+#undef auto
+#endif
 
+#pragma optimize("", off)
 
 typedef void(FunctionHookCallback)(void* pUserData);
 
@@ -429,5 +433,8 @@ template<size_t offset, typename base_type>
 using HaloReach_2019_Jun_24_HookVarArgs = FunctionHookVarArgs<BuildVersion::Build_1_887_0_0, offset, base_type>;
 
 
-
+#ifdef __BYPASS_AUTO_BAN__
+#define auto auto_is_banned
+#undef __BYPASS_AUTO_BAN__
+#endif
 
