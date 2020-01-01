@@ -63,7 +63,6 @@ void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain*
 		}
 
 		rImguiIO.Fonts->AddFontFromMemoryTTF(bytes, dwSize, 20.0f, NULL, rImguiIO.Fonts->GetGlyphRangesDefault());
-
 		UnlockResource(lpAddress);
 		BOOL freeResourceResult = FreeResource(hMemory);
 		assert(freeResourceResult == 0);

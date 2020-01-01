@@ -25,10 +25,13 @@ MapInfo::MapInfo(const std::filesystem::path& rPath, bool isLevelChunkIsLittleEn
 	, m_isLevelChunkIsLittleEndian(isLevelChunkIsLittleEndian)
 	, m_filesystemPath(rPath)
 {
+	using convert_type = std::codecvt_utf8<wchar_t>;
+	std::wstring_convert<convert_type, wchar_t> stringConverter;
+
 	std::wstring levelName = ConvertBigEndianWideCharString(m_levelChunk.m_levelName[0]);
 	if (!levelName.empty())
 	{
-		m_friendlyName = std::string(levelName.begin(), levelName.end());
+		m_friendlyName = stringConverter.to_bytes(levelName);
 	}
 	else
 	{
@@ -41,7 +44,7 @@ MapInfo::MapInfo(const std::filesystem::path& rPath, bool isLevelChunkIsLittleEn
 	}
 
 	std::wstring levelDescription = ConvertBigEndianWideCharString(m_levelChunk.m_levelDescription[0]);
-	m_friendlyDescription = std::string(levelDescription.begin(), levelDescription.end());
+	m_friendlyDescription = stringConverter.to_bytes(levelDescription);
 
 	static const std::string s = "|n";
 	static const std::string t = "\n";

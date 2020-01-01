@@ -1,5 +1,6 @@
 #pragma once
 
+#define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING //#TODO: Replace with WideCharToMultiByte and MultiByteToWideChar
 #define _CRT_SECURE_NO_WARNINGS
 #define WIN32_MEAN_AND_LEAN
 #define DIRECTINPUT_VERSION 0x0800
@@ -59,6 +60,7 @@
 #include <map>
 #include <locale>
 #include <cwctype>
+#include <codecvt>
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #else
