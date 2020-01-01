@@ -1224,6 +1224,7 @@ void GameLauncher::SelectMap()
 				rpSelectedMapInfo = &rMapInfo;
 				SaveSelectedMap(g_LaunchGameMode, rpSelectedMapInfo);
 			}
+			RenderHoveredTooltip(rMapInfo.GetFriendlyDescription());
 		}
 
 		ImGui::EndCombo();

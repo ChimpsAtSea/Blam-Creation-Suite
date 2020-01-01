@@ -6,6 +6,7 @@ private:
 	bool m_isLevelChunkIsLittleEndian;
 	std::filesystem::path m_filesystemPath;
 	std::string m_friendlyName;
+	std::string m_friendlyDescription;
 
 	inline s_blamfile_level_chunk_flags getLittleEndianLevelChunkFlags() const
 	{
@@ -18,6 +19,7 @@ public:
 	MapInfo(const std::filesystem::path& rPath, bool isLevelChunkIsLittleEndian, const s_blamfile_level_chunk& rLevelChunk);
 
 	const char* GetFriendlyName() const;
+	const char* GetFriendlyDescription() const;
 	int GetMapID() const;
 	inline bool IsMainMenu() const { return getLittleEndianLevelChunkFlags().m_isMainMenu; }
 	inline bool IsMultiplayer() const { return getLittleEndianLevelChunkFlags().m_isMultiplayer; }

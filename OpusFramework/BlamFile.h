@@ -63,13 +63,12 @@ private:
 public:
 	int m_mapID;
 	s_blamfile_level_chunk_flags m_flags;
-	char __unknown10[0x1];
 	wchar_t m_levelName[12][0x20];
 	wchar_t m_levelDescription[12][0x80];
 	// dont know how to parse rest of struct
 	char m_imageFileName[0x100];
 	char m_mapFileName[0x100];
-	char __unknown[0xBB83];
+	char __unknown[0xBB84];
 };
 static constexpr size_t s_blamfile_level_chunk_size = sizeof(s_blamfile_level_chunk);
 static_assert(s_blamfile_level_chunk_size == 0xCC98, "s_blamfile_level_chunk is incorrect size");
