@@ -3,6 +3,13 @@
 #include "settings.h"
 #include "logging.h"
 #include "BuildVersion.h"
+
+#include "FileSystemUtilities.h"
+#include "BlamFile.h"
+#include "BlamFileParser.h"
+#include "MapInfo.h"
+#include "MapInfoManager.h"
+
 #include "detour_helpers.h"
 #include "debug_helpers.h"
 #include "BasicData.h"
@@ -36,3 +43,4 @@
 #include "gameinterface.h"
 #include "gamerender.h"
 #include "gamelauncher.h"
+

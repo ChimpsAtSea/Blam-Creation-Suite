@@ -45,9 +45,9 @@ void GameInterface::loadLibrary(const char* pLibFileName)
 	pSetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(hGameModule, "SetLibrarySettings");
 }
 
-BuildVersion GameInterface::GetLibraryBuildVersion(const char* pFilename)
+BuildVersion GameInterface::GetLibraryBuildVersion(const char* pFileName)
 {
-	uint64_t libraryFileVersion = GetLibraryFileVersion(pFilename);
+	uint64_t libraryFileVersion = GetLibraryFileVersion(pFileName);
 	switch (libraryFileVersion)
 	{
 	case MAKE_FILE_VERSION(1, 1270, 0, 0): return BuildVersion::Build_1_1270_0_0;
@@ -61,19 +61,19 @@ BuildVersion GameInterface::GetLibraryBuildVersion(const char* pFilename)
 	}
 }
 
-uint64_t GameInterface::GetLibraryFileVersion(const char* pFilename)
+uint64_t GameInterface::GetLibraryFileVersion(const char* pFileName)
 {
 	uint64_t result = 0;
 	DWORD  verHandle = 0;
 	UINT   size = 0;
 	LPBYTE lpBuffer = NULL;
-	DWORD  verSize = GetFileVersionInfoSize(pFilename, &verHandle);
+	DWORD  verSize = GetFileVersionInfoSize(pFileName, &verHandle);
 
 	if (verSize != NULL)
 	{
 		char* verData = static_cast<char*>(alloca(verSize));
 
-		if (GetFileVersionInfo(pFilename, NULL, verSize, verData) != 0)
+		if (GetFileVersionInfo(pFileName, NULL, verSize, verData) != 0)
 		{
 			if (VerQueryValue(verData, "\\", (VOID FAR * FAR*) & lpBuffer, &size))
 			{

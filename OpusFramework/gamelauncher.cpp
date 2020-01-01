@@ -10,7 +10,6 @@ std::atomic<int> GameLauncher::s_uiStackLength = 0;
 GameInterface* GameLauncher::s_pCurrentGameInterface = nullptr;
 IGameEngine* GameLauncher::s_pHaloReachEngine = nullptr;
 char* GameLauncher::s_pTerminationFlag = nullptr;
-e_map_id g_LaunchMapId = _map_id_ff45_corvette;
 e_game_mode g_LaunchGameMode = _game_mode_survival;
 e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
 LPCSTR g_LaunchGameVariant = "";
@@ -18,6 +17,8 @@ bool g_GameVariantIsHopper = false;
 LPCSTR g_LaunchMapVariant = "";
 bool g_MapVariantIsHopper = false;
 LPCSTR g_SavedFilm = nullptr;
+MapInfoManager* GameLauncher::s_pMapInfoManager = nullptr;
+const MapInfo* GameLauncher::s_pSelectedMapInfo = nullptr;
 
 BuildVersion GameLauncher::GetCurrentbuildVersion()
 {
@@ -44,6 +45,16 @@ void GameLauncher::CheckSteamAPI()
 		MessageBox(NULL, "Fatal Error - Steam failed to initialize", "Fatal Error", MB_OK | MB_ICONWARNING);
 		exit(1);
 	}
+}
+
+void GameLauncher::InitMapInfoManager()
+{
+	s_pMapInfoManager = new MapInfoManager("haloreach/maps/info");
+}
+
+void GameLauncher::DeinitMapInfoManager()
+{
+	delete s_pMapInfoManager;
 }
 
 void GameLauncher::LaunchGame()
@@ -161,18 +172,18 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 	bool isDebug = false;
 #endif
 
-	if (GameLauncher::HasCommandLineArg("-hidesplash"))
-	{
-		SplashScreen::Create();
-		s_hideWindowOnStartup = true;
-	}
-
 	if ((GameLauncher::HasCommandLineArg("-showconsole") || isDebug) && !GameLauncher::HasCommandLineArg("-hideconsole"))
 	{
 		AllocConsole();
 		FILE* pStdOut = freopen("CONOUT$", "w", stdout);
 		assert(pStdOut);
 		SetConsoleTitleA("Opus");
+	}
+
+	if (GameLauncher::HasCommandLineArg("-hidesplash"))
+	{
+		SplashScreen::Create();
+		s_hideWindowOnStartup = true;
 	}
 
 	if (GameLauncher::HasCommandLineArg("-waitfordebugger"))
@@ -191,6 +202,7 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 		end_detours();
 	}
 
+	InitMapInfoManager();
 	CustomWindow::Init();
 	GameRender::Init(hInstance);
 	InitSockets();
@@ -206,6 +218,7 @@ void GameLauncher::Init(HINSTANCE hInstance, LPSTR lpCmdLine)
 
 void GameLauncher::Deinit()
 {
+	DeinitMapInfoManager();
 	DeinitSockets();
 	GameRender::Deinit();
 	CustomWindow::Deinit();
@@ -279,11 +292,23 @@ void GameLauncher::RegisterGameShutdownCallback(EngineVersion engineVersion, Gam
 	s_gameShutdownCallback = gameShutdownCallback;
 }
 
+const MapInfo* GameLauncher::GetDefaultMapSelection()
+{
+	int previousMapID = Settings::ReadIntegerValue(SettingsSection::Launch, "Map", -1);
+	for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
+	{
+		if (rMapInfo.GetMapID() == previousMapID)
+		{
+			return &rMapInfo;
+		}
+	}
+
+	return s_pMapInfoManager->m_mapInfo.empty() ? nullptr : &s_pMapInfoManager->m_mapInfo[0];
+}
+
 void GameLauncher::LoadSettings()
 {
-	char pLaunchMapNameBuffer[256] = {};
-	Settings::ReadStringValue(SettingsSection::Launch, "Map", pLaunchMapNameBuffer, sizeof(pLaunchMapNameBuffer), "ff45_corvette");
-	g_LaunchMapId = string_to_map_id(pLaunchMapNameBuffer);
+	s_pSelectedMapInfo = GetDefaultMapSelection();
 
 	char pLaunchGameModeBuffer[256] = {};
 	Settings::ReadStringValue(SettingsSection::Launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "");
@@ -368,11 +393,12 @@ int GameLauncher::Run(HINSTANCE hInstance, LPSTR lpCmdLine, GameInterface& rGame
 	if (lpCmdLine == nullptr)
 		lpCmdLine = GetCommandLineA();
 
+	GameLauncher::Init(hInstance, lpCmdLine);
+
 	LoadSettings();
 	s_pCurrentGameInterface = &rGameInterface;
 	SetState(CurrentState::eMainMenu);
 
-	GameLauncher::Init(hInstance, lpCmdLine);
 	//GameLauncher::LaunchGame("haloreach.dll");
 
 	CreateSwapchainAndBackbuffer(GameRender::s_pSwapChain, s_pMenuBackBuffer);
@@ -449,7 +475,8 @@ void GameLauncher::SetupGameContext(GameContext& rGameContext)
 
 			SetConsoleTitleA("Opus | HOST");
 
-			rGameContext.MapId = g_LaunchMapId;
+			assert(s_pSelectedMapInfo != nullptr);
+			rGameContext.MapId = static_cast<e_map_id>(s_pSelectedMapInfo->GetMapID());
 			rGameContext.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
 
 			LoadGameVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchGameVariant, *reinterpret_cast<s_game_variant*>(rGameContext.GameVariantBuffer), true);
@@ -857,11 +884,11 @@ LPCSTR Format(LPCSTR fmt, ...)
 
 int ReadMapInfo(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
-	char pFilename[MAX_PATH + 1] = {};
-	snprintf(pFilename, MAX_PATH, "%s\\maps\\info\\%s.mapinfo", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str(), pName);
-	pFilename[MAX_PATH] = 0;
+	char pFileName[MAX_PATH + 1] = {};
+	snprintf(pFileName, MAX_PATH, "%s\\maps\\info\\%s.mapinfo", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str(), pName);
+	pFileName[MAX_PATH] = 0;
 
-	c_file_reference filo(pFilename);
+	c_file_reference filo(pFileName);
 	int mapId = -1;
 	if (filo.open_file())
 	{
@@ -1033,23 +1060,24 @@ void GameLauncher::SelectGameMode()
 
 void GameLauncher::SelectMap()
 {
-	static c_file_array files(Format("%s\\maps\\info", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mapinfo", &ReadMapInfo);
-
-	if (ImGui::BeginCombo("###MAP", files.GetName(map_id_to_string(g_LaunchMapId))))
+	const char* pSelectedLevelName = "<no level selected>";
+	if (s_pSelectedMapInfo)
 	{
-		for (int i = 0; i < files.Count; i++)
-		{
-			if (files.GetName(i))
-			{
-				bool selected = files.GetName(i) == files.GetName(map_id_to_string(g_LaunchMapId));
-				if (ImGui::Selectable(files.GetName(i), &selected))
-				{
-					const char* pMapFileName = files.GetPath(i);
-					g_LaunchMapId = string_to_map_id(pMapFileName);
-					Settings::WriteStringValue(SettingsSection::Launch, "Map", (LPSTR)map_id_to_string(g_LaunchMapId));
-				}
+		pSelectedLevelName = s_pSelectedMapInfo->GetFriendlyName();
+	}
 
-				RenderHoveredTooltip(files.GetDesc(i));
+	if (ImGui::BeginCombo("###MAP", pSelectedLevelName))
+	{
+		// #TODO: Make a nice and beautiful interface to this for multi-game
+		for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
+		{
+			bool isSelected = s_pSelectedMapInfo == &rMapInfo;
+			const char* pCurrentLevelFriendlyName = rMapInfo.GetFriendlyName();
+
+			if (ImGui::Selectable(pCurrentLevelFriendlyName, &isSelected))
+			{
+				s_pSelectedMapInfo = &rMapInfo;
+				Settings::WriteIntegerValue(SettingsSection::Launch, "Map", rMapInfo.GetMapID());
 			}
 		}
 
@@ -1190,7 +1218,8 @@ void GameLauncher::SelectMapVariant()
 
 		for (int i = 0; i < rFileArray.Count; i++)
 		{
-			int shouldShow = rFileArray.GetType(i) == map_id_to_engine_specific(g_LaunchMapId);
+			//int shouldShow = rFileArray.GetType(i) == map_id_to_engine_specific(g_LaunchMapId);
+			int shouldShow = 1; // #TODO: Determine what type of file this is and use MapInfo/s_pSelectedMapInfo to determine if it should show
 
 			if (rFileArray.GetName(i) && shouldShow)
 			{
@@ -1439,23 +1468,23 @@ void GameLauncher::LoadMapVariant(IDataAccess* pDataAccess, const char* pVariant
 
 	if (pVariantName)
 	{
-		char pFilename[MAX_PATH] = {};
+		char pFileName[MAX_PATH] = {};
 		if (g_MapVariantIsHopper)
 		{
-			sprintf(pFilename, "%s\\hopper_map_variants\\%s.mvar", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
+			sprintf(pFileName, "%s\\hopper_map_variants\\%s.mvar", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
 		}
 		else
 		{
-			sprintf(pFilename, "%s\\map_variants\\%s.mvar", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
+			sprintf(pFileName, "%s\\map_variants\\%s.mvar", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
 		}
-		pFilename[MAX_PATH - 1] = 0;
+		pFileName[MAX_PATH - 1] = 0;
 
-		c_file_reference filo(pFilename);
+		c_file_reference filo(pFileName);
 		if (filo.open_file())
 		{
 			if (print)
 			{
-				WriteLineVerbose("Loading map variant [%s]", pFilename);
+				WriteLineVerbose("Loading map variant [%s]", pFileName);
 			}
 
 			rMapVariant = pDataAccess->MapVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->MapVariant;
@@ -1468,10 +1497,10 @@ void GameLauncher::LoadMapVariant(IDataAccess* pDataAccess, const char* pVariant
 	{
 		if (print)
 		{
-			WriteLineVerbose("Creating map variant for [%s]", map_id_to_string(g_LaunchMapId));
+			WriteLineVerbose("Creating map variant for '%s'", s_pSelectedMapInfo->GetFriendlyName());
 		}
 
-		rMapVariant = pDataAccess->MapVariantCreateFromMapID(g_LaunchMapId)->MapVariant;
+		rMapVariant = pDataAccess->MapVariantCreateFromMapID(s_pSelectedMapInfo->GetMapID())->MapVariant;
 	}
 }
 
@@ -1483,23 +1512,23 @@ void GameLauncher::LoadGameVariant(IDataAccess* pDataAccess, const char* pVarian
 		return;
 	}
 
-	char pFilename[MAX_PATH] = {};
+	char pFileName[MAX_PATH] = {};
 	if (g_GameVariantIsHopper)
 	{
-		sprintf(pFilename, "%s\\hopper_game_variants\\%s.bin", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
+		sprintf(pFileName, "%s\\hopper_game_variants\\%s.bin", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
 	}
 	else
 	{
-		sprintf(pFilename, "%s\\game_variants\\%s.bin", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
+		sprintf(pFileName, "%s\\game_variants\\%s.bin", s_pCurrentGameInterface->GetEngineName().c_str(), pVariantName);
 	}
-	pFilename[MAX_PATH - 1] = 0;
+	pFileName[MAX_PATH - 1] = 0;
 
-	c_file_reference filo(pFilename);
+	c_file_reference filo(pFileName);
 	if (filo.open_file())
 	{
 		if (print)
 		{
-			WriteLineVerbose("Loading game variant [%s]", pFilename);
+			WriteLineVerbose("Loading game variant [%s]", pFileName);
 		}
 		rGameVariant = pDataAccess->GameVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->GameVariant;
 		filo.close_file();
@@ -1509,14 +1538,14 @@ void GameLauncher::LoadGameVariant(IDataAccess* pDataAccess, const char* pVarian
 // TODO: Test, and fix if broke
 void GameLauncher::LoadPreviousGamestate(const char* pGamestateName, GameContext& gameContext)
 {
-	char pFilename[MAX_PATH] = {};
-	sprintf(pFilename, "%s.hdr", pGamestateName);
-	pFilename[MAX_PATH - 1] = 0;
+	char pFileName[MAX_PATH] = {};
+	sprintf(pFileName, "%s.hdr", pGamestateName);
+	pFileName[MAX_PATH - 1] = 0;
 
 	char* pGameStateBuffer = {};
 	size_t gameStateSize = {};
 
-	c_file_reference filo(pFilename);
+	c_file_reference filo(pFileName);
 	if (filo.open_file())
 	{
 		pGameStateBuffer = new char[filo.bufferSize];
@@ -1536,22 +1565,22 @@ void GameLauncher::LoadSavedFilmMetadata(const char* pSavedFilmName, GameContext
 	if (!pSavedFilmName)
 		return;
 
-	static LPCSTR pFilename = "";
-	if (!PathFileExists(pFilename = Format("%s\\Temporary\\autosave\\%s.film", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
+	static LPCSTR pFileName = "";
+	if (!PathFileExists(pFileName = Format("%s\\Temporary\\autosave\\%s.film", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
 	{
-		if (!PathFileExists(pFilename = Format("%s\\Temporary\\autosave\\%s.mov", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
+		if (!PathFileExists(pFileName = Format("%s\\Temporary\\autosave\\%s.mov", s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
 		{
-			if (!PathFileExists(pFilename = Format("%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\%s\\Movie\\%s.mov", GetUserprofileVariable(), s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
+			if (!PathFileExists(pFileName = Format("%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\%s\\Movie\\%s.mov", GetUserprofileVariable(), s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName)))
 			{
-				pFilename = Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\Movie\\%s.mov", GetUserprofileVariable(), s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName);
+				pFileName = Format("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\Movie\\%s.mov", GetUserprofileVariable(), s_pCurrentGameInterface->GetEngineName().c_str(), pSavedFilmName);
 			}
 		}
 	}
 
-	if (pFilename)
+	if (pFileName)
 	{
-		WriteLineVerbose("Loading saved film [%s]", pFilename);
+		WriteLineVerbose("Loading saved film [%s]", pFileName);
 	}
 
-	gameContext.SavedFilmPath = pFilename;
+	gameContext.SavedFilmPath = pFileName;
 }

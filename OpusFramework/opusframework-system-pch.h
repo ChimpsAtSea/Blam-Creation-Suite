@@ -57,6 +57,8 @@
 #include <filesystem>
 #include <psapi.h>
 #include <map>
+#include <locale>
+#include <cwctype>
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #else
@@ -85,5 +87,11 @@ if (COMBINE(__runonceflag_, __LINE__) == false) \
 	__VA_ARGS__; \
 	COMBINE(__runonceflag_, __LINE__) = true; \
 } (void)(0)
+
+template<class T, std::size_t... N>
+constexpr T bswap_impl(T i, std::index_sequence<N...>) { return ((((i >> (N * CHAR_BIT))& (T)(unsigned char)(-1)) << ((sizeof(T) - 1 - N) * CHAR_BIT)) | ...); };
+template<class T, class U = typename std::make_unsigned<T>::type>
+constexpr U bswap(T i) { return bswap_impl<U>(i, std::make_index_sequence<sizeof(T)>{}); }
+#define bswap_auto_endian(littleEndian, i) (littleEndian ? i : bswap(i))
 
 #define auto auto_is_banned

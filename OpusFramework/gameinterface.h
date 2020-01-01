@@ -34,8 +34,8 @@ public:
 
 private:
 	void loadLibrary(const char* pLibFileName);
-	static BuildVersion GetLibraryBuildVersion(const char* pFilename);
-	static uint64_t GetLibraryFileVersion(const char* pFilename);
+	static BuildVersion GetLibraryBuildVersion(const char* pFileName);
+	static uint64_t GetLibraryFileVersion(const char* pFileName);
 
 	LPCSTR m_enginePath = "";
 	BuildVersion m_buildVersion = BuildVersion::NotSet;

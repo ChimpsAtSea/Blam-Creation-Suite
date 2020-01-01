@@ -1,6 +1,6 @@
 #include "opus-private-pch.h"
 
-__declspec(dllexport) void opus() {};
+__declspec(dllexport) void __opus() {};
 
 extern void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVersion, bool isMCC);
 extern void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);

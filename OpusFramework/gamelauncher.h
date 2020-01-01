@@ -36,6 +36,7 @@ public:
 	static void DrawMainMenu();
 	static void DrawPauseMenu();
 
+	static const MapInfo* GetDefaultMapSelection();
 	static void SelectGameMode();
 	static void SelectMap();
 	static void SelectDifficulty();
@@ -43,15 +44,16 @@ public:
 	static void SelectMapVariant();
 	static void SelectSavedFilm();
 
-	
-
-
 	static void InitSockets();
 	static void DeinitSockets();
 
+	static void CheckSteamAPI();
+	static void InitMapInfoManager();
+	static void DeinitMapInfoManager();
+
 	static void LoadMapVariant(IDataAccess* pDataAccess, const char* pVariantName, s_map_variant& out_variant, bool print = false);
 	static void LoadGameVariant(IDataAccess* pDataAccess, const char* pVariantName, s_game_variant& out_variant, bool print = false);
-	static void LoadPreviousGamestate(const char* pFilename, GameContext& gameContext);
+	static void LoadPreviousGamestate(const char* pFileName, GameContext& gameContext);
 	static void LoadSavedFilmMetadata(const char* pSavedFilmName, GameContext &gameContext);
 	static char* s_pTerminationFlag;
 	BuildVersion GetCurrentbuildVersion();
@@ -66,7 +68,7 @@ public:
 	static GameInterface* s_pCurrentGameInterface;
 	static IGameEngine* s_pHaloReachEngine;
 	static std::atomic<int> s_uiStackLength;
-	
-	static void CheckSteamAPI();
+	static MapInfoManager* s_pMapInfoManager;
+	static const MapInfo* s_pSelectedMapInfo;
 };
 

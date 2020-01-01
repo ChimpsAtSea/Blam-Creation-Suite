@@ -89,6 +89,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlamFileParser.cpp" />
     <ClCompile Include="campaign_difficulty_level.cpp" />
     <ClCompile Include="customwindow.cpp" />
     <ClCompile Include="BasicData.cpp" />
@@ -98,6 +99,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="FileSystemUtilities.cpp" />
     <ClCompile Include="FunctionHook.cpp" />
     <ClCompile Include="gameinterface.cpp" />
     <ClCompile Include="gamelauncher.cpp" />
@@ -110,6 +112,9 @@
     <ClCompile Include="IGameEngineHost.cpp" />
     <ClCompile Include="IGameEvents.cpp" />
     <ClCompile Include="application_reflection\mappingfileparser.cpp" />
+    <ClCompile Include="logging.cpp" />
+    <ClCompile Include="MapInfo.cpp" />
+    <ClCompile Include="MapInfoManager.cpp" />
     <ClCompile Include="map_id.cpp" />
     <ClCompile Include="mouseinput.cpp" />
     <ClCompile Include="networkmanager.cpp" />
@@ -122,12 +127,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application_reflection\offsetfunction.h" />
+    <ClInclude Include="BlamFile.h" />
+    <ClInclude Include="BlamFileParser.h" />
     <ClInclude Include="campaign_difficulty_level.h" />
     <ClInclude Include="customwindow.h" />
     <ClInclude Include="BasicData.h" />
     <ClInclude Include="DebugUI.h" />
     <ClInclude Include="debug_helpers.h" />
     <ClInclude Include="detour_helpers.h" />
+    <ClInclude Include="FileSystemUtilities.h" />
     <ClInclude Include="gameinterface.h" />
     <ClInclude Include="gamelauncher.h" />
     <ClInclude Include="GameRender.h" />
@@ -149,6 +157,8 @@
     <ClInclude Include="local_types.h" />
     <ClInclude Include="logging.h" />
     <ClInclude Include="application_reflection\mappingfileparser.h" />
+    <ClInclude Include="MapInfo.h" />
+    <ClInclude Include="MapInfoManager.h" />
     <ClInclude Include="map_id.h" />
     <ClInclude Include="mouseinput.h" />
     <ClInclude Include="application_reflection\referencesymbol.h" />
