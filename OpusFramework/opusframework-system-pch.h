@@ -94,4 +94,16 @@ template<class T, class U = typename std::make_unsigned<T>::type>
 constexpr U bswap(T i) { return bswap_impl<U>(i, std::make_index_sequence<sizeof(T)>{}); }
 #define bswap_auto_endian(littleEndian, i) (littleEndian ? i : bswap(i))
 
+template<typename T>
+constexpr decltype(auto) underlying_cast(T value)
+{
+	using ResultType = __underlying_type(T); // supported on most main compilers
+	return static_cast<ResultType>(value);
+}
+
+#define underlying(type) __underlying_type(type)
+
+
+
+
 #define auto auto_is_banned

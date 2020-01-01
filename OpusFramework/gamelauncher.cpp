@@ -18,7 +18,7 @@ LPCSTR g_LaunchMapVariant = "";
 bool g_MapVariantIsHopper = false;
 LPCSTR g_SavedFilm = nullptr;
 MapInfoManager* GameLauncher::s_pMapInfoManager = nullptr;
-const MapInfo* GameLauncher::s_pSelectedMapInfo = nullptr;
+const MapInfo* GameLauncher::s_pSelectedMapInfo[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
 
 BuildVersion GameLauncher::GetCurrentbuildVersion()
 {
@@ -292,9 +292,9 @@ void GameLauncher::RegisterGameShutdownCallback(EngineVersion engineVersion, Gam
 	s_gameShutdownCallback = gameShutdownCallback;
 }
 
-const MapInfo* GameLauncher::GetDefaultMapSelection()
+const MapInfo* GameLauncher::GetDefaultMapSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex)
 {
-	int previousMapID = Settings::ReadIntegerValue(SettingsSection::Launch, "Map", -1);
+	int previousMapID = Settings::ReadIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(gameModeMapInfoIndex)], -1);
 	for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
 	{
 		if (rMapInfo.GetMapID() == previousMapID)
@@ -303,12 +303,15 @@ const MapInfo* GameLauncher::GetDefaultMapSelection()
 		}
 	}
 
-	return s_pMapInfoManager->m_mapInfo.empty() ? nullptr : &s_pMapInfoManager->m_mapInfo[0];
+	return nullptr;
 }
 
 void GameLauncher::LoadSettings()
 {
-	s_pSelectedMapInfo = GetDefaultMapSelection();
+	for (underlying(SelectedGameModeMapInfoIndex) i = 0; i < underlying_cast(SelectedGameModeMapInfoIndex::Count); i++)
+	{
+		s_pSelectedMapInfo[i] = GetDefaultMapSelection(static_cast<SelectedGameModeMapInfoIndex>(i));
+	}
 
 	char pLaunchGameModeBuffer[256] = {};
 	Settings::ReadStringValue(SettingsSection::Launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "");
@@ -415,6 +418,8 @@ int GameLauncher::Run(HINSTANCE hInstance, LPSTR lpCmdLine, GameInterface& rGame
 
 void GameLauncher::SetupGameContext(GameContext& rGameContext)
 {
+	const MapInfo*& rpSelectedMapInfo = GetSelectedMapInfoByGameMode(g_LaunchGameMode);
+
 	rGameContext.pGameHandle = GetModuleHandle("HaloReach.dll");
 	char byte2B678Data[] = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 	memcpy(rGameContext.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
@@ -476,7 +481,7 @@ void GameLauncher::SetupGameContext(GameContext& rGameContext)
 			SetConsoleTitleA("Opus | HOST");
 
 			assert(s_pSelectedMapInfo != nullptr);
-			rGameContext.MapId = static_cast<e_map_id>(s_pSelectedMapInfo->GetMapID());
+			rGameContext.MapId = static_cast<e_map_id>(rpSelectedMapInfo->GetMapID());
 			rGameContext.CampaignDifficultyLevel = g_LaunchCampaignDifficultyLevel;
 
 			LoadGameVariant(s_pCurrentGameInterface->GetDataAccess(), g_LaunchGameVariant, *reinterpret_cast<s_game_variant*>(rGameContext.GameVariantBuffer), true);
@@ -1037,33 +1042,168 @@ void GameLauncher::SelectSavedFilm()
 
 void GameLauncher::SelectGameMode()
 {
-	LPCSTR s_pCurrentGameModeStr = game_mode_to_string(g_LaunchGameMode);
-	if (ImGui::BeginCombo("###MODE", s_pCurrentGameModeStr))
+	if (GameLauncher::HasCommandLineArg("-showallmodes"))
 	{
-		for (int i = 0; i < e_game_mode::k_number_of_game_modes; i++)
+		LPCSTR s_pCurrentGameModeStr = game_mode_to_string(g_LaunchGameMode);
+		if (ImGui::BeginCombo("###MODE", s_pCurrentGameModeStr))
 		{
-			LPCSTR pGameModeStr = game_mode_to_string(static_cast<e_game_mode>(i));
-			if (pGameModeStr)
+			for (int i = 0; i < e_game_mode::k_number_of_game_modes; i++)
 			{
-				bool selected = s_pCurrentGameModeStr == pGameModeStr;
-				if (ImGui::Selectable(pGameModeStr, &selected))
+				LPCSTR pGameModeStr = game_mode_to_string(static_cast<e_game_mode>(i));
+				if (pGameModeStr)
 				{
-					g_LaunchGameMode = static_cast<e_game_mode>(i);
-					Settings::WriteStringValue(SettingsSection::Launch, "GameMode", (char*)game_mode_to_string(g_LaunchGameMode));
+					bool selected = s_pCurrentGameModeStr == pGameModeStr;
+					if (ImGui::Selectable(pGameModeStr, &selected))
+					{
+						g_LaunchGameMode = static_cast<e_game_mode>(i);
+						Settings::WriteStringValue(SettingsSection::Launch, "GameMode", (char*)game_mode_to_string(g_LaunchGameMode));
+					}
 				}
 			}
-		}
 
-		ImGui::EndCombo();
+			ImGui::EndCombo();
+		}
 	}
+	else
+	{
+		LPCSTR s_pCurrentGameModeStr = game_mode_to_string(g_LaunchGameMode);
+		if (ImGui::BeginCombo("###MODE", s_pCurrentGameModeStr))
+		{
+			for (underlying(SelectedGameModeMapInfoIndex) i = 0; i < underlying_cast(SelectedGameModeMapInfoIndex::Count); i++)
+			{
+				if (static_cast<SelectedGameModeMapInfoIndex>(i) == SelectedGameModeMapInfoIndex::Unknown)
+				{
+					continue;
+				}
+
+				e_game_mode gameMode = SelectedGameModeMapInfoIndexToGameMode(static_cast<SelectedGameModeMapInfoIndex>(i));
+				LPCSTR pGameModeStr = game_mode_to_string(gameMode);
+				if (pGameModeStr)
+				{
+					bool selected = s_pCurrentGameModeStr == pGameModeStr;
+					if (ImGui::Selectable(pGameModeStr, &selected))
+					{
+						g_LaunchGameMode = gameMode;
+						Settings::WriteStringValue(SettingsSection::Launch, "GameMode", (char*)game_mode_to_string(g_LaunchGameMode));
+					}
+				}
+			}
+
+			ImGui::EndCombo();
+		}
+	}
+}
+
+bool GameLauncher::IsMapInfoCompadibleWithGameMode(e_game_mode gameMode, const MapInfo& rMapInfo)
+{
+	switch (gameMode)
+	{
+	case _game_mode_campaign:
+		if (!rMapInfo.IsCampaign()) return false;
+		break;
+	case _game_mode_multiplayer:
+		if (!rMapInfo.IsMultiplayer()) return false;
+		break;
+	case _game_mode_survival:
+		if (!rMapInfo.IsFirefight()) return false;
+		break;
+	}
+	return true;
+}
+
+const MapInfo* GameLauncher::GetFirstSuitableGameModeMapInfo(e_game_mode gameMode)
+{
+	for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
+	{
+		if (IsMapInfoCompadibleWithGameMode(g_LaunchGameMode, rMapInfo))
+		{
+			return &rMapInfo;
+		}
+	}
+	return nullptr;
+}
+
+void GameLauncher::SaveSelectedMap(e_game_mode gameMode, const MapInfo* pMapInfo)
+{
+	switch (gameMode)
+	{
+	case _game_mode_campaign:
+		Settings::WriteIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Campaign)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		break;
+	case _game_mode_multiplayer:
+		Settings::WriteIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Multiplayer)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		break;
+	case _game_mode_survival:
+		Settings::WriteIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Firefight)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		break;
+	default:
+		Settings::WriteIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Unknown)], pMapInfo ? pMapInfo->GetMapID() : -1);
+		break;
+	}
+}
+
+GameLauncher::SelectedGameModeMapInfoIndex GameLauncher::GameModeToSelectedGameModeMapInfoIndex(e_game_mode gameMode)
+{
+	switch (gameMode)
+	{
+	case _game_mode_campaign:
+		return SelectedGameModeMapInfoIndex::Campaign;
+		break;
+	case _game_mode_multiplayer:
+		return SelectedGameModeMapInfoIndex::Multiplayer;
+		break;
+	case _game_mode_survival:
+		return SelectedGameModeMapInfoIndex::Firefight;
+		break;
+	default:
+		return SelectedGameModeMapInfoIndex::Unknown;
+		break;
+	}
+}
+
+e_game_mode GameLauncher::SelectedGameModeMapInfoIndexToGameMode(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
+{
+	switch (selectedGameModeMapInfoIndex)
+	{
+	case SelectedGameModeMapInfoIndex::Campaign:
+		return _game_mode_campaign;
+		break;
+	case SelectedGameModeMapInfoIndex::Multiplayer:
+		return _game_mode_multiplayer;
+		break;
+	case SelectedGameModeMapInfoIndex::Firefight:
+		return _game_mode_survival;
+		break;
+	default:
+		return _game_mode_none;
+	}
+}
+
+const MapInfo*& GameLauncher::GetSelectedMapInfoBySelectedGameModeMapInfoIndex(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
+{
+	const MapInfo*& rpSelectedMapInfo = s_pSelectedMapInfo[underlying_cast(selectedGameModeMapInfoIndex)];
+	return rpSelectedMapInfo;
+}
+
+const MapInfo*& GameLauncher::GetSelectedMapInfoByGameMode(e_game_mode gameMode)
+{
+	return GetSelectedMapInfoBySelectedGameModeMapInfoIndex(GameModeToSelectedGameModeMapInfoIndex(g_LaunchGameMode));
 }
 
 void GameLauncher::SelectMap()
 {
-	const char* pSelectedLevelName = "<no level selected>";
-	if (s_pSelectedMapInfo)
+	const MapInfo*& rpSelectedMapInfo = GetSelectedMapInfoByGameMode(g_LaunchGameMode);
+
+	if (!rpSelectedMapInfo || rpSelectedMapInfo && !IsMapInfoCompadibleWithGameMode(g_LaunchGameMode, *rpSelectedMapInfo))
 	{
-		pSelectedLevelName = s_pSelectedMapInfo->GetFriendlyName();
+		rpSelectedMapInfo = GetFirstSuitableGameModeMapInfo(g_LaunchGameMode);
+		SaveSelectedMap(g_LaunchGameMode, rpSelectedMapInfo);
+	}
+
+	const char* pSelectedLevelName = "<no level selected>";
+	if (rpSelectedMapInfo)
+	{
+		pSelectedLevelName = rpSelectedMapInfo->GetFriendlyName();
 	}
 
 	if (ImGui::BeginCombo("###MAP", pSelectedLevelName))
@@ -1071,13 +1211,18 @@ void GameLauncher::SelectMap()
 		// #TODO: Make a nice and beautiful interface to this for multi-game
 		for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
 		{
-			bool isSelected = s_pSelectedMapInfo == &rMapInfo;
+			if (!IsMapInfoCompadibleWithGameMode(g_LaunchGameMode, rMapInfo))
+			{
+				continue;
+			}
+
+			bool isSelected = rpSelectedMapInfo == &rMapInfo;
 			const char* pCurrentLevelFriendlyName = rMapInfo.GetFriendlyName();
 
 			if (ImGui::Selectable(pCurrentLevelFriendlyName, &isSelected))
 			{
-				s_pSelectedMapInfo = &rMapInfo;
-				Settings::WriteIntegerValue(SettingsSection::Launch, "Map", rMapInfo.GetMapID());
+				rpSelectedMapInfo = &rMapInfo;
+				SaveSelectedMap(g_LaunchGameMode, rpSelectedMapInfo);
 			}
 		}
 
@@ -1113,15 +1258,20 @@ void GameLauncher::SelectDifficulty()
 
 void GameLauncher::SelectGameVariant()
 {
+	if (g_LaunchGameMode == e_game_mode::_game_mode_campaign)
+	{
+		return;
+	}
+
 	static c_file_array hopperGameVariantsFileArray(Format("%s\\hopper_game_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".bin", &ReadGameVariant);
 	static c_file_array gameVariantsFileArray(Format("%s\\game_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".bin", &ReadGameVariant);
 
 	static LPCSTR pLastSelectedHopperGameVariant = g_LaunchGameVariant;
 	static LPCSTR pLastSelectedGameVariant = g_LaunchGameVariant;
 
-	c_file_array&	rFileArray = g_GameVariantIsHopper ? hopperGameVariantsFileArray : gameVariantsFileArray;
-	LPCSTR&			rpLastSelectedVariant = g_GameVariantIsHopper ? pLastSelectedHopperGameVariant : pLastSelectedGameVariant;
-	const char*		pVariantLabel = g_GameVariantIsHopper ? "(HOPPER)###GAME VARIANT" : "###GAME VARIANT";
+	c_file_array& rFileArray = g_GameVariantIsHopper ? hopperGameVariantsFileArray : gameVariantsFileArray;
+	LPCSTR& rpLastSelectedVariant = g_GameVariantIsHopper ? pLastSelectedHopperGameVariant : pLastSelectedGameVariant;
+	const char* pVariantLabel = g_GameVariantIsHopper ? "(HOPPER)###GAME VARIANT" : "###GAME VARIANT";
 
 	if (rpLastSelectedVariant[0] && g_LaunchGameVariant != rpLastSelectedVariant)
 	{
@@ -1173,16 +1323,16 @@ void GameLauncher::SelectGameVariant()
 
 void GameLauncher::SelectMapVariant()
 {
+	if (g_LaunchGameMode != e_game_mode::_game_mode_multiplayer)
+	{
+		return;
+	}
+
 	static c_file_array hopperMapVariantsFileArray(Format("%s\\hopper_map_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mvar", &ReadMapVariant);
 	static c_file_array mapVariantsFileArray(Format("%s\\map_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".mvar", &ReadMapVariant);
 
 	static LPCSTR pLastSelectedHopperMapVariant = g_LaunchMapVariant;
 	static LPCSTR pLastSelectedMapVariant = g_LaunchMapVariant;
-
-	if (g_LaunchGameMode != e_game_mode::_game_mode_multiplayer)
-	{
-		return;
-	}
 
 	c_file_array& rFileArray = g_MapVariantIsHopper ? hopperMapVariantsFileArray : mapVariantsFileArray;
 	LPCSTR& rpLastSelectedVariant = g_MapVariantIsHopper ? pLastSelectedHopperMapVariant : pLastSelectedMapVariant;
@@ -1248,8 +1398,8 @@ void GameLauncher::SelectMapVariant()
 
 void GameLauncher::DrawMainMenu()
 {
-	float width =	static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
-	float height =	static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
+	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
+	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
 	static ImVec2 nextWindowSize = ImVec2(width * 0.98f, height * 0.94f);
 	ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
@@ -1495,12 +1645,14 @@ void GameLauncher::LoadMapVariant(IDataAccess* pDataAccess, const char* pVariant
 
 	// fallback to use map ID
 	{
+		const MapInfo*& rpSelectedMapInfo = GetSelectedMapInfoByGameMode(g_LaunchGameMode);
+
 		if (print)
 		{
-			WriteLineVerbose("Creating map variant for '%s'", s_pSelectedMapInfo->GetFriendlyName());
+			WriteLineVerbose("Creating map variant for '%s'", rpSelectedMapInfo->GetFriendlyName());
 		}
 
-		rMapVariant = pDataAccess->MapVariantCreateFromMapID(s_pSelectedMapInfo->GetMapID())->MapVariant;
+		rMapVariant = pDataAccess->MapVariantCreateFromMapID(rpSelectedMapInfo->GetMapID())->MapVariant;
 	}
 }
 
