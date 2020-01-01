@@ -121,7 +121,7 @@ void GameLauncher::LaunchGame()
 	//free(pHaloReachDataAccess);
 
 	// reset runtime information after we've destroyed the engine
-	s_pCurrentGameInterface = nullptr;
+	//s_pCurrentGameInterface = nullptr;
 	s_pHaloReachEngine = nullptr;
 }
 
@@ -1262,6 +1262,8 @@ void GameLauncher::SelectGameVariant()
 	{
 		return;
 	}
+
+	assert(GameLauncher::s_pCurrentGameInterface != nullptr);
 
 	static c_file_array hopperGameVariantsFileArray(Format("%s\\hopper_game_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".bin", &ReadGameVariant);
 	static c_file_array gameVariantsFileArray(Format("%s\\game_variants", GameLauncher::s_pCurrentGameInterface->GetEngineName().c_str()), ".bin", &ReadGameVariant);
