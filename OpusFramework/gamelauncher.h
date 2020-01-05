@@ -47,7 +47,7 @@ public:
 
 	static const MapInfo* GetDefaultMapSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex);
 	static void SelectGameMode();
-	static bool IsMapInfoCompadibleWithGameMode(e_game_mode gameMode, const MapInfo& rMapInfo);
+	static bool IsMapInfoCompatibleWithGameMode(e_game_mode gameMode, const MapInfo& rMapInfo);
 	static const MapInfo* GetFirstSuitableGameModeMapInfo(e_game_mode gameMode);
 	static void SaveSelectedMap(e_game_mode gameMode, const MapInfo* pMapInfo);
 	static SelectedGameModeMapInfoIndex GameModeToSelectedGameModeMapInfoIndex(e_game_mode gameMode);

@@ -1103,7 +1103,7 @@ void GameLauncher::SelectGameMode()
 	}
 }
 
-bool GameLauncher::IsMapInfoCompadibleWithGameMode(e_game_mode gameMode, const MapInfo& rMapInfo)
+bool GameLauncher::IsMapInfoCompatibleWithGameMode(e_game_mode gameMode, const MapInfo& rMapInfo)
 {
 	switch (gameMode)
 	{
@@ -1124,7 +1124,7 @@ const MapInfo* GameLauncher::GetFirstSuitableGameModeMapInfo(e_game_mode gameMod
 {
 	for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
 	{
-		if (IsMapInfoCompadibleWithGameMode(g_LaunchGameMode, rMapInfo))
+		if (IsMapInfoCompatibleWithGameMode(g_LaunchGameMode, rMapInfo))
 		{
 			return &rMapInfo;
 		}
@@ -1203,7 +1203,7 @@ void GameLauncher::SelectMap()
 {
 	const MapInfo*& rpSelectedMapInfo = GetSelectedMapInfoByGameMode(g_LaunchGameMode);
 
-	if (!rpSelectedMapInfo || rpSelectedMapInfo && !IsMapInfoCompadibleWithGameMode(g_LaunchGameMode, *rpSelectedMapInfo))
+	if (!rpSelectedMapInfo || rpSelectedMapInfo && !IsMapInfoCompatibleWithGameMode(g_LaunchGameMode, *rpSelectedMapInfo))
 	{
 		rpSelectedMapInfo = GetFirstSuitableGameModeMapInfo(g_LaunchGameMode);
 		SaveSelectedMap(g_LaunchGameMode, rpSelectedMapInfo);
@@ -1220,7 +1220,7 @@ void GameLauncher::SelectMap()
 		// #TODO: Make a nice and beautiful interface to this for multi-game
 		for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
 		{
-			if (!IsMapInfoCompadibleWithGameMode(g_LaunchGameMode, rMapInfo))
+			if (!IsMapInfoCompatibleWithGameMode(g_LaunchGameMode, rMapInfo))
 			{
 				continue;
 			}
@@ -1325,6 +1325,8 @@ void GameLauncher::SelectMapVariant()
 	static c_file_array fileArray = c_file_array(pfilePaths, { ".mvar" }, &ReadMapVariant);
 	static LPCSTR pLast = g_LaunchMapVariant;
 
+	const MapInfo *&rpSelectedMapInfo = GetSelectedMapInfoByGameMode(g_LaunchGameMode);
+
 	LPCSTR lastMapName = fileArray.GetName(pLast);
 	if (!lastMapName || strlen(lastMapName) == 0)
 	{
@@ -1341,8 +1343,7 @@ void GameLauncher::SelectMapVariant()
 
 		for (int i = 0; i < fileArray.Count; i++)
 		{
-			//int shouldShow = fileArray.GetType(i) == map_id_to_engine_specific(g_LaunchMapId);
-			int shouldShow = 1; // #TODO: Determine what type of file this is and use MapInfo/s_pSelectedMapInfo to determine if it should show
+			int shouldShow = fileArray.GetType(i) == rpSelectedMapInfo->GetMapID();
 
 			if (fileArray.GetFileName(i) && shouldShow)
 			{
