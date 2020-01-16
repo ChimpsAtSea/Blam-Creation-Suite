@@ -5,6 +5,7 @@
 #define IDI_ICON1                       101
 #define IDB_PNG1                        102
 #define IDR_FONT1                       103
+#define IDR_MAPDATABASE					104
 
 // Next default values for new objects
 // 

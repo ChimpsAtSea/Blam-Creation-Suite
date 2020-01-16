@@ -7,7 +7,7 @@ inline void WriteStackBackTrace(LPCSTR pCallingFunction, DWORD size = 1024)
 	static ULONGLONG (*FileGetImageBase)(LPSTR filename) = [](LPSTR filename)
 	{
 		ULONGLONG result = 0ull;
-		HANDLE hFile = CreateFile(filename, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+		HANDLE hFile = CreateFileA(filename, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 		if (hFile != INVALID_HANDLE_VALUE)
 		{
 			HANDLE hFileMapping = CreateFileMapping(hFile, NULL, PAGE_READONLY, 0, 0, NULL);
@@ -56,7 +56,7 @@ inline void WriteStackBackTrace(LPCSTR pCallingFunction, DWORD size = 1024)
 						if (moduleOffset = (UINT64)traces[traceIndex] - (UINT64)moduleInformation.lpBaseOfDll)
 						{
 							char szModName[MAX_PATH];
-							if (GetModuleFileNameEx(hProcess, hModules[moduleIndex], szModName, sizeof(szModName) / sizeof(char)))
+							if (GetModuleFileNameExA(hProcess, hModules[moduleIndex], szModName, sizeof(szModName) / sizeof(char)))
 							{
 								std::string moduleName = std::string(szModName).substr(std::string(szModName).find_last_of("/\\") + 1);
 								ULONGLONG baseOffset = FileGetImageBase(szModName) + moduleOffset;
@@ -75,7 +75,7 @@ inline void WriteStackBackTrace(LPCSTR pCallingFunction, DWORD size = 1024)
 inline const char* GetUserprofileVariable ()
 {
 	static char szBuf[MAX_PATH] = { 0 };
-	GetEnvironmentVariable("USERPROFILE", szBuf, MAX_PATH);
+	GetEnvironmentVariableA("USERPROFILE", szBuf, MAX_PATH);
 	return static_cast<const char*>(szBuf);
 };
 

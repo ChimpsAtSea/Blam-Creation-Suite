@@ -90,6 +90,10 @@ private:
 	std::vector<StaticSymbol> statics_info;
 
 	PublicSymbol* getPublicSymbolByName(std::string rName);
-	void Parse(std::string filename);
+	bool ParseFromResource();
+	void ParseFromFile(const char* pFilePath);
+
+private:
+	void parseImpl(std::vector<MapLine>& mappingFileData);
 };
 

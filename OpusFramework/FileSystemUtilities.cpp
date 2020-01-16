@@ -36,6 +36,8 @@ char* opus::FileSystemReadToBuffer(const wchar_t* pFilePath, char* pBuffer, size
 
 	int fcloseResult = fclose(pFileHandle);
 	assert(fcloseResult == 0);
+
+	return nullptr;
 }
 
 char* opus::FileSystemReadToMemory(const wchar_t* pFilePath, size_t* pAllocatedSize)

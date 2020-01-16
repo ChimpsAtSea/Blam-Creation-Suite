@@ -41,7 +41,7 @@ void parse_section_and_address(std::string& rSectionAndAddress, int& rSectionInd
  * It will iterate through all the lines in file and
  * put them in given vector
  */
-bool getFileContent(std::string fileName, std::vector<std::string>& vecOfStrs)
+bool getFileContentFromFile(std::string fileName, std::vector<std::string>& vecOfStrs)
 {
 
 	// Open the File
@@ -122,18 +122,45 @@ Section::Section(int index, SectionRegions& rSectionRegions)
 
 MappingFileParser::MappingFileParser()
 {
-	CHAR currentModuleNameBuffer[MAX_PATH] = {};
-	GetModuleFileNameA(GetModuleHandleA(NULL), currentModuleNameBuffer, sizeof(currentModuleNameBuffer));
-	PathRemoveExtensionA(currentModuleNameBuffer);
-	PathAddExtension(currentModuleNameBuffer, ".bin");
-	Parse(currentModuleNameBuffer);
+	if (!ParseFromResource())
+	{
+		CHAR currentModuleNameBuffer[MAX_PATH] = {};
+		GetModuleFileNameA(GetModuleHandleA(NULL), currentModuleNameBuffer, sizeof(currentModuleNameBuffer));
+		PathRemoveExtensionA(currentModuleNameBuffer);
+		PathAddExtension(currentModuleNameBuffer, ".bin");
+		ParseFromFile(currentModuleNameBuffer);
+	}
 }
 
-void MappingFileParser::Parse(std::string filename)
+bool MappingFileParser::ParseFromResource()
+{
+	HINSTANCE hInstance = GetModuleHandleA(NULL);
+	HRSRC hResource = FindResource(hInstance, MAKEINTRESOURCE(IDR_MAPDATABASE), RT_RCDATA);
+	if (hResource == NULL) return false;
+	HGLOBAL hMemory = LoadResource(hInstance, hResource);
+	assert(hMemory);
+	DWORD dwSize = SizeofResource(hInstance, hResource);
+	assert(dwSize > 0);
+	LPVOID lpAddress = LockResource(hMemory);
+	assert(lpAddress);
+
+	char* pMappingFileText = static_cast<char*>(malloc(static_cast<size_t>(dwSize) + 1));
+	assert(pMappingFileText != nullptr);
+	memcpy(pMappingFileText, lpAddress, dwSize);
+	pMappingFileText[dwSize] = 0;
+
+	UnlockResource(lpAddress);
+	BOOL freeResourceResult = FreeResource(hMemory);
+	assert(freeResourceResult == 0);
+
+	return false;
+}
+
+void MappingFileParser::ParseFromFile(const char* pFilePath)
 {
 	// Get the contents of file in a vector
 	std::vector<MapLine> RawLines;
-	bool result = getFileContent(filename.c_str(), RawLines);
+	bool result = getFileContentFromFile(pFilePath, RawLines);
 	if (!result)
 	{
 #if _DEBUG
@@ -143,9 +170,15 @@ void MappingFileParser::Parse(std::string filename)
 		exit(1);
 #endif
 	}
-	
+
+	parseImpl(RawLines);
+}
+
+
+void MappingFileParser::parseImpl(std::vector<MapLine>& rRawLines)
+{
 	MapFileEntries entry_list;
-	for (MapLine& line : RawLines)
+	for (MapLine& line : rRawLines)
 	{
 		trim(line);
 		if (!line.empty())
