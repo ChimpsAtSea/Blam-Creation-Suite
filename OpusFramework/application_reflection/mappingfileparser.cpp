@@ -37,6 +37,37 @@ void parse_section_and_address(std::string& rSectionAndAddress, int& rSectionInd
 	rSectionOffset = parse_hex_int32(offsetStr);
 }
 
+bool getFileContentFromBuffer(char* szMappingFileStr, std::vector<std::string>& vecOfStrs)
+{
+	size_t mappingFileStrLength = strlen(szMappingFileStr);
+	size_t currentPosition = 0;
+
+
+	const char* pCurrentStringBeginning = szMappingFileStr;
+	do
+	{
+		char& currentCharacter = szMappingFileStr[currentPosition++];
+		if (currentCharacter == '\r' || currentCharacter == '\n')
+		{
+			currentCharacter = 0; // terminate in place
+			size_t stringLength = strlen(pCurrentStringBeginning);
+			if (stringLength > 0) // skip empty strings
+			{
+				vecOfStrs.push_back(pCurrentStringBeginning);
+			}
+			pCurrentStringBeginning = &szMappingFileStr[currentPosition]; // get the next string location
+		}
+		else if (currentCharacter == 0)
+		{
+			vecOfStrs.push_back(pCurrentStringBeginning);
+			break;
+		}
+	} 
+	while (currentPosition < mappingFileStrLength);
+
+	return true;
+}
+
 /*
  * It will iterate through all the lines in file and
  * put them in given vector
@@ -152,6 +183,10 @@ bool MappingFileParser::ParseFromResource()
 	UnlockResource(lpAddress);
 	BOOL freeResourceResult = FreeResource(hMemory);
 	assert(freeResourceResult == 0);
+
+	std::vector<MapLine> RawLines;
+	getFileContentFromBuffer(pMappingFileText, RawLines);
+	parseImpl(RawLines);
 
 	return false;
 }
