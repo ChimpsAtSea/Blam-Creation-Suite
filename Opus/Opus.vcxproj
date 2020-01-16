@@ -77,11 +77,9 @@
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
-echo f|xcopy "$(TargetDir)$(TargetName).bin" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).bin" "$(LocalDebuggerWorkingDirectory)" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -112,11 +110,9 @@ echo f|xcopy "$(TargetDir)$(TargetName).bin" "\\$(RemoteDebuggerServerName)\!MCC
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
-echo f|xcopy "$(TargetDir)$(TargetName).bin" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).bin" "$(LocalDebuggerWorkingDirectory)" /Y
  )
 )</Command>
     </PostBuildEvent>

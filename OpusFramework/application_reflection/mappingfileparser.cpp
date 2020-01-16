@@ -188,7 +188,7 @@ bool MappingFileParser::ParseFromResource()
 	getFileContentFromBuffer(pMappingFileText, RawLines);
 	parseImpl(RawLines);
 
-	return false;
+	return true;
 }
 
 void MappingFileParser::ParseFromFile(const char* pFilePath)
