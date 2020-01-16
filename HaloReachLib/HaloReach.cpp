@@ -549,6 +549,21 @@ void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVer
 
 	init_detours();
 
+	// Allows spawning AI via scripts or effects, props to Zeddikins
+	if (Settings::ReadBoolValue(SettingsSection::Debug, "SpawnAiWithScriptsAndEffects", true))
+	{
+		UINT8 jmp[1] = { 0xEB };
+		copy_to_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x18076F581, jmp, sizeof(jmp));
+		nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x180730287, 6);
+	}
+
+	// Enable debug hud coordinates
+	if (Settings::ReadBoolValue(SettingsSection::Debug, "PanCamEnabled", true))
+	{
+		nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x1800DC9DA, 6);
+		nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x1800DC9E7, 6);
+	}
+
 	DataReferenceBase::InitTree(EngineVersion::HaloReach, buildVersion);
 	FunctionHookBase::InitTree(EngineVersion::HaloReach, buildVersion);
 	GlobalReference::InitTree(EngineVersion::HaloReach, buildVersion);
