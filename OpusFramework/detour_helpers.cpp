@@ -62,6 +62,14 @@ void nop_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_
 	}
 }
 
+void copy_from_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, void* data, size_t length)
+{
+	char* pBeginning = (char*)GetEngineMemoryAddress(engineVersion);
+	char* pDataAttack = pBeginning + (offset - 0x180000000);
+
+	memcpy_virtual(data, pDataAttack, length);
+}
+
 void copy_to_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, void* data, size_t length)
 {
 	char* pBeginning = (char*)GetEngineMemoryAddress(engineVersion);

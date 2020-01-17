@@ -12,6 +12,7 @@ extern void memcpy_virtual(
 	size_t size
 );
 
+extern void copy_from_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, void *data, size_t length);
 extern void copy_to_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, void* data, size_t length);
 extern void nop_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, size_t count);
 

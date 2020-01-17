@@ -564,6 +564,14 @@ void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVer
 		nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x1800DC9E7, 6);
 	}
 
+	// Replace `hs_print_op` with `hs_chud_post_message_op`
+	if (Settings::ReadBoolValue(SettingsSection::Debug, "ReplaceHsPrintOpWithHsChudPostMessageOp", true))
+	{
+		UINT8 hs_op[0x1C];
+		copy_from_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x180AAFF38, hs_op, sizeof(hs_op)); // hs_chud_post_message_op
+		copy_to_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x180ABBC70, hs_op, sizeof(hs_op)); // hs_print_op
+	}
+
 	DataReferenceBase::InitTree(EngineVersion::HaloReach, buildVersion);
 	FunctionHookBase::InitTree(EngineVersion::HaloReach, buildVersion);
 	GlobalReference::InitTree(EngineVersion::HaloReach, buildVersion);
