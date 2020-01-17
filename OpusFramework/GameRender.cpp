@@ -409,6 +409,9 @@ void GameRender::InitDirectX()
 
 void GameRender::Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain)
 {
+	if (hInstance == NULL)
+		hInstance = GetModuleHandle(NULL);
+
 	assert(s_pDevice == nullptr);
 	assert(s_pDeviceContext == nullptr);
 	assert(s_pSwapChain == nullptr);

@@ -18,8 +18,10 @@
 
 #define __int128 __m128
 
+#ifndef NO_WINSOCK2
 #include <winsock2.h>
 #include <ws2tcpip.h>
+#endif
 #include <windows.h>
 #include <hidusage.h>
 #include <objidl.h>
