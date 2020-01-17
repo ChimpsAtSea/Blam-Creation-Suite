@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
 #include "OpusUIPrototypeMain.h"
-#include "Common\DirectXHelper.h"
+//#include "Common\DirectXHelper.h"
 
 #include <HaloReachLib\haloreachlib-private-pch.h>
 extern void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
@@ -21,32 +21,32 @@ OpusUIPrototypeMain::OpusUIPrototypeMain(const std::shared_ptr<DX::DeviceResourc
 	// might have to hook into the present function to override behavior allowing us to call m_deviceResources->Present()
 	// this would require a copy of the vftable to be created to leave the original present function in place
 
-	//{
-	//	IAsyncAction^ m_renderLoopWorker = nullptr;
-	//	// If the animation render loop is already running then do not start another thread.
-	//	if (m_renderLoopWorker != nullptr && m_renderLoopWorker->Status == AsyncStatus::Started)
-	//	{
-	//		return;
-	//	}
+	{
+		IAsyncAction^ m_renderLoopWorker = nullptr;
+		// If the animation render loop is already running then do not start another thread.
+		if (m_renderLoopWorker != nullptr && m_renderLoopWorker->Status == AsyncStatus::Started)
+		{
+			return;
+		}
 
-	//	// Create a task that will be run on a background thread.
-	//	auto workItemHandler = ref new WorkItemHandler([this](IAsyncAction^ action)
-	//		{
-	//			// Calculate the updated frame and render once per vertical blanking interval.
-	//			while (action->Status == AsyncStatus::Started)
-	//			{
-	//				critical_section::scoped_lock lock(m_criticalSection);
-	//				Update();
-	//				if (Render())
-	//				{
-	//					m_deviceResources->Present();
-	//				}
-	//			}
-	//		});
+		// Create a task that will be run on a background thread.
+		WorkItemHandler^ workItemHandler = ref new WorkItemHandler([this](IAsyncAction^ action)
+			{
+				// Calculate the updated frame and render once per vertical blanking interval.
+				while (action->Status == AsyncStatus::Started)
+				{
+					critical_section::scoped_lock lock(m_criticalSection);
+					Update();
+					if (Render())
+					{
+						m_deviceResources->Present();
+					}
+				}
+			});
 
-	//	// Run task on a dedicated high priority background thread.
-	//	m_renderLoopWorker = ThreadPool::RunAsync(workItemHandler, WorkItemPriority::High, WorkItemOptions::TimeSliced);
-	//}
+		// Run task on a dedicated high priority background thread.
+		m_renderLoopWorker = ThreadPool::RunAsync(workItemHandler, WorkItemPriority::High, WorkItemOptions::TimeSliced);
+	}
 
 	//GameLauncher::CheckSteamAPI();
 

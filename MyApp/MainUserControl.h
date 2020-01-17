@@ -16,7 +16,9 @@ namespace winrt::MyApp::implementation
         MainUserControl();
 
         hstring MyProperty();
-        void MyProperty(hstring value);
+		void MyProperty(hstring value);
+
+		std::shared_ptr<DX::DeviceResources> m_deviceResources;
     };
 }
 

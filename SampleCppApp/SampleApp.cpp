@@ -132,9 +132,9 @@ private:
     // If you prefer no mergin, then:
     //const winrt::Windows::UI::Xaml::Thickness IslandMargin = { }
     const winrt::Windows::UI::Xaml::Thickness IslandMargin = {
-        40.0f /*Left*/,
-        10.0f /*Top*/,
-        40.0f /*Right*/,
+        0.0f /*Left*/,
+        0.0f /*Top*/,
+        0.0f /*Right*/,
         0.0f /*Bottom*/
     };
 
