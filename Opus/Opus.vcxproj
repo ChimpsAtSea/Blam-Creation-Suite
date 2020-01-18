@@ -77,9 +77,12 @@
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
+  echo f|xcopy "$(SolutionDir)\HaloReachLib\BoxShader.hlsl" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
+  echo f|xcopy "$(OutDir)BoxShaderVS.cso" "$(LocalDebuggerWorkingDirectory)" /Y
+  echo f|xcopy "$(OutDir)BoxShaderPS.cso" "$(LocalDebuggerWorkingDirectory)" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -110,9 +113,12 @@ echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
+  echo f|xcopy "$(SolutionDir)\HaloReachLib\BoxShader.hlsl" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
+  echo f|xcopy "$(OutDir)BoxShaderVS.cso" "$(LocalDebuggerWorkingDirectory)" /Y
+  echo f|xcopy "$(OutDir)BoxShaderPS.cso" "$(LocalDebuggerWorkingDirectory)" /Y
  )
 )</Command>
     </PostBuildEvent>

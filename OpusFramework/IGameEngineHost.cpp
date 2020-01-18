@@ -1,4 +1,8 @@
 #include "opusframework-private-pch.h"
+#ifdef auto
+#undef auto
+#endif
+#include <DirectXMath.h>
 
 #define sign(value) (value < 0 ? -1 : 1)
 #define clamp(value, min_value, max_value) ((value) > (max_value) ? (max_value) : ((value) < (min_value) ? (min_value) : (value)))
@@ -21,8 +25,313 @@ char __fastcall IGameEngineHost::Member00()
 	return 0;
 }
 
+struct real_vector3d
+{
+	float I, J, K;
+};
+
+struct s_observer_camera
+{
+	real_vector3d position;
+	real_vector3d position_shift;
+	float look;
+	float look_shift;
+	float depth;
+	float unknown0;
+	real_vector3d forward;
+	real_vector3d up;
+	float field_of_view;
+	float unknown1;
+	float unknown2;
+};
+
+intptr_t player_mapping_get_local_player_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x18006FDF0;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<player_mapping_get_local_player_offset, int __stdcall ()> player_mapping_get_local_player;
+
+intptr_t observer_try_and_get_camera_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x1800E2FA0;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<observer_try_and_get_camera_offset, s_observer_camera * __fastcall (signed int a1)> observer_try_and_get_camera;
+
 void __fastcall IGameEngineHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD a2)
 {
+	static ID3D11PixelShader* pPixelShader = nullptr;
+	if (pPixelShader == nullptr)
+	{
+		size_t shaderFileLength = 0;
+		char* pShaderBinary = opus::FileSystemReadToMemory(L"BoxShaderPS.cso", &shaderFileLength);
+		assert(pShaderBinary != nullptr);
+
+		GameRender::s_pDevice->CreatePixelShader(pShaderBinary, shaderFileLength, NULL, &pPixelShader);
+		assert(pPixelShader != nullptr);
+	}
+
+	static ID3D11VertexShader* pVertexShader = nullptr;
+	static char* pVertexShaderBinary = nullptr;
+	static size_t vertexShaderBinaryLength = 0;
+	if (pVertexShader == nullptr)
+	{
+		pVertexShaderBinary = opus::FileSystemReadToMemory(L"BoxShaderVS.cso", &vertexShaderBinaryLength);
+		assert(pVertexShaderBinary != nullptr);
+
+		GameRender::s_pDevice->CreateVertexShader(pVertexShaderBinary, vertexShaderBinaryLength, NULL, &pVertexShader);
+		assert(pVertexShader != nullptr);
+	}
+
+	using namespace DirectX;
+
+
+	int playerIndex = player_mapping_get_local_player();
+	s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
+
+	if (observer_camera)
+	{
+		static ID3D11RasterizerState* pSolidRasterState = nullptr;
+		if (pSolidRasterState == nullptr)
+		{
+			D3D11_RASTERIZER_DESC rasterizerDescription = {};
+			rasterizerDescription.FillMode = D3D11_FILL_SOLID;
+			rasterizerDescription.CullMode = D3D11_CULL_BACK;
+			GameRender::s_pDevice->CreateRasterizerState(&rasterizerDescription, &pSolidRasterState);
+		}
+		static ID3D11RasterizerState* pWireframeRasterState = nullptr;
+		if (pWireframeRasterState == nullptr)
+		{
+			D3D11_RASTERIZER_DESC rasterizerDescription = {};
+			rasterizerDescription.FillMode = D3D11_FILL_WIREFRAME;
+			rasterizerDescription.CullMode = D3D11_CULL_NONE;
+			GameRender::s_pDevice->CreateRasterizerState(&rasterizerDescription, &pWireframeRasterState);
+		}
+
+		static ID3D11InputLayout* pVertexLayout = nullptr;
+		if (pVertexLayout == nullptr)
+		{
+			D3D11_INPUT_ELEMENT_DESC inputDescriptions[1] = {};
+
+			inputDescriptions[0].SemanticName = "POSITION";
+			inputDescriptions[0].SemanticIndex = 0;
+			inputDescriptions[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+			inputDescriptions[0].InputSlot = 0;
+			inputDescriptions[0].AlignedByteOffset = 0;
+			inputDescriptions[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+			inputDescriptions[0].InstanceDataStepRate = 0;
+
+			HRESULT createInputLayoutResult = GameRender::s_pDevice->CreateInputLayout(inputDescriptions, 1, pVertexShaderBinary, vertexShaderBinaryLength, &pVertexLayout);
+			assert(SUCCEEDED(createInputLayoutResult));
+			assert(pVertexLayout != nullptr);
+		}
+
+		static ID3D11Buffer* pVertexBuffer = nullptr;
+		if (pVertexBuffer == nullptr)
+		{
+			static XMFLOAT3 vertexData[] = {
+				{-1.0f, -1.0f, -1.0f},
+				{-1.0f, 1.0f, -1.0f},
+				{1.0f, 1.0f, -1.0f},
+				{1.0f, -1.0f, -1.0f},
+				{-1.0f, -1.0f, 1.0f},
+				{-1.0f, 1.0f, 1.0f},
+				{1.0f, 1.0f, 1.0f},
+				{1.0f, -1.0f, 1.0f},
+			};
+
+			D3D11_BUFFER_DESC bufferDesc = {};
+			bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+			bufferDesc.ByteWidth = sizeof(vertexData);
+			bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+			bufferDesc.CPUAccessFlags = 0;
+			bufferDesc.MiscFlags = 0;
+
+			// Fill in the subresource data.
+			D3D11_SUBRESOURCE_DATA vertexBufferSubResourceData;
+			vertexBufferSubResourceData.pSysMem = vertexData;
+			vertexBufferSubResourceData.SysMemPitch = 0;
+			vertexBufferSubResourceData.SysMemSlicePitch = 0;
+
+			HRESULT createBufferResult = GameRender::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pVertexBuffer);
+			assert(SUCCEEDED(createBufferResult));
+			assert(pVertexBuffer != nullptr);
+		}
+
+		static ID3D11Buffer* pIndexBuffer = nullptr;
+		if (pIndexBuffer == nullptr)
+		{
+			static const uint32_t boxIndices[] = {
+				// front
+				0,1,2,
+				0,2,3,
+				// back
+				4,6,5,
+				4,7,6,
+				// left
+				4,5,1,
+				4,1,0,
+				// right
+				3,2,6,
+				3,6,7,
+				//top
+				1,5,6,
+				1,6,2,
+				// bottom
+				4,0,3,
+				4,3,7
+			};
+
+			D3D11_BUFFER_DESC bufferDesc = {};
+			bufferDesc.Usage = D3D11_USAGE_DEFAULT;
+			bufferDesc.ByteWidth = sizeof(boxIndices);
+			bufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+			bufferDesc.CPUAccessFlags = 0;
+			bufferDesc.MiscFlags = 0;
+
+			// Fill in the subresource data.
+			D3D11_SUBRESOURCE_DATA vertexBufferSubResourceData;
+			vertexBufferSubResourceData.pSysMem = boxIndices;
+			vertexBufferSubResourceData.SysMemPitch = 0;
+			vertexBufferSubResourceData.SysMemSlicePitch = 0;
+
+			HRESULT createBufferResult = GameRender::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pIndexBuffer);
+			assert(SUCCEEDED(createBufferResult));
+			assert(pIndexBuffer != nullptr);
+		}
+
+		struct PerObjectConstants
+		{
+			XMMATRIX m_modelMatrix;
+			XMMATRIX m_viewMatrix;
+			XMMATRIX m_perspectiveMatrix;
+			XMFLOAT4 m_color;
+		};
+
+		static ID3D11Buffer* pConstantsBuffer = nullptr;
+		{
+			D3D11_BUFFER_DESC bufferDesc = {};
+			bufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+			bufferDesc.ByteWidth = sizeof(PerObjectConstants);
+			bufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+			bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+			bufferDesc.MiscFlags = 0;
+			bufferDesc.StructureByteStride = 0;
+
+			HRESULT createBufferResult = GameRender::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
+			assert(SUCCEEDED(createBufferResult));
+			assert(pConstantsBuffer != nullptr);
+		}
+
+		D3D11_MAPPED_SUBRESOURCE mappedResource = {};
+		HRESULT mapResult = GameRender::s_pDeviceContext->Map(pConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+		assert(SUCCEEDED(mapResult));
+
+		{
+			PerObjectConstants& rPerObjectConstants = *static_cast<PerObjectConstants*>(mappedResource.pData);
+
+			XMVECTOR vForward = XMVECTOR();
+			XMVECTOR vUp = XMVECTOR();
+			XMVECTOR vPosition = XMVECTOR();
+			{
+				vForward.m128_f32[0] = observer_camera->forward.I;
+				vForward.m128_f32[1] = observer_camera->forward.K;
+				vForward.m128_f32[2] = observer_camera->forward.J;
+				vUp.m128_f32[0] = observer_camera->up.I;
+				vUp.m128_f32[1] = observer_camera->up.K;
+				vUp.m128_f32[2] = observer_camera->up.J;
+				vPosition.m128_f32[0] = observer_camera->position.I;
+				vPosition.m128_f32[1] = observer_camera->position.K;
+				vPosition.m128_f32[2] = observer_camera->position.J;
+			}
+			vUp = XMVector3Normalize(vUp);
+			vForward = XMVector3Normalize(vForward);
+
+#define PI 3.141592653589793238462643383f
+#define DEG2RAD (PI / 180.0f)
+
+			rPerObjectConstants.m_color = XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f);
+			rPerObjectConstants.m_modelMatrix = XMMatrixTranslation(-150, 0, 0);
+			rPerObjectConstants.m_viewMatrix = XMMatrixLookAtLH(vPosition, vPosition + vForward, vUp);
+			// #TODO: field of view is super wrong
+			rPerObjectConstants.m_perspectiveMatrix = XMMatrixPerspectiveFovLH(9.0f * observer_camera->field_of_view / 16.0f, 16.0f/ 9.0f, 0.01, 10000.0f);
+
+			{
+				rPerObjectConstants.m_modelMatrix = XMMatrixTranspose(rPerObjectConstants.m_modelMatrix);
+				rPerObjectConstants.m_viewMatrix = XMMatrixTranspose(rPerObjectConstants.m_viewMatrix);
+				rPerObjectConstants.m_perspectiveMatrix = XMMatrixTranspose(rPerObjectConstants.m_perspectiveMatrix);
+			}
+		}
+
+		GameRender::s_pDeviceContext->Unmap(pConstantsBuffer, 0);
+
+		// render the box
+		{
+			static const UINT vertexStride = sizeof(XMFLOAT3);
+			static const UINT vertexOffset = 0;
+			GameRender::s_pDeviceContext->RSSetState(pWireframeRasterState);
+			GameRender::s_pDeviceContext->VSSetShader(pVertexShader, NULL, 0);
+			GameRender::s_pDeviceContext->PSSetShader(pPixelShader, NULL, 0);
+			GameRender::s_pDeviceContext->VSSetConstantBuffers(0, 1, &pConstantsBuffer);
+			GameRender::s_pDeviceContext->PSSetConstantBuffers(0, 1, &pConstantsBuffer);
+			GameRender::s_pDeviceContext->IASetInputLayout(pVertexLayout);
+			GameRender::s_pDeviceContext->IASetVertexBuffers(0, 1, &pVertexBuffer, &vertexStride, &vertexOffset);
+			GameRender::s_pDeviceContext->IASetIndexBuffer(pIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
+			GameRender::s_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+			GameRender::s_pDeviceContext->DrawIndexed(36, 0, 0);
+		}
+
+		static bool once = true;
+		if (once)
+		{
+			once = false;
+			DebugUI::RegisterCallback([]()
+				{
+					ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
+					ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);
+
+					// Main body of the Demo window starts here.
+					static bool isReachCameraDebugWindowOpen = true;
+					if (ImGui::Begin("Camera Debug Output", &isReachCameraDebugWindowOpen, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
+					{
+						int playerIndex = player_mapping_get_local_player();
+						s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
+
+						if (observer_camera)
+						{
+							ImGui::Text("position:       %f, %f, %f",	observer_camera->position.I, observer_camera->position.J, observer_camera->position.K);
+							ImGui::Text("position_shift: %f, %f, %f",	observer_camera->position_shift.I, observer_camera->position_shift.J, observer_camera->position_shift.K);
+							ImGui::Text("look:           %f",			observer_camera->look);
+							ImGui::Text("look_shift:     %f",			observer_camera->look_shift);
+							ImGui::Text("depth:          %f",			observer_camera->depth);
+							ImGui::Text("unknown0:       %f",			observer_camera->unknown0);
+							ImGui::Text("forward:        %f, %f, %f",	observer_camera->forward.I, observer_camera->forward.J, observer_camera->forward.K);
+							ImGui::Text("up:             %f, %f, %f",	observer_camera->up.I, observer_camera->up.J, observer_camera->up.K);
+							ImGui::Text("field_of_view:  %f",			observer_camera->field_of_view);
+							ImGui::Text("unknown1:       %f",			observer_camera->unknown1);
+							ImGui::Text("unknown2:       %f",			observer_camera->unknown2);
+						}
+						else
+						{
+							ImGui::Text("No camera present.");
+						}
+					}
+					ImGui::End();
+
+				});
+		}
+
+
+	}
+
+
 	DebugUI::RenderFrame();
 }
 
@@ -35,7 +344,7 @@ void __fastcall IGameEngineHost::EngineStateUpdate(eEngineState state)
 {
 	const char* pEngineStateString = engine_state_to_string(state);
 	WriteLineVerbose("IGameEngineHost::EngineStateUpdate (%d):%s", state, pEngineStateString);
-	
+
 	if (state != eEngineState::Unknown16) // `Unknown16` also needs a second arg so we skip it
 	{
 		switch (state)
@@ -235,20 +544,20 @@ __int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t playerName
 
 	// sub_18004E800 applies customization conversion from MCC to Reach
 	// TODO: get conversion table from sub_18004E800
-	rPlayerConfiguration.is_elite 	                 = false;
-	rPlayerConfiguration.armor_helmet_option         = 0;
-	rPlayerConfiguration.armor_left_shoulder_option  = 0;
+	rPlayerConfiguration.is_elite = false;
+	rPlayerConfiguration.armor_helmet_option = 0;
+	rPlayerConfiguration.armor_left_shoulder_option = 0;
 	rPlayerConfiguration.armor_right_shoulder_option = 0;
-	rPlayerConfiguration.armor_chest_option          = 0;
-	rPlayerConfiguration.armor_wrist_option          = 0;
-	rPlayerConfiguration.armor_leg_utility_option    = 0;
-	rPlayerConfiguration.armor_knees_option          = 0;
-	rPlayerConfiguration.armor_effect_dupe_option    = 0;
-	rPlayerConfiguration.elite_armor_option          = 0;
-	rPlayerConfiguration.armor_effect_option         = 0;
-	rPlayerConfiguration.firefight_voice_option      = 0;
-	rPlayerConfiguration.primary_color_option        = 13;   // HR_Color_Cobalt
-	rPlayerConfiguration.secondary_color_option      = 25;   // HR_Color_Yellow
+	rPlayerConfiguration.armor_chest_option = 0;
+	rPlayerConfiguration.armor_wrist_option = 0;
+	rPlayerConfiguration.armor_leg_utility_option = 0;
+	rPlayerConfiguration.armor_knees_option = 0;
+	rPlayerConfiguration.armor_effect_dupe_option = 0;
+	rPlayerConfiguration.elite_armor_option = 0;
+	rPlayerConfiguration.armor_effect_option = 0;
+	rPlayerConfiguration.firefight_voice_option = 0;
+	rPlayerConfiguration.primary_color_option = 13;   // HR_Color_Cobalt
+	rPlayerConfiguration.secondary_color_option = 25;   // HR_Color_Yellow
 
 	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", rPlayerConfiguration.service_tag, 5, L"UNSC");
 
@@ -284,7 +593,7 @@ bool __fastcall IGameEngineHost::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
 
 	// grab controller
 	// grab mouse and keyboard
-	
+
 	BYTE keyboardState[256] = {};
 	float mouseInputX = 0;
 	float mouseInputY = 0;

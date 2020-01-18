@@ -41,4 +41,11 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="HLSL\BoxShaderVS.hlsl" />
+    <FxCompile Include="HLSL\BoxShaderPS.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HLSL\BoxShader.hlsli" />
+  </ItemGroup>
 </Project>
