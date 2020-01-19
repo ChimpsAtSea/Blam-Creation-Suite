@@ -1,7 +1,7 @@
 #include "opusframework-private-pch.h"
 
 ID3D11Device* GameRender::s_pDevice = nullptr;
-ID3D11DeviceContext* GameRender::s_pDeviceContext = nullptr;
+ID3D11DeviceContext1* GameRender::s_pDeviceContext = nullptr;
 IDXGISwapChain1* GameRender::s_pSwapChain = nullptr;
 IDXGIFactory5* GameRender::s_pFactory = nullptr;
 DEVMODE GameRender::s_deviceMode = {};
@@ -377,6 +377,7 @@ void GameRender::InitDirectX()
 	//createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
+	ID3D11DeviceContext* pDeviceContext = nullptr;
 	HRESULT D3D11CreateDeviceResult = D3D11CreateDevice(
 		NULL,
 		D3D_DRIVER_TYPE_HARDWARE,
@@ -387,11 +388,14 @@ void GameRender::InitDirectX()
 		D3D11_SDK_VERSION,
 		&s_pDevice,
 		&FeatureLevel,
-		&s_pDeviceContext);
+		&pDeviceContext);
 	assert(D3D11CreateDeviceResult == S_OK);
 	assert(s_pDevice != nullptr);
-	assert(s_pDeviceContext != nullptr);
+	assert(pDeviceContext != nullptr);
 
+	// check that it supports our directx interface
+	pDeviceContext->QueryInterface(&s_pDeviceContext);
+	assert(s_pDeviceContext != nullptr);
 
 	// Device Hooks
 	{
@@ -420,7 +424,7 @@ void GameRender::Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain
 	s_pDevice = pDevice;
 	s_pSwapChain = pSwapChain;
 
-	pDevice->GetImmediateContext(&s_pDeviceContext);
+	pDevice->GetImmediateContext(reinterpret_cast<ID3D11DeviceContext**>(&s_pDeviceContext));
 	assert(s_pDeviceContext != nullptr);
 
 	Init(hInstance);
