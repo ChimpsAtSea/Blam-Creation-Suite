@@ -62,10 +62,10 @@ public:
 	float m_dimensionsX = 0.0f;
 	float m_dimensionsY = 0.0f;
 	float m_dimensionsZ = 0.0f;
-	float m_colorR;
-	float m_colorG;
-	float m_colorB;
-	float m_colorA;
+	float m_colorR = 1.0f;
+	float m_colorG = 1.0f;
+	float m_colorB = 1.0f;
+	float m_colorA = 1.0f;
 	float m_volume = 0.0f;
 	float m_maxX = 0.0f;
 	float m_maxY = 0.0f;

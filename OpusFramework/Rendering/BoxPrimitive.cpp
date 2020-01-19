@@ -2,9 +2,6 @@
 
 BoxPrimitive::BoxPrimitive()
 {
-	memset(this, 0, sizeof(*this));
-	m_isVisible = true;
-	SetColor(1.0f, 1.0f, 1.0f, 1.0f);
 	PrimitiveRenderManager::RegisterBoxPrimitive(this);
 }
 
