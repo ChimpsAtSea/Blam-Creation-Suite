@@ -90,6 +90,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BlamFileParser.cpp" />
+    <ClCompile Include="Rendering\BoxPrimitive.cpp" />
+    <ClCompile Include="Rendering\PrimitiveRenderManager.cpp" />
+    <ClCompile Include="Rendering\BoxRenderer.cpp" />
     <ClCompile Include="campaign_difficulty_level.cpp" />
     <ClCompile Include="customwindow.cpp" />
     <ClCompile Include="BasicData.cpp" />
@@ -129,6 +132,9 @@
     <ClInclude Include="application_reflection\offsetfunction.h" />
     <ClInclude Include="BlamFile.h" />
     <ClInclude Include="BlamFileParser.h" />
+    <ClInclude Include="Rendering\BoxPrimitive.h" />
+    <ClInclude Include="Rendering\PrimitiveRenderManager.h" />
+    <ClInclude Include="Rendering\BoxRenderer.h" />
     <ClInclude Include="campaign_difficulty_level.h" />
     <ClInclude Include="customwindow.h" />
     <ClInclude Include="BasicData.h" />

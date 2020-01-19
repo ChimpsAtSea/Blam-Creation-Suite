@@ -102,6 +102,15 @@
     <ClCompile Include="MapInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\BoxRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\PrimitiveRenderManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\BoxPrimitive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FunctionHook.h">
@@ -231,6 +240,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MapInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\BoxRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\PrimitiveRenderManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\BoxPrimitive.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
