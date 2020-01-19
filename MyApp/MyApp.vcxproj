@@ -68,30 +68,34 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(MSBuildProjectName)\</IntDir>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
-	<BaseIntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-	<IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
-	<GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
+    <BaseIntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
+    <GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
+    <MultiProcMIDL>true</MultiProcMIDL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(MSBuildProjectName)\</IntDir>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
-	<BaseIntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-	<IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
-	<GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
+    <BaseIntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
+    <GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
+    <MultiProcMIDL>true</MultiProcMIDL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(MSBuildProjectName)\</IntDir>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
-	<BaseIntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-	<IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
-	<GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
+    <BaseIntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
+    <GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
+    <MultiProcMIDL>true</MultiProcMIDL>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(MSBuildProjectName)\</IntDir>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
-	<BaseIntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-	<IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
-	<GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
+    <BaseIntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
+    <GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
+    <MultiProcMIDL>true</MultiProcMIDL>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
