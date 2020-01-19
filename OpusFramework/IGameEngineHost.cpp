@@ -510,10 +510,9 @@ void __fastcall IGameEngineHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD a2)
 		BoxRenderer::EndRenderBox();
 	}
 
-	static bool once = true;
-	if (once)
-	{
-		once = false;
+	static bool kEnableCameraDebugTest = GameLauncher::HasCommandLineArg("-cameradebug");
+	if (kEnableCameraDebugTest)
+	RUNONCE({
 		DebugUI::RegisterCallback([]()
 			{
 				ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
@@ -548,7 +547,7 @@ void __fastcall IGameEngineHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD a2)
 				ImGui::End();
 
 			});
-	}
+		});
 
 
 	DebugUI::RenderFrame();

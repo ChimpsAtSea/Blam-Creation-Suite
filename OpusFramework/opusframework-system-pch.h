@@ -84,13 +84,13 @@
 
 #define COMBINE1(X,Y) X##Y
 #define COMBINE(X,Y) COMBINE1(X,Y)
-#define RUNONCE(...) \
+#define RUNONCE(...) do { \
 static bool COMBINE(__runonceflag_, __LINE__) = false; \
 if (COMBINE(__runonceflag_, __LINE__) == false) \
 { \
 	__VA_ARGS__; \
 	COMBINE(__runonceflag_, __LINE__) = true; \
-} (void)(0)
+} } while(0)
 
 template<class T, std::size_t... N>
 constexpr T bswap_impl(T i, std::index_sequence<N...>) { return ((((i >> (N * CHAR_BIT))& (T)(unsigned char)(-1)) << ((sizeof(T) - 1 - N) * CHAR_BIT)) | ...); };
