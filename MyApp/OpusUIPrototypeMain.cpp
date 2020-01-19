@@ -1,6 +1,4 @@
 ﻿#include "pch.h"
-#include "OpusUIPrototypeMain.h"
-#include "Common\DirectXHelper.h"
 
 
 using namespace OpusUIPrototype;

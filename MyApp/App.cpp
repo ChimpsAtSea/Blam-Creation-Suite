@@ -1,7 +1,5 @@
 ﻿#include "pch.h"
 
-#include "App.h"
-
 using namespace winrt;
 using namespace winrt::Windows::UI::Xaml;
 

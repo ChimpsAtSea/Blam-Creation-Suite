@@ -1,5 +1,4 @@
 ﻿#include "pch.h"
-#include "MainUserControl.h"
 #include "OpusUIPrototypeMain.h"
 
 using namespace winrt;
