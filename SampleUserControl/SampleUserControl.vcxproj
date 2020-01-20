@@ -120,9 +120,11 @@
     <Link />
     <Link>
       <OutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)\$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/IGNORE:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Link>
       <OutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/IGNORE:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
