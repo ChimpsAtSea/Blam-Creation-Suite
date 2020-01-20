@@ -77,7 +77,7 @@ if exist "$(ProjectDir)cmake\$(Configuration)\lib\clangTooling.lib" (
 
 ) else (
 
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=x64 "$(ProjectDir)cmake\LLVM.sln" -m
+    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=x64 "$(ProjectDir)cmake\LLVM.sln"
 
 )</Command>
     </PostBuildEvent>
@@ -115,7 +115,7 @@ if exist "$(ProjectDir)cmake\$(Configuration)\lib\clangTooling.lib" (
 
 ) else (
 
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=x64 "$(ProjectDir)cmake\LLVM.sln" -m
+    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=x64 "$(ProjectDir)cmake\LLVM.sln"
 
 )</Command>
     </PostBuildEvent>
