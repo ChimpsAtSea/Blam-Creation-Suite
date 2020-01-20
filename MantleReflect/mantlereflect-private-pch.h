@@ -13,6 +13,9 @@
 #include <clang/Tooling/Tooling.h>
 // Declares llvm::cl::extrahelp.
 #include <llvm/Support/CommandLine.h>
+#include <clang/AST/ASTConsumer.h>
+#include <clang/AST/RecursiveASTVisitor.h>
+#include <clang/Frontend/CompilerInstance.h>
 
 
 #pragma warning( pop )
