@@ -16,8 +16,8 @@
 #include <clang/AST/ASTConsumer.h>
 #include <clang/AST/RecursiveASTVisitor.h>
 #include <clang/Frontend/CompilerInstance.h>
-
-
 #pragma warning( pop )
 
 #include <stdio.h>
+
+#include <sstream>

@@ -6,6 +6,7 @@ using namespace clang::tooling;
 
 static llvm::cl::OptionCategory MyToolCategory("my-tool options");
 
+static std::stringstream stringstream;
 
 class FindNamedClassVisitor
 	: public RecursiveASTVisitor<FindNamedClassVisitor> {
@@ -17,15 +18,24 @@ public:
 
 		std::string declarationName = Declaration->getQualifiedNameAsString();
 
-		printf("%s\n{\n", declarationName.c_str());
+		stringstream << "template<>" << std::endl;
+		stringstream << "inline const ReflectionData& GetReflectionData<" << declarationName << ">()" << std::endl;
+		stringstream << "{" << std::endl;
+		stringstream << "\t" << "static ReflectionData reflectionData = {" << std::endl;
 
 		RecordDecl::field_range fields = Declaration->fields();
+
+		int count = 0;
+		for (FieldDecl* field : fields) count++;
+		stringstream << "\t\t\"" << declarationName.c_str() << "\"," << std::endl;
+		stringstream << "\t\t" << count << "," << std::endl;
+		stringstream << "\t\t" << "{" << std::endl;
 		for (FieldDecl* field : fields)
 		{
 			const clang::RecordDecl* rd = field->getParent();
 			const clang::QualType qt = field->getType();
 			const clang::Type* t = qt.getTypePtr();
-			
+
 			static LangOptions languageOptions;
 			static PrintingPolicy printingPolicy = { languageOptions };
 			std::string typeName = QualType::getAsString(qt.split(), printingPolicy);
@@ -33,9 +43,15 @@ public:
 			std::string qualifiedName = field->getQualifiedNameAsString();
 			std::string fieldName = field->getNameAsString();
 
-			printf("\t%s '%s'\n", typeName.c_str(), fieldName.c_str());
+			stringstream << "\t\t\t{ \""<< typeName <<"\", \""<< fieldName <<"\" }," << std::endl;
 		}
-		printf("}\n", declarationName.c_str());
+		stringstream << "\t\t\t{ }" << std::endl;
+
+		stringstream << "\t\t" << "}" << std::endl;
+		stringstream << "\t" << "};" << std::endl;
+		stringstream << "\treturn reflectionData;" << std::endl;
+		
+		stringstream << "}" << std::endl;
 
 		return true;
 	}
@@ -87,6 +103,8 @@ int main(int argc, const char* argv[])
 	};
 	int numArgs = _countof(argumentsArray);
 
+	stringstream << "#pragma once" << std::endl << std::endl;
+
 	CommonOptionsParser OptionsParser(numArgs, argumentsArray, MyToolCategory);
 	ClangTool Tool(OptionsParser.getCompilations(), OptionsParser.getSourcePathList());
 
@@ -97,9 +115,13 @@ int main(int argc, const char* argv[])
 
 	int llvmResult = Tool.run(newFrontendActionFactory<FindNamedClassAction>().get());
 
+	std::string str = stringstream.str();
+	printf("%s\n", str.c_str());
+
 	{
 		FILE* pReflectionHeader = fopen(szOutputHeader, "w");
 		assert(pReflectionHeader != nullptr);
+		fwrite(str.c_str(), 1, str.length(), pReflectionHeader);
 		fflush(pReflectionHeader);
 		fclose(pReflectionHeader);
 	}
