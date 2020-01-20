@@ -77,6 +77,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>MantleLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -87,6 +87,9 @@
     <PreBuildEvent>
       <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)TagDefinitions\Tags.cpp" "$(ProjectDir)ReflectionData.h" "$(ProjectDir)ReflectionData.cpp"</Command>
     </PreBuildEvent>
+    <Lib>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
