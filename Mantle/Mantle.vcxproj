@@ -12,6 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mantle-private-pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mantle-private-pch.h" />
+    <ClInclude Include="mantle-public-pch.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -47,12 +55,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(SolutionDir)$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(SolutionDir)$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -63,6 +71,8 @@
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>mantle-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -79,6 +89,8 @@
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>mantle-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

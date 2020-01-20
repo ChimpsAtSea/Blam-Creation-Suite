@@ -1,29 +1,38 @@
+#include "mantlereflect-private-pch.h"
 
-#pragma warning( push )
-#pragma warning( disable : 4146 )
-#pragma warning( disable : 4244 )
-#pragma warning( disable : 4267 )
-#pragma warning( disable : 4291 )
-#pragma warning( disable : 4624 )
-#include <clang/Tooling/Tooling.h>
-#pragma warning( pop )
+using namespace clang::tooling;
+using namespace llvm;
 
-#include <stdio.h>
+static llvm::cl::OptionCategory MyToolCategory("my-tool options");
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
 	if (argc != 4)
 	{
 		printf("Incorrect number of arguments. Expected 3");
+		return 1;
 	}
 
-	const char* szReflectionDirectory = argv[1];
+	const char* szReflectionSourceFile = argv[1];
 	const char* szOutputHeader = argv[2];
 	const char* szOutputSource = argv[3];
 
-	printf("Reflection Directory: '%s'\n", szReflectionDirectory);
+	printf("Reflection Source File:   '%s'\n", szReflectionSourceFile);
 	printf("Reflection Output Header: '%s'\n", szOutputHeader);
 	printf("Reflection Output Source: '%s'\n", szOutputSource);
+
+	const char* argumentsArray[] = {
+			argv[0],
+			szReflectionSourceFile
+	};
+	int numArgs = _countof(argumentsArray);
+	CommonOptionsParser OptionsParser(numArgs, argumentsArray, MyToolCategory);
+	ClangTool Tool(OptionsParser.getCompilations(), OptionsParser.getSourcePathList());
+
+	// #TODO: Add custom LLVM code here and pass to newFrontendActionFactory
+	// see https://clang.llvm.org/docs/LibASTMatchersTutorial.html
+
+	int llvmResult = Tool.run(newFrontendActionFactory<clang::SyntaxOnlyAction>().get());
 
 	{
 		FILE* pReflectionHeader = fopen(szOutputHeader, "w");
@@ -39,7 +48,7 @@ int main(int argc, char* argv[])
 		fclose(pReflectionSource);
 	}
 
-	return 0;
+	return llvmResult;
 }
 
 

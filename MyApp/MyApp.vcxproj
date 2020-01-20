@@ -88,6 +88,7 @@
     <IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
     <GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
     <MultiProcMIDL>true</MultiProcMIDL>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(MSBuildProjectName)\</IntDir>
@@ -96,6 +97,7 @@
     <IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
     <GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
     <MultiProcMIDL>true</MultiProcMIDL>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

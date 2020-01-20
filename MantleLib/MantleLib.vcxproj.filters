@@ -18,9 +18,24 @@
     <ClCompile Include="ReflectionData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mantlelib-private-pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TagDefinitions\Tags.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReflectionData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mantlelib-public-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mantlelib-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TagDefinitions\TestType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,9 +18,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mantlereflect-private-pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReflectionTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mantlereflect-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mantlereflect-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

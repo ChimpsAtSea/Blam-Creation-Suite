@@ -11,10 +11,24 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ReflectionData.cpp" />
+    <ClCompile Include="mantlelib-private-pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ReflectionData.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="TagDefinitions\Tags.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mantlelib-private-pch.h" />
+    <ClInclude Include="mantlelib-public-pch.h" />
     <ClInclude Include="ReflectionData.h" />
+    <ClInclude Include="TagDefinitions\TestType.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -50,11 +64,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -64,12 +78,14 @@
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>mantlelib-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)TagDefinitions" "$(ProjectDir)ReflectionData.h" "$(ProjectDir)ReflectionData.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)TagDefinitions\Tags.cpp" "$(ProjectDir)ReflectionData.h" "$(ProjectDir)ReflectionData.cpp"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -82,6 +98,8 @@
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>mantlelib-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -89,7 +107,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)TagDefinitions" "$(ProjectDir)ReflectionData.h" "$(ProjectDir)ReflectionData.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)TagDefinitions\Tags.cpp" "$(ProjectDir)ReflectionData.h" "$(ProjectDir)ReflectionData.cpp"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
