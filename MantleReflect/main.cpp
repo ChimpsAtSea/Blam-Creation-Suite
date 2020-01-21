@@ -72,7 +72,7 @@ const char* FormatNiceNameAndIsHidden(ReflectionTypeCategory reflectionTypeCateg
 
 			pOutputString = pString + 2;
 
-			if (pOutputString[0] == 'u' && strstr(pString, "__unknown") == pOutputString);
+			if (pOutputString[0] == 'u' && strstr(pString, "__unknown") == pOutputString)
 			{
 				return "Unknown";
 			}
@@ -135,7 +135,10 @@ const char* FormatNiceNameAndIsHidden(ReflectionTypeCategory reflectionTypeCateg
 		}
 	}
 
-	assert(pOutputString[0]);
+	if (pOutputString[0] == 0)
+	{
+		return "Unknown";
+	}
 
 	char& currentCharacter = pOutputString[currentPos];
 	if (currentCharacter && !std::isupper(currentCharacter))
@@ -189,9 +192,11 @@ size_t InitTypeSizeAndOffsets(ReflectionTypeContainer& rType)
 		uint64_t dataSize = fieldSize * __max(1ull, rField.m_arraySize);
 		rField.m_size = fieldSize;
 		rField.m_offset = currentOffset;
-		currentOffset += dataSize;
+		currentOffset += static_cast<uint32_t>(dataSize);
 	}
 	rType.m_size = currentOffset;
+
+	return rType.m_size;
 }
 
 std::vector<ReflectionTypeContainer*> ReflectedTypesData;
@@ -279,7 +284,7 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 
 		rFieldData.m_fieldName = fieldName;
 
-		const clang::Type const* reflectionBaseType = fieldType;
+		const clang::Type* const reflectionBaseType = fieldType;
 		const clang::QualType reflectionQualifiedBaseType = reflectionBaseType->getCanonicalTypeInternal();
 		clang::QualType reflectionQualifiedType = reflectionQualifiedBaseType;
 

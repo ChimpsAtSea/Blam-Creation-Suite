@@ -7,5 +7,6 @@ public:
 	int32_t stream_offset;
 	uint32_t address;
 	uint32_t definition_address;
+	int32_t : 32;
 };
 
