@@ -1,6 +1,7 @@
 #pragma once
 
-#include <MantleReflect/mantlereflect-public-pch.h>
+#include <stdint.h>
 
-#include "TagDefinitions/Tags.cpp" // strange include, but contains includes for all of the tag types
-#include "ReflectionData.h"
+#include <MantleReflect/mantlereflect-public-pch.h>
+#include "Tags/Tags.h" // strange include, but contains includes for all of the tag types
+

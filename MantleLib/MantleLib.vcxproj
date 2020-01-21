@@ -15,20 +15,27 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ReflectionData.cpp">
+    <ClCompile Include="Tags\ReflectionData.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TagDefinitions\Tags.cpp">
+    <ClCompile Include="Tags\TagsReflectionObject.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Tags\Tags.h" />
+    <ClInclude Include="Tags\TagTypes\StringID.h" />
+    <ClInclude Include="Tags\TagTypes\TagBlock.h" />
+    <ClInclude Include="Tags\TagTypes\TagGroupName.h" />
+    <ClInclude Include="Tags\TagTypes\TagReference.h" />
+    <ClInclude Include="Tags\TagTypes\DataReference.h" />
     <ClInclude Include="mantlelib-private-pch.h" />
     <ClInclude Include="mantlelib-public-pch.h" />
-    <ClInclude Include="ReflectionData.h" />
-    <ClInclude Include="TagDefinitions\TestType.h" />
+    <ClInclude Include="Tags\ReflectionData.h" />
+    <ClInclude Include="Tags\TagDefinitions\TestType.h" />
+    <ClInclude Include="Tags\TagTypes\Unknown.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -85,7 +92,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)TagDefinitions\Tags.cpp" "$(ProjectDir)ReflectionData.h" "$(ProjectDir)ReflectionData.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp"</Command>
     </PreBuildEvent>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -110,7 +117,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)TagDefinitions\Tags.cpp" "$(ProjectDir)ReflectionData.h" "$(ProjectDir)ReflectionData.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

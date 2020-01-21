@@ -15,27 +15,48 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ReflectionData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mantlelib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TagDefinitions\Tags.cpp">
+    <ClCompile Include="Tags\ReflectionData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tags\TagsReflectionObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ReflectionData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="mantlelib-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mantlelib-private-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TagDefinitions\TestType.h">
+    <ClInclude Include="Tags\TagTypes\DataReference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\TagTypes\StringID.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\TagTypes\TagBlock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\TagTypes\TagGroupName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\TagTypes\TagReference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\TagTypes\Unknown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\TagDefinitions\TestType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\Tags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\ReflectionData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

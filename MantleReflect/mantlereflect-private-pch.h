@@ -21,3 +21,4 @@
 #include <stdio.h>
 
 #include <sstream>
+#include <memory>
