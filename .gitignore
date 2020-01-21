@@ -337,5 +337,5 @@ ASALocalRun/
 llvm-build/cmake
 
 #Mantle
-MantleLib/ReflectionData.h
-MantleLib/ReflectionData.cpp
+MantleLib/Tags/ReflectionData.h
+MantleLib/Tags/ReflectionData.cpp
