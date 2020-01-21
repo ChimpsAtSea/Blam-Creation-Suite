@@ -332,3 +332,10 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+#LLVM
+llvm-build/cmake
+
+#Mantle
+MantleLib/ReflectionData.h
+MantleLib/ReflectionData.cpp

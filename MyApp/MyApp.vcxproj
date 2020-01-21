@@ -88,6 +88,7 @@
     <IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
     <GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
     <MultiProcMIDL>true</MultiProcMIDL>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(MSBuildProjectName)\</IntDir>
@@ -96,6 +97,7 @@
     <IntermediateOutputPath>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</IntermediateOutputPath>
     <GeneratedFilesDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\obj\$(MSBuildProjectName)\</GeneratedFilesDir>
     <MultiProcMIDL>true</MultiProcMIDL>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
@@ -122,10 +124,12 @@
     <Link>
       <OutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)\$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">d2d1.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/IGNORE:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Link>
       <OutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">d2d1.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/IGNORE:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
