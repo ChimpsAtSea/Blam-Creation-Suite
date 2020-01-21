@@ -543,13 +543,13 @@ char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", BuildVersion:
 #pragma pack(push, 4)
 struct hs_script_op
 {
-	__int16 return_type;
-	__int16 flags;
+	short return_type;
+	short flags;
 	__int32 __unused4;
-	void(__fastcall *evaluate)(INT64 function_index, UINT64 expression_index, bool execute);
+	void(__fastcall *evaluate)(short opcode, unsigned short expression_index, char execute);
 	const char *parameter_info;
-	__int16 parameter_count;
-	__int16 parameter_types;
+	short parameter_count;
+	short parameter_types;
 
 	void replace_evaluate(LPVOID new_evaluate)
 	{
@@ -583,8 +583,8 @@ intptr_t hs_evaluate_arguments_offset(EngineVersion engineVersion, BuildVersion 
 	return ~intptr_t();
 }
 
-template<typename arg_type>
-FunctionHookEx<hs_evaluate_arguments_offset, arg_type __fastcall (__int64 expression_index, __int16 parameters_count, __int16 *parameters, char execute)> hs_evaluate_arguments;
+template<typename t_parameter>
+FunctionHookEx<hs_evaluate_arguments_offset, t_parameter __fastcall (unsigned short expression_index, short parameters_count, short *parameters, char execute)> hs_evaluate_arguments;
 
 intptr_t hs_return_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
@@ -594,7 +594,20 @@ intptr_t hs_return_offset(EngineVersion engineVersion, BuildVersion buildVersion
 	}
 	return ~intptr_t();
 }
-FunctionHookEx<hs_return_offset, __int64 __fastcall (unsigned __int16 expression_index, unsigned int handle)> hs_return;
+FunctionHookEx<hs_return_offset, __int64 __fastcall (unsigned short expression_index, unsigned int handle)> hs_return;
+
+hs_script_op *hs_function_get(short opcode)
+{
+	hs_script_op *(&hs_function_table_ref)[1995] = hs_function_table;
+	return hs_function_table_ref[opcode];
+}
+
+template<typename t_parameter>
+t_parameter &hs_macro_function_evaluate(short opcode, unsigned short expression_index, char execute)
+{
+	hs_script_op *op = hs_function_get(opcode);
+	return *hs_evaluate_arguments<t_parameter *>(expression_index, op->parameter_count, &op->parameter_types, execute);
+}
 
 intptr_t script_string_get_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
@@ -606,14 +619,13 @@ intptr_t script_string_get_offset(EngineVersion engineVersion, BuildVersion buil
 }
 FunctionHookEx<script_string_get_offset, char *__fastcall (__int64 unused, int id, char *dst, int len)> script_string_get;
 
-void __fastcall hs_print_evaluate(__int16 opcode, unsigned int expression_index, char execute)
+void __fastcall hs_print_evaluate(short opcode, unsigned short expression_index, char execute)
 {
-	hs_script_op *(&hs_function_table_ref)[1995] = hs_function_table;
-	int arg = *hs_evaluate_arguments<int *>(expression_index, hs_function_table_ref[opcode]->parameter_count, &hs_function_table_ref[opcode]->parameter_types, execute);
-	if (arg)
+	int &out_parameter = hs_macro_function_evaluate<int>(opcode, expression_index, execute);
+	if (&out_parameter)
 	{
 		char buf[1024] = {};
-		script_string_get(0, arg, buf, 1024);
+		script_string_get(0, out_parameter, buf, 1024);
 		printf("%s\n", buf);
 
 		hs_return(expression_index, 0);
@@ -649,23 +661,19 @@ void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVer
 		nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x1800DC9E7, 6);
 	}
 
-	if (Settings::ReadBoolValue(SettingsSection::Debug, "ReplaceHsPrintOpWithHsChudPostMessageOp", true))
+	if (Settings::ReadBoolValue(SettingsSection::Debug, "ReplacePrintScriptEvaluate", true))
 	{
-		hs_script_op *(&hs_function_table_ref)[1995] = hs_function_table;
+		hs_script_op *hs_print_op = hs_function_get(0x28);
+		hs_script_op *hs_chud_post_message_op = hs_function_get(0x509);
 
-		hs_script_op *hs_print_op = hs_function_table_ref[0x28];
-		hs_script_op *hs_chud_post_message_op = hs_function_table_ref[0x509];
-
-		// Replace `hs_print_op->evaluate` with `hs_chud_post_message_op->evaluate`
-		hs_print_op->replace_evaluate(hs_chud_post_message_op->evaluate);
-	}
-	else
-	{
-		hs_script_op *(&hs_function_table_ref)[1995] = hs_function_table;
-		hs_script_op *hs_print_op = hs_function_table_ref[0x28];
-
-		// Replace `hs_print_op->evaluate` with custom `hs_print_evaluate`
-		hs_print_op->replace_evaluate(hs_print_evaluate);
+		if (Settings::ReadBoolValue(SettingsSection::Debug, "PrintToHud", false))
+		{
+			hs_print_op->replace_evaluate(hs_chud_post_message_op->evaluate);
+		}
+		else
+		{
+			hs_print_op->replace_evaluate(hs_print_evaluate);
+		}
 	}
 
 	//GameLauncher::RegisterTerminationValue(g_termination_value);
