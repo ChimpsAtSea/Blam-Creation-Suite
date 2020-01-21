@@ -572,9 +572,49 @@ int main(int argc, const char* argv[])
 		FormatReflectedTypeToFunction(rType);
 	}
 
-	std::string str = stringstream.str();
-	printf("%s\n", str.c_str());
+	for (ReflectionTypeContainer* pType : ReflectedTypesData)
+	{
+		ReflectionTypeContainer& rType = *pType;
 
+		if (rType.m_isPrimitive) continue;
+
+		if (rType.m_fieldsData.size() > 0)
+		{
+			printf("struct %s\n{\n", rType.m_typeName.c_str());
+			for (ReflectionFieldContainer* pField : rType.m_fieldsData)
+			{
+				ReflectionFieldContainer& rField = *pField;
+
+				if (rField.m_arraySize)
+				{
+					printf(
+						"\t%s %s[%u]; // size:0x%X offset:0x%X\n",
+						rField.m_pFieldType->m_typeName.c_str(),
+						rField.m_fieldName.c_str(),
+						static_cast<uint32_t>(rField.m_arraySize),
+						static_cast<uint32_t>(rField.m_size),
+						static_cast<uint32_t>(rField.m_offset));
+				}
+				else
+				{
+					printf(
+						"\t%s %s; // size:0x%X offset:0x%X\n",
+						rField.m_pFieldType->m_typeName.c_str(),
+						rField.m_fieldName.c_str(),
+						static_cast<uint32_t>(rField.m_size),
+						static_cast<uint32_t>(rField.m_offset));
+				}
+			}
+
+			printf("};\n");
+		}
+		else
+		{
+			printf("struct %s { };\n", rType.m_typeName.c_str());
+		}
+	}
+
+	std::string str = stringstream.str();
 	{
 		FILE* pReflectionHeader = fopen(szOutputHeader, "w");
 		assert(pReflectionHeader != nullptr);
