@@ -540,6 +540,86 @@ void halo_reach_debug_callback()
 
 char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", BuildVersion::Build_1_1035_0_0, 0x180A0EE08);
 
+#pragma pack(push, 4)
+struct hs_script_op
+{
+	__int16 return_type;
+	__int16 flags;
+	__int32 __unused4;
+	void(__fastcall *evaluate)(INT64 function_index, UINT64 expression_index, bool execute);
+	const char *parameter_info;
+	__int16 parameter_count;
+	__int16 parameter_types;
+
+	void replace_evaluate(LPVOID new_evaluate)
+	{
+		//printf("0x%08llX\n", *(UINT64 *)&evaluate);
+		memcpy_virtual(&evaluate, &new_evaluate, sizeof(void*));
+		//printf("0x%08llX\n", *(UINT64 *)&evaluate);
+	}
+	void print_parameter_info()
+	{
+		printf("%s\n", parameter_info);
+	}
+};
+#pragma pack(pop)
+
+intptr_t hs_function_table_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x180ABC230;
+	}
+	return ~intptr_t();
+}
+DataEx<hs_script_op* [1995], hs_function_table_offset> hs_function_table;
+
+intptr_t hs_evaluate_arguments_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x1801EF690;
+	}
+	return ~intptr_t();
+}
+
+template<typename arg_type>
+FunctionHookEx<hs_evaluate_arguments_offset, arg_type __fastcall (__int64 expression_index, __int16 parameters_count, __int16 *parameters, char execute)> hs_evaluate_arguments;
+
+intptr_t hs_return_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x1801EEE00;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<hs_return_offset, __int64 __fastcall (unsigned __int16 expression_index, unsigned int handle)> hs_return;
+
+intptr_t script_string_get_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x1801ECF80;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<script_string_get_offset, char *__fastcall (__int64 unused, int id, char *dst, int len)> script_string_get;
+
+void __fastcall hs_print_evaluate(__int16 opcode, unsigned int expression_index, char execute)
+{
+	hs_script_op *(&hs_function_table_ref)[1995] = hs_function_table;
+	int arg = *hs_evaluate_arguments<int *>(expression_index, hs_function_table_ref[opcode]->parameter_count, &hs_function_table_ref[opcode]->parameter_types, execute);
+	if (arg)
+	{
+		char buf[1024] = {};
+		script_string_get(0, arg, buf, 1024);
+		printf("%s\n", buf);
+
+		hs_return(expression_index, 0);
+	}
+}
+
 void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVersion, bool isMCC)
 {
 	g_currentbuildVersion = buildVersion;
@@ -548,6 +628,11 @@ void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVer
 	//DebugUI::RegisterCallback(halo_reach_debug_callback);
 
 	init_detours();
+
+	DataReferenceBase::InitTree(EngineVersion::HaloReach, buildVersion);
+	FunctionHookBase::InitTree(EngineVersion::HaloReach, buildVersion);
+	GlobalReference::InitTree(EngineVersion::HaloReach, buildVersion);
+	end_detours();
 
 	// Allows spawning AI via scripts or effects, props to Zeddikins
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "SpawnAiWithScriptsAndEffects", true))
@@ -564,18 +649,24 @@ void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVer
 		nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x1800DC9E7, 6);
 	}
 
-	// Replace `hs_print_op` with `hs_chud_post_message_op`
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "ReplaceHsPrintOpWithHsChudPostMessageOp", true))
 	{
-		UINT8 hs_op[0x1C];
-		copy_from_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x180AAFF38, hs_op, sizeof(hs_op)); // hs_chud_post_message_op
-		copy_to_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x180ABBC70, hs_op, sizeof(hs_op)); // hs_print_op
-	}
+		hs_script_op *(&hs_function_table_ref)[1995] = hs_function_table;
 
-	DataReferenceBase::InitTree(EngineVersion::HaloReach, buildVersion);
-	FunctionHookBase::InitTree(EngineVersion::HaloReach, buildVersion);
-	GlobalReference::InitTree(EngineVersion::HaloReach, buildVersion);
-	end_detours();
+		hs_script_op *hs_print_op = hs_function_table_ref[0x28];
+		hs_script_op *hs_chud_post_message_op = hs_function_table_ref[0x509];
+
+		// Replace `hs_print_op->evaluate` with `hs_chud_post_message_op->evaluate`
+		hs_print_op->replace_evaluate(hs_chud_post_message_op->evaluate);
+	}
+	else
+	{
+		hs_script_op *(&hs_function_table_ref)[1995] = hs_function_table;
+		hs_script_op *hs_print_op = hs_function_table_ref[0x28];
+
+		// Replace `hs_print_op->evaluate` with custom `hs_print_evaluate`
+		hs_print_op->replace_evaluate(hs_print_evaluate);
+	}
 
 	//GameLauncher::RegisterTerminationValue(g_termination_value);
 }
