@@ -2,7 +2,7 @@
 
 #ifdef __cplusplus
 
-#include <OpusFramework/opusframework-system-pch.h>
+#include <Shared/shared-system-pch.h>
 #include <OpusFramework/opusframework-public-pch.h>
 
 #include "opus-public-pch.h"

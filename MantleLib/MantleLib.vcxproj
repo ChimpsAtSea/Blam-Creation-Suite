@@ -11,6 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="!UserInterface\MantleMapTab.cpp" />
+    <ClCompile Include="!UserInterface\MantleTab.cpp" />
+    <ClCompile Include="!UserInterface\MantleGUI.cpp" />
     <ClCompile Include="mantlelib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -25,6 +28,18 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="!UserInterface\UserInterface.h" />
+    <ClInclude Include="FileSystem\basic_buffer.h" />
+    <ClInclude Include="FileSystem\cache_file_magic.h" />
+    <ClInclude Include="FileSystem\cache_file_section.h" />
+    <ClInclude Include="FileSystem\cache_file_section_file_bounds.h" />
+    <ClInclude Include="FileSystem\FileSystem.h" />
+    <ClInclude Include="FileSystem\scenario_load_type.h" />
+    <ClInclude Include="FileSystem\scenario_type.h" />
+    <ClInclude Include="!UserInterface\MantleMapTab.h" />
+    <ClInclude Include="!UserInterface\MantleTab.h" />
+    <ClInclude Include="!UserInterface\MantleGUI.h" />
+    <ClInclude Include="FileSystem\cache_file_header.h" />
     <ClInclude Include="Tags\Tags.h" />
     <ClInclude Include="Tags\TagTypes\StringID.h" />
     <ClInclude Include="Tags\TagTypes\TagBlock.h" />
@@ -71,11 +86,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

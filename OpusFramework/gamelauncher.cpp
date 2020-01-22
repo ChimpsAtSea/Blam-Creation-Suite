@@ -425,13 +425,13 @@ void GameLauncher::SetupGameContext(GameContext& rGameContext)
 
 		{
 			int ipv4_address = 0;
-			inet_pton(AF_INET, "10.255.0.2", &ipv4_address);
+			//inet_pton(AF_INET, "10.255.0.2", &ipv4_address);
 			ipv4_address = htonl(ipv4_address);
 			ClientAddress = ipv4_address;
 		}
 		{
 			int ipv4_address = 0;
-			inet_pton(AF_INET, "10.255.0.1", &ipv4_address);
+			//inet_pton(AF_INET, "10.255.0.1", &ipv4_address);
 			ipv4_address = htonl(ipv4_address);
 			HostAddress = ipv4_address;
 		}

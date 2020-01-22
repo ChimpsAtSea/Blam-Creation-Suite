@@ -15,6 +15,11 @@ typedef unsigned __int64	bool64_t;
 
 #pragma pack(push, 1)
 
+#ifndef __clang__ 
+#define __attribute__(...)
+#endif
+#define noreflection __attribute__((annotate("no_reflection")))
+
 #include "TagTypes/TagGroupName.h"
 #include "TagTypes/StringID.h"
 #include "TagTypes/DataReference.h"

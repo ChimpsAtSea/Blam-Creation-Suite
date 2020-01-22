@@ -3,7 +3,41 @@
 #define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING //#TODO: Replace with WideCharToMultiByte and MultiByteToWideChar
 #define _CRT_SECURE_NO_WARNINGS
 #define WIN32_MEAN_AND_LEAN
-#define DIRECTINPUT_VERSION 0x0800
+
+#if !defined(_DEBUG) && defined(UWP_PLATFORM)
+#define FATAL_ERROR(reason, ...) throw
+#else
+#define FATAL_ERROR(reason, ...) _wassert(_CRT_WIDE(reason), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)); throw
+#endif
+
+#define WriteLineVerbose(str, ...) \
+SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); \
+printf(str, ##__VA_ARGS__); \
+printf("\n")
+
+#define WriteVerbose(str, ...) \
+SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); \
+printf(str, ##__VA_ARGS__)
+
+#define WriteColoredLineVerbose(color, str, ...) \
+SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);  \
+printf(str, ##__VA_ARGS__); printf("\n"); \
+SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7)
+
+#define WriteColoredVerbose(color, str, ...)  \
+SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);  \
+printf(str, ##__VA_ARGS__); \
+SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7)
+
+#define WriteColoredPrefixVerbose(color, prefix, str, ...) \
+WriteColoredVerbose(color, "%s ", prefix); \
+WriteLineVerbose(str, ##__VA_ARGS__)
+
+#define __TBB_SOURCE_DIRECTLY_INCLUDED 1
+#include <tbb/tbb.h>
+#include <tbb/parallel_for.h>
+#include <tbb/blocked_range.h>
+using namespace tbb;
 
 #include <mmintrin.h>
 #include <xmmintrin.h>
@@ -18,10 +52,6 @@
 
 #define __int128 __m128
 
-#ifndef NO_WINSOCK2
-#include <winsock2.h>
-#include <ws2tcpip.h>
-#endif
 #include <windows.h>
 #include <hidusage.h>
 #include <objidl.h>
@@ -29,7 +59,7 @@
 #include <sqltypes.h>
 #include <shlwapi.h>
 
-#define DIRECTINPUT_VERSION  0x0800
+#define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
 #include <D3Dcompiler.h>
 #include <dxgi.h>
@@ -74,9 +104,6 @@
 #include <imgui\imgui_impl_win32.h>
 #include <imgui\imgui_impl_dx11.h>
 
-#include "hexrays_defs.h"
-#include "resource.h"
-
 #if !defined(_DEBUG) && defined(UWP_PLATFORM)
 #define FATAL_ERROR(reason, ...) throw
 #else
@@ -108,7 +135,6 @@ constexpr decltype(auto) underlying_cast(T value)
 
 #define underlying(type) __underlying_type(type)
 
-
-
-
 #define auto auto_is_banned
+
+

@@ -253,24 +253,44 @@ ReflectionTypeContainer* GetPrimitiveReflectionType(PrimitiveType primitiveType)
 	return nullptr;
 }
 
-ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::RecordDecl& pRecordDeclaration, bool isPrimitive = false)
+ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::RecordDecl& rRecordDeclaration, bool isPrimitive = false)
 {
 	for (ReflectionTypeContainer* rReflectionTypeContainer : ReflectedTypesData)
 	{
-		if (rReflectionTypeContainer->pRecordDeclaration == &pRecordDeclaration)
+		if (rReflectionTypeContainer->pRecordDeclaration == &rRecordDeclaration)
 		{
 			return rReflectionTypeContainer;
 		}
 	}
 
-	const std::string declarationName = pRecordDeclaration.getQualifiedNameAsString();
+	const std::string declarationName = rRecordDeclaration.getQualifiedNameAsString();
 
 	ReflectionTypeContainer& rReflectionTypeContainer = *ReflectedTypesData.emplace_back(new ReflectionTypeContainer());
 	rReflectionTypeContainer.m_typeName = declarationName;
-	rReflectionTypeContainer.pRecordDeclaration = &pRecordDeclaration;
+	rReflectionTypeContainer.pRecordDeclaration = &rRecordDeclaration;
 	rReflectionTypeContainer.m_isPrimitive = isPrimitive;
 
-	RecordDecl::field_range fields = pRecordDeclaration.fields();
+	bool disableReflection = false;
+	for (auto it : rRecordDeclaration.attrs())
+	{
+		Attr& attr = (*it);
+		auto annotatedAttr = dyn_cast<AnnotateAttr>(&attr);
+		if (annotatedAttr != nullptr)
+		{
+			std::string str = annotatedAttr->getAnnotation();
+			if (str == "no_reflection")
+			{
+				disableReflection = true;
+			}
+		}
+	}
+
+	if (disableReflection)
+	{
+		return &rReflectionTypeContainer;
+	}
+
+	RecordDecl::field_range fields = rRecordDeclaration.fields();
 	for (FieldDecl* field : fields)
 	{
 		ReflectionFieldContainer& rFieldData = *rReflectionTypeContainer.m_fieldsData.emplace_back(new ReflectionFieldContainer());
@@ -312,15 +332,15 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 			std::string name = pTagDecl->getNameAsString();
 
 			ReflectionTypeCategory reflectionTypeCategory;
-			if (name == "TagBlock") { reflectionTypeCategory = ReflectionTypeCategory::TagBlock; }
-			else if (name == "DataReference") { reflectionTypeCategory = ReflectionTypeCategory::DataReference; }
-			else if (name == "StringID") { reflectionTypeCategory = ReflectionTypeCategory::StringID; }
-			//else if (name == "TagGroupName")	{ reflectionTypeCategory = ReflectionTypeCategory::TagGroupName; }
-			else if (name == "TagReference") { reflectionTypeCategory = ReflectionTypeCategory::TagReference; }
-			else if (name == "Unknown8") { reflectionTypeCategory = ReflectionTypeCategory::Unknown8; }
-			else if (name == "Unknown16") { reflectionTypeCategory = ReflectionTypeCategory::Unknown16; }
-			else if (name == "Unknown32") { reflectionTypeCategory = ReflectionTypeCategory::Unknown32; }
-			else if (name == "Unknown64") { reflectionTypeCategory = ReflectionTypeCategory::Unknown64; }
+			if (name == "TagBlock") reflectionTypeCategory = ReflectionTypeCategory::TagBlock;
+			else if (name == "DataReference") reflectionTypeCategory = ReflectionTypeCategory::DataReference;
+			else if (name == "StringID") reflectionTypeCategory = ReflectionTypeCategory::StringID;
+			//else if (name == "TagGroupName") reflectionTypeCategory = ReflectionTypeCategory::TagGroupName; 
+			else if (name == "TagReference") reflectionTypeCategory = ReflectionTypeCategory::TagReference;
+			else if (name == "Unknown8") reflectionTypeCategory = ReflectionTypeCategory::Unknown8;
+			else if (name == "Unknown16") reflectionTypeCategory = ReflectionTypeCategory::Unknown16;
+			else if (name == "Unknown32") reflectionTypeCategory = ReflectionTypeCategory::Unknown32;
+			else if (name == "Unknown64") reflectionTypeCategory = ReflectionTypeCategory::Unknown64;
 			else assert(!"Unsupported class type");
 
 			rFieldData.m_reflectionTypeCategory = reflectionTypeCategory;
@@ -332,12 +352,17 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 			CXXRecordDecl* pCXXRecord = reinterpret_cast<CXXRecordDecl*>(pTagDecl);
 			std::string name = pTagDecl->getNameAsString();
 
-			rFieldData.m_reflectionTypeCategory = ReflectionTypeCategory::Structure;
+			ReflectionTypeCategory reflectionTypeCategory = ReflectionTypeCategory::Structure;
+			if (name == "StringID") reflectionTypeCategory = ReflectionTypeCategory::StringID;
+
+			rFieldData.m_reflectionTypeCategory = reflectionTypeCategory;
 			rFieldData.m_pFieldType = CreateReflectedType(Context, *pCXXRecord);
 		}
 		else if (reflectionQualifiedType->isScalarType())
 		{
 			clang::QualType scalarQualifiedType = reflectionQualifiedType->getCanonicalTypeInternal();
+			const std::string scalarQualifiedTypeName = QualType::getAsString(scalarQualifiedType.split(), printingPolicy);
+
 			rFieldData.m_reflectionTypeCategory = ReflectionTypeCategory::Primitive;
 			switch (reflectionQualifiedType->getScalarTypeKind())
 			{
@@ -351,7 +376,7 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 				if (isEnum)
 				{
 					TagDecl* pTagDecl = integralCanonicalType->getAsTagDecl();
-					EnumDecl* pEnumDecl = reinterpret_cast<EnumDecl*>(pTagDecl); // this is nasty!
+					EnumDecl* pEnumDecl = static_cast<EnumDecl*>(pTagDecl); // this is nasty!
 					assert(pEnumDecl != nullptr);
 					integralCanonicalType = pEnumDecl->getIntegerType()->getCanonicalTypeInternal();
 				}
@@ -359,9 +384,11 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 
 				if (integralCanonicalType->isSignedIntegerType())
 				{
-					if (integralTypeName == "signed char") rFieldData.m_primitiveType = PrimitiveType::Int8;
+					if (integralTypeName == "char") rFieldData.m_primitiveType = PrimitiveType::Int8;
+					else if (integralTypeName == "signed char") rFieldData.m_primitiveType = PrimitiveType::Int8;
 					else if (integralTypeName == "short") rFieldData.m_primitiveType = PrimitiveType::Int16;
 					else if (integralTypeName == "int") rFieldData.m_primitiveType = PrimitiveType::Int32;
+					else if (integralTypeName == "long") rFieldData.m_primitiveType = PrimitiveType::Int32;
 					else if (integralTypeName == "long long") rFieldData.m_primitiveType = PrimitiveType::Int64;
 					else assert(!"Unsupported signed integral type");
 				}
@@ -469,11 +496,25 @@ void FormatReflectedTypeToFunction(const ReflectionTypeContainer& rType)
 
 		stringstream << "\t\t\t{ \"" << rField.m_fieldName << "\", \"" << rField.m_fieldNiceName << "\", ";
 		{
-			stringstream << "ReflectionTypeInfo";
+			switch (rField.m_reflectionTypeCategory)
+			{
+			case ReflectionTypeCategory::Structure:
+				stringstream << "ReflectionStructureInfo";
+				break;
+			default:
+				stringstream << "ReflectionTypeInfo";
+				break;
+			}
 			stringstream << "{ " << "ReflectionTypeCategory::" << pReflectionTypeCategoryStr;
 			stringstream << ", PrimitiveType::" << pPrimitiveTypeStr;
 			stringstream << ", \"" << rType.m_typeName << "\"";
-			stringstream << "}";
+			switch (rField.m_reflectionTypeCategory)
+			{
+			case ReflectionTypeCategory::Structure:
+				stringstream << ", &GetReflectionType<" << rField.m_pFieldType->m_typeName << ">()";
+				break;
+			}
+			stringstream << " }";
 		}
 		stringstream << std::uppercase;
 		stringstream << ", 0x" << std::hex << rField.m_offset << "ui32";

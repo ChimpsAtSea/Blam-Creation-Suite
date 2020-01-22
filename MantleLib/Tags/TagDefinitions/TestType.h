@@ -20,12 +20,18 @@ enum e_map_type : __int16
     k_number_of_map_types = 0x3,
 };
 
+struct TEST
+{
+    int something;
+    float something_else;
+};
+
 /* 386 */
 #pragma pack(push, 4)
 struct s_scenario_definition
 {
     static constexpr TagGroupName kTagGroupName = TagGroupName::Scenario;
-
+    TEST TEST;
     e_map_type map_type;
     UINT16 flags;
     UINT32 __unknown4;

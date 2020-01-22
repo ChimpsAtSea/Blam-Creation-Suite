@@ -212,9 +212,6 @@
     <ClInclude Include="opusframework-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opusframework-system-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="debug_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -56,13 +56,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Libraries\include;$(SolutionDir)llvm-project\llvm\include;$(SolutionDir)llvm-build\cmake\include;$(SolutionDir)llvm-build\cmake\tools\clang\include;$(SolutionDir)llvm-project\clang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)llvm-build\cmake\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Libraries\include;$(SolutionDir)tbb\include\;$(SolutionDir)llvm-project\llvm\include;$(SolutionDir)llvm-build\cmake\include;$(SolutionDir)llvm-build\cmake\tools\clang\include;$(SolutionDir)llvm-project\clang\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)tbb-build\cmake\$(Configuration)\;$(SolutionDir)llvm-build\cmake\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Libraries\include;$(SolutionDir)llvm-project\llvm\include;$(SolutionDir)llvm-build\cmake\include;$(SolutionDir)llvm-build\cmake\tools\clang\include;$(SolutionDir)llvm-project\clang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)llvm-build\cmake\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Libraries\include;$(SolutionDir)tbb\include\;$(SolutionDir)llvm-project\llvm\include;$(SolutionDir)llvm-build\cmake\include;$(SolutionDir)llvm-build\cmake\tools\clang\include;$(SolutionDir)llvm-project\clang\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)tbb-build\cmake\$(Configuration)\;$(SolutionDir)llvm-build\cmake\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

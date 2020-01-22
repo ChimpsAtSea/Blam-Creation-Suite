@@ -147,7 +147,7 @@ void CustomWindow::Init()
 		WS_OVERLAPPEDWINDOW,            // Window style
 		// Size and position
 		CW_USEDEFAULT, CW_USEDEFAULT,
-		GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN),
+		GetSystemMetrics(SM_CXSCREEN) / 4 * 3, GetSystemMetrics(SM_CYSCREEN) / 4 * 3,
 
 		NULL,       // Parent window    
 		NULL,       // Menu

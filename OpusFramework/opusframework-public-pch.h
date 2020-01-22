@@ -1,5 +1,7 @@
 #pragma once
 
+#include "hexrays_defs.h"
+#include "resource.h"
 #include "settings.h"
 #include "logging.h"
 #include "BuildVersion.h"

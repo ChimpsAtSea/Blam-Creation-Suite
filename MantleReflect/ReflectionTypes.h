@@ -80,14 +80,67 @@ struct ReflectionTypeInfo
 	const char* m_pTypeName;
 };
 
+struct ReflectionType;
+
 struct ReflectionStructureInfo : ReflectionTypeInfo
 {
-	
+	const ReflectionType* m_pReflectionTypeInfo;
 };
-
 
 struct ReflectionField
 {
+	ReflectionField()
+	{
+		m_pMemberName = {};
+		m_pMemberNiceName = {};
+		m_typeInfo = {};
+		m_structureInfo = {};
+		m_offset = {};
+		m_size = {};
+		m_arraySize = {};
+		m_isHiddenByDefault = {};
+	}
+
+	ReflectionField(
+		const char* pMemberName,
+		const char* pMemberNiceName,
+		ReflectionTypeInfo typeInfo,
+		unsigned __int32 offset,
+		unsigned __int16 size,
+		unsigned __int32 arraySize,
+		bool isHiddenByDefault
+	)
+		: m_pMemberName(pMemberName)
+		, m_pMemberNiceName(pMemberNiceName)
+		, m_offset(offset)
+		, m_size(size)
+		, m_arraySize(arraySize)
+		, m_isHiddenByDefault(isHiddenByDefault)
+	{
+		m_structureInfo = {};
+		m_typeInfo = typeInfo;
+	}
+
+	ReflectionField(
+		const char* pMemberName,
+		const char* pMemberNiceName,
+		ReflectionStructureInfo structureInfo,
+		unsigned __int32 offset,
+		unsigned __int16 size,
+		unsigned __int32 arraySize,
+		bool isHiddenByDefault
+	)
+		: m_pMemberName(pMemberName)
+		, m_pMemberNiceName(pMemberNiceName)
+		, m_offset(offset)
+		, m_size(size)
+		, m_arraySize(arraySize)
+		, m_isHiddenByDefault(isHiddenByDefault)
+	{
+		m_typeInfo = {};
+		m_structureInfo = structureInfo;
+	}
+
 	const char* m_pMemberName;
 	const char* m_pMemberNiceName;
 	union {
