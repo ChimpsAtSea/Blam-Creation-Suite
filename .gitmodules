@@ -2,3 +2,6 @@
 	path = llvm-project
 	url = https://github.com/llvm/llvm-project.git
 	branch = release/9.x
+[submodule "tbb_clang"]
+	path = tbb
+	url = https://github.com/wjakob/tbb.git
