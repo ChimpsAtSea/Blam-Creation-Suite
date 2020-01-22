@@ -16,6 +16,20 @@ struct ReflectionFieldContainer;
 // reflection temporary containers
 struct ReflectionFieldContainer
 {
+	ReflectionFieldContainer()
+		: m_fieldName()
+		, m_fieldNiceName()
+		, m_reflectionTypeCategory()
+		, m_primitiveType()
+		, m_pFieldType()
+		, m_arraySize()
+		, m_offset()
+		, m_size()
+		, m_isHiddenByDefault()
+	{
+
+	}
+
 	std::string m_fieldName;
 	std::string m_fieldNiceName;
 	ReflectionTypeCategory m_reflectionTypeCategory;
@@ -30,14 +44,31 @@ struct ReflectionFieldContainer
 struct ReflectionTypeContainer
 {
 	ReflectionTypeContainer()
+		: m_isSizeInitialized(false)
+		, m_isPrimitive(true)
+		, pRecordDeclaration(nullptr)
+		, m_typeName()
+		, m_fieldsData()
+		, m_size()
+		, m_typeNiceName()
+		, m_isTypeTemplate(false)
+		, m_pTemplateTypes()
 	{
 	}
+
 	ReflectionTypeContainer(std::string typeName, uint64_t size)
-		:m_typeName(typeName)
+		: m_isSizeInitialized(true)
+		, m_isPrimitive(true)
+		, pRecordDeclaration(nullptr)
+		, m_typeName(typeName)
+		, m_fieldsData()
 		, m_size(size)
-		, m_isSizeInitialized(true)
+		, m_typeNiceName()
+		, m_isTypeTemplate(false)
+		, m_pTemplateTypes()
 	{
 	}
+
 	~ReflectionTypeContainer()
 	{
 		for (ReflectionFieldContainer* pField : m_fieldsData)
@@ -46,13 +77,15 @@ struct ReflectionTypeContainer
 		}
 	}
 
-	bool m_isSizeInitialized = false;
-	bool m_isPrimitive = true;
+	bool m_isSizeInitialized;
+	bool m_isPrimitive;
 	const clang::RecordDecl* pRecordDeclaration;
 	std::string m_typeName;
 	std::vector<ReflectionFieldContainer*> m_fieldsData;
 	uint64_t m_size;
 	std::string m_typeNiceName;
+	bool m_isTypeTemplate;
+	std::vector<ReflectionTypeContainer*> m_pTemplateTypes;
 };
 
 const char* FormatNiceNameAndIsHidden(ReflectionTypeCategory reflectionTypeCategory, char* pString, bool* isHiddenByDefault = nullptr)
@@ -215,8 +248,14 @@ ReflectionTypeContainer* GetPrimitiveReflectionType(PrimitiveType primitiveType)
 	static ReflectionTypeContainer* pBoolean16ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Boolean16", sizeof(uint16_t)));
 	static ReflectionTypeContainer* pBoolean32ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Boolean32", sizeof(uint32_t)));
 	static ReflectionTypeContainer* pBoolean64ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Boolean64", sizeof(uint64_t)));
-	static ReflectionTypeContainer* pBitFlagReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitFlag", sizeof(int)));
-	static ReflectionTypeContainer* pBitFieldReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitField", sizeof(int)));
+	static ReflectionTypeContainer* pBitField8ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitField8", sizeof(uint8_t)));
+	static ReflectionTypeContainer* pBitField16ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitField16", sizeof(uint16_t)));
+	static ReflectionTypeContainer* pBitField32ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitField32", sizeof(uint32_t)));
+	static ReflectionTypeContainer* pBitField64ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitField64", sizeof(uint64_t)));
+	static ReflectionTypeContainer* pBitFlag8ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitFlag8", sizeof(uint8_t)));
+	static ReflectionTypeContainer* pBitFlag16ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitFlag16", sizeof(uint16_t)));
+	static ReflectionTypeContainer* pBitFlag32ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitFlag32", sizeof(uint32_t)));
+	static ReflectionTypeContainer* pBitFlag64ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitFlag64", sizeof(uint64_t)));
 	static ReflectionTypeContainer* pFloatReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Float", sizeof(float)));
 	static ReflectionTypeContainer* pDoubleReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Double", sizeof(double)));
 	static ReflectionTypeContainer* pEnum8ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Enum8", sizeof(uint8_t)));
@@ -238,8 +277,14 @@ ReflectionTypeContainer* GetPrimitiveReflectionType(PrimitiveType primitiveType)
 	case PrimitiveType::Boolean16:		return pBoolean16ReflectionType;
 	case PrimitiveType::Boolean32:		return pBoolean32ReflectionType;
 	case PrimitiveType::Boolean64:		return pBoolean64ReflectionType;
-	case PrimitiveType::BitFlag:		return pBitFlagReflectionType;
-	case PrimitiveType::BitField:		return pBitFieldReflectionType;
+	case PrimitiveType::BitFlag8:		return pBitFlag8ReflectionType;
+	case PrimitiveType::BitFlag16:		return pBitFlag16ReflectionType;
+	case PrimitiveType::BitFlag32:		return pBitFlag32ReflectionType;
+	case PrimitiveType::BitFlag64:		return pBitFlag64ReflectionType;
+	case PrimitiveType::BitField8:		return pBitField8ReflectionType;
+	case PrimitiveType::BitField16:		return pBitField16ReflectionType;
+	case PrimitiveType::BitField32:		return pBitField32ReflectionType;
+	case PrimitiveType::BitField64:		return pBitField64ReflectionType;
 	case PrimitiveType::Float:			return pFloatReflectionType;
 	case PrimitiveType::Double:			return pDoubleReflectionType;
 	case PrimitiveType::Enum8:			return pEnum8ReflectionType;
@@ -255,6 +300,14 @@ ReflectionTypeContainer* GetPrimitiveReflectionType(PrimitiveType primitiveType)
 
 ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::RecordDecl& rRecordDeclaration, bool isPrimitive = false)
 {
+	bool isTemplated = rRecordDeclaration.isTemplated();
+	const clang::ClassTemplateSpecializationDecl* pClassTemplateSpecializationDecl = dyn_cast<ClassTemplateSpecializationDecl>(&rRecordDeclaration);
+
+	if (isTemplated && pClassTemplateSpecializationDecl == nullptr)
+	{
+		return nullptr;
+	}
+
 	for (ReflectionTypeContainer* rReflectionTypeContainer : ReflectedTypesData)
 	{
 		if (rReflectionTypeContainer->pRecordDeclaration == &rRecordDeclaration)
@@ -269,6 +322,30 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 	rReflectionTypeContainer.m_typeName = declarationName;
 	rReflectionTypeContainer.pRecordDeclaration = &rRecordDeclaration;
 	rReflectionTypeContainer.m_isPrimitive = isPrimitive;
+
+	if (pClassTemplateSpecializationDecl)
+	{
+		rReflectionTypeContainer.m_isTypeTemplate = true;
+
+		const clang::TemplateArgumentList& rArgList = pClassTemplateSpecializationDecl->getTemplateArgs();
+		for (unsigned int i = 0; i < rArgList.size(); i++)
+		{
+			const clang::TemplateArgument& rArg = rArgList.get(i);
+			QualType qualifiedType = rArg.getAsType();
+
+			bool isVoid = qualifiedType->isVoidType();
+			assert(rArgList.size() <= 1 || !isVoid); // no voids allowed unless single void template
+			if (!isVoid)
+			{
+				const std::string reflectionQualifiedTypeName = QualType::getAsString(qualifiedType.split(), printingPolicy);
+				CXXRecordDecl* pDecl = qualifiedType->getAsCXXRecordDecl();
+				assert(pDecl != nullptr);
+				ReflectionTypeContainer* pTemplateType = CreateReflectedType(Context, *pDecl);
+				assert(pTemplateType != nullptr);
+				rReflectionTypeContainer.m_pTemplateTypes.push_back(pTemplateType);
+			}
+		}
+	}
 
 	bool disableReflection = false;
 	for (auto it : rRecordDeclaration.attrs())
@@ -328,35 +405,44 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 		if (reflectionQualifiedType->isClassType())
 		{
 			TagDecl* pTagDecl = reflectionQualifiedType->getAsTagDecl();
-			CXXRecordDecl* pCXXRecord = reinterpret_cast<CXXRecordDecl*>(pTagDecl);
-			std::string name = pTagDecl->getNameAsString();
+			clang::RecordDecl* pCXXRecord = static_cast<clang::RecordDecl*>(pTagDecl);
 
 			ReflectionTypeCategory reflectionTypeCategory;
-			if (name == "TagBlock") reflectionTypeCategory = ReflectionTypeCategory::TagBlock;
-			else if (name == "DataReference") reflectionTypeCategory = ReflectionTypeCategory::DataReference;
-			else if (name == "StringID") reflectionTypeCategory = ReflectionTypeCategory::StringID;
-			//else if (name == "TagGroupName") reflectionTypeCategory = ReflectionTypeCategory::TagGroupName; 
-			else if (name == "TagReference") reflectionTypeCategory = ReflectionTypeCategory::TagReference;
-			else if (name == "Unknown8") reflectionTypeCategory = ReflectionTypeCategory::Unknown8;
-			else if (name == "Unknown16") reflectionTypeCategory = ReflectionTypeCategory::Unknown16;
-			else if (name == "Unknown32") reflectionTypeCategory = ReflectionTypeCategory::Unknown32;
-			else if (name == "Unknown64") reflectionTypeCategory = ReflectionTypeCategory::Unknown64;
-			else assert(!"Unsupported class type");
+			{
+				std::string name = pTagDecl->getNameAsString();
+
+				if (name == "TagBlock") reflectionTypeCategory = ReflectionTypeCategory::TagBlock;
+				else if (name == "s_tag_block_definition") reflectionTypeCategory = ReflectionTypeCategory::TagBlock;
+				else if (name == "DataReference") reflectionTypeCategory = ReflectionTypeCategory::DataReference;
+				else if (name == "string_id") reflectionTypeCategory = ReflectionTypeCategory::StringID;
+				else if (name == "StringID") reflectionTypeCategory = ReflectionTypeCategory::StringID;
+				//else if (name == "TagGroupName") reflectionTypeCategory = ReflectionTypeCategory::TagGroupName; 
+				else if (name == "TagReference") reflectionTypeCategory = ReflectionTypeCategory::TagReference;
+				else if (name == "Unknown8") reflectionTypeCategory = ReflectionTypeCategory::Unknown8;
+				else if (name == "Unknown16") reflectionTypeCategory = ReflectionTypeCategory::Unknown16;
+				else if (name == "Unknown32") reflectionTypeCategory = ReflectionTypeCategory::Unknown32;
+				else if (name == "Unknown64") reflectionTypeCategory = ReflectionTypeCategory::Unknown64;
+				else assert(!"Unsupported class type");
+			}
 
 			rFieldData.m_reflectionTypeCategory = reflectionTypeCategory;
-			rFieldData.m_pFieldType = CreateReflectedType(Context, *pCXXRecord);
+			ReflectionTypeContainer* pType = CreateReflectedType(Context, *pCXXRecord);
+			assert(pType != nullptr);
+			rFieldData.m_pFieldType = pType;
 		}
 		else if (reflectionQualifiedType->isStructureType())
 		{
 			TagDecl* pTagDecl = reflectionQualifiedType->getAsTagDecl();
-			CXXRecordDecl* pCXXRecord = reinterpret_cast<CXXRecordDecl*>(pTagDecl);
+			clang::RecordDecl* pCXXRecord = static_cast<clang::RecordDecl*>(pTagDecl);
 			std::string name = pTagDecl->getNameAsString();
 
 			ReflectionTypeCategory reflectionTypeCategory = ReflectionTypeCategory::Structure;
 			if (name == "StringID") reflectionTypeCategory = ReflectionTypeCategory::StringID;
 
 			rFieldData.m_reflectionTypeCategory = reflectionTypeCategory;
-			rFieldData.m_pFieldType = CreateReflectedType(Context, *pCXXRecord);
+			ReflectionTypeContainer* pType = CreateReflectedType(Context, *pCXXRecord);
+			assert(pType != nullptr);
+			rFieldData.m_pFieldType = pType;
 		}
 		else if (reflectionQualifiedType->isScalarType())
 		{
@@ -473,7 +559,26 @@ void FormatReflectedTypeToFunction(const ReflectionTypeContainer& rType)
 	}
 
 	stringstream << "template<>" << std::endl;
-	stringstream << "inline const ReflectionType& GetReflectionType<" << rType.m_typeName << ">()" << std::endl;
+
+	if (!rType.m_isTypeTemplate)
+	{
+		stringstream << "inline const ReflectionType& GetReflectionType<" << rType.m_typeName << ">()" << std::endl;
+	}
+	else
+	{
+		stringstream << "inline const ReflectionType& GetReflectionType<" << rType.m_typeName << "<";
+
+		if (!rType.m_pTemplateTypes.empty())
+		{
+			for (ReflectionTypeContainer* pTemplateType : rType.m_pTemplateTypes)
+			{
+				stringstream << pTemplateType->m_typeName << ", ";
+			}
+			stringstream.seekp(-2, stringstream.cur); // remove trailing ", "
+		}
+		
+		stringstream << ">>()" << std::endl;
+	}
 	stringstream << "{" << std::endl;
 	stringstream << "\t" << "static ReflectionType reflectionData = " << std::endl;
 	stringstream << "\t{" << std::endl;
@@ -498,6 +603,9 @@ void FormatReflectedTypeToFunction(const ReflectionTypeContainer& rType)
 		{
 			switch (rField.m_reflectionTypeCategory)
 			{
+			case ReflectionTypeCategory::TagBlock:
+				stringstream << "ReflectionTagBlockInfo";
+				break;
 			case ReflectionTypeCategory::Structure:
 				stringstream << "ReflectionStructureInfo";
 				break;
@@ -510,6 +618,15 @@ void FormatReflectedTypeToFunction(const ReflectionTypeContainer& rType)
 			stringstream << ", \"" << rType.m_typeName << "\"";
 			switch (rField.m_reflectionTypeCategory)
 			{
+			case ReflectionTypeCategory::TagBlock:
+				//#TODO: Print a Visual Studio warning for tab blocks without their types specified
+				if (!rField.m_pFieldType->m_pTemplateTypes.empty())
+				{
+					//#TODO: Print a Visual Studio warning for tab blocks with too many types specified. The first only will be used
+					stringstream << ", &GetReflectionType<" << rField.m_pFieldType->m_pTemplateTypes[0]->m_typeName << ">()";
+				}
+				else stringstream << ", nullptr";
+				break;
 			case ReflectionTypeCategory::Structure:
 				stringstream << ", &GetReflectionType<" << rField.m_pFieldType->m_typeName << ">()";
 				break;

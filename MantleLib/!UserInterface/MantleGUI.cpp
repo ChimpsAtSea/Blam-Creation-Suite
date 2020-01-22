@@ -2,6 +2,7 @@
 
 #define vector_erase_by_value_helper(vector, value) vector.erase(std::remove(vector.begin(), vector.end(), value), vector.end());
 
+bool MantleGUI::s_unknownItemsVisible = false;
 std::vector<MantleTab*> MantleGUI::s_pMantleTabs;
 std::vector<MantleGUI::OnCloseCallback> MantleGUI::s_guiCloseCallbacks;
 
@@ -62,6 +63,15 @@ void MantleGUI::Render(int width, int height)
 				{
 					//#TODO: Determine if we should close here
 					isCloseRequested = true;
+				}
+
+				ImGui::EndMenu();
+			}
+			if (ImGui::BeginMenu("View"))
+			{
+				if (ImGui::MenuItem(s_unknownItemsVisible ? "Hide Unknown Items" : "Show Unknown Items", "Ctrl+O"))
+				{
+					s_unknownItemsVisible = !s_unknownItemsVisible;
 				}
 
 				ImGui::EndMenu();

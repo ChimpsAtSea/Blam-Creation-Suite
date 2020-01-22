@@ -41,9 +41,54 @@ enum class PrimitiveType : ReflectionTypeIndex
 	Enum16,
 	Enum32,
 	Enum64,
-	BitFlag,
-	BitField
+	BitField8,
+	BitField16,
+	BitField32,
+	BitField64,
+	BitFlag8,
+	BitFlag16,
+	BitFlag32,
+	BitFlag64,
 };
+
+inline const char* PrimitiveTypeToString(PrimitiveType primitiveType)
+{
+	switch (primitiveType)
+	{
+	case PrimitiveType::Undefined:			return "Undefined";
+	case PrimitiveType::Int8:				return "Int8";
+	case PrimitiveType::Int16:				return "Int16";
+	case PrimitiveType::Int32:				return "Int32";
+	case PrimitiveType::Int64:				return "Int64";
+	case PrimitiveType::UInt8:				return "UInt8";
+	case PrimitiveType::UInt16:				return "UInt16";
+	case PrimitiveType::UInt32:				return "UInt32";
+	case PrimitiveType::UInt64:				return "UInt64";
+	case PrimitiveType::Float:				return "Float";
+	case PrimitiveType::Double:				return "Double";
+	case PrimitiveType::Boolean8:			return "Boolean8";
+	case PrimitiveType::Boolean16:			return "Boolean16";
+	case PrimitiveType::Boolean32:			return "Boolean32";
+	case PrimitiveType::Boolean64:			return "Boolean64";
+	case PrimitiveType::Enum8:				return "Enum8";
+	case PrimitiveType::Enum16:				return "Enum16";
+	case PrimitiveType::Enum32:				return "Enum32";
+	case PrimitiveType::Enum64:				return "Enum64";
+	case PrimitiveType::BitField8:			return "BitField8";
+	case PrimitiveType::BitField16:			return "BitField16";
+	case PrimitiveType::BitField32:			return "BitField32";
+	case PrimitiveType::BitField64:			return "BitField64";
+	case PrimitiveType::BitFlag8:			return "BitFlag8";
+	case PrimitiveType::BitFlag16:			return "BitFlag16";
+	case PrimitiveType::BitFlag32:			return "BitFlag32";
+	case PrimitiveType::BitFlag64:			return "BitFlag64";
+	}
+#ifdef FATAL_ERROR
+	FATAL_ERROR("Invalid primitive type");
+#else
+	throw;
+#endif
+}
 
 inline const char* ReflectionTypeCategoryToString(ReflectionTypeCategory reflectionType)
 {
@@ -63,10 +108,11 @@ inline const char* ReflectionTypeCategoryToString(ReflectionTypeCategory reflect
 	case ReflectionTypeCategory::Unknown32:				return "Unknown32";
 	case ReflectionTypeCategory::Unknown64:				return "Unknown64";
 	}
-#ifdef _DEBUG
+#ifdef FATAL_ERROR
+	FATAL_ERROR("Invalid reflection type");
+#else
 	throw;
 #endif
-	return "<INVALID REFLECTION TYPE>";
 }
 
 struct ReflectionTypeInfo
@@ -83,6 +129,11 @@ struct ReflectionTypeInfo
 struct ReflectionType;
 
 struct ReflectionStructureInfo : ReflectionTypeInfo
+{
+	const ReflectionType* m_pReflectionTypeInfo;
+};
+
+struct ReflectionTagBlockInfo : ReflectionTypeInfo
 {
 	const ReflectionType* m_pReflectionTypeInfo;
 };
@@ -118,6 +169,7 @@ struct ReflectionField
 		, m_isHiddenByDefault(isHiddenByDefault)
 	{
 		m_structureInfo = {};
+		m_tagBlockInfo = {};
 		m_typeInfo = typeInfo;
 	}
 
@@ -138,7 +190,29 @@ struct ReflectionField
 		, m_isHiddenByDefault(isHiddenByDefault)
 	{
 		m_typeInfo = {};
+		m_tagBlockInfo = {};
 		m_structureInfo = structureInfo;
+	}
+
+	ReflectionField(
+		const char* pMemberName,
+		const char* pMemberNiceName,
+		ReflectionTagBlockInfo tagBlockInfo,
+		unsigned __int32 offset,
+		unsigned __int16 size,
+		unsigned __int32 arraySize,
+		bool isHiddenByDefault
+	)
+		: m_pMemberName(pMemberName)
+		, m_pMemberNiceName(pMemberNiceName)
+		, m_offset(offset)
+		, m_size(size)
+		, m_arraySize(arraySize)
+		, m_isHiddenByDefault(isHiddenByDefault)
+	{
+		m_typeInfo = {};
+		m_structureInfo = {};
+		m_tagBlockInfo = tagBlockInfo;
 	}
 
 	const char* m_pMemberName;
@@ -146,6 +220,7 @@ struct ReflectionField
 	union {
 		ReflectionTypeInfo m_typeInfo;
 		ReflectionStructureInfo m_structureInfo;
+		ReflectionTagBlockInfo m_tagBlockInfo;
 	};
 	unsigned __int32 m_offset;
 	unsigned __int16 m_size;

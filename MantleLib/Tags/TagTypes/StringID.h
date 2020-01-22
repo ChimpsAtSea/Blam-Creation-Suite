@@ -1,6 +1,6 @@
 #pragma once
 
-struct StringID
+struct string_id
 {
 	uint32_t stringid;
 };
