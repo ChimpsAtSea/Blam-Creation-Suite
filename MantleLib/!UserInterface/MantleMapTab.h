@@ -11,6 +11,11 @@ public:
 protected:
 	virtual void RenderContents(bool setSelected);
 
+	void AddTabItem(MantleTab& rMantleTab);
+	void RemoveTabItem(MantleTab& rMantleTab);
+
 	CacheFile* m_pCacheFile;
+	std::vector<MantleTab*> m_tabs;
+	TabClosedCallback m_tabClosedCallback;
 };
 

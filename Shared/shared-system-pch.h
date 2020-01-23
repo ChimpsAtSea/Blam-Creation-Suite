@@ -33,6 +33,8 @@ SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7)
 WriteColoredVerbose(color, "%s ", prefix); \
 WriteLineVerbose(str, ##__VA_ARGS__)
 
+#define vector_erase_by_value_helper(vector, value) vector.erase(std::remove(vector.begin(), vector.end(), value), vector.end());
+
 #define __TBB_SOURCE_DIRECTLY_INCLUDED 1
 #include <tbb/tbb.h>
 #include <tbb/parallel_for.h>

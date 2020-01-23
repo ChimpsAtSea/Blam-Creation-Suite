@@ -16,7 +16,7 @@ public:
 	inline const char* GetTitle() const { return m_title.c_str(); }
 	inline const char* GetDescription() const { return m_description.c_str(); }
 
-	typedef void(*TabClosedCallback)(MantleTab&);
+	using TabClosedCallback = std::function<void(MantleTab&)>;
 	void AddTabClosedCallback(TabClosedCallback);
 protected:
 	virtual void RenderContents(bool setSelected) = 0;

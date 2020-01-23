@@ -41,7 +41,7 @@ ImGuiDataType PrimitiveTypeToImGuiDataType(PrimitiveType primitiveType)
 
 ImVec2 DrawStructureSeparator(int recursionDepth, ImVec2* pTopScreenPos = nullptr)
 {
-	int recursionPadding = 25 * recursionDepth;
+	float recursionPadding = 25.0f * recursionDepth;
 
 	ImVec2 screenPos = {};
 	if (recursionDepth > 0)
@@ -87,7 +87,7 @@ inline qword get_page_offset(qword virtual_base_address, dword address)
 
 void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionType& reflectionData, int recursionDepth)
 {
-	int recursionPadding = 25 * recursionDepth;
+	float recursionPadding = 25.0f * recursionDepth;
 
 	ImVec2 screenPosTop = DrawStructureSeparator(recursionDepth);
 
@@ -292,7 +292,7 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 				//ImGui::SetColumnWidth(1, 1230);
 				//ImGui::NextColumn(); // padding
 				ImGui::Dummy(ImVec2());
-				ImGui::SameLine(recursionPadding + 5);
+				ImGui::SameLine(recursionPadding + 5.0f);
 
 				if (ImGui::CollapsingHeader(pFieldDisplayName, ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_AllowItemOverlap))
 				{
@@ -357,7 +357,10 @@ MantleTagTab::~MantleTagTab()
 
 void MantleTagTab::RenderContents(bool setSelected)
 {
-	if (ImGui::BeginTabItem("Scenario")) // the tag name
+	ImGui::PushID(this);
+	ImGuiTabItemFlags tabFlags = 0;
+	if (setSelected) tabFlags |= ImGuiTabItemFlags_SetSelected;
+	if (ImGui::BeginTabItem(GetTitle(), &m_isOpen, tabFlags))
 	{
 		s_cache_file_tag_group& rGroup = m_pCacheFile->GetTagGroup(m_pTagInstance->group_index);
 		TagGroupName tagGroupName = (TagGroupName)rGroup.group_tags[0];
@@ -370,4 +373,5 @@ void MantleTagTab::RenderContents(bool setSelected)
 
 		ImGui::EndTabItem();
 	}
+	ImGui::PopID();
 }

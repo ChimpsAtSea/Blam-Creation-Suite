@@ -1,7 +1,5 @@
 #include "mantlelib-private-pch.h"
 
-#define vector_erase_by_value_helper(vector, value) vector.erase(std::remove(vector.begin(), vector.end(), value), vector.end());
-
 bool MantleGUI::s_unknownItemsVisible = false;
 std::vector<MantleTab*> MantleGUI::s_pMantleTabs;
 std::vector<MantleGUI::OnCloseCallback> MantleGUI::s_guiCloseCallbacks;
@@ -130,15 +128,10 @@ void MantleGUI::Deinit()
 void MantleGUI::AddTabItem(MantleTab& rMantleTab)
 {
 	s_pMantleTabs.push_back(&rMantleTab);
-	rMantleTab.AddTabClosedCallback(TabClosedCallback);
+	rMantleTab.AddTabClosedCallback(RemoveTabItem);
 }
 
 void MantleGUI::RemoveTabItem(MantleTab& rMantleTab)
-{
-	s_pMantleTabs.push_back(&rMantleTab);
-}
-
-void MantleGUI::TabClosedCallback(MantleTab& rMantleTab)
 {
 	vector_erase_by_value_helper(s_pMantleTabs, &rMantleTab);
 }

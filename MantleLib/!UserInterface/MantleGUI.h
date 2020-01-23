@@ -12,7 +12,6 @@ public:
 	static void Deinit();
 	static void AddTabItem(MantleTab& rMantleTab);
 	static void RemoveTabItem(MantleTab& rMantleTab);
-	static void TabClosedCallback(MantleTab& rMantleTab);
 	static void RegisterOnCloseCallback(OnCloseCallback callback);
 	static void UnregisterOnCloseCallback(OnCloseCallback callback);
 	inline static void SetUnknownItemsVisible(bool unknownItemsVisible) { s_unknownItemsVisible = unknownItemsVisible; };

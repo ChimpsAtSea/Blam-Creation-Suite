@@ -38,7 +38,7 @@ namespace winrt::MyApp::implementation
 		//swapChainPanel->CompositionScaleChanged +=
 		//	ref new TypedEventHandler<SwapChainPanel^, Object^>(this, &DirectXPage::OnCompositionScaleChanged);
 
-		swapChainPanel.SizeChanged([=](winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::UI::Xaml::SizeChangedEventArgs const& e) {
+		swapChainPanel.SizeChanged([=](winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Windows::UI::Xaml::SizeChangedEventArgs const& e) {
 
 			critical_section::scoped_lock lock(m_main->GetCriticalSection());
 			m_deviceResources->SetLogicalSize(e.NewSize());

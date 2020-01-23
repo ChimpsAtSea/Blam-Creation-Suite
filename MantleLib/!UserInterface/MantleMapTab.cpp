@@ -12,6 +12,8 @@ void MantleMapTab::DisplayMapTabUI()
 	}
 	ImGui::BeginChild("##tags", ImVec2(0, 0), true);
 
+	MantleTab* pSelectedTab = nullptr;
+
 	static bool tagIsSelected = false;
 	static int selected = 0;
 	for (int i = 0; i < m_pCacheFile->GetTagCount(); i++)
@@ -22,9 +24,11 @@ void MantleMapTab::DisplayMapTabUI()
 			if (ImGui::Selectable(pTagName, selected == i))
 			{
 				selected = i;
-				tagIsSelected = true;
 
 
+				MantleTab* pTab = new MantleTagTab("TagTab", "TagTab", m_pCacheFile, selected);
+				AddTabItem(*pTab);
+				pSelectedTab = pTab;
 			}
 		}
 	}
@@ -38,17 +42,17 @@ void MantleMapTab::DisplayMapTabUI()
 	// right
 	ImGui::BeginGroup();
 	ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()));
-	if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None)) // each tag
+	if (!m_tabs.empty()) // #NOTE: Checking this fixes strange ImGUI crash
 	{
-		if (!m_pCacheFile->m_isMapLoading && m_pCacheFile->m_pMapData && tagIsSelected)
+		if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None)) // each tag
 		{
-			static MantleTagTab tagTab = MantleTagTab("TagTab", "TagTab", m_pCacheFile, selected);
+			for (MantleTab* pTab : m_tabs)
+			{
+				pTab->Render(pSelectedTab == pTab);
+			}
 
-			tagTab.Render(false);
-
+			ImGui::EndTabBar();
 		}
-
-		ImGui::EndTabBar();
 	}
 	ImGui::EndChild();
 	if (ImGui::Button("Revert")) {}
@@ -63,11 +67,22 @@ void MantleMapTab::DisplayMapTabUI()
 MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription, const wchar_t* szMapFilePath)
 	:MantleTab(pTitle, pDescription)
 {
+	m_tabClosedCallback = [this](MantleTab& rTab)
+	{
+		this->RemoveTabItem(rTab);
+	};
 	m_pCacheFile = new CacheFile(szMapFilePath);
 }
 
 MantleMapTab::~MantleMapTab()
 {
+	// delete the first tab in the vector until non remain
+	// tabs are removed from vector via the TabClosedCallback
+	while (!m_tabs.empty())
+	{
+		delete* m_tabs.begin();
+	}
+
 	delete m_pCacheFile;
 }
 
@@ -90,4 +105,15 @@ void MantleMapTab::RenderContents(bool setSelected)
 		ImGui::EndTabItem();
 	}
 	ImGui::PopID();
+}
+
+void MantleMapTab::AddTabItem(MantleTab& rMantleTab)
+{
+	m_tabs.push_back(&rMantleTab);
+	rMantleTab.AddTabClosedCallback(m_tabClosedCallback);
+}
+
+void MantleMapTab::RemoveTabItem(MantleTab& rMantleTab)
+{
+	vector_erase_by_value_helper(m_tabs, &rMantleTab);
 }
