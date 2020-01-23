@@ -1,5 +1,5 @@
 #pragma once
-enum e_cache_file_section
+enum class e_cache_file_section
 {
 	_cache_file_section_debug,
 	_cache_file_section_resource,

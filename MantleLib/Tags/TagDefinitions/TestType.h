@@ -67,10 +67,29 @@ struct s_scenario_ai_objectives_block_definition
 	INT16 zone;
 	INT16 unknown_editor_role_index;
 	INT16 editor_folder_index;
-	s_tag_block_definition<s_scenario_trigger_volumes_block_definition> roles_block;
+	s_tag_block_definition<> roles_block;
 };
 
 #define tag_block_type(type) <type>
+
+/* 398 */
+struct s_scenario_scripts_parameters_block_definition
+{
+	char script_name[32];
+	__int16 type;
+	__int16 __unknown22;
+};
+
+/* 397 */
+struct s_scenario_scripts_block_definition
+{
+	string_id name;
+	__int16 script_type;
+	__int16 return_type;
+	unsigned __int16 root_expression_index;
+	unsigned __int16 root_expression_salt;
+	s_tag_block_definition<s_scenario_scripts_parameters_block_definition> parameters;
+};
 
 /* 386 */
 #pragma pack(push, 4)
@@ -95,7 +114,7 @@ struct s_scenario_definition
     float sandbox_budget;
     string_id default_vehicle_filter;
     TagReference performance_throttle_profile_reference;
-    s_tag_block_definition<s_scenario_ai_objectives_block_definition> structure_sbsps_block;
+    s_tag_block_definition<> structure_sbsps_block;
     s_tag_block_definition<> structure_design_block;
     TagReference __unknown64_reference;
     TagReference __unknown74_reference;
@@ -220,7 +239,7 @@ struct s_scenario_definition
     UINT32 __unknown434;
     UINT32 __unknown438;
     DataReference script_strings_data_reference;
-    s_tag_block_definition<> scripts_block;
+    s_tag_block_definition<s_scenario_scripts_block_definition> scripts_block;
     s_tag_block_definition<> globals_block;
     s_tag_block_definition<> script_references_block;
     UINT32 __unknown474;

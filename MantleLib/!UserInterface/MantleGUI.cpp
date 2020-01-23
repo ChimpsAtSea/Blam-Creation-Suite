@@ -11,6 +11,8 @@ void MantleGUI::Init()
 	AddTabItem(*new MantleMapTab("45_aftship.map", "Map #1", L"45_aftship.map"));
 	AddTabItem(*new MantleMapTab("52_ivory_tower.map", "Map #2", L"52_ivory_tower.map"));
 	AddTabItem(*new MantleMapTab("cex_timberland.map", "Map #3", L"cex_timberland.map"));
+	AddTabItem(*new MantleMapTab("m70_a.map", "Map #4", L"m70_a.map"));
+	AddTabItem(*new MantleMapTab("ff45_corvette.map", "Map #5", L"ff45_corvette.map"));
 }
 
 void MantleGUI::Render(int width, int height)

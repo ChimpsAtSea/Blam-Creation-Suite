@@ -1369,7 +1369,7 @@ void GameLauncher::DrawMainMenu()
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
 	static ImVec2 nextWindowSize = ImVec2(width * 0.98f, height * 0.94f);
-	ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
+	//ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowSize(nextWindowSize, ImGuiCond_FirstUseEver);
 
 	static bool isWindowOpen = true;
@@ -1455,7 +1455,7 @@ void GameLauncher::DrawPauseMenu()
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
-	ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
+	//ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowSize(ImVec2(width / 1.5f, height / 1.5f), ImGuiCond_FirstUseEver);
 
 	static bool isWindowOpen = true;

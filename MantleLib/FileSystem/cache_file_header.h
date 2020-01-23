@@ -88,8 +88,8 @@ struct s_cache_file_header
 
 	int32_t rsa[64];
 
-	int32_t section_offsets[k_number_of_cache_file_sections];
-	s_cache_file_section_file_bounds section_bounds[k_number_of_cache_file_sections];
+	int32_t section_offsets[underlying_cast(e_cache_file_section::k_number_of_cache_file_sections)];
+	s_cache_file_section_file_bounds section_bounds[underlying_cast(e_cache_file_section::k_number_of_cache_file_sections)];
 
 	int32_t guid[4];
 
