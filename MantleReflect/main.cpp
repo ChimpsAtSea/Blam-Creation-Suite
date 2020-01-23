@@ -298,27 +298,74 @@ ReflectionTypeContainer* GetPrimitiveReflectionType(PrimitiveType primitiveType)
 	return nullptr;
 }
 
-ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::RecordDecl& rRecordDeclaration, bool isPrimitive = false)
+ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::QualType* recordQualifiedType, const clang::RecordDecl& rRecordDeclaration, bool isPrimitive = false)
 {
+	std::string declarationName;
+	if (recordQualifiedType)
+	{
+		declarationName = QualType::getAsString(recordQualifiedType->split(), printingPolicy);
+	}
+	else // construct best qualified type name
+	{
+		if (rRecordDeclaration.isClass())
+		{
+			declarationName += "class ";
+		}
+		else if (rRecordDeclaration.isStruct())
+		{
+			declarationName += "struct ";
+		}
+		declarationName += rRecordDeclaration.getQualifiedNameAsString();
+	}
+
+
+
+
+	RecordDecl::field_range fields = rRecordDeclaration.fields();
+	size_t numFields = false; for (FieldDecl* field : fields) { numFields++; }
+
 	bool isTemplated = rRecordDeclaration.isTemplated();
 	const clang::ClassTemplateSpecializationDecl* pClassTemplateSpecializationDecl = dyn_cast<ClassTemplateSpecializationDecl>(&rRecordDeclaration);
-
 	if (isTemplated && pClassTemplateSpecializationDecl == nullptr)
 	{
 		return nullptr;
 	}
 
-	for (ReflectionTypeContainer* rReflectionTypeContainer : ReflectedTypesData)
-	{
-		if (rReflectionTypeContainer->pRecordDeclaration == &rRecordDeclaration)
+	ReflectionTypeContainer* pExistingReflectionTypeContainer = nullptr;
+	{ // handle existing records
+		for (ReflectionTypeContainer* rReflectionTypeContainer : ReflectedTypesData)
 		{
-			return rReflectionTypeContainer;
+			if (rReflectionTypeContainer->pRecordDeclaration == &rRecordDeclaration || rReflectionTypeContainer->m_typeName == declarationName)
+			{
+				pExistingReflectionTypeContainer = rReflectionTypeContainer;
+
+			}
+		}
+	}
+	if (pExistingReflectionTypeContainer)
+	{
+		if (numFields == 0)
+		{
+			return pExistingReflectionTypeContainer; // we already have data for this
+		}
+		else if (!pExistingReflectionTypeContainer->m_fieldsData.empty())
+		{
+			return pExistingReflectionTypeContainer; // we already have data for this
 		}
 	}
 
-	const std::string declarationName = rRecordDeclaration.getQualifiedNameAsString();
+	// if existing reflection container exists and we're updating it, replace all data
 
-	ReflectionTypeContainer& rReflectionTypeContainer = *ReflectedTypesData.emplace_back(new ReflectionTypeContainer());
+	bool createdNewReflectionContainer = pExistingReflectionTypeContainer == nullptr;
+	ReflectionTypeContainer* pReflectionTypeContainer = pExistingReflectionTypeContainer;
+	if (createdNewReflectionContainer)
+	{
+		pReflectionTypeContainer = new ReflectionTypeContainer();
+	}
+	ReflectionTypeContainer& rReflectionTypeContainer = *pReflectionTypeContainer;
+
+	assert(rReflectionTypeContainer.m_fieldsData.empty());
+
 	rReflectionTypeContainer.m_typeName = declarationName;
 	rReflectionTypeContainer.pRecordDeclaration = &rRecordDeclaration;
 	rReflectionTypeContainer.m_isPrimitive = isPrimitive;
@@ -340,7 +387,7 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 				const std::string reflectionQualifiedTypeName = QualType::getAsString(qualifiedType.split(), printingPolicy);
 				CXXRecordDecl* pDecl = qualifiedType->getAsCXXRecordDecl();
 				assert(pDecl != nullptr);
-				ReflectionTypeContainer* pTemplateType = CreateReflectedType(Context, *pDecl);
+				ReflectionTypeContainer* pTemplateType = CreateReflectedType(Context, &qualifiedType, *pDecl);
 				assert(pTemplateType != nullptr);
 				rReflectionTypeContainer.m_pTemplateTypes.push_back(pTemplateType);
 			}
@@ -348,6 +395,9 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 	}
 
 	bool disableReflection = false;
+	std::string no_reflection_str;
+	std::string nice_name_str;
+	std::string tag_group_str;
 	for (auto it : rRecordDeclaration.attrs())
 	{
 		Attr& attr = (*it);
@@ -355,9 +405,33 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 		if (annotatedAttr != nullptr)
 		{
 			std::string str = annotatedAttr->getAnnotation();
-			if (str == "no_reflection")
+
+			const char* pNoReflection = strstr(str.c_str(), "no_reflection");
+			const char* pNiceName = strstr(str.c_str(), "nice_name");
+			const char* pTagGroup = strstr(str.c_str(), "tag_group");
+
+			if (pNoReflection)
 			{
 				disableReflection = true;
+			}
+			if (pNiceName)
+			{
+				nice_name_str = pNiceName + strlen("nice_name:");
+			}
+			if (pTagGroup)
+			{
+				const char* pTagGroupStringBegin = pTagGroup + strlen("tag_group:");
+				size_t tagGroupRawStringLength = strlen(pTagGroupStringBegin);
+				assert(tagGroupRawStringLength == 6);
+				char pBuffer[5] = // #NOTE: We expect to receive these characters swapped. We're swapping them back to the original integer order
+				{
+					pTagGroupStringBegin[4],
+					pTagGroupStringBegin[3],
+					pTagGroupStringBegin[2],
+					pTagGroupStringBegin[1],
+					0
+				};
+				tag_group_str = pBuffer;
 			}
 		}
 	}
@@ -367,7 +441,6 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 		return &rReflectionTypeContainer;
 	}
 
-	RecordDecl::field_range fields = rRecordDeclaration.fields();
 	for (FieldDecl* field : fields)
 	{
 		ReflectionFieldContainer& rFieldData = *rReflectionTypeContainer.m_fieldsData.emplace_back(new ReflectionFieldContainer());
@@ -426,7 +499,7 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 			}
 
 			rFieldData.m_reflectionTypeCategory = reflectionTypeCategory;
-			ReflectionTypeContainer* pType = CreateReflectedType(Context, *pCXXRecord);
+			ReflectionTypeContainer* pType = CreateReflectedType(Context, &fieldQualifiedType, *pCXXRecord);
 			assert(pType != nullptr);
 			rFieldData.m_pFieldType = pType;
 		}
@@ -440,7 +513,7 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 			if (name == "StringID") reflectionTypeCategory = ReflectionTypeCategory::StringID;
 
 			rFieldData.m_reflectionTypeCategory = reflectionTypeCategory;
-			ReflectionTypeContainer* pType = CreateReflectedType(Context, *pCXXRecord);
+			ReflectionTypeContainer* pType = CreateReflectedType(Context, &fieldQualifiedType, *pCXXRecord);
 			assert(pType != nullptr);
 			rFieldData.m_pFieldType = pType;
 		}
@@ -547,6 +620,11 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::R
 		assert(rFieldData.m_pFieldType != nullptr);
 	}
 
+	if (createdNewReflectionContainer)
+	{
+		ReflectedTypesData.emplace_back(pReflectionTypeContainer);
+	}
+
 	return &rReflectionTypeContainer;
 }
 
@@ -560,25 +638,25 @@ void FormatReflectedTypeToFunction(const ReflectionTypeContainer& rType)
 
 	stringstream << "template<>" << std::endl;
 
-	if (!rType.m_isTypeTemplate)
+	//if (!rType.m_isTypeTemplate)
 	{
 		stringstream << "inline const ReflectionType& GetReflectionType<" << rType.m_typeName << ">()" << std::endl;
 	}
-	else
-	{
-		stringstream << "inline const ReflectionType& GetReflectionType<" << rType.m_typeName << "<";
+	//else
+	//{
+	//	stringstream << "inline const ReflectionType& GetReflectionType<" << rType.m_typeName << "<";
 
-		if (!rType.m_pTemplateTypes.empty())
-		{
-			for (ReflectionTypeContainer* pTemplateType : rType.m_pTemplateTypes)
-			{
-				stringstream << pTemplateType->m_typeName << ", ";
-			}
-			stringstream.seekp(-2, stringstream.cur); // remove trailing ", "
-		}
-		
-		stringstream << ">>()" << std::endl;
-	}
+	//	if (!rType.m_pTemplateTypes.empty())
+	//	{
+	//		for (ReflectionTypeContainer* pTemplateType : rType.m_pTemplateTypes)
+	//		{
+	//			stringstream << pTemplateType->m_typeName << ", ";
+	//		}
+	//		stringstream.seekp(-2, stringstream.cur); // remove trailing ", "
+	//	}
+	//	
+	//	stringstream << ">>()" << std::endl;
+	//}
 	stringstream << "{" << std::endl;
 	stringstream << "\t" << "static ReflectionType reflectionData = " << std::endl;
 	stringstream << "\t{" << std::endl;
@@ -658,7 +736,7 @@ public:
 
 	bool VisitCXXRecordDecl(CXXRecordDecl* Declaration) {
 
-		CreateReflectedType(Context, *Declaration);
+		CreateReflectedType(Context, nullptr, *Declaration);
 
 		return true;
 	}
@@ -730,47 +808,48 @@ int main(int argc, const char* argv[])
 		FormatReflectedTypeToFunction(rType);
 	}
 
-	for (ReflectionTypeContainer* pType : ReflectedTypesData)
-	{
-		ReflectionTypeContainer& rType = *pType;
-
-		if (rType.m_isPrimitive) continue;
-
-		if (rType.m_fieldsData.size() > 0)
+	if (false) // debug print
+		for (ReflectionTypeContainer* pType : ReflectedTypesData)
 		{
-			printf("struct %s\n{\n", rType.m_typeName.c_str());
-			for (ReflectionFieldContainer* pField : rType.m_fieldsData)
+			ReflectionTypeContainer& rType = *pType;
+
+			if (rType.m_isPrimitive) continue;
+
+			if (rType.m_fieldsData.size() > 0)
 			{
-				ReflectionFieldContainer& rField = *pField;
+				printf("struct %s\n{\n", rType.m_typeName.c_str());
+				for (ReflectionFieldContainer* pField : rType.m_fieldsData)
+				{
+					ReflectionFieldContainer& rField = *pField;
 
-				if (rField.m_arraySize)
-				{
-					printf(
-						"\t%s %s[%u]; // size:0x%X offset:0x%X\n",
-						rField.m_pFieldType->m_typeName.c_str(),
-						rField.m_fieldName.c_str(),
-						static_cast<uint32_t>(rField.m_arraySize),
-						static_cast<uint32_t>(rField.m_size),
-						static_cast<uint32_t>(rField.m_offset));
+					if (rField.m_arraySize)
+					{
+						printf(
+							"\t%s %s[%u]; // size:0x%X offset:0x%X\n",
+							rField.m_pFieldType->m_typeName.c_str(),
+							rField.m_fieldName.c_str(),
+							static_cast<uint32_t>(rField.m_arraySize),
+							static_cast<uint32_t>(rField.m_size),
+							static_cast<uint32_t>(rField.m_offset));
+					}
+					else
+					{
+						printf(
+							"\t%s %s; // size:0x%X offset:0x%X\n",
+							rField.m_pFieldType->m_typeName.c_str(),
+							rField.m_fieldName.c_str(),
+							static_cast<uint32_t>(rField.m_size),
+							static_cast<uint32_t>(rField.m_offset));
+					}
 				}
-				else
-				{
-					printf(
-						"\t%s %s; // size:0x%X offset:0x%X\n",
-						rField.m_pFieldType->m_typeName.c_str(),
-						rField.m_fieldName.c_str(),
-						static_cast<uint32_t>(rField.m_size),
-						static_cast<uint32_t>(rField.m_offset));
-				}
+
+				printf("};\n");
 			}
-
-			printf("};\n");
+			else
+			{
+				printf("struct %s { };\n", rType.m_typeName.c_str());
+			}
 		}
-		else
-		{
-			printf("struct %s { };\n", rType.m_typeName.c_str());
-		}
-	}
 
 	std::string str = stringstream.str();
 	{

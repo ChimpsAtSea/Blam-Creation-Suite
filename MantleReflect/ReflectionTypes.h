@@ -241,7 +241,7 @@ struct ReflectionType
 #pragma warning( pop )
 
 template<typename T>
-constexpr const ReflectionType& GetReflectionType();
+inline const ReflectionType& GetReflectionType();
 
 #pragma pack(pop)
 
