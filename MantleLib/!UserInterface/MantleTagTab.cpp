@@ -17,24 +17,28 @@ ImGuiDataType PrimitiveTypeToImGuiDataType(PrimitiveType primitiveType)
 {
 	switch (primitiveType)
 	{
-	case PrimitiveType::Int8:		return ImGuiDataType_S8;
-	case PrimitiveType::Int16:		return ImGuiDataType_S16;
-	case PrimitiveType::Int32:		return ImGuiDataType_S32;
-	case PrimitiveType::Int64:		return ImGuiDataType_S64;
-	case PrimitiveType::UInt8:		return ImGuiDataType_U8;
-	case PrimitiveType::UInt16:		return ImGuiDataType_U16;
-	case PrimitiveType::UInt32:		return ImGuiDataType_U32;
-	case PrimitiveType::UInt64:		return ImGuiDataType_U64;
-	case PrimitiveType::Float:		return ImGuiDataType_Float;
-	case PrimitiveType::Double:		return ImGuiDataType_Double;
-	case PrimitiveType::Boolean8:	return ImGuiDataType_S8;
-	case PrimitiveType::Boolean16:	return ImGuiDataType_S16;
-	case PrimitiveType::Boolean32:	return ImGuiDataType_S32;
-	case PrimitiveType::Boolean64:	return ImGuiDataType_S64;
-	case PrimitiveType::Enum8:		return ImGuiDataType_S8;
-	case PrimitiveType::Enum16:		return ImGuiDataType_S16;
-	case PrimitiveType::Enum32:		return ImGuiDataType_S32;
-	case PrimitiveType::Enum64:		return ImGuiDataType_S64;
+	case PrimitiveType::Int8:			return ImGuiDataType_S8;
+	case PrimitiveType::Int16:			return ImGuiDataType_S16;
+	case PrimitiveType::Int32:			return ImGuiDataType_S32;
+	case PrimitiveType::Int64:			return ImGuiDataType_S64;
+	case PrimitiveType::UInt8:			return ImGuiDataType_U8;
+	case PrimitiveType::UInt16:			return ImGuiDataType_U16;
+	case PrimitiveType::UInt32:			return ImGuiDataType_U32;
+	case PrimitiveType::UInt64:			return ImGuiDataType_U64;
+	case PrimitiveType::Float:			return ImGuiDataType_Float;
+	case PrimitiveType::Double:			return ImGuiDataType_Double;
+	case PrimitiveType::Boolean8:		return ImGuiDataType_S8;
+	case PrimitiveType::Boolean16:		return ImGuiDataType_S16;
+	case PrimitiveType::Boolean32:		return ImGuiDataType_S32;
+	case PrimitiveType::Boolean64:		return ImGuiDataType_S64;
+	case PrimitiveType::Enum8:			return ImGuiDataType_S8;
+	case PrimitiveType::Enum16:			return ImGuiDataType_S16;
+	case PrimitiveType::Enum32:			return ImGuiDataType_S32;
+	case PrimitiveType::Enum64:			return ImGuiDataType_S64;
+	case PrimitiveType::Undefined8:		return ImGuiDataType_S8;
+	case PrimitiveType::Undefined16:	return ImGuiDataType_S16;
+	case PrimitiveType::Undefined32:	return ImGuiDataType_Float;
+	case PrimitiveType::Undefined64:	return ImGuiDataType_Double;
 	}
 	FATAL_ERROR("Unsupported primitive type");
 }
@@ -102,7 +106,7 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 
 		if (!reflectionField.m_arraySize)
 		{
-			if (rTypeInfo.m_primitiveTypeIndex != PrimitiveType::Undefined)
+			if (rTypeInfo.m_primitiveTypeIndex != PrimitiveType::NonPrimitive)
 			{
 				const char* pFieldTypeName = PrimitiveTypeToString(rTypeInfo.m_primitiveTypeIndex);
 
@@ -135,6 +139,10 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 				case PrimitiveType::Enum16:
 				case PrimitiveType::Enum32:
 				case PrimitiveType::Enum64:
+				case PrimitiveType::Undefined8:
+				case PrimitiveType::Undefined16:
+				case PrimitiveType::Undefined32:
+				case PrimitiveType::Undefined64:
 				{
 
 					ImGuiDataType imguiDataType = PrimitiveTypeToImGuiDataType(rTypeInfo.m_primitiveTypeIndex);
@@ -355,15 +363,17 @@ void MantleTagTab::RenderContents(bool setSelected)
 	if (setSelected) tabFlags |= ImGuiTabItemFlags_SetSelected;
 	if (ImGui::BeginTabItem(GetTitle(), &m_isOpen, tabFlags))
 	{
+		ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
 		s_cache_file_tag_group& rGroup = m_pCacheFile->GetTagGroup(m_pTagInstance->group_index);
 		TagGroupName tagGroupName = (TagGroupName)rGroup.group_tags[0];
-		const ReflectionType* pReflectionData = GetTagReflectionData(tagGroupName);
+		const ReflectionType* pReflectionData = GetTagReflectionDataByTagGroup(static_cast<uint32_t>(tagGroupName));
 
 		if (pReflectionData)
 		{
 			PrintReflectionInfoGUI3(m_pTagData, *pReflectionData, 0);
 		}
 
+		ImGui::EndChild();
 		ImGui::EndTabItem();
 	}
 	ImGui::PopID();

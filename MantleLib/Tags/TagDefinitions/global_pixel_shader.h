@@ -6,7 +6,7 @@ struct nicename("Global Pixel Shader") group('glps') s_global_pixel_shader_defin
 	struct nicename("Pixel Shaders") s_pixel_shader_block_definition;
 
 	s_tag_block_definition<s_unknown_block_definition> __unknown_block; 
-	Unknown32 __unknown2; 
+	Undefined32 __unknown2; 
 	s_tag_block_definition<s_pixel_shader_block_definition> nicename("Pixel Shaders") pixel_shaders_block; 
 
 	struct s_unknown_block_definition
@@ -14,18 +14,18 @@ struct nicename("Global Pixel Shader") group('glps') s_global_pixel_shader_defin
 		struct s_unknown2_block_definition;
 
 		s_tag_block_definition<s_unknown2_block_definition> __unknown_block; 
-		Unknown32 __unknown2; 
+		Undefined32 __unknown2; 
 
 		struct s_unknown2_block_definition
 		{
 			struct s_unknown_block_definition;
 
-			unsigned int __unknown; 
+			uint32_t __unknown; 
 			s_tag_block_definition<s_unknown_block_definition> __unknown2_block; 
 
 			struct s_unknown_block_definition
 			{
-				unsigned int __unknown; 
+				uint32_t __unknown; 
 			};
 		};
 	};
@@ -35,45 +35,45 @@ struct nicename("Global Pixel Shader") group('glps') s_global_pixel_shader_defin
 		struct s_unknown_block_definition;
 		struct s_unknown2_block_definition;
 
-		Unknown32 __unknown; 
+		Undefined32 __unknown; 
 		DataReference __unknown2_data_reference; 
 		DataReference __unknown3_data_reference; 
 		DataReference __unknown4_data_reference; 
-		Unknown32 __unknown5; 
-		Unknown32 __unknown6; 
-		Unknown32 __unknown7; 
-		Unknown32 __unknown8; 
-		Unknown32 __unknown9; 
-		Unknown32 __unknown10; 
+		Undefined32 __unknown5; 
+		Undefined32 __unknown6; 
+		Undefined32 __unknown7; 
+		Undefined32 __unknown8; 
+		Undefined32 __unknown9; 
+		Undefined32 __unknown10; 
 		s_tag_block_definition<s_unknown_block_definition> __unknown11_block; 
-		signed int __unknown12; 
-		Unknown32 __unknown13; 
-		signed int __unknown14; 
+		int32_t __unknown12; 
+		Undefined32 __unknown13; 
+		int32_t __unknown14; 
 		s_tag_block_definition<s_unknown2_block_definition> __unknown15_block; 
-		signed int __unknown16; 
-		Unknown32 __unknown17; 
-		signed int __unknown18; 
-		Unknown32 __unknown19; 
-		Unknown32 __unknown20; 
-		Unknown32 __unknown21; 
-		Unknown32 __unknown22; 
+		int32_t __unknown16; 
+		Undefined32 __unknown17; 
+		int32_t __unknown18; 
+		Undefined32 __unknown19; 
+		Undefined32 __unknown20; 
+		Undefined32 __unknown21; 
+		Undefined32 __unknown22; 
 
 		struct s_unknown_block_definition
 		{
 			string_id __unknown; 
-			signed char __unknown2; 
-			signed char __unknown3; 
-			signed char __unknown4; 
-			signed char __unknown5; 
+			int8_t __unknown2; 
+			int8_t __unknown3; 
+			int8_t __unknown4; 
+			int8_t __unknown5; 
 		};
 
 		struct s_unknown2_block_definition
 		{
 			string_id __unknown; 
-			signed char __unknown2; 
-			signed char __unknown3; 
-			signed char __unknown4; 
-			signed char __unknown5; 
+			int8_t __unknown2; 
+			int8_t __unknown3; 
+			int8_t __unknown4; 
+			int8_t __unknown5; 
 		};
 	};
 };

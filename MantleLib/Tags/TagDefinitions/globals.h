@@ -32,50 +32,50 @@ struct nicename("Globals") group('matg') s_globals_definition
 	struct s_unknown5_block_definition;
 	struct nicename("Alt Materials") s_alt_material_block_definition;
 
-	Unknown32 __unknown; 
-	Unknown32 __unknown2; 
-	Unknown32 __unknown3; 
-	Unknown32 __unknown4; 
-	Unknown32 __unknown5; 
-	Unknown32 __unknown6; 
-	Unknown32 __unknown7; 
-	Unknown32 __unknown8; 
-	Unknown32 __unknown9; 
-	Unknown32 __unknown10; 
-	Unknown32 __unknown11; 
-	Unknown32 __unknown12; 
-	Unknown32 __unknown13; 
-	Unknown32 __unknown14; 
-	Unknown32 __unknown15; 
-	Unknown32 __unknown16; 
-	Unknown32 __unknown17; 
-	Unknown32 __unknown18; 
-	Unknown32 __unknown19; 
-	Unknown32 __unknown20; 
-	Unknown32 __unknown21; 
-	Unknown32 __unknown22; 
-	Unknown32 __unknown23; 
-	Unknown32 __unknown24; 
-	Unknown32 __unknown25; 
-	Unknown32 __unknown26; 
-	Unknown32 __unknown27; 
-	Unknown32 __unknown28; 
-	Unknown32 __unknown29; 
-	Unknown32 __unknown30; 
-	Unknown32 __unknown31; 
-	Unknown32 __unknown32; 
-	Unknown32 __unknown33; 
-	Unknown32 __unknown34; 
-	Unknown32 __unknown35; 
-	Unknown32 __unknown36; 
-	Unknown32 __unknown37; 
-	Unknown32 __unknown38; 
-	Unknown32 __unknown39; 
-	Unknown32 __unknown40; 
-	Unknown32 __unknown41; 
-	Unknown32 __unknown42; 
-	Unknown32 __unknown43; 
-	signed int nicename("Language") language; 
+	Undefined32 __unknown; 
+	Undefined32 __unknown2; 
+	Undefined32 __unknown3; 
+	Undefined32 __unknown4; 
+	Undefined32 __unknown5; 
+	Undefined32 __unknown6; 
+	Undefined32 __unknown7; 
+	Undefined32 __unknown8; 
+	Undefined32 __unknown9; 
+	Undefined32 __unknown10; 
+	Undefined32 __unknown11; 
+	Undefined32 __unknown12; 
+	Undefined32 __unknown13; 
+	Undefined32 __unknown14; 
+	Undefined32 __unknown15; 
+	Undefined32 __unknown16; 
+	Undefined32 __unknown17; 
+	Undefined32 __unknown18; 
+	Undefined32 __unknown19; 
+	Undefined32 __unknown20; 
+	Undefined32 __unknown21; 
+	Undefined32 __unknown22; 
+	Undefined32 __unknown23; 
+	Undefined32 __unknown24; 
+	Undefined32 __unknown25; 
+	Undefined32 __unknown26; 
+	Undefined32 __unknown27; 
+	Undefined32 __unknown28; 
+	Undefined32 __unknown29; 
+	Undefined32 __unknown30; 
+	Undefined32 __unknown31; 
+	Undefined32 __unknown32; 
+	Undefined32 __unknown33; 
+	Undefined32 __unknown34; 
+	Undefined32 __unknown35; 
+	Undefined32 __unknown36; 
+	Undefined32 __unknown37; 
+	Undefined32 __unknown38; 
+	Undefined32 __unknown39; 
+	Undefined32 __unknown40; 
+	Undefined32 __unknown41; 
+	Undefined32 __unknown42; 
+	Undefined32 __unknown43; 
+	int32_t nicename("Language") language; 
 	s_tag_block_definition<s_havok_cleanup_resource_block_definition> nicename("Havok Cleanup Resources") havok_cleanup_resources_block; 
 	s_tag_block_definition<s_sound_global_block_definition> nicename("Sound Globals") sound_globals_block; 
 	s_tag_block_definition<s_ai_global_block_definition> nicename("AI Globals") ai_globals_block; 
@@ -91,16 +91,16 @@ struct nicename("Globals") group('matg') s_globals_definition
 	s_tag_block_definition<s_unknown_block_definition> __unknown45_block; 
 	s_tag_block_definition<s_grenade_block_definition> nicename("Grenades") grenades_block; 
 	s_tag_block_definition<s_soft_barrier_property_block_definition> nicename("Soft Barrier Properties") soft_barrier_properties_block; 
-	Unknown32 __unknown46; 
-	Unknown32 __unknown47; 
-	Unknown32 __unknown48; 
+	Undefined32 __unknown46; 
+	Undefined32 __unknown47; 
+	Undefined32 __unknown48; 
 	s_tag_block_definition<s_interface_tag_block_definition> nicename("Interface Tags") interface_tags_block; 
-	Unknown32 __unknown49; 
-	Unknown32 __unknown50; 
-	Unknown32 __unknown51; 
-	Unknown32 __unknown52; 
-	Unknown32 __unknown53; 
-	Unknown32 __unknown54; 
+	Undefined32 __unknown49; 
+	Undefined32 __unknown50; 
+	Undefined32 __unknown51; 
+	Undefined32 __unknown52; 
+	Undefined32 __unknown53; 
+	Undefined32 __unknown54; 
 	s_tag_block_definition<s_player_information_block_definition> nicename("Player Information") player_information_block; 
 	s_tag_block_definition<s_player_representation_block_definition> nicename("Player Representation") player_representation_block; 
 	s_tag_block_definition<s_falling_damage_block_definition> nicename("Falling Damage") falling_damage_block; 
@@ -124,161 +124,161 @@ struct nicename("Globals") group('matg') s_globals_definition
 	s_tag_block_definition<s_metagame_global_block_definition> nicename("Metagame Globals") metagame_globals_block; 
 	TagReference nicename("Medal Globals") medal_globals_reference; 
 	// comment
-	unsigned int __unknown56; 
-	unsigned int __unknown57; 
-	unsigned int __unknown58; 
-	unsigned int __unknown59; 
-	unsigned int nicename("String Count") string_count; 
-	unsigned int nicename("Locale Table Size") locale_table_size; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset; 
-	unsigned char nicename("Index Table Hash") index_table_hash[20];
-	unsigned char nicename("String Data Hash") string_data_hash[20];
-	unsigned int __unknown60; 
-	unsigned int __unknown61; 
+	uint32_t __unknown56; 
+	uint32_t __unknown57; 
+	uint32_t __unknown58; 
+	uint32_t __unknown59; 
+	uint32_t nicename("String Count") string_count; 
+	uint32_t nicename("Locale Table Size") locale_table_size; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset; 
+	uint8_t nicename("Index Table Hash") index_table_hash[20];
+	uint8_t nicename("String Data Hash") string_data_hash[20];
+	uint32_t __unknown60; 
+	uint32_t __unknown61; 
 	// comment
-	unsigned int __unknown62; 
-	unsigned int __unknown63; 
-	unsigned int __unknown64; 
-	unsigned int __unknown65; 
-	unsigned int nicename("String Count") string_count2; 
-	unsigned int nicename("Locale Table Size") locale_table_size2; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset2; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset2; 
-	unsigned char nicename("Index Table Hash") index_table_hash2[20];
-	unsigned char nicename("String Data Hash") string_data_hash2[20];
-	unsigned int __unknown66; 
-	unsigned int __unknown67; 
+	uint32_t __unknown62; 
+	uint32_t __unknown63; 
+	uint32_t __unknown64; 
+	uint32_t __unknown65; 
+	uint32_t nicename("String Count") string_count2; 
+	uint32_t nicename("Locale Table Size") locale_table_size2; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset2; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset2; 
+	uint8_t nicename("Index Table Hash") index_table_hash2[20];
+	uint8_t nicename("String Data Hash") string_data_hash2[20];
+	uint32_t __unknown66; 
+	uint32_t __unknown67; 
 	// comment
-	unsigned int __unknown68; 
-	unsigned int __unknown69; 
-	unsigned int __unknown70; 
-	unsigned int __unknown71; 
-	unsigned int nicename("String Count") string_count3; 
-	unsigned int nicename("Locale Table Size") locale_table_size3; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset3; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset3; 
-	unsigned char nicename("Index Table Hash") index_table_hash3[20];
-	unsigned char nicename("String Data Hash") string_data_hash3[20];
-	unsigned int __unknown72; 
-	unsigned int __unknown73; 
+	uint32_t __unknown68; 
+	uint32_t __unknown69; 
+	uint32_t __unknown70; 
+	uint32_t __unknown71; 
+	uint32_t nicename("String Count") string_count3; 
+	uint32_t nicename("Locale Table Size") locale_table_size3; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset3; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset3; 
+	uint8_t nicename("Index Table Hash") index_table_hash3[20];
+	uint8_t nicename("String Data Hash") string_data_hash3[20];
+	uint32_t __unknown72; 
+	uint32_t __unknown73; 
 	// comment
-	unsigned int __unknown74; 
-	unsigned int __unknown75; 
-	unsigned int __unknown76; 
-	unsigned int __unknown77; 
-	unsigned int nicename("String Count") string_count4; 
-	unsigned int nicename("Locale Table Size") locale_table_size4; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset4; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset4; 
-	unsigned char nicename("Index Table Hash") index_table_hash4[20];
-	unsigned char nicename("String Data Hash") string_data_hash4[20];
-	unsigned int __unknown78; 
-	unsigned int __unknown79; 
+	uint32_t __unknown74; 
+	uint32_t __unknown75; 
+	uint32_t __unknown76; 
+	uint32_t __unknown77; 
+	uint32_t nicename("String Count") string_count4; 
+	uint32_t nicename("Locale Table Size") locale_table_size4; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset4; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset4; 
+	uint8_t nicename("Index Table Hash") index_table_hash4[20];
+	uint8_t nicename("String Data Hash") string_data_hash4[20];
+	uint32_t __unknown78; 
+	uint32_t __unknown79; 
 	// comment
-	unsigned int __unknown80; 
-	unsigned int __unknown81; 
-	unsigned int __unknown82; 
-	unsigned int __unknown83; 
-	unsigned int nicename("String Count") string_count5; 
-	unsigned int nicename("Locale Table Size") locale_table_size5; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset5; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset5; 
-	unsigned char nicename("Index Table Hash") index_table_hash5[20];
-	unsigned char nicename("String Data Hash") string_data_hash5[20];
-	unsigned int __unknown84; 
-	unsigned int __unknown85; 
+	uint32_t __unknown80; 
+	uint32_t __unknown81; 
+	uint32_t __unknown82; 
+	uint32_t __unknown83; 
+	uint32_t nicename("String Count") string_count5; 
+	uint32_t nicename("Locale Table Size") locale_table_size5; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset5; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset5; 
+	uint8_t nicename("Index Table Hash") index_table_hash5[20];
+	uint8_t nicename("String Data Hash") string_data_hash5[20];
+	uint32_t __unknown84; 
+	uint32_t __unknown85; 
 	// comment
-	unsigned int __unknown86; 
-	unsigned int __unknown87; 
-	unsigned int __unknown88; 
-	unsigned int __unknown89; 
-	unsigned int nicename("String Count") string_count6; 
-	unsigned int nicename("Locale Table Size") locale_table_size6; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset6; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset6; 
-	unsigned char nicename("Index Table Hash") index_table_hash6[20];
-	unsigned char nicename("String Data Hash") string_data_hash6[20];
-	unsigned int __unknown90; 
-	unsigned int __unknown91; 
+	uint32_t __unknown86; 
+	uint32_t __unknown87; 
+	uint32_t __unknown88; 
+	uint32_t __unknown89; 
+	uint32_t nicename("String Count") string_count6; 
+	uint32_t nicename("Locale Table Size") locale_table_size6; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset6; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset6; 
+	uint8_t nicename("Index Table Hash") index_table_hash6[20];
+	uint8_t nicename("String Data Hash") string_data_hash6[20];
+	uint32_t __unknown90; 
+	uint32_t __unknown91; 
 	// comment
-	unsigned int __unknown92; 
-	unsigned int __unknown93; 
-	unsigned int __unknown94; 
-	unsigned int __unknown95; 
-	unsigned int nicename("String Count") string_count7; 
-	unsigned int nicename("Locale Table Size") locale_table_size7; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset7; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset7; 
-	unsigned char nicename("Index Table Hash") index_table_hash7[20];
-	unsigned char nicename("String Data Hash") string_data_hash7[20];
-	unsigned int __unknown96; 
-	unsigned int __unknown97; 
+	uint32_t __unknown92; 
+	uint32_t __unknown93; 
+	uint32_t __unknown94; 
+	uint32_t __unknown95; 
+	uint32_t nicename("String Count") string_count7; 
+	uint32_t nicename("Locale Table Size") locale_table_size7; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset7; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset7; 
+	uint8_t nicename("Index Table Hash") index_table_hash7[20];
+	uint8_t nicename("String Data Hash") string_data_hash7[20];
+	uint32_t __unknown96; 
+	uint32_t __unknown97; 
 	// comment
-	unsigned int __unknown98; 
-	unsigned int __unknown99; 
-	unsigned int __unknown100; 
-	unsigned int __unknown101; 
-	unsigned int nicename("String Count") string_count8; 
-	unsigned int nicename("Locale Table Size") locale_table_size8; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset8; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset8; 
-	unsigned char nicename("Index Table Hash") index_table_hash8[20];
-	unsigned char nicename("String Data Hash") string_data_hash8[20];
-	unsigned int __unknown102; 
-	unsigned int __unknown103; 
+	uint32_t __unknown98; 
+	uint32_t __unknown99; 
+	uint32_t __unknown100; 
+	uint32_t __unknown101; 
+	uint32_t nicename("String Count") string_count8; 
+	uint32_t nicename("Locale Table Size") locale_table_size8; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset8; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset8; 
+	uint8_t nicename("Index Table Hash") index_table_hash8[20];
+	uint8_t nicename("String Data Hash") string_data_hash8[20];
+	uint32_t __unknown102; 
+	uint32_t __unknown103; 
 	// comment
-	unsigned int __unknown104; 
-	unsigned int __unknown105; 
-	unsigned int __unknown106; 
-	unsigned int __unknown107; 
-	unsigned int nicename("String Count") string_count9; 
-	unsigned int nicename("Locale Table Size") locale_table_size9; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset9; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset9; 
-	unsigned char nicename("Index Table Hash") index_table_hash9[20];
-	unsigned char nicename("String Data Hash") string_data_hash9[20];
-	unsigned int __unknown108; 
-	unsigned int __unknown109; 
+	uint32_t __unknown104; 
+	uint32_t __unknown105; 
+	uint32_t __unknown106; 
+	uint32_t __unknown107; 
+	uint32_t nicename("String Count") string_count9; 
+	uint32_t nicename("Locale Table Size") locale_table_size9; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset9; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset9; 
+	uint8_t nicename("Index Table Hash") index_table_hash9[20];
+	uint8_t nicename("String Data Hash") string_data_hash9[20];
+	uint32_t __unknown108; 
+	uint32_t __unknown109; 
 	// comment
-	unsigned int __unknown110; 
-	unsigned int __unknown111; 
-	unsigned int __unknown112; 
-	unsigned int __unknown113; 
-	unsigned int nicename("String Count") string_count10; 
-	unsigned int nicename("Locale Table Size") locale_table_size10; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset10; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset10; 
-	unsigned char nicename("Index Table Hash") index_table_hash10[20];
-	unsigned char nicename("String Data Hash") string_data_hash10[20];
-	unsigned int __unknown114; 
-	unsigned int __unknown115; 
+	uint32_t __unknown110; 
+	uint32_t __unknown111; 
+	uint32_t __unknown112; 
+	uint32_t __unknown113; 
+	uint32_t nicename("String Count") string_count10; 
+	uint32_t nicename("Locale Table Size") locale_table_size10; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset10; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset10; 
+	uint8_t nicename("Index Table Hash") index_table_hash10[20];
+	uint8_t nicename("String Data Hash") string_data_hash10[20];
+	uint32_t __unknown114; 
+	uint32_t __unknown115; 
 	// comment
-	unsigned int __unknown116; 
-	unsigned int __unknown117; 
-	unsigned int __unknown118; 
-	unsigned int __unknown119; 
-	unsigned int nicename("String Count") string_count11; 
-	unsigned int nicename("Locale Table Size") locale_table_size11; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset11; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset11; 
-	unsigned char nicename("Index Table Hash") index_table_hash11[20];
-	unsigned char nicename("String Data Hash") string_data_hash11[20];
-	unsigned int __unknown120; 
-	unsigned int __unknown121; 
+	uint32_t __unknown116; 
+	uint32_t __unknown117; 
+	uint32_t __unknown118; 
+	uint32_t __unknown119; 
+	uint32_t nicename("String Count") string_count11; 
+	uint32_t nicename("Locale Table Size") locale_table_size11; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset11; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset11; 
+	uint8_t nicename("Index Table Hash") index_table_hash11[20];
+	uint8_t nicename("String Data Hash") string_data_hash11[20];
+	uint32_t __unknown120; 
+	uint32_t __unknown121; 
 	// comment
-	unsigned int __unknown122; 
-	unsigned int __unknown123; 
-	unsigned int __unknown124; 
-	unsigned int __unknown125; 
-	unsigned int nicename("String Count") string_count12; 
-	unsigned int nicename("Locale Table Size") locale_table_size12; 
-	unsigned int nicename("Locale Index Table Offset") locale_index_table_offset12; 
-	unsigned int nicename("Locale Data Index Offset") locale_data_index_offset12; 
-	unsigned char nicename("Index Table Hash") index_table_hash12[20];
-	unsigned char nicename("String Data Hash") string_data_hash12[20];
-	unsigned int __unknown126; 
-	unsigned int __unknown127; 
+	uint32_t __unknown122; 
+	uint32_t __unknown123; 
+	uint32_t __unknown124; 
+	uint32_t __unknown125; 
+	uint32_t nicename("String Count") string_count12; 
+	uint32_t nicename("Locale Table Size") locale_table_size12; 
+	uint32_t nicename("Locale Index Table Offset") locale_index_table_offset12; 
+	uint32_t nicename("Locale Data Index Offset") locale_data_index_offset12; 
+	uint8_t nicename("Index Table Hash") index_table_hash12[20];
+	uint8_t nicename("String Data Hash") string_data_hash12[20];
+	uint32_t __unknown126; 
+	uint32_t __unknown127; 
 	TagReference nicename("Rasterizer Globals") rasterizer_globals_reference; 
 	TagReference nicename("Default Camera Effect") default_camera_effect_reference; 
 	TagReference nicename("Default Wind") default_wind_reference; 
@@ -287,8 +287,8 @@ struct nicename("Globals") group('matg') s_globals_definition
 	TagReference nicename("Default Collision Damage") default_collision_damage_reference; 
 	string_id __unknown_material; 
 	string_id __unknown_material_2; 
-	signed short __unknown_global_material_index; 
-	signed short __unknown_2_global_material_index; 
+	int16_t __unknown_global_material_index; 
+	int16_t __unknown_2_global_material_index; 
 	TagReference nicename("Effect Globals") effect_globals_reference; 
 	TagReference nicename("Collision Filter") collision_filter_reference; 
 	TagReference nicename("Grounded Friction") grounded_friction_reference; 
@@ -305,7 +305,7 @@ struct nicename("Globals") group('matg') s_globals_definition
 	s_tag_block_definition<s_unknown4_block_definition> __unknown129_block; 
 	s_tag_block_definition<s_unknown5_block_definition> __unknown130_block; 
 	s_tag_block_definition<s_alt_material_block_definition> nicename("Alt Materials") alt_materials_block; 
-	Unknown32 __unknown131; 
+	Undefined32 __unknown131; 
 
 	struct nicename("havok_cleanup_resource") s_havok_cleanup_resource_block_definition
 	{
@@ -399,41 +399,41 @@ struct nicename("Globals") group('matg') s_globals_definition
 		s_tag_block_definition<s_formation_block_definition> nicename("Formations") formations_block; 
 		s_tag_block_definition<s_squad_template_block_definition> nicename("Squad Templates") squad_templates_block; 
 		s_tag_block_definition<s_performance_template_block_definition> nicename("Performance Templates") performance_templates_block; 
-		Unknown32 __unknown20; 
-		Unknown32 __unknown21; 
-		Unknown32 __unknown22; 
+		Undefined32 __unknown20; 
+		Undefined32 __unknown21; 
+		Undefined32 __unknown22; 
 		s_tag_block_definition<s_unknown_block_definition> __unknown23_block; 
-		Unknown32 __unknown24; 
-		Unknown32 __unknown25; 
-		Unknown32 __unknown26; 
-		Unknown32 __unknown27; 
-		Unknown32 __unknown28; 
-		Unknown32 __unknown29; 
-		Unknown32 __unknown30; 
-		Unknown32 __unknown31; 
-		Unknown32 __unknown32; 
-		Unknown32 __unknown33; 
-		Unknown32 __unknown34; 
-		Unknown32 __unknown35; 
-		Unknown32 __unknown36; 
-		Unknown32 __unknown37; 
-		signed short __unknown38; 
-		signed short __unknown39; 
-		signed short __unknown40; 
-		signed short __unknown41; 
-		signed short __unknown42; 
-		signed short __unknown43; 
+		Undefined32 __unknown24; 
+		Undefined32 __unknown25; 
+		Undefined32 __unknown26; 
+		Undefined32 __unknown27; 
+		Undefined32 __unknown28; 
+		Undefined32 __unknown29; 
+		Undefined32 __unknown30; 
+		Undefined32 __unknown31; 
+		Undefined32 __unknown32; 
+		Undefined32 __unknown33; 
+		Undefined32 __unknown34; 
+		Undefined32 __unknown35; 
+		Undefined32 __unknown36; 
+		Undefined32 __unknown37; 
+		int16_t __unknown38; 
+		int16_t __unknown39; 
+		int16_t __unknown40; 
+		int16_t __unknown41; 
+		int16_t __unknown42; 
+		int16_t __unknown43; 
 		s_tag_block_definition<s_vision_trait_definition_block_definition> nicename("Vision Trait Definitions") vision_trait_definitions_block; 
 		s_tag_block_definition<s_hearing_trait_definition_block_definition> nicename("Hearing Trait Definitions") hearing_trait_definitions_block; 
 		s_tag_block_definition<s_luck_trait_definition_block_definition> nicename("Luck Trait Definitions") luck_trait_definitions_block; 
 		s_tag_block_definition<s_grenade_trait_definition_block_definition> nicename("Grenade Trait Definitions") grenade_trait_definitions_block; 
-		Unknown32 __unknown44; 
-		Unknown32 __unknown45; 
-		Unknown32 __unknown46; 
-		signed short __unknown47; 
-		signed short __unknown48; 
-		signed short __unknown49; 
-		signed short __unknown50; 
+		Undefined32 __unknown44; 
+		Undefined32 __unknown45; 
+		Undefined32 __unknown46; 
+		int16_t __unknown47; 
+		int16_t __unknown48; 
+		int16_t __unknown49; 
+		int16_t __unknown50; 
 
 		struct nicename("gravemind_property") s_gravemind_property_block_definition
 		{
@@ -452,9 +452,9 @@ struct nicename("Globals") group('matg') s_globals_definition
 			struct nicename("Templates") s_template_block_definition;
 
 			string_id nicename("Name") name; 
-			Unknown32 __unknown; 
-			Unknown32 __unknown2; 
-			Unknown32 __unknown3; 
+			Undefined32 __unknown; 
+			Undefined32 __unknown2; 
+			Undefined32 __unknown3; 
 			s_tag_block_definition<s_template_block_definition> nicename("Templates") templates_block; 
 
 			struct nicename("template") s_template_block_definition
@@ -469,9 +469,9 @@ struct nicename("Globals") group('matg') s_globals_definition
 
 			string_id nicename("Name") name; 
 			s_tag_block_definition<s_character_block_definition> nicename("Characters") characters_block; 
-			Unknown32 __unknown; 
-			Unknown32 __unknown2; 
-			Unknown32 __unknown3; 
+			Undefined32 __unknown; 
+			Undefined32 __unknown2; 
+			Undefined32 __unknown3; 
 
 			struct nicename("character") s_character_block_definition
 			{
@@ -510,17 +510,17 @@ struct nicename("Globals") group('matg') s_globals_definition
 
 			struct s_unknown4_block_definition
 			{
-				Unknown32 __unknown; 
-				Unknown32 __unknown2; 
-				Unknown32 __unknown3; 
-				Unknown32 __unknown4; 
-				Unknown32 __unknown5; 
-				Unknown32 __unknown6; 
-				Unknown32 __unknown7; 
-				Unknown32 __unknown8; 
-				Unknown32 __unknown9; 
-				Unknown32 __unknown10; 
-				Unknown32 __unknown11; 
+				Undefined32 __unknown; 
+				Undefined32 __unknown2; 
+				Undefined32 __unknown3; 
+				Undefined32 __unknown4; 
+				Undefined32 __unknown5; 
+				Undefined32 __unknown6; 
+				Undefined32 __unknown7; 
+				Undefined32 __unknown8; 
+				Undefined32 __unknown9; 
+				Undefined32 __unknown10; 
+				Undefined32 __unknown11; 
 			};
 		};
 
@@ -618,8 +618,8 @@ struct nicename("Globals") group('matg') s_globals_definition
 		float __unknown25; 
 		float __unknown26; 
 		float __unknown27; 
-		signed short __unknown28; 
-		signed short __unknown29; 
+		int16_t __unknown28; 
+		int16_t __unknown29; 
 		float __unknown30; 
 		float __unknown31; 
 		float __unknown32; 
@@ -663,17 +663,17 @@ struct nicename("Globals") group('matg') s_globals_definition
 		float __unknown5; 
 		float nicename("Look Autoleveling Scale") look_autoleveling_scale; 
 		float nicename("Gravity Scale") gravity_scale; 
-		signed int nicename("Minimum Autoleveling Ticks") minimum_autoleveling_ticks; 
+		int32_t nicename("Minimum Autoleveling Ticks") minimum_autoleveling_ticks; 
 		float nicename("Minimum Angle for Vehicle Flipping") minimum_angle_for_vehicle_flipping; 
 		float nicename("Minimum Action Hold Time") minimum_action_hold_time; 
-		Unknown32 __unknown6; 
-		signed int __unknown7; 
-		Unknown32 __unknown8; 
-		Unknown32 __unknown9; 
-		Unknown32 __unknown10; 
-		Unknown32 __unknown11; 
-		Unknown32 __unknown12; 
-		Unknown32 __unknown13; 
+		Undefined32 __unknown6; 
+		int32_t __unknown7; 
+		Undefined32 __unknown8; 
+		Undefined32 __unknown9; 
+		Undefined32 __unknown10; 
+		Undefined32 __unknown11; 
+		Undefined32 __unknown12; 
+		Undefined32 __unknown13; 
 		float __unknown14; 
 		float __unknown15; 
 		float __unknown16; 
@@ -681,16 +681,16 @@ struct nicename("Globals") group('matg') s_globals_definition
 		float __unknown18; 
 		float __unknown19; 
 		float __unknown20; 
-		Unknown32 __unknown21; 
+		Undefined32 __unknown21; 
 
 		struct s_unknown_block_definition
 		{
 			struct s_unknown2_block_definition;
 
-			signed char __unknown; 
-			signed char __unknown2; 
-			signed char __unknown3; 
-			signed char __unknown4; 
+			int8_t __unknown; 
+			int8_t __unknown2; 
+			int8_t __unknown3; 
+			int8_t __unknown4; 
 			float __unknown5; 
 			float __unknown6; 
 			float __unknown7; 
@@ -709,10 +709,10 @@ struct nicename("Globals") group('matg') s_globals_definition
 		{
 			struct s_unknown_block_definition;
 
-			signed char __unknown; 
-			signed char __unknown2; 
-			signed char __unknown3; 
-			signed char __unknown4; 
+			int8_t __unknown; 
+			int8_t __unknown2; 
+			int8_t __unknown3; 
+			int8_t __unknown4; 
 			float __unknown5; 
 			float __unknown6; 
 			float __unknown7; 
@@ -744,34 +744,34 @@ struct nicename("Globals") group('matg') s_globals_definition
 
 		struct nicename("shields_and_health") s_shields_and_health_block_definition
 		{
-			signed char nicename("Damage Resistance") damage_resistance; 
-			signed char nicename("Health Multiplier") health_multiplier; 
-			signed char nicename("Health Recharge Rate") health_recharge_rate; 
-			signed char nicename("Shield Multiplier") shield_multiplier; 
-			signed char nicename("Shield Recharge Rate") shield_recharge_rate; 
-			signed char nicename("Shield Recharge Rate 2") shield_recharge_rate_2; 
-			signed char nicename("Headshot Immunity") headshot_immunity; 
-			signed char nicename("Shield Vampirism") shield_vampirism; 
-			signed char nicename("Assassination Immunity") assassination_immunity; 
-			signed char nicename("Deathless") deathless; 
-			signed char __unknown; 
-			signed char __unknown2; 
+			int8_t nicename("Damage Resistance") damage_resistance; 
+			int8_t nicename("Health Multiplier") health_multiplier; 
+			int8_t nicename("Health Recharge Rate") health_recharge_rate; 
+			int8_t nicename("Shield Multiplier") shield_multiplier; 
+			int8_t nicename("Shield Recharge Rate") shield_recharge_rate; 
+			int8_t nicename("Shield Recharge Rate 2") shield_recharge_rate_2; 
+			int8_t nicename("Headshot Immunity") headshot_immunity; 
+			int8_t nicename("Shield Vampirism") shield_vampirism; 
+			int8_t nicename("Assassination Immunity") assassination_immunity; 
+			int8_t nicename("Deathless") deathless; 
+			int8_t __unknown; 
+			int8_t __unknown2; 
 		};
 
 		struct nicename("weapons_and_damage") s_weapons_and_damage_block_definition
 		{
-			signed char nicename("Damage Modifier") damage_modifier; 
-			signed char nicename("Melee Damage Modifier") melee_damage_modifier; 
-			signed char nicename("Grenade Regeneration") grenade_regeneration; 
-			signed char nicename("Weapon Pickup") weapon_pickup; 
-			signed char nicename("Grenade Count") grenade_count; 
-			signed char nicename("Infinite Ammo") infinite_ammo; 
-			signed char nicename("Equipment Usage") equipment_usage; 
-			signed char nicename("Equipment Drop") equipment_drop; 
-			signed char nicename("Infinite Equipment") infinite_equipment; 
-			signed char __unknown; 
-			signed char __unknown2; 
-			signed char __unknown3; 
+			int8_t nicename("Damage Modifier") damage_modifier; 
+			int8_t nicename("Melee Damage Modifier") melee_damage_modifier; 
+			int8_t nicename("Grenade Regeneration") grenade_regeneration; 
+			int8_t nicename("Weapon Pickup") weapon_pickup; 
+			int8_t nicename("Grenade Count") grenade_count; 
+			int8_t nicename("Infinite Ammo") infinite_ammo; 
+			int8_t nicename("Equipment Usage") equipment_usage; 
+			int8_t nicename("Equipment Drop") equipment_drop; 
+			int8_t nicename("Infinite Equipment") infinite_equipment; 
+			int8_t __unknown; 
+			int8_t __unknown2; 
+			int8_t __unknown3; 
 			string_id nicename("Primary Weapon") primary_weapon; 
 			string_id nicename("Secondary Weapon") secondary_weapon; 
 			string_id nicename("Equipment") equipment; 
@@ -779,32 +779,32 @@ struct nicename("Globals") group('matg') s_globals_definition
 
 		struct nicename("movement") s_movement_block_definition
 		{
-			signed char nicename("Player Speed") player_speed; 
-			signed char nicename("Player Gravity") player_gravity; 
-			signed char nicename("Vehicle Use") vehicle_use; 
-			signed char nicename("Double Jump") double_jump; 
+			int8_t nicename("Player Speed") player_speed; 
+			int8_t nicename("Player Gravity") player_gravity; 
+			int8_t nicename("Vehicle Use") vehicle_use; 
+			int8_t nicename("Double Jump") double_jump; 
 			// comment
-			signed int nicename("Jump Height") jump_height; 
+			int32_t nicename("Jump Height") jump_height; 
 		};
 
 		struct nicename("appearance") s_appearance_block_definition
 		{
-			signed char nicename("Active Camo") active_camo; 
-			signed char nicename("Waypoint") waypoint; 
-			signed char nicename("Visible Name") visible_name; 
-			signed char nicename("Aura") aura; 
-			signed char nicename("Forced Color") forced_color; 
-			signed char __unknown; 
-			signed char __unknown2; 
-			signed char __unknown3; 
+			int8_t nicename("Active Camo") active_camo; 
+			int8_t nicename("Waypoint") waypoint; 
+			int8_t nicename("Visible Name") visible_name; 
+			int8_t nicename("Aura") aura; 
+			int8_t nicename("Forced Color") forced_color; 
+			int8_t __unknown; 
+			int8_t __unknown2; 
+			int8_t __unknown3; 
 		};
 
 		struct nicename("hud") s_hud_block_definition
 		{
-			signed char nicename("Motion Tracker Mode") motion_tracker_mode; 
-			signed char nicename("Motion Tracker Range") motion_tracker_range; 
-			signed char nicename("Directional Damage Indicator") directional_damage_indicator; 
-			signed char __unknown; 
+			int8_t nicename("Motion Tracker Mode") motion_tracker_mode; 
+			int8_t nicename("Motion Tracker Range") motion_tracker_range; 
+			int8_t nicename("Directional Damage Indicator") directional_damage_indicator; 
+			int8_t __unknown; 
 		};
 	};
 
@@ -938,39 +938,39 @@ struct nicename("Globals") group('matg') s_globals_definition
 		float nicename("Normal Player Vehicle Ram Chance") normal_player_vehicle_ram_chance; 
 		float nicename("Hard Player Vehicle Ram Chance") hard_player_vehicle_ram_chance; 
 		float nicename("Impossible Player Vehicle Ram Chance") impossible_player_vehicle_ram_chance; 
-		Unknown32 __unknown; 
-		Unknown32 __unknown2; 
-		Unknown32 __unknown3; 
-		Unknown32 __unknown4; 
-		Unknown32 __unknown5; 
-		Unknown32 __unknown6; 
-		Unknown32 __unknown7; 
-		Unknown32 __unknown8; 
-		Unknown32 __unknown9; 
-		Unknown32 __unknown10; 
-		Unknown32 __unknown11; 
-		Unknown32 __unknown12; 
-		Unknown32 __unknown13; 
-		Unknown32 __unknown14; 
-		Unknown32 __unknown15; 
-		Unknown32 __unknown16; 
-		Unknown32 __unknown17; 
-		Unknown32 __unknown18; 
-		Unknown32 __unknown19; 
-		Unknown32 __unknown20; 
-		Unknown32 __unknown21; 
-		Unknown32 __unknown22; 
-		Unknown32 __unknown23; 
-		Unknown32 __unknown24; 
-		Unknown32 __unknown25; 
-		Unknown32 __unknown26; 
-		Unknown32 __unknown27; 
-		Unknown32 __unknown28; 
-		Unknown32 __unknown29; 
-		Unknown32 __unknown30; 
-		Unknown32 __unknown31; 
-		Unknown32 __unknown32; 
-		Unknown32 __unknown33; 
+		Undefined32 __unknown; 
+		Undefined32 __unknown2; 
+		Undefined32 __unknown3; 
+		Undefined32 __unknown4; 
+		Undefined32 __unknown5; 
+		Undefined32 __unknown6; 
+		Undefined32 __unknown7; 
+		Undefined32 __unknown8; 
+		Undefined32 __unknown9; 
+		Undefined32 __unknown10; 
+		Undefined32 __unknown11; 
+		Undefined32 __unknown12; 
+		Undefined32 __unknown13; 
+		Undefined32 __unknown14; 
+		Undefined32 __unknown15; 
+		Undefined32 __unknown16; 
+		Undefined32 __unknown17; 
+		Undefined32 __unknown18; 
+		Undefined32 __unknown19; 
+		Undefined32 __unknown20; 
+		Undefined32 __unknown21; 
+		Undefined32 __unknown22; 
+		Undefined32 __unknown23; 
+		Undefined32 __unknown24; 
+		Undefined32 __unknown25; 
+		Undefined32 __unknown26; 
+		Undefined32 __unknown27; 
+		Undefined32 __unknown28; 
+		Undefined32 __unknown29; 
+		Undefined32 __unknown30; 
+		Undefined32 __unknown31; 
+		Undefined32 __unknown32; 
+		Undefined32 __unknown33; 
 	};
 
 	struct s_unknown_block_definition
@@ -1012,8 +1012,8 @@ struct nicename("Globals") group('matg') s_globals_definition
 
 	struct nicename("grenade") s_grenade_block_definition
 	{
-		signed short nicename("Maximum Count") maximum_count; 
-		signed short __unknown; 
+		int16_t nicename("Maximum Count") maximum_count; 
+		int16_t __unknown; 
 		float __unknown2; 
 		TagReference nicename("Throwing Effect") throwing_effect_reference; 
 		TagReference nicename("Equipment") equipment_reference; 
@@ -1022,13 +1022,13 @@ struct nicename("Globals") group('matg') s_globals_definition
 
 	struct nicename("soft_barrier_property") s_soft_barrier_property_block_definition
 	{
-		Unknown32 __biped_give; 
-		Unknown32 __biped_bounciness; 
-		Unknown32 __biped_bumpiness; 
-		Unknown32 __unknown; 
-		Unknown32 __vehicle_give; 
-		Unknown32 __vehicle_bounciness; 
-		Unknown32 __vehicle_bumpiness; 
+		Undefined32 __biped_give; 
+		Undefined32 __biped_bounciness; 
+		Undefined32 __biped_bumpiness; 
+		Undefined32 __unknown; 
+		Undefined32 __vehicle_give; 
+		Undefined32 __vehicle_bounciness; 
+		Undefined32 __vehicle_bumpiness; 
 	};
 
 	struct nicename("interface_tag") s_interface_tag_block_definition
@@ -1076,32 +1076,32 @@ struct nicename("Globals") group('matg') s_globals_definition
 		TagReference nicename("Timer Sound Zero") timer_sound_zero_reference; 
 		TagReference nicename("Respawn Effect") respawn_effect_reference; 
 		TagReference __unknown_reference; 
-		signed int nicename("Binoculars Zoom Count") binoculars_zoom_count; 
+		int32_t nicename("Binoculars Zoom Count") binoculars_zoom_count; 
 		float nicename("Binocular Zoom Range min") binocular_zoom_range_min; 
 		float nicename("Binocular Zoom Range max") binocular_zoom_range_max; 
 		TagReference nicename("Flashlight On") flashlight_on_reference; 
 		TagReference nicename("Flashlight Off") flashlight_off_reference; 
-		Unknown32 __unknown2; 
-		Unknown32 __unknown3; 
-		Unknown32 __unknown4; 
-		Unknown32 __unknown5; 
+		Undefined32 __unknown2; 
+		Undefined32 __unknown3; 
+		Undefined32 __unknown4; 
+		Undefined32 __unknown5; 
 		float __unknown6; 
 		float __unknown7; 
 		float nicename("Sprint Movement Speed Percentage") sprint_movement_speed_percentage; 
 		float nicename("Sprint Look Speed Percentage") sprint_look_speed_percentage; 
 		float __unknown8; 
 		float __unknown9; 
-		Unknown32 __unknown10; 
-		Unknown32 __unknown11; 
+		Undefined32 __unknown10; 
+		Undefined32 __unknown11; 
 		string_id nicename("Sprint") sprint; 
 	};
 
 	struct nicename("player_representation") s_player_representation_block_definition
 	{
-		signed char __unknown; 
-		signed char __unknown2; 
-		signed char __unknown3; 
-		signed char __unknown4; 
+		int8_t __unknown; 
+		int8_t __unknown2; 
+		int8_t __unknown3; 
+		int8_t __unknown4; 
 		TagReference nicename("HUD") hud_reference; 
 		TagReference nicename("First Person Hands") first_person_hands_reference; 
 		TagReference nicename("First Person Body") first_person_body_reference; 
@@ -1109,7 +1109,7 @@ struct nicename("Globals") group('matg') s_globals_definition
 		string_id nicename("Third Person Variant") third_person_variant; 
 		TagReference nicename("Binoculars Zoom In Sound") binoculars_zoom_in_sound_reference; 
 		TagReference nicename("Binoculars Zoom Out Sound") binoculars_zoom_out_sound_reference; 
-		signed int nicename("Player Information Index") player_information_index; 
+		int32_t nicename("Player Information Index") player_information_index; 
 	};
 
 	struct nicename("falling_damage") s_falling_damage_block_definition
@@ -1123,18 +1123,18 @@ struct nicename("Globals") group('matg') s_globals_definition
 		TagReference nicename("Terminal Velocity Damage") terminal_velocity_damage_reference; 
 		TagReference nicename("Missing Response") missing_response_reference; 
 		TagReference __unknown2_reference; 
-		Unknown32 __unknown3; 
-		Unknown32 __unknown4; 
+		Undefined32 __unknown3; 
+		Undefined32 __unknown4; 
 		float __unknown5; 
 		float __unknown6; 
 		float __unknown7; 
 		float __unknown8; 
-		Unknown32 __unknown9; 
+		Undefined32 __unknown9; 
 		float __unknown10; 
 		float __unknown11; 
 		float __unknown12; 
 		float __unknown13; 
-		Unknown32 __unknown14; 
+		Undefined32 __unknown14; 
 		float __unknown15; 
 		float __unknown16; 
 		float __unknown17; 
@@ -1155,16 +1155,16 @@ struct nicename("Globals") group('matg') s_globals_definition
 
 		string_id nicename("Name") name; 
 		string_id nicename("Parent Name") parent_name; 
-		signed short nicename("Parent Index") parent_index; 
-		unsigned short nicename("Flags") flags; 
+		int16_t nicename("Parent Index") parent_index; 
+		uint16_t nicename("Flags") flags; 
 		string_id nicename("General Armor") general_armor; 
 		string_id nicename("Specific Armor") specific_armor; 
 		string_id nicename("Wet Armor") wet_armor; 
-		signed short nicename("Wet Armor Index") wet_armor_index; 
-		signed short __unknown; 
-		signed short nicename("Wet Armor Reference Index") wet_armor_reference_index; 
-		signed short __unknown2; 
-		Unknown32 __unknown3; 
+		int16_t nicename("Wet Armor Index") wet_armor_index; 
+		int16_t __unknown; 
+		int16_t nicename("Wet Armor Reference Index") wet_armor_reference_index; 
+		int16_t __unknown2; 
+		Undefined32 __unknown3; 
 		float nicename("Friction") friction; 
 		float nicename("Restitution") restitution; 
 		float nicename("Density") density; 
@@ -1176,7 +1176,7 @@ struct nicename("Globals") group('matg') s_globals_definition
 		float nicename("Water Drag Unknown") water_drag_unknown4; 
 		float nicename("Water Drag Unknown") water_drag_unknown5; 
 		float nicename("Water Drag Unknown") water_drag_unknown6; 
-		Unknown32 __water_drag_unknown7; 
+		Undefined32 __water_drag_unknown7; 
 		TagReference nicename("Breakable Surface") breakable_surface_reference; 
 		TagReference nicename("Sound Sweetener Small") sound_sweetener_small_reference; 
 		TagReference nicename("Sound Sweetener Medium") sound_sweetener_medium_reference; 
@@ -1195,7 +1195,7 @@ struct nicename("Globals") group('matg') s_globals_definition
 		TagReference nicename("Water Ripple Small") water_ripple_small_reference; 
 		TagReference nicename("Water Ripple Medium") water_ripple_medium_reference; 
 		TagReference nicename("Water Ripple Large") water_ripple_large_reference; 
-		signed int nicename("Sweetener Inheritance Flags") sweetener_inheritance_flags; 
+		int32_t nicename("Sweetener Inheritance Flags") sweetener_inheritance_flags; 
 		TagReference nicename("Material Effects") material_effects_reference; 
 		s_tag_block_definition<s_water_interaction_block_definition> nicename("Water Interaction") water_interaction_block; 
 
@@ -1208,8 +1208,8 @@ struct nicename("Globals") group('matg') s_globals_definition
 		{
 			string_id nicename("Surface Name") surface_name; 
 			string_id nicename("Submerged Name") submerged_name; 
-			signed short nicename("Surface Index") surface_index; 
-			signed short nicename("Submerged Index") submerged_index; 
+			int16_t nicename("Surface Index") surface_index; 
+			int16_t nicename("Submerged Index") submerged_index; 
 		};
 	};
 
@@ -1261,9 +1261,9 @@ struct nicename("Globals") group('matg') s_globals_definition
 		float __unknown10; 
 		float __unknown11; 
 		float __unknown12; 
-		Unknown32 __unknown13; 
-		Unknown32 __unknown14; 
-		Unknown32 __unknown15; 
+		Undefined32 __unknown13; 
+		Undefined32 __unknown14; 
+		Undefined32 __unknown15; 
 	};
 
 	struct nicename("metagame_global") s_metagame_global_block_definition
@@ -1277,9 +1277,9 @@ struct nicename("Globals") group('matg') s_globals_definition
 		s_tag_block_definition<s_difficulty_block_definition> nicename("Difficulty") difficulty_block; 
 		// comment
 		s_tag_block_definition<s_skull_block_definition> nicename("Skulls") skulls_block; 
-		signed int __unknown; 
-		signed int nicename("Death Penalty") death_penalty; 
-		signed int nicename("Betrayal Penalty") betrayal_penalty; 
+		int32_t __unknown; 
+		int32_t nicename("Death Penalty") death_penalty; 
+		int32_t nicename("Betrayal Penalty") betrayal_penalty; 
 		float nicename("Multikill Window") multikill_window; 
 		float nicename("EMP Window") emp_window; 
 
@@ -1306,7 +1306,7 @@ struct nicename("Globals") group('matg') s_globals_definition
 
 		float __unknown; 
 		float __unknown2; 
-		Unknown32 __unknown3; 
+		Undefined32 __unknown3; 
 		DataReference __unknown4_data_reference; 
 		DataReference __unknown5_data_reference; 
 		DataReference __unknown6_data_reference; 
@@ -1344,16 +1344,16 @@ struct nicename("Globals") group('matg') s_globals_definition
 
 		string_id nicename("Name") name; 
 		string_id nicename("Parent Name") parent_name; 
-		signed short nicename("Parent Index") parent_index; 
-		unsigned short nicename("Flags") flags; 
+		int16_t nicename("Parent Index") parent_index; 
+		uint16_t nicename("Flags") flags; 
 		string_id nicename("General Armor") general_armor; 
 		string_id nicename("Specific Armor") specific_armor; 
 		string_id nicename("Wet Armor") wet_armor; 
-		signed short nicename("Wet Armor Index") wet_armor_index; 
-		signed short __unknown; 
-		signed short nicename("Wet Armor Reference Index") wet_armor_reference_index; 
-		signed short __unknown2; 
-		Unknown32 __unknown3; 
+		int16_t nicename("Wet Armor Index") wet_armor_index; 
+		int16_t __unknown; 
+		int16_t nicename("Wet Armor Reference Index") wet_armor_reference_index; 
+		int16_t __unknown2; 
+		Undefined32 __unknown3; 
 		float nicename("Friction") friction; 
 		float nicename("Restitution") restitution; 
 		float nicename("Density") density; 
@@ -1365,7 +1365,7 @@ struct nicename("Globals") group('matg') s_globals_definition
 		float nicename("Water Drag Unknown") water_drag_unknown4; 
 		float nicename("Water Drag Unknown") water_drag_unknown5; 
 		float nicename("Water Drag Unknown") water_drag_unknown6; 
-		Unknown32 __water_drag_unknown7; 
+		Undefined32 __water_drag_unknown7; 
 		TagReference nicename("Breakable Surface") breakable_surface_reference; 
 		TagReference nicename("Sound Sweetener Small") sound_sweetener_small_reference; 
 		TagReference nicename("Sound Sweetener Medium") sound_sweetener_medium_reference; 
@@ -1384,7 +1384,7 @@ struct nicename("Globals") group('matg') s_globals_definition
 		TagReference nicename("Water Ripple Small") water_ripple_small_reference; 
 		TagReference nicename("Water Ripple Medium") water_ripple_medium_reference; 
 		TagReference nicename("Water Ripple Large") water_ripple_large_reference; 
-		signed int nicename("Sweetener Inheritance Flags") sweetener_inheritance_flags; 
+		int32_t nicename("Sweetener Inheritance Flags") sweetener_inheritance_flags; 
 		TagReference nicename("Material Effects") material_effects_reference; 
 		s_tag_block_definition<s_water_interaction_block_definition> nicename("Water Interaction") water_interaction_block; 
 
@@ -1397,8 +1397,8 @@ struct nicename("Globals") group('matg') s_globals_definition
 		{
 			string_id nicename("Surface Name") surface_name; 
 			string_id nicename("Submerged Name") submerged_name; 
-			signed short nicename("Surface Index") surface_index; 
-			signed short nicename("Submerged Index") submerged_index; 
+			int16_t nicename("Surface Index") surface_index; 
+			int16_t nicename("Submerged Index") submerged_index; 
 		};
 	};
 };

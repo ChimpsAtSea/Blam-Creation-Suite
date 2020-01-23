@@ -2,8 +2,8 @@
 
 struct nicename("Shield Impact") group('shit') s_shield_impact_definition
 {
-	signed short __unknown; 
-	signed short __unknown2; 
+	int16_t __unknown; 
+	int16_t __unknown2; 
 	float __unknown3; 
 	float __unknown4; 
 	float __unknown5; 
@@ -69,6 +69,6 @@ struct nicename("Shield Impact") group('shit') s_shield_impact_definition
 	float __unknown65; 
 	float __unknown66; 
 	float __unknown67; 
-	Unknown32 __unknown68; 
-	Unknown32 __unknown69; 
+	Undefined32 __unknown68; 
+	Undefined32 __unknown69; 
 };

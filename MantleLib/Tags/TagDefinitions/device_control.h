@@ -15,9 +15,9 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 	struct nicename("Multiplayer Object Properties") s_multiplayer_object_property_block_definition;
 	struct s_unknown_block_definition;
 
-	signed short nicename("Object Type") object_type; 
-	signed short __unknown; 
-	signed int nicename("Flags") flags; 
+	int16_t nicename("Object Type") object_type; 
+	int16_t __unknown; 
+	int32_t nicename("Flags") flags; 
 	float nicename("Bounding Radius") bounding_radius; 
 	float nicename("Bounding Offset X") bounding_offset_x; 
 	float nicename("Bounding Offset Y") bounding_offset_y; 
@@ -25,10 +25,10 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 	float nicename("Horizontal Acceleration Scale") horizontal_acceleration_scale; 
 	float nicename("Vertical Acceleration Scale") vertical_acceleration_scale; 
 	float nicename("Angular Acceleration Scale") angular_acceleration_scale; 
-	signed short nicename("Lightmap Shadow Mode Size") lightmap_shadow_mode_size; 
-	signed char nicename("Sweetener Size") sweetener_size; 
-	signed char nicename("Water Density") water_density; 
-	signed int __unknown2; 
+	int16_t nicename("Lightmap Shadow Mode Size") lightmap_shadow_mode_size; 
+	int8_t nicename("Sweetener Size") sweetener_size; 
+	int8_t nicename("Water Density") water_density; 
+	int32_t __unknown2; 
 	float nicename("Dynamic Light Sphere Radius") dynamic_light_sphere_radius; 
 	float nicename("Dynamic Light Sphere X Offset") dynamic_light_sphere_x_offset; 
 	float nicename("Dynamic Light Sphere Y Offset") dynamic_light_sphere_y_offset; 
@@ -48,8 +48,8 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 	s_tag_block_definition<s_ai_property_block_definition> nicename("AI Properties") ai_properties_block; 
 	s_tag_block_definition<s_function_block_definition> nicename("Functions") functions_block; 
 	s_tag_block_definition<s_function_related_block_definition> nicename("Function Related") function_related_block; 
-	signed short nicename("HUD Text Message Index") hud_text_message_index; 
-	signed short __unknown3; 
+	int16_t nicename("HUD Text Message Index") hud_text_message_index; 
+	int16_t __unknown3; 
 	s_tag_block_definition<s_attachment_block_definition> nicename("Attachments") attachments_block; 
 	s_tag_block_definition<s_material_respons_block_definition> nicename("Material Responses") material_responses_block; 
 	s_tag_block_definition<s_jet_wash_block_definition> nicename("Jet Wash") jet_wash_block; 
@@ -60,14 +60,14 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 	TagReference nicename("Simulation Interpolation") simulation_interpolation_reference; 
 	s_tag_block_definition<s_unknown_block_definition> __unknown4_block; 
 	// comment
-	signed int nicename("Flags") flags2; 
+	int32_t nicename("Flags") flags2; 
 	float nicename("Power Transition Time") power_transition_time; 
 	float nicename("Power Acceleration Time") power_acceleration_time; 
 	float nicename("Position Transition Time") position_transition_time; 
 	float nicename("Position Acceleration Time") position_acceleration_time; 
 	float nicename("Depowered Position Transition Time") depowered_position_transition_time; 
 	float nicename("Depowered Position Acceleration Time") depowered_position_acceleration_time; 
-	signed int nicename("Lightmap Flags") lightmap_flags; 
+	int32_t nicename("Lightmap Flags") lightmap_flags; 
 	TagReference nicename("Open (Up)") open_up_reference; 
 	TagReference nicename("Close (Down)") close_down_reference; 
 	TagReference nicename("Opened") opened_reference; 
@@ -78,8 +78,8 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 	TagReference nicename("Delay Effect") delay_effect_reference; 
 	float nicename("Automatic Activation Radius") automatic_activation_radius; 
 	// comment
-	signed short nicename("Type") type; 
-	signed short nicename("Triggers When") triggers_when; 
+	int16_t nicename("Type") type; 
+	int16_t nicename("Triggers When") triggers_when; 
 	float nicename("Call Value") call_value; 
 	string_id nicename("Action String") action_string; 
 	TagReference nicename("On") on_reference; 
@@ -89,32 +89,32 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 	struct nicename("early_mover_property") s_early_mover_property_block_definition
 	{
 		string_id nicename("Name") name; 
-		Unknown32 __unknown; 
-		Unknown32 __unknown2; 
-		Unknown32 __unknown3; 
-		Unknown32 __unknown4; 
-		Unknown32 __unknown5; 
-		Unknown32 __unknown6; 
-		Unknown32 __unknown7; 
-		Unknown32 __unknown8; 
-		Unknown32 __unknown9; 
-		Unknown32 __unknown10; 
+		Undefined32 __unknown; 
+		Undefined32 __unknown2; 
+		Undefined32 __unknown3; 
+		Undefined32 __unknown4; 
+		Undefined32 __unknown5; 
+		Undefined32 __unknown6; 
+		Undefined32 __unknown7; 
+		Undefined32 __unknown8; 
+		Undefined32 __unknown9; 
+		Undefined32 __unknown10; 
 	};
 
 	struct nicename("ai_property") s_ai_property_block_definition
 	{
-		signed int nicename("Flags") flags; 
+		int32_t nicename("Flags") flags; 
 		string_id nicename("AI Type Name") ai_type_name; 
-		Unknown32 __unknown; 
-		signed short nicename("Size") size; 
-		signed short nicename("Leap Jump Speed") leap_jump_speed; 
+		Undefined32 __unknown; 
+		int16_t nicename("Size") size; 
+		int16_t nicename("Leap Jump Speed") leap_jump_speed; 
 	};
 
 	struct nicename("function") s_function_block_definition
 	{
 		struct s_unknown_block_definition;
 
-		signed int nicename("Flags") flags; 
+		int32_t nicename("Flags") flags; 
 		string_id nicename("Import Name") import_name; 
 		string_id nicename("Export Name") export_name; 
 		string_id nicename("Turn Off With") turn_off_with; 
@@ -123,14 +123,14 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 		DataReference nicename("Default Function") default_function_data_reference; 
 		string_id nicename("Scale By") scale_by; 
 		s_tag_block_definition<s_unknown_block_definition> __unknown2_block; 
-		signed int nicename("'Function Related' Index") _function_related__index; 
+		int32_t nicename("'Function Related' Index") _function_related__index; 
 
 		struct s_unknown_block_definition
 		{
-			signed int __unknown; 
+			int32_t __unknown; 
 			float __unknown2; 
 			float __unknown3; 
-			Unknown32 __unknown4; 
+			Undefined32 __unknown4; 
 			float __unknown5; 
 			float __unknown6; 
 		};
@@ -138,15 +138,15 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 
 	struct nicename("function_related") s_function_related_block_definition
 	{
-		signed int nicename("Function Index") function_index; 
+		int32_t nicename("Function Index") function_index; 
 	};
 
 	struct nicename("attachment") s_attachment_block_definition
 	{
 		TagReference nicename("Attachment") attachment_reference; 
 		string_id nicename("Marker") marker; 
-		signed short nicename("Change Color") change_color; 
-		signed short __unknown; 
+		int16_t nicename("Change Color") change_color; 
+		int16_t __unknown; 
 		string_id nicename("Primary Scale") primary_scale; 
 		string_id nicename("Secondary Scale") secondary_scale; 
 	};
@@ -155,9 +155,9 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 	{
 		struct s_unknown_block_definition;
 
-		Unknown32 __unknown; 
-		Unknown32 __unknown2; 
-		Unknown32 __unknown3; 
+		Undefined32 __unknown; 
+		Undefined32 __unknown2; 
+		Undefined32 __unknown3; 
 		s_tag_block_definition<s_unknown_block_definition> __unknown4_block; 
 
 		struct s_unknown_block_definition
@@ -167,8 +167,8 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 			float __unknown2; 
 			DataReference __unknown3_data_reference; 
 			float __unknown4; 
-			Unknown32 __unknown5; 
-			Unknown32 __unknown6; 
+			Undefined32 __unknown5; 
+			Undefined32 __unknown6; 
 		};
 	};
 
@@ -176,7 +176,7 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 	{
 		string_id nicename("Marker") marker; 
 		float __unknown; 
-		Unknown32 __unknown2; 
+		Undefined32 __unknown2; 
 		float __unknown3; 
 		float __unknown4; 
 		float __unknown5; 
@@ -212,7 +212,7 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 
 		struct nicename("function") s_function_block_definition
 		{
-			signed int nicename("Scale Flags") scale_flags; 
+			int32_t nicename("Scale Flags") scale_flags; 
 			float nicename("Color Lower Bound r") color_lower_bound_r; 
 			float nicename("Color Lower Bound g") color_lower_bound_g; 
 			float nicename("Color Lower Bound b") color_lower_bound_b; 
@@ -226,31 +226,31 @@ struct nicename("Device Control") group('ctrl') s_device_control_definition
 
 	struct nicename("predicted_resource") s_predicted_resource_block_definition
 	{
-		signed short nicename("Type") type; 
-		signed short nicename("Resource Index") resource_index; 
+		int16_t nicename("Type") type; 
+		int16_t nicename("Resource Index") resource_index; 
 		unsigned int nicename("Tag Index") tag_index; 
 	};
 
 	struct nicename("multiplayer_object_property") s_multiplayer_object_property_block_definition
 	{
-		signed char __unknown; 
-		signed char nicename("Object Type") object_type; 
-		unsigned char nicename("Teleporter Flags") teleporter_flags; 
-		signed char __unknown2; 
+		int8_t __unknown; 
+		int8_t nicename("Object Type") object_type; 
+		uint8_t nicename("Teleporter Flags") teleporter_flags; 
+		int8_t __unknown2; 
 		float nicename("Radius/Width") radius_width; 
 		float nicename("Length") length; 
 		float nicename("Top") top; 
 		float nicename("Bottom") bottom; 
-		signed char nicename("Shape") shape; 
-		signed char nicename("Spawn Timer Mode") spawn_timer_mode; 
-		signed short nicename("Spawn Time") spawn_time; 
-		signed short nicename("Abandon Time") abandon_time; 
-		unsigned short nicename("Flags") flags; 
+		int8_t nicename("Shape") shape; 
+		int8_t nicename("Spawn Timer Mode") spawn_timer_mode; 
+		int16_t nicename("Spawn Time") spawn_time; 
+		int16_t nicename("Abandon Time") abandon_time; 
+		uint16_t nicename("Flags") flags; 
 		float __unknown3; 
-		signed int __unknown4; 
-		signed int __unknown5; 
+		int32_t __unknown4; 
+		int32_t __unknown5; 
 		TagReference nicename("Child Object") child_object_reference; 
-		signed int __unknown6; 
+		int32_t __unknown6; 
 		TagReference nicename("Shape Shader") shape_shader_reference; 
 		TagReference nicename("Shader 2") shader_2_reference; 
 		TagReference __unknown7_reference; 

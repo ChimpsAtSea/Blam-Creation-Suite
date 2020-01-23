@@ -4,7 +4,7 @@ struct nicename("Camera Track") group('trak') s_camera_track_definition
 {
 	struct nicename("Camera Points") s_camera_point_block_definition;
 
-	Unknown32 __unknown; 
+	Undefined32 __unknown; 
 	s_tag_block_definition<s_camera_point_block_definition> nicename("Camera Points") camera_points_block; 
 
 	struct nicename("camera_point") s_camera_point_block_definition

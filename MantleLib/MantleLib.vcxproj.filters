@@ -65,9 +65,6 @@
     <ClInclude Include="Tags\TagTypes\TagReference.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tags\TagTypes\Unknown.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Tags\Tags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -420,6 +417,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tags\TagDefinitions\bitmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\TagTypes\Undefined.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

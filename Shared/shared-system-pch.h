@@ -1,8 +1,14 @@
 #pragma once
 
-#define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING //#TODO: Replace with WideCharToMultiByte and MultiByteToWideChar
+#ifndef _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING //#TODO: Replace with WideCharToMultiByte and MultiByteToWideChar
+#define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING
+#endif
+#ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
+#endif
+#ifndef WIN32_MEAN_AND_LEAN
 #define WIN32_MEAN_AND_LEAN
+#endif
 
 #if !defined(_DEBUG) && defined(UWP_PLATFORM)
 #define FATAL_ERROR(reason, ...) throw

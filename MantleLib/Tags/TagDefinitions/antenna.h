@@ -22,8 +22,8 @@ struct nicename("Antenna") group('ant!') s_antenna_definition
 		float nicename("Angle y") angle_y; 
 		float nicename("Angle p") angle_p; 
 		float nicename("Length") length; 
-		signed short nicename("Sequence Index") sequence_index; 
-		signed short __unknown; 
+		int16_t nicename("Sequence Index") sequence_index; 
+		int16_t __unknown; 
 		float nicename("Color a") color_a; 
 		float nicename("Color r") color_r; 
 		float nicename("Color g") color_g; 
@@ -32,9 +32,9 @@ struct nicename("Antenna") group('ant!') s_antenna_definition
 		float nicename("LOD Color r") lod_color_r; 
 		float nicename("LOD Color g") lod_color_g; 
 		float nicename("LOD Color b") lod_color_b; 
-		Unknown32 __width; 
-		Unknown32 __unknown2; 
-		Unknown32 __unknown3; 
-		Unknown32 __unknown4; 
+		Undefined32 __width; 
+		Undefined32 __unknown2; 
+		Undefined32 __unknown3; 
+		Undefined32 __unknown4; 
 	};
 };

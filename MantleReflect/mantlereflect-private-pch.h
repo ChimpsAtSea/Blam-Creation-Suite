@@ -1,7 +1,5 @@
 #pragma once
 
-#include "mantlereflect-public-pch.h"
-
 #pragma warning( push )
 #pragma warning( disable : 4146 )
 #pragma warning( disable : 4244 )
@@ -19,6 +17,8 @@
 #pragma warning( pop )
 
 #include <stdio.h>
-
 #include <sstream>
 #include <memory>
+
+#include "Shared/shared-public-pch.h"
+#include "mantlereflect-public-pch.h"

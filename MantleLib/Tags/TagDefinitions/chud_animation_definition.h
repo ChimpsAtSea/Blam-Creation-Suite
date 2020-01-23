@@ -11,9 +11,9 @@ struct nicename("Chud Animation Definition") group('chad') s_chud_animation_defi
 	struct nicename("Bitmap") s_bitmap_block_definition;
 	struct nicename("Ammo Counter Boot") s_ammo_counter_boot_block_definition;
 
-	unsigned char nicename("Flags") flags; 
-	signed char __unknown; 
-	signed short __unknown2; 
+	uint8_t nicename("Flags") flags; 
+	int8_t __unknown; 
+	int16_t __unknown2; 
 	s_tag_block_definition<s_position_block_definition> nicename("Position") position_block; 
 	s_tag_block_definition<s_rotation_block_definition> nicename("Rotation") rotation_block; 
 	s_tag_block_definition<s_size_block_definition> nicename("Size") size_block; 
@@ -22,9 +22,9 @@ struct nicename("Chud Animation Definition") group('chad') s_chud_animation_defi
 	s_tag_block_definition<s_alpha_unknown_block_definition> nicename("Alpha Unknown") alpha_unknown_block; 
 	s_tag_block_definition<s_bitmap_block_definition> nicename("Bitmap") bitmap_block; 
 	s_tag_block_definition<s_ammo_counter_boot_block_definition> nicename("Ammo Counter Boot") ammo_counter_boot_block; 
-	signed int __unknown_animation_block; 
-	signed int __unknown_animation_block2; 
-	signed int __unknown_animation_block3; 
+	int32_t __unknown_animation_block; 
+	int32_t __unknown_animation_block2; 
+	int32_t __unknown_animation_block3; 
 	float nicename("Number of Frames") number_of_frames; 
 
 	struct nicename("position") s_position_block_definition

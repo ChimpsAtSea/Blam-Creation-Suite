@@ -21,10 +21,10 @@ struct nicename("Material Effects") group('foot') s_material_effects_definition
 			TagReference nicename("Effect") effect_reference; 
 			TagReference nicename("Sound") sound_reference; 
 			string_id nicename("Material Name") material_name; 
-			signed short nicename("Global Material Index") global_material_index; 
-			signed char nicename("Sweetener Mode") sweetener_mode; 
-			signed char __unknown; 
-			Unknown32 __unknown2; 
+			int16_t nicename("Global Material Index") global_material_index; 
+			int8_t nicename("Sweetener Mode") sweetener_mode; 
+			int8_t __unknown; 
+			Undefined32 __unknown2; 
 		};
 
 		struct nicename("sound") s_sound_block_definition
@@ -32,10 +32,10 @@ struct nicename("Material Effects") group('foot') s_material_effects_definition
 			TagReference nicename("Tag") tag_reference; 
 			TagReference nicename("Secondary Tag") secondary_tag_reference; 
 			string_id nicename("Material Name") material_name; 
-			signed short nicename("Global Material Index") global_material_index; 
-			signed char nicename("Sweetener Mode") sweetener_mode; 
-			signed char __unknown; 
-			Unknown32 __unknown2; 
+			int16_t nicename("Global Material Index") global_material_index; 
+			int8_t nicename("Sweetener Mode") sweetener_mode; 
+			int8_t __unknown; 
+			Undefined32 __unknown2; 
 		};
 
 		struct nicename("effect2") s_effect2_block_definition
@@ -43,10 +43,10 @@ struct nicename("Material Effects") group('foot') s_material_effects_definition
 			TagReference nicename("Tag") tag_reference; 
 			TagReference nicename("Secondary Tag") secondary_tag_reference; 
 			string_id nicename("Material Name") material_name; 
-			signed short nicename("Global Material Index") global_material_index; 
-			signed char nicename("Sweetener Mode") sweetener_mode; 
-			signed char __unknown; 
-			Unknown32 __unknown2; 
+			int16_t nicename("Global Material Index") global_material_index; 
+			int8_t nicename("Sweetener Mode") sweetener_mode; 
+			int8_t __unknown; 
+			Undefined32 __unknown2; 
 		};
 	};
 };

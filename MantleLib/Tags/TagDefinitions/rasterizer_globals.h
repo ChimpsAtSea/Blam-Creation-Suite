@@ -11,25 +11,25 @@ struct nicename("Rasterizer Globals") group('rasg') s_rasterizer_globals_definit
 	TagReference nicename("Vertex Shader Simple") vertex_shader_simple_reference; 
 	TagReference nicename("Pixel Shader Simple") pixel_shader_simple_reference; 
 	s_tag_block_definition<s_default_shader_block_definition> nicename("Default Shaders") default_shaders_block; 
-	Unknown32 __unknown; 
-	Unknown32 __unknown2; 
-	Unknown32 __unknown3; 
-	Unknown32 __unknown4; 
-	Unknown32 __unknown5; 
+	Undefined32 __unknown; 
+	Undefined32 __unknown2; 
+	Undefined32 __unknown3; 
+	Undefined32 __unknown4; 
+	Undefined32 __unknown5; 
 	TagReference nicename("Default Performance Template") default_performance_template_reference; 
 	TagReference nicename("Default Shield Impact") default_shield_impact_reference; 
 	TagReference nicename("Particle Library") particle_library_reference; 
 	TagReference nicename("Emblem Library") emblem_library_reference; 
-	Unknown32 __unknown6; 
-	Unknown32 __unknown7; 
-	Unknown32 __unknown8; 
-	Unknown32 __unknown9; 
-	Unknown32 __unknown10; 
-	Unknown32 __unknown11; 
+	Undefined32 __unknown6; 
+	Undefined32 __unknown7; 
+	Undefined32 __unknown8; 
+	Undefined32 __unknown9; 
+	Undefined32 __unknown10; 
+	Undefined32 __unknown11; 
 
 	struct nicename("default_bitmap") s_default_bitmap_block_definition
 	{
-		signed int __unknown; 
+		int32_t __unknown; 
 		TagReference nicename("Bitmap") bitmap_reference; 
 	};
 

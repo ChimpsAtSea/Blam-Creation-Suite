@@ -12,20 +12,20 @@ struct nicename("Sky Atm Parameters") group('skya') s_sky_atm_parameters_definit
 	float __unknown4; 
 	float __unknown5; 
 	float __unknown6; 
-	signed char __unknown7; 
-	signed char __unknown8; 
-	signed char __unknown9; 
-	signed char __unknown10; 
+	int8_t __unknown7; 
+	int8_t __unknown8; 
+	int8_t __unknown9; 
+	int8_t __unknown10; 
 	s_tag_block_definition<s_atmosphere_property_block_definition> nicename("Atmosphere Properties") atmosphere_properties_block; 
 	s_tag_block_definition<s_underwater_block_definition> nicename("Underwater") underwater_block; 
 
 	struct nicename("atmosphere_property") s_atmosphere_property_block_definition
 	{
 		string_id nicename("Name") name; 
-		signed short __unknown; 
-		signed short __unknown2; 
+		int16_t __unknown; 
+		int16_t __unknown2; 
 		float __unknown3; 
-		Unknown32 __unknown4; 
+		Undefined32 __unknown4; 
 		float __unknown5; 
 		float __unknown6; 
 		float __unknown7; 
@@ -60,8 +60,8 @@ struct nicename("Sky Atm Parameters") group('skya') s_sky_atm_parameters_definit
 		float __unknown24; 
 		float __unknown25; 
 		TagReference nicename("Weather Effect") weather_effect_reference; 
-		Unknown32 __unknown26; 
-		Unknown32 __unknown27; 
+		Undefined32 __unknown26; 
+		Undefined32 __unknown27; 
 	};
 
 	struct nicename("underwater") s_underwater_block_definition

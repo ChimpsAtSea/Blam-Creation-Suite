@@ -8,11 +8,11 @@ struct nicename("Damage Effect") group('jpt!') s_damage_effect_definition
 	float nicename("Radius min") radius_min; 
 	float nicename("Radius max") radius_max; 
 	float nicename("Cutoff Scale") cutoff_scale; 
-	signed int nicename("Flags") flags; 
-	signed short nicename("Side Effect") side_effect; 
-	signed short nicename("Category") category; 
-	signed int nicename("Forced Death Dialogue") forced_death_dialogue; 
-	signed int nicename("Flags") flags2; 
+	int32_t nicename("Flags") flags; 
+	int16_t nicename("Side Effect") side_effect; 
+	int16_t nicename("Category") category; 
+	int32_t nicename("Forced Death Dialogue") forced_death_dialogue; 
+	int32_t nicename("Flags") flags2; 
 	float nicename("Area Of Effect Core Radius") area_of_effect_core_radius; 
 	float nicename("Damage Lower Bound") damage_lower_bound; 
 	float nicename("Damage Upper Bound min") damage_upper_bound_min; 
@@ -24,12 +24,12 @@ struct nicename("Damage Effect") group('jpt!') s_damage_effect_definition
 	float nicename("Stun") stun; 
 	float nicename("Max Stun") max_stun; 
 	float nicename("Stun Time") stun_time; 
-	signed int __unknown2; 
+	int32_t __unknown2; 
 	float nicename("Instantaneous Acceleration") instantaneous_acceleration; 
 	float nicename("Rider Direct Damage Scale") rider_direct_damage_scale; 
 	float nicename("Rider Max Transfer Damage") rider_max_transfer_damage; 
 	float nicename("Rider Min Transfer Damage") rider_min_transfer_damage; 
-	Unknown32 __unknown3; 
+	Undefined32 __unknown3; 
 	string_id nicename("General Damage") general_damage; 
 	string_id nicename("Specific Damage") specific_damage; 
 	s_tag_block_definition<s_special_damage_block_definition> nicename("Special Damages") special_damages_block; 
@@ -38,8 +38,8 @@ struct nicename("Damage Effect") group('jpt!') s_damage_effect_definition
 	float nicename("AI Stun Bounds max") ai_stun_bounds_max; 
 	float nicename("Shake Radius") shake_radius; 
 	float nicename("EMP Radius") emp_radius; 
-	Unknown32 __unknown4; 
-	Unknown32 __unknown5; 
+	Undefined32 __unknown4; 
+	Undefined32 __unknown5; 
 	float __unknown6; 
 	TagReference nicename("Damage Response") damage_response_reference; 
 	// comment
@@ -61,7 +61,7 @@ struct nicename("Damage Effect") group('jpt!') s_damage_effect_definition
 	struct nicename("ricochet") s_ricochet_block_definition
 	{
 		TagReference nicename("Sound") sound_reference; 
-		signed short __unknown; 
-		signed short __unknown2; 
+		int16_t __unknown; 
+		int16_t __unknown2; 
 	};
 };

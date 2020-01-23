@@ -17,16 +17,16 @@ struct nicename("Effect Globals") group('effg') s_effect_globals_definition
 	{
 		struct s_unknown2_block_definition;
 
-		signed int __unknown; 
-		signed int __unknown2; 
+		int32_t __unknown; 
+		int32_t __unknown2; 
 		s_tag_block_definition<s_unknown2_block_definition> __unknown3_block; 
 
 		struct s_unknown2_block_definition
 		{
-			signed int __unknown; 
-			signed int __unknown2; 
-			Unknown32 __unknown3; 
-			signed int __unknown4; 
+			int32_t __unknown; 
+			int32_t __unknown2; 
+			Undefined32 __unknown3; 
+			int32_t __unknown4; 
 		};
 	};
 

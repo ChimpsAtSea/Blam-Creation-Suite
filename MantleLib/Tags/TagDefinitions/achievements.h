@@ -11,10 +11,10 @@ struct nicename("Achievements") group('achi') s_achievements_definition
 		struct nicename("Achievement Unlock Information") s_achievement_unlock_information_block_definition;
 
 		string_id nicename("Achievement Name") achievement_name; 
-		signed char nicename("Achievement Index") achievement_index; 
-		signed char __unknown; 
-		signed char __unknown2; 
-		signed char __unknown3; 
+		int8_t nicename("Achievement Index") achievement_index; 
+		int8_t __unknown; 
+		int8_t __unknown2; 
+		int8_t __unknown3; 
 		s_tag_block_definition<s_achievement_unlock_information_block_definition> nicename("Achievement Unlock Information") achievement_unlock_information_block; 
 
 		struct nicename("achievement_unlock_information") s_achievement_unlock_information_block_definition

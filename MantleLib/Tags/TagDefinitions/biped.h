@@ -41,9 +41,9 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	struct nicename("Sphere Shapes") s_sphere_shape_block_definition;
 	struct nicename("Contact Points") s_contact_point_block_definition;
 
-	signed short nicename("Object Type") object_type; 
-	signed short __unknown; 
-	signed int nicename("Flags") flags; 
+	int16_t nicename("Object Type") object_type; 
+	int16_t __unknown; 
+	int32_t nicename("Flags") flags; 
 	float nicename("Bounding Radius") bounding_radius; 
 	float nicename("Bounding Offset X") bounding_offset_x; 
 	float nicename("Bounding Offset Y") bounding_offset_y; 
@@ -51,10 +51,10 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	float nicename("Horizontal Acceleration Scale") horizontal_acceleration_scale; 
 	float nicename("Vertical Acceleration Scale") vertical_acceleration_scale; 
 	float nicename("Angular Acceleration Scale") angular_acceleration_scale; 
-	signed short nicename("Lightmap Shadow Mode Size") lightmap_shadow_mode_size; 
-	signed char nicename("Sweetener Size") sweetener_size; 
-	signed char nicename("Water Density") water_density; 
-	signed int __unknown2; 
+	int16_t nicename("Lightmap Shadow Mode Size") lightmap_shadow_mode_size; 
+	int8_t nicename("Sweetener Size") sweetener_size; 
+	int8_t nicename("Water Density") water_density; 
+	int32_t __unknown2; 
 	float nicename("Dynamic Light Sphere Radius") dynamic_light_sphere_radius; 
 	float nicename("Dynamic Light Sphere X Offset") dynamic_light_sphere_x_offset; 
 	float nicename("Dynamic Light Sphere Y Offset") dynamic_light_sphere_y_offset; 
@@ -74,8 +74,8 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	s_tag_block_definition<s_ai_property_block_definition> nicename("AI Properties") ai_properties_block; 
 	s_tag_block_definition<s_function_block_definition> nicename("Functions") functions_block; 
 	s_tag_block_definition<s_function_related_block_definition> nicename("Function Related") function_related_block; 
-	signed short nicename("HUD Text Message Index") hud_text_message_index; 
-	signed short __unknown3; 
+	int16_t nicename("HUD Text Message Index") hud_text_message_index; 
+	int16_t __unknown3; 
 	s_tag_block_definition<s_attachment_block_definition> nicename("Attachments") attachments_block; 
 	s_tag_block_definition<s_material_respons_block_definition> nicename("Material Responses") material_responses_block; 
 	s_tag_block_definition<s_jet_wash_block_definition> nicename("Jet Wash") jet_wash_block; 
@@ -86,18 +86,18 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	TagReference nicename("Simulation Interpolation") simulation_interpolation_reference; 
 	s_tag_block_definition<s_unknown_block_definition> __unknown4_block; 
 	// comment
-	signed int nicename("Flags") flags2; 
-	signed short nicename("Team") team; 
-	signed short nicename("Constant Sound Volume") constant_sound_volume; 
+	int32_t nicename("Flags") flags2; 
+	int16_t nicename("Team") team; 
+	int16_t nicename("Constant Sound Volume") constant_sound_volume; 
 	TagReference nicename("Hologram Unit") hologram_unit_reference; 
 	s_tag_block_definition<s_metagame_property_block_definition> nicename("Metagame Properties") metagame_properties_block; 
 	s_tag_block_definition<s_unit_screen_effect_block_definition> nicename("Unit Screen Effects") unit_screen_effects_block; 
-	signed int __unknown5; 
+	int32_t __unknown5; 
 	// comment
-	unsigned char nicename("Camera Flags") camera_flags; 
-	signed char __unknown6; 
-	signed char __unknown7; 
-	signed char __unknown8; 
+	uint8_t nicename("Camera Flags") camera_flags; 
+	int8_t __unknown6; 
+	int8_t __unknown7; 
+	int8_t __unknown8; 
 	string_id nicename("Camera Marker") camera_marker; 
 	float nicename("Pitch Auto-Level") pitch_auto_level; 
 	float nicename("Pitch Range min") pitch_range_min; 
@@ -110,20 +110,20 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	float nicename("Camera Deceleration Speed") camera_deceleration_speed; 
 	float __unknown10; 
 	float nicename("Camera Field Of View") camera_field_of_view; 
-	Unknown32 __unknown11; 
-	Unknown32 __unknown12; 
-	Unknown32 __unknown13; 
-	Unknown32 __unknown14; 
-	Unknown32 __unknown15; 
-	Unknown32 __unknown16; 
+	Undefined32 __unknown11; 
+	Undefined32 __unknown12; 
+	Undefined32 __unknown13; 
+	Undefined32 __unknown14; 
+	Undefined32 __unknown15; 
+	Undefined32 __unknown16; 
 	s_tag_block_definition<s_unknown2_block_definition> __unknown17_block; 
 	s_tag_block_definition<s_unknown3_block_definition> __unknown18_block; 
 	s_tag_block_definition<s_space_fighter_camera_block_definition> nicename("Space Fighter Camera") space_fighter_camera_block; 
 	// comment
-	unsigned char nicename("Camera Flags") camera_flags2; 
-	signed char __unknown19; 
-	signed char __unknown20; 
-	signed char __unknown21; 
+	uint8_t nicename("Camera Flags") camera_flags2; 
+	int8_t __unknown19; 
+	int8_t __unknown20; 
+	int8_t __unknown21; 
 	string_id nicename("Camera Marker") camera_marker2; 
 	float nicename("Pitch Auto-Level") pitch_auto_level2; 
 	float nicename("Pitch Range min") pitch_range_min2; 
@@ -136,12 +136,12 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	float nicename("Camera Deceleration Speed") camera_deceleration_speed2; 
 	float __unknown23; 
 	float nicename("Camera Field Of View") camera_field_of_view2; 
-	Unknown32 __unknown24; 
-	Unknown32 __unknown25; 
-	Unknown32 __unknown26; 
-	Unknown32 __unknown27; 
-	Unknown32 __unknown28; 
-	Unknown32 __unknown29; 
+	Undefined32 __unknown24; 
+	Undefined32 __unknown25; 
+	Undefined32 __unknown26; 
+	Undefined32 __unknown27; 
+	Undefined32 __unknown28; 
+	Undefined32 __unknown29; 
 	s_tag_block_definition<s_unknown4_block_definition> __unknown30_block; 
 	s_tag_block_definition<s_unknown5_block_definition> __unknown31_block; 
 	s_tag_block_definition<s_space_fighter_camera2_block_definition> nicename("Space Fighter Camera") space_fighter_camera2_block; 
@@ -164,20 +164,20 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	float __unknown34; 
 	float __unknown35; 
 	float __unknown36; 
-	Unknown32 __unknown37; 
-	Unknown32 __unknown38; 
+	Undefined32 __unknown37; 
+	Undefined32 __unknown38; 
 	float __unknown39; 
-	Unknown32 __unknown40; 
+	Undefined32 __unknown40; 
 	float __unknown41; 
 	float __unknown42; 
 	float __unknown43; 
-	Unknown32 __unknown44; 
+	Undefined32 __unknown44; 
 	float __unknown45; 
 	float nicename("Feign Death Chance") feign_death_chance; 
 	float nicename("Feign Repeat Chance") feign_repeat_chance; 
 	TagReference nicename("Spawned Turret Character") spawned_turret_character_reference; 
-	signed short nicename("Spawned Actor Count min") spawned_actor_count_min; 
-	signed short nicename("Spawned Actor Count max") spawned_actor_count_max; 
+	int16_t nicename("Spawned Actor Count min") spawned_actor_count_min; 
+	int16_t nicename("Spawned Actor Count max") spawned_actor_count_max; 
 	float nicename("Spawned Velocity") spawned_velocity; 
 	string_id nicename("Aiming Pivot Marker") aiming_pivot_marker; 
 	float nicename("Aiming Velocity Maximum") aiming_velocity_maximum; 
@@ -185,12 +185,12 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	float nicename("Casual Aiming Modifier") casual_aiming_modifier; 
 	float nicename("Looking Velocity Maximum") looking_velocity_maximum; 
 	float nicename("Looking Acceleration Maximum") looking_acceleration_maximum; 
-	Unknown32 __unknown46; 
+	Undefined32 __unknown46; 
 	string_id nicename("Right Hand Node") right_hand_node; 
 	string_id nicename("Left Hand Node") left_hand_node; 
 	string_id nicename("Preferred Gun Node") preferred_gun_node; 
 	string_id nicename("Preferred Grenade Node") preferred_grenade_node; 
-	Unknown32 __unknown47; 
+	Undefined32 __unknown47; 
 	TagReference nicename("AI Melee Damage") ai_melee_damage_reference; 
 	TagReference nicename("Melee Damage") melee_damage_reference; 
 	TagReference nicename("Boarding Melee Damage") boarding_melee_damage_reference; 
@@ -201,8 +201,8 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	TagReference nicename("Flurry Melee Damage") flurry_melee_damage_reference; 
 	TagReference nicename("Obstacle Smash Melee Damage") obstacle_smash_melee_damage_reference; 
 	TagReference nicename("Assassination Damage") assassination_damage_reference; 
-	signed short nicename("Motion Sensor Blip Size") motion_sensor_blip_size; 
-	signed short nicename("Item Scale") item_scale; 
+	int16_t nicename("Motion Sensor Blip Size") motion_sensor_blip_size; 
+	int16_t nicename("Item Scale") item_scale; 
 	string_id nicename("Equipment Variant") equipment_variant; 
 	string_id nicename("Dropped Equipment Variant") dropped_equipment_variant; 
 	s_tag_block_definition<s_posture_block_definition> nicename("Postures") postures_block; 
@@ -212,8 +212,8 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	float nicename("Grenade Force") grenade_force; 
 	float nicename("Grenade Angle") grenade_angle; 
 	float nicename("Grenade Velocity") grenade_velocity; 
-	signed short nicename("Grenade Type") grenade_type; 
-	signed short nicename("Grenade Count") grenade_count; 
+	int16_t nicename("Grenade Type") grenade_type; 
+	int16_t nicename("Grenade Count") grenade_count; 
 	s_tag_block_definition<s_powered_seat_block_definition> nicename("Powered Seats") powered_seats_block; 
 	s_tag_block_definition<s_weapon_block_definition> nicename("Weapons") weapons_block; 
 	s_tag_block_definition<s_target_tracking_block_definition> nicename("Target Tracking") target_tracking_block; 
@@ -223,10 +223,10 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	float nicename("EMP Radius") emp_radius; 
 	TagReference nicename("EMP Effect") emp_effect_reference; 
 	TagReference nicename("Boost Collision Damage") boost_collision_damage_reference; 
-	unsigned char nicename("Boost Flags") boost_flags; 
-	signed char __unknown50; 
-	signed char __unknown51; 
-	signed char __unknown52; 
+	uint8_t nicename("Boost Flags") boost_flags; 
+	int8_t __unknown50; 
+	int8_t __unknown51; 
+	int8_t __unknown52; 
 	float nicename("Boost Peak Power") boost_peak_power; 
 	float nicename("Boost Rise Power") boost_rise_power; 
 	float nicename("Boost Fall Power") boost_fall_power; 
@@ -240,16 +240,16 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	TagReference nicename("Detached Weapon") detached_weapon_reference; 
 	// comment
 	float nicename("Moving Turning Speed") moving_turning_speed; 
-	signed int nicename("Flags") flags3; 
+	int32_t nicename("Flags") flags3; 
 	float nicename("Stationary Turning Speed") stationary_turning_speed; 
 	TagReference nicename("Death Program") death_program_reference; 
 	string_id __unknown53; 
 	string_id nicename("Assassination String") assassination_string; 
 	float nicename("Jump Velocity") jump_velocity; 
 	s_tag_block_definition<s_trick_block_definition> nicename("Tricks") tricks_block; 
-	Unknown32 __unknown54; 
-	Unknown32 __unknown55; 
-	Unknown32 __unknown56; 
+	Undefined32 __unknown54; 
+	Undefined32 __unknown55; 
+	Undefined32 __unknown56; 
 	float nicename("Maximum Soft Landing Time") maximum_soft_landing_time; 
 	float nicename("Maximum Hard Landing Time") maximum_hard_landing_time; 
 	float nicename("Minimum Soft Landing Velocity") minimum_soft_landing_velocity; 
@@ -271,13 +271,13 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	float __unknown60; 
 	float __unknown61; 
 	float nicename("Autoaim Width") autoaim_width; 
-	signed short nicename("Physics Control Node Index") physics_control_node_index; 
-	signed short __unknown62; 
+	int16_t nicename("Physics Control Node Index") physics_control_node_index; 
+	int16_t __unknown62; 
 	float __unknown63; 
 	float __unknown64; 
 	float __unknown65; 
-	signed short nicename("Pelvis Node Index") pelvis_node_index; 
-	signed short nicename("Head Node Index") head_node_index; 
+	int16_t nicename("Pelvis Node Index") pelvis_node_index; 
+	int16_t nicename("Head Node Index") head_node_index; 
 	s_tag_block_definition<s_unknown6_block_definition> __unknown66_block; 
 	TagReference nicename("Area Damage Effect") area_damage_effect_reference; 
 	TagReference nicename("Health Pickup Effect") health_pickup_effect_reference; 
@@ -290,15 +290,15 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	float __unknown73; 
 	float __unknown74; 
 	// comment
-	signed int nicename("Flags") flags4; 
+	int32_t nicename("Flags") flags4; 
 	float nicename("Height Standing") height_standing; 
 	float nicename("Height Crouching") height_crouching; 
 	float nicename("Radius") radius; 
 	float nicename("Mass") mass; 
 	string_id nicename("Living Material Name") living_material_name; 
 	string_id nicename("Dead Material Name") dead_material_name; 
-	signed short nicename("Living Global Material Index") living_global_material_index; 
-	signed short nicename("Dead Global Material Index") dead_global_material_index; 
+	int16_t nicename("Living Global Material Index") living_global_material_index; 
+	int16_t nicename("Dead Global Material Index") dead_global_material_index; 
 	s_tag_block_definition<s_dead_sphere_shape_block_definition> nicename("Dead Sphere Shapes") dead_sphere_shapes_block; 
 	s_tag_block_definition<s_pill_shape_block_definition> nicename("Pill Shapes") pill_shapes_block; 
 	s_tag_block_definition<s_sphere_shape_block_definition> nicename("Sphere Shapes") sphere_shapes_block; 
@@ -332,26 +332,26 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	float nicename("Angular Velocity Maximum") angular_velocity_maximum; 
 	float nicename("Angular Acceleration Maximum") angular_acceleration_maximum; 
 	float nicename("Crouch Velocity Modifier") crouch_velocity_modifier; 
-	Unknown32 __unknown84; 
+	Undefined32 __unknown84; 
 	s_tag_block_definition<s_contact_point_block_definition> nicename("Contact Points") contact_points_block; 
 	TagReference nicename("Reanimation Character") reanimation_character_reference; 
 	TagReference nicename("Transformation Muffin") transformation_muffin_reference; 
 	TagReference nicename("Death Spawn Character") death_spawn_character_reference; 
-	signed short nicename("Death Spawn Count") death_spawn_count; 
-	signed short __unknown85; 
-	Unknown32 __unknown86; 
+	int16_t nicename("Death Spawn Count") death_spawn_count; 
+	int16_t __unknown85; 
+	Undefined32 __unknown86; 
 	float __unknown87; 
 	float __unknown88; 
 	float __unknown89; 
 	float __unknown90; 
 	float __unknown91; 
 	float __unknown92; 
-	Unknown32 __unknown93; 
-	Unknown32 __unknown94; 
-	Unknown32 __unknown95; 
-	Unknown32 __unknown96; 
-	Unknown32 __unknown97; 
-	signed int __unknown98; 
+	Undefined32 __unknown93; 
+	Undefined32 __unknown94; 
+	Undefined32 __unknown95; 
+	Undefined32 __unknown96; 
+	Undefined32 __unknown97; 
+	int32_t __unknown98; 
 	float __unknown99; 
 	float __unknown100; 
 	float __unknown101; 
@@ -385,32 +385,32 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	struct nicename("early_mover_property") s_early_mover_property_block_definition
 	{
 		string_id nicename("Name") name; 
-		Unknown32 __unknown; 
-		Unknown32 __unknown2; 
-		Unknown32 __unknown3; 
-		Unknown32 __unknown4; 
-		Unknown32 __unknown5; 
-		Unknown32 __unknown6; 
-		Unknown32 __unknown7; 
-		Unknown32 __unknown8; 
-		Unknown32 __unknown9; 
-		Unknown32 __unknown10; 
+		Undefined32 __unknown; 
+		Undefined32 __unknown2; 
+		Undefined32 __unknown3; 
+		Undefined32 __unknown4; 
+		Undefined32 __unknown5; 
+		Undefined32 __unknown6; 
+		Undefined32 __unknown7; 
+		Undefined32 __unknown8; 
+		Undefined32 __unknown9; 
+		Undefined32 __unknown10; 
 	};
 
 	struct nicename("ai_property") s_ai_property_block_definition
 	{
-		signed int nicename("Flags") flags; 
+		int32_t nicename("Flags") flags; 
 		string_id nicename("AI Type Name") ai_type_name; 
-		Unknown32 __unknown; 
-		signed short nicename("Size") size; 
-		signed short nicename("Leap Jump Speed") leap_jump_speed; 
+		Undefined32 __unknown; 
+		int16_t nicename("Size") size; 
+		int16_t nicename("Leap Jump Speed") leap_jump_speed; 
 	};
 
 	struct nicename("function") s_function_block_definition
 	{
 		struct s_unknown_block_definition;
 
-		signed int nicename("Flags") flags; 
+		int32_t nicename("Flags") flags; 
 		string_id nicename("Import Name") import_name; 
 		string_id nicename("Export Name") export_name; 
 		string_id nicename("Turn Off With") turn_off_with; 
@@ -419,14 +419,14 @@ struct nicename("Biped") group('bipd') s_biped_definition
 		DataReference nicename("Default Function") default_function_data_reference; 
 		string_id nicename("Scale By") scale_by; 
 		s_tag_block_definition<s_unknown_block_definition> __unknown2_block; 
-		signed int nicename("'Function Related' Index") _function_related__index; 
+		int32_t nicename("'Function Related' Index") _function_related__index; 
 
 		struct s_unknown_block_definition
 		{
-			signed int __unknown; 
+			int32_t __unknown; 
 			float __unknown2; 
 			float __unknown3; 
-			Unknown32 __unknown4; 
+			Undefined32 __unknown4; 
 			float __unknown5; 
 			float __unknown6; 
 		};
@@ -434,15 +434,15 @@ struct nicename("Biped") group('bipd') s_biped_definition
 
 	struct nicename("function_related") s_function_related_block_definition
 	{
-		signed int nicename("Function Index") function_index; 
+		int32_t nicename("Function Index") function_index; 
 	};
 
 	struct nicename("attachment") s_attachment_block_definition
 	{
 		TagReference nicename("Attachment") attachment_reference; 
 		string_id nicename("Marker") marker; 
-		signed short nicename("Change Color") change_color; 
-		signed short __unknown; 
+		int16_t nicename("Change Color") change_color; 
+		int16_t __unknown; 
 		string_id nicename("Primary Scale") primary_scale; 
 		string_id nicename("Secondary Scale") secondary_scale; 
 	};
@@ -451,9 +451,9 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	{
 		struct s_unknown_block_definition;
 
-		Unknown32 __unknown; 
-		Unknown32 __unknown2; 
-		Unknown32 __unknown3; 
+		Undefined32 __unknown; 
+		Undefined32 __unknown2; 
+		Undefined32 __unknown3; 
 		s_tag_block_definition<s_unknown_block_definition> __unknown4_block; 
 
 		struct s_unknown_block_definition
@@ -463,8 +463,8 @@ struct nicename("Biped") group('bipd') s_biped_definition
 			float __unknown2; 
 			DataReference __unknown3_data_reference; 
 			float __unknown4; 
-			Unknown32 __unknown5; 
-			Unknown32 __unknown6; 
+			Undefined32 __unknown5; 
+			Undefined32 __unknown6; 
 		};
 	};
 
@@ -472,7 +472,7 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	{
 		string_id nicename("Marker") marker; 
 		float __unknown; 
-		Unknown32 __unknown2; 
+		Undefined32 __unknown2; 
 		float __unknown3; 
 		float __unknown4; 
 		float __unknown5; 
@@ -508,7 +508,7 @@ struct nicename("Biped") group('bipd') s_biped_definition
 
 		struct nicename("function") s_function_block_definition
 		{
-			signed int nicename("Scale Flags") scale_flags; 
+			int32_t nicename("Scale Flags") scale_flags; 
 			float nicename("Color Lower Bound r") color_lower_bound_r; 
 			float nicename("Color Lower Bound g") color_lower_bound_g; 
 			float nicename("Color Lower Bound b") color_lower_bound_b; 
@@ -522,31 +522,31 @@ struct nicename("Biped") group('bipd') s_biped_definition
 
 	struct nicename("predicted_resource") s_predicted_resource_block_definition
 	{
-		signed short nicename("Type") type; 
-		signed short nicename("Resource Index") resource_index; 
+		int16_t nicename("Type") type; 
+		int16_t nicename("Resource Index") resource_index; 
 		unsigned int nicename("Tag Index") tag_index; 
 	};
 
 	struct nicename("multiplayer_object_property") s_multiplayer_object_property_block_definition
 	{
-		signed char __unknown; 
-		signed char nicename("Object Type") object_type; 
-		unsigned char nicename("Teleporter Flags") teleporter_flags; 
-		signed char __unknown2; 
+		int8_t __unknown; 
+		int8_t nicename("Object Type") object_type; 
+		uint8_t nicename("Teleporter Flags") teleporter_flags; 
+		int8_t __unknown2; 
 		float nicename("Radius/Width") radius_width; 
 		float nicename("Length") length; 
 		float nicename("Top") top; 
 		float nicename("Bottom") bottom; 
-		signed char nicename("Shape") shape; 
-		signed char nicename("Spawn Timer Mode") spawn_timer_mode; 
-		signed short nicename("Spawn Time") spawn_time; 
-		signed short nicename("Abandon Time") abandon_time; 
-		unsigned short nicename("Flags") flags; 
+		int8_t nicename("Shape") shape; 
+		int8_t nicename("Spawn Timer Mode") spawn_timer_mode; 
+		int16_t nicename("Spawn Time") spawn_time; 
+		int16_t nicename("Abandon Time") abandon_time; 
+		uint16_t nicename("Flags") flags; 
 		float __unknown3; 
-		signed int __unknown4; 
-		signed int __unknown5; 
+		int32_t __unknown4; 
+		int32_t __unknown5; 
 		TagReference nicename("Child Object") child_object_reference; 
-		signed int __unknown6; 
+		int32_t __unknown6; 
 		TagReference nicename("Shape Shader") shape_shader_reference; 
 		TagReference nicename("Shader 2") shader_2_reference; 
 		TagReference __unknown7_reference; 
@@ -566,12 +566,12 @@ struct nicename("Biped") group('bipd') s_biped_definition
 
 	struct nicename("metagame_property") s_metagame_property_block_definition
 	{
-		unsigned char nicename("Flags") flags; 
-		signed char nicename("Unit") unit; 
-		signed char nicename("Classification") classification; 
-		signed char __unknown; 
-		signed short nicename("Points") points; 
-		signed short __unknown2; 
+		uint8_t nicename("Flags") flags; 
+		int8_t nicename("Unit") unit; 
+		int8_t nicename("Classification") classification; 
+		int8_t __unknown; 
+		int16_t nicename("Points") points; 
+		int16_t __unknown2; 
 	};
 
 	struct nicename("unit_screen_effect") s_unit_screen_effect_block_definition
@@ -588,19 +588,19 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	struct s_unknown2_block_definition
 	{
 		float __unknown; 
-		Unknown32 __unknown2; 
+		Undefined32 __unknown2; 
 		DataReference __unknown3_data_reference; 
 		float __unknown4; 
 		float __unknown5; 
 		float __unknown6; 
-		signed short __unknown7; 
-		signed short __unknown8; 
+		int16_t __unknown7; 
+		int16_t __unknown8; 
 		DataReference __unknown9_data_reference; 
 		float __unknown10; 
 		float __unknown11; 
 		float __unknown12; 
-		signed short __unknown13; 
-		signed short __unknown14; 
+		int16_t __unknown13; 
+		int16_t __unknown14; 
 		DataReference __unknown15_data_reference; 
 		float __unknown16; 
 		float __unknown17; 
@@ -611,10 +611,10 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	{
 		struct s_unknown_block_definition;
 
-		signed char __unknown; 
-		signed char __unknown2; 
-		signed char __unknown3; 
-		signed char __unknown4; 
+		int8_t __unknown; 
+		int8_t __unknown2; 
+		int8_t __unknown3; 
+		int8_t __unknown4; 
 		float __unknown5; 
 		float __unknown6; 
 		float __unknown7; 
@@ -633,10 +633,10 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	{
 		struct s_unknown_block_definition;
 
-		signed char __unknown; 
-		signed char __unknown2; 
-		signed char __unknown3; 
-		signed char __unknown4; 
+		int8_t __unknown; 
+		int8_t __unknown2; 
+		int8_t __unknown3; 
+		int8_t __unknown4; 
 		float __unknown5; 
 		float __unknown6; 
 		float __unknown7; 
@@ -660,19 +660,19 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	struct s_unknown4_block_definition
 	{
 		float __unknown; 
-		Unknown32 __unknown2; 
+		Undefined32 __unknown2; 
 		DataReference __unknown3_data_reference; 
 		float __unknown4; 
 		float __unknown5; 
 		float __unknown6; 
-		signed short __unknown7; 
-		signed short __unknown8; 
+		int16_t __unknown7; 
+		int16_t __unknown8; 
 		DataReference __unknown9_data_reference; 
 		float __unknown10; 
 		float __unknown11; 
 		float __unknown12; 
-		signed short __unknown13; 
-		signed short __unknown14; 
+		int16_t __unknown13; 
+		int16_t __unknown14; 
 		DataReference __unknown15_data_reference; 
 		float __unknown16; 
 		float __unknown17; 
@@ -683,10 +683,10 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	{
 		struct s_unknown_block_definition;
 
-		signed char __unknown; 
-		signed char __unknown2; 
-		signed char __unknown3; 
-		signed char __unknown4; 
+		int8_t __unknown; 
+		int8_t __unknown2; 
+		int8_t __unknown3; 
+		int8_t __unknown4; 
 		float __unknown5; 
 		float __unknown6; 
 		float __unknown7; 
@@ -705,10 +705,10 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	{
 		struct s_unknown_block_definition;
 
-		signed char __unknown; 
-		signed char __unknown2; 
-		signed char __unknown3; 
-		signed char __unknown4; 
+		int8_t __unknown; 
+		int8_t __unknown2; 
+		int8_t __unknown3; 
+		int8_t __unknown4; 
 		float __unknown5; 
 		float __unknown6; 
 		float __unknown7; 
@@ -738,8 +738,8 @@ struct nicename("Biped") group('bipd') s_biped_definition
 
 	struct nicename("dialogue_variant") s_dialogue_variant_block_definition
 	{
-		signed short nicename("Variant Number") variant_number; 
-		signed short __unknown; 
+		int16_t nicename("Variant Number") variant_number; 
+		int16_t __unknown; 
 		TagReference nicename("Dialogue") dialogue_reference; 
 	};
 
@@ -780,7 +780,7 @@ struct nicename("Biped") group('bipd') s_biped_definition
 		struct nicename("Space Fighter Camera") s_space_fighter_camera_block_definition;
 		struct nicename("Unit HUD Interface") s_unit_hud_interface_block_definition;
 
-		signed int nicename("Flags") flags; 
+		int32_t nicename("Flags") flags; 
 		string_id nicename("Seat Animation") seat_animation; 
 		string_id nicename("Seat Marker Name") seat_marker_name; 
 		string_id nicename("Entry Marker(s) Name") entry_markers_name; 
@@ -792,11 +792,11 @@ struct nicename("Biped") group('bipd') s_biped_definition
 		float nicename("Turnover Time") turnover_time; 
 		TagReference nicename("Spring Acceleration") spring_acceleration_reference; 
 		float nicename("AI Scariness") ai_scariness; 
-		signed short nicename("AI Seat Type") ai_seat_type; 
-		signed short nicename("Boarding Seat") boarding_seat; 
-		Unknown32 __block_here; 
-		Unknown32 __block_here2; 
-		Unknown32 __block_here3; 
+		int16_t nicename("AI Seat Type") ai_seat_type; 
+		int16_t nicename("Boarding Seat") boarding_seat; 
+		Undefined32 __block_here; 
+		Undefined32 __block_here2; 
+		Undefined32 __block_here3; 
 		float nicename("Listener Interpolation Factor") listener_interpolation_factor; 
 		float nicename("Yaw Rate Bounds min") yaw_rate_bounds_min; 
 		float nicename("Yaw Rate Bounds max") yaw_rate_bounds_max; 
@@ -806,10 +806,10 @@ struct nicename("Biped") group('bipd') s_biped_definition
 		float nicename("Minimum Speed Reference") minimum_speed_reference; 
 		float nicename("Maximum Speed Reference") maximum_speed_reference; 
 		float nicename("Speed Exponent") speed_exponent; 
-		unsigned char nicename("Camera Flags") camera_flags; 
-		signed char __unknown2; 
-		signed char __unknown3; 
-		signed char __unknown4; 
+		uint8_t nicename("Camera Flags") camera_flags; 
+		int8_t __unknown2; 
+		int8_t __unknown3; 
+		int8_t __unknown4; 
 		string_id nicename("Camera Marker") camera_marker; 
 		float nicename("Pitch Auto-Level") pitch_auto_level; 
 		float nicename("Pitch Range min") pitch_range_min; 
@@ -822,12 +822,12 @@ struct nicename("Biped") group('bipd') s_biped_definition
 		float nicename("Camera Deceleration Speed") camera_deceleration_speed; 
 		float __unknown6; 
 		float nicename("Camera Field Of View") camera_field_of_view; 
-		Unknown32 __unknown7; 
-		Unknown32 __unknown8; 
-		Unknown32 __unknown9; 
-		Unknown32 __unknown10; 
-		Unknown32 __unknown11; 
-		Unknown32 __unknown12; 
+		Undefined32 __unknown7; 
+		Undefined32 __unknown8; 
+		Undefined32 __unknown9; 
+		Undefined32 __unknown10; 
+		Undefined32 __unknown11; 
+		Undefined32 __unknown12; 
 		s_tag_block_definition<s_unknown_block_definition> __unknown13_block; 
 		s_tag_block_definition<s_unknown2_block_definition> __unknown14_block; 
 		s_tag_block_definition<s_space_fighter_camera_block_definition> nicename("Space Fighter Camera") space_fighter_camera_block; 
@@ -846,7 +846,7 @@ struct nicename("Biped") group('bipd') s_biped_definition
 		string_id nicename("Opening Animation") opening_animation; 
 		string_id nicename("Closing Animation") closing_animation; 
 		string_id nicename("Invisible Seat Region") invisible_seat_region; 
-		signed int nicename("Runtime Invisible Seat Region Index") runtime_invisible_seat_region_index; 
+		int32_t nicename("Runtime Invisible Seat Region Index") runtime_invisible_seat_region_index; 
 
 		struct nicename("camera_track") s_camera_track_block_definition
 		{
@@ -857,19 +857,19 @@ struct nicename("Biped") group('bipd') s_biped_definition
 		struct s_unknown_block_definition
 		{
 			float __unknown; 
-			Unknown32 __unknown2; 
+			Undefined32 __unknown2; 
 			DataReference __unknown3_data_reference; 
 			float __unknown4; 
 			float __unknown5; 
 			float __unknown6; 
-			signed short __unknown7; 
-			signed short __unknown8; 
+			int16_t __unknown7; 
+			int16_t __unknown8; 
 			DataReference __unknown9_data_reference; 
 			float __unknown10; 
 			float __unknown11; 
 			float __unknown12; 
-			signed short __unknown13; 
-			signed short __unknown14; 
+			int16_t __unknown13; 
+			int16_t __unknown14; 
 			DataReference __unknown15_data_reference; 
 			float __unknown16; 
 			float __unknown17; 
@@ -880,10 +880,10 @@ struct nicename("Biped") group('bipd') s_biped_definition
 		{
 			struct s_unknown_block_definition;
 
-			signed char __unknown; 
-			signed char __unknown2; 
-			signed char __unknown3; 
-			signed char __unknown4; 
+			int8_t __unknown; 
+			int8_t __unknown2; 
+			int8_t __unknown3; 
+			int8_t __unknown4; 
 			float __unknown5; 
 			float __unknown6; 
 			float __unknown7; 
@@ -902,10 +902,10 @@ struct nicename("Biped") group('bipd') s_biped_definition
 		{
 			struct s_unknown_block_definition;
 
-			signed char __unknown; 
-			signed char __unknown2; 
-			signed char __unknown3; 
-			signed char __unknown4; 
+			int8_t __unknown; 
+			int8_t __unknown2; 
+			int8_t __unknown3; 
+			int8_t __unknown4; 
 			float __unknown5; 
 			float __unknown6; 
 			float __unknown7; 
@@ -929,16 +929,16 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	struct nicename("trick") s_trick_block_definition
 	{
 		string_id nicename("Name") name; 
-		signed char nicename("Initiate Direction") initiate_direction; 
-		signed char __unknown; 
-		signed char __unknown2; 
-		signed char __unknown3; 
+		int8_t nicename("Initiate Direction") initiate_direction; 
+		int8_t __unknown; 
+		int8_t __unknown2; 
+		int8_t __unknown3; 
 		float __unknown4; 
-		Unknown32 __distance_traveled; 
+		Undefined32 __distance_traveled; 
 		float __unknown5; 
 		float __unknown6; 
 		float __unknown7; 
-		Unknown32 __cooldown_time; 
+		Undefined32 __cooldown_time; 
 	};
 
 	struct nicename("weapon_camera_height") s_weapon_camera_height_block_definition
@@ -954,7 +954,7 @@ struct nicename("Biped") group('bipd') s_biped_definition
 		float __unknown2; 
 		float __unknown3; 
 		float __unknown4; 
-		Unknown32 __unknown5; 
+		Undefined32 __unknown5; 
 		string_id __unknown6; 
 	};
 
@@ -981,51 +981,51 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	struct nicename("dead_sphere_shape") s_dead_sphere_shape_block_definition
 	{
 		string_id nicename("Name") name; 
-		signed char nicename("Material Index") material_index; 
-		signed char __unknown; 
-		signed short nicename("Global Material Index") global_material_index; 
+		int8_t nicename("Material Index") material_index; 
+		int8_t __unknown; 
+		int16_t nicename("Global Material Index") global_material_index; 
 		float nicename("Relative Mass Scale") relative_mass_scale; 
 		float nicename("Friction") friction; 
 		float nicename("Restitution") restitution; 
 		float nicename("Volume") volume; 
 		float nicename("Mass") mass; 
-		signed short nicename("Overall Shape Index") overall_shape_index; 
-		signed char nicename("Phantom Index") phantom_index; 
-		signed char nicename("Interaction Unknown") interaction_unknown; 
-		Unknown32 __unknown2; 
-		Unknown32 __unknown3; 
-		signed short nicename("Size") size; 
-		signed short nicename("Count") count; 
-		Unknown32 __unknown4; 
-		signed int nicename("Offset") offset; 
-		Unknown32 __unknown5; 
-		signed int __unknown6; 
-		Unknown32 __unknown7; 
+		int16_t nicename("Overall Shape Index") overall_shape_index; 
+		int8_t nicename("Phantom Index") phantom_index; 
+		int8_t nicename("Interaction Unknown") interaction_unknown; 
+		Undefined32 __unknown2; 
+		Undefined32 __unknown3; 
+		int16_t nicename("Size") size; 
+		int16_t nicename("Count") count; 
+		Undefined32 __unknown4; 
+		int32_t nicename("Offset") offset; 
+		Undefined32 __unknown5; 
+		int32_t __unknown6; 
+		Undefined32 __unknown7; 
 		float nicename("Radius") radius; 
-		Unknown32 __unknown8; 
-		Unknown32 __unknown9; 
-		Unknown32 __unknown10; 
-		Unknown32 __unknown11; 
-		Unknown32 __unknown12; 
-		Unknown32 __unknown13; 
-		Unknown32 __unknown14; 
-		Unknown32 __unknown15; 
-		Unknown32 __unknown16; 
-		signed short nicename("Size") size2; 
-		signed short nicename("Count") count2; 
-		Unknown32 __unknown17; 
-		signed int nicename("Offset") offset2; 
-		Unknown32 __unknown18; 
-		signed int __unknown19; 
-		Unknown32 __unknown20; 
+		Undefined32 __unknown8; 
+		Undefined32 __unknown9; 
+		Undefined32 __unknown10; 
+		Undefined32 __unknown11; 
+		Undefined32 __unknown12; 
+		Undefined32 __unknown13; 
+		Undefined32 __unknown14; 
+		Undefined32 __unknown15; 
+		Undefined32 __unknown16; 
+		int16_t nicename("Size") size2; 
+		int16_t nicename("Count") count2; 
+		Undefined32 __unknown17; 
+		int32_t nicename("Offset") offset2; 
+		Undefined32 __unknown18; 
+		int32_t __unknown19; 
+		Undefined32 __unknown20; 
 		float nicename("Radius") radius2; 
-		Unknown32 __unknown21; 
-		Unknown32 __unknown22; 
-		Unknown32 __unknown23; 
-		Unknown32 __unknown24; 
-		Unknown32 __unknown25; 
-		Unknown32 __unknown26; 
-		Unknown32 __unknown27; 
+		Undefined32 __unknown21; 
+		Undefined32 __unknown22; 
+		Undefined32 __unknown23; 
+		Undefined32 __unknown24; 
+		Undefined32 __unknown25; 
+		Undefined32 __unknown26; 
+		Undefined32 __unknown27; 
 		float nicename("Translation i") translation_i; 
 		float nicename("Translation j") translation_j; 
 		float nicename("Translation k") translation_k; 
@@ -1035,30 +1035,30 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	struct nicename("pill_shape") s_pill_shape_block_definition
 	{
 		string_id nicename("Name") name; 
-		signed char nicename("Material Index") material_index; 
-		signed char __unknown; 
-		signed short nicename("Global Material Index") global_material_index; 
+		int8_t nicename("Material Index") material_index; 
+		int8_t __unknown; 
+		int16_t nicename("Global Material Index") global_material_index; 
 		float nicename("Relative Mass Scale") relative_mass_scale; 
 		float nicename("Friction") friction; 
 		float nicename("Restitution") restitution; 
 		float nicename("Volume") volume; 
 		float nicename("Mass") mass; 
-		signed short nicename("Overall Shape Index") overall_shape_index; 
-		signed char nicename("Phantom Index") phantom_index; 
-		signed char nicename("Interaction Unknown") interaction_unknown; 
-		Unknown32 __unknown2; 
-		Unknown32 __unknown3; 
-		signed short nicename("Size") size; 
-		signed short nicename("Count") count; 
-		Unknown32 __unknown4; 
-		signed int nicename("Offset") offset; 
-		Unknown32 __unknown5; 
-		signed int __unknown6; 
-		Unknown32 __unknown7; 
+		int16_t nicename("Overall Shape Index") overall_shape_index; 
+		int8_t nicename("Phantom Index") phantom_index; 
+		int8_t nicename("Interaction Unknown") interaction_unknown; 
+		Undefined32 __unknown2; 
+		Undefined32 __unknown3; 
+		int16_t nicename("Size") size; 
+		int16_t nicename("Count") count; 
+		Undefined32 __unknown4; 
+		int32_t nicename("Offset") offset; 
+		Undefined32 __unknown5; 
+		int32_t __unknown6; 
+		Undefined32 __unknown7; 
 		float nicename("Radius") radius; 
-		Unknown32 __unknown8; 
-		Unknown32 __unknown9; 
-		Unknown32 __unknown10; 
+		Undefined32 __unknown8; 
+		Undefined32 __unknown9; 
+		Undefined32 __unknown10; 
 		float nicename("Bottom i") bottom_i; 
 		float nicename("Bottom j") bottom_j; 
 		float nicename("Bottom k") bottom_k; 
@@ -1072,51 +1072,51 @@ struct nicename("Biped") group('bipd') s_biped_definition
 	struct nicename("sphere_shape") s_sphere_shape_block_definition
 	{
 		string_id nicename("Name") name; 
-		signed char nicename("Material Index") material_index; 
-		signed char __unknown; 
-		signed short nicename("Global Material Index") global_material_index; 
+		int8_t nicename("Material Index") material_index; 
+		int8_t __unknown; 
+		int16_t nicename("Global Material Index") global_material_index; 
 		float nicename("Relative Mass Scale") relative_mass_scale; 
 		float nicename("Friction") friction; 
 		float nicename("Restitution") restitution; 
 		float nicename("Volume") volume; 
 		float nicename("Mass") mass; 
-		signed short nicename("Overall Shape Index") overall_shape_index; 
-		signed char nicename("Phantom Index") phantom_index; 
-		signed char nicename("Interaction Unknown") interaction_unknown; 
-		Unknown32 __unknown2; 
-		Unknown32 __unknown3; 
-		signed short nicename("Size") size; 
-		signed short nicename("Count") count; 
-		Unknown32 __unknown4; 
-		signed int nicename("Offset") offset; 
-		Unknown32 __unknown5; 
-		signed int __unknown6; 
-		Unknown32 __unknown7; 
+		int16_t nicename("Overall Shape Index") overall_shape_index; 
+		int8_t nicename("Phantom Index") phantom_index; 
+		int8_t nicename("Interaction Unknown") interaction_unknown; 
+		Undefined32 __unknown2; 
+		Undefined32 __unknown3; 
+		int16_t nicename("Size") size; 
+		int16_t nicename("Count") count; 
+		Undefined32 __unknown4; 
+		int32_t nicename("Offset") offset; 
+		Undefined32 __unknown5; 
+		int32_t __unknown6; 
+		Undefined32 __unknown7; 
 		float nicename("Radius") radius; 
-		Unknown32 __unknown8; 
-		Unknown32 __unknown9; 
-		Unknown32 __unknown10; 
-		Unknown32 __unknown11; 
-		Unknown32 __unknown12; 
-		Unknown32 __unknown13; 
-		Unknown32 __unknown14; 
-		Unknown32 __unknown15; 
-		Unknown32 __unknown16; 
-		signed short nicename("Size") size2; 
-		signed short nicename("Count") count2; 
-		Unknown32 __unknown17; 
-		signed int nicename("Offset") offset2; 
-		Unknown32 __unknown18; 
-		signed int __unknown19; 
-		Unknown32 __unknown20; 
+		Undefined32 __unknown8; 
+		Undefined32 __unknown9; 
+		Undefined32 __unknown10; 
+		Undefined32 __unknown11; 
+		Undefined32 __unknown12; 
+		Undefined32 __unknown13; 
+		Undefined32 __unknown14; 
+		Undefined32 __unknown15; 
+		Undefined32 __unknown16; 
+		int16_t nicename("Size") size2; 
+		int16_t nicename("Count") count2; 
+		Undefined32 __unknown17; 
+		int32_t nicename("Offset") offset2; 
+		Undefined32 __unknown18; 
+		int32_t __unknown19; 
+		Undefined32 __unknown20; 
 		float nicename("Radius") radius2; 
-		Unknown32 __unknown21; 
-		Unknown32 __unknown22; 
-		Unknown32 __unknown23; 
-		Unknown32 __unknown24; 
-		Unknown32 __unknown25; 
-		Unknown32 __unknown26; 
-		Unknown32 __unknown27; 
+		Undefined32 __unknown21; 
+		Undefined32 __unknown22; 
+		Undefined32 __unknown23; 
+		Undefined32 __unknown24; 
+		Undefined32 __unknown25; 
+		Undefined32 __unknown26; 
+		Undefined32 __unknown27; 
 		float nicename("Translation i") translation_i; 
 		float nicename("Translation j") translation_j; 
 		float nicename("Translation k") translation_k; 

@@ -75,41 +75,41 @@ struct nicename("Ai Globals") group('aigl') s_ai_globals_definition
 		s_tag_block_definition<s_formation_block_definition> nicename("Formations") formations_block; 
 		s_tag_block_definition<s_squad_template_block_definition> nicename("Squad Templates") squad_templates_block; 
 		s_tag_block_definition<s_performance_template_block_definition> nicename("Performance Templates") performance_templates_block; 
-		Unknown32 __unknown20; 
-		Unknown32 __unknown21; 
-		Unknown32 __unknown22; 
+		Undefined32 __unknown20; 
+		Undefined32 __unknown21; 
+		Undefined32 __unknown22; 
 		s_tag_block_definition<s_unknown_block_definition> __unknown23_block; 
-		Unknown32 __unknown24; 
-		Unknown32 __unknown25; 
-		Unknown32 __unknown26; 
-		Unknown32 __unknown27; 
-		Unknown32 __unknown28; 
-		Unknown32 __unknown29; 
-		Unknown32 __unknown30; 
-		Unknown32 __unknown31; 
-		Unknown32 __unknown32; 
-		Unknown32 __unknown33; 
-		Unknown32 __unknown34; 
-		Unknown32 __unknown35; 
-		Unknown32 __unknown36; 
-		Unknown32 __unknown37; 
-		signed short __unknown38; 
-		signed short __unknown39; 
-		signed short __unknown40; 
-		signed short __unknown41; 
-		signed short __unknown42; 
-		signed short __unknown43; 
+		Undefined32 __unknown24; 
+		Undefined32 __unknown25; 
+		Undefined32 __unknown26; 
+		Undefined32 __unknown27; 
+		Undefined32 __unknown28; 
+		Undefined32 __unknown29; 
+		Undefined32 __unknown30; 
+		Undefined32 __unknown31; 
+		Undefined32 __unknown32; 
+		Undefined32 __unknown33; 
+		Undefined32 __unknown34; 
+		Undefined32 __unknown35; 
+		Undefined32 __unknown36; 
+		Undefined32 __unknown37; 
+		int16_t __unknown38; 
+		int16_t __unknown39; 
+		int16_t __unknown40; 
+		int16_t __unknown41; 
+		int16_t __unknown42; 
+		int16_t __unknown43; 
 		s_tag_block_definition<s_vision_trait_definition_block_definition> nicename("Vision Trait Definitions") vision_trait_definitions_block; 
 		s_tag_block_definition<s_hearing_trait_definition_block_definition> nicename("Hearing Trait Definitions") hearing_trait_definitions_block; 
 		s_tag_block_definition<s_luck_trait_definition_block_definition> nicename("Luck Trait Definitions") luck_trait_definitions_block; 
 		s_tag_block_definition<s_grenade_trait_definition_block_definition> nicename("Grenade Trait Definitions") grenade_trait_definitions_block; 
-		Unknown32 __unknown44; 
-		Unknown32 __unknown45; 
-		Unknown32 __unknown46; 
-		signed short __unknown47; 
-		signed short __unknown48; 
-		signed short __unknown49; 
-		signed short __unknown50; 
+		Undefined32 __unknown44; 
+		Undefined32 __unknown45; 
+		Undefined32 __unknown46; 
+		int16_t __unknown47; 
+		int16_t __unknown48; 
+		int16_t __unknown49; 
+		int16_t __unknown50; 
 
 		struct nicename("gravemind_property") s_gravemind_property_block_definition
 		{
@@ -128,9 +128,9 @@ struct nicename("Ai Globals") group('aigl') s_ai_globals_definition
 			struct nicename("Templates") s_template_block_definition;
 
 			string_id nicename("Name") name; 
-			Unknown32 __unknown; 
-			Unknown32 __unknown2; 
-			Unknown32 __unknown3; 
+			Undefined32 __unknown; 
+			Undefined32 __unknown2; 
+			Undefined32 __unknown3; 
 			s_tag_block_definition<s_template_block_definition> nicename("Templates") templates_block; 
 
 			struct nicename("template") s_template_block_definition
@@ -145,9 +145,9 @@ struct nicename("Ai Globals") group('aigl') s_ai_globals_definition
 
 			string_id nicename("Name") name; 
 			s_tag_block_definition<s_character_block_definition> nicename("Characters") characters_block; 
-			Unknown32 __unknown; 
-			Unknown32 __unknown2; 
-			Unknown32 __unknown3; 
+			Undefined32 __unknown; 
+			Undefined32 __unknown2; 
+			Undefined32 __unknown3; 
 
 			struct nicename("character") s_character_block_definition
 			{
@@ -186,17 +186,17 @@ struct nicename("Ai Globals") group('aigl') s_ai_globals_definition
 
 			struct s_unknown4_block_definition
 			{
-				Unknown32 __unknown; 
-				Unknown32 __unknown2; 
-				Unknown32 __unknown3; 
-				Unknown32 __unknown4; 
-				Unknown32 __unknown5; 
-				Unknown32 __unknown6; 
-				Unknown32 __unknown7; 
-				Unknown32 __unknown8; 
-				Unknown32 __unknown9; 
-				Unknown32 __unknown10; 
-				Unknown32 __unknown11; 
+				Undefined32 __unknown; 
+				Undefined32 __unknown2; 
+				Undefined32 __unknown3; 
+				Undefined32 __unknown4; 
+				Undefined32 __unknown5; 
+				Undefined32 __unknown6; 
+				Undefined32 __unknown7; 
+				Undefined32 __unknown8; 
+				Undefined32 __unknown9; 
+				Undefined32 __unknown10; 
+				Undefined32 __unknown11; 
 			};
 		};
 

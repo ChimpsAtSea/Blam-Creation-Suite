@@ -2,9 +2,9 @@
 
 void MantleMapTab::DisplayMapTabUI()
 {
+	static char pSearchBuffer[1024] = {};
 	ImGui::BeginChild("##left_pane", ImVec2(450, 0), true, ImGuiWindowFlags_NoScrollbar);
 	{
-		static char pSearchBuffer[1024] = {};
 		ImGui::Text("Search:");
 		ImGui::SetNextItemWidth(-1);
 		ImGui::InputText("", pSearchBuffer, 1024);
@@ -19,14 +19,31 @@ void MantleMapTab::DisplayMapTabUI()
 	for (int i = 0; i < m_pCacheFile->GetTagCount(); i++)
 	{
 		const char* pTagName = m_pCacheFile->GetTagName(i);
-		if (strlen(pTagName))
+
+		if (pTagName[0])
 		{
-			if (ImGui::Selectable(pTagName, selected == i))
+			uint32_t const groupTag = m_pCacheFile->GetTagGroup(m_pCacheFile->GetTagInstance(i)->group_index).group_tags[0];
+			uint64_t const groupTagWithBuffer = bswap(groupTag);
+			const char* pGroupTagStr = reinterpret_cast<const char*>(&groupTagWithBuffer);
+
+			char pTagNameBuffer[1024];
+			snprintf(pTagNameBuffer, 1023, "%s.%s", pTagName,pGroupTagStr);
+			pTagNameBuffer[1023] = 0;
+
+			if (pSearchBuffer[0])
+			{
+				if (strstr(pTagNameBuffer, pSearchBuffer) == nullptr)
+				{
+					continue;
+				}
+			}
+
+			if (ImGui::Selectable(pTagNameBuffer, selected == i))
 			{
 				selected = i;
 
-
-				MantleTab* pTab = new MantleTagTab("TagTab", "TagTab", m_pCacheFile, selected);
+				LPSTR filename = PathFindFileNameA(pTagNameBuffer);
+				MantleTab* pTab = new MantleTagTab(filename, pTagNameBuffer, m_pCacheFile, selected);
 				AddTabItem(*pTab);
 				pSelectedTab = pTab;
 			}
@@ -41,7 +58,7 @@ void MantleMapTab::DisplayMapTabUI()
 
 	// right
 	ImGui::BeginGroup();
-	ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()));
+	ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()), ImGuiWindowFlags_NoScrollbar);
 	if (!m_tabs.empty()) // #NOTE: Checking this fixes strange ImGUI crash
 	{
 		if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None)) // each tag

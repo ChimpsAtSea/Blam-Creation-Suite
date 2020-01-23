@@ -12,24 +12,24 @@ struct nicename("Sound Effect Collection") group('sfx+') s_sound_effect_collecti
 		struct nicename("Components") s_component_block_definition;
 
 		string_id nicename("Name") name; 
-		signed int __unknown; 
+		int32_t __unknown; 
 		TagReference nicename("Radio Settings") radio_settings_reference; 
 		s_tag_block_definition<s_unknown_1_block_definition> __unknown_1_block; 
 		s_tag_block_definition<s_component_block_definition> nicename("Components") components_block; 
 
 		struct s_unknown_1_block_definition
 		{
-			Unknown32 __unknown; 
-			Unknown32 __unknown2; 
-			Unknown32 __unknown3; 
-			Unknown32 __unknown4; 
+			Undefined32 __unknown; 
+			Undefined32 __unknown2; 
+			Undefined32 __unknown3; 
+			Undefined32 __unknown4; 
 		};
 
 		struct nicename("component") s_component_block_definition
 		{
 			TagReference nicename("Sound") sound_reference; 
-			Unknown32 __gain; 
-			signed int nicename("Flags") flags; 
+			Undefined32 __gain; 
+			int32_t nicename("Flags") flags; 
 		};
 	};
 };

@@ -5,10 +5,10 @@ struct nicename("Chocolate Mountain New") group('chmt') s_chocolate_mountain_new
 	struct nicename("Lighting Variables") s_lighting_variable_block_definition;
 
 	// comment
-	signed char __unknown; 
-	signed char __unknown2; 
-	signed char __unknown3; 
-	signed char __unknown4; 
+	int8_t __unknown; 
+	int8_t __unknown2; 
+	int8_t __unknown3; 
+	int8_t __unknown4; 
 	s_tag_block_definition<s_lighting_variable_block_definition> nicename("Lighting Variables") lighting_variables_block; 
 
 	struct nicename("lighting_variable") s_lighting_variable_block_definition

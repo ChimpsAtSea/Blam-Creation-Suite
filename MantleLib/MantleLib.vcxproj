@@ -155,7 +155,7 @@
     <ClInclude Include="mantlelib-private-pch.h" />
     <ClInclude Include="mantlelib-public-pch.h" />
     <ClInclude Include="Tags\ReflectionData.h" />
-    <ClInclude Include="Tags\TagTypes\Unknown.h" />
+    <ClInclude Include="Tags\TagTypes\Undefined.h" />
     <ClInclude Include="VirtualMemoryContainer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

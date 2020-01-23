@@ -13,16 +13,13 @@ enum class ReflectionTypeCategory : unsigned __int8
 	DataReference,
 	ShaderData,
 	StringID,
-	Unknown8,
-	Unknown16,
-	Unknown32,
-	Unknown64,
+	Undefined,
 };
 
 typedef unsigned __int16 ReflectionTypeIndex;
 enum class PrimitiveType : ReflectionTypeIndex
 {
-	Undefined,
+	NonPrimitive,
 	Int8,
 	Int16,
 	Int32,
@@ -49,13 +46,17 @@ enum class PrimitiveType : ReflectionTypeIndex
 	BitFlag16,
 	BitFlag32,
 	BitFlag64,
+	Undefined8,
+	Undefined16,
+	Undefined32,
+	Undefined64,
 };
 
 inline const char* PrimitiveTypeToString(PrimitiveType primitiveType)
 {
 	switch (primitiveType)
 	{
-	case PrimitiveType::Undefined:			return "Undefined";
+	case PrimitiveType::NonPrimitive:		return "NonPrimitive";
 	case PrimitiveType::Int8:				return "Int8";
 	case PrimitiveType::Int16:				return "Int16";
 	case PrimitiveType::Int32:				return "Int32";
@@ -82,6 +83,10 @@ inline const char* PrimitiveTypeToString(PrimitiveType primitiveType)
 	case PrimitiveType::BitFlag16:			return "BitFlag16";
 	case PrimitiveType::BitFlag32:			return "BitFlag32";
 	case PrimitiveType::BitFlag64:			return "BitFlag64";
+	case PrimitiveType::Undefined8:			return "Undefined8";
+	case PrimitiveType::Undefined16:		return "Undefined16";
+	case PrimitiveType::Undefined32:		return "Undefined32";
+	case PrimitiveType::Undefined64:		return "Undefined64";
 	}
 #ifdef FATAL_ERROR
 	FATAL_ERROR("Invalid primitive type");
@@ -103,10 +108,7 @@ inline const char* ReflectionTypeCategoryToString(ReflectionTypeCategory reflect
 	case ReflectionTypeCategory::DataReference:			return "DataReference";
 	case ReflectionTypeCategory::ShaderData:			return "ShaderData";
 	case ReflectionTypeCategory::StringID:				return "StringID";
-	case ReflectionTypeCategory::Unknown8:				return "Unknown8";
-	case ReflectionTypeCategory::Unknown16:				return "Unknown16";
-	case ReflectionTypeCategory::Unknown32:				return "Unknown32";
-	case ReflectionTypeCategory::Unknown64:				return "Unknown64";
+	case ReflectionTypeCategory::Undefined:				return "Undefined";
 	}
 #ifdef FATAL_ERROR
 	FATAL_ERROR("Invalid reflection type");

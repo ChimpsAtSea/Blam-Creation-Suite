@@ -12,7 +12,7 @@ struct nicename("Render Method Template") group('rmt2') s_render_method_template
 
 	TagReference nicename("Vertex Shader") vertex_shader_reference; 
 	TagReference nicename("Pixel Shader") pixel_shader_reference; 
-	Unknown32 __unknown; 
+	Undefined32 __unknown; 
 	s_tag_block_definition<s_unknown_block_definition> __unknown2_block; 
 	s_tag_block_definition<s_unknown2_block_definition> __unknown3_block; 
 	s_tag_block_definition<s_unknown3_block_definition> __unknown4_block; 
@@ -20,30 +20,30 @@ struct nicename("Render Method Template") group('rmt2') s_render_method_template
 	s_tag_block_definition<s_unknown4_block_definition> __unknown5_block; 
 	s_tag_block_definition<s_unknown5_block_definition> __unknown6_block; 
 	s_tag_block_definition<s_shader_map_block_definition> nicename("Shader Maps") shader_maps_block; 
-	Unknown32 __unknown7; 
-	Unknown32 __unknown8; 
-	Unknown32 __unknown9; 
+	Undefined32 __unknown7; 
+	Undefined32 __unknown8; 
+	Undefined32 __unknown9; 
 
 	struct s_unknown_block_definition
 	{
-		signed short __unknown; 
+		int16_t __unknown; 
 	};
 
 	struct s_unknown2_block_definition
 	{
-		Unknown32 __unknown; 
-		Unknown32 __unknown2; 
-		Unknown32 __unknown3; 
-		Unknown32 __unknown4; 
-		Unknown32 __unknown5; 
-		Unknown32 __unknown6; 
-		Unknown32 __unknown7; 
-		Unknown32 __unknown8; 
+		Undefined32 __unknown; 
+		Undefined32 __unknown2; 
+		Undefined32 __unknown3; 
+		Undefined32 __unknown4; 
+		Undefined32 __unknown5; 
+		Undefined32 __unknown6; 
+		Undefined32 __unknown7; 
+		Undefined32 __unknown8; 
 	};
 
 	struct s_unknown3_block_definition
 	{
-		Unknown32 __unknown; 
+		Undefined32 __unknown; 
 	};
 
 	struct nicename("argument") s_argument_block_definition

@@ -12,8 +12,8 @@ struct nicename("Render Method Definition") group('rmdf') s_render_method_defini
 	s_tag_block_definition<s_unknown_2_block_definition> __unknown_2_block; 
 	TagReference __unknown2_reference; 
 	TagReference __unknown3_reference; 
-	Unknown32 __unknown4; 
-	Unknown32 __unknown5; 
+	Undefined32 __unknown4; 
+	Undefined32 __unknown5; 
 	char nicename("Name") name[256];
 
 	struct s_unknown_0_block_definition
@@ -38,7 +38,7 @@ struct nicename("Render Method Definition") group('rmdf') s_render_method_defini
 	{
 		struct s_unknown_2_block_definition;
 
-		Unknown32 __unknown; 
+		Undefined32 __unknown; 
 		s_tag_block_definition<s_unknown_2_block_definition> __unknown_2_block; 
 
 		struct s_unknown_2_block_definition
@@ -46,24 +46,24 @@ struct nicename("Render Method Definition") group('rmdf') s_render_method_defini
 			struct s_unknown_3_block_definition;
 			struct s_unknown_4_block_definition;
 
-			Unknown32 __unknown; 
+			Undefined32 __unknown; 
 			s_tag_block_definition<s_unknown_3_block_definition> __unknown_3_block; 
 			s_tag_block_definition<s_unknown_4_block_definition> __unknown_4_block; 
 
 			struct s_unknown_3_block_definition
 			{
-				Unknown32 __unknown; 
+				Undefined32 __unknown; 
 			};
 
 			struct s_unknown_4_block_definition
 			{
-				Unknown32 __unknown; 
+				Undefined32 __unknown; 
 			};
 		};
 	};
 
 	struct s_unknown_2_block_definition
 	{
-		Unknown32 __unknown; 
+		Undefined32 __unknown; 
 	};
 };

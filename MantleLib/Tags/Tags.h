@@ -32,7 +32,7 @@ typedef unsigned __int64	bool64_t;
 #include "TagTypes/DataReference.h"
 #include "TagTypes/TagReference.h"
 #include "TagTypes/TagBlock.h"
-#include "TagTypes/Unknown.h"
+#include "TagTypes/Undefined.h"
 
 // Tag Definitions
 #include "TagDefinitions/bitmap.h"

@@ -11,10 +11,10 @@ struct nicename("Formation") group('form') s_formation_definition
 	{
 		struct s_unknown2_block_definition;
 
-		signed short __unknown; 
-		signed short __unknown2; 
-		signed short __unknown3; 
-		signed short __unknown4; 
+		int16_t __unknown; 
+		int16_t __unknown2; 
+		int16_t __unknown3; 
+		int16_t __unknown4; 
 		float __unknown5; 
 		float __unknown6; 
 		float __unknown7; 
