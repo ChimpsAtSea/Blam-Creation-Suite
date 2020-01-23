@@ -59,7 +59,7 @@ void MantleMapTab::DisplayMapTabUI()
 	ImGui::SameLine();
 	if (ImGui::Button("Save")) 
 	{
-		m_pCacheFile->SaveMap(m_pCacheFile->m_mapFilePath);
+		m_pCacheFile->SaveMap();
 	}
 	ImGui::EndGroup();
 }
@@ -93,7 +93,7 @@ void MantleMapTab::RenderContents(bool setSelected)
 	if (setSelected) tabFlags |= ImGuiTabItemFlags_SetSelected;
 	if (ImGui::BeginTabItem(GetTitle(), &m_isOpen, tabFlags))
 	{
-		if (m_pCacheFile->m_isMapLoading)
+		if (m_pCacheFile->IsLoading())
 		{
 			ImGui::Text("Loading...");
 		}

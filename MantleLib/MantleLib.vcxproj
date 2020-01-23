@@ -28,6 +28,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="VirtualMemoryContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!UserInterface\UserInterface.h" />
@@ -57,6 +58,7 @@
     <ClInclude Include="Tags\ReflectionData.h" />
     <ClInclude Include="Tags\TagDefinitions\TestType.h" />
     <ClInclude Include="Tags\TagTypes\Unknown.h" />
+    <ClInclude Include="VirtualMemoryContainer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -69,6 +69,25 @@ char* FileSystemReadToMemory(const wchar_t* pFilePath, size_t* pAllocatedSize)
 }
 
 
+size_t FileSystemGetFileSize(const wchar_t* pFilePath)
+{
+	FILE* pFileHandle = _wfopen(pFilePath, L"rb");
+	if (pFileHandle == nullptr)
+	{
+		return 0;
+	}
+
+	fseek(pFileHandle, 0, SEEK_END);
+	size_t fileSize = static_cast<size_t>(_ftelli64(pFileHandle));
+	fseek(pFileHandle, 0, SEEK_SET);
+
+	int fcloseResult = fclose(pFileHandle);
+	assert(fcloseResult == 0);
+
+	return fileSize;
+}
+
+
 char* FileSystemReadToMemory2(const wchar_t* pFilePath,char*pBuffer, size_t* pAllocatedSize)
 {
 	FILE* pFileHandle = _wfopen(pFilePath, L"rb");
@@ -95,8 +114,9 @@ char* FileSystemReadToMemory2(const wchar_t* pFilePath,char*pBuffer, size_t* pAl
 }
 
 CacheFile::CacheFile(const std::wstring& mapFilePath)
-	: m_pMapData(nullptr)
-	, m_mapDataLength(0)
+	: m_rVirtualMemoryContainer(*new VirtualMemoryContainer(1024 * 1024 * 1024))
+	//m_pMapData(nullptr)
+	//, m_mapDataLength(0)
 	, m_isMapLoading(false)
 	, m_mapFilePath(mapFilePath)
 {
@@ -106,7 +126,8 @@ CacheFile::CacheFile(const std::wstring& mapFilePath)
 CacheFile::~CacheFile()
 {
 	while (m_isMapLoading) {};
-	if (m_pMapData) delete[] m_pMapData;
+	delete& m_rVirtualMemoryContainer;
+	//if (m_pMapData) delete[] m_pMapData;
 }
 
 #define tag uint32_t
@@ -262,10 +283,13 @@ s_cache_file_tag_group& CacheFile::GetTagGroup(int groupIndex)
 }
 
 
-void CacheFile::SaveMap(const std::wstring& mapFilePath)
+void CacheFile::SaveMap()
 {
-	FILE* pFile = _wfopen(mapFilePath.c_str(), L"wb");
-	fwrite(m_pMapData, 1, m_mapDataLength, pFile);
+	size_t mapSize = m_rVirtualMemoryContainer.GetSize();
+	char* pMapData = m_rVirtualMemoryContainer.GetData();
+
+	FILE* pFile = _wfopen(m_mapFilePath.c_str(), L"wb");
+	fwrite(pMapData, 1, mapSize, pFile);
 	fflush(pFile);
 	fclose(pFile);
 }
@@ -276,11 +300,14 @@ void CacheFile::LoadMap(const std::wstring& mapFilePath)
 
 	tbb::task::enqueue(*lambda_task([=]() {
 
-		m_pMapData = FileSystemReadToMemory(mapFilePath.c_str(), &m_mapDataLength);
+		char* pMapVirtualData = m_rVirtualMemoryContainer.GetData();
+		size_t mapSize = FileSystemGetFileSize(mapFilePath.c_str());
+		m_rVirtualMemoryContainer.SetSize(mapSize);
+		char* pMapData = FileSystemReadToMemory2(mapFilePath.c_str(), pMapVirtualData, &mapSize);
 
-		if (m_pMapData)
+		if (pMapData)
 		{
-			m_pHeader = reinterpret_cast<s_cache_file_header*>(m_pMapData);
+			m_pHeader = reinterpret_cast<s_cache_file_header*>(pMapData);
 
 			for (underlying(e_cache_file_section) i = 0; i < underlying_cast(e_cache_file_section::k_number_of_cache_file_sections); i++)
 			{
@@ -290,7 +317,7 @@ void CacheFile::LoadMap(const std::wstring& mapFilePath)
 				long size = m_pHeader->section_bounds[underlying_cast(cache_file_section)].size;
 
 				m_sectionSize[underlying_cast(cache_file_section)] = size;
-				m_pSectionData[underlying_cast(cache_file_section)] = reinterpret_cast<char*>(m_pMapData + offset);
+				m_pSectionData[underlying_cast(cache_file_section)] = reinterpret_cast<char*>(pMapData + offset);
 			}
 
 			char* pDebugSection = m_pSectionData[underlying_cast(e_cache_file_section::_cache_file_section_debug)];

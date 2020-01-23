@@ -76,15 +76,6 @@ ImVec2 DrawStructureSeparator(int recursionDepth, ImVec2* pTopScreenPos = nullpt
 	return screenPos;
 }
 
-#define tag uint32_t
-#define qword uint64_t
-#define dword uint32_t
-#define word uint16_t
-inline qword get_page_offset(qword virtual_base_address, dword address)
-{
-	return ((qword)address * 4) - (virtual_base_address - 0x50000000);
-}
-
 void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionType& reflectionData, int recursionDepth)
 {
 	float recursionPadding = 25.0f * recursionDepth;
@@ -299,9 +290,11 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 					s_tag_block_definition<>* pTagBlock = reinterpret_cast<s_tag_block_definition<>*>(pData + reflectionField.m_offset);
 					//char* pTagData = reinterpret_cast<char*>(pData + pTagBlock->address);
 
-					qword page_offset = get_page_offset(m_pCacheFile->m_pHeader->virtual_base_address, pTagBlock->address);
-					char* pTagsSection = m_pCacheFile->m_pSectionData[underlying_cast(e_cache_file_section::_cache_file_section_tags)];
-					char* pTagBlockData = pTagsSection + page_offset;
+
+					uint64_t pageOffset = m_pCacheFile->ConvertPageOffset(pTagBlock->address);
+					CacheFile::SectionInfo sectionInfo = m_pCacheFile->GetSection(e_cache_file_section::_cache_file_section_tags);
+					char* pTagsSection = sectionInfo.first;
+					char* pTagBlockData = pTagsSection + pageOffset;
 
 					if (pTagBlock->count && pTagBlock->address)
 					{
