@@ -14,12 +14,13 @@
     <ClCompile Include="!UserInterface\MantleMapTab.cpp" />
     <ClCompile Include="!UserInterface\MantleTab.cpp" />
     <ClCompile Include="!UserInterface\MantleGUI.cpp" />
-    <ClCompile Include="FileSystem\CacheFile.cpp" />
+    <ClCompile Include="CacheInterface\CacheFile.cpp" />
     <ClCompile Include="mantlelib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="!UserInterface\MantleTagTab.cpp" />
+    <ClCompile Include="CacheInterface\TagInterface.cpp" />
     <ClCompile Include="Tags\ReflectionData.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -32,7 +33,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!UserInterface\UserInterface.h" />
-    <ClInclude Include="FileSystem\CacheFile.h" />
+    <ClInclude Include="CacheInterface\CacheFile.h" />
+    <ClInclude Include="CacheInterface\CacheInterface.h" />
     <ClInclude Include="FileSystem\basic_buffer.h" />
     <ClInclude Include="FileSystem\cache_file_magic.h" />
     <ClInclude Include="FileSystem\cache_file_section.h" />
@@ -47,6 +49,8 @@
     <ClInclude Include="!UserInterface\MantleGUI.h" />
     <ClInclude Include="FileSystem\cache_file_header.h" />
     <ClInclude Include="!UserInterface\MantleTagTab.h" />
+    <ClInclude Include="CacheInterface\TagInterface.h" />
+    <ClInclude Include="FileSystem\cache_file_tags_header.h" />
     <ClInclude Include="Tags\TagDefinitions\achievements.h" />
     <ClInclude Include="Tags\TagDefinitions\ai_dialogue_globals.h" />
     <ClInclude Include="Tags\TagDefinitions\ai_globals.h" />

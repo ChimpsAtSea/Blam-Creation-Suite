@@ -5,3 +5,4 @@
 #include "Tags/Tags.h"
 #include "!UserInterface/UserInterface.h"
 #include "FileSystem/FileSystem.h"
+#include "CacheInterface/CacheInterface.h"

@@ -12,55 +12,51 @@ void MantleMapTab::DisplayMapTabUI()
 	}
 	ImGui::BeginChild("##tags", ImVec2(0, 0), true);
 
-	MantleTab* pSelectedTab = nullptr;
+
 
 	static bool tagIsSelected = false;
-	static int selected = 0;
-	for (int i = 0; i < m_pCacheFile->GetTagCount(); i++)
+
+
+	MantleTab* pSelectedTab = nullptr;
+	const std::vector<TagInterface*> rTagInterfaces = m_pCacheFile->GetTagInterfaces();
+	for (size_t i = 0; i < rTagInterfaces.size(); i++)
 	{
-		const char* pTagName = m_pCacheFile->GetTagName(i);
+		TagInterface& rTagInterface = *rTagInterfaces[i];
 
-		if (pTagName[0])
+		const char* pTagName = rTagInterface.GetPathWithGroupID();
+		if (pTagName[0] == 0) continue; // skip tags with empty names
+
+		if (pSearchBuffer[0])
 		{
-			uint32_t const groupTag = m_pCacheFile->GetTagGroup(m_pCacheFile->GetTagInstance(i)->group_index).group_tags[0];
-			uint64_t const groupTagWithBuffer = bswap(groupTag);
-			const char* pGroupTagStr = reinterpret_cast<const char*>(&groupTagWithBuffer);
-
-			char pTagNameBuffer[1024];
-			snprintf(pTagNameBuffer, 1023, "%s.%s", pTagName,pGroupTagStr);
-			pTagNameBuffer[1023] = 0;
-
-			if (pSearchBuffer[0])
+			if (strstr(pTagName, pSearchBuffer) == nullptr)
 			{
-				if (strstr(pTagNameBuffer, pSearchBuffer) == nullptr)
-				{
-					continue;
-				}
+				continue;
+			}
+		}
+
+		static size_t sTagIsSelected = 0;
+		if (ImGui::Selectable(pTagName, sTagIsSelected == i))
+		{
+			sTagIsSelected = i;
+
+			for (MantleTab* pTab : m_tabs)
+			{
+				MantleTagTab* pTagTab = dynamic_cast<MantleTagTab*>(pTab);
+				if (pTagTab == nullptr) continue;
+				if (&pTagTab->GetTagInterface() != &rTagInterface) continue;
+
+				pSelectedTab = pTab;
+				break;
 			}
 
-			if (ImGui::Selectable(pTagNameBuffer, selected == i))
+			if (pSelectedTab == nullptr)
 			{
-				selected = i;
-
-				for (MantleTab* pTab : m_tabs)
-				{
-					if (strcmp(pTab->GetDescription(), pTagNameBuffer) == 0)
-					{
-						pSelectedTab = pTab;
-					}
-				}
-
-				if (pSelectedTab == nullptr)
-				{
-					LPSTR filename = PathFindFileNameA(pTagNameBuffer);
-					MantleTab* pTab = new MantleTagTab(filename, pTagNameBuffer, m_pCacheFile, selected);
-					AddTabItem(*pTab);
-					pSelectedTab = pTab;
-				}
+				MantleTab* pTab = new MantleTagTab(*m_pCacheFile, rTagInterface);
+				AddTabItem(*pTab);
+				pSelectedTab = pTab;
 			}
 		}
 	}
-
 
 	ImGui::EndChild();
 	ImGui::EndChild();
@@ -85,21 +81,32 @@ void MantleMapTab::DisplayMapTabUI()
 	ImGui::EndChild();
 	if (ImGui::Button("Revert")) {}
 	ImGui::SameLine();
-	if (ImGui::Button("Save")) 
+	if (ImGui::Button("Save"))
 	{
 		m_pCacheFile->SaveMap();
 	}
 	ImGui::EndGroup();
 }
 
-MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription, const wchar_t* szMapFilePath)
+MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription)
 	:MantleTab(pTitle, pDescription)
+	, m_tabClosedCallback([this](MantleTab& rTab) { this->RemoveTabItem(rTab); })
 {
-	m_tabClosedCallback = [this](MantleTab& rTab)
-	{
-		this->RemoveTabItem(rTab);
-	};
+
+}
+
+MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription, CacheFile& rCacheFile)
+	: MantleMapTab(pTitle, pDescription)
+{
+	m_pCacheFile = &rCacheFile;
+	m_ownsCacheFileMemory = false;
+}
+
+MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription, const wchar_t* szMapFilePath)
+	: MantleMapTab(pTitle, pDescription)
+{
 	m_pCacheFile = new CacheFile(szMapFilePath);
+	m_ownsCacheFileMemory = true;
 }
 
 MantleMapTab::~MantleMapTab()
@@ -111,7 +118,10 @@ MantleMapTab::~MantleMapTab()
 		delete* m_tabs.begin();
 	}
 
-	delete m_pCacheFile;
+	if (m_ownsCacheFileMemory)
+	{
+		delete m_pCacheFile;
+	}
 }
 
 void MantleMapTab::RenderContents(bool setSelected)

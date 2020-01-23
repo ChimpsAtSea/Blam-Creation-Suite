@@ -1,48 +1,5 @@
 #include "mantlelib-private-pch.h"
 
-
-template<typename TagType>
-inline const ReflectionType& GetTagReflectionData()
-{
-	return GetTagReflectionData(TagType::kTagGroupName);
-}
-
-template<typename T>
-inline const ReflectionType& GetReflectionType(const T& member)
-{
-	return GetReflectionType<T>();
-}
-
-ImGuiDataType PrimitiveTypeToImGuiDataType(PrimitiveType primitiveType)
-{
-	switch (primitiveType)
-	{
-	case PrimitiveType::Int8:			return ImGuiDataType_S8;
-	case PrimitiveType::Int16:			return ImGuiDataType_S16;
-	case PrimitiveType::Int32:			return ImGuiDataType_S32;
-	case PrimitiveType::Int64:			return ImGuiDataType_S64;
-	case PrimitiveType::UInt8:			return ImGuiDataType_U8;
-	case PrimitiveType::UInt16:			return ImGuiDataType_U16;
-	case PrimitiveType::UInt32:			return ImGuiDataType_U32;
-	case PrimitiveType::UInt64:			return ImGuiDataType_U64;
-	case PrimitiveType::Float:			return ImGuiDataType_Float;
-	case PrimitiveType::Double:			return ImGuiDataType_Double;
-	case PrimitiveType::Boolean8:		return ImGuiDataType_S8;
-	case PrimitiveType::Boolean16:		return ImGuiDataType_S16;
-	case PrimitiveType::Boolean32:		return ImGuiDataType_S32;
-	case PrimitiveType::Boolean64:		return ImGuiDataType_S64;
-	case PrimitiveType::Enum8:			return ImGuiDataType_S8;
-	case PrimitiveType::Enum16:			return ImGuiDataType_S16;
-	case PrimitiveType::Enum32:			return ImGuiDataType_S32;
-	case PrimitiveType::Enum64:			return ImGuiDataType_S64;
-	case PrimitiveType::Undefined8:		return ImGuiDataType_S8;
-	case PrimitiveType::Undefined16:	return ImGuiDataType_S16;
-	case PrimitiveType::Undefined32:	return ImGuiDataType_Float;
-	case PrimitiveType::Undefined64:	return ImGuiDataType_Double;
-	}
-	FATAL_ERROR("Unsupported primitive type");
-}
-
 ImVec2 DrawStructureSeparator(int recursionDepth, ImVec2* pTopScreenPos = nullptr)
 {
 	float recursionPadding = 25.0f * recursionDepth;
@@ -80,15 +37,62 @@ ImVec2 DrawStructureSeparator(int recursionDepth, ImVec2* pTopScreenPos = nullpt
 	return screenPos;
 }
 
-void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionType& reflectionData, int recursionDepth)
+
+inline const ReflectionType* GetTagReflectionData(TagGroupName tagGroupName)
+{
+	switch (tagGroupName)
+	{
+	case TagGroupName::Scenario: return &GetReflectionType<s_scenario_definition>();
+	}
+	return nullptr;
+}
+
+MantleTagTab::MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface)
+	: MantleTab(rTagInterface.GetNameWithGroupID(), rTagInterface.GetPathWithGroupName())
+	, m_rTagInterface(rTagInterface)
+	, m_rCacheFile(rCacheFile)
+{
+
+}
+
+MantleTagTab::~MantleTagTab()
+{
+	for (ImGUIDynamnicData* pDynamicData : m_imGuiDynamicData)
+	{
+		delete pDynamicData;
+	}
+}
+
+void MantleTagTab::RenderContents(bool setSelected)
+{
+	ImGui::PushID(this);
+	ImGuiTabItemFlags tabFlags = 0;
+	if (setSelected) tabFlags |= ImGuiTabItemFlags_SetSelected;
+	if (ImGui::BeginTabItem(GetTitle(), &m_isOpen, tabFlags))
+	{
+		ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
+
+		const ReflectionType* pReflectionType = m_rTagInterface.GetReflectionData();
+		if (pReflectionType)
+		{
+			RenderContentsImpl(m_rTagInterface.GetData(), *pReflectionType, 0);
+		}
+
+		ImGui::EndChild();
+		ImGui::EndTabItem();
+	}
+	ImGui::PopID();
+}
+
+void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflectionType, int recursionDepth)
 {
 	float recursionPadding = 25.0f * recursionDepth;
 
 	ImVec2 screenPosTop = DrawStructureSeparator(recursionDepth);
 
-	for (size_t i = 0; i < reflectionData.m_count; i++)
+	for (size_t i = 0; i < rReflectionType.m_count; i++)
 	{
-		const ReflectionField& reflectionField = reflectionData.m_members[i];
+		const ReflectionField& reflectionField = rReflectionType.m_members[i];
 
 		bool unknownItemsVisible = MantleGUI::IsUnknownItemsVisible();
 		if (!unknownItemsVisible && reflectionField.m_isHiddenByDefault)
@@ -100,6 +104,7 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 		const ReflectionTypeInfo& rTypeInfo = reflectionField.m_typeInfo;
 		const char* pFieldDisplayName = reflectionField.m_pMemberNiceName;
 
+		
 		void* pFieldDataPointer = reinterpret_cast<int32_t*>(pData + reflectionField.m_offset);
 
 		ImGui::PushID(pFieldDataPointer);
@@ -190,7 +195,7 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 				assert(&rStructureReflectionType);
 
 				char* pStructureData = static_cast<char*>(pFieldDataPointer);
-				PrintReflectionInfoGUI3(pStructureData, rStructureReflectionType, recursionDepth + 1);
+				RenderContentsImpl(pStructureData, rStructureReflectionType, recursionDepth + 1);
 			}
 			else if (rTypeInfo.m_reflectionTypeCategory == ReflectionTypeCategory::TagReference)
 			{
@@ -210,11 +215,11 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 				ImGui::NextColumn();
 				ImGui::PushItemWidth(-1);
 
+				TagInterface* pTagInterface = m_rCacheFile.GetTagInterface(static_cast<uint16_t>(pTagReference->index));
+				const char* pTagName = pTagInterface ? pTagInterface->GetPathWithGroupID() : "";
+				const char* pGroupShortName = pTagInterface ? pTagInterface->GetGroupShortName() : "(null)";
 
-				uint64_t magic = (uint64_t)bswap((uint32_t)pTagReference->tagGroupName);
-				const char* magicPtr = magic == 0xFFFFFFFFu ? "(null)" : (const char*)&magic;
-
-				if (ImGui::BeginCombo("##tag_group_magic", magicPtr))
+				if (ImGui::BeginCombo("##tag_group_magic", pGroupShortName))
 				{
 					ImGui::EndCombo();
 				}
@@ -222,13 +227,7 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 				ImGui::NextColumn();
 				ImGui::PushItemWidth(-1);
 
-				char pTagDisplayBuffer[256] = {}; // #TODO: Cache this value
-				if (pTagReference->index != -1)
-				{
-					const char* pTagName = m_pCacheFile->GetTagName(pTagReference->index & 0xFFFF);
-					snprintf(pTagDisplayBuffer, _countof(pTagDisplayBuffer) - 1, "%s.%s", pTagName, magicPtr);
-				}
-				if (ImGui::BeginCombo("##tag_path", pTagDisplayBuffer))
+				if (ImGui::BeginCombo("##tag_path", pTagName))
 				{
 					ImGui::EndCombo();
 				}
@@ -285,7 +284,7 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 			}
 			else if (rTypeInfo.m_reflectionTypeCategory == ReflectionTypeCategory::TagBlock)
 			{
-			
+
 				s_tag_block_definition<>* pTagBlock = reinterpret_cast<s_tag_block_definition<>*>(pData + reflectionField.m_offset);
 
 				struct TagBlockDynamicData
@@ -330,10 +329,10 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 					const ReflectionTagBlockInfo& rReflectionTagBlockInfo = reflectionField.m_tagBlockInfo;
 					const ReflectionType* pTagBlockReflectionType = rReflectionTagBlockInfo.m_pReflectionTypeInfo;
 
-					CacheFile::SectionInfo sectionInfo = m_pCacheFile->GetSection(e_cache_file_section::_cache_file_section_tags);
-					char* pTagsSection = sectionInfo.first;
+					const CacheFile::SectionCache& rSectionInfo = m_rCacheFile.GetSection(e_cache_file_section::_cache_file_section_tags);
+					char* pTagsSection = rSectionInfo.first;
 
-					uint64_t pageOffset = m_pCacheFile->ConvertPageOffset(pTagBlock->address);
+					uint64_t pageOffset = m_rCacheFile.ConvertPageOffset(pTagBlock->address);
 					uint32_t tagBlockDataIndexDataOffset = pTagBlockReflectionType->m_size * static_cast<uint32_t>(rDynamicTagBlockData.m_position);
 					char* pTagBlockData = pTagsSection + pageOffset + tagBlockDataIndexDataOffset;
 
@@ -343,7 +342,7 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 						// we should migrate slowly over to not having TagBlocks with no type specified
 						if (pTagBlockReflectionType)
 						{
-							PrintReflectionInfoGUI3(pTagBlockData, *pTagBlockReflectionType, recursionDepth + 1);
+							RenderContentsImpl(pTagBlockData, *pTagBlockReflectionType, recursionDepth + 1);
 						}
 						else
 						{
@@ -379,54 +378,4 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 
 	DrawStructureSeparator(recursionDepth, &screenPosTop);
 
-}
-
-inline const ReflectionType* GetTagReflectionData(TagGroupName tagGroupName)
-{
-	switch (tagGroupName)
-	{
-	case TagGroupName::Scenario: return &GetReflectionType<s_scenario_definition>();
-	}
-	return nullptr;
-}
-
-MantleTagTab::MantleTagTab(const char* pTitle, const char* pDescription, CacheFile* pCacheFile, int tagIndex)
-	: MantleTab(pTitle, pDescription)
-	, m_pTagData(pCacheFile->GetTagData(tagIndex))
-	, m_tagIndex(tagIndex)
-	, m_pTagInstance(pCacheFile->GetTagInstance(tagIndex))
-	, m_pCacheFile(pCacheFile)
-{
-
-}
-
-MantleTagTab::~MantleTagTab()
-{
-	for (ImGUIDynamnicData* pDynamicData : m_imGuiDynamicData)
-	{
-		delete pDynamicData;
-	}
-}
-
-void MantleTagTab::RenderContents(bool setSelected)
-{
-	ImGui::PushID(this);
-	ImGuiTabItemFlags tabFlags = 0;
-	if (setSelected) tabFlags |= ImGuiTabItemFlags_SetSelected;
-	if (ImGui::BeginTabItem(GetTitle(), &m_isOpen, tabFlags))
-	{
-		ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
-		s_cache_file_tag_group& rGroup = m_pCacheFile->GetTagGroup(m_pTagInstance->group_index);
-		TagGroupName tagGroupName = (TagGroupName)rGroup.group_tags[0];
-		const ReflectionType* pReflectionData = GetTagReflectionDataByTagGroup(static_cast<uint32_t>(tagGroupName));
-
-		if (pReflectionData)
-		{
-			PrintReflectionInfoGUI3(m_pTagData, *pReflectionData, 0);
-		}
-
-		ImGui::EndChild();
-		ImGui::EndTabItem();
-	}
-	ImGui::PopID();
 }

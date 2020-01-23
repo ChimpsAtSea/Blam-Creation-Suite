@@ -1,11 +1,10 @@
 #include "mantle-private-pch.h"
 
-
 int WINAPI WinMain(
-	HINSTANCE hInstance,     /* [input] handle to current instance */
-	HINSTANCE hPrevInstance, /* [input] handle to previous instance */
-	LPSTR lpCmdLine,         /* [input] pointer to command line */
-	int nCmdShow             /* [input] show state of window */
+	_In_ HINSTANCE hInstance,				/* [input] handle to current instance */
+	_In_opt_ HINSTANCE hPrevInstance,		/* [input] handle to previous instance */
+	_In_ LPSTR lpCmdLine,					/* [input] pointer to command line */
+	_In_ int nShowCmd						/* [input] show state of window */
 )
 {
 	void(*UICallback)() = []()

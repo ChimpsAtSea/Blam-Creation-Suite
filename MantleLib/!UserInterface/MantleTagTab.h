@@ -1,17 +1,20 @@
 #pragma once
 
+class TagInterface;
 class CacheFile;
 class MantleTagTab : public MantleTab
 {
 public:
-	void PrintReflectionInfoGUI3(char* const pData, const ReflectionType& reflectionData, int recursionDepth);
-	MantleTagTab(const char* pTitle, const char* pDescription, CacheFile* pCacheFile, int tagIndex);
+	MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface);
 	virtual ~MantleTagTab();
+
+	TagInterface& GetTagInterface() const { return m_rTagInterface; };
+	CacheFile& GetCacheFile() const { return m_rCacheFile; };
+
 protected:
 	virtual void RenderContents(bool setSelected);
+	void RenderContentsImpl(char* pCurrentStructureData, const ReflectionType& rReflectionType, int recursionDepth);
 
-	char* m_pTagData;
-	int m_tagIndex;
-	struct s_cache_file_tag_instance* m_pTagInstance;
-	CacheFile* m_pCacheFile;
+	TagInterface& m_rTagInterface;
+	CacheFile& m_rCacheFile;
 };

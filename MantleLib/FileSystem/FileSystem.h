@@ -11,5 +11,4 @@
 #include "cache_file_header.h"
 #include "cache_file_tag_instance.h"
 #include "cache_file_tag_group.h"
-
-#include "CacheFile.h"
+#include "cache_file_tags_header.h"
