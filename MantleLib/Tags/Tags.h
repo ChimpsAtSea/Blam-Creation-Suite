@@ -28,6 +28,7 @@ typedef unsigned __int64	bool64_t;
 
 // Tag Definitions
 #include "TagDefinitions/TestType.h"
+//#include "TagDefinitions/plugins/scenario.h"
 
 #ifndef BUILD_REFLECTION_DATA
 #include "ReflectionData.h"
