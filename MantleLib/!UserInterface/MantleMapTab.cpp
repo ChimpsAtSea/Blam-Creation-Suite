@@ -262,11 +262,11 @@ void PrintReflectionInfoGUI3(char* pData, const ReflectionType& reflectionData, 
 			}
 			else if (rTypeInfo.m_reflectionTypeCategory == ReflectionTypeCategory::TagBlock)
 			{
-				ImGui::Columns(1);
-				//ImGui::Columns(2, NULL, false);
-				//ImGui::SetColumnOffset(1, recursionPadding);
-				//ImGui::SetColumnWidth(1, 1230);
-				//ImGui::NextColumn(); // padding
+			ImGui::Columns(1);
+			//ImGui::Columns(2, NULL, false);
+			//ImGui::SetColumnOffset(1, recursionPadding);
+			//ImGui::SetColumnWidth(1, 1230);
+			//ImGui::NextColumn(); // padding
 				ImGui::Dummy(ImVec2());
 				ImGui::SameLine(recursionPadding + 5);
 
@@ -388,6 +388,77 @@ void MantleMapTab::LoadMap(const std::wstring& mapFilePath)
 		}));
 }
 
+void DisplayMapTabUI()
+{
+	ImGui::BeginChild("##left_pane", ImVec2(450, 0), true, ImGuiWindowFlags_NoScrollbar);
+	{
+		static char pSearchBuffer[1024] = {};
+		ImGui::Text("Search:");
+		ImGui::SetNextItemWidth(-1);
+		ImGui::InputText("", pSearchBuffer, 1024);
+		ImGui::Dummy(ImVec2(0, 10));
+	}
+	ImGui::BeginChild("##tags", ImVec2(0, 0), true);
+	static int selected = 0;
+	for (int i = 0; i < 100; i++)
+	{
+		char label[1280];
+		sprintf(label, "MyObject %d", i);
+		if (ImGui::Selectable(label, selected == i))
+			selected = i;
+	}
+	ImGui::EndChild();
+	ImGui::EndChild();
+	
+	ImGui::SameLine();
+
+
+
+	//// left
+	//static int selected = 0;
+	//ImGui::BeginChild("left pane", ImVec2(450, 0), true);
+	//static char pSearchBuffer[1024] = {};
+	//ImGui::Text("Search:");
+	//ImGui::SetNextItemWidth(-1);
+	//ImGui::InputText("", pSearchBuffer, 1024);
+	//ImGui::Dummy(ImVec2(0, 10));
+	//ImGui::BeginGroup();
+	//for (int i = 0; i < 100; i++)
+	//{
+	//	char label[128];
+	//	sprintf(label, "MyObject %d", i);
+	//	if (ImGui::Selectable(label, selected == i))
+	//		selected = i;
+	//}
+	//ImGui::EndGroup();
+	//ImGui::EndChild();
+	//ImGui::SameLine();
+
+	// right
+	ImGui::BeginGroup();
+	ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()));
+	if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None)) // each tag
+	{
+		if (ImGui::BeginTabItem("Scenario")) // the tag name
+		{
+			{
+				static s_scenario_definition scenario;
+
+				const ReflectionType& scenarioReflectionData = GetTagReflectionData<s_scenario_definition>();
+				const ReflectionType& biped_palette_blockReflectionData = GetReflectionType(scenario.biped_palette_block);
+				DisplayTag(&scenario);
+			}
+
+			ImGui::EndTabItem();
+		}
+		ImGui::EndTabBar();
+	}
+	ImGui::EndChild();
+	if (ImGui::Button("Revert")) {}
+	ImGui::SameLine();
+	if (ImGui::Button("Save")) {}
+	ImGui::EndGroup();
+}
 
 void MantleMapTab::RenderContents(bool setSelected)
 {
@@ -402,11 +473,7 @@ void MantleMapTab::RenderContents(bool setSelected)
 		}
 		else
 		{
-			static s_scenario_definition scenario;
-
-			const ReflectionType& scenarioReflectionData = GetTagReflectionData<s_scenario_definition>();
-			const ReflectionType& biped_palette_blockReflectionData = GetReflectionType(scenario.biped_palette_block);
-			DisplayTag(&scenario);
+			DisplayMapTabUI();
 		}
 
 		ImGui::EndTabItem();
