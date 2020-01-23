@@ -42,10 +42,21 @@ void MantleMapTab::DisplayMapTabUI()
 			{
 				selected = i;
 
-				LPSTR filename = PathFindFileNameA(pTagNameBuffer);
-				MantleTab* pTab = new MantleTagTab(filename, pTagNameBuffer, m_pCacheFile, selected);
-				AddTabItem(*pTab);
-				pSelectedTab = pTab;
+				for (MantleTab* pTab : m_tabs)
+				{
+					if (strcmp(pTab->GetDescription(), pTagNameBuffer) == 0)
+					{
+						pSelectedTab = pTab;
+					}
+				}
+
+				if (pSelectedTab == nullptr)
+				{
+					LPSTR filename = PathFindFileNameA(pTagNameBuffer);
+					MantleTab* pTab = new MantleTagTab(filename, pTagNameBuffer, m_pCacheFile, selected);
+					AddTabItem(*pTab);
+					pSelectedTab = pTab;
+				}
 			}
 		}
 	}

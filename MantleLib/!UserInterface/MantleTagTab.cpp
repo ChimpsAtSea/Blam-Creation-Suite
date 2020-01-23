@@ -285,29 +285,60 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 			}
 			else if (rTypeInfo.m_reflectionTypeCategory == ReflectionTypeCategory::TagBlock)
 			{
+			
+				s_tag_block_definition<>* pTagBlock = reinterpret_cast<s_tag_block_definition<>*>(pData + reflectionField.m_offset);
+
+				struct TagBlockDynamicData
+				{
+					int32_t m_position;
+				};
+				ImGUIDynamnicData& rDynamicData = GetDynamicData(pTagBlock);
+				TagBlockDynamicData& rDynamicTagBlockData = *reinterpret_cast<TagBlockDynamicData*>(rDynamicData.second);
+
 				ImGui::Columns(1);
-				//ImGui::Columns(2, NULL, false);
-				//ImGui::SetColumnOffset(1, recursionPadding);
-				//ImGui::SetColumnWidth(1, 1230);
-				//ImGui::NextColumn(); // padding
 				ImGui::Dummy(ImVec2());
 				ImGui::SameLine(recursionPadding + 5.0f);
 
+				float beginOfCollapsingHeaderX = ImGui::GetCursorPosX();
 				if (ImGui::CollapsingHeader(pFieldDisplayName, ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_AllowItemOverlap))
 				{
-					s_tag_block_definition<>* pTagBlock = reinterpret_cast<s_tag_block_definition<>*>(pData + reflectionField.m_offset);
-					//char* pTagData = reinterpret_cast<char*>(pData + pTagBlock->address);
+					ImGui::SameLine();
+					ImGui::SetCursorPosX(beginOfCollapsingHeaderX);
+					ImGui::Dummy(ImVec2(recursionPadding + 5.0f + 800.0f, 0.0f));
+					ImGui::SameLine();
+					ImGui::Text("Count:");
+					ImGui::SameLine();
+					ImGui::SetNextItemWidth(100);
+					ImGui::InputScalar("", ImGuiDataType_U32, &pTagBlock->count, nullptr, nullptr, nullptr, ImGuiInputTextFlags_ReadOnly);
+					ImGui::SameLine();
+					ImGui::Dummy(ImVec2(20.0f, 0.0f));
+					ImGui::SameLine();
+					ImGui::Text("Position:");
+					ImGui::SameLine();
+					ImGui::SetNextItemWidth(150);
+					ImGui::InputInt("", &rDynamicTagBlockData.m_position);
 
+					if (rDynamicTagBlockData.m_position >= pTagBlock->count)
+					{
+						rDynamicTagBlockData.m_position = pTagBlock->count - 1;
+					}
+					if (rDynamicTagBlockData.m_position < 0)
+					{
+						rDynamicTagBlockData.m_position = 0;
+					}
 
-					uint64_t pageOffset = m_pCacheFile->ConvertPageOffset(pTagBlock->address);
+					const ReflectionTagBlockInfo& rReflectionTagBlockInfo = reflectionField.m_tagBlockInfo;
+					const ReflectionType* pTagBlockReflectionType = rReflectionTagBlockInfo.m_pReflectionTypeInfo;
+
 					CacheFile::SectionInfo sectionInfo = m_pCacheFile->GetSection(e_cache_file_section::_cache_file_section_tags);
 					char* pTagsSection = sectionInfo.first;
-					char* pTagBlockData = pTagsSection + pageOffset;
+
+					uint64_t pageOffset = m_pCacheFile->ConvertPageOffset(pTagBlock->address);
+					uint32_t tagBlockDataIndexDataOffset = pTagBlockReflectionType->m_size * static_cast<uint32_t>(rDynamicTagBlockData.m_position);
+					char* pTagBlockData = pTagsSection + pageOffset + tagBlockDataIndexDataOffset;
 
 					if (pTagBlock->count && pTagBlock->address)
 					{
-						const ReflectionTagBlockInfo& rReflectionTagBlockInfo = reflectionField.m_tagBlockInfo;
-						const ReflectionType* pTagBlockReflectionType = rReflectionTagBlockInfo.m_pReflectionTypeInfo;
 						// #TODO: We support null here because TagBlocks can be defined without their data.
 						// we should migrate slowly over to not having TagBlocks with no type specified
 						if (pTagBlockReflectionType)
@@ -320,6 +351,24 @@ void MantleTagTab::PrintReflectionInfoGUI3(char* const pData, const ReflectionTy
 							ImGui::Text("count:%i address:0x%X definition_address:0x%X", pTagBlock->count, pTagBlock->address, pTagBlock->definition_address);
 						}
 					}
+				}
+				else
+				{
+					ImGui::SameLine();
+					ImGui::SetCursorPosX(beginOfCollapsingHeaderX);
+					ImGui::Dummy(ImVec2(recursionPadding + 5.0f + 800.0f, 0.0f));
+					ImGui::SameLine();
+					ImGui::Text("Count:");
+					ImGui::SameLine();
+					ImGui::SetNextItemWidth(100);
+					ImGui::InputScalar("", ImGuiDataType_U32, &pTagBlock->count, nullptr, nullptr, nullptr, ImGuiInputTextFlags_ReadOnly);
+					ImGui::SameLine();
+					ImGui::Dummy(ImVec2(20.0f, 0.0f));
+					ImGui::SameLine();
+					ImGui::Text("Position:");
+					ImGui::SameLine();
+					ImGui::SetNextItemWidth(150);
+					ImGui::InputInt("", &rDynamicTagBlockData.m_position);
 				}
 
 				ImGui::Columns(1);
@@ -353,7 +402,10 @@ MantleTagTab::MantleTagTab(const char* pTitle, const char* pDescription, CacheFi
 
 MantleTagTab::~MantleTagTab()
 {
-
+	for (ImGUIDynamnicData* pDynamicData : m_imGuiDynamicData)
+	{
+		delete pDynamicData;
+	}
 }
 
 void MantleTagTab::RenderContents(bool setSelected)

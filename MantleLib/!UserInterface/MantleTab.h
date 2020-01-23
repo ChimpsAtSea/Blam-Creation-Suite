@@ -25,5 +25,25 @@ protected:
 	std::string m_title;
 	std::string m_description;
 	std::vector<TabClosedCallback> tabClosedCallback;
+
+	using ImGUIDynamnicData = std::pair<void*, char[32]>;
+	std::vector<ImGUIDynamnicData*> m_imGuiDynamicData;
+
+	inline ImGUIDynamnicData& GetDynamicData(void* pPosition);
 };
+
+inline MantleTab::ImGUIDynamnicData& MantleTab::GetDynamicData(void* pPosition)
+{
+	for (ImGUIDynamnicData* pDynamicData : m_imGuiDynamicData)
+	{
+		if (pDynamicData->first == pPosition)
+		{
+			return *pDynamicData;
+		}
+	}
+
+	ImGUIDynamnicData& rDynamicData = *m_imGuiDynamicData.emplace_back(new ImGUIDynamnicData{});
+	rDynamicData.first = pPosition;
+	return rDynamicData;
+}
 
