@@ -13,9 +13,9 @@ std::string format_string(const char* pFormat, ...)
 extern GameRuntime gameRuntime;
 MapInfoManager* GameOptionSelection::s_pMapInfoManager = nullptr;
 GameMode s_currentGameMode = GameMode::Campaign;
-LPCSTR g_LaunchGameVariant = "";
-LPCSTR g_LaunchMapVariant = "";
-LPCSTR g_SavedFilm = nullptr;
+std::string GameOptionSelection::m_pLaunchGameVariant = "";
+std::string GameOptionSelection::m_pLaunchMapVariant = "";
+std::string GameOptionSelection::m_pLaunchSavedFilm = "";
 e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
 const MapInfo* GameOptionSelection::s_pSelectedMapInfo[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
 
@@ -342,7 +342,7 @@ void GameOptionSelection::GetVariantInfo(char* pBuffer, std::string* name, std::
 int GameOptionSelection::ReadGameVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
 	static s_game_variant gameVariant;
-	loadGameVariant(GetDataAccess(), pName, gameVariant);
+	LoadGameVariant(GetDataAccess(), pName, gameVariant);
 
 	int result = gameVariant.game_engine_index;
 
@@ -359,7 +359,7 @@ int GameOptionSelection::ReadGameVariant(LPCSTR pName, std::string* name, std::s
 int GameOptionSelection::ReadMapVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
 	static s_map_variant mapVariant;
-	loadMapVariant(GetDataAccess(), pName, mapVariant);
+	LoadMapVariant(GetDataAccess(), pName, mapVariant);
 
 	int result = *reinterpret_cast<int*>(&mapVariant.data[0x2C]);
 	GetVariantInfo(mapVariant.data, name, desc);
@@ -391,19 +391,19 @@ int GameOptionSelection::ReadSavedFilm(LPCSTR pName, std::string* name, std::str
 
 void GameOptionSelection::SelectGameVariant()
 {
+	const char* pEngineName = "haloreach"; // #TODO: Set this up properly
+	static std::vector<std::string> pfilePaths = {
+		format_string("%s/game_variants", pEngineName/*"haloreach"*/),
+		format_string("%s/hopper_game_variants", pEngineName/*"haloreach"*/),
+		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/GameType/", GetUserprofileVariable(), pEngineName/*"haloreach"*/)
+	};
+	static c_file_array fileArray = c_file_array(pfilePaths, { ".bin" }, &ReadGameVariant);
+	static LPCSTR pLast = m_pLaunchGameVariant.c_str();
+
 	if (s_currentGameMode == GameMode::Campaign)
 	{
 		return;
 	}
-
-	const char* pEngineName = "haloreach"; // #TODO: Set this up properly
-	static std::vector<std::string> pfilePaths = {
-		format_string("%s\\game_variants", pEngineName/*"haloreach"*/),
-		format_string("%s\\hopper_game_variants", pEngineName/*"haloreach"*/),
-		format_string("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\GameType\\", GetUserprofileVariable(), pEngineName/*"haloreach"*/)
-	};
-	static c_file_array fileArray = c_file_array(pfilePaths, { ".bin" }, &ReadGameVariant);
-	static LPCSTR pLast = g_LaunchGameVariant;
 
 	if (ImGui::BeginCombo("###GAME VARIANT", fileArray.GetName(pLast)))
 	{
@@ -416,7 +416,7 @@ void GameOptionSelection::SelectGameVariant()
 
 			if (fileArray.GetFileName(i) && shouldShow)
 			{
-				bool selected = fileArray.GetFileName(i) == fileArray.GetFileName(g_LaunchGameVariant);
+				bool selected = fileArray.GetFileName(i) == fileArray.GetFileName(pLast);
 
 				std::string pSelectedGameVariantName = std::string(fileArray.GetName(i)).append(" (").append(fileArray.GetFileName(i)).append(")###").append(std::to_string(i));
 				if (ImGui::Selectable(pSelectedGameVariantName.c_str(), &selected))
@@ -430,30 +430,32 @@ void GameOptionSelection::SelectGameVariant()
 
 		ImGui::EndCombo();
 	}
+
+	m_pLaunchGameVariant = pLast;
 }
 
 void GameOptionSelection::SelectMapVariant()
 {
+	const char* pEngineName = "haloreach"; // #TODO: Set this up properly
+	static std::vector<std::string> pfilePaths = {
+		format_string("%s/map_variants", pEngineName/*"haloreach"*/),
+		format_string("%s/map_game_variants", pEngineName/*"haloreach"*/),
+		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Map/", GetUserprofileVariable(), pEngineName/*"haloreach"*/)
+	};
+	static c_file_array fileArray = c_file_array(pfilePaths, { ".mvar" }, &ReadMapVariant);
+	static LPCSTR pLast = m_pLaunchMapVariant.c_str();
+
 	if (s_currentGameMode != GameMode::Multiplayer)
 	{
 		return;
 	}
-
-	const char* pEngineName = "haloreach"; // #TODO: Set this up properly
-	static std::vector<std::string> pfilePaths = {
-		format_string("%s\\game_variants", pEngineName/*"haloreach"*/),
-		format_string("%s\\hopper_game_variants", pEngineName/*"haloreach"*/),
-		format_string("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\Map\\", GetUserprofileVariable(), pEngineName/*"haloreach"*/)
-	};
-	static c_file_array fileArray = c_file_array(pfilePaths, { ".mvar" }, &ReadMapVariant);
-	static LPCSTR pLast = g_LaunchMapVariant;
 
 	const MapInfo* pSelectedMapInfo = GetSelectedMapInfoByGameMode(s_currentGameMode);
 
 	LPCSTR lastMapName = fileArray.GetName(pLast);
 	if (!lastMapName || strlen(lastMapName) == 0)
 	{
-		pLast = nullptr;
+		pLast = "";
 		lastMapName = "<Default Variant>";
 	}
 	if (ImGui::BeginCombo("###MAP VARIANT", lastMapName))
@@ -461,7 +463,7 @@ void GameOptionSelection::SelectMapVariant()
 		bool defaultSelected = false;
 		if (ImGui::Selectable("<Default Variant>", &defaultSelected))
 		{
-			pLast = nullptr;
+			pLast = "";
 		}
 
 		for (int i = 0; i < fileArray.Count; i++)
@@ -470,7 +472,7 @@ void GameOptionSelection::SelectMapVariant()
 
 			if (fileArray.GetFileName(i) && shouldShow)
 			{
-				bool selected = fileArray.GetFileName(i) == fileArray.GetFileName(g_LaunchMapVariant);
+				bool selected = fileArray.GetFileName(i) == fileArray.GetFileName(pLast);
 
 				std::string pSelectedMapVariantName = std::string(fileArray.GetName(i)).append(" (").append(fileArray.GetFileName(i)).append(")###").append(std::to_string(i));
 				if (ImGui::Selectable(pSelectedMapVariantName.c_str(), &selected) && !defaultSelected)
@@ -484,22 +486,28 @@ void GameOptionSelection::SelectMapVariant()
 
 		ImGui::EndCombo();
 	}
+
+	m_pLaunchMapVariant = pLast;
 }
 
 void GameOptionSelection::SelectSavedFilm()
 {
 	static std::vector<std::string> pFilePaths = {
-		format_string("%s\\Temporary\\autosave\\", "haloreach"),
-		format_string("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\Movie\\", GetUserprofileVariable(), "haloreach"),
-		format_string("%s\\AppData\\LocalLow\\MCC\\Temporary\\%s\\autosave\\", GetUserprofileVariable(), "haloreach")
+		format_string("%s/Temporary/autosave/", "haloreach"),
+		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/", GetUserprofileVariable(), "haloreach"),
+		format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/", GetUserprofileVariable(), "haloreach")
 	};
 
 	static c_file_array fileArray = c_file_array(pFilePaths, { ".film", ".mov" }, &ReadSavedFilm);
 	static LPCSTR pLast = "";
 
-	if (g_SavedFilm != fileArray.GetFileName(pLast))
+	if (m_pLaunchSavedFilm != fileArray.GetFileName(pLast))
 	{
-		g_SavedFilm = fileArray.GetFileName(pLast);
+		m_pLaunchSavedFilm = fileArray.GetFileName(pLast);
+	}
+	if (pLast != fileArray.GetFileName(pLast))
+	{
+		pLast = fileArray.GetFileName(pLast);
 	}
 
 	if (ImGui::BeginCombo("###SAVED FILM", fileArray.GetDesc(pLast)))
@@ -522,22 +530,24 @@ void GameOptionSelection::SelectSavedFilm()
 
 		ImGui::EndCombo();
 	}
+
+	m_pLaunchSavedFilm = pLast;
 }
 
-void GameOptionSelection::loadMapVariant(IDataAccess* pDataAccess, const char* pVariantName, s_map_variant& rMapVariant, bool print)
+void GameOptionSelection::LoadMapVariant(IDataAccess* pDataAccess, const char* pVariantName, s_map_variant& rMapVariant, bool print)
 {
 	memset(&rMapVariant, 0, sizeof(rMapVariant));
 
 	if (pVariantName)
 	{
 		static std::string pFileName = "";
-		if (!PathFileExists((pFileName = format_string("%s\\hopper_map_variants\\%s.mvar", "haloreach", pVariantName)).c_str()))
+		if (!PathFileExists((pFileName = format_string("%s/hopper_map_variants/%s.mvar", "haloreach", pVariantName)).c_str()))
 		{
-			if (!PathFileExists((pFileName = format_string("%s\\map_variants\\%s.mvar", "haloreach", pVariantName)).c_str()))
+			if (!PathFileExists((pFileName = format_string("%s/map_variants/%s.mvar", "haloreach", pVariantName)).c_str()))
 			{
-				if (!PathFileExists((pFileName = format_string("%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\%s\\Map\\%s.mvar", GetUserprofileVariable(), "haloreach", pVariantName)).c_str()))
+				if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Map/%s.mvar", GetUserprofileVariable(), "haloreach", pVariantName)).c_str()))
 				{
-					if (!PathFileExists((pFileName = format_string("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\Map\\%s.mvar", GetUserprofileVariable(), "haloreach", pVariantName)).c_str()))
+					if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Map/%s.mvar", GetUserprofileVariable(), "haloreach", pVariantName)).c_str()))
 					{
 						pFileName = "";
 					}
@@ -550,7 +560,7 @@ void GameOptionSelection::loadMapVariant(IDataAccess* pDataAccess, const char* p
 		{
 			if (print)
 			{
-				WriteLineVerbose("Loading map variant [%s]", pFileName);
+				WriteLineVerbose("Loading map variant [%s]", pFileName.c_str());
 			}
 
 			rMapVariant = pDataAccess->MapVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->MapVariant;
@@ -572,7 +582,7 @@ void GameOptionSelection::loadMapVariant(IDataAccess* pDataAccess, const char* p
 	}
 }
 
-void GameOptionSelection::loadGameVariant(IDataAccess* pDataAccess, const char* pVariantName, s_game_variant& rGameVariant, bool print)
+void GameOptionSelection::LoadGameVariant(IDataAccess* pDataAccess, const char* pVariantName, s_game_variant& rGameVariant, bool print)
 {
 	memset(&rGameVariant, 0, sizeof(rGameVariant));
 	if (pVariantName == nullptr)
@@ -581,13 +591,13 @@ void GameOptionSelection::loadGameVariant(IDataAccess* pDataAccess, const char* 
 	}
 
 	static std::string pFileName = "";
-	if (!PathFileExists((pFileName = format_string("%s\\hopper_game_variants\\%s.bin", "haloreach", pVariantName)).c_str()))
+	if (!PathFileExists((pFileName = format_string("%s/hopper_game_variants/%s.bin", "haloreach", pVariantName)).c_str()))
 	{
-		if (!PathFileExists((pFileName = format_string("%s\\game_variants\\%s.bin", "haloreach", pVariantName)).c_str()))
+		if (!PathFileExists((pFileName = format_string("%s/game_variants/%s.bin", "haloreach", pVariantName)).c_str()))
 		{
-			if (!PathFileExists((pFileName = format_string("%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\%s\\GameType\\%s.bin", GetUserprofileVariable(), "haloreach", pVariantName)).c_str()))
+			if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/GameType/%s.bin", GetUserprofileVariable(), "haloreach", pVariantName)).c_str()))
 			{
-				if (!PathFileExists((pFileName = format_string("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\GameType\\%s.bin", GetUserprofileVariable(), "haloreach", pVariantName)).c_str()))
+				if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/GameType/%s.bin", GetUserprofileVariable(), "haloreach", pVariantName)).c_str()))
 				{
 					pFileName = "";
 				}
@@ -600,7 +610,7 @@ void GameOptionSelection::loadGameVariant(IDataAccess* pDataAccess, const char* 
 	{
 		if (print)
 		{
-			WriteLineVerbose("Loading game variant [%s]", pFileName);
+			WriteLineVerbose("Loading game variant [%s]", pFileName.c_str());
 		}
 		rGameVariant = pDataAccess->GameVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->GameVariant;
 		filo.close_file();
@@ -608,7 +618,7 @@ void GameOptionSelection::loadGameVariant(IDataAccess* pDataAccess, const char* 
 }
 
 // TODO: Test, and fix if broke
-void GameOptionSelection::loadPreviousGamestate(const char* pGamestateName, GameContext& gameContext)
+void GameOptionSelection::LoadPreviousGamestate(const char* pGamestateName, GameContext& gameContext)
 {
 	char pFileName[MAX_PATH] = {};
 	sprintf(pFileName, "%s.hdr", pGamestateName);
@@ -632,21 +642,21 @@ void GameOptionSelection::loadPreviousGamestate(const char* pGamestateName, Game
 	}
 }
 
-void GameOptionSelection::loadSavedFilmMetadata(const char* pSavedFilmName, GameContext& gameContext)
+void GameOptionSelection::LoadSavedFilmMetadata(const char* pSavedFilmName, GameContext& gameContext)
 {
-	if (!pSavedFilmName)
+	if (!pSavedFilmName[0])
 		return;
 
 	static std::string pFileName = "";
-	if (!PathFileExists((pFileName = format_string("%s\\Temporary\\autosave\\%s.film", "haloreach", pSavedFilmName)).c_str()))
+	if (!PathFileExists((pFileName = format_string("%s/Temporary/autosave/%s.film", "haloreach", pSavedFilmName)).c_str()))
 	{
-		if (!PathFileExists((pFileName = format_string("%s\\Temporary\\autosave\\%s.mov", "haloreach", pSavedFilmName)).c_str()))
+		if (!PathFileExists((pFileName = format_string("%s/Temporary/autosave/%s.mov", "haloreach", pSavedFilmName)).c_str()))
 		{
-			if (!PathFileExists((pFileName = format_string("%s\\AppData\\LocalLow\\HaloMCC\\Temporary\\UserContent\\%s\\Movie\\%s.mov", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
+			if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Movie/%s.mov", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
 			{
-				if (!PathFileExists((pFileName = format_string("%s\\AppData\\LocalLow\\MCC\\Temporary\\UserContent\\%s\\Movie\\%s.mov", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
+				if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/%s.mov", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
 				{
-					if (!PathFileExists((pFileName = format_string("%s\\AppData\\LocalLow\\MCC\\Temporary\\%s\\autosave\\%s.film", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
+					if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/%s.film", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
 					{
 						pFileName = "";
 					}
@@ -657,7 +667,7 @@ void GameOptionSelection::loadSavedFilmMetadata(const char* pSavedFilmName, Game
 
 	if (pFileName.c_str())
 	{
-		WriteLineVerbose("Loading saved film [%s]", pFileName);
+		WriteLineVerbose("Loading saved film [%s]", pFileName.c_str());
 	}
 
 	gameContext.SavedFilmPath = pFileName.c_str();

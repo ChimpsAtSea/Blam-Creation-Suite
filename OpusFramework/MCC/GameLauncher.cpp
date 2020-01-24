@@ -108,7 +108,7 @@ void GameLauncher::render()
 	static bool hasAutostarted = false;
 	if (ImGui::Button("START GAME", gridButtonSize) || (CommandLine::HasCommandLineArg("-autostart") && !hasAutostarted) || GetKeyState(VK_RETURN) & 0x80)
 	{
-		//g_SavedFilm = nullptr;
+		GameOptionSelection::m_pLaunchSavedFilm = "";
 		hasAutostarted = true;
 		startGameNextFrame = true;
 	}
@@ -116,7 +116,7 @@ void GameLauncher::render()
 	ImGui::SetCursorPos(ImVec2(gridButtonSize.x * 0.35f, gridButtonSize.y * 9.1f));
 	if (ImGui::Button("PLAY FILM", gridButtonSize) || GetKeyState('P') & 0x80)
 	{
-
+		startGameNextFrame = true;
 	}
 
 	ImGui::SetCursorPos(ImVec2(gridButtonSize.x * 0.35f, gridButtonSize.y * 14));
@@ -186,10 +186,10 @@ void GameLauncher::launchHaloReach()
 				gameContext.MapId = static_cast<MapID>(pSelectedMapInfo->GetMapID());
 				gameContext.CampaignDifficultyLevel = e_campaign_difficulty_level::_campaign_difficulty_level_easy;
 
-				//loadGameVariant(s_pCurrentGameRuntime->GetDataAccess(), g_LaunchGameVariant, *reinterpret_cast<s_game_variant*>(rGameContext.GameVariantBuffer), true);
-				//loadMapVariant(s_pCurrentGameRuntime->GetDataAccess(), g_LaunchMapVariant, *reinterpret_cast<s_map_variant*>(rGameContext.MapVariantBuffer), true);
-				////LoadPreviousGamestate("gamestate", rGameContext);
-				//loadSavedFilmMetadata(g_SavedFilm, rGameContext);
+				GameOptionSelection::LoadGameVariant(GameOptionSelection::GetDataAccess(), GameOptionSelection::m_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
+				GameOptionSelection::LoadMapVariant(GameOptionSelection::GetDataAccess(), GameOptionSelection::m_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
+				//GameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
+				GameOptionSelection::LoadSavedFilmMetadata(GameOptionSelection::m_pLaunchSavedFilm.c_str(), gameContext);
 
 				gameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
 				gameContext.SessionInfo.HostAddress = HostAddress;
@@ -224,7 +224,7 @@ void GameLauncher::launchHaloReach()
 	Window::SetPostMessageThreadId(hMainGameThread);
 
 	HRESULT waitForSingleObjectResult;
-	do 
+	do
 	{
 		update();
 		waitForSingleObjectResult = WaitForSingleObject(hMainGameThread, 5);

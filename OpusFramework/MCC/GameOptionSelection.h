@@ -11,6 +11,14 @@ public:
 	static void SelectGameMode();
 	static void Render();
 
+	static void LoadMapVariant(IDataAccess *pDataAccess, const char *pVariantName, s_map_variant &out_variant, bool print = false);
+	static void LoadGameVariant(IDataAccess *pDataAccess, const char *pVariantName, s_game_variant &out_variant, bool print = false);
+	static void LoadPreviousGamestate(const char *pFileName, GameContext &gameContext);
+	static void LoadSavedFilmMetadata(const char *pSavedFilmName, GameContext &gameContext);
+
+	static std::string m_pLaunchGameVariant;
+	static std::string m_pLaunchMapVariant;
+	static std::string m_pLaunchSavedFilm;
 private:
 
 	enum class SelectedGameModeMapInfoIndex
@@ -42,11 +50,6 @@ private:
 	static SelectedGameModeMapInfoIndex GameModeToSelectedGameModeMapInfoIndex(GameMode gameMode);
 	static GameMode SelectedGameModeMapInfoIndexToGameMode(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex);
 	static const MapInfo*& GetSelectedMapInfoBySelectedGameModeMapInfoIndex(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex);
-
-	static void loadMapVariant(IDataAccess* pDataAccess, const char* pVariantName, s_map_variant& out_variant, bool print = false);
-	static void loadGameVariant(IDataAccess* pDataAccess, const char* pVariantName, s_game_variant& out_variant, bool print = false);
-	static void loadPreviousGamestate(const char* pFileName, GameContext& gameContext);
-	static void loadSavedFilmMetadata(const char* pSavedFilmName, GameContext& gameContext);
 
 	static void RenderHoveredTooltip(const char* pText);
 
