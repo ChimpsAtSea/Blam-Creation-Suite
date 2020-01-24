@@ -453,7 +453,7 @@ void GameOptionSelection::SelectMapVariant()
 	const MapInfo* pSelectedMapInfo = GetSelectedMapInfoByGameMode(s_currentGameMode);
 
 	LPCSTR lastMapName = fileArray.GetName(pLast);
-	if (!lastMapName || strlen(lastMapName) == 0)
+	if (!lastMapName || pLast[0] == 0)
 	{
 		pLast = "";
 		lastMapName = "<Default Variant>";
@@ -538,7 +538,7 @@ void GameOptionSelection::LoadMapVariant(IDataAccess* pDataAccess, const char* p
 {
 	memset(&rMapVariant, 0, sizeof(rMapVariant));
 
-	if (pVariantName)
+	if (pVariantName[0])
 	{
 		static std::string pFileName = "";
 		if (!PathFileExists((pFileName = format_string("%s/hopper_map_variants/%s.mvar", "haloreach", pVariantName)).c_str()))
