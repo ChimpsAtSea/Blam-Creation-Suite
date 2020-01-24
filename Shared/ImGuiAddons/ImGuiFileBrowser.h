@@ -16,15 +16,30 @@ namespace ImGuiAddons
             ImGuiFileBrowser();
             ~ImGuiFileBrowser();
 
+
             /* Use this to show an open file dialog. The function takes label for the window,
              * the size and optionally the extensions that are valid for opening.
              */
-            bool showOpenFileDialog(std::string label, ImVec2 sz_xy, std::string valid_types = "");
+            bool ShowOpenFileDialogInternal(std::string label, ImVec2 sz_xy, std::string valid_types = "");
 
             /* Use this to open a save file dialog. The function takes label for the window,
              * the size and the extensions or types of files allowed for saving
              */
-            bool showSaveFileDialog(std::string label, ImVec2 sz_xy, std::string save_types);
+            bool ShowSaveFileDialogInternal(std::string label, ImVec2 sz_xy, std::string save_types);
+
+			const char* GetSelectedFileName() const { return selected_fn.empty() ? nullptr : selected_fn.c_str(); }
+            const char* GetSelectedExtension() const { return ext.empty() ? nullptr : ext.c_str(); }
+
+    private:
+            /* Use this to show an open file dialog. The function takes label for the window,
+             * the size and optionally the extensions that are valid for opening.
+             */
+            bool showOpenFileDialogInternal(std::string label, ImVec2 sz_xy, std::string valid_types);
+
+            /* Use this to open a save file dialog. The function takes label for the window,
+             * the size and the extensions or types of files allowed for saving
+             */
+            bool showSaveFileDialogInternal(std::string label, ImVec2 sz_xy, std::string save_types);
             std::string selected_fn;    // Store the opened/saved file name. Should only be accessed when above functions return true else may contain garbage.
             std::string ext;    // Store the saved file extension
 
@@ -71,6 +86,7 @@ namespace ImGuiAddons
             //These vars are used specifically for save file dialog.
             char save_fn[500];
             int selected_ext_idx;
+            bool show_popup_next_run;
     };
 }
 

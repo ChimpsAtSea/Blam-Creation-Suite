@@ -48,37 +48,38 @@ void MantleGUI::Render()
 	bool isCloseRequested = false;
 	MantleTab* pSetSelectedRootTab = nullptr;
 
-	static bool isOpeningFile = false;
-
+	static uint32_t isOpeningFile = false;
 	if (isOpeningFile)
 	{
-		ImGui::OpenPopup("Open File");
-
 		static ImGuiAddons::ImGuiFileBrowser fileBrowser;
 		int width = std::clamp(Window::GetWindowWidth(), 700, 1200);
 		int height = std::clamp(Window::GetWindowHeight(), 310, 675);
-		if (fileBrowser.showOpenFileDialog("Open File", ImVec2(width, height), ".map"))
+		if (fileBrowser.ShowOpenFileDialogInternal("Open File", ImVec2(width, height), ".map"))
 		{
-			const char* szFilePath = fileBrowser.selected_fn.c_str();
-			wchar_t szWFilePath[MAX_PATH + 1];
-			swprintf(szWFilePath, MAX_PATH, L"%S", szFilePath);
+			isOpeningFile = false;
 
-			for (MantleTab* pTab : s_pMantleTabs)
+			const char* pSelectedFilePath = fileBrowser.GetSelectedFileName();
+			if (pSelectedFilePath)
 			{
-				if (strcmp(pTab->GetDescription(), szFilePath) == 0)
+				wchar_t szWFilePath[MAX_PATH + 1];
+				swprintf(szWFilePath, MAX_PATH, L"%S", pSelectedFilePath);
+
+				for (MantleTab* pTab : s_pMantleTabs)
 				{
+					if (strcmp(pTab->GetDescription(), pSelectedFilePath) == 0)
+					{
+						pSetSelectedRootTab = pTab;
+						break;
+					}
+				}
+
+				if (pSetSelectedRootTab == nullptr) //not selecting an existing tab
+				{
+					MantleTab* pTab = new MantleMapTab(szWFilePath);
+					AddTabItem(*pTab);
 					pSetSelectedRootTab = pTab;
-					break;
 				}
 			}
-
-			if (pSetSelectedRootTab == nullptr) //not selecting an existing tab
-			{
-				MantleTab* pTab = new MantleMapTab(szWFilePath);
-				AddTabItem(*pTab);
-				pSetSelectedRootTab = pTab;
-			}
-			isOpeningFile = false;
 		}
 	}
 

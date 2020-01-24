@@ -38,6 +38,7 @@ namespace ImGuiAddons
 {
     ImGuiFileBrowser::ImGuiFileBrowser()
     {
+        show_popup_next_run = true;
         is_dir = false;
         show_hidden = false;
         filter_dirty = true;
@@ -68,7 +69,43 @@ namespace ImGuiAddons
         ImGui::CloseCurrentPopup();
     }
 
-    bool ImGuiFileBrowser::showOpenFileDialog(std::string label, ImVec2 sz_xy, std::string valid_types)
+    /* Use this to show an open file dialog. The function takes label for the window,
+ * the size and optionally the extensions that are valid for opening.
+ */
+    bool ImGuiFileBrowser::ShowOpenFileDialogInternal(std::string label, ImVec2 sz_xy, std::string valid_types)
+	{
+		if (show_popup_next_run)
+		{
+			show_popup_next_run = false;
+			ImGui::OpenPopup(label.c_str());
+		}
+        bool result = showOpenFileDialogInternal(label, sz_xy, valid_types);
+        if (result)
+        {
+            show_popup_next_run = true;
+        }
+        return result;
+    }
+
+    /* Use this to open a save file dialog. The function takes label for the window,
+     * the size and the extensions or types of files allowed for saving
+     */
+    bool ImGuiFileBrowser::ShowSaveFileDialogInternal(std::string label, ImVec2 sz_xy, std::string save_types)
+    {
+        if (show_popup_next_run)
+		{
+			show_popup_next_run = false;
+			ImGui::OpenPopup(label.c_str());
+        }
+        bool result = showSaveFileDialogInternal(label, sz_xy, save_types);
+        if (result)
+        {
+            show_popup_next_run = true;
+        }
+        return result;
+    }
+
+    bool ImGuiFileBrowser::showOpenFileDialogInternal(std::string label, ImVec2 sz_xy, std::string valid_types)
     {
         ImGuiIO& io = ImGui::GetIO();
         ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.5f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
@@ -228,8 +265,12 @@ namespace ImGuiAddons
                 }
             }
             ImGui::SameLine();
+            bool cancelled = false;
             if (ImGui::Button("Cancel", ImVec2(50, 0)))
-                closeDialog();
+			{
+				closeDialog();
+				cancelled = true;
+            }
 
             //If a file was selected, check if the file extension is supported.
             if(!selected_fn.empty() && !valid_exts.empty())
@@ -251,14 +292,14 @@ namespace ImGuiAddons
             if(!selected_fn.empty())
                 closeDialog();
             ImGui::EndPopup();
-            return (!selected_fn.empty());
+            return !selected_fn.empty() || cancelled;
         }
         else
             return false;
 
     }
 
-    bool ImGuiFileBrowser::showSaveFileDialog(std::string label, ImVec2 sz_xy, std::string save_types)
+    bool ImGuiFileBrowser::showSaveFileDialogInternal(std::string label, ImVec2 sz_xy, std::string save_types)
     {
         ImGuiIO& io = ImGui::GetIO();
         ImGui::SetNextWindowPos(ImVec2(io.DisplaySize.x * 0.5f, io.DisplaySize.y * 0.5f), ImGuiCond_Always, ImVec2(0.5f,0.5f));
@@ -442,9 +483,13 @@ namespace ImGuiAddons
                 }
             }
 
-            ImGui::SameLine();
-            if (ImGui::Button("Cancel", ImVec2(50, 0)))
-                closeDialog();
+			ImGui::SameLine();
+			bool cancelled = false;
+			if (ImGui::Button("Cancel", ImVec2(50, 0)))
+			{
+				closeDialog();
+                cancelled = true;
+			}
 
             //Show Error Modal if there was an error opening any directory
             if(show_error)
@@ -454,8 +499,8 @@ namespace ImGuiAddons
             //If selected file passes through validation check, close file dialog
             if(!selected_fn.empty())
                 closeDialog();
-            ImGui::EndPopup();
-            return (!selected_fn.empty());
+			ImGui::EndPopup();
+			return !selected_fn.empty() || cancelled;
         }
         else
             return false;
