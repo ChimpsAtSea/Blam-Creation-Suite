@@ -128,4 +128,19 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="!Resources\HLSL\BoxShaderVS.hlsl" />
+    <FxCompile Include="!Resources\HLSL\BoxShaderPS.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="!Resources\HLSL\BoxShader.hlsli" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="!Resources\reach_icon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="!Resources\Cousine-Regular.ttf" />
+  </ItemGroup>
 </Project>
