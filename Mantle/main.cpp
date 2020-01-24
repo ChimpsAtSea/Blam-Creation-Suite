@@ -9,7 +9,7 @@ int WINAPI WinMain(
 {
 	void(*UICallback)() = []()
 	{
-		MantleGUI::Render(Window::GetWindowWidth(), Window::GetWindowHeight());
+		MantleGUI::Render();
 	};
 
 	static bool s_running = true;
