@@ -5,6 +5,8 @@ class MantleMapLoadTask;
 class MantleMapTab : public MantleTab
 {
 public:
+	friend class MantleTagTab;
+
 	void DisplayMapTabUI();
 	MantleMapTab(std::shared_ptr<CacheFile> pCacheFile);
 	MantleMapTab(const wchar_t* szMapFilePath);
@@ -12,6 +14,7 @@ public:
 
 	std::shared_ptr<CacheFile> GetCacheFile() const { return m_pCacheFile; }
 protected:
+	void openTagTab(TagInterface& rTagInterface);
 	MantleMapTab(const char* pTitle, const char* pDescription);
 	virtual void GameRender() override;
 	virtual void RenderContents(bool setSelected) override;
@@ -19,6 +22,8 @@ protected:
 	void AddTabItem(MantleTab& rMantleTab);
 	void RemoveTabItem(MantleTab& rMantleTab);
 
+	size_t m_tagIndexSelected;
+	MantleTab* m_pNextSelectedTab;
 	bool m_renderTriggerVolumes;
 	std::shared_ptr<CacheFile> m_pCacheFile;
 	std::vector<MantleTab*> m_tabs;

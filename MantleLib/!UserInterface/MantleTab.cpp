@@ -4,7 +4,10 @@ MantleTab::~MantleTab()
 {
 	for (TabClosedCallback callback : tabClosedCallback)
 	{
-		callback(*this);
+		if (callback)
+		{
+			callback(*this);
+		}
 	}
 }
 
@@ -25,5 +28,6 @@ void MantleTab::Render(bool setSelected)
 
 void MantleTab::AddTabClosedCallback(TabClosedCallback callback)
 {
+	assert(callback);
 	tabClosedCallback.push_back(callback);
 }

@@ -47,10 +47,11 @@ inline const ReflectionType* GetTagReflectionData(TagGroupName tagGroupName)
 	return nullptr;
 }
 
-MantleTagTab::MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface)
+MantleTagTab::MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface, MantleTab* pParentTab)
 	: MantleTab(rTagInterface.GetNameWithGroupID(), rTagInterface.GetPathWithGroupName())
 	, m_rTagInterface(rTagInterface)
 	, m_rCacheFile(rCacheFile)
+	, m_pParentTab(pParentTab)
 {
 
 }
@@ -240,7 +241,14 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 				ImGui::NextColumn();
 				if (ImGui::Button("VIEW"))
 				{
-
+					if (pTagInterface)
+					{
+						MantleMapTab* pMapTab = dynamic_cast<MantleMapTab*>(m_pParentTab);
+						if (pMapTab)
+						{
+							pMapTab->openTagTab(*pTagInterface);
+						}
+					}
 				}
 				else if (ImGui::IsItemHovered()) ImGui::SetTooltip("Opens this tag in a new tab");
 				ImGui::Columns(1);

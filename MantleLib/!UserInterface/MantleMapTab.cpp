@@ -19,8 +19,6 @@ void MantleMapTab::DisplayMapTabUI()
 		}
 	}
 
-
-
 	static char pSearchBuffer[1024] = {};
 	ImGui::BeginChild("##left_pane", ImVec2(450, 0), true, ImGuiWindowFlags_NoScrollbar);
 	{
@@ -31,12 +29,8 @@ void MantleMapTab::DisplayMapTabUI()
 	}
 	ImGui::BeginChild("##tags", ImVec2(0, 0), true);
 
-
-
 	static bool tagIsSelected = false;
 
-
-	MantleTab* pSelectedTab = nullptr;
 	const std::vector<TagInterface*> rTagInterfaces = m_pCacheFile->GetTagInterfaces();
 	for (size_t i = 0; i < rTagInterfaces.size(); i++)
 	{
@@ -53,27 +47,10 @@ void MantleMapTab::DisplayMapTabUI()
 			}
 		}
 
-		static size_t sTagIsSelected = 0;
-		if (ImGui::Selectable(pTagName, sTagIsSelected == i))
+		if (ImGui::Selectable(pTagName, m_tagIndexSelected == i))
 		{
-			sTagIsSelected = i;
-
-			for (MantleTab* pTab : m_tabs)
-			{
-				MantleTagTab* pTagTab = dynamic_cast<MantleTagTab*>(pTab);
-				if (pTagTab == nullptr) continue;
-				if (&pTagTab->GetTagInterface() != &rTagInterface) continue;
-
-				pSelectedTab = pTab;
-				break;
-			}
-
-			if (pSelectedTab == nullptr)
-			{
-				MantleTab* pTab = new MantleTagTab(*m_pCacheFile, rTagInterface);
-				AddTabItem(*pTab);
-				pSelectedTab = pTab;
-			}
+			m_tagIndexSelected = i;
+			openTagTab(rTagInterface);
 		}
 	}
 
@@ -89,9 +66,11 @@ void MantleMapTab::DisplayMapTabUI()
 	{
 		if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None)) // each tag
 		{
+			MantleTab* pNextSelectedTab = m_pNextSelectedTab;
+			m_pNextSelectedTab = nullptr; // take a copy as the Render function can set this up for the next frame
 			for (MantleTab* pTab : m_tabs)
 			{
-				pTab->Render(pSelectedTab == pTab);
+				pTab->Render(pNextSelectedTab == pTab);
 			}
 
 			ImGui::EndTabBar();
@@ -107,10 +86,29 @@ void MantleMapTab::DisplayMapTabUI()
 	ImGui::EndGroup();
 }
 
+void MantleMapTab::openTagTab(TagInterface& rTagInterface)
+{
+	for (MantleTab* pTab : m_tabs)
+	{
+		MantleTagTab* pTagTab = dynamic_cast<MantleTagTab*>(pTab);
+		if (pTagTab == nullptr) continue;
+		if (&pTagTab->GetTagInterface() != &rTagInterface) continue;
+
+		m_pNextSelectedTab = pTab;
+		return;
+	}
+
+	MantleTab* pTab = new MantleTagTab(*m_pCacheFile, rTagInterface, this);
+	AddTabItem(*pTab);
+	m_pNextSelectedTab = pTab;
+}
+
 MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription)
 	:MantleTab(pTitle, pDescription)
 	, m_tabClosedCallback([this](MantleTab& rTab) { this->RemoveTabItem(rTab); })
 	, m_renderTriggerVolumes(false)
+	, m_pNextSelectedTab(nullptr)
+	, m_tagIndexSelected(0)
 {
 
 }
@@ -118,6 +116,10 @@ MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription)
 MantleMapTab::MantleMapTab(std::shared_ptr<CacheFile> pCacheFile)
 	: m_pCacheFile(pCacheFile)
 	, MantleTab(pCacheFile->GetFileNameChar(), pCacheFile->GetFilePathChar())
+	, m_tabClosedCallback([this](MantleTab& rTab) { this->RemoveTabItem(rTab); })
+	, m_renderTriggerVolumes(false)
+	, m_pNextSelectedTab(nullptr)
+	, m_tagIndexSelected(0)
 {
 
 }

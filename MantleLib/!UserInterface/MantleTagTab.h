@@ -5,7 +5,7 @@ class CacheFile;
 class MantleTagTab : public MantleTab
 {
 public:
-	MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface);
+	MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface, MantleTab* pParentTab);
 	virtual ~MantleTagTab();
 
 	TagInterface& GetTagInterface() const { return m_rTagInterface; };
@@ -17,4 +17,5 @@ protected:
 
 	TagInterface& m_rTagInterface;
 	CacheFile& m_rCacheFile;
+	MantleTab* m_pParentTab;
 };
