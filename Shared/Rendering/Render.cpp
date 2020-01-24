@@ -12,12 +12,9 @@ ID3D11DepthStencilView* Render::s_pDepthStencilView = nullptr;
 
 void Render::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 {
-	SIZE size = {};
-	Window::GetWindowSize(size);
-
 	DXGI_SWAP_CHAIN_DESC1 s_SwapchainDescription = {};
-	s_SwapchainDescription.Width = size.cx;
-	s_SwapchainDescription.Height = size.cy;
+	s_SwapchainDescription.Width = Window::GetWindowWidth();
+	s_SwapchainDescription.Height = Window::GetWindowHeight();
 	s_SwapchainDescription.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	s_SwapchainDescription.Stereo = false;
 	s_SwapchainDescription.SampleDesc.Count = 1;
@@ -196,14 +193,11 @@ void Render::EndFrame()
 
 void Render::ResizeWindow()
 {
-	SIZE size = {};
-	Window::GetWindowSize(size);
-
 	if (s_pSwapChain)
 	{
 
-		int width = size.cx;
-		int height = size.cy;
+		int width = Window::GetWindowWidth();
+		int height = Window::GetWindowHeight();
 
 		s_pDeviceContext->Flush();
 		DebugUI::Deinit();

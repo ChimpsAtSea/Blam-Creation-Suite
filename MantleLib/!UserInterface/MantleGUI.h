@@ -9,7 +9,7 @@ public:
 
 	static void Init(bool inGameMode);
 	static void GameRender();
-	static void Render(int width, int height);
+	static void Render();
 	static void Deinit();
 	static void AddTabItem(MantleTab& rMantleTab);
 	static void RemoveTabItem(MantleTab& rMantleTab);

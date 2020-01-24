@@ -33,6 +33,9 @@
     <ClInclude Include="DebugLogging.h" />
     <ClInclude Include="FileSystemUtilities.h" />
     <ClInclude Include="hexrays_defs.h" />
+    <ClInclude Include="ImGuiAddons\Dirent\dirent.h" />
+    <ClInclude Include="ImGuiAddons\ImGuiAddons.h" />
+    <ClInclude Include="ImGuiAddons\ImGuiFileBrowser.h" />
     <ClInclude Include="Rendering\BoxPrimitive.h" />
     <ClInclude Include="Rendering\BoxRenderer.h" />
     <ClInclude Include="Rendering\DebugUI.h" />
@@ -49,6 +52,10 @@
   <ItemGroup>
     <ClCompile Include="CommandLine.cpp" />
     <ClCompile Include="FileSystemUtilities.cpp" />
+    <ClCompile Include="ImGuiAddons\ImGuiFileBrowser.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Rendering\BoxPrimitive.cpp" />
     <ClCompile Include="Rendering\BoxRenderer.cpp" />
     <ClCompile Include="Rendering\DebugUI.cpp" />

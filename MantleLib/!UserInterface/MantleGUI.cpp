@@ -8,8 +8,6 @@ bool MantleGUI::s_inGameMode;
 void MantleGUI::Init(bool inGameMode)
 {
 	s_inGameMode = inGameMode;
-	AddTabItem(*new MantleMapTab("45_launch_station.map", "Map #1", L"haloreach/maps/45_launch_station.map"));
-	AddTabItem(*new MantleMapTab("m10.map", "Map #1", L"haloreach/maps/m10.map"));
 }
 
 void MantleGUI::GameRender()
@@ -20,17 +18,17 @@ void MantleGUI::GameRender()
 	}
 }
 
-void MantleGUI::Render(int width, int height)
+void MantleGUI::Render()
 {
 	if (s_inGameMode)
 	{
-		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Once);
-		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(width), static_cast<float>(height)), ImGuiCond_Once);
+		ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(Window::GetWindowWidth() / 4 * 3), static_cast<float>(Window::GetWindowHeight() / 4 * 3)), ImGuiCond_FirstUseEver);
 	}
 	else
 	{
 		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(width), static_cast<float>(height)), ImGuiCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(Window::GetWindowWidth()), static_cast<float>(Window::GetWindowHeight())), ImGuiCond_Always);
 	}
 
 	// Main body of the Demo window starts here.
@@ -50,6 +48,40 @@ void MantleGUI::Render(int width, int height)
 	bool isCloseRequested = false;
 	MantleTab* pSetSelectedRootTab = nullptr;
 
+	static bool isOpeningFile = false;
+
+	if (isOpeningFile)
+	{
+		ImGui::OpenPopup("Open File");
+
+		static ImGuiAddons::ImGuiFileBrowser fileBrowser;
+		int width = std::clamp(Window::GetWindowWidth(), 700, 1200);
+		int height = std::clamp(Window::GetWindowHeight(), 310, 675);
+		if (fileBrowser.showOpenFileDialog("Open File", ImVec2(width, height), ".map"))
+		{
+			const char* szFilePath = fileBrowser.selected_fn.c_str();
+			wchar_t szWFilePath[MAX_PATH + 1];
+			swprintf(szWFilePath, MAX_PATH, L"%S", szFilePath);
+
+			for (MantleTab* pTab : s_pMantleTabs)
+			{
+				if (strcmp(pTab->GetDescription(), szFilePath) == 0)
+				{
+					pSetSelectedRootTab = pTab;
+					break;
+				}
+			}
+
+			if (pSetSelectedRootTab == nullptr) //not selecting an existing tab
+			{
+				MantleTab* pTab = new MantleMapTab(szWFilePath);
+				AddTabItem(*pTab);
+				pSetSelectedRootTab = pTab;
+			}
+			isOpeningFile = false;
+		}
+	}
+
 	if (ImGui::Begin("Mantle", &isReachDebugWindowOpen, windowFlags))
 	{
 		if (ImGui::BeginMenuBar())
@@ -58,23 +90,23 @@ void MantleGUI::Render(int width, int height)
 			{
 				if (ImGui::MenuItem("Open File", "Ctrl+O"))
 				{
-					//#TODO: Open a new map tab dialog
+					isOpeningFile = true;
 
-					for (MantleTab* pTab : s_pMantleTabs)
-					{
-						if (strcmp(pTab->GetTitle(), "45_aftship.map") == 0)
-						{
-							pSetSelectedRootTab = pTab;
-							break;
-						}
-					}
+					//for (MantleTab* pTab : s_pMantleTabs)
+					//{
+					//	if (strcmp(pTab->GetTitle(), "45_aftship.map") == 0)
+					//	{
+					//		pSetSelectedRootTab = pTab;
+					//		break;
+					//	}
+					//}
 
-					if (pSetSelectedRootTab == nullptr) //not selecting an existing tab
-					{
-						MantleTab* pTab = new MantleMapTab("45_aftship.map", "Map #1", L"45_aftship.map");
-						AddTabItem(*pTab);
-						pSetSelectedRootTab = pTab;
-					}
+					//if (pSetSelectedRootTab == nullptr) //not selecting an existing tab
+					//{
+					//	MantleTab* pTab = new MantleMapTab("45_aftship.map", "Map #1", L"45_aftship.map");
+					//	AddTabItem(*pTab);
+					//	pSetSelectedRootTab = pTab;
+					//}
 				}
 				ImGui::Separator();
 				if (ImGui::MenuItem("Exit"))
@@ -109,7 +141,7 @@ void MantleGUI::Render(int width, int height)
 					pSetSelectedRootTab = nullptr;
 				}
 
-				
+
 				/*
 				if (ImGui::BeginTabItem("<TITLE>"))
 				{
@@ -137,9 +169,9 @@ void MantleGUI::Deinit()
 {
 	// delete the first tab in the vector until non remain
 	// tabs are removed from vector via the TabClosedCallback
-	while (s_pMantleTabs.size()) 
+	while (s_pMantleTabs.size())
 	{
-		delete *s_pMantleTabs.begin();
+		delete* s_pMantleTabs.begin();
 	}
 }
 

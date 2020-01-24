@@ -3,6 +3,7 @@
 #include "shared-system-pch.h"
 #include "shared-tbb-pch.h"
 
+#include "ImGuiAddons/ImGuiAddons.h"
 #include "DebugLogging.h"
 #include "CommandLine.h"
 #include "FileSystemUtilities.h"

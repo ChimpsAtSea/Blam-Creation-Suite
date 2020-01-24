@@ -154,7 +154,7 @@ void DebugUI::Hide()
 
 void DebugUI::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	if (s_initialised)
+	if (s_initialised && Window::IsWindowFocused())
 	{
 		if (IsVisible())
 		{

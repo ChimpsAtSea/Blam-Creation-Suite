@@ -9,6 +9,7 @@ public:
 	static void OpusUITick();
 	static void GameTick();
 private:
+	static void loadSettings();
 	static void update();
 	static void renderMainMenu();
 	static void renderUI();

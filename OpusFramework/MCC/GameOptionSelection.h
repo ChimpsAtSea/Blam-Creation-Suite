@@ -16,9 +16,9 @@ public:
 	static void LoadPreviousGamestate(const char *pFileName, GameContext &gameContext);
 	static void LoadSavedFilmMetadata(const char *pSavedFilmName, GameContext &gameContext);
 
-	static std::string m_pLaunchGameVariant;
-	static std::string m_pLaunchMapVariant;
-	static std::string m_pLaunchSavedFilm;
+	static std::string s_pLaunchGameVariant;
+	static std::string s_pLaunchMapVariant;
+	static std::string s_pLaunchSavedFilm;
 private:
 
 	enum class SelectedGameModeMapInfoIndex
@@ -30,7 +30,9 @@ private:
 		Count
 	};
 
+	static void loadSettings();
 	static const MapInfo* GetDefaultGameOptionSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex);
+	static const MapInfo* GetDefaultMapSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex);
 	static void SelectMap();
 	static void SelectDifficulty();
 	static void SelectGameVariant();

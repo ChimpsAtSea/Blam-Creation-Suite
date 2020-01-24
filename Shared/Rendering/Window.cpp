@@ -1,5 +1,6 @@
 #include "shared-private-pch.h"
 
+SIZE Window::s_size = {};
 HICON Window::s_hIcon = NULL;
 HWND Window::s_hWnd = NULL;
 HWND Window::s_hFocusWnd = NULL;
@@ -12,7 +13,7 @@ std::vector<WNDPROC> Window::m_WndProcCallbacks;
 void(*Window::s_OnDestroyCallback)() = nullptr;
 void(*Window::s_OnUpdateCallback)() = nullptr;
 
-void Window::GetWindowSize(SIZE& rSize)
+void Window::getWindowSize(SIZE& rSize)
 {
 	RECT rect = {};
 	GetClientRect(s_hWnd, &rect);
@@ -36,6 +37,16 @@ void Window::SetPostMessageThreadId(HANDLE hThread)
 {
 	s_hPostMessageThread = hThread;
 	s_hPostMessageThreadId = GetThreadId(s_hPostMessageThread);
+}
+
+int Window::GetWindowWidth()
+{
+	return s_size.cx;
+}
+
+int Window::GetWindowHeight()
+{
+	return s_size.cy;
 }
 
 HWND Window::GetWindowHandle()
@@ -105,6 +116,7 @@ LRESULT CALLBACK Window::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 		PostQuitMessage(WM_QUIT);
 		break;
 	case WM_SIZE:
+		getWindowSize(s_size);
 		Render::ResizeWindow();
 		// #TODO: tell game to resize
 		break;

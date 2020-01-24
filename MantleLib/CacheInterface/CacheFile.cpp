@@ -10,6 +10,18 @@ CacheFile::CacheFile(const std::wstring& mapFilePath)
 	, m_mapFilePath(mapFilePath)
 {
 	loadMap(mapFilePath);
+	m_mapFileName = PathFindFileNameW(m_mapFilePath.c_str());
+
+	char pBuffer[MAX_PATH + 1];
+
+	snprintf(pBuffer, MAX_PATH, "%S", m_mapFileName.c_str());
+	pBuffer[MAX_PATH] = 0;
+	m_mapFileNameChar = pBuffer;
+
+	snprintf(pBuffer, MAX_PATH, "%S", m_mapFilePath.c_str());
+	pBuffer[MAX_PATH] = 0;
+	m_mapFilePathChar = pBuffer;
+
 }
 
 CacheFile::~CacheFile()

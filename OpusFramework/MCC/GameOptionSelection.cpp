@@ -13,9 +13,9 @@ std::string format_string(const char* pFormat, ...)
 extern GameRuntime gameRuntime;
 MapInfoManager* GameOptionSelection::s_pMapInfoManager = nullptr;
 GameMode s_currentGameMode = GameMode::Campaign;
-std::string GameOptionSelection::m_pLaunchGameVariant = "";
-std::string GameOptionSelection::m_pLaunchMapVariant = "";
-std::string GameOptionSelection::m_pLaunchSavedFilm = "";
+std::string GameOptionSelection::s_pLaunchGameVariant = "";
+std::string GameOptionSelection::s_pLaunchMapVariant = "";
+std::string GameOptionSelection::s_pLaunchSavedFilm = "";
 e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
 const MapInfo* GameOptionSelection::s_pSelectedMapInfo[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
 
@@ -24,11 +24,68 @@ void GameOptionSelection::Init()
 {
 	// #TODO: Support more games than just Halo Reach
 	s_pMapInfoManager = new MapInfoManager("haloreach/maps/info");
+
+	loadSettings();
 }
 
 void GameOptionSelection::Deinit()
 {
 	delete s_pMapInfoManager;
+}
+
+void GameOptionSelection::loadSettings()
+{
+	for (underlying(SelectedGameModeMapInfoIndex) i = 0; i < underlying_cast(SelectedGameModeMapInfoIndex::Count); i++)
+	{
+		s_pSelectedMapInfo[i] = GetDefaultMapSelection(static_cast<SelectedGameModeMapInfoIndex>(i));
+	}
+
+	char pLaunchGameModeBuffer[256] = {};
+	Settings::ReadStringValue(SettingsSection::Launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "");
+	s_currentGameMode = StringToGameMode(pLaunchGameModeBuffer);
+	
+	char pLaunchCampaignDifficultyLevelBuffer[256] = {};
+	Settings::ReadStringValue(SettingsSection::Launch, "DifficultyLevel", pLaunchCampaignDifficultyLevelBuffer, sizeof(pLaunchCampaignDifficultyLevelBuffer), "normal");
+	g_LaunchCampaignDifficultyLevel = string_to_campaign_difficulty_level(pLaunchCampaignDifficultyLevelBuffer);
+
+	LPCSTR pDefaultHopperGameVariant = "";
+	switch (s_currentGameMode)
+	{
+		break;
+	case GameMode::Campaign:
+		pDefaultHopperGameVariant = "campaign_default_054";
+		break;
+	case GameMode::Multiplayer:
+		pDefaultHopperGameVariant = "slayer_054";
+		break;
+	case GameMode::Survival:
+		pDefaultHopperGameVariant = "ff_firefight_054";
+		break;
+	}
+
+	// #TODO: This must persist outside of the read
+	static char pLaunchGameVariantBuffer[256] = {};
+	uint32_t LaunchGameVariantLength = Settings::ReadStringValue(SettingsSection::Launch, "GameVariant", pLaunchGameVariantBuffer, sizeof(pLaunchGameVariantBuffer), pDefaultHopperGameVariant);
+	if (LaunchGameVariantLength > 0)
+	{
+		s_pLaunchGameVariant = pLaunchGameVariantBuffer;
+	}
+	else
+	{
+		s_pLaunchGameVariant = "";
+	}
+
+	// #TODO: This must persist outside of the read
+	static char pLaunchMapVariantBuffer[256] = {};
+	uint32_t LaunchMapVariantLength = Settings::ReadStringValue(SettingsSection::Launch, "MapVariant", pLaunchMapVariantBuffer, sizeof(pLaunchMapVariantBuffer), "");
+	if (LaunchMapVariantLength > 0)
+	{
+		s_pLaunchMapVariant = pLaunchMapVariantBuffer;
+	}
+	else
+	{
+		s_pLaunchMapVariant = "";
+	}
 }
 
 GameMode GameOptionSelection::GetSelectedGameMode()
@@ -126,6 +183,20 @@ void GameOptionSelection::Render()
 
 	SelectGameVariant();
 	SelectMapVariant();
+}
+
+const MapInfo* GameOptionSelection::GetDefaultMapSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex)
+{
+	int previousMapID = Settings::ReadIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(gameModeMapInfoIndex)], -1);
+	for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
+	{
+		if (rMapInfo.GetMapID() == previousMapID)
+		{
+			return &rMapInfo;
+		}
+	}
+
+	return nullptr;
 }
 
 const MapInfo* GameOptionSelection::GetDefaultGameOptionSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex)
@@ -398,7 +469,7 @@ void GameOptionSelection::SelectGameVariant()
 		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/GameType/", GetUserprofileVariable(), pEngineName/*"haloreach"*/)
 	};
 	static c_file_array fileArray = c_file_array(pfilePaths, { ".bin" }, &ReadGameVariant);
-	static LPCSTR pLast = m_pLaunchGameVariant.c_str();
+	static LPCSTR pLast = s_pLaunchGameVariant.c_str();
 
 	if (s_currentGameMode == GameMode::Campaign)
 	{
@@ -431,7 +502,7 @@ void GameOptionSelection::SelectGameVariant()
 		ImGui::EndCombo();
 	}
 
-	m_pLaunchGameVariant = pLast;
+	s_pLaunchGameVariant = pLast;
 }
 
 void GameOptionSelection::SelectMapVariant()
@@ -443,7 +514,7 @@ void GameOptionSelection::SelectMapVariant()
 		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Map/", GetUserprofileVariable(), pEngineName/*"haloreach"*/)
 	};
 	static c_file_array fileArray = c_file_array(pfilePaths, { ".mvar" }, &ReadMapVariant);
-	static LPCSTR pLast = m_pLaunchMapVariant.c_str();
+	static LPCSTR pLast = s_pLaunchMapVariant.c_str();
 
 	if (s_currentGameMode != GameMode::Multiplayer)
 	{
@@ -487,7 +558,7 @@ void GameOptionSelection::SelectMapVariant()
 		ImGui::EndCombo();
 	}
 
-	m_pLaunchMapVariant = pLast;
+	s_pLaunchMapVariant = pLast;
 }
 
 void GameOptionSelection::SelectSavedFilm()
@@ -501,9 +572,9 @@ void GameOptionSelection::SelectSavedFilm()
 	static c_file_array fileArray = c_file_array(pFilePaths, { ".film", ".mov" }, &ReadSavedFilm);
 	static LPCSTR pLast = "";
 
-	if (m_pLaunchSavedFilm != fileArray.GetFileName(pLast))
+	if (s_pLaunchSavedFilm != fileArray.GetFileName(pLast))
 	{
-		m_pLaunchSavedFilm = fileArray.GetFileName(pLast);
+		s_pLaunchSavedFilm = fileArray.GetFileName(pLast);
 	}
 	if (pLast != fileArray.GetFileName(pLast))
 	{
@@ -531,7 +602,7 @@ void GameOptionSelection::SelectSavedFilm()
 		ImGui::EndCombo();
 	}
 
-	m_pLaunchSavedFilm = pLast;
+	s_pLaunchSavedFilm = pLast;
 }
 
 void GameOptionSelection::LoadMapVariant(IDataAccess* pDataAccess, const char* pVariantName, s_map_variant& rMapVariant, bool print)

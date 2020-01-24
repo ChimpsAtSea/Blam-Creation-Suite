@@ -49,6 +49,11 @@ public:
 		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_definition<>*>(&rTagBlock)));
 	}
 
+	inline const wchar_t* GetFilePath() const { return m_mapFilePath.c_str(); }
+	inline const wchar_t* GetFileName() const { return m_mapFileName.c_str(); }
+	inline const char* GetFilePathChar() const { return m_mapFilePathChar.c_str(); }
+	inline const char* GetFileNameChar() const { return m_mapFileNameChar.c_str(); }
+
 private:
 
 	inline char* getTagBlockDataInternal(s_tag_block_definition<>& rTagBlock)
@@ -66,6 +71,9 @@ private:
 
 	volatile bool m_isMapLoading;
 	std::wstring m_mapFilePath;
+	std::wstring m_mapFileName;
+	std::string m_mapFilePathChar;
+	std::string m_mapFileNameChar;
 	VirtualMemoryContainer& m_rVirtualMemoryContainer;
 
 	// raw data

@@ -6,8 +6,8 @@ class MantleMapTab : public MantleTab
 {
 public:
 	void DisplayMapTabUI();
-	MantleMapTab(const char* pTitle, const char* pDescription, std::shared_ptr<CacheFile> pCacheFile);
-	MantleMapTab(const char* pTitle, const char* pDescription, const wchar_t* szMapFilePath);
+	MantleMapTab(std::shared_ptr<CacheFile> pCacheFile);
+	MantleMapTab(const wchar_t* szMapFilePath);
 	virtual ~MantleMapTab();
 
 	std::shared_ptr<CacheFile> GetCacheFile() const { return m_pCacheFile; }

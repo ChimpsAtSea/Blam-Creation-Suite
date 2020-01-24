@@ -19,6 +19,8 @@ void MantleMapTab::DisplayMapTabUI()
 		}
 	}
 
+
+
 	static char pSearchBuffer[1024] = {};
 	ImGui::BeginChild("##left_pane", ImVec2(450, 0), true, ImGuiWindowFlags_NoScrollbar);
 	{
@@ -113,16 +115,17 @@ MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription)
 
 }
 
-MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription, std::shared_ptr<CacheFile> pCacheFile)
-	: MantleMapTab(pTitle, pDescription)
+MantleMapTab::MantleMapTab(std::shared_ptr<CacheFile> pCacheFile)
+	: m_pCacheFile(pCacheFile)
+	, MantleTab(pCacheFile->GetFileNameChar(), pCacheFile->GetFilePathChar())
 {
-	m_pCacheFile = pCacheFile;
+
 }
 
-MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription, const wchar_t* szMapFilePath)
-	: MantleMapTab(pTitle, pDescription)
+MantleMapTab::MantleMapTab(const wchar_t* szMapFilePath)
+	:MantleMapTab(std::make_shared<CacheFile>(szMapFilePath))
 {
-	m_pCacheFile = std::make_shared<CacheFile>(szMapFilePath);
+
 }
 
 MantleMapTab::~MantleMapTab()

@@ -24,8 +24,14 @@ public:
 	static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static void SetPostMessageThreadId(HANDLE hThread);
 
+	static int GetWindowWidth();
+	static int GetWindowHeight();
+	static void SetWindowTitle(const char* pTitle);
+	static void Show();
 private:
+	static void getWindowSize(SIZE& rSize);
 
+	static SIZE			s_size;
 	static HICON		s_hIcon;
 	static HWND			s_hWnd;
 	static HWND			s_hFocusWnd;
@@ -35,9 +41,5 @@ private:
 	static DWORD		s_hPostMessageThreadId;
 	static void(*s_OnDestroyCallback)();
 	static void(*s_OnUpdateCallback)();
-public:
-	static void GetWindowSize(SIZE& rSize);
-	static void SetWindowTitle(const char* pTitle);
-	static void Show();
 };
 
