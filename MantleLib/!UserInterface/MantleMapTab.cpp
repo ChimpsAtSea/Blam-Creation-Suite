@@ -153,5 +153,5 @@ void MantleMapTab::AddTabItem(MantleTab& rMantleTab)
 
 void MantleMapTab::RemoveTabItem(MantleTab& rMantleTab)
 {
-	vector_erase_by_value_helper(m_tabs, &rMantleTab);
+	VectorEraseByValueHelper(m_tabs, &rMantleTab);
 }

@@ -74,30 +74,6 @@
     <ClInclude Include="Tags\ReflectionData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileSystem\FileSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\cache_file_header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\cache_file_magic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\scenario_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\scenario_load_type.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\cache_file_section.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\cache_file_section_file_bounds.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\basic_buffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="!UserInterface\MantleGUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -111,12 +87,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="!UserInterface\MantleTagTab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\cache_file_tag_instance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\cache_file_tag_group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VirtualMemoryContainer.h">
@@ -429,9 +399,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\CacheInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\cache_file_tags_header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

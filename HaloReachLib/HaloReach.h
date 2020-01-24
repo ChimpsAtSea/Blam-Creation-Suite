@@ -1,8 +1,8 @@
 #pragma once
 
-#include <OpusFramework/local_types.h>
+#include "local_types.h"
 
-class IGameEngineHost;
+class IGameEngineHostLegacy;
 
 // TODO: find a better place for this?
 enum e_tls_offset
@@ -303,7 +303,7 @@ a41,a42,a43,a44,a45,a46,a47,a48, \
 a49,a50,a51,a52,a53,a54,a55,a56, \
 a57,a58,a59,a60,a61,a62,a63
 typedef char __fastcall profile_configuration_update_func(profile_configuration_update_args);
-extern HaloReach_2019_Jun_24_Hook<0x180780D90, profile_configuration_update_func> profile_configuration_update_type; // 0x180497FD0
+//extern HaloReach_2019_Jun_24_Hook<0x180780D90, profile_configuration_update_func> profile_configuration_update_type; // 0x180497FD0
 
 // Halo Reach Variables
 

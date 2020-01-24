@@ -35,22 +35,11 @@
     <ClInclude Include="!UserInterface\UserInterface.h" />
     <ClInclude Include="CacheInterface\CacheFile.h" />
     <ClInclude Include="CacheInterface\CacheInterface.h" />
-    <ClInclude Include="FileSystem\basic_buffer.h" />
-    <ClInclude Include="FileSystem\cache_file_magic.h" />
-    <ClInclude Include="FileSystem\cache_file_section.h" />
-    <ClInclude Include="FileSystem\cache_file_section_file_bounds.h" />
-    <ClInclude Include="FileSystem\cache_file_tag_group.h" />
-    <ClInclude Include="FileSystem\cache_file_tag_instance.h" />
-    <ClInclude Include="FileSystem\FileSystem.h" />
-    <ClInclude Include="FileSystem\scenario_load_type.h" />
-    <ClInclude Include="FileSystem\scenario_type.h" />
     <ClInclude Include="!UserInterface\MantleMapTab.h" />
     <ClInclude Include="!UserInterface\MantleTab.h" />
     <ClInclude Include="!UserInterface\MantleGUI.h" />
-    <ClInclude Include="FileSystem\cache_file_header.h" />
     <ClInclude Include="!UserInterface\MantleTagTab.h" />
     <ClInclude Include="CacheInterface\TagInterface.h" />
-    <ClInclude Include="FileSystem\cache_file_tags_header.h" />
     <ClInclude Include="Tags\TagDefinitions\achievements.h" />
     <ClInclude Include="Tags\TagDefinitions\ai_dialogue_globals.h" />
     <ClInclude Include="Tags\TagDefinitions\ai_globals.h" />
@@ -197,10 +186,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
+    <TargetName>Mantle</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
+    <TargetName>Mantle</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

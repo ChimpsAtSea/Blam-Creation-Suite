@@ -303,7 +303,7 @@ FunctionHookEx<convert_reach_map_id_to_mcc_map_id_offset, int __fastcall (int a1
 
 void ReadConfig()
 {
-	g_frameLimit = __max(30, Settings::ReadIntegerValue(SettingsSection::Game, "FrameLimit", GameRender::s_deviceMode.dmDisplayFrequency));
+	g_frameLimit = __max(30, Settings::ReadIntegerValue(SettingsSection::Game, "FrameLimit", Render::s_deviceMode.dmDisplayFrequency));
 	g_fieldOfView = Settings::ReadIntegerValue(SettingsSection::Camera, "FieldOfView", 78);
 	g_controlsLayout = Settings::ReadIntegerValue(SettingsSection::Player, "ControlsLayout", 0);
 	g_pancamEnabled = Settings::ReadBoolValue(SettingsSection::Debug, "PancamEnabled", false);
@@ -635,7 +635,7 @@ void __fastcall hs_print_evaluate(short opcode, unsigned short expression_index,
 void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVersion, bool isMCC)
 {
 	g_currentbuildVersion = buildVersion;
-	CustomWindow::SetWindowTitle("Halo Reach");
+	Window::SetWindowTitle("Halo Reach");
 	ReadConfig();
 	//DebugUI::RegisterCallback(halo_reach_debug_callback);
 
@@ -676,7 +676,7 @@ void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVer
 		}
 	}
 
-	//GameLauncher::RegisterTerminationValue(g_termination_value);
+	//LegacyGameLauncher::RegisterTerminationValue(g_termination_value);
 }
 
 void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion)

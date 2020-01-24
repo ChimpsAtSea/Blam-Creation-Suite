@@ -15,7 +15,6 @@ TagInterface::TagInterface(CacheFile* pCacheFile, uint16_t tagIndex)
 	, m_pTagNameWithGroupName()
 	, m_pReflectionData(nullptr)
 {
-	Sleep(50);
 	char* pTagsSection = pCacheFile->GetTagsSection().first;
 	uint64_t tagDataOffset = pCacheFile->ConvertPageOffset(m_pInstance->address, true); // #WARN: Internal function used here as the IsLoading() flag hasn't been disabled yet
 	m_pTagData = reinterpret_cast<char*>(pTagsSection + tagDataOffset);

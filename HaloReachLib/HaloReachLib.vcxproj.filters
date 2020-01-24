@@ -35,17 +35,16 @@
     <ClInclude Include="haloreachlib-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="local_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="input_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\OpusFramework\Resource.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="HLSL\BoxShaderVS.hlsl" />
-    <FxCompile Include="HLSL\BoxShaderPS.hlsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="HLSL\BoxShader.hlsli" />
   </ItemGroup>
 </Project>

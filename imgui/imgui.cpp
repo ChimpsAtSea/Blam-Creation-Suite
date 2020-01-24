@@ -250,7 +250,7 @@ CODE
         // Most of your application code here
         ImGui::Text("Hello, world!");
         MyGameUpdate(); // may use any Dear ImGui functions, e.g. ImGui::Begin("My window"); ImGui::Text("Hello, world!"); ImGui::End();
-        MyGameRender(); // may use any Dear ImGui functions as well!
+        MyRender(); // may use any Dear ImGui functions as well!
 
         // Render dear imgui, swap buffers
         // (You want to try calling EndFrame/Render as late as you can, to be able to use Dear ImGui in your own game rendering code)

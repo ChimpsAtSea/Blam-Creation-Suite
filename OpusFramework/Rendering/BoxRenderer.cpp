@@ -43,7 +43,7 @@ void BoxRenderer::SetupGeometry()
 		vertexBufferSubResourceData.SysMemPitch = 0;
 		vertexBufferSubResourceData.SysMemSlicePitch = 0;
 
-		HRESULT createBufferResult = GameRender::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pVertexBuffer);
+		HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pVertexBuffer);
 		assert(SUCCEEDED(createBufferResult));
 		assert(pVertexBuffer != nullptr);
 	}
@@ -84,7 +84,7 @@ void BoxRenderer::SetupGeometry()
 		vertexBufferSubResourceData.SysMemPitch = 0;
 		vertexBufferSubResourceData.SysMemSlicePitch = 0;
 
-		HRESULT createBufferResult = GameRender::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pIndexBuffer);
+		HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pIndexBuffer);
 		assert(SUCCEEDED(createBufferResult));
 		assert(pIndexBuffer != nullptr);
 	}
@@ -95,10 +95,10 @@ void BoxRenderer::SetupShaders()
 	if (pPixelShader == nullptr)
 	{
 		size_t shaderFileLength = 0;
-		char* pShaderBinary = opus::FileSystemReadToMemory(L"BoxShaderPS.cso", &shaderFileLength);
+		char* pShaderBinary = FileSystemReadToMemory(L"BoxShaderPS.cso", &shaderFileLength);
 		assert(pShaderBinary != nullptr);
 
-		GameRender::s_pDevice->CreatePixelShader(pShaderBinary, shaderFileLength, NULL, &pPixelShader);
+		Render::s_pDevice->CreatePixelShader(pShaderBinary, shaderFileLength, NULL, &pPixelShader);
 		assert(pPixelShader != nullptr);
 
 		delete[] pShaderBinary;
@@ -108,10 +108,10 @@ void BoxRenderer::SetupShaders()
 	size_t vertexShaderBinaryLength = 0;
 	if (pVertexShader == nullptr)
 	{
-		pVertexShaderBinary = opus::FileSystemReadToMemory(L"BoxShaderVS.cso", &vertexShaderBinaryLength);
+		pVertexShaderBinary = FileSystemReadToMemory(L"BoxShaderVS.cso", &vertexShaderBinaryLength);
 		assert(pVertexShaderBinary != nullptr);
 
-		GameRender::s_pDevice->CreateVertexShader(pVertexShaderBinary, vertexShaderBinaryLength, NULL, &pVertexShader);
+		Render::s_pDevice->CreateVertexShader(pVertexShaderBinary, vertexShaderBinaryLength, NULL, &pVertexShader);
 		assert(pVertexShader != nullptr);
 	}
 
@@ -120,7 +120,7 @@ void BoxRenderer::SetupShaders()
 		D3D11_RASTERIZER_DESC rasterizerDescription = {};
 		rasterizerDescription.FillMode = D3D11_FILL_SOLID;
 		rasterizerDescription.CullMode = D3D11_CULL_BACK;
-		GameRender::s_pDevice->CreateRasterizerState(&rasterizerDescription, &pSolidRasterState);
+		Render::s_pDevice->CreateRasterizerState(&rasterizerDescription, &pSolidRasterState);
 	}
 
 	if (pWireframeRasterState == nullptr)
@@ -128,7 +128,7 @@ void BoxRenderer::SetupShaders()
 		D3D11_RASTERIZER_DESC rasterizerDescription = {};
 		rasterizerDescription.FillMode = D3D11_FILL_WIREFRAME;
 		rasterizerDescription.CullMode = D3D11_CULL_NONE;
-		GameRender::s_pDevice->CreateRasterizerState(&rasterizerDescription, &pWireframeRasterState);
+		Render::s_pDevice->CreateRasterizerState(&rasterizerDescription, &pWireframeRasterState);
 	}
 
 	if (pVertexLayout == nullptr)
@@ -143,7 +143,7 @@ void BoxRenderer::SetupShaders()
 		inputDescriptions[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 		inputDescriptions[0].InstanceDataStepRate = 0;
 
-		HRESULT createInputLayoutResult = GameRender::s_pDevice->CreateInputLayout(inputDescriptions, 1, pVertexShaderBinary, vertexShaderBinaryLength, &pVertexLayout);
+		HRESULT createInputLayoutResult = Render::s_pDevice->CreateInputLayout(inputDescriptions, 1, pVertexShaderBinary, vertexShaderBinaryLength, &pVertexLayout);
 		assert(SUCCEEDED(createInputLayoutResult));
 		assert(pVertexLayout != nullptr);
 	}
@@ -170,7 +170,7 @@ void BoxRenderer::SetupConstantBuffers()
 		{
 			ID3D11Buffer*& pConstantsBuffer = ppInstanceConstantsBuffers[i];
 
-			HRESULT createBufferResult = GameRender::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
+			HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
 			assert(SUCCEEDED(createBufferResult));
 			assert(pConstantsBuffer != nullptr);
 		}
@@ -187,7 +187,7 @@ void BoxRenderer::GetNextConstantsBuffer()
 void BoxRenderer::MapConstantsBuffer()
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource = {};
-	HRESULT mapResult = GameRender::s_pDeviceContext->Map(pCurrentInstanceConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+	HRESULT mapResult = Render::s_pDeviceContext->Map(pCurrentInstanceConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 	assert(SUCCEEDED(mapResult));
 
 	// contigious memory
@@ -196,7 +196,7 @@ void BoxRenderer::MapConstantsBuffer()
 
 void BoxRenderer::UnmapConstantsBuffer()
 {
-	GameRender::s_pDeviceContext->Unmap(pCurrentInstanceConstantsBuffer, 0);
+	Render::s_pDeviceContext->Unmap(pCurrentInstanceConstantsBuffer, 0);
 	pPerObjectConstantsArray = nullptr;
 }
 
@@ -241,20 +241,20 @@ void BoxRenderer::RenderBoxGeometry()
 		const UINT vertexStride = sizeof(XMFLOAT3);
 		const UINT vertexOffset = 0;
 
-		GameRender::s_pDeviceContext->RSSetState(pWireframeRasterState);
-		GameRender::s_pDeviceContext->VSSetShader(pVertexShader, NULL, 0);
-		GameRender::s_pDeviceContext->PSSetShader(pPixelShader, NULL, 0);
-		GameRender::s_pDeviceContext->IASetInputLayout(pVertexLayout);
-		GameRender::s_pDeviceContext->IASetVertexBuffers(0, 1, &pVertexBuffer, &vertexStride, &vertexOffset);
-		GameRender::s_pDeviceContext->IASetIndexBuffer(pIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
-		GameRender::s_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		Render::s_pDeviceContext->RSSetState(pWireframeRasterState);
+		Render::s_pDeviceContext->VSSetShader(pVertexShader, NULL, 0);
+		Render::s_pDeviceContext->PSSetShader(pPixelShader, NULL, 0);
+		Render::s_pDeviceContext->IASetInputLayout(pVertexLayout);
+		Render::s_pDeviceContext->IASetVertexBuffers(0, 1, &pVertexBuffer, &vertexStride, &vertexOffset);
+		Render::s_pDeviceContext->IASetIndexBuffer(pIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
+		Render::s_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		const uint32_t maxInstances = 4096 / sizeof(PerObjectConstants);
 		//const uint32_t maxInstancesPow2 = 1u << ilogb(maxInstances);
 		const uint32_t maxInstancesPow2 = 16;
 
-		GameRender::s_pDeviceContext->VSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
-		GameRender::s_pDeviceContext->PSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
+		Render::s_pDeviceContext->VSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
+		Render::s_pDeviceContext->PSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
 
 		const uint32_t numBoxes = min(kMaxBoxesPerFrame, nextBoxIndex);
 		for (uint32_t i = 0; i < numBoxes;)
@@ -267,9 +267,9 @@ void BoxRenderer::RenderBoxGeometry()
 			UINT firstConstant = (sizeof(PerObjectConstants) * i) / 16;
 			UINT numConstants = sizeof(PerObjectConstants);
 
-			GameRender::s_pDeviceContext->VSSetConstantBuffers1(1, 1, &pCurrentInstanceConstantsBuffer, &firstConstant, &numConstants);
-			GameRender::s_pDeviceContext->PSSetConstantBuffers1(1, 1, &pCurrentInstanceConstantsBuffer, &firstConstant, &numConstants);
-			GameRender::s_pDeviceContext->DrawIndexedInstanced(36, boxesToDrawThisCall, 0, 0, 0);
+			Render::s_pDeviceContext->VSSetConstantBuffers1(1, 1, &pCurrentInstanceConstantsBuffer, &firstConstant, &numConstants);
+			Render::s_pDeviceContext->PSSetConstantBuffers1(1, 1, &pCurrentInstanceConstantsBuffer, &firstConstant, &numConstants);
+			Render::s_pDeviceContext->DrawIndexedInstanced(36, boxesToDrawThisCall, 0, 0, 0);
 
 			i += boxesToDrawThisCall;
 		}

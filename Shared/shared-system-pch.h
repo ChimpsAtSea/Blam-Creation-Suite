@@ -1,5 +1,7 @@
 #pragma once
 
+#include "!Resources/resource.h"
+
 #ifndef _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING //#TODO: Replace with WideCharToMultiByte and MultiByteToWideChar
 #define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING
 #endif
@@ -12,34 +14,22 @@
 
 #if !defined(_DEBUG) && defined(UWP_PLATFORM)
 #define FATAL_ERROR(reason, ...) throw
+#define DEBUG_FATAL_ERROR()
 #else
 #define FATAL_ERROR(reason, ...) _wassert(_CRT_WIDE(reason), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)); throw
+#define DEBUG_FATAL_ERROR() do { if (IsDebuggerPresent()) { _wassert(_CRT_WIDE(reason), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)); throw; } } while() 
 #endif
 
-#define WriteLineVerbose(str, ...) \
-SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); \
-printf(str, ##__VA_ARGS__); \
-printf("\n")
+#define VectorEraseByValueHelper(vector, value) vector.erase(std::remove(vector.begin(), vector.end(), value), vector.end());
 
-#define WriteVerbose(str, ...) \
-SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); \
-printf(str, ##__VA_ARGS__)
+#define StaticClassSizeCheck(TYPE) static_assert(sizeof(TYPE) == 1, "Static classes shouldn't contain any data");
 
-#define WriteColoredLineVerbose(color, str, ...) \
-SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);  \
-printf(str, ##__VA_ARGS__); printf("\n"); \
-SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7)
+#define STRINGIFY(s) __STRINGIFY(s)
+#define __STRINGIFY(s) #s
 
-#define WriteColoredVerbose(color, str, ...)  \
-SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);  \
-printf(str, ##__VA_ARGS__); \
-SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7)
-
-#define WriteColoredPrefixVerbose(color, prefix, str, ...) \
-WriteColoredVerbose(color, "%s ", prefix); \
-WriteLineVerbose(str, ##__VA_ARGS__)
-
-#define vector_erase_by_value_helper(vector, value) vector.erase(std::remove(vector.begin(), vector.end(), value), vector.end());
+#define CHECK_STRUCTURE_SIZE(type, size) \
+static constexpr size_t k##type = sizeof(type);\
+static_assert(k##type == size, STRINGIFY(type) " is incorrect size");\
 
 #define __TBB_SOURCE_DIRECTLY_INCLUDED 1
 #include <tbb/tbb.h>
@@ -111,6 +101,8 @@ using namespace tbb;
 #include <imgui\imgui.h>
 #include <imgui\imgui_impl_win32.h>
 #include <imgui\imgui_impl_dx11.h>
+
+#include "hexrays_defs.h" // #TODO: Integrate this into a global types definition list
 
 #if !defined(_DEBUG) && defined(UWP_PLATFORM)
 #define FATAL_ERROR(reason, ...) throw

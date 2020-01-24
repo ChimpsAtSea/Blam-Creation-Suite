@@ -1,3 +1,5 @@
+#include <Shared\shared-public-pch.h>
+#include <MantleLib\mantlelib-public-pch.h>
 #include <HaloReachLib\haloreachlib-private-pch.h>
 
 extern void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
@@ -10,18 +12,48 @@ int WINAPI WinMain(
 	_In_ int nShowCmd
 )
 {
-	GameLauncher::CheckSteamAPI();
+	Window::SetIcon(LoadIconA(hInstance, MAKEINTRESOURCEA(IDI_ICON1)));
+	SystemPatch::PatchEnumWindows();
 
-	GameLauncher::EnsureBink2Win64IsLoaded("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
+	/* LEGACY */
+	GameLauncher::RegisterGameStartupCallback(init_halo_reach);		// setup reach hooks and deinit them
+	GameLauncher::RegisterGameShutdownCallback(deinit_halo_reach);	// setup reach hooks and deinit them
+	
+	void(*UICallback)() = []()
+	{
+		//SIZE size = {};
+		//Window::GetWindowSize(size);
+		MantleGUI::Render(1024, 768);
+		GameLauncher::OpusUITick();
+	};
 
-	GameLauncher::RegisterGameLaunchCallback(EngineVersion::HaloReach, init_halo_reach);
-	GameLauncher::RegisterGameShutdownCallback(EngineVersion::HaloReach, deinit_halo_reach);
+	static bool s_running = true;
+	void(*UpdateCallback)() = []()
+	{
+		static float clearColor[] = { 0.25f, 0.25f, 0.25f, 1.0f };
+		Render::BeginFrame(clearColor);
+		GameLauncher::OpusTick();
+		Render::EndFrame();
+	};
+	
+	Window::Init("Opus", "OpusConsole", "opus");
+	Render::Init(hInstance);
+	MantleGUI::Init(true);
+	GameLauncher::Init();
 
-	CustomWindow::SetIcon(LoadIconA(GetModuleHandle(NULL), MAKEINTRESOURCEA(IDI_ICON1)));
+	MantleGUI::RegisterOnCloseCallback([]() { s_running = false; });
+	DebugUI::RegisterCallback(UICallback);
+	Window::SetOnUpdateCallback(UpdateCallback);
+	Window::SetOnDestroyCallback([]() { s_running = false; });
 
-	//GameRender::Init(hInstance, NULL, NULL);
+	DebugUI::Show();
+	while (s_running) Window::Update();
+	DebugUI::UnregisterCallback(UICallback);
 
-	GameInterface gameInterface = GameInterface("HaloReach\\haloreach.dll");
-	int result = GameLauncher::Run(hInstance, lpCmdLine, gameInterface);
-	return result;
+	GameLauncher::Deinit();
+	MantleGUI::Deinit();
+	Render::Deinit();
+	Window::Deinit();
+
+	return 0;
 }

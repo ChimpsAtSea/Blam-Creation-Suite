@@ -3,9 +3,11 @@
 bool MantleGUI::s_unknownItemsVisible = false;
 std::vector<MantleTab*> MantleGUI::s_pMantleTabs;
 std::vector<MantleGUI::OnCloseCallback> MantleGUI::s_guiCloseCallbacks;
+bool MantleGUI::s_inGameMode;
 
-void MantleGUI::Init()
+void MantleGUI::Init(bool inGameMode)
 {
+	s_inGameMode = inGameMode;
 	AddTabItem(*new MantleMapTab("45_aftship.map", "Map #1", L"45_aftship.map"));
 	AddTabItem(*new MantleMapTab("52_ivory_tower.map", "Map #2", L"52_ivory_tower.map"));
 	AddTabItem(*new MantleMapTab("cex_timberland.map", "Map #3", L"cex_timberland.map"));
@@ -15,19 +17,30 @@ void MantleGUI::Init()
 
 void MantleGUI::Render(int width, int height)
 {
-	ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
-	ImGui::SetNextWindowSize(ImVec2(static_cast<float>(width), static_cast<float>(height)), ImGuiCond_Always);
+	if (s_inGameMode)
+	{
+		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(width), static_cast<float>(height)), ImGuiCond_Once);
+	}
+	else
+	{
+		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(width), static_cast<float>(height)), ImGuiCond_Always);
+	}
 
 	// Main body of the Demo window starts here.
 	static bool isReachDebugWindowOpen = true;
 
 	ImGuiWindowFlags windowFlags = 0;
 	windowFlags |= ImGuiWindowFlags_NoCollapse;
-	windowFlags |= ImGuiWindowFlags_NoTitleBar;
-	windowFlags |= ImGuiWindowFlags_NoMove;
-	windowFlags |= ImGuiWindowFlags_NoResize;
 	windowFlags |= ImGuiWindowFlags_MenuBar;
 	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
+	if (!s_inGameMode)
+	{
+		windowFlags |= ImGuiWindowFlags_NoTitleBar;
+		windowFlags |= ImGuiWindowFlags_NoMove;
+		windowFlags |= ImGuiWindowFlags_NoResize;
+	}
 
 	bool isCloseRequested = false;
 	MantleTab* pSetSelectedRootTab = nullptr;
@@ -133,7 +146,7 @@ void MantleGUI::AddTabItem(MantleTab& rMantleTab)
 
 void MantleGUI::RemoveTabItem(MantleTab& rMantleTab)
 {
-	vector_erase_by_value_helper(s_pMantleTabs, &rMantleTab);
+	VectorEraseByValueHelper(s_pMantleTabs, &rMantleTab);
 }
 
 void MantleGUI::RegisterOnCloseCallback(OnCloseCallback callback)
@@ -143,7 +156,7 @@ void MantleGUI::RegisterOnCloseCallback(OnCloseCallback callback)
 
 void MantleGUI::UnregisterOnCloseCallback(OnCloseCallback callback)
 {
-	vector_erase_by_value_helper(s_guiCloseCallbacks, callback);
+	VectorEraseByValueHelper(s_guiCloseCallbacks, callback);
 }
 
 void MantleGUI::OnClose()

@@ -70,7 +70,7 @@ void PrimitiveRenderManager::Render()
 	SetupConstantBuffers();
 	UpdateConstantsBuffer();
 
-	static bool enablePrimitiveDebug = GameLauncher::HasCommandLineArg("-primitivedebug");
+	static bool enablePrimitiveDebug = CommandLine::HasCommandLineArg("-primitivedebug");
 	if (enablePrimitiveDebug)
 	{
 		static BoxPrimitive debugBox;
@@ -128,7 +128,7 @@ void PrimitiveRenderManager::SetupConstantBuffers()
 		{
 			ID3D11Buffer*& pConstantsBuffer = ppFrameConstantsBuffers[i];
 
-			HRESULT createBufferResult = GameRender::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
+			HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
 			assert(SUCCEEDED(createBufferResult));
 			assert(pConstantsBuffer != nullptr);
 		}
@@ -151,7 +151,7 @@ ID3D11Buffer* const& PrimitiveRenderManager::GetConstantsBuffer()
 void PrimitiveRenderManager::MapConstantsBuffer()
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource = {};
-	HRESULT mapResult = GameRender::s_pDeviceContext->Map(pCurrentFrameConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+	HRESULT mapResult = Render::s_pDeviceContext->Map(pCurrentFrameConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 	assert(SUCCEEDED(mapResult));
 
 	// contigious memory
@@ -160,7 +160,7 @@ void PrimitiveRenderManager::MapConstantsBuffer()
 
 void PrimitiveRenderManager::UnmapConstantsBuffer()
 {
-	GameRender::s_pDeviceContext->Unmap(pCurrentFrameConstantsBuffer, 0);
+	Render::s_pDeviceContext->Unmap(pCurrentFrameConstantsBuffer, 0);
 	pPerFrameConstantsArray = nullptr;
 }
 

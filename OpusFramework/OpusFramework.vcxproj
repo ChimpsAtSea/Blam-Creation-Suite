@@ -46,11 +46,13 @@
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)tbb-build\cmake\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <MultiProcFXC>true</MultiProcFXC>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib;$(SolutionDir)$(Platform)\$(Configuration)\;$(SolutionDir)tbb-build\cmake\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <MultiProcFXC>true</MultiProcFXC>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -71,6 +73,10 @@
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
+    <FxCompile />
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -92,103 +98,104 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <FxCompile />
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BlamFileParser.cpp" />
+    <ClCompile Include="c_file_array.cpp" />
+    <ClCompile Include="c_file_reference.cpp" />
+    <ClCompile Include="FileSystem\BlamFileParser.cpp" />
+    <ClCompile Include="MCC\IOpusGameEngineHost.cpp" />
+    <ClCompile Include="MCC\GameRuntime.cpp" />
+    <ClCompile Include="MCC\GameOptionSelection.cpp" />
+    <ClCompile Include="RuntimeManipulation\DataReference.cpp" />
     <ClCompile Include="Rendering\BoxPrimitive.cpp" />
     <ClCompile Include="Rendering\PrimitiveRenderManager.cpp" />
     <ClCompile Include="Rendering\BoxRenderer.cpp" />
-    <ClCompile Include="campaign_difficulty_level.cpp" />
-    <ClCompile Include="customwindow.cpp" />
-    <ClCompile Include="BasicData.cpp" />
-    <ClCompile Include="DebugUI.cpp" />
-    <ClCompile Include="detour_helpers.cpp" />
-    <ClCompile Include="dx11_c_code.c">
+    <ClCompile Include="RuntimeManipulation\opus_legacy\detour_helpers.cpp" />
+    <ClCompile Include="CCode\GetIDXGISwapChainPresent.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="FileSystemUtilities.cpp" />
-    <ClCompile Include="FunctionHook.cpp" />
-    <ClCompile Include="gameinterface.cpp" />
-    <ClCompile Include="gamelauncher.cpp" />
-    <ClCompile Include="GameRender.cpp" />
-    <ClCompile Include="game_mode.cpp" />
-    <ClCompile Include="application_reflection\globalreference.cpp" />
-    <ClCompile Include="BuildVersion.cpp" />
-    <ClCompile Include="IFileAccess.cpp" />
-    <ClCompile Include="IGameEngine.cpp" />
-    <ClCompile Include="IGameEngineHost.cpp" />
-    <ClCompile Include="IGameEvents.cpp" />
-    <ClCompile Include="application_reflection\mappingfileparser.cpp" />
-    <ClCompile Include="logging.cpp" />
-    <ClCompile Include="MapInfo.cpp" />
-    <ClCompile Include="MapInfoManager.cpp" />
-    <ClCompile Include="map_id.cpp" />
-    <ClCompile Include="mouseinput.cpp" />
-    <ClCompile Include="networkmanager.cpp" />
+    <ClCompile Include="RuntimeManipulation\FunctionHookBase.cpp" />
+    <ClCompile Include="MCC\GameLauncher.cpp" />
+    <ClCompile Include="ApplicationReflection\globalreference.cpp" />
+    <ClCompile Include="MCC\opus_legacy\BuildVersion.cpp" />
+    <ClCompile Include="MCC\opus_legacy\IFileAccess.cpp" />
+    <ClCompile Include="MCC\opus_legacy\IGameEngine.cpp" />
+    <ClCompile Include="MCC\IGameEngineHost.cpp" />
+    <ClCompile Include="MCC\opus_legacy\IGameEvents.cpp" />
+    <ClCompile Include="ApplicationReflection\mappingfileparser.cpp" />
+    <ClCompile Include="FileSystem\MapInfo.cpp" />
+    <ClCompile Include="FileSystem\MapInfoManager.cpp" />
+    <ClCompile Include="MCC\MouseInput.cpp" />
     <ClCompile Include="opusframework-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="settings.cpp" />
-    <ClCompile Include="SplashScreen.cpp" />
+    <ClCompile Include="Settings\opus_legacy\settings.cpp" />
+    <ClCompile Include="RuntimeManipulation\SystemPatch.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="application_reflection\offsetfunction.h" />
-    <ClInclude Include="BlamFile.h" />
-    <ClInclude Include="BlamFileParser.h" />
+    <ClInclude Include="ApplicationReflection\ApplicationReflection.h" />
+    <ClInclude Include="ApplicationReflection\offsetfunction.h" />
+    <ClInclude Include="c_file_array.h" />
+    <ClInclude Include="c_file_reference.h" />
+    <ClInclude Include="FileSystem\BlamFileParser.h" />
+    <ClInclude Include="FileSystem\FileSystem.h" />
+    <ClInclude Include="MCC\IOpusGameEngineHost.h" />
+    <ClInclude Include="MCC\GameRuntime.h" />
+    <ClInclude Include="MCC\GameOptionSelection.h" />
+    <ClInclude Include="MCC\MCC.h" />
+    <ClInclude Include="RuntimeManipulation\BasicData.h" />
+    <ClInclude Include="RuntimeManipulation\BasicDataEx.h" />
+    <ClInclude Include="RuntimeManipulation\Data.h" />
+    <ClInclude Include="RuntimeManipulation\DataEx.h" />
+    <ClInclude Include="RuntimeManipulation\DataReference.h" />
     <ClInclude Include="Rendering\BoxPrimitive.h" />
     <ClInclude Include="Rendering\PrimitiveRenderManager.h" />
     <ClInclude Include="Rendering\BoxRenderer.h" />
-    <ClInclude Include="campaign_difficulty_level.h" />
-    <ClInclude Include="customwindow.h" />
-    <ClInclude Include="BasicData.h" />
-    <ClInclude Include="DebugUI.h" />
-    <ClInclude Include="debug_helpers.h" />
-    <ClInclude Include="detour_helpers.h" />
-    <ClInclude Include="FileSystemUtilities.h" />
-    <ClInclude Include="gameinterface.h" />
-    <ClInclude Include="gamelauncher.h" />
-    <ClInclude Include="GameRender.h" />
-    <ClInclude Include="game_mode.h" />
-    <ClInclude Include="application_reflection\globalreference.h" />
-    <ClInclude Include="hexrays_defs.h" />
-    <ClInclude Include="FunctionHook.h" />
-    <ClInclude Include="BuildVersion.h" />
-    <ClInclude Include="IDataAccess.h" />
-    <ClInclude Include="IFileAccess.h" />
-    <ClInclude Include="IGameEngine.h" />
-    <ClInclude Include="IGameEngineHost.h" />
-    <ClInclude Include="IGameEvents.h" />
-    <ClInclude Include="IGameVariant.h" />
-    <ClInclude Include="IMapVariant.h" />
-    <ClInclude Include="input_types.h" />
-    <ClInclude Include="ISaveFilmMetadata.h" />
-    <ClInclude Include="IVariantAccessorBase.h" />
-    <ClInclude Include="local_types.h" />
-    <ClInclude Include="logging.h" />
-    <ClInclude Include="application_reflection\mappingfileparser.h" />
-    <ClInclude Include="MapInfo.h" />
-    <ClInclude Include="MapInfoManager.h" />
-    <ClInclude Include="map_id.h" />
-    <ClInclude Include="mouseinput.h" />
-    <ClInclude Include="application_reflection\referencesymbol.h" />
-    <ClInclude Include="networkmanager.h" />
+    <ClInclude Include="RuntimeManipulation\opus_legacy\detour_helpers.h" />
+    <ClInclude Include="MCC\GameLauncher.h" />
+    <ClInclude Include="MCC\GameMode.h" />
+    <ClInclude Include="ApplicationReflection\globalreference.h" />
+    <ClInclude Include="RuntimeManipulation\FunctionHook.h" />
+    <ClInclude Include="RuntimeManipulation\FunctionHookBase.h" />
+    <ClInclude Include="MCC\opus_legacy\BuildVersion.h" />
+    <ClInclude Include="MCC\opus_legacy\IDataAccess.h" />
+    <ClInclude Include="MCC\opus_legacy\IFileAccess.h" />
+    <ClInclude Include="MCC\opus_legacy\IGameEngine.h" />
+    <ClInclude Include="MCC\IGameEngineHost.h" />
+    <ClInclude Include="MCC\opus_legacy\IGameEvents.h" />
+    <ClInclude Include="MCC\opus_legacy\IGameVariant.h" />
+    <ClInclude Include="MCC\opus_legacy\IMapVariant.h" />
+    <ClInclude Include="MCC\opus_legacy\ISaveFilmMetadata.h" />
+    <ClInclude Include="MCC\opus_legacy\IVariantAccessorBase.h" />
+    <ClInclude Include="ApplicationReflection\mappingfileparser.h" />
+    <ClInclude Include="FileSystem\MapInfo.h" />
+    <ClInclude Include="FileSystem\MapInfoManager.h" />
+    <ClInclude Include="MCC\opus_legacy\MapID.h" />
+    <ClInclude Include="MCC\MouseInput.h" />
+    <ClInclude Include="ApplicationReflection\referencesymbol.h" />
     <ClInclude Include="opusframework-private-pch.h" />
     <ClInclude Include="opusframework-public-pch.h" />
-    <ClInclude Include="settings.h" />
-    <ClInclude Include="SplashScreen.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="reach_icon.ico" />
-    <Image Include="splash_screen.png" />
+    <ClInclude Include="RuntimeManipulation\FunctionHookEx.h" />
+    <ClInclude Include="RuntimeManipulation\FunctionHookVarArgs.h" />
+    <ClInclude Include="RuntimeManipulation\FunctionHookVarArgsEx.h" />
+    <ClInclude Include="RuntimeManipulation\Pointer.h" />
+    <ClInclude Include="RuntimeManipulation\PointerEx.h" />
+    <ClInclude Include="RuntimeManipulation\RuntimeManipulation.h" />
+    <ClInclude Include="Settings\opus_legacy\settings.h" />
+    <ClInclude Include="RuntimeManipulation\SystemPatch.h" />
+    <ClInclude Include="Settings\Settings.h" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

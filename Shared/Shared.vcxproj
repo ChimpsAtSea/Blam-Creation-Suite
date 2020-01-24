@@ -11,9 +11,49 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="!Resources\resource.h" />
+    <ClInclude Include="Blam\basic_buffer.h" />
+    <ClInclude Include="Blam\Blam.h" />
+    <ClInclude Include="Blam\blamfile_chunk_type.h" />
+    <ClInclude Include="Blam\blamfile_header.h" />
+    <ClInclude Include="Blam\blamfile_level_chunk.h" />
+    <ClInclude Include="Blam\blamfile_level_chunk_flags.h" />
+    <ClInclude Include="Blam\cache_file_header.h" />
+    <ClInclude Include="Blam\cache_file_magic.h" />
+    <ClInclude Include="Blam\cache_file_section.h" />
+    <ClInclude Include="Blam\cache_file_section_file_bounds.h" />
+    <ClInclude Include="Blam\cache_file_tags_header.h" />
+    <ClInclude Include="Blam\cache_file_tag_group.h" />
+    <ClInclude Include="Blam\cache_file_tag_instance.h" />
+    <ClInclude Include="Blam\campaign_difficulty_level.h" />
+    <ClInclude Include="Blam\scenario_load_type.h" />
+    <ClInclude Include="Blam\scenario_type.h" />
+    <ClInclude Include="DebugLogging.h" />
+    <ClInclude Include="FileSystemUtilities.h" />
+    <ClInclude Include="hexrays_defs.h" />
+    <ClInclude Include="Rendering\DebugUI.h" />
+    <ClInclude Include="Rendering\Render.h" />
+    <ClInclude Include="Rendering\Rendering.h" />
+    <ClInclude Include="Rendering\Window.h" />
+    <ClInclude Include="shared-private-pch.h" />
     <ClInclude Include="shared-public-pch.h" />
     <ClInclude Include="shared-system-pch.h" />
     <ClInclude Include="shared-tbb-pch.h" />
+    <ClInclude Include="CommandLine.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CommandLine.cpp" />
+    <ClCompile Include="FileSystemUtilities.cpp" />
+    <ClCompile Include="Rendering\DebugUI.cpp" />
+    <ClCompile Include="Rendering\Render.cpp" />
+    <ClCompile Include="Rendering\Window.cpp" />
+    <ClCompile Include="shared-private-pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="!Resources\Resource.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -66,6 +106,8 @@
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>shared-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -84,6 +126,8 @@
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>shared-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -21,30 +21,12 @@
     <ClCompile Include="mantle-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="opus_legacy\GameRender.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="opus_legacy\CustomWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="opus_legacy\DebugUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantle-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mantle-private-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="opus_legacy\GameRender.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="opus_legacy\CustomWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="opus_legacy\DebugUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">

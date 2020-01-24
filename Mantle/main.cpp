@@ -10,7 +10,7 @@ int WINAPI WinMain(
 	void(*UICallback)() = []()
 	{
 		SIZE size = {};
-		CustomWindow::GetWindowSize(size);
+		Window::GetWindowSize(size);
 		MantleGUI::Render(size.cx, size.cy);
 	};
 
@@ -18,22 +18,22 @@ int WINAPI WinMain(
 	void(*UpdateCallback)() = []()
 	{
 		static float clearColor[] = { 0.25f, 0.25f, 0.25f, 1.0f };
-		GameRender::BeginFrame(clearColor);
-		GameRender::EndFrame();
+		Render::BeginFrame(clearColor);
+		Render::EndFrame();
 	};
-	CustomWindow::Init();
-	GameRender::Init(NULL);
+	Window::Init("Mantle", "Mantle Console", "mantle");
+	Render::Init(NULL);
 	DebugUI::Show();
-	MantleGUI::Init();
+	MantleGUI::Init(false);
 	MantleGUI::RegisterOnCloseCallback([]() { s_running = false; });
 	DebugUI::RegisterCallback(UICallback);
-	CustomWindow::SetOnUpdateCallback(UpdateCallback);
-	CustomWindow::SetOnDestroyCallback([]() { s_running = false; });
-	while (s_running) CustomWindow::Update();
+	Window::SetOnUpdateCallback(UpdateCallback);
+	Window::SetOnDestroyCallback([]() { s_running = false; });
+	while (s_running) Window::Update();
 	DebugUI::UnregisterCallback(UICallback);
 	MantleGUI::Deinit();
-	GameRender::Deinit();
-	CustomWindow::Deinit();
+	Render::Deinit();
+	Window::Deinit();
 
 	return 0;
 }

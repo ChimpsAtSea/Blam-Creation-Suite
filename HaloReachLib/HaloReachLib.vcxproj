@@ -112,30 +112,11 @@
     <ClInclude Include="haloreachlib-private-pch.h" />
     <ClInclude Include="haloreachlib-public-pch.h" />
     <ClInclude Include="HaloReach.h" />
+    <ClInclude Include="input_types.h" />
+    <ClInclude Include="local_types.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="$(SolutionDir)\OpusFramework\Resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="HLSL\BoxShaderVS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VSMain</EntryPointName>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VSMain</EntryPointName>
-    </FxCompile>
-    <FxCompile Include="HLSL\BoxShaderPS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PSMain</EntryPointName>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PSMain</EntryPointName>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="HLSL\BoxShader.hlsli" />
+    <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

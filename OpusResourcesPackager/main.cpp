@@ -16,7 +16,7 @@ int WINAPI wWinMain(
 	LPWSTR szMappingFilename = pCommandArgs[1];
 
 	size_t fileLength = 0;
-	char* pMappingFileData = opus::FileSystemReadToMemory(szMappingFilename, &fileLength);
+	char* pMappingFileData = FileSystemReadToMemory(szMappingFilename, &fileLength);
 
 	HANDLE hUpdateResource = BeginUpdateResource(szExecutableFilename, FALSE);
 	if (hUpdateResource == NULL) return 1;
