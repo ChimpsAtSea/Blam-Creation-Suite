@@ -1,7 +1,7 @@
 #include "shared-private-pch.h"
 
 // dx11_c_code.c
-extern "C" void* GetIDXGISwapChainPresent(IDXGISwapChain* pSwapchain);
+extern "C" void* GetIDXGISwapChainPresent(IDXGISwapChain * pSwapchain);
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 BOOL DebugUI::s_initialised = false;
@@ -37,42 +37,25 @@ void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain*
 	rImguiIO.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard | ImGuiConfigFlags_NavEnableSetMousePos | ImGuiConfigFlags_NavEnableGamepad;
 
 	{
-		HRSRC hResource = FindResource(hInstance, MAKEINTRESOURCE(IDR_FONT1), RT_RCDATA);
-		assert(hResource);
-		HGLOBAL hMemory = LoadResource(hInstance, hResource);
-		assert(hMemory);
-		DWORD dwSize = SizeofResource(hInstance, hResource);
-		assert(dwSize > 0);
-		LPVOID lpAddress = LockResource(hMemory);
-		assert(lpAddress);
-
-		char* bytes = static_cast<char*>(malloc(dwSize));
-		assert(bytes != nullptr);
-		memcpy(bytes, lpAddress, dwSize);
-
 		float baseSize = 10.0f;
 		if (Render::s_deviceMode.dmPelsWidth < Render::s_deviceMode.dmPelsHeight)
-		{
-			// width is smallest, scale on width
-			baseSize *= static_cast<float>(Render::s_deviceMode.dmPelsWidth) / (float)GetSystemMetrics(SM_CXSCREEN);
-		}
+			baseSize *= static_cast<float>(Render::s_deviceMode.dmPelsWidth) / (float)GetSystemMetrics(SM_CXSCREEN); // width is smallest, scale on width
 		else
-		{
-			// height is smallest, scale on height
-			baseSize *= static_cast<float>(Render::s_deviceMode.dmPelsHeight) / (float)GetSystemMetrics(SM_CYSCREEN);
-		}
+			baseSize *= static_cast<float>(Render::s_deviceMode.dmPelsHeight) / (float)GetSystemMetrics(SM_CYSCREEN); // height is smallest, scale on height
 
-		rImguiIO.Fonts->AddFontFromMemoryTTF(bytes, dwSize, 20.0f, NULL, rImguiIO.Fonts->GetGlyphRangesDefault());
-		UnlockResource(lpAddress);
-		BOOL freeResourceResult = FreeResource(hMemory);
-		assert(freeResourceResult == 0);
+		char* pFontData;
+		size_t pFontSize;
+		bool fontResourceFound = ResourcesManager::GetResource(ResourceType::ImGUIFont, &pFontData, &pFontSize);
+		assert(fontResourceFound);
+		rImguiIO.Fonts->AddFontFromMemoryTTF(pFontData, pFontSize, 20.0f, NULL, rImguiIO.Fonts->GetGlyphRangesDefault());
+		//delete pFontData; // imgui owns this memory
 	}
 
 	ImGui_ImplWin32_Init(s_swapChainDescription.OutputWindow);
 	ImGui_ImplDX11_Init(s_pDevice, s_pContext);
 
 	ImGui::GetIO().ImeWindowHandle = s_swapChainDescription.OutputWindow;
-	
+
 	ID3D11Texture2D* pBackBuffer = nullptr;
 	s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
 	assert(pBackBuffer);

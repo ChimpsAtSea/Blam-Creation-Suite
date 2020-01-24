@@ -1,4 +1,20 @@
+#include <Shared\shared-public-pch.h>
 #include <HaloReachLib\haloreachlib-private-pch.h>
+
+void UpdateResources(LPWSTR szExecutablePath, LPWSTR szFilePath, ResourceType type)
+{
+	size_t fileLength = 0;
+	char* pFileData = FileSystemReadToMemory(szFilePath, &fileLength);
+
+	HANDLE hUpdateResource = BeginUpdateResourceW(szExecutablePath, FALSE);
+	assert(hUpdateResource != NULL);
+	BOOL updateResourceResult = UpdateResourceA(hUpdateResource, RT_RCDATA, ResourcesManager::GetResourceIntResource(type), MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL), pFileData, static_cast<DWORD>(fileLength));
+	assert(updateResourceResult == TRUE);
+	BOOL endUpdateResourceResult = EndUpdateResource(hUpdateResource, FALSE);
+	assert(updateResourceResult == TRUE);
+
+	delete[] pFileData;
+}
 
 int WINAPI wWinMain(
 	_In_ HINSTANCE hInstance,
@@ -14,24 +30,14 @@ int WINAPI wWinMain(
 
 	LPWSTR szExecutableFilename = pCommandArgs[0];
 	LPWSTR szMappingFilename = pCommandArgs[1];
+	LPWSTR szBoxShaderPSFilename = pCommandArgs[2];
+	LPWSTR szBoxShaderVSFilename = pCommandArgs[3];
 
-	size_t fileLength = 0;
-	char* pMappingFileData = FileSystemReadToMemory(szMappingFilename, &fileLength);
+	UpdateResources(szExecutableFilename, szMappingFilename, ResourceType::ApplicationMap);
+	UpdateResources(szExecutableFilename, szBoxShaderPSFilename, ResourceType::BoxPixelShader);
+	UpdateResources(szExecutableFilename, szBoxShaderVSFilename, ResourceType::BoxVertexShader);
 
-	HANDLE hUpdateResource = BeginUpdateResource(szExecutableFilename, FALSE);
-	if (hUpdateResource == NULL) return 1;
-
-	BOOL updateResourceResult = UpdateResource(hUpdateResource, RT_RCDATA, MAKEINTRESOURCE(IDR_MAPDATABASE), MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL), pMappingFileData, static_cast<DWORD>(fileLength));
-	assert(updateResourceResult == TRUE);
-	//if (updateResourceResult == NULL) return 1;
-
-	BOOL endUpdateResourceResult = EndUpdateResource(hUpdateResource, FALSE);
-	//assert(endUpdateResourceResult == TRUE);
-	if (endUpdateResourceResult == FALSE) return 1;
-
-	delete[] pMappingFileData;
-
-	WriteLineVerbose("ResourcesPackager> Successfully updated mapping resources");
+	WriteLineVerbose("ResourcesPackager> Successfully updated resources");
 
 	return 0;
 }

@@ -126,6 +126,9 @@
     <ClInclude Include="ImGuiAddons\ImGuiFileBrowser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="!Resources\ResourcesManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommandLine.cpp">
@@ -156,6 +159,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ImGuiAddons\ImGuiFileBrowser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="!Resources\ResourcesManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

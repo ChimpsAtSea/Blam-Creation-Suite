@@ -165,30 +165,20 @@ MappingFileParser::MappingFileParser()
 
 bool MappingFileParser::ParseFromResource()
 {
-	HINSTANCE hInstance = GetModuleHandleA(NULL);
-	HRSRC hResource = FindResource(hInstance, MAKEINTRESOURCE(IDR_MAPDATABASE), RT_RCDATA);
-	if (hResource == NULL) return false;
-	HGLOBAL hMemory = LoadResource(hInstance, hResource);
-	assert(hMemory);
-	DWORD dwSize = SizeofResource(hInstance, hResource);
-	assert(dwSize > 0);
-	LPVOID lpAddress = LockResource(hMemory);
-	assert(lpAddress);
+	char* pMappingFileText;
+	size_t mappingFileSize;
+	bool applicationMapResourceFound = ResourcesManager::GetResource(ResourceType::ApplicationMap, &pMappingFileText, &mappingFileSize, true);
+	if (applicationMapResourceFound)
+	{
+		assert(applicationMapResourceFound);
 
-	char* pMappingFileText = static_cast<char*>(malloc(static_cast<size_t>(dwSize) + 1));
-	assert(pMappingFileText != nullptr);
-	memcpy(pMappingFileText, lpAddress, dwSize);
-	pMappingFileText[dwSize] = 0;
+		std::vector<MapLine> RawLines;
+		getFileContentFromBuffer(pMappingFileText, RawLines);
+		parseImpl(RawLines);
 
-	UnlockResource(lpAddress);
-	BOOL freeResourceResult = FreeResource(hMemory);
-	assert(freeResourceResult == 0);
-
-	std::vector<MapLine> RawLines;
-	getFileContentFromBuffer(pMappingFileText, RawLines);
-	parseImpl(RawLines);
-
-	return true;
+		return true;
+	}
+	return false;
 }
 
 void MappingFileParser::ParseFromFile(const char* pFilePath)

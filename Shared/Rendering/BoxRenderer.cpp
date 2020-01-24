@@ -94,8 +94,13 @@ void BoxRenderer::SetupShaders()
 {
 	if (pPixelShader == nullptr)
 	{
+		char* pShaderBinary = nullptr;
 		size_t shaderFileLength = 0;
-		char* pShaderBinary = FileSystemReadToMemory(L"BoxShaderPS.cso", &shaderFileLength);
+		if (!ResourcesManager::GetResource(ResourceType::BoxPixelShader, &pShaderBinary, &shaderFileLength))
+		{
+			WriteLineVerbose("Warning: Failed to find Box Pixel Vertex resource! Attempting to read BoxShaderPS.cso");
+			pShaderBinary = FileSystemReadToMemory(L"BoxShaderPS.cso", &shaderFileLength);
+		}
 		assert(pShaderBinary != nullptr);
 
 		Render::s_pDevice->CreatePixelShader(pShaderBinary, shaderFileLength, NULL, &pPixelShader);
@@ -108,7 +113,11 @@ void BoxRenderer::SetupShaders()
 	size_t vertexShaderBinaryLength = 0;
 	if (pVertexShader == nullptr)
 	{
-		pVertexShaderBinary = FileSystemReadToMemory(L"BoxShaderVS.cso", &vertexShaderBinaryLength);
+		if (!ResourcesManager::GetResource(ResourceType::BoxVertexShader, &pVertexShaderBinary, &vertexShaderBinaryLength))
+		{
+			WriteLineVerbose("Warning: Failed to find Box Pixel Vertex resource! Attempting to read BoxShaderVS.cso");
+			pVertexShaderBinary = FileSystemReadToMemory(L"BoxShaderVS.cso", &vertexShaderBinaryLength);
+		}
 		assert(pVertexShaderBinary != nullptr);
 
 		Render::s_pDevice->CreateVertexShader(pVertexShaderBinary, vertexShaderBinaryLength, NULL, &pVertexShader);

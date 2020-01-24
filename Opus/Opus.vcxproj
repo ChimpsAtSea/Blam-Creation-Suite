@@ -75,16 +75,13 @@
       <MapFileName>$(TargetDir)$(TargetName).bin</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutDir)OpusResourcesPackager.exe "$(OutDir)Opus.exe" "$(OutDir)Opus.bin"
+      <Command>$(OutDir)OpusResourcesPackager.exe "$(OutDir)Opus.exe" "$(OutDir)Opus.bin" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
-echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
-  echo f|xcopy "$(SolutionDir)\HaloReachLib\BoxShader.hlsl" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
+  echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-  echo f|xcopy "$(OutDir)BoxShaderVS.cso" "$(LocalDebuggerWorkingDirectory)" /Y
-  echo f|xcopy "$(OutDir)BoxShaderPS.cso" "$(LocalDebuggerWorkingDirectory)" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -111,16 +108,13 @@ echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
       <MapFileName>$(TargetDir)$(TargetName).bin</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutDir)OpusResourcesPackager.exe "$(OutDir)Opus.exe" "$(OutDir)Opus.bin"
+      <Command>$(OutDir)OpusResourcesPackager.exe "$(OutDir)Opus.exe" "$(OutDir)Opus.bin" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
-echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
-  echo f|xcopy "$(SolutionDir)\HaloReachLib\BoxShader.hlsl" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
+  echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerCommand)" /Y
-  echo f|xcopy "$(OutDir)BoxShaderVS.cso" "$(LocalDebuggerWorkingDirectory)" /Y
-  echo f|xcopy "$(OutDir)BoxShaderPS.cso" "$(LocalDebuggerWorkingDirectory)" /Y
  )
 )</Command>
     </PostBuildEvent>

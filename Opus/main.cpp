@@ -12,7 +12,7 @@ int WINAPI WinMain(
 	_In_ int nShowCmd
 )
 {
-	Window::SetIcon(LoadIconA(hInstance, MAKEINTRESOURCEA(IDI_ICON1)));
+	Window::SetIcon(LoadIconA(hInstance, ResourcesManager::GetResourceIntResource(ResourceType::Icon)));
 	SystemPatch::PatchEnumWindows();
 
 	/* LEGACY */

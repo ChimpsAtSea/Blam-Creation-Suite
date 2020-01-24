@@ -1,7 +1,5 @@
 #pragma once
 
-#include "!Resources/resource.h"
-
 #ifndef _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING //#TODO: Replace with WideCharToMultiByte and MultiByteToWideChar
 #define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING
 #endif
@@ -137,4 +135,4 @@ constexpr decltype(auto) underlying_cast(T value)
 
 #define auto auto_is_banned
 
-
+#include "!Resources/ResourcesManager.h"

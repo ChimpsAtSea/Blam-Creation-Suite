@@ -43,6 +43,7 @@
     <ClInclude Include="Rendering\Render.h" />
     <ClInclude Include="Rendering\Rendering.h" />
     <ClInclude Include="Rendering\Window.h" />
+    <ClInclude Include="!Resources\ResourcesManager.h" />
     <ClInclude Include="shared-private-pch.h" />
     <ClInclude Include="shared-public-pch.h" />
     <ClInclude Include="shared-system-pch.h" />
@@ -62,6 +63,7 @@
     <ClCompile Include="Rendering\PrimitiveRenderManager.cpp" />
     <ClCompile Include="Rendering\Render.cpp" />
     <ClCompile Include="Rendering\Window.cpp" />
+    <ClCompile Include="!Resources\ResourcesManager.cpp" />
     <ClCompile Include="shared-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
