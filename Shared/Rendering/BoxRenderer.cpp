@@ -1,4 +1,4 @@
-#include "opusframework-private-pch.h"
+#include "shared-private-pch.h"
 
 ID3D11InputLayout* BoxRenderer::pVertexLayout;
 ID3D11PixelShader* BoxRenderer::pPixelShader = nullptr;

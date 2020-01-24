@@ -8,6 +8,11 @@ MantleTab::~MantleTab()
 	}
 }
 
+void MantleTab::GameRender()
+{
+	
+}
+
 void MantleTab::Render(bool setSelected)
 {
 	RenderContents(setSelected);

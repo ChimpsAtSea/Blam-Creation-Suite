@@ -8,6 +8,7 @@ public:
 	typedef void(*OnCloseCallback)();
 
 	static void Init(bool inGameMode);
+	static void GameRender();
 	static void Render(int width, int height);
 	static void Deinit();
 	static void AddTabItem(MantleTab& rMantleTab);
@@ -18,6 +19,7 @@ public:
 	inline static bool IsUnknownItemsVisible() { return s_unknownItemsVisible; };
 	inline static bool IsStandalone() { return !s_inGameMode; };
 	inline static bool IsGameClient() { return s_inGameMode; };
+	static std::shared_ptr<CacheFile> GetCacheFile(const char* pMapName);
 private:
 	static void OnClose();
 

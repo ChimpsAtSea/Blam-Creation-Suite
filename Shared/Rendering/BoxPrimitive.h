@@ -17,7 +17,7 @@ public:
 	);
 	~BoxPrimitive();
 
-	void SetColor(
+	inline void SetColor(
 		float colorR,
 		float colorG,
 		float colorB,
@@ -30,13 +30,15 @@ public:
 		m_colorA = colorA;
 	}
 
-	void Update(
+	void UpdateAsCenteredBox(
 		float positionX,
 		float positionY,
 		float positionZ
 	);	
+	
+	void UpdateAsAABB(float minX, float minY, float minZ, float maxX, float maxY, float maxZ);
 
-	void Update(
+	void UpdateAsPositionAndExtentBox(
 		float positionX,
 		float positionY,
 		float positionZ,
@@ -45,12 +47,21 @@ public:
 		float dimensionsZ
 	);
 
-	bool SetIsVisible(bool isVisible)
+	void UpdateAsCenteredBox(
+		float positionX,
+		float positionY,
+		float positionZ,
+		float dimensionsX,
+		float dimensionsY,
+		float dimensionsZ
+	);
+
+	inline bool SetIsVisible(bool isVisible)
 	{
 		m_isVisible = isVisible;
 	}
 
-	bool IsVisible() const
+	inline bool IsVisible() const
 	{
 		return m_isVisible && m_volume > 0;
 	}
@@ -75,6 +86,6 @@ public:
 	float m_minZ = 0.0f;
 
 private:
-	bool m_isVisible = 0.0f;
+	bool m_isVisible = true;
 };
 

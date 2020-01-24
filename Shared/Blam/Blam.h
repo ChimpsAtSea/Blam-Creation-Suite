@@ -4,6 +4,9 @@ typedef uint32_t basic_string_id;
 
 #include "basic_buffer.h"
 
+#include "real_vector3d.h"
+#include "observer_camera.h"
+
 #include "scenario_load_type.h"
 #include "scenario_type.h"
 

@@ -3,10 +3,35 @@
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::m_gameStartupEvent;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::m_gameShutdownEvent;
 GameRuntime gameRuntime = GameRuntime("haloreach", "HaloReach\\haloreach.dll");
-
-
 bool startGameNextFrame = false;
 bool gameRunning = false;
+
+
+//#TODO: Create an interface for getting the camera co-ordinates
+// -------------------------
+
+intptr_t player_mapping_get_local_player_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x18006FDF0;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<player_mapping_get_local_player_offset, int __stdcall ()> player_mapping_get_local_player;
+
+intptr_t observer_try_and_get_camera_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x1800E2FA0;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<observer_try_and_get_camera_offset, s_observer_camera * __fastcall (signed int a1)> observer_try_and_get_camera;
+
+// -------------------------
+
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -45,16 +70,24 @@ void GameLauncher::OpusTick()
 	update();
 }
 
+void GameLauncher::GameTick()
+{
+	gameRender();
+	DebugUI::RenderFrame(); // OpusUITick is registered to the DebugUI
+	//OpusUITick();
+}
+
 void GameLauncher::OpusUITick()
 {
-	if(gameRunning)
+	if (gameRunning)
 	{
 		update();
-		gameRender();
+		renderUI();
 	}
 	else
 	{
-		render();
+		renderUI();
+		renderMainMenu();
 	}
 }
 
@@ -74,7 +107,14 @@ void GameLauncher::update()
 	}
 }
 
-void GameLauncher::render()
+void GameLauncher::gameRender()
+{
+	updateCamera();
+	MantleGUI::GameRender();
+	PrimitiveRenderManager::Render();
+}
+
+void GameLauncher::renderMainMenu()
 {
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
@@ -129,9 +169,74 @@ void GameLauncher::render()
 	ImGui::End();
 }
 
-void GameLauncher::gameRender()
+void GameLauncher::renderUI()
 {
+	MantleGUI::Render(1024, 768);
+	renderCameraDebug();
+}
 
+void GameLauncher::updateCamera()
+{
+	int playerIndex = player_mapping_get_local_player();
+	s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
+	if (observer_camera)
+	{
+		float aspectRatio = 16.0f / 9.0f; // #TODO: Correct aspect ratio
+		float fieldOfViewHorizontal = observer_camera->field_of_view;
+		PrimitiveRenderManager::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
+		PrimitiveRenderManager::UpdateView(
+			observer_camera->forward.I,
+			observer_camera->forward.K,
+			observer_camera->forward.J,
+			observer_camera->up.I,
+			observer_camera->up.K,
+			observer_camera->up.J,
+			observer_camera->position.I,
+			observer_camera->position.K,
+			observer_camera->position.J
+		);
+	}
+}
+
+void GameLauncher::renderCameraDebug()
+{
+	static bool kEnableCameraDebugTest = CommandLine::HasCommandLineArg("-cameradebug");
+	if(kEnableCameraDebugTest)
+	{
+		ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);
+
+		// Main body of the Demo window starts here.
+		static bool isReachCameraDebugWindowOpen = true;
+		if (ImGui::Begin("Camera Debug Output", &isReachCameraDebugWindowOpen, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
+		{
+			if (gameRunning)
+			{
+				int playerIndex = player_mapping_get_local_player();
+				s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
+
+				if (observer_camera)
+				{
+					ImGui::Text("position:       %f, %f, %f", observer_camera->position.I, observer_camera->position.J, observer_camera->position.K);
+					ImGui::Text("position_shift: %f, %f, %f", observer_camera->position_shift.I, observer_camera->position_shift.J, observer_camera->position_shift.K);
+					ImGui::Text("look:           %f", observer_camera->look);
+					ImGui::Text("look_shift:     %f", observer_camera->look_shift);
+					ImGui::Text("depth:          %f", observer_camera->depth);
+					ImGui::Text("unknown0:       %f", observer_camera->unknown0);
+					ImGui::Text("forward:        %f, %f, %f", observer_camera->forward.I, observer_camera->forward.J, observer_camera->forward.K);
+					ImGui::Text("up:             %f, %f, %f", observer_camera->up.I, observer_camera->up.J, observer_camera->up.K);
+					ImGui::Text("field_of_view:  %f", observer_camera->field_of_view);
+					ImGui::Text("unknown1:       %f", observer_camera->unknown1);
+					ImGui::Text("unknown2:       %f", observer_camera->unknown2);
+				}
+				else ImGui::Text("No camera present.");
+			}
+			else ImGui::Text("Game not running.");
+			
+		}
+		ImGui::End();
+
+	}
 }
 
 void GameLauncher::launchGame(EngineVersion engineVersion)

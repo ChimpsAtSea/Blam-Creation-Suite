@@ -1,4 +1,4 @@
-#include "opusframework-private-pch.h"
+#include "shared-private-pch.h"
 
 using namespace DirectX;
 
@@ -13,6 +13,7 @@ float PrimitiveRenderManager::s_aspectRatio = 0.0f;
 volatile uint32_t PrimitiveRenderManager::nextConstantBufferIndex = 0;
 
 std::vector<BoxPrimitive*> PrimitiveRenderManager::s_boxPrimitives;
+std::vector<BoxPrimitive> PrimitiveRenderManager::s_immediateBoxPrimitives;
 
 void PrimitiveRenderManager::RegisterBoxPrimitive(BoxPrimitive* pBoxPrimitive)
 {
@@ -74,7 +75,7 @@ void PrimitiveRenderManager::Render()
 	if (enablePrimitiveDebug)
 	{
 		static BoxPrimitive debugBox;
-		debugBox.Update(
+		debugBox.UpdateAsCenteredBox(
 			0.0f, 0.0f, 0.0f,
 			1.0f, 1.0f, 1.0f
 		);
@@ -83,6 +84,29 @@ void PrimitiveRenderManager::Render()
 
 	{
 		BoxRenderer::BeginRenderBox();
+
+		for (const BoxPrimitive& rBoxPrimitive : s_immediateBoxPrimitives)
+		{
+			if (rBoxPrimitive.IsVisible())
+			{
+				BoxRenderer::RenderBox(
+					XMFLOAT3(
+						rBoxPrimitive.m_positionX,
+						rBoxPrimitive.m_positionY,
+						rBoxPrimitive.m_positionZ),
+					XMFLOAT3(
+						rBoxPrimitive.m_dimensionsX,
+						rBoxPrimitive.m_dimensionsY,
+						rBoxPrimitive.m_dimensionsZ),
+					XMFLOAT4(
+						rBoxPrimitive.m_colorR,
+						rBoxPrimitive.m_colorG,
+						rBoxPrimitive.m_colorB,
+						rBoxPrimitive.m_colorA)
+				);
+			}
+		}
+		s_immediateBoxPrimitives.clear();
 
 		for (const BoxPrimitive* pBoxPrimitive : s_boxPrimitives)
 		{
@@ -146,6 +170,11 @@ ID3D11Buffer* const& PrimitiveRenderManager::GetConstantsBuffer()
 {
 	assert(pCurrentFrameConstantsBuffer != nullptr);
 	return pCurrentFrameConstantsBuffer;
+}
+
+void PrimitiveRenderManager::ImmediateRenderBoxPrimitive(BoxPrimitive& rBoxPrimitive)
+{
+	s_immediateBoxPrimitives.emplace_back(rBoxPrimitive);
 }
 
 void PrimitiveRenderManager::MapConstantsBuffer()

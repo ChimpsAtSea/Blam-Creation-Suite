@@ -26,12 +26,17 @@
     <ClInclude Include="Blam\cache_file_tag_group.h" />
     <ClInclude Include="Blam\cache_file_tag_instance.h" />
     <ClInclude Include="Blam\campaign_difficulty_level.h" />
+    <ClInclude Include="Blam\observer_camera.h" />
+    <ClInclude Include="Blam\real_vector3d.h" />
     <ClInclude Include="Blam\scenario_load_type.h" />
     <ClInclude Include="Blam\scenario_type.h" />
     <ClInclude Include="DebugLogging.h" />
     <ClInclude Include="FileSystemUtilities.h" />
     <ClInclude Include="hexrays_defs.h" />
+    <ClInclude Include="Rendering\BoxPrimitive.h" />
+    <ClInclude Include="Rendering\BoxRenderer.h" />
     <ClInclude Include="Rendering\DebugUI.h" />
+    <ClInclude Include="Rendering\PrimitiveRenderManager.h" />
     <ClInclude Include="Rendering\Render.h" />
     <ClInclude Include="Rendering\Rendering.h" />
     <ClInclude Include="Rendering\Window.h" />
@@ -44,7 +49,10 @@
   <ItemGroup>
     <ClCompile Include="CommandLine.cpp" />
     <ClCompile Include="FileSystemUtilities.cpp" />
+    <ClCompile Include="Rendering\BoxPrimitive.cpp" />
+    <ClCompile Include="Rendering\BoxRenderer.cpp" />
     <ClCompile Include="Rendering\DebugUI.cpp" />
+    <ClCompile Include="Rendering\PrimitiveRenderManager.cpp" />
     <ClCompile Include="Rendering\Render.cpp" />
     <ClCompile Include="Rendering\Window.cpp" />
     <ClCompile Include="shared-private-pch.cpp">

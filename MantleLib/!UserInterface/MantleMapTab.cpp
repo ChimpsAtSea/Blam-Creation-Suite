@@ -2,6 +2,23 @@
 
 void MantleMapTab::DisplayMapTabUI()
 {
+	if (MantleGUI::IsGameClient())
+	{
+		if (ImGui::BeginMenuBar())
+		{
+			if (ImGui::BeginMenu("Game"))
+			{
+				if (ImGui::MenuItem(m_renderTriggerVolumes ? "Hide Trigger Volumes" : "Show Trigger Volumes"))
+				{
+					m_renderTriggerVolumes = !m_renderTriggerVolumes;
+				}
+
+				ImGui::EndMenu();
+			}
+			ImGui::EndMenuBar();
+		}
+	}
+
 	static char pSearchBuffer[1024] = {};
 	ImGui::BeginChild("##left_pane", ImVec2(450, 0), true, ImGuiWindowFlags_NoScrollbar);
 	{
@@ -91,22 +108,21 @@ void MantleMapTab::DisplayMapTabUI()
 MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription)
 	:MantleTab(pTitle, pDescription)
 	, m_tabClosedCallback([this](MantleTab& rTab) { this->RemoveTabItem(rTab); })
+	, m_renderTriggerVolumes(false)
 {
 
 }
 
-MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription, CacheFile& rCacheFile)
+MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription, std::shared_ptr<CacheFile> pCacheFile)
 	: MantleMapTab(pTitle, pDescription)
 {
-	m_pCacheFile = &rCacheFile;
-	m_ownsCacheFileMemory = false;
+	m_pCacheFile = pCacheFile;
 }
 
 MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription, const wchar_t* szMapFilePath)
 	: MantleMapTab(pTitle, pDescription)
 {
-	m_pCacheFile = new CacheFile(szMapFilePath);
-	m_ownsCacheFileMemory = true;
+	m_pCacheFile = std::make_shared<CacheFile>(szMapFilePath);
 }
 
 MantleMapTab::~MantleMapTab()
@@ -117,10 +133,49 @@ MantleMapTab::~MantleMapTab()
 	{
 		delete* m_tabs.begin();
 	}
+}
 
-	if (m_ownsCacheFileMemory)
+void MantleMapTab::GameRender()
+{
+	if (!m_renderTriggerVolumes)
 	{
-		delete m_pCacheFile;
+		return;
+	}
+
+	const std::vector<TagInterface*> rTagInterfaces = m_pCacheFile->GetTagInterfaces();
+	TagInterface* pTagInterface = nullptr;
+	for (TagInterface* pCurrentTagInterface : rTagInterfaces)
+	{
+		if (strcmp(pCurrentTagInterface->GetGroupShortName(), "scnr") == 0)
+		{
+			pTagInterface = pCurrentTagInterface;
+		}
+	} // #TODO: Cache this important tag
+
+	if (pTagInterface)
+	{
+		s_scenario_definition* pScenario = pTagInterface->GetData<s_scenario_definition>();
+		s_tag_block_definition<s_scenario_definition::s_trigger_volume_block_definition>& rTriggerVolumesBlock = pScenario->trigger_volumes_block;
+
+		BoxPrimitive boxPrimitive;
+
+		s_scenario_definition::s_trigger_volume_block_definition* pTagBlockData = m_pCacheFile->GetTagBlockData(rTriggerVolumesBlock);
+		for (uint32_t i = 0; i < rTriggerVolumesBlock.count; i++)
+		{
+			s_scenario_definition::s_trigger_volume_block_definition& rTriggerVolume = pTagBlockData[i];
+
+			boxPrimitive.SetColor(0.0f, 1.0f, 0.0f, 1.0f);
+			boxPrimitive.UpdateAsCenteredBox(
+				rTriggerVolume.position_x,
+				rTriggerVolume.position_z,
+				rTriggerVolume.position_y,
+				1.0f, //rTriggerVolume.extents_x,
+				1.0f, //rTriggerVolume.extents_z,
+				1.0f //rTriggerVolume.extents_y
+			);
+
+			PrimitiveRenderManager::ImmediateRenderBoxPrimitive(boxPrimitive);
+		}
 	}
 }
 

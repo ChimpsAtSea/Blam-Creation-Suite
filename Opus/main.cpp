@@ -21,9 +21,6 @@ int WINAPI WinMain(
 	
 	void(*UICallback)() = []()
 	{
-		//SIZE size = {};
-		//Window::GetWindowSize(size);
-		MantleGUI::Render(1024, 768);
 		GameLauncher::OpusUITick();
 	};
 

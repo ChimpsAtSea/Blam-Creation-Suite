@@ -22,117 +22,14 @@ char IOpusGameEngineHost::Member00()
 	return 0;
 }
 
-struct real_vector3d
-{
-	float I, J, K;
-};
 
-struct s_observer_camera
-{
-	real_vector3d position;
-	real_vector3d position_shift;
-	float look;
-	float look_shift;
-	float depth;
-	float unknown0;
-	real_vector3d forward;
-	real_vector3d up;
-	float field_of_view;
-	float unknown1;
-	float unknown2;
-};
-
-intptr_t player_mapping_get_local_player_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-{
-	switch (buildVersion)
-	{
-	case BuildVersion::Build_1_1270_0_0: return 0x18006FDF0;
-	}
-	return ~intptr_t();
-}
-FunctionHookEx<player_mapping_get_local_player_offset, int __stdcall ()> player_mapping_get_local_player;
-
-intptr_t observer_try_and_get_camera_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-{
-	switch (buildVersion)
-	{
-	case BuildVersion::Build_1_1270_0_0: return 0x1800E2FA0;
-	}
-	return ~intptr_t();
-}
-FunctionHookEx<observer_try_and_get_camera_offset, s_observer_camera * __fastcall (signed int a1)> observer_try_and_get_camera;
 
 void IOpusGameEngineHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD)
 {
 	using namespace DirectX;
 
-	int playerIndex = player_mapping_get_local_player();
-	s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
-	if (observer_camera)
-	{
-		float aspectRatio = 16.0f / 9.0f; // #TODO: Correct aspect ratio
-		float fieldOfViewHorizontal = observer_camera->field_of_view;
-		PrimitiveRenderManager::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
-		PrimitiveRenderManager::UpdateView(
-			observer_camera->forward.I,
-			observer_camera->forward.K,
-			observer_camera->forward.J,
-			observer_camera->up.I,
-			observer_camera->up.K,
-			observer_camera->up.J,
-			observer_camera->position.I,
-			observer_camera->position.K,
-			observer_camera->position.J
-		);
+	GameLauncher::GameTick();
 
-		PrimitiveRenderManager::Render();
-
-
-
-
-	}
-
-	static bool kEnableCameraDebugTest = CommandLine::HasCommandLineArg("-cameradebug");
-	if (kEnableCameraDebugTest)
-		RUNONCE({
-			DebugUI::RegisterCallback([]()
-				{
-					ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
-					ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);
-
-					// Main body of the Demo window starts here.
-					static bool isReachCameraDebugWindowOpen = true;
-					if (ImGui::Begin("Camera Debug Output", &isReachCameraDebugWindowOpen, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
-					{
-						int playerIndex = player_mapping_get_local_player();
-						s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
-
-						if (observer_camera)
-						{
-							ImGui::Text("position:       %f, %f, %f", observer_camera->position.I, observer_camera->position.J, observer_camera->position.K);
-							ImGui::Text("position_shift: %f, %f, %f", observer_camera->position_shift.I, observer_camera->position_shift.J, observer_camera->position_shift.K);
-							ImGui::Text("look:           %f", observer_camera->look);
-							ImGui::Text("look_shift:     %f", observer_camera->look_shift);
-							ImGui::Text("depth:          %f", observer_camera->depth);
-							ImGui::Text("unknown0:       %f", observer_camera->unknown0);
-							ImGui::Text("forward:        %f, %f, %f", observer_camera->forward.I, observer_camera->forward.J, observer_camera->forward.K);
-							ImGui::Text("up:             %f, %f, %f", observer_camera->up.I, observer_camera->up.J, observer_camera->up.K);
-							ImGui::Text("field_of_view:  %f", observer_camera->field_of_view);
-							ImGui::Text("unknown1:       %f", observer_camera->unknown1);
-							ImGui::Text("unknown2:       %f", observer_camera->unknown2);
-						}
-						else
-						{
-							ImGui::Text("No camera present.");
-						}
-					}
-					ImGui::End();
-
-				});
-			});
-
-
-	DebugUI::RenderFrame();
 }
 
 void IOpusGameEngineHost::Member02(__int64 player_identifier, unsigned int, __int64, float, float, float, float)

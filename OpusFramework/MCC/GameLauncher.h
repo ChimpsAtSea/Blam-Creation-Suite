@@ -7,9 +7,13 @@ public:
 	static void Deinit();
 	static void OpusTick();
 	static void OpusUITick();
+	static void GameTick();
 private:
 	static void update();
-	static void render();
+	static void renderMainMenu();
+	static void renderUI();
+	static void updateCamera();
+	static void renderCameraDebug();
 	static void gameRender();
 	static void launchGame(EngineVersion engineVersion);
 	static void launchHaloReach();

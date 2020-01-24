@@ -111,9 +111,6 @@
     <ClCompile Include="MCC\GameRuntime.cpp" />
     <ClCompile Include="MCC\GameOptionSelection.cpp" />
     <ClCompile Include="RuntimeManipulation\DataReference.cpp" />
-    <ClCompile Include="Rendering\BoxPrimitive.cpp" />
-    <ClCompile Include="Rendering\PrimitiveRenderManager.cpp" />
-    <ClCompile Include="Rendering\BoxRenderer.cpp" />
     <ClCompile Include="RuntimeManipulation\opus_legacy\detour_helpers.cpp" />
     <ClCompile Include="CCode\GetIDXGISwapChainPresent.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -154,9 +151,6 @@
     <ClInclude Include="RuntimeManipulation\Data.h" />
     <ClInclude Include="RuntimeManipulation\DataEx.h" />
     <ClInclude Include="RuntimeManipulation\DataReference.h" />
-    <ClInclude Include="Rendering\BoxPrimitive.h" />
-    <ClInclude Include="Rendering\PrimitiveRenderManager.h" />
-    <ClInclude Include="Rendering\BoxRenderer.h" />
     <ClInclude Include="RuntimeManipulation\opus_legacy\detour_helpers.h" />
     <ClInclude Include="MCC\GameLauncher.h" />
     <ClInclude Include="MCC\GameMode.h" />

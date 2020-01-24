@@ -8,11 +8,16 @@ bool MantleGUI::s_inGameMode;
 void MantleGUI::Init(bool inGameMode)
 {
 	s_inGameMode = inGameMode;
-	AddTabItem(*new MantleMapTab("45_aftship.map", "Map #1", L"haloreach/maps/45_aftship.map"));
-	AddTabItem(*new MantleMapTab("52_ivory_tower.map", "Map #2", L"haloreach/maps/52_ivory_tower.map"));
-	AddTabItem(*new MantleMapTab("cex_timberland.map", "Map #3", L"haloreach/maps/cex_timberland.map"));
-	AddTabItem(*new MantleMapTab("m70_a.map", "Map #4", L"haloreach/maps/m70_a.map"));
-	AddTabItem(*new MantleMapTab("ff45_corvette.map", "Map #5", L"haloreach/maps/ff45_corvette.map"));
+	AddTabItem(*new MantleMapTab("45_launch_station.map", "Map #1", L"haloreach/maps/45_launch_station.map"));
+	AddTabItem(*new MantleMapTab("m10.map", "Map #1", L"haloreach/maps/m10.map"));
+}
+
+void MantleGUI::GameRender()
+{
+	for (MantleTab* pTab : s_pMantleTabs)
+	{
+		pTab->GameRender();
+	}
 }
 
 void MantleGUI::Render(int width, int height)
@@ -136,6 +141,20 @@ void MantleGUI::Deinit()
 	{
 		delete *s_pMantleTabs.begin();
 	}
+}
+
+std::shared_ptr<CacheFile> MantleGUI::GetCacheFile(const char* pMapName)
+{
+	for (MantleTab* pMantleTab : s_pMantleTabs)
+	{
+		MantleMapTab* pMantleMapTab = dynamic_cast<MantleMapTab*>(pMantleTab);
+		if (pMantleMapTab == nullptr) continue;
+		if (strcmp(pMantleMapTab->GetTitle(), pMapName) == 0)
+		{
+			return pMantleMapTab->GetCacheFile();
+		}
+	}
+	return nullptr;
 }
 
 void MantleGUI::AddTabItem(MantleTab& rMantleTab)

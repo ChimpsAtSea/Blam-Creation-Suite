@@ -26,6 +26,7 @@ public:
 	static float s_aspectRatio;
 
 	static std::vector<BoxPrimitive*> s_boxPrimitives;
+	static std::vector<BoxPrimitive> s_immediateBoxPrimitives;
 
 	static void UpdatePerspective(float fieldOfViewHorizontal, float aspectRatio);
 	static void UpdateView(
@@ -42,6 +43,7 @@ public:
 	static void Render();
 	static ID3D11Buffer* const& GetConstantsBuffer();
 
+	static void ImmediateRenderBoxPrimitive(BoxPrimitive& rBoxPrimitive);
 	static void RegisterBoxPrimitive(BoxPrimitive* pBoxPrimitive);
 	static void UnregisterBoxPrimitive(BoxPrimitive* pBoxPrimitive);
 

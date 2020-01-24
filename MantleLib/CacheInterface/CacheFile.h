@@ -36,9 +36,31 @@ public:
 		}
 		return m_tagInterfaces;
 	}
+	
+	template<typename R, typename T>
+	inline R* GetTagBlockData(s_tag_block_definition<T>& rTagBlock)
+	{
+		return reinterpret_cast<R*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_definition<>*>(&rTagBlock)));
+	}
+
+	template<typename T>
+	inline T* GetTagBlockData(s_tag_block_definition<T>& rTagBlock)
+	{
+		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_definition<>*>(&rTagBlock)));
+	}
 
 private:
 
+	inline char* getTagBlockDataInternal(s_tag_block_definition<>& rTagBlock)
+	{
+		const CacheFile::SectionCache& rSectionInfo = GetSection(e_cache_file_section::_cache_file_section_tags);
+		char* pTagsSection = rSectionInfo.first;
+
+		uint64_t pageOffset = ConvertPageOffset(rTagBlock.address);
+		char* pTagBlockData = pTagsSection + pageOffset;
+
+		return pTagBlockData;
+	}
 
 	void loadMap(const std::wstring& mapFilePath);
 

@@ -8,6 +8,8 @@ public:
 	~TagInterface();
 
 	inline char* GetData() { return m_pTagData; };
+	template<typename T>
+	inline T* GetData() { return reinterpret_cast<T*>(m_pTagData); }; // #TODO: check if this type is alright
 	inline uint16_t GetIndex() { return m_tagIndex; };
 	inline const char* GetPath() const { return m_pTagPath.c_str(); }; // eg. globals/globals
 	inline const char* GetPathWithGroupID() const { return m_pTagPathWithGroupID.c_str(); }; // eg. globals/globals.matg

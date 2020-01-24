@@ -329,12 +329,8 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 					const ReflectionTagBlockInfo& rReflectionTagBlockInfo = reflectionField.m_tagBlockInfo;
 					const ReflectionType* pTagBlockReflectionType = rReflectionTagBlockInfo.m_pReflectionTypeInfo;
 
-					const CacheFile::SectionCache& rSectionInfo = m_rCacheFile.GetSection(e_cache_file_section::_cache_file_section_tags);
-					char* pTagsSection = rSectionInfo.first;
-
-					uint64_t pageOffset = m_rCacheFile.ConvertPageOffset(pTagBlock->address);
 					uint32_t tagBlockDataIndexDataOffset = pTagBlockReflectionType->m_size * static_cast<uint32_t>(rDynamicTagBlockData.m_position);
-					char* pTagBlockData = pTagsSection + pageOffset + tagBlockDataIndexDataOffset;
+					char* pTagBlockData = m_rCacheFile.GetTagBlockData<char>(*pTagBlock) + tagBlockDataIndexDataOffset;
 
 					if (pTagBlock->count && pTagBlock->address)
 					{

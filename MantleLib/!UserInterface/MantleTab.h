@@ -11,6 +11,7 @@ public:
 
 	}
 	virtual ~MantleTab();
+	virtual void GameRender();
 
 	void Render(bool setSelected);
 	inline const char* GetTitle() const { return m_title.c_str(); }
