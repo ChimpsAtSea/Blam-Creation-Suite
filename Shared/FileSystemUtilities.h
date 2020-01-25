@@ -6,3 +6,6 @@ char* FileSystemReadToBuffer(const wchar_t* pFilePath, char* pBuffer, size_t buf
 char* FileSystemReadToMemory(const wchar_t* pFilePath, size_t* pAllocatedSize = nullptr);
 
 const char* GetUserprofileVariable();
+bool DirectoryExists(const wchar_t* szPath);
+bool DirectoryExists(const char* szPath);
+

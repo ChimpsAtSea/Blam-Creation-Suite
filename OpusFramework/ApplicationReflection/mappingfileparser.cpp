@@ -189,7 +189,7 @@ void MappingFileParser::ParseFromFile(const char* pFilePath)
 	if (!result)
 	{
 #if _DEBUG
-		FATAL_ERROR("Failed to open mapping file %s", filename);
+		FATAL_ERROR(L"Failed to open mapping file %s", pFilePath);
 #else
 		MessageBox(NULL, "Fatal Error - Opus.bin not found", "Fatal Error", MB_OK | MB_ICONWARNING);
 		exit(1);
@@ -228,7 +228,7 @@ void MappingFileParser::parseImpl(std::vector<MapLine>& rRawLines)
 	CurrentParserMode next_mode = CurrentParserMode::ReadingTitle;
 	if (entry_list.size() == 0)
 	{
-		FATAL_ERROR("Failed to parse mapping file");
+		FATAL_ERROR(L"Failed to parse mapping file");
 	}
 	for (MapEntry& current_entry : entry_list)
 	{

@@ -100,7 +100,7 @@ const char* Settings::GetSectionNameString(SettingsSection section)
 	case SettingsSection::Controls:
 		return "Controls";
 	default:
-		FATAL_ERROR("Unsupported section");
+		FATAL_ERROR(L"Unsupported section");
 		return nullptr;
 	}
 }

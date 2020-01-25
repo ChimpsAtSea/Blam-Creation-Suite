@@ -3,22 +3,26 @@
 MapInfoManager::MapInfoManager(const char* pDirectoryPath)
 {
 	using namespace std;
-	using namespace std::filesystem;
+	if (DirectoryExists(pDirectoryPath))
+	{
+		// #TODO: Automatic Windows filesystem watching
+		for (const std::filesystem::directory_entry& rDirectoryEntry : std::filesystem::directory_iterator(pDirectoryPath)) {
 
-	for (const directory_entry& rDirectoryEntry : directory_iterator(pDirectoryPath)) {
-
-		const path& rFilepath = rDirectoryEntry.path();
-		if (rFilepath.has_extension())
-		{
-			std::wstring pFileExtension = rFilepath.extension();
-			if (_wcsicmp(pFileExtension.c_str(), L".mapinfo") == 0)
+			const path& rFilepath = rDirectoryEntry.path();
+			if (rFilepath.has_extension())
 			{
-				parseMapInfo(rFilepath);
+				std::wstring pFileExtension = rFilepath.extension();
+				if (_wcsicmp(pFileExtension.c_str(), L".mapinfo") == 0)
+				{
+					parseMapInfo(rFilepath);
+				}
 			}
 		}
 	}
-
-	// #TODO: Automatic Windows filesystem watching
+	else
+	{
+		FATAL_ERROR(L"Failed to find map info directory '%S'. Is Opus running in the correct working directory?", pDirectoryPath);
+	}
 }
 
 void MapInfoManager::parseMapInfo(const std::filesystem::path& rFilesystemPath)

@@ -31,5 +31,5 @@ inline ImGuiDataType PrimitiveTypeToImGuiDataType(PrimitiveType primitiveType)
 	case PrimitiveType::Undefined32:	return ImGuiDataType_Float;
 	case PrimitiveType::Undefined64:	return ImGuiDataType_Double;
 	}
-	FATAL_ERROR("Unsupported primitive type");
+	FATAL_ERROR(L"Unsupported primitive type");
 }

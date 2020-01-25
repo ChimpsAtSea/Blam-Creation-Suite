@@ -60,7 +60,7 @@ constexpr const char* GetEngineFilename(EngineVersion engineVersion)
 	case EngineVersion::HaloReach:
 		return "haloreach.dll";
 	}
-	FATAL_ERROR("Unsupported GameVersion");
+	FATAL_ERROR(L"Unsupported GameVersion");
 }
 
 extern bool IsEngineLoaded(EngineVersion engineVersion);

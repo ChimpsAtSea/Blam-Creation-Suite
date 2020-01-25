@@ -89,7 +89,7 @@ inline const char* PrimitiveTypeToString(PrimitiveType primitiveType)
 	case PrimitiveType::Undefined64:		return "Undefined64";
 	}
 #ifdef FATAL_ERROR
-	FATAL_ERROR("Invalid primitive type");
+	FATAL_ERROR(L"Invalid primitive type");
 #else
 	throw;
 #endif
@@ -111,7 +111,7 @@ inline const char* ReflectionTypeCategoryToString(ReflectionTypeCategory reflect
 	case ReflectionTypeCategory::Undefined:				return "Undefined";
 	}
 #ifdef FATAL_ERROR
-	FATAL_ERROR("Invalid reflection type");
+	FATAL_ERROR(L"Invalid reflection type");
 #else
 	throw;
 #endif

@@ -117,3 +117,19 @@ const char* GetUserprofileVariable()
 	GetEnvironmentVariableA("USERPROFILE", szBuf, MAX_PATH);
 	return static_cast<const char*>(szBuf);
 };
+
+bool DirectoryExists(const char* szPath)
+{
+	DWORD dwAttrib = GetFileAttributes(szPath);
+
+	return (dwAttrib != INVALID_FILE_ATTRIBUTES &&
+		(dwAttrib & FILE_ATTRIBUTE_DIRECTORY));
+}
+
+bool DirectoryExists(const wchar_t* szPath)
+{
+	DWORD dwAttrib = GetFileAttributesW(szPath);
+
+	return (dwAttrib != INVALID_FILE_ATTRIBUTES &&
+		(dwAttrib & FILE_ATTRIBUTE_DIRECTORY));
+}

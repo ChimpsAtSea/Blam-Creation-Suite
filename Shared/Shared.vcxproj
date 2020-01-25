@@ -31,6 +31,7 @@
     <ClInclude Include="Blam\scenario_load_type.h" />
     <ClInclude Include="Blam\scenario_type.h" />
     <ClInclude Include="DebugLogging.h" />
+    <ClInclude Include="FatalError.h" />
     <ClInclude Include="FileSystemUtilities.h" />
     <ClInclude Include="hexrays_defs.h" />
     <ClInclude Include="ImGuiAddons\Dirent\dirent.h" />
@@ -52,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommandLine.cpp" />
+    <ClCompile Include="FatalError.cpp" />
     <ClCompile Include="FileSystemUtilities.cpp" />
     <ClCompile Include="ImGuiAddons\ImGuiFileBrowser.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>

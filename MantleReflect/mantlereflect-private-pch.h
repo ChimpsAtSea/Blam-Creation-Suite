@@ -20,5 +20,4 @@
 #include <sstream>
 #include <memory>
 
-#include "Shared/shared-public-pch.h"
 #include "mantlereflect-public-pch.h"

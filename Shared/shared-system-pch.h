@@ -10,13 +10,7 @@
 #define WIN32_MEAN_AND_LEAN
 #endif
 
-#if !defined(_DEBUG) && defined(UWP_PLATFORM)
-#define FATAL_ERROR(reason, ...) throw
-#define DEBUG_FATAL_ERROR()
-#else
-#define FATAL_ERROR(reason, ...) _wassert(_CRT_WIDE(reason), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)); throw
-#define DEBUG_FATAL_ERROR() do { if (IsDebuggerPresent()) { _wassert(_CRT_WIDE(reason), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)); throw; } } while() 
-#endif
+#include "FatalError.h"
 
 #define VectorEraseByValueHelper(vector, value) vector.erase(std::remove(vector.begin(), vector.end(), value), vector.end());
 
@@ -101,12 +95,6 @@ using namespace tbb;
 #include <imgui\imgui_impl_dx11.h>
 
 #include "hexrays_defs.h" // #TODO: Integrate this into a global types definition list
-
-#if !defined(_DEBUG) && defined(UWP_PLATFORM)
-#define FATAL_ERROR(reason, ...) throw
-#else
-#define FATAL_ERROR(reason, ...) _wassert(_CRT_WIDE(reason), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)); throw
-#endif
 
 #define COMBINE1(X,Y) X##Y
 #define COMBINE(X,Y) COMBINE1(X,Y)

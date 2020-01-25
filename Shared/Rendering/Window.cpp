@@ -41,12 +41,12 @@ void Window::SetPostMessageThreadId(HANDLE hThread)
 
 int Window::GetWindowWidth()
 {
-	return s_size.cx;
+	return max(1l, s_size.cx);
 }
 
 int Window::GetWindowHeight()
 {
-	return s_size.cy;
+	return max(1l, s_size.cy);
 }
 
 HWND Window::GetWindowHandle()
@@ -167,7 +167,7 @@ void Window::Init(const char* pWindowTitle, const char* pConsoleTitle, const cha
 	if (registerClassExResult == NULL)
 	{
 		int err = GetLastError();
-		FATAL_ERROR("Failed to register window class [%i]", err);
+		FATAL_ERROR(L"Failed to register window class [%i]", err);
 	}
 
 	// Create the window.
@@ -189,7 +189,7 @@ void Window::Init(const char* pWindowTitle, const char* pConsoleTitle, const cha
 	if (s_hWnd == NULL)
 	{
 		int err = GetLastError();
-		FATAL_ERROR("Failed to create window [%i]", err);
+		FATAL_ERROR(L"Failed to create window [%i]", err);
 	}
 
 	ShowWindow(s_hWnd, SW_SHOW);
