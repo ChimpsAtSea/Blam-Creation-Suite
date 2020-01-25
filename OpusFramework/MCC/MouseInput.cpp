@@ -3,8 +3,8 @@
 float MouseInput::s_horizontalSensitivity = 1.0f;
 float MouseInput::s_verticalSensitivity = 1.0f;
 MouseMode MouseInput::s_currentMode;
-std::atomic<uint32_t> MouseInput::s_xPositionAccumulator = 0;
-std::atomic<uint32_t> MouseInput::s_yPositionAccumulator = 0;
+std::atomic<int32_t> MouseInput::s_xPositionAccumulator = 0;
+std::atomic<int32_t> MouseInput::s_yPositionAccumulator = 0;
 std::atomic<int32_t> MouseInput::s_wheelAccumulator = 0;
 bool MouseInput::s_leftButtonPressed = false;
 bool MouseInput::s_rightButtonPressed = false;
@@ -16,72 +16,76 @@ void MouseInput::InputWindowMessage(LPARAM lParam)
 {
 	RAWINPUT rawInput = {};
 	UINT dwSize = sizeof(rawInput);
-	GetRawInputData(reinterpret_cast<HRAWINPUT>(lParam), RID_INPUT, &rawInput, &dwSize, sizeof(RAWINPUTHEADER));
+	UINT getRawInputDataResult = GetRawInputData(reinterpret_cast<HRAWINPUT>(lParam), RID_INPUT, &rawInput, &dwSize, sizeof(RAWINPUTHEADER));
+	assert(getRawInputDataResult != ~0u);
 
-	switch (rawInput.header.dwType)
+	if (getRawInputDataResult)
 	{
-	case RIM_TYPEMOUSE:
-	{
-		RAWMOUSE& rRawMouse = rawInput.data.mouse;
-		if (s_currentMode == MouseMode::Exclusive)
+		switch (rawInput.header.dwType)
 		{
-			if (rRawMouse.usFlags == MOUSE_MOVE_RELATIVE)
+		case RIM_TYPEMOUSE:
+		{
+			RAWMOUSE& rRawMouse = rawInput.data.mouse;
+			if (s_currentMode == MouseMode::Exclusive)
 			{
-				int xPosRelative = rRawMouse.lLastX;
-				int yPosRelative = rRawMouse.lLastY;
-				s_xPositionAccumulator += xPosRelative;
-				s_yPositionAccumulator += yPosRelative;
-			}
+				if (rRawMouse.usFlags == MOUSE_MOVE_RELATIVE)
+				{
+					int xPosRelative = rRawMouse.lLastX;
+					int yPosRelative = rRawMouse.lLastY;
+					s_xPositionAccumulator += xPosRelative;
+					s_yPositionAccumulator += yPosRelative;
+				}
 
-			if (rRawMouse.usButtonFlags & RI_MOUSE_WHEEL)
-			{
-				SHORT wheelDelta = static_cast<SHORT>(rRawMouse.usButtonData);
-				s_wheelAccumulator += static_cast<int32_t>(wheelDelta);
-			}
+				if (rRawMouse.usButtonFlags & RI_MOUSE_WHEEL)
+				{
+					SHORT wheelDelta = static_cast<SHORT>(rRawMouse.usButtonData);
+					s_wheelAccumulator += static_cast<int32_t>(wheelDelta);
+				}
 
-			if (rRawMouse.usButtonFlags & RI_MOUSE_LEFT_BUTTON_DOWN)
-			{
-				s_leftButtonPressed = true;
-			}
-			if (rRawMouse.usButtonFlags & RI_MOUSE_LEFT_BUTTON_UP)
-			{
-				s_leftButtonPressed = false;
-			}
-			if (rRawMouse.usButtonFlags & RI_MOUSE_RIGHT_BUTTON_DOWN)
-			{
-				s_rightButtonPressed = true;
-			}
-			if (rRawMouse.usButtonFlags & RI_MOUSE_RIGHT_BUTTON_UP)
-			{
-				s_rightButtonPressed = false;
-			}
-			if (rRawMouse.usButtonFlags & RI_MOUSE_MIDDLE_BUTTON_DOWN)
-			{
-				s_middleButtonPressed = true;
-			}
-			if (rRawMouse.usButtonFlags & RI_MOUSE_MIDDLE_BUTTON_UP)
-			{
-				s_middleButtonPressed = false;
-			}
-			if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_4_DOWN)
-			{
-				s_button4Pressed = true;
-			}
-			if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_4_UP)
-			{
-				s_button4Pressed = false;
-			}
-			if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_5_DOWN)
-			{
-				s_button5Pressed = true;
-			}
-			if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_5_UP)
-			{
-				s_button5Pressed = false;
+				if (rRawMouse.usButtonFlags & RI_MOUSE_LEFT_BUTTON_DOWN)
+				{
+					s_leftButtonPressed = true;
+				}
+				if (rRawMouse.usButtonFlags & RI_MOUSE_LEFT_BUTTON_UP)
+				{
+					s_leftButtonPressed = false;
+				}
+				if (rRawMouse.usButtonFlags & RI_MOUSE_RIGHT_BUTTON_DOWN)
+				{
+					s_rightButtonPressed = true;
+				}
+				if (rRawMouse.usButtonFlags & RI_MOUSE_RIGHT_BUTTON_UP)
+				{
+					s_rightButtonPressed = false;
+				}
+				if (rRawMouse.usButtonFlags & RI_MOUSE_MIDDLE_BUTTON_DOWN)
+				{
+					s_middleButtonPressed = true;
+				}
+				if (rRawMouse.usButtonFlags & RI_MOUSE_MIDDLE_BUTTON_UP)
+				{
+					s_middleButtonPressed = false;
+				}
+				if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_4_DOWN)
+				{
+					s_button4Pressed = true;
+				}
+				if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_4_UP)
+				{
+					s_button4Pressed = false;
+				}
+				if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_5_DOWN)
+				{
+					s_button5Pressed = true;
+				}
+				if (rRawMouse.usButtonFlags & RI_MOUSE_BUTTON_5_UP)
+				{
+					s_button5Pressed = false;
+				}
 			}
 		}
-	}
-	break;
+		break;
+		}
 	}
 }
 

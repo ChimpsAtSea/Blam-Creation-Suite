@@ -33,8 +33,8 @@ private:
 	static MouseMode s_currentMode;
 	static float s_horizontalSensitivity;
 	static float s_verticalSensitivity;
-	static std::atomic<uint32_t> s_xPositionAccumulator;
-	static std::atomic<uint32_t> s_yPositionAccumulator;
+	static std::atomic<int32_t> s_xPositionAccumulator;
+	static std::atomic<int32_t> s_yPositionAccumulator;
 	static std::atomic<int32_t> s_wheelAccumulator;
 	static bool s_leftButtonPressed;
 	static bool s_rightButtonPressed;
