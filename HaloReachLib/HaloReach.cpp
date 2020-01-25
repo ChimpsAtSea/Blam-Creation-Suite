@@ -540,6 +540,25 @@ void halo_reach_debug_callback()
 
 char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", BuildVersion::Build_1_1035_0_0, 0x180A0EE08);
 
+intptr_t t_restricted_allocation_manager__reserve_memory_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x180211A20;
+	}
+	return ~intptr_t();
+}
+#define t_restricted_allocation_manager__reserve_memory_offset_args void* __this, const char* szName, __int64 a3, __int64 a4, __int64 a5, __int64 a6, __int64 a7, __int64 a8
+FunctionHookEx<t_restricted_allocation_manager__reserve_memory_offset, __int64 __fastcall (t_restricted_allocation_manager__reserve_memory_offset_args)> t_restricted_allocation_manager__reserve_memory = { "t_restricted_allocation_manager__reserve_memory", [](t_restricted_allocation_manager__reserve_memory_offset_args)
+{
+	__int64 result = t_restricted_allocation_manager__reserve_memory(__this, szName, a3, a4, a5, a6, a7, a8);
+	WriteLineVerbose("t_restricted_allocation_manager> Allocating memory for '%s'", szName);
+	return result;
+} };
+
+
+
+
 #pragma pack(push, 4)
 struct hs_script_op
 {
