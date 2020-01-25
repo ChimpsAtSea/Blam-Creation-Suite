@@ -45,6 +45,9 @@
     <ClCompile Include="CacheInterface\TagInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CacheInterface\GroupInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlelib-public-pch.h">
@@ -399,6 +402,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\CacheInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\GroupInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

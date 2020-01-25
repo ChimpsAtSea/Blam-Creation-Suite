@@ -19,71 +19,176 @@ void MantleMapTab::DisplayMapTabUI()
 		}
 	}
 
-	static char pSearchBuffer[1024] = {};
-	ImGui::BeginChild("##left_pane", ImVec2(450, 0), true, ImGuiWindowFlags_NoScrollbar);
+
+
+
+
+	ImGui::Columns(2, "mixed");
+	RUNONCE(ImGui::SetColumnOffset(1, 500));
+	ImGui::Separator();
+
 	{
-		ImGui::Text("Search:");
-		ImGui::SetNextItemWidth(-1);
-		ImGui::InputText("", pSearchBuffer, 1024);
-		ImGui::Dummy(ImVec2(0, 10));
-	}
-	ImGui::BeginChild("##tags", ImVec2(0, 0), true);
-
-	static bool tagIsSelected = false;
-
-	const std::vector<TagInterface*> rTagInterfaces = m_pCacheFile->GetTagInterfaces();
-	for (size_t i = 0; i < rTagInterfaces.size(); i++)
-	{
-		TagInterface& rTagInterface = *rTagInterfaces[i];
-
-		const char* pTagName = rTagInterface.GetPathWithGroupID();
-		if (pTagName[0] == 0) continue; // skip tags with empty names
-
-		if (pSearchBuffer[0])
+		static char pSearchBuffer[1024] = {};
+		ImGui::BeginChild("##left_pane", ImVec2(0, 0), true, ImGuiWindowFlags_NoScrollbar);
 		{
-			if (strstr(pTagName, pSearchBuffer) == nullptr)
+			ImGui::Text("Search:");
+			ImGui::SetNextItemWidth(-1);
+			ImGui::InputText("", pSearchBuffer, 1024);
+			ImGui::Dummy(ImVec2(0, 10));
+		}
+		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<GroupInterface*> rGroupInterfaces = m_pCacheFile->GetGroupInterfaces();
+
+
+		bool useSearch = pSearchBuffer[0] != 0;
+		if (useSearch)
+		{
+			const std::vector<TagInterface*> rTagInterfaces = m_pCacheFile->GetTagInterfaces();
+			for (TagInterface* pTagInterface : rTagInterfaces)
 			{
-				continue;
+				TagInterface& rTagInterface = *pTagInterface;
+				if (rTagInterface.IsNull()) continue;
+
+				const char* pTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
+					? rTagInterface.GetPathWithGroupID()
+					: rTagInterface.GetNameWithGroupID();
+
+				if (pSearchBuffer[0])
+				{
+					if (strstr(pTagDisplayWithGroupID, pSearchBuffer) == nullptr)
+					{
+						continue;
+					}
+				}
+
+				if (ImGui::Selectable(pTagDisplayWithGroupID, m_pSelectedSearchTagInterface == pTagInterface))
+				{
+					m_pSelectedSearchTagInterface = pTagInterface;
+					openTagTab(rTagInterface);
+				}
+			}
+		}
+		else
+		{
+			for (GroupInterface* pGroupInterface : rGroupInterfaces)
+			{
+				GroupInterface& rGroupInterface = *pGroupInterface;
+				const std::vector<TagInterface*> rTagInterfaces = pGroupInterface->GetTagInterfaces();
+				const char* pGroupShortName = rGroupInterface.GetShortName();
+
+				bool displayGroup = !rTagInterfaces.empty() && (!useSearch || rGroupInterface.m_searchCriteriaMatchCount > 0);
+
+				if (!displayGroup) continue;
+
+				if (ImGui::TreeNode(pGroupShortName, pGroupShortName))
+				{
+					for (TagInterface* pTagInterface : rTagInterfaces)
+					{
+						TagInterface& rTagInterface = *pTagInterface;
+						if (rTagInterface.IsNull()) continue;
+
+						bool displayTag = (!useSearch || rTagInterface.m_matchesSearchCriteria);
+
+						if (!displayTag) continue;
+
+						const char* pTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
+							? rTagInterface.GetPathWithGroupID()
+							: rTagInterface.GetNameWithGroupID();
+
+						static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
+						if (ImGui::TreeNodeEx(pTagInterface, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, pTagDisplayWithGroupID))
+						{
+							if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+							{
+								openTagTab(rTagInterface);
+							}
+						}
+					}
+					ImGui::TreePop();
+				}
 			}
 		}
 
-		if (ImGui::Selectable(pTagName, m_tagIndexSelected == i))
+		// some wip search stuff that ended up being really slow for some reason.
+		// worth investigating as it started out really fast
 		{
-			m_tagIndexSelected = i;
-			openTagTab(rTagInterface);
+			//if (useSearch) //#todo improve search. is it cleaner to go through and loop by group rather than tag?
+			//{
+			//	for (GroupInterface* pGroupInterface : rGroupInterfaces)
+			//	{
+			//		pGroupInterface->m_searchCriteriaMatchCount = 0; // reset counts
+			//	}
+
+			//	const std::vector<TagInterface*> rTagInterfaces = m_pCacheFile->GetTagInterfaces();
+			//	static void(*tagInterfaceFunc)(TagInterface*) = [](TagInterface* pTagInterface)
+			//	{
+			//		/*
+			//			We do a few expensive operations in here but we're running in parallel
+			//			so we can avoid a lot of the cost by going wide. We should be careful as
+			//			always with how long the longest possible search time is.
+
+			//			To combat lengthy non-linear lookup times extra data has been added to
+			//			TagInterface and GroupInterface
+
+			//			* Speeds up first iteration display of empty groups without n^2 complexity*
+			//			uint32_t GroupInterface::m_searchCriteriaMatchCount
+
+			//			* Speeds up first second display of empty groups without n^2 complexity*
+			//			bool TagInterface::m_matchesSearchCriteria
+			//		*/
+
+			//		TagInterface& rTagInterface = *pTagInterface;
+			//		GroupInterface* pGroupInterface = rTagInterface.GetGroupInterface();
+			//		if (pGroupInterface) // not 100% sure why some tags don't have groups. is this a bug? they have an index of 0xFFFF
+			//		{
+			//			const char* pTagPathWithGroupID = rTagInterface.GetPathWithGroupID();
+			//			bool matchesCriteria = strstr(pTagPathWithGroupID, pSearchBuffer) != nullptr;
+
+			//			pGroupInterface->m_searchCriteriaMatchCount = 1;
+			//			rTagInterface.m_matchesSearchCriteria = matchesCriteria;
+			//			//InterlockedIncrement(&pGroupInterface->m_searchCriteriaMatchCount);
+			//		}
+			//		else
+			//		{
+			//			rTagInterface.m_matchesSearchCriteria = false;
+			//		}
+			//		
+			//	};
+			//	tbb::parallel_for_each(rTagInterfaces, tagInterfaceFunc); // performance boost
+			//}
 		}
+
+		ImGui::EndChild();
+		ImGui::EndChild();
 	}
-
-	ImGui::EndChild();
-	ImGui::EndChild();
-
-	ImGui::SameLine();
-
-	// right
-	ImGui::BeginGroup();
-	ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()), ImGuiWindowFlags_NoScrollbar);
-	if (!m_tabs.empty()) // #NOTE: Checking this fixes strange ImGUI crash
+	ImGui::NextColumn();
 	{
-		if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None)) // each tag
+		// right
+		ImGui::BeginGroup();
+		ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()), ImGuiWindowFlags_NoScrollbar);
+		if (!m_tabs.empty()) // #NOTE: Checking this fixes strange ImGUI crash
 		{
-			MantleTab* pNextSelectedTab = m_pNextSelectedTab;
-			m_pNextSelectedTab = nullptr; // take a copy as the Render function can set this up for the next frame
-			for (MantleTab* pTab : m_tabs)
+			if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None)) // each tag
 			{
-				pTab->Render(pNextSelectedTab == pTab);
-			}
+				MantleTab* pNextSelectedTab = m_pNextSelectedTab;
+				m_pNextSelectedTab = nullptr; // take a copy as the Render function can set this up for the next frame
+				for (MantleTab* pTab : m_tabs)
+				{
+					pTab->Render(pNextSelectedTab == pTab);
+				}
 
-			ImGui::EndTabBar();
+				ImGui::EndTabBar();
+			}
 		}
+		ImGui::EndChild();
+		if (ImGui::Button("Revert")) {}
+		ImGui::SameLine();
+		if (ImGui::Button("Save"))
+		{
+			m_pCacheFile->SaveMap();
+		}
+		ImGui::EndGroup();
 	}
-	ImGui::EndChild();
-	if (ImGui::Button("Revert")) {}
-	ImGui::SameLine();
-	if (ImGui::Button("Save"))
-	{
-		m_pCacheFile->SaveMap();
-	}
-	ImGui::EndGroup();
+	ImGui::Columns(1);
 }
 
 void MantleMapTab::openTagTab(TagInterface& rTagInterface)
@@ -108,7 +213,7 @@ MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription)
 	, m_tabClosedCallback([this](MantleTab& rTab) { this->RemoveTabItem(rTab); })
 	, m_renderTriggerVolumes(false)
 	, m_pNextSelectedTab(nullptr)
-	, m_tagIndexSelected(0)
+	, m_pSelectedSearchTagInterface(nullptr)
 {
 
 }
@@ -119,7 +224,7 @@ MantleMapTab::MantleMapTab(std::shared_ptr<CacheFile> pCacheFile)
 	, m_tabClosedCallback([this](MantleTab& rTab) { this->RemoveTabItem(rTab); })
 	, m_renderTriggerVolumes(false)
 	, m_pNextSelectedTab(nullptr)
-	, m_tagIndexSelected(0)
+	, m_pSelectedSearchTagInterface(nullptr)
 {
 
 }

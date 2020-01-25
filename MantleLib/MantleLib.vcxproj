@@ -15,6 +15,7 @@
     <ClCompile Include="!UserInterface\MantleTab.cpp" />
     <ClCompile Include="!UserInterface\MantleGUI.cpp" />
     <ClCompile Include="CacheInterface\CacheFile.cpp" />
+    <ClCompile Include="CacheInterface\GroupInterface.cpp" />
     <ClCompile Include="mantlelib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -40,6 +41,7 @@
     <ClInclude Include="!UserInterface\MantleGUI.h" />
     <ClInclude Include="!UserInterface\MantleTagTab.h" />
     <ClInclude Include="CacheInterface\TagInterface.h" />
+    <ClInclude Include="CacheInterface\GroupInterface.h" />
     <ClInclude Include="Tags\TagDefinitions\achievements.h" />
     <ClInclude Include="Tags\TagDefinitions\ai_dialogue_globals.h" />
     <ClInclude Include="Tags\TagDefinitions\ai_globals.h" />

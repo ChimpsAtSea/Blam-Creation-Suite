@@ -6,6 +6,7 @@ class CacheFile
 {
 public:
 	friend class TagInterface;
+	friend class GroupInterface;
 
 	CacheFile(const std::wstring& mapFilePath);
 	~CacheFile();
@@ -27,14 +28,23 @@ public:
 	inline SectionCache& GetLocalizationSection() { return GetSection(e_cache_file_section::_cache_file_section_localization); };
 	inline size_t GetTagCount() const { return IsLoading() ? 0 : m_tagInterfaces.size(); }
 	inline TagInterface* GetTagInterface(uint16_t index) const { return (IsLoading() || index == 0xFFFFui16) ? nullptr : m_tagInterfaces[index]; }
-	inline const std::vector<TagInterface*> GetTagInterfaces() const
+	inline const std::vector<TagInterface*> GetTagInterfaces(bool ignoreLoadingCheck = false) const
 	{
-		if (IsLoading())
+		if (!ignoreLoadingCheck && IsLoading())
 		{
 			static std::vector<TagInterface*> sEmptyVector;
 			return sEmptyVector;
 		}
 		return m_tagInterfaces;
+	}
+	inline const std::vector<GroupInterface*> GetGroupInterfaces(bool ignoreLoadingCheck = false) const
+	{
+		if (!ignoreLoadingCheck && IsLoading())
+		{
+			static std::vector<GroupInterface*> sEmptyVector;
+			return sEmptyVector;
+		}
+		return m_groupInterfaces;
 	}
 	
 	template<typename R, typename T>
@@ -69,6 +79,13 @@ private:
 
 	void loadMap(const std::wstring& mapFilePath);
 
+
+	/* initialize each group instance */
+	void initGroupInstances();
+	/* initialize each tag instance */
+	void initTagInstances();
+	/* for each tag group store which tags are represented by it into the vector */
+	void initTagGroupRelationship();
 	volatile bool m_isMapLoading;
 	std::wstring m_mapFilePath;
 	std::wstring m_mapFileName;
@@ -87,6 +104,7 @@ private:
 	// interface types
 	SectionCache m_pSectionCache[underlying_cast(e_cache_file_section::k_number_of_cache_file_sections)];
 	std::vector<TagInterface*> m_tagInterfaces;
+	std::vector<GroupInterface*> m_groupInterfaces;
 
 };
 

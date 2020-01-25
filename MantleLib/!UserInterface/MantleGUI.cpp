@@ -1,13 +1,18 @@
 #include "mantlelib-private-pch.h"
 
+bool MantleGUI::s_sidebarUseFullFileLength = false;
 bool MantleGUI::s_unknownItemsVisible = false;
 std::vector<MantleTab*> MantleGUI::s_pMantleTabs;
 std::vector<MantleGUI::OnCloseCallback> MantleGUI::s_guiCloseCallbacks;
 bool MantleGUI::s_inGameMode;
 
-void MantleGUI::Init(bool inGameMode)
+void MantleGUI::Init(bool inGameMode, const wchar_t* pStartupFilePath)
 {
 	s_inGameMode = inGameMode;
+	if (PathFileExistsW(pStartupFilePath))
+	{
+		AddTabItem(*new MantleMapTab(pStartupFilePath));
+	}
 }
 
 void MantleGUI::GameRender()
@@ -120,9 +125,14 @@ void MantleGUI::Render()
 			}
 			if (ImGui::BeginMenu("View"))
 			{
-				if (ImGui::MenuItem(s_unknownItemsVisible ? "Hide Unknown Items" : "Show Unknown Items", "Ctrl+O"))
+				if (ImGui::MenuItem(s_unknownItemsVisible ? "Hide Unknown Items" : "Show Unknown Items", "Ctrl+U"))
 				{
 					s_unknownItemsVisible = !s_unknownItemsVisible;
+				}
+
+				if (ImGui::MenuItem(s_sidebarUseFullFileLength ? "Use Short File Names" : "Use Long File Names"))
+				{
+					s_sidebarUseFullFileLength = !s_sidebarUseFullFileLength;
 				}
 
 				ImGui::EndMenu();

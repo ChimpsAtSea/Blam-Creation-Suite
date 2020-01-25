@@ -93,12 +93,29 @@ void CacheFile::loadMap(const std::wstring& mapFilePath)
 				// #TODO: Create group interface
 			}
 
+#define this_invoke(function, ...) ([&]() { this->function(##__VA_ARGS__); })
+
+
+			// #TODO: Run groups in paralle, and iterate through all of tags to create the tag
+			// instances using groups
+			tbb::parallel_invoke(this_invoke(initTagInstances), this_invoke(initGroupInstances));
+			initTagGroupRelationship();
+
+			for (TagInterface* pTagInterface : m_tagInterfaces)
+			{
+				if (!pTagInterface->IsNull())
+				{
+					pTagInterface->GetGroupInterface();
+				}
+			}
+
+
 			// allocate buffer space to store pointers back
 			m_tagInterfaces.resize(m_pTagFilesHeader->instances.count);
 			TagInterface** ppTagInterfacesBuffer = m_tagInterfaces.data();
 			std::function createTagIndexFunc = [this, ppTagInterfacesBuffer](uint32_t index)
 			{
-				ppTagInterfacesBuffer[index] = new TagInterface(this, static_cast<uint16_t>(index));
+				ppTagInterfacesBuffer[index] = new TagInterface(*this, static_cast<uint16_t>(index));
 			};
 			tbb::parallel_for(0u, m_pTagFilesHeader->instances.count, createTagIndexFunc);
 
@@ -110,3 +127,39 @@ void CacheFile::loadMap(const std::wstring& mapFilePath)
 		}));
 }
 
+void CacheFile::initGroupInstances()
+{
+	// allocate buffer space to store pointers back
+	m_groupInterfaces.resize(m_pTagFilesHeader->groups.count);
+	GroupInterface** ppGroupInterfacesBuffer = m_groupInterfaces.data();
+	std::function createGroupFunc = [this, ppGroupInterfacesBuffer](uint32_t index)
+	{
+		ppGroupInterfacesBuffer[index] = new GroupInterface(*this, static_cast<uint16_t>(index));
+	};
+	tbb::parallel_for(0u, m_pTagFilesHeader->groups.count, createGroupFunc);
+}
+
+void CacheFile::initTagInstances()
+{
+	// allocate buffer space to store pointers back
+	m_tagInterfaces.resize(m_pTagFilesHeader->instances.count);
+	TagInterface** ppTagInterfacesBuffer = m_tagInterfaces.data();
+	std::function createTagFunc = [this, ppTagInterfacesBuffer](uint32_t index)
+	{
+		ppTagInterfacesBuffer[index] = new TagInterface(*this, static_cast<uint16_t>(index));
+	};
+	tbb::parallel_for(0u, m_pTagFilesHeader->instances.count, createTagFunc);
+}
+
+void CacheFile::initTagGroupRelationship()
+{
+	// allocate buffer space to store pointers back
+	m_groupInterfaces.resize(m_pTagFilesHeader->groups.count);
+	GroupInterface** ppGroupInterfacesBuffer = m_groupInterfaces.data();
+	std::function createGroupFunc = [this, ppGroupInterfacesBuffer](uint32_t index)
+	{
+		GroupInterface& rGroupInterface = *ppGroupInterfacesBuffer[index];
+		rGroupInterface.initTagGroupRelationship();
+	};
+	tbb::parallel_for(0u, m_pTagFilesHeader->groups.count, createGroupFunc);
+}

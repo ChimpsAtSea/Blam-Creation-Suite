@@ -22,7 +22,7 @@ protected:
 	void AddTabItem(MantleTab& rMantleTab);
 	void RemoveTabItem(MantleTab& rMantleTab);
 
-	size_t m_tagIndexSelected;
+	TagInterface* m_pSelectedSearchTagInterface;
 	MantleTab* m_pNextSelectedTab;
 	bool m_renderTriggerVolumes;
 	std::shared_ptr<CacheFile> m_pCacheFile;
