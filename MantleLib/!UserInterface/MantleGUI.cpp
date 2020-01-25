@@ -9,9 +9,14 @@ bool MantleGUI::s_inGameMode;
 void MantleGUI::Init(bool inGameMode, const wchar_t* pStartupFilePath)
 {
 	s_inGameMode = inGameMode;
-	if (PathFileExistsW(pStartupFilePath))
+	OpenMapFile(pStartupFilePath);
+}
+
+void MantleGUI::OpenMapFile(const wchar_t* pFilePath)
+{
+	if (PathFileExistsW(pFilePath))
 	{
-		AddTabItem(*new MantleMapTab(pStartupFilePath));
+		AddTabItem(*new MantleMapTab(pFilePath));
 	}
 }
 

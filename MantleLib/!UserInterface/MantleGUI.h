@@ -7,6 +7,7 @@ class MantleGUI
 public:
 	typedef void(*OnCloseCallback)();
 
+	static void OpenMapFile(const wchar_t* pFilePath);
 	static void Init(bool inGameMode, const wchar_t* pStartupFilePath = nullptr);
 	static void GameRender();
 	static void Render();

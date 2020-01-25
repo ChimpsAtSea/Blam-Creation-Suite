@@ -294,6 +294,14 @@ void GameLauncher::launchHaloReach()
 		const MapInfo* pSelectedMapInfo = GameOptionSelection::GetSelectedMapInfo();
 		GameMode gameMode = GameOptionSelection::GetSelectedGameMode();
 
+		const char* pMapFileName = pSelectedMapInfo->GetMapFileName();
+		WriteLineVerbose("Loading map '%s.map'", pMapFileName);
+		{
+			wchar_t pMapFilePathBuffer[MAX_PATH + 1] = {};
+			_snwprintf(pMapFilePathBuffer, MAX_PATH, L"%S%S.map", "haloreach/maps/", pMapFileName);
+			MantleGUI::OpenMapFile(pMapFilePathBuffer);
+		}
+
 		gameContext.pGameHandle = GetModuleHandle("HaloReach.dll");
 		char byte2B678Data[] = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 		memcpy(gameContext.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
