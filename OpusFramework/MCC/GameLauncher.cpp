@@ -210,14 +210,14 @@ void GameLauncher::updateCamera()
 		PrimitiveRenderManager::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
 		PrimitiveRenderManager::UpdateView(
 			observer_camera->forward.I,
-			observer_camera->forward.K,
 			observer_camera->forward.J,
+			observer_camera->forward.K,
 			observer_camera->up.I,
-			observer_camera->up.K,
 			observer_camera->up.J,
+			observer_camera->up.K,
 			observer_camera->position.I,
-			observer_camera->position.K,
-			observer_camera->position.J
+			observer_camera->position.J,
+			observer_camera->position.K
 		);
 	}
 }

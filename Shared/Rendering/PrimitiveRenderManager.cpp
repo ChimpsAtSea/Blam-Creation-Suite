@@ -9,24 +9,34 @@ DirectX::XMMATRIX PrimitiveRenderManager::viewMatrix = {};
 DirectX::XMMATRIX PrimitiveRenderManager::perspectiveMatrix = {};
 DirectX::XMMATRIX PrimitiveRenderManager::viewMatrixTransposed = {};
 DirectX::XMMATRIX PrimitiveRenderManager::perspectiveMatrixTransposed = {};
+BoxPrimitive PrimitiveRenderManager::immediateBoxPrimitive;
 float PrimitiveRenderManager::s_fieldOfViewHorizontal = 0.0f;
 float PrimitiveRenderManager::s_fieldOfViewVertical = 0.0f;
 float PrimitiveRenderManager::s_aspectRatio = 0.0f;
 volatile uint32_t PrimitiveRenderManager::nextConstantBufferIndex = 0;
+DirectX::XMVECTOR PrimitiveRenderManager::s_vForward;
+DirectX::XMVECTOR PrimitiveRenderManager::s_vUp;
+DirectX::XMVECTOR PrimitiveRenderManager::s_vPosition;
 
 std::vector<BoxPrimitive*> PrimitiveRenderManager::s_boxPrimitives;
-std::vector<BoxPrimitive> PrimitiveRenderManager::s_immediateBoxPrimitives;
+std::vector<BoxPrimitiveData> PrimitiveRenderManager::s_immediateBoxPrimitives;
 
 void PrimitiveRenderManager::RegisterBoxPrimitive(BoxPrimitive* pBoxPrimitive)
 {
-	// #TODO: Thread safe linked list
-	s_boxPrimitives.emplace_back(pBoxPrimitive);
+	if (pBoxPrimitive != &immediateBoxPrimitive)
+	{
+		// #TODO: Thread safe linked list
+		s_boxPrimitives.emplace_back(pBoxPrimitive);
+	}
 }
 
 void PrimitiveRenderManager::UnregisterBoxPrimitive(BoxPrimitive* pBoxPrimitive)
 {
-	// #TODO: Thread safe linked list
-	s_boxPrimitives.erase(std::remove(s_boxPrimitives.begin(), s_boxPrimitives.end(), pBoxPrimitive), s_boxPrimitives.end());
+	if (pBoxPrimitive != &immediateBoxPrimitive)
+	{
+		// #TODO: Thread safe linked list
+		s_boxPrimitives.erase(std::remove(s_boxPrimitives.begin(), s_boxPrimitives.end(), pBoxPrimitive), s_boxPrimitives.end());
+	}
 }
 
 void PrimitiveRenderManager::UpdatePerspective(float fieldOfViewHorizontal, float aspectRatio)
@@ -41,7 +51,7 @@ void PrimitiveRenderManager::UpdatePerspective(float fieldOfViewHorizontal, floa
 	s_fieldOfViewVertical = atan(tanf(fieldOfViewHorizontal / 2.0f) / aspectRatio) * 2.0f;
 	s_aspectRatio = aspectRatio;
 
-	perspectiveMatrix = XMMatrixPerspectiveFovLH(s_fieldOfViewVertical, aspectRatio, 0.01f, 10000.0f);
+	perspectiveMatrix = XMMatrixPerspectiveFovRH(s_fieldOfViewVertical, aspectRatio, 0.01f, 10000.0f);
 	perspectiveMatrixTransposed = XMMatrixTranspose(perspectiveMatrix);
 }
 
@@ -57,14 +67,14 @@ void PrimitiveRenderManager::UpdateView(
 	float positionZ
 )
 {
-	XMVECTOR vForward = { forwardX, forwardY, forwardZ };
-	XMVECTOR vUp = { upX, upY, upZ };
-	XMVECTOR vPosition = { positionX, positionY, positionZ };
+	XMVECTOR vForward		=	{ forwardX, forwardY, forwardZ };
+	XMVECTOR vUp			=	{ upX, upY, upZ };
+	XMVECTOR vPosition		=	{ positionX, positionY, positionZ };
 
 	vUp = XMVector3Normalize(vUp);
 	vForward = XMVector3Normalize(vForward);
 
-	viewMatrix = XMMatrixLookAtLH(vPosition, vPosition + vForward, vUp);
+	viewMatrix = XMMatrixLookAtRH(vPosition, vPosition + vForward, vUp);
 	viewMatrixTransposed = XMMatrixTranspose(viewMatrix);
 }
 
@@ -87,26 +97,23 @@ void PrimitiveRenderManager::Render()
 	{
 		BoxRenderer::BeginRenderBox();
 
-		for (const BoxPrimitive& rBoxPrimitive : s_immediateBoxPrimitives)
+		for (const BoxPrimitiveData& rBoxPrimitive : s_immediateBoxPrimitives)
 		{
-			if (rBoxPrimitive.IsVisible())
-			{
-				BoxRenderer::RenderBox(
-					XMFLOAT3(
-						rBoxPrimitive.m_positionX,
-						rBoxPrimitive.m_positionY,
-						rBoxPrimitive.m_positionZ),
-					XMFLOAT3(
-						rBoxPrimitive.m_dimensionsX,
-						rBoxPrimitive.m_dimensionsY,
-						rBoxPrimitive.m_dimensionsZ),
-					XMFLOAT4(
-						rBoxPrimitive.m_colorR,
-						rBoxPrimitive.m_colorG,
-						rBoxPrimitive.m_colorB,
-						rBoxPrimitive.m_colorA)
-				);
-			}
+			BoxRenderer::RenderBox(
+				XMFLOAT3(
+					rBoxPrimitive.m_positionX,
+					rBoxPrimitive.m_positionY,
+					rBoxPrimitive.m_positionZ),
+				XMFLOAT3(
+					rBoxPrimitive.m_dimensionsX,
+					rBoxPrimitive.m_dimensionsY,
+					rBoxPrimitive.m_dimensionsZ),
+				XMFLOAT4(
+					rBoxPrimitive.m_colorR,
+					rBoxPrimitive.m_colorG,
+					rBoxPrimitive.m_colorB,
+					rBoxPrimitive.m_colorA)
+			);
 		}
 		s_immediateBoxPrimitives.clear();
 
@@ -174,9 +181,12 @@ ID3D11Buffer* const& PrimitiveRenderManager::GetConstantsBuffer()
 	return pCurrentFrameConstantsBuffer;
 }
 
-void PrimitiveRenderManager::ImmediateRenderBoxPrimitive(BoxPrimitive& rBoxPrimitive)
+void PrimitiveRenderManager::RenderImmediateBox()
 {
-	s_immediateBoxPrimitives.emplace_back(rBoxPrimitive);
+	if (immediateBoxPrimitive.IsVisible())
+	{
+		s_immediateBoxPrimitives.emplace_back(GetImmediateBox());
+	}
 }
 
 void PrimitiveRenderManager::MapConstantsBuffer()
@@ -230,4 +240,8 @@ bool PrimitiveRenderManager::CalculateScreenCoordinates(float positionX, float p
 	return false;
 }
 
+BoxPrimitive& PrimitiveRenderManager::GetImmediateBox()
+{
+	return immediateBoxPrimitive;
+}
 

@@ -246,6 +246,68 @@ MantleMapTab::~MantleMapTab()
 	}
 }
 
+// X : Orange
+#define COORDACTIVEPRIMARY (217.0f / 255.0f)
+#define COORDACTIVESECONDARY (108.0f / 255.0f)
+#define COORDINACTIVEPRIMARY (115.0f / 255.0f)
+#define COORDINACTIVESECONDARY (57.0f / 255.0f)
+
+#define XCOORDACTIVE COORDACTIVEPRIMARY, COORDACTIVESECONDARY, 0.0f
+#define YCOORDACTIVE 0.0f, COORDACTIVEPRIMARY, COORDACTIVESECONDARY
+#define ZCOORDACTIVE COORDACTIVESECONDARY, 0.0f, COORDACTIVEPRIMARY
+#define WCOORDACTIVE COORDACTIVEPRIMARY, COORDACTIVEPRIMARY, COORDACTIVEPRIMARY
+
+#define XCOORDINACTIVE COORDINACTIVEPRIMARY, COORDINACTIVESECONDARY, 0.0f
+#define YCOORDINACTIVE 0.0f, COORDINACTIVEPRIMARY, COORDINACTIVESECONDARY
+#define ZCOORDINACTIVE COORDINACTIVESECONDARY, 0.0f, COORDINACTIVEPRIMARY
+#define WCOORDINACTIVE COORDINACTIVEPRIMARY, COORDINACTIVEPRIMARY, COORDINACTIVEPRIMARY
+
+void RenderGizmoImmediate(float x, float y, float z)
+{
+	static BoxPrimitive& rImmediateBox = PrimitiveRenderManager::GetImmediateBox();
+
+	float offsets[4][3] =
+	{
+		{ 0.45f, 0.0f, 0.0f },
+		{ 0.0f, 0.45f, 0.0f },
+		{ 0.0f, 0.0f, 0.45f },
+		{ 0.0f, 0.0f, 0.0f },
+	};
+	float colors[2][4][3] =
+	{
+		{
+			XCOORDINACTIVE,
+			YCOORDINACTIVE,
+			ZCOORDINACTIVE,
+			WCOORDINACTIVE,
+		},
+		{
+			XCOORDACTIVE,
+			YCOORDACTIVE,
+			ZCOORDACTIVE,
+			WCOORDACTIVE,
+		}
+	};
+
+	bool active = true;
+
+	for (int i = 0; i < 4; i++)
+	{
+		float* pOffsetData = offsets[i];
+		float* pColorData = colors[active][i];
+		rImmediateBox.SetColor(pColorData[0], pColorData[1], pColorData[2], 1.0f);
+		rImmediateBox.UpdateAsCenteredBox(
+			x + pOffsetData[0],
+			y + pOffsetData[1],
+			z + pOffsetData[2],
+			0.1f,
+			0.1f,
+			0.1f
+		);
+		PrimitiveRenderManager::RenderImmediateBox();
+	}
+}
+
 void MantleMapTab::GameRender()
 {
 	if (!m_renderTriggerVolumes)
@@ -268,52 +330,50 @@ void MantleMapTab::GameRender()
 		s_scenario_definition* pScenario = pTagInterface->GetData<s_scenario_definition>();
 		s_tag_block_definition<s_scenario_definition::s_trigger_volume_block_definition>& rTriggerVolumesBlock = pScenario->trigger_volumes_block;
 
-		BoxPrimitive boxPrimitive;
+		static BoxPrimitive& rImmediateBox = PrimitiveRenderManager::GetImmediateBox();
 
 		s_scenario_definition::s_trigger_volume_block_definition* pTagBlockData = m_pCacheFile->GetTagBlockData(rTriggerVolumesBlock);
 		for (uint32_t i = 0; i < rTriggerVolumesBlock.count; i++)
 		{
+
 			s_scenario_definition::s_trigger_volume_block_definition& rTriggerVolume = pTagBlockData[i];
 
-			boxPrimitive.SetColor(0.0f, 1.0f, 0.0f, 1.0f);
-			boxPrimitive.UpdateAsCenteredBox(
-				rTriggerVolume.position_x,
-				rTriggerVolume.position_z,
-				rTriggerVolume.position_y,
-				rTriggerVolume.extents_x,
-				rTriggerVolume.extents_z,
-				rTriggerVolume.extents_y
-			);
+			bool isKillVolume = rTriggerVolume.kill_volume != 0xFFFFi16;
 
-			PrimitiveRenderManager::ImmediateRenderBoxPrimitive(boxPrimitive);
-
+			int imguiTextColor;
+			const char* pTriggerVolumeText;
+			if (isKillVolume)
 			{
-				boxPrimitive.SetColor(1.0f, 0.0f, 0.0f, 1.0f);
-				boxPrimitive.UpdateAsCenteredBox(
-					rTriggerVolume.position_x,
-					rTriggerVolume.position_z,
-					rTriggerVolume.position_y,
-					0.1f,
-					0.1f,
-					0.1f
-				);
+				rImmediateBox.SetColor(1.0f, 0.0f, 0.0f, 1.0f);
+				imguiTextColor = IM_COL32(255, 0, 0, 255);
+				pTriggerVolumeText = "Kill Volume";
+			}
+			else
+			{
+				rImmediateBox.SetColor(0.0f, 1.0f, 0.0f, 1.0f);
+				imguiTextColor = IM_COL32(0, 255, 0, 255);
+				pTriggerVolumeText = "Trigger Volume";
+			}
+			rImmediateBox.UpdateAsCornerAndExtentBox(
+				rTriggerVolume.position_x,
+				rTriggerVolume.position_y,
+				rTriggerVolume.position_z,
+				rTriggerVolume.extents_x,
+				rTriggerVolume.extents_y,
+				rTriggerVolume.extents_z
+			);
+			PrimitiveRenderManager::RenderImmediateBox();
 
-				PrimitiveRenderManager::ImmediateRenderBoxPrimitive(boxPrimitive);
+			RenderGizmoImmediate(rTriggerVolume.position_x, rTriggerVolume.position_y, rTriggerVolume.position_z);
 
-				float positionX = rTriggerVolume.position_x;
-				float positionY = rTriggerVolume.position_z;
-				float positionZ = rTriggerVolume.position_y;
-				float screenX = 0.0f;
-				float screenY = 0.0f;
-				if (PrimitiveRenderManager::CalculateScreenCoordinates(positionX, positionY, positionZ, screenX, screenY))
-				{
-					ImGui::GetWindowDrawList()->AddText(ImVec2(screenX, screenY), IM_COL32(0, 255, 0, 255), "Trigger Volume");
-				}
+			float screenX = 0.0f;
+			float screenY = 0.0f;
+			if (PrimitiveRenderManager::CalculateScreenCoordinates(rTriggerVolume.position_x, rTriggerVolume.position_y, rTriggerVolume.position_z, screenX, screenY))
+			{
+				ImGui::GetWindowDrawList()->AddText(ImVec2(screenX, screenY), imguiTextColor, pTriggerVolumeText);
 			}
 		}
 	}
-
-	
 }
 
 void MantleMapTab::RenderContents(bool setSelected)
