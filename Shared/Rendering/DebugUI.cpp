@@ -82,18 +82,8 @@ void DebugUI::Deinit()
 	s_swapChainDescription = {};
 }
 
-void DebugUI::RenderFrame()
+void DebugUI::StartFrame()
 {
-	if (s_initialised == false)
-	{
-		return;
-	}
-
-	if (s_visible == false)
-	{
-		return;
-	}
-
 	// #TODO: Very inefficient
 	ImGuiIO& rImguiIO = ImGui::GetIO();
 	rImguiIO.MouseDown[0] = GetAsyncKeyState(VK_LBUTTON);
@@ -102,7 +92,10 @@ void DebugUI::RenderFrame()
 	ImGui_ImplWin32_NewFrame();
 
 	ImGui::NewFrame();
+}
 
+void DebugUI::EndFrame()
+{
 	//Menu is displayed when g_ShowMenu is TRUE
 	if (s_visible)
 	{
@@ -113,11 +106,23 @@ void DebugUI::RenderFrame()
 		//bool bShow = true;
 		//ImGui::ShowDemoWindow(&bShow);
 	}
+
 	ImGui::EndFrame();
 	ImGui::Render();
 
 	s_pContext->OMSetRenderTargets(1, &s_mainRenderTargetView, NULL);
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+}
+
+void DebugUI::RenderFrame()
+{
+	if (s_initialised == false)
+	{
+		return;
+	}
+
+	StartFrame();
+	EndFrame();
 }
 
 void DebugUI::ToggleUI()

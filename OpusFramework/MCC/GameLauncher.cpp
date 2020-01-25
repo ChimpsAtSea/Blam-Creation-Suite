@@ -80,9 +80,26 @@ void GameLauncher::OpusTick()
 
 void GameLauncher::GameTick()
 {
-	gameRender();
-	DebugUI::RenderFrame(); // OpusUITick is registered to the DebugUI
+	DebugUI::StartFrame(); // OpusUITick is registered to the DebugUI
 	//OpusUITick();
+
+	constexpr ImGuiWindowFlags kDebugWindowFlags =
+		ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_NoBackground |
+		ImGuiWindowFlags_NoSavedSettings |
+		ImGuiWindowFlags_NoMouseInputs |
+		ImGuiWindowFlags_NoNav |
+		ImGuiWindowFlags_NoDecoration |
+		ImGuiWindowFlags_NoInputs;
+	ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2(static_cast<float>(Window::GetWindowWidth()), static_cast<float>(Window::GetWindowHeight())), ImGuiCond_Always);
+	if (ImGui::Begin("##debug", NULL, kDebugWindowFlags)) // render inside of the dummy imgui window for on screen text display
+	{
+		gameRender();
+	}
+	ImGui::End();
+
+	DebugUI::EndFrame();
 }
 
 void GameLauncher::OpusUITick()

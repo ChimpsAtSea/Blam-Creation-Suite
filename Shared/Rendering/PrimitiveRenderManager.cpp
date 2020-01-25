@@ -7,6 +7,8 @@ ID3D11Buffer* PrimitiveRenderManager::pCurrentFrameConstantsBuffer = nullptr;
 ID3D11Buffer* PrimitiveRenderManager::ppFrameConstantsBuffers[kNumConstantsBuffers] = {};
 DirectX::XMMATRIX PrimitiveRenderManager::viewMatrix = {};
 DirectX::XMMATRIX PrimitiveRenderManager::perspectiveMatrix = {};
+DirectX::XMMATRIX PrimitiveRenderManager::viewMatrixTransposed = {};
+DirectX::XMMATRIX PrimitiveRenderManager::perspectiveMatrixTransposed = {};
 float PrimitiveRenderManager::s_fieldOfViewHorizontal = 0.0f;
 float PrimitiveRenderManager::s_fieldOfViewVertical = 0.0f;
 float PrimitiveRenderManager::s_aspectRatio = 0.0f;
@@ -40,7 +42,7 @@ void PrimitiveRenderManager::UpdatePerspective(float fieldOfViewHorizontal, floa
 	s_aspectRatio = aspectRatio;
 
 	perspectiveMatrix = XMMatrixPerspectiveFovLH(s_fieldOfViewVertical, aspectRatio, 0.01f, 10000.0f);
-	perspectiveMatrix = XMMatrixTranspose(perspectiveMatrix);
+	perspectiveMatrixTransposed = XMMatrixTranspose(perspectiveMatrix);
 }
 
 void PrimitiveRenderManager::UpdateView(
@@ -63,7 +65,7 @@ void PrimitiveRenderManager::UpdateView(
 	vForward = XMVector3Normalize(vForward);
 
 	viewMatrix = XMMatrixLookAtLH(vPosition, vPosition + vForward, vUp);
-	viewMatrix = XMMatrixTranspose(viewMatrix);
+	viewMatrixTransposed = XMMatrixTranspose(viewMatrix);
 }
 
 void PrimitiveRenderManager::Render()
@@ -199,11 +201,33 @@ void PrimitiveRenderManager::UpdateConstantsBuffer()
 	MapConstantsBuffer();
 
 	PerFrameConstants& rPerFrameConstants = *pPerFrameConstantsArray;
-	rPerFrameConstants.m_viewMatrix = viewMatrix;
-	rPerFrameConstants.m_perspectiveMatrix = perspectiveMatrix;
+	rPerFrameConstants.m_viewMatrix = viewMatrixTransposed;
+	rPerFrameConstants.m_perspectiveMatrix = perspectiveMatrixTransposed;
 
 	UnmapConstantsBuffer();
 }
 
+bool PrimitiveRenderManager::CalculateScreenCoordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY)
+{
+	XMVECTOR pV = { positionX, positionY, positionZ, 1.0f };
+	float Height = (float)Window::GetWindowHeight();
+	float Width = (float)Window::GetWindowWidth();
+
+	DirectX::XMMATRIX pWorld = DirectX::XMMatrixIdentity();
+	DirectX::XMMATRIX pProjection = perspectiveMatrix;
+	DirectX::XMMATRIX pView = viewMatrix;
+
+	DirectX::XMVECTOR  pOut = XMVector3Project(pV, 0, 0, Width, Height, 0, 1, pProjection, pView, pWorld);
+	DirectX::XMFLOAT3 pOut3d;
+	DirectX::XMStoreFloat3(&pOut3d, pOut);
+
+	if (pOut3d.z < 1.0f)
+	{
+		screenX = pOut3d.x;
+		screenY = pOut3d.y;
+		return true;
+	}
+	return false;
+}
 
 

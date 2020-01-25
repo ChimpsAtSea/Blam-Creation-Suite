@@ -20,6 +20,8 @@ public:
 
 	static DirectX::XMMATRIX viewMatrix;
 	static DirectX::XMMATRIX perspectiveMatrix;
+	static DirectX::XMMATRIX viewMatrixTransposed;
+	static DirectX::XMMATRIX perspectiveMatrixTransposed;
 
 	static float s_fieldOfViewHorizontal;
 	static float s_fieldOfViewVertical;
@@ -46,6 +48,7 @@ public:
 	static void ImmediateRenderBoxPrimitive(BoxPrimitive& rBoxPrimitive);
 	static void RegisterBoxPrimitive(BoxPrimitive* pBoxPrimitive);
 	static void UnregisterBoxPrimitive(BoxPrimitive* pBoxPrimitive);
+	static bool CalculateScreenCoordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY);
 
 private:
 	static void SetupConstantBuffers();

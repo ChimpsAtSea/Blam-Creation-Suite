@@ -222,7 +222,7 @@ MantleMapTab::MantleMapTab(std::shared_ptr<CacheFile> pCacheFile)
 	: m_pCacheFile(pCacheFile)
 	, MantleTab(pCacheFile->GetFileNameChar(), pCacheFile->GetFilePathChar())
 	, m_tabClosedCallback([this](MantleTab& rTab) { this->RemoveTabItem(rTab); })
-	, m_renderTriggerVolumes(false)
+	, m_renderTriggerVolumes(CommandLine::HasCommandLineArg("-showtriggervolumes"))
 	, m_pNextSelectedTab(nullptr)
 	, m_pSelectedSearchTagInterface(nullptr)
 	, m_pSearchBuffer()
@@ -280,14 +280,40 @@ void MantleMapTab::GameRender()
 				rTriggerVolume.position_x,
 				rTriggerVolume.position_z,
 				rTriggerVolume.position_y,
-				1.0f, //rTriggerVolume.extents_x,
-				1.0f, //rTriggerVolume.extents_z,
-				1.0f //rTriggerVolume.extents_y
+				rTriggerVolume.extents_x,
+				rTriggerVolume.extents_z,
+				rTriggerVolume.extents_y
 			);
 
 			PrimitiveRenderManager::ImmediateRenderBoxPrimitive(boxPrimitive);
+
+			{
+				boxPrimitive.SetColor(1.0f, 0.0f, 0.0f, 1.0f);
+				boxPrimitive.UpdateAsCenteredBox(
+					rTriggerVolume.position_x,
+					rTriggerVolume.position_z,
+					rTriggerVolume.position_y,
+					0.1f,
+					0.1f,
+					0.1f
+				);
+
+				PrimitiveRenderManager::ImmediateRenderBoxPrimitive(boxPrimitive);
+
+				float positionX = rTriggerVolume.position_x;
+				float positionY = rTriggerVolume.position_z;
+				float positionZ = rTriggerVolume.position_y;
+				float screenX = 0.0f;
+				float screenY = 0.0f;
+				if (PrimitiveRenderManager::CalculateScreenCoordinates(positionX, positionY, positionZ, screenX, screenY))
+				{
+					ImGui::GetWindowDrawList()->AddText(ImVec2(screenX, screenY), IM_COL32(0, 255, 0, 255), "Trigger Volume");
+				}
+			}
 		}
 	}
+
+	
 }
 
 void MantleMapTab::RenderContents(bool setSelected)

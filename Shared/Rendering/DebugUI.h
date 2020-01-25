@@ -10,6 +10,8 @@ public:
 
 	static void Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	static void Deinit();
+	static void StartFrame();
+	static void EndFrame();
 	static void RenderFrame();
 	static void ToggleUI();
 	static void Show();
