@@ -342,3 +342,6 @@ tbb-build/cmake
 #Mantle
 MantleLib/Tags/ReflectionData.h
 MantleLib/Tags/ReflectionData.cpp
+
+#CommandLineOptions Plugin
+*.args.json

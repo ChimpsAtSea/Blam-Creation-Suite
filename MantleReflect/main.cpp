@@ -1,5 +1,9 @@
 #include "mantlereflect-private-pch.h"
 
+#ifdef _DEBUG_FAST /* change build configuration for full debug */
+#pragma optimize("", off)
+#endif
+
 using namespace llvm;
 using namespace clang;
 using namespace clang::tooling;
