@@ -78,6 +78,10 @@ void MantleTagTab::RenderContents(bool setSelected)
 		{
 			RenderContentsImpl(m_rTagInterface.GetData(), *pReflectionType, 0);
 		}
+		else
+		{
+			ImGui::Text("No reflection information found for '%s'", m_rTagInterface.GetGroupShortName());
+		}
 
 		ImGui::EndChild();
 		ImGui::EndTabItem();
