@@ -8,7 +8,7 @@ MapInfoManager::MapInfoManager(const char* pDirectoryPath)
 		// #TODO: Automatic Windows filesystem watching
 		for (const std::filesystem::directory_entry& rDirectoryEntry : std::filesystem::directory_iterator(pDirectoryPath)) {
 
-			const path& rFilepath = rDirectoryEntry.path();
+			const std::filesystem::path& rFilepath = rDirectoryEntry.path();
 			if (rFilepath.has_extension())
 			{
 				std::wstring pFileExtension = rFilepath.extension();
