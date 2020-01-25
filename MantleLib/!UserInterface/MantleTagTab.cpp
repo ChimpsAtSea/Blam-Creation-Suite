@@ -211,7 +211,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 				ImGui::SetColumnOffset(1, recursionPadding);
 				ImGui::SetColumnWidth(1, 400);
 				ImGui::SetColumnWidth(2, 150);
-				ImGui::SetColumnWidth(3, 550);
+				ImGui::SetColumnWidth(3, 750);
 				ImGui::SetColumnWidth(4, 65);
 				ImGui::SetColumnWidth(5, 65);
 				ImGui::NextColumn(); // padding
@@ -239,7 +239,10 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 				ImGui::NextColumn();
 				if (ImGui::Button("NULL"))
 				{
-
+					pTagReference->index = 0xFFFFFFFF;
+					pTagReference->nameLength = 0;
+					pTagReference->nameOffset = 0;
+					pTagReference->tagGroupName = static_cast<TagGroupName>(0xFFFFFFFF);
 				}
 				else if (ImGui::IsItemHovered()) ImGui::SetTooltip("Nulls this tag reference");
 				ImGui::NextColumn();

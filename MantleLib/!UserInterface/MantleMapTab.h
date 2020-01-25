@@ -22,6 +22,8 @@ protected:
 	void AddTabItem(MantleTab& rMantleTab);
 	void RemoveTabItem(MantleTab& rMantleTab);
 
+
+	char m_pSearchBuffer[1024];
 	TagInterface* m_pSelectedSearchTagInterface;
 	MantleTab* m_pNextSelectedTab;
 	bool m_renderTriggerVolumes;

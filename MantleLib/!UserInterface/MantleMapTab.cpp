@@ -28,18 +28,17 @@ void MantleMapTab::DisplayMapTabUI()
 	ImGui::Separator();
 
 	{
-		static char pSearchBuffer[1024] = {};
 		ImGui::BeginChild("##left_pane", ImVec2(0, 0), true, ImGuiWindowFlags_NoScrollbar);
 		{
 			ImGui::Text("Search:");
 			ImGui::SetNextItemWidth(-1);
-			ImGui::InputText("", pSearchBuffer, 1024);
+			ImGui::InputText("", m_pSearchBuffer, 1024);
 			ImGui::Dummy(ImVec2(0, 10));
 		}
 		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<GroupInterface*> rGroupInterfaces = m_pCacheFile->GetGroupInterfaces();
 
 
-		bool useSearch = pSearchBuffer[0] != 0;
+		bool useSearch = m_pSearchBuffer[0] != 0;
 		if (useSearch)
 		{
 			const std::vector<TagInterface*> rTagInterfaces = m_pCacheFile->GetTagInterfaces();
@@ -52,9 +51,9 @@ void MantleMapTab::DisplayMapTabUI()
 					? rTagInterface.GetPathWithGroupID()
 					: rTagInterface.GetNameWithGroupID();
 
-				if (pSearchBuffer[0])
+				if (m_pSearchBuffer[0])
 				{
-					if (strstr(pTagDisplayWithGroupID, pSearchBuffer) == nullptr)
+					if (strstr(pTagDisplayWithGroupID, m_pSearchBuffer) == nullptr)
 					{
 						continue;
 					}
@@ -214,6 +213,7 @@ MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription)
 	, m_renderTriggerVolumes(false)
 	, m_pNextSelectedTab(nullptr)
 	, m_pSelectedSearchTagInterface(nullptr)
+	, m_pSearchBuffer()
 {
 
 }
@@ -225,6 +225,7 @@ MantleMapTab::MantleMapTab(std::shared_ptr<CacheFile> pCacheFile)
 	, m_renderTriggerVolumes(false)
 	, m_pNextSelectedTab(nullptr)
 	, m_pSelectedSearchTagInterface(nullptr)
+	, m_pSearchBuffer()
 {
 
 }
