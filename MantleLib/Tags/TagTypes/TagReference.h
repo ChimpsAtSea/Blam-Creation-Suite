@@ -4,7 +4,7 @@ class TagReference
 {
 public:
 	TagGroupName tagGroupName;
-	int32_t nameLength;
-	int32_t nameOffset;
-	int32_t index;
+	uint32_t nameLength;
+	uint32_t nameOffset;
+	uint32_t index;
 };

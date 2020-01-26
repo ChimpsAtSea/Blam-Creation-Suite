@@ -46,6 +46,20 @@ public:
 		}
 		return m_groupInterfaces;
 	}
+	inline GroupInterface* GetGroupInterfaceByGroupID(TagGroupName groupName)
+	{
+		if (groupName != TagGroupName::Invalid)
+		{
+			for (GroupInterface* pGroupInterface : GetGroupInterfaces())
+			{
+				if (pGroupInterface->m_groupMagic == underlying_cast(groupName))
+				{
+					return pGroupInterface;
+				}
+			}
+		}
+		return nullptr;
+	}
 	
 	template<typename R, typename T>
 	inline R* GetTagBlockData(s_tag_block_definition<T>& rTagBlock)

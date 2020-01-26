@@ -21,6 +21,8 @@ public:
 	inline const char* GetShortName() const { return m_pShortName.c_str(); };
 	inline const char* GetFullName() const { return m_pFullName.c_str(); };
 	inline const ReflectionType* GetReflectionData() const { return m_pReflectionData; };
+	inline uint32_t GetGroupMagicRaw() const { return m_groupMagic; }
+	inline TagGroupName GetGroupMagic() const { return static_cast<TagGroupName>(m_groupMagic); }
 
 private:
 	void initTagGroupRelationship();

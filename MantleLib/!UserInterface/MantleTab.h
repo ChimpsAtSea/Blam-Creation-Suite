@@ -31,6 +31,17 @@ protected:
 	std::vector<ImGUIDynamnicData*> m_imGuiDynamicData;
 
 	inline ImGUIDynamnicData& GetDynamicData(void* pPosition);
+	template<typename T>
+	inline T& GetDynamicData(void* pPosition)
+	{
+		ImGUIDynamnicData& rDynamicData = GetDynamicData(pPosition);
+		static_assert(sizeof(T) <= sizeof(rDynamicData.second), "Dynamic data exceeds allocated space");
+		T& rDynamicTagBlockData = *reinterpret_cast<T*>(rDynamicData.second);
+		return rDynamicTagBlockData;
+	}
+
+	
+
 };
 
 inline MantleTab::ImGUIDynamnicData& MantleTab::GetDynamicData(void* pPosition)

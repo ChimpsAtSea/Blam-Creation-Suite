@@ -109,7 +109,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 		const ReflectionTypeInfo& rTypeInfo = reflectionField.m_typeInfo;
 		const char* pFieldDisplayName = reflectionField.m_pMemberNiceName;
 
-		
+
 		void* pFieldDataPointer = reinterpret_cast<int32_t*>(pData + reflectionField.m_offset);
 
 		ImGui::PushID(pFieldDataPointer);
@@ -204,9 +204,6 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 			}
 			else if (rTypeInfo.m_reflectionTypeCategory == ReflectionTypeCategory::TagReference)
 			{
-				TagReference* pTagReference = reinterpret_cast<TagReference*>(pData + reflectionField.m_offset);
-
-
 				ImGui::Columns(6, NULL, false);
 				ImGui::SetColumnOffset(1, recursionPadding);
 				ImGui::SetColumnWidth(1, 400);
@@ -220,22 +217,134 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 				ImGui::NextColumn();
 				ImGui::PushItemWidth(-1);
 
-				TagInterface* pTagInterface = m_rCacheFile.GetTagInterface(static_cast<uint16_t>(pTagReference->index));
-				const char* pTagName = pTagInterface ? pTagInterface->GetPathWithGroupID() : "";
-				const char* pGroupShortName = pTagInterface ? pTagInterface->GetGroupShortName() : "(null)";
+
+				TagReference* pTagReference = reinterpret_cast<TagReference*>(pData + reflectionField.m_offset);
+
+				const char* pGroupShortName = "(null)";
+				GroupInterface* pTagReferenceGroupInterface = m_rCacheFile.GetGroupInterfaceByGroupID(pTagReference->tagGroupName);
+				if (pTagReferenceGroupInterface)
+				{
+					pGroupShortName = pTagReferenceGroupInterface->GetShortName();
+				}
+				TagInterface* pTagReferenceTagInterface = m_rCacheFile.GetTagInterface(static_cast<uint16_t>(pTagReference->index));
 
 				if (ImGui::BeginCombo("##tag_group_magic", pGroupShortName))
 				{
+					if (ImGui::Selectable("(null)", pTagReferenceGroupInterface == nullptr))
+					{
+						if (pTagReferenceGroupInterface != nullptr) // selecting a new tag group
+						{
+							pTagReference->tagGroupName = TagGroupName::Invalid;
+							pTagReference->index = ~0u;
+							pTagReferenceTagInterface = nullptr;
+							pTagReferenceGroupInterface = nullptr;
+						}
+					}
+
+					for (GroupInterface* pCurrentGroupInterface : m_rCacheFile.GetGroupInterfaces())
+					{
+						if (ImGui::Selectable(pCurrentGroupInterface->GetShortName(), pCurrentGroupInterface == pTagReferenceGroupInterface))
+						{
+							if (pCurrentGroupInterface != pTagReferenceGroupInterface) // selecting a new tag group
+							{
+								pTagReference->tagGroupName = pCurrentGroupInterface->GetGroupMagic();
+								pTagReference->index = ~0u;
+								pTagReferenceTagInterface = nullptr;
+								pTagReferenceGroupInterface = m_rCacheFile.GetGroupInterfaceByGroupID(pTagReference->tagGroupName);
+							}
+						}
+					}
+
 					ImGui::EndCombo();
 				}
 				else if (ImGui::IsItemHovered()) ImGui::SetTooltip("Select an entry from the dropdown");
+
 				ImGui::NextColumn();
 				ImGui::PushItemWidth(-1);
 
-				if (ImGui::BeginCombo("##tag_path", pTagName))
+				if (pTagReferenceTagInterface)
 				{
-					ImGui::EndCombo();
+					const char* pTagReferenceDisplayName = MantleGUI::IsSidebarUseFullFileLength()
+						? pTagReferenceTagInterface->GetPathWithGroupID()
+						: pTagReferenceTagInterface->GetNameWithGroupID();
+
+					if (ImGui::BeginCombo("##tag_path", pTagReferenceDisplayName))
+					{
+						for (TagInterface* pCurrentTagInterface : m_rCacheFile.GetTagInterfaces())
+						{
+							if (pCurrentTagInterface->IsNull())
+							{
+								continue;
+							}
+
+							// #TODO: Figure out why GetGroupInterface is returning null?
+							//assert(pCurrentTagInterface->GetGroupInterface() != nullptr);
+							//if (pCurrentTagInterface->GetGroupInterface() != pTagReferenceGroupInterface)
+							GroupInterface* pCurrentGroupInterface = m_rCacheFile.GetGroupInterfaces()[pCurrentTagInterface->GetGroupIndex()];
+							assert(pCurrentGroupInterface != nullptr);
+							if (pCurrentGroupInterface != pTagReferenceGroupInterface)
+							{
+								continue;
+							}
+
+							const char* pCurrentTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
+								? pCurrentTagInterface->GetPathWithGroupID()
+								: pCurrentTagInterface->GetNameWithGroupID();
+
+							if (ImGui::Selectable(pCurrentTagDisplayWithGroupID, pCurrentTagInterface == pTagReferenceTagInterface))
+							{
+								if (pCurrentTagInterface != pTagReferenceTagInterface) // selecting a new tag group
+								{
+									pTagReferenceTagInterface = pCurrentTagInterface;
+									pTagReferenceGroupInterface = pCurrentTagInterface->GetGroupInterface();
+									pTagReference->tagGroupName = pTagReferenceGroupInterface->GetGroupMagic();
+									pTagReference->index = pCurrentTagInterface->GetIndex();
+								}
+							}
+						}
+						ImGui::EndCombo();
+					}
 				}
+				else
+				{
+					if (ImGui::BeginCombo("##tag_path", ""))
+					{
+						for (TagInterface* pCurrentTagInterface : m_rCacheFile.GetTagInterfaces())
+						{
+							if (pCurrentTagInterface->IsNull())
+							{
+								continue;
+							}
+
+							// #TODO: Figure out why GetGroupInterface is returning null?
+							//assert(pCurrentTagInterface->GetGroupInterface() != nullptr);
+							//if (pCurrentTagInterface->GetGroupInterface() != pTagReferenceGroupInterface)
+							GroupInterface* pCurrentGroupInterface = m_rCacheFile.GetGroupInterfaces()[pCurrentTagInterface->GetGroupIndex()];
+							assert(pCurrentGroupInterface != nullptr);
+							if (pCurrentGroupInterface != pTagReferenceGroupInterface)
+							{
+								continue;
+							}
+
+							const char* pCurrentTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
+								? pCurrentTagInterface->GetPathWithGroupID()
+								: pCurrentTagInterface->GetNameWithGroupID();
+
+							if (ImGui::Selectable(pCurrentTagDisplayWithGroupID, pCurrentTagInterface == pTagReferenceTagInterface))
+							{
+								if (pCurrentTagInterface != pTagReferenceTagInterface) // selecting a new tag group
+								{
+									pTagReferenceTagInterface = pCurrentTagInterface;
+									pTagReferenceGroupInterface = pCurrentTagInterface->GetGroupInterface();
+									pTagReference->tagGroupName = pCurrentGroupInterface->GetGroupMagic();
+									pTagReference->index = pCurrentTagInterface->GetIndex();
+								}
+							}
+						}
+						ImGui::EndCombo();
+					}
+				}
+
 				ImGui::NextColumn();
 				if (ImGui::Button("NULL"))
 				{
@@ -248,12 +357,12 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 				ImGui::NextColumn();
 				if (ImGui::Button("VIEW"))
 				{
-					if (pTagInterface)
+					if (pTagReferenceTagInterface)
 					{
 						MantleMapTab* pMapTab = dynamic_cast<MantleMapTab*>(m_pParentTab);
 						if (pMapTab)
 						{
-							pMapTab->openTagTab(*pTagInterface);
+							pMapTab->openTagTab(*pTagReferenceTagInterface);
 						}
 					}
 				}
@@ -306,8 +415,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 				{
 					int32_t m_position;
 				};
-				ImGUIDynamnicData& rDynamicData = GetDynamicData(pTagBlock);
-				TagBlockDynamicData& rDynamicTagBlockData = *reinterpret_cast<TagBlockDynamicData*>(rDynamicData.second);
+				TagBlockDynamicData& rDynamicTagBlockData = GetDynamicData<TagBlockDynamicData>(pTagBlock);
 
 				ImGui::Columns(1);
 				ImGui::Dummy(ImVec2());
