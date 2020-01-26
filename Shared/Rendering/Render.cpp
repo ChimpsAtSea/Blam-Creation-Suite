@@ -166,9 +166,10 @@ void Render::InitDirectX()
 	assert(s_pFactory != nullptr);
 
 	UINT createDeviceFlags = 0;
-#ifdef _DEBUG
-	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
-#endif
+	if (CommandLine::HasCommandLineArg("-d3ddebug"))
+	{
+		createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+	}
 
 	ID3D11DeviceContext* pDeviceContext = nullptr;
 	HRESULT D3D11CreateDeviceResult = D3D11CreateDevice(
