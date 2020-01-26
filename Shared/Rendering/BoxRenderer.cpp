@@ -98,7 +98,7 @@ void BoxRenderer::SetupShaders()
 		size_t shaderFileLength = 0;
 		if (!ResourcesManager::GetResource(ResourceType::BoxPixelShader, &pShaderBinary, &shaderFileLength))
 		{
-			WriteLineVerbose("Warning: Failed to find Box Pixel Vertex resource! Attempting to read BoxShaderPS.cso");
+			WriteLineVerbose("Warning: Failed to find Box pixel shader resource! Attempting to read BoxShaderPS.cso");
 			pShaderBinary = FileSystemReadToMemory(L"BoxShaderPS.cso", &shaderFileLength);
 		}
 		assert(pShaderBinary != nullptr);
@@ -115,7 +115,7 @@ void BoxRenderer::SetupShaders()
 	{
 		if (!ResourcesManager::GetResource(ResourceType::BoxVertexShader, &pVertexShaderBinary, &vertexShaderBinaryLength))
 		{
-			WriteLineVerbose("Warning: Failed to find Box Pixel Vertex resource! Attempting to read BoxShaderVS.cso");
+			WriteLineVerbose("Warning: Failed to find Box vertex shader resource! Attempting to read BoxShaderVS.cso");
 			pVertexShaderBinary = FileSystemReadToMemory(L"BoxShaderVS.cso", &vertexShaderBinaryLength);
 		}
 		assert(pVertexShaderBinary != nullptr);
@@ -250,7 +250,7 @@ void BoxRenderer::RenderBoxGeometry()
 		const UINT vertexStride = sizeof(XMFLOAT3);
 		const UINT vertexOffset = 0;
 
-		Render::s_pDeviceContext->RSSetState(pWireframeRasterState);
+		Render::s_pDeviceContext->RSSetState(pSolidRasterState);
 		Render::s_pDeviceContext->VSSetShader(pVertexShader, NULL, 0);
 		Render::s_pDeviceContext->PSSetShader(pPixelShader, NULL, 0);
 		Render::s_pDeviceContext->IASetInputLayout(pVertexLayout);

@@ -5,6 +5,8 @@
 extern void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
 extern void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
 
+DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
+
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
@@ -24,6 +26,7 @@ int WINAPI WinMain(
 	{
 		static float clearColor[] = { 0.25f, 0.25f, 0.25f, 1.0f };
 		Render::BeginFrame(clearColor);
+		Render::BeginFrame(&clearColor.x);
 		GameLauncher::OpusTick();
 		Render::EndFrame();
 	};

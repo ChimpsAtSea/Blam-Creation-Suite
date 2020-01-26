@@ -151,8 +151,8 @@ void GameLauncher::updateCamera()
 	{
 		float aspectRatio = 16.0f / 9.0f; // #TODO: Correct aspect ratio
 		float fieldOfViewHorizontal = observer_camera->field_of_view;
-		PrimitiveRenderManager::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
-		PrimitiveRenderManager::UpdateView(
+		Render::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
+		Render::UpdateView(
 			observer_camera->forward.I,
 			observer_camera->forward.J,
 			observer_camera->forward.K,

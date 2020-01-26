@@ -14,6 +14,37 @@ public:
 	static ID3D11DepthStencilView* s_pDepthStencilView;
 	static bool s_resizeEnabled;
 
+	static DirectX::XMMATRIX viewMatrix;
+	static DirectX::XMMATRIX perspectiveMatrix;
+	static DirectX::XMMATRIX viewMatrixTransposed;
+	static DirectX::XMMATRIX perspectiveMatrixTransposed;
+
+	static void UpdatePerspective(float fieldOfViewHorizontal, float aspectRatio);
+	static void UpdateView(
+		float forwardX,
+		float forwardY,
+		float forwardZ,
+		float upX,
+		float upY,
+		float upZ,
+		float positionX,
+		float positionY,
+		float positionZ
+	);
+	static void UpdateViewLookAt(
+		float cameraPositionX,
+		float cameraPositionY,
+		float cameraPositionZ,
+		float lookAtPositionX,
+		float lookAtPositionY,
+		float lookAtPositionZ,
+		float upX,
+		float upY,
+		float upZ
+	);
+	static bool CalculateScreenCoordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY);
+
+
 	static void CreateSwapchain(IDXGISwapChain1*& s_pSwapChain);
 	static void Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain);
 	static void Init(HINSTANCE hInstance);

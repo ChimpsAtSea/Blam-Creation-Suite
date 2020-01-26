@@ -5,14 +5,7 @@ using namespace DirectX;
 PrimitiveRenderManager::PerFrameConstants* PrimitiveRenderManager::pPerFrameConstantsArray = nullptr;
 ID3D11Buffer* PrimitiveRenderManager::pCurrentFrameConstantsBuffer = nullptr;
 ID3D11Buffer* PrimitiveRenderManager::ppFrameConstantsBuffers[kNumConstantsBuffers] = {};
-DirectX::XMMATRIX PrimitiveRenderManager::viewMatrix = {};
-DirectX::XMMATRIX PrimitiveRenderManager::perspectiveMatrix = {};
-DirectX::XMMATRIX PrimitiveRenderManager::viewMatrixTransposed = {};
-DirectX::XMMATRIX PrimitiveRenderManager::perspectiveMatrixTransposed = {};
 BoxPrimitive PrimitiveRenderManager::immediateBoxPrimitive;
-float PrimitiveRenderManager::s_fieldOfViewHorizontal = 0.0f;
-float PrimitiveRenderManager::s_fieldOfViewVertical = 0.0f;
-float PrimitiveRenderManager::s_aspectRatio = 0.0f;
 volatile uint32_t PrimitiveRenderManager::nextConstantBufferIndex = 0;
 DirectX::XMVECTOR PrimitiveRenderManager::s_vForward;
 DirectX::XMVECTOR PrimitiveRenderManager::s_vUp;
@@ -37,45 +30,6 @@ void PrimitiveRenderManager::UnregisterBoxPrimitive(BoxPrimitive* pBoxPrimitive)
 		// #TODO: Thread safe linked list
 		s_boxPrimitives.erase(std::remove(s_boxPrimitives.begin(), s_boxPrimitives.end(), pBoxPrimitive), s_boxPrimitives.end());
 	}
-}
-
-void PrimitiveRenderManager::UpdatePerspective(float fieldOfViewHorizontal, float aspectRatio)
-{
-	bool isDifferent = s_fieldOfViewHorizontal != fieldOfViewHorizontal || s_aspectRatio != aspectRatio;
-	if (!isDifferent) // avoid updating if we don't need to
-	{
-		return;
-	}
-
-	s_fieldOfViewHorizontal = fieldOfViewHorizontal;
-	s_fieldOfViewVertical = atan(tanf(fieldOfViewHorizontal / 2.0f) / aspectRatio) * 2.0f;
-	s_aspectRatio = aspectRatio;
-
-	perspectiveMatrix = XMMatrixPerspectiveFovRH(s_fieldOfViewVertical, aspectRatio, 0.01f, 10000.0f);
-	perspectiveMatrixTransposed = XMMatrixTranspose(perspectiveMatrix);
-}
-
-void PrimitiveRenderManager::UpdateView(
-	float forwardX,
-	float forwardY,
-	float forwardZ,
-	float upX,
-	float upY,
-	float upZ,
-	float positionX,
-	float positionY,
-	float positionZ
-)
-{
-	XMVECTOR vForward		=	{ forwardX, forwardY, forwardZ };
-	XMVECTOR vUp			=	{ upX, upY, upZ };
-	XMVECTOR vPosition		=	{ positionX, positionY, positionZ };
-
-	vUp = XMVector3Normalize(vUp);
-	vForward = XMVector3Normalize(vForward);
-
-	viewMatrix = XMMatrixLookAtRH(vPosition, vPosition + vForward, vUp);
-	viewMatrixTransposed = XMMatrixTranspose(viewMatrix);
 }
 
 void PrimitiveRenderManager::Render()
@@ -211,33 +165,10 @@ void PrimitiveRenderManager::UpdateConstantsBuffer()
 	MapConstantsBuffer();
 
 	PerFrameConstants& rPerFrameConstants = *pPerFrameConstantsArray;
-	rPerFrameConstants.m_viewMatrix = viewMatrixTransposed;
-	rPerFrameConstants.m_perspectiveMatrix = perspectiveMatrixTransposed;
+	rPerFrameConstants.m_viewMatrix = Render::viewMatrixTransposed;
+	rPerFrameConstants.m_perspectiveMatrix = Render::perspectiveMatrixTransposed;
 
 	UnmapConstantsBuffer();
-}
-
-bool PrimitiveRenderManager::CalculateScreenCoordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY)
-{
-	XMVECTOR pV = { positionX, positionY, positionZ, 1.0f };
-	float Height = (float)Window::GetWindowHeight();
-	float Width = (float)Window::GetWindowWidth();
-
-	DirectX::XMMATRIX pWorld = DirectX::XMMatrixIdentity();
-	DirectX::XMMATRIX pProjection = perspectiveMatrix;
-	DirectX::XMMATRIX pView = viewMatrix;
-
-	DirectX::XMVECTOR  pOut = XMVector3Project(pV, 0, 0, Width, Height, 0, 1, pProjection, pView, pWorld);
-	DirectX::XMFLOAT3 pOut3d;
-	DirectX::XMStoreFloat3(&pOut3d, pOut);
-
-	if (pOut3d.z < 1.0f)
-	{
-		screenX = pOut3d.x;
-		screenY = pOut3d.y;
-		return true;
-	}
-	return false;
 }
 
 BoxPrimitive& PrimitiveRenderManager::GetImmediateBox()

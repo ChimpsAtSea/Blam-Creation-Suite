@@ -10,6 +10,105 @@ ID3D11RenderTargetView* Render::s_pRenderTargetView = nullptr;
 ID3D11Texture2D* Render::s_pDepthStencilBuffer = nullptr;
 ID3D11DepthStencilView* Render::s_pDepthStencilView = nullptr;
 bool Render::s_resizeEnabled = true;
+DirectX::XMMATRIX Render::viewMatrix = {};
+DirectX::XMMATRIX Render::perspectiveMatrix = {};
+DirectX::XMMATRIX Render::viewMatrixTransposed = {};
+DirectX::XMMATRIX Render::perspectiveMatrixTransposed = {};
+static float s_fieldOfViewHorizontal;
+static float s_fieldOfViewVertical;
+static float s_aspectRatio;
+
+void Render::UpdatePerspective(float fieldOfViewHorizontal, float aspectRatio)
+{
+	using namespace DirectX;
+
+	bool isDifferent = s_fieldOfViewHorizontal != fieldOfViewHorizontal || s_aspectRatio != aspectRatio;
+	if (!isDifferent) // avoid updating if we don't need to
+	{
+		return;
+	}
+
+	s_fieldOfViewHorizontal = fieldOfViewHorizontal;
+	s_fieldOfViewVertical = atan(tanf(fieldOfViewHorizontal / 2.0f) / aspectRatio) * 2.0f;
+	s_aspectRatio = aspectRatio;
+
+	perspectiveMatrix = XMMatrixPerspectiveFovRH(s_fieldOfViewVertical, aspectRatio, 0.01f, 10000.0f);
+	perspectiveMatrixTransposed = XMMatrixTranspose(perspectiveMatrix);
+}
+
+void Render::UpdateView(
+	float forwardX,
+	float forwardY,
+	float forwardZ,
+	float upX,
+	float upY,
+	float upZ,
+	float positionX,
+	float positionY,
+	float positionZ
+)
+{
+	using namespace DirectX;
+
+	XMVECTOR vForward = { forwardX, forwardY, forwardZ };
+	XMVECTOR vUp = { upX, upY, upZ };
+	XMVECTOR vPosition = { positionX, positionY, positionZ };
+
+	vUp = XMVector3Normalize(vUp);
+	vForward = XMVector3Normalize(vForward);
+
+	viewMatrix = XMMatrixLookAtRH(vPosition, vPosition + vForward, vUp);
+	viewMatrixTransposed = XMMatrixTranspose(viewMatrix);
+}
+
+void Render::UpdateViewLookAt(
+	float cameraPositionX,
+	float cameraPositionY,
+	float cameraPositionZ,
+	float lookAtPositionX,
+	float lookAtPositionY,
+	float lookAtPositionZ,
+	float upX,
+	float upY,
+	float upZ
+)
+{
+	using namespace DirectX;
+
+	XMVECTOR vPosition = { cameraPositionX, cameraPositionY, cameraPositionZ };
+	XMVECTOR vLookAt = { lookAtPositionX, lookAtPositionY, lookAtPositionZ };
+	XMVECTOR vUp = { upX, upY, upZ };
+
+	vUp = XMVector3Normalize(vUp);
+
+	viewMatrix = XMMatrixLookAtRH(vPosition, vLookAt, vUp);
+	viewMatrixTransposed = XMMatrixTranspose(viewMatrix);
+}
+
+bool Render::CalculateScreenCoordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY)
+{
+	using namespace DirectX;
+
+	XMVECTOR pV = { positionX, positionY, positionZ, 1.0f };
+	float Height = (float)Window::GetWindowHeight();
+	float Width = (float)Window::GetWindowWidth();
+
+	DirectX::XMMATRIX pWorld = DirectX::XMMatrixIdentity();
+	DirectX::XMMATRIX pProjection = perspectiveMatrix;
+	DirectX::XMMATRIX pView = viewMatrix;
+
+	DirectX::XMVECTOR  pOut = XMVector3Project(pV, 0, 0, Width, Height, 0, 1, pProjection, pView, pWorld);
+	DirectX::XMFLOAT3 pOut3d;
+	DirectX::XMStoreFloat3(&pOut3d, pOut);
+
+	if (pOut3d.z < 1.0f)
+	{
+		screenX = pOut3d.x;
+		screenY = pOut3d.y;
+		return true;
+	}
+	return false;
+}
 
 void Render::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 {
@@ -68,7 +167,7 @@ void Render::InitDirectX()
 
 	UINT createDeviceFlags = 0;
 #ifdef _DEBUG
-	//createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
 	ID3D11DeviceContext* pDeviceContext = nullptr;
@@ -95,6 +194,7 @@ void Render::InitDirectX()
 	{
 		CreateSwapchain(s_pSwapChain);
 	}
+
 }
 
 void Render::Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain)
@@ -143,6 +243,76 @@ void Render::BeginFrame(float clearColor[4])
 
 		assert(s_pRenderTargetView != nullptr);
 	}
+
+	s_pDeviceContext->OMSetRenderTargets(1, &s_pRenderTargetView, NULL);
+
+	static ID3D11DepthStencilState* s_pDepthStencilState = nullptr;
+	if(s_pDepthStencilState == nullptr)
+	{
+		D3D11_DEPTH_STENCIL_DESC depthStencilDesc = {};
+		depthStencilDesc.DepthEnable = FALSE;
+		depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		depthStencilDesc.DepthFunc = D3D11_COMPARISON_ALWAYS;
+		depthStencilDesc.StencilEnable = FALSE;
+		depthStencilDesc.StencilReadMask = 0xFF;
+		depthStencilDesc.StencilWriteMask = 0xFF;
+
+		// Stencil operations if pixel is front-facing
+		depthStencilDesc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+		depthStencilDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
+		depthStencilDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+		depthStencilDesc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+		// Stencil operations if pixel is back-facing
+		depthStencilDesc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+		depthStencilDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
+		depthStencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+		depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+		HRESULT createDepthStencilStateResult = s_pDevice->CreateDepthStencilState(&depthStencilDesc, &s_pDepthStencilState);
+		assert(SUCCEEDED(createDepthStencilStateResult));
+
+	}
+	s_pDeviceContext->OMSetDepthStencilState(s_pDepthStencilState, 0);
+
+
+	static ID3D11BlendState* m_pBlendState = nullptr;
+	if (m_pBlendState == nullptr)
+	{
+		D3D11_BLEND_DESC blendStateDesc = {};
+		blendStateDesc.AlphaToCoverageEnable = FALSE;
+		blendStateDesc.IndependentBlendEnable = FALSE;
+		blendStateDesc.RenderTarget[0].BlendEnable = TRUE;
+
+		// dest.rgb = src.rgb * src.a + dest.rgb * (1 - src.a)
+		blendStateDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		blendStateDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		blendStateDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+
+		// dest.a = 1 - (1 - src.a) * (1 - dest.a) [the math works out]
+		blendStateDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_INV_DEST_ALPHA;
+		blendStateDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
+		blendStateDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+
+		blendStateDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+
+		HRESULT createBlendStateResult = s_pDevice->CreateBlendState(&blendStateDesc, &m_pBlendState);
+		assert(SUCCEEDED(createBlendStateResult));
+	}
+	s_pDeviceContext->OMSetBlendState(m_pBlendState, NULL, 0xffffffff);
+
+	// Set up the viewport.
+	D3D11_VIEWPORT vp;
+	vp.Width = static_cast<float>(Window::GetWindowWidth());
+	vp.Height = static_cast<float>(Window::GetWindowHeight());
+	vp.MinDepth = 0.0f;
+	vp.MaxDepth = 1.0f;
+	vp.TopLeftX = 0;
+	vp.TopLeftY = 0;
+	s_pDeviceContext->RSSetViewports(1, &vp);
+
+
+
 
 	//// Create the texture for the depth buffer using the filled out description.
 	//if (s_pDepthStencilBuffer == nullptr)
