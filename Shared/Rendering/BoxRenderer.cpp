@@ -250,7 +250,7 @@ void BoxRenderer::RenderBoxGeometry()
 		const UINT vertexStride = sizeof(XMFLOAT3);
 		const UINT vertexOffset = 0;
 
-		Render::s_pDeviceContext->RSSetState(pSolidRasterState);
+		Render::s_pDeviceContext->RSSetState(pWireframeRasterState);
 		Render::s_pDeviceContext->VSSetShader(pVertexShader, NULL, 0);
 		Render::s_pDeviceContext->PSSetShader(pPixelShader, NULL, 0);
 		Render::s_pDeviceContext->IASetInputLayout(pVertexLayout);
