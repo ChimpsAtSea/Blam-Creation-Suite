@@ -39,9 +39,9 @@ bool DebugUI::IsVisible()
 void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
 	// #WIP Start Resize Synchronization Across Opus and Game Thread
-	//static uint32_t expectedValue = underlying_cast(DebugUIState::Uninitialized);
-	//while (!s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::Initializing)));
-	//assert(s_uiState == underlying_cast(DebugUIState::Initializing));
+	static uint32_t expectedValue = underlying_cast(DebugUIState::Uninitialized);
+	while (!s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::Initializing)));
+	assert(s_uiState == underlying_cast(DebugUIState::Initializing));
 	s_mutex.lock();
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 	{
@@ -85,16 +85,16 @@ void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain*
 	}
 	// #WIP Start Resize Synchronization Across Opus and Game Thread
 	s_mutex.unlock();
-	//s_uiState.store(underlying_cast(DebugUIState::Initialized));
+	s_uiState.store(underlying_cast(DebugUIState::Initialized));
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 }
 
 void DebugUI::Deinit()
 {
 	// #WIP Start Resize Synchronization Across Opus and Game Thread
-	//static uint32_t expectedValue = underlying_cast(DebugUIState::Initialized);
-	//while (!s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::Deinitializing)));
-	//assert(s_uiState == underlying_cast(DebugUIState::Deinitializing));
+	static uint32_t expectedValue = underlying_cast(DebugUIState::Initialized);
+	while (!s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::Deinitializing)));
+	assert(s_uiState == underlying_cast(DebugUIState::Deinitializing));
 	s_mutex.lock();
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 	{
@@ -112,7 +112,7 @@ void DebugUI::Deinit()
 		s_swapChainDescription = {};
 	}
 	// #WIP Start Resize Synchronization Across Opus and Game Thread
-	//s_uiState.store(underlying_cast(DebugUIState::Uninitialized));
+	s_uiState.store(underlying_cast(DebugUIState::Uninitialized));
 	s_mutex.unlock();
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 }
@@ -127,12 +127,12 @@ void DebugUI::StartFrame()
 {
 	// #WIP Start Resize Synchronization Across Opus and Game Thread
 	s_mutex.lock();
-	//static uint32_t expectedValue = underlying_cast(DebugUIState::Initialized);
-	//bool allowRendering = s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::RenderingFrame));
-	//if (!allowRendering)
-	//{
-	//	return;
-	//}
+	static uint32_t expectedValue = underlying_cast(DebugUIState::Initialized);
+	bool allowRendering = s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::RenderingFrame));
+	if (!allowRendering)
+	{
+		return;
+	}
 	//assert(s_uiState == underlying_cast(DebugUIState::RenderingFrame));
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 
@@ -169,7 +169,7 @@ void DebugUI::EndFrame()
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 	// #WIP Start Resize Synchronization Across Opus and Game Thread
-	//s_uiState.store(underlying_cast(DebugUIState::Initialized));
+	s_uiState.store(underlying_cast(DebugUIState::Initialized));
 	s_mutex.unlock();
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 }
