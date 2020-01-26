@@ -38,8 +38,7 @@ inline qword get_page_offset(qword virtual_base_address, dword address)
 
 void CacheFile::SaveMap()
 {
-	//FILE* pFile = _wfopen(m_mapFilePath.c_str(), L"wb");
-	FILE* pFile = nullptr;
+	FILE* pFile = _wfopen(m_mapFilePath.c_str(), L"wb");
 	if (pFile)
 	{
 		size_t mapSize = m_rVirtualMemoryContainer.GetSize();
