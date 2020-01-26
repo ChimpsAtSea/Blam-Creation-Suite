@@ -26,6 +26,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "+Halo", "+Halo", "{535AE681-6D2A-4ED8-BF2C-F96B56794C4D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HaloReachLib", "HaloReachLib\HaloReachLib.vcxproj", "{9D62395A-734A-44BC-8E87-FE305D52D53C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{339E1809-744A-4E62-A0C5-EE6BB85283C5} = {339E1809-744A-4E62-A0C5-EE6BB85283C5}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI Prototype Projects", "UI Prototype Projects", "{BF9FC8C4-74EB-4588-841F-397A3E3135D9}"
 EndProject
