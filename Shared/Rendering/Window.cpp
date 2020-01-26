@@ -8,10 +8,9 @@ HWND Window::s_hForegroundWnd = NULL;
 HINSTANCE Window::s_hInstance = NULL;
 HANDLE Window::s_hPostMessageThread = NULL;
 DWORD Window::s_hPostMessageThreadId = NULL;
-std::vector<WNDPROC> Window::m_WndProcCallbacks;
-
-void(*Window::s_OnDestroyCallback)() = nullptr;
-void(*Window::s_OnUpdateCallback)() = nullptr;
+std::vector<WNDPROC>  Window::s_WndProcCallbacks;
+std::vector< Window::UpdateCallback>  Window::s_UpdateCallbacks;
+std::vector< Window::DestroyCallback>  Window::s_DestroyCallbacks;
 
 void Window::getWindowSize(SIZE& rSize)
 {
@@ -69,35 +68,25 @@ void Window::SetIcon(HICON hIcon)
 	s_hIcon = hIcon;
 }
 
-void Window::SetOnUpdateCallback(void(callback)())
-{
-	s_OnUpdateCallback = callback;
-}
-
-void Window::SetOnDestroyCallback(void(callback)())
-{
-	s_OnDestroyCallback = callback;
-}
-
 void Window::OnDestroyCallback()
 {
-	if (s_OnDestroyCallback)
+	for (DestroyCallback destroyCallback : s_DestroyCallbacks)
 	{
-		s_OnDestroyCallback();
+		destroyCallback();
 	}
 }
 
 void Window::OnUpdateCallback()
 {
-	if (s_OnUpdateCallback)
+	for(UpdateCallback updateCallback : s_UpdateCallbacks)
 	{
-		s_OnUpdateCallback();
+		updateCallback();
 	}
 }
 
 LRESULT CALLBACK Window::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	for (WNDPROC callback : m_WndProcCallbacks)
+	for (WNDPROC callback : s_WndProcCallbacks)
 	{
 		callback(hwnd, msg, wParam, lParam);
 	}

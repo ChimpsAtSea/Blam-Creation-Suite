@@ -6,6 +6,7 @@ public:
 	static void Init();
 	static void Deinit();
 	static void OpusTick();
+	static void WindowDestroyCallback();
 	inline static bool IsGameRunning() { return s_gameRunning; }
 	inline static IDataAccess* GetDataAccess() { return s_pCurrentDataAccess; };
 private:

@@ -13,6 +13,7 @@ std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameShutdownEvent;
 bool GameLauncher::s_gameRunning = false;
 IDataAccess* GameLauncher::s_pCurrentDataAccess = nullptr;
 GameRuntime gameRuntime = GameRuntime("haloreach", "HaloReach\\haloreach.dll");
+IGameEngine* pHaloReachEngine = nullptr;
 
 //#TODO: Create an interface for getting the camera co-ordinates
 // -------------------------
@@ -69,14 +70,29 @@ void GameLauncher::Init()
 	Window::RegisterWndProcCallback(WndProc);
 	DebugUI::RegisterCallback(DebugUI::CallbackMode::AlwaysRun, renderMainMenu);
 	DebugUI::RegisterCallback(DebugUI::CallbackMode::Toggleable, renderUI);
+
+	Window::RegisterDestroyCallback(WindowDestroyCallback);
+
 }
 
 void GameLauncher::Deinit()
 {
+	Window::UnregisterDestroyCallback(WindowDestroyCallback);
 	DebugUI::UnregisterCallback(DebugUI::CallbackMode::AlwaysRun, renderMainMenu);
 	DebugUI::UnregisterCallback(DebugUI::CallbackMode::Toggleable, renderUI);
 	Window::UnregisterWndProcCallback(WndProc);
 	GameOptionSelection::Deinit();
+}
+
+void GameLauncher::WindowDestroyCallback()
+{
+	// terrible hack but lets tell the game to quit and then wait for no game to be running
+	if (s_gameRunning)
+	{
+		pHaloReachEngine->UpdateEngineState(eEngineState::ImmediateExit);
+		WriteLineVerbose("Waiting for game to exit...");
+		while (s_gameRunning) { Sleep(1); }
+	}
 }
 
 void GameLauncher::loadSettings()
@@ -169,7 +185,7 @@ void GameLauncher::updateCamera()
 void GameLauncher::renderCameraDebug()
 {
 	static bool kEnableCameraDebugTest = CommandLine::HasCommandLineArg("-cameradebug");
-	if(kEnableCameraDebugTest)
+	if (kEnableCameraDebugTest)
 	{
 		ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
 		ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);
@@ -200,7 +216,7 @@ void GameLauncher::renderCameraDebug()
 				else ImGui::Text("No camera present.");
 			}
 			else ImGui::Text("Game not running.");
-			
+
 		}
 		ImGui::End();
 
@@ -227,8 +243,6 @@ void GameLauncher::launchGame(EngineVersion engineVersion)
 
 void GameLauncher::launchHaloReach()
 {
-
-	IGameEngine* pHaloReachEngine = nullptr;
 	__int64 createGameEngineResult = gameRuntime.CreateGameEngine(&pHaloReachEngine);
 	assert(pHaloReachEngine);
 
@@ -310,16 +324,34 @@ void GameLauncher::launchHaloReach()
 		}
 	}
 
-	HANDLE hMainGameThread = pHaloReachEngine->InitThread(&gameEngineHost, &gameContext);
+	static HANDLE hMainGameThread = pHaloReachEngine->InitThread(&gameEngineHost, &gameContext);
 	Window::SetPostMessageThreadId(hMainGameThread);
 
-	HRESULT waitForSingleObjectResult;
-	do
+	// #TODO: Absolutely terrible thread sync here
 	{
-		update();
-		waitForSingleObjectResult = WaitForSingleObject(hMainGameThread, 5);
-	} while (waitForSingleObjectResult == WAIT_TIMEOUT);
+		std::thread thread([]() {
 
+			WaitForSingleObject(hMainGameThread, INFINITE);
+			s_gameRunning = false;
+			});
+		while (s_gameRunning)
+		{
+			update();
+			Sleep(1);
+		}
+		thread.join();
+	}
+
+
+	//HRESULT waitForSingleObjectResult;
+	//do
+	//{
+	//	update();
+	//	waitForSingleObjectResult = WaitForSingleObject(hMainGameThread, 5);
+	//} while (waitForSingleObjectResult == WAIT_TIMEOUT);
+	//WaitForSingleObject(hMainGameThread, INFINITE);
+
+	WriteLineVerbose("Game has exited.");
 
 	for (GenericGameEvent gameEvent : s_gameShutdownEvent)
 	{

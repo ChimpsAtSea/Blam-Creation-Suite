@@ -28,17 +28,25 @@ int WINAPI WinMain(
 		GameLauncher::OpusTick();
 		Render::EndFrame();
 	};
+	void(*DestroyCallback)() = []()
+	{
+		s_running = false;
+	};
 	
 	Window::Init("Opus", "OpusConsole", "opus");
 	Render::Init(hInstance);
 	MantleGUI::Init(true);
 	GameLauncher::Init();
 
-	MantleGUI::RegisterOnCloseCallback([]() { s_running = false; });
-	Window::SetOnUpdateCallback(UpdateCallback);
-	Window::SetOnDestroyCallback([]() { s_running = false; });
+	Window::RegisterUpdateCallback(UpdateCallback);
+	Window::RegisterDestroyCallback(DestroyCallback);
+	//MantleGUI::RegisterOnCloseCallback(DestroyCallback);
 
 	while (s_running) Window::Update();
+
+	Window::UnregisterUpdateCallback(UpdateCallback);
+	Window::UnregisterDestroyCallback(DestroyCallback);
+	//MantleGUI::UnregisterOnCloseCallback(DestroyCallback);
 
 	GameLauncher::Deinit();
 	MantleGUI::Deinit();
