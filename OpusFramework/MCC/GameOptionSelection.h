@@ -7,7 +7,6 @@ public:
 	static void Deinit();
 	static GameMode GetSelectedGameMode();
 	static const MapInfo* GetSelectedMapInfo();
-	static IDataAccess* GetDataAccess();
 	static void SelectGameMode();
 	static void Render();
 

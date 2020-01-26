@@ -6,9 +6,8 @@ public:
 	static void Init();
 	static void Deinit();
 	static void OpusTick();
-	static void OpusUITick();
-	static void GameTick();
 	inline static bool IsGameRunning() { return s_gameRunning; }
+	inline static IDataAccess* GetDataAccess() { return s_pCurrentDataAccess; };
 private:
 	static void loadSettings();
 	static void update();
@@ -34,6 +33,7 @@ private:
 	static std::vector<GenericGameEvent> s_gameStartupEvent;
 	static std::vector<GenericGameEvent> s_gameShutdownEvent;
 	static bool s_gameRunning;
+	static IDataAccess* s_pCurrentDataAccess;
 };
 
 //class LegacyGameLauncher

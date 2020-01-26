@@ -27,11 +27,11 @@ int WINAPI wWinMain(
 	DebugUI::Show();
 	MantleGUI::Init(false, argc > 0 ? argv[0] : nullptr);
 	MantleGUI::RegisterOnCloseCallback([]() { s_running = false; });
-	DebugUI::RegisterCallback(UICallback);
+	DebugUI::RegisterCallback(DebugUI::AlwaysRun, UICallback);
 	Window::SetOnUpdateCallback(UpdateCallback);
 	Window::SetOnDestroyCallback([]() { s_running = false; });
 	while (s_running) Window::Update();
-	DebugUI::UnregisterCallback(UICallback);
+	DebugUI::RegisterCallback(DebugUI::AlwaysRun, UICallback);
 	MantleGUI::Deinit();
 	Render::Deinit();
 	Window::Deinit();

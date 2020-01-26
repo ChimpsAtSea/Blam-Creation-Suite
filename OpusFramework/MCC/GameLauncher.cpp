@@ -1,11 +1,18 @@
 #include "opusframework-private-pch.h"
 
+enum class NextLaunchMode
+{
+	None,
+	Generic,
+	Theater
+};
+NextLaunchMode s_nextLaunchMode = NextLaunchMode::None;
+
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameStartupEvent;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameShutdownEvent;
-GameRuntime gameRuntime = GameRuntime("haloreach", "HaloReach\\haloreach.dll");
-bool startGameNextFrame = false;
 bool GameLauncher::s_gameRunning = false;
-
+IDataAccess* GameLauncher::s_pCurrentDataAccess = nullptr;
+GameRuntime gameRuntime = GameRuntime("haloreach", "HaloReach\\haloreach.dll");
 
 //#TODO: Create an interface for getting the camera co-ordinates
 // -------------------------
@@ -52,16 +59,22 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 void GameLauncher::Init()
 {
+	s_pCurrentDataAccess = gameRuntime.GetDataAccess();
+
 	checkSteamOwnership();
 	ensureBink2Win64IsLoaded("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
 	GameLauncher::loadSettings();
 
 	GameOptionSelection::Init();
 	Window::RegisterWndProcCallback(WndProc);
+	DebugUI::RegisterCallback(DebugUI::CallbackMode::AlwaysRun, renderMainMenu);
+	DebugUI::RegisterCallback(DebugUI::CallbackMode::Toggleable, renderUI);
 }
 
 void GameLauncher::Deinit()
 {
+	DebugUI::UnregisterCallback(DebugUI::CallbackMode::AlwaysRun, renderMainMenu);
+	DebugUI::UnregisterCallback(DebugUI::CallbackMode::Toggleable, renderUI);
 	Window::UnregisterWndProcCallback(WndProc);
 	GameOptionSelection::Deinit();
 }
@@ -76,13 +89,10 @@ void GameLauncher::loadSettings()
 void GameLauncher::OpusTick()
 {
 	update();
-}
 
-void GameLauncher::GameTick()
-{
 	DebugUI::StartFrame(); // OpusUITick is registered to the DebugUI
 	//OpusUITick();
-	if (DebugUI::IsRendering())
+	if (DebugUI::IsRendering() && s_gameRunning) // render a debug layer for the game to render text to
 	{
 		constexpr ImGuiWindowFlags kDebugWindowFlags =
 			ImGuiWindowFlags_NoMove |
@@ -103,32 +113,20 @@ void GameLauncher::GameTick()
 	DebugUI::EndFrame();
 }
 
-void GameLauncher::OpusUITick()
+void GameLauncher::update()
 {
 	if (s_gameRunning)
 	{
-		update();
-		renderUI();
+		// need some place to update the launcher, might as well do it here for now
+		Window::UpdateNoCallbacks();
 	}
 	else
 	{
-		renderUI();
-		renderMainMenu();
-	}
-}
-
-void GameLauncher::update()
-{
-	if (startGameNextFrame)
-	{
-		startGameNextFrame = false;
-		s_gameRunning = true;
-		launchGame(EngineVersion::HaloReach);
-		s_gameRunning = false;
-	}
-	if (s_gameRunning)
-	{
-		Window::UpdateNoCallbacks();
+		if (s_nextLaunchMode != NextLaunchMode::None)
+		{
+			s_nextLaunchMode = NextLaunchMode::None;
+			launchGame(EngineVersion::HaloReach);
+		}
 	}
 }
 
@@ -137,60 +135,6 @@ void GameLauncher::gameRender()
 	updateCamera();
 	MantleGUI::GameRender();
 	PrimitiveRenderManager::Render();
-}
-
-void GameLauncher::renderMainMenu()
-{
-	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
-	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
-
-	static ImVec2 nextWindowSize = ImVec2(width * 0.98f, height * 0.94f);
-	//ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
-	ImGui::SetNextWindowSize(nextWindowSize, ImGuiCond_FirstUseEver);
-
-	static bool isWindowOpen = true;
-	int windowFlags = 0;
-	//windowFlags |= ImGuiWindowFlags_MenuBar;
-	windowFlags |= ImGuiWindowFlags_NoCollapse;
-	windowFlags |= ImGuiWindowFlags_NoTitleBar;
-	windowFlags |= ImGuiWindowFlags_NoMove;
-	windowFlags |= ImGuiWindowFlags_NoResize;
-	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
-	//windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
-
-	if (!ImGui::Begin("MAIN MENU", &isWindowOpen, windowFlags))
-	{
-		// Early out if the window is collapsed, as an optimization.
-		ImGui::End();
-		return;
-	}
-
-	GameOptionSelection::Render();
-
-	static ImVec2 gridButtonSize = ImVec2(nextWindowSize.x / 5, nextWindowSize.y / 16);
-
-	ImGui::SetCursorPos(ImVec2(gridButtonSize.x * 0.35f, gridButtonSize.y * 8));
-	static bool hasAutostarted = false;
-	if (ImGui::Button("START GAME", gridButtonSize) || (CommandLine::HasCommandLineArg("-autostart") && !hasAutostarted) || GetKeyState(VK_RETURN) & 0x80)
-	{
-		GameOptionSelection::s_pLaunchSavedFilm = "";
-		hasAutostarted = true;
-		startGameNextFrame = true;
-	}
-
-	ImGui::SetCursorPos(ImVec2(gridButtonSize.x * 0.35f, gridButtonSize.y * 9.1f));
-	if (ImGui::Button("PLAY FILM", gridButtonSize) || GetKeyState('P') & 0x80)
-	{
-		startGameNextFrame = true;
-	}
-
-	ImGui::SetCursorPos(ImVec2(gridButtonSize.x * 0.35f, gridButtonSize.y * 14));
-	if (ImGui::Button("QUIT TO DESKTOP", gridButtonSize))
-	{
-		exit(0);
-	}
-
-	ImGui::End();
 }
 
 void GameLauncher::renderUI()
@@ -265,6 +209,7 @@ void GameLauncher::renderCameraDebug()
 
 void GameLauncher::launchGame(EngineVersion engineVersion)
 {
+	s_gameRunning = true;
 	// #TODO: We currently can't resize the game without crashing
 	// we should do this at the beginning of the frame. 
 
@@ -276,10 +221,13 @@ void GameLauncher::launchGame(EngineVersion engineVersion)
 		break;
 	}
 	Render::SetResizeEnabled(true);
+
+	s_gameRunning = false;
 }
 
 void GameLauncher::launchHaloReach()
 {
+
 	IGameEngine* pHaloReachEngine = nullptr;
 	__int64 createGameEngineResult = gameRuntime.CreateGameEngine(&pHaloReachEngine);
 	assert(pHaloReachEngine);
@@ -328,10 +276,10 @@ void GameLauncher::launchHaloReach()
 				gameContext.MapId = static_cast<MapID>(pSelectedMapInfo->GetMapID());
 				gameContext.CampaignDifficultyLevel = e_campaign_difficulty_level::_campaign_difficulty_level_easy;
 
-				GameOptionSelection::LoadGameVariant(GameOptionSelection::GetDataAccess(), GameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
-				GameOptionSelection::LoadMapVariant(GameOptionSelection::GetDataAccess(), GameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
+				GameOptionSelection::LoadGameVariant(s_pCurrentDataAccess, GameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
+				GameOptionSelection::LoadMapVariant(s_pCurrentDataAccess, GameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
 				//GameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
-				GameOptionSelection::LoadSavedFilmMetadata(GameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
+				//GameOptionSelection::LoadSavedFilmMetadata(GameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
 
 				gameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
 				gameContext.SessionInfo.HostAddress = HostAddress;
@@ -430,6 +378,57 @@ void GameLauncher::ensureBink2Win64IsLoaded(const char* pLibName, const char* pF
 	assert(hModule);
 }
 
+void GameLauncher::renderMainMenu()
+{
+	if (s_gameRunning) return;
+
+	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
+	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
+
+	ImVec2 globalWindowSize = ImVec2(static_cast<float>(Window::GetWindowWidth()), static_cast<float>(Window::GetWindowHeight()));
+	ImVec2 windowSize = ImVec2(globalWindowSize.x * 0.75f, globalWindowSize.y * 0.75f);
+	ImVec2 windowOffset = ImVec2((globalWindowSize.x - windowSize.x) / 2.0f, (globalWindowSize.y - windowSize.y) / 2.0f);
+	ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
+	ImGui::SetNextWindowPos(windowOffset, ImGuiCond_Always);
+
+	static bool isWindowOpen = true;
+	int windowFlags = 0;
+	//windowFlags |= ImGuiWindowFlags_MenuBar;
+	windowFlags |= ImGuiWindowFlags_NoCollapse;
+	windowFlags |= ImGuiWindowFlags_NoTitleBar;
+	windowFlags |= ImGuiWindowFlags_NoMove;
+	windowFlags |= ImGuiWindowFlags_NoResize;
+	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
+	//windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
+
+	if (ImGui::Begin("MAIN MENU", &isWindowOpen, windowFlags))
+	{
+		GameOptionSelection::Render();
+		{
+			ImGui::Dummy(ImVec2(0.0f, 30.0f));
+			static bool hasAutostarted = false;
+			if (ImGui::Button("START GAME") || (CommandLine::HasCommandLineArg("-autostart") && !hasAutostarted) || GetKeyState(VK_RETURN) & 0x80)
+			{
+				GameOptionSelection::s_pLaunchSavedFilm = "";
+				hasAutostarted = true;
+				s_nextLaunchMode = NextLaunchMode::Generic;
+			}
+
+			if (ImGui::Button("PLAY FILM") || GetKeyState('P') & 0x80)
+			{
+				s_nextLaunchMode = NextLaunchMode::Theater;
+			}
+
+			ImGui::Dummy(ImVec2(0.0f, 20.0f));
+			if (ImGui::Button("QUIT TO DESKTOP"))
+			{
+				exit(0);
+			}
+		}
+	}
+	ImGui::End();
+}
+
 void GameLauncher::renderPauseMenu()
 {
 	MouseInput::SetMode(MouseMode::UI);
@@ -437,8 +436,11 @@ void GameLauncher::renderPauseMenu()
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
-	//ImGui::SetNextWindowPosCenter(ImGuiCond_FirstUseEver);
-	ImGui::SetNextWindowSize(ImVec2(width / 1.5f, height / 1.5f), ImGuiCond_FirstUseEver);
+	ImVec2 globalWindowSize = ImVec2(static_cast<float>(Window::GetWindowWidth()), static_cast<float>(Window::GetWindowHeight()));
+	ImVec2 windowSize = ImVec2(globalWindowSize.x * 0.75f, globalWindowSize.y * 0.75f);
+	ImVec2 windowOffset = ImVec2((globalWindowSize.x - windowSize.x) / 2.0f, (globalWindowSize.y - windowSize.y) / 2.0f);
+	ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
+	ImGui::SetNextWindowPos(windowOffset, ImGuiCond_Always);
 
 	static bool isWindowOpen = true;
 	int windowFlags = 0;

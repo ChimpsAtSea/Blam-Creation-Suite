@@ -3,6 +3,12 @@ class DebugUI
 {
 public:
 
+	enum CallbackMode
+	{
+		Toggleable,
+		AlwaysRun
+	};
+
 	typedef void(DebugUICallback)();
 
 	static bool IsVisible();
@@ -17,8 +23,8 @@ public:
 	static void Show();
 	static void Hide();
 	static void WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
-	static void RegisterCallback(DebugUICallback* pDebugUICallback);
-	static void UnregisterCallback(DebugUICallback* pDebugUICallback);
+	static void RegisterCallback(CallbackMode callbackMode, DebugUICallback* pDebugUICallback);
+	static void UnregisterCallback(CallbackMode callbackMode, DebugUICallback* pDebugUICallback);
 	static bool IsRendering();
 
 private:
@@ -31,6 +37,7 @@ private:
 	static DXGI_SWAP_CHAIN_DESC s_swapChainDescription;
 	static ID3D11RenderTargetView* s_mainRenderTargetView;
 	static IDXGISwapChainPresent s_IDXGISwapChainPresentPointer;
-	static std::vector<DebugUICallback*> s_pCallbacks;
+	static std::vector<DebugUICallback*> s_pToggleableCallbacks;
+	static std::vector<DebugUICallback*> s_pAlwaysRunCallbacks;
 };
 

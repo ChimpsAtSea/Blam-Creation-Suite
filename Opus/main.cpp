@@ -18,11 +18,6 @@ int WINAPI WinMain(
 	/* LEGACY */
 	GameLauncher::RegisterGameStartupCallback(init_halo_reach);		// setup reach hooks and deinit them
 	GameLauncher::RegisterGameShutdownCallback(deinit_halo_reach);	// setup reach hooks and deinit them
-	
-	void(*UICallback)() = []()
-	{
-		GameLauncher::OpusUITick();
-	};
 
 	static bool s_running = true;
 	void(*UpdateCallback)() = []()
@@ -39,13 +34,10 @@ int WINAPI WinMain(
 	GameLauncher::Init();
 
 	MantleGUI::RegisterOnCloseCallback([]() { s_running = false; });
-	DebugUI::RegisterCallback(UICallback);
 	Window::SetOnUpdateCallback(UpdateCallback);
 	Window::SetOnDestroyCallback([]() { s_running = false; });
 
-	DebugUI::Show();
 	while (s_running) Window::Update();
-	DebugUI::UnregisterCallback(UICallback);
 
 	GameLauncher::Deinit();
 	MantleGUI::Deinit();

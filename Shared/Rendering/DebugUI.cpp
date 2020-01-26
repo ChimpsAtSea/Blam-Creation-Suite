@@ -29,7 +29,8 @@ ID3D11RenderTargetView* DebugUI::s_mainRenderTargetView = nullptr;
 IDXGISwapChain* DebugUI::s_pSwapChain = nullptr;
 DXGI_SWAP_CHAIN_DESC  DebugUI::s_swapChainDescription = {};
 DebugUI::IDXGISwapChainPresent DebugUI::s_IDXGISwapChainPresentPointer;
-std::vector<DebugUI::DebugUICallback*> DebugUI::s_pCallbacks;
+std::vector<DebugUI::DebugUICallback*> DebugUI::s_pToggleableCallbacks;
+std::vector<DebugUI::DebugUICallback*> DebugUI::s_pAlwaysRunCallbacks;
 
 bool DebugUI::IsVisible()
 {
@@ -152,9 +153,14 @@ void DebugUI::EndFrame()
 	//if (!isRendering) return;
 
 	//Menu is displayed when g_ShowMenu is TRUE
+	for (DebugUICallback* pCurrentCallback : s_pAlwaysRunCallbacks)
+	{
+		pCurrentCallback();
+	}
+
 	if (s_visible)
 	{
-		for (DebugUICallback* pCurrentCallback : s_pCallbacks)
+		for (DebugUICallback* pCurrentCallback : s_pToggleableCallbacks)
 		{
 			pCurrentCallback();
 		}
@@ -217,20 +223,24 @@ void DebugUI::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	}
 }
 
-void DebugUI::RegisterCallback(DebugUICallback* pDebugUICallback)
+void DebugUI::RegisterCallback(CallbackMode callbackMode, DebugUICallback* pDebugUICallback)
 {
-	for (DebugUICallback* pCurrentCallback : s_pCallbacks)
+	std::vector<DebugUICallback*>& rCallbacks = callbackMode == CallbackMode::Toggleable ? s_pToggleableCallbacks : s_pAlwaysRunCallbacks;
+
+	for (DebugUICallback* pCurrentCallback : rCallbacks)
 	{
 		if (pCurrentCallback == pDebugUICallback)
 		{
 			return;
 		}
 	}
-	s_pCallbacks.push_back(pDebugUICallback);
+	rCallbacks.push_back(pDebugUICallback);
 }
 
-void DebugUI::UnregisterCallback(DebugUICallback* pDebugUICallback)
+void DebugUI::UnregisterCallback(CallbackMode callbackMode, DebugUICallback* pDebugUICallback)
 {
-	std::vector<DebugUI::DebugUICallback*>::iterator itCallbacksEnd = std::remove(s_pCallbacks.begin(), s_pCallbacks.end(), pDebugUICallback);
-	s_pCallbacks.erase(itCallbacksEnd, s_pCallbacks.end());
+	std::vector<DebugUICallback*>& rCallbacks = callbackMode == CallbackMode::Toggleable ? s_pToggleableCallbacks : s_pAlwaysRunCallbacks;
+
+	std::vector<DebugUI::DebugUICallback*>::iterator itCallbacksEnd = std::remove(rCallbacks.begin(), rCallbacks.end(), pDebugUICallback);
+	rCallbacks.erase(itCallbacksEnd, rCallbacks.end());
 }

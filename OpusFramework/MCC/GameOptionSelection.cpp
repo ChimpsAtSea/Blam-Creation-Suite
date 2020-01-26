@@ -10,7 +10,6 @@ std::string format_string(const char* pFormat, ...)
 	return stringBuffer;
 }
 
-extern GameRuntime gameRuntime;
 MapInfoManager* GameOptionSelection::s_pMapInfoManager = nullptr;
 GameMode s_currentGameMode = GameMode::Campaign;
 std::string GameOptionSelection::s_pLaunchGameVariant = "";
@@ -91,11 +90,6 @@ void GameOptionSelection::loadSettings()
 GameMode GameOptionSelection::GetSelectedGameMode()
 {
 	return s_currentGameMode;
-}
-
-IDataAccess* GameOptionSelection::GetDataAccess()
-{
-	return gameRuntime.GetDataAccess();
 }
 
 void GameOptionSelection::SelectGameMode()
@@ -413,7 +407,9 @@ void GameOptionSelection::GetVariantInfo(char* pBuffer, std::string* name, std::
 int GameOptionSelection::ReadGameVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
 	static s_game_variant gameVariant;
-	LoadGameVariant(GetDataAccess(), pName, gameVariant);
+	IDataAccess* pDataAccess = GameLauncher::GetDataAccess();
+	assert(pDataAccess != nullptr);
+	LoadGameVariant(pDataAccess, pName, gameVariant);
 
 	int result = gameVariant.game_engine_index;
 
@@ -430,7 +426,9 @@ int GameOptionSelection::ReadGameVariant(LPCSTR pName, std::string* name, std::s
 int GameOptionSelection::ReadMapVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
 	static s_map_variant mapVariant;
-	LoadMapVariant(GetDataAccess(), pName, mapVariant);
+	IDataAccess* pDataAccess = GameLauncher::GetDataAccess();
+	assert(pDataAccess != nullptr);
+	LoadMapVariant(pDataAccess, pName, mapVariant);
 
 	int result = *reinterpret_cast<int*>(&mapVariant.data[0x2C]);
 	GetVariantInfo(mapVariant.data, name, desc);
@@ -440,9 +438,9 @@ int GameOptionSelection::ReadMapVariant(LPCSTR pName, std::string* name, std::st
 
 int GameOptionSelection::ReadSavedFilm(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
-	if (GetDataAccess())
+	IDataAccess* pDataAccess = GameLauncher::GetDataAccess();
+	if (pDataAccess)
 	{
-		IDataAccess* pDataAccess = GetDataAccess();
 		char* out_data = { 0 };
 
 		c_file_reference filo(pPath);

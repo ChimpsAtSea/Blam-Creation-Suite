@@ -28,7 +28,7 @@ void IOpusGameEngineHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD)
 {
 	using namespace DirectX;
 
-	GameLauncher::GameTick();
+	GameLauncher::OpusTick();
 
 }
 

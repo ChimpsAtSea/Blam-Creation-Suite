@@ -68,7 +68,7 @@ void Render::InitDirectX()
 
 	UINT createDeviceFlags = 0;
 #ifdef _DEBUG
-	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+	//createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
 	ID3D11DeviceContext* pDeviceContext = nullptr;
