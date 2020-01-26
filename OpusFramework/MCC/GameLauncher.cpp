@@ -3,7 +3,7 @@
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameStartupEvent;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameShutdownEvent;
 GameRuntime gameRuntime = GameRuntime("haloreach", "HaloReach\\haloreach.dll");
-bool startGameNextFrame = true;
+bool startGameNextFrame = false;
 bool GameLauncher::s_gameRunning = false;
 
 
