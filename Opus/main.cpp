@@ -24,8 +24,6 @@ int WINAPI WinMain(
 	static bool s_running = true;
 	void(*UpdateCallback)() = []()
 	{
-		static float clearColor[] = { 0.25f, 0.25f, 0.25f, 1.0f };
-		Render::BeginFrame(clearColor);
 		Render::BeginFrame(&clearColor.x);
 		GameLauncher::OpusTick();
 		Render::EndFrame();
