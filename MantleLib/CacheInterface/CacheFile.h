@@ -64,6 +64,31 @@ public:
 	inline const char* GetFilePathChar() const { return m_mapFilePathChar.c_str(); }
 	inline const char* GetFileNameChar() const { return m_mapFileNameChar.c_str(); }
 
+	inline const char* GetStringIDStr(uint32_t id)
+	{
+		long const k_string_id_set_string_counts[17] = { 1225, 1637, 217, 106, 217, 38, 5, 1727, 368, 20, 98, 24, 0, 13, 41, 97, 115 };
+
+		uint32_t set = (id >> _countof(k_string_id_set_string_counts)) & 0xFF;
+		uint32_t index = id & ((1 << _countof(k_string_id_set_string_counts)) - 1);
+
+		int set_base_index = 0;
+
+		if (set == 0 && index >= k_string_id_set_string_counts[set])
+		{
+			for (int i = 0; i < _countof(k_string_id_set_string_counts); i++)
+				set_base_index += k_string_id_set_string_counts[i];
+
+			index -= k_string_id_set_string_counts[set];
+		}
+		else
+		{
+			for (int i = 0; i < set; i++)
+				set_base_index += k_string_id_set_string_counts[i];
+		}
+
+		return m_pStringIDBuffer + m_pStringIDIndices[set_base_index + index];
+	}
+
 private:
 
 	inline char* getTagBlockDataInternal(s_tag_block_definition<>& rTagBlock)
@@ -96,6 +121,8 @@ private:
 	// raw data
 	long* m_pTagNameIndices;
 	char* m_pTagNameBuffer;
+	long *m_pStringIDIndices;
+	char *m_pStringIDBuffer;
 	s_cache_file_header* m_pHeader;
 	s_cache_file_tags_header* m_pTagFilesHeader;
 	s_cache_file_tag_instance* m_pTagInstances;

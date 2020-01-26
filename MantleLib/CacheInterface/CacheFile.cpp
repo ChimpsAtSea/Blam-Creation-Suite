@@ -85,6 +85,9 @@ void CacheFile::loadMap(const std::wstring& mapFilePath)
 			m_pTagNameIndices = reinterpret_cast<long*>(pDebugSection + m_pHeader->tag_name_indices_offset - m_pHeader->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
 			m_pTagNameBuffer = reinterpret_cast<char*>(pDebugSection + m_pHeader->tag_names_buffer_offset - m_pHeader->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
 
+			m_pStringIDIndices = reinterpret_cast<long*>(pDebugSection + m_pHeader->string_id_indices_offset - m_pHeader->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
+			m_pStringIDBuffer = reinterpret_cast<char*>(pDebugSection + m_pHeader->string_ids_buffer_offset - m_pHeader->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
+
 			m_pTagFilesHeader = reinterpret_cast<s_cache_file_tags_header*>(pTagsSection + (m_pHeader->tags_header_address - m_pHeader->virtual_base_address));
 			m_pTagInstances = reinterpret_cast<s_cache_file_tag_instance*>(pTagsSection + (m_pTagFilesHeader->instances.address - m_pHeader->virtual_base_address));
 			m_pGroupInstances = reinterpret_cast<s_cache_file_tag_group*>(pTagsSection + (m_pTagFilesHeader->groups.address - m_pHeader->virtual_base_address));
