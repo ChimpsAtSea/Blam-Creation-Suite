@@ -101,22 +101,28 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="HaloReach.cpp" />
+    <ClCompile Include="opus_legacy\HaloReach.cpp" />
+    <ClCompile Include="HaloReachGameHost.cpp" />
     <ClCompile Include="haloreachlib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="c_network.h" />
+    <ClInclude Include="opus_legacy\c_network.h" />
+    <ClInclude Include="HaloReachGameHost.h" />
     <ClInclude Include="haloreachlib-private-pch.h" />
     <ClInclude Include="haloreachlib-public-pch.h" />
-    <ClInclude Include="HaloReach.h" />
-    <ClInclude Include="input_types.h" />
-    <ClInclude Include="local_types.h" />
+    <ClInclude Include="opus_legacy\HaloReach.h" />
+    <ClInclude Include="opus_legacy\input_types.h" />
+    <ClInclude Include="opus_legacy\local_types.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HaloReachGameHost.Camera.inl" />
+    <None Include="HaloReachGameHost.MantleInterface.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

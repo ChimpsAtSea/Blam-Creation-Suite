@@ -11,35 +11,7 @@ NextLaunchMode s_nextLaunchMode = NextLaunchMode::None;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameStartupEvent;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameShutdownEvent;
 bool GameLauncher::s_gameRunning = false;
-IDataAccess* GameLauncher::s_pCurrentDataAccess = nullptr;
-GameRuntime gameRuntime = GameRuntime("haloreach", "HaloReach\\haloreach.dll");
-IGameEngine* pHaloReachEngine = nullptr;
-
-//#TODO: Create an interface for getting the camera co-ordinates
-// -------------------------
-
-intptr_t player_mapping_get_local_player_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-{
-	switch (buildVersion)
-	{
-	case BuildVersion::Build_1_1270_0_0: return 0x18006FDF0;
-	}
-	return ~intptr_t();
-}
-FunctionHookEx<player_mapping_get_local_player_offset, int __stdcall ()> player_mapping_get_local_player;
-
-intptr_t observer_try_and_get_camera_offset(EngineVersion engineVersion, BuildVersion buildVersion)
-{
-	switch (buildVersion)
-	{
-	case BuildVersion::Build_1_1270_0_0: return 0x1800E2FA0;
-	}
-	return ~intptr_t();
-}
-FunctionHookEx<observer_try_and_get_camera_offset, s_observer_camera * __fastcall (signed int a1)> observer_try_and_get_camera;
-
-// -------------------------
-
+IOpusGameEngineHost* pCurrentGameHost = nullptr;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -60,8 +32,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 void GameLauncher::Init()
 {
-	s_pCurrentDataAccess = gameRuntime.GetDataAccess();
-
 	checkSteamOwnership();
 	ensureBink2Win64IsLoaded("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
 	GameLauncher::loadSettings();
@@ -89,10 +59,19 @@ void GameLauncher::WindowDestroyCallback()
 	// terrible hack but lets tell the game to quit and then wait for no game to be running
 	if (s_gameRunning)
 	{
-		pHaloReachEngine->UpdateEngineState(eEngineState::ImmediateExit);
+		IGameEngine* pGameEngine = pCurrentGameHost->GetGameEngine();
+		pGameEngine->UpdateEngineState(eEngineState::ImmediateExit);
 		WriteLineVerbose("Waiting for game to exit...");
 		while (s_gameRunning) { Sleep(1); }
 	}
+}
+
+IDataAccess* GameLauncher::GetDataAccess()
+{
+	// #TODO: Remove this function.
+	// Each piece of code should be aware of what type of DataAccess it wants
+
+	return HaloReachGameHost::GetDataAccess();
 }
 
 void GameLauncher::loadSettings()
@@ -148,7 +127,6 @@ void GameLauncher::update()
 
 void GameLauncher::gameRender()
 {
-	updateCamera();
 	MantleGUI::GameRender();
 	PrimitiveRenderManager::Render();
 }
@@ -156,70 +134,9 @@ void GameLauncher::gameRender()
 void GameLauncher::renderUI()
 {
 	MantleGUI::Render();
-	renderCameraDebug();
-}
-
-void GameLauncher::updateCamera()
-{
-	int playerIndex = player_mapping_get_local_player();
-	s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
-	if (observer_camera)
+	if (s_gameRunning)
 	{
-		float aspectRatio = 16.0f / 9.0f; // #TODO: Correct aspect ratio
-		float fieldOfViewHorizontal = observer_camera->field_of_view;
-		Render::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
-		Render::UpdateView(
-			observer_camera->forward.I,
-			observer_camera->forward.J,
-			observer_camera->forward.K,
-			observer_camera->up.I,
-			observer_camera->up.J,
-			observer_camera->up.K,
-			observer_camera->position.I,
-			observer_camera->position.J,
-			observer_camera->position.K
-		);
-	}
-}
-
-void GameLauncher::renderCameraDebug()
-{
-	static bool kEnableCameraDebugTest = CommandLine::HasCommandLineArg("-cameradebug");
-	if (kEnableCameraDebugTest)
-	{
-		ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
-		ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);
-
-		// Main body of the Demo window starts here.
-		static bool isReachCameraDebugWindowOpen = true;
-		if (ImGui::Begin("Camera Debug Output", &isReachCameraDebugWindowOpen, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
-		{
-			if (s_gameRunning)
-			{
-				int playerIndex = player_mapping_get_local_player();
-				s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
-
-				if (observer_camera)
-				{
-					ImGui::Text("position:       %f, %f, %f", observer_camera->position.I, observer_camera->position.J, observer_camera->position.K);
-					ImGui::Text("position_shift: %f, %f, %f", observer_camera->position_shift.I, observer_camera->position_shift.J, observer_camera->position_shift.K);
-					ImGui::Text("look:           %f", observer_camera->look);
-					ImGui::Text("look_shift:     %f", observer_camera->look_shift);
-					ImGui::Text("depth:          %f", observer_camera->depth);
-					ImGui::Text("unknown0:       %f", observer_camera->unknown0);
-					ImGui::Text("forward:        %f, %f, %f", observer_camera->forward.I, observer_camera->forward.J, observer_camera->forward.K);
-					ImGui::Text("up:             %f, %f, %f", observer_camera->up.I, observer_camera->up.J, observer_camera->up.K);
-					ImGui::Text("field_of_view:  %f", observer_camera->field_of_view);
-					ImGui::Text("unknown1:       %f", observer_camera->unknown1);
-					ImGui::Text("unknown2:       %f", observer_camera->unknown2);
-				}
-				else ImGui::Text("No camera present.");
-			}
-			else ImGui::Text("Game not running.");
-
-		}
-		ImGui::End();
-
+		pCurrentGameHost->RenderUI();
 	}
 }
 
@@ -243,11 +160,15 @@ void GameLauncher::launchGame(EngineVersion engineVersion)
 
 void GameLauncher::launchHaloReach()
 {
-	__int64 createGameEngineResult = gameRuntime.CreateGameEngine(&pHaloReachEngine);
-	assert(pHaloReachEngine);
+	assert(pCurrentGameHost == nullptr);
+
+	pCurrentGameHost = new HaloReachGameHost();
+	assert(pCurrentGameHost);
+	IGameEngine* pGameEngine = pCurrentGameHost->GetGameEngine();
+	assert(pGameEngine);
 
 	EngineVersion engineVersion = EngineVersion::HaloReach;
-	BuildVersion buildVersion = gameRuntime.GetBuildVersion();
+	BuildVersion buildVersion = HaloReachGameHost::GetGameRuntime().GetBuildVersion();
 
 	// #TODO: Game specific version of this!!!
 
@@ -290,8 +211,8 @@ void GameLauncher::launchHaloReach()
 				gameContext.MapId = static_cast<MapID>(pSelectedMapInfo->GetMapID());
 				gameContext.CampaignDifficultyLevel = e_campaign_difficulty_level::_campaign_difficulty_level_easy;
 
-				GameOptionSelection::LoadGameVariant(s_pCurrentDataAccess, GameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
-				GameOptionSelection::LoadMapVariant(s_pCurrentDataAccess, GameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
+				GameOptionSelection::LoadGameVariant(HaloReachGameHost::GetDataAccess(), GameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
+				GameOptionSelection::LoadMapVariant(HaloReachGameHost::GetDataAccess(), GameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
 				//GameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
 				//GameOptionSelection::LoadSavedFilmMetadata(GameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
 
@@ -306,16 +227,14 @@ void GameLauncher::launchHaloReach()
 		}
 	}
 
-	pHaloReachEngine->InitGraphics(Render::s_pDevice, Render::s_pDeviceContext, Render::s_pSwapChain, Render::s_pSwapChain);
-
-	IOpusGameEngineHost gameEngineHost = IOpusGameEngineHost(gameRuntime);
+	pGameEngine->InitGraphics(Render::s_pDevice, Render::s_pDeviceContext, Render::s_pSwapChain, Render::s_pSwapChain);
 
 	{
 		// useful for testing if the gameenginehostcallback vftable is correct or not
 		static constexpr bool kBogusGameEngineHostCallbackVFT = false;
 		if constexpr (kBogusGameEngineHostCallbackVFT)
 		{
-			void*& pGameEngineHostVftable = *reinterpret_cast<void**>(&gameEngineHost);
+			void*& pGameEngineHostVftable = *reinterpret_cast<void**>(pCurrentGameHost);
 			static char data[sizeof(void*) * 1024] = {};
 			memset(data, -1, sizeof(data));
 			static constexpr size_t kNumBytesToCopyFromExistingVFT = 0;
@@ -323,8 +242,8 @@ void GameLauncher::launchHaloReach()
 			pGameEngineHostVftable = data;
 		}
 	}
-
-	static HANDLE hMainGameThread = pHaloReachEngine->InitThread(&gameEngineHost, &gameContext);
+	
+	static HANDLE hMainGameThread = pGameEngine->InitThread(pCurrentGameHost, &gameContext);
 	Window::SetPostMessageThreadId(hMainGameThread);
 
 	// #TODO: Absolutely terrible thread sync here
@@ -358,9 +277,7 @@ void GameLauncher::launchHaloReach()
 		gameEvent(engineVersion, buildVersion);
 	}
 
-	pHaloReachEngine->Destructor();
-	//free(pHaloReachEngine);
-	//free(pHaloReachDataAccess);
+	delete pCurrentGameHost;
 
 	// reset runtime information after we've destroyed the engine
 	//s_pCurrentGameRuntime = nullptr;

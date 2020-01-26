@@ -15,36 +15,50 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HaloReach.cpp">
+    <ClCompile Include="haloreachlib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="haloreachlib-private-pch.cpp">
+    <ClCompile Include="HaloReachGameHost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="opus_legacy\HaloReach.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HaloReach.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="c_network.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="haloreachlib-private-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="haloreachlib-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="local_types.h">
+    <ClInclude Include="HaloReachGameHost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="input_types.h">
+    <ClInclude Include="opus_legacy\HaloReach.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opus_legacy\c_network.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opus_legacy\input_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opus_legacy\local_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="$(SolutionDir)\OpusFramework\Resource.rc">
+    <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HaloReachGameHost.MantleInterface.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="HaloReachGameHost.Camera.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

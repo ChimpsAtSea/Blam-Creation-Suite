@@ -6,6 +6,8 @@ public:
 	IOpusGameEngineHost(GameRuntime& rGameRuntime);
 	~IOpusGameEngineHost();
 
+	// MCC Functions
+
 	char FrameStart() override;
 	void FrameEnd(IDXGISwapChain* pSwapChain, _QWORD) override;
 	void Member02(__int64 player_identifier, unsigned int, __int64, float, float, float, float) override;
@@ -54,6 +56,11 @@ public:
 	bool __fastcall GetWidePathByType(PathType pathType, wchar_t* pBuffer, size_t bufferLength) override;
 	unsigned __int8* __fastcall Member46(_QWORD, unsigned __int8*, _QWORD) override;
 	__int64 __fastcall Member47(_QWORD, __int64) override;
+
+	// Opus Functionality
+	virtual void RenderUI() const = 0;
+	virtual IGameEngine* GetGameEngine() const = 0;
+
 
 protected:
 	GameRuntime& m_rGameRuntime;

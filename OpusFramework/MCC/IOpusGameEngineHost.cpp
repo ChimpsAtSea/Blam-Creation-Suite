@@ -29,7 +29,6 @@ void IOpusGameEngineHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD)
 	using namespace DirectX;
 
 	GameLauncher::OpusTick();
-
 }
 
 void IOpusGameEngineHost::Member02(__int64 player_identifier, unsigned int, __int64, float, float, float, float)

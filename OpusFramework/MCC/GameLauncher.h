@@ -8,14 +8,12 @@ public:
 	static void OpusTick();
 	static void WindowDestroyCallback();
 	inline static bool IsGameRunning() { return s_gameRunning; }
-	inline static IDataAccess* GetDataAccess() { return s_pCurrentDataAccess; };
+	static IDataAccess* GetDataAccess();
 private:
 	static void loadSettings();
 	static void update();
 	static void renderMainMenu();
 	static void renderUI();
-	static void updateCamera();
-	static void renderCameraDebug();
 	static void gameRender();
 	static void launchGame(EngineVersion engineVersion);
 	static void launchHaloReach();
@@ -34,7 +32,6 @@ private:
 	static std::vector<GenericGameEvent> s_gameStartupEvent;
 	static std::vector<GenericGameEvent> s_gameShutdownEvent;
 	static bool s_gameRunning;
-	static IDataAccess* s_pCurrentDataAccess;
 };
 
 //class LegacyGameLauncher
