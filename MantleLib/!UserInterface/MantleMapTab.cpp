@@ -337,18 +337,16 @@ void MantleMapTab::GameRender()
 			bool isKillVolume = rTriggerVolume.kill_volume != 0xFFFFi16;
 
 			int imguiTextColor;
-			const char* pTriggerVolumeText;
+			const char* pTriggerVolumeText = m_pCacheFile->GetStringIDStr(rTriggerVolume.name.stringid);
 			if (isKillVolume)
 			{
 				rImmediateBox.SetColor(1.0f, 0.0f, 0.0f, 1.0f);
 				imguiTextColor = IM_COL32(255, 0, 0, 255);
-				pTriggerVolumeText = "Kill Volume";
 			}
 			else
 			{
 				rImmediateBox.SetColor(0.0f, 1.0f, 0.0f, 1.0f);
 				imguiTextColor = IM_COL32(0, 255, 0, 255);
-				pTriggerVolumeText = "Trigger Volume";
 			}
 			rImmediateBox.UpdateAsCornerAndExtentBox(
 				rTriggerVolume.position_x,
