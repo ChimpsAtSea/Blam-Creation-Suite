@@ -11,7 +11,8 @@ public:
 	static bool s_directxCustomInit;
 	static ID3D11RenderTargetView* s_pRenderTargetView;
 	static ID3D11Texture2D* s_pDepthStencilBuffer;
-	static ID3D11DepthStencilView* s_pDepthStencilView ;
+	static ID3D11DepthStencilView* s_pDepthStencilView;
+	static bool s_resizeEnabled;
 
 	static void CreateSwapchain(IDXGISwapChain1*& s_pSwapChain);
 	static void Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain);
@@ -20,6 +21,8 @@ public:
 	static void EndFrame();
 	static void Deinit();
 	static void ResizeWindow();
+	static void SetResizeEnabled(bool resizeEnabled) { s_resizeEnabled = resizeEnabled; }
+	static bool IsResizeEnabled() { return s_resizeEnabled; }
 
 private:
 	static void InitDirectX();

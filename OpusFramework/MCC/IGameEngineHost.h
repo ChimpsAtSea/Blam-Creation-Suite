@@ -197,7 +197,7 @@ public:
 
 	}
 
-	/* 0  */ virtual char Member00() = 0;
+	/* 0  */ virtual char FrameStart() = 0;
 	/* 1  */ virtual void FrameEnd(IDXGISwapChain* pSwapChain, _QWORD) = 0;
 	/* 2  */ virtual void Member02(__int64 player_identifier, unsigned int, __int64, float, float, float, float) = 0;
 	/* 3  */ virtual void EngineStateUpdate(eEngineState state) = 0;

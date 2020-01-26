@@ -19,11 +19,11 @@ public:
 	static void WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static void RegisterCallback(DebugUICallback* pDebugUICallback);
 	static void UnregisterCallback(DebugUICallback* pDebugUICallback);
+	static bool IsRendering();
 
 private:
 	typedef HRESULT(__fastcall* IDXGISwapChainPresent)(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
 
-	static BOOL s_initialised;
 	static bool s_visible;
 	static ID3D11DeviceContext* s_pContext;
 	static ID3D11Device* s_pDevice;

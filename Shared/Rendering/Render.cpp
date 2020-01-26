@@ -9,6 +9,7 @@ bool Render::s_directxCustomInit = false;
 ID3D11RenderTargetView* Render::s_pRenderTargetView = nullptr;
 ID3D11Texture2D* Render::s_pDepthStencilBuffer = nullptr;
 ID3D11DepthStencilView* Render::s_pDepthStencilView = nullptr;
+bool Render::s_resizeEnabled = true;
 
 void Render::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 {
@@ -67,7 +68,7 @@ void Render::InitDirectX()
 
 	UINT createDeviceFlags = 0;
 #ifdef _DEBUG
-	//createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
 	ID3D11DeviceContext* pDeviceContext = nullptr;
@@ -193,7 +194,7 @@ void Render::EndFrame()
 
 void Render::ResizeWindow()
 {
-	if (s_pSwapChain)
+	if (s_pSwapChain && s_resizeEnabled)
 	{
 
 		int width = Window::GetWindowWidth();
@@ -203,10 +204,13 @@ void Render::ResizeWindow()
 		DebugUI::Deinit();
 
 		s_pDeviceContext->OMSetRenderTargets(0, 0, 0);
-
+		s_pDeviceContext->ClearState();
 		// Release all outstanding references to the swap chain's buffers.
 		s_pRenderTargetView->Release();
 		//s_pDepthStencilView->Release();
+		
+
+	
 
 		// Preserve the existing buffer count and format.
 		// Automatically choose the width and height to match the client rect for HWNDs.

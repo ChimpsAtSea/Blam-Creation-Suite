@@ -1,10 +1,10 @@
 #include "opusframework-private-pch.h"
 
-std::vector<GameLauncher::GenericGameEvent> GameLauncher::m_gameStartupEvent;
-std::vector<GameLauncher::GenericGameEvent> GameLauncher::m_gameShutdownEvent;
+std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameStartupEvent;
+std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameShutdownEvent;
 GameRuntime gameRuntime = GameRuntime("haloreach", "HaloReach\\haloreach.dll");
-bool startGameNextFrame = false;
-bool gameRunning = false;
+bool startGameNextFrame = true;
+bool GameLauncher::s_gameRunning = false;
 
 
 //#TODO: Create an interface for getting the camera co-ordinates
@@ -82,29 +82,30 @@ void GameLauncher::GameTick()
 {
 	DebugUI::StartFrame(); // OpusUITick is registered to the DebugUI
 	//OpusUITick();
-
-	constexpr ImGuiWindowFlags kDebugWindowFlags =
-		ImGuiWindowFlags_NoMove |
-		ImGuiWindowFlags_NoBackground |
-		ImGuiWindowFlags_NoSavedSettings |
-		ImGuiWindowFlags_NoMouseInputs |
-		ImGuiWindowFlags_NoNav |
-		ImGuiWindowFlags_NoDecoration |
-		ImGuiWindowFlags_NoInputs;
-	ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
-	ImGui::SetNextWindowSize(ImVec2(static_cast<float>(Window::GetWindowWidth()), static_cast<float>(Window::GetWindowHeight())), ImGuiCond_Always);
-	if (ImGui::Begin("##debug", NULL, kDebugWindowFlags)) // render inside of the dummy imgui window for on screen text display
+	if (DebugUI::IsRendering())
 	{
-		gameRender();
+		constexpr ImGuiWindowFlags kDebugWindowFlags =
+			ImGuiWindowFlags_NoMove |
+			ImGuiWindowFlags_NoBackground |
+			ImGuiWindowFlags_NoSavedSettings |
+			ImGuiWindowFlags_NoMouseInputs |
+			ImGuiWindowFlags_NoNav |
+			ImGuiWindowFlags_NoDecoration |
+			ImGuiWindowFlags_NoInputs;
+		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(Window::GetWindowWidth()), static_cast<float>(Window::GetWindowHeight())), ImGuiCond_Always);
+		if (ImGui::Begin("##debug", NULL, kDebugWindowFlags)) // render inside of the dummy imgui window for on screen text display
+		{
+			gameRender();
+		}
+		ImGui::End();
 	}
-	ImGui::End();
-
 	DebugUI::EndFrame();
 }
 
 void GameLauncher::OpusUITick()
 {
-	if (gameRunning)
+	if (s_gameRunning)
 	{
 		update();
 		renderUI();
@@ -121,12 +122,11 @@ void GameLauncher::update()
 	if (startGameNextFrame)
 	{
 		startGameNextFrame = false;
-		gameRunning = true;
+		s_gameRunning = true;
 		launchGame(EngineVersion::HaloReach);
-		gameRunning = false;
+		s_gameRunning = false;
 	}
-
-	if (gameRunning)
+	if (s_gameRunning)
 	{
 		Window::UpdateNoCallbacks();
 	}
@@ -234,7 +234,7 @@ void GameLauncher::renderCameraDebug()
 		static bool isReachCameraDebugWindowOpen = true;
 		if (ImGui::Begin("Camera Debug Output", &isReachCameraDebugWindowOpen, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
 		{
-			if (gameRunning)
+			if (s_gameRunning)
 			{
 				int playerIndex = player_mapping_get_local_player();
 				s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
@@ -265,12 +265,17 @@ void GameLauncher::renderCameraDebug()
 
 void GameLauncher::launchGame(EngineVersion engineVersion)
 {
+	// #TODO: We currently can't resize the game without crashing
+	// we should do this at the beginning of the frame. 
+
+	Render::SetResizeEnabled(false);
 	switch (engineVersion)
 	{
 	case EngineVersion::HaloReach:
 		launchHaloReach();
 		break;
 	}
+	Render::SetResizeEnabled(true);
 }
 
 void GameLauncher::launchHaloReach()
@@ -284,7 +289,7 @@ void GameLauncher::launchHaloReach()
 
 	// #TODO: Game specific version of this!!!
 
-	for (GenericGameEvent gameEvent : m_gameStartupEvent)
+	for (GenericGameEvent gameEvent : s_gameStartupEvent)
 	{
 		gameEvent(engineVersion, buildVersion);
 	}
@@ -368,7 +373,7 @@ void GameLauncher::launchHaloReach()
 	} while (waitForSingleObjectResult == WAIT_TIMEOUT);
 
 
-	for (GenericGameEvent gameEvent : m_gameShutdownEvent)
+	for (GenericGameEvent gameEvent : s_gameShutdownEvent)
 	{
 		gameEvent(engineVersion, buildVersion);
 	}

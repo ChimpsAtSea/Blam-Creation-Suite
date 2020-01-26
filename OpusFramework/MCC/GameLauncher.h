@@ -8,6 +8,7 @@ public:
 	static void OpusTick();
 	static void OpusUITick();
 	static void GameTick();
+	inline static bool IsGameRunning() { return s_gameRunning; }
 private:
 	static void loadSettings();
 	static void update();
@@ -25,13 +26,14 @@ private:
 
 public:
 	using GenericGameEvent = void(*)(EngineVersion engineVersion, BuildVersion buildVersion);
-	inline static void RegisterGameStartupCallback(GenericGameEvent eventCallback) { m_gameStartupEvent.push_back(eventCallback); }
-	inline static void RegisterGameShutdownCallback(GenericGameEvent eventCallback) { m_gameShutdownEvent.push_back(eventCallback); }
-	inline static void UnregisterGameLaunchCallback(GenericGameEvent eventCallback) { VectorEraseByValueHelper(m_gameStartupEvent, eventCallback); }
-	inline static void UnregisterGameShutdownCallback(GenericGameEvent eventCallback) { VectorEraseByValueHelper(m_gameShutdownEvent, eventCallback); }
+	inline static void RegisterGameStartupCallback(GenericGameEvent eventCallback) { s_gameStartupEvent.push_back(eventCallback); }
+	inline static void RegisterGameShutdownCallback(GenericGameEvent eventCallback) { s_gameShutdownEvent.push_back(eventCallback); }
+	inline static void UnregisterGameLaunchCallback(GenericGameEvent eventCallback) { VectorEraseByValueHelper(s_gameStartupEvent, eventCallback); }
+	inline static void UnregisterGameShutdownCallback(GenericGameEvent eventCallback) { VectorEraseByValueHelper(s_gameShutdownEvent, eventCallback); }
 private:
-	static std::vector<GenericGameEvent> m_gameStartupEvent;
-	static std::vector<GenericGameEvent> m_gameShutdownEvent;
+	static std::vector<GenericGameEvent> s_gameStartupEvent;
+	static std::vector<GenericGameEvent> s_gameShutdownEvent;
+	static bool s_gameRunning;
 };
 
 //class LegacyGameLauncher

@@ -6,7 +6,7 @@ public:
 	IOpusGameEngineHost(GameRuntime& rGameRuntime);
 	~IOpusGameEngineHost();
 
-	char Member00() override;
+	char FrameStart() override;
 	void FrameEnd(IDXGISwapChain* pSwapChain, _QWORD) override;
 	void Member02(__int64 player_identifier, unsigned int, __int64, float, float, float, float) override;
 	void EngineStateUpdate(eEngineState state) override;

@@ -17,7 +17,7 @@ IOpusGameEngineHost::~IOpusGameEngineHost()
 
 }
 
-char IOpusGameEngineHost::Member00()
+char IOpusGameEngineHost::FrameStart()
 {
 	return 0;
 }
