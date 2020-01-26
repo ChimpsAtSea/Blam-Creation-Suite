@@ -17,7 +17,8 @@ public:
 	static ID3D11RasterizerState* pWireframeRasterState;
 	static ID3D11InputLayout* pVertexLayout;
 	static ID3D11Buffer* pVertexBuffer;
-	static ID3D11Buffer* pIndexBuffer;
+	static ID3D11Buffer* pSolidIndexBuffer;
+	static ID3D11Buffer* pWireframeIndexBuffer;
 	static volatile uint32_t nextConstantBufferIndex;
 	static volatile uint32_t nextBoxIndex;
 	static ID3D11Buffer* pCurrentInstanceConstantsBuffer;
@@ -32,7 +33,8 @@ public:
 	);
 	static void EndRenderBox();
 private:
-	static void SetupGeometry();
+	static void SetupSolidGeometry();
+	static void SetupWireframeGeometry();
 	static void SetupShaders();
 	static void SetupConstantBuffers();
 	static void GetNextConstantsBuffer();

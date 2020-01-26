@@ -340,12 +340,12 @@ void MantleMapTab::GameRender()
 			const char* pTriggerVolumeText = m_pCacheFile->GetStringIDStr(rTriggerVolume.name.stringid);
 			if (isKillVolume)
 			{
-				rImmediateBox.SetColor(1.0f, 0.0f, 0.0f, 1.0f);
+				rImmediateBox.SetColor(1.0f, 0.0f, 0.0f, 0.25f);
 				imguiTextColor = IM_COL32(255, 0, 0, 255);
 			}
 			else
 			{
-				rImmediateBox.SetColor(0.0f, 1.0f, 0.0f, 1.0f);
+				rImmediateBox.SetColor(0.0f, 1.0f, 0.0f, 0.25f);
 				imguiTextColor = IM_COL32(0, 255, 0, 255);
 			}
 			rImmediateBox.UpdateAsCornerAndExtentBox(

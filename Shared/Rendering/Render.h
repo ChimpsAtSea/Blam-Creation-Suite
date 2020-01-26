@@ -48,7 +48,7 @@ public:
 	static void CreateSwapchain(IDXGISwapChain1*& s_pSwapChain);
 	static void Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain);
 	static void Init(HINSTANCE hInstance);
-	static void BeginFrame(float clearColor[4]);
+	static void BeginFrame(bool clear, float clearColor[4], bool setTargets = true);
 	static void EndFrame();
 	static void Deinit();
 	static void ResizeWindow();

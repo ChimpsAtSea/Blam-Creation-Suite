@@ -227,7 +227,7 @@ void Render::Init(HINSTANCE hInstance)
 	DebugUI::Init(hInstance, s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
 }
 
-void Render::BeginFrame(float clearColor[4])
+void Render::BeginFrame(bool clear, float clearColor[4], bool settargetts)
 {
 	if (s_pRenderTargetView == nullptr)
 	{
@@ -245,15 +245,13 @@ void Render::BeginFrame(float clearColor[4])
 		assert(s_pRenderTargetView != nullptr);
 	}
 
-	s_pDeviceContext->OMSetRenderTargets(1, &s_pRenderTargetView, NULL);
-
 	static ID3D11DepthStencilState* s_pDepthStencilState = nullptr;
 	if(s_pDepthStencilState == nullptr)
 	{
 		D3D11_DEPTH_STENCIL_DESC depthStencilDesc = {};
-		depthStencilDesc.DepthEnable = FALSE;
-		depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-		depthStencilDesc.DepthFunc = D3D11_COMPARISON_ALWAYS;
+		depthStencilDesc.DepthEnable = TRUE;
+		depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		depthStencilDesc.DepthFunc = D3D11_COMPARISON_GREATER;
 		depthStencilDesc.StencilEnable = FALSE;
 		depthStencilDesc.StencilReadMask = 0xFF;
 		depthStencilDesc.StencilWriteMask = 0xFF;
@@ -273,8 +271,6 @@ void Render::BeginFrame(float clearColor[4])
 		assert(SUCCEEDED(createDepthStencilStateResult));
 
 	}
-	s_pDeviceContext->OMSetDepthStencilState(s_pDepthStencilState, 0);
-
 
 	static ID3D11BlendState* m_pBlendState = nullptr;
 	if (m_pBlendState == nullptr)
@@ -300,6 +296,47 @@ void Render::BeginFrame(float clearColor[4])
 		HRESULT createBlendStateResult = s_pDevice->CreateBlendState(&blendStateDesc, &m_pBlendState);
 		assert(SUCCEEDED(createBlendStateResult));
 	}
+
+	//// Create the texture for the depth buffer using the filled out description.
+//if (s_pDepthStencilBuffer == nullptr)
+//{
+//	D3D11_TEXTURE2D_DESC depthBufferDesc = {};
+//	depthBufferDesc.Width = 500;
+//	depthBufferDesc.Height = 500;
+//	depthBufferDesc.MipLevels = 1;
+//	depthBufferDesc.ArraySize = 1;
+//	depthBufferDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+//	depthBufferDesc.SampleDesc.Count = 1;
+//	depthBufferDesc.SampleDesc.Quality = 0;
+//	depthBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+//	depthBufferDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+//	depthBufferDesc.CPUAccessFlags = 0;
+//	depthBufferDesc.MiscFlags = 0;
+
+//	HRESULT createTexture2DResult = s_pDevice->CreateTexture2D(&depthBufferDesc, NULL, &s_pDepthStencilBuffer);
+//	assert(SUCCEEDED(createTexture2DResult));
+
+//	assert(s_pDepthStencilBuffer != nullptr);
+//}
+
+//if (s_pDepthStencilView == nullptr)
+//{
+//	D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc = {};
+//	depthStencilViewDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+//	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+//	depthStencilViewDesc.Texture2D.MipSlice = 0;
+
+//	HRESULT createDepthStencilViewResult = s_pDevice->CreateDepthStencilView(s_pDepthStencilBuffer, &depthStencilViewDesc, &s_pDepthStencilView);
+//	assert(SUCCEEDED(createDepthStencilViewResult));
+
+//	assert(s_pDepthStencilView != nullptr);
+//}
+
+	if (settargetts)
+	{
+		s_pDeviceContext->OMSetRenderTargets(1, &s_pRenderTargetView, NULL);
+	}
+	s_pDeviceContext->OMSetDepthStencilState(s_pDepthStencilState, 0);
 	s_pDeviceContext->OMSetBlendState(m_pBlendState, NULL, 0xffffffff);
 
 	// Set up the viewport.
@@ -312,49 +349,14 @@ void Render::BeginFrame(float clearColor[4])
 	vp.TopLeftY = 0;
 	s_pDeviceContext->RSSetViewports(1, &vp);
 
+	if (clear)
+	{
+		// Clear the back buffer.
+		s_pDeviceContext->ClearRenderTargetView(s_pRenderTargetView, clearColor);
 
-
-
-	//// Create the texture for the depth buffer using the filled out description.
-	//if (s_pDepthStencilBuffer == nullptr)
-	//{
-	//	D3D11_TEXTURE2D_DESC depthBufferDesc = {};
-	//	depthBufferDesc.Width = 500;
-	//	depthBufferDesc.Height = 500;
-	//	depthBufferDesc.MipLevels = 1;
-	//	depthBufferDesc.ArraySize = 1;
-	//	depthBufferDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-	//	depthBufferDesc.SampleDesc.Count = 1;
-	//	depthBufferDesc.SampleDesc.Quality = 0;
-	//	depthBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	//	depthBufferDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
-	//	depthBufferDesc.CPUAccessFlags = 0;
-	//	depthBufferDesc.MiscFlags = 0;
-
-	//	HRESULT createTexture2DResult = s_pDevice->CreateTexture2D(&depthBufferDesc, NULL, &s_pDepthStencilBuffer);
-	//	assert(SUCCEEDED(createTexture2DResult));
-
-	//	assert(s_pDepthStencilBuffer != nullptr);
-	//}
-
-	//if (s_pDepthStencilView == nullptr)
-	//{
-	//	D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc = {};
-	//	depthStencilViewDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-	//	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-	//	depthStencilViewDesc.Texture2D.MipSlice = 0;
-
-	//	HRESULT createDepthStencilViewResult = s_pDevice->CreateDepthStencilView(s_pDepthStencilBuffer, &depthStencilViewDesc, &s_pDepthStencilView);
-	//	assert(SUCCEEDED(createDepthStencilViewResult));
-
-	//	assert(s_pDepthStencilView != nullptr);
-	//}
-
-	// Clear the back buffer.
-	s_pDeviceContext->ClearRenderTargetView(s_pRenderTargetView, clearColor);
-
-	//// Clear the depth buffer.
-	//s_pDeviceContext->ClearDepthStencilView(s_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+		//// Clear the depth buffer.
+		//s_pDeviceContext->ClearDepthStencilView(s_pDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+	}
 }
 
 void Render::EndFrame()

@@ -24,7 +24,7 @@ int WINAPI WinMain(
 	static bool s_running = true;
 	void(*UpdateCallback)() = []()
 	{
-		Render::BeginFrame(&clearColor.x);
+		Render::BeginFrame(true, &clearColor.x);
 		GameLauncher::OpusTick();
 		Render::EndFrame();
 	};
