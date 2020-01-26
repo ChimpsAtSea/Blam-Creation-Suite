@@ -38,13 +38,18 @@ inline qword get_page_offset(qword virtual_base_address, dword address)
 
 void CacheFile::SaveMap()
 {
-	size_t mapSize = m_rVirtualMemoryContainer.GetSize();
-	char* pMapData = m_rVirtualMemoryContainer.GetData();
+	//FILE* pFile = _wfopen(m_mapFilePath.c_str(), L"wb");
+	FILE* pFile = nullptr;
+	if (pFile)
+	{
+		size_t mapSize = m_rVirtualMemoryContainer.GetSize();
+		char* pMapData = m_rVirtualMemoryContainer.GetData();
 
-	FILE* pFile = _wfopen(m_mapFilePath.c_str(), L"wb");
-	fwrite(pMapData, 1, mapSize, pFile);
-	fflush(pFile);
-	fclose(pFile);
+		fwrite(pMapData, 1, mapSize, pFile);
+		fflush(pFile);
+		fclose(pFile);
+	}
+	else MessageBoxA(Window::GetWindowHandle(), "Failed to save map", "File error failed to open for write", 0);
 }
 
 void CacheFile::loadMap(const std::wstring& mapFilePath)

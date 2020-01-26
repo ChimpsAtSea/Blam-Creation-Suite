@@ -19,10 +19,6 @@ void MantleMapTab::DisplayMapTabUI()
 		}
 	}
 
-
-
-
-
 	ImGui::Columns(2, "mixed");
 	RUNONCE(ImGui::SetColumnOffset(1, 500));
 	ImGui::Separator();
