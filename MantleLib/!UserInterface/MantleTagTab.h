@@ -8,6 +8,8 @@ public:
 	MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface, MantleTab* pParentTab);
 	virtual ~MantleTagTab();
 
+	void CopyDataRecursively(const ReflectionType& rReflectionType, char* pSrc, char* pDest);
+	void Poke();
 	TagInterface& GetTagInterface() const { return m_rTagInterface; };
 	CacheFile& GetCacheFile() const { return m_rCacheFile; };
 

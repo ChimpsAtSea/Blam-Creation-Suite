@@ -64,6 +64,51 @@ MantleTagTab::~MantleTagTab()
 	}
 }
 
+
+extern void* tag_definition_get(uint16_t index);
+
+void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, char* pSrc, char* pDest)
+{
+	memcpy(pDest, pSrc, rReflectionType.m_size);
+
+	for (size_t i = 0; i < rReflectionType.m_count; i++)
+	{
+		const ReflectionField& reflectionField = rReflectionType.m_members[i];
+		const ReflectionTypeInfo& rTypeInfo = reflectionField.m_typeInfo;
+
+		if (!reflectionField.m_arraySize)
+		{
+			if (rTypeInfo.m_reflectionTypeCategory == ReflectionTypeCategory::TagBlock)
+			{
+				s_tag_block_definition<>* pTagBlock = reinterpret_cast<s_tag_block_definition<>*>(pSrc + reflectionField.m_offset);
+				const ReflectionTagBlockInfo& rReflectionTagBlockInfo = reflectionField.m_tagBlockInfo;
+				const ReflectionType* pTagBlockReflectionType = rReflectionTagBlockInfo.m_pReflectionTypeInfo;
+
+
+				if (pTagBlock->count && pTagBlock->address)
+				{
+					char* pTagBlockDataSource = m_rCacheFile.GetTagBlockData<char>(*pTagBlock);
+					char* pTagBlockDest = pDest + reflectionField.m_offset;
+
+					for (int i = 0; i < pTagBlock->count; i++)
+					{
+						CopyDataRecursively(*pTagBlockReflectionType, &pTagBlockDataSource[i * pTagBlockReflectionType->m_size], pTagBlockDest);
+					}
+				}
+			}
+		}
+	}
+}
+
+void MantleTagTab::Poke()
+{
+	char* pDest = (char*)tag_definition_get(GetTagInterface().GetIndex());
+	char* pSource = m_rCacheFile.GetTagInterface(GetTagInterface().GetIndex())->GetData();
+
+	const ReflectionType* pReflectionType = m_rTagInterface.GetReflectionData();
+	CopyDataRecursively(*pReflectionType, pSource, pDest);
+}
+
 void MantleTagTab::RenderContents(bool setSelected)
 {
 	ImGui::PushID(this);
@@ -76,6 +121,27 @@ void MantleTagTab::RenderContents(bool setSelected)
 		const ReflectionType* pReflectionType = m_rTagInterface.GetReflectionData();
 		if (pReflectionType)
 		{
+
+
+
+
+
+			if (ImGui::Button("Red Button Of Death"))
+			{
+				Poke();
+			}
+
+
+
+
+
+
+
+
+
+
+
+
 			RenderContentsImpl(m_rTagInterface.GetData(), *pReflectionType, 0);
 		}
 		else

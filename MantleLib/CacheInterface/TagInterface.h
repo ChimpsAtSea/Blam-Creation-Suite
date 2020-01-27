@@ -27,7 +27,12 @@ public:
 	inline const char* GetGroupShortName() const { return m_pTagGroupShortName.c_str(); };
 	inline const char* GetGroupFullName() const { return m_pTagGroupFullName.c_str(); };
 	inline const ReflectionType* GetReflectionData() const { return m_pReflectionData; };
-	inline GroupInterface* GetGroupInterface() const { return m_pGroupInterface; };
+	//inline GroupInterface* GetGroupInterface() const { return m_pGroupInterface; };
+
+	GroupInterface* GetGroupInterface() const;
+
+
+
 
 	s_cache_file_tag_instance* GetRawInstance() const { return m_pInstance; };
 	s_cache_file_tag_group* GetRawGroup() const { return m_pGroup; };

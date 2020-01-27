@@ -55,3 +55,13 @@ TagInterface::~TagInterface()
 {
 
 }
+
+GroupInterface* TagInterface::GetGroupInterface() const
+{
+	return m_rCacheFile.GetGroupInterfaces(true)[m_groupIndex];
+};
+
+
+
+
+

@@ -103,7 +103,7 @@ public:
 		return m_pStringIDBuffer + m_pStringIDIndices[set_base_index + index];
 	}
 
-private:
+//private:
 
 	inline char* getTagBlockDataInternal(s_tag_block_definition<>& rTagBlock)
 	{

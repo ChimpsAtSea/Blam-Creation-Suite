@@ -54,9 +54,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="HaloReachGameHost.MantleInterface.inl">
-      <Filter>Header Files</Filter>
-    </None>
     <None Include="HaloReachGameHost.Camera.inl">
       <Filter>Header Files</Filter>
     </None>
