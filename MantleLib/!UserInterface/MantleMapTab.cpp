@@ -92,7 +92,8 @@ void MantleMapTab::DisplayMapTabUI()
 						static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 						if (ImGui::TreeNodeEx(pTagInterface, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, pTagDisplayWithGroupID))
 						{
-							if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
+
+							if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 							{
 								openTagTab(rTagInterface);
 							}
@@ -181,6 +182,18 @@ void MantleMapTab::DisplayMapTabUI()
 		{
 			m_pCacheFile->SaveMap();
 		}
+		for (MantleTab* pTab : m_tabs)
+		{
+			MantleTagTab* pTagTab = dynamic_cast<MantleTagTab*>(pTab);
+			if (pTagTab)
+			{
+				ImGui::SameLine();
+				pTagTab->RenderButtons();
+			}
+		}
+
+		
+
 		ImGui::EndGroup();
 	}
 	ImGui::Columns(1);

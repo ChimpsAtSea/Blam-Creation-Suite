@@ -154,26 +154,6 @@ void HaloReachGameHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)
 void HaloReachGameHost::RenderUI() const
 {
 	cameraDebugUI();
-
-
-	{
-		ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
-		ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);
-
-		// Main body of the Demo window starts here.
-		static bool isReachCameraDebugWindowOpen = true;
-		if (ImGui::Begin("Realtime Editing Demo", &isReachCameraDebugWindowOpen, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
-		{
-			s_scenario_definition& rScenario = tag_definition_get<s_scenario_definition>(8);
-			//const ReflectionType& rScenarioReflection = GetReflectionType<s_scenario_definition>();
-			s_scenario_definition::s_script_block_definition& rScriptsBlock = tag_block_definition_get(rScenario.scripts_block, 0);
-
-			printf("");
-
-		}
-		ImGui::End();
-
-	}
 }
 
 void HaloReachGameHost::updateCamera()

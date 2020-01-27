@@ -52,6 +52,7 @@ MantleTagTab::MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface, M
 	, m_rTagInterface(rTagInterface)
 	, m_rCacheFile(rCacheFile)
 	, m_pParentTab(pParentTab)
+	, m_isSelected(false)
 {
 
 }
@@ -67,7 +68,7 @@ MantleTagTab::~MantleTagTab()
 
 extern void* tag_definition_get(uint16_t index);
 
-void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, char* pSrc, char* pDest)
+void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, char* pStartSrc, char* pStartDest, char* pSrc, char* pDest)
 {
 	memcpy(pDest, pSrc, rReflectionType.m_size);
 
@@ -88,11 +89,13 @@ void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, ch
 				if (pTagBlock->count && pTagBlock->address)
 				{
 					char* pTagBlockDataSource = m_rCacheFile.GetTagBlockData<char>(*pTagBlock);
-					char* pTagBlockDest = pDest + reflectionField.m_offset;
+					char* pTagBlockDest = pStartDest + (pTagBlockDataSource - pStartSrc);
 
 					for (int i = 0; i < pTagBlock->count; i++)
 					{
-						CopyDataRecursively(*pTagBlockReflectionType, &pTagBlockDataSource[i * pTagBlockReflectionType->m_size], pTagBlockDest);
+						//memcpy(pTagBlockDest, pTagBlockDataSource, pTagBlockReflectionType->m_size);
+						uint32_t offset = pTagBlockReflectionType->m_size * i;
+						CopyDataRecursively(*pTagBlockReflectionType, pStartSrc, pStartDest, pTagBlockDataSource + offset, pTagBlockDest + offset);
 					}
 				}
 			}
@@ -106,7 +109,7 @@ void MantleTagTab::Poke()
 	char* pSource = m_rCacheFile.GetTagInterface(GetTagInterface().GetIndex())->GetData();
 
 	const ReflectionType* pReflectionType = m_rTagInterface.GetReflectionData();
-	CopyDataRecursively(*pReflectionType, pSource, pDest);
+	CopyDataRecursively(*pReflectionType, pSource, pDest, pSource, pDest);
 }
 
 void MantleTagTab::RenderContents(bool setSelected)
@@ -114,34 +117,17 @@ void MantleTagTab::RenderContents(bool setSelected)
 	ImGui::PushID(this);
 	ImGuiTabItemFlags tabFlags = 0;
 	if (setSelected) tabFlags |= ImGuiTabItemFlags_SetSelected;
+
+
+	m_isSelected = false;
 	if (ImGui::BeginTabItem(GetTitle(), &m_isOpen, tabFlags))
 	{
+		m_isSelected = true;
 		ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
 
 		const ReflectionType* pReflectionType = m_rTagInterface.GetReflectionData();
 		if (pReflectionType)
 		{
-
-
-
-
-
-			if (ImGui::Button("Red Button Of Death"))
-			{
-				Poke();
-			}
-
-
-
-
-
-
-
-
-
-
-
-
 			RenderContentsImpl(m_rTagInterface.GetData(), *pReflectionType, 0);
 		}
 		else
@@ -153,6 +139,16 @@ void MantleTagTab::RenderContents(bool setSelected)
 		ImGui::EndTabItem();
 	}
 	ImGui::PopID();
+}
+
+void MantleTagTab::RenderButtons()
+{
+	if (!m_isSelected) return;
+
+	if (ImGui::Button("Poke"))
+	{
+		Poke();
+	}
 }
 
 void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflectionType, int recursionDepth)
