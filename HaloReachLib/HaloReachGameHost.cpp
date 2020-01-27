@@ -5,14 +5,20 @@
 
 GameRuntime HaloReachGameHost::s_haloReachGameRuntime("haloreach", "HaloReach\\haloreach.dll");
 
+extern void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
+extern void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
+
 HaloReachGameHost::HaloReachGameHost()
 	:IOpusGameEngineHost(s_haloReachGameRuntime)
 	, m_pGameEngine(nullptr)
 {
+	init_halo_reach(EngineVersion::HaloReach, s_haloReachGameRuntime.GetBuildVersion());
+
 	MantleGUI::SetGetTagPointerFunction(tag_definition_get); // #TODO: This is kinda hacky
 
 	WriteLineVerbose("Init HaloReachGameHost");
 
+	if(m_pGameEngine == nullptr)
 	__int64 createGameEngineResult = s_haloReachGameRuntime.CreateGameEngine(&m_pGameEngine);
 	assert(m_pGameEngine != nullptr);
 }
@@ -21,15 +27,25 @@ HaloReachGameHost::~HaloReachGameHost()
 {
 	WriteLineVerbose("Deinit HaloReachGameHost");
 
-	m_pGameEngine->Destructor();
+	//m_pGameEngine->Destructor();
 	//free(pHaloReachEngine);
 	//free(pHaloReachDataAccess);
 
-	m_pGameEngine = nullptr;
+	//m_pGameEngine = nullptr;
+
+
+	//deinit_halo_reach(EngineVersion::HaloReach, s_haloReachGameRuntime.GetBuildVersion());
+	//s_haloReachGameRuntime.~GameRuntime();
+	//new(&s_haloReachGameRuntime) GameRuntime("haloreach", "HaloReach\\haloreach.dll");
 }
 
 void HaloReachGameHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)
 {
+	if (GetAsyncKeyState(VK_F10))
+	{
+		GetGameEngine()->UpdateEngineState(eEngineState::EndGame);
+	}
+
 	updateCamera();
 	IOpusGameEngineHost::FrameEnd(pSwapChain, unknown1);
 }
@@ -41,25 +57,26 @@ void HaloReachGameHost::RenderUI() const
 
 void HaloReachGameHost::updateCamera()
 {
-	int playerIndex = player_mapping_get_local_player();
-	s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
-	if (observer_camera)
-	{
-		float aspectRatio = 16.0f / 9.0f; // #TODO: Correct aspect ratio
-		float fieldOfViewHorizontal = observer_camera->field_of_view;
-		Render::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
-		Render::UpdateView(
-			observer_camera->forward.I,
-			observer_camera->forward.J,
-			observer_camera->forward.K,
-			observer_camera->up.I,
-			observer_camera->up.J,
-			observer_camera->up.K,
-			observer_camera->position.I,
-			observer_camera->position.J,
-			observer_camera->position.K
-		);
-	}
+
+	//int playerIndex = player_mapping_get_local_player();
+	//s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
+	//if (observer_camera)
+	//{
+	//	float aspectRatio = 16.0f / 9.0f; // #TODO: Correct aspect ratio
+	//	float fieldOfViewHorizontal = observer_camera->field_of_view;
+	//	Render::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
+	//	Render::UpdateView(
+	//		observer_camera->forward.I,
+	//		observer_camera->forward.J,
+	//		observer_camera->forward.K,
+	//		observer_camera->up.I,
+	//		observer_camera->up.J,
+	//		observer_camera->up.K,
+	//		observer_camera->position.I,
+	//		observer_camera->position.J,
+	//		observer_camera->position.K
+	//	);
+	//}
 }
 
 void HaloReachGameHost::cameraDebugUI()

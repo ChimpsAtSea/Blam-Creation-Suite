@@ -4,7 +4,7 @@ class HaloReachGameHost : public IOpusGameEngineHost
 {
 public:
 	HaloReachGameHost();
-	~HaloReachGameHost();
+	virtual ~HaloReachGameHost();
 
 	// MCC Functionality
 	void FrameEnd(IDXGISwapChain* pSwapChain, _QWORD) override;

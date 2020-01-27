@@ -4,7 +4,7 @@ class IOpusGameEngineHost : public IGameEngineHost
 {
 public:
 	IOpusGameEngineHost(GameRuntime& rGameRuntime);
-	~IOpusGameEngineHost();
+	virtual ~IOpusGameEngineHost();
 
 	// MCC Functions
 

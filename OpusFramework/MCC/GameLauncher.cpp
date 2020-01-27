@@ -278,6 +278,7 @@ void GameLauncher::launchHaloReach()
 	}
 
 	delete pCurrentGameHost;
+	pCurrentGameHost = nullptr;
 
 	// reset runtime information after we've destroyed the engine
 	//s_pCurrentGameRuntime = nullptr;
@@ -330,6 +331,8 @@ void GameLauncher::ensureBink2Win64IsLoaded(const char* pLibName, const char* pF
 void GameLauncher::renderMainMenu()
 {
 	if (s_gameRunning) return;
+
+	MouseInput::SetMode(MouseMode::UI);
 
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));

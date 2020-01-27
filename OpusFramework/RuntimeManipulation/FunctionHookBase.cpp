@@ -76,5 +76,6 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 
 FunctionHookBase* FunctionHookBase::DeinitNode(EngineVersion engineVersion, BuildVersion buildVersion)
 {
+	m_isHooked = false; // #TODO: Do this better. We are unload the DLL so this is okay...
 	return m_pNextFunctionHook;
 }

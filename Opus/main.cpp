@@ -2,9 +2,6 @@
 #include <MantleLib\mantlelib-public-pch.h>
 #include <HaloReachLib\haloreachlib-private-pch.h>
 
-extern void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
-extern void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
-
 DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
 
 int WINAPI WinMain(
@@ -16,10 +13,6 @@ int WINAPI WinMain(
 {
 	Window::SetIcon(LoadIconA(hInstance, ResourcesManager::GetResourceIntResource(ResourceType::Icon)));
 	SystemPatch::PatchEnumWindows();
-
-	/* LEGACY */
-	GameLauncher::RegisterGameStartupCallback(init_halo_reach);		// setup reach hooks and deinit them
-	GameLauncher::RegisterGameShutdownCallback(deinit_halo_reach);	// setup reach hooks and deinit them
 
 	static bool s_running = true;
 	void(*UpdateCallback)() = []()

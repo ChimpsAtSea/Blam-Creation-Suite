@@ -89,9 +89,9 @@ private:
 	}
 	DataReferenceBase* deinitNode()
 	{
-		if (m_pPtr == nullptr)
+		if (m_pPtr != nullptr)
 		{
-
+			m_pPtr = nullptr; // #TODO: Unhook the function correctly. We currently reload DLL so this is okay...
 		}
 		return m_pNextDataReference;
 	}
