@@ -5,6 +5,16 @@ class MantleTab;
 class MantleGUI
 {
 public:
+
+
+	// #TODO: Make a shared interface for this
+
+	typedef void* (*GetTagPointerFunc)(uint16_t tagIndex);
+	static void SetGetTagPointerFunction(GetTagPointerFunc getTagPointer);
+	static void* GetTagPointer(uint16_t tagIndex);
+	static GetTagPointerFunc s_getTagPointerFunc;
+
+
 	typedef void(*OnCloseCallback)();
 
 	static void OpenMapFile(const wchar_t* pFilePath);

@@ -65,9 +65,6 @@ MantleTagTab::~MantleTagTab()
 	}
 }
 
-
-extern void* tag_definition_get(uint16_t index);
-
 void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, char* pStartSrc, char* pStartDest, char* pSrc, char* pDest)
 {
 	memcpy(pDest, pSrc, rReflectionType.m_size);
@@ -105,11 +102,22 @@ void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, ch
 
 void MantleTagTab::Poke()
 {
-	char* pDest = (char*)tag_definition_get(GetTagInterface().GetIndex());
-	char* pSource = m_rCacheFile.GetTagInterface(GetTagInterface().GetIndex())->GetData();
+	char* pDest = static_cast<char*>(MantleGUI::GetTagPointer(GetTagInterface().GetIndex()));
+	if (pDest)
+	{
 
-	const ReflectionType* pReflectionType = m_rTagInterface.GetReflectionData();
-	CopyDataRecursively(*pReflectionType, pSource, pDest, pSource, pDest);
+		char* pSource = m_rCacheFile.GetTagInterface(GetTagInterface().GetIndex())->GetData();
+
+		const ReflectionType* pReflectionType = m_rTagInterface.GetReflectionData();
+		CopyDataRecursively(*pReflectionType, pSource, pDest, pSource, pDest);
+
+		WriteLineVerbose("Successfully poked tag '%s'", GetTagInterface().GetNameWithGroupID());
+	}
+	else
+	{
+		WriteLineVerbose("Failed to poke tag '%s' as pDest was null", GetTagInterface().GetNameWithGroupID());
+	}
+	
 }
 
 void MantleTagTab::RenderContents(bool setSelected)
@@ -143,11 +151,14 @@ void MantleTagTab::RenderContents(bool setSelected)
 
 void MantleTagTab::RenderButtons()
 {
-	if (!m_isSelected) return;
-
-	if (ImGui::Button("Poke"))
+	if (MantleGUI::IsGameClient())
 	{
-		Poke();
+		if (!m_isSelected) return;
+
+		if (ImGui::Button("Poke"))
+		{
+			Poke();
+		}
 	}
 }
 
