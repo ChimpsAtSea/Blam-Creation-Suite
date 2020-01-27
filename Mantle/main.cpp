@@ -9,6 +9,12 @@ int WINAPI wWinMain(
 {
 	int argc = 0;
 	LPWSTR* argv = CommandLineToArgvW(lpCmdLine, &argc);
+	LPWSTR szLoadMapArgument = nullptr;
+	if (lpCmdLine[0])
+	{
+		szLoadMapArgument = argv[0];
+	}
+
 
 	void(*UICallback)() = []()
 	{
@@ -31,7 +37,7 @@ int WINAPI wWinMain(
 	Window::Init("Mantle", "Mantle Console", "mantle");
 	Render::Init(NULL);
 	DebugUI::Show();
-	MantleGUI::Init(false, argc > 0 ? argv[0] : nullptr);
+	MantleGUI::Init(false, szLoadMapArgument);
 	DebugUI::RegisterCallback(DebugUI::AlwaysRun, UICallback);
 
 	Window::RegisterUpdateCallback(UpdateCallback);
