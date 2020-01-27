@@ -37,7 +37,10 @@ void MantleMapTab::DisplayMapTabUI()
 		bool useSearch = m_pSearchBuffer[0] != 0;
 		if (useSearch)
 		{
-			const std::vector<TagInterface*> rTagInterfaces = m_pCacheFile->GetTagInterfaces();
+
+			const std::vector<TagInterface*>& rTagInterfaces = MantleGUI::IsSidebarUseFullFileLength()
+				? m_pCacheFile->GetTagInterfacesSortedByPathWithGroupID()
+				: m_pCacheFile->GetTagInterfacesSortedByNameWithGroupID();
 			for (TagInterface* pTagInterface : rTagInterfaces)
 			{
 				TagInterface& rTagInterface = *pTagInterface;
@@ -67,7 +70,11 @@ void MantleMapTab::DisplayMapTabUI()
 			for (GroupInterface* pGroupInterface : rGroupInterfaces)
 			{
 				GroupInterface& rGroupInterface = *pGroupInterface;
-				const std::vector<TagInterface*> rTagInterfaces = pGroupInterface->GetTagInterfaces();
+
+				const std::vector<TagInterface*>& rTagInterfaces = MantleGUI::IsSidebarUseFullFileLength()
+					? pGroupInterface->GetTagInterfacesSortedByPathWithGroupID()
+					: pGroupInterface->GetTagInterfacesSortedByNameWithGroupID();
+
 				const char* pGroupShortName = rGroupInterface.GetShortName();
 
 				bool displayGroup = !rTagInterfaces.empty() && (!useSearch || rGroupInterface.m_searchCriteriaMatchCount > 0);

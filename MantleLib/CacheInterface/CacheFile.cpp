@@ -116,6 +116,9 @@ void CacheFile::loadMap(const std::wstring& mapFilePath)
 				}
 			}
 
+
+			initSortedInstanceLists();
+
 			WriteLineVerbose("");
 		}
 
@@ -159,4 +162,63 @@ void CacheFile::initTagGroupRelationship()
 		rGroupInterface.initTagGroupRelationship();
 	};
 	tbb::parallel_for(0u, m_pTagFilesHeader->groups.count, createGroupFunc);
+}
+
+bool SortTagInstanceByNameWithGroupID(TagInterface* pLeft, TagInterface* pRight)
+{
+	std::string nameLeft = pLeft->GetNameWithGroupID();
+	std::string nameRight = pRight->GetNameWithGroupID();
+
+	std::transform(nameLeft.begin(), nameLeft.end(), nameLeft.begin(),
+		[](unsigned char c) { return std::tolower(c); }
+	);
+
+	std::transform(nameRight.begin(), nameRight.end(), nameRight.begin(),
+		[](unsigned char c) { return std::tolower(c); }
+	);
+
+	// #TODO this is crazy 200% garbage, do this better
+	return nameLeft < nameRight;
+}
+
+bool SortTagInstanceByPathWithGroupID(TagInterface* pLeft, TagInterface* pRight)
+{
+	std::string nameLeft = pLeft->GetPathWithGroupID();
+	std::string nameRight = pRight->GetPathWithGroupID();
+
+	std::transform(nameLeft.begin(), nameLeft.end(), nameLeft.begin(),
+		[](unsigned char c) { return std::tolower(c); }
+	);
+
+	std::transform(nameRight.begin(), nameRight.end(), nameRight.begin(),
+		[](unsigned char c) { return std::tolower(c); }
+	);
+
+	// #TODO this is crazy 200% garbage, do this better
+	return nameLeft < nameRight;
+}
+
+void CacheFile::initSortedInstanceLists()
+{
+	GroupInterface** ppGroupInterfacesBuffer = m_groupInterfaces.data();
+	std::function createGroupFunc = [this, ppGroupInterfacesBuffer](uint32_t index)
+	{
+		GroupInterface* pGroupInterface = ppGroupInterfacesBuffer[index];
+
+		if (!pGroupInterface->m_tagInterfaces.empty())
+		{
+			pGroupInterface->m_tagInterfacesSortedByNameWithGroupID.resize(pGroupInterface->m_tagInterfaces.size());
+			std::partial_sort_copy(pGroupInterface->m_tagInterfaces.begin(), pGroupInterface->m_tagInterfaces.end(), pGroupInterface->m_tagInterfacesSortedByNameWithGroupID.begin(), pGroupInterface->m_tagInterfacesSortedByNameWithGroupID.end(), SortTagInstanceByNameWithGroupID);
+
+			pGroupInterface->m_tagInterfacesSortedByPathWithGroupID.resize(pGroupInterface->m_tagInterfaces.size());
+			std::partial_sort_copy(pGroupInterface->m_tagInterfaces.begin(), pGroupInterface->m_tagInterfaces.end(), pGroupInterface->m_tagInterfacesSortedByPathWithGroupID.begin(), pGroupInterface->m_tagInterfacesSortedByPathWithGroupID.end(), SortTagInstanceByPathWithGroupID);
+		}
+	};
+	tbb::parallel_for(0u, m_pTagFilesHeader->groups.count, createGroupFunc);
+
+	m_tagInterfacesSortedByNameWithGroupID.resize(m_tagInterfaces.size());
+	std::partial_sort_copy(m_tagInterfaces.begin(), m_tagInterfaces.end(), m_tagInterfacesSortedByNameWithGroupID.begin(), m_tagInterfacesSortedByNameWithGroupID.end(), SortTagInstanceByNameWithGroupID);
+
+	m_tagInterfacesSortedByPathWithGroupID.resize(m_tagInterfaces.size());
+	std::partial_sort_copy(m_tagInterfaces.begin(), m_tagInterfaces.end(), m_tagInterfacesSortedByPathWithGroupID.begin(), m_tagInterfacesSortedByPathWithGroupID.end(), SortTagInstanceByPathWithGroupID);
 }
