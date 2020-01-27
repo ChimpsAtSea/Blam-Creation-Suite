@@ -57,26 +57,28 @@ void HaloReachGameHost::RenderUI() const
 
 void HaloReachGameHost::updateCamera()
 {
+	if (!player_mapping_get_local_player.m_isHooked) return;
+	if (!observer_try_and_get_camera.m_isHooked) return;
 
-	//int playerIndex = player_mapping_get_local_player();
-	//s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
-	//if (observer_camera)
-	//{
-	//	float aspectRatio = 16.0f / 9.0f; // #TODO: Correct aspect ratio
-	//	float fieldOfViewHorizontal = observer_camera->field_of_view;
-	//	Render::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
-	//	Render::UpdateView(
-	//		observer_camera->forward.I,
-	//		observer_camera->forward.J,
-	//		observer_camera->forward.K,
-	//		observer_camera->up.I,
-	//		observer_camera->up.J,
-	//		observer_camera->up.K,
-	//		observer_camera->position.I,
-	//		observer_camera->position.J,
-	//		observer_camera->position.K
-	//	);
-	//}
+	int playerIndex = player_mapping_get_local_player();
+	s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
+	if (observer_camera)
+	{
+		float aspectRatio = 16.0f / 9.0f; // #TODO: Correct aspect ratio
+		float fieldOfViewHorizontal = observer_camera->field_of_view;
+		Render::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
+		Render::UpdateView(
+			observer_camera->forward.I,
+			observer_camera->forward.J,
+			observer_camera->forward.K,
+			observer_camera->up.I,
+			observer_camera->up.J,
+			observer_camera->up.K,
+			observer_camera->position.I,
+			observer_camera->position.J,
+			observer_camera->position.K
+		);
+	}
 }
 
 void HaloReachGameHost::cameraDebugUI()
