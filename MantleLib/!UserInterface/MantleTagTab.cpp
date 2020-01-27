@@ -117,7 +117,7 @@ void MantleTagTab::Poke()
 	{
 		WriteLineVerbose("Failed to poke tag '%s' as pDest was null", GetTagInterface().GetNameWithGroupID());
 	}
-	
+
 }
 
 void MantleTagTab::RenderContents(bool setSelected)
@@ -263,6 +263,65 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 				}
 				break;
 				}
+
+				ImGui::Columns(1);
+			}
+			else if (rTypeInfo.m_reflectionTypeCategory == ReflectionTypeCategory::StringID)
+			{
+				string_id& rStringID = *reinterpret_cast<string_id*>(pFieldDataPointer);
+
+				class StringIDDynamicData
+				{
+				public:
+					StringIDDynamicData(string_id& rStringID, CacheFile& rCacheFile)
+						: szBuffer()
+						, isValid(0)
+						, bufferLength(0)
+						, pStringID(&rStringID)
+					{
+						const char* pStringID = rCacheFile.GetStringIDStr(rStringID.stringid);
+						if (pStringID)
+						{
+							strncpy_s(szBuffer, pStringID, strlen(pStringID));
+							szBuffer[_countof(szBuffer) - 1] = 0;
+							isValid = true;
+						}
+					}
+
+					void updateStringID()
+					{
+						isValid = false;
+					}
+
+					char szBuffer[47];
+					uint8_t isValid : 1;
+					uint8_t bufferLength : 7;
+					string_id* pStringID;
+				};
+				bool wasAllocated;
+				StringIDDynamicData& rDynamicStringIDData = GetDynamicData<StringIDDynamicData>(pFieldDataPointer, wasAllocated);
+				if (wasAllocated)
+				{
+					new(&rDynamicStringIDData) StringIDDynamicData(rStringID, m_rCacheFile);
+				}
+
+				ImGui::Columns(3, NULL, false);
+				ImGui::SetColumnOffset(1, recursionPadding);
+				ImGui::SetColumnWidth(1, 400);
+				ImGui::NextColumn(); // padding
+
+				ImGui::Text(pFieldDisplayName);
+				ImGui::NextColumn();
+				ImGui::SetColumnWidth(2, 500);
+
+				bool isValid = rDynamicStringIDData.isValid; // cache value as it changes in updateStringID
+				if (!isValid) ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 0.4f, 0.4f, 1.0f));
+				if (ImGui::InputText("StringID", rDynamicStringIDData.szBuffer, sizeof(rDynamicStringIDData.szBuffer)))
+				{
+					rDynamicStringIDData.updateStringID();
+					WriteLineVerbose(rDynamicStringIDData.szBuffer);
+				}
+				if (!isValid) ImGui::PopStyleColor();
 
 				ImGui::Columns(1);
 			}

@@ -27,33 +27,47 @@ protected:
 	std::string m_description;
 	std::vector<TabClosedCallback> tabClosedCallback;
 
-	using ImGUIDynamnicData = std::pair<void*, char[32]>;
+	using ImGUIDynamnicData = std::pair<void*, char[56]>;
 	std::vector<ImGUIDynamnicData*> m_imGuiDynamicData;
 
-	inline ImGUIDynamnicData& GetDynamicData(void* pPosition);
+	inline ImGUIDynamnicData& GetDynamicData(void* pPosition, bool& rWasAllocated);
 	template<typename T>
 	inline T& GetDynamicData(void* pPosition)
 	{
-		ImGUIDynamnicData& rDynamicData = GetDynamicData(pPosition);
+		bool wasAllocated = false;
+		ImGUIDynamnicData& rDynamicData = GetDynamicData(pPosition, wasAllocated);
+		if (wasAllocated)
+		{
+			new(&rDynamicData) T(); // initialize value
+		}
 		static_assert(sizeof(T) <= sizeof(rDynamicData.second), "Dynamic data exceeds allocated space");
 		T& rDynamicTagBlockData = *reinterpret_cast<T*>(rDynamicData.second);
 		return rDynamicTagBlockData;
 	}
-
+	template<typename T, typename ...Tconstructor>
+	inline T& GetDynamicData(void* pPosition, bool& rWasAllocated)
+	{
+		ImGUIDynamnicData& rDynamicData = GetDynamicData(pPosition, rWasAllocated);
+		static_assert(sizeof(T) <= sizeof(rDynamicData.second), "Dynamic data exceeds allocated space");
+		T& rDynamicTagBlockData = *reinterpret_cast<T*>(rDynamicData.second);
+		return rDynamicTagBlockData;
+	}
 	
 
 };
 
-inline MantleTab::ImGUIDynamnicData& MantleTab::GetDynamicData(void* pPosition)
+inline MantleTab::ImGUIDynamnicData& MantleTab::GetDynamicData(void* pPosition, bool& rWasAllocated)
 {
 	for (ImGUIDynamnicData* pDynamicData : m_imGuiDynamicData)
 	{
 		if (pDynamicData->first == pPosition)
 		{
+			rWasAllocated = false;
 			return *pDynamicData;
 		}
 	}
 
+	rWasAllocated = true;
 	ImGUIDynamnicData& rDynamicData = *m_imGuiDynamicData.emplace_back(new ImGUIDynamnicData{});
 	rDynamicData.first = pPosition;
 	return rDynamicData;
