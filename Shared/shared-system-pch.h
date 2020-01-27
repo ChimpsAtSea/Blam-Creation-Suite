@@ -84,6 +84,7 @@ using namespace tbb;
 #include <locale>
 #include <cwctype>
 #include <codecvt>
+#include <queue>
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #else

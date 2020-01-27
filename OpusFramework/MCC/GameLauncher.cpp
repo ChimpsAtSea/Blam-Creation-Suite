@@ -83,7 +83,10 @@ void GameLauncher::loadSettings()
 
 void GameLauncher::OpusTick()
 {
-	update();
+	if (!s_gameRunning)
+	{
+		update();
+	}
 
 	DebugUI::StartFrame(); // OpusUITick is registered to the DebugUI
 	//OpusUITick();
@@ -256,7 +259,7 @@ void GameLauncher::launchHaloReach()
 		while (s_gameRunning)
 		{
 			update();
-			Sleep(1);
+			SwitchToThread(); // don't smash the CPU
 		}
 		thread.join();
 	}

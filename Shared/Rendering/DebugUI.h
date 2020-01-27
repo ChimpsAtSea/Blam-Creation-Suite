@@ -22,6 +22,8 @@ public:
 	static void ToggleUI();
 	static void Show();
 	static void Hide();
+	static void ProcessWindowMessages();
+	static void AddMessageBreak();
 	static void WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static void RegisterCallback(CallbackMode callbackMode, DebugUICallback* pDebugUICallback);
 	static void UnregisterCallback(CallbackMode callbackMode, DebugUICallback* pDebugUICallback);

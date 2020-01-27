@@ -132,6 +132,12 @@
     <ClInclude Include="FatalError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ThreadSafeQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AtomicLock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommandLine.cpp">

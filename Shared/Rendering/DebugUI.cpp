@@ -4,6 +4,15 @@
 extern "C" void* GetIDXGISwapChainPresent(IDXGISwapChain * pSwapchain);
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+struct WndProcMessage
+{
+	HWND hwnd;
+	UINT msg;
+	WPARAM wParam;
+	LPARAM lParam;
+};
+ThreadSafeQueue<WndProcMessage> windowQueue;
+
 
 // #WIP Start Resize Synchronization Across Opus and Game Thread
 #undef auto
@@ -126,6 +135,8 @@ bool DebugUI::IsRendering()
 
 void DebugUI::StartFrame()
 {
+	ProcessWindowMessages();
+
 	// #WIP Start Resize Synchronization Across Opus and Game Thread
 	s_mutex.lock();
 	static uint32_t expectedValue = underlying_cast(DebugUIState::Initialized);
@@ -201,26 +212,32 @@ void DebugUI::Hide()
 	s_visible = false;
 }
 
-void DebugUI::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+void DebugUI::ProcessWindowMessages()
 {
-	bool isInitialised = s_uiState == underlying_cast(DebugUIState::Initialized);
-	if (isInitialised && Window::IsWindowFocused())
+	WndProcMessage msg;
+	while (windowQueue.Dequeue(msg))
 	{
-		if (IsVisible())
+		switch (msg.msg)
 		{
-			ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam);
-		}
-
-		switch (msg)
-		{
-		case WM_KEYUP:
-			if (wParam == VK_HOME)
+		case WM_KEYDOWN:
+			if (msg.wParam == VK_HOME)
 			{
 				DebugUI::ToggleUI();
 			}
 			break;
 		}
+
+		bool isInitialised = s_uiState == underlying_cast(DebugUIState::Initialized);
+		if (isInitialised)
+		{
+			ImGui_ImplWin32_WndProcHandler(msg.hwnd, msg.msg, msg.wParam, msg.lParam);
+		}
 	}
+}
+
+void DebugUI::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	windowQueue.Enqueue({ hwnd, msg, wParam, lParam }); // thread safe queue
 }
 
 void DebugUI::RegisterCallback(CallbackMode callbackMode, DebugUICallback* pDebugUICallback)

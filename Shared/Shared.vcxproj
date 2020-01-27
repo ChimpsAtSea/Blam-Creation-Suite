@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!Resources\resource.h" />
+    <ClInclude Include="AtomicLock.h" />
     <ClInclude Include="Blam\basic_buffer.h" />
     <ClInclude Include="Blam\Blam.h" />
     <ClInclude Include="Blam\blamfile_chunk_type.h" />
@@ -50,6 +51,7 @@
     <ClInclude Include="shared-system-pch.h" />
     <ClInclude Include="shared-tbb-pch.h" />
     <ClInclude Include="CommandLine.h" />
+    <ClInclude Include="ThreadSafeQueue.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommandLine.cpp" />
