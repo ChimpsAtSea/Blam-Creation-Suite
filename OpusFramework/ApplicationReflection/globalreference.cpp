@@ -108,15 +108,18 @@ GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVer
 			assert(pReference != nullptr);
 			assert(pDataAddress != nullptr);
 			intptr_t& dataAddressValue = *reinterpret_cast<intptr_t*>(pReference);
-			if (m_buildVersion != BuildVersion::NotSet) // specific game addresses should be verified
-			{
-				
-				assert(dataAddressValue == targetOffset);
-			}
+			//if (m_buildVersion != BuildVersion::NotSet) // specific game addresses should be verified
+			//{
+			//	
+			//	assert(dataAddressValue == targetOffset);
+			//}
 			// take a record of the original value for unpatching
 			m_originalValue = dataAddressValue;
 
+			DWORD oldProtect = 0;
+			VirtualProtect(pReference, sizeof(pReference), PAGE_READWRITE, &oldProtect);
 			*pReference = pDataAddress;
+			VirtualProtect(pReference, sizeof(pReference), oldProtect, &oldProtect);
 
 			intptr_t patchedAddress = dataAddressValue;
 
