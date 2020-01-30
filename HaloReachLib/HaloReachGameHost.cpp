@@ -37,8 +37,7 @@ HaloReachGameHost::~HaloReachGameHost()
 
 	//m_pGameEngine = nullptr;
 
-
-	//deinit_halo_reach(EngineVersion::HaloReach, s_haloReachGameRuntime.GetBuildVersion());
+	deinit_halo_reach(EngineVersion::HaloReach, s_haloReachGameRuntime.GetBuildVersion());
 	//s_haloReachGameRuntime.~GameRuntime();
 	//new(&s_haloReachGameRuntime) GameRuntime("haloreach", "HaloReach\\haloreach.dll");
 }
