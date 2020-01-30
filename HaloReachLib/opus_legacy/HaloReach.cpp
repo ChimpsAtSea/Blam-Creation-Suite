@@ -272,29 +272,29 @@ intptr_t convert_mcc_map_id_to_reach_map_id_offset(EngineVersion engineVersion, 
 {
 	using namespace ketchup;
 	PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engineVersion)));			// 1.1270.0.0
-	ps.AddInstruction(new _or		("x", 0x83, 0xCA, 0xFF));																//.text:000000018004BF10 83 CA FF                    or      edx, 0FFFFFFFFh
-	ps.AddInstruction(new _add		("x", 0x81, 0xC1, 0x4E, 0xFF, 0xF, 0xFF));												//.text:000000018004BF13 81 C1 4E FF+                add     ecx, 0FFFFFF4Eh ; switch 42 cases
-	ps.AddInstruction(new _cmp		("x", 0x83, 0xF9, 0x29));																//.text:000000018004BF19 83 F9 29                    cmp     ecx, 29h
-	ps.AddInstruction(new _ja		("x", 0x0F, 0x87, 0x64, 0x01, 0x00, 0x00));												//.text:000000018004BF1C 0F 87 64 01+                ja      def_18004BF37   ; jumptable 00007FFC6804BF37 default case
-	ps.AddInstruction(new _movsxd	("x", 0x48, 0x63, 0xC1));																//.text:000000018004BF22 48 63 C1                    movsxd  rax, ecx
-	ps.AddInstruction(new _lea		("x", 0x4C, 0x8D, 0x05, 0xD4, 0x40, 0xFB, 0xFF));										//.text:000000018004BF25 4C 8D 05 D4+                lea     r8, __ImageBase
-	ps.AddInstruction(new _mov		("x", 0x41, 0x8B, 0x8C, 0x80, 0x8C, 0xC0, 0x04, 0x00));									//.text:000000018004BF2C 41 8B 8C 80+                mov     ecx, [r8+rax*4+4C08Ch]
-	ps.AddInstruction(new _add		("x", 0x49, 0x03, 0xC8));																//.text:000000018004BF34 49 03 C8                    add     rcx, r8
-	ps.AddInstruction(new _jmp		("x", 0xFF, 0xE1));																		//.text:000000018004BF37 FF E1                       jmp     rcx             ; switch jump
+	ps.AddInstruction(new _or("x", 0x83, 0xCA, 0xFF));																//.text:000000018004BF10 83 CA FF                    or      edx, 0FFFFFFFFh
+	ps.AddInstruction(new _add("x", 0x81, 0xC1, 0x4E, 0xFF, 0xF, 0xFF));												//.text:000000018004BF13 81 C1 4E FF+                add     ecx, 0FFFFFF4Eh ; switch 42 cases
+	ps.AddInstruction(new _cmp("x", 0x83, 0xF9, 0x29));																//.text:000000018004BF19 83 F9 29                    cmp     ecx, 29h
+	ps.AddInstruction(new _ja("x", 0x0F, 0x87, 0x64, 0x01, 0x00, 0x00));												//.text:000000018004BF1C 0F 87 64 01+                ja      def_18004BF37   ; jumptable 00007FFC6804BF37 default case
+	ps.AddInstruction(new _movsxd("x", 0x48, 0x63, 0xC1));																//.text:000000018004BF22 48 63 C1                    movsxd  rax, ecx
+	ps.AddInstruction(new _lea("x", 0x4C, 0x8D, 0x05, 0xD4, 0x40, 0xFB, 0xFF));										//.text:000000018004BF25 4C 8D 05 D4+                lea     r8, __ImageBase
+	ps.AddInstruction(new _mov("x", 0x41, 0x8B, 0x8C, 0x80, 0x8C, 0xC0, 0x04, 0x00));									//.text:000000018004BF2C 41 8B 8C 80+                mov     ecx, [r8+rax*4+4C08Ch]
+	ps.AddInstruction(new _add("x", 0x49, 0x03, 0xC8));																//.text:000000018004BF34 49 03 C8                    add     rcx, r8
+	ps.AddInstruction(new _jmp("x", 0xFF, 0xE1));																		//.text:000000018004BF37 FF E1                       jmp     rcx             ; switch jump
 																															//.text:000000018004BF39             ; ---------------------------------------------------------------------------
 																															//.text:000000018004BF39
 																															//.text:000000018004BF39             loc_18004BF39:                          ; CODE XREF: convert_map_id_from_mcc+27↑j
 																															//.text:000000018004BF39                                                     ; DATA XREF: .text:jpt_18004BF37↓o
-	ps.AddInstruction(new _mov		("x", 0xFBA, 0x8D, 0x13, 0x00, 0x00));													//.text:000000018004BF39 BA 8D 13 00+                mov     edx, 138Dh      ; jumptable 00007FFC6804BF37 case 178
-	ps.AddInstruction(new _mov		("x", 0xF8B, 0xC2));																	//.text:000000018004BF3E 8B C2                       mov     eax, edx
-	ps.AddInstruction(new _retn		("x", 0xFC3));																			//.text:000000018004BF40 C3                          retn
+	ps.AddInstruction(new _mov("x", 0xFBA, 0x8D, 0x13, 0x00, 0x00));													//.text:000000018004BF39 BA 8D 13 00+                mov     edx, 138Dh      ; jumptable 00007FFC6804BF37 case 178
+	ps.AddInstruction(new _mov("x", 0xF8B, 0xC2));																	//.text:000000018004BF3E 8B C2                       mov     eax, edx
+	ps.AddInstruction(new _retn("x", 0xFC3));																			//.text:000000018004BF40 C3                          retn
 																															//.text:000000018004BF41             ; ---------------------------------------------------------------------------
 																															//.text:000000018004BF41
 																															//.text:000000018004BF41             loc_18004BF41:                          ; CODE XREF: convert_map_id_from_mcc+27↑j
 																															//.text:000000018004BF41                                                     ; DATA XREF: .text:jpt_18004BF37↓o
-	ps.AddInstruction(new _mov		("x", 0xFBA, 0x92, 0x13, 0x00, 0x00));													//.text:000000018004BF41 BA 92 13 00+                mov     edx, 1392h      ; jumptable 00007FFC6804BF37 case 179
-	ps.AddInstruction(new _mov		("x", 0xF8B, 0xC2));																	//.text:000000018004BF46 8B C2                       mov     eax, edx
-	ps.AddInstruction(new _retn		("x", 0xFC3));																			//.text:000000018004BF48 C3                          retn
+	ps.AddInstruction(new _mov("x", 0xFBA, 0x92, 0x13, 0x00, 0x00));													//.text:000000018004BF41 BA 92 13 00+                mov     edx, 1392h      ; jumptable 00007FFC6804BF37 case 179
+	ps.AddInstruction(new _mov("x", 0xF8B, 0xC2));																	//.text:000000018004BF46 8B C2                       mov     eax, edx
+	ps.AddInstruction(new _retn("x", 0xFC3));																			//.text:000000018004BF48 C3                          retn
 
 	DWORD patternOffset = ps.FindPattern(0);
 	if (patternOffset)
@@ -792,24 +792,24 @@ void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVer
 	GlobalReference::InitTree(EngineVersion::HaloReach, buildVersion);
 	end_detours();
 
-	// Allows spawning AI via scripts or effects, props to Zeddikins
-	if (Settings::ReadBoolValue(SettingsSection::Debug, "SpawnAiWithScriptsAndEffects", true))
+	if (buildVersion == BuildVersion::Build_1_1270_0_0)
 	{
-		UINT8 jmp[1] = { 0xEB };
-		copy_to_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x18076F581, jmp, sizeof(jmp));
-		nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x180730287, 6);
-	}
+		// Allows spawning AI via scripts or effects, props to Zeddikins
+		if (Settings::ReadBoolValue(SettingsSection::Debug, "SpawnAiWithScriptsAndEffects", true))
+		{
+			UINT8 jmp[1] = { 0xEB };
+			copy_to_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x18076F581, jmp, sizeof(jmp));
+			nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x180730287, 6);
+		}
 
-	// Enable debug hud coordinates
-	if (Settings::ReadBoolValue(SettingsSection::Debug, "PanCamEnabled", true))
-	{
-		nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x1800DC9DA, 6);
-		nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x1800DC9E7, 6);
-	}
+		// Enable debug hud coordinates
+		if (Settings::ReadBoolValue(SettingsSection::Debug, "PanCamEnabled", true))
+		{
+			nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x1800DC9DA, 6);
+			nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x1800DC9E7, 6);
+		}
 
-	if (Settings::ReadBoolValue(SettingsSection::Debug, "ReplacePrintScriptEvaluate", true))
-	{
-		if (buildVersion == BuildVersion::Build_1_1270_0_0)
+		if (Settings::ReadBoolValue(SettingsSection::Debug, "ReplacePrintScriptEvaluate", true))
 		{
 			hs_script_op* hs_print_op = hs_function_get(0x28);
 			hs_script_op* hs_chud_post_message_op = hs_function_get(0x509);
