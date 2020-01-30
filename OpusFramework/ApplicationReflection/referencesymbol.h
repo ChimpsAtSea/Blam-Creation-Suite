@@ -18,7 +18,7 @@ public:
 	}
 	operator T& () const
 	{
-		return *(T*)(m_offset);
+		return *(T*)(0); // return null to allow checking if this value exists
 	}
 private:
 	intptr_t m_offset;

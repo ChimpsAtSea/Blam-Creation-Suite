@@ -14,6 +14,7 @@ HaloReachGameHost::HaloReachGameHost()
 {
 	init_halo_reach(EngineVersion::HaloReach, s_haloReachGameRuntime.GetBuildVersion());
 
+	MantleGUI::SetGetTagSectionAddressFunction(tag_address_get); // #TODO: This is kinda hacky
 	MantleGUI::SetGetTagPointerFunction(tag_definition_get); // #TODO: This is kinda hacky
 
 	WriteLineVerbose("Init HaloReachGameHost");
@@ -26,6 +27,9 @@ HaloReachGameHost::HaloReachGameHost()
 HaloReachGameHost::~HaloReachGameHost()
 {
 	WriteLineVerbose("Deinit HaloReachGameHost");
+
+	MantleGUI::SetGetTagSectionAddressFunction(nullptr); // #TODO: This is kinda hacky
+	MantleGUI::SetGetTagPointerFunction(nullptr); // #TODO: This is kinda hacky
 
 	//m_pGameEngine->Destructor();
 	//free(pHaloReachEngine);

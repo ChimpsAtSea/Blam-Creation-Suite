@@ -6,27 +6,13 @@ std::vector<MantleTab*> MantleGUI::s_pMantleTabs;
 std::vector<MantleGUI::OnCloseCallback> MantleGUI::s_guiCloseCallbacks;
 bool MantleGUI::s_inGameMode;
 MantleGUI::GetTagPointerFunc MantleGUI::s_getTagPointerFunc = nullptr;
+MantleGUI::GetTagSectionAddressFunc MantleGUI::s_getTagSectionAddressFunc = nullptr;
 
 void MantleGUI::Init(bool inGameMode, const wchar_t* pStartupFilePath)
 {
 	s_inGameMode = inGameMode;
 	OpenMapFile(pStartupFilePath);
 }
-
-void MantleGUI::SetGetTagPointerFunction(GetTagPointerFunc getTagPointer)
-{
-	s_getTagPointerFunc = getTagPointer;
-}
-
-void* MantleGUI::GetTagPointer(uint16_t tagIndex)
-{
-	if (MantleGUI::IsGameClient() && s_getTagPointerFunc)
-	{
-		return s_getTagPointerFunc(tagIndex);
-	}
-	return nullptr;
-}
-
 
 void MantleGUI::OpenMapFile(const wchar_t* pFilePath)
 {

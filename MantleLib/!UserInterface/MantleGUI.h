@@ -9,11 +9,15 @@ public:
 
 	// #TODO: Make a shared interface for this
 
-	typedef void* (*GetTagPointerFunc)(uint16_t tagIndex);
-	static void SetGetTagPointerFunction(GetTagPointerFunc getTagPointer);
-	static void* GetTagPointer(uint16_t tagIndex);
+	typedef char* (*GetTagPointerFunc)(uint16_t tagIndex);
+	inline static void SetGetTagPointerFunction(GetTagPointerFunc getTagPointer) { s_getTagPointerFunc = getTagPointer; }
+	inline static char* GetTagPointer(uint16_t tagIndex) { return s_getTagPointerFunc ? s_getTagPointerFunc(tagIndex) : nullptr; }
 	static GetTagPointerFunc s_getTagPointerFunc;
 
+	typedef char* (*GetTagSectionAddressFunc)(uint32_t address);
+	inline static void SetGetTagSectionAddressFunction(GetTagSectionAddressFunc getTagSectionAddressFunc) { s_getTagSectionAddressFunc = getTagSectionAddressFunc; }
+	inline static char* GetTagSectionAddress(uint32_t address) { return s_getTagSectionAddressFunc ? s_getTagSectionAddressFunc(address) : nullptr; }
+	static GetTagSectionAddressFunc s_getTagSectionAddressFunc;
 
 	typedef void(*OnCloseCallback)();
 

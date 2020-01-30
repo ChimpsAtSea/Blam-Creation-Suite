@@ -67,6 +67,9 @@ MantleTagTab::~MantleTagTab()
 
 void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, char* pStartSrc, char* pStartDest, char* pSrc, char* pDest)
 {
+	// #TODO: Package up all of the tag data into a single packet
+	// #TODO: Patch the tag address table to make room for extra data
+
 	memcpy(pDest, pSrc, rReflectionType.m_size);
 
 	for (size_t i = 0; i < rReflectionType.m_count; i++)
@@ -86,13 +89,13 @@ void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, ch
 				if (pTagBlock->count && pTagBlock->address)
 				{
 					char* pTagBlockDataSource = m_rCacheFile.GetTagBlockData<char>(*pTagBlock);
-					char* pTagBlockDest = pStartDest + (pTagBlockDataSource - pStartSrc);
+					char* pTagBlockDataDest = MantleGUI::GetTagSectionAddress(pTagBlock->address);
 
 					for (int i = 0; i < pTagBlock->count; i++)
 					{
 						//memcpy(pTagBlockDest, pTagBlockDataSource, pTagBlockReflectionType->m_size);
 						uint32_t offset = pTagBlockReflectionType->m_size * i;
-						CopyDataRecursively(*pTagBlockReflectionType, pStartSrc, pStartDest, pTagBlockDataSource + offset, pTagBlockDest + offset);
+						CopyDataRecursively(*pTagBlockReflectionType, pStartSrc, pStartDest, pTagBlockDataSource + offset, pTagBlockDataDest + offset);
 					}
 				}
 			}

@@ -1,7 +1,5 @@
 #include "opusframework-private-pch.h"
 
-#define MAKE_FILE_VERSION(a, b, c, d) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 16) | (uint64_t(d) << 0))
-
 GameRuntime::GameRuntime(const char* pEngineName, const char* pLibFileName)
 	: m_engineName(pEngineName)
 	, m_buildVersion(GetLibraryBuildVersion(pLibFileName)), m_enginePath(pLibFileName)
@@ -9,6 +7,7 @@ GameRuntime::GameRuntime(const char* pEngineName, const char* pLibFileName)
 
 	if (m_buildVersion == BuildVersion::NotSet)
 	{
+		WriteLineVerbose("Warning: GameRuntime initialized with BuildVersion::NotSet");
 		return;
 	}
 
@@ -49,17 +48,8 @@ void GameRuntime::loadLibrary(const char* pLibFileName)
 BuildVersion GameRuntime::GetLibraryBuildVersion(const char* pFileName)
 {
 	uint64_t libraryFileVersion = GetLibraryFileVersion(pFileName);
-	switch (libraryFileVersion)
-	{
-	case MAKE_FILE_VERSION(1, 1270, 0, 0): return BuildVersion::Build_1_1270_0_0;
-	case MAKE_FILE_VERSION(1, 1246, 0, 0): return BuildVersion::Build_1_1246_0_0;
-	case MAKE_FILE_VERSION(1, 1211, 0, 0): return BuildVersion::Build_1_1211_0_0;
-	case MAKE_FILE_VERSION(1, 1186, 0, 0): return BuildVersion::Build_1_1186_0_0;
-	case MAKE_FILE_VERSION(1, 1035, 0, 0): return BuildVersion::Build_1_1035_0_0;
-	case MAKE_FILE_VERSION(1, 887, 0, 0): return BuildVersion::Build_1_887_0_0;
-	default:
-		return BuildVersion::NotSet;
-	}
+
+	return static_cast<BuildVersion>(libraryFileVersion);
 }
 
 uint64_t GameRuntime::GetLibraryFileVersion(const char* pFileName)

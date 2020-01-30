@@ -9,4 +9,11 @@ namespace ketchup
 	typedef Instruction _sub;
 	typedef Instruction _call;
 	typedef Instruction _or;
+	typedef Instruction _ja;
+	typedef Instruction _jmp;
+	typedef Instruction _add;
+	typedef Instruction _movzx;
+	typedef Instruction _retn;
+	typedef Instruction _movsxd;
+	
 }
