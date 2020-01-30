@@ -31,12 +31,14 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 	{
 		if (m_offset == 0 && m_find_offset_func)
 		{
-			m_offset = m_find_offset_func(engineVersion, buildVersion);
+			intptr_t foundOffset = m_find_offset_func(engineVersion, buildVersion);
 
-			if (m_offset == ~intptr_t())
+			if (foundOffset == ~intptr_t())
 			{
 				return m_pNextFunctionHook;
 			}
+
+			m_offset = foundOffset;
 
 			assert(m_buildVersion == BuildVersion::NotSet && m_offset >= GetBuildBaseAddress(buildVersion)/*, "Offset is out of bounds"*/);
 			assert(m_buildVersion == BuildVersion::NotSet && m_offset < GetEngineTopAddress(buildVersion)/*, "Offset is out of bounds"*/);

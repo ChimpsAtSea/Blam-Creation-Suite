@@ -26,7 +26,7 @@ GameRuntime::~GameRuntime()
 		//delete m_pDataAccess;
 	}
 
-	//FreeLibrary(hGameModule);
+	FreeLibrary(hGameModule);
 }
 
 void GameRuntime::loadLibrary(const char* pLibFileName)
