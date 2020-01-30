@@ -1,7 +1,7 @@
 
-s_cache_file_tag_instance*& tag_instances = reference_symbol<s_cache_file_tag_instance*>("tag_instances", BuildVersion::Build_1_1270_0_0, 0x1826887B8);
-uint32_t* (&tag_address_table)[] = reference_symbol<uint32_t * []>("tag_address_table", BuildVersion::Build_1_1270_0_0, 0x1838D86C0);
-char* & g_cache_file = reference_symbol<char*>("g_cache_file", BuildVersion::Build_1_1270_0_0, 0x1826077A0);
+s_cache_file_tag_instance*& tag_instances = reference_symbol<s_cache_file_tag_instance*>("tag_instances", BuildVersion::Build_1_1305_0_0, 0x180CF8FC0);
+uint32_t* (&tag_address_table)[] = reference_symbol<uint32_t * []>("tag_address_table", BuildVersion::Build_1_1305_0_0, 0x183887CA0);
+char* & g_cache_file = reference_symbol<char*>("g_cache_file", BuildVersion::Build_1_1305_0_0, 0x1825B6D90);
 
 char* tag_address_get(uint32_t tagInstanceAddress)
 {
