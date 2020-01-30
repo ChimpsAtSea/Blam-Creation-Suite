@@ -17,6 +17,7 @@ int g_controlsLayout = 0;
 int g_useController = 0;
 bool g_pancamEnabled = false;
 bool g_keyboardPrintKeyState = false;
+bool g_CenteredCrosshair = false;
 BuildVersion g_currentbuildVersion = BuildVersion::NotSet;
 
 void _simple_pattern_match_readonly_data_copy(
@@ -386,6 +387,7 @@ void ReadConfig()
 	g_pancamEnabled = Settings::ReadBoolValue(SettingsSection::Debug, "PancamEnabled", false);
 	g_keyboardPrintKeyState = Settings::ReadBoolValue(SettingsSection::Debug, "PrintKeyState", 0);
 	g_useController = Settings::ReadIntegerValue(SettingsSection::Player, "UseController", 0);
+	g_CenteredCrosshair = Settings::ReadBoolValue(SettingsSection::Camera, "CenteredCrosshair", false);
 	//ReadInputBindings();
 }
 
@@ -731,6 +733,23 @@ void __fastcall hs_print_evaluate(short opcode, unsigned short expression_index,
 		hs_return(expression_index, 0);
 	}
 }
+
+intptr_t camera_definition_validate_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	switch (buildVersion)
+	{
+	case BuildVersion::Build_1_1270_0_0: return 0x1800E6950;
+	case BuildVersion::Build_1_1305_0_0: return 0x1800E6A00;
+	}
+	return ~intptr_t();
+}
+FunctionHookEx<camera_definition_validate_offset, void __fastcall (s_camera_definition* camera)> camera_definition_validate = { "camera_definition_validate", [](s_camera_definition* camera)
+{
+	camera->LookShift = g_CenteredCrosshair ? 0.f : 0.17f;
+	camera->FOVRadians = g_fieldOfView * 0.017453292f;
+
+	camera_definition_validate(camera);
+}};
 
 
 

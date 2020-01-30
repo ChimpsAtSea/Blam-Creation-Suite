@@ -281,6 +281,7 @@ extern int g_fieldOfView;
 extern bool g_pancamEnabled;
 extern int g_controlsLayout;
 extern int g_useController;
+extern bool g_CenteredCrosshair;
 
 // Halo Reach Functions
 

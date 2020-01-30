@@ -245,8 +245,10 @@ struct vector3d
 	T I, J, K;
 };
 
-struct s_camera
+struct s_camera_definition
 {
+	uint32_t Flags;
+
 	point3d<float> Position;
 	point3d<float> PositionShift;
 	float Look;
@@ -259,7 +261,7 @@ struct s_camera
 
 	//...
 
-	bool Compare(s_camera* camera)
+	bool Compare(s_camera_definition* camera)
 	{
 		bool position = Position.X != camera->Position.X || Position.Y != camera->Position.Y || Position.Z != camera->Position.Z;
 		bool positionShift = PositionShift.X != camera->PositionShift.X || PositionShift.Y != camera->PositionShift.Y || PositionShift.Z != camera->PositionShift.Z;
