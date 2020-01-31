@@ -48,7 +48,7 @@ inline const ReflectionType* GetTagReflectionData(TagGroupName tagGroupName)
 }
 
 MantleTagTab::MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface, MantleTab* pParentTab)
-	: MantleTab(rTagInterface.GetNameWithGroupID(), rTagInterface.GetPathWithGroupName())
+	: MantleTab(rTagInterface.GetNameWithGroupIDCStr(), rTagInterface.GetPathWithGroupNameCStr())
 	, m_rTagInterface(rTagInterface)
 	, m_rCacheFile(rCacheFile)
 	, m_pParentTab(pParentTab)
@@ -400,8 +400,8 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 				if (pTagReferenceTagInterface)
 				{
 					const char* pTagReferenceDisplayName = MantleGUI::IsSidebarUseFullFileLength()
-						? pTagReferenceTagInterface->GetPathWithGroupID()
-						: pTagReferenceTagInterface->GetNameWithGroupID();
+						? pTagReferenceTagInterface->GetPathWithGroupIDCStr()
+						: pTagReferenceTagInterface->GetNameWithGroupIDCStr();
 
 					if (ImGui::BeginCombo("##tag_path", pTagReferenceDisplayName))
 					{
@@ -423,8 +423,8 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 							}
 
 							const char* pCurrentTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
-								? pCurrentTagInterface->GetPathWithGroupID()
-								: pCurrentTagInterface->GetNameWithGroupID();
+								? pCurrentTagInterface->GetPathWithGroupIDCStr()
+								: pCurrentTagInterface->GetNameWithGroupIDCStr();
 
 							if (ImGui::Selectable(pCurrentTagDisplayWithGroupID, pCurrentTagInterface == pTagReferenceTagInterface))
 							{
@@ -462,8 +462,8 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 							}
 
 							const char* pCurrentTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
-								? pCurrentTagInterface->GetPathWithGroupID()
-								: pCurrentTagInterface->GetNameWithGroupID();
+								? pCurrentTagInterface->GetPathWithGroupIDCStr()
+								: pCurrentTagInterface->GetNameWithGroupIDCStr();
 
 							if (ImGui::Selectable(pCurrentTagDisplayWithGroupID, pCurrentTagInterface == pTagReferenceTagInterface))
 							{
@@ -566,14 +566,18 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 					ImGui::Text("Count:");
 					ImGui::SameLine();
 					ImGui::SetNextItemWidth(100);
+					ImGui::PushID(&pTagBlock->count);
 					ImGui::InputScalar("", ImGuiDataType_U32, &pTagBlock->count, nullptr, nullptr, nullptr, ImGuiInputTextFlags_ReadOnly);
+					ImGui::PopID();
 					ImGui::SameLine();
 					ImGui::Dummy(ImVec2(20.0f, 0.0f));
 					ImGui::SameLine();
 					ImGui::Text("Position:");
 					ImGui::SameLine();
 					ImGui::SetNextItemWidth(150);
+					ImGui::PushID(&rDynamicTagBlockData.m_position);
 					ImGui::InputInt("", &rDynamicTagBlockData.m_position);
+					ImGui::PopID();
 
 					if (rDynamicTagBlockData.m_position >= pTagBlock->count)
 					{
@@ -614,14 +618,18 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 					ImGui::Text("Count:");
 					ImGui::SameLine();
 					ImGui::SetNextItemWidth(100);
+					ImGui::PushID(&pTagBlock->count);
 					ImGui::InputScalar("", ImGuiDataType_U32, &pTagBlock->count, nullptr, nullptr, nullptr, ImGuiInputTextFlags_ReadOnly);
+					ImGui::PopID();
 					ImGui::SameLine();
 					ImGui::Dummy(ImVec2(20.0f, 0.0f));
 					ImGui::SameLine();
 					ImGui::Text("Position:");
 					ImGui::SameLine();
 					ImGui::SetNextItemWidth(150);
+					ImGui::PushID(&rDynamicTagBlockData.m_position);
 					ImGui::InputInt("", &rDynamicTagBlockData.m_position);
+					ImGui::PopID();
 				}
 
 				ImGui::Columns(1);

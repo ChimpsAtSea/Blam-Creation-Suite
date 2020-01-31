@@ -18,14 +18,22 @@ public:
 	inline T* GetData() { return reinterpret_cast<T*>(m_pTagData); }; // #TODO: check if this type is alright
 	inline uint16_t GetIndex() { return m_tagIndex; };
 	inline uint16_t GetGroupIndex() { return m_groupIndex; };
-	inline const char* GetPath() const { return m_pTagPath.c_str(); }; // eg. globals/globals
-	inline const char* GetPathWithGroupID() const { return m_pTagPathWithGroupID.c_str(); }; // eg. globals/globals.matg
-	inline const char* GetPathWithGroupName() const { return m_pTagPathWithGroupName.c_str(); }; // eg. globals/globals.globals
-	inline const char* GetName() const { return m_pTagName.c_str(); }; // eg. globals
-	inline const char* GetNameWithGroupID() const { return m_pTagNameWithGroupID.c_str(); }; // eg. globals.matg
-	inline const char* GetNameWithGroupName() const { return m_pTagNameWithGroupName.c_str(); }; // eg. globals.globals
-	inline const char* GetGroupShortName() const { return m_pTagGroupShortName.c_str(); };
-	inline const char* GetGroupFullName() const { return m_pTagGroupFullName.c_str(); };
+	inline const char* GetPathCStr() const { return m_pTagPath.c_str(); }; // eg. globals/globals
+	inline const char* GetPathWithGroupIDCStr() const { return m_pTagPathWithGroupID.c_str(); }; // eg. globals/globals.matg
+	inline const char* GetPathWithGroupNameCStr() const { return m_pTagPathWithGroupName.c_str(); }; // eg. globals/globals.globals
+	inline const char* GetNameCStr() const { return m_pTagName.c_str(); }; // eg. globals
+	inline const char* GetNameWithGroupIDCStr() const { return m_pTagNameWithGroupID.c_str(); }; // eg. globals.matg
+	inline const char* GetNameWithGroupNameCStr() const { return m_pTagNameWithGroupName.c_str(); }; // eg. globals.globals
+	inline const char* GetGroupShortNameCStr() const { return m_pTagGroupShortName.c_str(); };
+	inline const char* GetGroupFullNameCStr() const { return m_pTagGroupFullName.c_str(); };
+	inline const std::string& GetPath() const { return m_pTagPath; }; // eg. globals/globals
+	inline const std::string& GetPathWithGroupID() const { return m_pTagPathWithGroupID; }; // eg. globals/globals.matg
+	inline const std::string& GetPathWithGroupName() const { return m_pTagPathWithGroupName; }; // eg. globals/globals.globals
+	inline const std::string& GetName() const { return m_pTagName; }; // eg. globals
+	inline const std::string& GetNameWithGroupID() const { return m_pTagNameWithGroupID; }; // eg. globals.matg
+	inline const std::string& GetNameWithGroupName() const { return m_pTagNameWithGroupName; }; // eg. globals.globals
+	inline const std::string& GetGroupShortName() const { return m_pTagGroupShortName; };
+	inline const std::string& GetGroupFullName() const { return m_pTagGroupFullName; };
 	inline const ReflectionType* GetReflectionData() const { return m_pReflectionData; };
 	//inline GroupInterface* GetGroupInterface() const { return m_pGroupInterface; };
 

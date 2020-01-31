@@ -164,39 +164,29 @@ void CacheFile::initTagGroupRelationship()
 	tbb::parallel_for(0u, m_pTagFilesHeader->groups.count, createGroupFunc);
 }
 
+#pragma optimize( "t", on ) // always prefer fast code here
+struct case_insensitive_less
+{
+	bool operator () (char x, char y) const
+	{
+		return toupper(static_cast<unsigned char>(x)) < toupper(static_cast<unsigned char>(y));
+	}
+};
+
 bool SortTagInstanceByNameWithGroupID(TagInterface* pLeft, TagInterface* pRight)
 {
-	std::string nameLeft = pLeft->GetNameWithGroupID();
-	std::string nameRight = pRight->GetNameWithGroupID();
-
-	std::transform(nameLeft.begin(), nameLeft.end(), nameLeft.begin(),
-		[](unsigned char c) { return std::tolower(c); }
-	);
-
-	std::transform(nameRight.begin(), nameRight.end(), nameRight.begin(),
-		[](unsigned char c) { return std::tolower(c); }
-	);
-
-	// #TODO this is crazy 200% garbage, do this better
-	return nameLeft < nameRight;
+	const std::string& left = pLeft->GetNameWithGroupID();
+	const std::string& right = pRight->GetNameWithGroupID();
+	return std::lexicographical_compare(left.begin(), left.end(), right.begin(), right.end(), [](char x, char y) { return toupper(static_cast<unsigned char>(x)) < toupper(static_cast<unsigned char>(y)); });
 }
 
 bool SortTagInstanceByPathWithGroupID(TagInterface* pLeft, TagInterface* pRight)
 {
-	std::string nameLeft = pLeft->GetPathWithGroupID();
-	std::string nameRight = pRight->GetPathWithGroupID();
-
-	std::transform(nameLeft.begin(), nameLeft.end(), nameLeft.begin(),
-		[](unsigned char c) { return std::tolower(c); }
-	);
-
-	std::transform(nameRight.begin(), nameRight.end(), nameRight.begin(),
-		[](unsigned char c) { return std::tolower(c); }
-	);
-
-	// #TODO this is crazy 200% garbage, do this better
-	return nameLeft < nameRight;
+	const std::string& left = pLeft->GetPathWithGroupID();
+	const std::string& right = pRight->GetPathWithGroupID();
+	return std::lexicographical_compare(left.begin(), left.end(), right.begin(), right.end(), [](char x, char y) { return toupper(static_cast<unsigned char>(x)) < toupper(static_cast<unsigned char>(y)); });
 }
+#pragma optimize( "", on ) // restore global optimization settings
 
 void CacheFile::initSortedInstanceLists()
 {

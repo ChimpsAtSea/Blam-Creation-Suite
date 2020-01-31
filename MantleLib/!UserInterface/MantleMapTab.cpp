@@ -47,8 +47,8 @@ void MantleMapTab::DisplayMapTabUI()
 				if (rTagInterface.IsNull()) continue;
 
 				const char* pTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
-					? rTagInterface.GetPathWithGroupID()
-					: rTagInterface.GetNameWithGroupID();
+					? rTagInterface.GetPathWithGroupIDCStr()
+					: rTagInterface.GetNameWithGroupIDCStr();
 
 				if (m_pSearchBuffer[0])
 				{
@@ -93,8 +93,8 @@ void MantleMapTab::DisplayMapTabUI()
 						if (!displayTag) continue;
 
 						const char* pTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
-							? rTagInterface.GetPathWithGroupID()
-							: rTagInterface.GetNameWithGroupID();
+							? rTagInterface.GetPathWithGroupIDCStr()
+							: rTagInterface.GetNameWithGroupIDCStr();
 
 						static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 						if (ImGui::TreeNodeEx(pTagInterface, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, pTagDisplayWithGroupID))
@@ -335,7 +335,7 @@ void MantleMapTab::GameRender()
 	TagInterface* pTagInterface = nullptr;
 	for (TagInterface* pCurrentTagInterface : rTagInterfaces)
 	{
-		if (strcmp(pCurrentTagInterface->GetGroupShortName(), "scnr") == 0)
+		if (strcmp(pCurrentTagInterface->GetGroupShortNameCStr(), "scnr") == 0)
 		{
 			pTagInterface = pCurrentTagInterface;
 		}
@@ -351,6 +351,8 @@ void MantleMapTab::GameRender()
 		s_scenario_definition::s_trigger_volume_block_definition* pTagBlockData = m_pCacheFile->GetTagBlockData(rTriggerVolumesBlock);
 		for (uint32_t i = 0; i < rTriggerVolumesBlock.count; i++)
 		{
+			constexpr float kLineTransparency = 0.4f;
+			constexpr float kTextTransparency = 0.6f;
 
 			s_scenario_definition::s_trigger_volume_block_definition& rTriggerVolume = pTagBlockData[i];
 
@@ -358,16 +360,25 @@ void MantleMapTab::GameRender()
 
 			int imguiTextColor;
 			const char* pTriggerVolumeText = m_pCacheFile->GetStringIDStr(rTriggerVolume.name.stringid);
-			if (isKillVolume)
+
+
+			switch (rTriggerVolume.type)
 			{
-				rImmediateBox.SetColor(1.0f, 0.0f, 0.0f, 0.25f);
-				imguiTextColor = IM_COL32(255, 0, 0, 255);
+			case 0: // box (position + extents)
+				if (isKillVolume) rImmediateBox.SetColor(1.0f, 0.0f, 0.0f, kLineTransparency);
+				else rImmediateBox.SetColor(0.0f, 1.0f, 0.0f, kLineTransparency);
+				break;
+			case 1:
+				rImmediateBox.SetColor(1.0f, 0.0f, 1.0f, kLineTransparency);
+				break;
+			default:
+				rImmediateBox.SetColor(1.0f, 1.0f, 0.0f, kLineTransparency);
+				break;
 			}
-			else
-			{
-				rImmediateBox.SetColor(0.0f, 1.0f, 0.0f, 0.25f);
-				imguiTextColor = IM_COL32(0, 255, 0, 255);
-			}
+
+			if (isKillVolume) imguiTextColor = IM_COL32(255, 0, 0, static_cast<int>(255 * kTextTransparency));
+			else imguiTextColor = IM_COL32(0, 255, 0, static_cast<int>(255 * kTextTransparency));
+
 			rImmediateBox.UpdateAsCornerAndExtentBox(
 				rTriggerVolume.position_x,
 				rTriggerVolume.position_y,
@@ -384,7 +395,7 @@ void MantleMapTab::GameRender()
 			float screenY = 0.0f;
 			if (Render::CalculateScreenCoordinates(rTriggerVolume.position_x, rTriggerVolume.position_y, rTriggerVolume.position_z, screenX, screenY))
 			{
-				ImGui::GetWindowDrawList()->AddText(ImVec2(screenX + 1, screenY + 1), IM_COL32(0, 0, 0, 255), pTriggerVolumeText);
+				ImGui::GetWindowDrawList()->AddText(ImVec2(screenX + 1, screenY + 1), IM_COL32(0, 0, 0, static_cast<int>(255 * kTextTransparency)), pTriggerVolumeText);
 				ImGui::GetWindowDrawList()->AddText(ImVec2(screenX, screenY), imguiTextColor, pTriggerVolumeText);
 			}
 		}
