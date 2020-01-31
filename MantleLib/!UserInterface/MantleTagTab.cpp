@@ -296,11 +296,12 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 						isValid = false;
 					}
 
-					char szBuffer[47];
+					char szBuffer[111];
 					uint8_t isValid : 1;
 					uint8_t bufferLength : 7;
 					string_id* pStringID;
 				};
+				static_assert(sizeof(StringIDDynamicData) <= sizeof(ImGUIDynamnicData::second), "StringIDDynamicData is too large");
 				bool wasAllocated;
 				StringIDDynamicData& rDynamicStringIDData = GetDynamicData<StringIDDynamicData>(pFieldDataPointer, wasAllocated);
 				if (wasAllocated)

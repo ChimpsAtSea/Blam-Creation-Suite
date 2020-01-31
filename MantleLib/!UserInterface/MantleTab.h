@@ -27,7 +27,7 @@ protected:
 	std::string m_description;
 	std::vector<TabClosedCallback> tabClosedCallback;
 
-	using ImGUIDynamnicData = std::pair<void*, char[56]>;
+	using ImGUIDynamnicData = std::pair<void*, char[120]>;
 	std::vector<ImGUIDynamnicData*> m_imGuiDynamicData;
 
 	inline ImGUIDynamnicData& GetDynamicData(void* pPosition, bool& rWasAllocated);
