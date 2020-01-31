@@ -34,13 +34,14 @@ protected:
 	template<typename T>
 	inline T& GetDynamicData(void* pPosition)
 	{
+
 		bool wasAllocated = false;
 		ImGUIDynamnicData& rDynamicData = GetDynamicData(pPosition, wasAllocated);
 		if (wasAllocated)
 		{
-			new(&rDynamicData) T(); // initialize value
+			static_assert(sizeof(T) <= sizeof(rDynamicData.second), "Dynamic data exceeds allocated space");
+			new(rDynamicData.second) T(); // initialize value
 		}
-		static_assert(sizeof(T) <= sizeof(rDynamicData.second), "Dynamic data exceeds allocated space");
 		T& rDynamicTagBlockData = *reinterpret_cast<T*>(rDynamicData.second);
 		return rDynamicTagBlockData;
 	}
@@ -66,6 +67,8 @@ inline MantleTab::ImGUIDynamnicData& MantleTab::GetDynamicData(void* pPosition, 
 			return *pDynamicData;
 		}
 	}
+
+	//WriteLineVerbose("Adding new dynamic data @ %p", pPosition);
 
 	rWasAllocated = true;
 	ImGUIDynamnicData& rDynamicData = *m_imGuiDynamicData.emplace_back(new ImGUIDynamnicData{});
