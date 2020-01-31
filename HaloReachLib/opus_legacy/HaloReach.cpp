@@ -746,7 +746,7 @@ intptr_t camera_definition_validate_offset(EngineVersion engineVersion, BuildVer
 FunctionHookEx<camera_definition_validate_offset, void __fastcall (s_camera_definition* camera)> camera_definition_validate = { "camera_definition_validate", [](s_camera_definition* camera)
 {
 	camera->LookShift = g_CenteredCrosshair ? 0.f : 0.17f;
-	camera->FOVRadians = g_fieldOfView * 0.017453292f;
+	//camera->FOVRadians = g_fieldOfView * 0.017453292f;
 
 	camera_definition_validate(camera);
 }};
