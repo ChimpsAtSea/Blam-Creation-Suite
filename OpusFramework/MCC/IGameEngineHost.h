@@ -226,28 +226,28 @@ public:
 	/* 26 */ virtual bool __fastcall Member26() = 0;
 	/* 27 */ virtual bool __fastcall Member27() = 0;
 	/* 28 */ virtual bool __fastcall UpdateGraphics(Function28Structure* pUnknown) = 0;
-	/* 29 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration) = 0;
-	/* 30 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer) = 0;
-	/* 31 */ virtual void Member31(_QWORD, float*) = 0;
-	/* 32 */ virtual void Member32() = 0;
-	/* 33 */ virtual void XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION* pVibration) = 0;
-	/* 34 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t pszPlayerNames[4][32], size_t dataSize) = 0;
-	/* 35 */ virtual void __fastcall Member35(const wchar_t*, const wchar_t*) = 0;
-	/* 36 */ virtual bool __fastcall Member36(wchar_t*, __int64) = 0;
-	/* 37 */ virtual __int64 __fastcall NetworkSendTo(NetworkID networkID, char* pBuffer, uint32_t buffersize, int) = 0;
-	/* 38 */ virtual __int64 __fastcall NetworkReceiveFrom(char* pBuffer, uint32_t buffersize, __int64, s_transport_address* pTransportAddress) = 0;
-	/* 39 */ virtual char* __fastcall Member39(unsigned int) = 0;
-	/* 40 */ virtual int __fastcall Member40(BYTE* pBuffer) = 0;
-	/* 41 */ virtual bool __fastcall Member41(signed int, __int64, __int64) = 0;
-	/* 42 */ virtual void __fastcall FirefightNew(__int64, float) = 0;
-	/* 43 */ virtual BOOL __fastcall Member43(__int64, __int64) = 0;
-	/* 44 */ virtual bool __fastcall GetPathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength) = 0;
-	/* 45 */ virtual bool __fastcall GetWidePathByType(PathType pathType, LPWSTR pBuffer, size_t bufferLength) = 0;
-	/* 46 */ virtual unsigned __int8* __fastcall Member46(_QWORD, unsigned __int8*, _QWORD) = 0;
-	/* 47 */ virtual __int64 __fastcall Member47(_QWORD, __int64) = 0;
+	/* 29 */ virtual __int64 __fastcall Member29(__int64 value) = 0;
+	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration) = 0;
+	/* 31 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer) = 0;
+	/* 32 */ virtual void Member32(_QWORD, float*) = 0;
+	/* 33 */ virtual void Member33() = 0;
+	/* 34 */ virtual void XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION* pVibration) = 0;
+	/* 35 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t pszPlayerNames[4][32], size_t dataSize) = 0;
+	/* 36 */ virtual void __fastcall Member36(const wchar_t*, const wchar_t*) = 0;
+	/* 37 */ virtual bool __fastcall Member37(wchar_t*, __int64) = 0;
+	/* 38 */ virtual __int64 __fastcall NetworkSendTo(NetworkID networkID, char* pBuffer, uint32_t buffersize, int) = 0;
+	/* 39 */ virtual __int64 __fastcall NetworkReceiveFrom(char* pBuffer, uint32_t buffersize, __int64, s_transport_address* pTransportAddress) = 0;
+	/* 40 */ virtual char* __fastcall Member40(unsigned int) = 0;
+	/* 41 */ virtual int __fastcall Member41(BYTE* pBuffer) = 0;
+	/* 42 */ virtual bool __fastcall Member42(signed int, __int64, __int64) = 0;
+	/* 43 */ virtual void __fastcall FirefightNew(__int64, float) = 0;
+	/* 44 */ virtual BOOL __fastcall Member44(__int64, __int64) = 0;
+	/* 45 */ virtual bool __fastcall GetPathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength) = 0;
+	/* 46 */ virtual bool __fastcall GetWidePathByType(PathType pathType, LPWSTR pBuffer, size_t bufferLength) = 0;
+	/* 47 */ virtual unsigned __int8* __fastcall Member47(_QWORD, unsigned __int8*, _QWORD) = 0;
+	/* 48 */ virtual __int64 __fastcall Member48(_QWORD, __int64) = 0;
 
 	/* barrier functions to prevent new versions of games calling our functions */
-	IGameEngineHostCreateBarrierDefinition(48);
 	IGameEngineHostCreateBarrierDefinition(49);
 	IGameEngineHostCreateBarrierDefinition(50);
 	IGameEngineHostCreateBarrierDefinition(51);
@@ -255,6 +255,7 @@ public:
 	IGameEngineHostCreateBarrierDefinition(53);
 	IGameEngineHostCreateBarrierDefinition(54);
 	IGameEngineHostCreateBarrierDefinition(55);
+	IGameEngineHostCreateBarrierDefinition(56);
 
 	// DATA
 	IGameEvents* m_pGameEvents = nullptr;

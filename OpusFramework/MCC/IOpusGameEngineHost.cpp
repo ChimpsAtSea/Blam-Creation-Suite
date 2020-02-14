@@ -39,7 +39,7 @@ void IOpusGameEngineHost::EngineStateUpdate(eEngineState state)
 {
 	/* LEGACY_REFACTOR
 	const char* pEngineStateString = engine_state_to_string(state);
-	WriteLineVerbose("IGameEngineHostLegacy::EngineStateUpdate (%d):%s", state, pEngineStateString);
+	WriteLineVerbose("IOpusGameEngineHost::EngineStateUpdate (%d):%s", state, pEngineStateString);
 
 	if (state != eEngineState::Unknown16) // `Unknown16` also needs a second arg so we skip it
 	{
@@ -72,7 +72,7 @@ __int64 IOpusGameEngineHost::GameExited(unsigned int a1, char* a2, int a3)
 
 __int64 __fastcall IOpusGameEngineHost::WriteBufferToFile(LPVOID pBuffer, size_t bufferSize)
 {
-	WriteLineVerbose("IGameEngineHostLegacy::Member05 WriteBufferToFile %p %016llx", pBuffer, bufferSize);
+	WriteLineVerbose("IOpusGameEngineHost::Member05 WriteBufferToFile %p %016llx", pBuffer, bufferSize);
 	return __int64(0);
 }
 
@@ -85,13 +85,13 @@ void IOpusGameEngineHost::Member07(unsigned int)
 	/* LEGACY_REFACTOR
 	if (LegacyGameLauncher::s_uiStackLength == 0)
 	{
-		WriteLineVerbose("IGameEngineHostLegacy::Member07 PauseMenuOpened");
+		WriteLineVerbose("IOpusGameEngineHost::Member07 PauseMenuOpened");
 		DebugUI::RegisterCallback(LegacyGameLauncher::DrawPauseMenu);
 		DebugUI::Show();
 	}
 	else
 	{
-		WriteLineVerbose("IGameEngineHostLegacy::Member07 UI Stack is %i", static_cast<int>(LegacyGameLauncher::s_uiStackLength));
+		WriteLineVerbose("IOpusGameEngineHost::Member07 UI Stack is %i", static_cast<int>(LegacyGameLauncher::s_uiStackLength));
 	}
 	*/
 }
@@ -176,16 +176,18 @@ void IOpusGameEngineHost::GetSessionInfo(s_session_info_part* pSessionInfoPart)
 
 void __fastcall IOpusGameEngineHost::MembershipUpdate(s_session_membership* pSessionMembership, uint32_t playercount)
 {
-
+	RUNONCE({ WriteLineVerbose("IOpusGameEngineHost::MembershipUpdate"); });
 }
 
 bool __fastcall IOpusGameEngineHost::Member26()
 {
+	RUNONCE({ WriteLineVerbose("IOpusGameEngineHost::Member26"); });
 	return false;
 }
 
 bool __fastcall IOpusGameEngineHost::Member27()
 {
+	RUNONCE({ WriteLineVerbose("IOpusGameEngineHost::Member27"); });
 	return false;
 }
 
@@ -196,10 +198,17 @@ bool __fastcall IOpusGameEngineHost::UpdateGraphics(Function28Structure* pUnknow
 	pUnknown->height = 2160;
 	pUnknown->fps_flags = 0;
 
-	WriteLineVerbose("IGameEngineHostLegacy::UpdateGraphics");
+	WriteLineVerbose("IOpusGameEngineHost::UpdateGraphics");
 
 	// returning false effectively doubles fps when unlocked
 	return pUnknown->fps_flags;
+}
+
+__int64 __fastcall IOpusGameEngineHost::Member29(__int64 value)
+{
+	RUNONCE({ WriteLineVerbose("IOpusGameEngineHost::Member29"); });
+	static char buffer[155] = {};
+	return reinterpret_cast<int64_t>(&buffer[0]);
 }
 
 __int64 __fastcall IOpusGameEngineHost::UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration)
@@ -226,7 +235,7 @@ __int64 __fastcall IOpusGameEngineHost::UpdatePlayerConfiguration(wchar_t player
 
 	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", rPlayerConfiguration.service_tag, 5, L"UNSC");
 
-	//WriteStackBackTrace("IGameEngineHostLegacy::UpdatePlayerConfiguration");
+	//WriteStackBackTrace("IOpusGameEngineHost::UpdatePlayerConfiguration");
 	return __int64(1);
 }
 
@@ -373,13 +382,13 @@ bool __fastcall __fastcall IOpusGameEngineHost::UpdateInput(_QWORD, InputBuffer*
 	return unsigned __int8(1);
 }
 
-void IOpusGameEngineHost::Member31(_QWORD, float* a2)
+void IOpusGameEngineHost::Member32(_QWORD, float* a2)
 {
 	*a2 = 0.f; // why are we doing this?
 	// spams if fps is unlocked
 }
 
-void IOpusGameEngineHost::Member32()
+void IOpusGameEngineHost::Member33()
 {
 	// appears to be usermanagement related?
 	// we haven't seen this fire yet and don't know its structure so throw an error
@@ -427,11 +436,11 @@ bool __fastcall __fastcall IOpusGameEngineHost::UpdatePlayerNames(__int64*, wcha
 	return false;
 }
 
-void __fastcall IOpusGameEngineHost::Member35(const wchar_t*, const wchar_t*)
+void __fastcall IOpusGameEngineHost::Member36(const wchar_t*, const wchar_t*)
 {
 }
 
-bool __fastcall IOpusGameEngineHost::Member36(wchar_t*, __int64)
+bool __fastcall IOpusGameEngineHost::Member37(wchar_t*, __int64)
 {
 	return 0;
 }
@@ -446,17 +455,17 @@ __int64 __fastcall IOpusGameEngineHost::NetworkReceiveFrom(char* pBuffer, uint32
 	return 0;
 }
 
-char* __fastcall IOpusGameEngineHost::Member39(unsigned int)
+char* __fastcall IOpusGameEngineHost::Member40(unsigned int)
 {
 	return 0;
 }
 
-int __fastcall IOpusGameEngineHost::Member40(BYTE* pBuffer)
+int __fastcall IOpusGameEngineHost::Member41(BYTE* pBuffer)
 {
 	return 0;
 }
 
-bool __fastcall IOpusGameEngineHost::Member41(signed int, __int64, __int64)
+bool __fastcall IOpusGameEngineHost::Member42(signed int, __int64, __int64)
 {
 	return 0;
 }
@@ -465,7 +474,7 @@ void __fastcall IOpusGameEngineHost::FirefightNew(__int64, float)
 {
 }
 
-BOOL __fastcall IOpusGameEngineHost::Member43(__int64, __int64)
+BOOL __fastcall IOpusGameEngineHost::Member44(__int64, __int64)
 {
 	return 0;
 }
@@ -518,12 +527,12 @@ bool __fastcall IOpusGameEngineHost::GetWidePathByType(PathType pathType, wchar_
 	return false;
 }
 
-unsigned __int8* __fastcall IOpusGameEngineHost::Member46(_QWORD, unsigned __int8*, _QWORD)
+unsigned __int8* __fastcall IOpusGameEngineHost::Member47(_QWORD, unsigned __int8*, _QWORD)
 {
 	return 0;
 }
 
-__int64 __fastcall IOpusGameEngineHost::Member47(_QWORD, __int64)
+__int64 __fastcall IOpusGameEngineHost::Member48(_QWORD, __int64)
 {
 	// appears to be security related
 	return 1;

@@ -37,25 +37,26 @@ public:
 	bool __fastcall Member26() override;
 	bool __fastcall Member27() override;
 	bool __fastcall UpdateGraphics(Function28Structure* pUnknown) override;
+	__int64 __fastcall Member29(__int64 value) override;
 	__int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration) override;
 	bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer) override;
-	void Member31(_QWORD, float*) override;
-	void Member32() override;
+	void Member32(_QWORD, float*) override;
+	void Member33() override;
 	void XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION* pVibration) override;
 	bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t pszPlayerNames[4][32], size_t dataSize) override;
-	void __fastcall Member35(const wchar_t*, const wchar_t*) override;
-	bool __fastcall Member36(wchar_t*, __int64) override;
+	void __fastcall Member36(const wchar_t*, const wchar_t*) override;
+	bool __fastcall Member37(wchar_t*, __int64) override;
 	__int64 __fastcall NetworkSendTo(NetworkID networkID, char* pBuffer, uint32_t buffersize, int) override;
 	__int64 __fastcall NetworkReceiveFrom(char* pBuffer, uint32_t buffersize, __int64, s_transport_address* pTransportAddress) override;
-	char* __fastcall Member39(unsigned int) override;
-	int __fastcall Member40(BYTE* pBuffer) override;
-	bool __fastcall Member41(signed int, __int64, __int64) override;
+	char* __fastcall Member40(unsigned int) override;
+	int __fastcall Member41(BYTE* pBuffer) override;
+	bool __fastcall Member42(signed int, __int64, __int64) override;
 	void __fastcall FirefightNew(__int64, float) override;
-	BOOL __fastcall Member43(__int64, __int64) override;
+	BOOL __fastcall Member44(__int64, __int64) override;
 	bool __fastcall GetPathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength) override;
 	bool __fastcall GetWidePathByType(PathType pathType, wchar_t* pBuffer, size_t bufferLength) override;
-	unsigned __int8* __fastcall Member46(_QWORD, unsigned __int8*, _QWORD) override;
-	__int64 __fastcall Member47(_QWORD, __int64) override;
+	unsigned __int8* __fastcall Member47(_QWORD, unsigned __int8*, _QWORD) override;
+	__int64 __fastcall Member48(_QWORD, __int64) override;
 
 	// Opus Functionality
 	virtual void RenderUI() const = 0;
