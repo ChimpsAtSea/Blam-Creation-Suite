@@ -27,16 +27,16 @@ protected:
 	std::string m_description;
 	std::vector<TabClosedCallback> tabClosedCallback;
 
-	using ImGUIDynamnicData = std::pair<void*, char[120]>;
-	std::vector<ImGUIDynamnicData*> m_imGuiDynamicData;
+	using ImGUIDynamicData = std::pair<void*, char[120]>;
+	std::vector<ImGUIDynamicData*> m_imGuiDynamicData;
 
-	inline ImGUIDynamnicData& GetDynamicData(void* pPosition, bool& rWasAllocated);
+	inline ImGUIDynamicData& GetDynamicData(void* pPosition, bool& rWasAllocated);
 	template<typename T>
 	inline T& GetDynamicData(void* pPosition)
 	{
 
 		bool wasAllocated = false;
-		ImGUIDynamnicData& rDynamicData = GetDynamicData(pPosition, wasAllocated);
+		ImGUIDynamicData& rDynamicData = GetDynamicData(pPosition, wasAllocated);
 		if (wasAllocated)
 		{
 			static_assert(sizeof(T) <= sizeof(rDynamicData.second), "Dynamic data exceeds allocated space");
@@ -48,7 +48,7 @@ protected:
 	template<typename T, typename ...Tconstructor>
 	inline T& GetDynamicData(void* pPosition, bool& rWasAllocated)
 	{
-		ImGUIDynamnicData& rDynamicData = GetDynamicData(pPosition, rWasAllocated);
+		ImGUIDynamicData& rDynamicData = GetDynamicData(pPosition, rWasAllocated);
 		static_assert(sizeof(T) <= sizeof(rDynamicData.second), "Dynamic data exceeds allocated space");
 		T& rDynamicTagBlockData = *reinterpret_cast<T*>(rDynamicData.second);
 		return rDynamicTagBlockData;
@@ -57,9 +57,9 @@ protected:
 
 };
 
-inline MantleTab::ImGUIDynamnicData& MantleTab::GetDynamicData(void* pPosition, bool& rWasAllocated)
+inline MantleTab::ImGUIDynamicData& MantleTab::GetDynamicData(void* pPosition, bool& rWasAllocated)
 {
-	for (ImGUIDynamnicData* pDynamicData : m_imGuiDynamicData)
+	for (ImGUIDynamicData* pDynamicData : m_imGuiDynamicData)
 	{
 		if (pDynamicData->first == pPosition)
 		{
@@ -71,7 +71,7 @@ inline MantleTab::ImGUIDynamnicData& MantleTab::GetDynamicData(void* pPosition, 
 	//WriteLineVerbose("Adding new dynamic data @ %p", pPosition);
 
 	rWasAllocated = true;
-	ImGUIDynamnicData& rDynamicData = *m_imGuiDynamicData.emplace_back(new ImGUIDynamnicData{});
+	ImGUIDynamicData& rDynamicData = *m_imGuiDynamicData.emplace_back(new ImGUIDynamicData{});
 	rDynamicData.first = pPosition;
 	return rDynamicData;
 }

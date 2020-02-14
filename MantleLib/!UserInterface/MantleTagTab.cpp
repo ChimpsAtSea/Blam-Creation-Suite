@@ -59,7 +59,7 @@ MantleTagTab::MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface, M
 
 MantleTagTab::~MantleTagTab()
 {
-	for (ImGUIDynamnicData* pDynamicData : m_imGuiDynamicData)
+	for (ImGUIDynamicData* pDynamicData : m_imGuiDynamicData)
 	{
 		delete pDynamicData;
 	}
@@ -301,7 +301,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 					uint8_t bufferLength : 7;
 					string_id* pStringID;
 				};
-				static_assert(sizeof(StringIDDynamicData) <= sizeof(ImGUIDynamnicData::second), "StringIDDynamicData is too large");
+				static_assert(sizeof(StringIDDynamicData) <= sizeof(ImGUIDynamicData::second), "StringIDDynamicData is too large");
 				bool wasAllocated;
 				StringIDDynamicData& rDynamicStringIDData = GetDynamicData<StringIDDynamicData>(pFieldDataPointer, wasAllocated);
 				if (wasAllocated)
