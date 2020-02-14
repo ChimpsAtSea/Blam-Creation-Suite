@@ -16,9 +16,10 @@ private:
 	static void renderUI();
 	static void gameRender();
 	static void launchGame(EngineVersion engineVersion);
+	static void launchHalo1();
 	static void launchHaloReach();
 	static void checkSteamOwnership();
-	static void ensureBink2Win64IsLoaded(const char* pLibName, const char* pFallbackDir);
+	static void entireLibraryIsLoaded(const char* pLibName, const char* pFallbackDir);
 	static void renderPauseMenu();
 private:
 

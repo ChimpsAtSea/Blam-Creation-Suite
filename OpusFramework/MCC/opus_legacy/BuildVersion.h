@@ -3,6 +3,7 @@
 enum class EngineVersion
 {
 	NotSet,
+	Halo1,
 	HaloReach
 };
 

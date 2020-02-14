@@ -7,6 +7,7 @@ enum class NextLaunchMode
 	Theater
 };
 NextLaunchMode s_nextLaunchMode = NextLaunchMode::None;
+EngineVersion s_nextLaunchEngine;
 
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameStartupEvent;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameShutdownEvent;
@@ -33,7 +34,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 void GameLauncher::Init()
 {
 	checkSteamOwnership();
-	ensureBink2Win64IsLoaded("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
+	entireLibraryIsLoaded("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
+	// #TODO: New home for this in Halo1Lib
+	entireLibraryIsLoaded("halo1\\fmodex64.dll", "..\\halo1");
+	entireLibraryIsLoaded("halo1\\fmod_event_net64.dll", "..\\halo1");
+
 	GameLauncher::loadSettings();
 
 	GameOptionSelection::Init();
@@ -71,7 +76,8 @@ IDataAccess* GameLauncher::GetDataAccess()
 	// #TODO: Remove this function.
 	// Each piece of code should be aware of what type of DataAccess it wants
 
-	return HaloReachGameHost::GetDataAccess();
+	//return HaloReachGameHost::GetDataAccess();
+	return nullptr;
 }
 
 void GameLauncher::loadSettings()
@@ -123,7 +129,7 @@ void GameLauncher::update()
 		if (s_nextLaunchMode != NextLaunchMode::None)
 		{
 			s_nextLaunchMode = NextLaunchMode::None;
-			launchGame(EngineVersion::HaloReach);
+			launchGame(s_nextLaunchEngine);
 		}
 	}
 }
@@ -152,6 +158,9 @@ void GameLauncher::launchGame(EngineVersion engineVersion)
 	Render::SetResizeEnabled(false);
 	switch (engineVersion)
 	{
+	case EngineVersion::Halo1:
+		launchHalo1();
+		break;
 	case EngineVersion::HaloReach:
 		launchHaloReach();
 		break;
@@ -159,6 +168,133 @@ void GameLauncher::launchGame(EngineVersion engineVersion)
 	Render::SetResizeEnabled(true);
 
 	s_gameRunning = false;
+}
+
+void GameLauncher::launchHalo1()
+{
+	assert(pCurrentGameHost == nullptr);
+
+	pCurrentGameHost = new Halo1GameHost();
+	assert(pCurrentGameHost);
+	IGameEngine* pGameEngine = pCurrentGameHost->GetGameEngine();
+	assert(pGameEngine);
+
+	EngineVersion engineVersion = EngineVersion::Halo1;
+	BuildVersion buildVersion = Halo1GameHost::GetGameRuntime().GetBuildVersion();
+
+	// #TODO: Game specific version of this!!!
+
+	for (GenericGameEvent gameEvent : s_gameStartupEvent)
+	{
+		gameEvent(engineVersion, buildVersion);
+	}
+
+	GameContext gameContext = {};
+	{
+		//const MapInfo* pSelectedMapInfo = GameOptionSelection::GetSelectedMapInfo();
+		GameMode gameMode = GameOptionSelection::GetSelectedGameMode();
+
+		//const char* pMapFileName = pSelectedMapInfo->GetMapFileName();
+		//WriteLineVerbose("Loading map '%s.map'", pMapFileName);
+		//{
+		//	wchar_t pMapFilePathBuffer[MAX_PATH + 1] = {};
+		//	_snwprintf(pMapFilePathBuffer, MAX_PATH, L"%S%S.map", "halo1/maps/", pMapFileName);
+		//	MantleGUI::OpenMapFile(pMapFilePathBuffer);
+		//}
+
+		gameContext.pGameHandle = GetModuleHandle("Halo1.dll");
+		char byte2B678Data[] = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+		memcpy(gameContext.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
+
+		{
+			uint64_t SquadAddress = 0x2F385E2E95D4F33E;
+			uint64_t HostAddress = 0xDEADBEEFDEADBEEF;
+			uint64_t ClientAddress = 0xCAFEBABECAFEBABE;
+
+			gameContext.SessionInfo.SquadAddress = SquadAddress; // this is set
+
+			gameContext.GameMode = gameMode;
+
+			gameContext.SessionInfo.PeerIdentifierCount = 1;
+			gameContext.SessionInfo.SessionMembership.Count = 1;
+			gameContext.SessionInfo.IsHost = true;
+			if (gameContext.SessionInfo.IsHost)
+			{
+				//gameContext.MapId = static_cast<MapID>(pSelectedMapInfo->GetMapID());
+				gameContext.MapId = (MapID)(3);
+				gameContext.CampaignDifficultyLevel = e_campaign_difficulty_level::_campaign_difficulty_level_easy;
+
+				//GameOptionSelection::LoadGameVariant(HaloReachGameHost::GetDataAccess(), GameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
+				//GameOptionSelection::LoadMapVariant(HaloReachGameHost::GetDataAccess(), GameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
+				//GameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
+				//GameOptionSelection::LoadSavedFilmMetadata(GameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
+
+				gameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
+				gameContext.SessionInfo.HostAddress = HostAddress;
+			}
+			else
+			{
+				gameContext.SessionInfo.LocalMachineID = ClientAddress; // this is set
+				gameContext.SessionInfo.HostAddress = HostAddress;
+			}
+		}
+	}
+
+	pGameEngine->InitGraphics(Render::s_pDevice, Render::s_pDeviceContext, Render::s_pSwapChain, Render::s_pSwapChain);
+
+	{
+		// useful for testing if the gameenginehostcallback vftable is correct or not
+		static constexpr bool kBogusGameEngineHostCallbackVFT = false;
+		if constexpr (kBogusGameEngineHostCallbackVFT)
+		{
+			void*& pGameEngineHostVftable = *reinterpret_cast<void**>(pCurrentGameHost);
+			static char data[sizeof(void*) * 1024] = {};
+			memset(data, -1, sizeof(data));
+			static constexpr size_t kNumBytesToCopyFromExistingVFT = 0;
+			memcpy(data, pGameEngineHostVftable, kNumBytesToCopyFromExistingVFT);
+			pGameEngineHostVftable = data;
+		}
+	}
+
+	static HANDLE hMainGameThread = pGameEngine->InitThread(pCurrentGameHost, &gameContext);
+	Window::SetPostMessageThreadId(hMainGameThread);
+
+	// #TODO: Absolutely terrible thread sync here
+	{
+		std::thread thread([]() {
+
+			WaitForSingleObject(hMainGameThread, INFINITE);
+			s_gameRunning = false;
+			});
+		while (s_gameRunning)
+		{
+			update();
+			SwitchToThread(); // don't smash the CPU
+		}
+		thread.join();
+	}
+
+
+	//HRESULT waitForSingleObjectResult;
+	//do
+	//{
+	//	update();
+	//	waitForSingleObjectResult = WaitForSingleObject(hMainGameThread, 5);
+	//} while (waitForSingleObjectResult == WAIT_TIMEOUT);
+	//WaitForSingleObject(hMainGameThread, INFINITE);
+
+	WriteLineVerbose("Game has exited.");
+
+	for (GenericGameEvent gameEvent : s_gameShutdownEvent)
+	{
+		gameEvent(engineVersion, buildVersion);
+	}
+
+	delete pCurrentGameHost;
+	pCurrentGameHost = nullptr;
+
+	// reset runtime information after we've destroyed the engine
+	//s_pCurrentGameRuntime = nullptr;
 }
 
 void GameLauncher::launchHaloReach()
@@ -305,7 +441,7 @@ void GameLauncher::checkSteamOwnership()
 	}
 }
 
-void GameLauncher::ensureBink2Win64IsLoaded(const char* pLibName, const char* pFallbackDir)
+void GameLauncher::entireLibraryIsLoaded(const char* pLibName, const char* pFallbackDir)
 {
 	HMODULE hModule = GetModuleHandleA(pLibName);
 	if (!hModule)
@@ -358,20 +494,33 @@ void GameLauncher::renderMainMenu()
 
 	if (ImGui::Begin("MAIN MENU", &isWindowOpen, windowFlags))
 	{
-		GameOptionSelection::Render();
+		//GameOptionSelection::Render();
 		{
 			ImGui::Dummy(ImVec2(0.0f, 30.0f));
 			static bool hasAutostarted = false;
-			if (ImGui::Button("START GAME") || (CommandLine::HasCommandLineArg("-autostart") && !hasAutostarted) || GetKeyState(VK_RETURN) & 0x80)
+
+
+			if (ImGui::Button("START GAME (Halo 1)") || (CommandLine::HasCommandLineArg("-autostarthalo1") && !hasAutostarted))
 			{
 				GameOptionSelection::s_pLaunchSavedFilm = "";
 				hasAutostarted = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
+				s_nextLaunchEngine = EngineVersion::Halo1;
 			}
 
-			if (ImGui::Button("PLAY FILM") || GetKeyState('P') & 0x80)
+
+			if (ImGui::Button("START GAME (Reach)") || (CommandLine::HasCommandLineArg("-autostart") && !hasAutostarted))
+			{
+				GameOptionSelection::s_pLaunchSavedFilm = "";
+				hasAutostarted = true;
+				s_nextLaunchMode = NextLaunchMode::Generic;
+				s_nextLaunchEngine = EngineVersion::HaloReach;
+			}
+
+			if (ImGui::Button("PLAY FILM (Reach)") || GetKeyState('P') & 0x80)
 			{
 				s_nextLaunchMode = NextLaunchMode::Theater;
+				s_nextLaunchEngine = EngineVersion::HaloReach;
 			}
 
 			ImGui::Dummy(ImVec2(0.0f, 20.0f));
