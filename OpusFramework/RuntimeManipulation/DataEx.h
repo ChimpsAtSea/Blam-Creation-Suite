@@ -1,7 +1,7 @@
 #pragma once
 
 template<typename T, intptr_t(find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion)>
-class DataEx : public DataReferenceBase
+class /*[[deprecated("DataEx is deprecated. Use reference_symbol instead.")]]*/ DataEx : public DataReferenceBase
 {
 public:
 	DataEx(const DataEx&) = delete;

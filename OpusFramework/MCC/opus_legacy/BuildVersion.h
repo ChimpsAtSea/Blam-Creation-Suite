@@ -19,7 +19,7 @@ enum class BuildVersion : uint64_t
 	Build_1_1246_0_0 = MAKE_FILE_VERSION(1, 1246, 0, 0), 
 	Build_1_1270_0_0 = MAKE_FILE_VERSION(1, 1270, 0, 0),
 	Build_1_1305_0_0 = MAKE_FILE_VERSION(1, 1305, 0, 0),
-	Count
+	Build_1_1350_0_0 = MAKE_FILE_VERSION(1, 1350, 0, 0)
 };
 
 #undef MAKE_FILE_VERSION
@@ -78,6 +78,8 @@ constexpr const char* GetEngineFilename(EngineVersion engineVersion)
 	{
 	case EngineVersion::HaloReach:
 		return "haloreach.dll";
+	case EngineVersion::Halo1:
+		return "halo1.dll";
 	}
 	FATAL_ERROR(L"Unsupported GameVersion");
 }

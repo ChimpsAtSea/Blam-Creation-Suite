@@ -1,5 +1,7 @@
 #include "halo1lib-private-pch.h"
 
+#include "Halo1GameHost.Testing.inl"
+
 GameRuntime* Halo1GameHost::s_halo1GameRuntime;
 
 GameRuntime& Halo1GameHost::GetGameRuntime()
@@ -18,6 +20,12 @@ Halo1GameHost::Halo1GameHost()
 {
 	WriteLineVerbose("Init Halo1GameHost");
 
+	init_detours();
+	DataReferenceBase::InitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
+	FunctionHookBase::InitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
+	GlobalReference::InitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
+	end_detours();
+
 	if(m_pGameEngine == nullptr)
 	__int64 createGameEngineResult = GetGameRuntime().CreateGameEngine(&m_pGameEngine);
 	assert(m_pGameEngine != nullptr);
@@ -35,6 +43,13 @@ Halo1GameHost::~Halo1GameHost()
 	//free(pHaloReachDataAccess);
 
 	//m_pGameEngine = nullptr;
+
+
+	init_detours();
+	DataReferenceBase::DeinitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
+	FunctionHookBase::DeinitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
+	GlobalReference::DeinitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
+	end_detours();
 
 	GameRuntime& rHalo1GameRuntime = GetGameRuntime();
 	rHalo1GameRuntime.~GameRuntime();

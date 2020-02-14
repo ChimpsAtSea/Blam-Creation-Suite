@@ -27,7 +27,7 @@ void FunctionHookBase::DeinitTree(EngineVersion engineVersion, BuildVersion buil
 
 FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildVersion buildVersion)
 {
-	if ((buildVersion == m_buildVersion || (m_buildVersion == BuildVersion::NotSet && m_find_offset_func)) && m_isActive && !m_isHooked)
+	if ((m_engineVersion == engineVersion || m_engineVersion == EngineVersion::NotSet) && ((buildVersion == m_buildVersion || (m_buildVersion == BuildVersion::NotSet && m_find_offset_func)) && m_isActive && !m_isHooked))
 	{
 		if (m_offset == 0 && m_find_offset_func)
 		{
@@ -78,6 +78,9 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 
 FunctionHookBase* FunctionHookBase::DeinitNode(EngineVersion engineVersion, BuildVersion buildVersion)
 {
-	m_isHooked = false; // #TODO: Do this better. We are unload the DLL so this is okay...
+	if (m_isHooked)
+	{
+		m_isHooked = false; // #TODO: Do this better. We are unload the DLL so this is okay...
+	}
 	return m_pNextFunctionHook;
 }

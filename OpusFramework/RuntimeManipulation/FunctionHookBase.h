@@ -5,8 +5,9 @@ typedef void(FunctionHookCallback)(void* pUserData);
 class FunctionHookBase
 {
 public:
-	FunctionHookBase(const char* pName, BuildVersion buildVersion, size_t offset, intptr_t(find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion))
-		: m_buildVersion(buildVersion)
+	FunctionHookBase(const char* pName, EngineVersion engineVersion, BuildVersion buildVersion, size_t offset, intptr_t(find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion))
+		: m_engineVersion(engineVersion)
+		, m_buildVersion(buildVersion)
 		, m_offset(offset)
 		, m_pNextFunctionHook(nullptr)
 		, m_isActive(true)
@@ -23,7 +24,7 @@ public:
 		}
 		else
 		{
-			bool hookOffsetExists = g_pLastFunctionHook->DoesOffsetExist(buildVersion, offset);
+			bool hookOffsetExists = g_pLastFunctionHook->DoesOffsetExist(engineVersion, buildVersion, offset);
 			assert(hookOffsetExists == false);
 
 			g_pLastFunctionHook->m_pNextFunctionHook = this;
@@ -33,6 +34,7 @@ public:
 
 	intptr_t(*m_find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion);
 	intptr_t m_offset;
+	EngineVersion m_engineVersion;
 	BuildVersion m_buildVersion;
 	bool m_isActive;
 	bool m_isHooked;
@@ -62,19 +64,22 @@ public:
 	}
 
 private:
-	bool DoesOffsetExist(BuildVersion buildVersion, size_t offset)
+	bool DoesOffsetExist(EngineVersion engineVersion, BuildVersion buildVersion, size_t offset)
 	{
-		if (buildVersion == BuildVersion::NotSet)
+		if (m_engineVersion == engineVersion)
 		{
-			return false;
-		}
-		if (m_buildVersion == buildVersion && offset == m_offset)
-		{
-			return true;
+			if (buildVersion == BuildVersion::NotSet)
+			{
+				return false;
+			}
+			if (m_buildVersion == buildVersion && offset == m_offset)
+			{
+				return true;
+			}
 		}
 		if (m_pNextFunctionHook)
 		{
-			return m_pNextFunctionHook->DoesOffsetExist(buildVersion, offset);
+			return m_pNextFunctionHook->DoesOffsetExist(engineVersion, buildVersion, offset);
 		}
 		return false;
 	}

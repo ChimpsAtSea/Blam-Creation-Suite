@@ -5,6 +5,7 @@ GlobalReference* GlobalReference::s_pLastGlobalReference = nullptr;
 
 GlobalReference::GlobalReference(const char* pReferenceName, OffsetFunction offsetFunction)
 	: m_pNextGlobalReference(nullptr)
+	, m_engineVersion(EngineVersion::NotSet)
 	, m_buildVersion(BuildVersion::NotSet)
 	, m_offset(0)
 	, m_pReferenceName(pReferenceName)
@@ -13,8 +14,9 @@ GlobalReference::GlobalReference(const char* pReferenceName, OffsetFunction offs
 	init();
 }
 
-GlobalReference::GlobalReference(const char* pReferenceName, BuildVersion buildVersion, intptr_t offset)
+GlobalReference::GlobalReference(const char* pReferenceName, EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset)
 	: m_pNextGlobalReference(nullptr)
+	, m_engineVersion(engineVersion)
 	, m_buildVersion(buildVersion)
 	, m_offset(offset)
 	, m_pReferenceName(pReferenceName)
@@ -70,7 +72,7 @@ void GlobalReference::DestroyTree()
 
 GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVersion buildVersion)
 {
-	if (m_buildVersion == BuildVersion::NotSet || m_buildVersion == buildVersion)
+	if (m_engineVersion == engineVersion && (m_buildVersion == BuildVersion::NotSet || m_buildVersion == buildVersion))
 	{
 		PublicSymbol* pPublicSymbol = MappingFileParser::GetPublicSymbolByName(m_pReferenceName);
 		if (pPublicSymbol)
@@ -149,7 +151,7 @@ GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVer
 
 GlobalReference* GlobalReference::deinitNode(EngineVersion engineVersion, BuildVersion buildVersion)
 {
-	if (m_buildVersion == BuildVersion::NotSet || m_buildVersion == buildVersion)
+	if (m_engineVersion == engineVersion && (m_buildVersion == BuildVersion::NotSet || m_buildVersion == buildVersion))
 	{
 		PublicSymbol* pPublicSymbol = MappingFileParser::GetPublicSymbolByName(m_pReferenceName);
 		if (pPublicSymbol)
