@@ -1,7 +1,7 @@
 #pragma once
 
 
-template<intptr_t(find_offset_func)(BuildVersion buildVersion), typename base_type>
+template<intptr_t(find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion), typename base_type>
 struct FunctionHookVarArgsEx : public FunctionHookBase
 {
 public:
@@ -38,14 +38,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgsEx(hook_assignment_type func)
-		:FunctionHookBase(nullptr, BuildVersion::NotSet, 0, find_offset_func)
+		:FunctionHookBase(nullptr, EngineVersion::NotSet, BuildVersion::NotSet, 0, find_offset_func)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgsEx(base_type* func)
-		:FunctionHookBase(nullptr, BuildVersion::NotSet, 0, find_offset_func)
+		:FunctionHookBase(nullptr, EngineVersion::NotSet, BuildVersion::NotSet, 0, find_offset_func)
 		, hook(func)
 	{
 
@@ -53,14 +53,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgsEx(const char* pName, hook_assignment_type func)
-		:FunctionHookBase(pName, BuildVersion::NotSet, 0, find_offset_func)
+		:FunctionHookBase(pName, EngineVersion::NotSet, BuildVersion::NotSet, 0, find_offset_func)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgsEx(const char* pName, base_type* func)
-		:FunctionHookBase(pName, BuildVersion::NotSet, 0, find_offset_func)
+		:FunctionHookBase(pName, EngineVersion::NotSet, BuildVersion::NotSet, 0, find_offset_func)
 		, hook(func)
 	{
 
