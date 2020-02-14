@@ -5,7 +5,7 @@ std::string format_string(const char* pFormat, ...)
 	va_list args;
 	va_start(args, pFormat);
 	char stringBuffer[64 * 1024] = {};
-	vsnprintf(stringBuffer, _countof(stringBuffer)-1, pFormat, args);
+	vsnprintf(stringBuffer, _countof(stringBuffer) - 1, pFormat, args);
 	va_end(args);
 	return stringBuffer;
 }
@@ -42,7 +42,7 @@ void GameOptionSelection::loadSettings()
 	char pLaunchGameModeBuffer[256] = {};
 	Settings::ReadStringValue(SettingsSection::Launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "");
 	s_currentGameMode = StringToGameMode(pLaunchGameModeBuffer);
-	
+
 	char pLaunchCampaignDifficultyLevelBuffer[256] = {};
 	Settings::ReadStringValue(SettingsSection::Launch, "DifficultyLevel", pLaunchCampaignDifficultyLevelBuffer, sizeof(pLaunchCampaignDifficultyLevelBuffer), "normal");
 	g_LaunchCampaignDifficultyLevel = string_to_campaign_difficulty_level(pLaunchCampaignDifficultyLevelBuffer);
@@ -148,7 +148,7 @@ void GameOptionSelection::SelectGameMode()
 
 void GameOptionSelection::Render()
 {
-	
+
 
 	SelectSavedFilm();
 
@@ -689,9 +689,9 @@ void GameOptionSelection::LoadGameVariant(IDataAccess* pDataAccess, const char* 
 // TODO: Test, and fix if broke
 void GameOptionSelection::LoadPreviousGamestate(const char* pGamestateName, GameContext& gameContext)
 {
-	char pFileName[MAX_PATH] = {};
+	char pFileName[MAX_PATH + 1];
 	sprintf(pFileName, "%s.hdr", pGamestateName);
-	pFileName[MAX_PATH - 1] = 0;
+	pFileName[MAX_PATH] = 0;
 
 	char* pGameStateBuffer = {};
 	size_t gameStateSize = {};
