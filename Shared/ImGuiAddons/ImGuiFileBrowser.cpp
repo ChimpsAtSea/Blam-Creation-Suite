@@ -6,6 +6,7 @@
  *
  * Modifications made for project Opus
  */
+#pragma warning( disable : 4244 4267 )
 #define _CRT_SECURE_NO_WARNINGS
 #define NOMINMAX
 

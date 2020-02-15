@@ -91,7 +91,7 @@ void CacheFile::loadMap(const std::wstring& mapFilePath)
 			m_pTagInstances = reinterpret_cast<s_cache_file_tag_instance*>(pTagsSection + (m_pTagFilesHeader->instances.address - m_pHeader->virtual_base_address));
 			m_pGroupInstances = reinterpret_cast<s_cache_file_tag_group*>(pTagsSection + (m_pTagFilesHeader->groups.address - m_pHeader->virtual_base_address));
 
-			for (int groupIndex = 0; groupIndex < m_pTagFilesHeader->groups.count; groupIndex++)
+			for (uint32_t groupIndex = 0; groupIndex < m_pTagFilesHeader->groups.count; groupIndex++)
 			{
 				s_cache_file_tag_group& rGroupInstance = m_pGroupInstances[groupIndex];
 

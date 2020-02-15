@@ -114,11 +114,11 @@ void MantleTagTab::Poke()
 		const ReflectionType* pReflectionType = m_rTagInterface.GetReflectionData();
 		CopyDataRecursively(*pReflectionType, pSource, pDest, pSource, pDest);
 
-		WriteLineVerbose("Successfully poked tag '%s'", GetTagInterface().GetNameWithGroupID());
+		WriteLineVerbose("Successfully poked tag '%s'", GetTagInterface().GetNameWithGroupIDCStr());
 	}
 	else
 	{
-		WriteLineVerbose("Failed to poke tag '%s' as pDest was null", GetTagInterface().GetNameWithGroupID());
+		WriteLineVerbose("Failed to poke tag '%s' as pDest was null", GetTagInterface().GetNameWithGroupIDCStr());
 	}
 
 }

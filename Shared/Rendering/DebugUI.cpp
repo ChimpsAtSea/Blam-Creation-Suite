@@ -78,7 +78,8 @@ void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain*
 			size_t pFontSize;
 			bool fontResourceFound = ResourcesManager::GetResource(ResourceType::ImGUIFont, &pFontData, &pFontSize);
 			assert(fontResourceFound);
-			rImguiIO.Fonts->AddFontFromMemoryTTF(pFontData, pFontSize, 20.0f, NULL, rImguiIO.Fonts->GetGlyphRangesDefault());
+			assert(pFontSize < INT_MAX);
+			rImguiIO.Fonts->AddFontFromMemoryTTF(pFontData, static_cast<int>(pFontSize), 20.0f, NULL, rImguiIO.Fonts->GetGlyphRangesDefault());
 			//delete pFontData; // imgui owns this memory
 		}
 

@@ -99,12 +99,12 @@ public:
 
 	inline const char* GetStringIDStr(uint32_t id)
 	{
-		long const k_string_id_set_string_counts[17] = { 1225, 1637, 217, 106, 217, 38, 5, 1727, 368, 20, 98, 24, 0, 13, 41, 97, 115 };
+		uint32_t const k_string_id_set_string_counts[17] = { 1225, 1637, 217, 106, 217, 38, 5, 1727, 368, 20, 98, 24, 0, 13, 41, 97, 115 };
 
 		uint32_t set = (id >> _countof(k_string_id_set_string_counts)) & 0xFF;
 		uint32_t index = id & ((1 << _countof(k_string_id_set_string_counts)) - 1);
 
-		int set_base_index = 0;
+		uint32_t set_base_index = 0;
 
 		if (set == 0 && index >= k_string_id_set_string_counts[set])
 		{
@@ -115,7 +115,7 @@ public:
 		}
 		else
 		{
-			for (int i = 0; i < set; i++)
+			for (uint32_t i = 0; i < set; i++)
 				set_base_index += k_string_id_set_string_counts[i];
 		}
 

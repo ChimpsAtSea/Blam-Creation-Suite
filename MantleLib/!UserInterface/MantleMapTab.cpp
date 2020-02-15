@@ -167,7 +167,7 @@ void MantleMapTab::DisplayMapTabUI()
 	{
 		// right
 		ImGui::BeginGroup();
-		ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()), ImGuiWindowFlags_NoScrollbar);
+		ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()), false, ImGuiWindowFlags_NoScrollbar);
 		if (!m_tabs.empty()) // #NOTE: Checking this fixes strange ImGUI crash
 		{
 			if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None)) // each tag
@@ -349,7 +349,7 @@ void MantleMapTab::GameRender()
 		static BoxPrimitive& rImmediateBox = PrimitiveRenderManager::GetImmediateBox();
 
 		s_scenario_definition::s_trigger_volume_block_definition* pTagBlockData = m_pCacheFile->GetTagBlockData(rTriggerVolumesBlock);
-		for (uint32_t i = 0; i < rTriggerVolumesBlock.count; i++)
+		for (int32_t i = 0; i < rTriggerVolumesBlock.count; i++)
 		{
 			constexpr float kLineTransparency = 0.4f;
 			constexpr float kTextTransparency = 0.6f;

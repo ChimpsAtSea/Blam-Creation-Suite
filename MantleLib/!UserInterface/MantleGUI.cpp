@@ -64,8 +64,8 @@ void MantleGUI::Render()
 	if (isOpeningFile)
 	{
 		static ImGuiAddons::ImGuiFileBrowser fileBrowser;
-		int width = std::clamp(Window::GetWindowWidth(), 700, 1200);
-		int height = std::clamp(Window::GetWindowHeight(), 310, 675);
+		float width = static_cast<float>(std::clamp(Window::GetWindowWidth(), 700, 1200));
+		float height = static_cast<float>(std::clamp(Window::GetWindowHeight(), 310, 675));
 		if (fileBrowser.ShowOpenFileDialogInternal("Open File", ImVec2(width, height), ".map"))
 		{
 			isOpeningFile = false;
