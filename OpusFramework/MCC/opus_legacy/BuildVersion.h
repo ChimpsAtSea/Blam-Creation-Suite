@@ -84,6 +84,8 @@ constexpr const char* GetEngineFilename(EngineVersion engineVersion)
 		return "haloreach.dll";
 	case EngineVersion::Halo1:
 		return "halo1.dll";
+	case EngineVersion::MCC:
+		return "MCC-Win64-Shipping_Debug.exe";
 	}
 	FATAL_ERROR(L"Unsupported GameVersion");
 }

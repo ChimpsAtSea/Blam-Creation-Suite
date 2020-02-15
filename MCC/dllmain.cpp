@@ -86,12 +86,18 @@ void init_opus()
 	(void)(freopen("CONOUT$", "w", stdout));
 
 	init_detours();
-	static void* OutputDebugStringW_Original;
-	create_dll_hook("KERNEL32.dll", "OutputDebugStringW", nullsub, OutputDebugStringW_Original);
-	static void* OutputDebugStringA_Original;
-	create_dll_hook("KERNEL32.dll", "OutputDebugStringA", nullsub, OutputDebugStringA_Original);
-	create_dll_hook("KERNEL32.dll", "GetProcAddress", GetProcAddressHook, GetProcAddressPtr);
+	{
+		static void* OutputDebugStringW_Original;
+		create_dll_hook("KERNEL32.dll", "OutputDebugStringW", nullsub, OutputDebugStringW_Original);
+		static void* OutputDebugStringA_Original;
+		create_dll_hook("KERNEL32.dll", "OutputDebugStringA", nullsub, OutputDebugStringA_Original);
+		create_dll_hook("KERNEL32.dll", "GetProcAddress", GetProcAddressHook, GetProcAddressPtr);
 
+		BuildVersion buildVersion = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
+		DataReferenceBase::InitTree(EngineVersion::MCC, buildVersion);
+		FunctionHookBase::InitTree(EngineVersion::MCC, buildVersion);
+		GlobalReference::InitTree(EngineVersion::MCC, buildVersion);
+	}
 	end_detours();
 }
 
