@@ -213,7 +213,7 @@ void GameLauncher::launchHalo1()
 
 			gameContext.SessionInfo.SquadAddress = SquadAddress; // this is set
 
-			gameContext.GameMode = gameMode;
+			gameContext.GameMode = GameMode::Campaign;
 
 			gameContext.SessionInfo.PeerIdentifierCount = 1;
 			gameContext.SessionInfo.SessionMembership.Count = 1;
