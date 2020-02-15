@@ -189,7 +189,7 @@ void MappingFileParser::ParseFromFile(const char* pFilePath)
 	if (!result)
 	{
 #if _DEBUG
-		FATAL_ERROR(L"Failed to open mapping file %s", pFilePath);
+		FATAL_ERROR(L"Failed to open mapping file %S", pFilePath);
 #else
 		MessageBox(NULL, "Fatal Error - Opus.bin not found", "Fatal Error", MB_OK | MB_ICONWARNING);
 		exit(1);

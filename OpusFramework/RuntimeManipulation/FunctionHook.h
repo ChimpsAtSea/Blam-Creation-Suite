@@ -10,8 +10,8 @@ struct FunctionHook<buildVersion, offset, R(Args...)> : FunctionHookBase
 public:
 	typedef R(base_type)(Args...);
 
-	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetBuildBaseAddress(buildVersion), "Offset is out of bounds");
-	static_assert(buildVersion == BuildVersion::NotSet || offset < GetEngineTopAddress(buildVersion), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetEngineBaseAddress(engineVersion), "Offset is out of bounds");
+	static_assert(buildVersion == BuildVersion::NotSet || offset < GetEngineTopAddress(engineVersion, buildVersion), "Offset is out of bounds");
 
 	__forceinline decltype(auto) operator()(Args... arg)
 	{

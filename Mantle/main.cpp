@@ -1,5 +1,7 @@
 #include "mantle-private-pch.h"
 
+const char* ResourcesManager::s_pModuleName = NULL;
+
 int WINAPI wWinMain(
 	_In_ HINSTANCE hInstance,				/* [input] handle to current instance */
 	_In_opt_ HINSTANCE hPrevInstance,		/* [input] handle to previous instance */

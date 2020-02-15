@@ -102,7 +102,7 @@ intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVer
 				}
 			}
 
-			return GetBuildBaseAddress(buildVersion) + static_cast<intptr_t>(imageOffset);
+			return GetEngineBaseAddress(engineVersion) + static_cast<intptr_t>(imageOffset);
 		search_fail_im:
 			continue;
 		}
@@ -115,7 +115,7 @@ intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVer
 
 			if (memcmp(pCurrentSearchPointer, pInputData, inputDataLength) == 0)
 			{
-				return GetBuildBaseAddress(buildVersion) + static_cast<intptr_t>(imageOffset);
+				return GetEngineBaseAddress(engineVersion) + static_cast<intptr_t>(imageOffset);
 			}
 
 			//	for (size_t currentPatternIndex = 0; currentPatternIndex < inputDataLength; currentPatternIndex++)
@@ -146,7 +146,7 @@ const char* string_search_ptr(EngineVersion engineVersion, BuildVersion buildVer
 	intptr_t imageAddress = string_search(engineVersion, buildVersion, pString);
 	if (imageAddress)
 	{
-		const char* pStringAddress = reinterpret_cast<const char*>(GetEngineMemoryAddress(engineVersion)) + (imageAddress - GetBuildBaseAddress(buildVersion));
+		const char* pStringAddress = reinterpret_cast<const char*>(GetEngineMemoryAddress(engineVersion)) + (imageAddress - GetEngineBaseAddress(engineVersion));
 		return pStringAddress;
 	}
 	return nullptr;
@@ -208,7 +208,7 @@ intptr_t main_game_launch_offset(EngineVersion engineVersion, BuildVersion build
 		if (patternOffset)
 		{
 			WriteLineVerbose("ketchup> SUCCEED: main_game_launch_offset @0x%x", patternOffset);
-			return GetBuildBaseAddress(buildVersion) + patternOffset;
+			return GetEngineBaseAddress(engineVersion) + patternOffset;
 		}
 		else
 		{
@@ -310,7 +310,7 @@ intptr_t convert_mcc_map_id_to_reach_map_id_offset(EngineVersion engineVersion, 
 		if (patternOffset)
 		{
 			WriteLineVerbose("ketchup> SUCCEED: convert_mcc_map_id_to_reach_map_id_offset @0x%x", patternOffset);
-			return GetBuildBaseAddress(buildVersion) + patternOffset;
+			return GetEngineBaseAddress(engineVersion) + patternOffset;
 		}
 		else
 		{
@@ -369,7 +369,7 @@ intptr_t convert_reach_map_id_to_mcc_map_id_offset(EngineVersion engineVersion, 
 		if (patternOffset)
 		{
 			WriteLineVerbose("ketchup> SUCCEED: convert_reach_map_id_to_mcc_map_id_offset @0x%x", patternOffset);
-			return GetBuildBaseAddress(buildVersion) + patternOffset;
+			return GetEngineBaseAddress(engineVersion) + patternOffset;
 		}
 		else
 		{

@@ -40,12 +40,12 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 
 			m_offset = foundOffset;
 
-			assert(m_buildVersion == BuildVersion::NotSet && m_offset >= GetBuildBaseAddress(buildVersion)/*, "Offset is out of bounds"*/);
-			assert(m_buildVersion == BuildVersion::NotSet && m_offset < GetEngineTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && m_offset >= GetEngineBaseAddress(engineVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && m_offset < GetEngineTopAddress(engineVersion, buildVersion)/*, "Offset is out of bounds"*/);
 		}
 		assert(m_offset);
 
-		FunctionHookVarArgs<BuildVersion::NotSet, 0, void>& rVoidThis = reinterpret_cast<FunctionHookVarArgs<BuildVersion::NotSet, 0, void>&>(*this);
+		FunctionHookVarArgs<EngineVersion::NotSet, BuildVersion::NotSet, 0, void>& rVoidThis = reinterpret_cast<FunctionHookVarArgs<EngineVersion::NotSet, BuildVersion::NotSet, 0, void>&>(*this);
 
 		void*& rBase = rVoidThis.GetBase();
 		void*& rHook = rVoidThis.GetHook();
@@ -66,7 +66,7 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 		}
 		else
 		{
-			populate_function_ptr(GetEngineFilename(engineVersion), GetBuildBaseAddress(buildVersion), m_offset, rBase);
+			populate_function_ptr(GetEngineFilename(engineVersion), GetEngineBaseAddress(engineVersion), m_offset, rBase);
 			WriteLineVerbose("Created function pointer for %s", pFunctionName);
 		}
 

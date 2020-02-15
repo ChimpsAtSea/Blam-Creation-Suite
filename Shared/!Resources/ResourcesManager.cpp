@@ -16,7 +16,7 @@ LPSTR ResourcesManager::GetResourceIntResource(ResourceType type)
 
 HRSRC ResourcesManager::GetResourceHandle(ResourceType type)
 {
-	HMODULE hInstance = GetModuleHandle(NULL);
+	static HMODULE hInstance = GetModuleHandle(s_pModuleName);
 
 	LPSTR intResource = GetResourceIntResource(type);
 	if (intResource == nullptr) return NULL;
@@ -39,11 +39,13 @@ bool ResourcesManager::GetResource(ResourceType type, char** ppData, size_t* pDa
 	*ppData = nullptr;
 	*pDataSize = 0;
 
+	static HMODULE hInstance = GetModuleHandle(s_pModuleName);
+
 	HRSRC hResource = GetResourceHandle(type);
 	if (hResource == NULL) return false;
-	HGLOBAL hMemory = LoadResource(GetModuleHandle(NULL), hResource);
+	HGLOBAL hMemory = LoadResource(hInstance, hResource);
 	if (hMemory == NULL) return false;
-	DWORD dwSize = SizeofResource(GetModuleHandle(NULL), hResource);
+	DWORD dwSize = SizeofResource(hInstance, hResource);
 	if (dwSize == 0) return false;
 	LPVOID lpAddress = LockResource(hMemory);
 	if (lpAddress == nullptr) return false;

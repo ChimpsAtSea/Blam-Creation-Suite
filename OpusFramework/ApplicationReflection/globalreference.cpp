@@ -100,7 +100,7 @@ GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVer
 
 			void* pDataAddress = nullptr;
 			{
-				uint64_t gameVirtualAddress = GetBuildBaseAddress(buildVersion);
+				uint64_t gameVirtualAddress = GetEngineBaseAddress(engineVersion);
 				uint64_t dataVirtualAddress = static_cast<uint64_t>(targetOffset);
 				uint64_t dataRelativeVirtualAddress = dataVirtualAddress - gameVirtualAddress;
 				char* pGameBaseAddress = reinterpret_cast<char*>(GetEngineMemoryAddress(engineVersion));
@@ -175,7 +175,7 @@ GlobalReference* GlobalReference::deinitNode(EngineVersion engineVersion, BuildV
 
 			void* pDataAddress = nullptr;
 			{
-				uint64_t gameVirtualAddress = GetBuildBaseAddress(buildVersion);
+				uint64_t gameVirtualAddress = GetEngineBaseAddress(engineVersion);
 				uint64_t dataVirtualAddress = static_cast<uint64_t>(targetOffset);
 				uint64_t dataRelativeVirtualAddress = dataVirtualAddress - gameVirtualAddress;
 				char* pGameBaseAddress = reinterpret_cast<char*>(GetEngineMemoryAddress(engineVersion));

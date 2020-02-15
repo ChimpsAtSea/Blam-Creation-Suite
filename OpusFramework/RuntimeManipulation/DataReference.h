@@ -122,14 +122,14 @@ private:
 				return nullptr;
 			}
 
-			assert(m_buildVersion == BuildVersion::NotSet && offset >= GetBuildBaseAddress(buildVersion)/*, "Offset is out of bounds"*/);
-			assert(m_buildVersion == BuildVersion::NotSet && offset < GetEngineTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
-			assert(m_buildVersion == BuildVersion::NotSet && static_cast<intptr_t>(offset + m_dataSize) < GetEngineTopAddress(buildVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && offset >= GetEngineBaseAddress(engineVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && offset < GetEngineTopAddress(engineVersion, buildVersion)/*, "Offset is out of bounds"*/);
+			assert(m_buildVersion == BuildVersion::NotSet && static_cast<intptr_t>(offset + m_dataSize) < GetEngineTopAddress(engineVersion, buildVersion)/*, "Offset is out of bounds"*/);
 		}
 
 		void* pModule = GetEngineMemoryAddress(engineVersion);
 		char* pBaseAddress = reinterpret_cast<char*>(pModule);
-		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetBuildBaseAddress(buildVersion)));
+		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetEngineBaseAddress(engineVersion)));
 		return ptr;
 	}
 

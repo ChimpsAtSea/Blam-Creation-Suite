@@ -31,9 +31,9 @@ public:
 		return m_engineName;
 	}
 
+	static BuildVersion GetLibraryBuildVersion(const char* pFileName);
 private:
 	void loadLibrary(const char* pLibFileName);
-	static BuildVersion GetLibraryBuildVersion(const char* pFileName);
 	static uint64_t GetLibraryFileVersion(const char* pFileName);
 
 	std::string m_engineName;

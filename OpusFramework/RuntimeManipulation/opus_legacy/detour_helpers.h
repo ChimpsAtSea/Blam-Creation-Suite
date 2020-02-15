@@ -86,7 +86,7 @@ LONG create_hook(EngineVersion engineVersion, BuildVersion buildVersion, size_t 
 	}
 
 	char* const pModule = reinterpret_cast<char*>(GetEngineMemoryAddress(engineVersion));
-	size_t const baseAddress = GetBuildBaseAddress(buildVersion);
+	size_t const baseAddress = GetEngineBaseAddress(engineVersion);
 
 	rOriginal = (Tb)(pModule + (offset - baseAddress));
 
@@ -157,12 +157,12 @@ void populate_function_ptr(const char pModuleName[], size_t baseAddress, T& dest
 	populate_function_ptr(pModuleName, baseAddress, offset, dest);
 }
 
-template<BuildVersion buildVersion, size_t offset, typename T>
+template<EngineVersion engineVersion, size_t offset, typename T>
 void populate_function_ptr(T& dest)
 {
 	// Find the function address
-	char* const pModule = reinterpret_cast<char*>(GetBuildBaseAddress(buildVersion));
-	size_t const baseAddress = GetBuildBaseAddress(buildVersion);
+	char* const pModule = reinterpret_cast<char*>(GetEngineBaseAddress(engineVersion));
+	size_t const baseAddress = GetEngineBaseAddress(engineVersion);
 	char* const pFunctionAddress = pModule + (offset - baseAddress);
 
 	dest = reinterpret_cast<T>(pFunctionAddress);
@@ -176,11 +176,11 @@ T get_function_ptr(const char pModuleName[], size_t baseAddress)
 	return result;
 }
 
-template<BuildVersion buildVersion, size_t offset, typename T>
+template<EngineVersion engineVersion, size_t offset, typename T>
 T get_function_ptr()
 {
 	T result = nullptr;
-	populate_function_ptr<buildVersion, offset, T>(result);
+	populate_function_ptr<engineVersion, offset, T>(result);
 	return result;
 }
 
