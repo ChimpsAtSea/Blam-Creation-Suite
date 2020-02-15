@@ -1,3 +1,5 @@
+#include "halo1lib-private-pch.h"
+
 intptr_t sub_18019BC50_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
 	if (engineVersion == EngineVersion::Halo1)

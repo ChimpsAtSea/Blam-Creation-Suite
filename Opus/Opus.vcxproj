@@ -85,6 +85,10 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
  )
 )</Command>
     </PostBuildEvent>
+    <ProjectReference />
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -118,6 +122,10 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
  )
 )</Command>
     </PostBuildEvent>
+    <ProjectReference />
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

@@ -106,6 +106,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Halo1GameHost.Testing.inl">
+      <FileType>Document</FileType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="opus_legacy\c_network.h" />
@@ -118,9 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Halo1GameHost.Testing.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,7 @@
 #include <Shared\shared-public-pch.h>
 #include <MantleLib\mantlelib-public-pch.h>
 #include <HaloReachLib\haloreachlib-private-pch.h>
+#include <Halo1Lib\halo1lib-private-pch.h>
 
 #define MCCExecutableFileName "MCC-Win64-Shipping_Debug.exe"
 
@@ -22,20 +23,18 @@ extern void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVer
 void haloreach_dll_loaded_callback()
 {
 	WriteLineVerbose("Halo Reach was loaded!");
-	BuildVersion buildVersion = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
-	init_halo_reach(EngineVersion::HaloReach, BuildVersion::Build_1_1350_0_0);
+	{
+		BuildVersion buildVersion = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
+		HaloReachGameHost::InitModifications(buildVersion);
+	}
 }
 
 void halo1_dll_loaded_callback()
 {
 	WriteLineVerbose("Halo 1 was loaded!");
 	{
-		init_detours();
 		BuildVersion buildVersion = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
-		DataReferenceBase::InitTree(EngineVersion::Halo1, buildVersion);
-		FunctionHookBase::InitTree(EngineVersion::Halo1, buildVersion);
-		GlobalReference::InitTree(EngineVersion::Halo1, buildVersion);
-		end_detours();
+		Halo1GameHost::InitModifications(buildVersion);
 	}
 }
 

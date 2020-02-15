@@ -21,6 +21,9 @@
     <ClCompile Include="halo1lib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Halo1GameHost.Testing.inl">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="opus_legacy\c_network.h">
@@ -49,10 +52,5 @@
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Halo1GameHost.Testing.inl">
-      <Filter>Header Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

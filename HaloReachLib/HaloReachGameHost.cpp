@@ -8,11 +8,22 @@ GameRuntime HaloReachGameHost::s_haloReachGameRuntime("haloreach", "HaloReach\\h
 extern void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
 extern void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
 
+
+void HaloReachGameHost::InitModifications(BuildVersion buildVersion)
+{
+	init_halo_reach(EngineVersion::HaloReach, buildVersion);
+}
+
+void HaloReachGameHost::DeinitModifications(BuildVersion buildVersion)
+{
+	deinit_halo_reach(EngineVersion::HaloReach, buildVersion);
+}
+
 HaloReachGameHost::HaloReachGameHost()
 	:IOpusGameEngineHost(s_haloReachGameRuntime)
 	, m_pGameEngine(nullptr)
 {
-	init_halo_reach(EngineVersion::HaloReach, s_haloReachGameRuntime.GetBuildVersion());
+	InitModifications(s_haloReachGameRuntime.GetBuildVersion());
 
 	MantleGUI::SetGetTagSectionAddressFunction(tag_address_get); // #TODO: This is kinda hacky
 	MantleGUI::SetGetTagPointerFunction(tag_definition_get); // #TODO: This is kinda hacky
@@ -37,7 +48,7 @@ HaloReachGameHost::~HaloReachGameHost()
 
 	//m_pGameEngine = nullptr;
 
-	deinit_halo_reach(EngineVersion::HaloReach, s_haloReachGameRuntime.GetBuildVersion());
+	DeinitModifications(s_haloReachGameRuntime.GetBuildVersion());
 	s_haloReachGameRuntime.~GameRuntime();
 	new(&s_haloReachGameRuntime) GameRuntime("haloreach", "HaloReach\\haloreach.dll");
 }

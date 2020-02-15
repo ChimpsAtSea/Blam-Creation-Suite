@@ -14,17 +14,31 @@ GameRuntime& Halo1GameHost::GetGameRuntime()
 	return *s_halo1GameRuntime;
 }
 
+void Halo1GameHost::InitModifications(BuildVersion buildVersion)
+{
+	init_detours();
+	DataReferenceBase::InitTree(EngineVersion::Halo1, buildVersion);
+	FunctionHookBase::InitTree(EngineVersion::Halo1, buildVersion);
+	GlobalReference::InitTree(EngineVersion::Halo1, buildVersion);
+	end_detours();
+}
+
+void Halo1GameHost::DeinitModifications(BuildVersion buildVersion)
+{
+	init_detours();
+	DataReferenceBase::DeinitTree(EngineVersion::Halo1, buildVersion);
+	FunctionHookBase::DeinitTree(EngineVersion::Halo1, buildVersion);
+	GlobalReference::DeinitTree(EngineVersion::Halo1, buildVersion);
+	end_detours();
+}
+
 Halo1GameHost::Halo1GameHost()
 	:IOpusGameEngineHost(GetGameRuntime())
 	, m_pGameEngine(nullptr)
 {
 	WriteLineVerbose("Init Halo1GameHost");
 
-	init_detours();
-	DataReferenceBase::InitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
-	FunctionHookBase::InitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
-	GlobalReference::InitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
-	end_detours();
+	InitModifications(s_halo1GameRuntime->GetBuildVersion());
 
 	if(m_pGameEngine == nullptr)
 	__int64 createGameEngineResult = GetGameRuntime().CreateGameEngine(&m_pGameEngine);
@@ -45,11 +59,7 @@ Halo1GameHost::~Halo1GameHost()
 	//m_pGameEngine = nullptr;
 
 
-	init_detours();
-	DataReferenceBase::DeinitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
-	FunctionHookBase::DeinitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
-	GlobalReference::DeinitTree(EngineVersion::Halo1, s_halo1GameRuntime->GetBuildVersion());
-	end_detours();
+	DeinitModifications(s_halo1GameRuntime->GetBuildVersion());
 
 	GameRuntime& rHalo1GameRuntime = GetGameRuntime();
 	rHalo1GameRuntime.~GameRuntime();

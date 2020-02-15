@@ -9,7 +9,7 @@ public:
 	//static_assert(buildVersion == BuildVersion::NotSet || offset < GetEngineTopAddress(engineVersion, buildVersion), "Offset is out of bounds");
 
 	template<typename ...Args>
-	__forceinline decltype(auto) operator()(Args... args)
+	__forceinline decltype(auto) operator()(Args... args) const
 	{
 		size_t x = 0; // needed to fix register issue on debug
 
