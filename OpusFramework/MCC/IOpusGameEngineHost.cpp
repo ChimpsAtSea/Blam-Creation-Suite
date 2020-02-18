@@ -194,14 +194,23 @@ bool __fastcall IOpusGameEngineHost::Member27()
 bool __fastcall IOpusGameEngineHost::UpdateGraphics(Function28Structure* pUnknown)
 {
 	// set resolution to 4k
-	pUnknown->width = 3840;
-	pUnknown->height = 2160;
-	pUnknown->fps_flags = 0;
+	pUnknown->VIDEO_SizeX = 3840;
+	pUnknown->VIDEO_SizeY = 2160;
+
+	pUnknown->VIDEO_FPS_Lock = false;
+	pUnknown->VIDEO_Wait_VSync = false;
+
+	pUnknown->VIDEO_TextureQuality = 2;
+	pUnknown->VIDEO_AF_Qual = 2;
+	pUnknown->VIDEO_SSAOQuality = 2;
+	pUnknown->VIDEO_ShadowMapQual = 2;
+	pUnknown->VIDEO_LodDistQualityFactor = 2;
+	pUnknown->VIDEO_UseEdgeAA = true;
 
 	WriteLineVerbose("IOpusGameEngineHost::UpdateGraphics");
 
 	// returning false effectively doubles fps when unlocked
-	return pUnknown->fps_flags;
+	return !(pUnknown->VIDEO_FPS_Lock || pUnknown->VIDEO_Wait_VSync);
 }
 
 __int64 __fastcall IOpusGameEngineHost::Member29(__int64 value)
