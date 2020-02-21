@@ -191,7 +191,7 @@ bool __fastcall IOpusGameEngineHost::Member27()
 	return false;
 }
 
-bool __fastcall IOpusGameEngineHost::UpdateGraphics(Function28Structure* pUnknown)
+bool __fastcall IOpusGameEngineHost::UpdateGraphics(UpdateGraphicsData* pUnknown)
 {
 	// set resolution to 4k
 	pUnknown->VIDEO_SizeX = 3840;
