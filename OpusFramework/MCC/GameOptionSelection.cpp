@@ -10,14 +10,19 @@ std::string format_string(const char* pFormat, ...)
 	return stringBuffer;
 }
 
-MapInfoManager* GameOptionSelection::s_pMapInfoManager = nullptr;
 e_game_mode s_currentGameMode = _game_mode_campaign;
+e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
+
+MapInfoManager* GameOptionSelection::s_pMapInfoManager = nullptr;
+const MapInfo* GameOptionSelection::s_pSelectedMapInfo[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
+
+GameTypeManager* GameOptionSelection::s_pGameTypeManager = nullptr;
+const GameType* GameOptionSelection::s_pSelectedGameType[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
+
+// #TODO: Remove these
 std::string GameOptionSelection::s_pLaunchGameVariant = "";
 std::string GameOptionSelection::s_pLaunchMapVariant = "";
 std::string GameOptionSelection::s_pLaunchSavedFilm = "";
-e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
-const MapInfo* GameOptionSelection::s_pSelectedMapInfo[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
-
 
 void GameOptionSelection::Init()
 {
@@ -368,19 +373,19 @@ void GameOptionSelection::SelectDifficulty()
 {
 	if (s_currentGameMode == _game_mode_campaign || s_currentGameMode == _game_mode_firefight)
 	{
-		LPCSTR pCurrentDifficultyStr = campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel);
+		LPCSTR pCurrentDifficultyStr = campaign_difficulty_level_to_local_string(g_LaunchCampaignDifficultyLevel);
 		if (ImGui::BeginCombo("###DIFFICULTY", pCurrentDifficultyStr))
 		{
 			for (e_campaign_difficulty_level difficulty = e_campaign_difficulty_level::_campaign_difficulty_level_easy; difficulty < k_number_of_campaign_difficulty_levels; reinterpret_cast<int&>(difficulty)++)
 			{
-				LPCSTR pDifficultyStr = campaign_difficulty_level_to_string(difficulty);
+				LPCSTR pDifficultyStr = campaign_difficulty_level_to_local_string(difficulty);
 				if (pDifficultyStr)
 				{
 					bool selected = pDifficultyStr == pCurrentDifficultyStr;
 					if (ImGui::Selectable(pDifficultyStr, &selected))
 					{
 						g_LaunchCampaignDifficultyLevel = static_cast<e_campaign_difficulty_level>(difficulty);
-						Settings::WriteStringValue(SettingsSection::Launch, "DifficultyLevel", (char*)campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel));
+						Settings::WriteStringValue(SettingsSection::Launch, "DifficultyLevel", campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel));
 					}
 				}
 			}

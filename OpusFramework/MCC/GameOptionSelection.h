@@ -57,4 +57,7 @@ private:
 	static MapInfoManager* s_pMapInfoManager;
 	static const MapInfo* s_pSelectedMapInfo[underlying_cast(SelectedGameModeMapInfoIndex::Count)];
 	static constexpr const char* s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = { "LastCampaignMap", "LastMultiplayerMap", "LastSurvivalMap", "LastUnknownGamemodeMap" };
+
+	static GameTypeManager* s_pGameTypeManager;
+	static const GameType* s_pSelectedGameType[underlying_cast(SelectedGameModeMapInfoIndex::Count)];
 };

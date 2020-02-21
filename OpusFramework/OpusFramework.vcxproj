@@ -107,6 +107,8 @@
     <ClCompile Include="c_file_array.cpp" />
     <ClCompile Include="c_file_reference.cpp" />
     <ClCompile Include="FileSystem\BlamFileParser.cpp" />
+    <ClCompile Include="FileSystem\GameTypeManager.cpp" />
+    <ClCompile Include="FileSystem\GameType.cpp" />
     <ClCompile Include="MCC\IOpusGameEngineHost.cpp" />
     <ClCompile Include="MCC\GameRuntime.cpp" />
     <ClCompile Include="MCC\GameOptionSelection.cpp" />
@@ -142,6 +144,8 @@
     <ClInclude Include="c_file_reference.h" />
     <ClInclude Include="FileSystem\BlamFileParser.h" />
     <ClInclude Include="FileSystem\FileSystem.h" />
+    <ClInclude Include="FileSystem\GameTypeManager.h" />
+    <ClInclude Include="FileSystem\GameType.h" />
     <ClInclude Include="MCC\IOpusGameEngineHost.h" />
     <ClInclude Include="MCC\GameRuntime.h" />
     <ClInclude Include="MCC\GameOptionSelection.h" />
