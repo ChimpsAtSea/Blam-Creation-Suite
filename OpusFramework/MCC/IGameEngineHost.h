@@ -65,7 +65,7 @@ public:
 	CHECK_STRUCTURE_SIZE(Function22Structure, 0x110);
 
 #pragma pack(push, 1)
-	struct Function28Structure
+	struct UpdateGraphicsData
 	{
 		int VIDEO_SizeX;
 		int VIDEO_SizeY;
@@ -126,7 +126,7 @@ public:
 		long unknownD4_A4;
 		long unknownD4_A8;
 	};
-	CHECK_STRUCTURE_SIZE(Function28Structure, 0x180);
+	CHECK_STRUCTURE_SIZE(UpdateGraphicsData, 0x180);
 #pragma pack(pop)
 
 	struct PlayerConfiguration
@@ -226,7 +226,7 @@ public:
 	/* 25 */ virtual void __fastcall MembershipUpdate(s_session_membership* pSessionMembership, uint32_t playercount) = 0;
 	/* 26 */ virtual bool __fastcall Member26() = 0;
 	/* 27 */ virtual bool __fastcall Member27() = 0;
-	/* 28 */ virtual bool __fastcall UpdateGraphics(Function28Structure* pUnknown) = 0;
+	/* 28 */ virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* pUnknown) = 0;
 	/* 29 */ virtual __int64 __fastcall Member29(__int64 value) = 0;
 	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration) = 0;
 	/* 31 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer) = 0;

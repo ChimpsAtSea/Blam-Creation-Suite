@@ -36,7 +36,7 @@ public:
 	void __fastcall MembershipUpdate(s_session_membership* pSessionMembership, uint32_t playercount) override;
 	bool __fastcall Member26() override;
 	bool __fastcall Member27() override;
-	bool __fastcall UpdateGraphics(Function28Structure* pUnknown) override;
+	bool __fastcall UpdateGraphics(UpdateGraphicsData* pUnknown) override;
 	__int64 __fastcall Member29(__int64 value) override;
 	__int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration) override;
 	bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer) override;
