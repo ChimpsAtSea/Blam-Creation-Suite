@@ -24,7 +24,7 @@ public:
 
 	static bool WriteBoolValue(SettingsSection section, const char* pName, bool value);
 	static bool WriteIntegerValue(SettingsSection section, const char* pName, int value);
-	static bool WriteStringValue(SettingsSection section, const char* pName, char* pValue);
+	static bool WriteStringValue(SettingsSection section, const char* pName, const char* pValue);
 
 	static const char* GetSectionNameString(SettingsSection section);
 };

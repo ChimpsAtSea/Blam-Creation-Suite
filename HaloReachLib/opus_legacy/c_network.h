@@ -6,84 +6,14 @@
    the type library 'haloreach.dll'
 */
 
-enum e_network_message_type
-{
-	_network_message_type_ping = 0,
-	_network_message_type_pong,
-	_network_message_type_broadcast_search,
-	_network_message_type_broadcast_reply,
-	_network_message_type_connect_request,
-	_network_message_type_connect_refuse,
-	_network_message_type_connect_establish,
-	_network_message_type_connect_closed,
-	_network_message_type_join_request,
-	_network_message_type_peer_connect,
-	_network_message_type_join_abort,
-	_network_message_type_join_refuse,
-	_network_message_type_leave_session,
-	_network_message_type_leave_acknowledge,
-	_network_message_type_session_disband,
-	_network_message_type_session_boot,
-	_network_message_type_host_handoff,
-	_network_message_type_peer_handoff,
-	_network_message_type_host_transition,
-	_network_message_type_host_reestablish,
-	_network_message_type_host_decline,
-	_network_message_type_peer_reestablish,
-	_network_message_type_peer_establish,
-	_network_message_type_election,
-	_network_message_type_election_refuse,
-	_network_message_type_time_synchronize,
-	_network_message_type_membership_update,
-	_network_message_type_peer_properties,
-	_network_message_type_delegate_leadership,
-	_network_message_type_boot_machine,
-	_network_message_type_player_add,
-	_network_message_type_player_refuse,
-	_network_message_type_player_remove,
-	_network_message_type_player_properties,
-	_network_message_type_parameters_update,
-	_network_message_type_parameters_request,
-	_network_message_type_security,
-	_network_message_type_view_establishment,
-	_network_message_type_player_acknowledge,
-	_network_message_type_synchronous_update,
-	_network_message_type_synchronous_playback_control,
-	_network_message_type_synchronous_actions,
-	_network_message_type_synchronous_acknowledge,
-	_network_message_type_synchronous_join_catchup,
-	_network_message_type_game_results,
-	_network_message_type_update_queue_element,
-	_network_message_type_end_game,
-	_network_message_type_update_queue_element1, // same name as _network_message_type_update_queue_element
-	_network_message_type_test,
-	_network_message_type_test_force_host_machine_name,
-
-	k_number_of_network_message_types
-};
-
 struct c_network_session;
 struct c_network_session_parameter_base_vtbl;
 
 /* 369 */
-enum e_network_session_class
-{
-	_network_session_class_none = 0x0,
-	_network_session_class_offline = 0x1,
-	_network_session_class_system_link = 0x2,
-	_network_session_class_xbox_live = 0x3,
-	k_network_session_class_count = 0x4,
-};
+
 
 /* 70 */
 typedef unsigned __int8 BYTE;
-
-enum e_network_session_peer_state : DWORD
-{
-	_network_session_peer_state_connected = 4,
-	_network_session_peer_state_waiting = 7,
-	_network_session_peer_state_established = 8,
-};
 
 /* 367 */
 #pragma pack(push, 1)
@@ -184,63 +114,6 @@ struct c_network_session_membership
 static_assert(sizeof(c_network_session_membership) == 0x56A8, "c_network_session_membership invalid size");
 
 /* 370 */
-enum e_network_session_parameter_type
-{
-	_network_session_parameter_type_session_size = 0x0,
-	_network_session_parameter_type_life_cycle = 0x1,
-	_network_session_parameter_type_privacy_mode = 0x2,
-	_network_session_parameter_type_ui_game_mode = 0x3,
-	_network_session_parameter_type_start_mode = 0x4,
-	_network_session_parameter_type_end_game = 0x5,
-	_network_session_parameter_type_map = 0x6,
-	_network_session_parameter_type_initial_participants = 0x7,
-	_network_session_parameter_type_game_instance = 0x8,
-	_network_session_parameter_type_random_seed = 0x9,
-	_network_session_parameter_type_language = 0xA,
-	_network_session_parameter_type_determinism_version = 0xB,
-	_network_session_parameter_type_simulation_protocol = 0xC,
-	_network_session_parameter_type_campaign_difficulty = 0xD,
-	_network_session_parameter_type_active_skulls = 0xE,
-	_network_session_parameter_type_campaign_metagame_scoring = 0xF,
-	_network_session_parameter_type_campaign_insertion_point = 0x10,
-	_network_session_parameter_type_game_variant = 0x11,
-	_network_session_parameter_type_map_variant = 0x12,
-	_network_session_parameter_type_saved_film = 0x13,
-	_network_session_parameter_type_game_start_status = 0x14,
-	_network_session_parameter_type_countdown_timer = 0x15,
-	_network_session_parameter_type_requested_remote_join_data = 0x16,
-	_network_session_parameter_type_remote_join_data = 0x17,
-	_network_session_parameter_type_active_roster_outgoing_join_request = 0x18,
-	_network_session_parameter_type_active_roster_outgoing_join_data = 0x19,
-	_network_session_parameter_type_active_roster_incoming_join_data = 0x1A,
-	_network_session_parameter_type_matchmaking_arbitration_nonce = 0x1B,
-	_network_session_parameter_type_matchmaking_host_selected = 0x1C,
-	_network_session_parameter_type_matchmaking_hopper_list = 0x1D,
-	_network_session_parameter_type_matchmaking_requested_hopper = 0x1E,
-	_network_session_parameter_type_matchmaking_hopper = 0x1F,
-	_network_session_parameter_type_matchmaking_abort_requested = 0x20,
-	_network_session_parameter_type_matchmaking_search_preference = 0x21,
-	_network_session_parameter_type_matchmaking_progress = 0x22,
-	_network_session_parameter_type_matchmaking_progress_search_criteria = 0x23,
-	_network_session_parameter_type_matchmaking_assembly_peer_evict_mask = 0x24,
-	_network_session_parameter_type_matchmaking_rematch_data = 0x25,
-	_network_session_parameter_type_matchmaking_hopper_statistics = 0x26,
-	_network_session_parameter_type_matchmaking_tip = 0x27,
-	_network_session_parameter_type_matchmaking_messaging = 0x28,
-	_network_session_parameter_type_matchmaking_voting_results = 0x29,
-	_network_session_parameter_type_matchmaking_voting_rounds = 0x2A,
-	_network_session_parameter_type_matchmaking_voting_descriptions = 0x2B,
-	_network_session_parameter_type_matchmaking_game_configuration = 0x2C,
-	_network_session_parameter_type_synchronous_out_of_sync = 0x2D,
-	_network_session_parameter_type_request_campaign_quit = 0x2E,
-	_network_session_parameter_type_leader_properties = 0x2F,
-	_network_session_parameter_type_synchronous_halt_state = 0x30,
-	_network_session_parameter_type_speculative_migration = 0x31,
-	_network_session_parameter_type_voice_repeater = 0x32,
-	_network_session_parameter_type_scoreboard_quality = 0x33,
-	_network_session_parameter_type_network_quality = 0x34,
-	k_network_session_parameter_type_count = 0x35,
-};
 
 /* 371 */
 struct c_network_session_parameter_base

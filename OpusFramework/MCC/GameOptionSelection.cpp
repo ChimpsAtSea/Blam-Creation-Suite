@@ -11,7 +11,7 @@ std::string format_string(const char* pFormat, ...)
 }
 
 MapInfoManager* GameOptionSelection::s_pMapInfoManager = nullptr;
-GameMode s_currentGameMode = GameMode::Campaign;
+e_game_mode s_currentGameMode = _game_mode_campaign;
 std::string GameOptionSelection::s_pLaunchGameVariant = "";
 std::string GameOptionSelection::s_pLaunchMapVariant = "";
 std::string GameOptionSelection::s_pLaunchSavedFilm = "";
@@ -41,7 +41,11 @@ void GameOptionSelection::loadSettings()
 
 	char pLaunchGameModeBuffer[256] = {};
 	Settings::ReadStringValue(SettingsSection::Launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "");
-	s_currentGameMode = StringToGameMode(pLaunchGameModeBuffer);
+	s_currentGameMode = string_to_game_mode(pLaunchGameModeBuffer);
+	if (s_currentGameMode == _game_mode_none)
+	{
+		s_currentGameMode = _game_mode_campaign;
+	}
 
 	char pLaunchCampaignDifficultyLevelBuffer[256] = {};
 	Settings::ReadStringValue(SettingsSection::Launch, "DifficultyLevel", pLaunchCampaignDifficultyLevelBuffer, sizeof(pLaunchCampaignDifficultyLevelBuffer), "normal");
@@ -51,13 +55,13 @@ void GameOptionSelection::loadSettings()
 	switch (s_currentGameMode)
 	{
 		break;
-	case GameMode::Campaign:
+	case _game_mode_campaign:
 		pDefaultHopperGameVariant = "campaign_default_054";
 		break;
-	case GameMode::Multiplayer:
+	case _game_mode_multiplayer:
 		pDefaultHopperGameVariant = "slayer_054";
 		break;
-	case GameMode::Survival:
+	case _game_mode_firefight:
 		pDefaultHopperGameVariant = "ff_firefight_054";
 		break;
 	}
@@ -87,7 +91,7 @@ void GameOptionSelection::loadSettings()
 	}
 }
 
-GameMode GameOptionSelection::GetSelectedGameMode()
+e_game_mode GameOptionSelection::GetSelectedGameMode()
 {
 	return s_currentGameMode;
 }
@@ -96,20 +100,19 @@ void GameOptionSelection::SelectGameMode()
 {
 	if (CommandLine::HasCommandLineArg("-showallmodes"))
 	{
-		LPCSTR s_pCurrentGameModeStr = GameModeToString(s_currentGameMode);
-		if (ImGui::BeginCombo("###MODE", s_pCurrentGameModeStr))
+		const char* selected_game_mode_string = game_mode_to_local_string(s_currentGameMode);
+		if (ImGui::BeginCombo("###MODE", selected_game_mode_string))
 		{
-			for (int i = 0; i < GameMode::NumGameModes; i++)
+			for (underlying(e_game_mode) i = 0; i < k_number_of_game_modes; i++)
 			{
-				LPCSTR pGameModeStr = GameModeToString(static_cast<GameMode>(i));
-				if (pGameModeStr)
+				const char* current_game_mode_string = game_mode_to_local_string(static_cast<e_game_mode>(i));
+				DEBUG_ASSERT(current_game_mode_string != nullptr);
+
+				bool selected = selected_game_mode_string == current_game_mode_string;
+				if (ImGui::Selectable(current_game_mode_string, &selected))
 				{
-					bool selected = s_pCurrentGameModeStr == pGameModeStr;
-					if (ImGui::Selectable(pGameModeStr, &selected))
-					{
-						s_currentGameMode = static_cast<GameMode>(i);
-						Settings::WriteStringValue(SettingsSection::Launch, "GameMode", (char*)GameModeToString(s_currentGameMode));
-					}
+					s_currentGameMode = static_cast<e_game_mode>(i);
+					Settings::WriteStringValue(SettingsSection::Launch, "GameMode", game_mode_to_string(s_currentGameMode));
 				}
 			}
 
@@ -118,7 +121,7 @@ void GameOptionSelection::SelectGameMode()
 	}
 	else
 	{
-		LPCSTR s_pCurrentGameModeStr = GameModeToString(s_currentGameMode);
+		LPCSTR s_pCurrentGameModeStr = game_mode_to_string(s_currentGameMode);
 		if (ImGui::BeginCombo("###MODE", s_pCurrentGameModeStr))
 		{
 			for (underlying(SelectedGameModeMapInfoIndex) i = 0; i < underlying_cast(SelectedGameModeMapInfoIndex::Count); i++)
@@ -128,15 +131,15 @@ void GameOptionSelection::SelectGameMode()
 					continue;
 				}
 
-				GameMode gameMode = SelectedGameModeMapInfoIndexToGameMode(static_cast<SelectedGameModeMapInfoIndex>(i));
-				LPCSTR pGameModeStr = GameModeToString(gameMode);
+				e_game_mode gameMode = SelectedGameModeMapInfoIndexToGameMode(static_cast<SelectedGameModeMapInfoIndex>(i));
+				LPCSTR pGameModeStr = game_mode_to_string(gameMode);
 				if (pGameModeStr)
 				{
 					bool selected = s_pCurrentGameModeStr == pGameModeStr;
 					if (ImGui::Selectable(pGameModeStr, &selected))
 					{
 						s_currentGameMode = gameMode;
-						Settings::WriteStringValue(SettingsSection::Launch, "GameMode", (char*)GameModeToString(s_currentGameMode));
+						Settings::WriteStringValue(SettingsSection::Launch, "GameMode", (char*)game_mode_to_string(s_currentGameMode));
 					}
 				}
 			}
@@ -207,17 +210,17 @@ const MapInfo* GameOptionSelection::GetDefaultGameOptionSelection(SelectedGameMo
 	return nullptr;
 }
 
-GameOptionSelection::SelectedGameModeMapInfoIndex GameOptionSelection::GameModeToSelectedGameModeMapInfoIndex(GameMode gameMode)
+GameOptionSelection::SelectedGameModeMapInfoIndex GameOptionSelection::GameModeToSelectedGameModeMapInfoIndex(e_game_mode gameMode)
 {
 	switch (gameMode)
 	{
-	case GameMode::Campaign:
+	case _game_mode_campaign:
 		return SelectedGameModeMapInfoIndex::Campaign;
 		break;
-	case GameMode::Multiplayer:
+	case _game_mode_multiplayer:
 		return SelectedGameModeMapInfoIndex::Multiplayer;
 		break;
-	case GameMode::Survival:
+	case _game_mode_firefight:
 		return SelectedGameModeMapInfoIndex::Firefight;
 		break;
 	default:
@@ -226,21 +229,21 @@ GameOptionSelection::SelectedGameModeMapInfoIndex GameOptionSelection::GameModeT
 	}
 }
 
-GameMode GameOptionSelection::SelectedGameModeMapInfoIndexToGameMode(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
+e_game_mode GameOptionSelection::SelectedGameModeMapInfoIndexToGameMode(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
 {
 	switch (selectedGameModeMapInfoIndex)
 	{
 	case SelectedGameModeMapInfoIndex::Campaign:
-		return GameMode::Campaign;
+		return _game_mode_campaign;
 		break;
 	case SelectedGameModeMapInfoIndex::Multiplayer:
-		return GameMode::Multiplayer;
+		return _game_mode_multiplayer;
 		break;
 	case SelectedGameModeMapInfoIndex::Firefight:
-		return GameMode::Survival;
+		return _game_mode_firefight;
 		break;
 	default:
-		return GameMode::None;
+		return _game_mode_none;
 	}
 }
 
@@ -250,7 +253,7 @@ const MapInfo*& GameOptionSelection::GetSelectedMapInfoBySelectedGameModeMapInfo
 	return pSelectedMapInfo;
 }
 
-const MapInfo*& GameOptionSelection::GetSelectedMapInfoByGameMode(GameMode gameMode)
+const MapInfo*& GameOptionSelection::GetSelectedMapInfoByGameMode(e_game_mode gameMode)
 {
 	return GetSelectedMapInfoBySelectedGameModeMapInfoIndex(GameModeToSelectedGameModeMapInfoIndex(s_currentGameMode));
 }
@@ -260,7 +263,7 @@ const MapInfo* GameOptionSelection::GetSelectedMapInfo()
 	return GetSelectedMapInfoByGameMode(s_currentGameMode);
 }
 
-const MapInfo* GameOptionSelection::GetFirstSuitableGameModeMapInfo(GameMode gameMode)
+const MapInfo* GameOptionSelection::GetFirstSuitableGameModeMapInfo(e_game_mode gameMode)
 {
 	for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
 	{
@@ -272,17 +275,17 @@ const MapInfo* GameOptionSelection::GetFirstSuitableGameModeMapInfo(GameMode gam
 	return nullptr;
 }
 
-void GameOptionSelection::SaveSelectedMap(GameMode gameMode, const MapInfo* pMapInfo)
+void GameOptionSelection::SaveSelectedMap(e_game_mode gameMode, const MapInfo* pMapInfo)
 {
 	switch (gameMode)
 	{
-	case GameMode::Campaign:
+	case _game_mode_campaign:
 		Settings::WriteIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Campaign)], pMapInfo ? pMapInfo->GetMapID() : -1);
 		break;
-	case GameMode::Multiplayer:
+	case _game_mode_multiplayer:
 		Settings::WriteIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Multiplayer)], pMapInfo ? pMapInfo->GetMapID() : -1);
 		break;
-	case GameMode::Survival:
+	case _game_mode_firefight:
 		Settings::WriteIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Firefight)], pMapInfo ? pMapInfo->GetMapID() : -1);
 		break;
 	default:
@@ -291,17 +294,17 @@ void GameOptionSelection::SaveSelectedMap(GameMode gameMode, const MapInfo* pMap
 	}
 }
 
-bool GameOptionSelection::isMapInfoCompatibleWithGameMode(GameMode gameMode, const MapInfo& rMapInfo)
+bool GameOptionSelection::isMapInfoCompatibleWithGameMode(e_game_mode gameMode, const MapInfo& rMapInfo)
 {
 	switch (gameMode)
 	{
-	case GameMode::Campaign:
+	case _game_mode_campaign:
 		if (!rMapInfo.IsCampaign()) return false;
 		break;
-	case GameMode::Multiplayer:
+	case _game_mode_multiplayer:
 		if (!rMapInfo.IsMultiplayer()) return false;
 		break;
-	case GameMode::Survival:
+	case _game_mode_firefight:
 		if (!rMapInfo.IsFirefight()) return false;
 		break;
 	}
@@ -363,7 +366,7 @@ void GameOptionSelection::SelectMap()
 
 void GameOptionSelection::SelectDifficulty()
 {
-	if (s_currentGameMode == GameMode::Campaign || s_currentGameMode == GameMode::Survival)
+	if (s_currentGameMode == _game_mode_campaign || s_currentGameMode == _game_mode_firefight)
 	{
 		LPCSTR pCurrentDifficultyStr = campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel);
 		if (ImGui::BeginCombo("###DIFFICULTY", pCurrentDifficultyStr))
@@ -469,7 +472,7 @@ void GameOptionSelection::SelectGameVariant()
 	static c_file_array fileArray = c_file_array(pfilePaths, { ".bin" }, &ReadGameVariant);
 	static LPCSTR pLast = s_pLaunchGameVariant.c_str();
 
-	if (s_currentGameMode == GameMode::Campaign)
+	if (s_currentGameMode == _game_mode_campaign)
 	{
 		return;
 	}
@@ -478,10 +481,10 @@ void GameOptionSelection::SelectGameVariant()
 	{
 		for (int i = 0; i < fileArray.Count; i++)
 		{
-			int shouldShow = s_currentGameMode == GameMode::Multiplayer && fileArray.GetType(i) == _game_engine_type_sandbox;
-			shouldShow |= s_currentGameMode == GameMode::Multiplayer && fileArray.GetType(i) == _game_engine_type_megalo;
-			shouldShow |= s_currentGameMode == GameMode::Campaign && fileArray.GetType(i) == _game_engine_type_campaign;
-			shouldShow |= s_currentGameMode == GameMode::Survival && fileArray.GetType(i) == _game_engine_type_survival;
+			int shouldShow = s_currentGameMode == _game_mode_multiplayer && fileArray.GetType(i) == _game_engine_type_sandbox;
+			shouldShow |= s_currentGameMode == _game_mode_multiplayer && fileArray.GetType(i) == _game_engine_type_megalo;
+			shouldShow |= s_currentGameMode == _game_mode_campaign && fileArray.GetType(i) == _game_engine_type_campaign;
+			shouldShow |= s_currentGameMode == _game_mode_firefight && fileArray.GetType(i) == _game_engine_type_survival;
 
 			if (fileArray.GetFileName(i) && shouldShow)
 			{
@@ -514,7 +517,7 @@ void GameOptionSelection::SelectMapVariant()
 	static c_file_array fileArray = c_file_array(pfilePaths, { ".mvar" }, &ReadMapVariant);
 	static LPCSTR pLast = s_pLaunchMapVariant.c_str();
 
-	if (s_currentGameMode != GameMode::Multiplayer)
+	if (s_currentGameMode != _game_mode_multiplayer)
 	{
 		return;
 	}
@@ -703,7 +706,7 @@ void GameOptionSelection::LoadPreviousGamestate(const char* pGamestateName, Game
 		memset(pGameStateBuffer, 0x00, filo.bufferSize);
 		pGameStateBuffer = filo.pBuffer;
 
-		gameContext.GameMode = GameMode::Campaign;
+		gameContext.GameMode = _game_mode_campaign;
 		gameContext.GameStateHeaderSize = filo.bufferSize;
 		gameContext.pGameStateHeader = pGameStateBuffer;
 

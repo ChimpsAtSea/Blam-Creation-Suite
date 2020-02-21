@@ -24,7 +24,7 @@ public:
 	void Member13(const wchar_t*, const wchar_t*, const void*, unsigned int) override;
 	char Member14(int controllerIndex, BYTE*) override;
 	char Member15(int controllerIndex, BYTE*) override;
-	char GetNextLevelInfo(MapID* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*) override;
+	char GetNextLevelInfo(e_map_id* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*) override;
 	bool Member17(int) override;
 	void Member18(int) override;
 	__int64 __fastcall MapLoadPecentStatus(__int64, __int64, float) override;

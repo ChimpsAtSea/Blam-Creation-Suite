@@ -1,7 +1,5 @@
 #pragma once
 
-#include "GameMode.h"
-
 /* LEGACY */ #include "opus_legacy\BuildVersion.h"
 
 /* LEGACY */ #include "opus_legacy\IVariantAccessorBase.h"

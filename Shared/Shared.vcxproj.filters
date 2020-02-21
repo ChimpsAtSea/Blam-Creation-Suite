@@ -138,6 +138,36 @@
     <ClInclude Include="AtomicLock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Blam\map_id.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blam\game_mode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blam\skull.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blam\damage_reporting_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blam\campaign_metagame_bucket_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blam\network_session_parameter_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blam\network_message_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blam\network_session_peer_state.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blam\network_session_class.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blam\life_cycle_join_result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CommandLine.cpp">

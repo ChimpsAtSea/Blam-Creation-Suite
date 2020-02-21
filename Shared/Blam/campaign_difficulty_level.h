@@ -1,40 +1,47 @@
 #pragma once
-enum e_campaign_difficulty_level : int
-{
-	_campaign_difficulty_level_easy,
-	_campaign_difficulty_level_normal,
-	_campaign_difficulty_level_heroic,
-	_campaign_difficulty_level_legendary,
 
+enum e_campaign_difficulty_level : uint32_t
+{
+	_campaign_difficulty_level_easy = 0,
+	_campaign_difficulty_level_normal,
+	_campaign_difficulty_level_hard,
+	_campaign_difficulty_level_impossible,
 	k_number_of_campaign_difficulty_levels,
 };
 
-inline const char* campaign_difficulty_level_to_string(e_campaign_difficulty_level campaign_difficulty_level)
+static constexpr const char* campaign_difficulty_level_to_string(e_campaign_difficulty_level campaign_difficulty_level)
 {
 	switch (campaign_difficulty_level)
 	{
-	case _campaign_difficulty_level_easy:
-		return "easy";
-	case _campaign_difficulty_level_normal:
-		return "normal";
-	case _campaign_difficulty_level_heroic:
-		return "heroic";
-	case _campaign_difficulty_level_legendary:
-		return "legendary";
+	case _campaign_difficulty_level_easy: return "_campaign_difficulty_level_easy";
+	case _campaign_difficulty_level_normal: return "_campaign_difficulty_level_normal";
+	case _campaign_difficulty_level_hard: return "_campaign_difficulty_level_hard";
+	case _campaign_difficulty_level_impossible: return "_campaign_difficulty_level_impossible";
 	}
 	return nullptr;
 }
 
-inline e_campaign_difficulty_level string_to_campaign_difficulty_level(const char* string)
+static constexpr const char* campaign_difficulty_level_to_local_string(e_campaign_difficulty_level campaign_difficulty_level)
 {
-	for (std::underlying_type<e_campaign_difficulty_level>::type i = _campaign_difficulty_level_easy; i < k_number_of_campaign_difficulty_levels; i++)
+	switch (campaign_difficulty_level)
 	{
-		e_campaign_difficulty_level campaign_difficulty_level = static_cast<e_campaign_difficulty_level>(i);
-		const char* campaign_difficulty_level_str = campaign_difficulty_level_to_string(campaign_difficulty_level);
+	case _campaign_difficulty_level_easy:			return "Easy";
+	case _campaign_difficulty_level_normal:			return "Normal";
+	case _campaign_difficulty_level_hard:			return "Heroic";
+	case _campaign_difficulty_level_impossible:		return "Legendary";
+	}
+	return nullptr;
+}
 
-		if (campaign_difficulty_level_str != nullptr && (strcmp(string, campaign_difficulty_level_str) == 0))
+static inline e_campaign_difficulty_level string_to_campaign_difficulty_level(const char* campaign_difficulty_level_string)
+{
+	for (underlying(e_campaign_difficulty_level) current_campaign_difficulty_level = 0; current_campaign_difficulty_level < k_number_of_campaign_difficulty_levels; current_campaign_difficulty_level++)
+	{
+		const char* current_campaign_difficulty_level_string = campaign_difficulty_level_to_string(static_cast<e_campaign_difficulty_level>(current_campaign_difficulty_level));
+
+		if (strcmp(current_campaign_difficulty_level_string, campaign_difficulty_level_string) == 0)
 		{
-			return campaign_difficulty_level;
+			return static_cast<e_campaign_difficulty_level>(current_campaign_difficulty_level);
 		}
 	}
 	return _campaign_difficulty_level_normal;

@@ -191,12 +191,6 @@
     <ClInclude Include="MCC\GameRuntime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MCC\GameMode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\opus_legacy\MapID.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MCC\MouseInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>

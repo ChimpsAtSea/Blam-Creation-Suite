@@ -131,7 +131,7 @@ char IOpusGameEngineHost::Member15(int controllerIndex, BYTE*)
 	return 0;
 }
 
-char IOpusGameEngineHost::GetNextLevelInfo(MapID* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*)
+char IOpusGameEngineHost::GetNextLevelInfo(e_map_id* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*)
 {
 	return 0;
 }

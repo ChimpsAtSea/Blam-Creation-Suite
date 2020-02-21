@@ -183,7 +183,7 @@ void GameLauncher::launchHalo1()
 	GameContext gameContext = {};
 	{
 		//const MapInfo* pSelectedMapInfo = GameOptionSelection::GetSelectedMapInfo();
-		GameMode gameMode = GameOptionSelection::GetSelectedGameMode();
+		e_game_mode gameMode = GameOptionSelection::GetSelectedGameMode();
 
 		//const char* pMapFileName = pSelectedMapInfo->GetMapFileName();
 		//WriteLineVerbose("Loading map '%s.map'", pMapFileName);
@@ -204,7 +204,7 @@ void GameLauncher::launchHalo1()
 
 			gameContext.SessionInfo.SquadAddress = SquadAddress; // this is set
 
-			gameContext.GameMode = GameMode::Campaign;
+			gameContext.GameMode = _game_mode_campaign;
 
 			gameContext.SessionInfo.PeerIdentifierCount = 1;
 			gameContext.SessionInfo.SessionMembership.Count = 1;
@@ -212,7 +212,7 @@ void GameLauncher::launchHalo1()
 			if (gameContext.SessionInfo.IsHost)
 			{
 				//gameContext.MapId = static_cast<MapID>(pSelectedMapInfo->GetMapID());
-				gameContext.MapId = (MapID)(3);
+				gameContext.MapId = (e_map_id)(3);
 				gameContext.CampaignDifficultyLevel = e_campaign_difficulty_level::_campaign_difficulty_level_easy;
 
 				//GameOptionSelection::LoadGameVariant(HaloReachGameHost::GetDataAccess(), GameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
@@ -310,7 +310,7 @@ void GameLauncher::launchHaloReach()
 	GameContext gameContext = {};
 	{
 		const MapInfo* pSelectedMapInfo = GameOptionSelection::GetSelectedMapInfo();
-		GameMode gameMode = GameOptionSelection::GetSelectedGameMode();
+		e_game_mode gameMode = GameOptionSelection::GetSelectedGameMode();
 
 		const char* pMapFileName = pSelectedMapInfo->GetMapFileName();
 		WriteLineVerbose("Loading map '%s.map'", pMapFileName);
@@ -338,7 +338,7 @@ void GameLauncher::launchHaloReach()
 			gameContext.SessionInfo.IsHost = true;
 			if (gameContext.SessionInfo.IsHost)
 			{
-				gameContext.MapId = static_cast<MapID>(pSelectedMapInfo->GetMapID());
+				gameContext.MapId = static_cast<e_map_id>(pSelectedMapInfo->GetMapID());
 				gameContext.CampaignDifficultyLevel = e_campaign_difficulty_level::_campaign_difficulty_level_easy;
 
 				GameOptionSelection::LoadGameVariant(HaloReachGameHost::GetDataAccess(), GameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);

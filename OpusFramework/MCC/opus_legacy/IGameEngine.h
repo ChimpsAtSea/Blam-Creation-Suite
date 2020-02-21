@@ -1,8 +1,5 @@
 #pragma once
 
-enum MapID : int;
-enum e_campaign_difficulty_level : int;
-
 struct s_member_info
 {
 	QWORD MachineIdentifier;
@@ -59,7 +56,7 @@ struct GameContext
 	uint8_t MapVariantBuffer[58 * 1024] = {};
 	// [180330500, mcc_id_to_reach_map_id,   https://pastebin.com/r3ihQagj]
 	// [180330BD0, mcc_id_to_reach_map_name, https://pastebin.com/Qx72e0G6]
-	MapID MapId;
+	e_map_id MapId;
 	e_campaign_difficulty_level CampaignDifficultyLevel;
 	int16_t CampaignInsertionPoint;
 	uint16_t __padding1 : 16;

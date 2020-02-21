@@ -153,7 +153,6 @@
     <ClInclude Include="RuntimeManipulation\DataReference.h" />
     <ClInclude Include="RuntimeManipulation\opus_legacy\detour_helpers.h" />
     <ClInclude Include="MCC\GameLauncher.h" />
-    <ClInclude Include="MCC\GameMode.h" />
     <ClInclude Include="ApplicationReflection\globalreference.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHook.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHookBase.h" />
@@ -170,7 +169,6 @@
     <ClInclude Include="ApplicationReflection\mappingfileparser.h" />
     <ClInclude Include="FileSystem\MapInfo.h" />
     <ClInclude Include="FileSystem\MapInfoManager.h" />
-    <ClInclude Include="MCC\opus_legacy\MapID.h" />
     <ClInclude Include="MCC\MouseInput.h" />
     <ClInclude Include="ApplicationReflection\referencesymbol.h" />
     <ClInclude Include="opusframework-private-pch.h" />

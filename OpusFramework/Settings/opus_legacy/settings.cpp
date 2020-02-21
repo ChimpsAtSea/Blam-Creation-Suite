@@ -77,7 +77,7 @@ bool Settings::WriteIntegerValue(SettingsSection section, const char* pName, int
 	return WritePrivateProfileStringA(pSectionName, pName, pBuffer, k_pSettingsPath);
 }
 
-bool Settings::WriteStringValue(SettingsSection section, const char* pName, char* pValue)
+bool Settings::WriteStringValue(SettingsSection section, const char* pName, const char* pValue)
 {
 	const char* pSectionName = GetSectionNameString(section);
 	return WritePrivateProfileStringA(pSectionName, pName, pValue, k_pSettingsPath);

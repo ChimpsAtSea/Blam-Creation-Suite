@@ -40,6 +40,8 @@ namespace winrt::OpusXIApp::implementation
 
 		swapChainPanel.SizeChanged([=](winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Windows::UI::Xaml::SizeChangedEventArgs const& e) {
 
+			(void)(e);
+
 			//critical_section::scoped_lock lock(m_main->GetCriticalSection());
 			//m_deviceResources->SetLogicalSize(e.NewSize());
 			//m_main->CreateWindowSizeDependentResources();

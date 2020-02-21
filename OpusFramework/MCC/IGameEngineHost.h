@@ -214,7 +214,7 @@ public:
 	/* 13 */ virtual void Member13(const wchar_t*, const wchar_t*, const void*, unsigned int) = 0;
 	/* 14 */ virtual char Member14(int controllerIndex, BYTE*) = 0;
 	/* 15 */ virtual char Member15(int controllerIndex, BYTE*) = 0;
-	/* 16 */ virtual char GetNextLevelInfo(MapID* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*) = 0;
+	/* 16 */ virtual char GetNextLevelInfo(e_map_id* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*) = 0;
 	/* 17 */ virtual bool Member17(int) = 0;
 	/* 18 */ virtual void Member18(int) = 0;
 	/* 19 */ virtual __int64 __fastcall MapLoadPecentStatus(__int64, __int64, float) = 0;

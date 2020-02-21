@@ -5,7 +5,7 @@ class GameOptionSelection
 public:
 	static void Init();
 	static void Deinit();
-	static GameMode GetSelectedGameMode();
+	static e_game_mode GetSelectedGameMode();
 	static const MapInfo* GetSelectedMapInfo();
 	static void SelectGameMode();
 	static void Render();
@@ -44,12 +44,12 @@ private:
 	/* LEGACY */ static int ReadSavedFilm(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath);
 	/* LEGACY */ static int ReadMapVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath);
 
-	static bool isMapInfoCompatibleWithGameMode(GameMode gameMode, const MapInfo& rMapInfo);
-	static const MapInfo*& GetSelectedMapInfoByGameMode(GameMode gameMode);
-	static const MapInfo* GetFirstSuitableGameModeMapInfo(GameMode gameMode);
-	static void SaveSelectedMap(GameMode gameMode, const MapInfo* pMapInfo);
-	static SelectedGameModeMapInfoIndex GameModeToSelectedGameModeMapInfoIndex(GameMode gameMode);
-	static GameMode SelectedGameModeMapInfoIndexToGameMode(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex);
+	static bool isMapInfoCompatibleWithGameMode(e_game_mode gameMode, const MapInfo& rMapInfo);
+	static const MapInfo*& GetSelectedMapInfoByGameMode(e_game_mode gameMode);
+	static const MapInfo* GetFirstSuitableGameModeMapInfo(e_game_mode gameMode);
+	static void SaveSelectedMap(e_game_mode gameMode, const MapInfo* pMapInfo);
+	static SelectedGameModeMapInfoIndex GameModeToSelectedGameModeMapInfoIndex(e_game_mode gameMode);
+	static e_game_mode SelectedGameModeMapInfoIndexToGameMode(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex);
 	static const MapInfo*& GetSelectedMapInfoBySelectedGameModeMapInfoIndex(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex);
 
 	static void RenderHoveredTooltip(const char* pText);
