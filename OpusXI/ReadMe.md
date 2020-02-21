@@ -10,7 +10,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_ int       nCmdShow)
 {
     winrt::init_apartment(winrt::apartment_type::single_threaded);
-    winrt::MyApp::App app;
+    winrt::OpusXIApp::App app;
 
     ...
     // The DesktopWindowXamlSource object creates the Xaml Island
@@ -31,7 +31,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     const auto margin = XamlIslandMargin;
     SetWindowPos(hWndXamlIsland, 0, margin, margin, newHeight - margin, newWidth - margin, SWP_SHOWWINDOW);
 
-    winrt::MyApp::MainUserControl mainUserControl;
+    winrt::OpusXIApp::MainUserControl mainUserControl;
     mainUserControl.UpdateLayout();
     desktopSource.Content(mainUserControl);
 

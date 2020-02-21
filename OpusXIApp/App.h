@@ -7,7 +7,7 @@
 #include "App.g.h"
 #include "App.base.h"
 
-namespace winrt::MyApp::implementation
+namespace winrt::OpusXIApp::implementation
 {
     class App : public AppT2<App>
     {
@@ -17,7 +17,7 @@ namespace winrt::MyApp::implementation
     };
 }
 
-namespace winrt::MyApp::factory_implementation
+namespace winrt::OpusXIApp::factory_implementation
 {
     class App : public AppT<App, implementation::App>
     {

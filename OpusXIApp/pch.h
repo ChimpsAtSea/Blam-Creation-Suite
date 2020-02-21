@@ -27,7 +27,6 @@
 #include <winrt/Windows.UI.Xaml.h>
 #include <winrt/Microsoft.UI.Xaml.Controls.h>
 #include <winrt/Microsoft.UI.Xaml.XamlTypeInfo.h>
-#include <winrt/SampleUserControl.h>
 #include <winrt/Windows.UI.Core.h>
 #include <winrt/Windows.Graphics.Display.h>
 

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace winrt::MyApp::implementation
+namespace winrt::OpusXIApp::implementation
 {
     template <typename D, typename... I>
     struct App_baseWithProvider : public App_base<D, ::winrt::Windows::UI::Xaml::Markup::IXamlMetadataProvider>

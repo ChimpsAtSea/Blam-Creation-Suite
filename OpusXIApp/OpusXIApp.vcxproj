@@ -6,8 +6,8 @@
     <CppWinRTEnabled>true</CppWinRTEnabled>
     <MinimalCoreWin>true</MinimalCoreWin>
     <ProjectGuid>{c4b7649d-c389-4f2c-b0b8-b55a08c8133f}</ProjectGuid>
-    <ProjectName>MyApp</ProjectName>
-    <RootNamespace>MyApp</RootNamespace>
+    <ProjectName>OpusXIApp</ProjectName>
+    <RootNamespace>OpusXIApp</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
@@ -174,11 +174,6 @@
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <ProjectReference Include="..\SampleUserControl\SampleUserControl.vcxproj">
-      <Project>{b6b66dba-c720-4407-b490-6ae3fc2870fc}</Project>
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -187,7 +182,7 @@
     <None Include="dummy.exe">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="MyApp_TemporaryKey.pfx" />
+    <None Include="OpusXIApp_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="ReadMe.md" />
   </ItemGroup>

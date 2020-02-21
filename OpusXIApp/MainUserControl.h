@@ -14,14 +14,11 @@ namespace OpusUIPrototype
 	class OpusUIPrototypeMain;
 }
 
-namespace winrt::MyApp::implementation
+namespace winrt::OpusXIApp::implementation
 {
     struct MainUserControl : MainUserControlT<MainUserControl>
     {
         MainUserControl();
-
-        hstring MyProperty();
-		void MyProperty(hstring value);
 
 		std::shared_ptr<DX::DeviceResources> m_deviceResources;
 		std::unique_ptr<OpusUIPrototype::OpusUIPrototypeMain> m_main;
@@ -29,7 +26,7 @@ namespace winrt::MyApp::implementation
     };
 }
 
-namespace winrt::MyApp::factory_implementation
+namespace winrt::OpusXIApp::factory_implementation
 {
     struct MainUserControl : MainUserControlT<MainUserControl, implementation::MainUserControl>
     {

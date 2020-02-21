@@ -66,7 +66,7 @@ private:
 
     bool m_parentLayout = false;
     wil::unique_hwnd m_hWndXamlIsland = nullptr;
-    winrt::MyApp::MainUserControl m_mainUserControl = nullptr;
+    winrt::OpusXIApp::MainUserControl m_mainUserControl = nullptr;
     winrt::Windows::UI::Xaml::FrameworkElement::LayoutUpdated_revoker m_layoutUpdatedToken{};
 
     HWND InitInstance(HINSTANCE hInstance, int nCmdShow)
@@ -92,7 +92,7 @@ private:
 
     bool OnCreate(HWND, LPCREATESTRUCT)
     {
-        m_mainUserControl = winrt::MyApp::MainUserControl();
+        m_mainUserControl = winrt::OpusXIApp::MainUserControl();
         m_hWndXamlIsland = wil::unique_hwnd(CreateDesktopWindowsXamlSource(0 /*| WS_THICKFRAME*/, m_mainUserControl));
         m_layoutUpdatedToken = m_mainUserControl.LayoutUpdated(winrt::auto_revoke, { this, &MyWindow::OnXamlLayoutUpdated });
 
@@ -215,11 +215,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_ LPWSTR    lpCmdLine,
     _In_ int       nCmdShow)
 {
+	static HMODULE OpusXIGameInterface = LoadLibraryA("..\\OpusXIGameInterface.dll");
+	DWORD err = GetLastError();
+    assert(OpusXIGameInterface != NULL);
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     winrt::init_apartment(winrt::apartment_type::single_threaded);
-    winrt::MyApp::App app;
+    winrt::OpusXIApp::App app;
 
     MyWindow myWindow(hInstance, nCmdShow);
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_SAMPLECPPAPP));

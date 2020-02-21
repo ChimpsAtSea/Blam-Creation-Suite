@@ -17,6 +17,9 @@ DirectX::XMMATRIX Render::perspectiveMatrixTransposed = {};
 static float s_fieldOfViewHorizontal;
 static float s_fieldOfViewVertical;
 static float s_aspectRatio;
+int resize_width = 0;
+int resize_height = 0;
+bool resize_requested = false;
 
 void Render::UpdatePerspective(float fieldOfViewHorizontal, float aspectRatio)
 {
@@ -206,6 +209,8 @@ void Render::Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* p
 	assert(s_pDevice == nullptr);
 	assert(s_pDeviceContext == nullptr);
 	assert(s_pSwapChain == nullptr);
+	assert(pDevice != nullptr);
+	assert(pSwapChain != nullptr);
 
 	s_directxCustomInit = true;
 	s_pDevice = pDevice;
@@ -229,6 +234,12 @@ void Render::Init(HINSTANCE hInstance)
 
 void Render::BeginFrame(bool clear, float clearColor[4], bool settargetts)
 {
+	if (resize_requested)
+	{
+		//ResizeWindow();
+		//resize_requested = false;
+	}
+
 	if (s_pRenderTargetView == nullptr)
 	{
 		ID3D11Texture2D* pBackBuffer = nullptr;
@@ -365,56 +376,69 @@ void Render::EndFrame()
 	s_pSwapChain->Present(1, 0);
 }
 
+void Render::RequestResize(int width, int height)
+{
+	resize_requested = true;
+}
+
+void Render::ResizeBegin()
+{
+	s_pDeviceContext->Flush();
+	DebugUI::Deinit();
+
+	s_pDeviceContext->OMSetRenderTargets(0, 0, 0);
+	s_pDeviceContext->ClearState();
+	// Release all outstanding references to the swap chain's buffers.
+	s_pRenderTargetView->Release();
+	//s_pDepthStencilView->Release();
+}
+
+void Render::ResizeEnd()
+{
+	bool isVisible = DebugUI::IsVisible();
+	DebugUI::Init(GetModuleHandle(NULL), s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
+	if (isVisible) DebugUI::Show();
+}
+
 void Render::ResizeWindow()
 {
 	if (s_pSwapChain && s_resizeEnabled)
 	{
+		int width = resize_width;
+		int height = resize_height;
+		//int width = Window::GetWindowWidth();
+		//int height = Window::GetWindowHeight();
 
-		int width = Window::GetWindowWidth();
-		int height = Window::GetWindowHeight();
+		ResizeBegin();
+		{
+			// Preserve the existing buffer count and format.
+			// Automatically choose the width and height to match the client rect for HWNDs.
+			HRESULT resizeBuffersResult = s_pSwapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
+			assert(SUCCEEDED(resizeBuffersResult));
 
-		s_pDeviceContext->Flush();
-		DebugUI::Deinit();
+			// Get buffer and create a render-target-view.
+			ID3D11Texture2D* pBuffer;
+			HRESULT getBufferResult = s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBuffer);
+			assert(SUCCEEDED(getBufferResult));
 
-		s_pDeviceContext->OMSetRenderTargets(0, 0, 0);
-		s_pDeviceContext->ClearState();
-		// Release all outstanding references to the swap chain's buffers.
-		s_pRenderTargetView->Release();
-		//s_pDepthStencilView->Release();
-		
+			HRESULT createRenderTargetViewResult = s_pDevice->CreateRenderTargetView(pBuffer, NULL, &s_pRenderTargetView);
+			assert(SUCCEEDED(createRenderTargetViewResult));
 
-	
+			pBuffer->Release();
 
-		// Preserve the existing buffer count and format.
-		// Automatically choose the width and height to match the client rect for HWNDs.
-		HRESULT resizeBuffersResult = s_pSwapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
-		assert(SUCCEEDED(resizeBuffersResult));
+			s_pDeviceContext->OMSetRenderTargets(1, &s_pRenderTargetView, NULL);
 
-		// Get buffer and create a render-target-view.
-		ID3D11Texture2D* pBuffer;
-		HRESULT getBufferResult = s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBuffer);
-		assert(SUCCEEDED(getBufferResult));
-
-		HRESULT createRenderTargetViewResult = s_pDevice->CreateRenderTargetView(pBuffer, NULL, &s_pRenderTargetView);
-		assert(SUCCEEDED(createRenderTargetViewResult));
-
-		pBuffer->Release();
-
-		s_pDeviceContext->OMSetRenderTargets(1, &s_pRenderTargetView, NULL);
-
-		// Set up the viewport.
-		D3D11_VIEWPORT vp;
-		vp.Width = static_cast<float>(width);
-		vp.Height = static_cast<float>(height);
-		vp.MinDepth = 0.0f;
-		vp.MaxDepth = 1.0f;
-		vp.TopLeftX = 0;
-		vp.TopLeftY = 0;
-		s_pDeviceContext->RSSetViewports(1, &vp);
-
-		bool isVisible = DebugUI::IsVisible();
-		DebugUI::Init(GetModuleHandle(NULL), s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
-		if(isVisible) DebugUI::Show();
+			// Set up the viewport.
+			D3D11_VIEWPORT vp;
+			vp.Width = static_cast<float>(width);
+			vp.Height = static_cast<float>(height);
+			vp.MinDepth = 0.0f;
+			vp.MaxDepth = 1.0f;
+			vp.TopLeftX = 0;
+			vp.TopLeftY = 0;
+			s_pDeviceContext->RSSetViewports(1, &vp);
+		}
+		ResizeEnd();
 	}
 }
 

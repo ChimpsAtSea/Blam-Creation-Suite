@@ -3,7 +3,7 @@
 using namespace winrt;
 using namespace winrt::Windows::UI::Xaml;
 
-namespace winrt::MyApp::implementation
+namespace winrt::OpusXIApp::implementation
 {
     App::App()
     {

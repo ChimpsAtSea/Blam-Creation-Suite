@@ -48,6 +48,10 @@ bool DebugUI::IsVisible()
 
 void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
+	assert(pSwapChain);
+	assert(pDevice);
+	assert(pContext);
+
 	// #WIP Start Resize Synchronization Across Opus and Game Thread
 	static uint32_t expectedValue = underlying_cast(DebugUIState::Uninitialized);
 	while (!s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::Initializing)));

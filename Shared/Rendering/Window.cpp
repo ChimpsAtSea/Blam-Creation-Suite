@@ -12,7 +12,7 @@ std::vector<WNDPROC>  Window::s_WndProcCallbacks;
 std::vector< Window::UpdateCallback>  Window::s_UpdateCallbacks;
 std::vector< Window::DestroyCallback>  Window::s_DestroyCallbacks;
 
-void Window::getWindowSize(SIZE& rSize)
+void Window::updateWindowSize(SIZE& rSize)
 {
 	RECT rect = {};
 	GetClientRect(s_hWnd, &rect);
@@ -105,8 +105,8 @@ LRESULT CALLBACK Window::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPar
 		PostQuitMessage(WM_QUIT);
 		break;
 	case WM_SIZE:
-		getWindowSize(s_size);
-		Render::ResizeWindow();
+		updateWindowSize(s_size);
+		Render::RequestResize(Window::GetWindowWidth(), Window::GetWindowHeight());
 		// #TODO: tell game to resize
 		break;
 	case WM_KILLFOCUS:

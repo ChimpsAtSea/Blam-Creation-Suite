@@ -5,7 +5,7 @@ using namespace winrt;
 using namespace winrt::Windows::UI::Xaml;
 using namespace Concurrency;
 
-namespace winrt::MyApp::implementation
+namespace winrt::OpusXIApp::implementation
 {
 	MainUserControl::MainUserControl()
 	{
@@ -40,25 +40,10 @@ namespace winrt::MyApp::implementation
 
 		swapChainPanel.SizeChanged([=](winrt::Windows::Foundation::IInspectable const& /*sender*/, winrt::Windows::UI::Xaml::SizeChangedEventArgs const& e) {
 
-			critical_section::scoped_lock lock(m_main->GetCriticalSection());
-			m_deviceResources->SetLogicalSize(e.NewSize());
-			m_main->CreateWindowSizeDependentResources();
+			//critical_section::scoped_lock lock(m_main->GetCriticalSection());
+			//m_deviceResources->SetLogicalSize(e.NewSize());
+			//m_main->CreateWindowSizeDependentResources();
 
 			});
-	}
-
-
-
-
-
-
-	winrt::hstring MainUserControl::MyProperty()
-	{
-		return userControl().MyProperty();
-	}
-
-	void MainUserControl::MyProperty(winrt::hstring value)
-	{
-		userControl().MyProperty(value);
 	}
 }

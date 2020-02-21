@@ -1,4 +1,4 @@
-namespace MyApp
+namespace OpusXIApp
 {
     [default_interface]
     runtimeclass App: Microsoft.Toolkit.Win32.UI.XamlHost.XamlApplication

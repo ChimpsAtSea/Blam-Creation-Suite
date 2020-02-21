@@ -46,15 +46,15 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="SampleCppApp.rc">
+    <ResourceCompile Include="OpusXI.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
+    <Image Include="OpusXI.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="SampleCppApp.ico">
+    <Image Include="OpusXI_Small.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

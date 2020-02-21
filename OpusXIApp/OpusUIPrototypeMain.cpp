@@ -1,10 +1,16 @@
 ﻿#include "pch.h"
 
-
 using namespace OpusUIPrototype;
 using namespace Windows::Foundation;
 using namespace Concurrency;
 using namespace winrt::Windows::Foundation;
+
+__forceinline HMODULE GetKernelModule()
+{
+	MEMORY_BASIC_INFORMATION mbi = { 0 };
+	VirtualQuery(VirtualQuery, &mbi, sizeof(mbi));
+	return reinterpret_cast<HMODULE>(mbi.AllocationBase);
+}
 
 // Loads and initializes application assets when the application is loaded.
 OpusUIPrototypeMain::OpusUIPrototypeMain(const std::shared_ptr<DX::DeviceResources>& deviceResources) :
@@ -16,22 +22,41 @@ OpusUIPrototypeMain::OpusUIPrototypeMain(const std::shared_ptr<DX::DeviceResourc
 	// might have to hook into the present function to override behavior allowing us to call m_deviceResources->Present()
 	// this would require a copy of the vftable to be created to leave the original present function in place
 
+	
+
 	static bool running = true;
 	static std::thread thread = std::thread([=]()
 		{
+			static HMODULE kernelModule = GetKernelModule();
+			typedef HMODULE(*LoadLibraryAFunc)(_In_ LPCSTR lpLibFileName);
+			static LoadLibraryAFunc LoadLibraryA = reinterpret_cast<LoadLibraryAFunc>(GetProcAddress(kernelModule, "LoadLibraryA"));
+			typedef HMODULE(*GetModuleHandleAFunc)(_In_opt_ LPCSTR lpModuleName);
+			static GetModuleHandleAFunc GetModuleHandleA = reinterpret_cast<GetModuleHandleAFunc>(GetProcAddress(kernelModule, "GetModuleHandleA"));
+			static HMODULE OpusXIGameInterface = GetModuleHandleA("OpusXIGameInterface.dll");
 
-			// Calculate the updated frame and render once per vertical blanking interval.
-			while (running)
-			{
-				// #TODO: Run game here
+			typedef void(__cdecl* run_func)(ID3D11Device* pDevice, IDXGISwapChain* pSwapChain);
+			static run_func run = reinterpret_cast<run_func>(GetProcAddress(OpusXIGameInterface, "run"));
+			assert(run);
 
-				critical_section::scoped_lock lock(m_criticalSection);
-				Update();
-				if (Render())
-				{
-					m_deviceResources->Present();
-				}
-			}
+			run(m_deviceResources->GetD3DDevice(), m_deviceResources->GetSwapChain());
+
+			//// Calculate the updated frame and render once per vertical blanking interval.
+			//while (running)
+			//{
+			//	
+
+			//	//// #TODO: Run game here
+
+			//	//critical_section::scoped_lock lock(m_criticalSection);
+
+
+
+			//	////Update();
+			//	//if (Render())
+			//	//{
+			//	//	m_deviceResources->Present();
+			//	//}
+			//}
 
 		});
 }

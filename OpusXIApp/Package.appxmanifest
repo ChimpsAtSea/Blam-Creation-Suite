@@ -17,7 +17,7 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="dummy.exe" EntryPoint="MyApp.App">
+    <Application Id="App" Executable="dummy.exe" EntryPoint="OpusXIApp.App">
       <uap:VisualElements DisplayName="App" Description="Project for a single page C++/WinRT Universal Windows Platform (UWP) app with no predefined layout"
         Square150x150Logo="Images\Square150x150Logo.png" Square44x44Logo="Images\Square44x44Logo.png" BackgroundColor="transparent">
       </uap:VisualElements>

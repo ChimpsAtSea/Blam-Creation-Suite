@@ -50,6 +50,9 @@ public:
 	static void Init(HINSTANCE hInstance);
 	static void BeginFrame(bool clear, float clearColor[4], bool setTargets = true);
 	static void EndFrame();
+	static void RequestResize(int width, int height);
+	static void ResizeBegin();
+	static void ResizeEnd();
 	static void Deinit();
 	static void ResizeWindow();
 	static void SetResizeEnabled(bool resizeEnabled) { s_resizeEnabled = resizeEnabled; }

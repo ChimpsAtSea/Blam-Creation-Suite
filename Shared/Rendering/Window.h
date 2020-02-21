@@ -34,7 +34,7 @@ public:
 	static void SetWindowTitle(const char* pTitle);
 	static void Show();
 private:
-	static void getWindowSize(SIZE& rSize);
+	static void updateWindowSize(SIZE& rSize);
 
 	static SIZE			s_size;
 	static HICON		s_hIcon;
