@@ -67,18 +67,19 @@ public:
 #pragma pack(push, 1)
 	struct Function28Structure
 	{
-		long width;
-		long height;
-		long unknown8;
-		long unknownC;
-		long unknown10_0;
-		long unknown10_4;
-		long unknown10_8;
-		long unknown10_C;
-		long unknown20;
-		long unknown24;
-		char unknown28;
-		unsigned short fps_flags;
+		int VIDEO_SizeX;
+		int VIDEO_SizeY;
+		int VIDEO_TextureQuality;					 // between 0 and 2
+		int VIDEO_AF_Qual;							 // between 0 and 2
+		int VIDEO_SSAOQuality;						 // between 0 and 2
+		int unknown10_4;
+		int VIDEO_ShadowMapQual;					 // between 0 and 2
+		int VIDEO_LodDistQualityFactor;				 // between 0 and 2
+		int unknown20;
+		int WindowMode;
+		bool VIDEO_UseEdgeAA;
+		bool VIDEO_Wait_VSync;
+		bool VIDEO_FPS_Lock;
 		char unknown2B;
 		char unknown2C[168]; // unknown
 		float unknownD4_0;
