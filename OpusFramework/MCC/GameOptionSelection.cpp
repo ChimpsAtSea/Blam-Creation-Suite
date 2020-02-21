@@ -121,7 +121,7 @@ void GameOptionSelection::SelectGameMode()
 	}
 	else
 	{
-		LPCSTR s_pCurrentGameModeStr = game_mode_to_string(s_currentGameMode);
+		LPCSTR s_pCurrentGameModeStr = game_mode_to_local_string(s_currentGameMode);
 		if (ImGui::BeginCombo("###MODE", s_pCurrentGameModeStr))
 		{
 			for (underlying(SelectedGameModeMapInfoIndex) i = 0; i < underlying_cast(SelectedGameModeMapInfoIndex::Count); i++)
@@ -132,14 +132,14 @@ void GameOptionSelection::SelectGameMode()
 				}
 
 				e_game_mode gameMode = SelectedGameModeMapInfoIndexToGameMode(static_cast<SelectedGameModeMapInfoIndex>(i));
-				LPCSTR pGameModeStr = game_mode_to_string(gameMode);
+				LPCSTR pGameModeStr = game_mode_to_local_string(gameMode);
 				if (pGameModeStr)
 				{
 					bool selected = s_pCurrentGameModeStr == pGameModeStr;
 					if (ImGui::Selectable(pGameModeStr, &selected))
 					{
 						s_currentGameMode = gameMode;
-						Settings::WriteStringValue(SettingsSection::Launch, "GameMode", (char*)game_mode_to_string(s_currentGameMode));
+						Settings::WriteStringValue(SettingsSection::Launch, "GameMode", game_mode_to_string(s_currentGameMode));
 					}
 				}
 			}
