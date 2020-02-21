@@ -170,7 +170,7 @@ bool MappingFileParser::ParseFromResource()
 	bool applicationMapResourceFound = ResourcesManager::GetResource(ResourceType::ApplicationMap, &pMappingFileText, &mappingFileSize, true);
 	if (applicationMapResourceFound)
 	{
-		assert(applicationMapResourceFound);
+		ASSERT(applicationMapResourceFound);
 
 		std::vector<MapLine> RawLines;
 		getFileContentFromBuffer(pMappingFileText, RawLines);
@@ -294,7 +294,7 @@ void MappingFileParser::parseImpl(std::vector<MapLine>& rRawLines)
 			break;
 		}
 	}
-	assert(current_mode == CurrentParserMode::ReadingStatics);
+	ASSERT(current_mode == CurrentParserMode::ReadingStatics);
 	current_mode = CurrentParserMode::Finished;
 
 	int numSections = -1;

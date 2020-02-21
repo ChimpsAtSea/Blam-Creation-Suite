@@ -35,7 +35,7 @@ void _simple_pattern_match_readonly_data_copy(
 			&moduleInfo,
 			sizeof(moduleInfo)
 		);
-		assert(getModuleInformationResult);
+		ASSERT(getModuleInformationResult == TRUE);
 
 		rSizeOfImage = static_cast<SIZE_T>(moduleInfo.SizeOfImage);
 	}
@@ -46,7 +46,7 @@ void _simple_pattern_match_readonly_data_copy(
 	if (existingModuleDataCopy == moduleMaps.end())
 	{
 		rpModuleData = new char[rSizeOfImage];
-		assert(rpModuleData);
+		ASSERT(rpModuleData != nullptr);
 
 		SIZE_T numBytes = 0;
 		ReadProcessMemory(
@@ -56,14 +56,14 @@ void _simple_pattern_match_readonly_data_copy(
 			rSizeOfImage,
 			&numBytes
 		);
-		assert(numBytes > 0);
+		ASSERT(numBytes > 0);
 
 		moduleMaps[pEngineAddress] = rpModuleData;
 	}
 	else
 	{
 		rpModuleData = existingModuleDataCopy->second;
-		assert(rpModuleData);
+		ASSERT(rpModuleData);
 	}
 }
 
@@ -77,7 +77,7 @@ intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVer
 	if (pInputMask)
 	{
 		size_t inputMaskLength = strlen(pInputMask);
-		assert(inputMaskLength == inputDataLength);
+		ASSERT(inputMaskLength == inputDataLength);
 	}
 
 	const char* pStartSearchAddress = reinterpret_cast<char*>(pModuleData);

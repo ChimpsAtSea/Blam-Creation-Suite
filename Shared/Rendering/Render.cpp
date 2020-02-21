@@ -134,22 +134,22 @@ void Render::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 	if constexpr (createCompositionSwapchain)
 	{
 		HRESULT createSwapChainForCompositionResult = s_pFactory->CreateSwapChainForComposition(s_pDevice, &s_SwapchainDescription, NULL, &rpSwapChain);
-		assert(SUCCEEDED(createSwapChainForCompositionResult));
+		ASSERT(SUCCEEDED(createSwapChainForCompositionResult));
 	}
 	else
 	{
 		HWND hWnd = Window::GetWindowHandle();
 		HRESULT createSwapChainForHwndResult = s_pFactory->CreateSwapChainForHwnd(s_pDevice, hWnd, &s_SwapchainDescription, NULL, NULL, &rpSwapChain);
-		assert(SUCCEEDED(createSwapChainForHwndResult));
+		ASSERT(SUCCEEDED(createSwapChainForHwndResult));
 	}
-	assert(rpSwapChain != nullptr);
+	ASSERT(rpSwapChain != nullptr);
 }
 
 void Render::InitDirectX()
 {
-	assert(s_pDevice == nullptr);
-	assert(s_pDeviceContext == nullptr);
-	assert(s_pSwapChain == nullptr);
+	DEBUG_ASSERT(s_pDevice == nullptr);
+	DEBUG_ASSERT(s_pDeviceContext == nullptr);
+	DEBUG_ASSERT(s_pSwapChain == nullptr);
 
 	EnumDisplaySettings(nullptr, ENUM_CURRENT_SETTINGS, &s_deviceMode);
 
@@ -165,8 +165,8 @@ void Render::InitDirectX()
 	bool createSwapchain = true;
 
 	HRESULT CreateDXGIFactory1Result = CreateDXGIFactory2(0, __uuidof(IDXGIFactory5), (void**)(&s_pFactory));
-	assert(CreateDXGIFactory1Result == S_OK);
-	assert(s_pFactory != nullptr);
+	ASSERT(CreateDXGIFactory1Result == S_OK);
+	ASSERT(s_pFactory != nullptr);
 
 	UINT createDeviceFlags = 0;
 	if (CommandLine::HasCommandLineArg("-d3ddebug"))
@@ -186,13 +186,13 @@ void Render::InitDirectX()
 		&s_pDevice,
 		&FeatureLevel,
 		&pDeviceContext);
-	assert(D3D11CreateDeviceResult == S_OK);
-	assert(s_pDevice != nullptr);
-	assert(pDeviceContext != nullptr);
+	ASSERT(D3D11CreateDeviceResult == S_OK);
+	ASSERT(s_pDevice != nullptr);
+	ASSERT(pDeviceContext != nullptr);
 
 	// check that it supports our directx interface
 	pDeviceContext->QueryInterface(&s_pDeviceContext);
-	assert(s_pDeviceContext != nullptr);
+	ASSERT(s_pDeviceContext != nullptr);
 
 	if (createSwapchain)
 	{
@@ -206,18 +206,18 @@ void Render::Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* p
 	if (hInstance == NULL)
 		hInstance = GetModuleHandle(NULL);
 
-	assert(s_pDevice == nullptr);
-	assert(s_pDeviceContext == nullptr);
-	assert(s_pSwapChain == nullptr);
-	assert(pDevice != nullptr);
-	assert(pSwapChain != nullptr);
+	DEBUG_ASSERT(s_pDevice == nullptr);
+	DEBUG_ASSERT(s_pDeviceContext == nullptr);
+	DEBUG_ASSERT(s_pSwapChain == nullptr);
+	DEBUG_ASSERT(pDevice != nullptr);
+	DEBUG_ASSERT(pSwapChain != nullptr);
 
 	s_directxCustomInit = true;
 	s_pDevice = pDevice;
 	s_pSwapChain = pSwapChain;
 
 	pDevice->GetImmediateContext(reinterpret_cast<ID3D11DeviceContext**>(&s_pDeviceContext));
-	assert(s_pDeviceContext != nullptr);
+	ASSERT(s_pDeviceContext != nullptr);
 
 	Init(hInstance);
 }
@@ -246,14 +246,14 @@ void Render::BeginFrame(bool clear, float clearColor[4], bool settargetts)
 
 		// Get the pointer to the back buffer.
 		HRESULT getBufferResult = s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
-		assert(SUCCEEDED(getBufferResult));
+		ASSERT(SUCCEEDED(getBufferResult));
 
 		HRESULT createRenderTargetViewResult = s_pDevice->CreateRenderTargetView(pBackBuffer, NULL, &s_pRenderTargetView);
-		assert(SUCCEEDED(createRenderTargetViewResult));
+		ASSERT(SUCCEEDED(createRenderTargetViewResult));
 
 		pBackBuffer->Release();
 
-		assert(s_pRenderTargetView != nullptr);
+		ASSERT(s_pRenderTargetView != nullptr);
 	}
 
 	static ID3D11DepthStencilState* s_pDepthStencilState = nullptr;
@@ -279,7 +279,7 @@ void Render::BeginFrame(bool clear, float clearColor[4], bool settargetts)
 		depthStencilDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
 		depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 		HRESULT createDepthStencilStateResult = s_pDevice->CreateDepthStencilState(&depthStencilDesc, &s_pDepthStencilState);
-		assert(SUCCEEDED(createDepthStencilStateResult));
+		ASSERT(SUCCEEDED(createDepthStencilStateResult));
 
 	}
 
@@ -305,7 +305,7 @@ void Render::BeginFrame(bool clear, float clearColor[4], bool settargetts)
 
 
 		HRESULT createBlendStateResult = s_pDevice->CreateBlendState(&blendStateDesc, &m_pBlendState);
-		assert(SUCCEEDED(createBlendStateResult));
+		ASSERT(SUCCEEDED(createBlendStateResult));
 	}
 
 	//// Create the texture for the depth buffer using the filled out description.
@@ -414,15 +414,15 @@ void Render::ResizeWindow()
 			// Preserve the existing buffer count and format.
 			// Automatically choose the width and height to match the client rect for HWNDs.
 			HRESULT resizeBuffersResult = s_pSwapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
-			assert(SUCCEEDED(resizeBuffersResult));
+			ASSERT(SUCCEEDED(resizeBuffersResult));
 
 			// Get buffer and create a render-target-view.
 			ID3D11Texture2D* pBuffer;
 			HRESULT getBufferResult = s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBuffer);
-			assert(SUCCEEDED(getBufferResult));
+			ASSERT(SUCCEEDED(getBufferResult));
 
 			HRESULT createRenderTargetViewResult = s_pDevice->CreateRenderTargetView(pBuffer, NULL, &s_pRenderTargetView);
-			assert(SUCCEEDED(createRenderTargetViewResult));
+			ASSERT(SUCCEEDED(createRenderTargetViewResult));
 
 			pBuffer->Release();
 

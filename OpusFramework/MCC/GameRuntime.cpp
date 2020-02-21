@@ -15,7 +15,7 @@ GameRuntime::GameRuntime(const char* pEngineName, const char* pLibFileName)
 
 	m_pDataAccess = nullptr;
 	__int64 createDataAccessResult = CreateDataAccess(&m_pDataAccess);
-	assert(m_pDataAccess != nullptr);
+	ASSERT(m_pDataAccess != nullptr);
 }
 
 GameRuntime::~GameRuntime()
@@ -37,7 +37,7 @@ void GameRuntime::loadLibrary(const char* pLibFileName)
 	{
 		WriteLineVerbose("Failed to load %s", pLibFileName);
 	}
-	assert(hGameModule);
+	ASSERT(hGameModule != NULL);
 	WriteLineVerbose("%s: 0x%p", pLibFileName, hGameModule);
 
 	pCreateGameEngine = (CreateGameEngineFunc*)GetProcAddress(hGameModule, "CreateGameEngine");

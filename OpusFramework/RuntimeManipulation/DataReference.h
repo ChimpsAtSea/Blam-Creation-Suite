@@ -81,13 +81,13 @@ private:
 			{
 				if (m_buildVersion == BuildVersion::NotSet)
 				{
-					assert(m_find_offset_func);
+					ASSERT(m_find_offset_func != nullptr);
 					m_pPtr = getPointer(engineVersion, buildVersion);
 				}
 				if (m_buildVersion == buildVersion)
 				{
 					m_pPtr = getPointer(engineVersion, buildVersion);
-					assert(m_pPtr);
+					ASSERT(m_pPtr != nullptr);
 				}
 			}
 		}
@@ -122,9 +122,9 @@ private:
 				return nullptr;
 			}
 
-			assert(m_buildVersion == BuildVersion::NotSet && offset >= GetEngineBaseAddress(engineVersion)/*, "Offset is out of bounds"*/);
-			assert(m_buildVersion == BuildVersion::NotSet && offset < GetEngineTopAddress(engineVersion, buildVersion)/*, "Offset is out of bounds"*/);
-			assert(m_buildVersion == BuildVersion::NotSet && static_cast<intptr_t>(offset + m_dataSize) < GetEngineTopAddress(engineVersion, buildVersion)/*, "Offset is out of bounds"*/);
+			ASSERT(m_buildVersion == BuildVersion::NotSet && offset >= GetEngineBaseAddress(engineVersion)/*, "Offset is out of bounds"*/);
+			ASSERT(m_buildVersion == BuildVersion::NotSet && offset < GetEngineTopAddress(engineVersion, buildVersion)/*, "Offset is out of bounds"*/);
+			ASSERT(m_buildVersion == BuildVersion::NotSet && static_cast<intptr_t>(offset + m_dataSize) < GetEngineTopAddress(engineVersion, buildVersion)/*, "Offset is out of bounds"*/);
 		}
 
 		void* pModule = GetEngineMemoryAddress(engineVersion);

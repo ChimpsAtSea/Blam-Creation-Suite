@@ -17,7 +17,7 @@ void MouseInput::InputWindowMessage(LPARAM lParam)
 	RAWINPUT rawInput = {};
 	UINT dwSize = sizeof(rawInput);
 	UINT getRawInputDataResult = GetRawInputData(reinterpret_cast<HRAWINPUT>(lParam), RID_INPUT, &rawInput, &dwSize, sizeof(RAWINPUTHEADER));
-	assert(getRawInputDataResult != ~0u);
+	ASSERT(getRawInputDataResult != ~0u);
 
 	if (getRawInputDataResult)
 	{

@@ -6,7 +6,7 @@ void FileSystemReadToBufferImpl(FILE* pFileHandle, char* pBuffer, size_t readLen
 	for (size_t currentPosition = 0; currentPosition < readLength; iterations++)
 	{
 		// prevent this from running into a madness number of iterations
-		assert(iterations != UINT32_MAX);
+		ASSERT(iterations != UINT32_MAX);
 
 		size_t remainingDataLength = readLength - currentPosition;
 		currentPosition += fread(&pBuffer[currentPosition], 1, remainingDataLength, pFileHandle);
@@ -34,7 +34,7 @@ char* FileSystemReadToBuffer(const wchar_t* pFilePath, char* pBuffer, size_t buf
 	FileSystemReadToBufferImpl(pFileHandle, pBuffer, bufferSize);
 
 	int fcloseResult = fclose(pFileHandle);
-	assert(fcloseResult == 0);
+	ASSERT(fcloseResult == 0);
 
 	return nullptr;
 }
@@ -61,7 +61,7 @@ char* FileSystemReadToMemory(const wchar_t* pFilePath, size_t* pAllocatedSize)
 	FileSystemReadToBufferImpl(pFileHandle, pBuffer, fileSize);
 
 	int fcloseResult = fclose(pFileHandle);
-	assert(fcloseResult == 0);
+	ASSERT(fcloseResult == 0);
 
 	return pBuffer;
 }
@@ -80,7 +80,7 @@ size_t FileSystemGetFileSize(const wchar_t* pFilePath)
 	fseek(pFileHandle, 0, SEEK_SET);
 
 	int fcloseResult = fclose(pFileHandle);
-	assert(fcloseResult == 0);
+	ASSERT(fcloseResult == 0);
 
 	return fileSize;
 }
@@ -106,7 +106,7 @@ char* FileSystemReadToMemory2(const wchar_t* pFilePath, char* pBuffer, size_t* p
 	FileSystemReadToBufferImpl(pFileHandle, pBuffer, fileSize);
 
 	int fcloseResult = fclose(pFileHandle);
-	assert(fcloseResult == 0);
+	ASSERT(fcloseResult == 0);
 
 	return pBuffer;
 }

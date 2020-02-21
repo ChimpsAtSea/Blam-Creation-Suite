@@ -411,7 +411,7 @@ int GameOptionSelection::ReadGameVariant(LPCSTR pName, std::string* name, std::s
 {
 	static s_game_variant gameVariant;
 	IDataAccess* pDataAccess = HaloReachGameHost::GetDataAccess();
-	assert(pDataAccess != nullptr);
+	ASSERT(pDataAccess != nullptr);
 	LoadGameVariant(pDataAccess, pName, gameVariant);
 
 	int result = gameVariant.game_engine_index;
@@ -430,7 +430,7 @@ int GameOptionSelection::ReadMapVariant(LPCSTR pName, std::string* name, std::st
 {
 	static s_map_variant mapVariant;
 	IDataAccess* pDataAccess = HaloReachGameHost::GetDataAccess();
-	assert(pDataAccess != nullptr);
+	ASSERT(pDataAccess != nullptr);
 	LoadMapVariant(pDataAccess, pName, mapVariant);
 
 	int result = *reinterpret_cast<int*>(&mapVariant.data[0x2C]);

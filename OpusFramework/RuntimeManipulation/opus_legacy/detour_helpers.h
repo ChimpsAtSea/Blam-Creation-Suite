@@ -117,9 +117,9 @@ void create_dll_hook(const char pModuleName[], const char* pProcedureName, Ta ho
 {
 	// Find the function address
 	HMODULE hModule = GetModuleHandleA(pModuleName);
-	assert(hModule);
+	ASSERT(hModule != NULL);
 	FARPROC RegisterClassExAProc = GetProcAddress(hModule, pProcedureName);
-	assert(RegisterClassExAProc);
+	ASSERT(RegisterClassExAProc != NULL);
 
 	rOriginal = (Tb)RegisterClassExAProc;
 

@@ -112,7 +112,7 @@ void CacheFile::loadMap(const std::wstring& mapFilePath)
 			{
 				if (!pTagInterface->IsNull())
 				{
-					assert(pTagInterface->GetGroupInterface() != nullptr);
+					ASSERT(pTagInterface->GetGroupInterface() != nullptr);
 				}
 			}
 

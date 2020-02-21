@@ -103,7 +103,7 @@ HaloReachGameHost::HaloReachGameHost()
 
 	if (m_pGameEngine == nullptr)
 		__int64 createGameEngineResult = s_haloReachGameRuntime.CreateGameEngine(&m_pGameEngine);
-	assert(m_pGameEngine != nullptr);
+	ASSERT(m_pGameEngine != nullptr);
 }
 
 HaloReachGameHost::~HaloReachGameHost()

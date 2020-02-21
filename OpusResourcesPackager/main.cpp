@@ -9,11 +9,11 @@ void UpdateResources(LPWSTR szExecutablePath, LPWSTR szFilePath, ResourceType ty
 	char* pFileData = FileSystemReadToMemory(szFilePath, &fileLength);
 
 	HANDLE hUpdateResource = BeginUpdateResourceW(szExecutablePath, FALSE);
-	assert(hUpdateResource != NULL);
+	ASSERT(hUpdateResource != NULL);
 	BOOL updateResourceResult = UpdateResourceA(hUpdateResource, RT_RCDATA, ResourcesManager::GetResourceIntResource(type), MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL), pFileData, static_cast<DWORD>(fileLength));
-	assert(updateResourceResult == TRUE);
+	ASSERT(updateResourceResult == TRUE);
 	BOOL endUpdateResourceResult = EndUpdateResource(hUpdateResource, FALSE);
-	assert(updateResourceResult == TRUE);
+	ASSERT(updateResourceResult == TRUE);
 
 	delete[] pFileData;
 }

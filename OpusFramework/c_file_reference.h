@@ -16,7 +16,7 @@ struct c_file_reference
 	template<typename T>
 	void read_type(T* value, long offset = 0)
 	{
-		assert(pFile);
+		ASSERT(pFile != nullptr);
 		*value = *(T*)&pBuffer[offset];
 	}
 

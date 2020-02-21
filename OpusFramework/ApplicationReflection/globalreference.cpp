@@ -86,7 +86,7 @@ GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVer
 			{
 				return m_pNextGlobalReference;
 			}
-			assert(targetOffset != ~intptr_t());
+			ASSERT(targetOffset != ~intptr_t());
 
 			void** pReference = nullptr;
 			{
@@ -107,13 +107,13 @@ GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVer
 				pDataAddress = pGameBaseAddress + dataRelativeVirtualAddress;
 			}
 
-			assert(pReference != nullptr);
-			assert(pDataAddress != nullptr);
+			ASSERT(pReference != nullptr);
+			ASSERT(pDataAddress != nullptr);
 			intptr_t& dataAddressValue = *reinterpret_cast<intptr_t*>(pReference);
 			//if (m_buildVersion != BuildVersion::NotSet) // specific game addresses should be verified
 			//{
 			//	
-			//	assert(dataAddressValue == targetOffset);
+			//	ASSERT(dataAddressValue == targetOffset);
 			//}
 			// take a record of the original value for unpatching
 			m_originalValue = dataAddressValue;
@@ -161,7 +161,7 @@ GlobalReference* GlobalReference::deinitNode(EngineVersion engineVersion, BuildV
 			{
 				targetOffset = m_pOffsetFunction(buildVersion);
 			}
-			assert(targetOffset != ~intptr_t());
+			ASSERT(targetOffset != ~intptr_t());
 
 			void** pReference = nullptr;
 			{
@@ -182,13 +182,13 @@ GlobalReference* GlobalReference::deinitNode(EngineVersion engineVersion, BuildV
 				pDataAddress = pGameBaseAddress + dataRelativeVirtualAddress;
 			}
 
-			assert(pReference != nullptr);
-			assert(pDataAddress != nullptr);
+			ASSERT(pReference != nullptr);
+			ASSERT(pDataAddress != nullptr);
 			intptr_t& dataAddressValue = *reinterpret_cast<intptr_t*>(pReference);
 			intptr_t patchedAddress = dataAddressValue;
 
 			// make sure that the value that is being unpatched is expected
-			//assert(patchedAddress == targetOffset); // patched address should be converted back to virtualaddress when ASLR is active!
+			//ASSERT(patchedAddress == targetOffset); // patched address should be converted back to virtualaddress when ASLR is active!
 			
 			// restore the original value
 			dataAddressValue = m_originalValue;

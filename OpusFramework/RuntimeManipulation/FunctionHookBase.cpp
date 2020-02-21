@@ -40,10 +40,10 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 
 			m_offset = foundOffset;
 
-			assert(m_buildVersion == BuildVersion::NotSet && m_offset >= GetEngineBaseAddress(engineVersion)/*, "Offset is out of bounds"*/);
-			assert(m_buildVersion == BuildVersion::NotSet && m_offset < GetEngineTopAddress(engineVersion, buildVersion)/*, "Offset is out of bounds"*/);
+			ASSERT(m_buildVersion == BuildVersion::NotSet && m_offset >= GetEngineBaseAddress(engineVersion)/*, "Offset is out of bounds"*/);
+			ASSERT(m_buildVersion == BuildVersion::NotSet && m_offset < GetEngineTopAddress(engineVersion, buildVersion)/*, "Offset is out of bounds"*/);
 		}
-		assert(m_offset);
+		ASSERT(m_offset != 0);
 
 		FunctionHookVarArgs<EngineVersion::NotSet, BuildVersion::NotSet, 0, void>& rVoidThis = reinterpret_cast<FunctionHookVarArgs<EngineVersion::NotSet, BuildVersion::NotSet, 0, void>&>(*this);
 
@@ -62,7 +62,7 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 		if (rHook)
 		{
 			LONG result = create_hook(engineVersion, buildVersion, m_offset, pFunctionName, rHook, rBase);
-			assert(result == 0);
+			ASSERT(result == 0);
 		}
 		else
 		{

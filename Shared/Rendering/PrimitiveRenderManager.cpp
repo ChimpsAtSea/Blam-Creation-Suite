@@ -116,8 +116,8 @@ void PrimitiveRenderManager::SetupConstantBuffers()
 			ID3D11Buffer*& pConstantsBuffer = ppFrameConstantsBuffers[i];
 
 			HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
-			assert(SUCCEEDED(createBufferResult));
-			assert(pConstantsBuffer != nullptr);
+			ASSERT(SUCCEEDED(createBufferResult));
+			ASSERT(pConstantsBuffer != nullptr);
 		}
 	}
 }
@@ -126,12 +126,12 @@ void PrimitiveRenderManager::GetNextConstantsBuffer()
 {
 	uint32_t currentConstantBufferIndex = (InterlockedIncrement(&nextConstantBufferIndex) - 1) % kNumConstantsBuffers;
 	pCurrentFrameConstantsBuffer = ppFrameConstantsBuffers[currentConstantBufferIndex];
-	assert(pCurrentFrameConstantsBuffer != nullptr);
+	ASSERT(pCurrentFrameConstantsBuffer != nullptr);
 }
 
 ID3D11Buffer* const& PrimitiveRenderManager::GetConstantsBuffer()
 {
-	assert(pCurrentFrameConstantsBuffer != nullptr);
+	ASSERT(pCurrentFrameConstantsBuffer != nullptr);
 	return pCurrentFrameConstantsBuffer;
 }
 
@@ -147,7 +147,7 @@ void PrimitiveRenderManager::MapConstantsBuffer()
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource = {};
 	HRESULT mapResult = Render::s_pDeviceContext->Map(pCurrentFrameConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-	assert(SUCCEEDED(mapResult));
+	ASSERT(SUCCEEDED(mapResult));
 
 	// contigious memory
 	pPerFrameConstantsArray = static_cast<PerFrameConstants*>(mappedResource.pData);

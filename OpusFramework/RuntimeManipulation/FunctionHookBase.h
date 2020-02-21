@@ -25,7 +25,7 @@ public:
 		else
 		{
 			bool hookOffsetExists = g_pLastFunctionHook->DoesOffsetExist(engineVersion, buildVersion, offset);
-			assert(hookOffsetExists == false);
+			ASSERT(hookOffsetExists == false);
 
 			g_pLastFunctionHook->m_pNextFunctionHook = this;
 			g_pLastFunctionHook = this;

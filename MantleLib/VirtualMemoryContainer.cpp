@@ -11,13 +11,13 @@ VirtualMemoryContainer::VirtualMemoryContainer(size_t addressSpaceSize)
 	, m_pVirtualMemory(0)
 {
 	m_pVirtualMemory = VirtualAlloc(NULL, addressSpaceSize, MEM_RESERVE, PAGE_READWRITE);
-	assert(m_pVirtualMemory);
+	ASSERT(m_pVirtualMemory);
 }
 
 VirtualMemoryContainer::~VirtualMemoryContainer()
 {
 	BOOL virtualFreeResult = VirtualFree(m_pVirtualMemory, 0, MEM_RELEASE);
-	assert(virtualFreeResult);
+	ASSERT_NO_THROW(virtualFreeResult);
 }
 
 void* VirtualMemoryContainer::InsertHole(size_t offset, size_t size)
@@ -35,7 +35,7 @@ void* VirtualMemoryContainer::InsertHole(void* pPosition, size_t size)
 	SetSize(m_currentSize + size);
 
 	intptr_t memoryOffset = reinterpret_cast<intptr_t>(pPosition) - reinterpret_cast<intptr_t>(m_pVirtualMemory);
-	assert(memoryOffset > 0 && static_cast<uintptr_t>(memoryOffset) < m_addressSpaceSize);
+	ASSERT(memoryOffset > 0 && static_cast<uintptr_t>(memoryOffset) < m_addressSpaceSize);
 
 	uintptr_t virtualMemoryAddress = reinterpret_cast<uintptr_t>(m_pVirtualMemory) + static_cast<uintptr_t>(memoryOffset);
 	LPVOID const pNewMemoryVirtualMemoryAddress = reinterpret_cast<LPVOID>(virtualMemoryAddress);
@@ -55,13 +55,13 @@ void VirtualMemoryContainer::SetSize(size_t size)
 		LPVOID const pFreeVirtualMemoryAddress = reinterpret_cast<LPVOID>(virtualMemoryAddress);
 
 		size_t const amountToFree = m_currentSizeAligned - alignedSize;
-		assert(amountToFree % PAGE_ALIGNMENT == 0);
+		ASSERT(amountToFree % PAGE_ALIGNMENT == 0);
 
 		if (amountToFree > 0)
 		{
 			// we can free some commited memory
 			BOOL virtualFreeResult = __pragma(warning(suppress: 6250)) VirtualFree(pFreeVirtualMemoryAddress, amountToFree, MEM_DECOMMIT);
-			assert(virtualFreeResult);
+			ASSERT(virtualFreeResult);
 		}
 	}
 	else if (alignedSize > m_currentSizeAligned)
@@ -71,13 +71,13 @@ void VirtualMemoryContainer::SetSize(size_t size)
 		LPVOID const pCommitVirtualMemoryAddress = reinterpret_cast<LPVOID>(virtualMemoryAddress);
 
 		size_t const amountToCommit = alignedSize - m_currentSizeAligned;
-		assert(amountToCommit % PAGE_ALIGNMENT == 0);
+		ASSERT(amountToCommit % PAGE_ALIGNMENT == 0);
 
 		if (amountToCommit > 0)
 		{
 			// we can free some commited memory
 			LPVOID virtualAllocResult = __pragma(warning(suppress: 6250)) VirtualAlloc(pCommitVirtualMemoryAddress, amountToCommit, MEM_COMMIT, PAGE_READWRITE);
-			assert(virtualAllocResult);
+			ASSERT(virtualAllocResult);
 		}
 	}
 	m_currentSize = size;

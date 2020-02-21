@@ -23,13 +23,13 @@ public:
 
 	T ptr()
 	{
-		assert(m_pPtr != nullptr);
+		ASSERT(m_pPtr != nullptr);
 		return impl_ref();
 	}
 
 	T& ref()
 	{
-		assert(m_pPtr != nullptr);
+		ASSERT(m_pPtr != nullptr);
 		return impl_ref();
 	}
 

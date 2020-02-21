@@ -150,7 +150,7 @@ void MantleGUI::Render()
 		{
 			for (MantleTab* pTab : s_pMantleTabs)
 			{
-				assert(pTab != nullptr);
+				ASSERT(pTab != nullptr);
 
 				bool setSelected = false;
 				if (pSetSelectedRootTab == pTab)

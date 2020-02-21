@@ -222,7 +222,7 @@ __int64 __fastcall IOpusGameEngineHost::Member29(__int64 value)
 
 __int64 __fastcall IOpusGameEngineHost::UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration)
 {
-	assert(&rPlayerConfiguration);
+	REFERENCE_ASSERT(rPlayerConfiguration);
 	rPlayerConfiguration = {}; // reset values
 
 	// sub_18004E800 applies customization conversion from MCC to Reach

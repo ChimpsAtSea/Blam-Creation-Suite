@@ -42,7 +42,7 @@ Halo1GameHost::Halo1GameHost()
 
 	if(m_pGameEngine == nullptr)
 	__int64 createGameEngineResult = GetGameRuntime().CreateGameEngine(&m_pGameEngine);
-	assert(m_pGameEngine != nullptr);
+	ASSERT(m_pGameEngine != nullptr);
 }
 
 Halo1GameHost::~Halo1GameHost()

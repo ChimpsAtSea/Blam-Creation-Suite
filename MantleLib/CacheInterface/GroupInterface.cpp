@@ -19,8 +19,8 @@ GroupInterface::GroupInterface(CacheFile& rCacheFile, uint16_t groupIndex)
 	std::string reversedShortName = reinterpret_cast<const char*>(&magicBuffer);
 	m_pShortName = std::string(reversedShortName.rbegin(), reversedShortName.rend());
 	m_pFullName = rCacheFile.GetStringIDStr(m_pGroup->name);
-	assert(!m_pShortName.empty());
-	assert(!m_pFullName.empty());
+	ASSERT(!m_pShortName.empty());
+	ASSERT(!m_pFullName.empty());
 }
 
 GroupInterface::~GroupInterface()

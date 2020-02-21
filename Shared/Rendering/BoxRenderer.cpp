@@ -63,8 +63,8 @@ void BoxRenderer::SetupWireframeGeometry()
 		vertexBufferSubResourceData.SysMemSlicePitch = 0;
 
 		HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pWireframeIndexBuffer);
-		assert(SUCCEEDED(createBufferResult));
-		assert(pWireframeIndexBuffer != nullptr);
+		ASSERT(SUCCEEDED(createBufferResult));
+		ASSERT(pWireframeIndexBuffer != nullptr);
 	}
 }
 
@@ -99,8 +99,8 @@ void BoxRenderer::SetupSolidGeometry()
 		vertexBufferSubResourceData.SysMemSlicePitch = 0;
 
 		HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pVertexBuffer);
-		assert(SUCCEEDED(createBufferResult));
-		assert(pVertexBuffer != nullptr);
+		ASSERT(SUCCEEDED(createBufferResult));
+		ASSERT(pVertexBuffer != nullptr);
 	}
 
 	if (pSolidIndexBuffer == nullptr)
@@ -140,8 +140,8 @@ void BoxRenderer::SetupSolidGeometry()
 		vertexBufferSubResourceData.SysMemSlicePitch = 0;
 
 		HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pSolidIndexBuffer);
-		assert(SUCCEEDED(createBufferResult));
-		assert(pSolidIndexBuffer != nullptr);
+		ASSERT(SUCCEEDED(createBufferResult));
+		ASSERT(pSolidIndexBuffer != nullptr);
 	}
 }
 
@@ -156,10 +156,10 @@ void BoxRenderer::SetupShaders()
 			WriteLineVerbose("Warning: Failed to find Box pixel shader resource! Attempting to read BoxShaderPS.cso");
 			pShaderBinary = FileSystemReadToMemory(L"BoxShaderPS.cso", &shaderFileLength);
 		}
-		assert(pShaderBinary != nullptr);
+		ASSERT(pShaderBinary != nullptr);
 
 		Render::s_pDevice->CreatePixelShader(pShaderBinary, shaderFileLength, NULL, &pPixelShader);
-		assert(pPixelShader != nullptr);
+		ASSERT(pPixelShader != nullptr);
 
 		delete[] pShaderBinary;
 	}
@@ -173,10 +173,10 @@ void BoxRenderer::SetupShaders()
 			WriteLineVerbose("Warning: Failed to find Box vertex shader resource! Attempting to read BoxShaderVS.cso");
 			pVertexShaderBinary = FileSystemReadToMemory(L"BoxShaderVS.cso", &vertexShaderBinaryLength);
 		}
-		assert(pVertexShaderBinary != nullptr);
+		ASSERT(pVertexShaderBinary != nullptr);
 
 		Render::s_pDevice->CreateVertexShader(pVertexShaderBinary, vertexShaderBinaryLength, NULL, &pVertexShader);
-		assert(pVertexShader != nullptr);
+		ASSERT(pVertexShader != nullptr);
 	}
 
 	if (pSolidRasterState == nullptr)
@@ -208,8 +208,8 @@ void BoxRenderer::SetupShaders()
 		inputDescriptions[0].InstanceDataStepRate = 0;
 
 		HRESULT createInputLayoutResult = Render::s_pDevice->CreateInputLayout(inputDescriptions, 1, pVertexShaderBinary, vertexShaderBinaryLength, &pVertexLayout);
-		assert(SUCCEEDED(createInputLayoutResult));
-		assert(pVertexLayout != nullptr);
+		ASSERT(SUCCEEDED(createInputLayoutResult));
+		ASSERT(pVertexLayout != nullptr);
 	}
 
 	if (pVertexShaderBinary != nullptr)
@@ -235,8 +235,8 @@ void BoxRenderer::SetupConstantBuffers()
 			ID3D11Buffer*& pConstantsBuffer = ppInstanceConstantsBuffers[i];
 
 			HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
-			assert(SUCCEEDED(createBufferResult));
-			assert(pConstantsBuffer != nullptr);
+			ASSERT(SUCCEEDED(createBufferResult));
+			ASSERT(pConstantsBuffer != nullptr);
 		}
 	}
 }
@@ -245,14 +245,14 @@ void BoxRenderer::GetNextConstantsBuffer()
 {
 	uint32_t currentConstantBufferIndex = (InterlockedIncrement(&nextConstantBufferIndex) - 1) % PrimitiveRenderManager::kNumConstantsBuffers;
 	pCurrentInstanceConstantsBuffer = ppInstanceConstantsBuffers[currentConstantBufferIndex];
-	assert(pCurrentInstanceConstantsBuffer != nullptr);
+	ASSERT(pCurrentInstanceConstantsBuffer != nullptr);
 }
 
 void BoxRenderer::MapConstantsBuffer()
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource = {};
 	HRESULT mapResult = Render::s_pDeviceContext->Map(pCurrentInstanceConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-	assert(SUCCEEDED(mapResult));
+	ASSERT(SUCCEEDED(mapResult));
 
 	// contigious memory
 	pPerObjectConstantsArray = static_cast<PerObjectConstants*>(mappedResource.pData);

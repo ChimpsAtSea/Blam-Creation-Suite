@@ -82,13 +82,13 @@ void c_file_reference::read_uint32(unsigned __int32* value, long offset, bool sw
 
 void c_file_reference::read_string(std::string* value, size_t length, long offset)
 {
-	assert(pFile);
+	ASSERT(pFile != nullptr);
 	*value = &pBuffer[offset];
 }
 
 void c_file_reference::read_string_long(std::wstring* value, size_t length, long offset, bool swapEndian)
 {
-	assert(pFile);
+	ASSERT(pFile != nullptr);
 	*value = (wchar_t*)&pBuffer[swapEndian ? offset + 1 : offset];
 }
 

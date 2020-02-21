@@ -46,7 +46,7 @@ void memcpy_virtual(
 	else
 	{
 		WriteLineVerbose("dst must not be null");
-		assert(dst);
+		ASSERT(dst != nullptr);
 	}
 }
 

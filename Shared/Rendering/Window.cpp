@@ -131,7 +131,7 @@ void Window::Init(const char* pWindowTitle, const char* pConsoleTitle, const cha
 	{
 		AllocConsole();
 		FILE* pStdOut = freopen("CONOUT$", "w", stdout);
-		assert(pStdOut);
+		ASSERT(pStdOut != nullptr);
 		SetConsoleTitleA(pConsoleTitle);
 	}
 

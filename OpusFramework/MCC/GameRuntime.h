@@ -10,19 +10,19 @@ public:
 
 	inline __int64 __fastcall CreateDataAccess(IDataAccess** ppDataAccess)
 	{
-		assert(pCreateDataAccess != nullptr);
+		ASSERT(pCreateDataAccess != nullptr);
 		return pCreateDataAccess(ppDataAccess);
 	}
 
 	inline signed __int64 __fastcall CreateGameEngine(IGameEngine** ppGameEngine)
 	{
-		assert(pCreateGameEngine != nullptr);
+		ASSERT(pCreateGameEngine != nullptr);
 		return pCreateGameEngine(ppGameEngine);
 	}
 
 	inline errno_t __fastcall SetLibrarySettings(wchar_t* Src)
 	{
-		assert(pSetLibrarySettings != nullptr);
+		ASSERT(pSetLibrarySettings != nullptr);
 		return pSetLibrarySettings(Src);
 	}
 

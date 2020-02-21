@@ -48,14 +48,14 @@ bool DebugUI::IsVisible()
 
 void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
-	assert(pSwapChain);
-	assert(pDevice);
-	assert(pContext);
+	DEBUG_ASSERT(pSwapChain);
+	DEBUG_ASSERT(pDevice);
+	DEBUG_ASSERT(pContext);
 
 	// #WIP Start Resize Synchronization Across Opus and Game Thread
 	static uint32_t expectedValue = underlying_cast(DebugUIState::Uninitialized);
 	while (!s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::Initializing)));
-	assert(s_uiState == underlying_cast(DebugUIState::Initializing));
+	DEBUG_ASSERT(s_uiState == underlying_cast(DebugUIState::Initializing));
 	s_mutex.lock();
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 	{
@@ -81,8 +81,8 @@ void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain*
 			char* pFontData;
 			size_t pFontSize;
 			bool fontResourceFound = ResourcesManager::GetResource(ResourceType::ImGUIFont, &pFontData, &pFontSize);
-			assert(fontResourceFound);
-			assert(pFontSize < INT_MAX);
+			ASSERT(fontResourceFound);
+			ASSERT(pFontSize < INT_MAX);
 			rImguiIO.Fonts->AddFontFromMemoryTTF(pFontData, static_cast<int>(pFontSize), 20.0f, NULL, rImguiIO.Fonts->GetGlyphRangesDefault());
 			//delete pFontData; // imgui owns this memory
 		}
@@ -94,7 +94,7 @@ void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain*
 
 		ID3D11Texture2D* pBackBuffer = nullptr;
 		s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
-		assert(pBackBuffer);
+		ASSERT(pBackBuffer);
 		s_pDevice->CreateRenderTargetView(pBackBuffer, NULL, &s_mainRenderTargetView);
 		pBackBuffer->Release();
 	}
@@ -109,7 +109,7 @@ void DebugUI::Deinit()
 	// #WIP Start Resize Synchronization Across Opus and Game Thread
 	static uint32_t expectedValue = underlying_cast(DebugUIState::Initialized);
 	while (!s_uiState.compare_exchange_strong(expectedValue, underlying_cast(DebugUIState::Deinitializing)));
-	assert(s_uiState == underlying_cast(DebugUIState::Deinitializing));
+	DEBUG_ASSERT(s_uiState == underlying_cast(DebugUIState::Deinitializing));
 	s_mutex.lock();
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 	{

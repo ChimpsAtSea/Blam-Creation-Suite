@@ -163,12 +163,12 @@ void GameLauncher::launchGame(EngineVersion engineVersion)
 
 void GameLauncher::launchHalo1()
 {
-	assert(pCurrentGameHost == nullptr);
+	ASSERT(pCurrentGameHost == nullptr);
 
 	pCurrentGameHost = new Halo1GameHost();
-	assert(pCurrentGameHost);
+	ASSERT(pCurrentGameHost != nullptr);
 	IGameEngine* pGameEngine = pCurrentGameHost->GetGameEngine();
-	assert(pGameEngine);
+	ASSERT(pGameEngine != nullptr);
 
 	EngineVersion engineVersion = EngineVersion::Halo1;
 	BuildVersion buildVersion = Halo1GameHost::GetGameRuntime().GetBuildVersion();
@@ -290,12 +290,12 @@ void GameLauncher::launchHalo1()
 
 void GameLauncher::launchHaloReach()
 {
-	assert(pCurrentGameHost == nullptr);
+	ASSERT(pCurrentGameHost == nullptr);
 
 	pCurrentGameHost = new HaloReachGameHost();
-	assert(pCurrentGameHost);
+	ASSERT(pCurrentGameHost != nullptr);
 	IGameEngine* pGameEngine = pCurrentGameHost->GetGameEngine();
-	assert(pGameEngine);
+	ASSERT(pGameEngine != nullptr);
 
 	EngineVersion engineVersion = EngineVersion::HaloReach;
 	BuildVersion buildVersion = HaloReachGameHost::GetGameRuntime().GetBuildVersion();
@@ -418,7 +418,7 @@ void GameLauncher::checkSteamOwnership()
 {
 	{
 		FILE* pAppIDFile = fopen("steam_appid.txt", "w");
-		assert(pAppIDFile);
+		ASSERT(pAppIDFile != nullptr);
 		constexpr const char* pAppId = "976730";
 		fwrite(pAppId, sizeof(char), strlen(pAppId), pAppIDFile);
 		fclose(pAppIDFile);
@@ -455,7 +455,7 @@ void GameLauncher::entireLibraryIsLoaded(const char* pLibName, const char* pFall
 	{
 		MessageBox(Window::GetWindowHandle(), pLibName, "failed to load library", MB_ICONERROR);
 	}
-	assert(hModule);
+	ASSERT(hModule != NULL);
 }
 
 void GameLauncher::renderMainMenu()

@@ -28,6 +28,6 @@ void MantleTab::Render(bool setSelected)
 
 void MantleTab::AddTabClosedCallback(TabClosedCallback callback)
 {
-	assert(callback);
+	ASSERT(callback != nullptr);
 	tabClosedCallback.push_back(callback);
 }

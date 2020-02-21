@@ -51,7 +51,7 @@ bool ResourcesManager::GetResource(ResourceType type, char** ppData, size_t* pDa
 	if (lpAddress == nullptr) return false;
 
 	char* bytes = new char[dwSize + (nullTerminate ? 1 : 0)] {};
-	assert(bytes != nullptr);
+	ASSERT(bytes != nullptr);
 	for (DWORD i = 0; i < dwSize; i++)
 	{
 		bytes[i] = reinterpret_cast<char*>(lpAddress)[i];
@@ -64,7 +64,7 @@ bool ResourcesManager::GetResource(ResourceType type, char** ppData, size_t* pDa
 
 	UnlockResource(lpAddress);
 	BOOL freeResourceResult = FreeResource(hMemory);
-	assert(freeResourceResult == 0);
+	ASSERT(freeResourceResult == 0);
 
 	*ppData = bytes;
 	*pDataSize = dwSize + (nullTerminate ? 1 : 0);

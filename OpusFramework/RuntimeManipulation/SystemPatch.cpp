@@ -30,8 +30,8 @@ BOOL EnumWindowsHook(
 	LPARAM      lParam
 )
 {
-	assert(s_lpEnumFunc == nullptr);
-	assert(EnumWindowsPointer != nullptr);
+	ASSERT(s_lpEnumFunc == nullptr);
+	ASSERT(EnumWindowsPointer != nullptr);
 
 	s_processedWindow = false;
 	s_lpEnumFunc = lpEnumFunc;

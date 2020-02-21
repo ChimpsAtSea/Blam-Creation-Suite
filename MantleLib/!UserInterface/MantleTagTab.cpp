@@ -333,7 +333,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 			{
 				const ReflectionStructureInfo& rReflectionStructureInfo = reflectionField.m_structureInfo;
 				const ReflectionType& rStructureReflectionType = *rReflectionStructureInfo.m_pReflectionTypeInfo; //#TODO: Try to make this a reference in the type
-				assert(&rStructureReflectionType);
+				REFERENCE_ASSERT(rStructureReflectionType);
 
 				char* pStructureData = static_cast<char*>(pFieldDataPointer);
 				RenderContentsImpl(pStructureData, rStructureReflectionType, recursionDepth + 1);
@@ -417,7 +417,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 							//assert(pCurrentTagInterface->GetGroupInterface() != nullptr);
 							//if (pCurrentTagInterface->GetGroupInterface() != pTagReferenceGroupInterface)
 							GroupInterface* pCurrentGroupInterface = m_rCacheFile.GetGroupInterfaces()[pCurrentTagInterface->GetGroupIndex()];
-							assert(pCurrentGroupInterface != nullptr);
+							ASSERT(pCurrentGroupInterface != nullptr);
 							if (pCurrentGroupInterface != pTagReferenceGroupInterface)
 							{
 								continue;
@@ -456,7 +456,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 							//assert(pCurrentTagInterface->GetGroupInterface() != nullptr);
 							//if (pCurrentTagInterface->GetGroupInterface() != pTagReferenceGroupInterface)
 							GroupInterface* pCurrentGroupInterface = m_rCacheFile.GetGroupInterfaces()[pCurrentTagInterface->GetGroupIndex()];
-							assert(pCurrentGroupInterface != nullptr);
+							ASSERT(pCurrentGroupInterface != nullptr);
 							if (pCurrentGroupInterface != pTagReferenceGroupInterface)
 							{
 								continue;
