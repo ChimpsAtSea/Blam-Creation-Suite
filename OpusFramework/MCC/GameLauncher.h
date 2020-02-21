@@ -8,7 +8,6 @@ public:
 	static void OpusTick();
 	static void WindowDestroyCallback();
 	inline static bool IsGameRunning() { return s_gameRunning; }
-	static IDataAccess* GetDataAccess();
 private:
 	static void loadSettings();
 	static void update();

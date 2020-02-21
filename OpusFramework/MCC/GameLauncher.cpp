@@ -71,15 +71,6 @@ void GameLauncher::WindowDestroyCallback()
 	}
 }
 
-IDataAccess* GameLauncher::GetDataAccess()
-{
-	// #TODO: Remove this function.
-	// Each piece of code should be aware of what type of DataAccess it wants
-
-	//return HaloReachGameHost::GetDataAccess();
-	return nullptr;
-}
-
 void GameLauncher::loadSettings()
 {
 	float horizontalSensitivity = Settings::ReadFloatValue(SettingsSection::Controls, "HorizontalSensitivity", 1.0f);
@@ -494,20 +485,10 @@ void GameLauncher::renderMainMenu()
 
 	if (ImGui::Begin("MAIN MENU", &isWindowOpen, windowFlags))
 	{
-		//GameOptionSelection::Render();
+		GameOptionSelection::Render();
 		{
 			ImGui::Dummy(ImVec2(0.0f, 30.0f));
 			static bool hasAutostarted = false;
-
-
-			if (ImGui::Button("START GAME (Halo 1)") || (CommandLine::HasCommandLineArg("-autostarthalo1") && !hasAutostarted))
-			{
-				GameOptionSelection::s_pLaunchSavedFilm = "";
-				hasAutostarted = true;
-				s_nextLaunchMode = NextLaunchMode::Generic;
-				s_nextLaunchEngine = EngineVersion::Halo1;
-			}
-
 
 			if (ImGui::Button("START GAME (Reach)") || (CommandLine::HasCommandLineArg("-autostart") && !hasAutostarted))
 			{
@@ -521,6 +502,14 @@ void GameLauncher::renderMainMenu()
 			{
 				s_nextLaunchMode = NextLaunchMode::Theater;
 				s_nextLaunchEngine = EngineVersion::HaloReach;
+			}
+
+			if (ImGui::Button("START GAME (Halo 1)") || (CommandLine::HasCommandLineArg("-autostarthalo1") && !hasAutostarted))
+			{
+				GameOptionSelection::s_pLaunchSavedFilm = "";
+				hasAutostarted = true;
+				s_nextLaunchMode = NextLaunchMode::Generic;
+				s_nextLaunchEngine = EngineVersion::Halo1;
 			}
 
 			ImGui::Dummy(ImVec2(0.0f, 20.0f));

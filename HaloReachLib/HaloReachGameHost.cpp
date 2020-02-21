@@ -1,7 +1,78 @@
 #include "haloreachlib-private-pch.h"
 
+template<typename t_type>
+class c_data_array_base
+{
+public:
+	char m_Name[32];
+	size_t m_Size;
+	unsigned int m_Signature;
+	int m_MaximumCount;
+
+private:
+	char __unknown30[8];
+
+public:
+	class c_allocation_interface* m_pAllocation;
+	int m_NextIndex;
+	int m_FirstUnallocated;
+	int m_ActualCount;
+	unsigned __int16 m_NextIdentifier;
+	unsigned __int16 m_IsolatedNextIdentifier;
+	t_type* m_pData;
+	unsigned int* m_InUseBitVector;
+	int m_OffsetToData;
+	int m_OffsetToBitVector;
+
+private:
+	char __unknown68[8];
+};
+
+template<typename t_type, size_t k_count>
+class c_data_array : public c_data_array_base<t_type>
+{
+private:
+	t_type m_Data[k_count];
+};
+
+struct s_script_node_datum
+{
+	char data[24];
+};
+static constexpr size_t s_script_node_datum_size = sizeof(s_script_node_datum);
+
 #include "HaloReachGameHost.Camera.inl"
 #include "HaloReachGameHost.Memory.inl"
+#include "HaloReachGameHost.Scripting.inl"
+
+void HaloReachGameHost::scriptDebugUI()
+{
+	static const bool kEnableScriptDebug = CommandLine::HasCommandLineArg("-scriptdebug");
+	if (!kEnableScriptDebug)
+	{
+		return;
+	}
+
+	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);
+
+	// Main body of the Demo window starts here.
+	static bool isReachCameraDebugWindowOpen = true;
+	if (ImGui::Begin("Script Debug", &isReachCameraDebugWindowOpen, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
+	{
+		ImGui::Text("g_script_node_data_array %p", g_script_node_data_array);
+		if (g_script_node_data_array)
+		{
+			ImGui::Text("m_ActualCount %i", g_script_node_data_array->m_ActualCount);
+			for (int i = 0; i < g_script_node_data_array->m_ActualCount; i++)
+			{
+				s_script_node_datum& script_node_datum = g_script_node_data_array->m_pData[i];
+
+			}
+		}
+	}
+	ImGui::End();
+}
 
 GameRuntime HaloReachGameHost::s_haloReachGameRuntime("haloreach", "HaloReach\\haloreach.dll");
 
@@ -30,8 +101,8 @@ HaloReachGameHost::HaloReachGameHost()
 
 	WriteLineVerbose("Init HaloReachGameHost");
 
-	if(m_pGameEngine == nullptr)
-	__int64 createGameEngineResult = s_haloReachGameRuntime.CreateGameEngine(&m_pGameEngine);
+	if (m_pGameEngine == nullptr)
+		__int64 createGameEngineResult = s_haloReachGameRuntime.CreateGameEngine(&m_pGameEngine);
 	assert(m_pGameEngine != nullptr);
 }
 
@@ -67,6 +138,7 @@ void HaloReachGameHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)
 void HaloReachGameHost::RenderUI() const
 {
 	cameraDebugUI();
+	scriptDebugUI();
 }
 
 void HaloReachGameHost::updateCamera()
@@ -97,15 +169,22 @@ void HaloReachGameHost::updateCamera()
 
 void HaloReachGameHost::cameraDebugUI()
 {
-	static bool kEnableCameraDebugTest = CommandLine::HasCommandLineArg("-cameradebug");
-	if (kEnableCameraDebugTest)
+	static const bool kEnableCameraDebug = CommandLine::HasCommandLineArg("-cameradebug");
+	if (!kEnableCameraDebug)
 	{
-		ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
-		ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);
+		return;
+	}
 
-		// Main body of the Demo window starts here.
-		static bool isReachCameraDebugWindowOpen = true;
-		if (ImGui::Begin("Camera Debug Output", &isReachCameraDebugWindowOpen, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
+	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);
+
+	// Main body of the Demo window starts here.
+	static bool isReachCameraDebugWindowOpen = true;
+	if (ImGui::Begin("Camera Debug", &isReachCameraDebugWindowOpen, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse))
+	{
+		if (!player_mapping_get_local_player.m_isHooked) ImGui::Text("player_mapping_get_local_player is not hooked");
+		else if (!observer_try_and_get_camera.m_isHooked) ImGui::Text("observer_try_and_get_camera is not hooked");
+		else
 		{
 			int playerIndex = player_mapping_get_local_player();
 			s_observer_camera* observer_camera = observer_try_and_get_camera(playerIndex);
@@ -126,9 +205,9 @@ void HaloReachGameHost::cameraDebugUI()
 			}
 			else ImGui::Text("No camera present.");
 		}
-		ImGui::End();
-
 	}
+	ImGui::End();
+
 }
 
 IGameEngine* HaloReachGameHost::GetGameEngine() const

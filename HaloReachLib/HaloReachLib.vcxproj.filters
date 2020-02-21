@@ -60,5 +60,8 @@
     <None Include="HaloReachGameHost.Memory.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="HaloReachGameHost.Scripting.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -18,6 +18,7 @@ public:
 private:
 	static void updateCamera();
 	static void cameraDebugUI();
+	static void scriptDebugUI();
 	IGameEngine* m_pGameEngine;
 
 	// static
