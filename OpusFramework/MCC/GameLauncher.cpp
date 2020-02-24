@@ -33,15 +33,18 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 void GameLauncher::Init()
 {
+#ifdef _WIN64
 	checkSteamOwnership();
 	entireLibraryIsLoaded("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
 	// #TODO: New home for this in Halo1Lib
 	entireLibraryIsLoaded("halo1\\fmodex64.dll", "..\\halo1");
 	entireLibraryIsLoaded("halo1\\fmod_event_net64.dll", "..\\halo1");
+#endif
 
 	GameLauncher::loadSettings();
-
-	GameOptionSelection::Init();
+#ifdef _WIN64
+	HaloReachGameOptionSelection::Init();
+#endif
 	Window::RegisterWndProcCallback(WndProc);
 	DebugUI::RegisterCallback(DebugUI::CallbackMode::AlwaysRun, renderMainMenu);
 	DebugUI::RegisterCallback(DebugUI::CallbackMode::Toggleable, renderUI);
@@ -56,7 +59,9 @@ void GameLauncher::Deinit()
 	DebugUI::UnregisterCallback(DebugUI::CallbackMode::AlwaysRun, renderMainMenu);
 	DebugUI::UnregisterCallback(DebugUI::CallbackMode::Toggleable, renderUI);
 	Window::UnregisterWndProcCallback(WndProc);
-	GameOptionSelection::Deinit();
+#ifdef _WIN64
+	HaloReachGameOptionSelection::Deinit();
+#endif
 }
 
 void GameLauncher::WindowDestroyCallback()
@@ -149,18 +154,24 @@ void GameLauncher::launchGame(EngineVersion engineVersion)
 	Render::SetResizeEnabled(false);
 	switch (engineVersion)
 	{
+#ifdef _WIN64
 	case EngineVersion::Halo1:
 		launchHalo1();
 		break;
 	case EngineVersion::HaloReach:
 		launchHaloReach();
 		break;
+#else
+	case EngineVersion::Eldorado:
+		launchEldorado();
+		break;
+#endif
 	}
 	Render::SetResizeEnabled(true);
 
 	s_gameRunning = false;
 }
-
+#ifdef _WIN64
 void GameLauncher::launchHalo1()
 {
 	ASSERT(pCurrentGameHost == nullptr);
@@ -182,8 +193,8 @@ void GameLauncher::launchHalo1()
 
 	GameContext gameContext = {};
 	{
-		//const MapInfo* pSelectedMapInfo = GameOptionSelection::GetSelectedMapInfo();
-		e_game_mode gameMode = GameOptionSelection::GetSelectedGameMode();
+		//const MapInfo* pSelectedMapInfo = HaloReachGameOptionSelection::GetSelectedMapInfo();
+		e_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
 
 		//const char* pMapFileName = pSelectedMapInfo->GetMapFileName();
 		//WriteLineVerbose("Loading map '%s.map'", pMapFileName);
@@ -215,10 +226,10 @@ void GameLauncher::launchHalo1()
 				gameContext.MapId = (e_map_id)(3);
 				gameContext.CampaignDifficultyLevel = e_campaign_difficulty_level::_campaign_difficulty_level_easy;
 
-				//GameOptionSelection::LoadGameVariant(HaloReachGameHost::GetDataAccess(), GameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
-				//GameOptionSelection::LoadMapVariant(HaloReachGameHost::GetDataAccess(), GameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
-				//GameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
-				//GameOptionSelection::LoadSavedFilmMetadata(GameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
+				//HaloReachGameOptionSelection::LoadGameVariant(HaloReachGameHost::GetDataAccess(), HaloReachGameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
+				//HaloReachGameOptionSelection::LoadMapVariant(HaloReachGameHost::GetDataAccess(), HaloReachGameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
+				//HaloReachGameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
+				//HaloReachGameOptionSelection::LoadSavedFilmMetadata(HaloReachGameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
 
 				gameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
 				gameContext.SessionInfo.HostAddress = HostAddress;
@@ -309,8 +320,8 @@ void GameLauncher::launchHaloReach()
 
 	GameContext gameContext = {};
 	{
-		const MapInfo* pSelectedMapInfo = GameOptionSelection::GetSelectedMapInfo();
-		e_game_mode gameMode = GameOptionSelection::GetSelectedGameMode();
+		const MapInfo* pSelectedMapInfo = HaloReachGameOptionSelection::GetSelectedMapInfo();
+		e_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
 
 		const char* pMapFileName = pSelectedMapInfo->GetMapFileName();
 		WriteLineVerbose("Loading map '%s.map'", pMapFileName);
@@ -341,10 +352,10 @@ void GameLauncher::launchHaloReach()
 				gameContext.MapId = static_cast<e_map_id>(pSelectedMapInfo->GetMapID());
 				gameContext.CampaignDifficultyLevel = e_campaign_difficulty_level::_campaign_difficulty_level_easy;
 
-				GameOptionSelection::LoadGameVariant(HaloReachGameHost::GetDataAccess(), GameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
-				GameOptionSelection::LoadMapVariant(HaloReachGameHost::GetDataAccess(), GameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
-				//GameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
-				//GameOptionSelection::LoadSavedFilmMetadata(GameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
+				HaloReachGameOptionSelection::LoadGameVariant(HaloReachGameHost::GetDataAccess(), HaloReachGameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
+				HaloReachGameOptionSelection::LoadMapVariant(HaloReachGameHost::GetDataAccess(), HaloReachGameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
+				//HaloReachGameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
+				//HaloReachGameOptionSelection::LoadSavedFilmMetadata(HaloReachGameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
 
 				gameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
 				gameContext.SessionInfo.HostAddress = HostAddress;
@@ -413,9 +424,15 @@ void GameLauncher::launchHaloReach()
 	// reset runtime information after we've destroyed the engine
 	//s_pCurrentGameRuntime = nullptr;
 }
+#else
+void GameLauncher::launchEldorado()
+{
 
+}
+#endif
 void GameLauncher::checkSteamOwnership()
 {
+#ifdef _WIN64
 	{
 		FILE* pAppIDFile = fopen("steam_appid.txt", "w");
 		ASSERT(pAppIDFile != nullptr);
@@ -430,6 +447,7 @@ void GameLauncher::checkSteamOwnership()
 		MessageBox(NULL, "Fatal Error - Steam failed to initialize", "Fatal Error", MB_OK | MB_ICONWARNING);
 		exit(1);
 	}
+#endif
 }
 
 void GameLauncher::entireLibraryIsLoaded(const char* pLibName, const char* pFallbackDir)
@@ -485,14 +503,15 @@ void GameLauncher::renderMainMenu()
 
 	if (ImGui::Begin("MAIN MENU", &isWindowOpen, windowFlags))
 	{
-		GameOptionSelection::Render();
+		static bool hasAutostarted = false;
+#ifdef _WIN64
+		HaloReachGameOptionSelection::Render();
 		{
 			ImGui::Dummy(ImVec2(0.0f, 30.0f));
-			static bool hasAutostarted = false;
 
 			if (ImGui::Button("START GAME (Reach)") || (CommandLine::HasCommandLineArg("-autostart") && !hasAutostarted))
 			{
-				GameOptionSelection::s_pLaunchSavedFilm = "";
+				HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
 				hasAutostarted = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
 				s_nextLaunchEngine = EngineVersion::HaloReach;
@@ -506,17 +525,26 @@ void GameLauncher::renderMainMenu()
 
 			if (ImGui::Button("START GAME (Halo 1)") || (CommandLine::HasCommandLineArg("-autostarthalo1") && !hasAutostarted))
 			{
-				GameOptionSelection::s_pLaunchSavedFilm = "";
+				HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
 				hasAutostarted = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
 				s_nextLaunchEngine = EngineVersion::Halo1;
 			}
-
-			ImGui::Dummy(ImVec2(0.0f, 20.0f));
-			if (ImGui::Button("QUIT TO DESKTOP"))
+		}
+#else
+		{
+			if (ImGui::Button("START GAME (Eldorado)") || (CommandLine::HasCommandLineArg("-autostart") && !hasAutostarted))
 			{
-				exit(0);
-			}
+				hasAutostarted = true;
+				s_nextLaunchMode = NextLaunchMode::Generic;
+				s_nextLaunchEngine = EngineVersion::Eldorado;
+	}
+		}
+#endif
+		ImGui::Dummy(ImVec2(0.0f, 20.0f));
+		if (ImGui::Button("QUIT TO DESKTOP"))
+		{
+			exit(0);
 		}
 	}
 	ImGui::End();

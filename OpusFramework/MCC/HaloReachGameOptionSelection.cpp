@@ -1,5 +1,7 @@
 #include "opusframework-private-pch.h"
 
+#ifdef _WIN64
+
 std::string format_string(const char* pFormat, ...)
 {
 	va_list args;
@@ -13,18 +15,18 @@ std::string format_string(const char* pFormat, ...)
 e_game_mode s_currentGameMode = _game_mode_campaign;
 e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
 
-MapInfoManager* GameOptionSelection::s_pMapInfoManager = nullptr;
-const MapInfo* GameOptionSelection::s_pSelectedMapInfo[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
+MapInfoManager* HaloReachGameOptionSelection::s_pMapInfoManager = nullptr;
+const MapInfo* HaloReachGameOptionSelection::s_pSelectedMapInfo[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
 
-GameTypeManager* GameOptionSelection::s_pGameTypeManager = nullptr;
-const GameType* GameOptionSelection::s_pSelectedGameType[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
+GameTypeManager* HaloReachGameOptionSelection::s_pGameTypeManager = nullptr;
+const GameType* HaloReachGameOptionSelection::s_pSelectedGameType[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
 
 // #TODO: Remove these
-std::string GameOptionSelection::s_pLaunchGameVariant = "";
-std::string GameOptionSelection::s_pLaunchMapVariant = "";
-std::string GameOptionSelection::s_pLaunchSavedFilm = "";
+std::string HaloReachGameOptionSelection::s_pLaunchGameVariant = "";
+std::string HaloReachGameOptionSelection::s_pLaunchMapVariant = "";
+std::string HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
 
-void GameOptionSelection::Init()
+void HaloReachGameOptionSelection::Init()
 {
 	// #TODO: Support more games than just Halo Reach
 	s_pMapInfoManager = new MapInfoManager("haloreach/maps/info");
@@ -32,12 +34,12 @@ void GameOptionSelection::Init()
 	loadSettings();
 }
 
-void GameOptionSelection::Deinit()
+void HaloReachGameOptionSelection::Deinit()
 {
 	delete s_pMapInfoManager;
 }
 
-void GameOptionSelection::loadSettings()
+void HaloReachGameOptionSelection::loadSettings()
 {
 	for (underlying(SelectedGameModeMapInfoIndex) i = 0; i < underlying_cast(SelectedGameModeMapInfoIndex::Count); i++)
 	{
@@ -96,12 +98,12 @@ void GameOptionSelection::loadSettings()
 	}
 }
 
-e_game_mode GameOptionSelection::GetSelectedGameMode()
+e_game_mode HaloReachGameOptionSelection::GetSelectedGameMode()
 {
 	return s_currentGameMode;
 }
 
-void GameOptionSelection::SelectGameMode()
+void HaloReachGameOptionSelection::SelectGameMode()
 {
 	if (CommandLine::HasCommandLineArg("-showallmodes"))
 	{
@@ -154,7 +156,7 @@ void GameOptionSelection::SelectGameMode()
 	}
 }
 
-void GameOptionSelection::Render()
+void HaloReachGameOptionSelection::Render()
 {
 
 
@@ -187,7 +189,7 @@ void GameOptionSelection::Render()
 	SelectMapVariant();
 }
 
-const MapInfo* GameOptionSelection::GetDefaultMapSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex)
+const MapInfo* HaloReachGameOptionSelection::GetDefaultMapSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex)
 {
 	int previousMapID = Settings::ReadIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(gameModeMapInfoIndex)], -1);
 	for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
@@ -201,7 +203,7 @@ const MapInfo* GameOptionSelection::GetDefaultMapSelection(SelectedGameModeMapIn
 	return nullptr;
 }
 
-const MapInfo* GameOptionSelection::GetDefaultGameOptionSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex)
+const MapInfo* HaloReachGameOptionSelection::GetDefaultHaloReachGameOptionSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex)
 {
 	int previousMapID = Settings::ReadIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(gameModeMapInfoIndex)], -1);
 	for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
@@ -215,7 +217,7 @@ const MapInfo* GameOptionSelection::GetDefaultGameOptionSelection(SelectedGameMo
 	return nullptr;
 }
 
-GameOptionSelection::SelectedGameModeMapInfoIndex GameOptionSelection::GameModeToSelectedGameModeMapInfoIndex(e_game_mode gameMode)
+HaloReachGameOptionSelection::SelectedGameModeMapInfoIndex HaloReachGameOptionSelection::GameModeToSelectedGameModeMapInfoIndex(e_game_mode gameMode)
 {
 	switch (gameMode)
 	{
@@ -234,7 +236,7 @@ GameOptionSelection::SelectedGameModeMapInfoIndex GameOptionSelection::GameModeT
 	}
 }
 
-e_game_mode GameOptionSelection::SelectedGameModeMapInfoIndexToGameMode(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
+e_game_mode HaloReachGameOptionSelection::SelectedGameModeMapInfoIndexToGameMode(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
 {
 	switch (selectedGameModeMapInfoIndex)
 	{
@@ -252,23 +254,23 @@ e_game_mode GameOptionSelection::SelectedGameModeMapInfoIndexToGameMode(Selected
 	}
 }
 
-const MapInfo*& GameOptionSelection::GetSelectedMapInfoBySelectedGameModeMapInfoIndex(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
+const MapInfo*& HaloReachGameOptionSelection::GetSelectedMapInfoBySelectedGameModeMapInfoIndex(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
 {
 	const MapInfo*& pSelectedMapInfo = s_pSelectedMapInfo[underlying_cast(selectedGameModeMapInfoIndex)];
 	return pSelectedMapInfo;
 }
 
-const MapInfo*& GameOptionSelection::GetSelectedMapInfoByGameMode(e_game_mode gameMode)
+const MapInfo*& HaloReachGameOptionSelection::GetSelectedMapInfoByGameMode(e_game_mode gameMode)
 {
 	return GetSelectedMapInfoBySelectedGameModeMapInfoIndex(GameModeToSelectedGameModeMapInfoIndex(s_currentGameMode));
 }
 
-const MapInfo* GameOptionSelection::GetSelectedMapInfo()
+const MapInfo* HaloReachGameOptionSelection::GetSelectedMapInfo()
 {
 	return GetSelectedMapInfoByGameMode(s_currentGameMode);
 }
 
-const MapInfo* GameOptionSelection::GetFirstSuitableGameModeMapInfo(e_game_mode gameMode)
+const MapInfo* HaloReachGameOptionSelection::GetFirstSuitableGameModeMapInfo(e_game_mode gameMode)
 {
 	for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
 	{
@@ -280,7 +282,7 @@ const MapInfo* GameOptionSelection::GetFirstSuitableGameModeMapInfo(e_game_mode 
 	return nullptr;
 }
 
-void GameOptionSelection::SaveSelectedMap(e_game_mode gameMode, const MapInfo* pMapInfo)
+void HaloReachGameOptionSelection::SaveSelectedMap(e_game_mode gameMode, const MapInfo* pMapInfo)
 {
 	switch (gameMode)
 	{
@@ -299,7 +301,7 @@ void GameOptionSelection::SaveSelectedMap(e_game_mode gameMode, const MapInfo* p
 	}
 }
 
-bool GameOptionSelection::isMapInfoCompatibleWithGameMode(e_game_mode gameMode, const MapInfo& rMapInfo)
+bool HaloReachGameOptionSelection::isMapInfoCompatibleWithGameMode(e_game_mode gameMode, const MapInfo& rMapInfo)
 {
 	switch (gameMode)
 	{
@@ -316,7 +318,7 @@ bool GameOptionSelection::isMapInfoCompatibleWithGameMode(e_game_mode gameMode, 
 	return true;
 }
 
-void GameOptionSelection::RenderHoveredTooltip(const char* pText)
+void HaloReachGameOptionSelection::RenderHoveredTooltip(const char* pText)
 {
 	if (ImGui::IsItemHovered())
 	{
@@ -328,7 +330,7 @@ void GameOptionSelection::RenderHoveredTooltip(const char* pText)
 	}
 }
 
-void GameOptionSelection::SelectMap()
+void HaloReachGameOptionSelection::SelectMap()
 {
 	const MapInfo*& pSelectedMapInfo = GetSelectedMapInfoByGameMode(s_currentGameMode);
 
@@ -369,7 +371,7 @@ void GameOptionSelection::SelectMap()
 	}
 }
 
-void GameOptionSelection::SelectDifficulty()
+void HaloReachGameOptionSelection::SelectDifficulty()
 {
 	if (s_currentGameMode == _game_mode_campaign || s_currentGameMode == _game_mode_firefight)
 	{
@@ -395,7 +397,7 @@ void GameOptionSelection::SelectDifficulty()
 	}
 }
 
-void GameOptionSelection::GetVariantInfo(char* pBuffer, std::string* name, std::string* desc)
+void HaloReachGameOptionSelection::GetVariantInfo(char* pBuffer, std::string* name, std::string* desc)
 {
 	for (size_t i = 0; i < 256; i++)
 	{
@@ -412,7 +414,7 @@ void GameOptionSelection::GetVariantInfo(char* pBuffer, std::string* name, std::
 	}
 }
 
-int GameOptionSelection::ReadGameVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
+int HaloReachGameOptionSelection::ReadGameVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
 	static s_game_variant gameVariant;
 	IDataAccess* pDataAccess = HaloReachGameHost::GetDataAccess();
@@ -431,7 +433,7 @@ int GameOptionSelection::ReadGameVariant(LPCSTR pName, std::string* name, std::s
 	return result;
 }
 
-int GameOptionSelection::ReadMapVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
+int HaloReachGameOptionSelection::ReadMapVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
 	static s_map_variant mapVariant;
 	IDataAccess* pDataAccess = HaloReachGameHost::GetDataAccess();
@@ -444,7 +446,7 @@ int GameOptionSelection::ReadMapVariant(LPCSTR pName, std::string* name, std::st
 	return result;
 }
 
-int GameOptionSelection::ReadSavedFilm(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
+int HaloReachGameOptionSelection::ReadSavedFilm(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
 	IDataAccess* pDataAccess = HaloReachGameHost::GetDataAccess();
 	if (pDataAccess)
@@ -466,7 +468,7 @@ int GameOptionSelection::ReadSavedFilm(LPCSTR pName, std::string* name, std::str
 	return -1;
 }
 
-void GameOptionSelection::SelectGameVariant()
+void HaloReachGameOptionSelection::SelectGameVariant()
 {
 	const char* pEngineName = "haloreach"; // #TODO: Set this up properly
 	static std::vector<std::string> pfilePaths = {
@@ -484,7 +486,7 @@ void GameOptionSelection::SelectGameVariant()
 
 	if (ImGui::BeginCombo("###GAME VARIANT", fileArray.GetName(pLast)))
 	{
-		for (int i = 0; i < fileArray.Count; i++)
+		for (size_t i = 0; i < fileArray.Count; i++)
 		{
 			int shouldShow = s_currentGameMode == _game_mode_multiplayer && fileArray.GetType(i) == _game_engine_type_sandbox;
 			shouldShow |= s_currentGameMode == _game_mode_multiplayer && fileArray.GetType(i) == _game_engine_type_megalo;
@@ -511,7 +513,7 @@ void GameOptionSelection::SelectGameVariant()
 	s_pLaunchGameVariant = pLast;
 }
 
-void GameOptionSelection::SelectMapVariant()
+void HaloReachGameOptionSelection::SelectMapVariant()
 {
 	const char* pEngineName = "haloreach"; // #TODO: Set this up properly
 	static std::vector<std::string> pfilePaths = {
@@ -543,7 +545,7 @@ void GameOptionSelection::SelectMapVariant()
 			pLast = "";
 		}
 
-		for (int i = 0; i < fileArray.Count; i++)
+		for (size_t i = 0; i < fileArray.Count; i++)
 		{
 			int shouldShow = fileArray.GetType(i) == pSelectedMapInfo->GetMapID();
 
@@ -567,7 +569,7 @@ void GameOptionSelection::SelectMapVariant()
 	s_pLaunchMapVariant = pLast;
 }
 
-void GameOptionSelection::SelectSavedFilm()
+void HaloReachGameOptionSelection::SelectSavedFilm()
 {
 	static std::vector<std::string> pFilePaths = {
 		format_string("%s/Temporary/autosave/", "haloreach"),
@@ -589,7 +591,7 @@ void GameOptionSelection::SelectSavedFilm()
 
 	if (ImGui::BeginCombo("###SAVED FILM", fileArray.GetDesc(pLast)))
 	{
-		for (int i = 0; i < fileArray.Count; i++)
+		for (size_t i = 0; i < fileArray.Count; i++)
 		{
 			if (fileArray.GetName(i))
 			{
@@ -611,7 +613,7 @@ void GameOptionSelection::SelectSavedFilm()
 	s_pLaunchSavedFilm = pLast;
 }
 
-void GameOptionSelection::LoadMapVariant(IDataAccess* pDataAccess, const char* pVariantName, s_map_variant& rMapVariant, bool print)
+void HaloReachGameOptionSelection::LoadMapVariant(IDataAccess* pDataAccess, const char* pVariantName, s_map_variant& rMapVariant, bool print)
 {
 	memset(&rMapVariant, 0, sizeof(rMapVariant));
 
@@ -659,7 +661,7 @@ void GameOptionSelection::LoadMapVariant(IDataAccess* pDataAccess, const char* p
 	}
 }
 
-void GameOptionSelection::LoadGameVariant(IDataAccess* pDataAccess, const char* pVariantName, s_game_variant& rGameVariant, bool print)
+void HaloReachGameOptionSelection::LoadGameVariant(IDataAccess* pDataAccess, const char* pVariantName, s_game_variant& rGameVariant, bool print)
 {
 	memset(&rGameVariant, 0, sizeof(rGameVariant));
 	if (pVariantName == nullptr)
@@ -695,7 +697,7 @@ void GameOptionSelection::LoadGameVariant(IDataAccess* pDataAccess, const char* 
 }
 
 // TODO: Test, and fix if broke
-void GameOptionSelection::LoadPreviousGamestate(const char* pGamestateName, GameContext& gameContext)
+void HaloReachGameOptionSelection::LoadPreviousGamestate(const char* pGamestateName, GameContext& gameContext)
 {
 	char pFileName[MAX_PATH + 1];
 	sprintf(pFileName, "%s.hdr", pGamestateName);
@@ -719,7 +721,7 @@ void GameOptionSelection::LoadPreviousGamestate(const char* pGamestateName, Game
 	}
 }
 
-void GameOptionSelection::LoadSavedFilmMetadata(const char* pSavedFilmName, GameContext& gameContext)
+void HaloReachGameOptionSelection::LoadSavedFilmMetadata(const char* pSavedFilmName, GameContext& gameContext)
 {
 	if (!pSavedFilmName[0])
 		return;
@@ -750,3 +752,4 @@ void GameOptionSelection::LoadSavedFilmMetadata(const char* pSavedFilmName, Game
 	gameContext.SavedFilmPath = pFileName.c_str();
 }
 
+#endif

@@ -84,13 +84,13 @@
     <ClCompile Include="c_file_reference.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MCC\GameOptionSelection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FileSystem\GameTypeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileSystem\GameType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC\HaloReachGameOptionSelection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -230,13 +230,13 @@
     <ClInclude Include="c_file_reference.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MCC\GameOptionSelection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FileSystem\GameTypeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileSystem\GameType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\HaloReachGameOptionSelection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

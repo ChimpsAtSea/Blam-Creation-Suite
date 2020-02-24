@@ -54,7 +54,7 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 		char pUnknownFunctionNameBuffer[256] = {};
 		if (pFunctionName == nullptr)
 		{
-			int count = snprintf(pUnknownFunctionNameBuffer, _countof(pUnknownFunctionNameBuffer), "unnamed<0x%llX>", m_offset);
+			int count = snprintf(pUnknownFunctionNameBuffer, _countof(pUnknownFunctionNameBuffer), "unnamed<0x%zX>", m_offset);
 			pUnknownFunctionNameBuffer[_countof(pUnknownFunctionNameBuffer) - 1] = 0;
 			pFunctionName = pUnknownFunctionNameBuffer;
 		}

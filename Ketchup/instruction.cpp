@@ -26,7 +26,7 @@ Instruction::Instruction(const char* pMask, int b0, int b1, int b2, int b3, int 
 
 const unsigned char* Instruction::Match(const unsigned char* pInput)
 {
-	for (int i = 0; i < m_length; i++)
+	for (size_t i = 0; i < m_length; i++)
 	{
 		bool test_marker = m_testInstruction[i];
 		if (!test_marker) continue;
@@ -62,7 +62,7 @@ const void Instruction::init(const char* pMask, va_list& rArgs)
 		memcpy(pMaskData, pMask, strlen(pMask)); // populate with the known mask
 	}
 
-	for (int i = 0; i < m_length; i++)
+	for (size_t i = 0; i < m_length; i++)
 	{
 		unsigned int value = va_arg(rArgs, unsigned int);
 		m_instructionBytes[i] = (unsigned char)value;

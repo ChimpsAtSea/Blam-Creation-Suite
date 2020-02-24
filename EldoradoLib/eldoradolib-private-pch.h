@@ -7,9 +7,6 @@
 #include <OpusFramework/opusframework-public-pch.h>
 #include <Ketchup/ketchup-public-pch.h>
 
-/* LEGACY */ //#include "c_network.h"
-/* LEGACY */ #include "opus_legacy/HaloReach.h"
-
-#include "haloreachlib-public-pch.h"
+#include "eldoradolib-public-pch.h"
 
 #endif

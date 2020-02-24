@@ -1,5 +1,10 @@
 #include "haloreachlib-private-pch.h"
 
+void register_haloreachlib()
+{
+
+}
+
 template<typename t_type>
 class c_data_array_base
 {

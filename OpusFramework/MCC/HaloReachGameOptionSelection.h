@@ -1,6 +1,6 @@
 #pragma once
 
-class GameOptionSelection
+class HaloReachGameOptionSelection
 {
 public:
 	static void Init();
@@ -30,7 +30,7 @@ private:
 	};
 
 	static void loadSettings();
-	static const MapInfo* GetDefaultGameOptionSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex);
+	static const MapInfo* GetDefaultHaloReachGameOptionSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex);
 	static const MapInfo* GetDefaultMapSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex);
 	static void SelectMap();
 	static void SelectDifficulty();

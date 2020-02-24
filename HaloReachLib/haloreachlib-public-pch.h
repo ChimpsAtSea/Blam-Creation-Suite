@@ -1,5 +1,7 @@
 #pragma once
 
-/* LEGACY */ //#include "c_network.h"
-/* LEGACY */ #include "opus_legacy/HaloReach.h"
+#ifdef _WIN64
+
 #include "HaloReachGameHost.h"
+
+#endif

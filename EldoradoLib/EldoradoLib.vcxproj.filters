@@ -15,12 +15,35 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="EldoradoGameHost.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="platform_configuration.cpp">
+    <ClCompile Include="eldoradolib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="opus_legacy\c_network.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opus_legacy\input_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opus_legacy\local_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EldoradoGameHost.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="eldoradolib-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="eldoradolib-public-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opus_legacy\Eldorado.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc">

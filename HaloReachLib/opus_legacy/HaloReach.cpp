@@ -158,13 +158,13 @@ intptr_t load_state_offset(EngineVersion engineVersion, BuildVersion buildVersio
 	{
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_887_0_0: return 0x1810EC5A4;
-		case BuildVersion::Build_1_1035_0_0: return 0x180D37AB0;
-		case BuildVersion::Build_1_1186_0_0: return 0x180D4E674;
-		case BuildVersion::Build_1_1211_0_0: return 0x180D4F674;
-		case BuildVersion::Build_1_1246_0_0: return 0x180D494F4;
-		case BuildVersion::Build_1_1270_0_0: return 0x180D494F4;
-		case BuildVersion::Build_1_1305_0_0: return 0x180CF8AF4;
+		case BuildVersion::MCC_1_887_0_0: return 0x1810EC5A4;
+		case BuildVersion::MCC_1_1035_0_0: return 0x180D37AB0;
+		case BuildVersion::MCC_1_1186_0_0: return 0x180D4E674;
+		case BuildVersion::MCC_1_1211_0_0: return 0x180D4F674;
+		case BuildVersion::MCC_1_1246_0_0: return 0x180D494F4;
+		case BuildVersion::MCC_1_1270_0_0: return 0x180D494F4;
+		case BuildVersion::MCC_1_1305_0_0: return 0x180CF8AF4;
 		}
 	}
 	return ~intptr_t();
@@ -217,12 +217,12 @@ intptr_t main_game_launch_offset(EngineVersion engineVersion, BuildVersion build
 
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_887_0_0: return 0x180013EA0;
-		case BuildVersion::Build_1_1035_0_0: return 0x1800113F0;
-		case BuildVersion::Build_1_1186_0_0: return 0x180011860;
-		case BuildVersion::Build_1_1211_0_0: return 0x180011870;
-		case BuildVersion::Build_1_1246_0_0: return 0x180011870;
-		case BuildVersion::Build_1_1270_0_0: return 0x180011870;
+		case BuildVersion::MCC_1_887_0_0: return 0x180013EA0;
+		case BuildVersion::MCC_1_1035_0_0: return 0x1800113F0;
+		case BuildVersion::MCC_1_1186_0_0: return 0x180011860;
+		case BuildVersion::MCC_1_1211_0_0: return 0x180011870;
+		case BuildVersion::MCC_1_1246_0_0: return 0x180011870;
+		case BuildVersion::MCC_1_1270_0_0: return 0x180011870;
 		}
 	}
 	return ~intptr_t();
@@ -631,7 +631,7 @@ void halo_reach_debug_callback()
 	ImGui::End();
 }
 
-char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", EngineVersion::HaloReach, BuildVersion::Build_1_1035_0_0, 0x180A0EE08);
+char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", EngineVersion::HaloReach, BuildVersion::MCC_1_1035_0_0, 0x180A0EE08);
 
 intptr_t t_restricted_allocation_manager__reserve_memory_offset(EngineVersion engineVersion, BuildVersion buildVersion)
 {
@@ -639,7 +639,7 @@ intptr_t t_restricted_allocation_manager__reserve_memory_offset(EngineVersion en
 	{
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_1270_0_0: return 0x180211A20;
+		case BuildVersion::MCC_1_1270_0_0: return 0x180211A20;
 		}
 	}
 	return ~intptr_t();
@@ -685,8 +685,8 @@ intptr_t hs_function_table_offset(EngineVersion engineVersion, BuildVersion buil
 	{
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_1270_0_0: return 0x180ABC230;
-		case BuildVersion::Build_1_1305_0_0: return 0x180AA76C0;
+		case BuildVersion::MCC_1_1270_0_0: return 0x180ABC230;
+		case BuildVersion::MCC_1_1305_0_0: return 0x180AA76C0;
 		}
 	}
 	return ~intptr_t();
@@ -699,8 +699,8 @@ intptr_t hs_evaluate_arguments_offset(EngineVersion engineVersion, BuildVersion 
 	{
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_1270_0_0: return 0x1801EF690;
-		case BuildVersion::Build_1_1305_0_0: return 0x1801EF7A0;
+		case BuildVersion::MCC_1_1270_0_0: return 0x1801EF690;
+		case BuildVersion::MCC_1_1305_0_0: return 0x1801EF7A0;
 		}
 	}
 	return ~intptr_t();
@@ -715,8 +715,8 @@ intptr_t hs_return_offset(EngineVersion engineVersion, BuildVersion buildVersion
 	{
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_1270_0_0: return 0x1801EEE00;
-		case BuildVersion::Build_1_1305_0_0: return 0x1801EEF10;
+		case BuildVersion::MCC_1_1270_0_0: return 0x1801EEE00;
+		case BuildVersion::MCC_1_1305_0_0: return 0x1801EEF10;
 		}
 	}
 	return ~intptr_t();
@@ -742,8 +742,8 @@ intptr_t script_string_get_offset(EngineVersion engineVersion, BuildVersion buil
 	{
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_1270_0_0: return 0x1801ECF80;
-		case BuildVersion::Build_1_1305_0_0: return 0x1801ED090;
+		case BuildVersion::MCC_1_1270_0_0: return 0x1801ECF80;
+		case BuildVersion::MCC_1_1305_0_0: return 0x1801ED090;
 		}
 	}
 	return ~intptr_t();
@@ -769,8 +769,8 @@ intptr_t camera_definition_validate_offset(EngineVersion engineVersion, BuildVer
 	{
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_1270_0_0: return 0x1800E6950;
-		case BuildVersion::Build_1_1305_0_0: return 0x1800E6A00;
+		case BuildVersion::MCC_1_1270_0_0: return 0x1800E6950;
+		case BuildVersion::MCC_1_1305_0_0: return 0x1800E6A00;
 		}
 	}
 	return ~intptr_t();
@@ -852,34 +852,34 @@ void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVer
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "SpawnAiWithScriptsAndEffects", true))
 	{
 		UINT8 jmp[1] = { 0xEB };
-		if (buildVersion == BuildVersion::Build_1_1270_0_0)
+		if (buildVersion == BuildVersion::MCC_1_1270_0_0)
 		{
-			copy_to_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x18076F581, jmp, sizeof(jmp));
-			nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1270_0_0, 0x180730287, 6);
+			copy_to_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1270_0_0, 0x18076F581, jmp, sizeof(jmp));
+			nop_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1270_0_0, 0x180730287, 6);
 		}
-		if (buildVersion == BuildVersion::Build_1_1305_0_0)
+		if (buildVersion == BuildVersion::MCC_1_1305_0_0)
 		{
-			copy_to_address(EngineVersion::HaloReach, BuildVersion::Build_1_1305_0_0, 0x18076E341, jmp, sizeof(jmp));
-			nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1305_0_0, 0x18072F047, 6);
+			copy_to_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x18076E341, jmp, sizeof(jmp));
+			nop_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x18072F047, 6);
 		}
 	}
 
 	// Allow the use of night vision in multiplayer, props to Zeddikins
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "AllowNightVisionInMultiplayer", true))
 	{
-		if (buildVersion == BuildVersion::Build_1_1305_0_0)
+		if (buildVersion == BuildVersion::MCC_1_1305_0_0)
 		{
-			nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1305_0_0, 0x1805D66B7, 6);
+			nop_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x1805D66B7, 6);
 		}
 	}
 
 	// Enable debug hud coordinates
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "PanCamEnabled", true))
 	{
-		if (buildVersion == BuildVersion::Build_1_1305_0_0)
+		if (buildVersion == BuildVersion::MCC_1_1305_0_0)
 		{
-			nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1305_0_0, 0x1800DCA8A, 6);
-			nop_address(EngineVersion::HaloReach, BuildVersion::Build_1_1305_0_0, 0x1800DCA97, 6);
+			nop_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x1800DCA8A, 6);
+			nop_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x1800DCA97, 6);
 		}
 	}
 

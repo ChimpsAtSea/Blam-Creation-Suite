@@ -43,7 +43,7 @@ DWORD PatternScan::FindPattern(DWORD startOffset)
 	// use instructions length so we don't go off the end of the data
 	size_t instructions_test_length = 0;
 	auto instructions_count = Instructions.size();
-	for (int i = 0; i < instructions_count; i++)
+	for (size_t i = 0; i < instructions_count; i++)
 	{
 		Instruction* ins = Instructions[i];
 		instructions_test_length += ins->m_length;
@@ -64,7 +64,7 @@ DWORD PatternScan::FindPattern(DWORD startOffset)
 		const unsigned char* search_address = current_address;
 
 		bool success = true;
-		for (int i = 0; i < instructions_count; i++)
+		for (size_t i = 0; i < instructions_count; i++)
 		{
 			Instruction* ins = Instructions[i];
 

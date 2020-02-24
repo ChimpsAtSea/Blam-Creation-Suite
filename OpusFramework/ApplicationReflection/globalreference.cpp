@@ -133,11 +133,11 @@ GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVer
 			{
 				if (m_originalValue)
 				{
-					WriteLineVerbose("GlobalReference: Patched %s from 0x%llx to 0x%llx", m_pReferenceName, m_originalValue, patchedAddress);
+					WriteLineVerbose("GlobalReference: Patched %s from 0x%zX to 0x%zX", m_pReferenceName, m_originalValue, patchedAddress);
 				}
 				else
 				{
-					WriteLineVerbose("GlobalReference: Patched %s from <null> to 0x%llx", m_pReferenceName, patchedAddress);
+					WriteLineVerbose("GlobalReference: Patched %s from <null> to 0x%zX", m_pReferenceName, patchedAddress);
 				}
 			}
 		}
@@ -201,11 +201,11 @@ GlobalReference* GlobalReference::deinitNode(EngineVersion engineVersion, BuildV
 			{
 				if (m_originalValue)
 				{
-					WriteLineVerbose("GlobalReference: Unpatched %s from 0x%llx to 0x%llx", m_pReferenceName, patchedAddress, m_originalValue);
+					WriteLineVerbose("GlobalReference: Unpatched %s from 0x%zX to 0x%zX", m_pReferenceName, patchedAddress, m_originalValue);
 				}
 				else
 				{
-					WriteLineVerbose("GlobalReference: Unpatched %s from 0x%llx to <null>", m_pReferenceName, patchedAddress);
+					WriteLineVerbose("GlobalReference: Unpatched %s from 0x%zX to <null>", m_pReferenceName, patchedAddress);
 				}
 			}
 		}

@@ -12,7 +12,7 @@ std::wstring ConvertBigEndianWideCharString(const wchar_t* pString)
 	}
 
 	wchar_t* pLittleEndianBuffer = static_cast<wchar_t*>(alloca(sizeof(wchar_t) * characterLength));
-	for (int i = 0; i < characterLength; i++)
+	for (size_t i = 0; i < characterLength; i++)
 	{
 		pLittleEndianBuffer[i] = bswap(pString[i]);
 	}

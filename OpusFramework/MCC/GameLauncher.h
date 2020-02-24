@@ -15,11 +15,17 @@ private:
 	static void renderUI();
 	static void gameRender();
 	static void launchGame(EngineVersion engineVersion);
-	static void launchHalo1();
-	static void launchHaloReach();
 	static void checkSteamOwnership();
 	static void entireLibraryIsLoaded(const char* pLibName, const char* pFallbackDir);
 	static void renderPauseMenu();
+
+	// #TODO: Move these into each lib
+#ifdef _WIN64
+	static void launchHalo1();
+	static void launchHaloReach();
+#else
+	static void launchEldorado();
+#endif
 private:
 
 public:
@@ -79,7 +85,7 @@ private:
 //	static void DrawMainMenu();
 //	static void DrawPauseMenu();
 //
-//	static const MapInfo* GetDefaultGameOptionSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex);
+//	static const MapInfo* GetDefaultHaloReachGameOptionSelection(SelectedGameModeMapInfoIndex gameModeMapInfoIndex);
 //	static void SelectGameMode();
 //	static bool IsMapInfoCompatibleWithGameMode(GameMode gameMode, const MapInfo& rMapInfo);
 //	static const MapInfo* GetFirstSuitableGameModeMapInfo(GameMode gameMode);

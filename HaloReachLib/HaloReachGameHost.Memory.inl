@@ -1,7 +1,7 @@
 
-s_cache_file_tag_instance*& tag_instances = reference_symbol<s_cache_file_tag_instance*>("tag_instances", EngineVersion::HaloReach, BuildVersion::Build_1_1305_0_0, 0x180CF8FC0);
-uint32_t* (&tag_address_table)[] = reference_symbol<uint32_t * []>("tag_address_table", EngineVersion::HaloReach, BuildVersion::Build_1_1305_0_0, 0x183887CA0);
-char* & g_cache_file = reference_symbol<char*>("g_cache_file", EngineVersion::HaloReach, BuildVersion::Build_1_1305_0_0, 0x1825B6D90);
+s_cache_file_tag_instance*& tag_instances = reference_symbol<s_cache_file_tag_instance*>("tag_instances", EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x180CF8FC0);
+uint32_t* (&tag_address_table)[] = reference_symbol<uint32_t * []>("tag_address_table", EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x183887CA0);
+char* & g_cache_file = reference_symbol<char*>("g_cache_file", EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x1825B6D90);
 
 char* tag_address_get(uint32_t tagInstanceAddress)
 {

@@ -72,7 +72,7 @@ __int64 IOpusGameEngineHost::GameExited(unsigned int a1, char* a2, int a3)
 
 __int64 __fastcall IOpusGameEngineHost::WriteBufferToFile(LPVOID pBuffer, size_t bufferSize)
 {
-	WriteLineVerbose("IOpusGameEngineHost::Member05 WriteBufferToFile %p %016llx", pBuffer, bufferSize);
+	WriteLineVerbose("IOpusGameEngineHost::Member05 WriteBufferToFile %p %016zx", pBuffer, bufferSize);
 	return __int64(0);
 }
 

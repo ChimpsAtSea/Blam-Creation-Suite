@@ -1,5 +1,10 @@
 #include "halo1lib-private-pch.h"
 
+void register_halo1lib()
+{
+
+}
+
 #include "Halo1GameHost.Testing.inl"
 
 GameRuntime* Halo1GameHost::s_halo1GameRuntime;

@@ -6,7 +6,7 @@ intptr_t sub_18019BC50_offset(EngineVersion engineVersion, BuildVersion buildVer
 	{
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_1350_0_0: return 0x18019BC50;
+		case BuildVersion::MCC_1_1350_0_0: return 0x18019BC50;
 		}
 	}
 	return ~intptr_t();

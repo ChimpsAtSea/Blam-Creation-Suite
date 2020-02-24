@@ -129,4 +129,12 @@ constexpr decltype(auto) underlying_cast(T value)
 #define assert assert_is_banned_use_ASSERT_and_DEBUG_ASSERT
 #endif
 
+#ifdef _WIN64
+#define static_assert_64 static_assert
+#define static_assert_32(...)
+#else
+#define static_assert_64(...)
+#define static_assert_32 static_assert
+#endif
+
 #include "!Resources/ResourcesManager.h"

@@ -143,7 +143,7 @@ namespace ImGuiAddons
 
             //Render top file bar for easy navigation
             ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.882f, 0.745f, 0.078f,1.0f));
-            for(int i = 0; i < current_dirlist.size(); i++)
+            for(size_t i = 0; i < current_dirlist.size(); i++)
             {
                 if( ImGui::Button(current_dirlist[i].c_str()) )
                 {
@@ -177,13 +177,13 @@ namespace ImGuiAddons
                 filter_dirty = false;
                 filtered_dirs.clear();
                 filtered_files.clear();
-                for(int i = 0; i < subdirs.size(); i++)
+                for(size_t i = 0; i < subdirs.size(); i++)
                 {
                     if(filter.PassFilter(subdirs[i].name.c_str()))
                         filtered_dirs.push_back(&subdirs[i]);
                 }
 
-                for(int i = 0; i < subfiles.size(); i++)
+                for(size_t i = 0; i < subfiles.size(); i++)
                 {
                     if(filter.PassFilter(subfiles[i].name.c_str()))
                         filtered_files.push_back(&subfiles[i]);
@@ -211,7 +211,7 @@ namespace ImGuiAddons
             #endif // OSWIN
 
             ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.882f, 0.745f, 0.078f,1.0f));
-            for (int i = 0; i < filtered_dirs.size(); i++)
+            for (size_t i = 0; i < filtered_dirs.size(); i++)
             {
                 if(!filtered_dirs[i]->is_hidden || show_hidden)
                 {
@@ -230,7 +230,7 @@ namespace ImGuiAddons
             ImGui::PopStyleColor(1);
 
             //Output files
-            for (int i = 0; i < filtered_files.size(); i++)
+            for (size_t i = 0; i < filtered_files.size(); i++)
             {
                 if(!filtered_files[i]->is_hidden || show_hidden)
                 {
@@ -333,7 +333,7 @@ namespace ImGuiAddons
 
             //Render top file bar for easy navigation
             ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.882f, 0.745f, 0.078f,1.0f));
-            for(int i = 0; i < current_dirlist.size(); i++)
+            for(size_t i = 0; i < current_dirlist.size(); i++)
             {
                 if( ImGui::Button(current_dirlist[i].c_str()) )
                 {
@@ -376,7 +376,7 @@ namespace ImGuiAddons
 
             ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.882f, 0.745f, 0.078f,1.0f));
             int items = 0;
-            for (int i = 0; i < subdirs.size(); i++)
+            for (size_t i = 0; i < subdirs.size(); i++)
             {
                 if(!subdirs[i].is_hidden || show_hidden)
                 {
@@ -395,7 +395,7 @@ namespace ImGuiAddons
             ImGui::PopStyleColor(1);
 
             //Output files
-            for (int i = 0; i < subfiles.size(); i++)
+            for (size_t i = 0; i < subfiles.size(); i++)
             {
                 if(!subfiles[i].is_hidden || show_hidden)
                 {
@@ -436,7 +436,7 @@ namespace ImGuiAddons
             ImGui::PushItemWidth(80);
             if(ImGui::BeginCombo("##saveTypes", valid_exts[selected_ext_idx].c_str()))
             {
-                for(int i = 0; i < valid_exts.size(); i++)
+                for(size_t i = 0; i < valid_exts.size(); i++)
                 {
                     if(ImGui::Selectable(valid_exts[i].c_str(), selected_ext_idx == i))
                     {
@@ -445,7 +445,7 @@ namespace ImGuiAddons
                         size_t idx = name.find_last_of(".");
                         if(idx == std::string::npos)
                             idx = strlen(save_fn);
-                        for(int i = 0; i < valid_exts[selected_ext_idx].size(); i++)
+                        for(size_t i = 0; i < valid_exts[selected_ext_idx].size(); i++)
                             save_fn[idx++] = valid_exts[selected_ext_idx][i];
                         save_fn[idx++] = '\0';
                     }
@@ -701,7 +701,7 @@ namespace ImGuiAddons
             ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5);
             ImGui::SetNextWindowContentSize(ImVec2(0, 17 * valid_exts.size() ));
             ImGui::BeginChild("##SupportedExts", ImVec2(0, -35), true);
-            for(int i = 0; i < valid_exts.size(); i++)
+            for(size_t i = 0; i < valid_exts.size(); i++)
                 ImGui::BulletText("%s", valid_exts[i].c_str());
             ImGui::EndChild();
 

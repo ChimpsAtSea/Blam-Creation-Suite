@@ -67,7 +67,7 @@ struct ReflectionTypeContainer
 	{
 	}
 
-	ReflectionTypeContainer(std::string typeName, uint64_t size)
+	ReflectionTypeContainer(std::string typeName, uint32_t size)
 		: m_isSizeInitialized(true)
 		, m_isPrimitive(true)
 		, pRecordDeclaration(nullptr)
@@ -97,7 +97,7 @@ struct ReflectionTypeContainer
 	std::string m_typeName;
 	std::string m_qualifiedTypeName;
 	std::vector<ReflectionFieldContainer*> m_fieldsData;
-	uint64_t m_size;
+	uint32_t m_size;
 	std::string m_typeNiceName;
 	bool m_isTypeTemplate;
 	std::vector<ReflectionTypeContainer*> m_pTemplateTypes;
@@ -225,7 +225,7 @@ void CreateNiceNames(ReflectionTypeContainer& rType)
 	}
 }
 
-size_t InitTypeSizeAndOffsets(ReflectionTypeContainer& rType)
+uint32_t InitTypeSizeAndOffsets(ReflectionTypeContainer& rType)
 {
 	if (rType.m_isSizeInitialized)
 	{

@@ -8,7 +8,7 @@ intptr_t sub_141806A64_offset(EngineVersion engineVersion, BuildVersion buildVer
 	{
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_1350_0_0: return 0x141806A64;
+		case BuildVersion::MCC_1_1350_0_0: return 0x141806A64;
 		}
 	}
 	return ~intptr_t();
@@ -27,7 +27,7 @@ intptr_t CreateGameEngine_offset(EngineVersion engineVersion, BuildVersion build
 	{
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_1350_0_0: return 0x18008D2C0;
+		case BuildVersion::MCC_1_1350_0_0: return 0x18008D2C0;
 		}
 	}
 	return ~intptr_t();
@@ -43,7 +43,7 @@ intptr_t InitThread_offset(EngineVersion engineVersion, BuildVersion buildVersio
 	{
 		switch (buildVersion)
 		{
-		case BuildVersion::Build_1_1350_0_0: return 0x18008C550;
+		case BuildVersion::MCC_1_1350_0_0: return 0x18008C550;
 		}
 	}
 	return ~intptr_t();

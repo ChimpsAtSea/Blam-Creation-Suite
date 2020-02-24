@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
@@ -23,7 +31,20 @@
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
@@ -38,15 +59,31 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -68,23 +105,68 @@ set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
 
-if exist "$(ProjectDir)cmake\tbb.sln" (
+if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
 
     echo TBB is already configured
 
 ) else (
 
-    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A x64 -Thost=x64 -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake"
+    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
 
 )
 
-if exist "$(ProjectDir)cmake\$(Configuration)\tbb_static.lib" (
+if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
 
     echo TBB is already built
 	
 ) else (
 
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=x64 "$(ProjectDir)cmake\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+
+)
+</Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>set CLANG_OPTIONS=CLANG_OPTIONS=
+set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
+set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
+set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
+set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
+set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
+
+if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
+
+    echo TBB is already configured
+
+) else (
+
+    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
+
+)
+
+if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
+
+    echo TBB is already built
+	
+) else (
+
+    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
 
 )
 </Command>
@@ -117,23 +199,69 @@ set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
 
-if exist "$(ProjectDir)cmake\tbb.sln" (
+if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
 
     echo TBB is already configured
 
 ) else (
 
-    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A x64 -Thost=x64 -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake"
+    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
 
 )
 
-if exist "$(ProjectDir)cmake\$(Configuration)\tbb_static.lib" (
+if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
 
     echo TBB is already built
 	
 ) else (
 
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=x64 "$(ProjectDir)cmake\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+
+)
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>set CLANG_OPTIONS=CLANG_OPTIONS=
+set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
+set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
+set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
+set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
+set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
+
+if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
+
+    echo TBB is already configured
+
+) else (
+
+    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
+
+)
+
+if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
+
+    echo TBB is already built
+	
+) else (
+
+    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
 
 )
 </Command>

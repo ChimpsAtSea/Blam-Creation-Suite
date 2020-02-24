@@ -93,10 +93,10 @@ struct GameContext
 };
 #pragma pack(pop)
 static constexpr size_t byte2B678_Offset = offsetof(GameContext, GameContext::byte2B678);
-static_assert(byte2B678_Offset + 32 == 177944);
+static_assert_64(byte2B678_Offset + 32 == 177944);
 
 static constexpr size_t SessionInfo_Offset = offsetof(GameContext, GameContext::SessionInfo.HostAddress);
-static_assert(SessionInfo_Offset == 0x2B6F0);
+static_assert_64(SessionInfo_Offset == 0x2B6F0);
 
 enum class eEngineState : int
 {
@@ -148,7 +148,7 @@ public: // instance functions
 	virtual __int64 __fastcall Member10() = 0;
 };
 static constexpr size_t IGameEngineBaseSize = sizeof(IGameEngine);
-static_assert(IGameEngineBaseSize == 0x8, "IGameEngineBase is incorrect size");
+static_assert_64(IGameEngineBaseSize == 0x8, "IGameEngineBase is incorrect size");
 
 class IGameEngineHaloReach : public IGameEngine
 {
@@ -161,10 +161,10 @@ public:
 	char unknown450[16];
 };
 static constexpr size_t IGameEngineSize = sizeof(IGameEngineHaloReach);
-static_assert(IGameEngineSize == 0x460, "IGameEngineHaloReach is incorrect size");
+static_assert_64(IGameEngineSize == 0x460, "IGameEngineHaloReach is incorrect size");
 static constexpr size_t unknown8Offset = offsetof(IGameEngineHaloReach, IGameEngineHaloReach::unknown8);
-static_assert(unknown8Offset == 0x8, "unknown8 is incorrect offset");
+static_assert_64(unknown8Offset == 0x8, "unknown8 is incorrect offset");
 static constexpr size_t header430Offset = offsetof(IGameEngineHaloReach, IGameEngineHaloReach::header430);
-static_assert(header430Offset == 0x430, "header430 is incorrect offset");
+static_assert_64(header430Offset == 0x430, "header430 is incorrect offset");
 static constexpr size_t header440Offset = offsetof(IGameEngineHaloReach, IGameEngineHaloReach::header440);
-static_assert(header440Offset == 0x440, "header440 is incorrect offset");
+static_assert_64(header440Offset == 0x440, "header440 is incorrect offset");

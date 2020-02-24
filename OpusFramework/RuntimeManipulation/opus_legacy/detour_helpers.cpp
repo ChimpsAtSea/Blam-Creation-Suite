@@ -56,7 +56,7 @@ void nop_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_
 	char* pNopAttack = pBeginning + (offset - 0x180000000);
 
 	char nop = 0x90i8;
-	for (int i = 0; i < count; i++)
+	for (size_t i = 0; i < count; i++)
 	{
 		memcpy_virtual(pNopAttack + i, &nop, 1);
 	}

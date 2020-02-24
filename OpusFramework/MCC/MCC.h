@@ -14,7 +14,9 @@
 
 #include "MouseInput.h"
 #include "GameLauncher.h"
-#include "GameOptionSelection.h"
+#ifdef _WIN64
+#include "HaloReachGameOptionSelection.h"
+#endif
 #include "GameRuntime.h"
 
 #include "IOpusGameEngineHost.h"

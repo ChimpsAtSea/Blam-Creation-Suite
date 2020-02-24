@@ -5,7 +5,7 @@ bool SystemPatch::s_patchedEnumWindows = false;
 thread_local WNDENUMPROC s_lpEnumFunc = nullptr;
 thread_local bool s_processedWindow = false;
 
-BOOL EnumWindowsSort(HWND hWnd, LPARAM lParam)
+BOOL CALLBACK EnumWindowsSort(HWND hWnd, LPARAM lParam)
 {
 	bool isExcluded = false;
 	isExcluded |= hWnd == GetConsoleWindow();

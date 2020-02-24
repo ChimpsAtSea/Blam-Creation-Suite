@@ -25,16 +25,16 @@ struct c_file_array
 
 	c_file_array(std::vector<std::string> fileDirs, std::vector<std::string> pExtensions, int (*pReadInfoFunction)(LPCSTR pName, std::string* name, std::string* desc, LPCSTR path));
 
-	LPCSTR GetFilePath(int index);
+	LPCSTR GetFilePath(size_t index);
 	LPCSTR GetFilePath(LPCSTR pStr);
-	LPCSTR GetFileName(int index);
+	LPCSTR GetFileName(size_t index);
 	LPCSTR GetFileName(LPCSTR pStr);
-	LPCSTR GetName(int index);
+	LPCSTR GetName(size_t index);
 	LPCSTR GetName(LPCSTR pStr);
-	LPCSTR GetDesc(int index);
+	LPCSTR GetDesc(size_t index);
 	LPCSTR GetDesc(LPCSTR pStr);
-	int GetType(int index);
+	int GetType(size_t index);
 	int GetType(LPCSTR pStr);
-	bool Match(int type);
+	bool Match(uint32_t type);
 	bool Match(LPCSTR pStr);
 };

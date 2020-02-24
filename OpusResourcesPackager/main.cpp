@@ -1,5 +1,4 @@
 #include <Shared\shared-public-pch.h>
-#include <HaloReachLib\haloreachlib-private-pch.h>
 
 const char* ResourcesManager::s_pModuleName = NULL;
 

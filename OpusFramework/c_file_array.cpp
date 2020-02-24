@@ -35,7 +35,7 @@ c_file_array::c_file_array(std::vector<std::string> fileDirs, std::vector<std::s
 	}
 }
 
-LPCSTR c_file_array::GetFilePath(int index)
+LPCSTR c_file_array::GetFilePath(size_t index)
 {
 	LPCSTR result = "";
 	if (index >= 0 && index < Count)
@@ -49,7 +49,7 @@ LPCSTR c_file_array::GetFilePath(int index)
 LPCSTR c_file_array::GetFilePath(LPCSTR pStr)
 {
 	LPCSTR result = "";
-	for (int i = 0; i < Count; i++)
+	for (size_t i = 0; i < Count; i++)
 	{
 		if (Files[i].Match(pStr))
 		{
@@ -60,7 +60,7 @@ LPCSTR c_file_array::GetFilePath(LPCSTR pStr)
 	return result;
 }
 
-LPCSTR c_file_array::GetFileName(int index)
+LPCSTR c_file_array::GetFileName(size_t index)
 {
 	LPCSTR result = "";
 	if (index >= 0 && index < Count)
@@ -74,7 +74,7 @@ LPCSTR c_file_array::GetFileName(int index)
 LPCSTR c_file_array::GetFileName(LPCSTR pStr)
 {
 	LPCSTR result = "";
-	for (int i = 0; i < Count; i++)
+	for (size_t i = 0; i < Count; i++)
 	{
 		if (Files[i].Match(pStr))
 		{
@@ -85,7 +85,7 @@ LPCSTR c_file_array::GetFileName(LPCSTR pStr)
 	return result;
 }
 
-LPCSTR c_file_array::GetName(int index)
+LPCSTR c_file_array::GetName(size_t index)
 {
 	LPCSTR result = "";
 	if (index >= 0 && index < Count)
@@ -101,7 +101,7 @@ LPCSTR c_file_array::GetName(LPCSTR pStr)
 	LPCSTR result = "";
 	if (pStr)
 	{
-		for (int i = 0; i < Count; i++)
+		for (size_t i = 0; i < Count; i++)
 		{
 			if (Files[i].Match(pStr))
 			{
@@ -113,7 +113,7 @@ LPCSTR c_file_array::GetName(LPCSTR pStr)
 	return result;
 }
 
-LPCSTR c_file_array::GetDesc(int index)
+LPCSTR c_file_array::GetDesc(size_t index)
 {
 	LPCSTR result = "";
 	if (index >= 0 && index < Count)
@@ -127,7 +127,7 @@ LPCSTR c_file_array::GetDesc(int index)
 LPCSTR c_file_array::GetDesc(LPCSTR pStr)
 {
 	LPCSTR result = "";
-	for (int i = 0; i < Count; i++)
+	for (size_t i = 0; i < Count; i++)
 	{
 		if (Files[i].Match(pStr))
 		{
@@ -138,7 +138,7 @@ LPCSTR c_file_array::GetDesc(LPCSTR pStr)
 	return result;
 }
 
-int c_file_array::GetType(int index)
+int c_file_array::GetType(size_t index)
 {
 	int result = -1;
 	if (index >= 0 && index < Count)
@@ -152,7 +152,7 @@ int c_file_array::GetType(int index)
 int c_file_array::GetType(LPCSTR pStr)
 {
 	int result = -1;
-	for (int i = 0; i < Count; i++)
+	for (size_t i = 0; i < Count; i++)
 	{
 		if (Files[i].Match(pStr))
 		{
@@ -163,10 +163,10 @@ int c_file_array::GetType(LPCSTR pStr)
 	return result;
 }
 
-bool c_file_array::Match(int type)
+bool c_file_array::Match(uint32_t type)
 {
 	bool result = false;
-	for (int i = 0; i < Count; i++)
+	for (size_t i = 0; i < Count; i++)
 	{
 		if (Files[i].Match(type))
 		{
@@ -179,7 +179,7 @@ bool c_file_array::Match(int type)
 bool c_file_array::Match(LPCSTR pStr)
 {
 	bool result = false;
-	for (int i = 0; i < Count; i++)
+	for (size_t i = 0; i < Count; i++)
 	{
 		if (Files[i].Match(pStr))
 		{
