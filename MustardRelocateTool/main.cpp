@@ -573,9 +573,9 @@ void insert_virtual_address_padding(DWORD virtual_address_padding, const char* c
 			for (; original_image_thunk_data->u1.Function; original_image_thunk_data++)
 			{
 #ifdef _WIN64
-				if (image_thunk_data->u1.Ordinal & IMAGE_ORDINAL_FLAG64)
+				if (original_image_thunk_data->u1.Ordinal & IMAGE_ORDINAL_FLAG64)
 				{
-					ULONGLONG ordinal = IMAGE_ORDINAL64(image_thunk_data->u1.Ordinal);
+					ULONGLONG ordinal = IMAGE_ORDINAL64(original_image_thunk_data->u1.Ordinal);
 					printf("\tordinal:%llu\n", ordinal);
 				}
 #else
