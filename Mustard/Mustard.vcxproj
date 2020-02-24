@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>C:\HaloOnline\ms23\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformShortName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -81,11 +81,13 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformShortName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>C:\HaloOnline\ms23\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformShortName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -93,6 +95,8 @@
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformShortName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -106,6 +110,19 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Dbghelp.lib;detours.lib;syelog.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 117440512
+
+if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
+  echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
+) else (
+ if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
+  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerCommand)" /Y
+ )
+)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -119,6 +136,19 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Dbghelp.lib;detours.lib;syelog.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 117440512
+
+if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
+  echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
+) else (
+ if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
+  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerCommand)" /Y
+ )
+)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -136,6 +166,19 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Dbghelp.lib;detours.lib;syelog.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 117440512
+
+if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
+  echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
+) else (
+ if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
+  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerCommand)" /Y
+ )
+)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -153,6 +196,19 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Dbghelp.lib;detours.lib;syelog.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 117440512
+
+if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
+  echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
+) else (
+ if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
+  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerCommand)" /Y
+ )
+)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

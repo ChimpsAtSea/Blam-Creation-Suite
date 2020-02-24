@@ -638,6 +638,13 @@ int main(int argc, const char* argv[])
 
 	{
 		HANDLE executable_file = CreateFileA(target_executable, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+		if (executable_file == INVALID_HANDLE_VALUE)
+		{
+			while (executable_file == INVALID_HANDLE_VALUE) {
+				printf("%s\n", target_executable);
+				executable_file = CreateFileA(target_executable, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+			}
+		}
 		assert(executable_file != INVALID_HANDLE_VALUE);
 
 		LARGE_INTEGER file_size = {};
