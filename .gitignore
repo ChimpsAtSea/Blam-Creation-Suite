@@ -349,3 +349,5 @@ MantleLib/Tags/ReflectionData.cpp
 
 #CommandLineOptions Plugin
 *.args.json
+!Libraries/lib/x64
+!Libraries/lib/x86
