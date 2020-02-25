@@ -131,24 +131,28 @@ IMAGE_SECTION_HEADER* get_section_header(const char* section_name, IMAGE_NT_HEAD
 	return nullptr;
 }
 
-void rebase_executable_code(DWORD new_virtual_address, char* raw_image_data, IMAGE_NT_HEADERS* raw_nt_headers, IMAGE_SECTION_HEADER* raw_section_header)
+void rebase_executable_code(UINT_PTR new_virtual_address, char* raw_image_data, IMAGE_NT_HEADERS* raw_nt_headers, IMAGE_SECTION_HEADER* raw_section_header)
 {
 	if (raw_nt_headers->OptionalHeader.ImageBase == new_virtual_address)
 	{
-		printf("Image already has base address 0x%X\n", new_virtual_address);
+		printf("Image already has base address 0x%zX\n", new_virtual_address);
 		return; // skipping
 	}
-	DWORD virtual_address_delta = new_virtual_address - raw_nt_headers->OptionalHeader.ImageBase;
+	else
+	{
+		printf("Rebasing to 0x%zX\n", new_virtual_address);
+	}
+	UINT_PTR virtual_address_delta = new_virtual_address - raw_nt_headers->OptionalHeader.ImageBase;
 	raw_nt_headers->OptionalHeader.ImageBase += virtual_address_delta;
 
 	int virtual_address_delta_signed = static_cast<int>(virtual_address_delta);
 	if (virtual_address_delta_signed >= 0)
 	{
-		printf("virtual_address_delta 0x%X\n", virtual_address_delta);
+		printf("virtual_address_delta 0x%zX\n", virtual_address_delta);
 	}
 	else
 	{
-		printf("virtual_address_delta -0x%X\n", ~virtual_address_delta + 1);
+		printf("virtual_address_delta -0x%zX\n", ~virtual_address_delta + 1);
 	}
 
 	const IMAGE_SECTION_HEADER* raw_relocation_section = get_section_header(".reloc", raw_nt_headers, raw_section_header);
@@ -175,11 +179,11 @@ void rebase_executable_code(DWORD new_virtual_address, char* raw_image_data, IMA
 			const RelocationData* current_relocation_data = relocation_data + i;
 
 			DWORD relative_virtual_address = image_base_relocation->VirtualAddress + current_relocation_data->Offset;
-			DWORD virtual_address = raw_nt_headers->OptionalHeader.ImageBase + relative_virtual_address;
+			UINT_PTR virtual_address = raw_nt_headers->OptionalHeader.ImageBase + relative_virtual_address;
 			DWORD relative_raw_address = relative_virtual_address_to_relative_raw_address(relative_virtual_address, raw_image_data);
 
 			const char* relocation_type_str = relocation_type_to_string(current_relocation_data->Type);
-			printf("\t%s RVA@0x%X VA@0x%X RRA@0x%X", relocation_type_str, relative_virtual_address, virtual_address, relative_raw_address);
+			printf("\t%s RVA@0x%X VA@0x%zX RRA@0x%X", relocation_type_str, relative_virtual_address, virtual_address, relative_raw_address);
 			switch (current_relocation_data->Type)
 			{
 			case IMAGE_REL_BASED_ABSOLUTE:
@@ -188,15 +192,16 @@ void rebase_executable_code(DWORD new_virtual_address, char* raw_image_data, IMA
 			{
 				DWORD& relocation_virtual_address = *reinterpret_cast<DWORD*>(raw_image_data + relative_raw_address);
 				printf(" [0x%X]", relocation_virtual_address);
-				relocation_virtual_address += virtual_address_delta;
+				// #TODO: Double check how this is handled for 64bit images
+				assert(virtual_address_delta < ~DWORD()); // can't support more than 32bits of difference at the moment
+				relocation_virtual_address += static_cast<DWORD>(virtual_address_delta);
 				printf("->[0x%X]", relocation_virtual_address);
 
 				break;
 			}
-			case IMAGE_REL_BASED_DIR64:
-				break;
-			default:
+			case IMAGE_REL_BASED_DIR64: // #TODO: Add support for IMAGE_REL_BASED_DIR64
 				printf(" (unsupported)");
+				throw; // unsupported
 				break;
 			}
 			printf("\n");
@@ -585,7 +590,7 @@ void insert_virtual_address_padding(DWORD virtual_address_padding, const char* c
 				else
 				{
 					original_image_thunk_data->u1.Function += virtual_address_padding;
-					const char* import_name = reinterpret_cast<const char*>(raw_image_data + relative_virtual_address_to_relative_raw_address((original_image_thunk_data->u1.Function + 2), raw_image_data));
+					const char* import_name = reinterpret_cast<const char*>(raw_image_data + relative_virtual_address_to_relative_raw_address(static_cast<DWORD>(original_image_thunk_data->u1.Function + 2), raw_image_data));
 					printf("\t%s (original thunk)\n", import_name);
 				}
 			}
@@ -611,7 +616,7 @@ void insert_virtual_address_padding(DWORD virtual_address_padding, const char* c
 				else
 				{
 					image_thunk_data->u1.Function += virtual_address_padding;
-					const char* import_name = reinterpret_cast<const char*>(raw_image_data + relative_virtual_address_to_relative_raw_address((image_thunk_data->u1.Function + 2), raw_image_data));
+					const char* import_name = reinterpret_cast<const char*>(raw_image_data + relative_virtual_address_to_relative_raw_address(static_cast<DWORD>(image_thunk_data->u1.Function + 2), raw_image_data));
 					printf("\t%s\n", import_name);
 				}
 			}
@@ -685,10 +690,10 @@ int main(int argc, const char* argv[])
 			LPVOID section_virtual_address_ptr = reinterpret_cast<LPVOID>(section_virtual_address);
 			IMAGE_SECTION_HEADER* raw_section_header = reinterpret_cast<IMAGE_SECTION_HEADER*>(raw_nt_headers + 1);
 
-			DWORD application_virtual_address = custom_base_address;
+			UINT_PTR application_virtual_address = custom_base_address;
 			DWORD inserted_data_size = custom_section_size; 
-			DWORD new_virtual_address = application_virtual_address + inserted_data_size;
-			DWORD virtual_address_delta = new_virtual_address - raw_nt_headers->OptionalHeader.ImageBase;
+			UINT_PTR new_virtual_address = application_virtual_address + inserted_data_size;
+			UINT_PTR virtual_address_delta = new_virtual_address - raw_nt_headers->OptionalHeader.ImageBase;
 
 			IMAGE_SECTION_HEADER* opus_section_header = get_section_header(custom_section_name, raw_nt_headers, raw_section_header);
 			if (opus_section_header)

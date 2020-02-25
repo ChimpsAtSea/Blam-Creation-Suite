@@ -44,6 +44,9 @@
     <ClInclude Include="opus_legacy\Eldorado.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tls_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc">

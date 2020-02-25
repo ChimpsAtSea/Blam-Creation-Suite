@@ -9,4 +9,6 @@
 
 #include "eldoradolib-public-pch.h"
 
+#include "tls_data.h"
+
 #endif

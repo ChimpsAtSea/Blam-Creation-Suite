@@ -12,7 +12,7 @@ int main(int argc, const char* argv[])
 {
 	{ //  force some random data into g_thread_local_data
 		int value;
-		memset(g_thread_local_data, (int)&value, sizeof(g_thread_local_data));
+		memset(g_thread_local_data, static_cast<int>(reinterpret_cast<intptr_t>(&value)), sizeof(g_thread_local_data));
 	}
 
 	HINSTANCE project21 = LoadLibraryA("Mustard.dll");

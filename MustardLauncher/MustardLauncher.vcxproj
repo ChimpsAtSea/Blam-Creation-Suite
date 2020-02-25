@@ -108,7 +108,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <BaseAddress>0x2400000</BaseAddress>
-      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/ignore:4099 /ignore:4281 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -128,8 +128,8 @@
       <LargeAddressAware>true</LargeAddressAware>
       <FixedBaseAddress>false</FixedBaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <BaseAddress>0x14000000</BaseAddress>
-      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/ignore:4099 /ignore:4281 %(AdditionalOptions)</AdditionalOptions>
+      <BaseAddress>0x2400000</BaseAddress>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -154,7 +154,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <BaseAddress>0x2400000</BaseAddress>
-      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/ignore:4099 /ignore:4281 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -178,8 +178,8 @@
       <LargeAddressAware>true</LargeAddressAware>
       <FixedBaseAddress>false</FixedBaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <BaseAddress>0x14000000</BaseAddress>
-      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/ignore:4099 /ignore:4281 %(AdditionalOptions)</AdditionalOptions>
+      <BaseAddress>0x2400000</BaseAddress>
     </Link>
     <PostBuildEvent>
       <Command>

@@ -115,6 +115,7 @@
     <ClInclude Include="opus_legacy\Eldorado.h" />
     <ClInclude Include="opus_legacy\input_types.h" />
     <ClInclude Include="opus_legacy\local_types.h" />
+    <ClInclude Include="tls_data.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />
