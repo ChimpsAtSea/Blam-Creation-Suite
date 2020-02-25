@@ -244,7 +244,7 @@ void apply_module_thread_local_storage_fixup(HINSTANCE module)
 	}
 }
 
-__declspec(dllexport) int main(int argc, const char* argv[])
+int main()
 {
 	HMODULE current_module = GetModuleHandleA(NULL);
 	assert(current_module == reinterpret_cast<void*>(intptr_t(0x00400000)));
@@ -259,7 +259,10 @@ __declspec(dllexport) int main(int argc, const char* argv[])
 	entry_point_function* entry_point = get_module_entry_point(executable_module);
 	assert(entry_point);
 	entry_point();
-	return 0;
+
+	// the entry point should exit the process and not reach this code
+	_wassert(L"Unexpected code region", _CRT_WIDE(__FILE__), __LINE__);
+	return 1;
 }
 
 BOOL WINAPI DllMain(
@@ -268,15 +271,10 @@ BOOL WINAPI DllMain(
 	_In_ LPVOID    lpvReserved
 )
 {
-	switch (fdwReason)
+	if (fdwReason == DLL_PROCESS_ATTACH)
 	{
-	case DLL_PROCESS_ATTACH:
-	case DLL_THREAD_ATTACH:
-	case DLL_THREAD_DETACH:
-	case DLL_PROCESS_DETACH:
-		break;
+		main(); // hijack the process
 	}
-
 	return TRUE;
 }
 
