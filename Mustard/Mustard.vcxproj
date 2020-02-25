@@ -29,26 +29,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>ClangCL</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>ClangCL</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>ClangCL</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>ClangCL</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -109,9 +109,13 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Dbghelp.lib;detours.lib;syelog.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
+      <GenerateMapFile>true</GenerateMapFile>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 117440512
+      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+$(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
@@ -135,9 +139,13 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Dbghelp.lib;detours.lib;syelog.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
+      <GenerateMapFile>true</GenerateMapFile>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 117440512
+      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+$(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
@@ -165,9 +173,13 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Dbghelp.lib;detours.lib;syelog.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
+      <GenerateMapFile>true</GenerateMapFile>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 117440512
+      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+$(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
@@ -195,9 +207,13 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>Dbghelp.lib;detours.lib;syelog.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
+      <GenerateMapFile>true</GenerateMapFile>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 117440512
+      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+$(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\" /Y

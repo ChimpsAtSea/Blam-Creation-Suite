@@ -22,7 +22,7 @@ HINSTANCE load_executable(const char* executable_name)
 	//BOOL closeHandleResult = CloseHandle(executable_file_mapping);
 	//assert(closeHandleResult != 0);
 
-	void* executable_data = VirtualAlloc(NULL, file_size.QuadPart, MEM_RESERVE | MEM_COMMIT | MEM_TOP_DOWN, PAGE_READWRITE);
+	void* executable_data = VirtualAlloc(NULL, static_cast<SIZE_T>(file_size.QuadPart), MEM_RESERVE | MEM_COMMIT | MEM_TOP_DOWN, PAGE_READWRITE);
 
 	DWORD numberOfBytesRead;
 	assert(file_size.QuadPart < ~DWORD());
@@ -187,7 +187,7 @@ void hook(void* function, void* hook)
 	assert(virtualProtectResult != 0);
 
 	char* function_data = reinterpret_cast<char*>(function);
-	function_data[0] = 0xe9; // jump
+	function_data[0] = 0xe9i8; // jump
 
 	void** jump_dest = reinterpret_cast<void**>(function_data + 1);
 	*jump_dest = hook;
@@ -416,7 +416,6 @@ struct __declspec(align(4)) tls_data
 	struct flocks_globals* flocks;
 	struct formations_globals* formations;
 	int vision_mode;
-	int unknown580;
 };
 
 
@@ -432,6 +431,8 @@ DWORD* __cdecl sub_E23D10_hook(int a1)
 
 __declspec(dllexport) int main(int argc, const char* argv[])
 {
+	DWORD custom_tls_index = TlsAlloc();
+
 	HMODULE x = GetModuleHandleA(NULL);
 
 	void* test = (void*)(0x00400000);
@@ -484,22 +485,19 @@ __declspec(dllexport) int main(int argc, const char* argv[])
 
 		DWORD custom_import_descriptor_size;
 		IMAGE_TLS_DIRECTORY* const custom_tls_data_directory = static_cast<IMAGE_TLS_DIRECTORY*>(ImageDirectoryEntryToData(custom_module, TRUE, IMAGE_DIRECTORY_ENTRY_TLS, &custom_import_descriptor_size));
-		IMAGE_TLS_DIRECTORY custom_tls_data_directory_data = *custom_tls_data_directory;
+		
 
 		assert(custom_import_descriptor_size > 0);
 		assert(custom_tls_data_directory != nullptr);
 
-		static DWORD& g_tls_index_opus = *(DWORD*)(opus_tls_data_directory->AddressOfIndex);
-		static DWORD& g_tls_index_eldorado = *(DWORD*)(custom_tls_data_directory->AddressOfIndex);
+		DWORD* g_tls_index_opus			= (DWORD*)(opus_tls_data_directory->AddressOfIndex);
+		DWORD* g_tls_index_eldorado		= (DWORD*)(custom_tls_data_directory->AddressOfIndex);
 
-		//DWORD custom_tls_index = TlsAlloc();
-		//g_tls_index_eldorado = custom_tls_index;
+		//*g_tls_index_eldorado = custom_tls_index;
 
-		auto v2 = *(tls_data**)(__readfsdword(0x2Cu) + 4 * g_tls_index_opus);
-		static constexpr size_t tls_data_size = sizeof(tls_data);
+		auto& v2 = *(tls_data**)(__readfsdword(0x2Cu) + 4 * *g_tls_index_opus);
 
 		size_t tls_raw_data_size = custom_tls_data_directory->EndAddressOfRawData - custom_tls_data_directory->StartAddressOfRawData;
-
 		memcpy(v2, (void*)custom_tls_data_directory->StartAddressOfRawData, tls_raw_data_size);
 
 		static void** custom_tls_callbacks = (void**)(custom_tls_data_directory->AddressOfCallBacks);

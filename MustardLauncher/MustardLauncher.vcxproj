@@ -108,6 +108,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <BaseAddress>0x2400000</BaseAddress>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -128,6 +129,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <BaseAddress>0x14000000</BaseAddress>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -152,6 +154,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <BaseAddress>0x2400000</BaseAddress>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -176,6 +179,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <BaseAddress>0x14000000</BaseAddress>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>

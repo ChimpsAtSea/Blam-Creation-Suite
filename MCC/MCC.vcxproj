@@ -73,10 +73,10 @@
       <AdditionalDependencies>Shared.lib;Mantle.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;steam_api64.lib;opusframework.lib;haloreachlib.lib;halo1lib.lib;ketchup.lib;tbb_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(TargetDir)$(TargetName).bin</MapFileName>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(OutDir)$(TargetName).bin" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
+      <Command>$(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
@@ -109,10 +109,10 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <AdditionalDependencies>Shared.lib;Mantle.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;steam_api64.lib;opusframework.lib;haloreachlib.lib;halo1lib.lib;ketchup.lib;tbb_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(TargetDir)$(TargetName).bin</MapFileName>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(OutDir)$(TargetName).bin" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
+      <Command>$(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y

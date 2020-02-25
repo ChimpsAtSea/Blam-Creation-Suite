@@ -375,18 +375,15 @@ void insert_virtual_address_padding(DWORD virtual_address_padding, const char* c
 
 	if (insert_front)
 	{
-		for (int i = 0; i < raw_nt_headers->OptionalHeader.NumberOfRvaAndSizes; i++)
+		for (DWORD dataDirectoryIndex = 0; dataDirectoryIndex < raw_nt_headers->OptionalHeader.NumberOfRvaAndSizes; dataDirectoryIndex++)
 		{
-			if (raw_nt_headers->OptionalHeader.DataDirectory[i].VirtualAddress != 0)
+			IMAGE_DATA_DIRECTORY& current_data_directory = raw_nt_headers->OptionalHeader.DataDirectory[dataDirectoryIndex];
+			if (current_data_directory.VirtualAddress != 0)
 			{
-				raw_nt_headers->OptionalHeader.DataDirectory[i].VirtualAddress += virtual_address_padding;
+				current_data_directory.VirtualAddress += virtual_address_padding;
 			}
 		}
 	}
-
-
-
-
 
 	// fixup the resources data directory (should be the same)
 	{
@@ -622,9 +619,21 @@ void insert_virtual_address_padding(DWORD virtual_address_padding, const char* c
 	}
 }
 
+DWORD parse_ul(const char* str)
+{
+	if (strlen(str) >= 2 && str[0] == '0' && (str[1] == 'x' || str[1] == 'X'))
+	{
+		return strtoul(str + 2, nullptr, 16);
+	}
+	else
+	{
+		return strtoul(str, nullptr, 10);
+	}
+}
+
 int main(int argc, const char* argv[])
 {
-	if (argc != 4)
+	if (argc != 5)
 	{
 		printf("Incorrect number of arguments\n");
 		return 1;
@@ -632,8 +641,10 @@ int main(int argc, const char* argv[])
 
 	const char* target_executable = argv[1];
 	const char* custom_section_name = argv[2];
-	const char* custom_section_size_str = argv[3];
-	int custom_section_size = atoi(custom_section_size_str);
+	const char* custom_base_address_str = argv[3];
+	const char* custom_section_size_str = argv[4];
+	DWORD custom_base_address = parse_ul(custom_base_address_str);
+	DWORD custom_section_size = parse_ul(custom_section_size_str);
 
 
 	{
@@ -652,7 +663,7 @@ int main(int argc, const char* argv[])
 		assert(getFileSizeExResult != 0);
 
 		HANDLE executable_file_mapping = CreateFileMappingA(executable_file, NULL, PAGE_READWRITE, file_size.HighPart, file_size.LowPart, NULL);
-		void* file_mapping = MapViewOfFile(executable_file_mapping, FILE_MAP_ALL_ACCESS, 0, 0, file_size.QuadPart);
+		void* file_mapping = MapViewOfFile(executable_file_mapping, FILE_MAP_ALL_ACCESS, 0, 0, static_cast<SIZE_T>(file_size.QuadPart));
 
 
 
@@ -674,8 +685,8 @@ int main(int argc, const char* argv[])
 			LPVOID section_virtual_address_ptr = reinterpret_cast<LPVOID>(section_virtual_address);
 			IMAGE_SECTION_HEADER* raw_section_header = reinterpret_cast<IMAGE_SECTION_HEADER*>(raw_nt_headers + 1);
 
-			DWORD application_virtual_address = 0x400000;
-			DWORD inserted_data_size = 0x0760A000;
+			DWORD application_virtual_address = custom_base_address;
+			DWORD inserted_data_size = custom_section_size; 
 			DWORD new_virtual_address = application_virtual_address + inserted_data_size;
 			DWORD virtual_address_delta = new_virtual_address - raw_nt_headers->OptionalHeader.ImageBase;
 
