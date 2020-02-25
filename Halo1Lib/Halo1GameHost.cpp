@@ -13,7 +13,7 @@ GameRuntime& Halo1GameHost::GetGameRuntime()
 {
 	if (s_halo1GameRuntime == nullptr)
 	{
-		s_halo1GameRuntime = new GameRuntime("halo1", "Halo1\\halo1.dll");
+		s_halo1GameRuntime = new GameRuntime(EngineVersion::Halo1, "halo1", "Halo1\\halo1.dll");
 	}
 
 	return *s_halo1GameRuntime;
@@ -68,7 +68,7 @@ Halo1GameHost::~Halo1GameHost()
 
 	GameRuntime& rHalo1GameRuntime = GetGameRuntime();
 	rHalo1GameRuntime.~GameRuntime();
-	new(&rHalo1GameRuntime) GameRuntime("halo1", "Halo1\\halo1.dll");
+	new(&rHalo1GameRuntime) GameRuntime(EngineVersion::Halo1, "halo1", "Halo1\\halo1.dll");
 }
 
 void Halo1GameHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)

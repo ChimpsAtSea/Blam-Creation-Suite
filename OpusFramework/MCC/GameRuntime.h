@@ -2,7 +2,7 @@
 class GameRuntime
 {
 public:
-	GameRuntime(const char* pEngineName, const char* pLibFileName);
+	GameRuntime(EngineVersion engineVersion, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule = false);
 	~GameRuntime();
 
 	IDataAccess* GetDataAccess() const { return m_pDataAccess; };

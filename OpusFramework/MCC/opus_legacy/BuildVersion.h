@@ -88,14 +88,14 @@ constexpr intptr_t GetEngineTopAddress(EngineVersion engineVersion, BuildVersion
 		switch (buildVersion)
 		{
 		case BuildVersion::Eldorado_1_106708_cert_ms23:
-			return ~intptr_t(); // #TODO: Get top address of ms23
+			return 0x06A0B000;
 		}
 	}
 #endif
 	return ~intptr_t();
 }
 
-constexpr const char* GetEngineFilename(EngineVersion engineVersion)
+constexpr const char* GetEngineModuleFileName(EngineVersion engineVersion)
 {
 	switch (engineVersion)
 	{
@@ -104,7 +104,9 @@ constexpr const char* GetEngineFilename(EngineVersion engineVersion)
 	case EngineVersion::Halo1:
 		return "halo1.dll";
 	case EngineVersion::MCC:
-		return "MCC-Win64-Shipping_Debug.exe";
+		return "MCC-Win64-Shipping.exe";
+	case EngineVersion::Eldorado:
+		return "eldorado.exe";
 	}
 	FATAL_ERROR(L"Unsupported GameVersion");
 }

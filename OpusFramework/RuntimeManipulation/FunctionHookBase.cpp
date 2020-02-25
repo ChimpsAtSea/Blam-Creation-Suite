@@ -66,7 +66,7 @@ FunctionHookBase* FunctionHookBase::InitNode(EngineVersion engineVersion, BuildV
 		}
 		else
 		{
-			populate_function_ptr(GetEngineFilename(engineVersion), GetEngineBaseAddress(engineVersion), m_offset, rBase);
+			populate_function_ptr(GetEngineModuleFileName(engineVersion), GetEngineBaseAddress(engineVersion), m_offset, rBase);
 			WriteLineVerbose("Created function pointer for %s", pFunctionName);
 		}
 

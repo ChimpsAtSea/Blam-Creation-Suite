@@ -1,6 +1,6 @@
 #include "opusframework-private-pch.h"
 
-GameRuntime::GameRuntime(const char* pEngineName, const char* pLibFileName)
+GameRuntime::GameRuntime(EngineVersion engineVersion, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule)
 	: m_engineName(pEngineName)
 	, m_buildVersion(GetLibraryBuildVersion(pLibFileName)), m_enginePath(pLibFileName)
 {
@@ -11,11 +11,18 @@ GameRuntime::GameRuntime(const char* pEngineName, const char* pLibFileName)
 		return;
 	}
 
-	loadLibrary(pLibFileName);
+	if (!useExistingLoadedModule)
+	{
+		loadLibrary(pLibFileName);
 
-	m_pDataAccess = nullptr;
-	__int64 createDataAccessResult = CreateDataAccess(&m_pDataAccess);
-	ASSERT(m_pDataAccess != nullptr);
+		m_pDataAccess = nullptr;
+		__int64 createDataAccessResult = CreateDataAccess(&m_pDataAccess);
+		ASSERT(m_pDataAccess != nullptr);
+	}
+	else
+	{
+		hGameModule = static_cast<HINSTANCE>(GetEngineMemoryAddress(engineVersion));
+	}
 }
 
 GameRuntime::~GameRuntime()

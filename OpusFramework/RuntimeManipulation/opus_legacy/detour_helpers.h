@@ -86,6 +86,7 @@ LONG create_hook(EngineVersion engineVersion, BuildVersion buildVersion, size_t 
 	}
 
 	char* const pModule = reinterpret_cast<char*>(GetEngineMemoryAddress(engineVersion));
+	ASSERT(pModule != nullptr);
 	size_t const baseAddress = GetEngineBaseAddress(engineVersion);
 
 	rOriginal = (Tb)(pModule + (offset - baseAddress));
