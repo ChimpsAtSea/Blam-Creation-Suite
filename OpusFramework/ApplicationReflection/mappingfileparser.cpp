@@ -307,13 +307,13 @@ void MappingFileParser::parseImpl(std::vector<MapLine>& rRawLines)
 		m_sections.emplace_back(currentSectionIndex, sectionRegions);
 	}
 
-	WriteLineVerbose("MappingFileParser: Found %llu sections\n", uint64_t(m_sections.size()));
+	WriteLineVerbose("MappingFileParser: Found %llu sections", uint64_t(m_sections.size()));
 	for (Section& rSection : m_sections)
 	{
-		WriteLineVerbose("MappingFileParser:  %x %s %s\n", rSection.m_sectionIndex, rSection.m_name.c_str(), rSection.m_class.c_str());
+		WriteLineVerbose("MappingFileParser:  %x %s %s", rSection.m_sectionIndex, rSection.m_name.c_str(), rSection.m_class.c_str());
 	}
 
-	WriteLineVerbose("MappingFileParser: Found %llu public symbols\n", uint64_t(m_publicSymbols.size()));
+	WriteLineVerbose("MappingFileParser: Found %llu public symbols", uint64_t(m_publicSymbols.size()));
 	for (PublicSymbol& rPublicSymbol : m_publicSymbols)
 	{
 		//printf("%x %s %llx\n", rPublicSymbol.m_sectionIndex, rPublicSymbol.m_name.c_str(), uint64_t(rPublicSymbol.m_virtualAddress));

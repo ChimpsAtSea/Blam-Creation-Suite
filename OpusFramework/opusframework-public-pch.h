@@ -1,6 +1,8 @@
 #pragma once
 
 #include "platform_configuration.h"
+#include "console.h"
+
 #include "Settings/Settings.h"
 #include "FileSystem/FileSystem.h"
 #include "MCC/MCC.h"

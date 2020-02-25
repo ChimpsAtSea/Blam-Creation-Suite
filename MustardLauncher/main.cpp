@@ -8,8 +8,14 @@
 #pragma optimize("", off)
 int thread_local g_thread_local_data[10240] = {};
 
-int main(int argc, const char* argv[])
+int WINAPI WinMain(
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPSTR lpCmdLine,
+	_In_ int nShowCmd
+)
 {
+
 	{ //  force some random data into g_thread_local_data
 		int value;
 		memset(g_thread_local_data, static_cast<int>(reinterpret_cast<intptr_t>(&value)), sizeof(g_thread_local_data));
@@ -22,7 +28,7 @@ int main(int argc, const char* argv[])
 		return 1;
 	}
 	FARPROC project21_main = GetProcAddress(project21, "main");
-	typedef int (main_func)(int argc, const char* argv[]);
+	typedef int (main_func)();
 	main_func* project21_main_ptr = reinterpret_cast<main_func*>(project21_main);
 	if (project21_main_ptr == nullptr)
 	{
@@ -30,6 +36,6 @@ int main(int argc, const char* argv[])
 		return 1;
 	}
 
-	int result = project21_main_ptr(argc, argv);
+	int result = project21_main_ptr();
 	return g_thread_local_data[_countof(g_thread_local_data)-1] | 1;
 }

@@ -18,3 +18,19 @@ FunctionHookVarArgsEx<main_game_start_offset, char __cdecl (s_game_options * gam
 	return main_game_start(game_options);
 } };
 
+intptr_t c_stop_watch__start_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+{
+	if (engineVersion == EngineVersion::Eldorado)
+	{
+		switch (buildVersion)
+		{
+		case BuildVersion::Eldorado_1_106708_cert_ms23: return 0x005547F0;
+		}
+	}
+	return ~intptr_t();
+}
+FunctionHookVarArgsEx<c_stop_watch__start_offset, void ()> c_stop_watch__start = { "c_stop_watch__start", []()
+{
+	Console::Update();
+	return c_stop_watch__start();
+} };

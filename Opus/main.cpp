@@ -15,6 +15,8 @@ int WINAPI WinMain(
 {
 	register_platforms();
 
+	Console::Init();
+
 	Window::SetIcon(LoadIconA(hInstance, ResourcesManager::GetResourceIntResource(ResourceType::Icon)));
 	SystemPatch::PatchEnumWindows();
 
@@ -49,6 +51,7 @@ int WINAPI WinMain(
 	MantleGUI::Deinit();
 	Render::Deinit();
 	Window::Deinit();
+	Console::Deinit();
 
 	return 0;
 }

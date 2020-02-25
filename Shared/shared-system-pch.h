@@ -68,6 +68,9 @@ using namespace tbb;
 #include <inttypes.h>
 #include <intrin.h>
 #include <immintrin.h>
+#include <fcntl.h> //_O_TEXT
+#include <conio.h> // _getch()
+#include <io.h>
 
 #include <iostream>
 #include <fstream>
@@ -85,6 +88,8 @@ using namespace tbb;
 #include <cwctype>
 #include <codecvt>
 #include <queue>
+#include <memory>
+#include <cctype> //isgraph
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #else

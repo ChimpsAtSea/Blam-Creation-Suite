@@ -240,9 +240,11 @@ void apply_module_thread_local_storage_fixup(HINSTANCE module)
 	}
 }
 
-__declspec(dllexport) int main(int argc, const char* argv[])
+__declspec(dllexport) int main()
 {
-	register_platforms();
+	register_platforms(); 
+	
+	Console::Init();
 
 	HMODULE current_module = GetModuleHandleA(NULL);
 	ASSERT(current_module == reinterpret_cast<void*>(intptr_t(0x00400000)));

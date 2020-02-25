@@ -196,6 +196,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="console.cpp" />
     <ClCompile Include="c_file_array.cpp" />
     <ClCompile Include="c_file_reference.cpp" />
     <ClCompile Include="FileSystem\BlamFileParser.cpp" />
@@ -237,6 +238,7 @@
   <ItemGroup>
     <ClInclude Include="ApplicationReflection\ApplicationReflection.h" />
     <ClInclude Include="ApplicationReflection\offsetfunction.h" />
+    <ClInclude Include="console.h" />
     <ClInclude Include="c_file_array.h" />
     <ClInclude Include="c_file_reference.h" />
     <ClInclude Include="FileSystem\BlamFileParser.h" />
