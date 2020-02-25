@@ -201,7 +201,9 @@ void rebase_executable_code(UINT_PTR new_virtual_address, char* raw_image_data, 
 			}
 			case IMAGE_REL_BASED_DIR64: // #TODO: Add support for IMAGE_REL_BASED_DIR64
 				printf(" (unsupported)");
-				throw; // unsupported
+				break;
+			default:
+				throw; // unsupported and unexpected for 32/64bit x86 based PE
 				break;
 			}
 			printf("\n");

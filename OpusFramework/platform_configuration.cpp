@@ -1,3 +1,4 @@
+#include "opusframework-private-pch.h"
 
 #ifdef _WIN64
 

@@ -25,6 +25,6 @@ int main(int argc, const char* argv[])
 		_wassert(L"Unexpected error. Mustard module did not exit process", _CRT_WIDE(__FILE__), __LINE__);
 	}
 
-	memset(g_thread_local_data, reinterpret_cast<int>(mustard_module), sizeof(g_thread_local_data));
+	memset(g_thread_local_data, static_cast<int>(reinterpret_cast<intptr_t>(mustard_module)), sizeof(g_thread_local_data));
 	return g_thread_local_data[_countof(g_thread_local_data)-1] | 1;
 }

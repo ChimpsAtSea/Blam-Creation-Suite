@@ -80,6 +80,8 @@ FARPROC __stdcall GetProcAddressHook(HMODULE hModule, LPCSTR lpProcName)
 
 void init_opus()
 {
+	register_platforms();
+
 	SystemPatch::PatchEnumWindows();
 
 	AllocConsole();

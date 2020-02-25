@@ -240,7 +240,6 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="platform_configuration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />

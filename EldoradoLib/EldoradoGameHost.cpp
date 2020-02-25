@@ -17,3 +17,13 @@ EldoradoGameHost::~EldoradoGameHost()
 {
 	
 }
+
+void EldoradoGameHost::InitModifications(BuildVersion buildVersion)
+{
+
+}
+
+void EldoradoGameHost::DeinitModifications(BuildVersion buildVersion)
+{
+
+}
