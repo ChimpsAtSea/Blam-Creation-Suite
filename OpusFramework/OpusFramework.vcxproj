@@ -204,6 +204,7 @@
     <ClCompile Include="MCC\IOpusGameEngineHost.cpp" />
     <ClCompile Include="MCC\GameRuntime.cpp" />
     <ClCompile Include="MCC\HaloReachGameOptionSelection.cpp" />
+    <ClCompile Include="platform_configuration.cpp" />
     <ClCompile Include="RuntimeManipulation\DataReference.cpp" />
     <ClCompile Include="RuntimeManipulation\opus_legacy\detour_helpers.cpp" />
     <ClCompile Include="CCode\GetIDXGISwapChainPresent.c">
@@ -246,6 +247,7 @@
     <ClInclude Include="MCC\GameRuntime.h" />
     <ClInclude Include="MCC\HaloReachGameOptionSelection.h" />
     <ClInclude Include="MCC\MCC.h" />
+    <ClInclude Include="platform_configuration.h" />
     <ClInclude Include="RuntimeManipulation\BasicData.h" />
     <ClInclude Include="RuntimeManipulation\BasicDataEx.h" />
     <ClInclude Include="RuntimeManipulation\Data.h" />

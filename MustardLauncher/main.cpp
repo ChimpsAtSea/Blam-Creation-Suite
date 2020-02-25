@@ -31,5 +31,5 @@ int main(int argc, const char* argv[])
 	}
 
 	int result = project21_main_ptr(argc, argv);
-	return g_thread_local_data[_countof(g_thread_local_data)-1];
+	return g_thread_local_data[_countof(g_thread_local_data)-1] | 1;
 }

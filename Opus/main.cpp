@@ -3,7 +3,6 @@
 #include <OpusFramework\opusframework-private-pch.h>
 
 DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
-extern void register_platforms();
 
 const char* ResourcesManager::s_pModuleName = NULL;
 
