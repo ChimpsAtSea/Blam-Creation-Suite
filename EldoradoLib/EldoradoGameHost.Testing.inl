@@ -31,6 +31,7 @@ intptr_t c_stop_watch__start_offset(EngineVersion engineVersion, BuildVersion bu
 }
 FunctionHookVarArgsEx<c_stop_watch__start_offset, void ()> c_stop_watch__start = { "c_stop_watch__start", []()
 {
+	RUNONCE(Console::Startup());
 	Console::Update();
 	return c_stop_watch__start();
 } };

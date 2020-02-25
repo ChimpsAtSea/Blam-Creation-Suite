@@ -49,7 +49,7 @@ BOOL __stdcall IMAGEHLP_STATUS_ROUTINE(
 		printf("status_routine: %s '%s'\n", reason_string, DllName);
 		break;
 	case BindRvaToVaFailed:
-		printf("status_routine: %s RVA@0x%X\n", reason_string, Va);
+		printf("status_routine: %s RVA@0x%zX\n", reason_string, Va);
 		break;
 	case BindOutOfMemory:
 	case BindNoRoomInImage:

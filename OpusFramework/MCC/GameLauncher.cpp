@@ -115,7 +115,6 @@ void GameLauncher::OpusTick()
 
 void GameLauncher::update()
 {
-	Console::Update();
 	if (s_gameRunning)
 	{
 		// need some place to update the launcher, might as well do it here for now

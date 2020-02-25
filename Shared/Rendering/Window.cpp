@@ -201,6 +201,8 @@ void Window::Deinit()
 
 void Window::UpdateNoCallbacks()
 {
+	Console::Update();
+
 	MSG msg = {};
 
 	while (PeekMessage(&msg, s_hWnd, 0, 0, PM_REMOVE))

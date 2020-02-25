@@ -64,6 +64,8 @@ public:
 	static void PushCommand(const std::string& CommandName, Command* Command);
 	static void PopCommand(const std::string& CommandName);
 
+	static void Startup();
+
 private:
 	static bool AllocateConsole(const std::string& ConsoleTitle);
 
@@ -83,5 +85,6 @@ private:
 	// Console Data
 	static size_t ConsoleWidth;
 	static void* ConsoleHandle;
+	static const char* s_consoleExecutableName;
 };
 

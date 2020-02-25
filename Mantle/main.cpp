@@ -1,6 +1,7 @@
 #include "mantle-private-pch.h"
 
 const char* ResourcesManager::s_pModuleName = NULL;
+const char* Console::s_consoleExecutableName = "Mantle";
 
 int WINAPI wWinMain(
 	_In_ HINSTANCE hInstance,				/* [input] handle to current instance */
@@ -9,6 +10,8 @@ int WINAPI wWinMain(
 	_In_ int nShowCmd						/* [input] show state of window */
 )
 {
+	Console::Init();
+
 	int argc = 0;
 	LPWSTR* argv = CommandLineToArgvW(lpCmdLine, &argc);
 	LPWSTR szLoadMapArgument = nullptr;
@@ -46,6 +49,8 @@ int WINAPI wWinMain(
 	Window::RegisterDestroyCallback(DestroyCallback);
 	MantleGUI::RegisterOnCloseCallback(DestroyCallback);
 
+	Console::Startup();
+
 	while (s_running) Window::Update();
 
 	Window::UnregisterUpdateCallback(UpdateCallback);
@@ -56,6 +61,7 @@ int WINAPI wWinMain(
 	MantleGUI::Deinit();
 	Render::Deinit();
 	Window::Deinit();
+	Console::Deinit();
 
 	return 0;
 }

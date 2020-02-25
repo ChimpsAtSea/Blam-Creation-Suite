@@ -3,6 +3,7 @@
 #include "shared-system-pch.h"
 #include "shared-tbb-pch.h"
 
+#include "console.h"
 #include "AtomicLock.h"
 #include "ThreadSafeQueue.h"
 #include "ImGuiAddons/ImGuiAddons.h"

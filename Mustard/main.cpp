@@ -1,6 +1,7 @@
 #include "mustard-private-pch.h"
 
 const char* ResourcesManager::s_pModuleName = "Mustard.dll";
+const char* Console::s_consoleExecutableName = "Mustard";
 
 struct tls_data;
 

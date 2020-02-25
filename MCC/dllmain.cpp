@@ -6,6 +6,7 @@
 #define MCCExecutableFileName "MCC-Win64-Shipping_Debug.exe"
 
 const char* ResourcesManager::s_pModuleName = "liblz4.bin";
+const char* Console::s_consoleExecutableName = "MCC";
 
 bool s_isHaloReachHooked = false;
 bool s_isHalo1Hooked = false;

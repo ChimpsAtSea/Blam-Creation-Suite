@@ -1,4 +1,4 @@
-#include "opusframework-private-pch.h"
+#include "shared-private-pch.h"
 
 std::map<std::string, Command*> Console::Commands;
 std::vector<std::vector<std::string>> Console::PrevCommands;
@@ -9,6 +9,11 @@ std::string Console::Suggestion;
 size_t Console::ConsoleWidth;
 void* Console::ConsoleHandle; 
 bool Console::s_consoleAllocated;
+
+const char* Credits[] = {
+	"Squaresome",
+	"Twister",
+};
 
 void Console::Update()
 {
@@ -340,6 +345,59 @@ void Console::PopCommand(const std::string& CommandName)
 	}
 }
 
+
+void Console::Startup()
+{
+	SetTextColor(Color::Info);
+
+#ifdef _DEBUG
+	std::string buildType = "Debug ";
+#else
+	std::string buildType = "";
+#endif
+	char executableNameBuffer[9] = "        ";
+	int count = snprintf(executableNameBuffer, _countof(executableNameBuffer), "%s", s_consoleExecutableName);
+	executableNameBuffer[count] = ' ';
+	executableNameBuffer[_countof(executableNameBuffer) - 1] = 0;
+	std::cout << executableNameBuffer << "\xC3\xC4\xC2\xC4\xC4\xC4\xC4\xC4\xC4\xB4 " << buildType << "Build Date: " << __DATE__ << " @ " << __TIME__ << std::endl;
+	SetTextColor(Color::Input);
+
+	for (size_t i = 0; i < sizeof(Credits) / sizeof(char*); i++)
+	{
+		std::cout << "        ";
+		SetTextColor(Color::Input);
+		std::cout << "  " << "\xC3\xC0"[(i == sizeof(Credits) / sizeof(char*) - 1) ^ 0];
+		std::cout << Credits[i] << std::endl;;
+	}
+
+	SetTextColor(Color::Info);
+	std::cout << "Join the Assault on the Control Room Discord https://discord.gg/ksvhEQD" << std::endl;
+
+	SetTextColor(underlying_cast(Color::Green) | underlying_cast(Color::Bright));
+	std::cout << "Enter \"";
+	SetTextColor(Color::Input);
+	std::cout << "help";
+	SetTextColor(underlying_cast(Color::Green) | underlying_cast(Color::Bright));
+	std::cout << "\" or \"";
+	SetTextColor(Color::Input);
+	std::cout << "help (command)";
+	SetTextColor(underlying_cast(Color::Green) | underlying_cast(Color::Bright));
+
+	std::cout << "\" to get started!" << std::endl;
+
+	std::cout << "Current directory: ";
+	SetTextColor(Color::Input);
+	char currentDirectoryBuffer[MAX_PATH + 1]{};
+	GetCurrentDirectoryA(MAX_PATH, currentDirectoryBuffer);
+	std::cout << currentDirectoryBuffer << std::endl;
+
+	SetTextColor(Color::Magenta);
+	std::cout << std::string(ConsoleWidth - 1, '\xC4') << std::endl;
+	SetTextColor(Color::Info);
+
+	PrintLine();
+}
+
 bool Command::Run(const std::vector<std::string>& Args)
 {
 	if (!Args.empty())
@@ -384,7 +442,7 @@ bool Command::Run(const std::vector<std::string>& Args)
 			Console::SetTextColor(Console::Color::Info);
 			for (decltype(Console::PrevCommands)::value_type& Command : Console::PrevCommands)
 			{
-				for (MapToken& Arg : Command)
+				for (std::string& Arg : Command)
 				{
 					std::cout << Arg << ' ';
 				}

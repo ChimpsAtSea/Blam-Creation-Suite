@@ -5,6 +5,7 @@
 DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
 
 const char* ResourcesManager::s_pModuleName = NULL;
+const char* Console::s_consoleExecutableName = "Opus";
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -40,6 +41,8 @@ int WINAPI WinMain(
 	Window::RegisterUpdateCallback(UpdateCallback);
 	Window::RegisterDestroyCallback(DestroyCallback);
 	//MantleGUI::RegisterOnCloseCallback(DestroyCallback);
+
+	Console::Startup();
 
 	while (s_running) Window::Update();
 
