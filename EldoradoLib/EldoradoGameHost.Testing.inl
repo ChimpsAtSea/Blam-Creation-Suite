@@ -171,8 +171,17 @@ FunctionHookVarArgsEx<GameShieldInit_offset, void()> GameShieldInit = { "GameShi
 
 uintptr_t Hf2pInit_offset(Engine engine, Build build)
 {
-	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x00600630);
-	OFFSET(Engine::Eldorado, Build::Eldorado_1_700255_cert_ms30_oct19, 0x006BD670);
+	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x00600630); // game_startup_internal
+
+	/*
+	Notes for MS30
+	sub_6BD670 > sub_6BD0F0 dont run this function
+
+	For some reason in MS30 we can still run game_startup_client which fixes the main menu
+	*/
+	OFFSET(Engine::Eldorado, Build::Eldorado_1_700255_cert_ms30_oct19, 0x006BD0F0); // game_startup_internal > game_startup_main
+	
+	
 	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<Hf2pInit_offset, void()> Hf2pInit = { "Hf2pInit", []()
