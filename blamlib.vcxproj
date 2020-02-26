@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\cache\cache_files.cpp" />
     <ClCompile Include="source\datatypes\datum_handle.cpp" />
     <ClCompile Include="source\datatypes\tag.cpp" />
     <ClCompile Include="source\tag_files\tag_groups.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\cache\cache_files.h" />
     <ClInclude Include="source\datatypes\datum_handle.h" />
     <ClInclude Include="source\datatypes\enum.h" />
     <ClInclude Include="source\datatypes\flags.h" />
