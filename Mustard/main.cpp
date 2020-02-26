@@ -26,7 +26,10 @@ const char* page_protection_to_string(DWORD protection)
 HINSTANCE load_executable(const char* executable_name)
 {
 	HANDLE executable_file = CreateFileA(executable_name, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-	ASSERT(executable_file != INVALID_HANDLE_VALUE);
+	if (executable_file == INVALID_HANDLE_VALUE)
+	{
+		return NULL;
+	}
 
 	LARGE_INTEGER file_size = {};
 	BOOL getFileSizeExResult = GetFileSizeEx(executable_file, &file_size);
@@ -95,13 +98,13 @@ HINSTANCE load_executable(const char* executable_name)
 			memcpy(virtual_section_data, raw_section_data, current_raw_section_header->SizeOfRawData);
 
 			// IMAGE_SCN_LNK_NRELOC_OVFL            0x01000000  // Section contains extended relocations.
-// IMAGE_SCN_MEM_DISCARDABLE            0x02000000  // Section can be discarded.
-// IMAGE_SCN_MEM_NOT_CACHED             0x04000000  // Section is not cachable.
-// IMAGE_SCN_MEM_NOT_PAGED              0x08000000  // Section is not pageable.
-// IMAGE_SCN_MEM_SHARED                 0x10000000  // Section is shareable.
-// IMAGE_SCN_MEM_EXECUTE                0x20000000  // Section is executable.
-// IMAGE_SCN_MEM_READ                   0x40000000  // Section is readable.
-// IMAGE_SCN_MEM_WRITE                  0x80000000  // Section is writeable.
+			// IMAGE_SCN_MEM_DISCARDABLE            0x02000000  // Section can be discarded.
+			// IMAGE_SCN_MEM_NOT_CACHED             0x04000000  // Section is not cachable.
+			// IMAGE_SCN_MEM_NOT_PAGED              0x08000000  // Section is not pageable.
+			// IMAGE_SCN_MEM_SHARED                 0x10000000  // Section is shareable.
+			// IMAGE_SCN_MEM_EXECUTE                0x20000000  // Section is executable.
+			// IMAGE_SCN_MEM_READ                   0x40000000  // Section is readable.
+			// IMAGE_SCN_MEM_WRITE                  0x80000000  // Section is writeable.
 
 
 			bool isWritable = !!(current_raw_section_header->Characteristics & IMAGE_SCN_MEM_WRITE);
@@ -330,17 +333,42 @@ __declspec(dllexport) int main()
 
 	launcher_tls_data_directory = static_cast<IMAGE_TLS_DIRECTORY*>(ImageDirectoryEntryToData(current_module, TRUE, IMAGE_DIRECTORY_ENTRY_TLS, &launcher_import_descriptor_size));
 
-	HINSTANCE executable_module = load_executable("eldorado.exe");
+	HINSTANCE loaded_executable_module = NULL;
+	Build build = Build::NotSet;
+	if (loaded_executable_module == NULL)
+	{
+		loaded_executable_module = load_executable("eldorado.exe");
 
-	parse_import_address_table(executable_module);
-	apply_module_thread_local_storage_fixup(executable_module);
+		if (loaded_executable_module)
+		{
+			WriteLineVerbose("Loaded Eldorado Module");
+		}
+
+		// #TODO: Determine version of Eldorado
+		build = Build::Eldorado_1_106708_cert_ms23;
+	}
+	if (loaded_executable_module == NULL)
+	{
+		loaded_executable_module = load_executable("halo_online.exe");
+
+		if (loaded_executable_module)
+		{
+			WriteLineVerbose("Loaded Halo Online Module");
+		}
+
+		// #TODO: Determine version of Halo Online
+		build = Build::Eldorado_1_700255_cert_ms30_oct19;
+	}
+	ASSERT(loaded_executable_module != NULL);
+
+	parse_import_address_table(loaded_executable_module);
+	apply_module_thread_local_storage_fixup(loaded_executable_module);
 
 #ifndef _WIN64
-	Build build = Build::Eldorado_1_106708_cert_ms23;
 	EldoradoGameHost::InitModifications(build);
 #endif
 
-	entry_point_function* entry_point = get_module_entry_point(executable_module);
+	entry_point_function* entry_point = get_module_entry_point(loaded_executable_module);
 	ASSERT(entry_point);
 	entry_point();
 

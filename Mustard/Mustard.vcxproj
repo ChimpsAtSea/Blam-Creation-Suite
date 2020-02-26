@@ -126,7 +126,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerCommand)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)$(TargetName).exe" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -159,7 +159,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerCommand)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)$(TargetName).exe" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -196,7 +196,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerCommand)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)$(TargetName).exe" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -233,7 +233,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
   echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerCommand)" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)$(TargetName).exe" /Y
  )
 )</Command>
     </PostBuildEvent>
