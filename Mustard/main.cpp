@@ -201,10 +201,6 @@ void parse_import_address_table(HINSTANCE module)
 		printf("Loading module %s\n", module_name);
 
 		DWORD dwFlags = 0;
-		if (strcmp(module_name, "binkw32.dll") == 0)
-		{
-			dwFlags |= DONT_RESOLVE_DLL_REFERENCES;
-		}
 		HINSTANCE imported_dll = LoadLibraryExA(module_name, NULL, dwFlags);
 		ASSERT(imported_dll);
 
