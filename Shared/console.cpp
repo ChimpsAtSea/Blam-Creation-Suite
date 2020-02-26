@@ -1,6 +1,6 @@
 #include "shared-private-pch.h"
 
-std::map<std::string, Command*> Console::Commands;
+std::map<std::string, ConsoleCommand*> Console::Commands;
 std::vector<std::vector<std::string>> Console::PrevCommands;
 std::vector<std::vector<std::string>>::iterator Console::PrevCommand;
 size_t Console::CurArg;
@@ -45,7 +45,7 @@ void Console::Init()
 	SetTextColor(Console::Color::Info);
 	CurCommand.push_back("");
 
-	static Command baseCommand;
+	static DefaultConsoleCommand baseCommand;
 
 	// Meta commands pushed with null deleter so console doesn't delete its self.
 	PushCommand("help", &baseCommand);
@@ -333,7 +333,7 @@ void Console::PrintLine()
 	std::cout.flush();
 }
 
-void Console::PushCommand(const std::string& CommandName, Command* Command)
+void Console::PushCommand(const std::string& CommandName, ConsoleCommand* Command)
 {
 	Commands[CommandName] = Command;
 }
@@ -398,7 +398,7 @@ void Console::Startup()
 	PrintLine();
 }
 
-bool Command::Run(const std::vector<std::string>& Args)
+bool Console::DefaultConsoleCommand::Run(const std::vector<std::string>& Args)
 {
 	if (!Args.empty())
 	{
@@ -457,7 +457,7 @@ bool Command::Run(const std::vector<std::string>& Args)
 	return true;
 }
 
-std::string Command::Info(const std::string& Topic) const
+std::string Console::DefaultConsoleCommand::Info(const std::string& Topic) const
 {
 	if (!Topic.empty())
 	{
@@ -479,7 +479,7 @@ std::string Command::Info(const std::string& Topic) const
 };
 
 // Suggest auto-complete strings for arguments
-std::string Command::Suggest(const std::vector<std::string>& Arguments) const
+std::string Console::DefaultConsoleCommand::Suggest(const std::vector<std::string>& Arguments) const
 {
 	return ""; // todo;
 };

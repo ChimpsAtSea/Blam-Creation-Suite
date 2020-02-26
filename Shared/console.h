@@ -1,29 +1,30 @@
 #pragma once
 
-class Command
+class ConsoleCommand
 {
 public:
-	Command()
-	{
-	}
-	~Command()
-	{
-	}
-
 	// Return true on success
-	virtual bool Run(const std::vector<std::string>& Arguments);
+	virtual bool Run(const std::vector<std::string>& Arguments) = 0;
 
 	// Command and usage info
-	virtual std::string Info(const std::string& Topic = "") const;
+	virtual std::string Info(const std::string& Topic = "") const = 0;
 
 	// Suggest auto-complete strings for arugments
-	virtual std::string Suggest(const std::vector<std::string>& Arguments) const;
+	virtual std::string Suggest(const std::vector<std::string>& Arguments) const = 0;
 };
 
 class Console
 {
 public:
-	friend Command;
+	friend ConsoleCommand;
+
+	class DefaultConsoleCommand : public ConsoleCommand
+	{
+	public:
+		virtual bool Run(const std::vector<std::string>& Arguments) override;
+		virtual std::string Info(const std::string& Topic = "") const override;
+		virtual std::string Suggest(const std::vector<std::string>& Arguments) const override;
+	};
 
 	enum class Color : uint8_t
 	{
@@ -61,7 +62,7 @@ public:
 	static void HandleInput(uint32_t KeyCode);
 	static void PrintLine();
 
-	static void PushCommand(const std::string& CommandName, Command* Command);
+	static void PushCommand(const std::string& CommandName, ConsoleCommand* Command);
 	static void PopCommand(const std::string& CommandName);
 
 	static void Startup();
@@ -71,7 +72,7 @@ private:
 
 	static bool s_consoleAllocated;
 
-	static std::map<std::string, Command*> Commands;
+	static std::map<std::string, ConsoleCommand*> Commands;
 
 	// History
 	static std::vector<std::vector<std::string>> PrevCommands;

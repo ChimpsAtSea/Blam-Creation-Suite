@@ -10,19 +10,20 @@
 //	WriteLineVerbose("main_game_start called!");
 //	return main_game_start(game_options);
 //} };
-//
-//uintptr_t c_stop_watch__start_offset(Engine engine, Build build)
-//{
-//	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x005547F0);
-//	return ~uintptr_t();
-//}
-//FunctionHookVarArgsEx<c_stop_watch__start_offset, void()> c_stop_watch__start = { "c_stop_watch__start", []()
-//{
-//	RUNONCE(Console::Startup());
-//	Console::Update();
-//	return c_stop_watch__start();
-//} };
-//
+
+uintptr_t c_stop_watch__start_offset(Engine engine, Build build)
+{
+	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x005547F0);
+	OFFSET(Engine::Eldorado, Build::Eldorado_1_700255_cert_ms30_oct19, 0x004CF170);
+	return ~uintptr_t();
+}
+FunctionHookVarArgsEx<c_stop_watch__start_offset, void()> c_stop_watch__start = { "c_stop_watch__start", []()
+{
+	RUNONCE(Console::Startup());
+	Console::Update();
+	return c_stop_watch__start();
+} };
+
 //uintptr_t language_patch_offset(Engine engine, Build build)
 //{
 //	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x006333FD);
