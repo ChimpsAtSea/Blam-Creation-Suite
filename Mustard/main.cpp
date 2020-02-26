@@ -7,6 +7,22 @@ struct tls_data;
 static DWORD launcher_import_descriptor_size;
 static IMAGE_TLS_DIRECTORY* launcher_tls_data_directory;
 
+const char* page_protection_to_string(DWORD protection)
+{
+	switch (protection)
+	{
+	case PAGE_NOACCESS: return "PAGE_NOACCESS";
+	case PAGE_READONLY: return "PAGE_READONLY";
+	case PAGE_READWRITE: return "PAGE_READWRITE";
+	case PAGE_WRITECOPY: return "PAGE_WRITECOPY";
+	case PAGE_EXECUTE: return "PAGE_EXECUTE";
+	case PAGE_EXECUTE_READ: return "PAGE_EXECUTE_READ";
+	case PAGE_EXECUTE_READWRITE: return "PAGE_EXECUTE_READWRITE";
+	case PAGE_EXECUTE_WRITECOPY: return "PAGE_EXECUTE_WRITECOPY";
+	}
+	return "<unknown protection>";
+}
+
 HINSTANCE load_executable(const char* executable_name)
 {
 	HANDLE executable_file = CreateFileA(executable_name, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -77,6 +93,74 @@ HINSTANCE load_executable(const char* executable_name)
 
 			printf("Loading section: VA@%p RVA@0x%X SIZE:0x%X '%s'\n", virtual_section_data, current_raw_section_header->VirtualAddress, current_raw_section_header->SizeOfRawData, section_name_buffer);
 			memcpy(virtual_section_data, raw_section_data, current_raw_section_header->SizeOfRawData);
+
+			// IMAGE_SCN_LNK_NRELOC_OVFL            0x01000000  // Section contains extended relocations.
+// IMAGE_SCN_MEM_DISCARDABLE            0x02000000  // Section can be discarded.
+// IMAGE_SCN_MEM_NOT_CACHED             0x04000000  // Section is not cachable.
+// IMAGE_SCN_MEM_NOT_PAGED              0x08000000  // Section is not pageable.
+// IMAGE_SCN_MEM_SHARED                 0x10000000  // Section is shareable.
+// IMAGE_SCN_MEM_EXECUTE                0x20000000  // Section is executable.
+// IMAGE_SCN_MEM_READ                   0x40000000  // Section is readable.
+// IMAGE_SCN_MEM_WRITE                  0x80000000  // Section is writeable.
+
+
+			bool isWritable = !!(current_raw_section_header->Characteristics & IMAGE_SCN_MEM_WRITE);
+			bool isReadable = !!(current_raw_section_header->Characteristics & IMAGE_SCN_MEM_READ);
+			bool isExecutable = !!(current_raw_section_header->Characteristics & IMAGE_SCN_MEM_EXECUTE);
+
+			//#define PAGE_NOACCESS           0x01    
+			//#define PAGE_READONLY           0x02    
+			//#define PAGE_READWRITE          0x04    
+			//#define PAGE_WRITECOPY          0x08    
+			//#define PAGE_EXECUTE            0x10    
+			//#define PAGE_EXECUTE_READ       0x20    
+			//#define PAGE_EXECUTE_READWRITE  0x40    
+			//#define PAGE_EXECUTE_WRITECOPY  0x80    
+
+			DWORD protection;
+			if (isWritable && isReadable && isExecutable)
+			{
+				protection = PAGE_EXECUTE_READWRITE;
+			}
+			if (isWritable && isReadable && !isExecutable)
+			{
+				protection = PAGE_READWRITE;
+			}
+			if (isWritable && !isReadable && isExecutable)
+			{
+				protection = PAGE_EXECUTE_WRITECOPY;
+			}
+			if (!isWritable && isReadable && isExecutable)
+			{
+				protection = PAGE_EXECUTE_READ;
+			}
+			if (!isWritable && !isReadable && isExecutable)
+			{
+				protection = PAGE_EXECUTE;
+			}
+			if (isWritable && !isReadable && !isExecutable)
+			{
+				protection = PAGE_WRITECOPY;
+			}
+			if (!isWritable && isReadable && !isExecutable)
+			{
+				protection = PAGE_READONLY;
+			}
+			if (!isWritable && !isReadable && !isExecutable)
+			{
+				protection = PAGE_NOACCESS;
+			}
+
+			if (strcmp(".text", section_name_buffer) == 0)
+			{
+				protection = PAGE_EXECUTE_READWRITE;
+			}
+
+			const char* protection_string = page_protection_to_string(protection);
+			printf("Setting memory protection of section '%s' to %s\n", section_name_buffer, protection_string);
+
+			BOOL virtualProtectResult = VirtualProtect(virtual_section_data, current_raw_section_header->Misc.VirtualSize, protection, &oldProtect);
+			ASSERT(virtualProtectResult != 0);
 
 		}
 

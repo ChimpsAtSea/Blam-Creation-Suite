@@ -121,5 +121,18 @@ DataPatch<load_level_patch_offset> load_level_patch = { [](Engine engine, Build,
 	memset(load_level_patch_data, 0x90, 5); // nop
 } };
 
+//uintptr_t anti_cheat_patch_offset(Engine engine, Build build)
+//{
+//	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x006006F0);
+//	return ~uintptr_t();
+//}
+//DataPatch<anti_cheat_patch_offset> anti_cheat_patch = { [](Engine engine, Build, char* data, DataPatchPacket& packet)
+//{
+//	// Level load patch
+//
+//	packet = MAKE_DATAPATCHPACKET(data, 1);
+//	data[0] = 0xC3;
+//} };
+
 
 
