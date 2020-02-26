@@ -1,12 +1,12 @@
 #pragma once
 
-template<BuildVersion buildVersion, typename T, size_t offset>
+template<Build build, typename T, size_t offset>
 class Pointer : public DataReferenceBase
 {
 public:
 	Pointer(const Pointer&) = delete;
 	Pointer()
-		: DataReferenceBase(buildVersion, sizeof(T), offset, nullptr)
+		: DataReferenceBase(build, sizeof(T), offset, nullptr)
 	{
 
 	}

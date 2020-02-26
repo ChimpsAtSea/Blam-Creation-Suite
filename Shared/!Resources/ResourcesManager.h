@@ -16,7 +16,6 @@ public:
 	static bool GetResource(ResourceType type, char** ppData, size_t* pDataSize, bool nullTerminate = false);
 private:
 	static HRSRC GetResourceHandle(ResourceType type);
-	static const char* s_pModuleName;
 };
 
 

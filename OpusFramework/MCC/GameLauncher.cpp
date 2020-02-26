@@ -7,7 +7,7 @@ enum class NextLaunchMode
 	Theater
 };
 NextLaunchMode s_nextLaunchMode = NextLaunchMode::None;
-EngineVersion s_nextLaunchEngine;
+Engine s_nextLaunchEngine;
 
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameStartupEvent;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameShutdownEvent;
@@ -145,24 +145,24 @@ void GameLauncher::renderUI()
 	}
 }
 
-void GameLauncher::launchGame(EngineVersion engineVersion)
+void GameLauncher::launchGame(Engine engine)
 {
 	s_gameRunning = true;
 	// #TODO: We currently can't resize the game without crashing
 	// we should do this at the beginning of the frame. 
 
 	Render::SetResizeEnabled(false);
-	switch (engineVersion)
+	switch (engine)
 	{
 #ifdef _WIN64
-	case EngineVersion::Halo1:
+	case Engine::Halo1:
 		launchHalo1();
 		break;
-	case EngineVersion::HaloReach:
+	case Engine::HaloReach:
 		launchHaloReach();
 		break;
 #else
-	case EngineVersion::Eldorado:
+	case Engine::Eldorado:
 		launchEldorado();
 		break;
 #endif
@@ -181,14 +181,14 @@ void GameLauncher::launchHalo1()
 	IGameEngine* pGameEngine = pCurrentGameHost->GetGameEngine();
 	ASSERT(pGameEngine != nullptr);
 
-	EngineVersion engineVersion = EngineVersion::Halo1;
-	BuildVersion buildVersion = Halo1GameHost::GetGameRuntime().GetBuildVersion();
+	Engine engine = Engine::Halo1;
+	Build build = Halo1GameHost::GetGameRuntime().GetBuildVersion();
 
 	// #TODO: Game specific version of this!!!
 
 	for (GenericGameEvent gameEvent : s_gameStartupEvent)
 	{
-		gameEvent(engineVersion, buildVersion);
+		gameEvent(engine, build);
 	}
 
 	GameContext gameContext = {};
@@ -289,7 +289,7 @@ void GameLauncher::launchHalo1()
 
 	for (GenericGameEvent gameEvent : s_gameShutdownEvent)
 	{
-		gameEvent(engineVersion, buildVersion);
+		gameEvent(engine, build);
 	}
 
 	delete pCurrentGameHost;
@@ -308,14 +308,14 @@ void GameLauncher::launchHaloReach()
 	IGameEngine* pGameEngine = pCurrentGameHost->GetGameEngine();
 	ASSERT(pGameEngine != nullptr);
 
-	EngineVersion engineVersion = EngineVersion::HaloReach;
-	BuildVersion buildVersion = HaloReachGameHost::GetGameRuntime().GetBuildVersion();
+	Engine engine = Engine::HaloReach;
+	Build build = HaloReachGameHost::GetGameRuntime().GetBuildVersion();
 
 	// #TODO: Game specific version of this!!!
 
 	for (GenericGameEvent gameEvent : s_gameStartupEvent)
 	{
-		gameEvent(engineVersion, buildVersion);
+		gameEvent(engine, build);
 	}
 
 	GameContext gameContext = {};
@@ -415,7 +415,7 @@ void GameLauncher::launchHaloReach()
 
 	for (GenericGameEvent gameEvent : s_gameShutdownEvent)
 	{
-		gameEvent(engineVersion, buildVersion);
+		gameEvent(engine, build);
 	}
 
 	delete pCurrentGameHost;
@@ -514,13 +514,13 @@ void GameLauncher::renderMainMenu()
 				HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
 				hasAutostarted = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
-				s_nextLaunchEngine = EngineVersion::HaloReach;
+				s_nextLaunchEngine = Engine::HaloReach;
 			}
 
 			if (ImGui::Button("PLAY FILM (Reach)") || GetKeyState('P') & 0x80)
 			{
 				s_nextLaunchMode = NextLaunchMode::Theater;
-				s_nextLaunchEngine = EngineVersion::HaloReach;
+				s_nextLaunchEngine = Engine::HaloReach;
 			}
 
 			if (ImGui::Button("START GAME (Halo 1)") || (CommandLine::HasCommandLineArg("-autostarthalo1") && !hasAutostarted))
@@ -528,7 +528,7 @@ void GameLauncher::renderMainMenu()
 				HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
 				hasAutostarted = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
-				s_nextLaunchEngine = EngineVersion::Halo1;
+				s_nextLaunchEngine = Engine::Halo1;
 			}
 		}
 #else
@@ -537,7 +537,7 @@ void GameLauncher::renderMainMenu()
 			{
 				hasAutostarted = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
-				s_nextLaunchEngine = EngineVersion::Eldorado;
+				s_nextLaunchEngine = Engine::Eldorado;
 	}
 		}
 #endif

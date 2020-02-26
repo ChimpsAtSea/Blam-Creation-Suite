@@ -196,6 +196,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="RuntimeManipulation\DataPatch.cpp" />
     <ClCompile Include="c_file_array.cpp" />
     <ClCompile Include="c_file_reference.cpp" />
     <ClCompile Include="FileSystem\BlamFileParser.cpp" />
@@ -216,7 +217,7 @@
     <ClCompile Include="RuntimeManipulation\FunctionHookBase.cpp" />
     <ClCompile Include="MCC\GameLauncher.cpp" />
     <ClCompile Include="ApplicationReflection\globalreference.cpp" />
-    <ClCompile Include="MCC\opus_legacy\BuildVersion.cpp" />
+    <ClCompile Include="MCC\Versioning.cpp" />
     <ClCompile Include="MCC\opus_legacy\IFileAccess.cpp" />
     <ClCompile Include="MCC\opus_legacy\IGameEngine.cpp" />
     <ClCompile Include="MCC\IGameEngineHost.cpp" />
@@ -236,6 +237,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationReflection\ApplicationReflection.h" />
+    <ClInclude Include="RuntimeManipulation\DataPatch.h" />
     <ClInclude Include="ApplicationReflection\offsetfunction.h" />
     <ClInclude Include="c_file_array.h" />
     <ClInclude Include="c_file_reference.h" />
@@ -253,12 +255,13 @@
     <ClInclude Include="RuntimeManipulation\Data.h" />
     <ClInclude Include="RuntimeManipulation\DataEx.h" />
     <ClInclude Include="RuntimeManipulation\DataReference.h" />
+    <ClInclude Include="RuntimeManipulation\FindOffsetFunction.h" />
     <ClInclude Include="RuntimeManipulation\opus_legacy\detour_helpers.h" />
     <ClInclude Include="MCC\GameLauncher.h" />
     <ClInclude Include="ApplicationReflection\globalreference.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHook.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHookBase.h" />
-    <ClInclude Include="MCC\opus_legacy\BuildVersion.h" />
+    <ClInclude Include="MCC\Versioning.h" />
     <ClInclude Include="MCC\opus_legacy\IDataAccess.h" />
     <ClInclude Include="MCC\opus_legacy\IFileAccess.h" />
     <ClInclude Include="MCC\opus_legacy\IGameEngine.h" />

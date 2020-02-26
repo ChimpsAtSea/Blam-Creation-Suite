@@ -1,6 +1,5 @@
 #include "mustard-private-pch.h"
 
-const char* ResourcesManager::s_pModuleName = "Mustard.dll";
 const char* Console::s_consoleExecutableName = "Mustard";
 
 struct tls_data;
@@ -48,7 +47,6 @@ HINSTANCE load_executable(const char* executable_name)
 
 		intptr_t section_virtual_address = raw_nt_headers->OptionalHeader.ImageBase;
 		LPVOID section_virtual_address_ptr = reinterpret_cast<LPVOID>(section_virtual_address);
-		DWORD image_size = 64 * 1024 * 1024; // 64mb  // #TODO: Correct image size
 		printf("loading %s @ 0x%zX\n", executable_name, raw_nt_headers->OptionalHeader.ImageBase);
 
 		char* image_data = static_cast<char*>(section_virtual_address_ptr);
@@ -258,8 +256,8 @@ __declspec(dllexport) int main()
 	apply_module_thread_local_storage_fixup(executable_module);
 
 #ifndef _WIN64
-	BuildVersion buildVersion = BuildVersion::Eldorado_1_106708_cert_ms23;
-	EldoradoGameHost::InitModifications(buildVersion);
+	Build build = Build::Eldorado_1_106708_cert_ms23;
+	EldoradoGameHost::InitModifications(build);
 #endif
 
 	entry_point_function* entry_point = get_module_entry_point(executable_module);

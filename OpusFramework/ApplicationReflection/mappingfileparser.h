@@ -61,6 +61,7 @@ class MappingFileParser
 {
 public:
 	static PublicSymbol* GetPublicSymbolByName(std::string rName);
+	static PublicSymbol* GetPublicSymbolByVirtualAddress(void* pVirtualAddress);
 	static uint64_t GetBaseVirtualAddress();
 private:
 	MappingFileParser();

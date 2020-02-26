@@ -2,16 +2,16 @@
 #include <OpusFramework\opusframework-public-pch.h>
 
 
-intptr_t sub_141806A64_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t sub_141806A64_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::MCC)
+	if (engine == Engine::MCC)
 	{
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_1350_0_0: return 0x141806A64;
+		case Build::MCC_1_1350_0_0: return 0x141806A64;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<sub_141806A64_offset, const wchar_t* __fastcall (__int64 a1, int a2)> sub_141806A64 = { "sub_141806A64", [](__int64 a1, int a2)
 {
@@ -21,32 +21,32 @@ FunctionHookVarArgsEx<sub_141806A64_offset, const wchar_t* __fastcall (__int64 a
 } };
 
 
-intptr_t CreateGameEngine_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t CreateGameEngine_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::Halo1)
+	if (engine == Engine::Halo1)
 	{
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_1350_0_0: return 0x18008D2C0;
+		case Build::MCC_1_1350_0_0: return 0x18008D2C0;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<CreateGameEngine_offset, __int64 __fastcall (QWORD * a1)> CreateGameEngine = { "CreateGameEngine", [](QWORD* a1)
 {
 	return CreateGameEngine(a1);
 } };
 
-intptr_t InitThread_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t InitThread_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::Halo1)
+	if (engine == Engine::Halo1)
 	{
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_1350_0_0: return 0x18008C550;
+		case Build::MCC_1_1350_0_0: return 0x18008C550;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<InitThread_offset, HANDLE __fastcall (IGameEngine*, IGameEngineHost*, GameContext*)> InitThread = { "InitThread", [](IGameEngine* pGameEngine, IGameEngineHost* pGameEngineHost, GameContext* pGameContext)
 {

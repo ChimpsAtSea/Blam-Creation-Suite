@@ -24,8 +24,8 @@ private:
 public:
 	static IDataAccess* GetDataAccess() { return s_halo1GameRuntime->GetDataAccess(); }
 	static GameRuntime& GetGameRuntime();
-	static void InitModifications(BuildVersion buildVersion);
-	static void DeinitModifications(BuildVersion buildVersion);
+	static void InitModifications(Build build);
+	static void DeinitModifications(Build build);
 private:
 	static GameRuntime* s_halo1GameRuntime;
 };

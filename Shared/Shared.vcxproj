@@ -57,6 +57,7 @@
     <ClInclude Include="ImGuiAddons\Dirent\dirent.h" />
     <ClInclude Include="ImGuiAddons\ImGuiAddons.h" />
     <ClInclude Include="ImGuiAddons\ImGuiFileBrowser.h" />
+    <ClInclude Include="Runtime.h" />
     <ClInclude Include="Rendering\BoxPrimitive.h" />
     <ClInclude Include="Rendering\BoxRenderer.h" />
     <ClInclude Include="Rendering\DebugUI.h" />
@@ -83,6 +84,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Runtime.cpp" />
     <ClCompile Include="Rendering\BoxPrimitive.cpp" />
     <ClCompile Include="Rendering\BoxRenderer.cpp" />
     <ClCompile Include="Rendering\DebugUI.cpp" />

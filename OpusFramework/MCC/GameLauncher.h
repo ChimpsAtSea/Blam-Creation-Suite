@@ -14,7 +14,7 @@ private:
 	static void renderMainMenu();
 	static void renderUI();
 	static void gameRender();
-	static void launchGame(EngineVersion engineVersion);
+	static void launchGame(Engine engine);
 	static void checkSteamOwnership();
 	static void entireLibraryIsLoaded(const char* pLibName, const char* pFallbackDir);
 	static void renderPauseMenu();
@@ -29,7 +29,7 @@ private:
 private:
 
 public:
-	using GenericGameEvent = void(*)(EngineVersion engineVersion, BuildVersion buildVersion);
+	using GenericGameEvent = void(*)(Engine engine, Build build);
 	inline static void RegisterGameStartupCallback(GenericGameEvent eventCallback) { s_gameStartupEvent.push_back(eventCallback); }
 	inline static void RegisterGameShutdownCallback(GenericGameEvent eventCallback) { s_gameShutdownEvent.push_back(eventCallback); }
 	inline static void UnregisterGameLaunchCallback(GenericGameEvent eventCallback) { VectorEraseByValueHelper(s_gameStartupEvent, eventCallback); }
@@ -61,8 +61,8 @@ private:
 //		Count
 //	};
 //
-//	typedef void(GameLaunchCallback)(EngineVersion engineVersion, BuildVersion buildVersion);
-//	typedef void(GameShutdownCallback)(EngineVersion engineVersion, BuildVersion buildVersion);
+//	typedef void(GameLaunchCallback)(EngineVersion engine, BuildVersion build);
+//	typedef void(GameShutdownCallback)(EngineVersion engine, BuildVersion build);
 //
 //	static void Init(HINSTANCE hInstance, LPSTR lpCmdLine);
 //	static void Deinit();
@@ -71,8 +71,8 @@ private:
 //	
 //	static void Terminate();
 //	static void EnsureBink2Win64IsLoaded(const char* pLibName, const char* pFallbackDir = "");
-//	static void RegisterGameLaunchCallback(EngineVersion engineVersion, GameLaunchCallback gameLaunchCallback);
-//	static void RegisterGameShutdownCallback(EngineVersion engineVersion, GameShutdownCallback gameShutdownCallback);
+//	static void RegisterGameLaunchCallback(EngineVersion engine, GameLaunchCallback gameLaunchCallback);
+//	static void RegisterGameShutdownCallback(EngineVersion engine, GameShutdownCallback gameShutdownCallback);
 //	static void LoadSettings();
 //	static int Run(HINSTANCE hInstance, LPSTR lpCmdLine, GameRuntime& rGameRuntime);
 //	static void SetupGameContext(GameContext& gameContext);
@@ -105,7 +105,7 @@ private:
 //
 //
 //	static char* s_pTerminationFlag;
-//	BuildVersion GetCurrentbuildVersion();
+//	BuildVersion GetCurrentbuild();
 //	static bool s_gameManuallyKilled;
 //	static bool s_hideWindowOnStartup; 
 //

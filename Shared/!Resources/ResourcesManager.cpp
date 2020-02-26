@@ -16,7 +16,7 @@ LPSTR ResourcesManager::GetResourceIntResource(ResourceType type)
 
 HRSRC ResourcesManager::GetResourceHandle(ResourceType type)
 {
-	static HMODULE hInstance = GetModuleHandle(s_pModuleName);
+	static HMODULE hInstance = Runtime::GetCurrentModule();
 
 	LPSTR intResource = GetResourceIntResource(type);
 	if (intResource == nullptr) return NULL;
@@ -39,7 +39,7 @@ bool ResourcesManager::GetResource(ResourceType type, char** ppData, size_t* pDa
 	*ppData = nullptr;
 	*pDataSize = 0;
 
-	static HMODULE hInstance = GetModuleHandle(s_pModuleName);
+	static HMODULE hInstance = Runtime::GetCurrentModule();
 
 	HRSRC hResource = GetResourceHandle(type);
 	if (hResource == NULL) return false;

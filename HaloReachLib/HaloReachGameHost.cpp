@@ -79,20 +79,20 @@ void HaloReachGameHost::scriptDebugUI()
 	ImGui::End();
 }
 
-GameRuntime HaloReachGameHost::s_haloReachGameRuntime(EngineVersion::HaloReach, "haloreach", "HaloReach\\haloreach.dll");
+GameRuntime HaloReachGameHost::s_haloReachGameRuntime(Engine::HaloReach, "haloreach", "HaloReach\\haloreach.dll");
 
-extern void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
-extern void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
+extern void init_halo_reach(Engine engine, Build build);
+extern void deinit_halo_reach(Engine engine, Build build);
 
 
-void HaloReachGameHost::InitModifications(BuildVersion buildVersion)
+void HaloReachGameHost::InitModifications(Build build)
 {
-	init_halo_reach(EngineVersion::HaloReach, buildVersion);
+	init_halo_reach(Engine::HaloReach, build);
 }
 
-void HaloReachGameHost::DeinitModifications(BuildVersion buildVersion)
+void HaloReachGameHost::DeinitModifications(Build build)
 {
-	deinit_halo_reach(EngineVersion::HaloReach, buildVersion);
+	deinit_halo_reach(Engine::HaloReach, build);
 }
 
 HaloReachGameHost::HaloReachGameHost()
@@ -126,7 +126,7 @@ HaloReachGameHost::~HaloReachGameHost()
 
 	DeinitModifications(s_haloReachGameRuntime.GetBuildVersion());
 	s_haloReachGameRuntime.~GameRuntime();
-	new(&s_haloReachGameRuntime) GameRuntime(EngineVersion::HaloReach, "haloreach", "HaloReach\\haloreach.dll");
+	new(&s_haloReachGameRuntime) GameRuntime(Engine::HaloReach, "haloreach", "HaloReach\\haloreach.dll");
 }
 
 void HaloReachGameHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)

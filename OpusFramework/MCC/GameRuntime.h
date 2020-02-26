@@ -2,11 +2,11 @@
 class GameRuntime
 {
 public:
-	GameRuntime(EngineVersion engineVersion, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule = false);
+	GameRuntime(Engine engine, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule = false, Build build = Build::NotSet);
 	~GameRuntime();
 
 	IDataAccess* GetDataAccess() const { return m_pDataAccess; };
-	BuildVersion GetBuildVersion() const { return m_buildVersion; }
+	Build GetBuildVersion() const { return m_build; }
 
 	inline __int64 __fastcall CreateDataAccess(IDataAccess** ppDataAccess)
 	{
@@ -31,14 +31,14 @@ public:
 		return m_engineName;
 	}
 
-	static BuildVersion GetLibraryBuildVersion(const char* pFileName);
+	static Build GetLibraryBuildVersion(const char* pFileName);
 private:
 	void loadLibrary(const char* pLibFileName);
 	static uint64_t GetLibraryFileVersion(const char* pFileName);
 
 	std::string m_engineName;
 	LPCSTR m_enginePath = "";
-	BuildVersion m_buildVersion = BuildVersion::NotSet;
+	Build m_build = Build::NotSet;
 	IDataAccess* m_pDataAccess = nullptr;
 	HMODULE hGameModule = NULL;
 

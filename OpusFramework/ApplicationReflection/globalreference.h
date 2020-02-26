@@ -4,19 +4,19 @@ class GlobalReference
 public:
 	
 	GlobalReference(const char* pReferenceName, OffsetFunction offsetFunction);
-	GlobalReference(const char* pReferenceName, EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset);
+	GlobalReference(const char* pReferenceName, Engine engine, Build build, intptr_t offset);
 
-	static void InitTree(EngineVersion engineVersion, BuildVersion buildVersion);
-	static void DeinitTree(EngineVersion engineVersion, BuildVersion buildVersion);
+	static void InitTree(Engine engine, Build build);
+	static void DeinitTree(Engine engine, Build build);
 	static void DestroyTree();
 private:
 	void init();
-	GlobalReference* initNode(EngineVersion engineVersion, BuildVersion buildVersion);
-	GlobalReference* deinitNode(EngineVersion engineVersion, BuildVersion buildVersion);
+	GlobalReference* initNode(Engine engine, Build build);
+	GlobalReference* deinitNode(Engine engine, Build build);
 
 	GlobalReference* m_pNextGlobalReference;
-	EngineVersion m_engineVersion;
-	BuildVersion m_buildVersion;
+	Engine m_engine;
+	Build m_build;
 	intptr_t m_offset;
 	intptr_t m_originalValue;
 	OffsetFunction* m_pOffsetFunction;

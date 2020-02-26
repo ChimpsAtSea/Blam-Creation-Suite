@@ -1,16 +1,6 @@
 ﻿#include "haloreachlib-private-pch.h"
 
-// Custom Engine Stuff
-s_thread_local_storage ThreadLocalStorage;
-
 // Custom Stuff
-s_game_bindings g_GameBindings;
-bool g_customBinds = false;
-e_peer_property g_lastGameLoadStatus;
-const char* g_lastGameLoadStatusStr;
-const char* g_haloReachPathOverride = "";
-bool g_gameManuallyKilled = false;
-bool g_isHooked = false;
 WORD g_frameLimit = 60;
 int g_fieldOfView = 78;
 int g_controlsLayout = 0;
@@ -18,7 +8,6 @@ int g_useController = 0;
 bool g_pancamEnabled = false;
 bool g_keyboardPrintKeyState = false;
 bool g_CenteredCrosshair = false;
-BuildVersion g_currentbuildVersion = BuildVersion::NotSet;
 
 void _simple_pattern_match_readonly_data_copy(
 	void* pEngineAddress,
@@ -67,9 +56,9 @@ void _simple_pattern_match_readonly_data_copy(
 	}
 }
 
-intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVersion, const char pInputData[], size_t inputDataLength, const char* pInputMask)
+uintptr_t simple_pattern_match(Engine engine, Build build, const char pInputData[], size_t inputDataLength, const char* pInputMask)
 {
-	void* pEngineAddress = GetEngineMemoryAddress(engineVersion);
+	void* pEngineAddress = GetEngineMemoryAddress(engine);
 	SIZE_T sizeOfImage = 0;
 	void* pModuleData = nullptr;
 	_simple_pattern_match_readonly_data_copy(pEngineAddress, sizeOfImage, pModuleData);
@@ -81,7 +70,7 @@ intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVer
 	}
 
 	const char* pStartSearchAddress = reinterpret_cast<char*>(pModuleData);
-	intptr_t result = 0;
+	uintptr_t result = 0;
 
 	if (pInputMask)
 	{
@@ -102,7 +91,7 @@ intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVer
 				}
 			}
 
-			return GetEngineBaseAddress(engineVersion) + static_cast<intptr_t>(imageOffset);
+			return GetEngineBaseAddress(engine) + static_cast<intptr_t>(imageOffset);
 		search_fail_im:
 			continue;
 		}
@@ -115,7 +104,7 @@ intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVer
 
 			if (memcmp(pCurrentSearchPointer, pInputData, inputDataLength) == 0)
 			{
-				return GetEngineBaseAddress(engineVersion) + static_cast<intptr_t>(imageOffset);
+				return GetEngineBaseAddress(engine) + static_cast<intptr_t>(imageOffset);
 			}
 
 			//	for (size_t currentPatternIndex = 0; currentPatternIndex < inputDataLength; currentPatternIndex++)
@@ -126,7 +115,7 @@ intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVer
 			//		}
 			//	}
 
-			//	return GetBuildBaseAddress(buildVersion) + imageOffset;
+			//	return GetBuildBaseAddress(build) + imageOffset;
 			//search_fail:
 			//	continue;
 		}
@@ -135,48 +124,48 @@ intptr_t simple_pattern_match(EngineVersion engineVersion, BuildVersion buildVer
 	return 0;
 }
 
-intptr_t string_search(EngineVersion engineVersion, BuildVersion buildVersion, const char* pString)
+uintptr_t string_search(Engine engine, Build build, const char* pString)
 {
-	intptr_t imageAddress = simple_pattern_match(engineVersion, buildVersion, pString, strlen(pString) + 1, nullptr);
+	uintptr_t imageAddress = simple_pattern_match(engine, build, pString, strlen(pString) + 1, nullptr);
 	return imageAddress;
 }
 
-const char* string_search_ptr(EngineVersion engineVersion, BuildVersion buildVersion, const char* pString)
+const char* string_search_ptr(Engine engine, Build build, const char* pString)
 {
-	intptr_t imageAddress = string_search(engineVersion, buildVersion, pString);
+	uintptr_t imageAddress = string_search(engine, build, pString);
 	if (imageAddress)
 	{
-		const char* pStringAddress = reinterpret_cast<const char*>(GetEngineMemoryAddress(engineVersion)) + (imageAddress - GetEngineBaseAddress(engineVersion));
+		const char* pStringAddress = reinterpret_cast<const char*>(GetEngineMemoryAddress(engine)) + (imageAddress - GetEngineBaseAddress(engine));
 		return pStringAddress;
 	}
 	return nullptr;
 }
 
-intptr_t load_state_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t load_state_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::HaloReach)
+	if (engine == Engine::HaloReach)
 	{
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_887_0_0: return 0x1810EC5A4;
-		case BuildVersion::MCC_1_1035_0_0: return 0x180D37AB0;
-		case BuildVersion::MCC_1_1186_0_0: return 0x180D4E674;
-		case BuildVersion::MCC_1_1211_0_0: return 0x180D4F674;
-		case BuildVersion::MCC_1_1246_0_0: return 0x180D494F4;
-		case BuildVersion::MCC_1_1270_0_0: return 0x180D494F4;
-		case BuildVersion::MCC_1_1305_0_0: return 0x180CF8AF4;
+		case Build::MCC_1_887_0_0: return 0x1810EC5A4;
+		case Build::MCC_1_1035_0_0: return 0x180D37AB0;
+		case Build::MCC_1_1186_0_0: return 0x180D4E674;
+		case Build::MCC_1_1211_0_0: return 0x180D4F674;
+		case Build::MCC_1_1246_0_0: return 0x180D494F4;
+		case Build::MCC_1_1270_0_0: return 0x180D494F4;
+		case Build::MCC_1_1305_0_0: return 0x180CF8AF4;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t ();
 }
 DataEx<int, load_state_offset> load_state;
 
-intptr_t main_game_launch_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t main_game_launch_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::HaloReach)
+	if (engine == Engine::HaloReach)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engineVersion))); // 1.1270.0.0
+		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine))); // 1.1270.0.0
 		ps.AddInstruction(new _push("x", 0x40, 0x57));																	//.text:0000000180011870	push		rdi
 		ps.AddInstruction(new _sub("x", 0x48, 0x83, 0xEC, 0x30));														//.text:0000000180011872	sub			rsp, 30h
 		ps.AddInstruction(new _mov("x", 0x48, 0xC7, 0x44, 0x24, 0x20, 0xFE, 0xFF, 0xFF, 0xFF));							//.text:0000000180011876	mov			[rsp+38h+var_18], 0FFFFFFFFFFFFFFFEh
@@ -208,24 +197,24 @@ intptr_t main_game_launch_offset(EngineVersion engineVersion, BuildVersion build
 		if (patternOffset)
 		{
 			WriteLineVerbose("ketchup> SUCCEED: main_game_launch_offset @0x%x", patternOffset);
-			return GetEngineBaseAddress(engineVersion) + patternOffset;
+			return GetEngineBaseAddress(engine) + patternOffset;
 		}
 		else
 		{
 			WriteLineVerbose("ketchup> FAILURE: main_game_launch_offset");
 		}
 
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_887_0_0: return 0x180013EA0;
-		case BuildVersion::MCC_1_1035_0_0: return 0x1800113F0;
-		case BuildVersion::MCC_1_1186_0_0: return 0x180011860;
-		case BuildVersion::MCC_1_1211_0_0: return 0x180011870;
-		case BuildVersion::MCC_1_1246_0_0: return 0x180011870;
-		case BuildVersion::MCC_1_1270_0_0: return 0x180011870;
+		case Build::MCC_1_887_0_0: return 0x180013EA0;
+		case Build::MCC_1_1035_0_0: return 0x1800113F0;
+		case Build::MCC_1_1186_0_0: return 0x180011860;
+		case Build::MCC_1_1211_0_0: return 0x180011870;
+		case Build::MCC_1_1246_0_0: return 0x180011870;
+		case Build::MCC_1_1270_0_0: return 0x180011870;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t ();
 }
 FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = { "main_game_launch", [](__int64 a1, __int64 a2)
 {
@@ -276,12 +265,12 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 } };
 
 
-intptr_t convert_mcc_map_id_to_reach_map_id_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t convert_mcc_map_id_to_reach_map_id_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::HaloReach)
+	if (engine == Engine::HaloReach)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engineVersion)));			// 1.1270.0.0
+		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine)));			// 1.1270.0.0
 		ps.AddInstruction(new _or("x", 0x83, 0xCA, 0xFF));																//.text:000000018004BF10 83 CA FF                    or      edx, 0FFFFFFFFh
 		ps.AddInstruction(new _add("x", 0x81, 0xC1, 0x4E, 0xFF, 0xF, 0xFF));												//.text:000000018004BF13 81 C1 4E FF+                add     ecx, 0FFFFFF4Eh ; switch 42 cases
 		ps.AddInstruction(new _cmp("x", 0x83, 0xF9, 0x29));																//.text:000000018004BF19 83 F9 29                    cmp     ecx, 29h
@@ -310,15 +299,15 @@ intptr_t convert_mcc_map_id_to_reach_map_id_offset(EngineVersion engineVersion, 
 		if (patternOffset)
 		{
 			WriteLineVerbose("ketchup> SUCCEED: convert_mcc_map_id_to_reach_map_id_offset @0x%x", patternOffset);
-			return GetEngineBaseAddress(engineVersion) + patternOffset;
+			return GetEngineBaseAddress(engine) + patternOffset;
 		}
 		else
 		{
 			WriteLineVerbose("ketchup> FAILURE: convert_mcc_map_id_to_reach_map_id_offset");
-			return ~intptr_t();
+			return ~uintptr_t ();
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t ();
 }
 FunctionHookEx<convert_mcc_map_id_to_reach_map_id_offset, int __fastcall (int a1)> convert_mcc_map_id_to_reach_map_id = { "convert_mcc_map_id_to_reach_map_id", [](int a1)
 {
@@ -333,12 +322,12 @@ FunctionHookEx<convert_mcc_map_id_to_reach_map_id_offset, int __fastcall (int a1
 	}
 } };
 
-intptr_t convert_reach_map_id_to_mcc_map_id_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t convert_reach_map_id_to_mcc_map_id_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::HaloReach)
+	if (engine == Engine::HaloReach)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engineVersion)));			// 1.1270.0.0
+		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine)));			// 1.1270.0.0
 		ps.AddInstruction(new _or("x", 0x83, 0xCA, 0xFF));																		// .text:000000018004C140 83 CA FF                    or      edx, 0FFFFFFFFh
 		ps.AddInstruction(new _cmp("x", 0x81, 0xF9, 0x8D, 0x13, 0x00, 0x00));													// .text:000000018004C143 81 F9 8D 13+                cmp     ecx, 138Dh
 		ps.AddInstruction(new _ja("x", 0x0F, 0x87, 0xEE, 0x00, 0x00, 0x00));													// .text:000000018004C149 0F 87 EE 00+                ja      loc_18004C23D
@@ -369,15 +358,15 @@ intptr_t convert_reach_map_id_to_mcc_map_id_offset(EngineVersion engineVersion, 
 		if (patternOffset)
 		{
 			WriteLineVerbose("ketchup> SUCCEED: convert_reach_map_id_to_mcc_map_id_offset @0x%x", patternOffset);
-			return GetEngineBaseAddress(engineVersion) + patternOffset;
+			return GetEngineBaseAddress(engine) + patternOffset;
 		}
 		else
 		{
 			WriteLineVerbose("ketchup> FAILURE: convert_reach_map_id_to_mcc_map_id_offset");
-			return ~intptr_t();
+			return ~uintptr_t ();
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t ();
 }
 FunctionHookEx<convert_reach_map_id_to_mcc_map_id_offset, int __fastcall (int a1)> convert_reach_map_id_to_mcc_map_id = { "convert_reach_map_id_to_mcc_map_id", [](int a1)
 {
@@ -631,18 +620,18 @@ void halo_reach_debug_callback()
 	ImGui::End();
 }
 
-char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", EngineVersion::HaloReach, BuildVersion::MCC_1_1035_0_0, 0x180A0EE08);
+char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", Engine::HaloReach, Build::MCC_1_1035_0_0, 0x180A0EE08);
 
-intptr_t t_restricted_allocation_manager__reserve_memory_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t t_restricted_allocation_manager__reserve_memory_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::HaloReach)
+	if (engine == Engine::HaloReach)
 	{
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_1270_0_0: return 0x180211A20;
+		case Build::MCC_1_1270_0_0: return 0x180211A20;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t ();
 }
 #define t_restricted_allocation_manager__reserve_memory_offset_args void* __this, const char* szName, __int64 a3, __int64 a4, __int64 a5, __int64 a6, __int64 a7, __int64 a8
 FunctionHookEx<t_restricted_allocation_manager__reserve_memory_offset, __int64 __fastcall (t_restricted_allocation_manager__reserve_memory_offset_args)> t_restricted_allocation_manager__reserve_memory = { "t_restricted_allocation_manager__reserve_memory", [](t_restricted_allocation_manager__reserve_memory_offset_args)
@@ -679,47 +668,47 @@ struct hs_script_op
 };
 #pragma pack(pop)
 
-intptr_t hs_function_table_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t hs_function_table_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::HaloReach)
+	if (engine == Engine::HaloReach)
 	{
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_1270_0_0: return 0x180ABC230;
-		case BuildVersion::MCC_1_1305_0_0: return 0x180AA76C0;
+		case Build::MCC_1_1270_0_0: return 0x180ABC230;
+		case Build::MCC_1_1305_0_0: return 0x180AA76C0;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t ();
 }
 DataEx<hs_script_op * [1995], hs_function_table_offset> hs_function_table;
 
-intptr_t hs_evaluate_arguments_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t hs_evaluate_arguments_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::HaloReach)
+	if (engine == Engine::HaloReach)
 	{
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_1270_0_0: return 0x1801EF690;
-		case BuildVersion::MCC_1_1305_0_0: return 0x1801EF7A0;
+		case Build::MCC_1_1270_0_0: return 0x1801EF690;
+		case Build::MCC_1_1305_0_0: return 0x1801EF7A0;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t ();
 }
 
 template<typename t_parameter>
 FunctionHookEx<hs_evaluate_arguments_offset, t_parameter __fastcall (unsigned short expression_index, short parameters_count, short* parameters, char execute)> hs_evaluate_arguments;
 
-intptr_t hs_return_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t hs_return_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::HaloReach)
+	if (engine == Engine::HaloReach)
 	{
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_1270_0_0: return 0x1801EEE00;
-		case BuildVersion::MCC_1_1305_0_0: return 0x1801EEF10;
+		case Build::MCC_1_1270_0_0: return 0x1801EEE00;
+		case Build::MCC_1_1305_0_0: return 0x1801EEF10;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t ();
 }
 FunctionHookEx<hs_return_offset, __int64 __fastcall (unsigned short expression_index, unsigned int handle)> hs_return;
 
@@ -736,17 +725,17 @@ t_parameter& hs_macro_function_evaluate(short opcode, unsigned short expression_
 	return *hs_evaluate_arguments<t_parameter*>(expression_index, op->parameter_count, &op->parameter_types, execute);
 }
 
-intptr_t script_string_get_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t script_string_get_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::HaloReach)
+	if (engine == Engine::HaloReach)
 	{
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_1270_0_0: return 0x1801ECF80;
-		case BuildVersion::MCC_1_1305_0_0: return 0x1801ED090;
+		case Build::MCC_1_1270_0_0: return 0x1801ECF80;
+		case Build::MCC_1_1305_0_0: return 0x1801ED090;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t ();
 }
 FunctionHookEx<script_string_get_offset, char* __fastcall (__int64 unused, int id, char* dst, int len)> script_string_get;
 
@@ -763,17 +752,17 @@ void __fastcall hs_print_evaluate(short opcode, unsigned short expression_index,
 	}
 }
 
-intptr_t camera_definition_validate_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t camera_definition_validate_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::HaloReach)
+	if (engine == Engine::HaloReach)
 	{
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_1270_0_0: return 0x1800E6950;
-		case BuildVersion::MCC_1_1305_0_0: return 0x1800E6A00;
+		case Build::MCC_1_1270_0_0: return 0x1800E6950;
+		case Build::MCC_1_1305_0_0: return 0x1800E6A00;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t ();
 }
 FunctionHookEx<camera_definition_validate_offset, void __fastcall (s_camera_definition * camera)> camera_definition_validate = { "camera_definition_validate", [](s_camera_definition* camera)
 {
@@ -834,52 +823,51 @@ FunctionHookEx<camera_definition_validate_offset, void __fastcall (s_camera_defi
 
 
 
-void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVersion, bool isMCC)
+void init_halo_reach_with_mcc(Engine engine, Build build, bool isMCC)
 {
-	g_currentbuildVersion = buildVersion;
 	Window::SetWindowTitle("Halo Reach");
 	ReadConfig();
 	//DebugUI::RegisterCallback(halo_reach_debug_callback);
 
 	init_detours();
 
-	DataReferenceBase::InitTree(EngineVersion::HaloReach, buildVersion);
-	FunctionHookBase::InitTree(EngineVersion::HaloReach, buildVersion);
-	GlobalReference::InitTree(EngineVersion::HaloReach, buildVersion);
+	DataReferenceBase::InitTree(Engine::HaloReach, build);
+	FunctionHookBase::InitTree(Engine::HaloReach, build);
+	GlobalReference::InitTree(Engine::HaloReach, build);
 	end_detours();
 
 	// Allows spawning AI via scripts or effects, props to Zeddikins
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "SpawnAiWithScriptsAndEffects", true))
 	{
 		UINT8 jmp[1] = { 0xEB };
-		if (buildVersion == BuildVersion::MCC_1_1270_0_0)
+		if (build == Build::MCC_1_1270_0_0)
 		{
-			copy_to_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1270_0_0, 0x18076F581, jmp, sizeof(jmp));
-			nop_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1270_0_0, 0x180730287, 6);
+			copy_to_address(Engine::HaloReach, Build::MCC_1_1270_0_0, 0x18076F581, jmp, sizeof(jmp));
+			nop_address(Engine::HaloReach, Build::MCC_1_1270_0_0, 0x180730287, 6);
 		}
-		if (buildVersion == BuildVersion::MCC_1_1305_0_0)
+		if (build == Build::MCC_1_1305_0_0)
 		{
-			copy_to_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x18076E341, jmp, sizeof(jmp));
-			nop_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x18072F047, 6);
+			copy_to_address(Engine::HaloReach, Build::MCC_1_1305_0_0, 0x18076E341, jmp, sizeof(jmp));
+			nop_address(Engine::HaloReach, Build::MCC_1_1305_0_0, 0x18072F047, 6);
 		}
 	}
 
 	// Allow the use of night vision in multiplayer, props to Zeddikins
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "AllowNightVisionInMultiplayer", true))
 	{
-		if (buildVersion == BuildVersion::MCC_1_1305_0_0)
+		if (build == Build::MCC_1_1305_0_0)
 		{
-			nop_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x1805D66B7, 6);
+			nop_address(Engine::HaloReach, Build::MCC_1_1305_0_0, 0x1805D66B7, 6);
 		}
 	}
 
 	// Enable debug hud coordinates
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "PanCamEnabled", true))
 	{
-		if (buildVersion == BuildVersion::MCC_1_1305_0_0)
+		if (build == Build::MCC_1_1305_0_0)
 		{
-			nop_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x1800DCA8A, 6);
-			nop_address(EngineVersion::HaloReach, BuildVersion::MCC_1_1305_0_0, 0x1800DCA97, 6);
+			nop_address(Engine::HaloReach, Build::MCC_1_1305_0_0, 0x1800DCA8A, 6);
+			nop_address(Engine::HaloReach, Build::MCC_1_1305_0_0, 0x1800DCA97, 6);
 		}
 	}
 
@@ -904,18 +892,18 @@ void init_halo_reach_with_mcc(EngineVersion engineVersion, BuildVersion buildVer
 	//LegacyGameLauncher::RegisterTerminationValue(g_termination_value);
 }
 
-void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion)
+void init_halo_reach(Engine engine, Build build)
 {
-	init_halo_reach_with_mcc(engineVersion, buildVersion, false);
+	init_halo_reach_with_mcc(engine, build, false);
 }
 
-void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion)
+void deinit_halo_reach(Engine engine, Build build)
 {
 	//DebugUI::UnregisterCallback(halo_reach_debug_callback);
 
 	init_detours();
-	FunctionHookBase::DeinitTree(EngineVersion::HaloReach, buildVersion);
-	DataReferenceBase::DeinitTree(EngineVersion::HaloReach, buildVersion);
-	GlobalReference::DeinitTree(EngineVersion::HaloReach, buildVersion);
+	FunctionHookBase::DeinitTree(Engine::HaloReach, build);
+	DataReferenceBase::DeinitTree(Engine::HaloReach, build);
+	GlobalReference::DeinitTree(Engine::HaloReach, build);
 	end_detours();
 }

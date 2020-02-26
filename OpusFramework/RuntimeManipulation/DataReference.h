@@ -4,19 +4,19 @@ class DataReferenceBase
 {
 public:
 	DataReferenceBase(
-		EngineVersion engineVersion,
-		BuildVersion buildVersion,
+		Engine engine,
+		Build build,
 		size_t dataSize,
 		size_t offset,
-		intptr_t(find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion)
+		find_offset_func find_offset
 	)
-		: m_engineVersion(engineVersion)
-		, m_buildVersion(buildVersion)
+		: m_engine(engine)
+		, m_build(build)
 		, m_pNextDataReference(nullptr)
 		, m_dataSize(dataSize)
 		, m_offset(offset)
 		, m_pPtr(nullptr)
-		, m_find_offset_func(find_offset_func)
+		, m_find_offset_func(find_offset)
 	{
 		if (g_pDataReferenceBaseBaseFirst == nullptr)
 		{
@@ -29,15 +29,15 @@ public:
 			g_pDataReferenceBaseBaseLast = this;
 		}
 
-		if (buildVersion != BuildVersion::NotSet && IsEngineLoaded(engineVersion))
+		if (build != Build::NotSet && IsEngineLoaded(engine))
 		{
-			initNode(engineVersion, buildVersion);
+			initNode(engine, build);
 		}
 	}
 
 private:
-	EngineVersion m_engineVersion;
-	BuildVersion m_buildVersion;
+	Engine m_engine;
+	Build m_build;
 	DataReferenceBase* m_pNextDataReference;
 	size_t m_dataSize;
 	size_t m_offset;
@@ -46,56 +46,56 @@ protected:
 private:
 	static DataReferenceBase* g_pDataReferenceBaseBaseFirst;
 	static DataReferenceBase* g_pDataReferenceBaseBaseLast;
-	intptr_t(*m_find_offset_func)(EngineVersion engineVersion, BuildVersion buildVersion);
+	find_offset_func* m_find_offset_func;
 
 public:
-	static void InitTree(EngineVersion engineVersion, BuildVersion buildVersion)
+	static void InitTree(Engine engine, Build build)
 	{
 		// this iteration avoids having to do this recursively
 
 		DataReferenceBase* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
 		while (pCurrentDataReferenceBase)
 		{
-			pCurrentDataReferenceBase = pCurrentDataReferenceBase->initNode(engineVersion, buildVersion);
+			pCurrentDataReferenceBase = pCurrentDataReferenceBase->initNode(engine, build);
 		}
 	}
 
-	static void DeinitTree(EngineVersion engineVersion, BuildVersion buildVersion)
+	static void DeinitTree(Engine engine, Build build)
 	{
 		// this iteration avoids having to do this recursively
 
 		DataReferenceBase* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
 		while (pCurrentDataReferenceBase)
 		{
-			pCurrentDataReferenceBase = pCurrentDataReferenceBase->deinitNode(engineVersion, buildVersion);
+			pCurrentDataReferenceBase = pCurrentDataReferenceBase->deinitNode(engine, build);
 		}
 	}
 
 private:
 
-	DataReferenceBase* initNode(EngineVersion engineVersion, BuildVersion buildVersion)
+	DataReferenceBase* initNode(Engine engine, Build build)
 	{
-		if (m_engineVersion == engineVersion)
+		if (m_engine == engine)
 		{
 			if (m_pPtr == nullptr)
 			{
-				if (m_buildVersion == BuildVersion::NotSet)
+				if (m_build == Build::NotSet)
 				{
 					ASSERT(m_find_offset_func != nullptr);
-					m_pPtr = getPointer(engineVersion, buildVersion);
+					m_pPtr = getPointer(engine, build);
 				}
-				if (m_buildVersion == buildVersion)
+				if (m_build == build)
 				{
-					m_pPtr = getPointer(engineVersion, buildVersion);
+					m_pPtr = getPointer(engine, build);
 					ASSERT(m_pPtr != nullptr);
 				}
 			}
 		}
 		return m_pNextDataReference;
 	}
-	DataReferenceBase* deinitNode(EngineVersion engineVersion, BuildVersion buildVersion)
+	DataReferenceBase* deinitNode(Engine engine, Build build)
 	{
-		if (m_engineVersion == engineVersion)
+		if (m_engine == engine)
 		{
 			if (m_pPtr != nullptr)
 			{
@@ -105,31 +105,31 @@ private:
 		return m_pNextDataReference;
 	}
 
-	void* getPointer(EngineVersion engineVersion, BuildVersion buildVersion)
+	void* getPointer(Engine engine, Build build)
 	{
-		if (m_engineVersion != engineVersion)
+		if (m_engine != engine)
 		{
 			return nullptr;
 		}
 
-		intptr_t offset = m_offset;
+		uintptr_t offset = m_offset;
 		if (offset == 0 && m_find_offset_func)
 		{
-			offset = m_find_offset_func(engineVersion, buildVersion);
+			offset = m_find_offset_func(engine, build);
 
-			if (offset == ~intptr_t())
+			if (offset == ~uintptr_t())
 			{
 				return nullptr;
 			}
 
-			ASSERT(m_buildVersion == BuildVersion::NotSet && offset >= GetEngineBaseAddress(engineVersion)/*, "Offset is out of bounds"*/);
-			ASSERT(m_buildVersion == BuildVersion::NotSet && offset < GetEngineTopAddress(engineVersion, buildVersion)/*, "Offset is out of bounds"*/);
-			ASSERT(m_buildVersion == BuildVersion::NotSet && static_cast<intptr_t>(offset + m_dataSize) < GetEngineTopAddress(engineVersion, buildVersion)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == Build::NotSet && offset >= GetEngineBaseAddress(engine)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == Build::NotSet && offset < GetEngineTopAddress(engine, build)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == Build::NotSet && static_cast<uintptr_t>(offset + m_dataSize) < GetEngineTopAddress(engine, build)/*, "Offset is out of bounds"*/);
 		}
 
-		void* pModule = GetEngineMemoryAddress(engineVersion);
+		void* pModule = GetEngineMemoryAddress(engine);
 		char* pBaseAddress = reinterpret_cast<char*>(pModule);
-		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetEngineBaseAddress(engineVersion)));
+		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetEngineBaseAddress(engine)));
 		return ptr;
 	}
 

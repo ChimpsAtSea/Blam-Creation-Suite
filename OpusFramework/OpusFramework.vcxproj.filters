@@ -54,9 +54,6 @@
     <ClCompile Include="Settings\opus_legacy\settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MCC\opus_legacy\BuildVersion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MCC\GameRuntime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -94,6 +91,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="platform_configuration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RuntimeManipulation\DataPatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC\Versioning.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -194,9 +197,6 @@
     <ClInclude Include="Settings\opus_legacy\settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MCC\opus_legacy\BuildVersion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MCC\GameRuntime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -243,6 +243,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="platform_configuration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RuntimeManipulation\DataPatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\Versioning.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RuntimeManipulation\FindOffsetFunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

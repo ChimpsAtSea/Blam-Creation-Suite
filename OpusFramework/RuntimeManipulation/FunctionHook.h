@@ -1,17 +1,17 @@
 #pragma once
 
 
-template<BuildVersion buildVersion, size_t offset, typename T>
+template<Build build, size_t offset, typename T>
 struct FunctionHook;
 
-template<BuildVersion buildVersion, size_t offset, typename R, typename ...Args>
-struct FunctionHook<buildVersion, offset, R(Args...)> : FunctionHookBase
+template<Build build, size_t offset, typename R, typename ...Args>
+struct FunctionHook<build, offset, R(Args...)> : FunctionHookBase
 {
 public:
 	typedef R(base_type)(Args...);
 
-	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetEngineBaseAddress(engineVersion), "Offset is out of bounds");
-	static_assert(buildVersion == BuildVersion::NotSet || offset < GetEngineTopAddress(engineVersion, buildVersion), "Offset is out of bounds");
+	static_assert(build == Build::NotSet || offset >= GetEngineBaseAddress(engine), "Offset is out of bounds");
+	static_assert(build == Build::NotSet || offset < GetEngineTopAddress(engine, build), "Offset is out of bounds");
 
 	__forceinline decltype(auto) operator()(Args... arg)
 	{
@@ -42,14 +42,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHook(hook_assignment_type func)
-		:FunctionHookBase(nullptr, buildVersion, offset, nullptr)
+		:FunctionHookBase(nullptr, build, offset, nullptr)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHook(R(*func)(Args...))
-		:FunctionHookBase(nullptr, buildVersion, offset, nullptr)
+		:FunctionHookBase(nullptr, build, offset, nullptr)
 		, hook(func)
 	{
 
@@ -57,14 +57,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHook(const char pName[], hook_assignment_type func)
-		:FunctionHookBase(pName, buildVersion, offset, nullptr)
+		:FunctionHookBase(pName, build, offset, nullptr)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHook(const char pName[], R(*func)(Args...))
-		:FunctionHookBase(pName, buildVersion, offset, nullptr)
+		:FunctionHookBase(pName, build, offset, nullptr)
 		, hook(func)
 	{
 

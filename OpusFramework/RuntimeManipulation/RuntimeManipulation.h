@@ -1,5 +1,7 @@
 #pragma once
 
+#include "FindOffsetFunction.h"
+
 // #TODO: (Squaresome) Refactor the DataReference API because it is crazy!
 
 // these API's require auto in their templates. 
@@ -36,3 +38,4 @@
 
 /* LEGACY */ #include "opus_legacy/detour_helpers.h"
 #include "SystemPatch.h"
+#include "DataPatch.h"

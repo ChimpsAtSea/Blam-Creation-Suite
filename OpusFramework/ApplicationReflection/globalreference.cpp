@@ -5,8 +5,8 @@ GlobalReference* GlobalReference::s_pLastGlobalReference = nullptr;
 
 GlobalReference::GlobalReference(const char* pReferenceName, OffsetFunction offsetFunction)
 	: m_pNextGlobalReference(nullptr)
-	, m_engineVersion(EngineVersion::NotSet)
-	, m_buildVersion(BuildVersion::NotSet)
+	, m_engine(Engine::NotSet)
+	, m_build(Build::NotSet)
 	, m_offset(0)
 	, m_pReferenceName(pReferenceName)
 	, m_pOffsetFunction(offsetFunction)
@@ -14,10 +14,10 @@ GlobalReference::GlobalReference(const char* pReferenceName, OffsetFunction offs
 	init();
 }
 
-GlobalReference::GlobalReference(const char* pReferenceName, EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset)
+GlobalReference::GlobalReference(const char* pReferenceName, Engine engine, Build build, intptr_t offset)
 	: m_pNextGlobalReference(nullptr)
-	, m_engineVersion(engineVersion)
-	, m_buildVersion(buildVersion)
+	, m_engine(engine)
+	, m_build(build)
 	, m_offset(offset)
 	, m_pReferenceName(pReferenceName)
 	, m_pOffsetFunction(nullptr)
@@ -39,21 +39,21 @@ void GlobalReference::init()
 	}
 }
 
-void GlobalReference::InitTree(EngineVersion engineVersion, BuildVersion buildVersion)
+void GlobalReference::InitTree(Engine engine, Build build)
 {
 	GlobalReference* pCurrentGlobalReference = s_pFirstGlobalReference;
 	while (pCurrentGlobalReference)
 	{
-		pCurrentGlobalReference = pCurrentGlobalReference->initNode(engineVersion, buildVersion);
+		pCurrentGlobalReference = pCurrentGlobalReference->initNode(engine, build);
 	}
 }
 
-void GlobalReference::DeinitTree(EngineVersion engineVersion, BuildVersion buildVersion)
+void GlobalReference::DeinitTree(Engine engine, Build build)
 {
 	GlobalReference* pCurrentGlobalReference = s_pFirstGlobalReference;
 	while (pCurrentGlobalReference)
 	{
-		pCurrentGlobalReference = pCurrentGlobalReference->deinitNode(engineVersion, buildVersion);
+		pCurrentGlobalReference = pCurrentGlobalReference->deinitNode(engine, build);
 	}
 }
 
@@ -70,9 +70,9 @@ void GlobalReference::DestroyTree()
 	}
 }
 
-GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVersion buildVersion)
+GlobalReference* GlobalReference::initNode(Engine engine, Build build)
 {
-	if (m_engineVersion == engineVersion && (m_buildVersion == BuildVersion::NotSet || m_buildVersion == buildVersion))
+	if (m_engine == engine && (m_build == Build::NotSet || m_build == build))
 	{
 		PublicSymbol* pPublicSymbol = MappingFileParser::GetPublicSymbolByName(m_pReferenceName);
 		if (pPublicSymbol)
@@ -80,13 +80,13 @@ GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVer
 			intptr_t targetOffset = m_offset;
 			if (m_pOffsetFunction)
 			{
-				targetOffset = m_pOffsetFunction(buildVersion);
+				targetOffset = m_pOffsetFunction(build);
 			}
-			if (targetOffset == ~intptr_t())
+			if (targetOffset == ~uintptr_t())
 			{
 				return m_pNextGlobalReference;
 			}
-			ASSERT(targetOffset != ~intptr_t());
+			ASSERT(targetOffset != ~uintptr_t());
 
 			void** pReference = nullptr;
 			{
@@ -100,17 +100,17 @@ GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVer
 
 			void* pDataAddress = nullptr;
 			{
-				uint64_t gameVirtualAddress = GetEngineBaseAddress(engineVersion);
+				uint64_t gameVirtualAddress = GetEngineBaseAddress(engine);
 				uint64_t dataVirtualAddress = static_cast<uint64_t>(targetOffset);
 				uint64_t dataRelativeVirtualAddress = dataVirtualAddress - gameVirtualAddress;
-				char* pGameBaseAddress = reinterpret_cast<char*>(GetEngineMemoryAddress(engineVersion));
+				char* pGameBaseAddress = reinterpret_cast<char*>(GetEngineMemoryAddress(engine));
 				pDataAddress = pGameBaseAddress + dataRelativeVirtualAddress;
 			}
 
 			ASSERT(pReference != nullptr);
 			ASSERT(pDataAddress != nullptr);
 			intptr_t& dataAddressValue = *reinterpret_cast<intptr_t*>(pReference);
-			//if (m_buildVersion != BuildVersion::NotSet) // specific game addresses should be verified
+			//if (m_build != BuildVersion::NotSet) // specific game addresses should be verified
 			//{
 			//	
 			//	ASSERT(dataAddressValue == targetOffset);
@@ -149,9 +149,9 @@ GlobalReference* GlobalReference::initNode(EngineVersion engineVersion, BuildVer
 	return m_pNextGlobalReference;
 }
 
-GlobalReference* GlobalReference::deinitNode(EngineVersion engineVersion, BuildVersion buildVersion)
+GlobalReference* GlobalReference::deinitNode(Engine engine, Build build)
 {
-	if (m_engineVersion == engineVersion && (m_buildVersion == BuildVersion::NotSet || m_buildVersion == buildVersion))
+	if (m_engine == engine && (m_build == Build::NotSet || m_build == build))
 	{
 		PublicSymbol* pPublicSymbol = MappingFileParser::GetPublicSymbolByName(m_pReferenceName);
 		if (pPublicSymbol)
@@ -159,9 +159,9 @@ GlobalReference* GlobalReference::deinitNode(EngineVersion engineVersion, BuildV
 			intptr_t targetOffset = m_offset;
 			if (m_pOffsetFunction)
 			{
-				targetOffset = m_pOffsetFunction(buildVersion);
+				targetOffset = m_pOffsetFunction(build);
 			}
-			ASSERT(targetOffset != ~intptr_t());
+			ASSERT(targetOffset != ~uintptr_t());
 
 			void** pReference = nullptr;
 			{
@@ -175,10 +175,10 @@ GlobalReference* GlobalReference::deinitNode(EngineVersion engineVersion, BuildV
 
 			void* pDataAddress = nullptr;
 			{
-				uint64_t gameVirtualAddress = GetEngineBaseAddress(engineVersion);
+				uint64_t gameVirtualAddress = GetEngineBaseAddress(engine);
 				uint64_t dataVirtualAddress = static_cast<uint64_t>(targetOffset);
 				uint64_t dataRelativeVirtualAddress = dataVirtualAddress - gameVirtualAddress;
-				char* pGameBaseAddress = reinterpret_cast<char*>(GetEngineMemoryAddress(engineVersion));
+				char* pGameBaseAddress = reinterpret_cast<char*>(GetEngineMemoryAddress(engine));
 				pDataAddress = pGameBaseAddress + dataRelativeVirtualAddress;
 			}
 

@@ -1,12 +1,12 @@
 #pragma once
 
 
-template<EngineVersion engineVersion, BuildVersion buildVersion, size_t offset, typename base_type>
+template<Engine engine, Build build, size_t offset, typename base_type>
 struct FunctionHookVarArgs : public FunctionHookBase
 {
 public:
-	static_assert(buildVersion == BuildVersion::NotSet || offset >= GetEngineBaseAddress(engineVersion), "Offset is out of bounds");
-	static_assert(buildVersion == BuildVersion::NotSet || offset < GetEngineTopAddress(engineVersion, buildVersion), "Offset is out of bounds");
+	static_assert(build == Build::NotSet || offset >= GetEngineBaseAddress(engine), "Offset is out of bounds");
+	static_assert(build == Build::NotSet || offset < GetEngineTopAddress(engine, build), "Offset is out of bounds");
 
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args)
@@ -38,14 +38,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgs(hook_assignment_type func)
-		:FunctionHookBase(nullptr, engineVersion, buildVersion, offset, nullptr)
+		:FunctionHookBase(nullptr, engine, build, offset, nullptr)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgs(base_type* func)
-		:FunctionHookBase(nullptr, engineVersion, buildVersion, offset, nullptr)
+		:FunctionHookBase(nullptr, engine, build, offset, nullptr)
 		, hook(func)
 	{
 
@@ -53,14 +53,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgs(const char* pName, hook_assignment_type func)
-		:FunctionHookBase(pName, engineVersion, buildVersion, offset, nullptr)
+		:FunctionHookBase(pName, engine, build, offset, nullptr)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgs(const char* pName, base_type* func)
-		:FunctionHookBase(pName, engineVersion, buildVersion, offset, nullptr)
+		:FunctionHookBase(pName, engine, build, offset, nullptr)
 		, hook(func)
 	{
 

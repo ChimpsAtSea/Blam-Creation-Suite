@@ -50,9 +50,9 @@ void memcpy_virtual(
 	}
 }
 
-void nop_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, size_t count)
+void nop_address(Engine engine, Build build, intptr_t offset, size_t count)
 {
-	char* pBeginning = (char*)GetEngineMemoryAddress(engineVersion);
+	char* pBeginning = (char*)GetEngineMemoryAddress(engine);
 	char* pNopAttack = pBeginning + (offset - 0x180000000);
 
 	char nop = 0x90i8;
@@ -62,17 +62,17 @@ void nop_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_
 	}
 }
 
-void copy_from_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, void* data, size_t length)
+void copy_from_address(Engine engine, Build build, intptr_t offset, void* data, size_t length)
 {
-	char* pBeginning = (char*)GetEngineMemoryAddress(engineVersion);
+	char* pBeginning = (char*)GetEngineMemoryAddress(engine);
 	char* pDataAttack = pBeginning + (offset - 0x180000000);
 
 	memcpy_virtual(data, pDataAttack, length);
 }
 
-void copy_to_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, void* data, size_t length)
+void copy_to_address(Engine engine, Build build, intptr_t offset, void* data, size_t length)
 {
-	char* pBeginning = (char*)GetEngineMemoryAddress(engineVersion);
+	char* pBeginning = (char*)GetEngineMemoryAddress(engine);
 	char* pDataAttack = pBeginning + (offset - 0x180000000);
 
 	memcpy_virtual(pDataAttack, data, length);

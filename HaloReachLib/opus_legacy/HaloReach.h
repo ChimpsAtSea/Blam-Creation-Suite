@@ -2,8 +2,6 @@
 
 #include "local_types.h"
 
-class IGameEngineHostLegacy;
-
 // TODO: find a better place for this?
 enum e_tls_offset
 {
@@ -245,39 +243,9 @@ enum e_tls_offset
 	// unsure if more exist after 0x730
 };
 
-extern intptr_t TlsIndex_offset(EngineVersion engineVersion, BuildVersion buildVersion);
-extern DataEx<uint32_t, TlsIndex_offset> TlsIndex;
-struct s_thread_local_storage
-{
-	uint64_t Address = NULL;
-
-	template<typename T = uint64_t>
-	T Get(size_t offset = 0)
-	{
-		Address = *(uint64_t *)(__readgsqword(0x58u) + (uint32_t)TlsIndex * sizeof(void *));
-
-		if (!Address)
-			return uint64_t(0);
-
-		if (offset)
-			return *(T *)(Address + offset);
-
-		return (T)Address;
-	}
-
-	bool IsValid()
-	{
-		return Get() != NULL;
-	}
-};
-
-extern s_thread_local_storage ThreadLocalStorage;
-
 // Custom Stuff
 
-extern bool g_isHooked;
 extern WORD g_frameLimit;
-extern int g_fieldOfView;
 extern bool g_pancamEnabled;
 extern int g_controlsLayout;
 extern int g_useController;
@@ -306,13 +274,3 @@ a57,a58,a59,a60,a61,a62,a63
 typedef char __fastcall profile_configuration_update_func(profile_configuration_update_args);
 //extern HaloReach_2019_Jun_24_Hook<0x180780D90, profile_configuration_update_func> profile_configuration_update_type; // 0x180497FD0
 
-// Halo Reach Variables
-
-//extern HaloReach_2019_Jun_24_Data<char*, 0x183461000> g_shell_command_line; // no equivalent
-extern intptr_t g_input_abstraction_offset(EngineVersion engineVersion, BuildVersion buildVersion);
-extern DataEx<s_input_abstraction, g_input_abstraction_offset> g_input_abstraction;
-extern intptr_t g_termination_value_offset(EngineVersion engineVersion, BuildVersion buildVersion);
-
-// config flags
-
-extern const char* g_haloReachPathOverride;

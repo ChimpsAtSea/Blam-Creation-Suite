@@ -1,6 +1,8 @@
 #pragma once
 
-/* LEGACY */ #include "opus_legacy\BuildVersion.h"
+#define OFFSET(Engine, Build, Offset) if(engine == Engine && build == Build) return (Offset);
+
+#include "Versioning.h"
 
 /* LEGACY */ #include "opus_legacy\IVariantAccessorBase.h"
 /* LEGACY */ #include "opus_legacy\IGameVariant.h"

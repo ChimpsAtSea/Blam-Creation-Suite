@@ -1,11 +1,12 @@
 #include "opusframework-private-pch.h"
 
-GameRuntime::GameRuntime(EngineVersion engineVersion, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule)
+GameRuntime::GameRuntime(Engine engine, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule, Build build)
 	: m_engineName(pEngineName)
-	, m_buildVersion(GetLibraryBuildVersion(pLibFileName)), m_enginePath(pLibFileName)
+	, m_build(build == Build::NotSet ? GetLibraryBuildVersion(pLibFileName) : build)
+	, m_enginePath(pLibFileName)
 {
 
-	if (m_buildVersion == BuildVersion::NotSet)
+	if (m_build == Build::NotSet)
 	{
 		WriteLineVerbose("Warning: GameRuntime initialized with BuildVersion::NotSet");
 		return;
@@ -21,7 +22,7 @@ GameRuntime::GameRuntime(EngineVersion engineVersion, const char* pEngineName, c
 	}
 	else
 	{
-		hGameModule = static_cast<HINSTANCE>(GetEngineMemoryAddress(engineVersion));
+		hGameModule = static_cast<HINSTANCE>(GetEngineMemoryAddress(engine));
 	}
 }
 
@@ -52,11 +53,11 @@ void GameRuntime::loadLibrary(const char* pLibFileName)
 	pSetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(hGameModule, "SetLibrarySettings");
 }
 
-BuildVersion GameRuntime::GetLibraryBuildVersion(const char* pFileName)
+Build GameRuntime::GetLibraryBuildVersion(const char* pFileName)
 {
 	uint64_t libraryFileVersion = GetLibraryFileVersion(pFileName);
 
-	return static_cast<BuildVersion>(libraryFileVersion);
+	return static_cast<Build>(libraryFileVersion);
 }
 
 uint64_t GameRuntime::GetLibraryFileVersion(const char* pFileName)

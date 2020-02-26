@@ -1,15 +1,15 @@
 #include "halo1lib-private-pch.h"
 
-intptr_t sub_18019BC50_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+uintptr_t sub_18019BC50_offset(Engine engine, Build build)
 {
-	if (engineVersion == EngineVersion::Halo1)
+	if (engine == Engine::Halo1)
 	{
-		switch (buildVersion)
+		switch (build)
 		{
-		case BuildVersion::MCC_1_1350_0_0: return 0x18019BC50;
+		case Build::MCC_1_1350_0_0: return 0x18019BC50;
 		}
 	}
-	return ~intptr_t();
+	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<sub_18019BC50_offset, __int64 __fastcall (__int64*, const char*, va_list)> sub_18019BC50 = { "sub_18019BC50", [](__int64* a1, const char* pFormat, va_list args)
 {
@@ -24,16 +24,16 @@ FunctionHookVarArgsEx<sub_18019BC50_offset, __int64 __fastcall (__int64*, const 
 
 
 
-//intptr_t sub_18019BB80_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+//intptr_t sub_18019BB80_offset(EngineVersion engine, BuildVersion build)
 //{
-//	if (engineVersion == EngineVersion::Halo1)
+//	if (engine == EngineVersion::Halo1)
 //	{
-//		switch (buildVersion)
+//		switch (build)
 //		{
 //		case BuildVersion::Build_1_1350_0_0: return 0x18019BB80;
 //		}
 //	}
-//	return ~intptr_t();
+//	return ~uintptr_t();
 //}
 //_QWORD* sub_18019BB80_hook(_QWORD* a1, const char* pFormat, ...)
 //{
@@ -49,16 +49,16 @@ FunctionHookVarArgsEx<sub_18019BC50_offset, __int64 __fastcall (__int64*, const 
 //}
 //FunctionHookVarArgsEx<sub_18019BB80_offset, _QWORD * (_QWORD * a1, const char* pFormat, ...)> sub_18019BB80 = { "sub_18019BB80", sub_18019BB80_hook };
 
-//intptr_t sub_1801FE1B0_offset(EngineVersion engineVersion, BuildVersion buildVersion)
+//intptr_t sub_1801FE1B0_offset(EngineVersion engine, BuildVersion build)
 //{
-//	if (engineVersion == EngineVersion::Halo1)
+//	if (engine == EngineVersion::Halo1)
 //	{
-//		switch (buildVersion)
+//		switch (build)
 //		{
 //		case BuildVersion::Build_1_1350_0_0: return 0x1801FE1B0;
 //		}
 //	}
-//	return ~intptr_t();
+//	return ~uintptr_t();
 //}
 //FunctionHookEx<sub_1801FE1B0_offset, __int64 __fastcall (int a1, int a2)> sub_1801FE1B0 = { "sub_1801FE1B0", [](int a1, int a2)
 //{

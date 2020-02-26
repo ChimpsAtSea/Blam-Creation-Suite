@@ -325,6 +325,27 @@ uint64_t MappingFileParser::GetBaseVirtualAddress()
 	return g_mappingFileParser.m_baseVirtualAddress;
 }
 
+PublicSymbol* MappingFileParser::GetPublicSymbolByVirtualAddress(void* pVirtualAddress)
+{
+	static HMODULE hInstance = Runtime::GetCurrentModule();
+
+	uintptr_t virtualAddress = reinterpret_cast<uintptr_t>(pVirtualAddress);
+	uintptr_t moduleAddress = reinterpret_cast<uintptr_t>(hInstance);
+	uintptr_t relativeVirtualAddress = virtualAddress - moduleAddress;
+	uint64_t baseVirtualAddress = g_mappingFileParser.GetBaseVirtualAddress();
+
+	for (PublicSymbol& rPublicSymbol : g_mappingFileParser.m_publicSymbols)
+	{
+		uint64_t symbolRelativeVirtualAddress = rPublicSymbol.m_virtualAddress - baseVirtualAddress; // #TODO: calculate this once
+
+		if (symbolRelativeVirtualAddress == relativeVirtualAddress)
+		{
+			return &rPublicSymbol;
+		}
+	}
+	return nullptr;
+}
+
 PublicSymbol* MappingFileParser::GetPublicSymbolByName(std::string rName)
 {
 	return g_mappingFileParser.getPublicSymbolByName(rName);

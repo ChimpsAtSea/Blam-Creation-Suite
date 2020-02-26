@@ -1,6 +1,5 @@
 #include "mantle-private-pch.h"
 
-const char* ResourcesManager::s_pModuleName = NULL;
 const char* Console::s_consoleExecutableName = "Mantle";
 
 int WINAPI wWinMain(

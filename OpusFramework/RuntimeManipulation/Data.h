@@ -1,12 +1,12 @@
 #pragma once
 
-template<BuildVersion buildVersion, typename T, size_t offset>
+template<Build build, typename T, size_t offset>
 class Data : public DataReferenceBase
 {
 public:
 	Data(const Data&) = delete;
 	Data()
-		: DataReferenceBase(buildVersion, sizeof(T), offset, nullptr)
+		: DataReferenceBase(build, sizeof(T), offset, nullptr)
 	{
 
 	}

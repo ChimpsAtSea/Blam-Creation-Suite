@@ -5,7 +5,6 @@
 
 #define MCCExecutableFileName "MCC-Win64-Shipping_Debug.exe"
 
-const char* ResourcesManager::s_pModuleName = "liblz4.bin";
 const char* Console::s_consoleExecutableName = "MCC";
 
 bool s_isHaloReachHooked = false;
@@ -18,15 +17,15 @@ bool initThreadIsHooked = false;
 void nullsub() {}
 
 
-extern void init_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
-extern void deinit_halo_reach(EngineVersion engineVersion, BuildVersion buildVersion);
+extern void init_halo_reach(Engine engine, Build build);
+extern void deinit_halo_reach(Engine engine, Build build);
 
 void haloreach_dll_loaded_callback()
 {
 	WriteLineVerbose("Halo Reach was loaded!");
 	{
-		BuildVersion buildVersion = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
-		HaloReachGameHost::InitModifications(buildVersion);
+		Build build = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
+		HaloReachGameHost::InitModifications(build);
 	}
 }
 
@@ -34,8 +33,8 @@ void halo1_dll_loaded_callback()
 {
 	WriteLineVerbose("Halo 1 was loaded!");
 	{
-		BuildVersion buildVersion = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
-		Halo1GameHost::InitModifications(buildVersion);
+		Build build = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
+		Halo1GameHost::InitModifications(build);
 	}
 }
 
@@ -96,10 +95,10 @@ void init_opus()
 		create_dll_hook("KERNEL32.dll", "OutputDebugStringA", nullsub, OutputDebugStringA_Original);
 		create_dll_hook("KERNEL32.dll", "GetProcAddress", GetProcAddressHook, GetProcAddressPtr);
 
-		BuildVersion buildVersion = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
-		DataReferenceBase::InitTree(EngineVersion::MCC, buildVersion);
-		FunctionHookBase::InitTree(EngineVersion::MCC, buildVersion);
-		GlobalReference::InitTree(EngineVersion::MCC, buildVersion);
+		Build build = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
+		DataReferenceBase::InitTree(Engine::MCC, build);
+		FunctionHookBase::InitTree(Engine::MCC, build);
+		GlobalReference::InitTree(Engine::MCC, build);
 	}
 	end_detours();
 }

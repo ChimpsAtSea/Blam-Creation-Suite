@@ -12,9 +12,9 @@ extern void memcpy_virtual(
 	size_t size
 );
 
-extern void copy_from_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, void *data, size_t length);
-extern void copy_to_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, void* data, size_t length);
-extern void nop_address(EngineVersion engineVersion, BuildVersion buildVersion, intptr_t offset, size_t count);
+extern void copy_from_address(Engine engine, Build build, intptr_t offset, void *data, size_t length);
+extern void copy_to_address(Engine engine, Build build, intptr_t offset, void* data, size_t length);
+extern void nop_address(Engine engine, Build build, intptr_t offset, size_t count);
 
 #define roundup(n, denominator) (((n + denominator - 1) / denominator ) * denominator )
 
@@ -77,7 +77,7 @@ void create_hook(const char pName[], void* pTargetFunction, Ta hook, Tb& rOrigin
 }
 
 template<typename Ta, typename Tb>
-LONG create_hook(EngineVersion engineVersion, BuildVersion buildVersion, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
+LONG create_hook(Engine engine, Build build, size_t offset, const char pName[], Ta hook, Tb& rOriginal)
 {
 	if (offset == -1)
 	{
@@ -85,9 +85,9 @@ LONG create_hook(EngineVersion engineVersion, BuildVersion buildVersion, size_t 
 
 	}
 
-	char* const pModule = reinterpret_cast<char*>(GetEngineMemoryAddress(engineVersion));
+	char* const pModule = reinterpret_cast<char*>(GetEngineMemoryAddress(engine));
 	ASSERT(pModule != nullptr);
-	size_t const baseAddress = GetEngineBaseAddress(engineVersion);
+	size_t const baseAddress = GetEngineBaseAddress(engine);
 
 	rOriginal = (Tb)(pModule + (offset - baseAddress));
 
@@ -107,10 +107,10 @@ LONG create_hook(EngineVersion engineVersion, BuildVersion buildVersion, size_t 
 	return detourAttachResult;
 }
 
-template<BuildVersion buildVersion, size_t offset, typename Ta, typename Tb>
+template<Build build, size_t offset, typename Ta, typename Tb>
 LONG create_hook(const char pName[], Ta hook, Tb& rOriginal)
 {
-	return create_hook(buildVersion, offset, pName, hook, rOriginal);
+	return create_hook(build, offset, pName, hook, rOriginal);
 }
 
 template<typename Ta, typename Tb>
@@ -158,12 +158,12 @@ void populate_function_ptr(const char pModuleName[], size_t baseAddress, T& dest
 	populate_function_ptr(pModuleName, baseAddress, offset, dest);
 }
 
-template<EngineVersion engineVersion, size_t offset, typename T>
+template<Engine engine, size_t offset, typename T>
 void populate_function_ptr(T& dest)
 {
 	// Find the function address
-	char* const pModule = reinterpret_cast<char*>(GetEngineBaseAddress(engineVersion));
-	size_t const baseAddress = GetEngineBaseAddress(engineVersion);
+	char* const pModule = reinterpret_cast<char*>(GetEngineBaseAddress(engine));
+	size_t const baseAddress = GetEngineBaseAddress(engine);
 	char* const pFunctionAddress = pModule + (offset - baseAddress);
 
 	dest = reinterpret_cast<T>(pFunctionAddress);
@@ -177,11 +177,11 @@ T get_function_ptr(const char pModuleName[], size_t baseAddress)
 	return result;
 }
 
-template<EngineVersion engineVersion, size_t offset, typename T>
+template<Engine engine, size_t offset, typename T>
 T get_function_ptr()
 {
 	T result = nullptr;
-	populate_function_ptr<engineVersion, offset, T>(result);
+	populate_function_ptr<engine, offset, T>(result);
 	return result;
 }
 
