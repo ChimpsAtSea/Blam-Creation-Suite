@@ -903,20 +903,46 @@ int main(int argc, const char* argv[])
 			}
 		}
 
-	std::string str = stringstream.str();
+	std::string reflection_header_text = stringstream.str();
 	{
-		FILE* pReflectionHeader = fopen(szOutputHeader, "w");
-		assert(pReflectionHeader != nullptr);
-		fwrite(str.c_str(), 1, str.length(), pReflectionHeader);
-		fflush(pReflectionHeader);
-		fclose(pReflectionHeader);
-	}
+		bool reflection_header_data_is_same = false;
+		{
+			FILE* existing_reflection_header = fopen(szOutputHeader, "rb");
+			if (existing_reflection_header)
+			{
+				fseek(existing_reflection_header, 0L, SEEK_END);
+				uint64_t reflection_header_length = _ftelli64(existing_reflection_header);
+				if (reflection_header_text.size() == reflection_header_length)
+				{
+					fseek(existing_reflection_header, 0L, SEEK_SET);
+					char* existing_reflection_header_data = new char[reflection_header_length+1] {};
+					for (uint64_t current_read_position = 0; current_read_position < reflection_header_length;)
+					{
+						current_read_position += fread(existing_reflection_header_data + current_read_position, 1, reflection_header_length - current_read_position, existing_reflection_header);
+					}
+					if (strcmp(reflection_header_text.c_str(), existing_reflection_header_data) == 0)
+					{
+						reflection_header_data_is_same = true;
+					}
+					delete[] existing_reflection_header_data;
+				}
+				fclose(existing_reflection_header);
+			}
+		}
 
-	{
-		FILE* pReflectionSource = fopen(szOutputSource, "w");
-		assert(pReflectionSource != nullptr);
-		fflush(pReflectionSource);
-		fclose(pReflectionSource);
+		if (!reflection_header_data_is_same)
+		{
+			printf("MantleReflect> Updating %s\n", szOutputHeader);
+			FILE* pReflectionHeader = fopen(szOutputHeader, "wb");
+			assert(pReflectionHeader != nullptr);
+			fwrite(reflection_header_text.c_str(), 1, reflection_header_text.length(), pReflectionHeader);
+			fflush(pReflectionHeader);
+			fclose(pReflectionHeader);
+		}
+		else
+		{
+			printf("MantleReflect> Skipping %s (output hasn't changed)\n", szOutputHeader);
+		}
 	}
 
 	for (ReflectionTypeContainer* pType : ReflectedTypesData)
