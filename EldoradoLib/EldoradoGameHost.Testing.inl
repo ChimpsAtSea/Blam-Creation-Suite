@@ -47,37 +47,41 @@ DataPatch<enable_tag_edits_patch_offset> enable_tag_edits = { [](Engine engine, 
 {
 	// Enable tag edits
 
-	if (build == Build::Eldorado_1_106708_cert_ms23)
+	char* patch1 = nullptr;
+	char* patch2 = nullptr;
+	char* patch3 = nullptr;
+	switch (build)
 	{
-		{
-			char* patch1 = GetEngineVirtualAddress(engine, 0x00501A5B);
-			packets.push_back(MAKE_DATAPATCHPACKET(patch1, 1));
-			patch1[0] = 0xEBi8;
-		}
-		{
-			char* patch2 = GetEngineVirtualAddress(engine, 0x00502874);
-			packets.push_back(MAKE_DATAPATCHPACKET(patch2, 2));
-			patch2[0] = 0x90i8; // nop
-			patch2[1] = 0x90i8; // nop
-		}
-		{
-			char* patch3 = GetEngineVirtualAddress(engine, 0x005030AA);
-			packets.push_back(MAKE_DATAPATCHPACKET(patch3, 2));
-			patch3[0] = 0x90i8; // nop
-			patch3[1] = 0x90i8; // nop
-		}
+	case Build::Eldorado_1_106708_cert_ms23:
+		patch1 = GetEngineVirtualAddress(engine, 0x00501A5B);
+		patch2 = GetEngineVirtualAddress(engine, 0x00502874);
+		patch3 = GetEngineVirtualAddress(engine, 0x005030AA);
+		break;
+	case Build::Eldorado_1_700255_cert_ms30_oct19:
+		patch1 = GetEngineVirtualAddress(engine, 0x00483934);
+		patch2 = GetEngineVirtualAddress(engine, 0x00483C9A);
+		patch3 = GetEngineVirtualAddress(engine, 0x004847A9);
+		break;
+	default:
+		return; // skip unknown build
 	}
-	if (build == Build::Eldorado_1_700255_cert_ms30_oct19)
-	{
-		
-	}
+
+	packets.push_back(MAKE_DATAPATCHPACKET(patch1, 1));
+	patch1[0] = 0xEBi8;
+
+	packets.push_back(MAKE_DATAPATCHPACKET(patch2, 2));
+	patch2[0] = 0x90i8; // nop
+	patch2[1] = 0x90i8; // nop
+
+	packets.push_back(MAKE_DATAPATCHPACKET(patch3, 2));
+	patch3[0] = 0x90i8; // nop
+	patch3[1] = 0x90i8; // nop
 	
 } };
 
 uintptr_t no_account_args_patch_offset(Engine engine, Build build)
 {
 	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0);
-	OFFSET(Engine::Eldorado, Build::Eldorado_1_700255_cert_ms30_oct19, 0);
 	return ~uintptr_t();
 }
 DataPatch<no_account_args_patch_offset> no_account_args_patch = { [](Engine engine, Build build, char*, DataPatchPackets& packets)
@@ -97,11 +101,17 @@ DataPatch<no_account_args_patch_offset> no_account_args_patch = { [](Engine engi
 		patch2[0] = 0xEBi8;
 		patch2[1] = 0x03i8;
 	}
-	if (build == Build::Eldorado_1_700255_cert_ms30_oct19)
-	{
-
-	}
 	
+} };
+
+uintptr_t GameShieldInit_offset(Engine engine, Build build)
+{
+	OFFSET(Engine::Eldorado, Build::Eldorado_1_700255_cert_ms30_oct19, 0x007648E0);
+	return ~uintptr_t();
+}
+FunctionHookVarArgsEx<GameShieldInit_offset, void()> GameShieldInit = { "GameShieldInit", []()
+{
+	WriteLineVerbose("GameShieldInit");
 } };
 
 //uintptr_t network_lobby_patch_offset(Engine engine, Build build)
@@ -162,21 +172,25 @@ DataPatch<no_account_args_patch_offset> no_account_args_patch = { [](Engine engi
 uintptr_t Hf2pInit_offset(Engine engine, Build build)
 {
 	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x00600630);
-	OFFSET(Engine::Eldorado, Build::Eldorado_1_700255_cert_ms30_oct19, 0);
+	OFFSET(Engine::Eldorado, Build::Eldorado_1_700255_cert_ms30_oct19, 0x006BD670);
 	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<Hf2pInit_offset, void()> Hf2pInit = { "Hf2pInit", []()
 {
 	WriteLineVerbose("Hf2pInit_offset");
+	if (EldoradoGameHost::GetBuild() == Build::Eldorado_1_106708_cert_ms23)
+	{
+		// #TODO: What are these for?
 		*(uint32_t*)0x50CCB3C = 0;
 		*(uint32_t*)0x244ED28 = 0;
+	}
 	//InitSoundSystem();
 } };
 
 uintptr_t Hf2pShutdown_offset(Engine engine, Build build)
 {
 	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x00600790);
-	OFFSET(Engine::Eldorado, Build::Eldorado_1_700255_cert_ms30_oct19, 0);
+	OFFSET(Engine::Eldorado, Build::Eldorado_1_700255_cert_ms30_oct19, ~uintptr_t());
 	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdown", []()

@@ -8,10 +8,11 @@ void register_eldoradolib()
 }
 
 // #TODO: Setup Eldorado version detection
-GameRuntime EldoradoGameHost::s_eldoradoGameRuntime(Engine::Eldorado, "eldorado", "eldorado.exe", true, Build::Eldorado_1_106708_cert_ms23);
+GameRuntime* EldoradoGameHost::s_eldoradoGameRuntime = nullptr;
+
 
 EldoradoGameHost::EldoradoGameHost()
-	:IOpusGameEngineHost(s_eldoradoGameRuntime)
+	:IOpusGameEngineHost(*s_eldoradoGameRuntime)
 {
 	
 }
@@ -19,6 +20,21 @@ EldoradoGameHost::EldoradoGameHost()
 EldoradoGameHost::~EldoradoGameHost()
 {
 	
+}
+
+void EldoradoGameHost::Init(Build build)
+{
+	s_eldoradoGameRuntime = new GameRuntime(Engine::Eldorado, "eldorado", "eldorado.exe", true, build);
+}
+
+void EldoradoGameHost::Deinit()
+{
+	delete s_eldoradoGameRuntime;
+}
+
+Build EldoradoGameHost::GetBuild()
+{
+	return s_eldoradoGameRuntime->GetBuildVersion();
 }
 
 void EldoradoGameHost::InitModifications(Build build)

@@ -365,6 +365,7 @@ __declspec(dllexport) int main()
 	apply_module_thread_local_storage_fixup(loaded_executable_module);
 
 #ifndef _WIN64
+	EldoradoGameHost::Init(build);
 	EldoradoGameHost::InitModifications(build);
 #endif
 
