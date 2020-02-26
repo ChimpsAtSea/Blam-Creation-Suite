@@ -27,6 +27,9 @@
     <ClCompile Include="source\cache\cache_files.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\math\integer_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\datatypes\datum_handle.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\cache\cache_files.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\math\integer_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

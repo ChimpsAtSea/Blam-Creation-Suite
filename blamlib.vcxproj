@@ -22,6 +22,7 @@
     <ClCompile Include="source\cache\cache_files.cpp" />
     <ClCompile Include="source\datatypes\datum_handle.cpp" />
     <ClCompile Include="source\datatypes\tag.cpp" />
+    <ClCompile Include="source\math\integer_math.cpp" />
     <ClCompile Include="source\tag_files\tag_groups.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +34,7 @@
     <ClInclude Include="source\datatypes\static_string.h" />
     <ClInclude Include="source\datatypes\static_wide_string.h" />
     <ClInclude Include="source\datatypes\tag.h" />
+    <ClInclude Include="source\math\integer_math.h" />
     <ClInclude Include="source\memory\ptr32.h" />
     <ClInclude Include="source\tag_files\tag_groups.h" />
   </ItemGroup>
@@ -130,7 +132,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <DisableSpecificWarnings>4514;4668;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4201;4514;4668;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
