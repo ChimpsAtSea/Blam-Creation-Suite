@@ -945,6 +945,42 @@ int main(int argc, const char* argv[])
 		}
 	}
 
+	const char* reflection_source_text = "";
+	{
+		bool reflection_source_data_is_same = false;
+		{
+			FILE* existing_reflection_header = fopen(szOutputSource, "rb");
+			if (existing_reflection_header)
+			{
+				fseek(existing_reflection_header, 0L, SEEK_END);
+				uint64_t reflection_header_length = _ftelli64(existing_reflection_header);
+				if (strlen(reflection_source_text) == reflection_header_length)
+				{
+					fseek(existing_reflection_header, 0L, SEEK_SET);
+					char* existing_reflection_header_data = new char[reflection_header_length + 1]{};
+					for (uint64_t current_read_position = 0; current_read_position < reflection_header_length;)
+					{
+						current_read_position += fread(existing_reflection_header_data + current_read_position, 1, reflection_header_length - current_read_position, existing_reflection_header);
+					}
+					if (strcmp(reflection_source_text, existing_reflection_header_data) == 0)
+					{
+						reflection_source_data_is_same = true;
+					}
+					delete[] existing_reflection_header_data;
+				}
+				fclose(existing_reflection_header);
+			}
+		}
+
+		if (!reflection_source_data_is_same)
+		{
+			FILE* pReflectionSource = fopen(szOutputSource, "w+");
+			assert(pReflectionSource != nullptr);
+			fflush(pReflectionSource);
+			fclose(pReflectionSource);
+		}
+	}
+
 	for (ReflectionTypeContainer* pType : ReflectedTypesData)
 	{
 		delete pType;
