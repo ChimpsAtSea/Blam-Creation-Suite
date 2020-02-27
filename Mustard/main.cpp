@@ -445,7 +445,7 @@ __declspec(dllexport) int main()
 	DetourAttach(&(PVOID&)RaiseExceptionPointer, RaiseExceptionHook);
 	DetourTransactionCommit();
 	register_platforms(); 
-	
+	SetProcessDPIAware();
 
 	HMODULE current_module = GetModuleHandleA(NULL);
 	ASSERT(current_module == reinterpret_cast<void*>(intptr_t(0x00400000)));

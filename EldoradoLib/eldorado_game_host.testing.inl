@@ -231,3 +231,18 @@ FunctionHookVarArgsEx<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdow
 
 
 
+
+uintptr_t contrail_crash_fix_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_106708_cert_ms23, 0x00A57DC0);
+	//OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_700255_cert_ms30_oct19, 0x00696690);
+	return ~uintptr_t();
+}
+FunctionHookEx<contrail_crash_fix_offset, int(DWORD *, int)> contrail_crash_fix = { "contrail_crash_fix", [](DWORD* _this, int a2)
+{
+	return contrail_crash_fix(_this, a2);
+} };
+
+
+
+
