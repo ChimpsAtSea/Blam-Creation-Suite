@@ -6,6 +6,7 @@ struct tls_data;
 
 static DWORD launcher_import_descriptor_size;
 static IMAGE_TLS_DIRECTORY* launcher_tls_data_directory;
+HINSTANCE loaded_executable_module = NULL;
 
 const char* page_protection_to_string(DWORD protection)
 {
@@ -322,18 +323,135 @@ void apply_module_thread_local_storage_fixup(HINSTANCE module)
 	}
 }
 
+decltype(SetDllDirectoryA)* SetDllDirectoryAPointer = SetDllDirectoryA;
+BOOL WINAPI SetDllDirectoryAHook(_In_opt_ LPCSTR lpPathName)
+{
+	printf("Kernel32::SetDllDirectoryA> '%s'\n", lpPathName ? lpPathName : "(null)");
+	//BOOL setDllDirectoryAResult = SetDllDirectoryAPointer(lpPathName);
+	return TRUE;
+}
+
+bool is_previous_caller_part_of_module(HMODULE module, CONTEXT& context, DWORD image_file_machine, HANDLE current_process, HANDLE current_thread)
+{
+	STACKFRAME frame = {};
+	frame.AddrPC.Mode = AddrModeFlat;
+	frame.AddrFrame.Mode = AddrModeFlat;
+	frame.AddrStack.Mode = AddrModeFlat;
+#ifdef _WIN64  
+	frame.AddrPC.Offset = context.Rip;
+	frame.AddrFrame.Offset = context.Rbp;
+	frame.AddrStack.Offset = context.Rsp;
+#else  
+	frame.AddrPC.Offset = context.Eip;
+	frame.AddrPC.Offset = context.Ebp;
+	frame.AddrPC.Offset = context.Esp;
+#endif  
+
+	uintptr_t start_address = reinterpret_cast<uintptr_t>(module);
+	uintptr_t end_address;
+
+	{
+		const char* raw_module_address = reinterpret_cast<const char*>(module);
+		ASSERT(raw_module_address != nullptr);
+
+		const IMAGE_DOS_HEADER* dos_header = reinterpret_cast<const IMAGE_DOS_HEADER*>(raw_module_address);
+		ASSERT(dos_header->e_magic == IMAGE_DOS_SIGNATURE);
+
+		const IMAGE_NT_HEADERS* raw_nt_headers = reinterpret_cast<const IMAGE_NT_HEADERS*>(raw_module_address + dos_header->e_lfanew);
+		ASSERT(raw_nt_headers->Signature == IMAGE_NT_SIGNATURE);
+
+		end_address = start_address + raw_nt_headers->OptionalHeader.SizeOfImage;
+	}
+
+	if (StackWalk(image_file_machine, current_process, current_thread, &frame, &context, NULL, SymFunctionTableAccess, SymGetModuleBase, NULL)) // skip current frame
+	{
+		if (StackWalk(image_file_machine, current_process, current_thread, &frame, &context, NULL, SymFunctionTableAccess, SymGetModuleBase, NULL)) // caller frame
+		{
+			if (frame.AddrPC.Offset >= start_address && frame.AddrPC.Offset < end_address)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+decltype(RaiseException)* RaiseExceptionPointer = RaiseException;
+void WINAPI RaiseExceptionHook(
+	_In_ DWORD dwExceptionCode,
+	_In_ DWORD dwExceptionFlags,
+	_In_ DWORD nNumberOfArguments,
+	_In_reads_opt_(nNumberOfArguments) CONST ULONG_PTR* lpArguments
+)
+{
+	CONTEXT context{};
+	context.ContextFlags = CONTEXT_CONTROL;
+	RtlCaptureContext(&context);
+
+#ifdef _WIN64
+	static constexpr DWORD image_file_machine = IMAGE_FILE_MACHINE_AMD64;
+#else
+	static constexpr DWORD image_file_machine = IMAGE_FILE_MACHINE_I386;
+#endif
+	HANDLE current_process = GetCurrentProcess();
+	HANDLE current_thread = GetCurrentThread();
+	
+	bool is_caller_loaded_module = is_previous_caller_part_of_module(loaded_executable_module, context, image_file_machine, current_process, current_thread);
+	if (is_caller_loaded_module)
+	{
+		c_console::set_text_color(_console_color_error);
+		write_line_verbose("Kernel32::RaiseException> Ignoring exception from loaded module");
+		write_line_verbose("\t0x%X 0x%X 0x%X 0x%P", dwExceptionCode, dwExceptionFlags, nNumberOfArguments, lpArguments);
+		write_line_verbose("\tstack trace:");
+
+		STACKFRAME frame = {};
+		frame.AddrPC.Mode = AddrModeFlat;
+		frame.AddrFrame.Mode = AddrModeFlat;
+		frame.AddrStack.Mode = AddrModeFlat;
+#ifdef _WIN64  
+		frame.AddrPC.Offset = context.Rip;
+		frame.AddrFrame.Offset = context.Rbp;
+		frame.AddrStack.Offset = context.Rsp;
+#else  
+		frame.AddrPC.Offset = context.Eip;
+		frame.AddrPC.Offset = context.Ebp;
+		frame.AddrPC.Offset = context.Esp;
+#endif  
+
+		while (StackWalk(image_file_machine, current_process, current_thread, &frame, &context, NULL, SymFunctionTableAccess, SymGetModuleBase, NULL))
+		{
+			write_line_verbose("\t0x%zX", frame.AddrPC.Offset);
+		}
+
+		c_console::set_text_color(_console_color_info);
+	}
+	else
+	{
+		c_console::set_text_color(_console_color_info);
+#ifdef _DEBUG
+		write_line_verbose("Kernel32::RaiseException> Exception occured forwarding to Kernel32", dwExceptionCode, dwExceptionFlags, nNumberOfArguments, lpArguments);
+#endif
+		//RaiseExceptionPointer(dwExceptionCode, dwExceptionFlags, nNumberOfArguments, lpArguments);
+	}
+}
+
 __declspec(dllexport) int main()
 {
+	c_console::Init();
+	DetourTransactionBegin();
+	DetourUpdateThread(GetCurrentThread());
+	DetourAttach(&(PVOID&)SetDllDirectoryAPointer, SetDllDirectoryAHook);
+	DetourAttach(&(PVOID&)RaiseExceptionPointer, RaiseExceptionHook);
+	DetourTransactionCommit();
 	register_platforms(); 
 	
-	c_console::Init();
 
 	HMODULE current_module = GetModuleHandleA(NULL);
 	ASSERT(current_module == reinterpret_cast<void*>(intptr_t(0x00400000)));
 
 	launcher_tls_data_directory = static_cast<IMAGE_TLS_DIRECTORY*>(ImageDirectoryEntryToData(current_module, TRUE, IMAGE_DIRECTORY_ENTRY_TLS, &launcher_import_descriptor_size));
 
-	HINSTANCE loaded_executable_module = NULL;
 	e_build build = _build_not_set;
 	if (loaded_executable_module == NULL)
 	{
