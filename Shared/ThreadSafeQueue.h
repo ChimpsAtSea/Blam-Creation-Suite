@@ -18,7 +18,7 @@ public:
 	bool Dequeue(T& rResult)
 	{
 		AtomicLockGuard lockGuard(m_lock);
-		while (m_queue.empty())
+		if (m_queue.empty())
 		{
 			return false;
 		}

@@ -140,7 +140,10 @@ void Console::HandleInput(uint32_t KeyCode)
 			if (CurCommand.back().empty())
 			{
 				CurCommand.pop_back();
-				!CurArg || CurArg--;
+				if (CurArg > 0)
+				{
+					CurArg--;
+				}
 			}
 			// Suggest
 			Suggestion.clear();
@@ -493,41 +496,39 @@ bool Console::AllocateConsole(const std::string& ConsoleTitle)
 
 	//Set up new co-nsole window
 
-	HANDLE hStd;
-
 	AllocConsole();
-	freopen("CONIN$", "r", stdin);
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
+	(void)freopen("CONIN$", "r", stdin);
+	(void)freopen("CONOUT$", "w", stdout);
+	(void)freopen("CONOUT$", "w", stderr);
 
 	SetConsoleTitleA(ConsoleTitle.c_str());
 	EnableMenuItem(GetSystemMenu(GetConsoleWindow(), FALSE), SC_CLOSE & SC_MINIMIZE | SC_MAXIMIZE, MF_GRAYED);
 	DrawMenuBar(GetConsoleWindow());
 
 	//// Setup standard input.
-	hStd = GetStdHandle(STD_INPUT_HANDLE); // STD in Handle
+	HANDLE input_handle = GetStdHandle(STD_INPUT_HANDLE); // STD in Handle
 	//unsigned int hConsole = _open_osfhandle((intptr_t)hStd, _O_TEXT);
 	//FILE* fIn = _fdopen(hConsole, "r");
 	//*stdin = *fIn;
 	//setvbuf(stdin, NULL, _IONBF, 0);
 
 	//// Setup standard output.
-	hStd = GetStdHandle(STD_OUTPUT_HANDLE); // STD out Handle
+	HANDLE output_handle = GetStdHandle(STD_OUTPUT_HANDLE); // STD out Handle
 	//hConsole = _open_osfhandle((intptr_t)hStd, _O_TEXT); // Console Handle
 	//FILE* fOut = _fdopen(hConsole, "w");
 	//*stdout = *fOut;
 	//setvbuf(stdout, NULL, _IONBF, 0);
 
 	CONSOLE_SCREEN_BUFFER_INFO ConsoleInfo;
-	GetConsoleScreenBufferInfo(hStd, &ConsoleInfo);
+	GetConsoleScreenBufferInfo(output_handle, &ConsoleInfo);
 	ConsoleInfo.dwSize.Y = 25;
 	ConsoleInfo.dwSize.X = 30;
-	SetConsoleScreenBufferSize(hStd, ConsoleInfo.dwSize);
+	SetConsoleScreenBufferSize(output_handle, ConsoleInfo.dwSize);
 
 	DWORD ConsoleMode;
-	GetConsoleMode(hStd, &ConsoleMode);
+	GetConsoleMode(output_handle, &ConsoleMode);
 	ConsoleMode &= ~ENABLE_WRAP_AT_EOL_OUTPUT;
-	SetConsoleMode(hStd, ConsoleMode);
+	SetConsoleMode(output_handle, ConsoleMode);
 
 	std::ios::sync_with_stdio();
 
