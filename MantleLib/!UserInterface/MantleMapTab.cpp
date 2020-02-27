@@ -393,7 +393,7 @@ void MantleMapTab::GameRender()
 
 			float screenX = 0.0f;
 			float screenY = 0.0f;
-			if (Render::CalculateScreenCoordinates(rTriggerVolume.position_x, rTriggerVolume.position_y, rTriggerVolume.position_z, screenX, screenY))
+			if (c_render::CalculateScreenCoordinates(rTriggerVolume.position_x, rTriggerVolume.position_y, rTriggerVolume.position_z, screenX, screenY))
 			{
 				ImGui::GetWindowDrawList()->AddText(ImVec2(screenX + 1, screenY + 1), IM_COL32(0, 0, 0, static_cast<int>(255 * kTextTransparency)), pTriggerVolumeText);
 				ImGui::GetWindowDrawList()->AddText(ImVec2(screenX, screenY), imguiTextColor, pTriggerVolumeText);

@@ -102,7 +102,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="opus_legacy\HaloReach.cpp" />
-    <ClCompile Include="HaloReachGameHost.cpp" />
+    <ClCompile Include="halo_reach_game_host.cpp" />
     <ClCompile Include="haloreachlib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -110,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="opus_legacy\c_network.h" />
-    <ClInclude Include="HaloReachGameHost.h" />
+    <ClInclude Include="halo_reach_game_host.h" />
     <ClInclude Include="haloreachlib-private-pch.h" />
     <ClInclude Include="haloreachlib-public-pch.h" />
     <ClInclude Include="opus_legacy\HaloReach.h" />
@@ -121,9 +121,9 @@
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="HaloReachGameHost.Camera.inl" />
-    <None Include="HaloReachGameHost.Memory.inl" />
-    <None Include="HaloReachGameHost.Scripting.inl" />
+    <None Include="halo_reach_game_host.camera.inl" />
+    <None Include="halo_reach_game_host.memory.inl" />
+    <None Include="halo_reach_game_host.scripting.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

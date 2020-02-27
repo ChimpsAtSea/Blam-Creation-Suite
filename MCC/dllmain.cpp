@@ -25,7 +25,7 @@ void haloreach_dll_loaded_callback()
 	write_line_verbose("Halo Reach was loaded!");
 	{
 		e_build build = c_game_runtime::GetLibraryBuildVersion(MCCExecutableFileName);
-		HaloReachGameHost::InitModifications(build);
+		c_halo_reach_game_host::init_runtime_modifications(build);
 	}
 }
 
@@ -145,9 +145,9 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 	static bool s_running = true;
 	void(*UpdateCallback)() = []()
 	{
-		Render::BeginFrame(true, &clearColor.x);
+		c_render::BeginFrame(true, &clearColor.x);
 		GameLauncher::OpusTick();
-		Render::EndFrame();
+		c_render::EndFrame();
 	};
 	void(*DestroyCallback)() = []()
 	{
@@ -155,7 +155,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 	};
 	
 	Window::Init("Opus", "OpusConsole", "opus");
-	Render::Init(hInstance);
+	c_render::Init(hInstance);
 	MantleGUI::Init(true);
 	GameLauncher::Init();
 
@@ -171,7 +171,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 
 	GameLauncher::Deinit();
 	MantleGUI::Deinit();
-	Render::Deinit();
+	c_render::Deinit();
 	Window::Deinit();
 
 	return 0;

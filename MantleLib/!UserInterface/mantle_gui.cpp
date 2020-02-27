@@ -35,12 +35,12 @@ void c_mantle_gui::Render()
 	if (s_inGameMode)
 	{
 		ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
-		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(Window::GetWindowWidth() / 4 * 3), static_cast<float>(Window::GetWindowHeight() / 4 * 3)), ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(c_window::GetWindowWidth() / 4 * 3), static_cast<float>(c_window::GetWindowHeight() / 4 * 3)), ImGuiCond_FirstUseEver);
 	}
 	else
 	{
 		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(Window::GetWindowWidth()), static_cast<float>(Window::GetWindowHeight())), ImGuiCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(c_window::GetWindowWidth()), static_cast<float>(c_window::GetWindowHeight())), ImGuiCond_Always);
 	}
 
 	// Main body of the Demo window starts here.
@@ -64,8 +64,8 @@ void c_mantle_gui::Render()
 	if (isOpeningFile)
 	{
 		static ImGuiAddons::ImGuiFileBrowser fileBrowser;
-		float width = static_cast<float>(std::clamp(Window::GetWindowWidth(), 700, 1200));
-		float height = static_cast<float>(std::clamp(Window::GetWindowHeight(), 310, 675));
+		float width = static_cast<float>(std::clamp(c_window::GetWindowWidth(), 700, 1200));
+		float height = static_cast<float>(std::clamp(c_window::GetWindowHeight(), 310, 675));
 		if (fileBrowser.ShowOpenFileDialogInternal("Open File", ImVec2(width, height), ".map"))
 		{
 			isOpeningFile = false;

@@ -45,20 +45,20 @@ void GameLauncher::Init()
 #ifdef _WIN64
 	HaloReachGameOptionSelection::Init();
 #endif
-	Window::RegisterWndProcCallback(WndProc);
+	c_window::RegisterWndProcCallback(WndProc);
 	DebugUI::RegisterCallback(DebugUI::CallbackMode::AlwaysRun, renderMainMenu);
 	DebugUI::RegisterCallback(DebugUI::CallbackMode::Toggleable, renderUI);
 
-	Window::RegisterDestroyCallback(WindowDestroyCallback);
+	c_window::RegisterDestroyCallback(WindowDestroyCallback);
 
 }
 
 void GameLauncher::Deinit()
 {
-	Window::UnregisterDestroyCallback(WindowDestroyCallback);
+	c_window::UnregisterDestroyCallback(WindowDestroyCallback);
 	DebugUI::UnregisterCallback(DebugUI::CallbackMode::AlwaysRun, renderMainMenu);
 	DebugUI::UnregisterCallback(DebugUI::CallbackMode::Toggleable, renderUI);
-	Window::UnregisterWndProcCallback(WndProc);
+	c_window::UnregisterWndProcCallback(WndProc);
 #ifdef _WIN64
 	HaloReachGameOptionSelection::Deinit();
 #endif
@@ -103,7 +103,7 @@ void GameLauncher::OpusTick()
 			ImGuiWindowFlags_NoDecoration |
 			ImGuiWindowFlags_NoInputs;
 		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(Window::GetWindowWidth()), static_cast<float>(Window::GetWindowHeight())), ImGuiCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(c_window::GetWindowWidth()), static_cast<float>(c_window::GetWindowHeight())), ImGuiCond_Always);
 		if (ImGui::Begin("##debug", NULL, kDebugWindowFlags)) // render inside of the dummy imgui window for on screen text display
 		{
 			gameRender();
@@ -118,7 +118,7 @@ void GameLauncher::update()
 	if (s_gameRunning)
 	{
 		// need some place to update the launcher, might as well do it here for now
-		Window::UpdateNoCallbacks();
+		c_window::UpdateNoCallbacks();
 	}
 	else
 	{
@@ -151,7 +151,7 @@ void GameLauncher::launchGame(e_engine_type engine_type)
 	// #TODO: We currently can't resize the game without crashing
 	// we should do this at the beginning of the frame. 
 
-	Render::SetResizeEnabled(false);
+	c_render::SetResizeEnabled(false);
 	switch (engine_type)
 	{
 #ifdef _WIN64
@@ -167,7 +167,7 @@ void GameLauncher::launchGame(e_engine_type engine_type)
 		break;
 #endif
 	}
-	Render::SetResizeEnabled(true);
+	c_render::SetResizeEnabled(true);
 
 	s_gameRunning = false;
 }
@@ -242,7 +242,7 @@ void GameLauncher::launchHalo1()
 		}
 	}
 
-	pGameEngine->InitGraphics(Render::s_pDevice, Render::s_pDeviceContext, Render::s_pSwapChain, Render::s_pSwapChain);
+	pGameEngine->InitGraphics(c_render::s_pDevice, c_render::s_pDeviceContext, c_render::s_pSwapChain, c_render::s_pSwapChain);
 
 	{
 		// useful for testing if the gameenginehostcallback vftable is correct or not
@@ -259,7 +259,7 @@ void GameLauncher::launchHalo1()
 	}
 
 	static HANDLE hMainGameThread = pGameEngine->InitThread(pCurrentGameHost, &gameContext);
-	Window::SetPostMessageThreadId(hMainGameThread);
+	c_window::SetPostMessageThreadId(hMainGameThread);
 
 	// #TODO: Absolutely terrible thread sync here
 	{
@@ -303,13 +303,13 @@ void GameLauncher::launchHaloReach()
 {
 	ASSERT(pCurrentGameHost == nullptr);
 
-	pCurrentGameHost = new HaloReachGameHost();
+	pCurrentGameHost = new c_halo_reach_game_host();
 	ASSERT(pCurrentGameHost != nullptr);
 	IGameEngine* pGameEngine = pCurrentGameHost->get_game_engine();
 	ASSERT(pGameEngine != nullptr);
 
 	e_engine_type engine_type = _engine_type_halo_reach;
-	e_build build = HaloReachGameHost::GetGameRuntime().get_build();
+	e_build build = c_halo_reach_game_host::get_game_runtime().get_build();
 
 	// #TODO: Game specific version of this!!!
 
@@ -352,8 +352,8 @@ void GameLauncher::launchHaloReach()
 				gameContext.MapId = static_cast<e_map_id>(pSelectedMapInfo->GetMapID());
 				gameContext.CampaignDifficultyLevel = e_campaign_difficulty_level::_campaign_difficulty_level_easy;
 
-				HaloReachGameOptionSelection::LoadGameVariant(HaloReachGameHost::GetDataAccess(), HaloReachGameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
-				HaloReachGameOptionSelection::LoadMapVariant(HaloReachGameHost::GetDataAccess(), HaloReachGameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
+				HaloReachGameOptionSelection::LoadGameVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
+				HaloReachGameOptionSelection::LoadMapVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
 				//HaloReachGameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
 				//HaloReachGameOptionSelection::LoadSavedFilmMetadata(HaloReachGameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
 
@@ -368,7 +368,7 @@ void GameLauncher::launchHaloReach()
 		}
 	}
 
-	pGameEngine->InitGraphics(Render::s_pDevice, Render::s_pDeviceContext, Render::s_pSwapChain, Render::s_pSwapChain);
+	pGameEngine->InitGraphics(c_render::s_pDevice, c_render::s_pDeviceContext, c_render::s_pSwapChain, c_render::s_pSwapChain);
 
 	{
 		// useful for testing if the gameenginehostcallback vftable is correct or not
@@ -385,7 +385,7 @@ void GameLauncher::launchHaloReach()
 	}
 	
 	static HANDLE hMainGameThread = pGameEngine->InitThread(pCurrentGameHost, &gameContext);
-	Window::SetPostMessageThreadId(hMainGameThread);
+	c_window::SetPostMessageThreadId(hMainGameThread);
 
 	// #TODO: Absolutely terrible thread sync here
 	{
@@ -471,7 +471,7 @@ void GameLauncher::entireLibraryIsLoaded(const char* pLibName, const char* pFall
 	}
 	if (!hModule)
 	{
-		MessageBox(Window::GetWindowHandle(), pLibName, "failed to load library", MB_ICONERROR);
+		MessageBox(c_window::GetWindowHandle(), pLibName, "failed to load library", MB_ICONERROR);
 	}
 	ASSERT(hModule != NULL);
 }
@@ -485,7 +485,7 @@ void GameLauncher::renderMainMenu()
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
-	ImVec2 globalWindowSize = ImVec2(static_cast<float>(Window::GetWindowWidth()), static_cast<float>(Window::GetWindowHeight()));
+	ImVec2 globalWindowSize = ImVec2(static_cast<float>(c_window::GetWindowWidth()), static_cast<float>(c_window::GetWindowHeight()));
 	ImVec2 windowSize = ImVec2(globalWindowSize.x * 0.75f, globalWindowSize.y * 0.75f);
 	ImVec2 windowOffset = ImVec2((globalWindowSize.x - windowSize.x) / 2.0f, (globalWindowSize.y - windowSize.y) / 2.0f);
 	ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
@@ -557,7 +557,7 @@ void GameLauncher::renderPauseMenu()
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
-	ImVec2 globalWindowSize = ImVec2(static_cast<float>(Window::GetWindowWidth()), static_cast<float>(Window::GetWindowHeight()));
+	ImVec2 globalWindowSize = ImVec2(static_cast<float>(c_window::GetWindowWidth()), static_cast<float>(c_window::GetWindowHeight()));
 	ImVec2 windowSize = ImVec2(globalWindowSize.x * 0.75f, globalWindowSize.y * 0.75f);
 	ImVec2 windowOffset = ImVec2((globalWindowSize.x - windowSize.x) / 2.0f, (globalWindowSize.y - windowSize.y) / 2.0f);
 	ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);

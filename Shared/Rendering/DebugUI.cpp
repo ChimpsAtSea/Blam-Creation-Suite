@@ -73,10 +73,10 @@ void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain*
 
 		{
 			float baseSize = 10.0f;
-			if (Render::s_deviceMode.dmPelsWidth < Render::s_deviceMode.dmPelsHeight)
-				baseSize *= static_cast<float>(Render::s_deviceMode.dmPelsWidth) / (float)GetSystemMetrics(SM_CXSCREEN); // width is smallest, scale on width
+			if (c_render::s_deviceMode.dmPelsWidth < c_render::s_deviceMode.dmPelsHeight)
+				baseSize *= static_cast<float>(c_render::s_deviceMode.dmPelsWidth) / (float)GetSystemMetrics(SM_CXSCREEN); // width is smallest, scale on width
 			else
-				baseSize *= static_cast<float>(Render::s_deviceMode.dmPelsHeight) / (float)GetSystemMetrics(SM_CYSCREEN); // height is smallest, scale on height
+				baseSize *= static_cast<float>(c_render::s_deviceMode.dmPelsHeight) / (float)GetSystemMetrics(SM_CYSCREEN); // height is smallest, scale on height
 
 			char* pFontData;
 			size_t pFontSize;

@@ -2,6 +2,6 @@
 
 #ifdef _WIN64
 
-#include "HaloReachGameHost.h"
+#include "halo_reach_game_host.h"
 
 #endif

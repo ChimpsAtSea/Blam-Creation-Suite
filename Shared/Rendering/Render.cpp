@@ -1,19 +1,19 @@
 #include "shared-private-pch.h"
 
-ID3D11Device* Render::s_pDevice = nullptr;
-ID3D11DeviceContext1* Render::s_pDeviceContext = nullptr;
-IDXGISwapChain1* Render::s_pSwapChain = nullptr;
-IDXGIFactory5* Render::s_pFactory = nullptr;
-DEVMODE Render::s_deviceMode = {};
-bool Render::s_directxCustomInit = false;
-ID3D11RenderTargetView* Render::s_pRenderTargetView = nullptr;
-ID3D11Texture2D* Render::s_pDepthStencilBuffer = nullptr;
-ID3D11DepthStencilView* Render::s_pDepthStencilView = nullptr;
-bool Render::s_resizeEnabled = true;
-DirectX::XMMATRIX Render::viewMatrix = {};
-DirectX::XMMATRIX Render::perspectiveMatrix = {};
-DirectX::XMMATRIX Render::viewMatrixTransposed = {};
-DirectX::XMMATRIX Render::perspectiveMatrixTransposed = {};
+ID3D11Device* c_render::s_pDevice = nullptr;
+ID3D11DeviceContext1* c_render::s_pDeviceContext = nullptr;
+IDXGISwapChain1* c_render::s_pSwapChain = nullptr;
+IDXGIFactory5* c_render::s_pFactory = nullptr;
+DEVMODE c_render::s_deviceMode = {};
+bool c_render::s_directxCustomInit = false;
+ID3D11RenderTargetView* c_render::s_pRenderTargetView = nullptr;
+ID3D11Texture2D* c_render::s_pDepthStencilBuffer = nullptr;
+ID3D11DepthStencilView* c_render::s_pDepthStencilView = nullptr;
+bool c_render::s_resizeEnabled = true;
+DirectX::XMMATRIX c_render::viewMatrix = {};
+DirectX::XMMATRIX c_render::perspectiveMatrix = {};
+DirectX::XMMATRIX c_render::viewMatrixTransposed = {};
+DirectX::XMMATRIX c_render::perspectiveMatrixTransposed = {};
 static float s_fieldOfViewHorizontal;
 static float s_fieldOfViewVertical;
 static float s_aspectRatio;
@@ -21,7 +21,7 @@ int resize_width = 0;
 int resize_height = 0;
 bool resize_requested = false;
 
-void Render::UpdatePerspective(float fieldOfViewHorizontal, float aspectRatio)
+void c_render::update_perspective(float fieldOfViewHorizontal, float aspectRatio)
 {
 	using namespace DirectX;
 
@@ -39,7 +39,7 @@ void Render::UpdatePerspective(float fieldOfViewHorizontal, float aspectRatio)
 	perspectiveMatrixTransposed = XMMatrixTranspose(perspectiveMatrix);
 }
 
-void Render::UpdateView(
+void c_render::update_view(
 	float forwardX,
 	float forwardY,
 	float forwardZ,
@@ -64,7 +64,7 @@ void Render::UpdateView(
 	viewMatrixTransposed = XMMatrixTranspose(viewMatrix);
 }
 
-void Render::UpdateViewLookAt(
+void c_render::UpdateViewLookAt(
 	float cameraPositionX,
 	float cameraPositionY,
 	float cameraPositionZ,
@@ -88,13 +88,13 @@ void Render::UpdateViewLookAt(
 	viewMatrixTransposed = XMMatrixTranspose(viewMatrix);
 }
 
-bool Render::CalculateScreenCoordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY)
+bool c_render::CalculateScreenCoordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY)
 {
 	using namespace DirectX;
 
 	XMVECTOR pV = { positionX, positionY, positionZ, 1.0f };
-	float Height = (float)Window::GetWindowHeight();
-	float Width = (float)Window::GetWindowWidth();
+	float Height = (float)c_window::GetWindowHeight();
+	float Width = (float)c_window::GetWindowWidth();
 
 	DirectX::XMMATRIX pWorld = DirectX::XMMatrixIdentity();
 	DirectX::XMMATRIX pProjection = perspectiveMatrix;
@@ -113,11 +113,11 @@ bool Render::CalculateScreenCoordinates(float positionX, float positionY, float 
 	return false;
 }
 
-void Render::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
+void c_render::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 {
 	DXGI_SWAP_CHAIN_DESC1 s_SwapchainDescription = {};
-	s_SwapchainDescription.Width = Window::GetWindowWidth();
-	s_SwapchainDescription.Height = Window::GetWindowHeight();
+	s_SwapchainDescription.Width = c_window::GetWindowWidth();
+	s_SwapchainDescription.Height = c_window::GetWindowHeight();
 	s_SwapchainDescription.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	s_SwapchainDescription.Stereo = false;
 	s_SwapchainDescription.SampleDesc.Count = 1;
@@ -138,14 +138,14 @@ void Render::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 	}
 	else
 	{
-		HWND hWnd = Window::GetWindowHandle();
+		HWND hWnd = c_window::GetWindowHandle();
 		HRESULT createSwapChainForHwndResult = s_pFactory->CreateSwapChainForHwnd(s_pDevice, hWnd, &s_SwapchainDescription, NULL, NULL, &rpSwapChain);
 		ASSERT(SUCCEEDED(createSwapChainForHwndResult));
 	}
 	ASSERT(rpSwapChain != nullptr);
 }
 
-void Render::InitDirectX()
+void c_render::InitDirectX()
 {
 	DEBUG_ASSERT(s_pDevice == nullptr);
 	DEBUG_ASSERT(s_pDeviceContext == nullptr);
@@ -201,7 +201,7 @@ void Render::InitDirectX()
 
 }
 
-void Render::Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain)
+void c_render::Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain)
 {
 	if (hInstance == NULL)
 		hInstance = GetModuleHandle(NULL);
@@ -222,7 +222,7 @@ void Render::Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* p
 	Init(hInstance);
 }
 
-void Render::Init(HINSTANCE hInstance)
+void c_render::Init(HINSTANCE hInstance)
 {
 	if (!s_directxCustomInit)
 	{
@@ -232,7 +232,7 @@ void Render::Init(HINSTANCE hInstance)
 	DebugUI::Init(hInstance, s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
 }
 
-void Render::BeginFrame(bool clear, float clearColor[4], bool settargetts)
+void c_render::BeginFrame(bool clear, float clearColor[4], bool settargetts)
 {
 	if (resize_requested)
 	{
@@ -352,8 +352,8 @@ void Render::BeginFrame(bool clear, float clearColor[4], bool settargetts)
 
 	// Set up the viewport.
 	D3D11_VIEWPORT vp;
-	vp.Width = static_cast<float>(Window::GetWindowWidth());
-	vp.Height = static_cast<float>(Window::GetWindowHeight());
+	vp.Width = static_cast<float>(c_window::GetWindowWidth());
+	vp.Height = static_cast<float>(c_window::GetWindowHeight());
 	vp.MinDepth = 0.0f;
 	vp.MaxDepth = 1.0f;
 	vp.TopLeftX = 0;
@@ -370,18 +370,18 @@ void Render::BeginFrame(bool clear, float clearColor[4], bool settargetts)
 	}
 }
 
-void Render::EndFrame()
+void c_render::EndFrame()
 {
 	DebugUI::RenderFrame();
 	s_pSwapChain->Present(1, 0);
 }
 
-void Render::RequestResize(int width, int height)
+void c_render::RequestResize(int width, int height)
 {
 	resize_requested = true;
 }
 
-void Render::ResizeBegin()
+void c_render::ResizeBegin()
 {
 	s_pDeviceContext->Flush();
 	DebugUI::Deinit();
@@ -393,14 +393,14 @@ void Render::ResizeBegin()
 	//s_pDepthStencilView->Release();
 }
 
-void Render::ResizeEnd()
+void c_render::ResizeEnd()
 {
 	bool isVisible = DebugUI::IsVisible();
 	DebugUI::Init(GetModuleHandle(NULL), s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
 	if (isVisible) DebugUI::Show();
 }
 
-void Render::ResizeWindow()
+void c_render::ResizeWindow()
 {
 	if (s_pSwapChain && s_resizeEnabled)
 	{
@@ -442,7 +442,7 @@ void Render::ResizeWindow()
 	}
 }
 
-void Render::Deinit()
+void c_render::Deinit()
 {
 	DebugUI::Deinit();
 

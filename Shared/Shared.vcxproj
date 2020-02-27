@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -62,9 +62,9 @@
     <ClInclude Include="Rendering\BoxRenderer.h" />
     <ClInclude Include="Rendering\DebugUI.h" />
     <ClInclude Include="Rendering\PrimitiveRenderManager.h" />
-    <ClInclude Include="Rendering\Render.h" />
+    <ClInclude Include="Rendering\render.h" />
     <ClInclude Include="Rendering\Rendering.h" />
-    <ClInclude Include="Rendering\Window.h" />
+    <ClInclude Include="Rendering\window.h" />
     <ClInclude Include="!Resources\ResourcesManager.h" />
     <ClInclude Include="shared-private-pch.h" />
     <ClInclude Include="shared-public-pch.h" />
@@ -89,8 +89,8 @@
     <ClCompile Include="Rendering\BoxRenderer.cpp" />
     <ClCompile Include="Rendering\DebugUI.cpp" />
     <ClCompile Include="Rendering\PrimitiveRenderManager.cpp" />
-    <ClCompile Include="Rendering\Render.cpp" />
-    <ClCompile Include="Rendering\Window.cpp" />
+    <ClCompile Include="Rendering\render.cpp" />
+    <ClCompile Include="Rendering\window.cpp" />
     <ClCompile Include="!Resources\ResourcesManager.cpp" />
     <ClCompile Include="shared-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

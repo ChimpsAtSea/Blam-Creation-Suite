@@ -1,6 +1,6 @@
 #pragma once
 
-class Window
+class c_window
 {
 public:
 
@@ -31,6 +31,7 @@ public:
 
 	static int GetWindowWidth();
 	static int GetWindowHeight();
+	static float get_aspect_ratio();
 	static void SetWindowTitle(const char* pTitle);
 	static void Show();
 private:

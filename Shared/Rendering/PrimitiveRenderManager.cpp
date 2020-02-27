@@ -115,7 +115,7 @@ void PrimitiveRenderManager::SetupConstantBuffers()
 		{
 			ID3D11Buffer*& pConstantsBuffer = ppFrameConstantsBuffers[i];
 
-			HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
+			HRESULT createBufferResult = c_render::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
 			ASSERT(SUCCEEDED(createBufferResult));
 			ASSERT(pConstantsBuffer != nullptr);
 		}
@@ -146,7 +146,7 @@ void PrimitiveRenderManager::RenderImmediateBox()
 void PrimitiveRenderManager::MapConstantsBuffer()
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource = {};
-	HRESULT mapResult = Render::s_pDeviceContext->Map(pCurrentFrameConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+	HRESULT mapResult = c_render::s_pDeviceContext->Map(pCurrentFrameConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 	ASSERT(SUCCEEDED(mapResult));
 
 	// contigious memory
@@ -155,7 +155,7 @@ void PrimitiveRenderManager::MapConstantsBuffer()
 
 void PrimitiveRenderManager::UnmapConstantsBuffer()
 {
-	Render::s_pDeviceContext->Unmap(pCurrentFrameConstantsBuffer, 0);
+	c_render::s_pDeviceContext->Unmap(pCurrentFrameConstantsBuffer, 0);
 	pPerFrameConstantsArray = nullptr;
 }
 
@@ -165,8 +165,8 @@ void PrimitiveRenderManager::UpdateConstantsBuffer()
 	MapConstantsBuffer();
 
 	PerFrameConstants& rPerFrameConstants = *pPerFrameConstantsArray;
-	rPerFrameConstants.m_viewMatrix = Render::viewMatrixTransposed;
-	rPerFrameConstants.m_perspectiveMatrix = Render::perspectiveMatrixTransposed;
+	rPerFrameConstants.m_viewMatrix = c_render::viewMatrixTransposed;
+	rPerFrameConstants.m_perspectiveMatrix = c_render::perspectiveMatrixTransposed;
 
 	UnmapConstantsBuffer();
 }

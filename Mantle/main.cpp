@@ -29,8 +29,8 @@ int WINAPI wWinMain(
 	void(*UpdateCallback)() = []()
 	{
 		static float clearColor[] = { 0.25f, 0.25f, 0.25f, 1.0f };
-		Render::BeginFrame(true, clearColor);
-		Render::EndFrame();
+		c_render::BeginFrame(true, clearColor);
+		c_render::EndFrame();
 	};
 
 	void(*DestroyCallback)() = []()
@@ -38,28 +38,28 @@ int WINAPI wWinMain(
 		s_running = false;
 	};
 
-	Window::Init("Mantle", "Mantle Console", "mantle");
-	Render::Init(NULL);
+	c_window::Init("Mantle", "Mantle Console", "mantle");
+	c_render::Init(NULL);
 	DebugUI::Show();
 	c_mantle_gui::Init(false, szLoadMapArgument);
 	DebugUI::RegisterCallback(DebugUI::AlwaysRun, UICallback);
 
-	Window::RegisterUpdateCallback(UpdateCallback);
-	Window::RegisterDestroyCallback(DestroyCallback);
+	c_window::RegisterUpdateCallback(UpdateCallback);
+	c_window::RegisterDestroyCallback(DestroyCallback);
 	c_mantle_gui::RegisterOnCloseCallback(DestroyCallback);
 
 	c_console::Startup();
 
-	while (s_running) Window::Update();
+	while (s_running) c_window::Update();
 
-	Window::UnregisterUpdateCallback(UpdateCallback);
-	Window::UnregisterDestroyCallback(DestroyCallback);
+	c_window::UnregisterUpdateCallback(UpdateCallback);
+	c_window::UnregisterDestroyCallback(DestroyCallback);
 	c_mantle_gui::UnregisterOnCloseCallback(DestroyCallback);
 
 	DebugUI::RegisterCallback(DebugUI::AlwaysRun, UICallback);
 	c_mantle_gui::Deinit();
-	Render::Deinit();
-	Window::Deinit();
+	c_render::Deinit();
+	c_window::Deinit();
 	c_console::Deinit();
 
 	return 0;

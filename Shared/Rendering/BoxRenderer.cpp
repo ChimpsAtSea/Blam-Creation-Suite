@@ -62,7 +62,7 @@ void BoxRenderer::SetupWireframeGeometry()
 		vertexBufferSubResourceData.SysMemPitch = 0;
 		vertexBufferSubResourceData.SysMemSlicePitch = 0;
 
-		HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pWireframeIndexBuffer);
+		HRESULT createBufferResult = c_render::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pWireframeIndexBuffer);
 		ASSERT(SUCCEEDED(createBufferResult));
 		ASSERT(pWireframeIndexBuffer != nullptr);
 	}
@@ -98,7 +98,7 @@ void BoxRenderer::SetupSolidGeometry()
 		vertexBufferSubResourceData.SysMemPitch = 0;
 		vertexBufferSubResourceData.SysMemSlicePitch = 0;
 
-		HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pVertexBuffer);
+		HRESULT createBufferResult = c_render::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pVertexBuffer);
 		ASSERT(SUCCEEDED(createBufferResult));
 		ASSERT(pVertexBuffer != nullptr);
 	}
@@ -139,7 +139,7 @@ void BoxRenderer::SetupSolidGeometry()
 		vertexBufferSubResourceData.SysMemPitch = 0;
 		vertexBufferSubResourceData.SysMemSlicePitch = 0;
 
-		HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pSolidIndexBuffer);
+		HRESULT createBufferResult = c_render::s_pDevice->CreateBuffer(&bufferDesc, &vertexBufferSubResourceData, &pSolidIndexBuffer);
 		ASSERT(SUCCEEDED(createBufferResult));
 		ASSERT(pSolidIndexBuffer != nullptr);
 	}
@@ -158,7 +158,7 @@ void BoxRenderer::SetupShaders()
 		}
 		ASSERT(pShaderBinary != nullptr);
 
-		Render::s_pDevice->CreatePixelShader(pShaderBinary, shaderFileLength, NULL, &pPixelShader);
+		c_render::s_pDevice->CreatePixelShader(pShaderBinary, shaderFileLength, NULL, &pPixelShader);
 		ASSERT(pPixelShader != nullptr);
 
 		delete[] pShaderBinary;
@@ -175,7 +175,7 @@ void BoxRenderer::SetupShaders()
 		}
 		ASSERT(pVertexShaderBinary != nullptr);
 
-		Render::s_pDevice->CreateVertexShader(pVertexShaderBinary, vertexShaderBinaryLength, NULL, &pVertexShader);
+		c_render::s_pDevice->CreateVertexShader(pVertexShaderBinary, vertexShaderBinaryLength, NULL, &pVertexShader);
 		ASSERT(pVertexShader != nullptr);
 	}
 
@@ -184,7 +184,7 @@ void BoxRenderer::SetupShaders()
 		D3D11_RASTERIZER_DESC rasterizerDescription = {};
 		rasterizerDescription.FillMode = D3D11_FILL_SOLID;
 		rasterizerDescription.CullMode = D3D11_CULL_BACK;
-		Render::s_pDevice->CreateRasterizerState(&rasterizerDescription, &pSolidRasterState);
+		c_render::s_pDevice->CreateRasterizerState(&rasterizerDescription, &pSolidRasterState);
 	}
 
 	if (pWireframeRasterState == nullptr)
@@ -192,7 +192,7 @@ void BoxRenderer::SetupShaders()
 		D3D11_RASTERIZER_DESC rasterizerDescription = {};
 		rasterizerDescription.FillMode = D3D11_FILL_WIREFRAME;
 		rasterizerDescription.CullMode = D3D11_CULL_NONE;
-		Render::s_pDevice->CreateRasterizerState(&rasterizerDescription, &pWireframeRasterState);
+		c_render::s_pDevice->CreateRasterizerState(&rasterizerDescription, &pWireframeRasterState);
 	}
 
 	if (pVertexLayout == nullptr)
@@ -207,7 +207,7 @@ void BoxRenderer::SetupShaders()
 		inputDescriptions[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 		inputDescriptions[0].InstanceDataStepRate = 0;
 
-		HRESULT createInputLayoutResult = Render::s_pDevice->CreateInputLayout(inputDescriptions, 1, pVertexShaderBinary, vertexShaderBinaryLength, &pVertexLayout);
+		HRESULT createInputLayoutResult = c_render::s_pDevice->CreateInputLayout(inputDescriptions, 1, pVertexShaderBinary, vertexShaderBinaryLength, &pVertexLayout);
 		ASSERT(SUCCEEDED(createInputLayoutResult));
 		ASSERT(pVertexLayout != nullptr);
 	}
@@ -234,7 +234,7 @@ void BoxRenderer::SetupConstantBuffers()
 		{
 			ID3D11Buffer*& pConstantsBuffer = ppInstanceConstantsBuffers[i];
 
-			HRESULT createBufferResult = Render::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
+			HRESULT createBufferResult = c_render::s_pDevice->CreateBuffer(&bufferDesc, NULL, &pConstantsBuffer);
 			ASSERT(SUCCEEDED(createBufferResult));
 			ASSERT(pConstantsBuffer != nullptr);
 		}
@@ -251,7 +251,7 @@ void BoxRenderer::GetNextConstantsBuffer()
 void BoxRenderer::MapConstantsBuffer()
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource = {};
-	HRESULT mapResult = Render::s_pDeviceContext->Map(pCurrentInstanceConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+	HRESULT mapResult = c_render::s_pDeviceContext->Map(pCurrentInstanceConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 	ASSERT(SUCCEEDED(mapResult));
 
 	// contigious memory
@@ -260,7 +260,7 @@ void BoxRenderer::MapConstantsBuffer()
 
 void BoxRenderer::UnmapConstantsBuffer()
 {
-	Render::s_pDeviceContext->Unmap(pCurrentInstanceConstantsBuffer, 0);
+	c_render::s_pDeviceContext->Unmap(pCurrentInstanceConstantsBuffer, 0);
 	pPerObjectConstantsArray = nullptr;
 }
 
@@ -306,30 +306,30 @@ void BoxRenderer::RenderBoxGeometry()
 		const UINT vertexStride = sizeof(XMFLOAT3);
 		const UINT vertexOffset = 0;
 
-		Render::s_pDeviceContext->RSSetState(pWireframeRasterState);
-		Render::s_pDeviceContext->VSSetShader(pVertexShader, NULL, 0);
-		Render::s_pDeviceContext->PSSetShader(pPixelShader, NULL, 0);
-		Render::s_pDeviceContext->IASetInputLayout(pVertexLayout);
-		Render::s_pDeviceContext->IASetVertexBuffers(0, 1, &pVertexBuffer, &vertexStride, &vertexOffset);
+		c_render::s_pDeviceContext->RSSetState(pWireframeRasterState);
+		c_render::s_pDeviceContext->VSSetShader(pVertexShader, NULL, 0);
+		c_render::s_pDeviceContext->PSSetShader(pPixelShader, NULL, 0);
+		c_render::s_pDeviceContext->IASetInputLayout(pVertexLayout);
+		c_render::s_pDeviceContext->IASetVertexBuffers(0, 1, &pVertexBuffer, &vertexStride, &vertexOffset);
 
 		bool solid = false;
 		if (solid)
 		{
-			Render::s_pDeviceContext->IASetIndexBuffer(pSolidIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
-			Render::s_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+			c_render::s_pDeviceContext->IASetIndexBuffer(pSolidIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
+			c_render::s_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		}
 		else
 		{
-			Render::s_pDeviceContext->IASetIndexBuffer(pWireframeIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
-			Render::s_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
+			c_render::s_pDeviceContext->IASetIndexBuffer(pWireframeIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
+			c_render::s_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
 		}
 
 		const uint32_t maxInstances = 4096 / sizeof(PerObjectConstants);
 		//const uint32_t maxInstancesPow2 = 1u << ilogb(maxInstances);
 		const uint32_t maxInstancesPow2 = 16;
 
-		Render::s_pDeviceContext->VSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
-		Render::s_pDeviceContext->PSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
+		c_render::s_pDeviceContext->VSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
+		c_render::s_pDeviceContext->PSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
 
 		const uint32_t numBoxes = min(kMaxBoxesPerFrame, nextBoxIndex);
 		for (uint32_t i = 0; i < numBoxes;)
@@ -342,16 +342,16 @@ void BoxRenderer::RenderBoxGeometry()
 			UINT firstConstant = (sizeof(PerObjectConstants) * i) / 16;
 			UINT numConstants = sizeof(PerObjectConstants);
 
-			Render::s_pDeviceContext->VSSetConstantBuffers1(1, 1, &pCurrentInstanceConstantsBuffer, &firstConstant, &numConstants);
-			Render::s_pDeviceContext->PSSetConstantBuffers1(1, 1, &pCurrentInstanceConstantsBuffer, &firstConstant, &numConstants);
+			c_render::s_pDeviceContext->VSSetConstantBuffers1(1, 1, &pCurrentInstanceConstantsBuffer, &firstConstant, &numConstants);
+			c_render::s_pDeviceContext->PSSetConstantBuffers1(1, 1, &pCurrentInstanceConstantsBuffer, &firstConstant, &numConstants);
 
 			if (solid)
 			{
-				Render::s_pDeviceContext->DrawIndexedInstanced(36, boxesToDrawThisCall, 0, 0, 0);
+				c_render::s_pDeviceContext->DrawIndexedInstanced(36, boxesToDrawThisCall, 0, 0, 0);
 			}
 			else
 			{
-				Render::s_pDeviceContext->DrawIndexedInstanced(36, boxesToDrawThisCall, 0, 0, 0);
+				c_render::s_pDeviceContext->DrawIndexedInstanced(36, boxesToDrawThisCall, 0, 0, 0);
 			}
 
 			i += boxesToDrawThisCall;
@@ -365,9 +365,9 @@ void BoxRenderer::EndRenderBox()
 
 	UnmapConstantsBuffer();
 
-	Render::BeginFrame(false, nullptr, false);
+	c_render::BeginFrame(false, nullptr, false);
 	RenderBoxGeometry();
-	//Render::EndFrame();
+	//c_render::EndFrame();
 
 	pCurrentInstanceConstantsBuffer = nullptr;
 	nextBoxIndex = 0;

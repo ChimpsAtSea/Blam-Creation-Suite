@@ -18,10 +18,10 @@
     <ClCompile Include="haloreachlib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HaloReachGameHost.cpp">
+    <ClCompile Include="opus_legacy\HaloReach.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="opus_legacy\HaloReach.cpp">
+    <ClCompile Include="halo_reach_game_host.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,9 +30,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="haloreachlib-public-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HaloReachGameHost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="opus_legacy\HaloReach.h">
@@ -47,6 +44,9 @@
     <ClInclude Include="opus_legacy\local_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="halo_reach_game_host.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc">
@@ -54,13 +54,13 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="HaloReachGameHost.Camera.inl">
+    <None Include="halo_reach_game_host.camera.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="HaloReachGameHost.Memory.inl">
+    <None Include="halo_reach_game_host.memory.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="HaloReachGameHost.Scripting.inl">
+    <None Include="halo_reach_game_host.scripting.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

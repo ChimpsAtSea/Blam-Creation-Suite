@@ -1,6 +1,6 @@
 #pragma once
 
-class Render
+class c_render
 {
 public:
 	static ID3D11Device* s_pDevice;
@@ -19,8 +19,8 @@ public:
 	static DirectX::XMMATRIX viewMatrixTransposed;
 	static DirectX::XMMATRIX perspectiveMatrixTransposed;
 
-	static void UpdatePerspective(float fieldOfViewHorizontal, float aspectRatio);
-	static void UpdateView(
+	static void update_perspective(float fieldOfViewHorizontal, float aspectRatio);
+	static void update_view(
 		float forwardX,
 		float forwardY,
 		float forwardZ,

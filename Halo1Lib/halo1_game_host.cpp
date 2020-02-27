@@ -117,8 +117,8 @@ void c_halo1_game_host::update_camera_data()
 	//{
 	//	float aspectRatio = 16.0f / 9.0f; // #TODO: Correct aspect ratio
 	//	float fieldOfViewHorizontal = observer_camera->field_of_view;
-	//	Render::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
-	//	Render::UpdateView(
+	//	c_render::UpdatePerspective(fieldOfViewHorizontal, aspectRatio);
+	//	c_render::UpdateView(
 	//		observer_camera->forward.I,
 	//		observer_camera->forward.J,
 	//		observer_camera->forward.K,

@@ -112,7 +112,7 @@ void MouseInput::setClipMode(MouseMode mode)
 {
 	if (mode == MouseMode::Exclusive)
 	{
-		HWND hWnd = Window::GetWindowHandle();
+		HWND hWnd = c_window::GetWindowHandle();
 		RECT rect = {};
 		GetClientRect(hWnd, &rect);
 		POINT ul;

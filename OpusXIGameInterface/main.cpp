@@ -8,22 +8,22 @@ const char* c_console::s_consoleExecutableName = "OpusXI";
 
 extern "C" __declspec(dllexport) void resize_viewport(int width, int height)
 {
-	Render::ResizeBegin();
+	c_render::ResizeBegin();
 }
 
 extern "C" __declspec(dllexport) void run(ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain)
 {
 	 static HMODULE hInstance = GetModuleHandleA("OpusXIGameInterface.dll");
 
-	 Window::SetIcon(LoadIconA(hInstance, ResourcesManager::GetResourceIntResource(ResourceType::Icon)));
+	 c_window::SetIcon(LoadIconA(hInstance, ResourcesManager::GetResourceIntResource(ResourceType::Icon)));
 	 SystemPatch::PatchEnumWindows();
 
 	 static bool s_running = true;
 	 void(*UpdateCallback)() = []()
 	 {
-		 Render::BeginFrame(true, &clearColor.x);
+		 c_render::BeginFrame(true, &clearColor.x);
 		 //GameLauncher::OpusTick();
-		 Render::EndFrame();
+		 c_render::EndFrame();
 	 };
 	 //void(*DestroyCallback)() = []()
 	 //{
@@ -31,27 +31,27 @@ extern "C" __declspec(dllexport) void run(ID3D11Device* pDevice, IDXGISwapChain1
 	 //};
 
 	 //Window::Init("Opus", "OpusConsole", "opus");
-	 Render::Init(hInstance, pDevice, pSwapChain);
+	 c_render::Init(hInstance, pDevice, pSwapChain);
 	 //MantleGUI::Init(true);
 	 //GameLauncher::Init();
 
-	 Window::RegisterUpdateCallback(UpdateCallback);
+	 c_window::RegisterUpdateCallback(UpdateCallback);
 	 //Window::RegisterDestroyCallback(DestroyCallback);
 	 ////MantleGUI::RegisterOnCloseCallback(DestroyCallback);
 
 	 while (s_running) 
 	 {
-		 Window::OnUpdateCallback();
+		 c_window::OnUpdateCallback();
 	 }
 
 	 //while (s_running) Window::Update();
 
-	 Window::UnregisterUpdateCallback(UpdateCallback);
+	 c_window::UnregisterUpdateCallback(UpdateCallback);
 	 //Window::UnregisterDestroyCallback(DestroyCallback);
 	 ////MantleGUI::UnregisterOnCloseCallback(DestroyCallback);
 
 	 //GameLauncher::Deinit();
 	 //MantleGUI::Deinit();
-	 Render::Deinit();
+	 c_render::Deinit();
 	 //Window::Deinit();
 }

@@ -10,7 +10,7 @@ BOOL CALLBACK EnumWindowsSort(HWND hWnd, LPARAM lParam)
 	bool isExcluded = false;
 	isExcluded |= hWnd == GetConsoleWindow();
 
-	if (hWnd == Window::GetWindowHandle())
+	if (hWnd == c_window::GetWindowHandle())
 	{
 		s_processedWindow = true;
 	}

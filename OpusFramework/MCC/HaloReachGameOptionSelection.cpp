@@ -417,7 +417,7 @@ void HaloReachGameOptionSelection::GetVariantInfo(char* pBuffer, std::string* na
 int HaloReachGameOptionSelection::ReadGameVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
 	static s_game_variant gameVariant;
-	IDataAccess* pDataAccess = HaloReachGameHost::GetDataAccess();
+	IDataAccess* pDataAccess = c_halo_reach_game_host::get_data_access();
 	ASSERT(pDataAccess != nullptr);
 	LoadGameVariant(pDataAccess, pName, gameVariant);
 
@@ -436,7 +436,7 @@ int HaloReachGameOptionSelection::ReadGameVariant(LPCSTR pName, std::string* nam
 int HaloReachGameOptionSelection::ReadMapVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
 	static s_map_variant mapVariant;
-	IDataAccess* pDataAccess = HaloReachGameHost::GetDataAccess();
+	IDataAccess* pDataAccess = c_halo_reach_game_host::get_data_access();
 	ASSERT(pDataAccess != nullptr);
 	LoadMapVariant(pDataAccess, pName, mapVariant);
 
@@ -448,7 +448,7 @@ int HaloReachGameOptionSelection::ReadMapVariant(LPCSTR pName, std::string* name
 
 int HaloReachGameOptionSelection::ReadSavedFilm(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath)
 {
-	IDataAccess* pDataAccess = HaloReachGameHost::GetDataAccess();
+	IDataAccess* pDataAccess = c_halo_reach_game_host::get_data_access();
 	if (pDataAccess)
 	{
 		char* out_data = { 0 };

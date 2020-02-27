@@ -17,42 +17,42 @@ int WINAPI WinMain(
 
 	c_console::Init();
 
-	Window::SetIcon(LoadIconA(hInstance, ResourcesManager::GetResourceIntResource(ResourceType::Icon)));
+	c_window::SetIcon(LoadIconA(hInstance, ResourcesManager::GetResourceIntResource(ResourceType::Icon)));
 	SystemPatch::PatchEnumWindows();
 
 	static bool s_running = true;
 	void(*UpdateCallback)() = []()
 	{
-		Render::BeginFrame(true, &clearColor.x);
+		c_render::BeginFrame(true, &clearColor.x);
 		GameLauncher::OpusTick();
-		Render::EndFrame();
+		c_render::EndFrame();
 	};
 	void(*DestroyCallback)() = []()
 	{
 		s_running = false;
 	};
 	
-	Window::Init("Opus", "OpusConsole", "opus");
-	Render::Init(hInstance);
+	c_window::Init("Opus", "OpusConsole", "opus");
+	c_render::Init(hInstance);
 	c_mantle_gui::Init(true);
 	GameLauncher::Init();
 
-	Window::RegisterUpdateCallback(UpdateCallback);
-	Window::RegisterDestroyCallback(DestroyCallback);
+	c_window::RegisterUpdateCallback(UpdateCallback);
+	c_window::RegisterDestroyCallback(DestroyCallback);
 	//MantleGUI::RegisterOnCloseCallback(DestroyCallback);
 
 	c_console::Startup();
 
-	while (s_running) Window::Update();
+	while (s_running) c_window::Update();
 
-	Window::UnregisterUpdateCallback(UpdateCallback);
-	Window::UnregisterDestroyCallback(DestroyCallback);
+	c_window::UnregisterUpdateCallback(UpdateCallback);
+	c_window::UnregisterDestroyCallback(DestroyCallback);
 	//MantleGUI::UnregisterOnCloseCallback(DestroyCallback);
 
 	GameLauncher::Deinit();
 	c_mantle_gui::Deinit();
-	Render::Deinit();
-	Window::Deinit();
+	c_render::Deinit();
+	c_window::Deinit();
 	c_console::Deinit();
 
 	return 0;

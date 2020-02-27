@@ -32,6 +32,19 @@ public:
 		}
 	}
 
+	[[nodiscard]] inline bool is_hooked() const { return m_isHooked; };
+	[[nodiscard]] inline bool is_active() const { return m_isActive; };
+	[[nodiscard]] inline e_engine_type get_engine_type() const { return m_engine; };
+	[[nodiscard]] inline e_build get_build() const { return m_build; };
+	[[nodiscard]] inline FunctionHookCallback* get_callback() const { return m_pCallback; };
+	[[nodiscard]] inline void* get_callback_userdata() const { return m_pCallbackUserData; };
+	[[nodiscard]] inline const char* get_name() const { return m_name; };
+
+	static void init_function_hook_tree(e_engine_type engine_type, e_build build);
+	static void deinit_function_hook_tree(e_engine_type engine_type, e_build build);
+
+protected:
+
 	find_offset_func* m_find_offset_func;
 	uintptr_t m_offset;
 	e_engine_type m_engine;
@@ -49,9 +62,6 @@ public:
 	[[nodiscard]] c_function_hook_base* InitNode(e_engine_type engine_type, e_build build);
 	[[nodiscard]] c_function_hook_base* DeinitNode(e_engine_type engine_type, e_build build);
 
-	static void init_function_hook_tree(e_engine_type engine_type, e_build build);
-	static void deinit_function_hook_tree(e_engine_type engine_type, e_build build);
-
 	void SetIsActive(bool isActive)
 	{
 		m_isActive = isActive;
@@ -63,7 +73,6 @@ public:
 		m_pCallbackUserData = pCallbackUserData;
 	}
 
-private:
 	bool DoesOffsetExist(e_engine_type engine_type, e_build build, size_t offset)
 	{
 		if (m_engine == engine_type)
