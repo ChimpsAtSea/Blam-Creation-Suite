@@ -1,69 +1,67 @@
 #pragma once
 
-class ConsoleCommand
+class c_console_command
 {
 public:
-	// Return true on success
-	virtual bool Run(const std::vector<std::string>& Arguments) = 0;
-
-	// Command and usage info
-	virtual std::string Info(const std::string& Topic = "") const = 0;
-
-	// Suggest auto-complete strings for arugments
-	virtual std::string Suggest(const std::vector<std::string>& Arguments) const = 0;
+	virtual bool execute_command(const std::vector<std::string>& arguments) = 0; // Return true on success
+	virtual std::string get_command_info(const std::string& topic = "") const = 0; // Command and usage info
+	virtual std::string get_command_auto_complete(const std::vector<std::string>& arguments) const = 0; // Suggest auto-complete strings for arugments
 };
 
-class Console
+enum e_console_color : uint8_t
+{
+	_console_color_none = 0,
+	_console_color_bright = 0x8,
+	_console_color_red = 0x4,
+	_console_color_blue = 0x1,
+	_console_color_green = 0x2,
+	_console_color_yellow = _console_color_red | _console_color_green,
+	_console_color_cyan = _console_color_green | _console_color_blue,
+	_console_color_magenta = _console_color_red | _console_color_blue,
+	_console_color_default = _console_color_red | _console_color_blue | _console_color_green,
+
+	// bitshift colors left 4 bits to get background version
+	_console_color_background_bright = _console_color_bright << 4,
+	_console_color_background_red = _console_color_red << 4,
+	_console_color_background_blue = _console_color_blue << 4,
+	_console_color_background_green = _console_color_green << 4,
+	_console_color_background_yellow = _console_color_yellow << 4,
+	_console_color_background_cyan = _console_color_cyan << 4,
+	_console_color_background_magenta = _console_color_magenta << 4,
+
+	// prefabs
+	_console_color_error = _console_color_red,
+	_console_color_info = _console_color_bright | _console_color_yellow,
+	_console_color_input = _console_color_bright | _console_color_cyan,
+	_console_color_suggestion = _console_color_cyan
+};
+
+class c_console
 {
 public:
-	friend ConsoleCommand;
+	friend c_console_command;
 
-	class DefaultConsoleCommand : public ConsoleCommand
+	class DefaultConsoleCommand : public c_console_command
 	{
 	public:
-		virtual bool Run(const std::vector<std::string>& Arguments) override;
-		virtual std::string Info(const std::string& Topic = "") const override;
-		virtual std::string Suggest(const std::vector<std::string>& Arguments) const override;
+		virtual bool execute_command(const std::vector<std::string>& Arguments) override;
+		virtual std::string get_command_info(const std::string& Topic = "") const override;
+		virtual std::string get_command_auto_complete(const std::vector<std::string>& Arguments) const override;
 	};
 
-	enum class Color : uint8_t
-	{
-		None = 0,
-		Bright = 0x8,
-		Red = 0x4,
-		Blue = 0x1,
-		Green = 0x2,
-		Yellow = Red | Green,
-		Cyan = Green | Blue,
-		Magenta = Red | Blue,
-		Normal = Red | Blue | Green,
-		// Bitshift colors left 4 bits to get background version
-		BackBright = Bright << 4,
-		BackRed = Red << 4,
-		BackBlue = Blue << 4,
-		BackGreen = Green << 4,
-		BackYellow = Yellow << 4,
-		BackCyan = Cyan << 4,
-		BackMagenta = Magenta << 4,
-		// Prefabs
-		Error = Red,
-		Info = Bright | Yellow,
-		Input = Bright | Cyan,
-		Suggestion = Cyan
-	};
+
 
 	static void Init();
 	static void Deinit();
 	static void Update();
 
-	static void SetTextColor(Color color);
-	static void SetTextColor(uint8_t color);
+	static void set_text_color(uint8_t color);
 
 	static void HandleInput(uint32_t KeyCode);
 	static void PrintLine();
 
-	static void PushCommand(const std::string& CommandName, ConsoleCommand* Command);
-	static void PopCommand(const std::string& CommandName);
+	static void register_command(const std::string& CommandName, c_console_command* Command);
+	static void unregister_command(const std::string& CommandName);
 
 	static void Startup();
 
@@ -72,7 +70,7 @@ private:
 
 	static bool s_consoleAllocated;
 
-	static std::map<std::string, ConsoleCommand*> Commands;
+	static std::map<std::string, c_console_command*> Commands;
 
 	// History
 	static std::vector<std::vector<std::string>> PrevCommands;

@@ -2,6 +2,6 @@
 
 #ifndef _WIN64
 
-#include "EldoradoGameHost.h"
+#include "eldorado_game_host.h"
 
 #endif

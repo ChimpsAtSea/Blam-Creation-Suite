@@ -1,4 +1,4 @@
 #include "opusframework-private-pch.h"
 
-DataReferenceBase* DataReferenceBase::g_pDataReferenceBaseBaseFirst = nullptr;
-DataReferenceBase* DataReferenceBase::g_pDataReferenceBaseBaseLast = nullptr;
+c_data_reference_base* c_data_reference_base::g_pDataReferenceBaseBaseFirst = nullptr;
+c_data_reference_base* c_data_reference_base::g_pDataReferenceBaseBaseLast = nullptr;

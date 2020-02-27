@@ -2,10 +2,10 @@
 
 typedef void(FunctionHookCallback)(void* pUserData);
 
-class FunctionHookBase
+class c_function_hook_base
 {
 public:
-	FunctionHookBase(const char* pName, Engine engine, Build build, size_t offset, find_offset_func find_offset)
+	c_function_hook_base(const char* pName, Engine engine, Build build, size_t offset, find_offset_func find_offset)
 		: m_engine(engine)
 		, m_build(build)
 		, m_offset(offset)
@@ -42,12 +42,12 @@ public:
 	void* m_pCallbackUserData;
 	const char* m_name;
 
-	FunctionHookBase* m_pNextFunctionHook;
-	static FunctionHookBase* g_pFirstFunctionHook;
-	static FunctionHookBase* g_pLastFunctionHook;
+	c_function_hook_base* m_pNextFunctionHook;
+	static c_function_hook_base* g_pFirstFunctionHook;
+	static c_function_hook_base* g_pLastFunctionHook;
 
-	[[nodiscard]] FunctionHookBase* InitNode(Engine engine, Build build);
-	[[nodiscard]] FunctionHookBase* DeinitNode(Engine engine, Build build);
+	[[nodiscard]] c_function_hook_base* InitNode(Engine engine, Build build);
+	[[nodiscard]] c_function_hook_base* DeinitNode(Engine engine, Build build);
 
 	static void InitTree(Engine engine, Build build);
 	static void DeinitTree(Engine engine, Build build);

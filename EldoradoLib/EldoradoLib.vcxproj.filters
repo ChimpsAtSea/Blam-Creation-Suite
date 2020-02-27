@@ -15,10 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EldoradoGameHost.cpp">
+    <ClCompile Include="eldoradolib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="eldoradolib-private-pch.cpp">
+    <ClCompile Include="eldorado_game_host.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="eldorado_load_map_command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30,9 +33,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="opus_legacy\local_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EldoradoGameHost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="eldoradolib-private-pch.h">
@@ -47,6 +47,12 @@
     <ClInclude Include="tls_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="eldorado_game_host.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="eldorado_load_map_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc">
@@ -54,7 +60,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="EldoradoGameHost.Testing.inl">
+    <None Include="eldorado_game_host.testing.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

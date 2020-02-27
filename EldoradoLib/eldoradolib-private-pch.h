@@ -9,6 +9,7 @@
 
 #include "eldoradolib-public-pch.h"
 
+#include "eldorado_load_map_command.h"
 #include "tls_data.h"
 
 #endif

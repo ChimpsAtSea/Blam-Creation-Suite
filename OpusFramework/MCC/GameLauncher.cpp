@@ -12,7 +12,7 @@ Engine s_nextLaunchEngine;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameStartupEvent;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameShutdownEvent;
 bool GameLauncher::s_gameRunning = false;
-IOpusGameEngineHost* pCurrentGameHost = nullptr;
+c_opus_game_engine_host* pCurrentGameHost = nullptr;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {

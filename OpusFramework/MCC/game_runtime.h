@@ -1,9 +1,9 @@
 #pragma once
-class GameRuntime
+class c_game_runtime
 {
 public:
-	GameRuntime(Engine engine, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule = false, Build build = Build::NotSet);
-	~GameRuntime();
+	c_game_runtime(Engine engine, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule = false, Build build = Build::NotSet);
+	~c_game_runtime();
 
 	IDataAccess* GetDataAccess() const { return m_pDataAccess; };
 	Build GetBuildVersion() const { return m_build; }

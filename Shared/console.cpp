@@ -1,21 +1,21 @@
 #include "shared-private-pch.h"
 
-std::map<std::string, ConsoleCommand*> Console::Commands;
-std::vector<std::vector<std::string>> Console::PrevCommands;
-std::vector<std::vector<std::string>>::iterator Console::PrevCommand;
-size_t Console::CurArg;
-std::vector<std::string> Console::CurCommand;
-std::string Console::Suggestion;
-size_t Console::ConsoleWidth;
-void* Console::ConsoleHandle; 
-bool Console::s_consoleAllocated;
+std::map<std::string, c_console_command*> c_console::Commands;
+std::vector<std::vector<std::string>> c_console::PrevCommands;
+std::vector<std::vector<std::string>>::iterator c_console::PrevCommand;
+size_t c_console::CurArg;
+std::vector<std::string> c_console::CurCommand;
+std::string c_console::Suggestion;
+size_t c_console::ConsoleWidth;
+void* c_console::ConsoleHandle; 
+bool c_console::s_consoleAllocated;
 
 const char* Credits[] = {
 	"Squaresome",
 	"Twister",
 };
 
-void Console::Update()
+void c_console::Update()
 {
 	if (_kbhit())
 	{
@@ -27,9 +27,9 @@ void Console::Update()
 #define ps1beg "\xAF["
 #define ps1end "]\xAE"
 
-void Console::Init()
+void c_console::Init()
 {
-	Console::AllocateConsole("Opus");
+	c_console::AllocateConsole("Opus");
 
 	CurArg = 0;
 
@@ -42,33 +42,28 @@ void Console::Init()
 		ConsoleWidth = ConsoleInfo.dwSize.X;
 	}
 
-	SetTextColor(Console::Color::Info);
+	set_text_color(_console_color_info);
 	CurCommand.push_back("");
 
 	static DefaultConsoleCommand baseCommand;
 
 	// Meta commands pushed with null deleter so console doesn't delete its self.
-	PushCommand("help", &baseCommand);
-	PushCommand("history", &baseCommand);
-	PushCommand("quit", &baseCommand);
+	register_command("help", &baseCommand);
+	register_command("history", &baseCommand);
+	register_command("quit", &baseCommand);
 }
 
-void Console::Deinit()
+void c_console::Deinit()
 {
 	Commands.clear();
 }
 
-void Console::SetTextColor(Color color)
-{
-	SetTextColor(underlying_cast(color));
-}
-
-void Console::SetTextColor(uint8_t color)
+void c_console::set_text_color(uint8_t color)
 {
 	SetConsoleTextAttribute(ConsoleHandle, color);
 }
 
-void Console::HandleInput(uint32_t KeyCode)
+void c_console::HandleInput(uint32_t KeyCode)
 {
 	if (std::isgraph(KeyCode))
 	{
@@ -106,7 +101,7 @@ void Console::HandleInput(uint32_t KeyCode)
 		{
 			if (Commands.count(CurCommand.front()))
 			{
-				Suggestion = Commands[CurCommand.front()]->Suggest(CurCommand);
+				Suggestion = Commands[CurCommand.front()]->get_command_auto_complete(CurCommand);
 			}
 		}
 	}
@@ -122,7 +117,7 @@ void Console::HandleInput(uint32_t KeyCode)
 			}
 			if (Commands.count(CurCommand.front()))
 			{
-				Suggestion = Commands[CurCommand.front()]->Suggest(CurCommand);
+				Suggestion = Commands[CurCommand.front()]->get_command_auto_complete(CurCommand);
 			}
 		}
 	}
@@ -173,14 +168,14 @@ void Console::HandleInput(uint32_t KeyCode)
 			{
 				if (!CurCommand.empty() && Commands.count(CurCommand.front()))
 				{
-					Suggestion = Commands[CurCommand.front()]->Suggest(CurCommand);
+					Suggestion = Commands[CurCommand.front()]->get_command_auto_complete(CurCommand);
 				}
 			}
 		}
 	}
 	else if (KeyCode == '\r') // Enter
 	{
-		SetTextColor(Color::Info);
+		set_text_color(e_console_color::_console_color_info);
 		// Clear previous suggestion..
 		if (!Suggestion.empty())
 		{
@@ -205,24 +200,24 @@ void Console::HandleInput(uint32_t KeyCode)
 			// Run command
 			if (Commands.count(CurCommand[0]) && Commands[CurCommand[0]])
 			{
-				if (!Commands[CurCommand[0]]->Run(CurCommand))
+				if (!Commands[CurCommand[0]]->execute_command(CurCommand))
 				{
 					// Error running command;
-					SetTextColor(Color::Error);
+					set_text_color(e_console_color::_console_color_error);
 					std::cout << "Invalid Usage: " << CurCommand[0] << std::endl;
-					SetTextColor(Color::Info);
-					std::cout << Commands[CurCommand[0]]->Info() << std::endl;
+					set_text_color(e_console_color::_console_color_info);
+					std::cout << Commands[CurCommand[0]]->get_command_info() << std::endl;
 				}
 			}
 			else
 			{
-				SetTextColor(Color::Error);
+				set_text_color(e_console_color::_console_color_error);
 				std::cout << "Unknown Command: " << CurCommand[0];
-				SetTextColor(Color::Info);
+				set_text_color(e_console_color::_console_color_info);
 			}
 		}
 
-		SetTextColor(Color::Info);
+		set_text_color(e_console_color::_console_color_info);
 		if (!CurCommand.empty())
 		{
 			PrevCommands.push_back(CurCommand);
@@ -240,7 +235,7 @@ void Console::HandleInput(uint32_t KeyCode)
 			Suggestion.clear();
 			CurArg++;
 			CurCommand.push_back("");
-			Suggestion = Commands[CurCommand.front()]->Suggest(CurCommand);
+			Suggestion = Commands[CurCommand.front()]->get_command_auto_complete(CurCommand);
 			// Todo: Allow suggestions with spaces.
 			// Simulate keypress with HandleInput
 		}
@@ -310,20 +305,20 @@ void Console::HandleInput(uint32_t KeyCode)
 	}
 }
 
-void Console::PrintLine()
+void c_console::PrintLine()
 {
-	SetTextColor(Color::Info);
+	set_text_color(e_console_color::_console_color_info);
 	std::cout << '\r' << std::string(ConsoleWidth - 2, ' ') << '\r' << ps1beg;
-	SetTextColor(Color::Input);
+	set_text_color(e_console_color::_console_color_input);
 
 	for (size_t i = 0; i < CurCommand.size(); i++)
 	{
 		if (Suggestion.length() && i == CurArg)
 		{
-			SetTextColor(Color::Suggestion);
+			set_text_color(e_console_color::_console_color_suggestion);
 			std::cout << Suggestion;
 			std::cout << std::string(Suggestion.length(), '\b');
-			SetTextColor(Color::Input);
+			set_text_color(e_console_color::_console_color_input);
 			//Suggestion.clear();
 			std::cout << CurCommand[i];
 		}
@@ -336,11 +331,11 @@ void Console::PrintLine()
 	std::cout.flush();
 }
 
-void Console::PushCommand(const std::string& CommandName, ConsoleCommand* Command)
+void c_console::register_command(const std::string& CommandName, c_console_command* Command)
 {
 	Commands[CommandName] = Command;
 }
-void Console::PopCommand(const std::string& CommandName)
+void c_console::unregister_command(const std::string& CommandName)
 {
 	if (Commands.count(CommandName))
 	{
@@ -349,9 +344,9 @@ void Console::PopCommand(const std::string& CommandName)
 }
 
 
-void Console::Startup()
+void c_console::Startup()
 {
-	SetTextColor(Color::Info);
+	set_text_color(e_console_color::_console_color_info);
 
 #ifdef _DEBUG
 	std::string buildType = "Debug ";
@@ -363,45 +358,45 @@ void Console::Startup()
 	executableNameBuffer[count] = ' ';
 	executableNameBuffer[_countof(executableNameBuffer) - 1] = 0;
 	std::cout << executableNameBuffer << "\xC3\xC4\xC2\xC4\xC4\xC4\xC4\xC4\xC4\xB4 " << buildType << "Build Date: " << __DATE__ << " @ " << __TIME__ << std::endl;
-	SetTextColor(Color::Input);
+	set_text_color(e_console_color::_console_color_input);
 
 	for (size_t i = 0; i < sizeof(Credits) / sizeof(char*); i++)
 	{
 		std::cout << "        ";
-		SetTextColor(Color::Input);
+		set_text_color(e_console_color::_console_color_input);
 		std::cout << "  " << "\xC3\xC0"[(i == sizeof(Credits) / sizeof(char*) - 1) ^ 0];
 		std::cout << Credits[i] << std::endl;;
 	}
 
-	SetTextColor(Color::Info);
+	set_text_color(e_console_color::_console_color_info);
 	std::cout << "Join the Assault on the Control Room Discord https://discord.gg/ksvhEQD" << std::endl;
 
-	SetTextColor(underlying_cast(Color::Green) | underlying_cast(Color::Bright));
+	set_text_color(_console_color_green | _console_color_bright);
 	std::cout << "Enter \"";
-	SetTextColor(Color::Input);
+	set_text_color(e_console_color::_console_color_input);
 	std::cout << "help";
-	SetTextColor(underlying_cast(Color::Green) | underlying_cast(Color::Bright));
+	set_text_color(_console_color_green | _console_color_bright);
 	std::cout << "\" or \"";
-	SetTextColor(Color::Input);
+	set_text_color(e_console_color::_console_color_input);
 	std::cout << "help (command)";
-	SetTextColor(underlying_cast(Color::Green) | underlying_cast(Color::Bright));
+	set_text_color(_console_color_green | _console_color_bright);
 
 	std::cout << "\" to get started!" << std::endl;
 
 	std::cout << "Current directory: ";
-	SetTextColor(Color::Input);
+	set_text_color(e_console_color::_console_color_input);
 	char currentDirectoryBuffer[MAX_PATH + 1]{};
 	GetCurrentDirectoryA(MAX_PATH, currentDirectoryBuffer);
 	std::cout << currentDirectoryBuffer << std::endl;
 
-	SetTextColor(Color::Magenta);
+	set_text_color(e_console_color::_console_color_magenta);
 	std::cout << std::string(ConsoleWidth - 1, '\xC4') << std::endl;
-	SetTextColor(Color::Info);
+	set_text_color(e_console_color::_console_color_info);
 
 	PrintLine();
 }
 
-bool Console::DefaultConsoleCommand::Run(const std::vector<std::string>& Args)
+bool c_console::DefaultConsoleCommand::execute_command(const std::vector<std::string>& Args)
 {
 	if (!Args.empty())
 	{
@@ -409,41 +404,41 @@ bool Console::DefaultConsoleCommand::Run(const std::vector<std::string>& Args)
 		{
 			if (Args.size() >= 2)
 			{
-				if (Console::Commands.count(Args[1]))
+				if (c_console::Commands.count(Args[1]))
 				{
 					if (Args.size() == 3)
 					{
-						std::cout << Console::Commands[Args[1]]->Info() << std::endl;
+						std::cout << c_console::Commands[Args[1]]->get_command_info() << std::endl;
 					}
 					else
 					{
-						std::cout << Console::Commands[Args[1]]->Info(Args.back()) << std::endl;
+						std::cout << c_console::Commands[Args[1]]->get_command_info(Args.back()) << std::endl;
 					}
 				}
 				else
 				{
-					Console::SetTextColor(Console::Color::Error);
+					c_console::set_text_color(_console_color_error);
 					std::cout << "Command: " << Args[1] << "not found." << std::endl;
 				}
 			}
 			else
 			{
 				// Show all command info
-				for (decltype(Console::Commands)::value_type& Command : Console::Commands)
+				for (decltype(c_console::Commands)::value_type& Command : c_console::Commands)
 				{
 					std::string Padded(Command.first);
-					Padded.resize(Console::ConsoleWidth >> 1, '\xC4');
-					Console::SetTextColor(Console::Color::Info);
+					Padded.resize(c_console::ConsoleWidth >> 1, '\xC4');
+					c_console::set_text_color(_console_color_info);
 					std::cout << Padded << std::endl;
-					Console::SetTextColor(underlying_cast(Console::Color::Info) ^ underlying_cast(Console::Color::Bright));
-					std::cout << Command.second->Info(Command.first) << std::endl;
+					c_console::set_text_color(_console_color_info ^ _console_color_bright);
+					std::cout << Command.second->get_command_info(Command.first) << std::endl;
 				}
 			}
 		}
 		else if (!Args.front().compare("history"))
 		{
-			Console::SetTextColor(Console::Color::Info);
-			for (decltype(Console::PrevCommands)::value_type& Command : Console::PrevCommands)
+			c_console::set_text_color(_console_color_info);
+			for (decltype(c_console::PrevCommands)::value_type& Command : c_console::PrevCommands)
 			{
 				for (std::string& Arg : Command)
 				{
@@ -460,7 +455,7 @@ bool Console::DefaultConsoleCommand::Run(const std::vector<std::string>& Args)
 	return true;
 }
 
-std::string Console::DefaultConsoleCommand::Info(const std::string& Topic) const
+std::string c_console::DefaultConsoleCommand::get_command_info(const std::string& Topic) const
 {
 	if (!Topic.empty())
 	{
@@ -482,12 +477,12 @@ std::string Console::DefaultConsoleCommand::Info(const std::string& Topic) const
 };
 
 // Suggest auto-complete strings for arguments
-std::string Console::DefaultConsoleCommand::Suggest(const std::vector<std::string>& Arguments) const
+std::string c_console::DefaultConsoleCommand::get_command_auto_complete(const std::vector<std::string>& Arguments) const
 {
 	return ""; // todo;
 };
 
-bool Console::AllocateConsole(const std::string& ConsoleTitle)
+bool c_console::AllocateConsole(const std::string& ConsoleTitle)
 {
 	if (s_consoleAllocated)
 	{

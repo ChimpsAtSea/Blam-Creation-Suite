@@ -5,7 +5,7 @@ template<Build build, size_t offset, typename T>
 struct FunctionHook;
 
 template<Build build, size_t offset, typename R, typename ...Args>
-struct FunctionHook<build, offset, R(Args...)> : FunctionHookBase
+struct FunctionHook<build, offset, R(Args...)> : c_function_hook_base
 {
 public:
 	typedef R(base_type)(Args...);
@@ -38,18 +38,18 @@ public:
 		}
 	}
 
-	friend class FunctionHookBase;
+	friend class c_function_hook_base;
 
 	template<typename hook_assignment_type>
 	FunctionHook(hook_assignment_type func)
-		:FunctionHookBase(nullptr, build, offset, nullptr)
+		:c_function_hook_base(nullptr, build, offset, nullptr)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHook(R(*func)(Args...))
-		:FunctionHookBase(nullptr, build, offset, nullptr)
+		:c_function_hook_base(nullptr, build, offset, nullptr)
 		, hook(func)
 	{
 
@@ -57,14 +57,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHook(const char pName[], hook_assignment_type func)
-		:FunctionHookBase(pName, build, offset, nullptr)
+		:c_function_hook_base(pName, build, offset, nullptr)
 		, hook((base_type*)func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHook(const char pName[], R(*func)(Args...))
-		:FunctionHookBase(pName, build, offset, nullptr)
+		:c_function_hook_base(pName, build, offset, nullptr)
 		, hook(func)
 	{
 

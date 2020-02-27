@@ -7,13 +7,13 @@ void register_halo1lib()
 
 #include "Halo1GameHost.Testing.inl"
 
-GameRuntime* Halo1GameHost::s_halo1GameRuntime;
+c_game_runtime* Halo1GameHost::s_halo1GameRuntime;
 
-GameRuntime& Halo1GameHost::GetGameRuntime()
+c_game_runtime& Halo1GameHost::GetGameRuntime()
 {
 	if (s_halo1GameRuntime == nullptr)
 	{
-		s_halo1GameRuntime = new GameRuntime(Engine::Halo1, "halo1", "Halo1\\halo1.dll");
+		s_halo1GameRuntime = new c_game_runtime(Engine::Halo1, "halo1", "Halo1\\halo1.dll");
 	}
 
 	return *s_halo1GameRuntime;
@@ -22,23 +22,23 @@ GameRuntime& Halo1GameHost::GetGameRuntime()
 void Halo1GameHost::InitModifications(Build build)
 {
 	init_detours();
-	DataReferenceBase::InitTree(Engine::Halo1, build);
-	FunctionHookBase::InitTree(Engine::Halo1, build);
-	GlobalReference::InitTree(Engine::Halo1, build);
+	c_data_reference_base::InitTree(Engine::Halo1, build);
+	c_function_hook_base::InitTree(Engine::Halo1, build);
+	c_global_reference::InitTree(Engine::Halo1, build);
 	end_detours();
 }
 
 void Halo1GameHost::DeinitModifications(Build build)
 {
 	init_detours();
-	DataReferenceBase::DeinitTree(Engine::Halo1, build);
-	FunctionHookBase::DeinitTree(Engine::Halo1, build);
-	GlobalReference::DeinitTree(Engine::Halo1, build);
+	c_data_reference_base::DeinitTree(Engine::Halo1, build);
+	c_function_hook_base::DeinitTree(Engine::Halo1, build);
+	c_global_reference::DeinitTree(Engine::Halo1, build);
 	end_detours();
 }
 
 Halo1GameHost::Halo1GameHost()
-	:IOpusGameEngineHost(GetGameRuntime())
+	:c_opus_game_engine_host(GetGameRuntime())
 	, m_pGameEngine(nullptr)
 {
 	WriteLineVerbose("Init Halo1GameHost");
@@ -66,9 +66,9 @@ Halo1GameHost::~Halo1GameHost()
 
 	DeinitModifications(s_halo1GameRuntime->GetBuildVersion());
 
-	GameRuntime& rHalo1GameRuntime = GetGameRuntime();
-	rHalo1GameRuntime.~GameRuntime();
-	new(&rHalo1GameRuntime) GameRuntime(Engine::Halo1, "halo1", "Halo1\\halo1.dll");
+	c_game_runtime& rHalo1GameRuntime = GetGameRuntime();
+	rHalo1GameRuntime.~c_game_runtime();
+	new(&rHalo1GameRuntime) c_game_runtime(Engine::Halo1, "halo1", "Halo1\\halo1.dll");
 }
 
 void Halo1GameHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)
@@ -79,7 +79,7 @@ void Halo1GameHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)
 	}
 
 	updateCamera();
-	IOpusGameEngineHost::FrameEnd(pSwapChain, unknown1);
+	c_opus_game_engine_host::FrameEnd(pSwapChain, unknown1);
 }
 
 void Halo1GameHost::RenderUI() const

@@ -1,9 +1,9 @@
 #pragma once
 
-class DataReferenceBase
+class c_data_reference_base
 {
 public:
-	DataReferenceBase(
+	c_data_reference_base(
 		Engine engine,
 		Build build,
 		size_t dataSize,
@@ -38,14 +38,14 @@ public:
 private:
 	Engine m_engine;
 	Build m_build;
-	DataReferenceBase* m_pNextDataReference;
+	c_data_reference_base* m_pNextDataReference;
 	size_t m_dataSize;
 	size_t m_offset;
 protected:
 	void* m_pPtr;
 private:
-	static DataReferenceBase* g_pDataReferenceBaseBaseFirst;
-	static DataReferenceBase* g_pDataReferenceBaseBaseLast;
+	static c_data_reference_base* g_pDataReferenceBaseBaseFirst;
+	static c_data_reference_base* g_pDataReferenceBaseBaseLast;
 	find_offset_func* m_find_offset_func;
 
 public:
@@ -53,7 +53,7 @@ public:
 	{
 		// this iteration avoids having to do this recursively
 
-		DataReferenceBase* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
+		c_data_reference_base* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
 		while (pCurrentDataReferenceBase)
 		{
 			pCurrentDataReferenceBase = pCurrentDataReferenceBase->initNode(engine, build);
@@ -64,7 +64,7 @@ public:
 	{
 		// this iteration avoids having to do this recursively
 
-		DataReferenceBase* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
+		c_data_reference_base* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
 		while (pCurrentDataReferenceBase)
 		{
 			pCurrentDataReferenceBase = pCurrentDataReferenceBase->deinitNode(engine, build);
@@ -73,7 +73,7 @@ public:
 
 private:
 
-	DataReferenceBase* initNode(Engine engine, Build build)
+	c_data_reference_base* initNode(Engine engine, Build build)
 	{
 		if (m_engine == engine)
 		{
@@ -93,7 +93,7 @@ private:
 		}
 		return m_pNextDataReference;
 	}
-	DataReferenceBase* deinitNode(Engine engine, Build build)
+	c_data_reference_base* deinitNode(Engine engine, Build build)
 	{
 		if (m_engine == engine)
 		{

@@ -201,7 +201,7 @@ void Window::Deinit()
 
 void Window::UpdateNoCallbacks()
 {
-	Console::Update();
+	c_console::Update();
 
 	MSG msg = {};
 

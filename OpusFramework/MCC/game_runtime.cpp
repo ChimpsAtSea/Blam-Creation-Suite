@@ -1,6 +1,6 @@
 #include "opusframework-private-pch.h"
 
-GameRuntime::GameRuntime(Engine engine, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule, Build build)
+c_game_runtime::c_game_runtime(Engine engine, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule, Build build)
 	: m_engineName(pEngineName)
 	, m_build(build == Build::NotSet ? GetLibraryBuildVersion(pLibFileName) : build)
 	, m_enginePath(pLibFileName)
@@ -26,7 +26,7 @@ GameRuntime::GameRuntime(Engine engine, const char* pEngineName, const char* pLi
 	}
 }
 
-GameRuntime::~GameRuntime()
+c_game_runtime::~c_game_runtime()
 {
 	if (m_pDataAccess)
 	{
@@ -37,7 +37,7 @@ GameRuntime::~GameRuntime()
 	FreeLibrary(hGameModule);
 }
 
-void GameRuntime::loadLibrary(const char* pLibFileName)
+void c_game_runtime::loadLibrary(const char* pLibFileName)
 {
 	hGameModule = LoadLibraryA(pLibFileName);
 
@@ -53,14 +53,14 @@ void GameRuntime::loadLibrary(const char* pLibFileName)
 	pSetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(hGameModule, "SetLibrarySettings");
 }
 
-Build GameRuntime::GetLibraryBuildVersion(const char* pFileName)
+Build c_game_runtime::GetLibraryBuildVersion(const char* pFileName)
 {
 	uint64_t libraryFileVersion = GetLibraryFileVersion(pFileName);
 
 	return static_cast<Build>(libraryFileVersion);
 }
 
-uint64_t GameRuntime::GetLibraryFileVersion(const char* pFileName)
+uint64_t c_game_runtime::GetLibraryFileVersion(const char* pFileName)
 {
 	uint64_t result = 0;
 	DWORD  verHandle = 0;

@@ -1,20 +1,20 @@
 #pragma once
-class GlobalReference
+class c_global_reference
 {
 public:
 	
-	GlobalReference(const char* pReferenceName, OffsetFunction offsetFunction);
-	GlobalReference(const char* pReferenceName, Engine engine, Build build, intptr_t offset);
+	c_global_reference(const char* pReferenceName, OffsetFunction offsetFunction);
+	c_global_reference(const char* pReferenceName, Engine engine, Build build, intptr_t offset);
 
 	static void InitTree(Engine engine, Build build);
 	static void DeinitTree(Engine engine, Build build);
 	static void DestroyTree();
 private:
 	void init();
-	GlobalReference* initNode(Engine engine, Build build);
-	GlobalReference* deinitNode(Engine engine, Build build);
+	c_global_reference* initNode(Engine engine, Build build);
+	c_global_reference* deinitNode(Engine engine, Build build);
 
-	GlobalReference* m_pNextGlobalReference;
+	c_global_reference* m_pNextc_global_reference;
 	Engine m_engine;
 	Build m_build;
 	intptr_t m_offset;
@@ -22,7 +22,7 @@ private:
 	OffsetFunction* m_pOffsetFunction;
 	const char* m_pReferenceName;
 
-	static GlobalReference* s_pFirstGlobalReference;
-	static GlobalReference* s_pLastGlobalReference;
+	static c_global_reference* s_pFirstc_global_reference;
+	static c_global_reference* s_pLastc_global_reference;
 };
 

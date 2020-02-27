@@ -1,12 +1,12 @@
 #pragma once
 
 template<typename T, find_offset_func find_offset>
-class /*[[deprecated("DataEx is deprecated. Use reference_symbol instead.")]]*/ DataEx : public DataReferenceBase
+class /*[[deprecated("DataEx is deprecated. Use reference_symbol instead.")]]*/ DataEx : public c_data_reference_base
 {
 public:
 	DataEx(const DataEx&) = delete;
 	DataEx()
-		: DataReferenceBase(Engine::NotSet, Build::NotSet, sizeof(T), 0, find_offset)
+		: c_data_reference_base(Engine::NotSet, Build::NotSet, sizeof(T), 0, find_offset)
 	{
 
 	}

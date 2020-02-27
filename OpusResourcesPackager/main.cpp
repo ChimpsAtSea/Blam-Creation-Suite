@@ -1,6 +1,6 @@
 #include <Shared\shared-public-pch.h>
 
-const char* Console::s_consoleExecutableName = "Resource";
+const char* c_console::s_consoleExecutableName = "Resource";
 
 void UpdateResources(LPWSTR szExecutablePath, LPWSTR szFilePath, ResourceType type)
 {

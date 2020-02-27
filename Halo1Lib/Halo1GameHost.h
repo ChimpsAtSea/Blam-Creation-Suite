@@ -1,6 +1,6 @@
 #pragma once
 
-class Halo1GameHost : public IOpusGameEngineHost
+class Halo1GameHost : public c_opus_game_engine_host
 {
 public:
 	Halo1GameHost();
@@ -23,10 +23,10 @@ private:
 	// static
 public:
 	static IDataAccess* GetDataAccess() { return s_halo1GameRuntime->GetDataAccess(); }
-	static GameRuntime& GetGameRuntime();
+	static c_game_runtime& GetGameRuntime();
 	static void InitModifications(Build build);
 	static void DeinitModifications(Build build);
 private:
-	static GameRuntime* s_halo1GameRuntime;
+	static c_game_runtime* s_halo1GameRuntime;
 };
 

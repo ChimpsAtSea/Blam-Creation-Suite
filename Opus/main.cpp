@@ -4,7 +4,7 @@
 
 DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
 
-const char* Console::s_consoleExecutableName = "Opus";
+const char* c_console::s_consoleExecutableName = "Opus";
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -15,7 +15,7 @@ int WINAPI WinMain(
 {
 	register_platforms();
 
-	Console::Init();
+	c_console::Init();
 
 	Window::SetIcon(LoadIconA(hInstance, ResourcesManager::GetResourceIntResource(ResourceType::Icon)));
 	SystemPatch::PatchEnumWindows();
@@ -41,7 +41,7 @@ int WINAPI WinMain(
 	Window::RegisterDestroyCallback(DestroyCallback);
 	//MantleGUI::RegisterOnCloseCallback(DestroyCallback);
 
-	Console::Startup();
+	c_console::Startup();
 
 	while (s_running) Window::Update();
 
@@ -53,7 +53,7 @@ int WINAPI WinMain(
 	MantleGUI::Deinit();
 	Render::Deinit();
 	Window::Deinit();
-	Console::Deinit();
+	c_console::Deinit();
 
 	return 0;
 }

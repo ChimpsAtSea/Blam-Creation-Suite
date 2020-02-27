@@ -54,9 +54,6 @@
     <ClCompile Include="Settings\opus_legacy\settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MCC\GameRuntime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MCC\MouseInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -70,9 +67,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MCC\IGameEngineHost.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MCC\IOpusGameEngineHost.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="c_file_array.cpp">
@@ -97,6 +91,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MCC\Versioning.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC\opus_game_engine_host.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC\game_runtime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -197,9 +197,6 @@
     <ClInclude Include="Settings\opus_legacy\settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MCC\GameRuntime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MCC\MouseInput.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -222,9 +219,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MCC\IGameEngineHost.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\IOpusGameEngineHost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="c_file_array.h">
@@ -252,6 +246,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RuntimeManipulation\FindOffsetFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\opus_game_engine_host.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\game_runtime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

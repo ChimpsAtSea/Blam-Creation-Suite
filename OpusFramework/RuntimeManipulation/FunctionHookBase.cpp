@@ -1,31 +1,31 @@
 #include "opusframework-private-pch.h"
 
-FunctionHookBase* FunctionHookBase::g_pFirstFunctionHook = nullptr;
-FunctionHookBase* FunctionHookBase::g_pLastFunctionHook = nullptr;
+c_function_hook_base* c_function_hook_base::g_pFirstFunctionHook = nullptr;
+c_function_hook_base* c_function_hook_base::g_pLastFunctionHook = nullptr;
 
-void FunctionHookBase::InitTree(Engine engine, Build build)
+void c_function_hook_base::InitTree(Engine engine, Build build)
 {
 	// this iteration avoids having to do this recursively
 
-	FunctionHookBase* pCurrentFunctionHook = g_pFirstFunctionHook;
+	c_function_hook_base* pCurrentFunctionHook = g_pFirstFunctionHook;
 	while (pCurrentFunctionHook)
 	{
 		pCurrentFunctionHook = pCurrentFunctionHook->InitNode(engine, build);
 	}
 }
 
-void FunctionHookBase::DeinitTree(Engine engine, Build build)
+void c_function_hook_base::DeinitTree(Engine engine, Build build)
 {
 	// this iteration avoids having to do this recursively
 
-	FunctionHookBase* pCurrentFunctionHook = g_pFirstFunctionHook;
+	c_function_hook_base* pCurrentFunctionHook = g_pFirstFunctionHook;
 	while (pCurrentFunctionHook)
 	{
 		pCurrentFunctionHook = pCurrentFunctionHook->DeinitNode(engine, build);
 	}
 }
 
-FunctionHookBase* FunctionHookBase::InitNode(Engine engine, Build build)
+c_function_hook_base* c_function_hook_base::InitNode(Engine engine, Build build)
 {
 	if ((m_engine == engine || m_engine == Engine::NotSet) && ((build == m_build || (m_build == Build::NotSet && m_find_offset_func)) && m_isActive && !m_isHooked))
 	{
@@ -76,7 +76,7 @@ FunctionHookBase* FunctionHookBase::InitNode(Engine engine, Build build)
 }
 
 
-FunctionHookBase* FunctionHookBase::DeinitNode(Engine engine, Build build)
+c_function_hook_base* c_function_hook_base::DeinitNode(Engine engine, Build build)
 {
 	if (m_isHooked)
 	{

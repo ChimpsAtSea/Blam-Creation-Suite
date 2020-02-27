@@ -202,8 +202,8 @@
     <ClCompile Include="FileSystem\BlamFileParser.cpp" />
     <ClCompile Include="FileSystem\GameTypeManager.cpp" />
     <ClCompile Include="FileSystem\GameType.cpp" />
-    <ClCompile Include="MCC\IOpusGameEngineHost.cpp" />
-    <ClCompile Include="MCC\GameRuntime.cpp" />
+    <ClCompile Include="MCC\opus_game_engine_host.cpp" />
+    <ClCompile Include="MCC\game_runtime.cpp" />
     <ClCompile Include="MCC\HaloReachGameOptionSelection.cpp" />
     <ClCompile Include="platform_configuration.cpp" />
     <ClCompile Include="RuntimeManipulation\DataReference.cpp" />
@@ -245,8 +245,8 @@
     <ClInclude Include="FileSystem\FileSystem.h" />
     <ClInclude Include="FileSystem\GameTypeManager.h" />
     <ClInclude Include="FileSystem\GameType.h" />
-    <ClInclude Include="MCC\IOpusGameEngineHost.h" />
-    <ClInclude Include="MCC\GameRuntime.h" />
+    <ClInclude Include="MCC\opus_game_engine_host.h" />
+    <ClInclude Include="MCC\game_runtime.h" />
     <ClInclude Include="MCC\HaloReachGameOptionSelection.h" />
     <ClInclude Include="MCC\MCC.h" />
     <ClInclude Include="platform_configuration.h" />

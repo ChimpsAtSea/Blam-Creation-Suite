@@ -1,10 +1,10 @@
 #include "opusframework-private-pch.h"
 
-GlobalReference* GlobalReference::s_pFirstGlobalReference = nullptr;
-GlobalReference* GlobalReference::s_pLastGlobalReference = nullptr;
+c_global_reference* c_global_reference::s_pFirstc_global_reference = nullptr;
+c_global_reference* c_global_reference::s_pLastc_global_reference = nullptr;
 
-GlobalReference::GlobalReference(const char* pReferenceName, OffsetFunction offsetFunction)
-	: m_pNextGlobalReference(nullptr)
+c_global_reference::c_global_reference(const char* pReferenceName, OffsetFunction offsetFunction)
+	: m_pNextc_global_reference(nullptr)
 	, m_engine(Engine::NotSet)
 	, m_build(Build::NotSet)
 	, m_offset(0)
@@ -14,8 +14,8 @@ GlobalReference::GlobalReference(const char* pReferenceName, OffsetFunction offs
 	init();
 }
 
-GlobalReference::GlobalReference(const char* pReferenceName, Engine engine, Build build, intptr_t offset)
-	: m_pNextGlobalReference(nullptr)
+c_global_reference::c_global_reference(const char* pReferenceName, Engine engine, Build build, intptr_t offset)
+	: m_pNextc_global_reference(nullptr)
 	, m_engine(engine)
 	, m_build(build)
 	, m_offset(offset)
@@ -25,52 +25,52 @@ GlobalReference::GlobalReference(const char* pReferenceName, Engine engine, Buil
 	init();
 }
 
-void GlobalReference::init()
+void c_global_reference::init()
 {
-	if (s_pLastGlobalReference)
+	if (s_pLastc_global_reference)
 	{
-		s_pLastGlobalReference->m_pNextGlobalReference = this;
-		s_pLastGlobalReference = this;
+		s_pLastc_global_reference->m_pNextc_global_reference = this;
+		s_pLastc_global_reference = this;
 	}
 	else
 	{
-		s_pFirstGlobalReference = this;
-		s_pLastGlobalReference = this;
+		s_pFirstc_global_reference = this;
+		s_pLastc_global_reference = this;
 	}
 }
 
-void GlobalReference::InitTree(Engine engine, Build build)
+void c_global_reference::InitTree(Engine engine, Build build)
 {
-	GlobalReference* pCurrentGlobalReference = s_pFirstGlobalReference;
-	while (pCurrentGlobalReference)
+	c_global_reference* pCurrentc_global_reference = s_pFirstc_global_reference;
+	while (pCurrentc_global_reference)
 	{
-		pCurrentGlobalReference = pCurrentGlobalReference->initNode(engine, build);
+		pCurrentc_global_reference = pCurrentc_global_reference->initNode(engine, build);
 	}
 }
 
-void GlobalReference::DeinitTree(Engine engine, Build build)
+void c_global_reference::DeinitTree(Engine engine, Build build)
 {
-	GlobalReference* pCurrentGlobalReference = s_pFirstGlobalReference;
-	while (pCurrentGlobalReference)
+	c_global_reference* pCurrentc_global_reference = s_pFirstc_global_reference;
+	while (pCurrentc_global_reference)
 	{
-		pCurrentGlobalReference = pCurrentGlobalReference->deinitNode(engine, build);
+		pCurrentc_global_reference = pCurrentc_global_reference->deinitNode(engine, build);
 	}
 }
 
-void GlobalReference::DestroyTree()
+void c_global_reference::DestroyTree()
 {
-	GlobalReference* pCurrentGlobalReference = s_pFirstGlobalReference;
-	while (pCurrentGlobalReference)
+	c_global_reference* pCurrentc_global_reference = s_pFirstc_global_reference;
+	while (pCurrentc_global_reference)
 	{
-		GlobalReference* pNextGlobalReference = pCurrentGlobalReference->m_pNextGlobalReference;
+		c_global_reference* pNextc_global_reference = pCurrentc_global_reference->m_pNextc_global_reference;
 
-		delete pCurrentGlobalReference;
+		delete pCurrentc_global_reference;
 
-		pCurrentGlobalReference = pNextGlobalReference;
+		pCurrentc_global_reference = pNextc_global_reference;
 	}
 }
 
-GlobalReference* GlobalReference::initNode(Engine engine, Build build)
+c_global_reference* c_global_reference::initNode(Engine engine, Build build)
 {
 	if (m_engine == engine && (m_build == Build::NotSet || m_build == build))
 	{
@@ -84,7 +84,7 @@ GlobalReference* GlobalReference::initNode(Engine engine, Build build)
 			}
 			if (targetOffset == ~uintptr_t())
 			{
-				return m_pNextGlobalReference;
+				return m_pNextc_global_reference;
 			}
 			ASSERT(targetOffset != ~uintptr_t());
 
@@ -127,29 +127,29 @@ GlobalReference* GlobalReference::initNode(Engine engine, Build build)
 
 			if (patchedAddress == m_originalValue)
 			{
-				WriteLineVerbose("GlobalReference: Patched %s", m_pReferenceName);
+				WriteLineVerbose("c_global_reference: Patched %s", m_pReferenceName);
 			}
 			else
 			{
 				if (m_originalValue)
 				{
-					WriteLineVerbose("GlobalReference: Patched %s from 0x%zX to 0x%zX", m_pReferenceName, m_originalValue, patchedAddress);
+					WriteLineVerbose("c_global_reference: Patched %s from 0x%zX to 0x%zX", m_pReferenceName, m_originalValue, patchedAddress);
 				}
 				else
 				{
-					WriteLineVerbose("GlobalReference: Patched %s from <null> to 0x%zX", m_pReferenceName, patchedAddress);
+					WriteLineVerbose("c_global_reference: Patched %s from <null> to 0x%zX", m_pReferenceName, patchedAddress);
 				}
 			}
 		}
 		else
 		{
-			WriteLineVerbose("GlobalReference: WARNING: Failed to find symbol for %s", m_pReferenceName);
+			WriteLineVerbose("c_global_reference: WARNING: Failed to find symbol for %s", m_pReferenceName);
 		}
 	}
-	return m_pNextGlobalReference;
+	return m_pNextc_global_reference;
 }
 
-GlobalReference* GlobalReference::deinitNode(Engine engine, Build build)
+c_global_reference* c_global_reference::deinitNode(Engine engine, Build build)
 {
 	if (m_engine == engine && (m_build == Build::NotSet || m_build == build))
 	{
@@ -195,24 +195,24 @@ GlobalReference* GlobalReference::deinitNode(Engine engine, Build build)
 
 			if (patchedAddress == m_originalValue)
 			{
-				WriteLineVerbose("GlobalReference: Unpatched %s", m_pReferenceName);
+				WriteLineVerbose("c_global_reference: Unpatched %s", m_pReferenceName);
 			}
 			else
 			{
 				if (m_originalValue)
 				{
-					WriteLineVerbose("GlobalReference: Unpatched %s from 0x%zX to 0x%zX", m_pReferenceName, patchedAddress, m_originalValue);
+					WriteLineVerbose("c_global_reference: Unpatched %s from 0x%zX to 0x%zX", m_pReferenceName, patchedAddress, m_originalValue);
 				}
 				else
 				{
-					WriteLineVerbose("GlobalReference: Unpatched %s from 0x%zX to <null>", m_pReferenceName, patchedAddress);
+					WriteLineVerbose("c_global_reference: Unpatched %s from 0x%zX to <null>", m_pReferenceName, patchedAddress);
 				}
 			}
 		}
 		else
 		{
-			WriteLineVerbose("GlobalReference: WARNING: Failed to find symbol for %s", m_pReferenceName);
+			WriteLineVerbose("c_global_reference: WARNING: Failed to find symbol for %s", m_pReferenceName);
 		}
 	}
-	return m_pNextGlobalReference;
+	return m_pNextc_global_reference;
 }

@@ -16,20 +16,20 @@ typedef void (DataPatchApply_DataPatchPackets_CallbackX)(Engine, Build, char*, D
 using DataPatchApply_DataPatchPacket_Callback = std::function<DataPatchApply_DataPatchPacket_CallbackX>;
 using DataPatchApply_DataPatchPackets_Callback = std::function<DataPatchApply_DataPatchPackets_CallbackX>;
 
-class DataPatchBase
+class c_data_patch_base
 {
 private:
-	DataPatchBase(
+	c_data_patch_base(
 		DataPatchSearchCallback searchFunction, 
 		DataPatchApply_DataPatchPacket_Callback applyFunction_Packet, 
 		DataPatchApply_DataPatchPackets_Callback applyFunction_Packets, 
 		bool applyOnInit);
 public:
-	DataPatchBase(const DataPatchBase&) = delete;
-	DataPatchBase& operator=(const DataPatchBase&) = delete;
+	c_data_patch_base(const c_data_patch_base&) = delete;
+	c_data_patch_base& operator=(const c_data_patch_base&) = delete;
 
-	DataPatchBase(DataPatchSearchCallback searchFunction, DataPatchApply_DataPatchPacket_Callback applyFunction_Packet, bool applyOnInit);
-	DataPatchBase(DataPatchSearchCallback searchFunction, DataPatchApply_DataPatchPackets_Callback applyFunction_Packets, bool applyOnInit);
+	c_data_patch_base(DataPatchSearchCallback searchFunction, DataPatchApply_DataPatchPacket_Callback applyFunction_Packet, bool applyOnInit);
+	c_data_patch_base(DataPatchSearchCallback searchFunction, DataPatchApply_DataPatchPackets_Callback applyFunction_Packets, bool applyOnInit);
 
 	static void InitTree(Engine engine, Build build);
 	static void DeinitTree(Engine engine, Build build);
@@ -40,10 +40,10 @@ public:
 	bool IsPatched() const { return m_isPatched; };
 private:
 	void init();
-	DataPatchBase* initNode(Engine engine, Build build);
-	DataPatchBase* deinitNode(Engine engine, Build build);
+	c_data_patch_base* initNode(Engine engine, Build build);
+	c_data_patch_base* deinitNode(Engine engine, Build build);
 
-	DataPatchBase* m_pNextDataPatch;
+	c_data_patch_base* m_pNextDataPatch;
 	Engine m_engine;
 	Build m_build;
 	uintptr_t m_offset;
@@ -55,34 +55,34 @@ private:
 	DataPatchApply_DataPatchPacket_Callback m_pApplyFunction_Packet;
 	DataPatchApply_DataPatchPackets_Callback m_pApplyFunction_Packets;
 	
-	static DataPatchBase* s_pFirstDataPatch;
-	static DataPatchBase* s_pLastDataPatch;
+	static c_data_patch_base* s_pFirstDataPatch;
+	static c_data_patch_base* s_pLastDataPatch;
 };
 
 template<DataPatchSearchCallback searchFunction>
-class DataPatch : DataPatchBase
+class DataPatch : c_data_patch_base
 {
 public:
 	DataPatch(DataPatchApply_DataPatchPacket_Callback applyFunction_Packet)
-		: DataPatchBase(searchFunction, applyFunction_Packet, true)
+		: c_data_patch_base(searchFunction, applyFunction_Packet, true)
 	{
 
 	}
 
 	DataPatch(DataPatchApply_DataPatchPackets_Callback applyFunction_Packets)
-		: DataPatchBase(searchFunction, applyFunction_Packets, true)
+		: c_data_patch_base(searchFunction, applyFunction_Packets, true)
 	{
 
 	}
 
 	DataPatch(bool applyOnInit, DataPatchApply_DataPatchPacket_Callback applyFunction_Packet)
-		: DataPatchBase(searchFunction, applyFunction_Packet, applyOnInit)
+		: c_data_patch_base(searchFunction, applyFunction_Packet, applyOnInit)
 	{
 
 	}
 
 	DataPatch(bool applyOnInit, DataPatchApply_DataPatchPackets_Callback applyFunction_Packets)
-		: DataPatchBase(searchFunction, applyFunction_Packets, applyOnInit)
+		: c_data_patch_base(searchFunction, applyFunction_Packets, applyOnInit)
 	{
 
 	}

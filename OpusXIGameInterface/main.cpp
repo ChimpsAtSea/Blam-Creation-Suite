@@ -4,7 +4,7 @@
 
 DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
 
-const char* Console::s_consoleExecutableName = "OpusXI";
+const char* c_console::s_consoleExecutableName = "OpusXI";
 
 extern "C" __declspec(dllexport) void resize_viewport(int width, int height)
 {

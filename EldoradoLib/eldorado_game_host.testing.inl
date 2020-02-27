@@ -19,8 +19,8 @@ uintptr_t c_stop_watch__start_offset(Engine engine, Build build)
 }
 FunctionHookVarArgsEx<c_stop_watch__start_offset, void()> c_stop_watch__start = { "c_stop_watch__start", []()
 {
-	RUNONCE(Console::Startup());
-	Console::Update();
+	RUNONCE(c_console::Startup());
+	c_console::Update();
 	return c_stop_watch__start();
 } };
 
@@ -196,7 +196,7 @@ uintptr_t Hf2pInit_offset(Engine engine, Build build)
 FunctionHookVarArgsEx<Hf2pInit_offset, void()> Hf2pInit = { "Hf2pInit", []()
 {
 	WriteLineVerbose("Hf2pInit_offset");
-	if (EldoradoGameHost::GetBuild() == Build::Eldorado_1_106708_cert_ms23)
+	if (c_eldorado_game_host::get_build() == Build::Eldorado_1_106708_cert_ms23)
 	{
 		// #TODO: What are these for?
 		*(uint32_t*)0x50CCB3C = 0;

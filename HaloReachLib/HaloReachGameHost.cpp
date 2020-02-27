@@ -79,7 +79,7 @@ void HaloReachGameHost::scriptDebugUI()
 	ImGui::End();
 }
 
-GameRuntime HaloReachGameHost::s_haloReachGameRuntime(Engine::HaloReach, "haloreach", "HaloReach\\haloreach.dll");
+c_game_runtime HaloReachGameHost::s_haloReachGameRuntime(Engine::HaloReach, "haloreach", "HaloReach\\haloreach.dll");
 
 extern void init_halo_reach(Engine engine, Build build);
 extern void deinit_halo_reach(Engine engine, Build build);
@@ -96,7 +96,7 @@ void HaloReachGameHost::DeinitModifications(Build build)
 }
 
 HaloReachGameHost::HaloReachGameHost()
-	:IOpusGameEngineHost(s_haloReachGameRuntime)
+	:c_opus_game_engine_host(s_haloReachGameRuntime)
 	, m_pGameEngine(nullptr)
 {
 	InitModifications(s_haloReachGameRuntime.GetBuildVersion());
@@ -125,8 +125,8 @@ HaloReachGameHost::~HaloReachGameHost()
 	//m_pGameEngine = nullptr;
 
 	DeinitModifications(s_haloReachGameRuntime.GetBuildVersion());
-	s_haloReachGameRuntime.~GameRuntime();
-	new(&s_haloReachGameRuntime) GameRuntime(Engine::HaloReach, "haloreach", "HaloReach\\haloreach.dll");
+	s_haloReachGameRuntime.~c_game_runtime();
+	new(&s_haloReachGameRuntime) c_game_runtime(Engine::HaloReach, "haloreach", "HaloReach\\haloreach.dll");
 }
 
 void HaloReachGameHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)
@@ -137,7 +137,7 @@ void HaloReachGameHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)
 	}
 
 	updateCamera();
-	IOpusGameEngineHost::FrameEnd(pSwapChain, unknown1);
+	c_opus_game_engine_host::FrameEnd(pSwapChain, unknown1);
 }
 
 void HaloReachGameHost::RenderUI() const

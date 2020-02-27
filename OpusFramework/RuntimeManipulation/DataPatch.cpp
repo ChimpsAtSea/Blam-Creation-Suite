@@ -1,10 +1,10 @@
 #include "opusframework-private-pch.h"
 
 
-DataPatchBase* DataPatchBase::s_pFirstDataPatch = nullptr;
-DataPatchBase* DataPatchBase::s_pLastDataPatch = nullptr;
+c_data_patch_base* c_data_patch_base::s_pFirstDataPatch = nullptr;
+c_data_patch_base* c_data_patch_base::s_pLastDataPatch = nullptr;
 
-DataPatchBase::DataPatchBase(
+c_data_patch_base::c_data_patch_base(
 	DataPatchSearchCallback searchFunction,
 	DataPatchApply_DataPatchPacket_Callback applyFunction_Packet,
 	DataPatchApply_DataPatchPackets_Callback applyFunction_Packets,
@@ -24,17 +24,17 @@ DataPatchBase::DataPatchBase(
 	init();
 }
 
-DataPatchBase::DataPatchBase(DataPatchSearchCallback searchFunction, DataPatchApply_DataPatchPacket_Callback applyFunction_Packet, bool applyOnInit)
-	: DataPatchBase(searchFunction, applyFunction_Packet, nullptr, applyOnInit)
+c_data_patch_base::c_data_patch_base(DataPatchSearchCallback searchFunction, DataPatchApply_DataPatchPacket_Callback applyFunction_Packet, bool applyOnInit)
+	: c_data_patch_base(searchFunction, applyFunction_Packet, nullptr, applyOnInit)
 {
 }
 
-DataPatchBase::DataPatchBase(DataPatchSearchCallback searchFunction, DataPatchApply_DataPatchPackets_Callback applyFunction_Packets, bool applyOnInit)
-	: DataPatchBase(searchFunction, nullptr, applyFunction_Packets, applyOnInit)
+c_data_patch_base::c_data_patch_base(DataPatchSearchCallback searchFunction, DataPatchApply_DataPatchPackets_Callback applyFunction_Packets, bool applyOnInit)
+	: c_data_patch_base(searchFunction, nullptr, applyFunction_Packets, applyOnInit)
 {
 }
 
-void DataPatchBase::init()
+void c_data_patch_base::init()
 {
 	if (s_pLastDataPatch)
 	{
@@ -48,38 +48,38 @@ void DataPatchBase::init()
 	}
 }
 
-void DataPatchBase::InitTree(Engine engine, Build build)
+void c_data_patch_base::InitTree(Engine engine, Build build)
 {
-	DataPatchBase* pCurrentDataPatch = s_pFirstDataPatch;
+	c_data_patch_base* pCurrentDataPatch = s_pFirstDataPatch;
 	while (pCurrentDataPatch)
 	{
 		pCurrentDataPatch = pCurrentDataPatch->initNode(engine, build);
 	}
 }
 
-void DataPatchBase::DeinitTree(Engine engine, Build build)
+void c_data_patch_base::DeinitTree(Engine engine, Build build)
 {
-	DataPatchBase* pCurrentDataPatch = s_pFirstDataPatch;
+	c_data_patch_base* pCurrentDataPatch = s_pFirstDataPatch;
 	while (pCurrentDataPatch)
 	{
 		pCurrentDataPatch = pCurrentDataPatch->deinitNode(engine, build);
 	}
 }
 
-void DataPatchBase::DestroyTree()
+void c_data_patch_base::DestroyTree()
 {
-	DataPatchBase* pCurrentDataPatch = s_pFirstDataPatch;
+	c_data_patch_base* pCurrentDataPatch = s_pFirstDataPatch;
 	while (pCurrentDataPatch)
 	{
-		DataPatchBase* pNextDataPatchBase = pCurrentDataPatch->m_pNextDataPatch;
+		c_data_patch_base* pNextc_data_patch_base = pCurrentDataPatch->m_pNextDataPatch;
 
 		delete pCurrentDataPatch;
 
-		pCurrentDataPatch = pNextDataPatchBase;
+		pCurrentDataPatch = pNextc_data_patch_base;
 	}
 }
 
-bool DataPatchBase::ApplyPatch()
+bool c_data_patch_base::ApplyPatch()
 {
 	if (m_offset == ~uintptr_t())
 	{
@@ -125,7 +125,7 @@ bool DataPatchBase::ApplyPatch()
 	return true;
 }
 
-bool DataPatchBase::RevertPatch()
+bool c_data_patch_base::RevertPatch()
 {
 	if (!m_isPatched)
 	{
@@ -150,7 +150,7 @@ bool DataPatchBase::RevertPatch()
 	return true;
 }
 
-DataPatchBase* DataPatchBase::initNode(Engine engine, Build build)
+c_data_patch_base* c_data_patch_base::initNode(Engine engine, Build build)
 {
 	ASSERT(m_offset == ~uintptr_t(), "DataPatch is already patched! This node should be reset before patching again");
 
@@ -174,7 +174,7 @@ DataPatchBase* DataPatchBase::initNode(Engine engine, Build build)
 	return m_pNextDataPatch;
 }
 
-DataPatchBase* DataPatchBase::deinitNode(Engine engine, Build build)
+c_data_patch_base* c_data_patch_base::deinitNode(Engine engine, Build build)
 {
 	m_offset = ~uintptr_t();
 	m_engine = Engine::NotSet;

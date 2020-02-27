@@ -831,9 +831,9 @@ void init_halo_reach_with_mcc(Engine engine, Build build, bool isMCC)
 
 	init_detours();
 
-	DataReferenceBase::InitTree(Engine::HaloReach, build);
-	FunctionHookBase::InitTree(Engine::HaloReach, build);
-	GlobalReference::InitTree(Engine::HaloReach, build);
+	c_data_reference_base::InitTree(Engine::HaloReach, build);
+	c_function_hook_base::InitTree(Engine::HaloReach, build);
+	c_global_reference::InitTree(Engine::HaloReach, build);
 	end_detours();
 
 	// Allows spawning AI via scripts or effects, props to Zeddikins
@@ -902,8 +902,8 @@ void deinit_halo_reach(Engine engine, Build build)
 	//DebugUI::UnregisterCallback(halo_reach_debug_callback);
 
 	init_detours();
-	FunctionHookBase::DeinitTree(Engine::HaloReach, build);
-	DataReferenceBase::DeinitTree(Engine::HaloReach, build);
-	GlobalReference::DeinitTree(Engine::HaloReach, build);
+	c_function_hook_base::DeinitTree(Engine::HaloReach, build);
+	c_data_reference_base::DeinitTree(Engine::HaloReach, build);
+	c_global_reference::DeinitTree(Engine::HaloReach, build);
 	end_detours();
 }

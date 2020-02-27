@@ -19,8 +19,8 @@
 #ifdef _WIN64
 #include "HaloReachGameOptionSelection.h"
 #endif
-#include "GameRuntime.h"
+#include "game_runtime.h"
 
-#include "IOpusGameEngineHost.h"
+#include "opus_game_engine_host.h"
 
 

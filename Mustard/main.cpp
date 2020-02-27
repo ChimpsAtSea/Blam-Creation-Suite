@@ -1,6 +1,6 @@
 #include "mustard-private-pch.h"
 
-const char* Console::s_consoleExecutableName = "Mustard";
+const char* c_console::s_consoleExecutableName = "Mustard";
 
 struct tls_data;
 
@@ -326,7 +326,7 @@ __declspec(dllexport) int main()
 {
 	register_platforms(); 
 	
-	Console::Init();
+	c_console::Init();
 
 	HMODULE current_module = GetModuleHandleA(NULL);
 	ASSERT(current_module == reinterpret_cast<void*>(intptr_t(0x00400000)));
@@ -365,8 +365,8 @@ __declspec(dllexport) int main()
 	apply_module_thread_local_storage_fixup(loaded_executable_module);
 
 #ifndef _WIN64
-	EldoradoGameHost::Init(build);
-	EldoradoGameHost::InitModifications(build);
+	c_eldorado_game_host::init_game_host(build);
+	c_eldorado_game_host::init_runtime_modifications(build);
 #endif
 
 	entry_point_function* entry_point = get_module_entry_point(loaded_executable_module);

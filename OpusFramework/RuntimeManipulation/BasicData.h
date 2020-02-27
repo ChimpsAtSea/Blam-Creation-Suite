@@ -1,12 +1,12 @@
 #pragma once
 
 template<Build build, typename T, size_t offset>
-class BasicData : public DataReferenceBase
+class BasicData : public c_data_reference_base
 {
 public:
 	BasicData(const BasicData&) = delete;
 	BasicData()
-		: DataReferenceBase(build, sizeof(T), offset, nullptr)
+		: c_data_reference_base(build, sizeof(T), offset, nullptr)
 	{
 
 	}

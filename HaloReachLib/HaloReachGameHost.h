@@ -1,6 +1,6 @@
 #pragma once
 
-class HaloReachGameHost : public IOpusGameEngineHost
+class HaloReachGameHost : public c_opus_game_engine_host
 {
 public:
 	HaloReachGameHost();
@@ -24,10 +24,10 @@ private:
 	// static
 public:
 	static IDataAccess* GetDataAccess() { return s_haloReachGameRuntime.GetDataAccess(); }
-	static GameRuntime& GetGameRuntime() { return s_haloReachGameRuntime; }
+	static c_game_runtime& GetGameRuntime() { return s_haloReachGameRuntime; }
 	static void InitModifications(Build build);
 	static void DeinitModifications(Build build);
 private:
-	static GameRuntime s_haloReachGameRuntime;
+	static c_game_runtime s_haloReachGameRuntime;
 };
 

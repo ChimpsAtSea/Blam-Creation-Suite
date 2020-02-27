@@ -1,12 +1,12 @@
 #pragma once
 
 template<typename T, find_offset_func find_offset>
-class PointerEx : public DataReferenceBase
+class PointerEx : public c_data_reference_base
 {
 public:
 	PointerEx(const PointerEx&) = delete;
 	PointerEx()
-		: DataReferenceBase(Build::NotSet, sizeof(T), 0, find_offset)
+		: c_data_reference_base(Build::NotSet, sizeof(T), 0, find_offset)
 	{
 
 	}

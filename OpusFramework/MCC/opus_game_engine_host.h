@@ -1,10 +1,10 @@
 #pragma once
 
-class IOpusGameEngineHost : public IGameEngineHost
+class c_opus_game_engine_host : public IGameEngineHost
 {
 public:
-	IOpusGameEngineHost(GameRuntime& rGameRuntime);
-	virtual ~IOpusGameEngineHost();
+	c_opus_game_engine_host(c_game_runtime& rGameRuntime);
+	virtual ~c_opus_game_engine_host();
 
 	// MCC Functions
 
@@ -64,7 +64,7 @@ public:
 
 
 protected:
-	GameRuntime& m_rGameRuntime;
+	c_game_runtime& m_rGameRuntime;
 	IGameEvents m_gameEvents;
 
 

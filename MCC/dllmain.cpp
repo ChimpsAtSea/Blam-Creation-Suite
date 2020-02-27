@@ -5,7 +5,7 @@
 
 #define MCCExecutableFileName "MCC-Win64-Shipping_Debug.exe"
 
-const char* Console::s_consoleExecutableName = "MCC";
+const char* c_console::s_consoleExecutableName = "MCC";
 
 bool s_isHaloReachHooked = false;
 bool s_isHalo1Hooked = false;
@@ -24,7 +24,7 @@ void haloreach_dll_loaded_callback()
 {
 	WriteLineVerbose("Halo Reach was loaded!");
 	{
-		Build build = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
+		Build build = c_game_runtime::GetLibraryBuildVersion(MCCExecutableFileName);
 		HaloReachGameHost::InitModifications(build);
 	}
 }
@@ -33,7 +33,7 @@ void halo1_dll_loaded_callback()
 {
 	WriteLineVerbose("Halo 1 was loaded!");
 	{
-		Build build = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
+		Build build = c_game_runtime::GetLibraryBuildVersion(MCCExecutableFileName);
 		Halo1GameHost::InitModifications(build);
 	}
 }
@@ -95,10 +95,10 @@ void init_opus()
 		create_dll_hook("KERNEL32.dll", "OutputDebugStringA", nullsub, OutputDebugStringA_Original);
 		create_dll_hook("KERNEL32.dll", "GetProcAddress", GetProcAddressHook, GetProcAddressPtr);
 
-		Build build = GameRuntime::GetLibraryBuildVersion(MCCExecutableFileName);
-		DataReferenceBase::InitTree(Engine::MCC, build);
-		FunctionHookBase::InitTree(Engine::MCC, build);
-		GlobalReference::InitTree(Engine::MCC, build);
+		Build build = c_game_runtime::GetLibraryBuildVersion(MCCExecutableFileName);
+		c_data_reference_base::InitTree(Engine::MCC, build);
+		c_function_hook_base::InitTree(Engine::MCC, build);
+		c_global_reference::InitTree(Engine::MCC, build);
 	}
 	end_detours();
 }
