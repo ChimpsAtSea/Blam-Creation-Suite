@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Halo1GameHost.cpp">
+    <ClCompile Include="halo1lib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo1lib-private-pch.cpp">
+    <ClCompile Include="halo1_game_host.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,9 +32,6 @@
     <ClInclude Include="opus_legacy\local_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Halo1GameHost.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="opus_legacy\Halo1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -44,6 +41,9 @@
     <ClInclude Include="halo1lib-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="halo1_game_host.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc">
@@ -51,7 +51,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Halo1GameHost.Testing.inl">
+    <None Include="halo1_game_host.testing.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>

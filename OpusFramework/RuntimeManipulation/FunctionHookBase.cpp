@@ -3,35 +3,35 @@
 c_function_hook_base* c_function_hook_base::g_pFirstFunctionHook = nullptr;
 c_function_hook_base* c_function_hook_base::g_pLastFunctionHook = nullptr;
 
-void c_function_hook_base::InitTree(Engine engine, Build build)
+void c_function_hook_base::init_function_hook_tree(e_engine_type engine_type, e_build build)
 {
 	// this iteration avoids having to do this recursively
 
 	c_function_hook_base* pCurrentFunctionHook = g_pFirstFunctionHook;
 	while (pCurrentFunctionHook)
 	{
-		pCurrentFunctionHook = pCurrentFunctionHook->InitNode(engine, build);
+		pCurrentFunctionHook = pCurrentFunctionHook->InitNode(engine_type, build);
 	}
 }
 
-void c_function_hook_base::DeinitTree(Engine engine, Build build)
+void c_function_hook_base::deinit_function_hook_tree(e_engine_type engine_type, e_build build)
 {
 	// this iteration avoids having to do this recursively
 
 	c_function_hook_base* pCurrentFunctionHook = g_pFirstFunctionHook;
 	while (pCurrentFunctionHook)
 	{
-		pCurrentFunctionHook = pCurrentFunctionHook->DeinitNode(engine, build);
+		pCurrentFunctionHook = pCurrentFunctionHook->DeinitNode(engine_type, build);
 	}
 }
 
-c_function_hook_base* c_function_hook_base::InitNode(Engine engine, Build build)
+c_function_hook_base* c_function_hook_base::InitNode(e_engine_type engine_type, e_build build)
 {
-	if ((m_engine == engine || m_engine == Engine::NotSet) && ((build == m_build || (m_build == Build::NotSet && m_find_offset_func)) && m_isActive && !m_isHooked))
+	if ((m_engine == engine_type || m_engine == _engine_type_not_set) && ((build == m_build || (m_build == _build_not_set && m_find_offset_func)) && m_isActive && !m_isHooked))
 	{
 		if (m_offset == 0 && m_find_offset_func)
 		{
-			uintptr_t foundOffset = m_find_offset_func(engine, build);
+			uintptr_t foundOffset = m_find_offset_func(engine_type, build);
 
 			if (foundOffset == ~uintptr_t())
 			{
@@ -40,12 +40,12 @@ c_function_hook_base* c_function_hook_base::InitNode(Engine engine, Build build)
 
 			m_offset = foundOffset;
 
-			ASSERT(m_build == Build::NotSet && m_offset >= GetEngineBaseAddress(engine)/*, "Offset is out of bounds"*/);
-			ASSERT(m_build == Build::NotSet && m_offset < GetEngineTopAddress(engine, build)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == e_build::_build_not_set && m_offset >= GetEngineBaseAddress(engine_type)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == e_build::_build_not_set && m_offset < GetEngineTopAddress(engine_type, build)/*, "Offset is out of bounds"*/);
 		}
 		ASSERT(m_offset != 0);
 
-		FunctionHookVarArgs<Engine::NotSet, Build::NotSet, 0, void>& rVoidThis = reinterpret_cast<FunctionHookVarArgs<Engine::NotSet, Build::NotSet, 0, void>&>(*this);
+		FunctionHookVarArgs<_engine_type_not_set, _build_not_set, 0, void>& rVoidThis = reinterpret_cast<FunctionHookVarArgs<_engine_type_not_set, _build_not_set, 0, void>&>(*this);
 
 		void*& rBase = rVoidThis.GetBase();
 		void*& rHook = rVoidThis.GetHook();
@@ -61,13 +61,13 @@ c_function_hook_base* c_function_hook_base::InitNode(Engine engine, Build build)
 
 		if (rHook)
 		{
-			LONG result = create_hook(engine, build, m_offset, pFunctionName, rHook, rBase);
+			LONG result = create_hook(engine_type, build, m_offset, pFunctionName, rHook, rBase);
 			ASSERT(result == 0);
 		}
 		else
 		{
-			populate_function_ptr(GetEngineModuleFileName(engine), GetEngineBaseAddress(engine), m_offset, rBase);
-			WriteLineVerbose("Created function pointer for %s", pFunctionName);
+			populate_function_ptr(GetEngineModuleFileName(engine_type), GetEngineBaseAddress(engine_type), m_offset, rBase);
+			write_line_verbose("Created function pointer for %s", pFunctionName);
 		}
 
 		m_isHooked = true;
@@ -76,7 +76,7 @@ c_function_hook_base* c_function_hook_base::InitNode(Engine engine, Build build)
 }
 
 
-c_function_hook_base* c_function_hook_base::DeinitNode(Engine engine, Build build)
+c_function_hook_base* c_function_hook_base::DeinitNode(e_engine_type engine_type, e_build build)
 {
 	if (m_isHooked)
 	{

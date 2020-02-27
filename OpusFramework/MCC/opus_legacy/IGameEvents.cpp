@@ -10,7 +10,7 @@ void IGameEvents::AchievementEarned(LPWSTR UserID, GUID PlayerSessionID, LPWSTR 
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::AchievementEarned(\"%S\", %S, \"%S\", %i)", UserID, PlayerSessionIDStr, HaloTitleID, AchievementID);
+		write_line_verbose("IGameEvents::AchievementEarned(\"%S\", %S, \"%S\", %i)", UserID, PlayerSessionIDStr, HaloTitleID, AchievementID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -23,7 +23,7 @@ void IGameEvents::AshesToAshes(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::AshesToAshes(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::AshesToAshes(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -37,7 +37,7 @@ void IGameEvents::Assist(LPWSTR UserID, INT32 SectionID, GUID PlayerSessionID, L
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::Assist(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::Assist(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -50,7 +50,7 @@ void IGameEvents::AudioLogClaimed(LPWSTR UserID, GUID PlayerSessionID, INT32 Aud
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::AudioLogClaimed(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, AudioLogID);
+		write_line_verbose("IGameEvents::AudioLogClaimed(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, AudioLogID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -63,7 +63,7 @@ void IGameEvents::Base(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::Base(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::Base(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -77,7 +77,7 @@ void IGameEvents::Betrayal(LPWSTR UserID, INT32 SectionID, GUID PlayerSessionID,
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::Betrayal(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::Betrayal(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -90,7 +90,7 @@ void IGameEvents::BIFactControllerSettings(LPWSTR UserID, GUID PlayerSessionID, 
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::BIFactControllerSettings(\"%S\", %S, %s, \"%S\", %i, %i, %s)", UserID, PlayerSessionIDStr, IsGuest ? "true" : "false", HaloTitleID, GameCategoryID, ControllerConfigurationID, LookInverted ? "true" : "false");
+		write_line_verbose("IGameEvents::BIFactControllerSettings(\"%S\", %S, %s, \"%S\", %i, %i, %s)", UserID, PlayerSessionIDStr, IsGuest ? "true" : "false", HaloTitleID, GameCategoryID, ControllerConfigurationID, LookInverted ? "true" : "false");
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -103,7 +103,7 @@ void IGameEvents::BIFactDeepLink(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::BIFactDeepLink(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::BIFactDeepLink(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -116,7 +116,7 @@ void IGameEvents::BIFactDeepLinkRecieve(LPWSTR UserID, GUID PlayerSessionID, LPW
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::BIFactDeepLinkRecieve(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, DeepLinkCorrelationID, DeepLinkURL);
+		write_line_verbose("IGameEvents::BIFactDeepLinkRecieve(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, DeepLinkCorrelationID, DeepLinkURL);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -129,7 +129,7 @@ void IGameEvents::BIFactDeepLinkSend(LPWSTR UserID, GUID PlayerSessionID, LPWSTR
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::BIFactDeepLinkSend(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, DeepLinkCorrelationID, DeepLinkURL);
+		write_line_verbose("IGameEvents::BIFactDeepLinkSend(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, DeepLinkCorrelationID, DeepLinkURL);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -145,7 +145,7 @@ void IGameEvents::BIFactDualWield(LPWSTR UserID, GUID PlayerSessionID, bool IsGu
 		SYSTEMTIME DualWieldTimeStampUTC;
 		::FileTimeToSystemTime(&DualWieldTimeStamp, &DualWieldTimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BIFactDualWield(\"%S\", %S, %s, \"%S\", %i, %i, %i, %02i:%02d:%02i)", UserID, PlayerSessionIDStr, IsGuest ? "true" : "false", HaloTitleID, GameCategoryID, LeftWeaponID, RightWeaponID, DualWieldTimeStampUTC.wHour, DualWieldTimeStampUTC.wMinute, DualWieldTimeStampUTC.wSecond);
+		write_line_verbose("IGameEvents::BIFactDualWield(\"%S\", %S, %s, \"%S\", %i, %i, %i, %02i:%02d:%02i)", UserID, PlayerSessionIDStr, IsGuest ? "true" : "false", HaloTitleID, GameCategoryID, LeftWeaponID, RightWeaponID, DualWieldTimeStampUTC.wHour, DualWieldTimeStampUTC.wMinute, DualWieldTimeStampUTC.wSecond);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -159,7 +159,7 @@ void IGameEvents::BIFactGameSession(LPWSTR UserID, GUID PlayerSessionID, FILETIM
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::BIFactGameSession(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::BIFactGameSession(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -172,7 +172,7 @@ void IGameEvents::BIFactLoadout(LPWSTR UserID, GUID PlayerSessionID, bool IsGues
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::BIFactLoadout(\"%S\", %S, %s, \"%S\", %i, %i, %i, %i, %i)", UserID, PlayerSessionIDStr, IsGuest ? "true" : "false", HaloTitleID, GameCategoryID, PrimaryWeaponID, SecondaryWeaponID, GrenadeID, ShieldID);
+		write_line_verbose("IGameEvents::BIFactLoadout(\"%S\", %S, %s, \"%S\", %i, %i, %i, %i, %i)", UserID, PlayerSessionIDStr, IsGuest ? "true" : "false", HaloTitleID, GameCategoryID, PrimaryWeaponID, SecondaryWeaponID, GrenadeID, ShieldID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -192,7 +192,7 @@ void IGameEvents::BIFactMatchmaking(LPWSTR UserID, GUID PlayerSessionID, bool Is
 		SYSTEMTIME JoinMatchTimeStampUTC;
 		::FileTimeToSystemTime(&JoinMatchTimeStamp, &JoinMatchTimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BIFactMatchmaking(\"%S\", %S, %s, \"%S\", %02i:%02d:%02i, %s, %02i:%02d:%02i, %i, %lf, %i, %i, %S)", UserID, PlayerSessionIDStr, IsGuest ? "true" : "false", LobbyID, LobbyEntryTimeStampUTC.wHour, LobbyEntryTimeStampUTC.wMinute, LobbyEntryTimeStampUTC.wSecond, JoinedMatch ? "true" : "false", JoinMatchTimeStampUTC.wHour, JoinMatchTimeStampUTC.wMinute, JoinMatchTimeStampUTC.wSecond, MatchmakingRank, MatchmakingRating, MatchmakingXP, PartySize, PartyIDStr);
+		write_line_verbose("IGameEvents::BIFactMatchmaking(\"%S\", %S, %s, \"%S\", %02i:%02d:%02i, %s, %02i:%02d:%02i, %i, %lf, %i, %i, %S)", UserID, PlayerSessionIDStr, IsGuest ? "true" : "false", LobbyID, LobbyEntryTimeStampUTC.wHour, LobbyEntryTimeStampUTC.wMinute, LobbyEntryTimeStampUTC.wSecond, JoinedMatch ? "true" : "false", JoinMatchTimeStampUTC.wHour, JoinMatchTimeStampUTC.wMinute, JoinMatchTimeStampUTC.wSecond, MatchmakingRank, MatchmakingRating, MatchmakingXP, PartySize, PartyIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 		::CoTaskMemFree(PartyIDStr);
@@ -207,7 +207,7 @@ void IGameEvents::BIFactMatchmakingDetails(LPWSTR UserID, GUID PlayerSessionID, 
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::BIFactMatchmakingDetails(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::BIFactMatchmakingDetails(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -225,7 +225,7 @@ void IGameEvents::BIFactMedia(LPWSTR UserID, GUID PlayerSessionID, bool IsGuest,
 		SYSTEMTIME MediaSkipTimeStampUTC;
 		::FileTimeToSystemTime(&MediaSkipTimeStamp, &MediaSkipTimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BIFactMedia(\"%S\", %S, %s, \"%S\", %02i:%02d:%02i, %s, %02i:%02d:%02i, \"%S\")", UserID, PlayerSessionIDStr, IsGuest ? "true" : "false", HaloTitleID, MediaStartTimeStampUTC.wHour, MediaStartTimeStampUTC.wMinute, MediaStartTimeStampUTC.wSecond, WasSkipped ? "true" : "false", MediaSkipTimeStampUTC.wHour, MediaSkipTimeStampUTC.wMinute, MediaSkipTimeStampUTC.wSecond, MediaID);
+		write_line_verbose("IGameEvents::BIFactMedia(\"%S\", %S, %s, \"%S\", %02i:%02d:%02i, %s, %02i:%02d:%02i, \"%S\")", UserID, PlayerSessionIDStr, IsGuest ? "true" : "false", HaloTitleID, MediaStartTimeStampUTC.wHour, MediaStartTimeStampUTC.wMinute, MediaStartTimeStampUTC.wSecond, WasSkipped ? "true" : "false", MediaSkipTimeStampUTC.wHour, MediaSkipTimeStampUTC.wMinute, MediaSkipTimeStampUTC.wSecond, MediaID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -238,7 +238,7 @@ void IGameEvents::BirdOfPrey(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::BirdOfPrey(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::BirdOfPrey(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -251,7 +251,7 @@ void IGameEvents::BitsAndPiecesDestroyed(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::BitsAndPiecesDestroyed(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::BitsAndPiecesDestroyed(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -267,7 +267,7 @@ void IGameEvents::BroadcastingAssist(LPWSTR UserID, GUID PlayerSessionID, FILETI
 		SYSTEMTIME TimeStampUTC;
 		::FileTimeToSystemTime(&TimeStamp, &TimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BroadcastingAssist(\"%S\", %S, %02i:%02d:%02i, %i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, CurrentAssists);
+		write_line_verbose("IGameEvents::BroadcastingAssist(\"%S\", %S, %02i:%02d:%02i, %i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, CurrentAssists);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -281,7 +281,7 @@ void IGameEvents::BroadcastingDeath(LPWSTR UserID, GUID PlayerSessionID, FILETIM
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::BroadcastingDeath(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::BroadcastingDeath(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -294,7 +294,7 @@ void IGameEvents::BroadcastingHeartbeat(LPWSTR UserID, GUID PlayerSessionID, INT
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::BroadcastingHeartbeat(\"%S\", %S, %lli)", UserID, PlayerSessionIDStr, Heartbeat);
+		write_line_verbose("IGameEvents::BroadcastingHeartbeat(\"%S\", %S, %lli)", UserID, PlayerSessionIDStr, Heartbeat);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -308,7 +308,7 @@ void IGameEvents::BroadcastingKill(LPWSTR UserID, GUID PlayerSessionID, FILETIME
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::BroadcastingKill(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::BroadcastingKill(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -324,7 +324,7 @@ void IGameEvents::BroadcastingMatchEnd(LPWSTR UserID, GUID PlayerSessionID, FILE
 		SYSTEMTIME TimeStampUTC;
 		::FileTimeToSystemTime(&TimeStamp, &TimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BroadcastingMatchEnd(\"%S\", %S, %02i:%02d:%02i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond);
+		write_line_verbose("IGameEvents::BroadcastingMatchEnd(\"%S\", %S, %02i:%02d:%02i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -340,7 +340,7 @@ void IGameEvents::BroadcastingMatchRoundEnd(LPWSTR UserID, GUID PlayerSessionID,
 		SYSTEMTIME TimeStampUTC;
 		::FileTimeToSystemTime(&TimeStamp, &TimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BroadcastingMatchRoundEnd(\"%S\", %S, %02i:%02d:%02i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond);
+		write_line_verbose("IGameEvents::BroadcastingMatchRoundEnd(\"%S\", %S, %02i:%02d:%02i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -356,7 +356,7 @@ void IGameEvents::BroadcastingMatchRoundStart(LPWSTR UserID, GUID PlayerSessionI
 		SYSTEMTIME TimeStampUTC;
 		::FileTimeToSystemTime(&TimeStamp, &TimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BroadcastingMatchRoundStart(\"%S\", %S, %02i:%02d:%02i, %i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, RoundNumber);
+		write_line_verbose("IGameEvents::BroadcastingMatchRoundStart(\"%S\", %S, %02i:%02d:%02i, %i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, RoundNumber);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -372,7 +372,7 @@ void IGameEvents::BroadcastingMatchStart(LPWSTR UserID, GUID PlayerSessionID, FI
 		SYSTEMTIME TimeStampUTC;
 		::FileTimeToSystemTime(&TimeStamp, &TimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BroadcastingMatchStart(\"%S\", %S, %02i:%02d:%02i, %i, %i, \"%S\")", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, MapVariantID, GameVariantID, PlaylistID);
+		write_line_verbose("IGameEvents::BroadcastingMatchStart(\"%S\", %S, %02i:%02d:%02i, %i, %i, \"%S\")", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, MapVariantID, GameVariantID, PlaylistID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -388,7 +388,7 @@ void IGameEvents::BroadcastingMedal(LPWSTR UserID, GUID PlayerSessionID, FILETIM
 		SYSTEMTIME TimeStampUTC;
 		::FileTimeToSystemTime(&TimeStamp, &TimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BroadcastingMedal(\"%S\", %S, %02i:%02d:%02i, %i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, MedalID);
+		write_line_verbose("IGameEvents::BroadcastingMedal(\"%S\", %S, %02i:%02d:%02i, %i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, MedalID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -404,7 +404,7 @@ void IGameEvents::BroadcastingPlayerJoined(LPWSTR UserID, GUID PlayerSessionID, 
 		SYSTEMTIME TimeStampUTC;
 		::FileTimeToSystemTime(&TimeStamp, &TimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BroadcastingPlayerJoined(\"%S\", %S, %02i:%02d:%02i, %i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, TeamID);
+		write_line_verbose("IGameEvents::BroadcastingPlayerJoined(\"%S\", %S, %02i:%02d:%02i, %i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, TeamID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -420,7 +420,7 @@ void IGameEvents::BroadcastingPlayerLeft(LPWSTR UserID, GUID PlayerSessionID, FI
 		SYSTEMTIME TimeStampUTC;
 		::FileTimeToSystemTime(&TimeStamp, &TimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BroadcastingPlayerLeft(\"%S\", %S, %02i:%02d:%02i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond);
+		write_line_verbose("IGameEvents::BroadcastingPlayerLeft(\"%S\", %S, %02i:%02d:%02i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -435,7 +435,7 @@ void IGameEvents::BroadcastingPlayerSpawn(LPWSTR UserID, GUID PlayerSessionID, F
 		SYSTEMTIME TimeStampUTC;
 		::FileTimeToSystemTime(&TimeStamp, &TimeStampUTC);
 
-		WriteLineVerbose("IGameEvents::BroadcastingPlayerSpawn(\"%S\", %S, %02i:%02d:%02i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond);
+		write_line_verbose("IGameEvents::BroadcastingPlayerSpawn(\"%S\", %S, %02i:%02d:%02i)", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -452,7 +452,7 @@ void IGameEvents::BroadcastingPlayerSwitchedTeams(LPWSTR UserID, GUID PlayerSess
 		::FileTimeToSystemTime(&TimeStamp, &TimeStampUTC);
 
 		// spams console
-		//WriteLineVerbose("IGameEvents::BroadcastingPlayerSwitchedTeams(\"%S\", %S, %02d:%02d:%02d, %i, \"%S\")", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, TeamID, WebColor);
+		//write_line_verbose("IGameEvents::BroadcastingPlayerSwitchedTeams(\"%S\", %S, %02d:%02d:%02d, %i, \"%S\")", UserID, PlayerSessionIDStr, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, TeamID, WebColor);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -469,7 +469,7 @@ void IGameEvents::BroadcastingScore(LPWSTR UserID, GUID PlayerSessionID, INT32 C
 		::FileTimeToSystemTime(&Timestamp, &TimeStampUTC);
 
 		// spams console
-		//WriteLineVerbose("IGameEvents::BroadcastingScore(\"%S\", %S, %i, %02i:%02d:%02i, %i, %i, %i, %i)", UserID, PlayerSessionIDStr, ControllerIndex, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, CurrentRoundScore, CurrentTotalScore, CurrentRoundTeamScore, CurrentTotalTeamScore);
+		//write_line_verbose("IGameEvents::BroadcastingScore(\"%S\", %S, %i, %02i:%02d:%02i, %i, %i, %i, %i)", UserID, PlayerSessionIDStr, ControllerIndex, TimeStampUTC.wHour, TimeStampUTC.wMinute, TimeStampUTC.wSecond, CurrentRoundScore, CurrentTotalScore, CurrentRoundTeamScore, CurrentTotalTeamScore);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -484,7 +484,7 @@ void IGameEvents::BroadcastingStart(LPWSTR UserID, GUID PlayerSessionID, UINT32 
 		OLECHAR *MatchIDStr;
 		stringFromCLSIDResult = StringFromCLSID(MatchID, &MatchIDStr);
 
-		WriteLineVerbose("IGameEvents::BroadcastingStart(\"%S\", %S, %u, %u, %u, \"%S\", %S, %s, %lli)", UserID, PlayerSessionIDStr, GameType, Map, TopPlayerRank, PlayerIDs, MatchIDStr, PlayerIsCaster ? "true" : "false", MatchStartTime);
+		write_line_verbose("IGameEvents::BroadcastingStart(\"%S\", %S, %u, %u, %u, \"%S\", %S, %s, %lli)", UserID, PlayerSessionIDStr, GameType, Map, TopPlayerRank, PlayerIDs, MatchIDStr, PlayerIsCaster ? "true" : "false", MatchStartTime);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 		::CoTaskMemFree(MatchIDStr);
@@ -498,7 +498,7 @@ void IGameEvents::CampaignDifficulty(LPWSTR UserID, GUID PlayerSessionID, LPWSTR
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::CampaignDifficulty(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, CampaignDifficulty);
+		write_line_verbose("IGameEvents::CampaignDifficulty(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, CampaignDifficulty);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -511,7 +511,7 @@ void IGameEvents::ChallengeCompleted(LPWSTR UserID, GUID PlayerSessionID, LPWSTR
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::ChallengeCompleted(\"%S\", %S, \"%S\", %i)", UserID, PlayerSessionIDStr, HaloTitleID, ChallengeID);
+		write_line_verbose("IGameEvents::ChallengeCompleted(\"%S\", %S, \"%S\", %i)", UserID, PlayerSessionIDStr, HaloTitleID, ChallengeID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -524,7 +524,7 @@ void IGameEvents::ClassicModeSwitched(LPWSTR UserID, GUID PlayerSessionID, INT32
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::ClassicModeSwitched(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, MapID);
+		write_line_verbose("IGameEvents::ClassicModeSwitched(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, MapID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -537,7 +537,7 @@ void IGameEvents::CleverGirl(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::CleverGirl(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::CleverGirl(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -550,7 +550,7 @@ void IGameEvents::ClueClaimed(LPWSTR UserID, GUID PlayerSessionID, INT32 ClueID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::ClueClaimed(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, ClueID);
+		write_line_verbose("IGameEvents::ClueClaimed(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, ClueID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -564,7 +564,7 @@ void IGameEvents::CoopMissionCompleted(LPWSTR UserID, GUID PlayerSessionID, LPWS
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::CoopMissionCompleted(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::CoopMissionCompleted(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -577,7 +577,7 @@ void IGameEvents::CoopSpartanOpsMissionCompleted(LPWSTR UserID, GUID PlayerSessi
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::CoopSpartanOpsMissionCompleted(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, DifficultyID);
+		write_line_verbose("IGameEvents::CoopSpartanOpsMissionCompleted(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, DifficultyID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -590,7 +590,7 @@ void IGameEvents::CompletionCount(LPWSTR UserID, GUID PlayerSessionID, INT32 Cou
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::CompletionCount(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, Count);
+		write_line_verbose("IGameEvents::CompletionCount(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, Count);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -603,7 +603,7 @@ void IGameEvents::Customization(LPWSTR UserID, GUID PlayerSessionID, INT32 Textu
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::Customization(\"%S\", %S, %i, %i, %i, %i, %i, \"%S\", \"%S\", %i, %i)", UserID, PlayerSessionIDStr, Texture0, Texture1, Color0, Color1, Color2, ServiceID, ClanID, AvatarID, NameplateID);
+		write_line_verbose("IGameEvents::Customization(\"%S\", %S, %i, %i, %i, %i, %i, \"%S\", \"%S\", %i, %i)", UserID, PlayerSessionIDStr, Texture0, Texture1, Color0, Color1, Color2, ServiceID, ClanID, AvatarID, NameplateID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -616,7 +616,7 @@ void IGameEvents::DashboardContext(LPWSTR UserID, GUID PlayerSessionID, LPWSTR D
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::DashboardContext(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, DashboardContext);
+		write_line_verbose("IGameEvents::DashboardContext(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, DashboardContext);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -630,7 +630,7 @@ void IGameEvents::Death(LPWSTR UserID, INT32 SectionID, GUID PlayerSessionID, LP
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::Death(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::Death(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -643,7 +643,7 @@ void IGameEvents::DollFound(LPWSTR UserID, GUID PlayerSessionID, INT32 DollID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::DollFound(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, DollID);
+		write_line_verbose("IGameEvents::DollFound(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, DollID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -656,7 +656,7 @@ void IGameEvents::EliteWin(LPWSTR UserID, GUID PlayerSessionID, LPWSTR HaloTitle
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::EliteWin(\"%S\", %S, \"%S\", %s)", UserID, PlayerSessionIDStr, HaloTitleID, MatchMade ? "true" : "false");
+		write_line_verbose("IGameEvents::EliteWin(\"%S\", %S, \"%S\", %s)", UserID, PlayerSessionIDStr, HaloTitleID, MatchMade ? "true" : "false");
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -669,7 +669,7 @@ void IGameEvents::Emblem(LPWSTR UserID, GUID PlayerSessionID, INT32 Texture0, IN
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::Emblem(\"%S\", %S, %i, %i, %i, %i, %i)", UserID, PlayerSessionIDStr, Texture0, Texture1, Color0, Color1, Color2);
+		write_line_verbose("IGameEvents::Emblem(\"%S\", %S, %i, %i, %i, %i, %i)", UserID, PlayerSessionIDStr, Texture0, Texture1, Color0, Color1, Color2);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -683,7 +683,7 @@ void IGameEvents::EnemyDefeated(LPWSTR UserID, INT32 SectionID, GUID PlayerSessi
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::EnemyDefeated(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::EnemyDefeated(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -696,7 +696,7 @@ void IGameEvents::FriendsBestedOnHeroLeaderboard(LPWSTR UserID, GUID PlayerSessi
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::FriendsBestedOnHeroLeaderboard(\"%S\", %S, %i, %i)", UserID, PlayerSessionIDStr, LeaderboardID, LeaderboardRows);
+		write_line_verbose("IGameEvents::FriendsBestedOnHeroLeaderboard(\"%S\", %S, %i, %i)", UserID, PlayerSessionIDStr, LeaderboardID, LeaderboardRows);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -709,7 +709,7 @@ void IGameEvents::GameProgress(LPWSTR UserID, GUID PlayerSessionID, float Comple
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::GameProgress(\"%S\", %S, %f)", UserID, PlayerSessionIDStr, CompletionPercent);
+		write_line_verbose("IGameEvents::GameProgress(\"%S\", %S, %f)", UserID, PlayerSessionIDStr, CompletionPercent);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -722,7 +722,7 @@ void IGameEvents::GameVarSaved(LPWSTR UserID, GUID PlayerSessionID, LPWSTR HaloT
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::GameVarSaved(\"%S\", %S, \"%S\", %i, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, BaseGameCategory, GameVarName);
+		write_line_verbose("IGameEvents::GameVarSaved(\"%S\", %S, \"%S\", %i, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, BaseGameCategory, GameVarName);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -736,7 +736,7 @@ void IGameEvents::GrenadeStick(LPWSTR UserID, INT32 SectionID, GUID PlayerSessio
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::GrenadeStick(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::GrenadeStick(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -749,7 +749,7 @@ void IGameEvents::HelloNurse(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::HelloNurse(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::HelloNurse(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -762,7 +762,7 @@ void IGameEvents::InGamePresence(LPWSTR UserID, GUID PlayerSessionID, LPWSTR Hal
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::InGamePresence(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitle, CampaignDifficulty, MultiplayerMap);
+		write_line_verbose("IGameEvents::InGamePresence(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitle, CampaignDifficulty, MultiplayerMap);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -775,7 +775,7 @@ void IGameEvents::ISeeYou(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::ISeeYou(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::ISeeYou(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -788,7 +788,7 @@ void IGameEvents::Joinability(LPWSTR UserID, GUID PlayerSessionID, bool InGame)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::Joinability(\"%S\", %S, %s)", UserID, PlayerSessionIDStr, InGame ? "true" : "false");
+		write_line_verbose("IGameEvents::Joinability(\"%S\", %S, %s)", UserID, PlayerSessionIDStr, InGame ? "true" : "false");
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -801,7 +801,7 @@ void IGameEvents::Lobby(LPWSTR UserID, GUID PlayerSessionID, LPWSTR HaloTitleID,
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::Lobby(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, Lobby);
+		write_line_verbose("IGameEvents::Lobby(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, Lobby);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -814,7 +814,7 @@ void IGameEvents::MainMenuPresence(LPWSTR UserID, GUID PlayerSessionID, LPWSTR M
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::MainMenuPresence(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, MainMenuPresence);
+		write_line_verbose("IGameEvents::MainMenuPresence(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, MainMenuPresence);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -827,7 +827,7 @@ void IGameEvents::MapVarSaved(LPWSTR UserID, GUID PlayerSessionID, LPWSTR HaloTi
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::MapVarSaved(\"%S\", %S, \"%S\", %i, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, BaseMapID, MapVarName);
+		write_line_verbose("IGameEvents::MapVarSaved(\"%S\", %S, \"%S\", %i, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, BaseMapID, MapVarName);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -840,7 +840,7 @@ void IGameEvents::MatchmakingHopper(LPWSTR UserID, GUID PlayerSessionID, LPWSTR 
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::MatchmakingHopper(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, MatchmakingHopper);
+		write_line_verbose("IGameEvents::MatchmakingHopper(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, MatchmakingHopper);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -854,7 +854,7 @@ void IGameEvents::MediaUsage(LPWSTR AppSessionID, LPWSTR AppSessionStartDateTime
 		HRESULT stringFromCLSIDResult = StringFromCLSID(BingID, &BingIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::MediaUsage(\"%S\", %S)", UserID, BingIDStr);
+		//write_line_verbose("IGameEvents::MediaUsage(\"%S\", %S)", UserID, BingIDStr);
 
 		::CoTaskMemFree(BingIDStr);
 	}
@@ -871,7 +871,7 @@ void IGameEvents::MeldOfferPresented(LPWSTR UserID, GUID PlayerSessionID, GUID O
 		OLECHAR *ProductGuidStr;
 		stringFromCLSIDResult = StringFromCLSID(ProductGuid, &ProductGuidStr);
 
-		WriteLineVerbose("IGameEvents::MeldOfferPresented(\"%S\", %S, %S, %S, \"%S\", %i)", UserID, PlayerSessionIDStr, OfferGuidStr, ProductGuidStr, Page, SourceTileIndex);
+		write_line_verbose("IGameEvents::MeldOfferPresented(\"%S\", %S, %S, %S, \"%S\", %i)", UserID, PlayerSessionIDStr, OfferGuidStr, ProductGuidStr, Page, SourceTileIndex);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 		::CoTaskMemFree(OfferGuidStr);
@@ -890,7 +890,7 @@ void IGameEvents::MeldOfferResponded(LPWSTR UserID, GUID PlayerSessionID, GUID O
 		OLECHAR *ProductGuidStr;
 		stringFromCLSIDResult = StringFromCLSID(ProductGuid, &ProductGuidStr);
 
-		WriteLineVerbose("IGameEvents::MeldOfferResponded(\"%S\", %S, %S, %S, %i)", UserID, PlayerSessionIDStr, OfferGuidStr, ProductGuidStr, UpsellOutcome);
+		write_line_verbose("IGameEvents::MeldOfferResponded(\"%S\", %S, %S, %S, %i)", UserID, PlayerSessionIDStr, OfferGuidStr, ProductGuidStr, UpsellOutcome);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 		::CoTaskMemFree(OfferGuidStr);
@@ -906,7 +906,7 @@ void IGameEvents::MeldPageAction(LPWSTR UserID, GUID PlayerSessionID, INT32 Acti
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::MeldPageAction(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::MeldPageAction(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -919,7 +919,7 @@ void IGameEvents::MeldPageView(LPWSTR UserID, GUID PlayerSessionID, LPWSTR Page,
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::MeldPageView(\"%S\", %S, \"%S\", \"%S\", %i, \"%S\", \"%S\", \"%S\", \"%S\", %i)", UserID, PlayerSessionIDStr, Page, RefererPage, PageTypeID, PageTags, TemplateID, Content, FilterContext, FilterDirection);
+		write_line_verbose("IGameEvents::MeldPageView(\"%S\", %S, \"%S\", \"%S\", %i, \"%S\", \"%S\", \"%S\", \"%S\", %i)", UserID, PlayerSessionIDStr, Page, RefererPage, PageTypeID, PageTags, TemplateID, Content, FilterContext, FilterDirection);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -933,7 +933,7 @@ void IGameEvents::MissionCompleted(LPWSTR UserID, GUID PlayerSessionID, LPWSTR H
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::MissionCompleted(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::MissionCompleted(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -946,7 +946,7 @@ void IGameEvents::MortardomWraithsKilled(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::MortardomWraithsKilled(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::MortardomWraithsKilled(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -959,7 +959,7 @@ void IGameEvents::MultiplayerGameEngine(LPWSTR UserID, GUID PlayerSessionID, LPW
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::MultiplayerGameEngine(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, MultiplayerGameEngine);
+		write_line_verbose("IGameEvents::MultiplayerGameEngine(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, MultiplayerGameEngine);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -972,7 +972,7 @@ void IGameEvents::MultiplayerMap(LPWSTR UserID, GUID PlayerSessionID, LPWSTR Hal
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::MultiplayerMap(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, MultiplayerMap);
+		write_line_verbose("IGameEvents::MultiplayerMap(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, MultiplayerMap);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -987,7 +987,7 @@ void IGameEvents::MultiplayerRoundEnd(LPWSTR UserID, GUID RoundID, INT32 Section
 		OLECHAR *PlayerSessionIDStr;
 		stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::MultiplayerRoundEnd(\"%S\", %S, %i, %S, \"%S\", %i, %i, %i, %f, %i)", UserID, RoundIDStr, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, MatchTypeID, DifficultyLevelID, TimeInSeconds, ExitStatusID);
+		write_line_verbose("IGameEvents::MultiplayerRoundEnd(\"%S\", %S, %i, %S, \"%S\", %i, %i, %i, %f, %i)", UserID, RoundIDStr, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, MatchTypeID, DifficultyLevelID, TimeInSeconds, ExitStatusID);
 
 		::CoTaskMemFree(RoundIDStr);
 		::CoTaskMemFree(PlayerSessionIDStr);
@@ -1003,7 +1003,7 @@ void IGameEvents::MultiplayerRoundStart(LPWSTR UserID, GUID RoundID, INT32 Secti
 		OLECHAR *PlayerSessionIDStr;
 		stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::MultiplayerRoundStart(\"%S\", %S, %i, %S, \"%S\", %i, %i, %i)", UserID, RoundIDStr, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, MatchTypeID, DifficultyLevelID);
+		write_line_verbose("IGameEvents::MultiplayerRoundStart(\"%S\", %S, %i, %S, \"%S\", %i, %i, %i)", UserID, RoundIDStr, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, MatchTypeID, DifficultyLevelID);
 
 		::CoTaskMemFree(RoundIDStr);
 		::CoTaskMemFree(PlayerSessionIDStr);
@@ -1017,7 +1017,7 @@ void IGameEvents::NappersCaught(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::NappersCaught(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::NappersCaught(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1030,7 +1030,7 @@ void IGameEvents::NewsStoryRead(LPWSTR UserID, GUID PlayerSessionID, LPWSTR Stor
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::NewsStoryRead(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, StoryID);
+		write_line_verbose("IGameEvents::NewsStoryRead(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, StoryID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1043,7 +1043,7 @@ void IGameEvents::ObjectiveEnd(LPWSTR UserID, INT32 SectionID, GUID PlayerSessio
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::ObjectiveEnd(\"%S\", %i, %S, \"%S\", %i, %i, %i, %i)", UserID, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, ObjectiveID, ExitStatusID);
+		write_line_verbose("IGameEvents::ObjectiveEnd(\"%S\", %i, %S, \"%S\", %i, %i, %i, %i)", UserID, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, ObjectiveID, ExitStatusID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1056,7 +1056,7 @@ void IGameEvents::ObjectiveStart(LPWSTR UserID, INT32 SectionID, GUID PlayerSess
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::ObjectiveStart(\"%S\", %i, %S, \"%S\", %i, %i, %i)", UserID, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, ObjectiveID);
+		write_line_verbose("IGameEvents::ObjectiveStart(\"%S\", %i, %S, \"%S\", %i, %i, %i)", UserID, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, ObjectiveID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1069,7 +1069,7 @@ void IGameEvents::PageAction(LPWSTR UserID, GUID PlayerSessionID, INT32 ActionTy
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PageAction(\"%S\", %S, %i, %i, \"%S\", \"%S\", \"%S\", \"%S\")", UserID, PlayerSessionIDStr, ActionTypeID, ActionInputMethodID, Page, TemplateID, DestinationPage, Content);
+		write_line_verbose("IGameEvents::PageAction(\"%S\", %S, %i, %i, \"%S\", \"%S\", \"%S\", \"%S\")", UserID, PlayerSessionIDStr, ActionTypeID, ActionInputMethodID, Page, TemplateID, DestinationPage, Content);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1082,7 +1082,7 @@ void IGameEvents::PageView(LPWSTR UserID, GUID PlayerSessionID, LPWSTR Page, LPW
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PageView(\"%S\", %S, \"%S\", \"%S\", %i, \"%S\", \"%S\", \"%S\")", UserID, PlayerSessionIDStr, Page, RefererPage, PageTypeID, PageTags, TemplateID, Content);
+		write_line_verbose("IGameEvents::PageView(\"%S\", %S, \"%S\", \"%S\", %i, \"%S\", \"%S\", \"%S\")", UserID, PlayerSessionIDStr, Page, RefererPage, PageTypeID, PageTags, TemplateID, Content);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1095,7 +1095,7 @@ void IGameEvents::PhantomHunter(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PhantomHunter(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::PhantomHunter(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1108,7 +1108,7 @@ void IGameEvents::PigsCanFly(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PigsCanFly(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::PigsCanFly(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1121,7 +1121,7 @@ void IGameEvents::PlayerCheckedInToday(LPWSTR UserID, GUID PlayerSessionID, LPWS
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PlayerCheckedInToday(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID);
+		write_line_verbose("IGameEvents::PlayerCheckedInToday(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1135,7 +1135,7 @@ void IGameEvents::PlayerDefeated(LPWSTR UserID, INT32 SectionID, GUID PlayerSess
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::PlayerDefeated(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::PlayerDefeated(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1149,7 +1149,7 @@ void IGameEvents::PlayerGameResults(LPWSTR UserID, GUID PlayerSessionID, LPWSTR 
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::PlayerGameResults(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::PlayerGameResults(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1162,7 +1162,7 @@ void IGameEvents::PlayerGameResultsDamageStat(LPWSTR UserID, GUID PlayerSessionI
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PlayerGameResultsDamageStat(\"%S\", %S, \"%S\", %i, %i, %s, %i, %i, %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, GameIndex, MapID, MatchMade ? "true" : "false", DamageReportingType, DamageStatisticType, DamageCount, GameCategoryID);
+		write_line_verbose("IGameEvents::PlayerGameResultsDamageStat(\"%S\", %S, \"%S\", %i, %i, %s, %i, %i, %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, GameIndex, MapID, MatchMade ? "true" : "false", DamageReportingType, DamageStatisticType, DamageCount, GameCategoryID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1176,7 +1176,7 @@ void IGameEvents::PlayerGameResultsGriefingStat(LPWSTR UserID, GUID PlayerSessio
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::PlayerGameResultsGriefingStat(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::PlayerGameResultsGriefingStat(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1190,7 +1190,7 @@ void IGameEvents::PlayerGameResultsGriefingStats(LPWSTR UserID, GUID PlayerSessi
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::PlayerGameResultsGriefingStats(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::PlayerGameResultsGriefingStats(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1204,7 +1204,7 @@ void IGameEvents::PlayerGameResultsInterestStats(LPWSTR UserID, GUID PlayerSessi
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::PlayerGameResultsInterestStats(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::PlayerGameResultsInterestStats(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1217,7 +1217,7 @@ void IGameEvents::PlayerGameResultsMedal(LPWSTR UserID, GUID PlayerSessionID, LP
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PlayerGameResultsMedal(\"%S\", %S, \"%S\", %i, %i, %s, %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, GameIndex, MapID, MatchMade ? "true" : "false", MedalType, MedalCount);
+		write_line_verbose("IGameEvents::PlayerGameResultsMedal(\"%S\", %S, \"%S\", %i, %i, %s, %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, GameIndex, MapID, MatchMade ? "true" : "false", MedalType, MedalCount);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1230,7 +1230,7 @@ void IGameEvents::PlayerSessionEnd(LPWSTR UserID, GUID PlayerSessionID, LPWSTR M
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PlayerSessionEnd(\"%S\", %S, \"%S\", %i, %i, %i)", UserID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, ExitStatusID);
+		write_line_verbose("IGameEvents::PlayerSessionEnd(\"%S\", %S, \"%S\", %i, %i, %i)", UserID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, ExitStatusID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1243,7 +1243,7 @@ void IGameEvents::PlayerSessionPause(LPWSTR UserID, GUID PlayerSessionID, LPWSTR
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PlayerSessionPause(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, MultiplayerCorrelationID);
+		write_line_verbose("IGameEvents::PlayerSessionPause(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, MultiplayerCorrelationID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1256,7 +1256,7 @@ void IGameEvents::PlayerSessionResume(LPWSTR UserID, GUID PlayerSessionID, LPWST
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PlayerSessionResume(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID);
+		write_line_verbose("IGameEvents::PlayerSessionResume(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1269,7 +1269,7 @@ void IGameEvents::PlayerSessionStart(LPWSTR UserID, GUID PlayerSessionID, LPWSTR
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PlayerSessionStart(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID);
+		write_line_verbose("IGameEvents::PlayerSessionStart(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1284,7 +1284,7 @@ void IGameEvents::PlayerSpawned(LPWSTR UserID, INT32 SectionID, GUID PlayerSessi
 		OLECHAR *RoundIDStr;
 		stringFromCLSIDResult = StringFromCLSID(RoundID, &RoundIDStr);
 
-		WriteLineVerbose("IGameEvents::PlayerSpawned(\"%S\", %i, %S, \"%S\", %i, %i, %S, %i, %f, %f, %f)", UserID, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, RoundIDStr, PlayerRoleID, LocationX, LocationY, LocationZ);
+		write_line_verbose("IGameEvents::PlayerSpawned(\"%S\", %i, %S, \"%S\", %i, %i, %S, %i, %f, %f, %f)", UserID, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, RoundIDStr, PlayerRoleID, LocationX, LocationY, LocationZ);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 		::CoTaskMemFree(RoundIDStr);
@@ -1298,7 +1298,7 @@ void IGameEvents::PlaylistCompleted(LPWSTR UserID, GUID PlayerSessionID, LPWSTR 
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PlaylistCompleted(\"%S\", %S, \"%S\", %u, %llu, %llu, %i, \"%S\", %s)", UserID, PlayerSessionIDStr, HaloTitleID, PlaylistID, Score64, TimeMS, Penalties, MissionStats, IsCoop ? "true" : "false");
+		write_line_verbose("IGameEvents::PlaylistCompleted(\"%S\", %S, \"%S\", %u, %llu, %llu, %i, \"%S\", %s)", UserID, PlayerSessionIDStr, HaloTitleID, PlaylistID, Score64, TimeMS, Penalties, MissionStats, IsCoop ? "true" : "false");
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1311,7 +1311,7 @@ void IGameEvents::PlaylistProgress(LPWSTR UserID, GUID PlayerSessionID, LPWSTR H
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::PlaylistProgress(\"%S\", %S, \"%S\", %i, %i, %llu, %s, %i, %s, %llu)", UserID, PlayerSessionIDStr, HaloTitleID, PlaylistID, NumMapsCompleted, Score64, IsCoop ? "true" : "false", NumPlayers, ShouldPostTime ? "true" : "false", TotalPlayListTimeMS);
+		write_line_verbose("IGameEvents::PlaylistProgress(\"%S\", %S, \"%S\", %i, %i, %llu, %s, %i, %s, %llu)", UserID, PlayerSessionIDStr, HaloTitleID, PlaylistID, NumMapsCompleted, Score64, IsCoop ? "true" : "false", NumPlayers, ShouldPostTime ? "true" : "false", TotalPlayListTimeMS);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1324,7 +1324,7 @@ void IGameEvents::RankedStatsDNFInfo(LPWSTR UserID, GUID PlayerSessionID, LPWSTR
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::RankedStatsDNFInfo(\"%S\", %S, \"%S\", %lf, %i, %i, %lf)", UserID, PlayerSessionIDStr, HopperName, FinishesOverStarts, FinishesMinusStarts, FinishesPlusPenaltiesMinusStarts, FinishesPlusPenaltiesOverStarts);
+		write_line_verbose("IGameEvents::RankedStatsDNFInfo(\"%S\", %S, \"%S\", %lf, %i, %i, %lf)", UserID, PlayerSessionIDStr, HopperName, FinishesOverStarts, FinishesMinusStarts, FinishesPlusPenaltiesMinusStarts, FinishesPlusPenaltiesOverStarts);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1337,7 +1337,7 @@ void IGameEvents::RankedStatsOverride(LPWSTR UserID, GUID PlayerSessionID, LPWST
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::RankedStatsOverride(\"%S\", %S, \"%S\", %lf, %lf, %i, %i, %s)", UserID, PlayerSessionIDStr, HopperName, Rating, Variance, Halo2Level, Halo2XP, IsRanked ? "true" : "false");
+		write_line_verbose("IGameEvents::RankedStatsOverride(\"%S\", %S, \"%S\", %lf, %lf, %i, %i, %s)", UserID, PlayerSessionIDStr, HopperName, Rating, Variance, Halo2Level, Halo2XP, IsRanked ? "true" : "false");
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1350,7 +1350,7 @@ void IGameEvents::RankedStatsPenalty(LPWSTR UserID, GUID PlayerSessionID, LPWSTR
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::RankedStatsPenalty(\"%S\", %S, \"%S\", %i)", UserID, PlayerSessionIDStr, HopperName, NumPenaltiesApplied);
+		write_line_verbose("IGameEvents::RankedStatsPenalty(\"%S\", %S, \"%S\", %i)", UserID, PlayerSessionIDStr, HopperName, NumPenaltiesApplied);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1363,7 +1363,7 @@ void IGameEvents::RankedStatsUpdate(LPWSTR UserID, GUID PlayerSessionID, LPWSTR 
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::RankedStatsUpdate(\"%S\", %S, \"%S\", %lf, %lf, %i, %i, %s, %s)", UserID, PlayerSessionIDStr, HopperName, Rating, Variance, Halo2Level, Halo2XP, IsRanked ? "true" : "false", PenaltyApplied ? "true" : "false");
+		write_line_verbose("IGameEvents::RankedStatsUpdate(\"%S\", %S, \"%S\", %lf, %lf, %i, %i, %s, %s)", UserID, PlayerSessionIDStr, HopperName, Rating, Variance, Halo2Level, Halo2XP, IsRanked ? "true" : "false", PenaltyApplied ? "true" : "false");
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1376,7 +1376,7 @@ void IGameEvents::RankedUpSpartanIv(LPWSTR UserID, GUID PlayerSessionID, LPWSTR 
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::RankedUpSpartanIv(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, SpartanIvRank, SpecialisationType);
+		write_line_verbose("IGameEvents::RankedUpSpartanIv(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, SpartanIvRank, SpecialisationType);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1389,7 +1389,7 @@ void IGameEvents::RealtimeFlagCaptured(LPWSTR UserID, GUID PlayerSessionID, LPWS
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::RealtimeFlagCaptured(\"%S\", %S, \"%S\", %i, %s)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, MatchMade ? "true" : "false");
+		write_line_verbose("IGameEvents::RealtimeFlagCaptured(\"%S\", %S, \"%S\", %i, %s)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, MatchMade ? "true" : "false");
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1402,7 +1402,7 @@ void IGameEvents::RealtimeMedal(LPWSTR UserID, GUID PlayerSessionID, LPWSTR Halo
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::RealtimeMedal(\"%S\", %S, \"%S\", %i, %i, %i, %s, %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, GameCategoryID, GameMode, MatchMade ? "true" : "false", MedalType, MedalCount);
+		write_line_verbose("IGameEvents::RealtimeMedal(\"%S\", %S, \"%S\", %i, %i, %i, %s, %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, GameCategoryID, GameMode, MatchMade ? "true" : "false", MedalType, MedalCount);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1415,7 +1415,7 @@ void IGameEvents::RealtimePilotedVehicle(LPWSTR UserID, GUID PlayerSessionID, LP
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::RealtimePilotedVehicle(\"%S\", %S, \"%S\", %i, %s, %i, %lli, %i)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, MatchMade ? "true" : "false", VehicleID, TimeMS, Distance);
+		write_line_verbose("IGameEvents::RealtimePilotedVehicle(\"%S\", %S, \"%S\", %i, %s, %i, %lli, %i)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, MatchMade ? "true" : "false", VehicleID, TimeMS, Distance);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1428,7 +1428,7 @@ void IGameEvents::RivalID(LPWSTR UserID, GUID PlayerSessionID, INT64 RivalID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::RivalID(\"%S\", %S, %lli)", UserID, PlayerSessionIDStr, RivalID);
+		write_line_verbose("IGameEvents::RivalID(\"%S\", %S, %lli)", UserID, PlayerSessionIDStr, RivalID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1441,7 +1441,7 @@ void IGameEvents::SectionEnd(LPWSTR UserID, INT32 SectionID, GUID PlayerSessionI
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::SectionEnd(\"%S\", %S, \"%S\", %i, %i, %i, %i)", UserID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, ExitStatusID, MissionID);
+		write_line_verbose("IGameEvents::SectionEnd(\"%S\", %S, \"%S\", %i, %i, %i, %i)", UserID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, ExitStatusID, MissionID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1454,7 +1454,7 @@ void IGameEvents::SectionStart(LPWSTR UserID, INT32 SectionID, GUID PlayerSessio
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::SectionStart(\"%S\", %i, %S, \"%S\", %i, %i, %i)", UserID, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, MissionID);
+		write_line_verbose("IGameEvents::SectionStart(\"%S\", %i, %S, \"%S\", %i, %i, %i)", UserID, SectionID, PlayerSessionIDStr, MultiplayerCorrelationID, GameplayModeID, DifficultyLevelID, MissionID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1467,7 +1467,7 @@ void IGameEvents::SectionStats(LPWSTR UserID, GUID PlayerSessionID, INT32 Missio
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::SectionStats(\"%S\", %S, %i, %i, %i, %f, %f, %f)", UserID, PlayerSessionIDStr, MissionID, SectionID, SectionOrdinal, ScoreWithoutTimeBonus, ScoreWithTimeBonus, TimeInSeconds);
+		write_line_verbose("IGameEvents::SectionStats(\"%S\", %S, %i, %i, %i, %f, %f, %f)", UserID, PlayerSessionIDStr, MissionID, SectionID, SectionOrdinal, ScoreWithoutTimeBonus, ScoreWithTimeBonus, TimeInSeconds);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1480,7 +1480,7 @@ void IGameEvents::SessionSizeUpdate(LPWSTR UserID, GUID PlayerSessionID, INT32 S
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::SessionSizeUpdate(\"%S\", %S, %i, %i)", UserID, PlayerSessionIDStr, SessionSize, SessionSizeMax);
+		write_line_verbose("IGameEvents::SessionSizeUpdate(\"%S\", %S, %i, %i)", UserID, PlayerSessionIDStr, SessionSize, SessionSizeMax);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1493,7 +1493,7 @@ void IGameEvents::SizeIsEverything(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::SizeIsEverything(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::SizeIsEverything(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1506,7 +1506,7 @@ void IGameEvents::SkeetShooter(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::SkeetShooter(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::SkeetShooter(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1519,7 +1519,7 @@ void IGameEvents::SkullClaimed(LPWSTR UserID, GUID PlayerSessionID, LPWSTR HaloT
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::SkullClaimed(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, SkullID, DifficultyID);
+		write_line_verbose("IGameEvents::SkullClaimed(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, SkullID, DifficultyID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1533,7 +1533,7 @@ void IGameEvents::SoloMissionCompleted(LPWSTR UserID, GUID PlayerSessionID, LPWS
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::SoloMissionCompleted(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::SoloMissionCompleted(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1546,7 +1546,7 @@ void IGameEvents::SoloSpartanOpsMissionCompleted(LPWSTR UserID, GUID PlayerSessi
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::SoloSpartanOpsMissionCompleted(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, DifficultyID);
+		write_line_verbose("IGameEvents::SoloSpartanOpsMissionCompleted(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, DifficultyID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1559,7 +1559,7 @@ void IGameEvents::SpartanOpsMissionCompleted(LPWSTR UserID, GUID PlayerSessionID
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::SpartanOpsMissionCompleted(\"%S\", %S, \"%S\", %i, %i, %i, %s)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, MissionID, DifficultyID, IsCoop ? "true" : "false");
+		write_line_verbose("IGameEvents::SpartanOpsMissionCompleted(\"%S\", %S, \"%S\", %i, %i, %i, %s)", UserID, PlayerSessionIDStr, HaloTitleID, MapID, MissionID, DifficultyID, IsCoop ? "true" : "false");
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1573,7 +1573,7 @@ void IGameEvents::Supercombine(LPWSTR UserID, INT32 SectionID, GUID PlayerSessio
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
 		// TODO: finish
-		//WriteLineVerbose("IGameEvents::Supercombine(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		//write_line_verbose("IGameEvents::Supercombine(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1586,7 +1586,7 @@ void IGameEvents::SurvivalSpace(LPWSTR UserID, GUID PlayerSessionID, LPWSTR Halo
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::SurvivalSpace(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, SurvivalSpace);
+		write_line_verbose("IGameEvents::SurvivalSpace(\"%S\", %S, \"%S\", \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID, SurvivalSpace);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1599,7 +1599,7 @@ void IGameEvents::TerminalFound(LPWSTR UserID, GUID PlayerSessionID, INT32 Termi
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::TerminalFound(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, TerminalID);
+		write_line_verbose("IGameEvents::TerminalFound(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, TerminalID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1612,7 +1612,7 @@ void IGameEvents::TerminalID(LPWSTR UserID, GUID PlayerSessionID, LPWSTR HaloTit
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::TerminalID(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, SkullID, DifficultyID);
+		write_line_verbose("IGameEvents::TerminalID(\"%S\", %S, \"%S\", %i, %i)", UserID, PlayerSessionIDStr, HaloTitleID, SkullID, DifficultyID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1625,7 +1625,7 @@ void IGameEvents::TicketsEarned(LPWSTR UserID, GUID PlayerSessionID, INT32 Ticke
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::TicketsEarned(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, TicketCount);
+		write_line_verbose("IGameEvents::TicketsEarned(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, TicketCount);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1638,7 +1638,7 @@ void IGameEvents::TitleCompleted(LPWSTR UserID, GUID PlayerSessionID, LPWSTR Hal
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::TitleCompleted(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID);
+		write_line_verbose("IGameEvents::TitleCompleted(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1651,7 +1651,7 @@ void IGameEvents::TitleLaunched(LPWSTR UserID, GUID PlayerSessionID, LPWSTR Halo
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::TitleLaunched(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID);
+		write_line_verbose("IGameEvents::TitleLaunched(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1664,7 +1664,7 @@ void IGameEvents::ValhallaSign(LPWSTR UserID, GUID PlayerSessionID, INT32 SignID
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::ValhallaSign(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, SignID);
+		write_line_verbose("IGameEvents::ValhallaSign(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, SignID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1681,7 +1681,7 @@ void IGameEvents::ViewOffer(LPWSTR UserID, GUID PlayerSessionID, GUID OfferGuid,
 		OLECHAR *ProductGuidStr;
 		stringFromCLSIDResult = StringFromCLSID(ProductGuid, &ProductGuidStr);
 
-		WriteLineVerbose("IGameEvents::ValhallaSign(\"%S\", %S, %S, %S)", UserID, PlayerSessionIDStr, OfferGuidStr, ProductGuidStr);
+		write_line_verbose("IGameEvents::ValhallaSign(\"%S\", %S, %S, %S)", UserID, PlayerSessionIDStr, OfferGuidStr, ProductGuidStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 		::CoTaskMemFree(OfferGuidStr);
@@ -1696,7 +1696,7 @@ void IGameEvents::VIPStatusEarned(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::VIPStatusEarned(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::VIPStatusEarned(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1709,7 +1709,7 @@ void IGameEvents::WhatAboutTanksDestroyed(LPWSTR UserID, GUID PlayerSessionID)
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::WhatAboutTanksDestroyed(\"%S\", %S)", UserID, PlayerSessionIDStr);
+		write_line_verbose("IGameEvents::WhatAboutTanksDestroyed(\"%S\", %S)", UserID, PlayerSessionIDStr);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1722,7 +1722,7 @@ void IGameEvents::WonWarGame(LPWSTR UserID, GUID PlayerSessionID, LPWSTR HaloTit
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::SurvivalSpace(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID);
+		write_line_verbose("IGameEvents::SurvivalSpace(\"%S\", %S, \"%S\")", UserID, PlayerSessionIDStr, HaloTitleID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1735,7 +1735,7 @@ void IGameEvents::ZanzibarSign(LPWSTR UserID, GUID PlayerSessionID, INT32 SignID
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::ZanzibarSign(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, SignID);
+		write_line_verbose("IGameEvents::ZanzibarSign(\"%S\", %S, %i)", UserID, PlayerSessionIDStr, SignID);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1748,7 +1748,7 @@ void IGameEvents::FirefightGameResults(LPWSTR UserID, GUID PlayerSessionID, LPWS
 		OLECHAR *PlayerSessionIDStr;
 		HRESULT stringFromCLSIDResult = StringFromCLSID(PlayerSessionID, &PlayerSessionIDStr);
 
-		WriteLineVerbose("IGameEvents::FirefightGameResults(\"%S\", %S, \"%S\", %s, %llu, %u, %u, %u, %u, %u)", UserID, PlayerSessionIDStr, HaloTitleID, MatchMade ? "true" : "false", TimePlayedMS, Kills, MostKillsInARow, SetsCompleted, WavesCompleted, GeneratorsDestroyed);
+		write_line_verbose("IGameEvents::FirefightGameResults(\"%S\", %S, \"%S\", %s, %llu, %u, %u, %u, %u, %u)", UserID, PlayerSessionIDStr, HaloTitleID, MatchMade ? "true" : "false", TimePlayedMS, Kills, MostKillsInARow, SetsCompleted, WavesCompleted, GeneratorsDestroyed);
 
 		::CoTaskMemFree(PlayerSessionIDStr);
 	}
@@ -1758,7 +1758,7 @@ void IGameEvents::EnemyDefeated_0()
 {
 	if (g_logGameEventMessages)
 	{
-		WriteLineVerbose("GameEvent: EnemyDefeated_0");
+		write_line_verbose("GameEvent: EnemyDefeated_0");
 	}
 }
 
@@ -1766,7 +1766,7 @@ void IGameEvents::Member128()
 {
 	if (g_logGameEventMessages)
 	{
-		WriteLineVerbose("IGameEvents::Member128");
+		write_line_verbose("IGameEvents::Member128");
 	}
 }
 
@@ -1774,7 +1774,7 @@ void IGameEvents::Member129()
 {
 	if (g_logGameEventMessages)
 	{
-		WriteLineVerbose("IGameEvents::Member129");
+		write_line_verbose("IGameEvents::Member129");
 	}
 }
 
@@ -1782,7 +1782,7 @@ void IGameEvents::Member130()
 {
 	if (g_logGameEventMessages)
 	{
-		WriteLineVerbose("IGameEvents::Member130");
+		write_line_verbose("IGameEvents::Member130");
 	}
 }
 
@@ -1790,7 +1790,7 @@ void IGameEvents::Member131()
 {
 	if (g_logGameEventMessages)
 	{
-		WriteLineVerbose("IGameEvents::Member131");
+		write_line_verbose("IGameEvents::Member131");
 	}
 }
 
@@ -1799,7 +1799,7 @@ void IGameEvents::Member132()
 	if (g_logGameEventMessages)
 	{
 		// spams console
-		//WriteLineVerbose("IGameEvents::Member132");
+		//write_line_verbose("IGameEvents::Member132");
 	}
 }
 
@@ -1808,7 +1808,7 @@ void IGameEvents::Member133()
 	if (g_logGameEventMessages)
 	{
 		// spams console
-		//WriteLineVerbose("IGameEvents::Member133");
+		//write_line_verbose("IGameEvents::Member133");
 	}
 }
 
@@ -1816,7 +1816,7 @@ INT64 IGameEvents::Member134(INT64)
 {
 	if (g_logGameEventMessages)
 	{
-		WriteLineVerbose("IGameEvents::Member134");
+		write_line_verbose("IGameEvents::Member134");
 	}
 	return INT64(0);
 }
@@ -1825,7 +1825,7 @@ void IGameEvents::Member135()
 {
 	if (g_logGameEventMessages)
 	{
-		WriteLineVerbose("IGameEvents::Member135");
+		write_line_verbose("IGameEvents::Member135");
 	}
 }
 
@@ -1833,7 +1833,7 @@ LPGUID IGameEvents::GetPlayerSessionID()
 {
 	if (g_logGameEventMessages)
 	{
-		WriteLineVerbose("IGameEvents::GetPlayerSessionID");
+		write_line_verbose("IGameEvents::GetPlayerSessionID");
 	}
 	return &playerSessionId;
 }
@@ -1842,7 +1842,7 @@ void IGameEvents::Member137()
 {
 	if (g_logGameEventMessages)
 	{
-		WriteLineVerbose("IGameEvents::Member137");
+		write_line_verbose("IGameEvents::Member137");
 	}
 }
 
@@ -1850,7 +1850,7 @@ void IGameEvents::CheckpointSaved()
 {
 	if (g_logGameEventMessages)
 	{
-		WriteLineVerbose("IGameEvents::CheckpointSaved");
+		write_line_verbose("IGameEvents::CheckpointSaved");
 	}
 }
 
@@ -1858,7 +1858,7 @@ void IGameEvents::Member139()
 {
 	if (g_logGameEventMessages)
 	{
-		WriteLineVerbose("IGameEvents::Member139");
+		write_line_verbose("IGameEvents::Member139");
 	}
 }
 

@@ -2,7 +2,7 @@
 
 class MantleTab;
 
-class MantleGUI
+class c_mantle_gui
 {
 public:
 
@@ -10,12 +10,12 @@ public:
 	// #TODO: Make a shared interface for this
 
 	typedef char* (*GetTagPointerFunc)(uint16_t tagIndex);
-	inline static void SetGetTagPointerFunction(GetTagPointerFunc getTagPointer) { s_getTagPointerFunc = getTagPointer; }
+	inline static void set_get_tag_pointer_function(GetTagPointerFunc getTagPointer) { s_getTagPointerFunc = getTagPointer; }
 	inline static char* GetTagPointer(uint16_t tagIndex) { return s_getTagPointerFunc ? s_getTagPointerFunc(tagIndex) : nullptr; }
 	static GetTagPointerFunc s_getTagPointerFunc;
 
 	typedef char* (*GetTagSectionAddressFunc)(uint32_t address);
-	inline static void SetGetTagSectionAddressFunction(GetTagSectionAddressFunc getTagSectionAddressFunc) { s_getTagSectionAddressFunc = getTagSectionAddressFunc; }
+	inline static void set_get_tag_selection_address_function(GetTagSectionAddressFunc getTagSectionAddressFunc) { s_getTagSectionAddressFunc = getTagSectionAddressFunc; }
 	inline static char* GetTagSectionAddress(uint32_t address) { return s_getTagSectionAddressFunc ? s_getTagSectionAddressFunc(address) : nullptr; }
 	static GetTagSectionAddressFunc s_getTagSectionAddressFunc;
 

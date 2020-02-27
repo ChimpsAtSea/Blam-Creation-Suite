@@ -9,7 +9,7 @@
 #include "ThreadSafeQueue.h"
 #include "ImGuiAddons/ImGuiAddons.h"
 #include "DebugLogging.h"
-#include "CommandLine.h"
+#include "command_line.h"
 #include "FileSystemUtilities.h"
 #include "Rendering/Rendering.h"
 #include "Blam/Blam.h"

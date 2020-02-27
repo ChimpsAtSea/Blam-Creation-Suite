@@ -68,7 +68,7 @@ inline MantleTab::ImGUIDynamicData& MantleTab::GetDynamicData(void* pPosition, b
 		}
 	}
 
-	//WriteLineVerbose("Adding new dynamic data @ %p", pPosition);
+	//write_line_verbose("Adding new dynamic data @ %p", pPosition);
 
 	rWasAllocated = true;
 	ImGUIDynamicData& rDynamicData = *m_imGuiDynamicData.emplace_back(new ImGUIDynamicData{});

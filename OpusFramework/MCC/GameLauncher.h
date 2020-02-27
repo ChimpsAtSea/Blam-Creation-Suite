@@ -14,7 +14,7 @@ private:
 	static void renderMainMenu();
 	static void renderUI();
 	static void gameRender();
-	static void launchGame(Engine engine);
+	static void launchGame(e_engine_type engine_type);
 	static void checkSteamOwnership();
 	static void entireLibraryIsLoaded(const char* pLibName, const char* pFallbackDir);
 	static void renderPauseMenu();
@@ -29,7 +29,7 @@ private:
 private:
 
 public:
-	using GenericGameEvent = void(*)(Engine engine, Build build);
+	using GenericGameEvent = void(*)(e_engine_type engine_type, e_build build);
 	inline static void RegisterGameStartupCallback(GenericGameEvent eventCallback) { s_gameStartupEvent.push_back(eventCallback); }
 	inline static void RegisterGameShutdownCallback(GenericGameEvent eventCallback) { s_gameShutdownEvent.push_back(eventCallback); }
 	inline static void UnregisterGameLaunchCallback(GenericGameEvent eventCallback) { VectorEraseByValueHelper(s_gameStartupEvent, eventCallback); }

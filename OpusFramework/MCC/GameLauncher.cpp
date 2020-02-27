@@ -7,7 +7,7 @@ enum class NextLaunchMode
 	Theater
 };
 NextLaunchMode s_nextLaunchMode = NextLaunchMode::None;
-Engine s_nextLaunchEngine;
+e_engine_type s_nextLaunchEngine;
 
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameStartupEvent;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameShutdownEvent;
@@ -69,9 +69,9 @@ void GameLauncher::WindowDestroyCallback()
 	// terrible hack but lets tell the game to quit and then wait for no game to be running
 	if (s_gameRunning)
 	{
-		IGameEngine* pGameEngine = pCurrentGameHost->GetGameEngine();
+		IGameEngine* pGameEngine = pCurrentGameHost->get_game_engine();
 		pGameEngine->UpdateEngineState(eEngineState::ImmediateExit);
-		WriteLineVerbose("Waiting for game to exit...");
+		write_line_verbose("Waiting for game to exit...");
 		while (s_gameRunning) { Sleep(1); }
 	}
 }
@@ -132,37 +132,37 @@ void GameLauncher::update()
 
 void GameLauncher::gameRender()
 {
-	MantleGUI::GameRender();
+	c_mantle_gui::GameRender();
 	PrimitiveRenderManager::Render();
 }
 
 void GameLauncher::renderUI()
 {
-	MantleGUI::Render();
+	c_mantle_gui::Render();
 	if (s_gameRunning)
 	{
-		pCurrentGameHost->RenderUI();
+		pCurrentGameHost->render_ui();
 	}
 }
 
-void GameLauncher::launchGame(Engine engine)
+void GameLauncher::launchGame(e_engine_type engine_type)
 {
 	s_gameRunning = true;
 	// #TODO: We currently can't resize the game without crashing
 	// we should do this at the beginning of the frame. 
 
 	Render::SetResizeEnabled(false);
-	switch (engine)
+	switch (engine_type)
 	{
 #ifdef _WIN64
-	case Engine::Halo1:
+	case _engine_type_halo1:
 		launchHalo1();
 		break;
-	case Engine::HaloReach:
+	case _engine_type_halo_reach:
 		launchHaloReach();
 		break;
 #else
-	case Engine::Eldorado:
+	case _engine_type_eldorado:
 		launchEldorado();
 		break;
 #endif
@@ -176,19 +176,19 @@ void GameLauncher::launchHalo1()
 {
 	ASSERT(pCurrentGameHost == nullptr);
 
-	pCurrentGameHost = new Halo1GameHost();
+	pCurrentGameHost = new c_halo1_game_host();
 	ASSERT(pCurrentGameHost != nullptr);
-	IGameEngine* pGameEngine = pCurrentGameHost->GetGameEngine();
+	IGameEngine* pGameEngine = pCurrentGameHost->get_game_engine();
 	ASSERT(pGameEngine != nullptr);
 
-	Engine engine = Engine::Halo1;
-	Build build = Halo1GameHost::GetGameRuntime().GetBuildVersion();
+	e_engine_type engine_type = _engine_type_halo1;
+	e_build build = c_halo1_game_host::get_game_runtime().get_build();
 
 	// #TODO: Game specific version of this!!!
 
 	for (GenericGameEvent gameEvent : s_gameStartupEvent)
 	{
-		gameEvent(engine, build);
+		gameEvent(engine_type, build);
 	}
 
 	GameContext gameContext = {};
@@ -197,7 +197,7 @@ void GameLauncher::launchHalo1()
 		e_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
 
 		//const char* pMapFileName = pSelectedMapInfo->GetMapFileName();
-		//WriteLineVerbose("Loading map '%s.map'", pMapFileName);
+		//write_line_verbose("Loading map '%s.map'", pMapFileName);
 		//{
 		//	wchar_t pMapFilePathBuffer[MAX_PATH + 1] = {};
 		//	_snwprintf(pMapFilePathBuffer, MAX_PATH, L"%S%S.map", "halo1/maps/", pMapFileName);
@@ -285,11 +285,11 @@ void GameLauncher::launchHalo1()
 	//} while (waitForSingleObjectResult == WAIT_TIMEOUT);
 	//WaitForSingleObject(hMainGameThread, INFINITE);
 
-	WriteLineVerbose("Game has exited.");
+	write_line_verbose("Game has exited.");
 
 	for (GenericGameEvent gameEvent : s_gameShutdownEvent)
 	{
-		gameEvent(engine, build);
+		gameEvent(engine_type, build);
 	}
 
 	delete pCurrentGameHost;
@@ -305,17 +305,17 @@ void GameLauncher::launchHaloReach()
 
 	pCurrentGameHost = new HaloReachGameHost();
 	ASSERT(pCurrentGameHost != nullptr);
-	IGameEngine* pGameEngine = pCurrentGameHost->GetGameEngine();
+	IGameEngine* pGameEngine = pCurrentGameHost->get_game_engine();
 	ASSERT(pGameEngine != nullptr);
 
-	Engine engine = Engine::HaloReach;
-	Build build = HaloReachGameHost::GetGameRuntime().GetBuildVersion();
+	e_engine_type engine_type = _engine_type_halo_reach;
+	e_build build = HaloReachGameHost::GetGameRuntime().get_build();
 
 	// #TODO: Game specific version of this!!!
 
 	for (GenericGameEvent gameEvent : s_gameStartupEvent)
 	{
-		gameEvent(engine, build);
+		gameEvent(engine_type, build);
 	}
 
 	GameContext gameContext = {};
@@ -324,11 +324,11 @@ void GameLauncher::launchHaloReach()
 		e_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
 
 		const char* pMapFileName = pSelectedMapInfo->GetMapFileName();
-		WriteLineVerbose("Loading map '%s.map'", pMapFileName);
+		write_line_verbose("Loading map '%s.map'", pMapFileName);
 		{
 			wchar_t pMapFilePathBuffer[MAX_PATH + 1] = {};
 			_snwprintf(pMapFilePathBuffer, MAX_PATH, L"%S%S.map", "haloreach/maps/", pMapFileName);
-			MantleGUI::OpenMapFile(pMapFilePathBuffer);
+			c_mantle_gui::OpenMapFile(pMapFilePathBuffer);
 		}
 
 		gameContext.pGameHandle = GetModuleHandle("HaloReach.dll");
@@ -411,11 +411,11 @@ void GameLauncher::launchHaloReach()
 	//} while (waitForSingleObjectResult == WAIT_TIMEOUT);
 	//WaitForSingleObject(hMainGameThread, INFINITE);
 
-	WriteLineVerbose("Game has exited.");
+	write_line_verbose("Game has exited.");
 
 	for (GenericGameEvent gameEvent : s_gameShutdownEvent)
 	{
-		gameEvent(engine, build);
+		gameEvent(engine_type, build);
 	}
 
 	delete pCurrentGameHost;
@@ -509,35 +509,35 @@ void GameLauncher::renderMainMenu()
 		{
 			ImGui::Dummy(ImVec2(0.0f, 30.0f));
 
-			if (ImGui::Button("START GAME (Reach)") || (CommandLine::HasCommandLineArg("-autostart") && !hasAutostarted))
+			if (ImGui::Button("START GAME (Reach)") || (c_command_line::has_command_line_arg("-autostart") && !hasAutostarted))
 			{
 				HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
 				hasAutostarted = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
-				s_nextLaunchEngine = Engine::HaloReach;
+				s_nextLaunchEngine = _engine_type_halo_reach;
 			}
 
 			if (ImGui::Button("PLAY FILM (Reach)") || GetKeyState('P') & 0x80)
 			{
 				s_nextLaunchMode = NextLaunchMode::Theater;
-				s_nextLaunchEngine = Engine::HaloReach;
+				s_nextLaunchEngine = _engine_type_halo_reach;
 			}
 
-			if (ImGui::Button("START GAME (Halo 1)") || (CommandLine::HasCommandLineArg("-autostarthalo1") && !hasAutostarted))
+			if (ImGui::Button("START GAME (Halo 1)") || (c_command_line::has_command_line_arg("-autostarthalo1") && !hasAutostarted))
 			{
 				HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
 				hasAutostarted = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
-				s_nextLaunchEngine = Engine::Halo1;
+				s_nextLaunchEngine = _engine_type_halo1;
 			}
 		}
 #else
 		{
-			if (ImGui::Button("START GAME (Eldorado)") || (CommandLine::HasCommandLineArg("-autostart") && !hasAutostarted))
+			if (ImGui::Button("START GAME (Eldorado)") || (c_command_line::has_command_line_arg("-autostart") && !hasAutostarted))
 			{
 				hasAutostarted = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
-				s_nextLaunchEngine = Engine::Eldorado;
+				s_nextLaunchEngine = _engine_type_eldorado;
 	}
 		}
 #endif

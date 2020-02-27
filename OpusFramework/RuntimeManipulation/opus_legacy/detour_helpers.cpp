@@ -45,14 +45,14 @@ void memcpy_virtual(
 	}
 	else
 	{
-		WriteLineVerbose("dst must not be null");
+		write_line_verbose("dst must not be null");
 		ASSERT(dst != nullptr);
 	}
 }
 
-void nop_address(Engine engine, Build build, intptr_t offset, size_t count)
+void nop_address(e_engine_type engine_type, e_build build, intptr_t offset, size_t count)
 {
-	char* pBeginning = (char*)GetEngineMemoryAddress(engine);
+	char* pBeginning = (char*)GetEngineMemoryAddress(engine_type);
 	char* pNopAttack = pBeginning + (offset - 0x180000000);
 
 	char nop = 0x90i8;
@@ -62,17 +62,17 @@ void nop_address(Engine engine, Build build, intptr_t offset, size_t count)
 	}
 }
 
-void copy_from_address(Engine engine, Build build, intptr_t offset, void* data, size_t length)
+void copy_from_address(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length)
 {
-	char* pBeginning = (char*)GetEngineMemoryAddress(engine);
+	char* pBeginning = (char*)GetEngineMemoryAddress(engine_type);
 	char* pDataAttack = pBeginning + (offset - 0x180000000);
 
 	memcpy_virtual(data, pDataAttack, length);
 }
 
-void copy_to_address(Engine engine, Build build, intptr_t offset, void* data, size_t length)
+void copy_to_address(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length)
 {
-	char* pBeginning = (char*)GetEngineMemoryAddress(engine);
+	char* pBeginning = (char*)GetEngineMemoryAddress(engine_type);
 	char* pDataAttack = pBeginning + (offset - 0x180000000);
 
 	memcpy_virtual(pDataAttack, data, length);

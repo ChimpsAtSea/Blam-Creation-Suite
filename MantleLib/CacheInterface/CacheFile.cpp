@@ -119,7 +119,7 @@ void CacheFile::loadMap(const std::wstring& mapFilePath)
 
 			initSortedInstanceLists();
 
-			WriteLineVerbose("");
+			write_line_verbose("");
 		}
 
 		m_isMapLoading = false;

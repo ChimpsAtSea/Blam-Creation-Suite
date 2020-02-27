@@ -2,6 +2,6 @@
 
 #ifdef _WIN64
 
-#include "Halo1GameHost.h"
+#include "halo1_game_host.h"
 
 #endif

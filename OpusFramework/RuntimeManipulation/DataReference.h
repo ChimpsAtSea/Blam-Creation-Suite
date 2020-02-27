@@ -4,13 +4,13 @@ class c_data_reference_base
 {
 public:
 	c_data_reference_base(
-		Engine engine,
-		Build build,
+		e_engine_type engine_type,
+		e_build build,
 		size_t dataSize,
 		size_t offset,
 		find_offset_func find_offset
 	)
-		: m_engine(engine)
+		: m_engine(engine_type)
 		, m_build(build)
 		, m_pNextDataReference(nullptr)
 		, m_dataSize(dataSize)
@@ -29,15 +29,15 @@ public:
 			g_pDataReferenceBaseBaseLast = this;
 		}
 
-		if (build != Build::NotSet && IsEngineLoaded(engine))
+		if (build != e_build::_build_not_set && IsEngineLoaded(engine_type))
 		{
-			initNode(engine, build);
+			initNode(engine_type, build);
 		}
 	}
 
 private:
-	Engine m_engine;
-	Build m_build;
+	e_engine_type m_engine;
+	e_build m_build;
 	c_data_reference_base* m_pNextDataReference;
 	size_t m_dataSize;
 	size_t m_offset;
@@ -49,53 +49,53 @@ private:
 	find_offset_func* m_find_offset_func;
 
 public:
-	static void InitTree(Engine engine, Build build)
+	static void init_data_reference_tree(e_engine_type engine_type, e_build build)
 	{
 		// this iteration avoids having to do this recursively
 
 		c_data_reference_base* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
 		while (pCurrentDataReferenceBase)
 		{
-			pCurrentDataReferenceBase = pCurrentDataReferenceBase->initNode(engine, build);
+			pCurrentDataReferenceBase = pCurrentDataReferenceBase->initNode(engine_type, build);
 		}
 	}
 
-	static void DeinitTree(Engine engine, Build build)
+	static void deinit_data_reference_tree(e_engine_type engine_type, e_build build)
 	{
 		// this iteration avoids having to do this recursively
 
 		c_data_reference_base* pCurrentDataReferenceBase = g_pDataReferenceBaseBaseFirst;
 		while (pCurrentDataReferenceBase)
 		{
-			pCurrentDataReferenceBase = pCurrentDataReferenceBase->deinitNode(engine, build);
+			pCurrentDataReferenceBase = pCurrentDataReferenceBase->deinitNode(engine_type, build);
 		}
 	}
 
 private:
 
-	c_data_reference_base* initNode(Engine engine, Build build)
+	c_data_reference_base* initNode(e_engine_type engine_type, e_build build)
 	{
-		if (m_engine == engine)
+		if (m_engine == engine_type)
 		{
 			if (m_pPtr == nullptr)
 			{
-				if (m_build == Build::NotSet)
+				if (m_build == e_build::_build_not_set)
 				{
 					ASSERT(m_find_offset_func != nullptr);
-					m_pPtr = getPointer(engine, build);
+					m_pPtr = getPointer(engine_type, build);
 				}
 				if (m_build == build)
 				{
-					m_pPtr = getPointer(engine, build);
+					m_pPtr = getPointer(engine_type, build);
 					ASSERT(m_pPtr != nullptr);
 				}
 			}
 		}
 		return m_pNextDataReference;
 	}
-	c_data_reference_base* deinitNode(Engine engine, Build build)
+	c_data_reference_base* deinitNode(e_engine_type engine_type, e_build build)
 	{
-		if (m_engine == engine)
+		if (m_engine == engine_type)
 		{
 			if (m_pPtr != nullptr)
 			{
@@ -105,9 +105,9 @@ private:
 		return m_pNextDataReference;
 	}
 
-	void* getPointer(Engine engine, Build build)
+	void* getPointer(e_engine_type engine_type, e_build build)
 	{
-		if (m_engine != engine)
+		if (m_engine != engine_type)
 		{
 			return nullptr;
 		}
@@ -115,21 +115,21 @@ private:
 		uintptr_t offset = m_offset;
 		if (offset == 0 && m_find_offset_func)
 		{
-			offset = m_find_offset_func(engine, build);
+			offset = m_find_offset_func(engine_type, build);
 
 			if (offset == ~uintptr_t())
 			{
 				return nullptr;
 			}
 
-			ASSERT(m_build == Build::NotSet && offset >= GetEngineBaseAddress(engine)/*, "Offset is out of bounds"*/);
-			ASSERT(m_build == Build::NotSet && offset < GetEngineTopAddress(engine, build)/*, "Offset is out of bounds"*/);
-			ASSERT(m_build == Build::NotSet && static_cast<uintptr_t>(offset + m_dataSize) < GetEngineTopAddress(engine, build)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == e_build::_build_not_set && offset >= GetEngineBaseAddress(engine_type)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == e_build::_build_not_set && offset < GetEngineTopAddress(engine_type, build)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == e_build::_build_not_set && static_cast<uintptr_t>(offset + m_dataSize) < GetEngineTopAddress(engine_type, build)/*, "Offset is out of bounds"*/);
 		}
 
-		void* pModule = GetEngineMemoryAddress(engine);
+		void* pModule = GetEngineMemoryAddress(engine_type);
 		char* pBaseAddress = reinterpret_cast<char*>(pModule);
-		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetEngineBaseAddress(engine)));
+		char* ptr = reinterpret_cast<char*>(pBaseAddress + (offset - GetEngineBaseAddress(engine_type)));
 		return ptr;
 	}
 

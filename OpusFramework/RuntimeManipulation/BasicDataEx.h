@@ -6,7 +6,7 @@ class BasicDataEx : public c_data_reference_base
 public:
 	BasicDataEx(const BasicDataEx&) = delete;
 	BasicDataEx()
-		: c_data_reference_base(Build::NotSet, sizeof(T), 0, find_offset)
+		: c_data_reference_base(_build_not_set, sizeof(T), 0, find_offset)
 	{
 
 	}

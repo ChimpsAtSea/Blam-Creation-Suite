@@ -37,7 +37,7 @@ void PrimitiveRenderManager::Render()
 	SetupConstantBuffers();
 	UpdateConstantsBuffer();
 
-	static bool enablePrimitiveDebug = CommandLine::HasCommandLineArg("-primitivedebug");
+	static bool enablePrimitiveDebug = c_command_line::has_command_line_arg("-primitivedebug");
 	if (enablePrimitiveDebug)
 	{
 		static BoxPrimitive debugBox;

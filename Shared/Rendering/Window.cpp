@@ -127,7 +127,7 @@ void Window::Init(const char* pWindowTitle, const char* pConsoleTitle, const cha
 #else
 	constexpr bool isDebug = false;
 #endif
-	if ((CommandLine::HasCommandLineArg("-showconsole") || isDebug) && !CommandLine::HasCommandLineArg("-hideconsole"))
+	if ((c_command_line::has_command_line_arg("-showconsole") || isDebug) && !c_command_line::has_command_line_arg("-hideconsole"))
 	{
 		AllocConsole();
 		FILE* pStdOut = freopen("CONOUT$", "w", stdout);

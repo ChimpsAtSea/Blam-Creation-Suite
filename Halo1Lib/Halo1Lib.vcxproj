@@ -101,7 +101,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Halo1GameHost.cpp" />
+    <ClCompile Include="halo1_game_host.cpp" />
     <ClCompile Include="halo1lib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -109,7 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="opus_legacy\c_network.h" />
-    <ClInclude Include="Halo1GameHost.h" />
+    <ClInclude Include="halo1_game_host.h" />
     <ClInclude Include="halo1lib-private-pch.h" />
     <ClInclude Include="halo1lib-public-pch.h" />
     <ClInclude Include="opus_legacy\Halo1.h" />
@@ -120,7 +120,7 @@
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Halo1GameHost.Testing.inl" />
+    <None Include="halo1_game_host.testing.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

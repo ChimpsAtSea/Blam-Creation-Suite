@@ -38,7 +38,7 @@ int WINAPI wWinMain(
 	UpdateResources(szExecutableFilename, szBoxShaderPSFilename, ResourceType::BoxPixelShader);
 	UpdateResources(szExecutableFilename, szBoxShaderVSFilename, ResourceType::BoxVertexShader);
 
-	WriteLineVerbose("ResourcesPackager> Successfully updated resources");
+	write_line_verbose("ResourcesPackager> Successfully updated resources");
 
 	return 0;
 }

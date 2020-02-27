@@ -56,9 +56,9 @@ void _simple_pattern_match_readonly_data_copy(
 	}
 }
 
-uintptr_t simple_pattern_match(Engine engine, Build build, const char pInputData[], size_t inputDataLength, const char* pInputMask)
+uintptr_t simple_pattern_match(e_engine_type engine_type, e_build build, const char pInputData[], size_t inputDataLength, const char* pInputMask)
 {
-	void* pEngineAddress = GetEngineMemoryAddress(engine);
+	void* pEngineAddress = GetEngineMemoryAddress(engine_type);
 	SIZE_T sizeOfImage = 0;
 	void* pModuleData = nullptr;
 	_simple_pattern_match_readonly_data_copy(pEngineAddress, sizeOfImage, pModuleData);
@@ -91,7 +91,7 @@ uintptr_t simple_pattern_match(Engine engine, Build build, const char pInputData
 				}
 			}
 
-			return GetEngineBaseAddress(engine) + static_cast<intptr_t>(imageOffset);
+			return GetEngineBaseAddress(engine_type) + static_cast<intptr_t>(imageOffset);
 		search_fail_im:
 			continue;
 		}
@@ -104,7 +104,7 @@ uintptr_t simple_pattern_match(Engine engine, Build build, const char pInputData
 
 			if (memcmp(pCurrentSearchPointer, pInputData, inputDataLength) == 0)
 			{
-				return GetEngineBaseAddress(engine) + static_cast<intptr_t>(imageOffset);
+				return GetEngineBaseAddress(engine_type) + static_cast<intptr_t>(imageOffset);
 			}
 
 			//	for (size_t currentPatternIndex = 0; currentPatternIndex < inputDataLength; currentPatternIndex++)
@@ -124,48 +124,48 @@ uintptr_t simple_pattern_match(Engine engine, Build build, const char pInputData
 	return 0;
 }
 
-uintptr_t string_search(Engine engine, Build build, const char* pString)
+uintptr_t string_search(e_engine_type engine_type, e_build build, const char* pString)
 {
-	uintptr_t imageAddress = simple_pattern_match(engine, build, pString, strlen(pString) + 1, nullptr);
+	uintptr_t imageAddress = simple_pattern_match(engine_type, build, pString, strlen(pString) + 1, nullptr);
 	return imageAddress;
 }
 
-const char* string_search_ptr(Engine engine, Build build, const char* pString)
+const char* string_search_ptr(e_engine_type engine_type, e_build build, const char* pString)
 {
-	uintptr_t imageAddress = string_search(engine, build, pString);
+	uintptr_t imageAddress = string_search(engine_type, build, pString);
 	if (imageAddress)
 	{
-		const char* pStringAddress = reinterpret_cast<const char*>(GetEngineMemoryAddress(engine)) + (imageAddress - GetEngineBaseAddress(engine));
+		const char* pStringAddress = reinterpret_cast<const char*>(GetEngineMemoryAddress(engine_type)) + (imageAddress - GetEngineBaseAddress(engine_type));
 		return pStringAddress;
 	}
 	return nullptr;
 }
 
-uintptr_t load_state_offset(Engine engine, Build build)
+uintptr_t load_state_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		switch (build)
 		{
-		case Build::MCC_1_887_0_0: return 0x1810EC5A4;
-		case Build::MCC_1_1035_0_0: return 0x180D37AB0;
-		case Build::MCC_1_1186_0_0: return 0x180D4E674;
-		case Build::MCC_1_1211_0_0: return 0x180D4F674;
-		case Build::MCC_1_1246_0_0: return 0x180D494F4;
-		case Build::MCC_1_1270_0_0: return 0x180D494F4;
-		case Build::MCC_1_1305_0_0: return 0x180CF8AF4;
+		case e_build::_build_mcc_1_887_0_0: return 0x1810EC5A4;
+		case e_build::_build_mcc_1_1035_0_0: return 0x180D37AB0;
+		case e_build::_build_mcc_1_1186_0_0: return 0x180D4E674;
+		case e_build::_build_mcc_1_1211_0_0: return 0x180D4F674;
+		case e_build::_build_mcc_1_1246_0_0: return 0x180D494F4;
+		case e_build::_build_mcc_1_1270_0_0: return 0x180D494F4;
+		case e_build::_build_mcc_1_1305_0_0: return 0x180CF8AF4;
 		}
 	}
 	return ~uintptr_t ();
 }
 DataEx<int, load_state_offset> load_state;
 
-uintptr_t main_game_launch_offset(Engine engine, Build build)
+uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine))); // 1.1270.0.0
+		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine_type))); // 1.1270.0.0
 		ps.AddInstruction(new _push("x", 0x40, 0x57));																	//.text:0000000180011870	push		rdi
 		ps.AddInstruction(new _sub("x", 0x48, 0x83, 0xEC, 0x30));														//.text:0000000180011872	sub			rsp, 30h
 		ps.AddInstruction(new _mov("x", 0x48, 0xC7, 0x44, 0x24, 0x20, 0xFE, 0xFF, 0xFF, 0xFF));							//.text:0000000180011876	mov			[rsp+38h+var_18], 0FFFFFFFFFFFFFFFEh
@@ -196,22 +196,22 @@ uintptr_t main_game_launch_offset(Engine engine, Build build)
 		DWORD patternOffset = ps.FindPattern(0);
 		if (patternOffset)
 		{
-			WriteLineVerbose("ketchup> SUCCEED: main_game_launch_offset @0x%x", patternOffset);
-			return GetEngineBaseAddress(engine) + patternOffset;
+			write_line_verbose("ketchup> SUCCEED: main_game_launch_offset @0x%x", patternOffset);
+			return GetEngineBaseAddress(engine_type) + patternOffset;
 		}
 		else
 		{
-			WriteLineVerbose("ketchup> FAILURE: main_game_launch_offset");
+			write_line_verbose("ketchup> FAILURE: main_game_launch_offset");
 		}
 
 		switch (build)
 		{
-		case Build::MCC_1_887_0_0: return 0x180013EA0;
-		case Build::MCC_1_1035_0_0: return 0x1800113F0;
-		case Build::MCC_1_1186_0_0: return 0x180011860;
-		case Build::MCC_1_1211_0_0: return 0x180011870;
-		case Build::MCC_1_1246_0_0: return 0x180011870;
-		case Build::MCC_1_1270_0_0: return 0x180011870;
+		case e_build::_build_mcc_1_887_0_0: return 0x180013EA0;
+		case e_build::_build_mcc_1_1035_0_0: return 0x1800113F0;
+		case e_build::_build_mcc_1_1186_0_0: return 0x180011860;
+		case e_build::_build_mcc_1_1211_0_0: return 0x180011870;
+		case e_build::_build_mcc_1_1246_0_0: return 0x180011870;
+		case e_build::_build_mcc_1_1270_0_0: return 0x180011870;
 		}
 	}
 	return ~uintptr_t ();
@@ -265,12 +265,12 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 } };
 
 
-uintptr_t convert_mcc_map_id_to_reach_map_id_offset(Engine engine, Build build)
+uintptr_t convert_mcc_map_id_to_reach_map_id_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine)));			// 1.1270.0.0
+		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine_type)));			// 1.1270.0.0
 		ps.AddInstruction(new _or("x", 0x83, 0xCA, 0xFF));																//.text:000000018004BF10 83 CA FF                    or      edx, 0FFFFFFFFh
 		ps.AddInstruction(new _add("x", 0x81, 0xC1, 0x4E, 0xFF, 0xF, 0xFF));												//.text:000000018004BF13 81 C1 4E FF+                add     ecx, 0FFFFFF4Eh ; switch 42 cases
 		ps.AddInstruction(new _cmp("x", 0x83, 0xF9, 0x29));																//.text:000000018004BF19 83 F9 29                    cmp     ecx, 29h
@@ -298,12 +298,12 @@ uintptr_t convert_mcc_map_id_to_reach_map_id_offset(Engine engine, Build build)
 		DWORD patternOffset = ps.FindPattern(0);
 		if (patternOffset)
 		{
-			WriteLineVerbose("ketchup> SUCCEED: convert_mcc_map_id_to_reach_map_id_offset @0x%x", patternOffset);
-			return GetEngineBaseAddress(engine) + patternOffset;
+			write_line_verbose("ketchup> SUCCEED: convert_mcc_map_id_to_reach_map_id_offset @0x%x", patternOffset);
+			return GetEngineBaseAddress(engine_type) + patternOffset;
 		}
 		else
 		{
-			WriteLineVerbose("ketchup> FAILURE: convert_mcc_map_id_to_reach_map_id_offset");
+			write_line_verbose("ketchup> FAILURE: convert_mcc_map_id_to_reach_map_id_offset");
 			return ~uintptr_t ();
 		}
 	}
@@ -322,12 +322,12 @@ FunctionHookEx<convert_mcc_map_id_to_reach_map_id_offset, int __fastcall (int a1
 	}
 } };
 
-uintptr_t convert_reach_map_id_to_mcc_map_id_offset(Engine engine, Build build)
+uintptr_t convert_reach_map_id_to_mcc_map_id_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine)));			// 1.1270.0.0
+		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine_type)));			// 1.1270.0.0
 		ps.AddInstruction(new _or("x", 0x83, 0xCA, 0xFF));																		// .text:000000018004C140 83 CA FF                    or      edx, 0FFFFFFFFh
 		ps.AddInstruction(new _cmp("x", 0x81, 0xF9, 0x8D, 0x13, 0x00, 0x00));													// .text:000000018004C143 81 F9 8D 13+                cmp     ecx, 138Dh
 		ps.AddInstruction(new _ja("x", 0x0F, 0x87, 0xEE, 0x00, 0x00, 0x00));													// .text:000000018004C149 0F 87 EE 00+                ja      loc_18004C23D
@@ -357,12 +357,12 @@ uintptr_t convert_reach_map_id_to_mcc_map_id_offset(Engine engine, Build build)
 		DWORD patternOffset = ps.FindPattern(0);
 		if (patternOffset)
 		{
-			WriteLineVerbose("ketchup> SUCCEED: convert_reach_map_id_to_mcc_map_id_offset @0x%x", patternOffset);
-			return GetEngineBaseAddress(engine) + patternOffset;
+			write_line_verbose("ketchup> SUCCEED: convert_reach_map_id_to_mcc_map_id_offset @0x%x", patternOffset);
+			return GetEngineBaseAddress(engine_type) + patternOffset;
 		}
 		else
 		{
-			WriteLineVerbose("ketchup> FAILURE: convert_reach_map_id_to_mcc_map_id_offset");
+			write_line_verbose("ketchup> FAILURE: convert_reach_map_id_to_mcc_map_id_offset");
 			return ~uintptr_t ();
 		}
 	}
@@ -620,15 +620,15 @@ void halo_reach_debug_callback()
 	ImGui::End();
 }
 
-char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", Engine::HaloReach, Build::MCC_1_1035_0_0, 0x180A0EE08);
+char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", _engine_type_halo_reach, e_build::_build_mcc_1_1035_0_0, 0x180A0EE08);
 
-uintptr_t t_restricted_allocation_manager__reserve_memory_offset(Engine engine, Build build)
+uintptr_t t_restricted_allocation_manager__reserve_memory_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		switch (build)
 		{
-		case Build::MCC_1_1270_0_0: return 0x180211A20;
+		case e_build::_build_mcc_1_1270_0_0: return 0x180211A20;
 		}
 	}
 	return ~uintptr_t ();
@@ -637,7 +637,7 @@ uintptr_t t_restricted_allocation_manager__reserve_memory_offset(Engine engine, 
 FunctionHookEx<t_restricted_allocation_manager__reserve_memory_offset, __int64 __fastcall (t_restricted_allocation_manager__reserve_memory_offset_args)> t_restricted_allocation_manager__reserve_memory = { "t_restricted_allocation_manager__reserve_memory", [](t_restricted_allocation_manager__reserve_memory_offset_args)
 {
 	__int64 result = t_restricted_allocation_manager__reserve_memory(__this, szName, a3, a4, a5, a6, a7, a8);
-	WriteLineVerbose("t_restricted_allocation_manager> Allocating memory for '%s'", szName);
+	write_line_verbose("t_restricted_allocation_manager> Allocating memory for '%s'", szName);
 	return result;
 } };
 
@@ -668,28 +668,28 @@ struct hs_script_op
 };
 #pragma pack(pop)
 
-uintptr_t hs_function_table_offset(Engine engine, Build build)
+uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		switch (build)
 		{
-		case Build::MCC_1_1270_0_0: return 0x180ABC230;
-		case Build::MCC_1_1305_0_0: return 0x180AA76C0;
+		case e_build::_build_mcc_1_1270_0_0: return 0x180ABC230;
+		case e_build::_build_mcc_1_1305_0_0: return 0x180AA76C0;
 		}
 	}
 	return ~uintptr_t ();
 }
 DataEx<hs_script_op * [1995], hs_function_table_offset> hs_function_table;
 
-uintptr_t hs_evaluate_arguments_offset(Engine engine, Build build)
+uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		switch (build)
 		{
-		case Build::MCC_1_1270_0_0: return 0x1801EF690;
-		case Build::MCC_1_1305_0_0: return 0x1801EF7A0;
+		case e_build::_build_mcc_1_1270_0_0: return 0x1801EF690;
+		case e_build::_build_mcc_1_1305_0_0: return 0x1801EF7A0;
 		}
 	}
 	return ~uintptr_t ();
@@ -698,14 +698,14 @@ uintptr_t hs_evaluate_arguments_offset(Engine engine, Build build)
 template<typename t_parameter>
 FunctionHookEx<hs_evaluate_arguments_offset, t_parameter __fastcall (unsigned short expression_index, short parameters_count, short* parameters, char execute)> hs_evaluate_arguments;
 
-uintptr_t hs_return_offset(Engine engine, Build build)
+uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		switch (build)
 		{
-		case Build::MCC_1_1270_0_0: return 0x1801EEE00;
-		case Build::MCC_1_1305_0_0: return 0x1801EEF10;
+		case e_build::_build_mcc_1_1270_0_0: return 0x1801EEE00;
+		case e_build::_build_mcc_1_1305_0_0: return 0x1801EEF10;
 		}
 	}
 	return ~uintptr_t ();
@@ -725,14 +725,14 @@ t_parameter& hs_macro_function_evaluate(short opcode, unsigned short expression_
 	return *hs_evaluate_arguments<t_parameter*>(expression_index, op->parameter_count, &op->parameter_types, execute);
 }
 
-uintptr_t script_string_get_offset(Engine engine, Build build)
+uintptr_t script_string_get_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		switch (build)
 		{
-		case Build::MCC_1_1270_0_0: return 0x1801ECF80;
-		case Build::MCC_1_1305_0_0: return 0x1801ED090;
+		case e_build::_build_mcc_1_1270_0_0: return 0x1801ECF80;
+		case e_build::_build_mcc_1_1305_0_0: return 0x1801ED090;
 		}
 	}
 	return ~uintptr_t ();
@@ -752,14 +752,14 @@ void __fastcall hs_print_evaluate(short opcode, unsigned short expression_index,
 	}
 }
 
-uintptr_t camera_definition_validate_offset(Engine engine, Build build)
+uintptr_t camera_definition_validate_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		switch (build)
 		{
-		case Build::MCC_1_1270_0_0: return 0x1800E6950;
-		case Build::MCC_1_1305_0_0: return 0x1800E6A00;
+		case e_build::_build_mcc_1_1270_0_0: return 0x1800E6950;
+		case e_build::_build_mcc_1_1305_0_0: return 0x1800E6A00;
 		}
 	}
 	return ~uintptr_t ();
@@ -823,7 +823,7 @@ FunctionHookEx<camera_definition_validate_offset, void __fastcall (s_camera_defi
 
 
 
-void init_halo_reach_with_mcc(Engine engine, Build build, bool isMCC)
+void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isMCC)
 {
 	Window::SetWindowTitle("Halo Reach");
 	ReadConfig();
@@ -831,43 +831,43 @@ void init_halo_reach_with_mcc(Engine engine, Build build, bool isMCC)
 
 	init_detours();
 
-	c_data_reference_base::InitTree(Engine::HaloReach, build);
-	c_function_hook_base::InitTree(Engine::HaloReach, build);
-	c_global_reference::InitTree(Engine::HaloReach, build);
+	c_data_reference_base::init_data_reference_tree(_engine_type_halo_reach, build);
+	c_function_hook_base::init_function_hook_tree(_engine_type_halo_reach, build);
+	c_global_reference::init_global_reference_tree(_engine_type_halo_reach, build);
 	end_detours();
 
 	// Allows spawning AI via scripts or effects, props to Zeddikins
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "SpawnAiWithScriptsAndEffects", true))
 	{
 		UINT8 jmp[1] = { 0xEB };
-		if (build == Build::MCC_1_1270_0_0)
+		if (build == e_build::_build_mcc_1_1270_0_0)
 		{
-			copy_to_address(Engine::HaloReach, Build::MCC_1_1270_0_0, 0x18076F581, jmp, sizeof(jmp));
-			nop_address(Engine::HaloReach, Build::MCC_1_1270_0_0, 0x180730287, 6);
+			copy_to_address(_engine_type_halo_reach, e_build::_build_mcc_1_1270_0_0, 0x18076F581, jmp, sizeof(jmp));
+			nop_address(_engine_type_halo_reach, e_build::_build_mcc_1_1270_0_0, 0x180730287, 6);
 		}
-		if (build == Build::MCC_1_1305_0_0)
+		if (build == e_build::_build_mcc_1_1305_0_0)
 		{
-			copy_to_address(Engine::HaloReach, Build::MCC_1_1305_0_0, 0x18076E341, jmp, sizeof(jmp));
-			nop_address(Engine::HaloReach, Build::MCC_1_1305_0_0, 0x18072F047, 6);
+			copy_to_address(_engine_type_halo_reach, e_build::_build_mcc_1_1305_0_0, 0x18076E341, jmp, sizeof(jmp));
+			nop_address(_engine_type_halo_reach, e_build::_build_mcc_1_1305_0_0, 0x18072F047, 6);
 		}
 	}
 
 	// Allow the use of night vision in multiplayer, props to Zeddikins
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "AllowNightVisionInMultiplayer", true))
 	{
-		if (build == Build::MCC_1_1305_0_0)
+		if (build == e_build::_build_mcc_1_1305_0_0)
 		{
-			nop_address(Engine::HaloReach, Build::MCC_1_1305_0_0, 0x1805D66B7, 6);
+			nop_address(_engine_type_halo_reach, e_build::_build_mcc_1_1305_0_0, 0x1805D66B7, 6);
 		}
 	}
 
 	// Enable debug hud coordinates
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "PanCamEnabled", true))
 	{
-		if (build == Build::MCC_1_1305_0_0)
+		if (build == e_build::_build_mcc_1_1305_0_0)
 		{
-			nop_address(Engine::HaloReach, Build::MCC_1_1305_0_0, 0x1800DCA8A, 6);
-			nop_address(Engine::HaloReach, Build::MCC_1_1305_0_0, 0x1800DCA97, 6);
+			nop_address(_engine_type_halo_reach, e_build::_build_mcc_1_1305_0_0, 0x1800DCA8A, 6);
+			nop_address(_engine_type_halo_reach, e_build::_build_mcc_1_1305_0_0, 0x1800DCA97, 6);
 		}
 	}
 
@@ -892,18 +892,18 @@ void init_halo_reach_with_mcc(Engine engine, Build build, bool isMCC)
 	//LegacyGameLauncher::RegisterTerminationValue(g_termination_value);
 }
 
-void init_halo_reach(Engine engine, Build build)
+void init_halo_reach(e_engine_type engine_type, e_build build)
 {
-	init_halo_reach_with_mcc(engine, build, false);
+	init_halo_reach_with_mcc(engine_type, build, false);
 }
 
-void deinit_halo_reach(Engine engine, Build build)
+void deinit_halo_reach(e_engine_type engine_type, e_build build)
 {
 	//DebugUI::UnregisterCallback(halo_reach_debug_callback);
 
 	init_detours();
-	c_function_hook_base::DeinitTree(Engine::HaloReach, build);
-	c_data_reference_base::DeinitTree(Engine::HaloReach, build);
-	c_global_reference::DeinitTree(Engine::HaloReach, build);
+	c_function_hook_base::deinit_function_hook_tree(_engine_type_halo_reach, build);
+	c_data_reference_base::deinit_data_reference_tree(_engine_type_halo_reach, build);
+	c_global_reference::deinit_global_reference_tree(_engine_type_halo_reach, build);
 	end_detours();
 }

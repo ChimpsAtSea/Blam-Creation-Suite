@@ -5,8 +5,8 @@ typedef void(FunctionHookCallback)(void* pUserData);
 class c_function_hook_base
 {
 public:
-	c_function_hook_base(const char* pName, Engine engine, Build build, size_t offset, find_offset_func find_offset)
-		: m_engine(engine)
+	c_function_hook_base(const char* pName, e_engine_type engine_type, e_build build, size_t offset, find_offset_func find_offset)
+		: m_engine(engine_type)
 		, m_build(build)
 		, m_offset(offset)
 		, m_pNextFunctionHook(nullptr)
@@ -24,7 +24,7 @@ public:
 		}
 		else
 		{
-			bool hookOffsetExists = g_pLastFunctionHook->DoesOffsetExist(engine, build, offset);
+			bool hookOffsetExists = g_pLastFunctionHook->DoesOffsetExist(engine_type, build, offset);
 			ASSERT(hookOffsetExists == false);
 
 			g_pLastFunctionHook->m_pNextFunctionHook = this;
@@ -34,8 +34,8 @@ public:
 
 	find_offset_func* m_find_offset_func;
 	uintptr_t m_offset;
-	Engine m_engine;
-	Build m_build;
+	e_engine_type m_engine;
+	e_build m_build;
 	bool m_isActive;
 	bool m_isHooked;
 	FunctionHookCallback* m_pCallback;
@@ -46,11 +46,11 @@ public:
 	static c_function_hook_base* g_pFirstFunctionHook;
 	static c_function_hook_base* g_pLastFunctionHook;
 
-	[[nodiscard]] c_function_hook_base* InitNode(Engine engine, Build build);
-	[[nodiscard]] c_function_hook_base* DeinitNode(Engine engine, Build build);
+	[[nodiscard]] c_function_hook_base* InitNode(e_engine_type engine_type, e_build build);
+	[[nodiscard]] c_function_hook_base* DeinitNode(e_engine_type engine_type, e_build build);
 
-	static void InitTree(Engine engine, Build build);
-	static void DeinitTree(Engine engine, Build build);
+	static void init_function_hook_tree(e_engine_type engine_type, e_build build);
+	static void deinit_function_hook_tree(e_engine_type engine_type, e_build build);
 
 	void SetIsActive(bool isActive)
 	{
@@ -64,11 +64,11 @@ public:
 	}
 
 private:
-	bool DoesOffsetExist(Engine engine, Build build, size_t offset)
+	bool DoesOffsetExist(e_engine_type engine_type, e_build build, size_t offset)
 	{
-		if (m_engine == engine)
+		if (m_engine == engine_type)
 		{
-			if (build == Build::NotSet)
+			if (build == e_build::_build_not_set)
 			{
 				return false;
 			}
@@ -79,7 +79,7 @@ private:
 		}
 		if (m_pNextFunctionHook)
 		{
-			return m_pNextFunctionHook->DoesOffsetExist(engine, build, offset);
+			return m_pNextFunctionHook->DoesOffsetExist(engine_type, build, offset);
 		}
 		return false;
 	}

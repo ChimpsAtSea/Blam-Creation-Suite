@@ -12,8 +12,8 @@ public:
 
 
 	// Opus Functionality
-	virtual void RenderUI() const;
-	virtual IGameEngine* GetGameEngine() const;
+	virtual void render_ui() const override;
+	virtual IGameEngine* get_game_engine() const override;
 
 private:
 	static void updateCamera();
@@ -25,8 +25,8 @@ private:
 public:
 	static IDataAccess* GetDataAccess() { return s_haloReachGameRuntime.GetDataAccess(); }
 	static c_game_runtime& GetGameRuntime() { return s_haloReachGameRuntime; }
-	static void InitModifications(Build build);
-	static void DeinitModifications(Build build);
+	static void InitModifications(e_build build);
+	static void DeinitModifications(e_build build);
 private:
 	static c_game_runtime s_haloReachGameRuntime;
 };

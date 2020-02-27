@@ -31,7 +31,7 @@ if(strcmp(_LOGCOMBINE(__buffer_last, __LINE__), _LOGCOMBINE(__buffer_current, __
 } \
 (void)(0)
 
-#define WriteLineVerbose(str, ...) \
+#define write_line_verbose(str, ...) \
 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); \
 printf(str, ##__VA_ARGS__); \
 printf("\n")
@@ -52,5 +52,5 @@ SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7)
 
 #define WriteColoredPrefixVerbose(color, prefix, str, ...) \
 WriteColoredVerbose(color, "%s ", prefix); \
-WriteLineVerbose(str, ##__VA_ARGS__)
+write_line_verbose(str, ##__VA_ARGS__)
 

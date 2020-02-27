@@ -59,7 +59,7 @@ void DebugUI::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain*
 	s_mutex.lock();
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 	{
-		WriteLineVerbose("DebugUI::Init");
+		write_line_verbose("DebugUI::Init");
 
 		s_pSwapChain = pSwapChain;
 		s_pDevice = pDevice;
@@ -113,7 +113,7 @@ void DebugUI::Deinit()
 	s_mutex.lock();
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 	{
-		WriteLineVerbose("DebugUI::Deinit");
+		write_line_verbose("DebugUI::Deinit");
 
 		ImGui_ImplWin32_Shutdown();
 		ImGui_ImplDX11_Shutdown();

@@ -2,7 +2,7 @@
 
 void MantleMapTab::DisplayMapTabUI()
 {
-	if (MantleGUI::IsGameClient())
+	if (c_mantle_gui::IsGameClient())
 	{
 		if (ImGui::BeginMenuBar())
 		{
@@ -38,7 +38,7 @@ void MantleMapTab::DisplayMapTabUI()
 		if (useSearch)
 		{
 
-			const std::vector<TagInterface*>& rTagInterfaces = MantleGUI::IsSidebarUseFullFileLength()
+			const std::vector<TagInterface*>& rTagInterfaces = c_mantle_gui::IsSidebarUseFullFileLength()
 				? m_pCacheFile->GetTagInterfacesSortedByPathWithGroupID()
 				: m_pCacheFile->GetTagInterfacesSortedByNameWithGroupID();
 			for (TagInterface* pTagInterface : rTagInterfaces)
@@ -46,7 +46,7 @@ void MantleMapTab::DisplayMapTabUI()
 				TagInterface& rTagInterface = *pTagInterface;
 				if (rTagInterface.IsNull()) continue;
 
-				const char* pTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
+				const char* pTagDisplayWithGroupID = c_mantle_gui::IsSidebarUseFullFileLength()
 					? rTagInterface.GetPathWithGroupIDCStr()
 					: rTagInterface.GetNameWithGroupIDCStr();
 
@@ -71,7 +71,7 @@ void MantleMapTab::DisplayMapTabUI()
 			{
 				GroupInterface& rGroupInterface = *pGroupInterface;
 
-				const std::vector<TagInterface*>& rTagInterfaces = MantleGUI::IsSidebarUseFullFileLength()
+				const std::vector<TagInterface*>& rTagInterfaces = c_mantle_gui::IsSidebarUseFullFileLength()
 					? pGroupInterface->GetTagInterfacesSortedByPathWithGroupID()
 					: pGroupInterface->GetTagInterfacesSortedByNameWithGroupID();
 
@@ -92,7 +92,7 @@ void MantleMapTab::DisplayMapTabUI()
 
 						if (!displayTag) continue;
 
-						const char* pTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
+						const char* pTagDisplayWithGroupID = c_mantle_gui::IsSidebarUseFullFileLength()
 							? rTagInterface.GetPathWithGroupIDCStr()
 							: rTagInterface.GetNameWithGroupIDCStr();
 
@@ -238,7 +238,7 @@ MantleMapTab::MantleMapTab(std::shared_ptr<CacheFile> pCacheFile)
 	: m_pCacheFile(pCacheFile)
 	, MantleTab(pCacheFile->GetFileNameChar(), pCacheFile->GetFilePathChar())
 	, m_tabClosedCallback([this](MantleTab& rTab) { this->RemoveTabItem(rTab); })
-	, m_renderTriggerVolumes(CommandLine::HasCommandLineArg("-showtriggervolumes"))
+	, m_renderTriggerVolumes(c_command_line::has_command_line_arg("-showtriggervolumes"))
 	, m_pNextSelectedTab(nullptr)
 	, m_pSelectedSearchTagInterface(nullptr)
 	, m_pSearchBuffer()

@@ -26,7 +26,7 @@ c_file_array::c_file_array(std::vector<std::string> fileDirs, std::vector<std::s
 
 					Files.push_back(fileInfo);
 
-					WriteLineVerbose("Reading %s", rDirectoryEntry.path().string().c_str());
+					write_line_verbose("Reading %s", rDirectoryEntry.path().string().c_str());
 				}
 			}
 		}

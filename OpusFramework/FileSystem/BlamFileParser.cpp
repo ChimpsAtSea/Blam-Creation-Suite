@@ -19,7 +19,7 @@ BlamFileParser::BlamFileParser(char* pBlamFileData)
 			//{
 			//	s_blamfile_level_chunk* pLevelChunk = static_cast<s_blamfile_level_chunk*>(pChunk);
 			//	int mapID = bswap_auto_endian(m_isLittleEndian, pLevelChunk->mapID);
-			//	WriteLineVerbose("MapInfoManager> ");
+			//	write_line_verbose("MapInfoManager> ");
 			//	break;
 			//}
 		case '_eof': m_isLittleEndian = true;
@@ -34,7 +34,7 @@ BlamFileParser::BlamFileParser(char* pBlamFileData)
 
 	} while (!endOfFileFound);
 
-	WriteLineVerbose("BlamFileParser> Parsed %i chunks", static_cast<int>(m_chunks.size()));
+	write_line_verbose("BlamFileParser> Parsed %i chunks", static_cast<int>(m_chunks.size()));
 }
 
 s_blamfile_header* BlamFileParser::getFirstChunkByTypeImpl(blamfile_chunk_type chunk_type)

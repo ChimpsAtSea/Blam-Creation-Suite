@@ -1,3 +1,3 @@
 #pragma once
 
-typedef intptr_t(OffsetFunction)(Build);
+typedef intptr_t(OffsetFunction)(e_build);

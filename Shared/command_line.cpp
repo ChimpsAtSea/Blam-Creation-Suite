@@ -1,16 +1,16 @@
 #include "shared-private-pch.h"
 
-void CommandLine::Init()
+void c_command_line::Init()
 {
 
 }
 
-void CommandLine::Deinit()
+void c_command_line::Deinit()
 {
 
 }
 
-bool CommandLine::HasCommandLineArg(const char* pArgument)
+bool c_command_line::has_command_line_arg(const char* pArgument)
 {
 	static LPSTR sCommandLine = GetCommandLineA();
 	return strstr(sCommandLine, pArgument) != 0;

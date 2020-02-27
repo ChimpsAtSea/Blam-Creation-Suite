@@ -59,8 +59,8 @@ public:
 	__int64 __fastcall Member48(_QWORD, __int64) override;
 
 	// Opus Functionality
-	virtual void RenderUI() const = 0;
-	virtual IGameEngine* GetGameEngine() const = 0;
+	virtual void render_ui() const = 0;
+	virtual IGameEngine* get_game_engine() const = 0;
 
 
 protected:

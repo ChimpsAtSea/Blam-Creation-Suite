@@ -1,26 +1,26 @@
 
-uintptr_t player_mapping_get_local_player_offset(Engine engine, Build build)
+uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		switch (build)
 		{
-		case Build::MCC_1_1270_0_0: return 0x18006FDF0;
-		case Build::MCC_1_1305_0_0: return 0x18006FE30;
+		case e_build::_build_mcc_1_1270_0_0: return 0x18006FDF0;
+		case e_build::_build_mcc_1_1305_0_0: return 0x18006FE30;
 		}
 	}
 	return ~uintptr_t();
 }
 FunctionHookEx<player_mapping_get_local_player_offset, int __stdcall ()> player_mapping_get_local_player;
 
-uintptr_t observer_try_and_get_camera_offset(Engine engine, Build build)
+uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::HaloReach)
+	if (engine_type == _engine_type_halo_reach)
 	{
 		switch (build)
 		{
-		case Build::MCC_1_1270_0_0: return 0x1800E2FA0;
-		case Build::MCC_1_1305_0_0: return 0x1800E3050;
+		case e_build::_build_mcc_1_1270_0_0: return 0x1800E2FA0;
+		case e_build::_build_mcc_1_1305_0_0: return 0x1800E3050;
 		}
 	}
 	return ~uintptr_t();

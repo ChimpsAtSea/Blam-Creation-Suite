@@ -334,18 +334,18 @@ __declspec(dllexport) int main()
 	launcher_tls_data_directory = static_cast<IMAGE_TLS_DIRECTORY*>(ImageDirectoryEntryToData(current_module, TRUE, IMAGE_DIRECTORY_ENTRY_TLS, &launcher_import_descriptor_size));
 
 	HINSTANCE loaded_executable_module = NULL;
-	Build build = Build::NotSet;
+	e_build build = _build_not_set;
 	if (loaded_executable_module == NULL)
 	{
 		loaded_executable_module = load_executable("eldorado.exe");
 
 		if (loaded_executable_module)
 		{
-			WriteLineVerbose("Loaded Eldorado Module");
+			write_line_verbose("Loaded Eldorado Module");
 		}
 
 		// #TODO: Determine version of Eldorado
-		build = Build::Eldorado_1_106708_cert_ms23;
+		build = e_build::_build_eldorado_1_106708_cert_ms23;
 	}
 	if (loaded_executable_module == NULL)
 	{
@@ -353,11 +353,11 @@ __declspec(dllexport) int main()
 
 		if (loaded_executable_module)
 		{
-			WriteLineVerbose("Loaded Halo Online Module");
+			write_line_verbose("Loaded Halo Online Module");
 		}
 
 		// #TODO: Determine version of Halo Online
-		build = Build::Eldorado_1_700255_cert_ms30_oct19;
+		build = e_build::_build_eldorado_1_700255_cert_ms30_oct19;
 	}
 	ASSERT(loaded_executable_module != NULL);
 

@@ -169,7 +169,7 @@ void Render::InitDirectX()
 	ASSERT(s_pFactory != nullptr);
 
 	UINT createDeviceFlags = 0;
-	if (CommandLine::HasCommandLineArg("-d3ddebug"))
+	if (c_command_line::has_command_line_arg("-d3ddebug"))
 	{
 		createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 	}

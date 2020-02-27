@@ -70,11 +70,11 @@
     <ClInclude Include="shared-public-pch.h" />
     <ClInclude Include="shared-system-pch.h" />
     <ClInclude Include="shared-tbb-pch.h" />
-    <ClInclude Include="CommandLine.h" />
+    <ClInclude Include="command_line.h" />
     <ClInclude Include="ThreadSafeQueue.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CommandLine.cpp" />
+    <ClCompile Include="command_line.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="FatalError.cpp" />
     <ClCompile Include="FileSystemUtilities.cpp" />

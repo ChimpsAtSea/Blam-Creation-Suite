@@ -29,12 +29,12 @@ void MapInfoManager::parseMapInfo(const std::filesystem::path& rFilesystemPath)
 {
 	std::filesystem::path filesystemFileName = rFilesystemPath.filename();
 	const wchar_t* pFileName = filesystemFileName.c_str();
-	WriteLineVerbose("MapInfoManager> Parsing %S", pFileName);
+	write_line_verbose("MapInfoManager> Parsing %S", pFileName);
 
 	char* pRawMapInfoData = FileSystemReadToMemory(rFilesystemPath.c_str());
 	if (pRawMapInfoData == nullptr)
 	{
-		WriteLineVerbose("MapInfoManager> Error opening %S for read", pFileName);
+		write_line_verbose("MapInfoManager> Error opening %S for read", pFileName);
 		return;
 	}
 
@@ -43,7 +43,7 @@ void MapInfoManager::parseMapInfo(const std::filesystem::path& rFilesystemPath)
 
 	if (pLevelInfo == nullptr)
 	{
-		WriteLineVerbose("MapInfoManager> Error parsing mapinfo %S. Couldn't find level chunk.", pFileName);
+		write_line_verbose("MapInfoManager> Error parsing mapinfo %S. Couldn't find level chunk.", pFileName);
 		return;
 	}
 
@@ -51,5 +51,5 @@ void MapInfoManager::parseMapInfo(const std::filesystem::path& rFilesystemPath)
 	pLevelInfo = &m_mapInfo.emplace_back(rFilesystemPath, fileParser.IsLittleEndian(), *pLevelInfo).GetLevelChunk();
 	delete pRawMapInfoData;
 
-	WriteLineVerbose("MapInfoManager> Parsed level chunk '%S' %i", pLevelInfo->m_levelName[0], pLevelInfo->m_mapID);
+	write_line_verbose("MapInfoManager> Parsed level chunk '%S' %i", pLevelInfo->m_levelName[0], pLevelInfo->m_mapID);
 }

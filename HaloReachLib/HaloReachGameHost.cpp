@@ -52,7 +52,7 @@ static constexpr size_t s_script_node_datum_size = sizeof(s_script_node_datum);
 
 void HaloReachGameHost::scriptDebugUI()
 {
-	static const bool kEnableScriptDebug = CommandLine::HasCommandLineArg("-scriptdebug");
+	static const bool kEnableScriptDebug = c_command_line::has_command_line_arg("-scriptdebug");
 	if (!kEnableScriptDebug)
 	{
 		return;
@@ -79,32 +79,32 @@ void HaloReachGameHost::scriptDebugUI()
 	ImGui::End();
 }
 
-c_game_runtime HaloReachGameHost::s_haloReachGameRuntime(Engine::HaloReach, "haloreach", "HaloReach\\haloreach.dll");
+c_game_runtime HaloReachGameHost::s_haloReachGameRuntime(_engine_type_halo_reach, "haloreach", "HaloReach\\haloreach.dll");
 
-extern void init_halo_reach(Engine engine, Build build);
-extern void deinit_halo_reach(Engine engine, Build build);
+extern void init_halo_reach(e_engine_type engine_type, e_build build);
+extern void deinit_halo_reach(e_engine_type engine_type, e_build build);
 
 
-void HaloReachGameHost::InitModifications(Build build)
+void HaloReachGameHost::InitModifications(e_build build)
 {
-	init_halo_reach(Engine::HaloReach, build);
+	init_halo_reach(_engine_type_halo_reach, build);
 }
 
-void HaloReachGameHost::DeinitModifications(Build build)
+void HaloReachGameHost::DeinitModifications(e_build build)
 {
-	deinit_halo_reach(Engine::HaloReach, build);
+	deinit_halo_reach(_engine_type_halo_reach, build);
 }
 
 HaloReachGameHost::HaloReachGameHost()
 	:c_opus_game_engine_host(s_haloReachGameRuntime)
 	, m_pGameEngine(nullptr)
 {
-	InitModifications(s_haloReachGameRuntime.GetBuildVersion());
+	InitModifications(s_haloReachGameRuntime.get_build());
 
-	MantleGUI::SetGetTagSectionAddressFunction(tag_address_get); // #TODO: This is kinda hacky
-	MantleGUI::SetGetTagPointerFunction(tag_definition_get); // #TODO: This is kinda hacky
+	c_mantle_gui::set_get_tag_selection_address_function(tag_address_get); // #TODO: This is kinda hacky
+	c_mantle_gui::set_get_tag_pointer_function(tag_definition_get); // #TODO: This is kinda hacky
 
-	WriteLineVerbose("Init HaloReachGameHost");
+	write_line_verbose("Init HaloReachGameHost");
 
 	if (m_pGameEngine == nullptr)
 		__int64 createGameEngineResult = s_haloReachGameRuntime.CreateGameEngine(&m_pGameEngine);
@@ -113,10 +113,10 @@ HaloReachGameHost::HaloReachGameHost()
 
 HaloReachGameHost::~HaloReachGameHost()
 {
-	WriteLineVerbose("Deinit HaloReachGameHost");
+	write_line_verbose("Deinit HaloReachGameHost");
 
-	MantleGUI::SetGetTagSectionAddressFunction(nullptr); // #TODO: This is kinda hacky
-	MantleGUI::SetGetTagPointerFunction(nullptr); // #TODO: This is kinda hacky
+	c_mantle_gui::set_get_tag_selection_address_function(nullptr); // #TODO: This is kinda hacky
+	c_mantle_gui::set_get_tag_pointer_function(nullptr); // #TODO: This is kinda hacky
 
 	//m_pGameEngine->Destructor();
 	//free(pHaloReachEngine);
@@ -124,23 +124,23 @@ HaloReachGameHost::~HaloReachGameHost()
 
 	//m_pGameEngine = nullptr;
 
-	DeinitModifications(s_haloReachGameRuntime.GetBuildVersion());
+	DeinitModifications(s_haloReachGameRuntime.get_build());
 	s_haloReachGameRuntime.~c_game_runtime();
-	new(&s_haloReachGameRuntime) c_game_runtime(Engine::HaloReach, "haloreach", "HaloReach\\haloreach.dll");
+	new(&s_haloReachGameRuntime) c_game_runtime(_engine_type_halo_reach, "haloreach", "HaloReach\\haloreach.dll");
 }
 
 void HaloReachGameHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)
 {
 	if (GetAsyncKeyState(VK_F10))
 	{
-		GetGameEngine()->UpdateEngineState(eEngineState::EndGame);
+		get_game_engine()->UpdateEngineState(eEngineState::EndGame);
 	}
 
 	updateCamera();
 	c_opus_game_engine_host::FrameEnd(pSwapChain, unknown1);
 }
 
-void HaloReachGameHost::RenderUI() const
+void HaloReachGameHost::render_ui() const
 {
 	cameraDebugUI();
 	scriptDebugUI();
@@ -174,7 +174,7 @@ void HaloReachGameHost::updateCamera()
 
 void HaloReachGameHost::cameraDebugUI()
 {
-	static const bool kEnableCameraDebug = CommandLine::HasCommandLineArg("-cameradebug");
+	static const bool kEnableCameraDebug = c_command_line::has_command_line_arg("-cameradebug");
 	if (!kEnableCameraDebug)
 	{
 		return;
@@ -215,7 +215,7 @@ void HaloReachGameHost::cameraDebugUI()
 
 }
 
-IGameEngine* HaloReachGameHost::GetGameEngine() const
+IGameEngine* HaloReachGameHost::get_game_engine() const
 {
 	return m_pGameEngine;
 }

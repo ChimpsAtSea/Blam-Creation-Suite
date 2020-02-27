@@ -1,6 +1,6 @@
 #pragma once
 
-#define OFFSET(Engine, Build, Offset) if(engine == Engine && build == Build) return (Offset);
+#define OFFSET(Engine, Build, Offset) if(engine_type == Engine && build == Build) return (Offset);
 
 #include "Versioning.h"
 

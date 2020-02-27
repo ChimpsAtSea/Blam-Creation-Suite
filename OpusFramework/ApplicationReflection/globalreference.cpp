@@ -5,8 +5,8 @@ c_global_reference* c_global_reference::s_pLastc_global_reference = nullptr;
 
 c_global_reference::c_global_reference(const char* pReferenceName, OffsetFunction offsetFunction)
 	: m_pNextc_global_reference(nullptr)
-	, m_engine(Engine::NotSet)
-	, m_build(Build::NotSet)
+	, m_engine(_engine_type_not_set)
+	, m_build(e_build::_build_not_set)
 	, m_offset(0)
 	, m_pReferenceName(pReferenceName)
 	, m_pOffsetFunction(offsetFunction)
@@ -14,9 +14,9 @@ c_global_reference::c_global_reference(const char* pReferenceName, OffsetFunctio
 	init();
 }
 
-c_global_reference::c_global_reference(const char* pReferenceName, Engine engine, Build build, intptr_t offset)
+c_global_reference::c_global_reference(const char* pReferenceName, e_engine_type engine_type, e_build build, intptr_t offset)
 	: m_pNextc_global_reference(nullptr)
-	, m_engine(engine)
+	, m_engine(engine_type)
 	, m_build(build)
 	, m_offset(offset)
 	, m_pReferenceName(pReferenceName)
@@ -39,21 +39,21 @@ void c_global_reference::init()
 	}
 }
 
-void c_global_reference::InitTree(Engine engine, Build build)
+void c_global_reference::init_global_reference_tree(e_engine_type engine_type, e_build build)
 {
 	c_global_reference* pCurrentc_global_reference = s_pFirstc_global_reference;
 	while (pCurrentc_global_reference)
 	{
-		pCurrentc_global_reference = pCurrentc_global_reference->initNode(engine, build);
+		pCurrentc_global_reference = pCurrentc_global_reference->initNode(engine_type, build);
 	}
 }
 
-void c_global_reference::DeinitTree(Engine engine, Build build)
+void c_global_reference::deinit_global_reference_tree(e_engine_type engine_type, e_build build)
 {
 	c_global_reference* pCurrentc_global_reference = s_pFirstc_global_reference;
 	while (pCurrentc_global_reference)
 	{
-		pCurrentc_global_reference = pCurrentc_global_reference->deinitNode(engine, build);
+		pCurrentc_global_reference = pCurrentc_global_reference->deinitNode(engine_type, build);
 	}
 }
 
@@ -70,9 +70,9 @@ void c_global_reference::DestroyTree()
 	}
 }
 
-c_global_reference* c_global_reference::initNode(Engine engine, Build build)
+c_global_reference* c_global_reference::initNode(e_engine_type engine_type, e_build build)
 {
-	if (m_engine == engine && (m_build == Build::NotSet || m_build == build))
+	if (m_engine == engine_type && (m_build == e_build::_build_not_set || m_build == build))
 	{
 		PublicSymbol* pPublicSymbol = MappingFileParser::GetPublicSymbolByName(m_pReferenceName);
 		if (pPublicSymbol)
@@ -100,10 +100,10 @@ c_global_reference* c_global_reference::initNode(Engine engine, Build build)
 
 			void* pDataAddress = nullptr;
 			{
-				uint64_t gameVirtualAddress = GetEngineBaseAddress(engine);
+				uint64_t gameVirtualAddress = GetEngineBaseAddress(engine_type);
 				uint64_t dataVirtualAddress = static_cast<uint64_t>(targetOffset);
 				uint64_t dataRelativeVirtualAddress = dataVirtualAddress - gameVirtualAddress;
-				char* pGameBaseAddress = reinterpret_cast<char*>(GetEngineMemoryAddress(engine));
+				char* pGameBaseAddress = reinterpret_cast<char*>(GetEngineMemoryAddress(engine_type));
 				pDataAddress = pGameBaseAddress + dataRelativeVirtualAddress;
 			}
 
@@ -127,31 +127,31 @@ c_global_reference* c_global_reference::initNode(Engine engine, Build build)
 
 			if (patchedAddress == m_originalValue)
 			{
-				WriteLineVerbose("c_global_reference: Patched %s", m_pReferenceName);
+				write_line_verbose("c_global_reference: Patched %s", m_pReferenceName);
 			}
 			else
 			{
 				if (m_originalValue)
 				{
-					WriteLineVerbose("c_global_reference: Patched %s from 0x%zX to 0x%zX", m_pReferenceName, m_originalValue, patchedAddress);
+					write_line_verbose("c_global_reference: Patched %s from 0x%zX to 0x%zX", m_pReferenceName, m_originalValue, patchedAddress);
 				}
 				else
 				{
-					WriteLineVerbose("c_global_reference: Patched %s from <null> to 0x%zX", m_pReferenceName, patchedAddress);
+					write_line_verbose("c_global_reference: Patched %s from <null> to 0x%zX", m_pReferenceName, patchedAddress);
 				}
 			}
 		}
 		else
 		{
-			WriteLineVerbose("c_global_reference: WARNING: Failed to find symbol for %s", m_pReferenceName);
+			write_line_verbose("c_global_reference: WARNING: Failed to find symbol for %s", m_pReferenceName);
 		}
 	}
 	return m_pNextc_global_reference;
 }
 
-c_global_reference* c_global_reference::deinitNode(Engine engine, Build build)
+c_global_reference* c_global_reference::deinitNode(e_engine_type engine_type, e_build build)
 {
-	if (m_engine == engine && (m_build == Build::NotSet || m_build == build))
+	if (m_engine == engine_type && (m_build == e_build::_build_not_set || m_build == build))
 	{
 		PublicSymbol* pPublicSymbol = MappingFileParser::GetPublicSymbolByName(m_pReferenceName);
 		if (pPublicSymbol)
@@ -175,10 +175,10 @@ c_global_reference* c_global_reference::deinitNode(Engine engine, Build build)
 
 			void* pDataAddress = nullptr;
 			{
-				uint64_t gameVirtualAddress = GetEngineBaseAddress(engine);
+				uint64_t gameVirtualAddress = GetEngineBaseAddress(engine_type);
 				uint64_t dataVirtualAddress = static_cast<uint64_t>(targetOffset);
 				uint64_t dataRelativeVirtualAddress = dataVirtualAddress - gameVirtualAddress;
-				char* pGameBaseAddress = reinterpret_cast<char*>(GetEngineMemoryAddress(engine));
+				char* pGameBaseAddress = reinterpret_cast<char*>(GetEngineMemoryAddress(engine_type));
 				pDataAddress = pGameBaseAddress + dataRelativeVirtualAddress;
 			}
 
@@ -195,23 +195,23 @@ c_global_reference* c_global_reference::deinitNode(Engine engine, Build build)
 
 			if (patchedAddress == m_originalValue)
 			{
-				WriteLineVerbose("c_global_reference: Unpatched %s", m_pReferenceName);
+				write_line_verbose("c_global_reference: Unpatched %s", m_pReferenceName);
 			}
 			else
 			{
 				if (m_originalValue)
 				{
-					WriteLineVerbose("c_global_reference: Unpatched %s from 0x%zX to 0x%zX", m_pReferenceName, patchedAddress, m_originalValue);
+					write_line_verbose("c_global_reference: Unpatched %s from 0x%zX to 0x%zX", m_pReferenceName, patchedAddress, m_originalValue);
 				}
 				else
 				{
-					WriteLineVerbose("c_global_reference: Unpatched %s from 0x%zX to <null>", m_pReferenceName, patchedAddress);
+					write_line_verbose("c_global_reference: Unpatched %s from 0x%zX to <null>", m_pReferenceName, patchedAddress);
 				}
 			}
 		}
 		else
 		{
-			WriteLineVerbose("c_global_reference: WARNING: Failed to find symbol for %s", m_pReferenceName);
+			write_line_verbose("c_global_reference: WARNING: Failed to find symbol for %s", m_pReferenceName);
 		}
 	}
 	return m_pNextc_global_reference;

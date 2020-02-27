@@ -10,8 +10,8 @@ c_data_patch_base::c_data_patch_base(
 	DataPatchApply_DataPatchPackets_Callback applyFunction_Packets,
 	bool applyOnInit)
 	: m_pNextDataPatch(nullptr)
-	, m_engine(Engine::NotSet)
-	, m_build(Build::NotSet)
+	, m_engine(_engine_type_not_set)
+	, m_build(_build_not_set)
 	, m_offset(~uintptr_t())
 	, m_applyOnInit(applyOnInit)
 	, m_pSearchFunction(searchFunction)
@@ -48,21 +48,21 @@ void c_data_patch_base::init()
 	}
 }
 
-void c_data_patch_base::InitTree(Engine engine, Build build)
+void c_data_patch_base::init_data_patch_tree(e_engine_type engine_type, e_build build)
 {
 	c_data_patch_base* pCurrentDataPatch = s_pFirstDataPatch;
 	while (pCurrentDataPatch)
 	{
-		pCurrentDataPatch = pCurrentDataPatch->initNode(engine, build);
+		pCurrentDataPatch = pCurrentDataPatch->initNode(engine_type, build);
 	}
 }
 
-void c_data_patch_base::DeinitTree(Engine engine, Build build)
+void c_data_patch_base::deinit_data_patch_tree(e_engine_type engine_type, e_build build)
 {
 	c_data_patch_base* pCurrentDataPatch = s_pFirstDataPatch;
 	while (pCurrentDataPatch)
 	{
-		pCurrentDataPatch = pCurrentDataPatch->deinitNode(engine, build);
+		pCurrentDataPatch = pCurrentDataPatch->deinitNode(engine_type, build);
 	}
 }
 
@@ -94,11 +94,11 @@ bool c_data_patch_base::ApplyPatch()
 
 	if (m_pPublicSymbol)
 	{
-		WriteLineVerbose("Applying DataPatch: %s", m_pPublicSymbol->m_name.c_str());
+		write_line_verbose("Applying DataPatch: %s", m_pPublicSymbol->m_name.c_str());
 	}
 	else
 	{
-		WriteLineVerbose("Applying DataPatch: <unknown>");
+		write_line_verbose("Applying DataPatch: <unknown>");
 	}
 
 	if (m_pApplyFunction_Packet)
@@ -134,11 +134,11 @@ bool c_data_patch_base::RevertPatch()
 
 	if (m_pPublicSymbol)
 	{
-		WriteLineVerbose("Reverting DataPatch: %s", m_pPublicSymbol->m_name.c_str());
+		write_line_verbose("Reverting DataPatch: %s", m_pPublicSymbol->m_name.c_str());
 	}
 	else
 	{
-		WriteLineVerbose("Reverting DataPatch: <unknown>");
+		write_line_verbose("Reverting DataPatch: <unknown>");
 	}
 
 	for (DataPatchPacket& packet : m_packets)
@@ -150,7 +150,7 @@ bool c_data_patch_base::RevertPatch()
 	return true;
 }
 
-c_data_patch_base* c_data_patch_base::initNode(Engine engine, Build build)
+c_data_patch_base* c_data_patch_base::initNode(e_engine_type engine_type, e_build build)
 {
 	ASSERT(m_offset == ~uintptr_t(), "DataPatch is already patched! This node should be reset before patching again");
 
@@ -159,11 +159,11 @@ c_data_patch_base* c_data_patch_base::initNode(Engine engine, Build build)
 		m_pPublicSymbol = MappingFileParser::GetPublicSymbolByVirtualAddress(this);
 	}
 
-	uintptr_t target_offset = m_pSearchFunction(engine, build);
+	uintptr_t target_offset = m_pSearchFunction(engine_type, build);
 	if (target_offset != ~uintptr_t())
 	{
 		m_offset = target_offset;
-		m_engine = engine;
+		m_engine = engine_type;
 		m_build = build;
 
 		if (m_applyOnInit)
@@ -174,11 +174,11 @@ c_data_patch_base* c_data_patch_base::initNode(Engine engine, Build build)
 	return m_pNextDataPatch;
 }
 
-c_data_patch_base* c_data_patch_base::deinitNode(Engine engine, Build build)
+c_data_patch_base* c_data_patch_base::deinitNode(e_engine_type engine_type, e_build build)
 {
 	m_offset = ~uintptr_t();
-	m_engine = Engine::NotSet;
-	m_build = Build::NotSet;
+	m_engine = _engine_type_not_set;
+	m_build = e_build::_build_not_set;
 
 	RevertPatch();
 

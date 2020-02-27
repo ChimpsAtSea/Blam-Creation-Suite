@@ -6,7 +6,7 @@ struct FunctionHookVarArgsEx : public c_function_hook_base
 {
 public:
 	//static_assert(build == BuildVersion::NotSet || offset >= GetBuildBaseAddress(build), "Offset is out of bounds");
-	//static_assert(build == BuildVersion::NotSet || offset < GetEngineTopAddress(engine, build), "Offset is out of bounds");
+	//static_assert(build == BuildVersion::NotSet || offset < GetEngineTopAddress(engine_type, build), "Offset is out of bounds");
 
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args) const
@@ -38,14 +38,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgsEx(hook_assignment_type func)
-		:c_function_hook_base(nullptr, Engine::NotSet, Build::NotSet, 0, find_offset)
+		:c_function_hook_base(nullptr, _engine_type_not_set, _build_not_set, 0, find_offset)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgsEx(base_type* func)
-		:c_function_hook_base(nullptr, Engine::NotSet, Build::NotSet, 0, find_offset)
+		:c_function_hook_base(nullptr, _engine_type_not_set, _build_not_set, 0, find_offset)
 		, hook(func)
 	{
 
@@ -53,14 +53,14 @@ public:
 
 	template<typename hook_assignment_type>
 	FunctionHookVarArgsEx(const char* pName, hook_assignment_type func)
-		:c_function_hook_base(pName, Engine::NotSet, Build::NotSet, 0, find_offset)
+		:c_function_hook_base(pName, _engine_type_not_set, _build_not_set, 0, find_offset)
 		, hook(func) // assigning the hook_assignment_type to the base_type will convert lambdas to function pointers
 	{
 
 	}
 
 	FunctionHookVarArgsEx(const char* pName, base_type* func)
-		:c_function_hook_base(pName, Engine::NotSet, Build::NotSet, 0, find_offset)
+		:c_function_hook_base(pName, _engine_type_not_set, _build_not_set, 0, find_offset)
 		, hook(func)
 	{
 

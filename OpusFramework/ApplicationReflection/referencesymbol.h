@@ -10,11 +10,11 @@ public:
 		// pointer to this allocation is stored internally in tree structure
 		new c_global_reference(pReferenceName, offsetFunction);
 	}
-	reference_symbol(const char* pReferenceName, Engine engine, Build build, intptr_t offset)
+	reference_symbol(const char* pReferenceName, e_engine_type engine_type, e_build build, intptr_t offset)
 		:m_offset(offset)
 	{
 		// pointer to this allocation is stored internally in tree structure
-		new c_global_reference(pReferenceName, engine, build, offset);
+		new c_global_reference(pReferenceName, engine_type, build, offset);
 	}
 	operator T& () const
 	{

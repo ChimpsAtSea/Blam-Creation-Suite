@@ -1,12 +1,12 @@
 #include "halo1lib-private-pch.h"
 
-uintptr_t sub_18019BC50_offset(Engine engine, Build build)
+uintptr_t sub_18019BC50_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine == Engine::Halo1)
+	if (engine_type == _engine_type_halo1)
 	{
 		switch (build)
 		{
-		case Build::MCC_1_1350_0_0: return 0x18019BC50;
+		case e_build::_build_mcc_1_1350_0_0: return 0x18019BC50;
 		}
 	}
 	return ~uintptr_t();
@@ -26,7 +26,7 @@ FunctionHookVarArgsEx<sub_18019BC50_offset, __int64 __fastcall (__int64*, const 
 
 //intptr_t sub_18019BB80_offset(EngineVersion engine, BuildVersion build)
 //{
-//	if (engine == EngineVersion::Halo1)
+//	if (engine_type == EngineVersion::Halo1)
 //	{
 //		switch (build)
 //		{
@@ -51,7 +51,7 @@ FunctionHookVarArgsEx<sub_18019BC50_offset, __int64 __fastcall (__int64*, const 
 
 //intptr_t sub_1801FE1B0_offset(EngineVersion engine, BuildVersion build)
 //{
-//	if (engine == EngineVersion::Halo1)
+//	if (engine_type == EngineVersion::Halo1)
 //	{
 //		switch (build)
 //		{

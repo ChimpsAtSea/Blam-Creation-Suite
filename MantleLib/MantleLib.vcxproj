@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="!UserInterface\MantleMapTab.cpp" />
     <ClCompile Include="!UserInterface\MantleTab.cpp" />
-    <ClCompile Include="!UserInterface\MantleGUI.cpp" />
+    <ClCompile Include="!UserInterface\mantle_gui.cpp" />
     <ClCompile Include="CacheInterface\CacheFile.cpp" />
     <ClCompile Include="CacheInterface\GroupInterface.cpp" />
     <ClCompile Include="mantlelib-private-pch.cpp">
@@ -52,7 +52,7 @@
     <ClInclude Include="CacheInterface\CacheInterface.h" />
     <ClInclude Include="!UserInterface\MantleMapTab.h" />
     <ClInclude Include="!UserInterface\MantleTab.h" />
-    <ClInclude Include="!UserInterface\MantleGUI.h" />
+    <ClInclude Include="!UserInterface\mantle_gui.h" />
     <ClInclude Include="!UserInterface\MantleTagTab.h" />
     <ClInclude Include="CacheInterface\TagInterface.h" />
     <ClInclude Include="CacheInterface\GroupInterface.h" />

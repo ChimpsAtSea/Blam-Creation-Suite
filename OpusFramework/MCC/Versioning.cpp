@@ -1,22 +1,22 @@
 #include "opusframework-private-pch.h"
 
-bool IsEngineLoaded(Engine engine)
+bool IsEngineLoaded(e_engine_type engine_type)
 {
-	const char* pGameExecutableStr = GetEngineModuleFileName(engine);
+	const char* pGameExecutableStr = GetEngineModuleFileName(engine_type);
 	return GetModuleHandle(pGameExecutableStr);
 }
 
-void* GetEngineMemoryAddress(Engine engine)
+void* GetEngineMemoryAddress(e_engine_type engine_type)
 {
-	switch (engine) // override for executable based engines which will always be the current module
+	switch (engine_type) // override for executable based engines which will always be the current module
 	{
-	case Engine::MCC:
-	case Engine::Eldorado:
+	case _engine_type_mcc:
+	case _engine_type_eldorado:
 		static HINSTANCE current_module = GetModuleHandle(NULL);
 		return current_module;
 	}
 
-	const char* pGameExecutableStr = GetEngineModuleFileName(engine);
+	const char* pGameExecutableStr = GetEngineModuleFileName(engine_type);
 	HMODULE hModule = GetModuleHandleA(pGameExecutableStr);
 	return static_cast<void*>(hModule);
 }

@@ -2,11 +2,11 @@
 class c_game_runtime
 {
 public:
-	c_game_runtime(Engine engine, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule = false, Build build = Build::NotSet);
+	c_game_runtime(e_engine_type engine_type, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule = false, e_build build = _build_not_set);
 	~c_game_runtime();
 
 	IDataAccess* GetDataAccess() const { return m_pDataAccess; };
-	Build GetBuildVersion() const { return m_build; }
+	e_build get_build() const { return m_build; }
 
 	inline __int64 __fastcall CreateDataAccess(IDataAccess** ppDataAccess)
 	{
@@ -31,14 +31,14 @@ public:
 		return m_engineName;
 	}
 
-	static Build GetLibraryBuildVersion(const char* pFileName);
+	static e_build GetLibraryBuildVersion(const char* pFileName);
 private:
 	void loadLibrary(const char* pLibFileName);
 	static uint64_t GetLibraryFileVersion(const char* pFileName);
 
 	std::string m_engineName;
 	LPCSTR m_enginePath = "";
-	Build m_build = Build::NotSet;
+	e_build m_build = e_build::_build_not_set;
 	IDataAccess* m_pDataAccess = nullptr;
 	HMODULE hGameModule = NULL;
 

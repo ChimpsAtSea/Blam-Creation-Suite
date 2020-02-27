@@ -6,7 +6,7 @@ class /*[[deprecated("DataEx is deprecated. Use reference_symbol instead.")]]*/ 
 public:
 	DataEx(const DataEx&) = delete;
 	DataEx()
-		: c_data_reference_base(Engine::NotSet, Build::NotSet, sizeof(T), 0, find_offset)
+		: c_data_reference_base(_engine_type_not_set, _build_not_set, sizeof(T), 0, find_offset)
 	{
 
 	}

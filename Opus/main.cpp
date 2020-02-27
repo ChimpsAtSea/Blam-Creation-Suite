@@ -34,7 +34,7 @@ int WINAPI WinMain(
 	
 	Window::Init("Opus", "OpusConsole", "opus");
 	Render::Init(hInstance);
-	MantleGUI::Init(true);
+	c_mantle_gui::Init(true);
 	GameLauncher::Init();
 
 	Window::RegisterUpdateCallback(UpdateCallback);
@@ -50,7 +50,7 @@ int WINAPI WinMain(
 	//MantleGUI::UnregisterOnCloseCallback(DestroyCallback);
 
 	GameLauncher::Deinit();
-	MantleGUI::Deinit();
+	c_mantle_gui::Deinit();
 	Render::Deinit();
 	Window::Deinit();
 	c_console::Deinit();

@@ -1,20 +1,20 @@
 #include "mantlelib-private-pch.h"
 
-bool MantleGUI::s_sidebarUseFullFileLength = false;
-bool MantleGUI::s_unknownItemsVisible = false;
-std::vector<MantleTab*> MantleGUI::s_pMantleTabs;
-std::vector<MantleGUI::OnCloseCallback> MantleGUI::s_guiCloseCallbacks;
-bool MantleGUI::s_inGameMode;
-MantleGUI::GetTagPointerFunc MantleGUI::s_getTagPointerFunc = nullptr;
-MantleGUI::GetTagSectionAddressFunc MantleGUI::s_getTagSectionAddressFunc = nullptr;
+bool c_mantle_gui::s_sidebarUseFullFileLength = false;
+bool c_mantle_gui::s_unknownItemsVisible = false;
+std::vector<MantleTab*> c_mantle_gui::s_pMantleTabs;
+std::vector<c_mantle_gui::OnCloseCallback> c_mantle_gui::s_guiCloseCallbacks;
+bool c_mantle_gui::s_inGameMode;
+c_mantle_gui::GetTagPointerFunc c_mantle_gui::s_getTagPointerFunc = nullptr;
+c_mantle_gui::GetTagSectionAddressFunc c_mantle_gui::s_getTagSectionAddressFunc = nullptr;
 
-void MantleGUI::Init(bool inGameMode, const wchar_t* pStartupFilePath)
+void c_mantle_gui::Init(bool inGameMode, const wchar_t* pStartupFilePath)
 {
 	s_inGameMode = inGameMode;
 	OpenMapFile(pStartupFilePath);
 }
 
-void MantleGUI::OpenMapFile(const wchar_t* pFilePath)
+void c_mantle_gui::OpenMapFile(const wchar_t* pFilePath)
 {
 	if (PathFileExistsW(pFilePath))
 	{
@@ -22,7 +22,7 @@ void MantleGUI::OpenMapFile(const wchar_t* pFilePath)
 	}
 }
 
-void MantleGUI::GameRender()
+void c_mantle_gui::GameRender()
 {
 	for (MantleTab* pTab : s_pMantleTabs)
 	{
@@ -30,7 +30,7 @@ void MantleGUI::GameRender()
 	}
 }
 
-void MantleGUI::Render()
+void c_mantle_gui::Render()
 {
 	if (s_inGameMode)
 	{
@@ -183,7 +183,7 @@ void MantleGUI::Render()
 	}
 }
 
-void MantleGUI::Deinit()
+void c_mantle_gui::Deinit()
 {
 	// delete the first tab in the vector until non remain
 	// tabs are removed from vector via the TabClosedCallback
@@ -193,7 +193,7 @@ void MantleGUI::Deinit()
 	}
 }
 
-std::shared_ptr<CacheFile> MantleGUI::GetCacheFile(const char* pMapName)
+std::shared_ptr<CacheFile> c_mantle_gui::GetCacheFile(const char* pMapName)
 {
 	for (MantleTab* pMantleTab : s_pMantleTabs)
 	{
@@ -207,28 +207,28 @@ std::shared_ptr<CacheFile> MantleGUI::GetCacheFile(const char* pMapName)
 	return nullptr;
 }
 
-void MantleGUI::AddTabItem(MantleTab& rMantleTab)
+void c_mantle_gui::AddTabItem(MantleTab& rMantleTab)
 {
 	s_pMantleTabs.push_back(&rMantleTab);
 	rMantleTab.AddTabClosedCallback(RemoveTabItem);
 }
 
-void MantleGUI::RemoveTabItem(MantleTab& rMantleTab)
+void c_mantle_gui::RemoveTabItem(MantleTab& rMantleTab)
 {
 	VectorEraseByValueHelper(s_pMantleTabs, &rMantleTab);
 }
 
-void MantleGUI::RegisterOnCloseCallback(OnCloseCallback callback)
+void c_mantle_gui::RegisterOnCloseCallback(OnCloseCallback callback)
 {
 	s_guiCloseCallbacks.push_back(callback);
 }
 
-void MantleGUI::UnregisterOnCloseCallback(OnCloseCallback callback)
+void c_mantle_gui::UnregisterOnCloseCallback(OnCloseCallback callback)
 {
 	VectorEraseByValueHelper(s_guiCloseCallbacks, callback);
 }
 
-void MantleGUI::OnClose()
+void c_mantle_gui::OnClose()
 {
 	for (OnCloseCallback callback : s_guiCloseCallbacks)
 	{

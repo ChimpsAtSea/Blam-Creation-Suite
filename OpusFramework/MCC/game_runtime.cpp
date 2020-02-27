@@ -1,14 +1,14 @@
 #include "opusframework-private-pch.h"
 
-c_game_runtime::c_game_runtime(Engine engine, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule, Build build)
+c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule, e_build build)
 	: m_engineName(pEngineName)
-	, m_build(build == Build::NotSet ? GetLibraryBuildVersion(pLibFileName) : build)
+	, m_build(build == e_build::_build_not_set ? GetLibraryBuildVersion(pLibFileName) : build)
 	, m_enginePath(pLibFileName)
 {
 
-	if (m_build == Build::NotSet)
+	if (m_build == e_build::_build_not_set)
 	{
-		WriteLineVerbose("Warning: GameRuntime initialized with BuildVersion::NotSet");
+		write_line_verbose("Warning: GameRuntime initialized with BuildVersion::NotSet");
 		return;
 	}
 
@@ -22,7 +22,7 @@ c_game_runtime::c_game_runtime(Engine engine, const char* pEngineName, const cha
 	}
 	else
 	{
-		hGameModule = static_cast<HINSTANCE>(GetEngineMemoryAddress(engine));
+		hGameModule = static_cast<HINSTANCE>(GetEngineMemoryAddress(engine_type));
 	}
 }
 
@@ -43,21 +43,21 @@ void c_game_runtime::loadLibrary(const char* pLibFileName)
 
 	if (hGameModule == NULL)
 	{
-		WriteLineVerbose("Failed to load %s", pLibFileName);
+		write_line_verbose("Failed to load %s", pLibFileName);
 	}
 	ASSERT(hGameModule != NULL);
-	WriteLineVerbose("%s: 0x%p", pLibFileName, hGameModule);
+	write_line_verbose("%s: 0x%p", pLibFileName, hGameModule);
 
 	pCreateGameEngine = (CreateGameEngineFunc*)GetProcAddress(hGameModule, "CreateGameEngine");
 	pCreateDataAccess = (CreateDataAccessFunc*)GetProcAddress(hGameModule, "CreateDataAccess");
 	pSetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(hGameModule, "SetLibrarySettings");
 }
 
-Build c_game_runtime::GetLibraryBuildVersion(const char* pFileName)
+e_build c_game_runtime::GetLibraryBuildVersion(const char* pFileName)
 {
 	uint64_t libraryFileVersion = GetLibraryFileVersion(pFileName);
 
-	return static_cast<Build>(libraryFileVersion);
+	return static_cast<e_build>(libraryFileVersion);
 }
 
 uint64_t c_game_runtime::GetLibraryFileVersion(const char* pFileName)

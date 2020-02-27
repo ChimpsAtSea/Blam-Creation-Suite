@@ -1,17 +1,17 @@
 #pragma once
 
 
-template<Build build, size_t offset, typename T>
+template<e_build build, size_t offset, typename T>
 struct FunctionHook;
 
-template<Build build, size_t offset, typename R, typename ...Args>
+template<e_build build, size_t offset, typename R, typename ...Args>
 struct FunctionHook<build, offset, R(Args...)> : c_function_hook_base
 {
 public:
 	typedef R(base_type)(Args...);
 
-	static_assert(build == Build::NotSet || offset >= GetEngineBaseAddress(engine), "Offset is out of bounds");
-	static_assert(build == Build::NotSet || offset < GetEngineTopAddress(engine, build), "Offset is out of bounds");
+	static_assert(build == e_build::_build_not_set || offset >= GetEngineBaseAddress(engine_type), "Offset is out of bounds");
+	static_assert(build == e_build::_build_not_set || offset < GetEngineTopAddress(engine_type, build), "Offset is out of bounds");
 
 	__forceinline decltype(auto) operator()(Args... arg)
 	{

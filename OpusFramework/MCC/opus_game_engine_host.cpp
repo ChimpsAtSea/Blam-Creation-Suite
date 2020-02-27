@@ -39,18 +39,18 @@ void c_opus_game_engine_host::EngineStateUpdate(eEngineState state)
 {
 	/* LEGACY_REFACTOR
 	const char* pEngineStateString = engine_state_to_string(state);
-	WriteLineVerbose("IOpusGameEngineHost::EngineStateUpdate (%d):%s", state, pEngineStateString);
+	write_line_verbose("IOpusGameEngineHost::EngineStateUpdate (%d):%s", state, pEngineStateString);
 
 	if (state != eEngineState::Unknown16) // `Unknown16` also needs a second arg so we skip it
 	{
 		switch (state)
 		{
 		case eEngineState::PushUIPage:
-			WriteLineVerbose("Push UI stack");
+			write_line_verbose("Push UI stack");
 			LegacyGameLauncher::s_uiStackLength++;
 			break;
 		case eEngineState::PopUIPage:
-			WriteLineVerbose("Pop UI stack");
+			write_line_verbose("Pop UI stack");
 			LegacyGameLauncher::s_uiStackLength--;
 			break;
 		}
@@ -66,13 +66,13 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 	LegacyGameLauncher::s_currentState = LegacyGameLauncher::CurrentState::eFinished;
 	*/
 
-	WriteLineVerbose("GameExited %u [%s]", a1, a2);
+	write_line_verbose("GameExited %u [%s]", a1, a2);
 	return __int64(0);
 }
 
 __int64 __fastcall c_opus_game_engine_host::WriteBufferToFile(LPVOID pBuffer, size_t bufferSize)
 {
-	WriteLineVerbose("IOpusGameEngineHost::Member05 WriteBufferToFile %p %016zx", pBuffer, bufferSize);
+	write_line_verbose("IOpusGameEngineHost::Member05 WriteBufferToFile %p %016zx", pBuffer, bufferSize);
 	return __int64(0);
 }
 
@@ -85,13 +85,13 @@ void c_opus_game_engine_host::Member07(unsigned int)
 	/* LEGACY_REFACTOR
 	if (LegacyGameLauncher::s_uiStackLength == 0)
 	{
-		WriteLineVerbose("IOpusGameEngineHost::Member07 PauseMenuOpened");
+		write_line_verbose("IOpusGameEngineHost::Member07 PauseMenuOpened");
 		DebugUI::RegisterCallback(LegacyGameLauncher::DrawPauseMenu);
 		DebugUI::Show();
 	}
 	else
 	{
-		WriteLineVerbose("IOpusGameEngineHost::Member07 UI Stack is %i", static_cast<int>(LegacyGameLauncher::s_uiStackLength));
+		write_line_verbose("IOpusGameEngineHost::Member07 UI Stack is %i", static_cast<int>(LegacyGameLauncher::s_uiStackLength));
 	}
 	*/
 }
@@ -176,18 +176,18 @@ void c_opus_game_engine_host::GetSessionInfo(s_session_info_part* pSessionInfoPa
 
 void __fastcall c_opus_game_engine_host::MembershipUpdate(s_session_membership* pSessionMembership, uint32_t playercount)
 {
-	RUNONCE({ WriteLineVerbose("IOpusGameEngineHost::MembershipUpdate"); });
+	RUNONCE({ write_line_verbose("IOpusGameEngineHost::MembershipUpdate"); });
 }
 
 bool __fastcall c_opus_game_engine_host::Member26()
 {
-	RUNONCE({ WriteLineVerbose("IOpusGameEngineHost::Member26"); });
+	RUNONCE({ write_line_verbose("IOpusGameEngineHost::Member26"); });
 	return false;
 }
 
 bool __fastcall c_opus_game_engine_host::Member27()
 {
-	RUNONCE({ WriteLineVerbose("IOpusGameEngineHost::Member27"); });
+	RUNONCE({ write_line_verbose("IOpusGameEngineHost::Member27"); });
 	return false;
 }
 
@@ -207,7 +207,7 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* pUnk
 	pUnknown->VIDEO_LodDistQualityFactor = 2;
 	pUnknown->VIDEO_UseEdgeAA = true;
 
-	WriteLineVerbose("IOpusGameEngineHost::UpdateGraphics");
+	write_line_verbose("IOpusGameEngineHost::UpdateGraphics");
 
 	// returning false effectively doubles fps when unlocked
 	return !(pUnknown->VIDEO_FPS_Lock || pUnknown->VIDEO_Wait_VSync);
@@ -215,7 +215,7 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* pUnk
 
 __int64 __fastcall c_opus_game_engine_host::Member29(__int64 value)
 {
-	RUNONCE({ WriteLineVerbose("IOpusGameEngineHost::Member29"); });
+	RUNONCE({ write_line_verbose("IOpusGameEngineHost::Member29"); });
 	static char buffer[155] = {};
 	return reinterpret_cast<int64_t>(&buffer[0]);
 }
@@ -435,7 +435,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, 
 						return true;
 					}
 					wcsncpy_s(pszPlayerNames[i], 32, pName, 16);
-					WriteLineVerbose("player[%d].Name: set %ls", i, pName);
+					write_line_verbose("player[%d].Name: set %ls", i, pName);
 				}
 			}
 		}

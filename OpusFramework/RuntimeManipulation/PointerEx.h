@@ -6,7 +6,7 @@ class PointerEx : public c_data_reference_base
 public:
 	PointerEx(const PointerEx&) = delete;
 	PointerEx()
-		: c_data_reference_base(Build::NotSet, sizeof(T), 0, find_offset)
+		: c_data_reference_base(_build_not_set, sizeof(T), 0, find_offset)
 	{
 
 	}

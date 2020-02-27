@@ -105,7 +105,7 @@ e_game_mode HaloReachGameOptionSelection::GetSelectedGameMode()
 
 void HaloReachGameOptionSelection::SelectGameMode()
 {
-	if (CommandLine::HasCommandLineArg("-showallmodes"))
+	if (c_command_line::has_command_line_arg("-showallmodes"))
 	{
 		const char* selected_game_mode_string = game_mode_to_local_string(s_currentGameMode);
 		if (ImGui::BeginCombo("###MODE", selected_game_mode_string))
@@ -639,7 +639,7 @@ void HaloReachGameOptionSelection::LoadMapVariant(IDataAccess* pDataAccess, cons
 		{
 			if (print)
 			{
-				WriteLineVerbose("Loading map variant [%s]", pFileName.c_str());
+				write_line_verbose("Loading map variant [%s]", pFileName.c_str());
 			}
 
 			rMapVariant = pDataAccess->MapVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->MapVariant;
@@ -654,7 +654,7 @@ void HaloReachGameOptionSelection::LoadMapVariant(IDataAccess* pDataAccess, cons
 
 		if (print)
 		{
-			WriteLineVerbose("Creating map variant for '%s'", pSelectedMapInfo->GetFriendlyName());
+			write_line_verbose("Creating map variant for '%s'", pSelectedMapInfo->GetFriendlyName());
 		}
 
 		rMapVariant = pDataAccess->MapVariantCreateFromMapID(pSelectedMapInfo->GetMapID())->MapVariant;
@@ -689,7 +689,7 @@ void HaloReachGameOptionSelection::LoadGameVariant(IDataAccess* pDataAccess, con
 	{
 		if (print)
 		{
-			WriteLineVerbose("Loading game variant [%s]", pFileName.c_str());
+			write_line_verbose("Loading game variant [%s]", pFileName.c_str());
 		}
 		rGameVariant = pDataAccess->GameVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->GameVariant;
 		filo.close_file();
@@ -746,7 +746,7 @@ void HaloReachGameOptionSelection::LoadSavedFilmMetadata(const char* pSavedFilmN
 
 	if (pFileName.c_str())
 	{
-		WriteLineVerbose("Loading saved film [%s]", pFileName.c_str());
+		write_line_verbose("Loading saved film [%s]", pFileName.c_str());
 	}
 
 	gameContext.SavedFilmPath = pFileName.c_str();

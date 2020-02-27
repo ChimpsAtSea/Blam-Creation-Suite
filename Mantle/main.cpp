@@ -22,7 +22,7 @@ int WINAPI wWinMain(
 
 	void(*UICallback)() = []()
 	{
-		MantleGUI::Render();
+		c_mantle_gui::Render();
 	};
 
 	static bool s_running = true;
@@ -41,12 +41,12 @@ int WINAPI wWinMain(
 	Window::Init("Mantle", "Mantle Console", "mantle");
 	Render::Init(NULL);
 	DebugUI::Show();
-	MantleGUI::Init(false, szLoadMapArgument);
+	c_mantle_gui::Init(false, szLoadMapArgument);
 	DebugUI::RegisterCallback(DebugUI::AlwaysRun, UICallback);
 
 	Window::RegisterUpdateCallback(UpdateCallback);
 	Window::RegisterDestroyCallback(DestroyCallback);
-	MantleGUI::RegisterOnCloseCallback(DestroyCallback);
+	c_mantle_gui::RegisterOnCloseCallback(DestroyCallback);
 
 	c_console::Startup();
 
@@ -54,10 +54,10 @@ int WINAPI wWinMain(
 
 	Window::UnregisterUpdateCallback(UpdateCallback);
 	Window::UnregisterDestroyCallback(DestroyCallback);
-	MantleGUI::UnregisterOnCloseCallback(DestroyCallback);
+	c_mantle_gui::UnregisterOnCloseCallback(DestroyCallback);
 
 	DebugUI::RegisterCallback(DebugUI::AlwaysRun, UICallback);
-	MantleGUI::Deinit();
+	c_mantle_gui::Deinit();
 	Render::Deinit();
 	Window::Deinit();
 	c_console::Deinit();

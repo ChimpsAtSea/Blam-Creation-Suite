@@ -1,6 +1,6 @@
 #pragma once
 
-template<Build build, typename T, size_t offset>
+template<e_build build, typename T, size_t offset>
 class Data : public c_data_reference_base
 {
 public:

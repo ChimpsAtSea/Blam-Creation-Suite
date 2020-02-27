@@ -6,11 +6,11 @@
 typedef std::pair<char*, std::vector<char>> DataPatchPacket;
 typedef std::vector<DataPatchPacket> DataPatchPackets;
 
-typedef uintptr_t(DataPatchSearchCallback)(Engine, Build);
+typedef uintptr_t(DataPatchSearchCallback)(e_engine_type, e_build);
 
 
-typedef void (DataPatchApply_DataPatchPacket_CallbackX)(Engine, Build, char*, DataPatchPacket&);
-typedef void (DataPatchApply_DataPatchPackets_CallbackX)(Engine, Build, char*, DataPatchPackets&);
+typedef void (DataPatchApply_DataPatchPacket_CallbackX)(e_engine_type, e_build, char*, DataPatchPacket&);
+typedef void (DataPatchApply_DataPatchPackets_CallbackX)(e_engine_type, e_build, char*, DataPatchPackets&);
 
 // #TODO: Figure out warning 4927
 using DataPatchApply_DataPatchPacket_Callback = std::function<DataPatchApply_DataPatchPacket_CallbackX>;
@@ -31,8 +31,8 @@ public:
 	c_data_patch_base(DataPatchSearchCallback searchFunction, DataPatchApply_DataPatchPacket_Callback applyFunction_Packet, bool applyOnInit);
 	c_data_patch_base(DataPatchSearchCallback searchFunction, DataPatchApply_DataPatchPackets_Callback applyFunction_Packets, bool applyOnInit);
 
-	static void InitTree(Engine engine, Build build);
-	static void DeinitTree(Engine engine, Build build);
+	static void init_data_patch_tree(e_engine_type engine_type, e_build build);
+	static void deinit_data_patch_tree(e_engine_type engine_type, e_build build);
 	static void DestroyTree();
 
 	bool ApplyPatch();
@@ -40,12 +40,12 @@ public:
 	bool IsPatched() const { return m_isPatched; };
 private:
 	void init();
-	c_data_patch_base* initNode(Engine engine, Build build);
-	c_data_patch_base* deinitNode(Engine engine, Build build);
+	c_data_patch_base* initNode(e_engine_type engine_type, e_build build);
+	c_data_patch_base* deinitNode(e_engine_type engine_type, e_build build);
 
 	c_data_patch_base* m_pNextDataPatch;
-	Engine m_engine;
-	Build m_build;
+	e_engine_type m_engine;
+	e_build m_build;
 	uintptr_t m_offset;
 	bool m_applyOnInit;
 	bool m_isPatched;

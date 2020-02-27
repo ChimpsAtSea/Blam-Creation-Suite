@@ -89,7 +89,7 @@ void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, ch
 				if (pTagBlock->count && pTagBlock->address)
 				{
 					char* pTagBlockDataSource = m_rCacheFile.GetTagBlockData<char>(*pTagBlock);
-					char* pTagBlockDataDest = MantleGUI::GetTagSectionAddress(pTagBlock->address);
+					char* pTagBlockDataDest = c_mantle_gui::GetTagSectionAddress(pTagBlock->address);
 
 					for (int i = 0; i < pTagBlock->count; i++)
 					{
@@ -105,7 +105,7 @@ void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, ch
 
 void MantleTagTab::Poke()
 {
-	char* pDest = static_cast<char*>(MantleGUI::GetTagPointer(GetTagInterface().GetIndex()));
+	char* pDest = static_cast<char*>(c_mantle_gui::GetTagPointer(GetTagInterface().GetIndex()));
 	if (pDest)
 	{
 
@@ -114,11 +114,11 @@ void MantleTagTab::Poke()
 		const ReflectionType* pReflectionType = m_rTagInterface.GetReflectionData();
 		CopyDataRecursively(*pReflectionType, pSource, pDest, pSource, pDest);
 
-		WriteLineVerbose("Successfully poked tag '%s'", GetTagInterface().GetNameWithGroupIDCStr());
+		write_line_verbose("Successfully poked tag '%s'", GetTagInterface().GetNameWithGroupIDCStr());
 	}
 	else
 	{
-		WriteLineVerbose("Failed to poke tag '%s' as pDest was null", GetTagInterface().GetNameWithGroupIDCStr());
+		write_line_verbose("Failed to poke tag '%s' as pDest was null", GetTagInterface().GetNameWithGroupIDCStr());
 	}
 
 }
@@ -154,7 +154,7 @@ void MantleTagTab::RenderContents(bool setSelected)
 
 void MantleTagTab::RenderButtons()
 {
-	if (MantleGUI::IsGameClient())
+	if (c_mantle_gui::IsGameClient())
 	{
 		if (!m_isSelected) return;
 
@@ -175,7 +175,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 	{
 		const ReflectionField& reflectionField = rReflectionType.m_members[i];
 
-		bool unknownItemsVisible = MantleGUI::IsUnknownItemsVisible();
+		bool unknownItemsVisible = c_mantle_gui::IsUnknownItemsVisible();
 		if (!unknownItemsVisible && reflectionField.m_isHiddenByDefault)
 		{
 			// skip hidden fields
@@ -323,7 +323,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 				if (ImGui::InputText("StringID", rDynamicStringIDData.szBuffer, sizeof(rDynamicStringIDData.szBuffer)))
 				{
 					rDynamicStringIDData.updateStringID();
-					WriteLineVerbose(rDynamicStringIDData.szBuffer);
+					write_line_verbose(rDynamicStringIDData.szBuffer);
 				}
 				if (!isValid) ImGui::PopStyleColor();
 
@@ -400,7 +400,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 
 				if (pTagReferenceTagInterface)
 				{
-					const char* pTagReferenceDisplayName = MantleGUI::IsSidebarUseFullFileLength()
+					const char* pTagReferenceDisplayName = c_mantle_gui::IsSidebarUseFullFileLength()
 						? pTagReferenceTagInterface->GetPathWithGroupIDCStr()
 						: pTagReferenceTagInterface->GetNameWithGroupIDCStr();
 
@@ -423,7 +423,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 								continue;
 							}
 
-							const char* pCurrentTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
+							const char* pCurrentTagDisplayWithGroupID = c_mantle_gui::IsSidebarUseFullFileLength()
 								? pCurrentTagInterface->GetPathWithGroupIDCStr()
 								: pCurrentTagInterface->GetNameWithGroupIDCStr();
 
@@ -462,7 +462,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 								continue;
 							}
 
-							const char* pCurrentTagDisplayWithGroupID = MantleGUI::IsSidebarUseFullFileLength()
+							const char* pCurrentTagDisplayWithGroupID = c_mantle_gui::IsSidebarUseFullFileLength()
 								? pCurrentTagInterface->GetPathWithGroupIDCStr()
 								: pCurrentTagInterface->GetNameWithGroupIDCStr();
 
