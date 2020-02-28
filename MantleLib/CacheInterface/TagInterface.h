@@ -1,11 +1,11 @@
 #pragma once
-class MantleMapTab;
+class c_mantle_cache_file_gui_tab;
 class GroupInterface;
 class TagInterface
 {
 public:
 	friend class CacheFile;
-	friend class MantleMapTab;
+	friend class c_mantle_cache_file_gui_tab;
 	friend class GroupInterface;
 
 	TagInterface(CacheFile& rCacheFile, uint16_t tagIndex);

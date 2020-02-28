@@ -38,19 +38,19 @@ void c_window::SetPostMessageThreadId(HANDLE hThread)
 	s_hPostMessageThreadId = GetThreadId(s_hPostMessageThread);
 }
 
-int c_window::GetWindowWidth()
+int c_window::get_width()
 {
 	return max(1l, s_size.cx);
 }
 
-int c_window::GetWindowHeight()
+int c_window::get_height()
 {
 	return max(1l, s_size.cy);
 }
 
 float c_window::get_aspect_ratio()
 {
-	float aspectRatio = static_cast<float>(c_window::GetWindowWidth()) / static_cast<float>(c_window::GetWindowHeight());
+	float aspectRatio = static_cast<float>(c_window::get_width()) / static_cast<float>(c_window::get_height());
 	return aspectRatio;
 }
 
@@ -112,7 +112,7 @@ LRESULT CALLBACK c_window::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
 		break;
 	case WM_SIZE:
 		updateWindowSize(s_size);
-		c_render::RequestResize(c_window::GetWindowWidth(), c_window::GetWindowHeight());
+		c_render::RequestResize(c_window::get_width(), c_window::get_height());
 		// #TODO: tell game to resize
 		break;
 	case WM_KILLFOCUS:

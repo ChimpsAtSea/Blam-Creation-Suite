@@ -47,8 +47,8 @@ inline const ReflectionType* GetTagReflectionData(TagGroupName tagGroupName)
 	return nullptr;
 }
 
-MantleTagTab::MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface, MantleTab* pParentTab)
-	: MantleTab(rTagInterface.GetNameWithGroupIDCStr(), rTagInterface.GetPathWithGroupNameCStr())
+MantleTagTab::MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface, c_mantle_gui_tab* pParentTab)
+	: c_mantle_gui_tab(rTagInterface.GetNameWithGroupIDCStr(), rTagInterface.GetPathWithGroupNameCStr())
 	, m_rTagInterface(rTagInterface)
 	, m_rCacheFile(rCacheFile)
 	, m_pParentTab(pParentTab)
@@ -89,7 +89,7 @@ void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, ch
 				if (pTagBlock->count && pTagBlock->address)
 				{
 					char* pTagBlockDataSource = m_rCacheFile.GetTagBlockData<char>(*pTagBlock);
-					char* pTagBlockDataDest = c_mantle_gui::GetTagSectionAddress(pTagBlock->address);
+					char* pTagBlockDataDest = c_mantle_gui::get_tag_selection_address(pTagBlock->address);
 
 					for (int i = 0; i < pTagBlock->count; i++)
 					{
@@ -105,7 +105,7 @@ void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, ch
 
 void MantleTagTab::Poke()
 {
-	char* pDest = static_cast<char*>(c_mantle_gui::GetTagPointer(GetTagInterface().GetIndex()));
+	char* pDest = static_cast<char*>(c_mantle_gui::get_tag_pointer(GetTagInterface().GetIndex()));
 	if (pDest)
 	{
 
@@ -131,7 +131,7 @@ void MantleTagTab::RenderContents(bool setSelected)
 
 
 	m_isSelected = false;
-	if (ImGui::BeginTabItem(GetTitle(), &m_isOpen, tabFlags))
+	if (ImGui::BeginTabItem(get_title(), &m_isOpen, tabFlags))
 	{
 		m_isSelected = true;
 		ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
@@ -154,7 +154,7 @@ void MantleTagTab::RenderContents(bool setSelected)
 
 void MantleTagTab::RenderButtons()
 {
-	if (c_mantle_gui::IsGameClient())
+	if (c_mantle_gui::is_game())
 	{
 		if (!m_isSelected) return;
 
@@ -175,7 +175,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 	{
 		const ReflectionField& reflectionField = rReflectionType.m_members[i];
 
-		bool unknownItemsVisible = c_mantle_gui::IsUnknownItemsVisible();
+		bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 		if (!unknownItemsVisible && reflectionField.m_isHiddenByDefault)
 		{
 			// skip hidden fields
@@ -400,7 +400,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 
 				if (pTagReferenceTagInterface)
 				{
-					const char* pTagReferenceDisplayName = c_mantle_gui::IsSidebarUseFullFileLength()
+					const char* pTagReferenceDisplayName = c_mantle_gui::get_use_full_file_length_display()
 						? pTagReferenceTagInterface->GetPathWithGroupIDCStr()
 						: pTagReferenceTagInterface->GetNameWithGroupIDCStr();
 
@@ -423,7 +423,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 								continue;
 							}
 
-							const char* pCurrentTagDisplayWithGroupID = c_mantle_gui::IsSidebarUseFullFileLength()
+							const char* pCurrentTagDisplayWithGroupID = c_mantle_gui::get_use_full_file_length_display()
 								? pCurrentTagInterface->GetPathWithGroupIDCStr()
 								: pCurrentTagInterface->GetNameWithGroupIDCStr();
 
@@ -462,7 +462,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 								continue;
 							}
 
-							const char* pCurrentTagDisplayWithGroupID = c_mantle_gui::IsSidebarUseFullFileLength()
+							const char* pCurrentTagDisplayWithGroupID = c_mantle_gui::get_use_full_file_length_display()
 								? pCurrentTagInterface->GetPathWithGroupIDCStr()
 								: pCurrentTagInterface->GetNameWithGroupIDCStr();
 
@@ -495,7 +495,7 @@ void MantleTagTab::RenderContentsImpl(char* pData, const ReflectionType& rReflec
 				{
 					if (pTagReferenceTagInterface)
 					{
-						MantleMapTab* pMapTab = dynamic_cast<MantleMapTab*>(m_pParentTab);
+						c_mantle_cache_file_gui_tab* pMapTab = dynamic_cast<c_mantle_cache_file_gui_tab*>(m_pParentTab);
 						if (pMapTab)
 						{
 							pMapTab->openTagTab(*pTagReferenceTagInterface);

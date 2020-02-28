@@ -1,23 +1,18 @@
 #pragma once
 
-class MantleTab
+class c_mantle_gui_tab
 {
 public:
-	MantleTab(const char* pTitle, const char* pDescription)
-		: m_title(pTitle)
-		, m_description(pDescription)
-		, m_isOpen(true)
-	{
+	c_mantle_gui_tab(const char* title, const char* description);
+	virtual ~c_mantle_gui_tab();
 
-	}
-	virtual ~MantleTab();
-	virtual void GameRender();
+	virtual void render_in_game_gui();
+	virtual void render_gui(bool setSelected);
 
-	void Render(bool setSelected);
-	inline const char* GetTitle() const { return m_title.c_str(); }
-	inline const char* GetDescription() const { return m_description.c_str(); }
+	inline const char* get_title() const { return m_title.c_str(); }
+	inline const char* get_description() const { return m_description.c_str(); }
 
-	using TabClosedCallback = std::function<void(MantleTab&)>;
+	using TabClosedCallback = std::function<void(c_mantle_gui_tab&)>;
 	void AddTabClosedCallback(TabClosedCallback);
 protected:
 	virtual void RenderContents(bool setSelected) = 0;
@@ -57,7 +52,7 @@ protected:
 
 };
 
-inline MantleTab::ImGUIDynamicData& MantleTab::GetDynamicData(void* pPosition, bool& rWasAllocated)
+inline c_mantle_gui_tab::ImGUIDynamicData& c_mantle_gui_tab::GetDynamicData(void* pPosition, bool& rWasAllocated)
 {
 	for (ImGUIDynamicData* pDynamicData : m_imGuiDynamicData)
 	{

@@ -2,10 +2,10 @@
 
 class TagInterface;
 class CacheFile;
-class MantleTagTab : public MantleTab
+class MantleTagTab : public c_mantle_gui_tab
 {
 public:
-	MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface, MantleTab* pParentTab);
+	MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface, c_mantle_gui_tab* pParentTab);
 	virtual ~MantleTagTab();
 
 	void CopyDataRecursively(const ReflectionType& rReflectionType, char* pStartSrc, char* pStartDest, char* pSrc, char* pDest);
@@ -21,5 +21,5 @@ protected:
 	bool m_isSelected;
 	TagInterface& m_rTagInterface;
 	CacheFile& m_rCacheFile;
-	MantleTab* m_pParentTab;
+	c_mantle_gui_tab* m_pParentTab;
 };

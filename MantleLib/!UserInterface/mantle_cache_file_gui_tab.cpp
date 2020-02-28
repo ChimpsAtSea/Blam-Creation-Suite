@@ -1,8 +1,8 @@
 #include "mantlelib-private-pch.h"
 
-void MantleMapTab::DisplayMapTabUI()
+void c_mantle_cache_file_gui_tab::DisplayMapTabUI()
 {
-	if (c_mantle_gui::IsGameClient())
+	if (c_mantle_gui::is_game())
 	{
 		if (ImGui::BeginMenuBar())
 		{
@@ -38,7 +38,7 @@ void MantleMapTab::DisplayMapTabUI()
 		if (useSearch)
 		{
 
-			const std::vector<TagInterface*>& rTagInterfaces = c_mantle_gui::IsSidebarUseFullFileLength()
+			const std::vector<TagInterface*>& rTagInterfaces = c_mantle_gui::get_use_full_file_length_display()
 				? m_pCacheFile->GetTagInterfacesSortedByPathWithGroupID()
 				: m_pCacheFile->GetTagInterfacesSortedByNameWithGroupID();
 			for (TagInterface* pTagInterface : rTagInterfaces)
@@ -46,7 +46,7 @@ void MantleMapTab::DisplayMapTabUI()
 				TagInterface& rTagInterface = *pTagInterface;
 				if (rTagInterface.IsNull()) continue;
 
-				const char* pTagDisplayWithGroupID = c_mantle_gui::IsSidebarUseFullFileLength()
+				const char* pTagDisplayWithGroupID = c_mantle_gui::get_use_full_file_length_display()
 					? rTagInterface.GetPathWithGroupIDCStr()
 					: rTagInterface.GetNameWithGroupIDCStr();
 
@@ -71,7 +71,7 @@ void MantleMapTab::DisplayMapTabUI()
 			{
 				GroupInterface& rGroupInterface = *pGroupInterface;
 
-				const std::vector<TagInterface*>& rTagInterfaces = c_mantle_gui::IsSidebarUseFullFileLength()
+				const std::vector<TagInterface*>& rTagInterfaces = c_mantle_gui::get_use_full_file_length_display()
 					? pGroupInterface->GetTagInterfacesSortedByPathWithGroupID()
 					: pGroupInterface->GetTagInterfacesSortedByNameWithGroupID();
 
@@ -92,7 +92,7 @@ void MantleMapTab::DisplayMapTabUI()
 
 						if (!displayTag) continue;
 
-						const char* pTagDisplayWithGroupID = c_mantle_gui::IsSidebarUseFullFileLength()
+						const char* pTagDisplayWithGroupID = c_mantle_gui::get_use_full_file_length_display()
 							? rTagInterface.GetPathWithGroupIDCStr()
 							: rTagInterface.GetNameWithGroupIDCStr();
 
@@ -168,15 +168,15 @@ void MantleMapTab::DisplayMapTabUI()
 		// right
 		ImGui::BeginGroup();
 		ImGui::BeginChild("item view", ImVec2(0, -ImGui::GetFrameHeightWithSpacing()), false, ImGuiWindowFlags_NoScrollbar);
-		if (!m_tabs.empty()) // #NOTE: Checking this fixes strange ImGUI crash
+		if (!child_tabs.empty()) // #NOTE: Checking this fixes strange ImGUI crash
 		{
 			if (ImGui::BeginTabBar("##Tabs", ImGuiTabBarFlags_None)) // each tag
 			{
-				MantleTab* pNextSelectedTab = m_pNextSelectedTab;
-				m_pNextSelectedTab = nullptr; // take a copy as the Render function can set this up for the next frame
-				for (MantleTab* pTab : m_tabs)
+				c_mantle_gui_tab* next_selected_mantle_gui_tab_copy = next_selected_mantle_gui_tab;
+				next_selected_mantle_gui_tab = nullptr; // take a copy as the render_gui function can set this up for the next frame
+				for (c_mantle_gui_tab* mantle_gui_tab : child_tabs)
 				{
-					pTab->Render(pNextSelectedTab == pTab);
+					mantle_gui_tab->render_gui(next_selected_mantle_gui_tab_copy == mantle_gui_tab);
 				}
 
 				ImGui::EndTabBar();
@@ -189,7 +189,7 @@ void MantleMapTab::DisplayMapTabUI()
 		{
 			m_pCacheFile->SaveMap();
 		}
-		for (MantleTab* pTab : m_tabs)
+		for (c_mantle_gui_tab* pTab : child_tabs)
 		{
 			MantleTagTab* pTagTab = dynamic_cast<MantleTagTab*>(pTab);
 			if (pTagTab)
@@ -206,59 +206,59 @@ void MantleMapTab::DisplayMapTabUI()
 	ImGui::Columns(1);
 }
 
-void MantleMapTab::openTagTab(TagInterface& rTagInterface)
+void c_mantle_cache_file_gui_tab::openTagTab(TagInterface& rTagInterface)
 {
-	for (MantleTab* pTab : m_tabs)
+	for (c_mantle_gui_tab* pTab : child_tabs)
 	{
 		MantleTagTab* pTagTab = dynamic_cast<MantleTagTab*>(pTab);
 		if (pTagTab == nullptr) continue;
 		if (&pTagTab->GetTagInterface() != &rTagInterface) continue;
 
-		m_pNextSelectedTab = pTab;
+		next_selected_mantle_gui_tab = pTab;
 		return;
 	}
 
-	MantleTab* pTab = new MantleTagTab(*m_pCacheFile, rTagInterface, this);
+	c_mantle_gui_tab* pTab = new MantleTagTab(*m_pCacheFile, rTagInterface, this);
 	AddTabItem(*pTab);
-	m_pNextSelectedTab = pTab;
+	next_selected_mantle_gui_tab = pTab;
 }
 
-MantleMapTab::MantleMapTab(const char* pTitle, const char* pDescription)
-	:MantleTab(pTitle, pDescription)
-	, m_tabClosedCallback([this](MantleTab& rTab) { this->RemoveTabItem(rTab); })
+c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(const char* pTitle, const char* pDescription)
+	:c_mantle_gui_tab(pTitle, pDescription)
+	, tab_closed_callback([this](c_mantle_gui_tab& rTab) { this->RemoveTabItem(rTab); })
 	, m_renderTriggerVolumes(false)
-	, m_pNextSelectedTab(nullptr)
+	, next_selected_mantle_gui_tab(nullptr)
 	, m_pSelectedSearchTagInterface(nullptr)
 	, m_pSearchBuffer()
 {
 
 }
 
-MantleMapTab::MantleMapTab(std::shared_ptr<CacheFile> pCacheFile)
+c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(std::shared_ptr<CacheFile> pCacheFile)
 	: m_pCacheFile(pCacheFile)
-	, MantleTab(pCacheFile->GetFileNameChar(), pCacheFile->GetFilePathChar())
-	, m_tabClosedCallback([this](MantleTab& rTab) { this->RemoveTabItem(rTab); })
+	, c_mantle_gui_tab(pCacheFile->GetFileNameChar(), pCacheFile->GetFilePathChar())
+	, tab_closed_callback([this](c_mantle_gui_tab& rTab) { this->RemoveTabItem(rTab); })
 	, m_renderTriggerVolumes(c_command_line::has_command_line_arg("-showtriggervolumes"))
-	, m_pNextSelectedTab(nullptr)
+	, next_selected_mantle_gui_tab(nullptr)
 	, m_pSelectedSearchTagInterface(nullptr)
 	, m_pSearchBuffer()
 {
 
 }
 
-MantleMapTab::MantleMapTab(const wchar_t* szMapFilePath)
-	:MantleMapTab(std::make_shared<CacheFile>(szMapFilePath))
+c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(const wchar_t* szMapFilePath)
+	:c_mantle_cache_file_gui_tab(std::make_shared<CacheFile>(szMapFilePath))
 {
 
 }
 
-MantleMapTab::~MantleMapTab()
+c_mantle_cache_file_gui_tab::~c_mantle_cache_file_gui_tab()
 {
 	// delete the first tab in the vector until non remain
 	// tabs are removed from vector via the TabClosedCallback
-	while (!m_tabs.empty())
+	while (!child_tabs.empty())
 	{
-		delete* m_tabs.begin();
+		delete* child_tabs.begin();
 	}
 }
 
@@ -324,7 +324,7 @@ void RenderGizmoImmediate(float x, float y, float z)
 	}
 }
 
-void MantleMapTab::GameRender()
+void c_mantle_cache_file_gui_tab::render_in_game_gui()
 {
 	if (!m_renderTriggerVolumes)
 	{
@@ -402,12 +402,12 @@ void MantleMapTab::GameRender()
 	}
 }
 
-void MantleMapTab::RenderContents(bool setSelected)
+void c_mantle_cache_file_gui_tab::RenderContents(bool setSelected)
 {
 	ImGui::PushID(this);
 	ImGuiTabItemFlags tabFlags = 0;
 	if (setSelected) tabFlags |= ImGuiTabItemFlags_SetSelected;
-	if (ImGui::BeginTabItem(GetTitle(), &m_isOpen, tabFlags))
+	if (ImGui::BeginTabItem(get_title(), &m_isOpen, tabFlags))
 	{
 		if (m_pCacheFile->IsLoading())
 		{
@@ -423,13 +423,13 @@ void MantleMapTab::RenderContents(bool setSelected)
 	ImGui::PopID();
 }
 
-void MantleMapTab::AddTabItem(MantleTab& rMantleTab)
+void c_mantle_cache_file_gui_tab::AddTabItem(c_mantle_gui_tab& rMantleTab)
 {
-	m_tabs.push_back(&rMantleTab);
-	rMantleTab.AddTabClosedCallback(m_tabClosedCallback);
+	child_tabs.push_back(&rMantleTab);
+	rMantleTab.AddTabClosedCallback(tab_closed_callback);
 }
 
-void MantleMapTab::RemoveTabItem(MantleTab& rMantleTab)
+void c_mantle_cache_file_gui_tab::RemoveTabItem(c_mantle_gui_tab& rMantleTab)
 {
-	VectorEraseByValueHelper(m_tabs, &rMantleTab);
+	VectorEraseByValueHelper(child_tabs, &rMantleTab);
 }

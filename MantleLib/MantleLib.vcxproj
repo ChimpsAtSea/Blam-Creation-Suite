@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="!UserInterface\MantleMapTab.cpp" />
-    <ClCompile Include="!UserInterface\MantleTab.cpp" />
+    <ClCompile Include="!UserInterface\mantle_cache_file_gui_tab.cpp" />
+    <ClCompile Include="!UserInterface\mantle_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_gui.cpp" />
     <ClCompile Include="CacheInterface\CacheFile.cpp" />
     <ClCompile Include="CacheInterface\GroupInterface.cpp" />
@@ -50,8 +50,8 @@
     <ClInclude Include="!UserInterface\UserInterface.h" />
     <ClInclude Include="CacheInterface\CacheFile.h" />
     <ClInclude Include="CacheInterface\CacheInterface.h" />
-    <ClInclude Include="!UserInterface\MantleMapTab.h" />
-    <ClInclude Include="!UserInterface\MantleTab.h" />
+    <ClInclude Include="!UserInterface\mantle_cache_file_gui_tab.h" />
+    <ClInclude Include="!UserInterface\mantle_gui_tab.h" />
     <ClInclude Include="!UserInterface\mantle_gui.h" />
     <ClInclude Include="!UserInterface\MantleTagTab.h" />
     <ClInclude Include="CacheInterface\TagInterface.h" />

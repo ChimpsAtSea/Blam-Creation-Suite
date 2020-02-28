@@ -103,7 +103,7 @@ void GameLauncher::OpusTick()
 			ImGuiWindowFlags_NoDecoration |
 			ImGuiWindowFlags_NoInputs;
 		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(c_window::GetWindowWidth()), static_cast<float>(c_window::GetWindowHeight())), ImGuiCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(c_window::get_width()), static_cast<float>(c_window::get_height())), ImGuiCond_Always);
 		if (ImGui::Begin("##debug", NULL, kDebugWindowFlags)) // render inside of the dummy imgui window for on screen text display
 		{
 			gameRender();
@@ -132,7 +132,7 @@ void GameLauncher::update()
 
 void GameLauncher::gameRender()
 {
-	c_mantle_gui::GameRender();
+	c_mantle_gui::render_in_game_gui();
 	PrimitiveRenderManager::Render();
 }
 
@@ -328,7 +328,7 @@ void GameLauncher::launchHaloReach()
 		{
 			wchar_t pMapFilePathBuffer[MAX_PATH + 1] = {};
 			_snwprintf(pMapFilePathBuffer, MAX_PATH, L"%S%S.map", "haloreach/maps/", pMapFileName);
-			c_mantle_gui::OpenMapFile(pMapFilePathBuffer);
+			c_mantle_gui::open_cache_file_from_filepath(pMapFilePathBuffer);
 		}
 
 		gameContext.pGameHandle = GetModuleHandle("HaloReach.dll");
@@ -485,7 +485,7 @@ void GameLauncher::renderMainMenu()
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
-	ImVec2 globalWindowSize = ImVec2(static_cast<float>(c_window::GetWindowWidth()), static_cast<float>(c_window::GetWindowHeight()));
+	ImVec2 globalWindowSize = ImVec2(static_cast<float>(c_window::get_width()), static_cast<float>(c_window::get_height()));
 	ImVec2 windowSize = ImVec2(globalWindowSize.x * 0.75f, globalWindowSize.y * 0.75f);
 	ImVec2 windowOffset = ImVec2((globalWindowSize.x - windowSize.x) / 2.0f, (globalWindowSize.y - windowSize.y) / 2.0f);
 	ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
@@ -557,7 +557,7 @@ void GameLauncher::renderPauseMenu()
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
-	ImVec2 globalWindowSize = ImVec2(static_cast<float>(c_window::GetWindowWidth()), static_cast<float>(c_window::GetWindowHeight()));
+	ImVec2 globalWindowSize = ImVec2(static_cast<float>(c_window::get_width()), static_cast<float>(c_window::get_height()));
 	ImVec2 windowSize = ImVec2(globalWindowSize.x * 0.75f, globalWindowSize.y * 0.75f);
 	ImVec2 windowOffset = ImVec2((globalWindowSize.x - windowSize.x) / 2.0f, (globalWindowSize.y - windowSize.y) / 2.0f);
 	ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);

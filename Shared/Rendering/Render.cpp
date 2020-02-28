@@ -93,8 +93,8 @@ bool c_render::CalculateScreenCoordinates(float positionX, float positionY, floa
 	using namespace DirectX;
 
 	XMVECTOR pV = { positionX, positionY, positionZ, 1.0f };
-	float Height = (float)c_window::GetWindowHeight();
-	float Width = (float)c_window::GetWindowWidth();
+	float Height = (float)c_window::get_height();
+	float Width = (float)c_window::get_width();
 
 	DirectX::XMMATRIX pWorld = DirectX::XMMatrixIdentity();
 	DirectX::XMMATRIX pProjection = perspectiveMatrix;
@@ -116,8 +116,8 @@ bool c_render::CalculateScreenCoordinates(float positionX, float positionY, floa
 void c_render::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 {
 	DXGI_SWAP_CHAIN_DESC1 s_SwapchainDescription = {};
-	s_SwapchainDescription.Width = c_window::GetWindowWidth();
-	s_SwapchainDescription.Height = c_window::GetWindowHeight();
+	s_SwapchainDescription.Width = c_window::get_width();
+	s_SwapchainDescription.Height = c_window::get_height();
 	s_SwapchainDescription.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	s_SwapchainDescription.Stereo = false;
 	s_SwapchainDescription.SampleDesc.Count = 1;
@@ -352,8 +352,8 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 
 	// Set up the viewport.
 	D3D11_VIEWPORT vp;
-	vp.Width = static_cast<float>(c_window::GetWindowWidth());
-	vp.Height = static_cast<float>(c_window::GetWindowHeight());
+	vp.Width = static_cast<float>(c_window::get_width());
+	vp.Height = static_cast<float>(c_window::get_height());
 	vp.MinDepth = 0.0f;
 	vp.MaxDepth = 1.0f;
 	vp.TopLeftX = 0;

@@ -29,8 +29,10 @@ public:
 	static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static void SetPostMessageThreadId(HANDLE hThread);
 
-	static int GetWindowWidth();
-	static int GetWindowHeight();
+	static int get_width();
+	static int get_height();
+	static inline float get_width_float() { return static_cast<float>(get_width()); }
+	static inline float get_height_float() { return static_cast<float>(get_height()); }
 	static float get_aspect_ratio();
 	static void SetWindowTitle(const char* pTitle);
 	static void Show();

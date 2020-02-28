@@ -73,7 +73,7 @@ namespace ImGuiAddons
     /* Use this to show an open file dialog. The function takes label for the window,
  * the size and optionally the extensions that are valid for opening.
  */
-    bool ImGuiFileBrowser::ShowOpenFileDialogInternal(std::string label, ImVec2 sz_xy, std::string valid_types)
+    bool ImGuiFileBrowser::show_open_file_dialog_internal(std::string label, ImVec2 sz_xy, std::string valid_types)
 	{
 		if (show_popup_next_run)
 		{

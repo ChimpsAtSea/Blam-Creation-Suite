@@ -2,13 +2,13 @@
 
 class TagInterface;
 class CacheFile;
-class MantleMapTab;
+class c_mantle_cache_file_gui_tab;
 
 class GroupInterface
 {
 public:
 	friend class CacheFile;
-	friend class MantleMapTab;
+	friend class c_mantle_cache_file_gui_tab;
 	friend class TagInterface;
 
 	GroupInterface(CacheFile& rCacheFile, uint16_t groupIndex);

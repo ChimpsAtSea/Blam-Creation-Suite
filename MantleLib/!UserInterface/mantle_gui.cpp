@@ -1,101 +1,72 @@
 #include "mantlelib-private-pch.h"
 
-bool c_mantle_gui::s_sidebarUseFullFileLength = false;
-bool c_mantle_gui::s_unknownItemsVisible = false;
-std::vector<MantleTab*> c_mantle_gui::s_pMantleTabs;
-std::vector<c_mantle_gui::OnCloseCallback> c_mantle_gui::s_guiCloseCallbacks;
-bool c_mantle_gui::s_inGameMode;
-c_mantle_gui::GetTagPointerFunc c_mantle_gui::s_getTagPointerFunc = nullptr;
-c_mantle_gui::GetTagSectionAddressFunc c_mantle_gui::s_getTagSectionAddressFunc = nullptr;
+/* ---------- private constants */
+/* ---------- private macros */
+/* ---------- private types */
+/* ---------- private classes */
+/* ---------- globals */
 
-void c_mantle_gui::init_mantle_gui(bool inGameMode, const wchar_t* pStartupFilePath)
+static ImGuiAddons::ImGuiFileBrowser file_browser;
+static bool g_is_mantle_window_open = true; 
+static c_mantle_gui_tab* g_next_selected_root_tab = nullptr; // when set, the referenced tab will be selected on the next frame
+static uint32_t g_mantle_show_file_dialogue = false; // when set, the file dialogue will open on the next frame
+
+c_mantle_gui::get_tag_pointer_func c_mantle_gui::g_get_tag_pointer_func = nullptr;
+c_mantle_gui::get_tag_selection_address_func c_mantle_gui::g_get_tag_selection_address_func = nullptr;
+bool c_mantle_gui::g_use_full_file_length_display = false;
+bool c_mantle_gui::g_unknown_fields_visibility = false;
+bool c_mantle_gui::g_mantle_running_with_game;
+std::vector<c_mantle_gui_tab*> c_mantle_gui::g_mantle_gui_tabs;
+std::vector<c_mantle_gui::on_close_callback_func> c_mantle_gui::g_mantle_on_close_callbacks;
+
+/* ---------- private prototypes */
+/* ---------- public code */
+
+void c_mantle_gui::init_mantle_gui(bool inGameMode, const wchar_t* startup_cache_filepath)
 {
-	s_inGameMode = inGameMode;
-	OpenMapFile(pStartupFilePath);
+	g_mantle_running_with_game = inGameMode;
+	open_cache_file_from_filepath(startup_cache_filepath);
 }
 
-void c_mantle_gui::OpenMapFile(const wchar_t* pFilePath)
+void c_mantle_gui::render_in_game_gui()
 {
-	if (PathFileExistsW(pFilePath))
+	for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
 	{
-		AddTabItem(*new MantleMapTab(pFilePath));
-	}
-}
-
-void c_mantle_gui::GameRender()
-{
-	for (MantleTab* pTab : s_pMantleTabs)
-	{
-		pTab->GameRender();
+		mantle_gui_tab->render_in_game_gui();
 	}
 }
 
 void c_mantle_gui::render_gui()
 {
-	if (s_inGameMode)
+	if (g_mantle_running_with_game)
 	{
 		ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
-		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(c_window::GetWindowWidth() / 4 * 3), static_cast<float>(c_window::GetWindowHeight() / 4 * 3)), ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowSize(ImVec2(c_window::get_width_float() * 0.75f, c_window::get_height_float() * 0.75f), ImGuiCond_FirstUseEver);
 	}
 	else
 	{
 		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(c_window::GetWindowWidth()), static_cast<float>(c_window::GetWindowHeight())), ImGuiCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(c_window::get_width_float(), c_window::get_height_float()), ImGuiCond_Always);
 	}
 
 	// Main body of the Demo window starts here.
-	static bool isReachDebugWindowOpen = true;
 
-	ImGuiWindowFlags windowFlags = 0;
-	windowFlags |= ImGuiWindowFlags_NoCollapse;
-	windowFlags |= ImGuiWindowFlags_MenuBar;
-	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
-	if (!s_inGameMode)
+	ImGuiWindowFlags imgui_window_flags = 0;
+	imgui_window_flags |= ImGuiWindowFlags_NoCollapse;
+	imgui_window_flags |= ImGuiWindowFlags_MenuBar;
+	imgui_window_flags |= ImGuiWindowFlags_NoSavedSettings;
+	if (!g_mantle_running_with_game)
 	{
-		windowFlags |= ImGuiWindowFlags_NoTitleBar;
-		windowFlags |= ImGuiWindowFlags_NoMove;
-		windowFlags |= ImGuiWindowFlags_NoResize;
+		imgui_window_flags |= ImGuiWindowFlags_NoTitleBar;
+		imgui_window_flags |= ImGuiWindowFlags_NoMove;
+		imgui_window_flags |= ImGuiWindowFlags_NoResize;
 	}
 
-	bool isCloseRequested = false;
-	MantleTab* pSetSelectedRootTab = nullptr;
+	bool close_tab_requested = false;
 
-	static uint32_t isOpeningFile = false;
-	if (isOpeningFile)
-	{
-		static ImGuiAddons::ImGuiFileBrowser fileBrowser;
-		float width = static_cast<float>(std::clamp(c_window::GetWindowWidth(), 700, 1200));
-		float height = static_cast<float>(std::clamp(c_window::GetWindowHeight(), 310, 675));
-		if (fileBrowser.ShowOpenFileDialogInternal("Open File", ImVec2(width, height), ".map"))
-		{
-			isOpeningFile = false;
+	render_file_dialogue_gui();
 
-			const char* pSelectedFilePath = fileBrowser.GetSelectedFileName();
-			if (pSelectedFilePath)
-			{
-				wchar_t szWFilePath[MAX_PATH + 1];
-				swprintf(szWFilePath, MAX_PATH, L"%S", pSelectedFilePath);
-
-				for (MantleTab* pTab : s_pMantleTabs)
-				{
-					if (strcmp(pTab->GetDescription(), pSelectedFilePath) == 0)
-					{
-						pSetSelectedRootTab = pTab;
-						break;
-					}
-				}
-
-				if (pSetSelectedRootTab == nullptr) //not selecting an existing tab
-				{
-					MantleTab* pTab = new MantleMapTab(szWFilePath);
-					AddTabItem(*pTab);
-					pSetSelectedRootTab = pTab;
-				}
-			}
-		}
-	}
-
-	if (ImGui::Begin("Mantle", &isReachDebugWindowOpen, windowFlags))
+	if (ImGui::Begin("Mantle", &g_is_mantle_window_open, imgui_window_flags))
 	{
 		if (ImGui::BeginMenuBar())
 		{
@@ -103,7 +74,7 @@ void c_mantle_gui::render_gui()
 			{
 				if (ImGui::MenuItem("Open File", "Ctrl+O"))
 				{
-					isOpeningFile = true;
+					g_mantle_show_file_dialogue = true;
 
 					//for (MantleTab* pTab : s_pMantleTabs)
 					//{
@@ -125,21 +96,21 @@ void c_mantle_gui::render_gui()
 				if (ImGui::MenuItem("Exit"))
 				{
 					//#TODO: Determine if we should close here
-					isCloseRequested = true;
+					close_tab_requested = true;
 				}
 
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu("View"))
 			{
-				if (ImGui::MenuItem(s_unknownItemsVisible ? "Hide Unknown Items" : "Show Unknown Items", "Ctrl+U"))
+				if (ImGui::MenuItem(g_unknown_fields_visibility ? "Hide Unknown Items" : "Show Unknown Items", "Ctrl+U"))
 				{
-					s_unknownItemsVisible = !s_unknownItemsVisible;
+					g_unknown_fields_visibility = !g_unknown_fields_visibility;
 				}
 
-				if (ImGui::MenuItem(s_sidebarUseFullFileLength ? "Use Short File Names" : "Use Long File Names"))
+				if (ImGui::MenuItem(g_use_full_file_length_display ? "Use Short File Names" : "Use Long File Names"))
 				{
-					s_sidebarUseFullFileLength = !s_sidebarUseFullFileLength;
+					g_use_full_file_length_display = !g_use_full_file_length_display;
 				}
 
 				ImGui::EndMenu();
@@ -148,15 +119,15 @@ void c_mantle_gui::render_gui()
 		}
 		if (ImGui::BeginTabBar("RootTabBar"))
 		{
-			for (MantleTab* pTab : s_pMantleTabs)
+			for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
 			{
-				ASSERT(pTab != nullptr);
+				ASSERT(mantle_gui_tab != nullptr);
 
-				bool setSelected = false;
-				if (pSetSelectedRootTab == pTab)
+				bool set_tab_selected = false;
+				if (g_next_selected_root_tab == mantle_gui_tab)
 				{
-					setSelected = true;
-					pSetSelectedRootTab = nullptr;
+					set_tab_selected = true;
+					g_next_selected_root_tab = nullptr;
 				}
 
 
@@ -169,7 +140,7 @@ void c_mantle_gui::render_gui()
 					ImGui::EndTabItem();
 				}
 				*/
-				pTab->Render(setSelected);
+				mantle_gui_tab->render_gui(set_tab_selected);
 			}
 
 			ImGui::EndTabBar();
@@ -177,9 +148,9 @@ void c_mantle_gui::render_gui()
 	}
 	ImGui::End();
 
-	if (isCloseRequested)
+	if (close_tab_requested)
 	{
-		OnClose();
+		on_close();
 	}
 }
 
@@ -187,52 +158,105 @@ void c_mantle_gui::deinit_mantle_gui()
 {
 	// delete the first tab in the vector until non remain
 	// tabs are removed from vector via the TabClosedCallback
-	while (s_pMantleTabs.size())
+	while (g_mantle_gui_tabs.size())
 	{
-		delete* s_pMantleTabs.begin();
+		delete* g_mantle_gui_tabs.begin();
 	}
 }
 
-std::shared_ptr<CacheFile> c_mantle_gui::GetCacheFile(const char* pMapName)
+void c_mantle_gui::register_on_close_callback(on_close_callback_func callback)
 {
-	for (MantleTab* pMantleTab : s_pMantleTabs)
+	g_mantle_on_close_callbacks.push_back(callback);
+}
+
+void c_mantle_gui::unregister_on_close_callback(on_close_callback_func callback)
+{
+	VectorEraseByValueHelper(g_mantle_on_close_callbacks, callback);
+}
+
+void c_mantle_gui::open_cache_file_from_filepath(const wchar_t* pFilePath)
+{
+	if (PathFileExistsW(pFilePath))
 	{
-		MantleMapTab* pMantleMapTab = dynamic_cast<MantleMapTab*>(pMantleTab);
-		if (pMantleMapTab == nullptr) continue;
-		if (strcmp(pMantleMapTab->GetTitle(), pMapName) == 0)
+		add_tab(*new c_mantle_cache_file_gui_tab(pFilePath));
+	}
+}
+
+void c_mantle_gui::add_tab(c_mantle_gui_tab& rMantleTab)
+{
+	g_mantle_gui_tabs.push_back(&rMantleTab);
+	rMantleTab.AddTabClosedCallback(remove_tab);
+}
+
+void c_mantle_gui::remove_tab(c_mantle_gui_tab& rMantleTab)
+{
+	VectorEraseByValueHelper(g_mantle_gui_tabs, &rMantleTab);
+}
+
+std::shared_ptr<CacheFile> c_mantle_gui::get_cache_file(const char* pMapName)
+{
+	for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
+	{
+		c_mantle_cache_file_gui_tab* mantle_cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(mantle_gui_tab);
+		if (mantle_cache_file_gui_tab == nullptr) continue;
+		if (strcmp(mantle_cache_file_gui_tab->get_title(), pMapName) == 0)
 		{
-			return pMantleMapTab->GetCacheFile();
+			return mantle_cache_file_gui_tab->get_cache_file();
 		}
 	}
 	return nullptr;
 }
 
-void c_mantle_gui::AddTabItem(MantleTab& rMantleTab)
-{
-	s_pMantleTabs.push_back(&rMantleTab);
-	rMantleTab.AddTabClosedCallback(RemoveTabItem);
-}
+/* ---------- private code */
 
-void c_mantle_gui::RemoveTabItem(MantleTab& rMantleTab)
+void c_mantle_gui::on_close()
 {
-	VectorEraseByValueHelper(s_pMantleTabs, &rMantleTab);
-}
-
-void c_mantle_gui::register_on_close_callback(OnCloseCallback callback)
-{
-	s_guiCloseCallbacks.push_back(callback);
-}
-
-void c_mantle_gui::unregister_on_close_callback(OnCloseCallback callback)
-{
-	VectorEraseByValueHelper(s_guiCloseCallbacks, callback);
-}
-
-void c_mantle_gui::OnClose()
-{
-	for (OnCloseCallback callback : s_guiCloseCallbacks)
+	for (on_close_callback_func& callback : g_mantle_on_close_callbacks)
 	{
 		callback();
 	}
 }
 
+void c_mantle_gui::render_file_dialogue_gui()
+{
+	if (!g_mantle_show_file_dialogue) return;
+
+	float file_browser_window_width = std::clamp(c_window::get_width_float(), 700.0f, 1200.0f);
+	float file_browser_window_height = std::clamp(c_window::get_height_float(), 310.0f, 675.0f);
+	if (file_browser.show_open_file_dialog_internal("Open File", ImVec2(file_browser_window_width, file_browser_window_height), ".map"))
+	{
+		g_mantle_show_file_dialogue = false;
+
+		const char* selected_file_path = file_browser.get_selected_file_name();
+		if (selected_file_path)
+		{
+			for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
+			{
+				
+				/* #TODO: Perform a dynamic cast to c_mantle_cache_file_gui_tab and grab the cache file 
+				to determine if the tab is already open */
+				//c_mantle_cache_file_gui_tab* mantle_cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(mantle_gui_tab);
+				//if (mantle_cache_file_gui_tab == nullptr) continue;
+				//
+				// comparison in here
+
+				if (strcmp_ic(mantle_gui_tab->get_description(), selected_file_path) == 0)
+				{
+					g_next_selected_root_tab = mantle_gui_tab;
+					break;
+				}
+			}
+
+			if (g_next_selected_root_tab == nullptr) //not selecting an existing tab
+			{
+				wchar_t selected_file_path_widechar[MAX_PATH + 1];
+				swprintf(selected_file_path_widechar, MAX_PATH, L"%S", selected_file_path);
+
+				c_mantle_gui_tab* mantle_gui_tab = new c_mantle_cache_file_gui_tab(selected_file_path_widechar);
+				add_tab(*mantle_gui_tab);
+				g_next_selected_root_tab = mantle_gui_tab;
+			}
+		}
+	}
+
+}
