@@ -1,6 +1,6 @@
 #include "mustard-private-pch.h"
 
-const char* c_console::s_consoleExecutableName = "Mustard";
+const char* c_console::g_console_executable_name = "Mustard";
 
 struct tls_data;
 
@@ -438,7 +438,7 @@ void WINAPI RaiseExceptionHook(
 
 __declspec(dllexport) int main()
 {
-	c_console::Init();
+	c_console::init_console();
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
 	DetourAttach(&(PVOID&)SetDllDirectoryAPointer, SetDllDirectoryAHook);

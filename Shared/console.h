@@ -51,8 +51,8 @@ public:
 
 
 
-	static void Init();
-	static void Deinit();
+	static void init_console();
+	static void deinit_console();
 	static void Update();
 
 	static void set_text_color(uint8_t color);
@@ -63,7 +63,7 @@ public:
 	static void register_command(const std::string& CommandName, c_console_command* Command);
 	static void unregister_command(const std::string& CommandName);
 
-	static void Startup();
+	static void show_startup_banner();
 
 private:
 	static bool AllocateConsole(const std::string& ConsoleTitle);
@@ -84,6 +84,6 @@ private:
 	// Console Data
 	static size_t ConsoleWidth;
 	static void* ConsoleHandle;
-	static const char* s_consoleExecutableName;
+	static const char* g_console_executable_name;
 };
 

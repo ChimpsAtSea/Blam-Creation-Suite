@@ -19,7 +19,7 @@ uintptr_t c_stop_watch__start_offset(e_engine_type engine_type, e_build build)
 }
 FunctionHookVarArgsEx<c_stop_watch__start_offset, void()> c_stop_watch__start = { "c_stop_watch__start", []()
 {
-	RUNONCE(c_console::Startup());
+	RUNONCE(c_console::show_startup_banner());
 	c_console::Update();
 	return c_stop_watch__start();
 } };

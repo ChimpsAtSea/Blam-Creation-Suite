@@ -201,7 +201,7 @@ void c_render::InitDirectX()
 
 }
 
-void c_render::Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain)
+void c_render::init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain)
 {
 	if (hInstance == NULL)
 		hInstance = GetModuleHandle(NULL);
@@ -219,20 +219,20 @@ void c_render::Init(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1*
 	pDevice->GetImmediateContext(reinterpret_cast<ID3D11DeviceContext**>(&s_pDeviceContext));
 	ASSERT(s_pDeviceContext != nullptr);
 
-	Init(hInstance);
+	init_render(hInstance);
 }
 
-void c_render::Init(HINSTANCE hInstance)
+void c_render::init_render(HINSTANCE hInstance)
 {
 	if (!s_directxCustomInit)
 	{
 		InitDirectX();
 	}
 
-	DebugUI::Init(hInstance, s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
+	c_debug_gui::Init(hInstance, s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
 }
 
-void c_render::BeginFrame(bool clear, float clearColor[4], bool settargetts)
+void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 {
 	if (resize_requested)
 	{
@@ -370,9 +370,9 @@ void c_render::BeginFrame(bool clear, float clearColor[4], bool settargetts)
 	}
 }
 
-void c_render::EndFrame()
+void c_render::end_frame()
 {
-	DebugUI::RenderFrame();
+	c_debug_gui::RenderFrame();
 	s_pSwapChain->Present(1, 0);
 }
 
@@ -384,7 +384,7 @@ void c_render::RequestResize(int width, int height)
 void c_render::ResizeBegin()
 {
 	s_pDeviceContext->Flush();
-	DebugUI::Deinit();
+	c_debug_gui::Deinit();
 
 	s_pDeviceContext->OMSetRenderTargets(0, 0, 0);
 	s_pDeviceContext->ClearState();
@@ -395,9 +395,9 @@ void c_render::ResizeBegin()
 
 void c_render::ResizeEnd()
 {
-	bool isVisible = DebugUI::IsVisible();
-	DebugUI::Init(GetModuleHandle(NULL), s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
-	if (isVisible) DebugUI::Show();
+	bool isVisible = c_debug_gui::IsVisible();
+	c_debug_gui::Init(GetModuleHandle(NULL), s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
+	if (isVisible) c_debug_gui::show_ui();
 }
 
 void c_render::ResizeWindow()
@@ -442,9 +442,9 @@ void c_render::ResizeWindow()
 	}
 }
 
-void c_render::Deinit()
+void c_render::deinit_render()
 {
-	DebugUI::Deinit();
+	c_debug_gui::Deinit();
 
 	if (!s_directxCustomInit)
 	{

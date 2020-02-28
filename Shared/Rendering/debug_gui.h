@@ -1,14 +1,14 @@
 #pragma once
-class DebugUI
+
+enum DebugUICallbackMode
+{
+	_callback_mode_toggleable,
+	_callback_mode_always_run
+};
+
+class c_debug_gui
 {
 public:
-
-	enum CallbackMode
-	{
-		Toggleable,
-		AlwaysRun
-	};
-
 	typedef void(DebugUICallback)();
 
 	static bool IsVisible();
@@ -20,13 +20,13 @@ public:
 	static void EndFrame();
 	static void RenderFrame();
 	static void ToggleUI();
-	static void Show();
+	static void show_ui();
 	static void Hide();
 	static void ProcessWindowMessages();
 	static void AddMessageBreak();
 	static void WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
-	static void RegisterCallback(CallbackMode callbackMode, DebugUICallback* pDebugUICallback);
-	static void UnregisterCallback(CallbackMode callbackMode, DebugUICallback* pDebugUICallback);
+	static void register_callback(DebugUICallbackMode callbackMode, DebugUICallback* pDebugUICallback);
+	static void UnregisterCallback(DebugUICallbackMode callbackMode, DebugUICallback* pDebugUICallback);
 	static bool IsRendering();
 
 private:

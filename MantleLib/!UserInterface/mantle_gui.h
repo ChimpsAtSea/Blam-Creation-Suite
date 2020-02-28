@@ -22,14 +22,14 @@ public:
 	typedef void(*OnCloseCallback)();
 
 	static void OpenMapFile(const wchar_t* pFilePath);
-	static void Init(bool inGameMode, const wchar_t* pStartupFilePath = nullptr);
+	static void init_mantle_gui(bool inGameMode, const wchar_t* pStartupFilePath = nullptr);
 	static void GameRender();
-	static void Render();
-	static void Deinit();
+	static void render_gui();
+	static void deinit_mantle_gui();
 	static void AddTabItem(MantleTab& rMantleTab);
 	static void RemoveTabItem(MantleTab& rMantleTab);
-	static void RegisterOnCloseCallback(OnCloseCallback callback);
-	static void UnregisterOnCloseCallback(OnCloseCallback callback);
+	static void register_on_close_callback(OnCloseCallback callback);
+	static void unregister_on_close_callback(OnCloseCallback callback);
 	inline static bool IsStandalone() { return !s_inGameMode; };
 	inline static bool IsGameClient() { return s_inGameMode; };
 	static std::shared_ptr<CacheFile> GetCacheFile(const char* pMapName);

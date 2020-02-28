@@ -4,7 +4,7 @@
 
 DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
 
-const char* c_console::s_consoleExecutableName = "Opus";
+const char* c_console::g_console_executable_name = "Opus";
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -15,7 +15,7 @@ int WINAPI WinMain(
 {
 	register_platforms();
 
-	c_console::Init();
+	c_console::init_console();
 
 	c_window::SetIcon(LoadIconA(hInstance, ResourcesManager::GetResourceIntResource(ResourceType::Icon)));
 	SystemPatch::PatchEnumWindows();
@@ -23,37 +23,37 @@ int WINAPI WinMain(
 	static bool s_running = true;
 	void(*UpdateCallback)() = []()
 	{
-		c_render::BeginFrame(true, &clearColor.x);
+		c_render::begin_frame(true, &clearColor.x);
 		GameLauncher::OpusTick();
-		c_render::EndFrame();
+		c_render::end_frame();
 	};
 	void(*DestroyCallback)() = []()
 	{
 		s_running = false;
 	};
 	
-	c_window::Init("Opus", "OpusConsole", "opus");
-	c_render::Init(hInstance);
-	c_mantle_gui::Init(true);
+	c_window::init_window("Opus", "OpusConsole", "opus");
+	c_render::init_render(hInstance);
+	c_mantle_gui::init_mantle_gui(true);
 	GameLauncher::Init();
 
-	c_window::RegisterUpdateCallback(UpdateCallback);
-	c_window::RegisterDestroyCallback(DestroyCallback);
+	c_window::register_update_callback(UpdateCallback);
+	c_window::register_destroy_callback(DestroyCallback);
 	//MantleGUI::RegisterOnCloseCallback(DestroyCallback);
 
-	c_console::Startup();
+	c_console::show_startup_banner();
 
-	while (s_running) c_window::Update();
+	while (s_running) c_window::update_window();
 
-	c_window::UnregisterUpdateCallback(UpdateCallback);
-	c_window::UnregisterDestroyCallback(DestroyCallback);
+	c_window::unregister_update_callback(UpdateCallback);
+	c_window::unregister_destroy_callback(DestroyCallback);
 	//MantleGUI::UnregisterOnCloseCallback(DestroyCallback);
 
 	GameLauncher::Deinit();
-	c_mantle_gui::Deinit();
-	c_render::Deinit();
-	c_window::Deinit();
-	c_console::Deinit();
+	c_mantle_gui::deinit_mantle_gui();
+	c_render::deinit_render();
+	c_window::deinit_window();
+	c_console::deinit_console();
 
 	return 0;
 }

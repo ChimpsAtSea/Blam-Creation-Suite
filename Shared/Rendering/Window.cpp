@@ -97,7 +97,7 @@ LRESULT CALLBACK c_window::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
 		callback(hwnd, msg, wParam, lParam);
 	}
 
-	DebugUI::WndProc(hwnd, msg, wParam, lParam);
+	c_debug_gui::WndProc(hwnd, msg, wParam, lParam);
 	switch (msg)
 	{
 	case WM_SYSCOMMAND:
@@ -124,7 +124,7 @@ LRESULT CALLBACK c_window::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
 	return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
-void c_window::Init(const char* pWindowTitle, const char* pConsoleTitle, const char* pApplicationName)
+void c_window::init_window(const char* pWindowTitle, const char* pConsoleTitle, const char* pApplicationName)
 {
 	SetProcessDPIAware();
 
@@ -199,7 +199,7 @@ void c_window::Init(const char* pWindowTitle, const char* pConsoleTitle, const c
 	RegisterRawInputDevices(rawInputDevices, _countof(rawInputDevices), sizeof(rawInputDevices));
 }
 
-void c_window::Deinit()
+void c_window::deinit_window()
 {
 	CloseWindow(s_hWnd);
 	UnregisterClassA("mantle_window_class", s_hInstance);
@@ -223,7 +223,7 @@ void c_window::UpdateNoCallbacks()
 	}
 }
 
-void c_window::Update()
+void c_window::update_window()
 {
 	UpdateNoCallbacks();
 	OnUpdateCallback();

@@ -27,7 +27,7 @@ void c_console::Update()
 #define ps1beg "\xAF["
 #define ps1end "]\xAE"
 
-void c_console::Init()
+void c_console::init_console()
 {
 	c_console::AllocateConsole("Opus");
 
@@ -53,7 +53,7 @@ void c_console::Init()
 	register_command("quit", &baseCommand);
 }
 
-void c_console::Deinit()
+void c_console::deinit_console()
 {
 	Commands.clear();
 }
@@ -344,7 +344,7 @@ void c_console::unregister_command(const std::string& CommandName)
 }
 
 
-void c_console::Startup()
+void c_console::show_startup_banner()
 {
 	set_text_color(e_console_color::_console_color_info);
 
@@ -354,7 +354,7 @@ void c_console::Startup()
 	std::string buildType = "";
 #endif
 	char executableNameBuffer[9] = "        ";
-	int count = snprintf(executableNameBuffer, _countof(executableNameBuffer), "%s", s_consoleExecutableName);
+	int count = snprintf(executableNameBuffer, _countof(executableNameBuffer), "%s", g_console_executable_name);
 	executableNameBuffer[count] = ' ';
 	executableNameBuffer[_countof(executableNameBuffer) - 1] = 0;
 	std::cout << executableNameBuffer << "\xC3\xC4\xC2\xC4\xC4\xC4\xC4\xC4\xC4\xB4 " << buildType << "Build Date: " << __DATE__ << " @ " << __TIME__ << std::endl;

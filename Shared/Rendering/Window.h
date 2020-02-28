@@ -10,21 +10,21 @@ public:
 	static bool IsWindowFocused();
 	static void OnDestroyCallback();
 	static void OnUpdateCallback();
-	static void Init(const char* pWindowTitle, const char* pConsoleTitle, const char* pApplicationName);
-	static void Deinit();
-	static void Update();
+	static void init_window(const char* pWindowTitle, const char* pConsoleTitle, const char* pApplicationName);
+	static void deinit_window();
+	static void update_window();
 	static void UpdateNoCallbacks();
 
 	inline static void RegisterWndProcCallback(WNDPROC pWndProcCallback) { s_WndProcCallbacks.push_back(pWndProcCallback); }
 	inline static void UnregisterWndProcCallback(WNDPROC pWndProcCallback) { VectorEraseByValueHelper(s_WndProcCallbacks, pWndProcCallback); }
 
 	typedef void(*UpdateCallback)();
-	inline static void RegisterUpdateCallback(UpdateCallback pUpdateCallback) { s_UpdateCallbacks.push_back(pUpdateCallback); }
-	inline static void UnregisterUpdateCallback(UpdateCallback pUpdateCallback) { VectorEraseByValueHelper(s_UpdateCallbacks, pUpdateCallback); }
+	inline static void register_update_callback(UpdateCallback pUpdateCallback) { s_UpdateCallbacks.push_back(pUpdateCallback); }
+	inline static void unregister_update_callback(UpdateCallback pUpdateCallback) { VectorEraseByValueHelper(s_UpdateCallbacks, pUpdateCallback); }
 
 	typedef void(*DestroyCallback)();
-	inline static void RegisterDestroyCallback(DestroyCallback pDestroyCallback) { s_DestroyCallbacks.push_back(pDestroyCallback); }
-	inline static void UnregisterDestroyCallback(DestroyCallback pDestroyCallback) { VectorEraseByValueHelper(s_DestroyCallbacks, pDestroyCallback); }
+	inline static void register_destroy_callback(DestroyCallback pDestroyCallback) { s_DestroyCallbacks.push_back(pDestroyCallback); }
+	inline static void unregister_destroy_callback(DestroyCallback pDestroyCallback) { VectorEraseByValueHelper(s_DestroyCallbacks, pDestroyCallback); }
 
 	static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static void SetPostMessageThreadId(HANDLE hThread);

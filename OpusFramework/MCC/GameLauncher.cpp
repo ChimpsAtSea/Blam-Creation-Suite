@@ -46,18 +46,18 @@ void GameLauncher::Init()
 	HaloReachGameOptionSelection::Init();
 #endif
 	c_window::RegisterWndProcCallback(WndProc);
-	DebugUI::RegisterCallback(DebugUI::CallbackMode::AlwaysRun, renderMainMenu);
-	DebugUI::RegisterCallback(DebugUI::CallbackMode::Toggleable, renderUI);
+	c_debug_gui::register_callback(_callback_mode_always_run, renderMainMenu);
+	c_debug_gui::register_callback(_callback_mode_toggleable, renderUI);
 
-	c_window::RegisterDestroyCallback(WindowDestroyCallback);
+	c_window::register_destroy_callback(WindowDestroyCallback);
 
 }
 
 void GameLauncher::Deinit()
 {
-	c_window::UnregisterDestroyCallback(WindowDestroyCallback);
-	DebugUI::UnregisterCallback(DebugUI::CallbackMode::AlwaysRun, renderMainMenu);
-	DebugUI::UnregisterCallback(DebugUI::CallbackMode::Toggleable, renderUI);
+	c_window::unregister_destroy_callback(WindowDestroyCallback);
+	c_debug_gui::UnregisterCallback(_callback_mode_always_run, renderMainMenu);
+	c_debug_gui::UnregisterCallback(_callback_mode_toggleable, renderUI);
 	c_window::UnregisterWndProcCallback(WndProc);
 #ifdef _WIN64
 	HaloReachGameOptionSelection::Deinit();
@@ -90,9 +90,9 @@ void GameLauncher::OpusTick()
 		update();
 	}
 
-	DebugUI::StartFrame(); // OpusUITick is registered to the DebugUI
+	c_debug_gui::StartFrame(); // OpusUITick is registered to the DebugUI
 	//OpusUITick();
-	if (DebugUI::IsRendering() && s_gameRunning) // render a debug layer for the game to render text to
+	if (c_debug_gui::IsRendering() && s_gameRunning) // render a debug layer for the game to render text to
 	{
 		constexpr ImGuiWindowFlags kDebugWindowFlags =
 			ImGuiWindowFlags_NoMove |
@@ -110,7 +110,7 @@ void GameLauncher::OpusTick()
 		}
 		ImGui::End();
 	}
-	DebugUI::EndFrame();
+	c_debug_gui::EndFrame();
 }
 
 void GameLauncher::update()
@@ -138,7 +138,7 @@ void GameLauncher::gameRender()
 
 void GameLauncher::renderUI()
 {
-	c_mantle_gui::Render();
+	c_mantle_gui::render_gui();
 	if (s_gameRunning)
 	{
 		pCurrentGameHost->render_ui();

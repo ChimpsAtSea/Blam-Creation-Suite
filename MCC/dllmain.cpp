@@ -5,7 +5,7 @@
 
 #define MCCExecutableFileName "MCC-Win64-Shipping_Debug.exe"
 
-const char* c_console::s_consoleExecutableName = "MCC";
+const char* c_console::g_console_executable_name = "MCC";
 
 bool s_isHaloReachHooked = false;
 bool s_isHalo1Hooked = false;

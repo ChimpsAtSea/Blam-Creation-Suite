@@ -4,7 +4,7 @@
 
 DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
 
-const char* c_console::s_consoleExecutableName = "OpusXI";
+const char* c_console::g_console_executable_name = "OpusXI";
 
 extern "C" __declspec(dllexport) void resize_viewport(int width, int height)
 {
@@ -21,9 +21,9 @@ extern "C" __declspec(dllexport) void run(ID3D11Device* pDevice, IDXGISwapChain1
 	 static bool s_running = true;
 	 void(*UpdateCallback)() = []()
 	 {
-		 c_render::BeginFrame(true, &clearColor.x);
+		 c_render::begin_frame(true, &clearColor.x);
 		 //GameLauncher::OpusTick();
-		 c_render::EndFrame();
+		 c_render::end_frame();
 	 };
 	 //void(*DestroyCallback)() = []()
 	 //{
@@ -31,11 +31,11 @@ extern "C" __declspec(dllexport) void run(ID3D11Device* pDevice, IDXGISwapChain1
 	 //};
 
 	 //Window::Init("Opus", "OpusConsole", "opus");
-	 c_render::Init(hInstance, pDevice, pSwapChain);
+	 c_render::init_render(hInstance, pDevice, pSwapChain);
 	 //MantleGUI::Init(true);
 	 //GameLauncher::Init();
 
-	 c_window::RegisterUpdateCallback(UpdateCallback);
+	 c_window::register_update_callback(UpdateCallback);
 	 //Window::RegisterDestroyCallback(DestroyCallback);
 	 ////MantleGUI::RegisterOnCloseCallback(DestroyCallback);
 
@@ -46,12 +46,12 @@ extern "C" __declspec(dllexport) void run(ID3D11Device* pDevice, IDXGISwapChain1
 
 	 //while (s_running) Window::Update();
 
-	 c_window::UnregisterUpdateCallback(UpdateCallback);
+	 c_window::unregister_update_callback(UpdateCallback);
 	 //Window::UnregisterDestroyCallback(DestroyCallback);
 	 ////MantleGUI::UnregisterOnCloseCallback(DestroyCallback);
 
 	 //GameLauncher::Deinit();
 	 //MantleGUI::Deinit();
-	 c_render::Deinit();
+	 c_render::deinit_render();
 	 //Window::Deinit();
 }

@@ -252,7 +252,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 {
 	memset(pInputBuffer, 0, sizeof(*pInputBuffer));
 
-	bool debugUIVisible = DebugUI::IsVisible();
+	bool debugUIVisible = c_debug_gui::IsVisible();
 	bool windowFocused = c_window::IsWindowFocused();
 
 	MouseMode mode = MouseMode::None;

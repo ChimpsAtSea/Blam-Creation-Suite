@@ -365,7 +365,7 @@ void BoxRenderer::EndRenderBox()
 
 	UnmapConstantsBuffer();
 
-	c_render::BeginFrame(false, nullptr, false);
+	c_render::begin_frame(false, nullptr, false);
 	RenderBoxGeometry();
 	//c_render::EndFrame();
 

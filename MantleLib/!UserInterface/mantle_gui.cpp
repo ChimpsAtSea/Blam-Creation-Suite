@@ -8,7 +8,7 @@ bool c_mantle_gui::s_inGameMode;
 c_mantle_gui::GetTagPointerFunc c_mantle_gui::s_getTagPointerFunc = nullptr;
 c_mantle_gui::GetTagSectionAddressFunc c_mantle_gui::s_getTagSectionAddressFunc = nullptr;
 
-void c_mantle_gui::Init(bool inGameMode, const wchar_t* pStartupFilePath)
+void c_mantle_gui::init_mantle_gui(bool inGameMode, const wchar_t* pStartupFilePath)
 {
 	s_inGameMode = inGameMode;
 	OpenMapFile(pStartupFilePath);
@@ -30,7 +30,7 @@ void c_mantle_gui::GameRender()
 	}
 }
 
-void c_mantle_gui::Render()
+void c_mantle_gui::render_gui()
 {
 	if (s_inGameMode)
 	{
@@ -183,7 +183,7 @@ void c_mantle_gui::Render()
 	}
 }
 
-void c_mantle_gui::Deinit()
+void c_mantle_gui::deinit_mantle_gui()
 {
 	// delete the first tab in the vector until non remain
 	// tabs are removed from vector via the TabClosedCallback
@@ -218,12 +218,12 @@ void c_mantle_gui::RemoveTabItem(MantleTab& rMantleTab)
 	VectorEraseByValueHelper(s_pMantleTabs, &rMantleTab);
 }
 
-void c_mantle_gui::RegisterOnCloseCallback(OnCloseCallback callback)
+void c_mantle_gui::register_on_close_callback(OnCloseCallback callback)
 {
 	s_guiCloseCallbacks.push_back(callback);
 }
 
-void c_mantle_gui::UnregisterOnCloseCallback(OnCloseCallback callback)
+void c_mantle_gui::unregister_on_close_callback(OnCloseCallback callback)
 {
 	VectorEraseByValueHelper(s_guiCloseCallbacks, callback);
 }

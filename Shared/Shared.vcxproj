@@ -60,7 +60,7 @@
     <ClInclude Include="Runtime.h" />
     <ClInclude Include="Rendering\BoxPrimitive.h" />
     <ClInclude Include="Rendering\BoxRenderer.h" />
-    <ClInclude Include="Rendering\DebugUI.h" />
+    <ClInclude Include="Rendering\debug_gui.h" />
     <ClInclude Include="Rendering\PrimitiveRenderManager.h" />
     <ClInclude Include="Rendering\render.h" />
     <ClInclude Include="Rendering\Rendering.h" />
@@ -71,6 +71,7 @@
     <ClInclude Include="shared-system-pch.h" />
     <ClInclude Include="shared-tbb-pch.h" />
     <ClInclude Include="command_line.h" />
+    <ClInclude Include="StringUtilities.h" />
     <ClInclude Include="ThreadSafeQueue.h" />
   </ItemGroup>
   <ItemGroup>
@@ -87,7 +88,7 @@
     <ClCompile Include="Runtime.cpp" />
     <ClCompile Include="Rendering\BoxPrimitive.cpp" />
     <ClCompile Include="Rendering\BoxRenderer.cpp" />
-    <ClCompile Include="Rendering\DebugUI.cpp" />
+    <ClCompile Include="Rendering\debug_gui.cpp" />
     <ClCompile Include="Rendering\PrimitiveRenderManager.cpp" />
     <ClCompile Include="Rendering\render.cpp" />
     <ClCompile Include="Rendering\window.cpp" />
@@ -98,6 +99,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="StringUtilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="!Resources\Resource.rc" />

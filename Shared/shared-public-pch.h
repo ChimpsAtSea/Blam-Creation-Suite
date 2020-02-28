@@ -3,6 +3,7 @@
 #include "shared-system-pch.h"
 #include "shared-tbb-pch.h"
 
+#include "StringUtilities.h"
 #include "Runtime.h"
 #include "console.h"
 #include "AtomicLock.h"
