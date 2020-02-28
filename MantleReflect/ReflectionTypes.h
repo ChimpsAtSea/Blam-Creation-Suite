@@ -230,6 +230,8 @@ struct ReflectionField
 	bool m_isHiddenByDefault;
 };
 
+using render_type_gui_func = void(void);
+
 #pragma warning( push )
 #pragma warning( disable : 4200 ) // allow using non standard language features without warning
 struct ReflectionType
@@ -238,12 +240,10 @@ struct ReflectionType
 	const char* m_pTypeNiceName;
 	unsigned __int32 m_size;
 	unsigned __int32 m_count;
+	render_type_gui_func* render_type_gui;
 	ReflectionField m_members[]; // #NOTE: non standard language feature
 };
 #pragma warning( pop )
-
-template<typename T>
-inline const ReflectionType& GetReflectionType();
 
 #pragma pack(pop)
 

@@ -42,7 +42,7 @@ inline const ReflectionType* GetTagReflectionData(TagGroupName tagGroupName)
 {
 	switch (tagGroupName)
 	{
-	case TagGroupName::Scenario: return &GetReflectionType<s_scenario_definition>();
+	case TagGroupName::Scenario: return &runtime_reflection<s_scenario_definition>();
 	}
 	return nullptr;
 }

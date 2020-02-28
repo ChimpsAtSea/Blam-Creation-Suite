@@ -664,18 +664,18 @@ int main(int argc, const char** argv)
 		}, 
 		[=]
 		{
-			if (compile_time_gui_header && compile_time_gui_source)
+			if (compile_time_conversion_header && compile_time_conversion_source)
 			{
-				c_mantle_compile_time_conversion_generator mantle_compile_time_conversion_generator = { compile_time_gui_header, compile_time_gui_source, ReflectedTypesData };
+				c_mantle_compile_time_conversion_generator mantle_compile_time_conversion_generator = { compile_time_conversion_header, compile_time_conversion_source, ReflectedTypesData };
 				mantle_compile_time_conversion_generator.run();
 				mantle_compile_time_conversion_generator.write_output();
 			}
 		}, 
 		[=]
 		{
-			if (compile_time_conversion_header && compile_time_conversion_source)
+			if (compile_time_gui_header && compile_time_gui_source)
 			{
-				c_mantle_compile_time_gui_generator mantle_compile_time_gui_generator = { compile_time_conversion_header, compile_time_conversion_source, ReflectedTypesData };
+				c_mantle_compile_time_gui_generator mantle_compile_time_gui_generator = { compile_time_gui_header, compile_time_gui_source, ReflectedTypesData };
 				mantle_compile_time_gui_generator.run();
 				mantle_compile_time_gui_generator.write_output();
 			}

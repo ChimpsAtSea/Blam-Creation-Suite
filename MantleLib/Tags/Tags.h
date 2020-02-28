@@ -136,7 +136,9 @@ typedef unsigned __int64	bool64_t;
 #include "TagDefinitions/biped.h"
 
 #ifndef BUILD_REFLECTION_DATA
+#include "GeneratedGUI.h"
 #include "ReflectionData.h"
+#include "GeneratedConversion.h"
 #endif
 
 #pragma pack(pop)
