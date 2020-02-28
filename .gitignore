@@ -346,6 +346,10 @@ tbb-build/cmake_x64
 #Mantle
 MantleLib/Tags/ReflectionData.h
 MantleLib/Tags/ReflectionData.cpp
+MantleLib/Tags/GeneratedConversion.cpp
+MantleLib/Tags/GeneratedConversion.h
+MantleLib/Tags/GeneratedGUI.cpp
+MantleLib/Tags/GeneratedGUI.h
 
 #CommandLineOptions Plugin
 *.args.json

@@ -402,7 +402,7 @@ void WINAPI RaiseExceptionHook(
 	{
 		c_console::set_text_color(_console_color_error);
 		write_line_verbose("Kernel32::RaiseException> Ignoring exception from loaded module");
-		write_line_verbose("\t0x%X 0x%X 0x%X 0x%P", dwExceptionCode, dwExceptionFlags, nNumberOfArguments, lpArguments);
+		write_line_verbose("\t0x%X 0x%X 0x%X 0x%zX", dwExceptionCode, dwExceptionFlags, nNumberOfArguments, reinterpret_cast<uintptr_t>(lpArguments));
 		write_line_verbose("\tstack trace:");
 
 		STACKFRAME frame = {};
@@ -430,7 +430,7 @@ void WINAPI RaiseExceptionHook(
 	{
 		c_console::set_text_color(_console_color_info);
 #ifdef _DEBUG
-		write_line_verbose("Kernel32::RaiseException> Exception occured forwarding to Kernel32", dwExceptionCode, dwExceptionFlags, nNumberOfArguments, lpArguments);
+		write_line_verbose("Kernel32::RaiseException> Exception occured forwarding to Kernel32");
 #endif
 		//RaiseExceptionPointer(dwExceptionCode, dwExceptionFlags, nNumberOfArguments, lpArguments);
 	}

@@ -16,8 +16,21 @@
 #include <clang/Frontend/CompilerInstance.h>
 #pragma warning( pop )
 
+#include <windows.h>
 #include <stdio.h>
 #include <sstream>
 #include <memory>
 
+#define __TBB_SOURCE_DIRECTLY_INCLUDED 1
+#include <tbb/tbb.h>
+
+#include "util.h"
+
 #include "mantlereflect-public-pch.h"
+
+#include "reflection_field_container.h"
+#include "reflection_type_container.h"
+#include "SourceGenerators/ast_source_generator.h"
+#include "SourceGenerators/mantle_runtime_reflection_generator.h"
+#include "SourceGenerators/mantle_compile_time_gui_generator.h"
+#include "SourceGenerators/mantle_compile_time_conversion_generator.h"

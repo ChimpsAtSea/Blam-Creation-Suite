@@ -4,10 +4,7 @@
 #pragma optimize("", off)
 #endif
 
-template<class T, std::size_t... N>
-constexpr T bswap_impl(T i, std::index_sequence<N...>) { return ((((i >> (N * CHAR_BIT))& (T)(unsigned char)(-1)) << ((sizeof(T) - 1 - N) * CHAR_BIT)) | ...); };
-template<class T, class U = typename std::make_unsigned<T>::type>
-constexpr U bswap(T i) { return bswap_impl<U>(i, std::make_index_sequence<sizeof(T)>{}); }
+
 
 using namespace llvm;
 using namespace clang;
@@ -15,93 +12,9 @@ using namespace clang::tooling;
 
 // llvm/clang things
 static llvm::cl::OptionCategory MantleToolCategory("mantle options");
-static std::stringstream stringstream;
 static LangOptions languageOptions;
 static PrintingPolicy printingPolicy = languageOptions;
 
-struct ReflectionTypeContainer;
-struct ReflectionFieldContainer;
-
-// reflection temporary containers
-struct ReflectionFieldContainer
-{
-	ReflectionFieldContainer()
-		: m_fieldName()
-		, m_fieldNiceName()
-		, m_reflectionTypeCategory()
-		, m_primitiveType()
-		, m_pFieldType()
-		, m_arraySize()
-		, m_offset()
-		, m_size()
-		, m_isHiddenByDefault()
-	{
-
-	}
-
-	std::string m_fieldName;
-	std::string m_fieldNiceName;
-	ReflectionTypeCategory m_reflectionTypeCategory;
-	PrimitiveType m_primitiveType;
-	ReflectionTypeContainer* m_pFieldType;
-	uint64_t m_arraySize;
-	uint64_t m_offset;
-	uint64_t m_size;
-	bool m_isHiddenByDefault;
-};
-
-struct ReflectionTypeContainer
-{
-	ReflectionTypeContainer()
-		: m_isSizeInitialized(false)
-		, m_isPrimitive(true)
-		, pRecordDeclaration(nullptr)
-		, m_tagGroup()
-		, m_typeName()
-		, m_qualifiedTypeName()
-		, m_fieldsData()
-		, m_size()
-		, m_typeNiceName()
-		, m_isTypeTemplate(false)
-		, m_pTemplateTypes()
-	{
-	}
-
-	ReflectionTypeContainer(std::string typeName, uint32_t size)
-		: m_isSizeInitialized(true)
-		, m_isPrimitive(true)
-		, pRecordDeclaration(nullptr)
-		, m_tagGroup()
-		, m_typeName(typeName)
-		, m_qualifiedTypeName(typeName)
-		, m_fieldsData()
-		, m_size(size)
-		, m_typeNiceName()
-		, m_isTypeTemplate(false)
-		, m_pTemplateTypes()
-	{
-	}
-
-	~ReflectionTypeContainer()
-	{
-		for (ReflectionFieldContainer* pField : m_fieldsData)
-		{
-			delete pField;
-		}
-	}
-
-	bool m_isSizeInitialized;
-	bool m_isPrimitive;
-	const clang::RecordDecl* pRecordDeclaration;
-	std::string m_tagGroup;
-	std::string m_typeName;
-	std::string m_qualifiedTypeName;
-	std::vector<ReflectionFieldContainer*> m_fieldsData;
-	uint32_t m_size;
-	std::string m_typeNiceName;
-	bool m_isTypeTemplate;
-	std::vector<ReflectionTypeContainer*> m_pTemplateTypes;
-};
 
 const char* FormatNiceNameAndIsHidden(ReflectionTypeCategory reflectionTypeCategory, char* pString, bool* isHiddenByDefault = nullptr)
 {
@@ -211,13 +124,13 @@ const char* FormatNiceNameAndIsHidden(ReflectionTypeCategory reflectionTypeCateg
 	return pOutputString;
 }
 
-void CreateNiceNames(ReflectionTypeContainer& rType)
+void CreateNiceNames(c_reflection_type_container& rType)
 {
 	rType.m_typeNiceName = rType.m_typeName;
 	rType.m_typeNiceName = FormatNiceNameAndIsHidden(ReflectionTypeCategory::Structure, rType.m_typeNiceName.data());
-	for (ReflectionFieldContainer* pField : rType.m_fieldsData)
+	for (c_reflection_field_container* pField : rType.m_fieldsData)
 	{
-		ReflectionFieldContainer& rField = *pField;
+		c_reflection_field_container& rField = *pField;
 
 		rField.m_fieldNiceName = rField.m_fieldName;
 		rField.m_isHiddenByDefault = false;
@@ -225,7 +138,7 @@ void CreateNiceNames(ReflectionTypeContainer& rType)
 	}
 }
 
-uint32_t InitTypeSizeAndOffsets(ReflectionTypeContainer& rType)
+uint32_t InitTypeSizeAndOffsets(c_reflection_type_container& rType)
 {
 	if (rType.m_isSizeInitialized)
 	{
@@ -233,9 +146,9 @@ uint32_t InitTypeSizeAndOffsets(ReflectionTypeContainer& rType)
 	}
 
 	uint32_t currentOffset = 0;
-	for (ReflectionFieldContainer* pField : rType.m_fieldsData)
+	for (c_reflection_field_container* pField : rType.m_fieldsData)
 	{
-		ReflectionFieldContainer& rField = *pField;
+		c_reflection_field_container& rField = *pField;
 		uint64_t fieldSize = InitTypeSizeAndOffsets(*rField.m_pFieldType);
 		uint64_t dataSize = fieldSize * __max(1ull, rField.m_arraySize);
 		rField.m_size = fieldSize;
@@ -247,40 +160,40 @@ uint32_t InitTypeSizeAndOffsets(ReflectionTypeContainer& rType)
 	return rType.m_size;
 }
 
-std::vector<ReflectionTypeContainer*> ReflectedTypesData;
+std::vector<c_reflection_type_container*> ReflectedTypesData;
 
-ReflectionTypeContainer* GetPrimitiveReflectionType(PrimitiveType primitiveType)
+c_reflection_type_container* GetPrimitiveReflectionType(PrimitiveType primitiveType)
 {
-	static ReflectionTypeContainer* pInt8ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Int8", sizeof(int8_t)));
-	static ReflectionTypeContainer* pInt16ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Int16", sizeof(int16_t)));
-	static ReflectionTypeContainer* pInt32ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Int32", sizeof(int32_t)));
-	static ReflectionTypeContainer* pInt64ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Int64", sizeof(int64_t)));
-	static ReflectionTypeContainer* pUInt8ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("UInt8", sizeof(uint8_t)));
-	static ReflectionTypeContainer* pUInt16ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("UInt16", sizeof(uint16_t)));
-	static ReflectionTypeContainer* pUInt32ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("UInt32", sizeof(uint32_t)));
-	static ReflectionTypeContainer* pUInt64ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("UInt64", sizeof(uint64_t)));
-	static ReflectionTypeContainer* pBoolean8ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Boolean8", sizeof(uint8_t)));
-	static ReflectionTypeContainer* pBoolean16ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Boolean16", sizeof(uint16_t)));
-	static ReflectionTypeContainer* pBoolean32ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Boolean32", sizeof(uint32_t)));
-	static ReflectionTypeContainer* pBoolean64ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Boolean64", sizeof(uint64_t)));
-	static ReflectionTypeContainer* pBitField8ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitField8", sizeof(uint8_t)));
-	static ReflectionTypeContainer* pBitField16ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitField16", sizeof(uint16_t)));
-	static ReflectionTypeContainer* pBitField32ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitField32", sizeof(uint32_t)));
-	static ReflectionTypeContainer* pBitField64ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitField64", sizeof(uint64_t)));
-	static ReflectionTypeContainer* pBitFlag8ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitFlag8", sizeof(uint8_t)));
-	static ReflectionTypeContainer* pBitFlag16ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitFlag16", sizeof(uint16_t)));
-	static ReflectionTypeContainer* pBitFlag32ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitFlag32", sizeof(uint32_t)));
-	static ReflectionTypeContainer* pBitFlag64ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("BitFlag64", sizeof(uint64_t)));
-	static ReflectionTypeContainer* pFloatReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Float", sizeof(float)));
-	static ReflectionTypeContainer* pDoubleReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Double", sizeof(double)));
-	static ReflectionTypeContainer* pEnum8ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Enum8", sizeof(uint8_t)));
-	static ReflectionTypeContainer* pEnum16ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Enum16", sizeof(uint16_t)));
-	static ReflectionTypeContainer* pEnum32ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Enum32", sizeof(uint32_t)));
-	static ReflectionTypeContainer* pEnum64ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Enum64", sizeof(uint64_t)));
-	static ReflectionTypeContainer* pUndefined8ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Undefined8", sizeof(uint8_t)));
-	static ReflectionTypeContainer* pUndefined16ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Undefined16", sizeof(uint16_t)));
-	static ReflectionTypeContainer* pUndefined32ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Undefined32", sizeof(uint32_t)));
-	static ReflectionTypeContainer* pUndefined64ReflectionType = ReflectedTypesData.emplace_back(new ReflectionTypeContainer("Undefined64", sizeof(uint64_t)));
+	static c_reflection_type_container* pInt8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int8", sizeof(int8_t)));
+	static c_reflection_type_container* pInt16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int16", sizeof(int16_t)));
+	static c_reflection_type_container* pInt32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int32", sizeof(int32_t)));
+	static c_reflection_type_container* pInt64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int64", sizeof(int64_t)));
+	static c_reflection_type_container* pUInt8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt8", sizeof(uint8_t)));
+	static c_reflection_type_container* pUInt16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt16", sizeof(uint16_t)));
+	static c_reflection_type_container* pUInt32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt32", sizeof(uint32_t)));
+	static c_reflection_type_container* pUInt64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt64", sizeof(uint64_t)));
+	static c_reflection_type_container* pBoolean8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean8", sizeof(uint8_t)));
+	static c_reflection_type_container* pBoolean16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean16", sizeof(uint16_t)));
+	static c_reflection_type_container* pBoolean32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean32", sizeof(uint32_t)));
+	static c_reflection_type_container* pBoolean64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean64", sizeof(uint64_t)));
+	static c_reflection_type_container* pBitField8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField8", sizeof(uint8_t)));
+	static c_reflection_type_container* pBitField16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField16", sizeof(uint16_t)));
+	static c_reflection_type_container* pBitField32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField32", sizeof(uint32_t)));
+	static c_reflection_type_container* pBitField64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField64", sizeof(uint64_t)));
+	static c_reflection_type_container* pBitFlag8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag8", sizeof(uint8_t)));
+	static c_reflection_type_container* pBitFlag16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag16", sizeof(uint16_t)));
+	static c_reflection_type_container* pBitFlag32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag32", sizeof(uint32_t)));
+	static c_reflection_type_container* pBitFlag64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag64", sizeof(uint64_t)));
+	static c_reflection_type_container* pFloatReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Float", sizeof(float)));
+	static c_reflection_type_container* pDoubleReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Double", sizeof(double)));
+	static c_reflection_type_container* pEnum8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum8", sizeof(uint8_t)));
+	static c_reflection_type_container* pEnum16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum16", sizeof(uint16_t)));
+	static c_reflection_type_container* pEnum32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum32", sizeof(uint32_t)));
+	static c_reflection_type_container* pEnum64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum64", sizeof(uint64_t)));
+	static c_reflection_type_container* pUndefined8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined8", sizeof(uint8_t)));
+	static c_reflection_type_container* pUndefined16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined16", sizeof(uint16_t)));
+	static c_reflection_type_container* pUndefined32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined32", sizeof(uint32_t)));
+	static c_reflection_type_container* pUndefined64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined64", sizeof(uint64_t)));
 
 	switch (primitiveType)
 	{
@@ -320,7 +233,7 @@ ReflectionTypeContainer* GetPrimitiveReflectionType(PrimitiveType primitiveType)
 	return nullptr;
 }
 
-ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::QualType* recordQualifiedType, const clang::RecordDecl& rRecordDeclaration, bool isPrimitive = false)
+c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clang::QualType* recordQualifiedType, const clang::RecordDecl& rRecordDeclaration, bool isPrimitive = false)
 {
 	std::string declarationName = rRecordDeclaration.getNameAsString();
 	std::string qualifiedDeclarationName;
@@ -351,9 +264,9 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::Q
 		return nullptr;
 	}
 
-	ReflectionTypeContainer* pExistingReflectionTypeContainer = nullptr;
+	c_reflection_type_container* pExistingReflectionTypeContainer = nullptr;
 	{ // handle existing records
-		for (ReflectionTypeContainer* rReflectionTypeContainer : ReflectedTypesData)
+		for (c_reflection_type_container* rReflectionTypeContainer : ReflectedTypesData)
 		{
 			if (rReflectionTypeContainer->pRecordDeclaration == &rRecordDeclaration || rReflectionTypeContainer->m_qualifiedTypeName == qualifiedDeclarationName)
 			{
@@ -377,12 +290,12 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::Q
 	// if existing reflection container exists and we're updating it, replace all data
 
 	bool createdNewReflectionContainer = pExistingReflectionTypeContainer == nullptr;
-	ReflectionTypeContainer* pReflectionTypeContainer = pExistingReflectionTypeContainer;
+	c_reflection_type_container* pReflectionTypeContainer = pExistingReflectionTypeContainer;
 	if (createdNewReflectionContainer)
 	{
-		pReflectionTypeContainer = new ReflectionTypeContainer();
+		pReflectionTypeContainer = new c_reflection_type_container();
 	}
-	ReflectionTypeContainer& rReflectionTypeContainer = *pReflectionTypeContainer;
+	c_reflection_type_container& rReflectionTypeContainer = *pReflectionTypeContainer;
 
 	assert(rReflectionTypeContainer.m_fieldsData.empty());
 
@@ -408,7 +321,7 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::Q
 				const std::string reflectionQualifiedTypeName = QualType::getAsString(qualifiedType.split(), printingPolicy);
 				CXXRecordDecl* pDecl = qualifiedType->getAsCXXRecordDecl();
 				assert(pDecl != nullptr);
-				ReflectionTypeContainer* pTemplateType = CreateReflectedType(Context, &qualifiedType, *pDecl);
+				c_reflection_type_container* pTemplateType = CreateReflectedType(Context, &qualifiedType, *pDecl);
 				assert(pTemplateType != nullptr);
 				rReflectionTypeContainer.m_pTemplateTypes.push_back(pTemplateType);
 			}
@@ -466,7 +379,7 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::Q
 
 	for (FieldDecl* field : fields)
 	{
-		ReflectionFieldContainer& rFieldData = *rReflectionTypeContainer.m_fieldsData.emplace_back(new ReflectionFieldContainer());
+		c_reflection_field_container& rFieldData = *rReflectionTypeContainer.m_fieldsData.emplace_back(new c_reflection_field_container());
 
 		const clang::QualType fieldQualifiedType = field->getType();
 		const clang::Type* fieldType = fieldQualifiedType.getTypePtr();
@@ -535,7 +448,7 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::Q
 			}
 			else
 			{
-				ReflectionTypeContainer* pType = CreateReflectedType(Context, &fieldQualifiedType, *pCXXRecord);
+				c_reflection_type_container* pType = CreateReflectedType(Context, &fieldQualifiedType, *pCXXRecord);
 				assert(pType != nullptr);
 				rFieldData.m_pFieldType = pType;
 			}
@@ -651,105 +564,7 @@ ReflectionTypeContainer* CreateReflectedType(ASTContext* Context, const clang::Q
 	return &rReflectionTypeContainer;
 }
 
-void FormatReflectedTypeToFunction(const ReflectionTypeContainer& rType)
-{
-	if (rType.m_isPrimitive)
-	{
-		// skip internal types
-		return;
-	}
 
-	stringstream << "template<>" << std::endl;
-
-	//if (!rType.m_isTypeTemplate)
-	{
-		stringstream << "inline const ReflectionType& GetReflectionType<" << rType.m_qualifiedTypeName << ">()" << std::endl;
-	}
-	//else
-	//{
-	//	stringstream << "inline const ReflectionType& GetReflectionType<" << rType.m_typeName << "<";
-
-	//	if (!rType.m_pTemplateTypes.empty())
-	//	{
-	//		for (ReflectionTypeContainer* pTemplateType : rType.m_pTemplateTypes)
-	//		{
-	//			stringstream << pTemplateType->m_typeName << ", ";
-	//		}
-	//		stringstream.seekp(-2, stringstream.cur); // remove trailing ", "
-	//	}
-	//	
-	//	stringstream << ">>()" << std::endl;
-	//}
-	stringstream << "{" << std::endl;
-	stringstream << "\t" << "static ReflectionType reflectionData = " << std::endl;
-	stringstream << "\t{" << std::endl;
-
-	stringstream << "\t\t\"" << rType.m_typeName << "\", \"" << rType.m_typeNiceName << "\", " << std::endl;
-	stringstream << std::uppercase;
-	stringstream << "\t\t0x" << std::hex << rType.m_size << "u," << std::endl;
-	stringstream << std::nouppercase;
-	stringstream << "\t\t" << std::dec << rType.m_fieldsData.size() << "ui32," << std::endl;
-	stringstream << "\t\t" << "{" << std::endl;
-	for (const ReflectionFieldContainer* pField : rType.m_fieldsData)
-	{
-		const ReflectionFieldContainer& rField = *pField;
-		const ReflectionTypeContainer& rType = *rField.m_pFieldType;
-		assert(&rField);
-		assert(&rType);
-
-		const char* pPrimitiveTypeStr = rType.m_isPrimitive ? rField.m_pFieldType->m_qualifiedTypeName.c_str() : "NonPrimitive";
-		const char* pReflectionTypeCategoryStr = ReflectionTypeCategoryToString(rField.m_reflectionTypeCategory);
-
-		stringstream << "\t\t\t{ \"" << rField.m_fieldName << "\", \"" << rField.m_fieldNiceName << "\", ";
-		{
-			switch (rField.m_reflectionTypeCategory)
-			{
-			case ReflectionTypeCategory::TagBlock:
-				stringstream << "ReflectionTagBlockInfo";
-				break;
-			case ReflectionTypeCategory::Structure:
-				stringstream << "ReflectionStructureInfo";
-				break;
-			default:
-				stringstream << "ReflectionTypeInfo";
-				break;
-			}
-			stringstream << "{ " << "ReflectionTypeCategory::" << pReflectionTypeCategoryStr;
-			stringstream << ", PrimitiveType::" << pPrimitiveTypeStr;
-			stringstream << ", \"" << rType.m_qualifiedTypeName << "\"";
-			switch (rField.m_reflectionTypeCategory)
-			{
-			case ReflectionTypeCategory::TagBlock:
-				//#TODO: Print a Visual Studio warning for tab blocks without their types specified
-				if (!rField.m_pFieldType->m_pTemplateTypes.empty())
-				{
-					//#TODO: Print a Visual Studio warning for tab blocks with too many types specified. The first only will be used
-					stringstream << ", &GetReflectionType<" << rField.m_pFieldType->m_pTemplateTypes[0]->m_qualifiedTypeName << ">()";
-				}
-				else stringstream << ", nullptr";
-				break;
-			case ReflectionTypeCategory::Structure:
-				stringstream << ", &GetReflectionType<" << rField.m_pFieldType->m_qualifiedTypeName << ">()";
-				break;
-			}
-			stringstream << " }";
-		}
-		stringstream << std::uppercase;
-		stringstream << ", 0x" << std::hex << rField.m_offset << "ui32";
-		stringstream << ", 0x" << std::hex << rField.m_size << "ui16";
-		stringstream << std::nouppercase;
-		stringstream << ", " << std::dec << rField.m_arraySize << "ui32";
-		stringstream << ", " << (rField.m_isHiddenByDefault ? "true" : "false");
-		stringstream << " }," << std::endl;
-	}
-	stringstream << "\t\t\t{ }" << std::endl;
-
-	stringstream << "\t\t" << "}" << std::endl;
-	stringstream << "\t" << "};" << std::endl << std::endl;
-	stringstream << "\treturn reflectionData;" << std::endl;
-
-	stringstream << "}" << std::endl << std::endl;
-}
 
 class FindNamedClassVisitor
 	: public RecursiveASTVisitor<FindNamedClassVisitor> {
@@ -789,31 +604,41 @@ public:
 	}
 };
 
-int main(int argc, const char* argv[])
+int main(int argc, const char** argv)
 {
-	if (argc != 4)
+	if (argc < 4)
 	{
 		printf("Incorrect number of arguments. Expected 3");
 		return 1;
 	}
 
-	const char* szReflectionSourceFile = argv[1];
-	const char* szOutputHeader = argv[2];
-	const char* szOutputSource = argv[3];
+	const wchar_t* command_line = GetCommandLineW();
+	int argc_widechar = 0;
+	wchar_t** argv_widechar = CommandLineToArgvW(command_line, &argc);
 
-	printf("Reflection Source File:   '%s'\n", szReflectionSourceFile);
-	printf("Reflection Output Header: '%s'\n", szOutputHeader);
-	printf("Reflection Output Source: '%s'\n", szOutputSource);
+	const char* reflection_source_file = argv[1];
+	const wchar_t* reflection_output_header = argv_widechar[2];
+	const wchar_t* reflection_output_source = argv_widechar[3];
+	const wchar_t* compile_time_gui_header = argc > 4 ? argv_widechar[4] : nullptr;
+	const wchar_t* compile_time_gui_source = argc > 5 ? argv_widechar[5] : nullptr;
+	const wchar_t* compile_time_conversion_header = argc > 6 ? argv_widechar[6] : nullptr;
+	const wchar_t* compile_time_conversion_source = argc > 7 ? argv_widechar[7] : nullptr;
+
+	wprintf(L"Reflection Source File:   '%S'\n", reflection_source_file);
+	wprintf(L"Reflection Output Header: '%s'\n", reflection_output_header);
+	wprintf(L"Reflection Output Source: '%s'\n", reflection_output_source);
+	if (compile_time_gui_header) wprintf(L"Compile Time GUI Output Header: '%s'\n", compile_time_gui_header);
+	if (compile_time_gui_source) wprintf(L"Compile Time GUI Output Source: '%s'\n", compile_time_gui_source);
+	if (compile_time_conversion_header) wprintf(L"Compile Time Conversion Output Header: '%s'\n", compile_time_conversion_header);
+	if (compile_time_conversion_source) wprintf(L"Compile Time Conversion Output Source: '%s'\n", compile_time_conversion_source);
 
 	const char* argumentsArray[] = {
 			argv[0],
-			szReflectionSourceFile
+			reflection_source_file
 	};
-	int numArgs = _countof(argumentsArray);
+	int num_args = _countof(argumentsArray);
 
-	stringstream << "#pragma once" << std::endl << std::endl;
-
-	CommonOptionsParser OptionsParser(numArgs, argumentsArray, MantleToolCategory);
+	CommonOptionsParser OptionsParser(num_args, argumentsArray, MantleToolCategory);
 	ClangTool Tool(OptionsParser.getCompilations(), OptionsParser.getSourcePathList());
 
 	FindNamedClassAction findNamedClassAction;
@@ -823,165 +648,40 @@ int main(int argc, const char* argv[])
 
 	int llvmResult = Tool.run(newFrontendActionFactory<FindNamedClassAction>().get());
 
-	for (ReflectionTypeContainer* pType : ReflectedTypesData)
+	for (c_reflection_type_container* pType : ReflectedTypesData)
 	{
-		ReflectionTypeContainer& rType = *pType;
+		c_reflection_type_container& rType = *pType;
 		InitTypeSizeAndOffsets(rType);
 		CreateNiceNames(rType);
-		FormatReflectedTypeToFunction(rType);
 	}
 
-	{
-		stringstream << std::endl;
-		stringstream << "inline const ReflectionType* GetTagReflectionDataByTagGroup(uint32_t tagGroup)" << std::endl;
-		stringstream << "{" << std::endl;
-		stringstream << "\tswitch (tagGroup)" << std::endl;
-		stringstream << "\t{" << std::endl;
-		for (ReflectionTypeContainer* pType : ReflectedTypesData)
+	tbb::parallel_invoke(
+		[=] 
 		{
-			ReflectionTypeContainer& rType = *pType;
-			if (!rType.m_tagGroup.empty())
+			c_mantle_runtime_reflection_generator runtime_reflection_generator = { reflection_output_header, reflection_output_source, ReflectedTypesData };
+			runtime_reflection_generator.run();
+			runtime_reflection_generator.write_output();
+		}, 
+		[=]
+		{
+			if (compile_time_gui_header && compile_time_gui_source)
 			{
-				const uint32_t& rawTagGroup = *reinterpret_cast<const uint32_t*>(rType.m_tagGroup.data());
-				uint64_t swappedTagGroupWithPadding = bswap(rawTagGroup);
-				const char* pTagGroupSwapped = reinterpret_cast<const char*>(&swappedTagGroupWithPadding);
-
-				stringstream << "\tcase '" << rType.m_tagGroup << "':" << std::endl;
-				if (rawTagGroup != swappedTagGroupWithPadding)
-				{
-					stringstream << "\tcase '" << pTagGroupSwapped << "':" << std::endl;
-				}
-				stringstream << "\t\treturn &GetReflectionType<" << rType.m_qualifiedTypeName << ">();" << std::endl;
+				c_mantle_compile_time_conversion_generator mantle_compile_time_conversion_generator = { compile_time_gui_header, compile_time_gui_source, ReflectedTypesData };
+				mantle_compile_time_conversion_generator.run();
+				mantle_compile_time_conversion_generator.write_output();
 			}
-		}
-		stringstream << "\t}" << std::endl;
-		stringstream << "\treturn nullptr;" << std::endl;
-		stringstream << "}" << std::endl;
-		stringstream << std::endl;
-	}
-
-	if (false) // debug print
-		for (ReflectionTypeContainer* pType : ReflectedTypesData)
+		}, 
+		[=]
 		{
-			ReflectionTypeContainer& rType = *pType;
-
-			if (rType.m_isPrimitive) continue;
-
-			if (rType.m_fieldsData.size() > 0)
+			if (compile_time_conversion_header && compile_time_conversion_source)
 			{
-				printf("struct %s\n{\n", rType.m_qualifiedTypeName.c_str());
-				for (ReflectionFieldContainer* pField : rType.m_fieldsData)
-				{
-					ReflectionFieldContainer& rField = *pField;
-
-					if (rField.m_arraySize)
-					{
-						printf(
-							"\t%s %s[%u]; // size:0x%X offset:0x%X\n",
-							rField.m_pFieldType->m_qualifiedTypeName.c_str(),
-							rField.m_fieldName.c_str(),
-							static_cast<uint32_t>(rField.m_arraySize),
-							static_cast<uint32_t>(rField.m_size),
-							static_cast<uint32_t>(rField.m_offset));
-					}
-					else
-					{
-						printf(
-							"\t%s %s; // size:0x%X offset:0x%X\n",
-							rField.m_pFieldType->m_qualifiedTypeName.c_str(),
-							rField.m_fieldName.c_str(),
-							static_cast<uint32_t>(rField.m_size),
-							static_cast<uint32_t>(rField.m_offset));
-					}
-				}
-
-				printf("};\n");
+				c_mantle_compile_time_gui_generator mantle_compile_time_gui_generator = { compile_time_conversion_header, compile_time_conversion_source, ReflectedTypesData };
+				mantle_compile_time_gui_generator.run();
+				mantle_compile_time_gui_generator.write_output();
 			}
-			else
-			{
-				printf("struct %s { };\n", rType.m_qualifiedTypeName.c_str());
-			}
-		}
+		});
 
-	std::string reflection_header_text = stringstream.str();
-	{
-		bool reflection_header_data_is_same = false;
-		{
-			FILE* existing_reflection_header = fopen(szOutputHeader, "rb");
-			if (existing_reflection_header)
-			{
-				fseek(existing_reflection_header, 0L, SEEK_END);
-				uint64_t reflection_header_length = _ftelli64(existing_reflection_header);
-				if (reflection_header_text.size() == reflection_header_length)
-				{
-					fseek(existing_reflection_header, 0L, SEEK_SET);
-					char* existing_reflection_header_data = new char[reflection_header_length+1] {};
-					for (uint64_t current_read_position = 0; current_read_position < reflection_header_length;)
-					{
-						current_read_position += fread(existing_reflection_header_data + current_read_position, 1, reflection_header_length - current_read_position, existing_reflection_header);
-					}
-					if (strcmp(reflection_header_text.c_str(), existing_reflection_header_data) == 0)
-					{
-						reflection_header_data_is_same = true;
-					}
-					delete[] existing_reflection_header_data;
-				}
-				fclose(existing_reflection_header);
-			}
-		}
-
-		if (!reflection_header_data_is_same)
-		{
-			printf("MantleReflect> Updating %s\n", szOutputHeader);
-			FILE* pReflectionHeader = fopen(szOutputHeader, "wb");
-			assert(pReflectionHeader != nullptr);
-			fwrite(reflection_header_text.c_str(), 1, reflection_header_text.length(), pReflectionHeader);
-			fflush(pReflectionHeader);
-			fclose(pReflectionHeader);
-		}
-		else
-		{
-			printf("MantleReflect> Skipping %s (output hasn't changed)\n", szOutputHeader);
-		}
-	}
-
-	const char* reflection_source_text = "";
-	{
-		bool reflection_source_data_is_same = false;
-		{
-			FILE* existing_reflection_header = fopen(szOutputSource, "rb");
-			if (existing_reflection_header)
-			{
-				fseek(existing_reflection_header, 0L, SEEK_END);
-				uint64_t reflection_header_length = _ftelli64(existing_reflection_header);
-				if (strlen(reflection_source_text) == reflection_header_length)
-				{
-					fseek(existing_reflection_header, 0L, SEEK_SET);
-					char* existing_reflection_header_data = new char[reflection_header_length + 1]{};
-					for (uint64_t current_read_position = 0; current_read_position < reflection_header_length;)
-					{
-						current_read_position += fread(existing_reflection_header_data + current_read_position, 1, reflection_header_length - current_read_position, existing_reflection_header);
-					}
-					if (strcmp(reflection_source_text, existing_reflection_header_data) == 0)
-					{
-						reflection_source_data_is_same = true;
-					}
-					delete[] existing_reflection_header_data;
-				}
-				fclose(existing_reflection_header);
-			}
-		}
-
-		if (!reflection_source_data_is_same)
-		{
-			FILE* pReflectionSource = fopen(szOutputSource, "w+");
-			assert(pReflectionSource != nullptr);
-			fflush(pReflectionSource);
-			fclose(pReflectionSource);
-		}
-	}
-
-	for (ReflectionTypeContainer* pType : ReflectedTypesData)
+	for (c_reflection_type_container* pType : ReflectedTypesData)
 	{
 		delete pType;
 	}
