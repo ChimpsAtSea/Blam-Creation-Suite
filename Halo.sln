@@ -61,7 +61,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mantle", "Mantle\Mantle.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MantleReflect", "MantleReflect\MantleReflect.vcxproj", "{08C0E853-1883-4215-A74D-F151075B84D0}"
 	ProjectSection(ProjectDependencies) = postProject
-		{994A9382-A035-4981-9A50-69BBB6059F3E} = {994A9382-A035-4981-9A50-69BBB6059F3E}
 		{01203CE0-D287-48EA-A399-9B77AA93CE7E} = {01203CE0-D287-48EA-A399-9B77AA93CE7E}
 	EndProjectSection
 EndProject

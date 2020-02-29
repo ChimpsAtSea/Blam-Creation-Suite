@@ -18,17 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mantle-private-pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="mantle-public-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mantle-private-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc">

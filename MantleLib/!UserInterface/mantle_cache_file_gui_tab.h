@@ -13,8 +13,8 @@ public:
 	virtual ~c_mantle_cache_file_gui_tab();
 
 	std::shared_ptr<CacheFile> get_cache_file() const { return m_pCacheFile; }
-protected:
 	void openTagTab(TagInterface& rTagInterface);
+protected:
 	c_mantle_cache_file_gui_tab(const char* pTitle, const char* pDescription);
 	virtual void render_in_game_gui() override;
 	virtual void RenderContents(bool setSelected) override;

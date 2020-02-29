@@ -12,11 +12,11 @@ public:
 	void Poke();
 	TagInterface& GetTagInterface() const { return m_rTagInterface; };
 	CacheFile& GetCacheFile() const { return m_rCacheFile; };
+	c_mantle_gui_tab* GetParentTab() const { return m_pParentTab; };
 
 	void RenderButtons();
 protected:
 	virtual void RenderContents(bool setSelected);
-	void RenderContentsImpl(char* pCurrentStructureData, const ReflectionType& rReflectionType, int recursionDepth);
 
 	bool m_isSelected;
 	TagInterface& m_rTagInterface;

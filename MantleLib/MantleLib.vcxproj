@@ -68,6 +68,7 @@
     <ClInclude Include="!UserInterface\MantleTagTab.h" />
     <ClInclude Include="CacheInterface\TagInterface.h" />
     <ClInclude Include="CacheInterface\GroupInterface.h" />
+    <ClInclude Include="GUI\render_stringid_gui.inl" />
     <ClInclude Include="Tags\GeneratedConversion.h" />
     <ClInclude Include="Tags\GeneratedGUI.h" />
     <ClInclude Include="Tags\TagDefinitions\achievements.h" />
@@ -181,6 +182,13 @@
     <ClInclude Include="Tags\TagTypes\Undefined.h" />
     <ClInclude Include="VirtualMemoryContainer.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="GUI\render_dataref_gui.inl" />
+    <None Include="GUI\render_primitive_gui.inl" />
+    <None Include="GUI\render_struct_gui.inl" />
+    <None Include="GUI\render_tagblock_gui.inl" />
+    <None Include="GUI\render_tagref_gui.inl" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{339E1809-744A-4E62-A0C5-EE6BB85283C5}</ProjectGuid>
@@ -235,25 +243,21 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
-    <TargetName>Mantle</TargetName>
     <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
-    <TargetName>Mantle</TargetName>
     <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
-    <TargetName>Mantle</TargetName>
     <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
-    <TargetName>Mantle</TargetName>
     <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

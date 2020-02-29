@@ -1,4 +1,6 @@
-#include "mantle-private-pch.h"
+#include <Shared\shared-public-pch.h>
+#include <MantleLib\mantlelib-public-pch.h>
+#include <OpusFramework\opusframework-private-pch.h>
 
 /* ---------- private constants */
 /* ---------- private macros */

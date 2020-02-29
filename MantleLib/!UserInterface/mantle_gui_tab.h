@@ -22,6 +22,7 @@ protected:
 	std::string m_description;
 	std::vector<TabClosedCallback> tabClosedCallback;
 
+public:
 	using ImGUIDynamicData = std::pair<void*, char[120]>;
 	std::vector<ImGUIDynamicData*> m_imGuiDynamicData;
 
@@ -48,8 +49,6 @@ protected:
 		T& rDynamicTagBlockData = *reinterpret_cast<T*>(rDynamicData.second);
 		return rDynamicTagBlockData;
 	}
-	
-
 };
 
 inline c_mantle_gui_tab::ImGUIDynamicData& c_mantle_gui_tab::GetDynamicData(void* pPosition, bool& rWasAllocated)

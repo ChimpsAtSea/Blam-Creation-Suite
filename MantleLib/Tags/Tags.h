@@ -12,6 +12,22 @@ typedef unsigned __int8		bool8_t;
 typedef unsigned __int16	bool16_t;
 typedef unsigned __int32	bool32_t;
 typedef unsigned __int64	bool64_t;
+typedef	uint8_t				enum8_t;
+typedef	uint16_t			enum16_t;
+typedef	uint32_t			enum32_t;
+typedef	uint64_t			enum64_t;
+typedef	uint8_t				bitfield8_t;
+typedef	uint16_t			bitfield16_t;
+typedef	uint32_t			bitfield32_t;
+typedef	uint64_t			bitfield64_t;
+typedef	uint8_t				bitflag8_t;
+typedef	uint16_t			bitflag16_t;
+typedef	uint32_t			bitflag32_t;
+typedef	uint64_t			bitflag64_t;
+typedef	uint8_t				undefined8_t;
+typedef	uint16_t			undefined16_t;
+typedef	uint32_t			undefined32_t;
+typedef	uint64_t			undefined64_t;
 
 #pragma pack(push, 1)
 
@@ -20,12 +36,21 @@ typedef unsigned __int64	bool64_t;
 #define __STRINGIFY(s) #s
 #endif
 
-#ifndef __clang__ 
-#define __attribute__(...)
-#endif
+#ifdef __INTELLISENSE__
+#define noreflection /* noreflection */
+#define nicename(...) /* nicename */
+#define group(...) /* group */
+#else
+#ifdef __clang__
 #define noreflection __attribute__((annotate("no_reflection")))
 #define nicename(name) __attribute__((annotate("nice_name:" name)))
 #define group(groupName) __attribute__((annotate("tag_group:" STRINGIFY(groupName))))
+#else
+#define noreflection 
+#define nicename(name) 
+#define group(groupName) 
+#endif
+#endif
 
 #include "TagTypes/TagGroupName.h"
 #include "TagTypes/StringID.h"

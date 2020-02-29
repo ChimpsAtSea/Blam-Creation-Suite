@@ -194,6 +194,8 @@ c_reflection_type_container* GetPrimitiveReflectionType(PrimitiveType primitiveT
 	static c_reflection_type_container* pUndefined16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined16", sizeof(uint16_t)));
 	static c_reflection_type_container* pUndefined32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined32", sizeof(uint32_t)));
 	static c_reflection_type_container* pUndefined64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined64", sizeof(uint64_t)));
+	static c_reflection_type_container* pCharacterReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Character", sizeof(char)));
+	static c_reflection_type_container* pWideCharacterReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("WideCharacter", sizeof(wchar_t)));
 
 	switch (primitiveType)
 	{
@@ -227,6 +229,8 @@ c_reflection_type_container* GetPrimitiveReflectionType(PrimitiveType primitiveT
 	case PrimitiveType::Undefined16:	return pUndefined16ReflectionType;
 	case PrimitiveType::Undefined32:	return pUndefined32ReflectionType;
 	case PrimitiveType::Undefined64:	return pUndefined64ReflectionType;
+	case PrimitiveType::Character:		return pCharacterReflectionType;
+	case PrimitiveType::WideCharacter:	return pWideCharacterReflectionType;
 	}
 
 	assert(!"Undefined primitive type");
@@ -426,15 +430,16 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 				else if (name == "StringID") reflectionTypeCategory = ReflectionTypeCategory::StringID;
 				//else if (name == "TagGroupName") reflectionTypeCategory = ReflectionTypeCategory::TagGroupName; 
 				else if (name == "TagReference") reflectionTypeCategory = ReflectionTypeCategory::TagReference;
-				else if (name == "Undefined8") reflectionTypeCategory = ReflectionTypeCategory::Undefined;
-				else if (name == "Undefined16") reflectionTypeCategory = ReflectionTypeCategory::Undefined;
-				else if (name == "Undefined32") reflectionTypeCategory = ReflectionTypeCategory::Undefined;
-				else if (name == "Undefined64") reflectionTypeCategory = ReflectionTypeCategory::Undefined;
+				else if (name == "Undefined8") reflectionTypeCategory = ReflectionTypeCategory::Primitive;
+				else if (name == "Undefined16") reflectionTypeCategory = ReflectionTypeCategory::Primitive;
+				else if (name == "Undefined32") reflectionTypeCategory = ReflectionTypeCategory::Primitive;
+				else if (name == "Undefined64") reflectionTypeCategory = ReflectionTypeCategory::Primitive;
+				else if(reflectionQualifiedType->isStructureType()) reflectionTypeCategory = ReflectionTypeCategory::Structure;
 				else assert(!"Unsupported class type");
 			}
 
 			rFieldData.reflection_type_category = reflectionTypeCategory;
-			if (reflectionTypeCategory == ReflectionTypeCategory::Undefined)
+			if (reflectionTypeCategory == ReflectionTypeCategory::Primitive)
 			{
 				PrimitiveType primitiveType;
 				if (name == "Undefined8") primitiveType = PrimitiveType::Undefined8;
@@ -479,7 +484,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 
 				if (integralCanonicalType->isSignedIntegerType())
 				{
-					if (integralTypeName == "char") rFieldData.primitive_type = PrimitiveType::Int8;
+					if (integralTypeName == "char") rFieldData.primitive_type = PrimitiveType::Character;
 					else if (integralTypeName == "signed char") rFieldData.primitive_type = PrimitiveType::Int8;
 					else if (integralTypeName == "short") rFieldData.primitive_type = PrimitiveType::Int16;
 					else if (integralTypeName == "int") rFieldData.primitive_type = PrimitiveType::Int32;

@@ -5,15 +5,12 @@
 enum class ReflectionTypeCategory : unsigned __int8
 {
 	Primitive,
-	BitFlag,
-	BitField,
 	Structure,
 	TagReference,
 	TagBlock,
 	DataReference,
 	ShaderData,
 	StringID,
-	Undefined,
 };
 
 typedef unsigned __int16 ReflectionTypeIndex;
@@ -50,6 +47,8 @@ enum class PrimitiveType : ReflectionTypeIndex
 	Undefined16,
 	Undefined32,
 	Undefined64,
+	Character,
+	WideCharacter
 };
 
 inline const char* PrimitiveTypeToString(PrimitiveType primitiveType)
@@ -87,6 +86,8 @@ inline const char* PrimitiveTypeToString(PrimitiveType primitiveType)
 	case PrimitiveType::Undefined16:		return "Undefined16";
 	case PrimitiveType::Undefined32:		return "Undefined32";
 	case PrimitiveType::Undefined64:		return "Undefined64";
+	case PrimitiveType::Character:			return "Character";
+	case PrimitiveType::WideCharacter:		return "WideCharacter";
 	}
 #ifdef FATAL_ERROR
 	FATAL_ERROR(L"Invalid primitive type");
@@ -100,15 +101,12 @@ inline const char* ReflectionTypeCategoryToString(ReflectionTypeCategory reflect
 	switch (reflectionType)
 	{
 	case ReflectionTypeCategory::Primitive:				return "Primitive";
-	case ReflectionTypeCategory::BitFlag:				return "BitFlag";
-	case ReflectionTypeCategory::BitField:				return "BitField";
 	case ReflectionTypeCategory::Structure:				return "Structure";
 	case ReflectionTypeCategory::TagReference:			return "TagReference";
 	case ReflectionTypeCategory::TagBlock:				return "TagBlock";
 	case ReflectionTypeCategory::DataReference:			return "DataReference";
 	case ReflectionTypeCategory::ShaderData:			return "ShaderData";
 	case ReflectionTypeCategory::StringID:				return "StringID";
-	case ReflectionTypeCategory::Undefined:				return "Undefined";
 	}
 #ifdef FATAL_ERROR
 	FATAL_ERROR(L"Invalid reflection type");
@@ -230,7 +228,7 @@ struct ReflectionField
 	bool m_isHiddenByDefault;
 };
 
-using render_type_gui_func = void(void);
+using render_type_gui_func = void(void*);
 
 #pragma warning( push )
 #pragma warning( disable : 4200 ) // allow using non standard language features without warning

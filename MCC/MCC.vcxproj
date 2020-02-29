@@ -70,7 +70,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Shared.lib;Mantle.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;steam_api64.lib;opusframework.lib;haloreachlib.lib;halo1lib.lib;ketchup.lib;tbb_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shared.lib;MantleLib.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;steam_api64.lib;opusframework.lib;haloreachlib.lib;halo1lib.lib;ketchup.lib;tbb_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -106,7 +106,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalDependencies>Shared.lib;Mantle.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;steam_api64.lib;opusframework.lib;haloreachlib.lib;halo1lib.lib;ketchup.lib;tbb_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shared.lib;MantleLib.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;steam_api64.lib;opusframework.lib;haloreachlib.lib;halo1lib.lib;ketchup.lib;tbb_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
