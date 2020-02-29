@@ -4,10 +4,9 @@
 #define clamp(value, min_value, max_value) ((value) > (max_value) ? (max_value) : ((value) < (min_value) ? (min_value) : (value)))
 #define CONTROLLER_JOYSTICK_THRESHOLD 0.15f
 
-c_opus_game_engine_host::c_opus_game_engine_host(c_game_runtime& rGameRuntime)
-	: m_gameEvents()
-	, IGameEngineHost(&m_gameEvents)
-	, m_rGameRuntime(rGameRuntime)
+c_opus_game_engine_host::c_opus_game_engine_host(e_engine_type engine_type, e_build build, c_game_runtime& rGameRuntime) :
+	IGameEngineHost(engine_type, build, &game_events),
+	game_runtime(rGameRuntime)
 {
 
 }
@@ -31,7 +30,7 @@ void c_opus_game_engine_host::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD)
 	GameLauncher::OpusTick();
 }
 
-void c_opus_game_engine_host::Member02(__int64 player_identifier, unsigned int, __int64, float, float, float, float)
+void c_opus_game_engine_host::Function02(__int64 player_identifier, unsigned int, __int64, float, float, float, float)
 {
 }
 
@@ -76,11 +75,11 @@ __int64 __fastcall c_opus_game_engine_host::WriteBufferToFile(LPVOID pBuffer, si
 	return __int64(0);
 }
 
-void c_opus_game_engine_host::Member06(GameResultsData* pGameResultsData)
+void c_opus_game_engine_host::Function06(GameResultsData* pGameResultsData)
 {
 }
 
-void c_opus_game_engine_host::Member07(unsigned int)
+void c_opus_game_engine_host::Function07(unsigned int)
 {
 	/* LEGACY_REFACTOR
 	if (LegacyGameLauncher::s_uiStackLength == 0)
@@ -96,17 +95,17 @@ void c_opus_game_engine_host::Member07(unsigned int)
 	*/
 }
 
-void c_opus_game_engine_host::Member08(const wchar_t*, const wchar_t*)
+void c_opus_game_engine_host::Function08(const wchar_t*, const wchar_t*)
 {
 }
 
-void c_opus_game_engine_host::Member09(wchar_t[1024], wchar_t[1024])
+void c_opus_game_engine_host::Function09(wchar_t[1024], wchar_t[1024])
 {
 }
 
 IGameEvents* c_opus_game_engine_host::GetGameEvents()
 {
-	return m_pGameEvents;
+	return &game_events;
 }
 
 void c_opus_game_engine_host::UpdateGameVariant(IGameVariant* pGameVariant)
@@ -117,16 +116,16 @@ void c_opus_game_engine_host::UpdateMapVariant(IMapVariant* pMapVariant)
 {
 }
 
-void c_opus_game_engine_host::Member13(const wchar_t*, const wchar_t*, const void*, unsigned int)
+void c_opus_game_engine_host::Function13(const wchar_t*, const wchar_t*, const void*, unsigned int)
 {
 }
 
-char c_opus_game_engine_host::Member14(int controllerIndex, BYTE*)
+char c_opus_game_engine_host::Function14(int controllerIndex, BYTE*)
 {
 	return 0;
 }
 
-char c_opus_game_engine_host::Member15(int controllerIndex, BYTE*)
+char c_opus_game_engine_host::Function15(int controllerIndex, BYTE*)
 {
 	return 0;
 }
@@ -136,12 +135,12 @@ char c_opus_game_engine_host::GetNextLevelInfo(e_map_id* pMapID, int* pCampaignI
 	return 0;
 }
 
-bool c_opus_game_engine_host::Member17(int)
+bool c_opus_game_engine_host::Function17(int)
 {
 	return false;
 }
 
-void c_opus_game_engine_host::Member18(int)
+void c_opus_game_engine_host::Function18(int)
 {
 }
 
@@ -150,7 +149,7 @@ __int64 __fastcall c_opus_game_engine_host::MapLoadPecentStatus(__int64, __int64
 	return __int64(0);
 }
 
-void c_opus_game_engine_host::Member20(__int64, __int8)
+void c_opus_game_engine_host::Function20(__int64, __int8)
 {
 }
 
@@ -159,12 +158,12 @@ __int64 __fastcall c_opus_game_engine_host::GetMachineIdentifier(_QWORD)
 	return __int64(3);
 }
 
-__int64 c_opus_game_engine_host::Member22(Function22Structure* buffer, __int64)
+__int64 c_opus_game_engine_host::Function22(Function22Structure* buffer, __int64)
 {
 	return __int64(0);
 }
 
-char c_opus_game_engine_host::Member23(__int64, __int64)
+char c_opus_game_engine_host::Function23(__int64, __int64)
 {
 	return 1;
 }
@@ -179,13 +178,13 @@ void __fastcall c_opus_game_engine_host::MembershipUpdate(s_session_membership* 
 	RUNONCE({ write_line_verbose("IOpusGameEngineHost::MembershipUpdate"); });
 }
 
-bool __fastcall c_opus_game_engine_host::Member26()
+bool __fastcall c_opus_game_engine_host::Function26()
 {
 	RUNONCE({ write_line_verbose("IOpusGameEngineHost::Member26"); });
 	return false;
 }
 
-bool __fastcall c_opus_game_engine_host::Member27()
+bool __fastcall c_opus_game_engine_host::Function27()
 {
 	RUNONCE({ write_line_verbose("IOpusGameEngineHost::Member27"); });
 	return false;
@@ -391,13 +390,13 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 	return unsigned __int8(1);
 }
 
-void c_opus_game_engine_host::Member32(_QWORD, float* a2)
+void c_opus_game_engine_host::Function32(_QWORD, float* a2)
 {
 	*a2 = 0.f; // why are we doing this?
 	// spams if fps is unlocked
 }
 
-void c_opus_game_engine_host::Member33()
+void c_opus_game_engine_host::Function33()
 {
 	// appears to be usermanagement related?
 	// we haven't seen this fire yet and don't know its structure so throw an error
@@ -445,11 +444,11 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, 
 	return false;
 }
 
-void __fastcall c_opus_game_engine_host::Member36(const wchar_t*, const wchar_t*)
+void __fastcall c_opus_game_engine_host::Function36(const wchar_t*, const wchar_t*)
 {
 }
 
-bool __fastcall c_opus_game_engine_host::Member37(wchar_t*, __int64)
+bool __fastcall c_opus_game_engine_host::Function37(wchar_t*, __int64)
 {
 	return 0;
 }
@@ -464,17 +463,17 @@ __int64 __fastcall c_opus_game_engine_host::NetworkReceiveFrom(char* pBuffer, ui
 	return 0;
 }
 
-char* __fastcall c_opus_game_engine_host::Member40(unsigned int)
+char* __fastcall c_opus_game_engine_host::Function40(unsigned int)
 {
 	return 0;
 }
 
-int __fastcall c_opus_game_engine_host::Member41(BYTE* pBuffer)
+int __fastcall c_opus_game_engine_host::Function41(BYTE* pBuffer)
 {
 	return 0;
 }
 
-bool __fastcall c_opus_game_engine_host::Member42(signed int, __int64, __int64)
+bool __fastcall c_opus_game_engine_host::Function42(signed int, __int64, __int64)
 {
 	return 0;
 }
@@ -483,14 +482,14 @@ void __fastcall c_opus_game_engine_host::FirefightNew(__int64, float)
 {
 }
 
-BOOL __fastcall c_opus_game_engine_host::Member44(__int64, __int64)
+BOOL __fastcall c_opus_game_engine_host::Function44(__int64, __int64)
 {
 	return 0;
 }
 
 bool __fastcall c_opus_game_engine_host::GetPathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength)
 {
-	const char* pEngineName = m_rGameRuntime.GetEngineName().c_str();
+	const char* pEngineName = game_runtime.GetEngineName().c_str();
 
 	// this implementation is inline with MCC
 	switch (pathType)
@@ -514,7 +513,7 @@ bool __fastcall c_opus_game_engine_host::GetPathByType(PathType pathType, LPSTR 
 
 bool __fastcall c_opus_game_engine_host::GetWidePathByType(PathType pathType, wchar_t* pBuffer, size_t bufferLength)
 {
-	const char* pEngineName = m_rGameRuntime.GetEngineName().c_str();
+	const char* pEngineName = game_runtime.GetEngineName().c_str();
 
 	// this implementation is inline with MCC
 	switch (pathType)
@@ -536,12 +535,12 @@ bool __fastcall c_opus_game_engine_host::GetWidePathByType(PathType pathType, wc
 	return false;
 }
 
-unsigned __int8* __fastcall c_opus_game_engine_host::Member47(_QWORD, unsigned __int8*, _QWORD)
+unsigned __int8* __fastcall c_opus_game_engine_host::Function47(_QWORD, unsigned __int8*, _QWORD)
 {
 	return 0;
 }
 
-__int64 __fastcall c_opus_game_engine_host::Member48(_QWORD, __int64)
+__int64 __fastcall c_opus_game_engine_host::Function48(_QWORD, __int64)
 {
 	// appears to be security related
 	return 1;

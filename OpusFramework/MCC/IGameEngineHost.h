@@ -1,10 +1,77 @@
 #pragma once
 
-#define IGameEngineHostCreateBarrierDefinition(index) virtual void Member##index() final; 
+#define IGameEngineHostCreateBarrierDefinition(index) virtual void Function##index() final; 
+
+void IGameEngineHostEmptyFunction();
+
+#pragma pack(push, 1)
+
+enum IGameEngineHostVirtualFunctionIndex
+{
+	__game_engine_virtual_function_frame_start,
+	__game_engine_virtual_function_frame_end,
+	__game_engine_virtual_function_function2,
+	__game_engine_virtual_function_engine_state_update,
+	__game_engine_virtual_function_game_exited,
+	__game_engine_virtual_function_write_buffer_to_file,
+	__game_engine_virtual_function_function6,
+	__game_engine_virtual_function_function7,
+	__game_engine_virtual_function_function8,
+	__game_engine_virtual_function_function9,
+	__game_engine_virtual_function_get_game_events,
+	__game_engine_virtual_function_update_game_variant,
+	__game_engine_virtual_function_update_map_variant,
+	__game_engine_virtual_function_function13,
+	__game_engine_virtual_function_function14,
+	__game_engine_virtual_function_function15,
+	__game_engine_virtual_function_get_next_level_info,
+	__game_engine_virtual_function_function17,
+	__game_engine_virtual_function_function18,
+	__game_engine_virtual_function_map_load_percent_status,
+	__game_engine_virtual_function_function20,
+	__game_engine_virtual_function_get_machine_identifier,
+	__game_engine_virtual_function_function22,
+	__game_engine_virtual_function_function23,
+	__game_engine_virtual_function_get_session_info,
+	__game_engine_virtual_function_membership_update,
+	__game_engine_virtual_function_function26,
+	__game_engine_virtual_function_function27,
+	__game_engine_virtual_function_update_graphics,
+	__game_engine_virtual_function_function29,
+	__game_engine_virtual_function_update_player_configuration,
+	__game_engine_virtual_function_update_input,
+	__game_engine_virtual_function_function32,
+	__game_engine_virtual_function_function33,
+	__game_engine_virtual_function_xinput_set_state,
+	__game_engine_virtual_function_update_player_names,
+	__game_engine_virtual_function_function36,
+	__game_engine_virtual_function_function37,
+	__game_engine_virtual_function_network_send_to,
+	__game_engine_virtual_function_network_recieve_from,
+	__game_engine_virtual_function_function40,
+	__game_engine_virtual_function_function41,
+	__game_engine_virtual_function_function42,
+	__game_engine_virtual_function_firefight_new,
+	__game_engine_virtual_function_function44,
+	__game_engine_virtual_function_get_path_by_type,
+	__game_engine_virtual_function_get_path_by_type_wide,
+	__game_engine_virtual_function_function47,
+	__game_engine_virtual_function_function48,
+};
 
 class IGameEngineHost
 {
 public:
+	static constexpr size_t kTableSize = 128;
+	void* __vtbl_dynamic;
+
+	IGameEngineHost(e_engine_type engine_type, e_build build, IGameEvents* game_events);
+	IGameEngineHost* GetDynamicGameEngineHost();
+
+
+
+
+
 
 	enum class PathType : int
 	{
@@ -192,61 +259,55 @@ public:
 
 	struct s_transport_address;
 
-	inline IGameEngineHost(IGameEvents* pGameEvents)
-		:m_pGameEvents(pGameEvents)
-	{
-
-	}
-
-	/* 0  */ virtual char FrameStart() = 0;
-	/* 1  */ virtual void FrameEnd(IDXGISwapChain* pSwapChain, _QWORD) = 0;
-	/* 2  */ virtual void Member02(__int64 player_identifier, unsigned int, __int64, float, float, float, float) = 0;
-	/* 3  */ virtual void EngineStateUpdate(eEngineState state) = 0;
-	/* 4  */ virtual __int64 GameExited(unsigned int, char*, int) = 0;
-	/* 5  */ virtual __int64 __fastcall WriteBufferToFile(LPVOID pBuffer, size_t bufferSize) = 0;
-	/* 6  */ virtual void Member06(GameResultsData* pGameResultsData) = 0;
-	/* 7  */ virtual void Member07(unsigned int) = 0;
-	/* 8  */ virtual void Member08(const wchar_t*, const wchar_t*) = 0;
-	/* 9  */ virtual void Member09(wchar_t[1024], wchar_t[1024]) = 0;
-	/* 10 */ virtual IGameEvents* GetGameEvents() = 0;
-	/* 11 */ virtual void UpdateGameVariant(IGameVariant* pGameVariant) = 0;
-	/* 12 */ virtual void UpdateMapVariant(IMapVariant* pMapVariant) = 0;
-	/* 13 */ virtual void Member13(const wchar_t*, const wchar_t*, const void*, unsigned int) = 0;
-	/* 14 */ virtual char Member14(int controllerIndex, BYTE*) = 0;
-	/* 15 */ virtual char Member15(int controllerIndex, BYTE*) = 0;
-	/* 16 */ virtual char GetNextLevelInfo(e_map_id* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*) = 0;
-	/* 17 */ virtual bool Member17(int) = 0;
-	/* 18 */ virtual void Member18(int) = 0;
-	/* 19 */ virtual __int64 __fastcall MapLoadPecentStatus(__int64, __int64, float) = 0;
-	/* 20 */ virtual void Member20(__int64, __int8) = 0;
-	/* 21 */ virtual __int64 __fastcall GetMachineIdentifier(_QWORD) = 0;
-	/* 22 */ virtual __int64 Member22(Function22Structure* buffer, __int64) = 0;
-	/* 23 */ virtual char Member23(__int64, __int64) = 0;
-	/* 24 */ virtual void GetSessionInfo(s_session_info_part* pSessionInfoPart) = 0;
-	/* 25 */ virtual void __fastcall MembershipUpdate(s_session_membership* pSessionMembership, uint32_t playercount) = 0;
-	/* 26 */ virtual bool __fastcall Member26() = 0;
-	/* 27 */ virtual bool __fastcall Member27() = 0;
-	/* 28 */ virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* pUnknown) = 0;
-	/* 29 */ virtual __int64 __fastcall Member29(__int64 value) = 0;
-	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration) = 0;
-	/* 31 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer) = 0;
-	/* 32 */ virtual void Member32(_QWORD, float*) = 0;
-	/* 33 */ virtual void Member33() = 0;
-	/* 34 */ virtual void XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION* pVibration) = 0;
-	/* 35 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t pszPlayerNames[4][32], size_t dataSize) = 0;
-	/* 36 */ virtual void __fastcall Member36(const wchar_t*, const wchar_t*) = 0;
-	/* 37 */ virtual bool __fastcall Member37(wchar_t*, __int64) = 0;
-	/* 38 */ virtual __int64 __fastcall NetworkSendTo(NetworkID networkID, char* pBuffer, uint32_t buffersize, int) = 0;
-	/* 39 */ virtual __int64 __fastcall NetworkReceiveFrom(char* pBuffer, uint32_t buffersize, __int64, s_transport_address* pTransportAddress) = 0;
-	/* 40 */ virtual char* __fastcall Member40(unsigned int) = 0;
-	/* 41 */ virtual int __fastcall Member41(BYTE* pBuffer) = 0;
-	/* 42 */ virtual bool __fastcall Member42(signed int, __int64, __int64) = 0;
-	/* 43 */ virtual void __fastcall FirefightNew(__int64, float) = 0;
-	/* 44 */ virtual BOOL __fastcall Member44(__int64, __int64) = 0;
-	/* 45 */ virtual bool __fastcall GetPathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength) = 0;
-	/* 46 */ virtual bool __fastcall GetWidePathByType(PathType pathType, LPWSTR pBuffer, size_t bufferLength) = 0;
-	/* 47 */ virtual unsigned __int8* __fastcall Member47(_QWORD, unsigned __int8*, _QWORD) = 0;
-	/* 48 */ virtual __int64 __fastcall Member48(_QWORD, __int64) = 0;
+	/* 0  */ virtual char FrameStart();
+	/* 1  */ virtual void FrameEnd(IDXGISwapChain* pSwapChain, _QWORD);
+	/* 2  */ virtual void Function02(__int64 player_identifier, unsigned int, __int64, float, float, float, float);
+	/* 3  */ virtual void EngineStateUpdate(eEngineState state);
+	/* 4  */ virtual __int64 GameExited(unsigned int, char*, int);
+	/* 5  */ virtual __int64 __fastcall WriteBufferToFile(LPVOID pBuffer, size_t bufferSize);
+	/* 6  */ virtual void Function06(GameResultsData* pGameResultsData);
+	/* 7  */ virtual void Function07(unsigned int);
+	/* 8  */ virtual void Function08(const wchar_t*, const wchar_t*);
+	/* 9  */ virtual void Function09(wchar_t[1024], wchar_t[1024]);
+	/* 10 */ virtual IGameEvents* GetGameEvents();
+	/* 11 */ virtual void UpdateGameVariant(IGameVariant* pGameVariant);
+	/* 12 */ virtual void UpdateMapVariant(IMapVariant* pMapVariant);
+	/* 13 */ virtual void Function13(const wchar_t*, const wchar_t*, const void*, unsigned int);
+	/* 14 */ virtual char Function14(int controllerIndex, BYTE*);
+	/* 15 */ virtual char Function15(int controllerIndex, BYTE*);
+	/* 16 */ virtual char GetNextLevelInfo(e_map_id* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*);
+	/* 17 */ virtual bool Function17(int);
+	/* 18 */ virtual void Function18(int);
+	/* 19 */ virtual __int64 __fastcall MapLoadPecentStatus(__int64, __int64, float);
+	/* 20 */ virtual void Function20(__int64, __int8);
+	/* 21 */ virtual __int64 __fastcall GetMachineIdentifier(_QWORD);
+	/* 22 */ virtual __int64 Function22(Function22Structure* buffer, __int64);
+	/* 23 */ virtual char Function23(__int64, __int64);
+	/* 24 */ virtual void GetSessionInfo(s_session_info_part* pSessionInfoPart);
+	/* 25 */ virtual void __fastcall MembershipUpdate(s_session_membership* pSessionMembership, uint32_t playercount);
+	/* 26 */ virtual bool __fastcall Function26();
+	/* 27 */ virtual bool __fastcall Function27();
+	/* 28 */ virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* pUnknown);
+	/* 29 */ virtual __int64 __fastcall Member29(__int64 value);
+	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration);
+	/* 31 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer);
+	/* 32 */ virtual void Function32(_QWORD, float*);
+	/* 33 */ virtual void Function33();
+	/* 34 */ virtual void XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION* pVibration);
+	/* 35 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t pszPlayerNames[4][32], size_t dataSize);
+	/* 36 */ virtual void __fastcall Function36(const wchar_t*, const wchar_t*);
+	/* 37 */ virtual bool __fastcall Function37(wchar_t*, __int64);
+	/* 38 */ virtual __int64 __fastcall NetworkSendTo(NetworkID networkID, char* pBuffer, uint32_t buffersize, int a4);
+	/* 39 */ virtual __int64 __fastcall NetworkReceiveFrom(char* pBuffer, uint32_t buffersize, __int64, s_transport_address* pTransportAddress);
+	/* 40 */ virtual char* __fastcall Function40(unsigned int);
+	/* 41 */ virtual int __fastcall Function41(BYTE* pBuffer);
+	/* 42 */ virtual bool __fastcall Function42(signed int, __int64, __int64);
+	/* 43 */ virtual void __fastcall FirefightNew(__int64, float);
+	/* 44 */ virtual BOOL __fastcall Function44(__int64, __int64);
+	/* 45 */ virtual bool __fastcall GetPathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength);
+	/* 46 */ virtual bool __fastcall GetWidePathByType(PathType pathType, LPWSTR pBuffer, size_t bufferLength);
+	/* 47 */ virtual unsigned __int8* __fastcall Function47(_QWORD, unsigned __int8*, _QWORD);
+	/* 48 */ virtual __int64 __fastcall Function48(_QWORD, __int64);
 
 	/* barrier functions to prevent new versions of games calling our functions */
 	IGameEngineHostCreateBarrierDefinition(49);
@@ -258,11 +319,29 @@ public:
 	IGameEngineHostCreateBarrierDefinition(55);
 	IGameEngineHostCreateBarrierDefinition(56);
 
-	// DATA
-	IGameEvents* m_pGameEvents = nullptr;
+	// IGameEngineHost data
+	IGameEvents* game_events_ptr = nullptr;
 	QWORD data1[5863] = {};
+
+	// begin custom data
+	e_engine_type engine_type;
+	e_build build;
+	bool game_engine_host_configured;
+	void ConfigureGameEngineHost();
+
+	void* __vtbl_dynamic_data[kTableSize];
+	/*
+	These two values make up known addresses. If a virtual function is called and the expected value of __vtbl_known_address1 is found __vtbl_known_address0
+	then that means that the virtual function being called has had its 'this' value shifted to offset the __vtbl to use __vtbl_dynamic.
+	This check allows each virtual function to run itself and correct the address
+	*/
+	static constexpr uintptr_t known_address0 = 0xe23a921724befda0;
+	static constexpr uintptr_t known_address1 = 0xa23a921724befda1;
+	uintptr_t __vtbl_known_address0 = known_address0;
+	uintptr_t __vtbl_known_address1 = known_address1;
 };
-CHECK_STRUCTURE_SIZE(IGameEngineHost, 0xB748);
+//CHECK_STRUCTURE_SIZE(IGameEngineHost, 0xB748);
+#pragma pack(pop)
 
 #undef IGameEngineHostCreateBarrierDefinition
 

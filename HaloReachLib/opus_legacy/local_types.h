@@ -17,15 +17,6 @@ struct _RTL_CRITICAL_SECTION_DEBUG;
 struct IGameEngineOld;
 struct GameContext;
 
-typedef void(NullSubFunc)();
-typedef __int64(ZeroSubFunc)();
-
-
-
-
-
-
-
 
 
 

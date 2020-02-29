@@ -8,7 +8,7 @@
 class c_eldorado_game_host : public c_opus_game_engine_host
 {
 public:
-	c_eldorado_game_host();
+	c_eldorado_game_host(e_engine_type engine_type, e_build build);
 	virtual ~c_eldorado_game_host();
 
 	static void init_game_host(e_build build);

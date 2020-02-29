@@ -176,13 +176,14 @@ void GameLauncher::launchHalo1()
 {
 	ASSERT(pCurrentGameHost == nullptr);
 
-	pCurrentGameHost = new c_halo1_game_host();
+	e_engine_type engine_type = _engine_type_halo1;
+	e_build build = c_halo1_game_host::get_game_runtime().get_build();
+
+	pCurrentGameHost = new c_halo1_game_host(engine_type, build);
 	ASSERT(pCurrentGameHost != nullptr);
 	IGameEngine* pGameEngine = pCurrentGameHost->get_game_engine();
 	ASSERT(pGameEngine != nullptr);
 
-	e_engine_type engine_type = _engine_type_halo1;
-	e_build build = c_halo1_game_host::get_game_runtime().get_build();
 
 	// #TODO: Game specific version of this!!!
 
@@ -258,7 +259,8 @@ void GameLauncher::launchHalo1()
 		}
 	}
 
-	static HANDLE hMainGameThread = pGameEngine->InitThread(pCurrentGameHost, &gameContext);
+	IGameEngineHost* game_engine_host = pCurrentGameHost->GetDynamicGameEngineHost();
+	static HANDLE hMainGameThread = pGameEngine->InitThread(game_engine_host, &gameContext);
 	c_window::SetPostMessageThreadId(hMainGameThread);
 
 	// #TODO: Absolutely terrible thread sync here
@@ -303,13 +305,14 @@ void GameLauncher::launchHaloReach()
 {
 	ASSERT(pCurrentGameHost == nullptr);
 
-	pCurrentGameHost = new c_halo_reach_game_host();
+	e_engine_type engine_type = _engine_type_halo_reach;
+	e_build build = c_halo_reach_game_host::get_game_runtime().get_build();
+
+	pCurrentGameHost = new c_halo_reach_game_host(engine_type, build);
 	ASSERT(pCurrentGameHost != nullptr);
 	IGameEngine* pGameEngine = pCurrentGameHost->get_game_engine();
 	ASSERT(pGameEngine != nullptr);
 
-	e_engine_type engine_type = _engine_type_halo_reach;
-	e_build build = c_halo_reach_game_host::get_game_runtime().get_build();
 
 	// #TODO: Game specific version of this!!!
 
@@ -384,7 +387,8 @@ void GameLauncher::launchHaloReach()
 		}
 	}
 	
-	static HANDLE hMainGameThread = pGameEngine->InitThread(pCurrentGameHost, &gameContext);
+	IGameEngineHost* game_engine_host = pCurrentGameHost->GetDynamicGameEngineHost();
+	static HANDLE hMainGameThread = pGameEngine->InitThread(game_engine_host, &gameContext);
 	c_window::SetPostMessageThreadId(hMainGameThread);
 
 	// #TODO: Absolutely terrible thread sync here

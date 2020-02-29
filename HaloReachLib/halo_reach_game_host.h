@@ -8,7 +8,7 @@
 class c_halo_reach_game_host : public c_opus_game_engine_host
 {
 public:
-	c_halo_reach_game_host();
+	c_halo_reach_game_host(e_engine_type engine_type, e_build build);
 	virtual ~c_halo_reach_game_host();
 
 	// IGameEngineHost functionality
