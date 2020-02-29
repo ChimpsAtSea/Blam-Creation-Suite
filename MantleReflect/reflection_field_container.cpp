@@ -2,15 +2,15 @@
 
 
 c_reflection_field_container::c_reflection_field_container()
-	: m_fieldName()
-	, m_fieldNiceName()
-	, m_reflectionTypeCategory()
-	, m_primitiveType()
-	, m_pFieldType()
-	, m_arraySize()
-	, m_offset()
-	, m_size()
-	, m_isHiddenByDefault()
+	: field_name()
+	, field_nice_name()
+	, reflection_type_category()
+	, primitive_type()
+	, field_type()
+	, array_size()
+	, offset()
+	, data_size()
+	, is_hidden_by_default()
 {
 
 }

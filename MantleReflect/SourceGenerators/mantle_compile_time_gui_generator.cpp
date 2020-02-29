@@ -28,18 +28,21 @@ void c_mantle_compile_time_gui_generator::run()
 
 void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_header(const c_reflection_type_container& reflection_type_container)
 {
-	if (reflection_type_container.m_isPrimitive) return; // skip internal types
+	if (reflection_type_container.is_primitive) return; // skip internal types
 
-	source_string_stream << "template<> void render_type_gui<" << reflection_type_container.m_qualifiedTypeName << ">();" << std::endl;
+	source_string_stream << "template<> void render_type_gui<" << reflection_type_container.qualified_type_name << ">();" << std::endl;
 }
 
 void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_source(const c_reflection_type_container& reflection_type_container)
 {
-	if (reflection_type_container.m_isPrimitive) return; // skip internal types
+	if (reflection_type_container.is_primitive) return; // skip internal types
 
 	source_string_stream << "template<>" << std::endl;
-	source_string_stream << "void render_type_gui<" << reflection_type_container.m_qualifiedTypeName << ">()" << std::endl;
+	source_string_stream << "void render_type_gui<" << reflection_type_container.qualified_type_name << ">()" << std::endl;
 	source_string_stream << "{" << std::endl;
+
+
+
 	source_string_stream << "}" << std::endl;
 	source_string_stream << std::endl;
 }

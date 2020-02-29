@@ -36,22 +36,21 @@ void c_mantle_runtime_reflection_generator::write_tag_type_lookup_function(std::
 	stringstream << "{" << std::endl;
 	stringstream << "\tswitch (tagGroup)" << std::endl;
 	stringstream << "\t{" << std::endl;
-	for (c_reflection_type_container* pType : reflection_types)
+	for (c_reflection_type_container* reflection_type_container_ptr : reflection_types)
 	{
-		c_reflection_type_container& rType = *pType;
-		if (!rType.m_tagGroup.empty())
-		{
-			const uint32_t& rawTagGroup = *reinterpret_cast<const uint32_t*>(rType.m_tagGroup.data());
-			uint64_t swappedTagGroupWithPadding = bswap(rawTagGroup);
-			const char* pTagGroupSwapped = reinterpret_cast<const char*>(&swappedTagGroupWithPadding);
+		c_reflection_type_container& reflection_type_container = *reflection_type_container_ptr;
+		if (reflection_type_container.raw_tag_group.empty()) continue;
 
-			stringstream << "\tcase '" << rType.m_tagGroup << "':" << std::endl;
-			if (rawTagGroup != swappedTagGroupWithPadding)
-			{
-				stringstream << "\tcase '" << pTagGroupSwapped << "':" << std::endl;
-			}
-			stringstream << "\t\treturn &runtime_reflection<" << rType.m_qualifiedTypeName << ">();" << std::endl;
+		const uint32_t& raw_tag_group = *reinterpret_cast<const uint32_t*>(reflection_type_container.raw_tag_group.data());
+		uint64_t swapped_tag_group = bswap(raw_tag_group);
+		const char* swapped_tag_group_str = reinterpret_cast<const char*>(&swapped_tag_group);
+
+		stringstream << "\tcase '" << reflection_type_container.raw_tag_group << "':" << std::endl;
+		if (raw_tag_group != swapped_tag_group)
+		{
+			stringstream << "\tcase '" << swapped_tag_group_str << "':" << std::endl;
 		}
+		stringstream << "\t\treturn &runtime_reflection<" << reflection_type_container.qualified_type_name << ">();" << std::endl;
 	}
 	stringstream << "\t}" << std::endl;
 	stringstream << "\treturn nullptr;" << std::endl;
@@ -60,51 +59,51 @@ void c_mantle_runtime_reflection_generator::write_tag_type_lookup_function(std::
 }
 void c_mantle_runtime_reflection_generator::write_reflection_type_entry_header(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
 {
-	if (reflection_type_container.m_isPrimitive)
+	if (reflection_type_container.is_primitive)
 	{
 		// skip internal types
 		return;
 	}
 	
 	stringstream << "template<> ";
-	stringstream << "const ReflectionType& runtime_reflection<" << reflection_type_container.m_qualifiedTypeName << ">();" << std::endl;
+	stringstream << "const ReflectionType& runtime_reflection<" << reflection_type_container.qualified_type_name << ">();" << std::endl;
 }
 
 void c_mantle_runtime_reflection_generator::write_reflection_type_entry(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
 {
-	if (reflection_type_container.m_isPrimitive)
+	if (reflection_type_container.is_primitive)
 	{
 		// skip internal types
 		return;
 	}
 
 	stringstream << "template<>" << std::endl;
-	stringstream << "const ReflectionType& runtime_reflection<" << reflection_type_container.m_qualifiedTypeName << ">()" << std::endl;
+	stringstream << "const ReflectionType& runtime_reflection<" << reflection_type_container.qualified_type_name << ">()" << std::endl;
 	
 	stringstream << "{" << std::endl;
 	stringstream << "\t" << "static ReflectionType reflectionData = " << std::endl;
 	stringstream << "\t{" << std::endl;
 
-	stringstream << "\t\t\"" << reflection_type_container.m_typeName << "\", \"" << reflection_type_container.m_typeNiceName << "\", " << std::endl;
+	stringstream << "\t\t\"" << reflection_type_container.type_name << "\", \"" << reflection_type_container.type_nice_name << "\", " << std::endl;
 	stringstream << std::uppercase;
-	stringstream << "\t\t0x" << std::hex << reflection_type_container.m_size << "u," << std::endl;
+	stringstream << "\t\t0x" << std::hex << reflection_type_container.data_size << "u," << std::endl;
 	stringstream << std::nouppercase;
-	stringstream << "\t\t" << std::dec << reflection_type_container.m_fieldsData.size() << "ui32," << std::endl;
-	stringstream << "\t\t" << "render_type_gui<" << reflection_type_container.m_qualifiedTypeName << ">," << std::endl;
+	stringstream << "\t\t" << std::dec << reflection_type_container.fields.size() << "ui32," << std::endl;
+	stringstream << "\t\t" << "render_type_gui<" << reflection_type_container.qualified_type_name << ">," << std::endl;
 	stringstream << "\t\t" << "{" << std::endl;
-	for (const c_reflection_field_container* pField : reflection_type_container.m_fieldsData)
+	for (const c_reflection_field_container* reflection_field_container_ptr : reflection_type_container.fields)
 	{
-		const c_reflection_field_container& rField = *pField;
-		const c_reflection_type_container& rFieldType = *rField.m_pFieldType;
-		assert(&rField);
-		assert(&rFieldType);
+		assert(reflection_field_container_ptr != nullptr);
+		const c_reflection_field_container& reflection_field_container = *reflection_field_container_ptr;
+		assert(reflection_field_container.field_type != nullptr);
+		const c_reflection_type_container& reflection_type_container = *reflection_field_container.field_type;
 
-		const char* pPrimitiveTypeStr = rFieldType.m_isPrimitive ? rField.m_pFieldType->m_qualifiedTypeName.c_str() : "NonPrimitive";
-		const char* pReflectionTypeCategoryStr = ReflectionTypeCategoryToString(rField.m_reflectionTypeCategory);
+		const char* primitive_type_string = reflection_type_container.is_primitive ? reflection_field_container.field_type->qualified_type_name.c_str() : "NonPrimitive";
+		const char* reflection_type_category_string = ReflectionTypeCategoryToString(reflection_field_container.reflection_type_category);
 
-		stringstream << "\t\t\t{ \"" << rField.m_fieldName << "\", \"" << rField.m_fieldNiceName << "\", ";
+		stringstream << "\t\t\t{ \"" << reflection_field_container.field_name << "\", \"" << reflection_field_container.field_nice_name << "\", ";
 		{
-			switch (rField.m_reflectionTypeCategory)
+			switch (reflection_field_container.reflection_type_category)
 			{
 			case ReflectionTypeCategory::TagBlock:
 				stringstream << "ReflectionTagBlockInfo";
@@ -116,33 +115,33 @@ void c_mantle_runtime_reflection_generator::write_reflection_type_entry(std::str
 				stringstream << "ReflectionTypeInfo";
 				break;
 			}
-			stringstream << "{ " << "ReflectionTypeCategory::" << pReflectionTypeCategoryStr;
-			stringstream << ", PrimitiveType::" << pPrimitiveTypeStr;
-			stringstream << ", \"" << rFieldType.m_qualifiedTypeName << "\"";
-			switch (rField.m_reflectionTypeCategory)
+			stringstream << "{ " << "ReflectionTypeCategory::" << reflection_type_category_string;
+			stringstream << ", PrimitiveType::" << primitive_type_string;
+			stringstream << ", \"" << reflection_type_container.qualified_type_name << "\"";
+			switch (reflection_field_container.reflection_type_category)
 			{
 			case ReflectionTypeCategory::TagBlock:
 				//#TODO: Print a Visual Studio warning for tab blocks without their types specified
-				if (!rField.m_pFieldType->m_pTemplateTypes.empty())
+				if (!reflection_field_container.field_type->template_types.empty())
 				{
 					//#TODO: Print a Visual Studio warning for tab blocks with too many types specified. The first only will be used
-					stringstream << ", &runtime_reflection<" << rField.m_pFieldType->m_pTemplateTypes[0]->m_qualifiedTypeName << ">()";
+					stringstream << ", &runtime_reflection<" << reflection_field_container.field_type->template_types[0]->qualified_type_name << ">()";
 				}
 				else stringstream << ", nullptr";
 				break;
 			case ReflectionTypeCategory::Structure:
-				stringstream << ", &runtime_reflection<" << rField.m_pFieldType->m_qualifiedTypeName << ">()";
+				stringstream << ", &runtime_reflection<" << reflection_field_container.field_type->qualified_type_name << ">()";
 				break;
 			}
 			stringstream << " }";
 		}
 		stringstream << std::uppercase;
-		stringstream << ", 0x" << std::hex << rField.m_offset << "ui32";
+		stringstream << ", 0x" << std::hex << reflection_field_container.offset << "ui32";
 		//stringstream << ", offsetof(" << rType.m_qualifiedTypeName << ", " << rType.m_qualifiedTypeName << "::" << rField.m_fieldName << ")"; // #TODO: Generate offsetof code where possible
-		stringstream << ", 0x" << std::hex << rField.m_size << "ui16";
+		stringstream << ", 0x" << std::hex << reflection_field_container.data_size << "ui16";
 		stringstream << std::nouppercase;
-		stringstream << ", " << std::dec << rField.m_arraySize << "ui32";
-		stringstream << ", " << (rField.m_isHiddenByDefault ? "true" : "false");
+		stringstream << ", " << std::dec << reflection_field_container.array_size << "ui32";
+		stringstream << ", " << (reflection_field_container.is_hidden_by_default ? "true" : "false");
 		stringstream << " }," << std::endl;
 	}
 	stringstream << "\t\t\t{ }" << std::endl;

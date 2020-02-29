@@ -126,38 +126,38 @@ const char* FormatNiceNameAndIsHidden(ReflectionTypeCategory reflectionTypeCateg
 
 void CreateNiceNames(c_reflection_type_container& rType)
 {
-	rType.m_typeNiceName = rType.m_typeName;
-	rType.m_typeNiceName = FormatNiceNameAndIsHidden(ReflectionTypeCategory::Structure, rType.m_typeNiceName.data());
-	for (c_reflection_field_container* pField : rType.m_fieldsData)
+	rType.type_nice_name = rType.type_name;
+	rType.type_nice_name = FormatNiceNameAndIsHidden(ReflectionTypeCategory::Structure, rType.type_nice_name.data());
+	for (c_reflection_field_container* pField : rType.fields)
 	{
 		c_reflection_field_container& rField = *pField;
 
-		rField.m_fieldNiceName = rField.m_fieldName;
-		rField.m_isHiddenByDefault = false;
-		rField.m_fieldNiceName = FormatNiceNameAndIsHidden(rField.m_reflectionTypeCategory, rField.m_fieldNiceName.data(), &rField.m_isHiddenByDefault);
+		rField.field_nice_name = rField.field_name;
+		rField.is_hidden_by_default = false;
+		rField.field_nice_name = FormatNiceNameAndIsHidden(rField.reflection_type_category, rField.field_nice_name.data(), &rField.is_hidden_by_default);
 	}
 }
 
 uint32_t InitTypeSizeAndOffsets(c_reflection_type_container& rType)
 {
-	if (rType.m_isSizeInitialized)
+	if (rType.is_size_initialized)
 	{
-		return rType.m_size;
+		return rType.data_size;
 	}
 
 	uint32_t currentOffset = 0;
-	for (c_reflection_field_container* pField : rType.m_fieldsData)
+	for (c_reflection_field_container* pField : rType.fields)
 	{
 		c_reflection_field_container& rField = *pField;
-		uint64_t fieldSize = InitTypeSizeAndOffsets(*rField.m_pFieldType);
-		uint64_t dataSize = fieldSize * __max(1ull, rField.m_arraySize);
-		rField.m_size = fieldSize;
-		rField.m_offset = currentOffset;
+		uint64_t fieldSize = InitTypeSizeAndOffsets(*rField.field_type);
+		uint64_t dataSize = fieldSize * __max(1ull, rField.array_size);
+		rField.data_size = fieldSize;
+		rField.offset = currentOffset;
 		currentOffset += static_cast<uint32_t>(dataSize);
 	}
-	rType.m_size = currentOffset;
+	rType.data_size = currentOffset;
 
-	return rType.m_size;
+	return rType.data_size;
 }
 
 std::vector<c_reflection_type_container*> ReflectedTypesData;
@@ -268,7 +268,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 	{ // handle existing records
 		for (c_reflection_type_container* rReflectionTypeContainer : ReflectedTypesData)
 		{
-			if (rReflectionTypeContainer->pRecordDeclaration == &rRecordDeclaration || rReflectionTypeContainer->m_qualifiedTypeName == qualifiedDeclarationName)
+			if (rReflectionTypeContainer->clang_record_declaration == &rRecordDeclaration || rReflectionTypeContainer->qualified_type_name == qualifiedDeclarationName)
 			{
 				pExistingReflectionTypeContainer = rReflectionTypeContainer;
 
@@ -281,7 +281,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 		{
 			return pExistingReflectionTypeContainer; // we already have data for this
 		}
-		else if (!pExistingReflectionTypeContainer->m_fieldsData.empty())
+		else if (!pExistingReflectionTypeContainer->fields.empty())
 		{
 			return pExistingReflectionTypeContainer; // we already have data for this
 		}
@@ -297,16 +297,16 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 	}
 	c_reflection_type_container& rReflectionTypeContainer = *pReflectionTypeContainer;
 
-	assert(rReflectionTypeContainer.m_fieldsData.empty());
+	assert(rReflectionTypeContainer.fields.empty());
 
-	rReflectionTypeContainer.m_typeName = declarationName;
-	rReflectionTypeContainer.m_qualifiedTypeName = qualifiedDeclarationName;
-	rReflectionTypeContainer.pRecordDeclaration = &rRecordDeclaration;
-	rReflectionTypeContainer.m_isPrimitive = isPrimitive;
+	rReflectionTypeContainer.type_name = declarationName;
+	rReflectionTypeContainer.qualified_type_name = qualifiedDeclarationName;
+	rReflectionTypeContainer.clang_record_declaration = &rRecordDeclaration;
+	rReflectionTypeContainer.is_primitive = isPrimitive;
 
 	if (pClassTemplateSpecializationDecl)
 	{
-		rReflectionTypeContainer.m_isTypeTemplate = true;
+		rReflectionTypeContainer.is_template = true;
 
 		const clang::TemplateArgumentList& rArgList = pClassTemplateSpecializationDecl->getTemplateArgs();
 		for (unsigned int i = 0; i < rArgList.size(); i++)
@@ -323,7 +323,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 				assert(pDecl != nullptr);
 				c_reflection_type_container* pTemplateType = CreateReflectedType(Context, &qualifiedType, *pDecl);
 				assert(pTemplateType != nullptr);
-				rReflectionTypeContainer.m_pTemplateTypes.push_back(pTemplateType);
+				rReflectionTypeContainer.template_types.push_back(pTemplateType);
 			}
 		}
 	}
@@ -370,7 +370,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 		}
 	}
 
-	rReflectionTypeContainer.m_tagGroup = tag_group_str;
+	rReflectionTypeContainer.raw_tag_group = tag_group_str;
 
 	if (disableReflection)
 	{
@@ -379,7 +379,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 
 	for (FieldDecl* field : fields)
 	{
-		c_reflection_field_container& rFieldData = *rReflectionTypeContainer.m_fieldsData.emplace_back(new c_reflection_field_container());
+		c_reflection_field_container& rFieldData = *rReflectionTypeContainer.fields.emplace_back(new c_reflection_field_container());
 
 		const clang::QualType fieldQualifiedType = field->getType();
 		const clang::Type* fieldType = fieldQualifiedType.getTypePtr();
@@ -388,7 +388,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 		const std::string fieldQualifiedName = field->getQualifiedNameAsString();
 		const std::string fieldName = field->getNameAsString();
 
-		rFieldData.m_fieldName = fieldName;
+		rFieldData.field_name = fieldName;
 
 		const clang::Type* const reflectionBaseType = fieldType;
 		const clang::QualType reflectionQualifiedBaseType = reflectionBaseType->getCanonicalTypeInternal();
@@ -400,8 +400,8 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 			if (pConstantArrayType)
 			{
 				llvm::APInt arraySizeRaw = pConstantArrayType->getSize();
-				rFieldData.m_arraySize = *arraySizeRaw.getRawData();
-				assert(rFieldData.m_arraySize > 0);
+				rFieldData.array_size = *arraySizeRaw.getRawData();
+				assert(rFieldData.array_size > 0);
 
 				QualType elementType = pConstantArrayType->getElementType();
 				reflectionQualifiedType = elementType->getCanonicalTypeInternal();
@@ -433,7 +433,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 				else assert(!"Unsupported class type");
 			}
 
-			rFieldData.m_reflectionTypeCategory = reflectionTypeCategory;
+			rFieldData.reflection_type_category = reflectionTypeCategory;
 			if (reflectionTypeCategory == ReflectionTypeCategory::Undefined)
 			{
 				PrimitiveType primitiveType;
@@ -443,14 +443,14 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 				else if (name == "Undefined64") primitiveType = PrimitiveType::Undefined64;
 				else assert(!"Unsupported primitive type");
 
-				rFieldData.m_primitiveType = primitiveType;
-				rFieldData.m_pFieldType = GetPrimitiveReflectionType(primitiveType);
+				rFieldData.primitive_type = primitiveType;
+				rFieldData.field_type = GetPrimitiveReflectionType(primitiveType);
 			}
 			else
 			{
 				c_reflection_type_container* pType = CreateReflectedType(Context, &fieldQualifiedType, *pCXXRecord);
 				assert(pType != nullptr);
-				rFieldData.m_pFieldType = pType;
+				rFieldData.field_type = pType;
 			}
 		}
 		else if (reflectionQualifiedType->isScalarType())
@@ -458,11 +458,11 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 			clang::QualType scalarQualifiedType = reflectionQualifiedType->getCanonicalTypeInternal();
 			const std::string scalarQualifiedTypeName = QualType::getAsString(scalarQualifiedType.split(), printingPolicy);
 
-			rFieldData.m_reflectionTypeCategory = ReflectionTypeCategory::Primitive;
+			rFieldData.reflection_type_category = ReflectionTypeCategory::Primitive;
 			switch (reflectionQualifiedType->getScalarTypeKind())
 			{
 			case clang::Type::ScalarTypeKind::STK_Bool:
-				rFieldData.m_primitiveType = PrimitiveType::Boolean32;
+				rFieldData.primitive_type = PrimitiveType::Boolean32;
 				break;
 			case clang::Type::ScalarTypeKind::STK_Integral:
 			{
@@ -479,43 +479,43 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 
 				if (integralCanonicalType->isSignedIntegerType())
 				{
-					if (integralTypeName == "char") rFieldData.m_primitiveType = PrimitiveType::Int8;
-					else if (integralTypeName == "signed char") rFieldData.m_primitiveType = PrimitiveType::Int8;
-					else if (integralTypeName == "short") rFieldData.m_primitiveType = PrimitiveType::Int16;
-					else if (integralTypeName == "int") rFieldData.m_primitiveType = PrimitiveType::Int32;
-					else if (integralTypeName == "long") rFieldData.m_primitiveType = PrimitiveType::Int32;
-					else if (integralTypeName == "long long") rFieldData.m_primitiveType = PrimitiveType::Int64;
+					if (integralTypeName == "char") rFieldData.primitive_type = PrimitiveType::Int8;
+					else if (integralTypeName == "signed char") rFieldData.primitive_type = PrimitiveType::Int8;
+					else if (integralTypeName == "short") rFieldData.primitive_type = PrimitiveType::Int16;
+					else if (integralTypeName == "int") rFieldData.primitive_type = PrimitiveType::Int32;
+					else if (integralTypeName == "long") rFieldData.primitive_type = PrimitiveType::Int32;
+					else if (integralTypeName == "long long") rFieldData.primitive_type = PrimitiveType::Int64;
 					else assert(!"Unsupported signed integral type");
 				}
 				else if (integralCanonicalType->isUnsignedIntegerType())
 				{
-					if (integralTypeName == "unsigned char") rFieldData.m_primitiveType = PrimitiveType::UInt8;
-					else if (integralTypeName == "unsigned short") rFieldData.m_primitiveType = PrimitiveType::UInt16;
-					else if (integralTypeName == "unsigned int") rFieldData.m_primitiveType = PrimitiveType::UInt32;
-					else if (integralTypeName == "unsigned long long") rFieldData.m_primitiveType = PrimitiveType::UInt64;
+					if (integralTypeName == "unsigned char") rFieldData.primitive_type = PrimitiveType::UInt8;
+					else if (integralTypeName == "unsigned short") rFieldData.primitive_type = PrimitiveType::UInt16;
+					else if (integralTypeName == "unsigned int") rFieldData.primitive_type = PrimitiveType::UInt32;
+					else if (integralTypeName == "unsigned long long") rFieldData.primitive_type = PrimitiveType::UInt64;
 					else assert(!"Unsupported signed integral type");
 				}
 				else assert(!"Unsupported integral type");
 
 				if (isEnum)
 				{
-					switch (rFieldData.m_primitiveType)
+					switch (rFieldData.primitive_type)
 					{
 					case PrimitiveType::Int8:
 					case PrimitiveType::UInt8:
-						rFieldData.m_primitiveType = PrimitiveType::Enum8;
+						rFieldData.primitive_type = PrimitiveType::Enum8;
 						break;
 					case PrimitiveType::Int16:
 					case PrimitiveType::UInt16:
-						rFieldData.m_primitiveType = PrimitiveType::Enum16;
+						rFieldData.primitive_type = PrimitiveType::Enum16;
 						break;
 					case PrimitiveType::Int32:
 					case PrimitiveType::UInt32:
-						rFieldData.m_primitiveType = PrimitiveType::Enum32;
+						rFieldData.primitive_type = PrimitiveType::Enum32;
 						break;
 					case PrimitiveType::Int64:
 					case PrimitiveType::UInt64:
-						rFieldData.m_primitiveType = PrimitiveType::Enum64;
+						rFieldData.primitive_type = PrimitiveType::Enum64;
 						break;
 					case PrimitiveType::Enum8:
 					case PrimitiveType::Enum16:
@@ -532,8 +532,8 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 			case clang::Type::ScalarTypeKind::STK_Floating:
 			{
 				const std::string typeName = QualType::getAsString(scalarQualifiedType.split(), printingPolicy);
-				if (typeName == "float") rFieldData.m_primitiveType = PrimitiveType::Float;
-				else if (typeName == "double") rFieldData.m_primitiveType = PrimitiveType::Double;
+				if (typeName == "float") rFieldData.primitive_type = PrimitiveType::Float;
+				else if (typeName == "double") rFieldData.primitive_type = PrimitiveType::Double;
 				else assert(!"Unsupported floating point type");
 			}
 			break;
@@ -548,12 +548,12 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 				break;
 			}
 
-			assert(rFieldData.m_primitiveType != PrimitiveType::NonPrimitive);
-			rFieldData.m_pFieldType = GetPrimitiveReflectionType(rFieldData.m_primitiveType);
+			assert(rFieldData.primitive_type != PrimitiveType::NonPrimitive);
+			rFieldData.field_type = GetPrimitiveReflectionType(rFieldData.primitive_type);
 		}
 		else assert(!"UNSUPPORTED TYPE");
 
-		assert(rFieldData.m_pFieldType != nullptr);
+		assert(rFieldData.field_type != nullptr);
 	}
 
 	if (createdNewReflectionContainer)
