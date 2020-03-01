@@ -106,23 +106,21 @@ set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
 
 if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
-
     echo TBB is already configured
-
 ) else (
-
     cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
-
 )
 
 if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
-
     echo TBB is already built
-	
 ) else (
-
     msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+)
 
+if exist "$(ProjectDir)cmake_$(PlatformShortName)\Release\tbb_static.lib" (
+    echo TBB Release is already built
+) else (
+    msbuild /t:Build /p:Configuration=Release /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
 )
 </Command>
     </PostBuildEvent>
@@ -151,23 +149,21 @@ set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
 set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
 
 if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
-
     echo TBB is already configured
-
 ) else (
-
     cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
-
 )
 
 if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
-
     echo TBB is already built
-	
 ) else (
-
     msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+)
 
+if exist "$(ProjectDir)cmake_$(PlatformShortName)\Release\tbb_static.lib" (
+    echo TBB Release is already built
+) else (
+    msbuild /t:Build /p:Configuration=Release /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
 )
 </Command>
     </PostBuildEvent>
