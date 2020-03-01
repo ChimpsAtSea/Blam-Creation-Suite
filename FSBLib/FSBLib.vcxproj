@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -18,35 +18,47 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="fsblib-private-pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fsblib-private-pch.h" />
+    <ClInclude Include="fsblib-public-pch.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{25B5BB9E-E3CF-40A0-8E78-579B859415C2}</ProjectGuid>
-    <RootNamespace>Mantle</RootNamespace>
+    <ProjectGuid>{417FEA8E-F628-49D2-B75B-735467DEAF37}</ProjectGuid>
+    <RootNamespace>imgui</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Mantle</ProjectName>
+    <ProjectName>FSBLib</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -55,7 +67,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Label="Shared">
+  <ImportGroup Label="FSBLib">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -71,32 +83,32 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformShortName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
-    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
-    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformShortName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
-    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
-    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformShortName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
-    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
-    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformShortName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
+    <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
-    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
-    <IntDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -104,21 +116,20 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>fsblib-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Shared.lib;MantleLib.lib;d3d11.lib;dxgi.lib;imgui.lib;tbb_static.lib;Shlwapi.lib;fsblib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
-      <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
     </Link>
-    <ProjectReference />
-    <ProjectReference>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
+    <Lib>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -126,21 +137,20 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>fsblib-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Shared.lib;MantleLib.lib;d3d11.lib;dxgi.lib;imgui.lib;tbb_static.lib;Shlwapi.lib;fsblib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
-      <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
+      <SubSystem>Console</SubSystem>
     </Link>
-    <ProjectReference />
-    <ProjectReference>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
+    <Lib>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -150,23 +160,19 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>fsblib-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Shared.lib;MantleLib.lib;d3d11.lib;dxgi.lib;imgui.lib;tbb_static.lib;Shlwapi.lib;fsblib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
-      <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
-    <ProjectReference />
-    <ProjectReference>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -176,30 +182,20 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>fsblib-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Shared.lib;MantleLib.lib;d3d11.lib;dxgi.lib;imgui.lib;tbb_static.lib;Shlwapi.lib;fsblib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
-      <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
-    <ProjectReference />
-    <ProjectReference>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
-    </ProjectReference>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
