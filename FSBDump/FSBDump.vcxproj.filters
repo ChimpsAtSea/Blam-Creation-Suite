@@ -18,10 +18,21 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fsb_validate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fsb_validate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fsbdump-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

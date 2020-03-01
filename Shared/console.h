@@ -5,7 +5,7 @@ class c_console_command
 public:
 	virtual bool execute_command(const std::vector<std::string>& arguments) = 0; // Return true on success
 	virtual std::string get_command_info(const std::string& topic = "") const = 0; // Command and usage info
-	virtual std::string get_command_auto_complete(const std::vector<std::string>& arguments) const = 0; // Suggest auto-complete strings for arugments
+	virtual std::string get_command_auto_complete(const std::vector<std::string>& arguments) const; // Suggest auto-complete strings for arugments
 };
 
 enum e_console_color : uint8_t

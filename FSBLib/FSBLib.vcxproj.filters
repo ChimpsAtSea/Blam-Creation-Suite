@@ -18,12 +18,18 @@
     <ClCompile Include="fsblib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sound_bank_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fsblib-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fsblib-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sound_bank_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

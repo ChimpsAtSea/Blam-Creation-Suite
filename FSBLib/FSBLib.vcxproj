@@ -25,10 +25,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="sound_bank_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fsblib-private-pch.h" />
     <ClInclude Include="fsblib-public-pch.h" />
+    <ClInclude Include="sound_bank_manager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

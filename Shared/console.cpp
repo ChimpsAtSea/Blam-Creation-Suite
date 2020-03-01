@@ -529,3 +529,8 @@ bool c_console::AllocateConsole(const std::string& ConsoleTitle)
 
 	return true;
 }
+
+std::string c_console_command::get_command_auto_complete(const std::vector<std::string>& arguments) const
+{
+	return "";
+}
