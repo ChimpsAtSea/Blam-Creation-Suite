@@ -15,7 +15,7 @@ public:
 	using TabClosedCallback = std::function<void(c_mantle_gui_tab&)>;
 	void AddTabClosedCallback(TabClosedCallback);
 protected:
-	virtual void RenderContents(bool setSelected) = 0;
+	virtual void render_contents(bool setSelected) = 0;
 
 	bool m_isOpen;
 	std::string m_title;

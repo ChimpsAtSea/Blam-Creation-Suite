@@ -22,7 +22,7 @@
     <ClCompile Include="!UserInterface\mantle_cache_file_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_gui.cpp" />
-    <ClCompile Include="CacheInterface\CacheFile.cpp" />
+    <ClCompile Include="CacheInterface\cache_file.cpp" />
     <ClCompile Include="CacheInterface\GroupInterface.cpp" />
     <ClCompile Include="mantlelib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -30,8 +30,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="!UserInterface\MantleTagTab.cpp" />
-    <ClCompile Include="CacheInterface\TagInterface.cpp" />
+    <ClCompile Include="!UserInterface\mantle_tag_gui_tab.cpp" />
+    <ClCompile Include="CacheInterface\tag_interface.cpp" />
+    <ClCompile Include="!UserInterface\mantle_halo_shader_generator_gui_tab.cpp" />
     <ClCompile Include="Tags\GeneratedConversion.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -60,15 +61,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!UserInterface\UserInterface.h" />
-    <ClInclude Include="CacheInterface\CacheFile.h" />
+    <ClInclude Include="CacheInterface\cache_file.h" />
     <ClInclude Include="CacheInterface\CacheInterface.h" />
     <ClInclude Include="!UserInterface\mantle_cache_file_gui_tab.h" />
     <ClInclude Include="!UserInterface\mantle_gui_tab.h" />
     <ClInclude Include="!UserInterface\mantle_gui.h" />
-    <ClInclude Include="!UserInterface\MantleTagTab.h" />
-    <ClInclude Include="CacheInterface\TagInterface.h" />
+    <ClInclude Include="!UserInterface\mantle_tag_gui_tab.h" />
+    <ClInclude Include="CacheInterface\tag_interface.h" />
     <ClInclude Include="CacheInterface\GroupInterface.h" />
     <ClInclude Include="GUI\render_stringid_gui.inl" />
+    <ClInclude Include="!UserInterface\mantle_halo_shader_generator_gui_tab.h" />
     <ClInclude Include="Tags\GeneratedConversion.h" />
     <ClInclude Include="Tags\GeneratedGUI.h" />
     <ClInclude Include="Tags\TagDefinitions\achievements.h" />

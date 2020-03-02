@@ -1,6 +1,6 @@
 #include "mantlelib-private-pch.h"
 
-TagInterface::TagInterface(CacheFile& rCacheFile, uint16_t tagIndex)
+c_tag_interface::c_tag_interface(c_cache_file& rCacheFile, uint16_t tagIndex)
 	: m_pTagData(nullptr)
 	, m_tagIndex(tagIndex)
 	, m_pInstance(rCacheFile.m_pTagInstances + tagIndex)
@@ -51,12 +51,12 @@ TagInterface::TagInterface(CacheFile& rCacheFile, uint16_t tagIndex)
 	}
 }
 
-TagInterface::~TagInterface()
+c_tag_interface::~c_tag_interface()
 {
 
 }
 
-GroupInterface* TagInterface::GetGroupInterface() const
+GroupInterface* c_tag_interface::GetGroupInterface() const
 {
 	return m_rCacheFile.GetGroupInterfaces(true)[m_groupIndex];
 };

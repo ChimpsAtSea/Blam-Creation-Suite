@@ -15,7 +15,7 @@ void decrement_recursion()
 	recursionPadding = recursion_padding_amount * static_cast<float>(recursion_depth);
 }
 
-thread_local MantleTagTab* current_mantle_tag_tab = nullptr;
+thread_local c_mantle_tag_gui_tab* current_mantle_tag_tab = nullptr;
 
 #include <GUI/render_primitive_gui.inl>
 #include <GUI/render_stringid_gui.inl>
@@ -24,18 +24,18 @@ thread_local MantleTagTab* current_mantle_tag_tab = nullptr;
 #include <GUI/render_dataref_gui.inl>
 #include <GUI/render_tagblock_gui.inl>
 
-MantleTagTab::MantleTagTab(CacheFile& rCacheFile, TagInterface& rTagInterface, c_mantle_gui_tab* pParentTab)
+c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& rCacheFile, c_tag_interface& rTagInterface, c_mantle_gui_tab* pParentTab)
 	: c_mantle_gui_tab(rTagInterface.GetNameWithGroupIDCStr(), rTagInterface.GetPathWithGroupNameCStr())
-	, m_rTagInterface(rTagInterface)
-	, m_rCacheFile(rCacheFile)
-	, m_pParentTab(pParentTab)
+	, tag_interface(rTagInterface)
+	, cache_file(rCacheFile)
+	, parent_tab(pParentTab)
 	, m_isSelected(false)
 {
 
 }
 
 
-MantleTagTab::~MantleTagTab()
+c_mantle_tag_gui_tab::~c_mantle_tag_gui_tab()
 {
 	for (ImGUIDynamicData* pDynamicData : m_imGuiDynamicData)
 	{
@@ -43,7 +43,7 @@ MantleTagTab::~MantleTagTab()
 	}
 }
 
-void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, char* pStartSrc, char* pStartDest, char* pSrc, char* pDest)
+void c_mantle_tag_gui_tab::copy_data_recursively(const ReflectionType& rReflectionType, char* pStartSrc, char* pStartDest, char* pSrc, char* pDest)
 {
 	// #TODO: Package up all of the tag data into a single packet
 	// #TODO: Patch the tag address table to make room for extra data
@@ -66,14 +66,14 @@ void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, ch
 
 				if (pTagBlock->count && pTagBlock->address)
 				{
-					char* pTagBlockDataSource = m_rCacheFile.GetTagBlockData<char>(*pTagBlock);
+					char* pTagBlockDataSource = cache_file.GetTagBlockData<char>(*pTagBlock);
 					char* pTagBlockDataDest = c_mantle_gui::get_tag_selection_address(pTagBlock->address);
 
 					for (int i = 0; i < pTagBlock->count; i++)
 					{
 						//memcpy(pTagBlockDest, pTagBlockDataSource, pTagBlockReflectionType->m_size);
 						uint32_t offset = pTagBlockReflectionType->m_size * i;
-						CopyDataRecursively(*pTagBlockReflectionType, pStartSrc, pStartDest, pTagBlockDataSource + offset, pTagBlockDataDest + offset);
+						copy_data_recursively(*pTagBlockReflectionType, pStartSrc, pStartDest, pTagBlockDataSource + offset, pTagBlockDataDest + offset);
 					}
 				}
 			}
@@ -81,27 +81,27 @@ void MantleTagTab::CopyDataRecursively(const ReflectionType& rReflectionType, ch
 	}
 }
 
-void MantleTagTab::Poke()
+void c_mantle_tag_gui_tab::poke()
 {
-	char* pDest = static_cast<char*>(c_mantle_gui::get_tag_pointer(GetTagInterface().GetIndex()));
+	char* pDest = static_cast<char*>(c_mantle_gui::get_tag_pointer(get_tag_interface().GetIndex()));
 	if (pDest)
 	{
 
-		char* pSource = m_rCacheFile.GetTagInterface(GetTagInterface().GetIndex())->GetData();
+		char* pSource = cache_file.GetTagInterface(get_tag_interface().GetIndex())->GetData();
 
-		const ReflectionType* pReflectionType = m_rTagInterface.GetReflectionData();
-		CopyDataRecursively(*pReflectionType, pSource, pDest, pSource, pDest);
+		const ReflectionType* pReflectionType = tag_interface.GetReflectionData();
+		copy_data_recursively(*pReflectionType, pSource, pDest, pSource, pDest);
 
-		write_line_verbose("Successfully poked tag '%s'", GetTagInterface().GetNameWithGroupIDCStr());
+		write_line_verbose("Successfully poked tag '%s'", get_tag_interface().GetNameWithGroupIDCStr());
 	}
 	else
 	{
-		write_line_verbose("Failed to poke tag '%s' as pDest was null", GetTagInterface().GetNameWithGroupIDCStr());
+		write_line_verbose("Failed to poke tag '%s' as pDest was null", get_tag_interface().GetNameWithGroupIDCStr());
 	}
 
 }
 
-void MantleTagTab::RenderContents(bool setSelected)
+void c_mantle_tag_gui_tab::render_contents(bool setSelected)
 {
 	ImGui::PushID(this);
 	ImGuiTabItemFlags tabFlags = 0;
@@ -114,15 +114,15 @@ void MantleTagTab::RenderContents(bool setSelected)
 		m_isSelected = true;
 		ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
 
-		const ReflectionType* pReflectionType = m_rTagInterface.GetReflectionData();
+		const ReflectionType* pReflectionType = tag_interface.GetReflectionData();
 		if (pReflectionType)
 		{
 			current_mantle_tag_tab = this;
-			pReflectionType->render_type_gui(m_rTagInterface.GetData());
+			pReflectionType->render_type_gui(tag_interface.GetData());
 		}
 		else
 		{
-			ImGui::Text("No reflection information found for '%s'", m_rTagInterface.GetGroupShortName());
+			ImGui::Text("No reflection information found for '%s'", tag_interface.GetGroupShortName());
 		}
 
 		ImGui::EndChild();
@@ -131,7 +131,7 @@ void MantleTagTab::RenderContents(bool setSelected)
 	ImGui::PopID();
 }
 
-void MantleTagTab::RenderButtons()
+void c_mantle_tag_gui_tab::RenderButtons()
 {
 	if (c_mantle_gui::is_game())
 	{
@@ -139,7 +139,7 @@ void MantleTagTab::RenderButtons()
 
 		if (ImGui::Button("Poke"))
 		{
-			Poke();
+			poke();
 		}
 	}
 }

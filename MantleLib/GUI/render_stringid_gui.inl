@@ -14,7 +14,7 @@ void render_stringid_gui(string_id* field_data, const ReflectionField& reflectio
 	class StringIDDynamicData
 	{
 	public:
-		StringIDDynamicData(string_id& rStringID, CacheFile& rCacheFile)
+		StringIDDynamicData(string_id& rStringID, c_cache_file& rCacheFile)
 			: szBuffer()
 			, isValid(0)
 			, bufferLength(0)
@@ -40,12 +40,12 @@ void render_stringid_gui(string_id* field_data, const ReflectionField& reflectio
 		string_id* pStringID;
 	};
 
-	static_assert(sizeof(StringIDDynamicData) <= sizeof(MantleTagTab::ImGUIDynamicData::second), "StringIDDynamicData is too large");
+	static_assert(sizeof(StringIDDynamicData) <= sizeof(c_mantle_tag_gui_tab::ImGUIDynamicData::second), "StringIDDynamicData is too large");
 	bool wasAllocated;
 	StringIDDynamicData& rDynamicStringIDData = current_mantle_tag_tab->GetDynamicData<StringIDDynamicData>(field_data, wasAllocated);
 	if (wasAllocated)
 	{
-		new(&rDynamicStringIDData) StringIDDynamicData(field_string_id, current_mantle_tag_tab->GetCacheFile());
+		new(&rDynamicStringIDData) StringIDDynamicData(field_string_id, current_mantle_tag_tab->get_cache_file());
 	}
 
 	ImGui::Columns(3, NULL, false);

@@ -55,7 +55,7 @@ void render_tagblock_gui(void* field_data, const ReflectionField& reflection_fie
 		const ReflectionType* pTagBlockReflectionType = rReflectionTagBlockInfo.m_pReflectionTypeInfo;
 
 		uint32_t tagBlockDataIndexDataOffset = pTagBlockReflectionType->m_size * static_cast<uint32_t>(rDynamicTagBlockData.m_position);
-		char* pTagBlockData = current_mantle_tag_tab->GetCacheFile().GetTagBlockData<char>(*tag_block_definition) + tagBlockDataIndexDataOffset;
+		char* pTagBlockData = current_mantle_tag_tab->get_cache_file().GetTagBlockData<char>(*tag_block_definition) + tagBlockDataIndexDataOffset;
 
 		if (tag_block_definition->count && tag_block_definition->address)
 		{

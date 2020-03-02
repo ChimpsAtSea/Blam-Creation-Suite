@@ -3,7 +3,7 @@
 // this is some crazy hacks relying on little endian
 #define GetGroupMagicToString(group_tags) reinterpret_cast<char*>(&group_tags[0]), reinterpret_cast<char*>(&group_tags[1])
 
-GroupInterface::GroupInterface(CacheFile& rCacheFile, uint16_t groupIndex)
+GroupInterface::GroupInterface(c_cache_file& rCacheFile, uint16_t groupIndex)
 	: m_groupIndex(groupIndex)
 	, m_pGroup(rCacheFile.m_pGroupInstances + groupIndex)
 	, m_groupMagic(m_pGroup->group_tags[0])
@@ -30,7 +30,7 @@ GroupInterface::~GroupInterface()
 
 void GroupInterface::initTagGroupRelationship()
 {
-	for (TagInterface* pTagInterface : m_rCacheFile.GetTagInterfaces(true))
+	for (c_tag_interface* pTagInterface : m_rCacheFile.GetTagInterfaces(true))
 	{
 		if (pTagInterface->GetRawGroup() == m_pGroup)
 		{

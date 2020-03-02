@@ -26,7 +26,7 @@ void c_mantle_gui_tab::render_in_game_gui()
 
 void c_mantle_gui_tab::render_gui(bool setSelected)
 {
-	RenderContents(setSelected);
+	render_contents(setSelected);
 
 	if (!m_isOpen)
 	{

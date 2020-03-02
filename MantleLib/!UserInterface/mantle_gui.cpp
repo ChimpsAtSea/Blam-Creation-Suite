@@ -7,7 +7,7 @@
 /* ---------- globals */
 
 static ImGuiAddons::ImGuiFileBrowser file_browser;
-static bool g_is_mantle_window_open = true; 
+static bool g_is_mantle_window_open = true;
 static c_mantle_gui_tab* g_next_selected_root_tab = nullptr; // when set, the referenced tab will be selected on the next frame
 static uint32_t g_mantle_show_file_dialogue = false; // when set, the file dialogue will open on the next frame
 
@@ -26,6 +26,13 @@ void c_mantle_gui::init_mantle_gui(bool inGameMode, const wchar_t* startup_cache
 {
 	g_mantle_running_with_game = inGameMode;
 	open_cache_file_from_filepath(startup_cache_filepath);
+
+	static bool autostart_halo_shader_generator = c_command_line::has_command_line_arg("-haloshadergenerator");
+	if (autostart_halo_shader_generator)
+	{
+		start_halo_shader_generator();
+		autostart_halo_shader_generator = false;
+	}
 }
 
 void c_mantle_gui::render_in_game_gui()
@@ -91,6 +98,12 @@ void c_mantle_gui::render_gui()
 					//	AddTabItem(*pTab);
 					//	pSetSelectedRootTab = pTab;
 					//}
+				}
+				ImGui::Separator();
+				if (ImGui::MenuItem("Start Shader Tool", "Ctrl+H"))
+				{
+
+					start_halo_shader_generator();
 				}
 				ImGui::Separator();
 				if (ImGui::MenuItem("Exit"))
@@ -164,6 +177,29 @@ void c_mantle_gui::deinit_mantle_gui()
 	}
 }
 
+void c_mantle_gui::start_halo_shader_generator()
+{
+	c_mantle_halo_shader_generator_gui_tab* mantle_halo_shader_generator_gui_tab = nullptr;
+	for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
+	{
+		mantle_halo_shader_generator_gui_tab = dynamic_cast<c_mantle_halo_shader_generator_gui_tab*>(mantle_gui_tab);
+
+		if (mantle_halo_shader_generator_gui_tab)
+		{
+			break;
+		}
+	}
+
+	if (mantle_halo_shader_generator_gui_tab == nullptr)
+	{
+		mantle_halo_shader_generator_gui_tab = new c_mantle_halo_shader_generator_gui_tab("Shader Tool", "Shader Tool");
+
+		add_tab(*mantle_halo_shader_generator_gui_tab);
+	}
+
+	g_next_selected_root_tab = mantle_halo_shader_generator_gui_tab;
+}
+
 void c_mantle_gui::register_on_close_callback(on_close_callback_func callback)
 {
 	g_mantle_on_close_callbacks.push_back(callback);
@@ -193,7 +229,7 @@ void c_mantle_gui::remove_tab(c_mantle_gui_tab& rMantleTab)
 	VectorEraseByValueHelper(g_mantle_gui_tabs, &rMantleTab);
 }
 
-std::shared_ptr<CacheFile> c_mantle_gui::get_cache_file(const char* pMapName)
+std::shared_ptr<c_cache_file> c_mantle_gui::get_cache_file(const char* pMapName)
 {
 	for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
 	{
@@ -232,8 +268,8 @@ void c_mantle_gui::render_file_dialogue_gui()
 		{
 			for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
 			{
-				
-				/* #TODO: Perform a dynamic cast to c_mantle_cache_file_gui_tab and grab the cache file 
+
+				/* #TODO: Perform a dynamic cast to c_mantle_cache_file_gui_tab and grab the cache file
 				to determine if the tab is already open */
 				//c_mantle_cache_file_gui_tab* mantle_cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(mantle_gui_tab);
 				//if (mantle_cache_file_gui_tab == nullptr) continue;

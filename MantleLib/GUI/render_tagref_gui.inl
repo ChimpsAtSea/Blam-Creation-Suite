@@ -20,14 +20,14 @@ void render_tagref_gui(TagReference* field_data, const ReflectionField& reflecti
 	ImGui::NextColumn();
 	ImGui::PushItemWidth(-1);
 
-	CacheFile& cache_file = current_mantle_tag_tab->GetCacheFile();
+	c_cache_file& cache_file = current_mantle_tag_tab->get_cache_file();
 	const char* pGroupShortName = "(null)";
 	GroupInterface* pTagReferenceGroupInterface = cache_file.GetGroupInterfaceByGroupID(field_data->tagGroupName);
 	if (pTagReferenceGroupInterface)
 	{
 		pGroupShortName = pTagReferenceGroupInterface->GetShortName();
 	}
-	TagInterface* pTagReferenceTagInterface = cache_file.GetTagInterface(static_cast<uint16_t>(field_data->index));
+	c_tag_interface* pTagReferenceTagInterface = cache_file.GetTagInterface(static_cast<uint16_t>(field_data->index));
 
 	if (ImGui::BeginCombo("##tag_group_magic", pGroupShortName))
 	{
@@ -71,7 +71,7 @@ void render_tagref_gui(TagReference* field_data, const ReflectionField& reflecti
 
 		if (ImGui::BeginCombo("##tag_path", pTagReferenceDisplayName))
 		{
-			for (TagInterface* pCurrentTagInterface : cache_file.GetTagInterfaces())
+			for (c_tag_interface* pCurrentTagInterface : cache_file.GetTagInterfaces())
 			{
 				if (pCurrentTagInterface->IsNull())
 				{
@@ -110,7 +110,7 @@ void render_tagref_gui(TagReference* field_data, const ReflectionField& reflecti
 	{
 		if (ImGui::BeginCombo("##tag_path", ""))
 		{
-			for (TagInterface* pCurrentTagInterface : cache_file.GetTagInterfaces())
+			for (c_tag_interface* pCurrentTagInterface : cache_file.GetTagInterfaces())
 			{
 				if (pCurrentTagInterface->IsNull())
 				{

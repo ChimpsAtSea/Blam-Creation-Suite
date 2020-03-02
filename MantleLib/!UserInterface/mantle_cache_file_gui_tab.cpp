@@ -38,12 +38,12 @@ void c_mantle_cache_file_gui_tab::DisplayMapTabUI()
 		if (useSearch)
 		{
 
-			const std::vector<TagInterface*>& rTagInterfaces = c_mantle_gui::get_use_full_file_length_display()
+			const std::vector<c_tag_interface*>& rTagInterfaces = c_mantle_gui::get_use_full_file_length_display()
 				? m_pCacheFile->GetTagInterfacesSortedByPathWithGroupID()
 				: m_pCacheFile->GetTagInterfacesSortedByNameWithGroupID();
-			for (TagInterface* pTagInterface : rTagInterfaces)
+			for (c_tag_interface* pTagInterface : rTagInterfaces)
 			{
-				TagInterface& rTagInterface = *pTagInterface;
+				c_tag_interface& rTagInterface = *pTagInterface;
 				if (rTagInterface.IsNull()) continue;
 
 				const char* pTagDisplayWithGroupID = c_mantle_gui::get_use_full_file_length_display()
@@ -71,7 +71,7 @@ void c_mantle_cache_file_gui_tab::DisplayMapTabUI()
 			{
 				GroupInterface& rGroupInterface = *pGroupInterface;
 
-				const std::vector<TagInterface*>& rTagInterfaces = c_mantle_gui::get_use_full_file_length_display()
+				const std::vector<c_tag_interface*>& rTagInterfaces = c_mantle_gui::get_use_full_file_length_display()
 					? pGroupInterface->GetTagInterfacesSortedByPathWithGroupID()
 					: pGroupInterface->GetTagInterfacesSortedByNameWithGroupID();
 
@@ -83,9 +83,9 @@ void c_mantle_cache_file_gui_tab::DisplayMapTabUI()
 
 				if (ImGui::TreeNode(pGroupShortName, pGroupShortName))
 				{
-					for (TagInterface* pTagInterface : rTagInterfaces)
+					for (c_tag_interface* pTagInterface : rTagInterfaces)
 					{
-						TagInterface& rTagInterface = *pTagInterface;
+						c_tag_interface& rTagInterface = *pTagInterface;
 						if (rTagInterface.IsNull()) continue;
 
 						bool displayTag = (!useSearch || rTagInterface.m_matchesSearchCriteria);
@@ -191,7 +191,7 @@ void c_mantle_cache_file_gui_tab::DisplayMapTabUI()
 		}
 		for (c_mantle_gui_tab* pTab : child_tabs)
 		{
-			MantleTagTab* pTagTab = dynamic_cast<MantleTagTab*>(pTab);
+			c_mantle_tag_gui_tab* pTagTab = dynamic_cast<c_mantle_tag_gui_tab*>(pTab);
 			if (pTagTab)
 			{
 				ImGui::SameLine();
@@ -206,19 +206,19 @@ void c_mantle_cache_file_gui_tab::DisplayMapTabUI()
 	ImGui::Columns(1);
 }
 
-void c_mantle_cache_file_gui_tab::openTagTab(TagInterface& rTagInterface)
+void c_mantle_cache_file_gui_tab::openTagTab(c_tag_interface& rTagInterface)
 {
 	for (c_mantle_gui_tab* pTab : child_tabs)
 	{
-		MantleTagTab* pTagTab = dynamic_cast<MantleTagTab*>(pTab);
+		c_mantle_tag_gui_tab* pTagTab = dynamic_cast<c_mantle_tag_gui_tab*>(pTab);
 		if (pTagTab == nullptr) continue;
-		if (&pTagTab->GetTagInterface() != &rTagInterface) continue;
+		if (&pTagTab->get_tag_interface() != &rTagInterface) continue;
 
 		next_selected_mantle_gui_tab = pTab;
 		return;
 	}
 
-	c_mantle_gui_tab* pTab = new MantleTagTab(*m_pCacheFile, rTagInterface, this);
+	c_mantle_gui_tab* pTab = new c_mantle_tag_gui_tab(*m_pCacheFile, rTagInterface, this);
 	AddTabItem(*pTab);
 	next_selected_mantle_gui_tab = pTab;
 }
@@ -234,7 +234,7 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(const char* pTitle, con
 
 }
 
-c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(std::shared_ptr<CacheFile> pCacheFile)
+c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(std::shared_ptr<c_cache_file> pCacheFile)
 	: m_pCacheFile(pCacheFile)
 	, c_mantle_gui_tab(pCacheFile->GetFileNameChar(), pCacheFile->GetFilePathChar())
 	, tab_closed_callback([this](c_mantle_gui_tab& rTab) { this->RemoveTabItem(rTab); })
@@ -247,7 +247,7 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(std::shared_ptr<CacheFi
 }
 
 c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(const wchar_t* szMapFilePath)
-	:c_mantle_cache_file_gui_tab(std::make_shared<CacheFile>(szMapFilePath))
+	:c_mantle_cache_file_gui_tab(std::make_shared<c_cache_file>(szMapFilePath))
 {
 
 }
@@ -331,9 +331,9 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 		return;
 	}
 
-	const std::vector<TagInterface*> rTagInterfaces = m_pCacheFile->GetTagInterfaces();
-	TagInterface* pTagInterface = nullptr;
-	for (TagInterface* pCurrentTagInterface : rTagInterfaces)
+	const std::vector<c_tag_interface*> rTagInterfaces = m_pCacheFile->GetTagInterfaces();
+	c_tag_interface* pTagInterface = nullptr;
+	for (c_tag_interface* pCurrentTagInterface : rTagInterfaces)
 	{
 		if (strcmp(pCurrentTagInterface->GetGroupShortNameCStr(), "scnr") == 0)
 		{
@@ -402,7 +402,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 	}
 }
 
-void c_mantle_cache_file_gui_tab::RenderContents(bool setSelected)
+void c_mantle_cache_file_gui_tab::render_contents(bool setSelected)
 {
 	ImGui::PushID(this);
 	ImGuiTabItemFlags tabFlags = 0;

@@ -1,23 +1,23 @@
 #pragma once
 
-class TagInterface;
-class CacheFile;
+class c_tag_interface;
+class c_cache_file;
 class c_mantle_cache_file_gui_tab;
 
 class GroupInterface
 {
 public:
-	friend class CacheFile;
+	friend class c_cache_file;
 	friend class c_mantle_cache_file_gui_tab;
-	friend class TagInterface;
+	friend class c_tag_interface;
 
-	GroupInterface(CacheFile& rCacheFile, uint16_t groupIndex);
+	GroupInterface(c_cache_file& rCacheFile, uint16_t groupIndex);
 	~GroupInterface();
 
-	inline CacheFile& GetCacheFile() const { return m_rCacheFile; };
-	inline const std::vector<TagInterface*>& GetTagInterfaces() const { return m_tagInterfaces; };
-	inline const std::vector<TagInterface*>& GetTagInterfacesSortedByNameWithGroupID() const { return m_tagInterfacesSortedByNameWithGroupID; };
-	inline const std::vector<TagInterface*>& GetTagInterfacesSortedByPathWithGroupID() const { return m_tagInterfacesSortedByPathWithGroupID; };
+	inline c_cache_file& GetCacheFile() const { return m_rCacheFile; };
+	inline const std::vector<c_tag_interface*>& GetTagInterfaces() const { return m_tagInterfaces; };
+	inline const std::vector<c_tag_interface*>& GetTagInterfacesSortedByNameWithGroupID() const { return m_tagInterfacesSortedByNameWithGroupID; };
+	inline const std::vector<c_tag_interface*>& GetTagInterfacesSortedByPathWithGroupID() const { return m_tagInterfacesSortedByPathWithGroupID; };
 	inline uint16_t GetIndex() { return m_groupIndex; };
 	s_cache_file_tag_group* GetRawGroup() const { return m_pGroup; };
 	inline const char* GetShortName() const { return m_pShortName.c_str(); };
@@ -35,10 +35,10 @@ private:
 	std::string m_pShortName;
 	std::string m_pFullName;
 	const ReflectionType* m_pReflectionData;
-	std::vector<TagInterface*> m_tagInterfaces;
-	std::vector<TagInterface*> m_tagInterfacesSortedByNameWithGroupID;
-	std::vector<TagInterface*> m_tagInterfacesSortedByPathWithGroupID;
-	CacheFile& m_rCacheFile;
+	std::vector<c_tag_interface*> m_tagInterfaces;
+	std::vector<c_tag_interface*> m_tagInterfacesSortedByNameWithGroupID;
+	std::vector<c_tag_interface*> m_tagInterfacesSortedByPathWithGroupID;
+	c_cache_file& m_rCacheFile;
 
 	// ?unsure
 	volatile uint32_t m_searchCriteriaMatchCount;

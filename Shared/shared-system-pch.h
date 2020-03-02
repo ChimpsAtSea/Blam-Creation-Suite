@@ -90,6 +90,11 @@ using namespace tbb;
 #include <queue>
 #include <memory>
 #include <cctype> //isgraph
+#include <array>
+#include <memory>
+#include <unordered_set>
+#include <unordered_map>
+#include <regex>
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #else

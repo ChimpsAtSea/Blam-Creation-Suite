@@ -1,18 +1,18 @@
 #pragma once
 class c_mantle_cache_file_gui_tab;
 class GroupInterface;
-class TagInterface
+class c_tag_interface
 {
 public:
-	friend class CacheFile;
+	friend class c_cache_file;
 	friend class c_mantle_cache_file_gui_tab;
 	friend class GroupInterface;
 
-	TagInterface(CacheFile& rCacheFile, uint16_t tagIndex);
-	~TagInterface();
+	c_tag_interface(c_cache_file& rCacheFile, uint16_t tagIndex);
+	~c_tag_interface();
 
 	inline bool IsNull() const { return m_isNull; }
-	inline CacheFile& GetCacheFile() const { return m_rCacheFile; };
+	inline c_cache_file& GetCacheFile() const { return m_rCacheFile; };
 	inline char* GetData() { return m_pTagData; };
 	template<typename T>
 	inline T* GetData() { return reinterpret_cast<T*>(m_pTagData); }; // #TODO: check if this type is alright
@@ -61,7 +61,7 @@ private:
 	std::string m_pTagNameWithGroupID;
 	std::string m_pTagNameWithGroupName;
 	const ReflectionType* m_pReflectionData;
-	CacheFile& m_rCacheFile;
+	c_cache_file& m_rCacheFile;
 	GroupInterface* m_pGroupInterface;
 
 	// !unsure

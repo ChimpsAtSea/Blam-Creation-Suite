@@ -2,14 +2,14 @@
 
 class VirtualMemoryContainer;
 
-class CacheFile
+class c_cache_file
 {
 public:
-	friend class TagInterface;
+	friend class c_tag_interface;
 	friend class GroupInterface;
 
-	CacheFile(const std::wstring& mapFilePath);
-	~CacheFile();
+	c_cache_file(const std::wstring& mapFilePath);
+	~c_cache_file();
 
 	void SaveMap();
 
@@ -27,30 +27,30 @@ public:
 	inline SectionCache& GetResourcesSection() { return GetSection(e_cache_file_section::_cache_file_section_resource); };
 	inline SectionCache& GetLocalizationSection() { return GetSection(e_cache_file_section::_cache_file_section_localization); };
 	inline size_t GetTagCount() const { return IsLoading() ? 0 : m_tagInterfaces.size(); }
-	inline TagInterface* GetTagInterface(uint16_t index) const { return (IsLoading() || index == 0xFFFFui16) ? nullptr : m_tagInterfaces[index]; }
-	inline const std::vector<TagInterface*>& GetTagInterfaces(bool ignoreLoadingCheck = false) const
+	inline c_tag_interface* GetTagInterface(uint16_t index) const { return (IsLoading() || index == 0xFFFFui16) ? nullptr : m_tagInterfaces[index]; }
+	inline const std::vector<c_tag_interface*>& GetTagInterfaces(bool ignoreLoadingCheck = false) const
 	{
 		if (!ignoreLoadingCheck && IsLoading())
 		{
-			static std::vector<TagInterface*> sEmptyVector;
+			static std::vector<c_tag_interface*> sEmptyVector;
 			return sEmptyVector;
 		}
 		return m_tagInterfaces;
 	}
-	inline const std::vector<TagInterface*>& GetTagInterfacesSortedByNameWithGroupID(bool ignoreLoadingCheck = false) const
+	inline const std::vector<c_tag_interface*>& GetTagInterfacesSortedByNameWithGroupID(bool ignoreLoadingCheck = false) const
 	{
 		if (!ignoreLoadingCheck && IsLoading())
 		{
-			static std::vector<TagInterface*> sEmptyVector;
+			static std::vector<c_tag_interface*> sEmptyVector;
 			return sEmptyVector;
 		}
 		return m_tagInterfacesSortedByNameWithGroupID;
 	}
-	inline const std::vector<TagInterface*>& GetTagInterfacesSortedByPathWithGroupID(bool ignoreLoadingCheck = false) const
+	inline const std::vector<c_tag_interface*>& GetTagInterfacesSortedByPathWithGroupID(bool ignoreLoadingCheck = false) const
 	{
 		if (!ignoreLoadingCheck && IsLoading())
 		{
-			static std::vector<TagInterface*> sEmptyVector;
+			static std::vector<c_tag_interface*> sEmptyVector;
 			return sEmptyVector;
 		}
 		return m_tagInterfacesSortedByPathWithGroupID;
@@ -126,7 +126,7 @@ public:
 
 	inline char* getTagBlockDataInternal(s_tag_block_definition<>& rTagBlock)
 	{
-		const CacheFile::SectionCache& rSectionInfo = GetSection(e_cache_file_section::_cache_file_section_tags);
+		const c_cache_file::SectionCache& rSectionInfo = GetSection(e_cache_file_section::_cache_file_section_tags);
 		char* pTagsSection = rSectionInfo.first;
 
 		uint64_t pageOffset = ConvertPageOffset(rTagBlock.address);
@@ -164,9 +164,9 @@ public:
 
 	// interface types
 	SectionCache m_pSectionCache[underlying_cast(e_cache_file_section::k_number_of_cache_file_sections)];
-	std::vector<TagInterface*> m_tagInterfaces;
-	std::vector<TagInterface*> m_tagInterfacesSortedByNameWithGroupID;
-	std::vector<TagInterface*> m_tagInterfacesSortedByPathWithGroupID;
+	std::vector<c_tag_interface*> m_tagInterfaces;
+	std::vector<c_tag_interface*> m_tagInterfacesSortedByNameWithGroupID;
+	std::vector<c_tag_interface*> m_tagInterfacesSortedByPathWithGroupID;
 	std::vector<GroupInterface*> m_groupInterfaces;
 };
 

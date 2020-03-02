@@ -2,7 +2,7 @@
 
 #pragma optimize("", off)
 
-CacheFile::CacheFile(const std::wstring& mapFilePath)
+c_cache_file::c_cache_file(const std::wstring& mapFilePath)
 	: m_rVirtualMemoryContainer(*new VirtualMemoryContainer(1024 * 1024 * 1024))
 	//m_pMapData(nullptr)
 	//, m_mapDataLength(0)
@@ -24,7 +24,7 @@ CacheFile::CacheFile(const std::wstring& mapFilePath)
 
 }
 
-CacheFile::~CacheFile()
+c_cache_file::~c_cache_file()
 {
 	while (m_isMapLoading) {};
 	delete& m_rVirtualMemoryContainer;
@@ -36,7 +36,7 @@ inline qword get_page_offset(qword virtual_base_address, dword address)
 	return ((qword)address * 4) - (virtual_base_address - 0x50000000);
 }
 
-void CacheFile::SaveMap()
+void c_cache_file::SaveMap()
 {
 	FILE* pFile = _wfopen(m_mapFilePath.c_str(), L"wb");
 	if (pFile)
@@ -51,7 +51,7 @@ void CacheFile::SaveMap()
 	else MessageBoxA(c_window::GetWindowHandle(), "Failed to save map", "File error failed to open for write", 0);
 }
 
-void CacheFile::loadMap(const std::wstring& mapFilePath)
+void c_cache_file::loadMap(const std::wstring& mapFilePath)
 {
 	m_isMapLoading = true;
 
@@ -108,7 +108,7 @@ void CacheFile::loadMap(const std::wstring& mapFilePath)
 			tbb::parallel_invoke(this_invoke(initTagInstances), this_invoke(initGroupInstances));
 			initTagGroupRelationship();
 
-			for (TagInterface* pTagInterface : m_tagInterfaces)
+			for (c_tag_interface* pTagInterface : m_tagInterfaces)
 			{
 				if (!pTagInterface->IsNull())
 				{
@@ -127,7 +127,7 @@ void CacheFile::loadMap(const std::wstring& mapFilePath)
 		}));
 }
 
-void CacheFile::initGroupInstances()
+void c_cache_file::initGroupInstances()
 {
 	// allocate buffer space to store pointers back
 	m_groupInterfaces.resize(m_pTagFilesHeader->groups.count);
@@ -139,19 +139,19 @@ void CacheFile::initGroupInstances()
 	tbb::parallel_for(0u, m_pTagFilesHeader->groups.count, createGroupFunc);
 }
 
-void CacheFile::initTagInstances()
+void c_cache_file::initTagInstances()
 {
 	// allocate buffer space to store pointers back
 	m_tagInterfaces.resize(m_pTagFilesHeader->instances.count);
-	TagInterface** ppTagInterfacesBuffer = m_tagInterfaces.data();
+	c_tag_interface** ppTagInterfacesBuffer = m_tagInterfaces.data();
 	std::function createTagFunc = [this, ppTagInterfacesBuffer](uint32_t index)
 	{
-		ppTagInterfacesBuffer[index] = new TagInterface(*this, static_cast<uint16_t>(index));
+		ppTagInterfacesBuffer[index] = new c_tag_interface(*this, static_cast<uint16_t>(index));
 	};
 	tbb::parallel_for(0u, m_pTagFilesHeader->instances.count, createTagFunc);
 }
 
-void CacheFile::initTagGroupRelationship()
+void c_cache_file::initTagGroupRelationship()
 {
 	// allocate buffer space to store pointers back
 	m_groupInterfaces.resize(m_pTagFilesHeader->groups.count);
@@ -173,14 +173,14 @@ struct case_insensitive_less
 	}
 };
 
-bool SortTagInstanceByNameWithGroupID(TagInterface* pLeft, TagInterface* pRight)
+bool SortTagInstanceByNameWithGroupID(c_tag_interface* pLeft, c_tag_interface* pRight)
 {
 	const std::string& left = pLeft->GetNameWithGroupID();
 	const std::string& right = pRight->GetNameWithGroupID();
 	return std::lexicographical_compare(left.begin(), left.end(), right.begin(), right.end(), [](char x, char y) { return toupper(static_cast<unsigned char>(x)) < toupper(static_cast<unsigned char>(y)); });
 }
 
-bool SortTagInstanceByPathWithGroupID(TagInterface* pLeft, TagInterface* pRight)
+bool SortTagInstanceByPathWithGroupID(c_tag_interface* pLeft, c_tag_interface* pRight)
 {
 	const std::string& left = pLeft->GetPathWithGroupID();
 	const std::string& right = pRight->GetPathWithGroupID();
@@ -188,7 +188,7 @@ bool SortTagInstanceByPathWithGroupID(TagInterface* pLeft, TagInterface* pRight)
 }
 #pragma optimize( "", on ) // restore global optimization settings
 
-void CacheFile::initSortedInstanceLists()
+void c_cache_file::initSortedInstanceLists()
 {
 	GroupInterface** ppGroupInterfacesBuffer = m_groupInterfaces.data();
 	std::function createGroupFunc = [this, ppGroupInterfacesBuffer](uint32_t index)
