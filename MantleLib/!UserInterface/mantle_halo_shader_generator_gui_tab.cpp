@@ -5,9 +5,23 @@ static TextEditor code_editor;
 static TextEditor assembly_editor;
 static TextEditor runtime_code_display;
 static TextEditor::LanguageDefinition lang = TextEditor::LanguageDefinition::CPlusPlus();
+e_shader_profile c_mantle_halo_shader_generator_gui_tab::accepted_shader_profiles[] =
+{
+	_shader_profile_ps_5_0,
+	_shader_profile_ps_3_0
+};
 
 c_mantle_halo_shader_generator_gui_tab::c_mantle_halo_shader_generator_gui_tab(const char* title, const char* description) :
-	c_mantle_gui_tab(title, description)
+	c_mantle_gui_tab(title, description),
+	selected_cache_file_tab(nullptr),
+	selected_render_method_definition_tag_interface(nullptr),
+	selected_render_method_template_tag_interface(nullptr),
+	runtime_source_needs_updating(false),
+	use_durango_shader_disassembly(false),
+	source_needs_updating(false),
+	is_currently_updating(false),
+	has_updated_results(false),
+	current_shader_profile(accepted_shader_profiles[0])
 {
 	// set your own known preprocessor symbols...
 	static const char* ppnames[] = { "NULL", "PM_REMOVE",
@@ -84,6 +98,27 @@ void c_mantle_halo_shader_generator_gui_tab::render_in_game_gui()
 
 }
 
+std::string c_mantle_halo_shader_generator_gui_tab::disassemble_shader(const char* hlsl_bytecode_data, size_t hlsl_bytecode_size)
+{
+	if (hlsl_bytecode_data == nullptr) return "<hlsl_bytecode_data was nullptr>";
+	if (hlsl_bytecode_size == 0) return "<hlsl_bytecode_size was 0>";
+
+	ID3D10Blob* disassembly_blob = NULL;
+	HRESULT d3d_disassemble_result = D3DDisassemble(hlsl_bytecode_data, hlsl_bytecode_size, 0, NULL, &disassembly_blob);
+
+	if (FAILED(d3d_disassemble_result) && disassembly_blob != nullptr)
+	{
+		if (disassembly_blob) disassembly_blob->Release();
+		return "<D3DDisassemble failure>";
+	}
+	else
+	{
+		std::string hlsl_disassembly = reinterpret_cast<char*>(disassembly_blob->GetBufferPointer());
+		disassembly_blob->Release();
+		return hlsl_disassembly;
+	}
+}
+
 void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 {
 	check_source_update();
@@ -122,6 +157,19 @@ void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 		ImGui::Columns(3);
 		{ // col0
 
+			if (ImGui::BeginCombo("Shader Profile", shader_profile_to_string(current_shader_profile)))
+			{
+				for (uint32_t accepted_profile_index = 0; accepted_profile_index < _countof(accepted_shader_profiles); accepted_profile_index++)
+				{
+					e_shader_profile current_accepted_shader_profile = accepted_shader_profiles[accepted_profile_index];
+					if (ImGui::Selectable(shader_profile_to_string(current_accepted_shader_profile)))
+					{
+						current_shader_profile = current_accepted_shader_profile;
+						source_needs_updating = true;
+					}
+				}
+				ImGui::EndCombo();
+			}
 		}
 		ImGui::NextColumn();
 		{ // col1
@@ -131,7 +179,6 @@ void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 		{ // col2
 			// #TODO: What happens when this tab closes? This value needs to be fixed up
 
-			static c_mantle_cache_file_gui_tab* selected_cache_file_tab = nullptr;
 			const char* cache_file_combo_text = selected_cache_file_tab ? selected_cache_file_tab->get_title() : "(select cache file)";
 			if (ImGui::BeginCombo("Cache File", cache_file_combo_text))
 			{
@@ -154,7 +201,6 @@ void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 				ImGui::EndCombo();
 			}
 
-			static c_tag_interface* selected_render_method_definition_tag_interface = nullptr;
 			if (selected_cache_file_tab)
 			{
 				c_tag_group_interface* tag_group_interface = selected_cache_file_tab->get_cache_file()->GetGroupInterfaceByGroupID(_tag_group_render_method_definition);
@@ -175,6 +221,8 @@ void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 							if (ImGui::Selectable(render_method_definition_tag_interface->GetNameCStr(), selected_render_method_definition_tag_interface == render_method_definition_tag_interface))
 							{
 								selected_render_method_definition_tag_interface = render_method_definition_tag_interface;
+								selected_render_method_template_tag_interface = nullptr;
+								runtime_source_needs_updating = true;
 							}
 						}
 
@@ -189,10 +237,10 @@ void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 				if (ImGui::BeginCombo("Render Method Definition", ""))
 				{
 					ImGui::EndCombo();
-				}ImGui::PopItemFlag();
+				}
+				ImGui::PopItemFlag();
 			}
 
-			static c_tag_interface* selected_render_method_template_tag_interface = nullptr;
 			if (selected_render_method_definition_tag_interface)
 			{
 				// #TODO: This could do with some optimization by adding a subclass to c_tag_interface to store all of this information computed upfront
@@ -214,27 +262,7 @@ void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 						if (ImGui::Selectable(render_method_template_tag_interface->GetNameCStr(), selected_render_method_template_tag_interface == render_method_template_tag_interface))
 						{
 							selected_render_method_template_tag_interface = render_method_template_tag_interface;
-
-
-							// disassemble game shader
-							{
-								s_render_method_template_definition* render_method_template = render_method_template_tag_interface->GetData<s_render_method_template_definition>();
-								c_tag_interface* pixel_shader_tag_interface = render_method_template_tag_interface->GetCacheFile().GetTagInterface(render_method_template->pixel_shader_reference.index);
-								s_pixel_shader_definition* pixel_shader = pixel_shader_tag_interface->GetData<s_pixel_shader_definition>();
-
-								s_pixel_shader_definition::s_pixel_shader2_block_definition* pixel_shader2_block = render_method_template_tag_interface->GetCacheFile().GetTagBlockData(pixel_shader->pixel_shaders_block)+ 0;
-
-								char buffer[1024]{};
-								snprintf(buffer, 1023, "%s%i\n%s%i\n%s%i",
-									"__unknown2_data_reference.size",
-									pixel_shader2_block->__unknown2_data_reference.size,
-									"__unknown3_data_reference.size",
-									pixel_shader2_block->__unknown3_data_reference.size,
-									"__unknown4_data_reference.size",
-									pixel_shader2_block->__unknown4_data_reference.size
-								);
-								runtime_code_display.SetText(buffer);
-							}
+							runtime_source_needs_updating = true;
 						}
 					}
 
@@ -247,12 +275,53 @@ void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 				if (ImGui::BeginCombo("Render Method Template", ""))
 				{
 					ImGui::EndCombo();
-				}ImGui::PopItemFlag();
+				}
+				ImGui::PopItemFlag();
 			}
 
+			if (selected_render_method_template_tag_interface)
+			{
+				if (use_durango_shader_disassembly)
+				{
+					if (ImGui::Button("Windows Mode"))
+					{
+						use_durango_shader_disassembly = false;
+						runtime_source_needs_updating = true;
+					}
+				}
+				else
+				{
+					if(ImGui::Button("Durango Mode"))
+					{
+						use_durango_shader_disassembly = true;
+						runtime_source_needs_updating = true;
+					}
+				}
+			}
+			else
+			{
+				ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+				if (use_durango_shader_disassembly)
+				{
+					ImGui::Button("Windows Mode");
+				}
+				else
+				{
+					ImGui::Button("Durango Mode");
+				}
+				ImGui::PopItemFlag();
+			}
 
 		}
 		ImGui::NextColumn();
+
+
+
+		update_runtime_disassembly();
+
+
+
+
 		ImGui::Columns(1);
 		{
 			ImGui::Text(
@@ -334,10 +403,11 @@ void c_mantle_halo_shader_generator_gui_tab::compile_source(bool is_worker_threa
 	macros.resize(1);
 
 	const char* fake_file_path = "shader.hlsl";
+	const char* shader_profile_string = shader_profile_to_string(current_shader_profile);
 
 	ID3D10Blob* code_blob = NULL;
 	ID3D10Blob* error_blob = NULL;
-	HRESULT d3d_compile_result = D3DCompile(new_compile_source_text.c_str(), new_compile_source_text.size(), fake_file_path, macros.data(), NULL, "main", "ps_3_0", 0, 0, &code_blob, &error_blob);
+	HRESULT d3d_compile_result = D3DCompile(new_compile_source_text.c_str(), new_compile_source_text.size(), fake_file_path, macros.data(), NULL, "main", shader_profile_string, 0, 0, &code_blob, &error_blob);
 
 	if (code_blob == nullptr | FAILED(d3d_compile_result))
 	{
@@ -383,6 +453,9 @@ void c_mantle_halo_shader_generator_gui_tab::compile_source(bool is_worker_threa
 
 			write_line_verbose("errors!");
 			write_line_verbose(error_string);
+
+			new_assembly_editor_text = error_string;
+
 			error_blob->Release();
 		}
 		else
@@ -438,4 +511,41 @@ void c_mantle_halo_shader_generator_gui_tab::update_display()
 {
 	assembly_editor.SetText(new_assembly_editor_text.c_str());
 	code_editor.SetErrorMarkers(error_markers);
+}
+
+void c_mantle_halo_shader_generator_gui_tab::update_runtime_disassembly()
+{
+	if (runtime_source_needs_updating) // disassemble game shader
+	{
+		if (selected_render_method_template_tag_interface)
+		{
+			c_cache_file& cache_file = *selected_cache_file_tab->get_cache_file();
+
+			s_render_method_template_definition* render_method_template = selected_render_method_template_tag_interface->GetData<s_render_method_template_definition>();
+			c_tag_interface* pixel_shader_tag_interface = cache_file.GetTagInterface(render_method_template->pixel_shader_reference.index);
+			s_pixel_shader_definition* pixel_shader = pixel_shader_tag_interface->GetData<s_pixel_shader_definition>();
+
+			s_pixel_shader_definition::s_pixel_shader2_block_definition* pixel_shader2_block = cache_file.GetTagBlockData(pixel_shader->pixel_shaders_block) + 0;
+
+			std::string disassemble_shader_result;
+			if (use_durango_shader_disassembly)
+			{
+				size_t __unknown4_data_reference_size = pixel_shader2_block->__unknown4_data_reference.size;
+				char* __unknown4_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown4_data_reference);
+				disassemble_shader_result = disassemble_shader(__unknown4_data_reference_data, __unknown4_data_reference_size);
+			}
+			else
+			{
+				size_t __unknown3_data_reference_size = pixel_shader2_block->__unknown3_data_reference.size;
+				char* __unknown3_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown3_data_reference);
+				disassemble_shader_result = disassemble_shader(__unknown3_data_reference_data, __unknown3_data_reference_size);
+			}
+
+			runtime_code_display.SetText(disassemble_shader_result);
+		}
+		else
+		{
+			runtime_code_display.SetText("");
+		}
+	}
 }

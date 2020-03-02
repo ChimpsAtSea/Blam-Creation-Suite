@@ -3,11 +3,6 @@
 c_render_method_definition_group_interface::c_render_method_definition_group_interface(c_cache_file& cache_file, uint16_t group_index) :
 	c_tag_group_interface(cache_file, group_index)
 {
-	for (c_tag_interface* render_method_definition_tag_interface : m_tagInterfaces)
-	{
-		std::vector<c_tag_interface*>& rmt2_tags = shader_definition_and_rmt2[render_method_definition_tag_interface];
-	}
-
 	for (c_tag_interface* tag_interface : m_rCacheFile.GetTagInterfaces(true))
 	{
 		if (tag_interface->IsNull()) continue;
@@ -41,6 +36,15 @@ c_render_method_definition_group_interface::c_render_method_definition_group_int
 				}
 			}
 		}
+	}
+
+
+	for (c_tag_interface* render_method_definition_tag_interface : m_tagInterfaces)
+	{
+		std::vector<c_tag_interface*>& rmt2_tags = shader_definition_and_rmt2[render_method_definition_tag_interface];
+
+		std::vector<c_tag_interface*>::iterator rmt2_tags_last = std::unique(rmt2_tags.begin(), rmt2_tags.end());
+		rmt2_tags.erase(rmt2_tags_last, rmt2_tags.end());
 	}
 }
 

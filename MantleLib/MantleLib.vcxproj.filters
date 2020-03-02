@@ -434,6 +434,9 @@
     <ClInclude Include="CacheInterface\tag_group_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="!UserInterface\shader_profile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="GUI\render_primitive_gui.inl">

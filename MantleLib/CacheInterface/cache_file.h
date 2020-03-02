@@ -101,6 +101,11 @@ public:
 		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_definition<>*>(&rTagBlock)));
 	}
 
+	inline char* GetDataReferenceData(DataReference& data_reference)
+	{
+		return getDataReferenceDataInternal(data_reference);
+	}
+
 	inline const wchar_t* GetFilePath() const { return m_mapFilePath.c_str(); }
 	inline const wchar_t* GetFileName() const { return m_mapFileName.c_str(); }
 	inline const char* GetFilePathChar() const { return m_mapFilePathChar.c_str(); }
@@ -133,15 +138,26 @@ public:
 
 //private:
 
-	inline char* getTagBlockDataInternal(s_tag_block_definition<>& rTagBlock)
+	inline char* getTagBlockDataInternal(s_tag_block_definition<>& tag_block)
 	{
-		const c_cache_file::SectionCache& rSectionInfo = GetSection(e_cache_file_section::_cache_file_section_tags);
-		char* pTagsSection = rSectionInfo.first;
+		const c_cache_file::SectionCache& section_info = GetSection(e_cache_file_section::_cache_file_section_tags);
+		char* tags_section_data = section_info.first;
 
-		uint64_t pageOffset = ConvertPageOffset(rTagBlock.address, true);
-		char* pTagBlockData = pTagsSection + pageOffset;
+		uint64_t data_offset = ConvertPageOffset(tag_block.address, true);
+		char* data_reference_data_pointer = tags_section_data + data_offset;
 
-		return pTagBlockData;
+		return data_reference_data_pointer;
+	}
+
+	inline char* getDataReferenceDataInternal(DataReference& data_reference)
+	{
+		const c_cache_file::SectionCache& section_info = GetSection(e_cache_file_section::_cache_file_section_tags);
+		char* tags_section_data = section_info.first;
+
+		uint64_t data_offset = ConvertPageOffset(data_reference.address, true);
+		char* data_reference_data_pointer = tags_section_data + data_offset;
+
+		return data_reference_data_pointer;
 	}
 
 	void loadMap(const std::wstring& mapFilePath);

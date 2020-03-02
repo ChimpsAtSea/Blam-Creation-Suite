@@ -61,6 +61,7 @@
     <ClCompile Include="VirtualMemoryContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="!UserInterface\shader_profile.h" />
     <ClInclude Include="!UserInterface\UserInterface.h" />
     <ClInclude Include="CacheInterface\cache_file.h" />
     <ClInclude Include="CacheInterface\CacheInterface.h" />
