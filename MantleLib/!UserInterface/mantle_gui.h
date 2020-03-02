@@ -20,7 +20,7 @@ public:
 	static void render_in_game_gui(); // should only be called from game render code
 	static void render_gui();
 	static void deinit_mantle_gui();
-	static void start_halo_shader_generator();
+	static void start_shader_tool();
 
 	static void register_on_close_callback(on_close_callback_func callback);
 	static void unregister_on_close_callback(on_close_callback_func callback);

@@ -66,7 +66,7 @@ TextEditor::~TextEditor()
 {
 }
 
-void TextEditor::SetLanguageDefinition(const LanguageDefinition & aLanguageDef)
+void TextEditor::SetLanguageDefinition(const LanguageDefinition& aLanguageDef)
 {
 	mLanguageDefinition = aLanguageDef;
 	mRegexList.clear();
@@ -75,7 +75,7 @@ void TextEditor::SetLanguageDefinition(const LanguageDefinition & aLanguageDef)
 		mRegexList.push_back(std::make_pair(std::regex(r.first, std::regex_constants::optimize), r.second));
 }
 
-void TextEditor::SetPalette(const Palette & aValue)
+void TextEditor::SetPalette(const Palette& aValue)
 {
 	mPaletteBase = aValue;
 }
@@ -97,7 +97,7 @@ int TextEditor::AppendBuffer(std::string& aBuffer, char chr, int aIndex)
 	}
 }
 
-std::string TextEditor::GetText(const Coordinates & aStart, const Coordinates & aEnd) const
+std::string TextEditor::GetText(const Coordinates& aStart, const Coordinates& aEnd) const
 {
 	std::string result;
 
@@ -124,7 +124,7 @@ TextEditor::Coordinates TextEditor::GetActualCursorCoordinates() const
 	return SanitizeCoordinates(mState.mCursorPosition);
 }
 
-TextEditor::Coordinates TextEditor::SanitizeCoordinates(const Coordinates & aValue) const
+TextEditor::Coordinates TextEditor::SanitizeCoordinates(const Coordinates& aValue) const
 {
 	auto line = aValue.mLine;
 	auto column = aValue.mColumn;
@@ -150,7 +150,7 @@ TextEditor::Coordinates TextEditor::SanitizeCoordinates(const Coordinates & aVal
 	return Coordinates(line, column);
 }
 
-void TextEditor::Advance(Coordinates & aCoordinates) const
+void TextEditor::Advance(Coordinates& aCoordinates) const
 {
 	if (aCoordinates.mLine < (int)mLines.size())
 	{
@@ -166,7 +166,7 @@ void TextEditor::Advance(Coordinates & aCoordinates) const
 	}
 }
 
-void TextEditor::DeleteRange(const Coordinates & aStart, const Coordinates & aEnd)
+void TextEditor::DeleteRange(const Coordinates& aStart, const Coordinates& aEnd)
 {
 	assert(aEnd >= aStart);
 	assert(!mReadOnly);
@@ -200,7 +200,7 @@ void TextEditor::DeleteRange(const Coordinates & aStart, const Coordinates & aEn
 	mTextChanged = true;
 }
 
-int TextEditor::InsertTextAt(Coordinates& /* inout */ aWhere, const char * aValue)
+int TextEditor::InsertTextAt(Coordinates& /* inout */ aWhere, const char* aValue)
 {
 	assert(!mReadOnly);
 
@@ -292,7 +292,7 @@ TextEditor::Coordinates TextEditor::ScreenPosToCoordinates(const ImVec2& aPositi
 	return SanitizeCoordinates(Coordinates(lineNo, columnCoord));
 }
 
-TextEditor::Coordinates TextEditor::FindWordStart(const Coordinates & aFrom) const
+TextEditor::Coordinates TextEditor::FindWordStart(const Coordinates& aFrom) const
 {
 	Coordinates at = aFrom;
 	if (at.mLine >= (int)mLines.size())
@@ -313,7 +313,7 @@ TextEditor::Coordinates TextEditor::FindWordStart(const Coordinates & aFrom) con
 	return at;
 }
 
-TextEditor::Coordinates TextEditor::FindWordEnd(const Coordinates & aFrom) const
+TextEditor::Coordinates TextEditor::FindWordEnd(const Coordinates& aFrom) const
 {
 	Coordinates at = aFrom;
 	if (at.mLine >= (int)mLines.size())
@@ -334,7 +334,7 @@ TextEditor::Coordinates TextEditor::FindWordEnd(const Coordinates & aFrom) const
 	return at;
 }
 
-bool TextEditor::IsOnWordBoundary(const Coordinates & aAt) const
+bool TextEditor::IsOnWordBoundary(const Coordinates& aAt) const
 {
 	if (aAt.mLine >= (int)mLines.size() || aAt.mColumn == 0)
 		return true;
@@ -432,7 +432,7 @@ std::string TextEditor::GetWordUnderCursor() const
 	return GetWordAt(c);
 }
 
-std::string TextEditor::GetWordAt(const Coordinates & aCoords) const
+std::string TextEditor::GetWordAt(const Coordinates& aCoords) const
 {
 	auto start = FindWordStart(aCoords);
 	auto end = FindWordEnd(aCoords);
@@ -445,7 +445,7 @@ std::string TextEditor::GetWordAt(const Coordinates & aCoords) const
 	return r;
 }
 
-ImU32 TextEditor::GetGlyphColor(const Glyph & aGlyph) const
+ImU32 TextEditor::GetGlyphColor(const Glyph& aGlyph) const
 {
 	if (aGlyph.mComment)
 		return mPalette[(int)PaletteIndex::Comment];
@@ -638,14 +638,14 @@ void TextEditor::Render()
 		color.w *= ImGui::GetStyle().Alpha;
 		mPalette[i] = ImGui::ColorConvertFloat4ToU32(color);
 	}
-	
+
 	static std::string buffer;
 	assert(buffer.empty());
-	
+
 	auto contentSize = ImGui::GetWindowContentRegionMax();
 	auto drawList = ImGui::GetWindowDrawList();
 	float longest(mTextStart);
-	
+
 	if (mScrollToTop)
 	{
 		mScrollToTop = false;
@@ -733,7 +733,7 @@ void TextEditor::Render()
 
 			// Draw line number (right aligned)
 			snprintf(buf, 16, "%d  ", lineNo + 1);
-			
+
 			auto lineNoWidth = ImGui::GetFont()->CalcTextSizeA(ImGui::GetFontSize(), FLT_MAX, -1.0f, buf, nullptr, nullptr).x;
 			drawList->AddText(ImVec2(lineStartScreenPos.x + mTextStart - lineNoWidth, lineStartScreenPos.y), mPalette[(int)PaletteIndex::LineNumber], buf);
 
@@ -866,7 +866,7 @@ void TextEditor::Render(const char* aTitle, const ImVec2& aSize, bool aBorder)
 	mWithinRender = false;
 }
 
-void TextEditor::SetText(const std::string & aText)
+void TextEditor::SetText(const std::string& aText)
 {
 	mLines.clear();
 	mLines.emplace_back(Line());
@@ -883,7 +883,7 @@ void TextEditor::SetText(const std::string & aText)
 			mLines.back().emplace_back(Glyph(chr, PaletteIndex::Default));
 		}
 	}
-	
+
 	mTextChanged = true;
 	mScrollToTop = true;
 
@@ -893,7 +893,7 @@ void TextEditor::SetText(const std::string & aText)
 	Colorize();
 }
 
-void TextEditor::SetTextLines(const std::vector<std::string> & aLines)
+void TextEditor::SetTextLines(const std::vector<std::string>& aLines)
 {
 	mLines.clear();
 
@@ -907,7 +907,7 @@ void TextEditor::SetTextLines(const std::vector<std::string> & aLines)
 
 		for (size_t i = 0; i < aLines.size(); ++i)
 		{
-			const std::string & aLine = aLines[i];
+			const std::string& aLine = aLines[i];
 
 			mLines[i].reserve(aLine.size());
 			for (size_t j = 0; j < aLine.size(); ++j)
@@ -1062,7 +1062,7 @@ void TextEditor::SetReadOnly(bool aValue)
 	mReadOnly = aValue;
 }
 
-void TextEditor::SetCursorPosition(const Coordinates & aPosition)
+void TextEditor::SetCursorPosition(const Coordinates& aPosition)
 {
 	if (mState.mCursorPosition != aPosition)
 	{
@@ -1072,21 +1072,21 @@ void TextEditor::SetCursorPosition(const Coordinates & aPosition)
 	}
 }
 
-void TextEditor::SetSelectionStart(const Coordinates & aPosition)
+void TextEditor::SetSelectionStart(const Coordinates& aPosition)
 {
 	mState.mSelectionStart = SanitizeCoordinates(aPosition);
 	if (mState.mSelectionStart > mState.mSelectionEnd)
 		std::swap(mState.mSelectionStart, mState.mSelectionEnd);
 }
 
-void TextEditor::SetSelectionEnd(const Coordinates & aPosition)
+void TextEditor::SetSelectionEnd(const Coordinates& aPosition)
 {
 	mState.mSelectionEnd = SanitizeCoordinates(aPosition);
 	if (mState.mSelectionStart > mState.mSelectionEnd)
 		std::swap(mState.mSelectionStart, mState.mSelectionEnd);
 }
 
-void TextEditor::SetSelection(const Coordinates & aStart, const Coordinates & aEnd, SelectionMode aMode)
+void TextEditor::SetSelection(const Coordinates& aStart, const Coordinates& aEnd, SelectionMode aMode)
 {
 	auto oldSelStart = mState.mSelectionStart;
 	auto oldSelEnd = mState.mSelectionEnd;
@@ -1124,12 +1124,12 @@ void TextEditor::SetSelection(const Coordinates & aStart, const Coordinates & aE
 		mCursorPositionChanged = true;
 }
 
-void TextEditor::InsertText(const std::string & aValue)
+void TextEditor::InsertText(const std::string& aValue)
 {
 	InsertText(aValue.c_str());
 }
 
-void TextEditor::InsertText(const char * aValue)
+void TextEditor::InsertText(const char* aValue)
 {
 	if (aValue == nullptr)
 		return;
@@ -1620,7 +1620,7 @@ void TextEditor::Redo(int aSteps)
 		mUndoBuffer[mUndoIndex++].Redo(this);
 }
 
-const TextEditor::Palette & TextEditor::GetDarkPalette()
+const TextEditor::Palette& TextEditor::GetDarkPalette()
 {
 	const static Palette p = { {
 		0xff7f7f7f,	// Default
@@ -1648,7 +1648,7 @@ const TextEditor::Palette & TextEditor::GetDarkPalette()
 	return p;
 }
 
-const TextEditor::Palette & TextEditor::GetLightPalette()
+const TextEditor::Palette& TextEditor::GetLightPalette()
 {
 	const static Palette p = { {
 		0xff7f7f7f,	// None
@@ -1676,7 +1676,7 @@ const TextEditor::Palette & TextEditor::GetLightPalette()
 	return p;
 }
 
-const TextEditor::Palette & TextEditor::GetRetroBluePalette()
+const TextEditor::Palette& TextEditor::GetRetroBluePalette()
 {
 	const static Palette p = { {
 		0xff00ffff,	// None
@@ -1716,7 +1716,7 @@ std::vector<std::string> TextEditor::GetTextLines() const
 
 	result.reserve(mLines.size());
 
-	for (auto & line : mLines)
+	for (auto& line : mLines)
 	{
 		std::string text;
 
@@ -1781,15 +1781,15 @@ void TextEditor::ColorizeRange(int aFromLine, int aToLine)
 			col.mColorIndex = PaletteIndex::Default;
 		}
 
-		const char * bufferBegin = &buffer.front();
-		const char * bufferEnd = bufferBegin + buffer.size();
+		const char* bufferBegin = &buffer.front();
+		const char* bufferEnd = bufferBegin + buffer.size();
 
 		auto last = bufferEnd;
 
 		for (auto first = bufferBegin; first != last; )
 		{
-			const char * token_begin = nullptr;
-			const char * token_end = nullptr;
+			const char* token_begin = nullptr;
+			const char* token_end = nullptr;
 			PaletteIndex token_color = PaletteIndex::Default;
 
 			bool hasTokenizeResult = false;
@@ -2067,7 +2067,7 @@ TextEditor::UndoRecord::UndoRecord(
 	assert(mRemovedStart <= mRemovedEnd);
 }
 
-void TextEditor::UndoRecord::Undo(TextEditor * aEditor)
+void TextEditor::UndoRecord::Undo(TextEditor* aEditor)
 {
 	if (!mAdded.empty())
 	{
@@ -2087,7 +2087,7 @@ void TextEditor::UndoRecord::Undo(TextEditor * aEditor)
 
 }
 
-void TextEditor::UndoRecord::Redo(TextEditor * aEditor)
+void TextEditor::UndoRecord::Redo(TextEditor* aEditor)
 {
 	if (!mRemoved.empty())
 	{
@@ -2106,9 +2106,9 @@ void TextEditor::UndoRecord::Redo(TextEditor * aEditor)
 	aEditor->EnsureCursorVisible();
 }
 
-static bool TokenizeCStyleString(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end)
+static bool TokenizeCStyleString(const char* in_begin, const char* in_end, const char*& out_begin, const char*& out_end)
 {
-	const char * p = in_begin;
+	const char* p = in_begin;
 
 	if (*p == '"')
 	{
@@ -2135,9 +2135,9 @@ static bool TokenizeCStyleString(const char * in_begin, const char * in_end, con
 	return false;
 }
 
-static bool TokenizeCStyleCharacterLiteral(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end)
+static bool TokenizeCStyleCharacterLiteral(const char* in_begin, const char* in_end, const char*& out_begin, const char*& out_end)
 {
-	const char * p = in_begin;
+	const char* p = in_begin;
 
 	if (*p == '\'')
 	{
@@ -2162,9 +2162,9 @@ static bool TokenizeCStyleCharacterLiteral(const char * in_begin, const char * i
 	return false;
 }
 
-static bool TokenizeCStyleIdentifier(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end)
+static bool TokenizeCStyleIdentifier(const char* in_begin, const char* in_end, const char*& out_begin, const char*& out_end)
 {
-	const char * p = in_begin;
+	const char* p = in_begin;
 
 	if ((*p >= 'a' && *p <= 'z') || (*p >= 'A' && *p <= 'Z') || *p == '_')
 	{
@@ -2181,9 +2181,9 @@ static bool TokenizeCStyleIdentifier(const char * in_begin, const char * in_end,
 	return false;
 }
 
-static bool TokenizeCStyleNumber(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end)
+static bool TokenizeCStyleNumber(const char* in_begin, const char* in_end, const char*& out_begin, const char*& out_end)
 {
-	const char * p = in_begin;
+	const char* p = in_begin;
 
 	const bool startsWithNumber = *p >= '0' && *p <= '9';
 
@@ -2285,7 +2285,7 @@ static bool TokenizeCStyleNumber(const char * in_begin, const char * in_end, con
 	return true;
 }
 
-static bool TokenizeCStylePunctuation(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end)
+static bool TokenizeCStylePunctuation(const char* in_begin, const char* in_end, const char*& out_begin, const char*& out_end)
 {
 	(void)in_end;
 
@@ -2323,6 +2323,91 @@ static bool TokenizeCStylePunctuation(const char * in_begin, const char * in_end
 	return false;
 }
 
+const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL_Shader_Asm()
+{
+	static bool inited = false;
+	static LanguageDefinition langDef;
+	if (!inited)
+	{
+		static const char* const keywords[] = {
+			"vs_1_1",
+			"ps_2_0", "ps_2_x", "vs_2_0", "vs_2_x",
+			"ps_4_0_level_9_0", "ps_4_0_level_9_1", "ps_4_0_level_9_3", "vs_4_0_level_9_0", "vs_4_0_level_9_1", "vs_4_0_level_9_3", "lib_4_0_level_9_1", "lib_4_0_level_9_3",
+			"ps_3_0", "vs_3_0",
+			"cs_4_0", "gs_4_0", "ps_4_0", "vs_4_0",
+			"cs_4_1", "gs_4_1", "ps_4_1", "vs_4_1", "lib_4_0", "lib_4_1",
+			"cs_5_0", "ds_5_0", "gs_5_0", "hs_5_0", "ps_5_0", "vs_5_0", "lib_5_0",
+			"cs_6_0", "ds_6_0", "gs_6_0", "hs_6_0", "ps_6_0", "vs_6_0", "lib_6_0",
+
+
+			"linear", "refactoringAllowed", "immediateIndexed"
+
+
+		};
+
+		for (auto& k : keywords)
+			langDef.mKeywords.insert(k);
+
+		static const char* const identifiers[] = {
+			"add", "and", "atomic_and", "atomic_cmp_store", "atomic_iadd", "atomic_imax", "atomic_imin", "atomic_or", "atomic_umax", "atomic_umin", "atomic_xor", "bfi", "bfrev", 
+			"break", "breakc", "bufinfo", "call", "callc", "case", "continue", "continuec", "countbits", "cut", "cut_stream", "dadd", "dcl_constantBuffer", "dcl_function_body", 
+			"dcl_function_table", "dcl_globalFlags", "dcl_hs_fork_phase_instance_count", "dcl_hs_join_phase_instance_count", "dcl_hs_max_tessfactor", "dcl_immediateConstantBuffer", 
+			"dcl_indexableTemp", "dcl_indexRange", "dcl_input", "dcl_inputvForkInstanceID", "dcl_inputvGSInstanceID", "dcl_inputvJoinInstanceID", "dcl_inputvOutputControlPointID", 
+			"dcl_inputvPrim", "dcl_inputvThread", "dcl_input_control_point_count", "dcl_input_sv", "dcl_inputPrimitive", "dcl_interface", "dcl_interface_dynamicindexed", 
+			"dcl_maxOutputVertexCount", "dcl_output", "dcl_outputoDepth", "dcl_outputoMask", "dcl_output_control_point_count", "dcl_output_sgv", "dcl_output_siv", 
+			"dcl_outputTopology", "dcl_resource", "dcl_resourceraw", "dcl_resourcestructured", "dcl_sampler", "dcl_stream", "dcl_temps", "dcl_tessellator_domain", 
+			"dcl_tessellator_output_primitve", "dcl_tessellator_partitioning", "dcl_tgsm_raw", "dcl_tgsm_structured", "dcl_thread_group", "dcl_uav_raw", "dcl_uav_structured", 
+			"dcl_uav_typed", "ddiv", "default", "deq", "deriv_rtx_coarse", "deriv_rtx_fine", "deriv_rty_coarse", "deriv_rty_fine", "dfma", "dge", "discard", "div", "dlt", "dmax", 
+			"dmin", "dmov", "dmovc", "dmul", "dne", "dp2", "dp3", "dp4", "drcp", "else", "emit", "emit_stream", "emitThenCut", "emitThenCut_stream", "endif", "endloop", "endswitch", 
+			"eq", "exp", "f16tof32", "f32tof16", "fcall", "firstbit", "frc", "ftod", "ftoi", "ftou", "gather4", "gather4_c", "gather4_po", "gather4_po_c", "ge", "hs_control_point_phase", 
+			"hs_decls", "hs_fork_phase", "hs_join_phase", "iadd", "ibfe", "ieq", "if", "ige", "ilt", "imad", "imin", "imm_atomic_alloc", "imm_atomic_and", "imm_atomic_cmp_exch", 
+			"imm_atomic_consume", "imm_atomic_exch", "imm_atomic_iadd", "imm_atomic_imax", "imm_atomic_imin", "imm_atomic_or", "imm_atomic_umax", "imm_atomic_umin", "imm_atomic_xor", 
+			"imul", "ine", "ineg", "ishl", "ishr", "itof", "label", "ld", "ld_raw", "ld_structured", "ld_uav_typed", "ld2dms", "lod", "log", "loop", "lt", "mad", "max", "min", 
+			"mov", "movc", "mul", "ne", "nop", "not", "or", "rcp", "resinfo", "ret", "retc", "round_ne", "round_ni", "round_pi", "round_z", "rsq", "sample", "sample_b", "sample_c", 
+			"sample_c_lz", "sample_d", "sample_l", "sampleinfo", "samplepos", "sincos", "sqrt", "store_raw", "store_structured", "store_uav_typed", "swapc", "switch", "sync", 
+			"uaddc", "ubfe", "udiv", "uge", "ult", "umad", "umax", "umin", "umul", "ushr", "usubb", "utof", "xor",
+
+			"dcl_input_ps"
+		};
+		for (auto& k : identifiers)
+		{
+			std::string identifier = k;
+			std::string identifier_lower = k;
+			std::transform(identifier_lower.begin(), identifier_lower.end(), identifier_lower.begin(), [](char c) {return std::tolower(c); });
+
+			Identifier id;
+			id.mDeclaration = "Built-in function";
+			langDef.mIdentifiers.insert(std::make_pair(identifier, id));
+
+			if (identifier != identifier_lower)
+			{
+				langDef.mIdentifiers.insert(std::make_pair(identifier_lower, id));
+			}
+		}
+
+		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String));
+		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("\\'\\\\?[^\\']\\'", PaletteIndex::String));
+		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number));
+		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
+		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[0-7]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
+		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number));
+		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
+		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
+
+		langDef.mCommentStart = "/*";
+		langDef.mCommentEnd = "*/";
+		langDef.mSingleLineComment = "//";
+
+		langDef.mCaseSensitive = true;
+		langDef.mAutoIndentation = true;
+
+		langDef.mName = "HLSL ASM";
+
+		inited = true;
+	}
+	return langDef;
+}
+
 const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::CPlusPlus()
 {
 	static bool inited = false;
@@ -2351,7 +2436,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::CPlusPlus(
 			langDef.mIdentifiers.insert(std::make_pair(std::string(k), id));
 		}
 
-		langDef.mTokenize = [](const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end, PaletteIndex & paletteIndex) -> bool
+		langDef.mTokenize = [](const char* in_begin, const char* in_end, const char*& out_begin, const char*& out_end, PaletteIndex& paletteIndex) -> bool
 		{
 			paletteIndex = PaletteIndex::Max;
 
@@ -2438,6 +2523,158 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL()
 			Identifier id;
 			id.mDeclaration = "Built-in function";
 			langDef.mIdentifiers.insert(std::make_pair(std::string(k), id));
+		}
+
+
+
+		static const char* const semantics[] = {
+		"BINORMAL",
+		"BLENDINDICES",
+		"BLENDWEIGHT",
+		"COLOR",
+		"NORMAL",
+		"POSITION",
+		"POSITIONT",
+		"PSIZE",
+		"TANGENT",
+		"TEXCOORD",
+		"FOG",
+		"PSIZE",
+		"TESSFACTOR",
+		"VFACE",
+		"VPOS",
+		"DEPTH",
+		"SV_ClipDistance",
+		"SV_CullDistance",
+		"SV_Coverage",
+		"SV_Depth",
+		"SV_DepthGreaterEqual",
+		"SV_DepthLessEqual",
+		"SV_DispatchThreadID",
+		"SV_DomainLocation",
+		"SV_GroupID",
+		"SV_GroupIndex",
+		"SV_GroupThreadID",
+		"SV_GSInstanceID",
+		"SV_InnerCoverage",
+		"SV_InsideTessFactor",
+		"SV_InstanceID",
+		"SV_IsFrontFace",
+		"SV_OutputControlPointID",
+		"SV_Position",
+		"SV_PrimitiveID",
+		"SV_RenderTargetArrayIndex",
+		"SV_SampleIndex",
+		"SV_StencilRef",
+		"SV_Target",
+		"SV_TessFactor",
+		"SV_VertexID",
+		"SV_ViewportArrayIndex",
+		};
+
+		static const char* const semantics_desc[] = {
+			"BINORMAL[n] : float4\nBinormal\n",
+			"BLENDINDICES[n] : uint\nBlend indices\n",
+			"BLENDWEIGHT[n] : float\nBlend weights\n",
+			"COLOR[n] : float4\nVS: Diffuse and specular color\n"
+			"PS: Output color\n",
+			"NORMAL[n] : float4\nNormal vector\n",
+			"POSITION[n] : float4\nVS: Vertex position in object space.\n"
+			"PS: Position of a vertex in homogenous space. Compute position in screen-space by dividing (x,y,z) by w.\n"
+			"Every vertex shader must write out a parameter with this semantic.\n",
+			"POSITIONT : float4\nTransformed vertex position.\n",
+			"PSIZE[n] : float\nPoint size\n",
+			"TANGENT[n] : float4\nTangent\n",
+			"TEXCOORD[n] : float4\nTexture coordinates\n",
+			"FOG : float\nVertex fog\n",
+			"PSIZE : float\nPoint size\n",
+			"TESSFACTOR[n] : float\nTessellation factor\n",
+			"VFACE : float\nFloating-point scalar that indicates a back-facing primitive.\n"
+			"A negative value faces backwards, while a positive value faces the camera.\n"
+			"[!Note]\n"
+			"This semantic is available in Direct3D 9 Shader Model 3.0. For Direct3D 10 and later, use SV_IsFrontFace instead.\n",
+			"VPOS : float2\nThe pixel location (x,y) in screen space. To convert a Direct3D 9 shader (that uses this semantic) to a Direct3D 10\n"
+			"and later shader, see Direct3D 9 VPOS and Direct3D 10 SV_Position)\n",
+			"DEPTH[n] : float\nOutput depth\n",
+			"SV_ClipDistance[n] : float\nClip distance data. SV_ClipDistance values are each assumed to be a float32 signed distance to a plane.\""
+			"Primitive setup only invokes rasterization on pixels for which the interpolated plane distance(s) are >= 0. Multiple clip planes can be\n"
+			"implemented simultaneously, by declaring multiple component(s) of one or more vertex elements as the SV_ClipDistance. The combined clip\n"
+			"and cull distance values are at most D3D#_CLIP_OR_CULL_DISTANCE_COUNT components in at most D3D#_CLIP_OR_CULL_DISTANCE_ELEMENT_COUNT\n"
+			"registers. Available to all shaders to be read or written to, except the vertex shader which can write the value but not take it as input.\n"
+			"The clipplanes attribute works like SV_ClipDistance but works on all hardware feature level 9_x and higher.\n"
+			"For more info, see User clip planes on feature level 9 hardware.\n",
+			"SV_CullDistance[n] : float\nCull distance data. When component(s) of vertex Element(s) are given this label, these values are each assumed\n"
+			"to be a float32 signed distance to a plane. Primitives will be completely discarded if the plane distance(s) for all of the vertices in\n"
+			"the primitive are < 0. Multiple cull planes can be used simultaneously, by declaring multiple component(s) of one or more vertex elements\n"
+			"as the SV_CullDistance. The combined clip and cull distance values are at most D3D#_CLIP_OR_CULL_DISTANCE_COUNT components in at most\n"
+			"D3D#_CLIP_OR_CULL_DISTANCE_ELEMENT_COUNT registers. Available to all shaders to be read or written to, except the vertex shader which can\n"
+			"write the value but not take it as input.\n",
+			"SV_Coverage : uint\nA mask that can be specified on input, output, or both of a pixel shader.\n"
+			" : \nFor SV_Coverage on a pixel shader, OUTPUT is supported on ps_4_1 or higher.\n"
+			" : \nFor SV_Coverage on a pixel shader, INPUT requires ps_5_0 or higher.\n",
+			"SV_Depth : float\nDepth buffer data. Can be written by pixel shader.\n",
+			"SV_DepthGreaterEqual : unknown\nIn a pixel shader, allows outputting depth, as long as it is greater than or equal to the value determined\n"
+			"by the rasterizer. Enables adjusting depth without disabling early Z.\n",
+			"SV_DepthLessEqual : unknown\nIn a pixel shader, allows outputting depth, as long as it is less than or equal to the value determined by\n"
+			"the rasterizer. Enables adjusting depth without disabling early Z.\n",
+			"SV_DispatchThreadID : uint3\nDefines the global thread offset within the Dispatch call, per dimension of the group. Available as input to compute shader. (read only)\n",
+			"SV_DomainLocation : float2|3\nDefines the location on the hull of the current domain point being evaluated. Available as input to the domain shader. (read only)\n",
+			"SV_GroupID : uint3\nDefines the group offset within a Dispatch call, per dimension of the dispatch call. Available as input to the compute shader. (read only)\n",
+			"SV_GroupIndex : uint\nProvides a flattened index for a given thread within a given group. Available as input to the compute shader. (read only)\n",
+			"SV_GroupThreadID : uint3\nDefines the thread offset within the group, per dimension of the group. Available as input to the compute shader. (read only)\n",
+			"SV_GSInstanceID : uint\nDefines the instance of the geometry shader. Available as input to the geometry shader.\n"
+			"The instance is needed as a geometry shader can be invoked up to 32 times on the same geometry primitive.\n",
+			"SV_InnerCoverage : \nRepresents underestimated conservative rasterization information (i.e. whether a pixel is guaranteed-to-be-fully covered).\n"
+			"Can be read or written by the pixel shader.\n",
+			"SV_InsideTessFactor : float|float[2]\nDefines the tessellation amount within a patch surface. Available in the hull shader for writing,\n"
+			"and available in the domain shader for reading.\n",
+			"SV_InstanceID : \nPer-instance identifier automatically generated by the runtime (see Using System-Generated Values (Direct3D 10)). Available to all shaders.\n",
+			"SV_IsFrontFace : bool\nSpecifies whether a triangle is front facing. For lines and points, IsFrontFace has the value true.\n"
+			"The exception is lines drawn out of triangles (wireframe mode), which sets IsFrontFace the same way as rasterizing the triangle in solid mode.\n"
+			"Can be written to by the geometry shader, and read by the pixel shader.\n",
+			"SV_OutputControlPointID : uint\nDefines the index of the control point ID being operated on by an invocation of the main entry point of\n"
+			"the hull shader. Can be read by the hull shader only.\n",
+			"SV_Position : float4\nWhen SV_Position is declared for input to a shader, it can have one of two interpolation modes\n"
+			"specified: linearNoPerspective or linearNoPerspectiveCentroid, where the latter causes centroid-snapped xyzw values to be provided when\n"
+			"multisample antialiasing. When used in a shader, SV_Position describes the pixel location. Available in all shaders to get the pixel center with a 0.5 offset.\n",
+			"SV_PrimitiveID : uint\nPer-primitive identifier automatically generated by the runtime (see Using System-Generated Values (Direct3D 10)).\n"
+			"Can be written to by the geometry or pixel shaders, and read by the geometry, pixel, hull or domain shaders.\n",
+			"SV_RenderTargetArrayIndex : uint\nRender-target array index. Applied to geometry shader output, and indicates the render target array\n"
+			"slice that the primitive will be drawn to by the pixel shader. SV_RenderTargetArrayIndex is valid only if the render target is an array resource.\n"
+			"This semantic applies only to primitives; if a primitive has more than one vertex, then the value from the leading vertex is used.\n"
+			"This value also indicates which array slice of a depth/stencil view is used for read/write purposes.\n"
+			"Can be written from the geometry shader, and read by the pixel shader.\n"
+			"If D3D11_FEATURE_DATA_D3D11_OPTIONS3::VPAndRTArrayIndexFromAnyShaderFeedingRasterizer is true, then SV_RenderTargetArrayIndex is applied to any shader feeding the rasterizer.\n",
+			"SV_SampleIndex : uint\nSample frequency index data. Available to be read or written to by the pixel shader only.\n",
+			"SV_StencilRef : uint\nRepresents the current pixel shader stencil reference value. Can be written by the pixel shader only.\n",
+			"SV_Target[n], where 0 <= n <= 7 : float[2|3|4]\nThe output value that will be stored in a render target. The index indicates which of the\n"
+			"8 possibly bound render targets to write to. The value is available to all shaders.\n",
+			"SV_TessFactor : float[2|3|4]\nDefines the tessellation amount on each edge of a patch. Available for writing in the hull shader and reading in the domain shader.\n",
+			"SV_VertexID : uint\nPer-vertex identifier automatically generated by the runtime (see Using System-Generated Values (Direct3D 10)).\n"
+			"Available as the input to the vertex shader only.\n",
+			"SV_ViewportArrayIndex : uint\nViewport array index. Applied to geometry shader output, and indicates which viewport to use for the\n"
+			"primitive currently being written out. Can be read by the pixel shader. The primitive will be transformed and clipped against the viewport\n"
+			"specified by the index before it is passed to the rasterizer. This semantic applies only to primitives; if a primitive has more than one\n"
+			"vertex, then the value from the leading vertex is used.\n"
+			"If D3D11_FEATURE_DATA_D3D11_OPTIONS3::VPAndRTArrayIndexFromAnyShaderFeedingRasterizer is true, then SV_ViewportArrayIndex is applied to any shader feeding the rasterizer.\n"
+		};
+		for (int i = 0; i < _countof(semantics); ++i)
+		{
+			std::string semantic_name = semantics[i];
+			std::string semantic_description = semantics_desc[i];
+
+			Identifier id;
+			id.mDeclaration = semantic_description;
+			langDef.mIdentifiers.insert(std::make_pair(semantic_name, id));
+
+			if (semantic_description.find(semantic_name + "[n]") == 0)
+			{
+				for (int i = 0; i < 100; i++)
+				{
+					std::string semantic_name_numbered = semantic_name + std::to_string(i);
+					langDef.mIdentifiers.insert(std::make_pair(semantic_name_numbered, id));
+				}
+			}
 		}
 
 		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[ \\t]*#[ \\t]*[a-zA-Z_]+", PaletteIndex::Preprocessor));
@@ -2538,7 +2775,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::C()
 			langDef.mIdentifiers.insert(std::make_pair(std::string(k), id));
 		}
 
-		langDef.mTokenize = [](const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end, PaletteIndex & paletteIndex) -> bool
+		langDef.mTokenize = [](const char* in_begin, const char* in_end, const char*& out_begin, const char*& out_end, PaletteIndex& paletteIndex) -> bool
 		{
 			paletteIndex = PaletteIndex::Max;
 

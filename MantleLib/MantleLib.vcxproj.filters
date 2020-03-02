@@ -60,6 +60,9 @@
     <ClCompile Include="CacheInterface\tag_group_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="!UserInterface\mantle_event_queue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlelib-public-pch.h">
@@ -435,6 +438,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="!UserInterface\shader_profile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="!UserInterface\mantle_event_queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

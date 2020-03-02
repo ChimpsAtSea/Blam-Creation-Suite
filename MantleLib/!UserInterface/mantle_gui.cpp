@@ -18,6 +18,8 @@ bool c_mantle_gui::g_unknown_fields_visibility = false;
 bool c_mantle_gui::g_mantle_running_with_game;
 std::vector<c_mantle_gui_tab*> c_mantle_gui::g_mantle_gui_tabs;
 std::vector<c_mantle_gui::on_close_callback_func> c_mantle_gui::g_mantle_on_close_callbacks;
+std::string shader_tool_directory;
+bool enable_shader_tool;
 
 /* ---------- private prototypes */
 /* ---------- public code */
@@ -27,12 +29,19 @@ void c_mantle_gui::init_mantle_gui(bool inGameMode, const wchar_t* startup_cache
 	g_mantle_running_with_game = inGameMode;
 	open_cache_file_from_filepath(startup_cache_filepath);
 
-	static bool autostart_halo_shader_generator = c_command_line::has_command_line_arg("-haloshadergenerator");
-	if (autostart_halo_shader_generator)
+
+	shader_tool_directory = c_command_line::get_command_line_arg("-shadertool");
+	enable_shader_tool = !shader_tool_directory.empty() && PathFileExistsA(shader_tool_directory.c_str());
+	if (enable_shader_tool)
 	{
-		start_halo_shader_generator();
-		autostart_halo_shader_generator = false;
+		static bool autostart_shader_tool = c_command_line::has_command_line_arg("-shadertool");
+		if (autostart_shader_tool)
+		{
+			start_shader_tool();
+			autostart_shader_tool = false;
+		}
 	}
+
 }
 
 void c_mantle_gui::render_in_game_gui()
@@ -99,11 +108,14 @@ void c_mantle_gui::render_gui()
 					//	pSetSelectedRootTab = pTab;
 					//}
 				}
-				ImGui::Separator();
-				if (ImGui::MenuItem("Start Shader Tool", "Ctrl+H"))
+				if (enable_shader_tool)
 				{
+					ImGui::Separator();
+					if (ImGui::MenuItem("Start Shader Tool", "Ctrl+H"))
+					{
 
-					start_halo_shader_generator();
+						start_shader_tool();
+					}
 				}
 				ImGui::Separator();
 				if (ImGui::MenuItem("Exit"))
@@ -177,8 +189,10 @@ void c_mantle_gui::deinit_mantle_gui()
 	}
 }
 
-void c_mantle_gui::start_halo_shader_generator()
+void c_mantle_gui::start_shader_tool()
 {
+	if (!enable_shader_tool) return;
+
 	c_mantle_halo_shader_generator_gui_tab* mantle_halo_shader_generator_gui_tab = nullptr;
 	for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
 	{

@@ -16,7 +16,7 @@ public:
 
 	void RenderButtons();
 protected:
-	virtual void render_contents(bool setSelected);
+	virtual void render_tab_contents_gui(bool setSelected);
 
 	bool m_isSelected;
 	c_tag_interface& tag_interface;

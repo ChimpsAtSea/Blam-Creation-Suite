@@ -1,6 +1,7 @@
 #pragma once
 
-class c_mantle_gui_tab
+class c_mantle_gui_tab :
+	public c_mantle_event_queue
 {
 public:
 	c_mantle_gui_tab(const char* title, const char* description);
@@ -15,7 +16,7 @@ public:
 	using TabClosedCallback = std::function<void(c_mantle_gui_tab&)>;
 	void AddTabClosedCallback(TabClosedCallback);
 protected:
-	virtual void render_contents(bool setSelected) = 0;
+	virtual void render_tab_contents_gui(bool setSelected) = 0;
 
 	bool m_isOpen;
 	std::string m_title;

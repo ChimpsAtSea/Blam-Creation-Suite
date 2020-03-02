@@ -56,7 +56,7 @@ static void init_mantle(const wchar_t* command_line)
 
 	c_console::init_console();
 	c_window::init_window("Mantle", "Mantle Console", "mantle");
-	c_render::init_render(NULL);
+	c_render::init_render(NULL, true);
 	c_mantle_gui::init_mantle_gui(false, launch_filepath_command_line_argument);
 
 	c_debug_gui::register_callback(_callback_mode_always_run, application_ui_callback);

@@ -33,6 +33,7 @@
     <ClCompile Include="!UserInterface\mantle_tag_gui_tab.cpp" />
     <ClCompile Include="CacheInterface\tag_interface.cpp" />
     <ClCompile Include="!UserInterface\mantle_halo_shader_generator_gui_tab.cpp" />
+    <ClCompile Include="!UserInterface\mantle_event_queue.cpp" />
     <ClCompile Include="render_method_definition_group_interface.cpp" />
     <ClCompile Include="Tags\GeneratedConversion.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -73,6 +74,7 @@
     <ClInclude Include="CacheInterface\tag_group_interface.h" />
     <ClInclude Include="GUI\render_stringid_gui.inl" />
     <ClInclude Include="!UserInterface\mantle_halo_shader_generator_gui_tab.h" />
+    <ClInclude Include="!UserInterface\mantle_event_queue.h" />
     <ClInclude Include="render_method_definition_group_interface.h" />
     <ClInclude Include="Tags\GeneratedConversion.h" />
     <ClInclude Include="Tags\GeneratedGUI.h" />

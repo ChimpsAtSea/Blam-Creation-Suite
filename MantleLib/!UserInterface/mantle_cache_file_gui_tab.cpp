@@ -402,7 +402,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 	}
 }
 
-void c_mantle_cache_file_gui_tab::render_contents(bool setSelected)
+void c_mantle_cache_file_gui_tab::render_tab_contents_gui(bool setSelected)
 {
 	ImGui::PushID(this);
 	ImGuiTabItemFlags tabFlags = 0;

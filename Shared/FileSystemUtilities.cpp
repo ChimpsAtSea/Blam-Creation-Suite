@@ -52,7 +52,7 @@ char* FileSystemReadToMemory(const wchar_t* pFilePath, size_t* pAllocatedSize)
 	size_t fileSize = static_cast<size_t>(_ftelli64(pFileHandle));
 	fseek(pFileHandle, 0, SEEK_SET);
 
-	char* pBuffer = new char[fileSize] {};
+	char* pBuffer = new char[fileSize + 1] {};
 	if (pAllocatedSize)
 	{
 		*pAllocatedSize = fileSize;

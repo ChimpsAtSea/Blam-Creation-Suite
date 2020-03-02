@@ -157,7 +157,8 @@ public:
 			: mPreprocChar('#'), mAutoIndentation(true), mTokenize(nullptr), mCaseSensitive(true)
 		{
 		}
-		
+
+		static const LanguageDefinition& HLSL_Shader_Asm();
 		static const LanguageDefinition& CPlusPlus();
 		static const LanguageDefinition& HLSL();
 		static const LanguageDefinition& GLSL();

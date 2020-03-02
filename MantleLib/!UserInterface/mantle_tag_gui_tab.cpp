@@ -101,7 +101,7 @@ void c_mantle_tag_gui_tab::poke()
 
 }
 
-void c_mantle_tag_gui_tab::render_contents(bool setSelected)
+void c_mantle_tag_gui_tab::render_tab_contents_gui(bool setSelected)
 {
 	ImGui::PushID(this);
 	ImGuiTabItemFlags tabFlags = 0;

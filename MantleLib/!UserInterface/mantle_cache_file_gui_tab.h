@@ -17,7 +17,7 @@ public:
 protected:
 	c_mantle_cache_file_gui_tab(const char* pTitle, const char* pDescription);
 	virtual void render_in_game_gui() override;
-	virtual void render_contents(bool setSelected) override;
+	virtual void render_tab_contents_gui(bool setSelected) override;
 
 	void AddTabItem(c_mantle_gui_tab& rMantleTab);
 	void RemoveTabItem(c_mantle_gui_tab& rMantleTab);

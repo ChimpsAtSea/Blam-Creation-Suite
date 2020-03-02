@@ -14,6 +14,9 @@ DirectX::XMMATRIX c_render::viewMatrix = {};
 DirectX::XMMATRIX c_render::perspectiveMatrix = {};
 DirectX::XMMATRIX c_render::viewMatrixTransposed = {};
 DirectX::XMMATRIX c_render::perspectiveMatrixTransposed = {};
+
+bool c_render::g_allow_resize_at_beginning_of_frame;
+
 static float s_fieldOfViewHorizontal;
 static float s_fieldOfViewVertical;
 static float s_aspectRatio;
@@ -201,7 +204,7 @@ void c_render::InitDirectX()
 
 }
 
-void c_render::init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain)
+void c_render::init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain, bool allow_resize_at_beginning_of_frame)
 {
 	if (hInstance == NULL)
 		hInstance = GetModuleHandle(NULL);
@@ -219,11 +222,13 @@ void c_render::init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwap
 	pDevice->GetImmediateContext(reinterpret_cast<ID3D11DeviceContext**>(&s_pDeviceContext));
 	ASSERT(s_pDeviceContext != nullptr);
 
-	init_render(hInstance);
+	init_render(hInstance, allow_resize_at_beginning_of_frame);
 }
 
-void c_render::init_render(HINSTANCE hInstance)
+void c_render::init_render(HINSTANCE hInstance, bool allow_resize_at_beginning_of_frame)
 {
+	g_allow_resize_at_beginning_of_frame = allow_resize_at_beginning_of_frame;
+
 	if (!s_directxCustomInit)
 	{
 		InitDirectX();
@@ -234,10 +239,10 @@ void c_render::init_render(HINSTANCE hInstance)
 
 void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 {
-	if (resize_requested)
+	if (resize_requested && g_allow_resize_at_beginning_of_frame)
 	{
-		//ResizeWindow();
-		//resize_requested = false;
+		ResizeWindow();
+		resize_requested = false;
 	}
 
 	if (s_pRenderTargetView == nullptr)
@@ -389,7 +394,7 @@ void c_render::ResizeBegin()
 	s_pDeviceContext->OMSetRenderTargets(0, 0, 0);
 	s_pDeviceContext->ClearState();
 	// Release all outstanding references to the swap chain's buffers.
-	s_pRenderTargetView->Release();
+	if(s_pRenderTargetView) s_pRenderTargetView->Release();
 	//s_pDepthStencilView->Release();
 }
 

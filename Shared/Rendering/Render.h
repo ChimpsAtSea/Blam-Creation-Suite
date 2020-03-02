@@ -18,6 +18,7 @@ public:
 	static DirectX::XMMATRIX perspectiveMatrix;
 	static DirectX::XMMATRIX viewMatrixTransposed;
 	static DirectX::XMMATRIX perspectiveMatrixTransposed;
+	static bool g_allow_resize_at_beginning_of_frame;
 
 	static void update_perspective(float fieldOfViewHorizontal, float aspectRatio);
 	static void update_view(
@@ -46,8 +47,8 @@ public:
 
 
 	static void CreateSwapchain(IDXGISwapChain1*& s_pSwapChain);
-	static void init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain);
-	static void init_render(HINSTANCE hInstance);
+	static void init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain, bool allow_resize_at_beginning_of_frame = false);
+	static void init_render(HINSTANCE hInstance, bool allow_resize_at_beginning_of_frame = false);
 	static void begin_frame(bool clear, float clearColor[4], bool setTargets = true);
 	static void end_frame();
 	static void RequestResize(int width, int height);
