@@ -4,15 +4,15 @@ class c_tag_interface;
 class c_cache_file;
 class c_mantle_cache_file_gui_tab;
 
-class GroupInterface
+class c_tag_group_interface
 {
 public:
 	friend class c_cache_file;
 	friend class c_mantle_cache_file_gui_tab;
 	friend class c_tag_interface;
 
-	GroupInterface(c_cache_file& rCacheFile, uint16_t groupIndex);
-	~GroupInterface();
+	c_tag_group_interface(c_cache_file& rCacheFile, uint16_t groupIndex);
+	virtual ~c_tag_group_interface();
 
 	inline c_cache_file& GetCacheFile() const { return m_rCacheFile; };
 	inline const std::vector<c_tag_interface*>& GetTagInterfaces() const { return m_tagInterfaces; };
@@ -24,11 +24,11 @@ public:
 	inline const char* GetFullName() const { return m_pFullName.c_str(); };
 	inline const ReflectionType* GetReflectionData() const { return m_pReflectionData; };
 	inline uint32_t GetGroupMagicRaw() const { return m_groupMagic; }
-	inline TagGroupName GetGroupMagic() const { return static_cast<TagGroupName>(m_groupMagic); }
+	inline e_tag_group GetGroupMagic() const { return static_cast<e_tag_group>(m_groupMagic); }
 
-private:
+protected:
 	void initTagGroupRelationship();
-
+	
 	uint16_t m_groupIndex;
 	s_cache_file_tag_group* m_pGroup;
 	uint32_t m_groupMagic;

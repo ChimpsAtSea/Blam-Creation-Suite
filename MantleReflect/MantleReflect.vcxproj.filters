@@ -39,6 +39,9 @@
     <ClCompile Include="reflection_field_container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SourceGenerators\mantle_tag_groups_generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReflectionTypes.h">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceGenerators\mantle_tag_groups_generator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

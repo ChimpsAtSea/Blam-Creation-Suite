@@ -3,7 +3,7 @@
 c_tag_interface::c_tag_interface(c_cache_file& rCacheFile, uint16_t tagIndex)
 	: m_pTagData(nullptr)
 	, m_tagIndex(tagIndex)
-	, m_pInstance(rCacheFile.m_pTagInstances + tagIndex)
+	, m_pInstance(rCacheFile.cache_file_tag_instances + tagIndex)
 	, m_isNull(true)
 	, m_pGroup(nullptr) // #TODO: Group interface
 	, m_pTagGroupShortName()
@@ -21,7 +21,7 @@ c_tag_interface::c_tag_interface(c_cache_file& rCacheFile, uint16_t tagIndex)
 	m_isNull = m_pInstance->group_index == 0xFFFFu;
 	if (!m_isNull)
 	{
-		m_pGroup = rCacheFile.m_pGroupInstances + m_pInstance->group_index;
+		m_pGroup = rCacheFile.cache_file_tag_groups + m_pInstance->group_index;
 
 		char* pTagsSection = rCacheFile.GetTagsSection().first;
 		uint64_t tagDataOffset = rCacheFile.ConvertPageOffset(m_pInstance->address, true); // #WARN: Internal function used here as the IsLoading() flag hasn't been disabled yet
@@ -56,7 +56,7 @@ c_tag_interface::~c_tag_interface()
 
 }
 
-GroupInterface* c_tag_interface::GetGroupInterface() const
+c_tag_group_interface* c_tag_interface::GetGroupInterface() const
 {
 	return m_rCacheFile.GetGroupInterfaces(true)[m_groupIndex];
 };

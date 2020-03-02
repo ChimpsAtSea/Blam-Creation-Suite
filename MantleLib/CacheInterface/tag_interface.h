@@ -1,12 +1,12 @@
 #pragma once
 class c_mantle_cache_file_gui_tab;
-class GroupInterface;
+class c_tag_group_interface;
 class c_tag_interface
 {
 public:
 	friend class c_cache_file;
 	friend class c_mantle_cache_file_gui_tab;
-	friend class GroupInterface;
+	friend class c_tag_group_interface;
 
 	c_tag_interface(c_cache_file& rCacheFile, uint16_t tagIndex);
 	~c_tag_interface();
@@ -14,8 +14,12 @@ public:
 	inline bool IsNull() const { return m_isNull; }
 	inline c_cache_file& GetCacheFile() const { return m_rCacheFile; };
 	inline char* GetData() { return m_pTagData; };
+	inline char* GetData(size_t relative_offset) { return m_pTagData + relative_offset; };
+
 	template<typename T>
 	inline T* GetData() { return reinterpret_cast<T*>(m_pTagData); }; // #TODO: check if this type is alright
+	template<typename T>
+	inline T* GetData(size_t relative_offset) { return reinterpret_cast<T*>(m_pTagData + relative_offset); }; // #TODO: check if this type is alright
 	inline uint16_t GetIndex() { return m_tagIndex; };
 	inline uint16_t GetGroupIndex() { return m_groupIndex; };
 	inline const char* GetPathCStr() const { return m_pTagPath.c_str(); }; // eg. globals/globals
@@ -37,7 +41,7 @@ public:
 	inline const ReflectionType* GetReflectionData() const { return m_pReflectionData; };
 	//inline GroupInterface* GetGroupInterface() const { return m_pGroupInterface; };
 
-	GroupInterface* GetGroupInterface() const;
+	c_tag_group_interface* GetGroupInterface() const;
 
 
 
@@ -62,7 +66,7 @@ private:
 	std::string m_pTagNameWithGroupName;
 	const ReflectionType* m_pReflectionData;
 	c_cache_file& m_rCacheFile;
-	GroupInterface* m_pGroupInterface;
+	c_tag_group_interface* m_pGroupInterface;
 
 	// !unsure
 	bool m_matchesSearchCriteria;

@@ -6,7 +6,7 @@ class c_cache_file
 {
 public:
 	friend class c_tag_interface;
-	friend class GroupInterface;
+	friend class c_tag_group_interface;
 
 	c_cache_file(const std::wstring& mapFilePath);
 	~c_cache_file();
@@ -14,11 +14,20 @@ public:
 	void SaveMap();
 
 	bool IsLoading() const { return m_isMapLoading; }
-	uint64_t GetVirtualAddressSpace(bool ignoreLoadingCheck = false) const { return (!ignoreLoadingCheck && IsLoading()) ? 0 : m_pHeader->virtual_base_address; }
+	// uint64_t GetVirtualAddressSpace(bool ignoreLoadingCheck = false) const { return (!ignoreLoadingCheck && IsLoading()) ? 0 : m_pHeader->virtual_base_address; }
+	uint64_t GetVirtualAddressSpace(bool ignoreLoadingCheck = false) const { return cache_file_header ? cache_file_header->virtual_base_address : 0; }
 	uint64_t ConvertPageOffset(uint32_t pageOffset, bool ignoreLoadingCheck = false) const
 	{
-		if (!ignoreLoadingCheck && IsLoading()) return 0;
-		else return (static_cast<uint64_t>(pageOffset) * 4ull) - (GetVirtualAddressSpace(ignoreLoadingCheck) - 0x50000000ull);
+		if (ignoreLoadingCheck) DEBUG_ASSERT(cache_file_header);
+		
+		if (cache_file_header)
+		{
+			return (static_cast<uint64_t>(pageOffset) * 4ull) - (GetVirtualAddressSpace(ignoreLoadingCheck) - 0x50000000ull);
+		}
+		else return 0;
+
+		//if (!ignoreLoadingCheck && IsLoading()) return 0;
+		//else return (static_cast<uint64_t>(pageOffset) * 4ull) - (GetVirtualAddressSpace(ignoreLoadingCheck) - 0x50000000ull);
 	}
 	using SectionCache = std::pair<char*, size_t>;
 	inline SectionCache& GetSection(e_cache_file_section cache_file_section) { return m_pSectionCache[underlying_cast(cache_file_section)]; };
@@ -27,7 +36,7 @@ public:
 	inline SectionCache& GetResourcesSection() { return GetSection(e_cache_file_section::_cache_file_section_resource); };
 	inline SectionCache& GetLocalizationSection() { return GetSection(e_cache_file_section::_cache_file_section_localization); };
 	inline size_t GetTagCount() const { return IsLoading() ? 0 : m_tagInterfaces.size(); }
-	inline c_tag_interface* GetTagInterface(uint16_t index) const { return (IsLoading() || index == 0xFFFFui16) ? nullptr : m_tagInterfaces[index]; }
+	inline c_tag_interface* GetTagInterface(uint16_t index, bool ignoreLoadingCheck = false) const { return ((!ignoreLoadingCheck && IsLoading()) || index == 0xFFFFui16) ? nullptr : m_tagInterfaces[index]; }
 	inline const std::vector<c_tag_interface*>& GetTagInterfaces(bool ignoreLoadingCheck = false) const
 	{
 		if (!ignoreLoadingCheck && IsLoading())
@@ -56,20 +65,20 @@ public:
 		return m_tagInterfacesSortedByPathWithGroupID;
 	}
 
-	inline const std::vector<GroupInterface*> GetGroupInterfaces(bool ignoreLoadingCheck = false) const
+	inline const std::vector<c_tag_group_interface*> GetGroupInterfaces(bool ignoreLoadingCheck = false) const
 	{
 		if (!ignoreLoadingCheck && IsLoading())
 		{
-			static std::vector<GroupInterface*> sEmptyVector;
+			static std::vector<c_tag_group_interface*> sEmptyVector;
 			return sEmptyVector;
 		}
 		return m_groupInterfaces;
 	}
-	inline GroupInterface* GetGroupInterfaceByGroupID(TagGroupName groupName)
+	inline c_tag_group_interface* GetGroupInterfaceByGroupID(e_tag_group groupName)
 	{
-		if (groupName != TagGroupName::Invalid)
+		if (groupName != _tag_group_invalid)
 		{
-			for (GroupInterface* pGroupInterface : GetGroupInterfaces())
+			for (c_tag_group_interface* pGroupInterface : GetGroupInterfaces())
 			{
 				if (pGroupInterface->m_groupMagic == underlying_cast(groupName))
 				{
@@ -129,7 +138,7 @@ public:
 		const c_cache_file::SectionCache& rSectionInfo = GetSection(e_cache_file_section::_cache_file_section_tags);
 		char* pTagsSection = rSectionInfo.first;
 
-		uint64_t pageOffset = ConvertPageOffset(rTagBlock.address);
+		uint64_t pageOffset = ConvertPageOffset(rTagBlock.address, true);
 		char* pTagBlockData = pTagsSection + pageOffset;
 
 		return pTagBlockData;
@@ -137,13 +146,10 @@ public:
 
 	void loadMap(const std::wstring& mapFilePath);
 
-
 	/* initialize each group instance */
 	void initGroupInstances();
 	/* initialize each tag instance */
 	void initTagInstances();
-	/* for each tag group store which tags are represented by it into the vector */
-	void initTagGroupRelationship();
 	void initSortedInstanceLists();
 	volatile bool m_isMapLoading;
 	std::wstring m_mapFilePath;
@@ -157,16 +163,16 @@ public:
 	char* m_pTagNameBuffer;
 	long *m_pStringIDIndices;
 	char *m_pStringIDBuffer;
-	s_cache_file_header* m_pHeader;
-	s_cache_file_tags_header* m_pTagFilesHeader;
-	s_cache_file_tag_instance* m_pTagInstances;
-	s_cache_file_tag_group* m_pGroupInstances;
+	s_cache_file_header* cache_file_header;
+	s_cache_file_tags_header* cache_file_tags_headers;
+	s_cache_file_tag_instance* cache_file_tag_instances;
+	s_cache_file_tag_group* cache_file_tag_groups;
 
 	// interface types
 	SectionCache m_pSectionCache[underlying_cast(e_cache_file_section::k_number_of_cache_file_sections)];
 	std::vector<c_tag_interface*> m_tagInterfaces;
 	std::vector<c_tag_interface*> m_tagInterfacesSortedByNameWithGroupID;
 	std::vector<c_tag_interface*> m_tagInterfacesSortedByPathWithGroupID;
-	std::vector<GroupInterface*> m_groupInterfaces;
+	std::vector<c_tag_group_interface*> m_groupInterfaces;
 };
 

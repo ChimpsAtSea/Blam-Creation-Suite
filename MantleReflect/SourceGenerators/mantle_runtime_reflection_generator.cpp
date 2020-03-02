@@ -41,14 +41,10 @@ void c_mantle_runtime_reflection_generator::write_tag_type_lookup_function(std::
 		c_reflection_type_container& reflection_type_container = *reflection_type_container_ptr;
 		if (reflection_type_container.raw_tag_group.empty()) continue;
 
-		const uint32_t& raw_tag_group = *reinterpret_cast<const uint32_t*>(reflection_type_container.raw_tag_group.data());
-		uint64_t swapped_tag_group = bswap(raw_tag_group);
-		const char* swapped_tag_group_str = reinterpret_cast<const char*>(&swapped_tag_group);
-
 		stringstream << "\tcase '" << reflection_type_container.raw_tag_group << "':" << std::endl;
-		if (raw_tag_group != swapped_tag_group)
+		if (reflection_type_container.raw_tag_group != reflection_type_container.tag_group)
 		{
-			stringstream << "\tcase '" << swapped_tag_group_str << "':" << std::endl;
+			stringstream << "\tcase '" << reflection_type_container.tag_group << "':" << std::endl;
 		}
 		stringstream << "\t\treturn &runtime_reflection<" << reflection_type_container.qualified_type_name << ">();" << std::endl;
 	}

@@ -22,7 +22,7 @@ void render_tagref_gui(TagReference* field_data, const ReflectionField& reflecti
 
 	c_cache_file& cache_file = current_mantle_tag_tab->get_cache_file();
 	const char* pGroupShortName = "(null)";
-	GroupInterface* pTagReferenceGroupInterface = cache_file.GetGroupInterfaceByGroupID(field_data->tagGroupName);
+	c_tag_group_interface* pTagReferenceGroupInterface = cache_file.GetGroupInterfaceByGroupID(field_data->tagGroupName);
 	if (pTagReferenceGroupInterface)
 	{
 		pGroupShortName = pTagReferenceGroupInterface->GetShortName();
@@ -35,14 +35,14 @@ void render_tagref_gui(TagReference* field_data, const ReflectionField& reflecti
 		{
 			if (pTagReferenceGroupInterface != nullptr) // selecting a new tag group
 			{
-				field_data->tagGroupName = TagGroupName::Invalid;
+				field_data->tagGroupName = _tag_group_invalid;
 				field_data->index = ~0u;
 				pTagReferenceTagInterface = nullptr;
 				pTagReferenceGroupInterface = nullptr;
 			}
 		}
 
-		for (GroupInterface* pCurrentGroupInterface : cache_file.GetGroupInterfaces())
+		for (c_tag_group_interface* pCurrentGroupInterface : cache_file.GetGroupInterfaces())
 		{
 			if (ImGui::Selectable(pCurrentGroupInterface->GetShortName(), pCurrentGroupInterface == pTagReferenceGroupInterface))
 			{
@@ -81,7 +81,7 @@ void render_tagref_gui(TagReference* field_data, const ReflectionField& reflecti
 				// #TODO: Figure out why GetGroupInterface is returning null?
 				//assert(pCurrentTagInterface->GetGroupInterface() != nullptr);
 				//if (pCurrentTagInterface->GetGroupInterface() != pTagReferenceGroupInterface)
-				GroupInterface* pCurrentGroupInterface = cache_file.GetGroupInterfaces()[pCurrentTagInterface->GetGroupIndex()];
+				c_tag_group_interface* pCurrentGroupInterface = cache_file.GetGroupInterfaces()[pCurrentTagInterface->GetGroupIndex()];
 				ASSERT(pCurrentGroupInterface != nullptr);
 				if (pCurrentGroupInterface != pTagReferenceGroupInterface)
 				{
@@ -120,7 +120,7 @@ void render_tagref_gui(TagReference* field_data, const ReflectionField& reflecti
 				// #TODO: Figure out why GetGroupInterface is returning null?
 				//assert(pCurrentTagInterface->GetGroupInterface() != nullptr);
 				//if (pCurrentTagInterface->GetGroupInterface() != pTagReferenceGroupInterface)
-				GroupInterface* pCurrentGroupInterface = cache_file.GetGroupInterfaces()[pCurrentTagInterface->GetGroupIndex()];
+				c_tag_group_interface* pCurrentGroupInterface = cache_file.GetGroupInterfaces()[pCurrentTagInterface->GetGroupIndex()];
 				ASSERT(pCurrentGroupInterface != nullptr);
 				if (pCurrentGroupInterface != pTagReferenceGroupInterface)
 				{
@@ -152,7 +152,7 @@ void render_tagref_gui(TagReference* field_data, const ReflectionField& reflecti
 		field_data->index = 0xFFFFFFFF;
 		field_data->nameLength = 0;
 		field_data->nameOffset = 0;
-		field_data->tagGroupName = static_cast<TagGroupName>(0xFFFFFFFF);
+		field_data->tagGroupName = static_cast<e_tag_group>(0xFFFFFFFF);
 	}
 	else if (ImGui::IsItemHovered()) ImGui::SetTooltip("Nulls this tag reference");
 	ImGui::NextColumn();

@@ -23,7 +23,7 @@
     <ClCompile Include="!UserInterface\mantle_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_gui.cpp" />
     <ClCompile Include="CacheInterface\cache_file.cpp" />
-    <ClCompile Include="CacheInterface\GroupInterface.cpp" />
+    <ClCompile Include="CacheInterface\tag_group_interface.cpp" />
     <ClCompile Include="mantlelib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -33,6 +33,7 @@
     <ClCompile Include="!UserInterface\mantle_tag_gui_tab.cpp" />
     <ClCompile Include="CacheInterface\tag_interface.cpp" />
     <ClCompile Include="!UserInterface\mantle_halo_shader_generator_gui_tab.cpp" />
+    <ClCompile Include="render_method_definition_group_interface.cpp" />
     <ClCompile Include="Tags\GeneratedConversion.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -68,9 +69,10 @@
     <ClInclude Include="!UserInterface\mantle_gui.h" />
     <ClInclude Include="!UserInterface\mantle_tag_gui_tab.h" />
     <ClInclude Include="CacheInterface\tag_interface.h" />
-    <ClInclude Include="CacheInterface\GroupInterface.h" />
+    <ClInclude Include="CacheInterface\tag_group_interface.h" />
     <ClInclude Include="GUI\render_stringid_gui.inl" />
     <ClInclude Include="!UserInterface\mantle_halo_shader_generator_gui_tab.h" />
+    <ClInclude Include="render_method_definition_group_interface.h" />
     <ClInclude Include="Tags\GeneratedConversion.h" />
     <ClInclude Include="Tags\GeneratedGUI.h" />
     <ClInclude Include="Tags\TagDefinitions\achievements.h" />
@@ -172,10 +174,10 @@
     <ClInclude Include="Tags\TagDefinitions\vertex_shader.h" />
     <ClInclude Include="Tags\TagDefinitions\weapon.h" />
     <ClInclude Include="Tags\TagDefinitions\wind.h" />
+    <ClInclude Include="Tags\TagGroups.h" />
     <ClInclude Include="Tags\Tags.h" />
     <ClInclude Include="Tags\TagTypes\StringID.h" />
     <ClInclude Include="Tags\TagTypes\TagBlock.h" />
-    <ClInclude Include="Tags\TagTypes\TagGroupName.h" />
     <ClInclude Include="Tags\TagTypes\TagReference.h" />
     <ClInclude Include="Tags\TagTypes\DataReference.h" />
     <ClInclude Include="mantlelib-private-pch.h" />
@@ -277,7 +279,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\TagGroups.h" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
     </PreBuildEvent>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -298,7 +300,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\TagGroups.h" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
     </PreBuildEvent>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -323,7 +325,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\TagGroups.h" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -345,7 +347,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\TagGroups.h" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

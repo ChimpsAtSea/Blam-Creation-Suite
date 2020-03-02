@@ -3,9 +3,9 @@
 // this is some crazy hacks relying on little endian
 #define GetGroupMagicToString(group_tags) reinterpret_cast<char*>(&group_tags[0]), reinterpret_cast<char*>(&group_tags[1])
 
-GroupInterface::GroupInterface(c_cache_file& rCacheFile, uint16_t groupIndex)
+c_tag_group_interface::c_tag_group_interface(c_cache_file& rCacheFile, uint16_t groupIndex)
 	: m_groupIndex(groupIndex)
-	, m_pGroup(rCacheFile.m_pGroupInstances + groupIndex)
+	, m_pGroup(rCacheFile.cache_file_tag_groups + groupIndex)
 	, m_groupMagic(m_pGroup->group_tags[0])
 	, m_pShortName()
 	, m_pFullName()
@@ -21,14 +21,16 @@ GroupInterface::GroupInterface(c_cache_file& rCacheFile, uint16_t groupIndex)
 	m_pFullName = rCacheFile.GetStringIDStr(m_pGroup->name);
 	ASSERT(!m_pShortName.empty());
 	ASSERT(!m_pFullName.empty());
+
+	initTagGroupRelationship();
 }
 
-GroupInterface::~GroupInterface()
+c_tag_group_interface::~c_tag_group_interface()
 {
 
 }
 
-void GroupInterface::initTagGroupRelationship()
+void c_tag_group_interface::initTagGroupRelationship()
 {
 	for (c_tag_interface* pTagInterface : m_rCacheFile.GetTagInterfaces(true))
 	{

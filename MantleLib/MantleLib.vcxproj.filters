@@ -27,9 +27,6 @@
     <ClCompile Include="VirtualMemoryContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CacheInterface\GroupInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="!UserInterface\mantle_gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -57,6 +54,12 @@
     <ClCompile Include="!UserInterface\mantle_halo_shader_generator_gui_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="render_method_definition_group_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\tag_group_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlelib-public-pch.h">
@@ -72,9 +75,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tags\TagTypes\TagBlock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tags\TagTypes\TagGroupName.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tags\TagTypes\TagReference.h">
@@ -395,9 +395,6 @@
     <ClInclude Include="CacheInterface\CacheInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CacheInterface\GroupInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="!UserInterface\mantle_gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -426,6 +423,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="!UserInterface\mantle_halo_shader_generator_gui_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\TagGroups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render_method_definition_group_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\tag_group_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

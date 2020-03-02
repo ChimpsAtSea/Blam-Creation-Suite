@@ -299,18 +299,18 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 	{
 		pReflectionTypeContainer = new c_reflection_type_container();
 	}
-	c_reflection_type_container& rReflectionTypeContainer = *pReflectionTypeContainer;
+	c_reflection_type_container& reflection_type_container = *pReflectionTypeContainer;
 
-	assert(rReflectionTypeContainer.fields.empty());
+	assert(reflection_type_container.fields.empty());
 
-	rReflectionTypeContainer.type_name = declarationName;
-	rReflectionTypeContainer.qualified_type_name = qualifiedDeclarationName;
-	rReflectionTypeContainer.clang_record_declaration = &rRecordDeclaration;
-	rReflectionTypeContainer.is_primitive = isPrimitive;
+	reflection_type_container.type_name = declarationName;
+	reflection_type_container.qualified_type_name = qualifiedDeclarationName;
+	reflection_type_container.clang_record_declaration = &rRecordDeclaration;
+	reflection_type_container.is_primitive = isPrimitive;
 
 	if (pClassTemplateSpecializationDecl)
 	{
-		rReflectionTypeContainer.is_template = true;
+		reflection_type_container.is_template = true;
 
 		const clang::TemplateArgumentList& rArgList = pClassTemplateSpecializationDecl->getTemplateArgs();
 		for (unsigned int i = 0; i < rArgList.size(); i++)
@@ -327,7 +327,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 				assert(pDecl != nullptr);
 				c_reflection_type_container* pTemplateType = CreateReflectedType(Context, &qualifiedType, *pDecl);
 				assert(pTemplateType != nullptr);
-				rReflectionTypeContainer.template_types.push_back(pTemplateType);
+				reflection_type_container.template_types.push_back(pTemplateType);
 			}
 		}
 	}
@@ -374,16 +374,22 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 		}
 	}
 
-	rReflectionTypeContainer.raw_tag_group = tag_group_str;
+	reflection_type_container.raw_tag_group = tag_group_str;
+	{
+		const uint32_t& raw_tag_group = *reinterpret_cast<const uint32_t*>(reflection_type_container.raw_tag_group.data());
+		uint64_t swapped_tag_group = bswap(raw_tag_group);
+		const char* swapped_tag_group_str = reinterpret_cast<const char*>(&swapped_tag_group);
+		reflection_type_container.tag_group = swapped_tag_group_str;
+	}
 
 	if (disableReflection)
 	{
-		return &rReflectionTypeContainer;
+		return &reflection_type_container;
 	}
 
 	for (FieldDecl* field : fields)
 	{
-		c_reflection_field_container& rFieldData = *rReflectionTypeContainer.fields.emplace_back(new c_reflection_field_container());
+		c_reflection_field_container& rFieldData = *reflection_type_container.fields.emplace_back(new c_reflection_field_container());
 
 		const clang::QualType fieldQualifiedType = field->getType();
 		const clang::Type* fieldType = fieldQualifiedType.getTypePtr();
@@ -566,7 +572,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 		ReflectedTypesData.emplace_back(pReflectionTypeContainer);
 	}
 
-	return &rReflectionTypeContainer;
+	return &reflection_type_container;
 }
 
 
@@ -611,7 +617,7 @@ public:
 
 int main(int argc, const char** argv)
 {
-	if (argc < 4)
+	if (argc < 5)
 	{
 		printf("Incorrect number of arguments. Expected 3");
 		return 1;
@@ -624,14 +630,16 @@ int main(int argc, const char** argv)
 	const char* reflection_source_file = argv[1];
 	const wchar_t* reflection_output_header = argv_widechar[2];
 	const wchar_t* reflection_output_source = argv_widechar[3];
-	const wchar_t* compile_time_gui_header = argc > 4 ? argv_widechar[4] : nullptr;
-	const wchar_t* compile_time_gui_source = argc > 5 ? argv_widechar[5] : nullptr;
-	const wchar_t* compile_time_conversion_header = argc > 6 ? argv_widechar[6] : nullptr;
-	const wchar_t* compile_time_conversion_source = argc > 7 ? argv_widechar[7] : nullptr;
+	const wchar_t* tag_groups_header = argv_widechar[4];
+	const wchar_t* compile_time_gui_header = argc > 4 ? argv_widechar[5] : nullptr;
+	const wchar_t* compile_time_gui_source = argc > 5 ? argv_widechar[6] : nullptr;
+	const wchar_t* compile_time_conversion_header = argc > 6 ? argv_widechar[7] : nullptr;
+	const wchar_t* compile_time_conversion_source = argc > 7 ? argv_widechar[8] : nullptr;
 
 	wprintf(L"Reflection Source File:   '%S'\n", reflection_source_file);
 	wprintf(L"Reflection Output Header: '%s'\n", reflection_output_header);
 	wprintf(L"Reflection Output Source: '%s'\n", reflection_output_source);
+	wprintf(L"Tag Groups Header: '%s'\n", tag_groups_header);
 	if (compile_time_gui_header) wprintf(L"Compile Time GUI Output Header: '%s'\n", compile_time_gui_header);
 	if (compile_time_gui_source) wprintf(L"Compile Time GUI Output Source: '%s'\n", compile_time_gui_source);
 	if (compile_time_conversion_header) wprintf(L"Compile Time Conversion Output Header: '%s'\n", compile_time_conversion_header);
@@ -661,12 +669,18 @@ int main(int argc, const char** argv)
 	}
 
 	tbb::parallel_invoke(
-		[=] 
+		[=]
 		{
-			c_mantle_runtime_reflection_generator runtime_reflection_generator = { reflection_output_header, reflection_output_source, ReflectedTypesData };
-			runtime_reflection_generator.run();
-			runtime_reflection_generator.write_output();
-		}, 
+			c_mantle_runtime_reflection_generator tag_groups_generator = { reflection_output_header, reflection_output_source, ReflectedTypesData };
+			tag_groups_generator.run();
+			tag_groups_generator.write_output();
+		},
+		[=]
+		{
+			c_mantle_tag_groups_generator tag_groups_generator = { tag_groups_header, ReflectedTypesData };
+			tag_groups_generator.run();
+			tag_groups_generator.write_output();
+		},
 		[=]
 		{
 			if (compile_time_conversion_header && compile_time_conversion_source)

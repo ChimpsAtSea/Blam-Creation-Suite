@@ -31,7 +31,7 @@ void c_mantle_cache_file_gui_tab::DisplayMapTabUI()
 			ImGui::InputText("", m_pSearchBuffer, 1024);
 			ImGui::Dummy(ImVec2(0, 10));
 		}
-		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<GroupInterface*> rGroupInterfaces = m_pCacheFile->GetGroupInterfaces();
+		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<c_tag_group_interface*> rGroupInterfaces = m_pCacheFile->GetGroupInterfaces();
 
 
 		bool useSearch = m_pSearchBuffer[0] != 0;
@@ -67,9 +67,9 @@ void c_mantle_cache_file_gui_tab::DisplayMapTabUI()
 		}
 		else
 		{
-			for (GroupInterface* pGroupInterface : rGroupInterfaces)
+			for (c_tag_group_interface* pGroupInterface : rGroupInterfaces)
 			{
-				GroupInterface& rGroupInterface = *pGroupInterface;
+				c_tag_group_interface& rGroupInterface = *pGroupInterface;
 
 				const std::vector<c_tag_interface*>& rTagInterfaces = c_mantle_gui::get_use_full_file_length_display()
 					? pGroupInterface->GetTagInterfacesSortedByPathWithGroupID()

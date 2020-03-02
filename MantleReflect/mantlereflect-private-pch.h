@@ -31,6 +31,7 @@
 #include "reflection_field_container.h"
 #include "reflection_type_container.h"
 #include "SourceGenerators/ast_source_generator.h"
+#include "SourceGenerators/mantle_tag_groups_generator.h"
 #include "SourceGenerators/mantle_runtime_reflection_generator.h"
 #include "SourceGenerators/mantle_compile_time_gui_generator.h"
 #include "SourceGenerators/mantle_compile_time_conversion_generator.h"

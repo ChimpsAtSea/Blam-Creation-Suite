@@ -64,15 +64,15 @@ void c_cache_file::loadMap(const std::wstring& mapFilePath)
 
 		if (pMapData)
 		{
-			m_pHeader = reinterpret_cast<s_cache_file_header*>(pMapData);
+			cache_file_header = reinterpret_cast<s_cache_file_header*>(pMapData);
 
 			// init section cache
 			for (underlying(e_cache_file_section) i = 0; i < underlying_cast(e_cache_file_section::k_number_of_cache_file_sections); i++)
 			{
 				e_cache_file_section cache_file_section = static_cast<e_cache_file_section>(i);
 
-				long offset = m_pHeader->section_offsets[underlying_cast(cache_file_section)] + m_pHeader->section_bounds[underlying_cast(cache_file_section)].offset;
-				long size = m_pHeader->section_bounds[underlying_cast(cache_file_section)].size;
+				long offset = cache_file_header->section_offsets[underlying_cast(cache_file_section)] + cache_file_header->section_bounds[underlying_cast(cache_file_section)].offset;
+				long size = cache_file_header->section_bounds[underlying_cast(cache_file_section)].size;
 
 				m_pSectionCache[underlying_cast(cache_file_section)].first = reinterpret_cast<char*>(pMapData + offset);
 				m_pSectionCache[underlying_cast(cache_file_section)].second = size;
@@ -81,19 +81,19 @@ void c_cache_file::loadMap(const std::wstring& mapFilePath)
 			char* pDebugSection = GetDebugSection().first;
 			char* pTagsSection = GetTagsSection().first;
 
-			m_pTagNameIndices = reinterpret_cast<long*>(pDebugSection + m_pHeader->tag_name_indices_offset - m_pHeader->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
-			m_pTagNameBuffer = reinterpret_cast<char*>(pDebugSection + m_pHeader->tag_names_buffer_offset - m_pHeader->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
+			m_pTagNameIndices = reinterpret_cast<long*>(pDebugSection + cache_file_header->tag_name_indices_offset - cache_file_header->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
+			m_pTagNameBuffer = reinterpret_cast<char*>(pDebugSection + cache_file_header->tag_names_buffer_offset - cache_file_header->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
 
-			m_pStringIDIndices = reinterpret_cast<long*>(pDebugSection + m_pHeader->string_id_indices_offset - m_pHeader->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
-			m_pStringIDBuffer = reinterpret_cast<char*>(pDebugSection + m_pHeader->string_ids_buffer_offset - m_pHeader->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
+			m_pStringIDIndices = reinterpret_cast<long*>(pDebugSection + cache_file_header->string_id_indices_offset - cache_file_header->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
+			m_pStringIDBuffer = reinterpret_cast<char*>(pDebugSection + cache_file_header->string_ids_buffer_offset - cache_file_header->section_bounds[underlying_cast(e_cache_file_section::_cache_file_section_debug)].offset);
 
-			m_pTagFilesHeader = reinterpret_cast<s_cache_file_tags_header*>(pTagsSection + (m_pHeader->tags_header_address - m_pHeader->virtual_base_address));
-			m_pTagInstances = reinterpret_cast<s_cache_file_tag_instance*>(pTagsSection + (m_pTagFilesHeader->instances.address - m_pHeader->virtual_base_address));
-			m_pGroupInstances = reinterpret_cast<s_cache_file_tag_group*>(pTagsSection + (m_pTagFilesHeader->groups.address - m_pHeader->virtual_base_address));
+			cache_file_tags_headers = reinterpret_cast<s_cache_file_tags_header*>(pTagsSection + (cache_file_header->tags_header_address - cache_file_header->virtual_base_address));
+			cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(pTagsSection + (cache_file_tags_headers->instances.address - cache_file_header->virtual_base_address));
+			cache_file_tag_groups = reinterpret_cast<s_cache_file_tag_group*>(pTagsSection + (cache_file_tags_headers->groups.address - cache_file_header->virtual_base_address));
 
-			for (uint32_t groupIndex = 0; groupIndex < m_pTagFilesHeader->groups.count; groupIndex++)
+			for (uint32_t groupIndex = 0; groupIndex < cache_file_tags_headers->groups.count; groupIndex++)
 			{
-				s_cache_file_tag_group& rGroupInstance = m_pGroupInstances[groupIndex];
+				s_cache_file_tag_group& rGroupInstance = cache_file_tag_groups[groupIndex];
 
 				// current. parent. grandparent.
 
@@ -103,10 +103,8 @@ void c_cache_file::loadMap(const std::wstring& mapFilePath)
 #define this_invoke(function, ...) ([&]() { this->function(##__VA_ARGS__); })
 
 
-			// #TODO: Run groups in paralle, and iterate through all of tags to create the tag
-			// instances using groups
-			tbb::parallel_invoke(this_invoke(initTagInstances), this_invoke(initGroupInstances));
-			initTagGroupRelationship();
+			initTagInstances();
+			initGroupInstances();
 
 			for (c_tag_interface* pTagInterface : m_tagInterfaces)
 			{
@@ -130,38 +128,34 @@ void c_cache_file::loadMap(const std::wstring& mapFilePath)
 void c_cache_file::initGroupInstances()
 {
 	// allocate buffer space to store pointers back
-	m_groupInterfaces.resize(m_pTagFilesHeader->groups.count);
-	GroupInterface** ppGroupInterfacesBuffer = m_groupInterfaces.data();
-	std::function createGroupFunc = [this, ppGroupInterfacesBuffer](uint32_t index)
+	m_groupInterfaces.resize(cache_file_tags_headers->groups.count);
+	c_tag_group_interface** group_interfaces_buffer = m_groupInterfaces.data();
+	std::function createGroupFunc = [this, group_interfaces_buffer](uint32_t group_index)
 	{
-		ppGroupInterfacesBuffer[index] = new GroupInterface(*this, static_cast<uint16_t>(index));
+		s_cache_file_tag_group* cache_file_tag_group = cache_file_tag_groups + group_index;
+		switch (cache_file_tag_group->group_tags[0])
+		{
+		case _tag_group_render_method_definition:
+			group_interfaces_buffer[group_index] = new c_render_method_definition_group_interface(*this, static_cast<uint16_t>(group_index));
+			break;
+		default:
+			group_interfaces_buffer[group_index] = new c_tag_group_interface(*this, static_cast<uint16_t>(group_index));
+			break;
+		}
 	};
-	tbb::parallel_for(0u, m_pTagFilesHeader->groups.count, createGroupFunc);
+	tbb::parallel_for(0u, cache_file_tags_headers->groups.count, createGroupFunc);
 }
 
 void c_cache_file::initTagInstances()
 {
 	// allocate buffer space to store pointers back
-	m_tagInterfaces.resize(m_pTagFilesHeader->instances.count);
+	m_tagInterfaces.resize(cache_file_tags_headers->instances.count);
 	c_tag_interface** ppTagInterfacesBuffer = m_tagInterfaces.data();
 	std::function createTagFunc = [this, ppTagInterfacesBuffer](uint32_t index)
 	{
 		ppTagInterfacesBuffer[index] = new c_tag_interface(*this, static_cast<uint16_t>(index));
 	};
-	tbb::parallel_for(0u, m_pTagFilesHeader->instances.count, createTagFunc);
-}
-
-void c_cache_file::initTagGroupRelationship()
-{
-	// allocate buffer space to store pointers back
-	m_groupInterfaces.resize(m_pTagFilesHeader->groups.count);
-	GroupInterface** ppGroupInterfacesBuffer = m_groupInterfaces.data();
-	std::function createGroupFunc = [this, ppGroupInterfacesBuffer](uint32_t index)
-	{
-		GroupInterface& rGroupInterface = *ppGroupInterfacesBuffer[index];
-		rGroupInterface.initTagGroupRelationship();
-	};
-	tbb::parallel_for(0u, m_pTagFilesHeader->groups.count, createGroupFunc);
+	tbb::parallel_for(0u, cache_file_tags_headers->instances.count, createTagFunc);
 }
 
 #pragma optimize( "t", on ) // always prefer fast code here
@@ -190,10 +184,10 @@ bool SortTagInstanceByPathWithGroupID(c_tag_interface* pLeft, c_tag_interface* p
 
 void c_cache_file::initSortedInstanceLists()
 {
-	GroupInterface** ppGroupInterfacesBuffer = m_groupInterfaces.data();
+	c_tag_group_interface** ppGroupInterfacesBuffer = m_groupInterfaces.data();
 	std::function createGroupFunc = [this, ppGroupInterfacesBuffer](uint32_t index)
 	{
-		GroupInterface* pGroupInterface = ppGroupInterfacesBuffer[index];
+		c_tag_group_interface* pGroupInterface = ppGroupInterfacesBuffer[index];
 
 		if (!pGroupInterface->m_tagInterfaces.empty())
 		{
@@ -204,7 +198,7 @@ void c_cache_file::initSortedInstanceLists()
 			std::partial_sort_copy(pGroupInterface->m_tagInterfaces.begin(), pGroupInterface->m_tagInterfaces.end(), pGroupInterface->m_tagInterfacesSortedByPathWithGroupID.begin(), pGroupInterface->m_tagInterfacesSortedByPathWithGroupID.end(), SortTagInstanceByPathWithGroupID);
 		}
 	};
-	tbb::parallel_for(0u, m_pTagFilesHeader->groups.count, createGroupFunc);
+	tbb::parallel_for(0u, cache_file_tags_headers->groups.count, createGroupFunc);
 
 	m_tagInterfacesSortedByNameWithGroupID.resize(m_tagInterfaces.size());
 	std::partial_sort_copy(m_tagInterfaces.begin(), m_tagInterfaces.end(), m_tagInterfacesSortedByNameWithGroupID.begin(), m_tagInterfacesSortedByNameWithGroupID.end(), SortTagInstanceByNameWithGroupID);

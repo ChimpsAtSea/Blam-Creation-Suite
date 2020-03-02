@@ -52,7 +52,13 @@ typedef	uint64_t			undefined64_t;
 #endif
 #endif
 
-#include "TagTypes/TagGroupName.h"
+#ifndef BUILD_REFLECTION_DATA
+#include "TagGroups.h"
+#define _tag_group_render_method 'rm  '
+#else
+enum e_tag_group : int32_t {};
+#endif
+
 #include "TagTypes/StringID.h"
 #include "TagTypes/DataReference.h"
 #include "TagTypes/TagReference.h"

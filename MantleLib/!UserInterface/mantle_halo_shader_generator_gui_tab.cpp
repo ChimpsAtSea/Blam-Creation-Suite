@@ -121,7 +121,7 @@ void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 
 		ImGui::Columns(3);
 		{ // col0
-			
+
 		}
 		ImGui::NextColumn();
 		{ // col1
@@ -129,13 +129,128 @@ void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 		}
 		ImGui::NextColumn();
 		{ // col2
-			for (c_mantle_gui_tab* gui_tab : c_mantle_gui::get_tabs())
-			{
-				c_mantle_cache_file_gui_tab* cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(gui_tab);
-				if (cache_file_gui_tab == nullptr) continue;
+			// #TODO: What happens when this tab closes? This value needs to be fixed up
 
-				ImGui::Text(cache_file_gui_tab->get_title());
+			static c_mantle_cache_file_gui_tab* selected_cache_file_tab = nullptr;
+			const char* cache_file_combo_text = selected_cache_file_tab ? selected_cache_file_tab->get_title() : "(select cache file)";
+			if (ImGui::BeginCombo("Cache File", cache_file_combo_text))
+			{
+				if (ImGui::Selectable("(select cache file)", selected_cache_file_tab == nullptr))
+				{
+					selected_cache_file_tab = nullptr;
+				}
+
+				for (c_mantle_gui_tab* gui_tab : c_mantle_gui::get_tabs())
+				{
+					c_mantle_cache_file_gui_tab* cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(gui_tab);
+					if (cache_file_gui_tab == nullptr) continue;
+
+					if (ImGui::Selectable(cache_file_gui_tab->get_title(), selected_cache_file_tab == cache_file_gui_tab))
+					{
+						selected_cache_file_tab = cache_file_gui_tab;
+					}
+				}
+
+				ImGui::EndCombo();
 			}
+
+			static c_tag_interface* selected_render_method_definition_tag_interface = nullptr;
+			if (selected_cache_file_tab)
+			{
+				c_tag_group_interface* tag_group_interface = selected_cache_file_tab->get_cache_file()->GetGroupInterfaceByGroupID(_tag_group_render_method_definition);
+				c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
+				DEBUG_ASSERT(render_method_definition_interface == tag_group_interface);
+				const std::vector<c_tag_interface*>& tag_interfaces = render_method_definition_interface->GetTagInterfaces();
+
+				const char* selected_render_method_definition_tag_interface_text = selected_render_method_definition_tag_interface ? selected_render_method_definition_tag_interface->GetNameCStr() : "(select render method definition)";
+				if (render_method_definition_interface)
+				{
+					if (ImGui::BeginCombo("Render Method Definition", selected_render_method_definition_tag_interface_text))
+					{
+						for (c_tag_interface* render_method_definition_tag_interface : tag_interfaces)
+						{
+							DEBUG_ASSERT(render_method_definition_tag_interface->GetGroupInterface() == render_method_definition_interface);
+							DEBUG_ASSERT(render_method_definition_interface->GetGroupMagic() == _tag_group_render_method_definition);
+
+							if (ImGui::Selectable(render_method_definition_tag_interface->GetNameCStr(), selected_render_method_definition_tag_interface == render_method_definition_tag_interface))
+							{
+								selected_render_method_definition_tag_interface = render_method_definition_tag_interface;
+							}
+						}
+
+						ImGui::EndCombo();
+					}
+				}
+				else ImGui::Text("Couldn't find Render Method Definition group!");
+			}
+			else
+			{
+				ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+				if (ImGui::BeginCombo("Render Method Definition", ""))
+				{
+					ImGui::EndCombo();
+				}ImGui::PopItemFlag();
+			}
+
+			static c_tag_interface* selected_render_method_template_tag_interface = nullptr;
+			if (selected_render_method_definition_tag_interface)
+			{
+				// #TODO: This could do with some optimization by adding a subclass to c_tag_interface to store all of this information computed upfront
+
+				c_tag_group_interface* tag_group_interface = selected_cache_file_tab->get_cache_file()->GetGroupInterfaceByGroupID(_tag_group_render_method_definition);
+				c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
+
+
+				DEBUG_ASSERT(render_method_definition_interface->shader_definition_and_rmt2.find(selected_render_method_definition_tag_interface) != render_method_definition_interface->shader_definition_and_rmt2.end());
+				std::vector<c_tag_interface*>& render_method_template_tags = render_method_definition_interface->shader_definition_and_rmt2[selected_render_method_definition_tag_interface];
+
+				const char* selected_render_method_template_tag_interface_text = selected_render_method_template_tag_interface ? selected_render_method_template_tag_interface->GetNameCStr() : "(select render method template)";
+				if (ImGui::BeginCombo("Render Method Template", selected_render_method_template_tag_interface_text))
+				{
+					for (c_tag_interface* render_method_template_tag_interface : render_method_template_tags)
+					{
+						DEBUG_ASSERT(render_method_template_tag_interface->GetGroupInterface()->GetGroupMagic() == _tag_group_render_method_template);
+
+						if (ImGui::Selectable(render_method_template_tag_interface->GetNameCStr(), selected_render_method_template_tag_interface == render_method_template_tag_interface))
+						{
+							selected_render_method_template_tag_interface = render_method_template_tag_interface;
+
+
+							// disassemble game shader
+							{
+								s_render_method_template_definition* render_method_template = render_method_template_tag_interface->GetData<s_render_method_template_definition>();
+								c_tag_interface* pixel_shader_tag_interface = render_method_template_tag_interface->GetCacheFile().GetTagInterface(render_method_template->pixel_shader_reference.index);
+								s_pixel_shader_definition* pixel_shader = pixel_shader_tag_interface->GetData<s_pixel_shader_definition>();
+
+								s_pixel_shader_definition::s_pixel_shader2_block_definition* pixel_shader2_block = render_method_template_tag_interface->GetCacheFile().GetTagBlockData(pixel_shader->pixel_shaders_block)+ 0;
+
+								char buffer[1024]{};
+								snprintf(buffer, 1023, "%s%i\n%s%i\n%s%i",
+									"__unknown2_data_reference.size",
+									pixel_shader2_block->__unknown2_data_reference.size,
+									"__unknown3_data_reference.size",
+									pixel_shader2_block->__unknown3_data_reference.size,
+									"__unknown4_data_reference.size",
+									pixel_shader2_block->__unknown4_data_reference.size
+								);
+								runtime_code_display.SetText(buffer);
+							}
+						}
+					}
+
+					ImGui::EndCombo();
+				}
+			}
+			else
+			{
+				ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+				if (ImGui::BeginCombo("Render Method Template", ""))
+				{
+					ImGui::EndCombo();
+				}ImGui::PopItemFlag();
+			}
+
+
 		}
 		ImGui::NextColumn();
 		ImGui::Columns(1);
@@ -152,7 +267,7 @@ void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 		ImGui::Columns(3);
 		{ // col0
 			code_editor.Render("TextEditor");
-			
+
 			if (code_editor.IsTextChanged()) // #TODO: Make this async
 			{
 				compile_source();
@@ -160,7 +275,7 @@ void c_mantle_halo_shader_generator_gui_tab::render_contents(bool setSelected)
 		}
 		ImGui::NextColumn();
 		{ // col1
-			runtime_code_display.SetReadOnly(true);
+			assembly_editor.SetReadOnly(true);
 			assembly_editor.Render("TextEditor2");
 		}
 		ImGui::NextColumn();
@@ -184,9 +299,9 @@ void c_mantle_halo_shader_generator_gui_tab::check_source_update()
 			source_needs_updating = false;
 			is_currently_updating = true;
 
-			tbb::task::enqueue(*lambda_task([=]() 
+			tbb::task::enqueue(*lambda_task([=]()
 				{
-				compile_source(true);
+					compile_source(true);
 				}
 			));
 
@@ -304,14 +419,14 @@ void c_mantle_halo_shader_generator_gui_tab::compile_source(bool is_worker_threa
 			new_assembly_editor_text = hlsl_disassembly;
 		}
 
-		if(disassembly_blob) disassembly_blob->Release();
+		if (disassembly_blob) disassembly_blob->Release();
 		code_blob->Release();
 	}
 	else
 	{
 		// Something went wrong... There was no error but no shader code...
 		new_assembly_editor_text = "";
-		
+
 		write_line_verbose("shader ded!");
 	}
 
