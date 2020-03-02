@@ -2596,7 +2596,7 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL()
 			"VPOS : float2\nThe pixel location (x,y) in screen space. To convert a Direct3D 9 shader (that uses this semantic) to a Direct3D 10\n"
 			"and later shader, see Direct3D 9 VPOS and Direct3D 10 SV_Position)\n",
 			"DEPTH[n] : float\nOutput depth\n",
-			"SV_ClipDistance[n] : float\nClip distance data. SV_ClipDistance values are each assumed to be a float32 signed distance to a plane.\""
+			"SV_ClipDistance[n] : float\nClip distance data. SV_ClipDistance values are each assumed to be a float32 signed distance to a plane.\n"
 			"Primitive setup only invokes rasterization on pixels for which the interpolated plane distance(s) are >= 0. Multiple clip planes can be\n"
 			"implemented simultaneously, by declaring multiple component(s) of one or more vertex elements as the SV_ClipDistance. The combined clip\n"
 			"and cull distance values are at most D3D#_CLIP_OR_CULL_DISTANCE_COUNT components in at most D3D#_CLIP_OR_CULL_DISTANCE_ELEMENT_COUNT\n"
