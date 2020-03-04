@@ -104,6 +104,13 @@ void render_primitive_gui(void* field_data, const ReflectionField& reflection_fi
 		ImGui::CheckboxFlags(pFieldTypeName, pFieldBitFlagDataPointer, bitmask);
 	}
 
+	if constexpr (primitive_type == PrimitiveType::Character)
+	{
+		char* pFieldBitFlagDataPointer = static_cast<char*>(field_data);
+		ImGui::InputText("char[]", pFieldBitFlagDataPointer, reflection_field.m_arraySize);
+
+	}
+
 	ImGui::Columns(1);
 
 	ImGui::PopID();
