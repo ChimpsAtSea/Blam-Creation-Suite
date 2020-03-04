@@ -25,60 +25,27 @@ c_mantle_shader_tool_gui_tab::c_mantle_shader_tool_gui_tab(const char* title, co
 	hlsl_assembly_language(TextEditor::LanguageDefinition::HLSL_Shader_Asm())
 {
 	// set your own known preprocessor symbols...
-	static const char* ppnames[] = { "NULL", "PM_REMOVE",
-		"ZeroMemory", "DXGI_SWAP_EFFECT_DISCARD", "D3D_FEATURE_LEVEL", "D3D_DRIVER_TYPE_HARDWARE", "WINAPI","D3D11_SDK_VERSION", "assert" };
+	static const char* shader_stage_function_name[] =
+	{
+		"calc_albedo_ps"
+	};
+
 	// ... and their corresponding values
-	static const char* ppvalues[] = {
-		"#define NULL ((void*)0)",
-		"#define PM_REMOVE (0x0001)",
-		"Microsoft's own memory zapper function\n(which is a macro actually)\nvoid ZeroMemory(\n\t[in] PVOID  Destination,\n\t[in] SIZE_T Length\n); ",
-		"enum DXGI_SWAP_EFFECT::DXGI_SWAP_EFFECT_DISCARD = 0",
-		"enum D3D_FEATURE_LEVEL",
-		"enum D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_HARDWARE  = ( D3D_DRIVER_TYPE_UNKNOWN + 1 )",
-		"#define WINAPI __stdcall",
-		"#define D3D11_SDK_VERSION (7)",
-		" #define assert(expression) (void)(                                                  \n"
-		"    (!!(expression)) ||                                                              \n"
-		"    (_wassert(_CRT_WIDE(#expression), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)), 0) \n"
-		" )"
+	static const char* shader_stage_function_description[] = {
+		"Albedo shader stage pixel shader function"
 	};
 
-	for (int i = 0; i < sizeof(ppnames) / sizeof(ppnames[0]); ++i)
+	for (int i = 0; i < _countof(shader_stage_function_name); ++i)
 	{
 		TextEditor::Identifier id;
-		id.mDeclaration = ppvalues[i];
-		code_editor_language.mPreprocIdentifiers.insert(std::make_pair(std::string(ppnames[i]), id));
+		id.mDeclaration = shader_stage_function_description[i];
+		code_editor_language.mPreprocIdentifiers.insert(std::make_pair(std::string(shader_stage_function_name[i]), id));
 	}
 
-	// set your own identifiers
-	//static const char* identifiers[] = {
-	//	"HWND", "HRESULT", "LPRESULT","D3D11_RENDER_TARGET_VIEW_DESC", "DXGI_SWAP_CHAIN_DESC","MSG","LRESULT","WPARAM", "LPARAM","UINT","LPVOID",
-	//	"ID3D11Device", "ID3D11DeviceContext", "ID3D11Buffer", "ID3D11Buffer", "ID3D10Blob", "ID3D11VertexShader", "ID3D11InputLayout", "ID3D11Buffer",
-	//	"ID3D10Blob", "ID3D11PixelShader", "ID3D11SamplerState", "ID3D11ShaderResourceView", "ID3D11RasterizerState", "ID3D11BlendState", "ID3D11DepthStencilState",
-	//	"IDXGISwapChain", "ID3D11RenderTargetView", "ID3D11Texture2D", "TextEditor" };
-	//static const char* idecls[] =
-	//{
-	//	"typedef HWND_* HWND", "typedef long HRESULT", "typedef long* LPRESULT", "struct D3D11_RENDER_TARGET_VIEW_DESC", "struct DXGI_SWAP_CHAIN_DESC",
-	//	"typedef tagMSG MSG\n * Message structure","typedef LONG_PTR LRESULT","WPARAM", "LPARAM","UINT","LPVOID",
-	//	"ID3D11Device", "ID3D11DeviceContext", "ID3D11Buffer", "ID3D11Buffer", "ID3D10Blob", "ID3D11VertexShader", "ID3D11InputLayout", "ID3D11Buffer",
-	//	"ID3D10Blob", "ID3D11PixelShader", "ID3D11SamplerState", "ID3D11ShaderResourceView", "ID3D11RasterizerState", "ID3D11BlendState", "ID3D11DepthStencilState",
-	//	"IDXGISwapChain", "ID3D11RenderTargetView", "ID3D11Texture2D", "class TextEditor" };
-	static const char* identifiers[] = {
-		"SV_Target"
-	};
-	static const char* idecls[] =
-	{
-		"SV_Target"
-	};
-	for (int i = 0; i < sizeof(identifiers) / sizeof(identifiers[0]); ++i)
-	{
-		TextEditor::Identifier id;
-		id.mDeclaration = std::string(idecls[i]);
-		code_editor_language.mIdentifiers.insert(std::make_pair(std::string(identifiers[i]), id));
-	}
 	source_code_editor_display.SetLanguageDefinition(code_editor_language);
 	preview_disassembly_display.SetLanguageDefinition(hlsl_assembly_language);
 	runtime_disassembly_display.SetLanguageDefinition(hlsl_assembly_language);
+
 	//editor.SetPalette(TextEditor::GetLightPalette());
 
 	// error markers
@@ -87,26 +54,13 @@ c_mantle_shader_tool_gui_tab::c_mantle_shader_tool_gui_tab(const char* title, co
 	markers.insert(std::make_pair<int, std::string>(41, "Another example error"));
 	source_code_editor_display.SetErrorMarkers(markers);
 
-
-
 	std::string filepath = c_command_line::get_command_line_arg("-shadertool") + "\\shader.hlsl";
 	std::wstring wfilepath(filepath.begin(), filepath.end());
 	const char* shader_code = FileSystemReadToMemory(wfilepath.c_str());
-
 	if (shader_code)
 	{
 		source_code_editor_display.SetText(shader_code);
 		delete shader_code;
-	}
-	else
-	{
-		const char* example_code = "\n\n"
-			"float4 main() : COLOR\n"
-			"{\n"
-			"	return float4(1, 0, 0, 0);\n"
-			"}\n";
-
-		source_code_editor_display.SetText(example_code);
 	}
 
 	compile_source();
@@ -203,6 +157,22 @@ void c_mantle_shader_tool_gui_tab::render_shader_profile_selection_gui()
 void c_mantle_shader_tool_gui_tab::render_source_code_editor_configuration_header_column_gui()
 {
 	render_shader_profile_selection_gui();
+
+	if (selected_render_method_template_tag_interface)
+	{
+		if (ImGui::Button("Populate from RMT2"))
+		{
+			// #TODO: Parse and set the HSG options
+			s_render_method_definition_definition* render_method_definition_definition = selected_render_method_definition_tag_interface->GetData<s_render_method_definition_definition>();
+		}
+	}
+	else
+	{
+		ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+		ImGui::Button("Populate from RMT2");
+		ImGui::PopItemFlag();
+	}
+
 	ImGui::NextColumn();
 }
 
@@ -238,14 +208,14 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 			ImGui::EndCombo();
 		}
 
-		static constexpr float k_shader_selection_type_button_width = 100.0f;
+		static constexpr float k_shader_selection_type_button_width = 80.0f;
 		if (selected_render_method_template_tag_interface)
 		{
 			ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_shader_selection_type_button_width);
 
 			if (use_durango_shader_disassembly)
 			{
-				if (ImGui::Button("Show PC", ImVec2(k_shader_selection_type_button_width, 0)))
+				if (ImGui::Button("PC", ImVec2(k_shader_selection_type_button_width, 0)))
 				{
 					use_durango_shader_disassembly = false;
 					disassemble_runtime();
@@ -253,12 +223,26 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 			}
 			else
 			{
-				if (ImGui::Button("Show Xbox", ImVec2(k_shader_selection_type_button_width, 0)))
+				if (ImGui::Button("Xbox", ImVec2(k_shader_selection_type_button_width, 0)))
 				{
 					use_durango_shader_disassembly = true;
 					disassemble_runtime();
 				}
 			}
+		}
+		else
+		{
+			ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_shader_selection_type_button_width);
+			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+			if (use_durango_shader_disassembly)
+			{
+				ImGui::Button("PC", ImVec2(k_shader_selection_type_button_width, 0));
+			}
+			else
+			{
+				ImGui::Button("Xbox", ImVec2(k_shader_selection_type_button_width, 0));
+			}
+			ImGui::PopItemFlag();
 		}
 
 		if (selected_cache_file_tab)
@@ -271,7 +255,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 			const char* selected_render_method_definition_tag_interface_text = selected_render_method_definition_tag_interface ? selected_render_method_definition_tag_interface->GetNameCStr() : "(select render method definition)";
 			if (render_method_definition_interface)
 			{
-				if (ImGui::BeginCombo("Render Method Definition", selected_render_method_definition_tag_interface_text))
+				if (ImGui::BeginCombo("Definition", selected_render_method_definition_tag_interface_text))
 				{
 					for (c_tag_interface* render_method_definition_tag_interface : tag_interfaces)
 					{
@@ -294,10 +278,29 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 		else
 		{
 			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
-			if (ImGui::BeginCombo("Render Method Definition", ""))
+			if (ImGui::BeginCombo("Definition", ""))
 			{
 				ImGui::EndCombo();
 			}
+			ImGui::PopItemFlag();
+		}
+
+		static constexpr float k_goto_button_width = 80.0f;
+		if (selected_render_method_definition_tag_interface)
+		{
+			ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_goto_button_width);
+
+			if (ImGui::Button("Goto", ImVec2(k_goto_button_width, 0)))
+			{
+				c_mantle_gui::set_active_tab(selected_cache_file_tab);
+				selected_cache_file_tab->openTagTab(*selected_render_method_definition_tag_interface);
+			}
+		}
+		else
+		{
+			ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_shader_selection_type_button_width);
+			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+			ImGui::Button("Goto", ImVec2(k_goto_button_width, 0));
 			ImGui::PopItemFlag();
 		}
 
@@ -313,7 +316,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 			std::vector<c_tag_interface*>& render_method_template_tags = render_method_definition_interface->shader_definition_and_rmt2[selected_render_method_definition_tag_interface];
 
 			const char* selected_render_method_template_tag_interface_text = selected_render_method_template_tag_interface ? selected_render_method_template_tag_interface->GetNameCStr() : "(select render method template)";
-			if (ImGui::BeginCombo("Render Method Template", selected_render_method_template_tag_interface_text))
+			if (ImGui::BeginCombo("Template", selected_render_method_template_tag_interface_text))
 			{
 				for (c_tag_interface* render_method_template_tag_interface : render_method_template_tags)
 				{
@@ -332,11 +335,28 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 		else
 		{
 			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
-			if (ImGui::BeginCombo("Render Method Template", ""))
+			if (ImGui::BeginCombo("Template", ""))
 			{
 				ImGui::EndCombo();
 			}
 			ImGui::PopItemFlag();
+		}
+
+		if (selected_render_method_template_tag_interface)
+		{
+			ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_goto_button_width);
+
+			if (ImGui::Button("Goto", ImVec2(k_goto_button_width, 0)))
+			{
+				c_mantle_gui::set_active_tab(selected_cache_file_tab);
+				selected_cache_file_tab->openTagTab(*selected_render_method_template_tag_interface);
+			}
+		}
+		else
+		{
+			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+			ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_goto_button_width);
+			ImGui::Button("Goto", ImVec2(k_goto_button_width, 0));
 		}
 	}
 	ImGui::NextColumn();

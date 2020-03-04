@@ -29,6 +29,8 @@ public:
 	static void add_tab(c_mantle_gui_tab& mantle_gui_tab);
 	static void remove_tab(c_mantle_gui_tab& mantle_gui_tab);
 
+	static void set_active_tab(c_mantle_gui_tab* gui_tab);
+
 	static std::shared_ptr<c_cache_file> get_cache_file(const char* pMapName);
 
 	inline static void set_get_tag_pointer_function(get_tag_pointer_func get_tag_pointer) { g_get_tag_pointer_func = get_tag_pointer; }
@@ -55,6 +57,7 @@ private:
 	static bool g_mantle_running_with_game;
 	static std::vector<c_mantle_gui_tab*> g_mantle_gui_tabs;
 	static std::vector<on_close_callback_func> g_mantle_on_close_callbacks;
+	static c_mantle_gui_tab* g_next_selected_root_tab;
 };
 
 /* ---------- globals */

@@ -8,13 +8,13 @@
 
 static ImGuiAddons::ImGuiFileBrowser file_browser;
 static bool g_is_mantle_window_open = true;
-static c_mantle_gui_tab* g_next_selected_root_tab = nullptr; // when set, the referenced tab will be selected on the next frame
+c_mantle_gui_tab* c_mantle_gui::g_next_selected_root_tab = nullptr; // when set, the referenced tab will be selected on the next frame
 static uint32_t g_mantle_show_file_dialogue = false; // when set, the file dialogue will open on the next frame
 
 c_mantle_gui::get_tag_pointer_func c_mantle_gui::g_get_tag_pointer_func = nullptr;
 c_mantle_gui::get_tag_selection_address_func c_mantle_gui::g_get_tag_selection_address_func = nullptr;
 bool c_mantle_gui::g_use_full_file_length_display = false;
-bool c_mantle_gui::g_unknown_fields_visibility = false;
+bool c_mantle_gui::g_unknown_fields_visibility = true;
 bool c_mantle_gui::g_mantle_running_with_game;
 std::vector<c_mantle_gui_tab*> c_mantle_gui::g_mantle_gui_tabs;
 std::vector<c_mantle_gui::on_close_callback_func> c_mantle_gui::g_mantle_on_close_callbacks;
@@ -241,6 +241,18 @@ void c_mantle_gui::add_tab(c_mantle_gui_tab& rMantleTab)
 void c_mantle_gui::remove_tab(c_mantle_gui_tab& rMantleTab)
 {
 	VectorEraseByValueHelper(g_mantle_gui_tabs, &rMantleTab);
+}
+
+void c_mantle_gui::set_active_tab(c_mantle_gui_tab* gui_tab)
+{
+	for (c_mantle_gui_tab* current_gui_tab : g_mantle_gui_tabs)
+	{
+		if (gui_tab == current_gui_tab)
+		{
+			g_next_selected_root_tab = gui_tab;
+			return;
+		}
+	}
 }
 
 std::shared_ptr<c_cache_file> c_mantle_gui::get_cache_file(const char* pMapName)
