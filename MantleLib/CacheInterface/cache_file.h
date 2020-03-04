@@ -111,6 +111,11 @@ public:
 	inline const char* GetFilePathChar() const { return m_mapFilePathChar.c_str(); }
 	inline const char* GetFileNameChar() const { return m_mapFileNameChar.c_str(); }
 
+	inline const char* GetStringIDStr(const string_id& string_id)
+	{
+		return GetStringIDStr(string_id.stringid);
+	}
+
 	inline const char* GetStringIDStr(uint32_t id)
 	{
 		uint32_t const k_string_id_set_string_counts[17] = { 1225, 1637, 217, 106, 217, 38, 5, 1727, 368, 20, 98, 24, 0, 13, 41, 97, 115 };
