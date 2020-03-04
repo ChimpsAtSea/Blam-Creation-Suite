@@ -40,12 +40,12 @@ void c_window::SetPostMessageThreadId(HANDLE hThread)
 
 int c_window::get_width()
 {
-	return max(1l, s_size.cx);
+	return __max(1l, s_size.cx);
 }
 
 int c_window::get_height()
 {
-	return max(1l, s_size.cy);
+	return __max(1l, s_size.cy);
 }
 
 float c_window::get_aspect_ratio()

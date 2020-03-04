@@ -170,6 +170,7 @@ enum e_tag_group : int32_t {};
 #include "GeneratedGUI.h"
 #include "ReflectionData.h"
 #include "GeneratedConversion.h"
+//#include "VirtualTagInterfaces.h"
 #endif
 
 #pragma pack(pop)

@@ -35,3 +35,4 @@
 #include "SourceGenerators/mantle_runtime_reflection_generator.h"
 #include "SourceGenerators/mantle_compile_time_gui_generator.h"
 #include "SourceGenerators/mantle_compile_time_conversion_generator.h"
+#include "SourceGenerators/mantle_virtual_tag_interface_generator.h"

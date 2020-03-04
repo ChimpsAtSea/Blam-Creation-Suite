@@ -15,13 +15,13 @@ c_reflection_type_container::c_reflection_type_container()
 {
 }
 
-c_reflection_type_container::c_reflection_type_container(std::string type_name, uint32_t size)
+c_reflection_type_container::c_reflection_type_container(std::string type_name, std::string qualified_type_name, uint32_t size)
 	: is_size_initialized(true)
 	, is_primitive(true)
 	, clang_record_declaration(nullptr)
 	, raw_tag_group()
 	, type_name(type_name)
-	, qualified_type_name(type_name)
+	, qualified_type_name(qualified_type_name)
 	, fields()
 	, data_size(size)
 	, type_nice_name()

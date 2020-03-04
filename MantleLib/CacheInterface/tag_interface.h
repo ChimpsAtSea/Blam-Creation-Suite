@@ -9,7 +9,7 @@ public:
 	friend class c_tag_group_interface;
 
 	c_tag_interface(c_cache_file& rCacheFile, uint16_t tagIndex);
-	~c_tag_interface();
+	virtual ~c_tag_interface();
 
 	inline bool IsNull() const { return m_isNull; }
 	inline c_cache_file& GetCacheFile() const { return m_rCacheFile; };

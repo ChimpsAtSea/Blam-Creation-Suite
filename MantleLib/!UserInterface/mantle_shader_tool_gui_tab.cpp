@@ -154,8 +154,6 @@ void c_mantle_shader_tool_gui_tab::render_shader_profile_selection_gui()
 	}
 }
 
-
-
 void c_mantle_shader_tool_gui_tab::render_source_code_editor_configuration_header_column_gui()
 {
 	render_shader_profile_selection_gui();
@@ -164,16 +162,11 @@ void c_mantle_shader_tool_gui_tab::render_source_code_editor_configuration_heade
 	{
 		if (ImGui::Button("Populate from RMT2"))
 		{
-			// #TODO: Parse and set the HSG options
-			s_render_method_definition_definition* render_method_definition_definition = selected_render_method_definition_tag_interface->GetData<s_render_method_definition_definition>();
+			v_tag_interface<s_render_method_definition_definition>* render_method_definition = dynamic_cast<decltype(render_method_definition)>(selected_render_method_definition_tag_interface);
 
-			c_cache_file* cache_file = selected_cache_file_tab->get_cache_file().get();
-
-			c_virtual_tag_block unknown_0_block_definition_interface(*cache_file, render_method_definition_definition->__unknown_0_block); // #TODO: Provide this functionality as part of the virtual tag interface system
-
-			for (s_render_method_definition_definition::s_unknown_0_block_definition& unknown_0_block : unknown_0_block_definition_interface)
+			for (s_render_method_definition_definition::s_unknown_0_block_definition& unknown_0_block : render_method_definition->__unknown_0_block)
 			{
-				const char* shader_option = cache_file->GetStringIDStr(unknown_0_block.__unknown);
+				const char* shader_option = render_method_definition->GetCacheFile().GetStringIDStr(unknown_0_block.__unknown);
 
 				write_line_verbose("shader_option: %s", shader_option);
 			}

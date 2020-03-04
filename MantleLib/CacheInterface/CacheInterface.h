@@ -5,3 +5,5 @@
 #include "tag_interface.h"
 #include "cache_file.h"
 #include "virtual_tag_block.h"
+
+#include <MantleLib/Tags/VirtualTagInterfaces.h>

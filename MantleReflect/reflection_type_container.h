@@ -4,7 +4,7 @@ class c_reflection_type_container
 {
 public:
 	c_reflection_type_container();
-	c_reflection_type_container(std::string type_name, uint32_t size);
+	c_reflection_type_container(std::string type_name, std::string qualified_type_name, uint32_t size);
 	~c_reflection_type_container();
 
 	bool is_size_initialized;

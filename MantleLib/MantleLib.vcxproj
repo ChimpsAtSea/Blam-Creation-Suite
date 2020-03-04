@@ -60,6 +60,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="CacheInterface\virtual_tag_block.cpp" />
+    <ClCompile Include="Tags\VirtualTagInterfaces.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="VirtualMemoryContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +195,7 @@
     <ClInclude Include="Tags\ReflectionData.h" />
     <ClInclude Include="Tags\TagTypes\Undefined.h" />
     <ClInclude Include="CacheInterface\virtual_tag_block.h" />
+    <ClInclude Include="Tags\VirtualTagInterfaces.h" />
     <ClInclude Include="VirtualMemoryContainer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -284,7 +291,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\TagGroups.h" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)MantleLib\Tags\</Command>
     </PreBuildEvent>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -305,7 +312,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\TagGroups.h" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)MantleLib\Tags\</Command>
     </PreBuildEvent>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -330,7 +337,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\TagGroups.h" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)MantleLib\Tags\</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -352,7 +359,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" "$(ProjectDir)Tags\TagsReflectionObject.cpp" "$(ProjectDir)Tags\ReflectionData.h" "$(ProjectDir)Tags\ReflectionData.cpp" "$(ProjectDir)Tags\TagGroups.h" "$(ProjectDir)Tags\GeneratedGUI.h" "$(ProjectDir)Tags\GeneratedGUI.cpp" "$(ProjectDir)Tags\GeneratedConversion.h" "$(ProjectDir)Tags\GeneratedConversion.cpp"</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)MantleLib\Tags\</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

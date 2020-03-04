@@ -153,7 +153,19 @@ void c_cache_file::initTagInstances()
 	c_tag_interface** ppTagInterfacesBuffer = m_tagInterfaces.data();
 	std::function createTagFunc = [this, ppTagInterfacesBuffer](uint32_t index)
 	{
-		ppTagInterfacesBuffer[index] = new c_tag_interface(*this, static_cast<uint16_t>(index));
+		uint32_t group_index = cache_file_tag_instances[index].group_index;
+		const ReflectionType* reflection_type = GetTagReflectionDataByTagGroup(cache_file_tag_groups[group_index].group_tags[0]);
+		if (reflection_type)
+		{
+			//ASSERT(reflection_type != nullptr); // #TODO: All tags have a reflection type
+			ASSERT(reflection_type->virtual_tag_constructor != nullptr);
+			ppTagInterfacesBuffer[index] = reflection_type->virtual_tag_constructor(*this, static_cast<uint16_t>(index));
+			//write_line_verbose("vtag> %s", ppTagInterfacesBuffer[index]->GetPathWithGroupNameCStr());
+		}
+		else
+		{
+			ppTagInterfacesBuffer[index] = new c_tag_interface(*this, static_cast<uint16_t>(index));
+		}
 	};
 	tbb::parallel_for(0u, cache_file_tags_headers->instances.count, createTagFunc);
 }

@@ -331,11 +331,11 @@ void BoxRenderer::RenderBoxGeometry()
 		c_render::s_pDeviceContext->VSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
 		c_render::s_pDeviceContext->PSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
 
-		const uint32_t numBoxes = min(kMaxBoxesPerFrame, nextBoxIndex);
+		const uint32_t numBoxes = __min(kMaxBoxesPerFrame, nextBoxIndex);
 		for (uint32_t i = 0; i < numBoxes;)
 		{
 			uint32_t remainingBoxes = numBoxes - i;
-			uint32_t boxesToDrawThisCall = min(remainingBoxes, maxInstancesPow2);
+			uint32_t boxesToDrawThisCall = __min(remainingBoxes, maxInstancesPow2);
 
 			boxesToDrawThisCall = 1; // #TODO: Rendering more than 1 box at a time causes issues. Not sure why.
 

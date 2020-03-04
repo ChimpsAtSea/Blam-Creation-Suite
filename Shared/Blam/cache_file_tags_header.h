@@ -1,13 +1,12 @@
 #pragma once
 
-#define tag uint32_t
 #define qword uint64_t
 #define dword uint32_t
 #define word uint16_t
 
 struct s_cache_file_tag_global_instance
 {
-	tag group_tag;
+	uint32_t group_tag;
 	long definition_index;
 };
 static_assert(sizeof(s_cache_file_tag_global_instance) == 0x8);
@@ -24,7 +23,7 @@ struct s_cache_file_tags_header
 	struct s_section
 	{
 		uint32_t count = 0;
-		tag post_count_signature = k_cache_file_tags_section_signature;
+		uint32_t post_count_signature = k_cache_file_tags_section_signature;
 		qword address = 0;
 	};
 
@@ -36,7 +35,7 @@ struct s_cache_file_tags_header
 	long unknown40; // datum index?
 
 	dword checksum;
-	tag signature;
+	uint32_t signature;
 
 	long unknown4C; // datum index?
 };

@@ -151,3 +151,10 @@ constexpr decltype(auto) underlying_cast(T value)
 #endif
 
 #include "!Resources/ResourcesManager.h"
+
+#ifdef min
+#undef min
+#endif
+#ifdef max
+#undef max
+#endif

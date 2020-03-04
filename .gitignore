@@ -364,3 +364,5 @@ MantleLib/Tags/GeneratedGUI.h
 *.PVS-Studio.cfg
 
 *Mustard.exe
+MantleLib/Tags/VirtualTagInterfaces.cpp
+MantleLib/Tags/VirtualTagInterfaces.h

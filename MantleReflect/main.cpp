@@ -164,38 +164,38 @@ std::vector<c_reflection_type_container*> ReflectedTypesData;
 
 c_reflection_type_container* GetPrimitiveReflectionType(PrimitiveType primitiveType)
 {
-	static c_reflection_type_container* pInt8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int8", sizeof(int8_t)));
-	static c_reflection_type_container* pInt16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int16", sizeof(int16_t)));
-	static c_reflection_type_container* pInt32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int32", sizeof(int32_t)));
-	static c_reflection_type_container* pInt64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int64", sizeof(int64_t)));
-	static c_reflection_type_container* pUInt8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt8", sizeof(uint8_t)));
-	static c_reflection_type_container* pUInt16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt16", sizeof(uint16_t)));
-	static c_reflection_type_container* pUInt32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt32", sizeof(uint32_t)));
-	static c_reflection_type_container* pUInt64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt64", sizeof(uint64_t)));
-	static c_reflection_type_container* pBoolean8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean8", sizeof(uint8_t)));
-	static c_reflection_type_container* pBoolean16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean16", sizeof(uint16_t)));
-	static c_reflection_type_container* pBoolean32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean32", sizeof(uint32_t)));
-	static c_reflection_type_container* pBoolean64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean64", sizeof(uint64_t)));
-	static c_reflection_type_container* pBitField8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField8", sizeof(uint8_t)));
-	static c_reflection_type_container* pBitField16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField16", sizeof(uint16_t)));
-	static c_reflection_type_container* pBitField32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField32", sizeof(uint32_t)));
-	static c_reflection_type_container* pBitField64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField64", sizeof(uint64_t)));
-	static c_reflection_type_container* pBitFlag8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag8", sizeof(uint8_t)));
-	static c_reflection_type_container* pBitFlag16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag16", sizeof(uint16_t)));
-	static c_reflection_type_container* pBitFlag32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag32", sizeof(uint32_t)));
-	static c_reflection_type_container* pBitFlag64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag64", sizeof(uint64_t)));
-	static c_reflection_type_container* pFloatReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Float", sizeof(float)));
-	static c_reflection_type_container* pDoubleReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Double", sizeof(double)));
-	static c_reflection_type_container* pEnum8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum8", sizeof(uint8_t)));
-	static c_reflection_type_container* pEnum16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum16", sizeof(uint16_t)));
-	static c_reflection_type_container* pEnum32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum32", sizeof(uint32_t)));
-	static c_reflection_type_container* pEnum64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum64", sizeof(uint64_t)));
-	static c_reflection_type_container* pUndefined8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined8", sizeof(uint8_t)));
-	static c_reflection_type_container* pUndefined16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined16", sizeof(uint16_t)));
-	static c_reflection_type_container* pUndefined32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined32", sizeof(uint32_t)));
-	static c_reflection_type_container* pUndefined64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined64", sizeof(uint64_t)));
-	static c_reflection_type_container* pCharacterReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Character", sizeof(char)));
-	static c_reflection_type_container* pWideCharacterReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("WideCharacter", sizeof(wchar_t)));
+	static c_reflection_type_container* pInt8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int8", "int8_t", sizeof(int8_t)));
+	static c_reflection_type_container* pInt16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int16", "int16_t", sizeof(int16_t)));
+	static c_reflection_type_container* pInt32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int32", "int32_t", sizeof(int32_t)));
+	static c_reflection_type_container* pInt64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int64", "int64_t", sizeof(int64_t)));
+	static c_reflection_type_container* pUInt8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt8", "uint8_t", sizeof(uint8_t)));
+	static c_reflection_type_container* pUInt16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt16", "uint16_t", sizeof(uint16_t)));
+	static c_reflection_type_container* pUInt32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt32", "uint32_t", sizeof(uint32_t)));
+	static c_reflection_type_container* pUInt64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt64", "uint64_t", sizeof(uint64_t)));
+	static c_reflection_type_container* pBoolean8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean8", "uint8_t", sizeof(uint8_t)));
+	static c_reflection_type_container* pBoolean16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean16", "uint16_t", sizeof(uint16_t)));
+	static c_reflection_type_container* pBoolean32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean32", "uint32_t", sizeof(uint32_t)));
+	static c_reflection_type_container* pBoolean64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean64", "uint64_t", sizeof(uint64_t)));
+	static c_reflection_type_container* pBitField8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField8", "uint8_t", sizeof(uint8_t)));
+	static c_reflection_type_container* pBitField16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField16", "uint16_t", sizeof(uint16_t)));
+	static c_reflection_type_container* pBitField32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField32", "uint32_t", sizeof(uint32_t)));
+	static c_reflection_type_container* pBitField64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField64", "uint64_t", sizeof(uint64_t)));
+	static c_reflection_type_container* pBitFlag8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag8", "uint8_t", sizeof(uint8_t)));
+	static c_reflection_type_container* pBitFlag16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag16", "uint16_t", sizeof(uint16_t)));
+	static c_reflection_type_container* pBitFlag32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag32", "uint32_t", sizeof(uint32_t)));
+	static c_reflection_type_container* pBitFlag64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag64", "uint64_t", sizeof(uint64_t)));
+	static c_reflection_type_container* pFloatReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Float", "float", sizeof(float)));
+	static c_reflection_type_container* pDoubleReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Double", "double", sizeof(double)));
+	static c_reflection_type_container* pEnum8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum8", "uint8_t", sizeof(uint8_t)));
+	static c_reflection_type_container* pEnum16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum16", "uint16_t", sizeof(uint16_t)));
+	static c_reflection_type_container* pEnum32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum32", "uint32_t", sizeof(uint32_t)));
+	static c_reflection_type_container* pEnum64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum64", "uint64_t", sizeof(uint64_t)));
+	static c_reflection_type_container* pUndefined8ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined8", "Undefined8", sizeof(uint8_t)));
+	static c_reflection_type_container* pUndefined16ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined16", "Undefined16", sizeof(uint16_t)));
+	static c_reflection_type_container* pUndefined32ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined32", "Undefined32", sizeof(uint32_t)));
+	static c_reflection_type_container* pUndefined64ReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined64", "Undefined64", sizeof(uint64_t)));
+	static c_reflection_type_container* pCharacterReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("Character", "char", sizeof(char)));
+	static c_reflection_type_container* pWideCharacterReflectionType = ReflectedTypesData.emplace_back(new c_reflection_type_container("WideCharacter", "wchar_t", sizeof(wchar_t)));
 
 	switch (primitiveType)
 	{
@@ -440,7 +440,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 				else if (name == "Undefined16") reflectionTypeCategory = ReflectionTypeCategory::Primitive;
 				else if (name == "Undefined32") reflectionTypeCategory = ReflectionTypeCategory::Primitive;
 				else if (name == "Undefined64") reflectionTypeCategory = ReflectionTypeCategory::Primitive;
-				else if(reflectionQualifiedType->isStructureType()) reflectionTypeCategory = ReflectionTypeCategory::Structure;
+				else if (reflectionQualifiedType->isStructureType()) reflectionTypeCategory = ReflectionTypeCategory::Structure;
 				else assert(!"Unsupported class type");
 			}
 
@@ -617,7 +617,7 @@ public:
 
 int main(int argc, const char** argv)
 {
-	if (argc < 5)
+	if (argc < 2)
 	{
 		printf("Incorrect number of arguments. Expected 3");
 		return 1;
@@ -627,27 +627,37 @@ int main(int argc, const char** argv)
 	int argc_widechar = 0;
 	wchar_t** argv_widechar = CommandLineToArgvW(command_line, &argc);
 
-	const char* reflection_source_file = argv[1];
-	const wchar_t* reflection_output_header = argv_widechar[2];
-	const wchar_t* reflection_output_source = argv_widechar[3];
-	const wchar_t* tag_groups_header = argv_widechar[4];
-	const wchar_t* compile_time_gui_header = argc > 4 ? argv_widechar[5] : nullptr;
-	const wchar_t* compile_time_gui_source = argc > 5 ? argv_widechar[6] : nullptr;
-	const wchar_t* compile_time_conversion_header = argc > 6 ? argv_widechar[7] : nullptr;
-	const wchar_t* compile_time_conversion_source = argc > 7 ? argv_widechar[8] : nullptr;
 
-	wprintf(L"Reflection Source File:   '%S'\n", reflection_source_file);
-	wprintf(L"Reflection Output Header: '%s'\n", reflection_output_header);
-	wprintf(L"Reflection Output Source: '%s'\n", reflection_output_source);
-	wprintf(L"Tag Groups Header: '%s'\n", tag_groups_header);
-	if (compile_time_gui_header) wprintf(L"Compile Time GUI Output Header: '%s'\n", compile_time_gui_header);
-	if (compile_time_gui_source) wprintf(L"Compile Time GUI Output Source: '%s'\n", compile_time_gui_source);
-	if (compile_time_conversion_header) wprintf(L"Compile Time Conversion Output Header: '%s'\n", compile_time_conversion_header);
-	if (compile_time_conversion_source) wprintf(L"Compile Time Conversion Output Source: '%s'\n", compile_time_conversion_source);
+	std::string output_directory = argv[1];
+	std::wstring output_directory_wide = argv_widechar[1];
+
+	wprintf(L"Output Directory:   '%s'\n", output_directory_wide.c_str());
+
+	std::string reflection_source_file = output_directory + "TagsReflectionObject.cpp";
+	std::wstring reflection_output_header = output_directory_wide + L"ReflectionData.h";
+	std::wstring reflection_output_source = output_directory_wide + L"ReflectionData.cpp";
+	std::wstring tag_groups_header = output_directory_wide + L"TagGroups.h";
+	std::wstring compile_time_gui_header = output_directory_wide + L"GeneratedGUI.h";
+	std::wstring compile_time_gui_source = output_directory_wide + L"GeneratedGUI.cpp";
+	std::wstring compile_time_conversion_header = output_directory_wide + L"GeneratedConversion.h";
+	std::wstring compile_time_conversion_source = output_directory_wide + L"GeneratedConversion.cpp";
+	std::wstring virtual_tag_interface_header = output_directory_wide + L"VirtualTagInterfaces.h";
+	std::wstring virtual_tag_interface_source = output_directory_wide + L"VirtualTagInterfaces.cpp";
+
+	wprintf(L"Reflection Source File:   '%S'\n", reflection_source_file.c_str());
+	wprintf(L"Reflection Output Header: '%s'\n", reflection_output_header.c_str());
+	wprintf(L"Reflection Output Source: '%s'\n", reflection_output_source.c_str());
+	wprintf(L"Tag Groups Header: '%s'\n", tag_groups_header.c_str());
+	wprintf(L"Compile Time GUI Output Header: '%s'\n", compile_time_gui_header.c_str());
+	wprintf(L"Compile Time GUI Output Source: '%s'\n", compile_time_gui_source.c_str());
+	wprintf(L"Compile Time Conversion Output Header: '%s'\n", compile_time_conversion_header.c_str());
+	wprintf(L"Compile Time Conversion Output Source: '%s'\n", compile_time_conversion_source.c_str());
+	wprintf(L"Virtual Tag Interface Output Header: '%s'\n", virtual_tag_interface_header.c_str());
+	wprintf(L"Virtual Tag Interface Output Source: '%s'\n", virtual_tag_interface_source.c_str());
 
 	const char* argumentsArray[] = {
 			argv[0],
-			reflection_source_file
+			reflection_source_file.c_str()
 	};
 	int num_args = _countof(argumentsArray);
 
@@ -671,33 +681,33 @@ int main(int argc, const char** argv)
 	tbb::parallel_invoke(
 		[=]
 		{
-			c_mantle_runtime_reflection_generator tag_groups_generator = { reflection_output_header, reflection_output_source, ReflectedTypesData };
+			c_mantle_runtime_reflection_generator tag_groups_generator = { reflection_output_header.c_str(), reflection_output_source.c_str(), ReflectedTypesData };
 			tag_groups_generator.run();
 			tag_groups_generator.write_output();
 		},
-		[=]
+			[=]
 		{
-			c_mantle_tag_groups_generator tag_groups_generator = { tag_groups_header, ReflectedTypesData };
+			c_mantle_tag_groups_generator tag_groups_generator = { tag_groups_header.c_str(), ReflectedTypesData };
 			tag_groups_generator.run();
 			tag_groups_generator.write_output();
 		},
-		[=]
+			[=]
 		{
-			if (compile_time_conversion_header && compile_time_conversion_source)
-			{
-				c_mantle_compile_time_conversion_generator mantle_compile_time_conversion_generator = { compile_time_conversion_header, compile_time_conversion_source, ReflectedTypesData };
-				mantle_compile_time_conversion_generator.run();
-				mantle_compile_time_conversion_generator.write_output();
-			}
-		}, 
-		[=]
+			c_mantle_compile_time_conversion_generator mantle_compile_time_conversion_generator = { compile_time_conversion_header.c_str(), compile_time_conversion_source.c_str(), ReflectedTypesData };
+			mantle_compile_time_conversion_generator.run();
+			mantle_compile_time_conversion_generator.write_output();
+		},
+			[=]
 		{
-			if (compile_time_gui_header && compile_time_gui_source)
-			{
-				c_mantle_compile_time_gui_generator mantle_compile_time_gui_generator = { compile_time_gui_header, compile_time_gui_source, ReflectedTypesData };
-				mantle_compile_time_gui_generator.run();
-				mantle_compile_time_gui_generator.write_output();
-			}
+			c_mantle_compile_time_gui_generator mantle_compile_time_gui_generator = { compile_time_gui_header.c_str(), compile_time_gui_source.c_str(), ReflectedTypesData };
+			mantle_compile_time_gui_generator.run();
+			mantle_compile_time_gui_generator.write_output();
+		},
+			[=]
+		{
+			c_mantle_virtual_tag_interface_generator mantle_virtual_tag_interface_generator = { virtual_tag_interface_header.c_str(), virtual_tag_interface_source.c_str(), ReflectedTypesData };
+			mantle_virtual_tag_interface_generator.run();
+			mantle_virtual_tag_interface_generator.write_output();
 		});
 
 	for (c_reflection_type_container* pType : ReflectedTypesData)

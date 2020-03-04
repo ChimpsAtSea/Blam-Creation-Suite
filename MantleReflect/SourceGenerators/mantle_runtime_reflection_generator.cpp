@@ -73,6 +73,11 @@ void c_mantle_runtime_reflection_generator::write_reflection_type_entry(std::str
 		return;
 	}
 
+	if (!reflection_type_container.raw_tag_group.empty())
+	{
+		stringstream << "c_tag_interface* v_" << reflection_type_container.type_name.substr(2) << "_ctor(c_cache_file&, uint16_t);" << std::endl;
+	}
+
 	stringstream << "template<>" << std::endl;
 	stringstream << "const ReflectionType& runtime_reflection<" << reflection_type_container.qualified_type_name << ">()" << std::endl;
 	
@@ -86,6 +91,15 @@ void c_mantle_runtime_reflection_generator::write_reflection_type_entry(std::str
 	stringstream << std::nouppercase;
 	stringstream << "\t\t" << std::dec << reflection_type_container.fields.size() << "ui32," << std::endl;
 	stringstream << "\t\t" << "render_type_gui<" << reflection_type_container.qualified_type_name << ">," << std::endl;
+
+	if (!reflection_type_container.raw_tag_group.empty())
+	{
+		stringstream << "\t\t" << "v_" << reflection_type_container.type_name.substr(2) << "_ctor," << std::endl;
+	}
+	else
+	{
+		stringstream << "\t\t" << "nullptr," << std::endl;
+	}
 	stringstream << "\t\t" << "{" << std::endl;
 	for (const c_reflection_field_container* reflection_field_container_ptr : reflection_type_container.fields)
 	{
@@ -94,7 +108,7 @@ void c_mantle_runtime_reflection_generator::write_reflection_type_entry(std::str
 		assert(reflection_field_container.field_type != nullptr);
 		const c_reflection_type_container& reflection_type_container = *reflection_field_container.field_type;
 
-		const char* primitive_type_string = reflection_type_container.is_primitive ? reflection_field_container.field_type->qualified_type_name.c_str() : "NonPrimitive";
+		const char* primitive_type_string = reflection_type_container.is_primitive ? reflection_field_container.field_type->type_name.c_str() : "NonPrimitive";
 		const char* reflection_type_category_string = ReflectionTypeCategoryToString(reflection_field_container.reflection_type_category);
 
 		stringstream << "\t\t\t{ \"" << reflection_field_container.field_name << "\", \"" << reflection_field_container.field_nice_name << "\", ";

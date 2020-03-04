@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 #pragma pack(push, 1)
 
 enum class ReflectionTypeCategory : unsigned __int8
@@ -230,6 +232,11 @@ struct ReflectionField
 
 using render_type_gui_func = void(void*);
 
+class c_tag_interface;
+class c_cache_file;
+
+using virtual_tag_constructor_func = c_tag_interface*(c_cache_file&, uint16_t);
+
 #pragma warning( push )
 #pragma warning( disable : 4200 ) // allow using non standard language features without warning
 struct ReflectionType
@@ -239,6 +246,7 @@ struct ReflectionType
 	unsigned __int32 m_size;
 	unsigned __int32 m_count;
 	render_type_gui_func* render_type_gui;
+	c_tag_interface* (*virtual_tag_constructor)(c_cache_file&, uint16_t);
 	ReflectionField m_members[]; // #NOTE: non standard language feature
 };
 #pragma warning( pop )
