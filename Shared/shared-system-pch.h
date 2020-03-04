@@ -95,6 +95,8 @@ using namespace tbb;
 #include <unordered_set>
 #include <unordered_map>
 #include <regex>
+#include <mutex> // #TODO: replace
+#include <condition_variable>
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #else

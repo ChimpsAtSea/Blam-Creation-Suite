@@ -50,6 +50,9 @@
     <ClInclude Include="Blam\scenario_type.h" />
     <ClInclude Include="Blam\skull.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="ThreadPrimitives\atomic_temp_value.h" />
+    <ClInclude Include="ThreadPrimitives\semaphore.h" />
+    <ClInclude Include="ThreadPrimitives\atomic_flip_value.h" />
     <ClInclude Include="DebugLogging.h" />
     <ClInclude Include="FatalError.h" />
     <ClInclude Include="FileSystemUtilities.h" />
@@ -73,11 +76,15 @@
     <ClInclude Include="shared-tbb-pch.h" />
     <ClInclude Include="command_line.h" />
     <ClInclude Include="StringUtilities.h" />
+    <ClInclude Include="ThreadPrimitives\ThreadPrimitives.h" />
     <ClInclude Include="ThreadSafeQueue.h" />
+    <ClInclude Include="ThreadPrimitives\thread_subroutine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="command_line.cpp" />
     <ClCompile Include="console.cpp" />
+    <ClCompile Include="ThreadPrimitives\semaphore.cpp" />
+    <ClCompile Include="ThreadPrimitives\atomic_flip_value.cpp" />
     <ClCompile Include="FatalError.cpp" />
     <ClCompile Include="FileSystemUtilities.cpp" />
     <ClCompile Include="ImGuiAddons\ImGuiFileBrowser.cpp">
@@ -107,6 +114,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StringUtilities.cpp" />
+    <ClCompile Include="ThreadPrimitives\thread_subroutine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="!Resources\Resource.rc" />

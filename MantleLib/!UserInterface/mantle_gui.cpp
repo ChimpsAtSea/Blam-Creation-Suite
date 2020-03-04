@@ -193,10 +193,10 @@ void c_mantle_gui::start_shader_tool()
 {
 	if (!enable_shader_tool) return;
 
-	c_mantle_halo_shader_generator_gui_tab* mantle_halo_shader_generator_gui_tab = nullptr;
+	c_mantle_shader_tool_gui_tab* mantle_halo_shader_generator_gui_tab = nullptr;
 	for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
 	{
-		mantle_halo_shader_generator_gui_tab = dynamic_cast<c_mantle_halo_shader_generator_gui_tab*>(mantle_gui_tab);
+		mantle_halo_shader_generator_gui_tab = dynamic_cast<c_mantle_shader_tool_gui_tab*>(mantle_gui_tab);
 
 		if (mantle_halo_shader_generator_gui_tab)
 		{
@@ -206,7 +206,7 @@ void c_mantle_gui::start_shader_tool()
 
 	if (mantle_halo_shader_generator_gui_tab == nullptr)
 	{
-		mantle_halo_shader_generator_gui_tab = new c_mantle_halo_shader_generator_gui_tab("Shader Tool", "Shader Tool");
+		mantle_halo_shader_generator_gui_tab = new c_mantle_shader_tool_gui_tab("Shader Tool", "Shader Tool");
 
 		add_tab(*mantle_halo_shader_generator_gui_tab);
 	}
