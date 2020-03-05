@@ -4,11 +4,11 @@ template<typename T>
 class reference_symbol
 {
 public:
-	reference_symbol(const char* pReferenceName, OffsetFunction offsetFunction)
+	reference_symbol(const char* pReferenceName, reference_symbol_offset_function offset_function)
 		:m_offset(0)
 	{
 		// pointer to this allocation is stored internally in tree structure
-		new c_global_reference(pReferenceName, offsetFunction);
+		new c_global_reference(pReferenceName, offset_function);
 	}
 	reference_symbol(const char* pReferenceName, e_engine_type engine_type, e_build build, intptr_t offset)
 		:m_offset(offset)

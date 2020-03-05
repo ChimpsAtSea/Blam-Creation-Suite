@@ -3,13 +3,13 @@
 c_global_reference* c_global_reference::s_pFirstc_global_reference = nullptr;
 c_global_reference* c_global_reference::s_pLastc_global_reference = nullptr;
 
-c_global_reference::c_global_reference(const char* pReferenceName, OffsetFunction offsetFunction)
+c_global_reference::c_global_reference(const char* pReferenceName, reference_symbol_offset_function* offset_function)
 	: m_pNextc_global_reference(nullptr)
 	, m_engine(_engine_type_not_set)
 	, m_build(e_build::_build_not_set)
 	, m_offset(0)
 	, m_pReferenceName(pReferenceName)
-	, m_pOffsetFunction(offsetFunction)
+	, m_pOffsetFunction(offset_function)
 {
 	init();
 }
@@ -80,7 +80,7 @@ c_global_reference* c_global_reference::initNode(e_engine_type engine_type, e_bu
 			intptr_t targetOffset = m_offset;
 			if (m_pOffsetFunction)
 			{
-				targetOffset = m_pOffsetFunction(build);
+				targetOffset = m_pOffsetFunction(engine_type, build);
 			}
 			if (targetOffset == ~uintptr_t())
 			{
@@ -159,7 +159,7 @@ c_global_reference* c_global_reference::deinitNode(e_engine_type engine_type, e_
 			intptr_t targetOffset = m_offset;
 			if (m_pOffsetFunction)
 			{
-				targetOffset = m_pOffsetFunction(build);
+				targetOffset = m_pOffsetFunction(engine_type, build);
 			}
 			ASSERT(targetOffset != ~uintptr_t());
 

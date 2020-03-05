@@ -70,7 +70,7 @@ void render_primitive_gui(void* field_data, const c_reflection_field& reflection
 	ImGui::SetColumnWidth(1, 400);
 	ImGui::NextColumn(); // padding
 
-	ImGui::Text(reflection_field.name);
+	ImGui::Text(reflection_field.nice_name);
 	ImGui::NextColumn();
 	ImGui::SetColumnWidth(2, 500);
 

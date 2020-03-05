@@ -1,9 +1,12 @@
 #pragma once
+
+typedef uintptr_t(reference_symbol_offset_function)(e_engine_type engine_type, e_build build);
+
 class c_global_reference
 {
 public:
 	
-	c_global_reference(const char* pReferenceName, OffsetFunction offsetFunction);
+	c_global_reference(const char* pReferenceName, reference_symbol_offset_function* offset_function);
 	c_global_reference(const char* pReferenceName, e_engine_type engine_type, e_build build, intptr_t offset);
 
 	static void init_global_reference_tree(e_engine_type engine_type, e_build build);
@@ -19,7 +22,7 @@ private:
 	e_build m_build;
 	intptr_t m_offset;
 	intptr_t m_originalValue;
-	OffsetFunction* m_pOffsetFunction;
+	reference_symbol_offset_function* m_pOffsetFunction;
 	const char* m_pReferenceName;
 
 	static c_global_reference* s_pFirstc_global_reference;
