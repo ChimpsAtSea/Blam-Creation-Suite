@@ -366,3 +366,4 @@ MantleLib/Tags/GeneratedGUI.h
 *Mustard.exe
 MantleLib/Tags/VirtualTagInterfaces.cpp
 MantleLib/Tags/VirtualTagInterfaces.h
+MantleLib/Tags/TagGroups.h
