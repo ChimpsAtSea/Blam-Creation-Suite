@@ -20,11 +20,11 @@ struct BoxPrimitiveData
 	//float m_minZ = 0.0f;
 };
 
-class BoxPrimitive : public BoxPrimitiveData
+class c_box_primitive : public BoxPrimitiveData
 {
 public:
-	BoxPrimitive();
-	BoxPrimitive(
+	c_box_primitive();
+	c_box_primitive(
 		float positionX,
 		float positionY,
 		float positionZ,
@@ -36,9 +36,9 @@ public:
 		float colorB,
 		float colorA
 	);
-	~BoxPrimitive();
+	~c_box_primitive();
 
-	inline void SetColor(
+	inline void set_color(
 		float colorR,
 		float colorG,
 		float colorB,
@@ -52,9 +52,9 @@ public:
 	}
 
 
-	inline void UpdateAsCenteredBox(float positionX, float positionY, float positionZ)
+	inline void update_as_centered_box(float positionX, float positionY, float positionZ)
 	{
-		UpdateAsCenteredBox(
+		update_as_centered_box(
 			positionX,
 			positionY,
 			positionZ,
@@ -82,7 +82,7 @@ public:
 		//m_minZ = minZ;
 	}
 
-	inline void UpdateAsCornerAndExtentBox(float positionX, float positionY, float positionZ, float dimensionsX, float dimensionsY, float dimensionsZ)
+	inline void update_as_corner_and_extent_box(float positionX, float positionY, float positionZ, float dimensionsX, float dimensionsY, float dimensionsZ)
 	{
 		m_positionX = positionX + dimensionsX * 0.5f;
 		m_positionY = positionY + dimensionsY * 0.5f;
@@ -99,7 +99,7 @@ public:
 		//m_maxZ = positionZ + dimensionsZ;
 	}
 
-	inline void UpdateAsCenteredBox(float positionX, float positionY, float positionZ, float dimensionsX, float dimensionsY, float dimensionsZ)
+	inline void update_as_centered_box(float positionX, float positionY, float positionZ, float dimensionsX, float dimensionsY, float dimensionsZ)
 	{
 		m_positionX = positionX;
 		m_positionY = positionY;

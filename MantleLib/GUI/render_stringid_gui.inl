@@ -1,26 +1,26 @@
 
 
-void render_stringid_gui(string_id* field_data, const ReflectionField& reflection_field)
+void render_stringid_gui(string_id* field_data, const c_reflection_field& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
-	if (!unknownItemsVisible && reflection_field.m_isHiddenByDefault) return; // skip hidden fields
+	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	ImGui::PushID(field_data);
 
 	DEBUG_ASSERT(field_data != nullptr);
-	DEBUG_ASSERT(current_mantle_tag_tab != nullptr);
+	DEBUG_ASSERT(c_mantle_tag_gui_tab::g_current_mantle_tag_tab != nullptr);
 
 	string_id& field_string_id = *reinterpret_cast<string_id*>(field_data);
 
 	class StringIDDynamicData
 	{
 	public:
-		StringIDDynamicData(string_id& rStringID, c_cache_file& rCacheFile)
+		StringIDDynamicData(string_id& rStringID, c_cache_file& cache_file)
 			: szBuffer()
 			, isValid(0)
 			, bufferLength(0)
 			, pStringID(&rStringID)
 		{
-			const char* pStringID = rCacheFile.GetStringIDStr(rStringID.stringid);
+			const char* pStringID = cache_file.string_id_to_cstr(rStringID.stringid);
 			if (pStringID)
 			{
 				strncpy_s(szBuffer, pStringID, strlen(pStringID));
@@ -42,18 +42,18 @@ void render_stringid_gui(string_id* field_data, const ReflectionField& reflectio
 
 	static_assert(sizeof(StringIDDynamicData) <= sizeof(c_mantle_tag_gui_tab::ImGUIDynamicData::second), "StringIDDynamicData is too large");
 	bool wasAllocated;
-	StringIDDynamicData& rDynamicStringIDData = current_mantle_tag_tab->GetDynamicData<StringIDDynamicData>(field_data, wasAllocated);
+	StringIDDynamicData& rDynamicStringIDData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->GetDynamicData<StringIDDynamicData>(field_data, wasAllocated);
 	if (wasAllocated)
 	{
-		new(&rDynamicStringIDData) StringIDDynamicData(field_string_id, current_mantle_tag_tab->get_cache_file());
+		new(&rDynamicStringIDData) StringIDDynamicData(field_string_id, c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_cache_file());
 	}
 
 	ImGui::Columns(3, NULL, false);
-	ImGui::SetColumnOffset(1, recursionPadding);
+	ImGui::SetColumnOffset(1, c_mantle_tag_gui_tab::g_current_recursion_padding);
 	ImGui::SetColumnWidth(1, 400);
 	ImGui::NextColumn(); // padding
 
-	ImGui::Text(reflection_field.m_pMemberNiceName);
+	ImGui::Text(reflection_field.nice_name);
 	ImGui::NextColumn();
 	ImGui::SetColumnWidth(2, 500);
 

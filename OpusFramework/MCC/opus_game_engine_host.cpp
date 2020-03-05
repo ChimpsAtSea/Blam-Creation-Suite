@@ -487,7 +487,7 @@ BOOL __fastcall c_opus_game_engine_host::Function44(__int64, __int64)
 	return 0;
 }
 
-bool __fastcall c_opus_game_engine_host::GetPathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength)
+bool __fastcall c_opus_game_engine_host::get_pathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength)
 {
 	const char* pEngineName = game_runtime.GetEngineName().c_str();
 

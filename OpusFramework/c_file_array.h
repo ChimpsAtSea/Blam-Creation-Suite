@@ -29,8 +29,8 @@ struct c_file_array
 	LPCSTR GetFilePath(LPCSTR pStr);
 	LPCSTR GetFileName(size_t index);
 	LPCSTR GetFileName(LPCSTR pStr);
-	LPCSTR GetName(size_t index);
-	LPCSTR GetName(LPCSTR pStr);
+	LPCSTR get_name(size_t index);
+	LPCSTR get_name(LPCSTR pStr);
 	LPCSTR GetDesc(size_t index);
 	LPCSTR GetDesc(LPCSTR pStr);
 	int GetType(size_t index);

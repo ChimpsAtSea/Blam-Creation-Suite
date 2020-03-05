@@ -34,7 +34,7 @@ Output main(Input input) : SV_Target
 {
 	Output output;
 
-	output.target0.xyz = ___albedo_color;
+	output.target0.xyz = ___albedo_color.xyz;
 	output.target0.w = 0;
 
 	output.target1.xyz = input.texcoord1 * 0.5 + 0.5;

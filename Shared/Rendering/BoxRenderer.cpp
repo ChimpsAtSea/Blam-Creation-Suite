@@ -10,7 +10,7 @@ ID3D11Buffer* BoxRenderer::pSolidIndexBuffer = nullptr;
 ID3D11Buffer* BoxRenderer::pWireframeIndexBuffer = nullptr;
 volatile uint32_t BoxRenderer::nextConstantBufferIndex = 0;
 volatile uint32_t BoxRenderer::nextBoxIndex = 0;
-ID3D11Buffer* BoxRenderer::ppInstanceConstantsBuffers[PrimitiveRenderManager::kNumConstantsBuffers] = {};
+ID3D11Buffer* BoxRenderer::ppInstanceConstantsBuffers[c_primitive_render_manager::kNumConstantsBuffers] = {};
 ID3D11Buffer* BoxRenderer::pCurrentInstanceConstantsBuffer = nullptr;
 BoxRenderer::PerObjectConstants* BoxRenderer::pPerObjectConstantsArray = nullptr;
 
@@ -220,7 +220,7 @@ void BoxRenderer::SetupShaders()
 
 void BoxRenderer::SetupConstantBuffers()
 {
-	if (ppInstanceConstantsBuffers[PrimitiveRenderManager::kNumConstantsBuffers - 1] == nullptr)
+	if (ppInstanceConstantsBuffers[c_primitive_render_manager::kNumConstantsBuffers - 1] == nullptr)
 	{
 		D3D11_BUFFER_DESC bufferDesc = {};
 		bufferDesc.Usage = D3D11_USAGE_DYNAMIC;
@@ -230,7 +230,7 @@ void BoxRenderer::SetupConstantBuffers()
 		bufferDesc.MiscFlags = 0;
 		bufferDesc.StructureByteStride = 0;
 
-		for (uint32_t i = 0; i < PrimitiveRenderManager::kNumConstantsBuffers; i++)
+		for (uint32_t i = 0; i < c_primitive_render_manager::kNumConstantsBuffers; i++)
 		{
 			ID3D11Buffer*& pConstantsBuffer = ppInstanceConstantsBuffers[i];
 
@@ -243,7 +243,7 @@ void BoxRenderer::SetupConstantBuffers()
 
 void BoxRenderer::GetNextConstantsBuffer()
 {
-	uint32_t currentConstantBufferIndex = (InterlockedIncrement(&nextConstantBufferIndex) - 1) % PrimitiveRenderManager::kNumConstantsBuffers;
+	uint32_t currentConstantBufferIndex = (InterlockedIncrement(&nextConstantBufferIndex) - 1) % c_primitive_render_manager::kNumConstantsBuffers;
 	pCurrentInstanceConstantsBuffer = ppInstanceConstantsBuffers[currentConstantBufferIndex];
 	ASSERT(pCurrentInstanceConstantsBuffer != nullptr);
 }
@@ -328,8 +328,8 @@ void BoxRenderer::RenderBoxGeometry()
 		//const uint32_t maxInstancesPow2 = 1u << ilogb(maxInstances);
 		const uint32_t maxInstancesPow2 = 16;
 
-		c_render::s_pDeviceContext->VSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
-		c_render::s_pDeviceContext->PSSetConstantBuffers(0, 1, &PrimitiveRenderManager::GetConstantsBuffer());
+		c_render::s_pDeviceContext->VSSetConstantBuffers(0, 1, &c_primitive_render_manager::GetConstantsBuffer());
+		c_render::s_pDeviceContext->PSSetConstantBuffers(0, 1, &c_primitive_render_manager::GetConstantsBuffer());
 
 		const uint32_t numBoxes = __min(kMaxBoxesPerFrame, nextBoxIndex);
 		for (uint32_t i = 0; i < numBoxes;)

@@ -164,9 +164,9 @@ void c_mantle_shader_tool_gui_tab::render_source_code_editor_configuration_heade
 		{
 			v_tag_interface<s_render_method_definition_definition>* render_method_definition = dynamic_cast<decltype(render_method_definition)>(selected_render_method_definition_tag_interface);
 
-			for (s_render_method_definition_definition::s_unknown_0_block_definition& unknown_0_block : render_method_definition->__unknown_0_block)
+			for (s_render_method_definition_definition::s_option_definition& option : render_method_definition->options)
 			{
-				const char* shader_option = render_method_definition->GetCacheFile().GetStringIDStr(unknown_0_block.__unknown);
+				const char* shader_option = render_method_definition->GetCacheFile().string_id_to_cstr(option.__unknown);
 
 				write_line_verbose("shader_option: %s", shader_option);
 			}
@@ -253,22 +253,22 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 
 		if (selected_cache_file_tab)
 		{
-			c_tag_group_interface* tag_group_interface = selected_cache_file_tab->get_cache_file()->GetGroupInterfaceByGroupID(_tag_group_render_method_definition);
+			c_tag_group_interface* tag_group_interface = selected_cache_file_tab->get_cache_file()->get_group_interface_by_group_id(_tag_group_render_method_definition);
 			c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
 			DEBUG_ASSERT(render_method_definition_interface == tag_group_interface);
-			const std::vector<c_tag_interface*>& tag_interfaces = render_method_definition_interface->GetTagInterfaces();
+			const std::vector<c_tag_interface*>& tag_interfaces = render_method_definition_interface->get_tag_interfaces();
 
-			const char* selected_render_method_definition_tag_interface_text = selected_render_method_definition_tag_interface ? selected_render_method_definition_tag_interface->GetNameCStr() : "(select render method definition)";
+			const char* selected_render_method_definition_tag_interface_text = selected_render_method_definition_tag_interface ? selected_render_method_definition_tag_interface->get_name_cstr() : "(select render method definition)";
 			if (render_method_definition_interface)
 			{
 				if (ImGui::BeginCombo("Definition", selected_render_method_definition_tag_interface_text))
 				{
 					for (c_tag_interface* render_method_definition_tag_interface : tag_interfaces)
 					{
-						DEBUG_ASSERT(render_method_definition_tag_interface->GetGroupInterface() == render_method_definition_interface);
+						DEBUG_ASSERT(render_method_definition_tag_interface->get_group_interface() == render_method_definition_interface);
 						DEBUG_ASSERT(render_method_definition_interface->GetGroupMagic() == _tag_group_render_method_definition);
 
-						if (ImGui::Selectable(render_method_definition_tag_interface->GetNameCStr(), selected_render_method_definition_tag_interface == render_method_definition_tag_interface))
+						if (ImGui::Selectable(render_method_definition_tag_interface->get_name_cstr(), selected_render_method_definition_tag_interface == render_method_definition_tag_interface))
 						{
 							selected_render_method_definition_tag_interface = render_method_definition_tag_interface;
 							selected_render_method_template_tag_interface = nullptr;
@@ -299,7 +299,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 			if (ImGui::Button("Goto", ImVec2(k_goto_button_width, 0)))
 			{
 				c_mantle_gui::set_active_tab(selected_cache_file_tab);
-				selected_cache_file_tab->openTagTab(*selected_render_method_definition_tag_interface);
+				selected_cache_file_tab->open_tag_interface_tab(*selected_render_method_definition_tag_interface);
 			}
 		}
 		else
@@ -314,21 +314,21 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 		{
 			// #TODO: This could do with some optimization by adding a subclass to c_tag_interface to store all of this information computed upfront
 
-			c_tag_group_interface* tag_group_interface = selected_cache_file_tab->get_cache_file()->GetGroupInterfaceByGroupID(_tag_group_render_method_definition);
+			c_tag_group_interface* tag_group_interface = selected_cache_file_tab->get_cache_file()->get_group_interface_by_group_id(_tag_group_render_method_definition);
 			c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
 
 
 			DEBUG_ASSERT(render_method_definition_interface->shader_definition_and_rmt2.find(selected_render_method_definition_tag_interface) != render_method_definition_interface->shader_definition_and_rmt2.end());
 			std::vector<c_tag_interface*>& render_method_template_tags = render_method_definition_interface->shader_definition_and_rmt2[selected_render_method_definition_tag_interface];
 
-			const char* selected_render_method_template_tag_interface_text = selected_render_method_template_tag_interface ? selected_render_method_template_tag_interface->GetNameCStr() : "(select render method template)";
+			const char* selected_render_method_template_tag_interface_text = selected_render_method_template_tag_interface ? selected_render_method_template_tag_interface->get_name_cstr() : "(select render method template)";
 			if (ImGui::BeginCombo("Template", selected_render_method_template_tag_interface_text))
 			{
 				for (c_tag_interface* render_method_template_tag_interface : render_method_template_tags)
 				{
-					DEBUG_ASSERT(render_method_template_tag_interface->GetGroupInterface()->GetGroupMagic() == _tag_group_render_method_template);
+					DEBUG_ASSERT(render_method_template_tag_interface->get_group_interface()->GetGroupMagic() == _tag_group_render_method_template);
 
-					if (ImGui::Selectable(render_method_template_tag_interface->GetNameCStr(), selected_render_method_template_tag_interface == render_method_template_tag_interface))
+					if (ImGui::Selectable(render_method_template_tag_interface->get_name_cstr(), selected_render_method_template_tag_interface == render_method_template_tag_interface))
 					{
 						selected_render_method_template_tag_interface = render_method_template_tag_interface;
 						disassemble_runtime();
@@ -355,7 +355,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 			if (ImGui::Button("Goto", ImVec2(k_goto_button_width, 0)))
 			{
 				c_mantle_gui::set_active_tab(selected_cache_file_tab);
-				selected_cache_file_tab->openTagTab(*selected_render_method_template_tag_interface);
+				selected_cache_file_tab->open_tag_interface_tab(*selected_render_method_template_tag_interface);
 			}
 		}
 		else
@@ -401,12 +401,12 @@ void c_mantle_shader_tool_gui_tab::render_text_editor_status_bar_gui()
 		selected_language_name, selected_file_path);
 }
 
-void c_mantle_shader_tool_gui_tab::render_tab_contents_gui(bool setSelected)
+void c_mantle_shader_tool_gui_tab::render_tab_contents_gui(bool set_selected)
 {
 	ImGui::PushID(this);
 	ImGuiTabItemFlags tabFlags = 0;
-	if (setSelected) tabFlags |= ImGuiTabItemFlags_SetSelected;
-	if (ImGui::BeginTabItem(get_title(), &m_isOpen, tabFlags))
+	if (set_selected) tabFlags |= ImGuiTabItemFlags_SetSelected;
+	if (ImGui::BeginTabItem(get_title(), &is_open, tabFlags))
 	{
 		ImGui::Columns(3);
 		render_source_code_editor_configuration_header_column_gui(); // column 0
@@ -569,10 +569,11 @@ void c_mantle_shader_tool_gui_tab::disassemble_runtime_subroutine() const
 	{
 		c_cache_file& cache_file = *selected_cache_file_tab->get_cache_file();
 
-		s_render_method_template_definition* render_method_template = selected_render_method_template_tag_interface->GetData<s_render_method_template_definition>();
-		c_tag_interface* pixel_shader_tag_interface = cache_file.GetTagInterface(render_method_template->pixel_shader_reference.index);
-		s_pixel_shader_definition* pixel_shader = pixel_shader_tag_interface->GetData<s_pixel_shader_definition>();
+		s_render_method_template_definition* render_method_template = selected_render_method_template_tag_interface->get_data<s_render_method_template_definition>();
+		c_tag_interface* pixel_shader_tag_interface = cache_file.get_tag_interface(render_method_template->pixel_shader_reference.index);
+		s_pixel_shader_definition* pixel_shader = pixel_shader_tag_interface->get_data<s_pixel_shader_definition>();
 
+		// #TODO: Remove GetTagBlockData and replace with virtual tag interface/virtual tab block data access
 		s_pixel_shader_definition::s_pixel_shader2_block_definition* pixel_shader2_block = cache_file.GetTagBlockData(pixel_shader->pixel_shaders_block) + 0;
 
 		std::string disassemble_shader_result;

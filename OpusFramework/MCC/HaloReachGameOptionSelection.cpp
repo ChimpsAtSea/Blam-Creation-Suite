@@ -484,7 +484,7 @@ void HaloReachGameOptionSelection::SelectGameVariant()
 		return;
 	}
 
-	if (ImGui::BeginCombo("###GAME VARIANT", fileArray.GetName(pLast)))
+	if (ImGui::BeginCombo("###GAME VARIANT", fileArray.get_name(pLast)))
 	{
 		for (size_t i = 0; i < fileArray.Count; i++)
 		{
@@ -497,7 +497,7 @@ void HaloReachGameOptionSelection::SelectGameVariant()
 			{
 				bool selected = fileArray.GetFileName(i) == fileArray.GetFileName(pLast);
 
-				std::string pSelectedGameVariantName = std::string(fileArray.GetName(i)).append(" (").append(fileArray.GetFileName(i)).append(")###").append(std::to_string(i));
+				std::string pSelectedGameVariantName = std::string(fileArray.get_name(i)).append(" (").append(fileArray.GetFileName(i)).append(")###").append(std::to_string(i));
 				if (ImGui::Selectable(pSelectedGameVariantName.c_str(), &selected))
 				{
 					pLast = fileArray.GetFileName(i);
@@ -531,7 +531,7 @@ void HaloReachGameOptionSelection::SelectMapVariant()
 
 	const MapInfo* pSelectedMapInfo = GetSelectedMapInfoByGameMode(s_currentGameMode);
 
-	LPCSTR lastMapName = fileArray.GetName(pLast);
+	LPCSTR lastMapName = fileArray.get_name(pLast);
 	if (!lastMapName || pLast[0] == 0)
 	{
 		pLast = "";
@@ -553,7 +553,7 @@ void HaloReachGameOptionSelection::SelectMapVariant()
 			{
 				bool selected = fileArray.GetFileName(i) == fileArray.GetFileName(pLast);
 
-				std::string pSelectedMapVariantName = std::string(fileArray.GetName(i)).append(" (").append(fileArray.GetFileName(i)).append(")###").append(std::to_string(i));
+				std::string pSelectedMapVariantName = std::string(fileArray.get_name(i)).append(" (").append(fileArray.GetFileName(i)).append(")###").append(std::to_string(i));
 				if (ImGui::Selectable(pSelectedMapVariantName.c_str(), &selected) && !defaultSelected)
 				{
 					pLast = fileArray.GetFileName(i);
@@ -593,9 +593,9 @@ void HaloReachGameOptionSelection::SelectSavedFilm()
 	{
 		for (size_t i = 0; i < fileArray.Count; i++)
 		{
-			if (fileArray.GetName(i))
+			if (fileArray.get_name(i))
 			{
-				bool selected = fileArray.GetName(i) == fileArray.GetName(pLast);
+				bool selected = fileArray.get_name(i) == fileArray.get_name(pLast);
 
 				std::string pSelectedSavedFilmName = std::string(fileArray.GetDesc(i)).append(" (").append(fileArray.GetFileName(i)).append(")###").append(std::to_string(i));
 				if (ImGui::Selectable(fileArray.GetDesc(i), &selected))
@@ -603,7 +603,7 @@ void HaloReachGameOptionSelection::SelectSavedFilm()
 					pLast = fileArray.GetFileName(i);
 				}
 
-				RenderHoveredTooltip(fileArray.GetName(i));
+				RenderHoveredTooltip(fileArray.get_name(i));
 			}
 		}
 

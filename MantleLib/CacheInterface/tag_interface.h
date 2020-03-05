@@ -1,6 +1,8 @@
 #pragma once
+
 class c_mantle_cache_file_gui_tab;
 class c_tag_group_interface;
+
 class c_tag_interface
 {
 public:
@@ -8,68 +10,62 @@ public:
 	friend class c_mantle_cache_file_gui_tab;
 	friend class c_tag_group_interface;
 
-	c_tag_interface(c_cache_file& rCacheFile, uint16_t tagIndex);
+	c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex);
 	virtual ~c_tag_interface();
 
 	inline bool IsNull() const { return m_isNull; }
-	inline c_cache_file& GetCacheFile() const { return m_rCacheFile; };
-	inline char* GetData() { return m_pTagData; };
-	inline char* GetData(size_t relative_offset) { return m_pTagData + relative_offset; };
+	inline c_cache_file& GetCacheFile() const { return cache_file; };
+	inline char* get_data() { return tag_data; };
+	inline char* get_data(size_t relative_offset) { return tag_data + relative_offset; };
 
 	template<typename T>
-	inline T* GetData() { return reinterpret_cast<T*>(m_pTagData); }; // #TODO: check if this type is alright
+	inline T* get_data() { return reinterpret_cast<T*>(tag_data); }; // #TODO: check if this type is alright
 	template<typename T>
-	inline T* GetData(size_t relative_offset) { return reinterpret_cast<T*>(m_pTagData + relative_offset); }; // #TODO: check if this type is alright
-	inline uint16_t GetIndex() { return m_tagIndex; };
-	inline uint16_t GetGroupIndex() { return m_groupIndex; };
-	inline const char* GetPathCStr() const { return m_pTagPath.c_str(); }; // eg. globals/globals
-	inline const char* GetPathWithGroupIDCStr() const { return m_pTagPathWithGroupID.c_str(); }; // eg. globals/globals.matg
-	inline const char* GetPathWithGroupNameCStr() const { return m_pTagPathWithGroupName.c_str(); }; // eg. globals/globals.globals
-	inline const char* GetNameCStr() const { return m_pTagName.c_str(); }; // eg. globals
-	inline const char* GetNameWithGroupIDCStr() const { return m_pTagNameWithGroupID.c_str(); }; // eg. globals.matg
-	inline const char* GetNameWithGroupNameCStr() const { return m_pTagNameWithGroupName.c_str(); }; // eg. globals.globals
-	inline const char* GetGroupShortNameCStr() const { return m_pTagGroupShortName.c_str(); };
-	inline const char* GetGroupFullNameCStr() const { return m_pTagGroupFullName.c_str(); };
-	inline const std::string& GetPath() const { return m_pTagPath; }; // eg. globals/globals
-	inline const std::string& GetPathWithGroupID() const { return m_pTagPathWithGroupID; }; // eg. globals/globals.matg
-	inline const std::string& GetPathWithGroupName() const { return m_pTagPathWithGroupName; }; // eg. globals/globals.globals
-	inline const std::string& GetName() const { return m_pTagName; }; // eg. globals
-	inline const std::string& GetNameWithGroupID() const { return m_pTagNameWithGroupID; }; // eg. globals.matg
-	inline const std::string& GetNameWithGroupName() const { return m_pTagNameWithGroupName; }; // eg. globals.globals
-	inline const std::string& GetGroupShortName() const { return m_pTagGroupShortName; };
-	inline const std::string& GetGroupFullName() const { return m_pTagGroupFullName; };
-	inline const ReflectionType* GetReflectionData() const { return m_pReflectionData; };
-	//inline GroupInterface* GetGroupInterface() const { return m_pGroupInterface; };
-
-	c_tag_group_interface* GetGroupInterface() const;
-
-
-
-
-	s_cache_file_tag_instance* GetRawInstance() const { return m_pInstance; };
-	s_cache_file_tag_group* GetRawGroup() const { return m_pGroup; };
+	inline T* get_data(size_t relative_offset) { return reinterpret_cast<T*>(tag_data + relative_offset); }; // #TODO: check if this type is alright
+	inline uint16_t get_index() { return tag_index; };
+	inline uint16_t get_group_index() { return group_index; };
+	inline const char* get_path_cstr() const { return tag_path.c_str(); }; // eg. globals/globals
+	inline const char* get_path_with_group_id_cstr() const { return tag_path_with_group_id.c_str(); }; // eg. globals/globals.matg
+	inline const char* get_path_with_group_name_cstr() const { return tag_path_with_group_name.c_str(); }; // eg. globals/globals.globals
+	inline const char* get_name_cstr() const { return tag_name.c_str(); }; // eg. globals
+	inline const char* get_name_with_group_id_cstr() const { return tag_name_with_group_id.c_str(); }; // eg. globals.matg
+	inline const char* get_name_with_group_name_cstr() const { return tag_name_with_group_name.c_str(); }; // eg. globals.globals
+	inline const char* get_group_short_name_cstr() const { return tag_group_short_name.c_str(); };
+	inline const char* get_group_full_name_cstr() const { return tag_group_full_name.c_str(); };
+	inline const std::string& get_path() const { return tag_path; }; // eg. globals/globals
+	inline const std::string& get_path_with_group_id() const { return tag_path_with_group_id; }; // eg. globals/globals.matg
+	inline const std::string& get_path_with_group_name() const { return tag_path_with_group_name; }; // eg. globals/globals.globals
+	inline const std::string& get_name() const { return tag_name; }; // eg. globals
+	inline const std::string& get_name_with_group_id() const { return tag_name_with_group_id; }; // eg. globals.matg
+	inline const std::string& get_name_with_group_name() const { return tag_name_with_group_name; }; // eg. globals.globals
+	inline const std::string& get_group_short_name() const { return tag_group_short_name; };
+	inline const std::string& get_group_full_name() const { return tag_group_full_name; };
+	inline const s_reflection_type* get_reflection_data() const { return reflection_type; };
+	//inline c_tag_group_interface* get_group_interface() const { return group_interface; }; // #TODO: Use this version and guarantee valid value for cache_file_tag_group_interface
+	c_tag_group_interface* get_group_interface() const; // { return cache_file.get_group_interfaces(true)[group_index]; } 
+	s_cache_file_tag_instance* get_raw_instance() const { return cache_file_tag_instance; };
+	s_cache_file_tag_group* get_raw_group() const { return cache_file_tag_group; };
 
 private:
 	bool m_isNull;
-	char* m_pTagData;
-	uint16_t m_groupIndex;
-	uint16_t m_tagIndex;
-	s_cache_file_tag_instance* m_pInstance;
-	s_cache_file_tag_group* m_pGroup;
-	std::string m_pTagGroupShortName;
-	std::string m_pTagGroupFullName;
-	std::string m_pTagPath;
-	std::string m_pTagPathWithGroupID;
-	std::string m_pTagPathWithGroupName;
-	std::string m_pTagName;
-	std::string m_pTagNameWithGroupID;
-	std::string m_pTagNameWithGroupName;
-	const ReflectionType* m_pReflectionData;
-	c_cache_file& m_rCacheFile;
-	c_tag_group_interface* m_pGroupInterface;
+	char* tag_data;
+	uint16_t group_index;
+	uint16_t tag_index;
+	s_cache_file_tag_instance* cache_file_tag_instance;
+	s_cache_file_tag_group* cache_file_tag_group;
+	std::string tag_group_short_name;
+	std::string tag_group_full_name;
+	std::string tag_path;
+	std::string tag_path_with_group_id;
+	std::string tag_path_with_group_name;
+	std::string tag_name;
+	std::string tag_name_with_group_id;
+	std::string tag_name_with_group_name;
+	const s_reflection_type* reflection_type;
+	c_cache_file& cache_file;
+	c_tag_group_interface* group_interface;
 
 	// !unsure
-	bool m_matchesSearchCriteria;
-
+	bool search_criteria_result; // #TODO: This is a mantle gui value and doesn't really belong here
 };
 

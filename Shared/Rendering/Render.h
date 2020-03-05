@@ -43,7 +43,7 @@ public:
 		float upY,
 		float upZ
 	);
-	static bool CalculateScreenCoordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY);
+	static bool calculate_screen_coordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY);
 
 
 	static void CreateSwapchain(IDXGISwapChain1*& s_pSwapChain);

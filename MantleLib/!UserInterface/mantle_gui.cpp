@@ -235,7 +235,7 @@ void c_mantle_gui::open_cache_file_from_filepath(const wchar_t* pFilePath)
 void c_mantle_gui::add_tab(c_mantle_gui_tab& rMantleTab)
 {
 	g_mantle_gui_tabs.push_back(&rMantleTab);
-	rMantleTab.AddTabClosedCallback(remove_tab);
+	rMantleTab.add_tab_closed_callback(remove_tab);
 }
 
 void c_mantle_gui::remove_tab(c_mantle_gui_tab& rMantleTab)

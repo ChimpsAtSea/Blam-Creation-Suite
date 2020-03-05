@@ -1,9 +1,9 @@
 #pragma once
 
-class BoxPrimitive;
+class c_box_primitive;
 struct BoxPrimitiveData;
 
-class PrimitiveRenderManager
+class c_primitive_render_manager
 {
 public:
 	struct alignas(256) PerFrameConstants
@@ -19,20 +19,20 @@ public:
 	static ID3D11Buffer* pCurrentFrameConstantsBuffer;
 	static volatile uint32_t nextConstantBufferIndex;
 
-	static BoxPrimitive immediateBoxPrimitive;
+	static c_box_primitive immediateBoxPrimitive;
 
 
-	static std::vector<BoxPrimitive*> s_boxPrimitives;
+	static std::vector<c_box_primitive*> s_boxPrimitives;
 	static std::vector<BoxPrimitiveData> s_immediateBoxPrimitives;
 
 	static void Render();
 	static ID3D11Buffer* const& GetConstantsBuffer();
 
-	static void RegisterBoxPrimitive(BoxPrimitive* pBoxPrimitive);
-	static void UnregisterBoxPrimitive(BoxPrimitive* pBoxPrimitive);
+	static void RegisterBoxPrimitive(c_box_primitive* pBoxPrimitive);
+	static void UnregisterBoxPrimitive(c_box_primitive* pBoxPrimitive);
 
-	static BoxPrimitive& GetImmediateBox();
-	static void RenderImmediateBox();
+	static c_box_primitive& get_immediate_box();
+	static void render_immediate_box();
 
 	inline static DirectX::XMFLOAT3 __vectorcall GetCameraForward() { DirectX::XMFLOAT3 result;  DirectX::XMStoreFloat3(&result, s_vForward); return result; }
 	inline static DirectX::XMFLOAT3 __vectorcall GetCameraUp() { DirectX::XMFLOAT3 result;  DirectX::XMStoreFloat3(&result, s_vUp); return result; }

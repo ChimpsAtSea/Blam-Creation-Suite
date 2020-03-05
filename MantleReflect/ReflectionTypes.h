@@ -4,7 +4,7 @@
 
 #pragma pack(push, 1)
 
-enum class ReflectionTypeCategory : unsigned __int8
+enum class e_reflection_type_category : unsigned __int8
 {
 	Primitive,
 	Structure,
@@ -15,8 +15,8 @@ enum class ReflectionTypeCategory : unsigned __int8
 	StringID,
 };
 
-typedef unsigned __int16 ReflectionTypeIndex;
-enum class PrimitiveType : ReflectionTypeIndex
+typedef unsigned __int16 s_reflection_typeIndex;
+enum class e_primitive_type : s_reflection_typeIndex
 {
 	NonPrimitive,
 	Int8,
@@ -53,43 +53,43 @@ enum class PrimitiveType : ReflectionTypeIndex
 	WideCharacter
 };
 
-inline const char* PrimitiveTypeToString(PrimitiveType primitiveType)
+inline const char* e_primitive_typeToString(e_primitive_type primitiveType)
 {
 	switch (primitiveType)
 	{
-	case PrimitiveType::NonPrimitive:		return "NonPrimitive";
-	case PrimitiveType::Int8:				return "Int8";
-	case PrimitiveType::Int16:				return "Int16";
-	case PrimitiveType::Int32:				return "Int32";
-	case PrimitiveType::Int64:				return "Int64";
-	case PrimitiveType::UInt8:				return "UInt8";
-	case PrimitiveType::UInt16:				return "UInt16";
-	case PrimitiveType::UInt32:				return "UInt32";
-	case PrimitiveType::UInt64:				return "UInt64";
-	case PrimitiveType::Float:				return "Float";
-	case PrimitiveType::Double:				return "Double";
-	case PrimitiveType::Boolean8:			return "Boolean8";
-	case PrimitiveType::Boolean16:			return "Boolean16";
-	case PrimitiveType::Boolean32:			return "Boolean32";
-	case PrimitiveType::Boolean64:			return "Boolean64";
-	case PrimitiveType::Enum8:				return "Enum8";
-	case PrimitiveType::Enum16:				return "Enum16";
-	case PrimitiveType::Enum32:				return "Enum32";
-	case PrimitiveType::Enum64:				return "Enum64";
-	case PrimitiveType::BitField8:			return "BitField8";
-	case PrimitiveType::BitField16:			return "BitField16";
-	case PrimitiveType::BitField32:			return "BitField32";
-	case PrimitiveType::BitField64:			return "BitField64";
-	case PrimitiveType::BitFlag8:			return "BitFlag8";
-	case PrimitiveType::BitFlag16:			return "BitFlag16";
-	case PrimitiveType::BitFlag32:			return "BitFlag32";
-	case PrimitiveType::BitFlag64:			return "BitFlag64";
-	case PrimitiveType::Undefined8:			return "Undefined8";
-	case PrimitiveType::Undefined16:		return "Undefined16";
-	case PrimitiveType::Undefined32:		return "Undefined32";
-	case PrimitiveType::Undefined64:		return "Undefined64";
-	case PrimitiveType::Character:			return "Character";
-	case PrimitiveType::WideCharacter:		return "WideCharacter";
+	case e_primitive_type::NonPrimitive:		return "NonPrimitive";
+	case e_primitive_type::Int8:				return "Int8";
+	case e_primitive_type::Int16:				return "Int16";
+	case e_primitive_type::Int32:				return "Int32";
+	case e_primitive_type::Int64:				return "Int64";
+	case e_primitive_type::UInt8:				return "UInt8";
+	case e_primitive_type::UInt16:				return "UInt16";
+	case e_primitive_type::UInt32:				return "UInt32";
+	case e_primitive_type::UInt64:				return "UInt64";
+	case e_primitive_type::Float:				return "Float";
+	case e_primitive_type::Double:				return "Double";
+	case e_primitive_type::Boolean8:			return "Boolean8";
+	case e_primitive_type::Boolean16:			return "Boolean16";
+	case e_primitive_type::Boolean32:			return "Boolean32";
+	case e_primitive_type::Boolean64:			return "Boolean64";
+	case e_primitive_type::Enum8:				return "Enum8";
+	case e_primitive_type::Enum16:				return "Enum16";
+	case e_primitive_type::Enum32:				return "Enum32";
+	case e_primitive_type::Enum64:				return "Enum64";
+	case e_primitive_type::BitField8:			return "BitField8";
+	case e_primitive_type::BitField16:			return "BitField16";
+	case e_primitive_type::BitField32:			return "BitField32";
+	case e_primitive_type::BitField64:			return "BitField64";
+	case e_primitive_type::BitFlag8:			return "BitFlag8";
+	case e_primitive_type::BitFlag16:			return "BitFlag16";
+	case e_primitive_type::BitFlag32:			return "BitFlag32";
+	case e_primitive_type::BitFlag64:			return "BitFlag64";
+	case e_primitive_type::Undefined8:			return "Undefined8";
+	case e_primitive_type::Undefined16:		return "Undefined16";
+	case e_primitive_type::Undefined32:		return "Undefined32";
+	case e_primitive_type::Undefined64:		return "Undefined64";
+	case e_primitive_type::Character:			return "Character";
+	case e_primitive_type::WideCharacter:		return "WideCharacter";
 	}
 #ifdef FATAL_ERROR
 	FATAL_ERROR(L"Invalid primitive type");
@@ -98,17 +98,17 @@ inline const char* PrimitiveTypeToString(PrimitiveType primitiveType)
 #endif
 }
 
-inline const char* ReflectionTypeCategoryToString(ReflectionTypeCategory reflectionType)
+inline const char* e_reflection_type_categoryToString(e_reflection_type_category reflectionType)
 {
 	switch (reflectionType)
 	{
-	case ReflectionTypeCategory::Primitive:				return "Primitive";
-	case ReflectionTypeCategory::Structure:				return "Structure";
-	case ReflectionTypeCategory::TagReference:			return "TagReference";
-	case ReflectionTypeCategory::TagBlock:				return "TagBlock";
-	case ReflectionTypeCategory::DataReference:			return "DataReference";
-	case ReflectionTypeCategory::ShaderData:			return "ShaderData";
-	case ReflectionTypeCategory::StringID:				return "StringID";
+	case e_reflection_type_category::Primitive:				return "Primitive";
+	case e_reflection_type_category::Structure:				return "Structure";
+	case e_reflection_type_category::TagReference:			return "TagReference";
+	case e_reflection_type_category::TagBlock:				return "TagBlock";
+	case e_reflection_type_category::DataReference:			return "DataReference";
+	case e_reflection_type_category::ShaderData:			return "ShaderData";
+	case e_reflection_type_category::StringID:				return "StringID";
 	}
 #ifdef FATAL_ERROR
 	FATAL_ERROR(L"Invalid reflection type");
@@ -117,117 +117,117 @@ inline const char* ReflectionTypeCategoryToString(ReflectionTypeCategory reflect
 #endif
 }
 
-struct ReflectionTypeInfo
+struct s_reflection_type_info
 {
-	ReflectionTypeCategory m_reflectionTypeCategory;
+	e_reflection_type_category reflection_type_category;
 	union
 	{
-		PrimitiveType m_primitiveTypeIndex;
-		ReflectionTypeIndex m_reflectionTypeIndex;
+		e_primitive_type m_primitiveTypeIndex;
+		s_reflection_typeIndex m_reflectionTypeIndex;
 	};
 	const char* m_pTypeName;
 };
 
-struct ReflectionType;
+struct s_reflection_type;
 
-struct ReflectionStructureInfo : ReflectionTypeInfo
+struct s_reflection_structure_info : s_reflection_type_info
 {
-	const ReflectionType* m_pReflectionTypeInfo;
+	const s_reflection_type* reflection_type;
 };
 
-struct ReflectionTagBlockInfo : ReflectionTypeInfo
+struct s_reflection_tag_block_info : s_reflection_type_info
 {
-	const ReflectionType* m_pReflectionTypeInfo;
+	const s_reflection_type* reflection_type;
 };
 
-struct ReflectionField
+struct c_reflection_field
 {
-	ReflectionField()
+	c_reflection_field()
 	{
-		m_pMemberName = {};
-		m_pMemberNiceName = {};
-		m_typeInfo = {};
-		m_structureInfo = {};
-		m_offset = {};
-		m_size = {};
-		m_arraySize = {};
-		m_isHiddenByDefault = {};
+		name = {};
+		nice_name = {};
+		type_info = {};
+		structure_info = {};
+		offset = {};
+		size = {};
+		array_size = {};
+		is_hidden_by_default = {};
 	}
 
-	ReflectionField(
-		const char* pMemberName,
-		const char* pMemberNiceName,
-		ReflectionTypeInfo typeInfo,
+	c_reflection_field(
+		const char* name,
+		const char* nice_name,
+		s_reflection_type_info type_info,
 		unsigned __int32 offset,
 		unsigned __int16 size,
-		unsigned __int32 arraySize,
-		bool isHiddenByDefault
+		unsigned __int32 array_size,
+		bool is_hidden_by_default
 	)
-		: m_pMemberName(pMemberName)
-		, m_pMemberNiceName(pMemberNiceName)
-		, m_offset(offset)
-		, m_size(size)
-		, m_arraySize(arraySize)
-		, m_isHiddenByDefault(isHiddenByDefault)
+		: name(name)
+		, nice_name(nice_name)
+		, offset(offset)
+		, size(size)
+		, array_size(array_size)
+		, is_hidden_by_default(is_hidden_by_default)
 	{
-		m_structureInfo = {};
-		m_tagBlockInfo = {};
-		m_typeInfo = typeInfo;
+		structure_info = {};
+		tag_block_info = {};
+		this->type_info = type_info;
 	}
 
-	ReflectionField(
-		const char* pMemberName,
-		const char* pMemberNiceName,
-		ReflectionStructureInfo structureInfo,
+	c_reflection_field(
+		const char* name,
+		const char* nice_name,
+		s_reflection_structure_info structure_info,
 		unsigned __int32 offset,
 		unsigned __int16 size,
-		unsigned __int32 arraySize,
-		bool isHiddenByDefault
+		unsigned __int32 array_size,
+		bool is_hidden_by_default
 	)
-		: m_pMemberName(pMemberName)
-		, m_pMemberNiceName(pMemberNiceName)
-		, m_offset(offset)
-		, m_size(size)
-		, m_arraySize(arraySize)
-		, m_isHiddenByDefault(isHiddenByDefault)
+		: name(name)
+		, nice_name(nice_name)
+		, offset(offset)
+		, size(size)
+		, array_size(array_size)
+		, is_hidden_by_default(is_hidden_by_default)
 	{
-		m_typeInfo = {};
-		m_tagBlockInfo = {};
-		m_structureInfo = structureInfo;
+		type_info = {};
+		tag_block_info = {};
+		this->structure_info = structure_info;
 	}
 
-	ReflectionField(
-		const char* pMemberName,
-		const char* pMemberNiceName,
-		ReflectionTagBlockInfo tagBlockInfo,
+	c_reflection_field(
+		const char* name,
+		const char* nice_name,
+		s_reflection_tag_block_info tag_block_info,
 		unsigned __int32 offset,
 		unsigned __int16 size,
-		unsigned __int32 arraySize,
-		bool isHiddenByDefault
+		unsigned __int32 array_size,
+		bool is_hidden_by_default
 	)
-		: m_pMemberName(pMemberName)
-		, m_pMemberNiceName(pMemberNiceName)
-		, m_offset(offset)
-		, m_size(size)
-		, m_arraySize(arraySize)
-		, m_isHiddenByDefault(isHiddenByDefault)
+		: name(name)
+		, nice_name(nice_name)
+		, offset(offset)
+		, size(size)
+		, array_size(array_size)
+		, is_hidden_by_default(is_hidden_by_default)
 	{
-		m_typeInfo = {};
-		m_structureInfo = {};
-		m_tagBlockInfo = tagBlockInfo;
+		type_info = {};
+		structure_info = {};
+		this->tag_block_info = tag_block_info;
 	}
 
-	const char* m_pMemberName;
-	const char* m_pMemberNiceName;
+	const char* name;
+	const char* nice_name;
 	union {
-		ReflectionTypeInfo m_typeInfo;
-		ReflectionStructureInfo m_structureInfo;
-		ReflectionTagBlockInfo m_tagBlockInfo;
+		s_reflection_type_info type_info;
+		s_reflection_structure_info structure_info;
+		s_reflection_tag_block_info tag_block_info;
 	};
-	unsigned __int32 m_offset;
-	unsigned __int16 m_size;
-	unsigned __int32 m_arraySize;
-	bool m_isHiddenByDefault;
+	unsigned __int32 offset;
+	unsigned __int16 size;
+	unsigned __int32 array_size;
+	bool is_hidden_by_default;
 };
 
 using render_type_gui_func = void(void*);
@@ -239,15 +239,15 @@ using virtual_tag_constructor_func = c_tag_interface*(c_cache_file&, uint16_t);
 
 #pragma warning( push )
 #pragma warning( disable : 4200 ) // allow using non standard language features without warning
-struct ReflectionType
+struct s_reflection_type
 {
-	const char* m_pTypeName;
-	const char* m_pTypeNiceName;
-	unsigned __int32 m_size;
-	unsigned __int32 m_count;
+	const char* name;
+	const char* nice_name;
+	unsigned __int32 size_of_data;
+	unsigned __int32 members_count;
 	render_type_gui_func* render_type_gui;
 	c_tag_interface* (*virtual_tag_constructor)(c_cache_file&, uint16_t);
-	ReflectionField m_members[]; // #NOTE: non standard language feature
+	c_reflection_field fields[]; // #NOTE: non standard language feature
 };
 #pragma warning( pop )
 

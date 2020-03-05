@@ -10,6 +10,9 @@ void c_mantle_virtual_tag_interface_generator::run()
 {
 	header_string_stream << "#pragma once" << std::endl << std::endl;
 
+	header_string_stream << "#ifndef __visual_assist__" << std::endl;
+	source_string_stream << "#ifndef __visual_assist__" << std::endl;
+
 	header_string_stream << "#ifdef __INTELLISENSE__" << std::endl;
 	header_string_stream << "\ttemplate<typename T>" << std::endl;
 	header_string_stream << "\tclass v_tag_interface : public T, public c_tag_interface" << std::endl;
@@ -37,6 +40,8 @@ void c_mantle_virtual_tag_interface_generator::run()
 	}
 
 	header_string_stream << "#endif" << std::endl; // __INTELLISENSE__
+	header_string_stream << "#endif" << std::endl; // __visual_assist__
+	source_string_stream << "#endif" << std::endl; // __visual_assist__
 }
 
 void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
@@ -48,7 +53,7 @@ void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::
 	stringstream << "\tpublic:" << std::endl;
 	stringstream << "\tc_cache_file& cache_file;" << std::endl;
 	stringstream << "\tv_tag_interface(c_cache_file& cache_file, uint16_t tag_index) :" << std::endl;
-	stringstream << "\t\c_tag_interface(cache_file, tag_index)," << std::endl;
+	stringstream << "\t\tc_tag_interface(cache_file, tag_index)," << std::endl;
 	stringstream << "\t\tcache_file(cache_file)," << std::endl;
 
 	for (size_t i = 0; i < reflection_type_container.fields.size(); i++)
@@ -61,13 +66,13 @@ void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::
 		c_reflection_type_container* field_type = reflection_field_container_ptr->field_type;
 		assert(field_type != nullptr);
 
-		if (reflection_field_container_ptr->reflection_type_category == ReflectionTypeCategory::TagBlock)
+		if (reflection_field_container_ptr->reflection_type_category == e_reflection_type_category::TagBlock)
 		{
-			stringstream << "\t\t" << reflection_field_container_ptr->field_name << "(cache_file, GetData<" << reflection_type_container.qualified_type_name << ">()->" << reflection_field_container_ptr->field_name << ")";
+			stringstream << "\t\t" << reflection_field_container_ptr->field_name << "(cache_file, get_data<" << reflection_type_container.qualified_type_name << ">()->" << reflection_field_container_ptr->field_name << ")";
 		}
 		else
 		{
-			stringstream << "\t\t" << reflection_field_container_ptr->field_name << "(GetData<" << reflection_type_container.qualified_type_name << ">()->" << reflection_field_container_ptr->field_name << ")";
+			stringstream << "\t\t" << reflection_field_container_ptr->field_name << "(get_data<" << reflection_type_container.qualified_type_name << ">()->" << reflection_field_container_ptr->field_name << ")";
 		}
 		if (!is_last) stringstream << ",";
 		stringstream << std::endl;
@@ -81,7 +86,7 @@ void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::
 		c_reflection_type_container* field_type = reflection_field_container_ptr->field_type;
 		assert(field_type != nullptr);
 
-		if (reflection_field_container_ptr->reflection_type_category == ReflectionTypeCategory::TagBlock)
+		if (reflection_field_container_ptr->reflection_type_category == e_reflection_type_category::TagBlock)
 		{
 			assert(reflection_field_container_ptr->array_size == 0); // #TODO: Generate an initializer list
 

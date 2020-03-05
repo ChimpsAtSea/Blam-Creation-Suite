@@ -53,7 +53,7 @@ public:
 	bool __fastcall Function42(signed int, __int64, __int64) override;
 	void __fastcall FirefightNew(__int64, float) override;
 	BOOL __fastcall Function44(__int64, __int64) override;
-	bool __fastcall GetPathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength) override;
+	bool __fastcall get_pathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength) override;
 	bool __fastcall GetWidePathByType(PathType pathType, wchar_t* pBuffer, size_t bufferLength) override;
 	unsigned __int8* __fastcall Function47(_QWORD, unsigned __int8*, _QWORD) override;
 	__int64 __fastcall Function48(_QWORD, __int64) override;

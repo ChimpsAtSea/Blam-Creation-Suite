@@ -2,19 +2,19 @@
 
 using namespace DirectX;
 
-PrimitiveRenderManager::PerFrameConstants* PrimitiveRenderManager::pPerFrameConstantsArray = nullptr;
-ID3D11Buffer* PrimitiveRenderManager::pCurrentFrameConstantsBuffer = nullptr;
-ID3D11Buffer* PrimitiveRenderManager::ppFrameConstantsBuffers[kNumConstantsBuffers] = {};
-BoxPrimitive PrimitiveRenderManager::immediateBoxPrimitive;
-volatile uint32_t PrimitiveRenderManager::nextConstantBufferIndex = 0;
-DirectX::XMVECTOR PrimitiveRenderManager::s_vForward;
-DirectX::XMVECTOR PrimitiveRenderManager::s_vUp;
-DirectX::XMVECTOR PrimitiveRenderManager::s_vPosition;
+c_primitive_render_manager::PerFrameConstants* c_primitive_render_manager::pPerFrameConstantsArray = nullptr;
+ID3D11Buffer* c_primitive_render_manager::pCurrentFrameConstantsBuffer = nullptr;
+ID3D11Buffer* c_primitive_render_manager::ppFrameConstantsBuffers[kNumConstantsBuffers] = {};
+c_box_primitive c_primitive_render_manager::immediateBoxPrimitive;
+volatile uint32_t c_primitive_render_manager::nextConstantBufferIndex = 0;
+DirectX::XMVECTOR c_primitive_render_manager::s_vForward;
+DirectX::XMVECTOR c_primitive_render_manager::s_vUp;
+DirectX::XMVECTOR c_primitive_render_manager::s_vPosition;
 
-std::vector<BoxPrimitive*> PrimitiveRenderManager::s_boxPrimitives;
-std::vector<BoxPrimitiveData> PrimitiveRenderManager::s_immediateBoxPrimitives;
+std::vector<c_box_primitive*> c_primitive_render_manager::s_boxPrimitives;
+std::vector<BoxPrimitiveData> c_primitive_render_manager::s_immediateBoxPrimitives;
 
-void PrimitiveRenderManager::RegisterBoxPrimitive(BoxPrimitive* pBoxPrimitive)
+void c_primitive_render_manager::RegisterBoxPrimitive(c_box_primitive* pBoxPrimitive)
 {
 	if (pBoxPrimitive != &immediateBoxPrimitive)
 	{
@@ -23,7 +23,7 @@ void PrimitiveRenderManager::RegisterBoxPrimitive(BoxPrimitive* pBoxPrimitive)
 	}
 }
 
-void PrimitiveRenderManager::UnregisterBoxPrimitive(BoxPrimitive* pBoxPrimitive)
+void c_primitive_render_manager::UnregisterBoxPrimitive(c_box_primitive* pBoxPrimitive)
 {
 	if (pBoxPrimitive != &immediateBoxPrimitive)
 	{
@@ -32,7 +32,7 @@ void PrimitiveRenderManager::UnregisterBoxPrimitive(BoxPrimitive* pBoxPrimitive)
 	}
 }
 
-void PrimitiveRenderManager::Render()
+void c_primitive_render_manager::Render()
 {
 	SetupConstantBuffers();
 	UpdateConstantsBuffer();
@@ -40,12 +40,12 @@ void PrimitiveRenderManager::Render()
 	static bool enablePrimitiveDebug = c_command_line::has_command_line_arg("-primitivedebug");
 	if (enablePrimitiveDebug)
 	{
-		static BoxPrimitive debugBox;
-		debugBox.UpdateAsCenteredBox(
+		static c_box_primitive debugBox;
+		debugBox.update_as_centered_box(
 			0.0f, 0.0f, 0.0f,
 			1.0f, 1.0f, 1.0f
 		);
-		debugBox.SetColor(1.0f, 0.0f, 1.0f, 1.0f);
+		debugBox.set_color(1.0f, 0.0f, 1.0f, 1.0f);
 	}
 
 	{
@@ -71,7 +71,7 @@ void PrimitiveRenderManager::Render()
 		}
 		s_immediateBoxPrimitives.clear();
 
-		for (const BoxPrimitive* pBoxPrimitive : s_boxPrimitives)
+		for (const c_box_primitive* pBoxPrimitive : s_boxPrimitives)
 		{
 			if (pBoxPrimitive->IsVisible())
 			{
@@ -99,7 +99,7 @@ void PrimitiveRenderManager::Render()
 	pCurrentFrameConstantsBuffer = nullptr;
 }
 
-void PrimitiveRenderManager::SetupConstantBuffers()
+void c_primitive_render_manager::SetupConstantBuffers()
 {
 	if (ppFrameConstantsBuffers[kNumConstantsBuffers - 1] == nullptr)
 	{
@@ -122,28 +122,28 @@ void PrimitiveRenderManager::SetupConstantBuffers()
 	}
 }
 
-void PrimitiveRenderManager::GetNextConstantsBuffer()
+void c_primitive_render_manager::GetNextConstantsBuffer()
 {
 	uint32_t currentConstantBufferIndex = (InterlockedIncrement(&nextConstantBufferIndex) - 1) % kNumConstantsBuffers;
 	pCurrentFrameConstantsBuffer = ppFrameConstantsBuffers[currentConstantBufferIndex];
 	ASSERT(pCurrentFrameConstantsBuffer != nullptr);
 }
 
-ID3D11Buffer* const& PrimitiveRenderManager::GetConstantsBuffer()
+ID3D11Buffer* const& c_primitive_render_manager::GetConstantsBuffer()
 {
 	ASSERT(pCurrentFrameConstantsBuffer != nullptr);
 	return pCurrentFrameConstantsBuffer;
 }
 
-void PrimitiveRenderManager::RenderImmediateBox()
+void c_primitive_render_manager::render_immediate_box()
 {
 	if (immediateBoxPrimitive.IsVisible())
 	{
-		s_immediateBoxPrimitives.emplace_back(GetImmediateBox());
+		s_immediateBoxPrimitives.emplace_back(get_immediate_box());
 	}
 }
 
-void PrimitiveRenderManager::MapConstantsBuffer()
+void c_primitive_render_manager::MapConstantsBuffer()
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource = {};
 	HRESULT mapResult = c_render::s_pDeviceContext->Map(pCurrentFrameConstantsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
@@ -153,13 +153,13 @@ void PrimitiveRenderManager::MapConstantsBuffer()
 	pPerFrameConstantsArray = static_cast<PerFrameConstants*>(mappedResource.pData);
 }
 
-void PrimitiveRenderManager::UnmapConstantsBuffer()
+void c_primitive_render_manager::UnmapConstantsBuffer()
 {
 	c_render::s_pDeviceContext->Unmap(pCurrentFrameConstantsBuffer, 0);
 	pPerFrameConstantsArray = nullptr;
 }
 
-void PrimitiveRenderManager::UpdateConstantsBuffer()
+void c_primitive_render_manager::UpdateConstantsBuffer()
 {
 	GetNextConstantsBuffer();
 	MapConstantsBuffer();
@@ -171,7 +171,7 @@ void PrimitiveRenderManager::UpdateConstantsBuffer()
 	UnmapConstantsBuffer();
 }
 
-BoxPrimitive& PrimitiveRenderManager::GetImmediateBox()
+c_box_primitive& c_primitive_render_manager::get_immediate_box()
 {
 	return immediateBoxPrimitive;
 }

@@ -7,7 +7,7 @@ ImVec2 render_struct_separator(int recursionDepth, ImVec2* pTopScreenPos = nullp
 		constexpr float kHeight = 5.0f;
 
 		ImGui::Columns(2, NULL, false);
-		ImGui::SetColumnOffset(1, recursionPadding);
+		ImGui::SetColumnOffset(1, c_mantle_tag_gui_tab::g_current_recursion_padding);
 		ImGui::SetColumnWidth(1, 1230);
 		ImGui::NextColumn(); // padding
 		//ImGui::Separator();
@@ -34,25 +34,25 @@ ImVec2 render_struct_separator(int recursionDepth, ImVec2* pTopScreenPos = nullp
 	return screenPos;
 }
 
-void render_struct_gui(void* field_data, const ReflectionField& reflection_field)
+void render_struct_gui(void* field_data, const c_reflection_field& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
-	if (!unknownItemsVisible && reflection_field.m_isHiddenByDefault) return; // skip hidden fields
+	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	DEBUG_ASSERT(field_data != nullptr);
 	ImGui::PushID(field_data);
 
-	ImVec2 screenPosTop = render_struct_separator(recursion_depth);
+	ImVec2 screenPosTop = render_struct_separator(c_mantle_tag_gui_tab::g_current_recursion_depth);
 	{
-		const ReflectionStructureInfo& rReflectionStructureInfo = reflection_field.m_structureInfo;
-		// #TODO: Supply rStructureReflectionType directly as an argument
-		const ReflectionType& rStructureReflectionType = *rReflectionStructureInfo.m_pReflectionTypeInfo; //#TODO: Try to make this a reference in the type
-		REFERENCE_ASSERT(rStructureReflectionType);
+		const s_reflection_structure_info& rs_reflection_structure_info = reflection_field.structure_info;
+		// #TODO: Supply structure_reflection_type directly as an argument
+		const s_reflection_type& structure_reflection_type = *rs_reflection_structure_info.reflection_type; //#TODO: Try to make this a reference in the type
+		REFERENCE_ASSERT(structure_reflection_type);
 
-		increment_recursion();
-		rStructureReflectionType.render_type_gui(field_data);
-		decrement_recursion();
+		c_mantle_tag_gui_tab::increment_recursion();
+		structure_reflection_type.render_type_gui(field_data);
+		c_mantle_tag_gui_tab::decrement_recursion();
 	}
-	render_struct_separator(recursion_depth, &screenPosTop);
+	render_struct_separator(c_mantle_tag_gui_tab::g_current_recursion_depth, &screenPosTop);
 
 	ImGui::PopID();
 }

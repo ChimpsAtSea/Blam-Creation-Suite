@@ -777,7 +777,7 @@ struct ImGuiWindowSettings
     bool        Collapsed;
 
     ImGuiWindowSettings()       { ID = 0; Pos = Size = ImVec2ih(0, 0); Collapsed = false; }
-    char* GetName()             { return (char*)(this + 1); }
+    char* get_name()             { return (char*)(this + 1); }
 };
 
 struct ImGuiSettingsHandler

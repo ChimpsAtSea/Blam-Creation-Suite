@@ -91,7 +91,7 @@ void c_render::UpdateViewLookAt(
 	viewMatrixTransposed = XMMatrixTranspose(viewMatrix);
 }
 
-bool c_render::CalculateScreenCoordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY)
+bool c_render::calculate_screen_coordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY)
 {
 	using namespace DirectX;
 

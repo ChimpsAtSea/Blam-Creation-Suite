@@ -1,20 +1,20 @@
 
 
-void render_dataref_gui(DataReference* field_data, const ReflectionField& reflection_field)
+void render_dataref_gui(DataReference* field_data, const c_reflection_field& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
-	if (!unknownItemsVisible && reflection_field.m_isHiddenByDefault) return; // skip hidden fields
+	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	DEBUG_ASSERT(field_data != nullptr);
 	ImGui::PushID(field_data);
 	{
 
 		ImGui::Columns(3, NULL, false);
-		ImGui::SetColumnOffset(1, recursionPadding);
+		ImGui::SetColumnOffset(1, c_mantle_tag_gui_tab::g_current_recursion_padding);
 		ImGui::SetColumnWidth(1, 400);
 		ImGui::SetColumnWidth(2, 640);
 		ImGui::NextColumn(); // padding
 
-		ImGui::Text(reflection_field.m_pMemberNiceName);
+		ImGui::Text(reflection_field.nice_name);
 		ImGui::NextColumn();
 
 		static char pBuffer[256] = {};

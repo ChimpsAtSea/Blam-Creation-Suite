@@ -62,10 +62,10 @@
     <ClInclude Include="ImGuiAddons\ImGuiFileBrowser.h" />
     <ClInclude Include="ImGuiAddons\TextEditor.h" />
     <ClInclude Include="Runtime.h" />
-    <ClInclude Include="Rendering\BoxPrimitive.h" />
+    <ClInclude Include="Rendering\box_primitive.h" />
     <ClInclude Include="Rendering\BoxRenderer.h" />
     <ClInclude Include="Rendering\debug_gui.h" />
-    <ClInclude Include="Rendering\PrimitiveRenderManager.h" />
+    <ClInclude Include="Rendering\primitive_render_manager.h" />
     <ClInclude Include="Rendering\render.h" />
     <ClInclude Include="Rendering\Rendering.h" />
     <ClInclude Include="Rendering\window.h" />
@@ -100,10 +100,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Runtime.cpp" />
-    <ClCompile Include="Rendering\BoxPrimitive.cpp" />
+    <ClCompile Include="Rendering\box_primitive.cpp" />
     <ClCompile Include="Rendering\BoxRenderer.cpp" />
     <ClCompile Include="Rendering\debug_gui.cpp" />
-    <ClCompile Include="Rendering\PrimitiveRenderManager.cpp" />
+    <ClCompile Include="Rendering\primitive_render_manager.cpp" />
     <ClCompile Include="Rendering\render.cpp" />
     <ClCompile Include="Rendering\window.cpp" />
     <ClCompile Include="!Resources\ResourcesManager.cpp" />

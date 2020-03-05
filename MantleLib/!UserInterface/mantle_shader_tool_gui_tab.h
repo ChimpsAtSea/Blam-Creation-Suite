@@ -10,7 +10,7 @@ public:
 	virtual ~c_mantle_shader_tool_gui_tab();
 
 protected:
-	virtual void render_tab_contents_gui(bool setSelected) override;
+	virtual void render_tab_contents_gui(bool set_selected) override;
 
 	static std::string disassemble_shader(const char* hlsl_bytecode_data, size_t hlsl_bytecode_size);
 

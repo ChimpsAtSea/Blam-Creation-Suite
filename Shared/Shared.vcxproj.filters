@@ -99,13 +99,7 @@
     <ClInclude Include="Blam\real_vector3d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\BoxPrimitive.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\BoxRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\PrimitiveRenderManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ImGuiAddons\ImGuiAddons.h">
@@ -195,6 +189,12 @@
     <ClInclude Include="ThreadPrimitives\atomic_temp_value.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\box_primitive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\primitive_render_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shared-private-pch.cpp">
@@ -206,13 +206,7 @@
     <ClCompile Include="FileSystemUtilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\BoxPrimitive.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\BoxRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\PrimitiveRenderManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ImGuiAddons\ImGuiFileBrowser.cpp">
@@ -252,6 +246,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ThreadPrimitives\thread_subroutine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\box_primitive.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\primitive_render_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,21 +1,8 @@
 #include "mantlelib-private-pch.h"
 
-int recursion_depth = 0;
-static constexpr float recursion_padding_amount = 25.0f;
-float recursionPadding = 0.0f;
-void increment_recursion()
-{
-	recursion_depth++;
-	recursionPadding = recursion_padding_amount * static_cast<float>(recursion_depth);
-}
-
-void decrement_recursion()
-{
-	recursion_depth--;
-	recursionPadding = recursion_padding_amount * static_cast<float>(recursion_depth);
-}
-
-thread_local c_mantle_tag_gui_tab* current_mantle_tag_tab = nullptr;
+int c_mantle_tag_gui_tab::g_current_recursion_depth = 0;
+float c_mantle_tag_gui_tab::g_current_recursion_padding = 0.0f;
+thread_local c_mantle_tag_gui_tab* c_mantle_tag_gui_tab::g_current_mantle_tag_tab = nullptr;
 
 #include <GUI/render_primitive_gui.inl>
 #include <GUI/render_stringid_gui.inl>
@@ -23,17 +10,17 @@ thread_local c_mantle_tag_gui_tab* current_mantle_tag_tab = nullptr;
 #include <GUI/render_tagref_gui.inl>
 #include <GUI/render_dataref_gui.inl>
 #include <GUI/render_tagblock_gui.inl>
+// #TODO: include GeneratedGUI.cpp here and force inline all of the render functions
 
-c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& rCacheFile, c_tag_interface& rTagInterface, c_mantle_gui_tab* pParentTab)
-	: c_mantle_gui_tab(rTagInterface.GetNameWithGroupIDCStr(), rTagInterface.GetPathWithGroupNameCStr())
-	, tag_interface(rTagInterface)
-	, cache_file(rCacheFile)
-	, parent_tab(pParentTab)
-	, m_isSelected(false)
+c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_interface& tag_interface, c_mantle_gui_tab* parent_tag) : 
+	c_mantle_gui_tab(tag_interface.get_name_with_group_id_cstr(), tag_interface.get_path_with_group_name_cstr()),
+	tag_interface(tag_interface),
+	cache_file(cache_file),
+	parent_tab(parent_tag),
+	is_selected(false)
 {
 
 }
-
 
 c_mantle_tag_gui_tab::~c_mantle_tag_gui_tab()
 {
@@ -43,37 +30,49 @@ c_mantle_tag_gui_tab::~c_mantle_tag_gui_tab()
 	}
 }
 
-void c_mantle_tag_gui_tab::copy_data_recursively(const ReflectionType& rReflectionType, char* pStartSrc, char* pStartDest, char* pSrc, char* pDest)
+void c_mantle_tag_gui_tab::increment_recursion()
+{
+	g_current_recursion_depth++;
+	g_current_recursion_padding = recursion_padding_amount * static_cast<float>(g_current_recursion_depth);
+}
+
+void c_mantle_tag_gui_tab::decrement_recursion()
+{
+	g_current_recursion_depth--;
+	g_current_recursion_padding = recursion_padding_amount * static_cast<float>(g_current_recursion_depth);
+}
+
+void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_type& reflection_type, char* source, char* destination)
 {
 	// #TODO: Package up all of the tag data into a single packet
 	// #TODO: Patch the tag address table to make room for extra data
 
-	memcpy(pDest, pSrc, rReflectionType.m_size);
+	memcpy(destination, source, reflection_type.size_of_data);
 
-	for (size_t i = 0; i < rReflectionType.m_count; i++)
+	for (size_t i = 0; i < reflection_type.members_count; i++)
 	{
-		const ReflectionField& reflectionField = rReflectionType.m_members[i];
-		const ReflectionTypeInfo& rTypeInfo = reflectionField.m_typeInfo;
+		const c_reflection_field& reflection_field = reflection_type.fields[i];
+		const s_reflection_type_info& type_info = reflection_field.type_info;
 
-		if (!reflectionField.m_arraySize)
+		if (!reflection_field.array_size)
 		{
-			if (rTypeInfo.m_reflectionTypeCategory == ReflectionTypeCategory::TagBlock)
+			if (type_info.reflection_type_category == e_reflection_type_category::TagBlock)
 			{
-				s_tag_block_definition<>* pTagBlock = reinterpret_cast<s_tag_block_definition<>*>(pSrc + reflectionField.m_offset);
-				const ReflectionTagBlockInfo& rReflectionTagBlockInfo = reflectionField.m_tagBlockInfo;
-				const ReflectionType* pTagBlockReflectionType = rReflectionTagBlockInfo.m_pReflectionTypeInfo;
+				s_tag_block_definition<>* tag_block = reinterpret_cast<s_tag_block_definition<>*>(source + reflection_field.offset);
+				const s_reflection_tag_block_info& rs_reflection_tag_block_info = reflection_field.tag_block_info;
+				const s_reflection_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
 
 
-				if (pTagBlock->count && pTagBlock->address)
+				if (tag_block->count && tag_block->address)
 				{
-					char* pTagBlockDataSource = cache_file.GetTagBlockData<char>(*pTagBlock);
-					char* pTagBlockDataDest = c_mantle_gui::get_tag_selection_address(pTagBlock->address);
+					char* pTagBlockDataSource = cache_file.GetTagBlockData<char>(*tag_block); // #TODO: Remove GetTagBlockData and replace with virtual tag interface/virtual tab block data access
+					char* pTagBlockDataDest = c_mantle_gui::get_tag_selection_address(tag_block->address);
 
-					for (int i = 0; i < pTagBlock->count; i++)
+					for (uint32_t i = 0; i < tag_block->count; i++)
 					{
-						//memcpy(pTagBlockDest, pTagBlockDataSource, pTagBlockReflectionType->m_size);
-						uint32_t offset = pTagBlockReflectionType->m_size * i;
-						copy_data_recursively(*pTagBlockReflectionType, pStartSrc, pStartDest, pTagBlockDataSource + offset, pTagBlockDataDest + offset);
+						//memcpy(pTagBlockDest, pTagBlockDataSource, tag_block_reflection_type->m_size);
+						uint32_t offset = tag_block_reflection_type->size_of_data * i;
+						copy_data_recursively(*tag_block_reflection_type, pTagBlockDataSource + offset, pTagBlockDataDest + offset);
 					}
 				}
 			}
@@ -83,46 +82,46 @@ void c_mantle_tag_gui_tab::copy_data_recursively(const ReflectionType& rReflecti
 
 void c_mantle_tag_gui_tab::poke()
 {
-	char* pDest = static_cast<char*>(c_mantle_gui::get_tag_pointer(get_tag_interface().GetIndex()));
+	char* pDest = static_cast<char*>(c_mantle_gui::get_tag_pointer(get_tag_interface().get_index()));
 	if (pDest)
 	{
 
-		char* pSource = cache_file.GetTagInterface(get_tag_interface().GetIndex())->GetData();
+		char* pSource = cache_file.get_tag_interface(get_tag_interface().get_index())->get_data();
 
-		const ReflectionType* pReflectionType = tag_interface.GetReflectionData();
-		copy_data_recursively(*pReflectionType, pSource, pDest, pSource, pDest);
+		const s_reflection_type* ps_reflection_type = tag_interface.get_reflection_data();
+		copy_data_recursively(*ps_reflection_type, pSource, pDest);
 
-		write_line_verbose("Successfully poked tag '%s'", get_tag_interface().GetNameWithGroupIDCStr());
+		write_line_verbose("Successfully poked tag '%s'", get_tag_interface().get_name_with_group_id_cstr());
 	}
 	else
 	{
-		write_line_verbose("Failed to poke tag '%s' as pDest was null", get_tag_interface().GetNameWithGroupIDCStr());
+		write_line_verbose("Failed to poke tag '%s' as pDest was null", get_tag_interface().get_name_with_group_id_cstr());
 	}
 
 }
 
-void c_mantle_tag_gui_tab::render_tab_contents_gui(bool setSelected)
+void c_mantle_tag_gui_tab::render_tab_contents_gui(bool set_selected)
 {
 	ImGui::PushID(this);
 	ImGuiTabItemFlags tabFlags = 0;
-	if (setSelected) tabFlags |= ImGuiTabItemFlags_SetSelected;
+	if (set_selected) tabFlags |= ImGuiTabItemFlags_SetSelected;
 
 
-	m_isSelected = false;
-	if (ImGui::BeginTabItem(get_title(), &m_isOpen, tabFlags))
+	is_selected = false;
+	if (ImGui::BeginTabItem(get_title(), &is_open, tabFlags))
 	{
-		m_isSelected = true;
+		is_selected = true;
 		ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
 
-		const ReflectionType* pReflectionType = tag_interface.GetReflectionData();
-		if (pReflectionType)
+		const s_reflection_type* ps_reflection_type = tag_interface.get_reflection_data();
+		if (ps_reflection_type)
 		{
-			current_mantle_tag_tab = this;
-			pReflectionType->render_type_gui(tag_interface.GetData());
+			g_current_mantle_tag_tab = this;
+			ps_reflection_type->render_type_gui(tag_interface.get_data());
 		}
 		else
 		{
-			ImGui::Text("No reflection information found for '%s'", tag_interface.GetGroupShortName());
+			ImGui::Text("No reflection information found for '%s'", tag_interface.get_group_short_name());
 		}
 
 		ImGui::EndChild();
@@ -135,7 +134,7 @@ void c_mantle_tag_gui_tab::RenderButtons()
 {
 	if (c_mantle_gui::is_game())
 	{
-		if (!m_isSelected) return;
+		if (!is_selected) return;
 
 		if (ImGui::Button("Poke"))
 		{

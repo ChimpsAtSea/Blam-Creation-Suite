@@ -1,9 +1,9 @@
 
 
-void render_tagblock_gui(void* field_data, const ReflectionField& reflection_field)
+void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
-	if (!unknownItemsVisible && reflection_field.m_isHiddenByDefault) return; // skip hidden fields
+	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 
 	DEBUG_ASSERT(field_data != nullptr);
 	ImGui::PushID(field_data);
@@ -13,18 +13,18 @@ void render_tagblock_gui(void* field_data, const ReflectionField& reflection_fie
 	{
 		int32_t m_position;
 	};
-	TagBlockDynamicData& rDynamicTagBlockData = current_mantle_tag_tab->GetDynamicData<TagBlockDynamicData>(tag_block_definition);
+	TagBlockDynamicData& rDynamicTagBlockData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->GetDynamicData<TagBlockDynamicData>(tag_block_definition);
 
 	ImGui::Columns(1);
 	ImGui::Dummy(ImVec2());
-	ImGui::SameLine(recursionPadding + 5.0f);
+	ImGui::SameLine(c_mantle_tag_gui_tab::g_current_recursion_padding + 5.0f);
 
 	float beginOfCollapsingHeaderX = ImGui::GetCursorPosX();
-	if (ImGui::CollapsingHeader(reflection_field.m_pMemberNiceName, ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_AllowItemOverlap))
+	if (ImGui::CollapsingHeader(reflection_field.nice_name, ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_AllowItemOverlap))
 	{
 		ImGui::SameLine();
 		ImGui::SetCursorPosX(beginOfCollapsingHeaderX);
-		ImGui::Dummy(ImVec2(recursionPadding + 5.0f + 800.0f, 0.0f));
+		ImGui::Dummy(ImVec2(c_mantle_tag_gui_tab::g_current_recursion_padding + 5.0f + 800.0f, 0.0f));
 		ImGui::SameLine();
 		ImGui::Text("Count:");
 		ImGui::SameLine();
@@ -42,7 +42,7 @@ void render_tagblock_gui(void* field_data, const ReflectionField& reflection_fie
 		ImGui::InputInt("", &rDynamicTagBlockData.m_position);
 		ImGui::PopID();
 
-		if (rDynamicTagBlockData.m_position >= tag_block_definition->count)
+		if (static_cast<uint32_t>(rDynamicTagBlockData.m_position) >= tag_block_definition->count)
 		{
 			rDynamicTagBlockData.m_position = tag_block_definition->count - 1;
 		}
@@ -51,21 +51,23 @@ void render_tagblock_gui(void* field_data, const ReflectionField& reflection_fie
 			rDynamicTagBlockData.m_position = 0;
 		}
 
-		const ReflectionTagBlockInfo& rReflectionTagBlockInfo = reflection_field.m_tagBlockInfo;
-		const ReflectionType* pTagBlockReflectionType = rReflectionTagBlockInfo.m_pReflectionTypeInfo;
+		const s_reflection_tag_block_info& rs_reflection_tag_block_info = reflection_field.tag_block_info;
+		const s_reflection_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
 
-		uint32_t tagBlockDataIndexDataOffset = pTagBlockReflectionType->m_size * static_cast<uint32_t>(rDynamicTagBlockData.m_position);
-		char* pTagBlockData = current_mantle_tag_tab->get_cache_file().GetTagBlockData<char>(*tag_block_definition) + tagBlockDataIndexDataOffset;
+		uint32_t tagBlockDataIndexDataOffset = tag_block_reflection_type->size_of_data * static_cast<uint32_t>(rDynamicTagBlockData.m_position);
+		/*	#TODO: Investigate the possibility of replacing the usage of get_cache_file with the virtual tag interface/virtual tab block data access
+			if we supply it as a template parameter to this function can we avoid it? */
+		char* pTagBlockData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_cache_file().GetTagBlockData<char>(*tag_block_definition) + tagBlockDataIndexDataOffset;
 
 		if (tag_block_definition->count && tag_block_definition->address)
 		{
 			// #TODO: We support null here because TagBlocks can be defined without their data.
 			// we should migrate slowly over to not having TagBlocks with no type specified
-			if (pTagBlockReflectionType)
+			if (tag_block_reflection_type)
 			{
-				increment_recursion();
-				pTagBlockReflectionType->render_type_gui(pTagBlockData);
-				decrement_recursion();
+				c_mantle_tag_gui_tab::increment_recursion();
+				tag_block_reflection_type->render_type_gui(pTagBlockData);
+				c_mantle_tag_gui_tab::decrement_recursion();
 
 			}
 			else
@@ -79,7 +81,7 @@ void render_tagblock_gui(void* field_data, const ReflectionField& reflection_fie
 	{
 		ImGui::SameLine();
 		ImGui::SetCursorPosX(beginOfCollapsingHeaderX);
-		ImGui::Dummy(ImVec2(recursionPadding + 5.0f + 800.0f, 0.0f));
+		ImGui::Dummy(ImVec2(c_mantle_tag_gui_tab::g_current_recursion_padding + 5.0f + 800.0f, 0.0f));
 		ImGui::SameLine();
 		ImGui::Text("Count:");
 		ImGui::SameLine();

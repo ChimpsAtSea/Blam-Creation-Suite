@@ -304,7 +304,7 @@ public:
 	/* 42 */ virtual bool __fastcall Function42(signed int, __int64, __int64);
 	/* 43 */ virtual void __fastcall FirefightNew(__int64, float);
 	/* 44 */ virtual BOOL __fastcall Function44(__int64, __int64);
-	/* 45 */ virtual bool __fastcall GetPathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength);
+	/* 45 */ virtual bool __fastcall get_pathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength);
 	/* 46 */ virtual bool __fastcall GetWidePathByType(PathType pathType, LPWSTR pBuffer, size_t bufferLength);
 	/* 47 */ virtual unsigned __int8* __fastcall Function47(_QWORD, unsigned __int8*, _QWORD);
 	/* 48 */ virtual __int64 __fastcall Function48(_QWORD, __int64);
@@ -335,8 +335,8 @@ public:
 	then that means that the virtual function being called has had its 'this' value shifted to offset the __vtbl to use __vtbl_dynamic.
 	This check allows each virtual function to run itself and correct the address
 	*/
-	static constexpr uintptr_t known_address0 = 0xe23a921724befda0;
-	static constexpr uintptr_t known_address1 = 0xa23a921724befda1;
+	static constexpr uintptr_t known_address0 = static_cast<uintptr_t>(0xe23a921724befda0);
+	static constexpr uintptr_t known_address1 = static_cast<uintptr_t>(0xdaeb9e926aca55b7);
 	uintptr_t __vtbl_known_address0 = known_address0;
 	uintptr_t __vtbl_known_address1 = known_address1;
 };

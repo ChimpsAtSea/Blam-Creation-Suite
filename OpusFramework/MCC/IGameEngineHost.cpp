@@ -96,7 +96,7 @@ int __fastcall IGameEngineHost::Function41(BYTE* pBuffer)																							
 bool __fastcall IGameEngineHost::Function42(signed int a1, __int64 a2, __int64 a3)																			{ CHECK_ADDRESS_SHIFTED(); return shifted_this->Function42(a1, a2, a3); }
 void __fastcall IGameEngineHost::FirefightNew(__int64 a1, float a2)																							{ CHECK_ADDRESS_SHIFTED(); return shifted_this->FirefightNew(a1, a2); }
 BOOL __fastcall IGameEngineHost::Function44(__int64 a1, __int64 a2)																							{ CHECK_ADDRESS_SHIFTED(); return shifted_this->Function44(a1, a2); }
-bool __fastcall IGameEngineHost::GetPathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength)														{ CHECK_ADDRESS_SHIFTED(); return shifted_this->GetPathByType(pathType, pBuffer, bufferLength); }
+bool __fastcall IGameEngineHost::get_pathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength)														{ CHECK_ADDRESS_SHIFTED(); return shifted_this->get_pathByType(pathType, pBuffer, bufferLength); }
 bool __fastcall IGameEngineHost::GetWidePathByType(PathType pathType, LPWSTR pBuffer, size_t bufferLength) 													{ CHECK_ADDRESS_SHIFTED(); return shifted_this->GetWidePathByType(pathType, pBuffer, bufferLength); }
 unsigned __int8* __fastcall IGameEngineHost::Function47(_QWORD a1, unsigned __int8* a2, _QWORD a3)															{ CHECK_ADDRESS_SHIFTED(); return shifted_this->Function47(a1, a2, a3); }
 __int64 __fastcall IGameEngineHost::Function48(_QWORD a1, __int64 a2)																						{ CHECK_ADDRESS_SHIFTED(); return shifted_this->Function48(a1, a2); }

@@ -3,6 +3,6 @@
 #include "window.h"
 #include "debug_gui.h"
 #include "render.h"
-#include "PrimitiveRenderManager.h"
+#include "primitive_render_manager.h"
 #include "BoxRenderer.h"
-#include "BoxPrimitive.h"
+#include "box_primitive.h"

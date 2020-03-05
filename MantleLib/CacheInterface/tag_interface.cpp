@@ -1,53 +1,53 @@
 #include "mantlelib-private-pch.h"
 
-c_tag_interface::c_tag_interface(c_cache_file& rCacheFile, uint16_t tagIndex)
-	: m_pTagData(nullptr)
-	, m_tagIndex(tagIndex)
-	, m_pInstance(rCacheFile.cache_file_tag_instances + tagIndex)
-	, m_isNull(true)
-	, m_pGroup(nullptr) // #TODO: Group interface
-	, m_pTagGroupShortName()
-	, m_pTagGroupFullName()
-	, m_pTagPath(rCacheFile.m_pTagNameBuffer + rCacheFile.m_pTagNameIndices[tagIndex])
-	, m_pTagPathWithGroupID()
-	, m_pTagPathWithGroupName()
-	, m_pTagName()
-	, m_pTagNameWithGroupID()
-	, m_pTagNameWithGroupName()
-	, m_pReflectionData(nullptr)
-	, m_rCacheFile(rCacheFile)
-	, m_pGroupInterface(nullptr)
+c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
+	tag_data(nullptr),
+	tag_index(tagIndex),
+	cache_file_tag_instance(cache_file.cache_file_tag_instances + tagIndex),
+	m_isNull(true),
+	cache_file_tag_group(nullptr), // #TODO: Group interface											 
+	tag_group_short_name(),
+	tag_group_full_name(),
+	tag_path(cache_file.m_pTagNameBuffer + cache_file.m_pTagNameIndices[tagIndex]),
+	tag_path_with_group_id(),
+	tag_path_with_group_name(),
+	tag_name(),
+	tag_name_with_group_id(),
+	tag_name_with_group_name(),
+	reflection_type(nullptr),
+	cache_file(cache_file),
+	group_interface(nullptr)
 {
-	m_isNull = m_pInstance->group_index == 0xFFFFu;
+	m_isNull = cache_file_tag_instance->group_index == 0xFFFFu;
 	if (!m_isNull)
 	{
-		m_pGroup = rCacheFile.cache_file_tag_groups + m_pInstance->group_index;
+		cache_file_tag_group = cache_file.cache_file_tag_groups + cache_file_tag_instance->group_index;
 
-		char* pTagsSection = rCacheFile.GetTagsSection().first;
-		uint64_t tagDataOffset = rCacheFile.ConvertPageOffset(m_pInstance->address, true); // #WARN: Internal function used here as the IsLoading() flag hasn't been disabled yet
-		m_pTagData = reinterpret_cast<char*>(pTagsSection + tagDataOffset);
-		m_groupIndex = m_pInstance->group_index;
+		char* pTagsSection = cache_file.get_tags_section().first;
+		uint64_t tagDataOffset = cache_file.convert_page_offset(cache_file_tag_instance->address, true); // #WARN: Internal function used here as the IsLoading() flag hasn't been disabled yet
+		tag_data = reinterpret_cast<char*>(pTagsSection + tagDataOffset);
+		group_index = cache_file_tag_instance->group_index;
 
 		// #TODO: Group interface
 		{
-			uint64_t groupIDBuffer = bswap(m_pGroup->group_tags[0]);
+			uint64_t groupIDBuffer = bswap(cache_file_tag_group->group_tags[0]);
 			const char* pGroupIDBufferStr = reinterpret_cast<const char*>(&groupIDBuffer);
 
-			m_pTagGroupShortName = pGroupIDBufferStr;
-			m_pTagGroupFullName = pGroupIDBufferStr; // #TODO: Get group full name
+			tag_group_short_name = pGroupIDBufferStr;
+			tag_group_full_name = pGroupIDBufferStr; // #TODO: Get group full name
 
-			if (!m_pTagPath.empty())
+			if (!tag_path.empty())
 			{
-				m_pTagPathWithGroupID = m_pTagPath + "." + m_pTagGroupShortName;
-				m_pTagPathWithGroupName = m_pTagPath + "." + m_pTagGroupFullName;
+				tag_path_with_group_id = tag_path + "." + tag_group_short_name;
+				tag_path_with_group_name = tag_path + "." + tag_group_full_name;
 
-				m_pTagName = PathFindFileNameA(m_pTagPath.c_str());
-				m_pTagNameWithGroupID = PathFindFileNameA(m_pTagPathWithGroupID.c_str());
-				m_pTagNameWithGroupName = PathFindFileNameA(m_pTagPathWithGroupName.c_str());
+				tag_name = PathFindFileNameA(tag_path.c_str());
+				tag_name_with_group_id = PathFindFileNameA(tag_path_with_group_id.c_str());
+				tag_name_with_group_name = PathFindFileNameA(tag_path_with_group_name.c_str());
 			}
 		}
 
-		m_pReflectionData = GetTagReflectionDataByTagGroup(m_pGroup->group_tags[0]);
+		reflection_type = get_tag_reflection_data_by_tag_group(cache_file_tag_group->group_tags[0]);
 	}
 }
 
@@ -56,11 +56,10 @@ c_tag_interface::~c_tag_interface()
 
 }
 
-c_tag_group_interface* c_tag_interface::GetGroupInterface() const
+c_tag_group_interface* c_tag_interface::get_group_interface() const
 {
-	return m_rCacheFile.GetGroupInterfaces(true)[m_groupIndex];
-};
-
+	return cache_file.get_group_interfaces(true)[group_index];
+}
 
 
 

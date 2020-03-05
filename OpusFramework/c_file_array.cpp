@@ -85,7 +85,7 @@ LPCSTR c_file_array::GetFileName(LPCSTR pStr)
 	return result;
 }
 
-LPCSTR c_file_array::GetName(size_t index)
+LPCSTR c_file_array::get_name(size_t index)
 {
 	LPCSTR result = "";
 	if (index >= 0 && index < Count)
@@ -96,7 +96,7 @@ LPCSTR c_file_array::GetName(size_t index)
 	return result;
 }
 
-LPCSTR c_file_array::GetName(LPCSTR pStr)
+LPCSTR c_file_array::get_name(LPCSTR pStr)
 {
 	LPCSTR result = "";
 	if (pStr)

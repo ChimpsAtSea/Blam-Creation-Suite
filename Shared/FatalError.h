@@ -16,7 +16,7 @@ void __FatalErrorInternal(const wchar_t* pReason, const wchar_t* pFile, unsigned
 #ifdef _DEBUG
 #define DEBUG_ASSERT ASSERT
 #else
-#define DEBUG_ASSERT(...)
+#define DEBUG_ASSERT(...) do {} while(false)
 #endif
 
 #define REFERENCE_ASSERT(reference) ASSERT((&reference) != nullptr)

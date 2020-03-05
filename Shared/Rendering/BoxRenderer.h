@@ -23,7 +23,7 @@ public:
 	static volatile uint32_t nextBoxIndex;
 	static ID3D11Buffer* pCurrentInstanceConstantsBuffer;
 	static PerObjectConstants* pPerObjectConstantsArray;
-	static ID3D11Buffer* ppInstanceConstantsBuffers[PrimitiveRenderManager::kNumConstantsBuffers];
+	static ID3D11Buffer* ppInstanceConstantsBuffers[c_primitive_render_manager::kNumConstantsBuffers];
 
 	static void BeginRenderBox();
 	static void RenderBox(

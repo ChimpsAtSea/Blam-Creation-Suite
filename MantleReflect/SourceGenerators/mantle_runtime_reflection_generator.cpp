@@ -10,7 +10,10 @@ void c_mantle_runtime_reflection_generator::run()
 {
 	header_string_stream << "#pragma once" << std::endl << std::endl;
 	header_string_stream << "template<typename T>" << std::endl;
-	header_string_stream << "const ReflectionType& runtime_reflection();" << std::endl << std::endl;
+	header_string_stream << "const s_reflection_type& runtime_reflection();" << std::endl << std::endl;
+
+	header_string_stream << "#ifndef __visual_assist__" << std::endl;
+	source_string_stream << "#ifndef __visual_assist__" << std::endl;
 
 	source_string_stream << "#include <MantleReflect/ReflectionTypes.h>" << std::endl;
 	source_string_stream << "#include \"Tags.h\"" << std::endl << std::endl;
@@ -25,14 +28,17 @@ void c_mantle_runtime_reflection_generator::run()
 		write_reflection_type_entry(source_string_stream, *reflection_type_container);
 	}
 
-	header_string_stream << "const ReflectionType* GetTagReflectionDataByTagGroup(uint32_t tagGroup);" << std::endl;
+	header_string_stream << "const s_reflection_type* get_tag_reflection_data_by_tag_group(uint32_t tagGroup);" << std::endl;
 	write_tag_type_lookup_function(source_string_stream);
+
+	header_string_stream << "#endif" << std::endl; // __visual_assist__
+	source_string_stream << "#endif" << std::endl; // __visual_assist__
 }
 
 void c_mantle_runtime_reflection_generator::write_tag_type_lookup_function(std::stringstream& stringstream)
 {
 	stringstream << std::endl;
-	stringstream << "const ReflectionType* GetTagReflectionDataByTagGroup(uint32_t tagGroup)" << std::endl;
+	stringstream << "const s_reflection_type* get_tag_reflection_data_by_tag_group(uint32_t tagGroup)" << std::endl;
 	stringstream << "{" << std::endl;
 	stringstream << "\tswitch (tagGroup)" << std::endl;
 	stringstream << "\t{" << std::endl;
@@ -62,7 +68,7 @@ void c_mantle_runtime_reflection_generator::write_reflection_type_entry_header(s
 	}
 	
 	stringstream << "template<> ";
-	stringstream << "const ReflectionType& runtime_reflection<" << reflection_type_container.qualified_type_name << ">();" << std::endl;
+	stringstream << "const s_reflection_type& runtime_reflection<" << reflection_type_container.qualified_type_name << ">();" << std::endl;
 }
 
 void c_mantle_runtime_reflection_generator::write_reflection_type_entry(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
@@ -79,10 +85,10 @@ void c_mantle_runtime_reflection_generator::write_reflection_type_entry(std::str
 	}
 
 	stringstream << "template<>" << std::endl;
-	stringstream << "const ReflectionType& runtime_reflection<" << reflection_type_container.qualified_type_name << ">()" << std::endl;
+	stringstream << "const s_reflection_type& runtime_reflection<" << reflection_type_container.qualified_type_name << ">()" << std::endl;
 	
 	stringstream << "{" << std::endl;
-	stringstream << "\t" << "static ReflectionType reflectionData = " << std::endl;
+	stringstream << "\t" << "static s_reflection_type reflectionData = " << std::endl;
 	stringstream << "\t{" << std::endl;
 
 	stringstream << "\t\t\"" << reflection_type_container.type_name << "\", \"" << reflection_type_container.type_nice_name << "\", " << std::endl;
@@ -109,28 +115,28 @@ void c_mantle_runtime_reflection_generator::write_reflection_type_entry(std::str
 		const c_reflection_type_container& reflection_type_container = *reflection_field_container.field_type;
 
 		const char* primitive_type_string = reflection_type_container.is_primitive ? reflection_field_container.field_type->type_name.c_str() : "NonPrimitive";
-		const char* reflection_type_category_string = ReflectionTypeCategoryToString(reflection_field_container.reflection_type_category);
+		const char* reflection_type_category_string = e_reflection_type_categoryToString(reflection_field_container.reflection_type_category);
 
 		stringstream << "\t\t\t{ \"" << reflection_field_container.field_name << "\", \"" << reflection_field_container.field_nice_name << "\", ";
 		{
 			switch (reflection_field_container.reflection_type_category)
 			{
-			case ReflectionTypeCategory::TagBlock:
-				stringstream << "ReflectionTagBlockInfo";
+			case e_reflection_type_category::TagBlock:
+				stringstream << "s_reflection_tag_block_info";
 				break;
-			case ReflectionTypeCategory::Structure:
-				stringstream << "ReflectionStructureInfo";
+			case e_reflection_type_category::Structure:
+				stringstream << "s_reflection_structure_info";
 				break;
 			default:
-				stringstream << "ReflectionTypeInfo";
+				stringstream << "s_reflection_type_info";
 				break;
 			}
-			stringstream << "{ " << "ReflectionTypeCategory::" << reflection_type_category_string;
-			stringstream << ", PrimitiveType::" << primitive_type_string;
+			stringstream << "{ " << "e_reflection_type_category::" << reflection_type_category_string;
+			stringstream << ", e_primitive_type::" << primitive_type_string;
 			stringstream << ", \"" << reflection_type_container.qualified_type_name << "\"";
 			switch (reflection_field_container.reflection_type_category)
 			{
-			case ReflectionTypeCategory::TagBlock:
+			case e_reflection_type_category::TagBlock:
 				//#TODO: Print a Visual Studio warning for tab blocks without their types specified
 				if (!reflection_field_container.field_type->template_types.empty())
 				{
@@ -139,7 +145,7 @@ void c_mantle_runtime_reflection_generator::write_reflection_type_entry(std::str
 				}
 				else stringstream << ", nullptr";
 				break;
-			case ReflectionTypeCategory::Structure:
+			case e_reflection_type_category::Structure:
 				stringstream << ", &runtime_reflection<" << reflection_field_container.field_type->qualified_type_name << ">()";
 				break;
 			}

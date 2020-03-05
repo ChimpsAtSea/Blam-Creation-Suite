@@ -133,7 +133,7 @@ void GameLauncher::update()
 void GameLauncher::gameRender()
 {
 	c_mantle_gui::render_in_game_gui();
-	PrimitiveRenderManager::Render();
+	c_primitive_render_manager::Render();
 }
 
 void GameLauncher::renderUI()

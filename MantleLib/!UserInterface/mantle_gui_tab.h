@@ -8,20 +8,20 @@ public:
 	virtual ~c_mantle_gui_tab();
 
 	virtual void render_in_game_gui();
-	virtual void render_gui(bool setSelected);
+	virtual void render_gui(bool set_selected);
 
 	inline const char* get_title() const { return m_title.c_str(); }
 	inline const char* get_description() const { return m_description.c_str(); }
 
-	using TabClosedCallback = std::function<void(c_mantle_gui_tab&)>;
-	void AddTabClosedCallback(TabClosedCallback);
+	using tab_closed_callback = std::function<void(c_mantle_gui_tab&)>;
+	void add_tab_closed_callback(tab_closed_callback);
 protected:
-	virtual void render_tab_contents_gui(bool setSelected) = 0;
+	virtual void render_tab_contents_gui(bool set_selected) = 0;
 
-	bool m_isOpen;
+	bool is_open;
 	std::string m_title;
 	std::string m_description;
-	std::vector<TabClosedCallback> tabClosedCallback;
+	std::vector<tab_closed_callback> tabClosedCallback;
 
 public:
 	using ImGUIDynamicData = std::pair<void*, char[120]>;

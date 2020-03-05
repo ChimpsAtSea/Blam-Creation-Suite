@@ -3,14 +3,14 @@
 c_mantle_gui_tab::c_mantle_gui_tab(const char* title, const char* description) :
 	m_title(title),
 	m_description(description),
-	m_isOpen(true)
+	is_open(true)
 {
 
 }
 
 c_mantle_gui_tab::~c_mantle_gui_tab()
 {
-	for (TabClosedCallback callback : tabClosedCallback)
+	for (tab_closed_callback callback : tabClosedCallback)
 	{
 		if (callback)
 		{
@@ -24,18 +24,18 @@ void c_mantle_gui_tab::render_in_game_gui()
 	
 }
 
-void c_mantle_gui_tab::render_gui(bool setSelected)
+void c_mantle_gui_tab::render_gui(bool set_selected)
 {
 	run_events();
-	render_tab_contents_gui(setSelected);
+	render_tab_contents_gui(set_selected);
 
-	if (!m_isOpen)
+	if (!is_open)
 	{
 		delete this;
 	}
 }
 
-void c_mantle_gui_tab::AddTabClosedCallback(TabClosedCallback callback)
+void c_mantle_gui_tab::add_tab_closed_callback(tab_closed_callback callback)
 {
 	ASSERT(callback != nullptr);
 	tabClosedCallback.push_back(callback);

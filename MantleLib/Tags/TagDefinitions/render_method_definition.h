@@ -2,12 +2,12 @@
 
 struct nicename("Render Method Definition") group('rmdf') s_render_method_definition_definition
 {
-	struct s_unknown_0_block_definition;
+	struct s_option_definition;
 	struct s_unknown_1_block_definition;
 	struct s_unknown_2_block_definition;
 
 	TagReference __unknown_reference; 
-	s_tag_block_definition<s_unknown_0_block_definition> __unknown_0_block; 
+	s_tag_block_definition<s_option_definition> options; 
 	s_tag_block_definition<s_unknown_1_block_definition> __unknown_1_block; 
 	s_tag_block_definition<s_unknown_2_block_definition> __unknown_2_block; 
 	TagReference __unknown2_reference; 
@@ -16,7 +16,7 @@ struct nicename("Render Method Definition") group('rmdf') s_render_method_defini
 	Undefined32 __unknown5; 
 	char nicename("Name") name[256];
 
-	struct s_unknown_0_block_definition
+	struct s_option_definition
 	{
 		struct s_unknown_1_block_definition;
 
