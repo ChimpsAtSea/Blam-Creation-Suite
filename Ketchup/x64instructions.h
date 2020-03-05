@@ -15,5 +15,9 @@ namespace ketchup
 	typedef Instruction _movzx;
 	typedef Instruction _retn;
 	typedef Instruction _movsxd;
+	typedef Instruction _setnz;
+	typedef Instruction _imul;
+	typedef Instruction _cmovnz;
+	typedef Instruction _inc;
 	
 }

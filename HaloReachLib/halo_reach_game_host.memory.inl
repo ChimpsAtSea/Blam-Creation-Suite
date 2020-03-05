@@ -1,7 +1,24 @@
 
-s_cache_file_tag_instance*& tag_instances = reference_symbol<s_cache_file_tag_instance*>("tag_instances", _engine_type_halo_reach, e_build::_build_mcc_1_1305_0_0, 0x180CF8FC0);
-uint32_t* (&tag_address_table)[] = reference_symbol<uint32_t * []>("tag_address_table", _engine_type_halo_reach, e_build::_build_mcc_1_1305_0_0, 0x183887CA0);
-char* & g_cache_file = reference_symbol<char*>("g_cache_file", _engine_type_halo_reach, e_build::_build_mcc_1_1305_0_0, 0x1825B6D90);
+uintptr_t tag_instances_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x180CF8FC0);
+	return ~uintptr_t();
+}
+s_cache_file_tag_instance*& tag_instances = reference_symbol<s_cache_file_tag_instance*>("tag_instances", tag_instances_offset);
+
+uintptr_t tag_address_table_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x183887CA0);
+	return ~uintptr_t();
+}
+uint32_t* (&tag_address_table)[] = reference_symbol<uint32_t * []>("tag_address_table", tag_address_table_offset);
+
+uintptr_t g_cache_file_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x1825B6D90);
+	return ~uintptr_t();
+}
+char* & g_cache_file = reference_symbol<char*>("g_cache_file", g_cache_file_offset);
 
 char* tag_address_get(uint32_t tagInstanceAddress)
 {
