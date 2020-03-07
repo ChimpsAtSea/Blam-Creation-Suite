@@ -14,5 +14,6 @@ public:
 #ifdef __INTELLISENSE__
 	t_value* begin();
 	t_value* end();
+	t_value& operator[](size_t index) const;
 #endif
 };

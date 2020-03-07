@@ -166,6 +166,9 @@ enum e_tag_group : int32_t {};
 #include "TagDefinitions/beam_system.h"
 #include "TagDefinitions/biped.h"
 
+#include "TagDefinitions/play.h"
+#include "TagDefinitions/zone.h"
+
 #ifndef BUILD_REFLECTION_DATA
 #include "GeneratedGUI.h"
 #include "ReflectionData.h"

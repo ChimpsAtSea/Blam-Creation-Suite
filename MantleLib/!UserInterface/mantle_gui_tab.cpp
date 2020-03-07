@@ -5,7 +5,8 @@ c_mantle_gui_tab::c_mantle_gui_tab(const char* title, const char* description) :
 	m_title(title),
 	m_description(description),
 	on_tab_closed_callbacks(),
-	child_tabs()
+	child_tabs(),
+	allow_close(true)
 {
 
 }
@@ -34,7 +35,7 @@ void c_mantle_gui_tab::render_gui(bool set_selected)
 		ImGuiTabItemFlags flags = 0;
 		if (set_selected) flags |= ImGuiTabItemFlags_SetSelected;
 		is_selected = false;
-		if (ImGui::BeginTabItem(get_title(), &is_open, flags))
+		if (ImGui::BeginTabItem(get_title(), allow_close ? &is_open : nullptr, flags))
 		{
 			is_selected = true;
 

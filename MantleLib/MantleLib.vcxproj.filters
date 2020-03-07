@@ -530,6 +530,12 @@
     <ClInclude Include="!UserInterface\mantle_bitmap_gui_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Tags\TagDefinitions\play.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\TagDefinitions\zone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="GUI\render_primitive_gui.inl">

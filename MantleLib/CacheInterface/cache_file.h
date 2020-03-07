@@ -2,6 +2,8 @@
 
 class VirtualMemoryContainer;
 
+using SectionCache = std::pair<char*, size_t>;
+
 class c_cache_file
 {
 public:
@@ -29,7 +31,6 @@ public:
 		//if (!ignoreLoadingCheck && IsLoading()) return 0;
 		//else return (static_cast<uint64_t>(pageOffset) * 4ull) - (GetVirtualAddressSpace(ignoreLoadingCheck) - 0x50000000ull);
 	}
-	using SectionCache = std::pair<char*, size_t>;
 	inline SectionCache& get_section(e_cache_file_section cache_file_section) { return m_pSectionCache[underlying_cast(cache_file_section)]; };
 	inline SectionCache& get_debug_section() { return get_section(e_cache_file_section::_cache_file_section_debug); };
 	inline SectionCache& get_tags_section() { return get_section(e_cache_file_section::_cache_file_section_tags); };
@@ -145,7 +146,7 @@ public:
 
 	inline char* getTagBlockDataInternal(s_tag_block_definition<>& tag_block)
 	{
-		const c_cache_file::SectionCache& section_info = get_section(e_cache_file_section::_cache_file_section_tags);
+		const SectionCache& section_info = get_section(e_cache_file_section::_cache_file_section_tags);
 		char* tags_section_data = section_info.first;
 
 		uint64_t data_offset = convert_page_offset(tag_block.address, true);
@@ -156,7 +157,7 @@ public:
 
 	inline char* getDataReferenceDataInternal(DataReference& data_reference)
 	{
-		const c_cache_file::SectionCache& section_info = get_section(e_cache_file_section::_cache_file_section_tags);
+		const SectionCache& section_info = get_section(e_cache_file_section::_cache_file_section_tags);
 		char* tags_section_data = section_info.first;
 
 		uint64_t data_offset = convert_page_offset(data_reference.address, true);

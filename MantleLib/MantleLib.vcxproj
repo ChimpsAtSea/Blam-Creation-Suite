@@ -162,6 +162,7 @@
     <ClInclude Include="Tags\TagDefinitions\performance_throttles.h" />
     <ClInclude Include="Tags\TagDefinitions\physics_model.h" />
     <ClInclude Include="Tags\TagDefinitions\pixel_shader.h" />
+    <ClInclude Include="Tags\TagDefinitions\play.h" />
     <ClInclude Include="Tags\TagDefinitions\point_physics.h" />
     <ClInclude Include="Tags\TagDefinitions\projectile.h" />
     <ClInclude Include="Tags\TagDefinitions\rasterizer_globals.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="Tags\TagDefinitions\vertex_shader.h" />
     <ClInclude Include="Tags\TagDefinitions\weapon.h" />
     <ClInclude Include="Tags\TagDefinitions\wind.h" />
+    <ClInclude Include="Tags\TagDefinitions\zone.h" />
     <ClInclude Include="Tags\TagGroups.h" />
     <ClInclude Include="Tags\Tags.h" />
     <ClInclude Include="Tags\TagTypes\StringID.h" />

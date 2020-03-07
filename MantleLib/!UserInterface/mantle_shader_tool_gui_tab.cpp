@@ -365,6 +365,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
 			ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_goto_button_width);
 			ImGui::Button("Goto", ImVec2(k_goto_button_width, 0));
+			ImGui::PopItemFlag();
 		}
 	}
 	const float end_cursor_position_y = ImGui::GetCursorPosY();

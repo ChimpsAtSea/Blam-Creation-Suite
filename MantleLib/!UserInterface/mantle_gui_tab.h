@@ -22,6 +22,7 @@ protected:
 
 	virtual void render_tab_contents_gui() = 0;
 
+	bool allow_close;
 	bool is_open;
 	bool is_selected;
 	std::string m_title;

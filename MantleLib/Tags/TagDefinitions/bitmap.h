@@ -148,7 +148,6 @@ struct nicename("Bitmap") group('bitm') s_bitmap_definition
 
 	struct nicename("raw_information_normal") s_raw_information_normal_block_definition
 	{
-		int32_t nicename("[zone] Asset Datum") zone_asset_datum; 
 		uint16_t nicename("[easy read] Index") easy_read_index; 
 		uint16_t nicename("[easy read] Salt") easy_read_salt; 
 		int32_t nicename("Useless Padding") useless_padding; 
@@ -156,7 +155,6 @@ struct nicename("Bitmap") group('bitm') s_bitmap_definition
 
 	struct nicename("raw_information_interleaved") s_raw_information_interleaved_block_definition
 	{
-		int32_t nicename("[zone] Asset Datum") zone_asset_datum; 
 		uint16_t nicename("[easy read] Index") easy_read_index; 
 		uint16_t nicename("[easy read] Salt") easy_read_salt; 
 		int32_t nicename("Useless Padding") useless_padding; 

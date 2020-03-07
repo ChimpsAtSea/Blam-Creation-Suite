@@ -38,15 +38,19 @@ c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
 			tag_group_short_name = pGroupIDBufferStr;
 			tag_group_full_name = pGroupIDBufferStr; // #TODO: Get group full name
 
-			if (!tag_path.empty())
+			if (tag_path.empty())
 			{
-				tag_path_with_group_id = tag_path + "." + tag_group_short_name;
-				tag_path_with_group_name = tag_path + "." + tag_group_full_name;
-
-				tag_name = PathFindFileNameA(tag_path.c_str());
-				tag_name_with_group_id = PathFindFileNameA(tag_path_with_group_id.c_str());
-				tag_name_with_group_name = PathFindFileNameA(tag_path_with_group_name.c_str());
+				char buffer[MAX_PATH + 1]{};
+				snprintf(buffer, MAX_PATH, "0x%X", static_cast<uint32_t>(tagIndex));
+				tag_path = buffer;
 			}
+
+			tag_path_with_group_id = tag_path + "." + tag_group_short_name;
+			tag_path_with_group_name = tag_path + "." + tag_group_full_name;
+
+			tag_name = PathFindFileNameA(tag_path.c_str());
+			tag_name_with_group_id = PathFindFileNameA(tag_path_with_group_id.c_str());
+			tag_name_with_group_name = PathFindFileNameA(tag_path_with_group_name.c_str());
 		}
 
 		reflection_type = get_tag_reflection_data_by_tag_group(cache_file_tag_group->group_tags[0]);
