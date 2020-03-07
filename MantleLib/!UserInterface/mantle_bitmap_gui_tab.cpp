@@ -11,7 +11,11 @@ c_mantle_bitmap_gui_tab::c_mantle_bitmap_gui_tab(c_cache_file& cache_file, c_man
 	c_mantle_gui_tab("Bitmap Editor", "Bitmap Editor"),
 	cache_file(cache_file),
 	parent_tag(parent_tag),
-	bitmap_tag_interface(bitmap_tag_interface)
+	bitmap_tag_interface(bitmap_tag_interface),
+	pTexture(nullptr),
+	shader_resource_view(nullptr),
+	dds_texture_buffer(nullptr),
+	decompressed_buffer(nullptr)
 {
 	allow_close = false;
 }
@@ -20,6 +24,55 @@ c_mantle_bitmap_gui_tab::~c_mantle_bitmap_gui_tab()
 {
 
 }
+
+enum e_bitmap_format
+{
+	_format_A8,
+	_format_Y8,
+	_format_AY8,
+	_format_A8Y8,
+	_format_Unused1,
+	_format_Unused2,
+	_format_R5G6B5,
+	_format_Unused3,
+	_format_A1R5G5B5,
+	_format_A4R4G4B4,
+	_format_X8R8G8B8,
+	_format_A8R8G8B8,
+	_format_Unused4,
+	_format_Unused5,
+	_format_DXT1,
+	_format_DXT3,
+	_format_DXT5,
+	_format_P8_Bump,
+	_format_P8,
+	_format_ARGBFP32,
+	_format_RGBFP32,
+	_format_RGBFP16,
+	_format_V8U8,
+	_format_Unknown23,
+	_format_Unknown24,
+	_format_Unknown25,
+	_format_Unknown26,
+	_format_Unknown27,
+	_format_Unknown28,
+	_format_Unknown29,
+	_format_Unknown30,
+	_format_Unknown31,
+	_format_Unknown32,
+	_format_Unknown33,
+	_format_Unknown34,
+	_format_Unknown35,
+	_format_DXT5a,
+	_format_Unknown37,
+	_format_DXN,
+	_format_CTX1,
+	_format_DXT3a_alpha,
+	_format_DXT3a_mono,
+	_format_DXT5a_alpha,
+	_format_DXT5a_mono,
+	_format_DXN_mono_alpha,
+};
 
 void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 {
@@ -40,12 +93,12 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 
 	s_zone_definition::s_tag_resource_block_definition& tag_resource = zone_tag->tag_resources_block[read_index];
 
-	if (tag_resource.play_segment_index != -1)
+	if (tag_resource.play_segment_index != UINT16_MAX)
 	{
 
 		s_play_definition::s_segment_block_definition& segment_block = play_tag->segments_block[tag_resource.play_segment_index];
 
-		if (segment_block.secondary_page_index != -1)
+		if (segment_block.secondary_page_index != UINT16_MAX)
 		{
 			s_play_definition::s_raw_page_block_definition& low_res_raw_page = play_tag->raw_pages_block[segment_block.primary_page_index];
 			s_play_definition::s_raw_page_block_definition& high_res_raw_page = play_tag->raw_pages_block[segment_block.secondary_page_index];
@@ -65,8 +118,6 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 				DDS_HEADER dds_header;
 			};
 
-			static char* dds_texture_buffer = nullptr;
-			static char* decompressed_buffer = nullptr;
 			if (dds_texture_buffer == nullptr)
 			{
 				dds_texture_buffer = new char[high_res_raw_page.uncompressed_block_size + sizeof(DDS_FILE_HEADER)]{};
@@ -88,7 +139,6 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 				}
 			}
 
-			static ID3D11Texture2D* pTexture = NULL;
 			if (pTexture == nullptr)
 			{
 				{
@@ -100,13 +150,32 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 					file_header->dds_header.width = bitmap_tag_interface.bitmap_data_block[0].width;			
 					file_header->dds_header.pitchOrLinearSize = high_res_raw_page.uncompressed_block_size;		
 					file_header->dds_header.depth = 0;															
-					file_header->dds_header.mipMapCount = 1;													
-					file_header->dds_header.ddspf = DDSPF_DXT5;
+					file_header->dds_header.mipMapCount = 1;		
+
+					switch ((e_bitmap_format)bitmap_tag_interface.bitmap_data_block[0].format)
+					{
+					case _format_DXT1:
+						file_header->dds_header.ddspf = DDSPF_DXT1;
+						break;
+					case _format_DXT3:
+						file_header->dds_header.ddspf = DDSPF_DXT3;
+						break;
+					case _format_DXT5:
+					default:
+						file_header->dds_header.ddspf = DDSPF_DXT5;
+						break;
+					}
 					file_header->dds_header.caps = DDS_SURFACE_FLAGS_TEXTURE | DDS_SURFACE_FLAGS_MIPMAP;
+
 				}
 
 				int width = bitmap_tag_interface.bitmap_data_block[0].width;
 				int height = bitmap_tag_interface.bitmap_data_block[0].height;
+
+				size_t bytesCount = high_res_raw_page.uncompressed_block_size;
+				size_t pixelsCount = static_cast<size_t>(width)* static_cast<size_t>(height);
+				size_t bitsPerPixel = (bytesCount * 8) / pixelsCount;
+				ASSERT(bitsPerPixel > 0);
 
 				D3D11_TEXTURE2D_DESC desc{};
 
@@ -114,7 +183,22 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 				desc.Height = height;
 				desc.MipLevels = 1;
 				desc.ArraySize = 1;
-				desc.Format = DXGI_FORMAT_BC3_UNORM;
+
+				switch ((e_bitmap_format)bitmap_tag_interface.bitmap_data_block[0].format)
+				{
+				case _format_DXT1:
+					desc.Format = DXGI_FORMAT_BC1_UNORM;
+					break;
+				case _format_DXT3:
+					desc.Format = DXGI_FORMAT_BC2_UNORM;
+					break;
+				case _format_DXT5:
+				default:
+					desc.Format = DXGI_FORMAT_BC3_UNORM;
+					break;
+				}
+
+
 				desc.SampleDesc.Count = 1;
 				desc.SampleDesc.Quality = 0;
 				desc.Usage = D3D11_USAGE_DEFAULT;
@@ -122,21 +206,22 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 				desc.CPUAccessFlags = 0;
 				desc.MiscFlags = 0;
 
-				D3D11_SUBRESOURCE_DATA initData;
+				D3D11_SUBRESOURCE_DATA initData{};
 				initData.pSysMem = decompressed_buffer;
 
-				initData.SysMemPitch = 16 * (width / 4);
-				initData.SysMemSlicePitch = initData.SysMemPitch * (height / 4);
+				size_t num_bytes;
+				size_t row_bytes;
+				HRESULT getSurfaceInfoResult = GetSurfaceInfo(width, height, desc.Format, &num_bytes, &row_bytes, nullptr);
+				ASSERT(SUCCEEDED(getSurfaceInfoResult));
 
-				//initData.SysMemPitch = static_cast<UINT>(width * sizeof(int));
-				//initData.SysMemSlicePitch = static_cast<UINT>(width * height * sizeof(int));
+				initData.SysMemPitch = static_cast<UINT>(row_bytes);
+				initData.SysMemSlicePitch = static_cast<UINT>(num_bytes);
 
 				HRESULT createTexture2DResult = c_render::s_pDevice->CreateTexture2D(&desc, &initData, &pTexture);
 				ASSERT(SUCCEEDED(createTexture2DResult));
 				ASSERT(pTexture);
 			}
 
-			static ID3D11ShaderResourceView* shader_resource_view = nullptr;
 			if (shader_resource_view == nullptr)
 			{
 				HRESULT createShaderResourceViewResult = c_render::s_pDevice->CreateShaderResourceView(pTexture, NULL, &shader_resource_view);

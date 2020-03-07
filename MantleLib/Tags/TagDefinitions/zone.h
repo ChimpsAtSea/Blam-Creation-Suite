@@ -203,7 +203,7 @@ struct nicename("Zone") group('zone') s_zone_definition
 		int32_t nicename("Fixup Information Length") fixup_information_length; 
 		int32_t nicename("Secondary Fixup Information Offset") secondary_fixup_information_offset; 
 		int16_t __unknown; 
-		int16_t nicename("[play] Segment Index") play_segment_index; 
+		uint16_t nicename("[play] Segment Index") play_segment_index; 
 		uint8_t nicename("Root Definition Address Location/High Bits") root_definition_address_location_high_bits; 
 		uint8_t nicename("Root Definition Address Upper Bits") root_definition_address_upper_bits; 
 		uint16_t nicename("Root Definition Address") root_definition_address; 
