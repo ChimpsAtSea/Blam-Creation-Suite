@@ -1,5 +1,6 @@
 #pragma once
 
+#include "dds.h"
 #include "window.h"
 #include "debug_gui.h"
 #include "render.h"

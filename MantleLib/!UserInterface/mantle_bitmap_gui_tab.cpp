@@ -7,7 +7,6 @@
 //#include <zlib/zopfli/zopfli.h>
 //#include <zlib/zopfli/deflate.h>
 
-
 c_mantle_bitmap_gui_tab::c_mantle_bitmap_gui_tab(c_cache_file& cache_file, c_mantle_gui_tab* parent_tag, v_tag_interface<s_bitmap_definition>& bitmap_tag_interface) :
 	c_mantle_gui_tab("Bitmap Editor", "Bitmap Editor"),
 	cache_file(cache_file),
@@ -24,6 +23,8 @@ c_mantle_bitmap_gui_tab::~c_mantle_bitmap_gui_tab()
 
 void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 {
+	using namespace DirectX;
+
 	ImGui::Text("Bitmap Editor");
 
 
@@ -58,42 +59,11 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 			SectionCache& resources_section = cache_file.get_resources_section();
 			char* data = resources_section.first + high_res_raw_page.block_offset;
 
-			struct DDS_PIXELFORMAT {
-				DWORD dwSize;
-				DWORD dwFlags;
-				DWORD dwFourCC;
-				DWORD dwRGBBitCount;
-				DWORD dwRBitMask;
-				DWORD dwGBitMask;
-				DWORD dwBBitMask;
-				DWORD dwABitMask;
-			};
-
-			typedef struct {
-				DWORD           dwSize;
-				DWORD           dwFlags;
-				DWORD           dwHeight;
-				DWORD           dwWidth;
-				DWORD           dwPitchOrLinearSize;
-				DWORD           dwDepth;
-				DWORD           dwMipMapCount;
-				DWORD           dwReserved1[11];
-				DDS_PIXELFORMAT ddspf;
-				DWORD           dwCaps;
-				DWORD           dwCaps2;
-				DWORD           dwCaps3;
-				DWORD           dwCaps4;
-				DWORD           dwReserved2;
-			} DDS_HEADER;
-
 			struct DDS_FILE_HEADER
 			{
 				DWORD file_magic;
 				DDS_HEADER dds_header;
 			};
-
-
-
 
 			static char* dds_texture_buffer = nullptr;
 			static char* decompressed_buffer = nullptr;
@@ -118,72 +88,22 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 				}
 			}
 
-#define DDSD_CAPS			0x1			// Required in every.dds file.	
-#define DDSD_HEIGHT			0x2			// Required in every.dds file.	
-#define DDSD_WIDTH			0x4			// Required in every.dds file.	
-#define DDSD_PITCH			0x8			// Required when pitch is provided for an uncompressed texture.	
-#define DDSD_PIXELFORMAT	0x1000		// Required in every.dds file.	
-#define DDSD_MIPMAPCOUNT	0x20000		// Required in a mipmapped texture.	
-#define DDSD_LINEARSIZE		0x80000		// Required when pitch is provided for a compressed texture.	
-#define DDSD_DEPTH			0x800000	// Required in a depth texture.	
-
-#define DDPF_ALPHAPIXELS	0x1			// Texture contains alpha data; dwRGBAlphaBitMask contains valid data.
-#define DDPF_ALPHA			0x2			// Used in some older DDS files for alpha channel only uncompressed data(dwRGBBitCount contains the alpha channel bitcount; dwABitMask contains valid data)
-#define DDPF_FOURCC			0x4			// Texture contains compressed RGB data; dwFourCC contains valid data.
-#define DDPF_RGB			0x40		// Texture contains uncompressed RGB data; dwRGBBitCountand the RGB masks(dwRBitMask, dwGBitMask, dwBBitMask) contain valid data.
-#define DDPF_YUV			0x200		// Used in some older DDS files for YUV uncompressed data(dwRGBBitCount contains the YUV bit count; dwRBitMask contains the Y mask, dwGBitMask contains the U mask, dwBBitMask contains the V mask)
-#define DDPF_LUMINANCE		0x20000		// Used in some older DDS files for single channel color uncompressed data(dwRGBBitCount contains the luminance channel bit count; dwRBitMask contains the channel mask).Can be combined with DDPF_ALPHAPIXELS for a two channel DDS file.	
-
-#define DDSCAPS_COMPLEX	0x8			// Optional; must be used on any file that contains more than one surface(a mipmap, a cubic environment map, or mipmapped volume texture).	
-#define DDSCAPS_TEXTURE	0x1000		// Required	
-#define DDSCAPS_MIPMAP	0x400000	// Optional; should be used for a mipmap.	
-
-
-
 			static ID3D11Texture2D* pTexture = NULL;
 			if (pTexture == nullptr)
 			{
-
 				{
 					DDS_FILE_HEADER* file_header = reinterpret_cast<DDS_FILE_HEADER*>(dds_texture_buffer);
-					file_header->file_magic = _byteswap_ulong('DDS ');
-					file_header->dds_header.dwSize = sizeof(DDS_HEADER);											//DWORD           dwSize;
-					file_header->dds_header.dwFlags =																//DWORD           dwFlags;
-						DDSD_CAPS |
-						DDSD_HEIGHT |
-						DDSD_WIDTH |
-						DDSD_PIXELFORMAT |
-						DDSD_MIPMAPCOUNT |
-						DDSD_LINEARSIZE;
-					file_header->dds_header.dwHeight = bitmap_tag_interface.bitmap_data_block[0].height;			//DWORD           dwHeight;
-					file_header->dds_header.dwWidth = bitmap_tag_interface.bitmap_data_block[0].width;				//DWORD           dwWidth;
-					file_header->dds_header.dwPitchOrLinearSize = high_res_raw_page.uncompressed_block_size;		//DWORD           dwPitchOrLinearSize;
-					file_header->dds_header.dwDepth = 0;																//DWORD           dwDepth;
-					file_header->dds_header.dwMipMapCount = 1;															//DWORD           dwMipMapCount;
-					file_header->dds_header.dwReserved1[11];														//DWORD           dwReserved1[11];
-					file_header->dds_header.ddspf;																	//DDS_PIXELFORMAT ddspf;
-					{
-						file_header->dds_header.ddspf.dwSize = sizeof(DDS_PIXELFORMAT);					// DWORD dwSize;
-						file_header->dds_header.ddspf.dwFlags = DDPF_FOURCC;							// DWORD dwFlags;
-						file_header->dds_header.ddspf.dwFourCC = _byteswap_ulong('DXT5');				// DWORD dwFourCC;
-						file_header->dds_header.ddspf.dwRGBBitCount;									// DWORD dwRGBBitCount;
-						file_header->dds_header.ddspf.dwRBitMask;										// DWORD dwRBitMask;
-						file_header->dds_header.ddspf.dwGBitMask;										// DWORD dwGBitMask;
-						file_header->dds_header.ddspf.dwBBitMask;										// DWORD dwBBitMask;
-						file_header->dds_header.ddspf.dwABitMask;										// DWORD dwABitMask;
-					}
-					file_header->dds_header.dwCaps = DDSCAPS_COMPLEX | DDSCAPS_TEXTURE | DDSCAPS_MIPMAP;			//DWORD           dwCaps;
-					file_header->dds_header.dwCaps2;																//DWORD           dwCaps2;
-					file_header->dds_header.dwCaps3;																//DWORD           dwCaps3;
-					file_header->dds_header.dwCaps4;																//DWORD           dwCaps4;
-					file_header->dds_header.dwReserved2;															//DWORD           dwReserved2;
+					file_header->file_magic = DDS_MAGIC;
+					file_header->dds_header.size = sizeof(DDS_HEADER);											
+					file_header->dds_header.flags =	 DDS_HEADER_FLAGS_TEXTURE | DDS_HEADER_FLAGS_MIPMAP | DDS_HEADER_FLAGS_LINEARSIZE;
+					file_header->dds_header.height = bitmap_tag_interface.bitmap_data_block[0].height;			
+					file_header->dds_header.width = bitmap_tag_interface.bitmap_data_block[0].width;			
+					file_header->dds_header.pitchOrLinearSize = high_res_raw_page.uncompressed_block_size;		
+					file_header->dds_header.depth = 0;															
+					file_header->dds_header.mipMapCount = 1;													
+					file_header->dds_header.ddspf = DDSPF_DXT5;
+					file_header->dds_header.caps = DDS_SURFACE_FLAGS_TEXTURE | DDS_SURFACE_FLAGS_MIPMAP;
 				}
-
-
-
-
-
-
 
 				int width = bitmap_tag_interface.bitmap_data_block[0].width;
 				int height = bitmap_tag_interface.bitmap_data_block[0].height;
