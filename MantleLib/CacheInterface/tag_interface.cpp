@@ -16,7 +16,9 @@ c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
 	tag_name_with_group_name(),
 	reflection_type(nullptr),
 	cache_file(cache_file),
-	group_interface(nullptr)
+	group_interface(nullptr),
+	search_criteria_result(false),
+	virtual_resource_user_data(nullptr)
 {
 	m_isNull = cache_file_tag_instance->group_index == 0xFFFFu;
 	if (!m_isNull)

@@ -40,7 +40,7 @@ void render_stringid_gui(string_id* field_data, const c_reflection_field& reflec
 		string_id* pStringID;
 	};
 
-	static_assert(sizeof(StringIDDynamicData) <= sizeof(c_mantle_tag_gui_tab::ImGUIDynamicData::second), "StringIDDynamicData is too large");
+	static_assert(sizeof(StringIDDynamicData) <= sizeof(c_mantle_tag_gui_tab::c_imgui_dynamic_data::second), "StringIDDynamicData is too large");
 	bool wasAllocated;
 	StringIDDynamicData& rDynamicStringIDData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->GetDynamicData<StringIDDynamicData>(field_data, wasAllocated);
 	if (wasAllocated)

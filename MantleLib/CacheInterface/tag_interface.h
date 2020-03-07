@@ -67,5 +67,7 @@ private:
 
 	// !unsure
 	bool search_criteria_result; // #TODO: This is a mantle gui value and doesn't really belong here
+public:
+	void* virtual_resource_user_data;
 };
 

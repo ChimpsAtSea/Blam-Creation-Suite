@@ -6,11 +6,11 @@ class c_mantle_shader_tool_gui_tab :
 public:
 	friend class c_mantle_tag_gui_tab;
 
-	c_mantle_shader_tool_gui_tab(const char* title, const char* description);
+	c_mantle_shader_tool_gui_tab(const char* title, const char* description, c_mantle_cache_file_gui_tab& parent_tab, c_cache_file& cache_file);
 	virtual ~c_mantle_shader_tool_gui_tab();
 
 protected:
-	virtual void render_tab_contents_gui(bool set_selected) override;
+	virtual void render_tab_contents_gui() override;
 
 	static std::string disassemble_shader(const char* hlsl_bytecode_data, size_t hlsl_bytecode_size);
 
@@ -35,7 +35,9 @@ protected:
 	c_thread_subroutine disassemble_runtime;
 	mutable c_atomic_temp_value<std::string> new_runtime_disassembly;
 
-	c_mantle_cache_file_gui_tab* selected_cache_file_tab;
+	//c_mantle_cache_file_gui_tab* selected_cache_file_tab;
+	c_mantle_cache_file_gui_tab& parent_tab;
+	c_cache_file& cache_file;
 	c_tag_interface* selected_render_method_definition_tag_interface;
 	c_tag_interface* selected_render_method_template_tag_interface;
 

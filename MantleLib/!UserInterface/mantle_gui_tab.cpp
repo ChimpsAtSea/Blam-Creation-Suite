@@ -1,16 +1,18 @@
 #include "mantlelib-private-pch.h"
 
 c_mantle_gui_tab::c_mantle_gui_tab(const char* title, const char* description) :
+	is_open(true),
 	m_title(title),
 	m_description(description),
-	is_open(true)
+	on_tab_closed_callbacks(),
+	child_tabs()
 {
 
 }
 
 c_mantle_gui_tab::~c_mantle_gui_tab()
 {
-	for (tab_closed_callback callback : tabClosedCallback)
+	for (on_tab_closed_callback callback : on_tab_closed_callbacks)
 	{
 		if (callback)
 		{
@@ -21,22 +23,55 @@ c_mantle_gui_tab::~c_mantle_gui_tab()
 
 void c_mantle_gui_tab::render_in_game_gui()
 {
-	
+
 }
 
 void c_mantle_gui_tab::render_gui(bool set_selected)
 {
+	ImGui::PushID(this);
 	run_events();
-	render_tab_contents_gui(set_selected);
+	{
+		ImGuiTabItemFlags flags = 0;
+		if (set_selected) flags |= ImGuiTabItemFlags_SetSelected;
+		is_selected = false;
+		if (ImGui::BeginTabItem(get_title(), &is_open, flags))
+		{
+			is_selected = true;
+
+			render_tab_contents_gui();
+
+			ImGui::EndTabItem();
+		}
+	}
 
 	if (!is_open)
 	{
 		delete this;
 	}
+	ImGui::PopID();
 }
 
-void c_mantle_gui_tab::add_tab_closed_callback(tab_closed_callback callback)
+void c_mantle_gui_tab::add_tab_closed_callback(on_tab_closed_callback callback)
 {
 	ASSERT(callback != nullptr);
-	tabClosedCallback.push_back(callback);
+	on_tab_closed_callbacks.push_back(callback);
+}
+
+void c_mantle_gui_tab::add_tab(c_mantle_gui_tab& tab)
+{
+	if (std::find(child_tabs.begin(), child_tabs.end(), &tab) == child_tabs.end())
+	{
+		child_tabs.push_back(&tab);
+		tab.add_tab_closed_callback(std::bind(&c_mantle_gui_tab::tab_closed_callback, this, std::placeholders::_1));
+	}
+}
+
+void c_mantle_gui_tab::remove_tab(c_mantle_gui_tab& tab)
+{
+	VectorEraseByValueHelper(child_tabs, &tab);
+}
+
+void c_mantle_gui_tab::tab_closed_callback(c_mantle_gui_tab& tab)
+{
+	this->remove_tab(tab);
 }

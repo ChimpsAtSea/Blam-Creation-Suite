@@ -18,8 +18,6 @@ bool c_mantle_gui::g_unknown_fields_visibility = true;
 bool c_mantle_gui::g_mantle_running_with_game;
 std::vector<c_mantle_gui_tab*> c_mantle_gui::g_mantle_gui_tabs;
 std::vector<c_mantle_gui::on_close_callback_func> c_mantle_gui::g_mantle_on_close_callbacks;
-std::string shader_tool_directory;
-bool enable_shader_tool;
 
 /* ---------- private prototypes */
 /* ---------- public code */
@@ -28,20 +26,6 @@ void c_mantle_gui::init_mantle_gui(bool inGameMode, const wchar_t* startup_cache
 {
 	g_mantle_running_with_game = inGameMode;
 	open_cache_file_from_filepath(startup_cache_filepath);
-
-
-	shader_tool_directory = c_command_line::get_command_line_arg("-shadertool");
-	enable_shader_tool = !shader_tool_directory.empty() && PathFileExistsA(shader_tool_directory.c_str());
-	if (enable_shader_tool)
-	{
-		static bool autostart_shader_tool = c_command_line::has_command_line_arg("-shadertool");
-		if (autostart_shader_tool)
-		{
-			start_shader_tool();
-			autostart_shader_tool = false;
-		}
-	}
-
 }
 
 void c_mantle_gui::render_in_game_gui()
@@ -108,15 +92,15 @@ void c_mantle_gui::render_gui()
 					//	pSetSelectedRootTab = pTab;
 					//}
 				}
-				if (enable_shader_tool)
-				{
-					ImGui::Separator();
-					if (ImGui::MenuItem("Start Shader Tool", "Ctrl+H"))
-					{
+				//if (enable_shader_tool)
+				//{
+				//	ImGui::Separator();
+				//	if (ImGui::MenuItem("Start Shader Tool", "Ctrl+H"))
+				//	{
 
-						start_shader_tool();
-					}
-				}
+				//		start_shader_tool();
+				//	}
+				//}
 				ImGui::Separator();
 				if (ImGui::MenuItem("Exit"))
 				{
@@ -189,31 +173,6 @@ void c_mantle_gui::deinit_mantle_gui()
 	}
 }
 
-void c_mantle_gui::start_shader_tool()
-{
-	if (!enable_shader_tool) return;
-
-	c_mantle_shader_tool_gui_tab* mantle_halo_shader_generator_gui_tab = nullptr;
-	for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
-	{
-		mantle_halo_shader_generator_gui_tab = dynamic_cast<c_mantle_shader_tool_gui_tab*>(mantle_gui_tab);
-
-		if (mantle_halo_shader_generator_gui_tab)
-		{
-			break;
-		}
-	}
-
-	if (mantle_halo_shader_generator_gui_tab == nullptr)
-	{
-		mantle_halo_shader_generator_gui_tab = new c_mantle_shader_tool_gui_tab("Shader Tool", "Shader Tool");
-
-		add_tab(*mantle_halo_shader_generator_gui_tab);
-	}
-
-	g_next_selected_root_tab = mantle_halo_shader_generator_gui_tab;
-}
-
 void c_mantle_gui::register_on_close_callback(on_close_callback_func callback)
 {
 	g_mantle_on_close_callbacks.push_back(callback);
@@ -255,7 +214,7 @@ void c_mantle_gui::set_active_tab(c_mantle_gui_tab* gui_tab)
 	}
 }
 
-std::shared_ptr<c_cache_file> c_mantle_gui::get_cache_file(const char* pMapName)
+c_cache_file* c_mantle_gui::get_cache_file(const char* pMapName)
 {
 	for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
 	{
@@ -263,7 +222,7 @@ std::shared_ptr<c_cache_file> c_mantle_gui::get_cache_file(const char* pMapName)
 		if (mantle_cache_file_gui_tab == nullptr) continue;
 		if (strcmp(mantle_cache_file_gui_tab->get_title(), pMapName) == 0)
 		{
-			return mantle_cache_file_gui_tab->get_cache_file();
+			return &mantle_cache_file_gui_tab->get_cache_file();
 		}
 	}
 	return nullptr;

@@ -18,9 +18,9 @@ public:
 
 	void RenderButtons();
 protected:
-	virtual void render_tab_contents_gui(bool set_selected);
+	virtual void render_tab_contents_gui();
+	void render_tab_contents_gui_impl();
 
-	bool is_selected;
 	c_tag_interface& tag_interface;
 	c_cache_file& cache_file;
 	c_mantle_gui_tab* parent_tab;

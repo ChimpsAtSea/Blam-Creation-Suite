@@ -6,11 +6,12 @@ e_shader_profile c_mantle_shader_tool_gui_tab::accepted_shader_profiles[] =
 	_shader_profile_ps_3_0
 };
 
-c_mantle_shader_tool_gui_tab::c_mantle_shader_tool_gui_tab(const char* title, const char* description) :
+c_mantle_shader_tool_gui_tab::c_mantle_shader_tool_gui_tab(const char* title, const char* description, c_mantle_cache_file_gui_tab& parent_tab, c_cache_file& cache_file) :
 	c_mantle_gui_tab(title, description),
 	compile_source_thread_subroutine(&c_mantle_shader_tool_gui_tab::compile_source_subroutine, this),
 	disassemble_runtime(&c_mantle_shader_tool_gui_tab::disassemble_runtime_subroutine, this),
-	selected_cache_file_tab(nullptr),
+	parent_tab(parent_tab),
+	cache_file(cache_file),
 	selected_render_method_definition_tag_interface(nullptr),
 	selected_render_method_template_tag_interface(nullptr),
 	use_durango_shader_disassembly(false),
@@ -189,71 +190,74 @@ void c_mantle_shader_tool_gui_tab::render_preview_disassembly_configuration_head
 
 void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_header_column_gui()
 {
+	static constexpr float k_min_column_height = 120.0f;
+	const float start_cursor_position_y = ImGui::GetCursorPosY();
+
 	{
 		// #TODO: What happens when this tab closes? This value needs to be fixed up
 
-		const char* cache_file_combo_text = selected_cache_file_tab ? selected_cache_file_tab->get_title() : "(select cache file)";
-		if (ImGui::BeginCombo("Cache File", cache_file_combo_text))
-		{
-			if (ImGui::Selectable("(select cache file)", selected_cache_file_tab == nullptr))
-			{
-				selected_cache_file_tab = nullptr;
-			}
+		//const char* cache_file_combo_text = selected_cache_file_tab ? selected_cache_file_tab->get_title() : "(select cache file)";
+		//if (ImGui::BeginCombo("Cache File", cache_file_combo_text))
+		//{
+		//	if (ImGui::Selectable("(select cache file)", selected_cache_file_tab == nullptr))
+		//	{
+		//		selected_cache_file_tab = nullptr;
+		//	}
 
-			for (c_mantle_gui_tab* gui_tab : c_mantle_gui::get_tabs())
-			{
-				c_mantle_cache_file_gui_tab* cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(gui_tab);
-				if (cache_file_gui_tab == nullptr) continue;
+		//	for (c_mantle_gui_tab* gui_tab : c_mantle_gui::get_tabs())
+		//	{
+		//		c_mantle_cache_file_gui_tab* cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(gui_tab);
+		//		if (cache_file_gui_tab == nullptr) continue;
 
-				if (ImGui::Selectable(cache_file_gui_tab->get_title(), selected_cache_file_tab == cache_file_gui_tab))
-				{
-					selected_cache_file_tab = cache_file_gui_tab;
-				}
-			}
+		//		if (ImGui::Selectable(cache_file_gui_tab->get_title(), selected_cache_file_tab == cache_file_gui_tab))
+		//		{
+		//			selected_cache_file_tab = cache_file_gui_tab;
+		//		}
+		//	}
 
-			ImGui::EndCombo();
-		}
+		//	ImGui::EndCombo();
+		//}
 
 		static constexpr float k_shader_selection_type_button_width = 80.0f;
-		if (selected_render_method_template_tag_interface)
-		{
-			ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_shader_selection_type_button_width);
+		//if (selected_render_method_template_tag_interface)
+		//{
+		//	//ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_shader_selection_type_button_width);
 
-			if (use_durango_shader_disassembly)
-			{
-				if (ImGui::Button("PC", ImVec2(k_shader_selection_type_button_width, 0)))
-				{
-					use_durango_shader_disassembly = false;
-					disassemble_runtime();
-				}
-			}
-			else
-			{
-				if (ImGui::Button("Xbox", ImVec2(k_shader_selection_type_button_width, 0)))
-				{
-					use_durango_shader_disassembly = true;
-					disassemble_runtime();
-				}
-			}
-		}
-		else
-		{
-			ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_shader_selection_type_button_width);
-			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
-			if (use_durango_shader_disassembly)
-			{
-				ImGui::Button("PC", ImVec2(k_shader_selection_type_button_width, 0));
-			}
-			else
-			{
-				ImGui::Button("Xbox", ImVec2(k_shader_selection_type_button_width, 0));
-			}
-			ImGui::PopItemFlag();
-		}
+		//	if (use_durango_shader_disassembly)
+		//	{
+		//		if (ImGui::Button("PC", ImVec2(k_shader_selection_type_button_width, 0)))
+		//		{
+		//			use_durango_shader_disassembly = false;
+		//			disassemble_runtime();
+		//		}
+		//	}
+		//	else
+		//	{
+		//		if (ImGui::Button("Xbox", ImVec2(k_shader_selection_type_button_width, 0)))
+		//		{
+		//			use_durango_shader_disassembly = true;
+		//			disassemble_runtime();
+		//		}
+		//	}
+		//}
+		//else
+		//{
+		//	//ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_shader_selection_type_button_width);
+		//	ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+		//	if (use_durango_shader_disassembly)
+		//	{
+		//		ImGui::Button("PC", ImVec2(k_shader_selection_type_button_width, 0));
+		//	}
+		//	else
+		//	{
+		//		ImGui::Button("Xbox", ImVec2(k_shader_selection_type_button_width, 0));
+		//	}
+		//	ImGui::PopItemFlag();
+		//}
 
-		if (selected_cache_file_tab)
+		//if (selected_cache_file_tab)
 		{
-			c_tag_group_interface* tag_group_interface = selected_cache_file_tab->get_cache_file()->get_group_interface_by_group_id(_tag_group_render_method_definition);
+			c_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_tag_group_render_method_definition);
 			c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
 			DEBUG_ASSERT(render_method_definition_interface == tag_group_interface);
 			const std::vector<c_tag_interface*>& tag_interfaces = render_method_definition_interface->get_tag_interfaces();
@@ -281,15 +285,15 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 			}
 			else ImGui::Text("Couldn't find Render Method Definition group!");
 		}
-		else
-		{
-			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
-			if (ImGui::BeginCombo("Definition", ""))
-			{
-				ImGui::EndCombo();
-			}
-			ImGui::PopItemFlag();
-		}
+		//else
+		//{
+		//	ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+		//	if (ImGui::BeginCombo("Definition", ""))
+		//	{
+		//		ImGui::EndCombo();
+		//	}
+		//	ImGui::PopItemFlag();
+		//}
 
 		static constexpr float k_goto_button_width = 80.0f;
 		if (selected_render_method_definition_tag_interface)
@@ -298,8 +302,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 
 			if (ImGui::Button("Goto", ImVec2(k_goto_button_width, 0)))
 			{
-				c_mantle_gui::set_active_tab(selected_cache_file_tab);
-				selected_cache_file_tab->open_tag_interface_tab(*selected_render_method_definition_tag_interface);
+				parent_tab.open_tag_interface_tab(*selected_render_method_definition_tag_interface);
 			}
 		}
 		else
@@ -314,7 +317,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 		{
 			// #TODO: This could do with some optimization by adding a subclass to c_tag_interface to store all of this information computed upfront
 
-			c_tag_group_interface* tag_group_interface = selected_cache_file_tab->get_cache_file()->get_group_interface_by_group_id(_tag_group_render_method_definition);
+			c_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_tag_group_render_method_definition);
 			c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
 
 
@@ -354,8 +357,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 
 			if (ImGui::Button("Goto", ImVec2(k_goto_button_width, 0)))
 			{
-				c_mantle_gui::set_active_tab(selected_cache_file_tab);
-				selected_cache_file_tab->open_tag_interface_tab(*selected_render_method_template_tag_interface);
+				parent_tab.open_tag_interface_tab(*selected_render_method_template_tag_interface);
 			}
 		}
 		else
@@ -364,6 +366,11 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 			ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_goto_button_width);
 			ImGui::Button("Goto", ImVec2(k_goto_button_width, 0));
 		}
+	}
+	const float end_cursor_position_y = ImGui::GetCursorPosY();
+	if (end_cursor_position_y < k_min_column_height)
+	{
+		ImGui::Dummy(ImVec2(0.0f, k_min_column_height - end_cursor_position_y));
 	}
 	ImGui::NextColumn();
 }
@@ -391,6 +398,7 @@ void c_mantle_shader_tool_gui_tab::render_text_editor_status_bar_gui()
 
 	TextEditor::Coordinates cursor_position = selected_text_editor->GetCursorPosition();
 
+	ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 10.0f);
 	ImGui::Text(
 		"%6d/%-6d %6d lines  | %s | %s | %s | %s",
 		cursor_position.mLine + 1,
@@ -399,36 +407,29 @@ void c_mantle_shader_tool_gui_tab::render_text_editor_status_bar_gui()
 		selected_text_editor->IsOverwrite() ? "Ovr" : "Ins",
 		selected_text_editor->CanUndo() ? "*" : " ",
 		selected_language_name, selected_file_path);
+	ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10.0f);
 }
 
-void c_mantle_shader_tool_gui_tab::render_tab_contents_gui(bool set_selected)
+void c_mantle_shader_tool_gui_tab::render_tab_contents_gui()
 {
-	ImGui::PushID(this);
-	ImGuiTabItemFlags tabFlags = 0;
-	if (set_selected) tabFlags |= ImGuiTabItemFlags_SetSelected;
-	if (ImGui::BeginTabItem(get_title(), &is_open, tabFlags))
-	{
-		ImGui::Columns(3);
-		render_source_code_editor_configuration_header_column_gui(); // column 0
-		render_preview_disassembly_configuration_header_column_gui(); // column 1
-		render_runtime_disassembly_configuration_header_column_gui(); // column 2
+	ImGui::Columns(3);
+	render_source_code_editor_configuration_header_column_gui(); // column 0
+	render_preview_disassembly_configuration_header_column_gui(); // column 1
+	render_runtime_disassembly_configuration_header_column_gui(); // column 2
 
-		ImGui::Columns(1);
-		ImGui::SameLine();
-		ImGui::SetCursorPosX(0);
-		render_text_editor_status_bar_gui();
-		ImGui::Dummy(ImVec2(0.0f, 3.0f));
+	ImGui::Columns(1);
+	ImGui::SameLine();
+	ImGui::SetCursorPosX(0);
+	render_text_editor_status_bar_gui();
+	ImGui::Dummy(ImVec2(0.0f, 3.0f));
 
-		ImGui::Columns(3);
+	ImGui::Columns(3);
 
-		render_source_code_editor_gui();
-		render_preview_disassembly();
-		render_runtime_disassembly();
+	render_source_code_editor_gui();
+	render_preview_disassembly();
+	render_runtime_disassembly();
 
-		ImGui::Columns(1);
-		ImGui::EndTabItem();
-	}
-	ImGui::PopID();
+	ImGui::Columns(1);
 }
 
 void c_mantle_shader_tool_gui_tab::compile_source()
@@ -567,8 +568,6 @@ void c_mantle_shader_tool_gui_tab::disassemble_runtime_subroutine() const
 {
 	if (selected_render_method_template_tag_interface)
 	{
-		c_cache_file& cache_file = *selected_cache_file_tab->get_cache_file();
-
 		s_render_method_template_definition* render_method_template = selected_render_method_template_tag_interface->get_data<s_render_method_template_definition>();
 		c_tag_interface* pixel_shader_tag_interface = cache_file.get_tag_interface(render_method_template->pixel_shader_reference.index);
 		s_pixel_shader_definition* pixel_shader = pixel_shader_tag_interface->get_data<s_pixel_shader_definition>();

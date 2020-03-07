@@ -13,27 +13,33 @@ public:
 	inline const char* get_title() const { return m_title.c_str(); }
 	inline const char* get_description() const { return m_description.c_str(); }
 
-	using tab_closed_callback = std::function<void(c_mantle_gui_tab&)>;
-	void add_tab_closed_callback(tab_closed_callback);
+	using on_tab_closed_callback = std::function<void(c_mantle_gui_tab&)>;
+	void add_tab_closed_callback(on_tab_closed_callback);
 protected:
-	virtual void render_tab_contents_gui(bool set_selected) = 0;
+	void add_tab(c_mantle_gui_tab& tab);
+	void remove_tab(c_mantle_gui_tab& tab);
+	void tab_closed_callback(c_mantle_gui_tab& tab);
+
+	virtual void render_tab_contents_gui() = 0;
 
 	bool is_open;
+	bool is_selected;
 	std::string m_title;
 	std::string m_description;
-	std::vector<tab_closed_callback> tabClosedCallback;
+	std::vector<on_tab_closed_callback> on_tab_closed_callbacks;
+	std::vector<c_mantle_gui_tab*> child_tabs;
 
 public:
-	using ImGUIDynamicData = std::pair<void*, char[120]>;
-	std::vector<ImGUIDynamicData*> m_imGuiDynamicData;
+	using c_imgui_dynamic_data = std::pair<void*, char[120]>;
+	std::vector<c_imgui_dynamic_data*> imgui_dynamic_data;
 
-	inline ImGUIDynamicData& GetDynamicData(void* pPosition, bool& rWasAllocated);
+	inline c_imgui_dynamic_data& GetDynamicData(void* pPosition, bool& rWasAllocated);
 	template<typename T>
 	inline T& GetDynamicData(void* pPosition)
 	{
 
 		bool wasAllocated = false;
-		ImGUIDynamicData& rDynamicData = GetDynamicData(pPosition, wasAllocated);
+		c_imgui_dynamic_data& rDynamicData = GetDynamicData(pPosition, wasAllocated);
 		if (wasAllocated)
 		{
 			static_assert(sizeof(T) <= sizeof(rDynamicData.second), "Dynamic data exceeds allocated space");
@@ -45,16 +51,16 @@ public:
 	template<typename T, typename ...Tconstructor>
 	inline T& GetDynamicData(void* pPosition, bool& rWasAllocated)
 	{
-		ImGUIDynamicData& rDynamicData = GetDynamicData(pPosition, rWasAllocated);
+		c_imgui_dynamic_data& rDynamicData = GetDynamicData(pPosition, rWasAllocated);
 		static_assert(sizeof(T) <= sizeof(rDynamicData.second), "Dynamic data exceeds allocated space");
 		T& rDynamicTagBlockData = *reinterpret_cast<T*>(rDynamicData.second);
 		return rDynamicTagBlockData;
 	}
 };
 
-inline c_mantle_gui_tab::ImGUIDynamicData& c_mantle_gui_tab::GetDynamicData(void* pPosition, bool& rWasAllocated)
+inline c_mantle_gui_tab::c_imgui_dynamic_data& c_mantle_gui_tab::GetDynamicData(void* pPosition, bool& rWasAllocated)
 {
-	for (ImGUIDynamicData* pDynamicData : m_imGuiDynamicData)
+	for (c_imgui_dynamic_data* pDynamicData : imgui_dynamic_data)
 	{
 		if (pDynamicData->first == pPosition)
 		{
@@ -66,7 +72,7 @@ inline c_mantle_gui_tab::ImGUIDynamicData& c_mantle_gui_tab::GetDynamicData(void
 	//write_line_verbose("Adding new dynamic data @ %p", pPosition);
 
 	rWasAllocated = true;
-	ImGUIDynamicData& rDynamicData = *m_imGuiDynamicData.emplace_back(new ImGUIDynamicData{});
+	c_imgui_dynamic_data& rDynamicData = *imgui_dynamic_data.emplace_back(new c_imgui_dynamic_data{});
 	rDynamicData.first = pPosition;
 	return rDynamicData;
 }

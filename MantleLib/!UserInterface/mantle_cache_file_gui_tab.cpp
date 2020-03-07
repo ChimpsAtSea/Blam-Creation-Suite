@@ -1,5 +1,96 @@
 #include "mantlelib-private-pch.h"
 
+void c_mantle_cache_file_gui_tab::open_tag_interface_tab(c_tag_interface& tag_interface)
+{
+	for (c_mantle_gui_tab* tab : child_tabs)
+	{
+		c_mantle_tag_gui_tab* pTagTab = dynamic_cast<c_mantle_tag_gui_tab*>(tab);
+		if (pTagTab == nullptr) continue;
+		if (&pTagTab->get_tag_interface() != &tag_interface) continue;
+
+		next_selected_mantle_gui_tab = tab;
+		return;
+	}
+
+	c_mantle_gui_tab* pTab = new c_mantle_tag_gui_tab(cache_file, tag_interface, this);
+	add_tab(*pTab);
+	next_selected_mantle_gui_tab = pTab;
+}
+
+c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_file) :
+	cache_file(cache_file),
+	cache_file_owned_pointer(nullptr),
+	c_mantle_gui_tab(cache_file.GetFileNameChar(), cache_file.GetFilePathChar()),
+	render_trigger_volumes(c_command_line::has_command_line_arg("-showtriggervolumes")),
+	next_selected_mantle_gui_tab(nullptr),
+	m_pSelectedSearchTagInterface(nullptr),
+	m_pSearchBuffer(),
+	virtual_resource_manager(*new c_virtual_resource_manager(cache_file))
+{
+	shader_tool_directory = c_command_line::get_command_line_arg("-shadertool");
+	enable_shader_tool = !shader_tool_directory.empty() && PathFileExistsA(shader_tool_directory.c_str());
+	if (enable_shader_tool)
+	{
+		static bool autostart_shader_tool = c_command_line::has_command_line_arg("-shadertool");
+		if (autostart_shader_tool)
+		{
+			start_shader_tool();
+			autostart_shader_tool = false;
+		}
+	}
+
+	
+
+	std::string load_tag_command_line = c_command_line::get_command_line_arg("-loadtag");
+	if (!load_tag_command_line.empty())
+	{
+		// #TODO: Create a callback function interface that will run on the first frame of the main thread
+		while (cache_file.is_loading()) { Sleep(1); };
+
+		c_tag_interface* tag_interface = nullptr;
+		for (c_tag_interface* current_tag_interface : cache_file.tag_interfaces)
+		{
+			bool isMatch = false;
+			isMatch |= load_tag_command_line == current_tag_interface->get_name_with_group_id();
+			isMatch |= load_tag_command_line == current_tag_interface->get_path_with_group_id();
+			isMatch |= load_tag_command_line == current_tag_interface->get_name_with_group_name();
+			isMatch |= load_tag_command_line == current_tag_interface->get_path_with_group_name();
+			if (isMatch)
+			{
+				tag_interface = current_tag_interface;
+				break;
+			}
+		}
+		
+		if (tag_interface)
+		{
+			open_tag_interface_tab(*tag_interface);
+		}
+	}
+}
+
+c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file* cache_file) :
+	c_mantle_cache_file_gui_tab(*cache_file)
+{
+	cache_file_owned_pointer = cache_file;
+}
+
+c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(const wchar_t* szMapFilePath) :
+	c_mantle_cache_file_gui_tab(new c_cache_file(szMapFilePath))
+{
+
+}
+
+c_mantle_cache_file_gui_tab::~c_mantle_cache_file_gui_tab()
+{
+	// delete the first tab in the vector until non remain
+	// tabs are removed from vector via the TabClosedCallback
+	while (!child_tabs.empty())
+	{
+		delete* child_tabs.begin();
+	}
+}
+
 void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 {
 	if (c_mantle_gui::is_game())
@@ -31,7 +122,7 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 			ImGui::InputText("", m_pSearchBuffer, 1024);
 			ImGui::Dummy(ImVec2(0, 10));
 		}
-		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<c_tag_group_interface*> rGroupInterfaces = cache_file->get_group_interfaces();
+		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<c_tag_group_interface*> rGroupInterfaces = cache_file.get_group_interfaces();
 
 
 		bool useSearch = m_pSearchBuffer[0] != 0;
@@ -39,8 +130,8 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 		{
 
 			const std::vector<c_tag_interface*>& tag_interfaces = c_mantle_gui::get_use_full_file_length_display()
-				? cache_file->get_tag_interfaces_sorted_by_path_with_group_id()
-				: cache_file->get_tag_interfaces_sorted_by_name_with_group_id();
+				? cache_file.get_tag_interfaces_sorted_by_path_with_group_id()
+				: cache_file.get_tag_interfaces_sorted_by_name_with_group_id();
 			for (c_tag_interface* pTagInterface : tag_interfaces)
 			{
 				c_tag_interface& tag_interface = *pTagInterface;
@@ -188,7 +279,7 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 
 		if (ImGui::Button("Save"))
 		{
-			cache_file->save_map();
+			cache_file.save_map();
 		}
 
 		for (c_mantle_gui_tab* tab : child_tabs)
@@ -204,62 +295,6 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 		ImGui::EndGroup();
 	}
 	ImGui::Columns(1);
-}
-
-void c_mantle_cache_file_gui_tab::open_tag_interface_tab(c_tag_interface& tag_interface)
-{
-	for (c_mantle_gui_tab* tab : child_tabs)
-	{
-		c_mantle_tag_gui_tab* pTagTab = dynamic_cast<c_mantle_tag_gui_tab*>(tab);
-		if (pTagTab == nullptr) continue;
-		if (&pTagTab->get_tag_interface() != &tag_interface) continue;
-
-		next_selected_mantle_gui_tab = tab;
-		return;
-	}
-
-	c_mantle_gui_tab* pTab = new c_mantle_tag_gui_tab(*cache_file, tag_interface, this);
-	add_tab_item(*pTab);
-	next_selected_mantle_gui_tab = pTab;
-}
-
-c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(const char* pTitle, const char* pDescription)
-	:c_mantle_gui_tab(pTitle, pDescription)
-	, tab_closed_callback([this](c_mantle_gui_tab& rTab) { this->remove_tab_item(rTab); })
-	, render_trigger_volumes(false)
-	, next_selected_mantle_gui_tab(nullptr)
-	, m_pSelectedSearchTagInterface(nullptr)
-	, m_pSearchBuffer()
-{
-
-}
-
-c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(std::shared_ptr<c_cache_file> pCacheFile)
-	: cache_file(pCacheFile)
-	, c_mantle_gui_tab(pCacheFile->GetFileNameChar(), pCacheFile->GetFilePathChar())
-	, tab_closed_callback([this](c_mantle_gui_tab& rTab) { this->remove_tab_item(rTab); })
-	, render_trigger_volumes(c_command_line::has_command_line_arg("-showtriggervolumes"))
-	, next_selected_mantle_gui_tab(nullptr)
-	, m_pSelectedSearchTagInterface(nullptr)
-	, m_pSearchBuffer()
-{
-
-}
-
-c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(const wchar_t* szMapFilePath)
-	:c_mantle_cache_file_gui_tab(std::make_shared<c_cache_file>(szMapFilePath))
-{
-
-}
-
-c_mantle_cache_file_gui_tab::~c_mantle_cache_file_gui_tab()
-{
-	// delete the first tab in the vector until non remain
-	// tabs are removed from vector via the TabClosedCallback
-	while (!child_tabs.empty())
-	{
-		delete* child_tabs.begin();
-	}
 }
 
 // X : Orange
@@ -330,7 +365,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 		return;
 	}
 
-	c_tag_group_interface* group_interface = cache_file->get_group_interface_by_group_id(_tag_group_scenario);
+	c_tag_group_interface* group_interface = cache_file.get_group_interface_by_group_id(_tag_group_scenario);
 	if (group_interface == nullptr)
 	{
 		return;
@@ -353,7 +388,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 		static c_box_primitive& immediate_box_primitive = c_primitive_render_manager::get_immediate_box();
 
 		// #TODO: Remove GetTagBlockData and replace with virtual tag interface/virtual tab block data access
-		s_scenario_definition::s_trigger_volume_block_definition* trigger_volumes_tag_block_data = cache_file->GetTagBlockData(trigger_volumes_tag_block);
+		s_scenario_definition::s_trigger_volume_block_definition* trigger_volumes_tag_block_data = cache_file.GetTagBlockData(trigger_volumes_tag_block);
 		for (uint32_t trigger_volume_index = 0; trigger_volume_index < trigger_volumes_tag_block.count; trigger_volume_index++)
 		{
 			constexpr float k_line_transparency = 0.4f;
@@ -396,7 +431,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 			float screen_y = 0.0f;
 			if (c_render::calculate_screen_coordinates(trigger_volume.position_x, trigger_volume.position_y, trigger_volume.position_z, screen_x, screen_y))
 			{
-				const char* trigger_volume_name = cache_file->string_id_to_cstr(trigger_volume.name.stringid);
+				const char* trigger_volume_name = cache_file.string_id_to_cstr(trigger_volume.name.stringid);
 
 				ImGui::GetWindowDrawList()->AddText(ImVec2(screen_x + 1, screen_y + 1), IM_COL32(0, 0, 0, static_cast<int>(255 * k_text_transparency)), trigger_volume_name);
 				ImGui::GetWindowDrawList()->AddText(ImVec2(screen_x, screen_y), imgui_text_color, trigger_volume_name);
@@ -405,34 +440,39 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 	}
 }
 
-void c_mantle_cache_file_gui_tab::render_tab_contents_gui(bool set_selected)
+void c_mantle_cache_file_gui_tab::render_tab_contents_gui()
 {
-	ImGui::PushID(this);
-	ImGuiTabItemFlags flags = 0;
-	if (set_selected) flags |= ImGuiTabItemFlags_SetSelected;
-	if (ImGui::BeginTabItem(get_title(), &is_open, flags))
+	if (cache_file.is_loading())
 	{
-		if (cache_file->is_loading())
-		{
-			ImGui::Text("Loading...");
-		}
-		else
-		{
-			render_cache_file_gui();
-		}
-
-		ImGui::EndTabItem();
+		ImGui::Text("Loading...");
 	}
-	ImGui::PopID();
+	else
+	{
+		render_cache_file_gui();
+	}
 }
 
-void c_mantle_cache_file_gui_tab::add_tab_item(c_mantle_gui_tab& tab)
+void c_mantle_cache_file_gui_tab::start_shader_tool()
 {
-	child_tabs.push_back(&tab);
-	tab.add_tab_closed_callback(tab_closed_callback);
-}
+	if (!enable_shader_tool) return;
 
-void c_mantle_cache_file_gui_tab::remove_tab_item(c_mantle_gui_tab& tab)
-{
-	VectorEraseByValueHelper(child_tabs, &tab);
+	c_mantle_shader_tool_gui_tab* mantle_halo_shader_generator_gui_tab = nullptr;
+	for (c_mantle_gui_tab* mantle_gui_tab : child_tabs)
+	{
+		mantle_halo_shader_generator_gui_tab = dynamic_cast<c_mantle_shader_tool_gui_tab*>(mantle_gui_tab);
+
+		if (mantle_halo_shader_generator_gui_tab)
+		{
+			break;
+		}
+	}
+
+	if (mantle_halo_shader_generator_gui_tab == nullptr)
+	{
+		mantle_halo_shader_generator_gui_tab = new c_mantle_shader_tool_gui_tab("Shader Tool", "Shader Tool", *this, cache_file);
+
+		add_tab(*mantle_halo_shader_generator_gui_tab);
+	}
+
+	next_selected_mantle_gui_tab = mantle_halo_shader_generator_gui_tab;
 }

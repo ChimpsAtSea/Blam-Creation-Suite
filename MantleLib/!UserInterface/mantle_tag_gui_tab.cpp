@@ -16,17 +16,21 @@ c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_inter
 	c_mantle_gui_tab(tag_interface.get_name_with_group_id_cstr(), tag_interface.get_path_with_group_name_cstr()),
 	tag_interface(tag_interface),
 	cache_file(cache_file),
-	parent_tab(parent_tag),
-	is_selected(false)
+	parent_tab(parent_tag)
 {
-
+	if (v_tag_interface<s_bitmap_definition>* bitmap_tag_interface = dynamic_cast<decltype(bitmap_tag_interface)>(&tag_interface))
+	{
+		c_mantle_bitmap_gui_tab* mantle_bitmap_gui_tab = new c_mantle_bitmap_gui_tab(cache_file, this, *bitmap_tag_interface);
+		ASSERT(mantle_bitmap_gui_tab != nullptr);
+		add_tab(*mantle_bitmap_gui_tab);
+	}
 }
 
 c_mantle_tag_gui_tab::~c_mantle_tag_gui_tab()
 {
-	for (ImGUIDynamicData* pDynamicData : m_imGuiDynamicData)
+	for (c_imgui_dynamic_data* dynamic_data : imgui_dynamic_data)
 	{
-		delete pDynamicData;
+		delete dynamic_data;
 	}
 }
 
@@ -100,34 +104,49 @@ void c_mantle_tag_gui_tab::poke()
 
 }
 
-void c_mantle_tag_gui_tab::render_tab_contents_gui(bool set_selected)
+void c_mantle_tag_gui_tab::render_tab_contents_gui()
 {
-	ImGui::PushID(this);
-	ImGuiTabItemFlags tabFlags = 0;
-	if (set_selected) tabFlags |= ImGuiTabItemFlags_SetSelected;
-
-
-	is_selected = false;
-	if (ImGui::BeginTabItem(get_title(), &is_open, tabFlags))
+	if (child_tabs.empty())
 	{
-		is_selected = true;
-		ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
-
-		const s_reflection_type* ps_reflection_type = tag_interface.get_reflection_data();
-		if (ps_reflection_type)
-		{
-			g_current_mantle_tag_tab = this;
-			ps_reflection_type->render_type_gui(tag_interface.get_data());
-		}
-		else
-		{
-			ImGui::Text("No reflection information found for '%s'", tag_interface.get_group_short_name());
-		}
-
-		ImGui::EndChild();
-		ImGui::EndTabItem();
+		render_tab_contents_gui_impl();
 	}
-	ImGui::PopID();
+	else
+	{
+		if (ImGui::BeginTabBar("##TagEditorTabs", ImGuiTabBarFlags_None)) // each tag
+		{
+			for (c_mantle_gui_tab* mantle_gui_tab : child_tabs)
+			{
+				mantle_gui_tab->render_gui(false);
+			}
+
+			if (ImGui::BeginTabItem("Tag Editor"))
+			{
+				render_tab_contents_gui_impl();
+
+				ImGui::EndTabItem();
+			}
+
+			ImGui::EndTabBar();
+		}
+	}
+}
+
+void c_mantle_tag_gui_tab::render_tab_contents_gui_impl()
+{
+	ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
+
+	const s_reflection_type* ps_reflection_type = tag_interface.get_reflection_data();
+	if (ps_reflection_type)
+	{
+		g_current_mantle_tag_tab = this;
+		ps_reflection_type->render_type_gui(tag_interface.get_data());
+	}
+	else
+	{
+		ImGui::Text("No reflection information found for '%s'", tag_interface.get_group_short_name());
+	}
+
+	ImGui::EndChild();
 }
 
 void c_mantle_tag_gui_tab::RenderButtons()

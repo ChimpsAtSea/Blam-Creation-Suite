@@ -43,6 +43,7 @@
     <ClCompile Include="CacheInterface\tag_interface.cpp" />
     <ClCompile Include="!UserInterface\mantle_shader_tool_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_event_queue.cpp" />
+    <ClCompile Include="!UserInterface\mantle_bitmap_gui_tab.cpp" />
     <ClCompile Include="render_method_definition_group_interface.cpp" />
     <ClCompile Include="Tags\GeneratedConversion.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -76,6 +77,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="VirtualMemoryContainer.cpp" />
+    <ClCompile Include="VirtualResource\virtual_resource_manager.cpp" />
+    <ClCompile Include="VirtualResource\virtual_bitmap_resource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!UserInterface\shader_profile.h" />
@@ -100,6 +103,7 @@
     <ClInclude Include="GUI\render_stringid_gui.inl" />
     <ClInclude Include="!UserInterface\mantle_shader_tool_gui_tab.h" />
     <ClInclude Include="!UserInterface\mantle_event_queue.h" />
+    <ClInclude Include="!UserInterface\mantle_bitmap_gui_tab.h" />
     <ClInclude Include="render_method_definition_group_interface.h" />
     <ClInclude Include="Tags\GeneratedConversion.h" />
     <ClInclude Include="Tags\GeneratedGUI.h" />
@@ -215,6 +219,9 @@
     <ClInclude Include="CacheInterface\virtual_tag_block.h" />
     <ClInclude Include="Tags\VirtualTagInterfaces.h" />
     <ClInclude Include="VirtualMemoryContainer.h" />
+    <ClInclude Include="VirtualResource\VirtualResource.h" />
+    <ClInclude Include="VirtualResource\virtual_resource_manager.h" />
+    <ClInclude Include="VirtualResource\virtual_bitmap_resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GUI\render_dataref_gui.inl" />

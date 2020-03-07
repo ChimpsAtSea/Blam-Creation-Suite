@@ -20,7 +20,6 @@ public:
 	static void render_in_game_gui(); // should only be called from game render code
 	static void render_gui();
 	static void deinit_mantle_gui();
-	static void start_shader_tool();
 
 	static void register_on_close_callback(on_close_callback_func callback);
 	static void unregister_on_close_callback(on_close_callback_func callback);
@@ -31,7 +30,7 @@ public:
 
 	static void set_active_tab(c_mantle_gui_tab* gui_tab);
 
-	static std::shared_ptr<c_cache_file> get_cache_file(const char* pMapName);
+	static c_cache_file* get_cache_file(const char* pMapName);
 
 	inline static void set_get_tag_pointer_function(get_tag_pointer_func get_tag_pointer) { g_get_tag_pointer_func = get_tag_pointer; }
 	inline static void set_get_tag_selection_address_function(get_tag_selection_address_func get_tag_selection_address) { g_get_tag_selection_address_func = get_tag_selection_address; }
