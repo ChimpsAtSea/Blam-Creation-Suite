@@ -1,47 +1,31 @@
 #include "assemblyplugintool-private-pch.h"
 
-using namespace pugi;
-
-enum e_assembly_plugin_tool_error
+c_assembly_plugin_tool::c_assembly_plugin_tool(const wchar_t* file_name, const wchar_t* file_path, const wchar_t* output_file_path) :
+	file_name(file_name),
+	file_path(file_path),
+	output_file_path(output_file_path)
 {
-	_apt_error_ok,
-	_apt_error_failed_to_load_file,
-	_apt_error_failed_to_find_plugin_node,
-
-};
-
-c_assembly_plugin_tool::c_assembly_plugin_tool(const wchar_t* file_path)
-{
-	int result = parse_plugin_file(file_path);
+	e_assembly_plugin_tool_error result = parse_plugin_file();
 	if (result != _apt_error_ok)
 	{
 		throw;
 	}
 }
 
-int c_assembly_plugin_tool::parse_plugin_file(const wchar_t* file_path)
+e_assembly_plugin_tool_error c_assembly_plugin_tool::parse_plugin_file()
 {
+	log("Parsing %S\n", file_name);
+
 	xml_document doc;
 	xml_parse_result result = doc.load_file(file_path);
 	if (result == -1) return _apt_error_failed_to_load_file;
 
 	xml_node plugin_node = doc.first_child();
-	if (_stricmp(plugin_node.name(), "plugin") != 0) return _apt_error_failed_to_find_plugin_node;
+	if (!nodecmp(plugin_node, "plugin")) return _apt_error_failed_to_find_plugin_node;
 
-	for (xml_node node : plugin_node.children())
-	{
-		int result = parse_node(node);
-		if (result != _apt_error_ok) return result;
-	}
+	c_assembly_structure_definition tag_definition(*this, "TAG DEFINITION", plugin_node.children());
 
-	return _apt_error_ok;
-}
+	tag_definition.print_debug();
 
-int c_assembly_plugin_tool::parse_node(pugi::xml_node& node)
-{
-	printf("%s\n", node.name());
-
-
-
-	return _apt_error_ok;
+	return tag_definition.tool_error;
 }

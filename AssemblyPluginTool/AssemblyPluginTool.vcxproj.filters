@@ -21,12 +21,42 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="assembly_field_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assembly_bitfield_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assembly_enum_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assembly_structure_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="assembly_plugin_tool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="assemblyplugintool-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assembly_plugin_tool_error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assembly_field_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assembly_bitfield_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assembly_enum_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assembly_structure_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="assembly_data_type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

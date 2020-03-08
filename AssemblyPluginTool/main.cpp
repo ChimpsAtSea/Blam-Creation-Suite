@@ -2,6 +2,8 @@
 
 int wmain(int argc, const wchar_t** argv)
 {
+	using namespace std::chrono;
+
 	if (argc < 2) return 1;
 
 	const wchar_t* assembly_plugin_path = argv[1];
@@ -33,13 +35,23 @@ int wmain(int argc, const wchar_t** argv)
 			} while (find_next_file_result = FindNextFile(hFileSearch, &win32_find_data));
 		}
 	}
-
+	
+	high_resolution_clock::time_point start = high_resolution_clock::now();
 	tbb::parallel_for(size_t(0), directory_file_data.size(), [](size_t index)
 		{
 			WIN32_FIND_DATA& win32_find_data = directory_file_data[index];
-			std::wstring file_path = search_path + win32_find_data.cFileName;
-			c_assembly_plugin_tool assembly_plugin_tool(file_path.c_str());
+			//if (wcscmp(win32_find_data.cFileName, L"zone.xml") == 0)
+			{
+				std::wstring file_path = search_path + win32_find_data.cFileName;
+				c_assembly_plugin_tool assembly_plugin_tool(win32_find_data.cFileName, file_path.c_str(), nullptr);
+			}
 		});
+	high_resolution_clock::time_point end = high_resolution_clock::now();
+	high_resolution_clock::time_point::duration elapsed = end - start;
+	double nanoseconds = static_cast<double>(elapsed.count());
+	double seconds = nanoseconds / static_cast<double>(decltype(elapsed)::period::den);
+	double miliseconds = seconds * 1000.0f;
+	printf("Finished in %.2fms\n", miliseconds);
 
 	return 0;
 }

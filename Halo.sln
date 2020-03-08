@@ -187,7 +187,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "zlib\zlib.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssemblyPluginTool", "AssemblyPluginTool\AssemblyPluginTool.vcxproj", "{88CE64C7-EF99-4137-807F-C94474964A58}"
 	ProjectSection(ProjectDependencies) = postProject
-		{994A9382-A035-4981-9A50-69BBB6059F3E} = {994A9382-A035-4981-9A50-69BBB6059F3E}
 		{4735B7BB-A207-41B7-A10F-C2DD60BBEF2C} = {4735B7BB-A207-41B7-A10F-C2DD60BBEF2C}
 	EndProjectSection
 EndProject
