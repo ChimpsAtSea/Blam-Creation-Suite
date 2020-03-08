@@ -5,3 +5,6 @@
 [submodule "tbb_clang"]
 	path = tbb
 	url = https://github.com/wjakob/tbb.git
+[submodule "pugixml"]
+	path = pugixml
+	url = https://github.com/zeux/pugixml.git

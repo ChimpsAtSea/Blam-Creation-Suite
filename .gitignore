@@ -342,6 +342,11 @@ llvm-build/cmake_x64
 tbb-build/cmake
 tbb-build/cmake_x86
 tbb-build/cmake_x64
+
+#pugixml
+pugixml-build/cmake
+pugixml-build/cmake_x86
+pugixml-build/cmake_x64
                
 #Mantle
 MantleLib/Tags/ReflectionData.h
