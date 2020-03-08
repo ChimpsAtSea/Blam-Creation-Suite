@@ -205,3 +205,8 @@ void c_assembly_structure_definition::print_debug(int level)
 
 #undef log
 }
+
+void c_assembly_structure_definition::write(std::stringstream& stream)
+{
+	stream << "#pragma once" << std::endl;
+}

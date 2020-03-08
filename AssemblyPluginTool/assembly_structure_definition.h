@@ -14,5 +14,6 @@ public:
 	std::vector<c_assembly_field_definition> fields;
 
 	void print_debug(int level = 0);
+	void write(std::stringstream& stream);
 };
 

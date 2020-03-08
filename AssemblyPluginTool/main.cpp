@@ -4,22 +4,33 @@ int wmain(int argc, const wchar_t** argv)
 {
 	using namespace std::chrono;
 
-	if (argc < 2) return 1;
+	if (argc < 3) return 1;
 
 	const wchar_t* assembly_plugin_path = argv[1];
+	const wchar_t* output_directory = argv[2];
 
 	static std::wstring search_path;
 	static std::wstring search_criteria;
 	if (search_criteria.empty())
 	{
 		search_path = assembly_plugin_path;
-		auto val = search_path.rfind('\\');
 		if ((search_path.rfind('\\') != search_path.length() - 1) && (search_path.rfind('/') != search_path.length() - 1))
 		{
 			search_path += L"\\";
 		}
 		search_criteria = search_path + L"*.xml";
 	}
+
+	static std::wstring output_path;
+	if (output_path.empty())
+	{
+		output_path = output_directory;
+		if ((output_path.rfind('\\') != output_path.length() - 1) && (output_path.rfind('/') != output_path.length() - 1))
+		{
+			output_path += L"\\";
+		}
+	}
+
 
 	static std::vector<WIN32_FIND_DATA> directory_file_data;
 	if(directory_file_data.empty())
@@ -43,7 +54,7 @@ int wmain(int argc, const wchar_t** argv)
 			//if (wcscmp(win32_find_data.cFileName, L"zone.xml") == 0)
 			{
 				std::wstring file_path = search_path + win32_find_data.cFileName;
-				c_assembly_plugin_tool assembly_plugin_tool(win32_find_data.cFileName, file_path.c_str(), nullptr);
+				c_assembly_plugin_tool assembly_plugin_tool(win32_find_data.cFileName, file_path.c_str(), output_path.c_str());
 			}
 		});
 	high_resolution_clock::time_point end = high_resolution_clock::now();

@@ -4,8 +4,12 @@
 #define nodecmp(node, str_name) (_stricmp(node.name(), str_name) == 0)
 
 #include <windows.h>
+#include <assert.h>
+
 #include <string>
 #include <vector>
+#include <map>
+#include <sstream>
 
 #define __TBB_SOURCE_DIRECTLY_INCLUDED 1
 #include <tbb/tbb.h>
@@ -24,7 +28,7 @@
 
 using namespace pugi;
 
-#define ENABLE_LOGGING 1
+#define ENABLE_LOGGING 0
 #if ENABLE_LOGGING
 #define log printf
 #else
