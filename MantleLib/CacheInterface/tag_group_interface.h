@@ -23,7 +23,7 @@ public:
 	inline const char* GetShortName() const { return short_name.c_str(); };
 	inline const char* GetFullName() const { return full_name.c_str(); };
 	inline const s_reflection_type* get_reflection_data() const { return reflection_type; };
-	inline uint32_t GetGroupMagicRaw() const { return group_magic; }
+	inline e_tag_group GetGroupMagicRaw() const { return group_magic; }
 	inline e_tag_group GetGroupMagic() const { return static_cast<e_tag_group>(group_magic); }
 
 protected:
@@ -31,7 +31,7 @@ protected:
 	
 	uint16_t group_index;
 	s_cache_file_tag_group* cache_file_tag_group;
-	uint32_t group_magic;
+	e_tag_group group_magic;
 	std::string short_name;
 	std::string full_name;
 	const s_reflection_type* reflection_type;

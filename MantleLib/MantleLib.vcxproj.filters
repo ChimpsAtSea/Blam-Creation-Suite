@@ -551,5 +551,8 @@
     <None Include="GUI\render_tagblock_gui.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="CacheInterface\tag_group_names.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

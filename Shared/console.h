@@ -30,6 +30,7 @@ enum e_console_color : uint8_t
 	_console_color_background_magenta = _console_color_magenta << 4,
 
 	// prefabs
+	_console_color_warning = _console_color_yellow,
 	_console_color_error = _console_color_red,
 	_console_color_info = _console_color_bright | _console_color_yellow,
 	_console_color_input = _console_color_bright | _console_color_cyan,

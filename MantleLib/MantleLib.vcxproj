@@ -226,6 +226,7 @@
     <ClInclude Include="VirtualResource\virtual_bitmap_resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CacheInterface\tag_group_names.inl" />
     <None Include="GUI\render_dataref_gui.inl" />
     <None Include="GUI\render_primitive_gui.inl" />
     <None Include="GUI\render_struct_gui.inl" />

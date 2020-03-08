@@ -51,6 +51,7 @@ void c_console::init_console()
 	register_command("help", &baseCommand);
 	register_command("history", &baseCommand);
 	register_command("quit", &baseCommand);
+	register_command("clear", &baseCommand);
 }
 
 void c_console::deinit_console()
@@ -449,7 +450,12 @@ bool c_console::DefaultConsoleCommand::execute_command(const std::vector<std::st
 		}
 		else if (!Args.front().compare("quit"))
 		{
-			std::exit(0);
+			std::exit(0); // #TODO: Handle this better
+		}
+		else if (!Args.front().compare("clear"))
+		{
+			::system("CLS");
+			show_startup_banner();
 		}
 	}
 	return true;
@@ -459,7 +465,11 @@ std::string c_console::DefaultConsoleCommand::get_command_info(const std::string
 {
 	if (!Topic.empty())
 	{
-		if (!Topic.compare("help"))
+		if (!Topic.compare("clear"))
+		{
+			return "Clears the console window";
+		}
+		else if (!Topic.compare("help"))
 		{
 			return "Prints help for all commands\n"
 				"Type help (command name) (topic) to get help on a specific command";
