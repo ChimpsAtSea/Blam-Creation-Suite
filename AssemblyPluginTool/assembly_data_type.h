@@ -37,53 +37,98 @@ enum e_assembly_data_type
 	_data_type_float,
 	_data_type_double,
 	_data_type_degree,
-	_data_type_colour24,
-	_data_type_colour32,
-	_data_type_colourf,
+	_data_type_color24,
+	_data_type_color32,
+	_data_type_colorf,
 
 };
+
+inline const char* data_type_to_underlying_type_string(e_assembly_data_type data_type)
+{
+	switch (data_type)
+	{
+	case _data_type_reflexive:			return "s_tag_block_definition";
+	case _data_type_comment:			return "// ";
+	case _data_type_raw:				return "signed char";
+	case _data_type_ascii:				return "char";
+	case _data_type_utf16:				return "wchar_t";
+	case _data_type_tagref:				return "TagReference";
+	case _data_type_dataref:			return "DataReference";
+	case _data_type_stringid:			return "string_id";
+	case _data_type_int8:				return "int8_t";
+	case _data_type_int16:				return "int16_t";
+	case _data_type_int32:				return "int32_t";
+	case _data_type_int64:				return "int64_t";
+	case _data_type_uint8:				return "uint8_t";
+	case _data_type_uint16:				return "uint16_t";
+	case _data_type_uint32:				return "uint32_t";
+	case _data_type_uint64:				return "uint64_t";
+	case _data_type_bitfield8:			return "uint8_t";
+	case _data_type_bitfield16:			return "uint16_t";
+	case _data_type_bitfield32:			return "uint32_t";
+	case _data_type_bitfield64:			return "uint64_t";
+	case _data_type_enum8:				return "uint8_t";
+	case _data_type_enum16:				return "uint16_t";
+	case _data_type_enum32:				return "uint32_t";
+	case _data_type_enum64:				return "uint64_t";
+	case _data_type_undefined8:			return "Undefined8";
+	case _data_type_undefined16:		return "Undefined16";
+	case _data_type_undefined32:		return "Undefined32";
+	case _data_type_undefined64:		return "Undefined64";
+	case _data_type_half:				return "half";
+	case _data_type_float:				return "float";
+	case _data_type_double:				return "double";
+	case _data_type_degree:				return "float";
+	case _data_type_color24:			return "color24";
+	case _data_type_color32:			return "color32";
+	case _data_type_colorf:				return "colorf";
+	case _data_type_shader:				return "DataReference";
+	case _data_type_uniclist:			return "uniclist";
+	}
+	return "<unknown e_assembly_data_type>";
+}
 
 inline const char* data_type_to_string(e_assembly_data_type data_type)
 {
 	switch (data_type)
 	{
-	case _data_type_reflexive:			return "_data_type_reflexive";
-	case _data_type_comment:			return "_data_type_comment";
-	case _data_type_raw:				return "_data_type_raw";
-	case _data_type_ascii:				return "_data_type_ascii";
-	case _data_type_utf16:				return "_data_type_utf16";
-	case _data_type_tagref:				return "_data_type_tagref";
-	case _data_type_dataref:			return "_data_type_dataref";
-	case _data_type_stringid:			return "_data_type_stringid";
-	case _data_type_int8:				return "_data_type_int8";
-	case _data_type_int16:				return "_data_type_int16";
-	case _data_type_int32:				return "_data_type_int32";
-	case _data_type_int64:				return "_data_type_int64";
-	case _data_type_uint8:				return "_data_type_uint8";
-	case _data_type_uint16:				return "_data_type_uint16";
-	case _data_type_uint32:				return "_data_type_uint32";
-	case _data_type_uint64:				return "_data_type_uint64";
-	case _data_type_bitfield8:			return "_data_type_bitfield8";
-	case _data_type_bitfield16:			return "_data_type_bitfield16";
-	case _data_type_bitfield32:			return "_data_type_bitfield32";
-	case _data_type_bitfield64:			return "_data_type_bitfield64";
-	case _data_type_enum8:				return "_data_type_enum8";
-	case _data_type_enum16:				return "_data_type_enum16";
-	case _data_type_enum32:				return "_data_type_enum32";
-	case _data_type_enum64:				return "_data_type_enum64";
-	case _data_type_undefined8:			return "_data_type_undefined8";
-	case _data_type_undefined16:		return "_data_type_undefined16";
-	case _data_type_undefined32:		return "_data_type_undefined32";
-	case _data_type_undefined64:		return "_data_type_undefined64";
-	case _data_type_half:				return "_data_type_half";
-	case _data_type_float:				return "_data_type_float";
-	case _data_type_double:				return "_data_type_double";
-	case _data_type_degree:				return "_data_type_degree";
-	case _data_type_colour24:			return "_data_type_colour24";
-	case _data_type_colour32:			return "_data_type_colour32";
-	case _data_type_colourf:			return "_data_type_colourf";
-	case _data_type_shader:				return "_data_type_shader";
-	case _data_type_uniclist:			return "_data_type_uniclist";
+	case _data_type_reflexive:			return "reflexive";
+	case _data_type_comment:			return "comment";
+	case _data_type_raw:				return "raw";
+	case _data_type_ascii:				return "ascii";
+	case _data_type_utf16:				return "utf16";
+	case _data_type_tagref:				return "tagref";
+	case _data_type_dataref:			return "dataref";
+	case _data_type_stringid:			return "stringid";
+	case _data_type_int8:				return "int8";
+	case _data_type_int16:				return "int16";
+	case _data_type_int32:				return "int32";
+	case _data_type_int64:				return "int64";
+	case _data_type_uint8:				return "uint8";
+	case _data_type_uint16:				return "uint16";
+	case _data_type_uint32:				return "uint32";
+	case _data_type_uint64:				return "uint64";
+	case _data_type_bitfield8:			return "bitfield8";
+	case _data_type_bitfield16:			return "bitfield16";
+	case _data_type_bitfield32:			return "bitfield32";
+	case _data_type_bitfield64:			return "bitfield64";
+	case _data_type_enum8:				return "enum8";
+	case _data_type_enum16:				return "enum16";
+	case _data_type_enum32:				return "enum32";
+	case _data_type_enum64:				return "enum64";
+	case _data_type_undefined8:			return "undefined8";
+	case _data_type_undefined16:		return "undefined16";
+	case _data_type_undefined32:		return "undefined32";
+	case _data_type_undefined64:		return "undefined64";
+	case _data_type_half:				return "half";
+	case _data_type_float:				return "float";
+	case _data_type_double:				return "double";
+	case _data_type_degree:				return "degree";
+	case _data_type_color24:			return "color24";
+	case _data_type_color32:			return "color32";
+	case _data_type_colorf:				return "colorf";
+	case _data_type_shader:				return "shader";
+	case _data_type_uniclist:			return "uniclist";
 	}
 	return "<unknown e_assembly_data_type>";
 }

@@ -1,11 +1,34 @@
 #include "assemblyplugintool-private-pch.h"
 
-c_assembly_structure_definition::c_assembly_structure_definition(c_assembly_plugin_tool& plugin_tool, const char* name, xml_object_range<xml_node_iterator> nodes) :
+thread_local c_assembly_structure_definition* c_assembly_structure_definition::current_root_structure = nullptr;
+
+c_assembly_structure_definition::c_assembly_structure_definition(c_assembly_structure_definition* parent, c_assembly_plugin_tool& plugin_tool, const char* structure_name, xml_object_range<xml_node_iterator> nodes, const char* group_name) :
+	parent(parent),
 	plugin_tool(plugin_tool),
-	structure_name(name),
-	tool_error(_apt_error_ok)
+	unformatted_name(structure_name),
+	tool_error(_apt_error_ok),
+	group_name(group_name),
+	name(structure_name),
+	type_name(structure_name),
+	nice_name(structure_name)
 {
+	name = c_assembly_plugin_tool::format_source_friendly_name(unformatted_name);
+
+	if (parent == nullptr)
+	{
+		current_root_structure = this;
+	}
+	else
+	{
+		name = current_root_structure->get_unique_type_name(name);
+		this->type_name_tracker = current_root_structure->type_name_tracker;
+	}
+
+	type_name = std::string("s_") + name + "_definition";
+	this->type_name_tracker[name]++;
+
 	log("Creating structure '%s'\n", name);
+
 
 	for (xml_node node : nodes)
 	{
@@ -25,7 +48,9 @@ c_assembly_structure_definition::c_assembly_structure_definition(c_assembly_plug
 			if (title_attribute.empty())
 				return_error(_apt_error_failed_to_find_title_attribute);
 
-			fields.emplace_back(data_type, title_attribute.as_string());
+			std::string comment = node.first_child().value();
+
+			fields.emplace_back(*this, data_type, title_attribute.as_string(), array_size, structure_definition, bitfield_definition, enum_definition, comment);
 			continue;
 		}
 
@@ -40,7 +65,7 @@ c_assembly_structure_definition::c_assembly_structure_definition(c_assembly_plug
 
 
 			// #TODO: correct structure name
-			structure_definition = new c_assembly_structure_definition(plugin_tool, name_attribute.as_string(), node.children());
+			structure_definition = new c_assembly_structure_definition(this, plugin_tool, name_attribute.as_string(), node.children());
 		}
 		else if (nodecmp(node, "tagref")) data_type = _data_type_tagref;
 		else if (nodecmp(node, "dataref")) data_type = _data_type_dataref;
@@ -93,24 +118,56 @@ c_assembly_structure_definition::c_assembly_structure_definition(c_assembly_plug
 		else if (nodecmp(node, "double")) data_type = _data_type_double;
 		else if (nodecmp(node, "float64")) data_type = _data_type_double;
 		else if (nodecmp(node, "degree")) data_type = _data_type_degree;
-		else if (nodecmp(node, "color24") || nodecmp(node, "colour24")) data_type = _data_type_colour24;
-		else if (nodecmp(node, "color32") || nodecmp(node, "colour32")) data_type = _data_type_colour32;
-		else if (nodecmp(node, "colorf") || nodecmp(node, "colourf")) data_type = _data_type_colourf;
+		else if (nodecmp(node, "color24") || nodecmp(node, "colour24")) data_type = _data_type_color24;
+		else if (nodecmp(node, "color32") || nodecmp(node, "colour32")) data_type = _data_type_color32;
+		else if (nodecmp(node, "colorf") || nodecmp(node, "colourf")) data_type = _data_type_colorf;
 		else throw;
 
 		if (data_type == _data_type_bitfield8 || data_type == _data_type_bitfield16 || data_type == _data_type_bitfield32 || data_type == _data_type_bitfield64)
 		{
-			bitfield_definition = new c_assembly_bitfield_definition(plugin_tool, name_attribute.as_string(), node.children());
+			bitfield_definition = new c_assembly_bitfield_definition(*this, plugin_tool, name_attribute.as_string(), node.children());
 		}
 		if (data_type == _data_type_enum8 || data_type == _data_type_enum16 || data_type == _data_type_enum32 || data_type == _data_type_enum64)
 		{
-			enum_definition = new c_assembly_enum_definition(plugin_tool, name_attribute.as_string(), node.children());
+			enum_definition = new c_assembly_enum_definition(*this, plugin_tool, name_attribute.as_string(), node.children());
 		}
 
-		fields.emplace_back(data_type, name_attribute.as_string(), array_size, structure_definition, bitfield_definition, enum_definition);
+		fields.emplace_back(*this, data_type, name_attribute.as_string(), array_size, structure_definition, bitfield_definition, enum_definition);
+	}
+}
+
+c_assembly_structure_definition::~c_assembly_structure_definition()
+{
+	if (current_root_structure == this)
+	{
+		current_root_structure = nullptr;
+	}
+}
+
+std::string c_assembly_structure_definition::get_unique_type_name(const std::string& name)
+{
+	std::string result = name;
+
+	int index = type_name_tracker[name]++;
+	if (index > 0)
+	{
+		result += std::to_string(index);
 	}
 
+	return result;
+}
 
+std::string c_assembly_structure_definition::get_unique_field_name(const std::string& name)
+{
+	std::string result = name;
+
+	int index = field_name_tracker[name]++;
+	if (index > 0)
+	{
+		result += std::to_string(index);
+	}
+
+	return result;
 }
 
 void c_assembly_structure_definition::print_debug(int level)
@@ -120,7 +177,7 @@ void c_assembly_structure_definition::print_debug(int level)
 #endif
 #define print_debug_log(...) for(int i=0;i<level;i++) log("\t"); log(__VA_ARGS__);
 
-	print_debug_log("struct '%s' {\n", structure_name.c_str());
+	print_debug_log("struct '%s' {\n", unformatted_name.c_str());
 	for (c_assembly_field_definition& field : fields)
 	{
 		if (field.enum_definition)
@@ -134,8 +191,8 @@ void c_assembly_structure_definition::print_debug(int level)
 			case _data_type_enum32: enum_underlying_type = "uint32_t"; break;
 			case _data_type_enum64: enum_underlying_type = "uint64_t"; break;
 			}
-			print_debug_log("enum '%s' : %s {\n", field.enum_definition->enum_name.c_str(), enum_underlying_type);
-			for (c_assembly_enum& $enum : field.enum_definition->enums)
+			print_debug_log("enum '%s' : %s {\n", field.enum_definition->unformatted_name.c_str(), enum_underlying_type);
+			for (s_assembly_enum& $enum : field.enum_definition->enums)
 			{
 				print_debug_log("\t'%s' = 1 << %i,\n", $enum.first.c_str(), $enum.second);
 			}
@@ -156,8 +213,8 @@ void c_assembly_structure_definition::print_debug(int level)
 			case _data_type_bitfield32: bitfield_underlying_type = "uint32_t"; break;
 			case _data_type_bitfield64: bitfield_underlying_type = "uint64_t"; break;
 			}
-			print_debug_log("enum '%s' : %s { /* bitfield */\n", field.bitfield_definition->bitfield_name.c_str(), bitfield_underlying_type);
-			for (c_assembly_bit& bit : field.bitfield_definition->bits)
+			print_debug_log("enum '%s' : %s { /* bitfield */\n", field.bitfield_definition->unformatted_name.c_str(), bitfield_underlying_type);
+			for (s_assembly_bit& bit : field.bitfield_definition->bits)
 			{
 				print_debug_log("\t'%s' = 1 << %i,\n", bit.first.c_str(), bit.second);
 			}
@@ -177,27 +234,27 @@ void c_assembly_structure_definition::print_debug(int level)
 		switch (field.data_type)
 		{
 		case _data_type_reflexive:
-			print_debug_log("\t%s<%s> '%s';\n", data_type_to_string(field.data_type), field.structure_definition->structure_name.c_str(), field.field_name.c_str());
+			print_debug_log("\t%s<%s> '%s';\n", data_type_to_string(field.data_type), field.structure_definition->unformatted_name.c_str(), field.unformatted_name.c_str());
 			break;
 		case _data_type_bitfield8:
 		case _data_type_bitfield16:
 		case _data_type_bitfield32:
 		case _data_type_bitfield64:
-			print_debug_log("\t%s<%s> '%s';\n", data_type_to_string(field.data_type), field.bitfield_definition->bitfield_name.c_str(), field.field_name.c_str());
+			print_debug_log("\t%s<%s> '%s';\n", data_type_to_string(field.data_type), field.bitfield_definition->unformatted_name.c_str(), field.unformatted_name.c_str());
 			break;
 		case _data_type_enum8:
 		case _data_type_enum16:
 		case _data_type_enum32:
 		case _data_type_enum64:
-			print_debug_log("\t%s<%s> '%s';\n", data_type_to_string(field.data_type), field.enum_definition->enum_name.c_str(), field.field_name.c_str());
+			print_debug_log("\t%s<%s> '%s';\n", data_type_to_string(field.data_type), field.enum_definition->unformatted_name.c_str(), field.unformatted_name.c_str());
 			break;
 		case _data_type_raw:
 		case _data_type_ascii:
 		case _data_type_utf16:
-			print_debug_log("\t%s '%s'[%i];\n", data_type_to_string(field.data_type), field.field_name.c_str(), field.array_size);
+			print_debug_log("\t%s '%s'[%i];\n", data_type_to_string(field.data_type), field.unformatted_name.c_str(), field.array_size);
 			break;
 		default:
-			print_debug_log("\t%s '%s';\n", data_type_to_string(field.data_type), field.field_name.c_str());
+			print_debug_log("\t%s '%s';\n", data_type_to_string(field.data_type), field.unformatted_name.c_str());
 			break;
 		}
 	}
@@ -206,7 +263,128 @@ void c_assembly_structure_definition::print_debug(int level)
 #undef log
 }
 
-void c_assembly_structure_definition::write(std::stringstream& stream)
+void c_assembly_structure_definition::write_begin(std::stringstream& stream)
 {
-	stream << "#pragma once" << std::endl;
+	stream << "#pragma once" << std::endl << std::endl;
+	write(stream, 0);
+}
+
+void c_assembly_structure_definition::write(std::stringstream& _stream, int level)
+{
+#define stream for (int i = 0; i < level; i++) { _stream << "\t"; } _stream 
+
+	stream << "struct ";
+	if (!nice_name.empty()) _stream << "nicename(\"" << nice_name << "\") ";
+	if (!group_name.empty()) _stream << "group('" << group_name << "') ";
+	_stream << type_name << std::endl;
+	stream << "{" << std::endl;
+
+	for (c_assembly_field_definition& field : fields)
+	{
+		if (field.enum_definition)
+		{
+			level++;
+			const char* underlying_type_str = data_type_to_underlying_type_string(field.data_type);
+			stream << "enum ";
+			if (!field.nice_name.empty()) _stream << "nicename(\"" << field.nice_name << "\") ";
+			_stream << field.enum_definition->type_name << " : " << underlying_type_str << std::endl;
+			stream << "{" << std::endl;
+			for (s_assembly_enum& $enum : field.enum_definition->enums)
+			{
+				stream << "\t";
+				if (!$enum.nice_name.empty()) _stream << "/*nicename(\"" << $enum.nice_name << "\")*/ ";
+				_stream << $enum.name << " = " << $enum.value << "," << std::endl;
+			}
+			stream << "};" << std::endl << std::endl;
+			level--;
+		}
+	}
+	for (c_assembly_field_definition& field : fields)
+	{
+		if (field.bitfield_definition)
+		{
+			level++;
+			const char* underlying_type_str = data_type_to_underlying_type_string(field.data_type);
+			stream << "enum ";
+			if (!field.nice_name.empty()) _stream << "nicename(\"" << field.nice_name << "\") ";
+			_stream << field.bitfield_definition->type_name << " : " << underlying_type_str << " /* bitfield */" << std::endl;
+			stream << "{" << std::endl;
+			for (s_assembly_bit& bit : field.bitfield_definition->bits)
+			{
+				stream << "\t";
+				if (!bit.nice_name.empty()) _stream << "/*nicename(\"" << bit.nice_name << "\")*/ ";
+				_stream << bit.name << " = 1 << " << bit.index << "," << std::endl;
+			}
+			stream << "};" << std::endl << std::endl;
+			level--;
+		}
+	}
+	for (c_assembly_field_definition& field : fields)
+	{
+		if (field.structure_definition)
+		{
+			field.structure_definition->write(_stream, level + 1);
+		}
+	}
+	level++;
+	for (c_assembly_field_definition& field : fields)
+	{
+		if (field.data_type == _data_type_comment)
+		{
+			std::string comment_formatted = field.comment;
+			bool is_single_line = comment_formatted.find("\n") == std::string::npos;
+			if (is_single_line)
+			{
+				stream << "// " << field.unformatted_name << " : " << comment_formatted << std::endl;
+			}
+			else
+			{
+				std::string padding; for (int i = 0; i < level; i++) padding += "\t";
+				std::string comment_new_line = std::string("\n") + padding + "   ";
+				c_assembly_plugin_tool::replace_instances_in_string(comment_formatted, "\n", comment_new_line);
+				stream << "/* " << field.unformatted_name << " : " << comment_formatted << " */" << std::endl;
+			}
+
+			continue;
+		}
+
+
+		const char* data_type_str = data_type_to_string(field.data_type);
+		const char* underlying_type_str = data_type_to_underlying_type_string(field.data_type);
+		switch (field.data_type)
+		{
+		case _data_type_reflexive:
+			stream << "s_tag_block_definition<" << field.structure_definition->type_name << ">";
+			break;
+		case _data_type_bitfield8:
+		case _data_type_bitfield16:
+		case _data_type_bitfield32:
+		case _data_type_bitfield64:
+			//stream << data_type_str << "<" << field.bitfield_definition->type_name << ">";
+			stream << field.bitfield_definition->type_name;
+			break;
+		case _data_type_enum8:
+		case _data_type_enum16:
+		case _data_type_enum32:
+		case _data_type_enum64:
+			//stream << data_type_str << "<" << field.enum_definition->type_name << ">";
+			stream << field.enum_definition->type_name;
+			break;
+		case _data_type_raw:
+		case _data_type_ascii:
+		case _data_type_utf16:
+			stream << underlying_type_str;
+			break;
+		default:
+			stream << underlying_type_str;
+			break;
+		}
+		if(!field.nice_name.empty()) _stream << " nicename(\""<< field.nice_name <<"\")";
+		_stream << " " << field.field_name;
+		if (field.array_size > 0) _stream << "[" << field.array_size << "]";
+		_stream << ";" << std::endl;
+	}
+	level--;
+
+	stream << "};" << std::endl << std::endl;
 }
