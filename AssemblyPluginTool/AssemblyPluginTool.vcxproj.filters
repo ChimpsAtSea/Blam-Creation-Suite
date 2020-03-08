@@ -26,6 +26,9 @@
     <ClInclude Include="assembly_plugin_tool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="assemblyplugintool-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc">
