@@ -154,6 +154,9 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 
 					switch ((e_bitmap_format)bitmap_tag_interface.bitmap_data_block[0].format)
 					{
+					case _format_DXN:
+						file_header->dds_header.ddspf = DDSPF_BC5_SNORM;
+						break;
 					case _format_DXT1:
 						file_header->dds_header.ddspf = DDSPF_DXT1;
 						break;
@@ -186,6 +189,9 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 
 				switch ((e_bitmap_format)bitmap_tag_interface.bitmap_data_block[0].format)
 				{
+				case _format_DXN:
+					desc.Format = DXGI_FORMAT_BC5_SNORM;
+					break;
 				case _format_DXT1:
 					desc.Format = DXGI_FORMAT_BC1_UNORM;
 					break;
