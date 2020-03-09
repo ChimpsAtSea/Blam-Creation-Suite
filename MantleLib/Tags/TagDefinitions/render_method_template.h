@@ -1,68 +1,61 @@
 #pragma once
 
-struct nicename("Render Method Template") group('rmt2') s_render_method_template_definition
+struct nicename("render_method_template") group('rmt2') s_render_method_template_definition
 {
-	struct s_unknown_block_definition;
-	struct s_unknown2_block_definition;
-	struct s_unknown3_block_definition;
-	struct nicename("Arguments") s_argument_block_definition;
-	struct s_unknown4_block_definition;
-	struct s_unknown5_block_definition;
-	struct nicename("Shader Maps") s_shader_map_block_definition;
-
-	TagReference nicename("Vertex Shader") vertex_shader_reference; 
-	TagReference nicename("Pixel Shader") pixel_shader_reference; 
-	Undefined32 __unknown; 
-	s_tag_block_definition<s_unknown_block_definition> __unknown2_block; 
-	s_tag_block_definition<s_unknown2_block_definition> __unknown3_block; 
-	s_tag_block_definition<s_unknown3_block_definition> __unknown4_block; 
-	s_tag_block_definition<s_argument_block_definition> nicename("Arguments") arguments_block; 
-	s_tag_block_definition<s_unknown4_block_definition> __unknown5_block; 
-	s_tag_block_definition<s_unknown5_block_definition> __unknown6_block; 
-	s_tag_block_definition<s_shader_map_block_definition> nicename("Shader Maps") shader_maps_block; 
-	Undefined32 __unknown7; 
-	Undefined32 __unknown8; 
-	Undefined32 __unknown9; 
-
-	struct s_unknown_block_definition
+	struct nicename("Unknown") s_unknown_definition
 	{
-		int16_t __unknown; 
+		int16_t __unknown0;
 	};
 
-	struct s_unknown2_block_definition
+	struct nicename("Unknown") s_unknown1_definition
 	{
-		Undefined32 __unknown; 
-		Undefined32 __unknown2; 
-		Undefined32 __unknown3; 
-		Undefined32 __unknown4; 
-		Undefined32 __unknown5; 
-		Undefined32 __unknown6; 
-		Undefined32 __unknown7; 
-		Undefined32 __unknown8; 
+		Undefined32 __unknown0;
+		Undefined32 __unknown1;
+		Undefined32 __unknown2;
+		Undefined32 __unknown3;
+		Undefined32 __unknown4;
+		Undefined32 __unknown5;
+		Undefined32 __unknown6;
+		Undefined32 __unknown7;
 	};
 
-	struct s_unknown3_block_definition
+	struct nicename("Unknown") s_unknown2_definition
 	{
-		Undefined32 __unknown; 
+		Undefined32 __unknown0;
 	};
 
-	struct nicename("argument") s_argument_block_definition
+	struct nicename("Arguments") s_arguments_definition
 	{
-		string_id nicename("Name") name; 
+		string_id nicename("Name") name;
 	};
 
-	struct s_unknown4_block_definition
+	struct nicename("Unknown") s_unknown3_definition
 	{
-		string_id __unknown; 
+		string_id __unknown0;
 	};
 
-	struct s_unknown5_block_definition
+	struct nicename("Unknown") s_unknown4_definition
 	{
-		string_id __unknown; 
+		string_id __unknown0;
 	};
 
-	struct nicename("shader_map") s_shader_map_block_definition
+	struct nicename("Shader Maps") s_shader_maps_definition
 	{
-		string_id nicename("Name") name; 
+		string_id nicename("Name") name;
 	};
+
+	TagReference nicename("Vertex Shader") vertex_shader_reference;
+	TagReference nicename("Pixel Shader") pixel_shader_reference;
+	Undefined32 __unknown0;
+	s_tag_block_definition<s_unknown_definition> __unknown1;
+	s_tag_block_definition<s_unknown1_definition> __unknown2;
+	s_tag_block_definition<s_unknown2_definition> __unknown3;
+	s_tag_block_definition<s_arguments_definition> nicename("Arguments") arguments_block;
+	s_tag_block_definition<s_unknown3_definition> __unknown4;
+	s_tag_block_definition<s_unknown4_definition> __unknown5;
+	s_tag_block_definition<s_shader_maps_definition> nicename("Shader Maps") shader_maps_block;
+	Undefined32 __unknown6;
+	Undefined32 __unknown7;
+	Undefined32 __unknown8;
 };
+

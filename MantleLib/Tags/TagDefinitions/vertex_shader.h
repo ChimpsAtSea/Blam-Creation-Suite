@@ -1,71 +1,64 @@
 #pragma once
 
-struct nicename("Vertex Shader") group('vtsh') s_vertex_shader_definition
+struct nicename("vertex_shader") group('vtsh') s_vertex_shader_definition
 {
-	struct s_unknown_0_block_definition;
-	struct nicename("Vertex Shaders") s_vertex_shader2_block_definition;
-
-	Undefined32 __unknown; 
-	s_tag_block_definition<s_unknown_0_block_definition> __unknown_0_block; 
-	Undefined32 __unknown2; 
-	s_tag_block_definition<s_vertex_shader2_block_definition> nicename("Vertex Shaders") vertex_shaders_block; 
-
-	struct s_unknown_0_block_definition
+	struct nicename("Unknown 0") s_unknown_0_definition
 	{
-		struct s_unknown_1_block_definition;
-
-		s_tag_block_definition<s_unknown_1_block_definition> __unknown_1_block; 
-
-		struct s_unknown_1_block_definition
+		struct nicename("Unknown 1") s_unknown_1_definition
 		{
-			int16_t __unknown; 
+			int16_t __unknown0;
 		};
+
+		s_tag_block_definition<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
 	};
 
-	struct nicename("vertex_shader2") s_vertex_shader2_block_definition
+	struct nicename("Vertex Shaders") s_vertex_shaders_definition
 	{
-		struct s_unknown_block_definition;
-		struct s_unknown2_block_definition;
-
-		Undefined32 __unknown; 
-		DataReference __unknown2_data_reference; 
-		DataReference __unknown3_data_reference; 
-		DataReference __unknown4_data_reference; 
-		Undefined32 __unknown5; 
-		Undefined32 __unknown6; 
-		Undefined32 __unknown7; 
-		Undefined32 __unknown8; 
-		Undefined32 __unknown9; 
-		Undefined32 __unknown10; 
-		s_tag_block_definition<s_unknown_block_definition> __unknown11_block; 
-		int32_t __unknown12; 
-		Undefined32 __unknown13; 
-		int32_t __unknown14; 
-		s_tag_block_definition<s_unknown2_block_definition> __unknown15_block; 
-		int32_t __unknown16; 
-		Undefined32 __unknown17; 
-		int32_t __unknown18; 
-		Undefined32 __unknown19; 
-		Undefined32 __unknown20; 
-		Undefined32 __unknown21; 
-		Undefined32 __unknown22; 
-
-		struct s_unknown_block_definition
+		struct nicename("Unknown") s_unknown_definition
 		{
-			string_id __unknown; 
-			int8_t __unknown2; 
-			int8_t __unknown3; 
-			int8_t __unknown4; 
-			int8_t __unknown5; 
+			string_id __unknown0;
+			int8_t __unknown1;
+			int8_t __unknown2;
+			int8_t __unknown3;
+			int8_t __unknown4;
 		};
 
-		struct s_unknown2_block_definition
+		struct nicename("Unknown") s_unknown1_definition
 		{
-			string_id __unknown; 
-			int8_t __unknown2; 
-			int8_t __unknown3; 
-			int8_t __unknown4; 
-			int8_t __unknown5; 
+			string_id __unknown0;
+			int8_t __unknown1;
+			int8_t __unknown2;
+			int8_t __unknown3;
+			int8_t __unknown4;
 		};
+
+		Undefined32 __unknown0;
+		DataReference __unknown1;
+		DataReference __unknown2;
+		DataReference __unknown3;
+		Undefined32 __unknown4;
+		Undefined32 __unknown5;
+		Undefined32 __unknown6;
+		Undefined32 __unknown7;
+		Undefined32 __unknown8;
+		Undefined32 __unknown9;
+		s_tag_block_definition<s_unknown_definition> __unknown10;
+		int32_t __unknown11;
+		Undefined32 __unknown12;
+		int32_t __unknown13;
+		s_tag_block_definition<s_unknown1_definition> __unknown14;
+		int32_t __unknown15;
+		Undefined32 __unknown16;
+		int32_t __unknown17;
+		Undefined32 __unknown18;
+		Undefined32 __unknown19;
+		Undefined32 __unknown20;
+		Undefined32 __unknown21;
 	};
+
+	Undefined32 __unknown0;
+	s_tag_block_definition<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
+	Undefined32 __unknown1;
+	s_tag_block_definition<s_vertex_shaders_definition> nicename("Vertex Shaders") vertex_shaders_block;
 };
+

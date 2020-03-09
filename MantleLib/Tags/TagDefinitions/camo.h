@@ -1,13 +1,14 @@
 #pragma once
 
-struct nicename("Camo") group('cmoe') s_camo_definition
+struct nicename("camo") group('cmoe') s_camo_definition
 {
-	int16_t __unknown; 
-	int16_t __unknown2; 
-	string_id __unknown3; 
-	Undefined32 __unknown4; 
-	DataReference __unknown5_data_reference; 
-	string_id __unknown6; 
-	Undefined32 __unknown7; 
-	DataReference __unknown8_data_reference; 
+	int16_t __unknown0;
+	int16_t __unknown1;
+	string_id __unknown2;
+	Undefined32 __unknown3;
+	DataReference __unknown4;
+	string_id __unknown5;
+	Undefined32 __unknown6;
+	DataReference __unknown7;
 };
+

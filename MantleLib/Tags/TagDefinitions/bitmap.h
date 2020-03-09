@@ -1,162 +1,242 @@
 #pragma once
 
-struct nicename("Bitmap") group('bitm') s_bitmap_definition
+struct nicename("bitmap") group('bitm') s_bitmap_definition
 {
-	struct s_unknown_block_definition;
-	struct s_unknown_sequence_block_definition;
-	struct s_unknown2_block_definition;
-	struct nicename("Sequences") s_sequence_block_definition;
-	struct nicename("Bitmap Data") s_bitmap_datum_block_definition;
-	struct nicename("Raw Information [Normal]") s_raw_information_normal_block_definition;
-	struct nicename("Raw Information [Interleaved]") s_raw_information_interleaved_block_definition;
-
-	int32_t __unknown; 
-	int16_t __unknown2; 
-	int16_t __unknown3; 
-	float __unknown4; 
-	float __unknown5; 
-	Undefined32 __unknown6; 
-	Undefined32 __unknown7; 
-	int8_t __unknown8; 
-	int8_t __unknown9; 
-	int8_t __unknown10; 
-	int8_t __unknown11; 
-	int32_t __unknown12; 
-	float __unknown13; 
-	s_tag_block_definition<s_unknown_block_definition> __unknown14_block; 
-	s_tag_block_definition<s_unknown_sequence_block_definition> __unknown_sequences_block; 
-	s_tag_block_definition<s_unknown2_block_definition> __unknown15_block; 
-	DataReference __unknown16_data_reference; 
-	DataReference __unknown17_data_reference; 
-	s_tag_block_definition<s_sequence_block_definition> nicename("Sequences") sequences_block; 
-	s_tag_block_definition<s_bitmap_datum_block_definition> nicename("Bitmap Data") bitmap_data_block; 
-	DataReference __unknown18_data_reference; 
-	Undefined32 __unknown19; 
-	Undefined32 __unknown20; 
-	Undefined32 __unknown21; 
-	s_tag_block_definition<s_raw_information_normal_block_definition> nicename("Raw Information [Normal]") raw_information_normal_block; 
-	s_tag_block_definition<s_raw_information_interleaved_block_definition> nicename("Raw Information [Interleaved]") raw_information_interleaved_block; 
-
-	struct s_unknown_block_definition
+	struct nicename("Unknown") s_unknown_definition
 	{
-		Undefined32 __unknown; 
-		int32_t __unknown2; 
-		int16_t __unknown3; 
-		int16_t __unknown4; 
-		int8_t __unknown5; 
-		int8_t __unknown6; 
-		int8_t __unknown7; 
-		int8_t __unknown8; 
-		int16_t __unknown9; 
-		int16_t __unknown10; 
-		float __unknown11; 
-		float __unknown12; 
-		float __unknown13; 
-		Undefined32 __unknown14; 
-		int32_t __unknown15; 
+		Undefined32 __unknown0;
+		int32_t __unknown1;
+		int16_t __unknown2;
+		int16_t __unknown3;
+		int8_t __unknown4;
+		int8_t __unknown5;
+		int8_t __unknown6;
+		int8_t __unknown7;
+		int16_t __unknown8;
+		int16_t __unknown9;
+		float __unknown10;
+		float __unknown11;
+		float __unknown12;
+		Undefined32 __unknown13;
+		int32_t __unknown14;
 	};
 
-	struct s_unknown_sequence_block_definition
+	struct nicename("Unknown Sequences") s_unknown_sequences_definition
 	{
-		struct nicename("Sprites") s_sprite_block_definition;
+		struct nicename("Sprites") s_sprites_definition
+		{
+			int16_t nicename("Bitmap Index") bitmap_index;
+			int16_t __unknown0;
+			Undefined32 __unknown1;
+			float nicename("Left") left;
+			float nicename("Right") right;
+			float nicename("Top") top;
+			float nicename("Bottom") bottom;
+			float nicename("Registration Point x") registration_point_x;
+			float nicename("Registration Point y") registration_point_y;
+		};
 
 		char nicename("Name") name[32];
-		int16_t nicename("First Bitmap Index") first_bitmap_index; 
-		int16_t nicename("Bitmap Count") bitmap_count; 
-		Undefined32 __unknown; 
-		Undefined32 __unknown2; 
-		Undefined32 __unknown3; 
-		Undefined32 __unknown4; 
-		s_tag_block_definition<s_sprite_block_definition> nicename("Sprites") sprites_block; 
+		int16_t nicename("First Bitmap Index") first_bitmap_index;
+		int16_t nicename("Bitmap Count") bitmap_count;
+		Undefined32 __unknown0;
+		Undefined32 __unknown1;
+		Undefined32 __unknown2;
+		Undefined32 __unknown3;
+		s_tag_block_definition<s_sprites_definition> nicename("Sprites") sprites_block;
+	};
 
-		struct nicename("sprite") s_sprite_block_definition
+	struct nicename("Unknown") s_unknown1_definition
+	{
+		float __unknown0;
+		float __unknown1;
+	};
+
+	struct nicename("Sequences") s_sequences_definition
+	{
+		struct nicename("Sprites") s_sprites1_definition
 		{
-			int16_t nicename("Bitmap Index") bitmap_index; 
-			int16_t __unknown; 
-			Undefined32 __unknown2; 
-			float nicename("Left") left; 
-			float nicename("Right") right; 
-			float nicename("Top") top; 
-			float nicename("Bottom") bottom; 
-			float nicename("Registration Point x") registration_point_x; 
-			float nicename("Registration Point y") registration_point_y; 
+			int16_t nicename("Bitmap Index") bitmap_index;
+			int16_t __unknown0;
+			Undefined32 __unknown1;
+			float nicename("Left") left;
+			float nicename("Right") right;
+			float nicename("Top") top;
+			float nicename("Bottom") bottom;
+			float nicename("Registration Point x") registration_point_x;
+			float nicename("Registration Point y") registration_point_y;
 		};
-	};
-
-	struct s_unknown2_block_definition
-	{
-		float __unknown; 
-		float __unknown2; 
-	};
-
-	struct nicename("sequence") s_sequence_block_definition
-	{
-		struct nicename("Sprites") s_sprite_block_definition;
 
 		char nicename("Name") name[32];
-		int16_t nicename("First Bitmap Index") first_bitmap_index; 
-		int16_t nicename("Bitmap Count") bitmap_count; 
-		Undefined32 __unknown; 
-		Undefined32 __unknown2; 
-		Undefined32 __unknown3; 
-		Undefined32 __unknown4; 
-		s_tag_block_definition<s_sprite_block_definition> nicename("Sprites") sprites_block; 
+		int16_t nicename("First Bitmap Index") first_bitmap_index;
+		int16_t nicename("Bitmap Count") bitmap_count;
+		Undefined32 __unknown0;
+		Undefined32 __unknown1;
+		Undefined32 __unknown2;
+		Undefined32 __unknown3;
+		s_tag_block_definition<s_sprites1_definition> nicename("Sprites") sprites_block;
+	};
 
-		struct nicename("sprite") s_sprite_block_definition
+	struct nicename("Bitmap Data") s_bitmap_data_definition
+	{
+		enum nicename("Type") e_type : uint8_t
 		{
-			int16_t nicename("Bitmap Index") bitmap_index; 
-			int16_t __unknown; 
-			Undefined32 __unknown2; 
-			float nicename("Left") left; 
-			float nicename("Right") right; 
-			float nicename("Top") top; 
-			float nicename("Bottom") bottom; 
-			float nicename("Registration Point x") registration_point_x; 
-			float nicename("Registration Point y") registration_point_y; 
+			/*nicename("2D Texture")*/ _type__2d_texture = 1ui8,
+			/*nicename("3D Texture")*/ _type__3d_texture = 2ui8,
+			/*nicename("Cube Map")*/ _type_cube_map = 3ui8,
+			/*nicename("Unknown")*/ _type_unknown = 4ui8,
 		};
+
+		enum nicename("Format") e_format : uint16_t
+		{
+			/*nicename("A8")*/ _format_a8 = 1ui16,
+			/*nicename("Y8")*/ _format_y8 = 2ui16,
+			/*nicename("AY8")*/ _format_ay8 = 3ui16,
+			/*nicename("A8Y8")*/ _format_a8y8 = 4ui16,
+			/*nicename("Unused1")*/ _format_unused1 = 5ui16,
+			/*nicename("Unused2")*/ _format_unused2 = 6ui16,
+			/*nicename("R5G6B5")*/ _format_r5g6b5 = 7ui16,
+			/*nicename("Unused3")*/ _format_unused3 = 8ui16,
+			/*nicename("A1R5G5B5")*/ _format_a1r5g5b5 = 9ui16,
+			/*nicename("A4R4G4B4")*/ _format_a4r4g4b4 = 10ui16,
+			/*nicename("X8R8G8B8")*/ _format_x8r8g8b8 = 11ui16,
+			/*nicename("A8R8G8B8")*/ _format_a8r8g8b8 = 12ui16,
+			/*nicename("Unused4")*/ _format_unused4 = 13ui16,
+			/*nicename("Unused5")*/ _format_unused5 = 14ui16,
+			/*nicename("DXT1")*/ _format_dxt1 = 15ui16,
+			/*nicename("DXT3")*/ _format_dxt3 = 16ui16,
+			/*nicename("DXT5")*/ _format_dxt5 = 17ui16,
+			/*nicename("P8-Bump")*/ _format_p8_bump = 18ui16,
+			/*nicename("P8")*/ _format_p8 = 19ui16,
+			/*nicename("ARGBFP32")*/ _format_argbfp32 = 20ui16,
+			/*nicename("RGBFP32")*/ _format_rgbfp32 = 21ui16,
+			/*nicename("RGBFP16")*/ _format_rgbfp16 = 22ui16,
+			/*nicename("V8U8")*/ _format_v8u8 = 23ui16,
+			/*nicename("Unknown23")*/ _format_unknown23 = 24ui16,
+			/*nicename("Unknown24")*/ _format_unknown24 = 25ui16,
+			/*nicename("Unknown25")*/ _format_unknown25 = 26ui16,
+			/*nicename("Unknown26")*/ _format_unknown26 = 27ui16,
+			/*nicename("Unknown27")*/ _format_unknown27 = 28ui16,
+			/*nicename("Unknown28")*/ _format_unknown28 = 29ui16,
+			/*nicename("Unknown29")*/ _format_unknown29 = 30ui16,
+			/*nicename("Unknown30")*/ _format_unknown30 = 31ui16,
+			/*nicename("Unknown31")*/ _format_unknown31 = 32ui16,
+			/*nicename("Unknown32")*/ _format_unknown32 = 33ui16,
+			/*nicename("Unknown33")*/ _format_unknown33 = 34ui16,
+			/*nicename("Unknown34")*/ _format_unknown34 = 35ui16,
+			/*nicename("Unknown35")*/ _format_unknown35 = 36ui16,
+			/*nicename("DXT5a")*/ _format_dxt5a = 37ui16,
+			/*nicename("Unknown37")*/ _format_unknown37 = 38ui16,
+			/*nicename("DXN")*/ _format_dxn = 39ui16,
+			/*nicename("CTX1")*/ _format_ctx1 = 40ui16,
+			/*nicename("DXT3a_alpha")*/ _format_dxt3a_alpha = 41ui16,
+			/*nicename("DXT3a_mono")*/ _format_dxt3a_mono = 42ui16,
+			/*nicename("DXT5a_alpha")*/ _format_dxt5a_alpha = 43ui16,
+			/*nicename("DXT5a_mono")*/ _format_dxt5a_mono = 44ui16,
+			/*nicename("DXN_mono_alpha")*/ _format_dxn_mono_alpha = 45ui16,
+		};
+
+		enum nicename("Format Flags") b_format_flags : uint8_t /* bitfield */
+		{
+			/*nicename("Bit 0")*/ _format_flags_bit_0 = 1ui8 << 0ui8,
+			/*nicename("Bit 1")*/ _format_flags_bit_1 = 1ui8 << 1ui8,
+			/*nicename("Bit 2")*/ _format_flags_bit_2 = 1ui8 << 2ui8,
+			/*nicename("Is Tiled")*/ _format_flags_is_tiled = 1ui8 << 3ui8,
+			/*nicename("Bit 4")*/ _format_flags_bit_4 = 1ui8 << 4ui8,
+			/*nicename("Bit 5")*/ _format_flags_bit_5 = 1ui8 << 5ui8,
+			/*nicename("Bit 6")*/ _format_flags_bit_6 = 1ui8 << 6ui8,
+			/*nicename("Bit 7")*/ _format_flags_bit_7 = 1ui8 << 7ui8,
+		};
+
+		enum nicename("Flags") b_flags : uint16_t /* bitfield */
+		{
+			/*nicename("Power Of Two Dimensions")*/ _flags_power_of_two_dimensions = 1ui16 << 0ui16,
+			/*nicename("Compressed")*/ _flags_compressed = 1ui16 << 1ui16,
+			/*nicename("Palettized")*/ _flags_palettized = 1ui16 << 2ui16,
+			/*nicename("Swizzled")*/ _flags_swizzled = 1ui16 << 3ui16,
+			/*nicename("Linear")*/ _flags_linear = 1ui16 << 4ui16,
+			/*nicename("v16u16")*/ _flags_v16u16 = 1ui16 << 5ui16,
+			/*nicename("MIP Map Debug Level")*/ _flags_mip_map_debug_level = 1ui16 << 6ui16,
+			/*nicename("Prefer Stutter (Prefer Low Detail)")*/ _flags_prefer_stutter_prefer_low_detail = 1ui16 << 7ui16,
+			/*nicename("Bit 8")*/ _flags_bit_8 = 1ui16 << 8ui16,
+			/*nicename("Always on?")*/ _flags_always_on = 1ui16 << 9ui16,
+			/*nicename("Bit 10")*/ _flags_bit_10 = 1ui16 << 10ui16,
+			/*nicename("Bit 11")*/ _flags_bit_11 = 1ui16 << 11ui16,
+			/*nicename("Interlaced?")*/ _flags_interlaced = 1ui16 << 12ui16,
+			/*nicename("Bit 13")*/ _flags_bit_13 = 1ui16 << 13ui16,
+			/*nicename("Bit 14")*/ _flags_bit_14 = 1ui16 << 14ui16,
+			/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
+		};
+
+		int16_t nicename("Width") width;
+		int16_t nicename("Height") height;
+		int8_t nicename("Depth") depth;
+		b_format_flags nicename("Format Flags") format_flags;
+		e_type nicename("Type") type;
+		int8_t __unknown0;
+		e_format nicename("Format") format;
+		b_flags nicename("Flags") flags;
+		int16_t nicename("Registration Point x") registration_point_x;
+		int16_t nicename("Registration Point y") registration_point_y;
+		int8_t nicename("Mipmap Count") mipmap_count;
+		int8_t __unknown1;
+		int8_t __unknown2;
+		int8_t __unknown3;
+		int32_t nicename("Pixels Offset") pixels_offset;
+		int32_t nicename("Pixels Count") pixels_count;
+		Undefined32 __unknown4;
+		int8_t __unknown5;
+		int8_t __unknown6;
+		int8_t __unknown7;
+		int8_t __unknown8;
+		Undefined32 __unknown9;
+		int32_t __unknown10;
+		int32_t __unknown11;
+		Undefined32 __unknown12;
+		Undefined32 __unknown13;
 	};
 
-	struct nicename("bitmap_datum") s_bitmap_datum_block_definition
+	struct nicename("Raw Information [Normal]") s_raw_information_normal_definition
 	{
-		int16_t nicename("Width") width; 
-		int16_t nicename("Height") height; 
-		int8_t nicename("Depth") depth; 
-		uint8_t nicename("Format Flags") format_flags; 
-		int8_t nicename("Type") type; 
-		int8_t __unknown; 
-		int16_t nicename("Format") format; 
-		uint16_t nicename("Flags") flags; 
-		int16_t nicename("Registration Point x") registration_point_x; 
-		int16_t nicename("Registration Point y") registration_point_y; 
-		int8_t nicename("Mipmap Count") mipmap_count; 
-		int8_t __unknown2; 
-		int8_t __unknown3; 
-		int8_t __unknown4; 
-		int32_t nicename("Pixels Offset") pixels_offset; 
-		int32_t nicename("Pixels Count") pixels_count; 
-		Undefined32 __unknown5; 
-		int8_t __unknown6; 
-		int8_t __unknown7; 
-		int8_t __unknown8; 
-		int8_t __unknown9; 
-		Undefined32 __unknown10; 
-		int32_t __unknown11; 
-		int32_t __unknown12; 
-		Undefined32 __unknown13; 
-		Undefined32 __unknown14; 
+		int32_t nicename("[zone] Asset Datum") zone_asset_datum;
+		uint16_t nicename("[easy read] Index") easy_read_index;
+		uint16_t nicename("[easy read] Salt") easy_read_salt;
+		int32_t nicename("Useless Padding") useless_padding;
 	};
 
-	struct nicename("raw_information_normal") s_raw_information_normal_block_definition
+	struct nicename("Raw Information [Interleaved]") s_raw_information_interleaved_definition
 	{
-		uint16_t nicename("[easy read] Index") easy_read_index; 
-		uint16_t nicename("[easy read] Salt") easy_read_salt; 
-		int32_t nicename("Useless Padding") useless_padding; 
+		int32_t nicename("[zone] Asset Datum") zone_asset_datum;
+		uint16_t nicename("[easy read] Index") easy_read_index;
+		uint16_t nicename("[easy read] Salt") easy_read_salt;
+		int32_t nicename("Useless Padding") useless_padding;
 	};
 
-	struct nicename("raw_information_interleaved") s_raw_information_interleaved_block_definition
-	{
-		uint16_t nicename("[easy read] Index") easy_read_index; 
-		uint16_t nicename("[easy read] Salt") easy_read_salt; 
-		int32_t nicename("Useless Padding") useless_padding; 
-	};
+	int32_t __unknown0;
+	int16_t __unknown1;
+	int16_t __unknown2;
+	float __unknown3;
+	float __unknown4;
+	Undefined32 __unknown5;
+	Undefined32 __unknown6;
+	int8_t __unknown7;
+	int8_t __unknown8;
+	int8_t __unknown9;
+	int8_t __unknown10;
+	int32_t __unknown11;
+	float __unknown12;
+	s_tag_block_definition<s_unknown_definition> __unknown13;
+	s_tag_block_definition<s_unknown_sequences_definition> nicename("Unknown Sequences") unknown_sequences_block;
+	s_tag_block_definition<s_unknown1_definition> __unknown14;
+	DataReference __unknown15;
+	DataReference __unknown16;
+	s_tag_block_definition<s_sequences_definition> nicename("Sequences") sequences_block;
+	s_tag_block_definition<s_bitmap_data_definition> nicename("Bitmap Data") bitmap_data_block;
+	DataReference __unknown17;
+	Undefined32 __unknown18;
+	Undefined32 __unknown19;
+	Undefined32 __unknown20;
+	s_tag_block_definition<s_raw_information_normal_definition> nicename("Raw Information [Normal]") raw_information_normal_block;
+	s_tag_block_definition<s_raw_information_interleaved_definition> nicename("Raw Information [Interleaved]") raw_information_interleaved_block;
 };
+
