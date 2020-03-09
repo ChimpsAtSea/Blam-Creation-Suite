@@ -800,5 +800,8 @@
     <None Include="GUI\render_enum_gui.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="GUI\render_bitfield_gui.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

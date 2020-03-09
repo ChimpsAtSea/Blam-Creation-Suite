@@ -23,14 +23,14 @@ void c_mantle_runtime_reflection_generator::run()
 
 	for (c_reflection_type_container* reflection_type_container : reflection_types)
 	{
-		if (!reflection_type_container->is_enum) // #TODO: Cleanup what is considered a structure type
+		if (!reflection_type_container->is_enum && !reflection_type_container->is_bitfield) // #TODO: Cleanup what is considered a structure type
 		{
 			write_reflection_structure_type_entry_header(source_string_stream, *reflection_type_container);
 		}
 	}
 	for (c_reflection_type_container* reflection_type_container : reflection_types)
 	{
-		if (reflection_type_container->is_enum)
+		if (reflection_type_container->is_enum || reflection_type_container->is_bitfield)
 		{
 			write_reflection_enum_type_entry_header(source_string_stream, *reflection_type_container);
 		}
@@ -38,7 +38,7 @@ void c_mantle_runtime_reflection_generator::run()
 	source_string_stream << std::endl;
 	for (c_reflection_type_container* reflection_type_container : reflection_types)
 	{
-		if (reflection_type_container->is_enum)
+		if (reflection_type_container->is_enum || reflection_type_container->is_bitfield)
 		{
 			write_reflection_enum_type_entry(source_string_stream, *reflection_type_container);
 		}
@@ -159,6 +159,7 @@ void c_mantle_runtime_reflection_generator::write_reflection_structure_type_entr
 				stringstream << "s_reflection_structure_info";
 				break;
 			case e_reflection_type_category::Enum:
+			case e_reflection_type_category::BitField:
 				stringstream << "s_reflection_enum_info";
 				break;
 			default:
@@ -185,6 +186,7 @@ void c_mantle_runtime_reflection_generator::write_reflection_structure_type_entr
 				stringstream << ", &runtime_structure_reflection<" << reflection_field_container.field_type->qualified_type_name << ">()";
 				break;
 			case e_reflection_type_category::Enum:
+			case e_reflection_type_category::BitField:
 				stringstream << ", &runtime_enum_reflection<" << reflection_field_container.field_type->qualified_type_name << ">()";
 				break;
 			}

@@ -14,6 +14,7 @@ enum class e_reflection_type_category : unsigned __int8
 	ShaderData,
 	StringID,
 	Enum,
+	BitField,
 };
 
 typedef unsigned __int16 s_reflection_structure_typeIndex;
@@ -111,6 +112,7 @@ inline const char* e_reflection_type_categoryToString(e_reflection_type_category
 	case e_reflection_type_category::ShaderData:			return "ShaderData";
 	case e_reflection_type_category::StringID:				return "StringID";
 	case e_reflection_type_category::Enum:					return "Enum";
+	case e_reflection_type_category::BitField:				return "BitField";
 	}
 #ifdef FATAL_ERROR
 	FATAL_ERROR(L"Invalid reflection type");

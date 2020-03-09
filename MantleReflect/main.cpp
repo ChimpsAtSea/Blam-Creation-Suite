@@ -696,11 +696,27 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 			TagDecl* pEnumDecl = reflectionQualifiedType->getAsTagDecl();
 			clang::RecordDecl* pCXXRecord = static_cast<clang::RecordDecl*>(pEnumDecl);
 
-			rFieldData.reflection_type_category = e_reflection_type_category::Enum;
-
 			c_reflection_type_container* pType = CreateReflectedEnumType(Context, &fieldQualifiedType, *pCXXRecord);
 			assert(pType != nullptr);
 			rFieldData.field_type = pType;
+
+			if (!pType->type_name.empty() && std::tolower(pType->type_name.front()) == 'b')
+			{
+				pType->is_enum = false;
+				pType->is_bitfield = true;
+				rFieldData.reflection_type_category = e_reflection_type_category::BitField;
+				switch (rFieldData.primitive_type)
+				{
+				case e_primitive_type::Enum8:	rFieldData.primitive_type = e_primitive_type::BitField8;  break;
+				case e_primitive_type::Enum16:	rFieldData.primitive_type = e_primitive_type::BitField16; break;
+				case e_primitive_type::Enum32:	rFieldData.primitive_type = e_primitive_type::BitField32; break;
+				case e_primitive_type::Enum64:	rFieldData.primitive_type = e_primitive_type::BitField64; break;
+				}
+			}
+			else
+			{
+				rFieldData.reflection_type_category = e_reflection_type_category::Enum;
+			}
 		}
 
 		assert(rFieldData.field_type != nullptr);

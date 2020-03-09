@@ -70,7 +70,7 @@ void c_mantle_compile_time_gui_generator::run()
 
 	for (c_reflection_type_container* reflection_type_container : reflection_types)
 	{
-		if (!reflection_type_container->is_enum)
+		if (!reflection_type_container->is_enum && !reflection_type_container->is_bitfield)
 		{
 			write_render_gui_type_entry_header(*reflection_type_container);
 		}
@@ -79,7 +79,7 @@ void c_mantle_compile_time_gui_generator::run()
 
 	for (c_reflection_type_container* reflection_type_container : reflection_types)
 	{
-		if (!reflection_type_container->is_enum)
+		if (!reflection_type_container->is_enum && !reflection_type_container->is_bitfield)
 		{
 			write_render_gui_type_entry_source(*reflection_type_container);
 		}
@@ -202,7 +202,9 @@ const char* get_reflection_type_category_handler_function(e_reflection_type_cate
 	case e_reflection_type_category::ShaderData:		return "render_shaderdata_gui";
 	case e_reflection_type_category::StringID:			return "render_stringid_gui";
 	case e_reflection_type_category::Enum:				return "render_enum_gui";
+	case e_reflection_type_category::BitField:			return "render_bitfield_gui";
 	}
+	throw;
 	return "##UNKNOWN_REFLECTION_TYPE##";
 }
 
@@ -298,6 +300,7 @@ void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_source(con
 		case e_reflection_type_category::ShaderData:
 		case e_reflection_type_category::StringID:
 		case e_reflection_type_category::Enum:
+		case e_reflection_type_category::BitField:
 		{
 			const char* handler_function = get_reflection_type_category_handler_function(reflection_field_container.reflection_type_category);
 
@@ -306,8 +309,7 @@ void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_source(con
 			source_string_stream << data_variable_name << "->" << reflection_field_container.field_name << ", " << reflection_variable_name << ".fields[" << reflection_member_index << "]" << "); // " << reflection_type_category_string;
 		}
 		break;
-		default:
-			break;
+		default: throw; // unsupported e_reflection_type_category
 		}
 		if (reflection_field_container.array_size > 0) source_string_stream << "[]";
 		source_string_stream << std::endl;

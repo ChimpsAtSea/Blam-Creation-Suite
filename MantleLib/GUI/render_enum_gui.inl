@@ -73,13 +73,13 @@ void render_enum_gui(void* field_data, const c_reflection_field& reflection_fiel
 					*reinterpret_cast<uint8_t*>(field_data) = static_cast<uint8_t>(enum_value.value);
 					break;
 				case e_primitive_type::Enum16:
-					*reinterpret_cast<uint16_t*>(field_data) = static_cast<uint8_t>(enum_value.value);
+					*reinterpret_cast<uint16_t*>(field_data) = static_cast<uint16_t>(enum_value.value);
 					break;
 				case e_primitive_type::Enum32:
-					*reinterpret_cast<uint32_t*>(field_data) = static_cast<uint8_t>(enum_value.value);
+					*reinterpret_cast<uint32_t*>(field_data) = static_cast<uint32_t>(enum_value.value);
 					break;
 				case e_primitive_type::Enum64:
-					*reinterpret_cast<uint64_t*>(field_data) = static_cast<uint8_t>(enum_value.value);
+					*reinterpret_cast<uint64_t*>(field_data) = static_cast<uint64_t>(enum_value.value);
 					break;
 				DEBUG_ONLY(default: throw);
 				}
