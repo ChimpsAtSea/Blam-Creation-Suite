@@ -120,6 +120,12 @@ if (COMBINE(__runonceflag_, __LINE__) == false) \
 	COMBINE(__runonceflag_, __LINE__) = true; \
 } } while(0)
 
+#ifdef _DEBUG
+#define DEBUG_ONLY(...) do { __VA_ARGS__; } while (0)
+#else
+#define DEBUG_ONLY(...)
+#endif
+
 template<class T, std::size_t... N>
 constexpr T bswap_impl(T i, std::index_sequence<N...>) { return ((((i >> (N * CHAR_BIT))& (T)(unsigned char)(-1)) << ((sizeof(T) - 1 - N) * CHAR_BIT)) | ...); };
 template<class T, class U = typename std::make_unsigned<T>::type>

@@ -797,5 +797,8 @@
     <None Include="CacheInterface\tag_group_names.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="GUI\render_enum_gui.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -15,6 +15,74 @@ static llvm::cl::OptionCategory MantleToolCategory("mantle options");
 static LangOptions languageOptions;
 static PrintingPolicy printingPolicy = languageOptions;
 
+e_primitive_type qualified_type_to_primitive_type(const clang::QualType& _qualifiedType)
+{
+	clang::QualType qualifiedType = _qualifiedType;
+
+	e_primitive_type primitive_type = e_primitive_type::NonPrimitive;
+
+	const bool isEnum = qualifiedType->isEnumeralType();
+	if (isEnum)
+	{
+		TagDecl* pTagDecl = qualifiedType->getAsTagDecl();
+		EnumDecl* pEnumDecl = static_cast<EnumDecl*>(pTagDecl); // this is nasty!
+		assert(pEnumDecl != nullptr);
+		qualifiedType = pEnumDecl->getIntegerType()->getCanonicalTypeInternal();
+	}
+	const std::string integralTypeName = QualType::getAsString(qualifiedType.split(), printingPolicy);
+
+	if (qualifiedType->isSignedIntegerType())
+	{
+		if (integralTypeName == "char") primitive_type = e_primitive_type::Character;
+		else if (integralTypeName == "signed char") primitive_type = e_primitive_type::Int8;
+		else if (integralTypeName == "short") primitive_type = e_primitive_type::Int16;
+		else if (integralTypeName == "int") primitive_type = e_primitive_type::Int32;
+		else if (integralTypeName == "long") primitive_type = e_primitive_type::Int32;
+		else if (integralTypeName == "long long") primitive_type = e_primitive_type::Int64;
+		else assert(!"Unsupported signed integral type");
+	}
+	else if (qualifiedType->isUnsignedIntegerType())
+	{
+		if (integralTypeName == "unsigned char") primitive_type = e_primitive_type::UInt8;
+		else if (integralTypeName == "unsigned short") primitive_type = e_primitive_type::UInt16;
+		else if (integralTypeName == "unsigned int") primitive_type = e_primitive_type::UInt32;
+		else if (integralTypeName == "unsigned long long") primitive_type = e_primitive_type::UInt64;
+		else assert(!"Unsupported signed integral type");
+	}
+	else assert(!"Unsupported integral type");
+
+	if (isEnum)
+	{
+		switch (primitive_type)
+		{
+		case e_primitive_type::Int8:
+		case e_primitive_type::UInt8:
+			primitive_type = e_primitive_type::Enum8;
+			break;
+		case e_primitive_type::Int16:
+		case e_primitive_type::UInt16:
+			primitive_type = e_primitive_type::Enum16;
+			break;
+		case e_primitive_type::Int32:
+		case e_primitive_type::UInt32:
+			primitive_type = e_primitive_type::Enum32;
+			break;
+		case e_primitive_type::Int64:
+		case e_primitive_type::UInt64:
+			primitive_type = e_primitive_type::Enum64;
+			break;
+		case e_primitive_type::Enum8:
+		case e_primitive_type::Enum16:
+		case e_primitive_type::Enum32:
+		case e_primitive_type::Enum64:
+			break;
+		default:
+			assert(!"Unsupported enum integral interpretation");
+		}
+	}
+
+	return primitive_type;
+}
 
 const char* FormatNiceNameAndIsHidden(e_reflection_type_category reflectionTypeCategory, char* pString, bool* isHiddenByDefault = nullptr)
 {
@@ -39,7 +107,7 @@ const char* FormatNiceNameAndIsHidden(e_reflection_type_category reflectionTypeC
 			}
 		}
 
-		if ((pString[0] == 's' || pString[0] == 'c') && pString[1] == '_')
+		if ((pString[0] == 's' || pString[0] == 'c' || pString[0] == 'e' || pString[0] == 'b') && pString[1] == '_')
 		{
 			pOutputString = pString + 2;
 
@@ -239,6 +307,9 @@ c_reflection_type_container* GetPrimitives_reflection_structure_type(e_primitive
 
 c_reflection_type_container* CreateReflectedEnumType(ASTContext* Context, const clang::QualType* recordQualifiedType, const clang::RecordDecl& rRecordDeclaration)
 {
+	const clang::EnumDecl* enum_decl = dyn_cast<EnumDecl>(&rRecordDeclaration);
+	assert(enum_decl != nullptr);
+
 	std::string declarationName = rRecordDeclaration.getNameAsString();
 	std::string qualifiedDeclarationName;
 	if (recordQualifiedType)
@@ -273,6 +344,25 @@ c_reflection_type_container* CreateReflectedEnumType(ASTContext* Context, const 
 	reflection_type_container.is_enum = true;
 	reflection_type_container.is_structure = false;
 
+	//e_primitive_type primitive_type = qualified_type_to_primitive_type(*recordQualifiedType);
+	//switch (primitive_type)
+	//{
+	//case e_primitive_type::Enum8:
+	//	reflection_type_container.data_size = 1;
+	//	break;
+	//case e_primitive_type::Enum16:
+	//	reflection_type_container.data_size = 2;
+	//	break;
+	//case e_primitive_type::Enum32:
+	//	reflection_type_container.data_size = 4;
+	//	break;
+	//case e_primitive_type::Enum64:
+	//	reflection_type_container.data_size = 8;
+	//	break;
+	//}
+
+	//QualType integer_type = enum_decl->getIntegerType();
+
 	bool disableReflection = false;
 	std::string nice_name_str;
 	for (clang::Attr* it : rRecordDeclaration.attrs())
@@ -304,9 +394,6 @@ c_reflection_type_container* CreateReflectedEnumType(ASTContext* Context, const 
 	{
 		return &reflection_type_container;
 	}
-
-	const clang::EnumDecl* enum_decl = dyn_cast<EnumDecl>(&rRecordDeclaration);
-	assert(enum_decl != nullptr);
 
 	for (const clang::EnumDecl::enumerator_iterator::value_type& enum_decl : enum_decl->enumerators())
 	{
@@ -575,67 +662,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 				break;
 			case clang::Type::ScalarTypeKind::STK_Integral:
 			{
-				clang::QualType integralCanonicalType = scalarQualifiedType;
-				const bool isEnum = reflectionQualifiedType->isEnumeralType();
-				if (isEnum)
-				{
-					TagDecl* pTagDecl = integralCanonicalType->getAsTagDecl();
-					EnumDecl* pEnumDecl = static_cast<EnumDecl*>(pTagDecl); // this is nasty!
-					assert(pEnumDecl != nullptr);
-					integralCanonicalType = pEnumDecl->getIntegerType()->getCanonicalTypeInternal();
-				}
-				const std::string integralTypeName = QualType::getAsString(integralCanonicalType.split(), printingPolicy);
-
-				if (integralCanonicalType->isSignedIntegerType())
-				{
-					if (integralTypeName == "char") rFieldData.primitive_type = e_primitive_type::Character;
-					else if (integralTypeName == "signed char") rFieldData.primitive_type = e_primitive_type::Int8;
-					else if (integralTypeName == "short") rFieldData.primitive_type = e_primitive_type::Int16;
-					else if (integralTypeName == "int") rFieldData.primitive_type = e_primitive_type::Int32;
-					else if (integralTypeName == "long") rFieldData.primitive_type = e_primitive_type::Int32;
-					else if (integralTypeName == "long long") rFieldData.primitive_type = e_primitive_type::Int64;
-					else assert(!"Unsupported signed integral type");
-				}
-				else if (integralCanonicalType->isUnsignedIntegerType())
-				{
-					if (integralTypeName == "unsigned char") rFieldData.primitive_type = e_primitive_type::UInt8;
-					else if (integralTypeName == "unsigned short") rFieldData.primitive_type = e_primitive_type::UInt16;
-					else if (integralTypeName == "unsigned int") rFieldData.primitive_type = e_primitive_type::UInt32;
-					else if (integralTypeName == "unsigned long long") rFieldData.primitive_type = e_primitive_type::UInt64;
-					else assert(!"Unsupported signed integral type");
-				}
-				else assert(!"Unsupported integral type");
-
-				if (isEnum)
-				{
-					switch (rFieldData.primitive_type)
-					{
-					case e_primitive_type::Int8:
-					case e_primitive_type::UInt8:
-						rFieldData.primitive_type = e_primitive_type::Enum8;
-						break;
-					case e_primitive_type::Int16:
-					case e_primitive_type::UInt16:
-						rFieldData.primitive_type = e_primitive_type::Enum16;
-						break;
-					case e_primitive_type::Int32:
-					case e_primitive_type::UInt32:
-						rFieldData.primitive_type = e_primitive_type::Enum32;
-						break;
-					case e_primitive_type::Int64:
-					case e_primitive_type::UInt64:
-						rFieldData.primitive_type = e_primitive_type::Enum64;
-						break;
-					case e_primitive_type::Enum8:
-					case e_primitive_type::Enum16:
-					case e_primitive_type::Enum32:
-					case e_primitive_type::Enum64:
-						break;
-					default:
-						assert(!"Unsupported enum integral interpretation");
-					}
-				}
-
+				rFieldData.primitive_type = qualified_type_to_primitive_type(scalarQualifiedType);
 			}
 			break;
 			case clang::Type::ScalarTypeKind::STK_Floating:

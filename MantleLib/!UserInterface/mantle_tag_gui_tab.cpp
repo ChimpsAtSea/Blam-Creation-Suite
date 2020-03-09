@@ -10,6 +10,7 @@ thread_local c_mantle_tag_gui_tab* c_mantle_tag_gui_tab::g_current_mantle_tag_ta
 #include <GUI/render_tagref_gui.inl>
 #include <GUI/render_dataref_gui.inl>
 #include <GUI/render_tagblock_gui.inl>
+#include <GUI/render_enum_gui.inl>
 // #TODO: include GeneratedGUI.cpp here and force inline all of the render functions
 
 c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_interface& tag_interface, c_mantle_gui_tab* parent_tag) : 

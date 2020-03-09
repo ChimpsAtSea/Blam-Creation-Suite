@@ -59,6 +59,8 @@ void c_mantle_compile_time_gui_generator::run()
 	source_string_stream << "void render_tagref_gui" << "(TagReference		* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	source_string_stream << "void render_tagblock_gui" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	source_string_stream << "void render_dataref_gui" << "(DataReference		* field_data, const c_reflection_field& reflection_field);" << std::endl;
+	source_string_stream << "void render_enum_gui" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
+	source_string_stream << "void render_bitfield_gui" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
 
 	source_string_stream << "" << std::endl;
 	source_string_stream << "" << std::endl;
@@ -179,9 +181,9 @@ const char* get_primitive_handler_function(e_primitive_type primitiveType)
 	case e_primitive_type::BitFlag32:				return "render_primitive_gui<e_primitive_type::BitFlag32,		 bitflag32_t>";
 	case e_primitive_type::BitFlag64:				return "render_primitive_gui<e_primitive_type::BitFlag64,		 bitflag64_t>";
 	case e_primitive_type::Undefined8:				return "render_primitive_gui<e_primitive_type::Undefined8,		 Undefined8>";
-	case e_primitive_type::Undefined16:			return "render_primitive_gui<e_primitive_type::Undefined16,	 Undefined16>";
-	case e_primitive_type::Undefined32:			return "render_primitive_gui<e_primitive_type::Undefined32,	 Undefined32>";
-	case e_primitive_type::Undefined64:			return "render_primitive_gui<e_primitive_type::Undefined64,	 Undefined64>";
+	case e_primitive_type::Undefined16:				return "render_primitive_gui<e_primitive_type::Undefined16,	 Undefined16>";
+	case e_primitive_type::Undefined32:				return "render_primitive_gui<e_primitive_type::Undefined32,	 Undefined32>";
+	case e_primitive_type::Undefined64:				return "render_primitive_gui<e_primitive_type::Undefined64,	 Undefined64>";
 	case e_primitive_type::Character:				return "render_primitive_gui<e_primitive_type::Character,		 char>";
 	case e_primitive_type::WideCharacter:			return "render_primitive_gui<e_primitive_type::WideCharacter,	 wchar_t>";
 	}
@@ -199,6 +201,7 @@ const char* get_reflection_type_category_handler_function(e_reflection_type_cate
 	case e_reflection_type_category::DataReference:		return "render_dataref_gui";
 	case e_reflection_type_category::ShaderData:		return "render_shaderdata_gui";
 	case e_reflection_type_category::StringID:			return "render_stringid_gui";
+	case e_reflection_type_category::Enum:				return "render_enum_gui";
 	}
 	return "##UNKNOWN_REFLECTION_TYPE##";
 }
@@ -294,6 +297,7 @@ void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_source(con
 		case e_reflection_type_category::DataReference:
 		case e_reflection_type_category::ShaderData:
 		case e_reflection_type_category::StringID:
+		case e_reflection_type_category::Enum:
 		{
 			const char* handler_function = get_reflection_type_category_handler_function(reflection_field_container.reflection_type_category);
 

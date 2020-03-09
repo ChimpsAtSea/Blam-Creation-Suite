@@ -14,6 +14,7 @@ c_reflection_type_container::c_reflection_type_container()
 	, template_types()
 	, is_structure(false)
 	, is_enum(false)
+	, is_bitfield(false)
 {
 }
 
@@ -31,6 +32,7 @@ c_reflection_type_container::c_reflection_type_container(std::string type_name, 
 	, template_types()
 	, is_structure(false)
 	, is_enum(false)
+	, is_bitfield(false)
 {
 }
 

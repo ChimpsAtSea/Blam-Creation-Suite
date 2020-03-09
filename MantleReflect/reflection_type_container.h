@@ -11,7 +11,8 @@ public:
 
 	bool is_structure;
 	bool is_enum;
-
+	bool is_bitfield;
+	
 	// enum information
 	std::vector<c_reflection_enum_value_container*> enum_values;
 

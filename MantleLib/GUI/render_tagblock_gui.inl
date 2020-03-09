@@ -51,29 +51,37 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 			rDynamicTagBlockData.m_position = 0;
 		}
 
-		const s_reflection_tag_block_info& rs_reflection_tag_block_info = reflection_field.tag_block_info;
-		const s_reflection_structure_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
-
-		uint32_t tagBlockDataIndexDataOffset = tag_block_reflection_type->size_of_data * static_cast<uint32_t>(rDynamicTagBlockData.m_position);
-		/*	#TODO: Investigate the possibility of replacing the usage of get_cache_file with the virtual tag interface/virtual tab block data access
-			if we supply it as a template parameter to this function can we avoid it? */
-		char* pTagBlockData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_cache_file().GetTagBlockData<char>(*tag_block_definition) + tagBlockDataIndexDataOffset;
-
 		if (tag_block_definition->count && tag_block_definition->address)
 		{
-			// #TODO: We support null here because TagBlocks can be defined without their data.
-			// we should migrate slowly over to not having TagBlocks with no type specified
-			if (tag_block_reflection_type)
-			{
-				c_mantle_tag_gui_tab::increment_recursion();
-				tag_block_reflection_type->render_type_gui(pTagBlockData);
-				c_mantle_tag_gui_tab::decrement_recursion();
 
+			const s_reflection_tag_block_info& rs_reflection_tag_block_info = reflection_field.tag_block_info;
+			const s_reflection_structure_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
+
+			uint32_t tagBlockDataIndexDataOffset = tag_block_reflection_type->size_of_data * static_cast<uint32_t>(rDynamicTagBlockData.m_position);
+			/*	#TODO: Investigate the possibility of replacing the usage of get_cache_file with the virtual tag interface/virtual tab block data access
+				if we supply it as a template parameter to this function can we avoid it? */
+			char* pTagBlockData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_cache_file().GetTagBlockData<char>(*tag_block_definition) + tagBlockDataIndexDataOffset;
+
+			if (IsBadReadPtr(pTagBlockData, 1))
+			{
+				ImGui::Text("Invalid memory address 0x%P", pTagBlockData);
 			}
 			else
 			{
-				//ImGui::Text("No type...");
-				ImGui::Text("count:%i address:0x%X definition_address:0x%X", tag_block_definition->count, tag_block_definition->address, tag_block_definition->definition_address);
+				// #TODO: We support null here because TagBlocks can be defined without their data.
+				// we should migrate slowly over to not having TagBlocks with no type specified
+				if (tag_block_reflection_type)
+				{
+					c_mantle_tag_gui_tab::increment_recursion();
+					tag_block_reflection_type->render_type_gui(pTagBlockData);
+					c_mantle_tag_gui_tab::decrement_recursion();
+
+				}
+				else
+				{
+					//ImGui::Text("No type...");
+					ImGui::Text("count:%i address:0x%X definition_address:0x%X", tag_block_definition->count, tag_block_definition->address, tag_block_definition->definition_address);
+				}
 			}
 		}
 	}

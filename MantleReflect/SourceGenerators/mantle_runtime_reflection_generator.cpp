@@ -86,7 +86,7 @@ void c_mantle_runtime_reflection_generator::write_reflection_structure_type_entr
 		// skip internal types
 		return;
 	}
-	
+
 	stringstream << "template<> ";
 	stringstream << "const s_reflection_structure_type& runtime_structure_reflection<" << reflection_type_container.qualified_type_name << ">();" << std::endl;
 }
@@ -106,7 +106,7 @@ void c_mantle_runtime_reflection_generator::write_reflection_structure_type_entr
 
 	stringstream << "template<>" << std::endl;
 	stringstream << "const s_reflection_structure_type& runtime_structure_reflection<" << reflection_type_container.qualified_type_name << ">()" << std::endl;
-	
+
 	stringstream << "{" << std::endl;
 	stringstream << "\t" << "static s_reflection_structure_type reflectionData = " << std::endl;
 	stringstream << "\t{" << std::endl;
@@ -134,7 +134,18 @@ void c_mantle_runtime_reflection_generator::write_reflection_structure_type_entr
 		assert(reflection_field_container.field_type != nullptr);
 		const c_reflection_type_container& reflection_type_container = *reflection_field_container.field_type;
 
-		const char* primitive_type_string = reflection_type_container.is_primitive ? reflection_field_container.field_type->type_name.c_str() : "NonPrimitive";
+
+		const char* primitive_type_string = "NonPrimitive";
+		if (reflection_type_container.is_primitive)
+		{
+			primitive_type_string = reflection_field_container.field_type->type_name.c_str();
+		}
+
+		if (reflection_type_container.is_enum || reflection_type_container.is_bitfield)
+		{
+			primitive_type_string = e_primitive_typeToString(reflection_field_container.primitive_type);
+		}
+
 		const char* reflection_type_category_string = e_reflection_type_categoryToString(reflection_field_container.reflection_type_category);
 
 		stringstream << "\t\t\t{ \"" << reflection_field_container.field_name << "\", \"" << reflection_field_container.field_nice_name << "\", ";
@@ -156,6 +167,8 @@ void c_mantle_runtime_reflection_generator::write_reflection_structure_type_entr
 			}
 			stringstream << "{ " << "e_reflection_type_category::" << reflection_type_category_string;
 			stringstream << ", e_primitive_type::" << primitive_type_string;
+			stringstream << ", \"" << reflection_type_container.type_name << "\"";
+			stringstream << ", \"" << reflection_type_container.type_nice_name << "\"";
 			stringstream << ", \"" << reflection_type_container.qualified_type_name << "\"";
 			switch (reflection_field_container.reflection_type_category)
 			{
@@ -212,7 +225,21 @@ void c_mantle_runtime_reflection_generator::write_reflection_enum_type_entry(std
 	stringstream << "template<> ";
 	stringstream << "const s_reflection_enum_type& runtime_enum_reflection<" << reflection_type_container.qualified_type_name << ">()" << std::endl;
 	stringstream << "{" << std::endl;
-	stringstream << "return *(s_reflection_enum_type*)(0);" << std::endl;
+	stringstream << "\tstatic s_reflection_enum_type reflection_enum_type =" << std::endl;
+	stringstream << "\t{" << std::endl;
+	stringstream << "\t\t\"" << reflection_type_container.type_name << "\"," << std::endl;
+	stringstream << "\t\t\"" << reflection_type_container.type_nice_name << "\"," << std::endl;
+	stringstream << "\t\t" << reflection_type_container.data_size << "," << std::endl;
+	stringstream << "\t\t" << reflection_type_container.enum_values.size() << "," << std::endl;
+	stringstream << "\t\t" << "{" << std::endl;
+	for (c_reflection_enum_value_container* enum_value_container : reflection_type_container.enum_values)
+	{
+		stringstream << "\t\t\t{ \"" << enum_value_container->value_name << "\", " << enum_value_container->value << "ui64 }," << std::endl;
+	}
+	stringstream << "\t\t\t{}" << std::endl;
+	stringstream << "\t\t" << "}" << std::endl;
+	stringstream << "\t};" << std::endl << std::endl;
+	stringstream << "\treturn reflection_enum_type;" << std::endl;
 	stringstream << "}" << std::endl << std::endl;
 
 }

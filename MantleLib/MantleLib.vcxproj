@@ -309,6 +309,7 @@
   <ItemGroup>
     <None Include="CacheInterface\tag_group_names.inl" />
     <None Include="GUI\render_dataref_gui.inl" />
+    <None Include="GUI\render_enum_gui.inl" />
     <None Include="GUI\render_primitive_gui.inl" />
     <None Include="GUI\render_struct_gui.inl" />
     <None Include="GUI\render_tagblock_gui.inl" />

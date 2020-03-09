@@ -127,7 +127,9 @@ struct s_reflection_structure_type_info
 		e_primitive_type m_primitiveTypeIndex;
 		s_reflection_structure_typeIndex m_reflectionTypeIndex;
 	};
-	const char* m_pTypeName;
+	const char* type_name;
+	const char* type_nice_name;
+	const char* type_qualified_name;
 };
 
 struct s_reflection_structure_type;
