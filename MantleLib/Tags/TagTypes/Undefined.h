@@ -1,7 +1,7 @@
 #pragma once
 
-struct Undefined8 { char data[1]; };
-struct Undefined16 { char data[2]; };
-struct Undefined32 { char data[4]; };
-struct Undefined64 { char data[8]; };
+noreflection struct Undefined8 { char data[1]; };
+noreflection struct Undefined16 { char data[2]; };
+noreflection struct Undefined32 { char data[4]; };
+noreflection struct Undefined64 { char data[8]; };
 

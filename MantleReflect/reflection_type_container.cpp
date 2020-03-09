@@ -12,6 +12,8 @@ c_reflection_type_container::c_reflection_type_container()
 	, type_nice_name()
 	, is_template(false)
 	, template_types()
+	, is_structure(false)
+	, is_enum(false)
 {
 }
 
@@ -27,13 +29,20 @@ c_reflection_type_container::c_reflection_type_container(std::string type_name, 
 	, type_nice_name()
 	, is_template(false)
 	, template_types()
+	, is_structure(false)
+	, is_enum(false)
 {
 }
 
 c_reflection_type_container::~c_reflection_type_container()
 {
-	for (c_reflection_field_container* pField : fields)
+	for (c_reflection_enum_value_container* enum_value_container : enum_values)
 	{
-		delete pField;
+		delete enum_value_container;
+	}
+
+	for (c_reflection_field_container* field_container : fields)
+	{
+		delete field_container;
 	}
 }

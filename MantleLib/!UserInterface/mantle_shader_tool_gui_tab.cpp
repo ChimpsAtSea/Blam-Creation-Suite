@@ -165,12 +165,12 @@ void c_mantle_shader_tool_gui_tab::render_source_code_editor_configuration_heade
 		{
 			v_tag_interface<s_render_method_definition_definition>* render_method_definition = dynamic_cast<decltype(render_method_definition)>(selected_render_method_definition_tag_interface);
 
-			for (s_render_method_definition_definition::s_option_definition& option : render_method_definition->options)
-			{
-				const char* shader_option = render_method_definition->GetCacheFile().string_id_to_cstr(option.__unknown);
+			//for (s_render_method_definition_definition::s_option_definition& option : render_method_definition->options)
+			//{
+			//	const char* shader_option = render_method_definition->GetCacheFile().string_id_to_cstr(option.__unknown);
 
-				write_line_verbose("shader_option: %s", shader_option);
-			}
+			//	write_line_verbose("shader_option: %s", shader_option);
+			//}
 		}
 	}
 	else
@@ -574,21 +574,22 @@ void c_mantle_shader_tool_gui_tab::disassemble_runtime_subroutine() const
 		s_pixel_shader_definition* pixel_shader = pixel_shader_tag_interface->get_data<s_pixel_shader_definition>();
 
 		// #TODO: Remove GetTagBlockData and replace with virtual tag interface/virtual tab block data access
-		s_pixel_shader_definition::s_pixel_shader2_block_definition* pixel_shader2_block = cache_file.GetTagBlockData(pixel_shader->pixel_shaders_block) + 0;
+		// #REFLECTIONREFACTOR
+		//s_pixel_shader_definition::s_pixel_shaders_definition* pixel_shader2_block = cache_file.GetTagBlockData(pixel_shader->pixel_shaders_block) + 0;
 
 		std::string disassemble_shader_result;
-		if (use_durango_shader_disassembly)
-		{
-			size_t __unknown4_data_reference_size = pixel_shader2_block->__unknown4_data_reference.size;
-			char* __unknown4_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown4_data_reference);
-			disassemble_shader_result = disassemble_shader(__unknown4_data_reference_data, __unknown4_data_reference_size);
-		}
-		else
-		{
-			size_t __unknown3_data_reference_size = pixel_shader2_block->__unknown3_data_reference.size;
-			char* __unknown3_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown3_data_reference);
-			disassemble_shader_result = disassemble_shader(__unknown3_data_reference_data, __unknown3_data_reference_size);
-		}
+		//if (use_durango_shader_disassembly)
+		//{
+		//	size_t __unknown4_data_reference_size = pixel_shader2_block->__unknown4_data_reference.size;
+		//	char* __unknown4_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown4_data_reference);
+		//	disassemble_shader_result = disassemble_shader(__unknown4_data_reference_data, __unknown4_data_reference_size);
+		//}
+		//else
+		//{
+		//	size_t __unknown3_data_reference_size = pixel_shader2_block->__unknown3_data_reference.size;
+		//	char* __unknown3_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown3_data_reference);
+		//	disassemble_shader_result = disassemble_shader(__unknown3_data_reference_data, __unknown3_data_reference_size);
+		//}
 
 		new_runtime_disassembly = disassemble_shader_result;
 	}

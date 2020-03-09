@@ -45,6 +45,9 @@
     <ClCompile Include="SourceGenerators\mantle_virtual_tag_interface_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="reflection_enum_container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReflectionTypes.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SourceGenerators\mantle_virtual_tag_interface_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection_enum_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

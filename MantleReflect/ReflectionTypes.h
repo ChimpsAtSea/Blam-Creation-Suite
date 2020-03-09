@@ -13,10 +13,11 @@ enum class e_reflection_type_category : unsigned __int8
 	DataReference,
 	ShaderData,
 	StringID,
+	Enum,
 };
 
-typedef unsigned __int16 s_reflection_typeIndex;
-enum class e_primitive_type : s_reflection_typeIndex
+typedef unsigned __int16 s_reflection_structure_typeIndex;
+enum class e_primitive_type : s_reflection_structure_typeIndex
 {
 	NonPrimitive,
 	Int8,
@@ -109,6 +110,7 @@ inline const char* e_reflection_type_categoryToString(e_reflection_type_category
 	case e_reflection_type_category::DataReference:			return "DataReference";
 	case e_reflection_type_category::ShaderData:			return "ShaderData";
 	case e_reflection_type_category::StringID:				return "StringID";
+	case e_reflection_type_category::Enum:					return "Enum";
 	}
 #ifdef FATAL_ERROR
 	FATAL_ERROR(L"Invalid reflection type");
@@ -117,27 +119,33 @@ inline const char* e_reflection_type_categoryToString(e_reflection_type_category
 #endif
 }
 
-struct s_reflection_type_info
+struct s_reflection_structure_type_info
 {
 	e_reflection_type_category reflection_type_category;
 	union
 	{
 		e_primitive_type m_primitiveTypeIndex;
-		s_reflection_typeIndex m_reflectionTypeIndex;
+		s_reflection_structure_typeIndex m_reflectionTypeIndex;
 	};
 	const char* m_pTypeName;
 };
 
-struct s_reflection_type;
+struct s_reflection_structure_type;
+struct s_reflection_enum_type;
 
-struct s_reflection_structure_info : s_reflection_type_info
+struct s_reflection_structure_info : s_reflection_structure_type_info
 {
-	const s_reflection_type* reflection_type;
+	const s_reflection_structure_type* reflection_type;
 };
 
-struct s_reflection_tag_block_info : s_reflection_type_info
+struct s_reflection_tag_block_info : s_reflection_structure_type_info
 {
-	const s_reflection_type* reflection_type;
+	const s_reflection_structure_type* reflection_type;
+};
+
+struct s_reflection_enum_info : s_reflection_structure_type_info
+{
+	const s_reflection_enum_type* reflection_enum_type;
 };
 
 struct c_reflection_field
@@ -148,6 +156,8 @@ struct c_reflection_field
 		nice_name = {};
 		type_info = {};
 		structure_info = {};
+		tag_block_info = {};
+		enum_info = {};
 		offset = {};
 		size = {};
 		array_size = {};
@@ -157,7 +167,7 @@ struct c_reflection_field
 	c_reflection_field(
 		const char* name,
 		const char* nice_name,
-		s_reflection_type_info type_info,
+		s_reflection_structure_type_info type_info,
 		unsigned __int32 offset,
 		unsigned __int16 size,
 		unsigned __int32 array_size,
@@ -172,7 +182,30 @@ struct c_reflection_field
 	{
 		structure_info = {};
 		tag_block_info = {};
+		enum_info = {};
 		this->type_info = type_info;
+	}
+
+	c_reflection_field(
+		const char* name,
+		const char* nice_name,
+		s_reflection_enum_info enum_info,
+		unsigned __int32 offset,
+		unsigned __int16 size,
+		unsigned __int32 array_size,
+		bool is_hidden_by_default
+	)
+		: name(name)
+		, nice_name(nice_name)
+		, offset(offset)
+		, size(size)
+		, array_size(array_size)
+		, is_hidden_by_default(is_hidden_by_default)
+	{
+		type_info = {};
+		structure_info = {};
+		tag_block_info = {};
+		this->enum_info = enum_info;
 	}
 
 	c_reflection_field(
@@ -193,6 +226,7 @@ struct c_reflection_field
 	{
 		type_info = {};
 		tag_block_info = {};
+		enum_info = {};
 		this->structure_info = structure_info;
 	}
 
@@ -214,15 +248,17 @@ struct c_reflection_field
 	{
 		type_info = {};
 		structure_info = {};
+		enum_info = {};
 		this->tag_block_info = tag_block_info;
 	}
 
 	const char* name;
 	const char* nice_name;
 	union {
-		s_reflection_type_info type_info;
+		s_reflection_structure_type_info type_info;
 		s_reflection_structure_info structure_info;
 		s_reflection_tag_block_info tag_block_info;
+		s_reflection_enum_info enum_info;
 	};
 	unsigned __int32 offset;
 	unsigned __int16 size;
@@ -237,9 +273,27 @@ class c_cache_file;
 
 using virtual_tag_constructor_func = c_tag_interface*(c_cache_file&, uint16_t);
 
+struct s_reflection_enum_value
+{
+	const char* name;
+	uint64_t value;
+};
+
 #pragma warning( push )
 #pragma warning( disable : 4200 ) // allow using non standard language features without warning
-struct s_reflection_type
+struct s_reflection_enum_type
+{
+	const char* name;
+	const char* nice_name;
+	unsigned __int32 size_of_data;
+	unsigned __int32 values_count;
+	s_reflection_enum_value values[]; // #NOTE: non standard language feature
+};
+#pragma warning( pop )
+
+#pragma warning( push )
+#pragma warning( disable : 4200 ) // allow using non standard language features without warning
+struct s_reflection_structure_type
 {
 	const char* name;
 	const char* nice_name;

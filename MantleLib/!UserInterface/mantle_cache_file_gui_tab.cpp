@@ -383,33 +383,34 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 	if (tag_interface)
 	{
 		s_scenario_definition* scenario = tag_interface->get_data<s_scenario_definition>();
-		s_tag_block_definition<s_scenario_definition::s_trigger_volume_block_definition>& trigger_volumes_tag_block = scenario->trigger_volumes_block;
+		s_tag_block_definition<s_scenario_definition::s_trigger_volumes_definition>& trigger_volumes_tag_block = scenario->trigger_volumes_block;
 
 		static c_box_primitive& immediate_box_primitive = c_primitive_render_manager::get_immediate_box();
 
 		// #TODO: Remove GetTagBlockData and replace with virtual tag interface/virtual tab block data access
-		s_scenario_definition::s_trigger_volume_block_definition* trigger_volumes_tag_block_data = cache_file.GetTagBlockData(trigger_volumes_tag_block);
+		s_scenario_definition::s_trigger_volumes_definition* trigger_volumes_tag_block_data = cache_file.GetTagBlockData(trigger_volumes_tag_block);
 		for (uint32_t trigger_volume_index = 0; trigger_volume_index < trigger_volumes_tag_block.count; trigger_volume_index++)
 		{
 			constexpr float k_line_transparency = 0.4f;
 			constexpr float k_text_transparency = 0.6f;
+			
+			s_scenario_definition::s_trigger_volumes_definition& trigger_volume = trigger_volumes_tag_block_data[trigger_volume_index];
 
-			s_scenario_definition::s_trigger_volume_block_definition& trigger_volume = trigger_volumes_tag_block_data[trigger_volume_index];
-						
 			bool is_kill_volume = trigger_volume.kill_volume != 0xFFFFi16;
-			switch (trigger_volume.type)
-			{
-			case 0: // box (position + extents)
-				if (is_kill_volume) immediate_box_primitive.set_color(1.0f, 0.0f, 0.0f, k_line_transparency);
-				else immediate_box_primitive.set_color(0.0f, 1.0f, 0.0f, k_line_transparency);
-				break;
-			case 1:
-				immediate_box_primitive.set_color(1.0f, 0.0f, 1.0f, k_line_transparency);
-				break;
-			default:
+			// #REFLECTIONREFACTOR
+			//switch (trigger_volume.type)
+			//{
+			//case 0: // box (position + extents)
+			//	if (is_kill_volume) immediate_box_primitive.set_color(1.0f, 0.0f, 0.0f, k_line_transparency);
+			//	else immediate_box_primitive.set_color(0.0f, 1.0f, 0.0f, k_line_transparency);
+			//	break;
+			//case 1:
+			//	immediate_box_primitive.set_color(1.0f, 0.0f, 1.0f, k_line_transparency);
+			//	break;
+			//default:
 				immediate_box_primitive.set_color(1.0f, 1.0f, 0.0f, k_line_transparency);
-				break;
-			}
+				//break;
+			//}
 
 			int imgui_text_color;
 			if (is_kill_volume) imgui_text_color = IM_COL32(255, 0, 0, static_cast<int>(255 * k_text_transparency));

@@ -78,172 +78,170 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 {
 	using namespace DirectX;
 
-	ImGui::Text("Bitmap Editor");
+	// #REFLECTIONREFACTOR
+	//ImGui::Text("Bitmap Editor");
+	//
+	//
+	//c_tag_group_interface* play_interface = cache_file.get_group_interface_by_group_id(_tag_group_cache_file_resource_layout_table);
+	//v_tag_interface<s_cache_file_resource_layout_table_definition>* play_tag = dynamic_cast<decltype(play_tag)>(play_interface->get_tag_interfaces().front());
+	//ImGui::Text("Found Play Tag: %s", play_tag ? "true" : "false");
 
+	//c_tag_group_interface* zone_interface = cache_file.get_group_interface_by_group_id(_tag_group_cache_file_resource_gestalt);
+	//v_tag_interface<s_cache_file_resource_gestalt_definition>* zone_tag = dynamic_cast<decltype(zone_tag)>(zone_interface->get_tag_interfaces().front());
+	//ImGui::Text("Found Zone Tag: %s", zone_tag ? "true" : "false");
 
-	c_tag_group_interface* play_interface = cache_file.get_group_interface_by_group_id(_tag_group_play);
-	v_tag_interface<s_play_definition>* play_tag = dynamic_cast<decltype(play_tag)>(play_interface->get_tag_interfaces().front());
-	ImGui::Text("Found Play Tag: %s", play_tag ? "true" : "false");
+	//uint16_t read_index = bitmap_tag_interface.raw_information_normal_block[0].zone_asset_index;
 
-	c_tag_group_interface* zone_interface = cache_file.get_group_interface_by_group_id(_tag_group_zone);
-	v_tag_interface<s_zone_definition>* zone_tag = dynamic_cast<decltype(zone_tag)>(zone_interface->get_tag_interfaces().front());
-	ImGui::Text("Found Zone Tag: %s", zone_tag ? "true" : "false");
+	//s_cache_file_resource_gestalt_definition::s_tag_resources_definition& tag_resource = zone_tag->tag_resources_block[read_index];
+	//
+	//if (tag_resource.play_segment_index != UINT16_MAX)
+	//{
 
-	uint16_t read_index = bitmap_tag_interface.raw_information_normal_block[0].easy_read_index;
+	//	s_play_definition::s_segment_block_definition& segment_block = play_tag->segments_block[tag_resource.play_segment_index];
 
-	s_zone_definition::s_tag_resource_block_definition& tag_resource = zone_tag->tag_resources_block[read_index];
+	//	if (segment_block.secondary_page_index != UINT16_MAX)
+	//	{
+	//		s_play_definition::s_raw_page_block_definition& low_res_raw_page = play_tag->raw_pages_block[segment_block.primary_page_index];
+	//		s_play_definition::s_raw_page_block_definition& high_res_raw_page = play_tag->raw_pages_block[segment_block.secondary_page_index];
 
-	if (tag_resource.play_segment_index != UINT16_MAX)
-	{
-
-		s_play_definition::s_segment_block_definition& segment_block = play_tag->segments_block[tag_resource.play_segment_index];
-
-		if (segment_block.secondary_page_index != UINT16_MAX)
-		{
-			s_play_definition::s_raw_page_block_definition& low_res_raw_page = play_tag->raw_pages_block[segment_block.primary_page_index];
-			s_play_definition::s_raw_page_block_definition& high_res_raw_page = play_tag->raw_pages_block[segment_block.secondary_page_index];
-
-			ASSERT(high_res_raw_page.compression_codec_index == 0);
-
-
-
-			//cache_file->GetTagBlockData()
-
-			SectionCache& resources_section = cache_file.get_resources_section();
-			char* data = resources_section.first + high_res_raw_page.block_offset;
-
-			struct DDS_FILE_HEADER
-			{
-				DWORD file_magic;
-				DDS_HEADER dds_header;
-			};
-
-			if (dds_texture_buffer == nullptr)
-			{
-				dds_texture_buffer = new char[high_res_raw_page.uncompressed_block_size + sizeof(DDS_FILE_HEADER)]{};
-				ASSERT(dds_texture_buffer != nullptr);
-
-				decompressed_buffer = dds_texture_buffer + sizeof(DDS_FILE_HEADER);
-				{
-					z_stream stream{};
-					stream.avail_out = high_res_raw_page.uncompressed_block_size;
-					stream.next_out = (Bytef*)decompressed_buffer;
-					stream.avail_in = high_res_raw_page.compressed_block_size;
-					stream.next_in = (Bytef*)data;
-					int inflateInitResult = inflateInit2(&stream, -15);
-					ASSERT(inflateInitResult >= Z_OK);
-					int inflateResult = inflate(&stream, Z_SYNC_FLUSH);
-					ASSERT(inflateResult >= Z_OK);
-					int inflateEndResult = inflateEnd(&stream);
-					ASSERT(inflateEndResult >= Z_OK);
-				}
-			}
-
-			if (pTexture == nullptr)
-			{
-				{
-					DDS_FILE_HEADER* file_header = reinterpret_cast<DDS_FILE_HEADER*>(dds_texture_buffer);
-					file_header->file_magic = DDS_MAGIC;
-					file_header->dds_header.size = sizeof(DDS_HEADER);											
-					file_header->dds_header.flags =	 DDS_HEADER_FLAGS_TEXTURE | DDS_HEADER_FLAGS_MIPMAP | DDS_HEADER_FLAGS_LINEARSIZE;
-					file_header->dds_header.height = bitmap_tag_interface.bitmap_data_block[0].height;			
-					file_header->dds_header.width = bitmap_tag_interface.bitmap_data_block[0].width;			
-					file_header->dds_header.pitchOrLinearSize = high_res_raw_page.uncompressed_block_size;		
-					file_header->dds_header.depth = 0;															
-					file_header->dds_header.mipMapCount = 1;		
-
-					switch ((e_bitmap_format)bitmap_tag_interface.bitmap_data_block[0].format)
-					{
-					case _format_DXN:
-						file_header->dds_header.ddspf = DDSPF_BC5_SNORM;
-						break;
-					case _format_DXT1:
-						file_header->dds_header.ddspf = DDSPF_DXT1;
-						break;
-					case _format_DXT3:
-						file_header->dds_header.ddspf = DDSPF_DXT3;
-						break;
-					case _format_DXT5:
-					default:
-						file_header->dds_header.ddspf = DDSPF_DXT5;
-						break;
-					}
-					file_header->dds_header.caps = DDS_SURFACE_FLAGS_TEXTURE | DDS_SURFACE_FLAGS_MIPMAP;
-
-				}
-
-				int width = bitmap_tag_interface.bitmap_data_block[0].width;
-				int height = bitmap_tag_interface.bitmap_data_block[0].height;
-
-				size_t bytesCount = high_res_raw_page.uncompressed_block_size;
-				size_t pixelsCount = static_cast<size_t>(width)* static_cast<size_t>(height);
-				size_t bitsPerPixel = (bytesCount * 8) / pixelsCount;
-				ASSERT(bitsPerPixel > 0);
-
-				D3D11_TEXTURE2D_DESC desc{};
-
-				desc.Width = width;
-				desc.Height = height;
-				desc.MipLevels = 1;
-				desc.ArraySize = 1;
-
-				switch ((e_bitmap_format)bitmap_tag_interface.bitmap_data_block[0].format)
-				{
-				case _format_DXN:
-					desc.Format = DXGI_FORMAT_BC5_SNORM;
-					break;
-				case _format_DXT1:
-					desc.Format = DXGI_FORMAT_BC1_UNORM;
-					break;
-				case _format_DXT3:
-					desc.Format = DXGI_FORMAT_BC2_UNORM;
-					break;
-				case _format_DXT5:
-				default:
-					desc.Format = DXGI_FORMAT_BC3_UNORM;
-					break;
-				}
-
-
-				desc.SampleDesc.Count = 1;
-				desc.SampleDesc.Quality = 0;
-				desc.Usage = D3D11_USAGE_DEFAULT;
-				desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-				desc.CPUAccessFlags = 0;
-				desc.MiscFlags = 0;
-
-				D3D11_SUBRESOURCE_DATA initData{};
-				initData.pSysMem = decompressed_buffer;
-
-				size_t num_bytes;
-				size_t row_bytes;
-				HRESULT getSurfaceInfoResult = GetSurfaceInfo(width, height, desc.Format, &num_bytes, &row_bytes, nullptr);
-				ASSERT(SUCCEEDED(getSurfaceInfoResult));
-
-				initData.SysMemPitch = static_cast<UINT>(row_bytes);
-				initData.SysMemSlicePitch = static_cast<UINT>(num_bytes);
-
-				HRESULT createTexture2DResult = c_render::s_pDevice->CreateTexture2D(&desc, &initData, &pTexture);
-				ASSERT(SUCCEEDED(createTexture2DResult));
-				ASSERT(pTexture);
-			}
-
-			if (shader_resource_view == nullptr)
-			{
-				HRESULT createShaderResourceViewResult = c_render::s_pDevice->CreateShaderResourceView(pTexture, NULL, &shader_resource_view);
-				ASSERT(SUCCEEDED(createShaderResourceViewResult));
-			}
-
-			ImGui::Text("Bitmap Data Count: %u", bitmap_tag_interface.bitmap_data_block.count);
-			for (s_bitmap_definition::s_bitmap_datum_block_definition& bitmap_datum : bitmap_tag_interface.bitmap_data_block)
-			{
+	//		ASSERT(high_res_raw_page.compression_codec_index == 0);
 
 
 
-				ImGui::Image(shader_resource_view, ImVec2(512, 512));
-			}
+	//		//cache_file->GetTagBlockData()
 
-			cache_file.get_resources_section();
-		}
-	}
+	//		SectionCache& resources_section = cache_file.get_resources_section();
+	//		char* data = resources_section.first + high_res_raw_page.block_offset;
+
+	//		struct DDS_FILE_HEADER
+	//		{
+	//			DWORD file_magic;
+	//			DDS_HEADER dds_header;
+	//		};
+
+	//		if (dds_texture_buffer == nullptr)
+	//		{
+	//			dds_texture_buffer = new char[high_res_raw_page.uncompressed_block_size + sizeof(DDS_FILE_HEADER)]{};
+	//			ASSERT(dds_texture_buffer != nullptr);
+
+	//			decompressed_buffer = dds_texture_buffer + sizeof(DDS_FILE_HEADER);
+	//			{
+	//				z_stream stream{};
+	//				stream.avail_out = high_res_raw_page.uncompressed_block_size;
+	//				stream.next_out = (Bytef*)decompressed_buffer;
+	//				stream.avail_in = high_res_raw_page.compressed_block_size;
+	//				stream.next_in = (Bytef*)data;
+	//				int inflateInitResult = inflateInit2(&stream, -15);
+	//				ASSERT(inflateInitResult >= Z_OK);
+	//				int inflateResult = inflate(&stream, Z_SYNC_FLUSH);
+	//				ASSERT(inflateResult >= Z_OK);
+	//				int inflateEndResult = inflateEnd(&stream);
+	//				ASSERT(inflateEndResult >= Z_OK);
+	//			}
+	//		}
+
+	//		if (pTexture == nullptr)
+	//		{
+	//			{
+	//				DDS_FILE_HEADER* file_header = reinterpret_cast<DDS_FILE_HEADER*>(dds_texture_buffer);
+	//				file_header->file_magic = DDS_MAGIC;
+	//				file_header->dds_header.size = sizeof(DDS_HEADER);											
+	//				file_header->dds_header.flags =	 DDS_HEADER_FLAGS_TEXTURE | DDS_HEADER_FLAGS_MIPMAP | DDS_HEADER_FLAGS_LINEARSIZE;
+	//				file_header->dds_header.height = bitmap_tag_interface.bitmap_data_block[0].height;			
+	//				file_header->dds_header.width = bitmap_tag_interface.bitmap_data_block[0].width;			
+	//				file_header->dds_header.pitchOrLinearSize = high_res_raw_page.uncompressed_block_size;		
+	//				file_header->dds_header.depth = 0;															
+	//				file_header->dds_header.mipMapCount = 1;		
+
+	//				switch ((e_bitmap_format)bitmap_tag_interface.bitmap_data_block[0].format)
+	//				{
+	//				case _format_DXN:
+	//					file_header->dds_header.ddspf = DDSPF_BC5_SNORM;
+	//					break;
+	//				case _format_DXT1:
+	//					file_header->dds_header.ddspf = DDSPF_DXT1;
+	//					break;
+	//				case _format_DXT3:
+	//					file_header->dds_header.ddspf = DDSPF_DXT3;
+	//					break;
+	//				case _format_DXT5:
+	//				default:
+	//					file_header->dds_header.ddspf = DDSPF_DXT5;
+	//					break;
+	//				}
+	//				file_header->dds_header.caps = DDS_SURFACE_FLAGS_TEXTURE | DDS_SURFACE_FLAGS_MIPMAP;
+
+	//			}
+
+	//			int width = bitmap_tag_interface.bitmap_data_block[0].width;
+	//			int height = bitmap_tag_interface.bitmap_data_block[0].height;
+
+	//			size_t bytesCount = high_res_raw_page.uncompressed_block_size;
+	//			size_t pixelsCount = static_cast<size_t>(width)* static_cast<size_t>(height);
+	//			size_t bitsPerPixel = (bytesCount * 8) / pixelsCount;
+	//			ASSERT(bitsPerPixel > 0);
+
+	//			D3D11_TEXTURE2D_DESC desc{};
+
+	//			desc.Width = width;
+	//			desc.Height = height;
+	//			desc.MipLevels = 1;
+	//			desc.ArraySize = 1;
+
+	//			switch ((e_bitmap_format)bitmap_tag_interface.bitmap_data_block[0].format)
+	//			{
+	//			case _format_DXN:
+	//				desc.Format = DXGI_FORMAT_BC5_SNORM;
+	//				break;
+	//			case _format_DXT1:
+	//				desc.Format = DXGI_FORMAT_BC1_UNORM;
+	//				break;
+	//			case _format_DXT3:
+	//				desc.Format = DXGI_FORMAT_BC2_UNORM;
+	//				break;
+	//			case _format_DXT5:
+	//			default:
+	//				desc.Format = DXGI_FORMAT_BC3_UNORM;
+	//				break;
+	//			}
+
+
+	//			desc.SampleDesc.Count = 1;
+	//			desc.SampleDesc.Quality = 0;
+	//			desc.Usage = D3D11_USAGE_DEFAULT;
+	//			desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+	//			desc.CPUAccessFlags = 0;
+	//			desc.MiscFlags = 0;
+
+	//			D3D11_SUBRESOURCE_DATA initData{};
+	//			initData.pSysMem = decompressed_buffer;
+
+	//			size_t num_bytes;
+	//			size_t row_bytes;
+	//			HRESULT getSurfaceInfoResult = GetSurfaceInfo(width, height, desc.Format, &num_bytes, &row_bytes, nullptr);
+	//			ASSERT(SUCCEEDED(getSurfaceInfoResult));
+
+	//			initData.SysMemPitch = static_cast<UINT>(row_bytes);
+	//			initData.SysMemSlicePitch = static_cast<UINT>(num_bytes);
+
+	//			HRESULT createTexture2DResult = c_render::s_pDevice->CreateTexture2D(&desc, &initData, &pTexture);
+	//			ASSERT(SUCCEEDED(createTexture2DResult));
+	//			ASSERT(pTexture);
+	//		}
+
+	//		if (shader_resource_view == nullptr)
+	//		{
+	//			HRESULT createShaderResourceViewResult = c_render::s_pDevice->CreateShaderResourceView(pTexture, NULL, &shader_resource_view);
+	//			ASSERT(SUCCEEDED(createShaderResourceViewResult));
+	//		}
+
+	//		ImGui::Text("Bitmap Data Count: %u", bitmap_tag_interface.bitmap_data_block.count);
+	//		for (s_bitmap_definition::s_bitmap_data_definition& bitmap_datum : bitmap_tag_interface.bitmap_data_block)
+	//		{
+	//			ImGui::Image(shader_resource_view, ImVec2(512, 512));
+	//		}
+
+	//		cache_file.get_resources_section();
+	//	}
+	//}
 }

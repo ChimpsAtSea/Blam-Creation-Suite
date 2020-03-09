@@ -1,6 +1,6 @@
 #pragma once
 
-class TagReference
+noreflection class TagReference
 {
 public:
 	e_tag_group tagGroupName;

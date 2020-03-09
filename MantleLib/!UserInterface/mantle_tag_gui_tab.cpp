@@ -46,7 +46,7 @@ void c_mantle_tag_gui_tab::decrement_recursion()
 	g_current_recursion_padding = recursion_padding_amount * static_cast<float>(g_current_recursion_depth);
 }
 
-void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_type& reflection_type, char* source, char* destination)
+void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_structure_type& reflection_type, char* source, char* destination)
 {
 	// #TODO: Package up all of the tag data into a single packet
 	// #TODO: Patch the tag address table to make room for extra data
@@ -56,7 +56,7 @@ void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_type& reflec
 	for (size_t i = 0; i < reflection_type.members_count; i++)
 	{
 		const c_reflection_field& reflection_field = reflection_type.fields[i];
-		const s_reflection_type_info& type_info = reflection_field.type_info;
+		const s_reflection_structure_type_info& type_info = reflection_field.type_info;
 
 		if (!reflection_field.array_size)
 		{
@@ -64,7 +64,7 @@ void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_type& reflec
 			{
 				s_tag_block_definition<>* tag_block = reinterpret_cast<s_tag_block_definition<>*>(source + reflection_field.offset);
 				const s_reflection_tag_block_info& rs_reflection_tag_block_info = reflection_field.tag_block_info;
-				const s_reflection_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
+				const s_reflection_structure_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
 
 
 				if (tag_block->count && tag_block->address)
@@ -92,8 +92,8 @@ void c_mantle_tag_gui_tab::poke()
 
 		char* pSource = cache_file.get_tag_interface(get_tag_interface().get_index())->get_data();
 
-		const s_reflection_type* ps_reflection_type = tag_interface.get_reflection_data();
-		copy_data_recursively(*ps_reflection_type, pSource, pDest);
+		const s_reflection_structure_type* ps_reflection_structure_type = tag_interface.get_reflection_data();
+		copy_data_recursively(*ps_reflection_structure_type, pSource, pDest);
 
 		write_line_verbose("Successfully poked tag '%s'", get_tag_interface().get_name_with_group_id_cstr());
 	}
@@ -135,11 +135,11 @@ void c_mantle_tag_gui_tab::render_tab_contents_gui_impl()
 {
 	ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
 
-	const s_reflection_type* ps_reflection_type = tag_interface.get_reflection_data();
-	if (ps_reflection_type)
+	const s_reflection_structure_type* ps_reflection_structure_type = tag_interface.get_reflection_data();
+	if (ps_reflection_structure_type)
 	{
 		g_current_mantle_tag_tab = this;
-		ps_reflection_type->render_type_gui(tag_interface.get_data());
+		ps_reflection_structure_type->render_type_gui(tag_interface.get_data());
 	}
 	else
 	{

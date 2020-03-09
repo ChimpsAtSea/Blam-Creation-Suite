@@ -25,7 +25,7 @@ c_render_method_definition_group_interface::c_render_method_definition_group_int
 				for (uint32_t shader_properties_block_index = 0; shader_properties_block_index < shader_definition->shader_properties_block.count; shader_properties_block_index++)
 				{
 					//#TODO: #IMPORTANT Replace with interface to 
-					s_shader_definition::s_shader_property_block_definition* shader_property = cache_file.GetTagBlockData(shader_definition->shader_properties_block) + shader_properties_block_index;
+					s_shader_definition::s_shader_properties_definition* shader_property = cache_file.GetTagBlockData(shader_definition->shader_properties_block) + shader_properties_block_index;
 
 					c_tag_interface* render_method_template_tag_interface = cache_file.get_tag_interface(shader_property->template_reference.index, true);
 					if (render_method_template_tag_interface)

@@ -27,6 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="reflection_enum_container.cpp" />
     <ClCompile Include="reflection_field_container.cpp" />
     <ClCompile Include="reflection_type_container.cpp" />
     <ClCompile Include="SourceGenerators\mantle_compile_time_conversion_generator.cpp" />
@@ -46,6 +47,7 @@
     <ClCompile Include="SourceGenerators\mantle_virtual_tag_interface_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="reflection_enum_container.h" />
     <ClInclude Include="reflection_field_container.h" />
     <ClInclude Include="reflection_type_container.h" />
     <ClInclude Include="SourceGenerators\mantle_compile_time_conversion_generator.h" />

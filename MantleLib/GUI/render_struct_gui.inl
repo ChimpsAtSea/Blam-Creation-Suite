@@ -45,7 +45,7 @@ void render_struct_gui(void* field_data, const c_reflection_field& reflection_fi
 	{
 		const s_reflection_structure_info& rs_reflection_structure_info = reflection_field.structure_info;
 		// #TODO: Supply structure_reflection_type directly as an argument
-		const s_reflection_type& structure_reflection_type = *rs_reflection_structure_info.reflection_type; //#TODO: Try to make this a reference in the type
+		const s_reflection_structure_type& structure_reflection_type = *rs_reflection_structure_info.reflection_type; //#TODO: Try to make this a reference in the type
 		REFERENCE_ASSERT(structure_reflection_type);
 
 		c_mantle_tag_gui_tab::increment_recursion();

@@ -162,79 +162,167 @@ uint32_t InitTypeSizeAndOffsets(c_reflection_type_container& rType)
 
 std::vector<c_reflection_type_container*> ReflectedTypesData;
 
-c_reflection_type_container* GetPrimitives_reflection_type(e_primitive_type primitiveType)
+c_reflection_type_container* GetPrimitives_reflection_structure_type(e_primitive_type primitiveType)
 {
-	static c_reflection_type_container* pInt8s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int8", "int8_t", sizeof(int8_t)));
-	static c_reflection_type_container* pInt16s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int16", "int16_t", sizeof(int16_t)));
-	static c_reflection_type_container* pInt32s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int32", "int32_t", sizeof(int32_t)));
-	static c_reflection_type_container* pInt64s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int64", "int64_t", sizeof(int64_t)));
-	static c_reflection_type_container* pUInt8s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt8", "uint8_t", sizeof(uint8_t)));
-	static c_reflection_type_container* pUInt16s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt16", "uint16_t", sizeof(uint16_t)));
-	static c_reflection_type_container* pUInt32s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt32", "uint32_t", sizeof(uint32_t)));
-	static c_reflection_type_container* pUInt64s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt64", "uint64_t", sizeof(uint64_t)));
-	static c_reflection_type_container* pBoolean8s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean8", "uint8_t", sizeof(uint8_t)));
-	static c_reflection_type_container* pBoolean16s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean16", "uint16_t", sizeof(uint16_t)));
-	static c_reflection_type_container* pBoolean32s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean32", "uint32_t", sizeof(uint32_t)));
-	static c_reflection_type_container* pBoolean64s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean64", "uint64_t", sizeof(uint64_t)));
-	static c_reflection_type_container* pBitField8s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField8", "uint8_t", sizeof(uint8_t)));
-	static c_reflection_type_container* pBitField16s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField16", "uint16_t", sizeof(uint16_t)));
-	static c_reflection_type_container* pBitField32s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField32", "uint32_t", sizeof(uint32_t)));
-	static c_reflection_type_container* pBitField64s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField64", "uint64_t", sizeof(uint64_t)));
-	static c_reflection_type_container* pBitFlag8s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag8", "uint8_t", sizeof(uint8_t)));
-	static c_reflection_type_container* pBitFlag16s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag16", "uint16_t", sizeof(uint16_t)));
-	static c_reflection_type_container* pBitFlag32s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag32", "uint32_t", sizeof(uint32_t)));
-	static c_reflection_type_container* pBitFlag64s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag64", "uint64_t", sizeof(uint64_t)));
-	static c_reflection_type_container* pFloats_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Float", "float", sizeof(float)));
-	static c_reflection_type_container* pDoubles_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Double", "double", sizeof(double)));
-	static c_reflection_type_container* pEnum8s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum8", "uint8_t", sizeof(uint8_t)));
-	static c_reflection_type_container* pEnum16s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum16", "uint16_t", sizeof(uint16_t)));
-	static c_reflection_type_container* pEnum32s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum32", "uint32_t", sizeof(uint32_t)));
-	static c_reflection_type_container* pEnum64s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum64", "uint64_t", sizeof(uint64_t)));
-	static c_reflection_type_container* pUndefined8s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined8", "Undefined8", sizeof(uint8_t)));
-	static c_reflection_type_container* pUndefined16s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined16", "Undefined16", sizeof(uint16_t)));
-	static c_reflection_type_container* pUndefined32s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined32", "Undefined32", sizeof(uint32_t)));
-	static c_reflection_type_container* pUndefined64s_reflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined64", "Undefined64", sizeof(uint64_t)));
+	static c_reflection_type_container* pInt8s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int8", "int8_t", sizeof(int8_t)));
+	static c_reflection_type_container* pInt16s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int16", "int16_t", sizeof(int16_t)));
+	static c_reflection_type_container* pInt32s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int32", "int32_t", sizeof(int32_t)));
+	static c_reflection_type_container* pInt64s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Int64", "int64_t", sizeof(int64_t)));
+	static c_reflection_type_container* pUInt8s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt8", "uint8_t", sizeof(uint8_t)));
+	static c_reflection_type_container* pUInt16s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt16", "uint16_t", sizeof(uint16_t)));
+	static c_reflection_type_container* pUInt32s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt32", "uint32_t", sizeof(uint32_t)));
+	static c_reflection_type_container* pUInt64s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("UInt64", "uint64_t", sizeof(uint64_t)));
+	static c_reflection_type_container* pBoolean8s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean8", "uint8_t", sizeof(uint8_t)));
+	static c_reflection_type_container* pBoolean16s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean16", "uint16_t", sizeof(uint16_t)));
+	static c_reflection_type_container* pBoolean32s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean32", "uint32_t", sizeof(uint32_t)));
+	static c_reflection_type_container* pBoolean64s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Boolean64", "uint64_t", sizeof(uint64_t)));
+	static c_reflection_type_container* pBitField8s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField8", "uint8_t", sizeof(uint8_t)));
+	static c_reflection_type_container* pBitField16s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField16", "uint16_t", sizeof(uint16_t)));
+	static c_reflection_type_container* pBitField32s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField32", "uint32_t", sizeof(uint32_t)));
+	static c_reflection_type_container* pBitField64s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitField64", "uint64_t", sizeof(uint64_t)));
+	static c_reflection_type_container* pBitFlag8s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag8", "uint8_t", sizeof(uint8_t)));
+	static c_reflection_type_container* pBitFlag16s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag16", "uint16_t", sizeof(uint16_t)));
+	static c_reflection_type_container* pBitFlag32s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag32", "uint32_t", sizeof(uint32_t)));
+	static c_reflection_type_container* pBitFlag64s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("BitFlag64", "uint64_t", sizeof(uint64_t)));
+	static c_reflection_type_container* pFloats_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Float", "float", sizeof(float)));
+	static c_reflection_type_container* pDoubles_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Double", "double", sizeof(double)));
+	static c_reflection_type_container* pEnum8s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum8", "uint8_t", sizeof(uint8_t)));
+	static c_reflection_type_container* pEnum16s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum16", "uint16_t", sizeof(uint16_t)));
+	static c_reflection_type_container* pEnum32s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum32", "uint32_t", sizeof(uint32_t)));
+	static c_reflection_type_container* pEnum64s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Enum64", "uint64_t", sizeof(uint64_t)));
+	static c_reflection_type_container* pUndefined8s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined8", "Undefined8", sizeof(uint8_t)));
+	static c_reflection_type_container* pUndefined16s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined16", "Undefined16", sizeof(uint16_t)));
+	static c_reflection_type_container* pUndefined32s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined32", "Undefined32", sizeof(uint32_t)));
+	static c_reflection_type_container* pUndefined64s_reflection_structure_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Undefined64", "Undefined64", sizeof(uint64_t)));
 	static c_reflection_type_container* pCharactereflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("Character", "char", sizeof(char)));
 	static c_reflection_type_container* pWideCharactereflection_type = ReflectedTypesData.emplace_back(new c_reflection_type_container("WideCharacter", "wchar_t", sizeof(wchar_t)));
 
 	switch (primitiveType)
 	{
-	case e_primitive_type::Int8:			return pInt8s_reflection_type;
-	case e_primitive_type::Int16:			return pInt16s_reflection_type;
-	case e_primitive_type::Int32:			return pInt32s_reflection_type;
-	case e_primitive_type::Int64:			return pInt64s_reflection_type;
-	case e_primitive_type::UInt8:			return pUInt8s_reflection_type;
-	case e_primitive_type::UInt16:			return pUInt16s_reflection_type;
-	case e_primitive_type::UInt32:			return pUInt32s_reflection_type;
-	case e_primitive_type::UInt64:			return pUInt64s_reflection_type;
-	case e_primitive_type::Boolean8:		return pBoolean8s_reflection_type;
-	case e_primitive_type::Boolean16:		return pBoolean16s_reflection_type;
-	case e_primitive_type::Boolean32:		return pBoolean32s_reflection_type;
-	case e_primitive_type::Boolean64:		return pBoolean64s_reflection_type;
-	case e_primitive_type::BitFlag8:		return pBitFlag8s_reflection_type;
-	case e_primitive_type::BitFlag16:		return pBitFlag16s_reflection_type;
-	case e_primitive_type::BitFlag32:		return pBitFlag32s_reflection_type;
-	case e_primitive_type::BitFlag64:		return pBitFlag64s_reflection_type;
-	case e_primitive_type::BitField8:		return pBitField8s_reflection_type;
-	case e_primitive_type::BitField16:		return pBitField16s_reflection_type;
-	case e_primitive_type::BitField32:		return pBitField32s_reflection_type;
-	case e_primitive_type::BitField64:		return pBitField64s_reflection_type;
-	case e_primitive_type::Float:			return pFloats_reflection_type;
-	case e_primitive_type::Double:			return pDoubles_reflection_type;
-	case e_primitive_type::Enum8:			return pEnum8s_reflection_type;
-	case e_primitive_type::Enum16:			return pEnum16s_reflection_type;
-	case e_primitive_type::Enum32:			return pEnum32s_reflection_type;
-	case e_primitive_type::Enum64:			return pEnum64s_reflection_type;
-	case e_primitive_type::Undefined8:		return pUndefined8s_reflection_type;
-	case e_primitive_type::Undefined16:	return pUndefined16s_reflection_type;
-	case e_primitive_type::Undefined32:	return pUndefined32s_reflection_type;
-	case e_primitive_type::Undefined64:	return pUndefined64s_reflection_type;
+	case e_primitive_type::Int8:			return pInt8s_reflection_structure_type;
+	case e_primitive_type::Int16:			return pInt16s_reflection_structure_type;
+	case e_primitive_type::Int32:			return pInt32s_reflection_structure_type;
+	case e_primitive_type::Int64:			return pInt64s_reflection_structure_type;
+	case e_primitive_type::UInt8:			return pUInt8s_reflection_structure_type;
+	case e_primitive_type::UInt16:			return pUInt16s_reflection_structure_type;
+	case e_primitive_type::UInt32:			return pUInt32s_reflection_structure_type;
+	case e_primitive_type::UInt64:			return pUInt64s_reflection_structure_type;
+	case e_primitive_type::Boolean8:		return pBoolean8s_reflection_structure_type;
+	case e_primitive_type::Boolean16:		return pBoolean16s_reflection_structure_type;
+	case e_primitive_type::Boolean32:		return pBoolean32s_reflection_structure_type;
+	case e_primitive_type::Boolean64:		return pBoolean64s_reflection_structure_type;
+	case e_primitive_type::BitFlag8:		return pBitFlag8s_reflection_structure_type;
+	case e_primitive_type::BitFlag16:		return pBitFlag16s_reflection_structure_type;
+	case e_primitive_type::BitFlag32:		return pBitFlag32s_reflection_structure_type;
+	case e_primitive_type::BitFlag64:		return pBitFlag64s_reflection_structure_type;
+	case e_primitive_type::BitField8:		return pBitField8s_reflection_structure_type;
+	case e_primitive_type::BitField16:		return pBitField16s_reflection_structure_type;
+	case e_primitive_type::BitField32:		return pBitField32s_reflection_structure_type;
+	case e_primitive_type::BitField64:		return pBitField64s_reflection_structure_type;
+	case e_primitive_type::Float:			return pFloats_reflection_structure_type;
+	case e_primitive_type::Double:			return pDoubles_reflection_structure_type;
+	case e_primitive_type::Enum8:			return pEnum8s_reflection_structure_type;
+	case e_primitive_type::Enum16:			return pEnum16s_reflection_structure_type;
+	case e_primitive_type::Enum32:			return pEnum32s_reflection_structure_type;
+	case e_primitive_type::Enum64:			return pEnum64s_reflection_structure_type;
+	case e_primitive_type::Undefined8:		return pUndefined8s_reflection_structure_type;
+	case e_primitive_type::Undefined16:	return pUndefined16s_reflection_structure_type;
+	case e_primitive_type::Undefined32:	return pUndefined32s_reflection_structure_type;
+	case e_primitive_type::Undefined64:	return pUndefined64s_reflection_structure_type;
 	case e_primitive_type::Character:		return pCharactereflection_type;
 	case e_primitive_type::WideCharacter:	return pWideCharactereflection_type;
 	}
 
 	assert(!"Undefined primitive type");
 	return nullptr;
+}
+
+c_reflection_type_container* CreateReflectedEnumType(ASTContext* Context, const clang::QualType* recordQualifiedType, const clang::RecordDecl& rRecordDeclaration)
+{
+	std::string declarationName = rRecordDeclaration.getNameAsString();
+	std::string qualifiedDeclarationName;
+	if (recordQualifiedType)
+	{
+		qualifiedDeclarationName = QualType::getAsString(recordQualifiedType->split(), printingPolicy);
+	}
+	else // construct best qualified type name
+	{
+		assert(rRecordDeclaration.isEnum());
+		if (rRecordDeclaration.isEnum())
+		{
+			qualifiedDeclarationName += "enum ";
+		}
+		qualifiedDeclarationName += rRecordDeclaration.getQualifiedNameAsString();
+	}
+
+	for (c_reflection_type_container* reflection_typeContainer : ReflectedTypesData)
+	{
+		if (reflection_typeContainer->clang_record_declaration == &rRecordDeclaration || reflection_typeContainer->qualified_type_name == qualifiedDeclarationName)
+		{
+			return reflection_typeContainer;
+		}
+	}
+
+	c_reflection_type_container& reflection_type_container = *new c_reflection_type_container();
+	ReflectedTypesData.emplace_back(&reflection_type_container);
+
+	reflection_type_container.type_name = declarationName;
+	reflection_type_container.qualified_type_name = qualifiedDeclarationName;
+	reflection_type_container.clang_record_declaration = &rRecordDeclaration;
+	reflection_type_container.is_primitive = false;
+	reflection_type_container.is_enum = true;
+	reflection_type_container.is_structure = false;
+
+	bool disableReflection = false;
+	std::string nice_name_str;
+	for (clang::Attr* it : rRecordDeclaration.attrs())
+	{
+		Attr& attr = (*it);
+		AnnotateAttr* annotatedAttr = dyn_cast<AnnotateAttr>(&attr);
+		if (annotatedAttr != nullptr)
+		{
+			std::string str = annotatedAttr->getAnnotation();
+
+			const char* pNoReflection = strstr(str.c_str(), "no_reflection");
+			const char* pNiceName = strstr(str.c_str(), "nice_name");
+			const char* pTagGroup = strstr(str.c_str(), "tag_group");
+
+			if (pNoReflection)
+			{
+				disableReflection = true;
+			}
+			if (pNiceName)
+			{
+				nice_name_str = pNiceName + strlen("nice_name:");
+			}
+		}
+	}
+
+	reflection_type_container.type_nice_name = nice_name_str;
+
+	if (disableReflection)
+	{
+		return &reflection_type_container;
+	}
+
+	const clang::EnumDecl* enum_decl = dyn_cast<EnumDecl>(&rRecordDeclaration);
+	assert(enum_decl != nullptr);
+
+	for (const clang::EnumDecl::enumerator_iterator::value_type& enum_decl : enum_decl->enumerators())
+	{
+		c_reflection_enum_value_container* enum_value_container = new c_reflection_enum_value_container();
+
+		enum_value_container->value_name = enum_decl->getNameAsString();
+		const llvm::APSInt& init_value = enum_decl->getInitVal();
+		const uint64_t* raw_data = init_value.getRawData();
+		if (raw_data)
+		{
+			enum_value_container->value = *raw_data;
+		}
+		reflection_type_container.enum_values.push_back(enum_value_container);
+	}
+
+	return &reflection_type_container;
 }
 
 c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clang::QualType* recordQualifiedType, const clang::RecordDecl& rRecordDeclaration, bool isPrimitive = false)
@@ -268,38 +356,38 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 		return nullptr;
 	}
 
-	c_reflection_type_container* pExistings_reflection_typeContainer = nullptr;
+	c_reflection_type_container* pExistings_reflection_structure_typeContainer = nullptr;
 	{ // handle existing records
 		for (c_reflection_type_container* reflection_typeContainer : ReflectedTypesData)
 		{
 			if (reflection_typeContainer->clang_record_declaration == &rRecordDeclaration || reflection_typeContainer->qualified_type_name == qualifiedDeclarationName)
 			{
-				pExistings_reflection_typeContainer = reflection_typeContainer;
+				pExistings_reflection_structure_typeContainer = reflection_typeContainer;
 
 			}
 		}
 	}
-	if (pExistings_reflection_typeContainer)
+	if (pExistings_reflection_structure_typeContainer)
 	{
 		if (numFields == 0)
 		{
-			return pExistings_reflection_typeContainer; // we already have data for this
+			return pExistings_reflection_structure_typeContainer; // we already have data for this
 		}
-		else if (!pExistings_reflection_typeContainer->fields.empty())
+		else if (!pExistings_reflection_structure_typeContainer->fields.empty())
 		{
-			return pExistings_reflection_typeContainer; // we already have data for this
+			return pExistings_reflection_structure_typeContainer; // we already have data for this
 		}
 	}
 
 	// if existing reflection container exists and we're updating it, replace all data
 
-	bool createdNewReflectionContainer = pExistings_reflection_typeContainer == nullptr;
-	c_reflection_type_container* ps_reflection_typeContainer = pExistings_reflection_typeContainer;
+	bool createdNewReflectionContainer = pExistings_reflection_structure_typeContainer == nullptr;
+	c_reflection_type_container* ps_reflection_structure_typeContainer = pExistings_reflection_structure_typeContainer;
 	if (createdNewReflectionContainer)
 	{
-		ps_reflection_typeContainer = new c_reflection_type_container();
+		ps_reflection_structure_typeContainer = new c_reflection_type_container();
 	}
-	c_reflection_type_container& reflection_type_container = *ps_reflection_typeContainer;
+	c_reflection_type_container& reflection_type_container = *ps_reflection_structure_typeContainer;
 
 	assert(reflection_type_container.fields.empty());
 
@@ -307,6 +395,8 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 	reflection_type_container.qualified_type_name = qualifiedDeclarationName;
 	reflection_type_container.clang_record_declaration = &rRecordDeclaration;
 	reflection_type_container.is_primitive = isPrimitive;
+	reflection_type_container.is_enum = false;
+	reflection_type_container.is_structure = true;
 
 	if (pClassTemplateSpecializationDecl)
 	{
@@ -360,15 +450,23 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 			{
 				const char* pTagGroupStringBegin = pTagGroup + strlen("tag_group:");
 				size_t tagGroupRawStringLength = strlen(pTagGroupStringBegin);
-				assert(tagGroupRawStringLength == 6);
-				char pBuffer[5] = // #NOTE: We expect to receive these characters swapped. We're swapping them back to the original integer order
+
+				assert(tagGroupRawStringLength == 5 || tagGroupRawStringLength == 6);
+				char pBuffer[5]{}; // #NOTE: We expect to receive these characters swapped. We're swapping them back to the original integer order
+				if (tagGroupRawStringLength == 5)
 				{
-					pTagGroupStringBegin[4],
-					pTagGroupStringBegin[3],
-					pTagGroupStringBegin[2],
-					pTagGroupStringBegin[1],
-					0
-				};
+					pBuffer[0] = ' ';
+					pBuffer[1] = pTagGroupStringBegin[3];
+					pBuffer[2] = pTagGroupStringBegin[2];
+					pBuffer[3] = pTagGroupStringBegin[1];
+				}
+				if (tagGroupRawStringLength == 6)
+				{
+					pBuffer[0] = pTagGroupStringBegin[4];
+					pBuffer[1] = pTagGroupStringBegin[3];
+					pBuffer[2] = pTagGroupStringBegin[2];
+					pBuffer[3] = pTagGroupStringBegin[1];
+				}
 				tag_group_str = pBuffer;
 			}
 		}
@@ -455,7 +553,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 				else assert(!"Unsupported primitive type");
 
 				rFieldData.primitive_type = primitiveType;
-				rFieldData.field_type = GetPrimitives_reflection_type(primitiveType);
+				rFieldData.field_type = GetPrimitives_reflection_structure_type(primitiveType);
 			}
 			else
 			{
@@ -560,16 +658,30 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 			}
 
 			assert(rFieldData.primitive_type != e_primitive_type::NonPrimitive);
-			rFieldData.field_type = GetPrimitives_reflection_type(rFieldData.primitive_type);
+			rFieldData.field_type = GetPrimitives_reflection_structure_type(rFieldData.primitive_type);
 		}
 		else assert(!"UNSUPPORTED TYPE");
+
+		if (reflectionQualifiedType->isEnumeralType())
+		{
+			clang::QualType enumQualifiedType = reflectionQualifiedType->getCanonicalTypeInternal();
+			const std::string enumQualifiedTypeName = QualType::getAsString(enumQualifiedType.split(), printingPolicy);
+			TagDecl* pEnumDecl = reflectionQualifiedType->getAsTagDecl();
+			clang::RecordDecl* pCXXRecord = static_cast<clang::RecordDecl*>(pEnumDecl);
+
+			rFieldData.reflection_type_category = e_reflection_type_category::Enum;
+
+			c_reflection_type_container* pType = CreateReflectedEnumType(Context, &fieldQualifiedType, *pCXXRecord);
+			assert(pType != nullptr);
+			rFieldData.field_type = pType;
+		}
 
 		assert(rFieldData.field_type != nullptr);
 	}
 
 	if (createdNewReflectionContainer)
 	{
-		ReflectedTypesData.emplace_back(ps_reflection_typeContainer);
+		ReflectedTypesData.emplace_back(ps_reflection_structure_typeContainer);
 	}
 
 	return &reflection_type_container;

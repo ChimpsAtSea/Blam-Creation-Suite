@@ -194,7 +194,21 @@ void c_assembly_structure_definition::print_debug(int level)
 			print_debug_log("enum '%s' : %s {\n", field.enum_definition->unformatted_name.c_str(), enum_underlying_type);
 			for (s_assembly_enum& $enum : field.enum_definition->enums)
 			{
-				print_debug_log("\t'%s' = 1 << %i,\n", $enum.first.c_str(), $enum.second);
+				switch (field.data_type)
+				{
+				case _data_type_enum8:
+					print_debug_log("\t'%s' = %iui8,\n", $enum.first.c_str(), $enum.second);
+					break;
+				case _data_type_enum16:
+					print_debug_log("\t'%s' = %iui16,\n", $enum.first.c_str(), $enum.second);
+					break;
+				case _data_type_enum32:
+					print_debug_log("\t'%s' = %iui32,\n", $enum.first.c_str(), $enum.second);
+					break;
+				case _data_type_enum64:
+					print_debug_log("\t'%s' = %iui64,\n", $enum.first.c_str(), $enum.second);
+					break;
+				}
 			}
 			print_debug_log("}\n");
 			level--;
@@ -216,7 +230,22 @@ void c_assembly_structure_definition::print_debug(int level)
 			print_debug_log("enum '%s' : %s { /* bitfield */\n", field.bitfield_definition->unformatted_name.c_str(), bitfield_underlying_type);
 			for (s_assembly_bit& bit : field.bitfield_definition->bits)
 			{
-				print_debug_log("\t'%s' = 1 << %i,\n", bit.first.c_str(), bit.second);
+				switch (field.data_type)
+				{
+				case _data_type_bitfield8:
+					print_debug_log("\t'%s' = 1ui8 << %iui8,\n", $enum.first.c_str(), $enum.second);
+					break;
+				case _data_type_bitfield16:
+					print_debug_log("\t'%s' = 1ui16 << %iui16,\n", $enum.first.c_str(), $enum.second);
+					break;
+				case _data_type_bitfield32:
+					print_debug_log("\t'%s' = 1ui32 << %iui32,\n", $enum.first.c_str(), $enum.second);
+					break;
+				case _data_type_bitfield64:
+					print_debug_log("\t'%s' = 1ui64 << %iui64,\n", $enum.first.c_str(), $enum.second);
+					break;
+				}
+				//print_debug_log("\t'%s' = 1 << %i,\n", bit.first.c_str(), bit.second);
 			}
 			print_debug_log("}\n");
 			level--;
@@ -293,7 +322,21 @@ void c_assembly_structure_definition::write(std::stringstream& _stream, int leve
 			{
 				stream << "\t";
 				if (!$enum.nice_name.empty()) _stream << "/*nicename(\"" << $enum.nice_name << "\")*/ ";
-				_stream << $enum.name << " = " << $enum.value << "," << std::endl;
+				switch (field.data_type)
+				{
+				case _data_type_enum8:
+					_stream << $enum.name << " = " << $enum.value << "ui8," << std::endl;
+					break;
+				case _data_type_enum16:
+					_stream << $enum.name << " = " << $enum.value << "ui16," << std::endl;
+					break;
+				case _data_type_enum32:
+					_stream << $enum.name << " = " << $enum.value << "ui32," << std::endl;
+					break;
+				case _data_type_enum64:
+					_stream << $enum.name << " = " << $enum.value << "ui64," << std::endl;
+					break;
+				}
 			}
 			stream << "};" << std::endl << std::endl;
 			level--;
@@ -313,7 +356,22 @@ void c_assembly_structure_definition::write(std::stringstream& _stream, int leve
 			{
 				stream << "\t";
 				if (!bit.nice_name.empty()) _stream << "/*nicename(\"" << bit.nice_name << "\")*/ ";
-				_stream << bit.name << " = 1 << " << bit.index << "," << std::endl;
+
+				switch (field.data_type)
+				{
+				case _data_type_bitfield8:
+					_stream << bit.name << " = 1ui8 << " << bit.index << "ui8," << std::endl;
+					break;
+				case _data_type_bitfield16:
+					_stream << bit.name << " = 1ui16 << " << bit.index << "ui16," << std::endl;
+					break;
+				case _data_type_bitfield32:
+					_stream << bit.name << " = 1ui32 << " << bit.index << "ui32," << std::endl;
+					break;
+				case _data_type_bitfield64:
+					_stream << bit.name << " = 1ui64 << " << bit.index << "ui64," << std::endl;
+					break;
+				}
 			}
 			stream << "};" << std::endl << std::endl;
 			level--;

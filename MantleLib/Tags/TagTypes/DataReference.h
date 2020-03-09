@@ -1,5 +1,6 @@
 #pragma once
-class DataReference
+
+noreflection class DataReference
 {
 public:
 	int32_t size;

@@ -52,7 +52,7 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 		}
 
 		const s_reflection_tag_block_info& rs_reflection_tag_block_info = reflection_field.tag_block_info;
-		const s_reflection_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
+		const s_reflection_structure_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
 
 		uint32_t tagBlockDataIndexDataOffset = tag_block_reflection_type->size_of_data * static_cast<uint32_t>(rDynamicTagBlockData.m_position);
 		/*	#TODO: Investigate the possibility of replacing the usage of get_cache_file with the virtual tag interface/virtual tab block data access
