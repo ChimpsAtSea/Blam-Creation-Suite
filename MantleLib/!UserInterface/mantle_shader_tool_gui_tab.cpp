@@ -574,22 +574,21 @@ void c_mantle_shader_tool_gui_tab::disassemble_runtime_subroutine() const
 		s_pixel_shader_definition* pixel_shader = pixel_shader_tag_interface->get_data<s_pixel_shader_definition>();
 
 		// #TODO: Remove GetTagBlockData and replace with virtual tag interface/virtual tab block data access
-		// #REFLECTIONREFACTOR
-		//s_pixel_shader_definition::s_pixel_shaders_definition* pixel_shader2_block = cache_file.GetTagBlockData(pixel_shader->pixel_shaders_block) + 0;
+		s_pixel_shader_definition::s_pixel_shaders_definition* pixel_shader2_block = cache_file.GetTagBlockData(pixel_shader->pixel_shaders_block) + 0;
 
 		std::string disassemble_shader_result;
-		//if (use_durango_shader_disassembly)
-		//{
-		//	size_t __unknown4_data_reference_size = pixel_shader2_block->__unknown4_data_reference.size;
-		//	char* __unknown4_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown4_data_reference);
-		//	disassemble_shader_result = disassemble_shader(__unknown4_data_reference_data, __unknown4_data_reference_size);
-		//}
-		//else
-		//{
-		//	size_t __unknown3_data_reference_size = pixel_shader2_block->__unknown3_data_reference.size;
-		//	char* __unknown3_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown3_data_reference);
-		//	disassemble_shader_result = disassemble_shader(__unknown3_data_reference_data, __unknown3_data_reference_size);
-		//}
+		if (use_durango_shader_disassembly)
+		{
+			size_t __unknown4_data_reference_size = pixel_shader2_block->__unknown3.size;
+			char* __unknown4_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown3);
+			disassemble_shader_result = disassemble_shader(__unknown4_data_reference_data, __unknown4_data_reference_size);
+		}
+		else
+		{
+			size_t __unknown3_data_reference_size = pixel_shader2_block->__unknown2.size;
+			char* __unknown3_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown2);
+			disassemble_shader_result = disassemble_shader(__unknown3_data_reference_data, __unknown3_data_reference_size);
+		}
 
 		new_runtime_disassembly = disassemble_shader_result;
 	}
