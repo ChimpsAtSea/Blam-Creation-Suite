@@ -50,6 +50,7 @@
     <ClInclude Include="Blam\scenario_type.h" />
     <ClInclude Include="Blam\skull.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="high_precision_timer.h" />
     <ClInclude Include="Rendering\directx_helpers.h" />
     <ClInclude Include="Rendering\dds.h" />
     <ClInclude Include="ThreadPrimitives\atomic_temp_value.h" />

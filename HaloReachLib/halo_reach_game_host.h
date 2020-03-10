@@ -28,7 +28,6 @@ private:
 	static void draw_camera_debug_ui();
 	static void draw_script_debug_ui();
 
-	IGameEngine* game_engine;
 	static c_game_runtime g_halo_reach_game_runtime;
 };
 

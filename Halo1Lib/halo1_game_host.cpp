@@ -19,8 +19,7 @@ void register_halo1lib()
 }
 
 c_halo1_game_host::c_halo1_game_host(e_engine_type engine_type, e_build build) :
-	c_opus_game_engine_host(engine_type, build, get_game_runtime()),
-	game_engine(nullptr)
+	c_opus_game_engine_host(engine_type, build, get_game_runtime())
 {
 	write_line_verbose("Init Halo1GameHost");
 

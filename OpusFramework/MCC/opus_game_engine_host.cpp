@@ -6,7 +6,10 @@
 
 c_opus_game_engine_host::c_opus_game_engine_host(e_engine_type engine_type, e_build build, c_game_runtime& rGameRuntime) :
 	IGameEngineHost(engine_type, build, &game_events),
-	game_runtime(rGameRuntime)
+	game_runtime(rGameRuntime),
+	game_events(),
+	frame_timer(),
+	game_engine(nullptr)
 {
 
 }
@@ -21,11 +24,21 @@ char c_opus_game_engine_host::FrameStart()
 	return 0;
 }
 
-
-
 void c_opus_game_engine_host::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD)
 {
-	using namespace DirectX;
+	frame_timer.stop();
+	double frame_cpu_duration = frame_timer.get_duration<double>();
+	total_frame_cpu_time += frame_cpu_duration;
+	frame_timer.start();
+	
+	static const bool k_quit_after_30_seconds_test = c_command_line::get_command_line_arg("-test") == "quit_after_30_seconds";
+	if (k_quit_after_30_seconds_test && total_frame_cpu_time > 30.0f)
+	{
+		if (game_engine)
+		{
+			game_engine->UpdateEngineState(eEngineState::EndGame);
+		}
+	}
 
 	GameLauncher::OpusTick();
 }

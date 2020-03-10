@@ -201,6 +201,9 @@
     <ClInclude Include="Rendering\directx_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="high_precision_timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shared-private-pch.cpp">

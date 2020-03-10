@@ -510,16 +510,20 @@ void GameLauncher::renderMainMenu()
 
 	if (ImGui::Begin("MAIN MENU", &isWindowOpen, windowFlags))
 	{
-		static bool hasAutostarted = false;
+		
 #ifdef _WIN64
 		HaloReachGameOptionSelection::Render();
 		{
 			ImGui::Dummy(ImVec2(0.0f, 30.0f));
 
-			if (ImGui::Button("START GAME (Reach)") || (c_command_line::has_command_line_arg("-autostart") && !hasAutostarted))
+			static bool const k_autostart_halo_reach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
+			static bool const k_autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
+			static bool has_auto_started = false;
+			
+			if (ImGui::Button("START GAME (Reach)") || (k_autostart_halo_reach && !has_auto_started))
 			{
 				HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
-				hasAutostarted = true;
+				has_auto_started = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
 				s_nextLaunchEngine = _engine_type_halo_reach;
 			}
@@ -530,10 +534,10 @@ void GameLauncher::renderMainMenu()
 				s_nextLaunchEngine = _engine_type_halo_reach;
 			}
 
-			if (ImGui::Button("START GAME (Halo 1)") || (c_command_line::has_command_line_arg("-autostarthalo1") && !hasAutostarted))
+			if (ImGui::Button("START GAME (Halo 1)") || (k_autostart_halo_halo1 && !has_auto_started))
 			{
 				HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
-				hasAutostarted = true;
+				has_auto_started = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
 				s_nextLaunchEngine = _engine_type_halo1;
 			}

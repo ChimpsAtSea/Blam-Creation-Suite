@@ -97,6 +97,7 @@ using namespace tbb;
 #include <regex>
 #include <mutex> // #TODO: replace
 #include <condition_variable>
+#include <chrono>
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #else

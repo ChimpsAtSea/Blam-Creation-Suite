@@ -3,6 +3,7 @@
 #include "shared-system-pch.h"
 #include "shared-tbb-pch.h"
 
+#include "high_precision_timer.h"
 #include "ThreadPrimitives/ThreadPrimitives.h"
 #include "StringUtilities.h"
 #include "Runtime.h"

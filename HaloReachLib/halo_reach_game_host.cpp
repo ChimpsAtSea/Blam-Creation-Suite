@@ -26,8 +26,7 @@ void register_haloreachlib()
 }
 
 c_halo_reach_game_host::c_halo_reach_game_host(e_engine_type engine_type, e_build build) :
-	c_opus_game_engine_host(engine_type, build, g_halo_reach_game_runtime),
-	game_engine(nullptr)
+	c_opus_game_engine_host(engine_type, build, g_halo_reach_game_runtime)
 {
 	init_runtime_modifications(g_halo_reach_game_runtime.get_build());
 

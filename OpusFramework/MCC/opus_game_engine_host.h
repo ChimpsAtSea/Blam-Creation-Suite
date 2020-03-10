@@ -67,5 +67,8 @@ public:
 protected:
 	c_game_runtime& game_runtime;
 	IGameEvents game_events;
+	c_high_precision_timer frame_timer;
+	double total_frame_cpu_time;
+	IGameEngine* game_engine;
 };
 

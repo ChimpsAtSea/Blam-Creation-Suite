@@ -27,7 +27,6 @@ private:
 	static void update_camera_data();
 	static void draw_camera_debug_ui();
 
-	IGameEngine* game_engine;
 	static c_game_runtime* g_halo1_game_runtime;
 };
 

@@ -164,6 +164,8 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	enqueue_function(_build_mcc_1_1186_0_0, _build_not_set, __game_engine_virtual_function_function48);
 	enqueue_function(_build_mcc_1_1377_0_0, _build_not_set, __game_engine_virtual_function_function49);
 
+#undef enqueue_function
+
 	switch (build)
 	{
 		case _build_mcc_1_824_0_0 : DEBUG_ASSERT(current_function_index == 43); break;
