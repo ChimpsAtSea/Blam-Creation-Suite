@@ -68,6 +68,15 @@ void c_cache_file::loadMap(const std::wstring& mapFilePath)
 
 			write_line_verbose("cache file version: %i", cache_file_header->file_version);
 
+			if (cache_file_header->unknown_bits & _unknown_bits_use_absolute_addressing)
+			{
+				write_line_verbose("cache file using absolute addresses");
+			}
+			else
+			{
+				write_line_verbose("cache file using relative addresses");
+			}
+
 #ifdef _DEBUG
 			{
 				/*

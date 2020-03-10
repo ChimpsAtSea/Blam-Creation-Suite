@@ -243,7 +243,7 @@ __int64 __fastcall c_opus_game_engine_host::Member29(__int64 value)
 __int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration)
 {
 	// #TODO #LEGACY: The format for UpdatePlayerConfiguration changed sometime after 887
-	if (build <= _build_mcc_1_887_0_0)
+	if (build <= _build_mcc_1_1035_0_0)
 	{
 		return false; // skips a large chunk of code that crashes out because the format changed
 	}

@@ -24,7 +24,6 @@ public:
 		
 		if (cache_file_header)
 		{
-			return (static_cast<uint64_t>(pageOffset) * 4ull) - (get_base_virtual_address(ignoreLoadingCheck) - 0x10000000ull);
 			if (cache_file_header->unknown_bits & _unknown_bits_use_absolute_addressing) // #TODO: Actually detect version
 			{
 				return (static_cast<uint64_t>(pageOffset) * 4ull) - (get_base_virtual_address(ignoreLoadingCheck) - 0x10000000ull);
