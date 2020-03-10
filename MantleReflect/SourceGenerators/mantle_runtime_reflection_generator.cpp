@@ -129,11 +129,11 @@ void c_mantle_runtime_reflection_generator::write_reflection_structure_type_entr
 	stringstream << "\t\t" << "{" << std::endl;
 	for (const c_reflection_field_container* reflection_field_container_ptr : reflection_type_container.fields)
 	{
+
 		assert(reflection_field_container_ptr != nullptr);
 		const c_reflection_field_container& reflection_field_container = *reflection_field_container_ptr;
 		assert(reflection_field_container.field_type != nullptr);
 		const c_reflection_type_container& reflection_type_container = *reflection_field_container.field_type;
-
 
 		const char* primitive_type_string = "NonPrimitive";
 		if (reflection_type_container.is_primitive)

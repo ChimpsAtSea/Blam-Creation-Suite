@@ -72,7 +72,7 @@ void c_global_reference::DestroyTree()
 
 c_global_reference* c_global_reference::initNode(e_engine_type engine_type, e_build build)
 {
-	if (m_engine == engine_type && (m_build == e_build::_build_not_set || m_build == build))
+	if ((m_engine == e_engine_type::_engine_type_not_set || m_engine == engine_type) && (m_build == e_build::_build_not_set || m_build == build))
 	{
 		PublicSymbol* pPublicSymbol = MappingFileParser::GetPublicSymbolByName(m_pReferenceName);
 		if (pPublicSymbol)
@@ -151,7 +151,7 @@ c_global_reference* c_global_reference::initNode(e_engine_type engine_type, e_bu
 
 c_global_reference* c_global_reference::deinitNode(e_engine_type engine_type, e_build build)
 {
-	if (m_engine == engine_type && (m_build == e_build::_build_not_set || m_build == build))
+	if ((m_engine == e_engine_type::_engine_type_not_set || m_engine == engine_type) && (m_build == e_build::_build_not_set || m_build == build))
 	{
 		PublicSymbol* pPublicSymbol = MappingFileParser::GetPublicSymbolByName(m_pReferenceName);
 		if (pPublicSymbol)

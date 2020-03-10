@@ -344,22 +344,23 @@ c_reflection_type_container* CreateReflectedEnumType(ASTContext* Context, const 
 	reflection_type_container.is_enum = true;
 	reflection_type_container.is_structure = false;
 
-	//e_primitive_type primitive_type = qualified_type_to_primitive_type(*recordQualifiedType);
-	//switch (primitive_type)
-	//{
-	//case e_primitive_type::Enum8:
-	//	reflection_type_container.data_size = 1;
-	//	break;
-	//case e_primitive_type::Enum16:
-	//	reflection_type_container.data_size = 2;
-	//	break;
-	//case e_primitive_type::Enum32:
-	//	reflection_type_container.data_size = 4;
-	//	break;
-	//case e_primitive_type::Enum64:
-	//	reflection_type_container.data_size = 8;
-	//	break;
-	//}
+	e_primitive_type primitive_type = qualified_type_to_primitive_type(*recordQualifiedType);
+	switch (primitive_type)
+	{
+	case e_primitive_type::Enum8:
+		reflection_type_container.data_size = 1;
+		break;
+	case e_primitive_type::Enum16:
+		reflection_type_container.data_size = 2;
+		break;
+	case e_primitive_type::Enum32:
+		reflection_type_container.data_size = 4;
+		break;
+	case e_primitive_type::Enum64:
+		reflection_type_container.data_size = 8;
+		break;
+	}
+	reflection_type_container.is_size_initialized = true;
 
 	//QualType integer_type = enum_decl->getIntegerType();
 

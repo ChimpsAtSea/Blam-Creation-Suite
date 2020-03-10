@@ -68,17 +68,28 @@ void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_structure_ty
 				const s_reflection_tag_block_info& rs_reflection_tag_block_info = reflection_field.tag_block_info;
 				const s_reflection_structure_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
 
-
 				if (tag_block->count && tag_block->address)
 				{
 					char* pTagBlockDataSource = cache_file.GetTagBlockData<char>(*tag_block); // #TODO: Remove GetTagBlockData and replace with virtual tag interface/virtual tab block data access
 					char* pTagBlockDataDest = c_mantle_gui::get_tag_selection_address(tag_block->address);
 
-					for (uint32_t i = 0; i < tag_block->count; i++)
+					if (IsBadReadPtr(pTagBlockDataSource, tag_block_reflection_type->size_of_data))
 					{
-						//memcpy(pTagBlockDest, pTagBlockDataSource, tag_block_reflection_type->m_size);
-						uint32_t offset = tag_block_reflection_type->size_of_data * i;
-						copy_data_recursively(*tag_block_reflection_type, pTagBlockDataSource + offset, pTagBlockDataDest + offset);
+						write_line_verbose("poke> warning: failed to poke memory address 0x%p (IsBadReadPtr pTagBlockDataSource) '%s'", pTagBlockDataSource, reflection_field.name);
+					}
+					else if(IsBadWritePtr(pTagBlockDataDest, tag_block_reflection_type->size_of_data))
+					{
+						write_line_verbose("poke> warning: failed to poke memory address 0x%p (IsBadWritePtr pTagBlockDataDest) '%s'", pTagBlockDataDest, reflection_field.name);
+					}
+					else
+					{
+						write_line_verbose("poke> pushed block '%s'", reflection_field.name);
+						for (uint32_t i = 0; i < tag_block->count; i++)
+						{
+							//memcpy(pTagBlockDest, pTagBlockDataSource, tag_block_reflection_type->m_size);
+							uint32_t offset = tag_block_reflection_type->size_of_data * i;
+							copy_data_recursively(*tag_block_reflection_type, pTagBlockDataSource + offset, pTagBlockDataDest + offset);
+						}
 					}
 				}
 			}
@@ -91,8 +102,7 @@ void c_mantle_tag_gui_tab::poke()
 	char* pDest = static_cast<char*>(c_mantle_gui::get_tag_pointer(get_tag_interface().get_index()));
 	if (pDest)
 	{
-
-		char* pSource = cache_file.get_tag_interface(get_tag_interface().get_index())->get_data();
+		char* pSource = get_tag_interface().get_data();;
 
 		const s_reflection_structure_type* ps_reflection_structure_type = tag_interface.get_reflection_data();
 		copy_data_recursively(*ps_reflection_structure_type, pSource, pDest);
