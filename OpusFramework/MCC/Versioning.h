@@ -15,6 +15,7 @@ enum e_engine_type : uint8_t
 enum e_build : uint64_t
 {
 	_build_not_set,
+	_build_mcc_1_824_0_0				= MAKE_FILE_VERSION(1, 824, 0, 0),	 
 	_build_mcc_1_887_0_0				= MAKE_FILE_VERSION(1, 887, 0, 0),	 
 	_build_mcc_1_1035_0_0				= MAKE_FILE_VERSION(1, 1035, 0, 0), 
 	_build_mcc_1_1186_0_0				= MAKE_FILE_VERSION(1, 1186, 0, 0), 
@@ -24,6 +25,9 @@ enum e_build : uint64_t
 	_build_mcc_1_1305_0_0				= MAKE_FILE_VERSION(1, 1305, 0, 0), 
 	_build_mcc_1_1350_0_0				= MAKE_FILE_VERSION(1, 1350, 0, 0), 
 	_build_mcc_1_1367_0_0				= MAKE_FILE_VERSION(1, 1367, 0, 0),
+	_build_mcc_1_1377_0_0				= MAKE_FILE_VERSION(1, 1377, 0, 0),
+	_build_mcc_1_1387_0_0				= MAKE_FILE_VERSION(1, 1387, 0, 0),
+	_build_mcc_1_1389_0_0				= MAKE_FILE_VERSION(1, 1389, 0, 0),
 	_build_eldorado_1_106708_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 106708), // 1.106708 cert_ms23  Mar 20 2015 17:24:42
 	//_build_eldorado_1_155080_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 155080), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
 	//_build_eldorado_1_171227_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 171227),

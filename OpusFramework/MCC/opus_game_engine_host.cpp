@@ -545,3 +545,8 @@ __int64 __fastcall c_opus_game_engine_host::Function48(_QWORD, __int64)
 	// appears to be security related
 	return 1;
 }
+
+char* __fastcall c_opus_game_engine_host::Function49(char* str)
+{
+	return str;
+}

@@ -57,6 +57,7 @@ enum IGameEngineHostVirtualFunctionIndex
 	__game_engine_virtual_function_get_path_by_type_wide,
 	__game_engine_virtual_function_function47,
 	__game_engine_virtual_function_function48,
+	__game_engine_virtual_function_function49,
 };
 
 class IGameEngineHost
@@ -308,9 +309,9 @@ public:
 	/* 46 */ virtual bool __fastcall GetWidePathByType(PathType pathType, LPWSTR pBuffer, size_t bufferLength);
 	/* 47 */ virtual unsigned __int8* __fastcall Function47(_QWORD, unsigned __int8*, _QWORD);
 	/* 48 */ virtual __int64 __fastcall Function48(_QWORD, __int64);
+	/* 49 */ virtual char* __fastcall Function49(char* str); /* added in 1377 */
 
 	/* barrier functions to prevent new versions of games calling our functions */
-	IGameEngineHostCreateBarrierDefinition(49);
 	IGameEngineHostCreateBarrierDefinition(50);
 	IGameEngineHostCreateBarrierDefinition(51);
 	IGameEngineHostCreateBarrierDefinition(52);
@@ -318,6 +319,7 @@ public:
 	IGameEngineHostCreateBarrierDefinition(54);
 	IGameEngineHostCreateBarrierDefinition(55);
 	IGameEngineHostCreateBarrierDefinition(56);
+	IGameEngineHostCreateBarrierDefinition(57);
 
 	// IGameEngineHost data
 	IGameEvents* game_events_ptr = nullptr;
