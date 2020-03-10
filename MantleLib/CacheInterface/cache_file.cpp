@@ -66,16 +66,38 @@ void c_cache_file::loadMap(const std::wstring& mapFilePath)
 		{
 			cache_file_header = reinterpret_cast<s_cache_file_header*>(pMapData);
 
-			// init section cache
-			for (underlying(e_cache_file_section) i = 0; i < underlying_cast(e_cache_file_section::k_number_of_cache_file_sections); i++)
+			write_line_verbose("cache file version: %i", cache_file_header->file_version);
+
+#ifdef _DEBUG
 			{
-				e_cache_file_section cache_file_section = static_cast<e_cache_file_section>(i);
+				/*
+					We should see one of the sections have a zero offset. This is a check
+					so we know we're reading the correct data for the cache_file_header->section_offsets
+					It would be possible to fool this test by reading empty/zero memory
+				*/
+				bool found_section_bounds_offset_zero_check = false;
+				for (underlying(e_cache_file_section) cache_file_section_index = 0; cache_file_section_index < underlying_cast(e_cache_file_section::k_number_of_cache_file_sections); cache_file_section_index++)
+				{
+					if (cache_file_header->section_bounds[cache_file_section_index].offset == 0)
+					{
+						found_section_bounds_offset_zero_check = true;
+						break;
+					}
+				}
+				//DEBUG_ASSERT(found_section_bounds_offset_zero_check);
+			}
+#endif
 
-				long offset = cache_file_header->section_offsets[underlying_cast(cache_file_section)] + cache_file_header->section_bounds[underlying_cast(cache_file_section)].offset;
-				long size = cache_file_header->section_bounds[underlying_cast(cache_file_section)].size;
+			// init section cache
+			for (underlying(e_cache_file_section) cache_file_section_index = 0; cache_file_section_index < underlying_cast(e_cache_file_section::k_number_of_cache_file_sections); cache_file_section_index++)
+			{
+				e_cache_file_section cache_file_section = static_cast<e_cache_file_section>(cache_file_section_index);
 
-				m_pSectionCache[underlying_cast(cache_file_section)].first = reinterpret_cast<char*>(pMapData + offset);
-				m_pSectionCache[underlying_cast(cache_file_section)].second = size;
+				long offset = cache_file_header->section_offsets[cache_file_section_index] + cache_file_header->section_bounds[cache_file_section_index].offset;
+				long size = cache_file_header->section_bounds[cache_file_section_index].size;
+
+				m_pSectionCache[cache_file_section_index].first = reinterpret_cast<char*>(pMapData + offset);
+				m_pSectionCache[cache_file_section_index].second = size;
 			}
 
 			char* pDebugSection = get_debug_section().first;
@@ -167,7 +189,8 @@ void c_cache_file::initTagInstances()
 			ppTagInterfacesBuffer[index] = new c_tag_interface(*this, static_cast<uint16_t>(index));
 		}
 	};
-	tbb::parallel_for(0u, cache_file_tags_headers->instances.count, createTagFunc);
+	for (size_t i = 0; i < cache_file_tags_headers->instances.count; i++) createTagFunc(i);
+	//tbb::parallel_for(0u, cache_file_tags_headers->instances.count, createTagFunc);
 }
 
 #pragma optimize( "t", on ) // always prefer fast code here

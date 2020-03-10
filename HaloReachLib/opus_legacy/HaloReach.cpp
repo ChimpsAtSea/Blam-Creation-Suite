@@ -164,6 +164,16 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 {
 	if (engine_type == _engine_type_halo_reach)
 	{
+		switch (build)
+		{
+		case e_build::_build_mcc_1_887_0_0: return 0x180013EA0;
+		case e_build::_build_mcc_1_1035_0_0: return 0x1800113F0;
+		case e_build::_build_mcc_1_1186_0_0: return 0x180011860;
+		case e_build::_build_mcc_1_1211_0_0: return 0x180011870;
+		case e_build::_build_mcc_1_1246_0_0: return 0x180011870;
+		case e_build::_build_mcc_1_1270_0_0: return 0x180011870;
+		}
+
 		using namespace ketchup;
 		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine_type))); // 1.1270.0.0
 		ps.AddInstruction(new _push("x", 0x40, 0x57));																	//.text:0000000180011870	push		rdi
@@ -202,16 +212,6 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 		else
 		{
 			write_line_verbose("ketchup> FAILURE: main_game_launch_offset");
-		}
-
-		switch (build)
-		{
-		case e_build::_build_mcc_1_887_0_0: return 0x180013EA0;
-		case e_build::_build_mcc_1_1035_0_0: return 0x1800113F0;
-		case e_build::_build_mcc_1_1186_0_0: return 0x180011860;
-		case e_build::_build_mcc_1_1211_0_0: return 0x180011870;
-		case e_build::_build_mcc_1_1246_0_0: return 0x180011870;
-		case e_build::_build_mcc_1_1270_0_0: return 0x180011870;
 		}
 	}
 	return ~uintptr_t ();

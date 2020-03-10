@@ -68,7 +68,7 @@ void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::
 
 		if (reflection_field_container_ptr->reflection_type_category == e_reflection_type_category::TagBlock)
 		{
-			stringstream << "\t\t" << reflection_field_container_ptr->field_name << "(cache_file, get_data<" << reflection_type_container.qualified_type_name << ">()->" << reflection_field_container_ptr->field_name << ")";
+			stringstream << "\t\t" << reflection_field_container_ptr->field_name << "(cache_file, *this, get_data<" << reflection_type_container.qualified_type_name << ">()->" << reflection_field_container_ptr->field_name << ")";
 		}
 		else
 		{

@@ -69,11 +69,6 @@ public:
 	IGameEngineHost(e_engine_type engine_type, e_build build, IGameEvents* game_events);
 	IGameEngineHost* GetDynamicGameEngineHost();
 
-
-
-
-
-
 	enum class PathType : int
 	{
 		DebugLogs,

@@ -571,6 +571,8 @@ void HaloReachGameOptionSelection::SelectMapVariant()
 
 void HaloReachGameOptionSelection::SelectSavedFilm()
 {
+	return;
+
 	static std::vector<std::string> pFilePaths = {
 		format_string("%s/Temporary/autosave/", "haloreach"),
 		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/", GetUserprofileVariable(), "haloreach"),
@@ -691,7 +693,17 @@ void HaloReachGameOptionSelection::LoadGameVariant(IDataAccess* pDataAccess, con
 		{
 			write_line_verbose("Loading game variant [%s]", pFileName.c_str());
 		}
-		rGameVariant = pDataAccess->GameVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->GameVariant;
+
+		IGameVariant* game_variant = pDataAccess->GameVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize));
+		if (game_variant)
+		{
+
+			rGameVariant = game_variant->GameVariant;
+		}
+		else
+		{
+			write_line_verbose(__FUNCTION__"> warning: failed to create game variant from file '%s'");
+		}
 		filo.close_file();
 	}
 }

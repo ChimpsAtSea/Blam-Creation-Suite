@@ -26,34 +26,40 @@ c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
 		cache_file_tag_group = cache_file.cache_file_tag_groups + cache_file_tag_instance->group_index;
 
 		char* pTagsSection = cache_file.get_tags_section().first;
-		uint64_t tagDataOffset = cache_file.convert_page_offset(cache_file_tag_instance->address, true); // #WARN: Internal function used here as the IsLoading() flag hasn't been disabled yet
-		tag_data = reinterpret_cast<char*>(pTagsSection + tagDataOffset);
-		group_index = cache_file_tag_instance->group_index;
 
-		// #TODO: Group interface
+		if (cache_file_tag_instance->address)
 		{
-			uint64_t groupIDBuffer = bswap(cache_file_tag_group->group_tags[0]);
-			const char* pGroupIDBufferStr = reinterpret_cast<const char*>(&groupIDBuffer);
+			uint64_t tagDataOffset = cache_file.convert_page_offset(cache_file_tag_instance->address, true); // #WARN: Internal function used here as the IsLoading() flag hasn't been disabled yet
+			tag_data = reinterpret_cast<char*>(pTagsSection + tagDataOffset);
+			ASSERT(!IsBadReadPtr(tag_data, 1));
+			group_index = cache_file_tag_instance->group_index;
 
-			tag_group_short_name = pGroupIDBufferStr;
-			tag_group_full_name = pGroupIDBufferStr; // #TODO: Get group full name
-
-			if (tag_path.empty())
+			// #TODO: Group interface
 			{
-				char buffer[MAX_PATH + 1]{};
-				snprintf(buffer, MAX_PATH, "0x%X", static_cast<uint32_t>(tagIndex));
-				tag_path = buffer;
+				uint64_t groupIDBuffer = bswap(cache_file_tag_group->group_tags[0]);
+				const char* pGroupIDBufferStr = reinterpret_cast<const char*>(&groupIDBuffer);
+
+				tag_group_short_name = pGroupIDBufferStr;
+				tag_group_full_name = pGroupIDBufferStr; // #TODO: Get group full name
+
+				if (tag_path.empty())
+				{
+					char buffer[MAX_PATH + 1]{};
+					snprintf(buffer, MAX_PATH, "0x%X", static_cast<uint32_t>(tagIndex));
+					tag_path = buffer;
+				}
+
+				tag_path_with_group_id = tag_path + "." + tag_group_short_name;
+				tag_path_with_group_name = tag_path + "." + tag_group_full_name;
+
+				tag_name = PathFindFileNameA(tag_path.c_str());
+				tag_name_with_group_id = PathFindFileNameA(tag_path_with_group_id.c_str());
+				tag_name_with_group_name = PathFindFileNameA(tag_path_with_group_name.c_str());
 			}
 
-			tag_path_with_group_id = tag_path + "." + tag_group_short_name;
-			tag_path_with_group_name = tag_path + "." + tag_group_full_name;
-
-			tag_name = PathFindFileNameA(tag_path.c_str());
-			tag_name_with_group_id = PathFindFileNameA(tag_path_with_group_id.c_str());
-			tag_name_with_group_name = PathFindFileNameA(tag_path_with_group_name.c_str());
+			reflection_type = get_tag_reflection_data_by_tag_group(cache_file_tag_group->group_tags[0]);
 		}
-
-		reflection_type = get_tag_reflection_data_by_tag_group(cache_file_tag_group->group_tags[0]);
+		else m_isNull = true;
 	}
 }
 

@@ -55,7 +55,7 @@ void render_enum_gui(void* field_data, const c_reflection_field& reflection_fiel
 	else
 	{
 		char buffer[128];
-		int count = snprintf(buffer, 128, "%s (%i)", reflection_field.enum_info.type_name);
+		snprintf(buffer, _countof(buffer)-1, "%s (%llu)", reflection_field.enum_info.type_name, current_enum_value);
 		begin_combo_result = ImGui::BeginCombo("##enum_combo", buffer);
 	}
 

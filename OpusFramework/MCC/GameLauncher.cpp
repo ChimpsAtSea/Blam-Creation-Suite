@@ -35,7 +35,8 @@ void GameLauncher::Init()
 {
 #ifdef _WIN64
 	checkSteamOwnership();
-	entireLibraryIsLoaded("bink2w64.dll", "..\\MCC\\Binaries\\Win64");
+	entireLibraryIsLoaded("steam_api64.dll", "MCC\\Binaries\\Win64");
+	entireLibraryIsLoaded("bink2w64.dll", "MCC\\Binaries\\Win64");
 	if (PathFileExistsA("halo1\\halo1.dll"))
 	{
 		// #TODO: New home for this in Halo1Lib

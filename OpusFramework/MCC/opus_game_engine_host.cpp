@@ -78,7 +78,15 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 	LegacyGameLauncher::s_currentState = LegacyGameLauncher::CurrentState::eFinished;
 	*/
 
-	write_line_verbose("GameExited %u [%s]", a1, a2);
+	if (IsBadReadPtr(a2, 1)) // #LEGACY
+	{
+		write_line_verbose("GameExited %u [%p]", a1, a2);
+	}
+	else
+	{
+		write_line_verbose("GameExited %u [%s]", a1, a2);
+	}
+	
 	return __int64(0);
 }
 
@@ -234,6 +242,12 @@ __int64 __fastcall c_opus_game_engine_host::Member29(__int64 value)
 
 __int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration)
 {
+	// #TODO #LEGACY: The format for UpdatePlayerConfiguration changed sometime after 887
+	if (build <= _build_mcc_1_887_0_0)
+	{
+		return false; // skips a large chunk of code that crashes out because the format changed
+	}
+	
 	REFERENCE_ASSERT(rPlayerConfiguration);
 	rPlayerConfiguration = {}; // reset values
 
@@ -262,6 +276,7 @@ __int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t pl
 
 bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
 {
+	ASSERT(pInputBuffer);
 	memset(pInputBuffer, 0, sizeof(*pInputBuffer));
 
 	bool debugUIVisible = c_debug_gui::IsVisible();

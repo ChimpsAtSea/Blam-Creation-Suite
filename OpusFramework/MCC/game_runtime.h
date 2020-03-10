@@ -11,7 +11,14 @@ public:
 	inline __int64 __fastcall CreateDataAccess(IDataAccess** ppDataAccess)
 	{
 		ASSERT(pCreateDataAccess != nullptr);
-		return pCreateDataAccess(ppDataAccess);
+		__IDataAccess* data_access = nullptr;
+		__int64 result = pCreateDataAccess(&data_access);
+		*ppDataAccess = nullptr;
+		if (data_access)
+		{
+			*ppDataAccess = new IDataAccess(*data_access, get_build());
+		}
+		return result;
 	}
 
 	inline signed __int64 __fastcall CreateGameEngine(IGameEngine** ppGameEngine)
@@ -42,7 +49,7 @@ private:
 	IDataAccess* m_pDataAccess = nullptr;
 	HMODULE hGameModule = NULL;
 
-	typedef __int64(__fastcall CreateDataAccessFunc)(IDataAccess** ppDataAccess);
+	typedef __int64(__fastcall CreateDataAccessFunc)(__IDataAccess** ppDataAccess);
 	CreateDataAccessFunc* pCreateDataAccess = nullptr;
 
 	typedef signed __int64(__fastcall CreateGameEngineFunc)(IGameEngine** ppGameEngine);

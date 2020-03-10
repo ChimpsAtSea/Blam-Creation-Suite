@@ -108,7 +108,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 
 	size_t current_function_index = 0;
 #define enqueue_function(min_build, max_build, function) \
-	__pragma(warning(suppress: 6287)) if((min_build == _build_not_set || build >= min_build) && (max_build == _build_not_set || build >= max_build)) \
+	__pragma(warning(suppress: 6287)) if((min_build == _build_not_set || build >= min_build) && (max_build == _build_not_set || build <= max_build)) \
 	__vtbl_dynamic_data[current_function_index++] = custom_game_engine_host_vtable[function];
 
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_frame_start);
@@ -132,19 +132,19 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function17);
 	enqueue_function(_build_mcc_1_1367_0_0, _build_not_set, __game_engine_virtual_function_function26);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function18);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_map_load_percent_status);
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_map_load_percent_status); // after this
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function20);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_get_machine_identifier);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function22);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function23);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_get_session_info);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_membership_update);
-	enqueue_function(_build_not_set, _build_mcc_1_1350_0_0, __game_engine_virtual_function_function26); // relocated after 1350
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function27);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_graphics);
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function23);																
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_get_session_info);															
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_membership_update);															//virtual void Member25(Member25Struct * a1, uint32_t a2);
+	enqueue_function(_build_not_set, _build_mcc_1_1350_0_0, __game_engine_virtual_function_function26); // relocated after 1350									//virtual void Member26();
+	enqueue_function(_build_mcc_1_1035_0_0, _build_not_set, __game_engine_virtual_function_function27);																//virtual void Member27();
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_graphics);															//virtual bool Member28(__int64 a2);
 	enqueue_function(_build_mcc_1_1350_0_0, _build_not_set, __game_engine_virtual_function_function29);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_player_configuration);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_input);
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_player_configuration);												//virtual bool Member29(__int64 a2, __int64 a3);
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_input); // before this, missing after this							//virtual unsigned __int8 __fastcall Member30(_QWORD, InputBuffer * pInputBuffer);
 	enqueue_function(_build_mcc_1_1246_0_0, _build_not_set, __game_engine_virtual_function_function32);
 	enqueue_function(_build_mcc_1_1186_0_0, _build_not_set, __game_engine_virtual_function_function33);
 	enqueue_function(_build_mcc_1_1186_0_0, _build_not_set, __game_engine_virtual_function_xinput_set_state);
@@ -156,8 +156,8 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	enqueue_function(_build_not_set, _build_mcc_1_1350_0_0, __game_engine_virtual_function_function40); // removed after 1350
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function41);
 	enqueue_function(_build_not_set, _build_mcc_1_1350_0_0, __game_engine_virtual_function_function42); // removed after 1350
-	enqueue_function(_build_mcc_1_1035_0_0, _build_not_set, __game_engine_virtual_function_firefight_new);
-	enqueue_function(_build_mcc_1_1035_0_0, _build_mcc_1_1350_0_0, __game_engine_virtual_function_function44); // relocated after 1350
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_firefight_new);
+	enqueue_function(_build_not_set, _build_mcc_1_1350_0_0, __game_engine_virtual_function_function44); // relocated after 1350
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_get_path_by_type);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_get_path_by_type_wide);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function47);
@@ -183,7 +183,14 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		case _build_mcc_1_1389_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	}
 
-	if (build == _build_mcc_1_1305_0_0)
+	if (build == _build_mcc_1_887_0_0)
+	{
+		DEBUG_ASSERT(__vtbl_dynamic_data[19] == custom_game_engine_host_vtable[__game_engine_virtual_function_map_load_percent_status]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[25] == custom_game_engine_host_vtable[__game_engine_virtual_function_membership_update]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[28] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_player_configuration]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[29] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_input]);
+	}
+	else if (build == _build_mcc_1_1305_0_0)
 	{
 		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_start]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
