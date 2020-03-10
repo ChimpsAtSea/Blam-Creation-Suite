@@ -24,6 +24,9 @@ private:
 	intptr_t m_originalValue;
 	reference_symbol_offset_function* m_pOffsetFunction;
 	const char* m_pReferenceName;
+	void* pDataAddress;
+	PublicSymbol* pPublicSymbol;
+	void** pReference;
 
 	static c_global_reference* s_pFirstc_global_reference;
 	static c_global_reference* s_pLastc_global_reference;
