@@ -20,23 +20,49 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\cache\cache_files.cpp" />
-    <ClCompile Include="source\datatypes\datum_handle.cpp" />
-    <ClCompile Include="source\datatypes\tag.cpp" />
+    <ClCompile Include="source\cseries\asserts\assert_handler.cpp" />
+    <ClCompile Include="source\cseries\cseries.cpp" />
+    <ClCompile Include="source\cseries\cseries_asserts.cpp" />
+    <ClCompile Include="source\cseries\cseries_memory.cpp" />
+    <ClCompile Include="source\cseries\cseries_string.cpp" />
+    <ClCompile Include="source\cseries\events\event_handler.cpp" />
     <ClCompile Include="source\math\integer_math.cpp" />
+    <ClCompile Include="source\memory\data.cpp" />
+    <ClCompile Include="source\tag_files\tag_api_interop.cpp" />
     <ClCompile Include="source\tag_files\tag_groups.cpp" />
+    <ClCompile Include="source\tag_files\tag_group_definitions.cpp" />
+    <ClCompile Include="source\tag_files\tag_resource_internals.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\cache\cache_files.h" />
-    <ClInclude Include="source\datatypes\datum_handle.h" />
+    <ClInclude Include="source\cseries\asserts\assert_handler.h" />
+    <ClInclude Include="source\cseries\cseries.h" />
+    <ClInclude Include="source\cseries\cseries_asserts.h" />
+    <ClInclude Include="source\cseries\cseries_memory.h" />
+    <ClInclude Include="source\cseries\cseries_string.h" />
+    <ClInclude Include="source\cseries\cseries_traits.h" />
+    <ClInclude Include="source\cseries\events\event_handler.h" />
+    <ClInclude Include="source\cseries\language.h" />
     <ClInclude Include="source\datatypes\enum.h" />
     <ClInclude Include="source\datatypes\flags.h" />
+    <ClInclude Include="source\datatypes\result.h" />
     <ClInclude Include="source\datatypes\static_array.h" />
+    <ClInclude Include="source\datatypes\static_hash_table.h" />
+    <ClInclude Include="source\datatypes\static_hash_table_data.h" />
     <ClInclude Include="source\datatypes\static_string.h" />
     <ClInclude Include="source\datatypes\static_wide_string.h" />
-    <ClInclude Include="source\datatypes\tag.h" />
     <ClInclude Include="source\math\integer_math.h" />
+    <ClInclude Include="source\memory\allocation_interface.h" />
+    <ClInclude Include="source\memory\data.h" />
+    <ClInclude Include="source\memory\memory_interface.h" />
     <ClInclude Include="source\memory\ptr32.h" />
+    <ClInclude Include="source\memory\static_arrays.h" />
+    <ClInclude Include="source\memory\wrapped_arrays.h" />
+    <ClInclude Include="source\tag_files\string_ids.h" />
+    <ClInclude Include="source\tag_files\tag_api_interop.h" />
     <ClInclude Include="source\tag_files\tag_groups.h" />
+    <ClInclude Include="source\tag_files\tag_group_definitions.h" />
+    <ClInclude Include="source\tag_files\tag_resource_internals.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -92,26 +118,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)source</IncludePath>
+    <IncludePath>$(ProjectDir)source;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)source</IncludePath>
+    <IncludePath>$(ProjectDir)source;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)source</IncludePath>
+    <IncludePath>$(ProjectDir)source;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)source</IncludePath>
+    <IncludePath>$(ProjectDir)source;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
@@ -119,6 +144,8 @@
       <PrecompiledHeaderOutputFile />
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4201;4514;4668;4710;5045;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -130,7 +157,6 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>EnableAllWarnings</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
@@ -140,7 +166,8 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <DisableSpecificWarnings>4201;4514;4668;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4201;4514;4668;4710;5045;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -150,11 +177,10 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
@@ -162,6 +188,8 @@
       <PrecompiledHeaderOutputFile />
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4201;4514;4668;4710;5045;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -173,11 +201,10 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
@@ -185,6 +212,8 @@
       <PrecompiledHeaderOutputFile />
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <DisableSpecificWarnings>4201;4514;4668;4710;5045;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

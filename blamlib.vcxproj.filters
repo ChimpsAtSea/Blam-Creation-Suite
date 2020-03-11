@@ -15,24 +15,72 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\datatypes\datum_handle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\datatypes\tag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\tag_files\tag_groups.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\cache\cache_files.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\asserts\assert_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\events\event_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\cseries.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\cseries_asserts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\cseries_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\cseries_string.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\math\integer_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\memory\data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tag_files\tag_api_interop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tag_files\tag_group_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tag_files\tag_groups.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tag_files\tag_resource_internals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\datatypes\datum_handle.h">
+    <ClInclude Include="source\cache\cache_files.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cseries\asserts\assert_handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cseries\events\event_handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cseries\cseries.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cseries\cseries_asserts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cseries\cseries_memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cseries\cseries_string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cseries\cseries_traits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\cseries\language.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\datatypes\enum.h">
@@ -41,7 +89,16 @@
     <ClInclude Include="source\datatypes\flags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\datatypes\result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="source\datatypes\static_array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\datatypes\static_hash_table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\datatypes\static_hash_table_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\datatypes\static_string.h">
@@ -50,19 +107,40 @@
     <ClInclude Include="source\datatypes\static_wide_string.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\datatypes\tag.h">
+    <ClInclude Include="source\math\integer_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\memory\allocation_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\memory\data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\memory\memory_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\memory\ptr32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\memory\static_arrays.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\memory\wrapped_arrays.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tag_files\string_ids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tag_files\tag_api_interop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tag_files\tag_group_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="source\tag_files\tag_groups.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\cache\cache_files.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\math\integer_math.h">
+    <ClInclude Include="source\tag_files\tag_resource_internals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
