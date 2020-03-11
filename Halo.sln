@@ -192,6 +192,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssemblyPluginTool", "Assem
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pugixml-build", "pugixml-build\pugixml-build.vcxproj", "{4735B7BB-A207-41B7-A10F-C2DD60BBEF2C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "blamlib", "blamlib\blamlib.vcxproj", "{6686F215-AB57-434D-85E0-8AAA5AB68D36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -412,6 +414,14 @@ Global
 		{4735B7BB-A207-41B7-A10F-C2DD60BBEF2C}.Release|x64.Build.0 = Release|x64
 		{4735B7BB-A207-41B7-A10F-C2DD60BBEF2C}.Release|x86.ActiveCfg = Release|Win32
 		{4735B7BB-A207-41B7-A10F-C2DD60BBEF2C}.Release|x86.Build.0 = Release|Win32
+		{6686F215-AB57-434D-85E0-8AAA5AB68D36}.Debug|x64.ActiveCfg = Debug|x64
+		{6686F215-AB57-434D-85E0-8AAA5AB68D36}.Debug|x64.Build.0 = Debug|x64
+		{6686F215-AB57-434D-85E0-8AAA5AB68D36}.Debug|x86.ActiveCfg = Debug|Win32
+		{6686F215-AB57-434D-85E0-8AAA5AB68D36}.Debug|x86.Build.0 = Debug|Win32
+		{6686F215-AB57-434D-85E0-8AAA5AB68D36}.Release|x64.ActiveCfg = Release|x64
+		{6686F215-AB57-434D-85E0-8AAA5AB68D36}.Release|x64.Build.0 = Release|x64
+		{6686F215-AB57-434D-85E0-8AAA5AB68D36}.Release|x86.ActiveCfg = Release|Win32
+		{6686F215-AB57-434D-85E0-8AAA5AB68D36}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
