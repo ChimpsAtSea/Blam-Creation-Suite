@@ -511,15 +511,16 @@ void GameLauncher::renderMainMenu()
 
 	if (ImGui::Begin("MAIN MENU", &isWindowOpen, windowFlags))
 	{
-		
+		static bool has_auto_started = false;
+		static bool const k_autostart_halo_reach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
+		static bool const k_autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
+		static bool const k_autostart_halo_eldorado = c_command_line::get_command_line_arg("-autostart") == "eldorado";
+		static bool const k_autostart_halo_online = c_command_line::get_command_line_arg("-autostart") == "haloonline";
 #ifdef _WIN64
 		HaloReachGameOptionSelection::Render();
 		{
 			ImGui::Dummy(ImVec2(0.0f, 30.0f));
 
-			static bool const k_autostart_halo_reach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
-			static bool const k_autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
-			static bool has_auto_started = false;
 			
 			if (ImGui::Button("START GAME (Reach)") || (k_autostart_halo_reach && !has_auto_started))
 			{
@@ -545,9 +546,9 @@ void GameLauncher::renderMainMenu()
 		}
 #else
 		{
-			if (ImGui::Button("START GAME (Eldorado)") || (c_command_line::has_command_line_arg("-autostart") && !hasAutostarted))
+			if (ImGui::Button("START GAME (Eldorado)") || ((k_autostart_halo_eldorado || k_autostart_halo_online) && !has_auto_started))
 			{
-				hasAutostarted = true;
+				has_auto_started = true;
 				s_nextLaunchMode = NextLaunchMode::Generic;
 				s_nextLaunchEngine = _engine_type_eldorado;
 	}

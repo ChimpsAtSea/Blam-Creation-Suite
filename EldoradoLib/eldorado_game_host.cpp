@@ -20,7 +20,7 @@ void register_eldoradolib()
 }
 
 c_eldorado_game_host::c_eldorado_game_host(e_engine_type engine_type, e_build build) :
-	c_opus_game_engine_host(engine_type, nullptr, build, *g_eldorado_game_runtime)
+	c_opus_game_engine_host(engine_type, build, *g_eldorado_game_runtime)
 {
 
 }
