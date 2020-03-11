@@ -26,6 +26,8 @@
     <ClCompile Include="source\cseries\cseries_memory.cpp" />
     <ClCompile Include="source\cseries\cseries_string.cpp" />
     <ClCompile Include="source\cseries\events\event_handler.cpp" />
+    <ClCompile Include="source\haloreach\ai\ai.cpp" />
+    <ClCompile Include="source\haloreach\geometry\vertex_definitions.cpp" />
     <ClCompile Include="source\math\function_definitions.cpp" />
     <ClCompile Include="source\math\integer_math.cpp" />
     <ClCompile Include="source\math\polygon_math.cpp" />
@@ -54,6 +56,96 @@
     <ClInclude Include="source\datatypes\static_hash_table_data.h" />
     <ClInclude Include="source\datatypes\static_string.h" />
     <ClInclude Include="source\datatypes\static_wide_string.h" />
+    <ClInclude Include="source\haloreach\ai\actors.h" />
+    <ClInclude Include="source\haloreach\ai\actor_combat.h" />
+    <ClInclude Include="source\haloreach\ai\actor_dynamic_firing_position.h" />
+    <ClInclude Include="source\haloreach\ai\actor_firing_position.h" />
+    <ClInclude Include="source\haloreach\ai\actor_moving_vehicle_nondirectional_flying.h" />
+    <ClInclude Include="source\haloreach\ai\actor_perception.h" />
+    <ClInclude Include="source\haloreach\ai\actor_stimulus.h" />
+    <ClInclude Include="source\haloreach\ai\ai.h" />
+    <ClInclude Include="source\haloreach\ai\ai_debug.h" />
+    <ClInclude Include="source\haloreach\ai\ai_dialogue.h" />
+    <ClInclude Include="source\haloreach\ai\ai_fire_teams.h" />
+    <ClInclude Include="source\haloreach\ai\ai_flocks.h" />
+    <ClInclude Include="source\haloreach\ai\ai_globals.h" />
+    <ClInclude Include="source\haloreach\ai\ai_hint_definitions.h" />
+    <ClInclude Include="source\haloreach\ai\ai_player.h" />
+    <ClInclude Include="source\haloreach\ai\ai_profile.h" />
+    <ClInclude Include="source\haloreach\ai\ai_reference_frame.h" />
+    <ClInclude Include="source\haloreach\ai\ai_script.h" />
+    <ClInclude Include="source\haloreach\ai\ai_traits.h" />
+    <ClInclude Include="source\haloreach\ai\behavior.h" />
+    <ClInclude Include="source\haloreach\ai\behavior_misc.h" />
+    <ClInclude Include="source\haloreach\ai\character_definitions.h" />
+    <ClInclude Include="source\haloreach\ai\cl_engine.h" />
+    <ClInclude Include="source\haloreach\ai\damage_effect_obstacles.h" />
+    <ClInclude Include="source\haloreach\ai\HavokAIManager.h" />
+    <ClInclude Include="source\haloreach\ai\HavokAIRigidBodyObstacleGenerator.h" />
+    <ClInclude Include="source\haloreach\ai\HavokPathFollowingBehavior.h" />
+    <ClInclude Include="source\haloreach\ai\joint_behavior.h" />
+    <ClInclude Include="source\haloreach\ai\ObjectiveStatusDisplay.h" />
+    <ClInclude Include="source\haloreach\ai\performances.h" />
+    <ClInclude Include="source\haloreach\ai\prop_dialogue.h" />
+    <ClInclude Include="source\haloreach\ai\Puppeteer.h" />
+    <ClInclude Include="source\haloreach\ai\sector.h" />
+    <ClInclude Include="source\haloreach\ai\squads.h" />
+    <ClInclude Include="source\haloreach\ai\TaskManager.h" />
+    <ClInclude Include="source\haloreach\animations\animation_definitions.h" />
+    <ClInclude Include="source\haloreach\devices\devices.h" />
+    <ClInclude Include="source\haloreach\devices\device_controls.h" />
+    <ClInclude Include="source\haloreach\devices\device_machines.h" />
+    <ClInclude Include="source\haloreach\effects\cheap_particle_system.h" />
+    <ClInclude Include="source\haloreach\effects\effects.h" />
+    <ClInclude Include="source\haloreach\effects\jetwash.h" />
+    <ClInclude Include="source\haloreach\effects\material_effect_definitions.h" />
+    <ClInclude Include="source\haloreach\effects\screen_effect.h" />
+    <ClInclude Include="source\haloreach\game\campaign_metagame.h" />
+    <ClInclude Include="source\haloreach\game\game.h" />
+    <ClInclude Include="source\haloreach\game\game_allegiance.h" />
+    <ClInclude Include="source\haloreach\game\game_engine_player_traits.h" />
+    <ClInclude Include="source\haloreach\game\game_globals.h" />
+    <ClInclude Include="source\haloreach\game\game_powerups.h" />
+    <ClInclude Include="source\haloreach\game\multiplayer_definitions.h" />
+    <ClInclude Include="source\haloreach\geometry\geometry_definitions.h" />
+    <ClInclude Include="source\haloreach\geometry\vertex_definitions.h" />
+    <ClInclude Include="source\haloreach\interface\chud\chud_definitions.h" />
+    <ClInclude Include="source\haloreach\items\airstrike.h" />
+    <ClInclude Include="source\haloreach\items\equipment_definitions.h" />
+    <ClInclude Include="source\haloreach\items\item_definitions.h" />
+    <ClInclude Include="source\haloreach\items\projectile_definitions.h" />
+    <ClInclude Include="source\haloreach\items\weapon_definitions.h" />
+    <ClInclude Include="source\haloreach\models\model_definitions.h" />
+    <ClInclude Include="source\haloreach\models\render_model_definitions.h" />
+    <ClInclude Include="source\haloreach\motor\mover.h" />
+    <ClInclude Include="source\haloreach\objects\crates.h" />
+    <ClInclude Include="source\haloreach\objects\damage.h" />
+    <ClInclude Include="source\haloreach\objects\damage_new.h" />
+    <ClInclude Include="source\haloreach\objects\multiplayer_game_objects.h" />
+    <ClInclude Include="source\haloreach\objects\object_definitions.h" />
+    <ClInclude Include="source\haloreach\objects\object_recycling.h" />
+    <ClInclude Include="source\haloreach\objects\object_types.h" />
+    <ClInclude Include="source\haloreach\objects\scenery.h" />
+    <ClInclude Include="source\haloreach\objects\widgets\antenna.h" />
+    <ClInclude Include="source\haloreach\objects\widgets\cloth.h" />
+    <ClInclude Include="source\haloreach\physics\breakable_surfaces.h" />
+    <ClInclude Include="source\haloreach\physics\character_physics_definitions.h" />
+    <ClInclude Include="source\haloreach\physics\collision_bsp.h" />
+    <ClInclude Include="source\haloreach\physics\collision_kd_hierarchy_types.h" />
+    <ClInclude Include="source\haloreach\physics\grounded_friction.h" />
+    <ClInclude Include="source\haloreach\physics\havok_collision_damage.h" />
+    <ClInclude Include="source\haloreach\physics\havok_mopp_code_definitions.h" />
+    <ClInclude Include="source\haloreach\physics\spring_acceleration.h" />
+    <ClInclude Include="source\haloreach\physics\water_physics.h" />
+    <ClInclude Include="source\haloreach\render_methods\render_method_definitions.h" />
+    <ClInclude Include="source\haloreach\sound\sound_acoustics_definitions.h" />
+    <ClInclude Include="source\haloreach\sound\sound_classes.h" />
+    <ClInclude Include="source\haloreach\sound\sound_definitions.h" />
+    <ClInclude Include="source\haloreach\units\biped_definitions.h" />
+    <ClInclude Include="source\haloreach\units\giant_definitions.h" />
+    <ClInclude Include="source\haloreach\units\unit_definitions.h" />
+    <ClInclude Include="source\haloreach\units\unit_dialogue.h" />
+    <ClInclude Include="source\haloreach\units\vehicle_definitions.h" />
     <ClInclude Include="source\math\color_math.h" />
     <ClInclude Include="source\math\function_definitions.h" />
     <ClInclude Include="source\math\integer_math.h" />
@@ -151,7 +243,7 @@
       <PrecompiledHeaderOutputFile />
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <DisableSpecificWarnings>4201;4514;4668;4710;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -173,7 +265,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <DisableSpecificWarnings>4201;4514;4668;4710;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -195,7 +287,7 @@
       <PrecompiledHeaderOutputFile />
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <DisableSpecificWarnings>4201;4514;4668;4710;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -219,7 +311,7 @@
       <PrecompiledHeaderOutputFile />
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <DisableSpecificWarnings>4201;4514;4668;4710;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
