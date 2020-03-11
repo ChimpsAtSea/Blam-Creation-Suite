@@ -36,9 +36,6 @@
     <ClCompile Include="source\cseries\cseries_string.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\math\integer_math.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\memory\data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -52,6 +49,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\tag_files\tag_resource_internals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\function_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\integer_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\polygon_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\real_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,9 +116,6 @@
     <ClInclude Include="source\datatypes\static_wide_string.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\math\integer_math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\memory\allocation_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -141,6 +147,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\tag_files\tag_resource_internals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\math\color_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\math\function_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\math\integer_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\math\polygon_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\math\real_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

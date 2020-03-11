@@ -26,7 +26,10 @@
     <ClCompile Include="source\cseries\cseries_memory.cpp" />
     <ClCompile Include="source\cseries\cseries_string.cpp" />
     <ClCompile Include="source\cseries\events\event_handler.cpp" />
+    <ClCompile Include="source\math\function_definitions.cpp" />
     <ClCompile Include="source\math\integer_math.cpp" />
+    <ClCompile Include="source\math\polygon_math.cpp" />
+    <ClCompile Include="source\math\real_math.cpp" />
     <ClCompile Include="source\memory\data.cpp" />
     <ClCompile Include="source\tag_files\tag_api_interop.cpp" />
     <ClCompile Include="source\tag_files\tag_groups.cpp" />
@@ -51,7 +54,11 @@
     <ClInclude Include="source\datatypes\static_hash_table_data.h" />
     <ClInclude Include="source\datatypes\static_string.h" />
     <ClInclude Include="source\datatypes\static_wide_string.h" />
+    <ClInclude Include="source\math\color_math.h" />
+    <ClInclude Include="source\math\function_definitions.h" />
     <ClInclude Include="source\math\integer_math.h" />
+    <ClInclude Include="source\math\polygon_math.h" />
+    <ClInclude Include="source\math\real_math.h" />
     <ClInclude Include="source\memory\allocation_interface.h" />
     <ClInclude Include="source\memory\data.h" />
     <ClInclude Include="source\memory\memory_interface.h" />

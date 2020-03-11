@@ -1,74 +1,58 @@
-/*
-INTEGER_MATH.H
-Wednesday, February 26, 2020 1:01:25 PM
-*/
-
 #pragma once
+
+#include <cseries/cseries.h>
 
 /* ---------- types */
 
-union short_bounds
+struct s_short_bounds
 {
-	struct
-	{
-		short lower;
-		short upper;
-	};
+	short lower;
+	short upper;
 };
+static_assert(sizeof(s_short_bounds) == 0x4);
 
-union short_point2d
+struct s_point2d
 {
-	struct
-	{
-		short x;
-		short y;
-	};
+	short x;
+	short y;
 };
+static_assert(sizeof(s_point2d) == 0x4);
 
-union short_rectangle2d
+struct s_rectangle2d
 {
-	struct
-	{
-		short top;
-		short left;
-		short bottom;
-		short right;
-	};
+	short top;
+	short left;
+	short bottom;
+	short right;
 };
-
-/* ---------- globals */
-
-extern const short_point2d global_short_origin2d;
+static_assert(sizeof(s_rectangle2d) == 0x8);
 
 /* ---------- prototypes/INTEGER_MATH.CPP */
 
-short_bounds *set_short_bounds(
-	short_bounds *bounds,
-	short lower,
-	short upper);
-
-short_point2d *set_short_point2d(
-	short_point2d *point,
+s_point2d *set_point2d(
+	s_point2d *point,
 	short x,
 	short y);
 
-short_point2d *offset_short_point2d(
-	short_point2d *point,
+s_point2d *offset_point2d(
+	s_point2d *point,
 	short x,
 	short y);
 
-short short_rectangle2d_width(
-	const short_rectangle2d *rectangle);
-
-short short_rectangle2d_height(
-	const short_rectangle2d *rectangle);
-
-short short_rectangle2d_area(
-	const short_rectangle2d *rectangle);
-
-short_rectangle2d *set_short_rectangle2d(
-	short_rectangle2d *rectangle,
+s_rectangle2d *set_rectangle2d(
+	s_rectangle2d *rectangle,
 	short top,
 	short left,
 	short bottom,
 	short right);
+
+short rectangle2d_width(
+	s_rectangle2d *rectangle);
+
+short rectangle2d_height(
+	s_rectangle2d *rectangle);
+
+s_rectangle2d *scale_rectangle2d(
+	s_rectangle2d const *in_rectangle,
+	s_rectangle2d const *in_scale,
+	s_rectangle2d *out_rectangle);
