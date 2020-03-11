@@ -147,6 +147,7 @@ uintptr_t load_state_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
+		case e_build::_build_mcc_1_824_0_0: return 0x180F2BAA4;
 		case e_build::_build_mcc_1_887_0_0: return 0x1810EC5A4;
 		case e_build::_build_mcc_1_1035_0_0: return 0x180D37AB0;
 		case e_build::_build_mcc_1_1186_0_0: return 0x180D4E674;
@@ -154,6 +155,7 @@ uintptr_t load_state_offset(e_engine_type engine_type, e_build build)
 		case e_build::_build_mcc_1_1246_0_0: return 0x180D494F4;
 		case e_build::_build_mcc_1_1270_0_0: return 0x180D494F4;
 		case e_build::_build_mcc_1_1305_0_0: return 0x180CF8AF4;
+		case e_build::_build_mcc_1_1350_0_0: return 0x180D05EF4;
 		}
 	}
 	return ~uintptr_t ();
@@ -166,12 +168,15 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
+		case e_build::_build_mcc_1_824_0_0: return 0x180011110;
 		case e_build::_build_mcc_1_887_0_0: return 0x180013EA0;
 		case e_build::_build_mcc_1_1035_0_0: return 0x1800113F0;
 		case e_build::_build_mcc_1_1186_0_0: return 0x180011860;
 		case e_build::_build_mcc_1_1211_0_0: return 0x180011870;
 		case e_build::_build_mcc_1_1246_0_0: return 0x180011870;
 		case e_build::_build_mcc_1_1270_0_0: return 0x180011870;
+		case e_build::_build_mcc_1_1305_0_0: return 0x180011870;
+		case e_build::_build_mcc_1_1350_0_0: return 0x180012580;
 		}
 
 		using namespace ketchup;
@@ -674,8 +679,15 @@ uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
+		//case e_build::_build_mcc_1_824_0_0: return 0x180C33620;
+		//case e_build::_build_mcc_1_887_0_0: return 0x180D89480;
+		//case e_build::_build_mcc_1_1035_0_0: return 0x180AB2910;
+		//case e_build::_build_mcc_1_1186_0_0: return 0x180ABF520;
+		//case e_build::_build_mcc_1_1211_0_0: return 0x180ABF4B0;
+		//case e_build::_build_mcc_1_1246_0_0: return 0x180ABC220;
 		case e_build::_build_mcc_1_1270_0_0: return 0x180ABC230;
 		case e_build::_build_mcc_1_1305_0_0: return 0x180AA76C0;
+		//case e_build::_build_mcc_1_1350_0_0: return 0x180AB2810;
 		}
 	}
 	return ~uintptr_t ();
@@ -688,8 +700,15 @@ uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
+		//case e_build::_build_mcc_1_824_0_0: return 0x1807351D0;
+		//case e_build::_build_mcc_1_887_0_0: return 0x1803EC060;
+		//case e_build::_build_mcc_1_1035_0_0: return 0x1801F9290;
+		//case e_build::_build_mcc_1_1186_0_0: return 0x1801F6420;
+		//case e_build::_build_mcc_1_1211_0_0: return 0x1801F6B60;
+		//case e_build::_build_mcc_1_1246_0_0: return 0x1801EF600;
 		case e_build::_build_mcc_1_1270_0_0: return 0x1801EF690;
 		case e_build::_build_mcc_1_1305_0_0: return 0x1801EF7A0;
+		//case e_build::_build_mcc_1_1350_0_0: return 0x1801F1620;
 		}
 	}
 	return ~uintptr_t ();
@@ -704,8 +723,15 @@ uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
+		//case e_build::_build_mcc_1_824_0_0: return 0x180734900;
+		//case e_build::_build_mcc_1_887_0_0: return 0x1803EB790;
+		//case e_build::_build_mcc_1_1035_0_0: return 0x1801F8A00;
+		//case e_build::_build_mcc_1_1186_0_0: return 0x1801F5B90;
+		//case e_build::_build_mcc_1_1211_0_0: return 0x1801F62D0;
+		//case e_build::_build_mcc_1_1246_0_0: return 0x1801EED70;
 		case e_build::_build_mcc_1_1270_0_0: return 0x1801EEE00;
 		case e_build::_build_mcc_1_1305_0_0: return 0x1801EEF10;
+		//case e_build::_build_mcc_1_1350_0_0: return 0x1801F0D90;
 		}
 	}
 	return ~uintptr_t ();
