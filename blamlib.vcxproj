@@ -19,25 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\cache\cache_files.cpp" />
-    <ClCompile Include="source\cseries\asserts\assert_handler.cpp" />
-    <ClCompile Include="source\cseries\cseries.cpp" />
-    <ClCompile Include="source\cseries\cseries_asserts.cpp" />
-    <ClCompile Include="source\cseries\cseries_memory.cpp" />
-    <ClCompile Include="source\cseries\cseries_string.cpp" />
-    <ClCompile Include="source\cseries\events\event_handler.cpp" />
-    <ClCompile Include="source\haloreach\geometry\vertex_definitions.cpp" />
-    <ClCompile Include="source\math\function_definitions.cpp" />
-    <ClCompile Include="source\math\integer_math.cpp" />
-    <ClCompile Include="source\math\polygon_math.cpp" />
-    <ClCompile Include="source\math\real_math.cpp" />
-    <ClCompile Include="source\memory\data.cpp" />
-    <ClCompile Include="source\tag_files\tag_api_interop.cpp" />
-    <ClCompile Include="source\tag_files\tag_groups.cpp" />
-    <ClCompile Include="source\tag_files\tag_group_definitions.cpp" />
-    <ClCompile Include="source\tag_files\tag_resource_internals.cpp" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="source\algorithms\binary_search.h" />
     <ClInclude Include="source\cache\cache_files.h" />
     <ClInclude Include="source\cseries\asserts\assert_handler.h" />
     <ClInclude Include="source\cseries\cseries.h" />
@@ -61,11 +43,15 @@
     <ClInclude Include="source\haloreach\ai\ai_traits.h" />
     <ClInclude Include="source\haloreach\ai\character_definitions.h" />
     <ClInclude Include="source\haloreach\animations\animation_definitions.h" />
+    <ClInclude Include="source\haloreach\big_battle_squad\big_battle_squad.h" />
+    <ClInclude Include="source\haloreach\bitmaps\bitmap_definitions.h" />
     <ClInclude Include="source\haloreach\devices\devices.h" />
     <ClInclude Include="source\haloreach\devices\device_controls.h" />
     <ClInclude Include="source\haloreach\devices\device_machines.h" />
+    <ClInclude Include="source\haloreach\editor\editor_definitions.h" />
     <ClInclude Include="source\haloreach\effects\cheap_particle_system.h" />
     <ClInclude Include="source\haloreach\effects\effects.h" />
+    <ClInclude Include="source\haloreach\effects\effect_scenery.h" />
     <ClInclude Include="source\haloreach\effects\jetwash.h" />
     <ClInclude Include="source\haloreach\effects\material_effect_definitions.h" />
     <ClInclude Include="source\haloreach\effects\screen_effect.h" />
@@ -107,9 +93,14 @@
     <ClInclude Include="source\haloreach\physics\spring_acceleration.h" />
     <ClInclude Include="source\haloreach\physics\water_physics.h" />
     <ClInclude Include="source\haloreach\render_methods\render_method_definitions.h" />
+    <ClInclude Include="source\haloreach\scenario\scenario_definitions.h" />
+    <ClInclude Include="source\haloreach\scenario\scenario_lightmap_definitions.h" />
     <ClInclude Include="source\haloreach\sound\sound_acoustics_definitions.h" />
     <ClInclude Include="source\haloreach\sound\sound_classes.h" />
     <ClInclude Include="source\haloreach\sound\sound_definitions.h" />
+    <ClInclude Include="source\haloreach\structures\cluster_reference_packed.h" />
+    <ClInclude Include="source\haloreach\structures\structure_bsp_definitions.h" />
+    <ClInclude Include="source\haloreach\structures\structure_seams.h" />
     <ClInclude Include="source\haloreach\units\biped_definitions.h" />
     <ClInclude Include="source\haloreach\units\giant_definitions.h" />
     <ClInclude Include="source\haloreach\units\unit_definitions.h" />
@@ -126,11 +117,33 @@
     <ClInclude Include="source\memory\ptr32.h" />
     <ClInclude Include="source\memory\static_arrays.h" />
     <ClInclude Include="source\memory\wrapped_arrays.h" />
+    <ClInclude Include="source\multithreading\primitives\synchronized_value.h" />
+    <ClInclude Include="source\system\system_os_interface.h" />
     <ClInclude Include="source\tag_files\string_ids.h" />
     <ClInclude Include="source\tag_files\tag_api_interop.h" />
     <ClInclude Include="source\tag_files\tag_groups.h" />
     <ClInclude Include="source\tag_files\tag_group_definitions.h" />
     <ClInclude Include="source\tag_files\tag_resource_internals.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\cache\cache_files.cpp" />
+    <ClCompile Include="source\cseries\asserts\assert_handler.cpp" />
+    <ClCompile Include="source\cseries\cseries.cpp" />
+    <ClCompile Include="source\cseries\cseries_asserts.cpp" />
+    <ClCompile Include="source\cseries\cseries_memory.cpp" />
+    <ClCompile Include="source\cseries\cseries_string.cpp" />
+    <ClCompile Include="source\cseries\events\event_handler.cpp" />
+    <ClCompile Include="source\haloreach\geometry\vertex_definitions.cpp" />
+    <ClCompile Include="source\math\function_definitions.cpp" />
+    <ClCompile Include="source\math\integer_math.cpp" />
+    <ClCompile Include="source\math\polygon_math.cpp" />
+    <ClCompile Include="source\math\real_math.cpp" />
+    <ClCompile Include="source\memory\data.cpp" />
+    <ClCompile Include="source\system\system_os_interface.cpp" />
+    <ClCompile Include="source\tag_files\tag_api_interop.cpp" />
+    <ClCompile Include="source\tag_files\tag_groups.cpp" />
+    <ClCompile Include="source\tag_files\tag_group_definitions.cpp" />
+    <ClCompile Include="source\tag_files\tag_resource_internals.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

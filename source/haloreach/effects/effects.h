@@ -1,8 +1,14 @@
 #pragma once
 
+#include <cseries/cseries.h>
+
 /* ---------- constants */
 
-enum
+constexpr tag k_effect_group_tag = 'effe';
+
+/* ---------- types */
+
+struct s_effect_definition
 {
-	k_effect_group_tag = 'effe'
+	// TODO
 };

@@ -45,4 +45,8 @@ struct s_game_globals
 	c_enum<e_language, long> langage;
 	c_typed_tag_block<s_havok_cleanup_globals> havok_cleanup;
 	c_typed_tag_block<s_sound_globals> sound_globals;
+
+	//
+	// TODO: finish
+	//
 };

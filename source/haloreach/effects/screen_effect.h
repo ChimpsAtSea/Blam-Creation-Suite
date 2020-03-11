@@ -1,8 +1,14 @@
 #pragma once
 
+#include <cseries/cseries.h>
+
 /* ---------- constants */
 
-enum
+constexpr tag k_area_screen_effect_group_tag = 'sefc';
+
+/* ---------- types */
+
+struct s_area_screen_effect_definition
 {
-    k_area_screen_effect_group_tag = 'sefc'
+    // TODO
 };

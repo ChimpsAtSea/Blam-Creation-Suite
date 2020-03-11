@@ -4,5 +4,12 @@
 
 enum
 {
-	k_clothwind_group_tag = 'clwd'
+	k_cloth_group_tag = 'clwd'
+};
+
+/* ---------- types */
+
+struct s_cloth_definition
+{
+	// TODO
 };

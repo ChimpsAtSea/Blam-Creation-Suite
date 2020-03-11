@@ -15,59 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\cache\cache_files.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\cseries\asserts\assert_handler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\cseries\events\event_handler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\cseries\cseries.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\cseries\cseries_asserts.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\cseries\cseries_memory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\cseries\cseries_string.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\memory\data.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\tag_files\tag_api_interop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\tag_files\tag_group_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\tag_files\tag_groups.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\tag_files\tag_resource_internals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\math\function_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\math\integer_math.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\math\polygon_math.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\math\real_math.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\haloreach\geometry\vertex_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="source\algorithms\binary_search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="source\cache\cache_files.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -119,54 +69,6 @@
     <ClInclude Include="source\datatypes\static_wide_string.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\memory\allocation_interface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\memory\data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\memory\memory_interface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\memory\ptr32.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\memory\static_arrays.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\memory\wrapped_arrays.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\tag_files\string_ids.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\tag_files\tag_api_interop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\tag_files\tag_group_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\tag_files\tag_groups.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\tag_files\tag_resource_internals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\math\color_math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\math\function_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\math\integer_math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\math\polygon_math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\math\real_math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\haloreach\ai\ai.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -180,6 +82,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\haloreach\ai\character_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\animations\animation_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\haloreach\devices\device_controls.h">
@@ -231,6 +136,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\haloreach\geometry\vertex_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\interface\chud\chud_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\haloreach\items\airstrike.h">
@@ -314,6 +222,9 @@
     <ClInclude Include="source\haloreach\physics\water_physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\haloreach\render_methods\render_method_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="source\haloreach\sound\sound_acoustics_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -338,14 +249,142 @@
     <ClInclude Include="source\haloreach\units\vehicle_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\haloreach\render_methods\render_method_definitions.h">
+    <ClInclude Include="source\math\color_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\haloreach\animations\animation_definitions.h">
+    <ClInclude Include="source\math\function_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\haloreach\interface\chud\chud_definitions.h">
+    <ClInclude Include="source\math\integer_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\math\polygon_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\math\real_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\memory\allocation_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\memory\data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\memory\memory_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\memory\ptr32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\memory\static_arrays.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\memory\wrapped_arrays.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\multithreading\primitives\synchronized_value.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\system\system_os_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tag_files\string_ids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tag_files\tag_api_interop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tag_files\tag_group_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tag_files\tag_groups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\tag_files\tag_resource_internals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\scenario\scenario_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\scenario\scenario_lightmap_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\structures\cluster_reference_packed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\structures\structure_bsp_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\structures\structure_seams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\editor\editor_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\big_battle_squad\big_battle_squad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\effects\effect_scenery.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\bitmaps\bitmap_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\cache\cache_files.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\asserts\assert_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\events\event_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\cseries.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\cseries_asserts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\cseries_memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\cseries\cseries_string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\haloreach\geometry\vertex_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\function_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\integer_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\polygon_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\real_math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\memory\data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\system_os_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tag_files\tag_api_interop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tag_files\tag_group_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tag_files\tag_groups.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tag_files\tag_resource_internals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
