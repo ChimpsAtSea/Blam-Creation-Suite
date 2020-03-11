@@ -51,8 +51,10 @@ enum class e_primitive_type : s_reflection_structure_typeIndex
 	Undefined16,
 	Undefined32,
 	Undefined64,
-	Character,
-	WideCharacter
+	RawCharacter,
+	RawWideCharacter,
+	StaticString,
+	StaticWideString
 };
 
 inline const char* e_primitive_typeToString(e_primitive_type primitiveType)
@@ -87,11 +89,13 @@ inline const char* e_primitive_typeToString(e_primitive_type primitiveType)
 	case e_primitive_type::BitFlag32:			return "BitFlag32";
 	case e_primitive_type::BitFlag64:			return "BitFlag64";
 	case e_primitive_type::Undefined8:			return "Undefined8";
-	case e_primitive_type::Undefined16:		return "Undefined16";
-	case e_primitive_type::Undefined32:		return "Undefined32";
-	case e_primitive_type::Undefined64:		return "Undefined64";
-	case e_primitive_type::Character:			return "Character";
-	case e_primitive_type::WideCharacter:		return "WideCharacter";
+	case e_primitive_type::Undefined16:			return "Undefined16";
+	case e_primitive_type::Undefined32:			return "Undefined32";
+	case e_primitive_type::Undefined64:			return "Undefined64";
+	case e_primitive_type::RawCharacter:		return "RawCharacter";
+	case e_primitive_type::RawWideCharacter:	return "RawWideCharacter";
+	case e_primitive_type::StaticString:		return "c_static_string";
+	case e_primitive_type::StaticWideString:	return "c_static_wide_string";
 	}
 #ifdef FATAL_ERROR
 	FATAL_ERROR(L"Invalid primitive type");

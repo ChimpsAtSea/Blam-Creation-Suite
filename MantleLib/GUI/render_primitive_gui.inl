@@ -104,13 +104,31 @@ void render_primitive_gui(void* field_data, const c_reflection_field& reflection
 		ImGui::CheckboxFlags(pFieldTypeName, pFieldBitFlagDataPointer, bitmask);
 	}
 
-	if constexpr (primitive_type == e_primitive_type::Character)
+	if constexpr (primitive_type == e_primitive_type::RawCharacter)
 	{
-		char* pFieldBitFlagDataPointer = static_cast<char*>(field_data);
-		ImGui::InputText("char[]", pFieldBitFlagDataPointer, reflection_field.array_size);
-
+		char* string_data = static_cast<char*>(field_data);
+		ImGui::InputText("char[]", string_data, reflection_field.array_size);
 	}
 
+	if constexpr (primitive_type == e_primitive_type::RawWideCharacter)
+	{
+		static char buffer[256] = {};
+		ImGui::InputText("wchar_t[]", buffer, 0);
+	}
+
+	if constexpr (primitive_type == e_primitive_type::StaticString)
+	{
+		//char* string_data = static_cast<c_static_string<>>(field_data);
+		static char buffer[256] = {};
+		ImGui::InputText("ascii", buffer, 0);
+	}
+
+	if constexpr (primitive_type == e_primitive_type::StaticWideString)
+	{
+		static char buffer[256] = {};
+		ImGui::InputText("unicode", buffer, 0);
+	}
+	
 	ImGui::Columns(1);
 
 	ImGui::PopID();
@@ -146,6 +164,8 @@ template void render_primitive_gui<e_primitive_type::Undefined8, Undefined8>(voi
 template void render_primitive_gui<e_primitive_type::Undefined16, Undefined16>(void* field_data, const c_reflection_field& reflection_field);
 template void render_primitive_gui<e_primitive_type::Undefined32, Undefined32>(void* field_data, const c_reflection_field& reflection_field);
 template void render_primitive_gui<e_primitive_type::Undefined64, Undefined64>(void* field_data, const c_reflection_field& reflection_field);
-template void render_primitive_gui<e_primitive_type::Character, char>(void* field_data, const c_reflection_field& reflection_field);
-template void render_primitive_gui<e_primitive_type::WideCharacter, wchar_t>(void* field_data, const c_reflection_field& reflection_field);
+template void render_primitive_gui<e_primitive_type::RawCharacter, char>(void* field_data, const c_reflection_field& reflection_field);
+template void render_primitive_gui<e_primitive_type::RawWideCharacter, wchar_t>(void* field_data, const c_reflection_field& reflection_field);
+template void render_primitive_gui<e_primitive_type::StaticString, char>(void* field_data, const c_reflection_field& reflection_field);
+template void render_primitive_gui<e_primitive_type::StaticWideString, wchar_t>(void* field_data, const c_reflection_field& reflection_field);
 

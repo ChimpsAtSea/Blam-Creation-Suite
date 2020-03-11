@@ -4,6 +4,8 @@
 #include "mantlelib-public-pch.h"
 #include "VirtualMemoryContainer.h"
 
+
+
 inline ImGuiDataType e_primitive_typeToImGuiDataType(e_primitive_type primitiveType)
 {
 	switch (primitiveType)
@@ -27,9 +29,9 @@ inline ImGuiDataType e_primitive_typeToImGuiDataType(e_primitive_type primitiveT
 	case e_primitive_type::Enum32:			return ImGuiDataType_S32;
 	case e_primitive_type::Enum64:			return ImGuiDataType_S64;
 	case e_primitive_type::Undefined8:		return ImGuiDataType_S8;
-	case e_primitive_type::Undefined16:	return ImGuiDataType_S16;
-	case e_primitive_type::Undefined32:	return ImGuiDataType_Float;
-	case e_primitive_type::Undefined64:	return ImGuiDataType_Double;
+	case e_primitive_type::Undefined16:		return ImGuiDataType_S16;
+	case e_primitive_type::Undefined32:		return ImGuiDataType_Float;
+	case e_primitive_type::Undefined64:		return ImGuiDataType_Double;
 	}
 	FATAL_ERROR(L"Unsupported primitive type");
 }

@@ -13,6 +13,7 @@ public:
 	e_primitive_type primitive_type;
 	c_reflection_type_container* field_type;
 	uint64_t array_size;
+	uint64_t static_string_size;
 	uint64_t offset;
 	uint64_t data_size;
 	bool is_hidden_by_default;

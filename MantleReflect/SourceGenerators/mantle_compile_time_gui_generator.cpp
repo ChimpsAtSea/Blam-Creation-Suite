@@ -122,70 +122,40 @@ const char* get_primitive_handler_function(e_primitive_type primitiveType)
 {
 	switch (primitiveType)
 	{
-		//case e_primitive_type::Int8:					return "render_primitive_gui_int8";
-		//case e_primitive_type::Int16:					return "render_primitive_gui_int16";
-		//case e_primitive_type::Int32:					return "render_primitive_gui_int32";
-		//case e_primitive_type::Int64:					return "render_primitive_gui_int64";
-		//case e_primitive_type::UInt8:					return "render_primitive_gui_uint8";
-		//case e_primitive_type::UInt16:					return "render_primitive_gui_uint16";
-		//case e_primitive_type::UInt32:					return "render_primitive_gui_uint32";
-		//case e_primitive_type::UInt64:					return "render_primitive_gui_uint64";
-		//case e_primitive_type::Float:					return "render_primitive_gui_float";
-		//case e_primitive_type::Double:					return "render_primitive_gui_double";
-		//case e_primitive_type::Boolean8:				return "render_primitive_gui_boolean8";
-		//case e_primitive_type::Boolean16:				return "render_primitive_gui_boolean16";
-		//case e_primitive_type::Boolean32:				return "render_primitive_gui_boolean32";
-		//case e_primitive_type::Boolean64:				return "render_primitive_gui_boolean64";
-		//case e_primitive_type::Enum8:					return "render_primitive_gui_enum8";
-		//case e_primitive_type::Enum16:					return "render_primitive_gui_enum16";
-		//case e_primitive_type::Enum32:					return "render_primitive_gui_enum32";
-		//case e_primitive_type::Enum64:					return "render_primitive_gui_enum64";
-		//case e_primitive_type::BitField8:				return "render_primitive_gui_bitfield8";
-		//case e_primitive_type::BitField16:				return "render_primitive_gui_bitfield16";
-		//case e_primitive_type::BitField32:				return "render_primitive_gui_bitfield32";
-		//case e_primitive_type::BitField64:				return "render_primitive_gui_bitfield64";
-		//case e_primitive_type::BitFlag8:				return "render_primitive_gui_bitflag8";
-		//case e_primitive_type::BitFlag16:				return "render_primitive_gui_bitflag16";
-		//case e_primitive_type::BitFlag32:				return "render_primitive_gui_bitflag32";
-		//case e_primitive_type::BitFlag64:				return "render_primitive_gui_bitflag64";
-		//case e_primitive_type::Undefined8:				return "render_primitive_gui_undefined8";
-		//case e_primitive_type::Undefined16:			return "render_primitive_gui_undefined16";
-		//case e_primitive_type::Undefined32:			return "render_primitive_gui_undefined32";
-		//case e_primitive_type::Undefined64:			return "render_primitive_gui_undefined64";
-		//case e_primitive_type::Character:				return "render_primitive_gui_character";
-		//case e_primitive_type::WideCharacter:			return "render_primitive_gui_widecharacter";
-	case e_primitive_type::Int8:					return "render_primitive_gui<e_primitive_type::Int8,			 int8_t>";
-	case e_primitive_type::Int16:					return "render_primitive_gui<e_primitive_type::Int16,			 int16_t>";
-	case e_primitive_type::Int32:					return "render_primitive_gui<e_primitive_type::Int32,			 int32_t>";
-	case e_primitive_type::Int64:					return "render_primitive_gui<e_primitive_type::Int64,			 int64_t>";
-	case e_primitive_type::UInt8:					return "render_primitive_gui<e_primitive_type::UInt8,			 uint8_t>";
-	case e_primitive_type::UInt16:					return "render_primitive_gui<e_primitive_type::UInt16,			 uint16_t>";
-	case e_primitive_type::UInt32:					return "render_primitive_gui<e_primitive_type::UInt32,			 uint32_t>";
-	case e_primitive_type::UInt64:					return "render_primitive_gui<e_primitive_type::UInt64,			 uint64_t>";
-	case e_primitive_type::Float:					return "render_primitive_gui<e_primitive_type::Float,			 float>";
-	case e_primitive_type::Double:					return "render_primitive_gui<e_primitive_type::Double,			 double>";
-	case e_primitive_type::Boolean8:				return "render_primitive_gui<e_primitive_type::Boolean8,		 boolean8_t>";
-	case e_primitive_type::Boolean16:				return "render_primitive_gui<e_primitive_type::Boolean16,		 boolean16_t>";
-	case e_primitive_type::Boolean32:				return "render_primitive_gui<e_primitive_type::Boolean32,		 boolean32_t>";
-	case e_primitive_type::Boolean64:				return "render_primitive_gui<e_primitive_type::Boolean64,		 boolean64_t>";
-	case e_primitive_type::Enum8:					return "render_primitive_gui<e_primitive_type::Enum8,			 enum8_t>";
-	case e_primitive_type::Enum16:					return "render_primitive_gui<e_primitive_type::Enum16,			 enum16_t>";
-	case e_primitive_type::Enum32:					return "render_primitive_gui<e_primitive_type::Enum32,			 enum32_t>";
-	case e_primitive_type::Enum64:					return "render_primitive_gui<e_primitive_type::Enum64,			 enum64_t>";
-	case e_primitive_type::BitField8:				return "render_primitive_gui<e_primitive_type::BitField8,		 bitfield8_t>";
-	case e_primitive_type::BitField16:				return "render_primitive_gui<e_primitive_type::BitField16,		 bitfield16_t>";
-	case e_primitive_type::BitField32:				return "render_primitive_gui<e_primitive_type::BitField32,		 bitfield32_t>";
-	case e_primitive_type::BitField64:				return "render_primitive_gui<e_primitive_type::BitField64,		 bitfield64_t>";
-	case e_primitive_type::BitFlag8:				return "render_primitive_gui<e_primitive_type::BitFlag8,		 bitflag8_t>";
-	case e_primitive_type::BitFlag16:				return "render_primitive_gui<e_primitive_type::BitFlag16,		 bitflag16_t>";
-	case e_primitive_type::BitFlag32:				return "render_primitive_gui<e_primitive_type::BitFlag32,		 bitflag32_t>";
-	case e_primitive_type::BitFlag64:				return "render_primitive_gui<e_primitive_type::BitFlag64,		 bitflag64_t>";
-	case e_primitive_type::Undefined8:				return "render_primitive_gui<e_primitive_type::Undefined8,		 Undefined8>";
-	case e_primitive_type::Undefined16:				return "render_primitive_gui<e_primitive_type::Undefined16,	 Undefined16>";
-	case e_primitive_type::Undefined32:				return "render_primitive_gui<e_primitive_type::Undefined32,	 Undefined32>";
-	case e_primitive_type::Undefined64:				return "render_primitive_gui<e_primitive_type::Undefined64,	 Undefined64>";
-	case e_primitive_type::Character:				return "render_primitive_gui<e_primitive_type::Character,		 char>";
-	case e_primitive_type::WideCharacter:			return "render_primitive_gui<e_primitive_type::WideCharacter,	 wchar_t>";
+	case e_primitive_type::Int8:						return "render_primitive_gui<e_primitive_type::Int8,			 int8_t>";
+	case e_primitive_type::Int16:						return "render_primitive_gui<e_primitive_type::Int16,			 int16_t>";
+	case e_primitive_type::Int32:						return "render_primitive_gui<e_primitive_type::Int32,			 int32_t>";
+	case e_primitive_type::Int64:						return "render_primitive_gui<e_primitive_type::Int64,			 int64_t>";
+	case e_primitive_type::UInt8:						return "render_primitive_gui<e_primitive_type::UInt8,			 uint8_t>";
+	case e_primitive_type::UInt16:						return "render_primitive_gui<e_primitive_type::UInt16,			 uint16_t>";
+	case e_primitive_type::UInt32:						return "render_primitive_gui<e_primitive_type::UInt32,			 uint32_t>";
+	case e_primitive_type::UInt64:						return "render_primitive_gui<e_primitive_type::UInt64,			 uint64_t>";
+	case e_primitive_type::Float:						return "render_primitive_gui<e_primitive_type::Float,			 float>";
+	case e_primitive_type::Double:						return "render_primitive_gui<e_primitive_type::Double,			 double>";
+	case e_primitive_type::Boolean8:					return "render_primitive_gui<e_primitive_type::Boolean8,		 boolean8_t>";
+	case e_primitive_type::Boolean16:					return "render_primitive_gui<e_primitive_type::Boolean16,		 boolean16_t>";
+	case e_primitive_type::Boolean32:					return "render_primitive_gui<e_primitive_type::Boolean32,		 boolean32_t>";
+	case e_primitive_type::Boolean64:					return "render_primitive_gui<e_primitive_type::Boolean64,		 boolean64_t>";
+	case e_primitive_type::Enum8:						return "render_primitive_gui<e_primitive_type::Enum8,			 enum8_t>";
+	case e_primitive_type::Enum16:						return "render_primitive_gui<e_primitive_type::Enum16,			 enum16_t>";
+	case e_primitive_type::Enum32:						return "render_primitive_gui<e_primitive_type::Enum32,			 enum32_t>";
+	case e_primitive_type::Enum64:						return "render_primitive_gui<e_primitive_type::Enum64,			 enum64_t>";
+	case e_primitive_type::BitField8:					return "render_primitive_gui<e_primitive_type::BitField8,		 bitfield8_t>";
+	case e_primitive_type::BitField16:					return "render_primitive_gui<e_primitive_type::BitField16,		 bitfield16_t>";
+	case e_primitive_type::BitField32:					return "render_primitive_gui<e_primitive_type::BitField32,		 bitfield32_t>";
+	case e_primitive_type::BitField64:					return "render_primitive_gui<e_primitive_type::BitField64,		 bitfield64_t>";
+	case e_primitive_type::BitFlag8:					return "render_primitive_gui<e_primitive_type::BitFlag8,		 bitflag8_t>";
+	case e_primitive_type::BitFlag16:					return "render_primitive_gui<e_primitive_type::BitFlag16,		 bitflag16_t>";
+	case e_primitive_type::BitFlag32:					return "render_primitive_gui<e_primitive_type::BitFlag32,		 bitflag32_t>";
+	case e_primitive_type::BitFlag64:					return "render_primitive_gui<e_primitive_type::BitFlag64,		 bitflag64_t>";
+	case e_primitive_type::Undefined8:					return "render_primitive_gui<e_primitive_type::Undefined8,		 Undefined8>";
+	case e_primitive_type::Undefined16:					return "render_primitive_gui<e_primitive_type::Undefined16,	 Undefined16>";
+	case e_primitive_type::Undefined32:					return "render_primitive_gui<e_primitive_type::Undefined32,	 Undefined32>";
+	case e_primitive_type::Undefined64:					return "render_primitive_gui<e_primitive_type::Undefined64,	 Undefined64>";
+	case e_primitive_type::RawCharacter:				return "render_primitive_gui<e_primitive_type::RawCharacter,		 char>";
+	case e_primitive_type::RawWideCharacter:			return "render_primitive_gui<e_primitive_type::RawWideCharacter,	 wchar_t>";
+	case e_primitive_type::StaticString:				return "render_primitive_gui<e_primitive_type::StaticString,		 char>";
+	case e_primitive_type::StaticWideString:			return "render_primitive_gui<e_primitive_type::StaticWideString,	 wchar_t>";
 	}
 	return "##UNKNOWN_PRIMITIVE_TYPE##";
 }
@@ -284,8 +254,8 @@ void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_source(con
 			case e_primitive_type::Undefined16:
 			case e_primitive_type::Undefined32:
 			case e_primitive_type::Undefined64:
-			case e_primitive_type::Character:
-			case e_primitive_type::WideCharacter:
+			case e_primitive_type::RawCharacter:
+			case e_primitive_type::RawWideCharacter:
 			default:
 				break;
 			}
