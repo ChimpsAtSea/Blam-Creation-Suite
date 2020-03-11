@@ -63,9 +63,6 @@
     <ClCompile Include="source\math\real_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\haloreach\ai\ai.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\haloreach\geometry\vertex_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -170,109 +167,19 @@
     <ClInclude Include="source\math\real_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\haloreach\ai\actor_combat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\actor_dynamic_firing_position.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\actor_firing_position.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\actor_moving_vehicle_nondirectional_flying.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\actor_perception.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\actor_stimulus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\actors.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\haloreach\ai\ai.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\ai_debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\haloreach\ai\ai_dialogue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\haloreach\ai\ai_fire_teams.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\ai_flocks.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\haloreach\ai\ai_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\ai_hint_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\ai_player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\ai_profile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\ai_reference_frame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\ai_script.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\haloreach\ai\ai_traits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\haloreach\ai\behavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\behavior_misc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\haloreach\ai\character_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\cl_engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\damage_effect_obstacles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\HavokAIManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\HavokAIRigidBodyObstacleGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\HavokPathFollowingBehavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\joint_behavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\ObjectiveStatusDisplay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\performances.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\prop_dialogue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\Puppeteer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\sector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\squads.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\haloreach\ai\TaskManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\haloreach\devices\device_controls.h">
