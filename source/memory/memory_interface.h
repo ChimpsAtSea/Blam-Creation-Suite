@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cseries/cseries.h>
+#include <memory/ptr32.h>
 
 /* ---------- inline code */
 
@@ -70,19 +71,3 @@ inline long long pointer_distance(
 {
 	return static_cast<long long>(reinterpret_cast<qword>(p2) - reinterpret_cast<qword>(p1));
 }
-
-/* ---------- templates */
-
-template <typename t_type>
-class c_pointer32 final
-{
-private:
-	dword m_stored;
-
-public:
-	c_pointer32() : c_pointer32(0) {}
-	c_pointer32(dword stored) : m_stored(stored) {}
-	c_pointer32(c_pointer32<t_type> const &other) : c_pointer32(other.m_stored) {}
-
-	operator bool() const { return m_stored != 0; }
-};

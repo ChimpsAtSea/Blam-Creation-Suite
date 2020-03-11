@@ -31,8 +31,8 @@ public:
     {
         return reinterpret_cast<t_type *>(
             (sizeof(void *) == 8) ?
-                reinterpret_cast<size_t>((reinterpret_cast<unsigned long long>(m_stored) << 2) + 0x50000000) :
-                reinterpret_cast<size_t>(m_stored));
+                static_cast<size_t>((static_cast<unsigned long long>(m_stored) << 2) + 0x50000000) :
+                static_cast<size_t>(m_stored));
     }
 
     t_type &operator[](int index)
