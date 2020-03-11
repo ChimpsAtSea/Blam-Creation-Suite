@@ -56,7 +56,7 @@ typedef	uint64_t			undefined64_t;
 #include "TagGroups.h"
 #define _tag_group_render_method 'rm  '
 #else
-noreflection enum e_tag_group : int32_t {};
+enum noreflection e_tag_group : int32_t {};
 #endif
 
 #include "TagTypes/StringID.h"

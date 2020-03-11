@@ -198,8 +198,7 @@ void c_cache_file::initTagInstances()
 			ppTagInterfacesBuffer[index] = new c_tag_interface(*this, static_cast<uint16_t>(index));
 		}
 	};
-	for (size_t i = 0; i < cache_file_tags_headers->instances.count; i++) createTagFunc(i);
-	//tbb::parallel_for(0u, cache_file_tags_headers->instances.count, createTagFunc);
+	tbb::parallel_for(0u, cache_file_tags_headers->instances.count, createTagFunc);
 }
 
 #pragma optimize( "t", on ) // always prefer fast code here

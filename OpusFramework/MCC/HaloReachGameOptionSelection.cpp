@@ -702,7 +702,7 @@ void HaloReachGameOptionSelection::LoadGameVariant(IDataAccess* pDataAccess, con
 		}
 		else
 		{
-			write_line_verbose(__FUNCTION__"> warning: failed to create game variant from file '%s'");
+			write_line_verbose(__FUNCTION__"> warning: failed to create game variant from file '%s'", pFileName.c_str());
 		}
 		filo.close_file();
 	}

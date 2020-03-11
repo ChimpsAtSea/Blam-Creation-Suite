@@ -2,17 +2,17 @@
 
 #pragma pack(push, 1)
 
-noreflection struct color24
+struct /*noreflection*/ color24
 {
 	unsigned char data[3];
 };
 
-noreflection struct color32
+struct /*noreflection*/ color32
 {
 	unsigned char data[4];
 };
 
-noreflection struct colorf
+struct /*noreflection*/ colorf
 {
 	float data[4];
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-noreflection struct uniclist
+struct /*noreflection*/ uniclist
 {
 
 };

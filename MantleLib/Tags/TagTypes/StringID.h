@@ -1,6 +1,6 @@
 #pragma once
 
-noreflection struct string_id
+struct noreflection string_id
 {
 	uint32_t stringid;
 };

@@ -1,7 +1,7 @@
 #pragma once
 
 template<typename value_type = void>
-noreflection class s_tag_block_definition
+class noreflection s_tag_block_definition
 {
 public:
 	using t_value = value_type;

@@ -1,6 +1,6 @@
 #pragma once
 
-noreflection struct degree
+struct noreflection degree
 {
 	float angle;
 };
