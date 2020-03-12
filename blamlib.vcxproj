@@ -49,6 +49,7 @@
     <ClInclude Include="source\haloreach\devices\device_controls.h" />
     <ClInclude Include="source\haloreach\devices\device_machines.h" />
     <ClInclude Include="source\haloreach\editor\editor_definitions.h" />
+    <ClInclude Include="source\haloreach\effects\camo_effect_definition.h" />
     <ClInclude Include="source\haloreach\effects\cheap_particle_system.h" />
     <ClInclude Include="source\haloreach\effects\effects.h" />
     <ClInclude Include="source\haloreach\effects\effect_scenery.h" />
