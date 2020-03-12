@@ -1,11 +1,10 @@
 #pragma once
 
+#include <cseries/cseries.h>
+
 /* ---------- constants */
 
-enum
-{
-	k_material_effects_group_tag = 'foot'
-};
+constexpr tag k_material_effects_group_tag = 'foot';
 
 /* ---------- types */
 

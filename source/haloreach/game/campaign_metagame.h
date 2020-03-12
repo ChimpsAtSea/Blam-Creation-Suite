@@ -6,10 +6,7 @@
 
 /* ---------- constants */
 
-enum
-{
-    k_maximum_number_of_campaign_metagame_buckets = 1
-};
+constexpr int k_maximum_number_of_campaign_metagame_buckets = 1;
 
 /* ---------- types */
 

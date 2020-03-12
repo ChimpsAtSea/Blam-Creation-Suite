@@ -6,10 +6,7 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_maximum_number_of_jetwash_definitions = 4
-};
+constexpr int k_maximum_number_of_jetwash_definitions = 4;
 
 /* ---------- types */
 

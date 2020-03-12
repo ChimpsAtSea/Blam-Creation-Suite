@@ -10,14 +10,12 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_projectile_group_tag = 'proj',
-	k_maximum_number_of_projectile_material_responses = 200,
-	k_maximum_number_of_projectile_brute_grenades = 1,
-	k_maximum_number_of_projectile_fire_bomb_grenades = 1,
-	k_maximum_number_of_projectile_conical_spreads = 1
-};
+constexpr tag k_projectile_group_tag = 'proj';
+
+constexpr int k_maximum_number_of_projectile_material_responses = 200;
+constexpr int k_maximum_number_of_projectile_brute_grenades = 1;
+constexpr int k_maximum_number_of_projectile_fire_bomb_grenades = 1;
+constexpr int k_maximum_number_of_projectile_conical_spreads = 1;
 
 /* ---------- enumerators */
 

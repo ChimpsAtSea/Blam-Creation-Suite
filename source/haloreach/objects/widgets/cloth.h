@@ -1,11 +1,10 @@
 #pragma once
 
+#include <cseries/cseries.h>
+
 /* ---------- constants */
 
-enum
-{
-	k_cloth_group_tag = 'clwd'
-};
+constexpr tag k_cloth_group_tag = 'clwd';
 
 /* ---------- types */
 

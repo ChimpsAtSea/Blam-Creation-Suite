@@ -12,11 +12,9 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_scenario_group_tag = 'scnr',
-	k_maximum_number_of_scenario_structure_bsps = 32,
-};
+constexpr tag k_scenario_group_tag = 'scnr';
+
+constexpr int k_maximum_number_of_scenario_structure_bsps = 32;
 
 /* ---------- types */
 

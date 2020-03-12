@@ -5,10 +5,7 @@
 
 /* ---------- constants */
 
-enum
-{
-    k_damage_response_group_tag = 'drdf'
-};
+constexpr tag k_damage_response_group_tag = 'drdf';
 
 /* ---------- types */
 

@@ -7,14 +7,9 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_globals_group_tag = 'matg',
-};
+constexpr tag k_globals_group_tag = 'matg';
 
-/* ---------- enumerators */
-
-/* ---------- structures */
+/* ---------- types */
 
 struct s_havok_cleanup_globals
 {

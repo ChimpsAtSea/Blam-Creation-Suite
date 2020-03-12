@@ -7,10 +7,7 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_maximum_number_of_multiplayer_object_definitions = 1
-};
+constexpr int k_maximum_number_of_multiplayer_object_definitions = 1;
 
 /* ---------- types */
 

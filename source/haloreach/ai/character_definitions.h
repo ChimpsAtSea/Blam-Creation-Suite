@@ -1,8 +1,14 @@
 #pragma once
 
+#include <cseries/cseries.h>
+
 /* ---------- constants */
 
-enum
+constexpr tag k_character_group_tag = 'char';
+
+/* ---------- types */
+
+struct s_character_definition
 {
-    k_character_group_tag = 'char'
+	// TODO
 };

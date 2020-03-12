@@ -8,11 +8,9 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_item_group_tag = 'item',
-	k_maximum_number_of_item_predicted_bitmaps = 8,
-};
+constexpr tag k_item_group_tag = 'item';
+
+constexpr int k_maximum_number_of_item_predicted_bitmaps = 8;
 
 /* ---------- types */
 

@@ -9,37 +9,50 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_number_of_node_indices_per_vertex = 4,
-	k_number_of_node_weights_per_vertex = 3,
-	k_maximum_number_of_vertex_buffers_per_mesh = 8,
-	k_maximum_number_of_index_buffers_per_mesh = 2,
-	k_maximum_number_of_materials_per_geometry = 10240,
-	k_maximum_number_of_part_sorting_positions_per_mesh = 65535,
-	k_maximum_number_of_parts_per_mesh = 255,
-	k_maximum_number_of_subparts_per_mesh = 65535,
-	k_maximum_number_of_instance_bucket_instances_per_geometry = 65535,
-	k_maximum_number_of_instance_buckets_per_geometry = 2048,
-	k_maximum_number_of_water_indices_per_geometry = 2621400,
-	k_maximum_number_of_meshes_per_geometry = 8191,
-	k_maximum_number_of_compressions_per_geometry = 65536,
-};
+constexpr int k_number_of_node_indices_per_vertex = 4;
+constexpr int k_number_of_node_weights_per_vertex = 3;
+constexpr int k_maximum_number_of_vertex_buffers_per_mesh = 8;
+constexpr int k_maximum_number_of_index_buffers_per_mesh = 2;
+constexpr int k_maximum_number_of_materials_per_geometry = 10240;
+constexpr int k_maximum_number_of_part_sorting_positions_per_mesh = 65535;
+constexpr int k_maximum_number_of_parts_per_mesh = 255;
+constexpr int k_maximum_number_of_subparts_per_mesh = 65535;
+constexpr int k_maximum_number_of_instance_bucket_instances_per_geometry = 65535;
+constexpr int k_maximum_number_of_instance_buckets_per_geometry = 2048;
+constexpr int k_maximum_number_of_water_indices_per_geometry = 2621400;
+constexpr int k_maximum_number_of_meshes_per_geometry = 8191;
+constexpr int k_maximum_number_of_compressions_per_geometry = 65536;
 
-/* ---------- enumerators */
+/* ---------- types */
 
-enum e_render_geometry_runtime_flags
+struct s_geometry_material
 {
-	_render_geometry_processed_bit,
-	_render_geometry_available_bit,
-	_render_geometry_has_valid_budgets_bit,
-	_render_geometry_manual_resource_creation_bit,
-	_render_geometry_keep_raw_geometry_bit,
-	_render_geometry_dont_use_compressed_vertex_positions_bit,
-	_render_geometry_pca_animation_table_sorted_bit,
-	_render_geometry_has_dual_quat_bit,
-	k_number_of_render_geometry_runtime_flags
+	s_tag_reference render_method;
+	long unknown10;
+	real unknown14;
+	real unknown18;
+	char unknown1C;
+	char unknown1D;
+	char unknown1E;
+	char unknown1F;
+	real unknown20;
+	real unknown24;
+	char unknown28;
+	char unknown29;
+	char unknown2A;
+	char unknown2B;
 };
+static_assert(sizeof(s_geometry_material) == 0x2C);
+
+struct s_sorting_position
+{
+	s_real_plane3d plane;
+	s_real_point3d position;
+	real radius;
+	byte node_indices[k_number_of_node_indices_per_vertex];
+	real node_weights[k_number_of_node_weights_per_vertex];
+};
+static_assert(sizeof(s_sorting_position) == 0x30);
 
 enum e_part_type
 {
@@ -85,6 +98,52 @@ enum e_part_flags
 	_part_draw_cull_rendering_active_camo_bit,
 	k_number_of_part_flags
 };
+
+struct s_part
+{
+	c_tag_block_index<s_geometry_material, short> material_index;
+	c_tag_block_index<s_sorting_position, short> transparent_sorting_index;
+	long index_start;
+	long index_count;
+	short subpart_start;
+	short subpart_count;
+	c_enum<e_part_type, char> part_type;
+	c_enum<e_specialized_render_type, char> specialized_render;
+	c_flags<e_part_flags, word> part_flags;
+	word budget_vertex_count;
+	short : 16;
+};
+static_assert(sizeof(s_part) == 0x18);
+
+struct s_subpart
+{
+	long index_start;
+	long index_count;
+	c_tag_block_index<s_part, short> part_index;
+	word budget_vertex_count;
+	dword analytical_light_index;
+};
+static_assert(sizeof(s_subpart) == 0x10);
+
+struct s_instance_bucket_instance
+{
+	short instance_index;
+};
+static_assert(sizeof(s_instance_bucket_instance) == 0x2);
+
+struct s_instance_bucket
+{
+	c_tag_block_index<struct s_mesh, short> mesh;
+	short definition_index; // TODO: appropriate c_tag_block_index
+	c_typed_tag_block<s_instance_bucket_instance> instances;
+};
+static_assert(sizeof(s_instance_bucket) == 0x10);
+
+struct s_water_instance_start
+{
+	short value;
+};
+static_assert(sizeof(s_water_instance_start) == 0x2);
 
 enum e_mesh_flags
 {
@@ -157,91 +216,6 @@ enum e_index_buffer_type
 	k_number_of_index_buffer_types
 };
 
-enum e_compression_flags
-{
-	_compressed_position_bit,
-	_compressed_texcoord_bit,
-	_compression_optimized_bit,
-	k_number_of_compression_flags
-};
-
-/* ---------- structures */
-
-struct s_geometry_material
-{
-	s_tag_reference render_method;
-	long unknown10;
-	real unknown14;
-	real unknown18;
-	char unknown1C;
-	char unknown1D;
-	char unknown1E;
-	char unknown1F;
-	real unknown20;
-	real unknown24;
-	char unknown28;
-	char unknown29;
-	char unknown2A;
-	char unknown2B;
-};
-static_assert(sizeof(s_geometry_material) == 0x2C);
-
-struct s_sorting_position
-{
-	s_real_plane3d plane;
-	s_real_point3d position;
-	real radius;
-	byte node_indices[k_number_of_node_indices_per_vertex];
-	real node_weights[k_number_of_node_weights_per_vertex];
-};
-static_assert(sizeof(s_sorting_position) == 0x30);
-
-struct s_part
-{
-	c_tag_block_index<s_geometry_material, short> material_index;
-	c_tag_block_index<s_sorting_position, short> transparent_sorting_index;
-	long index_start;
-	long index_count;
-	short subpart_start;
-	short subpart_count;
-	c_enum<e_part_type, char> part_type;
-	c_enum<e_specialized_render_type, char> specialized_render;
-	c_flags<e_part_flags, word> part_flags;
-	word budget_vertex_count;
-	short : 16;
-};
-static_assert(sizeof(s_part) == 0x18);
-
-struct s_subpart
-{
-	long index_start;
-	long index_count;
-	c_tag_block_index<s_part, short> part_index;
-	word budget_vertex_count;
-	dword analytical_light_index;
-};
-static_assert(sizeof(s_subpart) == 0x10);
-
-struct s_instance_bucket_instance
-{
-	short instance_index;
-};
-static_assert(sizeof(s_instance_bucket_instance) == 0x2);
-
-struct s_instance_bucket
-{
-	c_tag_block_index<struct s_mesh, short> mesh;
-	short definition_index; // TODO: appropriate c_tag_block_index
-	c_typed_tag_block<s_instance_bucket_instance> instances;
-};
-static_assert(sizeof(s_instance_bucket) == 0x10);
-
-struct s_water_instance_start
-{
-	short value;
-};
-static_assert(sizeof(s_water_instance_start) == 0x2);
-
 struct s_mesh
 {
 	c_typed_tag_block<s_part> parts;
@@ -264,6 +238,14 @@ struct s_mesh
 	long unknown58;
 };
 static_assert(sizeof(s_mesh) == 0x5C);
+
+enum e_compression_flags
+{
+	_compressed_position_bit,
+	_compressed_texcoord_bit,
+	_compression_optimized_bit,
+	k_number_of_compression_flags
+};
 
 struct s_compression_info
 {
@@ -352,6 +334,19 @@ struct s_geometry_compression_info_constant_buffer
 	c_typed_tag_interop<void> polyart_asset;
 };
 static_assert(sizeof(s_geometry_compression_info_constant_buffer) == 0xC);
+
+enum e_render_geometry_runtime_flags
+{
+	_render_geometry_processed_bit,
+	_render_geometry_available_bit,
+	_render_geometry_has_valid_budgets_bit,
+	_render_geometry_manual_resource_creation_bit,
+	_render_geometry_keep_raw_geometry_bit,
+	_render_geometry_dont_use_compressed_vertex_positions_bit,
+	_render_geometry_pca_animation_table_sorted_bit,
+	_render_geometry_has_dual_quat_bit,
+	k_number_of_render_geometry_runtime_flags
+};
 
 struct s_render_geometry
 {

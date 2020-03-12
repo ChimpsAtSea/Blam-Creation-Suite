@@ -1,11 +1,10 @@
 #pragma once
 
+#include <cseries/cseries.h>
+
 /* ---------- constants */
 
-enum
-{
-    k_unit_dialogue_group_tag = 'udlg'
-};
+constexpr tag k_unit_dialogue_group_tag = 'udlg';
 
 /* ---------- types */
 

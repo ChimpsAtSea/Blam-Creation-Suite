@@ -7,10 +7,7 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_scenery_group_tag = 'scen'
-};
+constexpr tag k_scenery_group_tag = 'scen';
 
 /* ---------- types */
 

@@ -4,18 +4,15 @@
 #include <math/real_math.h>
 #include <memory/static_arrays.h>
 #include <tag_files/tag_groups.h>
-#include <editor/editor_definitions.h>
-#include <structures/cluster_reference_packed.h>
+#include <haloreach/editor/editor_definitions.h>
+#include <haloreach/structures/cluster_reference_packed.h>
 
 /* ---------- constants */
 
-enum
-{
-	k_maximum_number_of_scenario_acoustic_sector_points = 32,
-	k_maximum_number_of_scenario_acoustic_sectors = 300,
-	k_maximum_number_of_scenario_acoustic_transitions = k_maximum_number_of_scenario_acoustic_sectors,
-	k_maximum_number_of_scenario_acoustic_palette_entries = 128,
-};
+constexpr int k_maximum_number_of_scenario_acoustic_sector_points = 32;
+constexpr int k_maximum_number_of_scenario_acoustic_sectors = 300;
+constexpr int k_maximum_number_of_scenario_acoustic_transitions = k_maximum_number_of_scenario_acoustic_sectors;
+constexpr int k_maximum_number_of_scenario_acoustic_palette_entries = 128;
 
 /* ---------- types */
 

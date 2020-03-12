@@ -5,7 +5,4 @@
 
 /* ---------- constants */
 
-enum
-{
-    k_damage_effect_group_tag = 'jpt!'
-};
+constexpr tag k_damage_effect_group_tag = 'jpt!';

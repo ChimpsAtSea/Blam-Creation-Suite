@@ -5,10 +5,7 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_maximum_number_of_scenario_editor_folders = 32767,
-};
+constexpr int k_maximum_number_of_scenario_editor_folders = 32767;
 
 /* ---------- types */
 

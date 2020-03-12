@@ -6,10 +6,7 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_machine_group_tag = 'mach'
-};
+constexpr tag k_machine_group_tag = 'mach';
 
 /* ---------- types */
 

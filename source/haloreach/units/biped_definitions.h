@@ -8,10 +8,7 @@
 
 /* ---------- constants */
 
-enum
-{
-    k_biped_group_tag = 'bipd'
-};
+constexpr tag k_biped_group_tag = 'bipd';
 
 /* ---------- types */
 

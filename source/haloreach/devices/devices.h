@@ -8,10 +8,7 @@
 
 /* ---------- constants */
 
-enum
-{
-    k_device_group_tag = 'devi'
-};
+constexpr tag k_device_group_tag = 'devi';
 
 /* ---------- types */
 

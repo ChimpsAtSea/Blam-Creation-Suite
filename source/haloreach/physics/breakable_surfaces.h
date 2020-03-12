@@ -5,11 +5,8 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_maximum_number_of_breakable_surfaces = 32,
-	k_maximum_number_of_breakable_surface_keys = 8192,
-};
+constexpr int k_maximum_number_of_breakable_surfaces = 32;
+constexpr int k_maximum_number_of_breakable_surface_keys = 8192;
 
 /* ---------- types */
 

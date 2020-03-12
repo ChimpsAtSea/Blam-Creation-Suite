@@ -4,10 +4,7 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_model_animation_graph_group_tag = 'jmad'
-};
+constexpr tag k_model_animation_graph_group_tag = 'jmad';
 
 /* ---------- classes */
 

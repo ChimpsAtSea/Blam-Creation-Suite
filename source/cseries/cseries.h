@@ -48,14 +48,14 @@ enum : unsigned __int32
 	k_uint32_bits = 32Ui32,
 };
 
-enum : __int64
+enum : long long
 {
 	k_int64_max = 9223372036854775807i64,
 	k_int64_min = -k_int64_max - 1i64,
 	k_int64_bits = 64i64,
 };
 
-enum : unsigned __int64
+enum : unsigned long long
 {
 	k_uint64_max = 18446744073709551615Ui64,
 	k_uint64_bits = 64Ui64,

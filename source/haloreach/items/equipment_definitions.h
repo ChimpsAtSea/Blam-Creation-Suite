@@ -12,10 +12,7 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_equipment_group_tag = 'eqip'
-};
+constexpr tag k_equipment_group_tag = 'eqip';
 
 /* ---------- types */
 

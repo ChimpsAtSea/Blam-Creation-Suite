@@ -7,10 +7,7 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_control_group_tag = 'ctrl'
-};
+constexpr tag k_control_group_tag = 'ctrl';
 
 /* ---------- types */
 

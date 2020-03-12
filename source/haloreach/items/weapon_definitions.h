@@ -9,23 +9,21 @@
 
 /* ---------- constants */
 
-enum
-{
-    k_weapon_group_tag = 'weap',
-	k_maximum_number_of_weapon_melee_damage_parameters = 2,
-	k_maximum_number_of_weapon_tracking_types = 16,
-	k_maximum_number_of_weapon_target_tracking_parameters = 1,
-	k_maximum_number_of_weapon_first_person_interfaces = 2,
-	k_maximum_number_of_weapon_predicted_resources = NONE,
-	k_maximum_number_of_weapon_magazine_objects = 8,
-	k_maximum_number_of_weapon_magazines = 2,
-	k_maximum_number_of_weapon_trigger_charging_fire_fractions = 16,
-	k_maximum_number_of_weapon_triggers = 2,
-	k_maximum_number_of_weapon_barrel_first_person_offsets = 3,
-	k_maximum_number_of_weapon_barrel_firing_effects = 5,
-	k_maximum_number_of_weapon_barrels = 2,
-	k_maximum_number_of_weapon_screen_effects = 4
-};
+constexpr tag k_weapon_group_tag = 'weap';
+
+constexpr int k_maximum_number_of_weapon_melee_damage_parameters = 2;
+constexpr int k_maximum_number_of_weapon_tracking_types = 16;
+constexpr int k_maximum_number_of_weapon_target_tracking_parameters = 1;
+constexpr int k_maximum_number_of_weapon_first_person_interfaces = 2;
+constexpr int k_maximum_number_of_weapon_predicted_resources = NONE;
+constexpr int k_maximum_number_of_weapon_magazine_objects = 8;
+constexpr int k_maximum_number_of_weapon_magazines = 2;
+constexpr int k_maximum_number_of_weapon_trigger_charging_fire_fractions = 16;
+constexpr int k_maximum_number_of_weapon_triggers = 2;
+constexpr int k_maximum_number_of_weapon_barrel_first_person_offsets = 3;
+constexpr int k_maximum_number_of_weapon_barrel_firing_effects = 5;
+constexpr int k_maximum_number_of_weapon_barrels = 2;
+constexpr int k_maximum_number_of_weapon_screen_effects = 4;
 
 /* ---------- types */
 

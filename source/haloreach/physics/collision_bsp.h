@@ -8,7 +8,7 @@
 
 struct s_bsp3d_node
 {
-	__int64 node_data_designator;
+	long long node_data_designator;
 };
 static_assert(sizeof(s_bsp3d_node) == 0x8);
 

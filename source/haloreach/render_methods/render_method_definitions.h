@@ -7,11 +7,8 @@
 
 /* ---------- constants */
 
-enum
-{
-    k_render_method_group_tag = 'rm  ',
-	k_render_method_shader_group_tag = 'rmsh',
-};
+constexpr tag k_render_method_group_tag = 'rm  ';
+constexpr tag k_render_method_shader_group_tag = 'rmsh';
 
 /* ---------- types */
 

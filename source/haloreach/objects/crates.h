@@ -7,10 +7,7 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_crate_group_tag = 'bloc'
-};
+constexpr tag k_crate_group_tag = 'bloc';
 
 /* ---------- types */
 

@@ -10,20 +10,18 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_object_group_tag = 'obje',
-	k_maximum_number_of_object_early_mover_obbs = 1,
-	k_maximum_number_of_object_ai_properties = 1,
-	k_maximum_number_of_object_functions = 256,
-	k_maximum_number_of_object_function_interpolations = 2,
-	k_maximum_number_of_object_runtime_interpolator_functions = k_maximum_number_of_object_functions,
-	k_maximum_number_of_object_attachments = 48,
-	k_maximum_number_of_object_widgets = 4,
-	k_maximum_number_of_object_change_colors = 4,
-	k_maximum_number_of_object_change_color_initial_permutations = 32,
-	k_maximum_number_of_object_change_color_functions = k_maximum_number_of_object_change_colors,
-};
+constexpr tag k_object_group_tag = 'obje';
+
+constexpr int k_maximum_number_of_object_early_mover_obbs = 1;
+constexpr int k_maximum_number_of_object_ai_properties = 1;
+constexpr int k_maximum_number_of_object_functions = 256;
+constexpr int k_maximum_number_of_object_function_interpolations = 2;
+constexpr int k_maximum_number_of_object_runtime_interpolator_functions = k_maximum_number_of_object_functions;
+constexpr int k_maximum_number_of_object_attachments = 48;
+constexpr int k_maximum_number_of_object_widgets = 4;
+constexpr int k_maximum_number_of_object_change_colors = 4;
+constexpr int k_maximum_number_of_object_change_color_initial_permutations = 32;
+constexpr int k_maximum_number_of_object_change_color_functions = k_maximum_number_of_object_change_colors;
 
 /* ---------- types */
 

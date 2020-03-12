@@ -6,11 +6,8 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_cheap_particle_emitter_group_tag = 'cpem',
-	k_cheap_particle_type_library_group_tag = 'cptl',
-};
+constexpr tag k_cheap_particle_emitter_group_tag = 'cpem';
+constexpr tag k_cheap_particle_type_library_group_tag = 'cptl';
 
 /* ---------- types */
 
