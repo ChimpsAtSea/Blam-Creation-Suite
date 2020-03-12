@@ -1,8 +1,14 @@
 #pragma once
 
+#include <cseries/cseries.h>
+
 /* ---------- constants */
 
-enum
+constexpr tag k_collision_damage_group_tag = 'cddf';
+
+/* ---------- types */
+
+struct s_collision_damage_definition
 {
-	k_collision_damage_group_tag = 'cddf'
+	// TODO
 };

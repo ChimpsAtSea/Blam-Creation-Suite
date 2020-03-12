@@ -7,7 +7,12 @@
 
 /* ---------- constants */
 
-enum
+constexpr tag k_vehicle_group_tag = 'vehi';
+
+/* ---------- types */
+
+struct s_vehicle_definition :
+    s_unit_definition
 {
-    k_vehicle_group_tag = 'vehi'
+    // TODO
 };

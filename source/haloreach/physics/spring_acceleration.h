@@ -6,11 +6,9 @@
 
 /* ---------- constants */
 
-enum
-{
-    k_spring_acceleration_group_tag = 'sadt',
-	k_maximum_number_of_spring_linear_accelerations = 3, // x, y, z
-};
+constexpr tag k_spring_acceleration_group_tag = 'sadt';
+
+constexpr int k_maximum_number_of_spring_linear_accelerations = 3; // x, y, z
 
 /* ---------- types */
 

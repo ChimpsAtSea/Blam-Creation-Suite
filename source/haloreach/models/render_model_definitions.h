@@ -7,17 +7,15 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_render_model_group_tag = 'mode',
-	k_maximum_number_of_render_model_regions = 32,
-	k_maximum_number_of_render_model_permutations = 1023,
-	k_number_of_render_model_permutation_instance_bitvectors = 4,
-	k_maximum_number_of_render_model_instance_placements = 128,
-	k_maximum_number_of_render_model_nodes = 255,
-	k_maximum_number_of_render_model_marker_groups = 4096,
-	k_maximum_number_of_render_model_markers = 4096,
-};
+constexpr tag k_render_model_group_tag = 'mode';
+
+constexpr int k_maximum_number_of_render_model_regions = 32;
+constexpr int k_maximum_number_of_render_model_permutations = 1023;
+constexpr int k_number_of_render_model_permutation_instance_bitvectors = 4;
+constexpr int k_maximum_number_of_render_model_instance_placements = 128;
+constexpr int k_maximum_number_of_render_model_nodes = 255;
+constexpr int k_maximum_number_of_render_model_marker_groups = 4096;
+constexpr int k_maximum_number_of_render_model_markers = 4096;
 
 /* ---------- types */
 

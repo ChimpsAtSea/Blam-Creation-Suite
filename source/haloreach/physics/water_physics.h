@@ -7,11 +7,8 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_maximum_number_of_water_physics_hull_surfaces = 64,
-	k_maximum_number_of_water_physics_material_overrides = 512
-};
+constexpr int k_maximum_number_of_water_physics_hull_surfaces = 64;
+constexpr int k_maximum_number_of_water_physics_material_overrides = 512;
 
 /* ---------- types */
 

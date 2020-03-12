@@ -14,11 +14,8 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_structure_bsp_group_tag = 'sbsp',
-	k_structure_design_group_tag = 'sddt',
-};
+constexpr tag k_structure_bsp_group_tag = 'sbsp';
+constexpr tag k_structure_design_group_tag = 'sddt';
 
 /* ---------- types */
 

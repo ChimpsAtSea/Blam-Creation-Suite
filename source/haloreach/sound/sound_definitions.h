@@ -6,13 +6,11 @@
 
 /* ---------- constants */
 
-enum
-{
-	k_sound_environment_group_tag = 'snde',
-	k_cache_file_sound_group_tag = '$#!+',
-	k_sound_group_tag = 'snd!',
-	k_sound_looping_group_tag = 'lsnd',
-};
+constexpr tag k_sound_environment_group_tag = 'snde';
+constexpr tag k_cache_file_sound_group_tag = '$#!+';
+constexpr tag k_sound_group_tag = 'snd!';
+constexpr tag k_sound_looping_group_tag = 'lsnd';
+constexpr tag k_sound_cache_file_gestalt_group_tag = 'ugh!';
 
 /* ---------- types */
 
@@ -51,7 +49,7 @@ struct s_sound_definition_playback_parameters
 struct s_sound_cache_file_gestalt_definition
 {
 	c_typed_tag_block<s_sound_platform_codec> platform_codecs;
-
+	// TODO: finish
 };
 
 struct s_cache_file_sound_definition
@@ -92,4 +90,5 @@ struct s_looping_sound_definition
 
 struct s_sound_environment_definition
 {
+	// TODO
 };

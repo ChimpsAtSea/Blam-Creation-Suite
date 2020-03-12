@@ -9,24 +9,22 @@
 
 /* ---------- constants */
 
-enum
-{
-    k_unit_group_tag = 'unit',
-    k_maximum_number_of_unit_screen_effect_references = 4,
-    k_maximum_number_of_unit_camera_track_references = 4,
-    k_maximum_number_of_unit_camera_acceleration_displacements = 1,
-    k_maximum_number_of_unit_camera_gamepad_stick_functions = 1,
-    k_maximum_number_of_unit_camera_gamepad_stick_overrides = 1,
-    k_maximum_number_of_unit_postures = NONE,
-    k_maximum_number_of_unit_hud_references = NONE,
-    k_maximum_number_of_unit_dialogue_variants = 16,
-    k_maximum_number_of_unit_powered_seats = 2,
-    k_maximum_number_of_unit_weapons = 4,
-    k_maximum_number_of_unit_target_tracking_types = 16,
-    k_maximum_number_of_unit_target_trackings = 1,
-    k_maximum_number_of_unit_seats = 64,
-    k_maximum_number_of_unit_boarding_seats = k_maximum_number_of_unit_seats,
-};
+constexpr tag k_unit_group_tag = 'unit';
+
+constexpr int k_maximum_number_of_unit_screen_effect_references = 4;
+constexpr int k_maximum_number_of_unit_camera_track_references = 4;
+constexpr int k_maximum_number_of_unit_camera_acceleration_displacements = 1;
+constexpr int k_maximum_number_of_unit_camera_gamepad_stick_functions = 1;
+constexpr int k_maximum_number_of_unit_camera_gamepad_stick_overrides = 1;
+constexpr int k_maximum_number_of_unit_postures = NONE;
+constexpr int k_maximum_number_of_unit_hud_references = NONE;
+constexpr int k_maximum_number_of_unit_dialogue_variants = 16;
+constexpr int k_maximum_number_of_unit_powered_seats = 2;
+constexpr int k_maximum_number_of_unit_weapons = 4;
+constexpr int k_maximum_number_of_unit_target_tracking_types = 16;
+constexpr int k_maximum_number_of_unit_target_trackings = 1;
+constexpr int k_maximum_number_of_unit_seats = 64;
+constexpr int k_maximum_number_of_unit_boarding_seats = k_maximum_number_of_unit_seats;
 
 /* ---------- types */
 

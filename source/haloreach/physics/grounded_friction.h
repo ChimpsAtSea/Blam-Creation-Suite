@@ -1,8 +1,14 @@
 #pragma once
 
+#include <cseries/cseries.h>
+
 /* ---------- constants */
 
-enum
+constexpr tag k_grounded_friction_group_tag = 'grfr';
+
+/* ---------- types */
+
+struct s_grounded_friction_definition
 {
-    k_grounded_friction_group_tag = 'grfr'
+	// TODO
 };

@@ -98,6 +98,7 @@
     <ClInclude Include="source\haloreach\sound\sound_acoustics_definitions.h" />
     <ClInclude Include="source\haloreach\sound\sound_classes.h" />
     <ClInclude Include="source\haloreach\sound\sound_definitions.h" />
+    <ClInclude Include="source\haloreach\sound\sound_scenery.h" />
     <ClInclude Include="source\haloreach\structures\cluster_reference_packed.h" />
     <ClInclude Include="source\haloreach\structures\structure_bsp_definitions.h" />
     <ClInclude Include="source\haloreach\structures\structure_seams.h" />

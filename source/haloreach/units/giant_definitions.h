@@ -7,7 +7,12 @@
 
 /* ---------- constants */
 
-enum
+constexpr tag k_giant_group_tag = 'gint';
+
+/* ---------- types */
+
+struct s_giant_definition :
+    s_unit_definition
 {
-    k_giant_group_tag = 'gint'
+    // TODO
 };

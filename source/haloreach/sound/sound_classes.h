@@ -1,5 +1,11 @@
 #pragma once
 
+#include <cseries/cseries.h>
+
+/* ---------- constants */
+
+constexpr tag k_sound_classes_group_tag = 'sncl';
+
 /* ---------- types */
 
 enum e_sound_class
@@ -76,4 +82,9 @@ enum e_sound_class
 	_sound_class_weapon_ready_third_person,
 	_sound_class_ui_music,
 	k_number_of_sound_classes
+};
+
+struct s_sound_classes_definition
+{
+	// TODO
 };
