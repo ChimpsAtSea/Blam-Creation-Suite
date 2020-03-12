@@ -342,6 +342,9 @@
     <ClInclude Include="source\haloreach\effects\camo_effect_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\haloreach\game\player_avatar_awards.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\cache\cache_files.cpp">

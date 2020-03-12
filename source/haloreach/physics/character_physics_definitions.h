@@ -75,8 +75,8 @@ struct s_character_physics_definition
 	real height_crouching;
 	real radius;
 	real mass;
-	string_id living_material_name;
-	string_id dead_material_name;
+	string_id living_material_name; // collision material used when character is alive
+	string_id dead_material_name; // collision material used when character is dead
 	short runtime_global_material_type; // <--- TODO: block index
 	short runtime_dead_global_material_type; // <--- TODO: block index
 	s_tag_block dead_sphere_shapes;
