@@ -9,40 +9,40 @@
 
 /* ---------- constants */
 
-enum : __int8
+enum : signed char
 {
 	k_int8_max = 127i8,
 	k_int8_min = -k_int8_max - 1i8,
 	k_int8_bits = 8i8,
 };
 
-enum : unsigned __int8
+enum : unsigned char
 {
 	k_uint8_max = 255Ui8,
 	k_uint8_bits = 8Ui8,
 };
 
-enum : __int16
+enum : short
 {
 	k_int16_max = 32767i16,
 	k_int16_min = -k_int16_max - 1i16,
 	k_int16_bits = 16i16,
 };
 
-enum : unsigned __int16
+enum : unsigned short
 {
 	k_uint16_max = 65535Ui16,
 	k_uint16_bits = 16Ui16,
 };
 
-enum : __int32
+enum : long
 {
 	k_int32_max = 2147483647i32,
 	k_int32_min = -k_int32_max - 1i32,
 	k_int32_bits = 32i32,
 };
 
-enum : unsigned __int32
+enum : unsigned long
 {
 	k_uint32_max = 4294967295Ui32,
 	k_uint32_bits = 32Ui32,

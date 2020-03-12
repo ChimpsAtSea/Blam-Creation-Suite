@@ -1,4 +1,5 @@
 #include <cseries/cseries.h>
+#include <stddef.h>
 
 /* ---------- code */
 
@@ -8,7 +9,7 @@ char *tag_to_string(
 {
 	assert(string);
 
-	for (int i = 0; i < sizeof(tag); i++)
+	for (size_t i = 0; i < sizeof(tag); i++)
 		string[3 - i] = static_cast<char>(m_value >> (i * 8));
 
 	string[sizeof(tag)] = '\0';
@@ -23,7 +24,7 @@ tag string_to_tag(
 
 	tag result = 0;
 
-	for (int i = 0; i < sizeof(tag); i++)
+	for (size_t i = 0; i < sizeof(tag); i++)
 		result |= static_cast<tag>(string[3 - i]) << (i * 8);
 
 	return result;

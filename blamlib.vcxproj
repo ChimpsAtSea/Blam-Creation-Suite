@@ -62,6 +62,7 @@
     <ClInclude Include="source\haloreach\game\game_globals.h" />
     <ClInclude Include="source\haloreach\game\game_powerups.h" />
     <ClInclude Include="source\haloreach\game\multiplayer_definitions.h" />
+    <ClInclude Include="source\haloreach\game\player_achievements.h" />
     <ClInclude Include="source\haloreach\geometry\geometry_definitions.h" />
     <ClInclude Include="source\haloreach\geometry\vertex_definitions.h" />
     <ClInclude Include="source\haloreach\interface\chud\chud_definitions.h" />

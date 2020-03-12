@@ -333,6 +333,9 @@
     <ClInclude Include="source\haloreach\sound\sound_scenery.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\haloreach\game\player_achievements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\cache\cache_files.cpp">
