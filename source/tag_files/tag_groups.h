@@ -4,7 +4,6 @@
 #include <memory/memory_interface.h>
 #include <memory/static_arrays.h>
 #include <tag_files/string_ids.h>
-#include <tag_files/tag_group_definitions.h>
 
 /* ---------- types */
 
@@ -21,17 +20,17 @@ struct s_tag_block
 {
 	long count;
 	c_ptr32<byte> address;
-	c_ptr32<s_tag_block_definition> definition;
+	long : 32; // unused definition
 };
 static_assert(sizeof(s_tag_block) == 0xC);
 
 struct s_tag_data
 {
 	long size;
-	long stream_flags;
-	long stream_offset;
+	long : 32; // unused stream_flags;
+	long : 32; // unused stream_offset;
 	c_ptr32<byte> address;
-	c_ptr32<s_tag_data_definition> definition_address;
+	long : 32; // unused definition
 };
 static_assert(sizeof(s_tag_data) == 0x14);
 
@@ -40,12 +39,6 @@ struct s_tag_function
 	s_tag_data data;
 };
 static_assert(sizeof(s_tag_function) == 0x14);
-
-/* ---------- globals */
-
-extern s_tag_block_definition g_bit_vector_block;
-extern s_tag_block_definition g_tag_reference_block;
-extern s_struct_definition g_tag_function_struct;
 
 /* ---------- prototypes/TAG_GROUPS.CPP */
 

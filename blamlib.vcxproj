@@ -75,6 +75,7 @@
     <ClInclude Include="source\haloreach\items\weapon_definitions.h" />
     <ClInclude Include="source\haloreach\models\model_definitions.h" />
     <ClInclude Include="source\haloreach\models\render_model_definitions.h" />
+    <ClInclude Include="source\haloreach\motor\death_program_selection_definitions.h" />
     <ClInclude Include="source\haloreach\motor\mover.h" />
     <ClInclude Include="source\haloreach\objects\crates.h" />
     <ClInclude Include="source\haloreach\objects\damage.h" />
@@ -112,7 +113,7 @@
     <ClInclude Include="source\haloreach\units\unit_dialogue.h" />
     <ClInclude Include="source\haloreach\units\vehicle_definitions.h" />
     <ClInclude Include="source\math\color_math.h" />
-    <ClInclude Include="source\math\function_definitions.h" />
+    <ClInclude Include="source\haloreach\math\function_definitions.h" />
     <ClInclude Include="source\math\integer_math.h" />
     <ClInclude Include="source\math\polygon_math.h" />
     <ClInclude Include="source\math\real_math.h" />
@@ -127,7 +128,6 @@
     <ClInclude Include="source\tag_files\string_ids.h" />
     <ClInclude Include="source\tag_files\tag_api_interop.h" />
     <ClInclude Include="source\tag_files\tag_groups.h" />
-    <ClInclude Include="source\tag_files\tag_group_definitions.h" />
     <ClInclude Include="source\tag_files\tag_resource_internals.h" />
   </ItemGroup>
   <ItemGroup>
@@ -139,7 +139,6 @@
     <ClCompile Include="source\cseries\cseries_string.cpp" />
     <ClCompile Include="source\cseries\events\event_handler.cpp" />
     <ClCompile Include="source\haloreach\geometry\vertex_definitions.cpp" />
-    <ClCompile Include="source\math\function_definitions.cpp" />
     <ClCompile Include="source\math\integer_math.cpp" />
     <ClCompile Include="source\math\polygon_math.cpp" />
     <ClCompile Include="source\math\real_math.cpp" />
@@ -147,7 +146,6 @@
     <ClCompile Include="source\system\system_os_interface.cpp" />
     <ClCompile Include="source\tag_files\tag_api_interop.cpp" />
     <ClCompile Include="source\tag_files\tag_groups.cpp" />
-    <ClCompile Include="source\tag_files\tag_group_definitions.cpp" />
     <ClCompile Include="source\tag_files\tag_resource_internals.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -15,7 +15,6 @@ enum e_function_output_modifier
 
 	k_number_of_function_output_modifiers
 };
-extern s_enum_definition g_function_output_modifier_enum;
 
 enum e_function_variable_type
 {
@@ -44,7 +43,6 @@ enum e_function_variable_type
 
 	k_number_of_function_variable_types
 };
-extern s_enum_definition g_function_variable_type_enum;
 
 enum e_function_runtime_m_flags
 {

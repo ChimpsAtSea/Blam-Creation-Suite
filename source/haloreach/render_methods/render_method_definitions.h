@@ -108,8 +108,3 @@ public:
 	string_id material_name;
 };
 static_assert(sizeof(c_render_method_shader) == sizeof(c_render_method) + 0x4);
-
-/* ---------- globals */
-
-extern s_tag_group g_render_method_group;
-extern s_tag_group g_render_method_shader_group;

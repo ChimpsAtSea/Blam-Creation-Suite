@@ -252,9 +252,6 @@
     <ClInclude Include="source\math\color_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\math\function_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\math\integer_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -292,9 +289,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\tag_files\tag_api_interop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\tag_files\tag_group_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\tag_files\tag_groups.h">
@@ -345,6 +339,12 @@
     <ClInclude Include="source\haloreach\game\player_avatar_awards.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\haloreach\motor\death_program_selection_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\haloreach\math\function_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\cache\cache_files.cpp">
@@ -371,9 +371,6 @@
     <ClCompile Include="source\haloreach\geometry\vertex_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\math\function_definitions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\math\integer_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -390,9 +387,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\tag_files\tag_api_interop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\tag_files\tag_group_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\tag_files\tag_groups.cpp">
