@@ -78,7 +78,3 @@ enum e_damage_reporting_type
 	_damage_reporting_type_hornet,
 	k_number_of_damage_reporting_types
 };
-
-/* ---------- globals */
-
-extern s_enum_definition g_damage_reporting_type_enum;

@@ -349,7 +349,3 @@ struct s_scenario_object
 {
 	// TODO
 };
-
-/* ---------- globals */
-
-extern s_tag_group g_object_group;

@@ -40,7 +40,3 @@ struct s_crate_definition : s_object_definition
 	long self_destruction_timer;
 };
 static_assert(sizeof(s_crate_definition) == sizeof(s_object_definition) + 0x14);
-
-/* ---------- globals */
-
-extern s_tag_group g_crate_group;

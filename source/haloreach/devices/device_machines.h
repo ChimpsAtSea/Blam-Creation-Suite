@@ -63,7 +63,3 @@ struct s_machine_definition : s_device_definition
 	string_id shield_function;
 };
 static_assert(sizeof(s_machine_definition) == sizeof(s_device_definition) + 0x20);
-
-/* ---------- globals */
-
-extern s_tag_group g_machine_group;

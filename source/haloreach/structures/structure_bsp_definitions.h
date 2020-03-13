@@ -607,9 +607,3 @@ struct s_structure_bsp_definition
 	c_structure_bsp_resource_interface resource_interface;
 };
 static_assert(sizeof(s_structure_bsp_definition) == 0x544);
-
-/* ---------- globals */
-
-extern s_tag_block_definition g_structure_bsp_cluster_block;
-extern s_tag_group g_structure_bsp_group;
-extern s_tag_group g_structure_design_group;

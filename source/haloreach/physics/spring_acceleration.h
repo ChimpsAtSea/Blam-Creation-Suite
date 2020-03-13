@@ -36,7 +36,3 @@ struct s_spring_acceleration_definition
 	short : 16;
 };
 static_assert(sizeof(s_spring_acceleration_definition) == 0x14);
-
-/* ---------- globals */
-
-extern s_tag_group g_spring_acceleration_group;

@@ -53,7 +53,3 @@ struct s_object_type_definition
 
 	// TODO
 };
-
-/* ---------- globals */
-
-extern s_enum_definition g_object_type_enum;

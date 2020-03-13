@@ -91,7 +91,3 @@ struct s_campaign_metagame_bucket
     short : 16;
 };
 static_assert(sizeof(s_campaign_metagame_bucket) == 0x8);
-
-/* ---------- globals */
-
-extern s_tag_block_definition g_campaign_metagame_bucket_block;

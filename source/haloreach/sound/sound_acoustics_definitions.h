@@ -71,7 +71,6 @@ struct s_scenario_acoustics_palette_entry
 	s_scenario_acoustics_ambience ambience;
 };
 static_assert(sizeof(s_scenario_acoustics_palette_entry) == 0x78);
-extern s_tag_block_definition g_scenario_acoustics_palette_block;
 
 struct s_real_sector_point
 {
@@ -90,7 +89,6 @@ struct s_scenario_acoustic_sector
 	real sink;
 };
 static_assert(sizeof(s_scenario_acoustic_sector) == 0x38);
-extern s_tag_block_definition g_scenario_acoustic_sectors_block;
 
 struct s_scenario_acoustic_location
 {
@@ -113,7 +111,6 @@ struct s_scenario_acoustic_transition
 	short : 16;
 };
 static_assert(sizeof(s_scenario_acoustic_transition) == 0x44);
-extern s_tag_block_definition g_scenario_acoustic_transitions_block;
 
 class __declspec(novtable) c_sector_accessor
 {

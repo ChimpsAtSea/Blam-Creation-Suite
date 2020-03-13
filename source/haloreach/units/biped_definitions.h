@@ -198,7 +198,3 @@ struct s_biped_definition : s_unit_definition
 	s_biped_ground_fitting_data ground_fitting_data;
 };
 static_assert(sizeof(s_biped_definition) == sizeof(s_unit_definition) + 0x2BC);
-
-/* -------- globals */
-
-extern s_tag_group g_biped_group;

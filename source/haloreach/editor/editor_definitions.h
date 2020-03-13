@@ -13,7 +13,3 @@ struct s_scenario_editor_folder
 {
 	// TODO
 };
-
-/* ---------- globals */
-
-extern s_tag_block_definition g_scenario_editor_folders_block;

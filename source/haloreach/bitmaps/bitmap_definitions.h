@@ -470,7 +470,3 @@ struct s_bitmap_texture_interop_resource
 	c_typed_tag_interop<s_bitmap_texture_resource> bitmap;
 };
 static_assert(sizeof(s_bitmap_texture_interop_resource) == 0xC);
-
-/* ---------- globals */
-
-extern s_tag_group g_bitmap_group;

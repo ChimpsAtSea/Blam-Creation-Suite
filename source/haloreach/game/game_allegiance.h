@@ -17,7 +17,3 @@ enum e_campaign_team
     _campaign_team_covenant_player,
     k_number_of_campaign_teams
 };
-
-/* ---------- globals */
-
-extern s_enum_definition g_campaign_team_enum;

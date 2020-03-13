@@ -238,7 +238,3 @@ struct s_render_model_definition
 	c_typed_tag_block<s_default_node_orientation> runtime_node_orientations;
 };
 static_assert(sizeof(s_render_model_definition) == 0x264);
-
-/* ---------- globals */
-
-extern s_tag_group g_render_model_group;

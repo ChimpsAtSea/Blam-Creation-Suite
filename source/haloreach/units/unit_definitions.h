@@ -527,9 +527,3 @@ struct s_unit_definition : s_object_definition
     s_tag_reference exit_and_detach_weapon;
 };
 static_assert(sizeof(s_unit_definition) == sizeof(s_object_definition) + 0x3A0);
-
-/* ---------- globals */
-
-extern s_tag_block_definition g_unit_seat_block;
-extern s_tag_block_definition g_unit_trick_block;
-extern s_tag_group g_unit_group;

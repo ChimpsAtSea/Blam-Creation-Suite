@@ -39,7 +39,3 @@ struct s_control_definition : s_device_definition
 	s_tag_reference deny;
 };
 static_assert(sizeof(s_control_definition) == sizeof(s_device_definition) + 0x3C);
-
-/* ---------- globals */
-
-extern s_tag_group g_control_group;

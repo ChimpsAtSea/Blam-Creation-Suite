@@ -405,9 +405,3 @@ struct s_render_geometry_api_resource_definition
 	c_typed_tag_block<s_render_geometry_api_index_buffer_reference> index_buffers;
 };
 static_assert(sizeof(s_render_geometry_api_resource_definition) == 0x30);
-
-/* ---------- globals */
-
-extern s_tag_block_definition g_render_geometry_mesh_block;
-extern s_tag_block_definition g_geometry_material_block;
-extern s_struct_definition g_render_geometry_struct;

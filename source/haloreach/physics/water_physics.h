@@ -62,8 +62,3 @@ struct s_water_physics_hull_surface_definition
 	c_typed_tag_block<s_water_physics_material_override> material_overrides;
 };
 static_assert(sizeof(s_water_physics_hull_surface_definition) == 0x18);
-
-/* ---------- globals */
-
-extern s_enum_definition g_water_density_enum;
-extern s_tag_block_definition g_water_physics_hull_surface_definition_block;

@@ -15,15 +15,3 @@ enum e_ai_sound_volume
     _ai_sound_volume_quiet,
     k_number_of_ai_sound_volumes
 };
-
-/* ---------- globals */
-
-extern s_enum_definition g_ai_sound_volume_enum;
-
-/* ---------- prototypes/AI.CPP */
-
-void ai_initialize();
-void ai_dispose();
-void ai_update();
-
-void ai_get_center_of_mass(long object_index, s_real_point3d *center_of_mass);

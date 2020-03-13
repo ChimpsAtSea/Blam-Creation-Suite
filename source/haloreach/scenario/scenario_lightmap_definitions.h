@@ -222,9 +222,3 @@ struct s_scenario_lightmap
 	s_tag_block unused;
 };
 static_assert(sizeof(s_scenario_lightmap) == 0x24);
-
-/* ---------- globals */
-
-extern s_tag_group g_scenario_lightmap_bsp_data_group;
-extern s_tag_group g_scenario_wetness_bsp_data_group;
-extern s_tag_group g_scenario_lightmap_group;

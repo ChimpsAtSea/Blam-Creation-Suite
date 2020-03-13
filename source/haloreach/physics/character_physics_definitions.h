@@ -86,7 +86,3 @@ struct s_character_physics_definition
 	s_character_flying_physics_definition flying_physics;
 };
 static_assert(sizeof(s_character_physics_definition) == 0xB8);
-
-/* ---------- globals */
-
-extern s_struct_definition g_character_physics_definition_struct;

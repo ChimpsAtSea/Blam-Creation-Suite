@@ -117,7 +117,3 @@ struct s_multiplayer_object_definition
 		k_number_of_multiplayer_object_boundary_shapes];
 };
 static_assert(sizeof(s_multiplayer_object_definition) == 0xBC);
-
-/* ---------- globals */
-
-extern s_tag_block_definition g_multiplayer_object_definition_block;

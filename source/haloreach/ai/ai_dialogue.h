@@ -320,7 +320,3 @@ struct s_ai_dialogue_globals
 	c_typed_tag_block<s_ai_dialogue_predicted_vocalization> predicted_vocalizations;
 };
 static_assert(sizeof(s_ai_dialogue_globals) == 0x7C);
-
-/* ---------- globals */
-
-extern s_tag_group g_ai_dialogue_globals_group;

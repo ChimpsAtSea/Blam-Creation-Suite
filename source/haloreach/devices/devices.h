@@ -56,8 +56,3 @@ struct s_device_definition : s_object_definition
     real automatic_activation_radius;
 };
 static_assert(sizeof(s_device_definition) == sizeof(s_object_definition) + 0x98);
-
-/* ---------- globals */
-
-extern s_tag_reference_definition g_device_effect_sound_reference;
-extern s_tag_group g_device_group;

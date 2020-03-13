@@ -29,7 +29,6 @@ enum e_scenario_type
 	_scenario_type_shared_multiplayer,
 	k_number_of_scenario_types
 };
-extern s_enum_definition g_scenario_type_enum;
 
 enum e_scenario_load_type
 {
@@ -40,7 +39,6 @@ enum e_scenario_load_type
 	_scenario_load_shared_multiplayer,
 	k_number_of_scenario_load_types
 };
-extern s_enum_definition g_scenario_loade_type_enum;
 
 enum e_scenario_flags
 {
@@ -62,7 +60,6 @@ enum e_scenario_flags
 	_scenario_unknown15_bit,
 	k_number_of_scenario_flags
 };
-extern s_enum_definition g_scenario_flags_enum;
 
 enum e_scenario_structure_bsp_reference_flags
 {
@@ -115,7 +112,6 @@ struct s_scenario_structure_bsp_reference
 	real custom_gravity_scale;
 };
 static_assert(sizeof(s_scenario_structure_bsp_reference) == 0xAC);
-extern s_tag_block_definition g_scenario_structure_bsp_reference_block;
 
 struct s_scenario_design_reference
 {
@@ -599,7 +595,3 @@ struct s_scenario
 	c_typed_tag_block<s_scenario_structured_buffer_interop> structured_buffer_interop;
 };
 static_assert(sizeof(s_scenario) == 0x884);
-
-/* ---------- globals */
-
-extern s_tag_group g_scenario_group;

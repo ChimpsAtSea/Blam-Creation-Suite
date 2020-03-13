@@ -14,7 +14,3 @@ struct s_model_definition
 {
 	// TODO
 };
-
-/* ---------- globals */
-
-extern s_tag_group g_model_group;

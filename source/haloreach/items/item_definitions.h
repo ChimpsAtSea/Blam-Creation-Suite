@@ -66,7 +66,3 @@ struct s_item_definition : s_object_definition
 	s_tag_reference grounded_friction_settings;
 };
 static_assert(sizeof(s_item_definition) == sizeof(s_object_definition) + 0xBC);
-
-/* ---------- globals */
-
-extern s_tag_group g_item_group;

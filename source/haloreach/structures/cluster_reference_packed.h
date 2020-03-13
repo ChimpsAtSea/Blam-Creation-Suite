@@ -21,7 +21,3 @@ struct s_cluster_reference
 	};
 };
 static_assert(sizeof(s_cluster_reference) == 0x2);
-
-/* ---------- globals */
-
-extern s_struct_definition g_cluster_reference_struct;

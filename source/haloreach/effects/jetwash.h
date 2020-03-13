@@ -21,7 +21,3 @@ struct s_jetwash_definition
 	real particle_offset;
 };
 static_assert(sizeof(s_jetwash_definition) == 0x24);
-
-/* ---------- globals */
-
-extern s_tag_block_definition g_jetwash_definition_block;

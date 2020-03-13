@@ -725,8 +725,3 @@ struct s_weapon_definition : s_item_definition
 	c_typed_tag_block<s_weapon_screen_effect> screen_effects;
 };
 static_assert(sizeof(s_weapon_definition) == sizeof(s_item_definition) + 0x2CC);
-
-/* ---------- globals */
-
-extern s_tag_block_definition g_weapon_barrel_definition_block;
-extern s_tag_group g_weapon_group;

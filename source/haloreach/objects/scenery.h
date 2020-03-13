@@ -48,7 +48,3 @@ struct s_scenario_scenery
 {
     // TODO
 };
-
-/* ---------- globals */
-
-extern s_tag_group g_scenery_group;

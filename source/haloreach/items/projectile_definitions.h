@@ -246,7 +246,3 @@ struct s_projectile_definition : s_object_definition
 	s_tag_reference grounded_friction_settings;
 };
 static_assert(sizeof(s_projectile_definition) == sizeof(s_object_definition) + 0x1F8);
-
-/* ---------- globals */
-
-extern s_tag_group g_projectile_group;
