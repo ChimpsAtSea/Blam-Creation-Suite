@@ -214,8 +214,8 @@ bool __fastcall c_opus_game_engine_host::Function27()
 bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* pUnknown)
 {
 	// set resolution to 4k
-	pUnknown->VIDEO_SizeX = 3840;
-	pUnknown->VIDEO_SizeY = 2160;
+	pUnknown->VIDEO_SizeX = c_window::get_width();
+	pUnknown->VIDEO_SizeY = c_window::get_height();
 
 	pUnknown->VIDEO_FPS_Lock = false;
 	pUnknown->VIDEO_Wait_VSync = false;
@@ -233,11 +233,13 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* pUnk
 	return !(pUnknown->VIDEO_FPS_Lock || pUnknown->VIDEO_Wait_VSync);
 }
 
-__int64 __fastcall c_opus_game_engine_host::Member29(__int64 value)
+__int64 __fastcall c_opus_game_engine_host::Function29(__int64 value)
 {
-	RUNONCE({ write_line_verbose("IOpusGameEngineHost::Member29"); });
-	static char buffer[155] = {};
-	return reinterpret_cast<int64_t>(&buffer[0]);
+	RUNONCE({ write_line_verbose("IOpusGameEngineHost::Function29"); });
+
+
+	static PlayerConfiguration player_configuration = {};
+	return reinterpret_cast<int64_t>(&player_configuration);
 }
 
 __int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration)

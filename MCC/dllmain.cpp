@@ -10,9 +10,6 @@ const char* c_console::g_console_executable_name = "MCC";
 bool s_isHaloReachHooked = false;
 bool s_isHalo1Hooked = false;
 
-void init_lz4lib();
-void deinit_lz4lib();
-
 bool initThreadIsHooked = false;
 void nullsub() {}
 
@@ -114,13 +111,11 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 	{
 	case DLL_PROCESS_ATTACH:
 	{
-		init_lz4lib();
 		init_opus();
 	}
 	break;
 	case DLL_PROCESS_DETACH:
 	{
-		deinit_lz4lib();
 		deinit_opus();
 	}
 	break;

@@ -21,6 +21,67 @@ FunctionHookVarArgsEx<sub_18019BC50_offset, __int64 __fastcall (__int64*, const 
 	return sub_18019BC50(a1, pFormat, args);
 } };
 
+uintptr_t security_check_cookie_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180BBA050);
+	return ~uintptr_t();
+}
+
+
+
+uintptr_t sub_18005B520_offset(e_engine_type engine_type, e_build build)
+{
+	if (engine_type == _engine_type_halo1)
+	{
+		switch (build)
+		{
+		case _build_mcc_1_1389_0_0: return 0x18005B520;
+		}
+	}
+	return ~uintptr_t();
+}
+FunctionHookVarArgsEx<sub_18005B520_offset, char __fastcall(unsigned int a1)> sub_18005B520 = { "sub_18005B520", [](unsigned int a1)
+{
+	return (char)0;
+	//return sub_18005B520(a1);
+} };
+
+
+
+
+
+
+
+//void __fastcall /*__declspec(naked) */security_check_cookie_hook()
+//{
+//	//write_line_verbose("security_check_cookie");
+//}
+//FunctionHookVarArgsEx<security_check_cookie_offset, void()> security_check_cookie = { "security_check_cookie", security_check_cookie_hook };
+
+//uintptr_t security_check_cookie_call_offset(e_engine_type engine_type, e_build build)
+//{
+//	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18005C699);
+//	return ~uintptr_t();
+//}
+//DataPatch<security_check_cookie_call_offset> security_check_cookie_patch = { [](e_engine_type engine_type, e_build build, char* patch, DataPatchPacket& packet)
+//{
+//	// Enable tag edits
+//	packet = MAKE_DATAPATCHPACKET(patch, 5);
+//
+//	DWORD oldProtect;
+//	BOOL virtualProtectResult = VirtualProtect(patch, 5, PAGE_READWRITE, &oldProtect);
+//	ASSERT(virtualProtectResult != 0);
+//
+//	patch[0] = 0x90i8; // nop
+//	patch[1] = 0x90i8; // nop
+//	patch[2] = 0x90i8; // nop
+//	patch[3] = 0x90i8; // nop
+//	patch[4] = 0x90i8; // nop
+//
+//	BOOL virtualProtectResult2 = VirtualProtect(patch, 5, oldProtect, &oldProtect);
+//	ASSERT(virtualProtectResult2 != 0);
+//} };
+
 
 
 

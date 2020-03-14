@@ -253,8 +253,9 @@ public:
 		char    unknown200[512];
 		char    unknown400[512];
 		char    unknown600[128];
+		char    unknown680[0x21C];
 	};
-	CHECK_STRUCTURE_SIZE(PlayerConfiguration, 0x680);
+	CHECK_STRUCTURE_SIZE(PlayerConfiguration, 0x89C);
 
 	struct s_transport_address;
 
@@ -287,7 +288,7 @@ public:
 	/* 26 */ virtual bool __fastcall Function26();
 	/* 27 */ virtual bool __fastcall Function27();
 	/* 28 */ virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* pUnknown);
-	/* 29 */ virtual __int64 __fastcall Member29(__int64 value);
+	/* 29 */ virtual __int64 __fastcall Function29(__int64 value);
 	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration);
 	/* 31 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer);
 	/* 32 */ virtual void Function32(_QWORD, float*);

@@ -132,7 +132,6 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="liblz4.cpp" />
     <ClCompile Include="lz4.c" />
     <ClCompile Include="MCCHooks.cpp" />
   </ItemGroup>

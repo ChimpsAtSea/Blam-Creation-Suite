@@ -37,7 +37,7 @@ public:
 	virtual bool __fastcall Function26() override;
 	virtual bool __fastcall Function27() override;
 	virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* pUnknown) override;
-	virtual __int64 __fastcall Member29(__int64 value) override;
+	virtual __int64 __fastcall Function29(__int64 value) override;
 	virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration) override;
 	virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer) override;
 	virtual void Function32(_QWORD, float*) override;

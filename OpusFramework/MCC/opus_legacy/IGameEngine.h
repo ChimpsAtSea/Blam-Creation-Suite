@@ -45,8 +45,8 @@ public: // instance functions
 	virtual __forceinline __int64 __fastcall InitGraphics(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContext, IDXGISwapChain* pSwapchain, IDXGISwapChain* pFallbackSwapchain);
 	virtual HANDLE __fastcall InitThread(class IGameEngineHost* pGameEngineHost, GameContext* pGameContext);
 	virtual __int64 __fastcall UpdateEngineState(eEngineState status, _QWORD* extraArgument = nullptr);
-	virtual void __fastcall Member04();
-	virtual void __fastcall Member05();
+	virtual void __fastcall Member04(ID3D11Device* pDevice);
+	virtual void __fastcall Member05(int map_id);
 	virtual void __fastcall Member06();
 	virtual void __fastcall Member07();
 	virtual void __fastcall Member08();
@@ -55,29 +55,14 @@ public: // instance functions
 
 	// #INTELLISENSE
 	IGameEngine(__IGameEngine& game_engine, e_build build);
-};
-static constexpr size_t IGameEngineBaseSize = sizeof(IGameEngine);
-static_assert_64(IGameEngineBaseSize == 0x8, "IGameEngineBase is incorrect size");
 
-//
-//class IGameEngineHaloReach : public IGameEngine
-//{
-//public:
-//	DWORD unknown8;
-//	float GameSpeed;
-//	char unknown10[1056];
-//	SLIST_HEADER header430;
-//	SLIST_HEADER header440;
-//	char unknown450[16];
-//};
-//static constexpr size_t IGameEngineSize = sizeof(IGameEngineHaloReach);
-//static_assert_64(IGameEngineSize == 0x460, "IGameEngineHaloReach is incorrect size");
-//static constexpr size_t unknown8Offset = offsetof(IGameEngineHaloReach, IGameEngineHaloReach::unknown8);
-//static_assert_64(unknown8Offset == 0x8, "unknown8 is incorrect offset");
-//static constexpr size_t header430Offset = offsetof(IGameEngineHaloReach, IGameEngineHaloReach::header430);
-//static_assert_64(header430Offset == 0x430, "header430 is incorrect offset");
-//static constexpr size_t header440Offset = offsetof(IGameEngineHaloReach, IGameEngineHaloReach::header440);
-//static_assert_64(header440Offset == 0x440, "header440 is incorrect offset");
+	DWORD unknown8;
+	float GameSpeed;
+	char unknown10[1056];
+	SLIST_HEADER header430;
+	SLIST_HEADER header440;
+	char unknown450[16];
+};
 
 
 #else
@@ -174,9 +159,15 @@ class __IGameEngine // raw data
 {
 	friend class IGameEngine;
 private:
-	void** __vfptr;
-	// #TODO: There is data allocated by the game here. See IGameEngineHaloReach for details
+	void* (&__vfptr)[32];
+	DWORD unknown8;
+	float GameSpeed;
+	char unknown10[1056];
+	SLIST_HEADER header430;
+	SLIST_HEADER header440;
+	char unknown450[16];
 };
+static_assert(sizeof(__IGameEngine) == 0x460, "__IGameEngine is incorrect size");
 
 class IGameEngine
 {
@@ -201,16 +192,16 @@ public:
 		uint32_t member_10_virtual_function_index = get_game_engine_virtual_function_index(build, __game_engine_virtual_function_member_10);
 
 		_Free = static_cast<decltype(_Free)>(game_engine.__vfptr[free_virtual_function_index]);
-		_InitGraphics = static_cast<decltype(_InitGraphics)>(game_engine.__vfptr[__game_engine_virtual_function_init_graphics]);
-		_InitThread = static_cast<decltype(_InitThread)>(game_engine.__vfptr[__game_engine_virtual_function_init_thread]);
-		_UpdateEngineState = static_cast<decltype(_UpdateEngineState)>(game_engine.__vfptr[__game_engine_virtual_function_update_engine_state]);
-		_Member04 = static_cast<decltype(_Member04)>(game_engine.__vfptr[__game_engine_virtual_function_member_4]);
-		_Member05 = static_cast<decltype(_Member05)>(game_engine.__vfptr[__game_engine_virtual_function_member_5]);
-		_Member06 = static_cast<decltype(_Member06)>(game_engine.__vfptr[__game_engine_virtual_function_member_6]);
-		_Member07 = static_cast<decltype(_Member07)>(game_engine.__vfptr[__game_engine_virtual_function_member_7]);
-		_Member08 = static_cast<decltype(_Member08)>(game_engine.__vfptr[__game_engine_virtual_function_member_8]);
-		_Member09 = static_cast<decltype(_Member09)>(game_engine.__vfptr[__game_engine_virtual_function_member_9]);
-		_Member10 = static_cast<decltype(_Member10)>(game_engine.__vfptr[__game_engine_virtual_function_member_10]);
+		_InitGraphics = static_cast<decltype(_InitGraphics)>(game_engine.__vfptr[init_graphics_virtual_function_index]);
+		_InitThread = static_cast<decltype(_InitThread)>(game_engine.__vfptr[init_thread_virtual_function_index]);
+		_UpdateEngineState = static_cast<decltype(_UpdateEngineState)>(game_engine.__vfptr[update_engine_state_virtual_function_index]);
+		_Member04 = static_cast<decltype(_Member04)>(game_engine.__vfptr[member_4_virtual_function_index]);
+		_Member05 = static_cast<decltype(_Member05)>(game_engine.__vfptr[member_5_virtual_function_index]);
+		_Member06 = static_cast<decltype(_Member06)>(game_engine.__vfptr[member_6_virtual_function_index]);
+		_Member07 = static_cast<decltype(_Member07)>(game_engine.__vfptr[member_7_virtual_function_index]);
+		_Member08 = static_cast<decltype(_Member08)>(game_engine.__vfptr[member_8_virtual_function_index]);
+		_Member09 = static_cast<decltype(_Member09)>(game_engine.__vfptr[member_9_virtual_function_index]);
+		_Member10 = static_cast<decltype(_Member10)>(game_engine.__vfptr[member_10_virtual_function_index]);
 
 		DEBUG_ASSERT(_Free != nullptr);
 		DEBUG_ASSERT(_InitGraphics != nullptr);
@@ -239,8 +230,8 @@ public:
 		IDXGISwapChain* pFallbackSwapchain);
 	typedef HANDLE __fastcall InitThreadFunc(__IGameEngine*, class IGameEngineHost* pGameEngineHost, GameContext* pGameContext);
 	typedef __int64 __fastcall UpdateEngineStateFunc(__IGameEngine*, eEngineState status, _QWORD* extraArgument);
-	typedef void __fastcall Member04Func(__IGameEngine*);
-	typedef void __fastcall Member05Func(__IGameEngine*);
+	typedef void __fastcall Member04Func(__IGameEngine*, ID3D11Device* pDevice);
+	typedef void __fastcall Member05Func(__IGameEngine*, int map_id);
 	typedef void __fastcall Member06Func(__IGameEngine*);
 	typedef void __fastcall Member07Func(__IGameEngine*);
 	typedef void __fastcall Member08Func(__IGameEngine*);
@@ -273,8 +264,8 @@ public:
 	}
 	HANDLE __fastcall InitThread(class IGameEngineHost* pGameEngineHost, GameContext* pGameContext) { return _InitThread(&game_engine, pGameEngineHost, pGameContext); }
 	__int64 __fastcall UpdateEngineState(eEngineState status, _QWORD* extraArgument = nullptr) { return _UpdateEngineState(&game_engine, status, extraArgument); }
-	void __fastcall Member04() { return _Member04(&game_engine); }
-	void __fastcall Member05() { return _Member05(&game_engine); }
+	void __fastcall Member04(ID3D11Device* pDevice) { return _Member04(&game_engine, pDevice); }
+	void __fastcall Member05(int map_id) { return _Member05(&game_engine, map_id); }
 	void __fastcall Member06() { return _Member06(&game_engine); }
 	void __fastcall Member07() { return _Member07(&game_engine); }
 	void __fastcall Member08() { return _Member08(&game_engine); }

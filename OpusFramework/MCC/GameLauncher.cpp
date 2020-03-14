@@ -198,6 +198,7 @@ void GameLauncher::launchHalo1()
 
 	e_game_context_version game_context_version = get_game_context_version_from_build(build);
 	GameContext gameContext(game_context_version);
+	gameContext.is_legacy_mode = true;
 	{
 		//const MapInfo* pSelectedMapInfo = HaloReachGameOptionSelection::GetSelectedMapInfo();
 		e_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
@@ -239,16 +240,26 @@ void GameLauncher::launchHalo1()
 				//HaloReachGameOptionSelection::LoadSavedFilmMetadata(HaloReachGameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
 
 				gameContext.local = HostAddress; // this is set
-				gameContext.host = HostAddress; // this is set
+				//gameContext.host = HostAddress; // this is set
 			}
 			else
 			{
 				gameContext.local = ClientAddress; // this is set
 				gameContext.host = HostAddress;
 			}
+
+			gameContext.peers[0] = gameContext.local;
+			gameContext.players[0].xbox_user_id = ClientAddress.secure_address;
+			if (gameContext.game_context_version == _game_context_version_3)
+			{
+				reinterpret_cast<s_player_context_v2*>(&gameContext.players[0])->__unknown1C = -1;
+			}
 		}
 	}
 
+
+	pGameEngine->Member04(c_render::s_pDevice);
+	pGameEngine->Member05(gameContext.map_id);
 	pGameEngine->InitGraphics(c_render::s_pDevice, c_render::s_pDeviceContext, c_render::s_pSwapChain, c_render::s_pSwapChain);
 
 	{
@@ -272,8 +283,9 @@ void GameLauncher::launchHalo1()
 
 	// #TODO: Absolutely terrible thread sync here
 	{
-		std::thread thread([]() {
-
+		std::thread thread([]() 
+			{
+				while (true) {}
 			WaitForSingleObject(hMainGameThread, INFINITE);
 			s_gameRunning = false;
 			});
@@ -319,7 +331,6 @@ void GameLauncher::launchHaloReach()
 	ASSERT(pCurrentGameHost != nullptr);
 	IGameEngine* pGameEngine = pCurrentGameHost->get_game_engine();
 	ASSERT(pGameEngine != nullptr);
-
 
 	// #TODO: Game specific version of this!!!
 
@@ -409,8 +420,8 @@ void GameLauncher::launchHaloReach()
 
 	// #TODO: Absolutely terrible thread sync here
 	{
-		std::thread thread([]() {
-
+		std::thread thread([]() 
+			{
 			WaitForSingleObject(hMainGameThread, INFINITE);
 			s_gameRunning = false;
 			});
@@ -421,7 +432,6 @@ void GameLauncher::launchHaloReach()
 		}
 		thread.join();
 	}
-
 
 	//HRESULT waitForSingleObjectResult;
 	//do

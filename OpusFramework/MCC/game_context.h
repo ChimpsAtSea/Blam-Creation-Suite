@@ -217,9 +217,8 @@ private:
 			throw;
 		}
 	};
-	c_virtual_game_context_players_interface players;
-
 public:
+	c_virtual_game_context_players_interface players;
 
 	GameContext(e_game_context_version game_context_version) :
 		game_context_v1(),
