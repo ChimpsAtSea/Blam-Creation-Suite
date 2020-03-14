@@ -266,7 +266,8 @@ void GameLauncher::launchHalo1()
 	}
 
 	IGameEngineHost* game_engine_host = pCurrentGameHost->GetDynamicGameEngineHost();
-	static HANDLE hMainGameThread = pGameEngine->InitThread(game_engine_host, &gameContext);
+	static HANDLE hMainGameThread = NULL;
+	hMainGameThread = pGameEngine->InitThread(game_engine_host, &gameContext);
 	c_window::SetPostMessageThreadId(hMainGameThread);
 
 	// #TODO: Absolutely terrible thread sync here
@@ -359,7 +360,7 @@ void GameLauncher::launchHaloReach()
 
 			gameContext.party = SquadAddress; // this is set
 
-			gameContext.game_mode = _game_mode_campaign;
+			gameContext.game_mode = gameMode;
 
 			gameContext.peer_count = 1;
 			gameContext.player_count = 1;
@@ -402,7 +403,8 @@ void GameLauncher::launchHaloReach()
 	}
 	
 	IGameEngineHost* game_engine_host = pCurrentGameHost->GetDynamicGameEngineHost();
-	static HANDLE hMainGameThread = pGameEngine->InitThread(game_engine_host, &gameContext);
+	static HANDLE hMainGameThread = NULL;
+	hMainGameThread = pGameEngine->InitThread(game_engine_host, &gameContext);
 	c_window::SetPostMessageThreadId(hMainGameThread);
 
 	// #TODO: Absolutely terrible thread sync here

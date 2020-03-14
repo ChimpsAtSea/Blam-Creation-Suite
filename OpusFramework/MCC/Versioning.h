@@ -15,24 +15,24 @@ enum e_engine_type : uint8_t
 enum e_build : uint64_t
 {
 	_build_not_set,
-	_build_mcc_1_824_0_0				= MAKE_FILE_VERSION(1, 824, 0, 0),	 
-	_build_mcc_1_887_0_0				= MAKE_FILE_VERSION(1, 887, 0, 0),	 
-	_build_mcc_1_1035_0_0				= MAKE_FILE_VERSION(1, 1035, 0, 0), 
-	_build_mcc_1_1186_0_0				= MAKE_FILE_VERSION(1, 1186, 0, 0), 
-	_build_mcc_1_1211_0_0				= MAKE_FILE_VERSION(1, 1211, 0, 0), 
-	_build_mcc_1_1246_0_0				= MAKE_FILE_VERSION(1, 1246, 0, 0), 
-	_build_mcc_1_1270_0_0				= MAKE_FILE_VERSION(1, 1270, 0, 0), 
-	_build_mcc_1_1305_0_0				= MAKE_FILE_VERSION(1, 1305, 0, 0), 
-	_build_mcc_1_1350_0_0				= MAKE_FILE_VERSION(1, 1350, 0, 0), 
-	_build_mcc_1_1367_0_0				= MAKE_FILE_VERSION(1, 1367, 0, 0),
-	_build_mcc_1_1377_0_0				= MAKE_FILE_VERSION(1, 1377, 0, 0),
-	_build_mcc_1_1387_0_0				= MAKE_FILE_VERSION(1, 1387, 0, 0),
-	_build_mcc_1_1389_0_0				= MAKE_FILE_VERSION(1, 1389, 0, 0),
+	_build_mcc_1_824_0_0 = MAKE_FILE_VERSION(1, 824, 0, 0),
+	_build_mcc_1_887_0_0 = MAKE_FILE_VERSION(1, 887, 0, 0),
+	_build_mcc_1_1035_0_0 = MAKE_FILE_VERSION(1, 1035, 0, 0),
+	_build_mcc_1_1186_0_0 = MAKE_FILE_VERSION(1, 1186, 0, 0),
+	_build_mcc_1_1211_0_0 = MAKE_FILE_VERSION(1, 1211, 0, 0),
+	_build_mcc_1_1246_0_0 = MAKE_FILE_VERSION(1, 1246, 0, 0),
+	_build_mcc_1_1270_0_0 = MAKE_FILE_VERSION(1, 1270, 0, 0),
+	_build_mcc_1_1305_0_0 = MAKE_FILE_VERSION(1, 1305, 0, 0),
+	_build_mcc_1_1350_0_0 = MAKE_FILE_VERSION(1, 1350, 0, 0),
+	_build_mcc_1_1367_0_0 = MAKE_FILE_VERSION(1, 1367, 0, 0),
+	_build_mcc_1_1377_0_0 = MAKE_FILE_VERSION(1, 1377, 0, 0),
+	_build_mcc_1_1387_0_0 = MAKE_FILE_VERSION(1, 1387, 0, 0),
+	_build_mcc_1_1389_0_0 = MAKE_FILE_VERSION(1, 1389, 0, 0),
 	_build_eldorado_1_106708_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 106708), // 1.106708 cert_ms23  Mar 20 2015 17:24:42
-	//_build_eldorado_1_155080_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 155080), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
-	//_build_eldorado_1_171227_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 171227),
-	//_build_eldorado_1_177150_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 177150),
-	//_build_eldorado_1_235640_cert_ms25 = MAKE_PRODUCT_VERSION(0, 1, 235640),
+	_build_eldorado_1_155080_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 155080), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
+	_build_eldorado_1_171227_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 171227), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
+	_build_eldorado_1_177150_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 177150), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
+	_build_eldorado_1_235640_cert_ms25 = MAKE_PRODUCT_VERSION(0, 1, 235640), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
 	_build_eldorado_1_301003_cert_MS26_new = MAKE_PRODUCT_VERSION(0, 1, 301003),
 	_build_eldorado_1_327043_cert_ms26 = MAKE_PRODUCT_VERSION(0, 1, 327043),
 	_build_eldorado_1_332089_Live = MAKE_PRODUCT_VERSION(4, 1, 332089),
@@ -51,6 +51,48 @@ enum e_build : uint64_t
 };
 
 #undef MAKE_FILE_VERSION
+
+inline const char* build_to_string(e_build build)
+{
+	switch (build)
+	{
+	case _build_not_set: return "not_set";
+	case _build_mcc_1_824_0_0: return "mcc_1_824_0_0";
+	case _build_mcc_1_887_0_0: return "mcc_1_887_0_0";
+	case _build_mcc_1_1035_0_0: return "mcc_1_1035_0_0";
+	case _build_mcc_1_1186_0_0: return "mcc_1_1186_0_0";
+	case _build_mcc_1_1211_0_0: return "mcc_1_1211_0_0";
+	case _build_mcc_1_1246_0_0: return "mcc_1_1246_0_0";
+	case _build_mcc_1_1270_0_0: return "mcc_1_1270_0_0";
+	case _build_mcc_1_1305_0_0: return "mcc_1_1305_0_0";
+	case _build_mcc_1_1350_0_0: return "mcc_1_1350_0_0";
+	case _build_mcc_1_1367_0_0: return "mcc_1_1367_0_0";
+	case _build_mcc_1_1377_0_0: return "mcc_1_1377_0_0";
+	case _build_mcc_1_1387_0_0: return "mcc_1_1387_0_0";
+	case _build_mcc_1_1389_0_0: return "mcc_1_1389_0_0";
+	case _build_eldorado_1_106708_cert_ms23: return "eldorado_1_106708_cert_ms23";
+	case _build_eldorado_1_155080_cert_ms23: return "eldorado_1_155080_cert_ms23";
+	case _build_eldorado_1_171227_cert_ms23: return "eldorado_1_171227_cert_ms23";
+	case _build_eldorado_1_177150_cert_ms23: return "eldorado_1_177150_cert_ms23";
+	case _build_eldorado_1_235640_cert_ms25: return "eldorado_1_235640_cert_ms25";
+	case _build_eldorado_1_301003_cert_MS26_new: return "eldorado_1_301003_cert_MS26_new";
+	case _build_eldorado_1_327043_cert_ms26: return "eldorado_1_327043_cert_ms26";
+	case _build_eldorado_1_332089_Live: return "eldorado_1_332089_Live";
+	case _build_eldorado_1_373869_Live: return "eldorado_1_373869_Live";
+	case _build_eldorado_1_416138_Live: return "eldorado_1_416138_Live";
+	case _build_eldorado_1_430653_Live: return "eldorado_1_430653_Live";
+	case _build_eldorado_1_454665_Live: return "eldorado_1_454665_Live";
+	case _build_eldorado_1_479394_Live: return "eldorado_1_479394_Live";
+	case _build_eldorado_1_498295_Live: return "eldorado_1_498295_Live";
+	case _build_eldorado_1_530945_Live: return "eldorado_1_530945_Live";
+	case _build_eldorado_1_533032_Live: return "eldorado_1_533032_Live";
+	case _build_eldorado_1_554482_Live: return "eldorado_1_554482_Live";
+	case _build_eldorado_1_571698_Live: return "eldorado_1_571698_Live";
+	case _build_eldorado_1_604673_Live: return "eldorado_1_604673_Live";
+	case _build_eldorado_1_700255_cert_ms30_oct19: return "eldorado_1_700255_cert_ms30_oct19";
+	}
+	return "<unknown e_build value";
+}
 
 constexpr uintptr_t GetEngineBaseAddress(e_engine_type engine_type)
 {
@@ -128,7 +170,7 @@ constexpr uintptr_t GetEngineTopAddress(e_engine_type engine_type, e_build build
 			// #TODO: Calculate the top address.
 			return 0x18FFFFFFF;
 		}
-}
+	}
 #else
 	if (engine_type == _engine_type_eldorado)
 	{

@@ -23,8 +23,15 @@ public:
 
 	inline signed __int64 __fastcall CreateGameEngine(IGameEngine** ppGameEngine)
 	{
-		ASSERT(pCreateGameEngine != nullptr);
-		return pCreateGameEngine(ppGameEngine);
+		ASSERT(pCreateDataAccess != nullptr);
+		__IGameEngine* game_engine = nullptr;
+		__int64 result = pCreateGameEngine(&game_engine);
+		*ppGameEngine = nullptr;
+		if (game_engine)
+		{
+			*ppGameEngine = new IGameEngine(*game_engine, get_build());
+		}
+		return result;
 	}
 
 	inline errno_t __fastcall SetLibrarySettings(wchar_t* Src)
@@ -52,7 +59,7 @@ private:
 	typedef __int64(__fastcall CreateDataAccessFunc)(__IDataAccess** ppDataAccess);
 	CreateDataAccessFunc* pCreateDataAccess = nullptr;
 
-	typedef signed __int64(__fastcall CreateGameEngineFunc)(IGameEngine** ppGameEngine);
+	typedef signed __int64(__fastcall CreateGameEngineFunc)(__IGameEngine** ppGameEngine);
 	CreateGameEngineFunc* pCreateGameEngine = nullptr;
 
 	typedef errno_t(__fastcall SetLibrarySettingsFunc)(wchar_t* Src);

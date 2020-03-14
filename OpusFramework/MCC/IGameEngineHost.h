@@ -6,6 +6,9 @@ void IGameEngineHostEmptyFunction();
 
 #pragma pack(push, 1)
 
+struct s_session_membership;
+struct s_session_info_part;
+
 enum IGameEngineHostVirtualFunctionIndex
 {
 	__game_engine_virtual_function_frame_start,
