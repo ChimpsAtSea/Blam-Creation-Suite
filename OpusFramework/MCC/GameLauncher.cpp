@@ -216,9 +216,9 @@ void GameLauncher::launchHalo1()
 
 		{
 
-			s_peer_context SquadAddress = { 0x2F385E2E95D4F33E };
-			s_peer_context HostAddress = { 0xDEADBEEFDEADBEEF };
-			s_peer_context ClientAddress = { 0xCAFEBABECAFEBABE };
+			s_peer_context SquadAddress = { 0x2F385E2E95D4F33Ei64 };
+			s_peer_context HostAddress = { 0xDEADBEEFDEADBEEFi64 };
+			s_peer_context ClientAddress = { 0xCAFEBABECAFEBABEi64 };
 
 			gameContext.party = SquadAddress; // this is set
 
@@ -354,9 +354,9 @@ void GameLauncher::launchHaloReach()
 
 		{
 
-			s_peer_context SquadAddress = { 0x2F385E2E95D4F33E };
-			s_peer_context HostAddress = { 0xDEADBEEFDEADBEEF };
-			s_peer_context ClientAddress = { 0xCAFEBABECAFEBABE };
+			s_peer_context SquadAddress = { 0x2F385E2E95D4F33Ei64 };
+			s_peer_context HostAddress = { 0xDEADBEEFDEADBEEFi64 };
+			s_peer_context ClientAddress = { 0xCAFEBABECAFEBABEi64 };
 
 			gameContext.party = SquadAddress; // this is set
 
