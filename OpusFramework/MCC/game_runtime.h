@@ -45,7 +45,7 @@ private:
 
 	std::string m_engineName;
 	LPCSTR m_enginePath = "";
-	e_build m_build = e_build::_build_not_set;
+	e_build m_build = _build_not_set;
 	IDataAccess* m_pDataAccess = nullptr;
 	HMODULE hGameModule = NULL;
 

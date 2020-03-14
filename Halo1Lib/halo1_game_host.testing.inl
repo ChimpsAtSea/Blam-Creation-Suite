@@ -6,7 +6,7 @@ uintptr_t sub_18019BC50_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
-		case e_build::_build_mcc_1_1350_0_0: return 0x18019BC50;
+		case _build_mcc_1_1350_0_0: return 0x18019BC50;
 		}
 	}
 	return ~uintptr_t();

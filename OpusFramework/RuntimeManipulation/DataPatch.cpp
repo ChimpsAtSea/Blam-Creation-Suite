@@ -178,7 +178,7 @@ c_data_patch_base* c_data_patch_base::deinitNode(e_engine_type engine_type, e_bu
 {
 	m_offset = ~uintptr_t();
 	m_engine = _engine_type_not_set;
-	m_build = e_build::_build_not_set;
+	m_build = _build_not_set;
 
 	RevertPatch();
 

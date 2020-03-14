@@ -136,8 +136,8 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function20);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_get_machine_identifier);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function22);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function23);																
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_get_session_info);															
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function23);
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_get_session_info);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_membership_update);															//virtual void Member25(Member25Struct * a1, uint32_t a2);
 	enqueue_function(_build_not_set, _build_mcc_1_1350_0_0, __game_engine_virtual_function_function26); // relocated after 1350									//virtual void Member26();
 	enqueue_function(_build_mcc_1_1035_0_0, _build_not_set, __game_engine_virtual_function_function27);																//virtual void Member27();
@@ -163,25 +163,11 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function47);
 	enqueue_function(_build_mcc_1_1186_0_0, _build_not_set, __game_engine_virtual_function_function48);
 	enqueue_function(_build_mcc_1_1377_0_0, _build_not_set, __game_engine_virtual_function_function49);
+	enqueue_function(_build_mcc_1_1367_0_0, _build_not_set, __game_engine_virtual_function_update_player_names); // relocated after 1350
+	enqueue_function(_build_mcc_1_1367_0_0, _build_not_set, __game_engine_virtual_function_function36); // relocated after 1350
 
 #undef enqueue_function
 
-	switch (build)
-	{
-		case _build_mcc_1_824_0_0 : DEBUG_ASSERT(current_function_index == 43); break;
-		case _build_mcc_1_887_0_0 : DEBUG_ASSERT(current_function_index == 43); break;
-		case _build_mcc_1_1035_0_0: DEBUG_ASSERT(current_function_index == 44); break;
-		case _build_mcc_1_1186_0_0: DEBUG_ASSERT(current_function_index == 47); break;
-		case _build_mcc_1_1211_0_0: DEBUG_ASSERT(current_function_index == 47); break;
-		case _build_mcc_1_1246_0_0: DEBUG_ASSERT(current_function_index == 48); break;
-		case _build_mcc_1_1270_0_0: DEBUG_ASSERT(current_function_index == 48); break;
-		case _build_mcc_1_1305_0_0: DEBUG_ASSERT(current_function_index == 48); break;
-		case _build_mcc_1_1350_0_0: DEBUG_ASSERT(current_function_index == 49); break;
-		case _build_mcc_1_1367_0_0: DEBUG_ASSERT(current_function_index == 47); break;
-		case _build_mcc_1_1377_0_0: DEBUG_ASSERT(current_function_index == 48); break;
-		case _build_mcc_1_1387_0_0: DEBUG_ASSERT(current_function_index == 48); break;
-		case _build_mcc_1_1389_0_0: DEBUG_ASSERT(current_function_index == 48); break;
-	}
 
 	if (build == _build_mcc_1_887_0_0)
 	{
@@ -241,7 +227,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[46] == custom_game_engine_host_vtable[__game_engine_virtual_function_function47]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[47] == custom_game_engine_host_vtable[__game_engine_virtual_function_function48]);
 	}
-	else if(build == _build_mcc_1_1350_0_0)
+	else if (build == _build_mcc_1_1350_0_0)
 	{
 		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_start]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
@@ -292,5 +278,72 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[46] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_path_by_type_wide]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[47] == custom_game_engine_host_vtable[__game_engine_virtual_function_function47]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[48] == custom_game_engine_host_vtable[__game_engine_virtual_function_function48]);
+	}
+	else if (build == _build_mcc_1_1367_0_0)
+	{
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_start]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 2] == custom_game_engine_host_vtable[__game_engine_virtual_function_function44]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 3] == custom_game_engine_host_vtable[__game_engine_virtual_function_function2]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 4] == custom_game_engine_host_vtable[__game_engine_virtual_function_engine_state_update]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 5] == custom_game_engine_host_vtable[__game_engine_virtual_function_game_exited]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 6] == custom_game_engine_host_vtable[__game_engine_virtual_function_write_buffer_to_file]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 7] == custom_game_engine_host_vtable[__game_engine_virtual_function_function6]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 8] == custom_game_engine_host_vtable[__game_engine_virtual_function_function7]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 9] == custom_game_engine_host_vtable[__game_engine_virtual_function_function8]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[10] == custom_game_engine_host_vtable[__game_engine_virtual_function_function9]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[11] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_game_events]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[12] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_game_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[13] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_map_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[14] == custom_game_engine_host_vtable[__game_engine_virtual_function_function13]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[15] == custom_game_engine_host_vtable[__game_engine_virtual_function_function14]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[16] == custom_game_engine_host_vtable[__game_engine_virtual_function_function15]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[17] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_next_level_info]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[18] == custom_game_engine_host_vtable[__game_engine_virtual_function_function17]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[19] == custom_game_engine_host_vtable[__game_engine_virtual_function_function26]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[20] == custom_game_engine_host_vtable[__game_engine_virtual_function_function18]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[21] == custom_game_engine_host_vtable[__game_engine_virtual_function_map_load_percent_status]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[22] == custom_game_engine_host_vtable[__game_engine_virtual_function_function20]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[23] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_machine_identifier]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[24] == custom_game_engine_host_vtable[__game_engine_virtual_function_function22]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[25] == custom_game_engine_host_vtable[__game_engine_virtual_function_function23]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[26] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_session_info]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[27] == custom_game_engine_host_vtable[__game_engine_virtual_function_membership_update]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[28] == custom_game_engine_host_vtable[__game_engine_virtual_function_function27]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[29] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_graphics]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[30] == custom_game_engine_host_vtable[__game_engine_virtual_function_function29]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[31] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_player_configuration]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[32] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_input]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[33] == custom_game_engine_host_vtable[__game_engine_virtual_function_function32]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[34] == custom_game_engine_host_vtable[__game_engine_virtual_function_function33]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[35] == custom_game_engine_host_vtable[__game_engine_virtual_function_xinput_set_state]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[36] == custom_game_engine_host_vtable[__game_engine_virtual_function_function37]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[37] == custom_game_engine_host_vtable[__game_engine_virtual_function_network_send_to]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[38] == custom_game_engine_host_vtable[__game_engine_virtual_function_network_recieve_from]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[39] == custom_game_engine_host_vtable[__game_engine_virtual_function_function41]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[40] == custom_game_engine_host_vtable[__game_engine_virtual_function_firefight_new]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[41] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_path_by_type]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[42] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_path_by_type_wide]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[43] == custom_game_engine_host_vtable[__game_engine_virtual_function_function47]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[44] == custom_game_engine_host_vtable[__game_engine_virtual_function_function48]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[45] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_player_names]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[46] == custom_game_engine_host_vtable[__game_engine_virtual_function_function36]);
+	}
+
+	switch (build)
+	{
+	case _build_mcc_1_824_0_0: DEBUG_ASSERT(current_function_index == 43); break;
+	case _build_mcc_1_887_0_0: DEBUG_ASSERT(current_function_index == 43); break;
+	case _build_mcc_1_1035_0_0: DEBUG_ASSERT(current_function_index == 44); break;
+	case _build_mcc_1_1186_0_0: DEBUG_ASSERT(current_function_index == 47); break;
+	case _build_mcc_1_1211_0_0: DEBUG_ASSERT(current_function_index == 47); break;
+	case _build_mcc_1_1246_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1270_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1305_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1350_0_0: DEBUG_ASSERT(current_function_index == 49); break;
+	case _build_mcc_1_1367_0_0: DEBUG_ASSERT(current_function_index == 47); break;
+	case _build_mcc_1_1377_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1387_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1389_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	}
 }

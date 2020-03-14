@@ -70,6 +70,29 @@ constexpr uintptr_t GetEngineBaseAddress(e_engine_type engine_type)
 	return ~uintptr_t();
 }
 
+enum e_game_context_version
+{
+	_game_context_version_1,
+	_game_context_version_2,
+	_game_context_version_3,
+};
+
+constexpr e_game_context_version get_game_context_version_from_build(e_build build)
+{
+	if (build >= _build_mcc_1_1367_0_0)
+	{
+		return _game_context_version_3;
+	}
+	if (build >= _build_mcc_1_1186_0_0)
+	{
+		return _game_context_version_2;
+	}
+	else
+	{
+		return _game_context_version_1;
+	}
+}
+
 constexpr uintptr_t GetEngineTopAddress(e_engine_type engine_type, e_build build)
 {
 #ifdef _WIN64
@@ -84,23 +107,23 @@ constexpr uintptr_t GetEngineTopAddress(e_engine_type engine_type, e_build build
 		{
 			switch (build)
 			{
-			case e_build::_build_mcc_1_887_0_0:
+			case _build_mcc_1_887_0_0:
 				return 0x184925000;
-			case e_build::_build_mcc_1_1035_0_0:
+			case _build_mcc_1_1035_0_0:
 				return 0x18450D000;
-			case e_build::_build_mcc_1_1186_0_0:
+			case _build_mcc_1_1186_0_0:
 				return 0x183985000;
-			case e_build::_build_mcc_1_1211_0_0:
+			case _build_mcc_1_1211_0_0:
 				return 0x183986000;
-			case e_build::_build_mcc_1_1246_0_0:
+			case _build_mcc_1_1246_0_0:
 				return 0x18397F000;
-			case e_build::_build_mcc_1_1270_0_0:
+			case _build_mcc_1_1270_0_0:
 				return 0x18397F000;
-			case e_build::_build_mcc_1_1305_0_0:
+			case _build_mcc_1_1305_0_0:
 				return 0x18392F000;
 			}
 		}
-		if (build > e_build::_build_not_set)
+		if (build > _build_not_set)
 		{
 			// #TODO: Calculate the top address.
 			return 0x18FFFFFFF;
@@ -111,7 +134,7 @@ constexpr uintptr_t GetEngineTopAddress(e_engine_type engine_type, e_build build
 	{
 		switch (build)
 		{
-		case e_build::_build_eldorado_1_106708_cert_ms23:
+		case _build_eldorado_1_106708_cert_ms23:
 			return 0x06A0B000;
 		}
 	}

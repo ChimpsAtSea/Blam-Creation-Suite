@@ -15,7 +15,7 @@
 
 struct _RTL_CRITICAL_SECTION_DEBUG;
 struct IGameEngineOld;
-struct GameContext;
+class GameContext;
 
 
 

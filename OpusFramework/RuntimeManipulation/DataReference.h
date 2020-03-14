@@ -29,7 +29,7 @@ public:
 			g_pDataReferenceBaseBaseLast = this;
 		}
 
-		if (build != e_build::_build_not_set && IsEngineLoaded(engine_type))
+		if (build != _build_not_set && IsEngineLoaded(engine_type))
 		{
 			initNode(engine_type, build);
 		}
@@ -79,7 +79,7 @@ private:
 		{
 			if (m_pPtr == nullptr)
 			{
-				if (m_build == e_build::_build_not_set)
+				if (m_build == _build_not_set)
 				{
 					ASSERT(m_find_offset_func != nullptr);
 					m_pPtr = getPointer(engine_type, build);
@@ -122,9 +122,9 @@ private:
 				return nullptr;
 			}
 
-			ASSERT(m_build == e_build::_build_not_set && offset >= GetEngineBaseAddress(engine_type)/*, "Offset is out of bounds"*/);
-			ASSERT(m_build == e_build::_build_not_set && offset < GetEngineTopAddress(engine_type, build)/*, "Offset is out of bounds"*/);
-			ASSERT(m_build == e_build::_build_not_set && static_cast<uintptr_t>(offset + m_dataSize) < GetEngineTopAddress(engine_type, build)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == _build_not_set && offset >= GetEngineBaseAddress(engine_type)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == _build_not_set && offset < GetEngineTopAddress(engine_type, build)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == _build_not_set && static_cast<uintptr_t>(offset + m_dataSize) < GetEngineTopAddress(engine_type, build)/*, "Offset is out of bounds"*/);
 		}
 
 		void* pModule = GetEngineMemoryAddress(engine_type);

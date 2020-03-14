@@ -2,11 +2,11 @@
 
 c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule, e_build build)
 	: m_engineName(pEngineName)
-	, m_build(build == e_build::_build_not_set ? GetLibraryBuildVersion(pLibFileName) : build)
+	, m_build(build == _build_not_set ? GetLibraryBuildVersion(pLibFileName) : build)
 	, m_enginePath(pLibFileName)
 {
 
-	if (m_build == e_build::_build_not_set)
+	if (m_build == _build_not_set)
 	{
 		write_line_verbose("Warning: GameRuntime initialized with BuildVersion::NotSet");
 		return;

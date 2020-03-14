@@ -77,7 +77,7 @@ protected:
 	{
 		if (m_engine == engine_type)
 		{
-			if (build == e_build::_build_not_set)
+			if (build == _build_not_set)
 			{
 				return false;
 			}

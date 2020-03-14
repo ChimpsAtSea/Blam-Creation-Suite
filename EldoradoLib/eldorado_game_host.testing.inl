@@ -13,8 +13,8 @@
 
 uintptr_t c_stop_watch__start_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_106708_cert_ms23, 0x005547F0);
-	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_700255_cert_ms30_oct19, 0x004CF170);
+	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x005547F0);
+	OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, 0x004CF170);
 	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<c_stop_watch__start_offset, void()> c_stop_watch__start = { "c_stop_watch__start", []()
@@ -40,8 +40,8 @@ FunctionHookVarArgsEx<c_stop_watch__start_offset, void()> c_stop_watch__start = 
 
 uintptr_t enable_tag_edits_patch_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_106708_cert_ms23, 0);
-	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_700255_cert_ms30_oct19, 0);
+	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0);
+	OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, 0);
 	return ~uintptr_t();
 }
 DataPatch<enable_tag_edits_patch_offset> enable_tag_edits = { [](e_engine_type engine_type, e_build build, char*, DataPatchPackets& packets)
@@ -53,12 +53,12 @@ DataPatch<enable_tag_edits_patch_offset> enable_tag_edits = { [](e_engine_type e
 	char* patch3 = nullptr;
 	switch (build)
 	{
-	case e_build::_build_eldorado_1_106708_cert_ms23:
+	case _build_eldorado_1_106708_cert_ms23:
 		patch1 = GetEngineVirtualAddress(engine_type, 0x00501A5B);
 		patch2 = GetEngineVirtualAddress(engine_type, 0x00502874);
 		patch3 = GetEngineVirtualAddress(engine_type, 0x005030AA);
 		break;
-	case e_build::_build_eldorado_1_700255_cert_ms30_oct19:
+	case _build_eldorado_1_700255_cert_ms30_oct19:
 		patch1 = GetEngineVirtualAddress(engine_type, 0x00483934);
 		patch2 = GetEngineVirtualAddress(engine_type, 0x00483C9A);
 		patch3 = GetEngineVirtualAddress(engine_type, 0x004847A9);
@@ -82,14 +82,14 @@ DataPatch<enable_tag_edits_patch_offset> enable_tag_edits = { [](e_engine_type e
 
 uintptr_t no_account_args_patch_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_106708_cert_ms23, 0);
+	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0);
 	return ~uintptr_t();
 }
 DataPatch<no_account_args_patch_offset> no_account_args_patch = { [](e_engine_type engine_type, e_build build, char*, DataPatchPackets& packets)
 {
 	// No --account args patch
 
-	if (build == e_build::_build_eldorado_1_106708_cert_ms23)
+	if (build == _build_eldorado_1_106708_cert_ms23)
 	{
 		char* patch1 = GetEngineVirtualAddress(engine_type, 0x0083731A);
 		char* patch2 = GetEngineVirtualAddress(engine_type, 0x008373AD);
@@ -107,7 +107,7 @@ DataPatch<no_account_args_patch_offset> no_account_args_patch = { [](e_engine_ty
 
 uintptr_t GameShieldInit_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_700255_cert_ms30_oct19, 0x007648E0);
+	OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, 0x007648E0);
 	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<GameShieldInit_offset, void()> GameShieldInit = { "GameShieldInit", []()
@@ -178,7 +178,7 @@ uintptr_t Hf2pInit_offset(e_engine_type engine_type, e_build build)
 
 	For some reason in MS23 we have to butcher the initialization by killing game_startup_internal
 	*/
-	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_106708_cert_ms23, 0x00600630); // game_startup_internal
+	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x00600630); // game_startup_internal
 	//OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x00600990); // game_startup_internal > game_startup_client
 
 	/*
@@ -188,7 +188,7 @@ uintptr_t Hf2pInit_offset(e_engine_type engine_type, e_build build)
 
 	For some reason in MS30 we can still run game_startup_client which fixes the main menu
 	*/
-	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_700255_cert_ms30_oct19, 0x6BD0F0);
+	OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, 0x6BD0F0);
 	
 	
 	return ~uintptr_t();
@@ -196,7 +196,7 @@ uintptr_t Hf2pInit_offset(e_engine_type engine_type, e_build build)
 FunctionHookVarArgsEx<Hf2pInit_offset, void()> Hf2pInit = { "Hf2pInit", []()
 {
 	write_line_verbose("Hf2pInit_offset");
-	if (c_eldorado_game_host::get_build() == e_build::_build_eldorado_1_106708_cert_ms23)
+	if (c_eldorado_game_host::get_build() == _build_eldorado_1_106708_cert_ms23)
 	{
 		// #TODO: What are these for?
 		*(uint32_t*)0x50CCB3C = 0;
@@ -207,8 +207,8 @@ FunctionHookVarArgsEx<Hf2pInit_offset, void()> Hf2pInit = { "Hf2pInit", []()
 
 uintptr_t Hf2pShutdown_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_106708_cert_ms23, 0x00600790);
-	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_700255_cert_ms30_oct19, ~uintptr_t());
+	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x00600790);
+	OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, ~uintptr_t());
 	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdown", []()
@@ -234,8 +234,8 @@ FunctionHookVarArgsEx<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdow
 
 uintptr_t contrail_crash_fix_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_106708_cert_ms23, 0x00A57DC0);
-	//OFFSET(_engine_type_eldorado, e_build::_build_eldorado_1_700255_cert_ms30_oct19, 0x00696690);
+	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0x00A57DC0);
+	//OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, 0x00696690);
 	return ~uintptr_t();
 }
 FunctionHookEx<contrail_crash_fix_offset, int(DWORD *, int)> contrail_crash_fix = { "contrail_crash_fix", [](DWORD* _this, int a2)

@@ -196,7 +196,8 @@ void GameLauncher::launchHalo1()
 		gameEvent(engine_type, build);
 	}
 
-	GameContext gameContext = {};
+	e_game_context_version game_context_version = get_game_context_version_from_build(build);
+	GameContext gameContext(game_context_version);
 	{
 		//const MapInfo* pSelectedMapInfo = HaloReachGameOptionSelection::GetSelectedMapInfo();
 		e_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
@@ -209,40 +210,41 @@ void GameLauncher::launchHalo1()
 		//	MantleGUI::OpenMapFile(pMapFilePathBuffer);
 		//}
 
-		gameContext.pGameHandle = GetModuleHandle("Halo1.dll");
-		char byte2B678Data[] = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-		memcpy(gameContext.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
+		//gameContext.pGameHandle = GetModuleHandle("Halo1.dll");
+		//char byte2B678Data[] = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+		//memcpy(gameContext.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
 
 		{
-			uint64_t SquadAddress = 0x2F385E2E95D4F33E;
-			uint64_t HostAddress = 0xDEADBEEFDEADBEEF;
-			uint64_t ClientAddress = 0xCAFEBABECAFEBABE;
 
-			gameContext.SessionInfo.SquadAddress = SquadAddress; // this is set
+			s_peer_context SquadAddress = { 0x2F385E2E95D4F33E };
+			s_peer_context HostAddress = { 0xDEADBEEFDEADBEEF };
+			s_peer_context ClientAddress = { 0xCAFEBABECAFEBABE };
 
-			gameContext.GameMode = _game_mode_campaign;
+			gameContext.party = SquadAddress; // this is set
 
-			gameContext.SessionInfo.PeerIdentifierCount = 1;
-			gameContext.SessionInfo.SessionMembership.Count = 1;
-			gameContext.SessionInfo.IsHost = true;
-			if (gameContext.SessionInfo.IsHost)
+			gameContext.game_mode = _game_mode_campaign;
+
+			gameContext.peer_count = 1;
+			gameContext.player_count = 1;
+			gameContext.is_host = true;
+			if (gameContext.is_host)
 			{
-				//gameContext.MapId = static_cast<MapID>(pSelectedMapInfo->GetMapID());
-				gameContext.MapId = (e_map_id)(3);
-				gameContext.CampaignDifficultyLevel = e_campaign_difficulty_level::_campaign_difficulty_level_easy;
+				//gameContext.map_id = static_cast<MapID>(pSelectedMapInfo->GetMapID());
+				gameContext.map_id = (e_map_id)(3);
+				gameContext.campaign_difficulty_level = _campaign_difficulty_level_easy;
 
 				//HaloReachGameOptionSelection::LoadGameVariant(HaloReachGameHost::GetDataAccess(), HaloReachGameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
 				//HaloReachGameOptionSelection::LoadMapVariant(HaloReachGameHost::GetDataAccess(), HaloReachGameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
 				//HaloReachGameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
 				//HaloReachGameOptionSelection::LoadSavedFilmMetadata(HaloReachGameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
 
-				gameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
-				gameContext.SessionInfo.HostAddress = HostAddress;
+				gameContext.local = HostAddress; // this is set
+				gameContext.host = HostAddress; // this is set
 			}
 			else
 			{
-				gameContext.SessionInfo.LocalMachineID = ClientAddress; // this is set
-				gameContext.SessionInfo.HostAddress = HostAddress;
+				gameContext.local = ClientAddress; // this is set
+				gameContext.host = HostAddress;
 			}
 		}
 	}
@@ -325,7 +327,14 @@ void GameLauncher::launchHaloReach()
 		gameEvent(engine_type, build);
 	}
 
-	GameContext gameContext = {};
+	e_game_context_version game_context_version = get_game_context_version_from_build(build);
+	switch (game_context_version)
+	{
+	case _game_context_version_1: write_line_verbose("Using game context version 1"); break;
+	case _game_context_version_2: write_line_verbose("Using game context version 2"); break;
+	case _game_context_version_3: write_line_verbose("Using game context version 3"); break;
+	}
+	GameContext gameContext(game_context_version);
 	{
 		const MapInfo* pSelectedMapInfo = HaloReachGameOptionSelection::GetSelectedMapInfo();
 		e_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
@@ -338,39 +347,40 @@ void GameLauncher::launchHaloReach()
 			c_mantle_gui::open_cache_file_from_filepath(pMapFilePathBuffer);
 		}
 
-		gameContext.pGameHandle = GetModuleHandle("HaloReach.dll");
-		char byte2B678Data[] = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-		memcpy(gameContext.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
+		//gameContext.pGameHandle = GetModuleHandle("HaloReach.dll");
+		//char byte2B678Data[] = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+		//memcpy(gameContext.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
 
 		{
-			uint64_t SquadAddress = 0x2F385E2E95D4F33E;
-			uint64_t HostAddress = 0xDEADBEEFDEADBEEF;
-			uint64_t ClientAddress = 0xCAFEBABECAFEBABE;
 
-			gameContext.SessionInfo.SquadAddress = SquadAddress; // this is set
+			s_peer_context SquadAddress = { 0x2F385E2E95D4F33E };
+			s_peer_context HostAddress = { 0xDEADBEEFDEADBEEF };
+			s_peer_context ClientAddress = { 0xCAFEBABECAFEBABE };
 
-			gameContext.GameMode = gameMode;
+			gameContext.party = SquadAddress; // this is set
 
-			gameContext.SessionInfo.PeerIdentifierCount = 1;
-			gameContext.SessionInfo.SessionMembership.Count = 1;
-			gameContext.SessionInfo.IsHost = true;
-			if (gameContext.SessionInfo.IsHost)
+			gameContext.game_mode = _game_mode_campaign;
+
+			gameContext.peer_count = 1;
+			gameContext.player_count = 1;
+			gameContext.is_host = true;
+			if (gameContext.is_host)
 			{
-				gameContext.MapId = static_cast<e_map_id>(pSelectedMapInfo->GetMapID());
-				gameContext.CampaignDifficultyLevel = e_campaign_difficulty_level::_campaign_difficulty_level_easy;
+				gameContext.map_id = static_cast<e_map_id>(pSelectedMapInfo->GetMapID());
+				gameContext.campaign_difficulty_level = _campaign_difficulty_level_easy;
 
-				HaloReachGameOptionSelection::LoadGameVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
-				HaloReachGameOptionSelection::LoadMapVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
+				HaloReachGameOptionSelection::LoadGameVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.game_variant_buffer), true);
+				HaloReachGameOptionSelection::LoadMapVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.map_variant_buffer), true);
 				//HaloReachGameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
 				//HaloReachGameOptionSelection::LoadSavedFilmMetadata(HaloReachGameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
 
-				gameContext.SessionInfo.LocalMachineID = HostAddress; // this is set
-				gameContext.SessionInfo.HostAddress = HostAddress;
+				gameContext.local = HostAddress; // this is set
+				gameContext.host = HostAddress; // this is set
 			}
 			else
 			{
-				gameContext.SessionInfo.LocalMachineID = ClientAddress; // this is set
-				gameContext.SessionInfo.HostAddress = HostAddress;
+				gameContext.local = ClientAddress; // this is set
+				gameContext.host = HostAddress;
 			}
 		}
 	}

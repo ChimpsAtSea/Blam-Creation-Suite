@@ -463,7 +463,7 @@ __declspec(dllexport) int main()
 		}
 
 		// #TODO: Determine version of Eldorado
-		build = e_build::_build_eldorado_1_106708_cert_ms23;
+		build = _build_eldorado_1_106708_cert_ms23;
 	}
 	if (loaded_executable_module == NULL)
 	{
@@ -475,7 +475,7 @@ __declspec(dllexport) int main()
 		}
 
 		// #TODO: Determine version of Halo Online
-		build = e_build::_build_eldorado_1_700255_cert_ms30_oct19;
+		build = _build_eldorado_1_700255_cert_ms30_oct19;
 	}
 	ASSERT(loaded_executable_module != NULL);
 

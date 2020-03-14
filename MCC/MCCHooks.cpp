@@ -8,7 +8,7 @@ uintptr_t sub_141806A64_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
-		case e_build::_build_mcc_1_1350_0_0: return 0x141806A64;
+		case _build_mcc_1_1350_0_0: return 0x141806A64;
 		}
 	}
 	return ~uintptr_t();
@@ -27,7 +27,7 @@ uintptr_t CreateGameEngine_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
-		case e_build::_build_mcc_1_1350_0_0: return 0x18008D2C0;
+		case _build_mcc_1_1350_0_0: return 0x18008D2C0;
 		}
 	}
 	return ~uintptr_t();
@@ -43,7 +43,7 @@ uintptr_t InitThread_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
-		case e_build::_build_mcc_1_1350_0_0: return 0x18008C550;
+		case _build_mcc_1_1350_0_0: return 0x18008C550;
 		}
 	}
 	return ~uintptr_t();

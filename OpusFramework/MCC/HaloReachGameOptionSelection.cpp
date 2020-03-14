@@ -725,9 +725,9 @@ void HaloReachGameOptionSelection::LoadPreviousGamestate(const char* pGamestateN
 		memset(pGameStateBuffer, 0x00, filo.bufferSize);
 		pGameStateBuffer = filo.pBuffer;
 
-		gameContext.GameMode = _game_mode_campaign;
-		gameContext.GameStateHeaderSize = filo.bufferSize;
-		gameContext.pGameStateHeader = pGameStateBuffer;
+		gameContext.game_mode = _game_mode_campaign;
+		gameContext.game_state_header_size = filo.bufferSize;
+		gameContext.game_state_header_ptr = pGameStateBuffer;
 
 		filo.close_file();
 	}
@@ -761,7 +761,7 @@ void HaloReachGameOptionSelection::LoadSavedFilmMetadata(const char* pSavedFilmN
 		write_line_verbose("Loading saved film [%s]", pFileName.c_str());
 	}
 
-	gameContext.SavedFilmPath = pFileName.c_str();
+	gameContext.saved_film_path_ptr = pFileName.c_str();
 }
 
 #endif

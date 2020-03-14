@@ -40,8 +40,8 @@ c_function_hook_base* c_function_hook_base::InitNode(e_engine_type engine_type, 
 
 			m_offset = foundOffset;
 
-			ASSERT(m_build == e_build::_build_not_set && m_offset >= GetEngineBaseAddress(engine_type)/*, "Offset is out of bounds"*/);
-			ASSERT(m_build == e_build::_build_not_set && m_offset < GetEngineTopAddress(engine_type, build)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == _build_not_set && m_offset >= GetEngineBaseAddress(engine_type)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == _build_not_set && m_offset < GetEngineTopAddress(engine_type, build)/*, "Offset is out of bounds"*/);
 		}
 		ASSERT(m_offset != 0);
 

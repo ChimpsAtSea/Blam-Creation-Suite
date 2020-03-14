@@ -5,8 +5,8 @@ template<e_engine_type engine_type, e_build build, size_t offset, typename base_
 struct FunctionHookVarArgs : public c_function_hook_base
 {
 public:
-	static_assert(build == e_build::_build_not_set || offset >= GetEngineBaseAddress(engine_type), "Offset is out of bounds");
-	static_assert(build == e_build::_build_not_set || offset < GetEngineTopAddress(engine_type, build), "Offset is out of bounds");
+	static_assert(build == _build_not_set || offset >= GetEngineBaseAddress(engine_type), "Offset is out of bounds");
+	static_assert(build == _build_not_set || offset < GetEngineTopAddress(engine_type, build), "Offset is out of bounds");
 
 	template<typename ...Args>
 	__forceinline decltype(auto) operator()(Args... args)
