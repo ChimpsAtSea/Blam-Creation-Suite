@@ -38,7 +38,7 @@ struct s_script_node_datum
 {
 	char data[24];
 };
-static constexpr size_t s_script_node_datum_size = sizeof(s_script_node_datum);
+constexpr size_t s_script_node_datum_size = sizeof(s_script_node_datum);
 
 
 using s_script_node_data_array = c_data_array<s_script_node_datum, 61440>;

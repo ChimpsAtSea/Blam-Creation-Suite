@@ -167,7 +167,7 @@ private:
 	SLIST_HEADER header440;
 	char unknown450[16];
 };
-static_assert(sizeof(__IGameEngine) == 0x460, "__IGameEngine is incorrect size");
+static_assert_64(sizeof(__IGameEngine) == 0x460, "__IGameEngine is incorrect size");
 
 class IGameEngine
 {

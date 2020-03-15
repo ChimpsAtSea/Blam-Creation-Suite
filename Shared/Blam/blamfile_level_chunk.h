@@ -17,6 +17,6 @@ public:
 	char m_mapFileName[0x100];
 	char __unknown[0xBB84];
 };
-static constexpr size_t s_blamfile_level_chunk_size = sizeof(s_blamfile_level_chunk);
+constexpr size_t s_blamfile_level_chunk_size = sizeof(s_blamfile_level_chunk);
 static_assert(s_blamfile_level_chunk_size == 0xCC98, "s_blamfile_level_chunk is incorrect size");
 #pragma pack(pop)

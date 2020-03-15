@@ -409,10 +409,10 @@ struct s_input_abstraction
 	s_input_abstraction_struct3 struct3[4];
 };
 #pragma pack(pop)
-static constexpr size_t  s_input_abstraction_size = sizeof(s_input_abstraction);
+constexpr size_t  s_input_abstraction_size = sizeof(s_input_abstraction);
 //static_assert(s_input_abstraction_size == 0x19F8, "");
 static_assert(sizeof(s_bindings_table) * 4 == 0x360, "");
-static constexpr size_t s_input_abstraction_remaining_bytes = 0x19F8 - s_input_abstraction_size;
+constexpr size_t s_input_abstraction_remaining_bytes = 0x19F8 - s_input_abstraction_size;
 
 
 // enum strings

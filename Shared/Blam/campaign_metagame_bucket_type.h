@@ -55,7 +55,7 @@ enum e_campaign_metagame_bucket_type : uint32_t
 	k_invalid_campaign_metagame_bucket_type = ~0u
 };
 
-static constexpr const char* campaign_metagame_bucket_type_to_string(e_campaign_metagame_bucket_type campaign_metagame_bucket_type)
+constexpr const char* campaign_metagame_bucket_type_to_string(e_campaign_metagame_bucket_type campaign_metagame_bucket_type)
 {
 	switch (campaign_metagame_bucket_type)
 	{

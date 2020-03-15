@@ -9,7 +9,7 @@ enum e_campaign_difficulty_level : uint32_t
 	k_number_of_campaign_difficulty_levels,
 };
 
-static constexpr const char* campaign_difficulty_level_to_string(e_campaign_difficulty_level campaign_difficulty_level)
+constexpr const char* campaign_difficulty_level_to_string(e_campaign_difficulty_level campaign_difficulty_level)
 {
 	switch (campaign_difficulty_level)
 	{
@@ -21,7 +21,7 @@ static constexpr const char* campaign_difficulty_level_to_string(e_campaign_diff
 	return nullptr;
 }
 
-static constexpr const char* campaign_difficulty_level_to_local_string(e_campaign_difficulty_level campaign_difficulty_level)
+constexpr const char* campaign_difficulty_level_to_local_string(e_campaign_difficulty_level campaign_difficulty_level)
 {
 	switch (campaign_difficulty_level)
 	{

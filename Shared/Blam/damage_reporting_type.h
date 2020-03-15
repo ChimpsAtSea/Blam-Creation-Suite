@@ -137,7 +137,7 @@ enum e_damage_reporting_type : uint32_t
 	k_number_of_damage_reporting_types
 };
 
-static constexpr const char* damage_reporting_type_to_string(e_damage_reporting_type damage_reporting_type)
+constexpr const char* damage_reporting_type_to_string(e_damage_reporting_type damage_reporting_type)
 {
 	switch (damage_reporting_type)
 	{

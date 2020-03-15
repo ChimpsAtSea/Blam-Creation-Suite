@@ -1,7 +1,7 @@
 #pragma once
 
-static constexpr size_t k_game_variant_buffer_size = 0x1CC00;
-static constexpr size_t k_map_variant_buffer_size = 0xE800;
+constexpr size_t k_game_variant_buffer_size = 0x1CC00;
+constexpr size_t k_map_variant_buffer_size = 0xE800;
 
 struct s_peer_context
 {
@@ -44,7 +44,7 @@ private:
 	char __padding1[8];
 public:
 	void* game_state_header_ptr;
-	size_t game_state_header_size;
+	uint64_t game_state_header_size;
 
 	const char* saved_film_path_ptr;
 
@@ -58,10 +58,10 @@ private:
 	char __padding2[5];
 public:
 	s_peer_context peers[17];
-	size_t peer_count;
+	uint64_t peer_count;
 
 	s_player_context players[16];
-	size_t player_count;
+	uint64_t player_count;
 
 	s_peer_context host;
 
@@ -72,13 +72,12 @@ public:
 private:
 	char __padding4[176];
 };
-
 using c_game_context_v1 = c_game_context<s_player_context_v1>;
-static constexpr size_t k_game_context_v1_size = sizeof(c_game_context_v1);
-static_assert(k_game_context_v1_size == 0x2B738, "c_game_context_v1 invalid size");
 using c_game_context_v2 = c_game_context<s_player_context_v2>;
-static constexpr size_t k_game_context_v2_size = sizeof(c_game_context_v2);
-static_assert(k_game_context_v2_size == 0x2B7B8, "c_game_context_v2 invalid size");
+constexpr size_t k_game_context_v1_size = sizeof(c_game_context_v1);
+constexpr size_t k_game_context_v2_size = sizeof(c_game_context_v2);
+static_assert_64(k_game_context_v1_size == 0x2B738, "c_game_context_v1 invalid size");
+static_assert_64(k_game_context_v2_size == 0x2B7B8, "c_game_context_v2 invalid size");
 
 struct c_game_context_v3
 {
@@ -106,23 +105,22 @@ public:
 	s_peer_context local;
 
 	s_peer_context peers[17];
-	size_t peer_count;
+	uint64_t peer_count;
 
 	s_player_context_v2 players[16];
-	size_t player_count;
+	uint64_t player_count;
 	s_peer_context host;
 
 	char game_variant_buffer[k_game_variant_buffer_size];
 	char map_variant_buffer[k_map_variant_buffer_size];
 
-	size_t game_state_header_size;
+	uint64_t game_state_header_size;
 	void* game_state_header_ptr;
 	const char* saved_film_path_ptr;
 	const wchar_t* custom_engine_name;
 };
-
-static constexpr size_t k_game_context_v3_size = sizeof(c_game_context_v3);
-static_assert(k_game_context_v3_size == 0x2B6F8, "c_game_context_v3 invalid size");
+constexpr size_t k_game_context_v3_size = sizeof(c_game_context_v3);
+static_assert_64(k_game_context_v3_size == 0x2B6F8, "c_game_context_v3 invalid size");
 
 class GameContext
 {
@@ -147,14 +145,14 @@ public:
 	s_peer_context& party;
 	s_peer_context& local;
 	s_peer_context(&peers)[17];
-	size_t& peer_count;
+	uint64_t& peer_count;
 	//s_player_context_v1 players[16];
 	//s_player_context_v2 players[16];
-	size_t& player_count;
+	uint64_t& player_count;
 	s_peer_context& host;
 	char(&game_variant_buffer)[k_game_variant_buffer_size];
 	char(&map_variant_buffer)[k_map_variant_buffer_size];
-	size_t& game_state_header_size;
+	uint64_t& game_state_header_size;
 	void*& game_state_header_ptr;
 	const char*& saved_film_path_ptr;
 	const wchar_t*& custom_engine_name;

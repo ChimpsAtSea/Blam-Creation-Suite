@@ -133,7 +133,7 @@ void c_render::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 	s_SwapchainDescription.Scaling = DXGI_SCALING_STRETCH;
 	s_SwapchainDescription.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
 
-	static constexpr bool createCompositionSwapchain = false;
+	constexpr bool createCompositionSwapchain = false;
 	if constexpr (createCompositionSwapchain)
 	{
 		HRESULT createSwapChainForCompositionResult = s_pFactory->CreateSwapChainForComposition(s_pDevice, &s_SwapchainDescription, NULL, &rpSwapChain);

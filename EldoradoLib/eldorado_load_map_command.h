@@ -1,7 +1,7 @@
 #pragma once
 
 /* ---------- constants */
-static constexpr const char* k_eldorado_load_map_command_name = "loadmap";
+constexpr const char* k_eldorado_load_map_command_name = "loadmap";
 
 /* ---------- macros */
 /* ---------- types */

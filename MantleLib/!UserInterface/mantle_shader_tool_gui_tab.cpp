@@ -190,7 +190,7 @@ void c_mantle_shader_tool_gui_tab::render_preview_disassembly_configuration_head
 
 void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_header_column_gui()
 {
-	static constexpr float k_min_column_height = 120.0f;
+	constexpr float k_min_column_height = 120.0f;
 	const float start_cursor_position_y = ImGui::GetCursorPosY();
 
 	{
@@ -218,7 +218,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 		//	ImGui::EndCombo();
 		//}
 
-		static constexpr float k_shader_selection_type_button_width = 80.0f;
+		constexpr float k_shader_selection_type_button_width = 80.0f;
 		//if (selected_render_method_template_tag_interface)
 		//{
 		//	//ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_shader_selection_type_button_width);
@@ -295,7 +295,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 		//	ImGui::PopItemFlag();
 		//}
 
-		static constexpr float k_goto_button_width = 80.0f;
+		constexpr float k_goto_button_width = 80.0f;
 		if (selected_render_method_definition_tag_interface)
 		{
 			ImGui::SameLine(ImGui::GetContentRegionAvail().x - k_goto_button_width);

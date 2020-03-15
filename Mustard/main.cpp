@@ -390,9 +390,9 @@ void WINAPI RaiseExceptionHook(
 	RtlCaptureContext(&context);
 
 #ifdef _WIN64
-	static constexpr DWORD image_file_machine = IMAGE_FILE_MACHINE_AMD64;
+	constexpr DWORD image_file_machine = IMAGE_FILE_MACHINE_AMD64;
 #else
-	static constexpr DWORD image_file_machine = IMAGE_FILE_MACHINE_I386;
+	constexpr DWORD image_file_machine = IMAGE_FILE_MACHINE_I386;
 #endif
 	HANDLE current_process = GetCurrentProcess();
 	HANDLE current_thread = GetCurrentThread();

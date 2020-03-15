@@ -228,7 +228,7 @@ enum e_map_id : uint32_t
 	_map_id_mainmenu = 0x10231971,
 };
 
-static constexpr const char* map_id_to_string(e_map_id map_id)
+constexpr const char* map_id_to_string(e_map_id map_id)
 {
 	switch (map_id)
 	{

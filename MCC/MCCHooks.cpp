@@ -45,7 +45,7 @@ uintptr_t sub_180076BA0_offset(e_engine_type engine_type, e_build build)
 	}
 	return ~uintptr_t();
 }
-FunctionHookVarArgsEx<sub_180076BA0_offset, void __fastcall (struct IGameEngine* thisptr, struct ID3D11Device* pDevice)> sub_180076BA0 = { "sub_180076BA0", [](struct IGameEngine* thisptr, struct ID3D11Device* pDevice)
+FunctionHookVarArgsEx<sub_180076BA0_offset, void __fastcall (IGameEngine* thisptr, struct ID3D11Device* pDevice)> sub_180076BA0 = { "sub_180076BA0", [](IGameEngine* thisptr, struct ID3D11Device* pDevice)
 {
 	sub_180076BA0(thisptr, pDevice);
 } };
@@ -62,7 +62,7 @@ uintptr_t sub_180076D60_offset(e_engine_type engine_type, e_build build)
 	}
 	return ~uintptr_t();
 }
-FunctionHookVarArgsEx<sub_180076D60_offset, void __fastcall (struct IGameEngine* a1, int map_id)> sub_180076D60 = { "sub_180076D60", [](struct IGameEngine* a1, int map_id)
+FunctionHookVarArgsEx<sub_180076D60_offset, void __fastcall (IGameEngine* a1, int map_id)> sub_180076D60 = { "sub_180076D60", [](IGameEngine* a1, int map_id)
 {
 	sub_180076D60(a1, map_id);
 } };

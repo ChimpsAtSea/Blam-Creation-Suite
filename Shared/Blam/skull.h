@@ -43,7 +43,7 @@ enum e_skull : uint32_t
 	_skull_none = ~0u
 };
 
-static constexpr const char* skull_to_string(e_skull skull)
+constexpr const char* skull_to_string(e_skull skull)
 {
 	switch (skull)
 	{

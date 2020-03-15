@@ -11,7 +11,7 @@ enum e_game_mode : int
 	k_number_of_game_modes,
 };
 
-static constexpr const char* game_mode_to_string(e_game_mode game_mode)
+constexpr const char* game_mode_to_string(e_game_mode game_mode)
 {
 	switch (game_mode)
 	{
@@ -25,7 +25,7 @@ static constexpr const char* game_mode_to_string(e_game_mode game_mode)
 	return nullptr;
 }
 
-static constexpr const char* game_mode_to_local_string(e_game_mode game_mode)
+constexpr const char* game_mode_to_local_string(e_game_mode game_mode)
 {
 	switch (game_mode)
 	{

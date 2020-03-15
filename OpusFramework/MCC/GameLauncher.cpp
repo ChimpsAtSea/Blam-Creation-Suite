@@ -71,6 +71,13 @@ void GameLauncher::Init()
 	c_debug_gui::register_callback(_callback_mode_toggleable, renderUI);
 
 	c_window::register_destroy_callback(WindowDestroyCallback);
+
+	if (!has_auto_started)
+	{
+		if (!k_autostart_halo_reach) startGame(_engine_type_halo_reach, NextLaunchMode::Generic);
+		if (!k_autostart_halo_halo1) startGame(_engine_type_halo1, NextLaunchMode::Generic);
+		if (!k_autostart_halo_eldorado || !k_autostart_halo_online) startGame(_engine_type_eldorado, NextLaunchMode::Generic);
+	}
 }
 
 void GameLauncher::Deinit()
@@ -161,7 +168,9 @@ void GameLauncher::startGame(e_engine_type engine_type, NextLaunchMode next_laun
 	g_engine_type = engine_type;
 	g_next_launch_mode = next_launch_mode;
 
+#ifdef _WIN64
 	HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
+#endif
 	has_auto_started = true;
 	g_next_launch_mode = NextLaunchMode::Generic;
 
@@ -275,13 +284,13 @@ void GameLauncher::launchMCCGame(e_engine_type engine_type)
 
 	{
 		// useful for testing if the gameenginehostcallback vftable is correct or not
-		static constexpr bool kBogusGameEngineHostCallbackVFT = false;
+		constexpr bool kBogusGameEngineHostCallbackVFT = false;
 		if constexpr (kBogusGameEngineHostCallbackVFT)
 		{
 			void*& pGameEngineHostVftable = *reinterpret_cast<void**>(pCurrentGameHost);
 			static char data[sizeof(void*) * 1024] = {};
 			memset(data, -1, sizeof(data));
-			static constexpr size_t kNumBytesToCopyFromExistingVFT = 0;
+			constexpr size_t kNumBytesToCopyFromExistingVFT = 0;
 			memcpy(data, pGameEngineHostVftable, kNumBytesToCopyFromExistingVFT);
 			pGameEngineHostVftable = data;
 		}
@@ -301,7 +310,7 @@ void GameLauncher::launchMCCGame(e_engine_type engine_type)
 	{
 		std::thread thread([]()
 			{
-				
+
 				if (g_engine_type == _engine_type_halo1)
 				{
 					// we should fix this by listening to engine messages using the MCC layer to determine
@@ -434,13 +443,16 @@ void GameLauncher::renderMainMenu()
 
 		switch (g_engine_type)
 		{
+#ifdef _WIN64
 		case _engine_type_halo1:
 			break;
 		case _engine_type_halo_reach:
 			HaloReachGameOptionSelection::Render();
 			break;
+#else
 		case _engine_type_eldorado:
 			break;
+#endif
 		}
 
 		ImGui::Dummy(ImVec2(0.0f, 30.0f));

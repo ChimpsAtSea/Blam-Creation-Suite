@@ -3,7 +3,7 @@
 // TODO: move this into a global context that all game hosts can use
 
 /* ---------- constants */
-static constexpr const char *k_halo1_engine_state_command_name = "engine_state";
+constexpr const char *k_halo1_engine_state_command_name = "engine_state";
 
 /* ---------- macros */
 /* ---------- types */

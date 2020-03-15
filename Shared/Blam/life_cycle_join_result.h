@@ -28,7 +28,7 @@ enum e_life_cycle_join_result : uint32_t
 	k_number_of_life_cycle_join_results,
 };
 
-static constexpr const char* life_cycle_join_result_to_string(e_life_cycle_join_result life_cycle_join_result)
+constexpr const char* life_cycle_join_result_to_string(e_life_cycle_join_result life_cycle_join_result)
 {
 	switch (life_cycle_join_result)
 	{
