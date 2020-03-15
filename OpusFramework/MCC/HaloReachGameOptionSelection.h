@@ -18,7 +18,7 @@ public:
 	static std::string s_pLaunchGameVariant;
 	static std::string s_pLaunchMapVariant;
 	static std::string s_pLaunchSavedFilm;
-private:
+public:
 
 	enum class SelectedGameModeMapInfoIndex
 	{

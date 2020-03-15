@@ -13,7 +13,8 @@ std::string format_string(const char* pFormat, ...)
 }
 
 e_game_mode s_currentGameMode = _game_mode_campaign;
-e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
+//e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
+extern e_campaign_difficulty_level g_campaign_difficulty_level; // #TODO #REFACTOR
 
 MapInfoManager* HaloReachGameOptionSelection::s_pMapInfoManager = nullptr;
 const MapInfo* HaloReachGameOptionSelection::s_pSelectedMapInfo[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = {};
@@ -56,7 +57,7 @@ void HaloReachGameOptionSelection::loadSettings()
 
 	char pLaunchCampaignDifficultyLevelBuffer[256] = {};
 	Settings::ReadStringValue(SettingsSection::Launch, "DifficultyLevel", pLaunchCampaignDifficultyLevelBuffer, sizeof(pLaunchCampaignDifficultyLevelBuffer), "normal");
-	g_LaunchCampaignDifficultyLevel = string_to_campaign_difficulty_level(pLaunchCampaignDifficultyLevelBuffer);
+	g_campaign_difficulty_level = string_to_campaign_difficulty_level(pLaunchCampaignDifficultyLevelBuffer);
 
 	LPCSTR pDefaultHopperGameVariant = "";
 	switch (s_currentGameMode)
@@ -375,7 +376,7 @@ void HaloReachGameOptionSelection::SelectDifficulty()
 {
 	if (s_currentGameMode == _game_mode_campaign || s_currentGameMode == _game_mode_firefight)
 	{
-		LPCSTR pCurrentDifficultyStr = campaign_difficulty_level_to_local_string(g_LaunchCampaignDifficultyLevel);
+		LPCSTR pCurrentDifficultyStr = campaign_difficulty_level_to_local_string(g_campaign_difficulty_level);
 		if (ImGui::BeginCombo("###DIFFICULTY", pCurrentDifficultyStr))
 		{
 			for (e_campaign_difficulty_level difficulty = e_campaign_difficulty_level::_campaign_difficulty_level_easy; difficulty < k_number_of_campaign_difficulty_levels; reinterpret_cast<int&>(difficulty)++)
@@ -386,8 +387,8 @@ void HaloReachGameOptionSelection::SelectDifficulty()
 					bool selected = pDifficultyStr == pCurrentDifficultyStr;
 					if (ImGui::Selectable(pDifficultyStr, &selected))
 					{
-						g_LaunchCampaignDifficultyLevel = static_cast<e_campaign_difficulty_level>(difficulty);
-						Settings::WriteStringValue(SettingsSection::Launch, "DifficultyLevel", campaign_difficulty_level_to_string(g_LaunchCampaignDifficultyLevel));
+						g_campaign_difficulty_level = static_cast<e_campaign_difficulty_level>(difficulty);
+						Settings::WriteStringValue(SettingsSection::Launch, "DifficultyLevel", campaign_difficulty_level_to_string(g_campaign_difficulty_level));
 					}
 				}
 			}

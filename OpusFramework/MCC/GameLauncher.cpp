@@ -1,15 +1,13 @@
 #include "opusframework-private-pch.h"
 
-
 NextLaunchMode g_next_launch_mode = NextLaunchMode::None;
-
-
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameStartupEvent;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameShutdownEvent;
 bool GameLauncher::s_gameRunning = false;
 c_opus_game_engine_host* pCurrentGameHost = nullptr;
+e_campaign_difficulty_level g_campaign_difficulty_level = _campaign_difficulty_level_normal; // #TODO #REFACTOR
 
-e_engine_type k_supported_engines[] =
+static const e_engine_type k_supported_engines[] =
 {
 #ifdef _WIN64
 	_engine_type_halo1,
@@ -18,7 +16,14 @@ e_engine_type k_supported_engines[] =
 	_engine_type_eldorado
 #endif
 };
-e_engine_type g_engine_type = k_supported_engines[0];
+static e_engine_type g_engine_type = k_supported_engines[0];
+static bool has_auto_started = false;
+static bool k_autostart_halo_reach = false;
+static bool k_autostart_halo_halo1 = false;
+static bool k_autostart_halo_eldorado = false;
+static bool k_autostart_halo_online = false;
+static bool use_anniversary_graphics = true;
+static bool use_anniversary_sounds = true;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -36,12 +41,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	}
 	return 0;
 }
-
-static bool has_auto_started = false;
-static bool k_autostart_halo_reach = false;
-static bool k_autostart_halo_halo1 = false;
-static bool k_autostart_halo_eldorado = false;
-static bool k_autostart_halo_online = false;
 
 void GameLauncher::Init()
 {
@@ -74,9 +73,9 @@ void GameLauncher::Init()
 
 	if (!has_auto_started)
 	{
-		if (!k_autostart_halo_reach) startGame(_engine_type_halo_reach, NextLaunchMode::Generic);
-		if (!k_autostart_halo_halo1) startGame(_engine_type_halo1, NextLaunchMode::Generic);
-		if (!k_autostart_halo_eldorado || !k_autostart_halo_online) startGame(_engine_type_eldorado, NextLaunchMode::Generic);
+		if (k_autostart_halo_reach) startGame(_engine_type_halo_reach, NextLaunchMode::Generic);
+		if (k_autostart_halo_halo1) startGame(_engine_type_halo1, NextLaunchMode::Generic);
+		if (k_autostart_halo_eldorado || k_autostart_halo_online) startGame(_engine_type_eldorado, NextLaunchMode::Generic);
 	}
 }
 
@@ -138,6 +137,11 @@ void GameLauncher::OpusTick()
 		ImGui::End();
 	}
 	c_debug_gui::EndFrame();
+}
+
+void GameLauncher::GameExitedCallback()
+{
+	s_gameRunning = false;
 }
 
 void GameLauncher::update()
@@ -244,6 +248,9 @@ void GameLauncher::launchMCCGame(e_engine_type engine_type)
 	c_session_manager::create_game_context(build, &game_context);
 	ASSERT(game_context);
 
+	game_context->is_anniversary_mode = use_anniversary_graphics;
+	game_context->is_anniversary_sounds = use_anniversary_sounds;
+	
 	{
 		// #TODO: Make a home for this
 		if (game_context->is_host)
@@ -252,7 +259,7 @@ void GameLauncher::launchMCCGame(e_engine_type engine_type)
 			{
 				game_context->game_mode = _game_mode_campaign;
 				game_context->map_id = (e_map_id)(3);
-				game_context->campaign_difficulty_level = _campaign_difficulty_level_easy;
+				game_context->campaign_difficulty_level = g_campaign_difficulty_level;
 			}
 			else if (engine_type == _engine_type_halo_reach)
 			{
@@ -261,7 +268,7 @@ void GameLauncher::launchMCCGame(e_engine_type engine_type)
 
 				game_context->game_mode = gameMode;
 				game_context->map_id = static_cast<e_map_id>(pSelectedMapInfo->GetMapID());
-				game_context->campaign_difficulty_level = _campaign_difficulty_level_easy;
+				game_context->campaign_difficulty_level = g_campaign_difficulty_level;
 
 				HaloReachGameOptionSelection::LoadGameVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(game_context->game_variant_buffer), true);
 				HaloReachGameOptionSelection::LoadMapVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(game_context->map_variant_buffer), true);
@@ -308,24 +315,12 @@ void GameLauncher::launchMCCGame(e_engine_type engine_type)
 
 	// #TODO: Absolutely terrible thread sync here
 	{
-		std::thread thread([]()
-			{
-
-				if (g_engine_type == _engine_type_halo1)
-				{
-					// we should fix this by listening to engine messages using the MCC layer to determine
-					// when a game has actually exited.
-					while (true) {}; // hasty hax because the thread closes too soon!
-				}
-				WaitForSingleObject(hMainGameThread, INFINITE);
-				s_gameRunning = false;
-			});
 		while (s_gameRunning)
 		{
 			update();
 			SwitchToThread(); // don't smash the CPU
 		}
-		thread.join();
+		WaitForSingleObject(hMainGameThread, INFINITE);
 	}
 
 	delete game_context;
@@ -427,7 +422,7 @@ void GameLauncher::renderMainMenu()
 		ImGui::SetColumnOffset(1, c_window::get_width() * 0.5f);
 
 		const char* current_engine_name = engine_type_to_nice_name(g_engine_type);
-		if (ImGui::BeginCombo("engine type combo", current_engine_name))
+		if (ImGui::BeginCombo("Game", current_engine_name))
 		{
 			for (e_engine_type supported_engine_type : k_supported_engines)
 			{
@@ -445,6 +440,9 @@ void GameLauncher::renderMainMenu()
 		{
 #ifdef _WIN64
 		case _engine_type_halo1:
+			ImGui::Checkbox("Use Anniversary Graphics", &use_anniversary_graphics);
+			ImGui::Checkbox("Use Anniversary Sounds", &use_anniversary_sounds);
+			HaloReachGameOptionSelection::SelectDifficulty(); // #TODO #REFACTOR
 			break;
 		case _engine_type_halo_reach:
 			HaloReachGameOptionSelection::Render();

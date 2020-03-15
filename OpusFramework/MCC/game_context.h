@@ -52,8 +52,8 @@ public:
 	s_peer_context local;
 
 	bool is_host;
-	bool is_legacy_mode;
-	bool is_legacy_sounds;
+	bool is_anniversary_mode;
+	bool is_anniversary_sounds;
 private:
 	char __padding2[5];
 public:
@@ -82,8 +82,8 @@ static_assert_64(k_game_context_v2_size == 0x2B7B8, "c_game_context_v2 invalid s
 struct c_game_context_v3
 {
 public:
-	bool is_legacy_mode;
-	bool is_legacy_sounds;
+	bool is_anniversary_mode;
+	bool is_anniversary_sounds;
 private:
 	char __padding0;
 public:
@@ -134,8 +134,8 @@ private:
 public:
 	e_game_context_version const game_context_version;
 
-	bool& is_legacy_mode;
-	bool& is_legacy_sounds;
+	bool& is_anniversary_mode;
+	bool& is_anniversary_sounds;
 	bool& is_host;
 	long& game_mode;
 	long& map_id;
@@ -171,8 +171,8 @@ private:
 		return nullptr; \
 	}
 
-	reference_getter(is_legacy_mode);
-	reference_getter(is_legacy_sounds);
+	reference_getter(is_anniversary_mode);
+	reference_getter(is_anniversary_sounds);
 	reference_getter(is_host);
 	reference_getter(game_mode);
 	reference_getter(map_id);
@@ -223,8 +223,8 @@ public:
 		//game_context_v2(),
 		//game_context_v3(),
 		game_context_version(game_context_version),
-		is_legacy_mode(*get_is_legacy_mode()),
-		is_legacy_sounds(*get_is_legacy_sounds()),
+		is_anniversary_mode(*get_is_anniversary_mode()),
+		is_anniversary_sounds(*get_is_anniversary_sounds()),
 		is_host(*get_is_host()),
 		game_mode(*get_game_mode()),
 		map_id(*get_map_id()),

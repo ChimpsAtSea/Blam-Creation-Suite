@@ -13,6 +13,7 @@ public:
 	static void Init();
 	static void Deinit();
 	static void OpusTick();
+	static void GameExitedCallback();
 	static void WindowDestroyCallback();
 	inline static bool IsGameRunning() { return s_gameRunning; }
 private:

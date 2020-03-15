@@ -86,6 +86,8 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 	{
 		write_line_verbose("GameExited %u [%s]", a1, a2);
 	}
+
+	GameLauncher::GameExitedCallback();
 	
 	return __int64(0);
 }
