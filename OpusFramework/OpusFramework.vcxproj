@@ -196,6 +196,7 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="session_manager.cpp" />
     <ClCompile Include="RuntimeManipulation\DataPatch.cpp" />
     <ClCompile Include="c_file_array.cpp" />
     <ClCompile Include="c_file_reference.cpp" />
@@ -237,6 +238,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationReflection\ApplicationReflection.h" />
+    <ClInclude Include="session_manager.h" />
     <ClInclude Include="MCC\game_context.h" />
     <ClInclude Include="RuntimeManipulation\DataPatch.h" />
     <ClInclude Include="ApplicationReflection\offsetfunction.h" />

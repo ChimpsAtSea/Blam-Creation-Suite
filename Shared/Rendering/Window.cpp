@@ -32,7 +32,7 @@ void c_window::Show()
 	SetForegroundWindow(GetWindowHandle());
 }
 
-void c_window::SetPostMessageThreadId(HANDLE hThread)
+void c_window::set_post_message_thread_id(HANDLE hThread)
 {
 	s_hPostMessageThread = hThread;
 	s_hPostMessageThreadId = GetThreadId(s_hPostMessageThread);

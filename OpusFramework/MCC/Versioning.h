@@ -9,6 +9,32 @@ enum e_engine_type : uint8_t
 	_engine_type_eldorado
 };
 
+constexpr const char* engine_type_to_string(e_engine_type engine_type)
+{
+	switch (engine_type)
+	{
+	case _engine_type_not_set:		return "_engine_type_not_set";
+	case _engine_type_halo1:		return "_engine_type_halo1";
+	case _engine_type_halo_reach:	return "_engine_type_halo_reach";
+	case _engine_type_mcc:			return "_engine_type_mcc";
+	case _engine_type_eldorado:		return "_engine_type_eldorado";
+	}
+	FATAL_ERROR(L"unknown e_engine_type");
+}
+
+constexpr const char* engine_type_to_nice_name(e_engine_type engine_type)
+{
+	switch (engine_type)
+	{
+	case _engine_type_not_set:		return "Not Set";
+	case _engine_type_halo1:		return "Halo 1";
+	case _engine_type_halo_reach:	return "Halo Reach";
+	case _engine_type_mcc:			return "Master Chief Collection";
+	case _engine_type_eldorado:		return "Eldorado";
+	}
+	FATAL_ERROR(L"unknown e_engine_type");
+}
+
 #define MAKE_FILE_VERSION(a, b, c, d) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 16) | (uint64_t(d) << 0))
 #define MAKE_PRODUCT_VERSION(a, b, c) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 0))
 

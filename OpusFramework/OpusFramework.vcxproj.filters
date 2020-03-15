@@ -99,6 +99,9 @@
     <ClCompile Include="MCC\game_runtime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="session_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="opusframework-private-pch.h">
@@ -255,6 +258,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MCC\game_context.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="session_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

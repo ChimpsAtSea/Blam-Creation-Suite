@@ -1,18 +1,24 @@
 #include "opusframework-private-pch.h"
 
-enum class NextLaunchMode
-{
-	None,
-	Generic,
-	Theater
-};
-NextLaunchMode s_nextLaunchMode = NextLaunchMode::None;
-e_engine_type s_nextLaunchEngine;
+
+NextLaunchMode g_next_launch_mode = NextLaunchMode::None;
+
 
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameStartupEvent;
 std::vector<GameLauncher::GenericGameEvent> GameLauncher::s_gameShutdownEvent;
 bool GameLauncher::s_gameRunning = false;
 c_opus_game_engine_host* pCurrentGameHost = nullptr;
+
+e_engine_type k_supported_engines[] =
+{
+#ifdef _WIN64
+	_engine_type_halo1,
+	_engine_type_halo_reach,
+#else
+	_engine_type_eldorado
+#endif
+};
+e_engine_type g_engine_type = k_supported_engines[0];
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -31,8 +37,19 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
+static bool has_auto_started = false;
+static bool k_autostart_halo_reach = false;
+static bool k_autostart_halo_halo1 = false;
+static bool k_autostart_halo_eldorado = false;
+static bool k_autostart_halo_online = false;
+
 void GameLauncher::Init()
 {
+	k_autostart_halo_reach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
+	k_autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
+	k_autostart_halo_eldorado = c_command_line::get_command_line_arg("-autostart") == "eldorado";
+	k_autostart_halo_online = c_command_line::get_command_line_arg("-autostart") == "haloonline";
+
 #ifdef _WIN64
 	checkSteamOwnership();
 	entireLibraryIsLoaded("steam_api64.dll", "MCC\\Binaries\\Win64");
@@ -54,7 +71,6 @@ void GameLauncher::Init()
 	c_debug_gui::register_callback(_callback_mode_toggleable, renderUI);
 
 	c_window::register_destroy_callback(WindowDestroyCallback);
-
 }
 
 void GameLauncher::Deinit()
@@ -126,10 +142,10 @@ void GameLauncher::update()
 	}
 	else
 	{
-		if (s_nextLaunchMode != NextLaunchMode::None)
+		if (g_next_launch_mode != NextLaunchMode::None)
 		{
-			s_nextLaunchMode = NextLaunchMode::None;
-			launchGame(s_nextLaunchEngine);
+			g_next_launch_mode = NextLaunchMode::None;
+			launchGame(g_engine_type);
 		}
 	}
 }
@@ -138,6 +154,17 @@ void GameLauncher::gameRender()
 {
 	c_mantle_gui::render_in_game_gui();
 	c_primitive_render_manager::Render();
+}
+
+void GameLauncher::startGame(e_engine_type engine_type, NextLaunchMode next_launch_mode)
+{
+	g_engine_type = engine_type;
+	g_next_launch_mode = next_launch_mode;
+
+	HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
+	has_auto_started = true;
+	g_next_launch_mode = NextLaunchMode::Generic;
+
 }
 
 void GameLauncher::renderUI()
@@ -160,10 +187,8 @@ void GameLauncher::launchGame(e_engine_type engine_type)
 	{
 #ifdef _WIN64
 	case _engine_type_halo1:
-		launchHalo1();
-		break;
 	case _engine_type_halo_reach:
-		launchHaloReach();
+		launchMCCGame(engine_type);
 		break;
 #else
 	case _engine_type_eldorado:
@@ -176,18 +201,28 @@ void GameLauncher::launchGame(e_engine_type engine_type)
 	s_gameRunning = false;
 }
 #ifdef _WIN64
-void GameLauncher::launchHalo1()
+void GameLauncher::launchMCCGame(e_engine_type engine_type)
 {
 	ASSERT(pCurrentGameHost == nullptr);
 
-	e_engine_type engine_type = _engine_type_halo1;
-	e_build build = c_halo1_game_host::get_game_runtime().get_build();
-
-	pCurrentGameHost = new c_halo1_game_host(engine_type, build);
+	e_build build = _build_not_set;
+	switch (engine_type)
+	{
+	case _engine_type_halo1:
+		build = c_halo_reach_game_host::get_game_runtime().get_build();
+		pCurrentGameHost = new c_halo1_game_host(engine_type, build);
+		break;
+	case _engine_type_halo_reach:
+		build = c_halo_reach_game_host::get_game_runtime().get_build();
+		pCurrentGameHost = new c_halo_reach_game_host(engine_type, build);
+		break;
+	default:
+		write_line_verbose(__FUNCTION__"> unknown engine_type");
+		return;
+	}
 	ASSERT(pCurrentGameHost != nullptr);
 	IGameEngine* pGameEngine = pCurrentGameHost->get_game_engine();
 	ASSERT(pGameEngine != nullptr);
-
 
 	// #TODO: Game specific version of this!!!
 
@@ -196,98 +231,85 @@ void GameLauncher::launchHalo1()
 		gameEvent(engine_type, build);
 	}
 
-	e_game_context_version game_context_version = get_game_context_version_from_build(build);
-	GameContext gameContext(game_context_version);
-	gameContext.is_legacy_mode = true;
+	GameContext* game_context = nullptr;
+	c_session_manager::create_game_context(build, &game_context);
+	ASSERT(game_context);
+
 	{
-		//const MapInfo* pSelectedMapInfo = HaloReachGameOptionSelection::GetSelectedMapInfo();
-		e_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
-
-		//const char* pMapFileName = pSelectedMapInfo->GetMapFileName();
-		//write_line_verbose("Loading map '%s.map'", pMapFileName);
-		//{
-		//	wchar_t pMapFilePathBuffer[MAX_PATH + 1] = {};
-		//	_snwprintf(pMapFilePathBuffer, MAX_PATH, L"%S%S.map", "halo1/maps/", pMapFileName);
-		//	MantleGUI::OpenMapFile(pMapFilePathBuffer);
-		//}
-
-		//gameContext.pGameHandle = GetModuleHandle("Halo1.dll");
-		//char byte2B678Data[] = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-		//memcpy(gameContext.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
-
+		// #TODO: Make a home for this
+		if (game_context->is_host)
 		{
-
-			s_peer_context SquadAddress = { 0x2F385E2E95D4F33Ei64 };
-			s_peer_context HostAddress = { 0xDEADBEEFDEADBEEFi64 };
-			s_peer_context ClientAddress = { 0xCAFEBABECAFEBABEi64 };
-
-			gameContext.party = SquadAddress; // this is set
-
-			gameContext.game_mode = _game_mode_campaign;
-
-			gameContext.peer_count = 1;
-			gameContext.player_count = 1;
-			gameContext.is_host = true;
-			if (gameContext.is_host)
+			if (engine_type == _engine_type_halo1)
 			{
-				//gameContext.map_id = static_cast<MapID>(pSelectedMapInfo->GetMapID());
-				gameContext.map_id = (e_map_id)(3);
-				gameContext.campaign_difficulty_level = _campaign_difficulty_level_easy;
+				game_context->game_mode = _game_mode_campaign;
+				game_context->map_id = (e_map_id)(3);
+				game_context->campaign_difficulty_level = _campaign_difficulty_level_easy;
+			}
+			else if (engine_type == _engine_type_halo_reach)
+			{
+				const MapInfo* pSelectedMapInfo = HaloReachGameOptionSelection::GetSelectedMapInfo();
+				e_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
 
-				//HaloReachGameOptionSelection::LoadGameVariant(HaloReachGameHost::GetDataAccess(), HaloReachGameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.GameVariantBuffer), true);
-				//HaloReachGameOptionSelection::LoadMapVariant(HaloReachGameHost::GetDataAccess(), HaloReachGameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.MapVariantBuffer), true);
+				game_context->game_mode = gameMode;
+				game_context->map_id = static_cast<e_map_id>(pSelectedMapInfo->GetMapID());
+				game_context->campaign_difficulty_level = _campaign_difficulty_level_easy;
+
+				HaloReachGameOptionSelection::LoadGameVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(game_context->game_variant_buffer), true);
+				HaloReachGameOptionSelection::LoadMapVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(game_context->map_variant_buffer), true);
 				//HaloReachGameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
 				//HaloReachGameOptionSelection::LoadSavedFilmMetadata(HaloReachGameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
 
-				gameContext.local = HostAddress; // this is set
-				//gameContext.host = HostAddress; // this is set
-			}
-			else
-			{
-				gameContext.local = ClientAddress; // this is set
-				gameContext.host = HostAddress;
-			}
-
-			gameContext.peers[0] = gameContext.local;
-			gameContext.players[0].xbox_user_id = ClientAddress.secure_address;
-			if (gameContext.game_context_version == _game_context_version_3)
-			{
-				reinterpret_cast<s_player_context_v2*>(&gameContext.players[0])->__unknown1C = -1;
+				{
+					// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mantle
+					const char* pMapFileName = pSelectedMapInfo->GetMapFileName();
+					write_line_verbose("Loading map '%s.map'", pMapFileName);
+					{
+						wchar_t pMapFilePathBuffer[MAX_PATH + 1] = {};
+						_snwprintf(pMapFilePathBuffer, MAX_PATH, L"%S%S.map", "haloreach/maps/", pMapFileName);
+						c_mantle_gui::open_cache_file_from_filepath(pMapFilePathBuffer);
+					}
+				}
 			}
 		}
 	}
 
+	{
+		// useful for testing if the gameenginehostcallback vftable is correct or not
+		static constexpr bool kBogusGameEngineHostCallbackVFT = false;
+		if constexpr (kBogusGameEngineHostCallbackVFT)
+		{
+			void*& pGameEngineHostVftable = *reinterpret_cast<void**>(pCurrentGameHost);
+			static char data[sizeof(void*) * 1024] = {};
+			memset(data, -1, sizeof(data));
+			static constexpr size_t kNumBytesToCopyFromExistingVFT = 0;
+			memcpy(data, pGameEngineHostVftable, kNumBytesToCopyFromExistingVFT);
+			pGameEngineHostVftable = data;
+		}
+	}
+
+	IGameEngineHost* game_engine_host = pCurrentGameHost->GetDynamicGameEngineHost();
+	static HANDLE hMainGameThread = NULL;
 
 	pGameEngine->Member04(c_render::s_pDevice);
-	pGameEngine->Member05(gameContext.map_id);
+	pGameEngine->Member05(game_context->map_id);
 	pGameEngine->InitGraphics(c_render::s_pDevice, c_render::s_pDeviceContext, c_render::s_pSwapChain, c_render::s_pSwapChain);
+	hMainGameThread = pGameEngine->InitThread(game_engine_host, game_context);
 
-	{
-		// useful for testing if the gameenginehostcallback vftable is correct or not
-		static constexpr bool kBogusGameEngineHostCallbackVFT = false;
-		if constexpr (kBogusGameEngineHostCallbackVFT)
-		{
-			void*& pGameEngineHostVftable = *reinterpret_cast<void**>(pCurrentGameHost);
-			static char data[sizeof(void*) * 1024] = {};
-			memset(data, -1, sizeof(data));
-			static constexpr size_t kNumBytesToCopyFromExistingVFT = 0;
-			memcpy(data, pGameEngineHostVftable, kNumBytesToCopyFromExistingVFT);
-			pGameEngineHostVftable = data;
-		}
-	}
-
-	IGameEngineHost* game_engine_host = pCurrentGameHost->GetDynamicGameEngineHost();
-	static HANDLE hMainGameThread = NULL;
-	hMainGameThread = pGameEngine->InitThread(game_engine_host, &gameContext);
-	c_window::SetPostMessageThreadId(hMainGameThread);
+	c_window::set_post_message_thread_id(hMainGameThread);
 
 	// #TODO: Absolutely terrible thread sync here
 	{
-		std::thread thread([]() 
+		std::thread thread([]()
 			{
-				while (true) {}
-			WaitForSingleObject(hMainGameThread, INFINITE);
-			s_gameRunning = false;
+				
+				if (g_engine_type == _engine_type_halo1)
+				{
+					// we should fix this by listening to engine messages using the MCC layer to determine
+					// when a game has actually exited.
+					while (true) {}; // hasty hax because the thread closes too soon!
+				}
+				WaitForSingleObject(hMainGameThread, INFINITE);
+				s_gameRunning = false;
 			});
 		while (s_gameRunning)
 		{
@@ -297,141 +319,8 @@ void GameLauncher::launchHalo1()
 		thread.join();
 	}
 
+	delete game_context;
 
-	//HRESULT waitForSingleObjectResult;
-	//do
-	//{
-	//	update();
-	//	waitForSingleObjectResult = WaitForSingleObject(hMainGameThread, 5);
-	//} while (waitForSingleObjectResult == WAIT_TIMEOUT);
-	//WaitForSingleObject(hMainGameThread, INFINITE);
-
-	write_line_verbose("Game has exited.");
-
-	for (GenericGameEvent gameEvent : s_gameShutdownEvent)
-	{
-		gameEvent(engine_type, build);
-	}
-
-	delete pCurrentGameHost;
-	pCurrentGameHost = nullptr;
-
-	// reset runtime information after we've destroyed the engine
-	//s_pCurrentGameRuntime = nullptr;
-}
-
-void GameLauncher::launchHaloReach()
-{
-	ASSERT(pCurrentGameHost == nullptr);
-
-	e_engine_type engine_type = _engine_type_halo_reach;
-	e_build build = c_halo_reach_game_host::get_game_runtime().get_build();
-
-	pCurrentGameHost = new c_halo_reach_game_host(engine_type, build);
-	ASSERT(pCurrentGameHost != nullptr);
-	IGameEngine* pGameEngine = pCurrentGameHost->get_game_engine();
-	ASSERT(pGameEngine != nullptr);
-
-	// #TODO: Game specific version of this!!!
-
-	for (GenericGameEvent gameEvent : s_gameStartupEvent)
-	{
-		gameEvent(engine_type, build);
-	}
-
-	e_game_context_version game_context_version = get_game_context_version_from_build(build);
-	switch (game_context_version)
-	{
-	case _game_context_version_1: write_line_verbose("Using game context version 1"); break;
-	case _game_context_version_2: write_line_verbose("Using game context version 2"); break;
-	case _game_context_version_3: write_line_verbose("Using game context version 3"); break;
-	}
-	GameContext gameContext(game_context_version);
-	{
-		const MapInfo* pSelectedMapInfo = HaloReachGameOptionSelection::GetSelectedMapInfo();
-		e_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
-
-		const char* pMapFileName = pSelectedMapInfo->GetMapFileName();
-		write_line_verbose("Loading map '%s.map'", pMapFileName);
-		{
-			wchar_t pMapFilePathBuffer[MAX_PATH + 1] = {};
-			_snwprintf(pMapFilePathBuffer, MAX_PATH, L"%S%S.map", "haloreach/maps/", pMapFileName);
-			c_mantle_gui::open_cache_file_from_filepath(pMapFilePathBuffer);
-		}
-
-		//gameContext.pGameHandle = GetModuleHandle("HaloReach.dll");
-		//char byte2B678Data[] = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-		//memcpy(gameContext.byte2B678, byte2B678Data, sizeof(byte2B678Data)); // what the hell is this?
-
-		{
-
-			s_peer_context SquadAddress = { 0x2F385E2E95D4F33Ei64 };
-			s_peer_context HostAddress = { 0xDEADBEEFDEADBEEFi64 };
-			s_peer_context ClientAddress = { 0xCAFEBABECAFEBABEi64 };
-
-			gameContext.party = SquadAddress; // this is set
-
-			gameContext.game_mode = gameMode;
-
-			gameContext.peer_count = 1;
-			gameContext.player_count = 1;
-			gameContext.is_host = true;
-			if (gameContext.is_host)
-			{
-				gameContext.map_id = static_cast<e_map_id>(pSelectedMapInfo->GetMapID());
-				gameContext.campaign_difficulty_level = _campaign_difficulty_level_easy;
-
-				HaloReachGameOptionSelection::LoadGameVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchGameVariant.c_str(), *reinterpret_cast<s_game_variant*>(gameContext.game_variant_buffer), true);
-				HaloReachGameOptionSelection::LoadMapVariant(c_halo_reach_game_host::get_data_access(), HaloReachGameOptionSelection::s_pLaunchMapVariant.c_str(), *reinterpret_cast<s_map_variant*>(gameContext.map_variant_buffer), true);
-				//HaloReachGameOptionSelection::LoadPreviousGamestate("gamestate", gameContext);
-				//HaloReachGameOptionSelection::LoadSavedFilmMetadata(HaloReachGameOptionSelection::s_pLaunchSavedFilm.c_str(), gameContext);
-
-				gameContext.local = HostAddress; // this is set
-				gameContext.host = HostAddress; // this is set
-			}
-			else
-			{
-				gameContext.local = ClientAddress; // this is set
-				gameContext.host = HostAddress;
-			}
-		}
-	}
-
-	pGameEngine->InitGraphics(c_render::s_pDevice, c_render::s_pDeviceContext, c_render::s_pSwapChain, c_render::s_pSwapChain);
-
-	{
-		// useful for testing if the gameenginehostcallback vftable is correct or not
-		static constexpr bool kBogusGameEngineHostCallbackVFT = false;
-		if constexpr (kBogusGameEngineHostCallbackVFT)
-		{
-			void*& pGameEngineHostVftable = *reinterpret_cast<void**>(pCurrentGameHost);
-			static char data[sizeof(void*) * 1024] = {};
-			memset(data, -1, sizeof(data));
-			static constexpr size_t kNumBytesToCopyFromExistingVFT = 0;
-			memcpy(data, pGameEngineHostVftable, kNumBytesToCopyFromExistingVFT);
-			pGameEngineHostVftable = data;
-		}
-	}
-	
-	IGameEngineHost* game_engine_host = pCurrentGameHost->GetDynamicGameEngineHost();
-	static HANDLE hMainGameThread = NULL;
-	hMainGameThread = pGameEngine->InitThread(game_engine_host, &gameContext);
-	c_window::SetPostMessageThreadId(hMainGameThread);
-
-	// #TODO: Absolutely terrible thread sync here
-	{
-		std::thread thread([]() 
-			{
-			WaitForSingleObject(hMainGameThread, INFINITE);
-			s_gameRunning = false;
-			});
-		while (s_gameRunning)
-		{
-			update();
-			SwitchToThread(); // don't smash the CPU
-		}
-		thread.join();
-	}
 
 	//HRESULT waitForSingleObjectResult;
 	//do
@@ -509,11 +398,7 @@ void GameLauncher::entireLibraryIsLoaded(const char* pLibName, const char* pFall
 void GameLauncher::renderMainMenu()
 {
 	if (s_gameRunning) return;
-
 	MouseInput::SetMode(MouseMode::UI);
-
-	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
-	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
 	ImVec2 globalWindowSize = ImVec2(static_cast<float>(c_window::get_width()), static_cast<float>(c_window::get_height()));
 	ImVec2 windowSize = ImVec2(globalWindowSize.x * 0.75f, globalWindowSize.y * 0.75f);
@@ -521,68 +406,82 @@ void GameLauncher::renderMainMenu()
 	ImGui::SetNextWindowSize(windowSize, ImGuiCond_Always);
 	ImGui::SetNextWindowPos(windowOffset, ImGuiCond_Always);
 
-	static bool isWindowOpen = true;
-	int windowFlags = 0;
-	//windowFlags |= ImGuiWindowFlags_MenuBar;
-	windowFlags |= ImGuiWindowFlags_NoCollapse;
-	windowFlags |= ImGuiWindowFlags_NoTitleBar;
-	windowFlags |= ImGuiWindowFlags_NoMove;
-	windowFlags |= ImGuiWindowFlags_NoResize;
-	windowFlags |= ImGuiWindowFlags_NoSavedSettings;
-	//windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
-
-	if (ImGui::Begin("MAIN MENU", &isWindowOpen, windowFlags))
+	constexpr ImGuiWindowFlags window_flags =
+		ImGuiWindowFlags_NoCollapse |
+		ImGuiWindowFlags_NoTitleBar |
+		ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_NoSavedSettings;
+	if (ImGui::Begin("Main Menu", nullptr, window_flags))
 	{
-		static bool has_auto_started = false;
-		static bool const k_autostart_halo_reach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
-		static bool const k_autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
-		static bool const k_autostart_halo_eldorado = c_command_line::get_command_line_arg("-autostart") == "eldorado";
-		static bool const k_autostart_halo_online = c_command_line::get_command_line_arg("-autostart") == "haloonline";
-#ifdef _WIN64
-		HaloReachGameOptionSelection::Render();
+		ImGui::Columns(2);
+		ImGui::SetColumnOffset(1, c_window::get_width() * 0.5f);
+
+		const char* current_engine_name = engine_type_to_nice_name(g_engine_type);
+		if (ImGui::BeginCombo("engine type combo", current_engine_name))
 		{
-			ImGui::Dummy(ImVec2(0.0f, 30.0f));
-
-			
-			if (ImGui::Button("START GAME (Reach)") || (k_autostart_halo_reach && !has_auto_started))
+			for (e_engine_type supported_engine_type : k_supported_engines)
 			{
-				HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
-				has_auto_started = true;
-				s_nextLaunchMode = NextLaunchMode::Generic;
-				s_nextLaunchEngine = _engine_type_halo_reach;
+				const char* supported_engine_name = engine_type_to_nice_name(supported_engine_type);
+				if (ImGui::Selectable(supported_engine_name))
+				{
+					g_engine_type = supported_engine_type;
+				}
 			}
 
-			if (ImGui::Button("PLAY FILM (Reach)") || GetKeyState('P') & 0x80)
-			{
-				s_nextLaunchMode = NextLaunchMode::Theater;
-				s_nextLaunchEngine = _engine_type_halo_reach;
-			}
+			ImGui::EndCombo();
+		}
 
-			if (ImGui::Button("START GAME (Halo 1)") || (k_autostart_halo_halo1 && !has_auto_started))
+		switch (g_engine_type)
+		{
+		case _engine_type_halo1:
+			break;
+		case _engine_type_halo_reach:
+			HaloReachGameOptionSelection::Render();
+			break;
+		case _engine_type_eldorado:
+			break;
+		}
+
+		ImGui::Dummy(ImVec2(0.0f, 30.0f));
+
+		if (ImGui::Button("START GAME"))
+		{
+			startGame(g_engine_type, NextLaunchMode::Generic);
+		}
+
+		if (g_engine_type == _engine_type_halo_reach)
+		{
+			if (ImGui::Button("PLAY FILM"))
 			{
-				HaloReachGameOptionSelection::s_pLaunchSavedFilm = "";
-				has_auto_started = true;
-				s_nextLaunchMode = NextLaunchMode::Generic;
-				s_nextLaunchEngine = _engine_type_halo1;
+				startGame(g_engine_type, NextLaunchMode::Theater);
 			}
 		}
-#else
-		{
-			if (ImGui::Button("START GAME (Eldorado)") || ((k_autostart_halo_eldorado || k_autostart_halo_online) && !has_auto_started))
-			{
-				has_auto_started = true;
-				s_nextLaunchMode = NextLaunchMode::Generic;
-				s_nextLaunchEngine = _engine_type_eldorado;
-	}
-		}
-#endif
+
 		ImGui::Dummy(ImVec2(0.0f, 20.0f));
 		if (ImGui::Button("QUIT TO DESKTOP"))
 		{
-			exit(0);
+			exit(0); // #TODO: Exit properly
 		}
+
+		ImGui::NextColumn();
+		ImGui::Text("My Game Session");
+		ImGui::Dummy(ImVec2(0.0f, 10.0f));
+		// #TODO: Display session information
+		//for (size_t player_index = 0; player_index < game_context->player_count; player_index++)
+		//{
+		//	ImGui::Text("Player xuid[%llx]", game_context.players[player_index].xbox_user_id);
+		//}
+
+		ImGui::Dummy(ImVec2(0.0f, 50.0f));
+		ImGui::Text("Friends");
+		ImGui::Dummy(ImVec2(0.0f, 10.0f));
+		// #TODO: Display friends information
+
+		ImGui::Columns(1);
+
+		ImGui::End();
 	}
-	ImGui::End();
 }
 
 void GameLauncher::renderPauseMenu()
@@ -702,5 +601,4 @@ void GameLauncher::renderPauseMenu()
 
 	ImGui::End();
 }
-
 

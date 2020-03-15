@@ -7,3 +7,5 @@
 #include "MCC/MCC.h"
 #include "ApplicationReflection/ApplicationReflection.h"
 #include "RuntimeManipulation/RuntimeManipulation.h"
+
+#include "session_manager.h"

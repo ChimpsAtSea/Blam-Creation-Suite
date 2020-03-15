@@ -27,7 +27,7 @@ public:
 	inline static void unregister_destroy_callback(DestroyCallback pDestroyCallback) { VectorEraseByValueHelper(s_DestroyCallbacks, pDestroyCallback); }
 
 	static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
-	static void SetPostMessageThreadId(HANDLE hThread);
+	static void set_post_message_thread_id(HANDLE hThread);
 
 	static int get_width();
 	static int get_height();

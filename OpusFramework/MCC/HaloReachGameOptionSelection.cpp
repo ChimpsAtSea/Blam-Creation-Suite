@@ -162,7 +162,7 @@ void HaloReachGameOptionSelection::Render()
 
 	SelectSavedFilm();
 
-	ImGui::Separator();
+	//ImGui::Separator();
 
 	//if (s_currentGameMode != GameMode::Multiplayer)
 	//{
@@ -183,7 +183,7 @@ void HaloReachGameOptionSelection::Render()
 	SelectDifficulty();
 	//ImGui::PopItemWidth();
 
-	ImGui::Separator();
+	//ImGui::Separator();
 
 	SelectGameVariant();
 	SelectMapVariant();

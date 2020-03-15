@@ -1,5 +1,12 @@
 #pragma once
 
+enum class NextLaunchMode
+{
+	None,
+	Generic,
+	Theater
+};
+
 class GameLauncher
 {
 public:
@@ -14,6 +21,7 @@ private:
 	static void renderMainMenu();
 	static void renderUI();
 	static void gameRender();
+	static void startGame(e_engine_type engine_type, NextLaunchMode next_launch_mode);
 	static void launchGame(e_engine_type engine_type);
 	static void checkSteamOwnership();
 	static void entireLibraryIsLoaded(const char* pLibName, const char* pFallbackDir);
@@ -21,8 +29,7 @@ private:
 
 	// #TODO: Move these into each lib
 #ifdef _WIN64
-	static void launchHalo1();
-	static void launchHaloReach();
+	static void launchMCCGame(e_engine_type engine_type);
 #else
 	static void launchEldorado();
 #endif
