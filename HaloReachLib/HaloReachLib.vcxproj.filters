@@ -24,6 +24,9 @@
     <ClCompile Include="halo_reach_game_host.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="haloreach_engine_state_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="haloreachlib-private-pch.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="halo_reach_game_host.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="haloreach_engine_state_command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

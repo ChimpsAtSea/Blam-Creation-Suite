@@ -9,4 +9,6 @@
 
 #include "halo1lib-public-pch.h"
 
+#include "halo1_engine_state_command.h"
+
 #endif

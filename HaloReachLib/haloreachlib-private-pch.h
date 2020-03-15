@@ -12,4 +12,6 @@
 
 #include "haloreachlib-public-pch.h"
 
+#include "haloreach_engine_state_command.h"
+
 #endif
