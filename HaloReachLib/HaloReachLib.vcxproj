@@ -99,6 +99,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="haloreach_engine_state_command.cpp" />
     <ClCompile Include="opus_legacy\HaloReach.cpp" />
     <ClCompile Include="halo_reach_game_host.cpp" />
     <ClCompile Include="haloreachlib-private-pch.cpp">
@@ -107,6 +108,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="haloreach_engine_state_command.h" />
     <ClInclude Include="opus_legacy\c_network.h" />
     <ClInclude Include="halo_reach_game_host.h" />
     <ClInclude Include="haloreachlib-private-pch.h" />

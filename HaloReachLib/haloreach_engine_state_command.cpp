@@ -1,4 +1,4 @@
-#include <halo1lib-private-pch.h>
+#include <haloreachlib-private-pch.h>
 
 /* ---------- private constants */
 /* ---------- private macros */
@@ -8,7 +8,7 @@
 /* ---------- private prototypes */
 /* ---------- public code */
 
-void halo1_update_engine_state(IGameEngine* game_engine, const std::string engine_state_str)
+void haloreach_update_engine_state(IGameEngine *game_engine, const std::string engine_state_str)
 {
 	if (game_engine != nullptr)
 	{
@@ -22,17 +22,17 @@ void halo1_update_engine_state(IGameEngine* game_engine, const std::string engin
 			write_line_verbose("Unpausing game");
 			game_engine->UpdateEngineState(eEngineState::Unpause);
 		}
-		else if (!engine_state_str.compare("end_game"))
+		else if (!engine_state_str.compare("end"))
 		{
 			write_line_verbose("Ending game");
 			game_engine->UpdateEngineState(eEngineState::EndGame);
 		}
-		else if (!engine_state_str.compare("restart_level"))
+		else if (!engine_state_str.compare("restart"))
 		{
 			write_line_verbose("Restarting level");
 			game_engine->UpdateEngineState(eEngineState::RestartLevel);
 		}
-		else if (!engine_state_str.compare("revert_to_last_save"))
+		else if (!engine_state_str.compare("revert"))
 		{
 			write_line_verbose("Reverting to lase checkpoint");
 			game_engine->UpdateEngineState(eEngineState::RevertToLastSave);
@@ -44,40 +44,40 @@ void halo1_update_engine_state(IGameEngine* game_engine, const std::string engin
 	write_line_verbose("Unable to update engine state");
 }
 
-c_halo1_engine_state_command::c_halo1_engine_state_command() : 
+c_haloreach_engine_state_command::c_haloreach_engine_state_command() :
 	g_game_engine(nullptr)
 {
-	c_console::register_command(k_halo1_engine_state_command_name, this);
+	c_console::register_command(k_haloreach_engine_state_command_name, this);
 }
 
-c_halo1_engine_state_command::~c_halo1_engine_state_command()
+c_haloreach_engine_state_command::~c_haloreach_engine_state_command()
 {
-	c_console::unregister_command(k_halo1_engine_state_command_name);
+	c_console::unregister_command(k_haloreach_engine_state_command_name);
 }
 
-bool c_halo1_engine_state_command::execute_command(const std::vector<std::string> &arguments)
+bool c_haloreach_engine_state_command::execute_command(const std::vector<std::string> &arguments)
 {
 	if (arguments.empty()) return true;
 
-	if (!arguments.front().compare(k_halo1_engine_state_command_name))
+	if (!arguments.front().compare(k_haloreach_engine_state_command_name))
 	{
 		if (arguments.size() >= 2)
 		{
 			const std::string &engine_state = arguments[1];
 
 			c_console::set_text_color(_console_color_info);
-			halo1_update_engine_state(g_game_engine, engine_state);
+			haloreach_update_engine_state(g_game_engine, engine_state);
 		}
 		else return false;
 	}
 	return true;
 }
 
-std::string c_halo1_engine_state_command::get_command_info(const std::string &topic) const
+std::string c_haloreach_engine_state_command::get_command_info(const std::string &topic) const
 {
 	if (!topic.empty())
 	{
-		if (!topic.compare(k_halo1_engine_state_command_name))
+		if (!topic.compare(k_haloreach_engine_state_command_name))
 		{
 			return
 				"Update engine state\n"
@@ -87,12 +87,12 @@ std::string c_halo1_engine_state_command::get_command_info(const std::string &to
 	return "";
 }
 
-std::string c_halo1_engine_state_command::get_command_auto_complete(const std::vector<std::string> &Arguments) const
+std::string c_haloreach_engine_state_command::get_command_auto_complete(const std::vector<std::string> &Arguments) const
 {
 	return ""; // todo;
 }
 
-void c_halo1_engine_state_command::set_game_engine(IGameEngine* game_engine)
+void c_haloreach_engine_state_command::set_game_engine(IGameEngine *game_engine)
 {
 	g_game_engine = game_engine;
 }
