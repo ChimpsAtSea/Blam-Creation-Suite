@@ -34,8 +34,8 @@ void haloreach_update_engine_state(IGameEngine *game_engine, const std::string e
 		}
 		else if (!engine_state_str.compare("revert"))
 		{
-			write_line_verbose("Reverting to lase checkpoint");
-			game_engine->UpdateEngineState(eEngineState::RevertToLastSave);
+			write_line_verbose("Restarting checkpoint");
+			game_engine->UpdateEngineState(eEngineState::RestartCheckpoint);
 		}
 
 		return;

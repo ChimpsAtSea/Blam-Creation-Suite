@@ -6,21 +6,21 @@ enum class eEngineState : int
 	Unpause,
 
 	ImmediateExit,
-	RevertToLastSave,
+	RestartCheckpoint,
 	RestartLevel,
 
 	ReloadSettings,
 
 	// 6 and 7 are connected
-	GameLoadStart, // sets a temp variable to `g_render_thread_mode` and sets `g_render_thread_mode` to `0`, sets `g_game_is_loading` to `true` and runs `UpdateGameStatus(RevertToLastSave)`
+	GameLoadStart, // sets a temp variable to `g_render_thread_mode` and sets `g_render_thread_mode` to `0`, sets `g_game_is_loading` to `true` and runs `UpdateGameStatus(RestartCheckpoint)`
 	GameLoadEnd, // sets `g_render_thread_mode` to the temp variable and sets the temp variable to `0`, sets `g_game_is_loading` to `false` and runs `UpdateGameStatus(RestartLevel)`
 
 	// 8 and 9 are connected
 	PushUIPage, // allocates `c_controller_input_message` (loadout selection is shown) and sets a temp variable to `true`
 	PopUIPage, // sets the temp variable to `false` and player spawns
 
-	UpdateGameVariant, // creates a new `IGameVariant` and passes it to `IGameEngineHostLegacy::UpdateGameVariant`
-	UpdateMapVariant, // creates a new `IMapVariant` and passes it to `IGameEngineHostLegacy::UpdateMapVariant`
+	SaveGameVariant, // creates a new `IGameVariant` and passes it to `IGameEngineHostLegacy::SaveGameVariant`
+	SaveMapVariant, // creates a new `IMapVariant` and passes it to `IGameEngineHostLegacy::SaveMapVariant`
 
 	EndRound, // not confirmed
 	EndGame, // not confirmed

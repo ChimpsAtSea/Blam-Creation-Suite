@@ -550,7 +550,7 @@ void GameLauncher::renderPauseMenu()
 	//	{
 	//		if (ImGui::Button("REVERT TO LAST SAVE", gridButtonSize))
 	//		{
-	//			s_pHaloReachEngine->UpdateEngineState(eEngineState::RevertToLastSave);
+	//			s_pHaloReachEngine->UpdateEngineState(eEngineState::RestartCheckpoint);
 	//			isPaused = false;
 	//		}
 	//	}
