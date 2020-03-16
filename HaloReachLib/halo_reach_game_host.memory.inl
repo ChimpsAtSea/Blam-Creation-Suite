@@ -10,6 +10,11 @@ uintptr_t tag_instances_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1270_0_0, 0x1826887B8);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x180CF8FC0);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1350_0_0, 0x182645338);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1367_0_0, 0x182645288);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1377_0_0, 0x182645288);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1384_0_0, 0x182645288);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x182645288);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x182645288);
 	return ~uintptr_t();
 }
 s_cache_file_tag_instance*& tag_instances = reference_symbol<s_cache_file_tag_instance*>("tag_instances", tag_instances_offset);
@@ -25,6 +30,11 @@ uintptr_t tag_address_table_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1270_0_0, 0x1838D86C0);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x183887CA0);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1350_0_0, 0x1838CB820);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1367_0_0, 0x1838CB7E0);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1377_0_0, 0x1838CB7E0);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1384_0_0, 0x1838CB7E0);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x1838CB7E0);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1838CB7E0);
 	return ~uintptr_t();
 }
 uint32_t* (&tag_address_table)[] = reference_symbol<uint32_t * []>("tag_address_table", tag_address_table_offset);
@@ -40,6 +50,11 @@ uintptr_t g_cache_file_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1270_0_0, 0x1826077A0);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x1825B6D90);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1350_0_0, 0x1825C4320);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1367_0_0, 0x1825C4270);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1377_0_0, 0x1825C4270);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1384_0_0, 0x1825C4270);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x1825C4270);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1825C4270);
 	return ~uintptr_t();
 }
 char* & g_cache_file = reference_symbol<char*>("g_cache_file", g_cache_file_offset);

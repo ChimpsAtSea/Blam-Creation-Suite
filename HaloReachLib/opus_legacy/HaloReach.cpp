@@ -141,7 +141,7 @@ const char* string_search_ptr(e_engine_type engine_type, e_build build, const ch
 	return nullptr;
 }
 
-uintptr_t load_state_offset(e_engine_type engine_type, e_build build)
+uintptr_t external_launch_individual_state_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_824_0_0, 0x180F2BAA4);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_887_0_0, 0x1810EC5A4);
@@ -153,9 +153,13 @@ uintptr_t load_state_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x180CF8AF4);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1350_0_0, 0x180D05EF4);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1367_0_0, 0x180D05EF4);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1377_0_0, 0x180D05EF4);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1384_0_0, 0x180D05EF4);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x180D05EF4);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180D05EF4);
 	return ~uintptr_t();
 }
-DataEx<int, load_state_offset> load_state;
+DataEx<int, external_launch_individual_state_offset> external_launch_individual_state;
 
 uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 {
@@ -216,9 +220,9 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 }
 FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = { "main_game_launch", [](__int64 a1, __int64 a2)
 {
-	static bool isGlobalsVisible = (load_state.ptr() != nullptr);
+	static bool isGlobalsVisible = (external_launch_individual_state.ptr() != nullptr);
 
-	static const char* load_state_names[] =
+	static const char* external_launch_individual_state_names[] =
 	{
 		"initial",
 		"create_local_squad",
@@ -237,19 +241,19 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 
 	if (isGlobalsVisible)
 	{
-		static int previous_load_state = k_load_state_invalid;
-		if ((int)load_state != previous_load_state)
+		static int external_launch_individual_state_prev = k_load_state_invalid;
+		if ((int)external_launch_individual_state != external_launch_individual_state_prev)
 		{
-			previous_load_state = load_state;
-			printf("load_state changed to: %s\n", load_state_names[(int)load_state]);
+			external_launch_individual_state_prev = external_launch_individual_state;
+			printf("external_launch_individual_state changed to: %s\n", external_launch_individual_state_names[(int)external_launch_individual_state]);
 		}
 
 		char result = main_game_launch(a1, a2);
 
-		if ((int)load_state != previous_load_state)
+		if ((int)external_launch_individual_state != external_launch_individual_state_prev)
 		{
-			previous_load_state = load_state;
-			printf("load_state changed to: %s\n", load_state_names[(int)load_state]);
+			external_launch_individual_state_prev = external_launch_individual_state;
+			printf("external_launch_individual_state changed to: %s\n", external_launch_individual_state_names[(int)external_launch_individual_state]);
 		}
 
 		return result;
@@ -674,20 +678,25 @@ uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
-			//case _build_mcc_1_824_0_0: return 0x180C33620;
-			//case _build_mcc_1_887_0_0: return 0x180D89480;
-			//case _build_mcc_1_1035_0_0: return 0x180AB2910;
-			//case _build_mcc_1_1186_0_0: return 0x180ABF520;
-			//case _build_mcc_1_1211_0_0: return 0x180ABF4B0;
-			//case _build_mcc_1_1246_0_0: return 0x180ABC220;
+		case _build_mcc_1_824_0_0: return 0x180C33620;
+		case _build_mcc_1_887_0_0: return 0x180D89480;
+		case _build_mcc_1_1035_0_0: return 0x180AB2910;
+		case _build_mcc_1_1186_0_0: return 0x180ABF520;
+		case _build_mcc_1_1211_0_0: return 0x180ABF4B0;
+		case _build_mcc_1_1246_0_0: return 0x180ABC220;
 		case _build_mcc_1_1270_0_0: return 0x180ABC230;
 		case _build_mcc_1_1305_0_0: return 0x180AA76C0;
-			//case _build_mcc_1_1350_0_0: return 0x180AB2810;
+		case _build_mcc_1_1350_0_0: return 0x180AB2810;
+		case _build_mcc_1_1367_0_0:
+		case _build_mcc_1_1377_0_0:
+		case _build_mcc_1_1384_0_0:
+		case _build_mcc_1_1387_0_0:
+		case _build_mcc_1_1389_0_0: return 0x180AB2820;
 		}
 	}
 	return ~uintptr_t();
 }
-DataEx<hs_script_op * [1995], hs_function_table_offset> hs_function_table;
+hs_script_op *(&hs_function_table)[] = reference_symbol<hs_script_op *[]>("hs_function_table", hs_function_table_offset);
 
 uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 {
@@ -695,15 +704,20 @@ uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
-			//case _build_mcc_1_824_0_0: return 0x1807351D0;
-			//case _build_mcc_1_887_0_0: return 0x1803EC060;
-			//case _build_mcc_1_1035_0_0: return 0x1801F9290;
-			//case _build_mcc_1_1186_0_0: return 0x1801F6420;
-			//case _build_mcc_1_1211_0_0: return 0x1801F6B60;
-			//case _build_mcc_1_1246_0_0: return 0x1801EF600;
+		case _build_mcc_1_824_0_0: return 0x1807351D0;
+		case _build_mcc_1_887_0_0: return 0x1803EC060;
+		case _build_mcc_1_1035_0_0: return 0x1801F9290;
+		case _build_mcc_1_1186_0_0: return 0x1801F6420;
+		case _build_mcc_1_1211_0_0: return 0x1801F6B60;
+		case _build_mcc_1_1246_0_0: return 0x1801EF600;
 		case _build_mcc_1_1270_0_0: return 0x1801EF690;
 		case _build_mcc_1_1305_0_0: return 0x1801EF7A0;
-			//case _build_mcc_1_1350_0_0: return 0x1801F1620;
+		case _build_mcc_1_1350_0_0: return 0x1801F1620;
+		case _build_mcc_1_1367_0_0:
+		case _build_mcc_1_1377_0_0:
+		case _build_mcc_1_1384_0_0:
+		case _build_mcc_1_1387_0_0:
+		case _build_mcc_1_1389_0_0: return 0x1801F1610;
 		}
 	}
 	return ~uintptr_t();
@@ -718,15 +732,20 @@ uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 	{
 		switch (build)
 		{
-			//case _build_mcc_1_824_0_0: return 0x180734900;
-			//case _build_mcc_1_887_0_0: return 0x1803EB790;
-			//case _build_mcc_1_1035_0_0: return 0x1801F8A00;
-			//case _build_mcc_1_1186_0_0: return 0x1801F5B90;
-			//case _build_mcc_1_1211_0_0: return 0x1801F62D0;
-			//case _build_mcc_1_1246_0_0: return 0x1801EED70;
+		case _build_mcc_1_824_0_0: return 0x180734900;
+		case _build_mcc_1_887_0_0: return 0x1803EB790;
+		case _build_mcc_1_1035_0_0: return 0x1801F8A00;
+		case _build_mcc_1_1186_0_0: return 0x1801F5B90;
+		case _build_mcc_1_1211_0_0: return 0x1801F62D0;
+		case _build_mcc_1_1246_0_0: return 0x1801EED70;
 		case _build_mcc_1_1270_0_0: return 0x1801EEE00;
 		case _build_mcc_1_1305_0_0: return 0x1801EEF10;
-			//case _build_mcc_1_1350_0_0: return 0x1801F0D90;
+		case _build_mcc_1_1350_0_0: return 0x1801F0D90;
+		case _build_mcc_1_1367_0_0:
+		case _build_mcc_1_1377_0_0:
+		case _build_mcc_1_1384_0_0:
+		case _build_mcc_1_1387_0_0:
+		case _build_mcc_1_1389_0_0: return 0x1801F0D80;
 		}
 	}
 	return ~uintptr_t();
@@ -735,8 +754,7 @@ FunctionHookEx<hs_return_offset, __int64 __fastcall (unsigned short expression_i
 
 hs_script_op* hs_function_get(short opcode)
 {
-	hs_script_op* (&hs_function_table_ref)[1995] = hs_function_table;
-	return hs_function_table_ref[opcode];
+	return hs_function_table[opcode];
 }
 
 template<typename t_parameter>
@@ -746,19 +764,31 @@ t_parameter& hs_macro_function_evaluate(short opcode, unsigned short expression_
 	return *hs_evaluate_arguments<t_parameter*>(expression_index, op->parameter_count, &op->parameter_types, execute);
 }
 
-uintptr_t script_string_get_offset(e_engine_type engine_type, e_build build)
+uintptr_t hs_inspect_str_offset(e_engine_type engine_type, e_build build)
 {
 	if (engine_type == _engine_type_halo_reach)
 	{
 		switch (build)
 		{
+		case _build_mcc_1_824_0_0: return 0x180732290;
+		case _build_mcc_1_887_0_0: return 0x1803E9120;
+		case _build_mcc_1_1035_0_0: return 0x1801F6B00;
+		case _build_mcc_1_1186_0_0: return 0x1801F3D10;
+		case _build_mcc_1_1211_0_0: return 0x1801F4450;
+		case _build_mcc_1_1246_0_0: return 0x1801ECEF0;
 		case _build_mcc_1_1270_0_0: return 0x1801ECF80;
 		case _build_mcc_1_1305_0_0: return 0x1801ED090;
+		case _build_mcc_1_1350_0_0: return 0x1801EEF10;
+		case _build_mcc_1_1367_0_0:
+		case _build_mcc_1_1377_0_0:
+		case _build_mcc_1_1384_0_0:
+		case _build_mcc_1_1387_0_0:
+		case _build_mcc_1_1389_0_0: return 0x1801EEF00;
 		}
 	}
 	return ~uintptr_t();
 }
-FunctionHookEx<script_string_get_offset, char* __fastcall (__int64 unused, int id, char* dst, int len)> script_string_get;
+FunctionHookEx<hs_inspect_str_offset, char* __fastcall (__int64 unused, int id, char* dst, int len)> hs_inspect_str;
 
 void __fastcall hs_print_evaluate(short opcode, unsigned short expression_index, char execute)
 {
@@ -766,7 +796,7 @@ void __fastcall hs_print_evaluate(short opcode, unsigned short expression_index,
 	if (&out_parameter)
 	{
 		char buf[1024] = {};
-		script_string_get(0, out_parameter, buf, 1024);
+		hs_inspect_str(0, out_parameter, buf, 1024);
 		printf("%s\n", buf);
 
 		hs_return(expression_index, 0);
@@ -781,6 +811,7 @@ uintptr_t camera_definition_validate_offset(e_engine_type engine_type, e_build b
 		{
 		case _build_mcc_1_1270_0_0: return 0x1800E6950;
 		case _build_mcc_1_1305_0_0: return 0x1800E6A00;
+		case _build_mcc_1_1389_0_0: return 0x1800E7F10;
 		}
 	}
 	return ~uintptr_t();
@@ -816,51 +847,81 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "SpawnAiWithScriptsAndEffects", true))
 	{
 		UINT8 jmp[1] = { 0xEB };
-		if (build == _build_mcc_1_1270_0_0)
+		switch (build)
 		{
+		case _build_mcc_1_1270_0_0:
 			copy_to_address(_engine_type_halo_reach, _build_mcc_1_1270_0_0, 0x18076F581, jmp, sizeof(jmp));
 			nop_address(_engine_type_halo_reach, _build_mcc_1_1270_0_0, 0x180730287, 6);
-		}
-		if (build == _build_mcc_1_1305_0_0)
-		{
+			break;
+		case _build_mcc_1_1305_0_0:
 			copy_to_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x18076E341, jmp, sizeof(jmp));
 			nop_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x18072F047, 6);
+			break;
+		case _build_mcc_1_1367_0_0:
+		case _build_mcc_1_1377_0_0:
+		case _build_mcc_1_1384_0_0:
+		case _build_mcc_1_1387_0_0:
+		case _build_mcc_1_1389_0_0:
+			copy_to_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x180779781, jmp, sizeof(jmp));
+			nop_address(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x18073A467, 6);
+			break;
 		}
 	}
 
 	// Allow the use of night vision in multiplayer, props to Zeddikins
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "AllowNightVisionInMultiplayer", true))
 	{
-		if (build == _build_mcc_1_1305_0_0)
+		switch (build)
 		{
+		case _build_mcc_1_1305_0_0:
 			nop_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x1805D66B7, 6);
+			break;
+		case _build_mcc_1_1367_0_0:
+		case _build_mcc_1_1377_0_0:
+		case _build_mcc_1_1384_0_0:
+		case _build_mcc_1_1387_0_0:
+			nop_address(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x1805E18D7, 6);
+			break;
 		}
 	}
 
 	// Enable debug hud coordinates
 	if (Settings::ReadBoolValue(SettingsSection::Debug, "PanCamEnabled", true))
 	{
-		if (build == _build_mcc_1_1305_0_0)
+		switch (build)
 		{
+		case _build_mcc_1_1305_0_0:
 			nop_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x1800DCA8A, 6);
 			nop_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x1800DCA97, 6);
+			break;
+		case _build_mcc_1_1367_0_0:
+		case _build_mcc_1_1377_0_0:
+		case _build_mcc_1_1384_0_0:
+		case _build_mcc_1_1387_0_0:
+		case _build_mcc_1_1389_0_0:
+			nop_address(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x1800DDF7A, 6);
+			nop_address(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x1800DDF87, 6);
+			break;
 		}
 	}
 
-	if (hs_function_table.ptr() != nullptr)
+	if (hs_function_table != nullptr)
 	{
 		if (Settings::ReadBoolValue(SettingsSection::Debug, "ReplacePrintScriptEvaluate", true))
 		{
-			hs_script_op* hs_print_op = hs_function_get(0x28);
-			hs_script_op* hs_chud_post_message_op = hs_function_get(0x509);
+			if (build >= _build_mcc_1_1305_0_0)
+			{
+				hs_script_op *hs_print_op = hs_function_get(0x28);
+				hs_script_op *hs_chud_post_message_op = hs_function_get(0x509);
 
-			if (Settings::ReadBoolValue(SettingsSection::Debug, "PrintToHud", false))
-			{
-				hs_print_op->replace_evaluate(hs_chud_post_message_op->evaluate);
-			}
-			else
-			{
-				hs_print_op->replace_evaluate(hs_print_evaluate);
+				if (Settings::ReadBoolValue(SettingsSection::Debug, "PrintToHud", false))
+				{
+					hs_print_op->replace_evaluate(hs_chud_post_message_op->evaluate);
+				}
+				else
+				{
+					hs_print_op->replace_evaluate(hs_print_evaluate);
+				}
 			}
 		}
 	}
