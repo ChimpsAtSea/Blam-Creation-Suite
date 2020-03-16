@@ -52,6 +52,7 @@ enum e_build : uint64_t
 	_build_mcc_1_1350_0_0 = MAKE_FILE_VERSION(1, 1350, 0, 0),
 	_build_mcc_1_1367_0_0 = MAKE_FILE_VERSION(1, 1367, 0, 0),
 	_build_mcc_1_1377_0_0 = MAKE_FILE_VERSION(1, 1377, 0, 0),
+	_build_mcc_1_1384_0_0 = MAKE_FILE_VERSION(1, 1384, 0, 0),
 	_build_mcc_1_1387_0_0 = MAKE_FILE_VERSION(1, 1387, 0, 0),
 	_build_mcc_1_1389_0_0 = MAKE_FILE_VERSION(1, 1389, 0, 0),
 	_build_eldorado_1_106708_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 106708), // 1.106708 cert_ms23  Mar 20 2015 17:24:42
@@ -82,40 +83,41 @@ inline const char* build_to_string(e_build build)
 {
 	switch (build)
 	{
-	case _build_not_set: return "not_set";
-	case _build_mcc_1_824_0_0: return "mcc_1_824_0_0";
-	case _build_mcc_1_887_0_0: return "mcc_1_887_0_0";
-	case _build_mcc_1_1035_0_0: return "mcc_1_1035_0_0";
-	case _build_mcc_1_1186_0_0: return "mcc_1_1186_0_0";
-	case _build_mcc_1_1211_0_0: return "mcc_1_1211_0_0";
-	case _build_mcc_1_1246_0_0: return "mcc_1_1246_0_0";
-	case _build_mcc_1_1270_0_0: return "mcc_1_1270_0_0";
-	case _build_mcc_1_1305_0_0: return "mcc_1_1305_0_0";
-	case _build_mcc_1_1350_0_0: return "mcc_1_1350_0_0";
-	case _build_mcc_1_1367_0_0: return "mcc_1_1367_0_0";
-	case _build_mcc_1_1377_0_0: return "mcc_1_1377_0_0";
-	case _build_mcc_1_1387_0_0: return "mcc_1_1387_0_0";
-	case _build_mcc_1_1389_0_0: return "mcc_1_1389_0_0";
-	case _build_eldorado_1_106708_cert_ms23: return "eldorado_1_106708_cert_ms23";
-	case _build_eldorado_1_155080_cert_ms23: return "eldorado_1_155080_cert_ms23";
-	case _build_eldorado_1_171227_cert_ms23: return "eldorado_1_171227_cert_ms23";
-	case _build_eldorado_1_177150_cert_ms23: return "eldorado_1_177150_cert_ms23";
-	case _build_eldorado_1_235640_cert_ms25: return "eldorado_1_235640_cert_ms25";
-	case _build_eldorado_1_301003_cert_MS26_new: return "eldorado_1_301003_cert_MS26_new";
-	case _build_eldorado_1_327043_cert_ms26: return "eldorado_1_327043_cert_ms26";
-	case _build_eldorado_1_332089_Live: return "eldorado_1_332089_Live";
-	case _build_eldorado_1_373869_Live: return "eldorado_1_373869_Live";
-	case _build_eldorado_1_416138_Live: return "eldorado_1_416138_Live";
-	case _build_eldorado_1_430653_Live: return "eldorado_1_430653_Live";
-	case _build_eldorado_1_454665_Live: return "eldorado_1_454665_Live";
-	case _build_eldorado_1_479394_Live: return "eldorado_1_479394_Live";
-	case _build_eldorado_1_498295_Live: return "eldorado_1_498295_Live";
-	case _build_eldorado_1_530945_Live: return "eldorado_1_530945_Live";
-	case _build_eldorado_1_533032_Live: return "eldorado_1_533032_Live";
-	case _build_eldorado_1_554482_Live: return "eldorado_1_554482_Live";
-	case _build_eldorado_1_571698_Live: return "eldorado_1_571698_Live";
-	case _build_eldorado_1_604673_Live: return "eldorado_1_604673_Live";
-	case _build_eldorado_1_700255_cert_ms30_oct19: return "eldorado_1_700255_cert_ms30_oct19";
+	case _build_not_set: return "Not set";
+	case _build_mcc_1_824_0_0: return "MCC 1.824.0.0";
+	case _build_mcc_1_887_0_0: return "MCC 1.887.0.0";
+	case _build_mcc_1_1035_0_0: return "MCC 1.1.1035.0.0";
+	case _build_mcc_1_1186_0_0: return "MCC 1.1.1186.0.0";
+	case _build_mcc_1_1211_0_0: return "MCC 1.1.1211.0.0";
+	case _build_mcc_1_1246_0_0: return "MCC 1.1.1246.0.0";
+	case _build_mcc_1_1270_0_0: return "MCC 1.1.1270.0.0";
+	case _build_mcc_1_1305_0_0: return "MCC 1.1.1305.0.0";
+	case _build_mcc_1_1350_0_0: return "MCC 1.1.1350.0.0";
+	case _build_mcc_1_1367_0_0: return "MCC 1.1.1367.0.0";
+	case _build_mcc_1_1377_0_0: return "MCC 1.1.1377.0.0";
+	case _build_mcc_1_1384_0_0: return "MCC 1.1.1384.0.0";
+	case _build_mcc_1_1387_0_0: return "MCC 1.1.1387.0.0";
+	case _build_mcc_1_1389_0_0: return "MCC 1.1.1389.0.0";
+	case _build_eldorado_1_106708_cert_ms23: return "Eldorado 1.106708 cert_ms23";
+	case _build_eldorado_1_155080_cert_ms23: return "Eldorado 1.155080 cert_ms23";
+	case _build_eldorado_1_171227_cert_ms23: return "Eldorado 1.171227 cert_ms23";
+	case _build_eldorado_1_177150_cert_ms23: return "Eldorado 1.177150 cert_ms23";
+	case _build_eldorado_1_235640_cert_ms25: return "Eldorado 1.235640 cert_ms25";
+	case _build_eldorado_1_301003_cert_MS26_new: return "Eldorado 1.301003 cert_MS26_new";
+	case _build_eldorado_1_327043_cert_ms26: return "Eldorado 1.327043 cert_ms26";
+	case _build_eldorado_1_332089_Live: return "Eldorado 1.332089 Live";
+	case _build_eldorado_1_373869_Live: return "Eldorado 1.373869 Live";
+	case _build_eldorado_1_416138_Live: return "Eldorado 1.416138 Live";
+	case _build_eldorado_1_430653_Live: return "Eldorado 1.430653 Live";
+	case _build_eldorado_1_454665_Live: return "Eldorado 1.454665 Live";
+	case _build_eldorado_1_479394_Live: return "Eldorado 1.479394 Live";
+	case _build_eldorado_1_498295_Live: return "Eldorado 1.498295 Live";
+	case _build_eldorado_1_530945_Live: return "Eldorado 1.530945 Live";
+	case _build_eldorado_1_533032_Live: return "Eldorado 1.533032 Live";
+	case _build_eldorado_1_554482_Live: return "Eldorado 1.554482 Live";
+	case _build_eldorado_1_571698_Live: return "Eldorado 1.571698 Live";
+	case _build_eldorado_1_604673_Live: return "Eldorado 1.604673 Live";
+	case _build_eldorado_1_700255_cert_ms30_oct19: return "Eldorado 1.700255 cert_ms30_oct19";
 	}
 	return "<unknown e_build value";
 }
