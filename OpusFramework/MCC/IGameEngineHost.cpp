@@ -56,14 +56,14 @@ void IGameEngineHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD a2) { CHECK_AD
 void IGameEngineHost::Function02(__int64 player_identifier, unsigned int a2, __int64 a3, float a4, float a5, float a6, float a7) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function02(player_identifier, a2, a3, a4, a5, a6, a7); }
 void IGameEngineHost::EngineStateUpdate(eEngineState state) { CHECK_ADDRESS_SHIFTED(); return shifted_this->EngineStateUpdate(state); }
 __int64 IGameEngineHost::GameExited(unsigned int a1, char* a2, int a3) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GameExited(a1, a2, a3); }
-__int64 __fastcall IGameEngineHost::WriteBufferToFile(LPVOID pBuffer, size_t bufferSize) { CHECK_ADDRESS_SHIFTED(); return shifted_this->WriteBufferToFile(pBuffer, bufferSize); }
-void IGameEngineHost::Function06(GameResultsData* pGameResultsData) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function06(pGameResultsData); }
+__int64 __fastcall IGameEngineHost::SaveGameState(LPVOID pBuffer, size_t bufferSize) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SaveGameState(pBuffer, bufferSize); }
+void IGameEngineHost::SubmitGameResults(GameResultsData* pGameResultsData) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SubmitGameResults(pGameResultsData); }
 void IGameEngineHost::Function07(unsigned int a1) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function07(a1); }
 void IGameEngineHost::Function08(const wchar_t* a1, const wchar_t* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function08(a1, a2); }
 void IGameEngineHost::Function09(wchar_t a1[1024], wchar_t a2[1024]) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function09(a1, a2); }
 IGameEvents* IGameEngineHost::GetGameEvents() { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetGameEvents(); }
-void IGameEngineHost::UpdateGameVariant(IGameVariant* pGameVariant) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateGameVariant(pGameVariant); }
-void IGameEngineHost::UpdateMapVariant(IMapVariant* pMapVariant) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateMapVariant(pMapVariant); }
+void IGameEngineHost::SaveGameVariant(IGameVariant* pGameVariant) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SaveGameVariant(pGameVariant); }
+void IGameEngineHost::SaveMapVariant(IMapVariant* pMapVariant) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SaveMapVariant(pMapVariant); }
 void IGameEngineHost::Function13(const wchar_t* a1, const wchar_t* a2, const void* a3, unsigned int a4) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function13(a1, a2, a3, a4); }
 char IGameEngineHost::Function14(int controllerIndex, BYTE* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function14(controllerIndex, a2); }
 char IGameEngineHost::Function15(int controllerIndex, BYTE* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function15(controllerIndex, a2); }
@@ -80,7 +80,7 @@ void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership* pSession
 bool __fastcall IGameEngineHost::Function26() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function26(); }
 bool __fastcall IGameEngineHost::Function27() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function27(); }
 bool __fastcall IGameEngineHost::UpdateGraphics(UpdateGraphicsData* pUnknown) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateGraphics(pUnknown); }
-__int64 __fastcall IGameEngineHost::Function29(__int64 value) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function29(value); }
+__int64 __fastcall IGameEngineHost::GetPlayerConfiguration(__int64 value) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetPlayerConfiguration(value); }
 __int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerConfiguration(playerNames, rPlayerConfiguration); }
 bool __fastcall __fastcall IGameEngineHost::UpdateInput(_QWORD a1, InputBuffer* pInputBuffer) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateInput(a1, pInputBuffer); }
 void IGameEngineHost::Function32(_QWORD a1, float* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function32(a1, a2); }
@@ -117,14 +117,14 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function2);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_engine_state_update);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_game_exited);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_write_buffer_to_file);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function6);
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_save_game_state);
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_submit_game_results);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function7);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function8);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function9);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_get_game_events);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_game_variant);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_map_variant);
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_save_game_variant);
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_save_map_variant);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function13);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function14);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_function15);
@@ -142,7 +142,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	enqueue_function(_build_not_set, _build_mcc_1_1350_0_0, __game_engine_virtual_function_function26); // relocated after 1350									//virtual void Member26();
 	enqueue_function(_build_mcc_1_1035_0_0, _build_not_set, __game_engine_virtual_function_function27);																//virtual void Member27();
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_graphics);															//virtual bool Member28(__int64 a2);
-	enqueue_function(_build_mcc_1_1350_0_0, _build_not_set, __game_engine_virtual_function_function29);
+	enqueue_function(_build_mcc_1_1350_0_0, _build_not_set, __game_engine_virtual_function_get_player_configuration);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_player_configuration);												//virtual bool Member29(__int64 a2, __int64 a3);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_input); // before this, missing after this							//virtual unsigned __int8 __fastcall Member30(_QWORD, InputBuffer * pInputBuffer);
 	enqueue_function(_build_mcc_1_1246_0_0, _build_not_set, __game_engine_virtual_function_function32);
@@ -183,14 +183,14 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[2] == custom_game_engine_host_vtable[__game_engine_virtual_function_function2]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[3] == custom_game_engine_host_vtable[__game_engine_virtual_function_engine_state_update]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[4] == custom_game_engine_host_vtable[__game_engine_virtual_function_game_exited]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[5] == custom_game_engine_host_vtable[__game_engine_virtual_function_write_buffer_to_file]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[6] == custom_game_engine_host_vtable[__game_engine_virtual_function_function6]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[5] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_state]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[6] == custom_game_engine_host_vtable[__game_engine_virtual_function_submit_game_results]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[7] == custom_game_engine_host_vtable[__game_engine_virtual_function_function7]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[8] == custom_game_engine_host_vtable[__game_engine_virtual_function_function8]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[9] == custom_game_engine_host_vtable[__game_engine_virtual_function_function9]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[10] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_game_events]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[11] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_game_variant]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[12] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_map_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[11] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[12] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_map_variant]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[13] == custom_game_engine_host_vtable[__game_engine_virtual_function_function13]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[14] == custom_game_engine_host_vtable[__game_engine_virtual_function_function14]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[15] == custom_game_engine_host_vtable[__game_engine_virtual_function_function15]);
@@ -234,14 +234,14 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[2] == custom_game_engine_host_vtable[__game_engine_virtual_function_function2]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[3] == custom_game_engine_host_vtable[__game_engine_virtual_function_engine_state_update]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[4] == custom_game_engine_host_vtable[__game_engine_virtual_function_game_exited]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[5] == custom_game_engine_host_vtable[__game_engine_virtual_function_write_buffer_to_file]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[6] == custom_game_engine_host_vtable[__game_engine_virtual_function_function6]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[5] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_state]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[6] == custom_game_engine_host_vtable[__game_engine_virtual_function_submit_game_results]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[7] == custom_game_engine_host_vtable[__game_engine_virtual_function_function7]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[8] == custom_game_engine_host_vtable[__game_engine_virtual_function_function8]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[9] == custom_game_engine_host_vtable[__game_engine_virtual_function_function9]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[10] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_game_events]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[11] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_game_variant]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[12] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_map_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[11] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[12] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_map_variant]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[13] == custom_game_engine_host_vtable[__game_engine_virtual_function_function13]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[14] == custom_game_engine_host_vtable[__game_engine_virtual_function_function14]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[15] == custom_game_engine_host_vtable[__game_engine_virtual_function_function15]);
@@ -258,7 +258,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[26] == custom_game_engine_host_vtable[__game_engine_virtual_function_function26]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[27] == custom_game_engine_host_vtable[__game_engine_virtual_function_function27]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[28] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_graphics]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[29] == custom_game_engine_host_vtable[__game_engine_virtual_function_function29]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[29] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_player_configuration]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[30] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_player_configuration]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[31] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_input]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[32] == custom_game_engine_host_vtable[__game_engine_virtual_function_function32]);
@@ -287,14 +287,14 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[ 3] == custom_game_engine_host_vtable[__game_engine_virtual_function_function2]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[ 4] == custom_game_engine_host_vtable[__game_engine_virtual_function_engine_state_update]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[ 5] == custom_game_engine_host_vtable[__game_engine_virtual_function_game_exited]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 6] == custom_game_engine_host_vtable[__game_engine_virtual_function_write_buffer_to_file]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 7] == custom_game_engine_host_vtable[__game_engine_virtual_function_function6]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 6] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_state]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[ 7] == custom_game_engine_host_vtable[__game_engine_virtual_function_submit_game_results]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[ 8] == custom_game_engine_host_vtable[__game_engine_virtual_function_function7]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[ 9] == custom_game_engine_host_vtable[__game_engine_virtual_function_function8]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[10] == custom_game_engine_host_vtable[__game_engine_virtual_function_function9]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[11] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_game_events]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[12] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_game_variant]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[13] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_map_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[12] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[13] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_map_variant]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[14] == custom_game_engine_host_vtable[__game_engine_virtual_function_function13]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[15] == custom_game_engine_host_vtable[__game_engine_virtual_function_function14]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[16] == custom_game_engine_host_vtable[__game_engine_virtual_function_function15]);
@@ -311,7 +311,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[27] == custom_game_engine_host_vtable[__game_engine_virtual_function_membership_update]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[28] == custom_game_engine_host_vtable[__game_engine_virtual_function_function27]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[29] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_graphics]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[30] == custom_game_engine_host_vtable[__game_engine_virtual_function_function29]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[30] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_player_configuration]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[31] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_player_configuration]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[32] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_input]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[33] == custom_game_engine_host_vtable[__game_engine_virtual_function_function32]);

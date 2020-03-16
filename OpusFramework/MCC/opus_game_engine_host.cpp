@@ -51,7 +51,7 @@ void c_opus_game_engine_host::EngineStateUpdate(eEngineState state)
 {
 	/* LEGACY_REFACTOR
 	const char* pEngineStateString = engine_state_to_string(state);
-	write_line_verbose("IOpusGameEngineHost::EngineStateUpdate (%d):%s", state, pEngineStateString);
+	write_line_verbose("%s (%d):%s", __FUNCTION__, state, pEngineStateString);
 
 	if (state != eEngineState::Unknown16) // `Unknown16` also needs a second arg so we skip it
 	{
@@ -80,11 +80,11 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 
 	if (IsBadReadPtr(a2, 1)) // #LEGACY
 	{
-		write_line_verbose("GameExited %u [%p]", a1, a2);
+		write_line_verbose("%s %u [%p]", __func__, a1, a2);
 	}
 	else
 	{
-		write_line_verbose("GameExited %u [%s]", a1, a2);
+		write_line_verbose("%s %u [%s]", __func__, a1, a2);
 	}
 
 	GameLauncher::GameExitedCallback();
@@ -92,13 +92,13 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 	return __int64(0);
 }
 
-__int64 __fastcall c_opus_game_engine_host::WriteBufferToFile(LPVOID pBuffer, size_t bufferSize)
+__int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID pBuffer, size_t bufferSize)
 {
-	write_line_verbose("IOpusGameEngineHost::Member05 WriteBufferToFile %p %016zx", pBuffer, bufferSize);
+	write_line_verbose("%s %p %016zx", __FUNCTION__, pBuffer, bufferSize);
 	return __int64(0);
 }
 
-void c_opus_game_engine_host::Function06(GameResultsData* pGameResultsData)
+void c_opus_game_engine_host::SubmitGameResults(GameResultsData* pGameResultsData)
 {
 }
 
@@ -131,11 +131,11 @@ IGameEvents* c_opus_game_engine_host::GetGameEvents()
 	return &game_events;
 }
 
-void c_opus_game_engine_host::UpdateGameVariant(IGameVariant* pGameVariant)
+void c_opus_game_engine_host::SaveGameVariant(IGameVariant* pGameVariant)
 {
 }
 
-void c_opus_game_engine_host::UpdateMapVariant(IMapVariant* pMapVariant)
+void c_opus_game_engine_host::SaveMapVariant(IMapVariant* pMapVariant)
 {
 }
 
@@ -198,18 +198,18 @@ void c_opus_game_engine_host::GetSessionInfo(s_session_info_part* pSessionInfoPa
 
 void __fastcall c_opus_game_engine_host::MembershipUpdate(s_session_membership* pSessionMembership, uint32_t playercount)
 {
-	RUNONCE({ write_line_verbose("IOpusGameEngineHost::MembershipUpdate"); });
+	RUNONCE({ write_line_verbose(__FUNCTION__); });
 }
 
 bool __fastcall c_opus_game_engine_host::Function26()
 {
-	RUNONCE({ write_line_verbose("IOpusGameEngineHost::Member26"); });
+	RUNONCE({ write_line_verbose(__FUNCTION__); });
 	return false;
 }
 
 bool __fastcall c_opus_game_engine_host::Function27()
 {
-	RUNONCE({ write_line_verbose("IOpusGameEngineHost::Member27"); });
+	RUNONCE({ write_line_verbose(__FUNCTION__); });
 	return false;
 }
 
@@ -229,15 +229,15 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* pUnk
 	pUnknown->VIDEO_LodDistQualityFactor = 2;
 	pUnknown->VIDEO_UseEdgeAA = true;
 
-	write_line_verbose("IOpusGameEngineHost::UpdateGraphics");
+	write_line_verbose(__FUNCTION__);
 
 	// returning false effectively doubles fps when unlocked
 	return !(pUnknown->VIDEO_FPS_Lock || pUnknown->VIDEO_Wait_VSync);
 }
 
-__int64 __fastcall c_opus_game_engine_host::Function29(__int64 value)
+__int64 __fastcall c_opus_game_engine_host::GetPlayerConfiguration(__int64 value)
 {
-	RUNONCE({ write_line_verbose("IOpusGameEngineHost::Function29"); });
+	RUNONCE({ write_line_verbose(__FUNCTION__); });
 
 
 	static PlayerConfiguration player_configuration = {};
@@ -257,22 +257,22 @@ __int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t pl
 
 	// sub_18004E800 applies customization conversion from MCC to Reach
 	// TODO: get conversion table from sub_18004E800
-	rPlayerConfiguration.is_elite = false;
-	rPlayerConfiguration.armor_helmet_option = 0;
-	rPlayerConfiguration.armor_left_shoulder_option = 0;
-	rPlayerConfiguration.armor_right_shoulder_option = 0;
-	rPlayerConfiguration.armor_chest_option = 0;
-	rPlayerConfiguration.armor_wrist_option = 0;
-	rPlayerConfiguration.armor_leg_utility_option = 0;
-	rPlayerConfiguration.armor_knees_option = 0;
-	rPlayerConfiguration.armor_effect_dupe_option = 0;
-	rPlayerConfiguration.elite_armor_option = 0;
-	rPlayerConfiguration.armor_effect_option = 0;
-	rPlayerConfiguration.firefight_voice_option = 0;
-	rPlayerConfiguration.primary_color_option = 13;   // HR_Color_Cobalt
-	rPlayerConfiguration.secondary_color_option = 25;   // HR_Color_Yellow
+	rPlayerConfiguration.Profile_IsElite = false;
+	rPlayerConfiguration.Profile_ArmorHelmetIndex = 0;
+	rPlayerConfiguration.Profile_ArmorLeftShoulderIndex = 0;
+	rPlayerConfiguration.Profile_ArmorRightShoulderIndex = 0;
+	rPlayerConfiguration.Profile_ArmorChestIndex = 0;
+	rPlayerConfiguration.Profile_ArmorWristIndex = 0;
+	rPlayerConfiguration.Profile_ArmorLegUtilityIndex = 0;
+	rPlayerConfiguration.Profile_ArmorKneesIndex = 0;
+	rPlayerConfiguration.Profile_ArmorEffectDupeIndex = 0;
+	rPlayerConfiguration.Profile_EliteArmorIndex = 0;
+	rPlayerConfiguration.Profile_ArmorEffectIndex = 0;
+	rPlayerConfiguration.Profile_FirefightVoiceIndex = 0;
+	rPlayerConfiguration.Profile_PrimaryColorIndex = 13;   // HR_Color_Cobalt
+	rPlayerConfiguration.Profile_SecondaryColorIndex = 25;   // HR_Color_Yellow
 
-	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", rPlayerConfiguration.service_tag, 5, L"UNSC");
+	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", rPlayerConfiguration.Profile_ServiceTag, 5, L"UNSC");
 
 	//WriteStackBackTrace("IOpusGameEngineHost::UpdatePlayerConfiguration");
 	return __int64(1);

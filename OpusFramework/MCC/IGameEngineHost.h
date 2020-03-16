@@ -16,14 +16,14 @@ enum IGameEngineHostVirtualFunctionIndex
 	__game_engine_virtual_function_function2,
 	__game_engine_virtual_function_engine_state_update,
 	__game_engine_virtual_function_game_exited,
-	__game_engine_virtual_function_write_buffer_to_file,
-	__game_engine_virtual_function_function6,
+	__game_engine_virtual_function_save_game_state,
+	__game_engine_virtual_function_submit_game_results,
 	__game_engine_virtual_function_function7,
 	__game_engine_virtual_function_function8,
 	__game_engine_virtual_function_function9,
 	__game_engine_virtual_function_get_game_events,
-	__game_engine_virtual_function_update_game_variant,
-	__game_engine_virtual_function_update_map_variant,
+	__game_engine_virtual_function_save_game_variant,
+	__game_engine_virtual_function_save_map_variant,
 	__game_engine_virtual_function_function13,
 	__game_engine_virtual_function_function14,
 	__game_engine_virtual_function_function15,
@@ -40,7 +40,7 @@ enum IGameEngineHostVirtualFunctionIndex
 	__game_engine_virtual_function_function26,
 	__game_engine_virtual_function_function27,
 	__game_engine_virtual_function_update_graphics,
-	__game_engine_virtual_function_function29,
+	__game_engine_virtual_function_get_player_configuration,
 	__game_engine_virtual_function_update_player_configuration,
 	__game_engine_virtual_function_update_input,
 	__game_engine_virtual_function_function32,
@@ -197,63 +197,95 @@ public:
 
 	struct PlayerConfiguration
 	{
-		INT32   option0;
-		char    padding4[12];
-		char    unknown10;
-		char    padding11;
-		char    option12;
-		char    option13;
-		char    option14;
-		char    padding15;
-		char    auto_center_look_option;
-		char    crouch_lock_option;
-		char    padding18;
-		char    clench_protection_option;
-		char    unknown1A[14];
-		bool    is_elite;
-		char    padding29[7];
-		INT32   armor_helmet_option;
-		INT32   armor_left_shoulder_option;
-		INT32   armor_right_shoulder_option;
-		INT32   armor_chest_option;
-		INT32   armor_wrist_option;
-		INT32   armor_leg_utility_option;
-		INT32   armor_knees_option;
-		INT32   option4C_customization_related;
-		INT32   armor_effect_dupe_option;
-		INT32   option54_customization_related;
-		INT32   elite_armor_option;
-		INT32   armor_effect_option;
-		INT32   firefight_voice_option;
-		INT32   primary_color_option;
-		INT32   secondary_color_option;
-		char    padding6C[4];
-		wchar_t service_tag[5];
-		char    padding7A[2];
-		INT32   option7C;
-		INT32   option80;
-		INT32   option84;
-		float   option88;
-		float   option8C;
-		char    padding90[8];
-		INT32   controller_layout_option;
-		INT32   option9C;
-		INT32   optionA0;
-		char    paddingA4[16];
-		INT32   look_sensitivity_option;
-		INT32   optionB8;
-		INT32   optionBC;
-		INT32   optionC0;
-		char    optionC4;
-		char    optionC5;
-		char    unknownC6;
-		char    paddingC7;
-		char    unknownC8[56];
-		char    unknown100[256];
-		char    unknown200[512];
-		char    unknown400[512];
-		char    unknown600[128];
-		char    unknown680[0x21C];
+		struct GameBinding
+		{
+			long Action;
+			long KeyCode;
+			char __unknown8[16];
+		};
+
+		long GameOpt_Subtitles;
+		long __unknown4;
+		long GameOpt_FieldOfView;
+		long __unknownC;
+		bool Controls_InvertLook_Gamepad;
+		bool Controls_InvertLook_MouseAndKeyboard;
+		bool Controls_OffVibration;
+		char __unknown13;
+		bool Controls_InvertFlight_Gamepad;
+		bool Controls_InvertFlight_MouseAndKeyboard;
+		bool Controls_Autocenter;
+		bool Controls_CrouchStick_Gamepad;
+		bool Controls_CrouchStick_MouseAndKeyboard;
+		bool Controls_ClenchProtection;
+		char __unknown1A[2];
+		long Profile_Unknown1C;
+		long Profile_Unknown20;
+		char __unknown24[4];
+		bool Profile_IsElite;
+		bool GameOpt_HudCentered;
+		char __unknown2A[2];
+		long Profile_Unknown2C;
+		long Profile_ArmorHelmetIndex;
+		long Profile_ArmorLeftShoulderIndex;
+		long Profile_ArmorRightShoulderIndex;
+		long Profile_ArmorChestIndex;
+		long Profile_ArmorWristIndex;
+		long Profile_ArmorLegUtilityIndex;
+		long Profile_ArmorKneesIndex;
+		long Profile_Unknown4C;
+		long Profile_ArmorEffectDupeIndex;
+		long Profile_Unknown54;
+		long Profile_EliteArmorIndex;
+		long Profile_ArmorEffectIndex;
+		long Profile_FirefightVoiceIndex;
+		long Profile_PrimaryColorIndex;
+		long Profile_SecondaryColorIndex;
+		char __unknown6C[4];
+		wchar_t Profile_ServiceTag[4];
+		long __unknown78;
+		long Controls_VerticalLookSensitivityHalo;
+		long Controls_HorizontalLookSensitivityHalo;
+		long Controls_LookAccelerationHalo;
+		float Controls_LookAxialDeadZoneHalo;
+		float Controls_LookRadialDeadZoneHalo;
+		float Controls_MouseZoomLookVelocityScale;
+		float Controls_MouseVehicleLookVelocityScale;
+		long Controls_ButtonLayout;
+		long Controls_StickLayout;
+		long Controls_LeftyToggle;
+		long __unknownA4;
+		long __unknownA8;
+		long __unknownAC;
+		long __unknownB0;
+		long __unknownB4;
+		long __unknownB8;
+		long __unknownBC;
+		long __unknownC0;
+		bool Controls_SwapTriggers;
+		bool Controls_UseModernAimControlHalo;
+		char __unknownC6[2];
+		char Profile_EnemyPlayerNameColor;
+		char Profile_GameEngineTimer;
+		char __unknownCA[2];
+		char __unknownCC[300];
+		char __unknown1F8[256];
+		float Controls_MouseLookSensitivity;
+		bool Controls_MouseSoothingEnabled;
+		bool Controls_MouseAccelerationEnabled;
+		char __unknown2FE[2];
+		float Controls_MouseAccelerationMinRate;
+		float Controls_MouseAccelerationMax;
+		float Controls_MouseAccelerationScale;
+		float Controls_MouseAccelerationExp;
+		long __unknown310;
+		GameBinding Controls_Bindings[56];
+		float Sound_MasterVolume;
+		float Sound_MusicVolume;
+		float Sound_Sfx_Volume;
+		char __unknown860[16];
+		long __unknown870;
+		char __unknown874[40];
 	};
 	CHECK_STRUCTURE_SIZE(PlayerConfiguration, 0x89C);
 
@@ -264,14 +296,14 @@ public:
 	/* 2  */ virtual void Function02(__int64 player_identifier, unsigned int, __int64, float, float, float, float);
 	/* 3  */ virtual void EngineStateUpdate(eEngineState state);
 	/* 4  */ virtual __int64 GameExited(unsigned int, char*, int);
-	/* 5  */ virtual __int64 __fastcall WriteBufferToFile(LPVOID pBuffer, size_t bufferSize);
-	/* 6  */ virtual void Function06(GameResultsData* pGameResultsData);
+	/* 5  */ virtual __int64 __fastcall SaveGameState(LPVOID pBuffer, size_t bufferSize);
+	/* 6  */ virtual void SubmitGameResults(GameResultsData* pGameResultsData);
 	/* 7  */ virtual void Function07(unsigned int);
 	/* 8  */ virtual void Function08(const wchar_t*, const wchar_t*);
 	/* 9  */ virtual void Function09(wchar_t[1024], wchar_t[1024]);
 	/* 10 */ virtual IGameEvents* GetGameEvents();
-	/* 11 */ virtual void UpdateGameVariant(IGameVariant* pGameVariant);
-	/* 12 */ virtual void UpdateMapVariant(IMapVariant* pMapVariant);
+	/* 11 */ virtual void SaveGameVariant(IGameVariant* pGameVariant);
+	/* 12 */ virtual void SaveMapVariant(IMapVariant* pMapVariant);
 	/* 13 */ virtual void Function13(const wchar_t*, const wchar_t*, const void*, unsigned int);
 	/* 14 */ virtual char Function14(int controllerIndex, BYTE*);
 	/* 15 */ virtual char Function15(int controllerIndex, BYTE*);
@@ -288,7 +320,7 @@ public:
 	/* 26 */ virtual bool __fastcall Function26();
 	/* 27 */ virtual bool __fastcall Function27();
 	/* 28 */ virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* pUnknown);
-	/* 29 */ virtual __int64 __fastcall Function29(__int64 value);
+	/* 29 */ virtual __int64 __fastcall GetPlayerConfiguration(__int64 value);
 	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration);
 	/* 31 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer);
 	/* 32 */ virtual void Function32(_QWORD, float*);

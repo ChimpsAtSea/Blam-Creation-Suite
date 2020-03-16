@@ -13,14 +13,14 @@ public:
 	virtual void Function02(__int64 player_identifier, unsigned int, __int64, float, float, float, float) override;
 	virtual void EngineStateUpdate(eEngineState state) override;
 	virtual __int64 GameExited(unsigned int, char*, int) override;
-	virtual __int64 __fastcall WriteBufferToFile(LPVOID pBuffer, size_t bufferSize) override;
-	virtual void Function06(GameResultsData* pGameResultsData) override;
+	virtual __int64 __fastcall SaveGameState(LPVOID pBuffer, size_t bufferSize) override;
+	virtual void SubmitGameResults(GameResultsData* pGameResultsData) override;
 	virtual void Function07(unsigned int) override;
 	virtual void Function08(const wchar_t*, const wchar_t*) override;
 	virtual void Function09(wchar_t[1024], wchar_t[1024]) override;
 	virtual IGameEvents* GetGameEvents() override;
-	virtual void UpdateGameVariant(IGameVariant* pGameVariant) override;
-	virtual void UpdateMapVariant(IMapVariant* pMapVariant) override;
+	virtual void SaveGameVariant(IGameVariant* pGameVariant) override;
+	virtual void SaveMapVariant(IMapVariant* pMapVariant) override;
 	virtual void Function13(const wchar_t*, const wchar_t*, const void*, unsigned int) override;
 	virtual char Function14(int controllerIndex, BYTE*) override;
 	virtual char Function15(int controllerIndex, BYTE*) override;
@@ -37,7 +37,7 @@ public:
 	virtual bool __fastcall Function26() override;
 	virtual bool __fastcall Function27() override;
 	virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* pUnknown) override;
-	virtual __int64 __fastcall Function29(__int64 value) override;
+	virtual __int64 __fastcall GetPlayerConfiguration(__int64 value) override;
 	virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration) override;
 	virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer) override;
 	virtual void Function32(_QWORD, float*) override;
