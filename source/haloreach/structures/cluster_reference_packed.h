@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cseries/cseries.h>
-#include <tag_files/tag_group_definitions.h>
 
 /* ---------- types */
 
