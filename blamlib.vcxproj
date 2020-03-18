@@ -97,6 +97,7 @@
     <ClInclude Include="source\haloreach\physics\havok_mopp_code_definitions.h" />
     <ClInclude Include="source\haloreach\physics\spring_acceleration.h" />
     <ClInclude Include="source\haloreach\physics\water_physics.h" />
+    <ClInclude Include="source\haloreach\render\camera_fx_settings.h" />
     <ClInclude Include="source\haloreach\render_methods\render_method_definitions.h" />
     <ClInclude Include="source\haloreach\scenario\scenario_definitions.h" />
     <ClInclude Include="source\haloreach\scenario\scenario_lightmap_definitions.h" />
