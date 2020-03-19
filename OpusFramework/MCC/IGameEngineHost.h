@@ -195,100 +195,6 @@ public:
 	CHECK_STRUCTURE_SIZE(UpdateGraphicsData, 0x180);
 #pragma pack(pop)
 
-	struct PlayerConfiguration
-	{
-		struct GameBinding
-		{
-			long Action;
-			long KeyCode;
-			char __unknown8[16];
-		};
-
-		long GameOpt_Subtitles;
-		long __unknown4;
-		long GameOpt_FieldOfView;
-		long __unknownC;
-		bool Controls_InvertLook_Gamepad;
-		bool Controls_InvertLook_MouseAndKeyboard;
-		bool Controls_OffVibration;
-		char __unknown13;
-		bool Controls_InvertFlight_Gamepad;
-		bool Controls_InvertFlight_MouseAndKeyboard;
-		bool Controls_Autocenter;
-		bool Controls_CrouchStick_Gamepad;
-		bool Controls_CrouchStick_MouseAndKeyboard;
-		bool Controls_ClenchProtection;
-		char __unknown1A[2];
-		long Profile_Unknown1C;
-		long Profile_Unknown20;
-		char __unknown24[4];
-		bool Profile_IsElite;
-		bool GameOpt_HudCentered;
-		char __unknown2A[2];
-		long Profile_Unknown2C;
-		long Profile_ArmorHelmetIndex;
-		long Profile_ArmorLeftShoulderIndex;
-		long Profile_ArmorRightShoulderIndex;
-		long Profile_ArmorChestIndex;
-		long Profile_ArmorWristIndex;
-		long Profile_ArmorLegUtilityIndex;
-		long Profile_ArmorKneesIndex;
-		long Profile_Unknown4C;
-		long Profile_ArmorEffectDupeIndex;
-		long Profile_Unknown54;
-		long Profile_EliteArmorIndex;
-		long Profile_ArmorEffectIndex;
-		long Profile_FirefightVoiceIndex;
-		long Profile_PrimaryColorIndex;
-		long Profile_SecondaryColorIndex;
-		char __unknown6C[4];
-		wchar_t Profile_ServiceTag[4];
-		long __unknown78;
-		long Controls_VerticalLookSensitivityHalo;
-		long Controls_HorizontalLookSensitivityHalo;
-		long Controls_LookAccelerationHalo;
-		float Controls_LookAxialDeadZoneHalo;
-		float Controls_LookRadialDeadZoneHalo;
-		float Controls_MouseZoomLookVelocityScale;
-		float Controls_MouseVehicleLookVelocityScale;
-		long Controls_ButtonLayout;
-		long Controls_StickLayout;
-		long Controls_LeftyToggle;
-		long __unknownA4;
-		long __unknownA8;
-		long __unknownAC;
-		long __unknownB0;
-		long __unknownB4;
-		long __unknownB8;
-		long __unknownBC;
-		long __unknownC0;
-		bool Controls_SwapTriggers;
-		bool Controls_UseModernAimControlHalo;
-		char __unknownC6[2];
-		char Profile_EnemyPlayerNameColor;
-		char Profile_GameEngineTimer;
-		char __unknownCA[2];
-		char __unknownCC[300];
-		char __unknown1F8[256];
-		float Controls_MouseLookSensitivity;
-		bool Controls_MouseSoothingEnabled;
-		bool Controls_MouseAccelerationEnabled;
-		char __unknown2FE[2];
-		float Controls_MouseAccelerationMinRate;
-		float Controls_MouseAccelerationMax;
-		float Controls_MouseAccelerationScale;
-		float Controls_MouseAccelerationExp;
-		long __unknown310;
-		GameBinding Controls_Bindings[56];
-		float Sound_MasterVolume;
-		float Sound_MusicVolume;
-		float Sound_Sfx_Volume;
-		char __unknown860[16];
-		long __unknown870;
-		char __unknown874[40];
-	};
-	CHECK_STRUCTURE_SIZE(PlayerConfiguration, 0x89C);
-
 	struct s_transport_address;
 
 	/* 0  */ virtual char FrameStart();
@@ -320,7 +226,7 @@ public:
 	/* 26 */ virtual bool __fastcall Function26();
 	/* 27 */ virtual bool __fastcall Function27();
 	/* 28 */ virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* pUnknown);
-	/* 29 */ virtual __int64 __fastcall GetPlayerConfiguration(__int64 value);
+	/* 29 */ virtual PlayerConfiguration* __fastcall GetPlayerConfiguration(__int64 value);
 	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration);
 	/* 31 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer);
 	/* 32 */ virtual void Function32(_QWORD, float*);

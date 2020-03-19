@@ -235,13 +235,36 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* pUnk
 	return !(pUnknown->VIDEO_FPS_Lock || pUnknown->VIDEO_Wait_VSync);
 }
 
-__int64 __fastcall c_opus_game_engine_host::GetPlayerConfiguration(__int64 value)
+PlayerConfiguration* __fastcall c_opus_game_engine_host::GetPlayerConfiguration(__int64 value)
 {
 	RUNONCE({ write_line_verbose(__FUNCTION__); });
 
 
 	static PlayerConfiguration player_configuration = {};
-	return reinterpret_cast<int64_t>(&player_configuration);
+
+	player_configuration.GameOpt_FieldOfView             = 120;
+	player_configuration.__unknownC                      = 100;
+	player_configuration.GameOpt_HudCentered             = true;
+
+	player_configuration.Profile_PlayerIsElite           = false;
+	player_configuration.Profile_ArmorHelmetIndex        = eHaloArmor::HR_Helmet_EOD_Base;
+	player_configuration.Profile_ArmorLeftShoulderIndex  = eHaloArmor::HR_LeftShoulder_Gungnir;
+	player_configuration.Profile_ArmorRightShoulderIndex = eHaloArmor::HR_RightShoulder_EVA;
+	player_configuration.Profile_ArmorChestIndex         = eHaloArmor::HR_Chest_UABaseSecurityW;
+	player_configuration.Profile_ArmorWristIndex         = eHaloArmor::HR_Wrist_Default;
+	player_configuration.Profile_ArmorUtilityIndex       = eHaloArmor::HR_Utility_Default;
+	player_configuration.Profile_ArmorKneeGuardsIndex    = eHaloArmor::HR_KneeGuards_FJPARA;
+	player_configuration.Profile_ArmorVisorColorIndex    = eHaloArmor::HR_VisorColor_Silver;
+	player_configuration.Profile_ArmorEffectDupeIndex    = eHaloArmor::HR_ArmorEffect_Default;
+	player_configuration.Profile_EliteArmorIndex         = eHaloArmor::HR_Elite_FieldMarshall;
+	player_configuration.Profile_ArmorEffectIndex        = eHaloArmor::HR_ArmorEffect_BlueFlames;
+	player_configuration.Profile_FirefightVoiceIndex     = eHaloArmor::HR_FirefightVoice_JohnS117;
+	player_configuration.Profile_PrimaryColorIndex       = eHaloArmor::HR_Color_Brick;
+	player_configuration.Profile_SecondaryColorIndex     = eHaloArmor::HR_Color_Cyan;
+
+	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", player_configuration.Profile_ServiceTag, 5, L"UNSC");
+
+	return &player_configuration;
 }
 
 __int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration)
@@ -255,22 +278,25 @@ __int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t pl
 	REFERENCE_ASSERT(rPlayerConfiguration);
 	rPlayerConfiguration = {}; // reset values
 
-	// sub_18004E800 applies customization conversion from MCC to Reach
-	// TODO: get conversion table from sub_18004E800
-	rPlayerConfiguration.Profile_IsElite = false;
-	rPlayerConfiguration.Profile_ArmorHelmetIndex = 0;
-	rPlayerConfiguration.Profile_ArmorLeftShoulderIndex = 0;
-	rPlayerConfiguration.Profile_ArmorRightShoulderIndex = 0;
-	rPlayerConfiguration.Profile_ArmorChestIndex = 0;
-	rPlayerConfiguration.Profile_ArmorWristIndex = 0;
-	rPlayerConfiguration.Profile_ArmorLegUtilityIndex = 0;
-	rPlayerConfiguration.Profile_ArmorKneesIndex = 0;
-	rPlayerConfiguration.Profile_ArmorEffectDupeIndex = 0;
-	rPlayerConfiguration.Profile_EliteArmorIndex = 0;
-	rPlayerConfiguration.Profile_ArmorEffectIndex = 0;
-	rPlayerConfiguration.Profile_FirefightVoiceIndex = 0;
-	rPlayerConfiguration.Profile_PrimaryColorIndex = 13;   // HR_Color_Cobalt
-	rPlayerConfiguration.Profile_SecondaryColorIndex = 25;   // HR_Color_Yellow
+	rPlayerConfiguration.GameOpt_FieldOfView             = 120;
+	rPlayerConfiguration.__unknownC                      = 100;
+	rPlayerConfiguration.GameOpt_HudCentered             = true;
+	
+	rPlayerConfiguration.Profile_PlayerIsElite           = false;
+	rPlayerConfiguration.Profile_ArmorHelmetIndex        = eHaloArmor::HR_Helmet_EOD_Base;
+	rPlayerConfiguration.Profile_ArmorLeftShoulderIndex  = eHaloArmor::HR_LeftShoulder_Gungnir;
+	rPlayerConfiguration.Profile_ArmorRightShoulderIndex = eHaloArmor::HR_RightShoulder_EVA;
+	rPlayerConfiguration.Profile_ArmorChestIndex         = eHaloArmor::HR_Chest_UABaseSecurityW;
+	rPlayerConfiguration.Profile_ArmorWristIndex         = eHaloArmor::HR_Wrist_Default;
+	rPlayerConfiguration.Profile_ArmorUtilityIndex       = eHaloArmor::HR_Utility_Default;
+	rPlayerConfiguration.Profile_ArmorKneeGuardsIndex    = eHaloArmor::HR_KneeGuards_FJPARA;
+	rPlayerConfiguration.Profile_ArmorVisorColorIndex    = eHaloArmor::HR_VisorColor_Silver;
+	rPlayerConfiguration.Profile_ArmorEffectDupeIndex    = eHaloArmor::HR_ArmorEffect_Default;
+	rPlayerConfiguration.Profile_EliteArmorIndex         = eHaloArmor::HR_Elite_FieldMarshall;
+	rPlayerConfiguration.Profile_ArmorEffectIndex        = eHaloArmor::HR_ArmorEffect_BlueFlames;
+	rPlayerConfiguration.Profile_FirefightVoiceIndex     = eHaloArmor::HR_FirefightVoice_JohnS117;
+	rPlayerConfiguration.Profile_PrimaryColorIndex       = eHaloArmor::HR_Color_Brick;
+	rPlayerConfiguration.Profile_SecondaryColorIndex     = eHaloArmor::HR_Color_Cyan;
 
 	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", rPlayerConfiguration.Profile_ServiceTag, 5, L"UNSC");
 

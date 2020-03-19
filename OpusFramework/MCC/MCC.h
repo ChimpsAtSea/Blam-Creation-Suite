@@ -10,6 +10,7 @@
 /* LEGACY */ #include "opus_legacy\IGameEvents.h"
 #include "game_context.h"
 /* LEGACY */ #include "opus_legacy\IGameEngine.h"
+#include "PlayerConfiguration.h"
 #include "IGameEngineHost.h"
 /* LEGACY */ #include "opus_legacy\ISaveFilmMetadata.h"
 /* LEGACY */ #include "opus_legacy\IDataAccess.h"

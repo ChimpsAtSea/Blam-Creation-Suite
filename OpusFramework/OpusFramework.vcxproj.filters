@@ -263,6 +263,9 @@
     <ClInclude Include="session_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MCC\PlayerConfiguration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />

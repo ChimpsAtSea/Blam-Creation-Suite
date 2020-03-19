@@ -238,6 +238,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationReflection\ApplicationReflection.h" />
+    <ClInclude Include="MCC\PlayerConfiguration.h" />
     <ClInclude Include="session_manager.h" />
     <ClInclude Include="MCC\game_context.h" />
     <ClInclude Include="RuntimeManipulation\DataPatch.h" />
