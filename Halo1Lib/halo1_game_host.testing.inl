@@ -2,13 +2,11 @@
 
 uintptr_t sub_18019BC50_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo1)
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1350_0_0: return 0x18019BC50;
-		}
-	}
+	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x18019BC50);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1377_0_0, 0x1800EB5E0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1384_0_0, 0x1800EB5E0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1387_0_0, 0x1800EB5E0);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1800EB5E0);
 	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<sub_18019BC50_offset, __int64 __fastcall (__int64*, const char*, va_list)> sub_18019BC50 = { "sub_18019BC50", [](__int64* a1, const char* pFormat, va_list args)
@@ -23,6 +21,10 @@ FunctionHookVarArgsEx<sub_18019BC50_offset, __int64 __fastcall (__int64*, const 
 
 uintptr_t security_check_cookie_offset(e_engine_type engine_type, e_build build)
 {
+	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x180E5A650);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1377_0_0, 0x180BBA020);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1384_0_0, 0x180BBA050);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1387_0_0, 0x180BBA050);
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180BBA050);
 	return ~uintptr_t();
 }
@@ -31,13 +33,11 @@ uintptr_t security_check_cookie_offset(e_engine_type engine_type, e_build build)
 
 uintptr_t sub_18005B520_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo1)
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1389_0_0: return 0x18005B520;
-		}
-	}
+	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x180069E60);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1377_0_0, 0x18005B520);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1384_0_0, 0x18005B520);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1387_0_0, 0x18005B520);
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18005B520);
 	return ~uintptr_t();
 }
 FunctionHookVarArgsEx<sub_18005B520_offset, char __fastcall(unsigned int a1)> sub_18005B520 = { "sub_18005B520", [](unsigned int a1)

@@ -159,7 +159,7 @@ uintptr_t external_launch_individual_state_offset(e_engine_type engine_type, e_b
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180D05EF4);
 	return ~uintptr_t();
 }
-DataEx<int, external_launch_individual_state_offset> external_launch_individual_state;
+int &external_launch_individual_state = reference_symbol<int>("external_launch_individual_state", external_launch_individual_state_offset);
 
 uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 {
@@ -173,6 +173,10 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x180011870);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1350_0_0, 0x180012580);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1367_0_0, 0x180012520);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1377_0_0, 0x180012520);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1384_0_0, 0x180012520);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x180012520);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180012520);
 
 	if (engine_type == _engine_type_halo_reach)
 	{
@@ -220,7 +224,7 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 }
 FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = { "main_game_launch", [](__int64 a1, __int64 a2)
 {
-	static bool isGlobalsVisible = (external_launch_individual_state.ptr() != nullptr);
+	static bool isGlobalsVisible = (&external_launch_individual_state != nullptr);
 
 	static const char* external_launch_individual_state_names[] =
 	{
@@ -242,18 +246,18 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 	if (isGlobalsVisible)
 	{
 		static int external_launch_individual_state_prev = k_load_state_invalid;
-		if ((int)external_launch_individual_state != external_launch_individual_state_prev)
+		if (external_launch_individual_state != external_launch_individual_state_prev)
 		{
 			external_launch_individual_state_prev = external_launch_individual_state;
-			printf("external_launch_individual_state changed to: %s\n", external_launch_individual_state_names[(int)external_launch_individual_state]);
+			printf("external_launch_individual_state changed to: %s\n", external_launch_individual_state_names[external_launch_individual_state]);
 		}
 
 		char result = main_game_launch(a1, a2);
 
-		if ((int)external_launch_individual_state != external_launch_individual_state_prev)
+		if (external_launch_individual_state != external_launch_individual_state_prev)
 		{
 			external_launch_individual_state_prev = external_launch_individual_state;
-			printf("external_launch_individual_state changed to: %s\n", external_launch_individual_state_names[(int)external_launch_individual_state]);
+			printf("external_launch_individual_state changed to: %s\n", external_launch_individual_state_names[external_launch_individual_state]);
 		}
 
 		return result;
@@ -760,8 +764,8 @@ hs_script_op* hs_function_get(short opcode)
 template<typename t_parameter>
 t_parameter& hs_macro_function_evaluate(short opcode, unsigned short expression_index, char execute)
 {
-	hs_script_op* op = hs_function_get(opcode);
-	return *hs_evaluate_arguments<t_parameter*>(expression_index, op->parameter_count, &op->parameter_types, execute);
+	hs_script_op* hs_function = hs_function_get(opcode);
+	return *hs_evaluate_arguments<t_parameter*>(expression_index, hs_function->parameter_count, &hs_function->parameter_types, execute);
 }
 
 uintptr_t hs_inspect_str_offset(e_engine_type engine_type, e_build build)
@@ -862,8 +866,8 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0:
-			copy_to_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x180779781, jmp, sizeof(jmp));
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x18073A467, 6);
+			copy_to_address(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180779781, jmp, sizeof(jmp));
+			nop_address(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x18073A467, 6);
 			break;
 		}
 	}
@@ -880,7 +884,8 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 		case _build_mcc_1_1377_0_0:
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x1805E18D7, 6);
+		case _build_mcc_1_1389_0_0:
+			nop_address(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1805E18D7, 6);
 			break;
 		}
 	}
@@ -899,8 +904,8 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0:
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x1800DDF7A, 6);
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x1800DDF87, 6);
+			nop_address(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1800DDF7A, 6);
+			nop_address(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1800DDF87, 6);
 			break;
 		}
 	}
@@ -909,19 +914,16 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 	{
 		if (Settings::ReadBoolValue(SettingsSection::Debug, "ReplacePrintScriptEvaluate", true))
 		{
-			if (build >= _build_mcc_1_1305_0_0)
-			{
-				hs_script_op *hs_print_op = hs_function_get(0x28);
-				hs_script_op *hs_chud_post_message_op = hs_function_get(0x509);
+			hs_script_op* hs_print_function = hs_function_get(0x28);
+			hs_script_op* hs_chud_post_message_function = hs_function_get(build >= _build_mcc_1_1186_0_0 ? 0x509 : 0x508);
 
-				if (Settings::ReadBoolValue(SettingsSection::Debug, "PrintToHud", false))
-				{
-					hs_print_op->replace_evaluate(hs_chud_post_message_op->evaluate);
-				}
-				else
-				{
-					hs_print_op->replace_evaluate(hs_print_evaluate);
-				}
+			if (Settings::ReadBoolValue(SettingsSection::Debug, "PrintToHud", false))
+			{
+				hs_print_function->replace_evaluate(hs_chud_post_message_function->evaluate);
+			}
+			else
+			{
+				hs_print_function->replace_evaluate(hs_print_evaluate);
 			}
 		}
 	}
