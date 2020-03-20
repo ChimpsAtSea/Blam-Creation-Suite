@@ -114,6 +114,8 @@ public:
 	c_tag_resource_fixup_aligned_allocator(
 		c_basic_buffer<void> allocation_buffer);
 
+	virtual ~c_tag_resource_fixup_aligned_allocator();
+
 	void *allocate(
 		dword size,
 		dword alignment_bits);
@@ -130,6 +132,8 @@ public:
 	c_tag_resource_interop_verifier(
 		c_basic_buffer<void> buffer,
 		c_static_array<c_basic_buffer<void>, 3> &array);
+
+	virtual ~c_tag_resource_interop_verifier();
 
 	bool valid_buffer(
 		c_basic_buffer<void> buffer);
