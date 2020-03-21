@@ -46,6 +46,7 @@
     <ClInclude Include="source\haloreach\big_battle_squad\big_battle_squad.h" />
     <ClInclude Include="source\haloreach\bink\bink_definitions.h" />
     <ClInclude Include="source\haloreach\bitmaps\bitmap_definitions.h" />
+    <ClInclude Include="source\haloreach\cutscene\cinematics_definitions.h" />
     <ClInclude Include="source\haloreach\devices\devices.h" />
     <ClInclude Include="source\haloreach\devices\device_controls.h" />
     <ClInclude Include="source\haloreach\devices\device_machines.h" />
