@@ -10,11 +10,32 @@
 
 /* ---------- constants */
 
+constexpr tag k_chocolate_mountain_new_group_tag = 'chmt';
 constexpr tag k_scenario_lightmap_bsp_data_group_tag = 'Lbsp';
 constexpr tag k_scenario_wetness_bsp_data_group_tag = 'wetn';
 constexpr tag k_scenario_lightmap_group_tag = 'sLdT';
 
 /* ---------- types */
+
+struct s_chocolate_mountain_new_lighting
+{
+	real lightmap_brightness_offset;
+	real lightmap_darkness_offset;
+	real unknown08;
+	real dynamic_brightness_offset;
+	real dynamic_darkness_offset;
+};
+static_assert(sizeof(s_chocolate_mountain_new_lighting) == 0x14);
+
+struct s_chocolate_mountain_new_definition
+{
+	char unknown00;
+	char unknown01;
+	char unknown02;
+	char unknown03;
+	c_typed_tag_block<s_chocolate_mountain_new_lighting> lighting;
+};
+static_assert(sizeof(s_chocolate_mountain_new_definition) == 0x10);
 
 struct s_scenario_lightmap_bsp_data_unknown1
 {
