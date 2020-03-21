@@ -58,6 +58,7 @@
     <ClInclude Include="source\haloreach\effects\material_effect_definitions.h" />
     <ClInclude Include="source\haloreach\effects\screen_effect.h" />
     <ClInclude Include="source\haloreach\game\campaign_metagame.h" />
+    <ClInclude Include="source\haloreach\game\challenges\challenge_definitions.h" />
     <ClInclude Include="source\haloreach\game\game.h" />
     <ClInclude Include="source\haloreach\game\game_allegiance.h" />
     <ClInclude Include="source\haloreach\game\game_engine_player_traits.h" />

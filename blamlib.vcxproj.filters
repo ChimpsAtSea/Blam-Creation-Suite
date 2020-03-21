@@ -351,6 +351,9 @@
     <ClInclude Include="source\haloreach\render\camera_fx_settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\haloreach\game\challenges\challenge_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\cache\cache_files.cpp">
