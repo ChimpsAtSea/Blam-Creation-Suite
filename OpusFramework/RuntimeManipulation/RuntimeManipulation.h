@@ -11,16 +11,6 @@
 #undef auto
 #endif
 
-#pragma optimize("", on)
-
-#include "DataReference.h"
-#include "BasicData.h"
-#include "Data.h"
-#include "Pointer.h"
-#include "BasicDataEx.h"
-#include "DataEx.h"
-#include "PointerEx.h"
-
 #pragma optimize("", off) // MSVC optimization absolutely destroys function hooking
 
 #include "FunctionHookBase.h"

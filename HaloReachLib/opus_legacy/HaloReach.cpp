@@ -841,7 +841,6 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 	//DebugUI::RegisterCallback(halo_reach_debug_callback);
 
 	init_detours();
-	c_data_reference_base::init_data_reference_tree(_engine_type_halo_reach, build);
 	c_function_hook_base::init_function_hook_tree(_engine_type_halo_reach, build);
 	c_global_reference::init_global_reference_tree(_engine_type_halo_reach, build);
 	c_data_patch_base::init_data_patch_tree(_engine_type_halo_reach, build);
@@ -941,7 +940,6 @@ void deinit_halo_reach(e_engine_type engine_type, e_build build)
 	//DebugUI::UnregisterCallback(halo_reach_debug_callback);
 
 	init_detours();
-	c_data_reference_base::deinit_data_reference_tree(_engine_type_halo_reach, build);
 	c_function_hook_base::deinit_function_hook_tree(_engine_type_halo_reach, build);
 	c_global_reference::deinit_global_reference_tree(_engine_type_halo_reach, build);
 	c_data_patch_base::deinit_data_patch_tree(_engine_type_halo_reach, build);

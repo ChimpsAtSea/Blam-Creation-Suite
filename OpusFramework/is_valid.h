@@ -1,11 +1,5 @@
 #pragma once
 
-template<typename T, find_offset_func find_offset>
-inline bool is_valid(const DataEx<T, find_offset>& dataex)
-{
-	return dataex.ptr() != nullptr;
-}
-
 template<find_offset_func find_offset, typename R, typename ...Args>
 inline bool is_valid(const FunctionHookEx<find_offset, R(Args...)>& functionhookex)
 {

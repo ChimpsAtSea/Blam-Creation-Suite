@@ -93,7 +93,6 @@ void init_opus()
 		create_dll_hook("KERNEL32.dll", "GetProcAddress", GetProcAddressHook, GetProcAddressPtr);
 
 		e_build build = c_game_runtime::GetLibraryBuildVersion(MCCExecutableFileName);
-		c_data_reference_base::init_data_reference_tree(_engine_type_mcc, build);
 		c_function_hook_base::init_function_hook_tree(_engine_type_mcc, build);
 		c_global_reference::init_global_reference_tree(_engine_type_mcc, build);
 	}

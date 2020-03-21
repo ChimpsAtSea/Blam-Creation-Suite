@@ -18,9 +18,6 @@
     <ClCompile Include="opusframework-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RuntimeManipulation\DataReference.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RuntimeManipulation\FunctionHookBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -111,27 +108,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RuntimeManipulation\RuntimeManipulation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RuntimeManipulation\PointerEx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RuntimeManipulation\BasicData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RuntimeManipulation\BasicDataEx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RuntimeManipulation\Data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RuntimeManipulation\DataEx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RuntimeManipulation\DataReference.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RuntimeManipulation\Pointer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RuntimeManipulation\FunctionHookBase.h">
