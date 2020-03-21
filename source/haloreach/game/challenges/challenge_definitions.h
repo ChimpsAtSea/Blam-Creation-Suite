@@ -11,7 +11,7 @@
 
 /* ---------- constants */
 
-constexpr tag k_challenge_globals_group_tag = 'chgd';
+constexpr tag k_challenge_globals_group_tag = 'chdg';
 
 /* ---------- types */
 
