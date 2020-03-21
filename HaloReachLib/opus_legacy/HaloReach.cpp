@@ -224,8 +224,6 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 }
 FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = { "main_game_launch", [](__int64 a1, __int64 a2)
 {
-	static bool isGlobalsVisible = (&external_launch_individual_state != nullptr);
-
 	static const char* external_launch_individual_state_names[] =
 	{
 		"initial",
@@ -243,7 +241,8 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 		"finished"
 	};
 
-	if (isGlobalsVisible)
+	ASSERT(is_valid(main_game_launch));
+	if (is_valid(external_launch_individual_state))
 	{
 		static int external_launch_individual_state_prev = k_load_state_invalid;
 		if (external_launch_individual_state != external_launch_individual_state_prev)
@@ -758,6 +757,7 @@ FunctionHookEx<hs_return_offset, __int64 __fastcall (unsigned short expression_i
 
 hs_script_op* hs_function_get(short opcode)
 {
+	REFERENCE_ASSERT(hs_function_table);
 	return hs_function_table[opcode];
 }
 

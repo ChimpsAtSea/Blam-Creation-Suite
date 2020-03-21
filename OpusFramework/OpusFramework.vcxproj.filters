@@ -266,6 +266,9 @@
     <ClInclude Include="MCC\PlayerConfiguration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="is_valid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />

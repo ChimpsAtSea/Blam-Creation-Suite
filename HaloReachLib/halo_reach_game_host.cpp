@@ -126,6 +126,10 @@ void c_halo_reach_game_host::draw_script_debug_ui()
 	{
 		return;
 	}
+	if (!is_valid(g_script_node_data_array))
+	{
+		return;
+	}
 
 	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);

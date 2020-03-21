@@ -61,14 +61,20 @@ char* & g_cache_file = reference_symbol<char*>("g_cache_file", g_cache_file_offs
 
 char* tag_address_get(uint32_t tagInstanceAddress)
 {
-	if (&tag_address_table == nullptr) return nullptr;
+	if (!is_valid(tag_address_table))
+	{
+		return nullptr;
+	}
 	uint32_t* pData = &tag_address_table[tagInstanceAddress >> 28][tagInstanceAddress];
 	return reinterpret_cast<char*>(pData);
 }
 
 char* tag_definition_get(uint16_t index)
 {
-	if (&tag_instances == nullptr) return nullptr;
+	if (!is_valid(tag_instances))
+	{
+		return nullptr;
+	}
 	uint32_t tagInstanceAddress = tag_instances[index].address;
 	return tag_address_get(tagInstanceAddress);
 }
@@ -94,7 +100,10 @@ T& tag_block_definition_get(s_tag_block_definition<T>& rTagBlock, uint16_t index
 
 s_cache_file_header* cache_file_header_get()
 {
-	if (&g_cache_file == nullptr) return nullptr;
+	if (!is_valid(g_cache_file))
+	{
+		return nullptr;
+	}
 
 	s_cache_file_header& cache_file_header = *reinterpret_cast<s_cache_file_header*>(&g_cache_file[0x10]);
 	return &cache_file_header;
