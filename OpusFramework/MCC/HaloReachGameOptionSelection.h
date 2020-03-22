@@ -39,7 +39,7 @@ public:
 	static void SelectSavedFilm();
 
 
-	/* LEGACY */ static void GetVariantInfo(char* pBuffer, std::string* name, std::string* desc);
+	/* LEGACY */ static void GetVariantInfo(char* buffer, std::string* name, std::string* desc);
 	/* LEGACY */ static int ReadGameVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath);
 	/* LEGACY */ static int ReadSavedFilm(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath);
 	/* LEGACY */ static int ReadMapVariant(LPCSTR pName, std::string* name, std::string* desc, LPCSTR pPath);

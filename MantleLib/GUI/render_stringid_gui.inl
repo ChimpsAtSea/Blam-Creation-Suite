@@ -17,7 +17,7 @@ void render_stringid_gui(string_id* field_data, const c_reflection_field& reflec
 		StringIDDynamicData(string_id& rStringID, c_cache_file& cache_file)
 			: szBuffer()
 			, isValid(0)
-			, bufferLength(0)
+			, buffer_length(0)
 			, pStringID(&rStringID)
 		{
 			const char* pStringID = cache_file.string_id_to_cstr(rStringID.stringid);
@@ -36,7 +36,7 @@ void render_stringid_gui(string_id* field_data, const c_reflection_field& reflec
 
 		char szBuffer[111];
 		uint8_t isValid : 1;
-		uint8_t bufferLength : 7;
+		uint8_t buffer_length : 7;
 		string_id* pStringID;
 	};
 

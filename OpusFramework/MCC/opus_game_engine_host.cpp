@@ -9,6 +9,7 @@ c_opus_game_engine_host::c_opus_game_engine_host(e_engine_type engine_type, e_bu
 	game_runtime(rGameRuntime),
 	game_events(),
 	frame_timer(),
+	total_frame_cpu_time(0.0),
 	game_engine(nullptr)
 {
 
@@ -24,7 +25,7 @@ char c_opus_game_engine_host::FrameStart()
 	return 0;
 }
 
-void c_opus_game_engine_host::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD)
+void c_opus_game_engine_host::FrameEnd(IDXGISwapChain* swap_chain, _QWORD)
 {
 	frame_timer.stop();
 	double frame_cpu_duration = frame_timer.get_duration<double>();
@@ -92,13 +93,13 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 	return __int64(0);
 }
 
-__int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID pBuffer, size_t bufferSize)
+__int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t buffer_size)
 {
-	write_line_verbose("%s %p %016zx", __FUNCTION__, pBuffer, bufferSize);
+	write_line_verbose("%s %p %016zx", __FUNCTION__, buffer, buffer_size);
 	return __int64(0);
 }
 
-void c_opus_game_engine_host::SubmitGameResults(GameResultsData* pGameResultsData)
+void c_opus_game_engine_host::SubmitGameResults(GameResultsData* game_results_data)
 {
 }
 
@@ -131,11 +132,11 @@ IGameEvents* c_opus_game_engine_host::GetGameEvents()
 	return &game_events;
 }
 
-void c_opus_game_engine_host::SaveGameVariant(IGameVariant* pGameVariant)
+void c_opus_game_engine_host::SaveGameVariant(IGameVariant* game_variant)
 {
 }
 
-void c_opus_game_engine_host::SaveMapVariant(IMapVariant* pMapVariant)
+void c_opus_game_engine_host::SaveMapVariant(IMapVariant* map_variant)
 {
 }
 
@@ -143,7 +144,7 @@ void c_opus_game_engine_host::Function13(const wchar_t*, const wchar_t*, const v
 {
 }
 
-char c_opus_game_engine_host::InvertLookControls(int controllerIndex, bool inverted)
+char c_opus_game_engine_host::InvertLookControls(int controller_index, bool inverted)
 {
 	static PlayerConfiguration player_configuration = {};
 	ConfigurePlayerConfiguration(player_configuration);
@@ -154,17 +155,17 @@ char c_opus_game_engine_host::InvertLookControls(int controllerIndex, bool inver
 	return 1;
 }
 
-char c_opus_game_engine_host::GetGameSpecificBindings(int controllerIndex, char(*pBuffer)[256])
+char c_opus_game_engine_host::GetGameSpecificBindings(int controller_index, char(*buffer)[256])
 {
 	static PlayerConfiguration player_configuration = {};
 	ConfigurePlayerConfiguration(player_configuration);
 
-	memcpy(&player_configuration.GameSpecific, pBuffer, 256);
+	memcpy(&player_configuration.GameSpecific, buffer, 256);
 
 	return 1;
 }
 
-char c_opus_game_engine_host::GetNextLevelInfo(e_map_id* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*)
+char c_opus_game_engine_host::GetNextLevelInfo(e_map_id* pMapID, int* campaign_insertion_point, FILETIME* file_time, _DWORD*)
 {
 	return 0;
 }
@@ -202,12 +203,12 @@ char c_opus_game_engine_host::Function23(__int64, __int64)
 	return 1;
 }
 
-void c_opus_game_engine_host::GetSessionInfo(s_session_info_part* pSessionInfoPart)
+void c_opus_game_engine_host::GetSessionInfo(s_session_info_part* session_info_part)
 {
 
 }
 
-void __fastcall c_opus_game_engine_host::MembershipUpdate(s_session_membership* pSessionMembership, uint32_t playercount)
+void __fastcall c_opus_game_engine_host::MembershipUpdate(s_session_membership* session_membership, uint32_t player_count)
 {
 	RUNONCE({ write_line_verbose(__FUNCTION__); });
 }
@@ -224,39 +225,41 @@ bool __fastcall c_opus_game_engine_host::Function27()
 	return false;
 }
 
-bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* pUnknown)
+bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* update_graphics_data)
 {
+	DEBUG_ASSERT(update_graphics_data != nullptr);
+
 	// set resolution to 4k
-	pUnknown->VIDEO_SizeX = c_window::get_width();
-	pUnknown->VIDEO_SizeY = c_window::get_height();
+	update_graphics_data->VIDEO_SizeX = c_window::get_width();
+	update_graphics_data->VIDEO_SizeY = c_window::get_height();
 
-	pUnknown->VIDEO_FPS_Lock = false;
-	pUnknown->VIDEO_Wait_VSync = false;
+	update_graphics_data->VIDEO_FPS_Lock = false;
+	update_graphics_data->VIDEO_Wait_VSync = false;
 
-	pUnknown->VIDEO_TextureQuality = 2;
-	pUnknown->VIDEO_AF_Qual = 2;
-	pUnknown->VIDEO_SSAOQuality = 2;
-	pUnknown->VIDEO_ShadowMapQual = 2;
-	pUnknown->VIDEO_LodDistQualityFactor = 2;
-	pUnknown->VIDEO_UseEdgeAA = true;
+	update_graphics_data->VIDEO_TextureQuality = 2;
+	update_graphics_data->VIDEO_AF_Qual = 2;
+	update_graphics_data->VIDEO_SSAOQuality = 2;
+	update_graphics_data->VIDEO_ShadowMapQual = 2;
+	update_graphics_data->VIDEO_LodDistQualityFactor = 2;
+	update_graphics_data->VIDEO_UseEdgeAA = true;
 
 	write_line_verbose(__FUNCTION__);
 
 	// returning false effectively doubles fps when unlocked
-	return !(pUnknown->VIDEO_FPS_Lock || pUnknown->VIDEO_Wait_VSync);
+	return !(update_graphics_data->VIDEO_FPS_Lock || update_graphics_data->VIDEO_Wait_VSync);
 }
 
 PlayerConfiguration* __fastcall c_opus_game_engine_host::GetPlayerConfiguration(__int64 value)
 {
 	RUNONCE({ write_line_verbose(__FUNCTION__); });
 
-	PlayerConfiguration player_configuration = {};
+	static PlayerConfiguration player_configuration = {};
 	ConfigurePlayerConfiguration(player_configuration);
 
 	return &player_configuration;
 }
 
-__int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration)
+__int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t player_names[4][32], PlayerConfiguration& player_configuration)
 {
 	// #TODO #LEGACY: The format for UpdatePlayerConfiguration changed sometime after 887
 	if (build <= _build_mcc_1_1035_0_0)
@@ -264,19 +267,19 @@ __int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t pl
 		return false; // skips a large chunk of code that crashes out because the format changed
 	}
 	
-	REFERENCE_ASSERT(rPlayerConfiguration);
-	rPlayerConfiguration = {}; // reset values
+	REFERENCE_ASSERT(player_configuration);
+	player_configuration = {}; // reset values
 
-	ConfigurePlayerConfiguration(rPlayerConfiguration);
+	ConfigurePlayerConfiguration(player_configuration);
 
 	//WriteStackBackTrace("IOpusGameEngineHost::UpdatePlayerConfiguration");
 	return __int64(1);
 }
 
-bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuffer* pInputBuffer)
+bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuffer* input_buffer)
 {
-	ASSERT(pInputBuffer);
-	memset(pInputBuffer, 0, sizeof(*pInputBuffer));
+	ASSERT(input_buffer);
+	memset(input_buffer, 0, sizeof(*input_buffer));
 
 	bool debugUIVisible = c_debug_gui::IsVisible();
 	bool windowFocused = c_window::IsWindowFocused();
@@ -291,7 +294,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 	// don't update and return an empty zero buffer
 	if (debugUIVisible)
 	{
-		pInputBuffer->inputSource = InputSource::MouseAndKeyboard;
+		input_buffer->inputSource = InputSource::MouseAndKeyboard;
 		return unsigned __int8(1);
 	}
 
@@ -392,27 +395,27 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 	{
 		for (int i = 0; i < 256; i++)
 		{
-			pInputBuffer->keyboardState[i] = (keyboardState[i] & 0b10000000) != 0;
+			input_buffer->keyboardState[i] = (keyboardState[i] & 0b10000000) != 0;
 		}
-		pInputBuffer->MouseX += mouseInputX;
-		pInputBuffer->MouseY += mouseInputY;
-		pInputBuffer->mouseButtonBits |= BYTE(leftButtonPressed) << 0;
-		pInputBuffer->mouseButtonBits |= BYTE(middleButtonPressed) << 1;
-		pInputBuffer->mouseButtonBits |= BYTE(rightButtonPressed) << 2;
+		input_buffer->MouseX += mouseInputX;
+		input_buffer->MouseY += mouseInputY;
+		input_buffer->mouseButtonBits |= BYTE(leftButtonPressed) << 0;
+		input_buffer->mouseButtonBits |= BYTE(middleButtonPressed) << 1;
+		input_buffer->mouseButtonBits |= BYTE(rightButtonPressed) << 2;
 	}
 	
 	if (sCurrentInputSource == InputSource::Gamepad)
 	{
-		pInputBuffer->wButtons = xinputState.Gamepad.wButtons;
-		pInputBuffer->bLeftTrigger = xinputState.Gamepad.bLeftTrigger;
-		pInputBuffer->bRightTrigger = xinputState.Gamepad.bRightTrigger;
-		pInputBuffer->sThumbLX = fThumbLX * static_cast<float>(fThumbLX > 0 ? INT16_MAX : -INT16_MIN);
-		pInputBuffer->sThumbLY = fThumbLY * static_cast<float>(fThumbLY > 0 ? INT16_MAX : -INT16_MIN);
-		pInputBuffer->sThumbRX = fThumbRX * static_cast<float>(fThumbRX > 0 ? INT16_MAX : -INT16_MIN);
-		pInputBuffer->sThumbRY = fThumbRY * static_cast<float>(fThumbRY > 0 ? INT16_MAX : -INT16_MIN);
+		input_buffer->wButtons = xinputState.Gamepad.wButtons;
+		input_buffer->bLeftTrigger = xinputState.Gamepad.bLeftTrigger;
+		input_buffer->bRightTrigger = xinputState.Gamepad.bRightTrigger;
+		input_buffer->sThumbLX = fThumbLX * static_cast<float>(fThumbLX > 0 ? INT16_MAX : -INT16_MIN);
+		input_buffer->sThumbLY = fThumbLY * static_cast<float>(fThumbLY > 0 ? INT16_MAX : -INT16_MIN);
+		input_buffer->sThumbRX = fThumbRX * static_cast<float>(fThumbRX > 0 ? INT16_MAX : -INT16_MIN);
+		input_buffer->sThumbRY = fThumbRY * static_cast<float>(fThumbRY > 0 ? INT16_MAX : -INT16_MIN);
 	}
 
-	pInputBuffer->inputSource = sCurrentInputSource;
+	input_buffer->inputSource = sCurrentInputSource;
 
 	return unsigned __int8(1);
 }
@@ -430,14 +433,14 @@ void c_opus_game_engine_host::Function33()
 	throw;
 }
 
-void c_opus_game_engine_host::XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION* pVibration)
+void c_opus_game_engine_host::XInputSetState(DWORD user_index, XINPUT_VIBRATION* xinput_vibration)
 {
-	::XInputSetState(dwUserIndex, pVibration);
+	::XInputSetState(user_index, xinput_vibration);
 }
 
-bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, wchar_t pszPlayerNames[4][32], size_t dataSize)
+bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, wchar_t player_names[4][32], size_t data_size)
 {
-	if (pszPlayerNames && dataSize)
+	if (player_names && data_size)
 	{
 		const wchar_t* ppNames[] = { L"Player", L"Player2", L"Player3",L"Player4" };
 
@@ -456,11 +459,11 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, 
 				}
 
 				{
-					if (wcsncmp(pszPlayerNames[i], pName, 16) == 0)
+					if (wcsncmp(player_names[i], pName, 16) == 0)
 					{
 						return true;
 					}
-					wcsncpy_s(pszPlayerNames[i], 32, pName, 16);
+					wcsncpy_s(player_names[i], 32, pName, 16);
 					write_line_verbose("player[%d].Name: set %ls", i, pName);
 				}
 			}
@@ -480,12 +483,12 @@ bool __fastcall c_opus_game_engine_host::Function37(wchar_t*, __int64)
 	return 0;
 }
 
-__int64 __fastcall c_opus_game_engine_host::NetworkSendTo(NetworkID networkID, char* pBuffer, uint32_t buffersize, int)
+__int64 __fastcall c_opus_game_engine_host::NetworkSendTo(NetworkID network_id, char* buffer, uint32_t buffer_size, int)
 {
 	return 0;
 }
 
-__int64 __fastcall c_opus_game_engine_host::NetworkReceiveFrom(char* pBuffer, uint32_t buffersize, __int64, s_transport_address* pTransportAddress)
+__int64 __fastcall c_opus_game_engine_host::NetworkReceiveFrom(char* buffer, uint32_t buffer_size, __int64, s_transport_address* pTransportAddress)
 {
 	return 0;
 }
@@ -495,7 +498,7 @@ char* __fastcall c_opus_game_engine_host::Function40(unsigned int)
 	return 0;
 }
 
-int __fastcall c_opus_game_engine_host::Function41(BYTE* pBuffer)
+int __fastcall c_opus_game_engine_host::Function41(BYTE* buffer)
 {
 	return 0;
 }
@@ -514,48 +517,48 @@ BOOL __fastcall c_opus_game_engine_host::Function44(__int64, __int64)
 	return 0;
 }
 
-bool __fastcall c_opus_game_engine_host::get_pathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength)
+bool __fastcall c_opus_game_engine_host::get_pathByType(PathType path_type, LPSTR buffer, size_t buffer_length)
 {
 	const char* pEngineName = game_runtime.GetEngineName().c_str();
 
 	// this implementation is inline with MCC
-	switch (pathType)
+	switch (path_type)
 	{
 	case PathType::DebugLogs:
-		sprintf_s(pBuffer, bufferLength, "%s\\DebugLogs\\", pEngineName);
+		sprintf_s(buffer, buffer_length, "%s\\DebugLogs\\", pEngineName);
 		return true;
 	case PathType::Config:
-		sprintf_s(pBuffer, bufferLength, "%s\\Config\\", pEngineName);
+		sprintf_s(buffer, buffer_length, "%s\\Config\\", pEngineName);
 		return true;
 	case PathType::Temporary:
-		sprintf_s(pBuffer, bufferLength, "%s\\Temporary\\", pEngineName);
+		sprintf_s(buffer, buffer_length, "%s\\Temporary\\", pEngineName);
 		return true;
 	case PathType::Root:
-		sprintf_s(pBuffer, bufferLength, "%s\\", pEngineName);
+		sprintf_s(buffer, buffer_length, "%s\\", pEngineName);
 		return true;
 	}
 
 	return false;
 }
 
-bool __fastcall c_opus_game_engine_host::GetWidePathByType(PathType pathType, wchar_t* pBuffer, size_t bufferLength)
+bool __fastcall c_opus_game_engine_host::GetWidePathByType(PathType path_type, wchar_t* buffer, size_t buffer_length)
 {
 	const char* pEngineName = game_runtime.GetEngineName().c_str();
 
 	// this implementation is inline with MCC
-	switch (pathType)
+	switch (path_type)
 	{
 	case PathType::DebugLogs:
-		swprintf(pBuffer, bufferLength, L"%S\\DebugLogs\\", pEngineName);
+		swprintf(buffer, buffer_length, L"%S\\DebugLogs\\", pEngineName);
 		return true;
 	case PathType::Config:
-		swprintf(pBuffer, bufferLength, L"%S\\Config\\", pEngineName);
+		swprintf(buffer, buffer_length, L"%S\\Config\\", pEngineName);
 		return true;
 	case PathType::Temporary:
-		swprintf(pBuffer, bufferLength, L"%S\\Temporary\\", pEngineName);
+		swprintf(buffer, buffer_length, L"%S\\Temporary\\", pEngineName);
 		return true;
 	case PathType::Root:
-		swprintf(pBuffer, bufferLength, L"%S\\", pEngineName);
+		swprintf(buffer, buffer_length, L"%S\\", pEngineName);
 		return true;
 	}
 	

@@ -64,7 +64,7 @@ c_halo_reach_game_host::~c_halo_reach_game_host()
 	new(&g_halo_reach_game_runtime) c_game_runtime(_engine_type_halo_reach, "haloreach", "HaloReach\\haloreach.dll");
 }
 
-void c_halo_reach_game_host::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)
+void c_halo_reach_game_host::FrameEnd(IDXGISwapChain* swap_chain, _QWORD unknown1)
 {
 	if (GetAsyncKeyState(VK_F10))
 	{
@@ -72,7 +72,7 @@ void c_halo_reach_game_host::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown
 	}
 
 	update_camera_data();
-	c_opus_game_engine_host::FrameEnd(pSwapChain, unknown1);
+	c_opus_game_engine_host::FrameEnd(swap_chain, unknown1);
 }
 
 void c_halo_reach_game_host::render_ui() const

@@ -58,7 +58,7 @@ c_halo1_game_host::~c_halo1_game_host()
 	new(&halo1_game_runtime) c_game_runtime(_engine_type_halo1, "halo1", "Halo1\\halo1.dll");
 }
 
-void c_halo1_game_host::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)
+void c_halo1_game_host::FrameEnd(IDXGISwapChain* swap_chain, _QWORD unknown1)
 {
 	if (GetAsyncKeyState(VK_F10))
 	{
@@ -66,7 +66,7 @@ void c_halo1_game_host::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD unknown1)
 	}
 
 	update_camera_data();
-	c_opus_game_engine_host::FrameEnd(pSwapChain, unknown1);
+	c_opus_game_engine_host::FrameEnd(swap_chain, unknown1);
 }
 
 void c_halo1_game_host::render_ui() const

@@ -2,7 +2,7 @@
 
 ID3D11Device* c_render::s_pDevice = nullptr;
 ID3D11DeviceContext1* c_render::s_pDeviceContext = nullptr;
-IDXGISwapChain1* c_render::s_pSwapChain = nullptr;
+IDXGISwapChain1* c_render::s_swap_chain = nullptr;
 IDXGIFactory5* c_render::s_pFactory = nullptr;
 DEVMODE c_render::s_deviceMode = {};
 bool c_render::s_directxCustomInit = false;
@@ -116,7 +116,7 @@ bool c_render::calculate_screen_coordinates(float positionX, float positionY, fl
 	return false;
 }
 
-void c_render::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
+void c_render::CreateSwapchain(IDXGISwapChain1*& swap_chain)
 {
 	DXGI_SWAP_CHAIN_DESC1 s_SwapchainDescription = {};
 	s_SwapchainDescription.Width = c_window::get_width();
@@ -136,23 +136,23 @@ void c_render::CreateSwapchain(IDXGISwapChain1*& rpSwapChain)
 	constexpr bool createCompositionSwapchain = false;
 	if constexpr (createCompositionSwapchain)
 	{
-		HRESULT createSwapChainForCompositionResult = s_pFactory->CreateSwapChainForComposition(s_pDevice, &s_SwapchainDescription, NULL, &rpSwapChain);
+		HRESULT createSwapChainForCompositionResult = s_pFactory->CreateSwapChainForComposition(s_pDevice, &s_SwapchainDescription, NULL, &swap_chain);
 		ASSERT(SUCCEEDED(createSwapChainForCompositionResult));
 	}
 	else
 	{
 		HWND hWnd = c_window::GetWindowHandle();
-		HRESULT createSwapChainForHwndResult = s_pFactory->CreateSwapChainForHwnd(s_pDevice, hWnd, &s_SwapchainDescription, NULL, NULL, &rpSwapChain);
+		HRESULT createSwapChainForHwndResult = s_pFactory->CreateSwapChainForHwnd(s_pDevice, hWnd, &s_SwapchainDescription, NULL, NULL, &swap_chain);
 		ASSERT(SUCCEEDED(createSwapChainForHwndResult));
 	}
-	ASSERT(rpSwapChain != nullptr);
+	ASSERT(swap_chain != nullptr);
 }
 
 void c_render::InitDirectX()
 {
 	DEBUG_ASSERT(s_pDevice == nullptr);
 	DEBUG_ASSERT(s_pDeviceContext == nullptr);
-	DEBUG_ASSERT(s_pSwapChain == nullptr);
+	DEBUG_ASSERT(s_swap_chain == nullptr);
 
 	EnumDisplaySettings(nullptr, ENUM_CURRENT_SETTINGS, &s_deviceMode);
 
@@ -199,25 +199,25 @@ void c_render::InitDirectX()
 
 	if (createSwapchain)
 	{
-		CreateSwapchain(s_pSwapChain);
+		CreateSwapchain(s_swap_chain);
 	}
 
 }
 
-void c_render::init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain, bool allow_resize_at_beginning_of_frame)
+void c_render::init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* swap_chain, bool allow_resize_at_beginning_of_frame)
 {
 	if (hInstance == NULL)
 		hInstance = GetModuleHandle(NULL);
 
 	DEBUG_ASSERT(s_pDevice == nullptr);
 	DEBUG_ASSERT(s_pDeviceContext == nullptr);
-	DEBUG_ASSERT(s_pSwapChain == nullptr);
+	DEBUG_ASSERT(s_swap_chain == nullptr);
 	DEBUG_ASSERT(pDevice != nullptr);
-	DEBUG_ASSERT(pSwapChain != nullptr);
+	DEBUG_ASSERT(swap_chain != nullptr);
 
 	s_directxCustomInit = true;
 	s_pDevice = pDevice;
-	s_pSwapChain = pSwapChain;
+	s_swap_chain = swap_chain;
 
 	pDevice->GetImmediateContext(reinterpret_cast<ID3D11DeviceContext**>(&s_pDeviceContext));
 	ASSERT(s_pDeviceContext != nullptr);
@@ -234,7 +234,7 @@ void c_render::init_render(HINSTANCE hInstance, bool allow_resize_at_beginning_o
 		InitDirectX();
 	}
 
-	c_debug_gui::Init(hInstance, s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
+	c_debug_gui::Init(hInstance, s_pFactory, s_swap_chain, s_pDevice, s_pDeviceContext);
 }
 
 void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
@@ -250,7 +250,7 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 		ID3D11Texture2D* pBackBuffer = nullptr;
 
 		// Get the pointer to the back buffer.
-		HRESULT getBufferResult = s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
+		HRESULT getBufferResult = s_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
 		ASSERT(SUCCEEDED(getBufferResult));
 
 		HRESULT createRenderTargetViewResult = s_pDevice->CreateRenderTargetView(pBackBuffer, NULL, &s_pRenderTargetView);
@@ -378,7 +378,7 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 void c_render::end_frame()
 {
 	c_debug_gui::RenderFrame();
-	s_pSwapChain->Present(1, 0);
+	s_swap_chain->Present(1, 0);
 }
 
 void c_render::RequestResize(int width, int height)
@@ -401,13 +401,13 @@ void c_render::ResizeBegin()
 void c_render::ResizeEnd()
 {
 	bool isVisible = c_debug_gui::IsVisible();
-	c_debug_gui::Init(GetModuleHandle(NULL), s_pFactory, s_pSwapChain, s_pDevice, s_pDeviceContext);
+	c_debug_gui::Init(GetModuleHandle(NULL), s_pFactory, s_swap_chain, s_pDevice, s_pDeviceContext);
 	if (isVisible) c_debug_gui::show_ui();
 }
 
 void c_render::ResizeWindow()
 {
-	if (s_pSwapChain && s_resizeEnabled)
+	if (s_swap_chain && s_resizeEnabled)
 	{
 		int width = resize_width;
 		int height = resize_height;
@@ -418,18 +418,18 @@ void c_render::ResizeWindow()
 		{
 			// Preserve the existing buffer count and format.
 			// Automatically choose the width and height to match the client rect for HWNDs.
-			HRESULT resizeBuffersResult = s_pSwapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
+			HRESULT resizeBuffersResult = s_swap_chain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
 			ASSERT(SUCCEEDED(resizeBuffersResult));
 
 			// Get buffer and create a render-target-view.
-			ID3D11Texture2D* pBuffer;
-			HRESULT getBufferResult = s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBuffer);
+			ID3D11Texture2D* buffer;
+			HRESULT getBufferResult = s_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&buffer);
 			ASSERT(SUCCEEDED(getBufferResult));
 
-			HRESULT createRenderTargetViewResult = s_pDevice->CreateRenderTargetView(pBuffer, NULL, &s_pRenderTargetView);
+			HRESULT createRenderTargetViewResult = s_pDevice->CreateRenderTargetView(buffer, NULL, &s_pRenderTargetView);
 			ASSERT(SUCCEEDED(createRenderTargetViewResult));
 
-			pBuffer->Release();
+			buffer->Release();
 
 			s_pDeviceContext->OMSetRenderTargets(1, &s_pRenderTargetView, NULL);
 
@@ -453,16 +453,16 @@ void c_render::deinit_render()
 
 	if (!s_directxCustomInit)
 	{
-		s_pSwapChain->SetFullscreenState(false, NULL);
+		s_swap_chain->SetFullscreenState(false, NULL);
 		s_pDevice->Release();
 		s_pDeviceContext->Release();
-		s_pSwapChain->Release();
+		s_swap_chain->Release();
 		s_pFactory->Release();
 	}
 
 	s_pDevice = nullptr;
 	s_pDeviceContext = nullptr;
-	s_pSwapChain = nullptr;
+	s_swap_chain = nullptr;
 	s_pFactory = nullptr;
 
 	s_directxCustomInit = false;

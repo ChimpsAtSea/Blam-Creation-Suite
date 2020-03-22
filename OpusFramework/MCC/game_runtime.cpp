@@ -65,7 +65,7 @@ uint64_t c_game_runtime::GetLibraryFileVersion(const char* pFileName)
 	uint64_t result = 0;
 	DWORD  verHandle = 0;
 	UINT   size = 0;
-	LPBYTE lpBuffer = NULL;
+	LPBYTE lbuffer = NULL;
 	DWORD  verSize = GetFileVersionInfoSize(pFileName, &verHandle);
 
 	if (verSize != NULL)
@@ -74,11 +74,11 @@ uint64_t c_game_runtime::GetLibraryFileVersion(const char* pFileName)
 
 		if (GetFileVersionInfo(pFileName, NULL, verSize, verData) != 0)
 		{
-			if (VerQueryValue(verData, "\\", (VOID FAR * FAR*) & lpBuffer, &size))
+			if (VerQueryValue(verData, "\\", (VOID FAR * FAR*) & lbuffer, &size))
 			{
 				if (size)
 				{
-					VS_FIXEDFILEINFO* verInfo = (VS_FIXEDFILEINFO*)lpBuffer;
+					VS_FIXEDFILEINFO* verInfo = (VS_FIXEDFILEINFO*)lbuffer;
 					if (verInfo->dwSignature == 0xfeef04bd)
 					{
 						result |= uint64_t(verInfo->dwFileVersionMS);

@@ -52,22 +52,22 @@ IGameEngineHost* IGameEngineHost::GetDynamicGameEngineHost()
 #define shifted_this reinterpret_cast<IGameEngineHost*>(reinterpret_cast<char*>(this) - sizeof(uintptr_t))
 
 char IGameEngineHost::FrameStart() { CHECK_ADDRESS_SHIFTED(); return shifted_this->FrameStart(); }
-void IGameEngineHost::FrameEnd(IDXGISwapChain* pSwapChain, _QWORD a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->FrameEnd(pSwapChain, a2); }
+void IGameEngineHost::FrameEnd(IDXGISwapChain* swap_chain, _QWORD a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->FrameEnd(swap_chain, a2); }
 void IGameEngineHost::Function02(__int64 player_identifier, unsigned int a2, __int64 a3, float a4, float a5, float a6, float a7) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function02(player_identifier, a2, a3, a4, a5, a6, a7); }
 void IGameEngineHost::EngineStateUpdate(eEngineState state) { CHECK_ADDRESS_SHIFTED(); return shifted_this->EngineStateUpdate(state); }
 __int64 IGameEngineHost::GameExited(unsigned int a1, char* a2, int a3) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GameExited(a1, a2, a3); }
-__int64 __fastcall IGameEngineHost::SaveGameState(LPVOID pBuffer, size_t bufferSize) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SaveGameState(pBuffer, bufferSize); }
-void IGameEngineHost::SubmitGameResults(GameResultsData* pGameResultsData) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SubmitGameResults(pGameResultsData); }
+__int64 __fastcall IGameEngineHost::SaveGameState(LPVOID buffer, size_t buffer_size) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SaveGameState(buffer, buffer_size); }
+void IGameEngineHost::SubmitGameResults(GameResultsData* game_results_data) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SubmitGameResults(game_results_data); }
 void IGameEngineHost::Function07(unsigned int a1) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function07(a1); }
 void IGameEngineHost::Function08(const wchar_t* a1, const wchar_t* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function08(a1, a2); }
 void IGameEngineHost::Function09(wchar_t a1[1024], wchar_t a2[1024]) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function09(a1, a2); }
 IGameEvents* IGameEngineHost::GetGameEvents() { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetGameEvents(); }
-void IGameEngineHost::SaveGameVariant(IGameVariant* pGameVariant) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SaveGameVariant(pGameVariant); }
-void IGameEngineHost::SaveMapVariant(IMapVariant* pMapVariant) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SaveMapVariant(pMapVariant); }
+void IGameEngineHost::SaveGameVariant(IGameVariant* game_variant) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SaveGameVariant(game_variant); }
+void IGameEngineHost::SaveMapVariant(IMapVariant* map_variant) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SaveMapVariant(map_variant); }
 void IGameEngineHost::Function13(const wchar_t* a1, const wchar_t* a2, const void* a3, unsigned int a4) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function13(a1, a2, a3, a4); }
-char IGameEngineHost::InvertLookControls(int controllerIndex, bool inverted) { CHECK_ADDRESS_SHIFTED(); return shifted_this->InvertLookControls(controllerIndex, inverted); }
-char IGameEngineHost::GetGameSpecificBindings(int controllerIndex, char(*pBuffer)[256]) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetGameSpecificBindings(controllerIndex, pBuffer); }
-char IGameEngineHost::GetNextLevelInfo(e_map_id* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD* a4) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetNextLevelInfo(pMapID, pCampaignInsertionPoint, pFiletime, a4); }
+char IGameEngineHost::InvertLookControls(int controller_index, bool inverted) { CHECK_ADDRESS_SHIFTED(); return shifted_this->InvertLookControls(controller_index, inverted); }
+char IGameEngineHost::GetGameSpecificBindings(int controller_index, char(*buffer)[256]) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetGameSpecificBindings(controller_index, buffer); }
+char IGameEngineHost::GetNextLevelInfo(e_map_id* pMapID, int* campaign_insertion_point, FILETIME* file_time, _DWORD* a4) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetNextLevelInfo(pMapID, campaign_insertion_point, file_time, a4); }
 bool IGameEngineHost::Function17(int a1) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function17(a1); }
 void IGameEngineHost::Function18(int a1) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function18(a1); }
 __int64 __fastcall IGameEngineHost::MapLoadPecentStatus(__int64 a1, __int64 a2, float a3) { CHECK_ADDRESS_SHIFTED(); return shifted_this->MapLoadPecentStatus(a1, a2, a3); }
@@ -75,29 +75,29 @@ void IGameEngineHost::Function20(__int64 a1, __int8 a2) { CHECK_ADDRESS_SHIFTED(
 __int64 __fastcall IGameEngineHost::GetMachineIdentifier(_QWORD a1) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetMachineIdentifier(a1); }
 __int64 IGameEngineHost::Function22(Function22Structure* buffer, __int64 a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function22(buffer, a2); }
 char IGameEngineHost::Function23(__int64 a1, __int64 a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function23(a1, a2); }
-void IGameEngineHost::GetSessionInfo(s_session_info_part* pSessionInfoPart) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetSessionInfo(pSessionInfoPart); }
-void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership* pSessionMembership, uint32_t playercount) { CHECK_ADDRESS_SHIFTED(); return shifted_this->MembershipUpdate(pSessionMembership, playercount); }
+void IGameEngineHost::GetSessionInfo(s_session_info_part* session_info_part) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetSessionInfo(session_info_part); }
+void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership* session_membership, uint32_t player_count) { CHECK_ADDRESS_SHIFTED(); return shifted_this->MembershipUpdate(session_membership, player_count); }
 bool __fastcall IGameEngineHost::Function26() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function26(); }
 bool __fastcall IGameEngineHost::Function27() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function27(); }
-bool __fastcall IGameEngineHost::UpdateGraphics(UpdateGraphicsData* pUnknown) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateGraphics(pUnknown); }
+bool __fastcall IGameEngineHost::UpdateGraphics(UpdateGraphicsData* update_graphics_data) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateGraphics(update_graphics_data); }
 PlayerConfiguration* __fastcall IGameEngineHost::GetPlayerConfiguration(__int64 value) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetPlayerConfiguration(value); }
-__int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerConfiguration(playerNames, rPlayerConfiguration); }
-bool __fastcall __fastcall IGameEngineHost::UpdateInput(_QWORD a1, InputBuffer* pInputBuffer) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateInput(a1, pInputBuffer); }
+__int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t player_names[4][32], PlayerConfiguration& player_configuration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerConfiguration(player_names, player_configuration); }
+bool __fastcall __fastcall IGameEngineHost::UpdateInput(_QWORD a1, InputBuffer* input_buffer) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateInput(a1, input_buffer); }
 void IGameEngineHost::Function32(_QWORD a1, float* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function32(a1, a2); }
 void IGameEngineHost::Function33() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function33(); }
-void IGameEngineHost::XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION* pVibration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->XInputSetState(dwUserIndex, pVibration); }
-bool __fastcall __fastcall IGameEngineHost::UpdatePlayerNames(__int64* a1, wchar_t pszPlayerNames[4][32], size_t dataSize) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerNames(a1, pszPlayerNames, dataSize); }
+void IGameEngineHost::XInputSetState(DWORD user_index, XINPUT_VIBRATION* xinput_vibration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->XInputSetState(user_index, xinput_vibration); }
+bool __fastcall __fastcall IGameEngineHost::UpdatePlayerNames(__int64* a1, wchar_t player_names[4][32], size_t data_size) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerNames(a1, player_names, data_size); }
 void __fastcall IGameEngineHost::Function36(const wchar_t* a1, const wchar_t* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function36(a1, a2); }
 bool __fastcall IGameEngineHost::Function37(wchar_t* a1, __int64 a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function37(a1, a2); }
-__int64 __fastcall IGameEngineHost::NetworkSendTo(NetworkID networkID, char* pBuffer, uint32_t buffersize, int a4) { CHECK_ADDRESS_SHIFTED(); return shifted_this->NetworkSendTo(networkID, pBuffer, buffersize, a4); }
-__int64 __fastcall IGameEngineHost::NetworkReceiveFrom(char* pBuffer, uint32_t buffersize, __int64 a3, s_transport_address* pTransportAddress) { CHECK_ADDRESS_SHIFTED(); return shifted_this->NetworkReceiveFrom(pBuffer, buffersize, a3, pTransportAddress); }
+__int64 __fastcall IGameEngineHost::NetworkSendTo(NetworkID network_id, char* buffer, uint32_t buffer_size, int a4) { CHECK_ADDRESS_SHIFTED(); return shifted_this->NetworkSendTo(network_id, buffer, buffer_size, a4); }
+__int64 __fastcall IGameEngineHost::NetworkReceiveFrom(char* buffer, uint32_t buffer_size, __int64 a3, s_transport_address* pTransportAddress) { CHECK_ADDRESS_SHIFTED(); return shifted_this->NetworkReceiveFrom(buffer, buffer_size, a3, pTransportAddress); }
 char* __fastcall IGameEngineHost::Function40(unsigned int a1) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function40(a1); }
-int __fastcall IGameEngineHost::Function41(BYTE* pBuffer) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function41(pBuffer); }
+int __fastcall IGameEngineHost::Function41(BYTE* buffer) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function41(buffer); }
 bool __fastcall IGameEngineHost::Function42(signed int a1, __int64 a2, __int64 a3) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function42(a1, a2, a3); }
 void __fastcall IGameEngineHost::FirefightNew(__int64 a1, float a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->FirefightNew(a1, a2); }
 BOOL __fastcall IGameEngineHost::Function44(__int64 a1, __int64 a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function44(a1, a2); }
-bool __fastcall IGameEngineHost::get_pathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength) { CHECK_ADDRESS_SHIFTED(); return shifted_this->get_pathByType(pathType, pBuffer, bufferLength); }
-bool __fastcall IGameEngineHost::GetWidePathByType(PathType pathType, LPWSTR pBuffer, size_t bufferLength) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetWidePathByType(pathType, pBuffer, bufferLength); }
+bool __fastcall IGameEngineHost::get_pathByType(PathType path_type, LPSTR buffer, size_t buffer_length) { CHECK_ADDRESS_SHIFTED(); return shifted_this->get_pathByType(path_type, buffer, buffer_length); }
+bool __fastcall IGameEngineHost::GetWidePathByType(PathType path_type, LPWSTR buffer, size_t buffer_length) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetWidePathByType(path_type, buffer, buffer_length); }
 unsigned __int8* __fastcall IGameEngineHost::Function47(_QWORD a1, unsigned __int8* a2, _QWORD a3) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function47(a1, a2, a3); }
 __int64 __fastcall IGameEngineHost::Function48(_QWORD a1, __int64 a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function48(a1, a2); }
 char* __fastcall IGameEngineHost::Function49(char* str) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function49(str); }
@@ -144,7 +144,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_graphics);															//virtual bool Member28(__int64 a2);
 	enqueue_function(_build_mcc_1_1350_0_0, _build_not_set, __game_engine_virtual_function_get_player_configuration);
 	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_player_configuration);												//virtual bool Member29(__int64 a2, __int64 a3);
-	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_input); // before this, missing after this							//virtual unsigned __int8 __fastcall Member30(_QWORD, InputBuffer * pInputBuffer);
+	enqueue_function(_build_not_set, _build_not_set, __game_engine_virtual_function_update_input); // before this, missing after this							//virtual unsigned __int8 __fastcall Member30(_QWORD, InputBuffer * input_buffer);
 	enqueue_function(_build_mcc_1_1246_0_0, _build_not_set, __game_engine_virtual_function_function32);
 	enqueue_function(_build_mcc_1_1186_0_0, _build_not_set, __game_engine_virtual_function_function33);
 	enqueue_function(_build_mcc_1_1186_0_0, _build_not_set, __game_engine_virtual_function_xinput_set_state);
@@ -281,16 +281,16 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	}
 	else if (build == _build_mcc_1_1367_0_0)
 	{
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_start]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 2] == custom_game_engine_host_vtable[__game_engine_virtual_function_function44]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 3] == custom_game_engine_host_vtable[__game_engine_virtual_function_function2]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 4] == custom_game_engine_host_vtable[__game_engine_virtual_function_engine_state_update]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 5] == custom_game_engine_host_vtable[__game_engine_virtual_function_game_exited]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 6] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_state]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 7] == custom_game_engine_host_vtable[__game_engine_virtual_function_submit_game_results]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 8] == custom_game_engine_host_vtable[__game_engine_virtual_function_function7]);
-		DEBUG_ASSERT(__vtbl_dynamic_data[ 9] == custom_game_engine_host_vtable[__game_engine_virtual_function_function8]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_start]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[2] == custom_game_engine_host_vtable[__game_engine_virtual_function_function44]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[3] == custom_game_engine_host_vtable[__game_engine_virtual_function_function2]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[4] == custom_game_engine_host_vtable[__game_engine_virtual_function_engine_state_update]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[5] == custom_game_engine_host_vtable[__game_engine_virtual_function_game_exited]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[6] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_state]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[7] == custom_game_engine_host_vtable[__game_engine_virtual_function_submit_game_results]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[8] == custom_game_engine_host_vtable[__game_engine_virtual_function_function7]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[9] == custom_game_engine_host_vtable[__game_engine_virtual_function_function8]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[10] == custom_game_engine_host_vtable[__game_engine_virtual_function_function9]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[11] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_game_events]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[12] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_variant]);
@@ -348,149 +348,149 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	}
 }
 
-void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& rPlayerConfiguration)
+void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_configuration)
 {
-	rPlayerConfiguration.SubtitleSetting                  = 1;
-	rPlayerConfiguration.CrosshairLocation                = 1;
-	rPlayerConfiguration.FOVSetting                       = 100.f;
-	rPlayerConfiguration.VehicleFOVSetting                = 120.f;
-	rPlayerConfiguration.LookControlsInverted             = false;
-	rPlayerConfiguration.MouseLookControlsInverted        = false;
-	rPlayerConfiguration.VibrationDisabled                = false;
-	rPlayerConfiguration.ImpulseTriggersDisabled          = false;
-	rPlayerConfiguration.AircraftControlsInverted         = false;
-	rPlayerConfiguration.MouseAircraftControlsInverted    = false;
-	rPlayerConfiguration.AutoCenterEnabled                = false;
-	rPlayerConfiguration.CrouchLockEnabled                = false;
-	rPlayerConfiguration.MKCrouchLockEnabled              = false;
-	rPlayerConfiguration.ClenchProtectionEnabled          = false;
-	rPlayerConfiguration.UseFemaleVoice                   = true;
-	rPlayerConfiguration.HoldToZoom                       = true;
-	//rPlayerConfiguration.PlayerModelPrimaryColorIndex     = ;
-	//rPlayerConfiguration.PlayerModelSecondaryColorIndex   = ;
-	//rPlayerConfiguration.PlayerModelTertiaryColorIndex    = ;
-	rPlayerConfiguration.UseEliteModel                    = false;
-	//rPlayerConfiguration.PlayerModelPermutation           = ;
-	rPlayerConfiguration.HelmetIndex                      = (long)eHaloArmor::HR_Helmet_EOD_Base;
-	rPlayerConfiguration.LeftShoulderIndex                = (long)eHaloArmor::HR_LeftShoulder_Gungnir;
-	rPlayerConfiguration.RightShoulderIndex               = (long)eHaloArmor::HR_RightShoulder_EVA;
-	rPlayerConfiguration.ChestIndex                       = (long)eHaloArmor::HR_Chest_UABaseSecurityW;
-	rPlayerConfiguration.WristIndex                       = (long)eHaloArmor::HR_Wrist_Default;
-	rPlayerConfiguration.UtilityIndex                     = (long)eHaloArmor::HR_Utility_Default;
-	rPlayerConfiguration.KneeGuardsIndex                  = (long)eHaloArmor::HR_KneeGuards_FJPARA;
-	rPlayerConfiguration.VisorColorIndex                  = (long)eHaloArmor::HR_VisorColor_Blue;
-	rPlayerConfiguration.SpartanArmorEffectIndex          = (long)eHaloArmor::HR_ArmorEffect_BlueFlames;
-	rPlayerConfiguration.SpartanBodyIndex                 = (long)eHaloArmor::HR_Spartan_Female;
-	rPlayerConfiguration.EliteArmorIndex                  = (long)eHaloArmor::HR_Elite_FieldMarshall;
-	rPlayerConfiguration.EliteArmorEffectIndex            = (long)eHaloArmor::HR_ArmorEffect_Pestilence;
-	rPlayerConfiguration.VoiceIndex                       = (long)eHaloArmor::HR_FirefightVoice_JohnS117;
-	rPlayerConfiguration.PlayerModelPrimaryColor          = (long)eHaloArmor::HR_Color_Brick;
-	rPlayerConfiguration.PlayerModelSecondaryColor        = (long)eHaloArmor::HR_Color_Cyan;
-	rPlayerConfiguration.PlayerModelTertiaryColor         = (long)eHaloArmor::HR_Color_Cyan;
-	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", rPlayerConfiguration.ServiceTag, 4, L"117");
-	rPlayerConfiguration.OnlineMedalFlasher               = false;
-	//rPlayerConfiguration.VerticalLookSensitivity          = ;
-	//rPlayerConfiguration.HorizontalLookSensitivity        = ;
-	//rPlayerConfiguration.LookAcceleration                 = ;
-	//rPlayerConfiguration.LookAxialDeadZone                = ;
-	//rPlayerConfiguration.LookRadialDeadZone               = ;
-	//rPlayerConfiguration.ZoomLookSensitivityMultiplier    = ;
-	//rPlayerConfiguration.VehicleLookSensitivityMultiplier = ;
-	//rPlayerConfiguration.ButtonPreset                     = ;
-	//rPlayerConfiguration.StickPreset                      = ;
-	//rPlayerConfiguration.LeftyToggle                      = ;
-	//rPlayerConfiguration.FlyingCameraTurnSensitivity      = ;
-	//rPlayerConfiguration.FlyingCameraPanning              = ;
-	//rPlayerConfiguration.FlyingCameraSpeed                = ;
-	//rPlayerConfiguration.FlyingCameraThrust               = ;
-	//rPlayerConfiguration.TheaterTurnSensitivity           = ;
-	//rPlayerConfiguration.TheaterPanning                   = ;
-	//rPlayerConfiguration.TheaterSpeed                     = ;
-	//rPlayerConfiguration.TheaterThrust                    = ;
-	//rPlayerConfiguration.SwapTriggersAndBumpers           = ;
-	//rPlayerConfiguration.UseModernAimControl              = ;
-	rPlayerConfiguration.UseDoublePressJumpToJetpack      = true;
-	//rPlayerConfiguration.EnemyPlayerNameColor             = ;
-	//rPlayerConfiguration.GameEngineTimer                  = ;
-	//rPlayerConfiguration.Loadouts[5];
-	//rPlayerConfiguration.GameSpecific[256];
-	//rPlayerConfiguration.MouseSensitivity                 = ;
-	//rPlayerConfiguration.MouseSmoothing                   = ;
-	//rPlayerConfiguration.MouseAcceleration                = ;
-	//rPlayerConfiguration.MouseAccelerationMinRate         = ;
-	//rPlayerConfiguration.MouseAccelerationMaxAccel        = ;
-	//rPlayerConfiguration.MouseAccelerationScale           = ;
-	//rPlayerConfiguration.MouseAccelerationExp             = ;
-	//rPlayerConfiguration.KeyboardMouseButtonPreset        = ;
-	
-	for (int i = 0; i < 56; i++)
-	{
-		rPlayerConfiguration.GameKeyboardMouseMappings[i].AbstractButton = i;
-	}
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Jump                             ].VirtualKeyCodes[0] = VK_SPACE;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::SwitchGrenade                    ].VirtualKeyCodes[0] = 'G';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ContextPrimary                   ].VirtualKeyCodes[0] = 'E';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Reload                           ].VirtualKeyCodes[0] = 'R';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::SwitchWeapon                     ].VirtualKeyCodes[0] = VK_VOLUME_DOWN;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Melee                            ].VirtualKeyCodes[0] = 'Q';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Flashlight                       ].VirtualKeyCodes[0] = '4';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ThrowGrenade                     ].VirtualKeyCodes[0] = 'F';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Fire                             ].VirtualKeyCodes[0] = VK_LBUTTON;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Crouch                           ].VirtualKeyCodes[0] = VK_LCONTROL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Zoom                             ].VirtualKeyCodes[0] = VK_RBUTTON;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ZoomIn                           ].VirtualKeyCodes[0] = 'Z';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ZoomOut                          ].VirtualKeyCodes[0] = 'X';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ExchangeWeapon                   ].VirtualKeyCodes[0] = NULL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Trick                            ].VirtualKeyCodes[0] = NULL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Brake                            ].VirtualKeyCodes[0] = NULL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Ebrake                           ].VirtualKeyCodes[0] = NULL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Sprint                           ].VirtualKeyCodes[0] = NULL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::BansheeBomb                      ].VirtualKeyCodes[0] = NULL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Forward                          ].VirtualKeyCodes[0] = 'W';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Backward                         ].VirtualKeyCodes[0] = 'S';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Left                             ].VirtualKeyCodes[0] = 'A';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Right                            ].VirtualKeyCodes[0] = 'D';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::LeanLeft                         ].VirtualKeyCodes[0] = NULL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::LeanRight                        ].VirtualKeyCodes[0] = NULL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Start                            ].VirtualKeyCodes[0] = NULL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Back                             ].VirtualKeyCodes[0] = VK_TAB;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ShowScores                       ].VirtualKeyCodes[0] = VK_TAB;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Accept                           ].VirtualKeyCodes[0] = NULL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Cancel                           ].VirtualKeyCodes[0] = NULL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::PrimaryVehicleTrick              ].VirtualKeyCodes[0] = VK_LCONTROL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::SecondaryVehicleTrick            ].VirtualKeyCodes[0] = VK_SPACE;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::MagnifyZoom                      ].VirtualKeyCodes[0] = 'Z';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Equipment                        ].VirtualKeyCodes[0] = VK_LSHIFT;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::FireSecondary                    ].VirtualKeyCodes[0] = VK_LSHIFT;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::LiftEditor                       ].VirtualKeyCodes[0] = 'R';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::DropEditor                       ].VirtualKeyCodes[0] = 'F';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::GrabObjectEditor                 ].VirtualKeyCodes[0] = VK_LBUTTON;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::BoostEditor                      ].VirtualKeyCodes[0] = VK_LSHIFT;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::CrouchEditor                     ].VirtualKeyCodes[0] = VK_LCONTROL;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::DeleteObjectEditor               ].VirtualKeyCodes[0] = VK_DELETE;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::CreateObjectEditor               ].VirtualKeyCodes[0] = VK_SPACE;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::OpenToolMenuEditor               ].VirtualKeyCodes[0] = 'X';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::SwitchPlayerModeEditor           ].VirtualKeyCodes[0] = VK_UP;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ScopeZoomEditor                  ].VirtualKeyCodes[0] = VK_RBUTTON;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::PlayerLockForManipulationEditor  ].VirtualKeyCodes[0] = VK_LMENU;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ShowHidePannelTheater            ].VirtualKeyCodes[0] = 'X';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ShowHideInterfaceTheater         ].VirtualKeyCodes[0] = 'Z';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ToggleFirstThirdPersonViewTheater].VirtualKeyCodes[0] = 'C';
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::CameraFocusTheater               ].VirtualKeyCodes[0] = VK_RBUTTON;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::FastForwardTheater               ].VirtualKeyCodes[0] = VK_RIGHT;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::FastRewindTheater                ].VirtualKeyCodes[0] = VK_LEFT;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::StopContinuePlaybackTheater      ].VirtualKeyCodes[0] = VK_RETURN;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::PlaybackSpeedUpTheater           ].VirtualKeyCodes[0] = VK_LMENU;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::EnterFreeCameraModeTheater       ].VirtualKeyCodes[0] = VK_SPACE;
-	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::MovementSpeedUpTheater           ].VirtualKeyCodes[0] = VK_LSHIFT;
+	player_configuration.SubtitleSetting = 1;
+	player_configuration.CrosshairLocation = 1;
+	player_configuration.FOVSetting = 100.f;
+	player_configuration.VehicleFOVSetting = 120.f;
+	player_configuration.LookControlsInverted = false;
+	player_configuration.MouseLookControlsInverted = false;
+	player_configuration.VibrationDisabled = false;
+	player_configuration.ImpulseTriggersDisabled = false;
+	player_configuration.AircraftControlsInverted = false;
+	player_configuration.MouseAircraftControlsInverted = false;
+	player_configuration.AutoCenterEnabled = false;
+	player_configuration.CrouchLockEnabled = false;
+	player_configuration.MKCrouchLockEnabled = false;
+	player_configuration.ClenchProtectionEnabled = false;
+	player_configuration.UseFemaleVoice = true;
+	player_configuration.HoldToZoom = true;
+	//player_configuration.PlayerModelPrimaryColorIndex     = ;
+	//player_configuration.PlayerModelSecondaryColorIndex   = ;
+	//player_configuration.PlayerModelTertiaryColorIndex    = ;
+	player_configuration.UseEliteModel = false;
+	//player_configuration.PlayerModelPermutation           = ;
+	player_configuration.HelmetIndex = eHaloArmor::HR_Helmet_EOD_Base;
+	player_configuration.LeftShoulderIndex = eHaloArmor::HR_LeftShoulder_Gungnir;
+	player_configuration.RightShoulderIndex = eHaloArmor::HR_RightShoulder_EVA;
+	player_configuration.ChestIndex = eHaloArmor::HR_Chest_UABaseSecurityW;
+	player_configuration.WristIndex = eHaloArmor::HR_Wrist_Default;
+	player_configuration.UtilityIndex = eHaloArmor::HR_Utility_Default;
+	player_configuration.KneeGuardsIndex = eHaloArmor::HR_KneeGuards_FJPARA;
+	player_configuration.VisorColorIndex = eHaloArmor::HR_VisorColor_Blue;
+	player_configuration.SpartanArmorEffectIndex = eHaloArmor::HR_ArmorEffect_BlueFlames;
+	player_configuration.SpartanBodyIndex = eHaloArmor::HR_Spartan_Female;
+	player_configuration.EliteArmorIndex = eHaloArmor::HR_Elite_FieldMarshall;
+	player_configuration.EliteArmorEffectIndex = eHaloArmor::HR_ArmorEffect_Pestilence;
+	player_configuration.VoiceIndex = eHaloArmor::HR_FirefightVoice_JohnS117;
+	player_configuration.PlayerModelPrimaryColor = eHaloArmor::HR_Color_Brick;
+	player_configuration.PlayerModelSecondaryColor = eHaloArmor::HR_Color_Cyan;
+	player_configuration.PlayerModelTertiaryColor = eHaloArmor::HR_Color_Cyan;
+	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", player_configuration.ServiceTag, 4, L"117");
+	player_configuration.OnlineMedalFlasher = false;
+	//player_configuration.VerticalLookSensitivity          = ;
+	//player_configuration.HorizontalLookSensitivity        = ;
+	//player_configuration.LookAcceleration                 = ;
+	//player_configuration.LookAxialDeadZone                = ;
+	//player_configuration.LookRadialDeadZone               = ;
+	//player_configuration.ZoomLookSensitivityMultiplier    = ;
+	//player_configuration.VehicleLookSensitivityMultiplier = ;
+	//player_configuration.ButtonPreset                     = ;
+	//player_configuration.StickPreset                      = ;
+	//player_configuration.LeftyToggle                      = ;
+	//player_configuration.FlyingCameraTurnSensitivity      = ;
+	//player_configuration.FlyingCameraPanning              = ;
+	//player_configuration.FlyingCameraSpeed                = ;
+	//player_configuration.FlyingCameraThrust               = ;
+	//player_configuration.TheaterTurnSensitivity           = ;
+	//player_configuration.TheaterPanning                   = ;
+	//player_configuration.TheaterSpeed                     = ;
+	//player_configuration.TheaterThrust                    = ;
+	//player_configuration.SwapTriggersAndBumpers           = ;
+	//player_configuration.UseModernAimControl              = ;
+	player_configuration.UseDoublePressJumpToJetpack = true;
+	//player_configuration.EnemyPlayerNameColor             = ;
+	//player_configuration.GameEngineTimer                  = ;
+	//player_configuration.Loadouts[5];
+	//player_configuration.GameSpecific[256];
+	//player_configuration.MouseSensitivity                 = ;
+	//player_configuration.MouseSmoothing                   = ;
+	//player_configuration.MouseAcceleration                = ;
+	//player_configuration.MouseAccelerationMinRate         = ;
+	//player_configuration.MouseAccelerationMaxAccel        = ;
+	//player_configuration.MouseAccelerationScale           = ;
+	//player_configuration.MouseAccelerationExp             = ;
+	//player_configuration.KeyboardMouseButtonPreset        = ;
 
-	rPlayerConfiguration.MasterVolume                       = 0.6f;
-	rPlayerConfiguration.MusicVolume                        = 0.2f;
-	rPlayerConfiguration.SfxVolume                          = 0.8f;
-	//rPlayerConfiguration.Brightness                         = ;
+	for (uint32_t mapping_index = 0; mapping_index < 56; mapping_index++)
+	{
+		player_configuration.GameKeyboardMouseMappings[mapping_index].AbstractButton = mapping_index;
+	}
+	player_configuration.GameKeyboardMouseMappings[GameAction::Jump].VirtualKeyCodes[0] = VK_SPACE;
+	player_configuration.GameKeyboardMouseMappings[GameAction::SwitchGrenade].VirtualKeyCodes[0] = 'G';
+	player_configuration.GameKeyboardMouseMappings[GameAction::ContextPrimary].VirtualKeyCodes[0] = 'E';
+	player_configuration.GameKeyboardMouseMappings[GameAction::Reload].VirtualKeyCodes[0] = 'R';
+	player_configuration.GameKeyboardMouseMappings[GameAction::SwitchWeapon].VirtualKeyCodes[0] = VK_VOLUME_DOWN;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Melee].VirtualKeyCodes[0] = 'Q';
+	player_configuration.GameKeyboardMouseMappings[GameAction::Flashlight].VirtualKeyCodes[0] = '4';
+	player_configuration.GameKeyboardMouseMappings[GameAction::ThrowGrenade].VirtualKeyCodes[0] = 'F';
+	player_configuration.GameKeyboardMouseMappings[GameAction::Fire].VirtualKeyCodes[0] = VK_LBUTTON;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Crouch].VirtualKeyCodes[0] = VK_LCONTROL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Zoom].VirtualKeyCodes[0] = VK_RBUTTON;
+	player_configuration.GameKeyboardMouseMappings[GameAction::ZoomIn].VirtualKeyCodes[0] = 'Z';
+	player_configuration.GameKeyboardMouseMappings[GameAction::ZoomOut].VirtualKeyCodes[0] = 'X';
+	player_configuration.GameKeyboardMouseMappings[GameAction::ExchangeWeapon].VirtualKeyCodes[0] = NULL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Trick].VirtualKeyCodes[0] = NULL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Brake].VirtualKeyCodes[0] = NULL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Ebrake].VirtualKeyCodes[0] = NULL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Sprint].VirtualKeyCodes[0] = NULL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::BansheeBomb].VirtualKeyCodes[0] = NULL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Forward].VirtualKeyCodes[0] = 'W';
+	player_configuration.GameKeyboardMouseMappings[GameAction::Backward].VirtualKeyCodes[0] = 'S';
+	player_configuration.GameKeyboardMouseMappings[GameAction::Left].VirtualKeyCodes[0] = 'A';
+	player_configuration.GameKeyboardMouseMappings[GameAction::Right].VirtualKeyCodes[0] = 'D';
+	player_configuration.GameKeyboardMouseMappings[GameAction::LeanLeft].VirtualKeyCodes[0] = NULL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::LeanRight].VirtualKeyCodes[0] = NULL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Start].VirtualKeyCodes[0] = NULL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Back].VirtualKeyCodes[0] = VK_TAB;
+	player_configuration.GameKeyboardMouseMappings[GameAction::ShowScores].VirtualKeyCodes[0] = VK_TAB;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Accept].VirtualKeyCodes[0] = NULL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::Cancel].VirtualKeyCodes[0] = NULL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::PrimaryVehicleTrick].VirtualKeyCodes[0] = VK_LCONTROL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::SecondaryVehicleTrick].VirtualKeyCodes[0] = VK_SPACE;
+	player_configuration.GameKeyboardMouseMappings[GameAction::MagnifyZoom].VirtualKeyCodes[0] = 'Z';
+	player_configuration.GameKeyboardMouseMappings[GameAction::Equipment].VirtualKeyCodes[0] = VK_LSHIFT;
+	player_configuration.GameKeyboardMouseMappings[GameAction::FireSecondary].VirtualKeyCodes[0] = VK_LSHIFT;
+	player_configuration.GameKeyboardMouseMappings[GameAction::LiftEditor].VirtualKeyCodes[0] = 'R';
+	player_configuration.GameKeyboardMouseMappings[GameAction::DropEditor].VirtualKeyCodes[0] = 'F';
+	player_configuration.GameKeyboardMouseMappings[GameAction::GrabObjectEditor].VirtualKeyCodes[0] = VK_LBUTTON;
+	player_configuration.GameKeyboardMouseMappings[GameAction::BoostEditor].VirtualKeyCodes[0] = VK_LSHIFT;
+	player_configuration.GameKeyboardMouseMappings[GameAction::CrouchEditor].VirtualKeyCodes[0] = VK_LCONTROL;
+	player_configuration.GameKeyboardMouseMappings[GameAction::DeleteObjectEditor].VirtualKeyCodes[0] = VK_DELETE;
+	player_configuration.GameKeyboardMouseMappings[GameAction::CreateObjectEditor].VirtualKeyCodes[0] = VK_SPACE;
+	player_configuration.GameKeyboardMouseMappings[GameAction::OpenToolMenuEditor].VirtualKeyCodes[0] = 'X';
+	player_configuration.GameKeyboardMouseMappings[GameAction::SwitchPlayerModeEditor].VirtualKeyCodes[0] = VK_UP;
+	player_configuration.GameKeyboardMouseMappings[GameAction::ScopeZoomEditor].VirtualKeyCodes[0] = VK_RBUTTON;
+	player_configuration.GameKeyboardMouseMappings[GameAction::PlayerLockForManipulationEditor].VirtualKeyCodes[0] = VK_LMENU;
+	player_configuration.GameKeyboardMouseMappings[GameAction::ShowHidePannelTheater].VirtualKeyCodes[0] = 'X';
+	player_configuration.GameKeyboardMouseMappings[GameAction::ShowHideInterfaceTheater].VirtualKeyCodes[0] = 'Z';
+	player_configuration.GameKeyboardMouseMappings[GameAction::ToggleFirstThirdPersonViewTheater].VirtualKeyCodes[0] = 'C';
+	player_configuration.GameKeyboardMouseMappings[GameAction::CameraFocusTheater].VirtualKeyCodes[0] = VK_RBUTTON;
+	player_configuration.GameKeyboardMouseMappings[GameAction::FastForwardTheater].VirtualKeyCodes[0] = VK_RIGHT;
+	player_configuration.GameKeyboardMouseMappings[GameAction::FastRewindTheater].VirtualKeyCodes[0] = VK_LEFT;
+	player_configuration.GameKeyboardMouseMappings[GameAction::StopContinuePlaybackTheater].VirtualKeyCodes[0] = VK_RETURN;
+	player_configuration.GameKeyboardMouseMappings[GameAction::PlaybackSpeedUpTheater].VirtualKeyCodes[0] = VK_LMENU;
+	player_configuration.GameKeyboardMouseMappings[GameAction::EnterFreeCameraModeTheater].VirtualKeyCodes[0] = VK_SPACE;
+	player_configuration.GameKeyboardMouseMappings[GameAction::MovementSpeedUpTheater].VirtualKeyCodes[0] = VK_LSHIFT;
+
+	player_configuration.MasterVolume = 0.6f;
+	player_configuration.MusicVolume = 0.2f;
+	player_configuration.SfxVolume = 0.8f;
+	//player_configuration.Brightness                         = ;
 
 	for (int i = 0; i < 5; i++)
 	{
-		rPlayerConfiguration.WeaponDisplayOffset[i] = { 5.f, 5.f };
+		player_configuration.WeaponDisplayOffset[i] = { 5.f, 5.f };
 	}
 }

@@ -359,9 +359,9 @@ void DX::DeviceResources::CreateWindowSizeDependentResources()
 		// UI changes will need to be dispatched back to the UI thread
 		m_swapChainPanel.Dispatcher().RunAsync(CoreDispatcherPriority::High, DispatchedHandler([=]()
 			{
-				winrt::impl::com_ref<IInspectable> pSwapChainInterface = m_swapChainPanel.as<IInspectable>();
+				winrt::impl::com_ref<IInspectable> swap_chainInterface = m_swapChainPanel.as<IInspectable>();
 				ComPtr<ISwapChainPanelNative> panelNative;
-				HRESULT queryInterfaceResult = pSwapChainInterface->QueryInterface(__uuidof(ISwapChainPanelNative), (void**)panelNative.GetAddressOf());
+				HRESULT queryInterfaceResult = swap_chainInterface->QueryInterface(__uuidof(ISwapChainPanelNative), (void**)panelNative.GetAddressOf());
 				DX::ThrowIfFailed(
 					queryInterfaceResult
 				);
@@ -424,13 +424,13 @@ void DX::DeviceResources::CreateWindowSizeDependentResources()
 	DXGI_MATRIX_3X2_F inverseScale = { 0 };
 	inverseScale._11 = 1.0f / m_effectiveCompositionScaleX;
 	inverseScale._22 = 1.0f / m_effectiveCompositionScaleY;
-	ComPtr<IDXGISwapChain2> spSwapChain2;
+	ComPtr<IDXGISwapChain2> swap_chain2;
 	DX::ThrowIfFailed(
-		m_swapChain.As<IDXGISwapChain2>(&spSwapChain2)
+		m_swapChain.As<IDXGISwapChain2>(&swap_chain2)
 	);
 
 	DX::ThrowIfFailed(
-		spSwapChain2->SetMatrixTransform(&inverseScale)
+		swap_chain2->SetMatrixTransform(&inverseScale)
 	);
 
 	// Create a render target view of the swap chain back buffer.

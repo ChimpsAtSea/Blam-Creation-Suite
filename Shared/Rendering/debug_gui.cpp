@@ -35,7 +35,7 @@ bool c_debug_gui::s_visible = false;
 ID3D11DeviceContext* c_debug_gui::s_pContext = nullptr;
 ID3D11Device* c_debug_gui::s_pDevice = nullptr;
 ID3D11RenderTargetView* c_debug_gui::s_mainRenderTargetView = nullptr;
-IDXGISwapChain* c_debug_gui::s_pSwapChain = nullptr;
+IDXGISwapChain* c_debug_gui::s_swap_chain = nullptr;
 DXGI_SWAP_CHAIN_DESC  c_debug_gui::s_swapChainDescription = {};
 c_debug_gui::IDXGISwapChainPresent c_debug_gui::s_IDXGISwapChainPresentPointer;
 std::vector<c_debug_gui::DebugUICallback*> c_debug_gui::s_pToggleableCallbacks;
@@ -46,9 +46,9 @@ bool c_debug_gui::IsVisible()
 	return s_visible;
 }
 
-void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
+void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain* swap_chain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext)
 {
-	DEBUG_ASSERT(pSwapChain);
+	DEBUG_ASSERT(swap_chain);
 	DEBUG_ASSERT(pDevice);
 	DEBUG_ASSERT(pContext);
 
@@ -61,11 +61,11 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 	{
 		write_line_verbose("DebugUI::Init");
 
-		s_pSwapChain = pSwapChain;
+		s_swap_chain = swap_chain;
 		s_pDevice = pDevice;
 		s_pContext = pContext;
 
-		s_pSwapChain->GetDesc(&s_swapChainDescription);
+		s_swap_chain->GetDesc(&s_swapChainDescription);
 
 		ImGui::CreateContext();
 		ImGuiIO& rImguiIO = ImGui::GetIO(); (void)rImguiIO;
@@ -93,7 +93,7 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 		ImGui::GetIO().ImeWindowHandle = s_swapChainDescription.OutputWindow;
 
 		ID3D11Texture2D* pBackBuffer = nullptr;
-		s_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
+		s_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
 		ASSERT(pBackBuffer);
 		s_pDevice->CreateRenderTargetView(pBackBuffer, NULL, &s_mainRenderTargetView);
 		pBackBuffer->Release();
@@ -123,7 +123,7 @@ void c_debug_gui::Deinit()
 		s_pContext = nullptr;
 		s_pDevice = nullptr;
 		s_mainRenderTargetView = nullptr;
-		s_pSwapChain = nullptr;
+		s_swap_chain = nullptr;
 		s_swapChainDescription = {};
 	}
 	// #WIP Start Resize Synchronization Across Opus and Game Thread

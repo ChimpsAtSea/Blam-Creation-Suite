@@ -12,7 +12,7 @@ public:
 	virtual ~c_halo1_game_host();
 
 	// IGameEngineHost functionality
-	void FrameEnd(IDXGISwapChain* pSwapChain, _QWORD) override;
+	void FrameEnd(IDXGISwapChain* swap_chain, _QWORD) override;
 
 	// c_opus_game_engine_host functionality
 	virtual void render_ui() const override;

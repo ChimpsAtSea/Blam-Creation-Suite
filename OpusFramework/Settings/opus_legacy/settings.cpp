@@ -26,24 +26,24 @@ float Settings::ReadFloatValue(SettingsSection section, const char* pName, float
 	return defaultValue;
 }
 
-uint32_t Settings::ReadStringValue(SettingsSection section, const char* pName, char* pBuffer, uint32_t bufferSize, const char* pDefaultValue /*= nullptr*/)
+uint32_t Settings::ReadStringValue(SettingsSection section, const char* pName, char* buffer, uint32_t buffer_size, const char* pDefaultValue /*= nullptr*/)
 {
-	if (bufferSize > 0)
+	if (buffer_size > 0)
 	{
 		const char* pSectionName = GetSectionNameString(section);
-		memset(pBuffer, 0, bufferSize);
-		GetPrivateProfileStringA(pSectionName, pName, pDefaultValue, pBuffer, bufferSize, k_pSettingsPath);
-		return static_cast<uint32_t>(strlen(pBuffer));
+		memset(buffer, 0, buffer_size);
+		GetPrivateProfileStringA(pSectionName, pName, pDefaultValue, buffer, buffer_size, k_pSettingsPath);
+		return static_cast<uint32_t>(strlen(buffer));
 	}
 	return 0;
 }
 
-uint32_t Settings::ReadStringValueW(SettingsSection section, const char* pName, wchar_t* pBuffer, uint32_t bufferSize, const wchar_t* pDefaultValue /*= nullptr*/)
+uint32_t Settings::ReadStringValueW(SettingsSection section, const char* pName, wchar_t* buffer, uint32_t buffer_size, const wchar_t* pDefaultValue /*= nullptr*/)
 {
-	if (bufferSize > 0)
+	if (buffer_size > 0)
 	{
 		const char* pSectionName = GetSectionNameString(section);
-		memset(pBuffer, 0, bufferSize);
+		memset(buffer, 0, buffer_size);
 
 		size_t widecharNameBufferSize = (strlen(pName) + 1) * sizeof(wchar_t);
 		wchar_t* pWidecharNameBuffer = static_cast<wchar_t*>(alloca(widecharNameBufferSize));
@@ -55,8 +55,8 @@ uint32_t Settings::ReadStringValueW(SettingsSection section, const char* pName, 
 		memset(pwidecharSectionNameBuffer, 0, widecharSectionNameBufferSize);
 		_snwprintf(pwidecharSectionNameBuffer, widecharSectionNameBufferSize / sizeof(wchar_t), L"%S", pSectionName);
 
-		GetPrivateProfileStringW(pwidecharSectionNameBuffer, pWidecharNameBuffer, pDefaultValue, pBuffer, bufferSize, k_pWSettingsPath);
-		return static_cast<uint32_t>(wcslen(pBuffer));
+		GetPrivateProfileStringW(pwidecharSectionNameBuffer, pWidecharNameBuffer, pDefaultValue, buffer, buffer_size, k_pWSettingsPath);
+		return static_cast<uint32_t>(wcslen(buffer));
 	}
 	return 0;
 }
@@ -70,11 +70,11 @@ bool Settings::WriteBoolValue(SettingsSection section, const char* pName, bool v
 bool Settings::WriteIntegerValue(SettingsSection section, const char* pName, int value)
 {
 	const char* pSectionName = GetSectionNameString(section);
-	size_t bufferLength = static_cast<int>(logl(UINT_MAX)) + 2;
-	char* pBuffer = static_cast<char*>(alloca(bufferLength));
-	memset(pBuffer, 0, bufferLength);
-	_itoa(value, pBuffer, 10);
-	return WritePrivateProfileStringA(pSectionName, pName, pBuffer, k_pSettingsPath);
+	size_t buffer_length = static_cast<int>(logl(UINT_MAX)) + 2;
+	char* buffer = static_cast<char*>(alloca(buffer_length));
+	memset(buffer, 0, buffer_length);
+	_itoa(value, buffer, 10);
+	return WritePrivateProfileStringA(pSectionName, pName, buffer, k_pSettingsPath);
 }
 
 bool Settings::WriteStringValue(SettingsSection section, const char* pName, const char* pValue)

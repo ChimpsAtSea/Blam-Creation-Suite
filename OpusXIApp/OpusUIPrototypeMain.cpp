@@ -34,7 +34,7 @@ OpusUIPrototypeMain::OpusUIPrototypeMain(const std::shared_ptr<DX::DeviceResourc
 			static GetModuleHandleAFunc GetModuleHandleA = reinterpret_cast<GetModuleHandleAFunc>(GetProcAddress(kernelModule, "GetModuleHandleA"));
 			static HMODULE OpusXIGameInterface = GetModuleHandleA("OpusXIGameInterface.dll");
 
-			typedef void(__cdecl* run_func)(ID3D11Device* pDevice, IDXGISwapChain* pSwapChain);
+			typedef void(__cdecl* run_func)(ID3D11Device* pDevice, IDXGISwapChain* swap_chain);
 			static run_func run = reinterpret_cast<run_func>(GetProcAddress(OpusXIGameInterface, "run"));
 			assert(run);
 

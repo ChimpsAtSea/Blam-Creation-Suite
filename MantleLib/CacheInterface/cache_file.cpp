@@ -12,15 +12,15 @@ c_cache_file::c_cache_file(const std::wstring& mapFilePath)
 	loadMap(mapFilePath);
 	m_mapFileName = PathFindFileNameW(m_mapFilePath.c_str());
 
-	char pBuffer[MAX_PATH + 1];
+	char buffer[MAX_PATH + 1];
 
-	snprintf(pBuffer, MAX_PATH, "%S", m_mapFileName.c_str());
-	pBuffer[MAX_PATH] = 0;
-	m_mapFileNameChar = pBuffer;
+	snprintf(buffer, MAX_PATH, "%S", m_mapFileName.c_str());
+	buffer[MAX_PATH] = 0;
+	m_mapFileNameChar = buffer;
 
-	snprintf(pBuffer, MAX_PATH, "%S", m_mapFilePath.c_str());
-	pBuffer[MAX_PATH] = 0;
-	m_mapFilePathChar = pBuffer;
+	snprintf(buffer, MAX_PATH, "%S", m_mapFilePath.c_str());
+	buffer[MAX_PATH] = 0;
+	m_mapFilePathChar = buffer;
 
 }
 

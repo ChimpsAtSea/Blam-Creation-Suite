@@ -14,7 +14,7 @@ public:
 	static bool IsVisible();
 
 
-	static void Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain* pSwapChain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+	static void Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain* swap_chain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	static void Deinit();
 	static void StartFrame();
 	static void EndFrame();
@@ -30,12 +30,12 @@ public:
 	static bool IsRendering();
 
 private:
-	typedef HRESULT(__fastcall* IDXGISwapChainPresent)(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags);
+	typedef HRESULT(__fastcall* IDXGISwapChainPresent)(IDXGISwapChain* swap_chain, UINT SyncInterval, UINT Flags);
 
 	static bool s_visible;
 	static ID3D11DeviceContext* s_pContext;
 	static ID3D11Device* s_pDevice;
-	static IDXGISwapChain* s_pSwapChain;
+	static IDXGISwapChain* s_swap_chain;
 	static DXGI_SWAP_CHAIN_DESC s_swapChainDescription;
 	static ID3D11RenderTargetView* s_mainRenderTargetView;
 	static IDXGISwapChainPresent s_IDXGISwapChainPresentPointer;

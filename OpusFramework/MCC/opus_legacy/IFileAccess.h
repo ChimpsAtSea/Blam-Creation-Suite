@@ -28,6 +28,6 @@ private:
 	char s_filePath[MAX_PATH] = {};
 	FILE *s_pFile = 0;
 
-	char *s_pBuffer = 0;
+	char *s_buffer = 0;
 	size_t s_size = 0;
 };

@@ -5,7 +5,7 @@ class c_render
 public:
 	static ID3D11Device* s_pDevice;
 	static ID3D11DeviceContext1* s_pDeviceContext;
-	static IDXGISwapChain1* s_pSwapChain;
+	static IDXGISwapChain1* s_swap_chain;
 	static IDXGIFactory5* s_pFactory;
 	static DEVMODE s_deviceMode;
 	static bool s_directxCustomInit;
@@ -46,8 +46,8 @@ public:
 	static bool calculate_screen_coordinates(float positionX, float positionY, float positionZ, float& screenX, float& screenY);
 
 
-	static void CreateSwapchain(IDXGISwapChain1*& s_pSwapChain);
-	static void init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain, bool allow_resize_at_beginning_of_frame = false);
+	static void CreateSwapchain(IDXGISwapChain1*& s_swap_chain);
+	static void init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* swap_chain, bool allow_resize_at_beginning_of_frame = false);
 	static void init_render(HINSTANCE hInstance, bool allow_resize_at_beginning_of_frame = false);
 	static void begin_frame(bool clear, float clearColor[4], bool setTargets = true);
 	static void end_frame();

@@ -80,7 +80,7 @@ public:
 		Root
 	};
 
-	enum NetworkID : unsigned __int64
+	enum class NetworkID : unsigned __int64
 	{
 		Invalid,
 		Unknown1,
@@ -198,22 +198,22 @@ public:
 	struct s_transport_address;
 
 	/* 0  */ virtual char FrameStart();
-	/* 1  */ virtual void FrameEnd(IDXGISwapChain* pSwapChain, _QWORD);
+	/* 1  */ virtual void FrameEnd(IDXGISwapChain* swap_chain, _QWORD);
 	/* 2  */ virtual void Function02(__int64 player_identifier, unsigned int, __int64, float, float, float, float);
 	/* 3  */ virtual void EngineStateUpdate(eEngineState state);
 	/* 4  */ virtual __int64 GameExited(unsigned int, char*, int);
-	/* 5  */ virtual __int64 __fastcall SaveGameState(LPVOID pBuffer, size_t bufferSize);
-	/* 6  */ virtual void SubmitGameResults(GameResultsData* pGameResultsData);
+	/* 5  */ virtual __int64 __fastcall SaveGameState(LPVOID buffer, size_t buffer_size);
+	/* 6  */ virtual void SubmitGameResults(GameResultsData* game_results_data);
 	/* 7  */ virtual void Function07(unsigned int);
 	/* 8  */ virtual void Function08(const wchar_t*, const wchar_t*);
 	/* 9  */ virtual void Function09(wchar_t[1024], wchar_t[1024]);
 	/* 10 */ virtual IGameEvents* GetGameEvents();
-	/* 11 */ virtual void SaveGameVariant(IGameVariant* pGameVariant);
-	/* 12 */ virtual void SaveMapVariant(IMapVariant* pMapVariant);
+	/* 11 */ virtual void SaveGameVariant(IGameVariant* game_variant);
+	/* 12 */ virtual void SaveMapVariant(IMapVariant* map_variant);
 	/* 13 */ virtual void Function13(const wchar_t*, const wchar_t*, const void*, unsigned int);
-	/* 14 */ virtual char InvertLookControls(int controllerIndex, bool inverted);
-	/* 15 */ virtual char GetGameSpecificBindings(int controllerIndex, char(*pBuffer)[256]);
-	/* 16 */ virtual char GetNextLevelInfo(e_map_id* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*);
+	/* 14 */ virtual char InvertLookControls(int controller_index, bool inverted);
+	/* 15 */ virtual char GetGameSpecificBindings(int controller_index, char(*buffer)[256]);
+	/* 16 */ virtual char GetNextLevelInfo(e_map_id* pMapID, int* campaign_insertion_point, FILETIME* file_time, _DWORD*);
 	/* 17 */ virtual bool Function17(int);
 	/* 18 */ virtual void Function18(int);
 	/* 19 */ virtual __int64 __fastcall MapLoadPecentStatus(__int64, __int64, float);
@@ -221,29 +221,29 @@ public:
 	/* 21 */ virtual __int64 __fastcall GetMachineIdentifier(_QWORD);
 	/* 22 */ virtual __int64 Function22(Function22Structure* buffer, __int64);
 	/* 23 */ virtual char Function23(__int64, __int64);
-	/* 24 */ virtual void GetSessionInfo(s_session_info_part* pSessionInfoPart);
-	/* 25 */ virtual void __fastcall MembershipUpdate(s_session_membership* pSessionMembership, uint32_t playercount);
+	/* 24 */ virtual void GetSessionInfo(s_session_info_part* session_info_part);
+	/* 25 */ virtual void __fastcall MembershipUpdate(s_session_membership* session_membership, uint32_t player_count);
 	/* 26 */ virtual bool __fastcall Function26();
 	/* 27 */ virtual bool __fastcall Function27();
-	/* 28 */ virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* pUnknown);
+	/* 28 */ virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* update_graphics_data);
 	/* 29 */ virtual PlayerConfiguration* __fastcall GetPlayerConfiguration(__int64 value);
-	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t playerNames[4][32], PlayerConfiguration& rPlayerConfiguration);
-	/* 31 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* pInputBuffer);
+	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t player_names[4][32], PlayerConfiguration& player_configuration);
+	/* 31 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* input_buffer);
 	/* 32 */ virtual void Function32(_QWORD, float*);
 	/* 33 */ virtual void Function33();
-	/* 34 */ virtual void XInputSetState(DWORD dwUserIndex, XINPUT_VIBRATION* pVibration);
-	/* 35 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t pszPlayerNames[4][32], size_t dataSize);
+	/* 34 */ virtual void XInputSetState(DWORD user_index, XINPUT_VIBRATION* xinput_vibration);
+	/* 35 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t player_names[4][32], size_t data_size);
 	/* 36 */ virtual void __fastcall Function36(const wchar_t*, const wchar_t*);
 	/* 37 */ virtual bool __fastcall Function37(wchar_t*, __int64);
-	/* 38 */ virtual __int64 __fastcall NetworkSendTo(NetworkID networkID, char* pBuffer, uint32_t buffersize, int a4);
-	/* 39 */ virtual __int64 __fastcall NetworkReceiveFrom(char* pBuffer, uint32_t buffersize, __int64, s_transport_address* pTransportAddress);
+	/* 38 */ virtual __int64 __fastcall NetworkSendTo(NetworkID network_id, char* buffer, uint32_t buffer_size, int a4);
+	/* 39 */ virtual __int64 __fastcall NetworkReceiveFrom(char* buffer, uint32_t buffer_size, __int64, s_transport_address* pTransportAddress);
 	/* 40 */ virtual char* __fastcall Function40(unsigned int);
-	/* 41 */ virtual int __fastcall Function41(BYTE* pBuffer);
+	/* 41 */ virtual int __fastcall Function41(BYTE* buffer);
 	/* 42 */ virtual bool __fastcall Function42(signed int, __int64, __int64);
 	/* 43 */ virtual void __fastcall FirefightNew(__int64, float);
 	/* 44 */ virtual BOOL __fastcall Function44(__int64, __int64);
-	/* 45 */ virtual bool __fastcall get_pathByType(PathType pathType, LPSTR pBuffer, size_t bufferLength);
-	/* 46 */ virtual bool __fastcall GetWidePathByType(PathType pathType, LPWSTR pBuffer, size_t bufferLength);
+	/* 45 */ virtual bool __fastcall get_pathByType(PathType path_type, LPSTR buffer, size_t buffer_length);
+	/* 46 */ virtual bool __fastcall GetWidePathByType(PathType path_type, LPWSTR buffer, size_t buffer_length);
 	/* 47 */ virtual unsigned __int8* __fastcall Function47(_QWORD, unsigned __int8*, _QWORD);
 	/* 48 */ virtual __int64 __fastcall Function48(_QWORD, __int64);
 	/* 49 */ virtual char* __fastcall Function49(char* str); /* added in 1377 */
@@ -279,7 +279,7 @@ public:
 	uintptr_t __vtbl_known_address0 = known_address0;
 	uintptr_t __vtbl_known_address1 = known_address1;
 
-	void ConfigurePlayerConfiguration(PlayerConfiguration& rPlayerConfiguration);
+	void ConfigurePlayerConfiguration(PlayerConfiguration& player_configuration);
 };
 //CHECK_STRUCTURE_SIZE(IGameEngineHost, 0xB748);
 #pragma pack(pop)

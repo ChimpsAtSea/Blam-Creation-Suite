@@ -218,10 +218,10 @@ uint32_t InitTypeSizeAndOffsets(c_reflection_type_container& rType)
 	{
 		c_reflection_field_container& rField = *pField;
 		uint64_t fieldSize = InitTypeSizeAndOffsets(*rField.field_type);
-		uint64_t dataSize = fieldSize * __max(1ull, rField.array_size);
+		uint64_t data_size = fieldSize * __max(1ull, rField.array_size);
 		rField.data_size = fieldSize;
 		rField.offset = currentOffset;
-		currentOffset += static_cast<uint32_t>(dataSize);
+		currentOffset += static_cast<uint32_t>(data_size);
 	}
 	rType.data_size = currentOffset;
 
@@ -544,22 +544,22 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 				size_t tagGroupRawStringLength = strlen(pTagGroupStringBegin);
 
 				assert(tagGroupRawStringLength == 5 || tagGroupRawStringLength == 6);
-				char pBuffer[5]{}; // #NOTE: We expect to receive these characters swapped. We're swapping them back to the original integer order
+				char buffer[5]{}; // #NOTE: We expect to receive these characters swapped. We're swapping them back to the original integer order
 				if (tagGroupRawStringLength == 5)
 				{
-					pBuffer[0] = ' ';
-					pBuffer[1] = pTagGroupStringBegin[3];
-					pBuffer[2] = pTagGroupStringBegin[2];
-					pBuffer[3] = pTagGroupStringBegin[1];
+					buffer[0] = ' ';
+					buffer[1] = pTagGroupStringBegin[3];
+					buffer[2] = pTagGroupStringBegin[2];
+					buffer[3] = pTagGroupStringBegin[1];
 				}
 				if (tagGroupRawStringLength == 6)
 				{
-					pBuffer[0] = pTagGroupStringBegin[4];
-					pBuffer[1] = pTagGroupStringBegin[3];
-					pBuffer[2] = pTagGroupStringBegin[2];
-					pBuffer[3] = pTagGroupStringBegin[1];
+					buffer[0] = pTagGroupStringBegin[4];
+					buffer[1] = pTagGroupStringBegin[3];
+					buffer[2] = pTagGroupStringBegin[2];
+					buffer[3] = pTagGroupStringBegin[1];
 				}
-				tag_group_str = pBuffer;
+				tag_group_str = buffer;
 			}
 		}
 	}

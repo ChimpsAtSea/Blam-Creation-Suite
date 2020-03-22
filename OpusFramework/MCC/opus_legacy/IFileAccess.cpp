@@ -24,8 +24,8 @@ bool IFileAccess::FileOpen(FileAccessType accessType)
 			fseek(s_pFile, 0, SEEK_END);
 			s_size = ftell(s_pFile);
 			fseek(s_pFile, 0L, SEEK_SET);
-			s_pBuffer = new char[s_size];
-			memset(s_pBuffer, 0x00, s_size);
+			s_buffer = new char[s_size];
+			memset(s_buffer, 0x00, s_size);
 
 			return true;
 		}
@@ -44,9 +44,9 @@ void IFileAccess::FileClose()
 {
 	if (s_pFile)
 	{
-		if (s_pBuffer)
+		if (s_buffer)
 		{
-			free(s_pBuffer);
+			free(s_buffer);
 			s_size = 0;
 		}
 		fclose(s_pFile);
@@ -64,13 +64,13 @@ char *IFileAccess::FileRead(size_t &rBufferSize)
 		{
 			size_t bytesToRead = s_size - totalBytesRead;
 			fseek(s_pFile, static_cast<long>(totalBytesRead), SEEK_SET);
-			size_t bytesRead = fread(s_pBuffer + totalBytesRead, 1, bytesToRead, s_pFile);
+			size_t bytesRead = fread(s_buffer + totalBytesRead, 1, bytesToRead, s_pFile);
 			totalBytesRead += bytesRead;
 		} while (totalBytesRead < s_size);
 	}
 
 	rBufferSize = s_size;
-	return s_pBuffer;
+	return s_buffer;
 }
 
 void IFileAccess::FileWrite(char *buffer, size_t size)

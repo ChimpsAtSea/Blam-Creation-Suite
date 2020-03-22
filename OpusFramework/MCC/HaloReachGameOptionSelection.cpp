@@ -398,16 +398,16 @@ void HaloReachGameOptionSelection::SelectDifficulty()
 	}
 }
 
-void HaloReachGameOptionSelection::GetVariantInfo(char* pBuffer, std::string* name, std::string* desc)
+void HaloReachGameOptionSelection::GetVariantInfo(char* buffer, std::string* name, std::string* desc)
 {
 	for (size_t i = 0; i < 256; i++)
 	{
-		char* nameCur = &pBuffer[0x80 + i];
+		char* nameCur = &buffer[0x80 + i];
 		if (nameCur[0] && !nameCur[1])
 		{
 			*name += nameCur;
 		}
-		char* descCur = &pBuffer[0x180 + i];
+		char* descCur = &buffer[0x180 + i];
 		if (descCur[0] && !descCur[1])
 		{
 			*desc += descCur;
@@ -457,7 +457,7 @@ int HaloReachGameOptionSelection::ReadSavedFilm(LPCSTR pName, std::string* name,
 		c_file_reference filo(pPath);
 		if (filo.open_file())
 		{
-			out_data = pDataAccess->SaveFilmMetadataCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->data;
+			out_data = pDataAccess->SaveFilmMetadataCreateFromFile(filo.buffer, static_cast<int>(filo.buffer_size))->data;
 
 			filo.read_string_long_as_string(name, 256, 0xC0);
 			filo.read_string_long_as_string(desc, 256, 0x1C0);
@@ -645,7 +645,7 @@ void HaloReachGameOptionSelection::LoadMapVariant(IDataAccess* pDataAccess, cons
 				write_line_verbose("Loading map variant [%s]", pFileName.c_str());
 			}
 
-			rMapVariant = pDataAccess->MapVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize))->MapVariant;
+			rMapVariant = pDataAccess->MapVariantCreateFromFile(filo.buffer, static_cast<int>(filo.buffer_size))->MapVariant;
 			filo.close_file();
 			return;
 		}
@@ -695,7 +695,7 @@ void HaloReachGameOptionSelection::LoadGameVariant(IDataAccess* pDataAccess, con
 			write_line_verbose("Loading game variant [%s]", pFileName.c_str());
 		}
 
-		IGameVariant* game_variant = pDataAccess->GameVariantCreateFromFile(filo.pBuffer, static_cast<int>(filo.bufferSize));
+		IGameVariant* game_variant = pDataAccess->GameVariantCreateFromFile(filo.buffer, static_cast<int>(filo.buffer_size));
 		if (game_variant)
 		{
 
@@ -722,12 +722,12 @@ void HaloReachGameOptionSelection::LoadPreviousGamestate(const char* pGamestateN
 	c_file_reference filo(pFileName);
 	if (filo.open_file())
 	{
-		pGameStateBuffer = new char[filo.bufferSize];
-		memset(pGameStateBuffer, 0x00, filo.bufferSize);
-		pGameStateBuffer = filo.pBuffer;
+		pGameStateBuffer = new char[filo.buffer_size];
+		memset(pGameStateBuffer, 0x00, filo.buffer_size);
+		pGameStateBuffer = filo.buffer;
 
 		gameContext.game_mode = _game_mode_campaign;
-		gameContext.game_state_header_size = filo.bufferSize;
+		gameContext.game_state_header_size = filo.buffer_size;
 		gameContext.game_state_header_ptr = pGameStateBuffer;
 
 		filo.close_file();

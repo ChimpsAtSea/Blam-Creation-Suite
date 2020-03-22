@@ -394,22 +394,22 @@ struct PlayerConfiguration
 	/* 0x28 */	bool UseEliteModel;
 	/* 0x29 */	char __padding29[3];
 	/* 0x2C */	long PlayerModelPermutation;
-	/* 0x30 */	long HelmetIndex;
-	/* 0x34 */	long LeftShoulderIndex;
-	/* 0x38 */	long RightShoulderIndex;
-	/* 0x3C */	long ChestIndex;
-	/* 0x40 */	long WristIndex;
-	/* 0x44 */	long UtilityIndex;
-	/* 0x48 */	long KneeGuardsIndex;
-	/* 0x4C */	long VisorColorIndex;
-	/* 0x50 */	long SpartanArmorEffectIndex;
-	/* 0x54 */	long SpartanBodyIndex;
-	/* 0x58 */	long EliteArmorIndex;
-	/* 0x5C */	long EliteArmorEffectIndex;
-	/* 0x60 */	long VoiceIndex;
-	/* 0x64 */	long PlayerModelPrimaryColor;
-	/* 0x68 */	long PlayerModelSecondaryColor;
-	/* 0x6C */	long PlayerModelTertiaryColor;
+	/* 0x30 */	eHaloArmor HelmetIndex;
+	/* 0x34 */	eHaloArmor LeftShoulderIndex;
+	/* 0x38 */	eHaloArmor RightShoulderIndex;
+	/* 0x3C */	eHaloArmor ChestIndex;
+	/* 0x40 */	eHaloArmor WristIndex;
+	/* 0x44 */	eHaloArmor UtilityIndex;
+	/* 0x48 */	eHaloArmor KneeGuardsIndex;
+	/* 0x4C */	eHaloArmor VisorColorIndex;
+	/* 0x50 */	eHaloArmor SpartanArmorEffectIndex;
+	/* 0x54 */	eHaloArmor SpartanBodyIndex;
+	/* 0x58 */	eHaloArmor EliteArmorIndex;
+	/* 0x5C */	eHaloArmor EliteArmorEffectIndex;
+	/* 0x60 */	eHaloArmor VoiceIndex;
+	/* 0x64 */	eHaloArmor PlayerModelPrimaryColor;
+	/* 0x68 */	eHaloArmor PlayerModelSecondaryColor;
+	/* 0x6C */	eHaloArmor PlayerModelTertiaryColor;
 	/* 0x70 */	wchar_t ServiceTag[4];
 	/* 0x78 */	long OnlineMedalFlasher;
 	/* 0x7C */	long VerticalLookSensitivity;
@@ -459,7 +459,7 @@ struct PlayerConfiguration
 CHECK_STRUCTURE_SIZE(PlayerConfiguration, 0x89C);
 
 
-enum class GameAction : long
+enum GameAction : long
 {
 	Jump,
 	SwitchGrenade,

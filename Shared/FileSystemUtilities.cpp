@@ -1,6 +1,6 @@
 #include "shared-private-pch.h"
 
-void FileSystemReadToBufferImpl(FILE* pFileHandle, char* pBuffer, size_t readLength)
+void FileSystemReadToBufferImpl(FILE* pFileHandle, char* buffer, size_t readLength)
 {
 	uint32_t iterations = 0;
 	for (size_t currentPosition = 0; currentPosition < readLength; iterations++)
@@ -9,12 +9,12 @@ void FileSystemReadToBufferImpl(FILE* pFileHandle, char* pBuffer, size_t readLen
 		ASSERT(iterations != UINT32_MAX);
 
 		size_t remainingDataLength = readLength - currentPosition;
-		currentPosition += fread(&pBuffer[currentPosition], 1, remainingDataLength, pFileHandle);
+		currentPosition += fread(&buffer[currentPosition], 1, remainingDataLength, pFileHandle);
 	}
 }
 
 
-char* FileSystemReadToBuffer(const wchar_t* pFilePath, char* pBuffer, size_t bufferSize)
+char* FileSystemReadToBuffer(const wchar_t* pFilePath, char* buffer, size_t buffer_size)
 {
 	FILE* pFileHandle = _wfopen(pFilePath, L"rb");
 	if (pFileHandle == nullptr)
@@ -26,12 +26,12 @@ char* FileSystemReadToBuffer(const wchar_t* pFilePath, char* pBuffer, size_t buf
 	size_t fileSize = static_cast<size_t>(_ftelli64(pFileHandle));
 	fseek(pFileHandle, 0, SEEK_SET);
 
-	if (fileSize > bufferSize)
+	if (fileSize > buffer_size)
 	{
 		return nullptr;
 	}
 
-	FileSystemReadToBufferImpl(pFileHandle, pBuffer, bufferSize);
+	FileSystemReadToBufferImpl(pFileHandle, buffer, buffer_size);
 
 	int fcloseResult = fclose(pFileHandle);
 	ASSERT(fcloseResult == 0);
@@ -52,18 +52,18 @@ char* FileSystemReadToMemory(const wchar_t* pFilePath, size_t* pAllocatedSize)
 	size_t fileSize = static_cast<size_t>(_ftelli64(pFileHandle));
 	fseek(pFileHandle, 0, SEEK_SET);
 
-	char* pBuffer = new char[fileSize + 1] {};
+	char* buffer = new char[fileSize + 1] {};
 	if (pAllocatedSize)
 	{
 		*pAllocatedSize = fileSize;
 	}
 
-	FileSystemReadToBufferImpl(pFileHandle, pBuffer, fileSize);
+	FileSystemReadToBufferImpl(pFileHandle, buffer, fileSize);
 
 	int fcloseResult = fclose(pFileHandle);
 	ASSERT(fcloseResult == 0);
 
-	return pBuffer;
+	return buffer;
 }
 
 
@@ -86,7 +86,7 @@ size_t FileSystemGetFileSize(const wchar_t* pFilePath)
 }
 
 
-char* FileSystemReadToMemory2(const wchar_t* pFilePath, char* pBuffer, size_t* pAllocatedSize)
+char* FileSystemReadToMemory2(const wchar_t* pFilePath, char* buffer, size_t* pAllocatedSize)
 {
 	FILE* pFileHandle = _wfopen(pFilePath, L"rb");
 	if (pFileHandle == nullptr)
@@ -103,12 +103,12 @@ char* FileSystemReadToMemory2(const wchar_t* pFilePath, char* pBuffer, size_t* p
 		*pAllocatedSize = fileSize;
 	}
 
-	FileSystemReadToBufferImpl(pFileHandle, pBuffer, fileSize);
+	FileSystemReadToBufferImpl(pFileHandle, buffer, fileSize);
 
 	int fcloseResult = fclose(pFileHandle);
 	ASSERT(fcloseResult == 0);
 
-	return pBuffer;
+	return buffer;
 }
 
 const char* GetUserprofileVariable()

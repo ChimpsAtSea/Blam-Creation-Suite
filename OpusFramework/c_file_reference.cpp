@@ -11,20 +11,20 @@ bool c_file_reference::open_file()
 	if (pFile)
 	{
 		fseek(pFile, 0, SEEK_END);
-		bufferSize = ftell(pFile);
+		buffer_size = ftell(pFile);
 		fseek(pFile, 0L, SEEK_SET);
-		pBuffer = new char[bufferSize];
-		memset(pBuffer, 0x00, bufferSize);
+		buffer = new char[buffer_size];
+		memset(buffer, 0x00, buffer_size);
 
 		fseek(pFile, 0L, SEEK_SET);
 		size_t totalBytesRead = 0;
 		do
 		{
-			size_t bytesToRead = bufferSize - totalBytesRead;
+			size_t bytesToRead = buffer_size - totalBytesRead;
 			fseek(pFile, static_cast<long>(totalBytesRead), SEEK_SET);
-			size_t bytesRead = fread(pBuffer + totalBytesRead, 1, bytesToRead, pFile);
+			size_t bytesRead = fread(buffer + totalBytesRead, 1, bytesToRead, pFile);
 			totalBytesRead += bytesRead;
-		} while (totalBytesRead < bufferSize);
+		} while (totalBytesRead < buffer_size);
 
 		return true;
 	}
@@ -36,8 +36,8 @@ void c_file_reference::close_file()
 {
 	if (pFile)
 	{
-		bufferSize = 0;
-		free(pBuffer);
+		buffer_size = 0;
+		free(buffer);
 		fclose(pFile);
 	}
 }
@@ -83,13 +83,13 @@ void c_file_reference::read_uint32(unsigned __int32* value, long offset, bool sw
 void c_file_reference::read_string(std::string* value, size_t length, long offset)
 {
 	ASSERT(pFile != nullptr);
-	*value = &pBuffer[offset];
+	*value = &buffer[offset];
 }
 
 void c_file_reference::read_string_long(std::wstring* value, size_t length, long offset, bool swapEndian)
 {
 	ASSERT(pFile != nullptr);
-	*value = (wchar_t*)&pBuffer[swapEndian ? offset + 1 : offset];
+	*value = (wchar_t*)&buffer[swapEndian ? offset + 1 : offset];
 }
 
 void c_file_reference::read_string_long_as_string(std::string* value, size_t length, long offset, bool swapEndian)

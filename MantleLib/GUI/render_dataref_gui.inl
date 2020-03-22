@@ -17,8 +17,8 @@ void render_dataref_gui(DataReference* field_data, const c_reflection_field& ref
 		ImGui::Text(reflection_field.nice_name);
 		ImGui::NextColumn();
 
-		static char pBuffer[256] = {};
-		ImGui::InputTextMultiline("##datareference", pBuffer, 256, ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 8.5f), ImGuiInputTextFlags_CharsHexadecimal | ImGuiInputTextFlags_CharsUppercase);
+		static char buffer[256] = {};
+		ImGui::InputTextMultiline("##datareference", buffer, 256, ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 8.5f), ImGuiInputTextFlags_CharsHexadecimal | ImGuiInputTextFlags_CharsUppercase);
 
 		ImGui::Columns(4, NULL, false);
 		ImGui::SetColumnOffset(1, 400);

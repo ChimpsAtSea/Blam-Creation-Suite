@@ -308,7 +308,7 @@ void GameLauncher::launchMCCGame(e_engine_type engine_type)
 
 	pGameEngine->Member04(c_render::s_pDevice);
 	pGameEngine->Member05(game_context->map_id);
-	pGameEngine->InitGraphics(c_render::s_pDevice, c_render::s_pDeviceContext, c_render::s_pSwapChain, c_render::s_pSwapChain);
+	pGameEngine->InitGraphics(c_render::s_pDevice, c_render::s_pDeviceContext, c_render::s_swap_chain, c_render::s_swap_chain);
 	hMainGameThread = pGameEngine->InitThread(game_engine_host, game_context);
 
 	c_window::set_post_message_thread_id(hMainGameThread);

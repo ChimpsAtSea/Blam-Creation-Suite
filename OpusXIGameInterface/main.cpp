@@ -11,7 +11,7 @@ extern "C" __declspec(dllexport) void resize_viewport(int width, int height)
 	c_render::ResizeBegin();
 }
 
-extern "C" __declspec(dllexport) void run(ID3D11Device* pDevice, IDXGISwapChain1* pSwapChain)
+extern "C" __declspec(dllexport) void run(ID3D11Device* pDevice, IDXGISwapChain1* swap_chain)
 {
 	 static HMODULE hInstance = GetModuleHandleA("OpusXIGameInterface.dll");
 
@@ -31,7 +31,7 @@ extern "C" __declspec(dllexport) void run(ID3D11Device* pDevice, IDXGISwapChain1
 	 //};
 
 	 //Window::Init("Opus", "OpusConsole", "opus");
-	 c_render::init_render(hInstance, pDevice, pSwapChain);
+	 c_render::init_render(hInstance, pDevice, swap_chain);
 	 //MantleGUI::Init(true);
 	 //GameLauncher::Init();
 
