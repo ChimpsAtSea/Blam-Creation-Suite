@@ -65,8 +65,8 @@ IGameEvents* IGameEngineHost::GetGameEvents() { CHECK_ADDRESS_SHIFTED(); return 
 void IGameEngineHost::SaveGameVariant(IGameVariant* pGameVariant) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SaveGameVariant(pGameVariant); }
 void IGameEngineHost::SaveMapVariant(IMapVariant* pMapVariant) { CHECK_ADDRESS_SHIFTED(); return shifted_this->SaveMapVariant(pMapVariant); }
 void IGameEngineHost::Function13(const wchar_t* a1, const wchar_t* a2, const void* a3, unsigned int a4) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function13(a1, a2, a3, a4); }
-char IGameEngineHost::Function14(int controllerIndex, BYTE* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function14(controllerIndex, a2); }
-char IGameEngineHost::Function15(int controllerIndex, BYTE* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function15(controllerIndex, a2); }
+char IGameEngineHost::InvertLookControls(int controllerIndex, bool inverted) { CHECK_ADDRESS_SHIFTED(); return shifted_this->InvertLookControls(controllerIndex, inverted); }
+char IGameEngineHost::GetGameSpecificBindings(int controllerIndex, char(*pBuffer)[256]) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetGameSpecificBindings(controllerIndex, pBuffer); }
 char IGameEngineHost::GetNextLevelInfo(e_map_id* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD* a4) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetNextLevelInfo(pMapID, pCampaignInsertionPoint, pFiletime, a4); }
 bool IGameEngineHost::Function17(int a1) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function17(a1); }
 void IGameEngineHost::Function18(int a1) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function18(a1); }
@@ -345,5 +345,152 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	case _build_mcc_1_1377_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1387_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1389_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	}
+}
+
+void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& rPlayerConfiguration)
+{
+	rPlayerConfiguration.SubtitleSetting                  = 1;
+	rPlayerConfiguration.CrosshairLocation                = 1;
+	rPlayerConfiguration.FOVSetting                       = 100.f;
+	rPlayerConfiguration.VehicleFOVSetting                = 120.f;
+	rPlayerConfiguration.LookControlsInverted             = false;
+	rPlayerConfiguration.MouseLookControlsInverted        = false;
+	rPlayerConfiguration.VibrationDisabled                = false;
+	rPlayerConfiguration.ImpulseTriggersDisabled          = false;
+	rPlayerConfiguration.AircraftControlsInverted         = false;
+	rPlayerConfiguration.MouseAircraftControlsInverted    = false;
+	rPlayerConfiguration.AutoCenterEnabled                = false;
+	rPlayerConfiguration.CrouchLockEnabled                = false;
+	rPlayerConfiguration.MKCrouchLockEnabled              = false;
+	rPlayerConfiguration.ClenchProtectionEnabled          = false;
+	rPlayerConfiguration.UseFemaleVoice                   = true;
+	rPlayerConfiguration.HoldToZoom                       = true;
+	//rPlayerConfiguration.PlayerModelPrimaryColorIndex     = ;
+	//rPlayerConfiguration.PlayerModelSecondaryColorIndex   = ;
+	//rPlayerConfiguration.PlayerModelTertiaryColorIndex    = ;
+	rPlayerConfiguration.UseEliteModel                    = false;
+	//rPlayerConfiguration.PlayerModelPermutation           = ;
+	rPlayerConfiguration.HelmetIndex                      = (long)eHaloArmor::HR_Helmet_EOD_Base;
+	rPlayerConfiguration.LeftShoulderIndex                = (long)eHaloArmor::HR_LeftShoulder_Gungnir;
+	rPlayerConfiguration.RightShoulderIndex               = (long)eHaloArmor::HR_RightShoulder_EVA;
+	rPlayerConfiguration.ChestIndex                       = (long)eHaloArmor::HR_Chest_UABaseSecurityW;
+	rPlayerConfiguration.WristIndex                       = (long)eHaloArmor::HR_Wrist_Default;
+	rPlayerConfiguration.UtilityIndex                     = (long)eHaloArmor::HR_Utility_Default;
+	rPlayerConfiguration.KneeGuardsIndex                  = (long)eHaloArmor::HR_KneeGuards_FJPARA;
+	rPlayerConfiguration.VisorColorIndex                  = (long)eHaloArmor::HR_VisorColor_Blue;
+	rPlayerConfiguration.SpartanArmorEffectIndex          = (long)eHaloArmor::HR_ArmorEffect_BlueFlames;
+	rPlayerConfiguration.SpartanBodyIndex                 = (long)eHaloArmor::HR_Spartan_Female;
+	rPlayerConfiguration.EliteArmorIndex                  = (long)eHaloArmor::HR_Elite_FieldMarshall;
+	rPlayerConfiguration.EliteArmorEffectIndex            = (long)eHaloArmor::HR_ArmorEffect_Pestilence;
+	rPlayerConfiguration.VoiceIndex                       = (long)eHaloArmor::HR_FirefightVoice_JohnS117;
+	rPlayerConfiguration.PlayerModelPrimaryColor          = (long)eHaloArmor::HR_Color_Brick;
+	rPlayerConfiguration.PlayerModelSecondaryColor        = (long)eHaloArmor::HR_Color_Cyan;
+	rPlayerConfiguration.PlayerModelTertiaryColor         = (long)eHaloArmor::HR_Color_Cyan;
+	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", rPlayerConfiguration.ServiceTag, 4, L"117");
+	rPlayerConfiguration.OnlineMedalFlasher               = false;
+	//rPlayerConfiguration.VerticalLookSensitivity          = ;
+	//rPlayerConfiguration.HorizontalLookSensitivity        = ;
+	//rPlayerConfiguration.LookAcceleration                 = ;
+	//rPlayerConfiguration.LookAxialDeadZone                = ;
+	//rPlayerConfiguration.LookRadialDeadZone               = ;
+	//rPlayerConfiguration.ZoomLookSensitivityMultiplier    = ;
+	//rPlayerConfiguration.VehicleLookSensitivityMultiplier = ;
+	//rPlayerConfiguration.ButtonPreset                     = ;
+	//rPlayerConfiguration.StickPreset                      = ;
+	//rPlayerConfiguration.LeftyToggle                      = ;
+	//rPlayerConfiguration.FlyingCameraTurnSensitivity      = ;
+	//rPlayerConfiguration.FlyingCameraPanning              = ;
+	//rPlayerConfiguration.FlyingCameraSpeed                = ;
+	//rPlayerConfiguration.FlyingCameraThrust               = ;
+	//rPlayerConfiguration.TheaterTurnSensitivity           = ;
+	//rPlayerConfiguration.TheaterPanning                   = ;
+	//rPlayerConfiguration.TheaterSpeed                     = ;
+	//rPlayerConfiguration.TheaterThrust                    = ;
+	//rPlayerConfiguration.SwapTriggersAndBumpers           = ;
+	//rPlayerConfiguration.UseModernAimControl              = ;
+	rPlayerConfiguration.UseDoublePressJumpToJetpack      = true;
+	//rPlayerConfiguration.EnemyPlayerNameColor             = ;
+	//rPlayerConfiguration.GameEngineTimer                  = ;
+	//rPlayerConfiguration.Loadouts[5];
+	//rPlayerConfiguration.GameSpecific[256];
+	//rPlayerConfiguration.MouseSensitivity                 = ;
+	//rPlayerConfiguration.MouseSmoothing                   = ;
+	//rPlayerConfiguration.MouseAcceleration                = ;
+	//rPlayerConfiguration.MouseAccelerationMinRate         = ;
+	//rPlayerConfiguration.MouseAccelerationMaxAccel        = ;
+	//rPlayerConfiguration.MouseAccelerationScale           = ;
+	//rPlayerConfiguration.MouseAccelerationExp             = ;
+	//rPlayerConfiguration.KeyboardMouseButtonPreset        = ;
+	
+	for (int i = 0; i < 56; i++)
+	{
+		rPlayerConfiguration.GameKeyboardMouseMappings[i].AbstractButton = i;
+	}
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Jump                             ].VirtualKeyCodes[0] = VK_SPACE;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::SwitchGrenade                    ].VirtualKeyCodes[0] = 'G';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ContextPrimary                   ].VirtualKeyCodes[0] = 'E';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Reload                           ].VirtualKeyCodes[0] = 'R';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::SwitchWeapon                     ].VirtualKeyCodes[0] = VK_VOLUME_DOWN;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Melee                            ].VirtualKeyCodes[0] = 'Q';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Flashlight                       ].VirtualKeyCodes[0] = '4';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ThrowGrenade                     ].VirtualKeyCodes[0] = 'F';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Fire                             ].VirtualKeyCodes[0] = VK_LBUTTON;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Crouch                           ].VirtualKeyCodes[0] = VK_LCONTROL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Zoom                             ].VirtualKeyCodes[0] = VK_RBUTTON;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ZoomIn                           ].VirtualKeyCodes[0] = 'Z';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ZoomOut                          ].VirtualKeyCodes[0] = 'X';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ExchangeWeapon                   ].VirtualKeyCodes[0] = NULL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Trick                            ].VirtualKeyCodes[0] = NULL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Brake                            ].VirtualKeyCodes[0] = NULL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Ebrake                           ].VirtualKeyCodes[0] = NULL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Sprint                           ].VirtualKeyCodes[0] = NULL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::BansheeBomb                      ].VirtualKeyCodes[0] = NULL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Forward                          ].VirtualKeyCodes[0] = 'W';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Backward                         ].VirtualKeyCodes[0] = 'S';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Left                             ].VirtualKeyCodes[0] = 'A';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Right                            ].VirtualKeyCodes[0] = 'D';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::LeanLeft                         ].VirtualKeyCodes[0] = NULL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::LeanRight                        ].VirtualKeyCodes[0] = NULL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Start                            ].VirtualKeyCodes[0] = NULL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Back                             ].VirtualKeyCodes[0] = VK_TAB;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ShowScores                       ].VirtualKeyCodes[0] = VK_TAB;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Accept                           ].VirtualKeyCodes[0] = NULL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Cancel                           ].VirtualKeyCodes[0] = NULL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::PrimaryVehicleTrick              ].VirtualKeyCodes[0] = VK_LCONTROL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::SecondaryVehicleTrick            ].VirtualKeyCodes[0] = VK_SPACE;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::MagnifyZoom                      ].VirtualKeyCodes[0] = 'Z';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::Equipment                        ].VirtualKeyCodes[0] = VK_LSHIFT;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::FireSecondary                    ].VirtualKeyCodes[0] = VK_LSHIFT;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::LiftEditor                       ].VirtualKeyCodes[0] = 'R';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::DropEditor                       ].VirtualKeyCodes[0] = 'F';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::GrabObjectEditor                 ].VirtualKeyCodes[0] = VK_LBUTTON;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::BoostEditor                      ].VirtualKeyCodes[0] = VK_LSHIFT;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::CrouchEditor                     ].VirtualKeyCodes[0] = VK_LCONTROL;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::DeleteObjectEditor               ].VirtualKeyCodes[0] = VK_DELETE;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::CreateObjectEditor               ].VirtualKeyCodes[0] = VK_SPACE;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::OpenToolMenuEditor               ].VirtualKeyCodes[0] = 'X';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::SwitchPlayerModeEditor           ].VirtualKeyCodes[0] = VK_UP;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ScopeZoomEditor                  ].VirtualKeyCodes[0] = VK_RBUTTON;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::PlayerLockForManipulationEditor  ].VirtualKeyCodes[0] = VK_LMENU;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ShowHidePannelTheater            ].VirtualKeyCodes[0] = 'X';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ShowHideInterfaceTheater         ].VirtualKeyCodes[0] = 'Z';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::ToggleFirstThirdPersonViewTheater].VirtualKeyCodes[0] = 'C';
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::CameraFocusTheater               ].VirtualKeyCodes[0] = VK_RBUTTON;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::FastForwardTheater               ].VirtualKeyCodes[0] = VK_RIGHT;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::FastRewindTheater                ].VirtualKeyCodes[0] = VK_LEFT;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::StopContinuePlaybackTheater      ].VirtualKeyCodes[0] = VK_RETURN;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::PlaybackSpeedUpTheater           ].VirtualKeyCodes[0] = VK_LMENU;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::EnterFreeCameraModeTheater       ].VirtualKeyCodes[0] = VK_SPACE;
+	rPlayerConfiguration.GameKeyboardMouseMappings[(long)GameAction::MovementSpeedUpTheater           ].VirtualKeyCodes[0] = VK_LSHIFT;
+
+	rPlayerConfiguration.MasterVolume                       = 0.6f;
+	rPlayerConfiguration.MusicVolume                        = 0.2f;
+	rPlayerConfiguration.SfxVolume                          = 0.8f;
+	//rPlayerConfiguration.Brightness                         = ;
+
+	for (int i = 0; i < 5; i++)
+	{
+		rPlayerConfiguration.WeaponDisplayOffset[i] = { 5.f, 5.f };
 	}
 }

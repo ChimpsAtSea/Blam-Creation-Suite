@@ -211,8 +211,8 @@ public:
 	/* 11 */ virtual void SaveGameVariant(IGameVariant* pGameVariant);
 	/* 12 */ virtual void SaveMapVariant(IMapVariant* pMapVariant);
 	/* 13 */ virtual void Function13(const wchar_t*, const wchar_t*, const void*, unsigned int);
-	/* 14 */ virtual char Function14(int controllerIndex, BYTE*);
-	/* 15 */ virtual char Function15(int controllerIndex, BYTE*);
+	/* 14 */ virtual char InvertLookControls(int controllerIndex, bool inverted);
+	/* 15 */ virtual char GetGameSpecificBindings(int controllerIndex, char(*pBuffer)[256]);
 	/* 16 */ virtual char GetNextLevelInfo(e_map_id* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*);
 	/* 17 */ virtual bool Function17(int);
 	/* 18 */ virtual void Function18(int);
@@ -278,6 +278,8 @@ public:
 	static constexpr uintptr_t known_address1 = static_cast<uintptr_t>(0xdaeb9e926aca55b7);
 	uintptr_t __vtbl_known_address0 = known_address0;
 	uintptr_t __vtbl_known_address1 = known_address1;
+
+	void ConfigurePlayerConfiguration(PlayerConfiguration& rPlayerConfiguration);
 };
 //CHECK_STRUCTURE_SIZE(IGameEngineHost, 0xB748);
 #pragma pack(pop)

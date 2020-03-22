@@ -358,11 +358,10 @@ struct LoadoutSlot
 	wchar_t Name[13];
 };
 
-struct GameBinding
+struct GameKeyboardMouseMapping
 {
-	long Action;
-	long KeyCode;
-	char __unknown8[16];
+	int AbstractButton;
+	int VirtualKeyCodes[5];
 };
 
 struct RealPoint2D
@@ -449,7 +448,7 @@ struct PlayerConfiguration
 	/* 0x308 */	float MouseAccelerationScale;
 	/* 0x30C */	float MouseAccelerationExp;
 	/* 0x310 */	long KeyboardMouseButtonPreset;
-	/* 0x314 */	GameBinding CustomKeyboardMouseMapping[56];
+	/* 0x314 */	GameKeyboardMouseMapping GameKeyboardMouseMappings[56];
 	/* 0x854 */	float MasterVolume;
 	/* 0x858 */	float MusicVolume;
 	/* 0x85C */	float SfxVolume;
@@ -458,3 +457,66 @@ struct PlayerConfiguration
 	/* 0x874 */	RealPoint2D WeaponDisplayOffset[5];
 };
 CHECK_STRUCTURE_SIZE(PlayerConfiguration, 0x89C);
+
+
+enum class GameAction : long
+{
+	Jump,
+	SwitchGrenade,
+	ContextPrimary,
+	Reload,
+	SwitchWeapon,
+	Melee,
+	Flashlight,
+	ThrowGrenade,
+	Fire,
+	Crouch,
+	Zoom,
+	ZoomIn,
+	ZoomOut,
+	ExchangeWeapon,
+	Trick,
+	Brake,
+	Ebrake,
+	Sprint,
+	BansheeBomb,
+	Forward,
+	Backward,
+	Left,
+	Right,
+	LeanLeft,
+	LeanRight,
+	Start,
+	Back,
+	ShowScores,
+	Accept,
+	Cancel,
+	PrimaryVehicleTrick,
+	SecondaryVehicleTrick,
+	MagnifyZoom,
+	Equipment,
+	FireSecondary,
+	LiftEditor,
+	DropEditor,
+	GrabObjectEditor,
+	BoostEditor,
+	CrouchEditor,
+	DeleteObjectEditor,
+	CreateObjectEditor,
+	OpenToolMenuEditor,
+	SwitchPlayerModeEditor,
+	ScopeZoomEditor,
+	PlayerLockForManipulationEditor,
+	ShowHidePannelTheater,
+	ShowHideInterfaceTheater,
+	ToggleFirstThirdPersonViewTheater,
+	CameraFocusTheater,
+	FastForwardTheater,
+	FastRewindTheater,
+	StopContinuePlaybackTheater,
+	PlaybackSpeedUpTheater,
+	EnterFreeCameraModeTheater,
+	MovementSpeedUpTheater,
+
+	Count
+};

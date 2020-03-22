@@ -22,8 +22,8 @@ public:
 	virtual void SaveGameVariant(IGameVariant* pGameVariant) override;
 	virtual void SaveMapVariant(IMapVariant* pMapVariant) override;
 	virtual void Function13(const wchar_t*, const wchar_t*, const void*, unsigned int) override;
-	virtual char Function14(int controllerIndex, BYTE*) override;
-	virtual char Function15(int controllerIndex, BYTE*) override;
+	virtual char InvertLookControls(int controllerIndex, bool inverted) override;
+	virtual char GetGameSpecificBindings(int controllerIndex, char(*pBuffer)[256]) override;
 	virtual char GetNextLevelInfo(e_map_id* pMapID, int* pCampaignInsertionPoint, FILETIME* pFiletime, _DWORD*) override;
 	virtual bool Function17(int) override;
 	virtual void Function18(int) override;
