@@ -39,7 +39,7 @@ uintptr_t tag_address_table_offset(e_engine_type engine_type, e_build build)
 }
 uint32_t* (&tag_address_table)[] = reference_symbol<uint32_t * []>("tag_address_table", tag_address_table_offset);
 
-uintptr_t g_cache_file_offset(e_engine_type engine_type, e_build build)
+uintptr_t g_cache_file_global_loaded_state_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_824_0_0, 0x18377C720);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_887_0_0, 0x183903DB0);
@@ -57,7 +57,7 @@ uintptr_t g_cache_file_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1825C4270);
 	return ~uintptr_t();
 }
-char* & g_cache_file = reference_symbol<char*>("g_cache_file", g_cache_file_offset);
+char*& g_cache_file_global_loaded_state = reference_symbol<char*>("g_cache_file_global_loaded_state", g_cache_file_global_loaded_state_offset);
 
 char* tag_address_get(uint32_t tagInstanceAddress)
 {
@@ -100,12 +100,12 @@ T& tag_block_definition_get(s_tag_block_definition<T>& rTagBlock, uint16_t index
 
 s_cache_file_header* cache_file_header_get()
 {
-	if (!is_valid(g_cache_file))
+	if (!is_valid(g_cache_file_global_loaded_state))
 	{
 		return nullptr;
 	}
 
-	s_cache_file_header& cache_file_header = *reinterpret_cast<s_cache_file_header*>(&g_cache_file[0x10]);
+	s_cache_file_header& cache_file_header = *reinterpret_cast<s_cache_file_header*>(&g_cache_file_global_loaded_state[0x10]);
 	return &cache_file_header;
 }
 
