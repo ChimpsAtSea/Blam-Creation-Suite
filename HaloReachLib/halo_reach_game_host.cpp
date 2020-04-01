@@ -13,6 +13,7 @@ static bool g_is_reach_script_debug_window_open = true;
 static bool g_is_reach_camera_debug_window_open = true;
 c_game_runtime c_halo_reach_game_host::g_halo_reach_game_runtime(_engine_type_halo_reach, "haloreach", "HaloReach\\haloreach.dll");
 static c_haloreach_engine_state_command *g_haloreach_engine_state_command;
+static c_haloreach_camera_command *g_haloreach_camera_command;
 
 /* ---------- private prototypes */
 /* ---------- public code */
@@ -43,6 +44,12 @@ c_halo_reach_game_host::c_halo_reach_game_host(e_engine_type engine_type, e_buil
 	if (g_haloreach_engine_state_command != nullptr)
 	{
 		g_haloreach_engine_state_command->set_game_engine(game_engine);
+	}
+
+	if (g_haloreach_camera_command != nullptr)
+	{
+		g_haloreach_camera_command->set_player_mapping_get_local_player(player_mapping_get_local_player.base);
+		g_haloreach_camera_command->set_observer_try_and_get_camera(observer_try_and_get_camera.base);
 	}
 }
 
@@ -84,12 +91,16 @@ void c_halo_reach_game_host::render_ui() const
 void c_halo_reach_game_host::init_runtime_modifications(e_build build)
 {
 	g_haloreach_engine_state_command = new c_haloreach_engine_state_command();
+	g_haloreach_camera_command = new c_haloreach_camera_command();
+
 	init_halo_reach(_engine_type_halo_reach, build);
 }
 
 void c_halo_reach_game_host::deinit_runtime_modifications(e_build build)
 {
 	delete g_haloreach_engine_state_command;
+	delete g_haloreach_camera_command;
+
 	deinit_halo_reach(_engine_type_halo_reach, build);
 }
 

@@ -27,6 +27,9 @@
     <ClCompile Include="haloreach_engine_state_command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="haloreach_camera_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="haloreachlib-private-pch.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="haloreach_engine_state_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="haloreach_camera_command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
