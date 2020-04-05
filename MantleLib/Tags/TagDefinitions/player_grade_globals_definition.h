@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("player_grade_globals_definition") group('pggd') s_player_grade_globals_definition_definition
+struct nicename("player_grade_globals_definition") tag_group('pggd') s_player_grade_globals_definition_definition
 {
 	struct nicename("Ranks") s_ranks_definition
 	{

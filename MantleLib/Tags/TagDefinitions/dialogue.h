@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("dialogue") group('udlg') s_dialogue_definition
+struct nicename("dialogue") tag_group('udlg') s_dialogue_definition
 {
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
 	{

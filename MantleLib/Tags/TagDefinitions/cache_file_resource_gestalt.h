@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cache_file_resource_gestalt") group('zone') s_cache_file_resource_gestalt_definition
+struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_resource_gestalt_definition
 {
 	enum nicename("Map Type") e_map_type : uint16_t
 	{

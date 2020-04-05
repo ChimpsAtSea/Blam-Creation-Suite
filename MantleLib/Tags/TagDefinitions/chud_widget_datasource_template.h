@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("chud_widget_datasource_template") group('wdst') s_chud_widget_datasource_template_definition
+struct nicename("chud_widget_datasource_template") tag_group('wdst') s_chud_widget_datasource_template_definition
 {
 	struct nicename("Datasource") s_datasource_definition
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("scenario_lightmap_bsp_data") group('Lbsp') s_scenario_lightmap_bsp_data_definition
+struct nicename("scenario_lightmap_bsp_data") tag_group('Lbsp') s_scenario_lightmap_bsp_data_definition
 {
 	struct nicename("Unknown A") s_unknown_a_definition
 	{

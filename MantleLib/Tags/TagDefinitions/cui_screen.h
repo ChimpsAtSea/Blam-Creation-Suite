@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cui_screen") group('cusc') s_cui_screen_definition
+struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 {
 	struct nicename("Templates") s_templates_definition
 	{

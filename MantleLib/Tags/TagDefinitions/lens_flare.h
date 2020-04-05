@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("lens_flare") group('lens') s_lens_flare_definition
+struct nicename("lens_flare") tag_group('lens') s_lens_flare_definition
 {
 	struct nicename("Reflections") s_reflections_definition
 	{

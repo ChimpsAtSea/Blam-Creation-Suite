@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("atmosphere_fog") group('fogg') s_atmosphere_fog_definition
+struct nicename("atmosphere_fog") tag_group('fogg') s_atmosphere_fog_definition
 {
 	Undefined32 __unknown0;
 	Undefined32 nicename("Map Fog") map_fog;

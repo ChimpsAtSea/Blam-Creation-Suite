@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("structure_design") group('sddt') s_structure_design_definition
+struct nicename("structure_design") tag_group('sddt') s_structure_design_definition
 {
 	struct nicename("Design MOPP Codes") s_design_mopp_codes_definition
 	{

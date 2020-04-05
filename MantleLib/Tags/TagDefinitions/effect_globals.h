@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("effect_globals") group('effg') s_effect_globals_definition
+struct nicename("effect_globals") tag_group('effg') s_effect_globals_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

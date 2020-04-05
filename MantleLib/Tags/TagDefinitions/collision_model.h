@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("collision_model") group('coll') s_collision_model_definition
+struct nicename("collision_model") tag_group('coll') s_collision_model_definition
 {
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
 	{

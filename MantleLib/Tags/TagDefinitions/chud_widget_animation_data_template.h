@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("chud_widget_animation_data_template") group('wadt') s_chud_widget_animation_data_template_definition
+struct nicename("chud_widget_animation_data_template") tag_group('wadt') s_chud_widget_animation_data_template_definition
 {
 	struct nicename("Animation Data") s_animation_data_definition
 	{

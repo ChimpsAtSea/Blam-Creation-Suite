@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("multiplayer_object_type_list") group('motl') s_multiplayer_object_type_list_definition
+struct nicename("multiplayer_object_type_list") tag_group('motl') s_multiplayer_object_type_list_definition
 {
 	enum nicename("Random Weapon Icon Index") e_random_weapon_icon_index : uint32_t
 	{

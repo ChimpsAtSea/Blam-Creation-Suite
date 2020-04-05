@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("rain_definition") group('rain') s_rain_definition_definition
+struct nicename("rain_definition") tag_group('rain') s_rain_definition_definition
 {
 	enum nicename("Bitfield32 Example") b_bitfield32_example : uint32_t /* bitfield */
 	{

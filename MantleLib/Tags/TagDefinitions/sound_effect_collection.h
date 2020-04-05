@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_effect_collection") group('sfx+') s_sound_effect_collection_definition
+struct nicename("sound_effect_collection") tag_group('sfx+') s_sound_effect_collection_definition
 {
 	struct nicename("Sound Effects") s_sound_effects_definition
 	{

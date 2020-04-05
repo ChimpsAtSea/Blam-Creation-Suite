@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("light_volume_system") group('ltvl') s_light_volume_system_definition
+struct nicename("light_volume_system") tag_group('ltvl') s_light_volume_system_definition
 {
 	struct nicename("Light Volume System") s_light_volume_system1_definition
 	{

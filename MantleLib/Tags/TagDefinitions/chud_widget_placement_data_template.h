@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("chud_widget_placement_data_template") group('wpdt') s_chud_widget_placement_data_template_definition
+struct nicename("chud_widget_placement_data_template") tag_group('wpdt') s_chud_widget_placement_data_template_definition
 {
 	struct nicename("Placement Data") s_placement_data_definition
 	{

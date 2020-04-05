@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("incident_globals_definition") group('ingd') s_incident_globals_definition_definition
+struct nicename("incident_globals_definition") tag_group('ingd') s_incident_globals_definition_definition
 {
 	struct nicename("Incidents") s_incidents_definition
 	{

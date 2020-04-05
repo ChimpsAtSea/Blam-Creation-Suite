@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("megalogamengine_sounds") group('mgls') s_megalogamengine_sounds_definition
+struct nicename("megalogamengine_sounds") tag_group('mgls') s_megalogamengine_sounds_definition
 {
 	TagReference nicename("Slayer Intro") slayer_intro_reference;
 	TagReference nicename("CTF Intro") ctf_intro_reference;

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("shader_decal") group('rmd') s_shader_decal_definition
+struct nicename("shader_decal") tag_group('rmd') s_shader_decal_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

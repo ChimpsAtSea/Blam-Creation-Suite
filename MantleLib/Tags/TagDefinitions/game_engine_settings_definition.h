@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("game_engine_settings_definition") group('wezr') s_game_engine_settings_definition_definition
+struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engine_settings_definition_definition
 {
 	struct nicename("Trait Profiles") s_trait_profiles_definition
 	{

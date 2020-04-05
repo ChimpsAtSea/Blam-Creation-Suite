@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("damage_response_definition") group('drdf') s_damage_response_definition_definition
+struct nicename("damage_response_definition") tag_group('drdf') s_damage_response_definition_definition
 {
 	struct nicename("Responses") s_responses_definition
 	{

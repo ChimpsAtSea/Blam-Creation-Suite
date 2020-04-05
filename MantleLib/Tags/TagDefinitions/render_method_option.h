@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("render_method_option") group('rmop') s_render_method_option_definition
+struct nicename("render_method_option") tag_group('rmop') s_render_method_option_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

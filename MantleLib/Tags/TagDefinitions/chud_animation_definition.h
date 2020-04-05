@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("chud_animation_definition") group('chad') s_chud_animation_definition_definition
+struct nicename("chud_animation_definition") tag_group('chad') s_chud_animation_definition_definition
 {
 	enum nicename("Flags") b_flags : uint8_t /* bitfield */
 	{

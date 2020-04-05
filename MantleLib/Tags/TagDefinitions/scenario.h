@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("scenario") group('scnr') s_scenario_definition
+struct nicename("scenario") tag_group('scnr') s_scenario_definition
 {
 	enum nicename("Map Type") e_map_type : uint16_t
 	{

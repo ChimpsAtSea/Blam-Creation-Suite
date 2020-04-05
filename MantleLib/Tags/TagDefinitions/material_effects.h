@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("material_effects") group('foot') s_material_effects_definition
+struct nicename("material_effects") tag_group('foot') s_material_effects_definition
 {
 	struct nicename("Effects") s_effects_definition
 	{

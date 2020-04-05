@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("incident_global_properties_definition") group('igpd') s_incident_global_properties_definition_definition
+struct nicename("incident_global_properties_definition") tag_group('igpd') s_incident_global_properties_definition_definition
 {
 	struct nicename("Incident Global Definitions") s_incident_global_definitions_definition
 	{

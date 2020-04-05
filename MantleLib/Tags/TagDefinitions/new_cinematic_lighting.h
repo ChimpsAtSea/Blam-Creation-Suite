@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("new_cinematic_lighting") group('nclt') s_new_cinematic_lighting_definition
+struct nicename("new_cinematic_lighting") tag_group('nclt') s_new_cinematic_lighting_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

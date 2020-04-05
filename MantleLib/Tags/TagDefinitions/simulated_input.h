@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("simulated_input") group('sidt') s_simulated_input_definition
+struct nicename("simulated_input") tag_group('sidt') s_simulated_input_definition
 {
 	int16_t __unknown0;
 	int16_t __unknown1;

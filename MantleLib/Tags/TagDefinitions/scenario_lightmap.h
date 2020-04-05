@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("scenario_lightmap") group('sLdT') s_scenario_lightmap_definition
+struct nicename("scenario_lightmap") tag_group('sLdT') s_scenario_lightmap_definition
 {
 	struct nicename("Lightmap Data References") s_lightmap_data_references_definition
 	{

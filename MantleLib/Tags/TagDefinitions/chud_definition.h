@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("chud_definition") group('chdt') s_chud_definition_definition
+struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definition
 {
 	struct nicename("HUD Widgets") s_hud_widgets_definition
 	{

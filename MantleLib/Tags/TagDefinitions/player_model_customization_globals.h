@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("player_model_customization_globals") group('pmcg') s_player_model_customization_globals_definition
+struct nicename("player_model_customization_globals") tag_group('pmcg') s_player_model_customization_globals_definition
 {
 	struct nicename("Helmet") s_helmet_definition
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_environment") group('snde') s_sound_environment_definition
+struct nicename("sound_environment") tag_group('snde') s_sound_environment_definition
 {
 	float nicename("Room Intensity dB") room_intensity_db;
 	float nicename("Room Intesnity High Frequency dB") room_intesnity_high_frequency_db;

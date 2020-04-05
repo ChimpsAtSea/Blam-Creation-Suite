@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_combiner") group('scmb') s_sound_combiner_definition
+struct nicename("sound_combiner") tag_group('scmb') s_sound_combiner_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

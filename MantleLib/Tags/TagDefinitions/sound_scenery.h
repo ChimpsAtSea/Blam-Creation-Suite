@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_scenery") group('ssce') s_sound_scenery_definition
+struct nicename("sound_scenery") tag_group('ssce') s_sound_scenery_definition
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{

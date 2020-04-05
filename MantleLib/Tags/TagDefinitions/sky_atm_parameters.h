@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sky_atm_parameters") group('skya') s_sky_atm_parameters_definition
+struct nicename("sky_atm_parameters") tag_group('skya') s_sky_atm_parameters_definition
 {
 	struct nicename("Atmosphere Properties") s_atmosphere_properties_definition
 	{

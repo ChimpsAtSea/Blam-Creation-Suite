@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("user_interface_shared_globals_definition") group('wigl') s_user_interface_shared_globals_definition_definition
+struct nicename("user_interface_shared_globals_definition") tag_group('wigl') s_user_interface_shared_globals_definition_definition
 {
 	struct nicename("Text Colors") s_text_colors_definition
 	{

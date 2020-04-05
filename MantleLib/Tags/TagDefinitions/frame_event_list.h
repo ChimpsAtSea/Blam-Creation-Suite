@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("frame_event_list") group('frms') s_frame_event_list_definition
+struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definition
 {
 	struct nicename("Sound References") s_sound_references_definition
 	{

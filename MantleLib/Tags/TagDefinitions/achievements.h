@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("achievements") group('achi') s_achievements_definition
+struct nicename("achievements") tag_group('achi') s_achievements_definition
 {
 	struct nicename("Achievement Information") s_achievement_information_definition
 	{

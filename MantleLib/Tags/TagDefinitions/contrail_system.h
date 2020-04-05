@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("contrail_system") group('cntl') s_contrail_system_definition
+struct nicename("contrail_system") tag_group('cntl') s_contrail_system_definition
 {
 	struct nicename("Contrail System") s_contrail_system1_definition
 	{

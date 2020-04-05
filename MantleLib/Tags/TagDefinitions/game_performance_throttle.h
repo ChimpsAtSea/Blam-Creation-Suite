@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("game_performance_throttle") group('gptd') s_game_performance_throttle_definition
+struct nicename("game_performance_throttle") tag_group('gptd') s_game_performance_throttle_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

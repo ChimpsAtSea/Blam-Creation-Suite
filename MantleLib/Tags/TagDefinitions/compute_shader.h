@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("compute_shader") group('cmps') s_compute_shader_definition
+struct nicename("compute_shader") tag_group('cmps') s_compute_shader_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

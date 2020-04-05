@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("damage_effect") group('jpt!') s_damage_effect_definition
+struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition
 {
 	enum nicename("Side Effect") e_side_effect : uint16_t
 	{

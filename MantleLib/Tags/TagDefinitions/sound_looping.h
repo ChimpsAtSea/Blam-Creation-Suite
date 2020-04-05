@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_looping") group('lsnd') s_sound_looping_definition
+struct nicename("sound_looping") tag_group('lsnd') s_sound_looping_definition
 {
 	enum nicename("Sound Class") e_sound_class : uint16_t
 	{

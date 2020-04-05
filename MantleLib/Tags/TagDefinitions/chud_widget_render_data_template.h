@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("chud_widget_render_data_template") group('wrdt') s_chud_widget_render_data_template_definition
+struct nicename("chud_widget_render_data_template") tag_group('wrdt') s_chud_widget_render_data_template_definition
 {
 	struct nicename("Render Data") s_render_data_definition
 	{

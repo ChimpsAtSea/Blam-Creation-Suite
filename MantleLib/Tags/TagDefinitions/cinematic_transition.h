@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cinematic_transition") group('citr') s_cinematic_transition_definition
+struct nicename("cinematic_transition") tag_group('citr') s_cinematic_transition_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

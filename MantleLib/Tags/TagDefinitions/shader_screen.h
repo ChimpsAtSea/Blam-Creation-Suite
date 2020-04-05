@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("shader_screen") group('rmss') s_shader_screen_definition
+struct nicename("shader_screen") tag_group('rmss') s_shader_screen_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

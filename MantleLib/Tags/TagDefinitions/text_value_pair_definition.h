@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("text_value_pair_definition") group('sily') s_text_value_pair_definition_definition
+struct nicename("text_value_pair_definition") tag_group('sily') s_text_value_pair_definition_definition
 {
 	enum nicename("Parameter") e_parameter : uint32_t
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("shader_fur_stencil") group('rmfs') s_shader_fur_stencil_definition
+struct nicename("shader_fur_stencil") tag_group('rmfs') s_shader_fur_stencil_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

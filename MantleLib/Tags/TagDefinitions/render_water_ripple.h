@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("render_water_ripple") group('rwrd') s_render_water_ripple_definition
+struct nicename("render_water_ripple") tag_group('rwrd') s_render_water_ripple_definition
 {
 	Undefined32 __unknown0;
 	Undefined32 __unknown1;

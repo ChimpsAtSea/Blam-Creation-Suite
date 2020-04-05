@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("survival_mode_globals") group('smdt') s_survival_mode_globals_definition
+struct nicename("survival_mode_globals") tag_group('smdt') s_survival_mode_globals_definition
 {
 	struct nicename("Waves") s_waves_definition
 	{

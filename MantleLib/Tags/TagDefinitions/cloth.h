@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cloth") group('clwd') s_cloth_definition
+struct nicename("cloth") tag_group('clwd') s_cloth_definition
 {
 	enum nicename("Integration Type") e_integration_type : uint16_t
 	{

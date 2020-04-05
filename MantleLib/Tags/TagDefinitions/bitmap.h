@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("bitmap") group('bitm') s_bitmap_definition
+struct nicename("bitmap") tag_group('bitm') s_bitmap_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

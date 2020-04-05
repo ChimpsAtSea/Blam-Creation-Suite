@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("particle_emitter_custom_points") group('pecp') s_particle_emitter_custom_points_definition
+struct nicename("particle_emitter_custom_points") tag_group('pecp') s_particle_emitter_custom_points_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

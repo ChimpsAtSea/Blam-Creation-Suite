@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("emblem_library") group('mlib') s_emblem_library_definition
+struct nicename("emblem_library") tag_group('mlib') s_emblem_library_definition
 {
 	struct nicename("Foregrounds") s_foregrounds_definition
 	{

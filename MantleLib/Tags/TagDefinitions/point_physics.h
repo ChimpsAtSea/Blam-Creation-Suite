@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("point_physics") group('pphy') s_point_physics_definition
+struct nicename("point_physics") tag_group('pphy') s_point_physics_definition
 {
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("avatar_awards") group('avat') s_avatar_awards_definition
+struct nicename("avatar_awards") tag_group('avat') s_avatar_awards_definition
 {
 	struct nicename("Avatar Awards") s_avatar_awards1_definition
 	{

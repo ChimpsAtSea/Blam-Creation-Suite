@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("squad_template") group('sqtm') s_squad_template_definition
+struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 {
 	struct nicename("Squad") s_squad_definition
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("camo") group('cmoe') s_camo_definition
+struct nicename("camo") tag_group('cmoe') s_camo_definition
 {
 	int16_t __unknown0;
 	int16_t __unknown1;

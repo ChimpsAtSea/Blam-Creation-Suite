@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("global_vertex_shader") group('glvs') s_global_vertex_shader_definition
+struct nicename("global_vertex_shader") tag_group('glvs') s_global_vertex_shader_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

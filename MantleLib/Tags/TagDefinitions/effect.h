@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("effect") group('effe') s_effect_definition
+struct nicename("effect") tag_group('effe') s_effect_definition
 {
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
 	{

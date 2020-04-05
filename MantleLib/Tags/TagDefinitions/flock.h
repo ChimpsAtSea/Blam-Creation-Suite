@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("flock") group('flck') s_flock_definition
+struct nicename("flock") tag_group('flck') s_flock_definition
 {
 	Undefined32 __unknown0;
 	Undefined32 __unknown1;

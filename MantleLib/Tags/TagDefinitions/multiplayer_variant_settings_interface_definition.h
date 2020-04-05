@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("multiplayer_variant_settings_interface_definition") group('goof') s_multiplayer_variant_settings_interface_definition_definition
+struct nicename("multiplayer_variant_settings_interface_definition") tag_group('goof') s_multiplayer_variant_settings_interface_definition_definition
 {
 	struct nicename("Game Engine Settings") s_game_engine_settings_definition
 	{

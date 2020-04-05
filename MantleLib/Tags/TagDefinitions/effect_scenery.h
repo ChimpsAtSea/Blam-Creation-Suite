@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("effect_scenery") group('efsc') s_effect_scenery_definition
+struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{

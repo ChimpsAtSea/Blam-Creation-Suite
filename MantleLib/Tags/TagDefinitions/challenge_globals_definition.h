@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("challenge_globals_definition") group('chdg') s_challenge_globals_definition_definition
+struct nicename("challenge_globals_definition") tag_group('chdg') s_challenge_globals_definition_definition
 {
 	struct nicename("Challenge Definitions") s_challenge_definitions_definition
 	{

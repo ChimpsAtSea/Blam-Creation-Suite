@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("havok_collision_filter") group('hcfd') s_havok_collision_filter_definition
+struct nicename("havok_collision_filter") tag_group('hcfd') s_havok_collision_filter_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

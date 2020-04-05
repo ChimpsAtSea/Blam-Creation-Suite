@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("model_animation_graph") group('jmad') s_model_animation_graph_definition
+struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_graph_definition
 {
 	enum nicename("Inheritance Flags") b_inheritance_flags : uint8_t /* bitfield */
 	{

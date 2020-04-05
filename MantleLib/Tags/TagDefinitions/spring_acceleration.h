@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("spring_acceleration") group('sadt') s_spring_acceleration_definition
+struct nicename("spring_acceleration") tag_group('sadt') s_spring_acceleration_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

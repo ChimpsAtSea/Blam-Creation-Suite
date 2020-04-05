@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("ai_globals") group('aigl') s_ai_globals_definition
+struct nicename("ai_globals") tag_group('aigl') s_ai_globals_definition
 {
 	struct nicename("AI Globals") s_ai_globals1_definition
 	{

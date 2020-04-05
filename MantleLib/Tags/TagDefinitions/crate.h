@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("crate") group('bloc') s_crate_definition
+struct nicename("crate") tag_group('bloc') s_crate_definition
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{

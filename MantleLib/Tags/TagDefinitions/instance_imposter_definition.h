@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("instance_imposter_definition") group('iimz') s_instance_imposter_definition_definition
+struct nicename("instance_imposter_definition") tag_group('iimz') s_instance_imposter_definition_definition
 {
 	struct nicename("Imposter Instanced Geometry Instances") s_imposter_instanced_geometry_instances_definition
 	{

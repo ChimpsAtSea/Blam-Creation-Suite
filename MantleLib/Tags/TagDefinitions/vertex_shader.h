@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("vertex_shader") group('vtsh') s_vertex_shader_definition
+struct nicename("vertex_shader") tag_group('vtsh') s_vertex_shader_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

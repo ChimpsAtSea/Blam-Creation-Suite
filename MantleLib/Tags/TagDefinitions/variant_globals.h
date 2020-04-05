@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("variant_globals") group('vtgl') s_variant_globals_definition
+struct nicename("variant_globals") tag_group('vtgl') s_variant_globals_definition
 {
 	struct nicename("Map Variants") s_map_variants_definition
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cookie_purchase_globals") group('cpgd') s_cookie_purchase_globals_definition
+struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_globals_definition
 {
 	struct nicename("Helmet Families") s_helmet_families_definition
 	{
