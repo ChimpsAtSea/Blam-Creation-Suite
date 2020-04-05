@@ -35,7 +35,7 @@ void c_render::update_perspective(float fieldOfViewHorizontal, float aspectRatio
 	}
 
 	s_fieldOfViewHorizontal = fieldOfViewHorizontal;
-	s_fieldOfViewVertical = atan(tanf(fieldOfViewHorizontal / 2.0f) / aspectRatio) * 2.0f;
+	s_fieldOfViewVertical = atanf(tanf(fieldOfViewHorizontal / 2.0f) / aspectRatio) * 2.0f;
 	s_aspectRatio = aspectRatio;
 
 	perspectiveMatrix = XMMatrixPerspectiveFovRH(s_fieldOfViewVertical, aspectRatio, 0.01f, 10000.0f);
