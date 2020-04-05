@@ -6,3 +6,4 @@
 #include "CacheInterface/CacheInterface.h"
 #include "!UserInterface/UserInterface.h"
 #include "VirtualResource/VirtualResource.h"
+#include "HaloScript/HaloScript.h"

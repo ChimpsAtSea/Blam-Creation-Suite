@@ -1641,7 +1641,7 @@ const TextEditor::Palette& TextEditor::GetDarkPalette()
 	const static Palette p = { {
 		0xff7f7f7f,	// Default
 		0xffd69c56,	// Keyword	
-		0xff00ff00,	// Number
+		0xffa8b5ce,	// Number
 		0xff7070e0,	// String
 		0xff70a0e0, // Char literal
 		0xffffffff, // Punctuation
@@ -1660,6 +1660,7 @@ const TextEditor::Palette& TextEditor::GetDarkPalette()
 		0x40000000, // Current line fill
 		0x40808080, // Current line fill (inactive)
 		0x40a0a0a0, // Current line edge
+		0xffdcaadc, // Subroutine
 	} };
 	return p;
 }
@@ -1688,6 +1689,7 @@ const TextEditor::Palette& TextEditor::GetLightPalette()
 		0x40000000, // Current line fill
 		0x40808080, // Current line fill (inactive)
 		0x40000000, // Current line edge
+		0xff0000FF, // Subroutine
 	} };
 	return p;
 }
@@ -1883,6 +1885,8 @@ void TextEditor::ColorizeRange(int aFromLine, int aToLine)
 							token_color = PaletteIndex::Keyword;
 						else if (mLanguageDefinition.mIdentifiers.count(id) != 0)
 							token_color = PaletteIndex::KnownIdentifier;
+						else if (mLanguageDefinition.mEnums.count(id) != 0)
+							token_color = PaletteIndex::Enum;
 						else if (mLanguageDefinition.mPreprocIdentifiers.count(id) != 0)
 							token_color = PaletteIndex::PreprocIdentifier;
 					}
@@ -2516,70 +2520,6 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::CPlusPlus(
 		inited = true;
 	}
 	return langDef;
-}
-
-const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HaloScript()
-{
-	static bool halo_script_language_inited = false;
-	static LanguageDefinition halo_script_language;
-	if (halo_script_language_inited) return halo_script_language;
-
-	halo_script_language.mName = "HSC";
-
-	halo_script_language.mCommentStart = "";
-	halo_script_language.mCommentEnd = "";
-	halo_script_language.mSingleLineComment = ";";
-
-	halo_script_language.mCaseSensitive = true;
-	halo_script_language.mAutoIndentation = true;
-
-	static const char* const keywords[] = {
-	"script", "static", "void", "global", "boolean", "TRUE", "FALSE", "int", "short", 
-	};
-	for (const char* keyword : keywords)
-		halo_script_language.mKeywords.insert(keyword);
-
-	static const char* const identifiers[][2] = {
-		{"insertion_snap_to_black"},
-		{"wake" },
-		{"if" },
-		{"or" },
-		{"and" },
-		{"not" },
-		{"set" },
-		{"begin" },
-		{"switch_zone_set" },
-		{"object_teleport_to_ai_point" },
-		{"print"},
-		{"ai_place"},
-		{"sleep"},
-		{"="},
-		{"sleep_until"}
-	};
-	for (const char* const (&identifier_and_description)[2] : identifiers)
-	{
-		const char* description = identifier_and_description[1];
-		const char* identifier = identifier_and_description[0];
-
-		Identifier id;
-		id.mDeclaration = description ? description : "Built-in Function";
-		halo_script_language.mIdentifiers.insert(std::make_pair(std::string(identifier), id));
-	}
-
-	//halo_script_language.mTokenRegexStringsPost.push_back({ "(?:\\()([a-zA-Z_])*", PaletteIndex::PreprocIdentifier, 1 }); // #TODO: Grab results for this for matching
-	halo_script_language.mTokenRegexStringsPre.push_back({ ";.*", PaletteIndex::Comment });
-	halo_script_language.mTokenRegexStringsPost.push_back({ "[ \\t]*#[ \\t]*[a-zA-Z_]+", PaletteIndex::Preprocessor });
-	halo_script_language.mTokenRegexStringsPost.push_back({ "L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String });
-	halo_script_language.mTokenRegexStringsPost.push_back({ "\\'\\\\?[^\\']\\'", PaletteIndex::CharLiteral });
-	halo_script_language.mTokenRegexStringsPost.push_back({ "([+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?)(?!([0-9])*([a-zA-Z_]))", PaletteIndex::Number });
-	halo_script_language.mTokenRegexStringsPost.push_back({ "([+-]?[0-9]+[Uu]?[lL]?[lL]?)(?!([0-9])*([a-zA-Z_]))", PaletteIndex::Number });
-	halo_script_language.mTokenRegexStringsPost.push_back({ "(0[0-7]+[Uu]?[lL]?[lL]?)(?!([0-9])*([a-zA-Z_]))", PaletteIndex::Number });
-	halo_script_language.mTokenRegexStringsPost.push_back({ "(0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?)(?!([0-9])*([a-zA-Z_]))", PaletteIndex::Number });
-	halo_script_language.mTokenRegexStringsPost.push_back({ "[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier });
-	halo_script_language.mTokenRegexStringsPost.push_back({ "[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation });
-	
-
-	return halo_script_language;
 }
 
 const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL()

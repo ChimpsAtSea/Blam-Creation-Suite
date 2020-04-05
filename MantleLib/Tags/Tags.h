@@ -54,7 +54,10 @@ typedef	uint64_t			undefined64_t;
 
 #ifndef BUILD_REFLECTION_DATA
 #include "TagGroups.h"
-#define _tag_group_render_method 'rm  '
+#define _tag_group_render_method static_cast<e_tag_group>('rm  ')
+#define _tag_group_bink static_cast<e_tag_group>('bink')
+#define _tag_group_any static_cast<e_tag_group>(-2)
+#define _tag_group_object static_cast<e_tag_group>('obje')
 #else
 enum noreflection e_tag_group : int32_t {};
 #endif

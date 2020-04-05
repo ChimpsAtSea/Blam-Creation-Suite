@@ -33,6 +33,8 @@
     <ClCompile Include="CacheInterface\CacheVersions\halo_reach_cache_file.cpp" />
     <ClCompile Include="CacheInterface\cache_file.cpp" />
     <ClCompile Include="CacheInterface\tag_group_interface.cpp" />
+    <ClCompile Include="HaloScript\halo_script_type_definition.cpp" />
+    <ClCompile Include="HaloScript\halo_script_function_definition.cpp" />
     <ClCompile Include="mantlelib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -106,6 +108,9 @@
     <ClInclude Include="!UserInterface\mantle_event_queue.h" />
     <ClInclude Include="!UserInterface\mantle_bitmap_gui_tab.h" />
     <ClInclude Include="!UserInterface\mantle_halo_script_editor.h" />
+    <ClInclude Include="HaloScript\HaloScript.h" />
+    <ClInclude Include="HaloScript\halo_script_type_definition.h" />
+    <ClInclude Include="HaloScript\halo_script_function_definition.h" />
     <ClInclude Include="render_method_definition_group_interface.h" />
     <ClInclude Include="Tags\GeneratedConversion.h" />
     <ClInclude Include="Tags\GeneratedGUI.h" />
