@@ -44,6 +44,7 @@
     <ClCompile Include="!UserInterface\mantle_shader_tool_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_event_queue.cpp" />
     <ClCompile Include="!UserInterface\mantle_bitmap_gui_tab.cpp" />
+    <ClCompile Include="!UserInterface\mantle_halo_script_editor.cpp" />
     <ClCompile Include="render_method_definition_group_interface.cpp" />
     <ClCompile Include="Tags\GeneratedConversion.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -104,6 +105,7 @@
     <ClInclude Include="!UserInterface\mantle_shader_tool_gui_tab.h" />
     <ClInclude Include="!UserInterface\mantle_event_queue.h" />
     <ClInclude Include="!UserInterface\mantle_bitmap_gui_tab.h" />
+    <ClInclude Include="!UserInterface\mantle_halo_script_editor.h" />
     <ClInclude Include="render_method_definition_group_interface.h" />
     <ClInclude Include="Tags\GeneratedConversion.h" />
     <ClInclude Include="Tags\GeneratedGUI.h" />

@@ -124,6 +124,15 @@ void c_mantle_gui::render_gui()
 
 				ImGui::EndMenu();
 			}
+
+			for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
+			{
+				if (mantle_gui_tab->is_selected)
+				{
+					mantle_gui_tab->render_menu_gui();
+				}
+			}
+
 			ImGui::EndMenuBar();
 		}
 		if (ImGui::BeginTabBar("RootTabBar"))

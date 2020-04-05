@@ -135,7 +135,13 @@ public:
 
 	struct LanguageDefinition
 	{
-		typedef std::pair<std::string, PaletteIndex> TokenRegexString;
+		struct TokenRegexString
+		{
+			std::string first;
+			PaletteIndex second;
+			int32_t begin_offset;
+			int32_t end_offset;
+		};
 		typedef std::vector<TokenRegexString> TokenRegexStrings;
 		typedef bool (*TokenizeCallback)(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end, PaletteIndex & paletteIndex);
 
@@ -149,7 +155,8 @@ public:
 
 		TokenizeCallback mTokenize;
 
-		TokenRegexStrings mTokenRegexStrings;
+		TokenRegexStrings mTokenRegexStringsPre;
+		TokenRegexStrings mTokenRegexStringsPost;
 
 		bool mCaseSensitive;
 		
@@ -160,6 +167,7 @@ public:
 
 		static const LanguageDefinition& HLSL_Shader_Asm();
 		static const LanguageDefinition& CPlusPlus();
+		static const LanguageDefinition& HaloScript();
 		static const LanguageDefinition& HLSL();
 		static const LanguageDefinition& GLSL();
 		static const LanguageDefinition& C();
@@ -234,7 +242,14 @@ public:
 	static const Palette& GetRetroBluePalette();
 
 private:
-	typedef std::vector<std::pair<std::regex, PaletteIndex>> RegexList;
+	struct RegexEntry
+	{
+		std::regex first;
+		PaletteIndex second;
+		int32_t begin_offset;
+		int32_t end_offset;
+	};
+	typedef std::vector<RegexEntry> RegexList;
 
 	struct EditorState
 	{
@@ -334,7 +349,8 @@ private:
 	Palette mPaletteBase;
 	Palette mPalette;
 	LanguageDefinition mLanguageDefinition;
-	RegexList mRegexList;
+	RegexList mRegexListPre;
+	RegexList mRegexListPost;
 
 	bool mCheckComments;
 	Breakpoints mBreakpoints;

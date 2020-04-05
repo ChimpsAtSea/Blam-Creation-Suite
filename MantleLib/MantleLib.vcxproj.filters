@@ -105,6 +105,9 @@
     <ClCompile Include="!UserInterface\mantle_bitmap_gui_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="!UserInterface\mantle_halo_script_editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlelib-public-pch.h">
@@ -777,6 +780,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tags\TagDefinitions\lens_flare.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="!UserInterface\mantle_halo_script_editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

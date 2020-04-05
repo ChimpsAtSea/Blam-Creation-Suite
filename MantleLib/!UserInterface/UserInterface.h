@@ -10,3 +10,4 @@
 #include "mantle_tag_gui_tab.h"
 #include "mantle_shader_tool_gui_tab.h"
 #include "mantle_bitmap_gui_tab.h"
+#include "mantle_halo_script_editor.h"

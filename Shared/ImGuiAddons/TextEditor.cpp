@@ -69,10 +69,26 @@ TextEditor::~TextEditor()
 void TextEditor::SetLanguageDefinition(const LanguageDefinition& aLanguageDef)
 {
 	mLanguageDefinition = aLanguageDef;
-	mRegexList.clear();
+	mRegexListPre.clear();
+	mRegexListPost.clear();
 
-	for (auto& r : mLanguageDefinition.mTokenRegexStrings)
-		mRegexList.push_back(std::make_pair(std::regex(r.first, std::regex_constants::optimize), r.second));
+	for (auto& token_regex_string : mLanguageDefinition.mTokenRegexStringsPre)
+	{
+		RegexEntry& regex_entry = mRegexListPre.emplace_back();
+		regex_entry.first = std::regex(token_regex_string.first, std::regex_constants::optimize);
+		regex_entry.second = token_regex_string.second;
+		regex_entry.begin_offset = token_regex_string.begin_offset;
+		regex_entry.end_offset = token_regex_string.end_offset;
+	}
+	
+	for (auto& r : mLanguageDefinition.mTokenRegexStringsPost)
+	{
+		RegexEntry& regex_entry = mRegexListPost.emplace_back();
+		regex_entry.first = std::regex(r.first, std::regex_constants::optimize);
+		regex_entry.second = r.second;
+		regex_entry.begin_offset = r.begin_offset;
+		regex_entry.end_offset = r.end_offset;
+	}
 }
 
 void TextEditor::SetPalette(const Palette& aValue)
@@ -1794,10 +1810,34 @@ void TextEditor::ColorizeRange(int aFromLine, int aToLine)
 
 			bool hasTokenizeResult = false;
 
-			if (mLanguageDefinition.mTokenize != nullptr)
+			if (hasTokenizeResult == false)
 			{
-				if (mLanguageDefinition.mTokenize(first, last, token_begin, token_end, token_color))
-					hasTokenizeResult = true;
+				// todo : remove
+					//printf("using regex for %.*s\n", first + 10 < last ? 10 : int(last - first), first);
+
+				for (RegexEntry& regex_entry : mRegexListPre)
+				{
+					if (std::regex_search(first, last, results, regex_entry.first, std::regex_constants::match_continuous))
+					{
+						hasTokenizeResult = true;
+
+						auto& search_result = *results.begin();
+
+						token_begin = search_result.first + regex_entry.begin_offset;
+						token_end = search_result.second + regex_entry.end_offset;
+						token_color = regex_entry.second;
+						break;
+					}
+				}
+			}
+
+			if (hasTokenizeResult == false)
+			{
+				if (mLanguageDefinition.mTokenize != nullptr)
+				{
+					if (mLanguageDefinition.mTokenize(first, last, token_begin, token_end, token_color))
+						hasTokenizeResult = true;
+				}
 			}
 
 			if (hasTokenizeResult == false)
@@ -1805,16 +1845,17 @@ void TextEditor::ColorizeRange(int aFromLine, int aToLine)
 				// todo : remove
 					//printf("using regex for %.*s\n", first + 10 < last ? 10 : int(last - first), first);
 
-				for (auto& p : mRegexList)
+				for (RegexEntry& regex_entry : mRegexListPost)
 				{
-					if (std::regex_search(first, last, results, p.first, std::regex_constants::match_continuous))
+					if (std::regex_search(first, last, results, regex_entry.first, std::regex_constants::match_continuous))
 					{
 						hasTokenizeResult = true;
 
-						auto& v = *results.begin();
-						token_begin = v.first;
-						token_end = v.second;
-						token_color = p.second;
+						auto& search_result = *results.begin();
+
+						token_begin = search_result.first + regex_entry.begin_offset;
+						token_end = search_result.second + regex_entry.end_offset;
+						token_color = regex_entry.second;
 						break;
 					}
 				}
@@ -1944,7 +1985,7 @@ void TextEditor::ColorizeInternal()
 							currentCoord.mColumn + singleStartStr.size() <= line.size() &&
 							equals(singleStartStr.begin(), singleStartStr.end(), from, from + singleStartStr.size(), pred))
 							withinSingleLineComment = true;
-						else if (!withinSingleLineComment && currentCoord.mColumn + startStr.size() <= line.size() &&
+						else if (!startStr.empty() && !withinSingleLineComment && currentCoord.mColumn + startStr.size() <= line.size() &&
 							equals(startStr.begin(), startStr.end(), from, from + startStr.size(), pred))
 							commentStart = currentCoord;
 
@@ -2349,22 +2390,22 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL_Shade
 			langDef.mKeywords.insert(k);
 
 		static const char* const identifiers[] = {
-			"add", "and", "atomic_and", "atomic_cmp_store", "atomic_iadd", "atomic_imax", "atomic_imin", "atomic_or", "atomic_umax", "atomic_umin", "atomic_xor", "bfi", "bfrev", 
-			"break", "breakc", "bufinfo", "call", "callc", "case", "continue", "continuec", "countbits", "cut", "cut_stream", "dadd", "dcl_constantBuffer", "dcl_function_body", 
-			"dcl_function_table", "dcl_globalFlags", "dcl_hs_fork_phase_instance_count", "dcl_hs_join_phase_instance_count", "dcl_hs_max_tessfactor", "dcl_immediateConstantBuffer", 
-			"dcl_indexableTemp", "dcl_indexRange", "dcl_input", "dcl_inputvForkInstanceID", "dcl_inputvGSInstanceID", "dcl_inputvJoinInstanceID", "dcl_inputvOutputControlPointID", 
-			"dcl_inputvPrim", "dcl_inputvThread", "dcl_input_control_point_count", "dcl_input_sv", "dcl_inputPrimitive", "dcl_interface", "dcl_interface_dynamicindexed", 
-			"dcl_maxOutputVertexCount", "dcl_output", "dcl_outputoDepth", "dcl_outputoMask", "dcl_output_control_point_count", "dcl_output_sgv", "dcl_output_siv", 
-			"dcl_outputTopology", "dcl_resource", "dcl_resourceraw", "dcl_resourcestructured", "dcl_sampler", "dcl_stream", "dcl_temps", "dcl_tessellator_domain", 
-			"dcl_tessellator_output_primitve", "dcl_tessellator_partitioning", "dcl_tgsm_raw", "dcl_tgsm_structured", "dcl_thread_group", "dcl_uav_raw", "dcl_uav_structured", 
-			"dcl_uav_typed", "ddiv", "default", "deq", "deriv_rtx_coarse", "deriv_rtx_fine", "deriv_rty_coarse", "deriv_rty_fine", "dfma", "dge", "discard", "div", "dlt", "dmax", 
-			"dmin", "dmov", "dmovc", "dmul", "dne", "dp2", "dp3", "dp4", "drcp", "else", "emit", "emit_stream", "emitThenCut", "emitThenCut_stream", "endif", "endloop", "endswitch", 
-			"eq", "exp", "f16tof32", "f32tof16", "fcall", "firstbit", "frc", "ftod", "ftoi", "ftou", "gather4", "gather4_c", "gather4_po", "gather4_po_c", "ge", "hs_control_point_phase", 
-			"hs_decls", "hs_fork_phase", "hs_join_phase", "iadd", "ibfe", "ieq", "if", "ige", "ilt", "imad", "imin", "imm_atomic_alloc", "imm_atomic_and", "imm_atomic_cmp_exch", 
-			"imm_atomic_consume", "imm_atomic_exch", "imm_atomic_iadd", "imm_atomic_imax", "imm_atomic_imin", "imm_atomic_or", "imm_atomic_umax", "imm_atomic_umin", "imm_atomic_xor", 
-			"imul", "ine", "ineg", "ishl", "ishr", "itof", "label", "ld", "ld_raw", "ld_structured", "ld_uav_typed", "ld2dms", "lod", "log", "loop", "lt", "mad", "max", "min", 
-			"mov", "movc", "mul", "ne", "nop", "not", "or", "rcp", "resinfo", "ret", "retc", "round_ne", "round_ni", "round_pi", "round_z", "rsq", "sample", "sample_b", "sample_c", 
-			"sample_c_lz", "sample_d", "sample_l", "sampleinfo", "samplepos", "sincos", "sqrt", "store_raw", "store_structured", "store_uav_typed", "swapc", "switch", "sync", 
+			"add", "and", "atomic_and", "atomic_cmp_store", "atomic_iadd", "atomic_imax", "atomic_imin", "atomic_or", "atomic_umax", "atomic_umin", "atomic_xor", "bfi", "bfrev",
+			"break", "breakc", "bufinfo", "call", "callc", "case", "continue", "continuec", "countbits", "cut", "cut_stream", "dadd", "dcl_constantBuffer", "dcl_function_body",
+			"dcl_function_table", "dcl_globalFlags", "dcl_hs_fork_phase_instance_count", "dcl_hs_join_phase_instance_count", "dcl_hs_max_tessfactor", "dcl_immediateConstantBuffer",
+			"dcl_indexableTemp", "dcl_indexRange", "dcl_input", "dcl_inputvForkInstanceID", "dcl_inputvGSInstanceID", "dcl_inputvJoinInstanceID", "dcl_inputvOutputControlPointID",
+			"dcl_inputvPrim", "dcl_inputvThread", "dcl_input_control_point_count", "dcl_input_sv", "dcl_inputPrimitive", "dcl_interface", "dcl_interface_dynamicindexed",
+			"dcl_maxOutputVertexCount", "dcl_output", "dcl_outputoDepth", "dcl_outputoMask", "dcl_output_control_point_count", "dcl_output_sgv", "dcl_output_siv",
+			"dcl_outputTopology", "dcl_resource", "dcl_resourceraw", "dcl_resourcestructured", "dcl_sampler", "dcl_stream", "dcl_temps", "dcl_tessellator_domain",
+			"dcl_tessellator_output_primitve", "dcl_tessellator_partitioning", "dcl_tgsm_raw", "dcl_tgsm_structured", "dcl_thread_group", "dcl_uav_raw", "dcl_uav_structured",
+			"dcl_uav_typed", "ddiv", "default", "deq", "deriv_rtx_coarse", "deriv_rtx_fine", "deriv_rty_coarse", "deriv_rty_fine", "dfma", "dge", "discard", "div", "dlt", "dmax",
+			"dmin", "dmov", "dmovc", "dmul", "dne", "dp2", "dp3", "dp4", "drcp", "else", "emit", "emit_stream", "emitThenCut", "emitThenCut_stream", "endif", "endloop", "endswitch",
+			"eq", "exp", "f16tof32", "f32tof16", "fcall", "firstbit", "frc", "ftod", "ftoi", "ftou", "gather4", "gather4_c", "gather4_po", "gather4_po_c", "ge", "hs_control_point_phase",
+			"hs_decls", "hs_fork_phase", "hs_join_phase", "iadd", "ibfe", "ieq", "if", "ige", "ilt", "imad", "imin", "imm_atomic_alloc", "imm_atomic_and", "imm_atomic_cmp_exch",
+			"imm_atomic_consume", "imm_atomic_exch", "imm_atomic_iadd", "imm_atomic_imax", "imm_atomic_imin", "imm_atomic_or", "imm_atomic_umax", "imm_atomic_umin", "imm_atomic_xor",
+			"imul", "ine", "ineg", "ishl", "ishr", "itof", "label", "ld", "ld_raw", "ld_structured", "ld_uav_typed", "ld2dms", "lod", "log", "loop", "lt", "mad", "max", "min",
+			"mov", "movc", "mul", "ne", "nop", "not", "or", "rcp", "resinfo", "ret", "retc", "round_ne", "round_ni", "round_pi", "round_z", "rsq", "sample", "sample_b", "sample_c",
+			"sample_c_lz", "sample_d", "sample_l", "sampleinfo", "samplepos", "sincos", "sqrt", "store_raw", "store_structured", "store_uav_typed", "swapc", "switch", "sync",
 			"uaddc", "ubfe", "udiv", "uge", "ult", "umad", "umax", "umin", "umul", "ushr", "usubb", "utof", "xor",
 
 			"dcl_input_ps"
@@ -2385,14 +2426,14 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL_Shade
 			}
 		}
 
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("\\'\\\\?[^\\']\\'", PaletteIndex::String));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[0-7]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
+		langDef.mTokenRegexStringsPost.push_back({ "L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String });
+		langDef.mTokenRegexStringsPost.push_back({"\\'\\\\?[^\\']\\'", PaletteIndex::String });
+		langDef.mTokenRegexStringsPost.push_back({"[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number });
+		langDef.mTokenRegexStringsPost.push_back({"[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number });
+		langDef.mTokenRegexStringsPost.push_back({"0[0-7]+[Uu]?[lL]?[lL]?", PaletteIndex::Number });
+		langDef.mTokenRegexStringsPost.push_back({"0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number });
+		langDef.mTokenRegexStringsPost.push_back({"[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier });
+		langDef.mTokenRegexStringsPost.push_back({"[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation });
 
 		langDef.mCommentStart = "/*";
 		langDef.mCommentEnd = "*/";
@@ -2477,228 +2518,291 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::CPlusPlus(
 	return langDef;
 }
 
+const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HaloScript()
+{
+	static bool halo_script_language_inited = false;
+	static LanguageDefinition halo_script_language;
+	if (halo_script_language_inited) return halo_script_language;
+
+	halo_script_language.mName = "HSC";
+
+	halo_script_language.mCommentStart = "";
+	halo_script_language.mCommentEnd = "";
+	halo_script_language.mSingleLineComment = ";";
+
+	halo_script_language.mCaseSensitive = true;
+	halo_script_language.mAutoIndentation = true;
+
+	static const char* const keywords[] = {
+	"script", "static", "void", "global", "boolean", "TRUE", "FALSE", "int", "short", 
+	};
+	for (const char* keyword : keywords)
+		halo_script_language.mKeywords.insert(keyword);
+
+	static const char* const identifiers[][2] = {
+		{"insertion_snap_to_black"},
+		{"wake" },
+		{"if" },
+		{"or" },
+		{"and" },
+		{"not" },
+		{"set" },
+		{"begin" },
+		{"switch_zone_set" },
+		{"object_teleport_to_ai_point" },
+		{"print"},
+		{"ai_place"},
+		{"sleep"},
+		{"="},
+		{"sleep_until"}
+	};
+	for (const char* const (&identifier_and_description)[2] : identifiers)
+	{
+		const char* description = identifier_and_description[1];
+		const char* identifier = identifier_and_description[0];
+
+		Identifier id;
+		id.mDeclaration = description ? description : "Built-in Function";
+		halo_script_language.mIdentifiers.insert(std::make_pair(std::string(identifier), id));
+	}
+
+	//halo_script_language.mTokenRegexStringsPost.push_back({ "(?:\\()([a-zA-Z_])*", PaletteIndex::PreprocIdentifier, 1 }); // #TODO: Grab results for this for matching
+	halo_script_language.mTokenRegexStringsPre.push_back({ ";.*", PaletteIndex::Comment });
+	halo_script_language.mTokenRegexStringsPost.push_back({ "[ \\t]*#[ \\t]*[a-zA-Z_]+", PaletteIndex::Preprocessor });
+	halo_script_language.mTokenRegexStringsPost.push_back({ "L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String });
+	halo_script_language.mTokenRegexStringsPost.push_back({ "\\'\\\\?[^\\']\\'", PaletteIndex::CharLiteral });
+	halo_script_language.mTokenRegexStringsPost.push_back({ "([+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?)(?!([0-9])*([a-zA-Z_]))", PaletteIndex::Number });
+	halo_script_language.mTokenRegexStringsPost.push_back({ "([+-]?[0-9]+[Uu]?[lL]?[lL]?)(?!([0-9])*([a-zA-Z_]))", PaletteIndex::Number });
+	halo_script_language.mTokenRegexStringsPost.push_back({ "(0[0-7]+[Uu]?[lL]?[lL]?)(?!([0-9])*([a-zA-Z_]))", PaletteIndex::Number });
+	halo_script_language.mTokenRegexStringsPost.push_back({ "(0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?)(?!([0-9])*([a-zA-Z_]))", PaletteIndex::Number });
+	halo_script_language.mTokenRegexStringsPost.push_back({ "[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier });
+	halo_script_language.mTokenRegexStringsPost.push_back({ "[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation });
+	
+
+	return halo_script_language;
+}
+
 const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HLSL()
 {
-	static bool inited = false;
-	static LanguageDefinition langDef;
-	if (!inited)
+	static bool hlsl_language_inited = false;
+	static LanguageDefinition hlsl_script_language;
+	if (hlsl_language_inited) return hlsl_script_language;
+	hlsl_language_inited = true;
+
+	hlsl_script_language.mName = "HLSL";
+
+	hlsl_script_language.mCommentStart = "/*";
+	hlsl_script_language.mCommentEnd = "*/";
+	hlsl_script_language.mSingleLineComment = "//";
+
+	hlsl_script_language.mCaseSensitive = true;
+	hlsl_script_language.mAutoIndentation = true;
+
+	static const char* const keywords[] = {
+		"AppendStructuredBuffer", "asm", "asm_fragment", "BlendState", "bool", "break", "Buffer", "ByteAddressBuffer", "case", "cbuffer", "centroid", "class", "column_major", "compile", "compile_fragment",
+		"CompileShader", "const", "continue", "ComputeShader", "ConsumeStructuredBuffer", "default", "DepthStencilState", "DepthStencilView", "discard", "do", "double", "DomainShader", "dword", "else",
+		"export", "extern", "false", "float", "for", "fxgroup", "GeometryShader", "groupshared", "half", "Hullshader", "if", "in", "inline", "inout", "InputPatch", "int", "interface", "line", "lineadj",
+		"linear", "LineStream", "matrix", "min16float", "min10float", "min16int", "min12int", "min16uint", "namespace", "nointerpolation", "noperspective", "NULL", "out", "OutputPatch", "packoffset",
+		"pass", "pixelfragment", "PixelShader", "point", "PointStream", "precise", "RasterizerState", "RenderTargetView", "return", "register", "row_major", "RWBuffer", "RWByteAddressBuffer", "RWStructuredBuffer",
+		"RWTexture1D", "RWTexture1DArray", "RWTexture2D", "RWTexture2DArray", "RWTexture3D", "sample", "sampler", "SamplerState", "SamplerComparisonState", "shared", "snorm", "stateblock", "stateblock_state",
+		"static", "string", "struct", "switch", "StructuredBuffer", "tbuffer", "technique", "technique10", "technique11", "texture", "Texture1D", "Texture1DArray", "Texture2D", "Texture2DArray", "Texture2DMS",
+		"Texture2DMSArray", "Texture3D", "TextureCube", "TextureCubeArray", "true", "typedef", "triangle", "triangleadj", "TriangleStream", "uint", "uniform", "unorm", "unsigned", "vector", "vertexfragment",
+		"VertexShader", "void", "volatile", "while",
+		"bool1","bool2","bool3","bool4","double1","double2","double3","double4", "float1", "float2", "float3", "float4", "int1", "int2", "int3", "int4", "in", "out", "inout",
+		"uint1", "uint2", "uint3", "uint4", "dword1", "dword2", "dword3", "dword4", "half1", "half2", "half3", "half4",
+		"float1x1","float2x1","float3x1","float4x1","float1x2","float2x2","float3x2","float4x2",
+		"float1x3","float2x3","float3x3","float4x3","float1x4","float2x4","float3x4","float4x4",
+		"half1x1","half2x1","half3x1","half4x1","half1x2","half2x2","half3x2","half4x2",
+		"half1x3","half2x3","half3x3","half4x3","half1x4","half2x4","half3x4","half4x4",
+	};
+	for (auto& k : keywords)
+		hlsl_script_language.mKeywords.insert(k);
+
+	static const char* const identifiers[] = {
+		"abort", "abs", "acos", "all", "AllMemoryBarrier", "AllMemoryBarrierWithGroupSync", "any", "asdouble", "asfloat", "asin", "asint", "asint", "asuint",
+		"asuint", "atan", "atan2", "ceil", "CheckAccessFullyMapped", "clamp", "clip", "cos", "cosh", "countbits", "cross", "D3DCOLORtoUBYTE4", "ddx",
+		"ddx_coarse", "ddx_fine", "ddy", "ddy_coarse", "ddy_fine", "degrees", "determinant", "DeviceMemoryBarrier", "DeviceMemoryBarrierWithGroupSync",
+		"distance", "dot", "dst", "errorf", "EvaluateAttributeAtCentroid", "EvaluateAttributeAtSample", "EvaluateAttributeSnapped", "exp", "exp2",
+		"f16tof32", "f32tof16", "faceforward", "firstbithigh", "firstbitlow", "floor", "fma", "fmod", "frac", "frexp", "fwidth", "GetRenderTargetSampleCount",
+		"GetRenderTargetSamplePosition", "GroupMemoryBarrier", "GroupMemoryBarrierWithGroupSync", "InterlockedAdd", "InterlockedAnd", "InterlockedCompareExchange",
+		"InterlockedCompareStore", "InterlockedExchange", "InterlockedMax", "InterlockedMin", "InterlockedOr", "InterlockedXor", "isfinite", "isinf", "isnan",
+		"ldexp", "length", "lerp", "lit", "log", "log10", "log2", "mad", "max", "min", "modf", "msad4", "mul", "noise", "normalize", "pow", "printf",
+		"Process2DQuadTessFactorsAvg", "Process2DQuadTessFactorsMax", "Process2DQuadTessFactorsMin", "ProcessIsolineTessFactors", "ProcessQuadTessFactorsAvg",
+		"ProcessQuadTessFactorsMax", "ProcessQuadTessFactorsMin", "ProcessTriTessFactorsAvg", "ProcessTriTessFactorsMax", "ProcessTriTessFactorsMin",
+		"radians", "rcp", "reflect", "refract", "reversebits", "round", "rsqrt", "saturate", "sign", "sin", "sincos", "sinh", "smoothstep", "sqrt", "step",
+		"tan", "tanh", "tex1D", "tex1D", "tex1Dbias", "tex1Dgrad", "tex1Dlod", "tex1Dproj", "tex2D", "tex2D", "tex2Dbias", "tex2Dgrad", "tex2Dlod", "tex2Dproj",
+		"tex3D", "tex3D", "tex3Dbias", "tex3Dgrad", "tex3Dlod", "tex3Dproj", "texCUBE", "texCUBE", "texCUBEbias", "texCUBEgrad", "texCUBElod", "texCUBEproj", "transpose", "trunc"
+	};
+	for (auto& k : identifiers)
 	{
-		static const char* const keywords[] = {
-			"AppendStructuredBuffer", "asm", "asm_fragment", "BlendState", "bool", "break", "Buffer", "ByteAddressBuffer", "case", "cbuffer", "centroid", "class", "column_major", "compile", "compile_fragment",
-			"CompileShader", "const", "continue", "ComputeShader", "ConsumeStructuredBuffer", "default", "DepthStencilState", "DepthStencilView", "discard", "do", "double", "DomainShader", "dword", "else",
-			"export", "extern", "false", "float", "for", "fxgroup", "GeometryShader", "groupshared", "half", "Hullshader", "if", "in", "inline", "inout", "InputPatch", "int", "interface", "line", "lineadj",
-			"linear", "LineStream", "matrix", "min16float", "min10float", "min16int", "min12int", "min16uint", "namespace", "nointerpolation", "noperspective", "NULL", "out", "OutputPatch", "packoffset",
-			"pass", "pixelfragment", "PixelShader", "point", "PointStream", "precise", "RasterizerState", "RenderTargetView", "return", "register", "row_major", "RWBuffer", "RWByteAddressBuffer", "RWStructuredBuffer",
-			"RWTexture1D", "RWTexture1DArray", "RWTexture2D", "RWTexture2DArray", "RWTexture3D", "sample", "sampler", "SamplerState", "SamplerComparisonState", "shared", "snorm", "stateblock", "stateblock_state",
-			"static", "string", "struct", "switch", "StructuredBuffer", "tbuffer", "technique", "technique10", "technique11", "texture", "Texture1D", "Texture1DArray", "Texture2D", "Texture2DArray", "Texture2DMS",
-			"Texture2DMSArray", "Texture3D", "TextureCube", "TextureCubeArray", "true", "typedef", "triangle", "triangleadj", "TriangleStream", "uint", "uniform", "unorm", "unsigned", "vector", "vertexfragment",
-			"VertexShader", "void", "volatile", "while",
-			"bool1","bool2","bool3","bool4","double1","double2","double3","double4", "float1", "float2", "float3", "float4", "int1", "int2", "int3", "int4", "in", "out", "inout",
-			"uint1", "uint2", "uint3", "uint4", "dword1", "dword2", "dword3", "dword4", "half1", "half2", "half3", "half4",
-			"float1x1","float2x1","float3x1","float4x1","float1x2","float2x2","float3x2","float4x2",
-			"float1x3","float2x3","float3x3","float4x3","float1x4","float2x4","float3x4","float4x4",
-			"half1x1","half2x1","half3x1","half4x1","half1x2","half2x2","half3x2","half4x2",
-			"half1x3","half2x3","half3x3","half4x3","half1x4","half2x4","half3x4","half4x4",
-		};
-		for (auto& k : keywords)
-			langDef.mKeywords.insert(k);
+		Identifier id;
+		id.mDeclaration = "Built-in function";
+		hlsl_script_language.mIdentifiers.insert(std::make_pair(std::string(k), id));
+	}
 
-		static const char* const identifiers[] = {
-			"abort", "abs", "acos", "all", "AllMemoryBarrier", "AllMemoryBarrierWithGroupSync", "any", "asdouble", "asfloat", "asin", "asint", "asint", "asuint",
-			"asuint", "atan", "atan2", "ceil", "CheckAccessFullyMapped", "clamp", "clip", "cos", "cosh", "countbits", "cross", "D3DCOLORtoUBYTE4", "ddx",
-			"ddx_coarse", "ddx_fine", "ddy", "ddy_coarse", "ddy_fine", "degrees", "determinant", "DeviceMemoryBarrier", "DeviceMemoryBarrierWithGroupSync",
-			"distance", "dot", "dst", "errorf", "EvaluateAttributeAtCentroid", "EvaluateAttributeAtSample", "EvaluateAttributeSnapped", "exp", "exp2",
-			"f16tof32", "f32tof16", "faceforward", "firstbithigh", "firstbitlow", "floor", "fma", "fmod", "frac", "frexp", "fwidth", "GetRenderTargetSampleCount",
-			"GetRenderTargetSamplePosition", "GroupMemoryBarrier", "GroupMemoryBarrierWithGroupSync", "InterlockedAdd", "InterlockedAnd", "InterlockedCompareExchange",
-			"InterlockedCompareStore", "InterlockedExchange", "InterlockedMax", "InterlockedMin", "InterlockedOr", "InterlockedXor", "isfinite", "isinf", "isnan",
-			"ldexp", "length", "lerp", "lit", "log", "log10", "log2", "mad", "max", "min", "modf", "msad4", "mul", "noise", "normalize", "pow", "printf",
-			"Process2DQuadTessFactorsAvg", "Process2DQuadTessFactorsMax", "Process2DQuadTessFactorsMin", "ProcessIsolineTessFactors", "ProcessQuadTessFactorsAvg",
-			"ProcessQuadTessFactorsMax", "ProcessQuadTessFactorsMin", "ProcessTriTessFactorsAvg", "ProcessTriTessFactorsMax", "ProcessTriTessFactorsMin",
-			"radians", "rcp", "reflect", "refract", "reversebits", "round", "rsqrt", "saturate", "sign", "sin", "sincos", "sinh", "smoothstep", "sqrt", "step",
-			"tan", "tanh", "tex1D", "tex1D", "tex1Dbias", "tex1Dgrad", "tex1Dlod", "tex1Dproj", "tex2D", "tex2D", "tex2Dbias", "tex2Dgrad", "tex2Dlod", "tex2Dproj",
-			"tex3D", "tex3D", "tex3Dbias", "tex3Dgrad", "tex3Dlod", "tex3Dproj", "texCUBE", "texCUBE", "texCUBEbias", "texCUBEgrad", "texCUBElod", "texCUBEproj", "transpose", "trunc"
-		};
-		for (auto& k : identifiers)
+
+
+	static const char* const semantics[] = {
+	"BINORMAL",
+	"BLENDINDICES",
+	"BLENDWEIGHT",
+	"COLOR",
+	"NORMAL",
+	"POSITION",
+	"POSITIONT",
+	"PSIZE",
+	"TANGENT",
+	"TEXCOORD",
+	"FOG",
+	"PSIZE",
+	"TESSFACTOR",
+	"VFACE",
+	"VPOS",
+	"DEPTH",
+	"SV_ClipDistance",
+	"SV_CullDistance",
+	"SV_Coverage",
+	"SV_Depth",
+	"SV_DepthGreaterEqual",
+	"SV_DepthLessEqual",
+	"SV_DispatchThreadID",
+	"SV_DomainLocation",
+	"SV_GroupID",
+	"SV_GroupIndex",
+	"SV_GroupThreadID",
+	"SV_GSInstanceID",
+	"SV_InnerCoverage",
+	"SV_InsideTessFactor",
+	"SV_InstanceID",
+	"SV_IsFrontFace",
+	"SV_OutputControlPointID",
+	"SV_Position",
+	"SV_PrimitiveID",
+	"SV_RenderTargetArrayIndex",
+	"SV_SampleIndex",
+	"SV_StencilRef",
+	"SV_Target",
+	"SV_TessFactor",
+	"SV_VertexID",
+	"SV_ViewportArrayIndex",
+	};
+
+	static const char* const semantics_desc[] = {
+		"BINORMAL[n] : float4\nBinormal\n",
+		"BLENDINDICES[n] : uint\nBlend indices\n",
+		"BLENDWEIGHT[n] : float\nBlend weights\n",
+		"COLOR[n] : float4\nVS: Diffuse and specular color\n"
+		"PS: Output color\n",
+		"NORMAL[n] : float4\nNormal vector\n",
+		"POSITION[n] : float4\nVS: Vertex position in object space.\n"
+		"PS: Position of a vertex in homogenous space. Compute position in screen-space by dividing (x,y,z) by w.\n"
+		"Every vertex shader must write out a parameter with this semantic.\n",
+		"POSITIONT : float4\nTransformed vertex position.\n",
+		"PSIZE[n] : float\nPoint size\n",
+		"TANGENT[n] : float4\nTangent\n",
+		"TEXCOORD[n] : float4\nTexture coordinates\n",
+		"FOG : float\nVertex fog\n",
+		"PSIZE : float\nPoint size\n",
+		"TESSFACTOR[n] : float\nTessellation factor\n",
+		"VFACE : float\nFloating-point scalar that indicates a back-facing primitive.\n"
+		"A negative value faces backwards, while a positive value faces the camera.\n"
+		"[!Note]\n"
+		"This semantic is available in Direct3D 9 Shader Model 3.0. For Direct3D 10 and later, use SV_IsFrontFace instead.\n",
+		"VPOS : float2\nThe pixel location (x,y) in screen space. To convert a Direct3D 9 shader (that uses this semantic) to a Direct3D 10\n"
+		"and later shader, see Direct3D 9 VPOS and Direct3D 10 SV_Position)\n",
+		"DEPTH[n] : float\nOutput depth\n",
+		"SV_ClipDistance[n] : float\nClip distance data. SV_ClipDistance values are each assumed to be a float32 signed distance to a plane.\n"
+		"Primitive setup only invokes rasterization on pixels for which the interpolated plane distance(s) are >= 0. Multiple clip planes can be\n"
+		"implemented simultaneously, by declaring multiple component(s) of one or more vertex elements as the SV_ClipDistance. The combined clip\n"
+		"and cull distance values are at most D3D#_CLIP_OR_CULL_DISTANCE_COUNT components in at most D3D#_CLIP_OR_CULL_DISTANCE_ELEMENT_COUNT\n"
+		"registers. Available to all shaders to be read or written to, except the vertex shader which can write the value but not take it as input.\n"
+		"The clipplanes attribute works like SV_ClipDistance but works on all hardware feature level 9_x and higher.\n"
+		"For more info, see User clip planes on feature level 9 hardware.\n",
+		"SV_CullDistance[n] : float\nCull distance data. When component(s) of vertex Element(s) are given this label, these values are each assumed\n"
+		"to be a float32 signed distance to a plane. Primitives will be completely discarded if the plane distance(s) for all of the vertices in\n"
+		"the primitive are < 0. Multiple cull planes can be used simultaneously, by declaring multiple component(s) of one or more vertex elements\n"
+		"as the SV_CullDistance. The combined clip and cull distance values are at most D3D#_CLIP_OR_CULL_DISTANCE_COUNT components in at most\n"
+		"D3D#_CLIP_OR_CULL_DISTANCE_ELEMENT_COUNT registers. Available to all shaders to be read or written to, except the vertex shader which can\n"
+		"write the value but not take it as input.\n",
+		"SV_Coverage : uint\nA mask that can be specified on input, output, or both of a pixel shader.\n"
+		"For SV_Coverage on a pixel shader, OUTPUT is supported on ps_4_1 or higher.\n"
+		"For SV_Coverage on a pixel shader, INPUT requires ps_5_0 or higher.\n",
+		"SV_Depth : float\nDepth buffer data. Can be written by pixel shader.\n",
+		"SV_DepthGreaterEqual : unknown\nIn a pixel shader, allows outputting depth, as long as it is greater than or equal to the value determined\n"
+		"by the rasterizer. Enables adjusting depth without disabling early Z.\n",
+		"SV_DepthLessEqual : unknown\nIn a pixel shader, allows outputting depth, as long as it is less than or equal to the value determined by\n"
+		"the rasterizer. Enables adjusting depth without disabling early Z.\n",
+		"SV_DispatchThreadID : uint3\nDefines the global thread offset within the Dispatch call, per dimension of the group. Available as input to compute shader. (read only)\n",
+		"SV_DomainLocation : float2|3\nDefines the location on the hull of the current domain point being evaluated. Available as input to the domain shader. (read only)\n",
+		"SV_GroupID : uint3\nDefines the group offset within a Dispatch call, per dimension of the dispatch call. Available as input to the compute shader. (read only)\n",
+		"SV_GroupIndex : uint\nProvides a flattened index for a given thread within a given group. Available as input to the compute shader. (read only)\n",
+		"SV_GroupThreadID : uint3\nDefines the thread offset within the group, per dimension of the group. Available as input to the compute shader. (read only)\n",
+		"SV_GSInstanceID : uint\nDefines the instance of the geometry shader. Available as input to the geometry shader.\n"
+		"The instance is needed as a geometry shader can be invoked up to 32 times on the same geometry primitive.\n",
+		"SV_InnerCoverage : \nRepresents underestimated conservative rasterization information (i.e. whether a pixel is guaranteed-to-be-fully covered).\n"
+		"Can be read or written by the pixel shader.\n",
+		"SV_InsideTessFactor : float|float[2]\nDefines the tessellation amount within a patch surface. Available in the hull shader for writing,\n"
+		"and available in the domain shader for reading.\n",
+		"SV_InstanceID : \nPer-instance identifier automatically generated by the runtime (see Using System-Generated Values (Direct3D 10)). Available to all shaders.\n",
+		"SV_IsFrontFace : bool\nSpecifies whether a triangle is front facing. For lines and points, IsFrontFace has the value true.\n"
+		"The exception is lines drawn out of triangles (wireframe mode), which sets IsFrontFace the same way as rasterizing the triangle in solid mode.\n"
+		"Can be written to by the geometry shader, and read by the pixel shader.\n",
+		"SV_OutputControlPointID : uint\nDefines the index of the control point ID being operated on by an invocation of the main entry point of\n"
+		"the hull shader. Can be read by the hull shader only.\n",
+		"SV_Position : float4\nWhen SV_Position is declared for input to a shader, it can have one of two interpolation modes\n"
+		"specified: linearNoPerspective or linearNoPerspectiveCentroid, where the latter causes centroid-snapped xyzw values to be provided when\n"
+		"multisample antialiasing. When used in a shader, SV_Position describes the pixel location. Available in all shaders to get the pixel center with a 0.5 offset.\n",
+		"SV_PrimitiveID : uint\nPer-primitive identifier automatically generated by the runtime (see Using System-Generated Values (Direct3D 10)).\n"
+		"Can be written to by the geometry or pixel shaders, and read by the geometry, pixel, hull or domain shaders.\n",
+		"SV_RenderTargetArrayIndex : uint\nRender-target array index. Applied to geometry shader output, and indicates the render target array\n"
+		"slice that the primitive will be drawn to by the pixel shader. SV_RenderTargetArrayIndex is valid only if the render target is an array resource.\n"
+		"This semantic applies only to primitives; if a primitive has more than one vertex, then the value from the leading vertex is used.\n"
+		"This value also indicates which array slice of a depth/stencil view is used for read/write purposes.\n"
+		"Can be written from the geometry shader, and read by the pixel shader.\n"
+		"If D3D11_FEATURE_DATA_D3D11_OPTIONS3::VPAndRTArrayIndexFromAnyShaderFeedingRasterizer is true, then SV_RenderTargetArrayIndex is applied to any shader feeding the rasterizer.\n",
+		"SV_SampleIndex : uint\nSample frequency index data. Available to be read or written to by the pixel shader only.\n",
+		"SV_StencilRef : uint\nRepresents the current pixel shader stencil reference value. Can be written by the pixel shader only.\n",
+		"SV_Target[n], where 0 <= n <= 7 : float[2|3|4]\nThe output value that will be stored in a render target. The index indicates which of the\n"
+		"8 possibly bound render targets to write to. The value is available to all shaders.\n",
+		"SV_TessFactor : float[2|3|4]\nDefines the tessellation amount on each edge of a patch. Available for writing in the hull shader and reading in the domain shader.\n",
+		"SV_VertexID : uint\nPer-vertex identifier automatically generated by the runtime (see Using System-Generated Values (Direct3D 10)).\n"
+		"Available as the input to the vertex shader only.\n",
+		"SV_ViewportArrayIndex : uint\nViewport array index. Applied to geometry shader output, and indicates which viewport to use for the\n"
+		"primitive currently being written out. Can be read by the pixel shader. The primitive will be transformed and clipped against the viewport\n"
+		"specified by the index before it is passed to the rasterizer. This semantic applies only to primitives; if a primitive has more than one\n"
+		"vertex, then the value from the leading vertex is used.\n"
+		"If D3D11_FEATURE_DATA_D3D11_OPTIONS3::VPAndRTArrayIndexFromAnyShaderFeedingRasterizer is true, then SV_ViewportArrayIndex is applied to any shader feeding the rasterizer.\n"
+	};
+	for (int i = 0; i < _countof(semantics); ++i)
+	{
+		std::string semantic_name = semantics[i];
+		std::string semantic_description = semantics_desc[i];
+
+		Identifier id;
+		id.mDeclaration = semantic_description;
+		hlsl_script_language.mIdentifiers.insert(std::make_pair(semantic_name, id));
+
+		if (semantic_description.find(semantic_name + "[n]") == 0)
 		{
-			Identifier id;
-			id.mDeclaration = "Built-in function";
-			langDef.mIdentifiers.insert(std::make_pair(std::string(k), id));
-		}
-
-
-
-		static const char* const semantics[] = {
-		"BINORMAL",
-		"BLENDINDICES",
-		"BLENDWEIGHT",
-		"COLOR",
-		"NORMAL",
-		"POSITION",
-		"POSITIONT",
-		"PSIZE",
-		"TANGENT",
-		"TEXCOORD",
-		"FOG",
-		"PSIZE",
-		"TESSFACTOR",
-		"VFACE",
-		"VPOS",
-		"DEPTH",
-		"SV_ClipDistance",
-		"SV_CullDistance",
-		"SV_Coverage",
-		"SV_Depth",
-		"SV_DepthGreaterEqual",
-		"SV_DepthLessEqual",
-		"SV_DispatchThreadID",
-		"SV_DomainLocation",
-		"SV_GroupID",
-		"SV_GroupIndex",
-		"SV_GroupThreadID",
-		"SV_GSInstanceID",
-		"SV_InnerCoverage",
-		"SV_InsideTessFactor",
-		"SV_InstanceID",
-		"SV_IsFrontFace",
-		"SV_OutputControlPointID",
-		"SV_Position",
-		"SV_PrimitiveID",
-		"SV_RenderTargetArrayIndex",
-		"SV_SampleIndex",
-		"SV_StencilRef",
-		"SV_Target",
-		"SV_TessFactor",
-		"SV_VertexID",
-		"SV_ViewportArrayIndex",
-		};
-
-		static const char* const semantics_desc[] = {
-			"BINORMAL[n] : float4\nBinormal\n",
-			"BLENDINDICES[n] : uint\nBlend indices\n",
-			"BLENDWEIGHT[n] : float\nBlend weights\n",
-			"COLOR[n] : float4\nVS: Diffuse and specular color\n"
-			"PS: Output color\n",
-			"NORMAL[n] : float4\nNormal vector\n",
-			"POSITION[n] : float4\nVS: Vertex position in object space.\n"
-			"PS: Position of a vertex in homogenous space. Compute position in screen-space by dividing (x,y,z) by w.\n"
-			"Every vertex shader must write out a parameter with this semantic.\n",
-			"POSITIONT : float4\nTransformed vertex position.\n",
-			"PSIZE[n] : float\nPoint size\n",
-			"TANGENT[n] : float4\nTangent\n",
-			"TEXCOORD[n] : float4\nTexture coordinates\n",
-			"FOG : float\nVertex fog\n",
-			"PSIZE : float\nPoint size\n",
-			"TESSFACTOR[n] : float\nTessellation factor\n",
-			"VFACE : float\nFloating-point scalar that indicates a back-facing primitive.\n"
-			"A negative value faces backwards, while a positive value faces the camera.\n"
-			"[!Note]\n"
-			"This semantic is available in Direct3D 9 Shader Model 3.0. For Direct3D 10 and later, use SV_IsFrontFace instead.\n",
-			"VPOS : float2\nThe pixel location (x,y) in screen space. To convert a Direct3D 9 shader (that uses this semantic) to a Direct3D 10\n"
-			"and later shader, see Direct3D 9 VPOS and Direct3D 10 SV_Position)\n",
-			"DEPTH[n] : float\nOutput depth\n",
-			"SV_ClipDistance[n] : float\nClip distance data. SV_ClipDistance values are each assumed to be a float32 signed distance to a plane.\n"
-			"Primitive setup only invokes rasterization on pixels for which the interpolated plane distance(s) are >= 0. Multiple clip planes can be\n"
-			"implemented simultaneously, by declaring multiple component(s) of one or more vertex elements as the SV_ClipDistance. The combined clip\n"
-			"and cull distance values are at most D3D#_CLIP_OR_CULL_DISTANCE_COUNT components in at most D3D#_CLIP_OR_CULL_DISTANCE_ELEMENT_COUNT\n"
-			"registers. Available to all shaders to be read or written to, except the vertex shader which can write the value but not take it as input.\n"
-			"The clipplanes attribute works like SV_ClipDistance but works on all hardware feature level 9_x and higher.\n"
-			"For more info, see User clip planes on feature level 9 hardware.\n",
-			"SV_CullDistance[n] : float\nCull distance data. When component(s) of vertex Element(s) are given this label, these values are each assumed\n"
-			"to be a float32 signed distance to a plane. Primitives will be completely discarded if the plane distance(s) for all of the vertices in\n"
-			"the primitive are < 0. Multiple cull planes can be used simultaneously, by declaring multiple component(s) of one or more vertex elements\n"
-			"as the SV_CullDistance. The combined clip and cull distance values are at most D3D#_CLIP_OR_CULL_DISTANCE_COUNT components in at most\n"
-			"D3D#_CLIP_OR_CULL_DISTANCE_ELEMENT_COUNT registers. Available to all shaders to be read or written to, except the vertex shader which can\n"
-			"write the value but not take it as input.\n",
-			"SV_Coverage : uint\nA mask that can be specified on input, output, or both of a pixel shader.\n"
-			"For SV_Coverage on a pixel shader, OUTPUT is supported on ps_4_1 or higher.\n"
-			"For SV_Coverage on a pixel shader, INPUT requires ps_5_0 or higher.\n",
-			"SV_Depth : float\nDepth buffer data. Can be written by pixel shader.\n",
-			"SV_DepthGreaterEqual : unknown\nIn a pixel shader, allows outputting depth, as long as it is greater than or equal to the value determined\n"
-			"by the rasterizer. Enables adjusting depth without disabling early Z.\n",
-			"SV_DepthLessEqual : unknown\nIn a pixel shader, allows outputting depth, as long as it is less than or equal to the value determined by\n"
-			"the rasterizer. Enables adjusting depth without disabling early Z.\n",
-			"SV_DispatchThreadID : uint3\nDefines the global thread offset within the Dispatch call, per dimension of the group. Available as input to compute shader. (read only)\n",
-			"SV_DomainLocation : float2|3\nDefines the location on the hull of the current domain point being evaluated. Available as input to the domain shader. (read only)\n",
-			"SV_GroupID : uint3\nDefines the group offset within a Dispatch call, per dimension of the dispatch call. Available as input to the compute shader. (read only)\n",
-			"SV_GroupIndex : uint\nProvides a flattened index for a given thread within a given group. Available as input to the compute shader. (read only)\n",
-			"SV_GroupThreadID : uint3\nDefines the thread offset within the group, per dimension of the group. Available as input to the compute shader. (read only)\n",
-			"SV_GSInstanceID : uint\nDefines the instance of the geometry shader. Available as input to the geometry shader.\n"
-			"The instance is needed as a geometry shader can be invoked up to 32 times on the same geometry primitive.\n",
-			"SV_InnerCoverage : \nRepresents underestimated conservative rasterization information (i.e. whether a pixel is guaranteed-to-be-fully covered).\n"
-			"Can be read or written by the pixel shader.\n",
-			"SV_InsideTessFactor : float|float[2]\nDefines the tessellation amount within a patch surface. Available in the hull shader for writing,\n"
-			"and available in the domain shader for reading.\n",
-			"SV_InstanceID : \nPer-instance identifier automatically generated by the runtime (see Using System-Generated Values (Direct3D 10)). Available to all shaders.\n",
-			"SV_IsFrontFace : bool\nSpecifies whether a triangle is front facing. For lines and points, IsFrontFace has the value true.\n"
-			"The exception is lines drawn out of triangles (wireframe mode), which sets IsFrontFace the same way as rasterizing the triangle in solid mode.\n"
-			"Can be written to by the geometry shader, and read by the pixel shader.\n",
-			"SV_OutputControlPointID : uint\nDefines the index of the control point ID being operated on by an invocation of the main entry point of\n"
-			"the hull shader. Can be read by the hull shader only.\n",
-			"SV_Position : float4\nWhen SV_Position is declared for input to a shader, it can have one of two interpolation modes\n"
-			"specified: linearNoPerspective or linearNoPerspectiveCentroid, where the latter causes centroid-snapped xyzw values to be provided when\n"
-			"multisample antialiasing. When used in a shader, SV_Position describes the pixel location. Available in all shaders to get the pixel center with a 0.5 offset.\n",
-			"SV_PrimitiveID : uint\nPer-primitive identifier automatically generated by the runtime (see Using System-Generated Values (Direct3D 10)).\n"
-			"Can be written to by the geometry or pixel shaders, and read by the geometry, pixel, hull or domain shaders.\n",
-			"SV_RenderTargetArrayIndex : uint\nRender-target array index. Applied to geometry shader output, and indicates the render target array\n"
-			"slice that the primitive will be drawn to by the pixel shader. SV_RenderTargetArrayIndex is valid only if the render target is an array resource.\n"
-			"This semantic applies only to primitives; if a primitive has more than one vertex, then the value from the leading vertex is used.\n"
-			"This value also indicates which array slice of a depth/stencil view is used for read/write purposes.\n"
-			"Can be written from the geometry shader, and read by the pixel shader.\n"
-			"If D3D11_FEATURE_DATA_D3D11_OPTIONS3::VPAndRTArrayIndexFromAnyShaderFeedingRasterizer is true, then SV_RenderTargetArrayIndex is applied to any shader feeding the rasterizer.\n",
-			"SV_SampleIndex : uint\nSample frequency index data. Available to be read or written to by the pixel shader only.\n",
-			"SV_StencilRef : uint\nRepresents the current pixel shader stencil reference value. Can be written by the pixel shader only.\n",
-			"SV_Target[n], where 0 <= n <= 7 : float[2|3|4]\nThe output value that will be stored in a render target. The index indicates which of the\n"
-			"8 possibly bound render targets to write to. The value is available to all shaders.\n",
-			"SV_TessFactor : float[2|3|4]\nDefines the tessellation amount on each edge of a patch. Available for writing in the hull shader and reading in the domain shader.\n",
-			"SV_VertexID : uint\nPer-vertex identifier automatically generated by the runtime (see Using System-Generated Values (Direct3D 10)).\n"
-			"Available as the input to the vertex shader only.\n",
-			"SV_ViewportArrayIndex : uint\nViewport array index. Applied to geometry shader output, and indicates which viewport to use for the\n"
-			"primitive currently being written out. Can be read by the pixel shader. The primitive will be transformed and clipped against the viewport\n"
-			"specified by the index before it is passed to the rasterizer. This semantic applies only to primitives; if a primitive has more than one\n"
-			"vertex, then the value from the leading vertex is used.\n"
-			"If D3D11_FEATURE_DATA_D3D11_OPTIONS3::VPAndRTArrayIndexFromAnyShaderFeedingRasterizer is true, then SV_ViewportArrayIndex is applied to any shader feeding the rasterizer.\n"
-		};
-		for (int i = 0; i < _countof(semantics); ++i)
-		{
-			std::string semantic_name = semantics[i];
-			std::string semantic_description = semantics_desc[i];
-
-			Identifier id;
-			id.mDeclaration = semantic_description;
-			langDef.mIdentifiers.insert(std::make_pair(semantic_name, id));
-
-			if (semantic_description.find(semantic_name + "[n]") == 0)
+			for (int i = 0; i < 100; i++)
 			{
-				for (int i = 0; i < 100; i++)
-				{
-					std::string semantic_name_numbered = semantic_name + std::to_string(i);
-					langDef.mIdentifiers.insert(std::make_pair(semantic_name_numbered, id));
-				}
+				std::string semantic_name_numbered = semantic_name + std::to_string(i);
+				hlsl_script_language.mIdentifiers.insert(std::make_pair(semantic_name_numbered, id));
 			}
 		}
-
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[ \\t]*#[ \\t]*[a-zA-Z_]+", PaletteIndex::Preprocessor));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("\\'\\\\?[^\\']\\'", PaletteIndex::CharLiteral));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[0-7]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
-
-		langDef.mCommentStart = "/*";
-		langDef.mCommentEnd = "*/";
-		langDef.mSingleLineComment = "//";
-
-		langDef.mCaseSensitive = true;
-		langDef.mAutoIndentation = true;
-
-		langDef.mName = "HLSL";
-
-		inited = true;
 	}
-	return langDef;
+
+	hlsl_script_language.mTokenRegexStringsPost.push_back({"[ \\t]*#[ \\t]*[a-zA-Z_]+", PaletteIndex::Preprocessor});
+	hlsl_script_language.mTokenRegexStringsPost.push_back({"L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String});
+	hlsl_script_language.mTokenRegexStringsPost.push_back({"\\'\\\\?[^\\']\\'", PaletteIndex::CharLiteral});
+	hlsl_script_language.mTokenRegexStringsPost.push_back({"[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number});
+	hlsl_script_language.mTokenRegexStringsPost.push_back({"[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number});
+	hlsl_script_language.mTokenRegexStringsPost.push_back({"0[0-7]+[Uu]?[lL]?[lL]?", PaletteIndex::Number});
+	hlsl_script_language.mTokenRegexStringsPost.push_back({"0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number});
+	hlsl_script_language.mTokenRegexStringsPost.push_back({"[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier});
+	hlsl_script_language.mTokenRegexStringsPost.push_back({"[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation});
+
+	return hlsl_script_language;
 }
 
 const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::GLSL()
@@ -2726,15 +2830,15 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::GLSL()
 			langDef.mIdentifiers.insert(std::make_pair(std::string(k), id));
 		}
 
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[ \\t]*#[ \\t]*[a-zA-Z_]+", PaletteIndex::Preprocessor));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("\\'\\\\?[^\\']\\'", PaletteIndex::CharLiteral));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[0-7]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
+		langDef.mTokenRegexStringsPost.push_back({"[ \\t]*#[ \\t]*[a-zA-Z_]+", PaletteIndex::Preprocessor});
+		langDef.mTokenRegexStringsPost.push_back({"L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String});
+		langDef.mTokenRegexStringsPost.push_back({"\\'\\\\?[^\\']\\'", PaletteIndex::CharLiteral});
+		langDef.mTokenRegexStringsPost.push_back({"[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"0[0-7]+[Uu]?[lL]?[lL]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier});
+		langDef.mTokenRegexStringsPost.push_back({"[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation});
 
 		langDef.mCommentStart = "/*";
 		langDef.mCommentEnd = "*/";
@@ -2857,14 +2961,14 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::SQL()
 			langDef.mIdentifiers.insert(std::make_pair(std::string(k), id));
 		}
 
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("\\\'[^\\\']*\\\'", PaletteIndex::String));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[0-7]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
+		langDef.mTokenRegexStringsPost.push_back({"L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String});
+		langDef.mTokenRegexStringsPost.push_back({"\\\'[^\\\']*\\\'", PaletteIndex::String});
+		langDef.mTokenRegexStringsPost.push_back({"[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"0[0-7]+[Uu]?[lL]?[lL]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier});
+		langDef.mTokenRegexStringsPost.push_back({"[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation});
 
 		langDef.mCommentStart = "/*";
 		langDef.mCommentEnd = "*/";
@@ -2907,14 +3011,14 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::AngelScrip
 			langDef.mIdentifiers.insert(std::make_pair(std::string(k), id));
 		}
 
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("\\'\\\\?[^\\']\\'", PaletteIndex::String));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[0-7]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
+		langDef.mTokenRegexStringsPost.push_back({"L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String});
+		langDef.mTokenRegexStringsPost.push_back({"\\'\\\\?[^\\']\\'", PaletteIndex::String});
+		langDef.mTokenRegexStringsPost.push_back({"[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"0[0-7]+[Uu]?[lL]?[lL]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier});
+		langDef.mTokenRegexStringsPost.push_back({"[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation});
 
 		langDef.mCommentStart = "/*";
 		langDef.mCommentEnd = "*/";
@@ -2962,13 +3066,13 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Lua()
 			langDef.mIdentifiers.insert(std::make_pair(std::string(k), id));
 		}
 
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("\\\'[^\\\']*\\\'", PaletteIndex::String));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier));
-		langDef.mTokenRegexStrings.push_back(std::make_pair<std::string, PaletteIndex>("[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation));
+		langDef.mTokenRegexStringsPost.push_back({"L?\\\"(\\\\.|[^\\\"])*\\\"", PaletteIndex::String});
+		langDef.mTokenRegexStringsPost.push_back({"\\\'[^\\\']*\\\'", PaletteIndex::String});
+		langDef.mTokenRegexStringsPost.push_back({"0[xX][0-9a-fA-F]+[uU]?[lL]?[lL]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?[fF]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"[+-]?[0-9]+[Uu]?[lL]?[lL]?", PaletteIndex::Number});
+		langDef.mTokenRegexStringsPost.push_back({"[a-zA-Z_][a-zA-Z0-9_]*", PaletteIndex::Identifier});
+		langDef.mTokenRegexStringsPost.push_back({"[\\[\\]\\{\\}\\!\\%\\^\\&\\*\\(\\)\\-\\+\\=\\~\\|\\<\\>\\?\\/\\;\\,\\.]", PaletteIndex::Punctuation});
 
 		langDef.mCommentStart = "--[[";
 		langDef.mCommentEnd = "]]";

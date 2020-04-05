@@ -5,10 +5,15 @@ class c_cache_file;
 class c_mantle_tag_gui_tab : public c_mantle_gui_tab
 {
 public:
-	static void increment_recursion();
-	static void decrement_recursion();
+	c_mantle_tag_gui_tab() = delete;
+	c_mantle_tag_gui_tab(const c_mantle_tag_gui_tab&) = delete;
+	c_mantle_tag_gui_tab& operator=(const c_mantle_tag_gui_tab&) = delete;
+
 	c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_interface& tag_interface, c_mantle_gui_tab* parent_tag);
 	virtual ~c_mantle_tag_gui_tab();
+
+	static void increment_recursion();
+	static void decrement_recursion();
 
 	void copy_data_recursively(const s_reflection_structure_type& reflection_type, char* source, char* destination);
 	void poke();

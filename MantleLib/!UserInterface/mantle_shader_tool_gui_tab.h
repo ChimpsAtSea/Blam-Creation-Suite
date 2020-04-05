@@ -6,6 +6,10 @@ class c_mantle_shader_tool_gui_tab :
 public:
 	friend class c_mantle_tag_gui_tab;
 
+	c_mantle_shader_tool_gui_tab() = delete;
+	c_mantle_shader_tool_gui_tab(const c_mantle_shader_tool_gui_tab&) = delete;
+	c_mantle_shader_tool_gui_tab& operator=(const c_mantle_shader_tool_gui_tab&) = delete;
+
 	c_mantle_shader_tool_gui_tab(const char* title, const char* description, c_mantle_cache_file_gui_tab& parent_tab, c_cache_file& cache_file);
 	virtual ~c_mantle_shader_tool_gui_tab();
 
