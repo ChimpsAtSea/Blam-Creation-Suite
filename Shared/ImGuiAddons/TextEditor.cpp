@@ -1985,13 +1985,16 @@ void TextEditor::ColorizeInternal()
 						auto from = line.begin() + currentCoord.mColumn;
 						auto& startStr = mLanguageDefinition.mCommentStart;
 						auto& singleStartStr = mLanguageDefinition.mSingleLineComment;
-						if (singleStartStr.size() > 0 &&
-							currentCoord.mColumn + singleStartStr.size() <= line.size() &&
-							equals(singleStartStr.begin(), singleStartStr.end(), from, from + singleStartStr.size(), pred))
-							withinSingleLineComment = true;
-						else if (!startStr.empty() && !withinSingleLineComment && currentCoord.mColumn + startStr.size() <= line.size() &&
-							equals(startStr.begin(), startStr.end(), from, from + startStr.size(), pred))
+
+						if (!startStr.empty() && !withinSingleLineComment && currentCoord.mColumn + startStr.size() <= line.size() && equals(startStr.begin(), startStr.end(), from, from + startStr.size(), pred))
+						{
 							commentStart = currentCoord;
+						}
+						else if (singleStartStr.size() > 0 && currentCoord.mColumn + singleStartStr.size() <= line.size() && equals(singleStartStr.begin(), singleStartStr.end(), from, from + singleStartStr.size(), pred))
+						{
+							withinSingleLineComment = true;
+						}
+						 
 
 						inComment = commentStart <= currentCoord;
 

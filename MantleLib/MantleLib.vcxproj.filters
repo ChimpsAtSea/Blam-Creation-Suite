@@ -114,6 +114,12 @@
     <ClCompile Include="HaloScript\halo_script_type_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HaloScript\halo_script_globals_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HaloScript\halo_script_function_documentation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlelib-public-pch.h">
@@ -798,6 +804,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HaloScript\halo_script_type_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HaloScript\halo_script_globals_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HaloScript\halo_script_function_documentation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

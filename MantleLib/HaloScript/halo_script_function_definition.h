@@ -2034,9 +2034,9 @@ public:
 	c_hs_function_definition& operator=(const c_hs_function_definition&) = delete;
 
 	c_hs_function_definition(
-		const char* name, 
-		uint16_t opcode, 
-		e_hs_function_group group, 
+		const char* name,
+		uint16_t opcode,
+		e_hs_function_group group,
 		bool is_null,
 		const c_hs_type_definition* return_value,
 		const c_hs_type_definition* arg0 = nullptr,
@@ -2056,13 +2056,15 @@ public:
 		const c_hs_type_definition* arg14 = nullptr,
 		const c_hs_type_definition* arg15 = nullptr
 	) :
-		arguments_count(),
+	arguments_count(),
 		is_null(is_null),
 		group(group),
 		opcode(opcode),
 		name(name),
 		return_value(return_value),
-		arguments()
+		arguments(),
+		hs_function_documentation(nullptr),
+		documentation()
 	{
 #define parse_argument(argument) if (argument) arguments[arguments_count++] = argument
 		parse_argument(arg0);
@@ -2082,16 +2084,51 @@ public:
 		parse_argument(arg14);
 		parse_argument(arg15);
 #undef parse_argument
+
+		generate_documentation();
+	}
+
+	inline void generate_documentation()
+	{
+		hs_function_documentation = get_function_documentation(name);
+
+		{
+			std::stringstream ss;
+			ss << name;
+			for (uint8_t argument_index = 0; argument_index < arguments_count; argument_index++)
+			{
+				const c_hs_type_definition* type_definition = arguments[argument_index];
+				ss << " <" << type_definition->name << ">";
+			}
+
+			if (hs_function_documentation)
+			{
+				if (strlen(hs_function_documentation->description) > 0)
+				{
+					ss << "\n\n" << hs_function_documentation->description;
+				}
+				if (hs_function_documentation->note != nullptr)
+				{
+					if (strlen(hs_function_documentation->note) > 0)
+					{
+						ss << "\n\n" << hs_function_documentation->note;
+					}
+				}
+			}
+
+			documentation = ss.str();
+		}
 	}
 
 	uint8_t arguments_count;
 	bool is_null;
 	e_hs_function_group group;
 	uint16_t opcode;
-
 	const char* name;
 	const c_hs_type_definition* return_value;
 	const c_hs_type_definition* arguments[16]; // #TODO: Replace with a global contiguous array for less cache thrashing
+	const s_hs_function_documentation* hs_function_documentation;
+	std::string documentation;
 };
 
 extern const c_hs_function_definition hs_function_definitions[hs_function_count];

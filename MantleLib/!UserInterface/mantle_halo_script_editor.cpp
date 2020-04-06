@@ -8,18 +8,20 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HaloScript
 
 	halo_script_language.mName = "HSC";
 
-	halo_script_language.mCommentStart = "";
-	halo_script_language.mCommentEnd = "";
+	halo_script_language.mCommentStart = ";*";
+	halo_script_language.mCommentEnd = "*;";
 	halo_script_language.mSingleLineComment = ";";
 
 	halo_script_language.mCaseSensitive = true;
 	halo_script_language.mAutoIndentation = true;
 
 	static const char* const keywords[] = {
-		"static", "global", "TRUE", "FALSE", "int", "short",
+		"static", "global", "dormant", "TRUE", "FALSE"
 	};
 	for (const char* keyword : keywords)
+	{
 		halo_script_language.mKeywords.insert(keyword);
+	}
 
 	for (const c_hs_type_definition& type_definition : hs_type_definitions)
 	{
@@ -37,12 +39,24 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::HaloScript
 
 	for (const c_hs_function_definition& function_definition : hs_function_definitions)
 	{
-		const char* description = nullptr; // #TODO
+		const char* description = function_definition.documentation.c_str();
 		const char* identifier = function_definition.name;
 
 		Identifier id;
 		id.mDeclaration = description ? description : "Built-in Function";
 		halo_script_language.mIdentifiers.insert(std::make_pair(std::string(identifier), id));
+	}
+
+	for (const c_hs_global_definition& global_definition : hs_globals_definitions)
+	{
+		const char* description = nullptr; // #TODO
+		const char* identifier = global_definition.name;
+
+		Identifier id;
+		id.mDeclaration = description ? description : "Halo Script Global";
+		halo_script_language.mIdentifiers.insert(std::make_pair(std::string(identifier), id));
+
+		halo_script_language.mPreprocIdentifiers.insert(std::make_pair(std::string(identifier), id));
 	}
 
 	//halo_script_language.mTokenRegexStringsPost.emplace_back( "(?:\\()([a-zA-Z_])*", PaletteIndex::PreprocIdentifier, 1 ); // #TODO: Grab results for this for matching
