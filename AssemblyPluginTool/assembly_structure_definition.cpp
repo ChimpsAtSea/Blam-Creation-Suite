@@ -2,12 +2,12 @@
 
 thread_local c_assembly_structure_definition* c_assembly_structure_definition::current_root_structure = nullptr;
 
-c_assembly_structure_definition::c_assembly_structure_definition(c_assembly_structure_definition* parent, c_assembly_plugin_tool& plugin_tool, const char* structure_name, xml_object_range<xml_node_iterator> nodes, const char* group_name) :
+c_assembly_structure_definition::c_assembly_structure_definition(c_assembly_structure_definition* parent, c_assembly_plugin_tool& plugin_tool, const char* structure_name, xml_object_range<xml_node_iterator> nodes, const char* tag_group_name) :
 	parent(parent),
 	plugin_tool(plugin_tool),
 	unformatted_name(structure_name),
 	tool_error(_apt_error_ok),
-	group_name(group_name),
+	tag_group_name(tag_group_name),
 	name(structure_name),
 	type_name(structure_name),
 	nice_name(structure_name)
@@ -304,7 +304,7 @@ void c_assembly_structure_definition::write(std::stringstream& _stream, int leve
 
 	stream << "struct ";
 	if (!nice_name.empty()) _stream << "nicename(\"" << nice_name << "\") ";
-	if (!group_name.empty()) _stream << "group('" << group_name << "') ";
+	if (!tag_group_name.empty()) _stream << "tag_group('" << tag_group_name << "') ";
 	_stream << type_name << std::endl;
 	stream << "{" << std::endl;
 

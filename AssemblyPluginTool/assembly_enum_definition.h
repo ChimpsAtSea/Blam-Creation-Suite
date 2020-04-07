@@ -7,7 +7,7 @@ struct s_assembly_enum
 {
 	s_assembly_enum(
 		std::string name,
-		int value,
+		uint64_t value,
 		std::string nice_name
 	) :
 		name(name),
@@ -18,7 +18,7 @@ struct s_assembly_enum
 
 	}
 	std::string name;
-	int value;
+	uint64_t value;
 	std::string nice_name;
 };
 

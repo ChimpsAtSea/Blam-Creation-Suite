@@ -28,24 +28,24 @@ struct nicename("physics_model") group('phmo') s_physics_model_definition
 	{
 		enum nicename("Minimum Size") e_minimum_size : uint8_t
 		{
-			/*nicename("Default")*/ _minimum_size_default = 1ui8,
-			/*nicename("Tiny")*/ _minimum_size_tiny = 2ui8,
-			/*nicename("Small")*/ _minimum_size_small = 3ui8,
-			/*nicename("Medium")*/ _minimum_size_medium = 4ui8,
-			/*nicename("Large")*/ _minimum_size_large = 5ui8,
-			/*nicename("Huge")*/ _minimum_size_huge = 6ui8,
-			/*nicename("Extra Huge")*/ _minimum_size_extra_huge = 7ui8,
+			/*nicename("Default")*/ _minimum_size_default = 0ui8,
+			/*nicename("Tiny")*/ _minimum_size_tiny = 1ui8,
+			/*nicename("Small")*/ _minimum_size_small = 2ui8,
+			/*nicename("Medium")*/ _minimum_size_medium = 3ui8,
+			/*nicename("Large")*/ _minimum_size_large = 4ui8,
+			/*nicename("Huge")*/ _minimum_size_huge = 5ui8,
+			/*nicename("Extra Huge")*/ _minimum_size_extra_huge = 6ui8,
 		};
 
 		enum nicename("Maximum Size") e_maximum_size : uint8_t
 		{
-			/*nicename("Default")*/ _maximum_size_default = 1ui8,
-			/*nicename("Tiny")*/ _maximum_size_tiny = 2ui8,
-			/*nicename("Small")*/ _maximum_size_small = 3ui8,
-			/*nicename("Medium")*/ _maximum_size_medium = 4ui8,
-			/*nicename("Large")*/ _maximum_size_large = 5ui8,
-			/*nicename("Huge")*/ _maximum_size_huge = 6ui8,
-			/*nicename("Extra Huge")*/ _maximum_size_extra_huge = 7ui8,
+			/*nicename("Default")*/ _maximum_size_default = 0ui8,
+			/*nicename("Tiny")*/ _maximum_size_tiny = 1ui8,
+			/*nicename("Small")*/ _maximum_size_small = 2ui8,
+			/*nicename("Medium")*/ _maximum_size_medium = 3ui8,
+			/*nicename("Large")*/ _maximum_size_large = 4ui8,
+			/*nicename("Huge")*/ _maximum_size_huge = 5ui8,
+			/*nicename("Extra Huge")*/ _maximum_size_extra_huge = 6ui8,
 		};
 
 		enum nicename("Flags") b_flags : uint32_t /* bitfield */
@@ -140,12 +140,12 @@ struct nicename("physics_model") group('phmo') s_physics_model_definition
 		{
 			enum nicename("Type") e_type : uint16_t
 			{
-				/*nicename("Hinge")*/ _type_hinge = 1ui16,
-				/*nicename("Limited Hinge")*/ _type_limited_hinge = 2ui16,
-				/*nicename("Ragdoll")*/ _type_ragdoll = 3ui16,
-				/*nicename("Stiff Spring")*/ _type_stiff_spring = 4ui16,
-				/*nicename("Ball and Socket")*/ _type_ball_and_socket = 5ui16,
-				/*nicename("Prismatic")*/ _type_prismatic = 6ui16,
+				/*nicename("Hinge")*/ _type_hinge = 0ui16,
+				/*nicename("Limited Hinge")*/ _type_limited_hinge = 1ui16,
+				/*nicename("Ragdoll")*/ _type_ragdoll = 2ui16,
+				/*nicename("Stiff Spring")*/ _type_stiff_spring = 3ui16,
+				/*nicename("Ball and Socket")*/ _type_ball_and_socket = 4ui16,
+				/*nicename("Prismatic")*/ _type_prismatic = 5ui16,
 			};
 
 			enum nicename("Flags") b_flags : uint32_t /* bitfield */
@@ -221,43 +221,43 @@ struct nicename("physics_model") group('phmo') s_physics_model_definition
 	{
 		enum nicename("Motion Type") e_motion_type : uint8_t
 		{
-			/*nicename("Sphere")*/ _motion_type_sphere = 1ui8,
-			/*nicename("Stabilized Sphere")*/ _motion_type_stabilized_sphere = 2ui8,
-			/*nicename("Box")*/ _motion_type_box = 3ui8,
-			/*nicename("Stabilized Box")*/ _motion_type_stabilized_box = 4ui8,
-			/*nicename("Keyframed")*/ _motion_type_keyframed = 5ui8,
-			/*nicename("Fixed")*/ _motion_type_fixed = 6ui8,
+			/*nicename("Sphere")*/ _motion_type_sphere = 0ui8,
+			/*nicename("Stabilized Sphere")*/ _motion_type_stabilized_sphere = 1ui8,
+			/*nicename("Box")*/ _motion_type_box = 2ui8,
+			/*nicename("Stabilized Box")*/ _motion_type_stabilized_box = 3ui8,
+			/*nicename("Keyframed")*/ _motion_type_keyframed = 4ui8,
+			/*nicename("Fixed")*/ _motion_type_fixed = 5ui8,
 		};
 
 		enum nicename("Size") e_size : uint16_t
 		{
-			/*nicename("Default")*/ _size_default = 1ui16,
-			/*nicename("Tiny")*/ _size_tiny = 2ui16,
-			/*nicename("Small")*/ _size_small = 3ui16,
-			/*nicename("Medium")*/ _size_medium = 4ui16,
-			/*nicename("Large")*/ _size_large = 5ui16,
-			/*nicename("Huge")*/ _size_huge = 6ui16,
-			/*nicename("Extra Huge")*/ _size_extra_huge = 7ui16,
+			/*nicename("Default")*/ _size_default = 0ui16,
+			/*nicename("Tiny")*/ _size_tiny = 1ui16,
+			/*nicename("Small")*/ _size_small = 2ui16,
+			/*nicename("Medium")*/ _size_medium = 3ui16,
+			/*nicename("Large")*/ _size_large = 4ui16,
+			/*nicename("Huge")*/ _size_huge = 5ui16,
+			/*nicename("Extra Huge")*/ _size_extra_huge = 6ui16,
 		};
 
 		enum nicename("Shape Type") e_shape_type : uint16_t
 		{
-			/*nicename("Sphere")*/ _shape_type_sphere = 1ui16,
-			/*nicename("Pill")*/ _shape_type_pill = 2ui16,
-			/*nicename("Box")*/ _shape_type_box = 3ui16,
-			/*nicename("Triangle")*/ _shape_type_triangle = 4ui16,
-			/*nicename("Polyhedron")*/ _shape_type_polyhedron = 5ui16,
-			/*nicename("Multi-Sphere")*/ _shape_type_multi_sphere = 6ui16,
-			/*nicename("Unused 0")*/ _shape_type_unused_0 = 7ui16,
-			/*nicename("Unused 1")*/ _shape_type_unused_1 = 8ui16,
-			/*nicename("Unused 2")*/ _shape_type_unused_2 = 9ui16,
-			/*nicename("Unused 3")*/ _shape_type_unused_3 = 10ui16,
-			/*nicename("Unused 4")*/ _shape_type_unused_4 = 11ui16,
-			/*nicename("Unused 5")*/ _shape_type_unused_5 = 12ui16,
-			/*nicename("Unused 6")*/ _shape_type_unused_6 = 13ui16,
-			/*nicename("Unused 7")*/ _shape_type_unused_7 = 14ui16,
-			/*nicename("List")*/ _shape_type_list = 15ui16,
-			/*nicename("MOPP")*/ _shape_type_mopp = 16ui16,
+			/*nicename("Sphere")*/ _shape_type_sphere = 0ui16,
+			/*nicename("Pill")*/ _shape_type_pill = 1ui16,
+			/*nicename("Box")*/ _shape_type_box = 2ui16,
+			/*nicename("Triangle")*/ _shape_type_triangle = 3ui16,
+			/*nicename("Polyhedron")*/ _shape_type_polyhedron = 4ui16,
+			/*nicename("Multi-Sphere")*/ _shape_type_multi_sphere = 5ui16,
+			/*nicename("Unused 0")*/ _shape_type_unused_0 = 6ui16,
+			/*nicename("Unused 1")*/ _shape_type_unused_1 = 7ui16,
+			/*nicename("Unused 2")*/ _shape_type_unused_2 = 8ui16,
+			/*nicename("Unused 3")*/ _shape_type_unused_3 = 9ui16,
+			/*nicename("Unused 4")*/ _shape_type_unused_4 = 10ui16,
+			/*nicename("Unused 5")*/ _shape_type_unused_5 = 11ui16,
+			/*nicename("Unused 6")*/ _shape_type_unused_6 = 12ui16,
+			/*nicename("Unused 7")*/ _shape_type_unused_7 = 13ui16,
+			/*nicename("List")*/ _shape_type_list = 14ui16,
+			/*nicename("MOPP")*/ _shape_type_mopp = 15ui16,
 		};
 
 		enum nicename("Flags") b_flags : uint16_t /* bitfield */
@@ -630,22 +630,22 @@ struct nicename("physics_model") group('phmo') s_physics_model_definition
 	{
 		enum nicename("Shape Type") e_shape_type : uint16_t
 		{
-			/*nicename("Sphere")*/ _shape_type_sphere = 1ui16,
-			/*nicename("Pill")*/ _shape_type_pill = 2ui16,
-			/*nicename("Box")*/ _shape_type_box = 3ui16,
-			/*nicename("Triangle")*/ _shape_type_triangle = 4ui16,
-			/*nicename("Polyhedron")*/ _shape_type_polyhedron = 5ui16,
-			/*nicename("Multi-Sphere")*/ _shape_type_multi_sphere = 6ui16,
-			/*nicename("Unknown Shape")*/ _shape_type_unknown_shape = 7ui16,
-			/*nicename("Unused 1")*/ _shape_type_unused_1 = 8ui16,
-			/*nicename("Unused 2")*/ _shape_type_unused_2 = 9ui16,
-			/*nicename("Unused 3")*/ _shape_type_unused_3 = 10ui16,
-			/*nicename("Unused 4")*/ _shape_type_unused_4 = 11ui16,
-			/*nicename("Unused 5")*/ _shape_type_unused_5 = 12ui16,
-			/*nicename("Unused 6")*/ _shape_type_unused_6 = 13ui16,
-			/*nicename("Unused 7")*/ _shape_type_unused_7 = 14ui16,
-			/*nicename("List")*/ _shape_type_list = 15ui16,
-			/*nicename("MOPP")*/ _shape_type_mopp = 16ui16,
+			/*nicename("Sphere")*/ _shape_type_sphere = 0ui16,
+			/*nicename("Pill")*/ _shape_type_pill = 1ui16,
+			/*nicename("Box")*/ _shape_type_box = 2ui16,
+			/*nicename("Triangle")*/ _shape_type_triangle = 3ui16,
+			/*nicename("Polyhedron")*/ _shape_type_polyhedron = 4ui16,
+			/*nicename("Multi-Sphere")*/ _shape_type_multi_sphere = 5ui16,
+			/*nicename("Unknown Shape")*/ _shape_type_unknown_shape = 6ui16,
+			/*nicename("Unused 1")*/ _shape_type_unused_1 = 7ui16,
+			/*nicename("Unused 2")*/ _shape_type_unused_2 = 8ui16,
+			/*nicename("Unused 3")*/ _shape_type_unused_3 = 9ui16,
+			/*nicename("Unused 4")*/ _shape_type_unused_4 = 10ui16,
+			/*nicename("Unused 5")*/ _shape_type_unused_5 = 11ui16,
+			/*nicename("Unused 6")*/ _shape_type_unused_6 = 12ui16,
+			/*nicename("Unused 7")*/ _shape_type_unused_7 = 13ui16,
+			/*nicename("List")*/ _shape_type_list = 14ui16,
+			/*nicename("MOPP")*/ _shape_type_mopp = 15ui16,
 		};
 
 		e_shape_type nicename("Shape Type") shape_type;
@@ -663,22 +663,22 @@ struct nicename("physics_model") group('phmo') s_physics_model_definition
 	{
 		enum nicename("Shape Type") e_shape_type : uint16_t
 		{
-			/*nicename("Sphere")*/ _shape_type_sphere = 1ui16,
-			/*nicename("Pill")*/ _shape_type_pill = 2ui16,
-			/*nicename("Box")*/ _shape_type_box = 3ui16,
-			/*nicename("Triangle")*/ _shape_type_triangle = 4ui16,
-			/*nicename("Polyhedron")*/ _shape_type_polyhedron = 5ui16,
-			/*nicename("Multi-Sphere")*/ _shape_type_multi_sphere = 6ui16,
-			/*nicename("Unknown Shape")*/ _shape_type_unknown_shape = 7ui16,
-			/*nicename("Unused 1")*/ _shape_type_unused_1 = 8ui16,
-			/*nicename("Unused 2")*/ _shape_type_unused_2 = 9ui16,
-			/*nicename("Unused 3")*/ _shape_type_unused_3 = 10ui16,
-			/*nicename("Unused 4")*/ _shape_type_unused_4 = 11ui16,
-			/*nicename("Unused 5")*/ _shape_type_unused_5 = 12ui16,
-			/*nicename("Unused 6")*/ _shape_type_unused_6 = 13ui16,
-			/*nicename("Unused 7")*/ _shape_type_unused_7 = 14ui16,
-			/*nicename("List")*/ _shape_type_list = 15ui16,
-			/*nicename("MOPP")*/ _shape_type_mopp = 16ui16,
+			/*nicename("Sphere")*/ _shape_type_sphere = 0ui16,
+			/*nicename("Pill")*/ _shape_type_pill = 1ui16,
+			/*nicename("Box")*/ _shape_type_box = 2ui16,
+			/*nicename("Triangle")*/ _shape_type_triangle = 3ui16,
+			/*nicename("Polyhedron")*/ _shape_type_polyhedron = 4ui16,
+			/*nicename("Multi-Sphere")*/ _shape_type_multi_sphere = 5ui16,
+			/*nicename("Unknown Shape")*/ _shape_type_unknown_shape = 6ui16,
+			/*nicename("Unused 1")*/ _shape_type_unused_1 = 7ui16,
+			/*nicename("Unused 2")*/ _shape_type_unused_2 = 8ui16,
+			/*nicename("Unused 3")*/ _shape_type_unused_3 = 9ui16,
+			/*nicename("Unused 4")*/ _shape_type_unused_4 = 10ui16,
+			/*nicename("Unused 5")*/ _shape_type_unused_5 = 11ui16,
+			/*nicename("Unused 6")*/ _shape_type_unused_6 = 12ui16,
+			/*nicename("Unused 7")*/ _shape_type_unused_7 = 13ui16,
+			/*nicename("List")*/ _shape_type_list = 14ui16,
+			/*nicename("MOPP")*/ _shape_type_mopp = 15ui16,
 		};
 
 		Undefined32 __unknown0;
@@ -885,22 +885,22 @@ struct nicename("physics_model") group('phmo') s_physics_model_definition
 	{
 		enum nicename("Shape Type") e_shape_type : uint16_t
 		{
-			/*nicename("Sphere")*/ _shape_type_sphere = 1ui16,
-			/*nicename("Pill")*/ _shape_type_pill = 2ui16,
-			/*nicename("Box")*/ _shape_type_box = 3ui16,
-			/*nicename("Triangle")*/ _shape_type_triangle = 4ui16,
-			/*nicename("Polyhedron")*/ _shape_type_polyhedron = 5ui16,
-			/*nicename("Multi-Sphere")*/ _shape_type_multi_sphere = 6ui16,
-			/*nicename("Unknown Shape")*/ _shape_type_unknown_shape = 7ui16,
-			/*nicename("Unused 1")*/ _shape_type_unused_1 = 8ui16,
-			/*nicename("Unused 2")*/ _shape_type_unused_2 = 9ui16,
-			/*nicename("Unused 3")*/ _shape_type_unused_3 = 10ui16,
-			/*nicename("Unused 4")*/ _shape_type_unused_4 = 11ui16,
-			/*nicename("Unused 5")*/ _shape_type_unused_5 = 12ui16,
-			/*nicename("Unused 6")*/ _shape_type_unused_6 = 13ui16,
-			/*nicename("Unused 7")*/ _shape_type_unused_7 = 14ui16,
-			/*nicename("List")*/ _shape_type_list = 15ui16,
-			/*nicename("MOPP")*/ _shape_type_mopp = 16ui16,
+			/*nicename("Sphere")*/ _shape_type_sphere = 0ui16,
+			/*nicename("Pill")*/ _shape_type_pill = 1ui16,
+			/*nicename("Box")*/ _shape_type_box = 2ui16,
+			/*nicename("Triangle")*/ _shape_type_triangle = 3ui16,
+			/*nicename("Polyhedron")*/ _shape_type_polyhedron = 4ui16,
+			/*nicename("Multi-Sphere")*/ _shape_type_multi_sphere = 5ui16,
+			/*nicename("Unknown Shape")*/ _shape_type_unknown_shape = 6ui16,
+			/*nicename("Unused 1")*/ _shape_type_unused_1 = 7ui16,
+			/*nicename("Unused 2")*/ _shape_type_unused_2 = 8ui16,
+			/*nicename("Unused 3")*/ _shape_type_unused_3 = 9ui16,
+			/*nicename("Unused 4")*/ _shape_type_unused_4 = 10ui16,
+			/*nicename("Unused 5")*/ _shape_type_unused_5 = 11ui16,
+			/*nicename("Unused 6")*/ _shape_type_unused_6 = 12ui16,
+			/*nicename("Unused 7")*/ _shape_type_unused_7 = 13ui16,
+			/*nicename("List")*/ _shape_type_list = 14ui16,
+			/*nicename("MOPP")*/ _shape_type_mopp = 15ui16,
 		};
 
 		Undefined32 __unknown0;

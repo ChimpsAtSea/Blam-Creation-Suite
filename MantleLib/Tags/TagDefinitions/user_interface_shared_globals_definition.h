@@ -63,10 +63,10 @@ struct nicename("user_interface_shared_globals_definition") group('wigl') s_user
 	{
 		enum nicename("Default Option") e_default_option : uint16_t
 		{
-			/*nicename("Option 1")*/ _default_option_option_1 = 1ui16,
-			/*nicename("Option 2")*/ _default_option_option_2 = 2ui16,
-			/*nicename("Option 3")*/ _default_option_option_3 = 3ui16,
-			/*nicename("Option 4")*/ _default_option_option_4 = 4ui16,
+			/*nicename("Option 1")*/ _default_option_option_1 = 0ui16,
+			/*nicename("Option 2")*/ _default_option_option_2 = 1ui16,
+			/*nicename("Option 3")*/ _default_option_option_3 = 2ui16,
+			/*nicename("Option 4")*/ _default_option_option_4 = 3ui16,
 		};
 
 		string_id nicename("Name") name;

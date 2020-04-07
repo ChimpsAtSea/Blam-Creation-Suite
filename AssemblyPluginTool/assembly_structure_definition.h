@@ -6,13 +6,13 @@ class c_assembly_field_definition;
 class c_assembly_structure_definition
 {
 public:
-	c_assembly_structure_definition(c_assembly_structure_definition* parent, c_assembly_plugin_tool& plugin_tool, const char* structure_name, pugi::xml_object_range<pugi::xml_node_iterator> nodes, const char* group_name = "");
+	c_assembly_structure_definition(c_assembly_structure_definition* parent, c_assembly_plugin_tool& plugin_tool, const char* structure_name, pugi::xml_object_range<pugi::xml_node_iterator> nodes, const char* tag_group_name = "");
 	~c_assembly_structure_definition();
 	c_assembly_structure_definition* parent;
 	c_assembly_plugin_tool& plugin_tool;
 	std::string unformatted_name;
 	e_assembly_plugin_tool_error tool_error;
-	std::string group_name;
+	std::string tag_group_name;
 	std::string name;
 	std::string type_name;
 	std::string nice_name;
