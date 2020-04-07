@@ -37,6 +37,7 @@
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp" />
     <ClCompile Include="HaloScript\halo_script_globals_definition.cpp" />
     <ClCompile Include="HaloScript\halo_script_function_documentation.cpp" />
+    <ClCompile Include="HaloScript\lisp_ast_parser.cpp" />
     <ClCompile Include="mantlelib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -115,6 +116,7 @@
     <ClInclude Include="HaloScript\halo_script_function_definition.h" />
     <ClInclude Include="HaloScript\halo_script_globals_definition.h" />
     <ClInclude Include="HaloScript\halo_script_function_documentation.h" />
+    <ClInclude Include="HaloScript\lisp_ast_parser.h" />
     <ClInclude Include="render_method_definition_group_interface.h" />
     <ClInclude Include="Tags\GeneratedConversion.h" />
     <ClInclude Include="Tags\GeneratedGUI.h" />

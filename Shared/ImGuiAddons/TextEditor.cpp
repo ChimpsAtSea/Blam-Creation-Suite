@@ -3030,3 +3030,21 @@ const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::Lua()
 	}
 	return langDef;
 }
+
+const TextEditor::LanguageDefinition& TextEditor::LanguageDefinition::PlainText()
+{
+	static bool halo_script_language_inited = false;
+	static LanguageDefinition plaintext_language;
+	if (halo_script_language_inited) return plaintext_language;
+
+	plaintext_language.mName = "TXT";
+
+	plaintext_language.mCommentStart = "/*";
+	plaintext_language.mCommentEnd = "*/";
+	plaintext_language.mSingleLineComment = "//";
+
+	plaintext_language.mCaseSensitive = true;
+	plaintext_language.mAutoIndentation = true;
+
+	return plaintext_language;
+}

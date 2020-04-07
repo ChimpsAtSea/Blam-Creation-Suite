@@ -120,6 +120,9 @@
     <ClCompile Include="HaloScript\halo_script_function_documentation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HaloScript\lisp_ast_parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlelib-public-pch.h">
@@ -810,6 +813,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HaloScript\halo_script_function_documentation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HaloScript\lisp_ast_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
