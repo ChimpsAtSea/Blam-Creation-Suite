@@ -433,6 +433,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 			if (c_render::calculate_screen_coordinates(trigger_volume.position_x, trigger_volume.position_y, trigger_volume.position_z, screen_x, screen_y))
 			{
 				const char* trigger_volume_name = cache_file.string_id_to_cstr(trigger_volume.name.stringid);
+				trigger_volume_name = trigger_volume_name ? trigger_volume_name : "<error fetching string id>";
 
 				ImGui::GetWindowDrawList()->AddText(ImVec2(screen_x + 1, screen_y + 1), IM_COL32(0, 0, 0, static_cast<int>(255 * k_text_transparency)), trigger_volume_name);
 				ImGui::GetWindowDrawList()->AddText(ImVec2(screen_x, screen_y), imgui_text_color, trigger_volume_name);

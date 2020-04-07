@@ -131,22 +131,27 @@ public:
 		uint32_t set = (id >> _countof(k_string_id_set_string_counts)) & 0xFF;
 		uint32_t index = id & ((1 << _countof(k_string_id_set_string_counts)) - 1);
 
-		uint32_t set_base_index = 0;
-
-		if (set == 0 && index >= k_string_id_set_string_counts[set])
+		if (set < _countof(k_string_id_set_string_counts))
 		{
-			for (int i = 0; i < _countof(k_string_id_set_string_counts); i++)
-				set_base_index += k_string_id_set_string_counts[i];
+			uint32_t set_base_index = 0;
 
-			index -= k_string_id_set_string_counts[set];
-		}
-		else
-		{
-			for (uint32_t i = 0; i < set; i++)
-				set_base_index += k_string_id_set_string_counts[i];
+			if (set == 0 && index >= k_string_id_set_string_counts[set])
+			{
+				for (int i = 0; i < _countof(k_string_id_set_string_counts); i++)
+					set_base_index += k_string_id_set_string_counts[i];
+
+				index -= k_string_id_set_string_counts[set];
+			}
+			else
+			{
+				for (uint32_t i = 0; i < set; i++)
+					set_base_index += k_string_id_set_string_counts[i];
+			}
+
+			return m_pStringIDBuffer + m_pStringIDIndices[set_base_index + index];
 		}
 
-		return m_pStringIDBuffer + m_pStringIDIndices[set_base_index + index];
+		return nullptr;
 	}
 
 //private:
