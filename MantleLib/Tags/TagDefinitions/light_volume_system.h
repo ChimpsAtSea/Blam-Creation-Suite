@@ -6,58 +6,58 @@ struct nicename("light_volume_system") tag_group('ltvl') s_light_volume_system_d
 	{
 		enum nicename("Output Kind") e_output_kind : uint8_t
 		{
-			/*nicename("None")*/ _output_kind_none = 1ui8,
-			/*nicename("Plus")*/ _output_kind_plus = 2ui8,
-			/*nicename("Times")*/ _output_kind_times = 3ui8,
+			/*nicename("None")*/ _output_kind_none = 0ui8,
+			/*nicename("Plus")*/ _output_kind_plus = 1ui8,
+			/*nicename("Times")*/ _output_kind_times = 2ui8,
 		};
 
 		enum nicename("Output Kind") e_output_kind1 : uint8_t
 		{
-			/*nicename("None")*/ _output_kind1_none = 1ui8,
-			/*nicename("Plus")*/ _output_kind1_plus = 2ui8,
-			/*nicename("Times")*/ _output_kind1_times = 3ui8,
+			/*nicename("None")*/ _output_kind1_none = 0ui8,
+			/*nicename("Plus")*/ _output_kind1_plus = 1ui8,
+			/*nicename("Times")*/ _output_kind1_times = 2ui8,
 		};
 
 		enum nicename("Output Kind") e_output_kind2 : uint8_t
 		{
-			/*nicename("None")*/ _output_kind2_none = 1ui8,
-			/*nicename("Plus")*/ _output_kind2_plus = 2ui8,
-			/*nicename("Times")*/ _output_kind2_times = 3ui8,
+			/*nicename("None")*/ _output_kind2_none = 0ui8,
+			/*nicename("Plus")*/ _output_kind2_plus = 1ui8,
+			/*nicename("Times")*/ _output_kind2_times = 2ui8,
 		};
 
 		enum nicename("Output Kind") e_output_kind3 : uint8_t
 		{
-			/*nicename("None")*/ _output_kind3_none = 1ui8,
-			/*nicename("Plus")*/ _output_kind3_plus = 2ui8,
-			/*nicename("Times")*/ _output_kind3_times = 3ui8,
+			/*nicename("None")*/ _output_kind3_none = 0ui8,
+			/*nicename("Plus")*/ _output_kind3_plus = 1ui8,
+			/*nicename("Times")*/ _output_kind3_times = 2ui8,
 		};
 
 		enum nicename("Output Kind") e_output_kind4 : uint8_t
 		{
-			/*nicename("None")*/ _output_kind4_none = 1ui8,
-			/*nicename("Plus")*/ _output_kind4_plus = 2ui8,
-			/*nicename("Times")*/ _output_kind4_times = 3ui8,
+			/*nicename("None")*/ _output_kind4_none = 0ui8,
+			/*nicename("Plus")*/ _output_kind4_plus = 1ui8,
+			/*nicename("Times")*/ _output_kind4_times = 2ui8,
 		};
 
 		enum nicename("Output Kind") e_output_kind5 : uint8_t
 		{
-			/*nicename("None")*/ _output_kind5_none = 1ui8,
-			/*nicename("Plus")*/ _output_kind5_plus = 2ui8,
-			/*nicename("Times")*/ _output_kind5_times = 3ui8,
+			/*nicename("None")*/ _output_kind5_none = 0ui8,
+			/*nicename("Plus")*/ _output_kind5_plus = 1ui8,
+			/*nicename("Times")*/ _output_kind5_times = 2ui8,
 		};
 
 		enum nicename("Output Kind") e_output_kind6 : uint8_t
 		{
-			/*nicename("None")*/ _output_kind6_none = 1ui8,
-			/*nicename("Plus")*/ _output_kind6_plus = 2ui8,
-			/*nicename("Times")*/ _output_kind6_times = 3ui8,
+			/*nicename("None")*/ _output_kind6_none = 0ui8,
+			/*nicename("Plus")*/ _output_kind6_plus = 1ui8,
+			/*nicename("Times")*/ _output_kind6_times = 2ui8,
 		};
 
 		enum nicename("Output Kind") e_output_kind7 : uint8_t
 		{
-			/*nicename("None")*/ _output_kind7_none = 1ui8,
-			/*nicename("Plus")*/ _output_kind7_plus = 2ui8,
-			/*nicename("Times")*/ _output_kind7_times = 3ui8,
+			/*nicename("None")*/ _output_kind7_none = 0ui8,
+			/*nicename("Plus")*/ _output_kind7_plus = 1ui8,
+			/*nicename("Times")*/ _output_kind7_times = 2ui8,
 		};
 
 		struct nicename("Unknown") s_unknown_definition

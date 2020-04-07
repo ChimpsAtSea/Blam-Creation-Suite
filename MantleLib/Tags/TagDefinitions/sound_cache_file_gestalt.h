@@ -6,17 +6,17 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 	{
 		enum nicename("Sample Rate") e_sample_rate : uint8_t
 		{
-			/*nicename("22kHz")*/ _sample_rate__22khz = 1ui8,
-			/*nicename("44kHz")*/ _sample_rate__44khz = 2ui8,
-			/*nicename("32kHz")*/ _sample_rate__32khz = 3ui8,
+			/*nicename("22kHz")*/ _sample_rate__22khz = 0ui8,
+			/*nicename("44kHz")*/ _sample_rate__44khz = 1ui8,
+			/*nicename("32kHz")*/ _sample_rate__32khz = 2ui8,
 		};
 
 		enum nicename("Encoding") e_encoding : uint8_t
 		{
-			/*nicename("Mono")*/ _encoding_mono = 1ui8,
-			/*nicename("Stereo")*/ _encoding_stereo = 2ui8,
-			/*nicename("Surround")*/ _encoding_surround = 3ui8,
-			/*nicename("5.1 Surround")*/ _encoding__51_surround = 4ui8,
+			/*nicename("Mono")*/ _encoding_mono = 0ui8,
+			/*nicename("Stereo")*/ _encoding_stereo = 1ui8,
+			/*nicename("Surround")*/ _encoding_surround = 2ui8,
+			/*nicename("5.1 Surround")*/ _encoding__51_surround = 3ui8,
 		};
 
 		e_sample_rate nicename("Sample Rate") sample_rate;
@@ -191,18 +191,18 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 	{
 		enum nicename("Language") e_language : uint32_t
 		{
-			/*nicename("English")*/ _language_english = 1ui32,
-			/*nicename("Japanese")*/ _language_japanese = 2ui32,
-			/*nicename("German")*/ _language_german = 3ui32,
-			/*nicename("French")*/ _language_french = 4ui32,
-			/*nicename("Spanish")*/ _language_spanish = 5ui32,
-			/*nicename("Latin American Spanish")*/ _language_latin_american_spanish = 6ui32,
-			/*nicename("Italian")*/ _language_italian = 7ui32,
-			/*nicename("Korean")*/ _language_korean = 8ui32,
-			/*nicename("Chinese Traditional")*/ _language_chinese_traditional = 9ui32,
-			/*nicename("Chinese Simplified")*/ _language_chinese_simplified = 10ui32,
-			/*nicename("Portuguese")*/ _language_portuguese = 11ui32,
-			/*nicename("Polish")*/ _language_polish = 12ui32,
+			/*nicename("English")*/ _language_english = 0ui32,
+			/*nicename("Japanese")*/ _language_japanese = 1ui32,
+			/*nicename("German")*/ _language_german = 2ui32,
+			/*nicename("French")*/ _language_french = 3ui32,
+			/*nicename("Spanish")*/ _language_spanish = 4ui32,
+			/*nicename("Latin American Spanish")*/ _language_latin_american_spanish = 5ui32,
+			/*nicename("Italian")*/ _language_italian = 6ui32,
+			/*nicename("Korean")*/ _language_korean = 7ui32,
+			/*nicename("Chinese Traditional")*/ _language_chinese_traditional = 8ui32,
+			/*nicename("Chinese Simplified")*/ _language_chinese_simplified = 9ui32,
+			/*nicename("Portuguese")*/ _language_portuguese = 10ui32,
+			/*nicename("Polish")*/ _language_polish = 11ui32,
 		};
 
 		struct nicename("Unknown A") s_unknown_a_definition

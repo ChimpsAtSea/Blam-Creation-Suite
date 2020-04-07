@@ -19,7 +19,7 @@ c_assembly_enum_definition::c_assembly_enum_definition(c_assembly_structure_defi
 		if (nodecmp(node, "option"))
 		{
 			xml_attribute value_attribute = node.attribute("index");
-			current_index = value_attribute.as_int(current_index + 1);
+			uint64_t enum_value = value_attribute.as_ullong(current_index);
 
 			xml_attribute name_attribute = node.attribute("name");
 			if (name_attribute.empty())
@@ -29,7 +29,9 @@ c_assembly_enum_definition::c_assembly_enum_definition(c_assembly_structure_defi
 			std::string enum_name = std::string("_") + name + "_" + c_assembly_plugin_tool::format_source_friendly_name(enum_nice_name);
 			enum_name = get_unique_enum_name(enum_name);
 
-			enums.emplace_back(enum_name, current_index, enum_nice_name);
+			enums.emplace_back(enum_name, enum_value, enum_nice_name);
+
+			current_index++;
 		}
 	}
 }

@@ -4,9 +4,9 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 {
 	enum nicename("Map Type") e_map_type : uint16_t
 	{
-		/*nicename("Single Player")*/ _map_type_single_player = 1ui16,
-		/*nicename("Multiplayer")*/ _map_type_multiplayer = 2ui16,
-		/*nicename("Main Menu")*/ _map_type_main_menu = 3ui16,
+		/*nicename("Single Player")*/ _map_type_single_player = 0ui16,
+		/*nicename("Multiplayer")*/ _map_type_multiplayer = 1ui16,
+		/*nicename("Main Menu")*/ _map_type_main_menu = 2ui16,
 	};
 
 	struct nicename("Resource Types") s_resource_types_definition
