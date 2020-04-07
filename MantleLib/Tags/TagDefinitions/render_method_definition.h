@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("render_method_definition") group('rmdf') s_render_method_definition_definition
+struct nicename("render_method_definition") tag_group('rmdf') s_render_method_definition_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

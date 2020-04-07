@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("user_interface_sounds_definition") group('uise') s_user_interface_sounds_definition_definition
+struct nicename("user_interface_sounds_definition") tag_group('uise') s_user_interface_sounds_definition_definition
 {
 	TagReference nicename("Navigation Up") navigation_up_reference;
 	TagReference nicename("Navigation Left") navigation_left_reference;

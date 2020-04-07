@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("camera_shake") group('csdt') s_camera_shake_definition
+struct nicename("camera_shake") tag_group('csdt') s_camera_shake_definition
 {
 	enum nicename("Wobble Function") e_wobble_function : uint16_t
 	{

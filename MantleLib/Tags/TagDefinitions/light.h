@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("light") group('ligh') s_light_definition
+struct nicename("light") tag_group('ligh') s_light_definition
 {
 	enum nicename("Type") e_type : uint16_t
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("globals") group('matg') s_globals_definition
+struct nicename("globals") tag_group('matg') s_globals_definition
 {
 	enum nicename("Language") e_language : uint32_t
 	{

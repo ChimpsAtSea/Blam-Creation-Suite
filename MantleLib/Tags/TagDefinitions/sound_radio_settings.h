@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_radio_settings") group('srad') s_sound_radio_settings_definition
+struct nicename("sound_radio_settings") tag_group('srad') s_sound_radio_settings_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

@@ -52,6 +52,11 @@ void c_mantle_gui_tab::render_gui(bool set_selected)
 	ImGui::PopID();
 }
 
+void c_mantle_gui_tab::render_menu_gui()
+{
+	render_tab_menu_gui();
+}
+
 void c_mantle_gui_tab::add_tab_closed_callback(on_tab_closed_callback callback)
 {
 	ASSERT(callback != nullptr);
@@ -75,4 +80,12 @@ void c_mantle_gui_tab::remove_tab(c_mantle_gui_tab& tab)
 void c_mantle_gui_tab::tab_closed_callback(c_mantle_gui_tab& tab)
 {
 	this->remove_tab(tab);
+}
+
+void c_mantle_gui_tab::render_tab_menu_gui()
+{
+	for (c_mantle_gui_tab* child_tab : child_tabs)
+	{
+		child_tab->render_menu_gui();
+	}
 }

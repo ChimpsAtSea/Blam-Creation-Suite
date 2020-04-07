@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("user_interface_globals_definition") group('wgtz') s_user_interface_globals_definition_definition
+struct nicename("user_interface_globals_definition") tag_group('wgtz') s_user_interface_globals_definition_definition
 {
 	struct nicename("CUI Screen Index") s_cui_screen_index_definition
 	{

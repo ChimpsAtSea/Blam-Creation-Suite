@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("decal_system") group('decs') s_decal_system_definition
+struct nicename("decal_system") tag_group('decs') s_decal_system_definition
 {
 	struct nicename("Decal System") s_decal_system1_definition
 	{

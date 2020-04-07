@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("scenario_structure_lighting_info") group('stli') s_scenario_structure_lighting_info_definition
+struct nicename("scenario_structure_lighting_info") tag_group('stli') s_scenario_structure_lighting_info_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

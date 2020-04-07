@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_classes") group('sncl') s_sound_classes_definition
+struct nicename("sound_classes") tag_group('sncl') s_sound_classes_definition
 {
 	struct nicename("Sound Classes") s_sound_classes1_definition
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("biped") group('bipd') s_biped_definition
+struct nicename("biped") tag_group('bipd') s_biped_definition
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("antenna") group('ant!') s_antenna_definition
+struct nicename("antenna") tag_group('ant!') s_antenna_definition
 {
 	struct nicename("Vertices") s_vertices_definition
 	{

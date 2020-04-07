@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("area_screen_effect") group('sefc') s_area_screen_effect_definition
+struct nicename("area_screen_effect") tag_group('sefc') s_area_screen_effect_definition
 {
 	struct nicename("Screen Effect") s_screen_effect_definition
 	{

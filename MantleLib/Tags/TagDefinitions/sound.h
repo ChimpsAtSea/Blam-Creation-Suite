@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound") group('snd!') s_sound_definition
+struct nicename("sound") tag_group('snd!') s_sound_definition
 {
 	enum nicename("Sound Class") e_sound_class : uint8_t
 	{

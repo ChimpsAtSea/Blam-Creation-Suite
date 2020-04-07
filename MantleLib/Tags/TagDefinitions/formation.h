@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("formation") group('form') s_formation_definition
+struct nicename("formation") tag_group('form') s_formation_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

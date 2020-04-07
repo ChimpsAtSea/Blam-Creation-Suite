@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("imposter_model") group('impo') s_imposter_model_definition
+struct nicename("imposter_model") tag_group('impo') s_imposter_model_definition
 {
 	struct nicename("Nodes") s_nodes_definition
 	{

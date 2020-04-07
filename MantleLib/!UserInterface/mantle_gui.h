@@ -11,6 +11,10 @@ class c_mantle_gui_tab;
 class c_mantle_gui
 {
 public:
+	c_mantle_gui() = delete;
+	c_mantle_gui(const c_mantle_gui&) = delete;
+	c_mantle_gui& operator=(const c_mantle_gui&) = delete;
+
 	using get_tag_pointer_func = char* (*)(uint16_t tagIndex);
 	using get_tag_selection_address_func = char* (*)(uint32_t address);
 

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("wave_template") group('wave') s_wave_template_definition
+struct nicename("wave_template") tag_group('wave') s_wave_template_definition
 {
 	struct nicename("Wave Template") s_wave_template1_definition
 	{

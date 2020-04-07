@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("multilingual_unicode_string_list") group('unic') s_multilingual_unicode_string_list_definition
+struct nicename("multilingual_unicode_string_list") tag_group('unic') s_multilingual_unicode_string_list_definition
 {
 	struct nicename("Variables") s_variables_definition
 	{

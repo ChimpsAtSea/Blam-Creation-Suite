@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("game_engine_globals") group('gegl') s_game_engine_globals_definition
+struct nicename("game_engine_globals") tag_group('gegl') s_game_engine_globals_definition
 {
 	struct nicename("Engine Events") s_engine_events_definition
 	{

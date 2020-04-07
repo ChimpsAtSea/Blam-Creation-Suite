@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("shader_terrain") group('rmtr') s_shader_terrain_definition
+struct nicename("shader_terrain") tag_group('rmtr') s_shader_terrain_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

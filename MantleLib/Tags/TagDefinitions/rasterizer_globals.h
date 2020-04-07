@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("rasterizer_globals") group('rasg') s_rasterizer_globals_definition
+struct nicename("rasterizer_globals") tag_group('rasg') s_rasterizer_globals_definition
 {
 	struct nicename("Default Bitmaps") s_default_bitmaps_definition
 	{

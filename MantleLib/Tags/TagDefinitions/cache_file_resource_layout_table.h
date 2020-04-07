@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cache_file_resource_layout_table") group('play') s_cache_file_resource_layout_table_definition
+struct nicename("cache_file_resource_layout_table") tag_group('play') s_cache_file_resource_layout_table_definition
 {
 	struct nicename("Compression Codecs") s_compression_codecs_definition
 	{

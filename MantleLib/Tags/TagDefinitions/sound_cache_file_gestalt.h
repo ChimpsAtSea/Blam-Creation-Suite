@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_cache_file_gestalt") group('ugh!') s_sound_cache_file_gestalt_definition
+struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file_gestalt_definition
 {
 	struct nicename("Platform Codec") s_platform_codec_definition
 	{

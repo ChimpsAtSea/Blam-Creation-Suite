@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("scenario_wetness_bsp_data") group('wetn') s_scenario_wetness_bsp_data_definition
+struct nicename("scenario_wetness_bsp_data") tag_group('wetn') s_scenario_wetness_bsp_data_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

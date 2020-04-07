@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("ai_mission_dialogue") group('mdlg') s_ai_mission_dialogue_definition
+struct nicename("ai_mission_dialogue") tag_group('mdlg') s_ai_mission_dialogue_definition
 {
 	struct nicename("Lines") s_lines_definition
 	{

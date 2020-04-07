@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("decorator_set") group('dctr') s_decorator_set_definition
+struct nicename("decorator_set") tag_group('dctr') s_decorator_set_definition
 {
 	enum nicename("Is Visible? (Can Crash Xbox!)") e_is_visible_can_crash_xbox : uint16_t
 	{

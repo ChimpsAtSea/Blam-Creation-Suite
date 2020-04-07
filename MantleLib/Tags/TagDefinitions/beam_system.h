@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("beam_system") group('beam') s_beam_system_definition
+struct nicename("beam_system") tag_group('beam') s_beam_system_definition
 {
 	struct nicename("Beam System") s_beam_system1_definition
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("equipment") group('eqip') s_equipment_definition
+struct nicename("equipment") tag_group('eqip') s_equipment_definition
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{

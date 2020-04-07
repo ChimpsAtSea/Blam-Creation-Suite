@@ -39,22 +39,25 @@ typedef	uint64_t			undefined64_t;
 #ifdef __INTELLISENSE__
 #define noreflection /* noreflection */
 #define nicename(...) /* nicename */
-#define group(...) /* group */
+#define tag_group(...) /* group */
 #else
 #ifdef __clang__
 #define noreflection __attribute__((annotate("no_reflection")))
 #define nicename(name) __attribute__((annotate("nice_name:" name)))
-#define group(groupName) __attribute__((annotate("tag_group:" STRINGIFY(groupName))))
+#define tag_group(groupName) __attribute__((annotate("tag_group:" STRINGIFY(groupName))))
 #else
 #define noreflection 
 #define nicename(name) 
-#define group(groupName) 
+#define tag_group(groupName) 
 #endif
 #endif
 
 #ifndef BUILD_REFLECTION_DATA
 #include "TagGroups.h"
-#define _tag_group_render_method 'rm  '
+#define _tag_group_render_method static_cast<e_tag_group>('rm  ')
+#define _tag_group_bink static_cast<e_tag_group>('bink')
+#define _tag_group_any static_cast<e_tag_group>(-2)
+#define _tag_group_object static_cast<e_tag_group>('obje')
 #else
 enum noreflection e_tag_group : int32_t {};
 #endif
@@ -258,3 +261,7 @@ enum noreflection e_tag_group : int32_t {};
 #endif
 
 #pragma pack(pop)
+
+#undef noreflection
+#undef nicename
+#undef tag_group

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("simulation_interpolation") group('siin') s_simulation_interpolation_definition
+struct nicename("simulation_interpolation") tag_group('siin') s_simulation_interpolation_definition
 {
 	Undefined32 __unknown0;
 	Undefined32 __unknown1;

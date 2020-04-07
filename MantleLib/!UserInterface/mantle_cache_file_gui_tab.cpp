@@ -25,7 +25,8 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_fil
 	next_selected_mantle_gui_tab(nullptr),
 	m_pSelectedSearchTagInterface(nullptr),
 	m_pSearchBuffer(),
-	virtual_resource_manager(*new c_virtual_resource_manager(cache_file))
+	virtual_resource_manager(*new c_virtual_resource_manager(cache_file)),
+	halo_script_editor(nullptr)
 {
 	shader_tool_directory = c_command_line::get_command_line_arg("-shadertool");
 	enable_shader_tool = !shader_tool_directory.empty() && PathFileExistsA(shader_tool_directory.c_str());
@@ -34,12 +35,12 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_fil
 		static bool autostart_shader_tool = c_command_line::has_command_line_arg("-shadertool");
 		if (autostart_shader_tool)
 		{
-			start_shader_tool();
+			open_shader_tool();
 			autostart_shader_tool = false;
 		}
 	}
 
-	
+
 
 	std::string load_tag_command_line = c_command_line::get_command_line_arg("-loadtag");
 	if (!load_tag_command_line.empty())
@@ -61,11 +62,16 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_fil
 				break;
 			}
 		}
-		
+
 		if (tag_interface)
 		{
 			open_tag_interface_tab(*tag_interface);
 		}
+	}
+
+	if (c_command_line::has_command_line_arg("-haloscript") || c_command_line::has_command_line_arg("-hsc"))
+	{
+		open_halo_script_editor();
 	}
 }
 
@@ -91,25 +97,43 @@ c_mantle_cache_file_gui_tab::~c_mantle_cache_file_gui_tab()
 	}
 }
 
-void c_mantle_cache_file_gui_tab::render_cache_file_gui()
+void c_mantle_cache_file_gui_tab::render_tab_menu_gui()
 {
+	if (ImGui::BeginMenu("Cache"))
+	{
+		if (ImGui::MenuItem(halo_script_editor == nullptr ? "Open Halo Script Editor" : "Close Halo Script Editor"))
+		{
+			if (halo_script_editor == nullptr)
+			{
+				open_halo_script_editor();
+			}
+			else
+			{
+				close_halo_script_editor();
+			}
+		}
+
+		ImGui::EndMenu();
+	}
+
 	if (c_mantle_gui::is_game())
 	{
-		if (ImGui::BeginMenuBar())
+		if (ImGui::BeginMenu("Game"))
 		{
-			if (ImGui::BeginMenu("Game"))
+			if (ImGui::MenuItem(render_trigger_volumes ? "Hide Trigger Volumes" : "Show Trigger Volumes"))
 			{
-				if (ImGui::MenuItem(render_trigger_volumes ? "Hide Trigger Volumes" : "Show Trigger Volumes"))
-				{
-					render_trigger_volumes = !render_trigger_volumes;
-				}
-
-				ImGui::EndMenu();
+				render_trigger_volumes = !render_trigger_volumes;
 			}
-			ImGui::EndMenuBar();
+
+			ImGui::EndMenu();
 		}
 	}
 
+	c_mantle_gui_tab::render_tab_menu_gui();
+}
+
+void c_mantle_cache_file_gui_tab::render_cache_file_gui()
+{
 	ImGui::Columns(2, "mixed");
 	RUNONCE(ImGui::SetColumnOffset(1, 500));
 	ImGui::Separator();
@@ -374,7 +398,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 	const std::vector<c_tag_interface*>& tag_interfaces = group_interface->get_tag_interfaces();
 	if (tag_interfaces.empty())
 	{
-		return; 
+		return;
 	}
 	// #TODO: #ELDORADO Render trigger volumes for a specific scenario
 	// #TODO: cache this value
@@ -393,7 +417,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 		{
 			constexpr float k_line_transparency = 0.4f;
 			constexpr float k_text_transparency = 0.6f;
-			
+
 			s_scenario_definition::s_trigger_volumes_definition& trigger_volume = trigger_volumes_tag_block_data[trigger_volume_index];
 
 			bool is_kill_volume = trigger_volume.kill_volume != 0xFFFFi16;
@@ -408,9 +432,9 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 			//	immediate_box_primitive.set_color(1.0f, 0.0f, 1.0f, k_line_transparency);
 			//	break;
 			//default:
-				immediate_box_primitive.set_color(1.0f, 1.0f, 0.0f, k_line_transparency);
-				//break;
-			//}
+			immediate_box_primitive.set_color(1.0f, 1.0f, 0.0f, k_line_transparency);
+			//break;
+		//}
 
 			int imgui_text_color;
 			if (is_kill_volume) imgui_text_color = IM_COL32(255, 0, 0, static_cast<int>(255 * k_text_transparency));
@@ -454,7 +478,7 @@ void c_mantle_cache_file_gui_tab::render_tab_contents_gui()
 	}
 }
 
-void c_mantle_cache_file_gui_tab::start_shader_tool()
+void c_mantle_cache_file_gui_tab::open_shader_tool()
 {
 	if (!enable_shader_tool) return;
 
@@ -477,4 +501,31 @@ void c_mantle_cache_file_gui_tab::start_shader_tool()
 	}
 
 	next_selected_mantle_gui_tab = mantle_halo_shader_generator_gui_tab;
+}
+
+void c_mantle_cache_file_gui_tab::open_halo_script_editor()
+{
+	if (halo_script_editor != nullptr)
+	{
+		return;
+	}
+
+	halo_script_editor = new c_mantle_halo_script_editor(*this, cache_file);
+	halo_script_editor->add_tab_closed_callback([this](c_mantle_gui_tab& hsc_tab) 
+		{ 
+			halo_script_editor = nullptr;
+		});
+	add_tab(*halo_script_editor);
+}
+
+void c_mantle_cache_file_gui_tab::close_halo_script_editor()
+{
+	if (halo_script_editor == nullptr)
+	{
+		return;
+	}
+
+	remove_tab(*halo_script_editor);
+	delete halo_script_editor;
+	halo_script_editor = nullptr;
 }

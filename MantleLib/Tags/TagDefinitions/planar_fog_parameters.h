@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("planar_fog_parameters") group('pfpt') s_planar_fog_parameters_definition
+struct nicename("planar_fog_parameters") tag_group('pfpt') s_planar_fog_parameters_definition
 {
 	Undefined32 __unknown0;
 	Undefined32 __unknown1;

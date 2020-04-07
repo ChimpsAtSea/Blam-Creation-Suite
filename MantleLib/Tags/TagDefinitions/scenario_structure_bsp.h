@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("scenario_structure_bsp") group('sbsp') s_scenario_structure_bsp_definition
+struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure_bsp_definition
 {
 	struct nicename("Structure Seams") s_structure_seams_definition
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("weather_globals") group('wxcg') s_weather_globals_definition
+struct nicename("weather_globals") tag_group('wxcg') s_weather_globals_definition
 {
 	struct nicename("Resources") s_resources_definition
 	{

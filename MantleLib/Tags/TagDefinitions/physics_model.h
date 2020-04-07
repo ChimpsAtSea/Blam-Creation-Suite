@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("physics_model") group('phmo') s_physics_model_definition
+struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

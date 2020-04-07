@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("pgcr_enemy_to_category_mapping_definition") group('pcec') s_pgcr_enemy_to_category_mapping_definition_definition
+struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s_pgcr_enemy_to_category_mapping_definition_definition
 {
 	struct nicename("Actors") s_actors_definition
 	{

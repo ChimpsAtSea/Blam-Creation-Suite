@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("particle_model") group('pmdf') s_particle_model_definition
+struct nicename("particle_model") tag_group('pmdf') s_particle_model_definition
 {
 	struct nicename("Meshes") s_meshes_definition
 	{

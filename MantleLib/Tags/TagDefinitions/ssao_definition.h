@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("ssao_definition") group('ssao') s_ssao_definition_definition
+struct nicename("ssao_definition") tag_group('ssao') s_ssao_definition_definition
 {
 	int16_t __unknown0;
 	int16_t __unknown1;

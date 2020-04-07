@@ -4,11 +4,16 @@ class c_mantle_gui_tab :
 	public c_mantle_event_queue
 {
 public:
+	c_mantle_gui_tab() = delete;
+	c_mantle_gui_tab(const c_mantle_gui_tab&) = delete;
+	c_mantle_gui_tab& operator=(const c_mantle_gui_tab&) = delete;
+
 	c_mantle_gui_tab(const char* title, const char* description);
 	virtual ~c_mantle_gui_tab();
 
 	virtual void render_in_game_gui();
-	virtual void render_gui(bool set_selected);
+	virtual void render_gui(bool set_selected) final;
+	virtual void render_menu_gui() final;
 
 	inline const char* get_title() const { return m_title.c_str(); }
 	inline const char* get_description() const { return m_description.c_str(); }
@@ -21,10 +26,13 @@ protected:
 	void tab_closed_callback(c_mantle_gui_tab& tab);
 
 	virtual void render_tab_contents_gui() = 0;
+	virtual void render_tab_menu_gui();
 
 	bool allow_close;
 	bool is_open;
+public:
 	bool is_selected;
+protected:
 	std::string m_title;
 	std::string m_description;
 	std::vector<on_tab_closed_callback> on_tab_closed_callbacks;

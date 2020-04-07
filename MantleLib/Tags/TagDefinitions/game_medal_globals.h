@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("game_medal_globals") group('gmeg') s_game_medal_globals_definition
+struct nicename("game_medal_globals") tag_group('gmeg') s_game_medal_globals_definition
 {
 	struct nicename("Medals") s_medals_definition
 	{

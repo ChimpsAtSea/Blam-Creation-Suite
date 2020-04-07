@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("airstrike") group('airs') s_airstrike_definition
+struct nicename("airstrike") tag_group('airs') s_airstrike_definition
 {
 	struct nicename("Airstrike") s_airstrike1_definition
 	{

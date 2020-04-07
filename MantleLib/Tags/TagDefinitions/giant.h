@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("giant") group('gint') s_giant_definition
+struct nicename("giant") tag_group('gint') s_giant_definition
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{

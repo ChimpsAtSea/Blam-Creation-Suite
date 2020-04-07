@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("shader_mux") group('rmmx') s_shader_mux_definition
+struct nicename("shader_mux") tag_group('rmmx') s_shader_mux_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

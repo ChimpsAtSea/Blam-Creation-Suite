@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("device_control") group('ctrl') s_device_control_definition
+struct nicename("device_control") tag_group('ctrl') s_device_control_definition
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{

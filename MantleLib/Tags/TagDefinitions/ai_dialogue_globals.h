@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("ai_dialogue_globals") group('adlg') s_ai_dialogue_globals_definition
+struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

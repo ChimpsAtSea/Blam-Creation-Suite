@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("scenario_required_resource") group('sdzg') s_scenario_required_resource_definition
+struct nicename("scenario_required_resource") tag_group('sdzg') s_scenario_required_resource_definition
 {
 	struct nicename("Required Objects") s_required_objects_definition
 	{

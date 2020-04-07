@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("shader_foliage") group('rmfl') s_shader_foliage_definition
+struct nicename("shader_foliage") tag_group('rmfl') s_shader_foliage_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

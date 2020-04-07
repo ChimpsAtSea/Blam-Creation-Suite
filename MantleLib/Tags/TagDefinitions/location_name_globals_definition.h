@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("location_name_globals_definition") group('locs') s_location_name_globals_definition_definition
+struct nicename("location_name_globals_definition") tag_group('locs') s_location_name_globals_definition_definition
 {
 	struct nicename("Callouts") s_callouts_definition
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cinematic_scene") group('cisc') s_cinematic_scene_definition
+struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definition
 {
 	struct nicename("Puppets") s_puppets_definition
 	{

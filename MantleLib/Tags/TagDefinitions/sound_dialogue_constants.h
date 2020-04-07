@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_dialogue_constants") group('spk!') s_sound_dialogue_constants_definition
+struct nicename("sound_dialogue_constants") tag_group('spk!') s_sound_dialogue_constants_definition
 {
 	float nicename("Almost Never") almost_never;
 	float nicename("Rarely") rarely;

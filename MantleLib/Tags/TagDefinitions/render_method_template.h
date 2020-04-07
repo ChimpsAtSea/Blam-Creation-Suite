@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("render_method_template") group('rmt2') s_render_method_template_definition
+struct nicename("render_method_template") tag_group('rmt2') s_render_method_template_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

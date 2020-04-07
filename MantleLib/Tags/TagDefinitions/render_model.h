@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("render_model") group('mode') s_render_model_definition
+struct nicename("render_model") tag_group('mode') s_render_model_definition
 {
 	enum nicename("Flags") b_flags : uint16_t /* bitfield */
 	{

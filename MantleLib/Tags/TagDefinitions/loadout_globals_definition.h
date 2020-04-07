@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("loadout_globals_definition") group('lgtd') s_loadout_globals_definition_definition
+struct nicename("loadout_globals_definition") tag_group('lgtd') s_loadout_globals_definition_definition
 {
 	struct nicename("Default Loadouts") s_default_loadouts_definition
 	{

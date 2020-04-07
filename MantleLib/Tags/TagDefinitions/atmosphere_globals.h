@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("atmosphere_globals") group('atgf') s_atmosphere_globals_definition
+struct nicename("atmosphere_globals") tag_group('atgf') s_atmosphere_globals_definition
 {
 	struct nicename("Colors") s_colors_definition
 	{

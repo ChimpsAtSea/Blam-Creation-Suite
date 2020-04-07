@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("global_pixel_shader") group('glps') s_global_pixel_shader_definition
+struct nicename("global_pixel_shader") tag_group('glps') s_global_pixel_shader_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

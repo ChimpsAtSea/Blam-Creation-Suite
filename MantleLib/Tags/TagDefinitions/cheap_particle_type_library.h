@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cheap_particle_type_library") group('cptl') s_cheap_particle_type_library_definition
+struct nicename("cheap_particle_type_library") tag_group('cptl') s_cheap_particle_type_library_definition
 {
 	struct nicename("Particle Type Library") s_particle_type_library_definition
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("particle") group('prt3') s_particle_definition
+struct nicename("particle") tag_group('prt3') s_particle_definition
 {
 	enum nicename("Output Kind") e_output_kind : uint8_t
 	{

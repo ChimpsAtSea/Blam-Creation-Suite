@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("chud_widget_state_data_template") group('wsdt') s_chud_widget_state_data_template_definition
+struct nicename("chud_widget_state_data_template") tag_group('wsdt') s_chud_widget_state_data_template_definition
 {
 	struct nicename("State Data") s_state_data_definition
 	{

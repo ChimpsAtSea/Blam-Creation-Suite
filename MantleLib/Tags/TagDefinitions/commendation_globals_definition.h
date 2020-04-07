@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("commendation_globals_definition") group('comg') s_commendation_globals_definition_definition
+struct nicename("commendation_globals_definition") tag_group('comg') s_commendation_globals_definition_definition
 {
 	struct nicename("Commendations") s_commendations_definition
 	{

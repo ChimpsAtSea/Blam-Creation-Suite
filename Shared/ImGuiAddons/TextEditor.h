@@ -10,6 +10,7 @@ public:
 		Default,
 		Keyword,
 		Number,
+		Enum = Number,
 		String,
 		CharLiteral,
 		Punctuation,
@@ -28,6 +29,7 @@ public:
 		CurrentLineFill,
 		CurrentLineFillInactive,
 		CurrentLineEdge,
+		Subroutine,
 		Max
 	};
 
@@ -49,7 +51,7 @@ public:
 			, mEnabled(false)
 		{}
 	};
-	
+
 	struct Coordinates
 	{
 		int mLine, mColumn;
@@ -113,11 +115,12 @@ public:
 	typedef std::string String;
 	typedef std::unordered_map<std::string, Identifier> Identifiers;
 	typedef std::unordered_set<std::string> Keywords;
+	typedef std::unordered_set<std::string> Enums;
 	typedef std::map<int, std::string> ErrorMarkers;
 	typedef std::unordered_set<int> Breakpoints;
 	typedef std::array<ImU32, (unsigned)PaletteIndex::Max> Palette;
 	typedef char Char;
-	
+
 	struct Glyph
 	{
 		Char mChar;
@@ -126,7 +129,7 @@ public:
 		bool mMultiLineComment : 1;
 		bool mPreprocessor : 1;
 
-		Glyph(Char aChar, PaletteIndex aColorIndex) : mChar(aChar), mColorIndex(aColorIndex), 
+		Glyph(Char aChar, PaletteIndex aColorIndex) : mChar(aChar), mColorIndex(aColorIndex),
 			mComment(false), mMultiLineComment(false), mPreprocessor(false) {}
 	};
 
@@ -135,12 +138,33 @@ public:
 
 	struct LanguageDefinition
 	{
-		typedef std::pair<std::string, PaletteIndex> TokenRegexString;
+		struct TokenRegexString
+		{
+			TokenRegexString(
+				std::string first,
+				PaletteIndex second,
+				int32_t begin_offset = 0,
+				int32_t end_offset = 0
+			) :
+				first(first),
+				second(second),
+				begin_offset(begin_offset),
+				end_offset(end_offset)
+			{
+
+			}
+
+			std::string first;
+			PaletteIndex second;
+			int32_t begin_offset;
+			int32_t end_offset;
+		};
 		typedef std::vector<TokenRegexString> TokenRegexStrings;
-		typedef bool (*TokenizeCallback)(const char * in_begin, const char * in_end, const char *& out_begin, const char *& out_end, PaletteIndex & paletteIndex);
+		typedef bool (*TokenizeCallback)(const char* in_begin, const char* in_end, const char*& out_begin, const char*& out_end, PaletteIndex& paletteIndex);
 
 		std::string mName;
 		Keywords mKeywords;
+		Enums mEnums;
 		Identifiers mIdentifiers;
 		Identifiers mPreprocIdentifiers;
 		std::string mCommentStart, mCommentEnd, mSingleLineComment;
@@ -149,10 +173,11 @@ public:
 
 		TokenizeCallback mTokenize;
 
-		TokenRegexStrings mTokenRegexStrings;
+		TokenRegexStrings mTokenRegexStringsPre;
+		TokenRegexStrings mTokenRegexStringsPost;
 
 		bool mCaseSensitive;
-		
+
 		LanguageDefinition()
 			: mPreprocChar('#'), mAutoIndentation(true), mTokenize(nullptr), mCaseSensitive(true)
 		{
@@ -160,12 +185,14 @@ public:
 
 		static const LanguageDefinition& HLSL_Shader_Asm();
 		static const LanguageDefinition& CPlusPlus();
+		static const LanguageDefinition& HaloScript();
 		static const LanguageDefinition& HLSL();
 		static const LanguageDefinition& GLSL();
 		static const LanguageDefinition& C();
 		static const LanguageDefinition& SQL();
 		static const LanguageDefinition& AngelScript();
 		static const LanguageDefinition& Lua();
+		static const LanguageDefinition& PlainText();
 	};
 
 	TextEditor();
@@ -187,7 +214,7 @@ public:
 	std::vector<std::string> GetTextLines() const;
 	std::string GetSelectedText() const;
 	std::string GetCurrentLineText()const;
-	
+
 	int GetTotalLines() const { return (int)mLines.size(); }
 	bool IsOverwrite() const { return mOverwrite; }
 
@@ -196,7 +223,7 @@ public:
 	bool IsTextChanged() const { return mTextChanged; }
 	bool IsCursorPositionChanged() const { return mCursorPositionChanged; }
 	bool IsFocused() const { return isFocused; }
-	
+
 	Coordinates GetCursorPosition() const { return GetActualCursorCoordinates(); }
 	void SetCursorPosition(const Coordinates& aPosition);
 
@@ -234,7 +261,14 @@ public:
 	static const Palette& GetRetroBluePalette();
 
 private:
-	typedef std::vector<std::pair<std::regex, PaletteIndex>> RegexList;
+	struct RegexEntry
+	{
+		std::regex first;
+		PaletteIndex second;
+		int32_t begin_offset;
+		int32_t end_offset;
+	};
+	typedef std::vector<RegexEntry> RegexList;
 
 	struct EditorState
 	{
@@ -251,14 +285,14 @@ private:
 
 		UndoRecord(
 			const std::string& aAdded,
-			const TextEditor::Coordinates aAddedStart, 
-			const TextEditor::Coordinates aAddedEnd, 
-			
-			const std::string& aRemoved, 
+			const TextEditor::Coordinates aAddedStart,
+			const TextEditor::Coordinates aAddedEnd,
+
+			const std::string& aRemoved,
 			const TextEditor::Coordinates aRemovedStart,
 			const TextEditor::Coordinates aRemovedEnd,
-			
-			TextEditor::EditorState& aBefore, 
+
+			TextEditor::EditorState& aBefore,
 			TextEditor::EditorState& aAfter);
 
 		void Undo(TextEditor* aEditor);
@@ -316,7 +350,7 @@ private:
 	EditorState mState;
 	UndoBuffer mUndoBuffer;
 	int mUndoIndex;
-	
+
 	int mTabSize;
 	bool isFocused;
 	bool mOverwrite;
@@ -334,13 +368,14 @@ private:
 	Palette mPaletteBase;
 	Palette mPalette;
 	LanguageDefinition mLanguageDefinition;
-	RegexList mRegexList;
+	RegexList mRegexListPre;
+	RegexList mRegexListPost;
 
 	bool mCheckComments;
 	Breakpoints mBreakpoints;
 	ErrorMarkers mErrorMarkers;
 	ImVec2 mCharAdvance;
 	Coordinates mInteractiveStart, mInteractiveEnd;
-	
+
 	float mLastClick;
 };

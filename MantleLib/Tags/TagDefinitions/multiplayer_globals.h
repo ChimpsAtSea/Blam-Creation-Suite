@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("multiplayer_globals") group('mulg') s_multiplayer_globals_definition
+struct nicename("multiplayer_globals") tag_group('mulg') s_multiplayer_globals_definition
 {
 	struct nicename("Multiplayer Settings") s_multiplayer_settings_definition
 	{

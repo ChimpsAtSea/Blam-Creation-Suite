@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("style") group('styl') s_style_definition
+struct nicename("style") tag_group('styl') s_style_definition
 {
 	enum nicename("Combat Status Decay Options") e_combat_status_decay_options : uint16_t
 	{

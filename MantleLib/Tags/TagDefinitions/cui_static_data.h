@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cui_static_data") group('cust') s_cui_static_data_definition
+struct nicename("cui_static_data") tag_group('cust') s_cui_static_data_definition
 {
 	struct nicename("Property Pool") s_property_pool_definition
 	{

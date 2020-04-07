@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("shader_halogram") group('rmhg') s_shader_halogram_definition
+struct nicename("shader_halogram") tag_group('rmhg') s_shader_halogram_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

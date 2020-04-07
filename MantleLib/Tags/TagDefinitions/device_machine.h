@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("device_machine") group('mach') s_device_machine_definition
+struct nicename("device_machine") tag_group('mach') s_device_machine_definition
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{

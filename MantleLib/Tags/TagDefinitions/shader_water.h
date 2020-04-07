@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("shader_water") group('rmw') s_shader_water_definition
+struct nicename("shader_water") tag_group('rmw') s_shader_water_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("model") group('hlmt') s_model_definition
+struct nicename("model") tag_group('hlmt') s_model_definition
 {
 	enum nicename("Collision Damage Reporting Type") e_collision_damage_reporting_type : uint8_t
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("performance_template") group('pfmc') s_performance_template_definition
+struct nicename("performance_template") tag_group('pfmc') s_performance_template_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

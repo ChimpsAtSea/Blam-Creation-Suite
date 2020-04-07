@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("particle_physics") group('pmov') s_particle_physics_definition
+struct nicename("particle_physics") tag_group('pmov') s_particle_physics_definition
 {
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
 	{

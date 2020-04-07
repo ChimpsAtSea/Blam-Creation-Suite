@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("scenario_interpolator") group('sirp') s_scenario_interpolator_definition
+struct nicename("scenario_interpolator") tag_group('sirp') s_scenario_interpolator_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

@@ -2,6 +2,7 @@
 
 class c_cache_file;
 class c_virtual_resource_manager;
+class c_mantle_halo_script_editor;
 
 class c_mantle_cache_file_gui_tab : public c_mantle_gui_tab
 {
@@ -10,6 +11,10 @@ public:
 
 	void render_cache_file_gui();
 public:
+	c_mantle_cache_file_gui_tab() = delete;
+	c_mantle_cache_file_gui_tab(const c_mantle_cache_file_gui_tab&) = delete;
+	c_mantle_cache_file_gui_tab& operator=(const c_mantle_cache_file_gui_tab&) = delete;
+
 	c_mantle_cache_file_gui_tab(c_cache_file& cache_file);
 	c_mantle_cache_file_gui_tab(const wchar_t* szMapFilePath);
 	virtual ~c_mantle_cache_file_gui_tab();
@@ -20,9 +25,12 @@ protected:
 	c_mantle_cache_file_gui_tab(c_cache_file* cache_file);
 
 	virtual void render_in_game_gui() override;
+	virtual void render_tab_menu_gui() override;
 	virtual void render_tab_contents_gui() override;
 
-	void start_shader_tool();
+	void open_shader_tool();
+	void open_halo_script_editor();
+	void close_halo_script_editor();
 
 
 	char m_pSearchBuffer[1024];
@@ -33,6 +41,7 @@ protected:
 	c_cache_file* cache_file_owned_pointer;
 	bool enable_shader_tool;
 	std::string shader_tool_directory;
+	c_mantle_halo_script_editor* halo_script_editor;
 	
 
 public:

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("character") group('char') s_character_definition
+struct nicename("character") tag_group('char') s_character_definition
 {
 	enum nicename("Character Flags") b_character_flags : uint32_t /* bitfield */
 	{

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("chocolate_mountain_new") group('chmt') s_chocolate_mountain_new_definition
+struct nicename("chocolate_mountain_new") tag_group('chmt') s_chocolate_mountain_new_definition
 {
 	struct nicename("Lighting Variables") s_lighting_variables_definition
 	{

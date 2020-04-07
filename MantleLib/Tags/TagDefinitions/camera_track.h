@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("camera_track") group('trak') s_camera_track_definition
+struct nicename("camera_track") tag_group('trak') s_camera_track_definition
 {
 	struct nicename("Camera Points") s_camera_points_definition
 	{

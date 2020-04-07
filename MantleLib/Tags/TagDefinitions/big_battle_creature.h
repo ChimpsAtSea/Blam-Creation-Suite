@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("big_battle_creature") group('bbcr') s_big_battle_creature_definition
+struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_definition
 {
 	enum nicename("Team") e_team : uint16_t
 	{

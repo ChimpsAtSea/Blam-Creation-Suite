@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("death_program_selector") group('bdpd') s_death_program_selector_definition
+struct nicename("death_program_selector") tag_group('bdpd') s_death_program_selector_definition
 {
 	struct nicename("Death Programs") s_death_programs_definition
 	{

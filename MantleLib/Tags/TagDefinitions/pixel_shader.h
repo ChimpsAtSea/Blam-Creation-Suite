@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("pixel_shader") group('pixl') s_pixel_shader_definition
+struct nicename("pixel_shader") tag_group('pixl') s_pixel_shader_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{

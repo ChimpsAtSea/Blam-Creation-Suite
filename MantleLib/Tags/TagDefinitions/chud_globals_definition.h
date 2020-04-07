@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("chud_globals_definition") group('chgd') s_chud_globals_definition_definition
+struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_definition_definition
 {
 	struct nicename("HUD Globals") s_hud_globals_definition
 	{
