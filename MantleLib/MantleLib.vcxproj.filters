@@ -123,6 +123,12 @@
     <ClCompile Include="HaloScript\lisp_ast_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="!UserInterface\TagEditor\mantle_shader_gui_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\virtual_tag_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlelib-public-pch.h">
@@ -816,6 +822,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HaloScript\lisp_ast_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="!UserInterface\TagEditor\mantle_shader_gui_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\virtual_tag_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

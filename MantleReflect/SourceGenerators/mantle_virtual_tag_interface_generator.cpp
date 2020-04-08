@@ -70,6 +70,10 @@ void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::
 		{
 			stringstream << "\t\t" << reflection_field_container_ptr->field_name << "(cache_file, *this, get_data<" << reflection_type_container.qualified_type_name << ">()->" << reflection_field_container_ptr->field_name << ")";
 		}
+		else if (reflection_field_container_ptr->reflection_type_category == e_reflection_type_category::TagReference)
+		{
+			stringstream << "\t\t" << reflection_field_container_ptr->field_name << "(cache_file, *this, get_data<" << reflection_type_container.qualified_type_name << ">()->" << reflection_field_container_ptr->field_name << ")";
+		}
 		else
 		{
 			stringstream << "\t\t" << reflection_field_container_ptr->field_name << "(get_data<" << reflection_type_container.qualified_type_name << ">()->" << reflection_field_container_ptr->field_name << ")";
@@ -91,6 +95,10 @@ void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::
 			assert(reflection_field_container_ptr->array_size == 0); // #TODO: Generate an initializer list
 
 			stringstream << "\t" << "c_virtual_tag_block<" << field_type->qualified_type_name << "::t_value> " << reflection_field_container_ptr->field_name << ";" << std::endl;
+		}
+		else if (reflection_field_container_ptr->reflection_type_category == e_reflection_type_category::TagReference)
+		{
+			stringstream << "\t" << "c_virtual_tag_interface " << reflection_field_container_ptr->field_name << ";" << std::endl;
 		}
 		else
 		{

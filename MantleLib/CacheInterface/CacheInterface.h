@@ -1,10 +1,13 @@
 #pragma once
 
+#include "cache_utilities.h"
 #include "tag_group_interface.h"
 #include "render_method_definition_group_interface.h"
 #include "tag_interface.h"
+#include "cache_file_string_id_guesstimator.h"
 #include "cache_file.h"
 #include "virtual_tag_block.h"
+#include "virtual_tag_interface.h"
 
 #include "CacheVersions\eldorado_cache_file.h"
 #include "CacheVersions\groundhog_cache_file.h"
@@ -17,3 +20,4 @@
 #include "CacheVersions\halo_4_cache_file.h"
 
 #include <MantleLib/Tags/VirtualTagInterfaces.h>
+
