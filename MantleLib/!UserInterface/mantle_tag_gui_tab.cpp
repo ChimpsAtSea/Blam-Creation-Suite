@@ -33,6 +33,13 @@ c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_inter
 		ASSERT(mantle_shader_gui_tab != nullptr);
 		add_tab(*mantle_shader_gui_tab);
 	}
+
+	if (v_tag_interface<s_shader_halogram_definition>* shader_halogram_tag_interface = dynamic_cast<decltype(shader_halogram_tag_interface)>(&tag_interface))
+	{
+		c_mantle_shader_halogram_gui_tab* mantle_shader_halogram_gui_tab = new c_mantle_shader_halogram_gui_tab(cache_file, this, *shader_halogram_tag_interface);
+		ASSERT(mantle_shader_halogram_gui_tab != nullptr);
+		add_tab(*mantle_shader_halogram_gui_tab);
+	}
 }
 
 c_mantle_tag_gui_tab::~c_mantle_tag_gui_tab()
@@ -125,6 +132,7 @@ void c_mantle_tag_gui_tab::poke()
 
 void c_mantle_tag_gui_tab::render_tab_contents_gui()
 {
+	g_current_mantle_tag_tab = this;
 	if (child_tabs.empty())
 	{
 		render_tab_contents_gui_impl();

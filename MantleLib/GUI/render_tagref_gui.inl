@@ -1,9 +1,6 @@
 
-
-void render_tagref_gui(TagReference* field_data, const c_reflection_field& reflection_field)
+void render_tagref_gui(TagReference* field_data, const char* name, c_cache_file& cache_file)
 {
-	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
-	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	DEBUG_ASSERT(field_data != nullptr);
 	ImGui::PushID(field_data);
 
@@ -16,11 +13,10 @@ void render_tagref_gui(TagReference* field_data, const c_reflection_field& refle
 	ImGui::SetColumnWidth(5, 65);
 	ImGui::NextColumn(); // padding
 
-	ImGui::Text(reflection_field.nice_name);
+	ImGui::Text(name);
 	ImGui::NextColumn();
 	ImGui::PushItemWidth(-1);
 
-	c_cache_file& cache_file = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_cache_file();
 	const char* pGroupShortName = "(null)";
 	c_tag_group_interface* pTagReferenceGroupInterface = cache_file.get_group_interface_by_group_id(field_data->tagGroupName);
 	if (pTagReferenceGroupInterface)
@@ -163,10 +159,13 @@ void render_tagref_gui(TagReference* field_data, const c_reflection_field& refle
 	{
 		if (pTagReferenceTagInterface)
 		{
-			c_mantle_cache_file_gui_tab* mantle_cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(c_mantle_tag_gui_tab::g_current_mantle_tag_tab->GetParentTab());
-			if (mantle_cache_file_gui_tab)
+			if (c_mantle_tag_gui_tab::g_current_mantle_tag_tab)
 			{
-				mantle_cache_file_gui_tab->open_tag_interface_tab(*pTagReferenceTagInterface);
+				c_mantle_cache_file_gui_tab* mantle_cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(c_mantle_tag_gui_tab::g_current_mantle_tag_tab->GetParentTab());
+				if (mantle_cache_file_gui_tab)
+				{
+					mantle_cache_file_gui_tab->open_tag_interface_tab(*pTagReferenceTagInterface);
+				}
 			}
 		}
 	}
@@ -176,3 +175,10 @@ void render_tagref_gui(TagReference* field_data, const c_reflection_field& refle
 	ImGui::PopID();
 }
 
+void render_tagref_gui(TagReference* field_data, const c_reflection_field& reflection_field)
+{
+	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
+	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
+	c_cache_file& cache_file = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_cache_file();
+	render_tagref_gui(field_data, reflection_field.nice_name, cache_file);
+}

@@ -2,8 +2,8 @@
 
 
 
-c_mantle_shader_gui_tab::c_mantle_shader_gui_tab(c_cache_file& cache_file, c_mantle_gui_tab* parent_tag, v_tag_interface<s_shader_definition>& shader_tag_interface) :
-	c_mantle_gui_tab("Shader Editor", "Shader Editor"),
+c_mantle_shader_halogram_gui_tab::c_mantle_shader_halogram_gui_tab(c_cache_file& cache_file, c_mantle_gui_tab* parent_tag, v_tag_interface<s_shader_halogram_definition>& shader_tag_interface) :
+	c_mantle_gui_tab("Shader Halogram Editor", "Shader Halogram Editor"),
 	cache_file(cache_file),
 	parent_tag(parent_tag),
 	shader_tag_interface(shader_tag_interface)
@@ -12,12 +12,12 @@ c_mantle_shader_gui_tab::c_mantle_shader_gui_tab(c_cache_file& cache_file, c_man
 	allow_close = false;
 }
 
-c_mantle_shader_gui_tab::~c_mantle_shader_gui_tab()
+c_mantle_shader_halogram_gui_tab::~c_mantle_shader_halogram_gui_tab()
 {
 
 }
 
-void c_mantle_shader_gui_tab::render_tab_contents_gui()
+void c_mantle_shader_halogram_gui_tab::render_tab_contents_gui()
 {
 	ImGui::Text("Shader Editor");
 
@@ -29,11 +29,12 @@ void c_mantle_shader_gui_tab::render_tab_contents_gui()
 		return;
 	}
 
-	s_shader_definition::s_shader_properties_definition& shader_properties = shader_tag_interface.shader_properties_block[0];
+
+	s_shader_halogram_definition::s_shader_properties_definition& shader_properties = shader_tag_interface.shader_properties_block[0];
 	
 	uint32_t option_index = 0;
 	uint32_t shader_map_index = 0;
-	for (s_shader_definition::s_unknown_definition& unknown : shader_tag_interface.__unknown1)
+	for (s_shader_halogram_definition::s_unknown_definition& unknown : shader_tag_interface.__unknown1)
 	{
 		uint16_t option_value = unknown.__unknown0;
 
@@ -71,10 +72,10 @@ void c_mantle_shader_gui_tab::render_tab_contents_gui()
 
 						//c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_block_definition<t_value>& tag_block
 
-						c_virtual_tag_block<s_shader_definition::s_shader_properties_definition::s_shader_maps_definition> shader_map_block(cache_file, shader_tag_interface, shader_properties.shader_maps_block);
+						c_virtual_tag_block<s_shader_halogram_definition::s_shader_properties_definition::s_shader_maps_definition> shader_map_block(cache_file, shader_tag_interface, shader_properties.shader_maps_block);
 
 
-						s_shader_definition::s_shader_properties_definition::s_shader_maps_definition& shader_map = shader_map_block[(size_t)shader_map_index];
+						s_shader_halogram_definition::s_shader_properties_definition::s_shader_maps_definition& shader_map = shader_map_block[(size_t)shader_map_index];
 
 						const char* bitmap_name = cache_file.string_id_to_cstr(option.__unknown0);
 

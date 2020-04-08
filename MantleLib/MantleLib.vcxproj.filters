@@ -132,6 +132,9 @@
     <ClCompile Include="CacheInterface\cache_file_string_id_guesstimator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlelib-public-pch.h">
@@ -834,6 +837,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\cache_file_string_id_guesstimator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

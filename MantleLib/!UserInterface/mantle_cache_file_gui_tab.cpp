@@ -293,8 +293,10 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 			{
 				c_mantle_gui_tab* next_selected_mantle_gui_tab_copy = next_selected_mantle_gui_tab;
 				next_selected_mantle_gui_tab = nullptr; // take a copy as the render_gui function can set this up for the next frame
-				for (c_mantle_gui_tab* mantle_gui_tab : child_tabs)
+				//for (c_mantle_gui_tab* mantle_gui_tab : child_tabs)
+				for(uint32_t i=0;i<child_tabs.size();i++)
 				{
+					c_mantle_gui_tab* mantle_gui_tab = child_tabs[i];
 					mantle_gui_tab->render_gui(next_selected_mantle_gui_tab_copy == mantle_gui_tab);
 				}
 

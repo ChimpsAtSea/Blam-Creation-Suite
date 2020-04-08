@@ -44,13 +44,13 @@ const v_tag_interface<T>* tag_cast(const c_virtual_tag_interface* virtual_tag_in
 template<typename T>
 const v_tag_interface<T>* tag_cast(const c_tag_interface* tag_interface)
 {
-	const v_tag_interface<T>* virtual_tag_interface = dynamic_cast<decltype(virtual_tag_interface)>(&tag_interface);
+	const v_tag_interface<T>* virtual_tag_interface = dynamic_cast<decltype(virtual_tag_interface)>(tag_interface);
 	return virtual_tag_interface;
 }
 
 template<typename T>
 v_tag_interface<T>* tag_cast(c_tag_interface* tag_interface)
 {
-	v_tag_interface<T>* virtual_tag_interface = dynamic_cast<decltype(virtual_tag_interface)>(&tag_interface);
+	v_tag_interface<T>* virtual_tag_interface = dynamic_cast<decltype(virtual_tag_interface)>(tag_interface);
 	return virtual_tag_interface;
 }

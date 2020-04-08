@@ -81,6 +81,7 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 	ImGui::Text("Bitmap Editor");
 	
 	
+	
 	c_tag_group_interface* play_interface = cache_file.get_group_interface_by_group_id(_tag_group_cache_file_resource_layout_table);
 	v_tag_interface<s_cache_file_resource_layout_table_definition>* play_tag = dynamic_cast<decltype(play_tag)>(play_interface->get_tag_interfaces().front());
 	ImGui::Text("Found Play Tag: %s", play_tag ? "true" : "false");
@@ -102,6 +103,12 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 		{
 			s_cache_file_resource_layout_table_definition::s_raw_pages_definition& low_res_raw_page = play_tag->raw_pages_block[segment_block.primary_page_index];
 			s_cache_file_resource_layout_table_definition::s_raw_pages_definition& high_res_raw_page = play_tag->raw_pages_block[segment_block.secondary_page_index];
+
+			if (high_res_raw_page.compression_codec_index != 0)
+			{
+				ImGui::Text("Unsupported resource compression codec");
+				return;
+			}
 
 			ASSERT(high_res_raw_page.compression_codec_index == 0);
 

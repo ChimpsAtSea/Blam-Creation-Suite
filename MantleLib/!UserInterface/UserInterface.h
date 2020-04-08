@@ -11,6 +11,7 @@
 
 #include "TagEditor/mantle_bitmap_gui_tab.h"
 #include "TagEditor/mantle_shader_gui_tab.h"
+#include "TagEditor/mantle_shader_halogram_gui_tab.h"
 
 #include "Tools/mantle_shader_tool_gui_tab.h"
 #include "Tools/mantle_halo_script_editor.h"
