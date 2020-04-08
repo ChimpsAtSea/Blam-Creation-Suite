@@ -111,7 +111,7 @@ void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_structure_ty
 	}
 }
 
-void c_mantle_tag_gui_tab::poke()
+void c_mantle_tag_gui_tab::send_to_game()
 {
 	char* pDest = static_cast<char*>(c_mantle_gui::get_tag_pointer(get_tag_interface().get_index()));
 	if (pDest)
@@ -182,9 +182,9 @@ void c_mantle_tag_gui_tab::RenderButtons()
 	{
 		if (!is_selected) return;
 
-		if (ImGui::Button("Poke"))
+		if (ImGui::Button("Push"))
 		{
-			poke();
+			send_to_game();
 		}
 	}
 }

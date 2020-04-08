@@ -193,5 +193,6 @@ public:
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_name_with_group_id;
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_path_with_group_id;
 	std::vector<c_tag_group_interface*> m_groupInterfaces;
+	void generate_cache_file_data_access_data();
 };
 

@@ -117,6 +117,11 @@ void c_mantle_cache_file_gui_tab::render_tab_menu_gui()
 			debug_file_dialogue_gui = true;
 		}
 
+		if (ImGui::MenuItem("Generate memory debug data"))
+		{
+			cache_file.generate_cache_file_data_access_data();
+		}
+
 		ImGui::EndMenu();
 	}
 
@@ -294,7 +299,7 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 				c_mantle_gui_tab* next_selected_mantle_gui_tab_copy = next_selected_mantle_gui_tab;
 				next_selected_mantle_gui_tab = nullptr; // take a copy as the render_gui function can set this up for the next frame
 				//for (c_mantle_gui_tab* mantle_gui_tab : child_tabs)
-				for(uint32_t i=0;i<child_tabs.size();i++)
+				for (uint32_t i = 0; i < child_tabs.size(); i++)
 				{
 					c_mantle_gui_tab* mantle_gui_tab = child_tabs[i];
 					mantle_gui_tab->render_gui(next_selected_mantle_gui_tab_copy == mantle_gui_tab);
@@ -517,8 +522,8 @@ void c_mantle_cache_file_gui_tab::open_halo_script_editor()
 	}
 
 	halo_script_editor = new c_mantle_halo_script_editor(*this, cache_file);
-	halo_script_editor->add_tab_closed_callback([this](c_mantle_gui_tab& hsc_tab) 
-		{ 
+	halo_script_editor->add_tab_closed_callback([this](c_mantle_gui_tab& hsc_tab)
+		{
 			halo_script_editor = nullptr;
 		});
 	add_tab(*halo_script_editor);

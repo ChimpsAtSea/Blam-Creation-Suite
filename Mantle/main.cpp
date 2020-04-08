@@ -50,10 +50,18 @@ static void application_close_callback()
 	g_mantle_running = false;
 }
 
-static void init_mantle(const wchar_t* command_line)
+static bool init_mantle(const wchar_t* command_line)
 {
 	const wchar_t* launch_filepath_command_line_argument = get_launch_filepath_command_line_argument(command_line);
 
+	if (c_command_line::has_command_line_arg("-generatecachefilememorydebug"))
+	{
+		c_cache_file cache_file = c_cache_file(launch_filepath_command_line_argument);
+		cache_file.generate_cache_file_data_access_data();
+
+		return false;
+	}
+	
 	c_console::init_console();
 	c_window::init_window("Mantle", "Mantle Console", "mantle");
 	c_render::init_render(NULL, true);
@@ -66,6 +74,8 @@ static void init_mantle(const wchar_t* command_line)
 
 	c_debug_gui::show_ui();
 	c_console::show_startup_banner();
+
+	return true;
 }
 
 static int run_mantle()
@@ -97,8 +107,11 @@ int WINAPI wWinMain(
 	_In_ int nShowCmd						/* [input] show state of window */
 )
 {
-	init_mantle(lpCmdLine);
-	int result = run_mantle();
+	int result = 0;
+	if (init_mantle(lpCmdLine)) // allow program to exit without running
+	{
+		result = run_mantle();
+	}
 	deinit_mantle();
 	return result;
 }

@@ -16,7 +16,7 @@ public:
 	static void decrement_recursion();
 
 	void copy_data_recursively(const s_reflection_structure_type& reflection_type, char* source, char* destination);
-	void poke();
+	void send_to_game();
 	c_tag_interface& get_tag_interface() const { return tag_interface; };
 	c_cache_file& get_cache_file() const { return cache_file; };
 	c_mantle_gui_tab* GetParentTab() const { return parent_tab; };

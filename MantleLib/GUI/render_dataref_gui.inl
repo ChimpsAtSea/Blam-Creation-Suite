@@ -2,11 +2,14 @@
 class s_data_reference_dynamic_ui_data
 {
 public:
+	ImGuiID unique_id;
 	c_cache_file& cache_file;
 	DataReference* field_data;
 	MemoryEditor memory_editor;
+	static volatile ImGuiID s_current_unique_id;
 
 	s_data_reference_dynamic_ui_data(DataReference* field_data, c_cache_file& cache_file) :
+		unique_id(_InterlockedIncrement(&s_current_unique_id)),
 		cache_file(cache_file),
 		field_data(field_data),
 		memory_editor()
@@ -14,7 +17,7 @@ public:
 		memory_editor.OptShowOptions = false;
 	}
 };
-static constexpr size_t x = sizeof(s_data_reference_dynamic_ui_data);
+volatile ImGuiID s_data_reference_dynamic_ui_data::s_current_unique_id = 1;
 
 void render_dataref_gui(DataReference* field_data, const c_reflection_field& reflection_field)
 {
@@ -42,7 +45,7 @@ void render_dataref_gui(DataReference* field_data, const c_reflection_field& ref
 
 		ImGui::Dummy(ImVec2(0.0f, 3.0f));
 		static ImVec2 const data_reference_editor_size(800, ImGui::GetTextLineHeight() * 9.5f);
-		if (ImGui::BeginChild(reinterpret_cast<ImGuiID>(field_data), data_reference_editor_size, false))
+		if (ImGui::BeginChild(data_reference_ui_data.unique_id, data_reference_editor_size, false))
 		{
 			char* data_reference_data = nullptr;
 			if (field_data->size)
