@@ -11,7 +11,7 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 
 	struct TagBlockDynamicData
 	{
-		int64_t position = 0;
+		uint32_t position = 0;
 	};
 	TagBlockDynamicData& rDynamicTagBlockData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_dynamic_data<TagBlockDynamicData>(tag_block_definition);
 
@@ -45,7 +45,7 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 
 		if (rDynamicTagBlockData.position)
 		{
-			if (rDynamicTagBlockData.position < 0)
+			if (rDynamicTagBlockData.position == ~uint32_t())
 			{
 				rDynamicTagBlockData.position = tag_block_definition->count - 1;
 			}
@@ -67,8 +67,8 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 			char* tag_block_data_start = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_cache_file().GetTagBlockData<char>(*tag_block_definition);
 			char* tag_block_data = tag_block_data_start + tagBlockDataIndexDataOffset;
 
-			ImGui::Text("Address 0x%p", tag_block_data);
-			ImGui::Text("Size 0x%u", tag_block_reflection_type->size_of_data);
+			//ImGui::Text("Address 0x%p", tag_block_data);
+			//ImGui::Text("Size 0x%u", tag_block_reflection_type->size_of_data);
 
 			if (IsBadReadPtr(tag_block_data, 1))
 			{
