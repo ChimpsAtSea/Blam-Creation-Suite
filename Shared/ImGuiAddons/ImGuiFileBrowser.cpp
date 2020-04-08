@@ -73,7 +73,7 @@ namespace ImGuiAddons
     /* Use this to show an open file dialog. The function takes label for the window,
  * the size and optionally the extensions that are valid for opening.
  */
-    bool ImGuiFileBrowser::show_open_file_dialog_internal(std::string label, ImVec2 sz_xy, std::string valid_types)
+    bool ImGuiFileBrowser::show_open_file_dialog(std::string label, ImVec2 sz_xy, std::string valid_types)
 	{
 		if (show_popup_next_run)
 		{
@@ -91,8 +91,9 @@ namespace ImGuiAddons
     /* Use this to open a save file dialog. The function takes label for the window,
      * the size and the extensions or types of files allowed for saving
      */
-    bool ImGuiFileBrowser::ShowSaveFileDialogInternal(std::string label, ImVec2 sz_xy, std::string save_types)
+    bool ImGuiFileBrowser::show_save_file_dialog(std::string label, ImVec2 sz_xy, std::string save_types, std::string filename)
     {
+        set_save_file_name(filename.c_str());
         if (show_popup_next_run)
 		{
 			show_popup_next_run = false;
