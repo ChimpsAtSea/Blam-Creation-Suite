@@ -56,7 +56,7 @@ void render_bitfield_gui(void* field_data, const c_reflection_field& reflection_
 	};
 	static_assert(sizeof(BitFieldDynamicData) <= sizeof(c_mantle_tag_gui_tab::c_imgui_dynamic_data::second), "BitFieldDynamicData is too large");
 	bool wasAllocated;
-	BitFieldDynamicData& rBitFieldDynamicData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->GetDynamicData<BitFieldDynamicData>(field_data, wasAllocated);
+	BitFieldDynamicData& rBitFieldDynamicData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_dynamic_data<BitFieldDynamicData>(field_data, wasAllocated);
 	if (wasAllocated) new(&rBitFieldDynamicData) BitFieldDynamicData(current_value);
 	else rBitFieldDynamicData.update(current_value);
 

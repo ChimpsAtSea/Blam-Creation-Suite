@@ -19,7 +19,7 @@
 
 #define ASSERT assert
 
-#include "TextEditor.h"
+#include "imgui_text_editor.h"
 
 
 // TODO

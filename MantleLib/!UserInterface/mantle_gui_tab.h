@@ -40,16 +40,16 @@ protected:
 	std::vector<c_mantle_gui_tab*> child_tabs;
 
 public:
-	using c_imgui_dynamic_data = std::pair<void*, char[120]>;
+	using c_imgui_dynamic_data = std::pair<void*, char[248]>;
 	std::vector<c_imgui_dynamic_data*> imgui_dynamic_data;
 
-	inline c_imgui_dynamic_data& GetDynamicData(void* pPosition, bool& rWasAllocated);
+	inline c_imgui_dynamic_data& get_dynamic_data(void* pPosition, bool& rWasAllocated);
 	template<typename T>
-	inline T& GetDynamicData(void* pPosition)
+	inline T& get_dynamic_data(void* pPosition)
 	{
 
 		bool wasAllocated = false;
-		c_imgui_dynamic_data& rDynamicData = GetDynamicData(pPosition, wasAllocated);
+		c_imgui_dynamic_data& rDynamicData = get_dynamic_data(pPosition, wasAllocated);
 		if (wasAllocated)
 		{
 			static_assert(sizeof(T) <= sizeof(rDynamicData.second), "Dynamic data exceeds allocated space");
@@ -59,16 +59,16 @@ public:
 		return rDynamicTagBlockData;
 	}
 	template<typename T, typename ...Tconstructor>
-	inline T& GetDynamicData(void* pPosition, bool& rWasAllocated)
+	inline T& get_dynamic_data(void* pPosition, bool& rWasAllocated)
 	{
-		c_imgui_dynamic_data& rDynamicData = GetDynamicData(pPosition, rWasAllocated);
+		c_imgui_dynamic_data& rDynamicData = get_dynamic_data(pPosition, rWasAllocated);
 		static_assert(sizeof(T) <= sizeof(rDynamicData.second), "Dynamic data exceeds allocated space");
 		T& rDynamicTagBlockData = *reinterpret_cast<T*>(rDynamicData.second);
 		return rDynamicTagBlockData;
 	}
 };
 
-inline c_mantle_gui_tab::c_imgui_dynamic_data& c_mantle_gui_tab::GetDynamicData(void* pPosition, bool& rWasAllocated)
+inline c_mantle_gui_tab::c_imgui_dynamic_data& c_mantle_gui_tab::get_dynamic_data(void* pPosition, bool& rWasAllocated)
 {
 	for (c_imgui_dynamic_data* pDynamicData : imgui_dynamic_data)
 	{

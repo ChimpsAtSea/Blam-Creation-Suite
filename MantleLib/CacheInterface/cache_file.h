@@ -109,7 +109,7 @@ public:
 		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_definition<>*>(&rTagBlock)));
 	}
 
-	inline char* GetDataReferenceData(DataReference& data_reference)
+	inline char* get_data_reference_data(DataReference& data_reference)
 	{
 		return getDataReferenceDataInternal(data_reference);
 	}

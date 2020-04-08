@@ -104,6 +104,7 @@ using namespace tbb;
 #define UWP_PLATFORM
 #endif
 
+#define IM_ASSERT(_EXPR) ASSERT(_EXPR)
 #include <imgui\imgui.h>
 #include <imgui\imgui_internal.h>
 #include <imgui\imgui_impl_win32.h>

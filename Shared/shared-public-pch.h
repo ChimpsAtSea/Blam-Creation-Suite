@@ -10,7 +10,7 @@
 #include "console.h"
 #include "AtomicLock.h"
 #include "ThreadSafeQueue.h"
-#include "ImGuiAddons/ImGuiAddons.h"
+#include "ImGuiAddons/!imgui_addons.h"
 #include "DebugLogging.h"
 #include "command_line.h"
 #include "FileSystemUtilities.h"

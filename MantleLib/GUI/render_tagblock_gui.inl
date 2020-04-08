@@ -13,7 +13,7 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 	{
 		int64_t position = 0;
 	};
-	TagBlockDynamicData& rDynamicTagBlockData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->GetDynamicData<TagBlockDynamicData>(tag_block_definition);
+	TagBlockDynamicData& rDynamicTagBlockData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_dynamic_data<TagBlockDynamicData>(tag_block_definition);
 
 	ImGui::Columns(1);
 	ImGui::Dummy(ImVec2());

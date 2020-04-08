@@ -51,6 +51,7 @@
     <ClInclude Include="Blam\skull.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="high_precision_timer.h" />
+    <ClInclude Include="ImGuiAddons\imgui_memory_editor.h" />
     <ClInclude Include="Rendering\directx_helpers.h" />
     <ClInclude Include="Rendering\dds.h" />
     <ClInclude Include="ThreadPrimitives\atomic_temp_value.h" />
@@ -60,10 +61,10 @@
     <ClInclude Include="FatalError.h" />
     <ClInclude Include="FileSystemUtilities.h" />
     <ClInclude Include="hexrays_defs.h" />
-    <ClInclude Include="ImGuiAddons\Dirent\dirent.h" />
-    <ClInclude Include="ImGuiAddons\ImGuiAddons.h" />
-    <ClInclude Include="ImGuiAddons\ImGuiFileBrowser.h" />
-    <ClInclude Include="ImGuiAddons\TextEditor.h" />
+    <ClInclude Include="ImGuiAddons\dirent\dirent.h" />
+    <ClInclude Include="ImGuiAddons\!imgui_addons.h" />
+    <ClInclude Include="ImGuiAddons\imgui_file_browser.h" />
+    <ClInclude Include="ImGuiAddons\imgui_text_editor.h" />
     <ClInclude Include="Runtime.h" />
     <ClInclude Include="Rendering\box_primitive.h" />
     <ClInclude Include="Rendering\BoxRenderer.h" />
@@ -91,13 +92,13 @@
     <ClCompile Include="ThreadPrimitives\atomic_flip_value.cpp" />
     <ClCompile Include="FatalError.cpp" />
     <ClCompile Include="FileSystemUtilities.cpp" />
-    <ClCompile Include="ImGuiAddons\ImGuiFileBrowser.cpp">
+    <ClCompile Include="ImGuiAddons\imgui_file_browser.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ImGuiAddons\TextEditor.cpp">
+    <ClCompile Include="ImGuiAddons\imgui_text_editor.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>

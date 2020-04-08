@@ -580,13 +580,13 @@ void c_mantle_shader_tool_gui_tab::disassemble_runtime_subroutine() const
 		if (use_durango_shader_disassembly)
 		{
 			size_t __unknown4_data_reference_size = pixel_shader2_block->__unknown3.size;
-			char* __unknown4_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown3);
+			char* __unknown4_data_reference_data = cache_file.get_data_reference_data(pixel_shader2_block->__unknown3);
 			disassemble_shader_result = disassemble_shader(__unknown4_data_reference_data, __unknown4_data_reference_size);
 		}
 		else
 		{
 			size_t __unknown3_data_reference_size = pixel_shader2_block->__unknown2.size;
-			char* __unknown3_data_reference_data = cache_file.GetDataReferenceData(pixel_shader2_block->__unknown2);
+			char* __unknown3_data_reference_data = cache_file.get_data_reference_data(pixel_shader2_block->__unknown2);
 			disassemble_shader_result = disassemble_shader(__unknown3_data_reference_data, __unknown3_data_reference_size);
 		}
 
