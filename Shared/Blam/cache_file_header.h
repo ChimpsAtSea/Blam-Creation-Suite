@@ -66,10 +66,10 @@ struct s_cache_file_header
 	int32_t unknown7 = 0;
 	int32_t unknown8 = 0;
 
-	int32_t string_id_count = 0;
-	int32_t string_ids_buffer_size = 0;
-	int32_t string_id_indices_offset = 0;
-	int32_t string_ids_buffer_offset = 0;
+	uint32_t string_id_count = 0;
+	uint32_t string_ids_buffer_size = 0;
+	uint32_t string_id_indices_offset = 0;
+	uint32_t string_ids_buffer_offset = 0;
 
 	// unconfirmed if bitfields, but the first bit changes when the addressing changed
 	e_cache_file_unknown_bits unknown_bits = {}; 

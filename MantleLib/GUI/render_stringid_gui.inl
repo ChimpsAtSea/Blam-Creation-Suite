@@ -14,16 +14,16 @@ void render_stringid_gui(string_id* field_data, const c_reflection_field& reflec
 	class StringIDDynamicData
 	{
 	public:
-		StringIDDynamicData(string_id& rStringID, c_cache_file& cache_file)
+		StringIDDynamicData(string_id& id, c_cache_file& cache_file)
 			: szBuffer()
 			, isValid(0)
 			, buffer_length(0)
-			, pStringID(&rStringID)
+			, id_pointer(&id)
 		{
-			const char* pStringID = cache_file.string_id_to_cstr(rStringID.stringid);
-			if (pStringID)
+			const char* id_pointer = cache_file.string_id_to_cstr(id);
+			if (id_pointer)
 			{
-				strncpy_s(szBuffer, pStringID, strlen(pStringID));
+				strncpy_s(szBuffer, id_pointer, strlen(id_pointer));
 				szBuffer[_countof(szBuffer) - 1] = 0;
 				isValid = true;
 			}
@@ -37,7 +37,7 @@ void render_stringid_gui(string_id* field_data, const c_reflection_field& reflec
 		char szBuffer[111];
 		uint8_t isValid : 1;
 		uint8_t buffer_length : 7;
-		string_id* pStringID;
+		string_id* id_pointer;
 	};
 
 	static_assert(sizeof(StringIDDynamicData) <= sizeof(c_mantle_tag_gui_tab::c_imgui_dynamic_data::second), "StringIDDynamicData is too large");

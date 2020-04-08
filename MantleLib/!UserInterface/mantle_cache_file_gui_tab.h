@@ -16,7 +16,7 @@ public:
 	c_mantle_cache_file_gui_tab& operator=(const c_mantle_cache_file_gui_tab&) = delete;
 
 	c_mantle_cache_file_gui_tab(c_cache_file& cache_file);
-	c_mantle_cache_file_gui_tab(const wchar_t* szMapFilePath);
+	c_mantle_cache_file_gui_tab(const wchar_t* map_file_path);
 	virtual ~c_mantle_cache_file_gui_tab();
 
 	c_cache_file& get_cache_file() const { return cache_file; }
@@ -31,10 +31,11 @@ protected:
 	void open_shader_tool();
 	void open_halo_script_editor();
 	void close_halo_script_editor();
+	void render_file_dialogue_gui();
 
-
-	char m_pSearchBuffer[1024];
-	c_tag_interface* m_pSelectedSearchTagInterface;
+	bool debug_file_dialogue_gui;
+	char search_buffer[1024];
+	c_tag_interface* search_selected_tag_interface;
 	c_mantle_gui_tab* next_selected_mantle_gui_tab;
 	bool render_trigger_volumes;
 	c_cache_file& cache_file;
@@ -42,7 +43,7 @@ protected:
 	bool enable_shader_tool;
 	std::string shader_tool_directory;
 	c_mantle_halo_script_editor* halo_script_editor;
-	
+	ImGuiAddons::ImGuiFileBrowser file_browser;
 
 public:
 	c_virtual_resource_manager& virtual_resource_manager;

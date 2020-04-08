@@ -33,6 +33,7 @@
     <ClCompile Include="CacheInterface\CacheVersions\halo_reach_cache_file.cpp" />
     <ClCompile Include="CacheInterface\cache_file.cpp" />
     <ClCompile Include="CacheInterface\tag_group_interface.cpp" />
+    <ClCompile Include="CacheInterface\cache_file_string_id_guesstimator.cpp" />
     <ClCompile Include="HaloScript\halo_script_type_definition.cpp" />
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp" />
     <ClCompile Include="HaloScript\halo_script_globals_definition.cpp" />
@@ -46,10 +47,11 @@
     </ClCompile>
     <ClCompile Include="!UserInterface\mantle_tag_gui_tab.cpp" />
     <ClCompile Include="CacheInterface\tag_interface.cpp" />
-    <ClCompile Include="!UserInterface\mantle_shader_tool_gui_tab.cpp" />
+    <ClCompile Include="!UserInterface\Tools\mantle_shader_tool_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_event_queue.cpp" />
-    <ClCompile Include="!UserInterface\mantle_bitmap_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\mantle_halo_script_editor.cpp" />
+    <ClCompile Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.cpp" />
+    <ClCompile Include="!UserInterface\Tools\mantle_halo_script_editor.cpp" />
+    <ClCompile Include="!UserInterface\TagEditor\mantle_shader_gui_tab.cpp" />
     <ClCompile Include="render_method_definition_group_interface.cpp" />
     <ClCompile Include="Tags\GeneratedConversion.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -85,6 +87,7 @@
     <ClCompile Include="VirtualMemoryContainer.cpp" />
     <ClCompile Include="VirtualResource\virtual_resource_manager.cpp" />
     <ClCompile Include="VirtualResource\virtual_bitmap_resource.cpp" />
+    <ClCompile Include="CacheInterface\virtual_tag_interface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!UserInterface\shader_profile.h" />
@@ -106,17 +109,19 @@
     <ClInclude Include="!UserInterface\mantle_tag_gui_tab.h" />
     <ClInclude Include="CacheInterface\tag_interface.h" />
     <ClInclude Include="CacheInterface\tag_group_interface.h" />
+    <ClInclude Include="CacheInterface\cache_file_string_id_guesstimator.h" />
     <ClInclude Include="GUI\render_stringid_gui.inl" />
-    <ClInclude Include="!UserInterface\mantle_shader_tool_gui_tab.h" />
+    <ClInclude Include="!UserInterface\Tools\mantle_shader_tool_gui_tab.h" />
     <ClInclude Include="!UserInterface\mantle_event_queue.h" />
-    <ClInclude Include="!UserInterface\mantle_bitmap_gui_tab.h" />
-    <ClInclude Include="!UserInterface\mantle_halo_script_editor.h" />
+    <ClInclude Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.h" />
+    <ClInclude Include="!UserInterface\Tools\mantle_halo_script_editor.h" />
     <ClInclude Include="HaloScript\HaloScript.h" />
     <ClInclude Include="HaloScript\halo_script_type_definition.h" />
     <ClInclude Include="HaloScript\halo_script_function_definition.h" />
     <ClInclude Include="HaloScript\halo_script_globals_definition.h" />
     <ClInclude Include="HaloScript\halo_script_function_documentation.h" />
     <ClInclude Include="HaloScript\lisp_ast_parser.h" />
+    <ClInclude Include="!UserInterface\TagEditor\mantle_shader_gui_tab.h" />
     <ClInclude Include="render_method_definition_group_interface.h" />
     <ClInclude Include="Tags\GeneratedConversion.h" />
     <ClInclude Include="Tags\GeneratedGUI.h" />
@@ -318,6 +323,7 @@
     <ClInclude Include="VirtualResource\VirtualResource.h" />
     <ClInclude Include="VirtualResource\virtual_resource_manager.h" />
     <ClInclude Include="VirtualResource\virtual_bitmap_resource.h" />
+    <ClInclude Include="CacheInterface\virtual_tag_interface.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CacheInterface\tag_group_names.inl" />

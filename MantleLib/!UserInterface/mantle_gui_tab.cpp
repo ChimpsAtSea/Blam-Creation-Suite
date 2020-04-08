@@ -57,6 +57,14 @@ void c_mantle_gui_tab::render_menu_gui()
 	render_tab_menu_gui();
 }
 
+void c_mantle_gui_tab::render_file_dialogue_gui()
+{
+	for (c_mantle_gui_tab* child_tab : child_tabs)
+	{
+		child_tab->render_file_dialogue_gui();
+	}
+}
+
 void c_mantle_gui_tab::add_tab_closed_callback(on_tab_closed_callback callback)
 {
 	ASSERT(callback != nullptr);

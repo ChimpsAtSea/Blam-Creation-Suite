@@ -14,6 +14,7 @@ public:
 	virtual void render_in_game_gui();
 	virtual void render_gui(bool set_selected) final;
 	virtual void render_menu_gui() final;
+	virtual void render_file_dialogue_gui();
 
 	inline const char* get_title() const { return m_title.c_str(); }
 	inline const char* get_description() const { return m_description.c_str(); }

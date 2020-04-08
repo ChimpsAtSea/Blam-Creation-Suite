@@ -216,11 +216,39 @@ uint32_t InitTypeSizeAndOffsets(c_reflection_type_container& rType)
 	uint32_t currentOffset = 0;
 	for (c_reflection_field_container* pField : rType.fields)
 	{
-		c_reflection_field_container& rField = *pField;
-		uint64_t fieldSize = InitTypeSizeAndOffsets(*rField.field_type);
-		uint64_t data_size = fieldSize * __max(1ull, rField.array_size);
-		rField.data_size = fieldSize;
-		rField.offset = currentOffset;
+		assert(pField != nullptr);
+
+		uint64_t field_size = 0;
+		switch (pField->reflection_type_category)
+		{
+		case e_reflection_type_category::TagReference:
+			field_size = 0x10;
+			break;
+		case e_reflection_type_category::TagBlock:
+			field_size = 0xC;
+			break;
+		case e_reflection_type_category::DataReference:
+			field_size = 0x14;
+			break;
+		case e_reflection_type_category::StringID:
+			field_size = 0x4;
+			break;
+		case e_reflection_type_category::Primitive:
+		case e_reflection_type_category::Structure:
+		case e_reflection_type_category::ShaderData:
+		case e_reflection_type_category::Enum:
+		case e_reflection_type_category::BitField:
+		default:
+			field_size = InitTypeSizeAndOffsets(*pField->field_type);
+			break;
+		}
+
+		if (field_size == 0)
+			throw;			
+
+		uint64_t data_size = field_size * __max(1ull, pField->array_size);
+		pField->data_size = field_size;
+		pField->offset = currentOffset;
 		currentOffset += static_cast<uint32_t>(data_size);
 	}
 	rType.data_size = currentOffset;
@@ -835,6 +863,10 @@ int main(int argc, const char** argv)
 	{
 		c_reflection_type_container& rType = *pType;
 		InitTypeSizeAndOffsets(rType);
+		if (rType.is_structure && rType.data_size == 0)
+		{
+			assert(rType.data_size > 0);
+		}
 		CreateNiceNames(rType);
 	}
 

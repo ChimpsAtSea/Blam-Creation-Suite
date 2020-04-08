@@ -249,44 +249,49 @@ void c_mantle_gui::on_close()
 
 void c_mantle_gui::render_file_dialogue_gui()
 {
-	if (!g_mantle_show_file_dialogue) return;
-
-	float file_browser_window_width = std::clamp(c_window::get_width_float(), 700.0f, 1200.0f);
-	float file_browser_window_height = std::clamp(c_window::get_height_float(), 310.0f, 675.0f);
-	if (file_browser.show_open_file_dialog_internal("Open File", ImVec2(file_browser_window_width, file_browser_window_height), ".map"))
+	if (g_mantle_show_file_dialogue)
 	{
-		g_mantle_show_file_dialogue = false;
-
-		const char* selected_file_path = file_browser.get_selected_file_name();
-		if (selected_file_path)
+		float file_browser_window_width = std::clamp(c_window::get_width_float(), 700.0f, 1200.0f);
+		float file_browser_window_height = std::clamp(c_window::get_height_float(), 310.0f, 675.0f);
+		if (file_browser.show_open_file_dialog("Open File", ImVec2(file_browser_window_width, file_browser_window_height), ".map"))
 		{
-			for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
+			g_mantle_show_file_dialogue = false;
+
+			const char* selected_file_path = file_browser.get_selected_file_name();
+			if (selected_file_path)
 			{
-
-				/* #TODO: Perform a dynamic cast to c_mantle_cache_file_gui_tab and grab the cache file
-				to determine if the tab is already open */
-				//c_mantle_cache_file_gui_tab* mantle_cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(mantle_gui_tab);
-				//if (mantle_cache_file_gui_tab == nullptr) continue;
-				//
-				// comparison in here
-
-				if (strcmp_ic(mantle_gui_tab->get_description(), selected_file_path) == 0)
+				for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
 				{
-					g_next_selected_root_tab = mantle_gui_tab;
-					break;
+
+					/* #TODO: Perform a dynamic cast to c_mantle_cache_file_gui_tab and grab the cache file
+					to determine if the tab is already open */
+					//c_mantle_cache_file_gui_tab* mantle_cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(mantle_gui_tab);
+					//if (mantle_cache_file_gui_tab == nullptr) continue;
+					//
+					// comparison in here
+
+					if (strcmp_ic(mantle_gui_tab->get_description(), selected_file_path) == 0)
+					{
+						g_next_selected_root_tab = mantle_gui_tab;
+						break;
+					}
 				}
-			}
 
-			if (g_next_selected_root_tab == nullptr) //not selecting an existing tab
-			{
-				wchar_t selected_file_path_widechar[MAX_PATH + 1];
-				swprintf(selected_file_path_widechar, MAX_PATH, L"%S", selected_file_path);
+				if (g_next_selected_root_tab == nullptr) //not selecting an existing tab
+				{
+					wchar_t selected_file_path_widechar[MAX_PATH + 1];
+					swprintf(selected_file_path_widechar, MAX_PATH, L"%S", selected_file_path);
 
-				c_mantle_gui_tab* mantle_gui_tab = new c_mantle_cache_file_gui_tab(selected_file_path_widechar);
-				add_tab(*mantle_gui_tab);
-				g_next_selected_root_tab = mantle_gui_tab;
+					c_mantle_gui_tab* mantle_gui_tab = new c_mantle_cache_file_gui_tab(selected_file_path_widechar);
+					add_tab(*mantle_gui_tab);
+					g_next_selected_root_tab = mantle_gui_tab;
+				}
 			}
 		}
 	}
 
+	for (c_mantle_gui_tab* mantle_gui_tab : g_mantle_gui_tabs)
+	{
+		mantle_gui_tab->render_file_dialogue_gui();
+	}
 }

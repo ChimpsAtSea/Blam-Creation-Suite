@@ -4,7 +4,7 @@ struct nicename("shader") tag_group('rmsh') s_shader_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{
-		int16_t __unknown0;
+		uint16_t __unknown0;
 	};
 
 	struct nicename("Shader Properties") s_shader_properties_definition

@@ -1,5 +1,64 @@
 #include "shared-private-pch.h"
 
+
+bool read_file_to_memory(const char* filepath, void** buffer, size_t* buffer_size)
+{
+	ASSERT(filepath != nullptr);
+	ASSERT(buffer != nullptr);
+
+	*buffer = nullptr;
+	*buffer_size = 0;
+
+	FILE* file_handle = fopen(filepath, "rb");
+	if (file_handle)
+	{
+		fseek(file_handle, 0, SEEK_END);
+		size_t file_size = static_cast<size_t>(_ftelli64(file_handle));
+		fseek(file_handle, 0, SEEK_SET);
+
+		*buffer = new char[file_size] {};
+		*buffer_size = file_size;
+
+		size_t bytes_read = 0;
+		while (bytes_read < file_size)
+		{
+			bytes_read += fread(reinterpret_cast<char*>(*buffer) + bytes_read, 1, file_size - bytes_read, file_handle);
+		}
+
+		fclose(file_handle);
+
+		return true;
+	}
+	return false;
+}
+
+bool write_file_from_memory(const char* filepath, const void* buffer, size_t buffer_size)
+{
+	ASSERT(filepath != nullptr);
+	if (buffer_size == 0) return false;
+	ASSERT(buffer != nullptr);
+
+	FILE* file_handle = fopen(filepath, "wb");
+	if (file_handle)
+	{
+		fseek(file_handle, 0, SEEK_SET);
+
+		size_t bytes_written = 0;
+		while (bytes_written < buffer_size)
+		{
+			bytes_written += fwrite(reinterpret_cast<const char*>(buffer) + bytes_written, 1, buffer_size - bytes_written, file_handle);
+		}
+
+		fflush(file_handle);
+		fclose(file_handle);
+
+		return true;
+	}
+	return false;
+}
+
+// ------------- LEGACY -----------------
+
 void FileSystemReadToBufferImpl(FILE* pFileHandle, char* buffer, size_t readLength)
 {
 	uint32_t iterations = 0;

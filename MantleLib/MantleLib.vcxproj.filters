@@ -60,9 +60,6 @@
     <ClCompile Include="!UserInterface\mantle_event_queue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="!UserInterface\mantle_shader_tool_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Tags\VirtualTagInterfaces.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -102,12 +99,6 @@
     <ClCompile Include="VirtualResource\virtual_bitmap_resource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="!UserInterface\mantle_bitmap_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\mantle_halo_script_editor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -123,10 +114,22 @@
     <ClCompile Include="HaloScript\lisp_ast_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="!UserInterface\Tools\mantle_shader_tool_gui_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="!UserInterface\Tools\mantle_halo_script_editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="!UserInterface\TagEditor\mantle_shader_gui_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\virtual_tag_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\cache_file_string_id_guesstimator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -209,9 +212,6 @@
     <ClInclude Include="!UserInterface\mantle_event_queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="!UserInterface\mantle_shader_tool_gui_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Tags\VirtualTagInterfaces.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -252,9 +252,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VirtualResource\virtual_bitmap_resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\mantle_bitmap_gui_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tags\TagTypes\Color.h">
@@ -803,9 +800,6 @@
     <ClInclude Include="Tags\TagDefinitions\lens_flare.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="!UserInterface\mantle_halo_script_editor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="HaloScript\HaloScript.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -824,10 +818,22 @@
     <ClInclude Include="HaloScript\lisp_ast_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="!UserInterface\Tools\mantle_shader_tool_gui_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="!UserInterface\Tools\mantle_halo_script_editor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="!UserInterface\TagEditor\mantle_shader_gui_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\virtual_tag_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\cache_file_string_id_guesstimator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

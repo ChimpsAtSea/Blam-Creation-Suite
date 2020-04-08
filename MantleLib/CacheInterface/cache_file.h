@@ -119,39 +119,22 @@ public:
 	inline const char* GetFilePathChar() const { return m_mapFilePathChar.c_str(); }
 	inline const char* GetFileNameChar() const { return m_mapFileNameChar.c_str(); }
 
-	inline const char* string_id_to_cstr(const string_id& string_id)
+	inline const char* get_string_id_by_raw_index(uint32_t index)
 	{
-		return string_id_to_cstr(string_id.stringid);
+		const char* string_id_str = m_pStringIDBuffer + m_pStringIDIndices[index];
+		return string_id_str;
 	}
 
-	inline const char* string_id_to_cstr(uint32_t id)
+	inline const char* string_id_to_cstr(string_id const id, const char* const error_value = nullptr)
 	{
-		uint32_t const k_string_id_set_string_counts[17] = { 1225, 1637, 217, 106, 217, 38, 5, 1727, 368, 20, 98, 24, 0, 13, 41, 97, 115 };
+		uint32_t index = string_id_guesstimator->string_id_to_index(id);
 
-		uint32_t set = (id >> _countof(k_string_id_set_string_counts)) & 0xFF;
-		uint32_t index = id & ((1 << _countof(k_string_id_set_string_counts)) - 1);
-
-		if (set < _countof(k_string_id_set_string_counts))
+		if (index < cache_file_header->string_id_count)
 		{
-			uint32_t set_base_index = 0;
-
-			if (set == 0 && index >= k_string_id_set_string_counts[set])
-			{
-				for (int i = 0; i < _countof(k_string_id_set_string_counts); i++)
-					set_base_index += k_string_id_set_string_counts[i];
-
-				index -= k_string_id_set_string_counts[set];
-			}
-			else
-			{
-				for (uint32_t i = 0; i < set; i++)
-					set_base_index += k_string_id_set_string_counts[i];
-			}
-
-			return m_pStringIDBuffer + m_pStringIDIndices[set_base_index + index];
+			const char* string = m_pStringIDBuffer + m_pStringIDIndices[index];
+			return string;
 		}
-
-		return nullptr;
+		return error_value;
 	}
 
 //private:
@@ -201,6 +184,8 @@ public:
 	s_cache_file_tags_header* cache_file_tags_headers;
 	s_cache_file_tag_instance* cache_file_tag_instances;
 	s_cache_file_tag_group* cache_file_tag_groups;
+
+	c_cache_file_string_id_guesstimator* string_id_guesstimator;
 
 	// interface types
 	SectionCache m_pSectionCache[underlying_cast(e_cache_file_section::k_number_of_cache_file_sections)];

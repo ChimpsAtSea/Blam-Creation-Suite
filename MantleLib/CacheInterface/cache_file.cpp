@@ -8,8 +8,25 @@ c_cache_file::c_cache_file(const std::wstring& mapFilePath)
 	//, m_mapDataLength(0)
 	, m_isMapLoading(false)
 	, m_mapFilePath(mapFilePath)
+	, string_id_guesstimator(nullptr)
 {
 	loadMap(mapFilePath);
+
+	//// #TODO: Version detection
+	//if (true)
+	//{
+	//	string_id_set_string_counts = { 1225, 1637, 217, 106, 217, 38, 5, 1727, 368, 20, 98, 24, 0, 13, 41, 97, 115 };
+	//}
+	//else
+	//{
+	//	string_id_set_string_counts = { 1225, 1637, 217, 106, 217, 38, 5, 1727, 368, 20, 98, 24, 0, 13, 41, 97, 115 }; // 1305
+	//}
+	
+
+	
+
+
+
 	m_mapFileName = PathFindFileNameW(m_mapFilePath.c_str());
 
 	char buffer[MAX_PATH + 1];
@@ -29,6 +46,7 @@ c_cache_file::~c_cache_file()
 	while (m_isMapLoading) {};
 	delete& m_rVirtualMemoryContainer;
 	//if (m_pMapData) delete[] m_pMapData;
+	if (string_id_guesstimator != nullptr) delete string_id_guesstimator;
 }
 
 inline qword get_page_offset(qword virtual_base_address, dword address)
@@ -122,6 +140,9 @@ void c_cache_file::loadMap(const std::wstring& mapFilePath)
 			cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(pTagsSection + (cache_file_tags_headers->instances.address - cache_file_header->virtual_base_address));
 			cache_file_tag_groups = reinterpret_cast<s_cache_file_tag_group*>(pTagsSection + (cache_file_tags_headers->groups.address - cache_file_header->virtual_base_address));
 
+			string_id_guesstimator = new c_cache_file_string_id_guesstimator(*this);
+
+
 			for (uint32_t groupIndex = 0; groupIndex < cache_file_tags_headers->groups.count; groupIndex++)
 			{
 				s_cache_file_tag_group& rGroupInstance = cache_file_tag_groups[groupIndex];
@@ -147,8 +168,6 @@ void c_cache_file::loadMap(const std::wstring& mapFilePath)
 
 
 			initSortedInstanceLists();
-
-			write_line_verbose("");
 		}
 
 		m_isMapLoading = false;

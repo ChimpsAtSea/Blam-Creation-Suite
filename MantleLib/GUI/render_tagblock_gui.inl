@@ -11,7 +11,7 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 
 	struct TagBlockDynamicData
 	{
-		int32_t m_position;
+		int64_t position = 0;
 	};
 	TagBlockDynamicData& rDynamicTagBlockData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->GetDynamicData<TagBlockDynamicData>(tag_block_definition);
 
@@ -38,17 +38,21 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 		ImGui::Text("Position:");
 		ImGui::SameLine();
 		ImGui::SetNextItemWidth(150);
-		ImGui::PushID(&rDynamicTagBlockData.m_position);
-		ImGui::InputInt("", &rDynamicTagBlockData.m_position);
+		ImGui::PushID(&rDynamicTagBlockData.position);
+		//ImGui::InputScalar("", ImGuiDataType_S64, &rDynamicTagBlockData.position);
+		ImGui::InputInt("", reinterpret_cast<int*>(&rDynamicTagBlockData.position)); // #NASTY
 		ImGui::PopID();
 
-		if (static_cast<uint32_t>(rDynamicTagBlockData.m_position) >= tag_block_definition->count)
+		if (rDynamicTagBlockData.position)
 		{
-			rDynamicTagBlockData.m_position = tag_block_definition->count - 1;
-		}
-		if (rDynamicTagBlockData.m_position < 0)
-		{
-			rDynamicTagBlockData.m_position = 0;
+			if (rDynamicTagBlockData.position < 0)
+			{
+				rDynamicTagBlockData.position = tag_block_definition->count - 1;
+			}
+			else if (rDynamicTagBlockData.position >= static_cast<int64_t>(tag_block_definition->count))
+			{
+				rDynamicTagBlockData.position = 0;
+			}
 		}
 
 		if (tag_block_definition->count && tag_block_definition->address)
@@ -57,14 +61,18 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 			const s_reflection_tag_block_info& rs_reflection_tag_block_info = reflection_field.tag_block_info;
 			const s_reflection_structure_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
 
-			uint32_t tagBlockDataIndexDataOffset = tag_block_reflection_type->size_of_data * static_cast<uint32_t>(rDynamicTagBlockData.m_position);
+			uint32_t tagBlockDataIndexDataOffset = tag_block_reflection_type->size_of_data * static_cast<uint32_t>(rDynamicTagBlockData.position);
 			/*	#TODO: Investigate the possibility of replacing the usage of get_cache_file with the virtual tag interface/virtual tab block data access
 				if we supply it as a template parameter to this function can we avoid it? */
-			char* pTagBlockData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_cache_file().GetTagBlockData<char>(*tag_block_definition) + tagBlockDataIndexDataOffset;
+			char* tag_block_data_start = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_cache_file().GetTagBlockData<char>(*tag_block_definition);
+			char* tag_block_data = tag_block_data_start + tagBlockDataIndexDataOffset;
 
-			if (IsBadReadPtr(pTagBlockData, 1))
+			ImGui::Text("Address 0x%p", tag_block_data);
+			ImGui::Text("Size 0x%u", tag_block_reflection_type->size_of_data);
+
+			if (IsBadReadPtr(tag_block_data, 1))
 			{
-				ImGui::Text("Invalid memory address 0x%P", pTagBlockData);
+				ImGui::Text("Invalid memory address 0x%P", tag_block_data);
 			}
 			else
 			{
@@ -73,7 +81,7 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 				if (tag_block_reflection_type)
 				{
 					c_mantle_tag_gui_tab::increment_recursion();
-					tag_block_reflection_type->render_type_gui(pTagBlockData);
+					tag_block_reflection_type->render_type_gui(tag_block_data);
 					c_mantle_tag_gui_tab::decrement_recursion();
 
 				}
@@ -103,8 +111,9 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 		ImGui::Text("Position:");
 		ImGui::SameLine();
 		ImGui::SetNextItemWidth(150);
-		ImGui::PushID(&rDynamicTagBlockData.m_position);
-		ImGui::InputInt("", &rDynamicTagBlockData.m_position);
+		ImGui::PushID(&rDynamicTagBlockData.position);
+		//ImGui::InputScalar("", ImGuiDataType_S64, &rDynamicTagBlockData.position);
+		ImGui::InputInt("", reinterpret_cast<int*>(&rDynamicTagBlockData.position)); // #NASTY
 		ImGui::PopID();
 	}
 

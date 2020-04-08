@@ -23,10 +23,12 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_fil
 	c_mantle_gui_tab(cache_file.GetFileNameChar(), cache_file.GetFilePathChar()),
 	render_trigger_volumes(c_command_line::has_command_line_arg("-showtriggervolumes")),
 	next_selected_mantle_gui_tab(nullptr),
-	m_pSelectedSearchTagInterface(nullptr),
-	m_pSearchBuffer(),
+	search_selected_tag_interface(nullptr),
+	debug_file_dialogue_gui(false),
+	search_buffer(),
 	virtual_resource_manager(*new c_virtual_resource_manager(cache_file)),
-	halo_script_editor(nullptr)
+	halo_script_editor(nullptr),
+	file_browser()
 {
 	shader_tool_directory = c_command_line::get_command_line_arg("-shadertool");
 	enable_shader_tool = !shader_tool_directory.empty() && PathFileExistsA(shader_tool_directory.c_str());
@@ -39,8 +41,6 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_fil
 			autostart_shader_tool = false;
 		}
 	}
-
-
 
 	std::string load_tag_command_line = c_command_line::get_command_line_arg("-loadtag");
 	if (!load_tag_command_line.empty())
@@ -81,10 +81,9 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file* cache_fil
 	cache_file_owned_pointer = cache_file;
 }
 
-c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(const wchar_t* szMapFilePath) :
-	c_mantle_cache_file_gui_tab(new c_cache_file(szMapFilePath))
+c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(const wchar_t* map_file_path) :
+	c_mantle_cache_file_gui_tab(new c_cache_file(map_file_path))
 {
-
 }
 
 c_mantle_cache_file_gui_tab::~c_mantle_cache_file_gui_tab()
@@ -111,6 +110,11 @@ void c_mantle_cache_file_gui_tab::render_tab_menu_gui()
 			{
 				close_halo_script_editor();
 			}
+		}
+
+		if (ImGui::MenuItem("Dump StringID's"))
+		{
+			debug_file_dialogue_gui = true;
 		}
 
 		ImGui::EndMenu();
@@ -143,13 +147,13 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 		{
 			ImGui::Text("Search:");
 			ImGui::SetNextItemWidth(-1);
-			ImGui::InputText("", m_pSearchBuffer, 1024);
+			ImGui::InputText("", search_buffer, 1024);
 			ImGui::Dummy(ImVec2(0, 10));
 		}
 		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<c_tag_group_interface*> rGroupInterfaces = cache_file.get_group_interfaces();
 
 
-		bool useSearch = m_pSearchBuffer[0] != 0;
+		bool useSearch = search_buffer[0] != 0;
 		if (useSearch)
 		{
 
@@ -165,17 +169,17 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 					? tag_interface.get_path_with_group_id_cstr()
 					: tag_interface.get_name_with_group_id_cstr();
 
-				if (m_pSearchBuffer[0])
+				if (search_buffer[0])
 				{
-					if (strstr(pTagDisplayWithGroupID, m_pSearchBuffer) == nullptr)
+					if (strstr(pTagDisplayWithGroupID, search_buffer) == nullptr)
 					{
 						continue;
 					}
 				}
 
-				if (ImGui::Selectable(pTagDisplayWithGroupID, m_pSelectedSearchTagInterface == pTagInterface))
+				if (ImGui::Selectable(pTagDisplayWithGroupID, search_selected_tag_interface == pTagInterface))
 				{
-					m_pSelectedSearchTagInterface = pTagInterface;
+					search_selected_tag_interface = pTagInterface;
 					open_tag_interface_tab(tag_interface);
 				}
 			}
@@ -456,7 +460,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 			float screen_y = 0.0f;
 			if (c_render::calculate_screen_coordinates(trigger_volume.position_x, trigger_volume.position_y, trigger_volume.position_z, screen_x, screen_y))
 			{
-				const char* trigger_volume_name = cache_file.string_id_to_cstr(trigger_volume.name.stringid);
+				const char* trigger_volume_name = cache_file.string_id_to_cstr(trigger_volume.name);
 				trigger_volume_name = trigger_volume_name ? trigger_volume_name : "<error fetching string id>";
 
 				ImGui::GetWindowDrawList()->AddText(ImVec2(screen_x + 1, screen_y + 1), IM_COL32(0, 0, 0, static_cast<int>(255 * k_text_transparency)), trigger_volume_name);
@@ -528,4 +532,24 @@ void c_mantle_cache_file_gui_tab::close_halo_script_editor()
 	remove_tab(*halo_script_editor);
 	delete halo_script_editor;
 	halo_script_editor = nullptr;
+}
+
+void c_mantle_cache_file_gui_tab::render_file_dialogue_gui()
+{
+	if (debug_file_dialogue_gui)
+	{
+		float file_browser_window_width = std::clamp(c_window::get_width_float(), 700.0f, 1200.0f);
+		float file_browser_window_height = std::clamp(c_window::get_height_float(), 310.0f, 675.0f);
+		if (file_browser.show_save_file_dialog("Save File", ImVec2(file_browser_window_width, file_browser_window_height), ".txt", "debug.txt"))
+		{
+			const char* filename = file_browser.get_selected_file_name();
+
+			std::string stringids_export = "put data in here";
+			write_file_from_memory(filename, stringids_export.c_str(), stringids_export.size());
+
+			debug_file_dialogue_gui = false;
+		}
+	}
+
+	c_mantle_gui_tab::render_file_dialogue_gui();
 }
