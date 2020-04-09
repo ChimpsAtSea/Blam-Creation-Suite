@@ -4,7 +4,7 @@ struct nicename("survival_mode_globals") tag_group('smdt') s_survival_mode_globa
 {
 	struct nicename("Waves") s_waves_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Wave") wave_reference;
 	};
 
@@ -68,15 +68,15 @@ struct nicename("survival_mode_globals") tag_group('smdt') s_survival_mode_globa
 		int16_t __unknown0;
 		e_state nicename("State") state;
 		int16_t __unknown1;
-		string_id nicename("Free for All Message") free_for_all_message;
-		string_id nicename("Team Message") team_message;
+		DEPRECATED_string_id nicename("Free for All Message") free_for_all_message;
+		DEPRECATED_string_id nicename("Team Message") team_message;
 		TagReference __unknown2;
 		Undefined32 __unknown3;
 	};
 
 	struct nicename("Firefight Voices") s_firefight_voices_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Dialogue Male") dialogue_male_reference;
 		TagReference nicename("Dialogue Female") dialogue_female_reference;
 		Undefined32 __unknown0;

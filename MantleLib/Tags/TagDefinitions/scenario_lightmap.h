@@ -13,7 +13,7 @@ struct nicename("scenario_lightmap") tag_group('sLdT') s_scenario_lightmap_defin
 		Undefined32 __unknown0;
 		Undefined32 __unknown1;
 		Undefined32 __unknown2;
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		Undefined32 __unknown3;
 		Undefined32 __unknown4;
 		Undefined32 __unknown5;

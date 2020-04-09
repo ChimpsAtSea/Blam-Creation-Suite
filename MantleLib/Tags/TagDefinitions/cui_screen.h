@@ -9,16 +9,16 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 
 	struct nicename("Definitions") s_definitions_definition
 	{
-		string_id nicename("Import Name") import_name;
-		string_id nicename("Export Name") export_name;
-		string_id nicename("Logic Group") logic_group;
+		DEPRECATED_string_id nicename("Import Name") import_name;
+		DEPRECATED_string_id nicename("Export Name") export_name;
+		DEPRECATED_string_id nicename("Logic Group") logic_group;
 		int16_t __unknown0;
 		int16_t nicename("Template Index") template_index;
 	};
 
 	struct nicename("Component Table") s_component_table_definition
 	{
-		string_id nicename("Component Name") component_name;
+		DEPRECATED_string_id nicename("Component Name") component_name;
 		int16_t nicename("Definition Index") definition_index;
 		int16_t __unknown0;
 	};
@@ -29,41 +29,41 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 		{
 			struct nicename("Integers") s_integers_definition
 			{
-				string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("Property") property;
 				int32_t nicename("Value") value;
 			};
 
 			struct nicename("Floats") s_floats_definition
 			{
-				string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("Property") property;
 				float nicename("Value") value;
 			};
 
 			struct nicename("String ID") s_string_id_definition
 			{
-				string_id nicename("Property") property;
-				string_id nicename("String") string;
+				DEPRECATED_string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("String") string;
 			};
 
 			struct nicename("Resources") s_resources_definition
 			{
-				string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("Property") property;
 				TagReference nicename("Resource") resource_reference;
 			};
 
 			struct nicename("Text") s_text_definition
 			{
-				string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("Property") property;
 				char nicename("Text") text[256];
 			};
 
 			struct nicename("Colors") s_colors_definition
 			{
-				string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("Property") property;
 				colorf nicename("Color") color;
 			};
 
-			string_id nicename("Component Name") component_name;
+			DEPRECATED_string_id nicename("Component Name") component_name;
 			s_tag_block_definition<s_integers_definition> nicename("Integers") integers_block;
 			s_tag_block_definition<s_floats_definition> nicename("Floats") floats_block;
 			s_tag_block_definition<s_string_id_definition> nicename("String ID") string_id_block;
@@ -85,7 +85,7 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 						DataReference nicename("Data") data_data_reference;
 					};
 
-					string_id nicename("Property") property;
+					DEPRECATED_string_id nicename("Property") property;
 					int16_t __unknown0;
 					int8_t __unknown1;
 					int8_t __unknown2;
@@ -102,7 +102,7 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 						DataReference nicename("Data") data_data_reference;
 					};
 
-					string_id nicename("Property") property;
+					DEPRECATED_string_id nicename("Property") property;
 					int16_t __unknown0;
 					int8_t __unknown1;
 					int8_t __unknown2;
@@ -110,18 +110,18 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 					s_tag_block_definition<s_values1_definition> nicename("Values") values_block;
 				};
 
-				string_id nicename("Name") name;
+				DEPRECATED_string_id nicename("Name") name;
 				int32_t nicename("Frame Count") frame_count;
 				s_tag_block_definition<s_standard_animations_definition> nicename("Standard Animations") standard_animations_block;
 				s_tag_block_definition<s_color_animations_definition> nicename("Color Animations") color_animations_block;
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			s_tag_block_definition<s_component_definition> nicename("Component") component_block;
 		};
 
-		string_id nicename("Resolution") resolution;
-		string_id nicename("Theme") theme;
+		DEPRECATED_string_id nicename("Resolution") resolution;
+		DEPRECATED_string_id nicename("Theme") theme;
 		s_tag_block_definition<s_components_definition> nicename("Components") components_block;
 		s_tag_block_definition<s_animations_definition> nicename("Animations") animations_block;
 	};
@@ -130,16 +130,16 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 	{
 		int16_t nicename("Flags") flags;
 		int16_t nicename("Flags") flags1;
-		string_id nicename("Input Component") input_component;
-		string_id nicename("Input Property") input_property;
-		string_id nicename("Output Component") output_component;
-		string_id nicename("Ouput Property") ouput_property;
+		DEPRECATED_string_id nicename("Input Component") input_component;
+		DEPRECATED_string_id nicename("Input Property") input_property;
+		DEPRECATED_string_id nicename("Output Component") output_component;
+		DEPRECATED_string_id nicename("Ouput Property") ouput_property;
 	};
 
 	struct nicename("Defaults?") s_defaults_definition
 	{
-		string_id __unknown0;
-		string_id __unknown1;
+		DEPRECATED_string_id __unknown0;
+		DEPRECATED_string_id __unknown1;
 		int8_t __unknown2;
 		int8_t __unknown3;
 		int8_t __unknown4;
@@ -163,7 +163,7 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 				/*nicename("Color")*/ _property_kind_color = 8ui16,
 			};
 
-			string_id nicename("Property Name") property_name;
+			DEPRECATED_string_id nicename("Property Name") property_name;
 			e_property_kind nicename("Property Kind") property_kind;
 			int16_t __unknown0;
 		};
@@ -172,37 +172,37 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 		{
 			struct nicename("Integers") s_integers1_definition
 			{
-				string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("Property") property;
 				int32_t nicename("Value") value;
 			};
 
 			struct nicename("Floats") s_floats1_definition
 			{
-				string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("Property") property;
 				float nicename("Value") value;
 			};
 
 			struct nicename("String IDs") s_string_ids_definition
 			{
-				string_id nicename("Property") property;
-				string_id nicename("String") string;
+				DEPRECATED_string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("String") string;
 			};
 
 			struct nicename("Resources") s_resources1_definition
 			{
-				string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("Property") property;
 				TagReference nicename("Resource") resource_reference;
 			};
 
 			struct nicename("Text") s_text1_definition
 			{
-				string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("Property") property;
 				char nicename("Text") text[256];
 			};
 
 			struct nicename("Colors") s_colors1_definition
 			{
-				string_id nicename("Property") property;
+				DEPRECATED_string_id nicename("Property") property;
 				colorf nicename("Color") color;
 			};
 
@@ -214,7 +214,7 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 			s_tag_block_definition<s_colors1_definition> nicename("Colors") colors_block;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int32_t __unknown0;
 		s_tag_block_definition<s_property_pool_definition> nicename("Property Pool") property_pool_block;
 		s_tag_block_definition<s_components1_definition> nicename("Components") components_block;
@@ -287,7 +287,7 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 			Undefined32 __unknown1;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		char nicename("Compiled Expression Reference") compiled_expression_reference[256];
 		s_tag_block_definition<s_expression_makeup_definition> nicename("Expression Makeup") expression_makeup_block;
 	};

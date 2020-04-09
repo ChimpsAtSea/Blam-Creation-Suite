@@ -117,7 +117,7 @@ struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition
 
 	struct nicename("Special Damages") s_special_damages_definition
 	{
-		string_id nicename("Special Damage") special_damage;
+		DEPRECATED_string_id nicename("Special Damage") special_damage;
 	};
 
 	struct nicename("Ricochets") s_ricochets_definition
@@ -152,8 +152,8 @@ struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition
 	float nicename("Rider Max Transfer Damage") rider_max_transfer_damage;
 	float nicename("Rider Min Transfer Damage") rider_min_transfer_damage;
 	Undefined32 __unknown2;
-	string_id nicename("General Damage") general_damage;
-	string_id nicename("Specific Damage") specific_damage;
+	DEPRECATED_string_id nicename("General Damage") general_damage;
+	DEPRECATED_string_id nicename("Specific Damage") specific_damage;
 	s_tag_block_definition<s_special_damages_definition> nicename("Special Damages") special_damages_block;
 	float nicename("AI Stun Radius") ai_stun_radius;
 	float nicename("AI Stun Bounds min") ai_stun_bounds_min;

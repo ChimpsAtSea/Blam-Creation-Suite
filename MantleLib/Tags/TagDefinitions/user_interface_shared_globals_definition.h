@@ -4,7 +4,7 @@ struct nicename("user_interface_shared_globals_definition") tag_group('wigl') s_
 {
 	struct nicename("Text Colors") s_text_colors_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		colorf nicename("Color") color;
 	};
 
@@ -50,13 +50,13 @@ struct nicename("user_interface_shared_globals_definition") tag_group('wigl') s_
 			/*nicename("Bit 7")*/ _flags_bit_7 = 1ui8 << 7ui8,
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;
 		int8_t nicename("Icon") icon;
 		int8_t __unknown1;
-		string_id nicename("Title") title;
-		string_id nicename("Body") body;
+		DEPRECATED_string_id nicename("Title") title;
+		DEPRECATED_string_id nicename("Body") body;
 	};
 
 	struct nicename("Dialogs") s_dialogs_definition
@@ -69,23 +69,23 @@ struct nicename("user_interface_shared_globals_definition") tag_group('wigl') s_
 			/*nicename("Option 4")*/ _default_option_option_4 = 3ui16,
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t __unknown0;
 		int16_t __unknown1;
-		string_id nicename("Title") title;
-		string_id nicename("Body") body;
-		string_id nicename("Option 1") option_1;
-		string_id nicename("Option 2") option_2;
-		string_id nicename("Option 3") option_3;
-		string_id nicename("Option 4") option_4;
-		string_id nicename("Key Legend") key_legend;
+		DEPRECATED_string_id nicename("Title") title;
+		DEPRECATED_string_id nicename("Body") body;
+		DEPRECATED_string_id nicename("Option 1") option_1;
+		DEPRECATED_string_id nicename("Option 2") option_2;
+		DEPRECATED_string_id nicename("Option 3") option_3;
+		DEPRECATED_string_id nicename("Option 4") option_4;
+		DEPRECATED_string_id nicename("Key Legend") key_legend;
 		e_default_option nicename("Default Option") default_option;
 		int16_t __unknown2;
 	};
 
 	struct nicename("Unknown") s_unknown_definition
 	{
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 		int32_t __unknown1;
 	};
 
@@ -116,12 +116,12 @@ struct nicename("user_interface_shared_globals_definition") tag_group('wigl') s_
 	float nicename("Standard Bitmap Scale Y") standard_bitmap_scale_y;
 	float nicename("Menu Blur X") menu_blur_x;
 	float nicename("Menu Blur Y") menu_blur_y;
-	string_id nicename("UI Spartan Biped Name") ui_spartan_biped_name;
+	DEPRECATED_string_id nicename("UI Spartan Biped Name") ui_spartan_biped_name;
 	char nicename("UI Spartan AI Squad Name") ui_spartan_ai_squad_name[32];
-	string_id nicename("UI Spartan AI Location Name") ui_spartan_ai_location_name;
-	string_id nicename("UI Elite Biped Name") ui_elite_biped_name;
+	DEPRECATED_string_id nicename("UI Spartan AI Location Name") ui_spartan_ai_location_name;
+	DEPRECATED_string_id nicename("UI Elite Biped Name") ui_elite_biped_name;
 	char nicename("UI Elite AI Squad Name") ui_elite_ai_squad_name[32];
-	string_id nicename("UI Elite AI Location Name") ui_elite_ai_location_name;
+	DEPRECATED_string_id nicename("UI Elite AI Location Name") ui_elite_ai_location_name;
 	int32_t nicename("Single Scroll Speed") single_scroll_speed;
 	int32_t nicename("Scroll Speed Transition Wait Time") scroll_speed_transition_wait_time;
 	int32_t nicename("Held Scroll Speed") held_scroll_speed;

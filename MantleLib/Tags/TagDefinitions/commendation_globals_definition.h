@@ -11,8 +11,8 @@ struct nicename("commendation_globals_definition") tag_group('comg') s_commendat
 			/*nicename("Multiplayer")*/ _category_multiplayer = 3ui16,
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		int32_t nicename("Credits Earned Before Silver Reached") credits_earned_before_silver_reached;
 		int32_t nicename("Credits Earned After Silver Reached") credits_earned_after_silver_reached;
 		int16_t __unknown0;

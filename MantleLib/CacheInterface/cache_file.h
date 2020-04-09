@@ -125,7 +125,7 @@ public:
 		return string_id_str;
 	}
 
-	inline const char* string_id_to_cstr(string_id const id, const char* const error_value = nullptr)
+	inline const char* string_id_to_cstr(DEPRECATED_string_id const id, const char* const error_value = nullptr)
 	{
 		uint32_t index = string_id_guesstimator->string_id_to_index(id);
 
@@ -180,7 +180,7 @@ public:
 	char* m_pTagNameBuffer;
 	long *m_pStringIDIndices;
 	char *m_pStringIDBuffer;
-	s_cache_file_header* cache_file_header;
+	s_reach_cache_file_header* cache_file_header;
 	s_cache_file_tags_header* cache_file_tags_headers;
 	s_cache_file_tag_instance* cache_file_tag_instances;
 	s_cache_file_tag_group* cache_file_tag_groups;

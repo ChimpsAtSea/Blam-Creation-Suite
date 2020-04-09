@@ -26,22 +26,22 @@ struct nicename("render_method_template") tag_group('rmt2') s_render_method_temp
 
 	struct nicename("Arguments") s_arguments_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 	};
 
 	struct nicename("Unknown") s_unknown3_definition
 	{
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 	};
 
 	struct nicename("Unknown") s_unknown4_definition
 	{
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 	};
 
 	struct nicename("Shader Maps") s_shader_maps_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 	};
 
 	TagReference nicename("Vertex Shader") vertex_shader_reference;

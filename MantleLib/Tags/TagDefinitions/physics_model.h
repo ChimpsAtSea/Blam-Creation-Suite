@@ -4,7 +4,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 		float __unknown1;
 		float __unknown2;
 		float __unknown3;
@@ -14,7 +14,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Unknown") s_unknown1_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		float __unknown0;
 		float __unknown1;
 		float __unknown2;
@@ -89,8 +89,8 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		e_minimum_size nicename("Minimum Size") minimum_size;
 		e_maximum_size nicename("Maximum Size") maximum_size;
 		int16_t __unknown1;
-		string_id nicename("Marker Name") marker_name;
-		string_id nicename("Alignment Marker Name") alignment_marker_name;
+		DEPRECATED_string_id nicename("Marker Name") marker_name;
+		DEPRECATED_string_id nicename("Alignment Marker Name") alignment_marker_name;
 		Undefined32 __unknown2;
 		Undefined32 __unknown3;
 		float nicename("Hooke's Law 'E'") hookes_law_e;
@@ -213,8 +213,8 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		int16_t nicename("Node A") node_a;
 		int16_t nicename("Node B") node_b;
 		s_tag_block_definition<s_constraints_definition> nicename("Constraints") constraints_block;
-		string_id nicename("Node A Material") node_a_material;
-		string_id nicename("Node B Material") node_b_material;
+		DEPRECATED_string_id nicename("Node A Material") node_a_material;
+		DEPRECATED_string_id nicename("Node B Material") node_b_material;
 	};
 
 	struct nicename("Rigid Bodies") s_rigid_bodies_definition
@@ -343,9 +343,9 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Materials") s_materials_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		Undefined32 __unknown0;
-		string_id nicename("Material Name") material_name;
+		DEPRECATED_string_id nicename("Material Name") material_name;
 		int16_t nicename("Phantom Type Index") phantom_type_index;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -353,7 +353,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Spheres") s_spheres_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
 		int8_t __unknown0;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -407,7 +407,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Pills") s_pills_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
 		int8_t __unknown0;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -444,7 +444,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Boxes") s_boxes_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
 		int8_t __unknown0;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -510,7 +510,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Polyhedra") s_polyhedra_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
 		int8_t __unknown0;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -719,7 +719,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Hinge Constraints") s_hinge_constraints_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t nicename("Node A") node_a;
 		int16_t nicename("Node B") node_b;
 		float nicename("A Scale") a_scale;
@@ -755,7 +755,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Ragdoll Constraints") s_ragdoll_constraints_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t nicename("Node A") node_a;
 		int16_t nicename("Node B") node_b;
 		float nicename("A Scale") a_scale;
@@ -805,11 +805,11 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 				int16_t nicename("Rigid Body Index") rigid_body_index;
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			s_tag_block_definition<s_rigid_bodies1_definition> nicename("Rigid Bodies") rigid_bodies_block;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_permutations_definition> nicename("Permutations") permutations_block;
 	};
 
@@ -835,7 +835,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 			/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		b_flags nicename("Flags") flags;
 		int16_t nicename("Parent") parent;
 		int16_t nicename("Sibling") sibling;
@@ -844,7 +844,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Limited Hinge Constraints") s_limited_hinge_constraints_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t nicename("Node A") node_a;
 		int16_t nicename("Node B") node_b;
 		float nicename("A Scale") a_scale;

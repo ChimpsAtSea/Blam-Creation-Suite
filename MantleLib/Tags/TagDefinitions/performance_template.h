@@ -5,7 +5,7 @@ struct nicename("performance_template") tag_group('pfmc') s_performance_template
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{
 		int32_t __unknown0;
-		string_id __unknown1;
+		DEPRECATED_string_id __unknown1;
 		TagReference __unknown2;
 		TagReference __unknown3;
 		Undefined32 __unknown4;
@@ -198,7 +198,7 @@ struct nicename("performance_template") tag_group('pfmc') s_performance_template
 
 	struct nicename("Unknown 2") s_unknown_2_definition
 	{
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 		float __unknown1;
 		float __unknown2;
 		Undefined32 __unknown3;
@@ -206,7 +206,7 @@ struct nicename("performance_template") tag_group('pfmc') s_performance_template
 		Undefined32 __unknown5;
 	};
 
-	string_id __unknown0;
+	DEPRECATED_string_id __unknown0;
 	Undefined32 __unknown1;
 	s_tag_block_definition<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
 	s_tag_block_definition<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;

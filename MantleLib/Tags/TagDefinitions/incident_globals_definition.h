@@ -27,7 +27,7 @@ struct nicename("incident_globals_definition") tag_group('ingd') s_incident_glob
 
 		struct nicename("Unknown") s_unknown_definition
 		{
-			string_id nicename("Incident") incident;
+			DEPRECATED_string_id nicename("Incident") incident;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
@@ -312,7 +312,7 @@ struct nicename("incident_globals_definition") tag_group('ingd') s_incident_glob
 				int8_t __unknown2;
 			};
 
-			string_id nicename("Parent Incident") parent_incident;
+			DEPRECATED_string_id nicename("Parent Incident") parent_incident;
 			Undefined32 __unknown0;
 			s_tag_block_definition<s_weapons_filter_definition> nicename("Weapons Filter") weapons_filter_block;
 			s_tag_block_definition<s_cause_unit_definition> nicename("Cause Unit") cause_unit_block;
@@ -329,7 +329,7 @@ struct nicename("incident_globals_definition") tag_group('ingd') s_incident_glob
 				int8_t __unknown2;
 				int8_t __unknown3;
 				int32_t nicename("Amount") amount;
-				string_id nicename("Target Incident") target_incident;
+				DEPRECATED_string_id nicename("Target Incident") target_incident;
 			};
 
 			int8_t __unknown0;
@@ -364,7 +364,7 @@ struct nicename("incident_globals_definition") tag_group('ingd') s_incident_glob
 
 			struct nicename("Unknown") s_unknown1_definition
 			{
-				string_id __unknown0;
+				DEPRECATED_string_id __unknown0;
 			};
 
 			b_mode nicename("Mode") mode;
@@ -372,18 +372,18 @@ struct nicename("incident_globals_definition") tag_group('ingd') s_incident_glob
 			b_difficulty nicename("Difficulty") difficulty;
 			int8_t __unknown0;
 			Undefined32 __unknown1;
-			string_id nicename("Event") event;
-			string_id nicename("Medal") medal;
-			string_id nicename("Commendation") commendation;
-			string_id nicename("Achievement") achievement;
-			string_id nicename("Avatar Award") avatar_award;
+			DEPRECATED_string_id nicename("Event") event;
+			DEPRECATED_string_id nicename("Medal") medal;
+			DEPRECATED_string_id nicename("Commendation") commendation;
+			DEPRECATED_string_id nicename("Achievement") achievement;
+			DEPRECATED_string_id nicename("Avatar Award") avatar_award;
 			s_tag_block_definition<s_unknown1_definition> __unknown2;
-			string_id nicename("Script") script;
+			DEPRECATED_string_id nicename("Script") script;
 			int16_t nicename("Script Index") script_index;
 			int16_t __unknown3;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;

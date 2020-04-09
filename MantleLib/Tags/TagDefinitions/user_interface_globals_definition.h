@@ -4,13 +4,13 @@ struct nicename("user_interface_globals_definition") tag_group('wgtz') s_user_in
 {
 	struct nicename("CUI Screen Index") s_cui_screen_index_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Screen") screen_reference;
 	};
 
 	struct nicename("CUI Global Skewing") s_cui_global_skewing_definition
 	{
-		string_id nicename("Resolution") resolution;
+		DEPRECATED_string_id nicename("Resolution") resolution;
 		int32_t nicename("Offset Scale Y Anchor") offset_scale_y_anchor;
 		float nicename("Right Screen Skew 1") right_screen_skew_1;
 		float nicename("Right Screen Skew 2") right_screen_skew_2;
@@ -20,7 +20,7 @@ struct nicename("user_interface_globals_definition") tag_group('wgtz') s_user_in
 
 	struct nicename("CUI Camera Definitions") s_cui_camera_definitions_definition
 	{
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 		Undefined32 __unknown1;
 		Undefined32 __unknown2;
 		Undefined32 __unknown3;
@@ -30,7 +30,7 @@ struct nicename("user_interface_globals_definition") tag_group('wgtz') s_user_in
 		Undefined32 __unknown7;
 		Undefined32 __unknown8;
 		Undefined32 __unknown9;
-		string_id __unknown10;
+		DEPRECATED_string_id __unknown10;
 		Undefined32 __unknown11;
 		Undefined32 __unknown12;
 		Undefined32 __unknown13;
@@ -49,7 +49,7 @@ struct nicename("user_interface_globals_definition") tag_group('wgtz') s_user_in
 
 	struct nicename("CUI Camera Modifiers") s_cui_camera_modifiers_definition
 	{
-		string_id nicename("Camera Name") camera_name;
+		DEPRECATED_string_id nicename("Camera Name") camera_name;
 		float __unknown0;
 		DataReference __unknown1;
 		Undefined32 __unknown2;
@@ -74,7 +74,7 @@ struct nicename("user_interface_globals_definition") tag_group('wgtz') s_user_in
 	struct nicename("Dynamic Lobby Cameras") s_dynamic_lobby_cameras_definition
 	{
 		int32_t nicename("Last-Played Map ID") last_played_map_id;
-		string_id nicename("Camera To Use") camera_to_use;
+		DEPRECATED_string_id nicename("Camera To Use") camera_to_use;
 		TagReference __unknown0;
 	};
 

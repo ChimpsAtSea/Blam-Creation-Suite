@@ -2274,7 +2274,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 				int16_t __unknown6;
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			e_special_hud_type nicename("Special HUD Type") special_hud_type;
 			uint8_t __unknown0;
 			uint8_t __unknown1;
@@ -3424,7 +3424,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 				int16_t __unknown6;
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			e_special_hud_type nicename("Special HUD Type") special_hud_type;
 			uint8_t __unknown0;
 			uint8_t __unknown1;
@@ -3441,10 +3441,10 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 			s_tag_block_definition<s_render_data2_definition> nicename("Render Data") render_data_block;
 			b_flags nicename("Flags") flags;
 			e_font nicename("Font") font;
-			string_id nicename("String") string;
+			DEPRECATED_string_id nicename("String") string;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		e_special_hud_type nicename("Special HUD Type") special_hud_type;
 		uint8_t __unknown0;
 		uint8_t __unknown1;

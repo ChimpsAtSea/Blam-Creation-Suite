@@ -21,7 +21,7 @@ struct nicename("formation") tag_group('form') s_formation_definition
 		s_tag_block_definition<s_unknown1_definition> __unknown8;
 	};
 
-	string_id nicename("Name") name;
+	DEPRECATED_string_id nicename("Name") name;
 	s_tag_block_definition<s_unknown_definition> __unknown0;
 };
 

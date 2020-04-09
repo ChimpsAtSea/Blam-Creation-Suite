@@ -143,7 +143,7 @@ struct nicename("sound_looping") tag_group('lsnd') s_sound_looping_definition
 			/*nicename("Bit 15")*/ _flags1_bit_15 = 1ui16 << 15ui16,
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		b_flags1 nicename("Flags") flags;
 		e_output_effect nicename("Output Effect") output_effect;
 		float nicename("Gain") gain;
@@ -208,7 +208,7 @@ struct nicename("sound_looping") tag_group('lsnd') s_sound_looping_definition
 			/*nicename("Bit 31")*/ _flags1_bit_31 = 1ui32 << 31ui32,
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Sound") sound_reference;
 		Undefined32 __unknown0;
 		// Frequency Of Play : 

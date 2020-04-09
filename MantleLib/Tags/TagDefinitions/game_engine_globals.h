@@ -18,16 +18,16 @@ struct nicename("game_engine_globals") tag_group('gegl') s_game_engine_globals_d
 			/*nicename("Announcer Sound")*/ _sound_flags_announcer_sound = 1ui8 << 0ui8,
 		};
 
-		string_id nicename("Event") event;
+		DEPRECATED_string_id nicename("Event") event;
 		e_audience nicename("Audience") audience;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
-		string_id nicename("Display String") display_string;
+		DEPRECATED_string_id nicename("Display String") display_string;
 		int16_t __unknown3;
 		int8_t __unknown4;
 		int8_t __unknown5;
-		string_id nicename("Primary String") primary_string;
+		DEPRECATED_string_id nicename("Primary String") primary_string;
 		int32_t nicename("Primary String Duration") primary_string_duration;
 		float nicename("Sound Delay (Announcer Only)") sound_delay_announcer_only;
 		b_sound_flags nicename("Sound Flags") sound_flags;
@@ -39,7 +39,7 @@ struct nicename("game_engine_globals") tag_group('gegl') s_game_engine_globals_d
 		int32_t __unknown10;
 		int32_t __unknown11;
 		float __unknown12;
-		string_id __unknown13;
+		DEPRECATED_string_id __unknown13;
 		int32_t __unknown14;
 		float __unknown15;
 		Undefined32 nicename("block here") block_here;

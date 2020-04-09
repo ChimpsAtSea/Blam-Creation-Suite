@@ -19,7 +19,7 @@ struct nicename("sound_effect_collection") tag_group('sfx+') s_sound_effect_coll
 			int32_t nicename("Flags") flags;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int32_t __unknown0;
 		TagReference nicename("Radio Settings") radio_settings_reference;
 		s_tag_block_definition<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;

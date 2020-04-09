@@ -61,15 +61,15 @@ struct nicename("light") tag_group('ligh') s_light_definition
 	int16_t __unknown5;
 	int16_t __unknown6;
 	// Color : 
-	string_id nicename("Function Name") function_name;
-	string_id nicename("Function Name") function_name1;
+	DEPRECATED_string_id nicename("Function Name") function_name;
+	DEPRECATED_string_id nicename("Function Name") function_name1;
 	int16_t __unknown7;
 	int16_t __unknown8;
 	Undefined32 __unknown9;
 	DataReference nicename("Function") function_data_reference;
 	// Brightness : 
-	string_id nicename("Function Name") function_name2;
-	string_id nicename("Function Name") function_name3;
+	DEPRECATED_string_id nicename("Function Name") function_name2;
+	DEPRECATED_string_id nicename("Function Name") function_name3;
 	int16_t __unknown10;
 	int16_t __unknown11;
 	Undefined32 __unknown12;

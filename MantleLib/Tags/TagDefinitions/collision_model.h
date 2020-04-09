@@ -40,7 +40,7 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 
 	struct nicename("Materials") s_materials_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 	};
 
 	struct nicename("Regions") s_regions_definition
@@ -269,13 +269,13 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 				Undefined32 __unknown12;
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			s_tag_block_definition<s_bsps_definition> nicename("BSPs") bsps_block;
 			s_tag_block_definition<s_bsp_physics_definition> nicename("BSP Physics") bsp_physics_block;
 			s_tag_block_definition<s_bsp_mopp_codes_definition> nicename("BSP MOPP Codes") bsp_mopp_codes_block;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_permutations_definition> nicename("Permutations") permutations_block;
 	};
 
@@ -311,7 +311,7 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 
 	struct nicename("Nodes") s_nodes_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t __unknown0;
 		int16_t nicename("Parent Node") parent_node;
 		int16_t nicename("Next Sibling Node") next_sibling_node;

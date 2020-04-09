@@ -13,15 +13,15 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 				/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 			};
 
-			string_id nicename("Region") region;
-			string_id nicename("Permutation") permutation;
+			DEPRECATED_string_id nicename("Region") region;
+			DEPRECATED_string_id nicename("Permutation") permutation;
 			b_flags nicename("Flags") flags;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_configuration_definition> nicename("Configuration") configuration_block;
 	};
 
@@ -36,15 +36,15 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 				/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 			};
 
-			string_id nicename("Region") region;
-			string_id nicename("Permutation") permutation;
+			DEPRECATED_string_id nicename("Region") region;
+			DEPRECATED_string_id nicename("Permutation") permutation;
 			b_flags nicename("Flags") flags;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_configuration1_definition> nicename("Configuration") configuration_block;
 	};
 
@@ -59,15 +59,15 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 				/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 			};
 
-			string_id nicename("Region") region;
-			string_id nicename("Permutation") permutation;
+			DEPRECATED_string_id nicename("Region") region;
+			DEPRECATED_string_id nicename("Permutation") permutation;
 			b_flags nicename("Flags") flags;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_configuration2_definition> nicename("Configuration") configuration_block;
 	};
 
@@ -82,15 +82,15 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 				/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 			};
 
-			string_id nicename("Region") region;
-			string_id nicename("Permutation") permutation;
+			DEPRECATED_string_id nicename("Region") region;
+			DEPRECATED_string_id nicename("Permutation") permutation;
 			b_flags nicename("Flags") flags;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_configuration3_definition> nicename("Configuration") configuration_block;
 	};
 
@@ -105,15 +105,15 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 				/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 			};
 
-			string_id nicename("Region") region;
-			string_id nicename("Permutation") permutation;
+			DEPRECATED_string_id nicename("Region") region;
+			DEPRECATED_string_id nicename("Permutation") permutation;
 			b_flags nicename("Flags") flags;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_configuration4_definition> nicename("Configuration") configuration_block;
 	};
 
@@ -128,15 +128,15 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 				/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 			};
 
-			string_id nicename("Region") region;
-			string_id nicename("Permutation") permutation;
+			DEPRECATED_string_id nicename("Region") region;
+			DEPRECATED_string_id nicename("Permutation") permutation;
 			b_flags nicename("Flags") flags;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_configuration5_definition> nicename("Configuration") configuration_block;
 	};
 
@@ -151,15 +151,15 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 				/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 			};
 
-			string_id nicename("Region") region;
-			string_id nicename("Permutation") permutation;
+			DEPRECATED_string_id nicename("Region") region;
+			DEPRECATED_string_id nicename("Permutation") permutation;
 			b_flags nicename("Flags") flags;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_configuration6_definition> nicename("Configuration") configuration_block;
 	};
 
@@ -174,15 +174,15 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 				/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 			};
 
-			string_id nicename("Region") region;
-			string_id nicename("Permutation") permutation;
+			DEPRECATED_string_id nicename("Region") region;
+			DEPRECATED_string_id nicename("Permutation") permutation;
 			b_flags nicename("Flags") flags;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_configuration7_definition> nicename("Configuration") configuration_block;
 	};
 
@@ -197,15 +197,15 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 				/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 			};
 
-			string_id nicename("Region") region;
-			string_id nicename("Permutation") permutation;
+			DEPRECATED_string_id nicename("Region") region;
+			DEPRECATED_string_id nicename("Permutation") permutation;
 			b_flags nicename("Flags") flags;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_configuration8_definition> nicename("Configuration") configuration_block;
 	};
 
@@ -220,15 +220,15 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 				/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 			};
 
-			string_id nicename("Region") region;
-			string_id nicename("Permutation") permutation;
+			DEPRECATED_string_id nicename("Region") region;
+			DEPRECATED_string_id nicename("Permutation") permutation;
 			b_flags nicename("Flags") flags;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_configuration9_definition> nicename("Configuration") configuration_block;
 	};
 
@@ -241,8 +241,8 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 			/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 		};
 
-		string_id nicename("Region") region;
-		string_id nicename("Permutation") permutation;
+		DEPRECATED_string_id nicename("Region") region;
+		DEPRECATED_string_id nicename("Permutation") permutation;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;
 		int8_t __unknown1;
@@ -258,8 +258,8 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 			/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 		};
 
-		string_id nicename("Region") region;
-		string_id nicename("Permutation") permutation;
+		DEPRECATED_string_id nicename("Region") region;
+		DEPRECATED_string_id nicename("Permutation") permutation;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;
 		int8_t __unknown1;
@@ -275,8 +275,8 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 			/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 		};
 
-		string_id nicename("Region") region;
-		string_id nicename("Permutation") permutation;
+		DEPRECATED_string_id nicename("Region") region;
+		DEPRECATED_string_id nicename("Permutation") permutation;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;
 		int8_t __unknown1;
@@ -292,8 +292,8 @@ struct nicename("player_model_customization_globals") tag_group('pmcg') s_player
 			/*nicename("Move Elite Mandibles For Helmet")*/ _flags_move_elite_mandibles_for_helmet = 1ui8 << 2ui8,
 		};
 
-		string_id nicename("Region") region;
-		string_id nicename("Permutation") permutation;
+		DEPRECATED_string_id nicename("Region") region;
+		DEPRECATED_string_id nicename("Permutation") permutation;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;
 		int8_t __unknown1;

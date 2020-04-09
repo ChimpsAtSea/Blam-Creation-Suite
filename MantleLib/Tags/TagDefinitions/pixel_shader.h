@@ -11,7 +11,7 @@ struct nicename("pixel_shader") tag_group('pixl') s_pixel_shader_definition
 	{
 		struct nicename("Unknown") s_unknown_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;
@@ -20,7 +20,7 @@ struct nicename("pixel_shader") tag_group('pixl') s_pixel_shader_definition
 
 		struct nicename("Unknown") s_unknown1_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;

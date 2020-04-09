@@ -286,7 +286,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			/*nicename("Bit 31")*/ _scale_flags_bit_31 = 1ui32 << 31ui32,
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Sound Environment") sound_environment_reference;
 		int32_t __unknown0;
 		float nicename("Cutoff Distance") cutoff_distance;
@@ -396,7 +396,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		int16_t __unknown0;
 		int32_t nicename("Unique ID") unique_id;
 		char nicename("Scenario Object Name") scenario_object_name[4];
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int32_t __unknown1;
 	};
 
@@ -467,7 +467,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 
 	struct nicename("Instanced Geometry Instances") s_instanced_geometry_instances_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 	};
 
 	struct nicename("Decorators") s_decorators_definition

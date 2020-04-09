@@ -171,7 +171,7 @@ struct nicename("device_control") tag_group('ctrl') s_device_control_definition
 
 	struct nicename("Early Mover Properties") s_early_mover_properties_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		Undefined32 __unknown0;
 		Undefined32 __unknown1;
 		Undefined32 __unknown2;
@@ -246,7 +246,7 @@ struct nicename("device_control") tag_group('ctrl') s_device_control_definition
 		};
 
 		b_flags1 nicename("Flags") flags;
-		string_id nicename("AI Type Name") ai_type_name;
+		DEPRECATED_string_id nicename("AI Type Name") ai_type_name;
 		Undefined32 __unknown0;
 		e_size nicename("Size") size;
 		e_leap_jump_speed nicename("Leap Jump Speed") leap_jump_speed;
@@ -301,13 +301,13 @@ struct nicename("device_control") tag_group('ctrl') s_device_control_definition
 		};
 
 		b_flags1 nicename("Flags") flags;
-		string_id nicename("Import Name") import_name;
-		string_id nicename("Export Name") export_name;
-		string_id nicename("Turn Off With") turn_off_with;
-		string_id __unknown0;
+		DEPRECATED_string_id nicename("Import Name") import_name;
+		DEPRECATED_string_id nicename("Export Name") export_name;
+		DEPRECATED_string_id nicename("Turn Off With") turn_off_with;
+		DEPRECATED_string_id __unknown0;
 		float nicename("Minimum Value") minimum_value;
 		DataReference nicename("Default Function") default_function_data_reference;
-		string_id nicename("Scale By") scale_by;
+		DEPRECATED_string_id nicename("Scale By") scale_by;
 		s_tag_block_definition<s_unknown_definition> __unknown1;
 		int32_t nicename("'Function Related' Index") function_related_index;
 	};
@@ -329,18 +329,18 @@ struct nicename("device_control") tag_group('ctrl') s_device_control_definition
 		};
 
 		TagReference nicename("Attachment") attachment_reference;
-		string_id nicename("Marker") marker;
+		DEPRECATED_string_id nicename("Marker") marker;
 		e_change_color nicename("Change Color") change_color;
 		int16_t __unknown0;
-		string_id nicename("Primary Scale") primary_scale;
-		string_id nicename("Secondary Scale") secondary_scale;
+		DEPRECATED_string_id nicename("Primary Scale") primary_scale;
+		DEPRECATED_string_id nicename("Secondary Scale") secondary_scale;
 	};
 
 	struct nicename("Material Responses") s_material_responses_definition
 	{
 		struct nicename("Unknown") s_unknown1_definition
 		{
-			string_id nicename("Material") material;
+			DEPRECATED_string_id nicename("Material") material;
 			DataReference __unknown0;
 			float __unknown1;
 			DataReference __unknown2;
@@ -357,7 +357,7 @@ struct nicename("device_control") tag_group('ctrl') s_device_control_definition
 
 	struct nicename("Jet Wash") s_jet_wash_definition
 	{
-		string_id nicename("Marker") marker;
+		DEPRECATED_string_id nicename("Marker") marker;
 		float __unknown0;
 		Undefined32 __unknown1;
 		float __unknown2;
@@ -380,7 +380,7 @@ struct nicename("device_control") tag_group('ctrl') s_device_control_definition
 			float nicename("Weight") weight;
 			colorf nicename("Color Lower Bound") color_lower_bound;
 			colorf nicename("Color Upper Bound") color_upper_bound;
-			string_id nicename("Variant Name") variant_name;
+			DEPRECATED_string_id nicename("Variant Name") variant_name;
 		};
 
 		struct nicename("Functions") s_functions1_definition
@@ -424,8 +424,8 @@ struct nicename("device_control") tag_group('ctrl') s_device_control_definition
 			b_scale_flags nicename("Scale Flags") scale_flags;
 			colorf nicename("Color Lower Bound") color_lower_bound;
 			colorf nicename("Color Upper Bound") color_upper_bound;
-			string_id nicename("Darken By...") darken_by;
-			string_id nicename("Scale By...") scale_by;
+			DEPRECATED_string_id nicename("Darken By...") darken_by;
+			DEPRECATED_string_id nicename("Scale By...") scale_by;
 		};
 
 		s_tag_block_definition<s_initial_permutations_definition> nicename("Initial Permutations") initial_permutations_block;
@@ -569,10 +569,10 @@ struct nicename("device_control") tag_group('ctrl') s_device_control_definition
 	float nicename("Dynamic Light Sphere X Offset") dynamic_light_sphere_x_offset;
 	float nicename("Dynamic Light Sphere Y Offset") dynamic_light_sphere_y_offset;
 	float nicename("Dynamic Light Sphere Z Offset") dynamic_light_sphere_z_offset;
-	string_id nicename("Generic HUD Text") generic_hud_text;
+	DEPRECATED_string_id nicename("Generic HUD Text") generic_hud_text;
 	TagReference nicename("Generic Name List") generic_name_list_reference;
 	TagReference nicename("Generic Service Tag List") generic_service_tag_list_reference;
-	string_id nicename("Default Variant") default_variant;
+	DEPRECATED_string_id nicename("Default Variant") default_variant;
 	TagReference nicename("Model") model_reference;
 	TagReference nicename("Crate Object") crate_object_reference;
 	TagReference nicename("Collision Damage") collision_damage_reference;
@@ -617,7 +617,7 @@ struct nicename("device_control") tag_group('ctrl') s_device_control_definition
 	e_type nicename("Type") type;
 	e_triggers_when nicename("Triggers When") triggers_when;
 	float nicename("Call Value") call_value;
-	string_id nicename("Action String") action_string;
+	DEPRECATED_string_id nicename("Action String") action_string;
 	TagReference nicename("On") on_reference;
 	TagReference nicename("Off") off_reference;
 	TagReference nicename("Deny") deny_reference;

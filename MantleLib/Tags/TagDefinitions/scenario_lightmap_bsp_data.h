@@ -273,7 +273,7 @@ struct nicename("scenario_lightmap_bsp_data") tag_group('Lbsp') s_scenario_light
 		Undefined32 __unknown0;
 		Undefined32 __unknown1;
 		Undefined32 __unknown2;
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		Undefined32 __unknown3;
 		Undefined32 __unknown4;
 		Undefined32 __unknown5;

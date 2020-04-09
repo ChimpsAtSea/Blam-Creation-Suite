@@ -114,7 +114,7 @@ struct nicename("death_program_selector") tag_group('bdpd') s_death_program_sele
 				float nicename("Animated Length") animated_length;
 				e_program_type nicename("Program Type") program_type;
 				float nicename("Acceleration") acceleration;
-				string_id nicename("Name") name;
+				DEPRECATED_string_id nicename("Name") name;
 			};
 
 			e_damage_type nicename("Damage Type") damage_type;

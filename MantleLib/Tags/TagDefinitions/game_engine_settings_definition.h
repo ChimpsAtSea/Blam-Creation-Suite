@@ -258,9 +258,9 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
-			string_id nicename("Primary Weapon") primary_weapon;
-			string_id nicename("Secondary Weapon") secondary_weapon;
-			string_id nicename("Equipment") equipment;
+			DEPRECATED_string_id nicename("Primary Weapon") primary_weapon;
+			DEPRECATED_string_id nicename("Secondary Weapon") secondary_weapon;
+			DEPRECATED_string_id nicename("Equipment") equipment;
 		};
 
 		struct nicename("Movement") s_movement_definition
@@ -434,7 +434,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_shields_and_health_definition> nicename("Shields and Health") shields_and_health_block;
 		s_tag_block_definition<s_weapons_and_damage_definition> nicename("Weapons and Damage") weapons_and_damage_block;
 		s_tag_block_definition<s_movement_definition> nicename("Movement") movement_block;
@@ -541,7 +541,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			/*nicename("Instant Kill")*/ _damage_modifier_instant_kill = 13ui8,
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		// Traits : The corresponding values for Vision, Hearing, Luck, and Grenades are set in AIGL, the number in parenthesis is the index for its block
 		e_vision nicename("Vision") vision;
 		e_hearing nicename("Hearing") hearing;
@@ -605,7 +605,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Suicide Penalty") suicide_penalty;
 			int8_t nicename("Betrayal Penalty") betrayal_penalty;
 			int8_t nicename("Respawn Time Growth") respawn_time_growth;
-			string_id nicename("Respawn Trait Profile") respawn_trait_profile;
+			DEPRECATED_string_id nicename("Respawn Trait Profile") respawn_trait_profile;
 			int8_t nicename("Loadout Selection Time") loadout_selection_time;
 			int8_t nicename("Respawn Trait Duration") respawn_trait_duration;
 			int8_t __unknown0;
@@ -641,12 +641,12 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 				/*nicename("Indestructable Vehicles")*/ _flags_indestructable_vehicles = 1ui8 << 5ui8,
 			};
 
-			string_id nicename("Base Player Trait Profile") base_player_trait_profile;
-			string_id nicename("Weapon Set") weapon_set;
-			string_id nicename("Vehicle Set") vehicle_set;
-			string_id nicename("Overshield Trait Profile") overshield_trait_profile;
-			string_id nicename("Active Camo Trait Profile") active_camo_trait_profile;
-			string_id nicename("Custom Powerup Trait Profile") custom_powerup_trait_profile;
+			DEPRECATED_string_id nicename("Base Player Trait Profile") base_player_trait_profile;
+			DEPRECATED_string_id nicename("Weapon Set") weapon_set;
+			DEPRECATED_string_id nicename("Vehicle Set") vehicle_set;
+			DEPRECATED_string_id nicename("Overshield Trait Profile") overshield_trait_profile;
+			DEPRECATED_string_id nicename("Active Camo Trait Profile") active_camo_trait_profile;
+			DEPRECATED_string_id nicename("Custom Powerup Trait Profile") custom_powerup_trait_profile;
 			int8_t nicename("Overshield Trait Duration") overshield_trait_duration;
 			int8_t nicename("Active Camo Trait Duration") active_camo_trait_duration;
 			int8_t nicename("Custom Powerup Trait Duration") custom_powerup_trait_duration;
@@ -785,7 +785,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index;
 			e_team_model nicename("Team Model") team_model;
 			int8_t nicename("Fireteam Count") fireteam_count;
-			string_id nicename("Team Name") team_name;
+			DEPRECATED_string_id nicename("Team Name") team_name;
 			uint8_t nicename("Primary Alpha") primary_alpha;
 			color24 nicename("Primary Color") primary_color;
 			uint8_t nicename("Secondary Alpha") secondary_alpha;
@@ -796,7 +796,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index1;
 			e_team_model1 nicename("Team Model") team_model1;
 			int8_t nicename("Fireteam Count") fireteam_count1;
-			string_id nicename("Team Name") team_name1;
+			DEPRECATED_string_id nicename("Team Name") team_name1;
 			uint8_t nicename("Primary Alpha") primary_alpha1;
 			color24 nicename("Primary Color") primary_color1;
 			uint8_t nicename("Secondary Alpha") secondary_alpha1;
@@ -807,7 +807,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index2;
 			e_team_model2 nicename("Team Model") team_model2;
 			int8_t nicename("Fireteam Count") fireteam_count2;
-			string_id nicename("Team Name") team_name2;
+			DEPRECATED_string_id nicename("Team Name") team_name2;
 			uint8_t nicename("Primary Alpha") primary_alpha2;
 			color24 nicename("Primary Color") primary_color2;
 			uint8_t nicename("Secondary Alpha") secondary_alpha2;
@@ -818,7 +818,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index3;
 			e_team_model3 nicename("Team Model") team_model3;
 			int8_t nicename("Fireteam Count") fireteam_count3;
-			string_id nicename("Team Name") team_name3;
+			DEPRECATED_string_id nicename("Team Name") team_name3;
 			uint8_t nicename("Primary Alpha") primary_alpha3;
 			color24 nicename("Primary Color") primary_color3;
 			uint8_t nicename("Secondary Alpha") secondary_alpha3;
@@ -829,7 +829,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index4;
 			e_team_model4 nicename("Team Model") team_model4;
 			int8_t nicename("Fireteam Count") fireteam_count4;
-			string_id nicename("Team Name") team_name4;
+			DEPRECATED_string_id nicename("Team Name") team_name4;
 			uint8_t nicename("Primary Alpha") primary_alpha4;
 			color24 nicename("Primary Color") primary_color4;
 			uint8_t nicename("Secondary Alpha") secondary_alpha4;
@@ -840,7 +840,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index5;
 			e_team_model5 nicename("Team Model") team_model5;
 			int8_t nicename("Fireteam Count") fireteam_count5;
-			string_id nicename("Team Name") team_name5;
+			DEPRECATED_string_id nicename("Team Name") team_name5;
 			uint8_t nicename("Primary Alpha") primary_alpha5;
 			color24 nicename("Primary Color") primary_color5;
 			uint8_t nicename("Secondary Alpha") secondary_alpha5;
@@ -851,7 +851,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index6;
 			e_team_model6 nicename("Team Model") team_model6;
 			int8_t nicename("Fireteam Count") fireteam_count6;
-			string_id __unknown3;
+			DEPRECATED_string_id __unknown3;
 			uint8_t nicename("Primary Alpha") primary_alpha6;
 			color24 nicename("Primary Color") primary_color6;
 			uint8_t nicename("Secondary Alpha") secondary_alpha6;
@@ -862,7 +862,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index7;
 			e_team_model7 nicename("Team Model") team_model7;
 			int8_t nicename("Fireteam Count") fireteam_count7;
-			string_id nicename("Team Name") team_name6;
+			DEPRECATED_string_id nicename("Team Name") team_name6;
 			uint8_t nicename("Primary Alpha") primary_alpha7;
 			color24 nicename("Primary Color") primary_color7;
 			uint8_t nicename("Secondary Alpha") secondary_alpha7;
@@ -886,7 +886,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 
 			struct nicename("Loadout Palette") s_loadout_palette_definition
 			{
-				string_id nicename("Loadout") loadout;
+				DEPRECATED_string_id nicename("Loadout") loadout;
 			};
 
 			b_flags nicename("Flags") flags;
@@ -896,8 +896,8 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			s_tag_block_definition<s_loadout_palette_definition> nicename("Loadout Palette") loadout_palette_block;
 		};
 
-		string_id nicename("Variant Name") variant_name;
-		string_id nicename("Variant Description") variant_description;
+		DEPRECATED_string_id nicename("Variant Name") variant_name;
+		DEPRECATED_string_id nicename("Variant Description") variant_description;
 		s_tag_block_definition<s_general_settings_definition> nicename("General Settings") general_settings_block;
 		s_tag_block_definition<s_respawn_settings_definition> nicename("Respawn Settings") respawn_settings_block;
 		s_tag_block_definition<s_social_settings_definition> nicename("Social Settings") social_settings_block;
@@ -907,7 +907,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 		b_flags nicename("Flags") flags;
 		e_edit_mode nicename("Edit Mode") edit_mode;
 		int16_t nicename("Editor Respawn Time") editor_respawn_time;
-		string_id nicename("Editor Trait Profile") editor_trait_profile;
+		DEPRECATED_string_id nicename("Editor Trait Profile") editor_trait_profile;
 	};
 
 	struct nicename("Survival Variants") s_survival_variants_definition
@@ -1006,7 +1006,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Suicide Penalty") suicide_penalty;
 			int8_t nicename("Betrayal Penalty") betrayal_penalty;
 			int8_t nicename("Respawn Time Growth") respawn_time_growth;
-			string_id nicename("Respawn Trait Profile") respawn_trait_profile;
+			DEPRECATED_string_id nicename("Respawn Trait Profile") respawn_trait_profile;
 			int8_t nicename("Loadout Selection Time") loadout_selection_time;
 			int8_t nicename("Respawn Trait Duration") respawn_trait_duration;
 			int8_t __unknown0;
@@ -1042,12 +1042,12 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 				/*nicename("Indestructable Vehicles")*/ _flags_indestructable_vehicles = 1ui8 << 5ui8,
 			};
 
-			string_id nicename("Base Player Trait Profile") base_player_trait_profile;
-			string_id nicename("Weapon Set") weapon_set;
-			string_id nicename("Vehicle Set") vehicle_set;
-			string_id nicename("Overshield Trait Profile") overshield_trait_profile;
-			string_id nicename("Active Camo Trait Profile") active_camo_trait_profile;
-			string_id nicename("Custom Powerup Trait Profile") custom_powerup_trait_profile;
+			DEPRECATED_string_id nicename("Base Player Trait Profile") base_player_trait_profile;
+			DEPRECATED_string_id nicename("Weapon Set") weapon_set;
+			DEPRECATED_string_id nicename("Vehicle Set") vehicle_set;
+			DEPRECATED_string_id nicename("Overshield Trait Profile") overshield_trait_profile;
+			DEPRECATED_string_id nicename("Active Camo Trait Profile") active_camo_trait_profile;
+			DEPRECATED_string_id nicename("Custom Powerup Trait Profile") custom_powerup_trait_profile;
 			int8_t nicename("Overshield Trait Duration") overshield_trait_duration;
 			int8_t nicename("Active Camo Trait Duration") active_camo_trait_duration;
 			int8_t nicename("Custom Powerup Trait Duration") custom_powerup_trait_duration;
@@ -1186,7 +1186,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index;
 			e_team_model nicename("Team Model") team_model;
 			int8_t nicename("Fireteam Count") fireteam_count;
-			string_id nicename("Team Name") team_name;
+			DEPRECATED_string_id nicename("Team Name") team_name;
 			uint8_t nicename("Primary Alpha") primary_alpha;
 			color24 nicename("Primary Color") primary_color;
 			uint8_t nicename("Secondary Alpha") secondary_alpha;
@@ -1197,7 +1197,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index1;
 			e_team_model1 nicename("Team Model") team_model1;
 			int8_t nicename("Fireteam Count") fireteam_count1;
-			string_id nicename("Team Name") team_name1;
+			DEPRECATED_string_id nicename("Team Name") team_name1;
 			uint8_t nicename("Primary Alpha") primary_alpha1;
 			color24 nicename("Primary Color") primary_color1;
 			uint8_t nicename("Secondary Alpha") secondary_alpha1;
@@ -1208,7 +1208,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index2;
 			e_team_model2 nicename("Team Model") team_model2;
 			int8_t nicename("Fireteam Count") fireteam_count2;
-			string_id nicename("Team Name") team_name2;
+			DEPRECATED_string_id nicename("Team Name") team_name2;
 			uint8_t nicename("Primary Alpha") primary_alpha2;
 			color24 nicename("Primary Color") primary_color2;
 			uint8_t nicename("Secondary Alpha") secondary_alpha2;
@@ -1219,7 +1219,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index3;
 			e_team_model3 nicename("Team Model") team_model3;
 			int8_t nicename("Fireteam Count") fireteam_count3;
-			string_id nicename("Team Name") team_name3;
+			DEPRECATED_string_id nicename("Team Name") team_name3;
 			uint8_t nicename("Primary Alpha") primary_alpha3;
 			color24 nicename("Primary Color") primary_color3;
 			uint8_t nicename("Secondary Alpha") secondary_alpha3;
@@ -1230,7 +1230,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index4;
 			e_team_model4 nicename("Team Model") team_model4;
 			int8_t nicename("Fireteam Count") fireteam_count4;
-			string_id nicename("Team Name") team_name4;
+			DEPRECATED_string_id nicename("Team Name") team_name4;
 			uint8_t nicename("Primary Alpha") primary_alpha4;
 			color24 nicename("Primary Color") primary_color4;
 			uint8_t nicename("Secondary Alpha") secondary_alpha4;
@@ -1241,7 +1241,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index5;
 			e_team_model5 nicename("Team Model") team_model5;
 			int8_t nicename("Fireteam Count") fireteam_count5;
-			string_id nicename("Team Name") team_name5;
+			DEPRECATED_string_id nicename("Team Name") team_name5;
 			uint8_t nicename("Primary Alpha") primary_alpha5;
 			color24 nicename("Primary Color") primary_color5;
 			uint8_t nicename("Secondary Alpha") secondary_alpha5;
@@ -1252,7 +1252,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index6;
 			e_team_model6 nicename("Team Model") team_model6;
 			int8_t nicename("Fireteam Count") fireteam_count6;
-			string_id __unknown3;
+			DEPRECATED_string_id __unknown3;
 			uint8_t nicename("Primary Alpha") primary_alpha6;
 			color24 nicename("Primary Color") primary_color6;
 			uint8_t nicename("Secondary Alpha") secondary_alpha6;
@@ -1263,7 +1263,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Team Index") team_index7;
 			e_team_model7 nicename("Team Model") team_model7;
 			int8_t nicename("Fireteam Count") fireteam_count7;
-			string_id nicename("Team Name") team_name6;
+			DEPRECATED_string_id nicename("Team Name") team_name6;
 			uint8_t nicename("Primary Alpha") primary_alpha7;
 			color24 nicename("Primary Color") primary_color7;
 			uint8_t nicename("Secondary Alpha") secondary_alpha7;
@@ -1287,7 +1287,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 
 			struct nicename("Loadout Palette") s_loadout_palette1_definition
 			{
-				string_id nicename("Loadout") loadout;
+				DEPRECATED_string_id nicename("Loadout") loadout;
 			};
 
 			b_flags nicename("Flags") flags;
@@ -1314,7 +1314,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t nicename("Suicide Penalty") suicide_penalty;
 			int8_t nicename("Betrayal Penalty") betrayal_penalty;
 			int8_t nicename("Respawn Time Growth") respawn_time_growth;
-			string_id nicename("Respawn Trait Profile") respawn_trait_profile;
+			DEPRECATED_string_id nicename("Respawn Trait Profile") respawn_trait_profile;
 			int8_t nicename("Loadout Selection Time") loadout_selection_time;
 			int8_t nicename("Respawn Trait Duration") respawn_trait_duration;
 			int8_t __unknown0;
@@ -1399,17 +1399,17 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 
 			struct nicename("Squads") s_squads_definition
 			{
-				string_id nicename("Enemy") enemy;
+				DEPRECATED_string_id nicename("Enemy") enemy;
 			};
 
 			struct nicename("Squads") s_squads1_definition
 			{
-				string_id nicename("Enemy") enemy;
+				DEPRECATED_string_id nicename("Enemy") enemy;
 			};
 
 			struct nicename("Squads") s_squads2_definition
 			{
-				string_id nicename("Enemy") enemy;
+				DEPRECATED_string_id nicename("Enemy") enemy;
 			};
 
 			b_round_skulls nicename("Round Skulls") round_skulls;
@@ -1435,18 +1435,18 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 
 		struct nicename("Bonus Round Squads") s_bonus_round_squads_definition
 		{
-			string_id nicename("Enemy") enemy;
+			DEPRECATED_string_id nicename("Enemy") enemy;
 		};
 
 		struct nicename("Custom Skull Traits") s_custom_skull_traits_definition
 		{
-			string_id nicename("Spartan Player Trait Profile") spartan_player_trait_profile;
-			string_id nicename("Elite Player Trait Profile") elite_player_trait_profile;
-			string_id nicename("AI Trait Profile") ai_trait_profile;
+			DEPRECATED_string_id nicename("Spartan Player Trait Profile") spartan_player_trait_profile;
+			DEPRECATED_string_id nicename("Elite Player Trait Profile") elite_player_trait_profile;
+			DEPRECATED_string_id nicename("AI Trait Profile") ai_trait_profile;
 		};
 
-		string_id nicename("Variant Name") variant_name;
-		string_id nicename("Variant Description") variant_description;
+		DEPRECATED_string_id nicename("Variant Name") variant_name;
+		DEPRECATED_string_id nicename("Variant Description") variant_description;
 		s_tag_block_definition<s_general_settings1_definition> nicename("General Settings") general_settings_block;
 		s_tag_block_definition<s_respawn_settings1_definition> nicename("Respawn Settings") respawn_settings_block;
 		s_tag_block_definition<s_social_settings1_definition> nicename("Social Settings") social_settings_block;
@@ -1466,9 +1466,9 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 		int16_t nicename("Elite Starting Lives") elite_starting_lives;
 		int16_t nicename("Spartan Maximum Lives") spartan_maximum_lives;
 		e_generator_count nicename("Generator Count") generator_count;
-		string_id nicename("Spartan Trait Profile") spartan_trait_profile;
-		string_id nicename("Elite Trait Profile") elite_trait_profile;
-		string_id nicename("AI Trait Profile") ai_trait_profile;
+		DEPRECATED_string_id nicename("Spartan Trait Profile") spartan_trait_profile;
+		DEPRECATED_string_id nicename("Elite Trait Profile") elite_trait_profile;
+		DEPRECATED_string_id nicename("AI Trait Profile") ai_trait_profile;
 		s_tag_block_definition<s_elite_respawn_settings_definition> nicename("Elite Respawn Settings") elite_respawn_settings_block;
 		s_tag_block_definition<s_unknown_skulls_definition> nicename("Unknown Skulls") unknown_skulls_block;
 		s_tag_block_definition<s_rounds_definition> nicename("Rounds") rounds_block;

@@ -4,7 +4,7 @@ struct nicename("render_method_option") tag_group('rmop') s_render_method_option
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 		Undefined32 __unknown1;
 		Undefined32 __unknown2;
 		Undefined32 __unknown3;

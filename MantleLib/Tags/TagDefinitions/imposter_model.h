@@ -4,7 +4,7 @@ struct nicename("imposter_model") tag_group('impo') s_imposter_model_definition
 {
 	struct nicename("Nodes") s_nodes_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		uint8_t __unknown0;
 		uint8_t nicename("Parent Model Node Index") parent_model_node_index;
 		uint8_t __unknown1;
@@ -159,7 +159,7 @@ struct nicename("imposter_model") tag_group('impo') s_imposter_model_definition
 				/*nicename("Instance 127")*/ _instance_flags_4_instance_127 = 1ui32 << 31ui32,
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			int16_t nicename("Mesh Index") mesh_index;
 			int16_t nicename("Mesh Count") mesh_count;
 			b_instance_flags_1 nicename("Instance Flags 1") instance_flags_1;
@@ -168,7 +168,7 @@ struct nicename("imposter_model") tag_group('impo') s_imposter_model_definition
 			b_instance_flags_4 nicename("Instance Flags 4") instance_flags_4;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_permutations_definition> nicename("Permutations") permutations_block;
 	};
 
@@ -394,7 +394,7 @@ struct nicename("imposter_model") tag_group('impo') s_imposter_model_definition
 		Undefined32 __unknown1;
 	};
 
-	string_id nicename("Build Path") build_path;
+	DEPRECATED_string_id nicename("Build Path") build_path;
 	int16_t __unknown0;
 	int16_t __unknown1;
 	Undefined32 __unknown2;

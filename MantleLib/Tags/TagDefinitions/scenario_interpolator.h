@@ -6,7 +6,7 @@ struct nicename("scenario_interpolator") tag_group('sirp') s_scenario_interpolat
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
-		string_id __unknown2;
+		DEPRECATED_string_id __unknown2;
 		uint32_t __unknown3;
 		float __unknown4;
 		Undefined32 __unknown5;

@@ -23,7 +23,7 @@ struct nicename("global_pixel_shader") tag_group('glps') s_global_pixel_shader_d
 	{
 		struct nicename("Unknown") s_unknown3_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;
@@ -32,7 +32,7 @@ struct nicename("global_pixel_shader") tag_group('glps') s_global_pixel_shader_d
 
 		struct nicename("Unknown") s_unknown4_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;

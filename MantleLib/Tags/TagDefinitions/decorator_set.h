@@ -18,7 +18,7 @@ struct nicename("decorator_set") tag_group('dctr') s_decorator_set_definition
 
 	struct nicename("Parts") s_parts_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 	};
 
 	TagReference nicename("Lod Model 1") lod_model_1_reference;

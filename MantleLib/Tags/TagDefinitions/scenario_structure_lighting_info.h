@@ -69,7 +69,7 @@ struct nicename("scenario_structure_lighting_info") tag_group('stli') s_scenario
 
 	struct nicename("Unknown 3") s_unknown_3_definition
 	{
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
 		int8_t __unknown3;

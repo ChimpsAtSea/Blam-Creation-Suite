@@ -4,7 +4,7 @@ struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_d
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 	};
 
 	struct nicename("Vocalizations") s_vocalizations_definition
@@ -74,14 +74,14 @@ struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_d
 				/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
 			};
 
-			string_id nicename("Vocalization Name") vocalization_name;
+			DEPRECATED_string_id nicename("Vocalization Name") vocalization_name;
 			b_flags nicename("Flags") flags;
 			int16_t nicename("Vocalization Index") vocalization_index;
 			int16_t nicename("Response Type") response_type;
 			int16_t nicename("Import Dialogue Index") import_dialogue_index;
 		};
 
-		string_id nicename("Vocalization") vocalization;
+		DEPRECATED_string_id nicename("Vocalization") vocalization;
 		int16_t nicename("Parent Index") parent_index;
 		int16_t nicename("Priority") priority;
 		b_flags nicename("Flags") flags;
@@ -107,7 +107,7 @@ struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_d
 		float nicename("Skip Fraction3") skip_fraction3;
 		float nicename("Skip Fraction4") skip_fraction4;
 		Undefined32 __unknown0;
-		string_id nicename("Sample Line") sample_line;
+		DEPRECATED_string_id nicename("Sample Line") sample_line;
 		s_tag_block_definition<s_responses_definition> nicename("Responses") responses_block;
 	};
 
@@ -155,15 +155,15 @@ struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_d
 
 		int16_t nicename("Dialog Type") dialog_type;
 		int16_t nicename("Vocalizations Index") vocalizations_index;
-		string_id nicename("Vocalization Name") vocalization_name;
+		DEPRECATED_string_id nicename("Vocalization Name") vocalization_name;
 		int16_t nicename("Speaker Type") speaker_type;
 		b_flags nicename("Flags") flags;
 		int16_t nicename("Hostility") hostility;
 		b_unknown __unknown0;
 		int16_t __unknown1;
 		int16_t nicename("Cause Type") cause_type;
-		string_id nicename("Cause AI Type name") cause_ai_type_name;
-		string_id nicename("Equipment") equipment;
+		DEPRECATED_string_id nicename("Cause AI Type name") cause_ai_type_name;
+		DEPRECATED_string_id nicename("Equipment") equipment;
 		int32_t __unknown2;
 		int16_t __unknown3;
 		int16_t __unknown4;
@@ -174,7 +174,7 @@ struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_d
 		int16_t __unknown8;
 		int16_t nicename("Subject Type") subject_type;
 		int16_t __unknown9;
-		string_id nicename("Subject AI Type Name") subject_ai_type_name;
+		DEPRECATED_string_id nicename("Subject AI Type Name") subject_ai_type_name;
 	};
 
 	struct nicename("Dialog Data") s_dialog_data_definition
@@ -203,7 +203,7 @@ struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_d
 	Undefined32 __unknown6;
 	Undefined32 __unknown7;
 	float __unknown8;
-	string_id nicename("Radio Effect") radio_effect;
+	DEPRECATED_string_id nicename("Radio Effect") radio_effect;
 	s_tag_block_definition<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
 	s_tag_block_definition<s_vocalizations_definition> nicename("Vocalizations") vocalizations_block;
 	s_tag_block_definition<s_patterns_definition> nicename("Patterns") patterns_block;

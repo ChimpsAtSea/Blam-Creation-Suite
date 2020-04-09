@@ -44,15 +44,15 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
-			string_id __unknown2;
-			string_id nicename("Name") name;
-			string_id __unknown3;
+			DEPRECATED_string_id __unknown2;
+			DEPRECATED_string_id nicename("Name") name;
+			DEPRECATED_string_id __unknown3;
 			TagReference nicename("Object") object_reference;
 		};
 
-		string_id nicename("Import Name") import_name;
-		string_id nicename("Name") name;
-		string_id nicename("Variant") variant;
+		DEPRECATED_string_id nicename("Import Name") import_name;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Variant") variant;
 		TagReference nicename("Puppet Animation") puppet_animation_reference;
 		TagReference nicename("Puppet Object") puppet_object_reference;
 		b_flags nicename("Flags") flags;
@@ -79,11 +79,11 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 			TagReference nicename("Sound") sound1_reference;
 			int32_t nicename("Frame") frame;
 			float __unknown0;
-			string_id __unknown1;
+			DEPRECATED_string_id __unknown1;
 			Undefined32 __unknown2;
-			string_id __unknown3;
-			string_id __unknown4;
-			string_id __unknown5;
+			DEPRECATED_string_id __unknown3;
+			DEPRECATED_string_id __unknown4;
+			DEPRECATED_string_id __unknown5;
 		};
 
 		struct nicename("Background Sounds") s_background_sounds_definition
@@ -98,7 +98,7 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 			Undefined32 __unknown0;
 			TagReference nicename("Effect") effect_reference;
 			int32_t nicename("Frame") frame;
-			string_id nicename("Marker") marker;
+			DEPRECATED_string_id nicename("Marker") marker;
 			int32_t nicename("Owner Puppet Index") owner_puppet_index;
 			Undefined32 __unknown1;
 			Undefined32 __unknown2;
@@ -115,7 +115,7 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 			};
 
 			int32_t nicename("Owner Puppet Index") owner_puppet_index;
-			string_id nicename("Target Function Name") target_function_name;
+			DEPRECATED_string_id nicename("Target Function Name") target_function_name;
 			s_tag_block_definition<s_values_definition> nicename("Values") values_block;
 		};
 
@@ -300,13 +300,13 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 			s_tag_block_definition<s_frames_definition> nicename("Frames") frames_block;
 		};
 
-		string_id nicename("Name") name;
-		string_id __unknown0;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id __unknown0;
 		s_tag_block_definition<s_shots1_definition> nicename("Shots") shots_block;
 	};
 
-	string_id nicename("Name") name;
-	string_id nicename("Anchor Name") anchor_name;
+	DEPRECATED_string_id nicename("Name") name;
+	DEPRECATED_string_id nicename("Anchor Name") anchor_name;
 	Undefined32 __unknown0;
 	DataReference nicename("Import Script") import_script_data_reference;
 	s_tag_block_definition<s_puppets_definition> nicename("Puppets") puppets_block;

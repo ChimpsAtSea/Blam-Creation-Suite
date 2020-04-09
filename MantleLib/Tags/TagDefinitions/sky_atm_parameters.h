@@ -4,7 +4,7 @@ struct nicename("sky_atm_parameters") tag_group('skya') s_sky_atm_parameters_def
 {
 	struct nicename("Atmosphere Properties") s_atmosphere_properties_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t __unknown0;
 		int16_t __unknown1;
 		float __unknown2;
@@ -41,7 +41,7 @@ struct nicename("sky_atm_parameters") tag_group('skya') s_sky_atm_parameters_def
 
 	struct nicename("Underwater") s_underwater_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		colorf nicename("Color") color;
 	};
 

@@ -4,7 +4,7 @@ struct nicename("avatar_awards") tag_group('avat') s_avatar_awards_definition
 {
 	struct nicename("Avatar Awards") s_avatar_awards1_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int32_t nicename("Award Index") award_index;
 	};
 

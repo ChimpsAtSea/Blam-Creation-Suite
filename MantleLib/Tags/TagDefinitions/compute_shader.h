@@ -11,7 +11,7 @@ struct nicename("compute_shader") tag_group('cmps') s_compute_shader_definition
 	{
 		struct nicename("Unknown") s_unknown2_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;
@@ -20,7 +20,7 @@ struct nicename("compute_shader") tag_group('cmps') s_compute_shader_definition
 
 		struct nicename("Unknown") s_unknown3_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;

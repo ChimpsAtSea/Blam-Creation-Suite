@@ -60,8 +60,8 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 	{
 		struct nicename("Frame Events") s_frame_events_definition
 		{
-			string_id nicename("Event") event;
-			string_id nicename("Full Name") full_name;
+			DEPRECATED_string_id nicename("Event") event;
+			DEPRECATED_string_id nicename("Full Name") full_name;
 			int16_t nicename("Frame") frame;
 			int16_t __unknown0;
 			int16_t nicename("Frame") frame1;
@@ -76,7 +76,7 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 			int16_t __unknown1;
 			int16_t nicename("Sound") sound;
 			int16_t nicename("Frame") frame;
-			string_id nicename("Marker Name") marker_name;
+			DEPRECATED_string_id nicename("Marker Name") marker_name;
 		};
 
 		struct nicename("Effect Events") s_effect_events_definition
@@ -171,7 +171,7 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 			int16_t __unknown1;
 			int16_t nicename("Effect") effect;
 			int16_t nicename("Frame") frame;
-			string_id nicename("Marker Name") marker_name;
+			DEPRECATED_string_id nicename("Marker Name") marker_name;
 			e_damage_reporting_type nicename("Damage Reporting Type") damage_reporting_type;
 			int8_t __unknown2;
 			int8_t __unknown3;
@@ -186,7 +186,7 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 			int16_t __unknown1;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int32_t nicename("Frame Count") frame_count;
 		s_tag_block_definition<s_frame_events_definition> nicename("Frame Events") frame_events_block;
 		s_tag_block_definition<s_sound_events_definition> nicename("Sound Events") sound_events_block;

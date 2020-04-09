@@ -98,14 +98,14 @@ T& tag_block_definition_get(s_tag_block_definition<T>& rTagBlock, uint16_t index
 	return *pTagBlockDefinition;
 }
 
-s_cache_file_header* cache_file_header_get()
+s_reach_cache_file_header* cache_file_header_get()
 {
 	if (!is_valid(g_cache_file_global_loaded_state))
 	{
 		return nullptr;
 	}
 
-	s_cache_file_header& cache_file_header = *reinterpret_cast<s_cache_file_header*>(&g_cache_file_global_loaded_state[0x10]);
+	s_reach_cache_file_header& cache_file_header = *reinterpret_cast<s_reach_cache_file_header*>(&g_cache_file_global_loaded_state[0x10]);
 	return &cache_file_header;
 }
 

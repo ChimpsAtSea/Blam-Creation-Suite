@@ -37,13 +37,12 @@ enum e_cache_file_unknown_bits : uint32_t
 
 };
 
-struct s_cache_file_header
+struct s_reach_cache_file_header : s_cache_file_header
 {
-	e_cache_file_magic header_signature = _cache_file_magic_header;
-
-	int32_t file_version = 12;
-	int32_t file_length = 0;
-	int32_t file_compressed_length = 0;
+	//e_cache_file_magic header_signature = _cache_file_magic_header;
+	//int32_t file_version = 12;
+	//int32_t file_length = 0;
+	//int32_t file_compressed_length = 0;
 
 	uint64_t tags_header_address = 0;
 
@@ -52,8 +51,9 @@ struct s_cache_file_header
 
 	char source_file[256] = "";
 	char build[32] = "";
-	e_scenario_type scenario_type = _scenario_type_none;
-	e_scenario_load_type load_type = _scenario_load_none;
+	c_enum<e_scenario_type, int16_t> scenario_type = _scenario_type_none;
+	c_enum<e_scenario_load_type, int16_t> load_type = _scenario_load_none;
+
 
 	char unknown1 = 0;
 	bool tracked_build = false;
@@ -72,7 +72,7 @@ struct s_cache_file_header
 	uint32_t string_ids_buffer_offset = 0;
 
 	// unconfirmed if bitfields, but the first bit changes when the addressing changed
-	e_cache_file_unknown_bits unknown_bits = {}; 
+	e_cache_file_unknown_bits unknown_bits = {};
 
 	uint64_t timestamp = 0;
 	uint64_t mainmenu_timestamp = 0;
@@ -135,5 +135,6 @@ struct s_cache_file_header
 
 	e_cache_file_magic footer_signature = _cache_file_magic_footer;
 };
-static_assert(sizeof(s_cache_file_header) == 0xA000);
+static constexpr size_t k_DEPRECATED_cache_file_header_size = sizeof(s_reach_cache_file_header);
+static_assert(k_DEPRECATED_cache_file_header_size == 0xA000);
 

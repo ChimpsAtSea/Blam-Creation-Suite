@@ -4,7 +4,7 @@ struct nicename("atmosphere_globals") tag_group('atgf') s_atmosphere_globals_def
 {
 	struct nicename("Colors") s_colors_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		colorf nicename("Color") color;
 	};
 

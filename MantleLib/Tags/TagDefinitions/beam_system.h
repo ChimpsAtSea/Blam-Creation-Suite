@@ -160,7 +160,7 @@ struct nicename("beam_system") tag_group('beam') s_beam_system_definition
 			struct nicename("Functions") s_functions_definition
 			{
 				int32_t __unknown0;
-				string_id nicename("Name") name;
+				DEPRECATED_string_id nicename("Name") name;
 				Undefined32 __unknown1;
 				Undefined32 __unknown2;
 				DataReference nicename("Function") function_data_reference;
@@ -214,12 +214,12 @@ struct nicename("beam_system") tag_group('beam') s_beam_system_definition
 
 		struct nicename("Unknown") s_unknown5_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int32_t __unknown1;
 			int32_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Base Render Method") base_render_method_reference;
 		TagReference __unknown0;
 		s_tag_block_definition<s_unknown_definition> __unknown1;

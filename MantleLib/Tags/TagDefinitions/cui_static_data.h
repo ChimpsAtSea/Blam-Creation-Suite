@@ -16,7 +16,7 @@ struct nicename("cui_static_data") tag_group('cust') s_cui_static_data_definitio
 			/*nicename("Color")*/ _property_kind_color = 8ui16,
 		};
 
-		string_id nicename("Property Name") property_name;
+		DEPRECATED_string_id nicename("Property Name") property_name;
 		e_property_kind nicename("Property Kind") property_kind;
 		int16_t __unknown0;
 	};
@@ -25,37 +25,37 @@ struct nicename("cui_static_data") tag_group('cust') s_cui_static_data_definitio
 	{
 		struct nicename("Integers") s_integers_definition
 		{
-			string_id nicename("Property") property;
+			DEPRECATED_string_id nicename("Property") property;
 			int32_t nicename("Value") value;
 		};
 
 		struct nicename("Floats") s_floats_definition
 		{
-			string_id nicename("Property") property;
+			DEPRECATED_string_id nicename("Property") property;
 			float nicename("Value") value;
 		};
 
 		struct nicename("String IDs") s_string_ids_definition
 		{
-			string_id nicename("Property") property;
-			string_id nicename("String") string;
+			DEPRECATED_string_id nicename("Property") property;
+			DEPRECATED_string_id nicename("String") string;
 		};
 
 		struct nicename("Resources") s_resources_definition
 		{
-			string_id nicename("Property") property;
+			DEPRECATED_string_id nicename("Property") property;
 			TagReference nicename("Resource") resource_reference;
 		};
 
 		struct nicename("Text") s_text_definition
 		{
-			string_id nicename("Property") property;
+			DEPRECATED_string_id nicename("Property") property;
 			char nicename("Text") text[256];
 		};
 
 		struct nicename("Colors") s_colors_definition
 		{
-			string_id nicename("Property") property;
+			DEPRECATED_string_id nicename("Property") property;
 			colorf nicename("Color") color;
 		};
 

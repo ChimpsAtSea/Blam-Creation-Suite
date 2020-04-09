@@ -104,7 +104,7 @@ struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s
 			int8_t __unknown1;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t nicename("Sprite Index") sprite_index;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;
@@ -214,7 +214,7 @@ struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s
 			int8_t __unknown1;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t nicename("Sprite Index") sprite_index;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;

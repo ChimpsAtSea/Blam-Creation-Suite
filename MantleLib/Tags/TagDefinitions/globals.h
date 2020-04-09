@@ -60,7 +60,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 				TagReference nicename("Template") template_reference;
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			Undefined32 __unknown0;
 			Undefined32 __unknown1;
 			Undefined32 __unknown2;
@@ -76,11 +76,11 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 					TagReference nicename("Template") template_reference;
 				};
 
-				string_id nicename("Name") name;
+				DEPRECATED_string_id nicename("Name") name;
 				s_tag_block_definition<s_templates1_definition> nicename("Templates") templates_block;
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			s_tag_block_definition<s_characters_definition> nicename("Characters") characters_block;
 			Undefined32 __unknown0;
 			Undefined32 __unknown1;
@@ -96,7 +96,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 
 			struct nicename("Unknown") s_unknown2_definition
 			{
-				string_id __unknown0;
+				DEPRECATED_string_id __unknown0;
 			};
 
 			struct nicename("Unknown") s_unknown3_definition
@@ -114,7 +114,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 				Undefined32 __unknown10;
 			};
 
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			s_tag_block_definition<s_unknown1_definition> __unknown1;
 			s_tag_block_definition<s_unknown2_definition> __unknown2;
 			s_tag_block_definition<s_unknown3_definition> __unknown3;
@@ -169,7 +169,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		float nicename("Danger Body Damage") danger_body_damage;
 		float nicename("Danger Extended Body Damage") danger_extended_body_damage;
 		TagReference nicename("Global Dialogue") global_dialogue_reference;
-		string_id nicename("Default Mission Dialogue Sound Effect") default_mission_dialogue_sound_effect;
+		DEPRECATED_string_id nicename("Default Mission Dialogue Sound Effect") default_mission_dialogue_sound_effect;
 		float nicename("Jump Down") jump_down;
 		float nicename("Jump Step") jump_step;
 		float nicename("Jump Crouch") jump_crouch;
@@ -257,11 +257,11 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		{
 			struct nicename("Armor Modifiers") s_armor_modifiers_definition
 			{
-				string_id nicename("Name") name;
+				DEPRECATED_string_id nicename("Name") name;
 				float nicename("Damage Multiplier") damage_multiplier;
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			s_tag_block_definition<s_armor_modifiers_definition> nicename("Armor Modifiers") armor_modifiers_block;
 		};
 
@@ -662,9 +662,9 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
-			string_id nicename("Primary Weapon") primary_weapon;
-			string_id nicename("Secondary Weapon") secondary_weapon;
-			string_id nicename("Equipment") equipment;
+			DEPRECATED_string_id nicename("Primary Weapon") primary_weapon;
+			DEPRECATED_string_id nicename("Secondary Weapon") secondary_weapon;
+			DEPRECATED_string_id nicename("Equipment") equipment;
 		};
 
 		struct nicename("Movement") s_movement_definition
@@ -1130,7 +1130,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		float __unknown8;
 		Undefined32 __unknown9;
 		Undefined32 __unknown10;
-		string_id nicename("Sprint") sprint;
+		DEPRECATED_string_id nicename("Sprint") sprint;
 	};
 
 	struct nicename("Player Representation") s_player_representation_definition
@@ -1143,7 +1143,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		TagReference nicename("First Person Hands") first_person_hands_reference;
 		TagReference nicename("First Person Body") first_person_body_reference;
 		TagReference nicename("Third Person Unit") third_person_unit_reference;
-		string_id nicename("Third Person Variant") third_person_variant;
+		DEPRECATED_string_id nicename("Third Person Variant") third_person_variant;
 		TagReference nicename("Binoculars Zoom In Sound") binoculars_zoom_in_sound_reference;
 		TagReference nicename("Binoculars Zoom Out Sound") binoculars_zoom_out_sound_reference;
 		int32_t nicename("Player Information Index") player_information_index;
@@ -1235,19 +1235,19 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 
 		struct nicename("Water Interaction") s_water_interaction_definition
 		{
-			string_id nicename("Surface Name") surface_name;
-			string_id nicename("Submerged Name") submerged_name;
+			DEPRECATED_string_id nicename("Surface Name") surface_name;
+			DEPRECATED_string_id nicename("Submerged Name") submerged_name;
 			int16_t nicename("Surface Index") surface_index;
 			int16_t nicename("Submerged Index") submerged_index;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Parent Name") parent_name;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Parent Name") parent_name;
 		int16_t nicename("Parent Index") parent_index;
 		b_flags nicename("Flags") flags;
-		string_id nicename("General Armor") general_armor;
-		string_id nicename("Specific Armor") specific_armor;
-		string_id nicename("Wet Armor") wet_armor;
+		DEPRECATED_string_id nicename("General Armor") general_armor;
+		DEPRECATED_string_id nicename("Specific Armor") specific_armor;
+		DEPRECATED_string_id nicename("Wet Armor") wet_armor;
 		int16_t nicename("Wet Armor Index") wet_armor_index;
 		int16_t __unknown0;
 		int16_t nicename("Wet Armor Reference Index") wet_armor_reference_index;
@@ -1300,14 +1300,14 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 
 	struct nicename("Visor Colors") s_visor_colors_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		colorf nicename("Primary Color") primary_color;
 		colorf nicename("Secondary Color") secondary_color;
 	};
 
 	struct nicename("Forge Colors") s_forge_colors_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		colorf nicename("Color") color;
 	};
 
@@ -1335,7 +1335,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 	{
 		struct nicename("Medals") s_medals_definition
 		{
-			string_id nicename("Incident Name") incident_name;
+			DEPRECATED_string_id nicename("Incident Name") incident_name;
 			float nicename("Multiplier") multiplier;
 		};
 
@@ -1465,19 +1465,19 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 
 		struct nicename("Water Interaction") s_water_interaction1_definition
 		{
-			string_id nicename("Surface Name") surface_name;
-			string_id nicename("Submerged Name") submerged_name;
+			DEPRECATED_string_id nicename("Surface Name") surface_name;
+			DEPRECATED_string_id nicename("Submerged Name") submerged_name;
 			int16_t nicename("Surface Index") surface_index;
 			int16_t nicename("Submerged Index") submerged_index;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Parent Name") parent_name;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Parent Name") parent_name;
 		int16_t nicename("Parent Index") parent_index;
 		b_flags nicename("Flags") flags;
-		string_id nicename("General Armor") general_armor;
-		string_id nicename("Specific Armor") specific_armor;
-		string_id nicename("Wet Armor") wet_armor;
+		DEPRECATED_string_id nicename("General Armor") general_armor;
+		DEPRECATED_string_id nicename("Specific Armor") specific_armor;
+		DEPRECATED_string_id nicename("Wet Armor") wet_armor;
 		int16_t nicename("Wet Armor Index") wet_armor_index;
 		int16_t __unknown0;
 		int16_t nicename("Wet Armor Reference Index") wet_armor_reference_index;
@@ -1767,8 +1767,8 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 	TagReference nicename("Weather Globals") weather_globals_reference;
 	TagReference nicename("Default Damage Effect") default_damage_effect_reference;
 	TagReference nicename("Default Collision Damage") default_collision_damage_reference;
-	string_id nicename("Unknown Material") unknown_material;
-	string_id nicename("Unknown Material 2") unknown_material_2;
+	DEPRECATED_string_id nicename("Unknown Material") unknown_material;
+	DEPRECATED_string_id nicename("Unknown Material 2") unknown_material_2;
 	int16_t nicename("Unknown Global Material Index") unknown_global_material_index;
 	int16_t nicename("Unknown 2 Global Material Index") unknown_2_global_material_index;
 	TagReference nicename("Effect Globals") effect_globals_reference;

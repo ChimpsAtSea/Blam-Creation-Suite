@@ -12,7 +12,7 @@ std::string format_string(const char* pFormat, ...)
 	return stringBuffer;
 }
 
-e_game_mode s_currentGameMode = _game_mode_campaign;
+e_mcc_game_mode s_currentGameMode = _mcc_game_mode_campaign;
 //e_campaign_difficulty_level g_LaunchCampaignDifficultyLevel = _campaign_difficulty_level_normal;
 extern e_campaign_difficulty_level g_campaign_difficulty_level; // #TODO #REFACTOR
 
@@ -49,10 +49,10 @@ void HaloReachGameOptionSelection::loadSettings()
 
 	char pLaunchGameModeBuffer[256] = {};
 	Settings::ReadStringValue(SettingsSection::Launch, "GameMode", pLaunchGameModeBuffer, sizeof(pLaunchGameModeBuffer), "");
-	s_currentGameMode = string_to_game_mode(pLaunchGameModeBuffer);
-	if (s_currentGameMode == _game_mode_none)
+	s_currentGameMode = string_to_mcc_game_mode(pLaunchGameModeBuffer);
+	if (s_currentGameMode == _mcc_game_mode_none)
 	{
-		s_currentGameMode = _game_mode_campaign;
+		s_currentGameMode = _mcc_game_mode_campaign;
 	}
 
 	char pLaunchCampaignDifficultyLevelBuffer[256] = {};
@@ -63,13 +63,13 @@ void HaloReachGameOptionSelection::loadSettings()
 	switch (s_currentGameMode)
 	{
 		break;
-	case _game_mode_campaign:
+	case _mcc_game_mode_campaign:
 		pDefaultHopperGameVariant = "campaign_default_054";
 		break;
-	case _game_mode_multiplayer:
+	case _mcc_game_mode_multiplayer:
 		pDefaultHopperGameVariant = "slayer_054";
 		break;
-	case _game_mode_firefight:
+	case _mcc_game_mode_firefight:
 		pDefaultHopperGameVariant = "ff_firefight_054";
 		break;
 	}
@@ -99,7 +99,7 @@ void HaloReachGameOptionSelection::loadSettings()
 	}
 }
 
-e_game_mode HaloReachGameOptionSelection::GetSelectedGameMode()
+e_mcc_game_mode HaloReachGameOptionSelection::GetSelectedGameMode()
 {
 	return s_currentGameMode;
 }
@@ -108,19 +108,19 @@ void HaloReachGameOptionSelection::SelectGameMode()
 {
 	if (c_command_line::has_command_line_arg("-showallmodes"))
 	{
-		const char* selected_game_mode_string = game_mode_to_local_string(s_currentGameMode);
-		if (ImGui::BeginCombo("###MODE", selected_game_mode_string))
+		const char* selected_mcc_game_mode_string = mcc_mcc_game_mode_to_local_string(s_currentGameMode);
+		if (ImGui::BeginCombo("###MODE", selected_mcc_game_mode_string))
 		{
-			for (underlying(e_game_mode) i = 0; i < k_number_of_game_modes; i++)
+			for (underlying(e_mcc_game_mode) i = 0; i < k_number_of_mcc_game_modes; i++)
 			{
-				const char* current_game_mode_string = game_mode_to_local_string(static_cast<e_game_mode>(i));
-				DEBUG_ASSERT(current_game_mode_string != nullptr);
+				const char* current_mcc_game_mode_string = mcc_mcc_game_mode_to_local_string(static_cast<e_mcc_game_mode>(i));
+				DEBUG_ASSERT(current_mcc_game_mode_string != nullptr);
 
-				bool selected = selected_game_mode_string == current_game_mode_string;
-				if (ImGui::Selectable(current_game_mode_string, &selected))
+				bool selected = selected_mcc_game_mode_string == current_mcc_game_mode_string;
+				if (ImGui::Selectable(current_mcc_game_mode_string, &selected))
 				{
-					s_currentGameMode = static_cast<e_game_mode>(i);
-					Settings::WriteStringValue(SettingsSection::Launch, "GameMode", game_mode_to_string(s_currentGameMode));
+					s_currentGameMode = static_cast<e_mcc_game_mode>(i);
+					Settings::WriteStringValue(SettingsSection::Launch, "GameMode", mcc_mcc_game_mode_to_string(s_currentGameMode));
 				}
 			}
 
@@ -129,7 +129,7 @@ void HaloReachGameOptionSelection::SelectGameMode()
 	}
 	else
 	{
-		LPCSTR s_pCurrentGameModeStr = game_mode_to_local_string(s_currentGameMode);
+		LPCSTR s_pCurrentGameModeStr = mcc_mcc_game_mode_to_local_string(s_currentGameMode);
 		if (ImGui::BeginCombo("###MODE", s_pCurrentGameModeStr))
 		{
 			for (underlying(SelectedGameModeMapInfoIndex) i = 0; i < underlying_cast(SelectedGameModeMapInfoIndex::Count); i++)
@@ -139,15 +139,15 @@ void HaloReachGameOptionSelection::SelectGameMode()
 					continue;
 				}
 
-				e_game_mode gameMode = SelectedGameModeMapInfoIndexToGameMode(static_cast<SelectedGameModeMapInfoIndex>(i));
-				LPCSTR pGameModeStr = game_mode_to_local_string(gameMode);
+				e_mcc_game_mode gameMode = SelectedGameModeMapInfoIndexToGameMode(static_cast<SelectedGameModeMapInfoIndex>(i));
+				LPCSTR pGameModeStr = mcc_mcc_game_mode_to_local_string(gameMode);
 				if (pGameModeStr)
 				{
 					bool selected = s_pCurrentGameModeStr == pGameModeStr;
 					if (ImGui::Selectable(pGameModeStr, &selected))
 					{
 						s_currentGameMode = gameMode;
-						Settings::WriteStringValue(SettingsSection::Launch, "GameMode", game_mode_to_string(s_currentGameMode));
+						Settings::WriteStringValue(SettingsSection::Launch, "GameMode", mcc_mcc_game_mode_to_string(s_currentGameMode));
 					}
 				}
 			}
@@ -218,17 +218,17 @@ const MapInfo* HaloReachGameOptionSelection::GetDefaultHaloReachGameOptionSelect
 	return nullptr;
 }
 
-HaloReachGameOptionSelection::SelectedGameModeMapInfoIndex HaloReachGameOptionSelection::GameModeToSelectedGameModeMapInfoIndex(e_game_mode gameMode)
+HaloReachGameOptionSelection::SelectedGameModeMapInfoIndex HaloReachGameOptionSelection::GameModeToSelectedGameModeMapInfoIndex(e_mcc_game_mode gameMode)
 {
 	switch (gameMode)
 	{
-	case _game_mode_campaign:
+	case _mcc_game_mode_campaign:
 		return SelectedGameModeMapInfoIndex::Campaign;
 		break;
-	case _game_mode_multiplayer:
+	case _mcc_game_mode_multiplayer:
 		return SelectedGameModeMapInfoIndex::Multiplayer;
 		break;
-	case _game_mode_firefight:
+	case _mcc_game_mode_firefight:
 		return SelectedGameModeMapInfoIndex::Firefight;
 		break;
 	default:
@@ -237,21 +237,21 @@ HaloReachGameOptionSelection::SelectedGameModeMapInfoIndex HaloReachGameOptionSe
 	}
 }
 
-e_game_mode HaloReachGameOptionSelection::SelectedGameModeMapInfoIndexToGameMode(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
+e_mcc_game_mode HaloReachGameOptionSelection::SelectedGameModeMapInfoIndexToGameMode(SelectedGameModeMapInfoIndex selectedGameModeMapInfoIndex)
 {
 	switch (selectedGameModeMapInfoIndex)
 	{
 	case SelectedGameModeMapInfoIndex::Campaign:
-		return _game_mode_campaign;
+		return _mcc_game_mode_campaign;
 		break;
 	case SelectedGameModeMapInfoIndex::Multiplayer:
-		return _game_mode_multiplayer;
+		return _mcc_game_mode_multiplayer;
 		break;
 	case SelectedGameModeMapInfoIndex::Firefight:
-		return _game_mode_firefight;
+		return _mcc_game_mode_firefight;
 		break;
 	default:
-		return _game_mode_none;
+		return _mcc_game_mode_none;
 	}
 }
 
@@ -261,7 +261,7 @@ const MapInfo*& HaloReachGameOptionSelection::GetSelectedMapInfoBySelectedGameMo
 	return pSelectedMapInfo;
 }
 
-const MapInfo*& HaloReachGameOptionSelection::GetSelectedMapInfoByGameMode(e_game_mode gameMode)
+const MapInfo*& HaloReachGameOptionSelection::GetSelectedMapInfoByGameMode(e_mcc_game_mode gameMode)
 {
 	return GetSelectedMapInfoBySelectedGameModeMapInfoIndex(GameModeToSelectedGameModeMapInfoIndex(s_currentGameMode));
 }
@@ -271,7 +271,7 @@ const MapInfo* HaloReachGameOptionSelection::GetSelectedMapInfo()
 	return GetSelectedMapInfoByGameMode(s_currentGameMode);
 }
 
-const MapInfo* HaloReachGameOptionSelection::GetFirstSuitableGameModeMapInfo(e_game_mode gameMode)
+const MapInfo* HaloReachGameOptionSelection::GetFirstSuitableGameModeMapInfo(e_mcc_game_mode gameMode)
 {
 	for (const MapInfo& rMapInfo : s_pMapInfoManager->m_mapInfo)
 	{
@@ -283,17 +283,17 @@ const MapInfo* HaloReachGameOptionSelection::GetFirstSuitableGameModeMapInfo(e_g
 	return nullptr;
 }
 
-void HaloReachGameOptionSelection::SaveSelectedMap(e_game_mode gameMode, const MapInfo* pMapInfo)
+void HaloReachGameOptionSelection::SaveSelectedMap(e_mcc_game_mode gameMode, const MapInfo* pMapInfo)
 {
 	switch (gameMode)
 	{
-	case _game_mode_campaign:
+	case _mcc_game_mode_campaign:
 		Settings::WriteIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Campaign)], pMapInfo ? pMapInfo->GetMapID() : -1);
 		break;
-	case _game_mode_multiplayer:
+	case _mcc_game_mode_multiplayer:
 		Settings::WriteIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Multiplayer)], pMapInfo ? pMapInfo->GetMapID() : -1);
 		break;
-	case _game_mode_firefight:
+	case _mcc_game_mode_firefight:
 		Settings::WriteIntegerValue(SettingsSection::Launch, s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Firefight)], pMapInfo ? pMapInfo->GetMapID() : -1);
 		break;
 	default:
@@ -302,17 +302,17 @@ void HaloReachGameOptionSelection::SaveSelectedMap(e_game_mode gameMode, const M
 	}
 }
 
-bool HaloReachGameOptionSelection::isMapInfoCompatibleWithGameMode(e_game_mode gameMode, const MapInfo& rMapInfo)
+bool HaloReachGameOptionSelection::isMapInfoCompatibleWithGameMode(e_mcc_game_mode gameMode, const MapInfo& rMapInfo)
 {
 	switch (gameMode)
 	{
-	case _game_mode_campaign:
+	case _mcc_game_mode_campaign:
 		if (!rMapInfo.IsCampaign()) return false;
 		break;
-	case _game_mode_multiplayer:
+	case _mcc_game_mode_multiplayer:
 		if (!rMapInfo.IsMultiplayer()) return false;
 		break;
-	case _game_mode_firefight:
+	case _mcc_game_mode_firefight:
 		if (!rMapInfo.IsFirefight()) return false;
 		break;
 	}
@@ -374,7 +374,7 @@ void HaloReachGameOptionSelection::SelectMap()
 
 void HaloReachGameOptionSelection::SelectDifficulty()
 {
-	if (s_currentGameMode == _game_mode_campaign || s_currentGameMode == _game_mode_firefight)
+	if (s_currentGameMode == _mcc_game_mode_campaign || s_currentGameMode == _mcc_game_mode_firefight)
 	{
 		LPCSTR pCurrentDifficultyStr = campaign_difficulty_level_to_local_string(g_campaign_difficulty_level);
 		if (ImGui::BeginCombo("###DIFFICULTY", pCurrentDifficultyStr))
@@ -480,7 +480,7 @@ void HaloReachGameOptionSelection::SelectGameVariant()
 	static c_file_array fileArray = c_file_array(pfilePaths, { ".bin" }, &ReadGameVariant);
 	static LPCSTR pLast = s_pLaunchGameVariant.c_str();
 
-	if (s_currentGameMode == _game_mode_campaign)
+	if (s_currentGameMode == _mcc_game_mode_campaign)
 	{
 		return;
 	}
@@ -489,10 +489,10 @@ void HaloReachGameOptionSelection::SelectGameVariant()
 	{
 		for (size_t i = 0; i < fileArray.Count; i++)
 		{
-			int shouldShow = s_currentGameMode == _game_mode_multiplayer && fileArray.GetType(i) == _game_engine_type_sandbox;
-			shouldShow |= s_currentGameMode == _game_mode_multiplayer && fileArray.GetType(i) == _game_engine_type_megalo;
-			shouldShow |= s_currentGameMode == _game_mode_campaign && fileArray.GetType(i) == _game_engine_type_campaign;
-			shouldShow |= s_currentGameMode == _game_mode_firefight && fileArray.GetType(i) == _game_engine_type_survival;
+			int shouldShow = s_currentGameMode == _mcc_game_mode_multiplayer && fileArray.GetType(i) == _game_engine_type_sandbox;
+			shouldShow |= s_currentGameMode == _mcc_game_mode_multiplayer && fileArray.GetType(i) == _game_engine_type_megalo;
+			shouldShow |= s_currentGameMode == _mcc_game_mode_campaign && fileArray.GetType(i) == _game_engine_type_campaign;
+			shouldShow |= s_currentGameMode == _mcc_game_mode_firefight && fileArray.GetType(i) == _game_engine_type_survival;
 
 			if (fileArray.GetFileName(i) && shouldShow)
 			{
@@ -525,7 +525,7 @@ void HaloReachGameOptionSelection::SelectMapVariant()
 	static c_file_array fileArray = c_file_array(pfilePaths, { ".mvar" }, &ReadMapVariant);
 	static LPCSTR pLast = s_pLaunchMapVariant.c_str();
 
-	if (s_currentGameMode != _game_mode_multiplayer)
+	if (s_currentGameMode != _mcc_game_mode_multiplayer)
 	{
 		return;
 	}
@@ -726,7 +726,7 @@ void HaloReachGameOptionSelection::LoadPreviousGamestate(const char* pGamestateN
 		memset(pGameStateBuffer, 0x00, filo.buffer_size);
 		pGameStateBuffer = filo.buffer;
 
-		gameContext.game_mode = _game_mode_campaign;
+		gameContext.game_mode = _mcc_game_mode_campaign;
 		gameContext.game_state_header_size = filo.buffer_size;
 		gameContext.game_state_header_ptr = pGameStateBuffer;
 

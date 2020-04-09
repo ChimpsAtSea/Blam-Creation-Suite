@@ -21,34 +21,33 @@
   <ItemGroup>
     <ClInclude Include="!Resources\resource.h" />
     <ClInclude Include="AtomicLock.h" />
-    <ClInclude Include="Blam\basic_buffer.h" />
+    <ClInclude Include="Blam\blamlib-public-pch.h" />
+    <ClInclude Include="Blam\legacy\basic_buffer.h" />
     <ClInclude Include="Blam\Blam.h" />
-    <ClInclude Include="Blam\blamfile_chunk_type.h" />
-    <ClInclude Include="Blam\blamfile_header.h" />
-    <ClInclude Include="Blam\blamfile_level_chunk.h" />
-    <ClInclude Include="Blam\blamfile_level_chunk_flags.h" />
-    <ClInclude Include="Blam\cache_file_header.h" />
-    <ClInclude Include="Blam\cache_file_magic.h" />
-    <ClInclude Include="Blam\cache_file_section.h" />
-    <ClInclude Include="Blam\cache_file_section_file_bounds.h" />
-    <ClInclude Include="Blam\cache_file_tags_header.h" />
-    <ClInclude Include="Blam\cache_file_tag_group.h" />
-    <ClInclude Include="Blam\cache_file_tag_instance.h" />
-    <ClInclude Include="Blam\campaign_difficulty_level.h" />
-    <ClInclude Include="Blam\campaign_metagame_bucket_type.h" />
-    <ClInclude Include="Blam\damage_reporting_type.h" />
-    <ClInclude Include="Blam\game_mode.h" />
-    <ClInclude Include="Blam\life_cycle_join_result.h" />
-    <ClInclude Include="Blam\map_id.h" />
-    <ClInclude Include="Blam\network_message_type.h" />
-    <ClInclude Include="Blam\network_session_class.h" />
-    <ClInclude Include="Blam\network_session_parameter_type.h" />
-    <ClInclude Include="Blam\network_session_peer_state.h" />
-    <ClInclude Include="Blam\observer_camera.h" />
-    <ClInclude Include="Blam\real_vector3d.h" />
-    <ClInclude Include="Blam\scenario_load_type.h" />
-    <ClInclude Include="Blam\scenario_type.h" />
-    <ClInclude Include="Blam\skull.h" />
+    <ClInclude Include="Blam\legacy\blamfile_chunk_type.h" />
+    <ClInclude Include="Blam\legacy\blamfile_header.h" />
+    <ClInclude Include="Blam\legacy\blamfile_level_chunk.h" />
+    <ClInclude Include="Blam\legacy\blamfile_level_chunk_flags.h" />
+    <ClInclude Include="Blam\legacy\cache_file_header.h" />
+    <ClInclude Include="Blam\legacy\cache_file_magic.h" />
+    <ClInclude Include="Blam\legacy\cache_file_section.h" />
+    <ClInclude Include="Blam\legacy\cache_file_section_file_bounds.h" />
+    <ClInclude Include="Blam\legacy\cache_file_tags_header.h" />
+    <ClInclude Include="Blam\legacy\cache_file_tag_group.h" />
+    <ClInclude Include="Blam\legacy\cache_file_tag_instance.h" />
+    <ClInclude Include="Blam\legacy\campaign_difficulty_level.h" />
+    <ClInclude Include="Blam\legacy\campaign_metagame_bucket_type.h" />
+    <ClInclude Include="Blam\legacy\damage_reporting_type.h" />
+    <ClInclude Include="Blam\mcc_game_mode.h" />
+    <ClInclude Include="Blam\legacy\life_cycle_join_result.h" />
+    <ClInclude Include="Blam\legacy\map_id.h" />
+    <ClInclude Include="Blam\legacy\network_message_type.h" />
+    <ClInclude Include="Blam\legacy\network_session_class.h" />
+    <ClInclude Include="Blam\legacy\network_session_parameter_type.h" />
+    <ClInclude Include="Blam\legacy\network_session_peer_state.h" />
+    <ClInclude Include="Blam\legacy\observer_camera.h" />
+    <ClInclude Include="Blam\legacy\real_vector3d.h" />
+    <ClInclude Include="Blam\mcc_skull.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="high_precision_timer.h" />
     <ClInclude Include="ImGuiAddons\imgui_memory_editor.h" />
@@ -201,25 +200,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>

@@ -595,7 +595,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			s_tag_block_definition<s_bsps5_definition> nicename("BSPs") bsps_block;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		char nicename("Name String") name_string[256];
 		int32_t nicename("BSP Group Index") bsp_group_index;
 		int32_t __unknown0;
@@ -632,7 +632,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Effect Scenery")*/ _type_effect_scenery = 14ui16,
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		e_type nicename("Type") type;
 		int16_t nicename("Placement Index") placement_index;
 	};
@@ -943,7 +943,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -953,12 +953,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Permutation Data : 
-		string_id nicename("Variant") variant;
+		DEPRECATED_string_id nicename("Variant") variant;
 		b_active_change_colors nicename("Active Change Colors") active_change_colors;
 		int8_t __unknown8;
 		int8_t __unknown9;
@@ -993,7 +993,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int8_t __unknown15;
 		uint8_t nicename("Teleporter Channel") teleporter_channel;
 		b_teleporter_flags nicename("Teleporter Flags") teleporter_flags;
-		string_id nicename("Location String") location_string;
+		DEPRECATED_string_id nicename("Location String") location_string;
 		int16_t __unknown16;
 		int16_t nicename("Attached Name Index") attached_name_index;
 		Undefined32 __unknown17;
@@ -1278,7 +1278,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -1288,12 +1288,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Permutation Data : 
-		string_id nicename("Variant") variant;
+		DEPRECATED_string_id nicename("Variant") variant;
 		b_active_change_colors nicename("Active Change Colors") active_change_colors;
 		int8_t __unknown8;
 		int8_t __unknown9;
@@ -1632,7 +1632,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -1642,12 +1642,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Permutation Data : 
-		string_id nicename("Variant") variant;
+		DEPRECATED_string_id nicename("Variant") variant;
 		b_active_change_colors nicename("Active Change Colors") active_change_colors;
 		int8_t __unknown8;
 		int8_t __unknown9;
@@ -1679,7 +1679,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int8_t __unknown13;
 		uint8_t nicename("Teleporter Channel") teleporter_channel;
 		b_teleporter_flags nicename("Teleporter Flags") teleporter_flags;
-		string_id nicename("Location String") location_string;
+		DEPRECATED_string_id nicename("Location String") location_string;
 		int16_t __unknown14;
 		int16_t nicename("Attached Name Index") attached_name_index;
 		Undefined32 __unknown15;
@@ -2005,7 +2005,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -2015,8 +2015,8 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Equipment Data : 
@@ -2041,7 +2041,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int8_t __unknown10;
 		uint8_t nicename("Teleporter Channel") teleporter_channel;
 		b_teleporter_flags nicename("Teleporter Flags") teleporter_flags;
-		string_id nicename("Location String") location_string;
+		DEPRECATED_string_id nicename("Location String") location_string;
 		int16_t __unknown11;
 		int16_t nicename("Attached Name Index") attached_name_index;
 		Undefined32 __unknown12;
@@ -2375,7 +2375,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -2385,12 +2385,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Permutation Data : 
-		string_id nicename("Variant") variant;
+		DEPRECATED_string_id nicename("Variant") variant;
 		b_active_change_colors nicename("Active Change Colors") active_change_colors;
 		int8_t __unknown8;
 		int8_t __unknown9;
@@ -2423,7 +2423,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int8_t __unknown13;
 		uint8_t nicename("Teleporter Channel") teleporter_channel;
 		b_teleporter_flags nicename("Teleporter Flags") teleporter_flags;
-		string_id nicename("Location String") location_string;
+		DEPRECATED_string_id nicename("Location String") location_string;
 		int16_t __unknown14;
 		int16_t nicename("Attached Name Index") attached_name_index;
 		Undefined32 __unknown15;
@@ -2853,7 +2853,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -2863,12 +2863,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Permutation Data : 
-		string_id nicename("Variant") variant;
+		DEPRECATED_string_id nicename("Variant") variant;
 		b_active_change_colors nicename("Active Change Colors") active_change_colors;
 		int8_t __unknown8;
 		int8_t __unknown9;
@@ -2906,7 +2906,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int8_t __unknown14;
 		uint8_t nicename("Teleporter Channel") teleporter_channel;
 		b_teleporter_flags nicename("Teleporter Flags") teleporter_flags;
-		string_id nicename("Location String") location_string;
+		DEPRECATED_string_id nicename("Location String") location_string;
 		int16_t __unknown15;
 		int16_t nicename("Attached Name Index") attached_name_index;
 		Undefined32 __unknown16;
@@ -3189,7 +3189,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -3199,12 +3199,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Permutation Data : 
-		string_id nicename("Variant") variant;
+		DEPRECATED_string_id nicename("Variant") variant;
 		b_active_change_colors nicename("Active Change Colors") active_change_colors;
 		int8_t __unknown8;
 		int8_t __unknown9;
@@ -3582,7 +3582,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -3592,12 +3592,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Permutation Data : 
-		string_id nicename("Variant") variant;
+		DEPRECATED_string_id nicename("Variant") variant;
 		b_active_change_colors nicename("Active Change Colors") active_change_colors;
 		int8_t __unknown8;
 		int8_t __unknown9;
@@ -3635,7 +3635,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int8_t __unknown16;
 		uint8_t nicename("Teleporter Channel") teleporter_channel;
 		b_teleporter_flags nicename("Teleporter Flags") teleporter_flags;
-		string_id nicename("Location String") location_string;
+		DEPRECATED_string_id nicename("Location String") location_string;
 		int16_t __unknown17;
 		int16_t nicename("Attached Name Index") attached_name_index;
 		Undefined32 __unknown18;
@@ -3876,7 +3876,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -3886,8 +3886,8 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Sound Scenery Data : 
@@ -4188,7 +4188,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -4198,12 +4198,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Permutation Data : 
-		string_id nicename("Variant") variant;
+		DEPRECATED_string_id nicename("Variant") variant;
 		b_active_change_colors nicename("Active Change Colors") active_change_colors;
 		int8_t __unknown8;
 		int8_t __unknown9;
@@ -4502,7 +4502,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -4512,8 +4512,8 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Multiplayer Data : 
@@ -4536,7 +4536,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int8_t __unknown10;
 		uint8_t nicename("Teleporter Channel") teleporter_channel;
 		b_teleporter_flags nicename("Teleporter Flags") teleporter_flags;
-		string_id nicename("Location String") location_string;
+		DEPRECATED_string_id nicename("Location String") location_string;
 		int16_t __unknown11;
 		int16_t nicename("Attached Name Index") attached_name_index;
 		Undefined32 __unknown12;
@@ -4839,7 +4839,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -4849,8 +4849,8 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Device Data : 
@@ -4890,12 +4890,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		{
 			struct nicename("Entry Variants") s_entry_variants_definition
 			{
-				string_id nicename("Name") name;
+				DEPRECATED_string_id nicename("Name") name;
 				TagReference nicename("Palette Object") palette_object_reference;
-				string_id nicename("Palette Object Variant") palette_object_variant;
+				DEPRECATED_string_id nicename("Palette Object Variant") palette_object_variant;
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			s_tag_block_definition<s_entry_variants_definition> nicename("Entry Variants") entry_variants_block;
 			int32_t nicename("Entry Count") entry_count;
 			int32_t nicename("Entry Price") entry_price;
@@ -4905,7 +4905,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int8_t __unknown2;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		b_flags1 nicename("Flags") flags;
 		int8_t __unknown0;
 		int8_t nicename("Thorage") thorage;
@@ -4931,7 +4931,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	{
 		int16_t nicename("Type") type;
 		int16_t __unknown0;
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t __unknown1;
 		int16_t __unknown2;
 	};
@@ -5012,10 +5012,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			Undefined32 __unknown27;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t nicename("Object Name") object_name;
 		int16_t __unknown0;
-		string_id nicename("Node Name") node_name;
+		DEPRECATED_string_id nicename("Node Name") node_name;
 		int16_t __unknown1;
 		int16_t __unknown2;
 		float __unknown3;
@@ -5149,7 +5149,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_tag_block_definition<s_location_bounds_points_definition> nicename("Location Bounds Points") location_bounds_points_block;
 		float __unknown0;
 		float __unknown1;
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 	};
 
 	struct nicename("Unknown 40") s_unknown_40_definition
@@ -5288,9 +5288,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t __unknown1;
 				float __unknown2;
 				float __unknown3;
-				string_id nicename("State") state;
+				DEPRECATED_string_id nicename("State") state;
 				Undefined32 __unknown4;
-				string_id nicename("Command Script Name") command_script_name;
+				DEPRECATED_string_id nicename("Command Script Name") command_script_name;
 				int16_t nicename("Command Script Index") command_script_index;
 				int16_t __unknown5;
 			};
@@ -5299,7 +5299,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown1;
 			Undefined32 __unknown2;
 			Undefined32 __unknown3;
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			float nicename("Position x") position_x;
 			float nicename("Position y") position_y;
 			float nicename("Position z") position_z;
@@ -5308,12 +5308,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			float nicename("Facing i") facing_i;
 			float nicename("Facing j") facing_j;
 			float nicename("Facing k") facing_k;
-			string_id nicename("Formation Type") formation_type;
+			DEPRECATED_string_id nicename("Formation Type") formation_type;
 			float __unknown5;
 			int16_t __unknown6;
 			int16_t nicename("Command Script Index") command_script_index;
-			string_id nicename("Command Script Name") command_script_name;
-			string_id nicename("Initial State") initial_state;
+			DEPRECATED_string_id nicename("Command Script Name") command_script_name;
+			DEPRECATED_string_id nicename("Initial State") initial_state;
 			int16_t __unknown7;
 			int16_t __unknown8;
 			int16_t __unknown9;
@@ -5374,9 +5374,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t __unknown1;
 				float __unknown2;
 				float __unknown3;
-				string_id nicename("State") state;
+				DEPRECATED_string_id nicename("State") state;
 				Undefined32 __unknown4;
-				string_id nicename("Command Script Name") command_script_name;
+				DEPRECATED_string_id nicename("Command Script Name") command_script_name;
 				int16_t nicename("Command Script Index") command_script_index;
 				int16_t __unknown5;
 			};
@@ -5385,7 +5385,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown1;
 			Undefined32 __unknown2;
 			Undefined32 __unknown3;
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			int16_t nicename("Squad Member Index") squad_member_index;
 			int16_t __unknown4;
 			float nicename("Position x") position_x;
@@ -5406,18 +5406,18 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			e_grenade_type nicename("Grenade Type") grenade_type;
 			int16_t nicename("Swarm Count") swarm_count;
 			int16_t __unknown6;
-			string_id nicename("Actor Variant") actor_variant;
-			string_id nicename("Vehicle Variant") vehicle_variant;
-			string_id __unknown7;
+			DEPRECATED_string_id nicename("Actor Variant") actor_variant;
+			DEPRECATED_string_id nicename("Vehicle Variant") vehicle_variant;
+			DEPRECATED_string_id __unknown7;
 			float nicename("Initial Movement Distance") initial_movement_distance;
 			e_initial_movement_mode nicename("Initial Movement Mode") initial_movement_mode;
 			int16_t nicename("Emitter Vehicle") emitter_vehicle;
 			int16_t nicename("Emitter Giant") emitter_giant;
 			int16_t nicename("Emitter Biped") emitter_biped;
-			string_id nicename("Command Script Name") command_script_name;
+			DEPRECATED_string_id nicename("Command Script Name") command_script_name;
 			int16_t nicename("Command Script Index") command_script_index;
 			int16_t __unknown8;
-			string_id nicename("Initial State") initial_state;
+			DEPRECATED_string_id nicename("Initial State") initial_state;
 			int16_t __unknown9;
 			int16_t __unknown10;
 			int16_t __unknown11;
@@ -5491,7 +5491,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t nicename("Probability") probability;
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			b_difficulty nicename("Difficulty") difficulty;
 			int16_t __unknown0;
 			int16_t nicename("Minimum Round") minimum_round;
@@ -5506,11 +5506,11 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			s_tag_block_definition<s_equipment1_definition> nicename("Equipment") equipment_block;
 			int16_t __unknown4;
 			int16_t nicename("Vehicle") vehicle;
-			string_id nicename("Vehicle Variant") vehicle_variant;
-			string_id nicename("Command Script Name") command_script_name;
+			DEPRECATED_string_id nicename("Vehicle Variant") vehicle_variant;
+			DEPRECATED_string_id nicename("Command Script Name") command_script_name;
 			int16_t nicename("Command Script Index") command_script_index;
 			int16_t __unknown5;
-			string_id __unknown6;
+			DEPRECATED_string_id __unknown6;
 			Undefined32 __unknown7;
 			int16_t __unknown8;
 			int16_t __unknown9;
@@ -5585,7 +5585,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t nicename("Probability") probability;
 			};
 
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			b_difficulty nicename("Difficulty") difficulty;
 			int16_t __unknown0;
 			int16_t nicename("Minimum Round") minimum_round;
@@ -5600,11 +5600,11 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			s_tag_block_definition<s_equipment2_definition> nicename("Equipment") equipment_block;
 			int16_t __unknown4;
 			int16_t nicename("Vehicle") vehicle;
-			string_id nicename("Vehicle Variant") vehicle_variant;
-			string_id nicename("Command Script Name") command_script_name;
+			DEPRECATED_string_id nicename("Vehicle Variant") vehicle_variant;
+			DEPRECATED_string_id nicename("Command Script Name") command_script_name;
 			int16_t nicename("Command Script Index") command_script_index;
 			int16_t __unknown5;
-			string_id __unknown6;
+			DEPRECATED_string_id __unknown6;
 			Undefined32 __unknown7;
 			int16_t __unknown8;
 			int16_t __unknown9;
@@ -5624,7 +5624,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_tag_block_definition<s_group_locations_definition> nicename("Group Locations") group_locations_block;
 		s_tag_block_definition<s_single_locations_definition> nicename("Single Locations") single_locations_block;
 		Undefined32 __unknown0;
-		string_id nicename("Squad Template Name") squad_template_name;
+		DEPRECATED_string_id nicename("Squad Template Name") squad_template_name;
 		TagReference nicename("Squad Template") squad_template_reference;
 		s_tag_block_definition<s_squad_a_definition> nicename("Squad A") squad_a_block;
 		s_tag_block_definition<s_squad_b_definition> nicename("Squad B") squad_b_block;
@@ -5789,7 +5789,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			float __unknown5;
 		};
 
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 		s_tag_block_definition<s_unknown_44_definition> nicename("Unknown 44") unknown_44_block;
 		s_tag_block_definition<s_unknown_45_definition> nicename("Unknown 45") unknown_45_block;
 		Undefined32 __unknown1;
@@ -5837,10 +5837,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 		struct nicename("Actor Stimuli") s_actor_stimuli_definition
 		{
-			string_id nicename("Actor Name") actor_name;
+			DEPRECATED_string_id nicename("Actor Name") actor_name;
 		};
 
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 		int16_t __unknown1;
 		int16_t __unknown2;
 		float nicename("X") x;
@@ -5988,7 +5988,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				Undefined32 __unknown7;
 			};
 
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			float __unknown1;
 			float __unknown2;
 			s_tag_block_definition<s_unknown_55_definition> nicename("Unknown 55") unknown_55_block;
@@ -6142,7 +6142,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("model_state")*/ _return_type_model_state = 65ui16,
 			/*nicename("event")*/ _return_type_event = 66ui16,
 			/*nicename("character_physics")*/ _return_type_character_physics = 67ui16,
-			/*nicename("skull")*/ _return_type_skull = 68ui16,
+			/*nicename("skull")*/ _return_type_mcc_skull = 68ui16,
 			/*nicename("firing_point_evaluator")*/ _return_type_firing_point_evaluator = 69ui16,
 			/*nicename("damage_region")*/ _return_type_damage_region = 70ui16,
 			/*nicename("object")*/ _return_type_object = 71ui16,
@@ -6237,7 +6237,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				/*nicename("model_state")*/ _type_model_state = 65ui16,
 				/*nicename("event")*/ _type_event = 66ui16,
 				/*nicename("character_physics")*/ _type_character_physics = 67ui16,
-				/*nicename("skull")*/ _type_skull = 68ui16,
+				/*nicename("skull")*/ _type_mcc_skull = 68ui16,
 				/*nicename("firing_point_evaluator")*/ _type_firing_point_evaluator = 69ui16,
 				/*nicename("damage_region")*/ _type_damage_region = 70ui16,
 				/*nicename("object")*/ _type_object = 71ui16,
@@ -6265,7 +6265,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		e_script_type nicename("Script Type") script_type;
 		e_return_type nicename("Return Type") return_type;
 		uint16_t nicename("Root Expression Index") root_expression_index;
@@ -6345,7 +6345,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("model_state")*/ _type_model_state = 65ui16,
 			/*nicename("event")*/ _type_event = 66ui16,
 			/*nicename("character_physics")*/ _type_character_physics = 67ui16,
-			/*nicename("skull")*/ _type_skull = 68ui16,
+			/*nicename("skull")*/ _type_mcc_skull = 68ui16,
 			/*nicename("firing_point_evaluator")*/ _type_firing_point_evaluator = 69ui16,
 			/*nicename("damage_region")*/ _type_damage_region = 70ui16,
 			/*nicename("object")*/ _type_object = 71ui16,
@@ -6423,7 +6423,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			struct nicename("Points") s_points_definition
 			{
 				char nicename("Name") name[32];
-				string_id nicename("Name") name1;
+				DEPRECATED_string_id nicename("Name") name1;
 				float nicename("Position x") position_x;
 				float nicename("Position y") position_y;
 				float nicename("Position z") position_z;
@@ -6479,7 +6479,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	struct nicename("Cutscene Flags") s_cutscene_flags_definition
 	{
 		Undefined32 __unknown0;
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		float nicename("Position x") position_x;
 		float nicename("Position y") position_y;
 		float nicename("Position z") position_z;
@@ -6549,7 +6549,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Top 2")*/ _vertical_justification_top_2 = 4ui16,
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		Undefined32 __unknown0;
 		float __unknown1;
 		float __unknown2;
@@ -6836,7 +6836,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("model_state")*/ _value_type_model_state = 66ui16,
 			/*nicename("event")*/ _value_type_event = 67ui16,
 			/*nicename("character_physics")*/ _value_type_character_physics = 68ui16,
-			/*nicename("skull")*/ _value_type_skull = 69ui16,
+			/*nicename("skull")*/ _value_type_mcc_skull = 69ui16,
 			/*nicename("firing_point_evaluator")*/ _value_type_firing_point_evaluator = 70ui16,
 			/*nicename("damage_region")*/ _value_type_damage_region = 71ui16,
 			/*nicename("object")*/ _value_type_object = 72ui16,
@@ -6912,7 +6912,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Bit 31")*/ _scale_flags_bit_31 = 1ui32 << 31ui32,
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Sound Environment") sound_environment_reference;
 		int32_t __unknown0;
 		float nicename("Cutoff Distance") cutoff_distance;
@@ -6931,7 +6931,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 	struct nicename("Fog") s_fog_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t __unknown0;
 		int16_t __unknown1;
 		TagReference nicename("Fog") fog_reference;
@@ -6939,7 +6939,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 	struct nicename("Camera FX") s_camera_fx_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Camera FX") camera_fx_reference;
 		Undefined32 __unknown0;
 		Undefined32 __unknown1;
@@ -6952,7 +6952,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 	struct nicename("Weather") s_weather_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Weather") weather_reference;
 	};
 
@@ -7293,7 +7293,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_bsp_policy nicename("BSP Policy") bsp_policy;
 		b_old_manual_bsp_flags_now_zonesets nicename("Old Manual BSP Flags (Now Zonesets)") old_manual_bsp_flags_now_zonesets;
 		int16_t __unknown3;
-		string_id nicename("Unique Name") unique_name;
+		DEPRECATED_string_id nicename("Unique Name") unique_name;
 		uint16_t nicename("Unique ID Index") unique_id_index;
 		uint16_t nicename("Unique ID Salt") unique_id_salt;
 		int16_t nicename("Origin BSP Index") origin_bsp_index;
@@ -7303,12 +7303,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t nicename("Parent Name Index") parent_name_index;
-		string_id nicename("Child Name") child_name;
-		string_id __unknown6;
+		DEPRECATED_string_id nicename("Child Name") child_name;
+		DEPRECATED_string_id __unknown6;
 		b_allowed_zonesets nicename("Allowed Zonesets") allowed_zonesets;
 		int16_t __unknown7;
 		// Permutation Data : 
-		string_id nicename("Variant") variant;
+		DEPRECATED_string_id nicename("Variant") variant;
 		int16_t __unknown8;
 		b_active_change_colors nicename("Active Change Colors") active_change_colors;
 		int8_t __unknown9;
@@ -7341,7 +7341,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int8_t __unknown16;
 		uint8_t nicename("Teleporter Channel") teleporter_channel;
 		b_teleporter_flags nicename("Teleporter Flags") teleporter_flags;
-		string_id nicename("Location String") location_string;
+		DEPRECATED_string_id nicename("Location String") location_string;
 		int16_t __unknown17;
 		int16_t nicename("Attached Name Index") attached_name_index;
 		Undefined32 __unknown18;
@@ -7364,7 +7364,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	{
 		struct nicename("Sources") s_sources_definition
 		{
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			int32_t __unknown0;
 			float nicename("Position x") position_x;
 			float nicename("Position y") position_y;
@@ -7381,7 +7381,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 		struct nicename("Sinks") s_sinks_definition
 		{
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			Undefined32 __unknown0;
 			float nicename("Position x") position_x;
 			float nicename("Position y") position_y;
@@ -7392,7 +7392,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown3;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		int16_t nicename("Flock Palette Index") flock_palette_index;
 		int16_t nicename("BSP Index") bsp_index;
 		int16_t nicename("Bounding Trigger Volume") bounding_trigger_volume;
@@ -7462,7 +7462,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		{
 			struct nicename("Conditions") s_conditions_definition
 			{
-				string_id nicename("Name") name;
+				DEPRECATED_string_id nicename("Name") name;
 				char nicename("Condition") condition[32];
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -7509,9 +7509,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			Undefined32 __unknown10;
 			Undefined32 __unknown11;
 			Undefined32 __unknown12;
-			string_id nicename("Command Script Name 1") command_script_name_1;
-			string_id nicename("Command Script Name 2") command_script_name_2;
-			string_id nicename("Command Script Name 3") command_script_name_3;
+			DEPRECATED_string_id nicename("Command Script Name 1") command_script_name_1;
+			DEPRECATED_string_id nicename("Command Script Name 2") command_script_name_2;
+			DEPRECATED_string_id nicename("Command Script Name 3") command_script_name_3;
 			int16_t nicename("Command Script Index 1") command_script_index_1;
 			int16_t nicename("Command Script Index 2") command_script_index_2;
 			int16_t nicename("Command Script Index 3") command_script_index_3;
@@ -7520,7 +7520,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown15;
 			int16_t __unknown16;
 			int16_t __unknown17;
-			string_id nicename("Task") task;
+			DEPRECATED_string_id nicename("Task") task;
 			int16_t nicename("Hierarchy Level (From 100)") hierarchy_level_from_100;
 			int16_t nicename("Previous Role") previous_role;
 			int16_t nicename("Next Role") next_role;
@@ -7539,7 +7539,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			s_tag_block_definition<s_point_geometry_definition> nicename("Point Geometry") point_geometry_block;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		s_tag_block_definition<s_unknown_78_definition> nicename("Unknown 78") unknown_78_block;
 		int16_t __unknown0;
 		int16_t nicename("Zone") zone;
@@ -7620,7 +7620,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		Undefined32 __unknown0;
 		s_tag_block_definition<s_bipeds1_definition> nicename("Bipeds") bipeds_block;
 		s_tag_block_definition<s_vehicles1_definition> nicename("Vehicles") vehicles_block;
@@ -7665,13 +7665,13 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 	struct nicename("Cinematics") s_cinematics_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Cinematic") cinematic_reference;
 	};
 
 	struct nicename("Cinematic Lights") s_cinematic_lights_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Light") light_reference;
 	};
 
@@ -7707,7 +7707,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			Undefined32 __unknown3;
 		};
 
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 		float __unknown1;
 		float __unknown2;
 		float __unknown3;
@@ -7721,7 +7721,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		struct nicename("Unknown 86") s_unknown_86_definition
 		{
 			int32_t __unknown0;
-			string_id __unknown1;
+			DEPRECATED_string_id __unknown1;
 			int16_t __unknown2;
 			int16_t __unknown3;
 			int16_t __unknown4;
@@ -7753,7 +7753,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t __unknown1;
 				int16_t __unknown2;
 				int16_t __unknown3;
-				string_id nicename("Animation") animation;
+				DEPRECATED_string_id nicename("Animation") animation;
 				Undefined32 nicename("ZUnknown") zunknown;
 				float __unknown4;
 				Undefined32 nicename("ZUnknown") zunknown1;
@@ -7762,7 +7762,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			struct nicename("Unknown 88") s_unknown_88_definition
 			{
-				string_id __unknown0;
+				DEPRECATED_string_id __unknown0;
 				float __unknown1;
 				int16_t __unknown2;
 				int16_t __unknown3;
@@ -7777,7 +7777,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				float __unknown1;
 			};
 
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int16_t __unknown1;
 			int16_t __unknown2;
 			int16_t __unknown3;
@@ -7802,9 +7802,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown1;
 		};
 
-		string_id __unknown0;
-		string_id __unknown1;
-		string_id __unknown2;
+		DEPRECATED_string_id __unknown0;
+		DEPRECATED_string_id __unknown1;
+		DEPRECATED_string_id __unknown2;
 		int16_t __unknown3;
 		int16_t __unknown4;
 		int16_t __unknown5;
@@ -7819,7 +7819,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float __unknown7;
 		float __unknown8;
 		float __unknown9;
-		string_id nicename("Performane Template Name") performane_template_name;
+		DEPRECATED_string_id nicename("Performane Template Name") performane_template_name;
 		TagReference nicename("Performance Template") performance_template_reference;
 		s_tag_block_definition<s_unknown_851_definition> nicename("Unknown 85") unknown_85_block;
 	};
@@ -7855,7 +7855,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	int32_t __unknown0;
 	int32_t nicename("Campaign ID") campaign_id;
 	int32_t nicename("Map ID") map_id;
-	string_id nicename("Scenario Name") scenario_name;
+	DEPRECATED_string_id nicename("Scenario Name") scenario_name;
 	int16_t nicename("Campaign Level Index") campaign_level_index;
 	int16_t __unknown1;
 	int32_t __unknown2;
@@ -7866,7 +7866,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	Undefined32 __unknown6;
 	float __unknown7;
 	float nicename("Sandbox Budget") sandbox_budget;
-	string_id nicename("Default Vehicle Filter") default_vehicle_filter;
+	DEPRECATED_string_id nicename("Default Vehicle Filter") default_vehicle_filter;
 	TagReference nicename("Performance Throttle Profile") performance_throttle_profile_reference;
 	s_tag_block_definition<s_structure_bsps_definition> nicename("Structure BSPs") structure_bsps_block;
 	s_tag_block_definition<s_structure_design_definition> nicename("Structure Design") structure_design_block;

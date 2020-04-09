@@ -82,7 +82,7 @@ void c_cache_file::loadMap(const std::wstring& mapFilePath)
 
 		if (pMapData)
 		{
-			cache_file_header = reinterpret_cast<s_cache_file_header*>(pMapData);
+			cache_file_header = reinterpret_cast<s_reach_cache_file_header*>(pMapData);
 
 			write_line_verbose("cache file version: %i", cache_file_header->file_version);
 

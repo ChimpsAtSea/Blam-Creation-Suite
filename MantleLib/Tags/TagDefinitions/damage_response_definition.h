@@ -13,7 +13,7 @@ struct nicename("damage_response_definition") tag_group('drdf') s_damage_respons
 
 		struct nicename("Lowpass") s_lowpass_definition
 		{
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			DataReference nicename("Lowpass Function") lowpass_function_data_reference;
 		};
 
@@ -50,7 +50,7 @@ struct nicename("damage_response_definition") tag_group('drdf') s_damage_respons
 		Undefined32 __unknown2;
 		DataReference __unknown3;
 		DataReference __unknown4;
-		string_id __unknown5;
+		DEPRECATED_string_id __unknown5;
 		Undefined32 __unknown6;
 		DataReference __unknown7;
 	};

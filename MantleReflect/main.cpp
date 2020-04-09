@@ -652,6 +652,7 @@ c_reflection_type_container* CreateReflectedType(ASTContext* Context, const clan
 				else if (name == "DataReference") reflectionTypeCategory = e_reflection_type_category::DataReference;
 				else if (name == "string_id") reflectionTypeCategory = e_reflection_type_category::StringID;
 				else if (name == "StringID") reflectionTypeCategory = e_reflection_type_category::StringID;
+				else if (name == "DEPRECATED_string_id") reflectionTypeCategory = e_reflection_type_category::StringID;
 				//else if (name == "TagGroupName") reflectionTypeCategory = e_reflection_type_category::TagGroupName; 
 				else if (name == "TagReference") reflectionTypeCategory = e_reflection_type_category::TagReference;
 				else if (name == "Undefined8") reflectionTypeCategory = e_reflection_type_category::Primitive;

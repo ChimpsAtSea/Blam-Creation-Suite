@@ -232,9 +232,9 @@ struct nicename("instance_imposter_definition") tag_group('iimz') s_instance_imp
 	};
 
 	int32_t __unknown0;
-	string_id nicename("Structure BSP Path") structure_bsp_path;
+	DEPRECATED_string_id nicename("Structure BSP Path") structure_bsp_path;
 	int32_t nicename("Structure Checksum") structure_checksum;
-	string_id nicename("Build Path") build_path;
+	DEPRECATED_string_id nicename("Build Path") build_path;
 	s_tag_block_definition<s_imposter_instanced_geometry_instances_definition> nicename("Imposter Instanced Geometry Instances") imposter_instanced_geometry_instances_block;
 	Undefined32 __unknown1;
 	Undefined32 __unknown2;

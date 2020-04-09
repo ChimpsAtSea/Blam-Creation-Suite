@@ -805,12 +805,12 @@ struct nicename("multiplayer_variant_settings_interface_definition") tag_group('
 			TagReference nicename("Explicit Submenu") explicit_submenu_reference;
 			TagReference nicename("Template-Based Submenu") template_based_submenu_reference;
 			e_submenu_setting_category nicename("Submenu Setting Category") submenu_setting_category;
-			string_id nicename("Submenu Name") submenu_name;
-			string_id nicename("Submenu Description") submenu_description;
+			DEPRECATED_string_id nicename("Submenu Name") submenu_name;
+			DEPRECATED_string_id nicename("Submenu Description") submenu_description;
 			TagReference nicename("Value Pairs") value_pairs_reference;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		e_setting_category nicename("Setting Category") setting_category;
 		s_tag_block_definition<s_options_definition> nicename("Options") options_block;
 	};

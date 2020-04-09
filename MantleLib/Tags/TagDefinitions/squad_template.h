@@ -72,7 +72,7 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 			int16_t __unknown3;
 		};
 
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		b_difficulty nicename("Difficulty") difficulty;
 		int16_t __unknown0;
 		int16_t nicename("Minimum Round") minimum_round;
@@ -87,11 +87,11 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 		s_tag_block_definition<s_equipment_definition> nicename("Equipment") equipment_block;
 		Undefined32 __unknown4;
 		TagReference nicename("Vehicle") vehicle_reference;
-		string_id nicename("Vehicle Variant") vehicle_variant;
+		DEPRECATED_string_id nicename("Vehicle Variant") vehicle_variant;
 		Undefined32 __unknown5;
 	};
 
-	string_id nicename("Name") name;
+	DEPRECATED_string_id nicename("Name") name;
 	s_tag_block_definition<s_squad_definition> nicename("Squad") squad_block;
 };
 

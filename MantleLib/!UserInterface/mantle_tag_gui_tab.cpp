@@ -170,7 +170,7 @@ void c_mantle_tag_gui_tab::render_tab_contents_gui_impl()
 	}
 	else
 	{
-		ImGui::Text("No reflection information found for '%s'", tag_interface.get_group_short_name());
+		ImGui::Text("No reflection information found for '%s'", tag_interface.get_group_short_name_cstr());
 	}
 
 	ImGui::EndChild();

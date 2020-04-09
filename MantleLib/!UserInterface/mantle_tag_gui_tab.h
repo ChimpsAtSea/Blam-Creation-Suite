@@ -44,7 +44,7 @@ void render_tagref_gui(TagReference* field_data, const char* name, c_cache_file&
 void render_tagref_gui(TagReference* field_data, const c_reflection_field& reflection_field);
 void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_field);
 void render_struct_gui(void* field_data, const c_reflection_field& reflection_field);
-void render_stringid_gui(string_id* field_data, const c_reflection_field& reflection_field);
+void render_stringid_gui(DEPRECATED_string_id* field_data, const c_reflection_field& reflection_field);
 void render_enum_gui(void* field_data, const c_reflection_field& reflection_field);
 void render_dataref_gui(DataReference* field_data, const c_reflection_field& reflection_field);
 void render_bitfield_gui(void* field_data, const c_reflection_field& reflection_field);

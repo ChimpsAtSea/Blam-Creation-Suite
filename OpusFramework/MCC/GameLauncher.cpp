@@ -257,14 +257,14 @@ void GameLauncher::launchMCCGame(e_engine_type engine_type)
 		{
 			if (engine_type == _engine_type_halo1)
 			{
-				game_context->game_mode = _game_mode_campaign;
+				game_context->game_mode = _mcc_game_mode_campaign;
 				game_context->map_id = (e_map_id)(3);
 				game_context->campaign_difficulty_level = g_campaign_difficulty_level;
 			}
 			else if (engine_type == _engine_type_halo_reach)
 			{
 				const MapInfo* pSelectedMapInfo = HaloReachGameOptionSelection::GetSelectedMapInfo();
-				e_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
+				e_mcc_game_mode gameMode = HaloReachGameOptionSelection::GetSelectedGameMode();
 
 				game_context->game_mode = gameMode;
 				game_context->map_id = static_cast<e_map_id>(pSelectedMapInfo->GetMapID());

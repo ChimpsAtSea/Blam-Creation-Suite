@@ -135,6 +135,9 @@
     <ClCompile Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blamlib_testing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlelib-public-pch.h">

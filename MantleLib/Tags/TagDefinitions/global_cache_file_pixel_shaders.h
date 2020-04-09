@@ -6,7 +6,7 @@ struct nicename("global_cache_file_pixel_shaders") tag_group('gpix') s_global_ca
 	{
 		struct nicename("Unknown") s_unknown_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;
@@ -15,7 +15,7 @@ struct nicename("global_cache_file_pixel_shaders") tag_group('gpix') s_global_ca
 
 		struct nicename("Unknown") s_unknown1_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;

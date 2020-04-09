@@ -81,7 +81,7 @@ struct nicename("shader_mux") tag_group('rmmx') s_shader_mux_definition
 		struct nicename("Functions") s_functions_definition
 		{
 			int32_t __unknown0;
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			Undefined32 __unknown1;
 			Undefined32 __unknown2;
 			DataReference nicename("Function") function_data_reference;
@@ -135,7 +135,7 @@ struct nicename("shader_mux") tag_group('rmmx') s_shader_mux_definition
 
 	struct nicename("Unknown") s_unknown5_definition
 	{
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 		int32_t __unknown1;
 		int32_t __unknown2;
 	};
@@ -156,14 +156,14 @@ struct nicename("shader_mux") tag_group('rmmx') s_shader_mux_definition
 	int8_t __unknown11;
 	Undefined32 __unknown12;
 	int32_t __unknown13;
-	string_id nicename("Material 1") material_1;
-	string_id nicename("Material 2") material_2;
-	string_id nicename("Material 3") material_3;
-	string_id nicename("Material 4") material_4;
-	string_id nicename("Material 5") material_5;
-	string_id nicename("Material 6") material_6;
-	string_id nicename("Material 7") material_7;
-	string_id nicename("Material 8") material_8;
+	DEPRECATED_string_id nicename("Material 1") material_1;
+	DEPRECATED_string_id nicename("Material 2") material_2;
+	DEPRECATED_string_id nicename("Material 3") material_3;
+	DEPRECATED_string_id nicename("Material 4") material_4;
+	DEPRECATED_string_id nicename("Material 5") material_5;
+	DEPRECATED_string_id nicename("Material 6") material_6;
+	DEPRECATED_string_id nicename("Material 7") material_7;
+	DEPRECATED_string_id nicename("Material 8") material_8;
 	int16_t nicename("Global Material Index 1") global_material_index_1;
 	int16_t nicename("Global Material Index 2") global_material_index_2;
 	int16_t nicename("Global Material Index 3") global_material_index_3;

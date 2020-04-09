@@ -216,13 +216,13 @@ struct s_game_state_header
 };
 static_assert(sizeof(s_game_state_header) == 0x1EB28, "");
 
-struct s_game_globals
-{
-	BYTE unknown0[16];
-	s_game_options game_options;
-	BYTE unknown1E9B0[1584];
-};
-static_assert(sizeof(s_game_globals) == 0x1EFE0, "");
+//struct s_game_globals
+//{
+//	BYTE unknown0[16];
+//	s_game_options game_options;
+//	BYTE unknown1E9B0[1584];
+//};
+//static_assert(sizeof(s_game_globals) == 0x1EFE0, "");
 
 template<typename T>
 struct point3d

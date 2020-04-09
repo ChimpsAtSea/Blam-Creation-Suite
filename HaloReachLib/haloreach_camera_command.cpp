@@ -41,10 +41,10 @@ void haloreach_debug_load_camera(int(__stdcall *player_mapping_get_local_player)
 		FILE *stream = fopen("camera.txt", "r");
 		if (stream)
 		{
-			fscanf(stream, "%f %f %f\n", observer_camera->position.I, observer_camera->position.J, observer_camera->position.K);
-			fscanf(stream, "%f %f %f\n", observer_camera->forward.I, observer_camera->forward.J, observer_camera->forward.K);
-			fscanf(stream, "%f %f %f\n", observer_camera->up.I, observer_camera->up.J, observer_camera->up.K);
-			fscanf(stream, "%f\n", observer_camera->field_of_view);
+			fscanf(stream, "%f %f %f\n", &observer_camera->position.I, &observer_camera->position.J, &observer_camera->position.K);
+			fscanf(stream, "%f %f %f\n", &observer_camera->forward.I, &observer_camera->forward.J, &observer_camera->forward.K);
+			fscanf(stream, "%f %f %f\n", &observer_camera->up.I, &observer_camera->up.J, &observer_camera->up.K);
+			fscanf(stream, "%f\n", &observer_camera->field_of_view);
 			fclose(stream);
 		}
 

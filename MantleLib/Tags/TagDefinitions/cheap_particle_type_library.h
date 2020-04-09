@@ -4,7 +4,7 @@ struct nicename("cheap_particle_type_library") tag_group('cptl') s_cheap_particl
 {
 	struct nicename("Particle Type Library") s_particle_type_library_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		float __unknown0;
 		float __unknown1;
 		float __unknown2;

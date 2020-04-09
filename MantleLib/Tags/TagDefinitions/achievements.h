@@ -6,10 +6,10 @@ struct nicename("achievements") tag_group('achi') s_achievements_definition
 	{
 		struct nicename("Achievement Unlock Information") s_achievement_unlock_information_definition
 		{
-			string_id nicename("Unlock Limitation") unlock_limitation;
+			DEPRECATED_string_id nicename("Unlock Limitation") unlock_limitation;
 		};
 
-		string_id nicename("Achievement Name") achievement_name;
+		DEPRECATED_string_id nicename("Achievement Name") achievement_name;
 		int8_t nicename("Achievement Index") achievement_index;
 		int8_t __unknown0;
 		int8_t __unknown1;

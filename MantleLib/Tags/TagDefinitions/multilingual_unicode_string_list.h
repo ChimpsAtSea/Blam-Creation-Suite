@@ -4,8 +4,8 @@ struct nicename("multilingual_unicode_string_list") tag_group('unic') s_multilin
 {
 	struct nicename("Variables") s_variables_definition
 	{
-		string_id nicename("Pipe Handler") pipe_handler;
-		string_id nicename("Property Handler") property_handler;
+		DEPRECATED_string_id nicename("Pipe Handler") pipe_handler;
+		DEPRECATED_string_id nicename("Property Handler") property_handler;
 	};
 
 	Undefined32 __unknown0;

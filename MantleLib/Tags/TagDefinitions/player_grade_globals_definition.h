@@ -7,7 +7,7 @@ struct nicename("player_grade_globals_definition") tag_group('pggd') s_player_gr
 		struct nicename("Grades") s_grades_definition
 		{
 			uint32_t nicename("Credits Required") credits_required;
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 			int16_t nicename("Icon Entry") icon_entry;
 			int16_t __unknown0;
 		};

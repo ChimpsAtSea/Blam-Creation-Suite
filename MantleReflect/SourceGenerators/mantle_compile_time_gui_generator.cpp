@@ -54,7 +54,7 @@ void c_mantle_compile_time_gui_generator::run()
 	//source_string_stream << "void render_primitive_gui_undefined64" << "(Undefined64	* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	//source_string_stream << "void render_primitive_gui_character" << "(char			* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	//source_string_stream << "void render_primitive_gui_widecharacter" << "(wchar_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	source_string_stream << "void render_stringid_gui" << "(string_id		* field_data, const c_reflection_field& reflection_field);" << std::endl;
+	source_string_stream << "void render_stringid_gui" << "(DEPRECATED_string_id		* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	source_string_stream << "void render_struct_gui" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	source_string_stream << "void render_tagref_gui" << "(TagReference		* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	source_string_stream << "void render_tagblock_gui" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;

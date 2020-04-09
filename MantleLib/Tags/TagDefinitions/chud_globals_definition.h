@@ -162,8 +162,8 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 				/*nicename("Blank")*/ _icon_blank = 13ui8,
 			};
 
-			string_id nicename("Title") title;
-			string_id nicename("Description") description;
+			DEPRECATED_string_id nicename("Title") title;
+			DEPRECATED_string_id nicename("Description") description;
 			e_icon nicename("Icon") icon;
 			int8_t __unknown0;
 			int16_t __unknown1;
@@ -374,7 +374,7 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 			/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
 		};
 
-		string_id nicename("Display String") display_string;
+		DEPRECATED_string_id nicename("Display String") display_string;
 		int16_t nicename("Max Display Time") max_display_time;
 		int16_t nicename("Display Count") display_count;
 		int16_t nicename("Disappear Delay") disappear_delay;

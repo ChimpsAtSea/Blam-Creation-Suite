@@ -28,7 +28,7 @@ struct nicename("global_vertex_shader") tag_group('glvs') s_global_vertex_shader
 	{
 		struct nicename("Unknown") s_unknown4_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;
@@ -37,7 +37,7 @@ struct nicename("global_vertex_shader") tag_group('glvs') s_global_vertex_shader
 
 		struct nicename("Unknown") s_unknown5_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;

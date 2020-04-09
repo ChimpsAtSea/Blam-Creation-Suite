@@ -10,8 +10,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members_definition> nicename("Family Members") family_members_block;
@@ -25,8 +25,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members1_definition> nicename("Family Members") family_members_block;
@@ -40,8 +40,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members2_definition> nicename("Family Members") family_members_block;
@@ -55,8 +55,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members3_definition> nicename("Family Members") family_members_block;
@@ -70,8 +70,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members4_definition> nicename("Family Members") family_members_block;
@@ -85,8 +85,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members5_definition> nicename("Family Members") family_members_block;
@@ -100,8 +100,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members6_definition> nicename("Family Members") family_members_block;
@@ -115,8 +115,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members7_definition> nicename("Family Members") family_members_block;
@@ -130,8 +130,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members8_definition> nicename("Family Members") family_members_block;
@@ -145,8 +145,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members9_definition> nicename("Family Members") family_members_block;
@@ -160,8 +160,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members10_definition> nicename("Family Members") family_members_block;
@@ -175,8 +175,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members11_definition> nicename("Family Members") family_members_block;
@@ -190,8 +190,8 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int16_t __unknown0;
 		};
 
-		string_id nicename("Name") name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Description") description;
 		TagReference nicename("Icon Bitmap") icon_bitmap_reference;
 		int32_t nicename("Icon Index") icon_index;
 		s_tag_block_definition<s_family_members12_definition> nicename("Family Members") family_members_block;
@@ -229,7 +229,7 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 		};
 
 		struct nicename("Armor Effect Info") s_armor_effect_info_definition
@@ -238,22 +238,22 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 		};
 
 		struct nicename("Visor Color Info") s_visor_color_info_definition
 		{
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 		};
 
 		struct nicename("Unknown/Unused") s_unknown_unused_definition
 		{
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 		};
 
 		struct nicename("FF Voice Info") s_ff_voice_info_definition
 		{
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 		};
 
 		struct nicename("Viewable At Rank...") s_viewable_at_rank_definition
@@ -297,7 +297,7 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 
 		struct nicename("DLC View Lock") s_dlc_view_lock_definition
 		{
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 		};
 
 		struct nicename("Purchasable At Rank...") s_purchasable_at_rank_definition
@@ -341,12 +341,12 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 
 		struct nicename("DLC Purchase Lock") s_dlc_purchase_lock_definition
 		{
-			string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Name") name;
 		};
 
-		string_id nicename("Entry Name") entry_name;
-		string_id nicename("Game Name") game_name;
-		string_id nicename("Description") description;
+		DEPRECATED_string_id nicename("Entry Name") entry_name;
+		DEPRECATED_string_id nicename("Game Name") game_name;
+		DEPRECATED_string_id nicename("Description") description;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;
 		int8_t __unknown1;
@@ -361,14 +361,14 @@ struct nicename("cookie_purchase_globals") tag_group('cpgd') s_cookie_purchase_g
 		s_tag_block_definition<s_ff_voice_info_definition> nicename("FF Voice Info") ff_voice_info_block;
 		s_tag_block_definition<s_viewable_at_rank_definition> nicename("Viewable At Rank...") viewable_at_rank_block;
 		s_tag_block_definition<s_viewable_after_is_purchased_definition> nicename("Viewable After... Is Purchased") viewable_after_is_purchased_block;
-		string_id nicename("Requirement View Description") requirement_view_description;
+		DEPRECATED_string_id nicename("Requirement View Description") requirement_view_description;
 		s_tag_block_definition<s_dlc_view_lock_definition> nicename("DLC View Lock") dlc_view_lock_block;
-		string_id nicename("DLC View Description") dlc_view_description;
+		DEPRECATED_string_id nicename("DLC View Description") dlc_view_description;
 		s_tag_block_definition<s_purchasable_at_rank_definition> nicename("Purchasable At Rank...") purchasable_at_rank_block;
 		s_tag_block_definition<s_purchasable_after_is_purchased_definition> nicename("Purchasable After... Is Purchased") purchasable_after_is_purchased_block;
-		string_id nicename("Requirement Purchase Description") requirement_purchase_description;
+		DEPRECATED_string_id nicename("Requirement Purchase Description") requirement_purchase_description;
 		s_tag_block_definition<s_dlc_purchase_lock_definition> nicename("DLC Purchase Lock") dlc_purchase_lock_block;
-		string_id nicename("DLC Purchase Description") dlc_purchase_description;
+		DEPRECATED_string_id nicename("DLC Purchase Description") dlc_purchase_description;
 	};
 
 	struct nicename("DLC Unlocks") s_dlc_unlocks_definition

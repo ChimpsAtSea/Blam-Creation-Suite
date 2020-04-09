@@ -11,13 +11,13 @@ struct nicename("cheap_particle_emitter") tag_group('cpem') s_cheap_particle_emi
 	DataReference __unknown5;
 	float __unknown6;
 	float __unknown7;
-	string_id __unknown8;
+	DEPRECATED_string_id __unknown8;
 	float __unknown9;
-	string_id __unknown10;
+	DEPRECATED_string_id __unknown10;
 	float __unknown11;
-	string_id __unknown12;
+	DEPRECATED_string_id __unknown12;
 	float __unknown13;
-	string_id __unknown14;
+	DEPRECATED_string_id __unknown14;
 	float __unknown15;
 	float __unknown16;
 	float __unknown17;

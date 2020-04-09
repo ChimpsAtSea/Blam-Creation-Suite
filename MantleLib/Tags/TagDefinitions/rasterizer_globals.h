@@ -15,7 +15,7 @@ struct nicename("rasterizer_globals") tag_group('rasg') s_rasterizer_globals_def
 
 	struct nicename("Default Shaders") s_default_shaders_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Vertex Shader") vertex_shader_reference;
 		TagReference nicename("Pixel Shader") pixel_shader_reference;
 		TagReference nicename("Compute Shader") compute_shader_reference;

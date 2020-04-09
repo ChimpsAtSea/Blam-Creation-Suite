@@ -49,7 +49,7 @@ struct nicename("multiplayer_object_type_list") tag_group('motl') s_multiplayer_
 
 	struct nicename("Multiplayer Object List") s_multiplayer_object_list_definition
 	{
-		string_id nicename("Name") name;
+		DEPRECATED_string_id nicename("Name") name;
 		TagReference nicename("Object") object_reference;
 	};
 
@@ -144,7 +144,7 @@ struct nicename("multiplayer_object_type_list") tag_group('motl') s_multiplayer_
 			int32_t nicename("Replacement Weapon Index") replacement_weapon_index;
 		};
 
-		string_id nicename("Set Name") set_name;
+		DEPRECATED_string_id nicename("Set Name") set_name;
 		s_tag_block_definition<s_corrections_definition> nicename("Corrections") corrections_block;
 	};
 
@@ -156,7 +156,7 @@ struct nicename("multiplayer_object_type_list") tag_group('motl') s_multiplayer_
 			int32_t nicename("Replacement Vehicle Index") replacement_vehicle_index;
 		};
 
-		string_id nicename("Set Name") set_name;
+		DEPRECATED_string_id nicename("Set Name") set_name;
 		s_tag_block_definition<s_corrections1_definition> nicename("Corrections") corrections_block;
 	};
 

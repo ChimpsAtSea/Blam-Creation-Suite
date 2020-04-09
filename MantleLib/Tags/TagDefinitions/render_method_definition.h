@@ -6,16 +6,16 @@ struct nicename("render_method_definition") tag_group('rmdf') s_render_method_de
 	{
 		struct nicename("Unknown 1") s_unknown_1_definition
 		{
-			string_id __unknown0;
+			DEPRECATED_string_id __unknown0;
 			TagReference __unknown1;
-			string_id __unknown2;
-			string_id __unknown3;
+			DEPRECATED_string_id __unknown2;
+			DEPRECATED_string_id __unknown3;
 		};
 
-		string_id __unknown0;
+		DEPRECATED_string_id __unknown0;
 		s_tag_block_definition<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
-		string_id __unknown1;
-		string_id __unknown2;
+		DEPRECATED_string_id __unknown1;
+		DEPRECATED_string_id __unknown2;
 	};
 
 	struct nicename("Unknown 1") s_unknown_11_definition

@@ -1,6 +1,6 @@
 
 
-void render_stringid_gui(string_id* field_data, const c_reflection_field& reflection_field)
+void render_stringid_gui(DEPRECATED_string_id* field_data, const c_reflection_field& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
@@ -9,7 +9,7 @@ void render_stringid_gui(string_id* field_data, const c_reflection_field& reflec
 	DEBUG_ASSERT(field_data != nullptr);
 	DEBUG_ASSERT(c_mantle_tag_gui_tab::g_current_mantle_tag_tab != nullptr);
 
-	string_id& field_string_id = *reinterpret_cast<string_id*>(field_data);
+	DEPRECATED_string_id& field_string_id = *reinterpret_cast<DEPRECATED_string_id*>(field_data);
 
 	class string_id_dynamic_ui_data
 	{
@@ -17,9 +17,9 @@ void render_stringid_gui(string_id* field_data, const c_reflection_field& reflec
 		char szBuffer[127];
 		uint8_t isValid : 1;
 		uint8_t buffer_length : 7;
-		string_id* id_pointer;
+		DEPRECATED_string_id* id_pointer;
 
-		string_id_dynamic_ui_data(string_id& id, c_cache_file& cache_file) : 
+		string_id_dynamic_ui_data(DEPRECATED_string_id& id, c_cache_file& cache_file) : 
 			szBuffer(),
 			isValid(false),
 			buffer_length(0),

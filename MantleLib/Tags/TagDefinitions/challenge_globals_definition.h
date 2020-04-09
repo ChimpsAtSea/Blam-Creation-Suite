@@ -125,15 +125,15 @@ struct nicename("challenge_globals_definition") tag_group('chdg') s_challenge_gl
 				/*nicename("Bit 31")*/ _required_skulls_bit_31 = 1ui32 << 31ui32,
 			};
 
-			string_id nicename("Name") name;
-			string_id nicename("Description") description;
+			DEPRECATED_string_id nicename("Name") name;
+			DEPRECATED_string_id nicename("Description") description;
 			Undefined32 __unknown0;
-			string_id nicename("Secondary Description") secondary_description;
-			string_id nicename("Complete Message") complete_message;
+			DEPRECATED_string_id nicename("Secondary Description") secondary_description;
+			DEPRECATED_string_id nicename("Complete Message") complete_message;
 			int32_t nicename("Number Required") number_required;
 			int32_t nicename("Credits Earned") credits_earned;
 			int32_t nicename("Progress Amount") progress_amount;
-			string_id nicename("In Progress Name") in_progress_name;
+			DEPRECATED_string_id nicename("In Progress Name") in_progress_name;
 			Undefined32 __unknown1;
 			e_must_be_completed_in_one_match nicename("Must Be Completed in One Match") must_be_completed_in_one_match;
 			int8_t __unknown2;
@@ -145,16 +145,16 @@ struct nicename("challenge_globals_definition") tag_group('chdg') s_challenge_gl
 			b_map_type_limitation nicename("Map Type Limitation") map_type_limitation;
 			b_difficulty_limitation nicename("Difficulty Limitation") difficulty_limitation;
 			b_campaign_difficulty_player_amount_limitation nicename("Campaign Difficulty/Player Amount Limitation") campaign_difficulty_player_amount_limitation;
-			string_id nicename("Map Limitation") map_limitation;
+			DEPRECATED_string_id nicename("Map Limitation") map_limitation;
 			int32_t nicename("Map ID Limitation") map_id_limitation;
 			b_required_skulls nicename("Required Skulls") required_skulls;
-			string_id nicename("Reward Text?") reward_text;
+			DEPRECATED_string_id nicename("Reward Text?") reward_text;
 			int32_t nicename("Deaths Allowed") deaths_allowed;
 			int32_t nicename("Time Limitation") time_limitation;
 			int32_t nicename("Number of Firefight Waves") number_of_firefight_waves;
 		};
 
-		string_id nicename("Type") type;
+		DEPRECATED_string_id nicename("Type") type;
 		e_type nicename("Type") type1;
 		int8_t __unknown0;
 		int8_t __unknown1;
