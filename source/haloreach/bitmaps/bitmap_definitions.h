@@ -408,13 +408,13 @@ struct s_bitmap_image
 	void *pixels_address;
 	void *high_res_pixels_address;
 };
-static_assert(sizeof(s_bitmap_image) == 0x38);
+static_assert_64(sizeof(s_bitmap_image) == 0x38);
 
 struct s_bitmap_resource_info
 {
 	s_tag_resource resource;
 };
-static_assert(sizeof(s_bitmap_resource_info) == 0x8);
+static_assert_64(sizeof(s_bitmap_resource_info) == 0x8);
 
 struct s_bitmap_definition
 {
@@ -443,7 +443,7 @@ struct s_bitmap_definition
 	c_typed_tag_block<s_bitmap_resource_info> resources;
 	c_typed_tag_block<s_bitmap_resource_info> interleaved_resources;
 };
-static_assert(sizeof(s_bitmap_definition) == 0xC0);
+static_assert_64(sizeof(s_bitmap_definition) == 0xC0);
 
 struct s_bitmap_texture_resource
 {
@@ -463,10 +463,10 @@ struct s_bitmap_texture_resource
 	long unknown4;
 	long unknown5;
 };
-static_assert(sizeof(s_bitmap_texture_resource) == 0x44);
+static_assert_64(sizeof(s_bitmap_texture_resource) == 0x44);
 
 struct s_bitmap_texture_interop_resource
 {
 	c_typed_tag_interop<s_bitmap_texture_resource> bitmap;
 };
-static_assert(sizeof(s_bitmap_texture_interop_resource) == 0xC);
+static_assert_64(sizeof(s_bitmap_texture_interop_resource) == 0xC);

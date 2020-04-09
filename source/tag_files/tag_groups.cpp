@@ -7,9 +7,9 @@ void *tag_block_get_element_with_size(
 	long element_index,
 	[[maybe_unused]] long element_size)
 {
-	assert(block);
-	assert(block->count >= 0);
-	assert(block->address);
+	blamlib_assert(block);
+	blamlib_assert(block->count >= 0);
+	blamlib_assert(block->address);
 
 	static c_static_string<256> temp;
 

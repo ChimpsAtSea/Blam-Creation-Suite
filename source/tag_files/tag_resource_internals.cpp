@@ -10,7 +10,7 @@ c_tag_resource_fixup::c_tag_resource_fixup()
 dword c_tag_resource_fixup::get_fixup_value() const
 {
 	auto fixup_value = m_designator.get_primary_index();
-	assert(IN_RANGE_INCLUSIVE(fixup_value, 0, k_maximum_resource_fixup_value));
+	blamlib_assert(IN_RANGE_INCLUSIVE(fixup_value, 0, k_maximum_resource_fixup_value));
 	return static_cast<dword>(fixup_value);
 }
 

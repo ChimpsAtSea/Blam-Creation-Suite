@@ -15,10 +15,10 @@ enum e_game_mode
 
 enum e_campaign_difficulty_level
 {
-	_campaign_difficulty_level_easy,
+	_campaign_difficulty_level_easy = 0,
 	_campaign_difficulty_level_normal,
-	_campaign_difficulty_level_heroic,
-	_campaign_difficulty_level_legendary,
+	_campaign_difficulty_level_heroic, // _campaign_difficulty_level_hard
+	_campaign_difficulty_level_legendary, // _campaign_difficulty_level_impossible
 	k_number_of_campaign_difficulty_levels
 };
 

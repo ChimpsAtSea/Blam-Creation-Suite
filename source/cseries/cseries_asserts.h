@@ -8,10 +8,12 @@
 #	define vassert(expr, diag) (expr)
 #endif
 
+#ifndef blamlib_assert
 #ifdef _DEBUG
-#	define assert(expr) vassert(expr, #expr)
+#	define blamlib_assert(expr) vassert(expr, #expr)
 #else
-#	define assert(expr) (expr)
+#	define blamlib_assert(expr) (expr)
+#endif
 #endif
 
 /* ---------- prototypes/CSERIES_ASSERTS.CPP */

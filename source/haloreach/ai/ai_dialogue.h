@@ -188,7 +188,7 @@ enum e_vocalization_target
 	_vocalization_target_joint,
 	_vocalization_target_task,
 	_vocalization_target_leader,
-	_vocalization_target_joint,
+	_vocalization_target_joint2,
 	_vocalization_target_clump,
 	_vocalization_target_peer,
 	_vocalization_target_none,

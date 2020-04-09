@@ -30,7 +30,7 @@ public:
 
 	t_element *get_element(long index)
 	{
-		assert(valid_index(index));
+		blamlib_assert(valid_index(index));
 		return begin() + index;
 	}
 };
@@ -99,7 +99,7 @@ public:
 
 	void resize(long new_size)
 	{
-		assert(new_size >= 0 && new_size < m_storage.get_count());
+		blamlib_assert(new_size >= 0 && new_size < m_storage.get_count());
 		m_count = new_size;
 	}
 
@@ -107,7 +107,7 @@ public:
 	{
 		auto new_index = m_count;
 
-		assert(m_storage.valid(new_index));
+		blamlib_assert(m_storage.valid(new_index));
 		m_count++;
 
 		return new_index;
@@ -194,7 +194,7 @@ public:
 
 	void advance_start(dword offset)
 	{
-		assert(offset <= m_size);
+		blamlib_assert(offset <= m_size);
 
 		m_elements = offset_pointer(m_elements, offset);
 		m_size -= offset;
@@ -202,8 +202,8 @@ public:
 
 	t_element *get_range(long offset, dword size)
 	{
-		assert((offset >= 0) && (offset <= this->size()));
-		assert(((offset + size) >= 0) && ((offset + size) <= this->size()));
+		blamlib_assert((offset >= 0) && (offset <= this->size()));
+		blamlib_assert(((offset + size) >= 0) && ((offset + size) <= this->size()));
 
 		return reinterpret_cast<t_element *>(
 			reinterpret_cast<char *>(this->m_elements) + offset);
@@ -212,7 +212,7 @@ public:
 	template <typename t_type>
 	t_type *get_as_type_array(long offset, long count)
 	{
-		assert(size() == sizeof(t_type) * count);
+		blamlib_assert(size() == sizeof(t_type) * count);
 		return get_range(offset, sizeof(t_type) * count);
 	}
 
@@ -225,7 +225,7 @@ public:
 	template <typename t_type>
 	t_type *get_as_type()
 	{
-		assert(size() == sizeof(t_type));
+		blamlib_assert(size() == sizeof(t_type));
 		return get_as_type_from_offset(0);
 	}
 
@@ -333,13 +333,13 @@ public:
 
 	void set_primary_index(long new_primary_index)
 	{
-		assert(IN_RANGE_INCLUSIVE(new_primary_index, 0, k_maximum_primary_index));
+		blamlib_assert(IN_RANGE_INCLUSIVE(new_primary_index, 0, k_maximum_primary_index));
 		set_designator_internal(new_primary_index, get_secondary_index(), get_flag_internal());
 	}
 
 	void set_secondary_index(long new_secondary_index)
 	{
-		assert(IN_RANGE_INCLUSIVE(new_secondary_index, 0, k_maximum_secondary_index));
+		blamlib_assert(IN_RANGE_INCLUSIVE(new_secondary_index, 0, k_maximum_secondary_index));
 		set_designator_internal(new_secondary_index, get_primary_index(), get_flag_internal());
 	}
 };

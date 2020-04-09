@@ -244,8 +244,8 @@ bool vertex_definition_try_get_element(
 	long element_index,
 	void **out_address)
 {
-	assert(definition);
-	assert(out_address);
+	blamlib_assert(definition);
+	blamlib_assert(out_address);
 	
 	[[maybe_unused]]
 	auto element_count = definition->element_count;
@@ -265,7 +265,7 @@ bool vertex_definition_try_get_element(
 long vertex_element_get_size(
 	void *element_address)
 {
-	assert(element_address);
+	blamlib_assert(element_address);
 
 	auto element = (D3D11_INPUT_ELEMENT_DESC *)element_address;
 

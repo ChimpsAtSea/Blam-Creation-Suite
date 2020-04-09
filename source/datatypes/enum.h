@@ -10,7 +10,7 @@ class c_enum_no_init
 	static_assert(__is_enum(t_enum));
 	static_assert(__is_convertible_to(t_storage, long));
 
-private:
+protected:
 	t_storage m_storage;
 
 public:
@@ -26,10 +26,12 @@ public:
 		return static_cast<t_storage>(value);
 	}
 
+#if __cplusplus > 201703L
 	auto operator<=>(t_enum other) const
 	{
 		return m_storage <=> static_cast<t_storage>(other);
 	}
+#endif
 
 	operator t_enum() const
 	{
@@ -43,4 +45,8 @@ class c_enum :
 {
 public:
 	c_enum() = default;
+	c_enum(t_enum value) 
+	{
+		this->m_storage = value;
+	}
 };

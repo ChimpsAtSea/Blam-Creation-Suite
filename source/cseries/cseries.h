@@ -124,6 +124,15 @@ static_assert(sizeof(tag) == 0x4);
 #define BIT_VECTOR_SET_FLAG(vector, bit, value) \
 	SET_FLAG(BIT_VECTOR_WORD(vector, bit), ((bit) % (sizeof(long) * k_uint8_bits)), value)
 
+#ifdef _WIN64
+#define static_assert_64 static_assert
+#define static_assert_32(...)
+#else
+#define static_assert_64(...)
+#define static_assert_32 static_assert
+#endif
+
+
 /* ---------- prototypes/CSERIES.CPP */
 
 char *tag_to_string(tag m_value, char *string);

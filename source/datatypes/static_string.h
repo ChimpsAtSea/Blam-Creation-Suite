@@ -19,7 +19,7 @@ public:
 	c_static_string(const char* s) :
 		c_static_string()
 	{
-		assert(s);
+		blamlib_assert(s);
 		set(s);
 	}
 
@@ -65,27 +65,27 @@ public:
 
 	bool starts_with(const char* s) const
 	{
-		assert(s);
+		blamlib_assert(s);
 		return csstrncmp(s, m_string, strnlen_s(s, k_maximum_length)) == 0;
 	}
 
 	c_static_string<k_maximum_length>& clear()
 	{
-		assert(csmemset(m_string, 0, k_maximum_length));
+		blamlib_assert(csmemset(m_string, 0, k_maximum_length));
 		return *this;
 	}
 
 	c_static_string<k_maximum_length>& set(const char* s)
 	{
-		assert(s);
-		assert(csstrnzcpy(m_string, s, k_maximum_length) != nullptr);
+		blamlib_assert(s);
+		blamlib_assert(csstrnzcpy(m_string, s, k_maximum_length) != nullptr);
 		return *this;
 	}
 
 	c_static_string<k_maximum_length>& append(const char* s)
 	{
-		assert(s);
-		assert(csstrnzcat(m_string, s, k_maximum_length));
+		blamlib_assert(s);
+		blamlib_assert(csstrnzcat(m_string, s, k_maximum_length));
 		return *this;
 	}
 
@@ -93,7 +93,7 @@ public:
 	{
 		static char temporary[k_maximum_length];
 
-		assert(strncpy(temporary, m_string, k_maximum_length));
+		blamlib_assert(strncpy(temporary, m_string, k_maximum_length));
 
 		unsigned long old_length = length();
 		unsigned long new_length = 0;
@@ -128,7 +128,7 @@ public:
 
 		if (strip_length > 0)
 		{
-			assert(csmemmove(m_string, m_string + strip_length, k_maximum_length - strip_length));
+			blamlib_assert(csmemmove(m_string, m_string + strip_length, k_maximum_length - strip_length));
 			m_string[total_length - strip_length] = '\0';
 		}
 

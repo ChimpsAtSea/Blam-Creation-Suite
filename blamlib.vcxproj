@@ -232,7 +232,7 @@
       <PrecompiledHeaderOutputFile />
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5039;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -254,7 +254,7 @@
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5039;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -276,7 +276,7 @@
       <PrecompiledHeaderOutputFile />
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5039;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -300,7 +300,7 @@
       <PrecompiledHeaderOutputFile />
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
-      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4061;4201;4365;4514;4668;4710;4820;5039;5045;26812;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>

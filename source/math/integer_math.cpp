@@ -5,7 +5,7 @@ s_point2d *set_point2d(
 	short x,
 	short y)
 {
-	assert(point);
+	blamlib_assert(point);
 
 	point->x = x;
 	point->y = y;
@@ -18,7 +18,7 @@ s_point2d *offset_point2d(
 	short x,
 	short y)
 {
-	assert(point);
+	blamlib_assert(point);
 
 	point->x += x;
 	point->y += y;
@@ -33,7 +33,7 @@ s_rectangle2d *set_rectangle2d(
 	short bottom,
 	short right)
 {
-	assert(rectangle);
+	blamlib_assert(rectangle);
 
 	rectangle->top = top;
 	rectangle->left = left;
@@ -46,7 +46,7 @@ s_rectangle2d *set_rectangle2d(
 short rectangle2d_width(
 	s_rectangle2d *rectangle)
 {
-	assert(rectangle);
+	blamlib_assert(rectangle);
 
 	return rectangle->right - rectangle->left;
 }
@@ -54,7 +54,7 @@ short rectangle2d_width(
 short rectangle2d_height(
 	s_rectangle2d *rectangle)
 {
-	assert(rectangle);
+	blamlib_assert(rectangle);
 
 	return rectangle->bottom - rectangle->top;
 }

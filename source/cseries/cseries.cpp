@@ -7,7 +7,7 @@ char *tag_to_string(
 	tag m_value,
 	char *string)
 {
-	assert(string);
+	blamlib_assert(string);
 
 	for (size_t i = 0; i < sizeof(tag); i++)
 		string[3 - i] = static_cast<char>(m_value >> (i * 8));
@@ -19,8 +19,8 @@ char *tag_to_string(
 tag string_to_tag(
 	char const *string)
 {
-	assert(string);
-	assert(csstrnlen(string, sizeof(tag)) == sizeof(tag));
+	blamlib_assert(string);
+	blamlib_assert(csstrnlen(string, sizeof(tag)) == sizeof(tag));
 
 	tag result = 0;
 

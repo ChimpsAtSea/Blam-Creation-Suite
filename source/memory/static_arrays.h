@@ -24,19 +24,19 @@ public:
 
 	void set(long bit_index, bool m_value)
 	{
-		assert(VALID_INDEX(bit_index, k_maximum_count));
+		blamlib_assert(VALID_INDEX(bit_index, k_maximum_count));
 		BIT_VECTOR_SET_FLAG(m_bit_vector, bit_index, m_value);
 	}
 
 	bool test(long bit_index) const
 	{
-		assert(VALID_INDEX(bit_index, k_maximum_count));
+		blamlib_assert(VALID_INDEX(bit_index, k_maximum_count));
 		return BIT_VECTOR_TEST_FLAG(m_bit_vector, bit_index);
 	}
 
 	bool operator[](long bit_index) const
 	{
-		assert(VALID_INDEX(bit_index, k_maximum_count));
+		blamlib_assert(VALID_INDEX(bit_index, k_maximum_count));
 		return test(bit_index);
 	}
 };

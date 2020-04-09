@@ -9,15 +9,15 @@ c_event_handler *c_event_handler_hook::g_event_handler = nullptr;
 
 void c_event_handler_hook::attach_handler(c_event_handler *handler)
 {
-	assert(g_event_handler == nullptr);
-	assert(handler);
+	blamlib_assert(g_event_handler == nullptr);
+	blamlib_assert(handler);
 
 	g_event_handler = handler;
 }
 
 void c_event_handler_hook::detach_handler(c_event_handler *handler)
 {
-	assert(g_event_handler == handler);
+	blamlib_assert(g_event_handler == handler);
 
 	g_event_handler = nullptr;
 }

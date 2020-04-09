@@ -51,9 +51,9 @@ public:
     t_this &set(const wchar_t *wide_string)
     {
         size_t wide_string_length = wcslen(wide_string);
-        assert(wide_string_length <= k_maximum_length);
+        blamlib_assert(wide_string_length <= k_maximum_length);
 
-        assert(wcsncpy_s(m_wide_string, wide_string, wide_string_length) == 0);
+        blamlib_assert(wcsncpy_s(m_wide_string, wide_string, wide_string_length) == 0);
         m_wide_string[wide_string_length] = '\0';
 
         return *this;
@@ -64,7 +64,7 @@ public:
     {
         static_assert(k_length <= k_maximum_length);
 
-        assert(wcsncpy_s(m_wide_string, wide_string, k_length) == 0);
+        blamlib_assert(wcsncpy_s(m_wide_string, wide_string, k_length) == 0);
         m_wide_string[k_length] = '\0';
 
         return *this;
@@ -75,7 +75,7 @@ public:
     {
         static_assert(k_length <= k_maximum_length);
 
-        assert(wcsncpy_s(m_wide_string, wide_string, k_length) == 0);
+        blamlib_assert(wcsncpy_s(m_wide_string, wide_string, k_length) == 0);
         m_wide_string[k_length] = '\0';
 
         return *this;
@@ -83,7 +83,7 @@ public:
 
     bool starts_with(const wchar_t *wide_string) const
     {
-        assert(wide_string);
+        blamlib_assert(wide_string);
 
         size_t wide_string_length = wcslen(wide_string);
 
@@ -111,7 +111,7 @@ public:
 
     bool substring(size_t index, size_t length, wchar_t *out_wide_string) const
     {
-        assert(out_wide_string);
+        blamlib_assert(out_wide_string);
         
         bool result = false;
         size_t current_length = this->length();
@@ -142,7 +142,7 @@ public:
 
     ptrdiff_t index_of(const wchar_t *wide_string) const
     {
-        assert(wide_string);
+        blamlib_assert(wide_string);
 
         ptrdiff_t result = -1;
         const wchar_t *substring = wcsstr(m_wide_string, wide_string);
@@ -188,12 +188,12 @@ public:
 
     t_this &print(const wchar_t *format, ...)
     {
-        assert(format);
+        blamlib_assert(format);
 
         va_list args;
         va_start(args, format);
 
-        assert(vswprintf_s(m_wide_string, format, args) >= 0);
+        blamlib_assert(vswprintf_s(m_wide_string, format, args) >= 0);
 
         va_end(args);
 
@@ -202,14 +202,14 @@ public:
 
     t_this &append_print(const wchar_t *format, ...)
     {
-        assert(format);
+        blamlib_assert(format);
 
         va_list args;
         va_start(args, format);
 
         size_t current_length = length();
 
-        assert(vswprintf_s(m_wide_string + current_length, k_maximum_length - current_length, format, args) >= 0);
+        blamlib_assert(vswprintf_s(m_wide_string + current_length, k_maximum_length - current_length, format, args) >= 0);
 
         va_end(args);
 
@@ -239,7 +239,7 @@ public:
 #   ifdef __cpp_impl_three_way_comparison
     ptrdiff_t operator<=>(const wchar_t *wide_string) const
     {
-        assert(wide_string);
+        blamlib_assert(wide_string);
 
         return wcsncmp(m_wide_string, wide_string, k_maximum_length);
     }

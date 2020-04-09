@@ -19,7 +19,7 @@ public:
 	c_static_array(t_element* m_elements) :
 		c_static_array()
 	{
-		assert(m_elements);
+		blamlib_assert(m_elements);
 
 		csmemcpy(this->m_elements, m_elements, sizeof(t_element) * k_maximum_count);
 	}
@@ -60,7 +60,7 @@ public:
 	template <typename t_index>
 	t_element& operator[](t_index index)
 	{
-		assert(VALID_INDEX(index, k_maximum_count));
+		blamlib_assert(VALID_INDEX(index, k_maximum_count));
 
 		return m_elements[index];
 	}
@@ -68,7 +68,7 @@ public:
 	template <typename t_index>
 	t_element const& operator[](t_index index) const
 	{
-		assert(VALID_INDEX(index, k_maximum_count));
+		blamlib_assert(VALID_INDEX(index, k_maximum_count));
 
 		return m_elements[index];
 	}

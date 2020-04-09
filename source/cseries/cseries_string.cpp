@@ -45,50 +45,50 @@ int ascii_toupper(int c)
 
 char *csstrchr(char *string, int c)
 {
-	assert(string);
+	blamlib_assert(string);
 	return strchr(string, c);
 }
 
 int csstrcmp(char const *s1, char const *s2)
 {
-	assert(s1 && s2);
+	blamlib_assert(s1 && s2);
 	return strcmp(s1, s2);
 }
 
 int csstricmp(char *s1, char *s2)
 {
-	assert(s1 && s2);
+	blamlib_assert(s1 && s2);
 	return _stricmp(s1, s2);
 }
 
 unsigned int csstrlen(char const *string)
 {
-	assert(string);
+	blamlib_assert(string);
 	return (unsigned int)strlen(string);
 }
 
 int csstrncmp(char const *s1, char const *s2, unsigned int max_length)
 {
-	assert(s1 && s2);
+	blamlib_assert(s1 && s2);
 	return strncmp(s1, s2, max_length);
 }
 
 int csstrnicmp(char *s1, char *s2, unsigned int max_length)
 {
-	assert(s1 && s2);
+	blamlib_assert(s1 && s2);
 	return _strnicmp(s1, s2, max_length);
 }
 
 unsigned int csstrnlen(char const *string, unsigned int max_length)
 {
-	assert(string);
+	blamlib_assert(string);
 	return (unsigned int)strnlen_s(string, max_length);
 }
 
 char *csstrnlwr(char *string, unsigned int max_length)
 {
-	assert(string);
-	assert(max_length <= k_maximum_string_size);
+	blamlib_assert(string);
+	blamlib_assert(max_length <= k_maximum_string_size);
 
 	for (unsigned int remaining = max_length;
 		(remaining > 0) && (string[remaining - 1] != '\0');
@@ -102,8 +102,8 @@ char *csstrnlwr(char *string, unsigned int max_length)
 
 char *csstrnupr(char *string, unsigned int max_length)
 {
-	assert(string);
-	assert(max_length <= k_maximum_string_size);
+	blamlib_assert(string);
+	blamlib_assert(max_length <= k_maximum_string_size);
 
 	for (unsigned int remaining = max_length;
 		(remaining > 0) && (string[remaining - 1] != '\0');
@@ -117,46 +117,46 @@ char *csstrnupr(char *string, unsigned int max_length)
 
 char *csstrnzcat(char *s1, char *s2, unsigned int s1_size)
 {
-	assert(s1 && s2);
-	assert(strncat_s(s1, s1_size, s2, strlen(s2)) == 0);
+	blamlib_assert(s1 && s2);
+	blamlib_assert(strncat_s(s1, s1_size, s2, strlen(s2)) == 0);
 	return s1;
 }
 
 char *csstrnzcpy(char *s1, char const *s2, unsigned int s1_size)
 {
-	assert(s1 && s2);
-	assert(strncpy_s(s1, s1_size, s2, strlen(s2)) == 0);
+	blamlib_assert(s1 && s2);
+	blamlib_assert(strncpy_s(s1, s1_size, s2, strlen(s2)) == 0);
 	return s1;
 }
 
 char *csstrnzncat(char *s1, char *s2, unsigned int s1_size, unsigned int count)
 {
-	assert(s1 && s2);
-	assert(strncat_s(s1, s1_size, s2, count) == 0);
+	blamlib_assert(s1 && s2);
+	blamlib_assert(strncat_s(s1, s1_size, s2, count) == 0);
 	return s1;
 }
 
 char *csstrpbrk(char *string, char const *control)
 {
-	assert(string && control);
+	blamlib_assert(string && control);
 	return strpbrk(string, control);
 }
 
 char *csstrrchr(char *string, int c)
 {
-	assert(string);
+	blamlib_assert(string);
 	return strrchr(string, c);
 }
 
 char *csstrstr(char *string, char const *substring)
 {
-	assert(string && substring);
+	blamlib_assert(string && substring);
 	return strstr(string, substring);
 }
 
 char *csstrtok(char *string, char const *delimiter)
 {
-	assert(string || delimiter);
+	blamlib_assert(string || delimiter);
 	return strtok(string, delimiter);
 }
 
@@ -169,7 +169,7 @@ char *csnzprintf(
 	va_list args;
 	va_start(args, format);
 
-	assert(cvsnzprintf(buffer, size, format, args) != 0);
+	blamlib_assert(cvsnzprintf(buffer, size, format, args) != 0);
 
 	va_end(args);
 
@@ -182,9 +182,9 @@ long cvsnzprintf(
 	char const *format,
 	void *args)
 {
-	assert(buffer);
-	assert(format);
-	assert(size > 0 && size <= k_maximum_string_size);
+	blamlib_assert(buffer);
+	blamlib_assert(format);
+	blamlib_assert(size > 0 && size <= k_maximum_string_size);
 
 	return vsnprintf_s(buffer, size, size - 1, format, (va_list)args);
 }
