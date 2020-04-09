@@ -1,12 +1,12 @@
 #include "mantlereflect-private-pch.h"
 
-c_mantle_virtual_tag_interface_generator::c_mantle_virtual_tag_interface_generator(const wchar_t* output_header_file, const wchar_t* output_source_file, std::vector<c_reflection_type_container*>& reflection_types) :
-	c_ast_source_generator(output_header_file, output_source_file, reflection_types)
+c_mantle_virtual_tag_interface_generator::c_mantle_virtual_tag_interface_generator(const wchar_t* output_header_file, const wchar_t* output_source_file) :
+	c_ast_source_generator(output_header_file, output_source_file)
 {
 
 }
 
-void c_mantle_virtual_tag_interface_generator::run()
+void c_mantle_virtual_tag_interface_generator::run(std::vector<c_reflection_type_container*>& reflection_type_containers)
 {
 	header_string_stream << "#pragma once" << std::endl << std::endl;
 
@@ -31,7 +31,7 @@ void c_mantle_virtual_tag_interface_generator::run()
 	header_string_stream << "};" << std::endl << std::endl;
 
 	source_string_stream << "#include <MantleLib/mantlelib-private-pch.h>" << std::endl << std::endl;
-	for (c_reflection_type_container* reflection_type_container : reflection_types)
+	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
 	{
 		if (reflection_type_container->raw_tag_group.empty()) continue; // only create virtual tag interfaces for tag types
 

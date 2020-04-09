@@ -27,6 +27,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LLVM\llvm_compiler_interface.cpp" />
+    <ClCompile Include="LLVM\llvm_compile_action.cpp" />
+    <ClCompile Include="LLVM\llvm_ast_consumer.cpp" />
+    <ClCompile Include="LLVM\llvm_class_visitor.cpp" />
     <ClCompile Include="reflection_enum_container.cpp" />
     <ClCompile Include="reflection_field_container.cpp" />
     <ClCompile Include="reflection_type_container.cpp" />
@@ -47,6 +51,10 @@
     <ClCompile Include="SourceGenerators\mantle_virtual_tag_interface_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LLVM\llvm_compiler_interface.h" />
+    <ClInclude Include="LLVM\llvm_compile_action.h" />
+    <ClInclude Include="LLVM\llvm_ast_consumer.h" />
+    <ClInclude Include="LLVM\llvm_class_visitor.h" />
     <ClInclude Include="reflection_enum_container.h" />
     <ClInclude Include="reflection_field_container.h" />
     <ClInclude Include="reflection_type_container.h" />

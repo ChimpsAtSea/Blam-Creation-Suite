@@ -24,9 +24,15 @@
 #define __TBB_SOURCE_DIRECTLY_INCLUDED 1
 #include <tbb/tbb.h>
 
+
 #include "util.h"
 
 #include "mantlereflect-public-pch.h"
+
+#include "LLVM/llvm_compiler_interface.h"
+#include "LLVM/llvm_class_visitor.h"
+#include "LLVM/llvm_ast_consumer.h"
+#include "LLVM/llvm_compile_action.h"
 
 #include "reflection_field_container.h"
 #include "reflection_type_container.h"

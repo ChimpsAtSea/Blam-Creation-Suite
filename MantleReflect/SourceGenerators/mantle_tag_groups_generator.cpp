@@ -1,25 +1,25 @@
 #include "mantlereflect-private-pch.h"
 
-c_mantle_tag_groups_generator::c_mantle_tag_groups_generator(const wchar_t* output_header_file, std::vector<c_reflection_type_container*>& reflection_types) :
-	c_ast_source_generator(output_header_file, nullptr, reflection_types)
+c_mantle_tag_groups_generator::c_mantle_tag_groups_generator(const wchar_t* output_header_file) :
+	c_ast_source_generator(output_header_file, nullptr)
 {
 
 }
 
-void c_mantle_tag_groups_generator::run()
+void c_mantle_tag_groups_generator::run(std::vector<c_reflection_type_container*>& reflection_type_containers)
 {
 	header_string_stream << "#pragma once" << std::endl << std::endl;
 
-	write_tag_group_enum(header_string_stream);
+	write_tag_group_enum(header_string_stream, reflection_type_containers);
 }
 
-void c_mantle_tag_groups_generator::write_tag_group_enum(std::stringstream& stringstream)
+void c_mantle_tag_groups_generator::write_tag_group_enum(std::stringstream& stringstream, std::vector<c_reflection_type_container*>& reflection_type_containers)
 {
 	stringstream << std::endl;
 	stringstream << "enum e_tag_group : int32_t" << std::endl;
 	stringstream << "{" << std::endl;
 	stringstream << "\t_tag_group_invalid = -1," << std::endl;
-	for (c_reflection_type_container* reflection_type_container : reflection_types)
+	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
 	{
 		assert(reflection_type_container);
 

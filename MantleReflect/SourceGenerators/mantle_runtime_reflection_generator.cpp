@@ -1,12 +1,12 @@
 #include "mantlereflect-private-pch.h"
 
-c_mantle_runtime_reflection_generator::c_mantle_runtime_reflection_generator(const wchar_t* output_header_file, const wchar_t* output_source_file, std::vector<c_reflection_type_container*>& reflection_types) :
-	c_ast_source_generator(output_header_file, output_source_file, reflection_types)
+c_mantle_runtime_reflection_generator::c_mantle_runtime_reflection_generator(const wchar_t* output_header_file, const wchar_t* output_source_file) :
+	c_ast_source_generator(output_header_file, output_source_file)
 {
 
 }
 
-void c_mantle_runtime_reflection_generator::run()
+void c_mantle_runtime_reflection_generator::run(std::vector<c_reflection_type_container*>& reflection_type_containers)
 {
 	header_string_stream << "#pragma once" << std::endl << std::endl;
 	header_string_stream << "template<typename T>" << std::endl;
@@ -21,14 +21,14 @@ void c_mantle_runtime_reflection_generator::run()
 	source_string_stream << "#include <MantleReflect/ReflectionTypes.h>" << std::endl;
 	source_string_stream << "#include \"Tags.h\"" << std::endl << std::endl;
 
-	for (c_reflection_type_container* reflection_type_container : reflection_types)
+	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
 	{
 		if (!reflection_type_container->is_enum && !reflection_type_container->is_bitfield) // #TODO: Cleanup what is considered a structure type
 		{
 			write_reflection_structure_type_entry_header(source_string_stream, *reflection_type_container);
 		}
 	}
-	for (c_reflection_type_container* reflection_type_container : reflection_types)
+	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
 	{
 		if (reflection_type_container->is_enum || reflection_type_container->is_bitfield)
 		{
@@ -36,7 +36,7 @@ void c_mantle_runtime_reflection_generator::run()
 		}
 	}
 	source_string_stream << std::endl;
-	for (c_reflection_type_container* reflection_type_container : reflection_types)
+	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
 	{
 		if (reflection_type_container->is_enum || reflection_type_container->is_bitfield)
 		{
@@ -49,20 +49,20 @@ void c_mantle_runtime_reflection_generator::run()
 	}
 
 	header_string_stream << "const s_reflection_structure_type* get_tag_reflection_data_by_tag_group(uint32_t tagGroup);" << std::endl;
-	write_tag_type_lookup_function(source_string_stream);
+	write_tag_type_lookup_function(source_string_stream, reflection_type_containers);
 
 	header_string_stream << "#endif" << std::endl; // __visual_assist__
 	source_string_stream << "#endif" << std::endl; // __visual_assist__
 }
 
-void c_mantle_runtime_reflection_generator::write_tag_type_lookup_function(std::stringstream& stringstream)
+void c_mantle_runtime_reflection_generator::write_tag_type_lookup_function(std::stringstream& stringstream, std::vector<c_reflection_type_container*>& reflection_type_containers)
 {
 	stringstream << std::endl;
 	stringstream << "const s_reflection_structure_type* get_tag_reflection_data_by_tag_group(uint32_t tagGroup)" << std::endl;
 	stringstream << "{" << std::endl;
 	stringstream << "\tswitch (tagGroup)" << std::endl;
 	stringstream << "\t{" << std::endl;
-	for (c_reflection_type_container* reflection_type_container_ptr : reflection_types)
+	for (c_reflection_type_container* reflection_type_container_ptr : reflection_type_containers)
 	{
 		c_reflection_type_container& reflection_type_container = *reflection_type_container_ptr;
 		if (reflection_type_container.raw_tag_group.empty()) continue;

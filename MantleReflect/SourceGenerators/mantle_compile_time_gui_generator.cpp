@@ -1,12 +1,12 @@
 #include "mantlereflect-private-pch.h"
 
-c_mantle_compile_time_gui_generator::c_mantle_compile_time_gui_generator(const wchar_t* output_header_file, const wchar_t* output_source_file, std::vector<c_reflection_type_container*>& reflection_types) :
-	c_ast_source_generator(output_header_file, output_source_file, reflection_types)
+c_mantle_compile_time_gui_generator::c_mantle_compile_time_gui_generator(const wchar_t* output_header_file, const wchar_t* output_source_file) :
+	c_ast_source_generator(output_header_file, output_source_file)
 {
 
 }
 
-void c_mantle_compile_time_gui_generator::run()
+void c_mantle_compile_time_gui_generator::run(std::vector<c_reflection_type_container*>& reflection_type_containers)
 {
 
 	header_string_stream << "#pragma once" << std::endl << std::endl;
@@ -68,7 +68,7 @@ void c_mantle_compile_time_gui_generator::run()
 	source_string_stream << "" << std::endl;
 	source_string_stream << "" << std::endl;
 
-	for (c_reflection_type_container* reflection_type_container : reflection_types)
+	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
 	{
 		if (!reflection_type_container->is_enum && !reflection_type_container->is_bitfield)
 		{
@@ -77,7 +77,7 @@ void c_mantle_compile_time_gui_generator::run()
 	}
 	source_string_stream << std::endl;
 
-	for (c_reflection_type_container* reflection_type_container : reflection_types)
+	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
 	{
 		if (!reflection_type_container->is_enum && !reflection_type_container->is_bitfield)
 		{

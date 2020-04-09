@@ -48,6 +48,18 @@
     <ClCompile Include="reflection_enum_container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LLVM\llvm_compile_action.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LLVM\llvm_compiler_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LLVM\llvm_ast_consumer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LLVM\llvm_class_visitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReflectionTypes.h">
@@ -87,6 +99,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="reflection_enum_container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LLVM\llvm_compile_action.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LLVM\llvm_compiler_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LLVM\llvm_ast_consumer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LLVM\llvm_class_visitor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

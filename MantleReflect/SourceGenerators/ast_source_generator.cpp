@@ -1,9 +1,8 @@
 #include "mantlereflect-private-pch.h"
 
-c_ast_source_generator::c_ast_source_generator(const wchar_t* output_header_file, const wchar_t* output_source_file, std::vector<c_reflection_type_container*>& reflection_types) :
+c_ast_source_generator::c_ast_source_generator(const wchar_t* output_header_file, const wchar_t* output_source_file) :
 	output_header_file(output_header_file),
-	output_source_file(output_source_file),
-	reflection_types(reflection_types)
+	output_source_file(output_source_file)
 {
 
 }
