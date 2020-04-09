@@ -46,7 +46,7 @@ int main(int argc, const char** argv)
 		wprintf(L"Virtual Tag Interface Output Header: '%s'\n", virtual_tag_interface_header.c_str());
 		wprintf(L"Virtual Tag Interface Output Source: '%s'\n", virtual_tag_interface_source.c_str());
 
-		c_llvm_compiler_interface legacy_compiler_interface = c_llvm_compiler_interface(argv[0], reflection_source_file.c_str());
+		c_legacy_compiler_interface legacy_compiler_interface = c_legacy_compiler_interface(argv[0], reflection_source_file.c_str());
 
 		c_mantle_runtime_reflection_generator runtime_reflection_generator = { reflection_output_header.c_str(), reflection_output_source.c_str() };
 		c_mantle_tag_groups_generator tag_groups_generator = { tag_groups_header.c_str() };

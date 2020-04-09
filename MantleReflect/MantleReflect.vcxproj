@@ -27,6 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SourceGenerators\legacy_compiler_interface.cpp" />
     <ClCompile Include="LLVM\llvm_compiler_interface.cpp" />
     <ClCompile Include="LLVM\llvm_compile_action.cpp" />
     <ClCompile Include="LLVM\llvm_ast_consumer.cpp" />
@@ -51,6 +52,7 @@
     <ClCompile Include="SourceGenerators\mantle_virtual_tag_interface_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SourceGenerators\legacy_compiler_interface.h" />
     <ClInclude Include="LLVM\llvm_compiler_interface.h" />
     <ClInclude Include="LLVM\llvm_compile_action.h" />
     <ClInclude Include="LLVM\llvm_ast_consumer.h" />

@@ -60,6 +60,9 @@
     <ClCompile Include="LLVM\llvm_class_visitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SourceGenerators\legacy_compiler_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ReflectionTypes.h">
@@ -111,6 +114,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LLVM\llvm_class_visitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceGenerators\legacy_compiler_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
