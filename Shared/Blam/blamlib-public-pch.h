@@ -4,7 +4,9 @@
 #undef auto
 #endif
 
+#ifdef ASSERT
 #define blamlib_assert ASSERT
+#endif
 
 #include <blamlib/source/cseries/cseries.h>
 #include <blamlib/source/math/real_math.h>

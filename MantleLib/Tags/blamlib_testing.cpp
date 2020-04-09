@@ -1,3 +1,5 @@
+#ifndef __mantle_reflect__
+
 #include "mantlelib-private-pch.h"
 
 
@@ -15,3 +17,5 @@ void register_blamlib_types()
 	register_tag(k_render_method_group_tag, runtime_structure_reflection<c_render_method_shader>());
 
 }
+
+#endif

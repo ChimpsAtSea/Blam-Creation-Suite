@@ -23,7 +23,7 @@
     <ClCompile Include="!UserInterface\mantle_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_gui.cpp" />
     <ClCompile Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.cpp" />
-    <ClCompile Include="blamlib_testing.cpp">
+    <ClCompile Include="Tags\blamlib_testing.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -60,6 +60,16 @@
     <ClCompile Include="!UserInterface\Tools\mantle_halo_script_editor.cpp" />
     <ClCompile Include="!UserInterface\TagEditor\mantle_shader_gui_tab.cpp" />
     <ClCompile Include="render_method_definition_group_interface.cpp" />
+    <ClCompile Include="blamlib_reflection_gen.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Tags\GeneratedConversion.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -429,7 +439,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)MantleLib\Tags\</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
     </PreBuildEvent>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -450,7 +460,7 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)MantleLib\Tags\</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
     </PreBuildEvent>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -475,7 +485,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)MantleLib\Tags\</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -497,7 +507,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)MantleLib\Tags\</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

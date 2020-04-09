@@ -4,8 +4,6 @@ using namespace llvm;
 using namespace clang;
 using namespace clang::tooling;
 
-// llvm/clang things
-llvm::cl::OptionCategory c_llvm_compiler_interface::s_mantle_tool_category("mantle options");
 LangOptions const c_llvm_compiler_interface::k_clang_language_options;
 PrintingPolicy const c_llvm_compiler_interface::k_clang_printing_policy = k_clang_language_options;
 
@@ -31,27 +29,52 @@ void c_llvm_compiler_interface::register_ast_source_generator(c_ast_source_gener
 	ast_source_generators.push_back(source_generator);
 }
 
-void c_llvm_compiler_interface::run()
+void c_llvm_compiler_interface::set_source_file(std::string _source_file)
 {
-	execute_llvm_compiler();
-	execute_type_generator();
-	tbb::parallel_for_each(ast_source_generators.begin(), ast_source_generators.end(), std::bind(&c_llvm_compiler_interface::execute_source_generator, this, std::placeholders::_1));
+	source_file = _source_file;
 }
 
-void c_llvm_compiler_interface::execute_llvm_compiler()
+void c_llvm_compiler_interface::add_include_directory(std::string directory)
 {
-	const char* argv[] =
-	{
-		executable_path.c_str(),
-		reflection_source_file.c_str()
-	};
-	int argc = _countof(argv);
+	add_command_line("-isystem");
+	add_command_line(directory);
+}
 
-	CommonOptionsParser common_options_parser = CommonOptionsParser(argc, argv, s_mantle_tool_category);
-	ClangTool clang_tool = ClangTool(common_options_parser.getCompilations(), common_options_parser.getSourcePathList());
+void c_llvm_compiler_interface::add_macro(std::string macro)
+{
+	add_command_line(std::string("-D") + macro);
+}
+
+void c_llvm_compiler_interface::add_command_line(std::string _command_line)
+{
+	command_line.push_back(_command_line);
+}
+
+int c_llvm_compiler_interface::run()
+{
+	int clang_tool_result = execute_llvm_compiler();
+	if (clang_tool_result == 0)
+	{
+		execute_type_generator();
+		tbb::parallel_for_each(ast_source_generators.begin(), ast_source_generators.end(), std::bind(&c_llvm_compiler_interface::execute_source_generator, this, std::placeholders::_1));
+	}
+	return clang_tool_result;
+}
+
+int c_llvm_compiler_interface::execute_llvm_compiler()
+{
+	// llvm/clang things
+	llvm::cl::OptionCategory s_mantle_tool_category("mantle options");
+
+	FixedCompilationDatabase fixed_compilation_database = FixedCompilationDatabase(".", command_line);
+
+	ClangTool clang_tool = ClangTool(fixed_compilation_database, { source_file });
 
 	int clang_tool_result = clang_tool.run(c_llvm_compile_action::new_compiler_action_factory(this).get());
-	assert(clang_tool_result == 0);
+
+	//assert(clang_tool_result == 0);
+
+	return clang_tool_result;
 }
 
 void c_llvm_compiler_interface::execute_source_generator(c_ast_source_generator* source_generator)

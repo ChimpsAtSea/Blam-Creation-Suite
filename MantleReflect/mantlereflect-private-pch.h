@@ -34,9 +34,12 @@
 #include "LLVM/llvm_ast_consumer.h"
 #include "LLVM/llvm_compile_action.h"
 
-#include "reflection_field_container.h"
-#include "reflection_type_container.h"
-#include "reflection_enum_container.h"
+#include "SourceGenerators/reflection_field_container.h"
+#include "SourceGenerators/reflection_type_container.h"
+#include "SourceGenerators/reflection_enum_container.h"
+
+#include "BlamlibGenerators/blamlib_compiler_interface.h"
+
 // --- LEGACY GENERATORS ---
 #include "SourceGenerators/legacy_compiler_interface.h"
 #include "SourceGenerators/ast_source_generator.h"
