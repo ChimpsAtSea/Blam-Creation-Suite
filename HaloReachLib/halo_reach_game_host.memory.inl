@@ -59,13 +59,13 @@ uintptr_t g_cache_file_global_loaded_state_offset(e_engine_type engine_type, e_b
 }
 char*& g_cache_file_global_loaded_state = reference_symbol<char*>("g_cache_file_global_loaded_state", g_cache_file_global_loaded_state_offset);
 
-char* tag_address_get(uint32_t tagInstanceAddress)
+char* tag_address_get(uint32_t tag_instance_address)
 {
 	if (!is_valid(tag_address_table))
 	{
 		return nullptr;
 	}
-	uint32_t* pData = &tag_address_table[tagInstanceAddress >> 28][tagInstanceAddress];
+	uint32_t* pData = &tag_address_table[tag_instance_address >> 28][tag_instance_address];
 	return reinterpret_cast<char*>(pData);
 }
 
@@ -75,8 +75,8 @@ char* tag_definition_get(uint16_t index)
 	{
 		return nullptr;
 	}
-	uint32_t tagInstanceAddress = tag_instances[index].address;
-	return tag_address_get(tagInstanceAddress);
+	uint32_t tag_instance_address = tag_instances[index].address;
+	return tag_address_get(tag_instance_address);
 }
 
 template<typename T>
@@ -86,16 +86,16 @@ T& tag_definition_get(uint16_t index)
 }
 
 template<typename T>
-T& tag_block_definition_get(s_tag_block_definition<T>& rTagBlock, uint16_t index)
+T& tag_block_definition_get(s_tag_block_definition<T>& tag_block_ref, uint16_t index)
 {
-	T* pTagBlockDefinition = reinterpret_cast<T*>(tag_address_get(rTagBlock.address));
+	T* tag_block_definition_ptr = reinterpret_cast<T*>(tag_address_get(tag_block_ref.address));
 
-	for (size_t i = 0; i < rTagBlock.count; i++)
+	for (size_t i = 0; i < tag_block_ref.count; i++)
 	{
 		if (i == index) break;
-		pTagBlockDefinition++;
+		tag_block_definition_ptr++;
 	}
-	return *pTagBlockDefinition;
+	return *tag_block_definition_ptr;
 }
 
 s_cache_file_header* cache_file_header_get()

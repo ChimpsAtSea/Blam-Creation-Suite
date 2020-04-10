@@ -54,6 +54,23 @@ void haloreach_debug_load_camera(int(__stdcall *player_mapping_get_local_player)
 	write_line_verbose("Unable to load camera");
 }
 
+
+// TODO: Add other build offsets
+uintptr_t g_centered_crosshair_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1829FFEB8 + 0x7C);
+	return ~uintptr_t();
+}
+int& g_centered_crosshair = reference_symbol<int>("g_centered_crosshair", g_centered_crosshair_offset);
+
+// TODO: Add other build offsets
+uintptr_t g_field_of_view_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1829FFEB8 + 0x80);
+	return ~uintptr_t();
+}
+float& g_field_of_view = reference_symbol<float>("g_field_of_view", g_field_of_view_offset);
+
 c_haloreach_camera_command::c_haloreach_camera_command() :
 	g_player_mapping_get_local_player(nullptr)
 {
@@ -71,7 +88,7 @@ bool c_haloreach_camera_command::execute_command(const std::vector<std::string> 
 
 	if (!arguments.front().compare(k_haloreach_camera_command_name))
 	{
-		if (arguments.size() >= 2)
+		if (arguments.size() == 2)
 		{
 			const std::string &arg1 = arguments[1];
 
@@ -85,6 +102,28 @@ bool c_haloreach_camera_command::execute_command(const std::vector<std::string> 
 			{
 				write_line_verbose("camera load is not currently implemented");
 				//haloreach_debug_save_camera(g_player_mapping_get_local_player, g_observer_try_and_get_camera);
+			}
+		}
+		else if (arguments.size() == 3)
+		{
+			const std::string &arg1 = arguments[1];
+			const std::string &arg2 = arguments[2];
+
+			if (is_valid(g_centered_crosshair) && !arg1.compare("crosshair"))
+			{
+				int centered_crosshair = std::stoi(arg2);
+				if (centered_crosshair < 0) centered_crosshair = 0;
+				if (centered_crosshair > 1) centered_crosshair = 1;
+
+				g_centered_crosshair = centered_crosshair;
+			}
+			if (is_valid(g_field_of_view) && !arg1.compare("fov"))
+			{
+				float field_of_view = std::stof(arg2);
+				if (field_of_view < 55.f) field_of_view = 55.f;
+				if (field_of_view > 120.f) field_of_view = 120.f;
+
+				g_field_of_view = field_of_view;
 			}
 		}
 		else return false;

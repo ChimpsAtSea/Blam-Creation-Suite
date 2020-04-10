@@ -2,12 +2,10 @@
 
 // Custom Stuff
 WORD g_frameLimit = 60;
-int g_fieldOfView = 78;
 int g_controlsLayout = 0;
 int g_useController = 0;
 bool g_pancamEnabled = false;
 bool g_keyboardPrintKeyState = false;
-bool g_CenteredCrosshair = false;
 
 void _simple_pattern_match_readonly_data_copy(
 	void* pEngineAddress,
@@ -392,12 +390,10 @@ FunctionHookEx<mcc_map_id_parse_from_reach_offset, int __fastcall (int a1)> mcc_
 void ReadConfig()
 {
 	g_frameLimit = __max(30, Settings::ReadIntegerValue(SettingsSection::Game, "FrameLimit", c_render::s_deviceMode.dmDisplayFrequency));
-	g_fieldOfView = Settings::ReadIntegerValue(SettingsSection::Camera, "FieldOfView", 78);
 	g_controlsLayout = Settings::ReadIntegerValue(SettingsSection::Player, "ControlsLayout", 0);
 	g_pancamEnabled = Settings::ReadBoolValue(SettingsSection::Debug, "PancamEnabled", false);
 	g_keyboardPrintKeyState = Settings::ReadBoolValue(SettingsSection::Debug, "PrintKeyState", 0);
 	g_useController = Settings::ReadIntegerValue(SettingsSection::Player, "UseController", 0);
-	g_CenteredCrosshair = Settings::ReadBoolValue(SettingsSection::Camera, "CenteredCrosshair", false);
 	//ReadInputBindings();
 }
 
@@ -806,27 +802,6 @@ void __fastcall hs_print_evaluate(short opcode, unsigned short expression_index,
 		hs_return(expression_index, 0);
 	}
 }
-
-uintptr_t camera_definition_validate_offset(e_engine_type engine_type, e_build build)
-{
-	if (engine_type == _engine_type_halo_reach)
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1270_0_0: return 0x1800E6950;
-		case _build_mcc_1_1305_0_0: return 0x1800E6A00;
-		case _build_mcc_1_1389_0_0: return 0x1800E7F10;
-		}
-	}
-	return ~uintptr_t();
-}
-FunctionHookEx<camera_definition_validate_offset, void __fastcall (s_camera_definition * camera)> camera_definition_validate = { "camera_definition_validate", [](s_camera_definition* camera)
-{
-	camera->LookShift = g_CenteredCrosshair ? 0.f : 0.17f;
-	//camera->FOVRadians = g_fieldOfView * 0.017453292f;
-
-	camera_definition_validate(camera);
-} };
 
 void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isMCC)
 {
