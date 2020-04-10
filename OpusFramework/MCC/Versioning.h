@@ -122,6 +122,17 @@ inline const char* build_to_string(e_build build)
 	return "<unknown e_build value";
 }
 
+inline const char* build_configuration_get()
+{
+#ifdef _DEBUG
+	const char* build_configuration = "DEBUG";
+#else
+	const char* build_configuration = "RELEASE";
+#endif
+
+	return build_configuration;
+}
+
 constexpr uintptr_t GetEngineBaseAddress(e_engine_type engine_type)
 {
 	switch (engine_type)

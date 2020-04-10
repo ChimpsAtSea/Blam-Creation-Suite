@@ -830,13 +830,6 @@ FunctionHookEx<camera_definition_validate_offset, void __fastcall (s_camera_defi
 
 void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isMCC)
 {
-	const char* build_string = build_to_string(build); //#TODO: MCC product version to string to snag build numbers we don't know about
-
-	// #TODO: Opus build number, debug/release information
-	std::string window_title = "Halo Reach : ";
-	window_title += build_string;
-	c_window::SetWindowTitle(window_title.c_str());
-
 	ReadConfig();
 	//DebugUI::RegisterCallback(halo_reach_debug_callback);
 

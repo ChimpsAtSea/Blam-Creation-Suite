@@ -12,12 +12,22 @@ c_opus_game_engine_host::c_opus_game_engine_host(e_engine_type engine_type, e_bu
 	total_frame_cpu_time(0.0),
 	game_engine(nullptr)
 {
+	const char* engine_string = engine_type_to_nice_name(engine_type);
+	const char* build_string = build_to_string(build); //#TODO: MCC product version to string to snag build numbers we don't know about
+	const char* build_configuration = build_configuration_get();
 
+	std::string window_title = engine_string;
+	window_title.append(" : ");
+	window_title.append(build_string);
+	window_title.append(" ");
+	window_title.append(build_configuration);
+	c_window::SetWindowTitle(window_title.c_str());
 }
 
 c_opus_game_engine_host::~c_opus_game_engine_host()
 {
-
+	std::string window_title = "Opus";
+	c_window::SetWindowTitle(window_title.c_str());
 }
 
 char c_opus_game_engine_host::FrameStart()
