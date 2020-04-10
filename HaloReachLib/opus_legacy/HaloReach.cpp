@@ -270,54 +270,54 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 } };
 
 
-uintptr_t convert_mcc_map_id_to_reach_map_id_offset(e_engine_type engine_type, e_build build)
+uintptr_t mcc_map_id_parse_to_reach_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1367_0_0, 0x18004CD50);
 	if (engine_type == _engine_type_halo_reach)
 	{
 		using namespace ketchup;
 		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine_type)));			// 1.1270.0.0
-		ps.AddInstruction(new _or("x", 0x83, 0xCA, 0xFF));																//.text:000000018004BF10 83 CA FF                    or      edx, 0FFFFFFFFh
-		ps.AddInstruction(new _add("x", 0x81, 0xC1, 0x4E, 0xFF, 0xF, 0xFF));												//.text:000000018004BF13 81 C1 4E FF+                add     ecx, 0FFFFFF4Eh ; switch 42 cases
-		ps.AddInstruction(new _cmp("x", 0x83, 0xF9, 0x29));																//.text:000000018004BF19 83 F9 29                    cmp     ecx, 29h
-		ps.AddInstruction(new _ja("x", 0x0F, 0x87, 0x64, 0x01, 0x00, 0x00));												//.text:000000018004BF1C 0F 87 64 01+                ja      def_18004BF37   ; jumptable 00007FFC6804BF37 default case
-		ps.AddInstruction(new _movsxd("x", 0x48, 0x63, 0xC1));																//.text:000000018004BF22 48 63 C1                    movsxd  rax, ecx
-		ps.AddInstruction(new _lea("x", 0x4C, 0x8D, 0x05, 0xD4, 0x40, 0xFB, 0xFF));										//.text:000000018004BF25 4C 8D 05 D4+                lea     r8, __ImageBase
-		ps.AddInstruction(new _mov("x", 0x41, 0x8B, 0x8C, 0x80, 0x8C, 0xC0, 0x04, 0x00));									//.text:000000018004BF2C 41 8B 8C 80+                mov     ecx, [r8+rax*4+4C08Ch]
-		ps.AddInstruction(new _add("x", 0x49, 0x03, 0xC8));																//.text:000000018004BF34 49 03 C8                    add     rcx, r8
-		ps.AddInstruction(new _jmp("x", 0xFF, 0xE1));																		//.text:000000018004BF37 FF E1                       jmp     rcx             ; switch jump
+		ps.AddInstruction(new _or("x", 0x83, 0xCA, 0xFF));																		//.text:000000018004BF10 83 CA FF                    or      edx, 0FFFFFFFFh
+		ps.AddInstruction(new _add("x", 0x81, 0xC1, 0x4E, 0xFF, 0xF, 0xFF));													//.text:000000018004BF13 81 C1 4E FF+                add     ecx, 0FFFFFF4Eh ; switch 42 cases
+		ps.AddInstruction(new _cmp("x", 0x83, 0xF9, 0x29));																		//.text:000000018004BF19 83 F9 29                    cmp     ecx, 29h
+		ps.AddInstruction(new _ja("x", 0x0F, 0x87, 0x64, 0x01, 0x00, 0x00));													//.text:000000018004BF1C 0F 87 64 01+                ja      def_18004BF37   ; jumptable 00007FFC6804BF37 default case
+		ps.AddInstruction(new _movsxd("x", 0x48, 0x63, 0xC1));																	//.text:000000018004BF22 48 63 C1                    movsxd  rax, ecx
+		ps.AddInstruction(new _lea("x", 0x4C, 0x8D, 0x05, 0xD4, 0x40, 0xFB, 0xFF));												//.text:000000018004BF25 4C 8D 05 D4+                lea     r8, __ImageBase
+		ps.AddInstruction(new _mov("x", 0x41, 0x8B, 0x8C, 0x80, 0x8C, 0xC0, 0x04, 0x00));										//.text:000000018004BF2C 41 8B 8C 80+                mov     ecx, [r8+rax*4+4C08Ch]
+		ps.AddInstruction(new _add("x", 0x49, 0x03, 0xC8));																		//.text:000000018004BF34 49 03 C8                    add     rcx, r8
+		ps.AddInstruction(new _jmp("x", 0xFF, 0xE1));																			//.text:000000018004BF37 FF E1                       jmp     rcx             ; switch jump
 																																//.text:000000018004BF39             ; ---------------------------------------------------------------------------
 																																//.text:000000018004BF39
 																																//.text:000000018004BF39             loc_18004BF39:                          ; CODE XREF: convert_map_id_from_mcc+27↑j
 																																//.text:000000018004BF39                                                     ; DATA XREF: .text:jpt_18004BF37↓o
-		ps.AddInstruction(new _mov("x", 0xFBA, 0x8D, 0x13, 0x00, 0x00));													//.text:000000018004BF39 BA 8D 13 00+                mov     edx, 138Dh      ; jumptable 00007FFC6804BF37 case 178
-		ps.AddInstruction(new _mov("x", 0xF8B, 0xC2));																	//.text:000000018004BF3E 8B C2                       mov     eax, edx
-		ps.AddInstruction(new _retn("x", 0xFC3));																			//.text:000000018004BF40 C3                          retn
+		ps.AddInstruction(new _mov("x", 0xFBA, 0x8D, 0x13, 0x00, 0x00));														//.text:000000018004BF39 BA 8D 13 00+                mov     edx, 138Dh      ; jumptable 00007FFC6804BF37 case 178
+		ps.AddInstruction(new _mov("x", 0xF8B, 0xC2));																			//.text:000000018004BF3E 8B C2                       mov     eax, edx
+		ps.AddInstruction(new _retn("x", 0xFC3));																				//.text:000000018004BF40 C3                          retn
 																																//.text:000000018004BF41             ; ---------------------------------------------------------------------------
 																																//.text:000000018004BF41
 																																//.text:000000018004BF41             loc_18004BF41:                          ; CODE XREF: convert_map_id_from_mcc+27↑j
 																																//.text:000000018004BF41                                                     ; DATA XREF: .text:jpt_18004BF37↓o
-		ps.AddInstruction(new _mov("x", 0xFBA, 0x92, 0x13, 0x00, 0x00));													//.text:000000018004BF41 BA 92 13 00+                mov     edx, 1392h      ; jumptable 00007FFC6804BF37 case 179
-		ps.AddInstruction(new _mov("x", 0xF8B, 0xC2));																	//.text:000000018004BF46 8B C2                       mov     eax, edx
-		ps.AddInstruction(new _retn("x", 0xFC3));																			//.text:000000018004BF48 C3                          retn
+		ps.AddInstruction(new _mov("x", 0xFBA, 0x92, 0x13, 0x00, 0x00));														//.text:000000018004BF41 BA 92 13 00+                mov     edx, 1392h      ; jumptable 00007FFC6804BF37 case 179
+		ps.AddInstruction(new _mov("x", 0xF8B, 0xC2));																			//.text:000000018004BF46 8B C2                       mov     eax, edx
+		ps.AddInstruction(new _retn("x", 0xFC3));																				//.text:000000018004BF48 C3                          retn
 
 		DWORD patternOffset = ps.FindPattern(0);
 		if (patternOffset)
 		{
-			write_line_verbose("ketchup> SUCCEED: convert_mcc_map_id_to_reach_map_id_offset @0x%x", patternOffset);
+			write_line_verbose("ketchup> SUCCEED: mcc_map_id_parse_to_reach_offset @0x%x", patternOffset);
 			return GetEngineBaseAddress(engine_type) + patternOffset;
 		}
 		else
 		{
-			write_line_verbose("ketchup> FAILURE: convert_mcc_map_id_to_reach_map_id_offset");
+			write_line_verbose("ketchup> FAILURE: mcc_map_id_parse_to_reach_offset");
 			return ~uintptr_t();
 		}
 	}
 	return ~uintptr_t();
 }
-FunctionHookEx<convert_mcc_map_id_to_reach_map_id_offset, int __fastcall (int a1)> convert_mcc_map_id_to_reach_map_id = { "convert_mcc_map_id_to_reach_map_id", [](int a1)
+FunctionHookEx<mcc_map_id_parse_to_reach_offset, int __fastcall (int a1)> mcc_map_id_parse_to_reach = { "mcc_map_id_parse_to_reach", [](int a1)
 {
-	int result = convert_mcc_map_id_to_reach_map_id(a1);
+	int result = mcc_map_id_parse_to_reach(a1);
 	if (result == -1)
 	{
 		return a1; // return the raw map id on conversion failure
@@ -328,7 +328,7 @@ FunctionHookEx<convert_mcc_map_id_to_reach_map_id_offset, int __fastcall (int a1
 	}
 } };
 
-uintptr_t convert_reach_map_id_to_mcc_map_id_offset(e_engine_type engine_type, e_build build)
+uintptr_t mcc_map_id_parse_from_reach_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1367_0_0, 0x18004CF80);
 	if (engine_type == _engine_type_halo_reach)
@@ -364,20 +364,20 @@ uintptr_t convert_reach_map_id_to_mcc_map_id_offset(e_engine_type engine_type, e
 		DWORD patternOffset = ps.FindPattern(0);
 		if (patternOffset)
 		{
-			write_line_verbose("ketchup> SUCCEED: convert_reach_map_id_to_mcc_map_id_offset @0x%x", patternOffset);
+			write_line_verbose("ketchup> SUCCEED: mcc_map_id_parse_from_reach_offset @0x%x", patternOffset);
 			return GetEngineBaseAddress(engine_type) + patternOffset;
 		}
 		else
 		{
-			write_line_verbose("ketchup> FAILURE: convert_reach_map_id_to_mcc_map_id_offset");
+			write_line_verbose("ketchup> FAILURE: mcc_map_id_parse_from_reach_offset");
 			return ~uintptr_t();
 		}
 	}
 	return ~uintptr_t();
 }
-FunctionHookEx<convert_reach_map_id_to_mcc_map_id_offset, int __fastcall (int a1)> convert_reach_map_id_to_mcc_map_id = { "convert_reach_map_id_to_mcc_map_id", [](int a1)
+FunctionHookEx<mcc_map_id_parse_from_reach_offset, int __fastcall (int a1)> mcc_map_id_parse_from_reach = { "mcc_map_id_parse_from_reach", [](int a1)
 {
-	int result = convert_reach_map_id_to_mcc_map_id(a1);
+	int result = mcc_map_id_parse_from_reach(a1);
 	if (result == -1)
 	{
 		return a1; // return the raw map id on conversion failure
