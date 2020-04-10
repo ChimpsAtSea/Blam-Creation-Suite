@@ -16,6 +16,9 @@ void load_map(const char* scenario_path, int scenario_type, int game_engine_vari
 	case _build_eldorado_1_106708_cert_ms23:
 		g_game_options = GetEngineVirtualAddress(e_engine_type::_engine_type_eldorado, 0x02391800);
 		break;
+	case _build_eldorado_1_604673_Live:
+		g_game_options = GetEngineVirtualAddress(e_engine_type::_engine_type_eldorado, 0x0438E6B0);
+		break;
 	case _build_eldorado_1_700255_cert_ms30_oct19:
 		g_game_options = GetEngineVirtualAddress(e_engine_type::_engine_type_eldorado, 0x0312B5E0);
 		break;
@@ -33,6 +36,10 @@ void load_map(const char* scenario_path, int scenario_type, int game_engine_vari
 	case _build_eldorado_1_106708_cert_ms23:
 		main_game_change_immediate = GetEngineVirtualAddress(e_engine_type::_engine_type_eldorado, 0x00566EF0);
 		reinterpret_cast<char(__cdecl*)(char*)>(main_game_change_immediate)(g_game_options);
+		break;
+	case _build_eldorado_1_604673_Live:
+		main_game_change_immediate = GetEngineVirtualAddress(e_engine_type::_engine_type_eldorado, 0x004A9530);
+		reinterpret_cast<char(__thiscall*)(char*)>(main_game_change_immediate)(g_game_options);
 		break;
 	case _build_eldorado_1_700255_cert_ms30_oct19:
 		main_game_change_immediate = GetEngineVirtualAddress(e_engine_type::_engine_type_eldorado, 0x004AB190);
