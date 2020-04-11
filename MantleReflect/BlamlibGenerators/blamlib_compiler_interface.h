@@ -12,7 +12,7 @@ public:
 	virtual ~c_blamlib_compiler_interface();
 
 	virtual c_reflection_type_container* create_reflected_type(
-		clang::ASTContext* ast_context,
+		clang::ASTContext& ast_context,
 		const clang::QualType* record_qualified_type,
 		const clang::RecordDecl& record_declaration,
 		bool is_primitive = false) override;

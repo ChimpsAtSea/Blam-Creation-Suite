@@ -52,7 +52,7 @@ c_tag_group_interface::c_tag_group_interface(c_cache_file& cache_file, uint16_t 
 		c_console::set_text_color(_console_color_default);
 	}
 
-	reflection_type = get_tag_reflection_data_by_tag_group(cache_file_tag_group->group_tags[0]);
+	reflection_type = reflection_legacy(cache_file_tag_group->group_tags[0]);
 
 	ASSERT(!short_name.empty());
 	ASSERT(!full_name.empty());

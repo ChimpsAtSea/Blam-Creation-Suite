@@ -1,7 +1,7 @@
 #pragma once
 
 template<typename T>
-class v_tag_interface;
+class v_tag_interface_legacy;
 
 class c_virtual_tag_interface
 {
@@ -25,14 +25,14 @@ public:
 	}
 
 	template<typename T>
-	operator v_tag_interface<T>* () const
+	operator v_tag_interface_legacy<T>* () const
 	{
 		c_tag_interface* target_tag_interface = *this;
 		return tag_cast<T>(target_tag_interface);
 	}
 
 	template<typename T>
-	operator const v_tag_interface<T>* () const
+	operator const v_tag_interface_legacy<T>* () const
 	{
 		c_tag_interface* target_tag_interface = *this;
 		return tag_cast<T>(target_tag_interface);

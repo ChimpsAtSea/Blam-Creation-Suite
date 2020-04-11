@@ -11,11 +11,11 @@ void c_mantle_compile_time_gui_generator::run(std::vector<c_reflection_type_cont
 
 	header_string_stream << "#pragma once" << std::endl << std::endl;
 	header_string_stream << "template<typename T>" << std::endl;
-	header_string_stream << "void render_type_gui(void* data);" << std::endl << std::endl;
+	header_string_stream << "void render_type_gui_legacy(void* data);" << std::endl << std::endl;
 	header_string_stream << "#ifndef __visual_assist__" << std::endl;
 
 	source_string_stream << "#include <MantleReflect/ReflectionTypes.h>" << std::endl;
-	source_string_stream << "#include \"Tags.h\"" << std::endl;
+	source_string_stream << "#include <MantleLib/Tags/Tags.h>" << std::endl;
 	source_string_stream << "#include <assert.h>" << std::endl << std::endl;
 
 	source_string_stream << "#ifndef __visual_assist__" << std::endl;
@@ -115,7 +115,7 @@ void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_header(con
 
 	std::string data_variable_name = get_variable_name(reflection_type_container.type_name) + "_data";
 
-	header_string_stream << "template<> void render_type_gui<" << reflection_type_container.qualified_type_name << ">(void* raw_" << data_variable_name << ");" << std::endl;
+	header_string_stream << "template<> void render_type_gui_legacy<" << reflection_type_container.qualified_type_name << ">(void* raw_" << data_variable_name << ");" << std::endl;
 }
 
 const char* get_primitive_handler_function(e_primitive_type primitiveType)
@@ -188,11 +188,11 @@ void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_source(con
 	std::string data_variable_name = variable_name + "_data";
 	std::string reflection_variable_name = variable_name + "_reflection";
 
-	source_string_stream << "void render_type_gui<" << reflection_type_container.qualified_type_name << ">(void* raw_" << data_variable_name << ")" << std::endl;
+	source_string_stream << "void render_type_gui_legacy<" << reflection_type_container.qualified_type_name << ">(void* raw_" << data_variable_name << ")" << std::endl;
 	source_string_stream << "{" << std::endl;
 	source_string_stream << "\tassert(raw_" << data_variable_name << " != nullptr);" << std::endl;
 	source_string_stream << "\t" << reflection_type_container.qualified_type_name << "* " << data_variable_name << " = static_cast<" << reflection_type_container.qualified_type_name << "*>(raw_" << data_variable_name << ");" << std::endl << std::endl;
-	source_string_stream << "\tstatic const s_reflection_structure_type& " << reflection_variable_name << " = runtime_structure_reflection<" << reflection_type_container.qualified_type_name << ">();" << std::endl << std::endl;
+	source_string_stream << "\tstatic const s_reflection_structure_type& " << reflection_variable_name << " = reflection_structure_legacy<" << reflection_type_container.qualified_type_name << ">();" << std::endl << std::endl;
 
 	int reflection_member_index = -1;
 	for (const c_reflection_field_container* reflection_field_container_ptr : reflection_type_container.fields)

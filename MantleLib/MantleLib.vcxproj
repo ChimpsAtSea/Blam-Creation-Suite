@@ -60,7 +60,7 @@
     <ClCompile Include="!UserInterface\Tools\mantle_halo_script_editor.cpp" />
     <ClCompile Include="!UserInterface\TagEditor\mantle_shader_gui_tab.cpp" />
     <ClCompile Include="render_method_definition_group_interface.cpp" />
-    <ClCompile Include="blamlib_reflection_gen.cpp">
+    <ClCompile Include="Tags\BlamlibGen\blamlib_reflection_gen.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -70,32 +70,36 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Tags\GeneratedConversion.cpp">
+    <ClCompile Include="Tags\LegacyGen\generated_conversion_legacy.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Tags\GeneratedGUI.cpp">
+    <ClCompile Include="Tags\LegacyGen\generated_gui_legacy.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Tags\ReflectionData.cpp">
+    <ClCompile Include="Tags\LegacyGen\reflection_data_legacy.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Tags\TagsReflectionObject.cpp">
+    <ClCompile Include="Tags\LegacyGen\legacy_reflection_gen.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="CacheInterface\virtual_tag_block.cpp" />
-    <ClCompile Include="Tags\VirtualTagInterfaces.cpp">
+    <ClCompile Include="Tags\LegacyGen\virtual_tag_interfaces_legacy.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -141,8 +145,8 @@
     <ClInclude Include="HaloScript\lisp_ast_parser.h" />
     <ClInclude Include="!UserInterface\TagEditor\mantle_shader_gui_tab.h" />
     <ClInclude Include="render_method_definition_group_interface.h" />
-    <ClInclude Include="Tags\GeneratedConversion.h" />
-    <ClInclude Include="Tags\GeneratedGUI.h" />
+    <ClInclude Include="Tags\LegacyGen\generated_conversion_legacy.h" />
+    <ClInclude Include="Tags\LegacyGen\generated_gui_legacy.h" />
     <ClInclude Include="Tags\TagDefinitions\achievements.h" />
     <ClInclude Include="Tags\TagDefinitions\airstrike.h" />
     <ClInclude Include="Tags\TagDefinitions\ai_dialogue_globals.h" />
@@ -322,7 +326,7 @@
     <ClInclude Include="Tags\TagDefinitions\weapon.h" />
     <ClInclude Include="Tags\TagDefinitions\weather_globals.h" />
     <ClInclude Include="Tags\TagDefinitions\wind.h" />
-    <ClInclude Include="Tags\TagGroups.h" />
+    <ClInclude Include="Tags\LegacyGen\tag_groups_legacy.h" />
     <ClInclude Include="Tags\Tags.h" />
     <ClInclude Include="Tags\TagTypes\Color.h" />
     <ClInclude Include="Tags\TagTypes\Degree.h" />
@@ -332,11 +336,11 @@
     <ClInclude Include="Tags\TagTypes\DataReference.h" />
     <ClInclude Include="mantlelib-private-pch.h" />
     <ClInclude Include="mantlelib-public-pch.h" />
-    <ClInclude Include="Tags\ReflectionData.h" />
+    <ClInclude Include="Tags\LegacyGen\reflection_data_legacy.h" />
     <ClInclude Include="Tags\TagTypes\Undefined.h" />
     <ClInclude Include="CacheInterface\virtual_tag_block.h" />
     <ClInclude Include="Tags\TagTypes\uniclist.h" />
-    <ClInclude Include="Tags\VirtualTagInterfaces.h" />
+    <ClInclude Include="Tags\LegacyGen\virtual_tag_interfaces_legacy.h" />
     <ClInclude Include="VirtualMemoryContainer.h" />
     <ClInclude Include="VirtualResource\VirtualResource.h" />
     <ClInclude Include="VirtualResource\virtual_resource_manager.h" />
@@ -439,11 +443,16 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir) legacy
+"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
     </PreBuildEvent>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -460,11 +469,16 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir) legacy
+"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
     </PreBuildEvent>
     <Lib>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -485,8 +499,13 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir) legacy
+"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -507,8 +526,13 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
+      <Command>"$(OutDir)MantleReflect.exe" $(SolutionDir) legacy
+"$(OutDir)MantleReflect.exe" $(SolutionDir)</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -12,7 +12,7 @@ thread_local c_mantle_tag_gui_tab* c_mantle_tag_gui_tab::g_current_mantle_tag_ta
 #include <GUI/render_tagblock_gui.inl>
 #include <GUI/render_enum_gui.inl>
 #include <GUI/render_bitfield_gui.inl>
-// #TODO: include GeneratedGUI.cpp here and force inline all of the render functions
+// #TODO: include generated_gui_legacy.cpp here and force inline all of the render functions
 
 c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_interface& tag_interface, c_mantle_gui_tab* parent_tag) : 
 	c_mantle_gui_tab(tag_interface.get_name_with_group_id_cstr(), tag_interface.get_path_with_group_name_cstr()),
@@ -20,21 +20,21 @@ c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_inter
 	cache_file(cache_file),
 	parent_tab(parent_tag)
 {
-	if (v_tag_interface<s_bitmap_definition>* bitmap_tag_interface = dynamic_cast<decltype(bitmap_tag_interface)>(&tag_interface))
+	if (v_tag_interface_legacy<s_bitmap_definition>* bitmap_tag_interface = dynamic_cast<decltype(bitmap_tag_interface)>(&tag_interface))
 	{
 		c_mantle_bitmap_gui_tab* mantle_bitmap_gui_tab = new c_mantle_bitmap_gui_tab(cache_file, this, *bitmap_tag_interface);
 		ASSERT(mantle_bitmap_gui_tab != nullptr);
 		add_tab(*mantle_bitmap_gui_tab);
 	}
 
-	if (v_tag_interface<s_shader_definition>* shader_tag_interface = dynamic_cast<decltype(shader_tag_interface)>(&tag_interface))
+	if (v_tag_interface_legacy<s_shader_definition>* shader_tag_interface = dynamic_cast<decltype(shader_tag_interface)>(&tag_interface))
 	{
 		c_mantle_shader_gui_tab* mantle_shader_gui_tab = new c_mantle_shader_gui_tab(cache_file, this, *shader_tag_interface);
 		ASSERT(mantle_shader_gui_tab != nullptr);
 		add_tab(*mantle_shader_gui_tab);
 	}
 
-	if (v_tag_interface<s_shader_halogram_definition>* shader_halogram_tag_interface = dynamic_cast<decltype(shader_halogram_tag_interface)>(&tag_interface))
+	if (v_tag_interface_legacy<s_shader_halogram_definition>* shader_halogram_tag_interface = dynamic_cast<decltype(shader_halogram_tag_interface)>(&tag_interface))
 	{
 		c_mantle_shader_halogram_gui_tab* mantle_shader_halogram_gui_tab = new c_mantle_shader_halogram_gui_tab(cache_file, this, *shader_halogram_tag_interface);
 		ASSERT(mantle_shader_halogram_gui_tab != nullptr);
@@ -166,7 +166,7 @@ void c_mantle_tag_gui_tab::render_tab_contents_gui_impl()
 	if (ps_reflection_structure_type)
 	{
 		g_current_mantle_tag_tab = this;
-		ps_reflection_structure_type->render_type_gui(tag_interface.get_data());
+		ps_reflection_structure_type->render_type_gui_legacy(tag_interface.get_data());
 	}
 	else
 	{

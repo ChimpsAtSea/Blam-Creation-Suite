@@ -11,7 +11,7 @@ public:
 
 	c_virtual_resource_manager(c_cache_file& cache_file);
 
-	c_virtual_bitmap_resource* load_bitmap_resource(v_tag_interface<s_bitmap_definition>* bitmap_tag_interface);
+	c_virtual_bitmap_resource* load_bitmap_resource(v_tag_interface_legacy<s_bitmap_definition>* bitmap_tag_interface);
 	
 private:
 	c_cache_file& cache_file;

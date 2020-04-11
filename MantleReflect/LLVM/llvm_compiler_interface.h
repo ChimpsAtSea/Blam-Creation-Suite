@@ -18,13 +18,14 @@ public:
 
 	void register_ast_source_generator(c_ast_source_generator* source_generator);
 	void set_source_file(std::string source_file);
-	void add_include_directory(std::string directory);
+	void add_quote_include_directory(std::string directory);
+	void add_system_include_directory(std::string directory);
 	void add_macro(std::string macro);
 	void add_command_line(std::string command_line);
 	int run();
 
 	virtual c_reflection_type_container* create_reflected_type(
-		clang::ASTContext* ast_context,
+		clang::ASTContext& ast_context,
 		const clang::QualType* record_qualified_type,
 		const clang::RecordDecl& record_declaration,
 		bool is_primitive = false) = 0;

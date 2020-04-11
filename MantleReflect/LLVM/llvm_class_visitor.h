@@ -8,11 +8,11 @@ public:
 	c_llvm_class_visitor(const c_llvm_class_visitor&) = delete;
 	c_llvm_class_visitor& operator=(const c_llvm_class_visitor&) = delete;
 
-	explicit c_llvm_class_visitor(clang::ASTContext* ast_context, c_llvm_compiler_interface* compiler_interface);
+	explicit c_llvm_class_visitor(clang::ASTContext& ast_context, c_llvm_compiler_interface& compiler_interface);
 
 	bool VisitCXXRecordDecl(clang::CXXRecordDecl* declaration);
 
 private:
-	clang::ASTContext* ast_context;
-	c_llvm_compiler_interface* compiler_interface;
+	clang::ASTContext& ast_context;
+	c_llvm_compiler_interface& compiler_interface;
 };

@@ -204,7 +204,7 @@ void c_cache_file::initTagInstances()
 	std::function createTagFunc = [this, ppTagInterfacesBuffer](uint32_t index)
 	{
 		uint32_t group_index = cache_file_tag_instances[index].group_index;
-		const s_reflection_structure_type* reflection_type = get_tag_reflection_data_by_tag_group(cache_file_tag_groups[group_index].group_tags[0]);
+		const s_reflection_structure_type* reflection_type = reflection_legacy(cache_file_tag_groups[group_index].group_tags[0]);
 		if (reflection_type)
 		{
 			//ASSERT(reflection_type != nullptr); // #TODO: All tags have a reflection type

@@ -2,7 +2,7 @@
 
 
 
-c_mantle_shader_gui_tab::c_mantle_shader_gui_tab(c_cache_file& cache_file, c_mantle_gui_tab* parent_tag, v_tag_interface<s_shader_definition>& shader_tag_interface) :
+c_mantle_shader_gui_tab::c_mantle_shader_gui_tab(c_cache_file& cache_file, c_mantle_gui_tab* parent_tag, v_tag_interface_legacy<s_shader_definition>& shader_tag_interface) :
 	c_mantle_gui_tab("Shader Editor", "Shader Editor"),
 	cache_file(cache_file),
 	parent_tag(parent_tag),
@@ -21,7 +21,7 @@ void c_mantle_shader_gui_tab::render_tab_contents_gui()
 {
 	ImGui::Text("Shader Editor");
 
-	v_tag_interface<s_render_method_definition_definition>* render_method_definition = tag_cast<s_render_method_definition_definition>(&shader_tag_interface.base_render_method_reference);
+	v_tag_interface_legacy<s_render_method_definition_definition>* render_method_definition = tag_cast<s_render_method_definition_definition>(&shader_tag_interface.base_render_method_reference);
 
 	if (render_method_definition == nullptr)
 	{
@@ -51,7 +51,7 @@ void c_mantle_shader_gui_tab::render_tab_contents_gui()
 			const char* option_value = cache_file.string_id_to_cstr(unknown1.__unknown0, "<failed to get option value>");
 
 			c_tag_interface* rmop_interface = cache_file.get_tag_interface(unknown1.__unknown1.index); // #TODO block virtual interface
-			v_tag_interface<s_render_method_option_definition>* rmop = tag_cast<s_render_method_option_definition>(rmop_interface);
+			v_tag_interface_legacy<s_render_method_option_definition>* rmop = tag_cast<s_render_method_option_definition>(rmop_interface);
 
 			char buffer[256]{};
 			snprintf(buffer, 255, "%s: %s", option_name, option_value);
@@ -62,7 +62,7 @@ void c_mantle_shader_gui_tab::render_tab_contents_gui()
 				for (s_render_method_option_definition::s_unknown_0_definition& option : rmop->unknown_0_block)
 				{
 					c_tag_interface* rmop_default_bitm_interface = cache_file.get_tag_interface(option.__unknown4.index); // #TODO block virtual interface
-					v_tag_interface<s_bitmap_definition>* rmop_default_bitm = tag_cast<s_bitmap_definition>(rmop_default_bitm_interface);
+					v_tag_interface_legacy<s_bitmap_definition>* rmop_default_bitm = tag_cast<s_bitmap_definition>(rmop_default_bitm_interface);
 
 					if (rmop_default_bitm != nullptr)
 					{

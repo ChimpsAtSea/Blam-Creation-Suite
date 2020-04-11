@@ -19,5 +19,5 @@
 #include "CacheVersions\halo_5_cache_file.h"
 #include "CacheVersions\halo_4_cache_file.h"
 
-#include <MantleLib/Tags/VirtualTagInterfaces.h>
+#include <MantleLib/Tags/LegacyGen/virtual_tag_interfaces_legacy.h>
 

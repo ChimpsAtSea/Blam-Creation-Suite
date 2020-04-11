@@ -53,7 +53,7 @@ typedef	uint64_t			undefined64_t;
 #endif
 
 #ifndef BUILD_REFLECTION_DATA
-#include "TagGroups.h"
+#include "LegacyGen/tag_groups_legacy.h"
 #define _tag_group_render_method static_cast<e_tag_group>('rm  ')
 #define _tag_group_bink static_cast<e_tag_group>('bink')
 #define _tag_group_any static_cast<e_tag_group>(-2)
@@ -254,10 +254,10 @@ enum noreflection e_tag_group : int32_t {};
 #include "TagDefinitions/light.h"
 
 #ifndef BUILD_REFLECTION_DATA
-#include "GeneratedGUI.h"
-#include "ReflectionData.h"
-#include "GeneratedConversion.h"
-//#include "VirtualTagInterfaces.h"
+#include "LegacyGen/generated_gui_legacy.h"
+#include "LegacyGen/reflection_data_legacy.h"
+#include "LegacyGen/generated_conversion_legacy.h"
+//#include "LegacyGen/virtual_tag_interfaces_legacy.h"
 #endif
 
 #pragma pack(pop)

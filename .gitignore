@@ -350,12 +350,15 @@ pugixml-build/cmake_x86
 pugixml-build/cmake_x64
                
 #Mantle
-MantleLib/Tags/ReflectionData.h
-MantleLib/Tags/ReflectionData.cpp
-MantleLib/Tags/GeneratedConversion.cpp
-MantleLib/Tags/GeneratedConversion.h
-MantleLib/Tags/GeneratedGUI.cpp
-MantleLib/Tags/GeneratedGUI.h
+MantleLib/Tags/LegacyGen/reflection_data_legacy.h
+MantleLib/Tags/LegacyGen/reflection_data_legacy.cpp
+MantleLib/Tags/LegacyGen/generated_conversion_legacy.cpp
+MantleLib/Tags/LegacyGen/generated_conversion_legacy.h
+MantleLib/Tags/LegacyGen/generated_gui_legacy.cpp
+MantleLib/Tags/LegacyGen/generated_gui_legacy.h
+MantleLib/Tags/LegacyGen/virtual_tag_interfaces_legacy.cpp
+MantleLib/Tags/LegacyGen/virtual_tag_interfaces_legacy.h
+MantleLib/Tags/LegacyGen/tag_groups_legacy.h
 
 #CommandLineOptions Plugin
 *.args.json
@@ -370,6 +373,3 @@ MantleLib/Tags/GeneratedGUI.h
 *.PVS-Studio.cfg
 
 *Mustard.exe
-MantleLib/Tags/VirtualTagInterfaces.cpp
-MantleLib/Tags/VirtualTagInterfaces.h
-MantleLib/Tags/TagGroups.h

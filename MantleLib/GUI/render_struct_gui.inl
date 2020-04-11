@@ -49,7 +49,7 @@ void render_struct_gui(void* field_data, const c_reflection_field& reflection_fi
 		REFERENCE_ASSERT(structure_reflection_type);
 
 		c_mantle_tag_gui_tab::increment_recursion();
-		structure_reflection_type.render_type_gui(field_data);
+		structure_reflection_type.render_type_gui_legacy(field_data);
 		c_mantle_tag_gui_tab::decrement_recursion();
 	}
 	render_struct_separator(c_mantle_tag_gui_tab::g_current_recursion_depth, &screenPosTop);

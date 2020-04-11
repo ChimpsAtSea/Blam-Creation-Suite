@@ -274,7 +274,7 @@ struct c_reflection_field
 	bool is_hidden_by_default;
 };
 
-using render_type_gui_func = void(void*);
+using render_type_gui_legacy_func = void(void*);
 
 class c_tag_interface;
 class c_cache_file;
@@ -307,7 +307,7 @@ struct s_reflection_structure_type
 	const char* nice_name;
 	unsigned __int32 size_of_data;
 	unsigned __int32 members_count;
-	render_type_gui_func* render_type_gui;
+	render_type_gui_legacy_func* render_type_gui_legacy;
 	c_tag_interface* (*virtual_tag_constructor)(c_cache_file&, uint16_t);
 	c_reflection_field fields[]; // #NOTE: non standard language feature
 };

@@ -15,17 +15,17 @@ void c_mantle_virtual_tag_interface_generator::run(std::vector<c_reflection_type
 
 	header_string_stream << "#ifdef __INTELLISENSE__" << std::endl;
 	header_string_stream << "\ttemplate<typename T>" << std::endl;
-	header_string_stream << "\tclass v_tag_interface : public T, public c_tag_interface" << std::endl;
+	header_string_stream << "\tclass v_tag_interface_legacy : public T, public c_tag_interface" << std::endl;
 	header_string_stream << "\t{" << std::endl;
 	header_string_stream << "\tpublic:" << std::endl;
-	header_string_stream << "\t\tv_tag_interface(c_cache_file&, uint16_t)" << std::endl;
+	header_string_stream << "\t\tv_tag_interface_legacy(c_cache_file&, uint16_t)" << std::endl;
 	header_string_stream << "\t\t{" << std::endl;
 	header_string_stream << "\t\t" << std::endl;
 	header_string_stream << "\t\t}" << std::endl;
 	header_string_stream << "\t};" << std::endl;
 	header_string_stream << "#else" << std::endl;
 	header_string_stream << "template<typename T>" << std::endl;
-	header_string_stream << "class v_tag_interface : " << std::endl;
+	header_string_stream << "class v_tag_interface_legacy : " << std::endl;
 	header_string_stream << "\tpublic c_tag_interface" << std::endl;
 	header_string_stream << "{" << std::endl;
 	header_string_stream << "};" << std::endl << std::endl;
@@ -47,12 +47,12 @@ void c_mantle_virtual_tag_interface_generator::run(std::vector<c_reflection_type
 void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
 {
 	stringstream << "template<>" << std::endl;
-	stringstream << "class v_tag_interface<" << reflection_type_container.qualified_type_name << "> : " << std::endl;
+	stringstream << "class v_tag_interface_legacy<" << reflection_type_container.qualified_type_name << "> : " << std::endl;
 	header_string_stream << "\tpublic c_tag_interface" << std::endl;
 	stringstream << "{" << std::endl;
 	stringstream << "\tpublic:" << std::endl;
 	stringstream << "\tc_cache_file& cache_file;" << std::endl;
-	stringstream << "\tv_tag_interface(c_cache_file& cache_file, uint16_t tag_index) :" << std::endl;
+	stringstream << "\tv_tag_interface_legacy(c_cache_file& cache_file, uint16_t tag_index) :" << std::endl;
 	stringstream << "\t\tc_tag_interface(cache_file, tag_index)," << std::endl;
 	stringstream << "\t\tcache_file(cache_file)," << std::endl;
 
@@ -120,7 +120,7 @@ void c_mantle_virtual_tag_interface_generator::write_virtual_tag_initializer(std
 {
 	stringstream << "c_tag_interface* v_" << reflection_type_container.type_name.substr(2) << "_ctor(c_cache_file& cache_file, uint16_t tag_index)" << std::endl;
 	stringstream << "{" << std::endl;
-	stringstream << "\treturn new v_tag_interface<" << reflection_type_container.qualified_type_name << ">(cache_file, tag_index);" << std::endl;
+	stringstream << "\treturn new v_tag_interface_legacy<" << reflection_type_container.qualified_type_name << ">(cache_file, tag_index);" << std::endl;
 	stringstream << "}" << std::endl;
 	stringstream << std::endl;
 }

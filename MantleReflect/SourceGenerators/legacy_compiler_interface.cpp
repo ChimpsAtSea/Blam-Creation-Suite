@@ -341,7 +341,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_enum_
 }
 
 c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
-	ASTContext* ast_context,
+	ASTContext& ast_context,
 	const clang::QualType* record_qualified_type,
 	const clang::RecordDecl& record_declaration,
 	bool is_primitive)
@@ -523,7 +523,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 
 		if (reflectionQualifiedType->isArrayType())
 		{
-			const ConstantArrayType* pConstantArrayType = ast_context->getAsConstantArrayType(reflectionQualifiedType);
+			const ConstantArrayType* pConstantArrayType = ast_context.getAsConstantArrayType(reflectionQualifiedType);
 			if (pConstantArrayType)
 			{
 				llvm::APInt arraySizeRaw = pConstantArrayType->getSize();

@@ -13,6 +13,7 @@
 #include <llvm/Support/CommandLine.h>
 #include <clang/AST/ASTConsumer.h>
 #include <clang/AST/RecursiveASTVisitor.h>
+#include <clang/AST/Comment.h>
 #include <clang/Frontend/CompilerInstance.h>
 #pragma warning( pop )
 

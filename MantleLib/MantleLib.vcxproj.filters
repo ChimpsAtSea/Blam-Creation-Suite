@@ -18,12 +18,6 @@
     <ClCompile Include="mantlelib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tags\ReflectionData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tags\TagsReflectionObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="VirtualMemoryContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -34,12 +28,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="!UserInterface\mantle_cache_file_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tags\GeneratedConversion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tags\GeneratedGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="!UserInterface\mantle_tag_gui_tab.cpp">
@@ -58,9 +46,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="!UserInterface\mantle_event_queue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tags\VirtualTagInterfaces.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\virtual_tag_block.cpp">
@@ -138,7 +123,22 @@
     <ClCompile Include="Tags\blamlib_testing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blamlib_reflection_gen.cpp">
+    <ClCompile Include="Tags\LegacyGen\virtual_tag_interfaces_legacy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tags\LegacyGen\legacy_reflection_gen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tags\LegacyGen\reflection_data_legacy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tags\LegacyGen\generated_gui_legacy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tags\LegacyGen\generated_conversion_legacy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tags\BlamlibGen\blamlib_reflection_gen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -164,9 +164,6 @@
     <ClInclude Include="Tags\Tags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tags\ReflectionData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="!UserInterface\UserInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -188,12 +185,6 @@
     <ClInclude Include="!UserInterface\mantle_cache_file_gui_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tags\GeneratedConversion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tags\GeneratedGUI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\render_stringid_gui.inl">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -206,9 +197,6 @@
     <ClInclude Include="CacheInterface\cache_file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tags\TagGroups.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="render_method_definition_group_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -219,9 +207,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="!UserInterface\mantle_event_queue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tags\VirtualTagInterfaces.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\virtual_tag_block.h">
@@ -846,6 +831,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\LegacyGen\virtual_tag_interfaces_legacy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\LegacyGen\reflection_data_legacy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\LegacyGen\generated_gui_legacy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\LegacyGen\generated_conversion_legacy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tags\LegacyGen\tag_groups_legacy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

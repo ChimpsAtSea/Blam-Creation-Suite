@@ -34,7 +34,13 @@ void c_llvm_compiler_interface::set_source_file(std::string _source_file)
 	source_file = _source_file;
 }
 
-void c_llvm_compiler_interface::add_include_directory(std::string directory)
+void c_llvm_compiler_interface::add_quote_include_directory(std::string directory)
+{
+	add_command_line("-iquote");
+	add_command_line(directory);
+}
+
+void c_llvm_compiler_interface::add_system_include_directory(std::string directory)
 {
 	add_command_line("-isystem");
 	add_command_line(directory);
@@ -70,7 +76,7 @@ int c_llvm_compiler_interface::execute_llvm_compiler()
 
 	ClangTool clang_tool = ClangTool(fixed_compilation_database, { source_file });
 
-	int clang_tool_result = clang_tool.run(c_llvm_compile_action::new_compiler_action_factory(this).get());
+	int clang_tool_result = clang_tool.run(c_llvm_compile_action::new_compiler_action_factory(*this).get());
 
 	//assert(clang_tool_result == 0);
 

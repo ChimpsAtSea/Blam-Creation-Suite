@@ -163,7 +163,7 @@ void c_mantle_shader_tool_gui_tab::render_source_code_editor_configuration_heade
 	{
 		if (ImGui::Button("Populate from RMT2"))
 		{
-			v_tag_interface<s_render_method_definition_definition>* render_method_definition = dynamic_cast<decltype(render_method_definition)>(selected_render_method_definition_tag_interface);
+			v_tag_interface_legacy<s_render_method_definition_definition>* render_method_definition = dynamic_cast<decltype(render_method_definition)>(selected_render_method_definition_tag_interface);
 
 			//for (s_render_method_definition_definition::s_option_definition& option : render_method_definition->options)
 			//{
