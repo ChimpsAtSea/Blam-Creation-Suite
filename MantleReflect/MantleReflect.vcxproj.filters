@@ -125,7 +125,7 @@
     <ClInclude Include="legacy_reflection_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blamlib_reflection_types.h">
+    <ClInclude Include="reflection_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

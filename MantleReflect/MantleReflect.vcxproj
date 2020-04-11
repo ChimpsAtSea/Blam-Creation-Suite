@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlamlibGenerators\blamlib_compiler_interface.h" />
-    <ClInclude Include="blamlib_reflection_types.h" />
+    <ClInclude Include="reflection_types.h" />
     <ClInclude Include="LegacyGenerators\legacy_compiler_interface.h" />
     <ClInclude Include="LLVM\llvm_compiler_interface.h" />
     <ClInclude Include="LLVM\llvm_compile_action.h" />
