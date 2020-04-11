@@ -30,19 +30,19 @@ void c_mantle_gui_tab::render_in_game_gui()
 void c_mantle_gui_tab::render_gui(bool set_selected)
 {
 	ImGui::PushID(this);
+
 	run_events();
+
+	ImGuiTabItemFlags flags = 0;
+	if (set_selected) flags |= ImGuiTabItemFlags_SetSelected;
+	is_selected = false;
+	if (ImGui::BeginTabItem(get_title(), allow_close ? &is_open : nullptr, flags))
 	{
-		ImGuiTabItemFlags flags = 0;
-		if (set_selected) flags |= ImGuiTabItemFlags_SetSelected;
-		is_selected = false;
-		if (ImGui::BeginTabItem(get_title(), allow_close ? &is_open : nullptr, flags))
-		{
-			is_selected = true;
+		is_selected = true;
 
-			render_tab_contents_gui();
+		render_tab_contents_gui();
 
-			ImGui::EndTabItem();
-		}
+		ImGui::EndTabItem();
 	}
 
 	if (!is_open)

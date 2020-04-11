@@ -1,11 +1,11 @@
 
-void render_tagref_gui(s_tag_reference_legacy* field_data, const char* name, c_cache_file& cache_file)
+void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* name, c_cache_file& cache_file)
 {
 	DEBUG_ASSERT(field_data != nullptr);
 	ImGui::PushID(field_data);
 
 	ImGui::Columns(6, NULL, false);
-	ImGui::SetColumnOffset(1, c_mantle_tag_gui_tab::g_current_recursion_padding);
+	ImGui::SetColumnOffset(1, c_mantle_legacy_tag_editor_gui_tab::g_current_recursion_padding);
 	ImGui::SetColumnWidth(1, 400);
 	ImGui::SetColumnWidth(2, 150);
 	ImGui::SetColumnWidth(3, 750);
@@ -159,9 +159,9 @@ void render_tagref_gui(s_tag_reference_legacy* field_data, const char* name, c_c
 	{
 		if (ps_tag_reference_legacyTagInterface)
 		{
-			if (c_mantle_tag_gui_tab::g_current_mantle_tag_tab)
+			if (c_mantle_legacy_tag_editor_gui_tab::g_current_recursion_padding)
 			{
-				c_mantle_cache_file_gui_tab* mantle_cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(c_mantle_tag_gui_tab::g_current_mantle_tag_tab->GetParentTab());
+				c_mantle_cache_file_gui_tab* mantle_cache_file_gui_tab = dynamic_cast<c_mantle_cache_file_gui_tab*>(c_mantle_legacy_tag_editor_gui_tab::g_current_mantle_tag_tab->GetParentTab());
 				if (mantle_cache_file_gui_tab)
 				{
 					mantle_cache_file_gui_tab->open_tag_interface_tab(*ps_tag_reference_legacyTagInterface);
@@ -175,10 +175,10 @@ void render_tagref_gui(s_tag_reference_legacy* field_data, const char* name, c_c
 	ImGui::PopID();
 }
 
-void render_tagref_gui(s_tag_reference_legacy* field_data, const c_reflection_field& reflection_field)
+void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const c_reflection_field& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
-	c_cache_file& cache_file = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_cache_file();
-	render_tagref_gui(field_data, reflection_field.nice_name, cache_file);
+	c_cache_file& cache_file = c_mantle_legacy_tag_editor_gui_tab::g_current_mantle_tag_tab->cache_file;
+	render_tagref_gui_legacy(field_data, reflection_field.nice_name, cache_file);
 }

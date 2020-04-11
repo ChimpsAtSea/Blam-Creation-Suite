@@ -1,13 +1,13 @@
 
 
-void render_stringid_gui(string_id_legacy* field_data, const c_reflection_field& reflection_field)
+void render_stringid_gui_legacy(string_id_legacy* field_data, const c_reflection_field& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	ImGui::PushID(field_data);
 
 	DEBUG_ASSERT(field_data != nullptr);
-	DEBUG_ASSERT(c_mantle_tag_gui_tab::g_current_mantle_tag_tab != nullptr);
+	DEBUG_ASSERT(c_mantle_legacy_tag_editor_gui_tab::g_current_mantle_tag_tab != nullptr);
 
 	string_id_legacy& field_string_id = *reinterpret_cast<string_id_legacy*>(field_data);
 
@@ -42,14 +42,14 @@ void render_stringid_gui(string_id_legacy* field_data, const c_reflection_field&
 
 	static_assert(sizeof(string_id_dynamic_ui_data) <= sizeof(c_mantle_tag_gui_tab::c_imgui_dynamic_data::second), "StringIDDynamicData is too large");
 	bool wasAllocated;
-	string_id_dynamic_ui_data& rDynamicStringIDData = c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_dynamic_data<string_id_dynamic_ui_data>(field_data, wasAllocated);
+	string_id_dynamic_ui_data& rDynamicStringIDData = c_mantle_legacy_tag_editor_gui_tab::g_current_mantle_tag_tab->get_dynamic_data<string_id_dynamic_ui_data>(field_data, wasAllocated);
 	if (wasAllocated)
 	{
-		new(&rDynamicStringIDData) string_id_dynamic_ui_data(field_string_id, c_mantle_tag_gui_tab::g_current_mantle_tag_tab->get_cache_file());
+		new(&rDynamicStringIDData) string_id_dynamic_ui_data(field_string_id, c_mantle_legacy_tag_editor_gui_tab::g_current_mantle_tag_tab->cache_file);
 	}
 
 	ImGui::Columns(3, NULL, false);
-	ImGui::SetColumnOffset(1, c_mantle_tag_gui_tab::g_current_recursion_padding);
+	ImGui::SetColumnOffset(1, c_mantle_legacy_tag_editor_gui_tab::g_current_recursion_padding);
 	ImGui::SetColumnWidth(1, 400);
 	ImGui::NextColumn(); // padding
 

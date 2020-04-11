@@ -2,10 +2,10 @@
 
 
 
-c_mantle_shader_halogram_gui_tab::c_mantle_shader_halogram_gui_tab(c_cache_file& cache_file, c_mantle_gui_tab* parent_tag, v_tag_interface_legacy<s_shader_halogram_definition_legacy>& shader_tag_interface) :
+c_mantle_shader_halogram_gui_tab::c_mantle_shader_halogram_gui_tab(c_cache_file& cache_file, c_mantle_gui_tab* parent_tab, v_tag_interface_legacy<s_shader_halogram_definition_legacy>& shader_tag_interface) :
 	c_mantle_gui_tab("Shader Halogram Editor", "Shader Halogram Editor"),
 	cache_file(cache_file),
-	parent_tag(parent_tag),
+	parent_tab(parent_tab),
 	shader_tag_interface(shader_tag_interface)
 {
 
@@ -67,7 +67,7 @@ void c_mantle_shader_halogram_gui_tab::render_tab_contents_gui()
 
 					if (rmop_default_bitm != nullptr)
 					{
-						// render_tagref_gui(&option.__unknown4, bitmap_name, cache_file);
+						// render_tagref_gui_legacy(&option.__unknown4, bitmap_name, cache_file);
 #undef auto
 
 						//c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_block_legacy<t_value>& tag_block
@@ -81,7 +81,7 @@ void c_mantle_shader_halogram_gui_tab::render_tab_contents_gui()
 
 						ImGui::Text("bitmap: %s", bitmap_name);
 
-						render_tagref_gui(&shader_map.bitmap_reference, bitmap_name, cache_file);
+						render_tagref_gui_legacy(&shader_map.bitmap_reference, bitmap_name, cache_file);
 
 						shader_map_index++;
 					}

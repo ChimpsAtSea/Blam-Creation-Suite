@@ -1,24 +1,10 @@
 #include "mantlelib-private-pch.h"
 
-int c_mantle_tag_gui_tab::g_current_recursion_depth = 0;
-float c_mantle_tag_gui_tab::g_current_recursion_padding = 0.0f;
-thread_local c_mantle_tag_gui_tab* c_mantle_tag_gui_tab::g_current_mantle_tag_tab = nullptr;
-
-#include <GUI/render_primitive_gui.inl>
-#include <GUI/render_stringid_gui.inl>
-#include <GUI/render_struct_gui.inl>
-#include <GUI/render_tagref_gui.inl>
-#include <GUI/render_dataref_gui.inl>
-#include <GUI/render_tagblock_gui.inl>
-#include <GUI/render_enum_gui.inl>
-#include <GUI/render_bitfield_gui.inl>
-// #TODO: include generated_gui_legacy.cpp here and force inline all of the render functions
-
-c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_interface& tag_interface, c_mantle_gui_tab* parent_tag) : 
+c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_interface& tag_interface, c_mantle_gui_tab* parent_tab) : 
 	c_mantle_gui_tab(tag_interface.get_name_with_group_id_cstr(), tag_interface.get_path_with_group_name_cstr()),
 	tag_interface(tag_interface),
 	cache_file(cache_file),
-	parent_tab(parent_tag)
+	parent_tab(parent_tab)
 {
 	if (v_tag_interface_legacy<s_bitmap_definition_legacy>* bitmap_tag_interface = dynamic_cast<decltype(bitmap_tag_interface)>(&tag_interface))
 	{
@@ -40,6 +26,12 @@ c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_inter
 		ASSERT(mantle_shader_halogram_gui_tab != nullptr);
 		add_tab(*mantle_shader_halogram_gui_tab);
 	}
+
+	{
+		c_mantle_legacy_tag_editor_gui_tab* legacy_tag_editor_gui_tab = new c_mantle_legacy_tag_editor_gui_tab(cache_file, this, tag_interface);
+		ASSERT(legacy_tag_editor_gui_tab != nullptr);
+		add_tab(*legacy_tag_editor_gui_tab);
+	}
 }
 
 c_mantle_tag_gui_tab::~c_mantle_tag_gui_tab()
@@ -48,18 +40,6 @@ c_mantle_tag_gui_tab::~c_mantle_tag_gui_tab()
 	{
 		delete dynamic_data;
 	}
-}
-
-void c_mantle_tag_gui_tab::increment_recursion()
-{
-	g_current_recursion_depth++;
-	g_current_recursion_padding = recursion_padding_amount * static_cast<float>(g_current_recursion_depth);
-}
-
-void c_mantle_tag_gui_tab::decrement_recursion()
-{
-	g_current_recursion_depth--;
-	g_current_recursion_padding = recursion_padding_amount * static_cast<float>(g_current_recursion_depth);
 }
 
 void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_structure_type& reflection_type, char* source, char* destination)
@@ -132,48 +112,20 @@ void c_mantle_tag_gui_tab::send_to_game()
 
 void c_mantle_tag_gui_tab::render_tab_contents_gui()
 {
-	g_current_mantle_tag_tab = this;
 	if (child_tabs.empty())
 	{
-		render_tab_contents_gui_impl();
+		return;
 	}
-	else
+
+	if (ImGui::BeginTabBar("##TagEditorTabs", ImGuiTabBarFlags_None)) // each tag
 	{
-		if (ImGui::BeginTabBar("##TagEditorTabs", ImGuiTabBarFlags_None)) // each tag
+		for (c_mantle_gui_tab* mantle_gui_tab : child_tabs)
 		{
-			for (c_mantle_gui_tab* mantle_gui_tab : child_tabs)
-			{
-				mantle_gui_tab->render_gui(false);
-			}
-
-			if (ImGui::BeginTabItem("Tag Editor"))
-			{
-				render_tab_contents_gui_impl();
-
-				ImGui::EndTabItem();
-			}
-
-			ImGui::EndTabBar();
+			mantle_gui_tab->render_gui(false);
 		}
-	}
-}
 
-void c_mantle_tag_gui_tab::render_tab_contents_gui_impl()
-{
-	ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
-
-	const s_reflection_structure_type* ps_reflection_structure_type = tag_interface.get_reflection_data();
-	if (ps_reflection_structure_type)
-	{
-		g_current_mantle_tag_tab = this;
-		ps_reflection_structure_type->render_type_gui_legacy(tag_interface.get_data());
+		ImGui::EndTabBar();
 	}
-	else
-	{
-		ImGui::Text("No reflection information found for '%s'", tag_interface.get_group_short_name_cstr());
-	}
-
-	ImGui::EndChild();
 }
 
 void c_mantle_tag_gui_tab::RenderButtons()

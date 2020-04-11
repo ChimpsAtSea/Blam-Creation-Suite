@@ -135,16 +135,7 @@ void c_legacy_runtime_reflection_generator::write_reflection_structure_type_entr
 		assert(reflection_field_container.field_type != nullptr);
 		const c_reflection_type_container& reflection_type_container = *reflection_field_container.field_type;
 
-		const char* primitive_type_string = "NonPrimitive";
-		//if (reflection_type_container.is_primitive)
-		//{
-		//	primitive_type_string = reflection_field_container.field_type->type_name.c_str();
-		//}
-
-		//if (reflection_type_container.is_enum || reflection_type_container.is_bitfield)
-		{
-			primitive_type_string = primitive_type_to_string(reflection_field_container.primitive_type);
-		}
+		const char* primitive_type_string = primitive_type_to_string(reflection_field_container.primitive_type);
 
 		const char* legacy_reflection_type_category_string = legacy_reflection_type_category_to_string(reflection_field_container.legacy_reflection_type_category);
 

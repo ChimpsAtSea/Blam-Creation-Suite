@@ -23,6 +23,7 @@
     <ClCompile Include="!UserInterface\mantle_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_gui.cpp" />
     <ClCompile Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.cpp" />
+    <ClCompile Include="!UserInterface\TagEditor\mantle_legacy_tag_editor_gui_tab.cpp" />
     <ClCompile Include="Tags\blamlib_testing.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -145,6 +146,7 @@
     <ClInclude Include="HaloScript\halo_script_function_documentation.h" />
     <ClInclude Include="HaloScript\lisp_ast_parser.h" />
     <ClInclude Include="!UserInterface\TagEditor\mantle_shader_gui_tab.h" />
+    <ClInclude Include="!UserInterface\TagEditor\mantle_legacy_tag_editor_gui_tab.h" />
     <ClInclude Include="render_method_definition_group_interface.h" />
     <ClInclude Include="Tags\LegacyGen\generated_conversion_legacy.h" />
     <ClInclude Include="Tags\LegacyGen\generated_gui_legacy.h" />

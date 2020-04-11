@@ -7,7 +7,7 @@ ImVec2 render_struct_separator(int recursionDepth, ImVec2* pTopScreenPos = nullp
 		constexpr float kHeight = 5.0f;
 
 		ImGui::Columns(2, NULL, false);
-		ImGui::SetColumnOffset(1, c_mantle_tag_gui_tab::g_current_recursion_padding);
+		ImGui::SetColumnOffset(1, c_mantle_legacy_tag_editor_gui_tab::g_current_recursion_padding);
 		ImGui::SetColumnWidth(1, 1230);
 		ImGui::NextColumn(); // padding
 		//ImGui::Separator();
@@ -34,25 +34,25 @@ ImVec2 render_struct_separator(int recursionDepth, ImVec2* pTopScreenPos = nullp
 	return screenPos;
 }
 
-void render_struct_gui(void* field_data, const c_reflection_field& reflection_field)
+void render_struct_gui_legacy(void* field_data, const c_reflection_field& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	DEBUG_ASSERT(field_data != nullptr);
 	ImGui::PushID(field_data);
 
-	ImVec2 screenPosTop = render_struct_separator(c_mantle_tag_gui_tab::g_current_recursion_depth);
+	ImVec2 screenPosTop = render_struct_separator(c_mantle_legacy_tag_editor_gui_tab::g_current_recursion_depth);
 	{
 		const s_reflection_structure_info& rs_reflection_structure_info = reflection_field.structure_info;
 		// #TODO: Supply structure_reflection_type directly as an argument
 		const s_reflection_structure_type& structure_reflection_type = *rs_reflection_structure_info.reflection_type; //#TODO: Try to make this a reference in the type
 		REFERENCE_ASSERT(structure_reflection_type);
 
-		c_mantle_tag_gui_tab::increment_recursion();
+		c_mantle_legacy_tag_editor_gui_tab::increment_recursion();
 		structure_reflection_type.render_type_gui_legacy(field_data);
-		c_mantle_tag_gui_tab::decrement_recursion();
+		c_mantle_legacy_tag_editor_gui_tab::decrement_recursion();
 	}
-	render_struct_separator(c_mantle_tag_gui_tab::g_current_recursion_depth, &screenPosTop);
+	render_struct_separator(c_mantle_legacy_tag_editor_gui_tab::g_current_recursion_depth, &screenPosTop);
 
 	ImGui::PopID();
 }

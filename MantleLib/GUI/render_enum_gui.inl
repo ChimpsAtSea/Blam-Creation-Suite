@@ -1,5 +1,5 @@
 
-void render_enum_gui(void* field_data, const c_reflection_field& reflection_field)
+void render_enum_gui_legacy(void* field_data, const c_reflection_field& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
@@ -8,7 +8,7 @@ void render_enum_gui(void* field_data, const c_reflection_field& reflection_fiel
 	ImGui::PushID(field_data);
 
 	ImGui::Columns(3, NULL, false);
-	ImGui::SetColumnOffset(1, c_mantle_tag_gui_tab::g_current_recursion_padding);
+	ImGui::SetColumnOffset(1, c_mantle_legacy_tag_editor_gui_tab::g_current_recursion_padding);
 	ImGui::SetColumnWidth(1, 400);
 	ImGui::NextColumn(); // padding
 
