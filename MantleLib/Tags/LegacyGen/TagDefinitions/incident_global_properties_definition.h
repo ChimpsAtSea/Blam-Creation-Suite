@@ -4,7 +4,7 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 {
 	struct nicename("Incident Global Definitions") s_incident_global_definitions_definition
 	{
-		TagReference nicename("Definition") definition_reference;
+		s_tag_reference_legacy nicename("Definition") definition_reference;
 	};
 
 	struct nicename("Default Incidents") s_default_incidents_definition
@@ -32,7 +32,7 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 
 		struct nicename("Unknown") s_unknown_definition
 		{
-			DEPRECATED_string_id nicename("Incident") incident;
+			string_id_legacy nicename("Incident") incident;
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
@@ -317,12 +317,12 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 				int8_t __unknown2;
 			};
 
-			DEPRECATED_string_id nicename("Parent Incident") parent_incident;
-			Undefined32 __unknown0;
-			s_tag_block_definition<s_weapons_filter_definition> nicename("Weapons Filter") weapons_filter_block;
-			s_tag_block_definition<s_cause_unit_definition> nicename("Cause Unit") cause_unit_block;
-			s_tag_block_definition<s_effect_unit_definition> nicename("Effect Unit") effect_unit_block;
-			s_tag_block_definition<s_special_filters_definition> nicename("Special Filters") special_filters_block;
+			string_id_legacy nicename("Parent Incident") parent_incident;
+			s_undefined32_legacy __unknown0;
+			s_tag_block_legacy<s_weapons_filter_definition> nicename("Weapons Filter") weapons_filter_block;
+			s_tag_block_legacy<s_cause_unit_definition> nicename("Cause Unit") cause_unit_block;
+			s_tag_block_legacy<s_effect_unit_definition> nicename("Effect Unit") effect_unit_block;
+			s_tag_block_legacy<s_special_filters_definition> nicename("Special Filters") special_filters_block;
 		};
 
 		struct nicename("Cumulative Incident Triggers") s_cumulative_incident_triggers_definition
@@ -334,14 +334,14 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 				int8_t __unknown2;
 				int8_t __unknown3;
 				int32_t nicename("Amount") amount;
-				DEPRECATED_string_id nicename("Target Incident") target_incident;
+				string_id_legacy nicename("Target Incident") target_incident;
 			};
 
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;
-			s_tag_block_definition<s_trigger_definition> nicename("Trigger") trigger_block;
+			s_tag_block_legacy<s_trigger_definition> nicename("Trigger") trigger_block;
 		};
 
 		struct nicename("Responses") s_responses_definition
@@ -369,26 +369,26 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 
 			struct nicename("Unknown") s_unknown1_definition
 			{
-				DEPRECATED_string_id __unknown0;
+				string_id_legacy __unknown0;
 			};
 
 			b_mode nicename("Mode") mode;
 			b_mode_type nicename("Mode Type") mode_type;
 			b_difficulty nicename("Difficulty") difficulty;
 			int8_t __unknown0;
-			Undefined32 __unknown1;
-			DEPRECATED_string_id nicename("Event") event;
-			DEPRECATED_string_id nicename("Medal") medal;
-			DEPRECATED_string_id nicename("Commendation") commendation;
-			DEPRECATED_string_id nicename("Achievement") achievement;
-			DEPRECATED_string_id nicename("Avatar Award") avatar_award;
-			s_tag_block_definition<s_unknown1_definition> __unknown2;
-			DEPRECATED_string_id nicename("Script") script;
+			s_undefined32_legacy __unknown1;
+			string_id_legacy nicename("Event") event;
+			string_id_legacy nicename("Medal") medal;
+			string_id_legacy nicename("Commendation") commendation;
+			string_id_legacy nicename("Achievement") achievement;
+			string_id_legacy nicename("Avatar Award") avatar_award;
+			s_tag_block_legacy<s_unknown1_definition> __unknown2;
+			string_id_legacy nicename("Script") script;
 			int16_t nicename("Script Index") script_index;
 			int16_t __unknown3;
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -397,26 +397,26 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 		b_not_allowed_in_mode_type nicename("Not Allowed In Mode Type") not_allowed_in_mode_type;
 		b_not_allowed_on_difficulty nicename("Not Allowed On Difficulty") not_allowed_on_difficulty;
 		int8_t __unknown4;
-		s_tag_block_definition<s_unknown_definition> __unknown5;
-		s_tag_block_definition<s_case_triggers_definition> nicename("Case Triggers") case_triggers_block;
-		s_tag_block_definition<s_cumulative_incident_triggers_definition> nicename("Cumulative Incident Triggers") cumulative_incident_triggers_block;
-		s_tag_block_definition<s_responses_definition> nicename("Responses") responses_block;
+		s_tag_block_legacy<s_unknown_definition> __unknown5;
+		s_tag_block_legacy<s_case_triggers_definition> nicename("Case Triggers") case_triggers_block;
+		s_tag_block_legacy<s_cumulative_incident_triggers_definition> nicename("Cumulative Incident Triggers") cumulative_incident_triggers_block;
+		s_tag_block_legacy<s_responses_definition> nicename("Responses") responses_block;
 	};
 
-	Undefined32 __unknown0;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
-	Undefined32 __unknown3;
-	Undefined32 __unknown4;
-	Undefined32 __unknown5;
-	Undefined32 __unknown6;
-	TagReference __unknown7;
-	TagReference nicename("Commendation Globals") commendation_globals_reference;
-	Undefined32 __unknown8;
-	Undefined32 __unknown9;
-	Undefined32 __unknown10;
-	Undefined32 __unknown11;
-	s_tag_block_definition<s_incident_global_definitions_definition> nicename("Incident Global Definitions") incident_global_definitions_block;
-	s_tag_block_definition<s_default_incidents_definition> nicename("Default Incidents") default_incidents_block;
+	s_undefined32_legacy __unknown0;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
+	s_undefined32_legacy __unknown3;
+	s_undefined32_legacy __unknown4;
+	s_undefined32_legacy __unknown5;
+	s_undefined32_legacy __unknown6;
+	s_tag_reference_legacy __unknown7;
+	s_tag_reference_legacy nicename("Commendation Globals") commendation_globals_reference;
+	s_undefined32_legacy __unknown8;
+	s_undefined32_legacy __unknown9;
+	s_undefined32_legacy __unknown10;
+	s_undefined32_legacy __unknown11;
+	s_tag_block_legacy<s_incident_global_definitions_definition> nicename("Incident Global Definitions") incident_global_definitions_block;
+	s_tag_block_legacy<s_default_incidents_definition> nicename("Default Incidents") default_incidents_block;
 };
 

@@ -20,23 +20,23 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 
 	struct nicename("Havok Cleanup Resources") s_havok_cleanup_resources_definition
 	{
-		TagReference nicename("Object Cleanup Effect") object_cleanup_effect_reference;
+		s_tag_reference_legacy nicename("Object Cleanup Effect") object_cleanup_effect_reference;
 	};
 
 	struct nicename("Sound Globals") s_sound_globals_definition
 	{
 		struct nicename("Fireteam Sounds") s_fireteam_sounds_definition
 		{
-			TagReference nicename("Sound") sound_reference;
+			s_tag_reference_legacy nicename("Sound") sound_reference;
 		};
 
-		TagReference nicename("Sound Classes") sound_classes_reference;
-		TagReference nicename("Sound Effects") sound_effects_reference;
-		TagReference nicename("Sound Mastering") sound_mastering_reference;
-		TagReference nicename("Sound Mix") sound_mix_reference;
-		TagReference nicename("Sound Combat Dialogue Constants") sound_combat_dialogue_constants_reference;
-		TagReference nicename("Sound Global Propagation") sound_global_propagation_reference;
-		s_tag_block_definition<s_fireteam_sounds_definition> nicename("Fireteam Sounds") fireteam_sounds_block;
+		s_tag_reference_legacy nicename("Sound Classes") sound_classes_reference;
+		s_tag_reference_legacy nicename("Sound Effects") sound_effects_reference;
+		s_tag_reference_legacy nicename("Sound Mastering") sound_mastering_reference;
+		s_tag_reference_legacy nicename("Sound Mix") sound_mix_reference;
+		s_tag_reference_legacy nicename("Sound Combat Dialogue Constants") sound_combat_dialogue_constants_reference;
+		s_tag_reference_legacy nicename("Sound Global Propagation") sound_global_propagation_reference;
+		s_tag_block_legacy<s_fireteam_sounds_definition> nicename("Fireteam Sounds") fireteam_sounds_block;
 	};
 
 	struct nicename("AI Globals") s_ai_globals_definition
@@ -50,21 +50,21 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 
 		struct nicename("Formations") s_formations_definition
 		{
-			TagReference nicename("Formation") formation_reference;
+			s_tag_reference_legacy nicename("Formation") formation_reference;
 		};
 
 		struct nicename("Squad Templates") s_squad_templates_definition
 		{
 			struct nicename("Templates") s_templates_definition
 			{
-				TagReference nicename("Template") template_reference;
+				s_tag_reference_legacy nicename("Template") template_reference;
 			};
 
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			s_tag_block_definition<s_templates_definition> nicename("Templates") templates_block;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_tag_block_legacy<s_templates_definition> nicename("Templates") templates_block;
 		};
 
 		struct nicename("Performance Templates") s_performance_templates_definition
@@ -73,18 +73,18 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 			{
 				struct nicename("Templates") s_templates1_definition
 				{
-					TagReference nicename("Template") template_reference;
+					s_tag_reference_legacy nicename("Template") template_reference;
 				};
 
-				DEPRECATED_string_id nicename("Name") name;
-				s_tag_block_definition<s_templates1_definition> nicename("Templates") templates_block;
+				string_id_legacy nicename("Name") name;
+				s_tag_block_legacy<s_templates1_definition> nicename("Templates") templates_block;
 			};
 
-			DEPRECATED_string_id nicename("Name") name;
-			s_tag_block_definition<s_characters_definition> nicename("Characters") characters_block;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
+			string_id_legacy nicename("Name") name;
+			s_tag_block_legacy<s_characters_definition> nicename("Characters") characters_block;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
 		};
 
 		struct nicename("Unknown") s_unknown_definition
@@ -96,28 +96,28 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 
 			struct nicename("Unknown") s_unknown2_definition
 			{
-				DEPRECATED_string_id __unknown0;
+				string_id_legacy __unknown0;
 			};
 
 			struct nicename("Unknown") s_unknown3_definition
 			{
-				Undefined32 __unknown0;
-				Undefined32 __unknown1;
-				Undefined32 __unknown2;
-				Undefined32 __unknown3;
-				Undefined32 __unknown4;
-				Undefined32 __unknown5;
-				Undefined32 __unknown6;
-				Undefined32 __unknown7;
-				Undefined32 __unknown8;
-				Undefined32 __unknown9;
-				Undefined32 __unknown10;
+				s_undefined32_legacy __unknown0;
+				s_undefined32_legacy __unknown1;
+				s_undefined32_legacy __unknown2;
+				s_undefined32_legacy __unknown3;
+				s_undefined32_legacy __unknown4;
+				s_undefined32_legacy __unknown5;
+				s_undefined32_legacy __unknown6;
+				s_undefined32_legacy __unknown7;
+				s_undefined32_legacy __unknown8;
+				s_undefined32_legacy __unknown9;
+				s_undefined32_legacy __unknown10;
 			};
 
-			DEPRECATED_string_id __unknown0;
-			s_tag_block_definition<s_unknown1_definition> __unknown1;
-			s_tag_block_definition<s_unknown2_definition> __unknown2;
-			s_tag_block_definition<s_unknown3_definition> __unknown3;
+			string_id_legacy __unknown0;
+			s_tag_block_legacy<s_unknown1_definition> __unknown1;
+			s_tag_block_legacy<s_unknown2_definition> __unknown2;
+			s_tag_block_legacy<s_unknown3_definition> __unknown3;
 		};
 
 		struct nicename("Vision Trait Definitions") s_vision_trait_definitions_definition
@@ -168,8 +168,8 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		float nicename("Danger Extended Shield Damage") danger_extended_shield_damage;
 		float nicename("Danger Body Damage") danger_body_damage;
 		float nicename("Danger Extended Body Damage") danger_extended_body_damage;
-		TagReference nicename("Global Dialogue") global_dialogue_reference;
-		DEPRECATED_string_id nicename("Default Mission Dialogue Sound Effect") default_mission_dialogue_sound_effect;
+		s_tag_reference_legacy nicename("Global Dialogue") global_dialogue_reference;
+		string_id_legacy nicename("Default Mission Dialogue Sound Effect") default_mission_dialogue_sound_effect;
 		float nicename("Jump Down") jump_down;
 		float nicename("Jump Step") jump_step;
 		float nicename("Jump Crouch") jump_crouch;
@@ -198,7 +198,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		float __unknown6;
 		float __unknown7;
 		float __unknown8;
-		s_tag_block_definition<s_gravemind_properties_definition> nicename("Gravemind Properties") gravemind_properties_block;
+		s_tag_block_legacy<s_gravemind_properties_definition> nicename("Gravemind Properties") gravemind_properties_block;
 		float nicename("Scary Target Threshold") scary_target_threshold;
 		float nicename("Scary Weapon Threshold") scary_weapon_threshold;
 		float __unknown9;
@@ -211,40 +211,40 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		float __unknown16;
 		float __unknown17;
 		float __unknown18;
-		s_tag_block_definition<s_formations_definition> nicename("Formations") formations_block;
-		s_tag_block_definition<s_squad_templates_definition> nicename("Squad Templates") squad_templates_block;
-		s_tag_block_definition<s_performance_templates_definition> nicename("Performance Templates") performance_templates_block;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
-		s_tag_block_definition<s_unknown_definition> __unknown22;
-		Undefined32 __unknown23;
-		Undefined32 __unknown24;
-		Undefined32 __unknown25;
-		Undefined32 __unknown26;
-		Undefined32 __unknown27;
-		Undefined32 __unknown28;
-		Undefined32 __unknown29;
-		Undefined32 __unknown30;
-		Undefined32 __unknown31;
-		Undefined32 __unknown32;
-		Undefined32 __unknown33;
-		Undefined32 __unknown34;
-		Undefined32 __unknown35;
-		Undefined32 __unknown36;
+		s_tag_block_legacy<s_formations_definition> nicename("Formations") formations_block;
+		s_tag_block_legacy<s_squad_templates_definition> nicename("Squad Templates") squad_templates_block;
+		s_tag_block_legacy<s_performance_templates_definition> nicename("Performance Templates") performance_templates_block;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
+		s_tag_block_legacy<s_unknown_definition> __unknown22;
+		s_undefined32_legacy __unknown23;
+		s_undefined32_legacy __unknown24;
+		s_undefined32_legacy __unknown25;
+		s_undefined32_legacy __unknown26;
+		s_undefined32_legacy __unknown27;
+		s_undefined32_legacy __unknown28;
+		s_undefined32_legacy __unknown29;
+		s_undefined32_legacy __unknown30;
+		s_undefined32_legacy __unknown31;
+		s_undefined32_legacy __unknown32;
+		s_undefined32_legacy __unknown33;
+		s_undefined32_legacy __unknown34;
+		s_undefined32_legacy __unknown35;
+		s_undefined32_legacy __unknown36;
 		int16_t __unknown37;
 		int16_t __unknown38;
 		int16_t __unknown39;
 		int16_t __unknown40;
 		int16_t __unknown41;
 		int16_t __unknown42;
-		s_tag_block_definition<s_vision_trait_definitions_definition> nicename("Vision Trait Definitions") vision_trait_definitions_block;
-		s_tag_block_definition<s_hearing_trait_definitions_definition> nicename("Hearing Trait Definitions") hearing_trait_definitions_block;
-		s_tag_block_definition<s_luck_trait_definitions_definition> nicename("Luck Trait Definitions") luck_trait_definitions_block;
-		s_tag_block_definition<s_grenade_trait_definitions_definition> nicename("Grenade Trait Definitions") grenade_trait_definitions_block;
-		Undefined32 __unknown43;
-		Undefined32 __unknown44;
-		Undefined32 __unknown45;
+		s_tag_block_legacy<s_vision_trait_definitions_definition> nicename("Vision Trait Definitions") vision_trait_definitions_block;
+		s_tag_block_legacy<s_hearing_trait_definitions_definition> nicename("Hearing Trait Definitions") hearing_trait_definitions_block;
+		s_tag_block_legacy<s_luck_trait_definitions_definition> nicename("Luck Trait Definitions") luck_trait_definitions_block;
+		s_tag_block_legacy<s_grenade_trait_definitions_definition> nicename("Grenade Trait Definitions") grenade_trait_definitions_block;
+		s_undefined32_legacy __unknown43;
+		s_undefined32_legacy __unknown44;
+		s_undefined32_legacy __unknown45;
 		int16_t __unknown46;
 		int16_t __unknown47;
 		int16_t __unknown48;
@@ -257,26 +257,26 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		{
 			struct nicename("Armor Modifiers") s_armor_modifiers_definition
 			{
-				DEPRECATED_string_id nicename("Name") name;
+				string_id_legacy nicename("Name") name;
 				float nicename("Damage Multiplier") damage_multiplier;
 			};
 
-			DEPRECATED_string_id nicename("Name") name;
-			s_tag_block_definition<s_armor_modifiers_definition> nicename("Armor Modifiers") armor_modifiers_block;
+			string_id_legacy nicename("Name") name;
+			s_tag_block_legacy<s_armor_modifiers_definition> nicename("Armor Modifiers") armor_modifiers_block;
 		};
 
-		s_tag_block_definition<s_damage_groups_definition> nicename("Damage Groups") damage_groups_block;
+		s_tag_block_legacy<s_damage_groups_definition> nicename("Damage Groups") damage_groups_block;
 	};
 
 	struct nicename("Sounds") s_sounds_definition
 	{
-		TagReference nicename("Sound (Obsolete)") sound_obsolete_reference;
+		s_tag_reference_legacy nicename("Sound (Obsolete)") sound_obsolete_reference;
 	};
 
 	struct nicename("Camera") s_camera_definition
 	{
-		TagReference nicename("Default Unit Track") default_unit_track_reference;
-		DataReference __unknown0;
+		s_tag_reference_legacy nicename("Default Unit Track") default_unit_track_reference;
+		s_data_reference_legacy __unknown0;
 		float __unknown1;
 		float __unknown2;
 		float __unknown3;
@@ -337,7 +337,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		{
 			struct nicename("Unknown") s_unknown5_definition
 			{
-				DataReference __unknown0;
+				s_data_reference_legacy __unknown0;
 			};
 
 			int8_t __unknown0;
@@ -350,14 +350,14 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 			float __unknown7;
 			float __unknown8;
 			float __unknown9;
-			s_tag_block_definition<s_unknown5_definition> __unknown10;
+			s_tag_block_legacy<s_unknown5_definition> __unknown10;
 		};
 
 		struct nicename("Unknown") s_unknown6_definition
 		{
 			struct nicename("Unknown") s_unknown7_definition
 			{
-				DataReference __unknown0;
+				s_data_reference_legacy __unknown0;
 			};
 
 			int8_t __unknown0;
@@ -370,11 +370,11 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 			float __unknown7;
 			float __unknown8;
 			float __unknown9;
-			s_tag_block_definition<s_unknown7_definition> __unknown10;
+			s_tag_block_legacy<s_unknown7_definition> __unknown10;
 		};
 
-		s_tag_block_definition<s_unknown4_definition> __unknown0;
-		s_tag_block_definition<s_unknown6_definition> __unknown1;
+		s_tag_block_legacy<s_unknown4_definition> __unknown0;
+		s_tag_block_legacy<s_unknown6_definition> __unknown1;
 		float nicename("Magnetism Friction") magnetism_friction;
 		float nicename("Magnetism Adhesion") magnetism_adhesion;
 		float nicename("Inconsequential Target Scale") inconsequential_target_scale;
@@ -388,14 +388,14 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		int32_t nicename("Minimum Autoleveling Ticks") minimum_autoleveling_ticks;
 		float nicename("Minimum Angle for Vehicle Flipping") minimum_angle_for_vehicle_flipping;
 		float nicename("Minimum Action Hold Time") minimum_action_hold_time;
-		Undefined32 __unknown5;
+		s_undefined32_legacy __unknown5;
 		int32_t __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
 		float __unknown13;
 		float __unknown14;
 		float __unknown15;
@@ -403,7 +403,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		float __unknown17;
 		float __unknown18;
 		float __unknown19;
-		Undefined32 __unknown20;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("Player Trait Defaults") s_player_trait_defaults_definition
@@ -662,9 +662,9 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
-			DEPRECATED_string_id nicename("Primary Weapon") primary_weapon;
-			DEPRECATED_string_id nicename("Secondary Weapon") secondary_weapon;
-			DEPRECATED_string_id nicename("Equipment") equipment;
+			string_id_legacy nicename("Primary Weapon") primary_weapon;
+			string_id_legacy nicename("Secondary Weapon") secondary_weapon;
+			string_id_legacy nicename("Equipment") equipment;
 		};
 
 		struct nicename("Movement") s_movement_definition
@@ -838,11 +838,11 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 			int8_t __unknown0;
 		};
 
-		s_tag_block_definition<s_shields_and_health_definition> nicename("Shields and Health") shields_and_health_block;
-		s_tag_block_definition<s_weapons_and_damage_definition> nicename("Weapons and Damage") weapons_and_damage_block;
-		s_tag_block_definition<s_movement_definition> nicename("Movement") movement_block;
-		s_tag_block_definition<s_appearance_definition> nicename("Appearance") appearance_block;
-		s_tag_block_definition<s_hud_definition> nicename("HUD") hud_block;
+		s_tag_block_legacy<s_shields_and_health_definition> nicename("Shields and Health") shields_and_health_block;
+		s_tag_block_legacy<s_weapons_and_damage_definition> nicename("Weapons and Damage") weapons_and_damage_block;
+		s_tag_block_legacy<s_movement_definition> nicename("Movement") movement_block;
+		s_tag_block_legacy<s_appearance_definition> nicename("Appearance") appearance_block;
+		s_tag_block_legacy<s_hud_definition> nicename("HUD") hud_block;
 	};
 
 	struct nicename("Difficulty") s_difficulty_definition
@@ -975,39 +975,39 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		float nicename("Normal Player Vehicle Ram Chance") normal_player_vehicle_ram_chance;
 		float nicename("Hard Player Vehicle Ram Chance") hard_player_vehicle_ram_chance;
 		float nicename("Impossible Player Vehicle Ram Chance") impossible_player_vehicle_ram_chance;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
-		Undefined32 __unknown22;
-		Undefined32 __unknown23;
-		Undefined32 __unknown24;
-		Undefined32 __unknown25;
-		Undefined32 __unknown26;
-		Undefined32 __unknown27;
-		Undefined32 __unknown28;
-		Undefined32 __unknown29;
-		Undefined32 __unknown30;
-		Undefined32 __unknown31;
-		Undefined32 __unknown32;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
+		s_undefined32_legacy __unknown22;
+		s_undefined32_legacy __unknown23;
+		s_undefined32_legacy __unknown24;
+		s_undefined32_legacy __unknown25;
+		s_undefined32_legacy __unknown26;
+		s_undefined32_legacy __unknown27;
+		s_undefined32_legacy __unknown28;
+		s_undefined32_legacy __unknown29;
+		s_undefined32_legacy __unknown30;
+		s_undefined32_legacy __unknown31;
+		s_undefined32_legacy __unknown32;
 	};
 
 	struct nicename("Unknown") s_unknown8_definition
@@ -1052,42 +1052,42 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		int16_t nicename("Maximum Count") maximum_count;
 		int16_t __unknown0;
 		float __unknown1;
-		TagReference nicename("Throwing Effect") throwing_effect_reference;
-		TagReference nicename("Equipment") equipment_reference;
-		TagReference nicename("Projectile") projectile_reference;
+		s_tag_reference_legacy nicename("Throwing Effect") throwing_effect_reference;
+		s_tag_reference_legacy nicename("Equipment") equipment_reference;
+		s_tag_reference_legacy nicename("Projectile") projectile_reference;
 	};
 
 	struct nicename("Soft Barrier Properties") s_soft_barrier_properties_definition
 	{
-		Undefined32 nicename("Biped Give") biped_give;
-		Undefined32 nicename("Biped Bounciness") biped_bounciness;
-		Undefined32 nicename("Biped Bumpiness") biped_bumpiness;
-		Undefined32 __unknown0;
-		Undefined32 nicename("Vehicle Give") vehicle_give;
-		Undefined32 nicename("Vehicle Bounciness") vehicle_bounciness;
-		Undefined32 nicename("Vehicle Bumpiness") vehicle_bumpiness;
+		s_undefined32_legacy nicename("Biped Give") biped_give;
+		s_undefined32_legacy nicename("Biped Bounciness") biped_bounciness;
+		s_undefined32_legacy nicename("Biped Bumpiness") biped_bumpiness;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy nicename("Vehicle Give") vehicle_give;
+		s_undefined32_legacy nicename("Vehicle Bounciness") vehicle_bounciness;
+		s_undefined32_legacy nicename("Vehicle Bumpiness") vehicle_bumpiness;
 	};
 
 	struct nicename("Interface Tags") s_interface_tags_definition
 	{
-		TagReference nicename("Spinner") spinner_reference;
-		TagReference nicename("Obsolete") obsolete_reference;
-		TagReference nicename("Screen Color Table") screen_color_table_reference;
-		TagReference nicename("HUD Color Table") hud_color_table_reference;
-		TagReference nicename("Editor Color Table") editor_color_table_reference;
-		TagReference nicename("Dialog Color Table") dialog_color_table_reference;
-		TagReference nicename("Motion Sensor Sweep Bitmap") motion_sensor_sweep_bitmap_reference;
-		TagReference nicename("Motion Sensor Sweep Bitmap Mask") motion_sensor_sweep_bitmap_mask_reference;
-		TagReference nicename("Multiplayer HUD Bitmap") multiplayer_hud_bitmap_reference;
-		TagReference nicename("HUD Digits Definition") hud_digits_definition_reference;
-		TagReference nicename("Motion Sensor Blip Bitmap") motion_sensor_blip_bitmap_reference;
-		TagReference nicename("Interface Goo Map 1") interface_goo_map_1_reference;
-		TagReference nicename("Interface Goo Map 2") interface_goo_map_2_reference;
-		TagReference nicename("Interface Goo Map 3") interface_goo_map_3_reference;
-		TagReference nicename("Main Menu UI Globals") main_menu_ui_globals_reference;
-		TagReference nicename("Single Player/Survival UI Globals") single_player_survival_ui_globals_reference;
-		TagReference nicename("Multiplayer UI Globals") multiplayer_ui_globals_reference;
-		TagReference nicename("HUD Globals") hud_globals_reference;
+		s_tag_reference_legacy nicename("Spinner") spinner_reference;
+		s_tag_reference_legacy nicename("Obsolete") obsolete_reference;
+		s_tag_reference_legacy nicename("Screen Color Table") screen_color_table_reference;
+		s_tag_reference_legacy nicename("HUD Color Table") hud_color_table_reference;
+		s_tag_reference_legacy nicename("Editor Color Table") editor_color_table_reference;
+		s_tag_reference_legacy nicename("Dialog Color Table") dialog_color_table_reference;
+		s_tag_reference_legacy nicename("Motion Sensor Sweep Bitmap") motion_sensor_sweep_bitmap_reference;
+		s_tag_reference_legacy nicename("Motion Sensor Sweep Bitmap Mask") motion_sensor_sweep_bitmap_mask_reference;
+		s_tag_reference_legacy nicename("Multiplayer HUD Bitmap") multiplayer_hud_bitmap_reference;
+		s_tag_reference_legacy nicename("HUD Digits Definition") hud_digits_definition_reference;
+		s_tag_reference_legacy nicename("Motion Sensor Blip Bitmap") motion_sensor_blip_bitmap_reference;
+		s_tag_reference_legacy nicename("Interface Goo Map 1") interface_goo_map_1_reference;
+		s_tag_reference_legacy nicename("Interface Goo Map 2") interface_goo_map_2_reference;
+		s_tag_reference_legacy nicename("Interface Goo Map 3") interface_goo_map_3_reference;
+		s_tag_reference_legacy nicename("Main Menu UI Globals") main_menu_ui_globals_reference;
+		s_tag_reference_legacy nicename("Single Player/Survival UI Globals") single_player_survival_ui_globals_reference;
+		s_tag_reference_legacy nicename("Multiplayer UI Globals") multiplayer_ui_globals_reference;
+		s_tag_reference_legacy nicename("HUD Globals") hud_globals_reference;
 	};
 
 	struct nicename("Player Information") s_player_information_definition
@@ -1105,32 +1105,32 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		float nicename("Grenade Origin x") grenade_origin_x;
 		float nicename("Grenade Origin y") grenade_origin_y;
 		float nicename("Grenade Origin z") grenade_origin_z;
-		DataReference nicename("Stun Function") stun_function_data_reference;
+		s_data_reference_legacy nicename("Stun Function") stun_function_data_reference;
 		float nicename("First Person Idle Time min") first_person_idle_time_min;
 		float nicename("First Person Idle Time max") first_person_idle_time_max;
 		float nicename("First Person Skip Fraction") first_person_skip_fraction;
-		TagReference nicename("Timer Sound") timer_sound_reference;
-		TagReference nicename("Timer Sound Zero") timer_sound_zero_reference;
-		TagReference nicename("Respawn Effect") respawn_effect_reference;
-		TagReference __unknown0;
+		s_tag_reference_legacy nicename("Timer Sound") timer_sound_reference;
+		s_tag_reference_legacy nicename("Timer Sound Zero") timer_sound_zero_reference;
+		s_tag_reference_legacy nicename("Respawn Effect") respawn_effect_reference;
+		s_tag_reference_legacy __unknown0;
 		int32_t nicename("Binoculars Zoom Count") binoculars_zoom_count;
 		float nicename("Binocular Zoom Range min") binocular_zoom_range_min;
 		float nicename("Binocular Zoom Range max") binocular_zoom_range_max;
-		TagReference nicename("Flashlight On") flashlight_on_reference;
-		TagReference nicename("Flashlight Off") flashlight_off_reference;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
+		s_tag_reference_legacy nicename("Flashlight On") flashlight_on_reference;
+		s_tag_reference_legacy nicename("Flashlight Off") flashlight_off_reference;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
 		float __unknown5;
 		float __unknown6;
 		float nicename("Sprint Movement Speed Percentage") sprint_movement_speed_percentage;
 		float nicename("Sprint Look Speed Percentage") sprint_look_speed_percentage;
 		float __unknown7;
 		float __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		DEPRECATED_string_id nicename("Sprint") sprint;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		string_id_legacy nicename("Sprint") sprint;
 	};
 
 	struct nicename("Player Representation") s_player_representation_definition
@@ -1139,39 +1139,39 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		int8_t __unknown1;
 		int8_t __unknown2;
 		int8_t __unknown3;
-		TagReference nicename("HUD") hud_reference;
-		TagReference nicename("First Person Hands") first_person_hands_reference;
-		TagReference nicename("First Person Body") first_person_body_reference;
-		TagReference nicename("Third Person Unit") third_person_unit_reference;
-		DEPRECATED_string_id nicename("Third Person Variant") third_person_variant;
-		TagReference nicename("Binoculars Zoom In Sound") binoculars_zoom_in_sound_reference;
-		TagReference nicename("Binoculars Zoom Out Sound") binoculars_zoom_out_sound_reference;
+		s_tag_reference_legacy nicename("HUD") hud_reference;
+		s_tag_reference_legacy nicename("First Person Hands") first_person_hands_reference;
+		s_tag_reference_legacy nicename("First Person Body") first_person_body_reference;
+		s_tag_reference_legacy nicename("Third Person Unit") third_person_unit_reference;
+		string_id_legacy nicename("Third Person Variant") third_person_variant;
+		s_tag_reference_legacy nicename("Binoculars Zoom In Sound") binoculars_zoom_in_sound_reference;
+		s_tag_reference_legacy nicename("Binoculars Zoom Out Sound") binoculars_zoom_out_sound_reference;
 		int32_t nicename("Player Information Index") player_information_index;
 	};
 
 	struct nicename("Falling Damage") s_falling_damage_definition
 	{
-		TagReference nicename("Falling Damage") falling_damage_reference;
-		TagReference __unknown0;
-		TagReference nicename("Soft Landing") soft_landing_reference;
-		TagReference nicename("Hard Landing") hard_landing_reference;
-		TagReference nicename("Script Damage") script_damage_reference;
+		s_tag_reference_legacy nicename("Falling Damage") falling_damage_reference;
+		s_tag_reference_legacy __unknown0;
+		s_tag_reference_legacy nicename("Soft Landing") soft_landing_reference;
+		s_tag_reference_legacy nicename("Hard Landing") hard_landing_reference;
+		s_tag_reference_legacy nicename("Script Damage") script_damage_reference;
 		float nicename("Maximum Falling Distance") maximum_falling_distance;
-		TagReference nicename("Terminal Velocity Damage") terminal_velocity_damage_reference;
-		TagReference nicename("Missing Response") missing_response_reference;
-		TagReference __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
+		s_tag_reference_legacy nicename("Terminal Velocity Damage") terminal_velocity_damage_reference;
+		s_tag_reference_legacy nicename("Missing Response") missing_response_reference;
+		s_tag_reference_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
 		float __unknown4;
 		float __unknown5;
 		float __unknown6;
 		float __unknown7;
-		Undefined32 __unknown8;
+		s_undefined32_legacy __unknown8;
 		float __unknown9;
 		float __unknown10;
 		float __unknown11;
 		float __unknown12;
-		Undefined32 __unknown13;
+		s_undefined32_legacy __unknown13;
 		float __unknown14;
 		float __unknown15;
 		float __unknown16;
@@ -1230,90 +1230,90 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 
 		struct nicename("Object Water Drag Properties") s_object_water_drag_properties_definition
 		{
-			TagReference nicename("Water Drag Properties") water_drag_properties_reference;
+			s_tag_reference_legacy nicename("Water Drag Properties") water_drag_properties_reference;
 		};
 
 		struct nicename("Water Interaction") s_water_interaction_definition
 		{
-			DEPRECATED_string_id nicename("Surface Name") surface_name;
-			DEPRECATED_string_id nicename("Submerged Name") submerged_name;
+			string_id_legacy nicename("Surface Name") surface_name;
+			string_id_legacy nicename("Submerged Name") submerged_name;
 			int16_t nicename("Surface Index") surface_index;
 			int16_t nicename("Submerged Index") submerged_index;
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
-		DEPRECATED_string_id nicename("Parent Name") parent_name;
+		string_id_legacy nicename("Name") name;
+		string_id_legacy nicename("Parent Name") parent_name;
 		int16_t nicename("Parent Index") parent_index;
 		b_flags nicename("Flags") flags;
-		DEPRECATED_string_id nicename("General Armor") general_armor;
-		DEPRECATED_string_id nicename("Specific Armor") specific_armor;
-		DEPRECATED_string_id nicename("Wet Armor") wet_armor;
+		string_id_legacy nicename("General Armor") general_armor;
+		string_id_legacy nicename("Specific Armor") specific_armor;
+		string_id_legacy nicename("Wet Armor") wet_armor;
 		int16_t nicename("Wet Armor Index") wet_armor_index;
 		int16_t __unknown0;
 		int16_t nicename("Wet Armor Reference Index") wet_armor_reference_index;
 		int16_t __unknown1;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown2;
 		float nicename("Friction") friction;
 		float nicename("Restitution") restitution;
 		float nicename("Density") density;
-		TagReference nicename("Global Water Drag Properties") global_water_drag_properties_reference;
-		s_tag_block_definition<s_object_water_drag_properties_definition> nicename("Object Water Drag Properties") object_water_drag_properties_block;
+		s_tag_reference_legacy nicename("Global Water Drag Properties") global_water_drag_properties_reference;
+		s_tag_block_legacy<s_object_water_drag_properties_definition> nicename("Object Water Drag Properties") object_water_drag_properties_block;
 		float nicename("Water Drag Unknown") water_drag_unknown;
 		float nicename("Water Drag Unknown") water_drag_unknown1;
 		float nicename("Water Drag Unknown") water_drag_unknown2;
 		float nicename("Water Drag Unknown") water_drag_unknown3;
 		float nicename("Water Drag Unknown") water_drag_unknown4;
 		float nicename("Water Drag Unknown") water_drag_unknown5;
-		Undefined32 nicename("Water Drag Unknown") water_drag_unknown6;
-		TagReference nicename("Breakable Surface") breakable_surface_reference;
-		TagReference nicename("Sound Sweetener Small") sound_sweetener_small_reference;
-		TagReference nicename("Sound Sweetener Medium") sound_sweetener_medium_reference;
-		TagReference nicename("Sound Sweetener Large") sound_sweetener_large_reference;
-		TagReference nicename("Sound Sweetener Rolling") sound_sweetener_rolling_reference;
-		TagReference nicename("Sound Sweetener Grinding") sound_sweetener_grinding_reference;
-		TagReference nicename("Sound Sweetener Melee Small") sound_sweetener_melee_small_reference;
-		TagReference nicename("Sound Sweetener Melee Medium") sound_sweetener_melee_medium_reference;
-		TagReference nicename("Sound Sweetener Melee Large") sound_sweetener_melee_large_reference;
-		TagReference nicename("Effect Sweetener Small") effect_sweetener_small_reference;
-		TagReference nicename("Effect Sweetener Medium") effect_sweetener_medium_reference;
-		TagReference nicename("Effect Sweetener Large") effect_sweetener_large_reference;
-		TagReference nicename("Effect Sweetener Rolling") effect_sweetener_rolling_reference;
-		TagReference nicename("Effect Sweetener Grinding") effect_sweetener_grinding_reference;
-		TagReference nicename("Effect Sweetener Melee") effect_sweetener_melee_reference;
-		TagReference nicename("Water Ripple Small") water_ripple_small_reference;
-		TagReference nicename("Water Ripple Medium") water_ripple_medium_reference;
-		TagReference nicename("Water Ripple Large") water_ripple_large_reference;
+		s_undefined32_legacy nicename("Water Drag Unknown") water_drag_unknown6;
+		s_tag_reference_legacy nicename("Breakable Surface") breakable_surface_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Small") sound_sweetener_small_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Medium") sound_sweetener_medium_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Large") sound_sweetener_large_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Rolling") sound_sweetener_rolling_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Grinding") sound_sweetener_grinding_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Melee Small") sound_sweetener_melee_small_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Melee Medium") sound_sweetener_melee_medium_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Melee Large") sound_sweetener_melee_large_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Small") effect_sweetener_small_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Medium") effect_sweetener_medium_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Large") effect_sweetener_large_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Rolling") effect_sweetener_rolling_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Grinding") effect_sweetener_grinding_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Melee") effect_sweetener_melee_reference;
+		s_tag_reference_legacy nicename("Water Ripple Small") water_ripple_small_reference;
+		s_tag_reference_legacy nicename("Water Ripple Medium") water_ripple_medium_reference;
+		s_tag_reference_legacy nicename("Water Ripple Large") water_ripple_large_reference;
 		b_sweetener_inheritance_flags nicename("Sweetener Inheritance Flags") sweetener_inheritance_flags;
-		TagReference nicename("Material Effects") material_effects_reference;
-		s_tag_block_definition<s_water_interaction_definition> nicename("Water Interaction") water_interaction_block;
+		s_tag_reference_legacy nicename("Material Effects") material_effects_reference;
+		s_tag_block_legacy<s_water_interaction_definition> nicename("Water Interaction") water_interaction_block;
 	};
 
 	struct nicename("Player Colors") s_player_colors_definition
 	{
-		colorf nicename("Color") color;
+		s_colorf_legacy nicename("Color") color;
 	};
 
 	struct nicename("Emblem Colors") s_emblem_colors_definition
 	{
-		colorf nicename("Color") color;
+		s_colorf_legacy nicename("Color") color;
 	};
 
 	struct nicename("Visor Colors") s_visor_colors_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
-		colorf nicename("Primary Color") primary_color;
-		colorf nicename("Secondary Color") secondary_color;
+		string_id_legacy nicename("Name") name;
+		s_colorf_legacy nicename("Primary Color") primary_color;
+		s_colorf_legacy nicename("Secondary Color") secondary_color;
 	};
 
 	struct nicename("Forge Colors") s_forge_colors_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
-		colorf nicename("Color") color;
+		string_id_legacy nicename("Name") name;
+		s_colorf_legacy nicename("Color") color;
 	};
 
 	struct nicename("Cinematic Anchors") s_cinematic_anchors_definition
 	{
-		TagReference nicename("Cinematic Anchor") cinematic_anchor_reference;
+		s_tag_reference_legacy nicename("Cinematic Anchor") cinematic_anchor_reference;
 		float __unknown0;
 		float __unknown1;
 		float __unknown2;
@@ -1326,16 +1326,16 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		float __unknown9;
 		float __unknown10;
 		float __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
 	};
 
 	struct nicename("Metagame Globals") s_metagame_globals_definition
 	{
 		struct nicename("Medals") s_medals_definition
 		{
-			DEPRECATED_string_id nicename("Incident Name") incident_name;
+			string_id_legacy nicename("Incident Name") incident_name;
 			float nicename("Multiplier") multiplier;
 		};
 
@@ -1349,12 +1349,12 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 			float nicename("Multiplier") multiplier;
 		};
 
-		s_tag_block_definition<s_medals_definition> nicename("Medals") medals_block;
+		s_tag_block_legacy<s_medals_definition> nicename("Medals") medals_block;
 		/* Difficulty List : 0 - Easy
 		   1 - Normal
 		   2 - Heroic
 		   3 - Legendary */
-		s_tag_block_definition<s_difficulty1_definition> nicename("Difficulty") difficulty_block;
+		s_tag_block_legacy<s_difficulty1_definition> nicename("Difficulty") difficulty_block;
 		/* Skulls List : 0 - Iron
 		   1  - Black Eye
 		   2  - Tough Luck
@@ -1372,7 +1372,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 		   14 - Red Custom
 		   15 - Yellow Custom
 		   16 - Blue Custom */
-		s_tag_block_definition<s_skulls_definition> nicename("Skulls") skulls_block;
+		s_tag_block_legacy<s_skulls_definition> nicename("Skulls") skulls_block;
 		int32_t __unknown0;
 		int32_t nicename("Death Penalty") death_penalty;
 		int32_t nicename("Betrayal Penalty") betrayal_penalty;
@@ -1388,16 +1388,16 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 			float __unknown1;
 			float __unknown2;
 			float __unknown3;
-			DataReference __unknown4;
+			s_data_reference_legacy __unknown4;
 		};
 
 		float __unknown0;
 		float __unknown1;
-		Undefined32 __unknown2;
-		DataReference __unknown3;
-		DataReference __unknown4;
-		DataReference __unknown5;
-		s_tag_block_definition<s_unknown11_definition> __unknown6;
+		s_undefined32_legacy __unknown2;
+		s_data_reference_legacy __unknown3;
+		s_data_reference_legacy __unknown4;
+		s_data_reference_legacy __unknown5;
+		s_tag_block_legacy<s_unknown11_definition> __unknown6;
 	};
 
 	struct nicename("Unknown") s_unknown12_definition
@@ -1412,7 +1412,7 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 
 	struct nicename("Unknown") s_unknown13_definition
 	{
-		DataReference __unknown0;
+		s_data_reference_legacy __unknown0;
 	};
 
 	struct nicename("Alt Materials") s_alt_materials_definition
@@ -1460,151 +1460,151 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 
 		struct nicename("Object Water Drag Properties") s_object_water_drag_properties1_definition
 		{
-			TagReference nicename("Water Drag Properties") water_drag_properties_reference;
+			s_tag_reference_legacy nicename("Water Drag Properties") water_drag_properties_reference;
 		};
 
 		struct nicename("Water Interaction") s_water_interaction1_definition
 		{
-			DEPRECATED_string_id nicename("Surface Name") surface_name;
-			DEPRECATED_string_id nicename("Submerged Name") submerged_name;
+			string_id_legacy nicename("Surface Name") surface_name;
+			string_id_legacy nicename("Submerged Name") submerged_name;
 			int16_t nicename("Surface Index") surface_index;
 			int16_t nicename("Submerged Index") submerged_index;
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
-		DEPRECATED_string_id nicename("Parent Name") parent_name;
+		string_id_legacy nicename("Name") name;
+		string_id_legacy nicename("Parent Name") parent_name;
 		int16_t nicename("Parent Index") parent_index;
 		b_flags nicename("Flags") flags;
-		DEPRECATED_string_id nicename("General Armor") general_armor;
-		DEPRECATED_string_id nicename("Specific Armor") specific_armor;
-		DEPRECATED_string_id nicename("Wet Armor") wet_armor;
+		string_id_legacy nicename("General Armor") general_armor;
+		string_id_legacy nicename("Specific Armor") specific_armor;
+		string_id_legacy nicename("Wet Armor") wet_armor;
 		int16_t nicename("Wet Armor Index") wet_armor_index;
 		int16_t __unknown0;
 		int16_t nicename("Wet Armor Reference Index") wet_armor_reference_index;
 		int16_t __unknown1;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown2;
 		float nicename("Friction") friction;
 		float nicename("Restitution") restitution;
 		float nicename("Density") density;
-		TagReference nicename("Global Water Drag Properties") global_water_drag_properties_reference;
-		s_tag_block_definition<s_object_water_drag_properties1_definition> nicename("Object Water Drag Properties") object_water_drag_properties_block;
+		s_tag_reference_legacy nicename("Global Water Drag Properties") global_water_drag_properties_reference;
+		s_tag_block_legacy<s_object_water_drag_properties1_definition> nicename("Object Water Drag Properties") object_water_drag_properties_block;
 		float nicename("Water Drag Unknown") water_drag_unknown;
 		float nicename("Water Drag Unknown") water_drag_unknown1;
 		float nicename("Water Drag Unknown") water_drag_unknown2;
 		float nicename("Water Drag Unknown") water_drag_unknown3;
 		float nicename("Water Drag Unknown") water_drag_unknown4;
 		float nicename("Water Drag Unknown") water_drag_unknown5;
-		Undefined32 nicename("Water Drag Unknown") water_drag_unknown6;
-		TagReference nicename("Breakable Surface") breakable_surface_reference;
-		TagReference nicename("Sound Sweetener Small") sound_sweetener_small_reference;
-		TagReference nicename("Sound Sweetener Medium") sound_sweetener_medium_reference;
-		TagReference nicename("Sound Sweetener Large") sound_sweetener_large_reference;
-		TagReference nicename("Sound Sweetener Rolling") sound_sweetener_rolling_reference;
-		TagReference nicename("Sound Sweetener Grinding") sound_sweetener_grinding_reference;
-		TagReference nicename("Sound Sweetener Melee Small") sound_sweetener_melee_small_reference;
-		TagReference nicename("Sound Sweetener Melee Medium") sound_sweetener_melee_medium_reference;
-		TagReference nicename("Sound Sweetener Melee Large") sound_sweetener_melee_large_reference;
-		TagReference nicename("Effect Sweetener Small") effect_sweetener_small_reference;
-		TagReference nicename("Effect Sweetener Medium") effect_sweetener_medium_reference;
-		TagReference nicename("Effect Sweetener Large") effect_sweetener_large_reference;
-		TagReference nicename("Effect Sweetener Rolling") effect_sweetener_rolling_reference;
-		TagReference nicename("Effect Sweetener Grinding") effect_sweetener_grinding_reference;
-		TagReference nicename("Effect Sweetener Melee") effect_sweetener_melee_reference;
-		TagReference nicename("Water Ripple Small") water_ripple_small_reference;
-		TagReference nicename("Water Ripple Medium") water_ripple_medium_reference;
-		TagReference nicename("Water Ripple Large") water_ripple_large_reference;
+		s_undefined32_legacy nicename("Water Drag Unknown") water_drag_unknown6;
+		s_tag_reference_legacy nicename("Breakable Surface") breakable_surface_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Small") sound_sweetener_small_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Medium") sound_sweetener_medium_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Large") sound_sweetener_large_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Rolling") sound_sweetener_rolling_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Grinding") sound_sweetener_grinding_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Melee Small") sound_sweetener_melee_small_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Melee Medium") sound_sweetener_melee_medium_reference;
+		s_tag_reference_legacy nicename("Sound Sweetener Melee Large") sound_sweetener_melee_large_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Small") effect_sweetener_small_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Medium") effect_sweetener_medium_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Large") effect_sweetener_large_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Rolling") effect_sweetener_rolling_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Grinding") effect_sweetener_grinding_reference;
+		s_tag_reference_legacy nicename("Effect Sweetener Melee") effect_sweetener_melee_reference;
+		s_tag_reference_legacy nicename("Water Ripple Small") water_ripple_small_reference;
+		s_tag_reference_legacy nicename("Water Ripple Medium") water_ripple_medium_reference;
+		s_tag_reference_legacy nicename("Water Ripple Large") water_ripple_large_reference;
 		b_sweetener_inheritance_flags nicename("Sweetener Inheritance Flags") sweetener_inheritance_flags;
-		TagReference nicename("Material Effects") material_effects_reference;
-		s_tag_block_definition<s_water_interaction1_definition> nicename("Water Interaction") water_interaction_block;
+		s_tag_reference_legacy nicename("Material Effects") material_effects_reference;
+		s_tag_block_legacy<s_water_interaction1_definition> nicename("Water Interaction") water_interaction_block;
 	};
 
-	Undefined32 __unknown0;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
-	Undefined32 __unknown3;
-	Undefined32 __unknown4;
-	Undefined32 __unknown5;
-	Undefined32 __unknown6;
-	Undefined32 __unknown7;
-	Undefined32 __unknown8;
-	Undefined32 __unknown9;
-	Undefined32 __unknown10;
-	Undefined32 __unknown11;
-	Undefined32 __unknown12;
-	Undefined32 __unknown13;
-	Undefined32 __unknown14;
-	Undefined32 __unknown15;
-	Undefined32 __unknown16;
-	Undefined32 __unknown17;
-	Undefined32 __unknown18;
-	Undefined32 __unknown19;
-	Undefined32 __unknown20;
-	Undefined32 __unknown21;
-	Undefined32 __unknown22;
-	Undefined32 __unknown23;
-	Undefined32 __unknown24;
-	Undefined32 __unknown25;
-	Undefined32 __unknown26;
-	Undefined32 __unknown27;
-	Undefined32 __unknown28;
-	Undefined32 __unknown29;
-	Undefined32 __unknown30;
-	Undefined32 __unknown31;
-	Undefined32 __unknown32;
-	Undefined32 __unknown33;
-	Undefined32 __unknown34;
-	Undefined32 __unknown35;
-	Undefined32 __unknown36;
-	Undefined32 __unknown37;
-	Undefined32 __unknown38;
-	Undefined32 __unknown39;
-	Undefined32 __unknown40;
-	Undefined32 __unknown41;
-	Undefined32 __unknown42;
+	s_undefined32_legacy __unknown0;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
+	s_undefined32_legacy __unknown3;
+	s_undefined32_legacy __unknown4;
+	s_undefined32_legacy __unknown5;
+	s_undefined32_legacy __unknown6;
+	s_undefined32_legacy __unknown7;
+	s_undefined32_legacy __unknown8;
+	s_undefined32_legacy __unknown9;
+	s_undefined32_legacy __unknown10;
+	s_undefined32_legacy __unknown11;
+	s_undefined32_legacy __unknown12;
+	s_undefined32_legacy __unknown13;
+	s_undefined32_legacy __unknown14;
+	s_undefined32_legacy __unknown15;
+	s_undefined32_legacy __unknown16;
+	s_undefined32_legacy __unknown17;
+	s_undefined32_legacy __unknown18;
+	s_undefined32_legacy __unknown19;
+	s_undefined32_legacy __unknown20;
+	s_undefined32_legacy __unknown21;
+	s_undefined32_legacy __unknown22;
+	s_undefined32_legacy __unknown23;
+	s_undefined32_legacy __unknown24;
+	s_undefined32_legacy __unknown25;
+	s_undefined32_legacy __unknown26;
+	s_undefined32_legacy __unknown27;
+	s_undefined32_legacy __unknown28;
+	s_undefined32_legacy __unknown29;
+	s_undefined32_legacy __unknown30;
+	s_undefined32_legacy __unknown31;
+	s_undefined32_legacy __unknown32;
+	s_undefined32_legacy __unknown33;
+	s_undefined32_legacy __unknown34;
+	s_undefined32_legacy __unknown35;
+	s_undefined32_legacy __unknown36;
+	s_undefined32_legacy __unknown37;
+	s_undefined32_legacy __unknown38;
+	s_undefined32_legacy __unknown39;
+	s_undefined32_legacy __unknown40;
+	s_undefined32_legacy __unknown41;
+	s_undefined32_legacy __unknown42;
 	e_language nicename("Language") language;
-	s_tag_block_definition<s_havok_cleanup_resources_definition> nicename("Havok Cleanup Resources") havok_cleanup_resources_block;
-	s_tag_block_definition<s_sound_globals_definition> nicename("Sound Globals") sound_globals_block;
-	s_tag_block_definition<s_ai_globals_definition> nicename("AI Globals") ai_globals_block;
-	TagReference nicename("AI Globals") ai_globals1_reference;
-	s_tag_block_definition<s_damage_table_definition> nicename("Damage Table") damage_table_block;
-	TagReference __unknown43;
-	s_tag_block_definition<s_sounds_definition> nicename("Sounds") sounds_block;
-	s_tag_block_definition<s_camera_definition> nicename("Camera") camera_block;
-	s_tag_block_definition<s_thumbstick_deadzones_definition> nicename("Thumbstick Deadzones") thumbstick_deadzones_block;
-	s_tag_block_definition<s_player_control_definition> nicename("Player Control") player_control_block;
-	s_tag_block_definition<s_player_trait_defaults_definition> nicename("Player Trait Defaults") player_trait_defaults_block;
-	s_tag_block_definition<s_difficulty_definition> nicename("Difficulty") difficulty_block;
-	s_tag_block_definition<s_unknown8_definition> __unknown44;
-	s_tag_block_definition<s_grenades_definition> nicename("Grenades") grenades_block;
-	s_tag_block_definition<s_soft_barrier_properties_definition> nicename("Soft Barrier Properties") soft_barrier_properties_block;
-	Undefined32 __unknown45;
-	Undefined32 __unknown46;
-	Undefined32 __unknown47;
-	s_tag_block_definition<s_interface_tags_definition> nicename("Interface Tags") interface_tags_block;
-	Undefined32 __unknown48;
-	Undefined32 __unknown49;
-	Undefined32 __unknown50;
-	Undefined32 __unknown51;
-	Undefined32 __unknown52;
-	Undefined32 __unknown53;
-	s_tag_block_definition<s_player_information_definition> nicename("Player Information") player_information_block;
-	s_tag_block_definition<s_player_representation_definition> nicename("Player Representation") player_representation_block;
-	s_tag_block_definition<s_falling_damage_definition> nicename("Falling Damage") falling_damage_block;
-	s_tag_block_definition<s_unknown9_definition> __unknown54;
-	s_tag_block_definition<s_materials_definition> nicename("Materials") materials_block;
-	s_tag_block_definition<s_player_colors_definition> nicename("Player Colors") player_colors_block;
-	s_tag_block_definition<s_emblem_colors_definition> nicename("Emblem Colors") emblem_colors_block;
-	s_tag_block_definition<s_visor_colors_definition> nicename("Visor Colors") visor_colors_block;
-	colorf nicename("Elite Armor Shine") elite_armor_shine;
-	colorf nicename("Elite Armor Color") elite_armor_color;
-	s_tag_block_definition<s_forge_colors_definition> nicename("Forge Colors") forge_colors_block;
-	TagReference nicename("Game Engine Globals") game_engine_globals_reference;
-	TagReference nicename("Multiplayer Globals") multiplayer_globals_reference;
-	TagReference nicename("Survival Globals") survival_globals_reference;
-	TagReference nicename("Object Type List") object_type_list_reference;
-	s_tag_block_definition<s_cinematic_anchors_definition> nicename("Cinematic Anchors") cinematic_anchors_block;
-	s_tag_block_definition<s_metagame_globals_definition> nicename("Metagame Globals") metagame_globals_block;
-	TagReference nicename("Medal Globals") medal_globals_reference;
+	s_tag_block_legacy<s_havok_cleanup_resources_definition> nicename("Havok Cleanup Resources") havok_cleanup_resources_block;
+	s_tag_block_legacy<s_sound_globals_definition> nicename("Sound Globals") sound_globals_block;
+	s_tag_block_legacy<s_ai_globals_definition> nicename("AI Globals") ai_globals_block;
+	s_tag_reference_legacy nicename("AI Globals") ai_globals1_reference;
+	s_tag_block_legacy<s_damage_table_definition> nicename("Damage Table") damage_table_block;
+	s_tag_reference_legacy __unknown43;
+	s_tag_block_legacy<s_sounds_definition> nicename("Sounds") sounds_block;
+	s_tag_block_legacy<s_camera_definition> nicename("Camera") camera_block;
+	s_tag_block_legacy<s_thumbstick_deadzones_definition> nicename("Thumbstick Deadzones") thumbstick_deadzones_block;
+	s_tag_block_legacy<s_player_control_definition> nicename("Player Control") player_control_block;
+	s_tag_block_legacy<s_player_trait_defaults_definition> nicename("Player Trait Defaults") player_trait_defaults_block;
+	s_tag_block_legacy<s_difficulty_definition> nicename("Difficulty") difficulty_block;
+	s_tag_block_legacy<s_unknown8_definition> __unknown44;
+	s_tag_block_legacy<s_grenades_definition> nicename("Grenades") grenades_block;
+	s_tag_block_legacy<s_soft_barrier_properties_definition> nicename("Soft Barrier Properties") soft_barrier_properties_block;
+	s_undefined32_legacy __unknown45;
+	s_undefined32_legacy __unknown46;
+	s_undefined32_legacy __unknown47;
+	s_tag_block_legacy<s_interface_tags_definition> nicename("Interface Tags") interface_tags_block;
+	s_undefined32_legacy __unknown48;
+	s_undefined32_legacy __unknown49;
+	s_undefined32_legacy __unknown50;
+	s_undefined32_legacy __unknown51;
+	s_undefined32_legacy __unknown52;
+	s_undefined32_legacy __unknown53;
+	s_tag_block_legacy<s_player_information_definition> nicename("Player Information") player_information_block;
+	s_tag_block_legacy<s_player_representation_definition> nicename("Player Representation") player_representation_block;
+	s_tag_block_legacy<s_falling_damage_definition> nicename("Falling Damage") falling_damage_block;
+	s_tag_block_legacy<s_unknown9_definition> __unknown54;
+	s_tag_block_legacy<s_materials_definition> nicename("Materials") materials_block;
+	s_tag_block_legacy<s_player_colors_definition> nicename("Player Colors") player_colors_block;
+	s_tag_block_legacy<s_emblem_colors_definition> nicename("Emblem Colors") emblem_colors_block;
+	s_tag_block_legacy<s_visor_colors_definition> nicename("Visor Colors") visor_colors_block;
+	s_colorf_legacy nicename("Elite Armor Shine") elite_armor_shine;
+	s_colorf_legacy nicename("Elite Armor Color") elite_armor_color;
+	s_tag_block_legacy<s_forge_colors_definition> nicename("Forge Colors") forge_colors_block;
+	s_tag_reference_legacy nicename("Game Engine Globals") game_engine_globals_reference;
+	s_tag_reference_legacy nicename("Multiplayer Globals") multiplayer_globals_reference;
+	s_tag_reference_legacy nicename("Survival Globals") survival_globals_reference;
+	s_tag_reference_legacy nicename("Object Type List") object_type_list_reference;
+	s_tag_block_legacy<s_cinematic_anchors_definition> nicename("Cinematic Anchors") cinematic_anchors_block;
+	s_tag_block_legacy<s_metagame_globals_definition> nicename("Metagame Globals") metagame_globals_block;
+	s_tag_reference_legacy nicename("Medal Globals") medal_globals_reference;
 	// English Locales : 
 	uint32_t __unknown55;
 	uint32_t __unknown56;
@@ -1761,32 +1761,32 @@ struct nicename("globals") tag_group('matg') s_globals_definition
 	signed char nicename("String Data Hash") string_data_hash11[20];
 	uint32_t __unknown125;
 	uint32_t __unknown126;
-	TagReference nicename("Rasterizer Globals") rasterizer_globals_reference;
-	TagReference nicename("Default Camera Effect") default_camera_effect_reference;
-	TagReference nicename("Default Wind") default_wind_reference;
-	TagReference nicename("Weather Globals") weather_globals_reference;
-	TagReference nicename("Default Damage Effect") default_damage_effect_reference;
-	TagReference nicename("Default Collision Damage") default_collision_damage_reference;
-	DEPRECATED_string_id nicename("Unknown Material") unknown_material;
-	DEPRECATED_string_id nicename("Unknown Material 2") unknown_material_2;
+	s_tag_reference_legacy nicename("Rasterizer Globals") rasterizer_globals_reference;
+	s_tag_reference_legacy nicename("Default Camera Effect") default_camera_effect_reference;
+	s_tag_reference_legacy nicename("Default Wind") default_wind_reference;
+	s_tag_reference_legacy nicename("Weather Globals") weather_globals_reference;
+	s_tag_reference_legacy nicename("Default Damage Effect") default_damage_effect_reference;
+	s_tag_reference_legacy nicename("Default Collision Damage") default_collision_damage_reference;
+	string_id_legacy nicename("Unknown Material") unknown_material;
+	string_id_legacy nicename("Unknown Material 2") unknown_material_2;
 	int16_t nicename("Unknown Global Material Index") unknown_global_material_index;
 	int16_t nicename("Unknown 2 Global Material Index") unknown_2_global_material_index;
-	TagReference nicename("Effect Globals") effect_globals_reference;
-	TagReference nicename("Collision Filter") collision_filter_reference;
-	TagReference nicename("Grounded Friction") grounded_friction_reference;
-	s_tag_block_definition<s_unknown10_definition> __unknown127;
-	TagReference nicename("Incident Globals") incident_globals_reference;
-	TagReference nicename("Player Grade Globals") player_grade_globals_reference;
-	TagReference nicename("Player Customization Gobals") player_customization_gobals_reference;
-	TagReference nicename("Loadout Globals") loadout_globals_reference;
-	TagReference nicename("Challenge Gloabls") challenge_gloabls_reference;
-	TagReference nicename("Reward Globals") reward_globals_reference;
-	TagReference nicename("Achievement Globals") achievement_globals_reference;
-	TagReference nicename("Avatar Award Globals") avatar_award_globals_reference;
-	TagReference nicename("Performance Throttle Globals") performance_throttle_globals_reference;
-	s_tag_block_definition<s_unknown12_definition> __unknown128;
-	s_tag_block_definition<s_unknown13_definition> __unknown129;
-	s_tag_block_definition<s_alt_materials_definition> nicename("Alt Materials") alt_materials_block;
-	Undefined32 __unknown130;
+	s_tag_reference_legacy nicename("Effect Globals") effect_globals_reference;
+	s_tag_reference_legacy nicename("Collision Filter") collision_filter_reference;
+	s_tag_reference_legacy nicename("Grounded Friction") grounded_friction_reference;
+	s_tag_block_legacy<s_unknown10_definition> __unknown127;
+	s_tag_reference_legacy nicename("Incident Globals") incident_globals_reference;
+	s_tag_reference_legacy nicename("Player Grade Globals") player_grade_globals_reference;
+	s_tag_reference_legacy nicename("Player Customization Gobals") player_customization_gobals_reference;
+	s_tag_reference_legacy nicename("Loadout Globals") loadout_globals_reference;
+	s_tag_reference_legacy nicename("Challenge Gloabls") challenge_gloabls_reference;
+	s_tag_reference_legacy nicename("Reward Globals") reward_globals_reference;
+	s_tag_reference_legacy nicename("Achievement Globals") achievement_globals_reference;
+	s_tag_reference_legacy nicename("Avatar Award Globals") avatar_award_globals_reference;
+	s_tag_reference_legacy nicename("Performance Throttle Globals") performance_throttle_globals_reference;
+	s_tag_block_legacy<s_unknown12_definition> __unknown128;
+	s_tag_block_legacy<s_unknown13_definition> __unknown129;
+	s_tag_block_legacy<s_alt_materials_definition> nicename("Alt Materials") alt_materials_block;
+	s_undefined32_legacy __unknown130;
 };
 

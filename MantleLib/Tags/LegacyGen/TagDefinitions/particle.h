@@ -53,7 +53,7 @@ struct nicename("particle") tag_group('prt3') s_particle_definition
 
 	struct nicename("Attachments") s_attachments_definition
 	{
-		TagReference __unknown0;
+		s_tag_reference_legacy __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
 		int8_t __unknown3;
@@ -81,7 +81,7 @@ struct nicename("particle") tag_group('prt3') s_particle_definition
 				/*nicename("Bit 7")*/ _bitmap_flags_bit_7 = 1ui8 << 7ui8,
 			};
 
-			TagReference nicename("Bitmap") bitmap_reference;
+			s_tag_reference_legacy nicename("Bitmap") bitmap_reference;
 			int8_t __unknown0;
 			int8_t nicename("Bitmap Index") bitmap_index;
 			int8_t __unknown1;
@@ -115,7 +115,7 @@ struct nicename("particle") tag_group('prt3') s_particle_definition
 
 		struct nicename("Unknown") s_unknown1_definition
 		{
-			Undefined32 __unknown0;
+			s_undefined32_legacy __unknown0;
 		};
 
 		struct nicename("Unknown") s_unknown2_definition
@@ -125,7 +125,7 @@ struct nicename("particle") tag_group('prt3') s_particle_definition
 
 		struct nicename("Unknown") s_unknown3_definition
 		{
-			Undefined32 __unknown0;
+			s_undefined32_legacy __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
@@ -139,24 +139,24 @@ struct nicename("particle") tag_group('prt3') s_particle_definition
 		struct nicename("Functions") s_functions_definition
 		{
 			int32_t __unknown0;
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			DataReference nicename("Function") function_data_reference;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
-		TagReference nicename("Template") template_reference;
-		s_tag_block_definition<s_shader_maps_definition> nicename("Shader Maps") shader_maps_block;
-		s_tag_block_definition<s_arguments_definition> nicename("Arguments") arguments_block;
-		s_tag_block_definition<s_unknown1_definition> __unknown0;
-		Undefined32 __unknown1;
-		s_tag_block_definition<s_unknown2_definition> __unknown2;
-		s_tag_block_definition<s_unknown3_definition> __unknown3;
-		s_tag_block_definition<s_unknown4_definition> __unknown4;
-		s_tag_block_definition<s_functions_definition> nicename("Functions") functions_block;
+		s_tag_reference_legacy nicename("Template") template_reference;
+		s_tag_block_legacy<s_shader_maps_definition> nicename("Shader Maps") shader_maps_block;
+		s_tag_block_legacy<s_arguments_definition> nicename("Arguments") arguments_block;
+		s_tag_block_legacy<s_unknown1_definition> __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_tag_block_legacy<s_unknown2_definition> __unknown2;
+		s_tag_block_legacy<s_unknown3_definition> __unknown3;
+		s_tag_block_legacy<s_unknown4_definition> __unknown4;
+		s_tag_block_legacy<s_functions_definition> nicename("Functions") functions_block;
 		int32_t __unknown5;
 		int32_t __unknown6;
-		Undefined32 __unknown7;
+		s_undefined32_legacy __unknown7;
 		int16_t __unknown8;
 		int16_t __unknown9;
 		int16_t __unknown10;
@@ -193,7 +193,7 @@ struct nicename("particle") tag_group('prt3') s_particle_definition
 
 	struct nicename("Unknown") s_unknown5_definition
 	{
-		DEPRECATED_string_id __unknown0;
+		string_id_legacy __unknown0;
 		int32_t __unknown1;
 		int32_t __unknown2;
 	};
@@ -215,100 +215,100 @@ struct nicename("particle") tag_group('prt3') s_particle_definition
 	};
 
 	int32_t __unknown0;
-	s_tag_block_definition<s_attachments_definition> nicename("Attachments") attachments_block;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
-	Undefined32 __unknown3;
+	s_tag_block_legacy<s_attachments_definition> nicename("Attachments") attachments_block;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
+	s_undefined32_legacy __unknown3;
 	float __unknown4;
 	float __unknown5;
 	float __unknown6;
-	Undefined32 __unknown7;
+	s_undefined32_legacy __unknown7;
 	float __unknown8;
 	float __unknown9;
 	float __unknown10;
 	float __unknown11;
 	float __unknown12;
-	TagReference nicename("Base Render Method") base_render_method_reference;
-	TagReference __unknown13;
-	s_tag_block_definition<s_unknown_definition> __unknown14;
-	Undefined32 __unknown15;
-	Undefined32 __unknown16;
-	Undefined32 __unknown17;
-	s_tag_block_definition<s_shader_properties_definition> nicename("Shader Properties") shader_properties_block;
-	Undefined32 __unknown18;
-	Undefined32 __unknown19;
-	s_tag_block_definition<s_unknown5_definition> __unknown20;
+	s_tag_reference_legacy nicename("Base Render Method") base_render_method_reference;
+	s_tag_reference_legacy __unknown13;
+	s_tag_block_legacy<s_unknown_definition> __unknown14;
+	s_undefined32_legacy __unknown15;
+	s_undefined32_legacy __unknown16;
+	s_undefined32_legacy __unknown17;
+	s_tag_block_legacy<s_shader_properties_definition> nicename("Shader Properties") shader_properties_block;
+	s_undefined32_legacy __unknown18;
+	s_undefined32_legacy __unknown19;
+	s_tag_block_legacy<s_unknown5_definition> __unknown20;
 	int8_t __unknown21;
 	int8_t __unknown22;
 	int8_t __unknown23;
 	int8_t __unknown24;
-	Undefined32 __unknown25;
+	s_undefined32_legacy __unknown25;
 	int32_t __unknown26;
-	Undefined32 __unknown27;
-	Undefined32 __unknown28;
-	Undefined32 __unknown29;
-	Undefined32 __unknown30;
-	Undefined32 __unknown31;
-	Undefined32 __unknown32;
-	Undefined32 __unknown33;
-	Undefined32 __unknown34;
-	Undefined32 __unknown35;
-	TagReference __unknown36;
+	s_undefined32_legacy __unknown27;
+	s_undefined32_legacy __unknown28;
+	s_undefined32_legacy __unknown29;
+	s_undefined32_legacy __unknown30;
+	s_undefined32_legacy __unknown31;
+	s_undefined32_legacy __unknown32;
+	s_undefined32_legacy __unknown33;
+	s_undefined32_legacy __unknown34;
+	s_undefined32_legacy __unknown35;
+	s_tag_reference_legacy __unknown36;
 	int8_t nicename("Input") input;
 	int8_t nicename("Input Range") input_range;
 	e_output_kind nicename("Output Kind") output_kind;
 	int8_t nicename("Output") output;
-	DataReference __unknown37;
-	Undefined32 __unknown38;
-	Undefined32 __unknown39;
+	s_data_reference_legacy __unknown37;
+	s_undefined32_legacy __unknown38;
+	s_undefined32_legacy __unknown39;
 	int8_t nicename("Input") input1;
 	int8_t nicename("Input Range") input_range1;
 	e_output_kind1 nicename("Output Kind") output_kind1;
 	int8_t nicename("Output") output1;
-	DataReference __unknown40;
-	Undefined32 __unknown41;
-	Undefined32 __unknown42;
+	s_data_reference_legacy __unknown40;
+	s_undefined32_legacy __unknown41;
+	s_undefined32_legacy __unknown42;
 	int8_t nicename("Input") input2;
 	int8_t nicename("Input Range") input_range2;
 	e_output_kind2 nicename("Output Kind") output_kind2;
 	int8_t nicename("Output") output2;
-	DataReference __unknown43;
-	Undefined32 __unknown44;
-	Undefined32 __unknown45;
+	s_data_reference_legacy __unknown43;
+	s_undefined32_legacy __unknown44;
+	s_undefined32_legacy __unknown45;
 	int8_t nicename("Input") input3;
 	int8_t nicename("Input Range") input_range3;
 	e_output_kind3 nicename("Output Kind") output_kind3;
 	int8_t nicename("Output") output3;
-	DataReference __unknown46;
-	Undefined32 __unknown47;
-	Undefined32 __unknown48;
-	Undefined32 __unknown49;
+	s_data_reference_legacy __unknown46;
+	s_undefined32_legacy __unknown47;
+	s_undefined32_legacy __unknown48;
+	s_undefined32_legacy __unknown49;
 	int8_t nicename("Input") input4;
 	int8_t nicename("Input Range") input_range4;
 	e_output_kind4 nicename("Output Kind") output_kind4;
 	int8_t nicename("Output") output4;
-	DataReference __unknown50;
-	Undefined32 __unknown51;
-	Undefined32 __unknown52;
+	s_data_reference_legacy __unknown50;
+	s_undefined32_legacy __unknown51;
+	s_undefined32_legacy __unknown52;
 	int8_t nicename("Input") input5;
 	int8_t nicename("Input Range") input_range5;
 	e_output_kind5 nicename("Output Kind") output_kind5;
 	int8_t nicename("Output") output5;
-	DataReference __unknown53;
-	Undefined32 __unknown54;
-	Undefined32 __unknown55;
+	s_data_reference_legacy __unknown53;
+	s_undefined32_legacy __unknown54;
+	s_undefined32_legacy __unknown55;
 	int8_t nicename("Input") input6;
 	int8_t nicename("Input Range") input_range6;
 	e_output_kind6 nicename("Output Kind") output_kind6;
 	int8_t nicename("Output") output6;
-	DataReference __unknown56;
-	Undefined32 __unknown57;
-	Undefined32 __unknown58;
-	TagReference nicename("Particle Model") particle_model_reference;
-	Undefined32 __unknown59;
-	Undefined32 __unknown60;
-	Undefined32 __unknown61;
-	s_tag_block_definition<s_unknown6_definition> __unknown62;
-	s_tag_block_definition<s_unknown7_definition> __unknown63;
+	s_data_reference_legacy __unknown56;
+	s_undefined32_legacy __unknown57;
+	s_undefined32_legacy __unknown58;
+	s_tag_reference_legacy nicename("Particle Model") particle_model_reference;
+	s_undefined32_legacy __unknown59;
+	s_undefined32_legacy __unknown60;
+	s_undefined32_legacy __unknown61;
+	s_tag_block_legacy<s_unknown6_definition> __unknown62;
+	s_tag_block_legacy<s_unknown7_definition> __unknown63;
 };
 

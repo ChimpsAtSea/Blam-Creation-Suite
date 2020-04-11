@@ -28,16 +28,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlamlibGenerators\blamlib_compiler_interface.cpp" />
-    <ClCompile Include="SourceGenerators\legacy_compiler_interface.cpp" />
+    <ClCompile Include="LegacyGenerators\legacy_compiler_interface.cpp" />
     <ClCompile Include="LLVM\llvm_compiler_interface.cpp" />
     <ClCompile Include="LLVM\llvm_compile_action.cpp" />
     <ClCompile Include="LLVM\llvm_ast_consumer.cpp" />
     <ClCompile Include="LLVM\llvm_class_visitor.cpp" />
-    <ClCompile Include="SourceGenerators\reflection_enum_container.cpp" />
-    <ClCompile Include="SourceGenerators\reflection_field_container.cpp" />
-    <ClCompile Include="SourceGenerators\reflection_type_container.cpp" />
-    <ClCompile Include="SourceGenerators\mantle_compile_time_conversion_generator.cpp" />
-    <ClCompile Include="SourceGenerators\ast_source_generator.cpp" />
+    <ClCompile Include="LegacyGenerators\legacy_reflection_enum_container.cpp" />
+    <ClCompile Include="LegacyGenerators\legacy_reflection_field_container.cpp" />
+    <ClCompile Include="LegacyGenerators\legacy_reflection_type_container.cpp" />
+    <ClCompile Include="LegacyGenerators\legacy_compile_time_conversion_generator.cpp" />
+    <ClCompile Include="LegacyGenerators\legacy_ast_source_generator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mantlereflect-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -47,30 +47,30 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugFast|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugFast|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="SourceGenerators\mantle_compile_time_gui_generator.cpp" />
-    <ClCompile Include="SourceGenerators\mantle_runtime_reflection_generator.cpp" />
-    <ClCompile Include="SourceGenerators\mantle_tag_groups_generator.cpp" />
-    <ClCompile Include="SourceGenerators\mantle_virtual_tag_interface_generator.cpp" />
+    <ClCompile Include="LegacyGenerators\legacy_compile_time_gui_generator.cpp" />
+    <ClCompile Include="LegacyGenerators\legacy_runtime_reflection_generator.cpp" />
+    <ClCompile Include="LegacyGenerators\legacy_tag_groups_generator.cpp" />
+    <ClCompile Include="LegacyGenerators\legacy_virtual_tag_interface_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlamlibGenerators\blamlib_compiler_interface.h" />
-    <ClInclude Include="SourceGenerators\legacy_compiler_interface.h" />
+    <ClInclude Include="LegacyGenerators\legacy_compiler_interface.h" />
     <ClInclude Include="LLVM\llvm_compiler_interface.h" />
     <ClInclude Include="LLVM\llvm_compile_action.h" />
     <ClInclude Include="LLVM\llvm_ast_consumer.h" />
     <ClInclude Include="LLVM\llvm_class_visitor.h" />
-    <ClInclude Include="SourceGenerators\reflection_enum_container.h" />
-    <ClInclude Include="SourceGenerators\reflection_field_container.h" />
-    <ClInclude Include="SourceGenerators\reflection_type_container.h" />
-    <ClInclude Include="SourceGenerators\mantle_compile_time_conversion_generator.h" />
-    <ClInclude Include="SourceGenerators\ast_source_generator.h" />
+    <ClInclude Include="LegacyGenerators\legacy_reflection_enum_container.h" />
+    <ClInclude Include="LegacyGenerators\legacy_reflection_field_container.h" />
+    <ClInclude Include="LegacyGenerators\legacy_reflection_type_container.h" />
+    <ClInclude Include="LegacyGenerators\legacy_compile_time_conversion_generator.h" />
+    <ClInclude Include="LegacyGenerators\legacy_ast_source_generator.h" />
     <ClInclude Include="mantlereflect-private-pch.h" />
     <ClInclude Include="mantlereflect-public-pch.h" />
-    <ClInclude Include="SourceGenerators\mantle_compile_time_gui_generator.h" />
-    <ClInclude Include="SourceGenerators\mantle_runtime_reflection_generator.h" />
-    <ClInclude Include="ReflectionTypes.h" />
-    <ClInclude Include="SourceGenerators\mantle_tag_groups_generator.h" />
-    <ClInclude Include="SourceGenerators\mantle_virtual_tag_interface_generator.h" />
+    <ClInclude Include="LegacyGenerators\legacy_compile_time_gui_generator.h" />
+    <ClInclude Include="LegacyGenerators\legacy_runtime_reflection_generator.h" />
+    <ClInclude Include="legacy_reflection_types.h" />
+    <ClInclude Include="LegacyGenerators\legacy_tag_groups_generator.h" />
+    <ClInclude Include="LegacyGenerators\legacy_virtual_tag_interface_generator.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

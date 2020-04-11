@@ -1,12 +1,12 @@
 #include "mantlereflect-private-pch.h"
 
-c_mantle_compile_time_gui_generator::c_mantle_compile_time_gui_generator(const wchar_t* output_header_file, const wchar_t* output_source_file) :
-	c_ast_source_generator(output_header_file, output_source_file)
+c_legacy_compile_time_gui_generator::c_legacy_compile_time_gui_generator(const wchar_t* output_header_file, const wchar_t* output_source_file) :
+	c_legacy_ast_source_generator(output_header_file, output_source_file)
 {
 
 }
 
-void c_mantle_compile_time_gui_generator::run(std::vector<c_reflection_type_container*>& reflection_type_containers)
+void c_legacy_compile_time_gui_generator::run(std::vector<c_reflection_type_container*>& reflection_type_containers)
 {
 
 	header_string_stream << "#pragma once" << std::endl << std::endl;
@@ -14,12 +14,12 @@ void c_mantle_compile_time_gui_generator::run(std::vector<c_reflection_type_cont
 	header_string_stream << "void render_type_gui_legacy(void* data);" << std::endl << std::endl;
 	header_string_stream << "#ifndef __visual_assist__" << std::endl;
 
-	source_string_stream << "#include <MantleReflect/ReflectionTypes.h>" << std::endl;
+	source_string_stream << "#include <MantleReflect/legacy_reflection_types.h>" << std::endl;
 	source_string_stream << "#include <MantleLib/Tags/Tags.h>" << std::endl;
 	source_string_stream << "#include <assert.h>" << std::endl << std::endl;
 
 	source_string_stream << "#ifndef __visual_assist__" << std::endl;
-	source_string_stream << "template<e_primitive_type primitive_type, typename T>" << std::endl;
+	source_string_stream << "template<e_legacy_primitive_type primitive_type, typename T>" << std::endl;
 	source_string_stream << "void render_primitive_gui(void* field_data, const c_reflection_field & reflection_field);" << std::endl;
 
 	//source_string_stream << "void render_primitive_gui_int8" << "(int8_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
@@ -48,17 +48,17 @@ void c_mantle_compile_time_gui_generator::run(std::vector<c_reflection_type_cont
 	//source_string_stream << "void render_primitive_gui_bitflag16" << "(bitflag16_t	* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	//source_string_stream << "void render_primitive_gui_bitflag32" << "(bitflag32_t	* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	//source_string_stream << "void render_primitive_gui_bitflag64" << "(bitflag64_t	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_undefined8" << "(Undefined8	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_undefined16" << "(Undefined16	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_undefined32" << "(Undefined32	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_undefined64" << "(Undefined64	* field_data, const c_reflection_field& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_undefined8" << "(s_undefined8_legacy	* field_data, const c_reflection_field& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_undefined16" << "(s_undefined16_legacy	* field_data, const c_reflection_field& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_undefined32" << "(s_undefined32_legacy	* field_data, const c_reflection_field& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_undefined64" << "(s_undefined64_legacy	* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	//source_string_stream << "void render_primitive_gui_character" << "(char			* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	//source_string_stream << "void render_primitive_gui_widecharacter" << "(wchar_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	source_string_stream << "void render_stringid_gui" << "(DEPRECATED_string_id		* field_data, const c_reflection_field& reflection_field);" << std::endl;
+	source_string_stream << "void render_stringid_gui" << "(string_id_legacy		* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	source_string_stream << "void render_struct_gui" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	source_string_stream << "void render_tagref_gui" << "(TagReference		* field_data, const c_reflection_field& reflection_field);" << std::endl;
+	source_string_stream << "void render_tagref_gui" << "(s_tag_reference_legacy		* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	source_string_stream << "void render_tagblock_gui" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	source_string_stream << "void render_dataref_gui" << "(DataReference		* field_data, const c_reflection_field& reflection_field);" << std::endl;
+	source_string_stream << "void render_dataref_gui" << "(s_data_reference_legacy		* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	source_string_stream << "void render_enum_gui" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
 	source_string_stream << "void render_bitfield_gui" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
 
@@ -109,7 +109,7 @@ std::string get_variable_name(const std::string& type_name)
 	return data_variable_name;
 }
 
-void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_header(const c_reflection_type_container& reflection_type_container)
+void c_legacy_compile_time_gui_generator::write_render_gui_type_entry_header(const c_reflection_type_container& reflection_type_container)
 {
 	if (reflection_type_container.is_primitive) return; // skip internal types
 
@@ -118,67 +118,67 @@ void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_header(con
 	header_string_stream << "template<> void render_type_gui_legacy<" << reflection_type_container.qualified_type_name << ">(void* raw_" << data_variable_name << ");" << std::endl;
 }
 
-const char* get_primitive_handler_function(e_primitive_type primitiveType)
+const char* get_primitive_handler_function(e_legacy_primitive_type primitiveType)
 {
 	switch (primitiveType)
 	{
-	case e_primitive_type::Int8:						return "render_primitive_gui<e_primitive_type::Int8,			 int8_t>";
-	case e_primitive_type::Int16:						return "render_primitive_gui<e_primitive_type::Int16,			 int16_t>";
-	case e_primitive_type::Int32:						return "render_primitive_gui<e_primitive_type::Int32,			 int32_t>";
-	case e_primitive_type::Int64:						return "render_primitive_gui<e_primitive_type::Int64,			 int64_t>";
-	case e_primitive_type::UInt8:						return "render_primitive_gui<e_primitive_type::UInt8,			 uint8_t>";
-	case e_primitive_type::UInt16:						return "render_primitive_gui<e_primitive_type::UInt16,			 uint16_t>";
-	case e_primitive_type::UInt32:						return "render_primitive_gui<e_primitive_type::UInt32,			 uint32_t>";
-	case e_primitive_type::UInt64:						return "render_primitive_gui<e_primitive_type::UInt64,			 uint64_t>";
-	case e_primitive_type::Float:						return "render_primitive_gui<e_primitive_type::Float,			 float>";
-	case e_primitive_type::Double:						return "render_primitive_gui<e_primitive_type::Double,			 double>";
-	case e_primitive_type::Boolean8:					return "render_primitive_gui<e_primitive_type::Boolean8,		 boolean8_t>";
-	case e_primitive_type::Boolean16:					return "render_primitive_gui<e_primitive_type::Boolean16,		 boolean16_t>";
-	case e_primitive_type::Boolean32:					return "render_primitive_gui<e_primitive_type::Boolean32,		 boolean32_t>";
-	case e_primitive_type::Boolean64:					return "render_primitive_gui<e_primitive_type::Boolean64,		 boolean64_t>";
-	case e_primitive_type::Enum8:						return "render_primitive_gui<e_primitive_type::Enum8,			 enum8_t>";
-	case e_primitive_type::Enum16:						return "render_primitive_gui<e_primitive_type::Enum16,			 enum16_t>";
-	case e_primitive_type::Enum32:						return "render_primitive_gui<e_primitive_type::Enum32,			 enum32_t>";
-	case e_primitive_type::Enum64:						return "render_primitive_gui<e_primitive_type::Enum64,			 enum64_t>";
-	case e_primitive_type::BitField8:					return "render_primitive_gui<e_primitive_type::BitField8,		 bitfield8_t>";
-	case e_primitive_type::BitField16:					return "render_primitive_gui<e_primitive_type::BitField16,		 bitfield16_t>";
-	case e_primitive_type::BitField32:					return "render_primitive_gui<e_primitive_type::BitField32,		 bitfield32_t>";
-	case e_primitive_type::BitField64:					return "render_primitive_gui<e_primitive_type::BitField64,		 bitfield64_t>";
-	case e_primitive_type::BitFlag8:					return "render_primitive_gui<e_primitive_type::BitFlag8,		 bitflag8_t>";
-	case e_primitive_type::BitFlag16:					return "render_primitive_gui<e_primitive_type::BitFlag16,		 bitflag16_t>";
-	case e_primitive_type::BitFlag32:					return "render_primitive_gui<e_primitive_type::BitFlag32,		 bitflag32_t>";
-	case e_primitive_type::BitFlag64:					return "render_primitive_gui<e_primitive_type::BitFlag64,		 bitflag64_t>";
-	case e_primitive_type::Undefined8:					return "render_primitive_gui<e_primitive_type::Undefined8,		 Undefined8>";
-	case e_primitive_type::Undefined16:					return "render_primitive_gui<e_primitive_type::Undefined16,	 Undefined16>";
-	case e_primitive_type::Undefined32:					return "render_primitive_gui<e_primitive_type::Undefined32,	 Undefined32>";
-	case e_primitive_type::Undefined64:					return "render_primitive_gui<e_primitive_type::Undefined64,	 Undefined64>";
-	case e_primitive_type::RawCharacter:				return "render_primitive_gui<e_primitive_type::RawCharacter,		 char>";
-	case e_primitive_type::RawWideCharacter:			return "render_primitive_gui<e_primitive_type::RawWideCharacter,	 wchar_t>";
-	case e_primitive_type::StaticString:				return "render_primitive_gui<e_primitive_type::StaticString,		 char>";
-	case e_primitive_type::StaticWideString:			return "render_primitive_gui<e_primitive_type::StaticWideString,	 wchar_t>";
+	case _legacy_primitive_type_int8:						return "render_primitive_gui<_legacy_primitive_type_int8,				int8_t>";
+	case _legacy_primitive_type_int16:						return "render_primitive_gui<_legacy_primitive_type_int16,				int16_t>";
+	case _legacy_primitive_type_int32:						return "render_primitive_gui<_legacy_primitive_type_int32,				int32_t>";
+	case _legacy_primitive_type_int64:						return "render_primitive_gui<_legacy_primitive_type_int64,				int64_t>";
+	case _legacy_primitive_type_uint8:						return "render_primitive_gui<_legacy_primitive_type_uint8,				uint8_t>";
+	case _legacy_primitive_type_uint16:					return "render_primitive_gui<_legacy_primitive_type_uint16,			uint16_t>";
+	case _legacy_primitive_type_uint32:					return "render_primitive_gui<_legacy_primitive_type_uint32,			uint32_t>";
+	case _legacy_primitive_type_uint64:					return "render_primitive_gui<_legacy_primitive_type_uint64,			uint64_t>";
+	case _legacy_primitive_type_float:						return "render_primitive_gui<_legacy_primitive_type_float,				float>";
+	case _legacy_primitive_type_double:					return "render_primitive_gui<_legacy_primitive_type_float,				double>";
+	case _legacy_primitive_type_boolean8:					return "render_primitive_gui<_legacy_primitive_type_boolean8,			boolean8_t>";
+	case _legacy_primitive_type_boolean16:					return "render_primitive_gui<_legacy_primitive_type_boolean16,			boolean16_t>";
+	case _legacy_primitive_type_boolean32:					return "render_primitive_gui<_legacy_primitive_type_boolean32,			boolean32_t>";
+	case _legacy_primitive_type_boolean64:					return "render_primitive_gui<_legacy_primitive_type_boolean64,			boolean64_t>";
+	case _legacy_primitive_type_enum8:						return "render_primitive_gui<_legacy_primitive_type_enum8,				enum8_t>";
+	case _legacy_primitive_type_enum16:					return "render_primitive_gui<_legacy_primitive_type_enum16,			enum16_t>";
+	case _legacy_primitive_type_enum32:					return "render_primitive_gui<_legacy_primitive_type_enum32,			enum32_t>";
+	case _legacy_primitive_type_enum64:					return "render_primitive_gui<_legacy_primitive_type_enum64,			enum64_t>";
+	case _legacy_primitive_type_bitfield8:					return "render_primitive_gui<_legacy_primitive_type_bitfield8,			bitfield8_t>";
+	case _legacy_primitive_type_bitfield16:				return "render_primitive_gui<_legacy_primitive_type_bitfield16,		bitfield16_t>";
+	case _legacy_primitive_type_bitfield32:				return "render_primitive_gui<_legacy_primitive_type_bitfield32,		bitfield32_t>";
+	case _legacy_primitive_type_bitfield64:				return "render_primitive_gui<_legacy_primitive_type_bitfield64,		bitfield64_t>";
+	case _legacy_primitive_type_bitflag8:					return "render_primitive_gui<_legacy_primitive_type_bitflag8,			bitflag8_t>";
+	case _legacy_primitive_type_bitflag16:					return "render_primitive_gui<_legacy_primitive_type_bitflag16,			bitflag16_t>";
+	case _legacy_primitive_type_bitflag32:					return "render_primitive_gui<_legacy_primitive_type_bitflag32,			bitflag32_t>";
+	case _legacy_primitive_type_bitflag64:					return "render_primitive_gui<_legacy_primitive_type_bitflag64,			bitflag64_t>";
+	case _legacy_primitive_type_undefined8:				return "render_primitive_gui<_legacy_primitive_type_undefined8,		s_undefined8_legacy>";
+	case _legacy_primitive_type_undefined16:				return "render_primitive_gui<_legacy_primitive_type_undefined16,		s_undefined16_legacy>";
+	case _legacy_primitive_type_undefined32:				return "render_primitive_gui<_legacy_primitive_type_undefined32,		s_undefined32_legacy>";
+	case _legacy_primitive_type_undefined64:				return "render_primitive_gui<_legacy_primitive_type_undefined64,		s_undefined64_legacy>";
+	case _legacy_primitive_type_char8:						return "render_primitive_gui<_legacy_primitive_type_char8,				char>";
+	case _legacy_primitive_type_char16:					return "render_primitive_gui<_legacy_primitive_type_char16,			wchar_t>";
+	case _legacy_primitive_type_static_string8:			return "render_primitive_gui<_legacy_primitive_type_static_string8,	char>";
+	case _legacy_primitive_type_static_string16:			return "render_primitive_gui<_legacy_primitive_type_static_string16,	wchar_t>";
 	}
 	return "##UNKNOWN_PRIMITIVE_TYPE##";
 }
 
-const char* get_reflection_type_category_handler_function(e_reflection_type_category reflection_type_category)
+const char* get_legacy_reflection_type_category_handler_function(e_legacy_reflection_type_category legacy_reflection_type_category)
 {
-	switch (reflection_type_category)
+	switch (legacy_reflection_type_category)
 	{
-	case e_reflection_type_category::Primitive:			return "render_primitive_gui";
-	case e_reflection_type_category::Structure:			return "render_struct_gui";
-	case e_reflection_type_category::TagReference:		return "render_tagref_gui";
-	case e_reflection_type_category::TagBlock:			return "render_tagblock_gui";
-	case e_reflection_type_category::DataReference:		return "render_dataref_gui";
-	case e_reflection_type_category::ShaderData:		return "render_shaderdata_gui";
-	case e_reflection_type_category::StringID:			return "render_stringid_gui";
-	case e_reflection_type_category::Enum:				return "render_enum_gui";
-	case e_reflection_type_category::BitField:			return "render_bitfield_gui";
+	case _legacy_reflection_type_category_primitive:			return "render_primitive_gui";
+	case _legacy_reflection_type_category_structure:			return "render_struct_gui";
+	case _legacy_reflection_type_category_tag_reference:		return "render_tagref_gui";
+	case _legacy_reflection_type_category_tag_block:			return "render_tagblock_gui";
+	case _legacy_reflection_type_category_data_reference:		return "render_dataref_gui";
+	case _legacy_reflection_type_category_shader_data:			return "render_shaderdata_gui";
+	case _legacy_reflection_type_category_string_id:			return "render_stringid_gui";
+	case _legacy_reflection_type_category_enum:				return "render_enum_gui";
+	case _legacy_reflection_type_category_bitfield:			return "render_bitfield_gui";
 	}
 	throw;
 	return "##UNKNOWN_REFLECTION_TYPE##";
 }
 
-void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_source(const c_reflection_type_container& reflection_type_container)
+void c_legacy_compile_time_gui_generator::write_render_gui_type_entry_source(const c_reflection_type_container& reflection_type_container)
 {
 	if (reflection_type_container.is_primitive) return; // skip internal types
 
@@ -204,10 +204,10 @@ void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_source(con
 		assert(reflection_field_container.field_type != nullptr);
 		const c_reflection_type_container& reflection_type_container = *reflection_field_container.field_type;
 
-		const char* reflection_type_category_string = e_reflection_type_categoryToString(reflection_field_container.reflection_type_category);
-		switch (reflection_field_container.reflection_type_category)
+		const char* legacy_reflection_type_category_string = legacy_reflection_type_category_to_string(reflection_field_container.legacy_reflection_type_category);
+		switch (reflection_field_container.legacy_reflection_type_category)
 		{
-		case e_reflection_type_category::Primitive:
+		case _legacy_reflection_type_category_primitive:
 		{
 			const char* primitive_type_string = reflection_field_container.field_type->qualified_type_name.c_str();
 			const char* primitive_handler_function = get_primitive_handler_function(reflection_field_container.primitive_type);
@@ -216,46 +216,46 @@ void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_source(con
 
 			switch (reflection_field_container.primitive_type)
 			{
-			case e_primitive_type::Enum8:
+			case _legacy_primitive_type_enum8:
 				source_string_stream << "(enum8_t*)&";
 				break;
-			case e_primitive_type::Enum16:
+			case _legacy_primitive_type_enum16:
 				source_string_stream << "(enum16_t*)";
 				break;
-			case e_primitive_type::Enum32:
+			case _legacy_primitive_type_enum32:
 				source_string_stream << "(enum32_t*)";
 				break;
-			case e_primitive_type::Enum64:
+			case _legacy_primitive_type_enum64:
 				source_string_stream << "(enum64_t*)";
 				break;
-			case e_primitive_type::Int8:
-			case e_primitive_type::Int16:
-			case e_primitive_type::Int32:
-			case e_primitive_type::Int64:
-			case e_primitive_type::UInt8:
-			case e_primitive_type::UInt16:
-			case e_primitive_type::UInt32:
-			case e_primitive_type::UInt64:
-			case e_primitive_type::Float:
-			case e_primitive_type::Double:
-			case e_primitive_type::Boolean8:
-			case e_primitive_type::Boolean16:
-			case e_primitive_type::Boolean32:
-			case e_primitive_type::Boolean64:
-			case e_primitive_type::BitField8:
-			case e_primitive_type::BitField16:
-			case e_primitive_type::BitField32:
-			case e_primitive_type::BitField64:
-			case e_primitive_type::BitFlag8:
-			case e_primitive_type::BitFlag16:
-			case e_primitive_type::BitFlag32:
-			case e_primitive_type::BitFlag64:
-			case e_primitive_type::Undefined8:
-			case e_primitive_type::Undefined16:
-			case e_primitive_type::Undefined32:
-			case e_primitive_type::Undefined64:
-			case e_primitive_type::RawCharacter:
-			case e_primitive_type::RawWideCharacter:
+			case _legacy_primitive_type_int8:
+			case _legacy_primitive_type_int16:
+			case _legacy_primitive_type_int32:
+			case _legacy_primitive_type_int64:
+			case _legacy_primitive_type_uint8:
+			case _legacy_primitive_type_uint16:
+			case _legacy_primitive_type_uint32:
+			case _legacy_primitive_type_uint64:
+			case _legacy_primitive_type_float:
+			case _legacy_primitive_type_double:
+			case _legacy_primitive_type_boolean8:
+			case _legacy_primitive_type_boolean16:
+			case _legacy_primitive_type_boolean32:
+			case _legacy_primitive_type_boolean64:
+			case _legacy_primitive_type_bitfield8:
+			case _legacy_primitive_type_bitfield16:
+			case _legacy_primitive_type_bitfield32:
+			case _legacy_primitive_type_bitfield64:
+			case _legacy_primitive_type_bitflag8:
+			case _legacy_primitive_type_bitflag16:
+			case _legacy_primitive_type_bitflag32:
+			case _legacy_primitive_type_bitflag64:
+			case _legacy_primitive_type_undefined8:
+			case _legacy_primitive_type_undefined16:
+			case _legacy_primitive_type_undefined32:
+			case _legacy_primitive_type_undefined64:
+			case _legacy_primitive_type_char8:
+			case _legacy_primitive_type_char16:
 			default:
 				break;
 			}
@@ -263,23 +263,23 @@ void c_mantle_compile_time_gui_generator::write_render_gui_type_entry_source(con
 			source_string_stream << data_variable_name << "->" << reflection_field_container.field_name << ", " << reflection_variable_name << ".fields[" << reflection_member_index << "]" << "); // " << primitive_type_string;
 		}
 		break;
-		case e_reflection_type_category::Structure:
-		case e_reflection_type_category::TagReference:
-		case e_reflection_type_category::TagBlock:
-		case e_reflection_type_category::DataReference:
-		case e_reflection_type_category::ShaderData:
-		case e_reflection_type_category::StringID:
-		case e_reflection_type_category::Enum:
-		case e_reflection_type_category::BitField:
+		case _legacy_reflection_type_category_structure:
+		case _legacy_reflection_type_category_tag_reference:
+		case _legacy_reflection_type_category_tag_block:
+		case _legacy_reflection_type_category_data_reference:
+		case _legacy_reflection_type_category_shader_data:
+		case _legacy_reflection_type_category_string_id:
+		case _legacy_reflection_type_category_enum:
+		case _legacy_reflection_type_category_bitfield:
 		{
-			const char* handler_function = get_reflection_type_category_handler_function(reflection_field_container.reflection_type_category);
+			const char* handler_function = get_legacy_reflection_type_category_handler_function(reflection_field_container.legacy_reflection_type_category);
 
 			source_string_stream << "\t" << handler_function << "(";
 			if (reflection_field_container.array_size == 0) source_string_stream << "&";
-			source_string_stream << data_variable_name << "->" << reflection_field_container.field_name << ", " << reflection_variable_name << ".fields[" << reflection_member_index << "]" << "); // " << reflection_type_category_string;
+			source_string_stream << data_variable_name << "->" << reflection_field_container.field_name << ", " << reflection_variable_name << ".fields[" << reflection_member_index << "]" << "); // " << legacy_reflection_type_category_string;
 		}
 		break;
-		default: throw; // unsupported e_reflection_type_category
+		default: throw; // unsupported e_legacy_reflection_type_category
 		}
 		if (reflection_field_container.array_size > 0) source_string_stream << "[]";
 		source_string_stream << std::endl;

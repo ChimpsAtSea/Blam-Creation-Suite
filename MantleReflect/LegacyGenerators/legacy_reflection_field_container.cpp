@@ -4,7 +4,7 @@
 c_reflection_field_container::c_reflection_field_container() : 
 	field_name(),
 	field_nice_name(),
-	reflection_type_category(),
+	legacy_reflection_type_category(),
 	primitive_type(),
 	field_type(),
 	array_size(),

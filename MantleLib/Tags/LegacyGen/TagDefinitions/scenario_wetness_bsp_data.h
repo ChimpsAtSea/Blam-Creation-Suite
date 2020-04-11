@@ -26,17 +26,17 @@ struct nicename("scenario_wetness_bsp_data") tag_group('wetn') s_scenario_wetnes
 		int8_t __unknown4;
 	};
 
-	Undefined32 __unknown0;
+	s_undefined32_legacy __unknown0;
 	int32_t nicename("Structure Checksum 1") structure_checksum_1;
 	int32_t nicename("Structure Checksum 2") structure_checksum_2;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
-	Undefined32 __unknown3;
-	Undefined32 __unknown4;
-	TagReference nicename("Primary Map") primary_map_reference;
-	s_tag_block_definition<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
-	s_tag_block_definition<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
-	s_tag_block_definition<s_unknown_2_definition> nicename("Unknown 2") unknown_2_block;
-	s_tag_block_definition<s_unknown_3_definition> nicename("Unknown 3") unknown_3_block;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
+	s_undefined32_legacy __unknown3;
+	s_undefined32_legacy __unknown4;
+	s_tag_reference_legacy nicename("Primary Map") primary_map_reference;
+	s_tag_block_legacy<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
+	s_tag_block_legacy<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
+	s_tag_block_legacy<s_unknown_2_definition> nicename("Unknown 2") unknown_2_block;
+	s_tag_block_legacy<s_unknown_3_definition> nicename("Unknown 3") unknown_3_block;
 };
 

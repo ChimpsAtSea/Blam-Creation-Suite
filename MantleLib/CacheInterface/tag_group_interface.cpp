@@ -31,7 +31,7 @@ c_tag_group_interface::c_tag_group_interface(c_cache_file& cache_file, uint16_t 
 	short_name = std::string(reversedShortName.rbegin(), reversedShortName.rend());
 
 
-	const char* cache_tag_group_name = cache_file.string_id_to_cstr(*reinterpret_cast<DEPRECATED_string_id*>(&cache_file_tag_group->name));
+	const char* cache_tag_group_name = cache_file.string_id_to_cstr(*reinterpret_cast<string_id_legacy*>(&cache_file_tag_group->name));
 	const char* known_tag_group_name = get_known_tag_group_name(group_magic);
 
 	if (known_tag_group_name)

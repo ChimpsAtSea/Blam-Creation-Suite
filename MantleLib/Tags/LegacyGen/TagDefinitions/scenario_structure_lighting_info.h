@@ -20,12 +20,12 @@ struct nicename("scenario_structure_lighting_info") tag_group('stli') s_scenario
 		float __unknown13;
 		float __unknown14;
 		float __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
 	};
 
 	struct nicename("Unknown 1") s_unknown_1_definition
@@ -43,50 +43,50 @@ struct nicename("scenario_structure_lighting_info") tag_group('stli') s_scenario
 		float __unknown10;
 		int32_t __unknown11;
 		float __unknown12;
-		Undefined32 __unknown13;
+		s_undefined32_legacy __unknown13;
 		float __unknown14;
 		float __unknown15;
 		float __unknown16;
-		TagReference __unknown17;
-		TagReference __unknown18;
-		TagReference __unknown19;
-		TagReference __unknown20;
+		s_tag_reference_legacy __unknown17;
+		s_tag_reference_legacy __unknown18;
+		s_tag_reference_legacy __unknown19;
+		s_tag_reference_legacy __unknown20;
 	};
 
 	struct nicename("Unknown 2") s_unknown_2_definition
 	{
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
 		int32_t __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
 	};
 
 	struct nicename("Unknown 3") s_unknown_3_definition
 	{
-		DEPRECATED_string_id __unknown0;
+		string_id_legacy __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
 		int8_t __unknown3;
 		int8_t __unknown4;
-		Undefined32 __unknown5;
+		s_undefined32_legacy __unknown5;
 	};
 
 	int32_t nicename("Checksum?") checksum;
-	s_tag_block_definition<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
-	s_tag_block_definition<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
-	Undefined32 __unknown0;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
-	Undefined32 __unknown3;
-	Undefined32 __unknown4;
-	Undefined32 __unknown5;
-	s_tag_block_definition<s_unknown_2_definition> nicename("Unknown 2") unknown_2_block;
-	s_tag_block_definition<s_unknown_3_definition> nicename("Unknown 3") unknown_3_block;
+	s_tag_block_legacy<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
+	s_tag_block_legacy<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
+	s_undefined32_legacy __unknown0;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
+	s_undefined32_legacy __unknown3;
+	s_undefined32_legacy __unknown4;
+	s_undefined32_legacy __unknown5;
+	s_tag_block_legacy<s_unknown_2_definition> nicename("Unknown 2") unknown_2_block;
+	s_tag_block_legacy<s_unknown_3_definition> nicename("Unknown 3") unknown_3_block;
 };
 

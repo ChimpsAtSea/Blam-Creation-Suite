@@ -19,16 +19,16 @@ void render_bitfield_gui(void* field_data, const c_reflection_field& reflection_
 	uint64_t current_value = 0;
 	switch (reflection_field.enum_info.m_primitiveTypeIndex)
 	{
-	case e_primitive_type::BitField8:
+	case _legacy_primitive_type_bitfield8:
 		current_value = *reinterpret_cast<uint8_t*>(field_data);
 		break;
-	case e_primitive_type::BitField16:
+	case _legacy_primitive_type_bitfield16:
 		current_value = *reinterpret_cast<uint16_t*>(field_data);
 		break;
-	case e_primitive_type::BitField32:
+	case _legacy_primitive_type_bitfield32:
 		current_value = *reinterpret_cast<uint32_t*>(field_data);
 		break;
-	case e_primitive_type::BitField64:
+	case _legacy_primitive_type_bitfield64:
 		current_value = *reinterpret_cast<uint64_t*>(field_data);
 		break;
 	DEBUG_ONLY(default: throw);
@@ -75,16 +75,16 @@ void render_bitfield_gui(void* field_data, const c_reflection_field& reflection_
 				{
 					switch (reflection_field.enum_info.m_primitiveTypeIndex)
 					{
-					case e_primitive_type::BitField8:
+					case _legacy_primitive_type_bitfield8:
 						*reinterpret_cast<uint8_t*>(field_data) |= static_cast<uint8_t>(enum_value.value);
 						break;
-					case e_primitive_type::BitField16:
+					case _legacy_primitive_type_bitfield16:
 						*reinterpret_cast<uint16_t*>(field_data) |= static_cast<uint16_t>(enum_value.value);
 						break;
-					case e_primitive_type::BitField32:
+					case _legacy_primitive_type_bitfield32:
 						*reinterpret_cast<uint32_t*>(field_data) |= static_cast<uint32_t>(enum_value.value);
 						break;
-					case e_primitive_type::BitField64:
+					case _legacy_primitive_type_bitfield64:
 						*reinterpret_cast<uint64_t*>(field_data) |= static_cast<uint64_t>(enum_value.value);
 						break;
 					DEBUG_ONLY(default: throw);
@@ -94,16 +94,16 @@ void render_bitfield_gui(void* field_data, const c_reflection_field& reflection_
 				{
 					switch (reflection_field.enum_info.m_primitiveTypeIndex)
 					{
-					case e_primitive_type::BitField8:
+					case _legacy_primitive_type_bitfield8:
 						*reinterpret_cast<uint8_t*>(field_data) &= ~static_cast<uint8_t>(enum_value.value);
 						break;
-					case e_primitive_type::BitField16:
+					case _legacy_primitive_type_bitfield16:
 						*reinterpret_cast<uint16_t*>(field_data) &= ~static_cast<uint16_t>(enum_value.value);
 						break;
-					case e_primitive_type::BitField32:
+					case _legacy_primitive_type_bitfield32:
 						*reinterpret_cast<uint32_t*>(field_data) &= ~static_cast<uint32_t>(enum_value.value);
 						break;
-					case e_primitive_type::BitField64:
+					case _legacy_primitive_type_bitfield64:
 						*reinterpret_cast<uint64_t*>(field_data) &= ~static_cast<uint64_t>(enum_value.value);
 						break;
 					DEBUG_ONLY(default: throw);

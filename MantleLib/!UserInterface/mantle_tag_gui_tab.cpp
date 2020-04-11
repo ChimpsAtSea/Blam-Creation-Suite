@@ -76,9 +76,9 @@ void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_structure_ty
 
 		if (!reflection_field.array_size)
 		{
-			if (type_info.reflection_type_category == e_reflection_type_category::TagBlock)
+			if (type_info.legacy_reflection_type_category == _legacy_reflection_type_category_tag_block)
 			{
-				s_tag_block_definition<>* tag_block = reinterpret_cast<s_tag_block_definition<>*>(source + reflection_field.offset);
+				s_tag_block_legacy<>* tag_block = reinterpret_cast<s_tag_block_legacy<>*>(source + reflection_field.offset);
 				const s_reflection_tag_block_info& rs_reflection_tag_block_info = reflection_field.tag_block_info;
 				const s_reflection_structure_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
 

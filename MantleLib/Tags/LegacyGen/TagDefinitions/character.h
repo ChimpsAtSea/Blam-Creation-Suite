@@ -42,34 +42,34 @@ struct nicename("character") tag_group('char') s_character_definition
 	{
 		struct nicename("Dialogue Variations") s_dialogue_variations_definition
 		{
-			TagReference nicename("Dialogue") dialogue_reference;
+			s_tag_reference_legacy nicename("Dialogue") dialogue_reference;
 			string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
 		};
 
 		string_id nicename("Variant") variant;
 		int16_t nicename("Variant Index") variant_index;
 		int16_t __unknown0;
-		s_tag_block_definition<s_dialogue_variations_definition> nicename("Dialogue Variations") dialogue_variations_block;
-		Undefined32 __unknown1;
+		s_tag_block_legacy<s_dialogue_variations_definition> nicename("Dialogue Variations") dialogue_variations_block;
+		s_undefined32_legacy __unknown1;
 	};
 
 	struct nicename("Unit Dialogue") s_unit_dialogue_definition
 	{
 		struct nicename("Dialogue Variations") s_dialogue_variations1_definition
 		{
-			TagReference nicename("Dialogue") dialogue_reference;
+			s_tag_reference_legacy nicename("Dialogue") dialogue_reference;
 			string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
 		};
 
-		s_tag_block_definition<s_dialogue_variations1_definition> nicename("Dialogue Variations") dialogue_variations_block;
+		s_tag_block_legacy<s_dialogue_variations1_definition> nicename("Dialogue Variations") dialogue_variations_block;
 		string_id nicename("Radio Effect") radio_effect;
 	};
 
@@ -134,19 +134,19 @@ struct nicename("character") tag_group('char') s_character_definition
 
 		struct nicename("Weapons") s_weapons_definition
 		{
-			TagReference nicename("Weapon") weapon_reference;
+			s_tag_reference_legacy nicename("Weapon") weapon_reference;
 		};
 
 		b_flags nicename("Flags") flags;
 		e_actor_type nicename("Actor Type") actor_type;
 		int16_t __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
 		float nicename("Scariness") scariness;
 		int16_t __unknown4;
 		int16_t __unknown5;
-		s_tag_block_definition<s_weapons_definition> nicename("Weapons") weapons_block;
+		s_tag_block_legacy<s_weapons_definition> nicename("Weapons") weapons_block;
 	};
 
 	struct nicename("Unknown 1") s_unknown_1_definition
@@ -155,12 +155,12 @@ struct nicename("character") tag_group('char') s_character_definition
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
-			Undefined32 __unknown2;
+			s_undefined32_legacy __unknown2;
 		};
 
-		s_tag_block_definition<s_unknown_2_definition> nicename("Unknown 2") unknown_2_block;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
+		s_tag_block_legacy<s_unknown_2_definition> nicename("Unknown 2") unknown_2_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
 	};
 
 	struct nicename("Vitality Properties") s_vitality_properties_definition
@@ -206,28 +206,28 @@ struct nicename("character") tag_group('char') s_character_definition
 		float nicename("Normal Shield Vitality") normal_shield_vitality;
 		float nicename("Legendary Body Vitality") legendary_body_vitality;
 		float nicename("Legendary Shield Vitality") legendary_shield_vitality;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
 		float nicename("Extended Shield Damage Threshold") extended_shield_damage_threshold;
 		float nicename("Extended Body Damage Threshold") extended_body_damage_threshold;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		TagReference nicename("Backup Weapon") backup_weapon_reference;
-		Undefined32 __unknown13;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_tag_reference_legacy nicename("Backup Weapon") backup_weapon_reference;
+		s_undefined32_legacy __unknown13;
 	};
 
 	struct nicename("Placement Properties") s_placement_properties_definition
 	{
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		float nicename("Few Upgrade Chance Easy") few_upgrade_chance_easy;
 		float nicename("Few Upgrade Chance Normal") few_upgrade_chance_normal;
 		float nicename("Few Upgrade Chance Heroic") few_upgrade_chance_heroic;
@@ -246,46 +246,46 @@ struct nicename("character") tag_group('char') s_character_definition
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
 		float nicename("Central Vision Angle") central_vision_angle;
 		float nicename("Max Vision Angle") max_vision_angle;
 		float nicename("Peripheral Vision Angle") peripheral_vision_angle;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		DataReference __unknown21;
-		Undefined32 __unknown22;
-		Undefined32 __unknown23;
-		Undefined32 __unknown24;
-		Undefined32 __unknown25;
-		Undefined32 __unknown26;
-		Undefined32 __unknown27;
-		Undefined32 __unknown28;
-		Undefined32 __unknown29;
-		Undefined32 __unknown30;
-		Undefined32 __unknown31;
-		Undefined32 __unknown32;
-		Undefined32 __unknown33;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_data_reference_legacy __unknown21;
+		s_undefined32_legacy __unknown22;
+		s_undefined32_legacy __unknown23;
+		s_undefined32_legacy __unknown24;
+		s_undefined32_legacy __unknown25;
+		s_undefined32_legacy __unknown26;
+		s_undefined32_legacy __unknown27;
+		s_undefined32_legacy __unknown28;
+		s_undefined32_legacy __unknown29;
+		s_undefined32_legacy __unknown30;
+		s_undefined32_legacy __unknown31;
+		s_undefined32_legacy __unknown32;
+		s_undefined32_legacy __unknown33;
 	};
 
 	struct nicename("Unknown 5") s_unknown_5_definition
 	{
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 	};
 
 	struct nicename("Look Properties") s_look_properties_definition
@@ -294,10 +294,10 @@ struct nicename("character") tag_group('char') s_character_definition
 		float nicename("Maximum Aiming Deviation p") maximum_aiming_deviation_p;
 		float nicename("Maximum Looking Deviation y") maximum_looking_deviation_y;
 		float nicename("Maximum Looking Deviation p") maximum_looking_deviation_p;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
 		float nicename("Noncombat Look Delta L") noncombat_look_delta_l;
 		float nicename("Noncombat Look Delta R") noncombat_look_delta_r;
 		float nicename("Combat Look Delta L") combat_look_delta_l;
@@ -452,64 +452,64 @@ struct nicename("character") tag_group('char') s_character_definition
 		{
 			struct nicename("Unknown 12") s_unknown_12_definition
 			{
-				Undefined32 __unknown0;
-				Undefined32 __unknown1;
+				s_undefined32_legacy __unknown0;
+				s_undefined32_legacy __unknown1;
 			};
 
 			int16_t __unknown0;
 			int16_t __unknown1;
-			s_tag_block_definition<s_unknown_12_definition> nicename("Unknown 12") unknown_12_block;
+			s_tag_block_legacy<s_unknown_12_definition> nicename("Unknown 12") unknown_12_block;
 		};
 
 		b_movement_flags nicename("Movement Flags") movement_flags;
 		float nicename("Pathfinding Radius") pathfinding_radius;
 		float nicename("Destination Radius") destination_radius;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
 		float nicename("Dive Grenade Chance") dive_grenade_chance;
-		Undefined32 __unknown5;
+		s_undefined32_legacy __unknown5;
 		e_obstace_leap_minimum_size nicename("Obstace Leap Minimum Size") obstace_leap_minimum_size;
 		e_obstace_leap_maximum_size nicename("Obstace Leap Maximum Size") obstace_leap_maximum_size;
 		e_obstace_ignore_size nicename("Obstace Ignore Size") obstace_ignore_size;
 		e_obstace_smashable_size nicename("Obstace Smashable Size") obstace_smashable_size;
 		e_jump_height nicename("Jump Height") jump_height;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
 		b_movement_hint_flags nicename("Movement Hint Flags") movement_hint_flags;
 		int32_t __unknown9;
-		Undefined32 __unknown10;
-		s_tag_block_definition<s_unknown_10_definition> nicename("Unknown 10") unknown_10_block;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		s_tag_block_definition<s_unknown_11_definition> nicename("Unknown 11") unknown_11_block;
-		Undefined32 __unknown13;
+		s_undefined32_legacy __unknown10;
+		s_tag_block_legacy<s_unknown_10_definition> nicename("Unknown 10") unknown_10_block;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_tag_block_legacy<s_unknown_11_definition> nicename("Unknown 11") unknown_11_block;
+		s_undefined32_legacy __unknown13;
 		float __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
 		int32_t __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
-		Undefined32 __unknown22;
-		Undefined32 __unknown23;
-		Undefined32 __unknown24;
-		Undefined32 __unknown25;
-		Undefined32 __unknown26;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
+		s_undefined32_legacy __unknown22;
+		s_undefined32_legacy __unknown23;
+		s_undefined32_legacy __unknown24;
+		s_undefined32_legacy __unknown25;
+		s_undefined32_legacy __unknown26;
 	};
 
 	struct nicename("Unknown 8") s_unknown_8_definition
 	{
 		string_id __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		DataReference __unknown3;
-		Undefined32 __unknown4;
-		DataReference __unknown5;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_data_reference_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_data_reference_legacy __unknown5;
 		string_id __unknown6;
 	};
 
@@ -517,7 +517,7 @@ struct nicename("character") tag_group('char') s_character_definition
 	{
 		struct nicename("Unknown 10") s_unknown_101_definition
 		{
-			Undefined32 __unknown0;
+			s_undefined32_legacy __unknown0;
 			string_id __unknown1;
 			string_id __unknown2;
 			string_id __unknown3;
@@ -536,17 +536,17 @@ struct nicename("character") tag_group('char') s_character_definition
 		};
 
 		string_id __unknown0;
-		s_tag_block_definition<s_unknown_101_definition> nicename("Unknown 10") unknown_10_block;
+		s_tag_block_legacy<s_unknown_101_definition> nicename("Unknown 10") unknown_10_block;
 	};
 
 	struct nicename("Unknown 10") s_unknown_102_definition
 	{
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
 	};
 
 	struct nicename("Unknown 11") s_unknown_111_definition
@@ -554,18 +554,18 @@ struct nicename("character") tag_group('char') s_character_definition
 		struct nicename("Unknown 12") s_unknown_121_definition
 		{
 			int32_t __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
 		};
 
 		int32_t __unknown0;
-		s_tag_block_definition<s_unknown_121_definition> nicename("Unknown 12") unknown_12_block;
+		s_tag_block_legacy<s_unknown_121_definition> nicename("Unknown 12") unknown_12_block;
 	};
 
 	struct nicename("Unknown 12") s_unknown_122_definition
 	{
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
 	};
 
 	struct nicename("Engage Properties") s_engage_properties_definition
@@ -607,27 +607,27 @@ struct nicename("character") tag_group('char') s_character_definition
 		};
 
 		b_engage_flags nicename("Engage Flags") engage_flags;
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		float nicename("Crouch Danger Threshold") crouch_danger_threshold;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
 		int16_t __unknown4;
 		int16_t __unknown5;
-		Undefined32 __unknown6;
-		TagReference __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
+		s_undefined32_legacy __unknown6;
+		s_tag_reference_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
 		float __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
 	};
 
 	struct nicename("Charge Properties") s_charge_properties_definition
@@ -682,33 +682,33 @@ struct nicename("character") tag_group('char') s_character_definition
 		float nicename("Melee Abort Range") melee_abort_range;
 		float nicename("Melee Attack Timeout") melee_attack_timeout;
 		float nicename("Melee Attack Delay Timer") melee_attack_delay_timer;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
 		float nicename("Ideal Leap Velocity") ideal_leap_velocity;
 		float nicename("Max Leap Velocity") max_leap_velocity;
 		float nicename("Melee Leap Ballistic") melee_leap_ballistic;
 		float nicename("Melee Delay Timer") melee_delay_timer;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		TagReference nicename("Berserk Weapon") berserk_weapon_reference;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		s_tag_block_definition<s_unknown_17_definition> nicename("Unknown 17") unknown_17_block;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_tag_reference_legacy nicename("Berserk Weapon") berserk_weapon_reference;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_tag_block_legacy<s_unknown_17_definition> nicename("Unknown 17") unknown_17_block;
 	};
 
 	struct nicename("Evasion Properties") s_evasion_properties_definition
@@ -761,25 +761,25 @@ struct nicename("character") tag_group('char') s_character_definition
 		b_cover_flags nicename("Cover Flags") cover_flags;
 		float nicename("Hide Behind Cover Time min") hide_behind_cover_time_min;
 		float nicename("Hide Behind Cover Time max") hide_behind_cover_time_max;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
 		float nicename("Scary Target Threshold") scary_target_threshold;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
 	};
 
 	struct nicename("Retreat Properties") s_retreat_properties_definition
@@ -830,15 +830,15 @@ struct nicename("character") tag_group('char') s_character_definition
 		float nicename("Cower Time Bounds min") cower_time_bounds_min;
 		float nicename("Cower Time Bounds max") cower_time_bounds_max;
 		float nicename("Proximity Ambush Threshold") proximity_ambush_threshold;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
 		float nicename("Zig-Zag Angle") zig_zag_angle;
 		float nicename("Zig-Zag Period") zig_zag_period;
 		float nicename("Retreat Grenade Chance") retreat_grenade_chance;
-		TagReference nicename("Backup Weapon") backup_weapon_reference;
+		s_tag_reference_legacy nicename("Backup Weapon") backup_weapon_reference;
 	};
 
 	struct nicename("Search Properties") s_search_properties_definition
@@ -882,14 +882,14 @@ struct nicename("character") tag_group('char') s_character_definition
 		b_search_flags nicename("Search Flags") search_flags;
 		float nicename("Search Time min") search_time_min;
 		float nicename("Search Time max") search_time_max;
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		float nicename("Uncover Distance Bounds min") uncover_distance_bounds_min;
 		float nicename("Uncover Distance Bounds max") uncover_distance_bounds_max;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
 	};
 
 	struct nicename("Pre-Search Properties") s_pre_search_properties_definition
@@ -931,29 +931,29 @@ struct nicename("character") tag_group('char') s_character_definition
 		};
 
 		b_pre_search_flags nicename("Pre-Search Flags") pre_search_flags;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
 	};
 
 	struct nicename("Idle Properties") s_idle_properties_definition
 	{
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		float nicename("Idle Pose Delay Time min") idle_pose_delay_time_min;
 		float nicename("Idle Pose Delay Time max") idle_pose_delay_time_max;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
 	};
 
 	struct nicename("Vocalization Properties") s_vocalization_properties_definition
 	{
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		float nicename("Look Comment Time") look_comment_time;
 		float nicename("Look Long Comment Time") look_long_comment_time;
 	};
@@ -998,7 +998,7 @@ struct nicename("character") tag_group('char') s_character_definition
 
 		struct nicename("Boarding Vehicles") s_boarding_vehicles_definition
 		{
-			TagReference nicename("Vehicle") vehicle_reference;
+			s_tag_reference_legacy nicename("Vehicle") vehicle_reference;
 			int32_t __unknown0;
 		};
 
@@ -1006,44 +1006,44 @@ struct nicename("character") tag_group('char') s_character_definition
 		float nicename("Max Distance") max_distance;
 		float nicename("Abort Distance") abort_distance;
 		float nicename("Max Speed") max_speed;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_boarding_vehicles_definition> nicename("Boarding Vehicles") boarding_vehicles_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_boarding_vehicles_definition> nicename("Boarding Vehicles") boarding_vehicles_block;
 	};
 
 	struct nicename("Unknown 23") s_unknown_23_definition
 	{
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
 	};
 
 	struct nicename("Unknown 24") s_unknown_24_definition
 	{
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
-		Undefined32 __unknown22;
-		Undefined32 __unknown23;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
+		s_undefined32_legacy __unknown22;
+		s_undefined32_legacy __unknown23;
 	};
 
 	struct nicename("Engineer Properties") s_engineer_properties_definition
@@ -1054,20 +1054,20 @@ struct nicename("character") tag_group('char') s_character_definition
 		float __unknown3;
 		float __unknown4;
 		float nicename("Shield Amount") shield_amount;
-		Undefined32 __unknown5;
+		s_undefined32_legacy __unknown5;
 		float __unknown6;
 		float __unknown7;
-		Undefined32 __unknown8;
-		TagReference __unknown9;
+		s_undefined32_legacy __unknown8;
+		s_tag_reference_legacy __unknown9;
 	};
 
 	struct nicename("Unknown 28") s_unknown_28_definition
 	{
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
 	};
 
 	struct nicename("Weapons Properties") s_weapons_properties_definition
@@ -1124,7 +1124,7 @@ struct nicename("character") tag_group('char') s_character_definition
 		};
 
 		b_weapon_flags nicename("Weapon Flags") weapon_flags;
-		TagReference nicename("Weapon") weapon_reference;
+		s_tag_reference_legacy nicename("Weapon") weapon_reference;
 		float nicename("Maximum Firing Range") maximum_firing_range;
 		float nicename("Minimum Firing Range") minimum_firing_range;
 		float nicename("Normal Combat Range min") normal_combat_range_min;
@@ -1167,7 +1167,7 @@ struct nicename("character") tag_group('char') s_character_definition
 		float nicename("Legendary Accuracy Bounds min") legendary_accuracy_bounds_min;
 		float nicename("Legendary Accuracy Bounds max") legendary_accuracy_bounds_max;
 		float nicename("Legendary Accuracy Time") legendary_accuracy_time;
-		TagReference nicename("Weapon Melee Damage") weapon_melee_damage_reference;
+		s_tag_reference_legacy nicename("Weapon Melee Damage") weapon_melee_damage_reference;
 	};
 
 	struct nicename("Firing Pattern Properties") s_firing_pattern_properties_definition
@@ -1192,8 +1192,8 @@ struct nicename("character") tag_group('char') s_character_definition
 			float nicename("Maximum Error Angle") maximum_error_angle;
 		};
 
-		TagReference nicename("Weapon") weapon_reference;
-		s_tag_block_definition<s_firing_patterns_definition> nicename("Firing Patterns") firing_patterns_block;
+		s_tag_reference_legacy nicename("Weapon") weapon_reference;
+		s_tag_block_legacy<s_firing_patterns_definition> nicename("Firing Patterns") firing_patterns_block;
 	};
 
 	struct nicename("Grenade Properties") s_grenade_properties_definition
@@ -1279,30 +1279,30 @@ struct nicename("character") tag_group('char') s_character_definition
 			/*nicename("Bit 31")*/ _vehicle_flags_bit_31 = 1ui32 << 31ui32,
 		};
 
-		TagReference nicename("Unit") unit_reference;
-		TagReference nicename("Style") style_reference;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
+		s_tag_reference_legacy nicename("Unit") unit_reference;
+		s_tag_reference_legacy nicename("Style") style_reference;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
 		b_vehicle_flags nicename("Vehicle Flags") vehicle_flags;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 		float nicename("AI Pathfinding Radius") ai_pathfinding_radius;
 		float nicename("AI Destination Radius") ai_destination_radius;
 		float nicename("AI Deceleration Distance") ai_deceleration_distance;
@@ -1319,13 +1319,13 @@ struct nicename("character") tag_group('char') s_character_definition
 		float nicename("AI Avoidance Distance") ai_avoidance_distance;
 		float nicename("AI Minimum Urgency") ai_minimum_urgency;
 		float __unknown21;
-		Undefined32 __unknown22;
+		s_undefined32_legacy __unknown22;
 		float nicename("AI Throttle Maximum") ai_throttle_maximum;
-		Undefined32 __unknown23;
+		s_undefined32_legacy __unknown23;
 		float nicename("AI Goal Minimum Throttle Scale") ai_goal_minimum_throttle_scale;
 		float nicename("AI Turn Minimum Throttle Scale") ai_turn_minimum_throttle_scale;
 		float nicename("AI Direction Minimum Throttle Scale") ai_direction_minimum_throttle_scale;
-		Undefined32 __unknown24;
+		s_undefined32_legacy __unknown24;
 		float __unknown25;
 		float nicename("AI Acceleration Scale") ai_acceleration_scale;
 		float nicename("AI Throttle Blend") ai_throttle_blend;
@@ -1338,11 +1338,11 @@ struct nicename("character") tag_group('char') s_character_definition
 		float nicename("AI Charge Look-Ahead Time") ai_charge_look_ahead_time;
 		float nicename("AI Consider Distance") ai_consider_distance;
 		float nicename("AI Charge Abort Distance") ai_charge_abort_distance;
-		Undefined32 __unknown26;
+		s_undefined32_legacy __unknown26;
 		float nicename("Vehicle Ram Timeout") vehicle_ram_timeout;
 		float nicename("Ram Paralysis Time") ram_paralysis_time;
-		Undefined32 __unknown27;
-		Undefined32 __unknown28;
+		s_undefined32_legacy __unknown27;
+		s_undefined32_legacy __unknown28;
 		float nicename("AI Cover Minimum Distance") ai_cover_minimum_distance;
 		float nicename("AI Cover Time") ai_cover_time;
 		float nicename("AI Cover Minimum Boost Distance") ai_cover_minimum_boost_distance;
@@ -1357,59 +1357,59 @@ struct nicename("character") tag_group('char') s_character_definition
 
 	struct nicename("Unknown 29") s_unknown_29_definition
 	{
-		TagReference __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
-		Undefined32 __unknown22;
-		Undefined32 __unknown23;
-		Undefined32 __unknown24;
-		Undefined32 __unknown25;
-		Undefined32 __unknown26;
-		Undefined32 __unknown27;
-		Undefined32 __unknown28;
-		Undefined32 __unknown29;
-		Undefined32 __unknown30;
-		Undefined32 __unknown31;
-		Undefined32 __unknown32;
-		Undefined32 __unknown33;
-		Undefined32 __unknown34;
-		Undefined32 __unknown35;
-		Undefined32 __unknown36;
+		s_tag_reference_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
+		s_undefined32_legacy __unknown22;
+		s_undefined32_legacy __unknown23;
+		s_undefined32_legacy __unknown24;
+		s_undefined32_legacy __unknown25;
+		s_undefined32_legacy __unknown26;
+		s_undefined32_legacy __unknown27;
+		s_undefined32_legacy __unknown28;
+		s_undefined32_legacy __unknown29;
+		s_undefined32_legacy __unknown30;
+		s_undefined32_legacy __unknown31;
+		s_undefined32_legacy __unknown32;
+		s_undefined32_legacy __unknown33;
+		s_undefined32_legacy __unknown34;
+		s_undefined32_legacy __unknown35;
+		s_undefined32_legacy __unknown36;
 		float __unknown37;
 		float __unknown38;
-		Undefined32 __unknown39;
-		Undefined32 __unknown40;
-		Undefined32 __unknown41;
+		s_undefined32_legacy __unknown39;
+		s_undefined32_legacy __unknown40;
+		s_undefined32_legacy __unknown41;
 		float __unknown42;
-		Undefined32 __unknown43;
-		Undefined32 __unknown44;
-		Undefined32 __unknown45;
-		Undefined32 __unknown46;
-		Undefined32 __unknown47;
+		s_undefined32_legacy __unknown43;
+		s_undefined32_legacy __unknown44;
+		s_undefined32_legacy __unknown45;
+		s_undefined32_legacy __unknown46;
+		s_undefined32_legacy __unknown47;
 		float __unknown48;
 		float __unknown49;
 		float __unknown50;
-		Undefined32 __unknown51;
-		Undefined32 __unknown52;
+		s_undefined32_legacy __unknown51;
+		s_undefined32_legacy __unknown52;
 	};
 
 	struct nicename("Equipment Properties") s_equipment_properties_definition
@@ -1422,16 +1422,16 @@ struct nicename("character") tag_group('char') s_character_definition
 			float __unknown3;
 		};
 
-		TagReference nicename("Equipment") equipment_reference;
+		s_tag_reference_legacy nicename("Equipment") equipment_reference;
 		int32_t __unknown0;
 		float nicename("Usage Chance") usage_chance;
-		s_tag_block_definition<s_usage_conditions_definition> nicename("Usage Conditions") usage_conditions_block;
+		s_tag_block_legacy<s_usage_conditions_definition> nicename("Usage Conditions") usage_conditions_block;
 	};
 
 	struct nicename("Stimuli") s_stimuli_definition
 	{
 		string_id nicename("Name") name;
-		TagReference nicename("Stimuli Character") stimuli_character_reference;
+		s_tag_reference_legacy nicename("Stimuli Character") stimuli_character_reference;
 	};
 
 	struct nicename("Metagame Properties") s_metagame_properties_definition
@@ -1502,79 +1502,79 @@ struct nicename("character") tag_group('char') s_character_definition
 
 	struct nicename("Unknown 37") s_unknown_37_definition
 	{
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
 		float __unknown3;
 		float __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
 	};
 
 	b_character_flags nicename("Character Flags") character_flags;
-	TagReference nicename("Parent Character") parent_character_reference;
-	TagReference nicename("Unit") unit_reference;
-	TagReference nicename("Creature") creature_reference;
-	TagReference nicename("Style") style_reference;
-	TagReference nicename("Major Character") major_character_reference;
-	s_tag_block_definition<s_variants_definition> nicename("Variants") variants_block;
-	s_tag_block_definition<s_unit_dialogue_definition> nicename("Unit Dialogue") unit_dialogue_block;
-	s_tag_block_definition<s_general_properties_definition> nicename("General Properties") general_properties_block;
-	Undefined32 __unknown0;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
-	s_tag_block_definition<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
-	s_tag_block_definition<s_vitality_properties_definition> nicename("Vitality Properties") vitality_properties_block;
-	s_tag_block_definition<s_placement_properties_definition> nicename("Placement Properties") placement_properties_block;
-	s_tag_block_definition<s_perception_properties_definition> nicename("Perception Properties") perception_properties_block;
-	s_tag_block_definition<s_unknown_5_definition> nicename("Unknown 5") unknown_5_block;
-	s_tag_block_definition<s_look_properties_definition> nicename("Look Properties") look_properties_block;
-	s_tag_block_definition<s_movement_properties_definition> nicename("Movement Properties") movement_properties_block;
-	s_tag_block_definition<s_unknown_8_definition> nicename("Unknown 8") unknown_8_block;
-	s_tag_block_definition<s_unknown_9_definition> nicename("Unknown 9") unknown_9_block;
-	s_tag_block_definition<s_unknown_102_definition> nicename("Unknown 10") unknown_10_block;
-	Undefined32 __unknown3;
-	Undefined32 __unknown4;
-	Undefined32 __unknown5;
-	s_tag_block_definition<s_unknown_111_definition> nicename("Unknown 11") unknown_11_block;
-	s_tag_block_definition<s_unknown_122_definition> nicename("Unknown 12") unknown_12_block;
-	s_tag_block_definition<s_engage_properties_definition> nicename("Engage Properties") engage_properties_block;
-	s_tag_block_definition<s_charge_properties_definition> nicename("Charge Properties") charge_properties_block;
-	s_tag_block_definition<s_evasion_properties_definition> nicename("Evasion Properties") evasion_properties_block;
-	s_tag_block_definition<s_cover_properties_definition> nicename("Cover Properties") cover_properties_block;
-	s_tag_block_definition<s_retreat_properties_definition> nicename("Retreat Properties") retreat_properties_block;
-	s_tag_block_definition<s_search_properties_definition> nicename("Search Properties") search_properties_block;
-	s_tag_block_definition<s_pre_search_properties_definition> nicename("Pre-Search Properties") pre_search_properties_block;
-	s_tag_block_definition<s_idle_properties_definition> nicename("Idle Properties") idle_properties_block;
-	s_tag_block_definition<s_vocalization_properties_definition> nicename("Vocalization Properties") vocalization_properties_block;
-	s_tag_block_definition<s_boarding_properties_definition> nicename("Boarding Properties") boarding_properties_block;
-	s_tag_block_definition<s_unknown_23_definition> nicename("Unknown 23") unknown_23_block;
-	s_tag_block_definition<s_unknown_24_definition> nicename("Unknown 24") unknown_24_block;
-	Undefined32 __unknown6;
-	Undefined32 __unknown7;
-	Undefined32 __unknown8;
-	Undefined32 __unknown9;
-	Undefined32 __unknown10;
-	Undefined32 __unknown11;
-	s_tag_block_definition<s_engineer_properties_definition> nicename("Engineer Properties") engineer_properties_block;
-	s_tag_block_definition<s_unknown_28_definition> nicename("Unknown 28") unknown_28_block;
-	Undefined32 __unknown12;
-	Undefined32 __unknown13;
-	Undefined32 __unknown14;
-	s_tag_block_definition<s_weapons_properties_definition> nicename("Weapons Properties") weapons_properties_block;
-	s_tag_block_definition<s_firing_pattern_properties_definition> nicename("Firing Pattern Properties") firing_pattern_properties_block;
-	s_tag_block_definition<s_grenade_properties_definition> nicename("Grenade Properties") grenade_properties_block;
-	s_tag_block_definition<s_vehicle_properties_definition> nicename("Vehicle Properties") vehicle_properties_block;
-	s_tag_block_definition<s_unknown_29_definition> nicename("Unknown 29") unknown_29_block;
-	Undefined32 __unknown15;
-	Undefined32 __unknown16;
-	Undefined32 __unknown17;
-	s_tag_block_definition<s_equipment_properties_definition> nicename("Equipment Properties") equipment_properties_block;
-	s_tag_block_definition<s_stimuli_definition> nicename("Stimuli") stimuli_block;
-	s_tag_block_definition<s_metagame_properties_definition> nicename("Metagame Properties") metagame_properties_block;
-	Undefined32 __unknown18;
-	Undefined32 __unknown19;
-	Undefined32 __unknown20;
-	s_tag_block_definition<s_unknown_37_definition> nicename("Unknown 37") unknown_37_block;
+	s_tag_reference_legacy nicename("Parent Character") parent_character_reference;
+	s_tag_reference_legacy nicename("Unit") unit_reference;
+	s_tag_reference_legacy nicename("Creature") creature_reference;
+	s_tag_reference_legacy nicename("Style") style_reference;
+	s_tag_reference_legacy nicename("Major Character") major_character_reference;
+	s_tag_block_legacy<s_variants_definition> nicename("Variants") variants_block;
+	s_tag_block_legacy<s_unit_dialogue_definition> nicename("Unit Dialogue") unit_dialogue_block;
+	s_tag_block_legacy<s_general_properties_definition> nicename("General Properties") general_properties_block;
+	s_undefined32_legacy __unknown0;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
+	s_tag_block_legacy<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
+	s_tag_block_legacy<s_vitality_properties_definition> nicename("Vitality Properties") vitality_properties_block;
+	s_tag_block_legacy<s_placement_properties_definition> nicename("Placement Properties") placement_properties_block;
+	s_tag_block_legacy<s_perception_properties_definition> nicename("Perception Properties") perception_properties_block;
+	s_tag_block_legacy<s_unknown_5_definition> nicename("Unknown 5") unknown_5_block;
+	s_tag_block_legacy<s_look_properties_definition> nicename("Look Properties") look_properties_block;
+	s_tag_block_legacy<s_movement_properties_definition> nicename("Movement Properties") movement_properties_block;
+	s_tag_block_legacy<s_unknown_8_definition> nicename("Unknown 8") unknown_8_block;
+	s_tag_block_legacy<s_unknown_9_definition> nicename("Unknown 9") unknown_9_block;
+	s_tag_block_legacy<s_unknown_102_definition> nicename("Unknown 10") unknown_10_block;
+	s_undefined32_legacy __unknown3;
+	s_undefined32_legacy __unknown4;
+	s_undefined32_legacy __unknown5;
+	s_tag_block_legacy<s_unknown_111_definition> nicename("Unknown 11") unknown_11_block;
+	s_tag_block_legacy<s_unknown_122_definition> nicename("Unknown 12") unknown_12_block;
+	s_tag_block_legacy<s_engage_properties_definition> nicename("Engage Properties") engage_properties_block;
+	s_tag_block_legacy<s_charge_properties_definition> nicename("Charge Properties") charge_properties_block;
+	s_tag_block_legacy<s_evasion_properties_definition> nicename("Evasion Properties") evasion_properties_block;
+	s_tag_block_legacy<s_cover_properties_definition> nicename("Cover Properties") cover_properties_block;
+	s_tag_block_legacy<s_retreat_properties_definition> nicename("Retreat Properties") retreat_properties_block;
+	s_tag_block_legacy<s_search_properties_definition> nicename("Search Properties") search_properties_block;
+	s_tag_block_legacy<s_pre_search_properties_definition> nicename("Pre-Search Properties") pre_search_properties_block;
+	s_tag_block_legacy<s_idle_properties_definition> nicename("Idle Properties") idle_properties_block;
+	s_tag_block_legacy<s_vocalization_properties_definition> nicename("Vocalization Properties") vocalization_properties_block;
+	s_tag_block_legacy<s_boarding_properties_definition> nicename("Boarding Properties") boarding_properties_block;
+	s_tag_block_legacy<s_unknown_23_definition> nicename("Unknown 23") unknown_23_block;
+	s_tag_block_legacy<s_unknown_24_definition> nicename("Unknown 24") unknown_24_block;
+	s_undefined32_legacy __unknown6;
+	s_undefined32_legacy __unknown7;
+	s_undefined32_legacy __unknown8;
+	s_undefined32_legacy __unknown9;
+	s_undefined32_legacy __unknown10;
+	s_undefined32_legacy __unknown11;
+	s_tag_block_legacy<s_engineer_properties_definition> nicename("Engineer Properties") engineer_properties_block;
+	s_tag_block_legacy<s_unknown_28_definition> nicename("Unknown 28") unknown_28_block;
+	s_undefined32_legacy __unknown12;
+	s_undefined32_legacy __unknown13;
+	s_undefined32_legacy __unknown14;
+	s_tag_block_legacy<s_weapons_properties_definition> nicename("Weapons Properties") weapons_properties_block;
+	s_tag_block_legacy<s_firing_pattern_properties_definition> nicename("Firing Pattern Properties") firing_pattern_properties_block;
+	s_tag_block_legacy<s_grenade_properties_definition> nicename("Grenade Properties") grenade_properties_block;
+	s_tag_block_legacy<s_vehicle_properties_definition> nicename("Vehicle Properties") vehicle_properties_block;
+	s_tag_block_legacy<s_unknown_29_definition> nicename("Unknown 29") unknown_29_block;
+	s_undefined32_legacy __unknown15;
+	s_undefined32_legacy __unknown16;
+	s_undefined32_legacy __unknown17;
+	s_tag_block_legacy<s_equipment_properties_definition> nicename("Equipment Properties") equipment_properties_block;
+	s_tag_block_legacy<s_stimuli_definition> nicename("Stimuli") stimuli_block;
+	s_tag_block_legacy<s_metagame_properties_definition> nicename("Metagame Properties") metagame_properties_block;
+	s_undefined32_legacy __unknown18;
+	s_undefined32_legacy __unknown19;
+	s_undefined32_legacy __unknown20;
+	s_tag_block_legacy<s_unknown_37_definition> nicename("Unknown 37") unknown_37_block;
 };
 

@@ -1,12 +1,12 @@
 #include "mantlereflect-private-pch.h"
 
-c_mantle_virtual_tag_interface_generator::c_mantle_virtual_tag_interface_generator(const wchar_t* output_header_file, const wchar_t* output_source_file) :
-	c_ast_source_generator(output_header_file, output_source_file)
+c_legacy_virtual_tag_interface_generator::c_legacy_virtual_tag_interface_generator(const wchar_t* output_header_file, const wchar_t* output_source_file) :
+	c_legacy_ast_source_generator(output_header_file, output_source_file)
 {
 
 }
 
-void c_mantle_virtual_tag_interface_generator::run(std::vector<c_reflection_type_container*>& reflection_type_containers)
+void c_legacy_virtual_tag_interface_generator::run(std::vector<c_reflection_type_container*>& reflection_type_containers)
 {
 	header_string_stream << "#pragma once" << std::endl << std::endl;
 
@@ -44,7 +44,7 @@ void c_mantle_virtual_tag_interface_generator::run(std::vector<c_reflection_type
 	source_string_stream << "#endif" << std::endl; // __visual_assist__
 }
 
-void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
+void c_legacy_virtual_tag_interface_generator::write_virtual_tag_interface(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
 {
 	stringstream << "template<>" << std::endl;
 	stringstream << "class v_tag_interface_legacy<" << reflection_type_container.qualified_type_name << "> : " << std::endl;
@@ -66,11 +66,11 @@ void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::
 		c_reflection_type_container* field_type = reflection_field_container_ptr->field_type;
 		assert(field_type != nullptr);
 
-		if (reflection_field_container_ptr->reflection_type_category == e_reflection_type_category::TagBlock)
+		if (reflection_field_container_ptr->legacy_reflection_type_category == _legacy_reflection_type_category_tag_block)
 		{
 			stringstream << "\t\t" << reflection_field_container_ptr->field_name << "(cache_file, *this, get_data<" << reflection_type_container.qualified_type_name << ">()->" << reflection_field_container_ptr->field_name << ")";
 		}
-		else if (reflection_field_container_ptr->reflection_type_category == e_reflection_type_category::TagReference)
+		else if (reflection_field_container_ptr->legacy_reflection_type_category == _legacy_reflection_type_category_tag_reference)
 		{
 			stringstream << "\t\t" << reflection_field_container_ptr->field_name << "(cache_file, *this, get_data<" << reflection_type_container.qualified_type_name << ">()->" << reflection_field_container_ptr->field_name << ")";
 		}
@@ -90,13 +90,13 @@ void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::
 		c_reflection_type_container* field_type = reflection_field_container_ptr->field_type;
 		assert(field_type != nullptr);
 
-		if (reflection_field_container_ptr->reflection_type_category == e_reflection_type_category::TagBlock)
+		if (reflection_field_container_ptr->legacy_reflection_type_category == _legacy_reflection_type_category_tag_block)
 		{
 			assert(reflection_field_container_ptr->array_size == 0); // #TODO: Generate an initializer list
 
 			stringstream << "\t" << "c_virtual_tag_block<" << field_type->qualified_type_name << "::t_value> " << reflection_field_container_ptr->field_name << ";" << std::endl;
 		}
-		else if (reflection_field_container_ptr->reflection_type_category == e_reflection_type_category::TagReference)
+		else if (reflection_field_container_ptr->legacy_reflection_type_category == _legacy_reflection_type_category_tag_reference)
 		{
 			stringstream << "\t" << "c_virtual_tag_interface " << reflection_field_container_ptr->field_name << ";" << std::endl;
 		}
@@ -116,7 +116,7 @@ void c_mantle_virtual_tag_interface_generator::write_virtual_tag_interface(std::
 	stringstream << "};" << std::endl;
 }
 
-void c_mantle_virtual_tag_interface_generator::write_virtual_tag_initializer(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
+void c_legacy_virtual_tag_interface_generator::write_virtual_tag_initializer(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
 {
 	stringstream << "c_tag_interface* v_" << reflection_type_container.type_name.substr(2) << "_ctor(c_cache_file& cache_file, uint16_t tag_index)" << std::endl;
 	stringstream << "{" << std::endl;

@@ -4,14 +4,14 @@ struct nicename("sound_combiner") tag_group('scmb') s_sound_combiner_definition
 {
 	struct nicename("Unknown 0") s_unknown_0_definition
 	{
-		TagReference nicename("Sound") sound_reference;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
+		s_tag_reference_legacy nicename("Sound") sound_reference;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
 	};
 
-	s_tag_block_definition<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
-	Undefined32 __unknown0;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
+	s_tag_block_legacy<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
+	s_undefined32_legacy __unknown0;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
 };
 

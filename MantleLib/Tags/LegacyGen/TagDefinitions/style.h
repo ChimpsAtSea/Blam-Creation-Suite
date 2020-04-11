@@ -360,7 +360,7 @@ struct nicename("style") tag_group('styl') s_style_definition
 	b_behaviors6 nicename("Behaviors6") behaviors6;
 	b_behaviors7 nicename("Behaviors7") behaviors7;
 	b_behaviors8 nicename("Behaviors8") behaviors8;
-	s_tag_block_definition<s_special_movement_definition> nicename("Special Movement") special_movement_block;
-	s_tag_block_definition<s_behavior_list_definition> nicename("Behavior List") behavior_list_block;
+	s_tag_block_legacy<s_special_movement_definition> nicename("Special Movement") special_movement_block;
+	s_tag_block_legacy<s_behavior_list_definition> nicename("Behavior List") behavior_list_block;
 };
 

@@ -81,7 +81,7 @@ struct nicename("light_volume_system") tag_group('ltvl') s_light_volume_system_d
 					/*nicename("Bit 7")*/ _bitmap_flags_bit_7 = 1ui8 << 7ui8,
 				};
 
-				TagReference nicename("Bitmap") bitmap_reference;
+				s_tag_reference_legacy nicename("Bitmap") bitmap_reference;
 				int8_t __unknown0;
 				int8_t nicename("Bitmap Index") bitmap_index;
 				int8_t __unknown1;
@@ -115,7 +115,7 @@ struct nicename("light_volume_system") tag_group('ltvl') s_light_volume_system_d
 
 			struct nicename("Unknown") s_unknown1_definition
 			{
-				Undefined32 __unknown0;
+				s_undefined32_legacy __unknown0;
 			};
 
 			struct nicename("Unknown") s_unknown2_definition
@@ -125,7 +125,7 @@ struct nicename("light_volume_system") tag_group('ltvl') s_light_volume_system_d
 
 			struct nicename("Unknown") s_unknown3_definition
 			{
-				Undefined32 __unknown0;
+				s_undefined32_legacy __unknown0;
 				int8_t __unknown1;
 				int8_t __unknown2;
 			};
@@ -139,24 +139,24 @@ struct nicename("light_volume_system") tag_group('ltvl') s_light_volume_system_d
 			struct nicename("Functions") s_functions_definition
 			{
 				int32_t __unknown0;
-				DEPRECATED_string_id nicename("Name") name;
-				Undefined32 __unknown1;
-				Undefined32 __unknown2;
-				DataReference nicename("Function") function_data_reference;
+				string_id_legacy nicename("Name") name;
+				s_undefined32_legacy __unknown1;
+				s_undefined32_legacy __unknown2;
+				s_data_reference_legacy nicename("Function") function_data_reference;
 			};
 
-			TagReference nicename("Template") template_reference;
-			s_tag_block_definition<s_shader_maps_definition> nicename("Shader Maps") shader_maps_block;
-			s_tag_block_definition<s_arguments_definition> nicename("Arguments") arguments_block;
-			s_tag_block_definition<s_unknown1_definition> __unknown0;
-			Undefined32 __unknown1;
-			s_tag_block_definition<s_unknown2_definition> __unknown2;
-			s_tag_block_definition<s_unknown3_definition> __unknown3;
-			s_tag_block_definition<s_unknown4_definition> __unknown4;
-			s_tag_block_definition<s_functions_definition> nicename("Functions") functions_block;
+			s_tag_reference_legacy nicename("Template") template_reference;
+			s_tag_block_legacy<s_shader_maps_definition> nicename("Shader Maps") shader_maps_block;
+			s_tag_block_legacy<s_arguments_definition> nicename("Arguments") arguments_block;
+			s_tag_block_legacy<s_unknown1_definition> __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_tag_block_legacy<s_unknown2_definition> __unknown2;
+			s_tag_block_legacy<s_unknown3_definition> __unknown3;
+			s_tag_block_legacy<s_unknown4_definition> __unknown4;
+			s_tag_block_legacy<s_functions_definition> nicename("Functions") functions_block;
 			int32_t __unknown5;
 			int32_t __unknown6;
-			Undefined32 __unknown7;
+			s_undefined32_legacy __unknown7;
 			int16_t __unknown8;
 			int16_t __unknown9;
 			int16_t __unknown10;
@@ -193,109 +193,109 @@ struct nicename("light_volume_system") tag_group('ltvl') s_light_volume_system_d
 
 		struct nicename("Unknown") s_unknown5_definition
 		{
-			DEPRECATED_string_id __unknown0;
+			string_id_legacy __unknown0;
 			int32_t __unknown1;
 			int32_t __unknown2;
 		};
 
 		struct nicename("Unknown") s_unknown6_definition
 		{
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
-		TagReference nicename("Base Render Method") base_render_method_reference;
-		TagReference __unknown0;
-		s_tag_block_definition<s_unknown_definition> __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		s_tag_block_definition<s_shader_properties_definition> nicename("Shader Properties") shader_properties_block;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		s_tag_block_definition<s_unknown5_definition> __unknown7;
+		string_id_legacy nicename("Name") name;
+		s_tag_reference_legacy nicename("Base Render Method") base_render_method_reference;
+		s_tag_reference_legacy __unknown0;
+		s_tag_block_legacy<s_unknown_definition> __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_tag_block_legacy<s_shader_properties_definition> nicename("Shader Properties") shader_properties_block;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_tag_block_legacy<s_unknown5_definition> __unknown7;
 		int8_t __unknown8;
 		int8_t __unknown9;
 		int8_t __unknown10;
 		int8_t __unknown11;
-		Undefined32 __unknown12;
+		s_undefined32_legacy __unknown12;
 		int32_t __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
-		Undefined32 __unknown22;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
+		s_undefined32_legacy __unknown22;
 		int8_t nicename("Input") input;
 		int8_t nicename("Input Range") input_range;
 		e_output_kind nicename("Output Kind") output_kind;
 		int8_t nicename("Output") output;
-		DataReference __unknown23;
-		Undefined32 __unknown24;
-		Undefined32 __unknown25;
+		s_data_reference_legacy __unknown23;
+		s_undefined32_legacy __unknown24;
+		s_undefined32_legacy __unknown25;
 		int8_t nicename("Input") input1;
 		int8_t nicename("Input Range") input_range1;
 		e_output_kind1 nicename("Output Kind") output_kind1;
 		int8_t nicename("Output") output1;
-		DataReference __unknown26;
-		Undefined32 __unknown27;
-		Undefined32 __unknown28;
+		s_data_reference_legacy __unknown26;
+		s_undefined32_legacy __unknown27;
+		s_undefined32_legacy __unknown28;
 		int8_t nicename("Input") input2;
 		int8_t nicename("Input Range") input_range2;
 		e_output_kind2 nicename("Output Kind") output_kind2;
 		int8_t nicename("Output") output2;
-		DataReference __unknown29;
-		Undefined32 __unknown30;
-		Undefined32 __unknown31;
+		s_data_reference_legacy __unknown29;
+		s_undefined32_legacy __unknown30;
+		s_undefined32_legacy __unknown31;
 		int8_t nicename("Input") input3;
 		int8_t nicename("Input Range") input_range3;
 		e_output_kind3 nicename("Output Kind") output_kind3;
 		int8_t nicename("Output") output3;
-		DataReference __unknown32;
-		Undefined32 __unknown33;
-		Undefined32 __unknown34;
+		s_data_reference_legacy __unknown32;
+		s_undefined32_legacy __unknown33;
+		s_undefined32_legacy __unknown34;
 		int8_t nicename("Input") input4;
 		int8_t nicename("Input Range") input_range4;
 		e_output_kind4 nicename("Output Kind") output_kind4;
 		int8_t nicename("Output") output4;
-		DataReference __unknown35;
-		Undefined32 __unknown36;
-		Undefined32 __unknown37;
+		s_data_reference_legacy __unknown35;
+		s_undefined32_legacy __unknown36;
+		s_undefined32_legacy __unknown37;
 		int8_t nicename("Input") input5;
 		int8_t nicename("Input Range") input_range5;
 		e_output_kind5 nicename("Output Kind") output_kind5;
 		int8_t nicename("Output") output5;
-		DataReference __unknown38;
-		Undefined32 __unknown39;
-		Undefined32 __unknown40;
+		s_data_reference_legacy __unknown38;
+		s_undefined32_legacy __unknown39;
+		s_undefined32_legacy __unknown40;
 		int8_t nicename("Input") input6;
 		int8_t nicename("Input Range") input_range6;
 		e_output_kind6 nicename("Output Kind") output_kind6;
 		int8_t nicename("Output") output6;
-		DataReference __unknown41;
-		Undefined32 __unknown42;
-		Undefined32 __unknown43;
+		s_data_reference_legacy __unknown41;
+		s_undefined32_legacy __unknown42;
+		s_undefined32_legacy __unknown43;
 		int8_t nicename("Input") input7;
 		int8_t nicename("Input Range") input_range7;
 		e_output_kind7 nicename("Output Kind") output_kind7;
 		int8_t nicename("Output") output7;
-		DataReference __unknown44;
-		Undefined32 __unknown45;
-		Undefined32 __unknown46;
-		Undefined32 __unknown47;
-		Undefined32 __unknown48;
-		Undefined32 __unknown49;
+		s_data_reference_legacy __unknown44;
+		s_undefined32_legacy __unknown45;
+		s_undefined32_legacy __unknown46;
+		s_undefined32_legacy __unknown47;
+		s_undefined32_legacy __unknown48;
+		s_undefined32_legacy __unknown49;
 		int32_t nicename("Compiled Scenario Index") compiled_scenario_index;
-		Undefined32 __unknown50;
-		Undefined32 __unknown51;
-		Undefined32 __unknown52;
-		s_tag_block_definition<s_unknown6_definition> __unknown53;
+		s_undefined32_legacy __unknown50;
+		s_undefined32_legacy __unknown51;
+		s_undefined32_legacy __unknown52;
+		s_tag_block_legacy<s_unknown6_definition> __unknown53;
 	};
 
-	s_tag_block_definition<s_light_volume_system1_definition> nicename("Light Volume System") light_volume_system_block;
+	s_tag_block_legacy<s_light_volume_system1_definition> nicename("Light Volume System") light_volume_system_block;
 };
 

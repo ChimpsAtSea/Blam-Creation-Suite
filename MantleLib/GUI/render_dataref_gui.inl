@@ -4,11 +4,11 @@ class s_data_reference_dynamic_ui_data
 public:
 	ImGuiID unique_id;
 	c_cache_file& cache_file;
-	DataReference* field_data;
+	s_data_reference_legacy* field_data;
 	MemoryEditor memory_editor;
 	static volatile ImGuiID s_current_unique_id;
 
-	s_data_reference_dynamic_ui_data(DataReference* field_data, c_cache_file& cache_file) :
+	s_data_reference_dynamic_ui_data(s_data_reference_legacy* field_data, c_cache_file& cache_file) :
 		unique_id(_InterlockedIncrement(&s_current_unique_id)),
 		cache_file(cache_file),
 		field_data(field_data),
@@ -19,7 +19,7 @@ public:
 };
 volatile ImGuiID s_data_reference_dynamic_ui_data::s_current_unique_id = 1;
 
-void render_dataref_gui(DataReference* field_data, const c_reflection_field& reflection_field)
+void render_dataref_gui(s_data_reference_legacy* field_data, const c_reflection_field& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields

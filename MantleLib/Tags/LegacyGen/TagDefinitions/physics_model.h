@@ -4,24 +4,24 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 {
 	struct nicename("Unknown") s_unknown_definition
 	{
-		DEPRECATED_string_id __unknown0;
+		string_id_legacy __unknown0;
 		float __unknown1;
 		float __unknown2;
 		float __unknown3;
 		float __unknown4;
-		Undefined32 __unknown5;
+		s_undefined32_legacy __unknown5;
 	};
 
 	struct nicename("Unknown") s_unknown1_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		float __unknown0;
 		float __unknown1;
 		float __unknown2;
 		float __unknown3;
 		float __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
 	};
 
 	struct nicename("Phantom Types") s_phantom_types_definition
@@ -85,14 +85,14 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		};
 
 		b_flags nicename("Flags") flags;
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		e_minimum_size nicename("Minimum Size") minimum_size;
 		e_maximum_size nicename("Maximum Size") maximum_size;
 		int16_t __unknown1;
-		DEPRECATED_string_id nicename("Marker Name") marker_name;
-		DEPRECATED_string_id nicename("Alignment Marker Name") alignment_marker_name;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
+		string_id_legacy nicename("Marker Name") marker_name;
+		string_id_legacy nicename("Alignment Marker Name") alignment_marker_name;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
 		float nicename("Hooke's Law 'E'") hookes_law_e;
 		float nicename("Linear Dead Radius") linear_dead_radius;
 		float nicename("Center Acceleration") center_acceleration;
@@ -101,18 +101,18 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("Axis Max Velocity") axis_max_velocity;
 		float nicename("Direction Acceleration") direction_acceleration;
 		float nicename("Direction Max Velocity") direction_max_velocity;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
 	};
 
 	struct nicename("Unknown 12") s_unknown_12_definition
@@ -124,14 +124,14 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 		struct nicename("Unknown 1") s_unknown_11_definition
 		{
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
 		};
 
-		s_tag_block_definition<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
-		s_tag_block_definition<s_unknown_11_definition> nicename("Unknown 1") unknown_11_block;
+		s_tag_block_legacy<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
+		s_tag_block_legacy<s_unknown_11_definition> nicename("Unknown 1") unknown_11_block;
 	};
 
 	struct nicename("Node Edges") s_node_edges_definition
@@ -204,17 +204,17 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 			int16_t nicename("Index") index;
 			b_flags nicename("Flags") flags;
 			float nicename("Friction") friction;
-			s_tag_block_definition<s_unknown2_definition> __unknown0;
-			s_tag_block_definition<s_unknown3_definition> __unknown1;
+			s_tag_block_legacy<s_unknown2_definition> __unknown0;
+			s_tag_block_legacy<s_unknown3_definition> __unknown1;
 		};
 
 		int16_t nicename("Node A Global Material Index") node_a_global_material_index;
 		int16_t nicename("Node B Global Material Index") node_b_global_material_index;
 		int16_t nicename("Node A") node_a;
 		int16_t nicename("Node B") node_b;
-		s_tag_block_definition<s_constraints_definition> nicename("Constraints") constraints_block;
-		DEPRECATED_string_id nicename("Node A Material") node_a_material;
-		DEPRECATED_string_id nicename("Node B Material") node_b_material;
+		s_tag_block_legacy<s_constraints_definition> nicename("Constraints") constraints_block;
+		string_id_legacy nicename("Node A Material") node_a_material;
+		string_id_legacy nicename("Node B Material") node_b_material;
 	};
 
 	struct nicename("Rigid Bodies") s_rigid_bodies_definition
@@ -296,19 +296,19 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float __unknown3;
 		float __unknown4;
 		float __unknown5;
-		Undefined32 nicename("Inertia Tensor Scale") inertia_tensor_scale;
-		Undefined32 nicename("Linear Dampening") linear_dampening;
-		Undefined32 nicename("Angular Dampening") angular_dampening;
-		Undefined32 nicename("Center Of Mass Offset x") center_of_mass_offset_x;
-		Undefined32 nicename("Center Of Mass Offset y") center_of_mass_offset_y;
-		Undefined32 nicename("Center Of Mass Offset z") center_of_mass_offset_z;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
+		s_undefined32_legacy nicename("Inertia Tensor Scale") inertia_tensor_scale;
+		s_undefined32_legacy nicename("Linear Dampening") linear_dampening;
+		s_undefined32_legacy nicename("Angular Dampening") angular_dampening;
+		s_undefined32_legacy nicename("Center Of Mass Offset x") center_of_mass_offset_x;
+		s_undefined32_legacy nicename("Center Of Mass Offset y") center_of_mass_offset_y;
+		s_undefined32_legacy nicename("Center Of Mass Offset z") center_of_mass_offset_z;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
 		float nicename("Center of Mass i") center_of_mass_i;
 		float nicename("Center of Mass j") center_of_mass_j;
 		float nicename("Center of Mass k") center_of_mass_k;
@@ -326,26 +326,26 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("Inertia Tensor z k") inertia_tensor_z_k;
 		float nicename("Inertia Tensor z Radius") inertia_tensor_z_radius;
 		int32_t nicename("Unknown Interaction") unknown_interaction;
-		Undefined32 __unknown13;
+		s_undefined32_legacy __unknown13;
 		e_shape_type nicename("Shape Type") shape_type;
 		int16_t nicename("Shape Index") shape_index;
 		int32_t __unknown14;
 		float nicename("Mass") mass;
-		Undefined32 __unknown15;
+		s_undefined32_legacy __unknown15;
 		int16_t nicename("Interaction A") interaction_a;
 		int16_t nicename("Interaction B") interaction_b;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("Materials") s_materials_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
-		Undefined32 __unknown0;
-		DEPRECATED_string_id nicename("Material Name") material_name;
+		string_id_legacy nicename("Name") name;
+		s_undefined32_legacy __unknown0;
+		string_id_legacy nicename("Material Name") material_name;
 		int16_t nicename("Phantom Type Index") phantom_type_index;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -353,7 +353,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Spheres") s_spheres_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
 		int8_t __unknown0;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -365,40 +365,40 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		int16_t nicename("Overall Shape Index") overall_shape_index;
 		int8_t nicename("Phantom Index") phantom_index;
 		int8_t nicename("Interaction Unknown") interaction_unknown;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
 		int16_t nicename("Size") size;
 		int16_t nicename("Count") count;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown3;
 		int32_t nicename("Offset") offset;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown4;
 		int32_t __unknown5;
-		Undefined32 __unknown6;
+		s_undefined32_legacy __unknown6;
 		float nicename("Radius") radius;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
 		int16_t nicename("Size") size1;
 		int16_t nicename("Count") count1;
-		Undefined32 __unknown16;
+		s_undefined32_legacy __unknown16;
 		int32_t nicename("Offset") offset1;
-		Undefined32 __unknown17;
+		s_undefined32_legacy __unknown17;
 		int32_t __unknown18;
-		Undefined32 __unknown19;
+		s_undefined32_legacy __unknown19;
 		float nicename("Radius") radius1;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
-		Undefined32 __unknown22;
-		Undefined32 __unknown23;
-		Undefined32 __unknown24;
-		Undefined32 __unknown25;
-		Undefined32 __unknown26;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
+		s_undefined32_legacy __unknown22;
+		s_undefined32_legacy __unknown23;
+		s_undefined32_legacy __unknown24;
+		s_undefined32_legacy __unknown25;
+		s_undefined32_legacy __unknown26;
 		float nicename("Translation i") translation_i;
 		float nicename("Translation j") translation_j;
 		float nicename("Translation k") translation_k;
@@ -407,7 +407,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Pills") s_pills_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
 		int8_t __unknown0;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -419,19 +419,19 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		int16_t nicename("Overall Shape Index") overall_shape_index;
 		int8_t nicename("Phantom Index") phantom_index;
 		int8_t nicename("Interaction Unknown") interaction_unknown;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
 		int16_t nicename("Size") size;
 		int16_t nicename("Count") count;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown3;
 		int32_t nicename("Offset") offset;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown4;
 		int32_t __unknown5;
-		Undefined32 __unknown6;
+		s_undefined32_legacy __unknown6;
 		float nicename("Radius") radius;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
 		float nicename("Bottom i") bottom_i;
 		float nicename("Bottom j") bottom_j;
 		float nicename("Bottom k") bottom_k;
@@ -444,7 +444,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Boxes") s_boxes_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
 		int8_t __unknown0;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -456,40 +456,40 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		int16_t nicename("Overall Shape Index") overall_shape_index;
 		int8_t nicename("Phantom Index") phantom_index;
 		int8_t nicename("Interaction Unknown") interaction_unknown;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
 		int16_t nicename("Size") size;
 		int16_t nicename("Count") count;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown3;
 		int32_t nicename("Offset") offset;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown4;
 		int32_t __unknown5;
-		Undefined32 __unknown6;
+		s_undefined32_legacy __unknown6;
 		float nicename("Radius") radius;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
 		float nicename("Half Extents i") half_extents_i;
 		float nicename("Half Extents j") half_extents_j;
 		float nicename("Half Extents k") half_extents_k;
 		float nicename("Half Extents Radius") half_extents_radius;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
 		int16_t nicename("Size") size1;
 		int16_t nicename("Count") count1;
-		Undefined32 __unknown12;
+		s_undefined32_legacy __unknown12;
 		int32_t nicename("Offset") offset1;
-		Undefined32 __unknown13;
+		s_undefined32_legacy __unknown13;
 		int32_t __unknown14;
-		Undefined32 __unknown15;
+		s_undefined32_legacy __unknown15;
 		float nicename("Radius") radius1;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
-		Undefined32 __unknown22;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
+		s_undefined32_legacy __unknown22;
 		float nicename("Rotation i i") rotation_i_i;
 		float nicename("Rotation i j") rotation_i_j;
 		float nicename("Rotation i k") rotation_i_k;
@@ -510,7 +510,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Polyhedra") s_polyhedra_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
 		int8_t __unknown0;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -522,19 +522,19 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		int16_t nicename("Overall Shape Index") overall_shape_index;
 		int8_t nicename("Phantom Index") phantom_index;
 		int8_t nicename("Interaction Unknown") interaction_unknown;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
 		int16_t nicename("Size") size;
 		int16_t nicename("Count") count;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown3;
 		int32_t nicename("Offset") offset;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown4;
 		int32_t __unknown5;
-		Undefined32 __unknown6;
+		s_undefined32_legacy __unknown6;
 		float nicename("Radius") radius;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
 		float nicename("AABB Half Extents i") aabb_half_extents_i;
 		float nicename("AABB Half Extents j") aabb_half_extents_j;
 		float nicename("AABB Half Extents k") aabb_half_extents_k;
@@ -543,22 +543,22 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("AABB Center j") aabb_center_j;
 		float nicename("AABB Center k") aabb_center_k;
 		float nicename("AABB Center Radius") aabb_center_radius;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
 		int32_t nicename("Four Vectors Size") four_vectors_size;
 		uint32_t nicename("Four Vectors Capacity") four_vectors_capacity;
 		int32_t __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
 		int32_t nicename("Plane Equations Size") plane_equations_size;
 		uint32_t nicename("Plane Equations Capacity") plane_equations_capacity;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
 	};
 
 	struct nicename("Polyhedron Four Vectors") s_polyhedron_four_vectors_definition
@@ -587,26 +587,26 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Lists") s_lists_definition
 	{
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
 		int16_t nicename("Size") size;
 		int16_t nicename("Count") count;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown2;
 		int32_t nicename("Offset") offset;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown3;
 		int32_t __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
 		int32_t nicename("Child Shapes Size") child_shapes_size;
 		uint32_t nicename("Child Shapes Capacity") child_shapes_capacity;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
 		float __unknown15;
 		float __unknown16;
 		float __unknown17;
@@ -651,12 +651,12 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		e_shape_type nicename("Shape Type") shape_type;
 		int16_t nicename("Shape Index") shape_index;
 		int32_t __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
 		int32_t __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
 	};
 
 	struct nicename("MOPPs") s_mopps_definition
@@ -681,45 +681,45 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 			/*nicename("MOPP")*/ _shape_type_mopp = 15ui16,
 		};
 
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
 		int16_t nicename("Size") size;
 		int16_t nicename("Count") count;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown2;
 		int32_t nicename("Offset") offset;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown3;
 		int32_t __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
 		e_shape_type nicename("Shape Type") shape_type;
 		int16_t nicename("Shape Index") shape_index;
 		int32_t __unknown20;
-		Undefined32 __unknown21;
-		Undefined32 __unknown22;
-		Undefined32 __unknown23;
-		Undefined32 __unknown24;
-		Undefined32 __unknown25;
-		Undefined32 __unknown26;
-		Undefined32 __unknown27;
-		Undefined32 __unknown28;
+		s_undefined32_legacy __unknown21;
+		s_undefined32_legacy __unknown22;
+		s_undefined32_legacy __unknown23;
+		s_undefined32_legacy __unknown24;
+		s_undefined32_legacy __unknown25;
+		s_undefined32_legacy __unknown26;
+		s_undefined32_legacy __unknown27;
+		s_undefined32_legacy __unknown28;
 	};
 
 	struct nicename("Hinge Constraints") s_hinge_constraints_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int16_t nicename("Node A") node_a;
 		int16_t nicename("Node B") node_b;
 		float nicename("A Scale") a_scale;
@@ -750,12 +750,12 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("B Position k") b_position_k;
 		int16_t nicename("Edge Index") edge_index;
 		int16_t __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown1;
 	};
 
 	struct nicename("Ragdoll Constraints") s_ragdoll_constraints_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int16_t nicename("Node A") node_a;
 		int16_t nicename("Node B") node_b;
 		float nicename("A Scale") a_scale;
@@ -786,7 +786,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("B Position z") b_position_z;
 		int16_t nicename("Edge Index") edge_index;
 		int16_t __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown1;
 		float nicename("Min Twist") min_twist;
 		float nicename("Max Twist") max_twist;
 		float nicename("Min Cone") min_cone;
@@ -805,12 +805,12 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 				int16_t nicename("Rigid Body Index") rigid_body_index;
 			};
 
-			DEPRECATED_string_id nicename("Name") name;
-			s_tag_block_definition<s_rigid_bodies1_definition> nicename("Rigid Bodies") rigid_bodies_block;
+			string_id_legacy nicename("Name") name;
+			s_tag_block_legacy<s_rigid_bodies1_definition> nicename("Rigid Bodies") rigid_bodies_block;
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
-		s_tag_block_definition<s_permutations_definition> nicename("Permutations") permutations_block;
+		string_id_legacy nicename("Name") name;
+		s_tag_block_legacy<s_permutations_definition> nicename("Permutations") permutations_block;
 	};
 
 	struct nicename("Nodes") s_nodes_definition
@@ -835,7 +835,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 			/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		b_flags nicename("Flags") flags;
 		int16_t nicename("Parent") parent;
 		int16_t nicename("Sibling") sibling;
@@ -844,7 +844,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 
 	struct nicename("Limited Hinge Constraints") s_limited_hinge_constraints_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int16_t nicename("Node A") node_a;
 		int16_t nicename("Node B") node_b;
 		float nicename("A Scale") a_scale;
@@ -875,7 +875,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("B Position z") b_position_z;
 		int16_t nicename("Edge Index") edge_index;
 		int16_t __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown1;
 		float nicename("Limit Friction") limit_friction;
 		float nicename("Limit Min Angle") limit_min_angle;
 		float nicename("Limit Max Angle") limit_max_angle;
@@ -903,90 +903,90 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 			/*nicename("MOPP")*/ _shape_type_mopp = 15ui16,
 		};
 
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
 		int16_t nicename("Size") size;
 		int16_t nicename("Count") count;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown2;
 		int32_t nicename("Offset") offset;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown3;
 		int32_t __unknown4;
-		Undefined32 __unknown5;
+		s_undefined32_legacy __unknown5;
 		e_shape_type nicename("Shape Type") shape_type;
 		int16_t nicename("Shape Index") shape_index;
 		int32_t __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
 		int16_t nicename("Size") size1;
 		int16_t nicename("Count") count1;
-		Undefined32 __unknown13;
+		s_undefined32_legacy __unknown13;
 		int32_t nicename("Offset") offset1;
-		Undefined32 __unknown14;
+		s_undefined32_legacy __unknown14;
 		int32_t __unknown15;
-		Undefined32 __unknown16;
+		s_undefined32_legacy __unknown16;
 	};
 
-	Undefined32 __unknown0;
-	Undefined32 __unknown1;
+	s_undefined32_legacy __unknown0;
+	s_undefined32_legacy __unknown1;
 	float nicename("Mass") mass;
 	float nicename("Low Frequency Decativation Scale") low_frequency_decativation_scale;
 	float nicename("High Frequency Decativation Scale") high_frequency_decativation_scale;
-	Undefined32 __unknown2;
-	Undefined32 __unknown3;
+	s_undefined32_legacy __unknown2;
+	s_undefined32_legacy __unknown3;
 	int8_t __unknown4;
 	int8_t __unknown5;
 	int8_t __unknown6;
 	int8_t __unknown7;
-	s_tag_block_definition<s_unknown_definition> __unknown8;
-	s_tag_block_definition<s_unknown1_definition> __unknown9;
-	s_tag_block_definition<s_phantom_types_definition> nicename("Phantom Types") phantom_types_block;
-	s_tag_block_definition<s_unknown_12_definition> nicename("Unknown 12") unknown_12_block;
-	s_tag_block_definition<s_node_edges_definition> nicename("Node Edges") node_edges_block;
-	s_tag_block_definition<s_rigid_bodies_definition> nicename("Rigid Bodies") rigid_bodies_block;
-	s_tag_block_definition<s_materials_definition> nicename("Materials") materials_block;
-	s_tag_block_definition<s_spheres_definition> nicename("Spheres") spheres_block;
-	Undefined32 nicename("Multi Spheres Block Here") multi_spheres_block_here;
-	Undefined32 nicename("Multi Spheres Block Here") multi_spheres_block_here1;
-	Undefined32 nicename("Multi Spheres Block Here") multi_spheres_block_here2;
-	s_tag_block_definition<s_pills_definition> nicename("Pills") pills_block;
-	s_tag_block_definition<s_boxes_definition> nicename("Boxes") boxes_block;
-	Undefined32 nicename("Triangles Block Here") triangles_block_here;
-	Undefined32 nicename("Triangles Block Here") triangles_block_here1;
-	Undefined32 nicename("Triangles Block Here") triangles_block_here2;
-	s_tag_block_definition<s_polyhedra_definition> nicename("Polyhedra") polyhedra_block;
-	s_tag_block_definition<s_polyhedron_four_vectors_definition> nicename("Polyhedron Four Vectors") polyhedron_four_vectors_block;
-	s_tag_block_definition<s_polyhedron_plane_equations_definition> nicename("Polyhedron Plane Equations") polyhedron_plane_equations_block;
-	Undefined32 nicename("Mass Distributions Block Here") mass_distributions_block_here;
-	Undefined32 nicename("Mass Distributions Block Here") mass_distributions_block_here1;
-	Undefined32 nicename("Mass Distributions Block Here") mass_distributions_block_here2;
-	s_tag_block_definition<s_lists_definition> nicename("Lists") lists_block;
-	s_tag_block_definition<s_list_shapes_definition> nicename("List Shapes") list_shapes_block;
-	s_tag_block_definition<s_mopps_definition> nicename("MOPPs") mopps_block;
-	DataReference nicename("MOPP Codes") mopp_codes_data_reference;
-	s_tag_block_definition<s_hinge_constraints_definition> nicename("Hinge Constraints") hinge_constraints_block;
-	s_tag_block_definition<s_ragdoll_constraints_definition> nicename("Ragdoll Constraints") ragdoll_constraints_block;
-	s_tag_block_definition<s_regions_definition> nicename("Regions") regions_block;
-	s_tag_block_definition<s_nodes_definition> nicename("Nodes") nodes_block;
-	Undefined32 __unknown10;
-	Undefined32 __unknown11;
-	Undefined32 __unknown12;
-	Undefined32 __unknown13;
-	Undefined32 __unknown14;
-	Undefined32 __unknown15;
-	s_tag_block_definition<s_limited_hinge_constraints_definition> nicename("Limited Hinge Constraints") limited_hinge_constraints_block;
-	Undefined32 nicename("Ball And Socket Constraint Block") ball_and_socket_constraint_block;
-	Undefined32 nicename("Ball And Socket Constraint Block") ball_and_socket_constraint_block1;
-	Undefined32 nicename("Ball And Socket Constraint Block") ball_and_socket_constraint_block2;
-	Undefined32 nicename("Stiff Spring Constraint Block") stiff_spring_constraint_block;
-	Undefined32 nicename("Stiff Spring Constraint Block") stiff_spring_constraint_block1;
-	Undefined32 nicename("Stiff Spring Constraint Block") stiff_spring_constraint_block2;
-	Undefined32 nicename("Prismatic Constraint Block") prismatic_constraint_block;
-	Undefined32 nicename("Prismatic Constraint Block") prismatic_constraint_block1;
-	Undefined32 nicename("Prismatic Constraint Block") prismatic_constraint_block2;
-	s_tag_block_definition<s_phantoms_definition> nicename("Phantoms") phantoms_block;
+	s_tag_block_legacy<s_unknown_definition> __unknown8;
+	s_tag_block_legacy<s_unknown1_definition> __unknown9;
+	s_tag_block_legacy<s_phantom_types_definition> nicename("Phantom Types") phantom_types_block;
+	s_tag_block_legacy<s_unknown_12_definition> nicename("Unknown 12") unknown_12_block;
+	s_tag_block_legacy<s_node_edges_definition> nicename("Node Edges") node_edges_block;
+	s_tag_block_legacy<s_rigid_bodies_definition> nicename("Rigid Bodies") rigid_bodies_block;
+	s_tag_block_legacy<s_materials_definition> nicename("Materials") materials_block;
+	s_tag_block_legacy<s_spheres_definition> nicename("Spheres") spheres_block;
+	s_undefined32_legacy nicename("Multi Spheres Block Here") multi_spheres_block_here;
+	s_undefined32_legacy nicename("Multi Spheres Block Here") multi_spheres_block_here1;
+	s_undefined32_legacy nicename("Multi Spheres Block Here") multi_spheres_block_here2;
+	s_tag_block_legacy<s_pills_definition> nicename("Pills") pills_block;
+	s_tag_block_legacy<s_boxes_definition> nicename("Boxes") boxes_block;
+	s_undefined32_legacy nicename("Triangles Block Here") triangles_block_here;
+	s_undefined32_legacy nicename("Triangles Block Here") triangles_block_here1;
+	s_undefined32_legacy nicename("Triangles Block Here") triangles_block_here2;
+	s_tag_block_legacy<s_polyhedra_definition> nicename("Polyhedra") polyhedra_block;
+	s_tag_block_legacy<s_polyhedron_four_vectors_definition> nicename("Polyhedron Four Vectors") polyhedron_four_vectors_block;
+	s_tag_block_legacy<s_polyhedron_plane_equations_definition> nicename("Polyhedron Plane Equations") polyhedron_plane_equations_block;
+	s_undefined32_legacy nicename("Mass Distributions Block Here") mass_distributions_block_here;
+	s_undefined32_legacy nicename("Mass Distributions Block Here") mass_distributions_block_here1;
+	s_undefined32_legacy nicename("Mass Distributions Block Here") mass_distributions_block_here2;
+	s_tag_block_legacy<s_lists_definition> nicename("Lists") lists_block;
+	s_tag_block_legacy<s_list_shapes_definition> nicename("List Shapes") list_shapes_block;
+	s_tag_block_legacy<s_mopps_definition> nicename("MOPPs") mopps_block;
+	s_data_reference_legacy nicename("MOPP Codes") mopp_codes_data_reference;
+	s_tag_block_legacy<s_hinge_constraints_definition> nicename("Hinge Constraints") hinge_constraints_block;
+	s_tag_block_legacy<s_ragdoll_constraints_definition> nicename("Ragdoll Constraints") ragdoll_constraints_block;
+	s_tag_block_legacy<s_regions_definition> nicename("Regions") regions_block;
+	s_tag_block_legacy<s_nodes_definition> nicename("Nodes") nodes_block;
+	s_undefined32_legacy __unknown10;
+	s_undefined32_legacy __unknown11;
+	s_undefined32_legacy __unknown12;
+	s_undefined32_legacy __unknown13;
+	s_undefined32_legacy __unknown14;
+	s_undefined32_legacy __unknown15;
+	s_tag_block_legacy<s_limited_hinge_constraints_definition> nicename("Limited Hinge Constraints") limited_hinge_constraints_block;
+	s_undefined32_legacy nicename("Ball And Socket Constraint Block") ball_and_socket_constraint_block;
+	s_undefined32_legacy nicename("Ball And Socket Constraint Block") ball_and_socket_constraint_block1;
+	s_undefined32_legacy nicename("Ball And Socket Constraint Block") ball_and_socket_constraint_block2;
+	s_undefined32_legacy nicename("Stiff Spring Constraint Block") stiff_spring_constraint_block;
+	s_undefined32_legacy nicename("Stiff Spring Constraint Block") stiff_spring_constraint_block1;
+	s_undefined32_legacy nicename("Stiff Spring Constraint Block") stiff_spring_constraint_block2;
+	s_undefined32_legacy nicename("Prismatic Constraint Block") prismatic_constraint_block;
+	s_undefined32_legacy nicename("Prismatic Constraint Block") prismatic_constraint_block1;
+	s_undefined32_legacy nicename("Prismatic Constraint Block") prismatic_constraint_block2;
+	s_tag_block_legacy<s_phantoms_definition> nicename("Phantoms") phantoms_block;
 };
 

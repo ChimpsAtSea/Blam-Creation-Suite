@@ -418,7 +418,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 	if (tag_interface)
 	{
 		s_scenario_definition* scenario = tag_interface->get_data<s_scenario_definition>();
-		s_tag_block_definition<s_scenario_definition::s_trigger_volumes_definition>& trigger_volumes_tag_block = scenario->trigger_volumes_block;
+		s_tag_block_legacy<s_scenario_definition::s_trigger_volumes_definition>& trigger_volumes_tag_block = scenario->trigger_volumes_block;
 
 		static c_box_primitive& immediate_box_primitive = c_primitive_render_manager::get_immediate_box();
 

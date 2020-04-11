@@ -2,7 +2,7 @@
 
 struct nicename("grounded_friction") tag_group('grfr') s_grounded_friction_definition
 {
-	DataReference nicename("Function") function_data_reference;
+	s_data_reference_legacy nicename("Function") function_data_reference;
 	float nicename("Length min") length_min;
 	float nicename("Length max") length_max;
 	float nicename("Angle") angle;

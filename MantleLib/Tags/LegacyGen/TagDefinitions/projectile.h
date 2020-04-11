@@ -251,16 +251,16 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 	struct nicename("Early Mover Properties") s_early_mover_properties_definition
 	{
 		string_id nicename("Name") name;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
 	};
 
 	struct nicename("AI Properties") s_ai_properties_definition
@@ -326,7 +326,7 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 
 		b_flags1 nicename("Flags") flags;
 		string_id nicename("AI Type Name") ai_type_name;
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		e_size nicename("Size") size;
 		e_leap_jump_speed nicename("Leap Jump Speed") leap_jump_speed;
 	};
@@ -374,7 +374,7 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 			int32_t __unknown0;
 			float __unknown1;
 			float __unknown2;
-			Undefined32 __unknown3;
+			s_undefined32_legacy __unknown3;
 			float __unknown4;
 			float __unknown5;
 		};
@@ -385,9 +385,9 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 		string_id nicename("Turn Off With") turn_off_with;
 		string_id __unknown0;
 		float nicename("Minimum Value") minimum_value;
-		DataReference nicename("Default Function") default_function_data_reference;
+		s_data_reference_legacy nicename("Default Function") default_function_data_reference;
 		string_id nicename("Scale By") scale_by;
-		s_tag_block_definition<s_unknown_definition> __unknown1;
+		s_tag_block_legacy<s_unknown_definition> __unknown1;
 		int32_t nicename("'Function Related' Index") function_related_index;
 	};
 
@@ -407,7 +407,7 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 			/*nicename("Quaternary")*/ _change_color_quaternary = 5ui16,
 		};
 
-		TagReference nicename("Attachment") attachment_reference;
+		s_tag_reference_legacy nicename("Attachment") attachment_reference;
 		string_id nicename("Marker") marker;
 		e_change_color nicename("Change Color") change_color;
 		int16_t __unknown0;
@@ -420,25 +420,25 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 		struct nicename("Unknown") s_unknown1_definition
 		{
 			string_id nicename("Material") material;
-			DataReference __unknown0;
+			s_data_reference_legacy __unknown0;
 			float __unknown1;
-			DataReference __unknown2;
+			s_data_reference_legacy __unknown2;
 			float __unknown3;
-			Undefined32 __unknown4;
-			Undefined32 __unknown5;
+			s_undefined32_legacy __unknown4;
+			s_undefined32_legacy __unknown5;
 		};
 
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_unknown1_definition> __unknown3;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_unknown1_definition> __unknown3;
 	};
 
 	struct nicename("Jet Wash") s_jet_wash_definition
 	{
 		string_id nicename("Marker") marker;
 		float __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown1;
 		float __unknown2;
 		float __unknown3;
 		float __unknown4;
@@ -449,7 +449,7 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 
 	struct nicename("Widgets") s_widgets_definition
 	{
-		TagReference nicename("Type") type_reference;
+		s_tag_reference_legacy nicename("Type") type_reference;
 	};
 
 	struct nicename("Change Color") s_change_color_definition
@@ -457,8 +457,8 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 		struct nicename("Initial Permutations") s_initial_permutations_definition
 		{
 			float nicename("Weight") weight;
-			colorf nicename("Color Lower Bound") color_lower_bound;
-			colorf nicename("Color Upper Bound") color_upper_bound;
+			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
+			s_colorf_legacy nicename("Color Upper Bound") color_upper_bound;
 			string_id nicename("Variant Name") variant_name;
 		};
 
@@ -501,21 +501,21 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 			};
 
 			b_scale_flags nicename("Scale Flags") scale_flags;
-			colorf nicename("Color Lower Bound") color_lower_bound;
-			colorf nicename("Color Upper Bound") color_upper_bound;
+			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
+			s_colorf_legacy nicename("Color Upper Bound") color_upper_bound;
 			string_id nicename("Darken By...") darken_by;
 			string_id nicename("Scale By...") scale_by;
 		};
 
-		s_tag_block_definition<s_initial_permutations_definition> nicename("Initial Permutations") initial_permutations_block;
-		s_tag_block_definition<s_functions1_definition> nicename("Functions") functions_block;
+		s_tag_block_legacy<s_initial_permutations_definition> nicename("Initial Permutations") initial_permutations_block;
+		s_tag_block_legacy<s_functions1_definition> nicename("Functions") functions_block;
 	};
 
 	struct nicename("Predicted Resources") s_predicted_resources_definition
 	{
 		int16_t nicename("Type") type;
 		int16_t nicename("Resource Index") resource_index;
-		TagReference nicename("Tag Index") tag_index_reference;
+		s_tag_reference_legacy nicename("Tag Index") tag_index_reference;
 	};
 
 	struct nicename("Multiplayer Object Properties") s_multiplayer_object_properties_definition
@@ -611,23 +611,23 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 		float __unknown2;
 		int32_t __unknown3;
 		int32_t __unknown4;
-		TagReference nicename("Child Object") child_object_reference;
+		s_tag_reference_legacy nicename("Child Object") child_object_reference;
 		int32_t __unknown5;
-		TagReference nicename("Shape Shader") shape_shader_reference;
-		TagReference nicename("Shader 2") shader_2_reference;
-		TagReference __unknown6;
-		TagReference __unknown7;
-		TagReference nicename("Secondary Shader") secondary_shader_reference;
-		TagReference __unknown8;
-		TagReference __unknown9;
-		TagReference __unknown10;
+		s_tag_reference_legacy nicename("Shape Shader") shape_shader_reference;
+		s_tag_reference_legacy nicename("Shader 2") shader_2_reference;
+		s_tag_reference_legacy __unknown6;
+		s_tag_reference_legacy __unknown7;
+		s_tag_reference_legacy nicename("Secondary Shader") secondary_shader_reference;
+		s_tag_reference_legacy __unknown8;
+		s_tag_reference_legacy __unknown9;
+		s_tag_reference_legacy __unknown10;
 	};
 
 	struct nicename("Unknown") s_unknown2_definition
 	{
-		TagReference __unknown0;
-		TagReference __unknown1;
-		TagReference __unknown2;
+		s_tag_reference_legacy __unknown0;
+		s_tag_reference_legacy __unknown1;
+		s_tag_reference_legacy __unknown2;
 	};
 
 	struct nicename("Material Responses") s_material_responses1_definition
@@ -818,31 +818,31 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 	float nicename("Dynamic Light Sphere Y Offset") dynamic_light_sphere_y_offset;
 	float nicename("Dynamic Light Sphere Z Offset") dynamic_light_sphere_z_offset;
 	string_id nicename("Generic HUD Text") generic_hud_text;
-	TagReference nicename("Generic Name List") generic_name_list_reference;
-	TagReference nicename("Generic Service Tag List") generic_service_tag_list_reference;
+	s_tag_reference_legacy nicename("Generic Name List") generic_name_list_reference;
+	s_tag_reference_legacy nicename("Generic Service Tag List") generic_service_tag_list_reference;
 	string_id nicename("Default Variant") default_variant;
-	TagReference nicename("Model") model_reference;
-	TagReference nicename("Crate Object") crate_object_reference;
-	TagReference nicename("Collision Damage") collision_damage_reference;
-	TagReference nicename("Brittle Collision Damage") brittle_collision_damage_reference;
-	s_tag_block_definition<s_early_mover_properties_definition> nicename("Early Mover Properties") early_mover_properties_block;
-	TagReference nicename("Creation Effect") creation_effect_reference;
-	TagReference nicename("Material Effects") material_effects_reference;
-	TagReference nicename("Melee Impact") melee_impact_reference;
-	s_tag_block_definition<s_ai_properties_definition> nicename("AI Properties") ai_properties_block;
-	s_tag_block_definition<s_functions_definition> nicename("Functions") functions_block;
-	s_tag_block_definition<s_function_related_definition> nicename("Function Related") function_related_block;
+	s_tag_reference_legacy nicename("Model") model_reference;
+	s_tag_reference_legacy nicename("Crate Object") crate_object_reference;
+	s_tag_reference_legacy nicename("Collision Damage") collision_damage_reference;
+	s_tag_reference_legacy nicename("Brittle Collision Damage") brittle_collision_damage_reference;
+	s_tag_block_legacy<s_early_mover_properties_definition> nicename("Early Mover Properties") early_mover_properties_block;
+	s_tag_reference_legacy nicename("Creation Effect") creation_effect_reference;
+	s_tag_reference_legacy nicename("Material Effects") material_effects_reference;
+	s_tag_reference_legacy nicename("Melee Impact") melee_impact_reference;
+	s_tag_block_legacy<s_ai_properties_definition> nicename("AI Properties") ai_properties_block;
+	s_tag_block_legacy<s_functions_definition> nicename("Functions") functions_block;
+	s_tag_block_legacy<s_function_related_definition> nicename("Function Related") function_related_block;
 	int16_t nicename("HUD Text Message Index") hud_text_message_index;
 	int16_t __unknown2;
-	s_tag_block_definition<s_attachments_definition> nicename("Attachments") attachments_block;
-	s_tag_block_definition<s_material_responses_definition> nicename("Material Responses") material_responses_block;
-	s_tag_block_definition<s_jet_wash_definition> nicename("Jet Wash") jet_wash_block;
-	s_tag_block_definition<s_widgets_definition> nicename("Widgets") widgets_block;
-	s_tag_block_definition<s_change_color_definition> nicename("Change Color") change_color_block;
-	s_tag_block_definition<s_predicted_resources_definition> nicename("Predicted Resources") predicted_resources_block;
-	s_tag_block_definition<s_multiplayer_object_properties_definition> nicename("Multiplayer Object Properties") multiplayer_object_properties_block;
-	TagReference nicename("Simulation Interpolation") simulation_interpolation_reference;
-	s_tag_block_definition<s_unknown2_definition> __unknown3;
+	s_tag_block_legacy<s_attachments_definition> nicename("Attachments") attachments_block;
+	s_tag_block_legacy<s_material_responses_definition> nicename("Material Responses") material_responses_block;
+	s_tag_block_legacy<s_jet_wash_definition> nicename("Jet Wash") jet_wash_block;
+	s_tag_block_legacy<s_widgets_definition> nicename("Widgets") widgets_block;
+	s_tag_block_legacy<s_change_color_definition> nicename("Change Color") change_color_block;
+	s_tag_block_legacy<s_predicted_resources_definition> nicename("Predicted Resources") predicted_resources_block;
+	s_tag_block_legacy<s_multiplayer_object_properties_definition> nicename("Multiplayer Object Properties") multiplayer_object_properties_block;
+	s_tag_reference_legacy nicename("Simulation Interpolation") simulation_interpolation_reference;
+	s_tag_block_legacy<s_unknown2_definition> __unknown3;
 	// PROJECTILE : 
 	b_flags1 nicename("Flags") flags1;
 	e_detonation_timer_starts nicename("Detonation Timer Starts") detonation_timer_starts;
@@ -857,34 +857,34 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 	float nicename("Timer max") timer_max;
 	float nicename("Minimum Velocity") minimum_velocity;
 	float nicename("Maximum Range") maximum_range;
-	Undefined32 __unknown7;
-	Undefined32 __unknown8;
+	s_undefined32_legacy __unknown7;
+	s_undefined32_legacy __unknown8;
 	float nicename("Detonation Charge Time") detonation_charge_time;
 	e_detonation_noise nicename("Detonation Noise") detonation_noise;
 	int16_t nicename("Super Detonate Projectile Count") super_detonate_projectile_count;
 	float nicename("Super Detonation Delay") super_detonation_delay;
-	TagReference nicename("Detonation Started") detonation_started_reference;
-	TagReference nicename("Airborne Detonation Effect") airborne_detonation_effect_reference;
-	TagReference nicename("Ground Detonation Effect") ground_detonation_effect_reference;
-	TagReference nicename("Detonation Damage") detonation_damage_reference;
-	TagReference nicename("Attached Detonation Damage") attached_detonation_damage_reference;
-	TagReference nicename("Super Detonation") super_detonation_reference;
-	TagReference nicename("Super Detonation Damage") super_detonation_damage_reference;
-	TagReference nicename("Detonation Sound") detonation_sound_reference;
+	s_tag_reference_legacy nicename("Detonation Started") detonation_started_reference;
+	s_tag_reference_legacy nicename("Airborne Detonation Effect") airborne_detonation_effect_reference;
+	s_tag_reference_legacy nicename("Ground Detonation Effect") ground_detonation_effect_reference;
+	s_tag_reference_legacy nicename("Detonation Damage") detonation_damage_reference;
+	s_tag_reference_legacy nicename("Attached Detonation Damage") attached_detonation_damage_reference;
+	s_tag_reference_legacy nicename("Super Detonation") super_detonation_reference;
+	s_tag_reference_legacy nicename("Super Detonation Damage") super_detonation_damage_reference;
+	s_tag_reference_legacy nicename("Detonation Sound") detonation_sound_reference;
 	e_damage_reporting_type nicename("Damage Reporting Type") damage_reporting_type;
 	int8_t __unknown9;
 	b_super_detonation_object_types nicename("Super Detonation Object Types") super_detonation_object_types;
-	TagReference nicename("Attached Super Detonation Damage") attached_super_detonation_damage_reference;
+	s_tag_reference_legacy nicename("Attached Super Detonation Damage") attached_super_detonation_damage_reference;
 	float nicename("Material Effect Radius") material_effect_radius;
-	TagReference nicename("Flyby Sound") flyby_sound_reference;
-	TagReference nicename("Flyby Response") flyby_response_reference;
+	s_tag_reference_legacy nicename("Flyby Sound") flyby_sound_reference;
+	s_tag_reference_legacy nicename("Flyby Response") flyby_response_reference;
 	float nicename("Flyby Effects Range") flyby_effects_range;
-	TagReference nicename("Impact Effect") impact_effect_reference;
-	TagReference __unknown10;
-	TagReference nicename("Impact Damage") impact_damage_reference;
+	s_tag_reference_legacy nicename("Impact Effect") impact_effect_reference;
+	s_tag_reference_legacy __unknown10;
+	s_tag_reference_legacy nicename("Impact Damage") impact_damage_reference;
 	float nicename("Boarding Detonation Time") boarding_detonation_time;
-	TagReference nicename("Boarding Detonation Damage") boarding_detonation_damage_reference;
-	TagReference nicename("Boarding Attached Detonation Damage") boarding_attached_detonation_damage_reference;
+	s_tag_reference_legacy nicename("Boarding Detonation Damage") boarding_detonation_damage_reference;
+	s_tag_reference_legacy nicename("Boarding Attached Detonation Damage") boarding_attached_detonation_damage_reference;
 	float nicename("Air Gravity") air_gravity;
 	float nicename("Air Damage Range min") air_damage_range_min;
 	float nicename("Air Damage Range max") air_damage_range_max;
@@ -893,26 +893,26 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 	float nicename("Water Damage max") water_damage_max;
 	float nicename("Initial Velocity") initial_velocity;
 	float nicename("Final Velocity") final_velocity;
-	Undefined32 __unknown11;
+	s_undefined32_legacy __unknown11;
 	float __unknown12;
 	float __unknown13;
 	float __unknown14;
-	Undefined32 __unknown15;
-	Undefined32 __unknown16;
+	s_undefined32_legacy __unknown15;
+	s_undefined32_legacy __unknown16;
 	float nicename("Guided Angular Velocity Lower") guided_angular_velocity_lower;
 	float nicename("Guided Angular Velocity Upper") guided_angular_velocity_upper;
 	float __unknown17;
 	float nicename("Acceleration Range min") acceleration_range_min;
 	float nicename("Acceleration Range max") acceleration_range_max;
 	float __unknown18;
-	Undefined32 __unknown19;
+	s_undefined32_legacy __unknown19;
 	float nicename("Targeted Leading Fraction") targeted_leading_fraction;
-	Undefined32 __unknown20;
-	s_tag_block_definition<s_material_responses1_definition> nicename("Material Responses") material_responses1_block;
-	s_tag_block_definition<s_unknown_material_responses_definition> nicename("Unknown Material Responses") unknown_material_responses_block;
-	s_tag_block_definition<s_claymore_grenade_definition> nicename("Claymore Grenade") claymore_grenade_block;
-	s_tag_block_definition<s_firebomb_grenade_definition> nicename("Firebomb Grenade") firebomb_grenade_block;
-	s_tag_block_definition<s_shotgun_properties_definition> nicename("Shotgun Properties") shotgun_properties_block;
-	TagReference nicename("Grounded Friction") grounded_friction_reference;
+	s_undefined32_legacy __unknown20;
+	s_tag_block_legacy<s_material_responses1_definition> nicename("Material Responses") material_responses1_block;
+	s_tag_block_legacy<s_unknown_material_responses_definition> nicename("Unknown Material Responses") unknown_material_responses_block;
+	s_tag_block_legacy<s_claymore_grenade_definition> nicename("Claymore Grenade") claymore_grenade_block;
+	s_tag_block_legacy<s_firebomb_grenade_definition> nicename("Firebomb Grenade") firebomb_grenade_block;
+	s_tag_block_legacy<s_shotgun_properties_definition> nicename("Shotgun Properties") shotgun_properties_block;
+	s_tag_reference_legacy nicename("Grounded Friction") grounded_friction_reference;
 };
 

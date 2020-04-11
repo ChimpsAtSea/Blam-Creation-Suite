@@ -14,7 +14,7 @@ struct nicename("sound_environment") tag_group('snde') s_sound_environment_defin
 	float nicename("Diffusion") diffusion;
 	float nicename("Density") density;
 	float nicename("High Frequency Reference Hz") high_frequency_reference_hz;
-	Undefined32 __unknown0;
-	Undefined32 __unknown1;
+	s_undefined32_legacy __unknown0;
+	s_undefined32_legacy __unknown1;
 };
 

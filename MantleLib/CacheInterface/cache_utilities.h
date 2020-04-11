@@ -8,10 +8,10 @@ class c_virtual_tag_interface;
 #ifdef __INTELLISENSE__
 
 template<typename T>
-const v_tag_interface_legacy<T>* tag_cast(const TagReference* tag_interface);
+const v_tag_interface_legacy<T>* tag_cast(const s_tag_reference* tag_interface);
 
 template<typename T>
-v_tag_interface_legacy<T>* tag_cast(TagReference* tag_interface);
+v_tag_interface_legacy<T>* tag_cast(s_tag_reference* tag_interface);
 
 #endif
 

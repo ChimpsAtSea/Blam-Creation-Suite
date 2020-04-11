@@ -11,6 +11,6 @@ struct nicename("game_performance_throttle") tag_group('gptd') s_game_performanc
 		int32_t __unknown4;
 	};
 
-	s_tag_block_definition<s_unknown_definition> __unknown0;
+	s_tag_block_legacy<s_unknown_definition> __unknown0;
 };
 

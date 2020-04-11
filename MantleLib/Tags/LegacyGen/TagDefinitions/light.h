@@ -61,35 +61,35 @@ struct nicename("light") tag_group('ligh') s_light_definition
 	int16_t __unknown5;
 	int16_t __unknown6;
 	// Color : 
-	DEPRECATED_string_id nicename("Function Name") function_name;
-	DEPRECATED_string_id nicename("Function Name") function_name1;
+	string_id_legacy nicename("Function Name") function_name;
+	string_id_legacy nicename("Function Name") function_name1;
 	int16_t __unknown7;
 	int16_t __unknown8;
-	Undefined32 __unknown9;
-	DataReference nicename("Function") function_data_reference;
+	s_undefined32_legacy __unknown9;
+	s_data_reference_legacy nicename("Function") function_data_reference;
 	// Brightness : 
-	DEPRECATED_string_id nicename("Function Name") function_name2;
-	DEPRECATED_string_id nicename("Function Name") function_name3;
+	string_id_legacy nicename("Function Name") function_name2;
+	string_id_legacy nicename("Function Name") function_name3;
 	int16_t __unknown10;
 	int16_t __unknown11;
-	Undefined32 __unknown12;
-	DataReference nicename("Function") function1_data_reference;
+	s_undefined32_legacy __unknown12;
+	s_data_reference_legacy nicename("Function") function1_data_reference;
 	// Gel : 
-	TagReference nicename("Gel Map") gel_map_reference;
+	s_tag_reference_legacy nicename("Gel Map") gel_map_reference;
 	float __unknown13;
 	float nicename("Duration") duration;
 	int8_t __unknown14;
 	int8_t __unknown15;
 	int8_t __unknown16;
 	int8_t __unknown17;
-	TagReference nicename("Lens Flare") lens_flare_reference;
+	s_tag_reference_legacy nicename("Lens Flare") lens_flare_reference;
 	float nicename("Radius 1?") radius_1;
 	float nicename("Radius 2?") radius_2;
 	float nicename("Radius 3?") radius_3;
 	float __unknown18;
-	Undefined32 __unknown19;
-	Undefined32 __unknown20;
+	s_undefined32_legacy __unknown19;
+	s_undefined32_legacy __unknown20;
 	float __unknown21;
-	Undefined32 __unknown22;
+	s_undefined32_legacy __unknown22;
 };
 

@@ -24,7 +24,7 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 			/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
 		};
 
-		TagReference nicename("Sound") sound_reference;
+		s_tag_reference_legacy nicename("Sound") sound_reference;
 		b_flags nicename("Flags") flags;
 		int16_t __unknown0;
 	};
@@ -51,7 +51,7 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 			/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
 		};
 
-		TagReference nicename("Effect") effect_reference;
+		s_tag_reference_legacy nicename("Effect") effect_reference;
 		b_flags nicename("Flags") flags;
 		int16_t __unknown0;
 	};
@@ -60,8 +60,8 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 	{
 		struct nicename("Frame Events") s_frame_events_definition
 		{
-			DEPRECATED_string_id nicename("Event") event;
-			DEPRECATED_string_id nicename("Full Name") full_name;
+			string_id_legacy nicename("Event") event;
+			string_id_legacy nicename("Full Name") full_name;
 			int16_t nicename("Frame") frame;
 			int16_t __unknown0;
 			int16_t nicename("Frame") frame1;
@@ -76,7 +76,7 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 			int16_t __unknown1;
 			int16_t nicename("Sound") sound;
 			int16_t nicename("Frame") frame;
-			DEPRECATED_string_id nicename("Marker Name") marker_name;
+			string_id_legacy nicename("Marker Name") marker_name;
 		};
 
 		struct nicename("Effect Events") s_effect_events_definition
@@ -171,7 +171,7 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 			int16_t __unknown1;
 			int16_t nicename("Effect") effect;
 			int16_t nicename("Frame") frame;
-			DEPRECATED_string_id nicename("Marker Name") marker_name;
+			string_id_legacy nicename("Marker Name") marker_name;
 			e_damage_reporting_type nicename("Damage Reporting Type") damage_reporting_type;
 			int8_t __unknown2;
 			int8_t __unknown3;
@@ -186,16 +186,16 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 			int16_t __unknown1;
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int32_t nicename("Frame Count") frame_count;
-		s_tag_block_definition<s_frame_events_definition> nicename("Frame Events") frame_events_block;
-		s_tag_block_definition<s_sound_events_definition> nicename("Sound Events") sound_events_block;
-		s_tag_block_definition<s_effect_events_definition> nicename("Effect Events") effect_events_block;
-		s_tag_block_definition<s_sync_events_definition> nicename("Sync Events") sync_events_block;
+		s_tag_block_legacy<s_frame_events_definition> nicename("Frame Events") frame_events_block;
+		s_tag_block_legacy<s_sound_events_definition> nicename("Sound Events") sound_events_block;
+		s_tag_block_legacy<s_effect_events_definition> nicename("Effect Events") effect_events_block;
+		s_tag_block_legacy<s_sync_events_definition> nicename("Sync Events") sync_events_block;
 	};
 
-	s_tag_block_definition<s_sound_references_definition> nicename("Sound References") sound_references_block;
-	s_tag_block_definition<s_effect_references_definition> nicename("Effect References") effect_references_block;
-	s_tag_block_definition<s_animations_definition> nicename("Animations") animations_block;
+	s_tag_block_legacy<s_sound_references_definition> nicename("Sound References") sound_references_block;
+	s_tag_block_legacy<s_effect_references_definition> nicename("Effect References") effect_references_block;
+	s_tag_block_legacy<s_animations_definition> nicename("Animations") animations_block;
 };
 

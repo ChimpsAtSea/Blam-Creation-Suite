@@ -1,6 +1,6 @@
 #pragma once
 
-class noreflection TagReference
+class noreflection s_tag_reference_legacy
 {
 public:
 	e_tag_group tagGroupName;

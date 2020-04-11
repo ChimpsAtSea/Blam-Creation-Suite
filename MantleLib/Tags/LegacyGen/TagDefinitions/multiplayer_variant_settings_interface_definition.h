@@ -802,20 +802,20 @@ struct nicename("multiplayer_variant_settings_interface_definition") tag_group('
 				/*nicename("Global-Elite Loadouts-Tier 3-Loadout 4")*/ _submenu_setting_category_global_elite_loadouts_tier_3_loadout_4 = 394ui32,
 			};
 
-			TagReference nicename("Explicit Submenu") explicit_submenu_reference;
-			TagReference nicename("Template-Based Submenu") template_based_submenu_reference;
+			s_tag_reference_legacy nicename("Explicit Submenu") explicit_submenu_reference;
+			s_tag_reference_legacy nicename("Template-Based Submenu") template_based_submenu_reference;
 			e_submenu_setting_category nicename("Submenu Setting Category") submenu_setting_category;
-			DEPRECATED_string_id nicename("Submenu Name") submenu_name;
-			DEPRECATED_string_id nicename("Submenu Description") submenu_description;
-			TagReference nicename("Value Pairs") value_pairs_reference;
+			string_id_legacy nicename("Submenu Name") submenu_name;
+			string_id_legacy nicename("Submenu Description") submenu_description;
+			s_tag_reference_legacy nicename("Value Pairs") value_pairs_reference;
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		e_setting_category nicename("Setting Category") setting_category;
-		s_tag_block_definition<s_options_definition> nicename("Options") options_block;
+		s_tag_block_legacy<s_options_definition> nicename("Options") options_block;
 	};
 
 	int32_t __unknown0;
-	s_tag_block_definition<s_game_engine_settings_definition> nicename("Game Engine Settings") game_engine_settings_block;
+	s_tag_block_legacy<s_game_engine_settings_definition> nicename("Game Engine Settings") game_engine_settings_block;
 };
 

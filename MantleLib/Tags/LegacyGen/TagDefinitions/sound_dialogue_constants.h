@@ -6,11 +6,11 @@ struct nicename("sound_dialogue_constants") tag_group('spk!') s_sound_dialogue_c
 	float nicename("Rarely") rarely;
 	float nicename("Somewhat") somewhat;
 	float nicename("Often") often;
-	Undefined32 __unknown0;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
-	Undefined32 __unknown3;
-	Undefined32 __unknown4;
-	Undefined32 __unknown5;
+	s_undefined32_legacy __unknown0;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
+	s_undefined32_legacy __unknown3;
+	s_undefined32_legacy __unknown4;
+	s_undefined32_legacy __unknown5;
 };
 

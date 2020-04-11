@@ -4,27 +4,27 @@ struct nicename("cheap_particle_emitter") tag_group('cpem') s_cheap_particle_emi
 {
 	int16_t nicename("Spray Style") spray_style;
 	int16_t __unknown0;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
 	int16_t __unknown3;
 	int16_t __unknown4;
-	DataReference __unknown5;
+	s_data_reference_legacy __unknown5;
 	float __unknown6;
 	float __unknown7;
-	DEPRECATED_string_id __unknown8;
+	string_id_legacy __unknown8;
 	float __unknown9;
-	DEPRECATED_string_id __unknown10;
+	string_id_legacy __unknown10;
 	float __unknown11;
-	DEPRECATED_string_id __unknown12;
+	string_id_legacy __unknown12;
 	float __unknown13;
-	DEPRECATED_string_id __unknown14;
+	string_id_legacy __unknown14;
 	float __unknown15;
 	float __unknown16;
 	float __unknown17;
-	TagReference __unknown18;
+	s_tag_reference_legacy __unknown18;
 	float __unknown19;
 	float __unknown20;
-	TagReference __unknown21;
+	s_tag_reference_legacy __unknown21;
 	float __unknown22;
 	float __unknown23;
 	float __unknown24;
@@ -57,6 +57,6 @@ struct nicename("cheap_particle_emitter") tag_group('cpem') s_cheap_particle_emi
 	float nicename("Secondary Particle Type?") secondary_particle_type;
 	float nicename("Tertiary Particle Particle Type?") tertiary_particle_particle_type;
 	float nicename("Quaternary Particle Type?") quaternary_particle_type;
-	TagReference __unknown36;
+	s_tag_reference_legacy __unknown36;
 };
 

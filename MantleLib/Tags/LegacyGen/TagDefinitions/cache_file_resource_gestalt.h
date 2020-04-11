@@ -16,13 +16,13 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		int16_t __unknown1;
 		int16_t __unknown2;
 		int16_t __unknown3;
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 	};
 
 	struct nicename("Resource Structure Types") s_resource_structure_types_definition
 	{
 		signed char nicename("Guid") guid[16];
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 	};
 
 	struct nicename("Compression Codecs") s_compression_codecs_definition
@@ -35,7 +35,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		char nicename("Map Path") map_path[256];
 		int16_t __unknown0;
 		int16_t __unknown1;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown2;
 	};
 
 	struct nicename("Raw Pages") s_raw_pages_definition
@@ -66,7 +66,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		};
 
 		int32_t nicename("Overall Size") overall_size;
-		s_tag_block_definition<s_parts_definition> nicename("Parts") parts_block;
+		s_tag_block_legacy<s_parts_definition> nicename("Parts") parts_block;
 	};
 
 	struct nicename("Unknown") s_unknown_definition
@@ -142,7 +142,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			int32_t nicename("Resource Structure Type Index") resource_structure_type_index;
 		};
 
-		TagReference nicename("Parent Tag") parent_tag_reference;
+		s_tag_reference_legacy nicename("Parent Tag") parent_tag_reference;
 		uint16_t nicename("Salt") salt;
 		uint8_t nicename("Resource Type Index") resource_type_index;
 		uint8_t nicename("Flags") flags;
@@ -154,8 +154,8 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		b_root_definition_address_location_high_bits nicename("Root Definition Address Location/High Bits") root_definition_address_location_high_bits;
 		uint8_t nicename("Root Definition Address Upper Bits") root_definition_address_upper_bits;
 		uint16_t nicename("Root Definition Address") root_definition_address;
-		s_tag_block_definition<s_resource_fixups_definition> nicename("Resource Fixups") resource_fixups_block;
-		s_tag_block_definition<s_resource_definition_fixups_definition> nicename("Resource Definition Fixups") resource_definition_fixups_block;
+		s_tag_block_legacy<s_resource_fixups_definition> nicename("Resource Fixups") resource_fixups_block;
+		s_tag_block_legacy<s_resource_definition_fixups_definition> nicename("Resource Definition Fixups") resource_definition_fixups_block;
 	};
 
 	struct nicename("Designer Zonesets") s_designer_zonesets_definition
@@ -285,12 +285,12 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 		struct nicename("Resource Types") s_resource_types1_definition
 		{
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
 		};
 
 		struct nicename("Required Tag Pool") s_required_tag_pool_definition
@@ -375,34 +375,34 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_definition<s_required_raw_pool_definition> nicename("Required Raw Pool") required_raw_pool_block;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_optional_raw_pool_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_definition<s_optional_raw_pool_2_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
-		DEPRECATED_string_id nicename("Set Name") set_name;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		s_tag_block_definition<s_resource_types1_definition> nicename("Resource Types") resource_types_block;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		s_tag_block_definition<s_required_tag_pool_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_definition<s_optional_tag_pool_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_tag_block_legacy<s_required_raw_pool_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_optional_raw_pool_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_2_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		string_id_legacy nicename("Set Name") set_name;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_tag_block_legacy<s_resource_types1_definition> nicename("Resource Types") resource_types_block;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_tag_block_legacy<s_required_tag_pool_definition> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("Global Zoneset") s_global_zoneset_definition
@@ -532,12 +532,12 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 		struct nicename("Resource Types") s_resource_types2_definition
 		{
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
 		};
 
 		struct nicename("Required Tag Pool") s_required_tag_pool1_definition
@@ -622,34 +622,34 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_definition<s_required_raw_pool1_definition> nicename("Required Raw Pool") required_raw_pool_block;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_optional_raw_pool1_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_definition<s_optional_raw_pool_21_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
-		DEPRECATED_string_id nicename("Set Name") set_name;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		s_tag_block_definition<s_resource_types2_definition> nicename("Resource Types") resource_types_block;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		s_tag_block_definition<s_required_tag_pool1_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_definition<s_optional_tag_pool1_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_tag_block_legacy<s_required_raw_pool1_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_optional_raw_pool1_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_21_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		string_id_legacy nicename("Set Name") set_name;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_tag_block_legacy<s_resource_types2_definition> nicename("Resource Types") resource_types_block;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_tag_block_legacy<s_required_tag_pool1_definition> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool1_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("Unattached Zoneset") s_unattached_zoneset_definition
@@ -779,12 +779,12 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 		struct nicename("Resource Types") s_resource_types3_definition
 		{
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
 		};
 
 		struct nicename("Required Tag Pool") s_required_tag_pool2_definition
@@ -869,34 +869,34 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_definition<s_required_raw_pool2_definition> nicename("Required Raw Pool") required_raw_pool_block;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_optional_raw_pool2_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_definition<s_optional_raw_pool_22_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
-		DEPRECATED_string_id nicename("Set Name") set_name;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		s_tag_block_definition<s_resource_types3_definition> nicename("Resource Types") resource_types_block;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		s_tag_block_definition<s_required_tag_pool2_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_definition<s_optional_tag_pool2_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_tag_block_legacy<s_required_raw_pool2_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_optional_raw_pool2_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_22_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		string_id_legacy nicename("Set Name") set_name;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_tag_block_legacy<s_resource_types3_definition> nicename("Resource Types") resource_types_block;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_tag_block_legacy<s_required_tag_pool2_definition> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool2_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("Disc-Forbidden Zoneset") s_disc_forbidden_zoneset_definition
@@ -1026,12 +1026,12 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 		struct nicename("Resource Types") s_resource_types4_definition
 		{
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
 		};
 
 		struct nicename("Required Tag Pool") s_required_tag_pool3_definition
@@ -1116,34 +1116,34 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_definition<s_required_raw_pool3_definition> nicename("Required Raw Pool") required_raw_pool_block;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_optional_raw_pool3_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_definition<s_optional_raw_pool_23_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
-		DEPRECATED_string_id nicename("Set Name") set_name;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		s_tag_block_definition<s_resource_types4_definition> nicename("Resource Types") resource_types_block;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		s_tag_block_definition<s_required_tag_pool3_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_definition<s_optional_tag_pool3_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_tag_block_legacy<s_required_raw_pool3_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_optional_raw_pool3_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_23_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		string_id_legacy nicename("Set Name") set_name;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_tag_block_legacy<s_resource_types4_definition> nicename("Resource Types") resource_types_block;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_tag_block_legacy<s_required_tag_pool3_definition> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool3_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("Disc-Always-Streaming Zoneset") s_disc_always_streaming_zoneset_definition
@@ -1273,12 +1273,12 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 		struct nicename("Resource Types") s_resource_types5_definition
 		{
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
 		};
 
 		struct nicename("Required Tag Pool") s_required_tag_pool4_definition
@@ -1363,34 +1363,34 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_definition<s_required_raw_pool4_definition> nicename("Required Raw Pool") required_raw_pool_block;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_optional_raw_pool4_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_definition<s_optional_raw_pool_24_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
-		DEPRECATED_string_id nicename("Set Name") set_name;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		s_tag_block_definition<s_resource_types5_definition> nicename("Resource Types") resource_types_block;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		s_tag_block_definition<s_required_tag_pool4_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_definition<s_optional_tag_pool4_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_tag_block_legacy<s_required_raw_pool4_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_optional_raw_pool4_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_24_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		string_id_legacy nicename("Set Name") set_name;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_tag_block_legacy<s_resource_types5_definition> nicename("Resource Types") resource_types_block;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_tag_block_legacy<s_required_tag_pool4_definition> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool4_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("BSP Zonesets") s_bsp_zonesets_definition
@@ -1520,12 +1520,12 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 		struct nicename("Resource Types") s_resource_types6_definition
 		{
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
 		};
 
 		struct nicename("Required Tag Pool") s_required_tag_pool5_definition
@@ -1610,34 +1610,34 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_definition<s_required_raw_pool5_definition> nicename("Required Raw Pool") required_raw_pool_block;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_optional_raw_pool5_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_definition<s_optional_raw_pool_25_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
-		DEPRECATED_string_id nicename("Set Name") set_name;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		s_tag_block_definition<s_resource_types6_definition> nicename("Resource Types") resource_types_block;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		s_tag_block_definition<s_required_tag_pool5_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_definition<s_optional_tag_pool5_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_tag_block_legacy<s_required_raw_pool5_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_optional_raw_pool5_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_25_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		string_id_legacy nicename("Set Name") set_name;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_tag_block_legacy<s_resource_types6_definition> nicename("Resource Types") resource_types_block;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_tag_block_legacy<s_required_tag_pool5_definition> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool5_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("BSP Zonesets 2") s_bsp_zonesets_2_definition
@@ -1767,12 +1767,12 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 		struct nicename("Resource Types") s_resource_types7_definition
 		{
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
 		};
 
 		struct nicename("Required Tag Pool") s_required_tag_pool6_definition
@@ -1857,34 +1857,34 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_definition<s_required_raw_pool6_definition> nicename("Required Raw Pool") required_raw_pool_block;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_optional_raw_pool6_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_definition<s_optional_raw_pool_26_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
-		DEPRECATED_string_id nicename("Set Name") set_name;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		s_tag_block_definition<s_resource_types7_definition> nicename("Resource Types") resource_types_block;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		s_tag_block_definition<s_required_tag_pool6_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_definition<s_optional_tag_pool6_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_tag_block_legacy<s_required_raw_pool6_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_optional_raw_pool6_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_26_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		string_id_legacy nicename("Set Name") set_name;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_tag_block_legacy<s_resource_types7_definition> nicename("Resource Types") resource_types_block;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_tag_block_legacy<s_required_tag_pool6_definition> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool6_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("BSP Zonesets 3") s_bsp_zonesets_3_definition
@@ -2014,12 +2014,12 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 		struct nicename("Resource Types") s_resource_types8_definition
 		{
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
 		};
 
 		struct nicename("Required Tag Pool") s_required_tag_pool7_definition
@@ -2104,34 +2104,34 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_definition<s_required_raw_pool7_definition> nicename("Required Raw Pool") required_raw_pool_block;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_optional_raw_pool7_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_definition<s_optional_raw_pool_27_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
-		DEPRECATED_string_id nicename("Set Name") set_name;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		s_tag_block_definition<s_resource_types8_definition> nicename("Resource Types") resource_types_block;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		s_tag_block_definition<s_required_tag_pool7_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_definition<s_optional_tag_pool7_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_tag_block_legacy<s_required_raw_pool7_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_optional_raw_pool7_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_27_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		string_id_legacy nicename("Set Name") set_name;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_tag_block_legacy<s_resource_types8_definition> nicename("Resource Types") resource_types_block;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_tag_block_legacy<s_required_tag_pool7_definition> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool7_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("Cinematic Zonesets") s_cinematic_zonesets_definition
@@ -2261,12 +2261,12 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 		struct nicename("Resource Types") s_resource_types9_definition
 		{
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
 		};
 
 		struct nicename("Required Tag Pool") s_required_tag_pool8_definition
@@ -2351,34 +2351,34 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_definition<s_required_raw_pool8_definition> nicename("Required Raw Pool") required_raw_pool_block;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_optional_raw_pool8_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_definition<s_optional_raw_pool_28_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
-		DEPRECATED_string_id nicename("Set Name") set_name;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		s_tag_block_definition<s_resource_types9_definition> nicename("Resource Types") resource_types_block;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		s_tag_block_definition<s_required_tag_pool8_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_definition<s_optional_tag_pool8_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_tag_block_legacy<s_required_raw_pool8_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_optional_raw_pool8_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_28_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		string_id_legacy nicename("Set Name") set_name;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_tag_block_legacy<s_resource_types9_definition> nicename("Resource Types") resource_types_block;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_tag_block_legacy<s_required_tag_pool8_definition> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool8_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("Scenario Zonesets") s_scenario_zonesets_definition
@@ -2508,12 +2508,12 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 		struct nicename("Resource Types") s_resource_types10_definition
 		{
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
 		};
 
 		struct nicename("Required Tag Pool") s_required_tag_pool9_definition
@@ -2598,34 +2598,34 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_definition<s_required_raw_pool9_definition> nicename("Required Raw Pool") required_raw_pool_block;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_optional_raw_pool9_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_definition<s_optional_raw_pool_29_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
-		DEPRECATED_string_id nicename("Set Name") set_name;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		s_tag_block_definition<s_resource_types10_definition> nicename("Resource Types") resource_types_block;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		s_tag_block_definition<s_required_tag_pool9_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_definition<s_optional_tag_pool9_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
+		s_tag_block_legacy<s_required_raw_pool9_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_optional_raw_pool9_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_29_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		string_id_legacy nicename("Set Name") set_name;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_tag_block_legacy<s_resource_types10_definition> nicename("Resource Types") resource_types_block;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_tag_block_legacy<s_required_tag_pool9_definition> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool9_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
 	};
 
 	struct nicename("Scenario Zoneset Groups") s_scenario_zoneset_groups_definition
@@ -2846,7 +2846,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 				/*nicename("Set 31")*/ _loaded_cinematic_zonesets_set_31 = 1ui32 << 31ui32,
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int32_t nicename("BSP Group Index") bsp_group_index;
 		b_import_loaded_bsps nicename("Import Loaded BSPs") import_loaded_bsps;
 		b_loaded_bsps nicename("Loaded BSPs") loaded_bsps;
@@ -2859,17 +2859,17 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 	struct nicename("Scenario BSPs") s_scenario_bsps_definition
 	{
-		TagReference nicename("BSP") bsp_reference;
+		s_tag_reference_legacy nicename("BSP") bsp_reference;
 	};
 
 	struct nicename("Unknown 13") s_unknown_13_definition
 	{
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
 	};
 
 	struct nicename("Prediction A") s_prediction_a_definition
@@ -2900,91 +2900,91 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 	struct nicename("Prediction D2 - Tags") s_prediction_d2___tags_definition
 	{
-		TagReference nicename("Tag") tag_reference;
+		s_tag_reference_legacy nicename("Tag") tag_reference;
 		int32_t nicename("First Value") first_value;
 		int32_t nicename("Second Value") second_value;
 	};
 
 	e_map_type nicename("Map Type") map_type;
 	int16_t nicename("Flags") flags;
-	s_tag_block_definition<s_resource_types_definition> nicename("Resource Types") resource_types_block;
-	s_tag_block_definition<s_resource_structure_types_definition> nicename("Resource Structure Types") resource_structure_types_block;
-	s_tag_block_definition<s_compression_codecs_definition> nicename("Compression Codecs") compression_codecs_block;
-	s_tag_block_definition<s_external_cache_references_definition> nicename("External Cache References") external_cache_references_block;
-	s_tag_block_definition<s_raw_pages_definition> nicename("Raw Pages") raw_pages_block;
-	s_tag_block_definition<s_sizes_definition> nicename("Sizes") sizes_block;
-	s_tag_block_definition<s_unknown_definition> __unknown0;
-	s_tag_block_definition<s_segments_definition> nicename("Segments") segments_block;
-	s_tag_block_definition<s_tag_resources_definition> nicename("Tag Resources") tag_resources_block;
+	s_tag_block_legacy<s_resource_types_definition> nicename("Resource Types") resource_types_block;
+	s_tag_block_legacy<s_resource_structure_types_definition> nicename("Resource Structure Types") resource_structure_types_block;
+	s_tag_block_legacy<s_compression_codecs_definition> nicename("Compression Codecs") compression_codecs_block;
+	s_tag_block_legacy<s_external_cache_references_definition> nicename("External Cache References") external_cache_references_block;
+	s_tag_block_legacy<s_raw_pages_definition> nicename("Raw Pages") raw_pages_block;
+	s_tag_block_legacy<s_sizes_definition> nicename("Sizes") sizes_block;
+	s_tag_block_legacy<s_unknown_definition> __unknown0;
+	s_tag_block_legacy<s_segments_definition> nicename("Segments") segments_block;
+	s_tag_block_legacy<s_tag_resources_definition> nicename("Tag Resources") tag_resources_block;
 	/* Active Pool Members : Pools are divided up into 32-bit groups per chunk.
 	   Each bit corresponds to either a chunk in "Tag Resources" above (Raw Pools), or a tag in the overall tag listing (Tag Pools).
 	   If a bit is enabled then that member will be loaded. */
-	s_tag_block_definition<s_designer_zonesets_definition> nicename("Designer Zonesets") designer_zonesets_block;
-	s_tag_block_definition<s_global_zoneset_definition> nicename("Global Zoneset") global_zoneset_block;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
-	Undefined32 __unknown3;
-	s_tag_block_definition<s_unattached_zoneset_definition> nicename("Unattached Zoneset") unattached_zoneset_block;
-	s_tag_block_definition<s_disc_forbidden_zoneset_definition> nicename("Disc-Forbidden Zoneset") disc_forbidden_zoneset_block;
-	s_tag_block_definition<s_disc_always_streaming_zoneset_definition> nicename("Disc-Always-Streaming Zoneset") disc_always_streaming_zoneset_block;
-	s_tag_block_definition<s_bsp_zonesets_definition> nicename("BSP Zonesets") bsp_zonesets_block;
-	s_tag_block_definition<s_bsp_zonesets_2_definition> nicename("BSP Zonesets 2") bsp_zonesets_2_block;
-	s_tag_block_definition<s_bsp_zonesets_3_definition> nicename("BSP Zonesets 3") bsp_zonesets_3_block;
-	s_tag_block_definition<s_cinematic_zonesets_definition> nicename("Cinematic Zonesets") cinematic_zonesets_block;
-	s_tag_block_definition<s_scenario_zonesets_definition> nicename("Scenario Zonesets") scenario_zonesets_block;
-	Undefined32 __unknown4;
-	Undefined32 __unknown5;
-	Undefined32 __unknown6;
-	Undefined32 __unknown7;
-	Undefined32 __unknown8;
-	Undefined32 __unknown9;
-	s_tag_block_definition<s_scenario_zoneset_groups_definition> nicename("Scenario Zoneset Groups") scenario_zoneset_groups_block;
-	s_tag_block_definition<s_scenario_bsps_definition> nicename("Scenario BSPs") scenario_bsps_block;
-	Undefined32 __unknown10;
-	Undefined32 __unknown11;
-	Undefined32 __unknown12;
-	Undefined32 __unknown13;
-	Undefined32 __unknown14;
-	Undefined32 __unknown15;
-	Undefined32 __unknown16;
-	Undefined32 __unknown17;
-	Undefined32 __unknown18;
-	DataReference nicename("Fixup Information") fixup_information_data_reference;
-	Undefined32 __unknown19;
-	Undefined32 __unknown20;
-	Undefined32 __unknown21;
-	Undefined32 __unknown22;
-	Undefined32 __unknown23;
-	s_tag_block_definition<s_unknown_13_definition> nicename("Unknown 13") unknown_13_block;
-	Undefined32 __unknown24;
-	Undefined32 __unknown25;
-	Undefined32 __unknown26;
-	Undefined32 __unknown27;
-	Undefined32 __unknown28;
-	Undefined32 __unknown29;
-	Undefined32 __unknown30;
-	Undefined32 __unknown31;
-	Undefined32 __unknown32;
-	Undefined32 __unknown33;
-	Undefined32 __unknown34;
-	Undefined32 __unknown35;
-	Undefined32 __unknown36;
-	Undefined32 __unknown37;
-	Undefined32 __unknown38;
-	Undefined32 __unknown39;
-	Undefined32 __unknown40;
-	Undefined32 __unknown41;
-	Undefined32 __unknown42;
-	Undefined32 __unknown43;
-	Undefined32 __unknown44;
-	Undefined32 __unknown45;
-	Undefined32 __unknown46;
-	Undefined32 __unknown47;
-	s_tag_block_definition<s_prediction_a_definition> nicename("Prediction A") prediction_a_block;
-	s_tag_block_definition<s_prediction_b_definition> nicename("Prediction B") prediction_b_block;
-	s_tag_block_definition<s_prediction_c_definition> nicename("Prediction C") prediction_c_block;
-	s_tag_block_definition<s_prediction_d___tags_definition> nicename("Prediction D - Tags") prediction_d___tags_block;
-	s_tag_block_definition<s_prediction_d2___tags_definition> nicename("Prediction D2 - Tags") prediction_d2___tags_block;
+	s_tag_block_legacy<s_designer_zonesets_definition> nicename("Designer Zonesets") designer_zonesets_block;
+	s_tag_block_legacy<s_global_zoneset_definition> nicename("Global Zoneset") global_zoneset_block;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
+	s_undefined32_legacy __unknown3;
+	s_tag_block_legacy<s_unattached_zoneset_definition> nicename("Unattached Zoneset") unattached_zoneset_block;
+	s_tag_block_legacy<s_disc_forbidden_zoneset_definition> nicename("Disc-Forbidden Zoneset") disc_forbidden_zoneset_block;
+	s_tag_block_legacy<s_disc_always_streaming_zoneset_definition> nicename("Disc-Always-Streaming Zoneset") disc_always_streaming_zoneset_block;
+	s_tag_block_legacy<s_bsp_zonesets_definition> nicename("BSP Zonesets") bsp_zonesets_block;
+	s_tag_block_legacy<s_bsp_zonesets_2_definition> nicename("BSP Zonesets 2") bsp_zonesets_2_block;
+	s_tag_block_legacy<s_bsp_zonesets_3_definition> nicename("BSP Zonesets 3") bsp_zonesets_3_block;
+	s_tag_block_legacy<s_cinematic_zonesets_definition> nicename("Cinematic Zonesets") cinematic_zonesets_block;
+	s_tag_block_legacy<s_scenario_zonesets_definition> nicename("Scenario Zonesets") scenario_zonesets_block;
+	s_undefined32_legacy __unknown4;
+	s_undefined32_legacy __unknown5;
+	s_undefined32_legacy __unknown6;
+	s_undefined32_legacy __unknown7;
+	s_undefined32_legacy __unknown8;
+	s_undefined32_legacy __unknown9;
+	s_tag_block_legacy<s_scenario_zoneset_groups_definition> nicename("Scenario Zoneset Groups") scenario_zoneset_groups_block;
+	s_tag_block_legacy<s_scenario_bsps_definition> nicename("Scenario BSPs") scenario_bsps_block;
+	s_undefined32_legacy __unknown10;
+	s_undefined32_legacy __unknown11;
+	s_undefined32_legacy __unknown12;
+	s_undefined32_legacy __unknown13;
+	s_undefined32_legacy __unknown14;
+	s_undefined32_legacy __unknown15;
+	s_undefined32_legacy __unknown16;
+	s_undefined32_legacy __unknown17;
+	s_undefined32_legacy __unknown18;
+	s_data_reference_legacy nicename("Fixup Information") fixup_information_data_reference;
+	s_undefined32_legacy __unknown19;
+	s_undefined32_legacy __unknown20;
+	s_undefined32_legacy __unknown21;
+	s_undefined32_legacy __unknown22;
+	s_undefined32_legacy __unknown23;
+	s_tag_block_legacy<s_unknown_13_definition> nicename("Unknown 13") unknown_13_block;
+	s_undefined32_legacy __unknown24;
+	s_undefined32_legacy __unknown25;
+	s_undefined32_legacy __unknown26;
+	s_undefined32_legacy __unknown27;
+	s_undefined32_legacy __unknown28;
+	s_undefined32_legacy __unknown29;
+	s_undefined32_legacy __unknown30;
+	s_undefined32_legacy __unknown31;
+	s_undefined32_legacy __unknown32;
+	s_undefined32_legacy __unknown33;
+	s_undefined32_legacy __unknown34;
+	s_undefined32_legacy __unknown35;
+	s_undefined32_legacy __unknown36;
+	s_undefined32_legacy __unknown37;
+	s_undefined32_legacy __unknown38;
+	s_undefined32_legacy __unknown39;
+	s_undefined32_legacy __unknown40;
+	s_undefined32_legacy __unknown41;
+	s_undefined32_legacy __unknown42;
+	s_undefined32_legacy __unknown43;
+	s_undefined32_legacy __unknown44;
+	s_undefined32_legacy __unknown45;
+	s_undefined32_legacy __unknown46;
+	s_undefined32_legacy __unknown47;
+	s_tag_block_legacy<s_prediction_a_definition> nicename("Prediction A") prediction_a_block;
+	s_tag_block_legacy<s_prediction_b_definition> nicename("Prediction B") prediction_b_block;
+	s_tag_block_legacy<s_prediction_c_definition> nicename("Prediction C") prediction_c_block;
+	s_tag_block_legacy<s_prediction_d___tags_definition> nicename("Prediction D - Tags") prediction_d___tags_block;
+	s_tag_block_legacy<s_prediction_d2___tags_definition> nicename("Prediction D2 - Tags") prediction_d2___tags_block;
 	int32_t nicename("Campaign ID") campaign_id;
 	int32_t nicename("Map ID") map_id;
 };

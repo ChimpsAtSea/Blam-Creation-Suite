@@ -1,6 +1,6 @@
 #pragma once
 
-class noreflection DataReference
+class noreflection s_data_reference_legacy
 {
 public:
 	int32_t size;

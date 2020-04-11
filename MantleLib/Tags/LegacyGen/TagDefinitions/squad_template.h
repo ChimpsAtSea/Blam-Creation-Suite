@@ -30,8 +30,8 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 			int16_t __unknown1;
 			int16_t nicename("Minimum Round") minimum_round;
 			int16_t nicename("Maximum Round") maximum_round;
-			Undefined32 __unknown2;
-			TagReference nicename("Character") character_reference;
+			s_undefined32_legacy __unknown2;
+			s_tag_reference_legacy nicename("Character") character_reference;
 			int16_t nicename("Probability") probability;
 			int16_t __unknown3;
 		};
@@ -42,8 +42,8 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 			int16_t __unknown1;
 			int16_t nicename("Minimum Round") minimum_round;
 			int16_t nicename("Maximum Round") maximum_round;
-			Undefined32 __unknown2;
-			TagReference nicename("Weapon") weapon_reference;
+			s_undefined32_legacy __unknown2;
+			s_tag_reference_legacy nicename("Weapon") weapon_reference;
 			int16_t nicename("Probability") probability;
 			int16_t __unknown3;
 		};
@@ -54,8 +54,8 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 			int16_t __unknown1;
 			int16_t nicename("Minimum Round") minimum_round;
 			int16_t nicename("Maximum Round") maximum_round;
-			Undefined32 __unknown2;
-			TagReference nicename("Weapon") weapon_reference;
+			s_undefined32_legacy __unknown2;
+			s_tag_reference_legacy nicename("Weapon") weapon_reference;
 			int16_t nicename("Probability") probability;
 			int16_t __unknown3;
 		};
@@ -66,13 +66,13 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 			int16_t __unknown1;
 			int16_t nicename("Minimum Round") minimum_round;
 			int16_t nicename("Maximum Round") maximum_round;
-			Undefined32 __unknown2;
-			TagReference nicename("Equipment") equipment_reference;
+			s_undefined32_legacy __unknown2;
+			s_tag_reference_legacy nicename("Equipment") equipment_reference;
 			int16_t nicename("Probability") probability;
 			int16_t __unknown3;
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		b_difficulty nicename("Difficulty") difficulty;
 		int16_t __unknown0;
 		int16_t nicename("Minimum Round") minimum_round;
@@ -81,17 +81,17 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 		int16_t __unknown2;
 		int16_t nicename("Count") count;
 		int16_t __unknown3;
-		s_tag_block_definition<s_actors_definition> nicename("Actors") actors_block;
-		s_tag_block_definition<s_weapons_definition> nicename("Weapons") weapons_block;
-		s_tag_block_definition<s_secondary_weapons_definition> nicename("Secondary Weapons") secondary_weapons_block;
-		s_tag_block_definition<s_equipment_definition> nicename("Equipment") equipment_block;
-		Undefined32 __unknown4;
-		TagReference nicename("Vehicle") vehicle_reference;
-		DEPRECATED_string_id nicename("Vehicle Variant") vehicle_variant;
-		Undefined32 __unknown5;
+		s_tag_block_legacy<s_actors_definition> nicename("Actors") actors_block;
+		s_tag_block_legacy<s_weapons_definition> nicename("Weapons") weapons_block;
+		s_tag_block_legacy<s_secondary_weapons_definition> nicename("Secondary Weapons") secondary_weapons_block;
+		s_tag_block_legacy<s_equipment_definition> nicename("Equipment") equipment_block;
+		s_undefined32_legacy __unknown4;
+		s_tag_reference_legacy nicename("Vehicle") vehicle_reference;
+		string_id_legacy nicename("Vehicle Variant") vehicle_variant;
+		s_undefined32_legacy __unknown5;
 	};
 
-	DEPRECATED_string_id nicename("Name") name;
-	s_tag_block_definition<s_squad_definition> nicename("Squad") squad_block;
+	string_id_legacy nicename("Name") name;
+	s_tag_block_legacy<s_squad_definition> nicename("Squad") squad_block;
 };
 

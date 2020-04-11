@@ -108,17 +108,17 @@ struct nicename("sound") tag_group('snd!') s_sound_definition
 				int32_t __unknown2;
 			};
 
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			s_tag_block_definition<s_unknown1_definition> __unknown4;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_tag_block_legacy<s_unknown1_definition> __unknown4;
 		};
 
-		s_tag_block_definition<s_unknown_definition> __unknown0;
-		DataReference __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
+		s_tag_block_legacy<s_unknown_definition> __unknown0;
+		s_data_reference_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
 		int32_t __unknown4;
 	};
 
@@ -141,6 +141,6 @@ struct nicename("sound") tag_group('snd!') s_sound_definition
 	uint16_t nicename("[easy read] Index") easy_read_index;
 	uint16_t nicename("[easy read] Salt") easy_read_salt;
 	int32_t nicename("Useless Padding") useless_padding;
-	s_tag_block_definition<s_extra_info_definition> nicename("Extra Info") extra_info_block;
+	s_tag_block_legacy<s_extra_info_definition> nicename("Extra Info") extra_info_block;
 };
 

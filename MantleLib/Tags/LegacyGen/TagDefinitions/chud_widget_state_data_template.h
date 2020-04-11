@@ -15,7 +15,7 @@ struct nicename("chud_widget_state_data_template") tag_group('wsdt') s_chud_widg
 				int32_t nicename("Trigger Index") trigger_index;
 			};
 
-			s_tag_block_definition<s_triggers_definition> nicename("Triggers") triggers_block;
+			s_tag_block_legacy<s_triggers_definition> nicename("Triggers") triggers_block;
 		};
 
 		struct nicename("States 2") s_states_2_definition
@@ -29,7 +29,7 @@ struct nicename("chud_widget_state_data_template") tag_group('wsdt') s_chud_widg
 				int32_t nicename("Trigger Index") trigger_index;
 			};
 
-			s_tag_block_definition<s_triggers1_definition> nicename("Triggers") triggers_block;
+			s_tag_block_legacy<s_triggers1_definition> nicename("Triggers") triggers_block;
 		};
 
 		struct nicename("States 3") s_states_3_definition
@@ -43,21 +43,21 @@ struct nicename("chud_widget_state_data_template") tag_group('wsdt') s_chud_widg
 				int32_t nicename("Trigger Index") trigger_index;
 			};
 
-			s_tag_block_definition<s_triggers2_definition> nicename("Triggers") triggers_block;
+			s_tag_block_legacy<s_triggers2_definition> nicename("Triggers") triggers_block;
 		};
 
-		s_tag_block_definition<s_states_1_definition> nicename("States 1") states_1_block;
-		s_tag_block_definition<s_states_2_definition> nicename("States 2") states_2_block;
-		s_tag_block_definition<s_states_3_definition> nicename("States 3") states_3_block;
+		s_tag_block_legacy<s_states_1_definition> nicename("States 1") states_1_block;
+		s_tag_block_legacy<s_states_2_definition> nicename("States 2") states_2_block;
+		s_tag_block_legacy<s_states_3_definition> nicename("States 3") states_3_block;
 		int16_t __unknown0;
 		int16_t __unknown1;
 		int16_t __unknown2;
 		int16_t __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
 	};
 
-	s_tag_block_definition<s_state_data_definition> nicename("State Data") state_data_block;
+	s_tag_block_legacy<s_state_data_definition> nicename("State Data") state_data_block;
 };
 

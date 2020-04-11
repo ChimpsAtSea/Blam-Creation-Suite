@@ -18,12 +18,12 @@ struct nicename("chud_widget_datasource_template") tag_group('wdst') s_chud_widg
 		int8_t __unknown3;
 		int16_t __unknown4;
 		int16_t __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		s_tag_block_definition<s_unknown_6_definition> nicename("Unknown 6") unknown_6_block;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_tag_block_legacy<s_unknown_6_definition> nicename("Unknown 6") unknown_6_block;
 	};
 
-	s_tag_block_definition<s_datasource_definition> nicename("Datasource") datasource_block;
+	s_tag_block_legacy<s_datasource_definition> nicename("Datasource") datasource_block;
 };
 

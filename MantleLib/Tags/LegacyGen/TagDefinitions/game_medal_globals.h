@@ -4,8 +4,8 @@ struct nicename("game_medal_globals") tag_group('gmeg') s_game_medal_globals_def
 {
 	struct nicename("Medals") s_medals_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
-		DEPRECATED_string_id nicename("Description") description;
+		string_id_legacy nicename("Name") name;
+		string_id_legacy nicename("Description") description;
 		float nicename("X Scale") x_scale;
 		float nicename("Y Scale") y_scale;
 		int8_t nicename("Icon") icon;
@@ -15,6 +15,6 @@ struct nicename("game_medal_globals") tag_group('gmeg') s_game_medal_globals_def
 		int32_t __unknown3;
 	};
 
-	s_tag_block_definition<s_medals_definition> nicename("Medals") medals_block;
+	s_tag_block_legacy<s_medals_definition> nicename("Medals") medals_block;
 };
 

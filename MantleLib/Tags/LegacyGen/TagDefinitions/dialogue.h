@@ -42,18 +42,18 @@ struct nicename("dialogue") tag_group('udlg') s_dialogue_definition
 	{
 		struct nicename("Sound") s_sound_definition
 		{
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			TagReference nicename("Sound") sound_reference;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_tag_reference_legacy nicename("Sound") sound_reference;
 		};
 
-		DEPRECATED_string_id nicename("Vocalization") vocalization;
-		s_tag_block_definition<s_sound_definition> nicename("Sound") sound_block;
+		string_id_legacy nicename("Vocalization") vocalization;
+		s_tag_block_legacy<s_sound_definition> nicename("Sound") sound_block;
 	};
 
-	TagReference nicename("Global Dialogue Info") global_dialogue_info_reference;
+	s_tag_reference_legacy nicename("Global Dialogue Info") global_dialogue_info_reference;
 	b_flags nicename("Flags") flags;
-	s_tag_block_definition<s_vocalizations_definition> nicename("Vocalizations") vocalizations_block;
-	DEPRECATED_string_id nicename("Mission Dialogue Designator") mission_dialogue_designator;
+	s_tag_block_legacy<s_vocalizations_definition> nicename("Vocalizations") vocalizations_block;
+	string_id_legacy nicename("Mission Dialogue Designator") mission_dialogue_designator;
 };
 

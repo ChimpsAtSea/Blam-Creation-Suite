@@ -98,20 +98,20 @@ public:
 	}
 	
 	template<typename R, typename T>
-	inline R* GetTagBlockData(s_tag_block_definition<T>& rTagBlock)
+	inline R* GetTagBlockData(s_tag_block_legacy<T>& rTagBlock)
 	{
-		return reinterpret_cast<R*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_definition<>*>(&rTagBlock)));
+		return reinterpret_cast<R*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&rTagBlock)));
 	}
 
 	template<typename T>
-	inline T* GetTagBlockData(s_tag_block_definition<T>& rTagBlock)
+	inline T* GetTagBlockData(s_tag_block_legacy<T>& rTagBlock)
 	{
-		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_definition<>*>(&rTagBlock)));
+		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&rTagBlock)));
 	}
 
-	inline char* get_data_reference_data(DataReference& data_reference)
+	inline char* get_data_reference_data(s_data_reference_legacy& data_reference)
 	{
-		return getDataReferenceDataInternal(data_reference);
+		return get_data_reference_data_internal(data_reference);
 	}
 
 	inline const wchar_t* GetFilePath() const { return m_mapFilePath.c_str(); }
@@ -125,7 +125,7 @@ public:
 		return string_id_str;
 	}
 
-	inline const char* string_id_to_cstr(DEPRECATED_string_id const id, const char* const error_value = nullptr)
+	inline const char* string_id_to_cstr(string_id_legacy const id, const char* const error_value = nullptr)
 	{
 		uint32_t index = string_id_guesstimator->string_id_to_index(id);
 
@@ -139,7 +139,7 @@ public:
 
 //private:
 
-	inline char* getTagBlockDataInternal(s_tag_block_definition<>& tag_block)
+	inline char* getTagBlockDataInternal(s_tag_block_legacy<>& tag_block)
 	{
 		const SectionCache& section_info = get_section(e_cache_file_section::_cache_file_section_tags);
 		char* tags_section_data = section_info.first;
@@ -150,7 +150,7 @@ public:
 		return data_reference_data_pointer;
 	}
 
-	inline char* getDataReferenceDataInternal(DataReference& data_reference)
+	inline char* get_data_reference_data_internal(s_data_reference_legacy& data_reference)
 	{
 		const SectionCache& section_info = get_section(e_cache_file_section::_cache_file_section_tags);
 		char* tags_section_data = section_info.first;

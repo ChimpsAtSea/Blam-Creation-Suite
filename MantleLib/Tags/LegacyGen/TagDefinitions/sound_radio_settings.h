@@ -14,8 +14,8 @@ struct nicename("sound_radio_settings") tag_group('srad') s_sound_radio_settings
 	int32_t __unknown1;
 	float __unknown2;
 	int32_t __unknown3;
-	Undefined32 __unknown4;
+	s_undefined32_legacy __unknown4;
 	float __unknown5;
-	s_tag_block_definition<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
+	s_tag_block_legacy<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
 };
 

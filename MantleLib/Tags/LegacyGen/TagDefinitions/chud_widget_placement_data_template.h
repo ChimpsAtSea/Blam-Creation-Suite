@@ -71,6 +71,6 @@ struct nicename("chud_widget_placement_data_template") tag_group('wpdt') s_chud_
 		float nicename("Scale Y") scale_y;
 	};
 
-	s_tag_block_definition<s_placement_data_definition> nicename("Placement Data") placement_data_block;
+	s_tag_block_legacy<s_placement_data_definition> nicename("Placement Data") placement_data_block;
 };
 

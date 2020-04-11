@@ -2,19 +2,19 @@
 
 struct nicename("breakable_surface") tag_group('bsdt') s_breakable_surface_definition
 {
-	Undefined32 __unknown0;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
-	Undefined32 __unknown3;
-	Undefined32 __unknown4;
-	Undefined32 __unknown5;
-	TagReference nicename("Effect") effect_reference;
-	TagReference nicename("Sound") sound_reference;
-	Undefined32 __unknown6;
-	Undefined32 __unknown7;
-	Undefined32 __unknown8;
-	Undefined32 __unknown9;
-	TagReference nicename("Crack Bitmap") crack_bitmap_reference;
-	TagReference nicename("Hole Bitmap") hole_bitmap_reference;
+	s_undefined32_legacy __unknown0;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
+	s_undefined32_legacy __unknown3;
+	s_undefined32_legacy __unknown4;
+	s_undefined32_legacy __unknown5;
+	s_tag_reference_legacy nicename("Effect") effect_reference;
+	s_tag_reference_legacy nicename("Sound") sound_reference;
+	s_undefined32_legacy __unknown6;
+	s_undefined32_legacy __unknown7;
+	s_undefined32_legacy __unknown8;
+	s_undefined32_legacy __unknown9;
+	s_tag_reference_legacy nicename("Crack Bitmap") crack_bitmap_reference;
+	s_tag_reference_legacy nicename("Hole Bitmap") hole_bitmap_reference;
 };
 

@@ -30,6 +30,6 @@ struct nicename("chocolate_mountain_new") tag_group('chmt') s_chocolate_mountain
 	int8_t __unknown1;
 	int8_t __unknown2;
 	int8_t __unknown3;
-	s_tag_block_definition<s_lighting_variables_definition> nicename("Lighting Variables") lighting_variables1_block;
+	s_tag_block_legacy<s_lighting_variables_definition> nicename("Lighting Variables") lighting_variables1_block;
 };
 

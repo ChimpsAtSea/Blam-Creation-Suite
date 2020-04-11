@@ -37,14 +37,14 @@ public:
 	static thread_local c_mantle_tag_gui_tab* g_current_mantle_tag_tab;
 };
 
-template<e_primitive_type primitive_type, typename T>
+template<e_legacy_primitive_type primitive_type, typename T>
 void render_primitive_gui(void* field_data, const c_reflection_field& reflection_field);
 
-void render_tagref_gui(TagReference* field_data, const char* name, c_cache_file& cache_file);
-void render_tagref_gui(TagReference* field_data, const c_reflection_field& reflection_field);
+void render_tagref_gui(s_tag_reference_legacy* field_data, const char* name, c_cache_file& cache_file);
+void render_tagref_gui(s_tag_reference_legacy* field_data, const c_reflection_field& reflection_field);
 void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_field);
 void render_struct_gui(void* field_data, const c_reflection_field& reflection_field);
-void render_stringid_gui(DEPRECATED_string_id* field_data, const c_reflection_field& reflection_field);
+void render_stringid_gui(string_id_legacy* field_data, const c_reflection_field& reflection_field);
 void render_enum_gui(void* field_data, const c_reflection_field& reflection_field);
-void render_dataref_gui(DataReference* field_data, const c_reflection_field& reflection_field);
+void render_dataref_gui(s_data_reference_legacy* field_data, const c_reflection_field& reflection_field);
 void render_bitfield_gui(void* field_data, const c_reflection_field& reflection_field);

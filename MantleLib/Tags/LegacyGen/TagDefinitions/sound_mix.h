@@ -41,7 +41,7 @@ struct nicename("sound_mix") tag_group('snmx') s_sound_mix_definition
 	float nicename("Solo Player Fade Out Time") solo_player_fade_out_time;
 	float nicename("Solo Player Fade In Time") solo_player_fade_in_time;
 	float nicename("Game Music Fade Out Time") game_music_fade_out_time;
-	TagReference __unknown12;
+	s_tag_reference_legacy __unknown12;
 	float __unknown13;
 	float __unknown14;
 };

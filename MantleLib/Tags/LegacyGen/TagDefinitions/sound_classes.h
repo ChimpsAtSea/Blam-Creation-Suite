@@ -70,15 +70,15 @@ struct nicename("sound_classes") tag_group('sncl') s_sound_classes_definition
 		int8_t __unknown4;
 		int8_t __unknown5;
 		float nicename("Reverb Gain") reverb_gain;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
 		float __unknown9;
 		float __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
 		float __unknown13;
-		Undefined32 __unknown14;
+		s_undefined32_legacy __unknown14;
 		float __unknown15;
 		float __unknown16;
 		float nicename("Distance Bounds min") distance_bounds_min;
@@ -97,15 +97,15 @@ struct nicename("sound_classes") tag_group('sncl') s_sound_classes_definition
 		float nicename("Cutscene Ducking Fade Out Time") cutscene_ducking_fade_out_time;
 		float nicename("Scripted Dialog Ducking") scripted_dialog_ducking;
 		float nicename("Scripted Dialog Ducking Fade In") scripted_dialog_ducking_fade_in;
-		Undefined32 __unknown23;
+		s_undefined32_legacy __unknown23;
 		float __unknown24;
 		float __unknown25;
 		float __unknown26;
-		Undefined32 __unknown27;
+		s_undefined32_legacy __unknown27;
 		float __unknown28;
 		float __unknown29;
 		float __unknown30;
-		Undefined32 __unknown31;
+		s_undefined32_legacy __unknown31;
 		float __unknown32;
 		float nicename("Doppler Factor") doppler_factor;
 		e_stereo_playback_type nicename("Stereo Playback Type") stereo_playback_type;
@@ -113,12 +113,12 @@ struct nicename("sound_classes") tag_group('sncl') s_sound_classes_definition
 		int8_t __unknown34;
 		int8_t __unknown35;
 		float nicename("Transmission Multiplier") transmission_multiplier;
-		Undefined32 __unknown36;
+		s_undefined32_legacy __unknown36;
 		int32_t __unknown37;
 		float __unknown38;
-		Undefined32 __unknown39;
+		s_undefined32_legacy __unknown39;
 		int32_t __unknown40;
-		Undefined32 __unknown41;
+		s_undefined32_legacy __unknown41;
 	};
 
 	/* Index Names : Ripped from the executable:
@@ -193,6 +193,6 @@ struct nicename("sound_classes") tag_group('sncl') s_sound_classes_definition
 	   68 - unit_footsteps_postpone
 	   69 - weapon_ready_third_person
 	   70 - ui_music */
-	s_tag_block_definition<s_sound_classes1_definition> nicename("Sound Classes") sound_classes_block;
+	s_tag_block_legacy<s_sound_classes1_definition> nicename("Sound Classes") sound_classes_block;
 };
 

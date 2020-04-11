@@ -508,13 +508,13 @@ struct nicename("chud_widget_render_data_template") tag_group('wrdt') s_chud_wid
 		int8_t __unknown1;
 		int8_t __unknown2;
 		float nicename("Local Color Alpha a") local_color_alpha_a;
-		colorf nicename("Local Color a") local_color_a;
+		s_colorf_legacy nicename("Local Color a") local_color_a;
 		float nicename("Local Color Alpha b") local_color_alpha_b;
-		colorf nicename("Local Color b") local_color_b;
+		s_colorf_legacy nicename("Local Color b") local_color_b;
 		float nicename("Local Color Alpha c") local_color_alpha_c;
-		colorf nicename("Local Color c") local_color_c;
+		s_colorf_legacy nicename("Local Color c") local_color_c;
 		float nicename("Local Color Alpha d") local_color_alpha_d;
-		colorf nicename("Local Color d") local_color_d;
+		s_colorf_legacy nicename("Local Color d") local_color_d;
 		float nicename("Local Scalar a") local_scalar_a;
 		float nicename("Local Scalar b") local_scalar_b;
 		float nicename("Local Scalar c") local_scalar_c;
@@ -531,13 +531,13 @@ struct nicename("chud_widget_render_data_template") tag_group('wrdt') s_chud_wid
 		e_output_scalar_d nicename("Output Scalar d") output_scalar_d;
 		e_output_scalar_e nicename("Output Scalar e") output_scalar_e;
 		e_output_scalar_f nicename("Output Scalar f") output_scalar_f;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
 		int16_t __unknown5;
 		int16_t __unknown6;
 	};
 
 	// Shader Index : While represented as an enum, it is actually an index to the "HUD Shaders" block in CHGD
-	s_tag_block_definition<s_render_data_definition> nicename("Render Data") render_data_block;
+	s_tag_block_legacy<s_render_data_definition> nicename("Render Data") render_data_block;
 };
 

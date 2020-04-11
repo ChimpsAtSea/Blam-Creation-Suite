@@ -4,34 +4,32 @@
 #include "mantlelib-public-pch.h"
 #include "VirtualMemoryContainer.h"
 
-
-
-inline ImGuiDataType e_primitive_typeToImGuiDataType(e_primitive_type primitiveType)
+inline ImGuiDataType primitive_type_to_imgui_data_type(e_legacy_primitive_type primitive_type)
 {
-	switch (primitiveType)
+	switch (primitive_type)
 	{
-	case e_primitive_type::Int8:			return ImGuiDataType_S8;
-	case e_primitive_type::Int16:			return ImGuiDataType_S16;
-	case e_primitive_type::Int32:			return ImGuiDataType_S32;
-	case e_primitive_type::Int64:			return ImGuiDataType_S64;
-	case e_primitive_type::UInt8:			return ImGuiDataType_U8;
-	case e_primitive_type::UInt16:			return ImGuiDataType_U16;
-	case e_primitive_type::UInt32:			return ImGuiDataType_U32;
-	case e_primitive_type::UInt64:			return ImGuiDataType_U64;
-	case e_primitive_type::Float:			return ImGuiDataType_Float;
-	case e_primitive_type::Double:			return ImGuiDataType_Double;
-	case e_primitive_type::Boolean8:		return ImGuiDataType_S8;
-	case e_primitive_type::Boolean16:		return ImGuiDataType_S16;
-	case e_primitive_type::Boolean32:		return ImGuiDataType_S32;
-	case e_primitive_type::Boolean64:		return ImGuiDataType_S64;
-	case e_primitive_type::Enum8:			return ImGuiDataType_S8;
-	case e_primitive_type::Enum16:			return ImGuiDataType_S16;
-	case e_primitive_type::Enum32:			return ImGuiDataType_S32;
-	case e_primitive_type::Enum64:			return ImGuiDataType_S64;
-	case e_primitive_type::Undefined8:		return ImGuiDataType_S8;
-	case e_primitive_type::Undefined16:		return ImGuiDataType_S16;
-	case e_primitive_type::Undefined32:		return ImGuiDataType_Float;
-	case e_primitive_type::Undefined64:		return ImGuiDataType_Double;
+	case _legacy_primitive_type_int8:				return ImGuiDataType_S8;
+	case _legacy_primitive_type_int16:				return ImGuiDataType_S16;
+	case _legacy_primitive_type_int32:				return ImGuiDataType_S32;
+	case _legacy_primitive_type_int64:				return ImGuiDataType_S64;
+	case _legacy_primitive_type_uint8:				return ImGuiDataType_U8;
+	case _legacy_primitive_type_uint16:			return ImGuiDataType_U16;
+	case _legacy_primitive_type_uint32:			return ImGuiDataType_U32;
+	case _legacy_primitive_type_uint64:			return ImGuiDataType_U64;
+	case _legacy_primitive_type_float:				return ImGuiDataType_Float;
+	case _legacy_primitive_type_double:			return ImGuiDataType_Double;
+	case _legacy_primitive_type_boolean8:			return ImGuiDataType_S8;
+	case _legacy_primitive_type_boolean16:			return ImGuiDataType_S16;
+	case _legacy_primitive_type_boolean32:			return ImGuiDataType_S32;
+	case _legacy_primitive_type_boolean64:			return ImGuiDataType_S64;
+	case _legacy_primitive_type_enum8:				return ImGuiDataType_S8;
+	case _legacy_primitive_type_enum16:			return ImGuiDataType_S16;
+	case _legacy_primitive_type_enum32:			return ImGuiDataType_S32;
+	case _legacy_primitive_type_enum64:			return ImGuiDataType_S64;
+	case _legacy_primitive_type_undefined8:		return ImGuiDataType_S8;
+	case _legacy_primitive_type_undefined16:		return ImGuiDataType_S16;
+	case _legacy_primitive_type_undefined32:		return ImGuiDataType_Float;
+	case _legacy_primitive_type_undefined64:		return ImGuiDataType_Double;
 	}
-	FATAL_ERROR(L"Unsupported primitive type");
+	FATAL_ERROR(L"unsupported primitive_type");
 }

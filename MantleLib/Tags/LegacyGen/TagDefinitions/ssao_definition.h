@@ -36,16 +36,16 @@ struct nicename("ssao_definition") tag_group('ssao') s_ssao_definition_definitio
 	float __unknown31;
 	float nicename("Object") object;
 	float nicename("BSP") bsp;
-	Undefined32 __unknown32;
-	Undefined32 __unknown33;
+	s_undefined32_legacy __unknown32;
+	s_undefined32_legacy __unknown33;
 	float nicename("Object") object1;
 	float nicename("BSP") bsp1;
-	Undefined32 __unknown34;
-	Undefined32 __unknown35;
+	s_undefined32_legacy __unknown34;
+	s_undefined32_legacy __unknown35;
 	float __unknown36;
 	float __unknown37;
 	float __unknown38;
 	float __unknown39;
-	Undefined32 __unknown40;
+	s_undefined32_legacy __unknown40;
 };
 

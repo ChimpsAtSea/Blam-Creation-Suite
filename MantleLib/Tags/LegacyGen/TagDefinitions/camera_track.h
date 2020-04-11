@@ -13,7 +13,7 @@ struct nicename("camera_track") tag_group('trak') s_camera_track_definition
 		float nicename("Orientation w") orientation_w;
 	};
 
-	Undefined32 __unknown0;
-	s_tag_block_definition<s_camera_points_definition> nicename("Camera Points") camera_points_block;
+	s_undefined32_legacy __unknown0;
+	s_tag_block_legacy<s_camera_points_definition> nicename("Camera Points") camera_points_block;
 };
 

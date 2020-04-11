@@ -67,10 +67,10 @@ c_legacy_compiler_interface::c_legacy_compiler_interface(const char* executable_
 	enum16_type = reflection_type_containers.emplace_back(new c_reflection_type_container("Enum16", "uint16_t", sizeof(uint16_t)));
 	enum32_type = reflection_type_containers.emplace_back(new c_reflection_type_container("Enum32", "uint32_t", sizeof(uint32_t)));
 	enum64_type = reflection_type_containers.emplace_back(new c_reflection_type_container("Enum64", "uint64_t", sizeof(uint64_t)));
-	undefined8_type = reflection_type_containers.emplace_back(new c_reflection_type_container("Undefined8", "Undefined8", sizeof(uint8_t)));
-	undefined16_type = reflection_type_containers.emplace_back(new c_reflection_type_container("Undefined16", "Undefined16", sizeof(uint16_t)));
-	undefined32_type = reflection_type_containers.emplace_back(new c_reflection_type_container("Undefined32", "Undefined32", sizeof(uint32_t)));
-	undefined64_type = reflection_type_containers.emplace_back(new c_reflection_type_container("Undefined64", "Undefined64", sizeof(uint64_t)));
+	undefined8_type = reflection_type_containers.emplace_back(new c_reflection_type_container("s_undefined8_legacy", "s_undefined8_legacy", sizeof(uint8_t)));
+	undefined16_type = reflection_type_containers.emplace_back(new c_reflection_type_container("s_undefined16_legacy", "s_undefined16_legacy", sizeof(uint16_t)));
+	undefined32_type = reflection_type_containers.emplace_back(new c_reflection_type_container("s_undefined32_legacy", "s_undefined32_legacy", sizeof(uint32_t)));
+	undefined64_type = reflection_type_containers.emplace_back(new c_reflection_type_container("s_undefined64_legacy", "s_undefined64_legacy", sizeof(uint64_t)));
 	raw_character_array_type = reflection_type_containers.emplace_back(new c_reflection_type_container("RawCharacter", "char", sizeof(char)));
 	raw_wide_character_array_type = reflection_type_containers.emplace_back(new c_reflection_type_container("RawWideCharacter", "wchar_t", sizeof(wchar_t)));
 	static_string_type = reflection_type_containers.emplace_back(new c_reflection_type_container("StaticString", "c_static_string", sizeof(char)));
@@ -109,25 +109,25 @@ uint32_t c_legacy_compiler_interface::init_type_size_and_offsets(c_reflection_ty
 		assert(reflection_field_container != nullptr);
 
 		uint64_t field_size = 0;
-		switch (reflection_field_container->reflection_type_category)
+		switch (reflection_field_container->legacy_reflection_type_category)
 		{
-		case e_reflection_type_category::TagReference:
+		case _legacy_reflection_type_category_tag_reference:
 			field_size = 0x10;
 			break;
-		case e_reflection_type_category::TagBlock:
+		case _legacy_reflection_type_category_tag_block:
 			field_size = 0xC;
 			break;
-		case e_reflection_type_category::DataReference:
+		case _legacy_reflection_type_category_data_reference:
 			field_size = 0x14;
 			break;
-		case e_reflection_type_category::StringID:
+		case _legacy_reflection_type_category_string_id:
 			field_size = 0x4;
 			break;
-		case e_reflection_type_category::Primitive:
-		case e_reflection_type_category::Structure:
-		case e_reflection_type_category::ShaderData:
-		case e_reflection_type_category::Enum:
-		case e_reflection_type_category::BitField:
+		case _legacy_reflection_type_category_primitive:
+		case _legacy_reflection_type_category_structure:
+		case _legacy_reflection_type_category_shader_data:
+		case _legacy_reflection_type_category_enum:
+		case _legacy_reflection_type_category_bitfield:
 		default:
 			field_size = init_type_size_and_offsets(*reflection_field_container->field_type);
 			break;
@@ -149,22 +149,22 @@ uint32_t c_legacy_compiler_interface::init_type_size_and_offsets(c_reflection_ty
 void c_legacy_compiler_interface::create_nice_type_names(c_reflection_type_container& rType)
 {
 	rType.type_nice_name = rType.type_name;
-	rType.type_nice_name = format_nice_name_and_is_hidden_property(e_reflection_type_category::Structure, rType.type_nice_name.data());
+	rType.type_nice_name = format_nice_name_and_is_hidden_property(_legacy_reflection_type_category_structure, rType.type_nice_name.data());
 	for (c_reflection_field_container* pField : rType.fields)
 	{
 		c_reflection_field_container& rField = *pField;
 
 		rField.field_nice_name = rField.field_name;
 		rField.is_hidden_by_default = false;
-		rField.field_nice_name = format_nice_name_and_is_hidden_property(rField.reflection_type_category, rField.field_nice_name.data(), &rField.is_hidden_by_default);
+		rField.field_nice_name = format_nice_name_and_is_hidden_property(rField.legacy_reflection_type_category, rField.field_nice_name.data(), &rField.is_hidden_by_default);
 	}
 }
 
-e_primitive_type c_legacy_compiler_interface::qualified_type_to_primitive_type(const clang::QualType& _qualifiedType)
+e_legacy_primitive_type c_legacy_compiler_interface::qualified_type_to_legacy_primitive_type_(const clang::QualType& _qualifiedType)
 {
 	clang::QualType qualified_type = _qualifiedType;
 
-	e_primitive_type primitive_type = e_primitive_type::NonPrimitive;
+	e_legacy_primitive_type primitive_type = _legacy_primitive_type_non_primitive;
 
 	const bool is_enum = qualified_type->isEnumeralType();
 	if (is_enum)
@@ -178,20 +178,20 @@ e_primitive_type c_legacy_compiler_interface::qualified_type_to_primitive_type(c
 
 	if (qualified_type->isSignedIntegerType())
 	{
-		if (integral_type_name == "char") primitive_type = e_primitive_type::RawCharacter;
-		else if (integral_type_name == "signed char") primitive_type = e_primitive_type::Int8;
-		else if (integral_type_name == "short") primitive_type = e_primitive_type::Int16;
-		else if (integral_type_name == "int") primitive_type = e_primitive_type::Int32;
-		else if (integral_type_name == "long") primitive_type = e_primitive_type::Int32;
-		else if (integral_type_name == "long long") primitive_type = e_primitive_type::Int64;
+		if (integral_type_name == "char") primitive_type = _legacy_primitive_type_char8;
+		else if (integral_type_name == "signed char") primitive_type = _legacy_primitive_type_int8;
+		else if (integral_type_name == "short") primitive_type = _legacy_primitive_type_int16;
+		else if (integral_type_name == "int") primitive_type = _legacy_primitive_type_int32;
+		else if (integral_type_name == "long") primitive_type = _legacy_primitive_type_int32;
+		else if (integral_type_name == "long long") primitive_type = _legacy_primitive_type_int64;
 		else assert(!"Unsupported signed integral type");
 	}
 	else if (qualified_type->isUnsignedIntegerType())
 	{
-		if (integral_type_name == "unsigned char") primitive_type = e_primitive_type::UInt8;
-		else if (integral_type_name == "unsigned short") primitive_type = e_primitive_type::UInt16;
-		else if (integral_type_name == "unsigned int") primitive_type = e_primitive_type::UInt32;
-		else if (integral_type_name == "unsigned long long") primitive_type = e_primitive_type::UInt64;
+		if (integral_type_name == "unsigned char") primitive_type = _legacy_primitive_type_uint8;
+		else if (integral_type_name == "unsigned short") primitive_type = _legacy_primitive_type_uint16;
+		else if (integral_type_name == "unsigned int") primitive_type = _legacy_primitive_type_uint32;
+		else if (integral_type_name == "unsigned long long") primitive_type = _legacy_primitive_type_uint64;
 		else assert(!"Unsupported signed integral type");
 	}
 	else assert(!"Unsupported integral type");
@@ -201,26 +201,26 @@ e_primitive_type c_legacy_compiler_interface::qualified_type_to_primitive_type(c
 	{
 		switch (primitive_type)
 		{
-		case e_primitive_type::Int8:
-		case e_primitive_type::UInt8:
-			primitive_type = e_primitive_type::Enum8;
+		case _legacy_primitive_type_int8:
+		case _legacy_primitive_type_uint8:
+			primitive_type = _legacy_primitive_type_enum8;
 			break;
-		case e_primitive_type::Int16:
-		case e_primitive_type::UInt16:
-			primitive_type = e_primitive_type::Enum16;
+		case _legacy_primitive_type_int16:
+		case _legacy_primitive_type_uint16:
+			primitive_type = _legacy_primitive_type_enum16;
 			break;
-		case e_primitive_type::Int32:
-		case e_primitive_type::UInt32:
-			primitive_type = e_primitive_type::Enum32;
+		case _legacy_primitive_type_int32:
+		case _legacy_primitive_type_uint32:
+			primitive_type = _legacy_primitive_type_enum32;
 			break;
-		case e_primitive_type::Int64:
-		case e_primitive_type::UInt64:
-			primitive_type = e_primitive_type::Enum64;
+		case _legacy_primitive_type_int64:
+		case _legacy_primitive_type_uint64:
+			primitive_type = _legacy_primitive_type_enum64;
 			break;
-		case e_primitive_type::Enum8:
-		case e_primitive_type::Enum16:
-		case e_primitive_type::Enum32:
-		case e_primitive_type::Enum64:
+		case _legacy_primitive_type_enum8:
+		case _legacy_primitive_type_enum16:
+		case _legacy_primitive_type_enum32:
+		case _legacy_primitive_type_enum64:
 			break;
 		default:
 			assert(!"Unsupported enum integral interpretation");
@@ -271,19 +271,19 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_enum_
 	reflection_type_container.is_enum = true;
 	reflection_type_container.is_structure = false;
 
-	e_primitive_type primitive_type = qualified_type_to_primitive_type(*record_qualified_type);
+	e_legacy_primitive_type primitive_type = qualified_type_to_legacy_primitive_type_(*record_qualified_type);
 	switch (primitive_type)
 	{
-	case e_primitive_type::Enum8:
+	case _legacy_primitive_type_enum8:
 		reflection_type_container.data_size = 1;
 		break;
-	case e_primitive_type::Enum16:
+	case _legacy_primitive_type_enum16:
 		reflection_type_container.data_size = 2;
 		break;
-	case e_primitive_type::Enum32:
+	case _legacy_primitive_type_enum32:
 		reflection_type_container.data_size = 4;
 		break;
-	case e_primitive_type::Enum64:
+	case _legacy_primitive_type_enum64:
 		reflection_type_container.data_size = 8;
 		break;
 	}
@@ -544,32 +544,32 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 			clang::RecordDecl* pCXXRecord = static_cast<clang::RecordDecl*>(pTagDecl);
 			std::string name = pTagDecl->getNameAsString();
 
-			e_reflection_type_category reflectionTypeCategory;
+			e_legacy_reflection_type_category reflectionTypeCategory;
 			{
-				if (name == "TagBlock") reflectionTypeCategory = e_reflection_type_category::TagBlock;
-				else if (name == "s_tag_block_definition") reflectionTypeCategory = e_reflection_type_category::TagBlock;
-				else if (name == "DataReference") reflectionTypeCategory = e_reflection_type_category::DataReference;
-				else if (name == "string_id") reflectionTypeCategory = e_reflection_type_category::StringID;
-				else if (name == "StringID") reflectionTypeCategory = e_reflection_type_category::StringID;
-				else if (name == "DEPRECATED_string_id") reflectionTypeCategory = e_reflection_type_category::StringID;
-				//else if (name == "TagGroupName") reflectionTypeCategory = e_reflection_type_category::TagGroupName; 
-				else if (name == "TagReference") reflectionTypeCategory = e_reflection_type_category::TagReference;
-				else if (name == "Undefined8") reflectionTypeCategory = e_reflection_type_category::Primitive;
-				else if (name == "Undefined16") reflectionTypeCategory = e_reflection_type_category::Primitive;
-				else if (name == "Undefined32") reflectionTypeCategory = e_reflection_type_category::Primitive;
-				else if (name == "Undefined64") reflectionTypeCategory = e_reflection_type_category::Primitive;
-				else if (reflectionQualifiedType->isStructureType()) reflectionTypeCategory = e_reflection_type_category::Structure;
+				if (name == "TagBlock") reflectionTypeCategory = _legacy_reflection_type_category_tag_block;
+				else if (name == "s_tag_block_legacy") reflectionTypeCategory = _legacy_reflection_type_category_tag_block;
+				else if (name == "s_data_reference_legacy") reflectionTypeCategory = _legacy_reflection_type_category_data_reference;
+				else if (name == "string_id") reflectionTypeCategory = _legacy_reflection_type_category_string_id;
+				else if (name == "StringID") reflectionTypeCategory = _legacy_reflection_type_category_string_id;
+				else if (name == "string_id_legacy") reflectionTypeCategory = _legacy_reflection_type_category_string_id;
+				//else if (name == "TagGroupName") reflectionTypeCategory = _legacy_reflection_type_category_TagGroupName; 
+				else if (name == "s_tag_reference_legacy") reflectionTypeCategory = _legacy_reflection_type_category_tag_reference;
+				else if (name == "s_undefined8_legacy") reflectionTypeCategory = _legacy_reflection_type_category_primitive;
+				else if (name == "s_undefined16_legacy") reflectionTypeCategory = _legacy_reflection_type_category_primitive;
+				else if (name == "s_undefined32_legacy") reflectionTypeCategory = _legacy_reflection_type_category_primitive;
+				else if (name == "s_undefined64_legacy") reflectionTypeCategory = _legacy_reflection_type_category_primitive;
+				else if (reflectionQualifiedType->isStructureType()) reflectionTypeCategory = _legacy_reflection_type_category_structure;
 				else assert(!"Unsupported class type");
 			}
 
-			rFieldData.reflection_type_category = reflectionTypeCategory;
-			if (reflectionTypeCategory == e_reflection_type_category::Primitive)
+			rFieldData.legacy_reflection_type_category = reflectionTypeCategory;
+			if (reflectionTypeCategory == _legacy_reflection_type_category_primitive)
 			{
-				e_primitive_type primitiveType;
-				if (name == "Undefined8") primitiveType = e_primitive_type::Undefined8;
-				else if (name == "Undefined16") primitiveType = e_primitive_type::Undefined16;
-				else if (name == "Undefined32") primitiveType = e_primitive_type::Undefined32;
-				else if (name == "Undefined64") primitiveType = e_primitive_type::Undefined64;
+				e_legacy_primitive_type primitiveType;
+				if (name == "s_undefined8_legacy") primitiveType = _legacy_primitive_type_undefined8;
+				else if (name == "s_undefined16_legacy") primitiveType = _legacy_primitive_type_undefined16;
+				else if (name == "s_undefined32_legacy") primitiveType = _legacy_primitive_type_undefined32;
+				else if (name == "s_undefined64_legacy") primitiveType = _legacy_primitive_type_undefined64;
 				else assert(!"Unsupported primitive type");
 
 				rFieldData.primitive_type = primitiveType;
@@ -587,22 +587,22 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 			clang::QualType scalarQualifiedType = reflectionQualifiedType->getCanonicalTypeInternal();
 			const std::string scalarQualifiedTypeName = QualType::getAsString(scalarQualifiedType.split(), k_clang_printing_policy);
 
-			rFieldData.reflection_type_category = e_reflection_type_category::Primitive;
+			rFieldData.legacy_reflection_type_category = _legacy_reflection_type_category_primitive;
 			switch (reflectionQualifiedType->getScalarTypeKind())
 			{
 			case clang::Type::ScalarTypeKind::STK_Bool:
-				rFieldData.primitive_type = e_primitive_type::Boolean32;
+				rFieldData.primitive_type = _legacy_primitive_type_boolean32;
 				break;
 			case clang::Type::ScalarTypeKind::STK_Integral:
 			{
-				rFieldData.primitive_type = qualified_type_to_primitive_type(scalarQualifiedType);
+				rFieldData.primitive_type = qualified_type_to_legacy_primitive_type_(scalarQualifiedType);
 			}
 			break;
 			case clang::Type::ScalarTypeKind::STK_Floating:
 			{
 				const std::string typeName = QualType::getAsString(scalarQualifiedType.split(), k_clang_printing_policy);
-				if (typeName == "float") rFieldData.primitive_type = e_primitive_type::Float;
-				else if (typeName == "double") rFieldData.primitive_type = e_primitive_type::Double;
+				if (typeName == "float") rFieldData.primitive_type = _legacy_primitive_type_float;
+				else if (typeName == "double") rFieldData.primitive_type = _legacy_primitive_type_float;
 				else assert(!"Unsupported floating point type");
 			}
 			break;
@@ -617,7 +617,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 				break;
 			}
 
-			assert(rFieldData.primitive_type != e_primitive_type::NonPrimitive);
+			assert(rFieldData.primitive_type != _legacy_primitive_type_non_primitive);
 			rFieldData.field_type = get_primitive_reflection_type_container(rFieldData.primitive_type);
 		}
 		else assert(!"UNSUPPORTED TYPE");
@@ -637,18 +637,18 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 			{
 				pType->is_enum = false;
 				pType->is_bitfield = true;
-				rFieldData.reflection_type_category = e_reflection_type_category::BitField;
+				rFieldData.legacy_reflection_type_category = _legacy_reflection_type_category_bitfield;
 				switch (rFieldData.primitive_type)
 				{
-				case e_primitive_type::Enum8:	rFieldData.primitive_type = e_primitive_type::BitField8;  break;
-				case e_primitive_type::Enum16:	rFieldData.primitive_type = e_primitive_type::BitField16; break;
-				case e_primitive_type::Enum32:	rFieldData.primitive_type = e_primitive_type::BitField32; break;
-				case e_primitive_type::Enum64:	rFieldData.primitive_type = e_primitive_type::BitField64; break;
+				case _legacy_primitive_type_enum8:	rFieldData.primitive_type = _legacy_primitive_type_bitfield8;  break;
+				case _legacy_primitive_type_enum16:	rFieldData.primitive_type = _legacy_primitive_type_bitfield16; break;
+				case _legacy_primitive_type_enum32:	rFieldData.primitive_type = _legacy_primitive_type_bitfield32; break;
+				case _legacy_primitive_type_enum64:	rFieldData.primitive_type = _legacy_primitive_type_bitfield64; break;
 				}
 			}
 			else
 			{
-				rFieldData.reflection_type_category = e_reflection_type_category::Enum;
+				rFieldData.legacy_reflection_type_category = _legacy_reflection_type_category_enum;
 			}
 		}
 
@@ -663,51 +663,51 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 	return &reflection_type_container;
 }
 
-c_reflection_type_container* c_legacy_compiler_interface::get_primitive_reflection_type_container(e_primitive_type primitive_type)
+c_reflection_type_container* c_legacy_compiler_interface::get_primitive_reflection_type_container(e_legacy_primitive_type primitive_type)
 {
 	switch (primitive_type)
 	{
-	case e_primitive_type::Int8:				return int8_type;
-	case e_primitive_type::Int16:				return int16_type;
-	case e_primitive_type::Int32:				return int32_type;
-	case e_primitive_type::Int64:				return int64_type;
-	case e_primitive_type::UInt8:				return uint8_type;
-	case e_primitive_type::UInt16:				return uint16_type;
-	case e_primitive_type::UInt32:				return uint32_type;
-	case e_primitive_type::UInt64:				return uint64_type;
-	case e_primitive_type::Boolean8:			return boolean8_type;
-	case e_primitive_type::Boolean16:			return boolean16_type;
-	case e_primitive_type::Boolean32:			return boolean32_type;
-	case e_primitive_type::Boolean64:			return boolean64_type;
-	case e_primitive_type::BitFlag8:			return bitflag8_type;
-	case e_primitive_type::BitFlag16:			return bitflag16_type;
-	case e_primitive_type::BitFlag32:			return bitflag32_type;
-	case e_primitive_type::BitFlag64:			return bitflag64_type;
-	case e_primitive_type::BitField8:			return bitfield8_type;
-	case e_primitive_type::BitField16:			return bitfield16_type;
-	case e_primitive_type::BitField32:			return bitfield32_type;
-	case e_primitive_type::BitField64:			return bitfield64_type;
-	case e_primitive_type::Float:				return float_type;
-	case e_primitive_type::Double:				return double_type;
-	case e_primitive_type::Enum8:				return enum8_type;
-	case e_primitive_type::Enum16:				return enum16_type;
-	case e_primitive_type::Enum32:				return enum32_type;
-	case e_primitive_type::Enum64:				return enum64_type;
-	case e_primitive_type::Undefined8:			return undefined8_type;
-	case e_primitive_type::Undefined16:			return undefined16_type;
-	case e_primitive_type::Undefined32:			return undefined32_type;
-	case e_primitive_type::Undefined64:			return undefined64_type;
-	case e_primitive_type::RawCharacter:		return raw_character_array_type;
-	case e_primitive_type::RawWideCharacter:	return raw_wide_character_array_type;
-	case e_primitive_type::StaticString:		return static_string_type;
-	case e_primitive_type::StaticWideString:	return static_wide_string_type;
+	case _legacy_primitive_type_int8:					return int8_type;
+	case _legacy_primitive_type_int16:					return int16_type;
+	case _legacy_primitive_type_int32:					return int32_type;
+	case _legacy_primitive_type_int64:					return int64_type;
+	case _legacy_primitive_type_uint8:					return uint8_type;
+	case _legacy_primitive_type_uint16:				return uint16_type;
+	case _legacy_primitive_type_uint32:				return uint32_type;
+	case _legacy_primitive_type_uint64:				return uint64_type;
+	case _legacy_primitive_type_boolean8:				return boolean8_type;
+	case _legacy_primitive_type_boolean16:				return boolean16_type;
+	case _legacy_primitive_type_boolean32:				return boolean32_type;
+	case _legacy_primitive_type_boolean64:				return boolean64_type;
+	case _legacy_primitive_type_bitflag8:				return bitflag8_type;
+	case _legacy_primitive_type_bitflag16:				return bitflag16_type;
+	case _legacy_primitive_type_bitflag32:				return bitflag32_type;
+	case _legacy_primitive_type_bitflag64:				return bitflag64_type;
+	case _legacy_primitive_type_bitfield8:				return bitfield8_type;
+	case _legacy_primitive_type_bitfield16:			return bitfield16_type;
+	case _legacy_primitive_type_bitfield32:			return bitfield32_type;
+	case _legacy_primitive_type_bitfield64:			return bitfield64_type;
+	case _legacy_primitive_type_float:					return float_type;
+	case _legacy_primitive_type_double:				return double_type;
+	case _legacy_primitive_type_enum8:					return enum8_type;
+	case _legacy_primitive_type_enum16:				return enum16_type;
+	case _legacy_primitive_type_enum32:				return enum32_type;
+	case _legacy_primitive_type_enum64:				return enum64_type;
+	case _legacy_primitive_type_undefined8:			return undefined8_type;
+	case _legacy_primitive_type_undefined16:			return undefined16_type;
+	case _legacy_primitive_type_undefined32:			return undefined32_type;
+	case _legacy_primitive_type_undefined64:			return undefined64_type;
+	case _legacy_primitive_type_char8:					return raw_character_array_type;
+	case _legacy_primitive_type_char16:				return raw_wide_character_array_type;
+	case _legacy_primitive_type_static_string8:		return static_string_type;
+	case _legacy_primitive_type_static_string16:		return static_wide_string_type;
 	}
 
-	assert(!"Undefined primitive type");
+	assert(!"s_undefined_legacy primitive type");
 	return nullptr;
 }
 
-const char* c_legacy_compiler_interface::format_nice_name_and_is_hidden_property(e_reflection_type_category reflection_type_category, char* pString, bool* is_hidden_by_default)
+const char* c_legacy_compiler_interface::format_nice_name_and_is_hidden_property(e_legacy_reflection_type_category legacy_reflection_type_category, char* pString, bool* is_hidden_by_default)
 {
 	char* pOutputString = pString;
 
@@ -741,7 +741,7 @@ const char* c_legacy_compiler_interface::format_nice_name_and_is_hidden_property
 			}
 		}
 
-		if (reflection_type_category == e_reflection_type_category::TagBlock)
+		if (legacy_reflection_type_category == _legacy_reflection_type_category_tag_block)
 		{
 			char* pBlockString = strstr(pOutputString, "_block");
 			if (pBlockString)
@@ -756,7 +756,7 @@ const char* c_legacy_compiler_interface::format_nice_name_and_is_hidden_property
 			}
 		}
 
-		if (reflection_type_category == e_reflection_type_category::TagReference)
+		if (legacy_reflection_type_category == _legacy_reflection_type_category_tag_reference)
 		{
 			char* pReference = strstr(pOutputString, "_reference");
 			if (pReference)
@@ -771,12 +771,12 @@ const char* c_legacy_compiler_interface::format_nice_name_and_is_hidden_property
 			}
 		}
 
-		if (reflection_type_category == e_reflection_type_category::DataReference)
+		if (legacy_reflection_type_category == _legacy_reflection_type_category_data_reference)
 		{
-			char* pDataReference = strstr(pOutputString, "_data_reference");
-			if (pDataReference)
+			char* ps_data_reference_legacy = strstr(pOutputString, "_data_reference");
+			if (ps_data_reference_legacy)
 			{
-				pDataReference[0] = 0;
+				ps_data_reference_legacy[0] = 0;
 			}
 
 			char* pDefinition = strstr(pOutputString, "_definition");

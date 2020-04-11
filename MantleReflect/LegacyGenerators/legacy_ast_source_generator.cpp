@@ -1,19 +1,19 @@
 #include "mantlereflect-private-pch.h"
 
-c_ast_source_generator::c_ast_source_generator(const wchar_t* output_header_file, const wchar_t* output_source_file) :
+c_legacy_ast_source_generator::c_legacy_ast_source_generator(const wchar_t* output_header_file, const wchar_t* output_source_file) :
 	output_header_file(output_header_file),
 	output_source_file(output_source_file)
 {
 
 }
 
-void c_ast_source_generator::write_output()
+void c_legacy_ast_source_generator::write_output()
 {
 	if (output_header_file) write_output_impl(header_string_stream, output_header_file);
 	if(output_source_file) write_output_impl(source_string_stream, output_source_file);
 }
 
-void c_ast_source_generator::write_output_impl(std::stringstream& stringstream, const wchar_t* output_file)
+void c_legacy_ast_source_generator::write_output_impl(std::stringstream& stringstream, const wchar_t* output_file)
 {
 	std::string reflection_header_text = stringstream.str();
 

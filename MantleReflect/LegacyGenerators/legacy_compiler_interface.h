@@ -23,12 +23,12 @@ protected:
 	c_reflection_type_container* create_reflected_enum_type(const clang::QualType* record_qualified_type, const clang::RecordDecl& record_declaration);
 	virtual void execute_type_generator() override;
 
-	static e_primitive_type qualified_type_to_primitive_type(const clang::QualType& _qualifiedType);
-	c_reflection_type_container* get_primitive_reflection_type_container(e_primitive_type primitive_type);
+	static e_legacy_primitive_type qualified_type_to_legacy_primitive_type_(const clang::QualType& _qualifiedType);
+	c_reflection_type_container* get_primitive_reflection_type_container(e_legacy_primitive_type primitive_type);
 
 	uint32_t init_type_size_and_offsets(c_reflection_type_container& rType);
 	void create_nice_type_names(c_reflection_type_container& rType);
-	const char* format_nice_name_and_is_hidden_property(e_reflection_type_category reflectionTypeCategory, char* pString, bool* isHiddenByDefault = nullptr);
+	const char* format_nice_name_and_is_hidden_property(e_legacy_reflection_type_category reflectionTypeCategory, char* pString, bool* isHiddenByDefault = nullptr);
 
 	c_reflection_type_container* int8_type;
 	c_reflection_type_container* int16_type;

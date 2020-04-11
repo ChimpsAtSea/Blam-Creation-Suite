@@ -6,8 +6,8 @@ struct nicename("airstrike") tag_group('airs') s_airstrike_definition
 	{
 		struct nicename("Unknown 1") s_unknown_1_definition
 		{
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
 		};
 
 		float nicename("Spread") spread;
@@ -18,11 +18,11 @@ struct nicename("airstrike") tag_group('airs') s_airstrike_definition
 		float nicename("Delay Between Shot") delay_between_shot;
 		int32_t nicename("Total Shots Fired") total_shots_fired;
 		int32_t nicename("Ammo Count") ammo_count;
-		TagReference nicename("Airstrike Firing Controller") airstrike_firing_controller_reference;
-		s_tag_block_definition<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
-		TagReference nicename("Affected Weapon") affected_weapon_reference;
+		s_tag_reference_legacy nicename("Airstrike Firing Controller") airstrike_firing_controller_reference;
+		s_tag_block_legacy<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
+		s_tag_reference_legacy nicename("Affected Weapon") affected_weapon_reference;
 	};
 
-	s_tag_block_definition<s_airstrike1_definition> nicename("Airstrike") airstrike_block;
+	s_tag_block_legacy<s_airstrike1_definition> nicename("Airstrike") airstrike_block;
 };
 

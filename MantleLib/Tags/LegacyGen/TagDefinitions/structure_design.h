@@ -10,57 +10,57 @@
 //		};
 //
 //		int32_t __unknown0;
-//		Undefined32 __unknown1;
+//		s_undefined32_legacy __unknown1;
 //		int16_t nicename("Size") size;
 //		int16_t nicename("Count") count;
 //		int32_t nicename("Offset") offset;
-//		Undefined32 __unknown2;
-//		Undefined32 __unknown3;
-//		Undefined32 __unknown4;
-//		Undefined32 __unknown5;
+//		s_undefined32_legacy __unknown2;
+//		s_undefined32_legacy __unknown3;
+//		s_undefined32_legacy __unknown4;
+//		s_undefined32_legacy __unknown5;
 //		float nicename("Offset x") offset_x;
 //		float nicename("Offset y") offset_y;
 //		float nicename("Offset z") offset_z;
 //		float nicename("Offset Scale") offset_scale;
-//		Undefined32 __unknown6;
-//		Undefined32 __unknown7;
+//		s_undefined32_legacy __unknown6;
+//		s_undefined32_legacy __unknown7;
 //		int32_t nicename("Data Size") data_size;
 //		uint32_t nicename("Data Capacity") data_capacity;
-//		Undefined32 __unknown8;
-//		Undefined32 __unknown9;
-//		Undefined32 __unknown10;
-//		Undefined32 __unknown11;
-//		s_tag_block_definition<s_data_definition> nicename("Data") data_block;
-//		Undefined32 __unknown12;
+//		s_undefined32_legacy __unknown8;
+//		s_undefined32_legacy __unknown9;
+//		s_undefined32_legacy __unknown10;
+//		s_undefined32_legacy __unknown11;
+//		s_tag_block_legacy<s_data_definition> nicename("Data") data_block;
+//		s_undefined32_legacy __unknown12;
 //	};
 //
 //	struct nicename("Design Shapes 2") s_design_shapes_2_definition
 //	{
 //		struct nicename("Unknown 2") s_unknown_2_definition
 //		{
-//			Undefined32 __unknown0;
-//			Undefined32 __unknown1;
-//			Undefined32 __unknown2;
-//			Undefined32 __unknown3;
-//			Undefined32 __unknown4;
-//			Undefined32 __unknown5;
-//			Undefined32 __unknown6;
-//			Undefined32 __unknown7;
-//			Undefined32 __unknown8;
-//			Undefined32 __unknown9;
-//			Undefined32 __unknown10;
-//			Undefined32 __unknown11;
-//			Undefined32 __unknown12;
-//			Undefined32 __unknown13;
-//			Undefined32 __unknown14;
-//			Undefined32 __unknown15;
-//			Undefined32 __unknown16;
+//			s_undefined32_legacy __unknown0;
+//			s_undefined32_legacy __unknown1;
+//			s_undefined32_legacy __unknown2;
+//			s_undefined32_legacy __unknown3;
+//			s_undefined32_legacy __unknown4;
+//			s_undefined32_legacy __unknown5;
+//			s_undefined32_legacy __unknown6;
+//			s_undefined32_legacy __unknown7;
+//			s_undefined32_legacy __unknown8;
+//			s_undefined32_legacy __unknown9;
+//			s_undefined32_legacy __unknown10;
+//			s_undefined32_legacy __unknown11;
+//			s_undefined32_legacy __unknown12;
+//			s_undefined32_legacy __unknown13;
+//			s_undefined32_legacy __unknown14;
+//			s_undefined32_legacy __unknown15;
+//			s_undefined32_legacy __unknown16;
 //		};
 //
-//		DEPRECATED_string_id nicename("Name") name;
+//		string_id_legacy nicename("Name") name;
 //		int16_t __unknown0;
 //		int16_t __unknown1;
-//		s_tag_block_definition<s_unknown_2_definition> nicename("Unknown 2") unknown_2_block;
+//		s_tag_block_legacy<s_unknown_2_definition> nicename("Unknown 2") unknown_2_block;
 //	};
 //
 //	struct nicename("Water MOPP Codes") s_water_mopp_codes_definition
@@ -71,33 +71,33 @@
 //		};
 //
 //		int32_t __unknown0;
-//		Undefined32 __unknown1;
+//		s_undefined32_legacy __unknown1;
 //		int16_t nicename("Size") size;
 //		int16_t nicename("Count") count;
 //		int32_t nicename("Offset") offset;
-//		Undefined32 __unknown2;
-//		Undefined32 __unknown3;
-//		Undefined32 __unknown4;
-//		Undefined32 __unknown5;
+//		s_undefined32_legacy __unknown2;
+//		s_undefined32_legacy __unknown3;
+//		s_undefined32_legacy __unknown4;
+//		s_undefined32_legacy __unknown5;
 //		float nicename("Offset x") offset_x;
 //		float nicename("Offset y") offset_y;
 //		float nicename("Offset z") offset_z;
 //		float nicename("Offset Scale") offset_scale;
-//		Undefined32 __unknown6;
-//		Undefined32 __unknown7;
+//		s_undefined32_legacy __unknown6;
+//		s_undefined32_legacy __unknown7;
 //		int32_t nicename("Data Size") data_size;
 //		uint32_t nicename("Data Capacity") data_capacity;
-//		Undefined32 __unknown8;
-//		Undefined32 __unknown9;
-//		Undefined32 __unknown10;
-//		Undefined32 __unknown11;
-//		s_tag_block_definition<s_data1_definition> nicename("Data") data_block;
-//		Undefined32 __unknown12;
+//		s_undefined32_legacy __unknown8;
+//		s_undefined32_legacy __unknown9;
+//		s_undefined32_legacy __unknown10;
+//		s_undefined32_legacy __unknown11;
+//		s_tag_block_legacy<s_data1_definition> nicename("Data") data_block;
+//		s_undefined32_legacy __unknown12;
 //	};
 //
 //	struct nicename("Water Names") s_water_names_definition
 //	{
-//		DEPRECATED_string_id nicename("Name") name;
+//		string_id_legacy nicename("Name") name;
 //	};
 //
 //	struct nicename("Underwater Definitions") s_underwater_definitions_definition
@@ -116,50 +116,50 @@
 //		float nicename("Flow Force y") flow_force_y;
 //		float nicename("Flow Force z") flow_force_z;
 //		float nicename("Flow Force z 2") flow_force_z_2;
-//		colorf nicename("Mask Color") mask_color;
+//		s_colorf_legacy nicename("Mask Color") mask_color;
 //		float nicename("Obscure Amount") obscure_amount;
-//		s_tag_block_definition<s_unknown_definition> __unknown1;
-//		Undefined32 __unknown2;
-//		Undefined32 __unknown3;
-//		Undefined32 __unknown4;
-//		Undefined32 nicename("X Min") x_min;
-//		Undefined32 nicename("X Max") x_max;
-//		Undefined32 nicename("Y Min") y_min;
-//		Undefined32 nicename("Y Max") y_max;
-//		Undefined32 nicename("Z Min") z_min;
-//		Undefined32 nicename("Z Max") z_max;
+//		s_tag_block_legacy<s_unknown_definition> __unknown1;
+//		s_undefined32_legacy __unknown2;
+//		s_undefined32_legacy __unknown3;
+//		s_undefined32_legacy __unknown4;
+//		s_undefined32_legacy nicename("X Min") x_min;
+//		s_undefined32_legacy nicename("X Max") x_max;
+//		s_undefined32_legacy nicename("Y Min") y_min;
+//		s_undefined32_legacy nicename("Y Max") y_max;
+//		s_undefined32_legacy nicename("Z Min") z_min;
+//		s_undefined32_legacy nicename("Z Max") z_max;
 //	};
 //
 //	struct nicename("Planar Fog") s_planar_fog_definition
 //	{
 //		struct nicename("Unknown") s_unknown1_definition
 //		{
-//			Undefined32 __unknown0;
-//			Undefined32 __unknown1;
-//			Undefined32 __unknown2;
+//			s_undefined32_legacy __unknown0;
+//			s_undefined32_legacy __unknown1;
+//			s_undefined32_legacy __unknown2;
 //		};
 //
 //		struct nicename("Unknown") s_unknown2_definition
 //		{
 //			struct nicename("Unknown") s_unknown3_definition
 //			{
-//				Undefined32 __unknown0;
-//				Undefined32 __unknown1;
-//				Undefined32 __unknown2;
-//				Undefined32 __unknown3;
+//				s_undefined32_legacy __unknown0;
+//				s_undefined32_legacy __unknown1;
+//				s_undefined32_legacy __unknown2;
+//				s_undefined32_legacy __unknown3;
 //			};
 //
-//			s_tag_block_definition<s_unknown3_definition> __unknown0;
+//			s_tag_block_legacy<s_unknown3_definition> __unknown0;
 //		};
 //
-//		DEPRECATED_string_id nicename("Name") name;
-//		TagReference nicename("Planar Fog Parameters") planar_fog_parameters_reference;
-//		s_tag_block_definition<s_unknown1_definition> __unknown0;
-//		s_tag_block_definition<s_unknown2_definition> __unknown1;
-//		Undefined32 __unknown2;
-//		Undefined32 __unknown3;
-//		Undefined32 __unknown4;
-//		Undefined32 __unknown5;
+//		string_id_legacy nicename("Name") name;
+//		s_tag_reference_legacy nicename("Planar Fog Parameters") planar_fog_parameters_reference;
+//		s_tag_block_legacy<s_unknown1_definition> __unknown0;
+//		s_tag_block_legacy<s_unknown2_definition> __unknown1;
+//		s_undefined32_legacy __unknown2;
+//		s_undefined32_legacy __unknown3;
+//		s_undefined32_legacy __unknown4;
+//		s_undefined32_legacy __unknown5;
 //	};
 //
 //	struct nicename("Unknown MOPP Codes") s_unknown_mopp_codes_definition
@@ -170,28 +170,28 @@
 //		};
 //
 //		int32_t __unknown0;
-//		Undefined32 __unknown1;
+//		s_undefined32_legacy __unknown1;
 //		int16_t nicename("Size") size;
 //		int16_t nicename("Count") count;
 //		int32_t nicename("Offset") offset;
-//		Undefined32 __unknown2;
-//		Undefined32 __unknown3;
-//		Undefined32 __unknown4;
-//		Undefined32 __unknown5;
+//		s_undefined32_legacy __unknown2;
+//		s_undefined32_legacy __unknown3;
+//		s_undefined32_legacy __unknown4;
+//		s_undefined32_legacy __unknown5;
 //		float nicename("Offset x") offset_x;
 //		float nicename("Offset y") offset_y;
 //		float nicename("Offset z") offset_z;
 //		float nicename("Offset Scale") offset_scale;
-//		Undefined32 __unknown6;
-//		Undefined32 __unknown7;
+//		s_undefined32_legacy __unknown6;
+//		s_undefined32_legacy __unknown7;
 //		int32_t nicename("Data Size") data_size;
 //		uint32_t nicename("Data Capacity") data_capacity;
-//		Undefined32 __unknown8;
-//		Undefined32 __unknown9;
-//		Undefined32 __unknown10;
-//		Undefined32 __unknown11;
-//		s_tag_block_definition<s_data2_definition> nicename("Data") data_block;
-//		Undefined32 __unknown12;
+//		s_undefined32_legacy __unknown8;
+//		s_undefined32_legacy __unknown9;
+//		s_undefined32_legacy __unknown10;
+//		s_undefined32_legacy __unknown11;
+//		s_tag_block_legacy<s_data2_definition> nicename("Data") data_block;
+//		s_undefined32_legacy __unknown12;
 //	};
 //
 //	struct nicename("Meshes") s_meshes_definition
@@ -303,7 +303,7 @@
 //
 //			int16_t nicename("Instanced Geometry Mesh Index 1") instanced_geometry_mesh_index_1;
 //			int16_t nicename("Instanced Geometry Mesh Index 2") instanced_geometry_mesh_index_2;
-//			s_tag_block_definition<s_instanced_geometry_mesh_contents_definition> nicename("Instanced Geometry Mesh Contents") instanced_geometry_mesh_contents_block;
+//			s_tag_block_legacy<s_instanced_geometry_mesh_contents_definition> nicename("Instanced Geometry Mesh Contents") instanced_geometry_mesh_contents_block;
 //		};
 //
 //		struct nicename("Unknown Water") s_unknown_water_definition
@@ -311,8 +311,8 @@
 //			int16_t __unknown0;
 //		};
 //
-//		s_tag_block_definition<s_parts_definition> nicename("Parts") parts_block;
-//		s_tag_block_definition<s_subparts_definition> nicename("Subparts") subparts_block;
+//		s_tag_block_legacy<s_parts_definition> nicename("Parts") parts_block;
+//		s_tag_block_legacy<s_subparts_definition> nicename("Subparts") subparts_block;
 //		int16_t nicename("Vertex Buffer Index 1") vertex_buffer_index_1;
 //		int16_t nicename("Vertex Buffer Index 2") vertex_buffer_index_2;
 //		int16_t nicename("Vertex Buffer Index 3") vertex_buffer_index_3;
@@ -330,12 +330,12 @@
 //		int8_t __unknown0;
 //		e_index_buffer_type nicename("Index Buffer Type") index_buffer_type;
 //		int8_t __unknown1;
-//		s_tag_block_definition<s_instanced_geometry_indices_definition> nicename("Instanced Geometry Indices") instanced_geometry_indices_block;
-//		s_tag_block_definition<s_unknown_water_definition> nicename("Unknown Water") unknown_water_block;
-//		Undefined32 __unknown2;
-//		Undefined32 __unknown3;
-//		Undefined32 __unknown4;
-//		Undefined32 __unknown5;
+//		s_tag_block_legacy<s_instanced_geometry_indices_definition> nicename("Instanced Geometry Indices") instanced_geometry_indices_block;
+//		s_tag_block_legacy<s_unknown_water_definition> nicename("Unknown Water") unknown_water_block;
+//		s_undefined32_legacy __unknown2;
+//		s_undefined32_legacy __unknown3;
+//		s_undefined32_legacy __unknown4;
+//		s_undefined32_legacy __unknown5;
 //	};
 //
 //	struct nicename("Compression Info") s_compression_info_definition
@@ -352,8 +352,8 @@
 //		float nicename("Texcoord Bounds X max") texcoord_bounds_x_max;
 //		float nicename("Texcoord Bounds Y min") texcoord_bounds_y_min;
 //		float nicename("Texcoord Bounds Y max") texcoord_bounds_y_max;
-//		Undefined32 __unknown2;
-//		Undefined32 __unknown3;
+//		s_undefined32_legacy __unknown2;
+//		s_undefined32_legacy __unknown3;
 //	};
 //
 //	struct nicename("Unknown Nodey") s_unknown_nodey_definition
@@ -379,7 +379,7 @@
 //	{
 //		int16_t __unknown0;
 //		int16_t __unknown1;
-//		DataReference __unknown2;
+//		s_data_reference_legacy __unknown2;
 //	};
 //
 //	struct nicename("Node Maps") s_node_maps_definition
@@ -389,7 +389,7 @@
 //			uint8_t nicename("Node Index") node_index;
 //		};
 //
-//		s_tag_block_definition<s_unknown4_definition> __unknown0;
+//		s_tag_block_legacy<s_unknown4_definition> __unknown0;
 //	};
 //
 //	struct nicename("Unknown Yo") s_unknown_yo_definition
@@ -412,92 +412,92 @@
 //	struct nicename("Unknown Compression Info") s_unknown_compression_info_definition
 //	{
 //		uint32_t nicename("Polyart Asset Address") polyart_asset_address;
-//		Undefined32 __unknown0;
-//		Undefined32 __unknown1;
+//		s_undefined32_legacy __unknown0;
+//		s_undefined32_legacy __unknown1;
 //	};
 //
 //	struct nicename("Unknown 7") s_unknown_7_definition
 //	{
-//		Undefined32 __unknown0;
-//		Undefined32 __unknown1;
-//		Undefined32 __unknown2;
-//		Undefined32 __unknown3;
-//		Undefined32 __unknown4;
-//		Undefined32 __unknown5;
-//		Undefined32 __unknown6;
-//		Undefined32 __unknown7;
-//		Undefined32 __unknown8;
-//		Undefined32 __unknown9;
-//		Undefined32 __unknown10;
-//		Undefined32 __unknown11;
-//		Undefined32 __unknown12;
-//		Undefined32 __unknown13;
-//		Undefined32 __unknown14;
-//		Undefined32 __unknown15;
-//		Undefined32 __unknown16;
-//		Undefined32 __unknown17;
-//		Undefined32 __unknown18;
-//		Undefined32 __unknown19;
-//		Undefined32 __unknown20;
-//		Undefined32 __unknown21;
-//		Undefined32 __unknown22;
-//		Undefined32 __unknown23;
-//		Undefined32 __unknown24;
-//		Undefined32 __unknown25;
-//		Undefined32 __unknown26;
-//		Undefined32 __unknown27;
-//		Undefined32 __unknown28;
-//		Undefined32 __unknown29;
-//		Undefined32 __unknown30;
-//		Undefined32 __unknown31;
-//		Undefined32 __unknown32;
-//		Undefined32 __unknown33;
-//		Undefined32 __unknown34;
-//		Undefined32 __unknown35;
-//		Undefined32 __unknown36;
-//		Undefined32 __unknown37;
-//		Undefined32 __unknown38;
-//		Undefined32 __unknown39;
-//		Undefined32 __unknown40;
-//		Undefined32 __unknown41;
-//		Undefined32 __unknown42;
-//		Undefined32 __unknown43;
-//		Undefined32 __unknown44;
-//		Undefined32 __unknown45;
-//		Undefined32 __unknown46;
-//		Undefined32 __unknown47;
-//		Undefined32 __unknown48;
-//		Undefined32 __unknown49;
-//		Undefined32 __unknown50;
-//		Undefined32 __unknown51;
-//		Undefined32 __unknown52;
-//		Undefined32 __unknown53;
-//		Undefined32 __unknown54;
-//		Undefined32 __unknown55;
-//		Undefined32 __unknown56;
-//		Undefined32 __unknown57;
-//		Undefined32 __unknown58;
-//		Undefined32 __unknown59;
-//		Undefined32 __unknown60;
-//		Undefined32 __unknown61;
-//		Undefined32 __unknown62;
-//		Undefined32 __unknown63;
-//		Undefined32 __unknown64;
-//		Undefined32 __unknown65;
-//		Undefined32 __unknown66;
-//		Undefined32 __unknown67;
-//		Undefined32 __unknown68;
-//		Undefined32 __unknown69;
-//		Undefined32 __unknown70;
-//		Undefined32 __unknown71;
-//		Undefined32 __unknown72;
-//		Undefined32 __unknown73;
-//		Undefined32 __unknown74;
-//		Undefined32 __unknown75;
-//		Undefined32 __unknown76;
-//		Undefined32 __unknown77;
-//		Undefined32 __unknown78;
-//		Undefined32 __unknown79;
+//		s_undefined32_legacy __unknown0;
+//		s_undefined32_legacy __unknown1;
+//		s_undefined32_legacy __unknown2;
+//		s_undefined32_legacy __unknown3;
+//		s_undefined32_legacy __unknown4;
+//		s_undefined32_legacy __unknown5;
+//		s_undefined32_legacy __unknown6;
+//		s_undefined32_legacy __unknown7;
+//		s_undefined32_legacy __unknown8;
+//		s_undefined32_legacy __unknown9;
+//		s_undefined32_legacy __unknown10;
+//		s_undefined32_legacy __unknown11;
+//		s_undefined32_legacy __unknown12;
+//		s_undefined32_legacy __unknown13;
+//		s_undefined32_legacy __unknown14;
+//		s_undefined32_legacy __unknown15;
+//		s_undefined32_legacy __unknown16;
+//		s_undefined32_legacy __unknown17;
+//		s_undefined32_legacy __unknown18;
+//		s_undefined32_legacy __unknown19;
+//		s_undefined32_legacy __unknown20;
+//		s_undefined32_legacy __unknown21;
+//		s_undefined32_legacy __unknown22;
+//		s_undefined32_legacy __unknown23;
+//		s_undefined32_legacy __unknown24;
+//		s_undefined32_legacy __unknown25;
+//		s_undefined32_legacy __unknown26;
+//		s_undefined32_legacy __unknown27;
+//		s_undefined32_legacy __unknown28;
+//		s_undefined32_legacy __unknown29;
+//		s_undefined32_legacy __unknown30;
+//		s_undefined32_legacy __unknown31;
+//		s_undefined32_legacy __unknown32;
+//		s_undefined32_legacy __unknown33;
+//		s_undefined32_legacy __unknown34;
+//		s_undefined32_legacy __unknown35;
+//		s_undefined32_legacy __unknown36;
+//		s_undefined32_legacy __unknown37;
+//		s_undefined32_legacy __unknown38;
+//		s_undefined32_legacy __unknown39;
+//		s_undefined32_legacy __unknown40;
+//		s_undefined32_legacy __unknown41;
+//		s_undefined32_legacy __unknown42;
+//		s_undefined32_legacy __unknown43;
+//		s_undefined32_legacy __unknown44;
+//		s_undefined32_legacy __unknown45;
+//		s_undefined32_legacy __unknown46;
+//		s_undefined32_legacy __unknown47;
+//		s_undefined32_legacy __unknown48;
+//		s_undefined32_legacy __unknown49;
+//		s_undefined32_legacy __unknown50;
+//		s_undefined32_legacy __unknown51;
+//		s_undefined32_legacy __unknown52;
+//		s_undefined32_legacy __unknown53;
+//		s_undefined32_legacy __unknown54;
+//		s_undefined32_legacy __unknown55;
+//		s_undefined32_legacy __unknown56;
+//		s_undefined32_legacy __unknown57;
+//		s_undefined32_legacy __unknown58;
+//		s_undefined32_legacy __unknown59;
+//		s_undefined32_legacy __unknown60;
+//		s_undefined32_legacy __unknown61;
+//		s_undefined32_legacy __unknown62;
+//		s_undefined32_legacy __unknown63;
+//		s_undefined32_legacy __unknown64;
+//		s_undefined32_legacy __unknown65;
+//		s_undefined32_legacy __unknown66;
+//		s_undefined32_legacy __unknown67;
+//		s_undefined32_legacy __unknown68;
+//		s_undefined32_legacy __unknown69;
+//		s_undefined32_legacy __unknown70;
+//		s_undefined32_legacy __unknown71;
+//		s_undefined32_legacy __unknown72;
+//		s_undefined32_legacy __unknown73;
+//		s_undefined32_legacy __unknown74;
+//		s_undefined32_legacy __unknown75;
+//		s_undefined32_legacy __unknown76;
+//		s_undefined32_legacy __unknown77;
+//		s_undefined32_legacy __unknown78;
+//		s_undefined32_legacy __unknown79;
 //		int16_t __unknown80;
 //		int16_t __unknown81;
 //	};
@@ -541,16 +541,16 @@
 //		b_flags nicename("Flags") flags;
 //		int16_t __unknown0;
 //		int16_t __unknown1;
-//		Undefined32 __unknown2;
-//		Undefined32 __unknown3;
-//		Undefined32 __unknown4;
-//		Undefined32 __unknown5;
-//		Undefined32 __unknown6;
-//		Undefined32 __unknown7;
-//		Undefined32 __unknown8;
-//		Undefined32 __unknown9;
-//		Undefined32 __unknown10;
-//		Undefined32 __unknown11;
+//		s_undefined32_legacy __unknown2;
+//		s_undefined32_legacy __unknown3;
+//		s_undefined32_legacy __unknown4;
+//		s_undefined32_legacy __unknown5;
+//		s_undefined32_legacy __unknown6;
+//		s_undefined32_legacy __unknown7;
+//		s_undefined32_legacy __unknown8;
+//		s_undefined32_legacy __unknown9;
+//		s_undefined32_legacy __unknown10;
+//		s_undefined32_legacy __unknown11;
 //		float nicename("Bounding Sphere x") bounding_sphere_x;
 //		float nicename("Bounding Sphere y") bounding_sphere_y;
 //		float nicename("Bounding Sphere z") bounding_sphere_z;
@@ -562,21 +562,21 @@
 //		int8_t __unknown15;
 //		int8_t __unknown16;
 //		float __unknown17;
-//		Undefined32 __unknown18;
-//		Undefined32 __unknown19;
-//		Undefined32 __unknown20;
-//		Undefined32 __unknown21;
-//		Undefined32 __unknown22;
-//		Undefined32 __unknown23;
-//		DEPRECATED_string_id nicename("Name") name;
+//		s_undefined32_legacy __unknown18;
+//		s_undefined32_legacy __unknown19;
+//		s_undefined32_legacy __unknown20;
+//		s_undefined32_legacy __unknown21;
+//		s_undefined32_legacy __unknown22;
+//		s_undefined32_legacy __unknown23;
+//		string_id_legacy nicename("Name") name;
 //	};
 //
 //	struct nicename("Materials") s_materials_definition
 //	{
-//		TagReference nicename("Shader") shader_reference;
+//		s_tag_reference_legacy nicename("Shader") shader_reference;
 //		int32_t __unknown0;
 //		float __unknown1;
-//		Undefined32 __unknown2;
+//		s_undefined32_legacy __unknown2;
 //		int8_t __unknown3;
 //		int8_t __unknown4;
 //		int8_t __unknown5;
@@ -589,59 +589,59 @@
 //		int8_t __unknown11;
 //	};
 //
-//	Undefined32 __unknown0;
-//	Undefined32 __unknown1;
-//	Undefined32 __unknown2;
-//	Undefined32 __unknown3;
+//	s_undefined32_legacy __unknown0;
+//	s_undefined32_legacy __unknown1;
+//	s_undefined32_legacy __unknown2;
+//	s_undefined32_legacy __unknown3;
 //	int32_t __unknown4;
 //	int32_t __unknown5;
-//	Undefined32 __unknown6;
-//	Undefined32 __unknown7;
-//	Undefined32 __unknown8;
-//	Undefined32 __unknown9;
-//	Undefined32 __unknown10;
-//	Undefined32 __unknown11;
+//	s_undefined32_legacy __unknown6;
+//	s_undefined32_legacy __unknown7;
+//	s_undefined32_legacy __unknown8;
+//	s_undefined32_legacy __unknown9;
+//	s_undefined32_legacy __unknown10;
+//	s_undefined32_legacy __unknown11;
 //	int32_t __unknown12;
-//	s_tag_block_definition<s_design_mopp_codes_definition> nicename("Design MOPP Codes") design_mopp_codes_block;
-//	s_tag_block_definition<s_design_shapes_2_definition> nicename("Design Shapes 2") design_shapes_2_block;
-//	s_tag_block_definition<s_water_mopp_codes_definition> nicename("Water MOPP Codes") water_mopp_codes_block;
-//	s_tag_block_definition<s_water_names_definition> nicename("Water Names") water_names_block;
-//	s_tag_block_definition<s_underwater_definitions_definition> nicename("Underwater Definitions") underwater_definitions_block;
-//	s_tag_block_definition<s_planar_fog_definition> nicename("Planar Fog") planar_fog_block;
-//	s_tag_block_definition<s_unknown_mopp_codes_definition> nicename("Unknown MOPP Codes") unknown_mopp_codes_block;
+//	s_tag_block_legacy<s_design_mopp_codes_definition> nicename("Design MOPP Codes") design_mopp_codes_block;
+//	s_tag_block_legacy<s_design_shapes_2_definition> nicename("Design Shapes 2") design_shapes_2_block;
+//	s_tag_block_legacy<s_water_mopp_codes_definition> nicename("Water MOPP Codes") water_mopp_codes_block;
+//	s_tag_block_legacy<s_water_names_definition> nicename("Water Names") water_names_block;
+//	s_tag_block_legacy<s_underwater_definitions_definition> nicename("Underwater Definitions") underwater_definitions_block;
+//	s_tag_block_legacy<s_planar_fog_definition> nicename("Planar Fog") planar_fog_block;
+//	s_tag_block_legacy<s_unknown_mopp_codes_definition> nicename("Unknown MOPP Codes") unknown_mopp_codes_block;
 //	int32_t __unknown13;
-//	s_tag_block_definition<s_meshes_definition> nicename("Meshes") meshes_block;
-//	s_tag_block_definition<s_compression_info_definition> nicename("Compression Info") compression_info_block;
-//	s_tag_block_definition<s_unknown_nodey_definition> nicename("Unknown Nodey") unknown_nodey_block;
-//	s_tag_block_definition<s_unknown_8_definition> nicename("Unknown 8") unknown_8_block;
-//	Undefined32 __unknown14;
-//	Undefined32 __unknown15;
-//	Undefined32 __unknown16;
-//	Undefined32 __unknown17;
-//	Undefined32 __unknown18;
-//	Undefined32 __unknown19;
-//	s_tag_block_definition<s_node_maps_definition> nicename("Node Maps") node_maps_block;
-//	Undefined32 __unknown20;
-//	Undefined32 __unknown21;
-//	Undefined32 __unknown22;
-//	Undefined32 __unknown23;
-//	Undefined32 __unknown24;
-//	Undefined32 __unknown25;
-//	Undefined32 __unknown26;
-//	Undefined32 __unknown27;
-//	Undefined32 __unknown28;
-//	s_tag_block_definition<s_unknown_yo_definition> nicename("Unknown Yo") unknown_yo_block;
-//	s_tag_block_definition<s_water_meshes_definition> nicename("Water Meshes") water_meshes_block;
+//	s_tag_block_legacy<s_meshes_definition> nicename("Meshes") meshes_block;
+//	s_tag_block_legacy<s_compression_info_definition> nicename("Compression Info") compression_info_block;
+//	s_tag_block_legacy<s_unknown_nodey_definition> nicename("Unknown Nodey") unknown_nodey_block;
+//	s_tag_block_legacy<s_unknown_8_definition> nicename("Unknown 8") unknown_8_block;
+//	s_undefined32_legacy __unknown14;
+//	s_undefined32_legacy __unknown15;
+//	s_undefined32_legacy __unknown16;
+//	s_undefined32_legacy __unknown17;
+//	s_undefined32_legacy __unknown18;
+//	s_undefined32_legacy __unknown19;
+//	s_tag_block_legacy<s_node_maps_definition> nicename("Node Maps") node_maps_block;
+//	s_undefined32_legacy __unknown20;
+//	s_undefined32_legacy __unknown21;
+//	s_undefined32_legacy __unknown22;
+//	s_undefined32_legacy __unknown23;
+//	s_undefined32_legacy __unknown24;
+//	s_undefined32_legacy __unknown25;
+//	s_undefined32_legacy __unknown26;
+//	s_undefined32_legacy __unknown27;
+//	s_undefined32_legacy __unknown28;
+//	s_tag_block_legacy<s_unknown_yo_definition> nicename("Unknown Yo") unknown_yo_block;
+//	s_tag_block_legacy<s_water_meshes_definition> nicename("Water Meshes") water_meshes_block;
 //	int32_t nicename("[zone] Asset Datum") zone_asset_datum;
 //	uint16_t nicename("[easy read] Index") easy_read_index;
 //	uint16_t nicename("[easy read] Salt") easy_read_salt;
 //	int32_t nicename("Useless Padding") useless_padding;
-//	s_tag_block_definition<s_unknown_compression_info_definition> nicename("Unknown Compression Info") unknown_compression_info_block;
-//	s_tag_block_definition<s_unknown_7_definition> nicename("Unknown 7") unknown_7_block;
-//	s_tag_block_definition<s_instanced_geometry_instances_definition> nicename("Instanced Geometry Instances") instanced_geometry_instances_block;
-//	s_tag_block_definition<s_materials_definition> nicename("Materials") materials_block;
-//	Undefined32 __unknown29;
-//	Undefined32 __unknown30;
-//	Undefined32 __unknown31;
+//	s_tag_block_legacy<s_unknown_compression_info_definition> nicename("Unknown Compression Info") unknown_compression_info_block;
+//	s_tag_block_legacy<s_unknown_7_definition> nicename("Unknown 7") unknown_7_block;
+//	s_tag_block_legacy<s_instanced_geometry_instances_definition> nicename("Instanced Geometry Instances") instanced_geometry_instances_block;
+//	s_tag_block_legacy<s_materials_definition> nicename("Materials") materials_block;
+//	s_undefined32_legacy __unknown29;
+//	s_undefined32_legacy __unknown30;
+//	s_undefined32_legacy __unknown31;
 //};
 //

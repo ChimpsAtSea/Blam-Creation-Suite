@@ -72,25 +72,25 @@ struct nicename("chud_widget_animation_data_template") tag_group('wadt') s_chud_
 		b_animation_1_flags nicename("Animation 1 Flags") animation_1_flags;
 		e_animation_1_function nicename("Animation 1 Function") animation_1_function;
 		int16_t __unknown0;
-		TagReference nicename("Animation 1") animation_1_reference;
+		s_tag_reference_legacy nicename("Animation 1") animation_1_reference;
 		b_animation_2_flags nicename("Animation 2 Flags") animation_2_flags;
 		e_animation_2_function nicename("Animation 2 Function") animation_2_function;
 		int16_t __unknown1;
-		TagReference nicename("Animation 2") animation_2_reference;
+		s_tag_reference_legacy nicename("Animation 2") animation_2_reference;
 		b_animation_3_flags nicename("Animation 3 Flags") animation_3_flags;
 		e_animation_3_function nicename("Animation 3 Function") animation_3_function;
 		int16_t __unknown2;
-		TagReference nicename("Animation 3") animation_3_reference;
+		s_tag_reference_legacy nicename("Animation 3") animation_3_reference;
 		b_animation_4_flags nicename("Animation 4 Flags") animation_4_flags;
 		e_animation_4_function nicename("Animation 4 Function") animation_4_function;
 		int16_t __unknown3;
-		TagReference nicename("Animation 4") animation_4_reference;
+		s_tag_reference_legacy nicename("Animation 4") animation_4_reference;
 		b_animation_5_flags nicename("Animation 5 Flags") animation_5_flags;
 		e_animation_5_function nicename("Animation 5 Function") animation_5_function;
 		int16_t __unknown4;
-		TagReference nicename("Animation 5") animation_5_reference;
+		s_tag_reference_legacy nicename("Animation 5") animation_5_reference;
 	};
 
-	s_tag_block_definition<s_animation_data_definition> nicename("Animation Data") animation_data_block;
+	s_tag_block_legacy<s_animation_data_definition> nicename("Animation Data") animation_data_block;
 };
 

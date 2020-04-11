@@ -9,17 +9,17 @@ struct nicename("antenna") tag_group('ant!') s_antenna_definition
 		float nicename("Length") length;
 		int16_t nicename("Sequence Index") sequence_index;
 		int16_t __unknown0;
-		colorf nicename("Color") color;
-		colorf nicename("LOD Color") lod_color;
-		Undefined32 nicename("Width") width;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
+		s_colorf_legacy nicename("Color") color;
+		s_colorf_legacy nicename("LOD Color") lod_color;
+		s_undefined32_legacy nicename("Width") width;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
 	};
 
 	string_id nicename("Attachment Marker Name") attachment_marker_name;
-	TagReference nicename("Bitmaps") bitmaps_reference;
-	TagReference nicename("Physics") physics_reference;
+	s_tag_reference_legacy nicename("Bitmaps") bitmaps_reference;
+	s_tag_reference_legacy nicename("Physics") physics_reference;
 	float __unknown0;
 	float __unknown1;
 	float __unknown2;
@@ -28,6 +28,6 @@ struct nicename("antenna") tag_group('ant!') s_antenna_definition
 	float __unknown5;
 	float __unknown6;
 	float __unknown7;
-	s_tag_block_definition<s_vertices_definition> nicename("Vertices") vertices_block;
+	s_tag_block_legacy<s_vertices_definition> nicename("Vertices") vertices_block;
 };
 

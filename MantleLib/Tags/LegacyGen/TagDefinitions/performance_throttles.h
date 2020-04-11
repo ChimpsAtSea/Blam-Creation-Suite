@@ -62,6 +62,6 @@ struct nicename("performance_throttles") tag_group('perf') s_performance_throttl
 	};
 
 	int32_t __unknown0;
-	s_tag_block_definition<s_performance_definition> nicename("Performance") performance_block;
+	s_tag_block_legacy<s_performance_definition> nicename("Performance") performance_block;
 };
 

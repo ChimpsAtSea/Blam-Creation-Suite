@@ -40,7 +40,7 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 
 	struct nicename("Materials") s_materials_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 	};
 
 	struct nicename("Regions") s_regions_definition
@@ -60,38 +60,38 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 
 				struct nicename("Unknown") s_unknown_definition
 				{
-					Undefined32 __unknown0;
-					Undefined32 __unknown1;
-					Undefined32 __unknown2;
-					Undefined32 __unknown3;
-					Undefined32 __unknown4;
-					Undefined32 __unknown5;
-					Undefined32 __unknown6;
-					Undefined32 __unknown7;
-					Undefined32 __unknown8;
-					Undefined32 __unknown9;
-					Undefined32 __unknown10;
-					Undefined32 __unknown11;
-					Undefined32 __unknown12;
-					Undefined32 __unknown13;
-					Undefined32 __unknown14;
-					Undefined32 __unknown15;
-					Undefined32 __unknown16;
-					Undefined32 __unknown17;
-					Undefined32 __unknown18;
-					Undefined32 __unknown19;
-					Undefined32 __unknown20;
-					Undefined32 __unknown21;
-					Undefined32 __unknown22;
-					Undefined32 __unknown23;
-					Undefined32 __unknown24;
-					Undefined32 __unknown25;
-					Undefined32 __unknown26;
-					Undefined32 __unknown27;
-					Undefined32 __unknown28;
-					Undefined32 __unknown29;
-					Undefined32 __unknown30;
-					Undefined32 __unknown31;
+					s_undefined32_legacy __unknown0;
+					s_undefined32_legacy __unknown1;
+					s_undefined32_legacy __unknown2;
+					s_undefined32_legacy __unknown3;
+					s_undefined32_legacy __unknown4;
+					s_undefined32_legacy __unknown5;
+					s_undefined32_legacy __unknown6;
+					s_undefined32_legacy __unknown7;
+					s_undefined32_legacy __unknown8;
+					s_undefined32_legacy __unknown9;
+					s_undefined32_legacy __unknown10;
+					s_undefined32_legacy __unknown11;
+					s_undefined32_legacy __unknown12;
+					s_undefined32_legacy __unknown13;
+					s_undefined32_legacy __unknown14;
+					s_undefined32_legacy __unknown15;
+					s_undefined32_legacy __unknown16;
+					s_undefined32_legacy __unknown17;
+					s_undefined32_legacy __unknown18;
+					s_undefined32_legacy __unknown19;
+					s_undefined32_legacy __unknown20;
+					s_undefined32_legacy __unknown21;
+					s_undefined32_legacy __unknown22;
+					s_undefined32_legacy __unknown23;
+					s_undefined32_legacy __unknown24;
+					s_undefined32_legacy __unknown25;
+					s_undefined32_legacy __unknown26;
+					s_undefined32_legacy __unknown27;
+					s_undefined32_legacy __unknown28;
+					s_undefined32_legacy __unknown29;
+					s_undefined32_legacy __unknown30;
+					s_undefined32_legacy __unknown31;
 				};
 
 				struct nicename("Planes") s_planes_definition
@@ -147,94 +147,94 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 
 				struct nicename("Vertices") s_vertices_definition
 				{
-					Undefined32 nicename("Point x") point_x;
-					Undefined32 nicename("Point y") point_y;
-					Undefined32 nicename("Point z") point_z;
+					s_undefined32_legacy nicename("Point x") point_x;
+					s_undefined32_legacy nicename("Point y") point_y;
+					s_undefined32_legacy nicename("Point z") point_z;
 					int16_t nicename("First Edge") first_edge;
 					int16_t __unknown0;
 				};
 
 				int16_t nicename("Node Index") node_index;
 				int16_t __unknown0;
-				s_tag_block_definition<s_bsp_3d_nodes_definition> nicename("BSP 3D Nodes") bsp_3d_nodes_block;
-				s_tag_block_definition<s_unknown_definition> __unknown1;
-				s_tag_block_definition<s_planes_definition> nicename("Planes") planes_block;
-				s_tag_block_definition<s_leaves_definition> nicename("Leaves") leaves_block;
-				s_tag_block_definition<s_bsp_2d_references_definition> nicename("BSP 2D References") bsp_2d_references_block;
-				s_tag_block_definition<s_bsp_2d_nodes_definition> nicename("BSP 2D Nodes") bsp_2d_nodes_block;
-				s_tag_block_definition<s_surfaces_definition> nicename("Surfaces") surfaces_block;
-				s_tag_block_definition<s_edges_definition> nicename("Edges") edges_block;
-				s_tag_block_definition<s_vertices_definition> nicename("Vertices") vertices_block;
+				s_tag_block_legacy<s_bsp_3d_nodes_definition> nicename("BSP 3D Nodes") bsp_3d_nodes_block;
+				s_tag_block_legacy<s_unknown_definition> __unknown1;
+				s_tag_block_legacy<s_planes_definition> nicename("Planes") planes_block;
+				s_tag_block_legacy<s_leaves_definition> nicename("Leaves") leaves_block;
+				s_tag_block_legacy<s_bsp_2d_references_definition> nicename("BSP 2D References") bsp_2d_references_block;
+				s_tag_block_legacy<s_bsp_2d_nodes_definition> nicename("BSP 2D Nodes") bsp_2d_nodes_block;
+				s_tag_block_legacy<s_surfaces_definition> nicename("Surfaces") surfaces_block;
+				s_tag_block_legacy<s_edges_definition> nicename("Edges") edges_block;
+				s_tag_block_legacy<s_vertices_definition> nicename("Vertices") vertices_block;
 			};
 
 			struct nicename("BSP Physics") s_bsp_physics_definition
 			{
 				int32_t __unknown0;
-				Undefined32 __unknown1;
+				s_undefined32_legacy __unknown1;
 				int16_t nicename("Size") size;
 				int16_t nicename("Count") count;
 				int32_t nicename("Offset") offset;
-				Undefined32 __unknown2;
-				Undefined32 __unknown3;
-				Undefined32 __unknown4;
-				Undefined32 __unknown5;
-				Undefined32 __unknown6;
-				Undefined32 __unknown7;
-				Undefined32 __unknown8;
-				Undefined32 __unknown9;
-				Undefined32 __unknown10;
-				Undefined32 __unknown11;
-				Undefined32 __unknown12;
-				Undefined32 __unknown13;
-				Undefined32 __unknown14;
-				Undefined32 __unknown15;
-				Undefined32 __unknown16;
-				Undefined32 __unknown17;
-				TagReference nicename("Model") model_reference;
-				Undefined32 __unknown18;
-				Undefined32 __unknown19;
-				Undefined32 __unknown20;
-				Undefined32 __unknown21;
-				Undefined32 __unknown22;
-				Undefined32 __unknown23;
-				Undefined32 __unknown24;
-				Undefined32 __unknown25;
-				Undefined32 __unknown26;
-				Undefined32 __unknown27;
-				Undefined32 __unknown28;
+				s_undefined32_legacy __unknown2;
+				s_undefined32_legacy __unknown3;
+				s_undefined32_legacy __unknown4;
+				s_undefined32_legacy __unknown5;
+				s_undefined32_legacy __unknown6;
+				s_undefined32_legacy __unknown7;
+				s_undefined32_legacy __unknown8;
+				s_undefined32_legacy __unknown9;
+				s_undefined32_legacy __unknown10;
+				s_undefined32_legacy __unknown11;
+				s_undefined32_legacy __unknown12;
+				s_undefined32_legacy __unknown13;
+				s_undefined32_legacy __unknown14;
+				s_undefined32_legacy __unknown15;
+				s_undefined32_legacy __unknown16;
+				s_undefined32_legacy __unknown17;
+				s_tag_reference_legacy nicename("Model") model_reference;
+				s_undefined32_legacy __unknown18;
+				s_undefined32_legacy __unknown19;
+				s_undefined32_legacy __unknown20;
+				s_undefined32_legacy __unknown21;
+				s_undefined32_legacy __unknown22;
+				s_undefined32_legacy __unknown23;
+				s_undefined32_legacy __unknown24;
+				s_undefined32_legacy __unknown25;
+				s_undefined32_legacy __unknown26;
+				s_undefined32_legacy __unknown27;
+				s_undefined32_legacy __unknown28;
 				int32_t __unknown29;
-				Undefined32 __unknown30;
+				s_undefined32_legacy __unknown30;
 				int16_t nicename("Size") size1;
 				int16_t nicename("Count") count1;
 				int32_t nicename("Offset") offset1;
-				Undefined32 __unknown31;
-				Undefined32 __unknown32;
-				Undefined32 __unknown33;
-				Undefined32 __unknown34;
-				Undefined32 __unknown35;
-				Undefined32 __unknown36;
-				Undefined32 __unknown37;
-				Undefined32 __unknown38;
-				Undefined32 __unknown39;
-				Undefined32 __unknown40;
+				s_undefined32_legacy __unknown31;
+				s_undefined32_legacy __unknown32;
+				s_undefined32_legacy __unknown33;
+				s_undefined32_legacy __unknown34;
+				s_undefined32_legacy __unknown35;
+				s_undefined32_legacy __unknown36;
+				s_undefined32_legacy __unknown37;
+				s_undefined32_legacy __unknown38;
+				s_undefined32_legacy __unknown39;
+				s_undefined32_legacy __unknown40;
 				int32_t nicename("MOPP Data Count") mopp_data_count;
-				Undefined32 __unknown41;
+				s_undefined32_legacy __unknown41;
 				float nicename("MOPP Offset x") mopp_offset_x;
 				float nicename("MOPP Offset y") mopp_offset_y;
 				float nicename("MOPP Offset z") mopp_offset_z;
 				float nicename("MOPP Offset Scale") mopp_offset_scale;
-				Undefined32 __unknown42;
-				Undefined32 __unknown43;
-				Undefined32 __unknown44;
-				Undefined32 __unknown45;
-				Undefined32 __unknown46;
-				Undefined32 __unknown47;
-				Undefined32 __unknown48;
-				Undefined32 __unknown49;
-				Undefined32 __unknown50;
-				Undefined32 __unknown51;
-				Undefined32 __unknown52;
-				Undefined32 __unknown53;
+				s_undefined32_legacy __unknown42;
+				s_undefined32_legacy __unknown43;
+				s_undefined32_legacy __unknown44;
+				s_undefined32_legacy __unknown45;
+				s_undefined32_legacy __unknown46;
+				s_undefined32_legacy __unknown47;
+				s_undefined32_legacy __unknown48;
+				s_undefined32_legacy __unknown49;
+				s_undefined32_legacy __unknown50;
+				s_undefined32_legacy __unknown51;
+				s_undefined32_legacy __unknown52;
+				s_undefined32_legacy __unknown53;
 			};
 
 			struct nicename("BSP MOPP Codes") s_bsp_mopp_codes_definition
@@ -245,38 +245,38 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 				};
 
 				int32_t __unknown0;
-				Undefined32 __unknown1;
+				s_undefined32_legacy __unknown1;
 				int16_t nicename("Size") size;
 				int16_t nicename("Count") count;
 				int32_t nicename("Offset") offset;
-				Undefined32 __unknown2;
-				Undefined32 __unknown3;
-				Undefined32 __unknown4;
-				Undefined32 __unknown5;
+				s_undefined32_legacy __unknown2;
+				s_undefined32_legacy __unknown3;
+				s_undefined32_legacy __unknown4;
+				s_undefined32_legacy __unknown5;
 				float nicename("Offset x") offset_x;
 				float nicename("Offset y") offset_y;
 				float nicename("Offset z") offset_z;
 				float nicename("Offset Scale") offset_scale;
-				Undefined32 __unknown6;
-				Undefined32 __unknown7;
+				s_undefined32_legacy __unknown6;
+				s_undefined32_legacy __unknown7;
 				int32_t nicename("Data Size") data_size;
 				uint32_t nicename("Data Capacity") data_capacity;
-				Undefined32 __unknown8;
-				Undefined32 __unknown9;
-				Undefined32 __unknown10;
-				Undefined32 __unknown11;
-				s_tag_block_definition<s_data_definition> nicename("Data") data_block;
-				Undefined32 __unknown12;
+				s_undefined32_legacy __unknown8;
+				s_undefined32_legacy __unknown9;
+				s_undefined32_legacy __unknown10;
+				s_undefined32_legacy __unknown11;
+				s_tag_block_legacy<s_data_definition> nicename("Data") data_block;
+				s_undefined32_legacy __unknown12;
 			};
 
-			DEPRECATED_string_id nicename("Name") name;
-			s_tag_block_definition<s_bsps_definition> nicename("BSPs") bsps_block;
-			s_tag_block_definition<s_bsp_physics_definition> nicename("BSP Physics") bsp_physics_block;
-			s_tag_block_definition<s_bsp_mopp_codes_definition> nicename("BSP MOPP Codes") bsp_mopp_codes_block;
+			string_id_legacy nicename("Name") name;
+			s_tag_block_legacy<s_bsps_definition> nicename("BSPs") bsps_block;
+			s_tag_block_legacy<s_bsp_physics_definition> nicename("BSP Physics") bsp_physics_block;
+			s_tag_block_legacy<s_bsp_mopp_codes_definition> nicename("BSP MOPP Codes") bsp_mopp_codes_block;
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
-		s_tag_block_definition<s_permutations_definition> nicename("Permutations") permutations_block;
+		string_id_legacy nicename("Name") name;
+		s_tag_block_legacy<s_permutations_definition> nicename("Permutations") permutations_block;
 	};
 
 	struct nicename("Pathfinding Spheres") s_pathfinding_spheres_definition
@@ -311,7 +311,7 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 
 	struct nicename("Nodes") s_nodes_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int16_t __unknown0;
 		int16_t nicename("Parent Node") parent_node;
 		int16_t nicename("Next Sibling Node") next_sibling_node;
@@ -319,17 +319,17 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 	};
 
 	int32_t nicename("Collision Model Checksum") collision_model_checksum;
-	Undefined32 __unknown0;
-	Undefined32 __unknown1;
-	Undefined32 __unknown2;
+	s_undefined32_legacy __unknown0;
+	s_undefined32_legacy __unknown1;
+	s_undefined32_legacy __unknown2;
 	b_flags nicename("Flags") flags;
-	s_tag_block_definition<s_materials_definition> nicename("Materials") materials_block;
-	s_tag_block_definition<s_regions_definition> nicename("Regions") regions_block;
-	Undefined32 __unknown3;
-	Undefined32 __unknown4;
-	Undefined32 __unknown5;
-	s_tag_block_definition<s_pathfinding_spheres_definition> nicename("Pathfinding Spheres") pathfinding_spheres_block;
-	s_tag_block_definition<s_nodes_definition> nicename("Nodes") nodes_block;
-	Undefined32 __unknown6;
+	s_tag_block_legacy<s_materials_definition> nicename("Materials") materials_block;
+	s_tag_block_legacy<s_regions_definition> nicename("Regions") regions_block;
+	s_undefined32_legacy __unknown3;
+	s_undefined32_legacy __unknown4;
+	s_undefined32_legacy __unknown5;
+	s_tag_block_legacy<s_pathfinding_spheres_definition> nicename("Pathfinding Spheres") pathfinding_spheres_block;
+	s_tag_block_legacy<s_nodes_definition> nicename("Nodes") nodes_block;
+	s_undefined32_legacy __unknown6;
 };
 

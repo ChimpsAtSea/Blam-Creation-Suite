@@ -143,31 +143,31 @@ struct nicename("sound_looping") tag_group('lsnd') s_sound_looping_definition
 			/*nicename("Bit 15")*/ _flags1_bit_15 = 1ui16 << 15ui16,
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		b_flags1 nicename("Flags") flags;
 		e_output_effect nicename("Output Effect") output_effect;
 		float nicename("Gain") gain;
-		TagReference nicename("In") in_reference;
-		TagReference nicename("Loop") loop_reference;
-		TagReference nicename("Out") out_reference;
-		TagReference nicename("Alternate Loop") alternate_loop_reference;
-		TagReference nicename("Alternate Out") alternate_out_reference;
-		TagReference nicename("Alternate Transition In") alternate_transition_in_reference;
-		TagReference nicename("Alternate Transition Out") alternate_transition_out_reference;
+		s_tag_reference_legacy nicename("In") in_reference;
+		s_tag_reference_legacy nicename("Loop") loop_reference;
+		s_tag_reference_legacy nicename("Out") out_reference;
+		s_tag_reference_legacy nicename("Alternate Loop") alternate_loop_reference;
+		s_tag_reference_legacy nicename("Alternate Out") alternate_out_reference;
+		s_tag_reference_legacy nicename("Alternate Transition In") alternate_transition_in_reference;
+		s_tag_reference_legacy nicename("Alternate Transition Out") alternate_transition_out_reference;
 		float nicename("Fade In Duration") fade_in_duration;
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		float nicename("Fade Out Duration") fade_out_duration;
 		int16_t __unknown1;
 		int16_t __unknown2;
 		float nicename("Alt Crossfade Duration") alt_crossfade_duration;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown3;
 		float nicename("Alternate Fade Out Duration") alternate_fade_out_duration;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
 	};
 
 	struct nicename("Detail Sounds") s_detail_sounds_definition
@@ -208,15 +208,15 @@ struct nicename("sound_looping") tag_group('lsnd') s_sound_looping_definition
 			/*nicename("Bit 31")*/ _flags1_bit_31 = 1ui32 << 31ui32,
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
-		TagReference nicename("Sound") sound_reference;
-		Undefined32 __unknown0;
+		string_id_legacy nicename("Name") name;
+		s_tag_reference_legacy nicename("Sound") sound_reference;
+		s_undefined32_legacy __unknown0;
 		// Frequency Of Play : 
 		float nicename("Random Period Bounds min") random_period_bounds_min;
 		float nicename("Random Period Bounds max") random_period_bounds_max;
 		float __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
 		b_flags1 nicename("Flags") flags;
 		// Random Spatialization : 
 		float nicename("Yaw Bounds min") yaw_bounds_min;
@@ -235,8 +235,8 @@ struct nicename("sound_looping") tag_group('lsnd') s_sound_looping_definition
 	float __unknown4;
 	e_sound_class nicename("Sound Class") sound_class;
 	int16_t __unknown5;
-	Undefined32 __unknown6;
-	s_tag_block_definition<s_tracks_definition> nicename("Tracks") tracks_block;
-	s_tag_block_definition<s_detail_sounds_definition> nicename("Detail Sounds") detail_sounds_block;
+	s_undefined32_legacy __unknown6;
+	s_tag_block_legacy<s_tracks_definition> nicename("Tracks") tracks_block;
+	s_tag_block_legacy<s_detail_sounds_definition> nicename("Detail Sounds") detail_sounds_block;
 };
 

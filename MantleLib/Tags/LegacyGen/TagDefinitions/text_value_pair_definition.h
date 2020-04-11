@@ -1313,6 +1313,6 @@ struct nicename("text_value_pair_definition") tag_group('sily') s_text_value_pai
 	e_parameter nicename("Parameter") parameter;
 	string_id nicename("Name") name;
 	string_id nicename("Description") description;
-	s_tag_block_definition<s_text_value_pairs_definition> nicename("Text Value Pairs") text_value_pairs_block;
+	s_tag_block_legacy<s_text_value_pairs_definition> nicename("Text Value Pairs") text_value_pairs_block;
 };
 

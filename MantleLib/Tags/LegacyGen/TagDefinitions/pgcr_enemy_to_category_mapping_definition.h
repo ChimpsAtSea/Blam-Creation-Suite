@@ -104,12 +104,12 @@ struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s
 			int8_t __unknown1;
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int16_t nicename("Sprite Index") sprite_index;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;
-		s_tag_block_definition<s_multiplayer_actor_definition> nicename("Multiplayer Actor") multiplayer_actor_block;
-		s_tag_block_definition<s_campaign_actor_definition> nicename("Campaign Actor") campaign_actor_block;
+		s_tag_block_legacy<s_multiplayer_actor_definition> nicename("Multiplayer Actor") multiplayer_actor_block;
+		s_tag_block_legacy<s_campaign_actor_definition> nicename("Campaign Actor") campaign_actor_block;
 	};
 
 	struct nicename("Vehicles") s_vehicles_definition
@@ -214,15 +214,15 @@ struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s
 			int8_t __unknown1;
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int16_t nicename("Sprite Index") sprite_index;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;
-		s_tag_block_definition<s_multiplayer_actor1_definition> nicename("Multiplayer Actor") multiplayer_actor_block;
-		s_tag_block_definition<s_campaign_actor1_definition> nicename("Campaign Actor") campaign_actor_block;
+		s_tag_block_legacy<s_multiplayer_actor1_definition> nicename("Multiplayer Actor") multiplayer_actor_block;
+		s_tag_block_legacy<s_campaign_actor1_definition> nicename("Campaign Actor") campaign_actor_block;
 	};
 
-	s_tag_block_definition<s_actors_definition> nicename("Actors") actors_block;
-	s_tag_block_definition<s_vehicles_definition> nicename("Vehicles") vehicles_block;
+	s_tag_block_legacy<s_actors_definition> nicename("Actors") actors_block;
+	s_tag_block_legacy<s_vehicles_definition> nicename("Vehicles") vehicles_block;
 };
 

@@ -24,7 +24,7 @@ c_llvm_compiler_interface::~c_llvm_compiler_interface()
 	}
 }
 
-void c_llvm_compiler_interface::register_ast_source_generator(c_ast_source_generator* source_generator)
+void c_llvm_compiler_interface::register_ast_source_generator(c_legacy_ast_source_generator* source_generator)
 {
 	ast_source_generators.push_back(source_generator);
 }
@@ -70,7 +70,7 @@ int c_llvm_compiler_interface::run()
 int c_llvm_compiler_interface::execute_llvm_compiler()
 {
 	// llvm/clang things
-	llvm::cl::OptionCategory s_mantle_tool_category("mantle options");
+	llvm::cl::OptionCategory s_tool_category("mantle options");
 
 	FixedCompilationDatabase fixed_compilation_database = FixedCompilationDatabase(".", command_line);
 
@@ -83,7 +83,7 @@ int c_llvm_compiler_interface::execute_llvm_compiler()
 	return clang_tool_result;
 }
 
-void c_llvm_compiler_interface::execute_source_generator(c_ast_source_generator* source_generator)
+void c_llvm_compiler_interface::execute_source_generator(c_legacy_ast_source_generator* source_generator)
 {
 	source_generator->run(reflection_type_containers);
 	source_generator->write_output();

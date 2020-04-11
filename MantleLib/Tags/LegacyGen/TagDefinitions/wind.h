@@ -2,12 +2,12 @@
 
 struct nicename("wind") tag_group('wind') s_wind_definition
 {
-	DataReference nicename("Function") function_data_reference;
-	DataReference nicename("Function") function1_data_reference;
-	DataReference nicename("Function") function2_data_reference;
-	DataReference nicename("Function") function3_data_reference;
-	DataReference nicename("Function") function4_data_reference;
+	s_data_reference_legacy nicename("Function") function_data_reference;
+	s_data_reference_legacy nicename("Function") function1_data_reference;
+	s_data_reference_legacy nicename("Function") function2_data_reference;
+	s_data_reference_legacy nicename("Function") function3_data_reference;
+	s_data_reference_legacy nicename("Function") function4_data_reference;
 	float __unknown0;
-	TagReference nicename("Warp Bitmap") warp_bitmap_reference;
+	s_tag_reference_legacy nicename("Warp Bitmap") warp_bitmap_reference;
 };
 

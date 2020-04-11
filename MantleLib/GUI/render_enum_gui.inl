@@ -19,16 +19,16 @@ void render_enum_gui(void* field_data, const c_reflection_field& reflection_fiel
 	uint64_t current_value = 0;
 	switch (reflection_field.enum_info.m_primitiveTypeIndex)
 	{
-	case e_primitive_type::Enum8:
+	case _legacy_primitive_type_enum8:
 		current_value = *reinterpret_cast<uint8_t*>(field_data);
 		break;
-	case e_primitive_type::Enum16:
+	case _legacy_primitive_type_enum16:
 		current_value = *reinterpret_cast<uint16_t*>(field_data);
 		break;
-	case e_primitive_type::Enum32:
+	case _legacy_primitive_type_enum32:
 		current_value = *reinterpret_cast<uint32_t*>(field_data);
 		break;
-	case e_primitive_type::Enum64:
+	case _legacy_primitive_type_enum64:
 		current_value = *reinterpret_cast<uint64_t*>(field_data);
 		break;
 	DEBUG_ONLY(default: throw);
@@ -68,16 +68,16 @@ void render_enum_gui(void* field_data, const c_reflection_field& reflection_fiel
 			{
 				switch (reflection_field.enum_info.m_primitiveTypeIndex)
 				{
-				case e_primitive_type::Enum8:
+				case _legacy_primitive_type_enum8:
 					*reinterpret_cast<uint8_t*>(field_data) = static_cast<uint8_t>(enum_value.value);
 					break;
-				case e_primitive_type::Enum16:
+				case _legacy_primitive_type_enum16:
 					*reinterpret_cast<uint16_t*>(field_data) = static_cast<uint16_t>(enum_value.value);
 					break;
-				case e_primitive_type::Enum32:
+				case _legacy_primitive_type_enum32:
 					*reinterpret_cast<uint32_t*>(field_data) = static_cast<uint32_t>(enum_value.value);
 					break;
-				case e_primitive_type::Enum64:
+				case _legacy_primitive_type_enum64:
 					*reinterpret_cast<uint64_t*>(field_data) = static_cast<uint64_t>(enum_value.value);
 					break;
 				DEBUG_ONLY(default: throw);

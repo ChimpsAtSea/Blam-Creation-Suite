@@ -412,7 +412,7 @@ void c_assembly_structure_definition::write(std::stringstream& _stream, int leve
 		switch (field.data_type)
 		{
 		case _data_type_reflexive:
-			stream << "s_tag_block_definition<" << field.structure_definition->type_name << ">";
+			stream << "s_tag_block_legacy<" << field.structure_definition->type_name << ">";
 			break;
 		case _data_type_bitfield8:
 		case _data_type_bitfield16:

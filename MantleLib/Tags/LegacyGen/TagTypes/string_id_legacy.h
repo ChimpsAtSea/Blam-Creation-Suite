@@ -1,6 +1,6 @@
 #pragma once
 
-struct noreflection DEPRECATED_string_id
+struct noreflection string_id_legacy
 {
 	uint32_t index : 17;
 	uint32_t set : 8;

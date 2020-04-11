@@ -23,10 +23,10 @@ struct nicename("loadout_globals_definition") tag_group('lgtd') s_loadout_global
 			/*nicename("4x Each")*/ _grenade_count__4x_each = 15ui8,
 		};
 
-		DEPRECATED_string_id nicename("Loadout Name") loadout_name;
-		DEPRECATED_string_id nicename("Primary Weapon") primary_weapon;
-		DEPRECATED_string_id nicename("Secondary Weapon") secondary_weapon;
-		DEPRECATED_string_id nicename("Equipment") equipment;
+		string_id_legacy nicename("Loadout Name") loadout_name;
+		string_id_legacy nicename("Primary Weapon") primary_weapon;
+		string_id_legacy nicename("Secondary Weapon") secondary_weapon;
+		string_id_legacy nicename("Equipment") equipment;
 		e_grenade_count nicename("Grenade Count") grenade_count;
 		int8_t __unknown0;
 		int8_t __unknown1;
@@ -41,17 +41,17 @@ struct nicename("loadout_globals_definition") tag_group('lgtd') s_loadout_global
 			int16_t __unknown0;
 		};
 
-		DEPRECATED_string_id nicename("Set Name") set_name;
-		s_tag_block_definition<s_set_loadouts_definition> nicename("Set Loadouts") set_loadouts_block;
+		string_id_legacy nicename("Set Name") set_name;
+		s_tag_block_legacy<s_set_loadouts_definition> nicename("Set Loadouts") set_loadouts_block;
 	};
 
 	struct nicename("Custom Loadout Names List") s_custom_loadout_names_list_definition
 	{
-		DEPRECATED_string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 	};
 
-	s_tag_block_definition<s_default_loadouts_definition> nicename("Default Loadouts") default_loadouts_block;
-	s_tag_block_definition<s_loadout_sets_definition> nicename("Loadout Sets") loadout_sets_block;
-	s_tag_block_definition<s_custom_loadout_names_list_definition> nicename("Custom Loadout Names List") custom_loadout_names_list_block;
+	s_tag_block_legacy<s_default_loadouts_definition> nicename("Default Loadouts") default_loadouts_block;
+	s_tag_block_legacy<s_loadout_sets_definition> nicename("Loadout Sets") loadout_sets_block;
+	s_tag_block_legacy<s_custom_loadout_names_list_definition> nicename("Custom Loadout Names List") custom_loadout_names_list_block;
 };
 

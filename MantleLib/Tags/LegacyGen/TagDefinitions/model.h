@@ -921,17 +921,17 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 				int8_t __unknown0;
 				int8_t __unknown1;
 				float nicename("Probability") probability;
-				s_tag_block_definition<s_states_definition> nicename("States") states_block;
-				Undefined32 __unknown2;
-				Undefined32 __unknown3;
-				Undefined32 __unknown4;
+				s_tag_block_legacy<s_states_definition> nicename("States") states_block;
+				s_undefined32_legacy __unknown2;
+				s_undefined32_legacy __unknown3;
+				s_undefined32_legacy __unknown4;
 			};
 
 			string_id nicename("Name") name;
 			int8_t nicename("Model Region Index") model_region_index;
 			int8_t __unknown0;
 			int16_t nicename("Parent Variant Index") parent_variant_index;
-			s_tag_block_definition<s_permutation_definition> nicename("Permutation") permutation_block;
+			s_tag_block_legacy<s_permutation_definition> nicename("Permutation") permutation_block;
 			e_sort_order nicename("Sort Order") sort_order;
 		};
 
@@ -940,7 +940,7 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 			string_id nicename("Parent Marker") parent_marker;
 			string_id nicename("Child Marker") child_marker;
 			string_id nicename("Object Variant") object_variant;
-			TagReference nicename("Child Object") child_object_reference;
+			s_tag_reference_legacy nicename("Child Object") child_object_reference;
 			int16_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
@@ -963,11 +963,11 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 		int8_t nicename("Model Region 13 Index") model_region_13_index;
 		int8_t nicename("Model Region 14 Index") model_region_14_index;
 		int8_t nicename("Model Region 15 Index") model_region_15_index;
-		s_tag_block_definition<s_regions_definition> nicename("Regions") regions_block;
-		s_tag_block_definition<s_objects_definition> nicename("Objects") objects_block;
+		s_tag_block_legacy<s_regions_definition> nicename("Regions") regions_block;
+		s_tag_block_legacy<s_objects_definition> nicename("Objects") objects_block;
 		int32_t nicename("Instance Group Index") instance_group_index;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
 	};
 
 	struct nicename("Unknown") s_unknown_definition
@@ -979,9 +979,9 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 	{
 		string_id nicename("Name") name;
 		int32_t __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
 		float nicename("Probability") probability;
 	};
 
@@ -1344,9 +1344,9 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 				float nicename("Damage Threshold") damage_threshold;
 				int32_t __unknown0;
 				float __unknown1;
-				TagReference nicename("Primary Transition Effect") primary_transition_effect_reference;
-				TagReference nicename("Secondary Transition Effect") secondary_transition_effect_reference;
-				TagReference nicename("Transition Damage Effect") transition_damage_effect_reference;
+				s_tag_reference_legacy nicename("Primary Transition Effect") primary_transition_effect_reference;
+				s_tag_reference_legacy nicename("Secondary Transition Effect") secondary_transition_effect_reference;
+				s_tag_reference_legacy nicename("Transition Damage Effect") transition_damage_effect_reference;
 				string_id nicename("Region") region;
 				e_new_state nicename("New State") new_state;
 				int16_t nicename("Runtime Region Index") runtime_region_index;
@@ -1359,7 +1359,7 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 				string_id nicename("Effect Marker Name") effect_marker_name;
 				string_id nicename("Damage Effect Marker Name") damage_effect_marker_name;
 				float nicename("Response Delay") response_delay;
-				TagReference nicename("Delay Effect") delay_effect_reference;
+				s_tag_reference_legacy nicename("Delay Effect") delay_effect_reference;
 				string_id nicename("Delay Effect Marker Name") delay_effect_marker_name;
 				string_id nicename("Ejecting Seat Label") ejecting_seat_label;
 				float nicename("Skip Fraction") skip_fraction;
@@ -1370,13 +1370,13 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 			string_id nicename("Name") name;
 			b_flags nicename("Flags") flags;
 			float nicename("Vitality Percentage") vitality_percentage;
-			s_tag_block_definition<s_instant_responses_definition> nicename("Instant Responses") instant_responses_block;
-			Undefined32 __unknown0;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
-			Undefined32 __unknown5;
+			s_tag_block_legacy<s_instant_responses_definition> nicename("Instant Responses") instant_responses_block;
+			s_undefined32_legacy __unknown0;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
+			s_undefined32_legacy __unknown5;
 			float nicename("Stun Time") stun_time;
 			float nicename("Recharge Time") recharge_time;
 			float __unknown6;
@@ -1389,9 +1389,9 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
-			Undefined32 __unknown2;
-			Undefined32 __unknown3;
-			Undefined32 __unknown4;
+			s_undefined32_legacy __unknown2;
+			s_undefined32_legacy __unknown3;
+			s_undefined32_legacy __unknown4;
 		};
 
 		struct nicename("Damage Seats") s_damage_seats_definition
@@ -1401,15 +1401,15 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 				string_id nicename("Node") node;
 				int16_t __unknown0;
 				int16_t __unknown1;
-				Undefined32 __unknown2;
-				Undefined32 __unknown3;
-				Undefined32 __unknown4;
-				Undefined32 __unknown5;
-				Undefined32 __unknown6;
-				Undefined32 __unknown7;
-				Undefined32 __unknown8;
-				Undefined32 __unknown9;
-				Undefined32 __unknown10;
+				s_undefined32_legacy __unknown2;
+				s_undefined32_legacy __unknown3;
+				s_undefined32_legacy __unknown4;
+				s_undefined32_legacy __unknown5;
+				s_undefined32_legacy __unknown6;
+				s_undefined32_legacy __unknown7;
+				s_undefined32_legacy __unknown8;
+				s_undefined32_legacy __unknown9;
+				s_undefined32_legacy __unknown10;
 			};
 
 			string_id nicename("Seat Label") seat_label;
@@ -1417,7 +1417,7 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 			float nicename("Damage Transfer Fall-Off Radius") damage_transfer_fall_off_radius;
 			float nicename("Maximum Transfer Damage Scale") maximum_transfer_damage_scale;
 			float nicename("Minimum Transfer-Damage Scale") minimum_transfer_damage_scale;
-			s_tag_block_definition<s_unknown1_definition> __unknown0;
+			s_tag_block_legacy<s_unknown1_definition> __unknown0;
 		};
 
 		struct nicename("Damage Constraints") s_damage_constraints_definition
@@ -1444,56 +1444,56 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 		string_id nicename("Global Indirect Material") global_indirect_material;
 		int16_t nicename("Indirect Damage Section") indirect_damage_section;
 		int16_t __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown1;
 		e_collision_damage_reporting_type nicename("Collision Damage Reporting Type") collision_damage_reporting_type;
 		e_response_damage_reporting_type nicename("Response Damage Reporting Type") response_damage_reporting_type;
 		int16_t __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
 		float nicename("Maximum Vitality") maximum_vitality;
 		float nicename("Minimum Stun Damage") minimum_stun_damage;
 		float nicename("Stun Time") stun_time;
 		float nicename("Recharge Time") recharge_time;
 		float nicename("Recharge Fraction") recharge_fraction;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		Undefined32 __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
-		Undefined32 __unknown15;
-		Undefined32 __unknown16;
-		Undefined32 __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
-		Undefined32 __unknown22;
-		Undefined32 __unknown23;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_undefined32_legacy __unknown12;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
+		s_undefined32_legacy __unknown15;
+		s_undefined32_legacy __unknown16;
+		s_undefined32_legacy __unknown17;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
+		s_undefined32_legacy __unknown22;
+		s_undefined32_legacy __unknown23;
 		float nicename("Maximum Shield Vitality") maximum_shield_vitality;
 		string_id nicename("Global Shield Material Name") global_shield_material_name;
 		float nicename("Minimum Stun Damage") minimum_stun_damage1;
 		float nicename("Stun Time") stun_time1;
 		float nicename("Recharge Time") recharge_time1;
-		Undefined32 __unknown24;
-		Undefined32 __unknown25;
-		Undefined32 __unknown26;
-		TagReference nicename("Shield Damaged Effect") shield_damaged_effect_reference;
-		TagReference nicename("Shield Depletion Effect") shield_depletion_effect_reference;
-		TagReference nicename("Shield Recharge Effect") shield_recharge_effect_reference;
-		s_tag_block_definition<s_damage_sections_definition> nicename("Damage Sections") damage_sections_block;
-		s_tag_block_definition<s_nodes_definition> nicename("Nodes") nodes_block;
+		s_undefined32_legacy __unknown24;
+		s_undefined32_legacy __unknown25;
+		s_undefined32_legacy __unknown26;
+		s_tag_reference_legacy nicename("Shield Damaged Effect") shield_damaged_effect_reference;
+		s_tag_reference_legacy nicename("Shield Depletion Effect") shield_depletion_effect_reference;
+		s_tag_reference_legacy nicename("Shield Recharge Effect") shield_recharge_effect_reference;
+		s_tag_block_legacy<s_damage_sections_definition> nicename("Damage Sections") damage_sections_block;
+		s_tag_block_legacy<s_nodes_definition> nicename("Nodes") nodes_block;
 		int16_t nicename("Global Shield Material Index") global_shield_material_index;
 		int16_t nicename("Global Indirect Material Index") global_indirect_material_index;
 		float __unknown27;
-		Undefined32 __unknown28;
-		Undefined32 __unknown29;
-		s_tag_block_definition<s_damage_seats_definition> nicename("Damage Seats") damage_seats_block;
-		s_tag_block_definition<s_damage_constraints_definition> nicename("Damage Constraints") damage_constraints_block;
+		s_undefined32_legacy __unknown28;
+		s_undefined32_legacy __unknown29;
+		s_tag_block_legacy<s_damage_seats_definition> nicename("Damage Seats") damage_seats_block;
+		s_tag_block_legacy<s_damage_constraints_definition> nicename("Damage Constraints") damage_constraints_block;
 	};
 
 	struct nicename("Omaha Damage Sections") s_omaha_damage_sections_definition
@@ -1536,7 +1536,7 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 
 		struct nicename("Health Functions") s_health_functions_definition
 		{
-			DataReference nicename("Function") function_data_reference;
+			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
 		struct nicename("Health Levels") s_health_levels_definition
@@ -1632,22 +1632,22 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 			b_flags1 nicename("Flags") flags;
 			string_id nicename("Trigger") trigger;
 			float nicename("Damage Threshold") damage_threshold;
-			TagReference nicename("Primary Transition Effect") primary_transition_effect_reference;
+			s_tag_reference_legacy nicename("Primary Transition Effect") primary_transition_effect_reference;
 			string_id nicename("Primary Transition Effect Marker Name") primary_transition_effect_marker_name;
-			TagReference nicename("Secondary Transition Effect") secondary_transition_effect_reference;
+			s_tag_reference_legacy nicename("Secondary Transition Effect") secondary_transition_effect_reference;
 			string_id nicename("Secondary Transition Effect Marker Name") secondary_transition_effect_marker_name;
-			TagReference nicename("Transition Damage Effect") transition_damage_effect_reference;
+			s_tag_reference_legacy nicename("Transition Damage Effect") transition_damage_effect_reference;
 			string_id nicename("Transition Damage Effect Marker Name") transition_damage_effect_marker_name;
-			TagReference nicename("Constant Effect") constant_effect_reference;
-			s_tag_block_definition<s_region_state_changes_definition> nicename("Region State Changes") region_state_changes_block;
-			s_tag_block_definition<s_unknown2_definition> __unknown0;
+			s_tag_reference_legacy nicename("Constant Effect") constant_effect_reference;
+			s_tag_block_legacy<s_region_state_changes_definition> nicename("Region State Changes") region_state_changes_block;
+			s_tag_block_legacy<s_unknown2_definition> __unknown0;
 			int16_t __unknown1;
 			e_unknown_special_damage nicename("Unknown Special Damage") unknown_special_damage;
 			string_id nicename("Special Damage Case") special_damage_case;
 			float nicename("Response Delay") response_delay;
-			TagReference nicename("Delay Effect") delay_effect_reference;
+			s_tag_reference_legacy nicename("Delay Effect") delay_effect_reference;
 			string_id nicename("Delay Effect Marker Name") delay_effect_marker_name;
-			s_tag_block_definition<s_seat_ejaculation_definition> nicename("Seat Ejaculation") seat_ejaculation_block;
+			s_tag_block_legacy<s_seat_ejaculation_definition> nicename("Seat Ejaculation") seat_ejaculation_block;
 			float nicename("Skip Fraction") skip_fraction;
 			string_id nicename("Destroyed Child Object Marker Name") destroyed_child_object_marker_name;
 			float nicename("Total Damage Threshold") total_damage_threshold;
@@ -1676,8 +1676,8 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 
 		struct nicename("Shield Impact") s_shield_impact_definition
 		{
-			TagReference nicename("Third Person") third_person_reference;
-			TagReference nicename("First Person") first_person_reference;
+			s_tag_reference_legacy nicename("Third Person") third_person_reference;
+			s_tag_reference_legacy nicename("First Person") first_person_reference;
 		};
 
 		string_id nicename("Name") name;
@@ -1685,25 +1685,25 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 		float nicename("Vitality Percentage") vitality_percentage;
 		string_id nicename("Global Material") global_material;
 		float nicename("Health Recharge Delay") health_recharge_delay;
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		float __unknown1;
-		s_tag_block_definition<s_health_functions_definition> nicename("Health Functions") health_functions_block;
-		s_tag_block_definition<s_health_levels_definition> nicename("Health Levels") health_levels_block;
-		TagReference nicename("Recharge Effect") recharge_effect_reference;
+		s_tag_block_legacy<s_health_functions_definition> nicename("Health Functions") health_functions_block;
+		s_tag_block_legacy<s_health_levels_definition> nicename("Health Levels") health_levels_block;
+		s_tag_reference_legacy nicename("Recharge Effect") recharge_effect_reference;
 		float __unknown2;
-		TagReference nicename("Precharge Effect") precharge_effect_reference;
+		s_tag_reference_legacy nicename("Precharge Effect") precharge_effect_reference;
 		float __unknown3;
-		TagReference __unknown4;
+		s_tag_reference_legacy __unknown4;
 		float __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
 		float __unknown8;
 		float __unknown9;
-		Undefined32 __unknown10;
-		s_tag_block_definition<s_omaha_instant_responses_definition> nicename("Omaha Instant Responses") omaha_instant_responses_block;
-		s_tag_block_definition<s_unknown3_definition> __unknown11;
-		s_tag_block_definition<s_unknown4_definition> __unknown12;
-		s_tag_block_definition<s_shield_impact_definition> nicename("Shield Impact") shield_impact_block;
+		s_undefined32_legacy __unknown10;
+		s_tag_block_legacy<s_omaha_instant_responses_definition> nicename("Omaha Instant Responses") omaha_instant_responses_block;
+		s_tag_block_legacy<s_unknown3_definition> __unknown11;
+		s_tag_block_legacy<s_unknown4_definition> __unknown12;
+		s_tag_block_legacy<s_shield_impact_definition> nicename("Shield Impact") shield_impact_block;
 		float nicename("Recharge Time") recharge_time;
 		string_id nicename("Resurrection Region Name") resurrection_region_name;
 		int16_t nicename("Ressurection Region Runtime Index") ressurection_region_runtime_index;
@@ -1734,9 +1734,9 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
 	};
 
 	struct nicename("Targets") s_targets_definition
@@ -1783,7 +1783,7 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 		int16_t nicename("Damage Section") damage_section;
 		int16_t nicename("Variant") variant;
 		float nicename("Targeting Relevance") targeting_relevance;
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		b_flags1 nicename("Flags") flags;
 		float nicename("Lock-On Distance") lock_on_distance;
 		string_id nicename("Target Filter") target_filter;
@@ -1837,7 +1837,7 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 		int16_t nicename("Damage Section") damage_section;
 		int16_t nicename("Variant") variant;
 		float nicename("Targeting Relevance") targeting_relevance;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown4;
 		b_flags1 nicename("Flags") flags;
 		float nicename("Lock-On Distance") lock_on_distance;
 		string_id nicename("Target Filter") target_filter;
@@ -1871,7 +1871,7 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 		int8_t nicename("Physics Region Index") physics_region_index;
 		int8_t __unknown0;
 		int8_t __unknown1;
-		s_tag_block_definition<s_permutations_definition> nicename("Permutations") permutations_block;
+		s_tag_block_legacy<s_permutations_definition> nicename("Permutations") permutations_block;
 	};
 
 	struct nicename("Nodes") s_nodes1_definition
@@ -1918,17 +1918,17 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 	struct nicename("Unknown 14") s_unknown_14_definition
 	{
 		string_id nicename("Marker") marker;
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		string_id nicename("Marker") marker1;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
 	};
 
-	TagReference nicename("Model") model_reference;
-	TagReference nicename("Collision Model") collision_model_reference;
-	TagReference nicename("Animation") animation_reference;
-	TagReference nicename("Physics Model") physics_model_reference;
-	TagReference nicename("Imposter Model") imposter_model_reference;
+	s_tag_reference_legacy nicename("Model") model_reference;
+	s_tag_reference_legacy nicename("Collision Model") collision_model_reference;
+	s_tag_reference_legacy nicename("Animation") animation_reference;
+	s_tag_reference_legacy nicename("Physics Model") physics_model_reference;
+	s_tag_reference_legacy nicename("Imposter Model") imposter_model_reference;
 	int32_t nicename("Model Checksum") model_checksum;
 	int32_t nicename("Collision Model Checksum") collision_model_checksum;
 	float nicename("Reduce To L1 (super low)") reduce_to_l1_super_low;
@@ -1943,12 +1943,12 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 	float nicename("Decal Reduce To L3 (medium)") decal_reduce_to_l3_medium;
 	float nicename("Decal Reduce To L4 (high)") decal_reduce_to_l4_high;
 	float nicename("Decal Reduce To L5 (super high)") decal_reduce_to_l5_super_high;
-	s_tag_block_definition<s_variants_definition> nicename("Variants") variants_block;
-	s_tag_block_definition<s_unknown_definition> __unknown2;
-	s_tag_block_definition<s_instance_groups_definition> nicename("Instance Groups") instance_groups_block;
-	s_tag_block_definition<s_materials_definition> nicename("Materials") materials_block;
-	s_tag_block_definition<s_omaha_materials_definition> nicename("Omaha Materials") omaha_materials_block;
-	s_tag_block_definition<s_new_damage_info_definition> nicename("New Damage Info") new_damage_info_block;
+	s_tag_block_legacy<s_variants_definition> nicename("Variants") variants_block;
+	s_tag_block_legacy<s_unknown_definition> __unknown2;
+	s_tag_block_legacy<s_instance_groups_definition> nicename("Instance Groups") instance_groups_block;
+	s_tag_block_legacy<s_materials_definition> nicename("Materials") materials_block;
+	s_tag_block_legacy<s_omaha_materials_definition> nicename("Omaha Materials") omaha_materials_block;
+	s_tag_block_legacy<s_new_damage_info_definition> nicename("New Damage Info") new_damage_info_block;
 	// Omaha Damage Info : "New Damage Info" above is obsolete, all the good stuff is gonna be under here.
 	b_flags nicename("Flags") flags;
 	float nicename("Base Vitality") base_vitality;
@@ -1958,18 +1958,18 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 	e_collision_damage_reporting_type nicename("Collision Damage Reporting Type") collision_damage_reporting_type;
 	e_response_damage_reporting_type nicename("Response Damage Reporting Type") response_damage_reporting_type;
 	int16_t __unknown5;
-	s_tag_block_definition<s_omaha_damage_sections_definition> nicename("Omaha Damage Sections") omaha_damage_sections_block;
-	s_tag_block_definition<s_omaha_damage_constraints_definition> nicename("Omaha Damage Constraints") omaha_damage_constraints_block;
-	s_tag_block_definition<s_omaha_nodes_definition> nicename("Omaha Nodes") omaha_nodes_block;
+	s_tag_block_legacy<s_omaha_damage_sections_definition> nicename("Omaha Damage Sections") omaha_damage_sections_block;
+	s_tag_block_legacy<s_omaha_damage_constraints_definition> nicename("Omaha Damage Constraints") omaha_damage_constraints_block;
+	s_tag_block_legacy<s_omaha_nodes_definition> nicename("Omaha Nodes") omaha_nodes_block;
 	int16_t nicename("Base Global Materal Index") base_global_materal_index;
 	int16_t __unknown6;
-	s_tag_block_definition<s_targets_definition> nicename("Targets") targets_block;
-	s_tag_block_definition<s_omaha_targets_definition> nicename("Omaha Targets") omaha_targets_block;
-	s_tag_block_definition<s_collision_regions_definition> nicename("Collision Regions") collision_regions_block;
-	s_tag_block_definition<s_nodes1_definition> nicename("Nodes") nodes_block;
-	Undefined32 __unknown7;
-	TagReference nicename("Primary Dialogue") primary_dialogue_reference;
-	TagReference nicename("Secondary Dialogue") secondary_dialogue_reference;
+	s_tag_block_legacy<s_targets_definition> nicename("Targets") targets_block;
+	s_tag_block_legacy<s_omaha_targets_definition> nicename("Omaha Targets") omaha_targets_block;
+	s_tag_block_legacy<s_collision_regions_definition> nicename("Collision Regions") collision_regions_block;
+	s_tag_block_legacy<s_nodes1_definition> nicename("Nodes") nodes_block;
+	s_undefined32_legacy __unknown7;
+	s_tag_reference_legacy nicename("Primary Dialogue") primary_dialogue_reference;
+	s_tag_reference_legacy nicename("Secondary Dialogue") secondary_dialogue_reference;
 	b_flags1 nicename("Flags") flags1;
 	string_id nicename("Default Dialogue Effect") default_dialogue_effect;
 	b_render_only_node_flags_1 nicename("Render-Only Node Flags 1") render_only_node_flags_1;
@@ -1989,21 +1989,21 @@ struct nicename("model") tag_group('hlmt') s_model_definition
 	b_render_only_section_flags_7 nicename("Render-Only Section Flags 7") render_only_section_flags_7;
 	b_render_only_section_flags_8 nicename("Render-Only Section Flags 8") render_only_section_flags_8;
 	b_runtime_flags nicename("Runtime Flags") runtime_flags;
-	Undefined32 nicename("Scenario Load Parameters Block") scenario_load_parameters_block;
-	Undefined32 nicename("Scenario Load Parameters Block") scenario_load_parameters_block1;
-	Undefined32 nicename("Scenario Load Parameters Block") scenario_load_parameters_block2;
-	Undefined32 __unknown8;
+	s_undefined32_legacy nicename("Scenario Load Parameters Block") scenario_load_parameters_block;
+	s_undefined32_legacy nicename("Scenario Load Parameters Block") scenario_load_parameters_block1;
+	s_undefined32_legacy nicename("Scenario Load Parameters Block") scenario_load_parameters_block2;
+	s_undefined32_legacy __unknown8;
 	float __unknown9;
 	float __unknown10;
 	float __unknown11;
 	float __unknown12;
 	int16_t __unknown13;
 	int16_t __unknown14;
-	s_tag_block_definition<s_unknown_12_definition> nicename("Unknown 12") unknown_12_block;
-	s_tag_block_definition<s_unknown_13_definition> nicename("Unknown 13") unknown_13_block;
-	s_tag_block_definition<s_unknown_14_definition> nicename("Unknown 14") unknown_14_block;
-	TagReference nicename("Shield Impact Third Person") shield_impact_third_person_reference;
-	TagReference nicename("Shield Impact First Person") shield_impact_first_person_reference;
+	s_tag_block_legacy<s_unknown_12_definition> nicename("Unknown 12") unknown_12_block;
+	s_tag_block_legacy<s_unknown_13_definition> nicename("Unknown 13") unknown_13_block;
+	s_tag_block_legacy<s_unknown_14_definition> nicename("Unknown 14") unknown_14_block;
+	s_tag_reference_legacy nicename("Shield Impact Third Person") shield_impact_third_person_reference;
+	s_tag_reference_legacy nicename("Shield Impact First Person") shield_impact_first_person_reference;
 	// Model Object Data : 
 	float nicename("Radius") radius;
 	float nicename("Offset X") offset_x;

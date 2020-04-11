@@ -9,8 +9,8 @@ public:
 
 	std::string field_name;
 	std::string field_nice_name;
-	e_reflection_type_category reflection_type_category;
-	e_primitive_type primitive_type;
+	e_legacy_reflection_type_category legacy_reflection_type_category;
+	e_legacy_primitive_type primitive_type;
 	c_reflection_type_container* field_type;
 	uint64_t array_size;
 	uint64_t static_string_size;

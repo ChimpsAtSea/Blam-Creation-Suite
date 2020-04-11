@@ -117,12 +117,12 @@ struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition
 
 	struct nicename("Special Damages") s_special_damages_definition
 	{
-		DEPRECATED_string_id nicename("Special Damage") special_damage;
+		string_id_legacy nicename("Special Damage") special_damage;
 	};
 
 	struct nicename("Ricochets") s_ricochets_definition
 	{
-		TagReference nicename("Sound") sound_reference;
+		s_tag_reference_legacy nicename("Sound") sound_reference;
 		int16_t __unknown0;
 		int16_t __unknown1;
 	};
@@ -139,7 +139,7 @@ struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition
 	float nicename("Damage Lower Bound") damage_lower_bound;
 	float nicename("Damage Upper Bound min") damage_upper_bound_min;
 	float nicename("Damage Upper Bound max") damage_upper_bound_max;
-	DataReference __unknown0;
+	s_data_reference_legacy __unknown0;
 	float nicename("Damage Inner Cone Angle") damage_inner_cone_angle;
 	float nicename("Damage Outer Cone Angle") damage_outer_cone_angle;
 	float nicename("Active Camoflage Damage") active_camoflage_damage;
@@ -151,22 +151,22 @@ struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition
 	float nicename("Rider Direct Damage Scale") rider_direct_damage_scale;
 	float nicename("Rider Max Transfer Damage") rider_max_transfer_damage;
 	float nicename("Rider Min Transfer Damage") rider_min_transfer_damage;
-	Undefined32 __unknown2;
-	DEPRECATED_string_id nicename("General Damage") general_damage;
-	DEPRECATED_string_id nicename("Specific Damage") specific_damage;
-	s_tag_block_definition<s_special_damages_definition> nicename("Special Damages") special_damages_block;
+	s_undefined32_legacy __unknown2;
+	string_id_legacy nicename("General Damage") general_damage;
+	string_id_legacy nicename("Specific Damage") specific_damage;
+	s_tag_block_legacy<s_special_damages_definition> nicename("Special Damages") special_damages_block;
 	float nicename("AI Stun Radius") ai_stun_radius;
 	float nicename("AI Stun Bounds min") ai_stun_bounds_min;
 	float nicename("AI Stun Bounds max") ai_stun_bounds_max;
 	float nicename("Shake Radius") shake_radius;
 	float nicename("EMP Radius") emp_radius;
-	Undefined32 __unknown3;
-	Undefined32 __unknown4;
+	s_undefined32_legacy __unknown3;
+	s_undefined32_legacy __unknown4;
 	float __unknown5;
-	TagReference nicename("Damage Response") damage_response_reference;
+	s_tag_reference_legacy nicename("Damage Response") damage_response_reference;
 	// Sound : 
-	TagReference nicename("Sound") sound1_reference;
-	s_tag_block_definition<s_ricochets_definition> nicename("Ricochets") ricochets_block;
+	s_tag_reference_legacy nicename("Sound") sound1_reference;
+	s_tag_block_legacy<s_ricochets_definition> nicename("Ricochets") ricochets_block;
 	// Breaking Effect : 
 	float nicename("Forward Velocity") forward_velocity;
 	float nicename("Forward Radius") forward_radius;

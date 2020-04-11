@@ -6,7 +6,7 @@ class v_tag_interface_legacy;
 class c_virtual_tag_interface
 {
 public:
-	c_virtual_tag_interface(c_cache_file& cache_file, c_tag_interface& tag_interface, TagReference& tag_reference) :
+	c_virtual_tag_interface(c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_reference_legacy& tag_reference) :
 		cache_file(cache_file),
 		tag_interface(tag_interface),
 		tag_reference(tag_reference)
@@ -41,5 +41,5 @@ public:
 private:
 	c_cache_file& cache_file;
 	c_tag_interface& tag_interface;
-	TagReference& tag_reference;
+	s_tag_reference_legacy& tag_reference;
 };

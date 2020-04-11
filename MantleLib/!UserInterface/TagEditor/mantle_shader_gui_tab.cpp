@@ -69,7 +69,7 @@ void c_mantle_shader_gui_tab::render_tab_contents_gui()
 						// render_tagref_gui(&option.__unknown4, bitmap_name, cache_file);
 #undef auto
 
-						//c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_block_definition<t_value>& tag_block
+						//c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_block_legacy<t_value>& tag_block
 
 						c_virtual_tag_block<s_shader_definition::s_shader_properties_definition::s_shader_maps_definition> shader_map_block(cache_file, shader_tag_interface, shader_properties.shader_maps_block);
 

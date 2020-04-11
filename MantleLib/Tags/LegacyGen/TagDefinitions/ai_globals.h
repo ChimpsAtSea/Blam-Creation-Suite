@@ -13,21 +13,21 @@
 //
 //		struct nicename("Formations") s_formations_definition
 //		{
-//			TagReference nicename("Formation") formation_reference;
+//			s_tag_reference_legacy nicename("Formation") formation_reference;
 //		};
 //
 //		struct nicename("Squad Templates") s_squad_templates_definition
 //		{
 //			struct nicename("Templates") s_templates_definition
 //			{
-//				TagReference nicename("Template") template_reference;
+//				s_tag_reference_legacy nicename("Template") template_reference;
 //			};
 //
-//			DEPRECATED_string_id nicename("Name") name;
-//			Undefined32 __unknown0;
-//			Undefined32 __unknown1;
-//			Undefined32 __unknown2;
-//			s_tag_block_definition<s_templates_definition> nicename("Templates") templates_block;
+//			string_id_legacy nicename("Name") name;
+//			s_undefined32_legacy __unknown0;
+//			s_undefined32_legacy __unknown1;
+//			s_undefined32_legacy __unknown2;
+//			s_tag_block_legacy<s_templates_definition> nicename("Templates") templates_block;
 //		};
 //
 //		struct nicename("Performance Templates") s_performance_templates_definition
@@ -36,18 +36,18 @@
 //			{
 //				struct nicename("Templates") s_templates1_definition
 //				{
-//					TagReference nicename("Template") template_reference;
+//					s_tag_reference_legacy nicename("Template") template_reference;
 //				};
 //
-//				DEPRECATED_string_id nicename("Name") name;
-//				s_tag_block_definition<s_templates1_definition> nicename("Templates") templates_block;
+//				string_id_legacy nicename("Name") name;
+//				s_tag_block_legacy<s_templates1_definition> nicename("Templates") templates_block;
 //			};
 //
-//			DEPRECATED_string_id nicename("Name") name;
-//			s_tag_block_definition<s_characters_definition> nicename("Characters") characters_block;
-//			Undefined32 __unknown0;
-//			Undefined32 __unknown1;
-//			Undefined32 __unknown2;
+//			string_id_legacy nicename("Name") name;
+//			s_tag_block_legacy<s_characters_definition> nicename("Characters") characters_block;
+//			s_undefined32_legacy __unknown0;
+//			s_undefined32_legacy __unknown1;
+//			s_undefined32_legacy __unknown2;
 //		};
 //
 //		struct nicename("Unknown") s_unknown_definition
@@ -59,28 +59,28 @@
 //
 //			struct nicename("Unknown") s_unknown2_definition
 //			{
-//				DEPRECATED_string_id __unknown0;
+//				string_id_legacy __unknown0;
 //			};
 //
 //			struct nicename("Unknown") s_unknown3_definition
 //			{
-//				Undefined32 __unknown0;
-//				Undefined32 __unknown1;
-//				Undefined32 __unknown2;
-//				Undefined32 __unknown3;
-//				Undefined32 __unknown4;
-//				Undefined32 __unknown5;
-//				Undefined32 __unknown6;
-//				Undefined32 __unknown7;
-//				Undefined32 __unknown8;
-//				Undefined32 __unknown9;
-//				Undefined32 __unknown10;
+//				s_undefined32_legacy __unknown0;
+//				s_undefined32_legacy __unknown1;
+//				s_undefined32_legacy __unknown2;
+//				s_undefined32_legacy __unknown3;
+//				s_undefined32_legacy __unknown4;
+//				s_undefined32_legacy __unknown5;
+//				s_undefined32_legacy __unknown6;
+//				s_undefined32_legacy __unknown7;
+//				s_undefined32_legacy __unknown8;
+//				s_undefined32_legacy __unknown9;
+//				s_undefined32_legacy __unknown10;
 //			};
 //
-//			DEPRECATED_string_id __unknown0;
-//			s_tag_block_definition<s_unknown1_definition> __unknown1;
-//			s_tag_block_definition<s_unknown2_definition> __unknown2;
-//			s_tag_block_definition<s_unknown3_definition> __unknown3;
+//			string_id_legacy __unknown0;
+//			s_tag_block_legacy<s_unknown1_definition> __unknown1;
+//			s_tag_block_legacy<s_unknown2_definition> __unknown2;
+//			s_tag_block_legacy<s_unknown3_definition> __unknown3;
 //		};
 //
 //		struct nicename("Vision Trait Definitions") s_vision_trait_definitions_definition
@@ -131,8 +131,8 @@
 //		float nicename("Danger Extended Shield Damage") danger_extended_shield_damage;
 //		float nicename("Danger Body Damage") danger_body_damage;
 //		float nicename("Danger Extended Body Damage") danger_extended_body_damage;
-//		TagReference nicename("Global Dialogue") global_dialogue_reference;
-//		DEPRECATED_string_id nicename("Default Mission Dialogue Sound Effect") default_mission_dialogue_sound_effect;
+//		s_tag_reference_legacy nicename("Global Dialogue") global_dialogue_reference;
+//		string_id_legacy nicename("Default Mission Dialogue Sound Effect") default_mission_dialogue_sound_effect;
 //		float nicename("Jump Down") jump_down;
 //		float nicename("Jump Step") jump_step;
 //		float nicename("Jump Crouch") jump_crouch;
@@ -161,7 +161,7 @@
 //		float __unknown6;
 //		float __unknown7;
 //		float __unknown8;
-//		s_tag_block_definition<s_gravemind_properties_definition> nicename("Gravemind Properties") gravemind_properties_block;
+//		s_tag_block_legacy<s_gravemind_properties_definition> nicename("Gravemind Properties") gravemind_properties_block;
 //		float nicename("Scary Target Threshold") scary_target_threshold;
 //		float nicename("Scary Weapon Threshold") scary_weapon_threshold;
 //		float __unknown9;
@@ -174,46 +174,46 @@
 //		float __unknown16;
 //		float __unknown17;
 //		float __unknown18;
-//		s_tag_block_definition<s_formations_definition> nicename("Formations") formations_block;
-//		s_tag_block_definition<s_squad_templates_definition> nicename("Squad Templates") squad_templates_block;
-//		s_tag_block_definition<s_performance_templates_definition> nicename("Performance Templates") performance_templates_block;
-//		Undefined32 __unknown19;
-//		Undefined32 __unknown20;
-//		Undefined32 __unknown21;
-//		s_tag_block_definition<s_unknown_definition> __unknown22;
-//		Undefined32 __unknown23;
-//		Undefined32 __unknown24;
-//		Undefined32 __unknown25;
-//		Undefined32 __unknown26;
-//		Undefined32 __unknown27;
-//		Undefined32 __unknown28;
-//		Undefined32 __unknown29;
-//		Undefined32 __unknown30;
-//		Undefined32 __unknown31;
-//		Undefined32 __unknown32;
-//		Undefined32 __unknown33;
-//		Undefined32 __unknown34;
-//		Undefined32 __unknown35;
-//		Undefined32 __unknown36;
+//		s_tag_block_legacy<s_formations_definition> nicename("Formations") formations_block;
+//		s_tag_block_legacy<s_squad_templates_definition> nicename("Squad Templates") squad_templates_block;
+//		s_tag_block_legacy<s_performance_templates_definition> nicename("Performance Templates") performance_templates_block;
+//		s_undefined32_legacy __unknown19;
+//		s_undefined32_legacy __unknown20;
+//		s_undefined32_legacy __unknown21;
+//		s_tag_block_legacy<s_unknown_definition> __unknown22;
+//		s_undefined32_legacy __unknown23;
+//		s_undefined32_legacy __unknown24;
+//		s_undefined32_legacy __unknown25;
+//		s_undefined32_legacy __unknown26;
+//		s_undefined32_legacy __unknown27;
+//		s_undefined32_legacy __unknown28;
+//		s_undefined32_legacy __unknown29;
+//		s_undefined32_legacy __unknown30;
+//		s_undefined32_legacy __unknown31;
+//		s_undefined32_legacy __unknown32;
+//		s_undefined32_legacy __unknown33;
+//		s_undefined32_legacy __unknown34;
+//		s_undefined32_legacy __unknown35;
+//		s_undefined32_legacy __unknown36;
 //		int16_t __unknown37;
 //		int16_t __unknown38;
 //		int16_t __unknown39;
 //		int16_t __unknown40;
 //		int16_t __unknown41;
 //		int16_t __unknown42;
-//		s_tag_block_definition<s_vision_trait_definitions_definition> nicename("Vision Trait Definitions") vision_trait_definitions_block;
-//		s_tag_block_definition<s_hearing_trait_definitions_definition> nicename("Hearing Trait Definitions") hearing_trait_definitions_block;
-//		s_tag_block_definition<s_luck_trait_definitions_definition> nicename("Luck Trait Definitions") luck_trait_definitions_block;
-//		s_tag_block_definition<s_grenade_trait_definitions_definition> nicename("Grenade Trait Definitions") grenade_trait_definitions_block;
-//		Undefined32 __unknown43;
-//		Undefined32 __unknown44;
-//		Undefined32 __unknown45;
+//		s_tag_block_legacy<s_vision_trait_definitions_definition> nicename("Vision Trait Definitions") vision_trait_definitions_block;
+//		s_tag_block_legacy<s_hearing_trait_definitions_definition> nicename("Hearing Trait Definitions") hearing_trait_definitions_block;
+//		s_tag_block_legacy<s_luck_trait_definitions_definition> nicename("Luck Trait Definitions") luck_trait_definitions_block;
+//		s_tag_block_legacy<s_grenade_trait_definitions_definition> nicename("Grenade Trait Definitions") grenade_trait_definitions_block;
+//		s_undefined32_legacy __unknown43;
+//		s_undefined32_legacy __unknown44;
+//		s_undefined32_legacy __unknown45;
 //		int16_t __unknown46;
 //		int16_t __unknown47;
 //		int16_t __unknown48;
 //		int16_t __unknown49;
 //	};
 //
-//	s_tag_block_definition<s_ai_globals1_definition> nicename("AI Globals") ai_globals_block;
+//	s_tag_block_legacy<s_ai_globals1_definition> nicename("AI Globals") ai_globals_block;
 //};
 //

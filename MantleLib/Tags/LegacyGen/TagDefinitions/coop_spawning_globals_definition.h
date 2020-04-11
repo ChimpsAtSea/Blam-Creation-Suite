@@ -10,7 +10,7 @@ struct nicename("coop_spawning_globals_definition") tag_group('coop') s_coop_spa
 	int16_t __unknown5;
 	float __unknown6;
 	float __unknown7;
-	Undefined32 __unknown8;
+	s_undefined32_legacy __unknown8;
 	int32_t __unknown9;
 	int32_t __unknown10;
 	int32_t __unknown11;

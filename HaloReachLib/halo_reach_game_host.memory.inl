@@ -86,7 +86,7 @@ T& tag_definition_get(uint16_t index)
 }
 
 template<typename T>
-T& tag_block_definition_get(s_tag_block_definition<T>& rTagBlock, uint16_t index)
+T& tag_block_definition_get(s_tag_block_legacy<T>& rTagBlock, uint16_t index)
 {
 	T* pTagBlockDefinition = reinterpret_cast<T*>(tag_address_get(rTagBlock.address));
 

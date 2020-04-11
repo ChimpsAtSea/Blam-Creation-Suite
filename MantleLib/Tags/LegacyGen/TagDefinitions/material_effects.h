@@ -13,13 +13,13 @@ struct nicename("material_effects") tag_group('foot') s_material_effects_definit
 				/*nicename("Sweetener Disabled")*/ _sweetener_mode_sweetener_disabled = 3ui8,
 			};
 
-			TagReference nicename("Effect") effect_reference;
-			TagReference nicename("Sound") sound_reference;
+			s_tag_reference_legacy nicename("Effect") effect_reference;
+			s_tag_reference_legacy nicename("Sound") sound_reference;
 			string_id nicename("Material Name") material_name;
 			int16_t nicename("Global Material Index") global_material_index;
 			e_sweetener_mode nicename("Sweetener Mode") sweetener_mode;
 			int8_t __unknown0;
-			Undefined32 __unknown1;
+			s_undefined32_legacy __unknown1;
 		};
 
 		struct nicename("Sounds") s_sounds_definition
@@ -31,13 +31,13 @@ struct nicename("material_effects") tag_group('foot') s_material_effects_definit
 				/*nicename("Sweetener Disabled")*/ _sweetener_mode_sweetener_disabled = 3ui8,
 			};
 
-			TagReference nicename("Tag") tag_reference;
-			TagReference nicename("Secondary Tag") secondary_tag_reference;
+			s_tag_reference_legacy nicename("Tag") tag_reference;
+			s_tag_reference_legacy nicename("Secondary Tag") secondary_tag_reference;
 			string_id nicename("Material Name") material_name;
 			int16_t nicename("Global Material Index") global_material_index;
 			e_sweetener_mode nicename("Sweetener Mode") sweetener_mode;
 			int8_t __unknown0;
-			Undefined32 __unknown1;
+			s_undefined32_legacy __unknown1;
 		};
 
 		struct nicename("Effects") s_effects1_definition
@@ -49,20 +49,20 @@ struct nicename("material_effects") tag_group('foot') s_material_effects_definit
 				/*nicename("Sweetener Disabled")*/ _sweetener_mode_sweetener_disabled = 3ui8,
 			};
 
-			TagReference nicename("Tag") tag_reference;
-			TagReference nicename("Secondary Tag") secondary_tag_reference;
+			s_tag_reference_legacy nicename("Tag") tag_reference;
+			s_tag_reference_legacy nicename("Secondary Tag") secondary_tag_reference;
 			string_id nicename("Material Name") material_name;
 			int16_t nicename("Global Material Index") global_material_index;
 			e_sweetener_mode nicename("Sweetener Mode") sweetener_mode;
 			int8_t __unknown0;
-			Undefined32 __unknown1;
+			s_undefined32_legacy __unknown1;
 		};
 
-		s_tag_block_definition<s_old_materials_definition> nicename("Old Materials") old_materials_block;
-		s_tag_block_definition<s_sounds_definition> nicename("Sounds") sounds_block;
-		s_tag_block_definition<s_effects1_definition> nicename("Effects") effects_block;
+		s_tag_block_legacy<s_old_materials_definition> nicename("Old Materials") old_materials_block;
+		s_tag_block_legacy<s_sounds_definition> nicename("Sounds") sounds_block;
+		s_tag_block_legacy<s_effects1_definition> nicename("Effects") effects_block;
 	};
 
-	s_tag_block_definition<s_effects_definition> nicename("Effects") effects_block;
+	s_tag_block_legacy<s_effects_definition> nicename("Effects") effects_block;
 };
 

@@ -13,8 +13,8 @@ struct nicename("damage_response_definition") tag_group('drdf') s_damage_respons
 
 		struct nicename("Lowpass") s_lowpass_definition
 		{
-			DEPRECATED_string_id nicename("Name") name;
-			DataReference nicename("Lowpass Function") lowpass_function_data_reference;
+			string_id_legacy nicename("Name") name;
+			s_data_reference_legacy nicename("Lowpass Function") lowpass_function_data_reference;
 		};
 
 		e_response_type nicename("Response Type") response_type;
@@ -27,7 +27,7 @@ struct nicename("damage_response_definition") tag_group('drdf') s_damage_respons
 		float __unknown6;
 		float __unknown7;
 		float __unknown8;
-		Undefined32 __unknown9;
+		s_undefined32_legacy __unknown9;
 		float __unknown10;
 		float __unknown11;
 		float __unknown12;
@@ -36,26 +36,26 @@ struct nicename("damage_response_definition") tag_group('drdf') s_damage_respons
 		float __unknown15;
 		float __unknown16;
 		float __unknown17;
-		Undefined32 __unknown18;
-		TagReference nicename("Rumble") rumble_reference;
-		TagReference nicename("Camera Shake") camera_shake_reference;
-		TagReference nicename("Simulated Input") simulated_input_reference;
-		s_tag_block_definition<s_lowpass_definition> nicename("Lowpass") lowpass_block;
+		s_undefined32_legacy __unknown18;
+		s_tag_reference_legacy nicename("Rumble") rumble_reference;
+		s_tag_reference_legacy nicename("Camera Shake") camera_shake_reference;
+		s_tag_reference_legacy nicename("Simulated Input") simulated_input_reference;
+		s_tag_block_legacy<s_lowpass_definition> nicename("Lowpass") lowpass_block;
 	};
 
 	struct nicename("Unknown") s_unknown_definition
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
-		Undefined32 __unknown2;
-		DataReference __unknown3;
-		DataReference __unknown4;
-		DEPRECATED_string_id __unknown5;
-		Undefined32 __unknown6;
-		DataReference __unknown7;
+		s_undefined32_legacy __unknown2;
+		s_data_reference_legacy __unknown3;
+		s_data_reference_legacy __unknown4;
+		string_id_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_data_reference_legacy __unknown7;
 	};
 
-	s_tag_block_definition<s_responses_definition> nicename("Responses") responses_block;
-	s_tag_block_definition<s_unknown_definition> __unknown0;
+	s_tag_block_legacy<s_responses_definition> nicename("Responses") responses_block;
+	s_tag_block_legacy<s_unknown_definition> __unknown0;
 };
 

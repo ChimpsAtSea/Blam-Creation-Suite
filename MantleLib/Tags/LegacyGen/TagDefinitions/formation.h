@@ -18,10 +18,10 @@ struct nicename("formation") tag_group('form') s_formation_definition
 		float __unknown5;
 		float __unknown6;
 		float __unknown7;
-		s_tag_block_definition<s_unknown1_definition> __unknown8;
+		s_tag_block_legacy<s_unknown1_definition> __unknown8;
 	};
 
-	DEPRECATED_string_id nicename("Name") name;
-	s_tag_block_definition<s_unknown_definition> __unknown0;
+	string_id_legacy nicename("Name") name;
+	s_tag_block_legacy<s_unknown_definition> __unknown0;
 };
 

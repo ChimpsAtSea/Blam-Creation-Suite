@@ -24,7 +24,7 @@ struct nicename("wave_template") tag_group('wave') s_wave_template_definition
 			/*nicename("Bit 15")*/ _difficulty_bit_15 = 1ui16 << 15ui16,
 		};
 
-		TagReference nicename("Squad Template") squad_template_reference;
+		s_tag_reference_legacy nicename("Squad Template") squad_template_reference;
 		b_difficulty nicename("Difficulty") difficulty;
 		int16_t __unknown0;
 		int16_t nicename("Minimum Round") minimum_round;
@@ -38,6 +38,6 @@ struct nicename("wave_template") tag_group('wave') s_wave_template_definition
 		int32_t __unknown7;
 	};
 
-	s_tag_block_definition<s_wave_template1_definition> nicename("Wave Template") wave_template_block;
+	s_tag_block_legacy<s_wave_template1_definition> nicename("Wave Template") wave_template_block;
 };
 

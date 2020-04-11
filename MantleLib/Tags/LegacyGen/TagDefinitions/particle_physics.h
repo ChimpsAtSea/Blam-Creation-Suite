@@ -53,7 +53,7 @@ struct nicename("particle_physics") tag_group('pmov') s_particle_physics_definit
 			int32_t nicename("Parameter ID") parameter_id;
 			int16_t __unknown0;
 			int16_t __unknown1;
-			DataReference nicename("Function") function_data_reference;
+			s_data_reference_legacy nicename("Function") function_data_reference;
 			float __unknown2;
 			uint8_t __unknown3;
 			int8_t __unknown4;
@@ -64,15 +64,15 @@ struct nicename("particle_physics") tag_group('pmov') s_particle_physics_definit
 		e_type nicename("Type") type;
 		int8_t __unknown0;
 		int8_t __unknown1;
-		s_tag_block_definition<s_parameters_definition> nicename("Parameters") parameters_block;
+		s_tag_block_legacy<s_parameters_definition> nicename("Parameters") parameters_block;
 		int16_t __unknown2;
 		int16_t __unknown3;
 		int32_t __unknown4;
 	};
 
-	TagReference nicename("Template") template_reference;
+	s_tag_reference_legacy nicename("Template") template_reference;
 	b_flags nicename("Flags") flags;
-	s_tag_block_definition<s_movements_definition> nicename("Movements") movements_block;
-	TagReference __unknown0;
+	s_tag_block_legacy<s_movements_definition> nicename("Movements") movements_block;
+	s_tag_reference_legacy __unknown0;
 };
 

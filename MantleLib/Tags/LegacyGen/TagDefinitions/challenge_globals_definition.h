@@ -125,16 +125,16 @@ struct nicename("challenge_globals_definition") tag_group('chdg') s_challenge_gl
 				/*nicename("Bit 31")*/ _required_skulls_bit_31 = 1ui32 << 31ui32,
 			};
 
-			DEPRECATED_string_id nicename("Name") name;
-			DEPRECATED_string_id nicename("Description") description;
-			Undefined32 __unknown0;
-			DEPRECATED_string_id nicename("Secondary Description") secondary_description;
-			DEPRECATED_string_id nicename("Complete Message") complete_message;
+			string_id_legacy nicename("Name") name;
+			string_id_legacy nicename("Description") description;
+			s_undefined32_legacy __unknown0;
+			string_id_legacy nicename("Secondary Description") secondary_description;
+			string_id_legacy nicename("Complete Message") complete_message;
 			int32_t nicename("Number Required") number_required;
 			int32_t nicename("Credits Earned") credits_earned;
 			int32_t nicename("Progress Amount") progress_amount;
-			DEPRECATED_string_id nicename("In Progress Name") in_progress_name;
-			Undefined32 __unknown1;
+			string_id_legacy nicename("In Progress Name") in_progress_name;
+			s_undefined32_legacy __unknown1;
 			e_must_be_completed_in_one_match nicename("Must Be Completed in One Match") must_be_completed_in_one_match;
 			int8_t __unknown2;
 			int8_t __unknown3;
@@ -145,23 +145,23 @@ struct nicename("challenge_globals_definition") tag_group('chdg') s_challenge_gl
 			b_map_type_limitation nicename("Map Type Limitation") map_type_limitation;
 			b_difficulty_limitation nicename("Difficulty Limitation") difficulty_limitation;
 			b_campaign_difficulty_player_amount_limitation nicename("Campaign Difficulty/Player Amount Limitation") campaign_difficulty_player_amount_limitation;
-			DEPRECATED_string_id nicename("Map Limitation") map_limitation;
+			string_id_legacy nicename("Map Limitation") map_limitation;
 			int32_t nicename("Map ID Limitation") map_id_limitation;
 			b_required_skulls nicename("Required Skulls") required_skulls;
-			DEPRECATED_string_id nicename("Reward Text?") reward_text;
+			string_id_legacy nicename("Reward Text?") reward_text;
 			int32_t nicename("Deaths Allowed") deaths_allowed;
 			int32_t nicename("Time Limitation") time_limitation;
 			int32_t nicename("Number of Firefight Waves") number_of_firefight_waves;
 		};
 
-		DEPRECATED_string_id nicename("Type") type;
+		string_id_legacy nicename("Type") type;
 		e_type nicename("Type") type1;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
-		s_tag_block_definition<s_challenges_definition> nicename("Challenges") challenges_block;
+		s_tag_block_legacy<s_challenges_definition> nicename("Challenges") challenges_block;
 	};
 
-	s_tag_block_definition<s_challenge_definitions_definition> nicename("Challenge Definitions") challenge_definitions_block;
+	s_tag_block_legacy<s_challenge_definitions_definition> nicename("Challenge Definitions") challenge_definitions_block;
 };
 

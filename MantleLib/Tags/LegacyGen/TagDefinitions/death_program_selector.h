@@ -114,18 +114,18 @@ struct nicename("death_program_selector") tag_group('bdpd') s_death_program_sele
 				float nicename("Animated Length") animated_length;
 				e_program_type nicename("Program Type") program_type;
 				float nicename("Acceleration") acceleration;
-				DEPRECATED_string_id nicename("Name") name;
+				string_id_legacy nicename("Name") name;
 			};
 
 			e_damage_type nicename("Damage Type") damage_type;
-			s_tag_block_definition<s_cases_definition> nicename("Cases") cases_block;
+			s_tag_block_legacy<s_cases_definition> nicename("Cases") cases_block;
 		};
 
 		e_death_type nicename("Death Type") death_type;
-		s_tag_block_definition<s_damages_definition> nicename("Damages") damages_block;
+		s_tag_block_legacy<s_damages_definition> nicename("Damages") damages_block;
 	};
 
-	TagReference nicename("Parent") parent_reference;
-	s_tag_block_definition<s_death_programs_definition> nicename("Death Programs") death_programs_block;
+	s_tag_reference_legacy nicename("Parent") parent_reference;
+	s_tag_block_legacy<s_death_programs_definition> nicename("Death Programs") death_programs_block;
 };
 

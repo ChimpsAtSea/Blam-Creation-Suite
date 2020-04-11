@@ -60,11 +60,11 @@ int main(int argc, const char** argv)
 
 		c_legacy_compiler_interface legacy_compiler_interface = c_legacy_compiler_interface(argv[0], reflection_source_file.c_str());
 
-		c_mantle_runtime_reflection_generator runtime_reflection_generator = { reflection_output_header.c_str(), reflection_output_source.c_str() };
-		c_mantle_tag_groups_generator tag_groups_generator = { tag_groups_header.c_str() };
-		c_mantle_compile_time_conversion_generator compile_time_conversion_generator = { compile_time_conversion_header.c_str(), compile_time_conversion_source.c_str() };
-		c_mantle_compile_time_gui_generator compile_time_gui_generator = { compile_time_gui_header.c_str(), compile_time_gui_source.c_str() };
-		c_mantle_virtual_tag_interface_generator virtual_tag_interface_generator = { virtual_tag_interface_header.c_str(), virtual_tag_interface_source.c_str() };
+		c_legacy_runtime_reflection_generator runtime_reflection_generator = { reflection_output_header.c_str(), reflection_output_source.c_str() };
+		c_legacy_tag_groups_generator tag_groups_generator = { tag_groups_header.c_str() };
+		c_legacy_compile_time_conversion_generator compile_time_conversion_generator = { compile_time_conversion_header.c_str(), compile_time_conversion_source.c_str() };
+		c_legacy_compile_time_gui_generator compile_time_gui_generator = { compile_time_gui_header.c_str(), compile_time_gui_source.c_str() };
+		c_legacy_virtual_tag_interface_generator virtual_tag_interface_generator = { virtual_tag_interface_header.c_str(), virtual_tag_interface_source.c_str() };
 
 		legacy_compiler_interface.set_source_file(reflection_source_file);
 		legacy_compiler_interface.add_command_line("-std=c++17");
@@ -79,8 +79,8 @@ int main(int argc, const char** argv)
 		legacy_compiler_interface.add_quote_include_directory(solution_directory);
 		legacy_compiler_interface.add_quote_include_directory(solution_directory + "Shared\\");
 		legacy_compiler_interface.add_quote_include_directory(solution_directory + "MantleLib\\");
-		legacy_compiler_interface.add_macro("__mantle_reflect_legacy__");
-		legacy_compiler_interface.add_macro("__mantle_reflect__");
+		legacy_compiler_interface.add_macro("__reflect_legacy__");
+		legacy_compiler_interface.add_macro("__reflect__");
 
 		int clang_tool_result = legacy_compiler_interface.run();
 		result += clang_tool_result;
@@ -110,8 +110,8 @@ int main(int argc, const char** argv)
 		blamlib_compiler_interface.add_quote_include_directory(solution_directory + "Shared\\");
 		blamlib_compiler_interface.add_quote_include_directory(solution_directory + "MantleLib\\");
 		blamlib_compiler_interface.add_quote_include_directory(solution_directory + "blamlib\\source\\");
-		blamlib_compiler_interface.add_macro("__mantle_reflect_blamlib__");
-		blamlib_compiler_interface.add_macro("__mantle_reflect__");
+		blamlib_compiler_interface.add_macro("__reflect_blamlib__");
+		blamlib_compiler_interface.add_macro("__reflect__");
 
 		int clang_tool_result = blamlib_compiler_interface.run();
 		result += clang_tool_result;

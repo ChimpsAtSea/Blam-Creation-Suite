@@ -16,7 +16,7 @@ struct nicename("cui_static_data") tag_group('cust') s_cui_static_data_definitio
 			/*nicename("Color")*/ _property_kind_color = 8ui16,
 		};
 
-		DEPRECATED_string_id nicename("Property Name") property_name;
+		string_id_legacy nicename("Property Name") property_name;
 		e_property_kind nicename("Property Kind") property_kind;
 		int16_t __unknown0;
 	};
@@ -25,49 +25,49 @@ struct nicename("cui_static_data") tag_group('cust') s_cui_static_data_definitio
 	{
 		struct nicename("Integers") s_integers_definition
 		{
-			DEPRECATED_string_id nicename("Property") property;
+			string_id_legacy nicename("Property") property;
 			int32_t nicename("Value") value;
 		};
 
 		struct nicename("Floats") s_floats_definition
 		{
-			DEPRECATED_string_id nicename("Property") property;
+			string_id_legacy nicename("Property") property;
 			float nicename("Value") value;
 		};
 
 		struct nicename("String IDs") s_string_ids_definition
 		{
-			DEPRECATED_string_id nicename("Property") property;
-			DEPRECATED_string_id nicename("String") string;
+			string_id_legacy nicename("Property") property;
+			string_id_legacy nicename("String") string;
 		};
 
 		struct nicename("Resources") s_resources_definition
 		{
-			DEPRECATED_string_id nicename("Property") property;
-			TagReference nicename("Resource") resource_reference;
+			string_id_legacy nicename("Property") property;
+			s_tag_reference_legacy nicename("Resource") resource_reference;
 		};
 
 		struct nicename("Text") s_text_definition
 		{
-			DEPRECATED_string_id nicename("Property") property;
+			string_id_legacy nicename("Property") property;
 			char nicename("Text") text[256];
 		};
 
 		struct nicename("Colors") s_colors_definition
 		{
-			DEPRECATED_string_id nicename("Property") property;
-			colorf nicename("Color") color;
+			string_id_legacy nicename("Property") property;
+			s_colorf_legacy nicename("Color") color;
 		};
 
-		s_tag_block_definition<s_integers_definition> nicename("Integers") integers_block;
-		s_tag_block_definition<s_floats_definition> nicename("Floats") floats_block;
-		s_tag_block_definition<s_string_ids_definition> nicename("String IDs") string_ids_block;
-		s_tag_block_definition<s_resources_definition> nicename("Resources") resources_block;
-		s_tag_block_definition<s_text_definition> nicename("Text") text_block;
-		s_tag_block_definition<s_colors_definition> nicename("Colors") colors_block;
+		s_tag_block_legacy<s_integers_definition> nicename("Integers") integers_block;
+		s_tag_block_legacy<s_floats_definition> nicename("Floats") floats_block;
+		s_tag_block_legacy<s_string_ids_definition> nicename("String IDs") string_ids_block;
+		s_tag_block_legacy<s_resources_definition> nicename("Resources") resources_block;
+		s_tag_block_legacy<s_text_definition> nicename("Text") text_block;
+		s_tag_block_legacy<s_colors_definition> nicename("Colors") colors_block;
 	};
 
-	s_tag_block_definition<s_property_pool_definition> nicename("Property Pool") property_pool_block;
-	s_tag_block_definition<s_components_definition> nicename("Components") components_block;
+	s_tag_block_legacy<s_property_pool_definition> nicename("Property Pool") property_pool_block;
+	s_tag_block_legacy<s_components_definition> nicename("Components") components_block;
 };
 

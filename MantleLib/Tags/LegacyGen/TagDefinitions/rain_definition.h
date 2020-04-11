@@ -40,12 +40,12 @@ struct nicename("rain_definition") tag_group('rain') s_rain_definition_definitio
 
 	int32_t __unknown0;
 	float nicename("Effect Generation Rate") effect_generation_rate;
-	TagReference __unknown1;
-	TagReference nicename("Screen Effect") screen_effect_reference;
-	TagReference nicename("Camera Effect") camera_effect_reference;
+	s_tag_reference_legacy __unknown1;
+	s_tag_reference_legacy nicename("Screen Effect") screen_effect_reference;
+	s_tag_reference_legacy nicename("Camera Effect") camera_effect_reference;
 	b_bitfield32_example nicename("Bitfield32 Example") bitfield32_example;
-	TagReference nicename("Particle Bitmap") particle_bitmap_reference;
-	TagReference nicename("Splash Bitmap") splash_bitmap_reference;
+	s_tag_reference_legacy nicename("Particle Bitmap") particle_bitmap_reference;
+	s_tag_reference_legacy nicename("Splash Bitmap") splash_bitmap_reference;
 	float nicename("Rain Dissipation Amount") rain_dissipation_amount;
 	float nicename("Velocity X") velocity_x;
 	float nicename("Velocity Y") velocity_y;
@@ -55,7 +55,7 @@ struct nicename("rain_definition") tag_group('rain') s_rain_definition_definitio
 	float __unknown2;
 	float nicename("Particle Y Scale") particle_y_scale;
 	float nicename("Drop Fade Base Amount") drop_fade_base_amount;
-	colorf nicename("Drop Color") drop_color;
+	s_colorf_legacy nicename("Drop Color") drop_color;
 	float nicename("Drop Fade Range (min)") drop_fade_range_min;
 	float nicename("Drop Fade Range (max)") drop_fade_range_max;
 	float nicename("Distance from Camera") distance_from_camera;
@@ -64,14 +64,14 @@ struct nicename("rain_definition") tag_group('rain') s_rain_definition_definitio
 	float nicename("Splash Placement Offset") splash_placement_offset;
 	float nicename("Splash Animation Length") splash_animation_length;
 	float nicename("Splash Fade") splash_fade;
-	colorf nicename("Splash Color") splash_color;
+	s_colorf_legacy nicename("Splash Color") splash_color;
 	float nicename("Splash Brightness") splash_brightness;
 	float nicename("Splash Animation Speed") splash_animation_speed;
 	float __unknown3;
 	float __unknown4;
 	float __unknown5;
 	float __unknown6;
-	TagReference nicename("Background Effect Bimap") background_effect_bimap_reference;
+	s_tag_reference_legacy nicename("Background Effect Bimap") background_effect_bimap_reference;
 	float nicename("Speed") speed;
 	float nicename("Distance Min?") distance_min;
 	float nicename("Distance Max?") distance_max;
@@ -80,8 +80,8 @@ struct nicename("rain_definition") tag_group('rain') s_rain_definition_definitio
 	float __unknown8;
 	float __unknown9;
 	float __unknown10;
-	Undefined32 __unknown11;
-	TagReference __unknown12;
+	s_undefined32_legacy __unknown11;
+	s_tag_reference_legacy __unknown12;
 	float __unknown13;
 	float __unknown14;
 	float __unknown15;

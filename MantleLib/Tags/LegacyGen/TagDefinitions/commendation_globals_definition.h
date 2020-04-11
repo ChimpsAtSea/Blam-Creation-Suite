@@ -11,8 +11,8 @@ struct nicename("commendation_globals_definition") tag_group('comg') s_commendat
 			/*nicename("Multiplayer")*/ _category_multiplayer = 3ui16,
 		};
 
-		DEPRECATED_string_id nicename("Name") name;
-		DEPRECATED_string_id nicename("Description") description;
+		string_id_legacy nicename("Name") name;
+		string_id_legacy nicename("Description") description;
 		int32_t nicename("Credits Earned Before Silver Reached") credits_earned_before_silver_reached;
 		int32_t nicename("Credits Earned After Silver Reached") credits_earned_after_silver_reached;
 		int16_t __unknown0;
@@ -35,7 +35,7 @@ struct nicename("commendation_globals_definition") tag_group('comg') s_commendat
 		e_category nicename("Category") category;
 	};
 
-	TagReference nicename("Names") names_reference;
+	s_tag_reference_legacy nicename("Names") names_reference;
 	int8_t __unknown0;
 	int8_t __unknown1;
 	int8_t __unknown2;
@@ -43,25 +43,25 @@ struct nicename("commendation_globals_definition") tag_group('comg') s_commendat
 	int16_t __unknown4;
 	int16_t __unknown5;
 	float nicename("Alpha") alpha;
-	colorf nicename("Color") color;
+	s_colorf_legacy nicename("Color") color;
 	float nicename("Alpha") alpha1;
-	colorf nicename("Color") color1;
+	s_colorf_legacy nicename("Color") color1;
 	float nicename("Alpha") alpha2;
-	colorf nicename("Color") color2;
+	s_colorf_legacy nicename("Color") color2;
 	float nicename("Unranked Alpha") unranked_alpha;
-	colorf nicename("Unranked") unranked;
+	s_colorf_legacy nicename("Unranked") unranked;
 	float nicename("Iron Alpha") iron_alpha;
-	colorf nicename("Iron Rank") iron_rank;
+	s_colorf_legacy nicename("Iron Rank") iron_rank;
 	float nicename("Bronze Alpha") bronze_alpha;
-	colorf nicename("Bronze Rank") bronze_rank;
+	s_colorf_legacy nicename("Bronze Rank") bronze_rank;
 	float nicename("Silver Alpha") silver_alpha;
-	colorf nicename("Silver Rank") silver_rank;
+	s_colorf_legacy nicename("Silver Rank") silver_rank;
 	float nicename("Gold Alpha") gold_alpha;
-	colorf nicename("Gold Rank") gold_rank;
+	s_colorf_legacy nicename("Gold Rank") gold_rank;
 	float nicename("Onyx Alpha") onyx_alpha;
-	colorf nicename("Onyx Rank") onyx_rank;
+	s_colorf_legacy nicename("Onyx Rank") onyx_rank;
 	float nicename("Alpha") alpha3;
-	colorf nicename("Color") color3;
-	s_tag_block_definition<s_commendations_definition> nicename("Commendations") commendations_block;
+	s_colorf_legacy nicename("Color") color3;
+	s_tag_block_legacy<s_commendations_definition> nicename("Commendations") commendations_block;
 };
 

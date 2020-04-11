@@ -23,7 +23,7 @@ struct nicename("shader_terrain") tag_group('rmtr') s_shader_terrain_definition
 				/*nicename("Bit 7")*/ _bitmap_flags_bit_7 = 1ui8 << 7ui8,
 			};
 
-			TagReference nicename("Bitmap") bitmap_reference;
+			s_tag_reference_legacy nicename("Bitmap") bitmap_reference;
 			int8_t __unknown0;
 			int8_t nicename("Bitmap Index") bitmap_index;
 			int8_t __unknown1;
@@ -57,7 +57,7 @@ struct nicename("shader_terrain") tag_group('rmtr') s_shader_terrain_definition
 
 		struct nicename("Unknown") s_unknown1_definition
 		{
-			Undefined32 __unknown0;
+			s_undefined32_legacy __unknown0;
 		};
 
 		struct nicename("Unknown") s_unknown2_definition
@@ -67,7 +67,7 @@ struct nicename("shader_terrain") tag_group('rmtr') s_shader_terrain_definition
 
 		struct nicename("Unknown") s_unknown3_definition
 		{
-			Undefined32 __unknown0;
+			s_undefined32_legacy __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 		};
@@ -81,24 +81,24 @@ struct nicename("shader_terrain") tag_group('rmtr') s_shader_terrain_definition
 		struct nicename("Functions") s_functions_definition
 		{
 			int32_t __unknown0;
-			DEPRECATED_string_id nicename("Name") name;
-			Undefined32 __unknown1;
-			Undefined32 __unknown2;
-			DataReference nicename("Function") function_data_reference;
+			string_id_legacy nicename("Name") name;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
-		TagReference nicename("Template") template_reference;
-		s_tag_block_definition<s_shader_maps_definition> nicename("Shader Maps") shader_maps_block;
-		s_tag_block_definition<s_arguments_definition> nicename("Arguments") arguments_block;
-		s_tag_block_definition<s_unknown1_definition> __unknown0;
-		Undefined32 __unknown1;
-		s_tag_block_definition<s_unknown2_definition> __unknown2;
-		s_tag_block_definition<s_unknown3_definition> __unknown3;
-		s_tag_block_definition<s_unknown4_definition> __unknown4;
-		s_tag_block_definition<s_functions_definition> nicename("Functions") functions_block;
+		s_tag_reference_legacy nicename("Template") template_reference;
+		s_tag_block_legacy<s_shader_maps_definition> nicename("Shader Maps") shader_maps_block;
+		s_tag_block_legacy<s_arguments_definition> nicename("Arguments") arguments_block;
+		s_tag_block_legacy<s_unknown1_definition> __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_tag_block_legacy<s_unknown2_definition> __unknown2;
+		s_tag_block_legacy<s_unknown3_definition> __unknown3;
+		s_tag_block_legacy<s_unknown4_definition> __unknown4;
+		s_tag_block_legacy<s_functions_definition> nicename("Functions") functions_block;
 		int32_t __unknown5;
 		int32_t __unknown6;
-		Undefined32 __unknown7;
+		s_undefined32_legacy __unknown7;
 		int16_t __unknown8;
 		int16_t __unknown9;
 		int16_t __unknown10;
@@ -135,35 +135,35 @@ struct nicename("shader_terrain") tag_group('rmtr') s_shader_terrain_definition
 
 	struct nicename("Unknown") s_unknown5_definition
 	{
-		DEPRECATED_string_id __unknown0;
+		string_id_legacy __unknown0;
 		int32_t __unknown1;
 		int32_t __unknown2;
 	};
 
-	TagReference nicename("Base Render Method") base_render_method_reference;
-	TagReference __unknown0;
-	s_tag_block_definition<s_unknown_definition> __unknown1;
-	Undefined32 __unknown2;
-	Undefined32 __unknown3;
-	Undefined32 __unknown4;
-	s_tag_block_definition<s_shader_properties_definition> nicename("Shader Properties") shader_properties_block;
-	Undefined32 __unknown5;
-	Undefined32 __unknown6;
-	s_tag_block_definition<s_unknown5_definition> __unknown7;
+	s_tag_reference_legacy nicename("Base Render Method") base_render_method_reference;
+	s_tag_reference_legacy __unknown0;
+	s_tag_block_legacy<s_unknown_definition> __unknown1;
+	s_undefined32_legacy __unknown2;
+	s_undefined32_legacy __unknown3;
+	s_undefined32_legacy __unknown4;
+	s_tag_block_legacy<s_shader_properties_definition> nicename("Shader Properties") shader_properties_block;
+	s_undefined32_legacy __unknown5;
+	s_undefined32_legacy __unknown6;
+	s_tag_block_legacy<s_unknown5_definition> __unknown7;
 	int8_t __unknown8;
 	int8_t __unknown9;
 	int8_t __unknown10;
 	int8_t __unknown11;
-	Undefined32 __unknown12;
+	s_undefined32_legacy __unknown12;
 	int32_t __unknown13;
-	DEPRECATED_string_id nicename("Material 1") material_1;
-	DEPRECATED_string_id nicename("Material 2") material_2;
-	DEPRECATED_string_id nicename("Material 3") material_3;
-	DEPRECATED_string_id nicename("Material 4") material_4;
+	string_id_legacy nicename("Material 1") material_1;
+	string_id_legacy nicename("Material 2") material_2;
+	string_id_legacy nicename("Material 3") material_3;
+	string_id_legacy nicename("Material 4") material_4;
 	int16_t nicename("Global Material Index 1") global_material_index_1;
 	int16_t nicename("Global Material Index 2") global_material_index_2;
 	int16_t nicename("Global Material Index 3") global_material_index_3;
 	int16_t nicename("Global Material Index 4") global_material_index_4;
-	Undefined32 __unknown14;
+	s_undefined32_legacy __unknown14;
 };
 

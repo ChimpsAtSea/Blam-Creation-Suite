@@ -14,21 +14,21 @@ struct nicename("global_vertex_shader") tag_group('glvs') s_global_vertex_shader
 				};
 
 				uint32_t __unknown0;
-				s_tag_block_definition<s_unknown3_definition> __unknown1;
+				s_tag_block_legacy<s_unknown3_definition> __unknown1;
 			};
 
-			s_tag_block_definition<s_unknown2_definition> __unknown0;
-			Undefined32 __unknown1;
+			s_tag_block_legacy<s_unknown2_definition> __unknown0;
+			s_undefined32_legacy __unknown1;
 		};
 
-		s_tag_block_definition<s_unknown1_definition> __unknown0;
+		s_tag_block_legacy<s_unknown1_definition> __unknown0;
 	};
 
 	struct nicename("Vertex Shaders") s_vertex_shaders_definition
 	{
 		struct nicename("Unknown") s_unknown4_definition
 		{
-			DEPRECATED_string_id __unknown0;
+			string_id_legacy __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;
@@ -37,39 +37,39 @@ struct nicename("global_vertex_shader") tag_group('glvs') s_global_vertex_shader
 
 		struct nicename("Unknown") s_unknown5_definition
 		{
-			DEPRECATED_string_id __unknown0;
+			string_id_legacy __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;
 			int8_t __unknown4;
 		};
 
-		Undefined32 __unknown0;
-		DataReference __unknown1;
-		DataReference __unknown2;
-		DataReference __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		s_tag_block_definition<s_unknown4_definition> __unknown10;
+		s_undefined32_legacy __unknown0;
+		s_data_reference_legacy __unknown1;
+		s_data_reference_legacy __unknown2;
+		s_data_reference_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_tag_block_legacy<s_unknown4_definition> __unknown10;
 		int32_t __unknown11;
-		Undefined32 __unknown12;
+		s_undefined32_legacy __unknown12;
 		int32_t __unknown13;
-		s_tag_block_definition<s_unknown5_definition> __unknown14;
+		s_tag_block_legacy<s_unknown5_definition> __unknown14;
 		int32_t __unknown15;
-		Undefined32 __unknown16;
+		s_undefined32_legacy __unknown16;
 		int32_t __unknown17;
-		Undefined32 __unknown18;
-		Undefined32 __unknown19;
-		Undefined32 __unknown20;
-		Undefined32 __unknown21;
+		s_undefined32_legacy __unknown18;
+		s_undefined32_legacy __unknown19;
+		s_undefined32_legacy __unknown20;
+		s_undefined32_legacy __unknown21;
 	};
 
-	s_tag_block_definition<s_unknown_definition> __unknown0;
-	Undefined32 __unknown1;
-	s_tag_block_definition<s_vertex_shaders_definition> nicename("Vertex Shaders") vertex_shaders_block;
+	s_tag_block_legacy<s_unknown_definition> __unknown0;
+	s_undefined32_legacy __unknown1;
+	s_tag_block_legacy<s_vertex_shaders_definition> nicename("Vertex Shaders") vertex_shaders_block;
 };
 

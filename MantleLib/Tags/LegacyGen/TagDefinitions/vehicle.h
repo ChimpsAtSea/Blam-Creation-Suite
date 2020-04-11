@@ -323,16 +323,16 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	struct nicename("Early Mover Properties") s_early_mover_properties_definition
 	{
 		string_id nicename("Name") name;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		Undefined32 __unknown3;
-		Undefined32 __unknown4;
-		Undefined32 __unknown5;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
 	};
 
 	struct nicename("AI Properties") s_ai_properties_definition
@@ -398,7 +398,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 
 		b_flags1 nicename("Flags") flags;
 		string_id nicename("AI Type Name") ai_type_name;
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		e_size nicename("Size") size;
 		e_leap_jump_speed nicename("Leap Jump Speed") leap_jump_speed;
 	};
@@ -446,7 +446,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 			int32_t __unknown0;
 			float __unknown1;
 			float __unknown2;
-			Undefined32 __unknown3;
+			s_undefined32_legacy __unknown3;
 			float __unknown4;
 			float __unknown5;
 		};
@@ -457,9 +457,9 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		string_id nicename("Turn Off With") turn_off_with;
 		string_id __unknown0;
 		float nicename("Minimum Value") minimum_value;
-		DataReference nicename("Default Function") default_function_data_reference;
+		s_data_reference_legacy nicename("Default Function") default_function_data_reference;
 		string_id nicename("Scale By") scale_by;
-		s_tag_block_definition<s_unknown_definition> __unknown1;
+		s_tag_block_legacy<s_unknown_definition> __unknown1;
 		int32_t nicename("'Function Related' Index") function_related_index;
 	};
 
@@ -479,7 +479,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 			/*nicename("Quaternary")*/ _change_color_quaternary = 4ui16,
 		};
 
-		TagReference nicename("Attachment") attachment_reference;
+		s_tag_reference_legacy nicename("Attachment") attachment_reference;
 		string_id nicename("Marker") marker;
 		e_change_color nicename("Change Color") change_color;
 		int16_t __unknown0;
@@ -492,25 +492,25 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		struct nicename("Unknown") s_unknown1_definition
 		{
 			string_id nicename("Material") material;
-			DataReference __unknown0;
+			s_data_reference_legacy __unknown0;
 			float __unknown1;
-			DataReference __unknown2;
+			s_data_reference_legacy __unknown2;
 			float __unknown3;
-			Undefined32 __unknown4;
-			Undefined32 __unknown5;
+			s_undefined32_legacy __unknown4;
+			s_undefined32_legacy __unknown5;
 		};
 
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
-		Undefined32 __unknown2;
-		s_tag_block_definition<s_unknown1_definition> __unknown3;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_tag_block_legacy<s_unknown1_definition> __unknown3;
 	};
 
 	struct nicename("Jet Wash") s_jet_wash_definition
 	{
 		string_id nicename("Marker") marker;
 		float __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown1;
 		float __unknown2;
 		float __unknown3;
 		float __unknown4;
@@ -521,7 +521,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 
 	struct nicename("Widgets") s_widgets_definition
 	{
-		TagReference nicename("Type") type_reference;
+		s_tag_reference_legacy nicename("Type") type_reference;
 	};
 
 	struct nicename("Change Color") s_change_color_definition
@@ -529,8 +529,8 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		struct nicename("Initial Permutations") s_initial_permutations_definition
 		{
 			float nicename("Weight") weight;
-			colorf nicename("Color Lower Bound") color_lower_bound;
-			colorf nicename("Color Upper Bound") color_upper_bound;
+			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
+			s_colorf_legacy nicename("Color Upper Bound") color_upper_bound;
 			string_id nicename("Variant Name") variant_name;
 		};
 
@@ -573,21 +573,21 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 			};
 
 			b_scale_flags nicename("Scale Flags") scale_flags;
-			colorf nicename("Color Lower Bound") color_lower_bound;
-			colorf nicename("Color Upper Bound") color_upper_bound;
+			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
+			s_colorf_legacy nicename("Color Upper Bound") color_upper_bound;
 			string_id nicename("Darken By...") darken_by;
 			string_id nicename("Scale By...") scale_by;
 		};
 
-		s_tag_block_definition<s_initial_permutations_definition> nicename("Initial Permutations") initial_permutations_block;
-		s_tag_block_definition<s_functions1_definition> nicename("Functions") functions_block;
+		s_tag_block_legacy<s_initial_permutations_definition> nicename("Initial Permutations") initial_permutations_block;
+		s_tag_block_legacy<s_functions1_definition> nicename("Functions") functions_block;
 	};
 
 	struct nicename("Predicted Resources") s_predicted_resources_definition
 	{
 		int16_t nicename("Type") type;
 		int16_t nicename("Resource Index") resource_index;
-		TagReference nicename("Tag Index") tag_index_reference;
+		s_tag_reference_legacy nicename("Tag Index") tag_index_reference;
 	};
 
 	struct nicename("Multiplayer Object Properties") s_multiplayer_object_properties_definition
@@ -683,23 +683,23 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		float __unknown2;
 		int32_t __unknown3;
 		int32_t __unknown4;
-		TagReference nicename("Child Object") child_object_reference;
+		s_tag_reference_legacy nicename("Child Object") child_object_reference;
 		int32_t __unknown5;
-		TagReference nicename("Shape Shader") shape_shader_reference;
-		TagReference nicename("Shader 2") shader_2_reference;
-		TagReference __unknown6;
-		TagReference __unknown7;
-		TagReference nicename("Secondary Shader") secondary_shader_reference;
-		TagReference __unknown8;
-		TagReference __unknown9;
-		TagReference __unknown10;
+		s_tag_reference_legacy nicename("Shape Shader") shape_shader_reference;
+		s_tag_reference_legacy nicename("Shader 2") shader_2_reference;
+		s_tag_reference_legacy __unknown6;
+		s_tag_reference_legacy __unknown7;
+		s_tag_reference_legacy nicename("Secondary Shader") secondary_shader_reference;
+		s_tag_reference_legacy __unknown8;
+		s_tag_reference_legacy __unknown9;
+		s_tag_reference_legacy __unknown10;
 	};
 
 	struct nicename("Unknown") s_unknown2_definition
 	{
-		TagReference __unknown0;
-		TagReference __unknown1;
-		TagReference __unknown2;
+		s_tag_reference_legacy __unknown0;
+		s_tag_reference_legacy __unknown1;
+		s_tag_reference_legacy __unknown2;
 	};
 
 	struct nicename("Metagame Properties") s_metagame_properties_definition
@@ -770,32 +770,32 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 
 	struct nicename("Unit Screen Effects") s_unit_screen_effects_definition
 	{
-		TagReference nicename("Screen Effect") screen_effect_reference;
+		s_tag_reference_legacy nicename("Screen Effect") screen_effect_reference;
 	};
 
 	struct nicename("Camera Tracks") s_camera_tracks_definition
 	{
-		TagReference nicename("Track") track_reference;
-		TagReference nicename("Screen Effect") screen_effect_reference;
+		s_tag_reference_legacy nicename("Track") track_reference;
+		s_tag_reference_legacy nicename("Screen Effect") screen_effect_reference;
 	};
 
 	struct nicename("Unknown") s_unknown3_definition
 	{
 		float __unknown0;
-		Undefined32 __unknown1;
-		DataReference __unknown2;
+		s_undefined32_legacy __unknown1;
+		s_data_reference_legacy __unknown2;
 		float __unknown3;
 		float __unknown4;
 		float __unknown5;
 		int16_t __unknown6;
 		int16_t __unknown7;
-		DataReference __unknown8;
+		s_data_reference_legacy __unknown8;
 		float __unknown9;
 		float __unknown10;
 		float __unknown11;
 		int16_t __unknown12;
 		int16_t __unknown13;
-		DataReference __unknown14;
+		s_data_reference_legacy __unknown14;
 		float __unknown15;
 		float __unknown16;
 		float __unknown17;
@@ -805,7 +805,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	{
 		struct nicename("Unknown") s_unknown5_definition
 		{
-			DataReference nicename("Function") function_data_reference;
+			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
 		int8_t __unknown0;
@@ -818,14 +818,14 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		float __unknown7;
 		float __unknown8;
 		float __unknown9;
-		s_tag_block_definition<s_unknown5_definition> __unknown10;
+		s_tag_block_legacy<s_unknown5_definition> __unknown10;
 	};
 
 	struct nicename("Space Fighter Camera") s_space_fighter_camera_definition
 	{
 		struct nicename("Unknown") s_unknown6_definition
 		{
-			DataReference nicename("Function") function_data_reference;
+			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
 		int8_t __unknown0;
@@ -838,32 +838,32 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		float __unknown7;
 		float __unknown8;
 		float __unknown9;
-		s_tag_block_definition<s_unknown6_definition> __unknown10;
+		s_tag_block_legacy<s_unknown6_definition> __unknown10;
 	};
 
 	struct nicename("Camera Tracks") s_camera_tracks1_definition
 	{
-		TagReference nicename("Track") track_reference;
-		TagReference nicename("Screen Effect") screen_effect_reference;
+		s_tag_reference_legacy nicename("Track") track_reference;
+		s_tag_reference_legacy nicename("Screen Effect") screen_effect_reference;
 	};
 
 	struct nicename("Unknown") s_unknown7_definition
 	{
 		float __unknown0;
-		Undefined32 __unknown1;
-		DataReference __unknown2;
+		s_undefined32_legacy __unknown1;
+		s_data_reference_legacy __unknown2;
 		float __unknown3;
 		float __unknown4;
 		float __unknown5;
 		int16_t __unknown6;
 		int16_t __unknown7;
-		DataReference __unknown8;
+		s_data_reference_legacy __unknown8;
 		float __unknown9;
 		float __unknown10;
 		float __unknown11;
 		int16_t __unknown12;
 		int16_t __unknown13;
-		DataReference __unknown14;
+		s_data_reference_legacy __unknown14;
 		float __unknown15;
 		float __unknown16;
 		float __unknown17;
@@ -873,7 +873,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	{
 		struct nicename("Unknown") s_unknown9_definition
 		{
-			DataReference nicename("Function") function_data_reference;
+			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
 		int8_t __unknown0;
@@ -886,14 +886,14 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		float __unknown7;
 		float __unknown8;
 		float __unknown9;
-		s_tag_block_definition<s_unknown9_definition> __unknown10;
+		s_tag_block_legacy<s_unknown9_definition> __unknown10;
 	};
 
 	struct nicename("Space Fighter Camera") s_space_fighter_camera1_definition
 	{
 		struct nicename("Unknown") s_unknown10_definition
 		{
-			DataReference nicename("Function") function_data_reference;
+			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
 		int8_t __unknown0;
@@ -906,7 +906,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		float __unknown7;
 		float __unknown8;
 		float __unknown9;
-		s_tag_block_definition<s_unknown10_definition> __unknown10;
+		s_tag_block_legacy<s_unknown10_definition> __unknown10;
 	};
 
 	struct nicename("Postures") s_postures_definition
@@ -919,14 +919,14 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 
 	struct nicename("HUD Interfaces") s_hud_interfaces_definition
 	{
-		TagReference nicename("Unit HUD Interface") unit_hud_interface_reference;
+		s_tag_reference_legacy nicename("Unit HUD Interface") unit_hud_interface_reference;
 	};
 
 	struct nicename("Dialogue Variants") s_dialogue_variants_definition
 	{
 		int16_t nicename("Variant Number") variant_number;
 		int16_t __unknown0;
-		TagReference nicename("Dialogue") dialogue_reference;
+		s_tag_reference_legacy nicename("Dialogue") dialogue_reference;
 	};
 
 	struct nicename("Powered Seats") s_powered_seats_definition
@@ -937,7 +937,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 
 	struct nicename("Weapons") s_weapons_definition
 	{
-		TagReference nicename("Weapon") weapon_reference;
+		s_tag_reference_legacy nicename("Weapon") weapon_reference;
 		string_id nicename("Parent Marker") parent_marker;
 	};
 
@@ -948,12 +948,12 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 			string_id nicename("Tracking Type") tracking_type;
 		};
 
-		s_tag_block_definition<s_tracking_types_definition> nicename("Tracking Types") tracking_types_block;
+		s_tag_block_legacy<s_tracking_types_definition> nicename("Tracking Types") tracking_types_block;
 		float nicename("Acquire Time") acquire_time;
 		float nicename("Grace Time") grace_time;
 		float nicename("Decay Time") decay_time;
-		TagReference nicename("Tracking Sound") tracking_sound_reference;
-		TagReference nicename("Locked Sound") locked_sound_reference;
+		s_tag_reference_legacy nicename("Tracking Sound") tracking_sound_reference;
+		s_tag_reference_legacy nicename("Locked Sound") locked_sound_reference;
 	};
 
 	struct nicename("Seats") s_seats_definition
@@ -1018,27 +1018,27 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 
 		struct nicename("Camera Tracks") s_camera_tracks2_definition
 		{
-			TagReference nicename("Track") track_reference;
-			TagReference nicename("Screen Effect") screen_effect_reference;
+			s_tag_reference_legacy nicename("Track") track_reference;
+			s_tag_reference_legacy nicename("Screen Effect") screen_effect_reference;
 		};
 
 		struct nicename("Unknown") s_unknown11_definition
 		{
 			float __unknown0;
-			Undefined32 __unknown1;
-			DataReference __unknown2;
+			s_undefined32_legacy __unknown1;
+			s_data_reference_legacy __unknown2;
 			float __unknown3;
 			float __unknown4;
 			float __unknown5;
 			int16_t __unknown6;
 			int16_t __unknown7;
-			DataReference __unknown8;
+			s_data_reference_legacy __unknown8;
 			float __unknown9;
 			float __unknown10;
 			float __unknown11;
 			int16_t __unknown12;
 			int16_t __unknown13;
-			DataReference __unknown14;
+			s_data_reference_legacy __unknown14;
 			float __unknown15;
 			float __unknown16;
 			float __unknown17;
@@ -1048,7 +1048,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		{
 			struct nicename("Unknown") s_unknown13_definition
 			{
-				DataReference nicename("Function") function_data_reference;
+				s_data_reference_legacy nicename("Function") function_data_reference;
 			};
 
 			int8_t __unknown0;
@@ -1061,14 +1061,14 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 			float __unknown7;
 			float __unknown8;
 			float __unknown9;
-			s_tag_block_definition<s_unknown13_definition> __unknown10;
+			s_tag_block_legacy<s_unknown13_definition> __unknown10;
 		};
 
 		struct nicename("Space Fighter Camera") s_space_fighter_camera2_definition
 		{
 			struct nicename("Unknown") s_unknown14_definition
 			{
-				DataReference nicename("Function") function_data_reference;
+				s_data_reference_legacy nicename("Function") function_data_reference;
 			};
 
 			int8_t __unknown0;
@@ -1081,12 +1081,12 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 			float __unknown7;
 			float __unknown8;
 			float __unknown9;
-			s_tag_block_definition<s_unknown14_definition> __unknown10;
+			s_tag_block_legacy<s_unknown14_definition> __unknown10;
 		};
 
 		struct nicename("Unit HUD Interface") s_unit_hud_interface_definition
 		{
-			TagReference nicename("Unit HUD Interface") unit_hud_interface_reference;
+			s_tag_reference_legacy nicename("Unit HUD Interface") unit_hud_interface_reference;
 		};
 
 		b_flags2 nicename("Flags") flags;
@@ -1099,13 +1099,13 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		string_id nicename("Detach Weapon String") detach_weapon_string;
 		float nicename("Ping Scale") ping_scale;
 		float nicename("Turnover Time") turnover_time;
-		TagReference nicename("Spring Acceleration") spring_acceleration_reference;
+		s_tag_reference_legacy nicename("Spring Acceleration") spring_acceleration_reference;
 		float nicename("AI Scariness") ai_scariness;
 		e_ai_seat_type nicename("AI Seat Type") ai_seat_type;
 		int16_t nicename("Boarding Seat") boarding_seat;
-		Undefined32 nicename("block here") block_here;
-		Undefined32 nicename("block here") block_here1;
-		Undefined32 nicename("block here") block_here2;
+		s_undefined32_legacy nicename("block here") block_here;
+		s_undefined32_legacy nicename("block here") block_here1;
+		s_undefined32_legacy nicename("block here") block_here2;
 		float nicename("Listener Interpolation Factor") listener_interpolation_factor;
 		float nicename("Yaw Rate Bounds min") yaw_rate_bounds_min;
 		float nicename("Yaw Rate Bounds max") yaw_rate_bounds_max;
@@ -1123,7 +1123,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		float nicename("Pitch Auto-Level") pitch_auto_level;
 		float nicename("Pitch Range min") pitch_range_min;
 		float nicename("Pitch Range max") pitch_range_max;
-		s_tag_block_definition<s_camera_tracks2_definition> nicename("Camera Tracks") camera_tracks_block;
+		s_tag_block_legacy<s_camera_tracks2_definition> nicename("Camera Tracks") camera_tracks_block;
 		float nicename("Camera Stiffness min") camera_stiffness_min;
 		float nicename("Camera Stiffness max") camera_stiffness_max;
 		float __unknown4;
@@ -1131,20 +1131,20 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		float nicename("Camera Deceleration Speed") camera_deceleration_speed;
 		float __unknown5;
 		float nicename("Camera Field Of View") camera_field_of_view;
-		Undefined32 __unknown6;
-		Undefined32 __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
-		s_tag_block_definition<s_unknown11_definition> __unknown12;
-		s_tag_block_definition<s_unknown12_definition> __unknown13;
-		s_tag_block_definition<s_space_fighter_camera2_definition> nicename("Space Fighter Camera") space_fighter_camera_block;
-		s_tag_block_definition<s_unit_hud_interface_definition> nicename("Unit HUD Interface") unit_hud_interface_block;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_tag_block_legacy<s_unknown11_definition> __unknown12;
+		s_tag_block_legacy<s_unknown12_definition> __unknown13;
+		s_tag_block_legacy<s_space_fighter_camera2_definition> nicename("Space Fighter Camera") space_fighter_camera_block;
+		s_tag_block_legacy<s_unit_hud_interface_definition> nicename("Unit HUD Interface") unit_hud_interface_block;
 		string_id nicename("Enter Seat String") enter_seat_string;
 		float nicename("Yaw Range min") yaw_range_min;
 		float nicename("Yaw Range max") yaw_range_max;
-		TagReference nicename("Built-In Gunner") built_in_gunner_reference;
+		s_tag_reference_legacy nicename("Built-In Gunner") built_in_gunner_reference;
 		float nicename("Entry Radius") entry_radius;
 		float nicename("Entry Marker Cone Angle") entry_marker_cone_angle;
 		float nicename("Entry Marker Facing Angle") entry_marker_facing_angle;
@@ -1162,17 +1162,17 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	{
 		struct nicename("Gears") s_gears_definition
 		{
-			DataReference nicename("Loaded Torque Function") loaded_torque_function_data_reference;
-			Undefined32 __unknown0;
-			DataReference nicename("Cruising Torque Function") cruising_torque_function_data_reference;
-			Undefined32 __unknown1;
+			s_data_reference_legacy nicename("Loaded Torque Function") loaded_torque_function_data_reference;
+			s_undefined32_legacy __unknown0;
+			s_data_reference_legacy nicename("Cruising Torque Function") cruising_torque_function_data_reference;
+			s_undefined32_legacy __unknown1;
 			// Gearing : 
 			float nicename("Min Time to Upshift") min_time_to_upshift;
 			float nicename("Engine Upshift Scale") engine_upshift_scale;
 			float nicename("Gear Ratio") gear_ratio;
 			float nicename("Min Time to Downshift") min_time_to_downshift;
 			float nicename("Engine Downshift Scale") engine_downshift_scale;
-			Undefined32 __unknown2;
+			s_undefined32_legacy __unknown2;
 		};
 
 		struct nicename("Braking") s_braking_definition
@@ -1197,9 +1197,9 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		float nicename("Turning Speed Left 2") turning_speed_left_2;
 		float nicename("Engine Momentum") engine_momentum;
 		float nicename("Engine Maximum Angular Velocity") engine_maximum_angular_velocity;
-		s_tag_block_definition<s_gears_definition> nicename("Gears") gears_block;
-		TagReference nicename("Change Gear Sound") change_gear_sound_reference;
-		s_tag_block_definition<s_braking_definition> nicename("Braking") braking_block;
+		s_tag_block_legacy<s_gears_definition> nicename("Gears") gears_block;
+		s_tag_reference_legacy nicename("Change Gear Sound") change_gear_sound_reference;
+		s_tag_block_legacy<s_braking_definition> nicename("Braking") braking_block;
 		float __unknown1;
 		float __unknown2;
 	};
@@ -1208,17 +1208,17 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	{
 		struct nicename("Gears") s_gears1_definition
 		{
-			DataReference nicename("Loaded Torque Function") loaded_torque_function_data_reference;
-			Undefined32 __unknown0;
-			DataReference nicename("Cruising Torque Function") cruising_torque_function_data_reference;
-			Undefined32 __unknown1;
+			s_data_reference_legacy nicename("Loaded Torque Function") loaded_torque_function_data_reference;
+			s_undefined32_legacy __unknown0;
+			s_data_reference_legacy nicename("Cruising Torque Function") cruising_torque_function_data_reference;
+			s_undefined32_legacy __unknown1;
 			// Gearing : 
 			float nicename("Min Time to Upshift") min_time_to_upshift;
 			float nicename("Engine Upshift Scale") engine_upshift_scale;
 			float nicename("Gear Ratio") gear_ratio;
 			float nicename("Min Time to Downshift") min_time_to_downshift;
 			float nicename("Engine Downshift Scale") engine_downshift_scale;
-			Undefined32 __unknown2;
+			s_undefined32_legacy __unknown2;
 		};
 
 		struct nicename("Braking") s_braking1_definition
@@ -1234,12 +1234,12 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		float nicename("Turn Rate") turn_rate;
 		float nicename("Engine Momentum") engine_momentum;
 		float nicename("Engine Maximum Angular Velocity") engine_maximum_angular_velocity;
-		s_tag_block_definition<s_gears1_definition> nicename("Gears") gears_block;
-		TagReference nicename("Change Gear Sound") change_gear_sound_reference;
-		s_tag_block_definition<s_braking1_definition> nicename("Braking") braking_block;
-		Undefined32 nicename("block here") block_here;
-		Undefined32 nicename("block here") block_here1;
-		Undefined32 nicename("block here") block_here2;
+		s_tag_block_legacy<s_gears1_definition> nicename("Gears") gears_block;
+		s_tag_reference_legacy nicename("Change Gear Sound") change_gear_sound_reference;
+		s_tag_block_legacy<s_braking1_definition> nicename("Braking") braking_block;
+		s_undefined32_legacy nicename("block here") block_here;
+		s_undefined32_legacy nicename("block here") block_here1;
+		s_undefined32_legacy nicename("block here") block_here2;
 		float __unknown0;
 		float __unknown1;
 	};
@@ -1285,7 +1285,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		int8_t __unknown2;
 		int8_t __unknown3;
 		float nicename("Traction") traction;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown4;
 		float nicename("Turning Rate") turning_rate;
 		string_id __unknown5;
 		float __unknown6;
@@ -1319,7 +1319,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		float nicename("Pitch Rate") pitch_rate;
 		float nicename("Unpitch Rate") unpitch_rate;
 		float nicename("Flight Stability") flight_stability;
-		Undefined32 __unknown0;
+		s_undefined32_legacy __unknown0;
 		float nicename("Nose Angle") nose_angle;
 		float __unknown1;
 		float __unknown2;
@@ -1358,20 +1358,20 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		string_id nicename("Thrust Front Left") thrust_front_left;
 		string_id nicename("Thrust Front Right") thrust_front_right;
 		string_id nicename("Thrust") thrust;
-		DataReference nicename("Function") function_data_reference;
-		DataReference nicename("Function") function1_data_reference;
+		s_data_reference_legacy nicename("Function") function_data_reference;
+		s_data_reference_legacy nicename("Function") function1_data_reference;
 		float __unknown1;
 		float nicename("Rise Speed") rise_speed;
 		float __unknown2;
 		float __unknown3;
-		Undefined32 __unknown4;
+		s_undefined32_legacy __unknown4;
 		float nicename("Pitch min") pitch_min;
 		float nicename("Pitch max") pitch_max;
 		float nicename("Boost Acceleration Time") boost_acceleration_time;
-		DataReference nicename("Function") function2_data_reference;
-		DataReference nicename("Function") function3_data_reference;
-		DataReference nicename("Function") function4_data_reference;
-		s_tag_block_definition<s_unknown15_definition> __unknown5;
+		s_data_reference_legacy nicename("Function") function2_data_reference;
+		s_data_reference_legacy nicename("Function") function3_data_reference;
+		s_data_reference_legacy nicename("Function") function4_data_reference;
+		s_tag_block_legacy<s_unknown15_definition> __unknown5;
 		float __unknown6;
 		float __unknown7;
 		float __unknown8;
@@ -1388,27 +1388,27 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	{
 		float nicename("Steering Overdampen Cusp Angle") steering_overdampen_cusp_angle;
 		float nicename("Steering Overdamen Exponent") steering_overdamen_exponent;
-		Undefined32 __unknown0;
-		Undefined32 __unknown1;
+		s_undefined32_legacy __unknown0;
+		s_undefined32_legacy __unknown1;
 		float __unknown2;
 		float __unknown3;
 		float __unknown4;
 		float __unknown5;
 		float __unknown6;
 		float __unknown7;
-		Undefined32 __unknown8;
-		Undefined32 __unknown9;
-		Undefined32 __unknown10;
-		Undefined32 __unknown11;
+		s_undefined32_legacy __unknown8;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
 		float __unknown12;
-		Undefined32 __unknown13;
-		Undefined32 __unknown14;
+		s_undefined32_legacy __unknown13;
+		s_undefined32_legacy __unknown14;
 		float __unknown15;
 		float __unknown16;
 		float __unknown17;
 		float __unknown18;
 		float __unknown19;
-		Undefined32 __unknown20;
+		s_undefined32_legacy __unknown20;
 		float __unknown21;
 		float __unknown22;
 		float __unknown23;
@@ -1427,10 +1427,10 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		float __unknown36;
 		float __unknown37;
 		float __unknown38;
-		Undefined32 __unknown39;
-		Undefined32 __unknown40;
+		s_undefined32_legacy __unknown39;
+		s_undefined32_legacy __unknown40;
 		float __unknown41;
-		DataReference nicename("Function") function_data_reference;
+		s_data_reference_legacy nicename("Function") function_data_reference;
 	};
 
 	struct nicename("Anti Gravity Points") s_anti_gravity_points_definition
@@ -1570,11 +1570,11 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 		int8_t __unknown1;
 		int8_t __unknown2;
 		float __unknown3;
-		Undefined32 nicename("Distance Traveled") distance_traveled;
+		s_undefined32_legacy nicename("Distance Traveled") distance_traveled;
 		float __unknown4;
 		float __unknown5;
 		float __unknown6;
-		Undefined32 nicename("Cooldown Time") cooldown_time;
+		s_undefined32_legacy nicename("Cooldown Time") cooldown_time;
 	};
 
 	e_object_type nicename("Object Type") object_type;
@@ -1596,38 +1596,38 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	float nicename("Dynamic Light Sphere Y Offset") dynamic_light_sphere_y_offset;
 	float nicename("Dynamic Light Sphere Z Offset") dynamic_light_sphere_z_offset;
 	string_id nicename("Generic HUD Text") generic_hud_text;
-	TagReference nicename("Generic Name List") generic_name_list_reference;
-	TagReference nicename("Generic Service Tag List") generic_service_tag_list_reference;
+	s_tag_reference_legacy nicename("Generic Name List") generic_name_list_reference;
+	s_tag_reference_legacy nicename("Generic Service Tag List") generic_service_tag_list_reference;
 	string_id nicename("Default Variant") default_variant;
-	TagReference nicename("Model") model_reference;
-	TagReference nicename("Crate Object") crate_object_reference;
-	TagReference nicename("Collision Damage") collision_damage_reference;
-	TagReference nicename("Brittle Collision Damage") brittle_collision_damage_reference;
-	s_tag_block_definition<s_early_mover_properties_definition> nicename("Early Mover Properties") early_mover_properties_block;
-	TagReference nicename("Creation Effect") creation_effect_reference;
-	TagReference nicename("Material Effects") material_effects_reference;
-	TagReference nicename("Melee Impact") melee_impact_reference;
-	s_tag_block_definition<s_ai_properties_definition> nicename("AI Properties") ai_properties_block;
-	s_tag_block_definition<s_functions_definition> nicename("Functions") functions_block;
-	s_tag_block_definition<s_function_related_definition> nicename("Function Related") function_related_block;
+	s_tag_reference_legacy nicename("Model") model_reference;
+	s_tag_reference_legacy nicename("Crate Object") crate_object_reference;
+	s_tag_reference_legacy nicename("Collision Damage") collision_damage_reference;
+	s_tag_reference_legacy nicename("Brittle Collision Damage") brittle_collision_damage_reference;
+	s_tag_block_legacy<s_early_mover_properties_definition> nicename("Early Mover Properties") early_mover_properties_block;
+	s_tag_reference_legacy nicename("Creation Effect") creation_effect_reference;
+	s_tag_reference_legacy nicename("Material Effects") material_effects_reference;
+	s_tag_reference_legacy nicename("Melee Impact") melee_impact_reference;
+	s_tag_block_legacy<s_ai_properties_definition> nicename("AI Properties") ai_properties_block;
+	s_tag_block_legacy<s_functions_definition> nicename("Functions") functions_block;
+	s_tag_block_legacy<s_function_related_definition> nicename("Function Related") function_related_block;
 	int16_t nicename("HUD Text Message Index") hud_text_message_index;
 	int16_t __unknown2;
-	s_tag_block_definition<s_attachments_definition> nicename("Attachments") attachments_block;
-	s_tag_block_definition<s_material_responses_definition> nicename("Material Responses") material_responses_block;
-	s_tag_block_definition<s_jet_wash_definition> nicename("Jet Wash") jet_wash_block;
-	s_tag_block_definition<s_widgets_definition> nicename("Widgets") widgets_block;
-	s_tag_block_definition<s_change_color_definition> nicename("Change Color") change_color_block;
-	s_tag_block_definition<s_predicted_resources_definition> nicename("Predicted Resources") predicted_resources_block;
-	s_tag_block_definition<s_multiplayer_object_properties_definition> nicename("Multiplayer Object Properties") multiplayer_object_properties_block;
-	TagReference nicename("Simulation Interpolation") simulation_interpolation_reference;
-	s_tag_block_definition<s_unknown2_definition> __unknown3;
+	s_tag_block_legacy<s_attachments_definition> nicename("Attachments") attachments_block;
+	s_tag_block_legacy<s_material_responses_definition> nicename("Material Responses") material_responses_block;
+	s_tag_block_legacy<s_jet_wash_definition> nicename("Jet Wash") jet_wash_block;
+	s_tag_block_legacy<s_widgets_definition> nicename("Widgets") widgets_block;
+	s_tag_block_legacy<s_change_color_definition> nicename("Change Color") change_color_block;
+	s_tag_block_legacy<s_predicted_resources_definition> nicename("Predicted Resources") predicted_resources_block;
+	s_tag_block_legacy<s_multiplayer_object_properties_definition> nicename("Multiplayer Object Properties") multiplayer_object_properties_block;
+	s_tag_reference_legacy nicename("Simulation Interpolation") simulation_interpolation_reference;
+	s_tag_block_legacy<s_unknown2_definition> __unknown3;
 	// UNIT : 
 	b_flags1 nicename("Flags") flags1;
 	e_team nicename("Team") team;
 	e_constant_sound_volume nicename("Constant Sound Volume") constant_sound_volume;
-	TagReference nicename("Hologram Unit") hologram_unit_reference;
-	s_tag_block_definition<s_metagame_properties_definition> nicename("Metagame Properties") metagame_properties_block;
-	s_tag_block_definition<s_unit_screen_effects_definition> nicename("Unit Screen Effects") unit_screen_effects_block;
+	s_tag_reference_legacy nicename("Hologram Unit") hologram_unit_reference;
+	s_tag_block_legacy<s_metagame_properties_definition> nicename("Metagame Properties") metagame_properties_block;
+	s_tag_block_legacy<s_unit_screen_effects_definition> nicename("Unit Screen Effects") unit_screen_effects_block;
 	int32_t __unknown4;
 	// Unit Camera : 
 	b_camera_flags nicename("Camera Flags") camera_flags;
@@ -1638,7 +1638,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	float nicename("Pitch Auto-Level") pitch_auto_level;
 	float nicename("Pitch Range min") pitch_range_min;
 	float nicename("Pitch Range max") pitch_range_max;
-	s_tag_block_definition<s_camera_tracks_definition> nicename("Camera Tracks") camera_tracks_block;
+	s_tag_block_legacy<s_camera_tracks_definition> nicename("Camera Tracks") camera_tracks_block;
 	float nicename("Camera Stiffness min") camera_stiffness_min;
 	float nicename("Camera Stiffness max") camera_stiffness_max;
 	float __unknown8;
@@ -1646,15 +1646,15 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	float nicename("Camera Deceleration Speed") camera_deceleration_speed;
 	float __unknown9;
 	float nicename("Camera Field Of View") camera_field_of_view;
-	Undefined32 __unknown10;
-	Undefined32 __unknown11;
-	Undefined32 __unknown12;
-	Undefined32 __unknown13;
-	Undefined32 __unknown14;
-	Undefined32 __unknown15;
-	s_tag_block_definition<s_unknown3_definition> __unknown16;
-	s_tag_block_definition<s_unknown4_definition> __unknown17;
-	s_tag_block_definition<s_space_fighter_camera_definition> nicename("Space Fighter Camera") space_fighter_camera_block;
+	s_undefined32_legacy __unknown10;
+	s_undefined32_legacy __unknown11;
+	s_undefined32_legacy __unknown12;
+	s_undefined32_legacy __unknown13;
+	s_undefined32_legacy __unknown14;
+	s_undefined32_legacy __unknown15;
+	s_tag_block_legacy<s_unknown3_definition> __unknown16;
+	s_tag_block_legacy<s_unknown4_definition> __unknown17;
+	s_tag_block_legacy<s_space_fighter_camera_definition> nicename("Space Fighter Camera") space_fighter_camera_block;
 	// Assassination Camera : 
 	b_camera_flags1 nicename("Camera Flags") camera_flags1;
 	int8_t __unknown18;
@@ -1664,7 +1664,7 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	float nicename("Pitch Auto-Level") pitch_auto_level1;
 	float nicename("Pitch Range min") pitch_range_min1;
 	float nicename("Pitch Range max") pitch_range_max1;
-	s_tag_block_definition<s_camera_tracks1_definition> nicename("Camera Tracks") camera_tracks1_block;
+	s_tag_block_legacy<s_camera_tracks1_definition> nicename("Camera Tracks") camera_tracks1_block;
 	float nicename("Camera Stiffness min") camera_stiffness_min1;
 	float nicename("Camera Stiffness max") camera_stiffness_max1;
 	float __unknown21;
@@ -1672,21 +1672,21 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	float nicename("Camera Deceleration Speed") camera_deceleration_speed1;
 	float __unknown22;
 	float nicename("Camera Field Of View") camera_field_of_view1;
-	Undefined32 __unknown23;
-	Undefined32 __unknown24;
-	Undefined32 __unknown25;
-	Undefined32 __unknown26;
-	Undefined32 __unknown27;
-	Undefined32 __unknown28;
-	s_tag_block_definition<s_unknown7_definition> __unknown29;
-	s_tag_block_definition<s_unknown8_definition> __unknown30;
-	s_tag_block_definition<s_space_fighter_camera1_definition> nicename("Space Fighter Camera") space_fighter_camera1_block;
-	TagReference nicename("Assassination Response") assassination_response_reference;
-	TagReference nicename("Assassination Tool") assassination_tool_reference;
+	s_undefined32_legacy __unknown23;
+	s_undefined32_legacy __unknown24;
+	s_undefined32_legacy __unknown25;
+	s_undefined32_legacy __unknown26;
+	s_undefined32_legacy __unknown27;
+	s_undefined32_legacy __unknown28;
+	s_tag_block_legacy<s_unknown7_definition> __unknown29;
+	s_tag_block_legacy<s_unknown8_definition> __unknown30;
+	s_tag_block_legacy<s_space_fighter_camera1_definition> nicename("Space Fighter Camera") space_fighter_camera1_block;
+	s_tag_reference_legacy nicename("Assassination Response") assassination_response_reference;
+	s_tag_reference_legacy nicename("Assassination Tool") assassination_tool_reference;
 	string_id nicename("Assassination Tool Marker") assassination_tool_marker;
 	string_id nicename("Assassination Tool Hand Marker") assassination_tool_hand_marker;
 	string_id nicename("Assassination Tool Stow Anchor") assassination_tool_stow_anchor;
-	TagReference nicename("Spring Acceleration") spring_acceleration_reference;
+	s_tag_reference_legacy nicename("Spring Acceleration") spring_acceleration_reference;
 	float nicename("Soft Ping Threshold") soft_ping_threshold;
 	float nicename("Soft Ping Interrupt Time") soft_ping_interrupt_time;
 	float nicename("Hard Ping Threshold") hard_ping_threshold;
@@ -1700,18 +1700,18 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	float __unknown33;
 	float __unknown34;
 	float __unknown35;
-	Undefined32 __unknown36;
-	Undefined32 __unknown37;
+	s_undefined32_legacy __unknown36;
+	s_undefined32_legacy __unknown37;
 	float __unknown38;
-	Undefined32 __unknown39;
+	s_undefined32_legacy __unknown39;
 	float __unknown40;
 	float __unknown41;
 	float __unknown42;
-	Undefined32 __unknown43;
+	s_undefined32_legacy __unknown43;
 	float __unknown44;
 	float nicename("Feign Death Chance") feign_death_chance;
 	float nicename("Feign Repeat Chance") feign_repeat_chance;
-	TagReference nicename("Spawned Turret Character") spawned_turret_character_reference;
+	s_tag_reference_legacy nicename("Spawned Turret Character") spawned_turret_character_reference;
 	int16_t nicename("Spawned Actor Count min") spawned_actor_count_min;
 	int16_t nicename("Spawned Actor Count max") spawned_actor_count_max;
 	float nicename("Spawned Velocity") spawned_velocity;
@@ -1721,44 +1721,44 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	float nicename("Casual Aiming Modifier") casual_aiming_modifier;
 	float nicename("Looking Velocity Maximum") looking_velocity_maximum;
 	float nicename("Looking Acceleration Maximum") looking_acceleration_maximum;
-	Undefined32 __unknown45;
+	s_undefined32_legacy __unknown45;
 	string_id nicename("Right Hand Node") right_hand_node;
 	string_id nicename("Left Hand Node") left_hand_node;
 	string_id nicename("Preferred Gun Node") preferred_gun_node;
 	string_id nicename("Preferred Grenade Node") preferred_grenade_node;
-	Undefined32 __unknown46;
-	TagReference nicename("AI Melee Damage") ai_melee_damage_reference;
-	TagReference nicename("Melee Damage") melee_damage_reference;
-	TagReference nicename("Boarding Melee Damage") boarding_melee_damage_reference;
-	TagReference nicename("Boarding Melee Response") boarding_melee_response_reference;
-	TagReference nicename("Ejection Melee Damage") ejection_melee_damage_reference;
-	TagReference nicename("Ejection Melee Response") ejection_melee_response_reference;
-	TagReference nicename("Landing Melee Damage") landing_melee_damage_reference;
-	TagReference nicename("Flurry Melee Damage") flurry_melee_damage_reference;
-	TagReference nicename("Obstacle Smash Melee Damage") obstacle_smash_melee_damage_reference;
-	TagReference nicename("Assassination Damage") assassination_damage_reference;
+	s_undefined32_legacy __unknown46;
+	s_tag_reference_legacy nicename("AI Melee Damage") ai_melee_damage_reference;
+	s_tag_reference_legacy nicename("Melee Damage") melee_damage_reference;
+	s_tag_reference_legacy nicename("Boarding Melee Damage") boarding_melee_damage_reference;
+	s_tag_reference_legacy nicename("Boarding Melee Response") boarding_melee_response_reference;
+	s_tag_reference_legacy nicename("Ejection Melee Damage") ejection_melee_damage_reference;
+	s_tag_reference_legacy nicename("Ejection Melee Response") ejection_melee_response_reference;
+	s_tag_reference_legacy nicename("Landing Melee Damage") landing_melee_damage_reference;
+	s_tag_reference_legacy nicename("Flurry Melee Damage") flurry_melee_damage_reference;
+	s_tag_reference_legacy nicename("Obstacle Smash Melee Damage") obstacle_smash_melee_damage_reference;
+	s_tag_reference_legacy nicename("Assassination Damage") assassination_damage_reference;
 	e_motion_sensor_blip_size nicename("Motion Sensor Blip Size") motion_sensor_blip_size;
 	e_item_scale nicename("Item Scale") item_scale;
 	string_id nicename("Equipment Variant") equipment_variant;
 	string_id nicename("Dropped Equipment Variant") dropped_equipment_variant;
-	s_tag_block_definition<s_postures_definition> nicename("Postures") postures_block;
-	s_tag_block_definition<s_hud_interfaces_definition> nicename("HUD Interfaces") hud_interfaces_block;
-	s_tag_block_definition<s_dialogue_variants_definition> nicename("Dialogue Variants") dialogue_variants_block;
+	s_tag_block_legacy<s_postures_definition> nicename("Postures") postures_block;
+	s_tag_block_legacy<s_hud_interfaces_definition> nicename("HUD Interfaces") hud_interfaces_block;
+	s_tag_block_legacy<s_dialogue_variants_definition> nicename("Dialogue Variants") dialogue_variants_block;
 	float nicename("Grenade Arc") grenade_arc;
 	float nicename("Grenade Force") grenade_force;
 	float nicename("Grenade Angle") grenade_angle;
 	float nicename("Grenade Velocity") grenade_velocity;
 	e_grenade_type nicename("Grenade Type") grenade_type;
 	int16_t nicename("Grenade Count") grenade_count;
-	s_tag_block_definition<s_powered_seats_definition> nicename("Powered Seats") powered_seats_block;
-	s_tag_block_definition<s_weapons_definition> nicename("Weapons") weapons_block;
-	s_tag_block_definition<s_target_tracking_definition> nicename("Target Tracking") target_tracking_block;
-	s_tag_block_definition<s_seats_definition> nicename("Seats") seats_block;
+	s_tag_block_legacy<s_powered_seats_definition> nicename("Powered Seats") powered_seats_block;
+	s_tag_block_legacy<s_weapons_definition> nicename("Weapons") weapons_block;
+	s_tag_block_legacy<s_target_tracking_definition> nicename("Target Tracking") target_tracking_block;
+	s_tag_block_legacy<s_seats_definition> nicename("Seats") seats_block;
 	float __unknown47;
 	float __unknown48;
 	float nicename("EMP Radius") emp_radius;
-	TagReference nicename("EMP Effect") emp_effect_reference;
-	TagReference nicename("Boost Collision Damage") boost_collision_damage_reference;
+	s_tag_reference_legacy nicename("EMP Effect") emp_effect_reference;
+	s_tag_reference_legacy nicename("Boost Collision Damage") boost_collision_damage_reference;
 	b_boost_flags nicename("Boost Flags") boost_flags;
 	int8_t __unknown49;
 	int8_t __unknown50;
@@ -1769,42 +1769,42 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	float nicename("Boost Gauge Decay Rate") boost_gauge_decay_rate;
 	float nicename("Boost Gauge Recharge Delay") boost_gauge_recharge_delay;
 	float nicename("Boost Gauge Recharge Rate") boost_gauge_recharge_rate;
-	DataReference nicename("Boost Function") boost_function_data_reference;
+	s_data_reference_legacy nicename("Boost Function") boost_function_data_reference;
 	float nicename("Lipsync Attack Weight") lipsync_attack_weight;
 	float nicename("Lipsync Decay Weight") lipsync_decay_weight;
-	TagReference nicename("Detach Damage") detach_damage_reference;
-	TagReference nicename("Detached Weapon") detached_weapon_reference;
+	s_tag_reference_legacy nicename("Detach Damage") detach_damage_reference;
+	s_tag_reference_legacy nicename("Detached Weapon") detached_weapon_reference;
 	// VEHICLE : 
 	b_flags2 nicename("Flags") flags2;
-	s_tag_block_definition<s_tank_engine_motion_properties_definition> nicename("Tank Engine Motion Properties") tank_engine_motion_properties_block;
-	s_tag_block_definition<s_engine_motion_properties_definition> nicename("Engine Motion Properties") engine_motion_properties_block;
-	s_tag_block_definition<s_dropship_motion_properties_definition> nicename("Dropship Motion Properties") dropship_motion_properties_block;
-	Undefined32 __unknown52;
-	Undefined32 __unknown53;
-	Undefined32 __unknown54;
-	s_tag_block_definition<s_antigravity_motion_properties_definition> nicename("Antigravity Motion Properties") antigravity_motion_properties_block;
-	s_tag_block_definition<s_jet_engine_motion_properties_definition> nicename("Jet Engine Motion Properties") jet_engine_motion_properties_block;
-	s_tag_block_definition<s_turret_properties_definition> nicename("Turret Properties") turret_properties_block;
-	Undefined32 __unknown55;
-	Undefined32 __unknown56;
-	Undefined32 __unknown57;
-	s_tag_block_definition<s_helicopter_motion_properties_definition> nicename("Helicopter Motion Properties") helicopter_motion_properties_block;
-	Undefined32 __unknown58;
-	Undefined32 __unknown59;
-	Undefined32 __unknown60;
-	Undefined32 __unknown61;
-	Undefined32 __unknown62;
-	Undefined32 __unknown63;
-	Undefined32 __unknown64;
-	Undefined32 __unknown65;
-	Undefined32 __unknown66;
-	Undefined32 __unknown67;
-	Undefined32 __unknown68;
-	Undefined32 __unknown69;
-	s_tag_block_definition<s_space_fighter_motion_properties_definition> nicename("Space Fighter Motion Properties") space_fighter_motion_properties_block;
-	Undefined32 __unknown70;
-	Undefined32 __unknown71;
-	Undefined32 __unknown72;
+	s_tag_block_legacy<s_tank_engine_motion_properties_definition> nicename("Tank Engine Motion Properties") tank_engine_motion_properties_block;
+	s_tag_block_legacy<s_engine_motion_properties_definition> nicename("Engine Motion Properties") engine_motion_properties_block;
+	s_tag_block_legacy<s_dropship_motion_properties_definition> nicename("Dropship Motion Properties") dropship_motion_properties_block;
+	s_undefined32_legacy __unknown52;
+	s_undefined32_legacy __unknown53;
+	s_undefined32_legacy __unknown54;
+	s_tag_block_legacy<s_antigravity_motion_properties_definition> nicename("Antigravity Motion Properties") antigravity_motion_properties_block;
+	s_tag_block_legacy<s_jet_engine_motion_properties_definition> nicename("Jet Engine Motion Properties") jet_engine_motion_properties_block;
+	s_tag_block_legacy<s_turret_properties_definition> nicename("Turret Properties") turret_properties_block;
+	s_undefined32_legacy __unknown55;
+	s_undefined32_legacy __unknown56;
+	s_undefined32_legacy __unknown57;
+	s_tag_block_legacy<s_helicopter_motion_properties_definition> nicename("Helicopter Motion Properties") helicopter_motion_properties_block;
+	s_undefined32_legacy __unknown58;
+	s_undefined32_legacy __unknown59;
+	s_undefined32_legacy __unknown60;
+	s_undefined32_legacy __unknown61;
+	s_undefined32_legacy __unknown62;
+	s_undefined32_legacy __unknown63;
+	s_undefined32_legacy __unknown64;
+	s_undefined32_legacy __unknown65;
+	s_undefined32_legacy __unknown66;
+	s_undefined32_legacy __unknown67;
+	s_undefined32_legacy __unknown68;
+	s_undefined32_legacy __unknown69;
+	s_tag_block_legacy<s_space_fighter_motion_properties_definition> nicename("Space Fighter Motion Properties") space_fighter_motion_properties_block;
+	s_undefined32_legacy __unknown70;
+	s_undefined32_legacy __unknown71;
+	s_undefined32_legacy __unknown72;
 	// Physics : 
 	b_flags3 nicename("Flags") flags3;
 	float nicename("Ground Friction") ground_friction;
@@ -1821,25 +1821,25 @@ struct nicename("vehicle") tag_group('vehi') s_vehicle_definition
 	int16_t __unknown75;
 	b_flags_2 nicename("Flags 2") flags_2;
 	int32_t __unknown76;
-	s_tag_block_definition<s_anti_gravity_points_definition> nicename("Anti Gravity Points") anti_gravity_points_block;
-	s_tag_block_definition<s_friction_points_definition> nicename("Friction Points") friction_points_block;
-	Undefined32 __unknown77;
-	s_tag_block_definition<s_tricks_definition> nicename("Tricks") tricks_block;
+	s_tag_block_legacy<s_anti_gravity_points_definition> nicename("Anti Gravity Points") anti_gravity_points_block;
+	s_tag_block_legacy<s_friction_points_definition> nicename("Friction Points") friction_points_block;
+	s_undefined32_legacy __unknown77;
+	s_tag_block_legacy<s_tricks_definition> nicename("Tricks") tricks_block;
 	e_player_training_vehicle_type nicename("Player Training Vehicle Type") player_training_vehicle_type;
 	e_vehicle_size nicename("Vehicle Size") vehicle_size;
 	int8_t __unknown78;
 	int8_t __unknown79;
 	float nicename("Minimum Flipping Angular Velocity") minimum_flipping_angular_velocity;
 	float nicename("Maximum Flipping Angular Velocity") maximum_flipping_angular_velocity;
-	Undefined32 __unknown80;
+	s_undefined32_legacy __unknown80;
 	float __unknown81;
 	float nicename("Seat Entrance Acceleration Scale") seat_entrance_acceleration_scale;
 	float nicename("Seat Exit Acceleration Scale") seat_exit_acceleration_scale;
 	float nicename("Flip Time") flip_time;
 	string_id nicename("Flip Over Message") flip_over_message;
-	TagReference nicename("Suspension Sound") suspension_sound_reference;
-	TagReference nicename("Running Effect") running_effect_reference;
-	TagReference nicename("Unknown Response") unknown_response_reference;
-	TagReference nicename("Unknown Response") unknown_response1_reference;
+	s_tag_reference_legacy nicename("Suspension Sound") suspension_sound_reference;
+	s_tag_reference_legacy nicename("Running Effect") running_effect_reference;
+	s_tag_reference_legacy nicename("Unknown Response") unknown_response_reference;
+	s_tag_reference_legacy nicename("Unknown Response") unknown_response1_reference;
 };
 

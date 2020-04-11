@@ -42,17 +42,17 @@ struct nicename("point_physics") tag_group('pphy') s_point_physics_definition
 	float __unknown0;
 	float __unknown1;
 	float __unknown2;
-	Undefined32 __unknown3;
-	Undefined32 __unknown4;
-	Undefined32 __unknown5;
-	Undefined32 __unknown6;
+	s_undefined32_legacy __unknown3;
+	s_undefined32_legacy __unknown4;
+	s_undefined32_legacy __unknown5;
+	s_undefined32_legacy __unknown6;
 	float nicename("Density") density;
 	float nicename("Air Friction") air_friction;
 	float nicename("Water Friction") water_friction;
 	float nicename("Surface Friction") surface_friction;
 	float nicename("Elasticity") elasticity;
-	Undefined32 __unknown7;
-	Undefined32 __unknown8;
-	Undefined32 __unknown9;
+	s_undefined32_legacy __unknown7;
+	s_undefined32_legacy __unknown8;
+	s_undefined32_legacy __unknown9;
 };
 
