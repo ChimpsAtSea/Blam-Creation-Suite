@@ -4,43 +4,43 @@ struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition
 {
 	enum nicename("Side Effect") e_side_effect : uint16_t
 	{
-		/*nicename("None")*/ _side_effect_none = 1ui16,
-		/*nicename("Harmless")*/ _side_effect_harmless = 2ui16,
-		/*nicename("Lethal To The Unsuspecting")*/ _side_effect_lethal_to_the_unsuspecting = 3ui16,
-		/*nicename("Emp")*/ _side_effect_emp = 4ui16,
+		/*nicename("None")*/ _side_effect_none = 0ui16,
+		/*nicename("Harmless")*/ _side_effect_harmless = 1ui16,
+		/*nicename("Lethal To The Unsuspecting")*/ _side_effect_lethal_to_the_unsuspecting = 2ui16,
+		/*nicename("Emp")*/ _side_effect_emp = 3ui16,
 	};
 
 	enum nicename("Category") e_category : uint16_t
 	{
-		/*nicename("None")*/ _category_none = 1ui16,
-		/*nicename("Falling")*/ _category_falling = 2ui16,
-		/*nicename("Bullet")*/ _category_bullet = 3ui16,
-		/*nicename("Grenade")*/ _category_grenade = 4ui16,
-		/*nicename("High Explosive")*/ _category_high_explosive = 5ui16,
-		/*nicename("Sniper")*/ _category_sniper = 6ui16,
-		/*nicename("Melee")*/ _category_melee = 7ui16,
-		/*nicename("Flame")*/ _category_flame = 8ui16,
-		/*nicename("Mounted Weapon")*/ _category_mounted_weapon = 9ui16,
-		/*nicename("Vehicle")*/ _category_vehicle = 10ui16,
-		/*nicename("Plasma")*/ _category_plasma = 11ui16,
-		/*nicename("Needle")*/ _category_needle = 12ui16,
-		/*nicename("Shotgun")*/ _category_shotgun = 13ui16,
+		/*nicename("None")*/ _category_none = 0ui16,
+		/*nicename("Falling")*/ _category_falling = 1ui16,
+		/*nicename("Bullet")*/ _category_bullet = 2ui16,
+		/*nicename("Grenade")*/ _category_grenade = 3ui16,
+		/*nicename("High Explosive")*/ _category_high_explosive = 4ui16,
+		/*nicename("Sniper")*/ _category_sniper = 5ui16,
+		/*nicename("Melee")*/ _category_melee = 6ui16,
+		/*nicename("Flame")*/ _category_flame = 7ui16,
+		/*nicename("Mounted Weapon")*/ _category_mounted_weapon = 8ui16,
+		/*nicename("Vehicle")*/ _category_vehicle = 9ui16,
+		/*nicename("Plasma")*/ _category_plasma = 10ui16,
+		/*nicename("Needle")*/ _category_needle = 11ui16,
+		/*nicename("Shotgun")*/ _category_shotgun = 12ui16,
 	};
 
 	enum nicename("Forced Death Dialogue") e_forced_death_dialogue : uint32_t
 	{
-		/*nicename("Default")*/ _forced_death_dialogue_default = 1ui32,
-		/*nicename("dth")*/ _forced_death_dialogue_dth = 2ui32,
-		/*nicename("dth_fall")*/ _forced_death_dialogue_dth_fall = 3ui32,
-		/*nicename("dth_mjr")*/ _forced_death_dialogue_dth_mjr = 4ui32,
-		/*nicename("dth_slw")*/ _forced_death_dialogue_dth_slw = 5ui32,
-		/*nicename("dth_hdsht")*/ _forced_death_dialogue_dth_hdsht = 6ui32,
-		/*nicename("dth_slnt")*/ _forced_death_dialogue_dth_slnt = 7ui32,
-		/*nicename("dth_drama")*/ _forced_death_dialogue_dth_drama = 8ui32,
-		/*nicename("dth_reanimated")*/ _forced_death_dialogue_dth_reanimated = 9ui32,
-		/*nicename("thrwn")*/ _forced_death_dialogue_thrwn = 10ui32,
-		/*nicename("die_space")*/ _forced_death_dialogue_die_space = 11ui32,
-		/*nicename("die_ass")*/ _forced_death_dialogue_die_ass = 12ui32,
+		/*nicename("Default")*/ _forced_death_dialogue_default = 0ui32,
+		/*nicename("dth")*/ _forced_death_dialogue_dth = 1ui32,
+		/*nicename("dth_fall")*/ _forced_death_dialogue_dth_fall = 2ui32,
+		/*nicename("dth_mjr")*/ _forced_death_dialogue_dth_mjr = 3ui32,
+		/*nicename("dth_slw")*/ _forced_death_dialogue_dth_slw = 4ui32,
+		/*nicename("dth_hdsht")*/ _forced_death_dialogue_dth_hdsht = 5ui32,
+		/*nicename("dth_slnt")*/ _forced_death_dialogue_dth_slnt = 6ui32,
+		/*nicename("dth_drama")*/ _forced_death_dialogue_dth_drama = 7ui32,
+		/*nicename("dth_reanimated")*/ _forced_death_dialogue_dth_reanimated = 8ui32,
+		/*nicename("thrwn")*/ _forced_death_dialogue_thrwn = 9ui32,
+		/*nicename("die_space")*/ _forced_death_dialogue_die_space = 10ui32,
+		/*nicename("die_ass")*/ _forced_death_dialogue_die_ass = 11ui32,
 	};
 
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */

@@ -6,9 +6,9 @@ struct nicename("commendation_globals_definition") tag_group('comg') s_commendat
 	{
 		enum nicename("Category") e_category : uint16_t
 		{
-			/*nicename("Campaign")*/ _category_campaign = 1ui16,
-			/*nicename("Firefight")*/ _category_firefight = 2ui16,
-			/*nicename("Multiplayer")*/ _category_multiplayer = 3ui16,
+			/*nicename("Campaign")*/ _category_campaign = 0ui16,
+			/*nicename("Firefight")*/ _category_firefight = 1ui16,
+			/*nicename("Multiplayer")*/ _category_multiplayer = 2ui16,
 		};
 
 		string_id_legacy nicename("Name") name;

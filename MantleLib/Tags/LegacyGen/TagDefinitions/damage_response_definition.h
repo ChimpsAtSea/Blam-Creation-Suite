@@ -6,9 +6,9 @@ struct nicename("damage_response_definition") tag_group('drdf') s_damage_respons
 	{
 		enum nicename("Response Type") e_response_type : uint16_t
 		{
-			/*nicename("Shielded")*/ _response_type_shielded = 1ui16,
-			/*nicename("Unshielded")*/ _response_type_unshielded = 2ui16,
-			/*nicename("All")*/ _response_type_all = 3ui16,
+			/*nicename("Shielded")*/ _response_type_shielded = 0ui16,
+			/*nicename("Unshielded")*/ _response_type_unshielded = 1ui16,
+			/*nicename("All")*/ _response_type_all = 2ui16,
 		};
 
 		struct nicename("Lowpass") s_lowpass_definition

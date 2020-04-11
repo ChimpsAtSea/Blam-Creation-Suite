@@ -6,9 +6,9 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 	{
 		enum nicename("Biped") e_biped : uint32_t
 		{
-			/*nicename("Spartan")*/ _biped_spartan = 1ui32,
-			/*nicename("Elite")*/ _biped_elite = 2ui32,
-			/*nicename("Monitor")*/ _biped_monitor = 3ui32,
+			/*nicename("Spartan")*/ _biped_spartan = 0ui32,
+			/*nicename("Elite")*/ _biped_elite = 1ui32,
+			/*nicename("Monitor")*/ _biped_monitor = 2ui32,
 		};
 
 		struct nicename("HUD Attributes") s_hud_attributes_definition
@@ -147,19 +147,19 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 		{
 			enum nicename("Icon") e_icon : uint8_t
 			{
-				/*nicename("Null")*/ _icon_null = 1ui8,
-				/*nicename("Neutralize")*/ _icon_neutralize = 2ui8,
-				/*nicename("Defend")*/ _icon_defend = 3ui8,
-				/*nicename("Ordnance")*/ _icon_ordnance = 4ui8,
-				/*nicename("Interface")*/ _icon_interface = 5ui8,
-				/*nicename("Scope")*/ _icon_scope = 6ui8,
-				/*nicename("Recover")*/ _icon_recover = 7ui8,
-				/*nicename("Arrow")*/ _icon_arrow = 8ui8,
-				/*nicename("Hostile")*/ _icon_hostile = 9ui8,
-				/*nicename("Ammo")*/ _icon_ammo = 10ui8,
-				/*nicename("Recon")*/ _icon_recon = 11ui8,
-				/*nicename("Structure")*/ _icon_structure = 12ui8,
-				/*nicename("Blank")*/ _icon_blank = 13ui8,
+				/*nicename("Null")*/ _icon_null = 0ui8,
+				/*nicename("Neutralize")*/ _icon_neutralize = 1ui8,
+				/*nicename("Defend")*/ _icon_defend = 2ui8,
+				/*nicename("Ordnance")*/ _icon_ordnance = 3ui8,
+				/*nicename("Interface")*/ _icon_interface = 4ui8,
+				/*nicename("Scope")*/ _icon_scope = 5ui8,
+				/*nicename("Recover")*/ _icon_recover = 6ui8,
+				/*nicename("Arrow")*/ _icon_arrow = 7ui8,
+				/*nicename("Hostile")*/ _icon_hostile = 8ui8,
+				/*nicename("Ammo")*/ _icon_ammo = 9ui8,
+				/*nicename("Recon")*/ _icon_recon = 10ui8,
+				/*nicename("Structure")*/ _icon_structure = 11ui8,
+				/*nicename("Blank")*/ _icon_blank = 12ui8,
 			};
 
 			string_id_legacy nicename("Title") title;

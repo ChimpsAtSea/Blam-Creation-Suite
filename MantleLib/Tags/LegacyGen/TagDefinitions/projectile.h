@@ -4,158 +4,158 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{
-		/*nicename("Biped")*/ _object_type_biped = 1ui16,
-		/*nicename("Vehicle")*/ _object_type_vehicle = 2ui16,
-		/*nicename("Weapon")*/ _object_type_weapon = 3ui16,
-		/*nicename("Equipment")*/ _object_type_equipment = 4ui16,
-		/*nicename("Terminal")*/ _object_type_terminal = 5ui16,
-		/*nicename("Projectile")*/ _object_type_projectile = 6ui16,
-		/*nicename("Scenery")*/ _object_type_scenery = 7ui16,
-		/*nicename("Machine")*/ _object_type_machine = 8ui16,
-		/*nicename("Control")*/ _object_type_control = 9ui16,
-		/*nicename("Sound Scenery")*/ _object_type_sound_scenery = 10ui16,
-		/*nicename("Crate")*/ _object_type_crate = 11ui16,
-		/*nicename("Creature")*/ _object_type_creature = 12ui16,
-		/*nicename("Giant")*/ _object_type_giant = 13ui16,
-		/*nicename("Effect Scenery")*/ _object_type_effect_scenery = 14ui16,
+		/*nicename("Biped")*/ _object_type_biped = 0ui16,
+		/*nicename("Vehicle")*/ _object_type_vehicle = 1ui16,
+		/*nicename("Weapon")*/ _object_type_weapon = 2ui16,
+		/*nicename("Equipment")*/ _object_type_equipment = 3ui16,
+		/*nicename("Terminal")*/ _object_type_terminal = 4ui16,
+		/*nicename("Projectile")*/ _object_type_projectile = 5ui16,
+		/*nicename("Scenery")*/ _object_type_scenery = 6ui16,
+		/*nicename("Machine")*/ _object_type_machine = 7ui16,
+		/*nicename("Control")*/ _object_type_control = 8ui16,
+		/*nicename("Sound Scenery")*/ _object_type_sound_scenery = 9ui16,
+		/*nicename("Crate")*/ _object_type_crate = 10ui16,
+		/*nicename("Creature")*/ _object_type_creature = 11ui16,
+		/*nicename("Giant")*/ _object_type_giant = 12ui16,
+		/*nicename("Effect Scenery")*/ _object_type_effect_scenery = 13ui16,
 	};
 
 	enum nicename("Lightmap Shadow Mode Size") e_lightmap_shadow_mode_size : uint16_t
 	{
-		/*nicename("Default")*/ _lightmap_shadow_mode_size_default = 1ui16,
-		/*nicename("Never")*/ _lightmap_shadow_mode_size_never = 2ui16,
-		/*nicename("Always")*/ _lightmap_shadow_mode_size_always = 3ui16,
-		/*nicename("Unknown")*/ _lightmap_shadow_mode_size_unknown = 4ui16,
+		/*nicename("Default")*/ _lightmap_shadow_mode_size_default = 0ui16,
+		/*nicename("Never")*/ _lightmap_shadow_mode_size_never = 1ui16,
+		/*nicename("Always")*/ _lightmap_shadow_mode_size_always = 2ui16,
+		/*nicename("Unknown")*/ _lightmap_shadow_mode_size_unknown = 3ui16,
 	};
 
 	enum nicename("Sweetener Size") e_sweetener_size : uint8_t
 	{
-		/*nicename("Small")*/ _sweetener_size_small = 1ui8,
-		/*nicename("Medium")*/ _sweetener_size_medium = 2ui8,
-		/*nicename("Large")*/ _sweetener_size_large = 3ui8,
+		/*nicename("Small")*/ _sweetener_size_small = 0ui8,
+		/*nicename("Medium")*/ _sweetener_size_medium = 1ui8,
+		/*nicename("Large")*/ _sweetener_size_large = 2ui8,
 	};
 
 	enum nicename("Water Density") e_water_density : uint8_t
 	{
-		/*nicename("Default")*/ _water_density_default = 1ui8,
-		/*nicename("Least")*/ _water_density_least = 2ui8,
-		/*nicename("Some")*/ _water_density_some = 3ui8,
-		/*nicename("Equal")*/ _water_density_equal = 4ui8,
-		/*nicename("More")*/ _water_density_more = 5ui8,
-		/*nicename("More Still")*/ _water_density_more_still = 6ui8,
-		/*nicename("Lots More")*/ _water_density_lots_more = 7ui8,
+		/*nicename("Default")*/ _water_density_default = 0ui8,
+		/*nicename("Least")*/ _water_density_least = 1ui8,
+		/*nicename("Some")*/ _water_density_some = 2ui8,
+		/*nicename("Equal")*/ _water_density_equal = 3ui8,
+		/*nicename("More")*/ _water_density_more = 4ui8,
+		/*nicename("More Still")*/ _water_density_more_still = 5ui8,
+		/*nicename("Lots More")*/ _water_density_lots_more = 6ui8,
 	};
 
 	enum nicename("Detonation Timer Starts") e_detonation_timer_starts : uint16_t
 	{
-		/*nicename("Immediately")*/ _detonation_timer_starts_immediately = 1ui16,
-		/*nicename("After First Bounce")*/ _detonation_timer_starts_after_first_bounce = 2ui16,
-		/*nicename("When At Rest")*/ _detonation_timer_starts_when_at_rest = 3ui16,
-		/*nicename("After First Bounce Off Any Surface")*/ _detonation_timer_starts_after_first_bounce_off_any_surface = 4ui16,
+		/*nicename("Immediately")*/ _detonation_timer_starts_immediately = 0ui16,
+		/*nicename("After First Bounce")*/ _detonation_timer_starts_after_first_bounce = 1ui16,
+		/*nicename("When At Rest")*/ _detonation_timer_starts_when_at_rest = 2ui16,
+		/*nicename("After First Bounce Off Any Surface")*/ _detonation_timer_starts_after_first_bounce_off_any_surface = 3ui16,
 	};
 
 	enum nicename("Impact Noise") e_impact_noise : uint16_t
 	{
-		/*nicename("Silent")*/ _impact_noise_silent = 1ui16,
-		/*nicename("Medium")*/ _impact_noise_medium = 2ui16,
-		/*nicename("Loud")*/ _impact_noise_loud = 3ui16,
-		/*nicename("Shout")*/ _impact_noise_shout = 4ui16,
-		/*nicename("Quiet")*/ _impact_noise_quiet = 5ui16,
+		/*nicename("Silent")*/ _impact_noise_silent = 0ui16,
+		/*nicename("Medium")*/ _impact_noise_medium = 1ui16,
+		/*nicename("Loud")*/ _impact_noise_loud = 2ui16,
+		/*nicename("Shout")*/ _impact_noise_shout = 3ui16,
+		/*nicename("Quiet")*/ _impact_noise_quiet = 4ui16,
 	};
 
 	enum nicename("Detonation Noise") e_detonation_noise : uint16_t
 	{
-		/*nicename("Silent")*/ _detonation_noise_silent = 1ui16,
-		/*nicename("Medium")*/ _detonation_noise_medium = 2ui16,
-		/*nicename("Loud")*/ _detonation_noise_loud = 3ui16,
-		/*nicename("Shout")*/ _detonation_noise_shout = 4ui16,
-		/*nicename("Quiet")*/ _detonation_noise_quiet = 5ui16,
+		/*nicename("Silent")*/ _detonation_noise_silent = 0ui16,
+		/*nicename("Medium")*/ _detonation_noise_medium = 1ui16,
+		/*nicename("Loud")*/ _detonation_noise_loud = 2ui16,
+		/*nicename("Shout")*/ _detonation_noise_shout = 3ui16,
+		/*nicename("Quiet")*/ _detonation_noise_quiet = 4ui16,
 	};
 
 	enum nicename("Damage Reporting Type") e_damage_reporting_type : uint8_t
 	{
-		/*nicename("Guardians (Unknown)")*/ _damage_reporting_type_guardians_unknown = 1ui8,
-		/*nicename("Guardians")*/ _damage_reporting_type_guardians = 2ui8,
-		/*nicename("Guardians (Scripting)")*/ _damage_reporting_type_guardians_scripting = 3ui8,
-		/*nicename("Suicide")*/ _damage_reporting_type_suicide = 4ui8,
-		/*nicename("Magnum")*/ _damage_reporting_type_magnum = 5ui8,
-		/*nicename("Assault Rifle")*/ _damage_reporting_type_assault_rifle = 6ui8,
-		/*nicename("DMR")*/ _damage_reporting_type_dmr = 7ui8,
-		/*nicename("Shotgun")*/ _damage_reporting_type_shotgun = 8ui8,
-		/*nicename("Sniper Rifle")*/ _damage_reporting_type_sniper_rifle = 9ui8,
-		/*nicename("Rocket Launcher")*/ _damage_reporting_type_rocket_launcher = 10ui8,
-		/*nicename("Spartan Laser")*/ _damage_reporting_type_spartan_laser = 11ui8,
-		/*nicename("Frag Grenade")*/ _damage_reporting_type_frag_grenade = 12ui8,
-		/*nicename("Grenade Launcher")*/ _damage_reporting_type_grenade_launcher = 13ui8,
-		/*nicename("Plasma Pistol")*/ _damage_reporting_type_plasma_pistol = 14ui8,
-		/*nicename("Needler")*/ _damage_reporting_type_needler = 15ui8,
-		/*nicename("Plasma Rifle")*/ _damage_reporting_type_plasma_rifle = 16ui8,
-		/*nicename("Plasma Repeater")*/ _damage_reporting_type_plasma_repeater = 17ui8,
-		/*nicename("Needle Rifle")*/ _damage_reporting_type_needle_rifle = 18ui8,
-		/*nicename("Spiker")*/ _damage_reporting_type_spiker = 19ui8,
-		/*nicename("Plasma Launcher")*/ _damage_reporting_type_plasma_launcher = 20ui8,
-		/*nicename("Gravity Hammer")*/ _damage_reporting_type_gravity_hammer = 21ui8,
-		/*nicename("Energy Sword")*/ _damage_reporting_type_energy_sword = 22ui8,
-		/*nicename("Plasma Grenade")*/ _damage_reporting_type_plasma_grenade = 23ui8,
-		/*nicename("Concussion Rifle")*/ _damage_reporting_type_concussion_rifle = 24ui8,
-		/*nicename("Ghost")*/ _damage_reporting_type_ghost = 25ui8,
-		/*nicename("Revenant")*/ _damage_reporting_type_revenant = 26ui8,
-		/*nicename("Revenant Gunner")*/ _damage_reporting_type_revenant_gunner = 27ui8,
-		/*nicename("Wraith")*/ _damage_reporting_type_wraith = 28ui8,
-		/*nicename("Wraith Turret")*/ _damage_reporting_type_wraith_turret = 29ui8,
-		/*nicename("Banshee")*/ _damage_reporting_type_banshee = 30ui8,
-		/*nicename("Banshee Bomb")*/ _damage_reporting_type_banshee_bomb = 31ui8,
-		/*nicename("Seraph")*/ _damage_reporting_type_seraph = 32ui8,
-		/*nicename("Mongoose")*/ _damage_reporting_type_mongoose = 33ui8,
-		/*nicename("Warthog")*/ _damage_reporting_type_warthog = 34ui8,
-		/*nicename("Warthog Chaingun")*/ _damage_reporting_type_warthog_chaingun = 35ui8,
-		/*nicename("Warthog Gauss")*/ _damage_reporting_type_warthog_gauss = 36ui8,
-		/*nicename("Warthog Rocket")*/ _damage_reporting_type_warthog_rocket = 37ui8,
-		/*nicename("Scorpion")*/ _damage_reporting_type_scorpion = 38ui8,
-		/*nicename("Scorpion Turret")*/ _damage_reporting_type_scorpion_turret = 39ui8,
-		/*nicename("Falcon")*/ _damage_reporting_type_falcon = 40ui8,
-		/*nicename("Falcon Gunner")*/ _damage_reporting_type_falcon_gunner = 41ui8,
-		/*nicename("Falling")*/ _damage_reporting_type_falling = 42ui8,
-		/*nicename("Collision")*/ _damage_reporting_type_collision = 43ui8,
-		/*nicename("Melee")*/ _damage_reporting_type_melee = 44ui8,
-		/*nicename("Explosion")*/ _damage_reporting_type_explosion = 45ui8,
-		/*nicename("Birthday Explosion")*/ _damage_reporting_type_birthday_explosion = 46ui8,
-		/*nicename("Flag")*/ _damage_reporting_type_flag = 47ui8,
-		/*nicename("Bomb")*/ _damage_reporting_type_bomb = 48ui8,
-		/*nicename("Bomb Explosion")*/ _damage_reporting_type_bomb_explosion = 49ui8,
-		/*nicename("Ball")*/ _damage_reporting_type_ball = 50ui8,
-		/*nicename("Teleporter")*/ _damage_reporting_type_teleporter = 51ui8,
-		/*nicename("Transfer Damage")*/ _damage_reporting_type_transfer_damage = 52ui8,
-		/*nicename("Armor Lock")*/ _damage_reporting_type_armor_lock = 53ui8,
-		/*nicename("Target Locator")*/ _damage_reporting_type_target_locator = 54ui8,
-		/*nicename("Human Turret")*/ _damage_reporting_type_human_turret = 55ui8,
-		/*nicename("Plasma Cannon")*/ _damage_reporting_type_plasma_cannon = 56ui8,
-		/*nicename("Plasma Mortar")*/ _damage_reporting_type_plasma_mortar = 57ui8,
-		/*nicename("Plasma Turret")*/ _damage_reporting_type_plasma_turret = 58ui8,
-		/*nicename("Shade Turret")*/ _damage_reporting_type_shade_turret = 59ui8,
-		/*nicename("Sabre")*/ _damage_reporting_type_sabre = 60ui8,
-		/*nicename("SMG")*/ _damage_reporting_type_smg = 61ui8,
-		/*nicename("Carbine")*/ _damage_reporting_type_carbine = 62ui8,
-		/*nicename("Battle Rifle")*/ _damage_reporting_type_battle_rifle = 63ui8,
-		/*nicename("Focus Rifle")*/ _damage_reporting_type_focus_rifle = 64ui8,
-		/*nicename("Fuel Rod")*/ _damage_reporting_type_fuel_rod = 65ui8,
-		/*nicename("Missile Pod")*/ _damage_reporting_type_missile_pod = 66ui8,
-		/*nicename("Brute Shot")*/ _damage_reporting_type_brute_shot = 67ui8,
-		/*nicename("Flamethrower")*/ _damage_reporting_type_flamethrower = 68ui8,
-		/*nicename("Sentinel Gun")*/ _damage_reporting_type_sentinel_gun = 69ui8,
-		/*nicename("Spike Grenade")*/ _damage_reporting_type_spike_grenade = 70ui8,
-		/*nicename("Firebomb Grenade")*/ _damage_reporting_type_firebomb_grenade = 71ui8,
-		/*nicename("Elephant Turret")*/ _damage_reporting_type_elephant_turret = 72ui8,
-		/*nicename("Spectre")*/ _damage_reporting_type_spectre = 73ui8,
-		/*nicename("Spectre Gunner")*/ _damage_reporting_type_spectre_gunner = 74ui8,
-		/*nicename("Tank")*/ _damage_reporting_type_tank = 75ui8,
-		/*nicename("Chopper")*/ _damage_reporting_type_chopper = 76ui8,
-		/*nicename("Falcon")*/ _damage_reporting_type_falcon1 = 77ui8,
-		/*nicename("Mantis")*/ _damage_reporting_type_mantis = 78ui8,
-		/*nicename("Prowler")*/ _damage_reporting_type_prowler = 79ui8,
-		/*nicename("Sentinel Beam")*/ _damage_reporting_type_sentinel_beam = 80ui8,
-		/*nicename("Sentinel RPG")*/ _damage_reporting_type_sentinel_rpg = 81ui8,
-		/*nicename("Tripmine")*/ _damage_reporting_type_tripmine = 82ui8,
+		/*nicename("Guardians (Unknown)")*/ _damage_reporting_type_guardians_unknown = 0ui8,
+		/*nicename("Guardians")*/ _damage_reporting_type_guardians = 1ui8,
+		/*nicename("Guardians (Scripting)")*/ _damage_reporting_type_guardians_scripting = 2ui8,
+		/*nicename("Suicide")*/ _damage_reporting_type_suicide = 3ui8,
+		/*nicename("Magnum")*/ _damage_reporting_type_magnum = 4ui8,
+		/*nicename("Assault Rifle")*/ _damage_reporting_type_assault_rifle = 5ui8,
+		/*nicename("DMR")*/ _damage_reporting_type_dmr = 6ui8,
+		/*nicename("Shotgun")*/ _damage_reporting_type_shotgun = 7ui8,
+		/*nicename("Sniper Rifle")*/ _damage_reporting_type_sniper_rifle = 8ui8,
+		/*nicename("Rocket Launcher")*/ _damage_reporting_type_rocket_launcher = 9ui8,
+		/*nicename("Spartan Laser")*/ _damage_reporting_type_spartan_laser = 10ui8,
+		/*nicename("Frag Grenade")*/ _damage_reporting_type_frag_grenade = 11ui8,
+		/*nicename("Grenade Launcher")*/ _damage_reporting_type_grenade_launcher = 12ui8,
+		/*nicename("Plasma Pistol")*/ _damage_reporting_type_plasma_pistol = 13ui8,
+		/*nicename("Needler")*/ _damage_reporting_type_needler = 14ui8,
+		/*nicename("Plasma Rifle")*/ _damage_reporting_type_plasma_rifle = 15ui8,
+		/*nicename("Plasma Repeater")*/ _damage_reporting_type_plasma_repeater = 16ui8,
+		/*nicename("Needle Rifle")*/ _damage_reporting_type_needle_rifle = 17ui8,
+		/*nicename("Spiker")*/ _damage_reporting_type_spiker = 18ui8,
+		/*nicename("Plasma Launcher")*/ _damage_reporting_type_plasma_launcher = 19ui8,
+		/*nicename("Gravity Hammer")*/ _damage_reporting_type_gravity_hammer = 20ui8,
+		/*nicename("Energy Sword")*/ _damage_reporting_type_energy_sword = 21ui8,
+		/*nicename("Plasma Grenade")*/ _damage_reporting_type_plasma_grenade = 22ui8,
+		/*nicename("Concussion Rifle")*/ _damage_reporting_type_concussion_rifle = 23ui8,
+		/*nicename("Ghost")*/ _damage_reporting_type_ghost = 24ui8,
+		/*nicename("Revenant")*/ _damage_reporting_type_revenant = 25ui8,
+		/*nicename("Revenant Gunner")*/ _damage_reporting_type_revenant_gunner = 26ui8,
+		/*nicename("Wraith")*/ _damage_reporting_type_wraith = 27ui8,
+		/*nicename("Wraith Turret")*/ _damage_reporting_type_wraith_turret = 28ui8,
+		/*nicename("Banshee")*/ _damage_reporting_type_banshee = 29ui8,
+		/*nicename("Banshee Bomb")*/ _damage_reporting_type_banshee_bomb = 30ui8,
+		/*nicename("Seraph")*/ _damage_reporting_type_seraph = 31ui8,
+		/*nicename("Mongoose")*/ _damage_reporting_type_mongoose = 32ui8,
+		/*nicename("Warthog")*/ _damage_reporting_type_warthog = 33ui8,
+		/*nicename("Warthog Chaingun")*/ _damage_reporting_type_warthog_chaingun = 34ui8,
+		/*nicename("Warthog Gauss")*/ _damage_reporting_type_warthog_gauss = 35ui8,
+		/*nicename("Warthog Rocket")*/ _damage_reporting_type_warthog_rocket = 36ui8,
+		/*nicename("Scorpion")*/ _damage_reporting_type_scorpion = 37ui8,
+		/*nicename("Scorpion Turret")*/ _damage_reporting_type_scorpion_turret = 38ui8,
+		/*nicename("Falcon")*/ _damage_reporting_type_falcon = 39ui8,
+		/*nicename("Falcon Gunner")*/ _damage_reporting_type_falcon_gunner = 40ui8,
+		/*nicename("Falling")*/ _damage_reporting_type_falling = 41ui8,
+		/*nicename("Collision")*/ _damage_reporting_type_collision = 42ui8,
+		/*nicename("Melee")*/ _damage_reporting_type_melee = 43ui8,
+		/*nicename("Explosion")*/ _damage_reporting_type_explosion = 44ui8,
+		/*nicename("Birthday Explosion")*/ _damage_reporting_type_birthday_explosion = 45ui8,
+		/*nicename("Flag")*/ _damage_reporting_type_flag = 46ui8,
+		/*nicename("Bomb")*/ _damage_reporting_type_bomb = 47ui8,
+		/*nicename("Bomb Explosion")*/ _damage_reporting_type_bomb_explosion = 48ui8,
+		/*nicename("Ball")*/ _damage_reporting_type_ball = 49ui8,
+		/*nicename("Teleporter")*/ _damage_reporting_type_teleporter = 50ui8,
+		/*nicename("Transfer Damage")*/ _damage_reporting_type_transfer_damage = 51ui8,
+		/*nicename("Armor Lock")*/ _damage_reporting_type_armor_lock = 52ui8,
+		/*nicename("Target Locator")*/ _damage_reporting_type_target_locator = 53ui8,
+		/*nicename("Human Turret")*/ _damage_reporting_type_human_turret = 54ui8,
+		/*nicename("Plasma Cannon")*/ _damage_reporting_type_plasma_cannon = 55ui8,
+		/*nicename("Plasma Mortar")*/ _damage_reporting_type_plasma_mortar = 56ui8,
+		/*nicename("Plasma Turret")*/ _damage_reporting_type_plasma_turret = 57ui8,
+		/*nicename("Shade Turret")*/ _damage_reporting_type_shade_turret = 58ui8,
+		/*nicename("Sabre")*/ _damage_reporting_type_sabre = 59ui8,
+		/*nicename("SMG")*/ _damage_reporting_type_smg = 60ui8,
+		/*nicename("Carbine")*/ _damage_reporting_type_carbine = 61ui8,
+		/*nicename("Battle Rifle")*/ _damage_reporting_type_battle_rifle = 62ui8,
+		/*nicename("Focus Rifle")*/ _damage_reporting_type_focus_rifle = 63ui8,
+		/*nicename("Fuel Rod")*/ _damage_reporting_type_fuel_rod = 64ui8,
+		/*nicename("Missile Pod")*/ _damage_reporting_type_missile_pod = 65ui8,
+		/*nicename("Brute Shot")*/ _damage_reporting_type_brute_shot = 66ui8,
+		/*nicename("Flamethrower")*/ _damage_reporting_type_flamethrower = 67ui8,
+		/*nicename("Sentinel Gun")*/ _damage_reporting_type_sentinel_gun = 68ui8,
+		/*nicename("Spike Grenade")*/ _damage_reporting_type_spike_grenade = 69ui8,
+		/*nicename("Firebomb Grenade")*/ _damage_reporting_type_firebomb_grenade = 70ui8,
+		/*nicename("Elephant Turret")*/ _damage_reporting_type_elephant_turret = 71ui8,
+		/*nicename("Spectre")*/ _damage_reporting_type_spectre = 72ui8,
+		/*nicename("Spectre Gunner")*/ _damage_reporting_type_spectre_gunner = 73ui8,
+		/*nicename("Tank")*/ _damage_reporting_type_tank = 74ui8,
+		/*nicename("Chopper")*/ _damage_reporting_type_chopper = 75ui8,
+		/*nicename("Falcon")*/ _damage_reporting_type_falcon1 = 76ui8,
+		/*nicename("Mantis")*/ _damage_reporting_type_mantis = 77ui8,
+		/*nicename("Prowler")*/ _damage_reporting_type_prowler = 78ui8,
+		/*nicename("Sentinel Beam")*/ _damage_reporting_type_sentinel_beam = 79ui8,
+		/*nicename("Sentinel RPG")*/ _damage_reporting_type_sentinel_rpg = 80ui8,
+		/*nicename("Tripmine")*/ _damage_reporting_type_tripmine = 81ui8,
 	};
 
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
@@ -250,7 +250,7 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 
 	struct nicename("Early Mover Properties") s_early_mover_properties_definition
 	{
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
@@ -267,25 +267,25 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 	{
 		enum nicename("Size") e_size : uint16_t
 		{
-			/*nicename("Default")*/ _size_default = 1ui16,
-			/*nicename("Tiny")*/ _size_tiny = 2ui16,
-			/*nicename("Small")*/ _size_small = 3ui16,
-			/*nicename("Medium")*/ _size_medium = 4ui16,
-			/*nicename("Large")*/ _size_large = 5ui16,
-			/*nicename("Huge")*/ _size_huge = 6ui16,
-			/*nicename("Immobile")*/ _size_immobile = 7ui16,
+			/*nicename("Default")*/ _size_default = 0ui16,
+			/*nicename("Tiny")*/ _size_tiny = 1ui16,
+			/*nicename("Small")*/ _size_small = 2ui16,
+			/*nicename("Medium")*/ _size_medium = 3ui16,
+			/*nicename("Large")*/ _size_large = 4ui16,
+			/*nicename("Huge")*/ _size_huge = 5ui16,
+			/*nicename("Immobile")*/ _size_immobile = 6ui16,
 		};
 
 		enum nicename("Leap Jump Speed") e_leap_jump_speed : uint16_t
 		{
-			/*nicename("None")*/ _leap_jump_speed_none = 1ui16,
-			/*nicename("Down")*/ _leap_jump_speed_down = 2ui16,
-			/*nicename("Step")*/ _leap_jump_speed_step = 3ui16,
-			/*nicename("Crouch")*/ _leap_jump_speed_crouch = 4ui16,
-			/*nicename("Stand")*/ _leap_jump_speed_stand = 5ui16,
-			/*nicename("Storey")*/ _leap_jump_speed_storey = 6ui16,
-			/*nicename("Tower")*/ _leap_jump_speed_tower = 7ui16,
-			/*nicename("Infinite")*/ _leap_jump_speed_infinite = 8ui16,
+			/*nicename("None")*/ _leap_jump_speed_none = 0ui16,
+			/*nicename("Down")*/ _leap_jump_speed_down = 1ui16,
+			/*nicename("Step")*/ _leap_jump_speed_step = 2ui16,
+			/*nicename("Crouch")*/ _leap_jump_speed_crouch = 3ui16,
+			/*nicename("Stand")*/ _leap_jump_speed_stand = 4ui16,
+			/*nicename("Storey")*/ _leap_jump_speed_storey = 5ui16,
+			/*nicename("Tower")*/ _leap_jump_speed_tower = 6ui16,
+			/*nicename("Infinite")*/ _leap_jump_speed_infinite = 7ui16,
 		};
 
 		enum nicename("Flags") b_flags1 : uint32_t /* bitfield */
@@ -325,7 +325,7 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 		};
 
 		b_flags1 nicename("Flags") flags;
-		string_id nicename("AI Type Name") ai_type_name;
+		string_id_legacy nicename("AI Type Name") ai_type_name;
 		s_undefined32_legacy __unknown0;
 		e_size nicename("Size") size;
 		e_leap_jump_speed nicename("Leap Jump Speed") leap_jump_speed;
@@ -380,13 +380,13 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 		};
 
 		b_flags1 nicename("Flags") flags;
-		string_id nicename("Import Name") import_name;
-		string_id nicename("Export Name") export_name;
-		string_id nicename("Turn Off With") turn_off_with;
-		string_id __unknown0;
+		string_id_legacy nicename("Import Name") import_name;
+		string_id_legacy nicename("Export Name") export_name;
+		string_id_legacy nicename("Turn Off With") turn_off_with;
+		string_id_legacy __unknown0;
 		float nicename("Minimum Value") minimum_value;
 		s_data_reference_legacy nicename("Default Function") default_function_data_reference;
-		string_id nicename("Scale By") scale_by;
+		string_id_legacy nicename("Scale By") scale_by;
 		s_tag_block_legacy<s_unknown_definition> __unknown1;
 		int32_t nicename("'Function Related' Index") function_related_index;
 	};
@@ -400,26 +400,26 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 	{
 		enum nicename("Change Color") e_change_color : uint16_t
 		{
-			/*nicename("None")*/ _change_color_none = 1ui16,
-			/*nicename("Primary")*/ _change_color_primary = 2ui16,
-			/*nicename("Secondary")*/ _change_color_secondary = 3ui16,
-			/*nicename("Tertiary")*/ _change_color_tertiary = 4ui16,
-			/*nicename("Quaternary")*/ _change_color_quaternary = 5ui16,
+			/*nicename("None")*/ _change_color_none = 0ui16,
+			/*nicename("Primary")*/ _change_color_primary = 1ui16,
+			/*nicename("Secondary")*/ _change_color_secondary = 2ui16,
+			/*nicename("Tertiary")*/ _change_color_tertiary = 3ui16,
+			/*nicename("Quaternary")*/ _change_color_quaternary = 4ui16,
 		};
 
 		s_tag_reference_legacy nicename("Attachment") attachment_reference;
-		string_id nicename("Marker") marker;
+		string_id_legacy nicename("Marker") marker;
 		e_change_color nicename("Change Color") change_color;
 		int16_t __unknown0;
-		string_id nicename("Primary Scale") primary_scale;
-		string_id nicename("Secondary Scale") secondary_scale;
+		string_id_legacy nicename("Primary Scale") primary_scale;
+		string_id_legacy nicename("Secondary Scale") secondary_scale;
 	};
 
 	struct nicename("Material Responses") s_material_responses_definition
 	{
 		struct nicename("Unknown") s_unknown1_definition
 		{
-			string_id nicename("Material") material;
+			string_id_legacy nicename("Material") material;
 			s_data_reference_legacy __unknown0;
 			float __unknown1;
 			s_data_reference_legacy __unknown2;
@@ -436,7 +436,7 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 
 	struct nicename("Jet Wash") s_jet_wash_definition
 	{
-		string_id nicename("Marker") marker;
+		string_id_legacy nicename("Marker") marker;
 		float __unknown0;
 		s_undefined32_legacy __unknown1;
 		float __unknown2;
@@ -459,7 +459,7 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 			float nicename("Weight") weight;
 			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
 			s_colorf_legacy nicename("Color Upper Bound") color_upper_bound;
-			string_id nicename("Variant Name") variant_name;
+			string_id_legacy nicename("Variant Name") variant_name;
 		};
 
 		struct nicename("Functions") s_functions1_definition
@@ -503,8 +503,8 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 			b_scale_flags nicename("Scale Flags") scale_flags;
 			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
 			s_colorf_legacy nicename("Color Upper Bound") color_upper_bound;
-			string_id nicename("Darken By...") darken_by;
-			string_id nicename("Scale By...") scale_by;
+			string_id_legacy nicename("Darken By...") darken_by;
+			string_id_legacy nicename("Scale By...") scale_by;
 		};
 
 		s_tag_block_legacy<s_initial_permutations_definition> nicename("Initial Permutations") initial_permutations_block;
@@ -522,48 +522,48 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 	{
 		enum nicename("Object Type") e_object_type1 : uint8_t
 		{
-			/*nicename("Ordinary")*/ _object_type1_ordinary = 1ui8,
-			/*nicename("Weapon")*/ _object_type1_weapon = 2ui8,
-			/*nicename("Grenade")*/ _object_type1_grenade = 3ui8,
-			/*nicename("Projectile")*/ _object_type1_projectile = 4ui8,
-			/*nicename("Powerup")*/ _object_type1_powerup = 5ui8,
-			/*nicename("Equipment")*/ _object_type1_equipment = 6ui8,
-			/*nicename("Ammo Pack")*/ _object_type1_ammo_pack = 7ui8,
-			/*nicename("Light Land Vehicle")*/ _object_type1_light_land_vehicle = 8ui8,
-			/*nicename("Heavy Land Vehicle")*/ _object_type1_heavy_land_vehicle = 9ui8,
-			/*nicename("Flying Vehicle")*/ _object_type1_flying_vehicle = 10ui8,
-			/*nicename("Turret")*/ _object_type1_turret = 11ui8,
-			/*nicename("Device")*/ _object_type1_device = 12ui8,
-			/*nicename("Teleporter 2Way")*/ _object_type1_teleporter_2way = 13ui8,
-			/*nicename("Teleporter Sender")*/ _object_type1_teleporter_sender = 14ui8,
-			/*nicename("Teleporter Receiver")*/ _object_type1_teleporter_receiver = 15ui8,
-			/*nicename("Player Spawn Location")*/ _object_type1_player_spawn_location = 16ui8,
-			/*nicename("Player Respawn Zone")*/ _object_type1_player_respawn_zone = 17ui8,
-			/*nicename("Secondary Objective")*/ _object_type1_secondary_objective = 18ui8,
-			/*nicename("Primary Objective")*/ _object_type1_primary_objective = 19ui8,
-			/*nicename("Named Location Area")*/ _object_type1_named_location_area = 20ui8,
-			/*nicename("Danger Zone")*/ _object_type1_danger_zone = 21ui8,
-			/*nicename("Fireteam 1 Respawn Zone")*/ _object_type1_fireteam_1_respawn_zone = 22ui8,
-			/*nicename("Fireteam 2 Respawn Zone")*/ _object_type1_fireteam_2_respawn_zone = 23ui8,
-			/*nicename("Fireteam 3 Respawn Zone")*/ _object_type1_fireteam_3_respawn_zone = 24ui8,
-			/*nicename("Fireteam 4 Respawn Zone")*/ _object_type1_fireteam_4_respawn_zone = 25ui8,
-			/*nicename("Safe Volume")*/ _object_type1_safe_volume = 26ui8,
-			/*nicename("Kill Volume")*/ _object_type1_kill_volume = 27ui8,
-			/*nicename("Cinematic Camera Position")*/ _object_type1_cinematic_camera_position = 28ui8,
+			/*nicename("Ordinary")*/ _object_type1_ordinary = 0ui8,
+			/*nicename("Weapon")*/ _object_type1_weapon = 1ui8,
+			/*nicename("Grenade")*/ _object_type1_grenade = 2ui8,
+			/*nicename("Projectile")*/ _object_type1_projectile = 3ui8,
+			/*nicename("Powerup")*/ _object_type1_powerup = 4ui8,
+			/*nicename("Equipment")*/ _object_type1_equipment = 5ui8,
+			/*nicename("Ammo Pack")*/ _object_type1_ammo_pack = 6ui8,
+			/*nicename("Light Land Vehicle")*/ _object_type1_light_land_vehicle = 7ui8,
+			/*nicename("Heavy Land Vehicle")*/ _object_type1_heavy_land_vehicle = 8ui8,
+			/*nicename("Flying Vehicle")*/ _object_type1_flying_vehicle = 9ui8,
+			/*nicename("Turret")*/ _object_type1_turret = 10ui8,
+			/*nicename("Device")*/ _object_type1_device = 11ui8,
+			/*nicename("Teleporter 2Way")*/ _object_type1_teleporter_2way = 12ui8,
+			/*nicename("Teleporter Sender")*/ _object_type1_teleporter_sender = 13ui8,
+			/*nicename("Teleporter Receiver")*/ _object_type1_teleporter_receiver = 14ui8,
+			/*nicename("Player Spawn Location")*/ _object_type1_player_spawn_location = 15ui8,
+			/*nicename("Player Respawn Zone")*/ _object_type1_player_respawn_zone = 16ui8,
+			/*nicename("Secondary Objective")*/ _object_type1_secondary_objective = 17ui8,
+			/*nicename("Primary Objective")*/ _object_type1_primary_objective = 18ui8,
+			/*nicename("Named Location Area")*/ _object_type1_named_location_area = 19ui8,
+			/*nicename("Danger Zone")*/ _object_type1_danger_zone = 20ui8,
+			/*nicename("Fireteam 1 Respawn Zone")*/ _object_type1_fireteam_1_respawn_zone = 21ui8,
+			/*nicename("Fireteam 2 Respawn Zone")*/ _object_type1_fireteam_2_respawn_zone = 22ui8,
+			/*nicename("Fireteam 3 Respawn Zone")*/ _object_type1_fireteam_3_respawn_zone = 23ui8,
+			/*nicename("Fireteam 4 Respawn Zone")*/ _object_type1_fireteam_4_respawn_zone = 24ui8,
+			/*nicename("Safe Volume")*/ _object_type1_safe_volume = 25ui8,
+			/*nicename("Kill Volume")*/ _object_type1_kill_volume = 26ui8,
+			/*nicename("Cinematic Camera Position")*/ _object_type1_cinematic_camera_position = 27ui8,
 		};
 
 		enum nicename("Shape") e_shape : uint8_t
 		{
-			/*nicename("None")*/ _shape_none = 1ui8,
-			/*nicename("Sphere")*/ _shape_sphere = 2ui8,
-			/*nicename("Cylinder")*/ _shape_cylinder = 3ui8,
-			/*nicename("Box")*/ _shape_box = 4ui8,
+			/*nicename("None")*/ _shape_none = 0ui8,
+			/*nicename("Sphere")*/ _shape_sphere = 1ui8,
+			/*nicename("Cylinder")*/ _shape_cylinder = 2ui8,
+			/*nicename("Box")*/ _shape_box = 3ui8,
 		};
 
 		enum nicename("Spawn Timer Mode") e_spawn_timer_mode : uint8_t
 		{
-			/*nicename("On Death")*/ _spawn_timer_mode_on_death = 1ui8,
-			/*nicename("On Disturbance")*/ _spawn_timer_mode_on_disturbance = 2ui8,
+			/*nicename("On Death")*/ _spawn_timer_mode_on_death = 0ui8,
+			/*nicename("On Disturbance")*/ _spawn_timer_mode_on_disturbance = 1ui8,
 		};
 
 		enum nicename("Teleporter Flags") b_teleporter_flags : uint8_t /* bitfield */
@@ -634,34 +634,34 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 	{
 		enum nicename("Response") e_response : uint16_t
 		{
-			/*nicename("Impact (Detonate)")*/ _response_impact_detonate = 1ui16,
-			/*nicename("Fizzle")*/ _response_fizzle = 2ui16,
-			/*nicename("Overpenetrate")*/ _response_overpenetrate = 3ui16,
-			/*nicename("Attach")*/ _response_attach = 4ui16,
-			/*nicename("Bounce")*/ _response_bounce = 5ui16,
-			/*nicename("Bounce (Dud)")*/ _response_bounce_dud = 6ui16,
-			/*nicename("Fizzle (Ricochet)")*/ _response_fizzle_ricochet = 7ui16,
-			/*nicename("Bounce (Unknown)")*/ _response_bounce_unknown = 8ui16,
-			/*nicename("Airstrike")*/ _response_airstrike = 9ui16,
+			/*nicename("Impact (Detonate)")*/ _response_impact_detonate = 0ui16,
+			/*nicename("Fizzle")*/ _response_fizzle = 1ui16,
+			/*nicename("Overpenetrate")*/ _response_overpenetrate = 2ui16,
+			/*nicename("Attach")*/ _response_attach = 3ui16,
+			/*nicename("Bounce")*/ _response_bounce = 4ui16,
+			/*nicename("Bounce (Dud)")*/ _response_bounce_dud = 5ui16,
+			/*nicename("Fizzle (Ricochet)")*/ _response_fizzle_ricochet = 6ui16,
+			/*nicename("Bounce (Unknown)")*/ _response_bounce_unknown = 7ui16,
+			/*nicename("Airstrike")*/ _response_airstrike = 8ui16,
 		};
 
 		enum nicename("Response") e_response1 : uint16_t
 		{
-			/*nicename("Impact (Detonate)")*/ _response1_impact_detonate = 1ui16,
-			/*nicename("Fizzle")*/ _response1_fizzle = 2ui16,
-			/*nicename("Overpenetrate")*/ _response1_overpenetrate = 3ui16,
-			/*nicename("Attach")*/ _response1_attach = 4ui16,
-			/*nicename("Bounce")*/ _response1_bounce = 5ui16,
-			/*nicename("Bounce (Dud)")*/ _response1_bounce_dud = 6ui16,
-			/*nicename("Fizzle (Ricochet)")*/ _response1_fizzle_ricochet = 7ui16,
-			/*nicename("Bounce (Unknown)")*/ _response1_bounce_unknown = 8ui16,
-			/*nicename("Airstrike")*/ _response1_airstrike = 9ui16,
+			/*nicename("Impact (Detonate)")*/ _response1_impact_detonate = 0ui16,
+			/*nicename("Fizzle")*/ _response1_fizzle = 1ui16,
+			/*nicename("Overpenetrate")*/ _response1_overpenetrate = 2ui16,
+			/*nicename("Attach")*/ _response1_attach = 3ui16,
+			/*nicename("Bounce")*/ _response1_bounce = 4ui16,
+			/*nicename("Bounce (Dud)")*/ _response1_bounce_dud = 5ui16,
+			/*nicename("Fizzle (Ricochet)")*/ _response1_fizzle_ricochet = 6ui16,
+			/*nicename("Bounce (Unknown)")*/ _response1_bounce_unknown = 7ui16,
+			/*nicename("Airstrike")*/ _response1_airstrike = 8ui16,
 		};
 
 		enum nicename("Scale Effects By") e_scale_effects_by : uint16_t
 		{
-			/*nicename("Damage")*/ _scale_effects_by_damage = 1ui16,
-			/*nicename("Angle")*/ _scale_effects_by_angle = 2ui16,
+			/*nicename("Damage")*/ _scale_effects_by_damage = 0ui16,
+			/*nicename("Angle")*/ _scale_effects_by_angle = 1ui16,
 		};
 
 		enum nicename("Flags") b_flags2 : uint16_t /* bitfield */
@@ -687,7 +687,7 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 		// Default Result : 
 		e_response nicename("Response") response;
 		int16_t __unknown0;
-		string_id nicename("Material Name") material_name;
+		string_id_legacy nicename("Material Name") material_name;
 		int16_t nicename("Global Material Index") global_material_index;
 		int16_t __unknown1;
 		// Potential Result : 
@@ -713,21 +713,21 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 	{
 		enum nicename("Response") e_response : uint16_t
 		{
-			/*nicename("Impact (Detonate)")*/ _response_impact_detonate = 1ui16,
-			/*nicename("Fizzle")*/ _response_fizzle = 2ui16,
-			/*nicename("Overpenetrate")*/ _response_overpenetrate = 3ui16,
-			/*nicename("Attach")*/ _response_attach = 4ui16,
-			/*nicename("Bounce")*/ _response_bounce = 5ui16,
-			/*nicename("Bounce (Dud)")*/ _response_bounce_dud = 6ui16,
-			/*nicename("Fizzle (Ricochet)")*/ _response_fizzle_ricochet = 7ui16,
-			/*nicename("Bounce (Unknown)")*/ _response_bounce_unknown = 8ui16,
-			/*nicename("Airstrike")*/ _response_airstrike = 9ui16,
+			/*nicename("Impact (Detonate)")*/ _response_impact_detonate = 0ui16,
+			/*nicename("Fizzle")*/ _response_fizzle = 1ui16,
+			/*nicename("Overpenetrate")*/ _response_overpenetrate = 2ui16,
+			/*nicename("Attach")*/ _response_attach = 3ui16,
+			/*nicename("Bounce")*/ _response_bounce = 4ui16,
+			/*nicename("Bounce (Dud)")*/ _response_bounce_dud = 5ui16,
+			/*nicename("Fizzle (Ricochet)")*/ _response_fizzle_ricochet = 6ui16,
+			/*nicename("Bounce (Unknown)")*/ _response_bounce_unknown = 7ui16,
+			/*nicename("Airstrike")*/ _response_airstrike = 8ui16,
 		};
 
 		enum nicename("Scale Effects By") e_scale_effects_by : uint16_t
 		{
-			/*nicename("Damage")*/ _scale_effects_by_damage = 1ui16,
-			/*nicename("Angle")*/ _scale_effects_by_angle = 2ui16,
+			/*nicename("Damage")*/ _scale_effects_by_damage = 0ui16,
+			/*nicename("Angle")*/ _scale_effects_by_angle = 1ui16,
 		};
 
 		enum nicename("Flags") b_flags2 : uint16_t /* bitfield */
@@ -750,7 +750,7 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 			/*nicename("Bit 15")*/ _flags2_bit_15 = 1ui16 << 15ui16,
 		};
 
-		string_id nicename("Material") material;
+		string_id_legacy nicename("Material") material;
 		int16_t nicename("Global Material Index") global_material_index;
 		// Potential Result : 
 		b_flags2 nicename("Flags") flags;
@@ -817,10 +817,10 @@ struct nicename("projectile") tag_group('proj') s_projectile_definition
 	float nicename("Dynamic Light Sphere X Offset") dynamic_light_sphere_x_offset;
 	float nicename("Dynamic Light Sphere Y Offset") dynamic_light_sphere_y_offset;
 	float nicename("Dynamic Light Sphere Z Offset") dynamic_light_sphere_z_offset;
-	string_id nicename("Generic HUD Text") generic_hud_text;
+	string_id_legacy nicename("Generic HUD Text") generic_hud_text;
 	s_tag_reference_legacy nicename("Generic Name List") generic_name_list_reference;
 	s_tag_reference_legacy nicename("Generic Service Tag List") generic_service_tag_list_reference;
-	string_id nicename("Default Variant") default_variant;
+	string_id_legacy nicename("Default Variant") default_variant;
 	s_tag_reference_legacy nicename("Model") model_reference;
 	s_tag_reference_legacy nicename("Crate Object") crate_object_reference;
 	s_tag_reference_legacy nicename("Collision Damage") collision_damage_reference;

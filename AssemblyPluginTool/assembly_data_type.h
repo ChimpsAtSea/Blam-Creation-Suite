@@ -54,7 +54,7 @@ inline const char* data_type_to_underlying_type_string(e_assembly_data_type data
 	case _data_type_utf16:				return "wchar_t";
 	case _data_type_tagref:				return "s_tag_reference_legacy";
 	case _data_type_dataref:			return "s_data_reference_legacy";
-	case _data_type_stringid:			return "string_id";
+	case _data_type_stringid:			return "string_id_legacy";
 	case _data_type_int8:				return "int8_t";
 	case _data_type_int16:				return "int16_t";
 	case _data_type_int32:				return "int32_t";
@@ -79,11 +79,11 @@ inline const char* data_type_to_underlying_type_string(e_assembly_data_type data
 	case _data_type_float:				return "float";
 	case _data_type_double:				return "double";
 	case _data_type_degree:				return "float";
-	case _data_type_color24:			return "color24";
-	case _data_type_color32:			return "color32";
-	case _data_type_colorf:				return "colorf";
+	case _data_type_color24:			return "s_color24_legacy";
+	case _data_type_color32:			return "s_color32_legacy";
+	case _data_type_colorf:				return "s_colorf_legacy";
 	case _data_type_shader:				return "s_data_reference_legacy";
-	case _data_type_uniclist:			return "uniclist";
+	case _data_type_uniclist:			return "s_uniclist_legacy";
 	}
 	return "<unknown e_assembly_data_type>";
 }

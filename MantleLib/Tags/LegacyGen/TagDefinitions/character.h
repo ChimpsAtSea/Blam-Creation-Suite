@@ -43,14 +43,14 @@ struct nicename("character") tag_group('char') s_character_definition
 		struct nicename("Dialogue Variations") s_dialogue_variations_definition
 		{
 			s_tag_reference_legacy nicename("Dialogue") dialogue_reference;
-			string_id nicename("Name") name;
+			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
 			s_undefined32_legacy __unknown2;
 			s_undefined32_legacy __unknown3;
 		};
 
-		string_id nicename("Variant") variant;
+		string_id_legacy nicename("Variant") variant;
 		int16_t nicename("Variant Index") variant_index;
 		int16_t __unknown0;
 		s_tag_block_legacy<s_dialogue_variations_definition> nicename("Dialogue Variations") dialogue_variations_block;
@@ -62,7 +62,7 @@ struct nicename("character") tag_group('char') s_character_definition
 		struct nicename("Dialogue Variations") s_dialogue_variations1_definition
 		{
 			s_tag_reference_legacy nicename("Dialogue") dialogue_reference;
-			string_id nicename("Name") name;
+			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
 			s_undefined32_legacy __unknown2;
@@ -70,30 +70,30 @@ struct nicename("character") tag_group('char') s_character_definition
 		};
 
 		s_tag_block_legacy<s_dialogue_variations1_definition> nicename("Dialogue Variations") dialogue_variations_block;
-		string_id nicename("Radio Effect") radio_effect;
+		string_id_legacy nicename("Radio Effect") radio_effect;
 	};
 
 	struct nicename("General Properties") s_general_properties_definition
 	{
 		enum nicename("Actor Type") e_actor_type : uint16_t
 		{
-			/*nicename("None")*/ _actor_type_none = 1ui16,
-			/*nicename("Player")*/ _actor_type_player = 2ui16,
-			/*nicename("Marine")*/ _actor_type_marine = 3ui16,
-			/*nicename("Crew")*/ _actor_type_crew = 4ui16,
-			/*nicename("Spartan")*/ _actor_type_spartan = 5ui16,
-			/*nicename("Elite")*/ _actor_type_elite = 6ui16,
-			/*nicename("Jackal")*/ _actor_type_jackal = 7ui16,
-			/*nicename("Grunt")*/ _actor_type_grunt = 8ui16,
-			/*nicename("Brute")*/ _actor_type_brute = 9ui16,
-			/*nicename("Hunter")*/ _actor_type_hunter = 10ui16,
-			/*nicename("Prophet")*/ _actor_type_prophet = 11ui16,
-			/*nicename("Bugger")*/ _actor_type_bugger = 12ui16,
-			/*nicename("Scarab")*/ _actor_type_scarab = 13ui16,
-			/*nicename("Engineer")*/ _actor_type_engineer = 14ui16,
-			/*nicename("Skirmisher")*/ _actor_type_skirmisher = 15ui16,
-			/*nicename("Mule")*/ _actor_type_mule = 16ui16,
-			/*nicename("Mounted Weapon")*/ _actor_type_mounted_weapon = 17ui16,
+			/*nicename("None")*/ _actor_type_none = 0ui16,
+			/*nicename("Player")*/ _actor_type_player = 1ui16,
+			/*nicename("Marine")*/ _actor_type_marine = 2ui16,
+			/*nicename("Crew")*/ _actor_type_crew = 3ui16,
+			/*nicename("Spartan")*/ _actor_type_spartan = 4ui16,
+			/*nicename("Elite")*/ _actor_type_elite = 5ui16,
+			/*nicename("Jackal")*/ _actor_type_jackal = 6ui16,
+			/*nicename("Grunt")*/ _actor_type_grunt = 7ui16,
+			/*nicename("Brute")*/ _actor_type_brute = 8ui16,
+			/*nicename("Hunter")*/ _actor_type_hunter = 9ui16,
+			/*nicename("Prophet")*/ _actor_type_prophet = 10ui16,
+			/*nicename("Bugger")*/ _actor_type_bugger = 11ui16,
+			/*nicename("Scarab")*/ _actor_type_scarab = 12ui16,
+			/*nicename("Engineer")*/ _actor_type_engineer = 13ui16,
+			/*nicename("Skirmisher")*/ _actor_type_skirmisher = 14ui16,
+			/*nicename("Mule")*/ _actor_type_mule = 15ui16,
+			/*nicename("Mounted Weapon")*/ _actor_type_mounted_weapon = 16ui16,
 		};
 
 		enum nicename("Flags") b_flags : uint32_t /* bitfield */
@@ -316,58 +316,58 @@ struct nicename("character") tag_group('char') s_character_definition
 	{
 		enum nicename("Obstace Leap Minimum Size") e_obstace_leap_minimum_size : uint16_t
 		{
-			/*nicename("None")*/ _obstace_leap_minimum_size_none = 1ui16,
-			/*nicename("Tiny")*/ _obstace_leap_minimum_size_tiny = 2ui16,
-			/*nicename("Small")*/ _obstace_leap_minimum_size_small = 3ui16,
-			/*nicename("Medium")*/ _obstace_leap_minimum_size_medium = 4ui16,
-			/*nicename("Large")*/ _obstace_leap_minimum_size_large = 5ui16,
-			/*nicename("Huge")*/ _obstace_leap_minimum_size_huge = 6ui16,
-			/*nicename("Immobile")*/ _obstace_leap_minimum_size_immobile = 7ui16,
+			/*nicename("None")*/ _obstace_leap_minimum_size_none = 0ui16,
+			/*nicename("Tiny")*/ _obstace_leap_minimum_size_tiny = 1ui16,
+			/*nicename("Small")*/ _obstace_leap_minimum_size_small = 2ui16,
+			/*nicename("Medium")*/ _obstace_leap_minimum_size_medium = 3ui16,
+			/*nicename("Large")*/ _obstace_leap_minimum_size_large = 4ui16,
+			/*nicename("Huge")*/ _obstace_leap_minimum_size_huge = 5ui16,
+			/*nicename("Immobile")*/ _obstace_leap_minimum_size_immobile = 6ui16,
 		};
 
 		enum nicename("Obstace Leap Maximum Size") e_obstace_leap_maximum_size : uint16_t
 		{
-			/*nicename("None")*/ _obstace_leap_maximum_size_none = 1ui16,
-			/*nicename("Tiny")*/ _obstace_leap_maximum_size_tiny = 2ui16,
-			/*nicename("Small")*/ _obstace_leap_maximum_size_small = 3ui16,
-			/*nicename("Medium")*/ _obstace_leap_maximum_size_medium = 4ui16,
-			/*nicename("Large")*/ _obstace_leap_maximum_size_large = 5ui16,
-			/*nicename("Huge")*/ _obstace_leap_maximum_size_huge = 6ui16,
-			/*nicename("Immobile")*/ _obstace_leap_maximum_size_immobile = 7ui16,
+			/*nicename("None")*/ _obstace_leap_maximum_size_none = 0ui16,
+			/*nicename("Tiny")*/ _obstace_leap_maximum_size_tiny = 1ui16,
+			/*nicename("Small")*/ _obstace_leap_maximum_size_small = 2ui16,
+			/*nicename("Medium")*/ _obstace_leap_maximum_size_medium = 3ui16,
+			/*nicename("Large")*/ _obstace_leap_maximum_size_large = 4ui16,
+			/*nicename("Huge")*/ _obstace_leap_maximum_size_huge = 5ui16,
+			/*nicename("Immobile")*/ _obstace_leap_maximum_size_immobile = 6ui16,
 		};
 
 		enum nicename("Obstace Ignore Size") e_obstace_ignore_size : uint16_t
 		{
-			/*nicename("None")*/ _obstace_ignore_size_none = 1ui16,
-			/*nicename("Tiny")*/ _obstace_ignore_size_tiny = 2ui16,
-			/*nicename("Small")*/ _obstace_ignore_size_small = 3ui16,
-			/*nicename("Medium")*/ _obstace_ignore_size_medium = 4ui16,
-			/*nicename("Large")*/ _obstace_ignore_size_large = 5ui16,
-			/*nicename("Huge")*/ _obstace_ignore_size_huge = 6ui16,
-			/*nicename("Immobile")*/ _obstace_ignore_size_immobile = 7ui16,
+			/*nicename("None")*/ _obstace_ignore_size_none = 0ui16,
+			/*nicename("Tiny")*/ _obstace_ignore_size_tiny = 1ui16,
+			/*nicename("Small")*/ _obstace_ignore_size_small = 2ui16,
+			/*nicename("Medium")*/ _obstace_ignore_size_medium = 3ui16,
+			/*nicename("Large")*/ _obstace_ignore_size_large = 4ui16,
+			/*nicename("Huge")*/ _obstace_ignore_size_huge = 5ui16,
+			/*nicename("Immobile")*/ _obstace_ignore_size_immobile = 6ui16,
 		};
 
 		enum nicename("Obstace Smashable Size") e_obstace_smashable_size : uint16_t
 		{
-			/*nicename("None")*/ _obstace_smashable_size_none = 1ui16,
-			/*nicename("Tiny")*/ _obstace_smashable_size_tiny = 2ui16,
-			/*nicename("Small")*/ _obstace_smashable_size_small = 3ui16,
-			/*nicename("Medium")*/ _obstace_smashable_size_medium = 4ui16,
-			/*nicename("Large")*/ _obstace_smashable_size_large = 5ui16,
-			/*nicename("Huge")*/ _obstace_smashable_size_huge = 6ui16,
-			/*nicename("Immobile")*/ _obstace_smashable_size_immobile = 7ui16,
+			/*nicename("None")*/ _obstace_smashable_size_none = 0ui16,
+			/*nicename("Tiny")*/ _obstace_smashable_size_tiny = 1ui16,
+			/*nicename("Small")*/ _obstace_smashable_size_small = 2ui16,
+			/*nicename("Medium")*/ _obstace_smashable_size_medium = 3ui16,
+			/*nicename("Large")*/ _obstace_smashable_size_large = 4ui16,
+			/*nicename("Huge")*/ _obstace_smashable_size_huge = 5ui16,
+			/*nicename("Immobile")*/ _obstace_smashable_size_immobile = 6ui16,
 		};
 
 		enum nicename("Jump Height") e_jump_height : uint32_t
 		{
-			/*nicename("None")*/ _jump_height_none = 1ui32,
-			/*nicename("Down")*/ _jump_height_down = 2ui32,
-			/*nicename("Step")*/ _jump_height_step = 3ui32,
-			/*nicename("Crouch")*/ _jump_height_crouch = 4ui32,
-			/*nicename("Stand")*/ _jump_height_stand = 5ui32,
-			/*nicename("Storey")*/ _jump_height_storey = 6ui32,
-			/*nicename("Tower")*/ _jump_height_tower = 7ui32,
-			/*nicename("Infinite")*/ _jump_height_infinite = 8ui32,
+			/*nicename("None")*/ _jump_height_none = 0ui32,
+			/*nicename("Down")*/ _jump_height_down = 1ui32,
+			/*nicename("Step")*/ _jump_height_step = 2ui32,
+			/*nicename("Crouch")*/ _jump_height_crouch = 3ui32,
+			/*nicename("Stand")*/ _jump_height_stand = 4ui32,
+			/*nicename("Storey")*/ _jump_height_storey = 5ui32,
+			/*nicename("Tower")*/ _jump_height_tower = 6ui32,
+			/*nicename("Infinite")*/ _jump_height_infinite = 7ui32,
 		};
 
 		enum nicename("Movement Flags") b_movement_flags : uint32_t /* bitfield */
@@ -504,13 +504,13 @@ struct nicename("character") tag_group('char') s_character_definition
 
 	struct nicename("Unknown 8") s_unknown_8_definition
 	{
-		string_id __unknown0;
+		string_id_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
 		s_data_reference_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_data_reference_legacy __unknown5;
-		string_id __unknown6;
+		string_id_legacy __unknown6;
 	};
 
 	struct nicename("Unknown 9") s_unknown_9_definition
@@ -518,24 +518,24 @@ struct nicename("character") tag_group('char') s_character_definition
 		struct nicename("Unknown 10") s_unknown_101_definition
 		{
 			s_undefined32_legacy __unknown0;
-			string_id __unknown1;
-			string_id __unknown2;
-			string_id __unknown3;
-			string_id __unknown4;
-			string_id __unknown5;
-			string_id __unknown6;
-			string_id __unknown7;
-			string_id __unknown8;
-			string_id __unknown9;
-			string_id __unknown10;
-			string_id __unknown11;
-			string_id __unknown12;
-			string_id __unknown13;
-			string_id __unknown14;
-			string_id __unknown15;
+			string_id_legacy __unknown1;
+			string_id_legacy __unknown2;
+			string_id_legacy __unknown3;
+			string_id_legacy __unknown4;
+			string_id_legacy __unknown5;
+			string_id_legacy __unknown6;
+			string_id_legacy __unknown7;
+			string_id_legacy __unknown8;
+			string_id_legacy __unknown9;
+			string_id_legacy __unknown10;
+			string_id_legacy __unknown11;
+			string_id_legacy __unknown12;
+			string_id_legacy __unknown13;
+			string_id_legacy __unknown14;
+			string_id_legacy __unknown15;
 		};
 
-		string_id __unknown0;
+		string_id_legacy __unknown0;
 		s_tag_block_legacy<s_unknown_101_definition> nicename("Unknown 10") unknown_10_block;
 	};
 
@@ -1074,17 +1074,17 @@ struct nicename("character") tag_group('char') s_character_definition
 	{
 		enum nicename("Special Fire Mode") e_special_fire_mode : uint16_t
 		{
-			/*nicename("None")*/ _special_fire_mode_none = 1ui16,
-			/*nicename("Overcharge")*/ _special_fire_mode_overcharge = 2ui16,
-			/*nicename("Secondary Trigger")*/ _special_fire_mode_secondary_trigger = 3ui16,
+			/*nicename("None")*/ _special_fire_mode_none = 0ui16,
+			/*nicename("Overcharge")*/ _special_fire_mode_overcharge = 1ui16,
+			/*nicename("Secondary Trigger")*/ _special_fire_mode_secondary_trigger = 2ui16,
 		};
 
 		enum nicename("Special Fire Situation") e_special_fire_situation : uint16_t
 		{
-			/*nicename("Never")*/ _special_fire_situation_never = 1ui16,
-			/*nicename("Enemy Visible")*/ _special_fire_situation_enemy_visible = 2ui16,
-			/*nicename("Enemy Out of Sight")*/ _special_fire_situation_enemy_out_of_sight = 3ui16,
-			/*nicename("Strafing")*/ _special_fire_situation_strafing = 4ui16,
+			/*nicename("Never")*/ _special_fire_situation_never = 0ui16,
+			/*nicename("Enemy Visible")*/ _special_fire_situation_enemy_visible = 1ui16,
+			/*nicename("Enemy Out of Sight")*/ _special_fire_situation_enemy_out_of_sight = 2ui16,
+			/*nicename("Strafing")*/ _special_fire_situation_strafing = 3ui16,
 		};
 
 		enum nicename("Weapon Flags") b_weapon_flags : uint32_t /* bitfield */
@@ -1200,15 +1200,15 @@ struct nicename("character") tag_group('char') s_character_definition
 	{
 		enum nicename("Grenade Type") e_grenade_type : uint16_t
 		{
-			/*nicename("Frag")*/ _grenade_type_frag = 1ui16,
-			/*nicename("Plasma")*/ _grenade_type_plasma = 2ui16,
+			/*nicename("Frag")*/ _grenade_type_frag = 0ui16,
+			/*nicename("Plasma")*/ _grenade_type_plasma = 1ui16,
 		};
 
 		enum nicename("Trajectory Type") e_trajectory_type : uint16_t
 		{
-			/*nicename("Toss")*/ _trajectory_type_toss = 1ui16,
-			/*nicename("Lob")*/ _trajectory_type_lob = 2ui16,
-			/*nicename("Bounce")*/ _trajectory_type_bounce = 3ui16,
+			/*nicename("Toss")*/ _trajectory_type_toss = 0ui16,
+			/*nicename("Lob")*/ _trajectory_type_lob = 1ui16,
+			/*nicename("Bounce")*/ _trajectory_type_bounce = 2ui16,
 		};
 
 		int32_t nicename("Grenades Flags") grenades_flags;
@@ -1234,13 +1234,13 @@ struct nicename("character") tag_group('char') s_character_definition
 	{
 		enum nicename("Obstacle Ignore Size") e_obstacle_ignore_size : uint16_t
 		{
-			/*nicename("None")*/ _obstacle_ignore_size_none = 1ui16,
-			/*nicename("Tiny")*/ _obstacle_ignore_size_tiny = 2ui16,
-			/*nicename("Small")*/ _obstacle_ignore_size_small = 3ui16,
-			/*nicename("Medium")*/ _obstacle_ignore_size_medium = 4ui16,
-			/*nicename("Large")*/ _obstacle_ignore_size_large = 5ui16,
-			/*nicename("Huge")*/ _obstacle_ignore_size_huge = 6ui16,
-			/*nicename("Immobile")*/ _obstacle_ignore_size_immobile = 7ui16,
+			/*nicename("None")*/ _obstacle_ignore_size_none = 0ui16,
+			/*nicename("Tiny")*/ _obstacle_ignore_size_tiny = 1ui16,
+			/*nicename("Small")*/ _obstacle_ignore_size_small = 2ui16,
+			/*nicename("Medium")*/ _obstacle_ignore_size_medium = 3ui16,
+			/*nicename("Large")*/ _obstacle_ignore_size_large = 4ui16,
+			/*nicename("Huge")*/ _obstacle_ignore_size_huge = 5ui16,
+			/*nicename("Immobile")*/ _obstacle_ignore_size_immobile = 6ui16,
 		};
 
 		enum nicename("Vehicle Flags") b_vehicle_flags : uint32_t /* bitfield */
@@ -1430,7 +1430,7 @@ struct nicename("character") tag_group('char') s_character_definition
 
 	struct nicename("Stimuli") s_stimuli_definition
 	{
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		s_tag_reference_legacy nicename("Stimuli Character") stimuli_character_reference;
 	};
 
@@ -1438,53 +1438,53 @@ struct nicename("character") tag_group('char') s_character_definition
 	{
 		enum nicename("Unit") e_unit : uint8_t
 		{
-			/*nicename("Brute")*/ _unit_brute = 1ui8,
-			/*nicename("Grunt")*/ _unit_grunt = 2ui8,
-			/*nicename("Jackal")*/ _unit_jackal = 3ui8,
-			/*nicename("Skirmisher")*/ _unit_skirmisher = 4ui8,
-			/*nicename("Marine")*/ _unit_marine = 5ui8,
-			/*nicename("Spartan")*/ _unit_spartan = 6ui8,
-			/*nicename("Bugger")*/ _unit_bugger = 7ui8,
-			/*nicename("Hunter")*/ _unit_hunter = 8ui8,
-			/*nicename("Flood Infection")*/ _unit_flood_infection = 9ui8,
-			/*nicename("Flood Carrier")*/ _unit_flood_carrier = 10ui8,
-			/*nicename("Flood Combat")*/ _unit_flood_combat = 11ui8,
-			/*nicename("Flood Pureform")*/ _unit_flood_pureform = 12ui8,
-			/*nicename("Sentinel")*/ _unit_sentinel = 13ui8,
-			/*nicename("Elite")*/ _unit_elite = 14ui8,
-			/*nicename("Engineer")*/ _unit_engineer = 15ui8,
-			/*nicename("Mule")*/ _unit_mule = 16ui8,
-			/*nicename("Turret")*/ _unit_turret = 17ui8,
-			/*nicename("Mongoose")*/ _unit_mongoose = 18ui8,
-			/*nicename("Warthog")*/ _unit_warthog = 19ui8,
-			/*nicename("Scorpion")*/ _unit_scorpion = 20ui8,
-			/*nicename("Falcon")*/ _unit_falcon = 21ui8,
-			/*nicename("Pelican")*/ _unit_pelican = 22ui8,
-			/*nicename("Revenant")*/ _unit_revenant = 23ui8,
-			/*nicename("Seraph")*/ _unit_seraph = 24ui8,
-			/*nicename("Shade")*/ _unit_shade = 25ui8,
-			/*nicename("Watchtower")*/ _unit_watchtower = 26ui8,
-			/*nicename("Ghost")*/ _unit_ghost = 27ui8,
-			/*nicename("Space Banshee")*/ _unit_space_banshee = 28ui8,
-			/*nicename("Mauler")*/ _unit_mauler = 29ui8,
-			/*nicename("Wraith")*/ _unit_wraith = 30ui8,
-			/*nicename("Banshee")*/ _unit_banshee = 31ui8,
-			/*nicename("Phantom")*/ _unit_phantom = 32ui8,
-			/*nicename("Scarab")*/ _unit_scarab = 33ui8,
-			/*nicename("Guntower")*/ _unit_guntower = 34ui8,
-			/*nicename("Tuning Fork")*/ _unit_tuning_fork = 35ui8,
+			/*nicename("Brute")*/ _unit_brute = 0ui8,
+			/*nicename("Grunt")*/ _unit_grunt = 1ui8,
+			/*nicename("Jackal")*/ _unit_jackal = 2ui8,
+			/*nicename("Skirmisher")*/ _unit_skirmisher = 3ui8,
+			/*nicename("Marine")*/ _unit_marine = 4ui8,
+			/*nicename("Spartan")*/ _unit_spartan = 5ui8,
+			/*nicename("Bugger")*/ _unit_bugger = 6ui8,
+			/*nicename("Hunter")*/ _unit_hunter = 7ui8,
+			/*nicename("Flood Infection")*/ _unit_flood_infection = 8ui8,
+			/*nicename("Flood Carrier")*/ _unit_flood_carrier = 9ui8,
+			/*nicename("Flood Combat")*/ _unit_flood_combat = 10ui8,
+			/*nicename("Flood Pureform")*/ _unit_flood_pureform = 11ui8,
+			/*nicename("Sentinel")*/ _unit_sentinel = 12ui8,
+			/*nicename("Elite")*/ _unit_elite = 13ui8,
+			/*nicename("Engineer")*/ _unit_engineer = 14ui8,
+			/*nicename("Mule")*/ _unit_mule = 15ui8,
+			/*nicename("Turret")*/ _unit_turret = 16ui8,
+			/*nicename("Mongoose")*/ _unit_mongoose = 17ui8,
+			/*nicename("Warthog")*/ _unit_warthog = 18ui8,
+			/*nicename("Scorpion")*/ _unit_scorpion = 19ui8,
+			/*nicename("Falcon")*/ _unit_falcon = 20ui8,
+			/*nicename("Pelican")*/ _unit_pelican = 21ui8,
+			/*nicename("Revenant")*/ _unit_revenant = 22ui8,
+			/*nicename("Seraph")*/ _unit_seraph = 23ui8,
+			/*nicename("Shade")*/ _unit_shade = 24ui8,
+			/*nicename("Watchtower")*/ _unit_watchtower = 25ui8,
+			/*nicename("Ghost")*/ _unit_ghost = 26ui8,
+			/*nicename("Space Banshee")*/ _unit_space_banshee = 27ui8,
+			/*nicename("Mauler")*/ _unit_mauler = 28ui8,
+			/*nicename("Wraith")*/ _unit_wraith = 29ui8,
+			/*nicename("Banshee")*/ _unit_banshee = 30ui8,
+			/*nicename("Phantom")*/ _unit_phantom = 31ui8,
+			/*nicename("Scarab")*/ _unit_scarab = 32ui8,
+			/*nicename("Guntower")*/ _unit_guntower = 33ui8,
+			/*nicename("Tuning Fork")*/ _unit_tuning_fork = 34ui8,
 		};
 
 		enum nicename("Classification") e_classification : uint8_t
 		{
-			/*nicename("Infantry")*/ _classification_infantry = 1ui8,
-			/*nicename("Leader")*/ _classification_leader = 2ui8,
-			/*nicename("Hero")*/ _classification_hero = 3ui8,
-			/*nicename("Specialist")*/ _classification_specialist = 4ui8,
-			/*nicename("Light Vehicle")*/ _classification_light_vehicle = 5ui8,
-			/*nicename("Heavy Vehicle")*/ _classification_heavy_vehicle = 6ui8,
-			/*nicename("Giant Vehicle")*/ _classification_giant_vehicle = 7ui8,
-			/*nicename("Standard Vehicle")*/ _classification_standard_vehicle = 8ui8,
+			/*nicename("Infantry")*/ _classification_infantry = 0ui8,
+			/*nicename("Leader")*/ _classification_leader = 1ui8,
+			/*nicename("Hero")*/ _classification_hero = 2ui8,
+			/*nicename("Specialist")*/ _classification_specialist = 3ui8,
+			/*nicename("Light Vehicle")*/ _classification_light_vehicle = 4ui8,
+			/*nicename("Heavy Vehicle")*/ _classification_heavy_vehicle = 5ui8,
+			/*nicename("Giant Vehicle")*/ _classification_giant_vehicle = 6ui8,
+			/*nicename("Standard Vehicle")*/ _classification_standard_vehicle = 7ui8,
 		};
 
 		enum nicename("Flags") b_flags : uint8_t /* bitfield */

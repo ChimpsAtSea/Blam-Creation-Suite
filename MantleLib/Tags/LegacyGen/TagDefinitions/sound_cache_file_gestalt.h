@@ -72,7 +72,7 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 
 	struct nicename("Import Names") s_import_names_definition
 	{
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 	};
 
 	struct nicename("Unknown 4") s_unknown_4_definition

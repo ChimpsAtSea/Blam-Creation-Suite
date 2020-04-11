@@ -6,14 +6,14 @@ struct nicename("sound_classes") tag_group('sncl') s_sound_classes_definition
 	{
 		enum nicename("Cache Miss Mode") e_cache_miss_mode : uint8_t
 		{
-			/*nicename("Discard")*/ _cache_miss_mode_discard = 1ui8,
-			/*nicename("Postpone")*/ _cache_miss_mode_postpone = 2ui8,
+			/*nicename("Discard")*/ _cache_miss_mode_discard = 0ui8,
+			/*nicename("Postpone")*/ _cache_miss_mode_postpone = 1ui8,
 		};
 
 		enum nicename("Stereo Playback Type") e_stereo_playback_type : uint8_t
 		{
-			/*nicename("First Person")*/ _stereo_playback_type_first_person = 1ui8,
-			/*nicename("Ambient")*/ _stereo_playback_type_ambient = 2ui8,
+			/*nicename("First Person")*/ _stereo_playback_type_first_person = 0ui8,
+			/*nicename("Ambient")*/ _stereo_playback_type_ambient = 1ui8,
 		};
 
 		enum nicename("Internal Flags") b_internal_flags : uint16_t /* bitfield */

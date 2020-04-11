@@ -4,7 +4,7 @@ struct nicename("area_screen_effect") tag_group('sefc') s_area_screen_effect_def
 {
 	struct nicename("Screen Effect") s_screen_effect_definition
 	{
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int16_t __unknown0;
 		int16_t __unknown1;
 		float __unknown2;
@@ -13,8 +13,8 @@ struct nicename("area_screen_effect") tag_group('sefc') s_area_screen_effect_def
 		float nicename("Duration") duration;
 		s_data_reference_legacy nicename("Function") function1_data_reference;
 		s_data_reference_legacy nicename("Function") function2_data_reference;
-		string_id nicename("Trigger") trigger;
-		string_id nicename("Trigger") trigger1;
+		string_id_legacy nicename("Trigger") trigger;
+		string_id_legacy nicename("Trigger") trigger1;
 		s_data_reference_legacy nicename("Function") function3_data_reference;
 		float nicename("Light Intensity") light_intensity;
 		float nicename("Dark Intensity") dark_intensity;

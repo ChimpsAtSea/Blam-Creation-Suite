@@ -95,7 +95,7 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 
 	struct nicename("Dead Sphere Shapes") s_dead_sphere_shapes_definition
 	{
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
 		int8_t __unknown0;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -149,7 +149,7 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 
 	struct nicename("Pill Shapes") s_pill_shapes_definition
 	{
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
 		int8_t __unknown0;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -186,7 +186,7 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 
 	struct nicename("Sphere Shapes") s_sphere_shapes_definition
 	{
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
 		int8_t __unknown0;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -322,8 +322,8 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 	float nicename("Height Crouching") height_crouching;
 	float nicename("Radius") radius;
 	float nicename("Mass") mass;
-	string_id nicename("Living Material Name") living_material_name;
-	string_id nicename("Dead Material Name") dead_material_name;
+	string_id_legacy nicename("Living Material Name") living_material_name;
+	string_id_legacy nicename("Dead Material Name") dead_material_name;
 	int16_t nicename("Living Global Material Index") living_global_material_index;
 	int16_t nicename("Dead Global Material Index") dead_global_material_index;
 	s_tag_block_legacy<s_dead_sphere_shapes_definition> nicename("Dead Sphere Shapes") dead_sphere_shapes_block;

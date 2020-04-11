@@ -4,18 +4,18 @@ struct nicename("camera_shake") tag_group('csdt') s_camera_shake_definition
 {
 	enum nicename("Wobble Function") e_wobble_function : uint16_t
 	{
-		/*nicename("One")*/ _wobble_function_one = 1ui16,
-		/*nicename("Zero")*/ _wobble_function_zero = 2ui16,
-		/*nicename("Cosine")*/ _wobble_function_cosine = 3ui16,
-		/*nicename("Cosine (Variable Period)")*/ _wobble_function_cosine_variable_period = 4ui16,
-		/*nicename("Diagonal Wave")*/ _wobble_function_diagonal_wave = 5ui16,
-		/*nicename("Diagonal Wave (Variable Period)")*/ _wobble_function_diagonal_wave_variable_period = 6ui16,
-		/*nicename("Slide")*/ _wobble_function_slide = 7ui16,
-		/*nicename("Slide (Variable Period)")*/ _wobble_function_slide_variable_period = 8ui16,
-		/*nicename("Noise")*/ _wobble_function_noise = 9ui16,
-		/*nicename("Jitter")*/ _wobble_function_jitter = 10ui16,
-		/*nicename("Wander")*/ _wobble_function_wander = 11ui16,
-		/*nicename("Spark")*/ _wobble_function_spark = 12ui16,
+		/*nicename("One")*/ _wobble_function_one = 0ui16,
+		/*nicename("Zero")*/ _wobble_function_zero = 1ui16,
+		/*nicename("Cosine")*/ _wobble_function_cosine = 2ui16,
+		/*nicename("Cosine (Variable Period)")*/ _wobble_function_cosine_variable_period = 3ui16,
+		/*nicename("Diagonal Wave")*/ _wobble_function_diagonal_wave = 4ui16,
+		/*nicename("Diagonal Wave (Variable Period)")*/ _wobble_function_diagonal_wave_variable_period = 5ui16,
+		/*nicename("Slide")*/ _wobble_function_slide = 6ui16,
+		/*nicename("Slide (Variable Period)")*/ _wobble_function_slide_variable_period = 7ui16,
+		/*nicename("Noise")*/ _wobble_function_noise = 8ui16,
+		/*nicename("Jitter")*/ _wobble_function_jitter = 9ui16,
+		/*nicename("Wander")*/ _wobble_function_wander = 10ui16,
+		/*nicename("Spark")*/ _wobble_function_spark = 11ui16,
 	};
 
 	// Temporary Camera Impulse : 

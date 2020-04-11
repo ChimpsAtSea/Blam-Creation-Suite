@@ -11,9 +11,9 @@ struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_d
 	{
 		enum nicename("Perception Type") e_perception_type : uint16_t
 		{
-			/*nicename("None")*/ _perception_type_none = 1ui16,
-			/*nicename("Speaker")*/ _perception_type_speaker = 2ui16,
-			/*nicename("Listener")*/ _perception_type_listener = 3ui16,
+			/*nicename("None")*/ _perception_type_none = 0ui16,
+			/*nicename("Speaker")*/ _perception_type_speaker = 1ui16,
+			/*nicename("Listener")*/ _perception_type_listener = 2ui16,
 		};
 
 		enum nicename("Flags") b_flags : uint32_t /* bitfield */

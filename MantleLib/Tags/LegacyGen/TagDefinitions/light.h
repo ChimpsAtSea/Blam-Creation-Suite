@@ -4,8 +4,8 @@ struct nicename("light") tag_group('ligh') s_light_definition
 {
 	enum nicename("Type") e_type : uint16_t
 	{
-		/*nicename("Sphere")*/ _type_sphere = 1ui16,
-		/*nicename("Projective")*/ _type_projective = 2ui16,
+		/*nicename("Sphere")*/ _type_sphere = 0ui16,
+		/*nicename("Projective")*/ _type_projective = 1ui16,
 	};
 
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */

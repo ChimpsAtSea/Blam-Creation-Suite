@@ -6,14 +6,14 @@ struct nicename("cui_static_data") tag_group('cust') s_cui_static_data_definitio
 	{
 		enum nicename("Property Kind") e_property_kind : uint16_t
 		{
-			/*nicename("Boolean Integer")*/ _property_kind_boolean_integer = 1ui16,
-			/*nicename("Integer")*/ _property_kind_integer = 2ui16,
-			/*nicename("Float")*/ _property_kind_float = 3ui16,
-			/*nicename("Ascii")*/ _property_kind_ascii = 4ui16,
-			/*nicename("Widget")*/ _property_kind_widget = 5ui16,
-			/*nicename("Resource")*/ _property_kind_resource = 6ui16,
-			/*nicename("String ID")*/ _property_kind_string_id = 7ui16,
-			/*nicename("Color")*/ _property_kind_color = 8ui16,
+			/*nicename("Boolean Integer")*/ _property_kind_boolean_integer = 0ui16,
+			/*nicename("Integer")*/ _property_kind_integer = 1ui16,
+			/*nicename("Float")*/ _property_kind_float = 2ui16,
+			/*nicename("Ascii")*/ _property_kind_ascii = 3ui16,
+			/*nicename("Widget")*/ _property_kind_widget = 4ui16,
+			/*nicename("Resource")*/ _property_kind_resource = 5ui16,
+			/*nicename("String ID")*/ _property_kind_string_id = 6ui16,
+			/*nicename("Color")*/ _property_kind_color = 7ui16,
 		};
 
 		string_id_legacy nicename("Property Name") property_name;

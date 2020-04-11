@@ -170,7 +170,7 @@ struct nicename("render_model") tag_group('mode') s_render_model_definition
 				/*nicename("Instance 127")*/ _instance_flags_4_instance_127 = 1ui32 << 31ui32,
 			};
 
-			string_id nicename("Name") name;
+			string_id_legacy nicename("Name") name;
 			int16_t nicename("Mesh Index") mesh_index;
 			int16_t nicename("Mesh Count") mesh_count;
 			b_instance_flags_1 nicename("Instance Flags 1") instance_flags_1;
@@ -179,13 +179,13 @@ struct nicename("render_model") tag_group('mode') s_render_model_definition
 			b_instance_flags_4 nicename("Instance Flags 4") instance_flags_4;
 		};
 
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		s_tag_block_legacy<s_permutations_definition> nicename("Permutations") permutations_block;
 	};
 
 	struct nicename("Instances") s_instances_definition
 	{
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int32_t nicename("Node Index") node_index;
 		float nicename("Default Scale") default_scale;
 		float nicename("Inverse Forward i") inverse_forward_i;
@@ -204,7 +204,7 @@ struct nicename("render_model") tag_group('mode') s_render_model_definition
 
 	struct nicename("Nodes") s_nodes_definition
 	{
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int16_t nicename("Parent Node") parent_node;
 		int16_t nicename("First Child Node") first_child_node;
 		int16_t nicename("Next Sibling Node") next_sibling_node;
@@ -253,7 +253,7 @@ struct nicename("render_model") tag_group('mode') s_render_model_definition
 			s_undefined32_legacy __unknown4;
 		};
 
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		s_tag_block_legacy<s_markers_definition> nicename("Markers") markers_block;
 	};
 
@@ -613,7 +613,7 @@ struct nicename("render_model") tag_group('mode') s_render_model_definition
 		float nicename("Default Scale") default_scale;
 	};
 
-	string_id nicename("Name") name;
+	string_id_legacy nicename("Name") name;
 	b_flags nicename("Flags") flags;
 	int16_t __unknown0;
 	int32_t nicename("Model Checksum") model_checksum;

@@ -6,19 +6,19 @@ struct nicename("challenge_globals_definition") tag_group('chdg') s_challenge_gl
 	{
 		enum nicename("Type") e_type : uint8_t
 		{
-			/*nicename("Bounties")*/ _type_bounties = 1ui8,
-			/*nicename("Weekly")*/ _type_weekly = 2ui8,
-			/*nicename("Campaign")*/ _type_campaign = 3ui8,
-			/*nicename("Firefight")*/ _type_firefight = 4ui8,
-			/*nicename("Multiplayer")*/ _type_multiplayer = 5ui8,
+			/*nicename("Bounties")*/ _type_bounties = 0ui8,
+			/*nicename("Weekly")*/ _type_weekly = 1ui8,
+			/*nicename("Campaign")*/ _type_campaign = 2ui8,
+			/*nicename("Firefight")*/ _type_firefight = 3ui8,
+			/*nicename("Multiplayer")*/ _type_multiplayer = 4ui8,
 		};
 
 		struct nicename("Challenges") s_challenges_definition
 		{
 			enum nicename("Must Be Completed in One Match") e_must_be_completed_in_one_match : uint8_t
 			{
-				/*nicename("False")*/ _must_be_completed_in_one_match_false = 1ui8,
-				/*nicename("True")*/ _must_be_completed_in_one_match_true = 2ui8,
+				/*nicename("False")*/ _must_be_completed_in_one_match_false = 0ui8,
+				/*nicename("True")*/ _must_be_completed_in_one_match_true = 1ui8,
 			};
 
 			enum nicename("Requirements") b_requirements : uint16_t /* bitfield */

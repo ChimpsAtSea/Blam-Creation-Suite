@@ -40,7 +40,7 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 
 	struct nicename("Locations") s_locations_definition
 	{
-		string_id nicename("Marker Name") marker_name;
+		string_id_legacy nicename("Marker Name") marker_name;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -517,7 +517,7 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 					s_undefined32_legacy __unknown3;
 				};
 
-				string_id nicename("Name") name;
+				string_id_legacy nicename("Name") name;
 				b_unknown __unknown0;
 				int16_t __unknown1;
 				s_undefined32_legacy __unknown2;
@@ -720,7 +720,7 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 			float __unknown16;
 		};
 
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;

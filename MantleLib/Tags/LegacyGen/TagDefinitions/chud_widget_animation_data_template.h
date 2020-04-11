@@ -6,42 +6,42 @@ struct nicename("chud_widget_animation_data_template") tag_group('wadt') s_chud_
 	{
 		enum nicename("Animation 1 Function") e_animation_1_function : uint8_t
 		{
-			/*nicename("Default")*/ _animation_1_function_default = 1ui8,
-			/*nicename("Use Input")*/ _animation_1_function_use_input = 2ui8,
-			/*nicename("Use Range Input")*/ _animation_1_function_use_range_input = 3ui8,
-			/*nicename("Zero")*/ _animation_1_function_zero = 4ui8,
+			/*nicename("Default")*/ _animation_1_function_default = 0ui8,
+			/*nicename("Use Input")*/ _animation_1_function_use_input = 1ui8,
+			/*nicename("Use Range Input")*/ _animation_1_function_use_range_input = 2ui8,
+			/*nicename("Zero")*/ _animation_1_function_zero = 3ui8,
 		};
 
 		enum nicename("Animation 2 Function") e_animation_2_function : uint8_t
 		{
-			/*nicename("Default")*/ _animation_2_function_default = 1ui8,
-			/*nicename("Use Input")*/ _animation_2_function_use_input = 2ui8,
-			/*nicename("Use Range Input")*/ _animation_2_function_use_range_input = 3ui8,
-			/*nicename("Zero")*/ _animation_2_function_zero = 4ui8,
+			/*nicename("Default")*/ _animation_2_function_default = 0ui8,
+			/*nicename("Use Input")*/ _animation_2_function_use_input = 1ui8,
+			/*nicename("Use Range Input")*/ _animation_2_function_use_range_input = 2ui8,
+			/*nicename("Zero")*/ _animation_2_function_zero = 3ui8,
 		};
 
 		enum nicename("Animation 3 Function") e_animation_3_function : uint8_t
 		{
-			/*nicename("Default")*/ _animation_3_function_default = 1ui8,
-			/*nicename("Use Input")*/ _animation_3_function_use_input = 2ui8,
-			/*nicename("Use Range Input")*/ _animation_3_function_use_range_input = 3ui8,
-			/*nicename("Zero")*/ _animation_3_function_zero = 4ui8,
+			/*nicename("Default")*/ _animation_3_function_default = 0ui8,
+			/*nicename("Use Input")*/ _animation_3_function_use_input = 1ui8,
+			/*nicename("Use Range Input")*/ _animation_3_function_use_range_input = 2ui8,
+			/*nicename("Zero")*/ _animation_3_function_zero = 3ui8,
 		};
 
 		enum nicename("Animation 4 Function") e_animation_4_function : uint8_t
 		{
-			/*nicename("Default")*/ _animation_4_function_default = 1ui8,
-			/*nicename("Use Input")*/ _animation_4_function_use_input = 2ui8,
-			/*nicename("Use Range Input")*/ _animation_4_function_use_range_input = 3ui8,
-			/*nicename("Zero")*/ _animation_4_function_zero = 4ui8,
+			/*nicename("Default")*/ _animation_4_function_default = 0ui8,
+			/*nicename("Use Input")*/ _animation_4_function_use_input = 1ui8,
+			/*nicename("Use Range Input")*/ _animation_4_function_use_range_input = 2ui8,
+			/*nicename("Zero")*/ _animation_4_function_zero = 3ui8,
 		};
 
 		enum nicename("Animation 5 Function") e_animation_5_function : uint8_t
 		{
-			/*nicename("Default")*/ _animation_5_function_default = 1ui8,
-			/*nicename("Use Input")*/ _animation_5_function_use_input = 2ui8,
-			/*nicename("Use Range Input")*/ _animation_5_function_use_range_input = 3ui8,
-			/*nicename("Zero")*/ _animation_5_function_zero = 4ui8,
+			/*nicename("Default")*/ _animation_5_function_default = 0ui8,
+			/*nicename("Use Input")*/ _animation_5_function_use_input = 1ui8,
+			/*nicename("Use Range Input")*/ _animation_5_function_use_range_input = 2ui8,
+			/*nicename("Zero")*/ _animation_5_function_zero = 3ui8,
 		};
 
 		enum nicename("Animation 1 Flags") b_animation_1_flags : uint8_t /* bitfield */

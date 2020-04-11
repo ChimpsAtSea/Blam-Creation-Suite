@@ -4,16 +4,16 @@ struct nicename("decorator_set") tag_group('dctr') s_decorator_set_definition
 {
 	enum nicename("Is Visible? (Can Crash Xbox!)") e_is_visible_can_crash_xbox : uint16_t
 	{
-		/*nicename("Yes")*/ _is_visible_can_crash_xbox_yes = 1ui16,
-		/*nicename("No")*/ _is_visible_can_crash_xbox_no = 2ui16,
+		/*nicename("Yes")*/ _is_visible_can_crash_xbox_yes = 0ui16,
+		/*nicename("No")*/ _is_visible_can_crash_xbox_no = 1ui16,
 	};
 
 	enum nicename("Lod Type") e_lod_type : uint16_t
 	{
-		/*nicename("1 Model")*/ _lod_type__1_model = 1ui16,
-		/*nicename("2 Models")*/ _lod_type__2_models = 2ui16,
-		/*nicename("3 Models")*/ _lod_type__3_models = 3ui16,
-		/*nicename("4 Models")*/ _lod_type__4_models = 4ui16,
+		/*nicename("1 Model")*/ _lod_type__1_model = 0ui16,
+		/*nicename("2 Models")*/ _lod_type__2_models = 1ui16,
+		/*nicename("3 Models")*/ _lod_type__3_models = 2ui16,
+		/*nicename("4 Models")*/ _lod_type__4_models = 3ui16,
 	};
 
 	struct nicename("Parts") s_parts_definition

@@ -6,21 +6,21 @@ struct nicename("loadout_globals_definition") tag_group('lgtd') s_loadout_global
 	{
 		enum nicename("Grenade Count") e_grenade_count : uint8_t
 		{
-			/*nicename("Unchanged")*/ _grenade_count_unchanged = 1ui8,
-			/*nicename("Map Default")*/ _grenade_count_map_default = 2ui8,
-			/*nicename("None")*/ _grenade_count_none = 3ui8,
-			/*nicename("1 Frag")*/ _grenade_count__1_frag = 4ui8,
-			/*nicename("2 Frags")*/ _grenade_count__2_frags = 5ui8,
-			/*nicename("3 Frags")*/ _grenade_count__3_frags = 6ui8,
-			/*nicename("4 Frags")*/ _grenade_count__4_frags = 7ui8,
-			/*nicename("1 Plasma")*/ _grenade_count__1_plasma = 8ui8,
-			/*nicename("2 Plasmas")*/ _grenade_count__2_plasmas = 9ui8,
-			/*nicename("3 Plasmas")*/ _grenade_count__3_plasmas = 10ui8,
-			/*nicename("4 Plasmas")*/ _grenade_count__4_plasmas = 11ui8,
-			/*nicename("1x Each")*/ _grenade_count__1x_each = 12ui8,
-			/*nicename("2x Each")*/ _grenade_count__2x_each = 13ui8,
-			/*nicename("3x Each")*/ _grenade_count__3x_each = 14ui8,
-			/*nicename("4x Each")*/ _grenade_count__4x_each = 15ui8,
+			/*nicename("Unchanged")*/ _grenade_count_unchanged = 0ui8,
+			/*nicename("Map Default")*/ _grenade_count_map_default = 1ui8,
+			/*nicename("None")*/ _grenade_count_none = 2ui8,
+			/*nicename("1 Frag")*/ _grenade_count__1_frag = 3ui8,
+			/*nicename("2 Frags")*/ _grenade_count__2_frags = 4ui8,
+			/*nicename("3 Frags")*/ _grenade_count__3_frags = 5ui8,
+			/*nicename("4 Frags")*/ _grenade_count__4_frags = 6ui8,
+			/*nicename("1 Plasma")*/ _grenade_count__1_plasma = 7ui8,
+			/*nicename("2 Plasmas")*/ _grenade_count__2_plasmas = 8ui8,
+			/*nicename("3 Plasmas")*/ _grenade_count__3_plasmas = 9ui8,
+			/*nicename("4 Plasmas")*/ _grenade_count__4_plasmas = 10ui8,
+			/*nicename("1x Each")*/ _grenade_count__1x_each = 11ui8,
+			/*nicename("2x Each")*/ _grenade_count__2x_each = 12ui8,
+			/*nicename("3x Each")*/ _grenade_count__3x_each = 13ui8,
+			/*nicename("4x Each")*/ _grenade_count__4x_each = 14ui8,
 		};
 
 		string_id_legacy nicename("Loadout Name") loadout_name;

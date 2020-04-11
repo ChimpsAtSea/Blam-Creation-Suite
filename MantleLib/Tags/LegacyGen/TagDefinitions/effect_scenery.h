@@ -4,46 +4,46 @@ struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{
-		/*nicename("Biped")*/ _object_type_biped = 1ui16,
-		/*nicename("Vehicle")*/ _object_type_vehicle = 2ui16,
-		/*nicename("Weapon")*/ _object_type_weapon = 3ui16,
-		/*nicename("Equipment")*/ _object_type_equipment = 4ui16,
-		/*nicename("Terminal")*/ _object_type_terminal = 5ui16,
-		/*nicename("Projectile")*/ _object_type_projectile = 6ui16,
-		/*nicename("Scenery")*/ _object_type_scenery = 7ui16,
-		/*nicename("Machine")*/ _object_type_machine = 8ui16,
-		/*nicename("Control")*/ _object_type_control = 9ui16,
-		/*nicename("Sound Scenery")*/ _object_type_sound_scenery = 10ui16,
-		/*nicename("Crate")*/ _object_type_crate = 11ui16,
-		/*nicename("Creature")*/ _object_type_creature = 12ui16,
-		/*nicename("Giant")*/ _object_type_giant = 13ui16,
-		/*nicename("Effect Scenery")*/ _object_type_effect_scenery = 14ui16,
+		/*nicename("Biped")*/ _object_type_biped = 0ui16,
+		/*nicename("Vehicle")*/ _object_type_vehicle = 1ui16,
+		/*nicename("Weapon")*/ _object_type_weapon = 2ui16,
+		/*nicename("Equipment")*/ _object_type_equipment = 3ui16,
+		/*nicename("Terminal")*/ _object_type_terminal = 4ui16,
+		/*nicename("Projectile")*/ _object_type_projectile = 5ui16,
+		/*nicename("Scenery")*/ _object_type_scenery = 6ui16,
+		/*nicename("Machine")*/ _object_type_machine = 7ui16,
+		/*nicename("Control")*/ _object_type_control = 8ui16,
+		/*nicename("Sound Scenery")*/ _object_type_sound_scenery = 9ui16,
+		/*nicename("Crate")*/ _object_type_crate = 10ui16,
+		/*nicename("Creature")*/ _object_type_creature = 11ui16,
+		/*nicename("Giant")*/ _object_type_giant = 12ui16,
+		/*nicename("Effect Scenery")*/ _object_type_effect_scenery = 13ui16,
 	};
 
 	enum nicename("Lightmap Shadow Mode Size") e_lightmap_shadow_mode_size : uint16_t
 	{
-		/*nicename("Default")*/ _lightmap_shadow_mode_size_default = 1ui16,
-		/*nicename("Never")*/ _lightmap_shadow_mode_size_never = 2ui16,
-		/*nicename("Always")*/ _lightmap_shadow_mode_size_always = 3ui16,
-		/*nicename("Unknown")*/ _lightmap_shadow_mode_size_unknown = 4ui16,
+		/*nicename("Default")*/ _lightmap_shadow_mode_size_default = 0ui16,
+		/*nicename("Never")*/ _lightmap_shadow_mode_size_never = 1ui16,
+		/*nicename("Always")*/ _lightmap_shadow_mode_size_always = 2ui16,
+		/*nicename("Unknown")*/ _lightmap_shadow_mode_size_unknown = 3ui16,
 	};
 
 	enum nicename("Sweetener Size") e_sweetener_size : uint8_t
 	{
-		/*nicename("Small")*/ _sweetener_size_small = 1ui8,
-		/*nicename("Medium")*/ _sweetener_size_medium = 2ui8,
-		/*nicename("Large")*/ _sweetener_size_large = 3ui8,
+		/*nicename("Small")*/ _sweetener_size_small = 0ui8,
+		/*nicename("Medium")*/ _sweetener_size_medium = 1ui8,
+		/*nicename("Large")*/ _sweetener_size_large = 2ui8,
 	};
 
 	enum nicename("Water Density") e_water_density : uint8_t
 	{
-		/*nicename("Default")*/ _water_density_default = 1ui8,
-		/*nicename("Least")*/ _water_density_least = 2ui8,
-		/*nicename("Some")*/ _water_density_some = 3ui8,
-		/*nicename("Equal")*/ _water_density_equal = 4ui8,
-		/*nicename("More")*/ _water_density_more = 5ui8,
-		/*nicename("More Still")*/ _water_density_more_still = 6ui8,
-		/*nicename("Lots More")*/ _water_density_lots_more = 7ui8,
+		/*nicename("Default")*/ _water_density_default = 0ui8,
+		/*nicename("Least")*/ _water_density_least = 1ui8,
+		/*nicename("Some")*/ _water_density_some = 2ui8,
+		/*nicename("Equal")*/ _water_density_equal = 3ui8,
+		/*nicename("More")*/ _water_density_more = 4ui8,
+		/*nicename("More Still")*/ _water_density_more_still = 5ui8,
+		/*nicename("Lots More")*/ _water_density_lots_more = 6ui8,
 	};
 
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
@@ -84,7 +84,7 @@ struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 
 	struct nicename("Early Mover Properties") s_early_mover_properties_definition
 	{
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
@@ -101,25 +101,25 @@ struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 	{
 		enum nicename("Size") e_size : uint16_t
 		{
-			/*nicename("Default")*/ _size_default = 1ui16,
-			/*nicename("Tiny")*/ _size_tiny = 2ui16,
-			/*nicename("Small")*/ _size_small = 3ui16,
-			/*nicename("Medium")*/ _size_medium = 4ui16,
-			/*nicename("Large")*/ _size_large = 5ui16,
-			/*nicename("Huge")*/ _size_huge = 6ui16,
-			/*nicename("Immobile")*/ _size_immobile = 7ui16,
+			/*nicename("Default")*/ _size_default = 0ui16,
+			/*nicename("Tiny")*/ _size_tiny = 1ui16,
+			/*nicename("Small")*/ _size_small = 2ui16,
+			/*nicename("Medium")*/ _size_medium = 3ui16,
+			/*nicename("Large")*/ _size_large = 4ui16,
+			/*nicename("Huge")*/ _size_huge = 5ui16,
+			/*nicename("Immobile")*/ _size_immobile = 6ui16,
 		};
 
 		enum nicename("Leap Jump Speed") e_leap_jump_speed : uint16_t
 		{
-			/*nicename("None")*/ _leap_jump_speed_none = 1ui16,
-			/*nicename("Down")*/ _leap_jump_speed_down = 2ui16,
-			/*nicename("Step")*/ _leap_jump_speed_step = 3ui16,
-			/*nicename("Crouch")*/ _leap_jump_speed_crouch = 4ui16,
-			/*nicename("Stand")*/ _leap_jump_speed_stand = 5ui16,
-			/*nicename("Storey")*/ _leap_jump_speed_storey = 6ui16,
-			/*nicename("Tower")*/ _leap_jump_speed_tower = 7ui16,
-			/*nicename("Infinite")*/ _leap_jump_speed_infinite = 8ui16,
+			/*nicename("None")*/ _leap_jump_speed_none = 0ui16,
+			/*nicename("Down")*/ _leap_jump_speed_down = 1ui16,
+			/*nicename("Step")*/ _leap_jump_speed_step = 2ui16,
+			/*nicename("Crouch")*/ _leap_jump_speed_crouch = 3ui16,
+			/*nicename("Stand")*/ _leap_jump_speed_stand = 4ui16,
+			/*nicename("Storey")*/ _leap_jump_speed_storey = 5ui16,
+			/*nicename("Tower")*/ _leap_jump_speed_tower = 6ui16,
+			/*nicename("Infinite")*/ _leap_jump_speed_infinite = 7ui16,
 		};
 
 		enum nicename("Flags") b_flags1 : uint32_t /* bitfield */
@@ -159,7 +159,7 @@ struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 		};
 
 		b_flags1 nicename("Flags") flags;
-		string_id nicename("AI Type Name") ai_type_name;
+		string_id_legacy nicename("AI Type Name") ai_type_name;
 		s_undefined32_legacy __unknown0;
 		e_size nicename("Size") size;
 		e_leap_jump_speed nicename("Leap Jump Speed") leap_jump_speed;
@@ -214,13 +214,13 @@ struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 		};
 
 		b_flags1 nicename("Flags") flags;
-		string_id nicename("Import Name") import_name;
-		string_id nicename("Export Name") export_name;
-		string_id nicename("Turn Off With") turn_off_with;
-		string_id __unknown0;
+		string_id_legacy nicename("Import Name") import_name;
+		string_id_legacy nicename("Export Name") export_name;
+		string_id_legacy nicename("Turn Off With") turn_off_with;
+		string_id_legacy __unknown0;
 		float nicename("Minimum Value") minimum_value;
 		s_data_reference_legacy nicename("Default Function") default_function_data_reference;
-		string_id nicename("Scale By") scale_by;
+		string_id_legacy nicename("Scale By") scale_by;
 		s_tag_block_legacy<s_unknown_definition> __unknown1;
 		int32_t nicename("'Function Related' Index") function_related_index;
 	};
@@ -234,26 +234,26 @@ struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 	{
 		enum nicename("Change Color") e_change_color : uint16_t
 		{
-			/*nicename("None")*/ _change_color_none = 1ui16,
-			/*nicename("Primary")*/ _change_color_primary = 2ui16,
-			/*nicename("Secondary")*/ _change_color_secondary = 3ui16,
-			/*nicename("Tertiary")*/ _change_color_tertiary = 4ui16,
-			/*nicename("Quaternary")*/ _change_color_quaternary = 5ui16,
+			/*nicename("None")*/ _change_color_none = 0ui16,
+			/*nicename("Primary")*/ _change_color_primary = 1ui16,
+			/*nicename("Secondary")*/ _change_color_secondary = 2ui16,
+			/*nicename("Tertiary")*/ _change_color_tertiary = 3ui16,
+			/*nicename("Quaternary")*/ _change_color_quaternary = 4ui16,
 		};
 
 		s_tag_reference_legacy nicename("Attachment") attachment_reference;
-		string_id nicename("Marker") marker;
+		string_id_legacy nicename("Marker") marker;
 		e_change_color nicename("Change Color") change_color;
 		int16_t __unknown0;
-		string_id nicename("Primary Scale") primary_scale;
-		string_id nicename("Secondary Scale") secondary_scale;
+		string_id_legacy nicename("Primary Scale") primary_scale;
+		string_id_legacy nicename("Secondary Scale") secondary_scale;
 	};
 
 	struct nicename("Material Responses") s_material_responses_definition
 	{
 		struct nicename("Unknown") s_unknown1_definition
 		{
-			string_id nicename("Material") material;
+			string_id_legacy nicename("Material") material;
 			s_data_reference_legacy __unknown0;
 			float __unknown1;
 			s_data_reference_legacy __unknown2;
@@ -270,7 +270,7 @@ struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 
 	struct nicename("Jet Wash") s_jet_wash_definition
 	{
-		string_id nicename("Marker") marker;
+		string_id_legacy nicename("Marker") marker;
 		float __unknown0;
 		s_undefined32_legacy __unknown1;
 		float __unknown2;
@@ -293,7 +293,7 @@ struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 			float nicename("Weight") weight;
 			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
 			s_colorf_legacy nicename("Color Upper Bound") color_upper_bound;
-			string_id nicename("Variant Name") variant_name;
+			string_id_legacy nicename("Variant Name") variant_name;
 		};
 
 		struct nicename("Functions") s_functions1_definition
@@ -337,8 +337,8 @@ struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 			b_scale_flags nicename("Scale Flags") scale_flags;
 			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
 			s_colorf_legacy nicename("Color Upper Bound") color_upper_bound;
-			string_id nicename("Darken By...") darken_by;
-			string_id nicename("Scale By...") scale_by;
+			string_id_legacy nicename("Darken By...") darken_by;
+			string_id_legacy nicename("Scale By...") scale_by;
 		};
 
 		s_tag_block_legacy<s_initial_permutations_definition> nicename("Initial Permutations") initial_permutations_block;
@@ -356,48 +356,48 @@ struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 	{
 		enum nicename("Object Type") e_object_type1 : uint8_t
 		{
-			/*nicename("Ordinary")*/ _object_type1_ordinary = 1ui8,
-			/*nicename("Weapon")*/ _object_type1_weapon = 2ui8,
-			/*nicename("Grenade")*/ _object_type1_grenade = 3ui8,
-			/*nicename("Projectile")*/ _object_type1_projectile = 4ui8,
-			/*nicename("Powerup")*/ _object_type1_powerup = 5ui8,
-			/*nicename("Equipment")*/ _object_type1_equipment = 6ui8,
-			/*nicename("Ammo Pack")*/ _object_type1_ammo_pack = 7ui8,
-			/*nicename("Light Land Vehicle")*/ _object_type1_light_land_vehicle = 8ui8,
-			/*nicename("Heavy Land Vehicle")*/ _object_type1_heavy_land_vehicle = 9ui8,
-			/*nicename("Flying Vehicle")*/ _object_type1_flying_vehicle = 10ui8,
-			/*nicename("Turret")*/ _object_type1_turret = 11ui8,
-			/*nicename("Device")*/ _object_type1_device = 12ui8,
-			/*nicename("Teleporter 2Way")*/ _object_type1_teleporter_2way = 13ui8,
-			/*nicename("Teleporter Sender")*/ _object_type1_teleporter_sender = 14ui8,
-			/*nicename("Teleporter Receiver")*/ _object_type1_teleporter_receiver = 15ui8,
-			/*nicename("Player Spawn Location")*/ _object_type1_player_spawn_location = 16ui8,
-			/*nicename("Player Respawn Zone")*/ _object_type1_player_respawn_zone = 17ui8,
-			/*nicename("Secondary Objective")*/ _object_type1_secondary_objective = 18ui8,
-			/*nicename("Primary Objective")*/ _object_type1_primary_objective = 19ui8,
-			/*nicename("Named Location Area")*/ _object_type1_named_location_area = 20ui8,
-			/*nicename("Danger Zone")*/ _object_type1_danger_zone = 21ui8,
-			/*nicename("Fireteam 1 Respawn Zone")*/ _object_type1_fireteam_1_respawn_zone = 22ui8,
-			/*nicename("Fireteam 2 Respawn Zone")*/ _object_type1_fireteam_2_respawn_zone = 23ui8,
-			/*nicename("Fireteam 3 Respawn Zone")*/ _object_type1_fireteam_3_respawn_zone = 24ui8,
-			/*nicename("Fireteam 4 Respawn Zone")*/ _object_type1_fireteam_4_respawn_zone = 25ui8,
-			/*nicename("Safe Volume")*/ _object_type1_safe_volume = 26ui8,
-			/*nicename("Kill Volume")*/ _object_type1_kill_volume = 27ui8,
-			/*nicename("Cinematic Camera Position")*/ _object_type1_cinematic_camera_position = 28ui8,
+			/*nicename("Ordinary")*/ _object_type1_ordinary = 0ui8,
+			/*nicename("Weapon")*/ _object_type1_weapon = 1ui8,
+			/*nicename("Grenade")*/ _object_type1_grenade = 2ui8,
+			/*nicename("Projectile")*/ _object_type1_projectile = 3ui8,
+			/*nicename("Powerup")*/ _object_type1_powerup = 4ui8,
+			/*nicename("Equipment")*/ _object_type1_equipment = 5ui8,
+			/*nicename("Ammo Pack")*/ _object_type1_ammo_pack = 6ui8,
+			/*nicename("Light Land Vehicle")*/ _object_type1_light_land_vehicle = 7ui8,
+			/*nicename("Heavy Land Vehicle")*/ _object_type1_heavy_land_vehicle = 8ui8,
+			/*nicename("Flying Vehicle")*/ _object_type1_flying_vehicle = 9ui8,
+			/*nicename("Turret")*/ _object_type1_turret = 10ui8,
+			/*nicename("Device")*/ _object_type1_device = 11ui8,
+			/*nicename("Teleporter 2Way")*/ _object_type1_teleporter_2way = 12ui8,
+			/*nicename("Teleporter Sender")*/ _object_type1_teleporter_sender = 13ui8,
+			/*nicename("Teleporter Receiver")*/ _object_type1_teleporter_receiver = 14ui8,
+			/*nicename("Player Spawn Location")*/ _object_type1_player_spawn_location = 15ui8,
+			/*nicename("Player Respawn Zone")*/ _object_type1_player_respawn_zone = 16ui8,
+			/*nicename("Secondary Objective")*/ _object_type1_secondary_objective = 17ui8,
+			/*nicename("Primary Objective")*/ _object_type1_primary_objective = 18ui8,
+			/*nicename("Named Location Area")*/ _object_type1_named_location_area = 19ui8,
+			/*nicename("Danger Zone")*/ _object_type1_danger_zone = 20ui8,
+			/*nicename("Fireteam 1 Respawn Zone")*/ _object_type1_fireteam_1_respawn_zone = 21ui8,
+			/*nicename("Fireteam 2 Respawn Zone")*/ _object_type1_fireteam_2_respawn_zone = 22ui8,
+			/*nicename("Fireteam 3 Respawn Zone")*/ _object_type1_fireteam_3_respawn_zone = 23ui8,
+			/*nicename("Fireteam 4 Respawn Zone")*/ _object_type1_fireteam_4_respawn_zone = 24ui8,
+			/*nicename("Safe Volume")*/ _object_type1_safe_volume = 25ui8,
+			/*nicename("Kill Volume")*/ _object_type1_kill_volume = 26ui8,
+			/*nicename("Cinematic Camera Position")*/ _object_type1_cinematic_camera_position = 27ui8,
 		};
 
 		enum nicename("Shape") e_shape : uint8_t
 		{
-			/*nicename("None")*/ _shape_none = 1ui8,
-			/*nicename("Sphere")*/ _shape_sphere = 2ui8,
-			/*nicename("Cylinder")*/ _shape_cylinder = 3ui8,
-			/*nicename("Box")*/ _shape_box = 4ui8,
+			/*nicename("None")*/ _shape_none = 0ui8,
+			/*nicename("Sphere")*/ _shape_sphere = 1ui8,
+			/*nicename("Cylinder")*/ _shape_cylinder = 2ui8,
+			/*nicename("Box")*/ _shape_box = 3ui8,
 		};
 
 		enum nicename("Spawn Timer Mode") e_spawn_timer_mode : uint8_t
 		{
-			/*nicename("On Death")*/ _spawn_timer_mode_on_death = 1ui8,
-			/*nicename("On Disturbance")*/ _spawn_timer_mode_on_disturbance = 2ui8,
+			/*nicename("On Death")*/ _spawn_timer_mode_on_death = 0ui8,
+			/*nicename("On Disturbance")*/ _spawn_timer_mode_on_disturbance = 1ui8,
 		};
 
 		enum nicename("Teleporter Flags") b_teleporter_flags : uint8_t /* bitfield */
@@ -482,10 +482,10 @@ struct nicename("effect_scenery") tag_group('efsc') s_effect_scenery_definition
 	float nicename("Dynamic Light Sphere X Offset") dynamic_light_sphere_x_offset;
 	float nicename("Dynamic Light Sphere Y Offset") dynamic_light_sphere_y_offset;
 	float nicename("Dynamic Light Sphere Z Offset") dynamic_light_sphere_z_offset;
-	string_id nicename("Generic HUD Text") generic_hud_text;
+	string_id_legacy nicename("Generic HUD Text") generic_hud_text;
 	s_tag_reference_legacy nicename("Generic Name List") generic_name_list_reference;
 	s_tag_reference_legacy nicename("Generic Service Tag List") generic_service_tag_list_reference;
-	string_id nicename("Default Variant") default_variant;
+	string_id_legacy nicename("Default Variant") default_variant;
 	s_tag_reference_legacy nicename("Model") model_reference;
 	s_tag_reference_legacy nicename("Crate Object") crate_object_reference;
 	s_tag_reference_legacy nicename("Collision Damage") collision_damage_reference;

@@ -4,9 +4,9 @@ struct nicename("style") tag_group('styl') s_style_definition
 {
 	enum nicename("Combat Status Decay Options") e_combat_status_decay_options : uint16_t
 	{
-		/*nicename("Latch at Idle")*/ _combat_status_decay_options_latch_at_idle = 1ui16,
-		/*nicename("Latch at Alert")*/ _combat_status_decay_options_latch_at_alert = 2ui16,
-		/*nicename("Latch at Combat")*/ _combat_status_decay_options_latch_at_combat = 3ui16,
+		/*nicename("Latch at Idle")*/ _combat_status_decay_options_latch_at_idle = 0ui16,
+		/*nicename("Latch at Alert")*/ _combat_status_decay_options_latch_at_alert = 1ui16,
+		/*nicename("Latch at Combat")*/ _combat_status_decay_options_latch_at_combat = 2ui16,
 	};
 
 	enum nicename("Special Movement 1") b_special_movement_1 : uint32_t /* bitfield */

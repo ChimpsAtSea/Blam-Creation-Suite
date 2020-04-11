@@ -17,7 +17,7 @@ struct nicename("cinematic") tag_group('cine') s_cinematic_definition
 	s_tag_block_legacy<s_scene_unknown_definition> nicename("Scene Unknown") scene_unknown_block;
 	s_tag_reference_legacy nicename("Import Scenario") import_scenario_reference;
 	int32_t __unknown2;
-	string_id nicename("Name") name;
+	string_id_legacy nicename("Name") name;
 	int16_t __unknown3;
 	int16_t __unknown4;
 	int32_t __unknown5;

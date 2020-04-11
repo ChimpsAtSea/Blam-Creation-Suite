@@ -4,7 +4,7 @@ struct nicename("cloth") tag_group('clwd') s_cloth_definition
 {
 	enum nicename("Integration Type") e_integration_type : uint16_t
 	{
-		/*nicename("Verlet")*/ _integration_type_verlet = 1ui16,
+		/*nicename("Verlet")*/ _integration_type_verlet = 0ui16,
 	};
 
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
@@ -66,8 +66,8 @@ struct nicename("cloth") tag_group('clwd') s_cloth_definition
 	};
 
 	b_flags nicename("Flags") flags;
-	string_id nicename("Marker Attachment Name") marker_attachment_name;
-	string_id nicename("Second Marker Attachment Name") second_marker_attachment_name;
+	string_id_legacy nicename("Marker Attachment Name") marker_attachment_name;
+	string_id_legacy nicename("Second Marker Attachment Name") second_marker_attachment_name;
 	s_tag_reference_legacy nicename("Shader") shader_reference;
 	int16_t nicename("Grid X Dimension") grid_x_dimension;
 	int16_t nicename("Grid Y Dimension") grid_y_dimension;

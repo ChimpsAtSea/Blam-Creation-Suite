@@ -4,145 +4,145 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{
-		/*nicename("Biped")*/ _object_type_biped = 1ui16,
-		/*nicename("Vehicle")*/ _object_type_vehicle = 2ui16,
-		/*nicename("Weapon")*/ _object_type_weapon = 3ui16,
-		/*nicename("Equipment")*/ _object_type_equipment = 4ui16,
-		/*nicename("Terminal")*/ _object_type_terminal = 5ui16,
-		/*nicename("Projectile")*/ _object_type_projectile = 6ui16,
-		/*nicename("Scenery")*/ _object_type_scenery = 7ui16,
-		/*nicename("Machine")*/ _object_type_machine = 8ui16,
-		/*nicename("Control")*/ _object_type_control = 9ui16,
-		/*nicename("Sound Scenery")*/ _object_type_sound_scenery = 10ui16,
-		/*nicename("Crate")*/ _object_type_crate = 11ui16,
-		/*nicename("Creature")*/ _object_type_creature = 12ui16,
-		/*nicename("Giant")*/ _object_type_giant = 13ui16,
-		/*nicename("Effect Scenery")*/ _object_type_effect_scenery = 14ui16,
+		/*nicename("Biped")*/ _object_type_biped = 0ui16,
+		/*nicename("Vehicle")*/ _object_type_vehicle = 1ui16,
+		/*nicename("Weapon")*/ _object_type_weapon = 2ui16,
+		/*nicename("Equipment")*/ _object_type_equipment = 3ui16,
+		/*nicename("Terminal")*/ _object_type_terminal = 4ui16,
+		/*nicename("Projectile")*/ _object_type_projectile = 5ui16,
+		/*nicename("Scenery")*/ _object_type_scenery = 6ui16,
+		/*nicename("Machine")*/ _object_type_machine = 7ui16,
+		/*nicename("Control")*/ _object_type_control = 8ui16,
+		/*nicename("Sound Scenery")*/ _object_type_sound_scenery = 9ui16,
+		/*nicename("Crate")*/ _object_type_crate = 10ui16,
+		/*nicename("Creature")*/ _object_type_creature = 11ui16,
+		/*nicename("Giant")*/ _object_type_giant = 12ui16,
+		/*nicename("Effect Scenery")*/ _object_type_effect_scenery = 13ui16,
 	};
 
 	enum nicename("Lightmap Shadow Mode Size") e_lightmap_shadow_mode_size : uint16_t
 	{
-		/*nicename("Default")*/ _lightmap_shadow_mode_size_default = 1ui16,
-		/*nicename("Never")*/ _lightmap_shadow_mode_size_never = 2ui16,
-		/*nicename("Always")*/ _lightmap_shadow_mode_size_always = 3ui16,
-		/*nicename("Unknown")*/ _lightmap_shadow_mode_size_unknown = 4ui16,
+		/*nicename("Default")*/ _lightmap_shadow_mode_size_default = 0ui16,
+		/*nicename("Never")*/ _lightmap_shadow_mode_size_never = 1ui16,
+		/*nicename("Always")*/ _lightmap_shadow_mode_size_always = 2ui16,
+		/*nicename("Unknown")*/ _lightmap_shadow_mode_size_unknown = 3ui16,
 	};
 
 	enum nicename("Sweetener Size") e_sweetener_size : uint8_t
 	{
-		/*nicename("Small")*/ _sweetener_size_small = 1ui8,
-		/*nicename("Medium")*/ _sweetener_size_medium = 2ui8,
-		/*nicename("Large")*/ _sweetener_size_large = 3ui8,
+		/*nicename("Small")*/ _sweetener_size_small = 0ui8,
+		/*nicename("Medium")*/ _sweetener_size_medium = 1ui8,
+		/*nicename("Large")*/ _sweetener_size_large = 2ui8,
 	};
 
 	enum nicename("Water Density") e_water_density : uint8_t
 	{
-		/*nicename("Default")*/ _water_density_default = 1ui8,
-		/*nicename("Least")*/ _water_density_least = 2ui8,
-		/*nicename("Some")*/ _water_density_some = 3ui8,
-		/*nicename("Equal")*/ _water_density_equal = 4ui8,
-		/*nicename("More")*/ _water_density_more = 5ui8,
-		/*nicename("More Still")*/ _water_density_more_still = 6ui8,
-		/*nicename("Lots More")*/ _water_density_lots_more = 7ui8,
+		/*nicename("Default")*/ _water_density_default = 0ui8,
+		/*nicename("Least")*/ _water_density_least = 1ui8,
+		/*nicename("Some")*/ _water_density_some = 2ui8,
+		/*nicename("Equal")*/ _water_density_equal = 3ui8,
+		/*nicename("More")*/ _water_density_more = 4ui8,
+		/*nicename("More Still")*/ _water_density_more_still = 5ui8,
+		/*nicename("Lots More")*/ _water_density_lots_more = 6ui8,
 	};
 
 	enum nicename("Equipment Type") e_equipment_type : uint16_t
 	{
-		/*nicename("Armor Ability")*/ _equipment_type_armor_ability = 1ui16,
-		/*nicename("Grenade")*/ _equipment_type_grenade = 2ui16,
-		/*nicename("Powerup")*/ _equipment_type_powerup = 3ui16,
+		/*nicename("Armor Ability")*/ _equipment_type_armor_ability = 0ui16,
+		/*nicename("Grenade")*/ _equipment_type_grenade = 1ui16,
+		/*nicename("Powerup")*/ _equipment_type_powerup = 2ui16,
 	};
 
 	enum nicename("Activation Type") e_activation_type : uint8_t
 	{
-		/*nicename("Toggle")*/ _activation_type_toggle = 1ui8,
-		/*nicename("Held")*/ _activation_type_held = 2ui8,
+		/*nicename("Toggle")*/ _activation_type_toggle = 0ui8,
+		/*nicename("Held")*/ _activation_type_held = 1ui8,
 	};
 
 	enum nicename("Damage Reporting Type") e_damage_reporting_type : uint8_t
 	{
-		/*nicename("Guardians (Unknown)")*/ _damage_reporting_type_guardians_unknown = 1ui8,
-		/*nicename("Guardians")*/ _damage_reporting_type_guardians = 2ui8,
-		/*nicename("Guardians (Scripting)")*/ _damage_reporting_type_guardians_scripting = 3ui8,
-		/*nicename("Suicide")*/ _damage_reporting_type_suicide = 4ui8,
-		/*nicename("Magnum")*/ _damage_reporting_type_magnum = 5ui8,
-		/*nicename("Assault Rifle")*/ _damage_reporting_type_assault_rifle = 6ui8,
-		/*nicename("DMR")*/ _damage_reporting_type_dmr = 7ui8,
-		/*nicename("Shotgun")*/ _damage_reporting_type_shotgun = 8ui8,
-		/*nicename("Sniper Rifle")*/ _damage_reporting_type_sniper_rifle = 9ui8,
-		/*nicename("Rocket Launcher")*/ _damage_reporting_type_rocket_launcher = 10ui8,
-		/*nicename("Spartan Laser")*/ _damage_reporting_type_spartan_laser = 11ui8,
-		/*nicename("Frag Grenade")*/ _damage_reporting_type_frag_grenade = 12ui8,
-		/*nicename("Grenade Launcher")*/ _damage_reporting_type_grenade_launcher = 13ui8,
-		/*nicename("Plasma Pistol")*/ _damage_reporting_type_plasma_pistol = 14ui8,
-		/*nicename("Needler")*/ _damage_reporting_type_needler = 15ui8,
-		/*nicename("Plasma Rifle")*/ _damage_reporting_type_plasma_rifle = 16ui8,
-		/*nicename("Plasma Repeater")*/ _damage_reporting_type_plasma_repeater = 17ui8,
-		/*nicename("Needle Rifle")*/ _damage_reporting_type_needle_rifle = 18ui8,
-		/*nicename("Spiker")*/ _damage_reporting_type_spiker = 19ui8,
-		/*nicename("Plasma Launcher")*/ _damage_reporting_type_plasma_launcher = 20ui8,
-		/*nicename("Gravity Hammer")*/ _damage_reporting_type_gravity_hammer = 21ui8,
-		/*nicename("Energy Sword")*/ _damage_reporting_type_energy_sword = 22ui8,
-		/*nicename("Plasma Grenade")*/ _damage_reporting_type_plasma_grenade = 23ui8,
-		/*nicename("Concussion Rifle")*/ _damage_reporting_type_concussion_rifle = 24ui8,
-		/*nicename("Ghost")*/ _damage_reporting_type_ghost = 25ui8,
-		/*nicename("Revenant")*/ _damage_reporting_type_revenant = 26ui8,
-		/*nicename("Revenant Gunner")*/ _damage_reporting_type_revenant_gunner = 27ui8,
-		/*nicename("Wraith")*/ _damage_reporting_type_wraith = 28ui8,
-		/*nicename("Wraith Turret")*/ _damage_reporting_type_wraith_turret = 29ui8,
-		/*nicename("Banshee")*/ _damage_reporting_type_banshee = 30ui8,
-		/*nicename("Banshee Bomb")*/ _damage_reporting_type_banshee_bomb = 31ui8,
-		/*nicename("Seraph")*/ _damage_reporting_type_seraph = 32ui8,
-		/*nicename("Mongoose")*/ _damage_reporting_type_mongoose = 33ui8,
-		/*nicename("Warthog")*/ _damage_reporting_type_warthog = 34ui8,
-		/*nicename("Warthog Chaingun")*/ _damage_reporting_type_warthog_chaingun = 35ui8,
-		/*nicename("Warthog Gauss")*/ _damage_reporting_type_warthog_gauss = 36ui8,
-		/*nicename("Warthog Rocket")*/ _damage_reporting_type_warthog_rocket = 37ui8,
-		/*nicename("Scorpion")*/ _damage_reporting_type_scorpion = 38ui8,
-		/*nicename("Scorpion Turret")*/ _damage_reporting_type_scorpion_turret = 39ui8,
-		/*nicename("Falcon")*/ _damage_reporting_type_falcon = 40ui8,
-		/*nicename("Falcon Gunner")*/ _damage_reporting_type_falcon_gunner = 41ui8,
-		/*nicename("Falling")*/ _damage_reporting_type_falling = 42ui8,
-		/*nicename("Collision")*/ _damage_reporting_type_collision = 43ui8,
-		/*nicename("Melee")*/ _damage_reporting_type_melee = 44ui8,
-		/*nicename("Explosion")*/ _damage_reporting_type_explosion = 45ui8,
-		/*nicename("Birthday Explosion")*/ _damage_reporting_type_birthday_explosion = 46ui8,
-		/*nicename("Flag")*/ _damage_reporting_type_flag = 47ui8,
-		/*nicename("Bomb")*/ _damage_reporting_type_bomb = 48ui8,
-		/*nicename("Bomb Explosion")*/ _damage_reporting_type_bomb_explosion = 49ui8,
-		/*nicename("Ball")*/ _damage_reporting_type_ball = 50ui8,
-		/*nicename("Teleporter")*/ _damage_reporting_type_teleporter = 51ui8,
-		/*nicename("Transfer Damage")*/ _damage_reporting_type_transfer_damage = 52ui8,
-		/*nicename("Armor Lock")*/ _damage_reporting_type_armor_lock = 53ui8,
-		/*nicename("Target Locator")*/ _damage_reporting_type_target_locator = 54ui8,
-		/*nicename("Human Turret")*/ _damage_reporting_type_human_turret = 55ui8,
-		/*nicename("Plasma Cannon")*/ _damage_reporting_type_plasma_cannon = 56ui8,
-		/*nicename("Plasma Mortar")*/ _damage_reporting_type_plasma_mortar = 57ui8,
-		/*nicename("Plasma Turret")*/ _damage_reporting_type_plasma_turret = 58ui8,
-		/*nicename("Shade Turret")*/ _damage_reporting_type_shade_turret = 59ui8,
-		/*nicename("Sabre")*/ _damage_reporting_type_sabre = 60ui8,
-		/*nicename("SMG")*/ _damage_reporting_type_smg = 61ui8,
-		/*nicename("Carbine")*/ _damage_reporting_type_carbine = 62ui8,
-		/*nicename("Battle Rifle")*/ _damage_reporting_type_battle_rifle = 63ui8,
-		/*nicename("Focus Rifle")*/ _damage_reporting_type_focus_rifle = 64ui8,
-		/*nicename("Fuel Rod")*/ _damage_reporting_type_fuel_rod = 65ui8,
-		/*nicename("Missile Pod")*/ _damage_reporting_type_missile_pod = 66ui8,
-		/*nicename("Brute Shot")*/ _damage_reporting_type_brute_shot = 67ui8,
-		/*nicename("Flamethrower")*/ _damage_reporting_type_flamethrower = 68ui8,
-		/*nicename("Sentinel Gun")*/ _damage_reporting_type_sentinel_gun = 69ui8,
-		/*nicename("Spike Grenade")*/ _damage_reporting_type_spike_grenade = 70ui8,
-		/*nicename("Firebomb Grenade")*/ _damage_reporting_type_firebomb_grenade = 71ui8,
-		/*nicename("Elephant Turret")*/ _damage_reporting_type_elephant_turret = 72ui8,
-		/*nicename("Spectre")*/ _damage_reporting_type_spectre = 73ui8,
-		/*nicename("Spectre Gunner")*/ _damage_reporting_type_spectre_gunner = 74ui8,
-		/*nicename("Tank")*/ _damage_reporting_type_tank = 75ui8,
-		/*nicename("Chopper")*/ _damage_reporting_type_chopper = 76ui8,
-		/*nicename("Falcon")*/ _damage_reporting_type_falcon1 = 77ui8,
-		/*nicename("Mantis")*/ _damage_reporting_type_mantis = 78ui8,
-		/*nicename("Prowler")*/ _damage_reporting_type_prowler = 79ui8,
-		/*nicename("Sentinel Beam")*/ _damage_reporting_type_sentinel_beam = 80ui8,
-		/*nicename("Sentinel RPG")*/ _damage_reporting_type_sentinel_rpg = 81ui8,
-		/*nicename("Tripmine")*/ _damage_reporting_type_tripmine = 82ui8,
+		/*nicename("Guardians (Unknown)")*/ _damage_reporting_type_guardians_unknown = 0ui8,
+		/*nicename("Guardians")*/ _damage_reporting_type_guardians = 1ui8,
+		/*nicename("Guardians (Scripting)")*/ _damage_reporting_type_guardians_scripting = 2ui8,
+		/*nicename("Suicide")*/ _damage_reporting_type_suicide = 3ui8,
+		/*nicename("Magnum")*/ _damage_reporting_type_magnum = 4ui8,
+		/*nicename("Assault Rifle")*/ _damage_reporting_type_assault_rifle = 5ui8,
+		/*nicename("DMR")*/ _damage_reporting_type_dmr = 6ui8,
+		/*nicename("Shotgun")*/ _damage_reporting_type_shotgun = 7ui8,
+		/*nicename("Sniper Rifle")*/ _damage_reporting_type_sniper_rifle = 8ui8,
+		/*nicename("Rocket Launcher")*/ _damage_reporting_type_rocket_launcher = 9ui8,
+		/*nicename("Spartan Laser")*/ _damage_reporting_type_spartan_laser = 10ui8,
+		/*nicename("Frag Grenade")*/ _damage_reporting_type_frag_grenade = 11ui8,
+		/*nicename("Grenade Launcher")*/ _damage_reporting_type_grenade_launcher = 12ui8,
+		/*nicename("Plasma Pistol")*/ _damage_reporting_type_plasma_pistol = 13ui8,
+		/*nicename("Needler")*/ _damage_reporting_type_needler = 14ui8,
+		/*nicename("Plasma Rifle")*/ _damage_reporting_type_plasma_rifle = 15ui8,
+		/*nicename("Plasma Repeater")*/ _damage_reporting_type_plasma_repeater = 16ui8,
+		/*nicename("Needle Rifle")*/ _damage_reporting_type_needle_rifle = 17ui8,
+		/*nicename("Spiker")*/ _damage_reporting_type_spiker = 18ui8,
+		/*nicename("Plasma Launcher")*/ _damage_reporting_type_plasma_launcher = 19ui8,
+		/*nicename("Gravity Hammer")*/ _damage_reporting_type_gravity_hammer = 20ui8,
+		/*nicename("Energy Sword")*/ _damage_reporting_type_energy_sword = 21ui8,
+		/*nicename("Plasma Grenade")*/ _damage_reporting_type_plasma_grenade = 22ui8,
+		/*nicename("Concussion Rifle")*/ _damage_reporting_type_concussion_rifle = 23ui8,
+		/*nicename("Ghost")*/ _damage_reporting_type_ghost = 24ui8,
+		/*nicename("Revenant")*/ _damage_reporting_type_revenant = 25ui8,
+		/*nicename("Revenant Gunner")*/ _damage_reporting_type_revenant_gunner = 26ui8,
+		/*nicename("Wraith")*/ _damage_reporting_type_wraith = 27ui8,
+		/*nicename("Wraith Turret")*/ _damage_reporting_type_wraith_turret = 28ui8,
+		/*nicename("Banshee")*/ _damage_reporting_type_banshee = 29ui8,
+		/*nicename("Banshee Bomb")*/ _damage_reporting_type_banshee_bomb = 30ui8,
+		/*nicename("Seraph")*/ _damage_reporting_type_seraph = 31ui8,
+		/*nicename("Mongoose")*/ _damage_reporting_type_mongoose = 32ui8,
+		/*nicename("Warthog")*/ _damage_reporting_type_warthog = 33ui8,
+		/*nicename("Warthog Chaingun")*/ _damage_reporting_type_warthog_chaingun = 34ui8,
+		/*nicename("Warthog Gauss")*/ _damage_reporting_type_warthog_gauss = 35ui8,
+		/*nicename("Warthog Rocket")*/ _damage_reporting_type_warthog_rocket = 36ui8,
+		/*nicename("Scorpion")*/ _damage_reporting_type_scorpion = 37ui8,
+		/*nicename("Scorpion Turret")*/ _damage_reporting_type_scorpion_turret = 38ui8,
+		/*nicename("Falcon")*/ _damage_reporting_type_falcon = 39ui8,
+		/*nicename("Falcon Gunner")*/ _damage_reporting_type_falcon_gunner = 40ui8,
+		/*nicename("Falling")*/ _damage_reporting_type_falling = 41ui8,
+		/*nicename("Collision")*/ _damage_reporting_type_collision = 42ui8,
+		/*nicename("Melee")*/ _damage_reporting_type_melee = 43ui8,
+		/*nicename("Explosion")*/ _damage_reporting_type_explosion = 44ui8,
+		/*nicename("Birthday Explosion")*/ _damage_reporting_type_birthday_explosion = 45ui8,
+		/*nicename("Flag")*/ _damage_reporting_type_flag = 46ui8,
+		/*nicename("Bomb")*/ _damage_reporting_type_bomb = 47ui8,
+		/*nicename("Bomb Explosion")*/ _damage_reporting_type_bomb_explosion = 48ui8,
+		/*nicename("Ball")*/ _damage_reporting_type_ball = 49ui8,
+		/*nicename("Teleporter")*/ _damage_reporting_type_teleporter = 50ui8,
+		/*nicename("Transfer Damage")*/ _damage_reporting_type_transfer_damage = 51ui8,
+		/*nicename("Armor Lock")*/ _damage_reporting_type_armor_lock = 52ui8,
+		/*nicename("Target Locator")*/ _damage_reporting_type_target_locator = 53ui8,
+		/*nicename("Human Turret")*/ _damage_reporting_type_human_turret = 54ui8,
+		/*nicename("Plasma Cannon")*/ _damage_reporting_type_plasma_cannon = 55ui8,
+		/*nicename("Plasma Mortar")*/ _damage_reporting_type_plasma_mortar = 56ui8,
+		/*nicename("Plasma Turret")*/ _damage_reporting_type_plasma_turret = 57ui8,
+		/*nicename("Shade Turret")*/ _damage_reporting_type_shade_turret = 58ui8,
+		/*nicename("Sabre")*/ _damage_reporting_type_sabre = 59ui8,
+		/*nicename("SMG")*/ _damage_reporting_type_smg = 60ui8,
+		/*nicename("Carbine")*/ _damage_reporting_type_carbine = 61ui8,
+		/*nicename("Battle Rifle")*/ _damage_reporting_type_battle_rifle = 62ui8,
+		/*nicename("Focus Rifle")*/ _damage_reporting_type_focus_rifle = 63ui8,
+		/*nicename("Fuel Rod")*/ _damage_reporting_type_fuel_rod = 64ui8,
+		/*nicename("Missile Pod")*/ _damage_reporting_type_missile_pod = 65ui8,
+		/*nicename("Brute Shot")*/ _damage_reporting_type_brute_shot = 66ui8,
+		/*nicename("Flamethrower")*/ _damage_reporting_type_flamethrower = 67ui8,
+		/*nicename("Sentinel Gun")*/ _damage_reporting_type_sentinel_gun = 68ui8,
+		/*nicename("Spike Grenade")*/ _damage_reporting_type_spike_grenade = 69ui8,
+		/*nicename("Firebomb Grenade")*/ _damage_reporting_type_firebomb_grenade = 70ui8,
+		/*nicename("Elephant Turret")*/ _damage_reporting_type_elephant_turret = 71ui8,
+		/*nicename("Spectre")*/ _damage_reporting_type_spectre = 72ui8,
+		/*nicename("Spectre Gunner")*/ _damage_reporting_type_spectre_gunner = 73ui8,
+		/*nicename("Tank")*/ _damage_reporting_type_tank = 74ui8,
+		/*nicename("Chopper")*/ _damage_reporting_type_chopper = 75ui8,
+		/*nicename("Falcon")*/ _damage_reporting_type_falcon1 = 76ui8,
+		/*nicename("Mantis")*/ _damage_reporting_type_mantis = 77ui8,
+		/*nicename("Prowler")*/ _damage_reporting_type_prowler = 78ui8,
+		/*nicename("Sentinel Beam")*/ _damage_reporting_type_sentinel_beam = 79ui8,
+		/*nicename("Sentinel RPG")*/ _damage_reporting_type_sentinel_rpg = 80ui8,
+		/*nicename("Tripmine")*/ _damage_reporting_type_tripmine = 81ui8,
 	};
 
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
@@ -255,7 +255,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 
 	struct nicename("Early Mover Properties") s_early_mover_properties_definition
 	{
-		string_id nicename("Name") name;
+		string_id_legacy nicename("Name") name;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
@@ -272,25 +272,25 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	{
 		enum nicename("Size") e_size : uint16_t
 		{
-			/*nicename("Default")*/ _size_default = 1ui16,
-			/*nicename("Tiny")*/ _size_tiny = 2ui16,
-			/*nicename("Small")*/ _size_small = 3ui16,
-			/*nicename("Medium")*/ _size_medium = 4ui16,
-			/*nicename("Large")*/ _size_large = 5ui16,
-			/*nicename("Huge")*/ _size_huge = 6ui16,
-			/*nicename("Immobile")*/ _size_immobile = 7ui16,
+			/*nicename("Default")*/ _size_default = 0ui16,
+			/*nicename("Tiny")*/ _size_tiny = 1ui16,
+			/*nicename("Small")*/ _size_small = 2ui16,
+			/*nicename("Medium")*/ _size_medium = 3ui16,
+			/*nicename("Large")*/ _size_large = 4ui16,
+			/*nicename("Huge")*/ _size_huge = 5ui16,
+			/*nicename("Immobile")*/ _size_immobile = 6ui16,
 		};
 
 		enum nicename("Leap Jump Speed") e_leap_jump_speed : uint16_t
 		{
-			/*nicename("None")*/ _leap_jump_speed_none = 1ui16,
-			/*nicename("Down")*/ _leap_jump_speed_down = 2ui16,
-			/*nicename("Step")*/ _leap_jump_speed_step = 3ui16,
-			/*nicename("Crouch")*/ _leap_jump_speed_crouch = 4ui16,
-			/*nicename("Stand")*/ _leap_jump_speed_stand = 5ui16,
-			/*nicename("Storey")*/ _leap_jump_speed_storey = 6ui16,
-			/*nicename("Tower")*/ _leap_jump_speed_tower = 7ui16,
-			/*nicename("Infinite")*/ _leap_jump_speed_infinite = 8ui16,
+			/*nicename("None")*/ _leap_jump_speed_none = 0ui16,
+			/*nicename("Down")*/ _leap_jump_speed_down = 1ui16,
+			/*nicename("Step")*/ _leap_jump_speed_step = 2ui16,
+			/*nicename("Crouch")*/ _leap_jump_speed_crouch = 3ui16,
+			/*nicename("Stand")*/ _leap_jump_speed_stand = 4ui16,
+			/*nicename("Storey")*/ _leap_jump_speed_storey = 5ui16,
+			/*nicename("Tower")*/ _leap_jump_speed_tower = 6ui16,
+			/*nicename("Infinite")*/ _leap_jump_speed_infinite = 7ui16,
 		};
 
 		enum nicename("Flags") b_flags1 : uint32_t /* bitfield */
@@ -330,7 +330,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		};
 
 		b_flags1 nicename("Flags") flags;
-		string_id nicename("AI Type Name") ai_type_name;
+		string_id_legacy nicename("AI Type Name") ai_type_name;
 		s_undefined32_legacy __unknown0;
 		e_size nicename("Size") size;
 		e_leap_jump_speed nicename("Leap Jump Speed") leap_jump_speed;
@@ -385,13 +385,13 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		};
 
 		b_flags1 nicename("Flags") flags;
-		string_id nicename("Import Name") import_name;
-		string_id nicename("Export Name") export_name;
-		string_id nicename("Turn Off With") turn_off_with;
-		string_id __unknown0;
+		string_id_legacy nicename("Import Name") import_name;
+		string_id_legacy nicename("Export Name") export_name;
+		string_id_legacy nicename("Turn Off With") turn_off_with;
+		string_id_legacy __unknown0;
 		float nicename("Minimum Value") minimum_value;
 		s_data_reference_legacy nicename("Default Function") default_function_data_reference;
-		string_id nicename("Scale By") scale_by;
+		string_id_legacy nicename("Scale By") scale_by;
 		s_tag_block_legacy<s_unknown_definition> __unknown1;
 		int32_t nicename("'Function Related' Index") function_related_index;
 	};
@@ -405,26 +405,26 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	{
 		enum nicename("Change Color") e_change_color : uint16_t
 		{
-			/*nicename("None")*/ _change_color_none = 1ui16,
-			/*nicename("Primary")*/ _change_color_primary = 2ui16,
-			/*nicename("Secondary")*/ _change_color_secondary = 3ui16,
-			/*nicename("Tertiary")*/ _change_color_tertiary = 4ui16,
-			/*nicename("Quaternary")*/ _change_color_quaternary = 5ui16,
+			/*nicename("None")*/ _change_color_none = 0ui16,
+			/*nicename("Primary")*/ _change_color_primary = 1ui16,
+			/*nicename("Secondary")*/ _change_color_secondary = 2ui16,
+			/*nicename("Tertiary")*/ _change_color_tertiary = 3ui16,
+			/*nicename("Quaternary")*/ _change_color_quaternary = 4ui16,
 		};
 
 		s_tag_reference_legacy nicename("Attachment") attachment_reference;
-		string_id nicename("Marker") marker;
+		string_id_legacy nicename("Marker") marker;
 		e_change_color nicename("Change Color") change_color;
 		int16_t __unknown0;
-		string_id nicename("Primary Scale") primary_scale;
-		string_id nicename("Secondary Scale") secondary_scale;
+		string_id_legacy nicename("Primary Scale") primary_scale;
+		string_id_legacy nicename("Secondary Scale") secondary_scale;
 	};
 
 	struct nicename("Material Responses") s_material_responses_definition
 	{
 		struct nicename("Unknown") s_unknown1_definition
 		{
-			string_id nicename("Material") material;
+			string_id_legacy nicename("Material") material;
 			s_data_reference_legacy __unknown0;
 			float __unknown1;
 			s_data_reference_legacy __unknown2;
@@ -441,7 +441,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 
 	struct nicename("Jet Wash") s_jet_wash_definition
 	{
-		string_id nicename("Marker") marker;
+		string_id_legacy nicename("Marker") marker;
 		float __unknown0;
 		s_undefined32_legacy __unknown1;
 		float __unknown2;
@@ -464,7 +464,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			float nicename("Weight") weight;
 			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
 			s_colorf_legacy nicename("Color Upper Bound") color_upper_bound;
-			string_id nicename("Variant Name") variant_name;
+			string_id_legacy nicename("Variant Name") variant_name;
 		};
 
 		struct nicename("Functions") s_functions1_definition
@@ -508,8 +508,8 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			b_scale_flags nicename("Scale Flags") scale_flags;
 			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
 			s_colorf_legacy nicename("Color Upper Bound") color_upper_bound;
-			string_id nicename("Darken By...") darken_by;
-			string_id nicename("Scale By...") scale_by;
+			string_id_legacy nicename("Darken By...") darken_by;
+			string_id_legacy nicename("Scale By...") scale_by;
 		};
 
 		s_tag_block_legacy<s_initial_permutations_definition> nicename("Initial Permutations") initial_permutations_block;
@@ -527,48 +527,48 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	{
 		enum nicename("Object Type") e_object_type1 : uint8_t
 		{
-			/*nicename("Ordinary")*/ _object_type1_ordinary = 1ui8,
-			/*nicename("Weapon")*/ _object_type1_weapon = 2ui8,
-			/*nicename("Grenade")*/ _object_type1_grenade = 3ui8,
-			/*nicename("Projectile")*/ _object_type1_projectile = 4ui8,
-			/*nicename("Powerup")*/ _object_type1_powerup = 5ui8,
-			/*nicename("Equipment")*/ _object_type1_equipment = 6ui8,
-			/*nicename("Ammo Pack")*/ _object_type1_ammo_pack = 7ui8,
-			/*nicename("Light Land Vehicle")*/ _object_type1_light_land_vehicle = 8ui8,
-			/*nicename("Heavy Land Vehicle")*/ _object_type1_heavy_land_vehicle = 9ui8,
-			/*nicename("Flying Vehicle")*/ _object_type1_flying_vehicle = 10ui8,
-			/*nicename("Turret")*/ _object_type1_turret = 11ui8,
-			/*nicename("Device")*/ _object_type1_device = 12ui8,
-			/*nicename("Teleporter 2Way")*/ _object_type1_teleporter_2way = 13ui8,
-			/*nicename("Teleporter Sender")*/ _object_type1_teleporter_sender = 14ui8,
-			/*nicename("Teleporter Receiver")*/ _object_type1_teleporter_receiver = 15ui8,
-			/*nicename("Player Spawn Location")*/ _object_type1_player_spawn_location = 16ui8,
-			/*nicename("Player Respawn Zone")*/ _object_type1_player_respawn_zone = 17ui8,
-			/*nicename("Secondary Objective")*/ _object_type1_secondary_objective = 18ui8,
-			/*nicename("Primary Objective")*/ _object_type1_primary_objective = 19ui8,
-			/*nicename("Named Location Area")*/ _object_type1_named_location_area = 20ui8,
-			/*nicename("Danger Zone")*/ _object_type1_danger_zone = 21ui8,
-			/*nicename("Fireteam 1 Respawn Zone")*/ _object_type1_fireteam_1_respawn_zone = 22ui8,
-			/*nicename("Fireteam 2 Respawn Zone")*/ _object_type1_fireteam_2_respawn_zone = 23ui8,
-			/*nicename("Fireteam 3 Respawn Zone")*/ _object_type1_fireteam_3_respawn_zone = 24ui8,
-			/*nicename("Fireteam 4 Respawn Zone")*/ _object_type1_fireteam_4_respawn_zone = 25ui8,
-			/*nicename("Safe Volume")*/ _object_type1_safe_volume = 26ui8,
-			/*nicename("Kill Volume")*/ _object_type1_kill_volume = 27ui8,
-			/*nicename("Cinematic Camera Position")*/ _object_type1_cinematic_camera_position = 28ui8,
+			/*nicename("Ordinary")*/ _object_type1_ordinary = 0ui8,
+			/*nicename("Weapon")*/ _object_type1_weapon = 1ui8,
+			/*nicename("Grenade")*/ _object_type1_grenade = 2ui8,
+			/*nicename("Projectile")*/ _object_type1_projectile = 3ui8,
+			/*nicename("Powerup")*/ _object_type1_powerup = 4ui8,
+			/*nicename("Equipment")*/ _object_type1_equipment = 5ui8,
+			/*nicename("Ammo Pack")*/ _object_type1_ammo_pack = 6ui8,
+			/*nicename("Light Land Vehicle")*/ _object_type1_light_land_vehicle = 7ui8,
+			/*nicename("Heavy Land Vehicle")*/ _object_type1_heavy_land_vehicle = 8ui8,
+			/*nicename("Flying Vehicle")*/ _object_type1_flying_vehicle = 9ui8,
+			/*nicename("Turret")*/ _object_type1_turret = 10ui8,
+			/*nicename("Device")*/ _object_type1_device = 11ui8,
+			/*nicename("Teleporter 2Way")*/ _object_type1_teleporter_2way = 12ui8,
+			/*nicename("Teleporter Sender")*/ _object_type1_teleporter_sender = 13ui8,
+			/*nicename("Teleporter Receiver")*/ _object_type1_teleporter_receiver = 14ui8,
+			/*nicename("Player Spawn Location")*/ _object_type1_player_spawn_location = 15ui8,
+			/*nicename("Player Respawn Zone")*/ _object_type1_player_respawn_zone = 16ui8,
+			/*nicename("Secondary Objective")*/ _object_type1_secondary_objective = 17ui8,
+			/*nicename("Primary Objective")*/ _object_type1_primary_objective = 18ui8,
+			/*nicename("Named Location Area")*/ _object_type1_named_location_area = 19ui8,
+			/*nicename("Danger Zone")*/ _object_type1_danger_zone = 20ui8,
+			/*nicename("Fireteam 1 Respawn Zone")*/ _object_type1_fireteam_1_respawn_zone = 21ui8,
+			/*nicename("Fireteam 2 Respawn Zone")*/ _object_type1_fireteam_2_respawn_zone = 22ui8,
+			/*nicename("Fireteam 3 Respawn Zone")*/ _object_type1_fireteam_3_respawn_zone = 23ui8,
+			/*nicename("Fireteam 4 Respawn Zone")*/ _object_type1_fireteam_4_respawn_zone = 24ui8,
+			/*nicename("Safe Volume")*/ _object_type1_safe_volume = 25ui8,
+			/*nicename("Kill Volume")*/ _object_type1_kill_volume = 26ui8,
+			/*nicename("Cinematic Camera Position")*/ _object_type1_cinematic_camera_position = 27ui8,
 		};
 
 		enum nicename("Shape") e_shape : uint8_t
 		{
-			/*nicename("None")*/ _shape_none = 1ui8,
-			/*nicename("Sphere")*/ _shape_sphere = 2ui8,
-			/*nicename("Cylinder")*/ _shape_cylinder = 3ui8,
-			/*nicename("Box")*/ _shape_box = 4ui8,
+			/*nicename("None")*/ _shape_none = 0ui8,
+			/*nicename("Sphere")*/ _shape_sphere = 1ui8,
+			/*nicename("Cylinder")*/ _shape_cylinder = 2ui8,
+			/*nicename("Box")*/ _shape_box = 3ui8,
 		};
 
 		enum nicename("Spawn Timer Mode") e_spawn_timer_mode : uint8_t
 		{
-			/*nicename("On Death")*/ _spawn_timer_mode_on_death = 1ui8,
-			/*nicename("On Disturbance")*/ _spawn_timer_mode_on_disturbance = 2ui8,
+			/*nicename("On Death")*/ _spawn_timer_mode_on_death = 0ui8,
+			/*nicename("On Disturbance")*/ _spawn_timer_mode_on_disturbance = 1ui8,
 		};
 
 		enum nicename("Teleporter Flags") b_teleporter_flags : uint8_t /* bitfield */
@@ -726,7 +726,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
-		string_id nicename("Camera Marker") camera_marker;
+		string_id_legacy nicename("Camera Marker") camera_marker;
 		float nicename("Pitch Auto-Level") pitch_auto_level;
 		float nicename("Pitch Range min") pitch_range_min;
 		float nicename("Pitch Range max") pitch_range_max;
@@ -753,9 +753,9 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	{
 		enum nicename("Powerup Trait Set") e_powerup_trait_set : uint32_t
 		{
-			/*nicename("Red")*/ _powerup_trait_set_red = 1ui32,
-			/*nicename("Blue")*/ _powerup_trait_set_blue = 2ui32,
-			/*nicename("Yellow")*/ _powerup_trait_set_yellow = 3ui32,
+			/*nicename("Red")*/ _powerup_trait_set_red = 0ui32,
+			/*nicename("Blue")*/ _powerup_trait_set_blue = 1ui32,
+			/*nicename("Yellow")*/ _powerup_trait_set_yellow = 2ui32,
 		};
 
 		e_powerup_trait_set nicename("Powerup Trait Set") powerup_trait_set;
@@ -801,7 +801,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			s_tag_reference_legacy nicename("Discharge Effect") discharge_effect_reference;
 		};
 
-		string_id nicename("Material Name") material_name;
+		string_id_legacy nicename("Material Name") material_name;
 		int16_t nicename("Global Material Index") global_material_index;
 		int16_t __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -809,8 +809,8 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		s_tag_reference_legacy nicename("Collision Damage") collision_damage_reference;
 		s_tag_reference_legacy nicename("AI Reflection Damage") ai_reflection_damage_reference;
 		s_tag_reference_legacy nicename("Player Reflection Damage") player_reflection_damage_reference;
-		string_id nicename("Biped Active Damage Section") biped_active_damage_section;
-		string_id nicename("Biped Deactivated Damage Section") biped_deactivated_damage_section;
+		string_id_legacy nicename("Biped Active Damage Section") biped_active_damage_section;
+		string_id_legacy nicename("Biped Deactivated Damage Section") biped_deactivated_damage_section;
 		s_data_reference_legacy nicename("Function") function_data_reference;
 		s_undefined32_legacy __unknown3;
 		s_data_reference_legacy nicename("Function") function1_data_reference;
@@ -856,7 +856,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		};
 
 		b_flags3 nicename("Flags") flags;
-		string_id nicename("Center Marker") center_marker;
+		string_id_legacy nicename("Center Marker") center_marker;
 		float __unknown0;
 	};
 
@@ -868,129 +868,129 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			{
 				enum nicename("Damage Resistance") e_damage_resistance : uint8_t
 				{
-					/*nicename("Unchanged")*/ _damage_resistance_unchanged = 1ui8,
-					/*nicename("10%")*/ _damage_resistance__10 = 2ui8,
-					/*nicename("50%")*/ _damage_resistance__50 = 3ui8,
-					/*nicename("90%")*/ _damage_resistance__90 = 4ui8,
-					/*nicename("100%")*/ _damage_resistance__100 = 5ui8,
-					/*nicename("110%")*/ _damage_resistance__110 = 6ui8,
-					/*nicename("150%")*/ _damage_resistance__150 = 7ui8,
-					/*nicename("200%")*/ _damage_resistance__200 = 8ui8,
-					/*nicename("300%")*/ _damage_resistance__300 = 9ui8,
-					/*nicename("500%")*/ _damage_resistance__500 = 10ui8,
-					/*nicename("1000%")*/ _damage_resistance__1000 = 11ui8,
-					/*nicename("2000%")*/ _damage_resistance__2000 = 12ui8,
-					/*nicename("Invulnerable")*/ _damage_resistance_invulnerable = 13ui8,
+					/*nicename("Unchanged")*/ _damage_resistance_unchanged = 0ui8,
+					/*nicename("10%")*/ _damage_resistance__10 = 1ui8,
+					/*nicename("50%")*/ _damage_resistance__50 = 2ui8,
+					/*nicename("90%")*/ _damage_resistance__90 = 3ui8,
+					/*nicename("100%")*/ _damage_resistance__100 = 4ui8,
+					/*nicename("110%")*/ _damage_resistance__110 = 5ui8,
+					/*nicename("150%")*/ _damage_resistance__150 = 6ui8,
+					/*nicename("200%")*/ _damage_resistance__200 = 7ui8,
+					/*nicename("300%")*/ _damage_resistance__300 = 8ui8,
+					/*nicename("500%")*/ _damage_resistance__500 = 9ui8,
+					/*nicename("1000%")*/ _damage_resistance__1000 = 10ui8,
+					/*nicename("2000%")*/ _damage_resistance__2000 = 11ui8,
+					/*nicename("Invulnerable")*/ _damage_resistance_invulnerable = 12ui8,
 				};
 
 				enum nicename("Health Multiplier") e_health_multiplier : uint8_t
 				{
-					/*nicename("Unchanged")*/ _health_multiplier_unchanged = 1ui8,
-					/*nicename("0%")*/ _health_multiplier__0 = 2ui8,
-					/*nicename("100%")*/ _health_multiplier__100 = 3ui8,
-					/*nicename("150%")*/ _health_multiplier__150 = 4ui8,
-					/*nicename("200%")*/ _health_multiplier__200 = 5ui8,
-					/*nicename("300%")*/ _health_multiplier__300 = 6ui8,
-					/*nicename("400%")*/ _health_multiplier__400 = 7ui8,
+					/*nicename("Unchanged")*/ _health_multiplier_unchanged = 0ui8,
+					/*nicename("0%")*/ _health_multiplier__0 = 1ui8,
+					/*nicename("100%")*/ _health_multiplier__100 = 2ui8,
+					/*nicename("150%")*/ _health_multiplier__150 = 3ui8,
+					/*nicename("200%")*/ _health_multiplier__200 = 4ui8,
+					/*nicename("300%")*/ _health_multiplier__300 = 5ui8,
+					/*nicename("400%")*/ _health_multiplier__400 = 6ui8,
 				};
 
 				enum nicename("Health Recharge Rate") e_health_recharge_rate : uint8_t
 				{
-					/*nicename("Unchanged")*/ _health_recharge_rate_unchanged = 1ui8,
-					/*nicename("-25%")*/ _health_recharge_rate__25 = 2ui8,
-					/*nicename("-10%")*/ _health_recharge_rate__10 = 3ui8,
-					/*nicename("-5%")*/ _health_recharge_rate__5 = 4ui8,
-					/*nicename("0%")*/ _health_recharge_rate__0 = 5ui8,
-					/*nicename("10%")*/ _health_recharge_rate__101 = 6ui8,
-					/*nicename("25%")*/ _health_recharge_rate__251 = 7ui8,
-					/*nicename("50%")*/ _health_recharge_rate__50 = 8ui8,
-					/*nicename("75%")*/ _health_recharge_rate__75 = 9ui8,
-					/*nicename("90%")*/ _health_recharge_rate__90 = 10ui8,
-					/*nicename("100%")*/ _health_recharge_rate__100 = 11ui8,
-					/*nicename("110%")*/ _health_recharge_rate__110 = 12ui8,
-					/*nicename("125%")*/ _health_recharge_rate__125 = 13ui8,
-					/*nicename("150%")*/ _health_recharge_rate__150 = 14ui8,
-					/*nicename("200%")*/ _health_recharge_rate__200 = 15ui8,
+					/*nicename("Unchanged")*/ _health_recharge_rate_unchanged = 0ui8,
+					/*nicename("-25%")*/ _health_recharge_rate__25 = 1ui8,
+					/*nicename("-10%")*/ _health_recharge_rate__10 = 2ui8,
+					/*nicename("-5%")*/ _health_recharge_rate__5 = 3ui8,
+					/*nicename("0%")*/ _health_recharge_rate__0 = 4ui8,
+					/*nicename("10%")*/ _health_recharge_rate__101 = 5ui8,
+					/*nicename("25%")*/ _health_recharge_rate__251 = 6ui8,
+					/*nicename("50%")*/ _health_recharge_rate__50 = 7ui8,
+					/*nicename("75%")*/ _health_recharge_rate__75 = 8ui8,
+					/*nicename("90%")*/ _health_recharge_rate__90 = 9ui8,
+					/*nicename("100%")*/ _health_recharge_rate__100 = 10ui8,
+					/*nicename("110%")*/ _health_recharge_rate__110 = 11ui8,
+					/*nicename("125%")*/ _health_recharge_rate__125 = 12ui8,
+					/*nicename("150%")*/ _health_recharge_rate__150 = 13ui8,
+					/*nicename("200%")*/ _health_recharge_rate__200 = 14ui8,
 				};
 
 				enum nicename("Shield Multiplier") e_shield_multiplier : uint8_t
 				{
-					/*nicename("Unchanged")*/ _shield_multiplier_unchanged = 1ui8,
-					/*nicename("No Shields")*/ _shield_multiplier_no_shields = 2ui8,
-					/*nicename("Normal Shields")*/ _shield_multiplier_normal_shields = 3ui8,
-					/*nicename("1.5x Overshields")*/ _shield_multiplier__15x_overshields = 4ui8,
-					/*nicename("2x Overshields")*/ _shield_multiplier__2x_overshields = 5ui8,
-					/*nicename("3x Overshields")*/ _shield_multiplier__3x_overshields = 6ui8,
-					/*nicename("4x Overshields")*/ _shield_multiplier__4x_overshields = 7ui8,
+					/*nicename("Unchanged")*/ _shield_multiplier_unchanged = 0ui8,
+					/*nicename("No Shields")*/ _shield_multiplier_no_shields = 1ui8,
+					/*nicename("Normal Shields")*/ _shield_multiplier_normal_shields = 2ui8,
+					/*nicename("1.5x Overshields")*/ _shield_multiplier__15x_overshields = 3ui8,
+					/*nicename("2x Overshields")*/ _shield_multiplier__2x_overshields = 4ui8,
+					/*nicename("3x Overshields")*/ _shield_multiplier__3x_overshields = 5ui8,
+					/*nicename("4x Overshields")*/ _shield_multiplier__4x_overshields = 6ui8,
 				};
 
 				enum nicename("Shield Recharge Rate") e_shield_recharge_rate : uint8_t
 				{
-					/*nicename("Unchanged")*/ _shield_recharge_rate_unchanged = 1ui8,
-					/*nicename("-25%")*/ _shield_recharge_rate__25 = 2ui8,
-					/*nicename("-10%")*/ _shield_recharge_rate__10 = 3ui8,
-					/*nicename("-5%")*/ _shield_recharge_rate__5 = 4ui8,
-					/*nicename("0%")*/ _shield_recharge_rate__0 = 5ui8,
-					/*nicename("10%")*/ _shield_recharge_rate__101 = 6ui8,
-					/*nicename("25%")*/ _shield_recharge_rate__251 = 7ui8,
-					/*nicename("50%")*/ _shield_recharge_rate__50 = 8ui8,
-					/*nicename("75%")*/ _shield_recharge_rate__75 = 9ui8,
-					/*nicename("90%")*/ _shield_recharge_rate__90 = 10ui8,
-					/*nicename("100%")*/ _shield_recharge_rate__100 = 11ui8,
-					/*nicename("110%")*/ _shield_recharge_rate__110 = 12ui8,
-					/*nicename("125%")*/ _shield_recharge_rate__125 = 13ui8,
-					/*nicename("150%")*/ _shield_recharge_rate__150 = 14ui8,
-					/*nicename("200%")*/ _shield_recharge_rate__200 = 15ui8,
+					/*nicename("Unchanged")*/ _shield_recharge_rate_unchanged = 0ui8,
+					/*nicename("-25%")*/ _shield_recharge_rate__25 = 1ui8,
+					/*nicename("-10%")*/ _shield_recharge_rate__10 = 2ui8,
+					/*nicename("-5%")*/ _shield_recharge_rate__5 = 3ui8,
+					/*nicename("0%")*/ _shield_recharge_rate__0 = 4ui8,
+					/*nicename("10%")*/ _shield_recharge_rate__101 = 5ui8,
+					/*nicename("25%")*/ _shield_recharge_rate__251 = 6ui8,
+					/*nicename("50%")*/ _shield_recharge_rate__50 = 7ui8,
+					/*nicename("75%")*/ _shield_recharge_rate__75 = 8ui8,
+					/*nicename("90%")*/ _shield_recharge_rate__90 = 9ui8,
+					/*nicename("100%")*/ _shield_recharge_rate__100 = 10ui8,
+					/*nicename("110%")*/ _shield_recharge_rate__110 = 11ui8,
+					/*nicename("125%")*/ _shield_recharge_rate__125 = 12ui8,
+					/*nicename("150%")*/ _shield_recharge_rate__150 = 13ui8,
+					/*nicename("200%")*/ _shield_recharge_rate__200 = 14ui8,
 				};
 
 				enum nicename("Shield Recharge Rate 2") e_shield_recharge_rate_2 : uint8_t
 				{
-					/*nicename("Unchanged")*/ _shield_recharge_rate_2_unchanged = 1ui8,
-					/*nicename("-25%")*/ _shield_recharge_rate_2__25 = 2ui8,
-					/*nicename("-10%")*/ _shield_recharge_rate_2__10 = 3ui8,
-					/*nicename("-5%")*/ _shield_recharge_rate_2__5 = 4ui8,
-					/*nicename("0%")*/ _shield_recharge_rate_2__0 = 5ui8,
-					/*nicename("10%")*/ _shield_recharge_rate_2__101 = 6ui8,
-					/*nicename("25%")*/ _shield_recharge_rate_2__251 = 7ui8,
-					/*nicename("50%")*/ _shield_recharge_rate_2__50 = 8ui8,
-					/*nicename("75%")*/ _shield_recharge_rate_2__75 = 9ui8,
-					/*nicename("90%")*/ _shield_recharge_rate_2__90 = 10ui8,
-					/*nicename("100%")*/ _shield_recharge_rate_2__100 = 11ui8,
-					/*nicename("110%")*/ _shield_recharge_rate_2__110 = 12ui8,
-					/*nicename("125%")*/ _shield_recharge_rate_2__125 = 13ui8,
-					/*nicename("150%")*/ _shield_recharge_rate_2__150 = 14ui8,
-					/*nicename("200%")*/ _shield_recharge_rate_2__200 = 15ui8,
+					/*nicename("Unchanged")*/ _shield_recharge_rate_2_unchanged = 0ui8,
+					/*nicename("-25%")*/ _shield_recharge_rate_2__25 = 1ui8,
+					/*nicename("-10%")*/ _shield_recharge_rate_2__10 = 2ui8,
+					/*nicename("-5%")*/ _shield_recharge_rate_2__5 = 3ui8,
+					/*nicename("0%")*/ _shield_recharge_rate_2__0 = 4ui8,
+					/*nicename("10%")*/ _shield_recharge_rate_2__101 = 5ui8,
+					/*nicename("25%")*/ _shield_recharge_rate_2__251 = 6ui8,
+					/*nicename("50%")*/ _shield_recharge_rate_2__50 = 7ui8,
+					/*nicename("75%")*/ _shield_recharge_rate_2__75 = 8ui8,
+					/*nicename("90%")*/ _shield_recharge_rate_2__90 = 9ui8,
+					/*nicename("100%")*/ _shield_recharge_rate_2__100 = 10ui8,
+					/*nicename("110%")*/ _shield_recharge_rate_2__110 = 11ui8,
+					/*nicename("125%")*/ _shield_recharge_rate_2__125 = 12ui8,
+					/*nicename("150%")*/ _shield_recharge_rate_2__150 = 13ui8,
+					/*nicename("200%")*/ _shield_recharge_rate_2__200 = 14ui8,
 				};
 
 				enum nicename("Headshot Immunity") e_headshot_immunity : uint8_t
 				{
-					/*nicename("Unchanged")*/ _headshot_immunity_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _headshot_immunity_disabled = 2ui8,
-					/*nicename("Enabled")*/ _headshot_immunity_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _headshot_immunity_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _headshot_immunity_disabled = 1ui8,
+					/*nicename("Enabled")*/ _headshot_immunity_enabled = 2ui8,
 				};
 
 				enum nicename("Shield Vampirism") e_shield_vampirism : uint8_t
 				{
-					/*nicename("Unchanged")*/ _shield_vampirism_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _shield_vampirism_disabled = 2ui8,
-					/*nicename("10%")*/ _shield_vampirism__10 = 3ui8,
-					/*nicename("25%")*/ _shield_vampirism__25 = 4ui8,
-					/*nicename("50%")*/ _shield_vampirism__50 = 5ui8,
-					/*nicename("100%")*/ _shield_vampirism__100 = 6ui8,
+					/*nicename("Unchanged")*/ _shield_vampirism_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _shield_vampirism_disabled = 1ui8,
+					/*nicename("10%")*/ _shield_vampirism__10 = 2ui8,
+					/*nicename("25%")*/ _shield_vampirism__25 = 3ui8,
+					/*nicename("50%")*/ _shield_vampirism__50 = 4ui8,
+					/*nicename("100%")*/ _shield_vampirism__100 = 5ui8,
 				};
 
 				enum nicename("Assassination Immunity") e_assassination_immunity : uint8_t
 				{
-					/*nicename("Unchanged")*/ _assassination_immunity_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _assassination_immunity_disabled = 2ui8,
-					/*nicename("Enabled")*/ _assassination_immunity_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _assassination_immunity_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _assassination_immunity_disabled = 1ui8,
+					/*nicename("Enabled")*/ _assassination_immunity_enabled = 2ui8,
 				};
 
 				enum nicename("Deathless") e_deathless : uint8_t
 				{
-					/*nicename("Unchanged")*/ _deathless_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _deathless_disabled = 2ui8,
-					/*nicename("Enabled")*/ _deathless_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _deathless_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _deathless_disabled = 1ui8,
+					/*nicename("Enabled")*/ _deathless_enabled = 2ui8,
 				};
 
 				e_damage_resistance nicename("Damage Resistance") damage_resistance;
@@ -1011,99 +1011,99 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			{
 				enum nicename("Damage Modifier") e_damage_modifier : uint8_t
 				{
-					/*nicename("Unchanged")*/ _damage_modifier_unchanged = 1ui8,
-					/*nicename("0%")*/ _damage_modifier__0 = 2ui8,
-					/*nicename("25%")*/ _damage_modifier__25 = 3ui8,
-					/*nicename("50%")*/ _damage_modifier__50 = 4ui8,
-					/*nicename("75%")*/ _damage_modifier__75 = 5ui8,
-					/*nicename("90%")*/ _damage_modifier__90 = 6ui8,
-					/*nicename("100%")*/ _damage_modifier__100 = 7ui8,
-					/*nicename("110%")*/ _damage_modifier__110 = 8ui8,
-					/*nicename("125%")*/ _damage_modifier__125 = 9ui8,
-					/*nicename("150%")*/ _damage_modifier__150 = 10ui8,
-					/*nicename("200%")*/ _damage_modifier__200 = 11ui8,
-					/*nicename("300%")*/ _damage_modifier__300 = 12ui8,
-					/*nicename("Instant Kill")*/ _damage_modifier_instant_kill = 13ui8,
+					/*nicename("Unchanged")*/ _damage_modifier_unchanged = 0ui8,
+					/*nicename("0%")*/ _damage_modifier__0 = 1ui8,
+					/*nicename("25%")*/ _damage_modifier__25 = 2ui8,
+					/*nicename("50%")*/ _damage_modifier__50 = 3ui8,
+					/*nicename("75%")*/ _damage_modifier__75 = 4ui8,
+					/*nicename("90%")*/ _damage_modifier__90 = 5ui8,
+					/*nicename("100%")*/ _damage_modifier__100 = 6ui8,
+					/*nicename("110%")*/ _damage_modifier__110 = 7ui8,
+					/*nicename("125%")*/ _damage_modifier__125 = 8ui8,
+					/*nicename("150%")*/ _damage_modifier__150 = 9ui8,
+					/*nicename("200%")*/ _damage_modifier__200 = 10ui8,
+					/*nicename("300%")*/ _damage_modifier__300 = 11ui8,
+					/*nicename("Instant Kill")*/ _damage_modifier_instant_kill = 12ui8,
 				};
 
 				enum nicename("Melee Damage Modifier") e_melee_damage_modifier : uint8_t
 				{
-					/*nicename("Unchanged")*/ _melee_damage_modifier_unchanged = 1ui8,
-					/*nicename("0%")*/ _melee_damage_modifier__0 = 2ui8,
-					/*nicename("25%")*/ _melee_damage_modifier__25 = 3ui8,
-					/*nicename("50%")*/ _melee_damage_modifier__50 = 4ui8,
-					/*nicename("75%")*/ _melee_damage_modifier__75 = 5ui8,
-					/*nicename("90%")*/ _melee_damage_modifier__90 = 6ui8,
-					/*nicename("100%")*/ _melee_damage_modifier__100 = 7ui8,
-					/*nicename("110%")*/ _melee_damage_modifier__110 = 8ui8,
-					/*nicename("125%")*/ _melee_damage_modifier__125 = 9ui8,
-					/*nicename("150%")*/ _melee_damage_modifier__150 = 10ui8,
-					/*nicename("200%")*/ _melee_damage_modifier__200 = 11ui8,
-					/*nicename("300%")*/ _melee_damage_modifier__300 = 12ui8,
-					/*nicename("Instant Kill")*/ _melee_damage_modifier_instant_kill = 13ui8,
+					/*nicename("Unchanged")*/ _melee_damage_modifier_unchanged = 0ui8,
+					/*nicename("0%")*/ _melee_damage_modifier__0 = 1ui8,
+					/*nicename("25%")*/ _melee_damage_modifier__25 = 2ui8,
+					/*nicename("50%")*/ _melee_damage_modifier__50 = 3ui8,
+					/*nicename("75%")*/ _melee_damage_modifier__75 = 4ui8,
+					/*nicename("90%")*/ _melee_damage_modifier__90 = 5ui8,
+					/*nicename("100%")*/ _melee_damage_modifier__100 = 6ui8,
+					/*nicename("110%")*/ _melee_damage_modifier__110 = 7ui8,
+					/*nicename("125%")*/ _melee_damage_modifier__125 = 8ui8,
+					/*nicename("150%")*/ _melee_damage_modifier__150 = 9ui8,
+					/*nicename("200%")*/ _melee_damage_modifier__200 = 10ui8,
+					/*nicename("300%")*/ _melee_damage_modifier__300 = 11ui8,
+					/*nicename("Instant Kill")*/ _melee_damage_modifier_instant_kill = 12ui8,
 				};
 
 				enum nicename("Grenade Regeneration") e_grenade_regeneration : uint8_t
 				{
-					/*nicename("Unchanged")*/ _grenade_regeneration_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _grenade_regeneration_disabled = 2ui8,
-					/*nicename("Enabled")*/ _grenade_regeneration_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _grenade_regeneration_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _grenade_regeneration_disabled = 1ui8,
+					/*nicename("Enabled")*/ _grenade_regeneration_enabled = 2ui8,
 				};
 
 				enum nicename("Weapon Pickup") e_weapon_pickup : uint8_t
 				{
-					/*nicename("Unchanged")*/ _weapon_pickup_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _weapon_pickup_disabled = 2ui8,
-					/*nicename("Enabled")*/ _weapon_pickup_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _weapon_pickup_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _weapon_pickup_disabled = 1ui8,
+					/*nicename("Enabled")*/ _weapon_pickup_enabled = 2ui8,
 				};
 
 				enum nicename("Grenade Count") e_grenade_count : uint8_t
 				{
-					/*nicename("Unchanged")*/ _grenade_count_unchanged = 1ui8,
-					/*nicename("Map Default")*/ _grenade_count_map_default = 2ui8,
-					/*nicename("None")*/ _grenade_count_none = 3ui8,
-					/*nicename("1 Frag")*/ _grenade_count__1_frag = 4ui8,
-					/*nicename("2 Frags")*/ _grenade_count__2_frags = 5ui8,
-					/*nicename("3 Frags")*/ _grenade_count__3_frags = 6ui8,
-					/*nicename("4 Frags")*/ _grenade_count__4_frags = 7ui8,
-					/*nicename("1 Plasma")*/ _grenade_count__1_plasma = 8ui8,
-					/*nicename("2 Plasmas")*/ _grenade_count__2_plasmas = 9ui8,
-					/*nicename("3 Plasmas")*/ _grenade_count__3_plasmas = 10ui8,
-					/*nicename("4 Plasmas")*/ _grenade_count__4_plasmas = 11ui8,
-					/*nicename("1x Each")*/ _grenade_count__1x_each = 12ui8,
-					/*nicename("2x Each")*/ _grenade_count__2x_each = 13ui8,
-					/*nicename("3x Each")*/ _grenade_count__3x_each = 14ui8,
-					/*nicename("4x Each")*/ _grenade_count__4x_each = 15ui8,
+					/*nicename("Unchanged")*/ _grenade_count_unchanged = 0ui8,
+					/*nicename("Map Default")*/ _grenade_count_map_default = 1ui8,
+					/*nicename("None")*/ _grenade_count_none = 2ui8,
+					/*nicename("1 Frag")*/ _grenade_count__1_frag = 3ui8,
+					/*nicename("2 Frags")*/ _grenade_count__2_frags = 4ui8,
+					/*nicename("3 Frags")*/ _grenade_count__3_frags = 5ui8,
+					/*nicename("4 Frags")*/ _grenade_count__4_frags = 6ui8,
+					/*nicename("1 Plasma")*/ _grenade_count__1_plasma = 7ui8,
+					/*nicename("2 Plasmas")*/ _grenade_count__2_plasmas = 8ui8,
+					/*nicename("3 Plasmas")*/ _grenade_count__3_plasmas = 9ui8,
+					/*nicename("4 Plasmas")*/ _grenade_count__4_plasmas = 10ui8,
+					/*nicename("1x Each")*/ _grenade_count__1x_each = 11ui8,
+					/*nicename("2x Each")*/ _grenade_count__2x_each = 12ui8,
+					/*nicename("3x Each")*/ _grenade_count__3x_each = 13ui8,
+					/*nicename("4x Each")*/ _grenade_count__4x_each = 14ui8,
 				};
 
 				enum nicename("Infinite Ammo") e_infinite_ammo : uint8_t
 				{
-					/*nicename("Unchanged")*/ _infinite_ammo_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _infinite_ammo_disabled = 2ui8,
-					/*nicename("Enabled")*/ _infinite_ammo_enabled = 3ui8,
-					/*nicename("Bottomless Clip")*/ _infinite_ammo_bottomless_clip = 4ui8,
+					/*nicename("Unchanged")*/ _infinite_ammo_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _infinite_ammo_disabled = 1ui8,
+					/*nicename("Enabled")*/ _infinite_ammo_enabled = 2ui8,
+					/*nicename("Bottomless Clip")*/ _infinite_ammo_bottomless_clip = 3ui8,
 				};
 
 				enum nicename("Equipment Usage") e_equipment_usage : uint8_t
 				{
-					/*nicename("Unchanged")*/ _equipment_usage_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _equipment_usage_disabled = 2ui8,
-					/*nicename("Enabled")*/ _equipment_usage_enabled = 3ui8,
-					/*nicename("Unknown")*/ _equipment_usage_unknown = 4ui8,
+					/*nicename("Unchanged")*/ _equipment_usage_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _equipment_usage_disabled = 1ui8,
+					/*nicename("Enabled")*/ _equipment_usage_enabled = 2ui8,
+					/*nicename("Unknown")*/ _equipment_usage_unknown = 3ui8,
 				};
 
 				enum nicename("Equipment Drop") e_equipment_drop : uint8_t
 				{
-					/*nicename("Unchanged")*/ _equipment_drop_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _equipment_drop_disabled = 2ui8,
-					/*nicename("Enabled")*/ _equipment_drop_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _equipment_drop_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _equipment_drop_disabled = 1ui8,
+					/*nicename("Enabled")*/ _equipment_drop_enabled = 2ui8,
 				};
 
 				enum nicename("Infinite Equipment") e_infinite_equipment : uint8_t
 				{
-					/*nicename("Unchanged")*/ _infinite_equipment_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _infinite_equipment_disabled = 2ui8,
-					/*nicename("Enabled")*/ _infinite_equipment_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _infinite_equipment_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _infinite_equipment_disabled = 1ui8,
+					/*nicename("Enabled")*/ _infinite_equipment_enabled = 2ui8,
 				};
 
 				e_damage_modifier nicename("Damage Modifier") damage_modifier;
@@ -1118,71 +1118,71 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int8_t __unknown0;
 				int8_t __unknown1;
 				int8_t __unknown2;
-				string_id nicename("Primary Weapon") primary_weapon;
-				string_id nicename("Secondary Weapon") secondary_weapon;
-				string_id nicename("Equipment") equipment;
+				string_id_legacy nicename("Primary Weapon") primary_weapon;
+				string_id_legacy nicename("Secondary Weapon") secondary_weapon;
+				string_id_legacy nicename("Equipment") equipment;
 			};
 
 			struct nicename("Movement") s_movement_definition
 			{
 				enum nicename("Player Speed") e_player_speed : uint8_t
 				{
-					/*nicename("Unchanged")*/ _player_speed_unchanged = 1ui8,
-					/*nicename("0%")*/ _player_speed__0 = 2ui8,
-					/*nicename("25%")*/ _player_speed__25 = 3ui8,
-					/*nicename("50%")*/ _player_speed__50 = 4ui8,
-					/*nicename("75%")*/ _player_speed__75 = 5ui8,
-					/*nicename("90%")*/ _player_speed__90 = 6ui8,
-					/*nicename("100%")*/ _player_speed__100 = 7ui8,
-					/*nicename("110%")*/ _player_speed__110 = 8ui8,
-					/*nicename("120%")*/ _player_speed__120 = 9ui8,
-					/*nicename("130%")*/ _player_speed__130 = 10ui8,
-					/*nicename("140%")*/ _player_speed__140 = 11ui8,
-					/*nicename("150%")*/ _player_speed__150 = 12ui8,
-					/*nicename("160%")*/ _player_speed__160 = 13ui8,
-					/*nicename("170%")*/ _player_speed__170 = 14ui8,
-					/*nicename("180%")*/ _player_speed__180 = 15ui8,
-					/*nicename("190%")*/ _player_speed__190 = 16ui8,
-					/*nicename("200%")*/ _player_speed__200 = 17ui8,
-					/*nicename("300%")*/ _player_speed__300 = 18ui8,
+					/*nicename("Unchanged")*/ _player_speed_unchanged = 0ui8,
+					/*nicename("0%")*/ _player_speed__0 = 1ui8,
+					/*nicename("25%")*/ _player_speed__25 = 2ui8,
+					/*nicename("50%")*/ _player_speed__50 = 3ui8,
+					/*nicename("75%")*/ _player_speed__75 = 4ui8,
+					/*nicename("90%")*/ _player_speed__90 = 5ui8,
+					/*nicename("100%")*/ _player_speed__100 = 6ui8,
+					/*nicename("110%")*/ _player_speed__110 = 7ui8,
+					/*nicename("120%")*/ _player_speed__120 = 8ui8,
+					/*nicename("130%")*/ _player_speed__130 = 9ui8,
+					/*nicename("140%")*/ _player_speed__140 = 10ui8,
+					/*nicename("150%")*/ _player_speed__150 = 11ui8,
+					/*nicename("160%")*/ _player_speed__160 = 12ui8,
+					/*nicename("170%")*/ _player_speed__170 = 13ui8,
+					/*nicename("180%")*/ _player_speed__180 = 14ui8,
+					/*nicename("190%")*/ _player_speed__190 = 15ui8,
+					/*nicename("200%")*/ _player_speed__200 = 16ui8,
+					/*nicename("300%")*/ _player_speed__300 = 17ui8,
 				};
 
 				enum nicename("Player Gravity") e_player_gravity : uint8_t
 				{
-					/*nicename("Unchanged")*/ _player_gravity_unchanged = 1ui8,
-					/*nicename("50%")*/ _player_gravity__50 = 2ui8,
-					/*nicename("75%")*/ _player_gravity__75 = 3ui8,
-					/*nicename("100%")*/ _player_gravity__100 = 4ui8,
-					/*nicename("150%")*/ _player_gravity__150 = 5ui8,
-					/*nicename("200%")*/ _player_gravity__200 = 6ui8,
-					/*nicename("250%")*/ _player_gravity__250 = 7ui8,
-					/*nicename("300%")*/ _player_gravity__300 = 8ui8,
-					/*nicename("350%")*/ _player_gravity__350 = 9ui8,
-					/*nicename("400%")*/ _player_gravity__400 = 10ui8,
-					/*nicename("450%")*/ _player_gravity__450 = 11ui8,
-					/*nicename("500%")*/ _player_gravity__500 = 12ui8,
-					/*nicename("550%")*/ _player_gravity__550 = 13ui8,
-					/*nicename("600%")*/ _player_gravity__600 = 14ui8,
+					/*nicename("Unchanged")*/ _player_gravity_unchanged = 0ui8,
+					/*nicename("50%")*/ _player_gravity__50 = 1ui8,
+					/*nicename("75%")*/ _player_gravity__75 = 2ui8,
+					/*nicename("100%")*/ _player_gravity__100 = 3ui8,
+					/*nicename("150%")*/ _player_gravity__150 = 4ui8,
+					/*nicename("200%")*/ _player_gravity__200 = 5ui8,
+					/*nicename("250%")*/ _player_gravity__250 = 6ui8,
+					/*nicename("300%")*/ _player_gravity__300 = 7ui8,
+					/*nicename("350%")*/ _player_gravity__350 = 8ui8,
+					/*nicename("400%")*/ _player_gravity__400 = 9ui8,
+					/*nicename("450%")*/ _player_gravity__450 = 10ui8,
+					/*nicename("500%")*/ _player_gravity__500 = 11ui8,
+					/*nicename("550%")*/ _player_gravity__550 = 12ui8,
+					/*nicename("600%")*/ _player_gravity__600 = 13ui8,
 				};
 
 				enum nicename("Vehicle Use") e_vehicle_use : uint8_t
 				{
-					/*nicename("Unchanged")*/ _vehicle_use_unchanged = 1ui8,
-					/*nicename("None")*/ _vehicle_use_none = 2ui8,
-					/*nicename("Passenger Only")*/ _vehicle_use_passenger_only = 3ui8,
-					/*nicename("Driver Only")*/ _vehicle_use_driver_only = 4ui8,
-					/*nicename("Gunner Only")*/ _vehicle_use_gunner_only = 5ui8,
-					/*nicename("No Passenger")*/ _vehicle_use_no_passenger = 6ui8,
-					/*nicename("No Driver")*/ _vehicle_use_no_driver = 7ui8,
-					/*nicename("No Gunner")*/ _vehicle_use_no_gunner = 8ui8,
-					/*nicename("Full Use")*/ _vehicle_use_full_use = 9ui8,
+					/*nicename("Unchanged")*/ _vehicle_use_unchanged = 0ui8,
+					/*nicename("None")*/ _vehicle_use_none = 1ui8,
+					/*nicename("Passenger Only")*/ _vehicle_use_passenger_only = 2ui8,
+					/*nicename("Driver Only")*/ _vehicle_use_driver_only = 3ui8,
+					/*nicename("Gunner Only")*/ _vehicle_use_gunner_only = 4ui8,
+					/*nicename("No Passenger")*/ _vehicle_use_no_passenger = 5ui8,
+					/*nicename("No Driver")*/ _vehicle_use_no_driver = 6ui8,
+					/*nicename("No Gunner")*/ _vehicle_use_no_gunner = 7ui8,
+					/*nicename("Full Use")*/ _vehicle_use_full_use = 8ui8,
 				};
 
 				enum nicename("Double Jump") e_double_jump : uint8_t
 				{
-					/*nicename("Unchanged")*/ _double_jump_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _double_jump_disabled = 2ui8,
-					/*nicename("Enabled")*/ _double_jump_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _double_jump_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _double_jump_disabled = 1ui8,
+					/*nicename("Enabled")*/ _double_jump_enabled = 2ui8,
 				};
 
 				e_player_speed nicename("Player Speed") player_speed;
@@ -1197,55 +1197,55 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			{
 				enum nicename("Active Camo") e_active_camo : uint8_t
 				{
-					/*nicename("Unchanged")*/ _active_camo_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _active_camo_disabled = 2ui8,
-					/*nicename("Bad Camo")*/ _active_camo_bad_camo = 3ui8,
-					/*nicename("Poor Camo")*/ _active_camo_poor_camo = 4ui8,
-					/*nicename("Good Camo")*/ _active_camo_good_camo = 5ui8,
-					/*nicename("Invisible")*/ _active_camo_invisible = 6ui8,
+					/*nicename("Unchanged")*/ _active_camo_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _active_camo_disabled = 1ui8,
+					/*nicename("Bad Camo")*/ _active_camo_bad_camo = 2ui8,
+					/*nicename("Poor Camo")*/ _active_camo_poor_camo = 3ui8,
+					/*nicename("Good Camo")*/ _active_camo_good_camo = 4ui8,
+					/*nicename("Invisible")*/ _active_camo_invisible = 5ui8,
 				};
 
 				enum nicename("Waypoint") e_waypoint : uint8_t
 				{
-					/*nicename("Unchanged")*/ _waypoint_unchanged = 1ui8,
-					/*nicename("None")*/ _waypoint_none = 2ui8,
-					/*nicename("Visible To Allies")*/ _waypoint_visible_to_allies = 3ui8,
-					/*nicename("Visible To Everyone")*/ _waypoint_visible_to_everyone = 4ui8,
+					/*nicename("Unchanged")*/ _waypoint_unchanged = 0ui8,
+					/*nicename("None")*/ _waypoint_none = 1ui8,
+					/*nicename("Visible To Allies")*/ _waypoint_visible_to_allies = 2ui8,
+					/*nicename("Visible To Everyone")*/ _waypoint_visible_to_everyone = 3ui8,
 				};
 
 				enum nicename("Visible Name") e_visible_name : uint8_t
 				{
-					/*nicename("Unchanged")*/ _visible_name_unchanged = 1ui8,
-					/*nicename("None")*/ _visible_name_none = 2ui8,
-					/*nicename("Visible To Allies")*/ _visible_name_visible_to_allies = 3ui8,
-					/*nicename("Visible To Everyone")*/ _visible_name_visible_to_everyone = 4ui8,
+					/*nicename("Unchanged")*/ _visible_name_unchanged = 0ui8,
+					/*nicename("None")*/ _visible_name_none = 1ui8,
+					/*nicename("Visible To Allies")*/ _visible_name_visible_to_allies = 2ui8,
+					/*nicename("Visible To Everyone")*/ _visible_name_visible_to_everyone = 3ui8,
 				};
 
 				enum nicename("Aura") e_aura : uint8_t
 				{
-					/*nicename("Unchanged")*/ _aura_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _aura_disabled = 2ui8,
-					/*nicename("Team")*/ _aura_team = 3ui8,
-					/*nicename("Black")*/ _aura_black = 4ui8,
-					/*nicename("White")*/ _aura_white = 5ui8,
+					/*nicename("Unchanged")*/ _aura_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _aura_disabled = 1ui8,
+					/*nicename("Team")*/ _aura_team = 2ui8,
+					/*nicename("Black")*/ _aura_black = 3ui8,
+					/*nicename("White")*/ _aura_white = 4ui8,
 				};
 
 				enum nicename("Forced Color") e_forced_color : uint8_t
 				{
-					/*nicename("Unchanged")*/ _forced_color_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _forced_color_disabled = 2ui8,
-					/*nicename("Red")*/ _forced_color_red = 3ui8,
-					/*nicename("Blue")*/ _forced_color_blue = 4ui8,
-					/*nicename("Green")*/ _forced_color_green = 5ui8,
-					/*nicename("Orange")*/ _forced_color_orange = 6ui8,
-					/*nicename("Purple")*/ _forced_color_purple = 7ui8,
-					/*nicename("Gold")*/ _forced_color_gold = 8ui8,
-					/*nicename("Brown")*/ _forced_color_brown = 9ui8,
-					/*nicename("Pink")*/ _forced_color_pink = 10ui8,
-					/*nicename("White")*/ _forced_color_white = 11ui8,
-					/*nicename("Black")*/ _forced_color_black = 12ui8,
-					/*nicename("Zombie")*/ _forced_color_zombie = 13ui8,
-					/*nicename("Pink (Unused)")*/ _forced_color_pink_unused = 14ui8,
+					/*nicename("Unchanged")*/ _forced_color_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _forced_color_disabled = 1ui8,
+					/*nicename("Red")*/ _forced_color_red = 2ui8,
+					/*nicename("Blue")*/ _forced_color_blue = 3ui8,
+					/*nicename("Green")*/ _forced_color_green = 4ui8,
+					/*nicename("Orange")*/ _forced_color_orange = 5ui8,
+					/*nicename("Purple")*/ _forced_color_purple = 6ui8,
+					/*nicename("Gold")*/ _forced_color_gold = 7ui8,
+					/*nicename("Brown")*/ _forced_color_brown = 8ui8,
+					/*nicename("Pink")*/ _forced_color_pink = 9ui8,
+					/*nicename("White")*/ _forced_color_white = 10ui8,
+					/*nicename("Black")*/ _forced_color_black = 11ui8,
+					/*nicename("Zombie")*/ _forced_color_zombie = 12ui8,
+					/*nicename("Pink (Unused)")*/ _forced_color_pink_unused = 13ui8,
 				};
 
 				e_active_camo nicename("Active Camo") active_camo;
@@ -1262,30 +1262,30 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			{
 				enum nicename("Motion Tracker Mode") e_motion_tracker_mode : uint8_t
 				{
-					/*nicename("Unchanged")*/ _motion_tracker_mode_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _motion_tracker_mode_disabled = 2ui8,
-					/*nicename("Ally Movement")*/ _motion_tracker_mode_ally_movement = 3ui8,
-					/*nicename("Player Movement")*/ _motion_tracker_mode_player_movement = 4ui8,
-					/*nicename("Player Locations")*/ _motion_tracker_mode_player_locations = 5ui8,
+					/*nicename("Unchanged")*/ _motion_tracker_mode_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _motion_tracker_mode_disabled = 1ui8,
+					/*nicename("Ally Movement")*/ _motion_tracker_mode_ally_movement = 2ui8,
+					/*nicename("Player Movement")*/ _motion_tracker_mode_player_movement = 3ui8,
+					/*nicename("Player Locations")*/ _motion_tracker_mode_player_locations = 4ui8,
 				};
 
 				enum nicename("Motion Tracker Range") e_motion_tracker_range : uint8_t
 				{
-					/*nicename("Unchanged")*/ _motion_tracker_range_unchanged = 1ui8,
-					/*nicename("10m")*/ _motion_tracker_range__10m = 2ui8,
-					/*nicename("15m")*/ _motion_tracker_range__15m = 3ui8,
-					/*nicename("25m")*/ _motion_tracker_range__25m = 4ui8,
-					/*nicename("50m")*/ _motion_tracker_range__50m = 5ui8,
-					/*nicename("75m")*/ _motion_tracker_range__75m = 6ui8,
-					/*nicename("100m")*/ _motion_tracker_range__100m = 7ui8,
-					/*nicename("150m")*/ _motion_tracker_range__150m = 8ui8,
+					/*nicename("Unchanged")*/ _motion_tracker_range_unchanged = 0ui8,
+					/*nicename("10m")*/ _motion_tracker_range__10m = 1ui8,
+					/*nicename("15m")*/ _motion_tracker_range__15m = 2ui8,
+					/*nicename("25m")*/ _motion_tracker_range__25m = 3ui8,
+					/*nicename("50m")*/ _motion_tracker_range__50m = 4ui8,
+					/*nicename("75m")*/ _motion_tracker_range__75m = 5ui8,
+					/*nicename("100m")*/ _motion_tracker_range__100m = 6ui8,
+					/*nicename("150m")*/ _motion_tracker_range__150m = 7ui8,
 				};
 
 				enum nicename("Directional Damage Indicator") e_directional_damage_indicator : uint8_t
 				{
-					/*nicename("Unchanged")*/ _directional_damage_indicator_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _directional_damage_indicator_disabled = 2ui8,
-					/*nicename("Enabled")*/ _directional_damage_indicator_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _directional_damage_indicator_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _directional_damage_indicator_disabled = 1ui8,
+					/*nicename("Enabled")*/ _directional_damage_indicator_enabled = 2ui8,
 				};
 
 				e_motion_tracker_mode nicename("Motion Tracker Mode") motion_tracker_mode;
@@ -1307,129 +1307,129 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			{
 				enum nicename("Damage Resistance") e_damage_resistance : uint8_t
 				{
-					/*nicename("Unchanged")*/ _damage_resistance_unchanged = 1ui8,
-					/*nicename("10%")*/ _damage_resistance__10 = 2ui8,
-					/*nicename("50%")*/ _damage_resistance__50 = 3ui8,
-					/*nicename("90%")*/ _damage_resistance__90 = 4ui8,
-					/*nicename("100%")*/ _damage_resistance__100 = 5ui8,
-					/*nicename("110%")*/ _damage_resistance__110 = 6ui8,
-					/*nicename("150%")*/ _damage_resistance__150 = 7ui8,
-					/*nicename("200%")*/ _damage_resistance__200 = 8ui8,
-					/*nicename("300%")*/ _damage_resistance__300 = 9ui8,
-					/*nicename("500%")*/ _damage_resistance__500 = 10ui8,
-					/*nicename("1000%")*/ _damage_resistance__1000 = 11ui8,
-					/*nicename("2000%")*/ _damage_resistance__2000 = 12ui8,
-					/*nicename("Invulnerable")*/ _damage_resistance_invulnerable = 13ui8,
+					/*nicename("Unchanged")*/ _damage_resistance_unchanged = 0ui8,
+					/*nicename("10%")*/ _damage_resistance__10 = 1ui8,
+					/*nicename("50%")*/ _damage_resistance__50 = 2ui8,
+					/*nicename("90%")*/ _damage_resistance__90 = 3ui8,
+					/*nicename("100%")*/ _damage_resistance__100 = 4ui8,
+					/*nicename("110%")*/ _damage_resistance__110 = 5ui8,
+					/*nicename("150%")*/ _damage_resistance__150 = 6ui8,
+					/*nicename("200%")*/ _damage_resistance__200 = 7ui8,
+					/*nicename("300%")*/ _damage_resistance__300 = 8ui8,
+					/*nicename("500%")*/ _damage_resistance__500 = 9ui8,
+					/*nicename("1000%")*/ _damage_resistance__1000 = 10ui8,
+					/*nicename("2000%")*/ _damage_resistance__2000 = 11ui8,
+					/*nicename("Invulnerable")*/ _damage_resistance_invulnerable = 12ui8,
 				};
 
 				enum nicename("Health Multiplier") e_health_multiplier : uint8_t
 				{
-					/*nicename("Unchanged")*/ _health_multiplier_unchanged = 1ui8,
-					/*nicename("0%")*/ _health_multiplier__0 = 2ui8,
-					/*nicename("100%")*/ _health_multiplier__100 = 3ui8,
-					/*nicename("150%")*/ _health_multiplier__150 = 4ui8,
-					/*nicename("200%")*/ _health_multiplier__200 = 5ui8,
-					/*nicename("300%")*/ _health_multiplier__300 = 6ui8,
-					/*nicename("400%")*/ _health_multiplier__400 = 7ui8,
+					/*nicename("Unchanged")*/ _health_multiplier_unchanged = 0ui8,
+					/*nicename("0%")*/ _health_multiplier__0 = 1ui8,
+					/*nicename("100%")*/ _health_multiplier__100 = 2ui8,
+					/*nicename("150%")*/ _health_multiplier__150 = 3ui8,
+					/*nicename("200%")*/ _health_multiplier__200 = 4ui8,
+					/*nicename("300%")*/ _health_multiplier__300 = 5ui8,
+					/*nicename("400%")*/ _health_multiplier__400 = 6ui8,
 				};
 
 				enum nicename("Health Recharge Rate") e_health_recharge_rate : uint8_t
 				{
-					/*nicename("Unchanged")*/ _health_recharge_rate_unchanged = 1ui8,
-					/*nicename("-25%")*/ _health_recharge_rate__25 = 2ui8,
-					/*nicename("-10%")*/ _health_recharge_rate__10 = 3ui8,
-					/*nicename("-5%")*/ _health_recharge_rate__5 = 4ui8,
-					/*nicename("0%")*/ _health_recharge_rate__0 = 5ui8,
-					/*nicename("10%")*/ _health_recharge_rate__101 = 6ui8,
-					/*nicename("25%")*/ _health_recharge_rate__251 = 7ui8,
-					/*nicename("50%")*/ _health_recharge_rate__50 = 8ui8,
-					/*nicename("75%")*/ _health_recharge_rate__75 = 9ui8,
-					/*nicename("90%")*/ _health_recharge_rate__90 = 10ui8,
-					/*nicename("100%")*/ _health_recharge_rate__100 = 11ui8,
-					/*nicename("110%")*/ _health_recharge_rate__110 = 12ui8,
-					/*nicename("125%")*/ _health_recharge_rate__125 = 13ui8,
-					/*nicename("150%")*/ _health_recharge_rate__150 = 14ui8,
-					/*nicename("200%")*/ _health_recharge_rate__200 = 15ui8,
+					/*nicename("Unchanged")*/ _health_recharge_rate_unchanged = 0ui8,
+					/*nicename("-25%")*/ _health_recharge_rate__25 = 1ui8,
+					/*nicename("-10%")*/ _health_recharge_rate__10 = 2ui8,
+					/*nicename("-5%")*/ _health_recharge_rate__5 = 3ui8,
+					/*nicename("0%")*/ _health_recharge_rate__0 = 4ui8,
+					/*nicename("10%")*/ _health_recharge_rate__101 = 5ui8,
+					/*nicename("25%")*/ _health_recharge_rate__251 = 6ui8,
+					/*nicename("50%")*/ _health_recharge_rate__50 = 7ui8,
+					/*nicename("75%")*/ _health_recharge_rate__75 = 8ui8,
+					/*nicename("90%")*/ _health_recharge_rate__90 = 9ui8,
+					/*nicename("100%")*/ _health_recharge_rate__100 = 10ui8,
+					/*nicename("110%")*/ _health_recharge_rate__110 = 11ui8,
+					/*nicename("125%")*/ _health_recharge_rate__125 = 12ui8,
+					/*nicename("150%")*/ _health_recharge_rate__150 = 13ui8,
+					/*nicename("200%")*/ _health_recharge_rate__200 = 14ui8,
 				};
 
 				enum nicename("Shield Multiplier") e_shield_multiplier : uint8_t
 				{
-					/*nicename("Unchanged")*/ _shield_multiplier_unchanged = 1ui8,
-					/*nicename("No Shields")*/ _shield_multiplier_no_shields = 2ui8,
-					/*nicename("Normal Shields")*/ _shield_multiplier_normal_shields = 3ui8,
-					/*nicename("1.5x Overshields")*/ _shield_multiplier__15x_overshields = 4ui8,
-					/*nicename("2x Overshields")*/ _shield_multiplier__2x_overshields = 5ui8,
-					/*nicename("3x Overshields")*/ _shield_multiplier__3x_overshields = 6ui8,
-					/*nicename("4x Overshields")*/ _shield_multiplier__4x_overshields = 7ui8,
+					/*nicename("Unchanged")*/ _shield_multiplier_unchanged = 0ui8,
+					/*nicename("No Shields")*/ _shield_multiplier_no_shields = 1ui8,
+					/*nicename("Normal Shields")*/ _shield_multiplier_normal_shields = 2ui8,
+					/*nicename("1.5x Overshields")*/ _shield_multiplier__15x_overshields = 3ui8,
+					/*nicename("2x Overshields")*/ _shield_multiplier__2x_overshields = 4ui8,
+					/*nicename("3x Overshields")*/ _shield_multiplier__3x_overshields = 5ui8,
+					/*nicename("4x Overshields")*/ _shield_multiplier__4x_overshields = 6ui8,
 				};
 
 				enum nicename("Shield Recharge Rate") e_shield_recharge_rate : uint8_t
 				{
-					/*nicename("Unchanged")*/ _shield_recharge_rate_unchanged = 1ui8,
-					/*nicename("-25%")*/ _shield_recharge_rate__25 = 2ui8,
-					/*nicename("-10%")*/ _shield_recharge_rate__10 = 3ui8,
-					/*nicename("-5%")*/ _shield_recharge_rate__5 = 4ui8,
-					/*nicename("0%")*/ _shield_recharge_rate__0 = 5ui8,
-					/*nicename("10%")*/ _shield_recharge_rate__101 = 6ui8,
-					/*nicename("25%")*/ _shield_recharge_rate__251 = 7ui8,
-					/*nicename("50%")*/ _shield_recharge_rate__50 = 8ui8,
-					/*nicename("75%")*/ _shield_recharge_rate__75 = 9ui8,
-					/*nicename("90%")*/ _shield_recharge_rate__90 = 10ui8,
-					/*nicename("100%")*/ _shield_recharge_rate__100 = 11ui8,
-					/*nicename("110%")*/ _shield_recharge_rate__110 = 12ui8,
-					/*nicename("125%")*/ _shield_recharge_rate__125 = 13ui8,
-					/*nicename("150%")*/ _shield_recharge_rate__150 = 14ui8,
-					/*nicename("200%")*/ _shield_recharge_rate__200 = 15ui8,
+					/*nicename("Unchanged")*/ _shield_recharge_rate_unchanged = 0ui8,
+					/*nicename("-25%")*/ _shield_recharge_rate__25 = 1ui8,
+					/*nicename("-10%")*/ _shield_recharge_rate__10 = 2ui8,
+					/*nicename("-5%")*/ _shield_recharge_rate__5 = 3ui8,
+					/*nicename("0%")*/ _shield_recharge_rate__0 = 4ui8,
+					/*nicename("10%")*/ _shield_recharge_rate__101 = 5ui8,
+					/*nicename("25%")*/ _shield_recharge_rate__251 = 6ui8,
+					/*nicename("50%")*/ _shield_recharge_rate__50 = 7ui8,
+					/*nicename("75%")*/ _shield_recharge_rate__75 = 8ui8,
+					/*nicename("90%")*/ _shield_recharge_rate__90 = 9ui8,
+					/*nicename("100%")*/ _shield_recharge_rate__100 = 10ui8,
+					/*nicename("110%")*/ _shield_recharge_rate__110 = 11ui8,
+					/*nicename("125%")*/ _shield_recharge_rate__125 = 12ui8,
+					/*nicename("150%")*/ _shield_recharge_rate__150 = 13ui8,
+					/*nicename("200%")*/ _shield_recharge_rate__200 = 14ui8,
 				};
 
 				enum nicename("Shield Recharge Rate 2") e_shield_recharge_rate_2 : uint8_t
 				{
-					/*nicename("Unchanged")*/ _shield_recharge_rate_2_unchanged = 1ui8,
-					/*nicename("-25%")*/ _shield_recharge_rate_2__25 = 2ui8,
-					/*nicename("-10%")*/ _shield_recharge_rate_2__10 = 3ui8,
-					/*nicename("-5%")*/ _shield_recharge_rate_2__5 = 4ui8,
-					/*nicename("0%")*/ _shield_recharge_rate_2__0 = 5ui8,
-					/*nicename("10%")*/ _shield_recharge_rate_2__101 = 6ui8,
-					/*nicename("25%")*/ _shield_recharge_rate_2__251 = 7ui8,
-					/*nicename("50%")*/ _shield_recharge_rate_2__50 = 8ui8,
-					/*nicename("75%")*/ _shield_recharge_rate_2__75 = 9ui8,
-					/*nicename("90%")*/ _shield_recharge_rate_2__90 = 10ui8,
-					/*nicename("100%")*/ _shield_recharge_rate_2__100 = 11ui8,
-					/*nicename("110%")*/ _shield_recharge_rate_2__110 = 12ui8,
-					/*nicename("125%")*/ _shield_recharge_rate_2__125 = 13ui8,
-					/*nicename("150%")*/ _shield_recharge_rate_2__150 = 14ui8,
-					/*nicename("200%")*/ _shield_recharge_rate_2__200 = 15ui8,
+					/*nicename("Unchanged")*/ _shield_recharge_rate_2_unchanged = 0ui8,
+					/*nicename("-25%")*/ _shield_recharge_rate_2__25 = 1ui8,
+					/*nicename("-10%")*/ _shield_recharge_rate_2__10 = 2ui8,
+					/*nicename("-5%")*/ _shield_recharge_rate_2__5 = 3ui8,
+					/*nicename("0%")*/ _shield_recharge_rate_2__0 = 4ui8,
+					/*nicename("10%")*/ _shield_recharge_rate_2__101 = 5ui8,
+					/*nicename("25%")*/ _shield_recharge_rate_2__251 = 6ui8,
+					/*nicename("50%")*/ _shield_recharge_rate_2__50 = 7ui8,
+					/*nicename("75%")*/ _shield_recharge_rate_2__75 = 8ui8,
+					/*nicename("90%")*/ _shield_recharge_rate_2__90 = 9ui8,
+					/*nicename("100%")*/ _shield_recharge_rate_2__100 = 10ui8,
+					/*nicename("110%")*/ _shield_recharge_rate_2__110 = 11ui8,
+					/*nicename("125%")*/ _shield_recharge_rate_2__125 = 12ui8,
+					/*nicename("150%")*/ _shield_recharge_rate_2__150 = 13ui8,
+					/*nicename("200%")*/ _shield_recharge_rate_2__200 = 14ui8,
 				};
 
 				enum nicename("Headshot Immunity") e_headshot_immunity : uint8_t
 				{
-					/*nicename("Unchanged")*/ _headshot_immunity_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _headshot_immunity_disabled = 2ui8,
-					/*nicename("Enabled")*/ _headshot_immunity_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _headshot_immunity_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _headshot_immunity_disabled = 1ui8,
+					/*nicename("Enabled")*/ _headshot_immunity_enabled = 2ui8,
 				};
 
 				enum nicename("Shield Vampirism") e_shield_vampirism : uint8_t
 				{
-					/*nicename("Unchanged")*/ _shield_vampirism_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _shield_vampirism_disabled = 2ui8,
-					/*nicename("10%")*/ _shield_vampirism__10 = 3ui8,
-					/*nicename("25%")*/ _shield_vampirism__25 = 4ui8,
-					/*nicename("50%")*/ _shield_vampirism__50 = 5ui8,
-					/*nicename("100%")*/ _shield_vampirism__100 = 6ui8,
+					/*nicename("Unchanged")*/ _shield_vampirism_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _shield_vampirism_disabled = 1ui8,
+					/*nicename("10%")*/ _shield_vampirism__10 = 2ui8,
+					/*nicename("25%")*/ _shield_vampirism__25 = 3ui8,
+					/*nicename("50%")*/ _shield_vampirism__50 = 4ui8,
+					/*nicename("100%")*/ _shield_vampirism__100 = 5ui8,
 				};
 
 				enum nicename("Assassination Immunity") e_assassination_immunity : uint8_t
 				{
-					/*nicename("Unchanged")*/ _assassination_immunity_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _assassination_immunity_disabled = 2ui8,
-					/*nicename("Enabled")*/ _assassination_immunity_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _assassination_immunity_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _assassination_immunity_disabled = 1ui8,
+					/*nicename("Enabled")*/ _assassination_immunity_enabled = 2ui8,
 				};
 
 				enum nicename("Deathless") e_deathless : uint8_t
 				{
-					/*nicename("Unchanged")*/ _deathless_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _deathless_disabled = 2ui8,
-					/*nicename("Enabled")*/ _deathless_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _deathless_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _deathless_disabled = 1ui8,
+					/*nicename("Enabled")*/ _deathless_enabled = 2ui8,
 				};
 
 				e_damage_resistance nicename("Damage Resistance") damage_resistance;
@@ -1450,99 +1450,99 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			{
 				enum nicename("Damage Modifier") e_damage_modifier : uint8_t
 				{
-					/*nicename("Unchanged")*/ _damage_modifier_unchanged = 1ui8,
-					/*nicename("0%")*/ _damage_modifier__0 = 2ui8,
-					/*nicename("25%")*/ _damage_modifier__25 = 3ui8,
-					/*nicename("50%")*/ _damage_modifier__50 = 4ui8,
-					/*nicename("75%")*/ _damage_modifier__75 = 5ui8,
-					/*nicename("90%")*/ _damage_modifier__90 = 6ui8,
-					/*nicename("100%")*/ _damage_modifier__100 = 7ui8,
-					/*nicename("110%")*/ _damage_modifier__110 = 8ui8,
-					/*nicename("125%")*/ _damage_modifier__125 = 9ui8,
-					/*nicename("150%")*/ _damage_modifier__150 = 10ui8,
-					/*nicename("200%")*/ _damage_modifier__200 = 11ui8,
-					/*nicename("300%")*/ _damage_modifier__300 = 12ui8,
-					/*nicename("Instant Kill")*/ _damage_modifier_instant_kill = 13ui8,
+					/*nicename("Unchanged")*/ _damage_modifier_unchanged = 0ui8,
+					/*nicename("0%")*/ _damage_modifier__0 = 1ui8,
+					/*nicename("25%")*/ _damage_modifier__25 = 2ui8,
+					/*nicename("50%")*/ _damage_modifier__50 = 3ui8,
+					/*nicename("75%")*/ _damage_modifier__75 = 4ui8,
+					/*nicename("90%")*/ _damage_modifier__90 = 5ui8,
+					/*nicename("100%")*/ _damage_modifier__100 = 6ui8,
+					/*nicename("110%")*/ _damage_modifier__110 = 7ui8,
+					/*nicename("125%")*/ _damage_modifier__125 = 8ui8,
+					/*nicename("150%")*/ _damage_modifier__150 = 9ui8,
+					/*nicename("200%")*/ _damage_modifier__200 = 10ui8,
+					/*nicename("300%")*/ _damage_modifier__300 = 11ui8,
+					/*nicename("Instant Kill")*/ _damage_modifier_instant_kill = 12ui8,
 				};
 
 				enum nicename("Melee Damage Modifier") e_melee_damage_modifier : uint8_t
 				{
-					/*nicename("Unchanged")*/ _melee_damage_modifier_unchanged = 1ui8,
-					/*nicename("0%")*/ _melee_damage_modifier__0 = 2ui8,
-					/*nicename("25%")*/ _melee_damage_modifier__25 = 3ui8,
-					/*nicename("50%")*/ _melee_damage_modifier__50 = 4ui8,
-					/*nicename("75%")*/ _melee_damage_modifier__75 = 5ui8,
-					/*nicename("90%")*/ _melee_damage_modifier__90 = 6ui8,
-					/*nicename("100%")*/ _melee_damage_modifier__100 = 7ui8,
-					/*nicename("110%")*/ _melee_damage_modifier__110 = 8ui8,
-					/*nicename("125%")*/ _melee_damage_modifier__125 = 9ui8,
-					/*nicename("150%")*/ _melee_damage_modifier__150 = 10ui8,
-					/*nicename("200%")*/ _melee_damage_modifier__200 = 11ui8,
-					/*nicename("300%")*/ _melee_damage_modifier__300 = 12ui8,
-					/*nicename("Instant Kill")*/ _melee_damage_modifier_instant_kill = 13ui8,
+					/*nicename("Unchanged")*/ _melee_damage_modifier_unchanged = 0ui8,
+					/*nicename("0%")*/ _melee_damage_modifier__0 = 1ui8,
+					/*nicename("25%")*/ _melee_damage_modifier__25 = 2ui8,
+					/*nicename("50%")*/ _melee_damage_modifier__50 = 3ui8,
+					/*nicename("75%")*/ _melee_damage_modifier__75 = 4ui8,
+					/*nicename("90%")*/ _melee_damage_modifier__90 = 5ui8,
+					/*nicename("100%")*/ _melee_damage_modifier__100 = 6ui8,
+					/*nicename("110%")*/ _melee_damage_modifier__110 = 7ui8,
+					/*nicename("125%")*/ _melee_damage_modifier__125 = 8ui8,
+					/*nicename("150%")*/ _melee_damage_modifier__150 = 9ui8,
+					/*nicename("200%")*/ _melee_damage_modifier__200 = 10ui8,
+					/*nicename("300%")*/ _melee_damage_modifier__300 = 11ui8,
+					/*nicename("Instant Kill")*/ _melee_damage_modifier_instant_kill = 12ui8,
 				};
 
 				enum nicename("Grenade Regeneration") e_grenade_regeneration : uint8_t
 				{
-					/*nicename("Unchanged")*/ _grenade_regeneration_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _grenade_regeneration_disabled = 2ui8,
-					/*nicename("Enabled")*/ _grenade_regeneration_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _grenade_regeneration_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _grenade_regeneration_disabled = 1ui8,
+					/*nicename("Enabled")*/ _grenade_regeneration_enabled = 2ui8,
 				};
 
 				enum nicename("Weapon Pickup") e_weapon_pickup : uint8_t
 				{
-					/*nicename("Unchanged")*/ _weapon_pickup_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _weapon_pickup_disabled = 2ui8,
-					/*nicename("Enabled")*/ _weapon_pickup_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _weapon_pickup_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _weapon_pickup_disabled = 1ui8,
+					/*nicename("Enabled")*/ _weapon_pickup_enabled = 2ui8,
 				};
 
 				enum nicename("Grenade Count") e_grenade_count : uint8_t
 				{
-					/*nicename("Unchanged")*/ _grenade_count_unchanged = 1ui8,
-					/*nicename("Map Default")*/ _grenade_count_map_default = 2ui8,
-					/*nicename("None")*/ _grenade_count_none = 3ui8,
-					/*nicename("1 Frag")*/ _grenade_count__1_frag = 4ui8,
-					/*nicename("2 Frags")*/ _grenade_count__2_frags = 5ui8,
-					/*nicename("3 Frags")*/ _grenade_count__3_frags = 6ui8,
-					/*nicename("4 Frags")*/ _grenade_count__4_frags = 7ui8,
-					/*nicename("1 Plasma")*/ _grenade_count__1_plasma = 8ui8,
-					/*nicename("2 Plasmas")*/ _grenade_count__2_plasmas = 9ui8,
-					/*nicename("3 Plasmas")*/ _grenade_count__3_plasmas = 10ui8,
-					/*nicename("4 Plasmas")*/ _grenade_count__4_plasmas = 11ui8,
-					/*nicename("1x Each")*/ _grenade_count__1x_each = 12ui8,
-					/*nicename("2x Each")*/ _grenade_count__2x_each = 13ui8,
-					/*nicename("3x Each")*/ _grenade_count__3x_each = 14ui8,
-					/*nicename("4x Each")*/ _grenade_count__4x_each = 15ui8,
+					/*nicename("Unchanged")*/ _grenade_count_unchanged = 0ui8,
+					/*nicename("Map Default")*/ _grenade_count_map_default = 1ui8,
+					/*nicename("None")*/ _grenade_count_none = 2ui8,
+					/*nicename("1 Frag")*/ _grenade_count__1_frag = 3ui8,
+					/*nicename("2 Frags")*/ _grenade_count__2_frags = 4ui8,
+					/*nicename("3 Frags")*/ _grenade_count__3_frags = 5ui8,
+					/*nicename("4 Frags")*/ _grenade_count__4_frags = 6ui8,
+					/*nicename("1 Plasma")*/ _grenade_count__1_plasma = 7ui8,
+					/*nicename("2 Plasmas")*/ _grenade_count__2_plasmas = 8ui8,
+					/*nicename("3 Plasmas")*/ _grenade_count__3_plasmas = 9ui8,
+					/*nicename("4 Plasmas")*/ _grenade_count__4_plasmas = 10ui8,
+					/*nicename("1x Each")*/ _grenade_count__1x_each = 11ui8,
+					/*nicename("2x Each")*/ _grenade_count__2x_each = 12ui8,
+					/*nicename("3x Each")*/ _grenade_count__3x_each = 13ui8,
+					/*nicename("4x Each")*/ _grenade_count__4x_each = 14ui8,
 				};
 
 				enum nicename("Infinite Ammo") e_infinite_ammo : uint8_t
 				{
-					/*nicename("Unchanged")*/ _infinite_ammo_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _infinite_ammo_disabled = 2ui8,
-					/*nicename("Enabled")*/ _infinite_ammo_enabled = 3ui8,
-					/*nicename("Bottomless Clip")*/ _infinite_ammo_bottomless_clip = 4ui8,
+					/*nicename("Unchanged")*/ _infinite_ammo_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _infinite_ammo_disabled = 1ui8,
+					/*nicename("Enabled")*/ _infinite_ammo_enabled = 2ui8,
+					/*nicename("Bottomless Clip")*/ _infinite_ammo_bottomless_clip = 3ui8,
 				};
 
 				enum nicename("Equipment Usage") e_equipment_usage : uint8_t
 				{
-					/*nicename("Unchanged")*/ _equipment_usage_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _equipment_usage_disabled = 2ui8,
-					/*nicename("Enabled")*/ _equipment_usage_enabled = 3ui8,
-					/*nicename("Unknown")*/ _equipment_usage_unknown = 4ui8,
+					/*nicename("Unchanged")*/ _equipment_usage_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _equipment_usage_disabled = 1ui8,
+					/*nicename("Enabled")*/ _equipment_usage_enabled = 2ui8,
+					/*nicename("Unknown")*/ _equipment_usage_unknown = 3ui8,
 				};
 
 				enum nicename("Equipment Drop") e_equipment_drop : uint8_t
 				{
-					/*nicename("Unchanged")*/ _equipment_drop_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _equipment_drop_disabled = 2ui8,
-					/*nicename("Enabled")*/ _equipment_drop_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _equipment_drop_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _equipment_drop_disabled = 1ui8,
+					/*nicename("Enabled")*/ _equipment_drop_enabled = 2ui8,
 				};
 
 				enum nicename("Infinite Equipment") e_infinite_equipment : uint8_t
 				{
-					/*nicename("Unchanged")*/ _infinite_equipment_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _infinite_equipment_disabled = 2ui8,
-					/*nicename("Enabled")*/ _infinite_equipment_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _infinite_equipment_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _infinite_equipment_disabled = 1ui8,
+					/*nicename("Enabled")*/ _infinite_equipment_enabled = 2ui8,
 				};
 
 				e_damage_modifier nicename("Damage Modifier") damage_modifier;
@@ -1557,71 +1557,71 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int8_t __unknown0;
 				int8_t __unknown1;
 				int8_t __unknown2;
-				string_id nicename("Primary Weapon") primary_weapon;
-				string_id nicename("Secondary Weapon") secondary_weapon;
-				string_id nicename("Equipment") equipment;
+				string_id_legacy nicename("Primary Weapon") primary_weapon;
+				string_id_legacy nicename("Secondary Weapon") secondary_weapon;
+				string_id_legacy nicename("Equipment") equipment;
 			};
 
 			struct nicename("Movement") s_movement1_definition
 			{
 				enum nicename("Player Speed") e_player_speed : uint8_t
 				{
-					/*nicename("Unchanged")*/ _player_speed_unchanged = 1ui8,
-					/*nicename("0%")*/ _player_speed__0 = 2ui8,
-					/*nicename("25%")*/ _player_speed__25 = 3ui8,
-					/*nicename("50%")*/ _player_speed__50 = 4ui8,
-					/*nicename("75%")*/ _player_speed__75 = 5ui8,
-					/*nicename("90%")*/ _player_speed__90 = 6ui8,
-					/*nicename("100%")*/ _player_speed__100 = 7ui8,
-					/*nicename("110%")*/ _player_speed__110 = 8ui8,
-					/*nicename("120%")*/ _player_speed__120 = 9ui8,
-					/*nicename("130%")*/ _player_speed__130 = 10ui8,
-					/*nicename("140%")*/ _player_speed__140 = 11ui8,
-					/*nicename("150%")*/ _player_speed__150 = 12ui8,
-					/*nicename("160%")*/ _player_speed__160 = 13ui8,
-					/*nicename("170%")*/ _player_speed__170 = 14ui8,
-					/*nicename("180%")*/ _player_speed__180 = 15ui8,
-					/*nicename("190%")*/ _player_speed__190 = 16ui8,
-					/*nicename("200%")*/ _player_speed__200 = 17ui8,
-					/*nicename("300%")*/ _player_speed__300 = 18ui8,
+					/*nicename("Unchanged")*/ _player_speed_unchanged = 0ui8,
+					/*nicename("0%")*/ _player_speed__0 = 1ui8,
+					/*nicename("25%")*/ _player_speed__25 = 2ui8,
+					/*nicename("50%")*/ _player_speed__50 = 3ui8,
+					/*nicename("75%")*/ _player_speed__75 = 4ui8,
+					/*nicename("90%")*/ _player_speed__90 = 5ui8,
+					/*nicename("100%")*/ _player_speed__100 = 6ui8,
+					/*nicename("110%")*/ _player_speed__110 = 7ui8,
+					/*nicename("120%")*/ _player_speed__120 = 8ui8,
+					/*nicename("130%")*/ _player_speed__130 = 9ui8,
+					/*nicename("140%")*/ _player_speed__140 = 10ui8,
+					/*nicename("150%")*/ _player_speed__150 = 11ui8,
+					/*nicename("160%")*/ _player_speed__160 = 12ui8,
+					/*nicename("170%")*/ _player_speed__170 = 13ui8,
+					/*nicename("180%")*/ _player_speed__180 = 14ui8,
+					/*nicename("190%")*/ _player_speed__190 = 15ui8,
+					/*nicename("200%")*/ _player_speed__200 = 16ui8,
+					/*nicename("300%")*/ _player_speed__300 = 17ui8,
 				};
 
 				enum nicename("Player Gravity") e_player_gravity : uint8_t
 				{
-					/*nicename("Unchanged")*/ _player_gravity_unchanged = 1ui8,
-					/*nicename("50%")*/ _player_gravity__50 = 2ui8,
-					/*nicename("75%")*/ _player_gravity__75 = 3ui8,
-					/*nicename("100%")*/ _player_gravity__100 = 4ui8,
-					/*nicename("150%")*/ _player_gravity__150 = 5ui8,
-					/*nicename("200%")*/ _player_gravity__200 = 6ui8,
-					/*nicename("250%")*/ _player_gravity__250 = 7ui8,
-					/*nicename("300%")*/ _player_gravity__300 = 8ui8,
-					/*nicename("350%")*/ _player_gravity__350 = 9ui8,
-					/*nicename("400%")*/ _player_gravity__400 = 10ui8,
-					/*nicename("450%")*/ _player_gravity__450 = 11ui8,
-					/*nicename("500%")*/ _player_gravity__500 = 12ui8,
-					/*nicename("550%")*/ _player_gravity__550 = 13ui8,
-					/*nicename("600%")*/ _player_gravity__600 = 14ui8,
+					/*nicename("Unchanged")*/ _player_gravity_unchanged = 0ui8,
+					/*nicename("50%")*/ _player_gravity__50 = 1ui8,
+					/*nicename("75%")*/ _player_gravity__75 = 2ui8,
+					/*nicename("100%")*/ _player_gravity__100 = 3ui8,
+					/*nicename("150%")*/ _player_gravity__150 = 4ui8,
+					/*nicename("200%")*/ _player_gravity__200 = 5ui8,
+					/*nicename("250%")*/ _player_gravity__250 = 6ui8,
+					/*nicename("300%")*/ _player_gravity__300 = 7ui8,
+					/*nicename("350%")*/ _player_gravity__350 = 8ui8,
+					/*nicename("400%")*/ _player_gravity__400 = 9ui8,
+					/*nicename("450%")*/ _player_gravity__450 = 10ui8,
+					/*nicename("500%")*/ _player_gravity__500 = 11ui8,
+					/*nicename("550%")*/ _player_gravity__550 = 12ui8,
+					/*nicename("600%")*/ _player_gravity__600 = 13ui8,
 				};
 
 				enum nicename("Vehicle Use") e_vehicle_use : uint8_t
 				{
-					/*nicename("Unchanged")*/ _vehicle_use_unchanged = 1ui8,
-					/*nicename("None")*/ _vehicle_use_none = 2ui8,
-					/*nicename("Passenger Only")*/ _vehicle_use_passenger_only = 3ui8,
-					/*nicename("Driver Only")*/ _vehicle_use_driver_only = 4ui8,
-					/*nicename("Gunner Only")*/ _vehicle_use_gunner_only = 5ui8,
-					/*nicename("No Passenger")*/ _vehicle_use_no_passenger = 6ui8,
-					/*nicename("No Driver")*/ _vehicle_use_no_driver = 7ui8,
-					/*nicename("No Gunner")*/ _vehicle_use_no_gunner = 8ui8,
-					/*nicename("Full Use")*/ _vehicle_use_full_use = 9ui8,
+					/*nicename("Unchanged")*/ _vehicle_use_unchanged = 0ui8,
+					/*nicename("None")*/ _vehicle_use_none = 1ui8,
+					/*nicename("Passenger Only")*/ _vehicle_use_passenger_only = 2ui8,
+					/*nicename("Driver Only")*/ _vehicle_use_driver_only = 3ui8,
+					/*nicename("Gunner Only")*/ _vehicle_use_gunner_only = 4ui8,
+					/*nicename("No Passenger")*/ _vehicle_use_no_passenger = 5ui8,
+					/*nicename("No Driver")*/ _vehicle_use_no_driver = 6ui8,
+					/*nicename("No Gunner")*/ _vehicle_use_no_gunner = 7ui8,
+					/*nicename("Full Use")*/ _vehicle_use_full_use = 8ui8,
 				};
 
 				enum nicename("Double Jump") e_double_jump : uint8_t
 				{
-					/*nicename("Unchanged")*/ _double_jump_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _double_jump_disabled = 2ui8,
-					/*nicename("Enabled")*/ _double_jump_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _double_jump_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _double_jump_disabled = 1ui8,
+					/*nicename("Enabled")*/ _double_jump_enabled = 2ui8,
 				};
 
 				e_player_speed nicename("Player Speed") player_speed;
@@ -1636,55 +1636,55 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			{
 				enum nicename("Active Camo") e_active_camo : uint8_t
 				{
-					/*nicename("Unchanged")*/ _active_camo_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _active_camo_disabled = 2ui8,
-					/*nicename("Bad Camo")*/ _active_camo_bad_camo = 3ui8,
-					/*nicename("Poor Camo")*/ _active_camo_poor_camo = 4ui8,
-					/*nicename("Good Camo")*/ _active_camo_good_camo = 5ui8,
-					/*nicename("Invisible")*/ _active_camo_invisible = 6ui8,
+					/*nicename("Unchanged")*/ _active_camo_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _active_camo_disabled = 1ui8,
+					/*nicename("Bad Camo")*/ _active_camo_bad_camo = 2ui8,
+					/*nicename("Poor Camo")*/ _active_camo_poor_camo = 3ui8,
+					/*nicename("Good Camo")*/ _active_camo_good_camo = 4ui8,
+					/*nicename("Invisible")*/ _active_camo_invisible = 5ui8,
 				};
 
 				enum nicename("Waypoint") e_waypoint : uint8_t
 				{
-					/*nicename("Unchanged")*/ _waypoint_unchanged = 1ui8,
-					/*nicename("None")*/ _waypoint_none = 2ui8,
-					/*nicename("Visible To Allies")*/ _waypoint_visible_to_allies = 3ui8,
-					/*nicename("Visible To Everyone")*/ _waypoint_visible_to_everyone = 4ui8,
+					/*nicename("Unchanged")*/ _waypoint_unchanged = 0ui8,
+					/*nicename("None")*/ _waypoint_none = 1ui8,
+					/*nicename("Visible To Allies")*/ _waypoint_visible_to_allies = 2ui8,
+					/*nicename("Visible To Everyone")*/ _waypoint_visible_to_everyone = 3ui8,
 				};
 
 				enum nicename("Visible Name") e_visible_name : uint8_t
 				{
-					/*nicename("Unchanged")*/ _visible_name_unchanged = 1ui8,
-					/*nicename("None")*/ _visible_name_none = 2ui8,
-					/*nicename("Visible To Allies")*/ _visible_name_visible_to_allies = 3ui8,
-					/*nicename("Visible To Everyone")*/ _visible_name_visible_to_everyone = 4ui8,
+					/*nicename("Unchanged")*/ _visible_name_unchanged = 0ui8,
+					/*nicename("None")*/ _visible_name_none = 1ui8,
+					/*nicename("Visible To Allies")*/ _visible_name_visible_to_allies = 2ui8,
+					/*nicename("Visible To Everyone")*/ _visible_name_visible_to_everyone = 3ui8,
 				};
 
 				enum nicename("Aura") e_aura : uint8_t
 				{
-					/*nicename("Unchanged")*/ _aura_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _aura_disabled = 2ui8,
-					/*nicename("Team")*/ _aura_team = 3ui8,
-					/*nicename("Black")*/ _aura_black = 4ui8,
-					/*nicename("White")*/ _aura_white = 5ui8,
+					/*nicename("Unchanged")*/ _aura_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _aura_disabled = 1ui8,
+					/*nicename("Team")*/ _aura_team = 2ui8,
+					/*nicename("Black")*/ _aura_black = 3ui8,
+					/*nicename("White")*/ _aura_white = 4ui8,
 				};
 
 				enum nicename("Forced Color") e_forced_color : uint8_t
 				{
-					/*nicename("Unchanged")*/ _forced_color_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _forced_color_disabled = 2ui8,
-					/*nicename("Red")*/ _forced_color_red = 3ui8,
-					/*nicename("Blue")*/ _forced_color_blue = 4ui8,
-					/*nicename("Green")*/ _forced_color_green = 5ui8,
-					/*nicename("Orange")*/ _forced_color_orange = 6ui8,
-					/*nicename("Purple")*/ _forced_color_purple = 7ui8,
-					/*nicename("Gold")*/ _forced_color_gold = 8ui8,
-					/*nicename("Brown")*/ _forced_color_brown = 9ui8,
-					/*nicename("Pink")*/ _forced_color_pink = 10ui8,
-					/*nicename("White")*/ _forced_color_white = 11ui8,
-					/*nicename("Black")*/ _forced_color_black = 12ui8,
-					/*nicename("Zombie")*/ _forced_color_zombie = 13ui8,
-					/*nicename("Pink (Unused)")*/ _forced_color_pink_unused = 14ui8,
+					/*nicename("Unchanged")*/ _forced_color_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _forced_color_disabled = 1ui8,
+					/*nicename("Red")*/ _forced_color_red = 2ui8,
+					/*nicename("Blue")*/ _forced_color_blue = 3ui8,
+					/*nicename("Green")*/ _forced_color_green = 4ui8,
+					/*nicename("Orange")*/ _forced_color_orange = 5ui8,
+					/*nicename("Purple")*/ _forced_color_purple = 6ui8,
+					/*nicename("Gold")*/ _forced_color_gold = 7ui8,
+					/*nicename("Brown")*/ _forced_color_brown = 8ui8,
+					/*nicename("Pink")*/ _forced_color_pink = 9ui8,
+					/*nicename("White")*/ _forced_color_white = 10ui8,
+					/*nicename("Black")*/ _forced_color_black = 11ui8,
+					/*nicename("Zombie")*/ _forced_color_zombie = 12ui8,
+					/*nicename("Pink (Unused)")*/ _forced_color_pink_unused = 13ui8,
 				};
 
 				e_active_camo nicename("Active Camo") active_camo;
@@ -1701,30 +1701,30 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			{
 				enum nicename("Motion Tracker Mode") e_motion_tracker_mode : uint8_t
 				{
-					/*nicename("Unchanged")*/ _motion_tracker_mode_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _motion_tracker_mode_disabled = 2ui8,
-					/*nicename("Ally Movement")*/ _motion_tracker_mode_ally_movement = 3ui8,
-					/*nicename("Player Movement")*/ _motion_tracker_mode_player_movement = 4ui8,
-					/*nicename("Player Locations")*/ _motion_tracker_mode_player_locations = 5ui8,
+					/*nicename("Unchanged")*/ _motion_tracker_mode_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _motion_tracker_mode_disabled = 1ui8,
+					/*nicename("Ally Movement")*/ _motion_tracker_mode_ally_movement = 2ui8,
+					/*nicename("Player Movement")*/ _motion_tracker_mode_player_movement = 3ui8,
+					/*nicename("Player Locations")*/ _motion_tracker_mode_player_locations = 4ui8,
 				};
 
 				enum nicename("Motion Tracker Range") e_motion_tracker_range : uint8_t
 				{
-					/*nicename("Unchanged")*/ _motion_tracker_range_unchanged = 1ui8,
-					/*nicename("10m")*/ _motion_tracker_range__10m = 2ui8,
-					/*nicename("15m")*/ _motion_tracker_range__15m = 3ui8,
-					/*nicename("25m")*/ _motion_tracker_range__25m = 4ui8,
-					/*nicename("50m")*/ _motion_tracker_range__50m = 5ui8,
-					/*nicename("75m")*/ _motion_tracker_range__75m = 6ui8,
-					/*nicename("100m")*/ _motion_tracker_range__100m = 7ui8,
-					/*nicename("150m")*/ _motion_tracker_range__150m = 8ui8,
+					/*nicename("Unchanged")*/ _motion_tracker_range_unchanged = 0ui8,
+					/*nicename("10m")*/ _motion_tracker_range__10m = 1ui8,
+					/*nicename("15m")*/ _motion_tracker_range__15m = 2ui8,
+					/*nicename("25m")*/ _motion_tracker_range__25m = 3ui8,
+					/*nicename("50m")*/ _motion_tracker_range__50m = 4ui8,
+					/*nicename("75m")*/ _motion_tracker_range__75m = 5ui8,
+					/*nicename("100m")*/ _motion_tracker_range__100m = 6ui8,
+					/*nicename("150m")*/ _motion_tracker_range__150m = 7ui8,
 				};
 
 				enum nicename("Directional Damage Indicator") e_directional_damage_indicator : uint8_t
 				{
-					/*nicename("Unchanged")*/ _directional_damage_indicator_unchanged = 1ui8,
-					/*nicename("Disabled")*/ _directional_damage_indicator_disabled = 2ui8,
-					/*nicename("Enabled")*/ _directional_damage_indicator_enabled = 3ui8,
+					/*nicename("Unchanged")*/ _directional_damage_indicator_unchanged = 0ui8,
+					/*nicename("Disabled")*/ _directional_damage_indicator_disabled = 1ui8,
+					/*nicename("Enabled")*/ _directional_damage_indicator_enabled = 2ui8,
 				};
 
 				e_motion_tracker_mode nicename("Motion Tracker Mode") motion_tracker_mode;
@@ -1841,10 +1841,10 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 
 	struct nicename("Evade") s_evade_definition
 	{
-		string_id nicename("Forward Animation") forward_animation;
-		string_id nicename("Left Animation") left_animation;
-		string_id nicename("Back Animation") back_animation;
-		string_id nicename("Right Animation") right_animation;
+		string_id_legacy nicename("Forward Animation") forward_animation;
+		string_id_legacy nicename("Left Animation") left_animation;
+		string_id_legacy nicename("Back Animation") back_animation;
+		string_id_legacy nicename("Right Animation") right_animation;
 	};
 
 	struct nicename("Sprint") s_sprint_definition
@@ -1873,10 +1873,10 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	float nicename("Dynamic Light Sphere X Offset") dynamic_light_sphere_x_offset;
 	float nicename("Dynamic Light Sphere Y Offset") dynamic_light_sphere_y_offset;
 	float nicename("Dynamic Light Sphere Z Offset") dynamic_light_sphere_z_offset;
-	string_id nicename("Generic HUD Text") generic_hud_text;
+	string_id_legacy nicename("Generic HUD Text") generic_hud_text;
 	s_tag_reference_legacy nicename("Generic Name List") generic_name_list_reference;
 	s_tag_reference_legacy nicename("Generic Service Tag List") generic_service_tag_list_reference;
-	string_id nicename("Default Variant") default_variant;
+	string_id_legacy nicename("Default Variant") default_variant;
 	s_tag_reference_legacy nicename("Model") model_reference;
 	s_tag_reference_legacy nicename("Crate Object") crate_object_reference;
 	s_tag_reference_legacy nicename("Collision Damage") collision_damage_reference;
@@ -1905,15 +1905,15 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	int16_t nicename("Sort Order") sort_order;
 	float nicename("OLD Multiplayer On-Ground Scale") old_multiplayer_on_ground_scale;
 	float nicename("OLD Campaign On-Ground Scale") old_campaign_on_ground_scale;
-	string_id nicename("Pickup Message") pickup_message;
-	string_id nicename("Swap Message") swap_message;
-	string_id nicename("Pickup Or Dual Wield Message") pickup_or_dual_wield_message;
-	string_id nicename("Swap Or Dual Wield Message") swap_or_dual_wield_message;
-	string_id nicename("Picked Up Message") picked_up_message;
-	string_id nicename("Switch-To Message") switch_to_message;
-	string_id nicename("Switch-To From AI Message") switch_to_from_ai_message;
-	string_id nicename("All Weapons Empty Message") all_weapons_empty_message;
-	string_id nicename("Overheated Message") overheated_message;
+	string_id_legacy nicename("Pickup Message") pickup_message;
+	string_id_legacy nicename("Swap Message") swap_message;
+	string_id_legacy nicename("Pickup Or Dual Wield Message") pickup_or_dual_wield_message;
+	string_id_legacy nicename("Swap Or Dual Wield Message") swap_or_dual_wield_message;
+	string_id_legacy nicename("Picked Up Message") picked_up_message;
+	string_id_legacy nicename("Switch-To Message") switch_to_message;
+	string_id_legacy nicename("Switch-To From AI Message") switch_to_from_ai_message;
+	string_id_legacy nicename("All Weapons Empty Message") all_weapons_empty_message;
+	string_id_legacy nicename("Overheated Message") overheated_message;
 	s_tag_reference_legacy nicename("Collision Sound") collision_sound_reference;
 	s_tag_block_legacy<s_predicted_bitmaps_definition> nicename("Predicted Bitmaps") predicted_bitmaps_block;
 	s_tag_reference_legacy nicename("Detonation Damage Effect") detonation_damage_effect_reference;
@@ -1948,13 +1948,13 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	e_equipment_type nicename("Equipment Type") equipment_type;
 	e_activation_type nicename("Activation Type") activation_type;
 	int8_t __unknown6;
-	string_id nicename("Biped Stow Marker") biped_stow_marker;
+	string_id_legacy nicename("Biped Stow Marker") biped_stow_marker;
 	s_colorf_legacy nicename("Primary Color") primary_color;
 	s_colorf_legacy nicename("Secondary Color") secondary_color;
 	s_undefined32_legacy __unknown7;
 	s_undefined32_legacy __unknown8;
 	float __unknown9;
-	string_id __unknown10;
+	string_id_legacy __unknown10;
 	s_tag_block_legacy<s_equipment_camera_definition> nicename("Equipment Camera") equipment_camera_block;
 	s_tag_block_legacy<s_powerup_definition> nicename("Powerup") powerup_block;
 	s_tag_block_legacy<s_object_creation_definition> nicename("Object Creation") object_creation_block;
@@ -2012,9 +2012,9 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	s_tag_reference_legacy nicename("Active Effect") active_effect_reference;
 	s_tag_reference_legacy nicename("Deactivation Effect") deactivation_effect_reference;
 	s_tag_reference_legacy __unknown47;
-	string_id nicename("Enter Animation") enter_animation;
-	string_id nicename("Idle Animation") idle_animation;
-	string_id nicename("Exit Animation") exit_animation;
+	string_id_legacy nicename("Enter Animation") enter_animation;
+	string_id_legacy nicename("Idle Animation") idle_animation;
+	string_id_legacy nicename("Exit Animation") exit_animation;
 	s_undefined32_legacy __unknown48;
 };
 

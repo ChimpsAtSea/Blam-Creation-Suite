@@ -42,10 +42,10 @@ struct nicename("particle_physics") tag_group('pmov') s_particle_physics_definit
 	{
 		enum nicename("Type") e_type : uint16_t
 		{
-			/*nicename("Physics")*/ _type_physics = 1ui16,
-			/*nicename("Collider")*/ _type_collider = 2ui16,
-			/*nicename("Swarm")*/ _type_swarm = 3ui16,
-			/*nicename("Wind")*/ _type_wind = 4ui16,
+			/*nicename("Physics")*/ _type_physics = 0ui16,
+			/*nicename("Collider")*/ _type_collider = 1ui16,
+			/*nicename("Swarm")*/ _type_swarm = 2ui16,
+			/*nicename("Wind")*/ _type_wind = 3ui16,
 		};
 
 		struct nicename("Parameters") s_parameters_definition

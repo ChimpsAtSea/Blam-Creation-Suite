@@ -6,11 +6,11 @@ struct nicename("game_engine_globals") tag_group('gegl') s_game_engine_globals_d
 	{
 		enum nicename("Audience") e_audience : uint8_t
 		{
-			/*nicename("Cause Player")*/ _audience_cause_player = 1ui8,
-			/*nicename("Cause Team")*/ _audience_cause_team = 2ui8,
-			/*nicename("Effect Player")*/ _audience_effect_player = 3ui8,
-			/*nicename("Effect Team")*/ _audience_effect_team = 4ui8,
-			/*nicename("All")*/ _audience_all = 5ui8,
+			/*nicename("Cause Player")*/ _audience_cause_player = 0ui8,
+			/*nicename("Cause Team")*/ _audience_cause_team = 1ui8,
+			/*nicename("Effect Player")*/ _audience_effect_player = 2ui8,
+			/*nicename("Effect Team")*/ _audience_effect_team = 3ui8,
+			/*nicename("All")*/ _audience_all = 4ui8,
 		};
 
 		enum nicename("Sound Flags") b_sound_flags : uint8_t /* bitfield */

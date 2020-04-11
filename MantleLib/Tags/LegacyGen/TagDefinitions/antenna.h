@@ -17,7 +17,7 @@ struct nicename("antenna") tag_group('ant!') s_antenna_definition
 		s_undefined32_legacy __unknown3;
 	};
 
-	string_id nicename("Attachment Marker Name") attachment_marker_name;
+	string_id_legacy nicename("Attachment Marker Name") attachment_marker_name;
 	s_tag_reference_legacy nicename("Bitmaps") bitmaps_reference;
 	s_tag_reference_legacy nicename("Physics") physics_reference;
 	float __unknown0;
