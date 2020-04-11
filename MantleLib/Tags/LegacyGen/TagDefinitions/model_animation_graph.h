@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_graph_definition
+struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_graph_definition_legacy
 {
 	enum nicename("Inheritance Flags") b_inheritance_flags : uint8_t /* bitfield */
 	{
@@ -602,22 +602,22 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		/*nicename("Node 255")*/ _unknown_nodes_8_node_255 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
 	};
 
-	struct nicename("Aim Blending") s_aim_blending_definition
+	struct nicename("Aim Blending") s_aim_blending_definition_legacy
 	{
-		struct nicename("Bones") s_bones_definition
+		struct nicename("Bones") s_bones_definition_legacy
 		{
 			int16_t nicename("Bone") bone;
 			int16_t __unknown0;
 		};
 
 		string_id_legacy nicename("Name") name;
-		s_tag_block_legacy<s_bones_definition> nicename("Bones") bones_block;
+		s_tag_block_legacy<s_bones_definition_legacy> nicename("Bones") bones_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -652,15 +652,15 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		int8_t __unknown31;
 	};
 
-	struct nicename("Pain") s_pain_definition
+	struct nicename("Pain") s_pain_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_data_reference_legacy nicename("Function") function_data_reference;
 	};
 
-	struct nicename("Variant Mode Substitution") s_variant_mode_substitution_definition
+	struct nicename("Variant Mode Substitution") s_variant_mode_substitution_definition_legacy
 	{
-		struct nicename("Modes") s_modes_definition
+		struct nicename("Modes") s_modes_definition_legacy
 		{
 			string_id_legacy nicename("Original Mode") original_mode;
 			string_id_legacy nicename("New Mode") new_mode;
@@ -668,10 +668,10 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 
 		string_id_legacy nicename("Variant Name") variant_name;
 		int32_t __unknown0;
-		s_tag_block_legacy<s_modes_definition> nicename("Modes") modes_block;
+		s_tag_block_legacy<s_modes_definition_legacy> nicename("Modes") modes_block;
 	};
 
-	struct nicename("Skeleton Nodes") s_skeleton_nodes_definition
+	struct nicename("Skeleton Nodes") s_skeleton_nodes_definition_legacy
 	{
 		enum nicename("Model Flags") b_model_flags : uint8_t /* bitfield */
 		{
@@ -715,7 +715,7 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		s_undefined32_legacy __unknown4;
 	};
 
-	struct nicename("Sound References") s_sound_references_definition
+	struct nicename("Sound References") s_sound_references_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint16_t /* bitfield */
 		{
@@ -742,7 +742,7 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		int16_t __unknown0;
 	};
 
-	struct nicename("Effect References") s_effect_references_definition
+	struct nicename("Effect References") s_effect_references_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint16_t /* bitfield */
 		{
@@ -769,7 +769,7 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		int16_t __unknown0;
 	};
 
-	struct nicename("Blend Screens") s_blend_screens_definition
+	struct nicename("Blend Screens") s_blend_screens_definition_legacy
 	{
 		string_id_legacy nicename("Label") label;
 		float nicename("Right Yaw Per Frame") right_yaw_per_frame;
@@ -782,7 +782,7 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		int16_t nicename("Up Pitch Frame Count") up_pitch_frame_count;
 	};
 
-	struct nicename("Legs") s_legs_definition
+	struct nicename("Legs") s_legs_definition_legacy
 	{
 		enum nicename("Anchors") e_anchors : uint16_t
 		{
@@ -800,7 +800,7 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		int16_t __unknown0;
 	};
 
-	struct nicename("Animations") s_animations_definition
+	struct nicename("Animations") s_animations_definition_legacy
 	{
 		enum nicename("Playback Flags") b_playback_flags : uint16_t /* bitfield */
 		{
@@ -842,22 +842,22 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 			/*nicename("Bit 15")*/ _production_flags_bit_15 = 1ui16 << 15ui16,
 		};
 
-		struct nicename("Animation Definition") s_animation_definition_definition
+		struct nicename("Animation Definition") s_animation_definition_definition_legacy
 		{
-			struct nicename("Frame Events") s_frame_events_definition
+			struct nicename("Frame Events") s_frame_events_definition_legacy
 			{
 				int16_t nicename("Type") type;
 				int16_t nicename("Frame") frame;
 			};
 
-			struct nicename("Sound Events") s_sound_events_definition
+			struct nicename("Sound Events") s_sound_events_definition_legacy
 			{
 				int16_t nicename("Sound") sound;
 				int16_t nicename("Frame") frame;
 				string_id_legacy nicename("Marker Name") marker_name;
 			};
 
-			struct nicename("Effect Events") s_effect_events_definition
+			struct nicename("Effect Events") s_effect_events_definition_legacy
 			{
 				enum nicename("Damage Reporting Type") e_damage_reporting_type : uint8_t
 				{
@@ -954,13 +954,13 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 				int8_t __unknown2;
 			};
 
-			struct nicename("Unknown 14") s_unknown_14_definition
+			struct nicename("Unknown 14") s_unknown_14_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
 			};
 
-			struct nicename("Object-Space Parent Nodes") s_object_space_parent_nodes_definition
+			struct nicename("Object-Space Parent Nodes") s_object_space_parent_nodes_definition_legacy
 			{
 				enum nicename("Component Flags") b_component_flags : uint16_t /* bitfield */
 				{
@@ -981,9 +981,9 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 				float nicename("Default Scale") default_scale;
 			};
 
-			struct nicename("Leg Anchoring") s_leg_anchoring_definition
+			struct nicename("Leg Anchoring") s_leg_anchoring_definition_legacy
 			{
-				struct nicename("Unknown") s_unknown1_definition
+				struct nicename("Unknown") s_unknown1_definition_legacy
 				{
 					int16_t nicename("Frame 1a") frame_1a;
 					int16_t nicename("Frame 2a") frame_2a;
@@ -996,22 +996,22 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 
 				int16_t nicename("Leg Index") leg_index;
 				int16_t __unknown0;
-				s_tag_block_legacy<s_unknown1_definition> __unknown1;
+				s_tag_block_legacy<s_unknown1_definition_legacy> __unknown1;
 			};
 
-			struct nicename("Unknown") s_unknown2_definition
+			struct nicename("Unknown") s_unknown2_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
 			};
 
-			struct nicename("Unknown") s_unknown3_definition
+			struct nicename("Unknown") s_unknown3_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
 			};
 
-			struct nicename("New Mode ik") s_new_mode_ik_definition
+			struct nicename("New Mode ik") s_new_mode_ik_definition_legacy
 			{
 				string_id_legacy nicename("Marker") marker;
 				int16_t __unknown0;
@@ -1030,7 +1030,7 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 				int8_t __unknown10;
 			};
 
-			struct nicename("Unknown") s_unknown4_definition
+			struct nicename("Unknown") s_unknown4_definition_legacy
 			{
 				string_id_legacy __unknown0;
 				int8_t __unknown1;
@@ -1048,7 +1048,7 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 				int8_t __unknown13;
 			};
 
-			struct nicename("Unknown") s_unknown5_definition
+			struct nicename("Unknown") s_unknown5_definition_legacy
 			{
 				string_id_legacy __unknown0;
 				int32_t __unknown1;
@@ -1057,7 +1057,7 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 				int16_t __unknown4;
 			};
 
-			struct nicename("Unknown") s_unknown6_definition
+			struct nicename("Unknown") s_unknown6_definition_legacy
 			{
 				s_undefined32_legacy __unknown0;
 				s_undefined32_legacy __unknown1;
@@ -1088,21 +1088,21 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 			float __unknown13;
 			float __unknown14;
 			float __unknown15;
-			s_tag_block_legacy<s_frame_events_definition> nicename("Frame Events") frame_events_block;
-			s_tag_block_legacy<s_sound_events_definition> nicename("Sound Events") sound_events_block;
-			s_tag_block_legacy<s_effect_events_definition> nicename("Effect Events") effect_events_block;
-			s_tag_block_legacy<s_unknown_14_definition> nicename("Unknown 14") unknown_14_block;
-			s_tag_block_legacy<s_object_space_parent_nodes_definition> nicename("Object-Space Parent Nodes") object_space_parent_nodes_block;
-			s_tag_block_legacy<s_leg_anchoring_definition> nicename("Leg Anchoring") leg_anchoring_block;
-			s_tag_block_legacy<s_unknown2_definition> __unknown16;
-			s_tag_block_legacy<s_unknown3_definition> __unknown17;
-			s_tag_block_legacy<s_new_mode_ik_definition> nicename("New Mode ik") new_mode_ik_block;
+			s_tag_block_legacy<s_frame_events_definition_legacy> nicename("Frame Events") frame_events_block;
+			s_tag_block_legacy<s_sound_events_definition_legacy> nicename("Sound Events") sound_events_block;
+			s_tag_block_legacy<s_effect_events_definition_legacy> nicename("Effect Events") effect_events_block;
+			s_tag_block_legacy<s_unknown_14_definition_legacy> nicename("Unknown 14") unknown_14_block;
+			s_tag_block_legacy<s_object_space_parent_nodes_definition_legacy> nicename("Object-Space Parent Nodes") object_space_parent_nodes_block;
+			s_tag_block_legacy<s_leg_anchoring_definition_legacy> nicename("Leg Anchoring") leg_anchoring_block;
+			s_tag_block_legacy<s_unknown2_definition_legacy> __unknown16;
+			s_tag_block_legacy<s_unknown3_definition_legacy> __unknown17;
+			s_tag_block_legacy<s_new_mode_ik_definition_legacy> nicename("New Mode ik") new_mode_ik_block;
 			s_undefined32_legacy __unknown18;
 			s_undefined32_legacy __unknown19;
 			s_undefined32_legacy __unknown20;
-			s_tag_block_legacy<s_unknown4_definition> __unknown21;
-			s_tag_block_legacy<s_unknown5_definition> __unknown22;
-			s_tag_block_legacy<s_unknown6_definition> __unknown23;
+			s_tag_block_legacy<s_unknown4_definition_legacy> __unknown21;
+			s_tag_block_legacy<s_unknown5_definition_legacy> __unknown22;
+			s_tag_block_legacy<s_unknown6_definition_legacy> __unknown23;
 		};
 
 		string_id_legacy nicename("Name") name;
@@ -1119,10 +1119,10 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		s_tag_reference_legacy nicename("Parent") parent_reference;
 		int16_t nicename("Parent Index") parent_index;
 		int16_t __unknown3;
-		s_tag_block_legacy<s_animation_definition_definition> nicename("Animation Definition") animation_definition_block;
+		s_tag_block_legacy<s_animation_definition_definition_legacy> nicename("Animation Definition") animation_definition_block;
 	};
 
-	struct nicename("Animations 2") s_animations_2_definition
+	struct nicename("Animations 2") s_animations_2_definition_legacy
 	{
 		string_id_legacy nicename("Label") label;
 		int32_t __unknown0;
@@ -1141,7 +1141,7 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		int16_t nicename("Animation") animation;
 	};
 
-	struct nicename("Trigger Animations") s_trigger_animations_definition
+	struct nicename("Trigger Animations") s_trigger_animations_definition_legacy
 	{
 		string_id_legacy nicename("Label") label;
 		int32_t __unknown0;
@@ -1152,9 +1152,9 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		int16_t nicename("Animation") animation;
 	};
 
-	struct nicename("Animation Groups") s_animation_groups_definition
+	struct nicename("Animation Groups") s_animation_groups_definition_legacy
 	{
-		struct nicename("Animations 2") s_animations_21_definition
+		struct nicename("Animations 2") s_animations_21_definition_legacy
 		{
 			int16_t nicename("Animations 2 Index") animations_2_index;
 			int16_t __unknown0;
@@ -1162,18 +1162,18 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 			int16_t __unknown2;
 		};
 
-		struct nicename("Trigger Animations") s_trigger_animations1_definition
+		struct nicename("Trigger Animations") s_trigger_animations1_definition_legacy
 		{
 			int16_t nicename("Trigger Animation Index") trigger_animation_index;
 			int16_t __unknown0;
 		};
 
 		string_id_legacy nicename("Name") name;
-		s_tag_block_legacy<s_animations_21_definition> nicename("Animations 2") animations_2_block;
-		s_tag_block_legacy<s_trigger_animations1_definition> nicename("Trigger Animations") trigger_animations_block;
+		s_tag_block_legacy<s_animations_21_definition_legacy> nicename("Animations 2") animations_2_block;
+		s_tag_block_legacy<s_trigger_animations1_definition_legacy> nicename("Trigger Animations") trigger_animations_block;
 	};
 
-	struct nicename("Locomotion") s_locomotion_definition
+	struct nicename("Locomotion") s_locomotion_definition_legacy
 	{
 		string_id_legacy nicename("Full Name") full_name;
 		string_id_legacy nicename("Low Speed") low_speed;
@@ -1183,19 +1183,19 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		int16_t __unknown1;
 	};
 
-	struct nicename("Movement Groups") s_movement_groups_definition
+	struct nicename("Movement Groups") s_movement_groups_definition_legacy
 	{
-		struct nicename("Locomotion") s_locomotion1_definition
+		struct nicename("Locomotion") s_locomotion1_definition_legacy
 		{
 			int16_t nicename("Locomotion Index") locomotion_index;
 			int16_t __unknown0;
 		};
 
 		string_id_legacy nicename("Name") name;
-		s_tag_block_legacy<s_locomotion1_definition> nicename("Locomotion") locomotion_block;
+		s_tag_block_legacy<s_locomotion1_definition_legacy> nicename("Locomotion") locomotion_block;
 	};
 
-	struct nicename("Limb ik") s_limb_ik_definition
+	struct nicename("Limb ik") s_limb_ik_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		string_id_legacy nicename("Marker") marker;
@@ -1206,19 +1206,19 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		s_undefined32_legacy __unknown3;
 	};
 
-	struct nicename("Limb ik Groups") s_limb_ik_groups_definition
+	struct nicename("Limb ik Groups") s_limb_ik_groups_definition_legacy
 	{
-		struct nicename("Limb ik") s_limb_ik1_definition
+		struct nicename("Limb ik") s_limb_ik1_definition_legacy
 		{
 			int16_t nicename("Limb ik Index") limb_ik_index;
 			int16_t __unknown0;
 		};
 
 		string_id_legacy nicename("Name") name;
-		s_tag_block_legacy<s_limb_ik1_definition> nicename("Limb ik") limb_ik_block;
+		s_tag_block_legacy<s_limb_ik1_definition_legacy> nicename("Limb ik") limb_ik_block;
 	};
 
-	struct nicename("Limb Positioning") s_limb_positioning_definition
+	struct nicename("Limb Positioning") s_limb_positioning_definition_legacy
 	{
 		string_id_legacy nicename("Limb") limb;
 		s_undefined32_legacy __unknown0;
@@ -1228,15 +1228,15 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		int16_t __unknown2;
 	};
 
-	struct nicename("Modes") s_modes1_definition
+	struct nicename("Modes") s_modes1_definition_legacy
 	{
-		struct nicename("Weapon Class") s_weapon_class_definition
+		struct nicename("Weapon Class") s_weapon_class_definition_legacy
 		{
-			struct nicename("Weapon Type") s_weapon_type_definition
+			struct nicename("Weapon Type") s_weapon_type_definition_legacy
 			{
-				struct nicename("Action Type") s_action_type_definition
+				struct nicename("Action Type") s_action_type_definition_legacy
 				{
-					struct nicename("Actions") s_actions_definition
+					struct nicename("Actions") s_actions_definition_legacy
 					{
 						string_id_legacy nicename("Label") label;
 						int16_t nicename("Animation Group") animation_group;
@@ -1245,7 +1245,7 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 						int16_t nicename("Animation") animation;
 					};
 
-					struct nicename("Overlays") s_overlays_definition
+					struct nicename("Overlays") s_overlays_definition_legacy
 					{
 						string_id_legacy nicename("Label") label;
 						int16_t nicename("Animation Group") animation_group;
@@ -1254,26 +1254,26 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 						int16_t nicename("Animation") animation;
 					};
 
-					struct nicename("Death And Damage") s_death_and_damage_definition
+					struct nicename("Death And Damage") s_death_and_damage_definition_legacy
 					{
-						struct nicename("Directions") s_directions_definition
+						struct nicename("Directions") s_directions_definition_legacy
 						{
-							struct nicename("Regions") s_regions_definition
+							struct nicename("Regions") s_regions_definition_legacy
 							{
 								int16_t nicename("Graph Index") graph_index;
 								int16_t nicename("Animation") animation;
 							};
 
-							s_tag_block_legacy<s_regions_definition> nicename("Regions") regions_block;
+							s_tag_block_legacy<s_regions_definition_legacy> nicename("Regions") regions_block;
 						};
 
 						string_id_legacy nicename("Label") label;
-						s_tag_block_legacy<s_directions_definition> nicename("Directions") directions_block;
+						s_tag_block_legacy<s_directions_definition_legacy> nicename("Directions") directions_block;
 					};
 
-					struct nicename("Transitions") s_transitions_definition
+					struct nicename("Transitions") s_transitions_definition_legacy
 					{
-						struct nicename("Destinations") s_destinations_definition
+						struct nicename("Destinations") s_destinations_definition_legacy
 						{
 							string_id_legacy nicename("Mode Name") mode_name;
 							string_id_legacy nicename("State Name") state_name;
@@ -1282,10 +1282,10 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 						};
 
 						string_id_legacy nicename("State Name") state_name;
-						s_tag_block_legacy<s_destinations_definition> nicename("Destinations") destinations_block;
+						s_tag_block_legacy<s_destinations_definition_legacy> nicename("Destinations") destinations_block;
 					};
 
-					struct nicename("Unknown") s_unknown7_definition
+					struct nicename("Unknown") s_unknown7_definition_legacy
 					{
 						float __unknown0;
 						float __unknown1;
@@ -1302,28 +1302,28 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 					int16_t nicename("Limb ik Group") limb_ik_group;
 					int16_t nicename("Movement Group") movement_group;
 					int16_t __unknown0;
-					s_tag_block_legacy<s_actions_definition> nicename("Actions") actions_block;
-					s_tag_block_legacy<s_overlays_definition> nicename("Overlays") overlays_block;
-					s_tag_block_legacy<s_death_and_damage_definition> nicename("Death And Damage") death_and_damage_block;
-					s_tag_block_legacy<s_transitions_definition> nicename("Transitions") transitions_block;
-					s_tag_block_legacy<s_unknown7_definition> __unknown1;
+					s_tag_block_legacy<s_actions_definition_legacy> nicename("Actions") actions_block;
+					s_tag_block_legacy<s_overlays_definition_legacy> nicename("Overlays") overlays_block;
+					s_tag_block_legacy<s_death_and_damage_definition_legacy> nicename("Death And Damage") death_and_damage_block;
+					s_tag_block_legacy<s_transitions_definition_legacy> nicename("Transitions") transitions_block;
+					s_tag_block_legacy<s_unknown7_definition_legacy> __unknown1;
 				};
 
 				string_id_legacy nicename("Label") label;
 				int16_t nicename("Animation Group") animation_group;
 				int16_t nicename("Limb ik Group") limb_ik_group;
-				s_tag_block_legacy<s_action_type_definition> nicename("Action Type") action_type_block;
+				s_tag_block_legacy<s_action_type_definition_legacy> nicename("Action Type") action_type_block;
 			};
 
-			struct nicename("Weapon ik") s_weapon_ik_definition
+			struct nicename("Weapon ik") s_weapon_ik_definition_legacy
 			{
 				string_id_legacy nicename("Marker") marker;
 				string_id_legacy nicename("Attach To Marker") attach_to_marker;
 			};
 
-			struct nicename("Ranged Actions") s_ranged_actions_definition
+			struct nicename("Ranged Actions") s_ranged_actions_definition_legacy
 			{
-				struct nicename("Unknown") s_unknown8_definition
+				struct nicename("Unknown") s_unknown8_definition_legacy
 				{
 					int32_t __unknown0;
 					int16_t nicename("Graph Index") graph_index;
@@ -1332,15 +1332,15 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 					s_undefined32_legacy __unknown2;
 				};
 
-				struct nicename("Unknown") s_unknown9_definition
+				struct nicename("Unknown") s_unknown9_definition_legacy
 				{
-					struct nicename("Unknown") s_unknown10_definition
+					struct nicename("Unknown") s_unknown10_definition_legacy
 					{
 						float __unknown0;
 						float __unknown1;
 					};
 
-					struct nicename("Unknown") s_unknown11_definition
+					struct nicename("Unknown") s_unknown11_definition_legacy
 					{
 						int8_t __unknown0;
 						int8_t __unknown1;
@@ -1352,24 +1352,24 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 						int8_t __unknown7;
 					};
 
-					s_tag_block_legacy<s_unknown10_definition> __unknown0;
-					s_tag_block_legacy<s_unknown11_definition> __unknown1;
+					s_tag_block_legacy<s_unknown10_definition_legacy> __unknown0;
+					s_tag_block_legacy<s_unknown11_definition_legacy> __unknown1;
 				};
 
 				string_id_legacy nicename("Label") label;
-				s_tag_block_legacy<s_unknown8_definition> __unknown0;
-				s_tag_block_legacy<s_unknown9_definition> __unknown1;
+				s_tag_block_legacy<s_unknown8_definition_legacy> __unknown0;
+				s_tag_block_legacy<s_unknown9_definition_legacy> __unknown1;
 				int16_t __unknown2;
 				int16_t __unknown3;
 				int16_t __unknown4;
 				int16_t __unknown5;
 			};
 
-			struct nicename("Sync Actions") s_sync_actions_definition
+			struct nicename("Sync Actions") s_sync_actions_definition_legacy
 			{
-				struct nicename("Class") s_$class_definition
+				struct nicename("Class") s_$class_definition_legacy
 				{
-					struct nicename("Unknown") s_unknown12_definition
+					struct nicename("Unknown") s_unknown12_definition_legacy
 					{
 						int32_t __unknown0;
 						int16_t nicename("Graph Index") graph_index;
@@ -1386,31 +1386,31 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 						s_undefined32_legacy __unknown10;
 					};
 
-					struct nicename("Sync Biped") s_sync_biped_definition
+					struct nicename("Sync Biped") s_sync_biped_definition_legacy
 					{
 						int32_t __unknown0;
 						s_tag_reference_legacy nicename("Biped") biped_reference;
 					};
 
 					string_id_legacy nicename("Label") label;
-					s_tag_block_legacy<s_unknown12_definition> __unknown0;
-					s_tag_block_legacy<s_sync_biped_definition> nicename("Sync Biped") sync_biped_block;
+					s_tag_block_legacy<s_unknown12_definition_legacy> __unknown0;
+					s_tag_block_legacy<s_sync_biped_definition_legacy> nicename("Sync Biped") sync_biped_block;
 				};
 
 				string_id_legacy nicename("Label") label;
-				s_tag_block_legacy<s_$class_definition> nicename("Class") $class_block;
+				s_tag_block_legacy<s_$class_definition_legacy> nicename("Class") $class_block;
 			};
 
 			string_id_legacy nicename("Label") label;
 			int16_t nicename("Animation Group") animation_group;
 			int16_t nicename("Limb ik Group") limb_ik_group;
-			s_tag_block_legacy<s_weapon_type_definition> nicename("Weapon Type") weapon_type_block;
-			s_tag_block_legacy<s_weapon_ik_definition> nicename("Weapon ik") weapon_ik_block;
-			s_tag_block_legacy<s_ranged_actions_definition> nicename("Ranged Actions") ranged_actions_block;
-			s_tag_block_legacy<s_sync_actions_definition> nicename("Sync Actions") sync_actions_block;
+			s_tag_block_legacy<s_weapon_type_definition_legacy> nicename("Weapon Type") weapon_type_block;
+			s_tag_block_legacy<s_weapon_ik_definition_legacy> nicename("Weapon ik") weapon_ik_block;
+			s_tag_block_legacy<s_ranged_actions_definition_legacy> nicename("Ranged Actions") ranged_actions_block;
+			s_tag_block_legacy<s_sync_actions_definition_legacy> nicename("Sync Actions") sync_actions_block;
 		};
 
-		struct nicename("Mode ik") s_mode_ik_definition
+		struct nicename("Mode ik") s_mode_ik_definition_legacy
 		{
 			string_id_legacy nicename("Marker") marker;
 			string_id_legacy nicename("Attach To Marker") attach_to_marker;
@@ -1420,14 +1420,14 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		int16_t nicename("Animation Group") animation_group;
 		int16_t nicename("Limb ik Group") limb_ik_group;
 		int32_t __unknown0;
-		s_tag_block_legacy<s_weapon_class_definition> nicename("Weapon Class") weapon_class_block;
-		s_tag_block_legacy<s_mode_ik_definition> nicename("Mode ik") mode_ik_block;
+		s_tag_block_legacy<s_weapon_class_definition_legacy> nicename("Weapon Class") weapon_class_block;
+		s_tag_block_legacy<s_mode_ik_definition_legacy> nicename("Mode ik") mode_ik_block;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
 		s_undefined32_legacy __unknown3;
 	};
 
-	struct nicename("Vehicle Suspension") s_vehicle_suspension_definition
+	struct nicename("Vehicle Suspension") s_vehicle_suspension_definition_legacy
 	{
 		string_id_legacy nicename("Label") label;
 		int16_t nicename("Graph Index") graph_index;
@@ -1445,7 +1445,7 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		float nicename("Full Compression Ground Depth") full_compression_ground_depth1;
 	};
 
-	struct nicename("Object Overlays") s_object_overlays_definition
+	struct nicename("Object Overlays") s_object_overlays_definition_legacy
 	{
 		enum nicename("Function Controls") e_function_controls : uint16_t
 		{
@@ -1462,14 +1462,14 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		s_undefined32_legacy __unknown1;
 	};
 
-	struct nicename("Inheritance List") s_inheritance_list_definition
+	struct nicename("Inheritance List") s_inheritance_list_definition_legacy
 	{
-		struct nicename("Node Map") s_node_map_definition
+		struct nicename("Node Map") s_node_map_definition_legacy
 		{
 			int16_t nicename("Local Node") local_node;
 		};
 
-		struct nicename("Node Map Flags") s_node_map_flags_definition
+		struct nicename("Node Map Flags") s_node_map_flags_definition_legacy
 		{
 			enum nicename("Local Node Flags") b_local_node_flags : uint32_t /* bitfield */
 			{
@@ -1511,19 +1511,19 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		};
 
 		s_tag_reference_legacy nicename("Inherited Graph") inherited_graph_reference;
-		s_tag_block_legacy<s_node_map_definition> nicename("Node Map") node_map_block;
-		s_tag_block_legacy<s_node_map_flags_definition> nicename("Node Map Flags") node_map_flags_block;
+		s_tag_block_legacy<s_node_map_definition_legacy> nicename("Node Map") node_map_block;
+		s_tag_block_legacy<s_node_map_flags_definition_legacy> nicename("Node Map Flags") node_map_flags_block;
 		s_undefined32_legacy __unknown0;
 	};
 
-	struct nicename("New Inheritance List") s_new_inheritance_list_definition
+	struct nicename("New Inheritance List") s_new_inheritance_list_definition_legacy
 	{
-		struct nicename("Node Map") s_node_map1_definition
+		struct nicename("Node Map") s_node_map1_definition_legacy
 		{
 			int16_t nicename("Local Node") local_node;
 		};
 
-		struct nicename("Node Map Flags") s_node_map_flags1_definition
+		struct nicename("Node Map Flags") s_node_map_flags1_definition_legacy
 		{
 			enum nicename("Local Node Flags") b_local_node_flags : uint32_t /* bitfield */
 			{
@@ -1565,18 +1565,18 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 		};
 
 		s_tag_reference_legacy nicename("Inherited Graph") inherited_graph_reference;
-		s_tag_block_legacy<s_node_map1_definition> nicename("Node Map") node_map_block;
-		s_tag_block_legacy<s_node_map_flags1_definition> nicename("Node Map Flags") node_map_flags_block;
+		s_tag_block_legacy<s_node_map1_definition_legacy> nicename("Node Map") node_map_block;
+		s_tag_block_legacy<s_node_map_flags1_definition_legacy> nicename("Node Map Flags") node_map_flags_block;
 		s_undefined32_legacy __unknown0;
 	};
 
-	struct nicename("Weapon List") s_weapon_list_definition
+	struct nicename("Weapon List") s_weapon_list_definition_legacy
 	{
 		string_id_legacy nicename("Weapon Name") weapon_name;
 		string_id_legacy nicename("Weapon Class") weapon_class;
 	};
 
-	struct nicename("Raw Information Groups") s_raw_information_groups_definition
+	struct nicename("Raw Information Groups") s_raw_information_groups_definition_legacy
 	{
 		int32_t nicename("Member Count") member_count;
 		int32_t nicename("[zone] Asset Datum") zone_asset_datum;
@@ -1591,38 +1591,38 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 	int16_t nicename("Animation Codec Pack") animation_codec_pack;
 	int16_t __unknown0;
 	int16_t __unknown1;
-	s_tag_block_legacy<s_unknown_definition> __unknown2;
-	s_tag_block_legacy<s_aim_blending_definition> nicename("Aim Blending") aim_blending_block;
-	s_tag_block_legacy<s_pain_definition> nicename("Pain") pain_block;
-	s_tag_block_legacy<s_variant_mode_substitution_definition> nicename("Variant Mode Substitution") variant_mode_substitution_block;
-	s_tag_block_legacy<s_skeleton_nodes_definition> nicename("Skeleton Nodes") skeleton_nodes_block;
-	s_tag_block_legacy<s_sound_references_definition> nicename("Sound References") sound_references_block;
-	s_tag_block_legacy<s_effect_references_definition> nicename("Effect References") effect_references_block;
-	s_tag_block_legacy<s_blend_screens_definition> nicename("Blend Screens") blend_screens_block;
-	s_tag_block_legacy<s_legs_definition> nicename("Legs") legs_block;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown2;
+	s_tag_block_legacy<s_aim_blending_definition_legacy> nicename("Aim Blending") aim_blending_block;
+	s_tag_block_legacy<s_pain_definition_legacy> nicename("Pain") pain_block;
+	s_tag_block_legacy<s_variant_mode_substitution_definition_legacy> nicename("Variant Mode Substitution") variant_mode_substitution_block;
+	s_tag_block_legacy<s_skeleton_nodes_definition_legacy> nicename("Skeleton Nodes") skeleton_nodes_block;
+	s_tag_block_legacy<s_sound_references_definition_legacy> nicename("Sound References") sound_references_block;
+	s_tag_block_legacy<s_effect_references_definition_legacy> nicename("Effect References") effect_references_block;
+	s_tag_block_legacy<s_blend_screens_definition_legacy> nicename("Blend Screens") blend_screens_block;
+	s_tag_block_legacy<s_legs_definition_legacy> nicename("Legs") legs_block;
 	s_tag_reference_legacy nicename("Frame Events") frame_events_reference;
-	s_tag_block_legacy<s_animations_definition> nicename("Animations") animations_block;
-	s_tag_block_legacy<s_animations_2_definition> nicename("Animations 2") animations_2_block;
-	s_tag_block_legacy<s_trigger_animations_definition> nicename("Trigger Animations") trigger_animations_block;
-	s_tag_block_legacy<s_animation_groups_definition> nicename("Animation Groups") animation_groups_block;
-	s_tag_block_legacy<s_locomotion_definition> nicename("Locomotion") locomotion_block;
-	s_tag_block_legacy<s_movement_groups_definition> nicename("Movement Groups") movement_groups_block;
-	s_tag_block_legacy<s_limb_ik_definition> nicename("Limb ik") limb_ik_block;
-	s_tag_block_legacy<s_limb_ik_groups_definition> nicename("Limb ik Groups") limb_ik_groups_block;
-	s_tag_block_legacy<s_limb_positioning_definition> nicename("Limb Positioning") limb_positioning_block;
+	s_tag_block_legacy<s_animations_definition_legacy> nicename("Animations") animations_block;
+	s_tag_block_legacy<s_animations_2_definition_legacy> nicename("Animations 2") animations_2_block;
+	s_tag_block_legacy<s_trigger_animations_definition_legacy> nicename("Trigger Animations") trigger_animations_block;
+	s_tag_block_legacy<s_animation_groups_definition_legacy> nicename("Animation Groups") animation_groups_block;
+	s_tag_block_legacy<s_locomotion_definition_legacy> nicename("Locomotion") locomotion_block;
+	s_tag_block_legacy<s_movement_groups_definition_legacy> nicename("Movement Groups") movement_groups_block;
+	s_tag_block_legacy<s_limb_ik_definition_legacy> nicename("Limb ik") limb_ik_block;
+	s_tag_block_legacy<s_limb_ik_groups_definition_legacy> nicename("Limb ik Groups") limb_ik_groups_block;
+	s_tag_block_legacy<s_limb_positioning_definition_legacy> nicename("Limb Positioning") limb_positioning_block;
 	int16_t __unknown3;
 	int16_t __unknown4;
-	s_tag_block_legacy<s_modes1_definition> nicename("Modes") modes_block;
-	s_tag_block_legacy<s_vehicle_suspension_definition> nicename("Vehicle Suspension") vehicle_suspension_block;
-	s_tag_block_legacy<s_object_overlays_definition> nicename("Object Overlays") object_overlays_block;
+	s_tag_block_legacy<s_modes1_definition_legacy> nicename("Modes") modes_block;
+	s_tag_block_legacy<s_vehicle_suspension_definition_legacy> nicename("Vehicle Suspension") vehicle_suspension_block;
+	s_tag_block_legacy<s_object_overlays_definition_legacy> nicename("Object Overlays") object_overlays_block;
 	/* Inheritance : The Node Map block should have the same count as the Inherited Graph's nodes. Each Local Node value corresponds to the nodes of THIS graph. If there is no matching node, -1 is acceptable.
 	   The Node Map Flags reflect which nodes in the Node Map are used, meaning a bit should be unchecked if it is -1 in the map.
 	   Root z Offset allows for differences in height. Updates in realtime so poke around until it looks how you want.
 	   Starting at Reach, a new Inheritance block was added, use that. ("New")
 	   Unlike Halo 3, Graph Index is obsolete, so inheritance is done right inside the Animations block with a tag reference and animation index. */
-	s_tag_block_legacy<s_inheritance_list_definition> nicename("Inheritance List") inheritance_list_block;
-	s_tag_block_legacy<s_new_inheritance_list_definition> nicename("New Inheritance List") new_inheritance_list_block;
-	s_tag_block_legacy<s_weapon_list_definition> nicename("Weapon List") weapon_list_block;
+	s_tag_block_legacy<s_inheritance_list_definition_legacy> nicename("Inheritance List") inheritance_list_block;
+	s_tag_block_legacy<s_new_inheritance_list_definition_legacy> nicename("New Inheritance List") new_inheritance_list_block;
+	s_tag_block_legacy<s_weapon_list_definition_legacy> nicename("Weapon List") weapon_list_block;
 	b_unknown_arm_nodes_1 nicename("Unknown Arm Nodes 1") unknown_arm_nodes_1;
 	b_unknown_arm_nodes_2 nicename("Unknown Arm Nodes 2") unknown_arm_nodes_2;
 	b_unknown_arm_nodes_3 nicename("Unknown Arm Nodes 3") unknown_arm_nodes_3;
@@ -1643,6 +1643,6 @@ struct nicename("model_animation_graph") tag_group('jmad') s_model_animation_gra
 	s_undefined32_legacy __unknown5;
 	s_undefined32_legacy __unknown6;
 	s_undefined32_legacy __unknown7;
-	s_tag_block_legacy<s_raw_information_groups_definition> nicename("Raw Information Groups") raw_information_groups_block;
+	s_tag_block_legacy<s_raw_information_groups_definition_legacy> nicename("Raw Information Groups") raw_information_groups_block;
 };
 

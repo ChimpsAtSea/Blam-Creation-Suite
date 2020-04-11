@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("performance_throttles") tag_group('perf') s_performance_throttles_definition
+struct nicename("performance_throttles") tag_group('perf') s_performance_throttles_definition_legacy
 {
-	struct nicename("Performance") s_performance_definition
+	struct nicename("Performance") s_performance_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint32_t /* bitfield */
 		{
@@ -62,6 +62,6 @@ struct nicename("performance_throttles") tag_group('perf') s_performance_throttl
 	};
 
 	int32_t __unknown0;
-	s_tag_block_legacy<s_performance_definition> nicename("Performance") performance_block;
+	s_tag_block_legacy<s_performance_definition_legacy> nicename("Performance") performance_block;
 };
 

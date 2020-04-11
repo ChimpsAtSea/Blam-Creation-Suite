@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cloth") tag_group('clwd') s_cloth_definition
+struct nicename("cloth") tag_group('clwd') s_cloth_definition_legacy
 {
 	enum nicename("Integration Type") e_integration_type : uint16_t
 	{
@@ -43,7 +43,7 @@ struct nicename("cloth") tag_group('clwd') s_cloth_definition
 		/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Vertices") s_vertices_definition
+	struct nicename("Vertices") s_vertices_definition_legacy
 	{
 		float nicename("Initial Position X") initial_position_x;
 		float nicename("Initial Position Y") initial_position_y;
@@ -52,12 +52,12 @@ struct nicename("cloth") tag_group('clwd') s_cloth_definition
 		float nicename("UV j") uv_j;
 	};
 
-	struct nicename("Indices") s_indices_definition
+	struct nicename("Indices") s_indices_definition_legacy
 	{
 		int16_t nicename("Index") index;
 	};
 
-	struct nicename("Links") s_links_definition
+	struct nicename("Links") s_links_definition_legacy
 	{
 		float nicename("Default Distance") default_distance;
 		int32_t nicename("Index 1") index_1;
@@ -89,11 +89,11 @@ struct nicename("cloth") tag_group('clwd') s_cloth_definition
 	s_undefined32_legacy __unknown6;
 	s_undefined32_legacy __unknown7;
 	s_undefined32_legacy __unknown8;
-	s_tag_block_legacy<s_vertices_definition> nicename("Vertices") vertices_block;
-	s_tag_block_legacy<s_indices_definition> nicename("Indices") indices_block;
+	s_tag_block_legacy<s_vertices_definition_legacy> nicename("Vertices") vertices_block;
+	s_tag_block_legacy<s_indices_definition_legacy> nicename("Indices") indices_block;
 	s_undefined32_legacy __unknown9;
 	s_undefined32_legacy __unknown10;
 	s_undefined32_legacy __unknown11;
-	s_tag_block_legacy<s_links_definition> nicename("Links") links_block;
+	s_tag_block_legacy<s_links_definition_legacy> nicename("Links") links_block;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition
+struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition_legacy
 {
 	enum nicename("Side Effect") e_side_effect : uint16_t
 	{
@@ -115,12 +115,12 @@ struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition
 		/*nicename("Bit 31")*/ _flags1_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Special Damages") s_special_damages_definition
+	struct nicename("Special Damages") s_special_damages_definition_legacy
 	{
 		string_id_legacy nicename("Special Damage") special_damage;
 	};
 
-	struct nicename("Ricochets") s_ricochets_definition
+	struct nicename("Ricochets") s_ricochets_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Sound") sound_reference;
 		int16_t __unknown0;
@@ -154,7 +154,7 @@ struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition
 	s_undefined32_legacy __unknown2;
 	string_id_legacy nicename("General Damage") general_damage;
 	string_id_legacy nicename("Specific Damage") specific_damage;
-	s_tag_block_legacy<s_special_damages_definition> nicename("Special Damages") special_damages_block;
+	s_tag_block_legacy<s_special_damages_definition_legacy> nicename("Special Damages") special_damages_block;
 	float nicename("AI Stun Radius") ai_stun_radius;
 	float nicename("AI Stun Bounds min") ai_stun_bounds_min;
 	float nicename("AI Stun Bounds max") ai_stun_bounds_max;
@@ -166,7 +166,7 @@ struct nicename("damage_effect") tag_group('jpt!') s_damage_effect_definition
 	s_tag_reference_legacy nicename("Damage Response") damage_response_reference;
 	// Sound : 
 	s_tag_reference_legacy nicename("Sound") sound1_reference;
-	s_tag_block_legacy<s_ricochets_definition> nicename("Ricochets") ricochets_block;
+	s_tag_block_legacy<s_ricochets_definition_legacy> nicename("Ricochets") ricochets_block;
 	// Breaking Effect : 
 	float nicename("Forward Velocity") forward_velocity;
 	float nicename("Forward Radius") forward_radius;

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cheap_particle_emitter") tag_group('cpem') s_cheap_particle_emitter_definition
+struct nicename("cheap_particle_emitter") tag_group('cpem') s_cheap_particle_emitter_definition_legacy
 {
 	int16_t nicename("Spray Style") spray_style;
 	int16_t __unknown0;

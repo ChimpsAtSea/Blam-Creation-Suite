@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("challenge_globals_definition") tag_group('chdg') s_challenge_globals_definition_definition
+struct nicename("challenge_globals_definition") tag_group('chdg') s_challenge_globals_definition_definition_legacy
 {
-	struct nicename("Challenge Definitions") s_challenge_definitions_definition
+	struct nicename("Challenge Definitions") s_challenge_definitions_definition_legacy
 	{
 		enum nicename("Type") e_type : uint8_t
 		{
@@ -13,7 +13,7 @@ struct nicename("challenge_globals_definition") tag_group('chdg') s_challenge_gl
 			/*nicename("Multiplayer")*/ _type_multiplayer = 4ui8,
 		};
 
-		struct nicename("Challenges") s_challenges_definition
+		struct nicename("Challenges") s_challenges_definition_legacy
 		{
 			enum nicename("Must Be Completed in One Match") e_must_be_completed_in_one_match : uint8_t
 			{
@@ -159,9 +159,9 @@ struct nicename("challenge_globals_definition") tag_group('chdg') s_challenge_gl
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
-		s_tag_block_legacy<s_challenges_definition> nicename("Challenges") challenges_block;
+		s_tag_block_legacy<s_challenges_definition_legacy> nicename("Challenges") challenges_block;
 	};
 
-	s_tag_block_legacy<s_challenge_definitions_definition> nicename("Challenge Definitions") challenge_definitions_block;
+	s_tag_block_legacy<s_challenge_definitions_definition_legacy> nicename("Challenge Definitions") challenge_definitions_block;
 };
 

@@ -1,42 +1,42 @@
 #pragma once
 
-struct nicename("user_interface_shared_globals_definition") tag_group('wigl') s_user_interface_shared_globals_definition_definition
+struct nicename("user_interface_shared_globals_definition") tag_group('wigl') s_user_interface_shared_globals_definition_definition_legacy
 {
-	struct nicename("Text Colors") s_text_colors_definition
+	struct nicename("Text Colors") s_text_colors_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_colorf_legacy nicename("Color") color;
 	};
 
-	struct nicename("Player Colors") s_player_colors_definition
+	struct nicename("Player Colors") s_player_colors_definition_legacy
 	{
-		struct nicename("Player Text Color") s_player_text_color_definition
+		struct nicename("Player Text Color") s_player_text_color_definition_legacy
 		{
 			s_colorf_legacy nicename("Color") color;
 		};
 
-		struct nicename("Team Text Color") s_team_text_color_definition
+		struct nicename("Team Text Color") s_team_text_color_definition_legacy
 		{
 			s_colorf_legacy nicename("Color") color;
 		};
 
-		struct nicename("Player UI Color") s_player_ui_color_definition
+		struct nicename("Player UI Color") s_player_ui_color_definition_legacy
 		{
 			s_colorf_legacy nicename("Color") color;
 		};
 
-		struct nicename("Team UI Color") s_team_ui_color_definition
+		struct nicename("Team UI Color") s_team_ui_color_definition_legacy
 		{
 			s_colorf_legacy nicename("Color") color;
 		};
 
-		s_tag_block_legacy<s_player_text_color_definition> nicename("Player Text Color") player_text_color_block;
-		s_tag_block_legacy<s_team_text_color_definition> nicename("Team Text Color") team_text_color_block;
-		s_tag_block_legacy<s_player_ui_color_definition> nicename("Player UI Color") player_ui_color_block;
-		s_tag_block_legacy<s_team_ui_color_definition> nicename("Team UI Color") team_ui_color_block;
+		s_tag_block_legacy<s_player_text_color_definition_legacy> nicename("Player Text Color") player_text_color_block;
+		s_tag_block_legacy<s_team_text_color_definition_legacy> nicename("Team Text Color") team_text_color_block;
+		s_tag_block_legacy<s_player_ui_color_definition_legacy> nicename("Player UI Color") player_ui_color_block;
+		s_tag_block_legacy<s_team_ui_color_definition_legacy> nicename("Team UI Color") team_ui_color_block;
 	};
 
-	struct nicename("Alerts") s_alerts_definition
+	struct nicename("Alerts") s_alerts_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint8_t /* bitfield */
 		{
@@ -59,7 +59,7 @@ struct nicename("user_interface_shared_globals_definition") tag_group('wigl') s_
 		string_id_legacy nicename("Body") body;
 	};
 
-	struct nicename("Dialogs") s_dialogs_definition
+	struct nicename("Dialogs") s_dialogs_definition_legacy
 	{
 		enum nicename("Default Option") e_default_option : uint16_t
 		{
@@ -83,7 +83,7 @@ struct nicename("user_interface_shared_globals_definition") tag_group('wigl') s_
 		int16_t __unknown2;
 	};
 
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		string_id_legacy __unknown0;
 		int32_t __unknown1;
@@ -103,13 +103,13 @@ struct nicename("user_interface_shared_globals_definition") tag_group('wigl') s_
 	int32_t nicename("Music Fade Time") music_fade_time;
 	s_colorf_legacy nicename("Color") color;
 	s_colorf_legacy nicename("Text Stroke Color") text_stroke_color;
-	s_tag_block_legacy<s_text_colors_definition> nicename("Text Colors") text_colors_block;
-	s_tag_block_legacy<s_player_colors_definition> nicename("Player Colors") player_colors_block;
+	s_tag_block_legacy<s_text_colors_definition_legacy> nicename("Text Colors") text_colors_block;
+	s_tag_block_legacy<s_player_colors_definition_legacy> nicename("Player Colors") player_colors_block;
 	int16_t __unknown0;
 	int16_t __unknown1;
 	s_tag_reference_legacy nicename("UI Sounds") ui_sounds_reference;
-	s_tag_block_legacy<s_alerts_definition> nicename("Alerts") alerts_block;
-	s_tag_block_legacy<s_dialogs_definition> nicename("Dialogs") dialogs_block;
+	s_tag_block_legacy<s_alerts_definition_legacy> nicename("Alerts") alerts_block;
+	s_tag_block_legacy<s_dialogs_definition_legacy> nicename("Dialogs") dialogs_block;
 	float nicename("Widescreen Bitmap Scale X") widescreen_bitmap_scale_x;
 	float nicename("Widescreen Bitmap Scale Y") widescreen_bitmap_scale_y;
 	float nicename("Standard Bitmap Scale X") standard_bitmap_scale_x;
@@ -128,6 +128,6 @@ struct nicename("user_interface_shared_globals_definition") tag_group('wigl') s_
 	s_data_reference_legacy __unknown2;
 	int32_t __unknown3;
 	int32_t nicename("Attract Video Idle Wait") attract_video_idle_wait;
-	s_tag_block_legacy<s_unknown_definition> __unknown4;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown4;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("decorator_set") tag_group('dctr') s_decorator_set_definition
+struct nicename("decorator_set") tag_group('dctr') s_decorator_set_definition_legacy
 {
 	enum nicename("Is Visible? (Can Crash Xbox!)") e_is_visible_can_crash_xbox : uint16_t
 	{
@@ -16,7 +16,7 @@ struct nicename("decorator_set") tag_group('dctr') s_decorator_set_definition
 		/*nicename("4 Models")*/ _lod_type__4_models = 3ui16,
 	};
 
-	struct nicename("Parts") s_parts_definition
+	struct nicename("Parts") s_parts_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 	};
@@ -25,7 +25,7 @@ struct nicename("decorator_set") tag_group('dctr') s_decorator_set_definition
 	s_tag_reference_legacy nicename("Lod Model 2") lod_model_2_reference;
 	s_tag_reference_legacy nicename("Lod Model 3") lod_model_3_reference;
 	s_tag_reference_legacy nicename("Lod Model 4") lod_model_4_reference;
-	s_tag_block_legacy<s_parts_definition> nicename("Parts") parts_block;
+	s_tag_block_legacy<s_parts_definition_legacy> nicename("Parts") parts_block;
 	int32_t __unknown0;
 	s_tag_reference_legacy nicename("Texture") texture_reference;
 	int16_t nicename("Affects Visibility") affects_visibility;

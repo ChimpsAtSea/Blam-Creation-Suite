@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_resource_gestalt_definition
+struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_resource_gestalt_definition_legacy
 {
 	enum nicename("Map Type") e_map_type : uint16_t
 	{
@@ -9,7 +9,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		/*nicename("Main Menu")*/ _map_type_main_menu = 2ui16,
 	};
 
-	struct nicename("Resource Types") s_resource_types_definition
+	struct nicename("Resource Types") s_resource_types_definition_legacy
 	{
 		signed char nicename("Guid") guid[16];
 		int16_t __unknown0;
@@ -19,18 +19,18 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		string_id_legacy nicename("Name") name;
 	};
 
-	struct nicename("Resource Structure Types") s_resource_structure_types_definition
+	struct nicename("Resource Structure Types") s_resource_structure_types_definition_legacy
 	{
 		signed char nicename("Guid") guid[16];
 		string_id_legacy nicename("Name") name;
 	};
 
-	struct nicename("Compression Codecs") s_compression_codecs_definition
+	struct nicename("Compression Codecs") s_compression_codecs_definition_legacy
 	{
 		signed char nicename("Guid") guid[16];
 	};
 
-	struct nicename("External Cache References") s_external_cache_references_definition
+	struct nicename("External Cache References") s_external_cache_references_definition_legacy
 	{
 		char nicename("Map Path") map_path[256];
 		int16_t __unknown0;
@@ -38,7 +38,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown2;
 	};
 
-	struct nicename("Raw Pages") s_raw_pages_definition
+	struct nicename("Raw Pages") s_raw_pages_definition_legacy
 	{
 		int16_t nicename("Salt") salt;
 		int8_t nicename("Flags") flags;
@@ -57,26 +57,26 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		int16_t __unknown1;
 	};
 
-	struct nicename("Sizes") s_sizes_definition
+	struct nicename("Sizes") s_sizes_definition_legacy
 	{
-		struct nicename("Parts") s_parts_definition
+		struct nicename("Parts") s_parts_definition_legacy
 		{
 			int32_t __unknown0;
 			int32_t nicename("Size") size;
 		};
 
 		int32_t nicename("Overall Size") overall_size;
-		s_tag_block_legacy<s_parts_definition> nicename("Parts") parts_block;
+		s_tag_block_legacy<s_parts_definition_legacy> nicename("Parts") parts_block;
 	};
 
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		int32_t __unknown0;
 		int32_t __unknown1;
 		int32_t __unknown2;
 	};
 
-	struct nicename("Segments") s_segments_definition
+	struct nicename("Segments") s_segments_definition_legacy
 	{
 		int16_t nicename("Primary Page Index") primary_page_index;
 		int16_t nicename("Secondary Page Index") secondary_page_index;
@@ -86,7 +86,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		int16_t nicename("Secondary Size Index") secondary_size_index;
 	};
 
-	struct nicename("Tag Resources") s_tag_resources_definition
+	struct nicename("Tag Resources") s_tag_resources_definition_legacy
 	{
 		enum nicename("Root Definition Address Location/High Bits") b_root_definition_address_location_high_bits : uint8_t /* bitfield */
 		{
@@ -100,7 +100,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			/*nicename("Bit 7")*/ _root_definition_address_location_high_bits_bit_7 = 1ui8 << 7ui8,
 		};
 
-		struct nicename("Resource Fixups") s_resource_fixups_definition
+		struct nicename("Resource Fixups") s_resource_fixups_definition_legacy
 		{
 			enum nicename("Address Location/High Bits") b_address_location_high_bits : uint8_t /* bitfield */
 			{
@@ -122,7 +122,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			uint16_t nicename("Address") address;
 		};
 
-		struct nicename("Resource Definition Fixups") s_resource_definition_fixups_definition
+		struct nicename("Resource Definition Fixups") s_resource_definition_fixups_definition_legacy
 		{
 			enum nicename("Offset Location/High Bits") b_offset_location_high_bits : uint8_t /* bitfield */
 			{
@@ -154,13 +154,13 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		b_root_definition_address_location_high_bits nicename("Root Definition Address Location/High Bits") root_definition_address_location_high_bits;
 		uint8_t nicename("Root Definition Address Upper Bits") root_definition_address_upper_bits;
 		uint16_t nicename("Root Definition Address") root_definition_address;
-		s_tag_block_legacy<s_resource_fixups_definition> nicename("Resource Fixups") resource_fixups_block;
-		s_tag_block_legacy<s_resource_definition_fixups_definition> nicename("Resource Definition Fixups") resource_definition_fixups_block;
+		s_tag_block_legacy<s_resource_fixups_definition_legacy> nicename("Resource Fixups") resource_fixups_block;
+		s_tag_block_legacy<s_resource_definition_fixups_definition_legacy> nicename("Resource Definition Fixups") resource_definition_fixups_block;
 	};
 
-	struct nicename("Designer Zonesets") s_designer_zonesets_definition
+	struct nicename("Designer Zonesets") s_designer_zonesets_definition_legacy
 	{
-		struct nicename("Required Raw Pool") s_required_raw_pool_definition
+		struct nicename("Required Raw Pool") s_required_raw_pool_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -201,7 +201,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool") s_optional_raw_pool_definition
+		struct nicename("Optional Raw Pool") s_optional_raw_pool_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -242,7 +242,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_2_definition
+		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_2_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -283,7 +283,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Resource Types") s_resource_types1_definition
+		struct nicename("Resource Types") s_resource_types1_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
@@ -293,7 +293,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			s_undefined32_legacy __unknown4;
 		};
 
-		struct nicename("Required Tag Pool") s_required_tag_pool_definition
+		struct nicename("Required Tag Pool") s_required_tag_pool_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -334,7 +334,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Tag Pool") s_optional_tag_pool_definition
+		struct nicename("Optional Tag Pool") s_optional_tag_pool_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -375,27 +375,27 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_legacy<s_required_raw_pool_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_tag_block_legacy<s_required_raw_pool_definition_legacy> nicename("Required Raw Pool") required_raw_pool_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_optional_raw_pool_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_legacy<s_optional_raw_pool_2_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		s_tag_block_legacy<s_optional_raw_pool_definition_legacy> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_2_definition_legacy> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
 		string_id_legacy nicename("Set Name") set_name;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
-		s_tag_block_legacy<s_resource_types1_definition> nicename("Resource Types") resource_types_block;
+		s_tag_block_legacy<s_resource_types1_definition_legacy> nicename("Resource Types") resource_types_block;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
 		s_undefined32_legacy __unknown12;
 		s_undefined32_legacy __unknown13;
-		s_tag_block_legacy<s_required_tag_pool_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_legacy<s_optional_tag_pool_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_tag_block_legacy<s_required_tag_pool_definition_legacy> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool_definition_legacy> nicename("Optional Tag Pool") optional_tag_pool_block;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
@@ -405,9 +405,9 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("Global Zoneset") s_global_zoneset_definition
+	struct nicename("Global Zoneset") s_global_zoneset_definition_legacy
 	{
-		struct nicename("Required Raw Pool") s_required_raw_pool1_definition
+		struct nicename("Required Raw Pool") s_required_raw_pool1_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -448,7 +448,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool") s_optional_raw_pool1_definition
+		struct nicename("Optional Raw Pool") s_optional_raw_pool1_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -489,7 +489,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_21_definition
+		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_21_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -530,7 +530,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Resource Types") s_resource_types2_definition
+		struct nicename("Resource Types") s_resource_types2_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
@@ -540,7 +540,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			s_undefined32_legacy __unknown4;
 		};
 
-		struct nicename("Required Tag Pool") s_required_tag_pool1_definition
+		struct nicename("Required Tag Pool") s_required_tag_pool1_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -581,7 +581,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Tag Pool") s_optional_tag_pool1_definition
+		struct nicename("Optional Tag Pool") s_optional_tag_pool1_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -622,27 +622,27 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_legacy<s_required_raw_pool1_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_tag_block_legacy<s_required_raw_pool1_definition_legacy> nicename("Required Raw Pool") required_raw_pool_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_optional_raw_pool1_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_legacy<s_optional_raw_pool_21_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		s_tag_block_legacy<s_optional_raw_pool1_definition_legacy> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_21_definition_legacy> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
 		string_id_legacy nicename("Set Name") set_name;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
-		s_tag_block_legacy<s_resource_types2_definition> nicename("Resource Types") resource_types_block;
+		s_tag_block_legacy<s_resource_types2_definition_legacy> nicename("Resource Types") resource_types_block;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
 		s_undefined32_legacy __unknown12;
 		s_undefined32_legacy __unknown13;
-		s_tag_block_legacy<s_required_tag_pool1_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_legacy<s_optional_tag_pool1_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_tag_block_legacy<s_required_tag_pool1_definition_legacy> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool1_definition_legacy> nicename("Optional Tag Pool") optional_tag_pool_block;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
@@ -652,9 +652,9 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("Unattached Zoneset") s_unattached_zoneset_definition
+	struct nicename("Unattached Zoneset") s_unattached_zoneset_definition_legacy
 	{
-		struct nicename("Required Raw Pool") s_required_raw_pool2_definition
+		struct nicename("Required Raw Pool") s_required_raw_pool2_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -695,7 +695,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool") s_optional_raw_pool2_definition
+		struct nicename("Optional Raw Pool") s_optional_raw_pool2_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -736,7 +736,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_22_definition
+		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_22_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -777,7 +777,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Resource Types") s_resource_types3_definition
+		struct nicename("Resource Types") s_resource_types3_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
@@ -787,7 +787,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			s_undefined32_legacy __unknown4;
 		};
 
-		struct nicename("Required Tag Pool") s_required_tag_pool2_definition
+		struct nicename("Required Tag Pool") s_required_tag_pool2_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -828,7 +828,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Tag Pool") s_optional_tag_pool2_definition
+		struct nicename("Optional Tag Pool") s_optional_tag_pool2_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -869,27 +869,27 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_legacy<s_required_raw_pool2_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_tag_block_legacy<s_required_raw_pool2_definition_legacy> nicename("Required Raw Pool") required_raw_pool_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_optional_raw_pool2_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_legacy<s_optional_raw_pool_22_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		s_tag_block_legacy<s_optional_raw_pool2_definition_legacy> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_22_definition_legacy> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
 		string_id_legacy nicename("Set Name") set_name;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
-		s_tag_block_legacy<s_resource_types3_definition> nicename("Resource Types") resource_types_block;
+		s_tag_block_legacy<s_resource_types3_definition_legacy> nicename("Resource Types") resource_types_block;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
 		s_undefined32_legacy __unknown12;
 		s_undefined32_legacy __unknown13;
-		s_tag_block_legacy<s_required_tag_pool2_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_legacy<s_optional_tag_pool2_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_tag_block_legacy<s_required_tag_pool2_definition_legacy> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool2_definition_legacy> nicename("Optional Tag Pool") optional_tag_pool_block;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
@@ -899,9 +899,9 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("Disc-Forbidden Zoneset") s_disc_forbidden_zoneset_definition
+	struct nicename("Disc-Forbidden Zoneset") s_disc_forbidden_zoneset_definition_legacy
 	{
-		struct nicename("Required Raw Pool") s_required_raw_pool3_definition
+		struct nicename("Required Raw Pool") s_required_raw_pool3_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -942,7 +942,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool") s_optional_raw_pool3_definition
+		struct nicename("Optional Raw Pool") s_optional_raw_pool3_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -983,7 +983,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_23_definition
+		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_23_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1024,7 +1024,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Resource Types") s_resource_types4_definition
+		struct nicename("Resource Types") s_resource_types4_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
@@ -1034,7 +1034,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			s_undefined32_legacy __unknown4;
 		};
 
-		struct nicename("Required Tag Pool") s_required_tag_pool3_definition
+		struct nicename("Required Tag Pool") s_required_tag_pool3_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1075,7 +1075,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Tag Pool") s_optional_tag_pool3_definition
+		struct nicename("Optional Tag Pool") s_optional_tag_pool3_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1116,27 +1116,27 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_legacy<s_required_raw_pool3_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_tag_block_legacy<s_required_raw_pool3_definition_legacy> nicename("Required Raw Pool") required_raw_pool_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_optional_raw_pool3_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_legacy<s_optional_raw_pool_23_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		s_tag_block_legacy<s_optional_raw_pool3_definition_legacy> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_23_definition_legacy> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
 		string_id_legacy nicename("Set Name") set_name;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
-		s_tag_block_legacy<s_resource_types4_definition> nicename("Resource Types") resource_types_block;
+		s_tag_block_legacy<s_resource_types4_definition_legacy> nicename("Resource Types") resource_types_block;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
 		s_undefined32_legacy __unknown12;
 		s_undefined32_legacy __unknown13;
-		s_tag_block_legacy<s_required_tag_pool3_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_legacy<s_optional_tag_pool3_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_tag_block_legacy<s_required_tag_pool3_definition_legacy> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool3_definition_legacy> nicename("Optional Tag Pool") optional_tag_pool_block;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
@@ -1146,9 +1146,9 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("Disc-Always-Streaming Zoneset") s_disc_always_streaming_zoneset_definition
+	struct nicename("Disc-Always-Streaming Zoneset") s_disc_always_streaming_zoneset_definition_legacy
 	{
-		struct nicename("Required Raw Pool") s_required_raw_pool4_definition
+		struct nicename("Required Raw Pool") s_required_raw_pool4_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1189,7 +1189,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool") s_optional_raw_pool4_definition
+		struct nicename("Optional Raw Pool") s_optional_raw_pool4_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1230,7 +1230,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_24_definition
+		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_24_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1271,7 +1271,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Resource Types") s_resource_types5_definition
+		struct nicename("Resource Types") s_resource_types5_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
@@ -1281,7 +1281,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			s_undefined32_legacy __unknown4;
 		};
 
-		struct nicename("Required Tag Pool") s_required_tag_pool4_definition
+		struct nicename("Required Tag Pool") s_required_tag_pool4_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1322,7 +1322,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Tag Pool") s_optional_tag_pool4_definition
+		struct nicename("Optional Tag Pool") s_optional_tag_pool4_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1363,27 +1363,27 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_legacy<s_required_raw_pool4_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_tag_block_legacy<s_required_raw_pool4_definition_legacy> nicename("Required Raw Pool") required_raw_pool_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_optional_raw_pool4_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_legacy<s_optional_raw_pool_24_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		s_tag_block_legacy<s_optional_raw_pool4_definition_legacy> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_24_definition_legacy> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
 		string_id_legacy nicename("Set Name") set_name;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
-		s_tag_block_legacy<s_resource_types5_definition> nicename("Resource Types") resource_types_block;
+		s_tag_block_legacy<s_resource_types5_definition_legacy> nicename("Resource Types") resource_types_block;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
 		s_undefined32_legacy __unknown12;
 		s_undefined32_legacy __unknown13;
-		s_tag_block_legacy<s_required_tag_pool4_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_legacy<s_optional_tag_pool4_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_tag_block_legacy<s_required_tag_pool4_definition_legacy> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool4_definition_legacy> nicename("Optional Tag Pool") optional_tag_pool_block;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
@@ -1393,9 +1393,9 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("BSP Zonesets") s_bsp_zonesets_definition
+	struct nicename("BSP Zonesets") s_bsp_zonesets_definition_legacy
 	{
-		struct nicename("Required Raw Pool") s_required_raw_pool5_definition
+		struct nicename("Required Raw Pool") s_required_raw_pool5_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1436,7 +1436,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool") s_optional_raw_pool5_definition
+		struct nicename("Optional Raw Pool") s_optional_raw_pool5_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1477,7 +1477,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_25_definition
+		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_25_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1518,7 +1518,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Resource Types") s_resource_types6_definition
+		struct nicename("Resource Types") s_resource_types6_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
@@ -1528,7 +1528,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			s_undefined32_legacy __unknown4;
 		};
 
-		struct nicename("Required Tag Pool") s_required_tag_pool5_definition
+		struct nicename("Required Tag Pool") s_required_tag_pool5_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1569,7 +1569,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Tag Pool") s_optional_tag_pool5_definition
+		struct nicename("Optional Tag Pool") s_optional_tag_pool5_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1610,27 +1610,27 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_legacy<s_required_raw_pool5_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_tag_block_legacy<s_required_raw_pool5_definition_legacy> nicename("Required Raw Pool") required_raw_pool_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_optional_raw_pool5_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_legacy<s_optional_raw_pool_25_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		s_tag_block_legacy<s_optional_raw_pool5_definition_legacy> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_25_definition_legacy> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
 		string_id_legacy nicename("Set Name") set_name;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
-		s_tag_block_legacy<s_resource_types6_definition> nicename("Resource Types") resource_types_block;
+		s_tag_block_legacy<s_resource_types6_definition_legacy> nicename("Resource Types") resource_types_block;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
 		s_undefined32_legacy __unknown12;
 		s_undefined32_legacy __unknown13;
-		s_tag_block_legacy<s_required_tag_pool5_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_legacy<s_optional_tag_pool5_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_tag_block_legacy<s_required_tag_pool5_definition_legacy> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool5_definition_legacy> nicename("Optional Tag Pool") optional_tag_pool_block;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
@@ -1640,9 +1640,9 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("BSP Zonesets 2") s_bsp_zonesets_2_definition
+	struct nicename("BSP Zonesets 2") s_bsp_zonesets_2_definition_legacy
 	{
-		struct nicename("Required Raw Pool") s_required_raw_pool6_definition
+		struct nicename("Required Raw Pool") s_required_raw_pool6_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1683,7 +1683,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool") s_optional_raw_pool6_definition
+		struct nicename("Optional Raw Pool") s_optional_raw_pool6_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1724,7 +1724,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_26_definition
+		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_26_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1765,7 +1765,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Resource Types") s_resource_types7_definition
+		struct nicename("Resource Types") s_resource_types7_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
@@ -1775,7 +1775,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			s_undefined32_legacy __unknown4;
 		};
 
-		struct nicename("Required Tag Pool") s_required_tag_pool6_definition
+		struct nicename("Required Tag Pool") s_required_tag_pool6_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1816,7 +1816,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Tag Pool") s_optional_tag_pool6_definition
+		struct nicename("Optional Tag Pool") s_optional_tag_pool6_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1857,27 +1857,27 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_legacy<s_required_raw_pool6_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_tag_block_legacy<s_required_raw_pool6_definition_legacy> nicename("Required Raw Pool") required_raw_pool_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_optional_raw_pool6_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_legacy<s_optional_raw_pool_26_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		s_tag_block_legacy<s_optional_raw_pool6_definition_legacy> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_26_definition_legacy> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
 		string_id_legacy nicename("Set Name") set_name;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
-		s_tag_block_legacy<s_resource_types7_definition> nicename("Resource Types") resource_types_block;
+		s_tag_block_legacy<s_resource_types7_definition_legacy> nicename("Resource Types") resource_types_block;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
 		s_undefined32_legacy __unknown12;
 		s_undefined32_legacy __unknown13;
-		s_tag_block_legacy<s_required_tag_pool6_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_legacy<s_optional_tag_pool6_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_tag_block_legacy<s_required_tag_pool6_definition_legacy> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool6_definition_legacy> nicename("Optional Tag Pool") optional_tag_pool_block;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
@@ -1887,9 +1887,9 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("BSP Zonesets 3") s_bsp_zonesets_3_definition
+	struct nicename("BSP Zonesets 3") s_bsp_zonesets_3_definition_legacy
 	{
-		struct nicename("Required Raw Pool") s_required_raw_pool7_definition
+		struct nicename("Required Raw Pool") s_required_raw_pool7_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1930,7 +1930,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool") s_optional_raw_pool7_definition
+		struct nicename("Optional Raw Pool") s_optional_raw_pool7_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -1971,7 +1971,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_27_definition
+		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_27_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2012,7 +2012,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Resource Types") s_resource_types8_definition
+		struct nicename("Resource Types") s_resource_types8_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
@@ -2022,7 +2022,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			s_undefined32_legacy __unknown4;
 		};
 
-		struct nicename("Required Tag Pool") s_required_tag_pool7_definition
+		struct nicename("Required Tag Pool") s_required_tag_pool7_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2063,7 +2063,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Tag Pool") s_optional_tag_pool7_definition
+		struct nicename("Optional Tag Pool") s_optional_tag_pool7_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2104,27 +2104,27 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_legacy<s_required_raw_pool7_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_tag_block_legacy<s_required_raw_pool7_definition_legacy> nicename("Required Raw Pool") required_raw_pool_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_optional_raw_pool7_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_legacy<s_optional_raw_pool_27_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		s_tag_block_legacy<s_optional_raw_pool7_definition_legacy> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_27_definition_legacy> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
 		string_id_legacy nicename("Set Name") set_name;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
-		s_tag_block_legacy<s_resource_types8_definition> nicename("Resource Types") resource_types_block;
+		s_tag_block_legacy<s_resource_types8_definition_legacy> nicename("Resource Types") resource_types_block;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
 		s_undefined32_legacy __unknown12;
 		s_undefined32_legacy __unknown13;
-		s_tag_block_legacy<s_required_tag_pool7_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_legacy<s_optional_tag_pool7_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_tag_block_legacy<s_required_tag_pool7_definition_legacy> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool7_definition_legacy> nicename("Optional Tag Pool") optional_tag_pool_block;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
@@ -2134,9 +2134,9 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("Cinematic Zonesets") s_cinematic_zonesets_definition
+	struct nicename("Cinematic Zonesets") s_cinematic_zonesets_definition_legacy
 	{
-		struct nicename("Required Raw Pool") s_required_raw_pool8_definition
+		struct nicename("Required Raw Pool") s_required_raw_pool8_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2177,7 +2177,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool") s_optional_raw_pool8_definition
+		struct nicename("Optional Raw Pool") s_optional_raw_pool8_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2218,7 +2218,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_28_definition
+		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_28_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2259,7 +2259,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Resource Types") s_resource_types9_definition
+		struct nicename("Resource Types") s_resource_types9_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
@@ -2269,7 +2269,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			s_undefined32_legacy __unknown4;
 		};
 
-		struct nicename("Required Tag Pool") s_required_tag_pool8_definition
+		struct nicename("Required Tag Pool") s_required_tag_pool8_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2310,7 +2310,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Tag Pool") s_optional_tag_pool8_definition
+		struct nicename("Optional Tag Pool") s_optional_tag_pool8_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2351,27 +2351,27 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_legacy<s_required_raw_pool8_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_tag_block_legacy<s_required_raw_pool8_definition_legacy> nicename("Required Raw Pool") required_raw_pool_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_optional_raw_pool8_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_legacy<s_optional_raw_pool_28_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		s_tag_block_legacy<s_optional_raw_pool8_definition_legacy> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_28_definition_legacy> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
 		string_id_legacy nicename("Set Name") set_name;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
-		s_tag_block_legacy<s_resource_types9_definition> nicename("Resource Types") resource_types_block;
+		s_tag_block_legacy<s_resource_types9_definition_legacy> nicename("Resource Types") resource_types_block;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
 		s_undefined32_legacy __unknown12;
 		s_undefined32_legacy __unknown13;
-		s_tag_block_legacy<s_required_tag_pool8_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_legacy<s_optional_tag_pool8_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_tag_block_legacy<s_required_tag_pool8_definition_legacy> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool8_definition_legacy> nicename("Optional Tag Pool") optional_tag_pool_block;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
@@ -2381,9 +2381,9 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("Scenario Zonesets") s_scenario_zonesets_definition
+	struct nicename("Scenario Zonesets") s_scenario_zonesets_definition_legacy
 	{
-		struct nicename("Required Raw Pool") s_required_raw_pool9_definition
+		struct nicename("Required Raw Pool") s_required_raw_pool9_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2424,7 +2424,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool") s_optional_raw_pool9_definition
+		struct nicename("Optional Raw Pool") s_optional_raw_pool9_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2465,7 +2465,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_29_definition
+		struct nicename("Optional Raw Pool 2") s_optional_raw_pool_29_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2506,7 +2506,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Resource Types") s_resource_types10_definition
+		struct nicename("Resource Types") s_resource_types10_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
@@ -2516,7 +2516,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			s_undefined32_legacy __unknown4;
 		};
 
-		struct nicename("Required Tag Pool") s_required_tag_pool9_definition
+		struct nicename("Required Tag Pool") s_required_tag_pool9_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2557,7 +2557,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		struct nicename("Optional Tag Pool") s_optional_tag_pool9_definition
+		struct nicename("Optional Tag Pool") s_optional_tag_pool9_definition_legacy
 		{
 			enum nicename("Active Members") b_active_members : uint32_t /* bitfield */
 			{
@@ -2598,27 +2598,27 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 			b_active_members nicename("Active Members") active_members;
 		};
 
-		s_tag_block_legacy<s_required_raw_pool9_definition> nicename("Required Raw Pool") required_raw_pool_block;
+		s_tag_block_legacy<s_required_raw_pool9_definition_legacy> nicename("Required Raw Pool") required_raw_pool_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_optional_raw_pool9_definition> nicename("Optional Raw Pool") optional_raw_pool_block;
-		s_tag_block_legacy<s_optional_raw_pool_29_definition> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
+		s_tag_block_legacy<s_optional_raw_pool9_definition_legacy> nicename("Optional Raw Pool") optional_raw_pool_block;
+		s_tag_block_legacy<s_optional_raw_pool_29_definition_legacy> nicename("Optional Raw Pool 2") optional_raw_pool_2_block;
 		string_id_legacy nicename("Set Name") set_name;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
-		s_tag_block_legacy<s_resource_types10_definition> nicename("Resource Types") resource_types_block;
+		s_tag_block_legacy<s_resource_types10_definition_legacy> nicename("Resource Types") resource_types_block;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
 		s_undefined32_legacy __unknown12;
 		s_undefined32_legacy __unknown13;
-		s_tag_block_legacy<s_required_tag_pool9_definition> nicename("Required Tag Pool") required_tag_pool_block;
-		s_tag_block_legacy<s_optional_tag_pool9_definition> nicename("Optional Tag Pool") optional_tag_pool_block;
+		s_tag_block_legacy<s_required_tag_pool9_definition_legacy> nicename("Required Tag Pool") required_tag_pool_block;
+		s_tag_block_legacy<s_optional_tag_pool9_definition_legacy> nicename("Optional Tag Pool") optional_tag_pool_block;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
@@ -2628,7 +2628,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("Scenario Zoneset Groups") s_scenario_zoneset_groups_definition
+	struct nicename("Scenario Zoneset Groups") s_scenario_zoneset_groups_definition_legacy
 	{
 		enum nicename("Import Loaded BSPs") b_import_loaded_bsps : uint32_t /* bitfield */
 		{
@@ -2857,12 +2857,12 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		int32_t nicename("BSP Atlas Index") bsp_atlas_index;
 	};
 
-	struct nicename("Scenario BSPs") s_scenario_bsps_definition
+	struct nicename("Scenario BSPs") s_scenario_bsps_definition_legacy
 	{
 		s_tag_reference_legacy nicename("BSP") bsp_reference;
 	};
 
-	struct nicename("Unknown 13") s_unknown_13_definition
+	struct nicename("Unknown 13") s_unknown_13_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -2872,25 +2872,25 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		s_undefined32_legacy __unknown5;
 	};
 
-	struct nicename("Prediction A") s_prediction_a_definition
+	struct nicename("Prediction A") s_prediction_a_definition_legacy
 	{
 		uint32_t nicename("Key") key;
 	};
 
-	struct nicename("Prediction B") s_prediction_b_definition
+	struct nicename("Prediction B") s_prediction_b_definition_legacy
 	{
 		int16_t nicename("Overall Index") overall_index;
 		int16_t nicename("A Count") a_count;
 		int32_t nicename("A Index") a_index;
 	};
 
-	struct nicename("Prediction C") s_prediction_c_definition
+	struct nicename("Prediction C") s_prediction_c_definition_legacy
 	{
 		int16_t nicename("Overall Index") overall_index;
 		int16_t nicename("B Index") b_index;
 	};
 
-	struct nicename("Prediction D - Tags") s_prediction_d___tags_definition
+	struct nicename("Prediction D - Tags") s_prediction_d___tags_definition_legacy
 	{
 		int16_t nicename("C Count") c_count;
 		int16_t nicename("C Index") c_index;
@@ -2898,7 +2898,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 		int16_t nicename("A Index") a_index;
 	};
 
-	struct nicename("Prediction D2 - Tags") s_prediction_d2___tags_definition
+	struct nicename("Prediction D2 - Tags") s_prediction_d2___tags_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Tag") tag_reference;
 		int32_t nicename("First Value") first_value;
@@ -2907,39 +2907,39 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 
 	e_map_type nicename("Map Type") map_type;
 	int16_t nicename("Flags") flags;
-	s_tag_block_legacy<s_resource_types_definition> nicename("Resource Types") resource_types_block;
-	s_tag_block_legacy<s_resource_structure_types_definition> nicename("Resource Structure Types") resource_structure_types_block;
-	s_tag_block_legacy<s_compression_codecs_definition> nicename("Compression Codecs") compression_codecs_block;
-	s_tag_block_legacy<s_external_cache_references_definition> nicename("External Cache References") external_cache_references_block;
-	s_tag_block_legacy<s_raw_pages_definition> nicename("Raw Pages") raw_pages_block;
-	s_tag_block_legacy<s_sizes_definition> nicename("Sizes") sizes_block;
-	s_tag_block_legacy<s_unknown_definition> __unknown0;
-	s_tag_block_legacy<s_segments_definition> nicename("Segments") segments_block;
-	s_tag_block_legacy<s_tag_resources_definition> nicename("Tag Resources") tag_resources_block;
+	s_tag_block_legacy<s_resource_types_definition_legacy> nicename("Resource Types") resource_types_block;
+	s_tag_block_legacy<s_resource_structure_types_definition_legacy> nicename("Resource Structure Types") resource_structure_types_block;
+	s_tag_block_legacy<s_compression_codecs_definition_legacy> nicename("Compression Codecs") compression_codecs_block;
+	s_tag_block_legacy<s_external_cache_references_definition_legacy> nicename("External Cache References") external_cache_references_block;
+	s_tag_block_legacy<s_raw_pages_definition_legacy> nicename("Raw Pages") raw_pages_block;
+	s_tag_block_legacy<s_sizes_definition_legacy> nicename("Sizes") sizes_block;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown0;
+	s_tag_block_legacy<s_segments_definition_legacy> nicename("Segments") segments_block;
+	s_tag_block_legacy<s_tag_resources_definition_legacy> nicename("Tag Resources") tag_resources_block;
 	/* Active Pool Members : Pools are divided up into 32-bit groups per chunk.
 	   Each bit corresponds to either a chunk in "Tag Resources" above (Raw Pools), or a tag in the overall tag listing (Tag Pools).
 	   If a bit is enabled then that member will be loaded. */
-	s_tag_block_legacy<s_designer_zonesets_definition> nicename("Designer Zonesets") designer_zonesets_block;
-	s_tag_block_legacy<s_global_zoneset_definition> nicename("Global Zoneset") global_zoneset_block;
+	s_tag_block_legacy<s_designer_zonesets_definition_legacy> nicename("Designer Zonesets") designer_zonesets_block;
+	s_tag_block_legacy<s_global_zoneset_definition_legacy> nicename("Global Zoneset") global_zoneset_block;
 	s_undefined32_legacy __unknown1;
 	s_undefined32_legacy __unknown2;
 	s_undefined32_legacy __unknown3;
-	s_tag_block_legacy<s_unattached_zoneset_definition> nicename("Unattached Zoneset") unattached_zoneset_block;
-	s_tag_block_legacy<s_disc_forbidden_zoneset_definition> nicename("Disc-Forbidden Zoneset") disc_forbidden_zoneset_block;
-	s_tag_block_legacy<s_disc_always_streaming_zoneset_definition> nicename("Disc-Always-Streaming Zoneset") disc_always_streaming_zoneset_block;
-	s_tag_block_legacy<s_bsp_zonesets_definition> nicename("BSP Zonesets") bsp_zonesets_block;
-	s_tag_block_legacy<s_bsp_zonesets_2_definition> nicename("BSP Zonesets 2") bsp_zonesets_2_block;
-	s_tag_block_legacy<s_bsp_zonesets_3_definition> nicename("BSP Zonesets 3") bsp_zonesets_3_block;
-	s_tag_block_legacy<s_cinematic_zonesets_definition> nicename("Cinematic Zonesets") cinematic_zonesets_block;
-	s_tag_block_legacy<s_scenario_zonesets_definition> nicename("Scenario Zonesets") scenario_zonesets_block;
+	s_tag_block_legacy<s_unattached_zoneset_definition_legacy> nicename("Unattached Zoneset") unattached_zoneset_block;
+	s_tag_block_legacy<s_disc_forbidden_zoneset_definition_legacy> nicename("Disc-Forbidden Zoneset") disc_forbidden_zoneset_block;
+	s_tag_block_legacy<s_disc_always_streaming_zoneset_definition_legacy> nicename("Disc-Always-Streaming Zoneset") disc_always_streaming_zoneset_block;
+	s_tag_block_legacy<s_bsp_zonesets_definition_legacy> nicename("BSP Zonesets") bsp_zonesets_block;
+	s_tag_block_legacy<s_bsp_zonesets_2_definition_legacy> nicename("BSP Zonesets 2") bsp_zonesets_2_block;
+	s_tag_block_legacy<s_bsp_zonesets_3_definition_legacy> nicename("BSP Zonesets 3") bsp_zonesets_3_block;
+	s_tag_block_legacy<s_cinematic_zonesets_definition_legacy> nicename("Cinematic Zonesets") cinematic_zonesets_block;
+	s_tag_block_legacy<s_scenario_zonesets_definition_legacy> nicename("Scenario Zonesets") scenario_zonesets_block;
 	s_undefined32_legacy __unknown4;
 	s_undefined32_legacy __unknown5;
 	s_undefined32_legacy __unknown6;
 	s_undefined32_legacy __unknown7;
 	s_undefined32_legacy __unknown8;
 	s_undefined32_legacy __unknown9;
-	s_tag_block_legacy<s_scenario_zoneset_groups_definition> nicename("Scenario Zoneset Groups") scenario_zoneset_groups_block;
-	s_tag_block_legacy<s_scenario_bsps_definition> nicename("Scenario BSPs") scenario_bsps_block;
+	s_tag_block_legacy<s_scenario_zoneset_groups_definition_legacy> nicename("Scenario Zoneset Groups") scenario_zoneset_groups_block;
+	s_tag_block_legacy<s_scenario_bsps_definition_legacy> nicename("Scenario BSPs") scenario_bsps_block;
 	s_undefined32_legacy __unknown10;
 	s_undefined32_legacy __unknown11;
 	s_undefined32_legacy __unknown12;
@@ -2955,7 +2955,7 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 	s_undefined32_legacy __unknown21;
 	s_undefined32_legacy __unknown22;
 	s_undefined32_legacy __unknown23;
-	s_tag_block_legacy<s_unknown_13_definition> nicename("Unknown 13") unknown_13_block;
+	s_tag_block_legacy<s_unknown_13_definition_legacy> nicename("Unknown 13") unknown_13_block;
 	s_undefined32_legacy __unknown24;
 	s_undefined32_legacy __unknown25;
 	s_undefined32_legacy __unknown26;
@@ -2980,11 +2980,11 @@ struct nicename("cache_file_resource_gestalt") tag_group('zone') s_cache_file_re
 	s_undefined32_legacy __unknown45;
 	s_undefined32_legacy __unknown46;
 	s_undefined32_legacy __unknown47;
-	s_tag_block_legacy<s_prediction_a_definition> nicename("Prediction A") prediction_a_block;
-	s_tag_block_legacy<s_prediction_b_definition> nicename("Prediction B") prediction_b_block;
-	s_tag_block_legacy<s_prediction_c_definition> nicename("Prediction C") prediction_c_block;
-	s_tag_block_legacy<s_prediction_d___tags_definition> nicename("Prediction D - Tags") prediction_d___tags_block;
-	s_tag_block_legacy<s_prediction_d2___tags_definition> nicename("Prediction D2 - Tags") prediction_d2___tags_block;
+	s_tag_block_legacy<s_prediction_a_definition_legacy> nicename("Prediction A") prediction_a_block;
+	s_tag_block_legacy<s_prediction_b_definition_legacy> nicename("Prediction B") prediction_b_block;
+	s_tag_block_legacy<s_prediction_c_definition_legacy> nicename("Prediction C") prediction_c_block;
+	s_tag_block_legacy<s_prediction_d___tags_definition_legacy> nicename("Prediction D - Tags") prediction_d___tags_block;
+	s_tag_block_legacy<s_prediction_d2___tags_definition_legacy> nicename("Prediction D2 - Tags") prediction_d2___tags_block;
 	int32_t nicename("Campaign ID") campaign_id;
 	int32_t nicename("Map ID") map_id;
 };

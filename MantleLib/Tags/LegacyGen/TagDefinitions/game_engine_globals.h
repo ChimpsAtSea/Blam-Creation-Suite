@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("game_engine_globals") tag_group('gegl') s_game_engine_globals_definition
+struct nicename("game_engine_globals") tag_group('gegl') s_game_engine_globals_definition_legacy
 {
-	struct nicename("Engine Events") s_engine_events_definition
+	struct nicename("Engine Events") s_engine_events_definition_legacy
 	{
 		enum nicename("Audience") e_audience : uint8_t
 		{
@@ -49,6 +49,6 @@ struct nicename("game_engine_globals") tag_group('gegl') s_game_engine_globals_d
 
 	s_tag_reference_legacy nicename("Engine Settings") engine_settings_reference;
 	s_tag_reference_legacy nicename("In Game Strings") in_game_strings_reference;
-	s_tag_block_legacy<s_engine_events_definition> nicename("Engine Events") engine_events_block;
+	s_tag_block_legacy<s_engine_events_definition_legacy> nicename("Engine Events") engine_events_block;
 };
 

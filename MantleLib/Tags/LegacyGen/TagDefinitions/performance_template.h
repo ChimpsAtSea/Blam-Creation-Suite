@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("performance_template") tag_group('pfmc') s_performance_template_definition
+struct nicename("performance_template") tag_group('pfmc') s_performance_template_definition_legacy
 {
-	struct nicename("Unknown 0") s_unknown_0_definition
+	struct nicename("Unknown 0") s_unknown_0_definition_legacy
 	{
 		int32_t __unknown0;
 		string_id_legacy __unknown1;
@@ -13,9 +13,9 @@ struct nicename("performance_template") tag_group('pfmc') s_performance_template
 		int32_t __unknown6;
 	};
 
-	struct nicename("Unknown 1") s_unknown_1_definition
+	struct nicename("Unknown 1") s_unknown_1_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown_definition
+		struct nicename("Unknown") s_unknown_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
@@ -148,7 +148,7 @@ struct nicename("performance_template") tag_group('pfmc') s_performance_template
 			s_undefined32_legacy __unknown128;
 		};
 
-		struct nicename("Unknown") s_unknown1_definition
+		struct nicename("Unknown") s_unknown1_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
@@ -156,7 +156,7 @@ struct nicename("performance_template") tag_group('pfmc') s_performance_template
 			s_undefined32_legacy __unknown3;
 		};
 
-		struct nicename("Unknown") s_unknown2_definition
+		struct nicename("Unknown") s_unknown2_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
@@ -167,7 +167,7 @@ struct nicename("performance_template") tag_group('pfmc') s_performance_template
 			s_undefined32_legacy __unknown6;
 		};
 
-		struct nicename("Unknown") s_unknown3_definition
+		struct nicename("Unknown") s_unknown3_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
@@ -181,10 +181,10 @@ struct nicename("performance_template") tag_group('pfmc') s_performance_template
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
 		s_undefined32_legacy __unknown3;
-		s_tag_block_legacy<s_unknown_definition> __unknown4;
-		s_tag_block_legacy<s_unknown1_definition> __unknown5;
-		s_tag_block_legacy<s_unknown2_definition> __unknown6;
-		s_tag_block_legacy<s_unknown3_definition> __unknown7;
+		s_tag_block_legacy<s_unknown_definition_legacy> __unknown4;
+		s_tag_block_legacy<s_unknown1_definition_legacy> __unknown5;
+		s_tag_block_legacy<s_unknown2_definition_legacy> __unknown6;
+		s_tag_block_legacy<s_unknown3_definition_legacy> __unknown7;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
@@ -196,7 +196,7 @@ struct nicename("performance_template") tag_group('pfmc') s_performance_template
 		s_undefined32_legacy __unknown16;
 	};
 
-	struct nicename("Unknown 2") s_unknown_2_definition
+	struct nicename("Unknown 2") s_unknown_2_definition_legacy
 	{
 		string_id_legacy __unknown0;
 		float __unknown1;
@@ -208,8 +208,8 @@ struct nicename("performance_template") tag_group('pfmc') s_performance_template
 
 	string_id_legacy __unknown0;
 	s_undefined32_legacy __unknown1;
-	s_tag_block_legacy<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
-	s_tag_block_legacy<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
-	s_tag_block_legacy<s_unknown_2_definition> nicename("Unknown 2") unknown_2_block;
+	s_tag_block_legacy<s_unknown_0_definition_legacy> nicename("Unknown 0") unknown_0_block;
+	s_tag_block_legacy<s_unknown_1_definition_legacy> nicename("Unknown 1") unknown_1_block;
+	s_tag_block_legacy<s_unknown_2_definition_legacy> nicename("Unknown 2") unknown_2_block;
 };
 

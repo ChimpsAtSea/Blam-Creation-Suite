@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("scenario_structure_lighting_info") tag_group('stli') s_scenario_structure_lighting_info_definition
+struct nicename("scenario_structure_lighting_info") tag_group('stli') s_scenario_structure_lighting_info_definition_legacy
 {
-	struct nicename("Unknown 0") s_unknown_0_definition
+	struct nicename("Unknown 0") s_unknown_0_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
@@ -28,7 +28,7 @@ struct nicename("scenario_structure_lighting_info") tag_group('stli') s_scenario
 		s_undefined32_legacy __unknown21;
 	};
 
-	struct nicename("Unknown 1") s_unknown_1_definition
+	struct nicename("Unknown 1") s_unknown_1_definition_legacy
 	{
 		int32_t __unknown0;
 		int32_t __unknown1;
@@ -53,7 +53,7 @@ struct nicename("scenario_structure_lighting_info") tag_group('stli') s_scenario
 		s_tag_reference_legacy __unknown20;
 	};
 
-	struct nicename("Unknown 2") s_unknown_2_definition
+	struct nicename("Unknown 2") s_unknown_2_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -67,7 +67,7 @@ struct nicename("scenario_structure_lighting_info") tag_group('stli') s_scenario
 		s_undefined32_legacy __unknown9;
 	};
 
-	struct nicename("Unknown 3") s_unknown_3_definition
+	struct nicename("Unknown 3") s_unknown_3_definition_legacy
 	{
 		string_id_legacy __unknown0;
 		int8_t __unknown1;
@@ -78,15 +78,15 @@ struct nicename("scenario_structure_lighting_info") tag_group('stli') s_scenario
 	};
 
 	int32_t nicename("Checksum?") checksum;
-	s_tag_block_legacy<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
-	s_tag_block_legacy<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
+	s_tag_block_legacy<s_unknown_0_definition_legacy> nicename("Unknown 0") unknown_0_block;
+	s_tag_block_legacy<s_unknown_1_definition_legacy> nicename("Unknown 1") unknown_1_block;
 	s_undefined32_legacy __unknown0;
 	s_undefined32_legacy __unknown1;
 	s_undefined32_legacy __unknown2;
 	s_undefined32_legacy __unknown3;
 	s_undefined32_legacy __unknown4;
 	s_undefined32_legacy __unknown5;
-	s_tag_block_legacy<s_unknown_2_definition> nicename("Unknown 2") unknown_2_block;
-	s_tag_block_legacy<s_unknown_3_definition> nicename("Unknown 3") unknown_3_block;
+	s_tag_block_legacy<s_unknown_2_definition_legacy> nicename("Unknown 2") unknown_2_block;
+	s_tag_block_legacy<s_unknown_3_definition_legacy> nicename("Unknown 3") unknown_3_block;
 };
 

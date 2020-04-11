@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("weapon") tag_group('weap') s_weapon_definition
+struct nicename("weapon") tag_group('weap') s_weapon_definition_legacy
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{
@@ -307,7 +307,7 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		/*nicename("Bit 31")*/ _more_flags_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Early Mover Properties") s_early_mover_properties_definition
+	struct nicename("Early Mover Properties") s_early_mover_properties_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_undefined32_legacy __unknown0;
@@ -322,7 +322,7 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		s_undefined32_legacy __unknown9;
 	};
 
-	struct nicename("AI Properties") s_ai_properties_definition
+	struct nicename("AI Properties") s_ai_properties_definition_legacy
 	{
 		enum nicename("Size") e_size : uint16_t
 		{
@@ -390,7 +390,7 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		e_leap_jump_speed nicename("Leap Jump Speed") leap_jump_speed;
 	};
 
-	struct nicename("Functions") s_functions_definition
+	struct nicename("Functions") s_functions_definition_legacy
 	{
 		enum nicename("Flags") b_flags1 : uint32_t /* bitfield */
 		{
@@ -428,7 +428,7 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 			/*nicename("Bit 31")*/ _flags1_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Unknown") s_unknown_definition
+		struct nicename("Unknown") s_unknown_definition_legacy
 		{
 			int32_t __unknown0;
 			float __unknown1;
@@ -446,16 +446,16 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		float nicename("Minimum Value") minimum_value;
 		s_data_reference_legacy nicename("Default Function") default_function_data_reference;
 		string_id_legacy nicename("Scale By") scale_by;
-		s_tag_block_legacy<s_unknown_definition> __unknown1;
+		s_tag_block_legacy<s_unknown_definition_legacy> __unknown1;
 		int32_t nicename("'Function Related' Index") function_related_index;
 	};
 
-	struct nicename("Function Related") s_function_related_definition
+	struct nicename("Function Related") s_function_related_definition_legacy
 	{
 		int32_t nicename("Function Index") function_index;
 	};
 
-	struct nicename("Attachments") s_attachments_definition
+	struct nicename("Attachments") s_attachments_definition_legacy
 	{
 		enum nicename("Change Color") e_change_color : uint16_t
 		{
@@ -474,9 +474,9 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		string_id_legacy nicename("Secondary Scale") secondary_scale;
 	};
 
-	struct nicename("Material Responses") s_material_responses_definition
+	struct nicename("Material Responses") s_material_responses_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown1_definition
+		struct nicename("Unknown") s_unknown1_definition_legacy
 		{
 			string_id_legacy nicename("Material") material;
 			s_data_reference_legacy __unknown0;
@@ -490,10 +490,10 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_unknown1_definition> __unknown3;
+		s_tag_block_legacy<s_unknown1_definition_legacy> __unknown3;
 	};
 
-	struct nicename("Jet Wash") s_jet_wash_definition
+	struct nicename("Jet Wash") s_jet_wash_definition_legacy
 	{
 		string_id_legacy nicename("Marker") marker;
 		float __unknown0;
@@ -506,14 +506,14 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		float __unknown7;
 	};
 
-	struct nicename("Widgets") s_widgets_definition
+	struct nicename("Widgets") s_widgets_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Type") type_reference;
 	};
 
-	struct nicename("Change Color") s_change_color_definition
+	struct nicename("Change Color") s_change_color_definition_legacy
 	{
-		struct nicename("Initial Permutations") s_initial_permutations_definition
+		struct nicename("Initial Permutations") s_initial_permutations_definition_legacy
 		{
 			float nicename("Weight") weight;
 			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
@@ -521,7 +521,7 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 			string_id_legacy nicename("Variant Name") variant_name;
 		};
 
-		struct nicename("Functions") s_functions1_definition
+		struct nicename("Functions") s_functions1_definition_legacy
 		{
 			enum nicename("Scale Flags") b_scale_flags : uint32_t /* bitfield */
 			{
@@ -566,18 +566,18 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 			string_id_legacy nicename("Scale By...") scale_by;
 		};
 
-		s_tag_block_legacy<s_initial_permutations_definition> nicename("Initial Permutations") initial_permutations_block;
-		s_tag_block_legacy<s_functions1_definition> nicename("Functions") functions_block;
+		s_tag_block_legacy<s_initial_permutations_definition_legacy> nicename("Initial Permutations") initial_permutations_block;
+		s_tag_block_legacy<s_functions1_definition_legacy> nicename("Functions") functions_block;
 	};
 
-	struct nicename("Predicted Resources") s_predicted_resources_definition
+	struct nicename("Predicted Resources") s_predicted_resources_definition_legacy
 	{
 		int16_t nicename("Type") type;
 		int16_t nicename("Resource Index") resource_index;
 		s_tag_reference_legacy nicename("Tag Index") tag_index_reference;
 	};
 
-	struct nicename("Multiplayer Object Properties") s_multiplayer_object_properties_definition
+	struct nicename("Multiplayer Object Properties") s_multiplayer_object_properties_definition_legacy
 	{
 		enum nicename("Object Type") e_object_type1 : uint8_t
 		{
@@ -682,19 +682,19 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		s_tag_reference_legacy __unknown10;
 	};
 
-	struct nicename("Unknown") s_unknown2_definition
+	struct nicename("Unknown") s_unknown2_definition_legacy
 	{
 		s_tag_reference_legacy __unknown0;
 		s_tag_reference_legacy __unknown1;
 		s_tag_reference_legacy __unknown2;
 	};
 
-	struct nicename("Predicted Bitmaps") s_predicted_bitmaps_definition
+	struct nicename("Predicted Bitmaps") s_predicted_bitmaps_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Bitmap") bitmap_reference;
 	};
 
-	struct nicename("Melee Damage") s_melee_damage_definition
+	struct nicename("Melee Damage") s_melee_damage_definition_legacy
 	{
 		float nicename("Damage Pyramid Angles y") damage_pyramid_angles_y;
 		float nicename("Damage Pyramid Angles p") damage_pyramid_angles_p;
@@ -715,14 +715,14 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		s_tag_reference_legacy nicename("Melee Effect") melee_effect_reference;
 	};
 
-	struct nicename("Target Tracking") s_target_tracking_definition
+	struct nicename("Target Tracking") s_target_tracking_definition_legacy
 	{
-		struct nicename("Tracking Types") s_tracking_types_definition
+		struct nicename("Tracking Types") s_tracking_types_definition_legacy
 		{
 			string_id_legacy nicename("Tracking Type") tracking_type;
 		};
 
-		s_tag_block_legacy<s_tracking_types_definition> nicename("Tracking Types") tracking_types_block;
+		s_tag_block_legacy<s_tracking_types_definition_legacy> nicename("Tracking Types") tracking_types_block;
 		float nicename("Acquire Time") acquire_time;
 		float nicename("Grace Time") grace_time;
 		float nicename("Decay Time") decay_time;
@@ -730,20 +730,20 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		s_tag_reference_legacy nicename("Locked Sound") locked_sound_reference;
 	};
 
-	struct nicename("First Person") s_first_person_definition
+	struct nicename("First Person") s_first_person_definition_legacy
 	{
 		s_tag_reference_legacy nicename("First Person Model") first_person_model_reference;
 		s_tag_reference_legacy nicename("First Person Animations") first_person_animations_reference;
 	};
 
-	struct nicename("Predicted Resources") s_predicted_resources1_definition
+	struct nicename("Predicted Resources") s_predicted_resources1_definition_legacy
 	{
 		int16_t nicename("Type") type;
 		int16_t nicename("Resource Index") resource_index;
 		s_tag_reference_legacy nicename("Tag Index") tag_index_reference;
 	};
 
-	struct nicename("Magazines") s_magazines_definition
+	struct nicename("Magazines") s_magazines_definition_legacy
 	{
 		enum nicename("Flags") b_flags3 : uint32_t /* bitfield */
 		{
@@ -781,7 +781,7 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 			/*nicename("Bit 31")*/ _flags3_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Magazine Equipment") s_magazine_equipment_definition
+		struct nicename("Magazine Equipment") s_magazine_equipment_definition_legacy
 		{
 			int16_t nicename("Rounds (0 for Max)") rounds_0_for_max;
 			int16_t __unknown0;
@@ -809,10 +809,10 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		s_tag_reference_legacy nicename("Reloading Damage Effect") reloading_damage_effect_reference;
 		s_tag_reference_legacy nicename("Chambering Effect") chambering_effect_reference;
 		s_tag_reference_legacy nicename("Chambering Damage Effect") chambering_damage_effect_reference;
-		s_tag_block_legacy<s_magazine_equipment_definition> nicename("Magazine Equipment") magazine_equipment_block;
+		s_tag_block_legacy<s_magazine_equipment_definition_legacy> nicename("Magazine Equipment") magazine_equipment_block;
 	};
 
-	struct nicename("New Triggers") s_new_triggers_definition
+	struct nicename("New Triggers") s_new_triggers_definition_legacy
 	{
 		enum nicename("Button Used") e_button_used : uint16_t
 		{
@@ -927,7 +927,7 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 			/*nicename("Bit 15")*/ _charge_flags_bit_15 = 1ui16 << 15ui16,
 		};
 
-		struct nicename("Charge Levels") s_charge_levels_definition
+		struct nicename("Charge Levels") s_charge_levels_definition_legacy
 		{
 			float nicename("Percentage") percentage;
 		};
@@ -955,10 +955,10 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		float nicename("Charging Age Degeneration") charging_age_degeneration;
 		s_tag_reference_legacy nicename("Discharging Effect") discharging_effect_reference;
 		s_tag_reference_legacy nicename("Discharging Damage Effect") discharging_damage_effect_reference;
-		s_tag_block_legacy<s_charge_levels_definition> nicename("Charge Levels") charge_levels_block;
+		s_tag_block_legacy<s_charge_levels_definition_legacy> nicename("Charge Levels") charge_levels_block;
 	};
 
-	struct nicename("Barrels") s_barrels_definition
+	struct nicename("Barrels") s_barrels_definition_legacy
 	{
 		enum nicename("Prediction Type") e_prediction_type : uint16_t
 		{
@@ -1104,54 +1104,54 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 			/*nicename("Bit 31")*/ _flags3_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Firing Penalty Function") s_firing_penalty_function_definition
+		struct nicename("Firing Penalty Function") s_firing_penalty_function_definition_legacy
 		{
 			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
-		struct nicename("Firing Crouched Penalty Function") s_firing_crouched_penalty_function_definition
+		struct nicename("Firing Crouched Penalty Function") s_firing_crouched_penalty_function_definition_legacy
 		{
 			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
-		struct nicename("Moving Penalty Function") s_moving_penalty_function_definition
+		struct nicename("Moving Penalty Function") s_moving_penalty_function_definition_legacy
 		{
 			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
-		struct nicename("Turning Penalty Function") s_turning_penalty_function_definition
+		struct nicename("Turning Penalty Function") s_turning_penalty_function_definition_legacy
 		{
 			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
-		struct nicename("Dual Firing Penalty Function") s_dual_firing_penalty_function_definition
+		struct nicename("Dual Firing Penalty Function") s_dual_firing_penalty_function_definition_legacy
 		{
 			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
-		struct nicename("Dual Firing Crouched Penalty Function") s_dual_firing_crouched_penalty_function_definition
+		struct nicename("Dual Firing Crouched Penalty Function") s_dual_firing_crouched_penalty_function_definition_legacy
 		{
 			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
-		struct nicename("Dual Moving Penalty Function") s_dual_moving_penalty_function_definition
+		struct nicename("Dual Moving Penalty Function") s_dual_moving_penalty_function_definition_legacy
 		{
 			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
-		struct nicename("Dual Turning Penalty Function") s_dual_turning_penalty_function_definition
+		struct nicename("Dual Turning Penalty Function") s_dual_turning_penalty_function_definition_legacy
 		{
 			s_data_reference_legacy nicename("Function") function_data_reference;
 		};
 
-		struct nicename("First Person Offsets") s_first_person_offsets_definition
+		struct nicename("First Person Offsets") s_first_person_offsets_definition_legacy
 		{
 			float nicename("First Person Offset x") first_person_offset_x;
 			float nicename("First Person Offset y") first_person_offset_y;
 			float nicename("First Person Offset z") first_person_offset_z;
 		};
 
-		struct nicename("Firing Effects") s_firing_effects_definition
+		struct nicename("Firing Effects") s_firing_effects_definition_legacy
 		{
 			int16_t nicename("Shot Count Lower Bound") shot_count_lower_bound;
 			int16_t nicename("Shot Count Upper Bound") shot_count_upper_bound;
@@ -1212,17 +1212,17 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		float nicename("Switch Penalty") switch_penalty;
 		float nicename("Zoom Penalty") zoom_penalty;
 		float nicename("Jump Penalty") jump_penalty;
-		s_tag_block_legacy<s_firing_penalty_function_definition> nicename("Firing Penalty Function") firing_penalty_function_block;
-		s_tag_block_legacy<s_firing_crouched_penalty_function_definition> nicename("Firing Crouched Penalty Function") firing_crouched_penalty_function_block;
-		s_tag_block_legacy<s_moving_penalty_function_definition> nicename("Moving Penalty Function") moving_penalty_function_block;
-		s_tag_block_legacy<s_turning_penalty_function_definition> nicename("Turning Penalty Function") turning_penalty_function_block;
+		s_tag_block_legacy<s_firing_penalty_function_definition_legacy> nicename("Firing Penalty Function") firing_penalty_function_block;
+		s_tag_block_legacy<s_firing_crouched_penalty_function_definition_legacy> nicename("Firing Crouched Penalty Function") firing_crouched_penalty_function_block;
+		s_tag_block_legacy<s_moving_penalty_function_definition_legacy> nicename("Moving Penalty Function") moving_penalty_function_block;
+		s_tag_block_legacy<s_turning_penalty_function_definition_legacy> nicename("Turning Penalty Function") turning_penalty_function_block;
 		float nicename("Error Angle Maximum Rotation") error_angle_maximum_rotation;
-		s_tag_block_legacy<s_dual_firing_penalty_function_definition> nicename("Dual Firing Penalty Function") dual_firing_penalty_function_block;
-		s_tag_block_legacy<s_dual_firing_crouched_penalty_function_definition> nicename("Dual Firing Crouched Penalty Function") dual_firing_crouched_penalty_function_block;
-		s_tag_block_legacy<s_dual_moving_penalty_function_definition> nicename("Dual Moving Penalty Function") dual_moving_penalty_function_block;
-		s_tag_block_legacy<s_dual_turning_penalty_function_definition> nicename("Dual Turning Penalty Function") dual_turning_penalty_function_block;
+		s_tag_block_legacy<s_dual_firing_penalty_function_definition_legacy> nicename("Dual Firing Penalty Function") dual_firing_penalty_function_block;
+		s_tag_block_legacy<s_dual_firing_crouched_penalty_function_definition_legacy> nicename("Dual Firing Crouched Penalty Function") dual_firing_crouched_penalty_function_block;
+		s_tag_block_legacy<s_dual_moving_penalty_function_definition_legacy> nicename("Dual Moving Penalty Function") dual_moving_penalty_function_block;
+		s_tag_block_legacy<s_dual_turning_penalty_function_definition_legacy> nicename("Dual Turning Penalty Function") dual_turning_penalty_function_block;
 		float nicename("Dual Error Angle Maximum Rotation") dual_error_angle_maximum_rotation;
-		s_tag_block_legacy<s_first_person_offsets_definition> nicename("First Person Offsets") first_person_offsets_block;
+		s_tag_block_legacy<s_first_person_offsets_definition_legacy> nicename("First Person Offsets") first_person_offsets_block;
 		e_damage_reporting_type nicename("Damage Reporting Type") damage_reporting_type;
 		int8_t __unknown3;
 		int16_t __unknown4;
@@ -1243,10 +1243,10 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 		float nicename("Rate Of Fire Acceleration Time") rate_of_fire_acceleration_time;
 		float nicename("Rate Of Fire Deceleration Time") rate_of_fire_deceleration_time;
 		float nicename("Bloom Rate of Decay") bloom_rate_of_decay;
-		s_tag_block_legacy<s_firing_effects_definition> nicename("Firing Effects") firing_effects_block;
+		s_tag_block_legacy<s_firing_effects_definition_legacy> nicename("Firing Effects") firing_effects_block;
 	};
 
-	struct nicename("Weapon Screen Effect") s_weapon_screen_effect_definition
+	struct nicename("Weapon Screen Effect") s_weapon_screen_effect_definition_legacy
 	{
 		enum nicename("Flags") b_flags3 : uint8_t /* bitfield */
 		{
@@ -1292,24 +1292,24 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 	s_tag_reference_legacy nicename("Crate Object") crate_object_reference;
 	s_tag_reference_legacy nicename("Collision Damage") collision_damage_reference;
 	s_tag_reference_legacy nicename("Brittle Collision Damage") brittle_collision_damage_reference;
-	s_tag_block_legacy<s_early_mover_properties_definition> nicename("Early Mover Properties") early_mover_properties_block;
+	s_tag_block_legacy<s_early_mover_properties_definition_legacy> nicename("Early Mover Properties") early_mover_properties_block;
 	s_tag_reference_legacy nicename("Creation Effect") creation_effect_reference;
 	s_tag_reference_legacy nicename("Material Effects") material_effects_reference;
 	s_tag_reference_legacy nicename("Melee Impact") melee_impact_reference;
-	s_tag_block_legacy<s_ai_properties_definition> nicename("AI Properties") ai_properties_block;
-	s_tag_block_legacy<s_functions_definition> nicename("Functions") functions_block;
-	s_tag_block_legacy<s_function_related_definition> nicename("Function Related") function_related_block;
+	s_tag_block_legacy<s_ai_properties_definition_legacy> nicename("AI Properties") ai_properties_block;
+	s_tag_block_legacy<s_functions_definition_legacy> nicename("Functions") functions_block;
+	s_tag_block_legacy<s_function_related_definition_legacy> nicename("Function Related") function_related_block;
 	int16_t nicename("HUD Text Message Index") hud_text_message_index;
 	int16_t __unknown2;
-	s_tag_block_legacy<s_attachments_definition> nicename("Attachments") attachments_block;
-	s_tag_block_legacy<s_material_responses_definition> nicename("Material Responses") material_responses_block;
-	s_tag_block_legacy<s_jet_wash_definition> nicename("Jet Wash") jet_wash_block;
-	s_tag_block_legacy<s_widgets_definition> nicename("Widgets") widgets_block;
-	s_tag_block_legacy<s_change_color_definition> nicename("Change Color") change_color_block;
-	s_tag_block_legacy<s_predicted_resources_definition> nicename("Predicted Resources") predicted_resources_block;
-	s_tag_block_legacy<s_multiplayer_object_properties_definition> nicename("Multiplayer Object Properties") multiplayer_object_properties_block;
+	s_tag_block_legacy<s_attachments_definition_legacy> nicename("Attachments") attachments_block;
+	s_tag_block_legacy<s_material_responses_definition_legacy> nicename("Material Responses") material_responses_block;
+	s_tag_block_legacy<s_jet_wash_definition_legacy> nicename("Jet Wash") jet_wash_block;
+	s_tag_block_legacy<s_widgets_definition_legacy> nicename("Widgets") widgets_block;
+	s_tag_block_legacy<s_change_color_definition_legacy> nicename("Change Color") change_color_block;
+	s_tag_block_legacy<s_predicted_resources_definition_legacy> nicename("Predicted Resources") predicted_resources_block;
+	s_tag_block_legacy<s_multiplayer_object_properties_definition_legacy> nicename("Multiplayer Object Properties") multiplayer_object_properties_block;
 	s_tag_reference_legacy nicename("Simulation Interpolation") simulation_interpolation_reference;
-	s_tag_block_legacy<s_unknown2_definition> __unknown3;
+	s_tag_block_legacy<s_unknown2_definition_legacy> __unknown3;
 	// ITEM : 
 	b_flags1 nicename("Flags") flags1;
 	int16_t nicename("OLD Message Index") old_message_index;
@@ -1326,7 +1326,7 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 	string_id_legacy nicename("All Weapons Empty Message") all_weapons_empty_message;
 	string_id_legacy nicename("Overheated Message") overheated_message;
 	s_tag_reference_legacy nicename("Collision Sound") collision_sound_reference;
-	s_tag_block_legacy<s_predicted_bitmaps_definition> nicename("Predicted Bitmaps") predicted_bitmaps_block;
+	s_tag_block_legacy<s_predicted_bitmaps_definition_legacy> nicename("Predicted Bitmaps") predicted_bitmaps_block;
 	s_tag_reference_legacy nicename("Detonation Damage Effect") detonation_damage_effect_reference;
 	float nicename("Detonation Delay min") detonation_delay_min;
 	float nicename("Detonation Delay max") detonation_delay_max;
@@ -1369,7 +1369,7 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 	s_tag_reference_legacy nicename("Overheat Damage Effect") overheat_damage_effect_reference;
 	s_tag_reference_legacy nicename("Detonation") detonation_reference;
 	s_tag_reference_legacy nicename("Detonation Damage Effect") detonation_damage_effect1_reference;
-	s_tag_block_legacy<s_melee_damage_definition> nicename("Melee Damage") melee_damage_block;
+	s_tag_block_legacy<s_melee_damage_definition_legacy> nicename("Melee Damage") melee_damage_block;
 	s_tag_reference_legacy nicename("Clash Effect") clash_effect_reference;
 	e_melee_damage_reporting_type nicename("Melee Damage Reporting Type") melee_damage_reporting_type;
 	int8_t __unknown7;
@@ -1392,7 +1392,7 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 	s_undefined32_legacy __unknown11;
 	s_undefined32_legacy __unknown12;
 	s_undefined32_legacy __unknown13;
-	s_tag_block_legacy<s_target_tracking_definition> nicename("Target Tracking") target_tracking_block;
+	s_tag_block_legacy<s_target_tracking_definition_legacy> nicename("Target Tracking") target_tracking_block;
 	s_undefined32_legacy __unknown14;
 	s_undefined32_legacy __unknown15;
 	s_undefined32_legacy __unknown16;
@@ -1423,13 +1423,13 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 	s_undefined32_legacy __unknown21;
 	s_undefined32_legacy __unknown22;
 	s_undefined32_legacy __unknown23;
-	s_tag_block_legacy<s_first_person_definition> nicename("First Person") first_person_block;
+	s_tag_block_legacy<s_first_person_definition_legacy> nicename("First Person") first_person_block;
 	s_tag_reference_legacy nicename("HUD Interface") hud_interface_reference;
 	s_tag_reference_legacy __unknown24;
-	s_tag_block_legacy<s_predicted_resources1_definition> nicename("Predicted Resources") predicted_resources1_block;
-	s_tag_block_legacy<s_magazines_definition> nicename("Magazines") magazines_block;
-	s_tag_block_legacy<s_new_triggers_definition> nicename("New Triggers") new_triggers_block;
-	s_tag_block_legacy<s_barrels_definition> nicename("Barrels") barrels_block;
+	s_tag_block_legacy<s_predicted_resources1_definition_legacy> nicename("Predicted Resources") predicted_resources1_block;
+	s_tag_block_legacy<s_magazines_definition_legacy> nicename("Magazines") magazines_block;
+	s_tag_block_legacy<s_new_triggers_definition_legacy> nicename("New Triggers") new_triggers_block;
+	s_tag_block_legacy<s_barrels_definition_legacy> nicename("Barrels") barrels_block;
 	float __unknown25;
 	float __unknown26;
 	float nicename("Maximum Movement Acceleration") maximum_movement_acceleration;
@@ -1454,6 +1454,6 @@ struct nicename("weapon") tag_group('weap') s_weapon_definition
 	float nicename("Zoom Transition Time") zoom_transition_time;
 	float nicename("Melee Weapon Delay") melee_weapon_delay;
 	string_id_legacy nicename("Weapon Holster Marker") weapon_holster_marker;
-	s_tag_block_legacy<s_weapon_screen_effect_definition> nicename("Weapon Screen Effect") weapon_screen_effect_block;
+	s_tag_block_legacy<s_weapon_screen_effect_definition_legacy> nicename("Weapon Screen Effect") weapon_screen_effect_block;
 };
 

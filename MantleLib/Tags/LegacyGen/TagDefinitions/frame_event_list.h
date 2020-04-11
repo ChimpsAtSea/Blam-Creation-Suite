@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definition
+struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definition_legacy
 {
-	struct nicename("Sound References") s_sound_references_definition
+	struct nicename("Sound References") s_sound_references_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint16_t /* bitfield */
 		{
@@ -29,7 +29,7 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 		int16_t __unknown0;
 	};
 
-	struct nicename("Effect References") s_effect_references_definition
+	struct nicename("Effect References") s_effect_references_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint16_t /* bitfield */
 		{
@@ -56,9 +56,9 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 		int16_t __unknown0;
 	};
 
-	struct nicename("Animations") s_animations_definition
+	struct nicename("Animations") s_animations_definition_legacy
 	{
-		struct nicename("Frame Events") s_frame_events_definition
+		struct nicename("Frame Events") s_frame_events_definition_legacy
 		{
 			string_id_legacy nicename("Event") event;
 			string_id_legacy nicename("Full Name") full_name;
@@ -70,7 +70,7 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 			uint16_t __unknown3;
 		};
 
-		struct nicename("Sound Events") s_sound_events_definition
+		struct nicename("Sound Events") s_sound_events_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
@@ -79,7 +79,7 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 			string_id_legacy nicename("Marker Name") marker_name;
 		};
 
-		struct nicename("Effect Events") s_effect_events_definition
+		struct nicename("Effect Events") s_effect_events_definition_legacy
 		{
 			enum nicename("Damage Reporting Type") e_damage_reporting_type : uint8_t
 			{
@@ -178,7 +178,7 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 			int8_t __unknown4;
 		};
 
-		struct nicename("Sync Events") s_sync_events_definition
+		struct nicename("Sync Events") s_sync_events_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t nicename("Frame") frame;
@@ -188,14 +188,14 @@ struct nicename("frame_event_list") tag_group('frms') s_frame_event_list_definit
 
 		string_id_legacy nicename("Name") name;
 		int32_t nicename("Frame Count") frame_count;
-		s_tag_block_legacy<s_frame_events_definition> nicename("Frame Events") frame_events_block;
-		s_tag_block_legacy<s_sound_events_definition> nicename("Sound Events") sound_events_block;
-		s_tag_block_legacy<s_effect_events_definition> nicename("Effect Events") effect_events_block;
-		s_tag_block_legacy<s_sync_events_definition> nicename("Sync Events") sync_events_block;
+		s_tag_block_legacy<s_frame_events_definition_legacy> nicename("Frame Events") frame_events_block;
+		s_tag_block_legacy<s_sound_events_definition_legacy> nicename("Sound Events") sound_events_block;
+		s_tag_block_legacy<s_effect_events_definition_legacy> nicename("Effect Events") effect_events_block;
+		s_tag_block_legacy<s_sync_events_definition_legacy> nicename("Sync Events") sync_events_block;
 	};
 
-	s_tag_block_legacy<s_sound_references_definition> nicename("Sound References") sound_references_block;
-	s_tag_block_legacy<s_effect_references_definition> nicename("Effect References") effect_references_block;
-	s_tag_block_legacy<s_animations_definition> nicename("Animations") animations_block;
+	s_tag_block_legacy<s_sound_references_definition_legacy> nicename("Sound References") sound_references_block;
+	s_tag_block_legacy<s_effect_references_definition_legacy> nicename("Effect References") effect_references_block;
+	s_tag_block_legacy<s_animations_definition_legacy> nicename("Animations") animations_block;
 };
 

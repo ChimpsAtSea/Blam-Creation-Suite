@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("collision_damage") tag_group('cddf') s_collision_damage_definition
+struct nicename("collision_damage") tag_group('cddf') s_collision_damage_definition_legacy
 {
 	float nicename("Apply Damage Scale") apply_damage_scale;
 	float nicename("Apply Recoil Damage Scale") apply_recoil_damage_scale;

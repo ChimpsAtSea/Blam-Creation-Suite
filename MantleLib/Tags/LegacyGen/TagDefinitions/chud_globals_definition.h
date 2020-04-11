@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_definition_definition
+struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_definition_definition_legacy
 {
-	struct nicename("HUD Globals") s_hud_globals_definition
+	struct nicename("HUD Globals") s_hud_globals_definition_legacy
 	{
 		enum nicename("Biped") e_biped : uint32_t
 		{
@@ -11,7 +11,7 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 			/*nicename("Monitor")*/ _biped_monitor = 2ui32,
 		};
 
-		struct nicename("HUD Attributes") s_hud_attributes_definition
+		struct nicename("HUD Attributes") s_hud_attributes_definition_legacy
 		{
 			enum nicename("Resolution Flags") b_resolution_flags : uint8_t /* bitfield */
 			{
@@ -100,7 +100,7 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 			int16_t __unknown34;
 		};
 
-		struct nicename("HUD Sounds") s_hud_sounds_definition
+		struct nicename("HUD Sounds") s_hud_sounds_definition_legacy
 		{
 			enum nicename("Latched To") b_latched_to : uint32_t /* bitfield */
 			{
@@ -143,7 +143,7 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 			float nicename("Scale") scale;
 		};
 
-		struct nicename("Waypoint Blips") s_waypoint_blips_definition
+		struct nicename("Waypoint Blips") s_waypoint_blips_definition_legacy
 		{
 			enum nicename("Icon") e_icon : uint8_t
 			{
@@ -253,8 +253,8 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 		float nicename("Blip Above Threshold min") blip_above_threshold_min;
 		float nicename("Blip Below Threshold min") blip_below_threshold_min;
 		float nicename("Blip Below Threshold max") blip_below_threshold_max;
-		s_tag_block_legacy<s_hud_attributes_definition> nicename("HUD Attributes") hud_attributes_block;
-		s_tag_block_legacy<s_hud_sounds_definition> nicename("HUD Sounds") hud_sounds_block;
+		s_tag_block_legacy<s_hud_attributes_definition_legacy> nicename("HUD Attributes") hud_attributes_block;
+		s_tag_block_legacy<s_hud_sounds_definition_legacy> nicename("HUD Sounds") hud_sounds_block;
 		s_undefined32_legacy __unknown0;
 		s_tag_reference_legacy __unknown1;
 		s_tag_reference_legacy nicename("Frag Grenade Swap Sound") frag_grenade_swap_sound_reference;
@@ -323,16 +323,16 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 		float nicename("Critical Threshold") critical_threshold1;
 		s_data_reference_legacy nicename("Function") function2_data_reference;
 		s_data_reference_legacy nicename("Function") function3_data_reference;
-		s_tag_block_legacy<s_waypoint_blips_definition> nicename("Waypoint Blips") waypoint_blips_block;
+		s_tag_block_legacy<s_waypoint_blips_definition_legacy> nicename("Waypoint Blips") waypoint_blips_block;
 	};
 
-	struct nicename("Shaders") s_shaders_definition
+	struct nicename("Shaders") s_shaders_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Vertex Shader") vertex_shader_reference;
 		s_tag_reference_legacy nicename("Pixel Shader") pixel_shader_reference;
 	};
 
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
@@ -352,7 +352,7 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 		float __unknown15;
 	};
 
-	struct nicename("Player Training Data") s_player_training_data_definition
+	struct nicename("Player Training Data") s_player_training_data_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint16_t /* bitfield */
 		{
@@ -384,16 +384,16 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 		int16_t __unknown0;
 	};
 
-	struct nicename("State Triggers") s_state_triggers_definition
+	struct nicename("State Triggers") s_state_triggers_definition_legacy
 	{
 		int32_t nicename("Trigger Index") trigger_index;
 		char nicename("Type") type[256];
 	};
 
-	s_tag_block_legacy<s_hud_globals_definition> nicename("HUD Globals") hud_globals_block;
-	s_tag_block_legacy<s_shaders_definition> nicename("Shaders") shaders_block;
-	s_tag_block_legacy<s_unknown_definition> __unknown0;
-	s_tag_block_legacy<s_player_training_data_definition> nicename("Player Training Data") player_training_data_block;
+	s_tag_block_legacy<s_hud_globals_definition_legacy> nicename("HUD Globals") hud_globals_block;
+	s_tag_block_legacy<s_shaders_definition_legacy> nicename("Shaders") shaders_block;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown0;
+	s_tag_block_legacy<s_player_training_data_definition_legacy> nicename("Player Training Data") player_training_data_block;
 	s_tag_reference_legacy nicename("Common Emblems") common_emblems_reference;
 	int8_t __unknown1;
 	int8_t __unknown2;
@@ -1054,6 +1054,6 @@ struct nicename("chud_globals_definition") tag_group('chgd') s_chud_globals_defi
 	   325   Saved Film State - Is Theater
 	   326   Saved Film State
 	   327   Saved Film State */
-	s_tag_block_legacy<s_state_triggers_definition> nicename("State Triggers") state_triggers_block;
+	s_tag_block_legacy<s_state_triggers_definition_legacy> nicename("State Triggers") state_triggers_block;
 };
 

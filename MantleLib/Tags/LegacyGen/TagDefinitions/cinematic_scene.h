@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definition
+struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definition_legacy
 {
-	struct nicename("Puppets") s_puppets_definition
+	struct nicename("Puppets") s_puppets_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint32_t /* bitfield */
 		{
@@ -40,7 +40,7 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 			/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Puppet Firing") s_puppet_firing_definition
+		struct nicename("Puppet Firing") s_puppet_firing_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
@@ -60,12 +60,12 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 		int32_t __unknown1;
 		s_undefined32_legacy __unknown2;
 		s_data_reference_legacy nicename("Import Script") import_script_data_reference;
-		s_tag_block_legacy<s_puppet_firing_definition> nicename("Puppet Firing") puppet_firing_block;
+		s_tag_block_legacy<s_puppet_firing_definition_legacy> nicename("Puppet Firing") puppet_firing_block;
 	};
 
-	struct nicename("Shots") s_shots_definition
+	struct nicename("Shots") s_shots_definition_legacy
 	{
-		struct nicename("Lighting") s_lighting_definition
+		struct nicename("Lighting") s_lighting_definition_legacy
 		{
 			int32_t __unknown0;
 			s_tag_reference_legacy nicename("Cinematic Light") cinematic_light_reference;
@@ -73,7 +73,7 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 			int32_t __unknown1;
 		};
 
-		struct nicename("Sounds") s_sounds_definition
+		struct nicename("Sounds") s_sounds_definition_legacy
 		{
 			s_tag_reference_legacy nicename("Sound") sound_reference;
 			s_tag_reference_legacy nicename("Sound") sound1_reference;
@@ -86,14 +86,14 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 			string_id_legacy __unknown5;
 		};
 
-		struct nicename("Background Sounds") s_background_sounds_definition
+		struct nicename("Background Sounds") s_background_sounds_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			s_tag_reference_legacy nicename("Sound") sound_reference;
 			int32_t nicename("Frame") frame;
 		};
 
-		struct nicename("Effects") s_effects_definition
+		struct nicename("Effects") s_effects_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			s_tag_reference_legacy nicename("Effect") effect_reference;
@@ -104,9 +104,9 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 			s_undefined32_legacy __unknown2;
 		};
 
-		struct nicename("Functions") s_functions_definition
+		struct nicename("Functions") s_functions_definition_legacy
 		{
-			struct nicename("Values") s_values_definition
+			struct nicename("Values") s_values_definition_legacy
 			{
 				s_undefined32_legacy __unknown0;
 				int32_t __unknown1;
@@ -116,17 +116,17 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 
 			int32_t nicename("Owner Puppet Index") owner_puppet_index;
 			string_id_legacy nicename("Target Function Name") target_function_name;
-			s_tag_block_legacy<s_values_definition> nicename("Values") values_block;
+			s_tag_block_legacy<s_values_definition_legacy> nicename("Values") values_block;
 		};
 
-		struct nicename("Screen Effects") s_screen_effects_definition
+		struct nicename("Screen Effects") s_screen_effects_definition_legacy
 		{
 			s_tag_reference_legacy nicename("Effect") effect_reference;
 			int32_t nicename("Start Frame") start_frame;
 			int32_t nicename("End Frame") end_frame;
 		};
 
-		struct nicename("Import Scripts") s_import_scripts_definition
+		struct nicename("Import Scripts") s_import_scripts_definition_legacy
 		{
 			int8_t __unknown0;
 			int8_t __unknown1;
@@ -138,7 +138,7 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 			int32_t __unknown5;
 		};
 
-		struct nicename("Unknown 10") s_unknown_10_definition
+		struct nicename("Unknown 10") s_unknown_10_definition_legacy
 		{
 			int32_t __unknown0;
 			int32_t __unknown1;
@@ -149,7 +149,7 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 			float __unknown6;
 		};
 
-		struct nicename("Camera Frames") s_camera_frames_definition
+		struct nicename("Camera Frames") s_camera_frames_definition_legacy
 		{
 			float nicename("X") x;
 			float nicename("Y") y;
@@ -162,7 +162,7 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 			float __unknown5;
 		};
 
-		struct nicename("Depth Of Field Frames") s_depth_of_field_frames_definition
+		struct nicename("Depth Of Field Frames") s_depth_of_field_frames_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint32_t /* bitfield */
 			{
@@ -216,31 +216,31 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
-		s_tag_block_legacy<s_lighting_definition> nicename("Lighting") lighting_block;
+		s_tag_block_legacy<s_lighting_definition_legacy> nicename("Lighting") lighting_block;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
 		s_undefined32_legacy __unknown8;
-		s_tag_block_legacy<s_sounds_definition> nicename("Sounds") sounds_block;
-		s_tag_block_legacy<s_background_sounds_definition> nicename("Background Sounds") background_sounds_block;
-		s_tag_block_legacy<s_effects_definition> nicename("Effects") effects_block;
-		s_tag_block_legacy<s_functions_definition> nicename("Functions") functions_block;
-		s_tag_block_legacy<s_screen_effects_definition> nicename("Screen Effects") screen_effects_block;
-		s_tag_block_legacy<s_import_scripts_definition> nicename("Import Scripts") import_scripts_block;
-		s_tag_block_legacy<s_unknown_10_definition> nicename("Unknown 10") unknown_10_block;
+		s_tag_block_legacy<s_sounds_definition_legacy> nicename("Sounds") sounds_block;
+		s_tag_block_legacy<s_background_sounds_definition_legacy> nicename("Background Sounds") background_sounds_block;
+		s_tag_block_legacy<s_effects_definition_legacy> nicename("Effects") effects_block;
+		s_tag_block_legacy<s_functions_definition_legacy> nicename("Functions") functions_block;
+		s_tag_block_legacy<s_screen_effects_definition_legacy> nicename("Screen Effects") screen_effects_block;
+		s_tag_block_legacy<s_import_scripts_definition_legacy> nicename("Import Scripts") import_scripts_block;
+		s_tag_block_legacy<s_unknown_10_definition_legacy> nicename("Unknown 10") unknown_10_block;
 		s_data_reference_legacy nicename("Import Script") import_script_data_reference;
 		int32_t nicename("Loaded Frame Count") loaded_frame_count;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
-		s_tag_block_legacy<s_camera_frames_definition> nicename("Camera Frames") camera_frames_block;
-		s_tag_block_legacy<s_depth_of_field_frames_definition> nicename("Depth Of Field Frames") depth_of_field_frames_block;
+		s_tag_block_legacy<s_camera_frames_definition_legacy> nicename("Camera Frames") camera_frames_block;
+		s_tag_block_legacy<s_depth_of_field_frames_definition_legacy> nicename("Depth Of Field Frames") depth_of_field_frames_block;
 	};
 
-	struct nicename("Texture Cameras") s_texture_cameras_definition
+	struct nicename("Texture Cameras") s_texture_cameras_definition_legacy
 	{
-		struct nicename("Shots") s_shots1_definition
+		struct nicename("Shots") s_shots1_definition_legacy
 		{
-			struct nicename("Frames") s_frames_definition
+			struct nicename("Frames") s_frames_definition_legacy
 			{
 				enum nicename("Flags") b_flags : uint32_t /* bitfield */
 				{
@@ -297,21 +297,21 @@ struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definitio
 				float nicename("Blur Amount") blur_amount;
 			};
 
-			s_tag_block_legacy<s_frames_definition> nicename("Frames") frames_block;
+			s_tag_block_legacy<s_frames_definition_legacy> nicename("Frames") frames_block;
 		};
 
 		string_id_legacy nicename("Name") name;
 		string_id_legacy __unknown0;
-		s_tag_block_legacy<s_shots1_definition> nicename("Shots") shots_block;
+		s_tag_block_legacy<s_shots1_definition_legacy> nicename("Shots") shots_block;
 	};
 
 	string_id_legacy nicename("Name") name;
 	string_id_legacy nicename("Anchor Name") anchor_name;
 	s_undefined32_legacy __unknown0;
 	s_data_reference_legacy nicename("Import Script") import_script_data_reference;
-	s_tag_block_legacy<s_puppets_definition> nicename("Puppets") puppets_block;
-	s_tag_block_legacy<s_shots_definition> nicename("Shots") shots_block;
-	s_tag_block_legacy<s_texture_cameras_definition> nicename("Texture Cameras") texture_cameras_block;
+	s_tag_block_legacy<s_puppets_definition_legacy> nicename("Puppets") puppets_block;
+	s_tag_block_legacy<s_shots_definition_legacy> nicename("Shots") shots_block;
+	s_tag_block_legacy<s_texture_cameras_definition_legacy> nicename("Texture Cameras") texture_cameras_block;
 	s_data_reference_legacy nicename("Import Script") import_script1_data_reference;
 	int32_t __unknown1;
 };

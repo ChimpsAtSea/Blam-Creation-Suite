@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("device_terminal") tag_group('term') s_device_terminal_definition
+struct nicename("device_terminal") tag_group('term') s_device_terminal_definition_legacy
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{
@@ -154,7 +154,7 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 		/*nicename("Bit 31")*/ _lightmap_flags_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Early Mover Properties") s_early_mover_properties_definition
+	struct nicename("Early Mover Properties") s_early_mover_properties_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_undefined32_legacy __unknown0;
@@ -169,7 +169,7 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 		s_undefined32_legacy __unknown9;
 	};
 
-	struct nicename("AI Properties") s_ai_properties_definition
+	struct nicename("AI Properties") s_ai_properties_definition_legacy
 	{
 		enum nicename("Size") e_size : uint16_t
 		{
@@ -237,7 +237,7 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 		e_leap_jump_speed nicename("Leap Jump Speed") leap_jump_speed;
 	};
 
-	struct nicename("Functions") s_functions_definition
+	struct nicename("Functions") s_functions_definition_legacy
 	{
 		enum nicename("Flags") b_flags1 : uint32_t /* bitfield */
 		{
@@ -275,7 +275,7 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 			/*nicename("Bit 31")*/ _flags1_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Unknown") s_unknown_definition
+		struct nicename("Unknown") s_unknown_definition_legacy
 		{
 			int32_t __unknown0;
 			float __unknown1;
@@ -293,16 +293,16 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 		float nicename("Minimum Value") minimum_value;
 		s_data_reference_legacy nicename("Default Function") default_function_data_reference;
 		string_id_legacy nicename("Scale By") scale_by;
-		s_tag_block_legacy<s_unknown_definition> __unknown1;
+		s_tag_block_legacy<s_unknown_definition_legacy> __unknown1;
 		int32_t nicename("'Function Related' Index") function_related_index;
 	};
 
-	struct nicename("Function Related") s_function_related_definition
+	struct nicename("Function Related") s_function_related_definition_legacy
 	{
 		int32_t nicename("Function Index") function_index;
 	};
 
-	struct nicename("Attachments") s_attachments_definition
+	struct nicename("Attachments") s_attachments_definition_legacy
 	{
 		enum nicename("Change Color") e_change_color : uint16_t
 		{
@@ -321,9 +321,9 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 		string_id_legacy nicename("Secondary Scale") secondary_scale;
 	};
 
-	struct nicename("Material Responses") s_material_responses_definition
+	struct nicename("Material Responses") s_material_responses_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown1_definition
+		struct nicename("Unknown") s_unknown1_definition_legacy
 		{
 			string_id_legacy nicename("Material") material;
 			s_data_reference_legacy __unknown0;
@@ -337,10 +337,10 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_unknown1_definition> __unknown3;
+		s_tag_block_legacy<s_unknown1_definition_legacy> __unknown3;
 	};
 
-	struct nicename("Jet Wash") s_jet_wash_definition
+	struct nicename("Jet Wash") s_jet_wash_definition_legacy
 	{
 		string_id_legacy nicename("Marker") marker;
 		float __unknown0;
@@ -353,14 +353,14 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 		float __unknown7;
 	};
 
-	struct nicename("Widgets") s_widgets_definition
+	struct nicename("Widgets") s_widgets_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Type") type_reference;
 	};
 
-	struct nicename("Change Color") s_change_color_definition
+	struct nicename("Change Color") s_change_color_definition_legacy
 	{
-		struct nicename("Initial Permutations") s_initial_permutations_definition
+		struct nicename("Initial Permutations") s_initial_permutations_definition_legacy
 		{
 			float nicename("Weight") weight;
 			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
@@ -368,7 +368,7 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 			string_id_legacy nicename("Variant Name") variant_name;
 		};
 
-		struct nicename("Functions") s_functions1_definition
+		struct nicename("Functions") s_functions1_definition_legacy
 		{
 			enum nicename("Scale Flags") b_scale_flags : uint32_t /* bitfield */
 			{
@@ -413,18 +413,18 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 			string_id_legacy nicename("Scale By...") scale_by;
 		};
 
-		s_tag_block_legacy<s_initial_permutations_definition> nicename("Initial Permutations") initial_permutations_block;
-		s_tag_block_legacy<s_functions1_definition> nicename("Functions") functions_block;
+		s_tag_block_legacy<s_initial_permutations_definition_legacy> nicename("Initial Permutations") initial_permutations_block;
+		s_tag_block_legacy<s_functions1_definition_legacy> nicename("Functions") functions_block;
 	};
 
-	struct nicename("Predicted Resources") s_predicted_resources_definition
+	struct nicename("Predicted Resources") s_predicted_resources_definition_legacy
 	{
 		int16_t nicename("Type") type;
 		int16_t nicename("Resource Index") resource_index;
 		s_tag_reference_legacy nicename("Tag Index") tag_index_reference;
 	};
 
-	struct nicename("Multiplayer Object Properties") s_multiplayer_object_properties_definition
+	struct nicename("Multiplayer Object Properties") s_multiplayer_object_properties_definition_legacy
 	{
 		enum nicename("Object Type") e_object_type1 : uint8_t
 		{
@@ -529,14 +529,14 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 		s_tag_reference_legacy __unknown10;
 	};
 
-	struct nicename("Unknown") s_unknown2_definition
+	struct nicename("Unknown") s_unknown2_definition_legacy
 	{
 		s_tag_reference_legacy __unknown0;
 		s_tag_reference_legacy __unknown1;
 		s_tag_reference_legacy __unknown2;
 	};
 
-	struct nicename("Pages") s_pages_definition
+	struct nicename("Pages") s_pages_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t nicename("Image Index") image_index;
@@ -569,24 +569,24 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 	s_tag_reference_legacy nicename("Crate Object") crate_object_reference;
 	s_tag_reference_legacy nicename("Collision Damage") collision_damage_reference;
 	s_tag_reference_legacy nicename("Brittle Collision Damage") brittle_collision_damage_reference;
-	s_tag_block_legacy<s_early_mover_properties_definition> nicename("Early Mover Properties") early_mover_properties_block;
+	s_tag_block_legacy<s_early_mover_properties_definition_legacy> nicename("Early Mover Properties") early_mover_properties_block;
 	s_tag_reference_legacy nicename("Creation Effect") creation_effect_reference;
 	s_tag_reference_legacy nicename("Material Effects") material_effects_reference;
 	s_tag_reference_legacy nicename("Melee Impact") melee_impact_reference;
-	s_tag_block_legacy<s_ai_properties_definition> nicename("AI Properties") ai_properties_block;
-	s_tag_block_legacy<s_functions_definition> nicename("Functions") functions_block;
-	s_tag_block_legacy<s_function_related_definition> nicename("Function Related") function_related_block;
+	s_tag_block_legacy<s_ai_properties_definition_legacy> nicename("AI Properties") ai_properties_block;
+	s_tag_block_legacy<s_functions_definition_legacy> nicename("Functions") functions_block;
+	s_tag_block_legacy<s_function_related_definition_legacy> nicename("Function Related") function_related_block;
 	int16_t nicename("HUD Text Message Index") hud_text_message_index;
 	int16_t __unknown2;
-	s_tag_block_legacy<s_attachments_definition> nicename("Attachments") attachments_block;
-	s_tag_block_legacy<s_material_responses_definition> nicename("Material Responses") material_responses_block;
-	s_tag_block_legacy<s_jet_wash_definition> nicename("Jet Wash") jet_wash_block;
-	s_tag_block_legacy<s_widgets_definition> nicename("Widgets") widgets_block;
-	s_tag_block_legacy<s_change_color_definition> nicename("Change Color") change_color_block;
-	s_tag_block_legacy<s_predicted_resources_definition> nicename("Predicted Resources") predicted_resources_block;
-	s_tag_block_legacy<s_multiplayer_object_properties_definition> nicename("Multiplayer Object Properties") multiplayer_object_properties_block;
+	s_tag_block_legacy<s_attachments_definition_legacy> nicename("Attachments") attachments_block;
+	s_tag_block_legacy<s_material_responses_definition_legacy> nicename("Material Responses") material_responses_block;
+	s_tag_block_legacy<s_jet_wash_definition_legacy> nicename("Jet Wash") jet_wash_block;
+	s_tag_block_legacy<s_widgets_definition_legacy> nicename("Widgets") widgets_block;
+	s_tag_block_legacy<s_change_color_definition_legacy> nicename("Change Color") change_color_block;
+	s_tag_block_legacy<s_predicted_resources_definition_legacy> nicename("Predicted Resources") predicted_resources_block;
+	s_tag_block_legacy<s_multiplayer_object_properties_definition_legacy> nicename("Multiplayer Object Properties") multiplayer_object_properties_block;
 	s_tag_reference_legacy nicename("Simulation Interpolation") simulation_interpolation_reference;
-	s_tag_block_legacy<s_unknown2_definition> __unknown3;
+	s_tag_block_legacy<s_unknown2_definition_legacy> __unknown3;
 	// DEVICE : 
 	b_flags1 nicename("Flags") flags1;
 	float nicename("Power Transition Time") power_transition_time;
@@ -612,6 +612,6 @@ struct nicename("device_terminal") tag_group('term') s_device_terminal_definitio
 	s_tag_reference_legacy nicename("Activation Sound") activation_sound_reference;
 	s_tag_reference_legacy nicename("Illustration Bitmap") illustration_bitmap_reference;
 	s_tag_reference_legacy nicename("Terminal Strings") terminal_strings_reference;
-	s_tag_block_legacy<s_pages_definition> nicename("Pages") pages_block;
+	s_tag_block_legacy<s_pages_definition_legacy> nicename("Pages") pages_block;
 };
 

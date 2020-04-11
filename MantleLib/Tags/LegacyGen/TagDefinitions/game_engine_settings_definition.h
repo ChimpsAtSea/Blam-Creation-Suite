@@ -1,10 +1,10 @@
 #pragma once
 
-struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engine_settings_definition_definition
+struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engine_settings_definition_definition_legacy
 {
-	struct nicename("Trait Profiles") s_trait_profiles_definition
+	struct nicename("Trait Profiles") s_trait_profiles_definition_legacy
 	{
-		struct nicename("Shields and Health") s_shields_and_health_definition
+		struct nicename("Shields and Health") s_shields_and_health_definition_legacy
 		{
 			enum nicename("Damage Resistance") e_damage_resistance : uint8_t
 			{
@@ -147,7 +147,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t __unknown1;
 		};
 
-		struct nicename("Weapons and Damage") s_weapons_and_damage_definition
+		struct nicename("Weapons and Damage") s_weapons_and_damage_definition_legacy
 		{
 			enum nicename("Damage Modifier") e_damage_modifier : uint8_t
 			{
@@ -263,7 +263,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			string_id_legacy nicename("Equipment") equipment;
 		};
 
-		struct nicename("Movement") s_movement_definition
+		struct nicename("Movement") s_movement_definition_legacy
 		{
 			enum nicename("Player Speed") e_player_speed : uint8_t
 			{
@@ -333,7 +333,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int32_t nicename("Jump Height") jump_height1;
 		};
 
-		struct nicename("Appearance") s_appearance_definition
+		struct nicename("Appearance") s_appearance_definition_legacy
 		{
 			enum nicename("Active Camo") e_active_camo : uint8_t
 			{
@@ -398,7 +398,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t __unknown2;
 		};
 
-		struct nicename("HUD") s_hud_definition
+		struct nicename("HUD") s_hud_definition_legacy
 		{
 			enum nicename("Motion Tracker Mode") e_motion_tracker_mode : uint8_t
 			{
@@ -435,14 +435,14 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 		};
 
 		string_id_legacy nicename("Name") name;
-		s_tag_block_legacy<s_shields_and_health_definition> nicename("Shields and Health") shields_and_health_block;
-		s_tag_block_legacy<s_weapons_and_damage_definition> nicename("Weapons and Damage") weapons_and_damage_block;
-		s_tag_block_legacy<s_movement_definition> nicename("Movement") movement_block;
-		s_tag_block_legacy<s_appearance_definition> nicename("Appearance") appearance_block;
-		s_tag_block_legacy<s_hud_definition> nicename("HUD") hud_block;
+		s_tag_block_legacy<s_shields_and_health_definition_legacy> nicename("Shields and Health") shields_and_health_block;
+		s_tag_block_legacy<s_weapons_and_damage_definition_legacy> nicename("Weapons and Damage") weapons_and_damage_block;
+		s_tag_block_legacy<s_movement_definition_legacy> nicename("Movement") movement_block;
+		s_tag_block_legacy<s_appearance_definition_legacy> nicename("Appearance") appearance_block;
+		s_tag_block_legacy<s_hud_definition_legacy> nicename("HUD") hud_block;
 	};
 
-	struct nicename("AI Trait Profiles") s_ai_trait_profiles_definition
+	struct nicename("AI Trait Profiles") s_ai_trait_profiles_definition_legacy
 	{
 		enum nicename("Vision") e_vision : uint8_t
 		{
@@ -557,7 +557,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 		int8_t __unknown1;
 	};
 
-	struct nicename("Sandbox Variants") s_sandbox_variants_definition
+	struct nicename("Sandbox Variants") s_sandbox_variants_definition_legacy
 	{
 		enum nicename("Edit Mode") e_edit_mode : uint16_t
 		{
@@ -571,7 +571,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			/*nicename("Unknown")*/ _flags_unknown = 1ui32 << 1ui32,
 		};
 
-		struct nicename("General Settings") s_general_settings_definition
+		struct nicename("General Settings") s_general_settings_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint8_t /* bitfield */
 			{
@@ -588,7 +588,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int16_t nicename("Grace Period") grace_period;
 		};
 
-		struct nicename("Respawn Settings") s_respawn_settings_definition
+		struct nicename("Respawn Settings") s_respawn_settings_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint16_t /* bitfield */
 			{
@@ -612,7 +612,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t __unknown1;
 		};
 
-		struct nicename("Social Settings") s_social_settings_definition
+		struct nicename("Social Settings") s_social_settings_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint32_t /* bitfield */
 			{
@@ -629,7 +629,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			b_flags nicename("Flags") flags;
 		};
 
-		struct nicename("Map Overrides") s_map_overrides_definition
+		struct nicename("Map Overrides") s_map_overrides_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint8_t /* bitfield */
 			{
@@ -653,7 +653,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			b_flags nicename("Flags") flags;
 		};
 
-		struct nicename("Teams") s_teams_definition
+		struct nicename("Teams") s_teams_definition_legacy
 		{
 			enum nicename("Model Override") e_model_override : uint8_t
 			{
@@ -870,7 +870,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			s_color32_legacy nicename("UI Color") ui_color7;
 		};
 
-		struct nicename("Loadouts") s_loadouts_definition
+		struct nicename("Loadouts") s_loadouts_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint8_t /* bitfield */
 			{
@@ -884,7 +884,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 				/*nicename("Bit 7")*/ _flags_bit_7 = 1ui8 << 7ui8,
 			};
 
-			struct nicename("Loadout Palette") s_loadout_palette_definition
+			struct nicename("Loadout Palette") s_loadout_palette_definition_legacy
 			{
 				string_id_legacy nicename("Loadout") loadout;
 			};
@@ -893,24 +893,24 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
-			s_tag_block_legacy<s_loadout_palette_definition> nicename("Loadout Palette") loadout_palette_block;
+			s_tag_block_legacy<s_loadout_palette_definition_legacy> nicename("Loadout Palette") loadout_palette_block;
 		};
 
 		string_id_legacy nicename("Variant Name") variant_name;
 		string_id_legacy nicename("Variant Description") variant_description;
-		s_tag_block_legacy<s_general_settings_definition> nicename("General Settings") general_settings_block;
-		s_tag_block_legacy<s_respawn_settings_definition> nicename("Respawn Settings") respawn_settings_block;
-		s_tag_block_legacy<s_social_settings_definition> nicename("Social Settings") social_settings_block;
-		s_tag_block_legacy<s_map_overrides_definition> nicename("Map Overrides") map_overrides_block;
-		s_tag_block_legacy<s_teams_definition> nicename("Teams") teams_block;
-		s_tag_block_legacy<s_loadouts_definition> nicename("Loadouts") loadouts_block;
+		s_tag_block_legacy<s_general_settings_definition_legacy> nicename("General Settings") general_settings_block;
+		s_tag_block_legacy<s_respawn_settings_definition_legacy> nicename("Respawn Settings") respawn_settings_block;
+		s_tag_block_legacy<s_social_settings_definition_legacy> nicename("Social Settings") social_settings_block;
+		s_tag_block_legacy<s_map_overrides_definition_legacy> nicename("Map Overrides") map_overrides_block;
+		s_tag_block_legacy<s_teams_definition_legacy> nicename("Teams") teams_block;
+		s_tag_block_legacy<s_loadouts_definition_legacy> nicename("Loadouts") loadouts_block;
 		b_flags nicename("Flags") flags;
 		e_edit_mode nicename("Edit Mode") edit_mode;
 		int16_t nicename("Editor Respawn Time") editor_respawn_time;
 		string_id_legacy nicename("Editor Trait Profile") editor_trait_profile;
 	};
 
-	struct nicename("Survival Variants") s_survival_variants_definition
+	struct nicename("Survival Variants") s_survival_variants_definition_legacy
 	{
 		enum nicename("Campaign Difficulty Level") e_campaign_difficulty_level : uint8_t
 		{
@@ -972,7 +972,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			/*nicename("Ordered")*/ _squad_advance_type_ordered = 1ui8 << 0ui8,
 		};
 
-		struct nicename("General Settings") s_general_settings1_definition
+		struct nicename("General Settings") s_general_settings1_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint8_t /* bitfield */
 			{
@@ -989,7 +989,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int16_t nicename("Grace Period") grace_period;
 		};
 
-		struct nicename("Respawn Settings") s_respawn_settings1_definition
+		struct nicename("Respawn Settings") s_respawn_settings1_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint16_t /* bitfield */
 			{
@@ -1013,7 +1013,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t __unknown1;
 		};
 
-		struct nicename("Social Settings") s_social_settings1_definition
+		struct nicename("Social Settings") s_social_settings1_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint32_t /* bitfield */
 			{
@@ -1030,7 +1030,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			b_flags nicename("Flags") flags;
 		};
 
-		struct nicename("Map Overrides") s_map_overrides1_definition
+		struct nicename("Map Overrides") s_map_overrides1_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint8_t /* bitfield */
 			{
@@ -1054,7 +1054,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			b_flags nicename("Flags") flags;
 		};
 
-		struct nicename("Teams") s_teams1_definition
+		struct nicename("Teams") s_teams1_definition_legacy
 		{
 			enum nicename("Model Override") e_model_override : uint8_t
 			{
@@ -1271,7 +1271,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			s_color32_legacy nicename("UI Color") ui_color7;
 		};
 
-		struct nicename("Loadouts") s_loadouts1_definition
+		struct nicename("Loadouts") s_loadouts1_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint8_t /* bitfield */
 			{
@@ -1285,7 +1285,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 				/*nicename("Bit 7")*/ _flags_bit_7 = 1ui8 << 7ui8,
 			};
 
-			struct nicename("Loadout Palette") s_loadout_palette1_definition
+			struct nicename("Loadout Palette") s_loadout_palette1_definition_legacy
 			{
 				string_id_legacy nicename("Loadout") loadout;
 			};
@@ -1294,10 +1294,10 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t __unknown0;
 			int8_t __unknown1;
 			int8_t __unknown2;
-			s_tag_block_legacy<s_loadout_palette1_definition> nicename("Loadout Palette") loadout_palette_block;
+			s_tag_block_legacy<s_loadout_palette1_definition_legacy> nicename("Loadout Palette") loadout_palette_block;
 		};
 
-		struct nicename("Elite Respawn Settings") s_elite_respawn_settings_definition
+		struct nicename("Elite Respawn Settings") s_elite_respawn_settings_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint16_t /* bitfield */
 			{
@@ -1321,7 +1321,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			int8_t __unknown1;
 		};
 
-		struct nicename("Unknown Skulls") s_unknown_skulls_definition
+		struct nicename("Unknown Skulls") s_unknown_skulls_definition_legacy
 		{
 			enum nicename("Skulls") b_skulls : uint16_t /* bitfield */
 			{
@@ -1344,7 +1344,7 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			b_skulls nicename("Skulls") skulls;
 		};
 
-		struct nicename("Rounds") s_rounds_definition
+		struct nicename("Rounds") s_rounds_definition_legacy
 		{
 			enum nicename("Round Skulls") b_round_skulls : uint32_t /* bitfield */
 			{
@@ -1397,17 +1397,17 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 				/*nicename("Ordered")*/ _squad_advance_type2_ordered = 1ui8 << 0ui8,
 			};
 
-			struct nicename("Squads") s_squads_definition
+			struct nicename("Squads") s_squads_definition_legacy
 			{
 				string_id_legacy nicename("Enemy") enemy;
 			};
 
-			struct nicename("Squads") s_squads1_definition
+			struct nicename("Squads") s_squads1_definition_legacy
 			{
 				string_id_legacy nicename("Enemy") enemy;
 			};
 
-			struct nicename("Squads") s_squads2_definition
+			struct nicename("Squads") s_squads2_definition_legacy
 			{
 				string_id_legacy nicename("Enemy") enemy;
 			};
@@ -1418,27 +1418,27 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 			b_squad_advance_type nicename("Squad Advance Type") squad_advance_type;
 			int8_t __unknown0;
 			int8_t __unknown1;
-			s_tag_block_legacy<s_squads_definition> nicename("Squads") squads_block;
+			s_tag_block_legacy<s_squads_definition_legacy> nicename("Squads") squads_block;
 			// Main Wave : 
 			b_wave_flags1 nicename("Wave Flags") wave_flags1;
 			b_squad_advance_type1 nicename("Squad Advance Type") squad_advance_type1;
 			int8_t __unknown2;
 			int8_t __unknown3;
-			s_tag_block_legacy<s_squads1_definition> nicename("Squads") squads1_block;
+			s_tag_block_legacy<s_squads1_definition_legacy> nicename("Squads") squads1_block;
 			// Boss Wave : 
 			b_wave_flags2 nicename("Wave Flags") wave_flags2;
 			b_squad_advance_type2 nicename("Squad Advance Type") squad_advance_type2;
 			int8_t __unknown4;
 			int8_t __unknown5;
-			s_tag_block_legacy<s_squads2_definition> nicename("Squads") squads2_block;
+			s_tag_block_legacy<s_squads2_definition_legacy> nicename("Squads") squads2_block;
 		};
 
-		struct nicename("Bonus Round Squads") s_bonus_round_squads_definition
+		struct nicename("Bonus Round Squads") s_bonus_round_squads_definition_legacy
 		{
 			string_id_legacy nicename("Enemy") enemy;
 		};
 
-		struct nicename("Custom Skull Traits") s_custom_skull_traits_definition
+		struct nicename("Custom Skull Traits") s_custom_skull_traits_definition_legacy
 		{
 			string_id_legacy nicename("Spartan Player Trait Profile") spartan_player_trait_profile;
 			string_id_legacy nicename("Elite Player Trait Profile") elite_player_trait_profile;
@@ -1447,12 +1447,12 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 
 		string_id_legacy nicename("Variant Name") variant_name;
 		string_id_legacy nicename("Variant Description") variant_description;
-		s_tag_block_legacy<s_general_settings1_definition> nicename("General Settings") general_settings_block;
-		s_tag_block_legacy<s_respawn_settings1_definition> nicename("Respawn Settings") respawn_settings_block;
-		s_tag_block_legacy<s_social_settings1_definition> nicename("Social Settings") social_settings_block;
-		s_tag_block_legacy<s_map_overrides1_definition> nicename("Map Overrides") map_overrides_block;
-		s_tag_block_legacy<s_teams1_definition> nicename("Teams") teams_block;
-		s_tag_block_legacy<s_loadouts1_definition> nicename("Loadouts") loadouts_block;
+		s_tag_block_legacy<s_general_settings1_definition_legacy> nicename("General Settings") general_settings_block;
+		s_tag_block_legacy<s_respawn_settings1_definition_legacy> nicename("Respawn Settings") respawn_settings_block;
+		s_tag_block_legacy<s_social_settings1_definition_legacy> nicename("Social Settings") social_settings_block;
+		s_tag_block_legacy<s_map_overrides1_definition_legacy> nicename("Map Overrides") map_overrides_block;
+		s_tag_block_legacy<s_teams1_definition_legacy> nicename("Teams") teams_block;
+		s_tag_block_legacy<s_loadouts1_definition_legacy> nicename("Loadouts") loadouts_block;
 		b_scenario_flags nicename("Scenario Flags") scenario_flags;
 		e_campaign_difficulty_level nicename("Campaign Difficulty Level") campaign_difficulty_level;
 		int8_t nicename("Time Limit") time_limit;
@@ -1469,9 +1469,9 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 		string_id_legacy nicename("Spartan Trait Profile") spartan_trait_profile;
 		string_id_legacy nicename("Elite Trait Profile") elite_trait_profile;
 		string_id_legacy nicename("AI Trait Profile") ai_trait_profile;
-		s_tag_block_legacy<s_elite_respawn_settings_definition> nicename("Elite Respawn Settings") elite_respawn_settings_block;
-		s_tag_block_legacy<s_unknown_skulls_definition> nicename("Unknown Skulls") unknown_skulls_block;
-		s_tag_block_legacy<s_rounds_definition> nicename("Rounds") rounds_block;
+		s_tag_block_legacy<s_elite_respawn_settings_definition_legacy> nicename("Elite Respawn Settings") elite_respawn_settings_block;
+		s_tag_block_legacy<s_unknown_skulls_definition_legacy> nicename("Unknown Skulls") unknown_skulls_block;
+		s_tag_block_legacy<s_rounds_definition_legacy> nicename("Rounds") rounds_block;
 		b_bonus_round_skulls nicename("Bonus Round Skulls") bonus_round_skulls;
 		int16_t nicename("Bonus Round Duration") bonus_round_duration;
 		int16_t __unknown1;
@@ -1479,18 +1479,18 @@ struct nicename("game_engine_settings_definition") tag_group('wezr') s_game_engi
 		b_squad_advance_type nicename("Squad Advance Type") squad_advance_type;
 		int8_t __unknown2;
 		int8_t __unknown3;
-		s_tag_block_legacy<s_bonus_round_squads_definition> nicename("Bonus Round Squads") bonus_round_squads_block;
+		s_tag_block_legacy<s_bonus_round_squads_definition_legacy> nicename("Bonus Round Squads") bonus_round_squads_block;
 		/* Custom Skulls : Index 0 - Red
 		   Index 1 - Yellow
 		   Index 2 - Blue */
-		s_tag_block_legacy<s_custom_skull_traits_definition> nicename("Custom Skull Traits") custom_skull_traits_block;
+		s_tag_block_legacy<s_custom_skull_traits_definition_legacy> nicename("Custom Skull Traits") custom_skull_traits_block;
 	};
 
 	s_undefined32_legacy __unknown0;
-	s_tag_block_legacy<s_trait_profiles_definition> nicename("Trait Profiles") trait_profiles_block;
-	s_tag_block_legacy<s_ai_trait_profiles_definition> nicename("AI Trait Profiles") ai_trait_profiles_block;
-	s_tag_block_legacy<s_sandbox_variants_definition> nicename("Sandbox Variants") sandbox_variants_block;
-	s_tag_block_legacy<s_survival_variants_definition> nicename("Survival Variants") survival_variants_block;
+	s_tag_block_legacy<s_trait_profiles_definition_legacy> nicename("Trait Profiles") trait_profiles_block;
+	s_tag_block_legacy<s_ai_trait_profiles_definition_legacy> nicename("AI Trait Profiles") ai_trait_profiles_block;
+	s_tag_block_legacy<s_sandbox_variants_definition_legacy> nicename("Sandbox Variants") sandbox_variants_block;
+	s_tag_block_legacy<s_survival_variants_definition_legacy> nicename("Survival Variants") survival_variants_block;
 	s_undefined32_legacy __unknown1;
 	s_undefined32_legacy __unknown2;
 	s_undefined32_legacy __unknown3;

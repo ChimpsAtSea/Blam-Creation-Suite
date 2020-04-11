@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("area_screen_effect") tag_group('sefc') s_area_screen_effect_definition
+struct nicename("area_screen_effect") tag_group('sefc') s_area_screen_effect_definition_legacy
 {
-	struct nicename("Screen Effect") s_screen_effect_definition
+	struct nicename("Screen Effect") s_screen_effect_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int16_t __unknown0;
@@ -46,6 +46,6 @@ struct nicename("area_screen_effect") tag_group('sefc') s_area_screen_effect_def
 
 	int16_t __unknown0;
 	int16_t __unknown1;
-	s_tag_block_legacy<s_screen_effect_definition> nicename("Screen Effect") screen_effect_block;
+	s_tag_block_legacy<s_screen_effect_definition_legacy> nicename("Screen Effect") screen_effect_block;
 };
 

@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("loadout_globals_definition") tag_group('lgtd') s_loadout_globals_definition_definition
+struct nicename("loadout_globals_definition") tag_group('lgtd') s_loadout_globals_definition_definition_legacy
 {
-	struct nicename("Default Loadouts") s_default_loadouts_definition
+	struct nicename("Default Loadouts") s_default_loadouts_definition_legacy
 	{
 		enum nicename("Grenade Count") e_grenade_count : uint8_t
 		{
@@ -33,25 +33,25 @@ struct nicename("loadout_globals_definition") tag_group('lgtd') s_loadout_global
 		int8_t __unknown2;
 	};
 
-	struct nicename("Loadout Sets") s_loadout_sets_definition
+	struct nicename("Loadout Sets") s_loadout_sets_definition_legacy
 	{
-		struct nicename("Set Loadouts") s_set_loadouts_definition
+		struct nicename("Set Loadouts") s_set_loadouts_definition_legacy
 		{
 			int16_t nicename("Default Loadout Index") default_loadout_index;
 			int16_t __unknown0;
 		};
 
 		string_id_legacy nicename("Set Name") set_name;
-		s_tag_block_legacy<s_set_loadouts_definition> nicename("Set Loadouts") set_loadouts_block;
+		s_tag_block_legacy<s_set_loadouts_definition_legacy> nicename("Set Loadouts") set_loadouts_block;
 	};
 
-	struct nicename("Custom Loadout Names List") s_custom_loadout_names_list_definition
+	struct nicename("Custom Loadout Names List") s_custom_loadout_names_list_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 	};
 
-	s_tag_block_legacy<s_default_loadouts_definition> nicename("Default Loadouts") default_loadouts_block;
-	s_tag_block_legacy<s_loadout_sets_definition> nicename("Loadout Sets") loadout_sets_block;
-	s_tag_block_legacy<s_custom_loadout_names_list_definition> nicename("Custom Loadout Names List") custom_loadout_names_list_block;
+	s_tag_block_legacy<s_default_loadouts_definition_legacy> nicename("Default Loadouts") default_loadouts_block;
+	s_tag_block_legacy<s_loadout_sets_definition_legacy> nicename("Loadout Sets") loadout_sets_block;
+	s_tag_block_legacy<s_custom_loadout_names_list_definition_legacy> nicename("Custom Loadout Names List") custom_loadout_names_list_block;
 };
 

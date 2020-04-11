@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("communication_sounds") tag_group('coms') s_communication_sounds_definition
+struct nicename("communication_sounds") tag_group('coms') s_communication_sounds_definition_legacy
 {
 	s_tag_reference_legacy nicename("Enemy Mauler") enemy_mauler_reference;
 	s_tag_reference_legacy nicename("Alert Holding") alert_holding_reference;

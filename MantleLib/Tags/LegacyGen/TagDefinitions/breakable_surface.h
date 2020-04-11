@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("breakable_surface") tag_group('bsdt') s_breakable_surface_definition
+struct nicename("breakable_surface") tag_group('bsdt') s_breakable_surface_definition_legacy
 {
 	s_undefined32_legacy __unknown0;
 	s_undefined32_legacy __unknown1;

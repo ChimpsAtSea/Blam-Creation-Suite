@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("lens_flare") tag_group('lens') s_lens_flare_definition
+struct nicename("lens_flare") tag_group('lens') s_lens_flare_definition_legacy
 {
-	struct nicename("Reflections") s_reflections_definition
+	struct nicename("Reflections") s_reflections_definition_legacy
 	{
 		int8_t __unknown0;
 		int8_t __unknown1;
@@ -23,17 +23,17 @@ struct nicename("lens_flare") tag_group('lens') s_lens_flare_definition
 		float nicename("Alpha") alpha;
 	};
 
-	struct nicename("Brightness") s_brightness_definition
+	struct nicename("Brightness") s_brightness_definition_legacy
 	{
 		s_data_reference_legacy nicename("Function") function_data_reference;
 	};
 
-	struct nicename("Color") s_color_definition
+	struct nicename("Color") s_color_definition_legacy
 	{
 		s_data_reference_legacy nicename("Function") function_data_reference;
 	};
 
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -42,7 +42,7 @@ struct nicename("lens_flare") tag_group('lens') s_lens_flare_definition
 		s_data_reference_legacy nicename("Function") function_data_reference;
 	};
 
-	struct nicename("Unknown") s_unknown1_definition
+	struct nicename("Unknown") s_unknown1_definition_legacy
 	{
 		s_data_reference_legacy nicename("Function") function_data_reference;
 	};
@@ -65,17 +65,17 @@ struct nicename("lens_flare") tag_group('lens') s_lens_flare_definition
 	float nicename("Rotation Function Scale") rotation_function_scale;
 	int16_t __unknown9;
 	int16_t __unknown10;
-	s_tag_block_legacy<s_reflections_definition> nicename("Reflections") reflections_block;
+	s_tag_block_legacy<s_reflections_definition_legacy> nicename("Reflections") reflections_block;
 	s_undefined32_legacy __unknown11;
-	s_tag_block_legacy<s_brightness_definition> nicename("Brightness") brightness_block;
-	s_tag_block_legacy<s_color_definition> nicename("Color") color_block;
+	s_tag_block_legacy<s_brightness_definition_legacy> nicename("Brightness") brightness_block;
+	s_tag_block_legacy<s_color_definition_legacy> nicename("Color") color_block;
 	s_undefined32_legacy __unknown12;
 	s_undefined32_legacy __unknown13;
 	s_undefined32_legacy __unknown14;
-	s_tag_block_legacy<s_unknown_definition> __unknown15;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown15;
 	s_undefined32_legacy __unknown16;
 	s_undefined32_legacy __unknown17;
 	s_undefined32_legacy __unknown18;
-	s_tag_block_legacy<s_unknown1_definition> __unknown19;
+	s_tag_block_legacy<s_unknown1_definition_legacy> __unknown19;
 };
 

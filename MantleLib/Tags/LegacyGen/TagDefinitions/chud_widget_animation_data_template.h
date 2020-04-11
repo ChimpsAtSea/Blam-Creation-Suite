@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("chud_widget_animation_data_template") tag_group('wadt') s_chud_widget_animation_data_template_definition
+struct nicename("chud_widget_animation_data_template") tag_group('wadt') s_chud_widget_animation_data_template_definition_legacy
 {
-	struct nicename("Animation Data") s_animation_data_definition
+	struct nicename("Animation Data") s_animation_data_definition_legacy
 	{
 		enum nicename("Animation 1 Function") e_animation_1_function : uint8_t
 		{
@@ -91,6 +91,6 @@ struct nicename("chud_widget_animation_data_template") tag_group('wadt') s_chud_
 		s_tag_reference_legacy nicename("Animation 5") animation_5_reference;
 	};
 
-	s_tag_block_legacy<s_animation_data_definition> nicename("Animation Data") animation_data_block;
+	s_tag_block_legacy<s_animation_data_definition_legacy> nicename("Animation Data") animation_data_block;
 };
 

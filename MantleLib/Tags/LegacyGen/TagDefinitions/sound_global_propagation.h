@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_global_propagation") tag_group('sgp!') s_sound_global_propagation_definition
+struct nicename("sound_global_propagation") tag_group('sgp!') s_sound_global_propagation_definition_legacy
 {
 	s_tag_reference_legacy nicename("Underwater Environment") underwater_environment_reference;
 	s_tag_reference_legacy nicename("Underwater Loop") underwater_loop_reference;

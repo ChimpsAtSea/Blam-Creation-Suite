@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("coop_spawning_globals_definition") tag_group('coop') s_coop_spawning_globals_definition_definition
+struct nicename("coop_spawning_globals_definition") tag_group('coop') s_coop_spawning_globals_definition_definition_legacy
 {
 	int16_t __unknown0;
 	int16_t __unknown1;

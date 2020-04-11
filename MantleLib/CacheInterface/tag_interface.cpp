@@ -68,7 +68,7 @@ c_tag_interface::~c_tag_interface()
 
 }
 
-c_tag_group_interface* c_tag_interface::get_group_interface() const
+c_legacy_tag_group_interface* c_tag_interface::get_group_interface() const
 {
 	return cache_file.get_group_interfaces(true)[group_index];
 }

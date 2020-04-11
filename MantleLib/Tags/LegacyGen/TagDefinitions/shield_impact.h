@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("shield_impact") tag_group('shit') s_shield_impact_definition
+struct nicename("shield_impact") tag_group('shit') s_shield_impact_definition_legacy
 {
 	int16_t __unknown0;
 	int16_t __unknown1;

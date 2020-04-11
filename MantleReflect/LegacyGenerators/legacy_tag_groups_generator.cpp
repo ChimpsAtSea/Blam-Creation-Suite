@@ -18,7 +18,7 @@ void c_legacy_tag_groups_generator::write_tag_group_enum(std::stringstream& stri
 	stringstream << std::endl;
 	stringstream << "enum e_tag_group : int32_t" << std::endl;
 	stringstream << "{" << std::endl;
-	stringstream << "\t_tag_group_invalid = -1," << std::endl;
+	stringstream << "\t_legacy_tag_group_invalid = -1," << std::endl;
 	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
 	{
 		assert(reflection_type_container);
@@ -27,7 +27,7 @@ void c_legacy_tag_groups_generator::write_tag_group_enum(std::stringstream& stri
 
 		stringstream << std::nouppercase;
 		std::string enum_name = reflection_type_container->type_name.substr(2, reflection_type_container->type_name.rfind("_definition") - 2);
-		stringstream << "\t_tag_group_" << enum_name << " = '" << reflection_type_container->tag_group << "'" << "," << std::endl;
+		stringstream << "\t_legacy_tag_group_" << enum_name << " = '" << reflection_type_container->tag_group << "'" << "," << std::endl;
 	}
 	stringstream << "};" << std::endl;
 	stringstream << std::endl;

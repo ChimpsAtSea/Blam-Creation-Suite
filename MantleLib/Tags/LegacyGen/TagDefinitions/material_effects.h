@@ -1,10 +1,10 @@
 #pragma once
 
-struct nicename("material_effects") tag_group('foot') s_material_effects_definition
+struct nicename("material_effects") tag_group('foot') s_material_effects_definition_legacy
 {
-	struct nicename("Effects") s_effects_definition
+	struct nicename("Effects") s_effects_definition_legacy
 	{
-		struct nicename("Old Materials") s_old_materials_definition
+		struct nicename("Old Materials") s_old_materials_definition_legacy
 		{
 			enum nicename("Sweetener Mode") e_sweetener_mode : uint8_t
 			{
@@ -22,7 +22,7 @@ struct nicename("material_effects") tag_group('foot') s_material_effects_definit
 			s_undefined32_legacy __unknown1;
 		};
 
-		struct nicename("Sounds") s_sounds_definition
+		struct nicename("Sounds") s_sounds_definition_legacy
 		{
 			enum nicename("Sweetener Mode") e_sweetener_mode : uint8_t
 			{
@@ -40,7 +40,7 @@ struct nicename("material_effects") tag_group('foot') s_material_effects_definit
 			s_undefined32_legacy __unknown1;
 		};
 
-		struct nicename("Effects") s_effects1_definition
+		struct nicename("Effects") s_effects1_definition_legacy
 		{
 			enum nicename("Sweetener Mode") e_sweetener_mode : uint8_t
 			{
@@ -58,11 +58,11 @@ struct nicename("material_effects") tag_group('foot') s_material_effects_definit
 			s_undefined32_legacy __unknown1;
 		};
 
-		s_tag_block_legacy<s_old_materials_definition> nicename("Old Materials") old_materials_block;
-		s_tag_block_legacy<s_sounds_definition> nicename("Sounds") sounds_block;
-		s_tag_block_legacy<s_effects1_definition> nicename("Effects") effects_block;
+		s_tag_block_legacy<s_old_materials_definition_legacy> nicename("Old Materials") old_materials_block;
+		s_tag_block_legacy<s_sounds_definition_legacy> nicename("Sounds") sounds_block;
+		s_tag_block_legacy<s_effects1_definition_legacy> nicename("Effects") effects_block;
 	};
 
-	s_tag_block_legacy<s_effects_definition> nicename("Effects") effects_block;
+	s_tag_block_legacy<s_effects_definition_legacy> nicename("Effects") effects_block;
 };
 

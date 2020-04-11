@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
+struct nicename("physics_model") tag_group('phmo') s_physics_model_definition_legacy
 {
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		string_id_legacy __unknown0;
 		float __unknown1;
@@ -12,7 +12,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		s_undefined32_legacy __unknown5;
 	};
 
-	struct nicename("Unknown") s_unknown1_definition
+	struct nicename("Unknown") s_unknown1_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		float __unknown0;
@@ -24,7 +24,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		s_undefined32_legacy __unknown6;
 	};
 
-	struct nicename("Phantom Types") s_phantom_types_definition
+	struct nicename("Phantom Types") s_phantom_types_definition_legacy
 	{
 		enum nicename("Minimum Size") e_minimum_size : uint8_t
 		{
@@ -115,14 +115,14 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		s_undefined32_legacy __unknown15;
 	};
 
-	struct nicename("Unknown 12") s_unknown_12_definition
+	struct nicename("Unknown 12") s_unknown_12_definition_legacy
 	{
-		struct nicename("Unknown 1") s_unknown_1_definition
+		struct nicename("Unknown 1") s_unknown_1_definition_legacy
 		{
 			int16_t __unknown0;
 		};
 
-		struct nicename("Unknown 1") s_unknown_11_definition
+		struct nicename("Unknown 1") s_unknown_11_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
@@ -130,13 +130,13 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 			s_undefined32_legacy __unknown3;
 		};
 
-		s_tag_block_legacy<s_unknown_1_definition> nicename("Unknown 1") unknown_1_block;
-		s_tag_block_legacy<s_unknown_11_definition> nicename("Unknown 1") unknown_11_block;
+		s_tag_block_legacy<s_unknown_1_definition_legacy> nicename("Unknown 1") unknown_1_block;
+		s_tag_block_legacy<s_unknown_11_definition_legacy> nicename("Unknown 1") unknown_11_block;
 	};
 
-	struct nicename("Node Edges") s_node_edges_definition
+	struct nicename("Node Edges") s_node_edges_definition_legacy
 	{
-		struct nicename("Constraints") s_constraints_definition
+		struct nicename("Constraints") s_constraints_definition_legacy
 		{
 			enum nicename("Type") e_type : uint16_t
 			{
@@ -184,7 +184,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 				/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
 			};
 
-			struct nicename("Unknown") s_unknown2_definition
+			struct nicename("Unknown") s_unknown2_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -194,7 +194,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 				int16_t __unknown5;
 			};
 
-			struct nicename("Unknown") s_unknown3_definition
+			struct nicename("Unknown") s_unknown3_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -204,20 +204,20 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 			int16_t nicename("Index") index;
 			b_flags nicename("Flags") flags;
 			float nicename("Friction") friction;
-			s_tag_block_legacy<s_unknown2_definition> __unknown0;
-			s_tag_block_legacy<s_unknown3_definition> __unknown1;
+			s_tag_block_legacy<s_unknown2_definition_legacy> __unknown0;
+			s_tag_block_legacy<s_unknown3_definition_legacy> __unknown1;
 		};
 
 		int16_t nicename("Node A Global Material Index") node_a_global_material_index;
 		int16_t nicename("Node B Global Material Index") node_b_global_material_index;
 		int16_t nicename("Node A") node_a;
 		int16_t nicename("Node B") node_b;
-		s_tag_block_legacy<s_constraints_definition> nicename("Constraints") constraints_block;
+		s_tag_block_legacy<s_constraints_definition_legacy> nicename("Constraints") constraints_block;
 		string_id_legacy nicename("Node A Material") node_a_material;
 		string_id_legacy nicename("Node B Material") node_b_material;
 	};
 
-	struct nicename("Rigid Bodies") s_rigid_bodies_definition
+	struct nicename("Rigid Bodies") s_rigid_bodies_definition_legacy
 	{
 		enum nicename("Motion Type") e_motion_type : uint8_t
 		{
@@ -341,7 +341,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("Materials") s_materials_definition
+	struct nicename("Materials") s_materials_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_undefined32_legacy __unknown0;
@@ -351,7 +351,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		int8_t __unknown2;
 	};
 
-	struct nicename("Spheres") s_spheres_definition
+	struct nicename("Spheres") s_spheres_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
@@ -405,7 +405,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("Translation Radius") translation_radius;
 	};
 
-	struct nicename("Pills") s_pills_definition
+	struct nicename("Pills") s_pills_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
@@ -442,7 +442,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("Top Radius") top_radius;
 	};
 
-	struct nicename("Boxes") s_boxes_definition
+	struct nicename("Boxes") s_boxes_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
@@ -508,7 +508,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("Translation Radius") translation_radius;
 	};
 
-	struct nicename("Polyhedra") s_polyhedra_definition
+	struct nicename("Polyhedra") s_polyhedra_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
@@ -561,7 +561,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		s_undefined32_legacy __unknown21;
 	};
 
-	struct nicename("Polyhedron Four Vectors") s_polyhedron_four_vectors_definition
+	struct nicename("Polyhedron Four Vectors") s_polyhedron_four_vectors_definition_legacy
 	{
 		float nicename("Four Vectors x i") four_vectors_x_i;
 		float nicename("Four Vectors x j") four_vectors_x_j;
@@ -577,7 +577,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("Four Vectors z Radius") four_vectors_z_radius;
 	};
 
-	struct nicename("Polyhedron Plane Equations") s_polyhedron_plane_equations_definition
+	struct nicename("Polyhedron Plane Equations") s_polyhedron_plane_equations_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
@@ -585,7 +585,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float __unknown3;
 	};
 
-	struct nicename("Lists") s_lists_definition
+	struct nicename("Lists") s_lists_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -626,7 +626,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		int32_t __unknown31;
 	};
 
-	struct nicename("List Shapes") s_list_shapes_definition
+	struct nicename("List Shapes") s_list_shapes_definition_legacy
 	{
 		enum nicename("Shape Type") e_shape_type : uint16_t
 		{
@@ -659,7 +659,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		s_undefined32_legacy __unknown6;
 	};
 
-	struct nicename("MOPPs") s_mopps_definition
+	struct nicename("MOPPs") s_mopps_definition_legacy
 	{
 		enum nicename("Shape Type") e_shape_type : uint16_t
 		{
@@ -717,7 +717,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		s_undefined32_legacy __unknown28;
 	};
 
-	struct nicename("Hinge Constraints") s_hinge_constraints_definition
+	struct nicename("Hinge Constraints") s_hinge_constraints_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int16_t nicename("Node A") node_a;
@@ -753,7 +753,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		s_undefined32_legacy __unknown1;
 	};
 
-	struct nicename("Ragdoll Constraints") s_ragdoll_constraints_definition
+	struct nicename("Ragdoll Constraints") s_ragdoll_constraints_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int16_t nicename("Node A") node_a;
@@ -796,24 +796,24 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("Max Friction Torque") max_friction_torque;
 	};
 
-	struct nicename("Regions") s_regions_definition
+	struct nicename("Regions") s_regions_definition_legacy
 	{
-		struct nicename("Permutations") s_permutations_definition
+		struct nicename("Permutations") s_permutations_definition_legacy
 		{
-			struct nicename("Rigid Bodies") s_rigid_bodies1_definition
+			struct nicename("Rigid Bodies") s_rigid_bodies1_definition_legacy
 			{
 				int16_t nicename("Rigid Body Index") rigid_body_index;
 			};
 
 			string_id_legacy nicename("Name") name;
-			s_tag_block_legacy<s_rigid_bodies1_definition> nicename("Rigid Bodies") rigid_bodies_block;
+			s_tag_block_legacy<s_rigid_bodies1_definition_legacy> nicename("Rigid Bodies") rigid_bodies_block;
 		};
 
 		string_id_legacy nicename("Name") name;
-		s_tag_block_legacy<s_permutations_definition> nicename("Permutations") permutations_block;
+		s_tag_block_legacy<s_permutations_definition_legacy> nicename("Permutations") permutations_block;
 	};
 
-	struct nicename("Nodes") s_nodes_definition
+	struct nicename("Nodes") s_nodes_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint16_t /* bitfield */
 		{
@@ -842,7 +842,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		int16_t nicename("Child") child;
 	};
 
-	struct nicename("Limited Hinge Constraints") s_limited_hinge_constraints_definition
+	struct nicename("Limited Hinge Constraints") s_limited_hinge_constraints_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int16_t nicename("Node A") node_a;
@@ -881,7 +881,7 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 		float nicename("Limit Max Angle") limit_max_angle;
 	};
 
-	struct nicename("Phantoms") s_phantoms_definition
+	struct nicename("Phantoms") s_phantoms_definition_legacy
 	{
 		enum nicename("Shape Type") e_shape_type : uint16_t
 		{
@@ -941,43 +941,43 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 	int8_t __unknown5;
 	int8_t __unknown6;
 	int8_t __unknown7;
-	s_tag_block_legacy<s_unknown_definition> __unknown8;
-	s_tag_block_legacy<s_unknown1_definition> __unknown9;
-	s_tag_block_legacy<s_phantom_types_definition> nicename("Phantom Types") phantom_types_block;
-	s_tag_block_legacy<s_unknown_12_definition> nicename("Unknown 12") unknown_12_block;
-	s_tag_block_legacy<s_node_edges_definition> nicename("Node Edges") node_edges_block;
-	s_tag_block_legacy<s_rigid_bodies_definition> nicename("Rigid Bodies") rigid_bodies_block;
-	s_tag_block_legacy<s_materials_definition> nicename("Materials") materials_block;
-	s_tag_block_legacy<s_spheres_definition> nicename("Spheres") spheres_block;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown8;
+	s_tag_block_legacy<s_unknown1_definition_legacy> __unknown9;
+	s_tag_block_legacy<s_phantom_types_definition_legacy> nicename("Phantom Types") phantom_types_block;
+	s_tag_block_legacy<s_unknown_12_definition_legacy> nicename("Unknown 12") unknown_12_block;
+	s_tag_block_legacy<s_node_edges_definition_legacy> nicename("Node Edges") node_edges_block;
+	s_tag_block_legacy<s_rigid_bodies_definition_legacy> nicename("Rigid Bodies") rigid_bodies_block;
+	s_tag_block_legacy<s_materials_definition_legacy> nicename("Materials") materials_block;
+	s_tag_block_legacy<s_spheres_definition_legacy> nicename("Spheres") spheres_block;
 	s_undefined32_legacy nicename("Multi Spheres Block Here") multi_spheres_block_here;
 	s_undefined32_legacy nicename("Multi Spheres Block Here") multi_spheres_block_here1;
 	s_undefined32_legacy nicename("Multi Spheres Block Here") multi_spheres_block_here2;
-	s_tag_block_legacy<s_pills_definition> nicename("Pills") pills_block;
-	s_tag_block_legacy<s_boxes_definition> nicename("Boxes") boxes_block;
+	s_tag_block_legacy<s_pills_definition_legacy> nicename("Pills") pills_block;
+	s_tag_block_legacy<s_boxes_definition_legacy> nicename("Boxes") boxes_block;
 	s_undefined32_legacy nicename("Triangles Block Here") triangles_block_here;
 	s_undefined32_legacy nicename("Triangles Block Here") triangles_block_here1;
 	s_undefined32_legacy nicename("Triangles Block Here") triangles_block_here2;
-	s_tag_block_legacy<s_polyhedra_definition> nicename("Polyhedra") polyhedra_block;
-	s_tag_block_legacy<s_polyhedron_four_vectors_definition> nicename("Polyhedron Four Vectors") polyhedron_four_vectors_block;
-	s_tag_block_legacy<s_polyhedron_plane_equations_definition> nicename("Polyhedron Plane Equations") polyhedron_plane_equations_block;
+	s_tag_block_legacy<s_polyhedra_definition_legacy> nicename("Polyhedra") polyhedra_block;
+	s_tag_block_legacy<s_polyhedron_four_vectors_definition_legacy> nicename("Polyhedron Four Vectors") polyhedron_four_vectors_block;
+	s_tag_block_legacy<s_polyhedron_plane_equations_definition_legacy> nicename("Polyhedron Plane Equations") polyhedron_plane_equations_block;
 	s_undefined32_legacy nicename("Mass Distributions Block Here") mass_distributions_block_here;
 	s_undefined32_legacy nicename("Mass Distributions Block Here") mass_distributions_block_here1;
 	s_undefined32_legacy nicename("Mass Distributions Block Here") mass_distributions_block_here2;
-	s_tag_block_legacy<s_lists_definition> nicename("Lists") lists_block;
-	s_tag_block_legacy<s_list_shapes_definition> nicename("List Shapes") list_shapes_block;
-	s_tag_block_legacy<s_mopps_definition> nicename("MOPPs") mopps_block;
+	s_tag_block_legacy<s_lists_definition_legacy> nicename("Lists") lists_block;
+	s_tag_block_legacy<s_list_shapes_definition_legacy> nicename("List Shapes") list_shapes_block;
+	s_tag_block_legacy<s_mopps_definition_legacy> nicename("MOPPs") mopps_block;
 	s_data_reference_legacy nicename("MOPP Codes") mopp_codes_data_reference;
-	s_tag_block_legacy<s_hinge_constraints_definition> nicename("Hinge Constraints") hinge_constraints_block;
-	s_tag_block_legacy<s_ragdoll_constraints_definition> nicename("Ragdoll Constraints") ragdoll_constraints_block;
-	s_tag_block_legacy<s_regions_definition> nicename("Regions") regions_block;
-	s_tag_block_legacy<s_nodes_definition> nicename("Nodes") nodes_block;
+	s_tag_block_legacy<s_hinge_constraints_definition_legacy> nicename("Hinge Constraints") hinge_constraints_block;
+	s_tag_block_legacy<s_ragdoll_constraints_definition_legacy> nicename("Ragdoll Constraints") ragdoll_constraints_block;
+	s_tag_block_legacy<s_regions_definition_legacy> nicename("Regions") regions_block;
+	s_tag_block_legacy<s_nodes_definition_legacy> nicename("Nodes") nodes_block;
 	s_undefined32_legacy __unknown10;
 	s_undefined32_legacy __unknown11;
 	s_undefined32_legacy __unknown12;
 	s_undefined32_legacy __unknown13;
 	s_undefined32_legacy __unknown14;
 	s_undefined32_legacy __unknown15;
-	s_tag_block_legacy<s_limited_hinge_constraints_definition> nicename("Limited Hinge Constraints") limited_hinge_constraints_block;
+	s_tag_block_legacy<s_limited_hinge_constraints_definition_legacy> nicename("Limited Hinge Constraints") limited_hinge_constraints_block;
 	s_undefined32_legacy nicename("Ball And Socket Constraint Block") ball_and_socket_constraint_block;
 	s_undefined32_legacy nicename("Ball And Socket Constraint Block") ball_and_socket_constraint_block1;
 	s_undefined32_legacy nicename("Ball And Socket Constraint Block") ball_and_socket_constraint_block2;
@@ -987,6 +987,6 @@ struct nicename("physics_model") tag_group('phmo') s_physics_model_definition
 	s_undefined32_legacy nicename("Prismatic Constraint Block") prismatic_constraint_block;
 	s_undefined32_legacy nicename("Prismatic Constraint Block") prismatic_constraint_block1;
 	s_undefined32_legacy nicename("Prismatic Constraint Block") prismatic_constraint_block2;
-	s_tag_block_legacy<s_phantoms_definition> nicename("Phantoms") phantoms_block;
+	s_tag_block_legacy<s_phantoms_definition_legacy> nicename("Phantoms") phantoms_block;
 };
 

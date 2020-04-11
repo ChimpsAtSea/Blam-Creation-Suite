@@ -1,24 +1,24 @@
 #pragma once
 
-struct nicename("ai_globals") tag_group('aigl') s_ai_globals_definition
+struct nicename("ai_globals") tag_group('aigl') s_ai_globals_definition_legacy
 {
-	struct nicename("AI Globals") s_ai_globals1_definition
+	struct nicename("AI Globals") s_ai_globals1_definition_legacy
 	{
-		struct nicename("Gravemind Properties") s_gravemind_properties_definition
+		struct nicename("Gravemind Properties") s_gravemind_properties_definition_legacy
 		{
 			float nicename("Minimum Retreat Time") minimum_retreat_time;
 			float nicename("Ideal Retreat Time") ideal_retreat_time;
 			float nicename("Maximum Retreat Time") maximum_retreat_time;
 		};
 
-		struct nicename("Formations") s_formations_definition
+		struct nicename("Formations") s_formations_definition_legacy
 		{
 			s_tag_reference_legacy nicename("Formation") formation_reference;
 		};
 
-		struct nicename("Squad Templates") s_squad_templates_definition
+		struct nicename("Squad Templates") s_squad_templates_definition_legacy
 		{
-			struct nicename("Templates") s_templates_definition
+			struct nicename("Templates") s_templates_definition_legacy
 			{
 				s_tag_reference_legacy nicename("Template") template_reference;
 			};
@@ -27,42 +27,42 @@ struct nicename("ai_globals") tag_group('aigl') s_ai_globals_definition
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
 			s_undefined32_legacy __unknown2;
-			s_tag_block_legacy<s_templates_definition> nicename("Templates") templates_block;
+			s_tag_block_legacy<s_templates_definition_legacy> nicename("Templates") templates_block;
 		};
 
-		struct nicename("Performance Templates") s_performance_templates_definition
+		struct nicename("Performance Templates") s_performance_templates_definition_legacy
 		{
-			struct nicename("Characters") s_characters_definition
+			struct nicename("Characters") s_characters_definition_legacy
 			{
-				struct nicename("Templates") s_templates1_definition
+				struct nicename("Templates") s_templates1_definition_legacy
 				{
 					s_tag_reference_legacy nicename("Template") template_reference;
 				};
 
 				string_id_legacy nicename("Name") name;
-				s_tag_block_legacy<s_templates1_definition> nicename("Templates") templates_block;
+				s_tag_block_legacy<s_templates1_definition_legacy> nicename("Templates") templates_block;
 			};
 
 			string_id_legacy nicename("Name") name;
-			s_tag_block_legacy<s_characters_definition> nicename("Characters") characters_block;
+			s_tag_block_legacy<s_characters_definition_legacy> nicename("Characters") characters_block;
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
 			s_undefined32_legacy __unknown2;
 		};
 
-		struct nicename("Unknown") s_unknown_definition
+		struct nicename("Unknown") s_unknown_definition_legacy
 		{
-			struct nicename("Unknown") s_unknown1_definition
+			struct nicename("Unknown") s_unknown1_definition_legacy
 			{
 				float __unknown0;
 			};
 
-			struct nicename("Unknown") s_unknown2_definition
+			struct nicename("Unknown") s_unknown2_definition_legacy
 			{
 				string_id_legacy __unknown0;
 			};
 
-			struct nicename("Unknown") s_unknown3_definition
+			struct nicename("Unknown") s_unknown3_definition_legacy
 			{
 				s_undefined32_legacy __unknown0;
 				s_undefined32_legacy __unknown1;
@@ -78,23 +78,23 @@ struct nicename("ai_globals") tag_group('aigl') s_ai_globals_definition
 			};
 
 			string_id_legacy __unknown0;
-			s_tag_block_legacy<s_unknown1_definition> __unknown1;
-			s_tag_block_legacy<s_unknown2_definition> __unknown2;
-			s_tag_block_legacy<s_unknown3_definition> __unknown3;
+			s_tag_block_legacy<s_unknown1_definition_legacy> __unknown1;
+			s_tag_block_legacy<s_unknown2_definition_legacy> __unknown2;
+			s_tag_block_legacy<s_unknown3_definition_legacy> __unknown3;
 		};
 
-		struct nicename("Vision Trait Definitions") s_vision_trait_definitions_definition
+		struct nicename("Vision Trait Definitions") s_vision_trait_definitions_definition_legacy
 		{
 			float __unknown0;
 			float __unknown1;
 		};
 
-		struct nicename("Hearing Trait Definitions") s_hearing_trait_definitions_definition
+		struct nicename("Hearing Trait Definitions") s_hearing_trait_definitions_definition_legacy
 		{
 			float __unknown0;
 		};
 
-		struct nicename("Luck Trait Definitions") s_luck_trait_definitions_definition
+		struct nicename("Luck Trait Definitions") s_luck_trait_definitions_definition_legacy
 		{
 			float __unknown0;
 			float __unknown1;
@@ -109,7 +109,7 @@ struct nicename("ai_globals") tag_group('aigl') s_ai_globals_definition
 			float __unknown10;
 		};
 
-		struct nicename("Grenade Trait Definitions") s_grenade_trait_definitions_definition
+		struct nicename("Grenade Trait Definitions") s_grenade_trait_definitions_definition_legacy
 		{
 			float __unknown0;
 			float __unknown1;
@@ -161,7 +161,7 @@ struct nicename("ai_globals") tag_group('aigl') s_ai_globals_definition
 		float __unknown6;
 		float __unknown7;
 		float __unknown8;
-		s_tag_block_legacy<s_gravemind_properties_definition> nicename("Gravemind Properties") gravemind_properties_block;
+		s_tag_block_legacy<s_gravemind_properties_definition_legacy> nicename("Gravemind Properties") gravemind_properties_block;
 		float nicename("Scary Target Threshold") scary_target_threshold;
 		float nicename("Scary Weapon Threshold") scary_weapon_threshold;
 		float __unknown9;
@@ -174,13 +174,13 @@ struct nicename("ai_globals") tag_group('aigl') s_ai_globals_definition
 		float __unknown16;
 		float __unknown17;
 		float __unknown18;
-		s_tag_block_legacy<s_formations_definition> nicename("Formations") formations_block;
-		s_tag_block_legacy<s_squad_templates_definition> nicename("Squad Templates") squad_templates_block;
-		s_tag_block_legacy<s_performance_templates_definition> nicename("Performance Templates") performance_templates_block;
+		s_tag_block_legacy<s_formations_definition_legacy> nicename("Formations") formations_block;
+		s_tag_block_legacy<s_squad_templates_definition_legacy> nicename("Squad Templates") squad_templates_block;
+		s_tag_block_legacy<s_performance_templates_definition_legacy> nicename("Performance Templates") performance_templates_block;
 		s_undefined32_legacy __unknown19;
 		s_undefined32_legacy __unknown20;
 		s_undefined32_legacy __unknown21;
-		s_tag_block_legacy<s_unknown_definition> __unknown22;
+		s_tag_block_legacy<s_unknown_definition_legacy> __unknown22;
 		s_undefined32_legacy __unknown23;
 		s_undefined32_legacy __unknown24;
 		s_undefined32_legacy __unknown25;
@@ -201,10 +201,10 @@ struct nicename("ai_globals") tag_group('aigl') s_ai_globals_definition
 		int16_t __unknown40;
 		int16_t __unknown41;
 		int16_t __unknown42;
-		s_tag_block_legacy<s_vision_trait_definitions_definition> nicename("Vision Trait Definitions") vision_trait_definitions_block;
-		s_tag_block_legacy<s_hearing_trait_definitions_definition> nicename("Hearing Trait Definitions") hearing_trait_definitions_block;
-		s_tag_block_legacy<s_luck_trait_definitions_definition> nicename("Luck Trait Definitions") luck_trait_definitions_block;
-		s_tag_block_legacy<s_grenade_trait_definitions_definition> nicename("Grenade Trait Definitions") grenade_trait_definitions_block;
+		s_tag_block_legacy<s_vision_trait_definitions_definition_legacy> nicename("Vision Trait Definitions") vision_trait_definitions_block;
+		s_tag_block_legacy<s_hearing_trait_definitions_definition_legacy> nicename("Hearing Trait Definitions") hearing_trait_definitions_block;
+		s_tag_block_legacy<s_luck_trait_definitions_definition_legacy> nicename("Luck Trait Definitions") luck_trait_definitions_block;
+		s_tag_block_legacy<s_grenade_trait_definitions_definition_legacy> nicename("Grenade Trait Definitions") grenade_trait_definitions_block;
 		s_undefined32_legacy __unknown43;
 		s_undefined32_legacy __unknown44;
 		s_undefined32_legacy __unknown45;
@@ -214,6 +214,6 @@ struct nicename("ai_globals") tag_group('aigl') s_ai_globals_definition
 		int16_t __unknown49;
 	};
 
-	s_tag_block_legacy<s_ai_globals1_definition> nicename("AI Globals") ai_globals_block;
+	s_tag_block_legacy<s_ai_globals1_definition_legacy> nicename("AI Globals") ai_globals_block;
 };
 

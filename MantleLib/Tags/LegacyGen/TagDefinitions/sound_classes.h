@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("sound_classes") tag_group('sncl') s_sound_classes_definition
+struct nicename("sound_classes") tag_group('sncl') s_sound_classes_definition_legacy
 {
-	struct nicename("Sound Classes") s_sound_classes1_definition
+	struct nicename("Sound Classes") s_sound_classes1_definition_legacy
 	{
 		enum nicename("Cache Miss Mode") e_cache_miss_mode : uint8_t
 		{
@@ -193,6 +193,6 @@ struct nicename("sound_classes") tag_group('sncl') s_sound_classes_definition
 	   68 - unit_footsteps_postpone
 	   69 - weapon_ready_third_person
 	   70 - ui_music */
-	s_tag_block_legacy<s_sound_classes1_definition> nicename("Sound Classes") sound_classes_block;
+	s_tag_block_legacy<s_sound_classes1_definition_legacy> nicename("Sound Classes") sound_classes_block;
 };
 

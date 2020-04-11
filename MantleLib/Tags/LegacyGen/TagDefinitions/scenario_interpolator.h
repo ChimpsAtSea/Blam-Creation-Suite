@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("scenario_interpolator") tag_group('sirp') s_scenario_interpolator_definition
+struct nicename("scenario_interpolator") tag_group('sirp') s_scenario_interpolator_definition_legacy
 {
-	struct nicename("Unknown 0") s_unknown_0_definition
+	struct nicename("Unknown 0") s_unknown_0_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
@@ -17,6 +17,6 @@ struct nicename("scenario_interpolator") tag_group('sirp') s_scenario_interpolat
 		s_undefined32_legacy __unknown10;
 	};
 
-	s_tag_block_legacy<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
+	s_tag_block_legacy<s_unknown_0_definition_legacy> nicename("Unknown 0") unknown_0_block;
 };
 

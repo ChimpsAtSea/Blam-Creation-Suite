@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("scenario") tag_group('scnr') s_scenario_definition
+struct nicename("scenario") tag_group('scnr') s_scenario_definition_legacy
 {
 	enum nicename("Map Type") e_map_type : uint16_t
 	{
@@ -29,7 +29,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
 	};
 
-	struct nicename("Structure BSPs") s_structure_bsps_definition
+	struct nicename("Structure BSPs") s_structure_bsps_definition_legacy
 	{
 		enum nicename("Flags") b_flags1 : uint16_t /* bitfield */
 		{
@@ -79,13 +79,13 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float nicename("Gravity Percentage") gravity_percentage;
 	};
 
-	struct nicename("Structure Design") s_structure_design_definition
+	struct nicename("Structure Design") s_structure_design_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Design") design_reference;
 		s_tag_reference_legacy __unknown0;
 	};
 
-	struct nicename("Sky References") s_sky_references_definition
+	struct nicename("Sky References") s_sky_references_definition_legacy
 	{
 		enum nicename("Active BSPs") b_active_bsps : uint16_t /* bitfield */
 		{
@@ -116,7 +116,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		b_active_bsps nicename("Active BSPs") active_bsps;
 	};
 
-	struct nicename("BSP Groups") s_bsp_groups_definition
+	struct nicename("BSP Groups") s_bsp_groups_definition_legacy
 	{
 		enum nicename("Included BSPs") b_included_bsps : uint32_t /* bitfield */
 		{
@@ -154,18 +154,18 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("BSP 31")*/ _included_bsps_bsp_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("BSP Checksums") s_bsp_checksums_definition
+		struct nicename("BSP Checksums") s_bsp_checksums_definition_legacy
 		{
 			int32_t nicename("Structure Checksum") structure_checksum;
 		};
 
-		struct nicename("BSPs") s_bsps_definition
+		struct nicename("BSPs") s_bsps_definition_legacy
 		{
-			struct nicename("Clusters") s_clusters_definition
+			struct nicename("Clusters") s_clusters_definition_legacy
 			{
-				struct nicename("BSPs") s_bsps1_definition
+				struct nicename("BSPs") s_bsps1_definition_legacy
 				{
-					struct nicename("Unknown") s_unknown_definition
+					struct nicename("Unknown") s_unknown_definition_legacy
 					{
 						enum nicename("Allow...") b_allow : uint32_t /* bitfield */
 						{
@@ -206,17 +206,17 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 						b_allow nicename("Allow...") allow;
 					};
 
-					s_tag_block_legacy<s_unknown_definition> __unknown0;
+					s_tag_block_legacy<s_unknown_definition_legacy> __unknown0;
 				};
 
-				s_tag_block_legacy<s_bsps1_definition> nicename("BSPs") bsps_block;
+				s_tag_block_legacy<s_bsps1_definition_legacy> nicename("BSPs") bsps_block;
 			};
 
-			struct nicename("Clusters") s_clusters1_definition
+			struct nicename("Clusters") s_clusters1_definition_legacy
 			{
-				struct nicename("BSPs") s_bsps2_definition
+				struct nicename("BSPs") s_bsps2_definition_legacy
 				{
-					struct nicename("Unknown") s_unknown1_definition
+					struct nicename("Unknown") s_unknown1_definition_legacy
 					{
 						enum nicename("Show...") b_show : uint32_t /* bitfield */
 						{
@@ -257,63 +257,63 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 						b_show nicename("Show...") show;
 					};
 
-					s_tag_block_legacy<s_unknown1_definition> __unknown0;
+					s_tag_block_legacy<s_unknown1_definition_legacy> __unknown0;
 				};
 
-				s_tag_block_legacy<s_bsps2_definition> nicename("BSPs") bsps_block;
+				s_tag_block_legacy<s_bsps2_definition_legacy> nicename("BSPs") bsps_block;
 			};
 
-			struct nicename("Cluster Skies") s_cluster_skies_definition
+			struct nicename("Cluster Skies") s_cluster_skies_definition_legacy
 			{
 				int8_t nicename("Sky Index") sky_index;
 			};
 
-			struct nicename("Cluster Visible Skies") s_cluster_visible_skies_definition
+			struct nicename("Cluster Visible Skies") s_cluster_visible_skies_definition_legacy
 			{
 				int8_t nicename("Sky Index") sky_index;
 			};
 
-			struct nicename("Unknown") s_unknown2_definition
+			struct nicename("Unknown") s_unknown2_definition_legacy
 			{
 				s_undefined32_legacy __unknown0;
 			};
 
-			struct nicename("Clusters") s_clusters2_definition
+			struct nicename("Clusters") s_clusters2_definition_legacy
 			{
-				struct nicename("Unknown") s_unknown3_definition
+				struct nicename("Unknown") s_unknown3_definition_legacy
 				{
 					int8_t __unknown0;
 					int8_t __unknown1;
 				};
 
-				struct nicename("Unknown") s_unknown4_definition
+				struct nicename("Unknown") s_unknown4_definition_legacy
 				{
 					int8_t __unknown0;
 					int8_t __unknown1;
 				};
 
-				struct nicename("Unknown") s_unknown5_definition
+				struct nicename("Unknown") s_unknown5_definition_legacy
 				{
 					int8_t __unknown0;
 					int8_t __unknown1;
 				};
 
-				s_tag_block_legacy<s_unknown3_definition> __unknown0;
-				s_tag_block_legacy<s_unknown4_definition> __unknown1;
-				s_tag_block_legacy<s_unknown5_definition> __unknown2;
+				s_tag_block_legacy<s_unknown3_definition_legacy> __unknown0;
+				s_tag_block_legacy<s_unknown4_definition_legacy> __unknown1;
+				s_tag_block_legacy<s_unknown5_definition_legacy> __unknown2;
 			};
 
-			s_tag_block_legacy<s_clusters_definition> nicename("Clusters") clusters_block;
-			s_tag_block_legacy<s_clusters1_definition> nicename("Clusters") clusters1_block;
-			s_tag_block_legacy<s_cluster_skies_definition> nicename("Cluster Skies") cluster_skies_block;
-			s_tag_block_legacy<s_cluster_visible_skies_definition> nicename("Cluster Visible Skies") cluster_visible_skies_block;
-			s_tag_block_legacy<s_unknown2_definition> __unknown0;
-			s_tag_block_legacy<s_clusters2_definition> nicename("Clusters") clusters2_block;
+			s_tag_block_legacy<s_clusters_definition_legacy> nicename("Clusters") clusters_block;
+			s_tag_block_legacy<s_clusters1_definition_legacy> nicename("Clusters") clusters1_block;
+			s_tag_block_legacy<s_cluster_skies_definition_legacy> nicename("Cluster Skies") cluster_skies_block;
+			s_tag_block_legacy<s_cluster_visible_skies_definition_legacy> nicename("Cluster Visible Skies") cluster_visible_skies_block;
+			s_tag_block_legacy<s_unknown2_definition_legacy> __unknown0;
+			s_tag_block_legacy<s_clusters2_definition_legacy> nicename("Clusters") clusters2_block;
 		};
 
-		struct nicename("BSPs") s_bsps3_definition
+		struct nicename("BSPs") s_bsps3_definition_legacy
 		{
-			struct nicename("Unknown") s_unknown6_definition
+			struct nicename("Unknown") s_unknown6_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -322,13 +322,13 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t __unknown4;
 			};
 
-			struct nicename("Unknown") s_unknown7_definition
+			struct nicename("Unknown") s_unknown7_definition_legacy
 			{
 				int16_t __unknown0;
 			};
 
-			s_tag_block_legacy<s_unknown6_definition> __unknown0;
-			s_tag_block_legacy<s_unknown7_definition> __unknown1;
+			s_tag_block_legacy<s_unknown6_definition_legacy> __unknown0;
+			s_tag_block_legacy<s_unknown7_definition_legacy> __unknown1;
 			s_undefined32_legacy __unknown2;
 			s_undefined32_legacy __unknown3;
 			s_undefined32_legacy __unknown4;
@@ -336,46 +336,46 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 		b_included_bsps nicename("Included BSPs") included_bsps;
 		int32_t __unknown0;
-		s_tag_block_legacy<s_bsp_checksums_definition> nicename("BSP Checksums") bsp_checksums_block;
-		s_tag_block_legacy<s_bsps_definition> nicename("BSPs") bsps_block;
-		s_tag_block_legacy<s_bsps3_definition> nicename("BSPs") bsps1_block;
+		s_tag_block_legacy<s_bsp_checksums_definition_legacy> nicename("BSP Checksums") bsp_checksums_block;
+		s_tag_block_legacy<s_bsps_definition_legacy> nicename("BSPs") bsps_block;
+		s_tag_block_legacy<s_bsps3_definition_legacy> nicename("BSPs") bsps1_block;
 	};
 
-	struct nicename("Scenario BSP Audibility") s_scenario_bsp_audibility_definition
+	struct nicename("Scenario BSP Audibility") s_scenario_bsp_audibility_definition_legacy
 	{
-		struct nicename("Encoded Door PAS") s_encoded_door_pas_definition
+		struct nicename("Encoded Door PAS") s_encoded_door_pas_definition_legacy
 		{
 			int32_t __unknown0;
 		};
 
-		struct nicename("Cluster Door Portal Encoded PAS") s_cluster_door_portal_encoded_pas_definition
+		struct nicename("Cluster Door Portal Encoded PAS") s_cluster_door_portal_encoded_pas_definition_legacy
 		{
 			int32_t __unknown0;
 		};
 
-		struct nicename("AI Deafening PAS") s_ai_deafening_pas_definition
+		struct nicename("AI Deafening PAS") s_ai_deafening_pas_definition_legacy
 		{
 			int32_t __unknown0;
 		};
 
-		struct nicename("Cluster Distances") s_cluster_distances_definition
+		struct nicename("Cluster Distances") s_cluster_distances_definition_legacy
 		{
 			int8_t __unknown0;
 		};
 
-		struct nicename("BSPs") s_bsps4_definition
+		struct nicename("BSPs") s_bsps4_definition_legacy
 		{
 			int32_t nicename("Start") start;
 			int32_t nicename("Count") count;
 		};
 
-		struct nicename("BSP Cluster List") s_bsp_cluster_list_definition
+		struct nicename("BSP Cluster List") s_bsp_cluster_list_definition_legacy
 		{
 			int32_t nicename("Start Index") start_index;
 			int32_t nicename("Cluster Count") cluster_count;
 		};
 
-		struct nicename("Cluster Mapping") s_cluster_mapping_definition
+		struct nicename("Cluster Mapping") s_cluster_mapping_definition_legacy
 		{
 			int16_t nicename("Index") index;
 		};
@@ -384,16 +384,16 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int32_t nicename("Unique Cluster Count") unique_cluster_count;
 		float nicename("Cluster Distance Bounds min") cluster_distance_bounds_min;
 		float nicename("Cluster Distance Bounds max") cluster_distance_bounds_max;
-		s_tag_block_legacy<s_encoded_door_pas_definition> nicename("Encoded Door PAS") encoded_door_pas_block;
-		s_tag_block_legacy<s_cluster_door_portal_encoded_pas_definition> nicename("Cluster Door Portal Encoded PAS") cluster_door_portal_encoded_pas_block;
-		s_tag_block_legacy<s_ai_deafening_pas_definition> nicename("AI Deafening PAS") ai_deafening_pas_block;
-		s_tag_block_legacy<s_cluster_distances_definition> nicename("Cluster Distances") cluster_distances_block;
-		s_tag_block_legacy<s_bsps4_definition> nicename("BSPs") bsps_block;
-		s_tag_block_legacy<s_bsp_cluster_list_definition> nicename("BSP Cluster List") bsp_cluster_list_block;
-		s_tag_block_legacy<s_cluster_mapping_definition> nicename("Cluster Mapping") cluster_mapping_block;
+		s_tag_block_legacy<s_encoded_door_pas_definition_legacy> nicename("Encoded Door PAS") encoded_door_pas_block;
+		s_tag_block_legacy<s_cluster_door_portal_encoded_pas_definition_legacy> nicename("Cluster Door Portal Encoded PAS") cluster_door_portal_encoded_pas_block;
+		s_tag_block_legacy<s_ai_deafening_pas_definition_legacy> nicename("AI Deafening PAS") ai_deafening_pas_block;
+		s_tag_block_legacy<s_cluster_distances_definition_legacy> nicename("Cluster Distances") cluster_distances_block;
+		s_tag_block_legacy<s_bsps4_definition_legacy> nicename("BSPs") bsps_block;
+		s_tag_block_legacy<s_bsp_cluster_list_definition_legacy> nicename("BSP Cluster List") bsp_cluster_list_block;
+		s_tag_block_legacy<s_cluster_mapping_definition_legacy> nicename("Cluster Mapping") cluster_mapping_block;
 	};
 
-	struct nicename("Scenario Zoneset Groups") s_scenario_zoneset_groups_definition
+	struct nicename("Scenario Zoneset Groups") s_scenario_zoneset_groups_definition_legacy
 	{
 		enum nicename("Loaded BSPs 1") b_loaded_bsps_1 : uint32_t /* bitfield */
 		{
@@ -575,24 +575,24 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Set 31")*/ _loaded_cinematic_zonesets_set_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Unknown 6") s_unknown_6_definition
+		struct nicename("Unknown 6") s_unknown_6_definition_legacy
 		{
-			struct nicename("BSPs") s_bsps5_definition
+			struct nicename("BSPs") s_bsps5_definition_legacy
 			{
-				struct nicename("Clusters") s_clusters3_definition
+				struct nicename("Clusters") s_clusters3_definition_legacy
 				{
-					struct nicename("Unknown 6") s_unknown_61_definition
+					struct nicename("Unknown 6") s_unknown_61_definition_legacy
 					{
 						s_undefined32_legacy __unknown0;
 					};
 
-					s_tag_block_legacy<s_unknown_61_definition> nicename("Unknown 6") unknown_6_block;
+					s_tag_block_legacy<s_unknown_61_definition_legacy> nicename("Unknown 6") unknown_6_block;
 				};
 
-				s_tag_block_legacy<s_clusters3_definition> nicename("Clusters") clusters_block;
+				s_tag_block_legacy<s_clusters3_definition_legacy> nicename("Clusters") clusters_block;
 			};
 
-			s_tag_block_legacy<s_bsps5_definition> nicename("BSPs") bsps_block;
+			s_tag_block_legacy<s_bsps5_definition_legacy> nicename("BSPs") bsps_block;
 		};
 
 		string_id_legacy nicename("Name") name;
@@ -608,10 +608,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		b_loaded_cinematic_zonesets nicename("Loaded Cinematic Zonesets") loaded_cinematic_zonesets;
 		int32_t nicename("BSP Atlas Index") bsp_atlas_index;
 		int32_t nicename("Scenario BSP Audibility Index") scenario_bsp_audibility_index;
-		s_tag_block_legacy<s_unknown_6_definition> nicename("Unknown 6") unknown_6_block;
+		s_tag_block_legacy<s_unknown_6_definition_legacy> nicename("Unknown 6") unknown_6_block;
 	};
 
-	struct nicename("Object Names") s_object_names_definition
+	struct nicename("Object Names") s_object_names_definition_legacy
 	{
 		enum nicename("Type") e_type : uint16_t
 		{
@@ -637,7 +637,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t nicename("Placement Index") placement_index;
 	};
 
-	struct nicename("Scenery") s_scenery_definition
+	struct nicename("Scenery") s_scenery_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -821,9 +821,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Allows Projectiles")*/ _teleporter_flags_allows_projectiles = 1ui8 << 4ui8,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning_definition
+		struct nicename("Node Positioning") s_node_positioning_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags_definition
+			struct nicename("Node Flags") s_node_flags_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -840,12 +840,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations_definition
+			struct nicename("Orientations") s_orientations_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -901,7 +901,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -911,13 +911,13 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
-		struct nicename("Pathfinding References") s_pathfinding_references_definition
+		struct nicename("Pathfinding References") s_pathfinding_references_definition_legacy
 		{
 			int16_t nicename("BSP Index") bsp_index;
 			int16_t nicename("Pathfinding Object Index") pathfinding_object_index;
@@ -936,7 +936,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -970,7 +970,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		// Scenery Data : 
 		e_pathfinding_policy nicename("Pathfinding Policy") pathfinding_policy;
 		e_lightmapping_policy nicename("Lightmapping Policy") lightmapping_policy;
-		s_tag_block_legacy<s_pathfinding_references_definition> nicename("Pathfinding References") pathfinding_references_block;
+		s_tag_block_legacy<s_pathfinding_references_definition_legacy> nicename("Pathfinding References") pathfinding_references_block;
 		int16_t __unknown11;
 		int16_t __unknown12;
 		// Multiplayer Data : 
@@ -1002,12 +1002,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown19;
 	};
 
-	struct nicename("Scenery Palette") s_scenery_palette_definition
+	struct nicename("Scenery Palette") s_scenery_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Scenery") scenery_reference;
 	};
 
-	struct nicename("Bipeds") s_bipeds_definition
+	struct nicename("Bipeds") s_bipeds_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -1162,9 +1162,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Bit 31")*/ _flags1_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning1_definition
+		struct nicename("Node Positioning") s_node_positioning1_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags1_definition
+			struct nicename("Node Flags") s_node_flags1_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -1181,12 +1181,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations1_definition
+			struct nicename("Orientations") s_orientations1_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable1_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable1_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -1242,7 +1242,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable1_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable1_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -1252,10 +1252,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags1_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations1_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable1_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable1_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags1_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations1_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable1_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable1_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
 		int16_t nicename("Palette Index") palette_index;
@@ -1271,7 +1271,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning1_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning1_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -1307,12 +1307,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		b_flags1 nicename("Flags") flags;
 	};
 
-	struct nicename("Biped Palette") s_biped_palette_definition
+	struct nicename("Biped Palette") s_biped_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Biped") biped_reference;
 	};
 
-	struct nicename("Vehicles") s_vehicles_definition
+	struct nicename("Vehicles") s_vehicles_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -1516,9 +1516,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Allows Projectiles")*/ _teleporter_flags_allows_projectiles = 1ui8 << 4ui8,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning2_definition
+		struct nicename("Node Positioning") s_node_positioning2_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags2_definition
+			struct nicename("Node Flags") s_node_flags2_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -1535,12 +1535,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations2_definition
+			struct nicename("Orientations") s_orientations2_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable2_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable2_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -1596,7 +1596,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable2_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable2_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -1606,10 +1606,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags2_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations2_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable2_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable2_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags2_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations2_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable2_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable2_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
 		int16_t nicename("Palette Index") palette_index;
@@ -1625,7 +1625,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning2_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning2_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -1688,12 +1688,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown17;
 	};
 
-	struct nicename("Vehicle Palette") s_vehicle_palette_definition
+	struct nicename("Vehicle Palette") s_vehicle_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Vehicle") vehicle_reference;
 	};
 
-	struct nicename("Equipment") s_equipment_definition
+	struct nicename("Equipment") s_equipment_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -1889,9 +1889,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Allows Projectiles")*/ _teleporter_flags_allows_projectiles = 1ui8 << 4ui8,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning3_definition
+		struct nicename("Node Positioning") s_node_positioning3_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags3_definition
+			struct nicename("Node Flags") s_node_flags3_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -1908,12 +1908,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations3_definition
+			struct nicename("Orientations") s_orientations3_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable3_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable3_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -1969,7 +1969,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable3_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable3_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -1979,10 +1979,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags3_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations3_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable3_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable3_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags3_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations3_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable3_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable3_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
 		int16_t nicename("Palette Index") palette_index;
@@ -1998,7 +1998,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning3_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning3_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -2050,12 +2050,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown14;
 	};
 
-	struct nicename("Equipment Palette") s_equipment_palette_definition
+	struct nicename("Equipment Palette") s_equipment_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Equipment") equipment_reference;
 	};
 
-	struct nicename("Weapons") s_weapons_definition
+	struct nicename("Weapons") s_weapons_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -2259,9 +2259,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Allows Projectiles")*/ _teleporter_flags_allows_projectiles = 1ui8 << 4ui8,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning4_definition
+		struct nicename("Node Positioning") s_node_positioning4_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags4_definition
+			struct nicename("Node Flags") s_node_flags4_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -2278,12 +2278,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations4_definition
+			struct nicename("Orientations") s_orientations4_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable4_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable4_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -2339,7 +2339,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable4_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable4_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -2349,10 +2349,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags4_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations4_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable4_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable4_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags4_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations4_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable4_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable4_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
 		int16_t nicename("Palette Index") palette_index;
@@ -2368,7 +2368,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning4_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning4_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -2432,12 +2432,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown17;
 	};
 
-	struct nicename("Weapon Palette") s_weapon_palette_definition
+	struct nicename("Weapon Palette") s_weapon_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Weapon") weapon_reference;
 	};
 
-	struct nicename("Device Groups") s_device_groups_definition
+	struct nicename("Device Groups") s_device_groups_definition_legacy
 	{
 		enum nicename("Flags") b_flags1 : uint32_t /* bitfield */
 		{
@@ -2482,7 +2482,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown0;
 	};
 
-	struct nicename("Machines") s_machines_definition
+	struct nicename("Machines") s_machines_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -2731,9 +2731,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Allows Projectiles")*/ _teleporter_flags_allows_projectiles = 1ui8 << 4ui8,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning5_definition
+		struct nicename("Node Positioning") s_node_positioning5_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags5_definition
+			struct nicename("Node Flags") s_node_flags5_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -2750,12 +2750,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations5_definition
+			struct nicename("Orientations") s_orientations5_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable5_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable5_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -2811,7 +2811,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable5_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable5_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -2821,13 +2821,13 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags5_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations5_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable5_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable5_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags5_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations5_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable5_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable5_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
-		struct nicename("Pathfinding References") s_pathfinding_references1_definition
+		struct nicename("Pathfinding References") s_pathfinding_references1_definition_legacy
 		{
 			int16_t nicename("BSP Index") bsp_index;
 			int16_t nicename("Pathfinding Object Index") pathfinding_object_index;
@@ -2846,7 +2846,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning5_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning5_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -2883,7 +2883,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		b_device_flags nicename("Device Flags") device_flags;
 		// Machine Data : 
 		b_machine_flags nicename("Machine Flags") machine_flags;
-		s_tag_block_legacy<s_pathfinding_references1_definition> nicename("Pathfinding References") pathfinding_references_block;
+		s_tag_block_legacy<s_pathfinding_references1_definition_legacy> nicename("Pathfinding References") pathfinding_references_block;
 		e_pathfinding_policy nicename("Pathfinding Policy") pathfinding_policy;
 		int16_t __unknown11;
 		// Multiplayer Data : 
@@ -2913,12 +2913,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown17;
 	};
 
-	struct nicename("Machine Palette") s_machine_palette_definition
+	struct nicename("Machine Palette") s_machine_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Machine") machine_reference;
 	};
 
-	struct nicename("Terminals") s_terminals_definition
+	struct nicename("Terminals") s_terminals_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -3073,9 +3073,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Bit 31")*/ _device_flags_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning6_definition
+		struct nicename("Node Positioning") s_node_positioning6_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags6_definition
+			struct nicename("Node Flags") s_node_flags6_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -3092,12 +3092,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations6_definition
+			struct nicename("Orientations") s_orientations6_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable6_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable6_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -3153,7 +3153,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable6_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable6_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -3163,10 +3163,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags6_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations6_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable6_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable6_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags6_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations6_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable6_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable6_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
 		int16_t nicename("Palette Index") palette_index;
@@ -3182,7 +3182,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning6_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning6_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -3221,12 +3221,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown11;
 	};
 
-	struct nicename("Terminal Palette") s_terminal_palette_definition
+	struct nicename("Terminal Palette") s_terminal_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Terminal") terminal_reference;
 	};
 
-	struct nicename("Controls") s_controls_definition
+	struct nicename("Controls") s_controls_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -3466,9 +3466,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Allows Projectiles")*/ _teleporter_flags_allows_projectiles = 1ui8 << 4ui8,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning7_definition
+		struct nicename("Node Positioning") s_node_positioning7_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags7_definition
+			struct nicename("Node Flags") s_node_flags7_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -3485,12 +3485,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations7_definition
+			struct nicename("Orientations") s_orientations7_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable7_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable7_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -3546,7 +3546,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable7_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable7_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -3556,10 +3556,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags7_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations7_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable7_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable7_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags7_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations7_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable7_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable7_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
 		int16_t nicename("Palette Index") palette_index;
@@ -3575,7 +3575,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning7_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning7_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -3644,12 +3644,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("Control Palette") s_control_palette_definition
+	struct nicename("Control Palette") s_control_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Control") control_reference;
 	};
 
-	struct nicename("Sound Scenery") s_sound_scenery_definition
+	struct nicename("Sound Scenery") s_sound_scenery_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -3760,9 +3760,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Set 15")*/ _allowed_zonesets_set_15 = 1ui16 << 15ui16,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning8_definition
+		struct nicename("Node Positioning") s_node_positioning8_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags8_definition
+			struct nicename("Node Flags") s_node_flags8_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -3779,12 +3779,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations8_definition
+			struct nicename("Orientations") s_orientations8_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable8_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable8_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -3840,7 +3840,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable8_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable8_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -3850,10 +3850,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags8_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations8_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable8_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable8_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags8_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations8_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable8_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable8_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
 		int16_t nicename("Palette Index") palette_index;
@@ -3869,7 +3869,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning8_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning8_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -3905,12 +3905,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float __unknown18;
 	};
 
-	struct nicename("Sound Scenery Palette") s_sound_scenery_palette_definition
+	struct nicename("Sound Scenery Palette") s_sound_scenery_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Sound Scenery") sound_scenery_reference;
 	};
 
-	struct nicename("Giants") s_giants_definition
+	struct nicename("Giants") s_giants_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -4065,9 +4065,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Bit 31")*/ _flags1_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning9_definition
+		struct nicename("Node Positioning") s_node_positioning9_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags9_definition
+			struct nicename("Node Flags") s_node_flags9_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -4084,12 +4084,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations9_definition
+			struct nicename("Orientations") s_orientations9_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable9_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable9_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -4145,7 +4145,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable9_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable9_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -4155,13 +4155,13 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags9_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations9_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable9_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable9_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags9_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations9_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable9_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable9_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
-		struct nicename("Pathfinding References") s_pathfinding_references2_definition
+		struct nicename("Pathfinding References") s_pathfinding_references2_definition_legacy
 		{
 			int16_t nicename("BSP Index") bsp_index;
 			int16_t nicename("Pathfinding Object Index") pathfinding_object_index;
@@ -4181,7 +4181,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning9_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning9_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -4218,15 +4218,15 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		// Giant Data : 
 		int16_t __unknown11;
 		int16_t __unknown12;
-		s_tag_block_legacy<s_pathfinding_references2_definition> nicename("Pathfinding References") pathfinding_references_block;
+		s_tag_block_legacy<s_pathfinding_references2_definition_legacy> nicename("Pathfinding References") pathfinding_references_block;
 	};
 
-	struct nicename("Giant Palette") s_giant_palette_definition
+	struct nicename("Giant Palette") s_giant_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Giant") giant_reference;
 	};
 
-	struct nicename("Effect Scenery") s_effect_scenery_definition
+	struct nicename("Effect Scenery") s_effect_scenery_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -4386,9 +4386,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Allows Projectiles")*/ _teleporter_flags_allows_projectiles = 1ui8 << 4ui8,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning10_definition
+		struct nicename("Node Positioning") s_node_positioning10_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags10_definition
+			struct nicename("Node Flags") s_node_flags10_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -4405,12 +4405,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations10_definition
+			struct nicename("Orientations") s_orientations10_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable10_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable10_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -4466,7 +4466,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable10_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable10_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -4476,10 +4476,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags10_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations10_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable10_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable10_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags10_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations10_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable10_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable10_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
 		int16_t nicename("Palette Index") palette_index;
@@ -4495,7 +4495,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning10_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning10_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -4545,12 +4545,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown14;
 	};
 
-	struct nicename("Effect Scenery Palette") s_effect_scenery_palette_definition
+	struct nicename("Effect Scenery Palette") s_effect_scenery_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Effect Scenery") effect_scenery_reference;
 	};
 
-	struct nicename("Light Volumes") s_light_volumes_definition
+	struct nicename("Light Volumes") s_light_volumes_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -4723,9 +4723,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Bit 0")*/ _lightmap_flags_bit_0 = 1ui16 << 0ui16,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning11_definition
+		struct nicename("Node Positioning") s_node_positioning11_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags11_definition
+			struct nicename("Node Flags") s_node_flags11_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -4742,12 +4742,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations11_definition
+			struct nicename("Orientations") s_orientations11_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable11_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable11_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -4803,7 +4803,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable11_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable11_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -4813,10 +4813,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags11_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations11_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable11_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable11_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags11_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations11_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable11_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable11_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
 		int16_t nicename("Palette Index") palette_index;
@@ -4832,7 +4832,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning11_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning11_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -4874,21 +4874,21 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float nicename("Cutoff Distance") cutoff_distance;
 	};
 
-	struct nicename("Light Volumes Palette") s_light_volumes_palette_definition
+	struct nicename("Light Volumes Palette") s_light_volumes_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Light Volume") light_volume_reference;
 	};
 
-	struct nicename("Sandbox Palette") s_sandbox_palette_definition
+	struct nicename("Sandbox Palette") s_sandbox_palette_definition_legacy
 	{
 		enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 		{
 			/*nicename("Hidden")*/ _flags1_hidden = 1ui8 << 0ui8,
 		};
 
-		struct nicename("Entries") s_entries_definition
+		struct nicename("Entries") s_entries_definition_legacy
 		{
-			struct nicename("Entry Variants") s_entry_variants_definition
+			struct nicename("Entry Variants") s_entry_variants_definition_legacy
 			{
 				string_id_legacy nicename("Name") name;
 				s_tag_reference_legacy nicename("Palette Object") palette_object_reference;
@@ -4896,7 +4896,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			};
 
 			string_id_legacy nicename("Name") name;
-			s_tag_block_legacy<s_entry_variants_definition> nicename("Entry Variants") entry_variants_block;
+			s_tag_block_legacy<s_entry_variants_definition_legacy> nicename("Entry Variants") entry_variants_block;
 			int32_t nicename("Entry Count") entry_count;
 			int32_t nicename("Entry Price") entry_price;
 			int8_t nicename("Thorage") thorage;
@@ -4910,12 +4910,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int8_t __unknown0;
 		int8_t nicename("Thorage") thorage;
 		int8_t __unknown1;
-		s_tag_block_legacy<s_entries_definition> nicename("Entries") entries_block;
+		s_tag_block_legacy<s_entries_definition_legacy> nicename("Entries") entries_block;
 	};
 
-	struct nicename("Legacy Sandbox Info") s_legacy_sandbox_info_definition
+	struct nicename("Legacy Sandbox Info") s_legacy_sandbox_info_definition_legacy
 	{
-		struct nicename("Builds") s_builds_definition
+		struct nicename("Builds") s_builds_definition_legacy
 		{
 			uint32_t __unknown0;
 			int32_t nicename("Quota Count") quota_count;
@@ -4924,10 +4924,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			char nicename("Build Number") build_number[32];
 		};
 
-		s_tag_block_legacy<s_builds_definition> nicename("Builds") builds_block;
+		s_tag_block_legacy<s_builds_definition_legacy> nicename("Builds") builds_block;
 	};
 
-	struct nicename("Soft Ceilings") s_soft_ceilings_definition
+	struct nicename("Soft Ceilings") s_soft_ceilings_definition_legacy
 	{
 		int16_t nicename("Type") type;
 		int16_t __unknown0;
@@ -4936,7 +4936,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown2;
 	};
 
-	struct nicename("Player Starting Profile") s_player_starting_profile_definition
+	struct nicename("Player Starting Profile") s_player_starting_profile_definition_legacy
 	{
 		char nicename("Name") name[32];
 		float nicename("Starting Health Damage") starting_health_damage;
@@ -4956,7 +4956,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown1;
 	};
 
-	struct nicename("Player Starting Locations") s_player_starting_locations_definition
+	struct nicename("Player Starting Locations") s_player_starting_locations_definition_legacy
 	{
 		float nicename("Position x") position_x;
 		float nicename("Position y") position_y;
@@ -4969,9 +4969,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown2;
 	};
 
-	struct nicename("Trigger Volumes") s_trigger_volumes_definition
+	struct nicename("Trigger Volumes") s_trigger_volumes_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown8_definition
+		struct nicename("Unknown") s_unknown8_definition_legacy
 		{
 			float __unknown0;
 			float __unknown1;
@@ -4980,7 +4980,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			float __unknown4;
 		};
 
-		struct nicename("Unknown") s_unknown9_definition
+		struct nicename("Unknown") s_unknown9_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
@@ -5031,8 +5031,8 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float nicename("Extents y") extents_y;
 		float nicename("Extents z") extents_z;
 		float __unknown9;
-		s_tag_block_legacy<s_unknown8_definition> __unknown10;
-		s_tag_block_legacy<s_unknown9_definition> __unknown11;
+		s_tag_block_legacy<s_unknown8_definition_legacy> __unknown10;
+		s_tag_block_legacy<s_unknown9_definition_legacy> __unknown11;
 		float __unknown12;
 		float __unknown13;
 		float __unknown14;
@@ -5044,16 +5044,16 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t nicename("Editor Folder Index") editor_folder_index;
 	};
 
-	struct nicename("Unknown 22") s_unknown_22_definition
+	struct nicename("Unknown 22") s_unknown_22_definition_legacy
 	{
-		struct nicename("Unknown 23") s_unknown_23_definition
+		struct nicename("Unknown 23") s_unknown_23_definition_legacy
 		{
 			float nicename("X") x;
 			float nicename("Y") y;
 			float nicename("Z") z;
 		};
 
-		s_tag_block_legacy<s_unknown_23_definition> nicename("Unknown 23") unknown_23_block;
+		s_tag_block_legacy<s_unknown_23_definition_legacy> nicename("Unknown 23") unknown_23_block;
 		float __unknown0;
 		float __unknown1;
 		float __unknown2;
@@ -5068,7 +5068,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float __unknown11;
 	};
 
-	struct nicename("Unknown 23") s_unknown_231_definition
+	struct nicename("Unknown 23") s_unknown_231_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
@@ -5093,9 +5093,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown20;
 	};
 
-	struct nicename("Unknown 28") s_unknown_28_definition
+	struct nicename("Unknown 28") s_unknown_28_definition_legacy
 	{
-		struct nicename("Unknown 29") s_unknown_29_definition
+		struct nicename("Unknown 29") s_unknown_29_definition_legacy
 		{
 			float __unknown0;
 			float __unknown1;
@@ -5104,7 +5104,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			s_undefined32_legacy __unknown4;
 		};
 
-		struct nicename("Unknown 30") s_unknown_30_definition
+		struct nicename("Unknown 30") s_unknown_30_definition_legacy
 		{
 			float __unknown0;
 			float __unknown1;
@@ -5113,8 +5113,8 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			s_undefined32_legacy __unknown4;
 		};
 
-		s_tag_block_legacy<s_unknown_29_definition> nicename("Unknown 29") unknown_29_block;
-		s_tag_block_legacy<s_unknown_30_definition> nicename("Unknown 30") unknown_30_block;
+		s_tag_block_legacy<s_unknown_29_definition_legacy> nicename("Unknown 29") unknown_29_block;
+		s_tag_block_legacy<s_unknown_30_definition_legacy> nicename("Unknown 30") unknown_30_block;
 		float __unknown0;
 		float __unknown1;
 		float __unknown2;
@@ -5127,7 +5127,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown9;
 	};
 
-	struct nicename("Zoneset Switch Trigger Volumes") s_zoneset_switch_trigger_volumes_definition
+	struct nicename("Zoneset Switch Trigger Volumes") s_zoneset_switch_trigger_volumes_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t nicename("Included Zoneset Index") included_zoneset_index;
@@ -5135,9 +5135,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t nicename("Sole Zoneset Index") sole_zoneset_index;
 	};
 
-	struct nicename("Location Name Callouts") s_location_name_callouts_definition
+	struct nicename("Location Name Callouts") s_location_name_callouts_definition_legacy
 	{
-		struct nicename("Location Bounds Points") s_location_bounds_points_definition
+		struct nicename("Location Bounds Points") s_location_bounds_points_definition_legacy
 		{
 			float nicename("X") x;
 			float nicename("Y") y;
@@ -5146,13 +5146,13 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			s_undefined32_legacy __unknown1;
 		};
 
-		s_tag_block_legacy<s_location_bounds_points_definition> nicename("Location Bounds Points") location_bounds_points_block;
+		s_tag_block_legacy<s_location_bounds_points_definition_legacy> nicename("Location Bounds Points") location_bounds_points_block;
 		float __unknown0;
 		float __unknown1;
 		string_id_legacy nicename("Name") name;
 	};
 
-	struct nicename("Unknown 40") s_unknown_40_definition
+	struct nicename("Unknown 40") s_unknown_40_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
@@ -5164,7 +5164,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float __unknown7;
 	};
 
-	struct nicename("Unknown 40") s_unknown_401_definition
+	struct nicename("Unknown 40") s_unknown_401_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
@@ -5176,7 +5176,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float __unknown7;
 	};
 
-	struct nicename("Unknown 40") s_unknown_402_definition
+	struct nicename("Unknown 40") s_unknown_402_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
@@ -5188,7 +5188,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float __unknown7;
 	};
 
-	struct nicename("Unknown 41") s_unknown_41_definition
+	struct nicename("Unknown 41") s_unknown_41_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
@@ -5200,7 +5200,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float __unknown7;
 	};
 
-	struct nicename("Decals") s_decals_definition
+	struct nicename("Decals") s_decals_definition_legacy
 	{
 		int16_t nicename("Palette Index") palette_index;
 		int8_t nicename("Yaw") yaw;
@@ -5216,12 +5216,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float nicename("Scale max") scale_max;
 	};
 
-	struct nicename("Decal Palette") s_decal_palette_definition
+	struct nicename("Decal Palette") s_decal_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Decal") decal_reference;
 	};
 
-	struct nicename("Squad Groups") s_squad_groups_definition
+	struct nicename("Squad Groups") s_squad_groups_definition_legacy
 	{
 		char nicename("Name") name[32];
 		int16_t nicename("Parent Index") parent_index;
@@ -5230,7 +5230,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t nicename("Editor Folder Index") editor_folder_index;
 	};
 
-	struct nicename("Squads") s_squads_definition
+	struct nicename("Squads") s_squads_definition_legacy
 	{
 		enum nicename("Team") e_team : uint16_t
 		{
@@ -5280,9 +5280,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Bit 31")*/ _flags1_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Group Locations") s_group_locations_definition
+		struct nicename("Group Locations") s_group_locations_definition_legacy
 		{
-			struct nicename("Multi-State") s_multi_state_definition
+			struct nicename("Multi-State") s_multi_state_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -5318,10 +5318,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown8;
 			int16_t __unknown9;
 			int16_t __unknown10;
-			s_tag_block_legacy<s_multi_state_definition> nicename("Multi-State") multi_state_block;
+			s_tag_block_legacy<s_multi_state_definition_legacy> nicename("Multi-State") multi_state_block;
 		};
 
-		struct nicename("Single Locations") s_single_locations_definition
+		struct nicename("Single Locations") s_single_locations_definition_legacy
 		{
 			enum nicename("Seat Type") e_seat_type : uint16_t
 			{
@@ -5368,7 +5368,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				/*nicename("Bit 15")*/ _flags1_bit_15 = 1ui16 << 15ui16,
 			};
 
-			struct nicename("Multi-State") s_multi_state1_definition
+			struct nicename("Multi-State") s_multi_state1_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -5422,10 +5422,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown10;
 			int16_t __unknown11;
 			int16_t __unknown12;
-			s_tag_block_legacy<s_multi_state1_definition> nicename("Multi-State") multi_state_block;
+			s_tag_block_legacy<s_multi_state1_definition_legacy> nicename("Multi-State") multi_state_block;
 		};
 
-		struct nicename("Squad A") s_squad_a_definition
+		struct nicename("Squad A") s_squad_a_definition_legacy
 		{
 			enum nicename("Difficulty") b_difficulty : uint16_t /* bitfield */
 			{
@@ -5447,7 +5447,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				/*nicename("Bit 15")*/ _difficulty_bit_15 = 1ui16 << 15ui16,
 			};
 
-			struct nicename("Actors") s_actors_definition
+			struct nicename("Actors") s_actors_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -5458,7 +5458,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t nicename("Probability") probability;
 			};
 
-			struct nicename("Weapons") s_weapons1_definition
+			struct nicename("Weapons") s_weapons1_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -5469,7 +5469,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t nicename("Probability") probability;
 			};
 
-			struct nicename("Secondary Weapons") s_secondary_weapons_definition
+			struct nicename("Secondary Weapons") s_secondary_weapons_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -5480,7 +5480,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t nicename("Probability") probability;
 			};
 
-			struct nicename("Equipment") s_equipment1_definition
+			struct nicename("Equipment") s_equipment1_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -5500,10 +5500,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown2;
 			int16_t nicename("Count") count;
 			int16_t __unknown3;
-			s_tag_block_legacy<s_actors_definition> nicename("Actors") actors_block;
-			s_tag_block_legacy<s_weapons1_definition> nicename("Weapons") weapons_block;
-			s_tag_block_legacy<s_secondary_weapons_definition> nicename("Secondary Weapons") secondary_weapons_block;
-			s_tag_block_legacy<s_equipment1_definition> nicename("Equipment") equipment_block;
+			s_tag_block_legacy<s_actors_definition_legacy> nicename("Actors") actors_block;
+			s_tag_block_legacy<s_weapons1_definition_legacy> nicename("Weapons") weapons_block;
+			s_tag_block_legacy<s_secondary_weapons_definition_legacy> nicename("Secondary Weapons") secondary_weapons_block;
+			s_tag_block_legacy<s_equipment1_definition_legacy> nicename("Equipment") equipment_block;
 			int16_t __unknown4;
 			int16_t nicename("Vehicle") vehicle;
 			string_id_legacy nicename("Vehicle Variant") vehicle_variant;
@@ -5519,7 +5519,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			s_undefined32_legacy __unknown12;
 		};
 
-		struct nicename("Squad B") s_squad_b_definition
+		struct nicename("Squad B") s_squad_b_definition_legacy
 		{
 			enum nicename("Difficulty") b_difficulty : uint16_t /* bitfield */
 			{
@@ -5541,7 +5541,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				/*nicename("Bit 15")*/ _difficulty_bit_15 = 1ui16 << 15ui16,
 			};
 
-			struct nicename("Actors") s_actors1_definition
+			struct nicename("Actors") s_actors1_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -5552,7 +5552,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t nicename("Probability") probability;
 			};
 
-			struct nicename("Weapons") s_weapons2_definition
+			struct nicename("Weapons") s_weapons2_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -5563,7 +5563,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t nicename("Probability") probability;
 			};
 
-			struct nicename("Secondary Weapons") s_secondary_weapons1_definition
+			struct nicename("Secondary Weapons") s_secondary_weapons1_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -5574,7 +5574,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t nicename("Probability") probability;
 			};
 
-			struct nicename("Equipment") s_equipment2_definition
+			struct nicename("Equipment") s_equipment2_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -5594,10 +5594,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown2;
 			int16_t nicename("Count") count;
 			int16_t __unknown3;
-			s_tag_block_legacy<s_actors1_definition> nicename("Actors") actors_block;
-			s_tag_block_legacy<s_weapons2_definition> nicename("Weapons") weapons_block;
-			s_tag_block_legacy<s_secondary_weapons1_definition> nicename("Secondary Weapons") secondary_weapons_block;
-			s_tag_block_legacy<s_equipment2_definition> nicename("Equipment") equipment_block;
+			s_tag_block_legacy<s_actors1_definition_legacy> nicename("Actors") actors_block;
+			s_tag_block_legacy<s_weapons2_definition_legacy> nicename("Weapons") weapons_block;
+			s_tag_block_legacy<s_secondary_weapons1_definition_legacy> nicename("Secondary Weapons") secondary_weapons_block;
+			s_tag_block_legacy<s_equipment2_definition_legacy> nicename("Equipment") equipment_block;
 			int16_t __unknown4;
 			int16_t nicename("Vehicle") vehicle;
 			string_id_legacy nicename("Vehicle Variant") vehicle_variant;
@@ -5621,18 +5621,18 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t nicename("Objective Index") objective_index;
 		int16_t nicename("Objective Role Index") objective_role_index;
 		int16_t nicename("Editor Folder Index") editor_folder_index;
-		s_tag_block_legacy<s_group_locations_definition> nicename("Group Locations") group_locations_block;
-		s_tag_block_legacy<s_single_locations_definition> nicename("Single Locations") single_locations_block;
+		s_tag_block_legacy<s_group_locations_definition_legacy> nicename("Group Locations") group_locations_block;
+		s_tag_block_legacy<s_single_locations_definition_legacy> nicename("Single Locations") single_locations_block;
 		s_undefined32_legacy __unknown0;
 		string_id_legacy nicename("Squad Template Name") squad_template_name;
 		s_tag_reference_legacy nicename("Squad Template") squad_template_reference;
-		s_tag_block_legacy<s_squad_a_definition> nicename("Squad A") squad_a_block;
-		s_tag_block_legacy<s_squad_b_definition> nicename("Squad B") squad_b_block;
+		s_tag_block_legacy<s_squad_a_definition_legacy> nicename("Squad A") squad_a_block;
+		s_tag_block_legacy<s_squad_b_definition_legacy> nicename("Squad B") squad_b_block;
 	};
 
-	struct nicename("Zones") s_zones_definition
+	struct nicename("Zones") s_zones_definition_legacy
 	{
-		struct nicename("Firing Positions") s_firing_positions_definition
+		struct nicename("Firing Positions") s_firing_positions_definition_legacy
 		{
 			enum nicename("Flags") b_flags1 : uint16_t /* bitfield */
 			{
@@ -5669,7 +5669,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			s_undefined32_legacy __unknown3;
 		};
 
-		struct nicename("Areas") s_areas_definition
+		struct nicename("Areas") s_areas_definition_legacy
 		{
 			enum nicename("Area Flags") b_area_flags : uint32_t /* bitfield */
 			{
@@ -5707,14 +5707,14 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				/*nicename("Bit 31")*/ _area_flags_bit_31 = 1ui32 << 31ui32,
 			};
 
-			struct nicename("Flight Hints") s_flight_hints_definition
+			struct nicename("Flight Hints") s_flight_hints_definition_legacy
 			{
 				int16_t nicename("Flight Hint Index") flight_hint_index;
 				int16_t nicename("Poit Index") poit_index;
 				s_undefined32_legacy __unknown0;
 			};
 
-			struct nicename("Unknown 50") s_unknown_50_definition
+			struct nicename("Unknown 50") s_unknown_50_definition_legacy
 			{
 				float nicename("Position x") position_x;
 				float nicename("Position y") position_y;
@@ -5745,8 +5745,8 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			s_undefined32_legacy __unknown10;
 			int16_t nicename("Manual Reference Frame") manual_reference_frame;
 			int16_t __unknown11;
-			s_tag_block_legacy<s_flight_hints_definition> nicename("Flight Hints") flight_hints_block;
-			s_tag_block_legacy<s_unknown_50_definition> nicename("Unknown 50") unknown_50_block;
+			s_tag_block_legacy<s_flight_hints_definition_legacy> nicename("Flight Hints") flight_hints_block;
+			s_tag_block_legacy<s_unknown_50_definition_legacy> nicename("Unknown 50") unknown_50_block;
 			int16_t __unknown12;
 			int16_t __unknown13;
 			s_undefined32_legacy __unknown14;
@@ -5765,21 +5765,21 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		char nicename("Name") name[32];
 		int16_t __unknown0;
 		int16_t __unknown1;
-		s_tag_block_legacy<s_firing_positions_definition> nicename("Firing Positions") firing_positions_block;
-		s_tag_block_legacy<s_areas_definition> nicename("Areas") areas_block;
+		s_tag_block_legacy<s_firing_positions_definition_legacy> nicename("Firing Positions") firing_positions_block;
+		s_tag_block_legacy<s_areas_definition_legacy> nicename("Areas") areas_block;
 		int16_t __unknown2;
 		int16_t __unknown3;
 	};
 
-	struct nicename("Unknown 43") s_unknown_43_definition
+	struct nicename("Unknown 43") s_unknown_43_definition_legacy
 	{
-		struct nicename("Unknown 44") s_unknown_44_definition
+		struct nicename("Unknown 44") s_unknown_44_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
 		};
 
-		struct nicename("Unknown 45") s_unknown_45_definition
+		struct nicename("Unknown 45") s_unknown_45_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
@@ -5790,8 +5790,8 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		};
 
 		string_id_legacy __unknown0;
-		s_tag_block_legacy<s_unknown_44_definition> nicename("Unknown 44") unknown_44_block;
-		s_tag_block_legacy<s_unknown_45_definition> nicename("Unknown 45") unknown_45_block;
+		s_tag_block_legacy<s_unknown_44_definition_legacy> nicename("Unknown 44") unknown_44_block;
+		s_tag_block_legacy<s_unknown_45_definition_legacy> nicename("Unknown 45") unknown_45_block;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
 		s_undefined32_legacy __unknown3;
@@ -5799,43 +5799,43 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown5;
 	};
 
-	struct nicename("AI Cues") s_ai_cues_definition
+	struct nicename("AI Cues") s_ai_cues_definition_legacy
 	{
-		struct nicename("Unknown 45") s_unknown_451_definition
+		struct nicename("Unknown 45") s_unknown_451_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
 		};
 
-		struct nicename("Unknown 46") s_unknown_46_definition
+		struct nicename("Unknown 46") s_unknown_46_definition_legacy
 		{
 			float __unknown0;
 			s_undefined32_legacy __unknown1;
 		};
 
-		struct nicename("Unknown 47") s_unknown_47_definition
+		struct nicename("Unknown 47") s_unknown_47_definition_legacy
 		{
 			float __unknown0;
 		};
 
-		struct nicename("Unknown 48") s_unknown_48_definition
+		struct nicename("Unknown 48") s_unknown_48_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
 		};
 
-		struct nicename("Unknown 49") s_unknown_49_definition
+		struct nicename("Unknown 49") s_unknown_49_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
 		};
 
-		struct nicename("Unknown 50") s_unknown_501_definition
+		struct nicename("Unknown 50") s_unknown_501_definition_legacy
 		{
 			float __unknown0;
 		};
 
-		struct nicename("Actor Stimuli") s_actor_stimuli_definition
+		struct nicename("Actor Stimuli") s_actor_stimuli_definition_legacy
 		{
 			string_id_legacy nicename("Actor Name") actor_name;
 		};
@@ -5850,33 +5850,33 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float __unknown4;
 		float __unknown5;
 		float __unknown6;
-		s_tag_block_legacy<s_unknown_451_definition> nicename("Unknown 45") unknown_45_block;
-		s_tag_block_legacy<s_unknown_46_definition> nicename("Unknown 46") unknown_46_block;
-		s_tag_block_legacy<s_unknown_47_definition> nicename("Unknown 47") unknown_47_block;
-		s_tag_block_legacy<s_unknown_48_definition> nicename("Unknown 48") unknown_48_block;
-		s_tag_block_legacy<s_unknown_49_definition> nicename("Unknown 49") unknown_49_block;
-		s_tag_block_legacy<s_unknown_501_definition> nicename("Unknown 50") unknown_50_block;
+		s_tag_block_legacy<s_unknown_451_definition_legacy> nicename("Unknown 45") unknown_45_block;
+		s_tag_block_legacy<s_unknown_46_definition_legacy> nicename("Unknown 46") unknown_46_block;
+		s_tag_block_legacy<s_unknown_47_definition_legacy> nicename("Unknown 47") unknown_47_block;
+		s_tag_block_legacy<s_unknown_48_definition_legacy> nicename("Unknown 48") unknown_48_block;
+		s_tag_block_legacy<s_unknown_49_definition_legacy> nicename("Unknown 49") unknown_49_block;
+		s_tag_block_legacy<s_unknown_501_definition_legacy> nicename("Unknown 50") unknown_50_block;
 		s_undefined32_legacy __unknown7;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
 		s_undefined32_legacy __unknown12;
-		s_tag_block_legacy<s_actor_stimuli_definition> nicename("Actor Stimuli") actor_stimuli_block;
+		s_tag_block_legacy<s_actor_stimuli_definition_legacy> nicename("Actor Stimuli") actor_stimuli_block;
 		s_undefined32_legacy __unknown13;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
 	};
 
-	struct nicename("Character Palette") s_character_palette_definition
+	struct nicename("Character Palette") s_character_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Character") character_reference;
 	};
 
-	struct nicename("AI Pathfinding Data") s_ai_pathfinding_data_definition
+	struct nicename("AI Pathfinding Data") s_ai_pathfinding_data_definition_legacy
 	{
-		struct nicename("Unknown 36") s_unknown_36_definition
+		struct nicename("Unknown 36") s_unknown_36_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			float __unknown1;
@@ -5891,7 +5891,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown10;
 		};
 
-		struct nicename("Unknown 37") s_unknown_37_definition
+		struct nicename("Unknown 37") s_unknown_37_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			float __unknown1;
@@ -5918,7 +5918,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown22;
 		};
 
-		struct nicename("Unknown 38") s_unknown_38_definition
+		struct nicename("Unknown 38") s_unknown_38_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
@@ -5926,7 +5926,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown3;
 		};
 
-		struct nicename("Unknown 38") s_unknown_381_definition
+		struct nicename("Unknown 38") s_unknown_381_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
@@ -5934,19 +5934,19 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown3;
 		};
 
-		struct nicename("Unknown 52") s_unknown_52_definition
+		struct nicename("Unknown 52") s_unknown_52_definition_legacy
 		{
-			struct nicename("Unknown 53") s_unknown_53_definition
+			struct nicename("Unknown 53") s_unknown_53_definition_legacy
 			{
 				float __unknown0;
 				float __unknown1;
 				float __unknown2;
 			};
 
-			s_tag_block_legacy<s_unknown_53_definition> nicename("Unknown 53") unknown_53_block;
+			s_tag_block_legacy<s_unknown_53_definition_legacy> nicename("Unknown 53") unknown_53_block;
 		};
 
-		struct nicename("Unknown 53") s_unknown_531_definition
+		struct nicename("Unknown 53") s_unknown_531_definition_legacy
 		{
 			int32_t __unknown0;
 			float __unknown1;
@@ -5962,9 +5962,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int32_t __unknown11;
 		};
 
-		struct nicename("Unknown 54") s_unknown_54_definition
+		struct nicename("Unknown 54") s_unknown_54_definition_legacy
 		{
-			struct nicename("Unknown 55") s_unknown_55_definition
+			struct nicename("Unknown 55") s_unknown_55_definition_legacy
 			{
 				s_undefined32_legacy __unknown0;
 				float __unknown1;
@@ -5976,7 +5976,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				float __unknown7;
 			};
 
-			struct nicename("Unknown 56") s_unknown_56_definition
+			struct nicename("Unknown 56") s_unknown_56_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -5991,15 +5991,15 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			string_id_legacy __unknown0;
 			float __unknown1;
 			float __unknown2;
-			s_tag_block_legacy<s_unknown_55_definition> nicename("Unknown 55") unknown_55_block;
+			s_tag_block_legacy<s_unknown_55_definition_legacy> nicename("Unknown 55") unknown_55_block;
 			int16_t __unknown3;
 			int16_t __unknown4;
-			s_tag_block_legacy<s_unknown_56_definition> nicename("Unknown 56") unknown_56_block;
+			s_tag_block_legacy<s_unknown_56_definition_legacy> nicename("Unknown 56") unknown_56_block;
 		};
 
-		struct nicename("Unknown 39") s_unknown_39_definition
+		struct nicename("Unknown 39") s_unknown_39_definition_legacy
 		{
-			struct nicename("Unknown 40") s_unknown_403_definition
+			struct nicename("Unknown 40") s_unknown_403_definition_legacy
 			{
 				float __unknown0;
 				float __unknown1;
@@ -6010,16 +6010,16 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				float __unknown6;
 			};
 
-			s_tag_block_legacy<s_unknown_403_definition> nicename("Unknown 40") unknown_40_block;
+			s_tag_block_legacy<s_unknown_403_definition_legacy> nicename("Unknown 40") unknown_40_block;
 			float __unknown0;
 			float __unknown1;
 		};
 
-		struct nicename("Unknown 53") s_unknown_532_definition
+		struct nicename("Unknown 53") s_unknown_532_definition_legacy
 		{
-			struct nicename("Unknown 54") s_unknown_541_definition
+			struct nicename("Unknown 54") s_unknown_541_definition_legacy
 			{
-				struct nicename("Unknown 55") s_unknown_551_definition
+				struct nicename("Unknown 55") s_unknown_551_definition_legacy
 				{
 					s_undefined32_legacy __unknown0;
 					s_undefined32_legacy __unknown1;
@@ -6029,38 +6029,38 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 					s_undefined32_legacy __unknown5;
 				};
 
-				s_tag_block_legacy<s_unknown_551_definition> nicename("Unknown 55") unknown_55_block;
+				s_tag_block_legacy<s_unknown_551_definition_legacy> nicename("Unknown 55") unknown_55_block;
 			};
 
-			s_tag_block_legacy<s_unknown_541_definition> nicename("Unknown 54") unknown_54_block;
+			s_tag_block_legacy<s_unknown_541_definition_legacy> nicename("Unknown 54") unknown_54_block;
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
 			s_undefined32_legacy __unknown2;
 		};
 
-		struct nicename("Unknown 41") s_unknown_411_definition
+		struct nicename("Unknown 41") s_unknown_411_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
 			s_undefined32_legacy __unknown2;
 		};
 
-		s_tag_block_legacy<s_unknown_36_definition> nicename("Unknown 36") unknown_36_block;
-		s_tag_block_legacy<s_unknown_37_definition> nicename("Unknown 37") unknown_37_block;
-		s_tag_block_legacy<s_unknown_38_definition> nicename("Unknown 38") unknown_38_block;
-		s_tag_block_legacy<s_unknown_381_definition> nicename("Unknown 38") unknown_381_block;
+		s_tag_block_legacy<s_unknown_36_definition_legacy> nicename("Unknown 36") unknown_36_block;
+		s_tag_block_legacy<s_unknown_37_definition_legacy> nicename("Unknown 37") unknown_37_block;
+		s_tag_block_legacy<s_unknown_38_definition_legacy> nicename("Unknown 38") unknown_38_block;
+		s_tag_block_legacy<s_unknown_381_definition_legacy> nicename("Unknown 38") unknown_381_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_unknown_52_definition> nicename("Unknown 52") unknown_52_block;
-		s_tag_block_legacy<s_unknown_531_definition> nicename("Unknown 53") unknown_53_block;
-		s_tag_block_legacy<s_unknown_54_definition> nicename("Unknown 54") unknown_54_block;
-		s_tag_block_legacy<s_unknown_39_definition> nicename("Unknown 39") unknown_39_block;
-		s_tag_block_legacy<s_unknown_532_definition> nicename("Unknown 53") unknown_531_block;
-		s_tag_block_legacy<s_unknown_411_definition> nicename("Unknown 41") unknown_41_block;
+		s_tag_block_legacy<s_unknown_52_definition_legacy> nicename("Unknown 52") unknown_52_block;
+		s_tag_block_legacy<s_unknown_531_definition_legacy> nicename("Unknown 53") unknown_53_block;
+		s_tag_block_legacy<s_unknown_54_definition_legacy> nicename("Unknown 54") unknown_54_block;
+		s_tag_block_legacy<s_unknown_39_definition_legacy> nicename("Unknown 39") unknown_39_block;
+		s_tag_block_legacy<s_unknown_532_definition_legacy> nicename("Unknown 53") unknown_531_block;
+		s_tag_block_legacy<s_unknown_411_definition_legacy> nicename("Unknown 41") unknown_41_block;
 	};
 
-	struct nicename("Scripts") s_scripts_definition
+	struct nicename("Scripts") s_scripts_definition_legacy
 	{
 		enum nicename("Script Type") e_script_type : uint16_t
 		{
@@ -6165,7 +6165,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("sound_budget_reference")*/ _return_type_sound_budget_reference = 88ui16,
 		};
 
-		struct nicename("Parameters") s_parameters_definition
+		struct nicename("Parameters") s_parameters_definition_legacy
 		{
 			enum nicename("Type") e_type : uint16_t
 			{
@@ -6270,10 +6270,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		e_return_type nicename("Return Type") return_type;
 		uint16_t nicename("Root Expression Index") root_expression_index;
 		uint16_t nicename("Root Expression Salt") root_expression_salt;
-		s_tag_block_legacy<s_parameters_definition> nicename("Parameters") parameters_block;
+		s_tag_block_legacy<s_parameters_definition_legacy> nicename("Parameters") parameters_block;
 	};
 
-	struct nicename("Globals") s_globals_definition
+	struct nicename("Globals") s_globals_definition_legacy
 	{
 		enum nicename("Type") e_type : uint16_t
 		{
@@ -6375,14 +6375,14 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		uint16_t nicename("Initialization Expression Salt") initialization_expression_salt;
 	};
 
-	struct nicename("Script References") s_script_references_definition
+	struct nicename("Script References") s_script_references_definition_legacy
 	{
 		s_tag_reference_legacy nicename("References") references_reference;
 	};
 
-	struct nicename("Scripting Data") s_scripting_data_definition
+	struct nicename("Scripting Data") s_scripting_data_definition_legacy
 	{
-		struct nicename("Point Sets") s_point_sets_definition
+		struct nicename("Point Sets") s_point_sets_definition_legacy
 		{
 			enum nicename("Flags") b_flags1 : uint32_t /* bitfield */
 			{
@@ -6420,7 +6420,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				/*nicename("Bit 31")*/ _flags1_bit_31 = 1ui32 << 31ui32,
 			};
 
-			struct nicename("Points") s_points_definition
+			struct nicename("Points") s_points_definition_legacy
 			{
 				char nicename("Name") name[32];
 				string_id_legacy nicename("Name") name1;
@@ -6435,7 +6435,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			};
 
 			char nicename("Name") name[32];
-			s_tag_block_legacy<s_points_definition> nicename("Points") points_block;
+			s_tag_block_legacy<s_points_definition_legacy> nicename("Points") points_block;
 			int16_t nicename("BSP Index") bsp_index;
 			int16_t nicename("Manual Reference Frame") manual_reference_frame;
 			b_flags1 nicename("Flags") flags;
@@ -6443,7 +6443,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown0;
 		};
 
-		s_tag_block_legacy<s_point_sets_definition> nicename("Point Sets") point_sets_block;
+		s_tag_block_legacy<s_point_sets_definition_legacy> nicename("Point Sets") point_sets_block;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
@@ -6476,7 +6476,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown29;
 	};
 
-	struct nicename("Cutscene Flags") s_cutscene_flags_definition
+	struct nicename("Cutscene Flags") s_cutscene_flags_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		string_id_legacy nicename("Name") name;
@@ -6489,7 +6489,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown1;
 	};
 
-	struct nicename("Cutscene Camera Points") s_cutscene_camera_points_definition
+	struct nicename("Cutscene Camera Points") s_cutscene_camera_points_definition_legacy
 	{
 		enum nicename("Type") e_type : uint16_t
 		{
@@ -6531,7 +6531,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float nicename("Orientation r") orientation_r;
 	};
 
-	struct nicename("Cutscene Titles") s_cutscene_titles_definition
+	struct nicename("Cutscene Titles") s_cutscene_titles_definition_legacy
 	{
 		enum nicename("Justification") e_justification : uint16_t
 		{
@@ -6565,19 +6565,19 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float nicename("Fade Out Time") fade_out_time;
 	};
 
-	struct nicename("Scenario Resources") s_scenario_resources_definition
+	struct nicename("Scenario Resources") s_scenario_resources_definition_legacy
 	{
-		struct nicename("Script Source") s_script_source_definition
+		struct nicename("Script Source") s_script_source_definition_legacy
 		{
 			s_tag_reference_legacy nicename("HS Source File") hs_source_file_reference;
 		};
 
-		struct nicename("AI Resources") s_ai_resources_definition
+		struct nicename("AI Resources") s_ai_resources_definition_legacy
 		{
 			s_tag_reference_legacy nicename("AI Resource") ai_resource_reference;
 		};
 
-		struct nicename("References") s_references_definition
+		struct nicename("References") s_references_definition_legacy
 		{
 			s_tag_reference_legacy nicename("Scenery Resource") scenery_resource_reference;
 			s_tag_reference_legacy nicename("Bipeds Resource") bipeds_resource_reference;
@@ -6603,12 +6603,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		};
 
 		int32_t __unknown0;
-		s_tag_block_legacy<s_script_source_definition> nicename("Script Source") script_source_block;
-		s_tag_block_legacy<s_ai_resources_definition> nicename("AI Resources") ai_resources_block;
-		s_tag_block_legacy<s_references_definition> nicename("References") references_block;
+		s_tag_block_legacy<s_script_source_definition_legacy> nicename("Script Source") script_source_block;
+		s_tag_block_legacy<s_ai_resources_definition_legacy> nicename("AI Resources") ai_resources_block;
+		s_tag_block_legacy<s_references_definition_legacy> nicename("References") references_block;
 	};
 
-	struct nicename("Unit Seats Mapping") s_unit_seats_mapping_definition
+	struct nicename("Unit Seats Mapping") s_unit_seats_mapping_definition_legacy
 	{
 		enum nicename("Seats") b_seats : uint32_t /* bitfield */
 		{
@@ -6687,7 +6687,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		b_seats_2 nicename("Seats 2") seats_2;
 	};
 
-	struct nicename("Scenario Kill Triggers") s_scenario_kill_triggers_definition
+	struct nicename("Scenario Kill Triggers") s_scenario_kill_triggers_definition_legacy
 	{
 		enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 		{
@@ -6706,7 +6706,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int8_t __unknown0;
 	};
 
-	struct nicename("Scenario Safe Triggers") s_scenario_safe_triggers_definition
+	struct nicename("Scenario Safe Triggers") s_scenario_safe_triggers_definition_legacy
 	{
 		enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 		{
@@ -6725,11 +6725,11 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int8_t __unknown0;
 	};
 
-	struct nicename("Scenario MOPP Triggers") s_scenario_mopp_triggers_definition
+	struct nicename("Scenario MOPP Triggers") s_scenario_mopp_triggers_definition_legacy
 	{
-		struct nicename("MOPP Codes") s_mopp_codes_definition
+		struct nicename("MOPP Codes") s_mopp_codes_definition_legacy
 		{
-			struct nicename("Data") s_data_definition
+			struct nicename("Data") s_data_definition_legacy
 			{
 				uint8_t nicename("Data Byte") data_byte;
 			};
@@ -6755,15 +6755,15 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			s_undefined32_legacy __unknown9;
 			s_undefined32_legacy __unknown10;
 			s_undefined32_legacy __unknown11;
-			s_tag_block_legacy<s_data_definition> nicename("Data") data_block;
+			s_tag_block_legacy<s_data_definition_legacy> nicename("Data") data_block;
 			s_undefined32_legacy __unknown12;
 		};
 
 		int32_t __unknown0;
-		s_tag_block_legacy<s_mopp_codes_definition> nicename("MOPP Codes") mopp_codes_block;
+		s_tag_block_legacy<s_mopp_codes_definition_legacy> nicename("MOPP Codes") mopp_codes_block;
 	};
 
-	struct nicename("Script Expressions") s_script_expressions_definition
+	struct nicename("Script Expressions") s_script_expressions_definition_legacy
 	{
 		enum nicename("Value Type") e_value_type : uint16_t
 		{
@@ -6874,7 +6874,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown0;
 	};
 
-	struct nicename("Background Sound Environment Palette") s_background_sound_environment_palette_definition
+	struct nicename("Background Sound Environment Palette") s_background_sound_environment_palette_definition_legacy
 	{
 		enum nicename("Scale Flags") b_scale_flags : uint32_t /* bitfield */
 		{
@@ -6929,7 +6929,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float nicename("Interpolation Speed") interpolation_speed1;
 	};
 
-	struct nicename("Fog") s_fog_definition
+	struct nicename("Fog") s_fog_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int16_t __unknown0;
@@ -6937,7 +6937,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_tag_reference_legacy nicename("Fog") fog_reference;
 	};
 
-	struct nicename("Camera FX") s_camera_fx_definition
+	struct nicename("Camera FX") s_camera_fx_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_tag_reference_legacy nicename("Camera FX") camera_fx_reference;
@@ -6950,40 +6950,40 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown6;
 	};
 
-	struct nicename("Weather") s_weather_definition
+	struct nicename("Weather") s_weather_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_tag_reference_legacy nicename("Weather") weather_reference;
 	};
 
-	struct nicename("Scenario Cluster Data") s_scenario_cluster_data_definition
+	struct nicename("Scenario Cluster Data") s_scenario_cluster_data_definition_legacy
 	{
-		struct nicename("Cluster Centroids") s_cluster_centroids_definition
+		struct nicename("Cluster Centroids") s_cluster_centroids_definition_legacy
 		{
 			float nicename("Centroid X") centroid_x;
 			float nicename("Centroid Y") centroid_y;
 			float nicename("Centroid Z") centroid_z;
 		};
 
-		struct nicename("Background Sound Environments") s_background_sound_environments_definition
+		struct nicename("Background Sound Environments") s_background_sound_environments_definition_legacy
 		{
 			int16_t nicename("Background Sound Environment Index") background_sound_environment_index;
 			int16_t __unknown0;
 		};
 
-		struct nicename("Fog") s_fog1_definition
+		struct nicename("Fog") s_fog1_definition_legacy
 		{
 			int16_t nicename("Fog Index") fog_index;
 			int16_t __unknown0;
 		};
 
-		struct nicename("Camera FX") s_camera_fx1_definition
+		struct nicename("Camera FX") s_camera_fx1_definition_legacy
 		{
 			int16_t nicename("Camera FX Index") camera_fx_index;
 			int16_t __unknown0;
 		};
 
-		struct nicename("Weather") s_weather1_definition
+		struct nicename("Weather") s_weather1_definition_legacy
 		{
 			int16_t nicename("Weather Index") weather_index;
 			int16_t __unknown0;
@@ -6991,20 +6991,20 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 		s_tag_reference_legacy nicename("BSP") bsp_reference;
 		int32_t nicename("BSP Checksum") bsp_checksum;
-		s_tag_block_legacy<s_cluster_centroids_definition> nicename("Cluster Centroids") cluster_centroids_block;
+		s_tag_block_legacy<s_cluster_centroids_definition_legacy> nicename("Cluster Centroids") cluster_centroids_block;
 		int32_t __unknown0;
-		s_tag_block_legacy<s_background_sound_environments_definition> nicename("Background Sound Environments") background_sound_environments_block;
-		s_tag_block_legacy<s_fog1_definition> nicename("Fog") fog_block;
-		s_tag_block_legacy<s_camera_fx1_definition> nicename("Camera FX") camera_fx_block;
-		s_tag_block_legacy<s_weather1_definition> nicename("Weather") weather_block;
+		s_tag_block_legacy<s_background_sound_environments_definition_legacy> nicename("Background Sound Environments") background_sound_environments_block;
+		s_tag_block_legacy<s_fog1_definition_legacy> nicename("Fog") fog_block;
+		s_tag_block_legacy<s_camera_fx1_definition_legacy> nicename("Camera FX") camera_fx_block;
+		s_tag_block_legacy<s_weather1_definition_legacy> nicename("Weather") weather_block;
 	};
 
-	struct nicename("Spawn Data") s_spawn_data_definition
+	struct nicename("Spawn Data") s_spawn_data_definition_legacy
 	{
 		float __unknown0;
 	};
 
-	struct nicename("Crates") s_crates_definition
+	struct nicename("Crates") s_crates_definition_legacy
 	{
 		enum nicename("BSP Policy") e_bsp_policy : uint8_t
 		{
@@ -7172,9 +7172,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			/*nicename("Allows Projectiles")*/ _teleporter_flags_allows_projectiles = 1ui8 << 4ui8,
 		};
 
-		struct nicename("Node Positioning") s_node_positioning12_definition
+		struct nicename("Node Positioning") s_node_positioning12_definition_legacy
 		{
-			struct nicename("Node Flags") s_node_flags12_definition
+			struct nicename("Node Flags") s_node_flags12_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -7191,12 +7191,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags1 nicename("Flags") flags;
 			};
 
-			struct nicename("Orientations") s_orientations12_definition
+			struct nicename("Orientations") s_orientations12_definition_legacy
 			{
 				int16_t nicename("Rotation x, y, z, w") rotation_x_y_z_w;
 			};
 
-			struct nicename("Node Flags [Readable]") s_node_flags_readable12_definition
+			struct nicename("Node Flags [Readable]") s_node_flags_readable12_definition_legacy
 			{
 				enum nicename("Flags") b_flags1 : uint8_t /* bitfield */
 				{
@@ -7252,7 +7252,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				b_flags4 nicename("Flags") flags3;
 			};
 
-			struct nicename("Orientations [Readable]") s_orientations_readable12_definition
+			struct nicename("Orientations [Readable]") s_orientations_readable12_definition_legacy
 			{
 				int16_t nicename("Rotation x") rotation_x;
 				int16_t nicename("Rotation y") rotation_y;
@@ -7262,13 +7262,13 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 
 			int16_t nicename("Node Count") node_count;
 			int16_t __unknown0;
-			s_tag_block_legacy<s_node_flags12_definition> nicename("Node Flags") node_flags_block;
-			s_tag_block_legacy<s_orientations12_definition> nicename("Orientations") orientations_block;
-			s_tag_block_legacy<s_node_flags_readable12_definition> nicename("Node Flags [Readable]") node_flags_readable_block;
-			s_tag_block_legacy<s_orientations_readable12_definition> nicename("Orientations [Readable]") orientations_readable_block;
+			s_tag_block_legacy<s_node_flags12_definition_legacy> nicename("Node Flags") node_flags_block;
+			s_tag_block_legacy<s_orientations12_definition_legacy> nicename("Orientations") orientations_block;
+			s_tag_block_legacy<s_node_flags_readable12_definition_legacy> nicename("Node Flags [Readable]") node_flags_readable_block;
+			s_tag_block_legacy<s_orientations_readable12_definition_legacy> nicename("Orientations [Readable]") orientations_readable_block;
 		};
 
-		struct nicename("Unknown") s_unknown10_definition
+		struct nicename("Unknown") s_unknown10_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 		};
@@ -7286,7 +7286,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		/* Node Positioning : This block allows you to "pose" this objects nodes. Used normally for dead bodies. The orientations block has an entry for each checked node flag, skipping unchecked ones.
 		   The blocks labeled [Readable] are modified to make reading/editing the values easier, but as a result the entry counts will be innaccurate, going too far may result in editing the wrong data.
 		   DO NOT USE THE BLOCK REALLOCATOR ON THE [READABLE] BLOCKS! */
-		s_tag_block_legacy<s_node_positioning12_definition> nicename("Node Positioning") node_positioning1_block;
+		s_tag_block_legacy<s_node_positioning12_definition_legacy> nicename("Node Positioning") node_positioning1_block;
 		int8_t __unknown0;
 		int8_t __unknown1;
 		int8_t __unknown2;
@@ -7320,7 +7320,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_color32_legacy nicename("Quaternary Color") quaternary_color;
 		// Crate Data : 
 		s_undefined32_legacy __unknown12;
-		s_tag_block_legacy<s_unknown10_definition> __unknown13;
+		s_tag_block_legacy<s_unknown10_definition_legacy> __unknown13;
 		// Multiplayer Data : 
 		char nicename("Custom Label") custom_label[32];
 		e_symmetry nicename("Symmetry") symmetry;
@@ -7350,19 +7350,19 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown20;
 	};
 
-	struct nicename("Crate Palette") s_crate_palette_definition
+	struct nicename("Crate Palette") s_crate_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Crate") crate_reference;
 	};
 
-	struct nicename("Flock Palette") s_flock_palette_definition
+	struct nicename("Flock Palette") s_flock_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Flock") flock_reference;
 	};
 
-	struct nicename("Flocks") s_flocks_definition
+	struct nicename("Flocks") s_flocks_definition_legacy
 	{
-		struct nicename("Sources") s_sources_definition
+		struct nicename("Sources") s_sources_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			int32_t __unknown0;
@@ -7379,7 +7379,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int8_t __unknown4;
 		};
 
-		struct nicename("Sinks") s_sinks_definition
+		struct nicename("Sinks") s_sinks_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_undefined32_legacy __unknown0;
@@ -7398,8 +7398,8 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t nicename("Bounding Trigger Volume") bounding_trigger_volume;
 		int16_t __unknown0;
 		float __unknown1;
-		s_tag_block_legacy<s_sources_definition> nicename("Sources") sources_block;
-		s_tag_block_legacy<s_sinks_definition> nicename("Sinks") sinks_block;
+		s_tag_block_legacy<s_sources_definition_legacy> nicename("Sources") sources_block;
+		s_tag_block_legacy<s_sinks_definition_legacy> nicename("Sinks") sinks_block;
 		float nicename("Production Frequency min") production_frequency_min;
 		float nicename("Production Frequency max") production_frequency_max;
 		float nicename("Scale min") scale_min;
@@ -7416,28 +7416,28 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float __unknown8;
 	};
 
-	struct nicename("Creature Palette") s_creature_palette_definition
+	struct nicename("Creature Palette") s_creature_palette_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Creature") creature_reference;
 	};
 
-	struct nicename("Big Battle Creatures") s_big_battle_creatures_definition
+	struct nicename("Big Battle Creatures") s_big_battle_creatures_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Big Battle Creature") big_battle_creature_reference;
 	};
 
-	struct nicename("Editor Folders") s_editor_folders_definition
+	struct nicename("Editor Folders") s_editor_folders_definition_legacy
 	{
 		int32_t nicename("Parent Folder") parent_folder;
 		char nicename("Name") name[256];
 	};
 
-	struct nicename("Mission Dialogue") s_mission_dialogue_definition
+	struct nicename("Mission Dialogue") s_mission_dialogue_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Mission Dialogue") mission_dialogue_reference;
 	};
 
-	struct nicename("Unknown 59") s_unknown_59_definition
+	struct nicename("Unknown 59") s_unknown_59_definition_legacy
 	{
 		int8_t __unknown0;
 		int8_t __unknown1;
@@ -7451,16 +7451,16 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown9;
 	};
 
-	struct nicename("AI Objectives") s_ai_objectives_definition
+	struct nicename("AI Objectives") s_ai_objectives_definition_legacy
 	{
-		struct nicename("Unknown 78") s_unknown_78_definition
+		struct nicename("Unknown 78") s_unknown_78_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 		};
 
-		struct nicename("Roles") s_roles_definition
+		struct nicename("Roles") s_roles_definition_legacy
 		{
-			struct nicename("Conditions") s_conditions_definition
+			struct nicename("Conditions") s_conditions_definition_legacy
 			{
 				string_id_legacy nicename("Name") name;
 				char nicename("Condition") condition[32];
@@ -7468,7 +7468,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int16_t __unknown1;
 			};
 
-			struct nicename("Unknown 63") s_unknown_63_definition
+			struct nicename("Unknown 63") s_unknown_63_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -7482,9 +7482,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				s_undefined32_legacy __unknown9;
 			};
 
-			struct nicename("Point Geometry") s_point_geometry_definition
+			struct nicename("Point Geometry") s_point_geometry_definition_legacy
 			{
-				struct nicename("Points") s_points1_definition
+				struct nicename("Points") s_points1_definition_legacy
 				{
 					float nicename("Point X") point_x;
 					float nicename("Point Y") point_y;
@@ -7493,7 +7493,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 					int16_t __unknown0;
 				};
 
-				s_tag_block_legacy<s_points1_definition> nicename("Points") points_block;
+				s_tag_block_legacy<s_points1_definition_legacy> nicename("Points") points_block;
 			};
 
 			int16_t __unknown0;
@@ -7525,7 +7525,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t nicename("Previous Role") previous_role;
 			int16_t nicename("Next Role") next_role;
 			int16_t nicename("Parent Role") parent_role;
-			s_tag_block_legacy<s_conditions_definition> nicename("Conditions") conditions_block;
+			s_tag_block_legacy<s_conditions_definition_legacy> nicename("Conditions") conditions_block;
 			int16_t nicename("Script Index") script_index;
 			int16_t __unknown18;
 			int16_t __unknown19;
@@ -7535,124 +7535,124 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t nicename("Bodies") bodies;
 			int16_t __unknown20;
 			s_undefined32_legacy __unknown21;
-			s_tag_block_legacy<s_unknown_63_definition> nicename("Unknown 63") unknown_63_block;
-			s_tag_block_legacy<s_point_geometry_definition> nicename("Point Geometry") point_geometry_block;
+			s_tag_block_legacy<s_unknown_63_definition_legacy> nicename("Unknown 63") unknown_63_block;
+			s_tag_block_legacy<s_point_geometry_definition_legacy> nicename("Point Geometry") point_geometry_block;
 		};
 
 		string_id_legacy nicename("Name") name;
-		s_tag_block_legacy<s_unknown_78_definition> nicename("Unknown 78") unknown_78_block;
+		s_tag_block_legacy<s_unknown_78_definition_legacy> nicename("Unknown 78") unknown_78_block;
 		int16_t __unknown0;
 		int16_t nicename("Zone") zone;
 		int16_t __unknown1;
 		int16_t nicename("Editor Folder Index") editor_folder_index;
-		s_tag_block_legacy<s_roles_definition> nicename("Roles") roles_block;
+		s_tag_block_legacy<s_roles_definition_legacy> nicename("Roles") roles_block;
 	};
 
-	struct nicename("Designer Zonesets") s_designer_zonesets_definition
+	struct nicename("Designer Zonesets") s_designer_zonesets_definition_legacy
 	{
-		struct nicename("Bipeds") s_bipeds1_definition
+		struct nicename("Bipeds") s_bipeds1_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Vehicles") s_vehicles1_definition
+		struct nicename("Vehicles") s_vehicles1_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Weapons") s_weapons3_definition
+		struct nicename("Weapons") s_weapons3_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Equipment") s_equipment3_definition
+		struct nicename("Equipment") s_equipment3_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Scenery") s_scenery1_definition
+		struct nicename("Scenery") s_scenery1_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Machines") s_machines1_definition
+		struct nicename("Machines") s_machines1_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Terminals") s_terminals1_definition
+		struct nicename("Terminals") s_terminals1_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Controls") s_controls1_definition
+		struct nicename("Controls") s_controls1_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Unknown") s_unknown11_definition
+		struct nicename("Unknown") s_unknown11_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Crates") s_crates1_definition
+		struct nicename("Crates") s_crates1_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Creatures") s_creatures_definition
+		struct nicename("Creatures") s_creatures_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Giants") s_giants1_definition
+		struct nicename("Giants") s_giants1_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Unknown") s_unknown12_definition
+		struct nicename("Unknown") s_unknown12_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
-		struct nicename("Characters") s_characters_definition
+		struct nicename("Characters") s_characters_definition_legacy
 		{
 			int16_t nicename("Palette Index") palette_index;
 		};
 
 		string_id_legacy nicename("Name") name;
 		s_undefined32_legacy __unknown0;
-		s_tag_block_legacy<s_bipeds1_definition> nicename("Bipeds") bipeds_block;
-		s_tag_block_legacy<s_vehicles1_definition> nicename("Vehicles") vehicles_block;
-		s_tag_block_legacy<s_weapons3_definition> nicename("Weapons") weapons_block;
-		s_tag_block_legacy<s_equipment3_definition> nicename("Equipment") equipment_block;
-		s_tag_block_legacy<s_scenery1_definition> nicename("Scenery") scenery_block;
-		s_tag_block_legacy<s_machines1_definition> nicename("Machines") machines_block;
-		s_tag_block_legacy<s_terminals1_definition> nicename("Terminals") terminals_block;
-		s_tag_block_legacy<s_controls1_definition> nicename("Controls") controls_block;
-		s_tag_block_legacy<s_unknown11_definition> __unknown1;
-		s_tag_block_legacy<s_crates1_definition> nicename("Crates") crates_block;
-		s_tag_block_legacy<s_creatures_definition> nicename("Creatures") creatures_block;
-		s_tag_block_legacy<s_giants1_definition> nicename("Giants") giants_block;
-		s_tag_block_legacy<s_unknown12_definition> __unknown2;
-		s_tag_block_legacy<s_characters_definition> nicename("Characters") characters_block;
+		s_tag_block_legacy<s_bipeds1_definition_legacy> nicename("Bipeds") bipeds_block;
+		s_tag_block_legacy<s_vehicles1_definition_legacy> nicename("Vehicles") vehicles_block;
+		s_tag_block_legacy<s_weapons3_definition_legacy> nicename("Weapons") weapons_block;
+		s_tag_block_legacy<s_equipment3_definition_legacy> nicename("Equipment") equipment_block;
+		s_tag_block_legacy<s_scenery1_definition_legacy> nicename("Scenery") scenery_block;
+		s_tag_block_legacy<s_machines1_definition_legacy> nicename("Machines") machines_block;
+		s_tag_block_legacy<s_terminals1_definition_legacy> nicename("Terminals") terminals_block;
+		s_tag_block_legacy<s_controls1_definition_legacy> nicename("Controls") controls_block;
+		s_tag_block_legacy<s_unknown11_definition_legacy> __unknown1;
+		s_tag_block_legacy<s_crates1_definition_legacy> nicename("Crates") crates_block;
+		s_tag_block_legacy<s_creatures_definition_legacy> nicename("Creatures") creatures_block;
+		s_tag_block_legacy<s_giants1_definition_legacy> nicename("Giants") giants_block;
+		s_tag_block_legacy<s_unknown12_definition_legacy> __unknown2;
+		s_tag_block_legacy<s_characters_definition_legacy> nicename("Characters") characters_block;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 	};
 
-	struct nicename("Unknown 61") s_unknown_61_definition
+	struct nicename("Unknown 61") s_unknown_61_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
 	};
 
-	struct nicename("Particle Emitters") s_particle_emitters_definition
+	struct nicename("Particle Emitters") s_particle_emitters_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Emitter") emitter_reference;
 	};
 
-	struct nicename("Unknown") s_unknown13_definition
+	struct nicename("Unknown") s_unknown13_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		float __unknown1;
@@ -7663,31 +7663,31 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown6;
 	};
 
-	struct nicename("Cinematics") s_cinematics_definition
+	struct nicename("Cinematics") s_cinematics_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_tag_reference_legacy nicename("Cinematic") cinematic_reference;
 	};
 
-	struct nicename("Cinematic Lights") s_cinematic_lights_definition
+	struct nicename("Cinematic Lights") s_cinematic_lights_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_tag_reference_legacy nicename("Light") light_reference;
 	};
 
-	struct nicename("Scenario Metagame") s_scenario_metagame_definition
+	struct nicename("Scenario Metagame") s_scenario_metagame_definition_legacy
 	{
-		struct nicename("Time Multipliers") s_time_multipliers_definition
+		struct nicename("Time Multipliers") s_time_multipliers_definition_legacy
 		{
 			float nicename("Time") time;
 			float nicename("Multiplier") multiplier;
 		};
 
 		float nicename("Par Score") par_score;
-		s_tag_block_legacy<s_time_multipliers_definition> nicename("Time Multipliers") time_multipliers_block;
+		s_tag_block_legacy<s_time_multipliers_definition_legacy> nicename("Time Multipliers") time_multipliers_block;
 	};
 
-	struct nicename("Unknown 64") s_unknown_64_definition
+	struct nicename("Unknown 64") s_unknown_64_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -7697,9 +7697,9 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown5;
 	};
 
-	struct nicename("Unknown 65") s_unknown_65_definition
+	struct nicename("Unknown 65") s_unknown_65_definition_legacy
 	{
-		struct nicename("Unknown 85") s_unknown_85_definition
+		struct nicename("Unknown 85") s_unknown_85_definition_legacy
 		{
 			float __unknown0;
 			float __unknown1;
@@ -7713,12 +7713,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float __unknown3;
 		int16_t __unknown4;
 		int16_t __unknown5;
-		s_tag_block_legacy<s_unknown_85_definition> nicename("Unknown 85") unknown_85_block;
+		s_tag_block_legacy<s_unknown_85_definition_legacy> nicename("Unknown 85") unknown_85_block;
 	};
 
-	struct nicename("Vignettes") s_vignettes_definition
+	struct nicename("Vignettes") s_vignettes_definition_legacy
 	{
-		struct nicename("Unknown 86") s_unknown_86_definition
+		struct nicename("Unknown 86") s_unknown_86_definition_legacy
 		{
 			int32_t __unknown0;
 			string_id_legacy __unknown1;
@@ -7729,16 +7729,16 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int32_t __unknown6;
 		};
 
-		struct nicename("Unknown 87") s_unknown_87_definition
+		struct nicename("Unknown 87") s_unknown_87_definition_legacy
 		{
-			struct nicename("Script") s_script_definition
+			struct nicename("Script") s_script_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
 				char nicename("Script") script[512];
 			};
 
-			struct nicename("Unknown 89") s_unknown_89_definition
+			struct nicename("Unknown 89") s_unknown_89_definition_legacy
 			{
 				int32_t __unknown0;
 				int16_t __unknown1;
@@ -7747,7 +7747,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				int32_t __unknown4;
 			};
 
-			struct nicename("Animation") s_animation_definition
+			struct nicename("Animation") s_animation_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
@@ -7760,7 +7760,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				s_undefined32_legacy nicename("ZUnknown") zunknown2;
 			};
 
-			struct nicename("Unknown 88") s_unknown_88_definition
+			struct nicename("Unknown 88") s_unknown_88_definition_legacy
 			{
 				string_id_legacy __unknown0;
 				float __unknown1;
@@ -7771,7 +7771,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 				s_undefined32_legacy nicename("ZUnknown") zunknown2;
 			};
 
-			struct nicename("Unknown 91") s_unknown_91_definition
+			struct nicename("Unknown 91") s_unknown_91_definition_legacy
 			{
 				int32_t __unknown0;
 				float __unknown1;
@@ -7783,20 +7783,20 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 			int16_t __unknown3;
 			int16_t __unknown4;
 			int32_t __unknown5;
-			s_tag_block_legacy<s_script_definition> nicename("Script") script_block;
-			s_tag_block_legacy<s_unknown_89_definition> nicename("Unknown 89") unknown_89_block;
-			s_tag_block_legacy<s_animation_definition> nicename("Animation") animation_block;
-			s_tag_block_legacy<s_unknown_88_definition> nicename("Unknown 88") unknown_88_block;
+			s_tag_block_legacy<s_script_definition_legacy> nicename("Script") script_block;
+			s_tag_block_legacy<s_unknown_89_definition_legacy> nicename("Unknown 89") unknown_89_block;
+			s_tag_block_legacy<s_animation_definition_legacy> nicename("Animation") animation_block;
+			s_tag_block_legacy<s_unknown_88_definition_legacy> nicename("Unknown 88") unknown_88_block;
 			s_undefined32_legacy nicename("ZUnknown") zunknown;
 			s_undefined32_legacy nicename("ZUnknown") zunknown1;
 			s_undefined32_legacy nicename("ZUnknown") zunknown2;
-			s_tag_block_legacy<s_unknown_91_definition> nicename("Unknown 91") unknown_91_block;
+			s_tag_block_legacy<s_unknown_91_definition_legacy> nicename("Unknown 91") unknown_91_block;
 			s_undefined32_legacy nicename("ZUnknown") zunknown3;
 			s_undefined32_legacy nicename("ZUnknown") zunknown4;
 			s_undefined32_legacy nicename("ZUnknown") zunknown5;
 		};
 
-		struct nicename("Unknown 85") s_unknown_851_definition
+		struct nicename("Unknown 85") s_unknown_851_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
@@ -7809,8 +7809,8 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		int16_t __unknown4;
 		int16_t __unknown5;
 		int16_t __unknown6;
-		s_tag_block_legacy<s_unknown_86_definition> nicename("Unknown 86") unknown_86_block;
-		s_tag_block_legacy<s_unknown_87_definition> nicename("Unknown 87") unknown_87_block;
+		s_tag_block_legacy<s_unknown_86_definition_legacy> nicename("Unknown 86") unknown_86_block;
+		s_tag_block_legacy<s_unknown_87_definition_legacy> nicename("Unknown 87") unknown_87_block;
 		float nicename("X") x;
 		float nicename("Y") y;
 		float nicename("Z") z;
@@ -7821,10 +7821,10 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		float __unknown9;
 		string_id_legacy nicename("Performane Template Name") performane_template_name;
 		s_tag_reference_legacy nicename("Performance Template") performance_template_reference;
-		s_tag_block_legacy<s_unknown_851_definition> nicename("Unknown 85") unknown_85_block;
+		s_tag_block_legacy<s_unknown_851_definition_legacy> nicename("Unknown 85") unknown_85_block;
 	};
 
-	struct nicename("Unknown 66") s_unknown_66_definition
+	struct nicename("Unknown 66") s_unknown_66_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -7834,7 +7834,7 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 		s_undefined32_legacy __unknown5;
 	};
 
-	struct nicename("Compiled Data") s_compiled_data_definition
+	struct nicename("Compiled Data") s_compiled_data_definition_legacy
 	{
 		uint32_t nicename("[effe] Compiled Data Pointer") effe_compiled_data_pointer;
 		s_undefined32_legacy __unknown0;
@@ -7868,14 +7868,14 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	float nicename("Sandbox Budget") sandbox_budget;
 	string_id_legacy nicename("Default Vehicle Filter") default_vehicle_filter;
 	s_tag_reference_legacy nicename("Performance Throttle Profile") performance_throttle_profile_reference;
-	s_tag_block_legacy<s_structure_bsps_definition> nicename("Structure BSPs") structure_bsps_block;
-	s_tag_block_legacy<s_structure_design_definition> nicename("Structure Design") structure_design_block;
+	s_tag_block_legacy<s_structure_bsps_definition_legacy> nicename("Structure BSPs") structure_bsps_block;
+	s_tag_block_legacy<s_structure_design_definition_legacy> nicename("Structure Design") structure_design_block;
 	s_tag_reference_legacy __unknown8;
 	s_tag_reference_legacy __unknown9;
-	s_tag_block_legacy<s_sky_references_definition> nicename("Sky References") sky_references_block;
-	s_tag_block_legacy<s_bsp_groups_definition> nicename("BSP Groups") bsp_groups_block;
-	s_tag_block_legacy<s_scenario_bsp_audibility_definition> nicename("Scenario BSP Audibility") scenario_bsp_audibility_block;
-	s_tag_block_legacy<s_scenario_zoneset_groups_definition> nicename("Scenario Zoneset Groups") scenario_zoneset_groups_block;
+	s_tag_block_legacy<s_sky_references_definition_legacy> nicename("Sky References") sky_references_block;
+	s_tag_block_legacy<s_bsp_groups_definition_legacy> nicename("BSP Groups") bsp_groups_block;
+	s_tag_block_legacy<s_scenario_bsp_audibility_definition_legacy> nicename("Scenario BSP Audibility") scenario_bsp_audibility_block;
+	s_tag_block_legacy<s_scenario_zoneset_groups_definition_legacy> nicename("Scenario Zoneset Groups") scenario_zoneset_groups_block;
 	s_undefined32_legacy __unknown10;
 	s_undefined32_legacy __unknown11;
 	s_undefined32_legacy __unknown12;
@@ -7892,61 +7892,61 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	s_undefined32_legacy __unknown22;
 	s_undefined32_legacy __unknown23;
 	s_undefined32_legacy __unknown24;
-	s_tag_block_legacy<s_object_names_definition> nicename("Object Names") object_names_block;
-	s_tag_block_legacy<s_scenery_definition> nicename("Scenery") scenery_block;
-	s_tag_block_legacy<s_scenery_palette_definition> nicename("Scenery Palette") scenery_palette_block;
-	s_tag_block_legacy<s_bipeds_definition> nicename("Bipeds") bipeds_block;
-	s_tag_block_legacy<s_biped_palette_definition> nicename("Biped Palette") biped_palette_block;
-	s_tag_block_legacy<s_vehicles_definition> nicename("Vehicles") vehicles_block;
-	s_tag_block_legacy<s_vehicle_palette_definition> nicename("Vehicle Palette") vehicle_palette_block;
-	s_tag_block_legacy<s_equipment_definition> nicename("Equipment") equipment_block;
-	s_tag_block_legacy<s_equipment_palette_definition> nicename("Equipment Palette") equipment_palette_block;
-	s_tag_block_legacy<s_weapons_definition> nicename("Weapons") weapons_block;
-	s_tag_block_legacy<s_weapon_palette_definition> nicename("Weapon Palette") weapon_palette_block;
-	s_tag_block_legacy<s_device_groups_definition> nicename("Device Groups") device_groups_block;
-	s_tag_block_legacy<s_machines_definition> nicename("Machines") machines_block;
-	s_tag_block_legacy<s_machine_palette_definition> nicename("Machine Palette") machine_palette_block;
-	s_tag_block_legacy<s_terminals_definition> nicename("Terminals") terminals_block;
-	s_tag_block_legacy<s_terminal_palette_definition> nicename("Terminal Palette") terminal_palette_block;
-	s_tag_block_legacy<s_controls_definition> nicename("Controls") controls_block;
-	s_tag_block_legacy<s_control_palette_definition> nicename("Control Palette") control_palette_block;
-	s_tag_block_legacy<s_sound_scenery_definition> nicename("Sound Scenery") sound_scenery_block;
-	s_tag_block_legacy<s_sound_scenery_palette_definition> nicename("Sound Scenery Palette") sound_scenery_palette_block;
-	s_tag_block_legacy<s_giants_definition> nicename("Giants") giants_block;
-	s_tag_block_legacy<s_giant_palette_definition> nicename("Giant Palette") giant_palette_block;
-	s_tag_block_legacy<s_effect_scenery_definition> nicename("Effect Scenery") effect_scenery_block;
-	s_tag_block_legacy<s_effect_scenery_palette_definition> nicename("Effect Scenery Palette") effect_scenery_palette_block;
-	s_tag_block_legacy<s_light_volumes_definition> nicename("Light Volumes") light_volumes_block;
-	s_tag_block_legacy<s_light_volumes_palette_definition> nicename("Light Volumes Palette") light_volumes_palette_block;
-	s_tag_block_legacy<s_sandbox_palette_definition> nicename("Sandbox Palette") sandbox_palette_block;
-	s_tag_block_legacy<s_legacy_sandbox_info_definition> nicename("Legacy Sandbox Info") legacy_sandbox_info_block;
+	s_tag_block_legacy<s_object_names_definition_legacy> nicename("Object Names") object_names_block;
+	s_tag_block_legacy<s_scenery_definition_legacy> nicename("Scenery") scenery_block;
+	s_tag_block_legacy<s_scenery_palette_definition_legacy> nicename("Scenery Palette") scenery_palette_block;
+	s_tag_block_legacy<s_bipeds_definition_legacy> nicename("Bipeds") bipeds_block;
+	s_tag_block_legacy<s_biped_palette_definition_legacy> nicename("Biped Palette") biped_palette_block;
+	s_tag_block_legacy<s_vehicles_definition_legacy> nicename("Vehicles") vehicles_block;
+	s_tag_block_legacy<s_vehicle_palette_definition_legacy> nicename("Vehicle Palette") vehicle_palette_block;
+	s_tag_block_legacy<s_equipment_definition_legacy> nicename("Equipment") equipment_block;
+	s_tag_block_legacy<s_equipment_palette_definition_legacy> nicename("Equipment Palette") equipment_palette_block;
+	s_tag_block_legacy<s_weapons_definition_legacy> nicename("Weapons") weapons_block;
+	s_tag_block_legacy<s_weapon_palette_definition_legacy> nicename("Weapon Palette") weapon_palette_block;
+	s_tag_block_legacy<s_device_groups_definition_legacy> nicename("Device Groups") device_groups_block;
+	s_tag_block_legacy<s_machines_definition_legacy> nicename("Machines") machines_block;
+	s_tag_block_legacy<s_machine_palette_definition_legacy> nicename("Machine Palette") machine_palette_block;
+	s_tag_block_legacy<s_terminals_definition_legacy> nicename("Terminals") terminals_block;
+	s_tag_block_legacy<s_terminal_palette_definition_legacy> nicename("Terminal Palette") terminal_palette_block;
+	s_tag_block_legacy<s_controls_definition_legacy> nicename("Controls") controls_block;
+	s_tag_block_legacy<s_control_palette_definition_legacy> nicename("Control Palette") control_palette_block;
+	s_tag_block_legacy<s_sound_scenery_definition_legacy> nicename("Sound Scenery") sound_scenery_block;
+	s_tag_block_legacy<s_sound_scenery_palette_definition_legacy> nicename("Sound Scenery Palette") sound_scenery_palette_block;
+	s_tag_block_legacy<s_giants_definition_legacy> nicename("Giants") giants_block;
+	s_tag_block_legacy<s_giant_palette_definition_legacy> nicename("Giant Palette") giant_palette_block;
+	s_tag_block_legacy<s_effect_scenery_definition_legacy> nicename("Effect Scenery") effect_scenery_block;
+	s_tag_block_legacy<s_effect_scenery_palette_definition_legacy> nicename("Effect Scenery Palette") effect_scenery_palette_block;
+	s_tag_block_legacy<s_light_volumes_definition_legacy> nicename("Light Volumes") light_volumes_block;
+	s_tag_block_legacy<s_light_volumes_palette_definition_legacy> nicename("Light Volumes Palette") light_volumes_palette_block;
+	s_tag_block_legacy<s_sandbox_palette_definition_legacy> nicename("Sandbox Palette") sandbox_palette_block;
+	s_tag_block_legacy<s_legacy_sandbox_info_definition_legacy> nicename("Legacy Sandbox Info") legacy_sandbox_info_block;
 	s_tag_reference_legacy __unknown25;
 	s_undefined32_legacy __unknown26;
 	s_undefined32_legacy __unknown27;
 	s_undefined32_legacy __unknown28;
-	s_tag_block_legacy<s_soft_ceilings_definition> nicename("Soft Ceilings") soft_ceilings_block;
-	s_tag_block_legacy<s_player_starting_profile_definition> nicename("Player Starting Profile") player_starting_profile_block;
-	s_tag_block_legacy<s_player_starting_locations_definition> nicename("Player Starting Locations") player_starting_locations_block;
-	s_tag_block_legacy<s_trigger_volumes_definition> nicename("Trigger Volumes") trigger_volumes_block;
-	s_tag_block_legacy<s_unknown_22_definition> nicename("Unknown 22") unknown_22_block;
-	s_tag_block_legacy<s_unknown_231_definition> nicename("Unknown 23") unknown_23_block;
-	s_tag_block_legacy<s_unknown_28_definition> nicename("Unknown 28") unknown_28_block;
+	s_tag_block_legacy<s_soft_ceilings_definition_legacy> nicename("Soft Ceilings") soft_ceilings_block;
+	s_tag_block_legacy<s_player_starting_profile_definition_legacy> nicename("Player Starting Profile") player_starting_profile_block;
+	s_tag_block_legacy<s_player_starting_locations_definition_legacy> nicename("Player Starting Locations") player_starting_locations_block;
+	s_tag_block_legacy<s_trigger_volumes_definition_legacy> nicename("Trigger Volumes") trigger_volumes_block;
+	s_tag_block_legacy<s_unknown_22_definition_legacy> nicename("Unknown 22") unknown_22_block;
+	s_tag_block_legacy<s_unknown_231_definition_legacy> nicename("Unknown 23") unknown_23_block;
+	s_tag_block_legacy<s_unknown_28_definition_legacy> nicename("Unknown 28") unknown_28_block;
 	s_undefined32_legacy __unknown29;
 	s_undefined32_legacy __unknown30;
 	s_undefined32_legacy __unknown31;
 	s_undefined32_legacy __unknown32;
 	s_undefined32_legacy __unknown33;
 	s_undefined32_legacy __unknown34;
-	s_tag_block_legacy<s_zoneset_switch_trigger_volumes_definition> nicename("Zoneset Switch Trigger Volumes") zoneset_switch_trigger_volumes_block;
-	s_tag_block_legacy<s_location_name_callouts_definition> nicename("Location Name Callouts") location_name_callouts_block;
+	s_tag_block_legacy<s_zoneset_switch_trigger_volumes_definition_legacy> nicename("Zoneset Switch Trigger Volumes") zoneset_switch_trigger_volumes_block;
+	s_tag_block_legacy<s_location_name_callouts_definition_legacy> nicename("Location Name Callouts") location_name_callouts_block;
 	s_tag_reference_legacy nicename("Airstrike Globals") airstrike_globals_reference;
 	s_undefined32_legacy __unknown35;
 	s_undefined32_legacy __unknown36;
 	s_undefined32_legacy __unknown37;
-	s_tag_block_legacy<s_unknown_40_definition> nicename("Unknown 40") unknown_40_block;
-	s_tag_block_legacy<s_unknown_401_definition> nicename("Unknown 40") unknown_401_block;
-	s_tag_block_legacy<s_unknown_402_definition> nicename("Unknown 40") unknown_402_block;
-	s_tag_block_legacy<s_unknown_41_definition> nicename("Unknown 41") unknown_41_block;
+	s_tag_block_legacy<s_unknown_40_definition_legacy> nicename("Unknown 40") unknown_40_block;
+	s_tag_block_legacy<s_unknown_401_definition_legacy> nicename("Unknown 40") unknown_401_block;
+	s_tag_block_legacy<s_unknown_402_definition_legacy> nicename("Unknown 40") unknown_402_block;
+	s_tag_block_legacy<s_unknown_41_definition_legacy> nicename("Unknown 41") unknown_41_block;
 	s_undefined32_legacy __unknown38;
 	s_undefined32_legacy __unknown39;
 	s_undefined32_legacy __unknown40;
@@ -7962,19 +7962,19 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	s_undefined32_legacy __unknown50;
 	s_undefined32_legacy __unknown51;
 	s_undefined32_legacy __unknown52;
-	s_tag_block_legacy<s_decals_definition> nicename("Decals") decals_block;
-	s_tag_block_legacy<s_decal_palette_definition> nicename("Decal Palette") decal_palette_block;
+	s_tag_block_legacy<s_decals_definition_legacy> nicename("Decals") decals_block;
+	s_tag_block_legacy<s_decal_palette_definition_legacy> nicename("Decal Palette") decal_palette_block;
 	s_undefined32_legacy __unknown53;
 	s_undefined32_legacy __unknown54;
 	s_undefined32_legacy __unknown55;
 	s_undefined32_legacy __unknown56;
 	s_undefined32_legacy __unknown57;
 	s_undefined32_legacy __unknown58;
-	s_tag_block_legacy<s_squad_groups_definition> nicename("Squad Groups") squad_groups_block;
-	s_tag_block_legacy<s_squads_definition> nicename("Squads") squads_block;
-	s_tag_block_legacy<s_zones_definition> nicename("Zones") zones_block;
-	s_tag_block_legacy<s_unknown_43_definition> nicename("Unknown 43") unknown_43_block;
-	s_tag_block_legacy<s_ai_cues_definition> nicename("AI Cues") ai_cues_block;
+	s_tag_block_legacy<s_squad_groups_definition_legacy> nicename("Squad Groups") squad_groups_block;
+	s_tag_block_legacy<s_squads_definition_legacy> nicename("Squads") squads_block;
+	s_tag_block_legacy<s_zones_definition_legacy> nicename("Zones") zones_block;
+	s_tag_block_legacy<s_unknown_43_definition_legacy> nicename("Unknown 43") unknown_43_block;
+	s_tag_block_legacy<s_ai_cues_definition_legacy> nicename("AI Cues") ai_cues_block;
 	s_undefined32_legacy __unknown59;
 	s_undefined32_legacy __unknown60;
 	s_undefined32_legacy __unknown61;
@@ -7984,50 +7984,50 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	s_undefined32_legacy __unknown65;
 	s_undefined32_legacy __unknown66;
 	s_undefined32_legacy __unknown67;
-	s_tag_block_legacy<s_character_palette_definition> nicename("Character Palette") character_palette_block;
+	s_tag_block_legacy<s_character_palette_definition_legacy> nicename("Character Palette") character_palette_block;
 	s_undefined32_legacy __unknown68;
 	s_undefined32_legacy __unknown69;
 	s_undefined32_legacy __unknown70;
-	s_tag_block_legacy<s_ai_pathfinding_data_definition> nicename("AI Pathfinding Data") ai_pathfinding_data_block;
+	s_tag_block_legacy<s_ai_pathfinding_data_definition_legacy> nicename("AI Pathfinding Data") ai_pathfinding_data_block;
 	s_undefined32_legacy __unknown71;
 	s_undefined32_legacy __unknown72;
 	s_undefined32_legacy __unknown73;
 	s_data_reference_legacy nicename("Script Strings") script_strings_data_reference;
-	s_tag_block_legacy<s_scripts_definition> nicename("Scripts") scripts_block;
-	s_tag_block_legacy<s_globals_definition> nicename("Globals") globals_block;
-	s_tag_block_legacy<s_script_references_definition> nicename("Script References") script_references_block;
+	s_tag_block_legacy<s_scripts_definition_legacy> nicename("Scripts") scripts_block;
+	s_tag_block_legacy<s_globals_definition_legacy> nicename("Globals") globals_block;
+	s_tag_block_legacy<s_script_references_definition_legacy> nicename("Script References") script_references_block;
 	s_undefined32_legacy __unknown74;
 	s_undefined32_legacy __unknown75;
 	s_undefined32_legacy __unknown76;
-	s_tag_block_legacy<s_scripting_data_definition> nicename("Scripting Data") scripting_data_block;
-	s_tag_block_legacy<s_cutscene_flags_definition> nicename("Cutscene Flags") cutscene_flags_block;
-	s_tag_block_legacy<s_cutscene_camera_points_definition> nicename("Cutscene Camera Points") cutscene_camera_points_block;
-	s_tag_block_legacy<s_cutscene_titles_definition> nicename("Cutscene Titles") cutscene_titles_block;
+	s_tag_block_legacy<s_scripting_data_definition_legacy> nicename("Scripting Data") scripting_data_block;
+	s_tag_block_legacy<s_cutscene_flags_definition_legacy> nicename("Cutscene Flags") cutscene_flags_block;
+	s_tag_block_legacy<s_cutscene_camera_points_definition_legacy> nicename("Cutscene Camera Points") cutscene_camera_points_block;
+	s_tag_block_legacy<s_cutscene_titles_definition_legacy> nicename("Cutscene Titles") cutscene_titles_block;
 	s_tag_reference_legacy nicename("Custom Object Name Strings") custom_object_name_strings_reference;
 	s_tag_reference_legacy nicename("Chapter Title Strings") chapter_title_strings_reference;
-	s_tag_block_legacy<s_scenario_resources_definition> nicename("Scenario Resources") scenario_resources_block;
-	s_tag_block_legacy<s_unit_seats_mapping_definition> nicename("Unit Seats Mapping") unit_seats_mapping_block;
-	s_tag_block_legacy<s_scenario_kill_triggers_definition> nicename("Scenario Kill Triggers") scenario_kill_triggers_block;
-	s_tag_block_legacy<s_scenario_safe_triggers_definition> nicename("Scenario Safe Triggers") scenario_safe_triggers_block;
-	s_tag_block_legacy<s_scenario_mopp_triggers_definition> nicename("Scenario MOPP Triggers") scenario_mopp_triggers_block;
+	s_tag_block_legacy<s_scenario_resources_definition_legacy> nicename("Scenario Resources") scenario_resources_block;
+	s_tag_block_legacy<s_unit_seats_mapping_definition_legacy> nicename("Unit Seats Mapping") unit_seats_mapping_block;
+	s_tag_block_legacy<s_scenario_kill_triggers_definition_legacy> nicename("Scenario Kill Triggers") scenario_kill_triggers_block;
+	s_tag_block_legacy<s_scenario_safe_triggers_definition_legacy> nicename("Scenario Safe Triggers") scenario_safe_triggers_block;
+	s_tag_block_legacy<s_scenario_mopp_triggers_definition_legacy> nicename("Scenario MOPP Triggers") scenario_mopp_triggers_block;
 	s_undefined32_legacy __unknown77;
 	s_undefined32_legacy __unknown78;
 	s_undefined32_legacy __unknown79;
 	s_undefined32_legacy __unknown80;
 	s_undefined32_legacy __unknown81;
 	s_undefined32_legacy __unknown82;
-	s_tag_block_legacy<s_script_expressions_definition> nicename("Script Expressions") script_expressions_block;
+	s_tag_block_legacy<s_script_expressions_definition_legacy> nicename("Script Expressions") script_expressions_block;
 	s_undefined32_legacy __unknown83;
 	s_undefined32_legacy __unknown84;
 	s_undefined32_legacy __unknown85;
 	s_undefined32_legacy __unknown86;
 	s_undefined32_legacy __unknown87;
 	s_undefined32_legacy __unknown88;
-	s_tag_block_legacy<s_background_sound_environment_palette_definition> nicename("Background Sound Environment Palette") background_sound_environment_palette_block;
-	s_tag_block_legacy<s_fog_definition> nicename("Fog") fog_block;
-	s_tag_block_legacy<s_camera_fx_definition> nicename("Camera FX") camera_fx_block;
-	s_tag_block_legacy<s_weather_definition> nicename("Weather") weather_block;
-	s_tag_block_legacy<s_scenario_cluster_data_definition> nicename("Scenario Cluster Data") scenario_cluster_data_block;
+	s_tag_block_legacy<s_background_sound_environment_palette_definition_legacy> nicename("Background Sound Environment Palette") background_sound_environment_palette_block;
+	s_tag_block_legacy<s_fog_definition_legacy> nicename("Fog") fog_block;
+	s_tag_block_legacy<s_camera_fx_definition_legacy> nicename("Camera FX") camera_fx_block;
+	s_tag_block_legacy<s_weather_definition_legacy> nicename("Weather") weather_block;
+	s_tag_block_legacy<s_scenario_cluster_data_definition_legacy> nicename("Scenario Cluster Data") scenario_cluster_data_block;
 	int32_t nicename("Object Salts  1") object_salts__1;
 	int32_t nicename("Object Salts  2") object_salts__2;
 	int32_t nicename("Object Salts  3") object_salts__3;
@@ -8060,23 +8060,23 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	int32_t nicename("Object Salts 30") object_salts_30;
 	int32_t nicename("Object Salts 31") object_salts_31;
 	int32_t nicename("Object Salts 32") object_salts_32;
-	s_tag_block_legacy<s_spawn_data_definition> nicename("Spawn Data") spawn_data_block;
+	s_tag_block_legacy<s_spawn_data_definition_legacy> nicename("Spawn Data") spawn_data_block;
 	s_tag_reference_legacy nicename("Sound Effects Collection") sound_effects_collection_reference;
-	s_tag_block_legacy<s_crates_definition> nicename("Crates") crates_block;
-	s_tag_block_legacy<s_crate_palette_definition> nicename("Crate Palette") crate_palette_block;
-	s_tag_block_legacy<s_flock_palette_definition> nicename("Flock Palette") flock_palette_block;
-	s_tag_block_legacy<s_flocks_definition> nicename("Flocks") flocks_block;
+	s_tag_block_legacy<s_crates_definition_legacy> nicename("Crates") crates_block;
+	s_tag_block_legacy<s_crate_palette_definition_legacy> nicename("Crate Palette") crate_palette_block;
+	s_tag_block_legacy<s_flock_palette_definition_legacy> nicename("Flock Palette") flock_palette_block;
+	s_tag_block_legacy<s_flocks_definition_legacy> nicename("Flocks") flocks_block;
 	s_tag_reference_legacy nicename("Subtitle Strings") subtitle_strings_reference;
 	s_undefined32_legacy __unknown89;
 	s_undefined32_legacy __unknown90;
 	s_undefined32_legacy __unknown91;
-	s_tag_block_legacy<s_creature_palette_definition> nicename("Creature Palette") creature_palette_block;
-	s_tag_block_legacy<s_big_battle_creatures_definition> nicename("Big Battle Creatures") big_battle_creatures_block;
-	s_tag_block_legacy<s_editor_folders_definition> nicename("Editor Folders") editor_folders_block;
+	s_tag_block_legacy<s_creature_palette_definition_legacy> nicename("Creature Palette") creature_palette_block;
+	s_tag_block_legacy<s_big_battle_creatures_definition_legacy> nicename("Big Battle Creatures") big_battle_creatures_block;
+	s_tag_block_legacy<s_editor_folders_definition_legacy> nicename("Editor Folders") editor_folders_block;
 	s_tag_reference_legacy nicename("Territory Location Name Strings") territory_location_name_strings_reference;
 	s_undefined32_legacy __unknown92;
 	s_undefined32_legacy __unknown93;
-	s_tag_block_legacy<s_mission_dialogue_definition> nicename("Mission Dialogue") mission_dialogue_block;
+	s_tag_block_legacy<s_mission_dialogue_definition_legacy> nicename("Mission Dialogue") mission_dialogue_block;
 	s_tag_reference_legacy nicename("Objective Strings") objective_strings_reference;
 	s_tag_reference_legacy nicename("Scenario Interpolator") scenario_interpolator_reference;
 	s_undefined32_legacy __unknown94;
@@ -8090,23 +8090,23 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	s_tag_reference_legacy nicename("Global Lighting") global_lighting_reference;
 	s_tag_reference_legacy nicename("Lightmap") lightmap_reference;
 	s_tag_reference_legacy nicename("Performance Throttles") performance_throttles_reference;
-	s_tag_block_legacy<s_unknown_59_definition> nicename("Unknown 59") unknown_59_block;
-	s_tag_block_legacy<s_ai_objectives_definition> nicename("AI Objectives") ai_objectives_block;
-	s_tag_block_legacy<s_designer_zonesets_definition> nicename("Designer Zonesets") designer_zonesets_block;
-	s_tag_block_legacy<s_unknown_61_definition> nicename("Unknown 61") unknown_61_block;
+	s_tag_block_legacy<s_unknown_59_definition_legacy> nicename("Unknown 59") unknown_59_block;
+	s_tag_block_legacy<s_ai_objectives_definition_legacy> nicename("AI Objectives") ai_objectives_block;
+	s_tag_block_legacy<s_designer_zonesets_definition_legacy> nicename("Designer Zonesets") designer_zonesets_block;
+	s_tag_block_legacy<s_unknown_61_definition_legacy> nicename("Unknown 61") unknown_61_block;
 	s_undefined32_legacy __unknown97;
 	s_undefined32_legacy __unknown98;
 	s_undefined32_legacy __unknown99;
-	s_tag_block_legacy<s_particle_emitters_definition> nicename("Particle Emitters") particle_emitters_block;
-	s_tag_block_legacy<s_unknown13_definition> __unknown100;
-	s_tag_block_legacy<s_cinematics_definition> nicename("Cinematics") cinematics_block;
-	s_tag_block_legacy<s_cinematic_lights_definition> nicename("Cinematic Lights") cinematic_lights_block;
+	s_tag_block_legacy<s_particle_emitters_definition_legacy> nicename("Particle Emitters") particle_emitters_block;
+	s_tag_block_legacy<s_unknown13_definition_legacy> __unknown100;
+	s_tag_block_legacy<s_cinematics_definition_legacy> nicename("Cinematics") cinematics_block;
+	s_tag_block_legacy<s_cinematic_lights_definition_legacy> nicename("Cinematic Lights") cinematic_lights_block;
 	s_undefined32_legacy __unknown101;
 	s_undefined32_legacy __unknown102;
 	s_undefined32_legacy __unknown103;
-	s_tag_block_legacy<s_scenario_metagame_definition> nicename("Scenario Metagame") scenario_metagame_block;
-	s_tag_block_legacy<s_unknown_64_definition> nicename("Unknown 64") unknown_64_block;
-	s_tag_block_legacy<s_unknown_65_definition> nicename("Unknown 65") unknown_65_block;
+	s_tag_block_legacy<s_scenario_metagame_definition_legacy> nicename("Scenario Metagame") scenario_metagame_block;
+	s_tag_block_legacy<s_unknown_64_definition_legacy> nicename("Unknown 64") unknown_64_block;
+	s_tag_block_legacy<s_unknown_65_definition_legacy> nicename("Unknown 65") unknown_65_block;
 	s_undefined32_legacy __unknown104;
 	s_undefined32_legacy __unknown105;
 	s_undefined32_legacy __unknown106;
@@ -8116,12 +8116,12 @@ struct nicename("scenario") tag_group('scnr') s_scenario_definition
 	s_undefined32_legacy __unknown110;
 	s_undefined32_legacy __unknown111;
 	s_undefined32_legacy __unknown112;
-	s_tag_block_legacy<s_vignettes_definition> nicename("Vignettes") vignettes_block;
+	s_tag_block_legacy<s_vignettes_definition_legacy> nicename("Vignettes") vignettes_block;
 	s_tag_reference_legacy nicename("Map Location Globals") map_location_globals_reference;
-	s_tag_block_legacy<s_unknown_66_definition> nicename("Unknown 66") unknown_66_block;
+	s_tag_block_legacy<s_unknown_66_definition_legacy> nicename("Unknown 66") unknown_66_block;
 	s_tag_reference_legacy nicename("Mission HUD") mission_hud_reference;
 	s_tag_reference_legacy nicename("Required Resources") required_resources_reference;
 	s_tag_reference_legacy nicename("Variant Globals") variant_globals_reference;
-	s_tag_block_legacy<s_compiled_data_definition> nicename("Compiled Data") compiled_data_block;
+	s_tag_block_legacy<s_compiled_data_definition_legacy> nicename("Compiled Data") compiled_data_block;
 };
 

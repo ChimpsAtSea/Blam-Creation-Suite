@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s_pgcr_enemy_to_category_mapping_definition_definition
+struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s_pgcr_enemy_to_category_mapping_definition_definition_legacy
 {
-	struct nicename("Actors") s_actors_definition
+	struct nicename("Actors") s_actors_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint8_t /* bitfield */
 		{
@@ -16,7 +16,7 @@ struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s
 			/*nicename("Bit 7")*/ _flags_bit_7 = 1ui8 << 7ui8,
 		};
 
-		struct nicename("Multiplayer Actor") s_multiplayer_actor_definition
+		struct nicename("Multiplayer Actor") s_multiplayer_actor_definition_legacy
 		{
 			enum nicename("Unit") e_unit : uint8_t
 			{
@@ -43,7 +43,7 @@ struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s
 			int8_t __unknown1;
 		};
 
-		struct nicename("Campaign Actor") s_campaign_actor_definition
+		struct nicename("Campaign Actor") s_campaign_actor_definition_legacy
 		{
 			enum nicename("Unit") e_unit : uint8_t
 			{
@@ -108,11 +108,11 @@ struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s
 		int16_t nicename("Sprite Index") sprite_index;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;
-		s_tag_block_legacy<s_multiplayer_actor_definition> nicename("Multiplayer Actor") multiplayer_actor_block;
-		s_tag_block_legacy<s_campaign_actor_definition> nicename("Campaign Actor") campaign_actor_block;
+		s_tag_block_legacy<s_multiplayer_actor_definition_legacy> nicename("Multiplayer Actor") multiplayer_actor_block;
+		s_tag_block_legacy<s_campaign_actor_definition_legacy> nicename("Campaign Actor") campaign_actor_block;
 	};
 
-	struct nicename("Vehicles") s_vehicles_definition
+	struct nicename("Vehicles") s_vehicles_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint8_t /* bitfield */
 		{
@@ -126,7 +126,7 @@ struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s
 			/*nicename("Bit 7")*/ _flags_bit_7 = 1ui8 << 7ui8,
 		};
 
-		struct nicename("Multiplayer Actor") s_multiplayer_actor1_definition
+		struct nicename("Multiplayer Actor") s_multiplayer_actor1_definition_legacy
 		{
 			enum nicename("Unit") e_unit : uint8_t
 			{
@@ -153,7 +153,7 @@ struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s
 			int8_t __unknown1;
 		};
 
-		struct nicename("Campaign Actor") s_campaign_actor1_definition
+		struct nicename("Campaign Actor") s_campaign_actor1_definition_legacy
 		{
 			enum nicename("Unit") e_unit : uint8_t
 			{
@@ -218,11 +218,11 @@ struct nicename("pgcr_enemy_to_category_mapping_definition") tag_group('pcec') s
 		int16_t nicename("Sprite Index") sprite_index;
 		b_flags nicename("Flags") flags;
 		int8_t __unknown0;
-		s_tag_block_legacy<s_multiplayer_actor1_definition> nicename("Multiplayer Actor") multiplayer_actor_block;
-		s_tag_block_legacy<s_campaign_actor1_definition> nicename("Campaign Actor") campaign_actor_block;
+		s_tag_block_legacy<s_multiplayer_actor1_definition_legacy> nicename("Multiplayer Actor") multiplayer_actor_block;
+		s_tag_block_legacy<s_campaign_actor1_definition_legacy> nicename("Campaign Actor") campaign_actor_block;
 	};
 
-	s_tag_block_legacy<s_actors_definition> nicename("Actors") actors_block;
-	s_tag_block_legacy<s_vehicles_definition> nicename("Vehicles") vehicles_block;
+	s_tag_block_legacy<s_actors_definition_legacy> nicename("Actors") actors_block;
+	s_tag_block_legacy<s_vehicles_definition_legacy> nicename("Vehicles") vehicles_block;
 };
 

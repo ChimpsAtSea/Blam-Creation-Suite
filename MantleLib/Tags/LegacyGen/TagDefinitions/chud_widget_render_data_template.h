@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("chud_widget_render_data_template") tag_group('wrdt') s_chud_widget_render_data_template_definition
+struct nicename("chud_widget_render_data_template") tag_group('wrdt') s_chud_widget_render_data_template_definition_legacy
 {
-	struct nicename("Render Data") s_render_data_definition
+	struct nicename("Render Data") s_render_data_definition_legacy
 	{
 		enum nicename("Shader Index") e_shader_index : uint8_t
 		{
@@ -538,6 +538,6 @@ struct nicename("chud_widget_render_data_template") tag_group('wrdt') s_chud_wid
 	};
 
 	// Shader Index : While represented as an enum, it is actually an index to the "HUD Shaders" block in CHGD
-	s_tag_block_legacy<s_render_data_definition> nicename("Render Data") render_data_block;
+	s_tag_block_legacy<s_render_data_definition_legacy> nicename("Render Data") render_data_block;
 };
 

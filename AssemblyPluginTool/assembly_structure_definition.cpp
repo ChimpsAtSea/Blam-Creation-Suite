@@ -27,6 +27,9 @@ c_assembly_structure_definition::c_assembly_structure_definition(c_assembly_stru
 	type_name = std::string("s_") + name + "_definition";
 	this->type_name_tracker[name]++;
 
+	type_name += "_legacy";
+	unformatted_name += "_legacy";
+
 	log("Creating structure '%s'\n", name);
 
 

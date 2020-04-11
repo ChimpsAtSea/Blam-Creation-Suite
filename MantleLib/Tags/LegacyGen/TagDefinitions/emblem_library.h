@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("emblem_library") tag_group('mlib') s_emblem_library_definition
+struct nicename("emblem_library") tag_group('mlib') s_emblem_library_definition_legacy
 {
-	struct nicename("Foregrounds") s_foregrounds_definition
+	struct nicename("Foregrounds") s_foregrounds_definition_legacy
 	{
 		// Secondary : 
 		int16_t nicename("Sequence Index") sequence_index;
@@ -72,7 +72,7 @@ struct nicename("emblem_library") tag_group('mlib') s_emblem_library_definition
 		int8_t __unknown25;
 	};
 
-	struct nicename("Backgrounds") s_backgrounds_definition
+	struct nicename("Backgrounds") s_backgrounds_definition_legacy
 	{
 		int16_t nicename("Sequence Index") sequence_index;
 		int16_t __unknown0;
@@ -124,7 +124,7 @@ struct nicename("emblem_library") tag_group('mlib') s_emblem_library_definition
 	s_undefined32_legacy __unknown14;
 	s_undefined32_legacy __unknown15;
 	s_undefined32_legacy __unknown16;
-	s_tag_block_legacy<s_foregrounds_definition> nicename("Foregrounds") foregrounds_block;
-	s_tag_block_legacy<s_backgrounds_definition> nicename("Backgrounds") backgrounds_block;
+	s_tag_block_legacy<s_foregrounds_definition_legacy> nicename("Foregrounds") foregrounds_block;
+	s_tag_block_legacy<s_backgrounds_definition_legacy> nicename("Backgrounds") backgrounds_block;
 };
 

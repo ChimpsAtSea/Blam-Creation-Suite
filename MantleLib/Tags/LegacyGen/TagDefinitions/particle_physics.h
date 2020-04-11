@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("particle_physics") tag_group('pmov') s_particle_physics_definition
+struct nicename("particle_physics") tag_group('pmov') s_particle_physics_definition_legacy
 {
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
 	{
@@ -38,7 +38,7 @@ struct nicename("particle_physics") tag_group('pmov') s_particle_physics_definit
 		/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Movements") s_movements_definition
+	struct nicename("Movements") s_movements_definition_legacy
 	{
 		enum nicename("Type") e_type : uint16_t
 		{
@@ -48,7 +48,7 @@ struct nicename("particle_physics") tag_group('pmov') s_particle_physics_definit
 			/*nicename("Wind")*/ _type_wind = 3ui16,
 		};
 
-		struct nicename("Parameters") s_parameters_definition
+		struct nicename("Parameters") s_parameters_definition_legacy
 		{
 			int32_t nicename("Parameter ID") parameter_id;
 			int16_t __unknown0;
@@ -64,7 +64,7 @@ struct nicename("particle_physics") tag_group('pmov') s_particle_physics_definit
 		e_type nicename("Type") type;
 		int8_t __unknown0;
 		int8_t __unknown1;
-		s_tag_block_legacy<s_parameters_definition> nicename("Parameters") parameters_block;
+		s_tag_block_legacy<s_parameters_definition_legacy> nicename("Parameters") parameters_block;
 		int16_t __unknown2;
 		int16_t __unknown3;
 		int32_t __unknown4;
@@ -72,7 +72,7 @@ struct nicename("particle_physics") tag_group('pmov') s_particle_physics_definit
 
 	s_tag_reference_legacy nicename("Template") template_reference;
 	b_flags nicename("Flags") flags;
-	s_tag_block_legacy<s_movements_definition> nicename("Movements") movements_block;
+	s_tag_block_legacy<s_movements_definition_legacy> nicename("Movements") movements_block;
 	s_tag_reference_legacy __unknown0;
 };
 

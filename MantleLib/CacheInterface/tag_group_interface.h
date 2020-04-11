@@ -4,15 +4,15 @@ class c_tag_interface;
 class c_cache_file;
 class c_mantle_cache_file_gui_tab;
 
-class c_tag_group_interface
+class c_legacy_tag_group_interface
 {
 public:
 	friend class c_cache_file;
 	friend class c_mantle_cache_file_gui_tab;
 	friend class c_tag_interface;
 
-	c_tag_group_interface(c_cache_file& cache_file, uint16_t group_index);
-	virtual ~c_tag_group_interface();
+	c_legacy_tag_group_interface(c_cache_file& cache_file, uint16_t group_index);
+	virtual ~c_legacy_tag_group_interface();
 
 	inline c_cache_file& GetCacheFile() const { return cache_file; };
 	inline const std::vector<c_tag_interface*>& get_tag_interfaces() const { return tag_interfaces; };

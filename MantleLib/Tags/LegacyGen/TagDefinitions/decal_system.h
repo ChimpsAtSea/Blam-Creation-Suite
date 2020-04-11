@@ -1,17 +1,17 @@
 #pragma once
 
-struct nicename("decal_system") tag_group('decs') s_decal_system_definition
+struct nicename("decal_system") tag_group('decs') s_decal_system_definition_legacy
 {
-	struct nicename("Decal System") s_decal_system1_definition
+	struct nicename("Decal System") s_decal_system1_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown_definition
+		struct nicename("Unknown") s_unknown_definition_legacy
 		{
 			int16_t __unknown0;
 		};
 
-		struct nicename("Shader Properties") s_shader_properties_definition
+		struct nicename("Shader Properties") s_shader_properties_definition_legacy
 		{
-			struct nicename("Shader Maps") s_shader_maps_definition
+			struct nicename("Shader Maps") s_shader_maps_definition_legacy
 			{
 				enum nicename("Bitmap Flags") b_bitmap_flags : uint8_t /* bitfield */
 				{
@@ -36,7 +36,7 @@ struct nicename("decal_system") tag_group('decs') s_decal_system_definition
 				int8_t __unknown3;
 			};
 
-			struct nicename("Arguments") s_arguments_definition
+			struct nicename("Arguments") s_arguments_definition_legacy
 			{
 				/* Arguments : Play around with each entry to find the desired setting.
 				   
@@ -57,30 +57,30 @@ struct nicename("decal_system") tag_group('decs') s_decal_system_definition
 				float nicename("Arg 4") arg_4;
 			};
 
-			struct nicename("Unknown") s_unknown1_definition
+			struct nicename("Unknown") s_unknown1_definition_legacy
 			{
 				s_undefined32_legacy __unknown0;
 			};
 
-			struct nicename("Unknown") s_unknown2_definition
+			struct nicename("Unknown") s_unknown2_definition_legacy
 			{
 				int16_t __unknown0;
 			};
 
-			struct nicename("Unknown") s_unknown3_definition
+			struct nicename("Unknown") s_unknown3_definition_legacy
 			{
 				s_undefined32_legacy __unknown0;
 				int8_t __unknown1;
 				int8_t __unknown2;
 			};
 
-			struct nicename("Unknown") s_unknown4_definition
+			struct nicename("Unknown") s_unknown4_definition_legacy
 			{
 				int16_t __unknown0;
 				int16_t __unknown1;
 			};
 
-			struct nicename("Functions") s_functions_definition
+			struct nicename("Functions") s_functions_definition_legacy
 			{
 				int32_t __unknown0;
 				string_id_legacy nicename("Name") name;
@@ -90,14 +90,14 @@ struct nicename("decal_system") tag_group('decs') s_decal_system_definition
 			};
 
 			s_tag_reference_legacy nicename("Template") template_reference;
-			s_tag_block_legacy<s_shader_maps_definition> nicename("Shader Maps") shader_maps_block;
-			s_tag_block_legacy<s_arguments_definition> nicename("Arguments") arguments_block;
-			s_tag_block_legacy<s_unknown1_definition> __unknown0;
+			s_tag_block_legacy<s_shader_maps_definition_legacy> nicename("Shader Maps") shader_maps_block;
+			s_tag_block_legacy<s_arguments_definition_legacy> nicename("Arguments") arguments_block;
+			s_tag_block_legacy<s_unknown1_definition_legacy> __unknown0;
 			s_undefined32_legacy __unknown1;
-			s_tag_block_legacy<s_unknown2_definition> __unknown2;
-			s_tag_block_legacy<s_unknown3_definition> __unknown3;
-			s_tag_block_legacy<s_unknown4_definition> __unknown4;
-			s_tag_block_legacy<s_functions_definition> nicename("Functions") functions_block;
+			s_tag_block_legacy<s_unknown2_definition_legacy> __unknown2;
+			s_tag_block_legacy<s_unknown3_definition_legacy> __unknown3;
+			s_tag_block_legacy<s_unknown4_definition_legacy> __unknown4;
+			s_tag_block_legacy<s_functions_definition_legacy> nicename("Functions") functions_block;
 			int32_t __unknown5;
 			int32_t __unknown6;
 			s_undefined32_legacy __unknown7;
@@ -135,7 +135,7 @@ struct nicename("decal_system") tag_group('decs') s_decal_system_definition
 			int32_t nicename("Useless Padding") useless_padding;
 		};
 
-		struct nicename("Unknown") s_unknown5_definition
+		struct nicename("Unknown") s_unknown5_definition_legacy
 		{
 			string_id_legacy __unknown0;
 			int32_t __unknown1;
@@ -147,14 +147,14 @@ struct nicename("decal_system") tag_group('decs') s_decal_system_definition
 		int16_t __unknown1;
 		s_tag_reference_legacy nicename("Base Render Method") base_render_method_reference;
 		s_tag_reference_legacy __unknown2;
-		s_tag_block_legacy<s_unknown_definition> __unknown3;
+		s_tag_block_legacy<s_unknown_definition_legacy> __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
-		s_tag_block_legacy<s_shader_properties_definition> nicename("Shader Properties") shader_properties_block;
+		s_tag_block_legacy<s_shader_properties_definition_legacy> nicename("Shader Properties") shader_properties_block;
 		s_undefined32_legacy __unknown7;
 		s_undefined32_legacy __unknown8;
-		s_tag_block_legacy<s_unknown5_definition> __unknown9;
+		s_tag_block_legacy<s_unknown5_definition_legacy> __unknown9;
 		int8_t __unknown10;
 		int8_t __unknown11;
 		int8_t __unknown12;
@@ -182,7 +182,7 @@ struct nicename("decal_system") tag_group('decs') s_decal_system_definition
 	s_tag_reference_legacy nicename("Successor") successor_reference;
 	float __unknown5;
 	float __unknown6;
-	s_tag_block_legacy<s_decal_system1_definition> nicename("Decal System") decal_system_block;
+	s_tag_block_legacy<s_decal_system1_definition_legacy> nicename("Decal System") decal_system_block;
 	float __unknown7;
 };
 

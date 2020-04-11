@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("bitmap") tag_group('bitm') s_bitmap_definition
+struct nicename("bitmap") tag_group('bitm') s_bitmap_definition_legacy
 {
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		int32_t __unknown1;
@@ -21,9 +21,9 @@ struct nicename("bitmap") tag_group('bitm') s_bitmap_definition
 		int32_t __unknown14;
 	};
 
-	struct nicename("Unknown Sequences") s_unknown_sequences_definition
+	struct nicename("Unknown Sequences") s_unknown_sequences_definition_legacy
 	{
-		struct nicename("Sprites") s_sprites_definition
+		struct nicename("Sprites") s_sprites_definition_legacy
 		{
 			int16_t nicename("Bitmap Index") bitmap_index;
 			int16_t __unknown0;
@@ -43,18 +43,18 @@ struct nicename("bitmap") tag_group('bitm') s_bitmap_definition
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
 		s_undefined32_legacy __unknown3;
-		s_tag_block_legacy<s_sprites_definition> nicename("Sprites") sprites_block;
+		s_tag_block_legacy<s_sprites_definition_legacy> nicename("Sprites") sprites_block;
 	};
 
-	struct nicename("Unknown") s_unknown1_definition
+	struct nicename("Unknown") s_unknown1_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
 	};
 
-	struct nicename("Sequences") s_sequences_definition
+	struct nicename("Sequences") s_sequences_definition_legacy
 	{
-		struct nicename("Sprites") s_sprites1_definition
+		struct nicename("Sprites") s_sprites1_definition_legacy
 		{
 			int16_t nicename("Bitmap Index") bitmap_index;
 			int16_t __unknown0;
@@ -74,10 +74,10 @@ struct nicename("bitmap") tag_group('bitm') s_bitmap_definition
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
 		s_undefined32_legacy __unknown3;
-		s_tag_block_legacy<s_sprites1_definition> nicename("Sprites") sprites_block;
+		s_tag_block_legacy<s_sprites1_definition_legacy> nicename("Sprites") sprites_block;
 	};
 
-	struct nicename("Bitmap Data") s_bitmap_data_definition
+	struct nicename("Bitmap Data") s_bitmap_data_definition_legacy
 	{
 		enum nicename("Type") e_type : uint8_t
 		{
@@ -196,17 +196,17 @@ struct nicename("bitmap") tag_group('bitm') s_bitmap_definition
 		s_undefined32_legacy __unknown13;
 	};
 
-	struct nicename("Raw Information [Normal]") s_raw_information_normal_definition
+	struct nicename("Raw Information [Normal]") s_raw_information_normal_definition_legacy
 	{
-		//int32_t nicename("[zone] Asset Datum") zone_asset_datum;
+		int32_t nicename("[zone] Asset Datum") zone_asset_datum;
 		uint16_t nicename("[easy read] Index") easy_read_index;
 		uint16_t nicename("[easy read] Salt") easy_read_salt;
 		int32_t nicename("Useless Padding") useless_padding;
 	};
 
-	struct nicename("Raw Information [Interleaved]") s_raw_information_interleaved_definition
+	struct nicename("Raw Information [Interleaved]") s_raw_information_interleaved_definition_legacy
 	{
-		//int32_t nicename("[zone] Asset Datum") zone_asset_datum;
+		int32_t nicename("[zone] Asset Datum") zone_asset_datum;
 		uint16_t nicename("[easy read] Index") easy_read_index;
 		uint16_t nicename("[easy read] Salt") easy_read_salt;
 		int32_t nicename("Useless Padding") useless_padding;
@@ -225,18 +225,18 @@ struct nicename("bitmap") tag_group('bitm') s_bitmap_definition
 	int8_t __unknown10;
 	int32_t __unknown11;
 	float __unknown12;
-	s_tag_block_legacy<s_unknown_definition> __unknown13;
-	s_tag_block_legacy<s_unknown_sequences_definition> nicename("Unknown Sequences") unknown_sequences_block;
-	s_tag_block_legacy<s_unknown1_definition> __unknown14;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown13;
+	s_tag_block_legacy<s_unknown_sequences_definition_legacy> nicename("Unknown Sequences") unknown_sequences_block;
+	s_tag_block_legacy<s_unknown1_definition_legacy> __unknown14;
 	s_data_reference_legacy __unknown15;
 	s_data_reference_legacy __unknown16;
-	s_tag_block_legacy<s_sequences_definition> nicename("Sequences") sequences_block;
-	s_tag_block_legacy<s_bitmap_data_definition> nicename("Bitmap Data") bitmap_data_block;
+	s_tag_block_legacy<s_sequences_definition_legacy> nicename("Sequences") sequences_block;
+	s_tag_block_legacy<s_bitmap_data_definition_legacy> nicename("Bitmap Data") bitmap_data_block;
 	s_data_reference_legacy __unknown17;
 	s_undefined32_legacy __unknown18;
 	s_undefined32_legacy __unknown19;
 	s_undefined32_legacy __unknown20;
-	s_tag_block_legacy<s_raw_information_normal_definition> nicename("Raw Information [Normal]") raw_information_normal_block;
-	s_tag_block_legacy<s_raw_information_interleaved_definition> nicename("Raw Information [Interleaved]") raw_information_interleaved_block;
+	s_tag_block_legacy<s_raw_information_normal_definition_legacy> nicename("Raw Information [Normal]") raw_information_normal_block;
+	s_tag_block_legacy<s_raw_information_interleaved_definition_legacy> nicename("Raw Information [Interleaved]") raw_information_interleaved_block;
 };
 

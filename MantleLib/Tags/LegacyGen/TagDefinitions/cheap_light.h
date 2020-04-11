@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("cheap_light") tag_group('gldf') s_cheap_light_definition
+struct nicename("cheap_light") tag_group('gldf') s_cheap_light_definition_legacy
 {
 	s_undefined32_legacy __unknown0;
 	s_undefined32_legacy __unknown1;

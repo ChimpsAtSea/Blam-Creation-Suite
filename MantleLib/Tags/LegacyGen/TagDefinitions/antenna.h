@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("antenna") tag_group('ant!') s_antenna_definition
+struct nicename("antenna") tag_group('ant!') s_antenna_definition_legacy
 {
-	struct nicename("Vertices") s_vertices_definition
+	struct nicename("Vertices") s_vertices_definition_legacy
 	{
 		float nicename("Angle y") angle_y;
 		float nicename("Angle p") angle_p;
@@ -28,6 +28,6 @@ struct nicename("antenna") tag_group('ant!') s_antenna_definition
 	float __unknown5;
 	float __unknown6;
 	float __unknown7;
-	s_tag_block_legacy<s_vertices_definition> nicename("Vertices") vertices_block;
+	s_tag_block_legacy<s_vertices_definition_legacy> nicename("Vertices") vertices_block;
 };
 

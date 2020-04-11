@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("rumble") tag_group('rmbl') s_rumble_definition
+struct nicename("rumble") tag_group('rmbl') s_rumble_definition_legacy
 {
 	// Vibration : 
 	float nicename("Low Frequency Vibration Duration") low_frequency_vibration_duration;

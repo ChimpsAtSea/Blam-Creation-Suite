@@ -1,35 +1,35 @@
 #pragma once
 
-struct nicename("multiplayer_globals") tag_group('mulg') s_multiplayer_globals_definition
+struct nicename("multiplayer_globals") tag_group('mulg') s_multiplayer_globals_definition_legacy
 {
-	struct nicename("Multiplayer Settings") s_multiplayer_settings_definition
+	struct nicename("Multiplayer Settings") s_multiplayer_settings_definition_legacy
 	{
-		struct nicename("Team Colors") s_team_colors_definition
+		struct nicename("Team Colors") s_team_colors_definition_legacy
 		{
 			s_colorf_legacy nicename("Color") color;
 		};
 
 		s_tag_reference_legacy nicename("Random Player Name Strings") random_player_name_strings_reference;
 		s_tag_reference_legacy nicename("Team Name Strings") team_name_strings_reference;
-		s_tag_block_legacy<s_team_colors_definition> nicename("Team Colors") team_colors_block;
+		s_tag_block_legacy<s_team_colors_definition_legacy> nicename("Team Colors") team_colors_block;
 		s_tag_reference_legacy nicename("Multiplayer Strings") multiplayer_strings_reference;
 		s_tag_reference_legacy nicename("Sandbox UI Strings (Obsolete)") sandbox_ui_strings_obsolete_reference;
 		s_tag_reference_legacy nicename("Forge Object Properties (Obsolete)") forge_object_properties_obsolete_reference;
 	};
 
-	struct nicename("Runtime") s_runtime_definition
+	struct nicename("Runtime") s_runtime_definition_legacy
 	{
-		struct nicename("Sounds") s_sounds_definition
+		struct nicename("Sounds") s_sounds_definition_legacy
 		{
 			s_tag_reference_legacy nicename("Sound") sound_reference;
 		};
 
-		struct nicename("Looping Sounds") s_looping_sounds_definition
+		struct nicename("Looping Sounds") s_looping_sounds_definition_legacy
 		{
 			s_tag_reference_legacy nicename("Looping Sound") looping_sound_reference;
 		};
 
-		struct nicename("Unknown") s_unknown_definition
+		struct nicename("Unknown") s_unknown_definition_legacy
 		{
 			int32_t __unknown0;
 			int32_t __unknown1;
@@ -56,9 +56,9 @@ struct nicename("multiplayer_globals") tag_group('mulg') s_multiplayer_globals_d
 			int32_t __unknown22;
 		};
 
-		struct nicename("Multiplayer Constants") s_multiplayer_constants_definition
+		struct nicename("Multiplayer Constants") s_multiplayer_constants_definition_legacy
 		{
-			struct nicename("Weapons") s_weapons_definition
+			struct nicename("Weapons") s_weapons_definition_legacy
 			{
 				s_tag_reference_legacy nicename("Weapon") weapon_reference;
 				float __unknown0;
@@ -67,7 +67,7 @@ struct nicename("multiplayer_globals") tag_group('mulg') s_multiplayer_globals_d
 				float __unknown3;
 			};
 
-			struct nicename("Vehicles") s_vehicles_definition
+			struct nicename("Vehicles") s_vehicles_definition_legacy
 			{
 				s_tag_reference_legacy nicename("Vehicle") vehicle_reference;
 				float __unknown0;
@@ -76,7 +76,7 @@ struct nicename("multiplayer_globals") tag_group('mulg') s_multiplayer_globals_d
 				float __unknown3;
 			};
 
-			struct nicename("Projectiles") s_projectiles_definition
+			struct nicename("Projectiles") s_projectiles_definition_legacy
 			{
 				s_tag_reference_legacy nicename("Projectile") projectile_reference;
 				float __unknown0;
@@ -133,9 +133,9 @@ struct nicename("multiplayer_globals") tag_group('mulg') s_multiplayer_globals_d
 			float __unknown46;
 			float __unknown47;
 			float __unknown48;
-			s_tag_block_legacy<s_weapons_definition> nicename("Weapons") weapons_block;
-			s_tag_block_legacy<s_vehicles_definition> nicename("Vehicles") vehicles_block;
-			s_tag_block_legacy<s_projectiles_definition> nicename("Projectiles") projectiles_block;
+			s_tag_block_legacy<s_weapons_definition_legacy> nicename("Weapons") weapons_block;
+			s_tag_block_legacy<s_vehicles_definition_legacy> nicename("Vehicles") vehicles_block;
+			s_tag_block_legacy<s_projectiles_definition_legacy> nicename("Projectiles") projectiles_block;
 			s_undefined32_legacy __unknown49;
 			s_undefined32_legacy __unknown50;
 			s_undefined32_legacy __unknown51;
@@ -161,7 +161,7 @@ struct nicename("multiplayer_globals") tag_group('mulg') s_multiplayer_globals_d
 			string_id_legacy nicename("Netpoint Contested String") netpoint_contested_string;
 		};
 
-		struct nicename("State Responses") s_state_responses_definition
+		struct nicename("State Responses") s_state_responses_definition_legacy
 		{
 			enum nicename("State") e_state : uint16_t
 			{
@@ -234,15 +234,15 @@ struct nicename("multiplayer_globals") tag_group('mulg') s_multiplayer_globals_d
 		s_tag_reference_legacy nicename("Bomb") bomb_reference;
 		s_tag_reference_legacy nicename("VIP Zone") vip_zone_reference;
 		s_tag_reference_legacy nicename("In Game Strings") in_game_strings_reference;
-		s_tag_block_legacy<s_sounds_definition> nicename("Sounds") sounds_block;
-		s_tag_block_legacy<s_looping_sounds_definition> nicename("Looping Sounds") looping_sounds_block;
+		s_tag_block_legacy<s_sounds_definition_legacy> nicename("Sounds") sounds_block;
+		s_tag_block_legacy<s_looping_sounds_definition_legacy> nicename("Looping Sounds") looping_sounds_block;
 		s_tag_reference_legacy nicename("Megalo Sounds") megalo_sounds_reference;
 		s_tag_reference_legacy nicename("Communication Globals") communication_globals_reference;
 		int32_t nicename("Default Frag Grenade Count") default_frag_grenade_count;
 		int32_t nicename("Default Plasma Grenade Count") default_plasma_grenade_count;
-		s_tag_block_legacy<s_unknown_definition> __unknown0;
-		s_tag_block_legacy<s_multiplayer_constants_definition> nicename("Multiplayer Constants") multiplayer_constants_block;
-		s_tag_block_legacy<s_state_responses_definition> nicename("State Responses") state_responses_block;
+		s_tag_block_legacy<s_unknown_definition_legacy> __unknown0;
+		s_tag_block_legacy<s_multiplayer_constants_definition_legacy> nicename("Multiplayer Constants") multiplayer_constants_block;
+		s_tag_block_legacy<s_state_responses_definition_legacy> nicename("State Responses") state_responses_block;
 		s_tag_reference_legacy nicename("Scoreboard Emblem Bitmap") scoreboard_emblem_bitmap_reference;
 		s_tag_reference_legacy nicename("Scoreboard Dead Emblem Bitmap") scoreboard_dead_emblem_bitmap_reference;
 		s_tag_reference_legacy nicename("Default Shape Shader") default_shape_shader_reference;
@@ -261,7 +261,7 @@ struct nicename("multiplayer_globals") tag_group('mulg') s_multiplayer_globals_d
 		s_tag_reference_legacy nicename("Megalo String Table") megalo_string_table_reference;
 	};
 
-	s_tag_block_legacy<s_multiplayer_settings_definition> nicename("Multiplayer Settings") multiplayer_settings_block;
-	s_tag_block_legacy<s_runtime_definition> nicename("Runtime") runtime_block;
+	s_tag_block_legacy<s_multiplayer_settings_definition_legacy> nicename("Multiplayer Settings") multiplayer_settings_block;
+	s_tag_block_legacy<s_runtime_definition_legacy> nicename("Runtime") runtime_block;
 };
 

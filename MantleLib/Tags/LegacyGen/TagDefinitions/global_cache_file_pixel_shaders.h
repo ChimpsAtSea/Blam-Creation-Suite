@@ -1,10 +1,10 @@
 #pragma once
 
-struct nicename("global_cache_file_pixel_shaders") tag_group('gpix') s_global_cache_file_pixel_shaders_definition
+struct nicename("global_cache_file_pixel_shaders") tag_group('gpix') s_global_cache_file_pixel_shaders_definition_legacy
 {
-	struct nicename("Pixel Shaders") s_pixel_shaders_definition
+	struct nicename("Pixel Shaders") s_pixel_shaders_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown_definition
+		struct nicename("Unknown") s_unknown_definition_legacy
 		{
 			string_id_legacy __unknown0;
 			int8_t __unknown1;
@@ -13,7 +13,7 @@ struct nicename("global_cache_file_pixel_shaders") tag_group('gpix') s_global_ca
 			int8_t __unknown4;
 		};
 
-		struct nicename("Unknown") s_unknown1_definition
+		struct nicename("Unknown") s_unknown1_definition_legacy
 		{
 			string_id_legacy __unknown0;
 			int8_t __unknown1;
@@ -32,11 +32,11 @@ struct nicename("global_cache_file_pixel_shaders") tag_group('gpix') s_global_ca
 		s_undefined32_legacy __unknown7;
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
-		s_tag_block_legacy<s_unknown_definition> __unknown10;
+		s_tag_block_legacy<s_unknown_definition_legacy> __unknown10;
 		int32_t __unknown11;
 		s_undefined32_legacy __unknown12;
 		int32_t __unknown13;
-		s_tag_block_legacy<s_unknown1_definition> __unknown14;
+		s_tag_block_legacy<s_unknown1_definition_legacy> __unknown14;
 		int32_t __unknown15;
 		s_undefined32_legacy __unknown16;
 		int32_t __unknown17;
@@ -50,6 +50,6 @@ struct nicename("global_cache_file_pixel_shaders") tag_group('gpix') s_global_ca
 	int32_t nicename("Shader Count") shader_count;
 	s_undefined32_legacy __unknown1;
 	s_undefined32_legacy __unknown2;
-	s_tag_block_legacy<s_pixel_shaders_definition> nicename("Pixel Shaders") pixel_shaders_block;
+	s_tag_block_legacy<s_pixel_shaders_definition_legacy> nicename("Pixel Shaders") pixel_shaders_block;
 };
 

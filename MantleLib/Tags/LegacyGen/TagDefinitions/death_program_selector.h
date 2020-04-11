@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("death_program_selector") tag_group('bdpd') s_death_program_selector_definition
+struct nicename("death_program_selector") tag_group('bdpd') s_death_program_selector_definition_legacy
 {
-	struct nicename("Death Programs") s_death_programs_definition
+	struct nicename("Death Programs") s_death_programs_definition_legacy
 	{
 		enum nicename("Death Type") e_death_type : uint32_t
 		{
@@ -13,7 +13,7 @@ struct nicename("death_program_selector") tag_group('bdpd') s_death_program_sele
 			/*nicename("Assassination")*/ _death_type_assassination = 4ui32,
 		};
 
-		struct nicename("Damages") s_damages_definition
+		struct nicename("Damages") s_damages_definition_legacy
 		{
 			enum nicename("Damage Type") e_damage_type : uint32_t
 			{
@@ -101,7 +101,7 @@ struct nicename("death_program_selector") tag_group('bdpd') s_death_program_sele
 				/*nicename("Tripmine")*/ _damage_type_tripmine = 81ui32,
 			};
 
-			struct nicename("Cases") s_cases_definition
+			struct nicename("Cases") s_cases_definition_legacy
 			{
 				enum nicename("Program Type") e_program_type : uint32_t
 				{
@@ -118,14 +118,14 @@ struct nicename("death_program_selector") tag_group('bdpd') s_death_program_sele
 			};
 
 			e_damage_type nicename("Damage Type") damage_type;
-			s_tag_block_legacy<s_cases_definition> nicename("Cases") cases_block;
+			s_tag_block_legacy<s_cases_definition_legacy> nicename("Cases") cases_block;
 		};
 
 		e_death_type nicename("Death Type") death_type;
-		s_tag_block_legacy<s_damages_definition> nicename("Damages") damages_block;
+		s_tag_block_legacy<s_damages_definition_legacy> nicename("Damages") damages_block;
 	};
 
 	s_tag_reference_legacy nicename("Parent") parent_reference;
-	s_tag_block_legacy<s_death_programs_definition> nicename("Death Programs") death_programs_block;
+	s_tag_block_legacy<s_death_programs_definition_legacy> nicename("Death Programs") death_programs_block;
 };
 

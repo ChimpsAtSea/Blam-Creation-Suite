@@ -1,13 +1,13 @@
 #pragma once
 
-struct nicename("incident_global_properties_definition") tag_group('igpd') s_incident_global_properties_definition_definition
+struct nicename("incident_global_properties_definition") tag_group('igpd') s_incident_global_properties_definition_definition_legacy
 {
-	struct nicename("Incident Global Definitions") s_incident_global_definitions_definition
+	struct nicename("Incident Global Definitions") s_incident_global_definitions_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Definition") definition_reference;
 	};
 
-	struct nicename("Default Incidents") s_default_incidents_definition
+	struct nicename("Default Incidents") s_default_incidents_definition_legacy
 	{
 		enum nicename("Not Allowed In Mode") b_not_allowed_in_mode : uint8_t /* bitfield */
 		{
@@ -30,7 +30,7 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 			/*nicename("Legendary")*/ _not_allowed_on_difficulty_legendary = 1ui8 << 3ui8,
 		};
 
-		struct nicename("Unknown") s_unknown_definition
+		struct nicename("Unknown") s_unknown_definition_legacy
 		{
 			string_id_legacy nicename("Incident") incident;
 			int8_t __unknown0;
@@ -39,9 +39,9 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 			int8_t __unknown3;
 		};
 
-		struct nicename("Case Triggers") s_case_triggers_definition
+		struct nicename("Case Triggers") s_case_triggers_definition_legacy
 		{
-			struct nicename("Weapons Filter") s_weapons_filter_definition
+			struct nicename("Weapons Filter") s_weapons_filter_definition_legacy
 			{
 				enum nicename("Damage Reporting Type") e_damage_reporting_type : uint8_t
 				{
@@ -135,7 +135,7 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 				int8_t __unknown2;
 			};
 
-			struct nicename("Cause Unit") s_cause_unit_definition
+			struct nicename("Cause Unit") s_cause_unit_definition_legacy
 			{
 				enum nicename("Unit") e_unit : uint8_t
 				{
@@ -216,7 +216,7 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 				char nicename("Profile Name") profile_name[32];
 			};
 
-			struct nicename("Effect Unit") s_effect_unit_definition
+			struct nicename("Effect Unit") s_effect_unit_definition_legacy
 			{
 				enum nicename("Unit") e_unit : uint8_t
 				{
@@ -297,7 +297,7 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 				char nicename("Profile Name") profile_name[32];
 			};
 
-			struct nicename("Special Filters") s_special_filters_definition
+			struct nicename("Special Filters") s_special_filters_definition_legacy
 			{
 				enum nicename("Filter") e_filter : uint8_t
 				{
@@ -319,15 +319,15 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 
 			string_id_legacy nicename("Parent Incident") parent_incident;
 			s_undefined32_legacy __unknown0;
-			s_tag_block_legacy<s_weapons_filter_definition> nicename("Weapons Filter") weapons_filter_block;
-			s_tag_block_legacy<s_cause_unit_definition> nicename("Cause Unit") cause_unit_block;
-			s_tag_block_legacy<s_effect_unit_definition> nicename("Effect Unit") effect_unit_block;
-			s_tag_block_legacy<s_special_filters_definition> nicename("Special Filters") special_filters_block;
+			s_tag_block_legacy<s_weapons_filter_definition_legacy> nicename("Weapons Filter") weapons_filter_block;
+			s_tag_block_legacy<s_cause_unit_definition_legacy> nicename("Cause Unit") cause_unit_block;
+			s_tag_block_legacy<s_effect_unit_definition_legacy> nicename("Effect Unit") effect_unit_block;
+			s_tag_block_legacy<s_special_filters_definition_legacy> nicename("Special Filters") special_filters_block;
 		};
 
-		struct nicename("Cumulative Incident Triggers") s_cumulative_incident_triggers_definition
+		struct nicename("Cumulative Incident Triggers") s_cumulative_incident_triggers_definition_legacy
 		{
-			struct nicename("Trigger") s_trigger_definition
+			struct nicename("Trigger") s_trigger_definition_legacy
 			{
 				int8_t __unknown0;
 				int8_t __unknown1;
@@ -341,10 +341,10 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 			int8_t __unknown1;
 			int8_t __unknown2;
 			int8_t __unknown3;
-			s_tag_block_legacy<s_trigger_definition> nicename("Trigger") trigger_block;
+			s_tag_block_legacy<s_trigger_definition_legacy> nicename("Trigger") trigger_block;
 		};
 
-		struct nicename("Responses") s_responses_definition
+		struct nicename("Responses") s_responses_definition_legacy
 		{
 			enum nicename("Mode") b_mode : uint8_t /* bitfield */
 			{
@@ -367,7 +367,7 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 				/*nicename("Legendary")*/ _difficulty_legendary = 1ui8 << 3ui8,
 			};
 
-			struct nicename("Unknown") s_unknown1_definition
+			struct nicename("Unknown") s_unknown1_definition_legacy
 			{
 				string_id_legacy __unknown0;
 			};
@@ -382,7 +382,7 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 			string_id_legacy nicename("Commendation") commendation;
 			string_id_legacy nicename("Achievement") achievement;
 			string_id_legacy nicename("Avatar Award") avatar_award;
-			s_tag_block_legacy<s_unknown1_definition> __unknown2;
+			s_tag_block_legacy<s_unknown1_definition_legacy> __unknown2;
 			string_id_legacy nicename("Script") script;
 			int16_t nicename("Script Index") script_index;
 			int16_t __unknown3;
@@ -397,10 +397,10 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 		b_not_allowed_in_mode_type nicename("Not Allowed In Mode Type") not_allowed_in_mode_type;
 		b_not_allowed_on_difficulty nicename("Not Allowed On Difficulty") not_allowed_on_difficulty;
 		int8_t __unknown4;
-		s_tag_block_legacy<s_unknown_definition> __unknown5;
-		s_tag_block_legacy<s_case_triggers_definition> nicename("Case Triggers") case_triggers_block;
-		s_tag_block_legacy<s_cumulative_incident_triggers_definition> nicename("Cumulative Incident Triggers") cumulative_incident_triggers_block;
-		s_tag_block_legacy<s_responses_definition> nicename("Responses") responses_block;
+		s_tag_block_legacy<s_unknown_definition_legacy> __unknown5;
+		s_tag_block_legacy<s_case_triggers_definition_legacy> nicename("Case Triggers") case_triggers_block;
+		s_tag_block_legacy<s_cumulative_incident_triggers_definition_legacy> nicename("Cumulative Incident Triggers") cumulative_incident_triggers_block;
+		s_tag_block_legacy<s_responses_definition_legacy> nicename("Responses") responses_block;
 	};
 
 	s_undefined32_legacy __unknown0;
@@ -416,7 +416,7 @@ struct nicename("incident_global_properties_definition") tag_group('igpd') s_inc
 	s_undefined32_legacy __unknown9;
 	s_undefined32_legacy __unknown10;
 	s_undefined32_legacy __unknown11;
-	s_tag_block_legacy<s_incident_global_definitions_definition> nicename("Incident Global Definitions") incident_global_definitions_block;
-	s_tag_block_legacy<s_default_incidents_definition> nicename("Default Incidents") default_incidents_block;
+	s_tag_block_legacy<s_incident_global_definitions_definition_legacy> nicename("Incident Global Definitions") incident_global_definitions_block;
+	s_tag_block_legacy<s_default_incidents_definition_legacy> nicename("Default Incidents") default_incidents_block;
 };
 

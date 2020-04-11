@@ -1,13 +1,13 @@
 #pragma once
 
-struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
+struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition_legacy
 {
-	struct nicename("Templates") s_templates_definition
+	struct nicename("Templates") s_templates_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Template") template_reference;
 	};
 
-	struct nicename("Definitions") s_definitions_definition
+	struct nicename("Definitions") s_definitions_definition_legacy
 	{
 		string_id_legacy nicename("Import Name") import_name;
 		string_id_legacy nicename("Export Name") export_name;
@@ -16,69 +16,69 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 		int16_t nicename("Template Index") template_index;
 	};
 
-	struct nicename("Component Table") s_component_table_definition
+	struct nicename("Component Table") s_component_table_definition_legacy
 	{
 		string_id_legacy nicename("Component Name") component_name;
 		int16_t nicename("Definition Index") definition_index;
 		int16_t __unknown0;
 	};
 
-	struct nicename("UI") s_ui_definition
+	struct nicename("UI") s_ui_definition_legacy
 	{
-		struct nicename("Components") s_components_definition
+		struct nicename("Components") s_components_definition_legacy
 		{
-			struct nicename("Integers") s_integers_definition
+			struct nicename("Integers") s_integers_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				int32_t nicename("Value") value;
 			};
 
-			struct nicename("Floats") s_floats_definition
+			struct nicename("Floats") s_floats_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				float nicename("Value") value;
 			};
 
-			struct nicename("String ID") s_string_id_definition
+			struct nicename("String ID") s_string_id_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				string_id_legacy nicename("String") string;
 			};
 
-			struct nicename("Resources") s_resources_definition
+			struct nicename("Resources") s_resources_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				s_tag_reference_legacy nicename("Resource") resource_reference;
 			};
 
-			struct nicename("Text") s_text_definition
+			struct nicename("Text") s_text_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				char nicename("Text") text[256];
 			};
 
-			struct nicename("Colors") s_colors_definition
+			struct nicename("Colors") s_colors_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				s_colorf_legacy nicename("Color") color;
 			};
 
 			string_id_legacy nicename("Component Name") component_name;
-			s_tag_block_legacy<s_integers_definition> nicename("Integers") integers_block;
-			s_tag_block_legacy<s_floats_definition> nicename("Floats") floats_block;
-			s_tag_block_legacy<s_string_id_definition> nicename("String ID") string_id_block;
-			s_tag_block_legacy<s_resources_definition> nicename("Resources") resources_block;
-			s_tag_block_legacy<s_text_definition> nicename("Text") text_block;
-			s_tag_block_legacy<s_colors_definition> nicename("Colors") colors_block;
+			s_tag_block_legacy<s_integers_definition_legacy> nicename("Integers") integers_block;
+			s_tag_block_legacy<s_floats_definition_legacy> nicename("Floats") floats_block;
+			s_tag_block_legacy<s_string_id_definition_legacy> nicename("String ID") string_id_block;
+			s_tag_block_legacy<s_resources_definition_legacy> nicename("Resources") resources_block;
+			s_tag_block_legacy<s_text_definition_legacy> nicename("Text") text_block;
+			s_tag_block_legacy<s_colors_definition_legacy> nicename("Colors") colors_block;
 		};
 
-		struct nicename("Animations") s_animations_definition
+		struct nicename("Animations") s_animations_definition_legacy
 		{
-			struct nicename("Component") s_component_definition
+			struct nicename("Component") s_component_definition_legacy
 			{
-				struct nicename("Standard Animations") s_standard_animations_definition
+				struct nicename("Standard Animations") s_standard_animations_definition_legacy
 				{
-					struct nicename("Values") s_values_definition
+					struct nicename("Values") s_values_definition_legacy
 					{
 						int32_t nicename("Frame") frame;
 						float nicename("Value") value;
@@ -90,12 +90,12 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 					int8_t __unknown1;
 					int8_t __unknown2;
 					int32_t nicename("Frame Count") frame_count;
-					s_tag_block_legacy<s_values_definition> nicename("Values") values_block;
+					s_tag_block_legacy<s_values_definition_legacy> nicename("Values") values_block;
 				};
 
-				struct nicename("Color Animations") s_color_animations_definition
+				struct nicename("Color Animations") s_color_animations_definition_legacy
 				{
-					struct nicename("Values") s_values1_definition
+					struct nicename("Values") s_values1_definition_legacy
 					{
 						int32_t nicename("Frame") frame;
 						s_colorf_legacy nicename("Color") color;
@@ -107,26 +107,26 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 					int8_t __unknown1;
 					int8_t __unknown2;
 					int32_t nicename("Frame Count") frame_count;
-					s_tag_block_legacy<s_values1_definition> nicename("Values") values_block;
+					s_tag_block_legacy<s_values1_definition_legacy> nicename("Values") values_block;
 				};
 
 				string_id_legacy nicename("Name") name;
 				int32_t nicename("Frame Count") frame_count;
-				s_tag_block_legacy<s_standard_animations_definition> nicename("Standard Animations") standard_animations_block;
-				s_tag_block_legacy<s_color_animations_definition> nicename("Color Animations") color_animations_block;
+				s_tag_block_legacy<s_standard_animations_definition_legacy> nicename("Standard Animations") standard_animations_block;
+				s_tag_block_legacy<s_color_animations_definition_legacy> nicename("Color Animations") color_animations_block;
 			};
 
 			string_id_legacy nicename("Name") name;
-			s_tag_block_legacy<s_component_definition> nicename("Component") component_block;
+			s_tag_block_legacy<s_component_definition_legacy> nicename("Component") component_block;
 		};
 
 		string_id_legacy nicename("Resolution") resolution;
 		string_id_legacy nicename("Theme") theme;
-		s_tag_block_legacy<s_components_definition> nicename("Components") components_block;
-		s_tag_block_legacy<s_animations_definition> nicename("Animations") animations_block;
+		s_tag_block_legacy<s_components_definition_legacy> nicename("Components") components_block;
+		s_tag_block_legacy<s_animations_definition_legacy> nicename("Animations") animations_block;
 	};
 
-	struct nicename("Logic") s_logic_definition
+	struct nicename("Logic") s_logic_definition_legacy
 	{
 		int16_t nicename("Flags") flags;
 		int16_t nicename("Flags") flags1;
@@ -136,7 +136,7 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 		string_id_legacy nicename("Ouput Property") ouput_property;
 	};
 
-	struct nicename("Defaults?") s_defaults_definition
+	struct nicename("Defaults?") s_defaults_definition_legacy
 	{
 		string_id_legacy __unknown0;
 		string_id_legacy __unknown1;
@@ -147,9 +147,9 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 		int32_t __unknown6;
 	};
 
-	struct nicename("Static Data Table") s_static_data_table_definition
+	struct nicename("Static Data Table") s_static_data_table_definition_legacy
 	{
-		struct nicename("Property Pool") s_property_pool_definition
+		struct nicename("Property Pool") s_property_pool_definition_legacy
 		{
 			enum nicename("Property Kind") e_property_kind : uint16_t
 			{
@@ -168,61 +168,61 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 			int16_t __unknown0;
 		};
 
-		struct nicename("Components") s_components1_definition
+		struct nicename("Components") s_components1_definition_legacy
 		{
-			struct nicename("Integers") s_integers1_definition
+			struct nicename("Integers") s_integers1_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				int32_t nicename("Value") value;
 			};
 
-			struct nicename("Floats") s_floats1_definition
+			struct nicename("Floats") s_floats1_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				float nicename("Value") value;
 			};
 
-			struct nicename("String IDs") s_string_ids_definition
+			struct nicename("String IDs") s_string_ids_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				string_id_legacy nicename("String") string;
 			};
 
-			struct nicename("Resources") s_resources1_definition
+			struct nicename("Resources") s_resources1_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				s_tag_reference_legacy nicename("Resource") resource_reference;
 			};
 
-			struct nicename("Text") s_text1_definition
+			struct nicename("Text") s_text1_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				char nicename("Text") text[256];
 			};
 
-			struct nicename("Colors") s_colors1_definition
+			struct nicename("Colors") s_colors1_definition_legacy
 			{
 				string_id_legacy nicename("Property") property;
 				s_colorf_legacy nicename("Color") color;
 			};
 
-			s_tag_block_legacy<s_integers1_definition> nicename("Integers") integers_block;
-			s_tag_block_legacy<s_floats1_definition> nicename("Floats") floats_block;
-			s_tag_block_legacy<s_string_ids_definition> nicename("String IDs") string_ids_block;
-			s_tag_block_legacy<s_resources1_definition> nicename("Resources") resources_block;
-			s_tag_block_legacy<s_text1_definition> nicename("Text") text_block;
-			s_tag_block_legacy<s_colors1_definition> nicename("Colors") colors_block;
+			s_tag_block_legacy<s_integers1_definition_legacy> nicename("Integers") integers_block;
+			s_tag_block_legacy<s_floats1_definition_legacy> nicename("Floats") floats_block;
+			s_tag_block_legacy<s_string_ids_definition_legacy> nicename("String IDs") string_ids_block;
+			s_tag_block_legacy<s_resources1_definition_legacy> nicename("Resources") resources_block;
+			s_tag_block_legacy<s_text1_definition_legacy> nicename("Text") text_block;
+			s_tag_block_legacy<s_colors1_definition_legacy> nicename("Colors") colors_block;
 		};
 
 		string_id_legacy nicename("Name") name;
 		int32_t __unknown0;
-		s_tag_block_legacy<s_property_pool_definition> nicename("Property Pool") property_pool_block;
-		s_tag_block_legacy<s_components1_definition> nicename("Components") components_block;
+		s_tag_block_legacy<s_property_pool_definition_legacy> nicename("Property Pool") property_pool_block;
+		s_tag_block_legacy<s_components1_definition_legacy> nicename("Components") components_block;
 	};
 
-	struct nicename("Expressions") s_expressions_definition
+	struct nicename("Expressions") s_expressions_definition_legacy
 	{
-		struct nicename("Expression Makeup") s_expression_makeup_definition
+		struct nicename("Expression Makeup") s_expression_makeup_definition_legacy
 		{
 			enum nicename("Kind") e_kind : uint8_t
 			{
@@ -289,20 +289,20 @@ struct nicename("cui_screen") tag_group('cusc') s_cui_screen_definition
 
 		string_id_legacy nicename("Name") name;
 		char nicename("Compiled Expression Reference") compiled_expression_reference[256];
-		s_tag_block_legacy<s_expression_makeup_definition> nicename("Expression Makeup") expression_makeup_block;
+		s_tag_block_legacy<s_expression_makeup_definition_legacy> nicename("Expression Makeup") expression_makeup_block;
 	};
 
 	s_tag_reference_legacy nicename("String Reference") string_reference_reference;
-	s_tag_block_legacy<s_templates_definition> nicename("Templates") templates_block;
-	s_tag_block_legacy<s_definitions_definition> nicename("Definitions") definitions_block;
-	s_tag_block_legacy<s_component_table_definition> nicename("Component Table") component_table_block;
-	s_tag_block_legacy<s_ui_definition> nicename("UI") ui_block;
+	s_tag_block_legacy<s_templates_definition_legacy> nicename("Templates") templates_block;
+	s_tag_block_legacy<s_definitions_definition_legacy> nicename("Definitions") definitions_block;
+	s_tag_block_legacy<s_component_table_definition_legacy> nicename("Component Table") component_table_block;
+	s_tag_block_legacy<s_ui_definition_legacy> nicename("UI") ui_block;
 	int32_t __unknown0;
 	int32_t __unknown1;
 	int32_t __unknown2;
-	s_tag_block_legacy<s_logic_definition> nicename("Logic") logic_block;
-	s_tag_block_legacy<s_defaults_definition> nicename("Defaults?") defaults_block;
-	s_tag_block_legacy<s_static_data_table_definition> nicename("Static Data Table") static_data_table_block;
-	s_tag_block_legacy<s_expressions_definition> nicename("Expressions") expressions_block;
+	s_tag_block_legacy<s_logic_definition_legacy> nicename("Logic") logic_block;
+	s_tag_block_legacy<s_defaults_definition_legacy> nicename("Defaults?") defaults_block;
+	s_tag_block_legacy<s_static_data_table_definition_legacy> nicename("Static Data Table") static_data_table_block;
+	s_tag_block_legacy<s_expressions_definition_legacy> nicename("Expressions") expressions_block;
 };
 

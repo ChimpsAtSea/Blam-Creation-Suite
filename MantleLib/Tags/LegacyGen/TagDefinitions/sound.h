@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound") tag_group('snd!') s_sound_definition
+struct nicename("sound") tag_group('snd!') s_sound_definition_legacy
 {
 	enum nicename("Sound Class") e_sound_class : uint8_t
 	{
@@ -97,11 +97,11 @@ struct nicename("sound") tag_group('snd!') s_sound_definition
 		/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
 	};
 
-	struct nicename("Extra Info") s_extra_info_definition
+	struct nicename("Extra Info") s_extra_info_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown_definition
+		struct nicename("Unknown") s_unknown_definition_legacy
 		{
-			struct nicename("Unknown") s_unknown1_definition
+			struct nicename("Unknown") s_unknown1_definition_legacy
 			{
 				int32_t __unknown0;
 				int32_t __unknown1;
@@ -112,10 +112,10 @@ struct nicename("sound") tag_group('snd!') s_sound_definition
 			s_undefined32_legacy __unknown1;
 			s_undefined32_legacy __unknown2;
 			s_undefined32_legacy __unknown3;
-			s_tag_block_legacy<s_unknown1_definition> __unknown4;
+			s_tag_block_legacy<s_unknown1_definition_legacy> __unknown4;
 		};
 
-		s_tag_block_legacy<s_unknown_definition> __unknown0;
+		s_tag_block_legacy<s_unknown_definition_legacy> __unknown0;
 		s_data_reference_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
 		s_undefined32_legacy __unknown3;
@@ -141,6 +141,6 @@ struct nicename("sound") tag_group('snd!') s_sound_definition
 	uint16_t nicename("[easy read] Index") easy_read_index;
 	uint16_t nicename("[easy read] Salt") easy_read_salt;
 	int32_t nicename("Useless Padding") useless_padding;
-	s_tag_block_legacy<s_extra_info_definition> nicename("Extra Info") extra_info_block;
+	s_tag_block_legacy<s_extra_info_definition_legacy> nicename("Extra Info") extra_info_block;
 };
 

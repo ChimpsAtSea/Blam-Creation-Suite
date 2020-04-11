@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("wind") tag_group('wind') s_wind_definition
+struct nicename("wind") tag_group('wind') s_wind_definition_legacy
 {
 	s_data_reference_legacy nicename("Function") function_data_reference;
 	s_data_reference_legacy nicename("Function") function1_data_reference;

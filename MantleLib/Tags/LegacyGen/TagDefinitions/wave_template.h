@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("wave_template") tag_group('wave') s_wave_template_definition
+struct nicename("wave_template") tag_group('wave') s_wave_template_definition_legacy
 {
-	struct nicename("Wave Template") s_wave_template1_definition
+	struct nicename("Wave Template") s_wave_template1_definition_legacy
 	{
 		enum nicename("Difficulty") b_difficulty : uint16_t /* bitfield */
 		{
@@ -38,6 +38,6 @@ struct nicename("wave_template") tag_group('wave') s_wave_template_definition
 		int32_t __unknown7;
 	};
 
-	s_tag_block_legacy<s_wave_template1_definition> nicename("Wave Template") wave_template_block;
+	s_tag_block_legacy<s_wave_template1_definition_legacy> nicename("Wave Template") wave_template_block;
 };
 

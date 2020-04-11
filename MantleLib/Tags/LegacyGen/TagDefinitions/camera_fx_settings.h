@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("camera_fx_settings") tag_group('cfxs') s_camera_fx_settings_definition
+struct nicename("camera_fx_settings") tag_group('cfxs') s_camera_fx_settings_definition_legacy
 {
 	enum nicename("Flags") b_flags : uint16_t /* bitfield */
 	{

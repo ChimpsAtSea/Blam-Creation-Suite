@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_definition
+struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_definition_legacy
 {
 	enum nicename("Team") e_team : uint16_t
 	{
@@ -93,7 +93,7 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 		/*nicename("Bit 31")*/ _flags1_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Dead Sphere Shapes") s_dead_sphere_shapes_definition
+	struct nicename("Dead Sphere Shapes") s_dead_sphere_shapes_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
@@ -147,7 +147,7 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 		float nicename("Translation Radius") translation_radius;
 	};
 
-	struct nicename("Pill Shapes") s_pill_shapes_definition
+	struct nicename("Pill Shapes") s_pill_shapes_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
@@ -184,7 +184,7 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 		float nicename("Top Radius") top_radius;
 	};
 
-	struct nicename("Sphere Shapes") s_sphere_shapes_definition
+	struct nicename("Sphere Shapes") s_sphere_shapes_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int8_t nicename("Material Index") material_index;
@@ -238,7 +238,7 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 		float nicename("Translation Radius") translation_radius;
 	};
 
-	struct nicename("Metagame Properties") s_metagame_properties_definition
+	struct nicename("Metagame Properties") s_metagame_properties_definition_legacy
 	{
 		enum nicename("Unit") e_unit : uint8_t
 		{
@@ -304,7 +304,7 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 		int16_t __unknown1;
 	};
 
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		s_data_reference_legacy nicename("Function") function_data_reference;
 	};
@@ -326,9 +326,9 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 	string_id_legacy nicename("Dead Material Name") dead_material_name;
 	int16_t nicename("Living Global Material Index") living_global_material_index;
 	int16_t nicename("Dead Global Material Index") dead_global_material_index;
-	s_tag_block_legacy<s_dead_sphere_shapes_definition> nicename("Dead Sphere Shapes") dead_sphere_shapes_block;
-	s_tag_block_legacy<s_pill_shapes_definition> nicename("Pill Shapes") pill_shapes_block;
-	s_tag_block_legacy<s_sphere_shapes_definition> nicename("Sphere Shapes") sphere_shapes_block;
+	s_tag_block_legacy<s_dead_sphere_shapes_definition_legacy> nicename("Dead Sphere Shapes") dead_sphere_shapes_block;
+	s_tag_block_legacy<s_pill_shapes_definition_legacy> nicename("Pill Shapes") pill_shapes_block;
+	s_tag_block_legacy<s_sphere_shapes_definition_legacy> nicename("Sphere Shapes") sphere_shapes_block;
 	// Ground : 
 	float nicename("Maximum Slope Angle") maximum_slope_angle;
 	float nicename("Downhill Falloff Angle") downhill_falloff_angle;
@@ -362,7 +362,7 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 	s_undefined32_legacy __unknown9;
 	s_tag_reference_legacy nicename("Impact Damage") impact_damage_reference;
 	s_tag_reference_legacy nicename("Impact Shield Damage") impact_shield_damage_reference;
-	s_tag_block_legacy<s_metagame_properties_definition> nicename("Metagame Properties") metagame_properties_block;
+	s_tag_block_legacy<s_metagame_properties_definition_legacy> nicename("Metagame Properties") metagame_properties_block;
 	float nicename("Destroy After Death Time min") destroy_after_death_time_min;
 	float nicename("Destroy After Death Time max") destroy_after_death_time_max;
 	int32_t __unknown10;
@@ -374,7 +374,7 @@ struct nicename("big_battle_creature") tag_group('bbcr') s_big_battle_creature_d
 	s_undefined32_legacy __unknown15;
 	s_undefined32_legacy __unknown16;
 	s_undefined32_legacy __unknown17;
-	s_tag_block_legacy<s_unknown_definition> __unknown18;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown18;
 	s_tag_reference_legacy nicename("Firing Effect") firing_effect_reference;
 	s_undefined32_legacy __unknown19;
 	s_undefined32_legacy __unknown20;

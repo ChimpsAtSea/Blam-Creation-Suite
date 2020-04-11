@@ -18,7 +18,7 @@ void render_tagref_gui(s_tag_reference_legacy* field_data, const char* name, c_c
 	ImGui::PushItemWidth(-1);
 
 	const char* pGroupShortName = "(null)";
-	c_tag_group_interface* ps_tag_reference_legacyGroupInterface = cache_file.get_group_interface_by_group_id(field_data->tagGroupName);
+	c_legacy_tag_group_interface* ps_tag_reference_legacyGroupInterface = cache_file.get_group_interface_by_group_id(field_data->tagGroupName);
 	if (ps_tag_reference_legacyGroupInterface)
 	{
 		pGroupShortName = ps_tag_reference_legacyGroupInterface->GetShortName();
@@ -31,7 +31,7 @@ void render_tagref_gui(s_tag_reference_legacy* field_data, const char* name, c_c
 		{
 			if (ps_tag_reference_legacyGroupInterface != nullptr) // selecting a new tag group
 			{
-				field_data->tagGroupName = _tag_group_invalid;
+				field_data->tagGroupName = _legacy_tag_group_invalid;
 				field_data->index = ~0ui16;
 				field_data->datum = ~0ui16;
 				ps_tag_reference_legacyTagInterface = nullptr;
@@ -39,7 +39,7 @@ void render_tagref_gui(s_tag_reference_legacy* field_data, const char* name, c_c
 			}
 		}
 
-		for (c_tag_group_interface* pCurrentGroupInterface : cache_file.get_group_interfaces())
+		for (c_legacy_tag_group_interface* pCurrentGroupInterface : cache_file.get_group_interfaces())
 		{
 			if (ImGui::Selectable(pCurrentGroupInterface->GetShortName(), pCurrentGroupInterface == ps_tag_reference_legacyGroupInterface))
 			{
@@ -79,7 +79,7 @@ void render_tagref_gui(s_tag_reference_legacy* field_data, const char* name, c_c
 				// #TODO: Figure out why get_group_interface is returning null?
 				//assert(pCurrentTagInterface->get_group_interface() != nullptr);
 				//if (pCurrentTagInterface->get_group_interface() != ps_tag_reference_legacyGroupInterface)
-				c_tag_group_interface* pCurrentGroupInterface = cache_file.get_group_interfaces()[pCurrentTagInterface->get_group_index()];
+				c_legacy_tag_group_interface* pCurrentGroupInterface = cache_file.get_group_interfaces()[pCurrentTagInterface->get_group_index()];
 				ASSERT(pCurrentGroupInterface != nullptr);
 				if (pCurrentGroupInterface != ps_tag_reference_legacyGroupInterface)
 				{
@@ -118,7 +118,7 @@ void render_tagref_gui(s_tag_reference_legacy* field_data, const char* name, c_c
 				// #TODO: Figure out why get_group_interface is returning null?
 				//assert(pCurrentTagInterface->get_group_interface() != nullptr);
 				//if (pCurrentTagInterface->get_group_interface() != ps_tag_reference_legacyGroupInterface)
-				c_tag_group_interface* pCurrentGroupInterface = cache_file.get_group_interfaces()[pCurrentTagInterface->get_group_index()];
+				c_legacy_tag_group_interface* pCurrentGroupInterface = cache_file.get_group_interfaces()[pCurrentTagInterface->get_group_index()];
 				ASSERT(pCurrentGroupInterface != nullptr);
 				if (pCurrentGroupInterface != ps_tag_reference_legacyGroupInterface)
 				{

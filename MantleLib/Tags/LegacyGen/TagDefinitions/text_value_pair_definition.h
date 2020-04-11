@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("text_value_pair_definition") tag_group('sily') s_text_value_pair_definition_definition
+struct nicename("text_value_pair_definition") tag_group('sily') s_text_value_pair_definition_definition_legacy
 {
 	enum nicename("Parameter") e_parameter : uint32_t
 	{
@@ -1279,7 +1279,7 @@ struct nicename("text_value_pair_definition") tag_group('sily') s_text_value_pai
 		/*nicename("(int) Global-Elite Loadouts-Tier 3-Loadout 4-Grenade Count")*/ _parameter_int_global_elite_loadouts_tier_3_loadout_4_grenade_count = 1272ui32,
 	};
 
-	struct nicename("Text Value Pairs") s_text_value_pairs_definition
+	struct nicename("Text Value Pairs") s_text_value_pairs_definition_legacy
 	{
 		enum nicename("Expected Value Type") e_expected_value_type : uint8_t
 		{
@@ -1313,6 +1313,6 @@ struct nicename("text_value_pair_definition") tag_group('sily') s_text_value_pai
 	e_parameter nicename("Parameter") parameter;
 	string_id_legacy nicename("Name") name;
 	string_id_legacy nicename("Description") description;
-	s_tag_block_legacy<s_text_value_pairs_definition> nicename("Text Value Pairs") text_value_pairs_block;
+	s_tag_block_legacy<s_text_value_pairs_definition_legacy> nicename("Text Value Pairs") text_value_pairs_block;
 };
 

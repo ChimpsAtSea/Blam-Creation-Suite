@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("equipment") tag_group('eqip') s_equipment_definition
+struct nicename("equipment") tag_group('eqip') s_equipment_definition_legacy
 {
 	enum nicename("Object Type") e_object_type : uint16_t
 	{
@@ -253,7 +253,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		/*nicename("Bit 31")*/ _flags2_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Early Mover Properties") s_early_mover_properties_definition
+	struct nicename("Early Mover Properties") s_early_mover_properties_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_undefined32_legacy __unknown0;
@@ -268,7 +268,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		s_undefined32_legacy __unknown9;
 	};
 
-	struct nicename("AI Properties") s_ai_properties_definition
+	struct nicename("AI Properties") s_ai_properties_definition_legacy
 	{
 		enum nicename("Size") e_size : uint16_t
 		{
@@ -336,7 +336,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		e_leap_jump_speed nicename("Leap Jump Speed") leap_jump_speed;
 	};
 
-	struct nicename("Functions") s_functions_definition
+	struct nicename("Functions") s_functions_definition_legacy
 	{
 		enum nicename("Flags") b_flags1 : uint32_t /* bitfield */
 		{
@@ -374,7 +374,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			/*nicename("Bit 31")*/ _flags1_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Unknown") s_unknown_definition
+		struct nicename("Unknown") s_unknown_definition_legacy
 		{
 			int32_t __unknown0;
 			float __unknown1;
@@ -392,16 +392,16 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		float nicename("Minimum Value") minimum_value;
 		s_data_reference_legacy nicename("Default Function") default_function_data_reference;
 		string_id_legacy nicename("Scale By") scale_by;
-		s_tag_block_legacy<s_unknown_definition> __unknown1;
+		s_tag_block_legacy<s_unknown_definition_legacy> __unknown1;
 		int32_t nicename("'Function Related' Index") function_related_index;
 	};
 
-	struct nicename("Function Related") s_function_related_definition
+	struct nicename("Function Related") s_function_related_definition_legacy
 	{
 		int32_t nicename("Function Index") function_index;
 	};
 
-	struct nicename("Attachments") s_attachments_definition
+	struct nicename("Attachments") s_attachments_definition_legacy
 	{
 		enum nicename("Change Color") e_change_color : uint16_t
 		{
@@ -420,9 +420,9 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		string_id_legacy nicename("Secondary Scale") secondary_scale;
 	};
 
-	struct nicename("Material Responses") s_material_responses_definition
+	struct nicename("Material Responses") s_material_responses_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown1_definition
+		struct nicename("Unknown") s_unknown1_definition_legacy
 		{
 			string_id_legacy nicename("Material") material;
 			s_data_reference_legacy __unknown0;
@@ -436,10 +436,10 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
-		s_tag_block_legacy<s_unknown1_definition> __unknown3;
+		s_tag_block_legacy<s_unknown1_definition_legacy> __unknown3;
 	};
 
-	struct nicename("Jet Wash") s_jet_wash_definition
+	struct nicename("Jet Wash") s_jet_wash_definition_legacy
 	{
 		string_id_legacy nicename("Marker") marker;
 		float __unknown0;
@@ -452,14 +452,14 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		float __unknown7;
 	};
 
-	struct nicename("Widgets") s_widgets_definition
+	struct nicename("Widgets") s_widgets_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Type") type_reference;
 	};
 
-	struct nicename("Change Color") s_change_color_definition
+	struct nicename("Change Color") s_change_color_definition_legacy
 	{
-		struct nicename("Initial Permutations") s_initial_permutations_definition
+		struct nicename("Initial Permutations") s_initial_permutations_definition_legacy
 		{
 			float nicename("Weight") weight;
 			s_colorf_legacy nicename("Color Lower Bound") color_lower_bound;
@@ -467,7 +467,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			string_id_legacy nicename("Variant Name") variant_name;
 		};
 
-		struct nicename("Functions") s_functions1_definition
+		struct nicename("Functions") s_functions1_definition_legacy
 		{
 			enum nicename("Scale Flags") b_scale_flags : uint32_t /* bitfield */
 			{
@@ -512,18 +512,18 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			string_id_legacy nicename("Scale By...") scale_by;
 		};
 
-		s_tag_block_legacy<s_initial_permutations_definition> nicename("Initial Permutations") initial_permutations_block;
-		s_tag_block_legacy<s_functions1_definition> nicename("Functions") functions_block;
+		s_tag_block_legacy<s_initial_permutations_definition_legacy> nicename("Initial Permutations") initial_permutations_block;
+		s_tag_block_legacy<s_functions1_definition_legacy> nicename("Functions") functions_block;
 	};
 
-	struct nicename("Predicted Resources") s_predicted_resources_definition
+	struct nicename("Predicted Resources") s_predicted_resources_definition_legacy
 	{
 		int16_t nicename("Type") type;
 		int16_t nicename("Resource Index") resource_index;
 		s_tag_reference_legacy nicename("Tag Index") tag_index_reference;
 	};
 
-	struct nicename("Multiplayer Object Properties") s_multiplayer_object_properties_definition
+	struct nicename("Multiplayer Object Properties") s_multiplayer_object_properties_definition_legacy
 	{
 		enum nicename("Object Type") e_object_type1 : uint8_t
 		{
@@ -628,19 +628,19 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		s_tag_reference_legacy __unknown10;
 	};
 
-	struct nicename("Unknown") s_unknown2_definition
+	struct nicename("Unknown") s_unknown2_definition_legacy
 	{
 		s_tag_reference_legacy __unknown0;
 		s_tag_reference_legacy __unknown1;
 		s_tag_reference_legacy __unknown2;
 	};
 
-	struct nicename("Predicted Bitmaps") s_predicted_bitmaps_definition
+	struct nicename("Predicted Bitmaps") s_predicted_bitmaps_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Bitmap") bitmap_reference;
 	};
 
-	struct nicename("Equipment Camera") s_equipment_camera_definition
+	struct nicename("Equipment Camera") s_equipment_camera_definition_legacy
 	{
 		enum nicename("Camera Flags") b_camera_flags : uint8_t /* bitfield */
 		{
@@ -654,13 +654,13 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			/*nicename("Bit 7")*/ _camera_flags_bit_7 = 1ui8 << 7ui8,
 		};
 
-		struct nicename("Camera Tracks") s_camera_tracks_definition
+		struct nicename("Camera Tracks") s_camera_tracks_definition_legacy
 		{
 			s_tag_reference_legacy nicename("Track") track_reference;
 			s_tag_reference_legacy nicename("Screen Effect") screen_effect_reference;
 		};
 
-		struct nicename("Unknown") s_unknown3_definition
+		struct nicename("Unknown") s_unknown3_definition_legacy
 		{
 			float __unknown0;
 			s_undefined32_legacy __unknown1;
@@ -682,9 +682,9 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			float __unknown17;
 		};
 
-		struct nicename("Unknown") s_unknown4_definition
+		struct nicename("Unknown") s_unknown4_definition_legacy
 		{
-			struct nicename("Unknown") s_unknown5_definition
+			struct nicename("Unknown") s_unknown5_definition_legacy
 			{
 				s_data_reference_legacy nicename("Function") function_data_reference;
 			};
@@ -699,12 +699,12 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			float __unknown7;
 			float __unknown8;
 			float __unknown9;
-			s_tag_block_legacy<s_unknown5_definition> __unknown10;
+			s_tag_block_legacy<s_unknown5_definition_legacy> __unknown10;
 		};
 
-		struct nicename("Space Fighter Camera") s_space_fighter_camera_definition
+		struct nicename("Space Fighter Camera") s_space_fighter_camera_definition_legacy
 		{
-			struct nicename("Unknown") s_unknown6_definition
+			struct nicename("Unknown") s_unknown6_definition_legacy
 			{
 				s_data_reference_legacy nicename("Function") function_data_reference;
 			};
@@ -719,7 +719,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 			float __unknown7;
 			float __unknown8;
 			float __unknown9;
-			s_tag_block_legacy<s_unknown6_definition> __unknown10;
+			s_tag_block_legacy<s_unknown6_definition_legacy> __unknown10;
 		};
 
 		b_camera_flags nicename("Camera Flags") camera_flags;
@@ -730,7 +730,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		float nicename("Pitch Auto-Level") pitch_auto_level;
 		float nicename("Pitch Range min") pitch_range_min;
 		float nicename("Pitch Range max") pitch_range_max;
-		s_tag_block_legacy<s_camera_tracks_definition> nicename("Camera Tracks") camera_tracks_block;
+		s_tag_block_legacy<s_camera_tracks_definition_legacy> nicename("Camera Tracks") camera_tracks_block;
 		float nicename("Camera Stiffness min") camera_stiffness_min;
 		float nicename("Camera Stiffness max") camera_stiffness_max;
 		float __unknown3;
@@ -744,12 +744,12 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		s_undefined32_legacy __unknown8;
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
-		s_tag_block_legacy<s_unknown3_definition> __unknown11;
-		s_tag_block_legacy<s_unknown4_definition> __unknown12;
-		s_tag_block_legacy<s_space_fighter_camera_definition> nicename("Space Fighter Camera") space_fighter_camera_block;
+		s_tag_block_legacy<s_unknown3_definition_legacy> __unknown11;
+		s_tag_block_legacy<s_unknown4_definition_legacy> __unknown12;
+		s_tag_block_legacy<s_space_fighter_camera_definition_legacy> nicename("Space Fighter Camera") space_fighter_camera_block;
 	};
 
-	struct nicename("Powerup") s_powerup_definition
+	struct nicename("Powerup") s_powerup_definition_legacy
 	{
 		enum nicename("Powerup Trait Set") e_powerup_trait_set : uint32_t
 		{
@@ -761,7 +761,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		e_powerup_trait_set nicename("Powerup Trait Set") powerup_trait_set;
 	};
 
-	struct nicename("Object Creation") s_object_creation_definition
+	struct nicename("Object Creation") s_object_creation_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Object") object_reference;
 		s_tag_reference_legacy __unknown0;
@@ -773,7 +773,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		int16_t __unknown5;
 	};
 
-	struct nicename("Destruction") s_destruction_definition
+	struct nicename("Destruction") s_destruction_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Destroy Effect") destroy_effect_reference;
 		s_tag_reference_legacy nicename("Destroy Damage Effect") destroy_damage_effect_reference;
@@ -784,7 +784,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		int16_t __unknown3;
 	};
 
-	struct nicename("Radar Manipulation") s_radar_manipulation_definition
+	struct nicename("Radar Manipulation") s_radar_manipulation_definition_legacy
 	{
 		float __unknown0;
 		float nicename("Fake Blip Radius") fake_blip_radius;
@@ -792,9 +792,9 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		float __unknown1;
 	};
 
-	struct nicename("Armor Lockup") s_armor_lockup_definition
+	struct nicename("Armor Lockup") s_armor_lockup_definition_legacy
 	{
-		struct nicename("EMP Discharge Levels") s_emp_discharge_levels_definition
+		struct nicename("EMP Discharge Levels") s_emp_discharge_levels_definition_legacy
 		{
 			float nicename("Charge Level") charge_level;
 			float __unknown0;
@@ -814,10 +814,10 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		s_data_reference_legacy nicename("Function") function_data_reference;
 		s_undefined32_legacy __unknown3;
 		s_data_reference_legacy nicename("Function") function1_data_reference;
-		s_tag_block_legacy<s_emp_discharge_levels_definition> nicename("EMP Discharge Levels") emp_discharge_levels_block;
+		s_tag_block_legacy<s_emp_discharge_levels_definition_legacy> nicename("EMP Discharge Levels") emp_discharge_levels_block;
 	};
 
-	struct nicename("Regenerator") s_regenerator_definition
+	struct nicename("Regenerator") s_regenerator_definition_legacy
 	{
 		enum nicename("Flags") b_flags3 : uint32_t /* bitfield */
 		{
@@ -860,11 +860,11 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		float __unknown0;
 	};
 
-	struct nicename("Runtime") s_runtime_definition
+	struct nicename("Runtime") s_runtime_definition_legacy
 	{
-		struct nicename("Traits When Active") s_traits_when_active_definition
+		struct nicename("Traits When Active") s_traits_when_active_definition_legacy
 		{
-			struct nicename("Shields and Health") s_shields_and_health_definition
+			struct nicename("Shields and Health") s_shields_and_health_definition_legacy
 			{
 				enum nicename("Damage Resistance") e_damage_resistance : uint8_t
 				{
@@ -1007,7 +1007,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int8_t __unknown1;
 			};
 
-			struct nicename("Weapons and Damage") s_weapons_and_damage_definition
+			struct nicename("Weapons and Damage") s_weapons_and_damage_definition_legacy
 			{
 				enum nicename("Damage Modifier") e_damage_modifier : uint8_t
 				{
@@ -1123,7 +1123,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				string_id_legacy nicename("Equipment") equipment;
 			};
 
-			struct nicename("Movement") s_movement_definition
+			struct nicename("Movement") s_movement_definition_legacy
 			{
 				enum nicename("Player Speed") e_player_speed : uint8_t
 				{
@@ -1193,7 +1193,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int32_t nicename("Jump Height") jump_height1;
 			};
 
-			struct nicename("Appearance") s_appearance_definition
+			struct nicename("Appearance") s_appearance_definition_legacy
 			{
 				enum nicename("Active Camo") e_active_camo : uint8_t
 				{
@@ -1258,7 +1258,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int8_t __unknown2;
 			};
 
-			struct nicename("HUD") s_hud_definition
+			struct nicename("HUD") s_hud_definition_legacy
 			{
 				enum nicename("Motion Tracker Mode") e_motion_tracker_mode : uint8_t
 				{
@@ -1294,16 +1294,16 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int8_t __unknown0;
 			};
 
-			s_tag_block_legacy<s_shields_and_health_definition> nicename("Shields and Health") shields_and_health_block;
-			s_tag_block_legacy<s_weapons_and_damage_definition> nicename("Weapons and Damage") weapons_and_damage_block;
-			s_tag_block_legacy<s_movement_definition> nicename("Movement") movement_block;
-			s_tag_block_legacy<s_appearance_definition> nicename("Appearance") appearance_block;
-			s_tag_block_legacy<s_hud_definition> nicename("HUD") hud_block;
+			s_tag_block_legacy<s_shields_and_health_definition_legacy> nicename("Shields and Health") shields_and_health_block;
+			s_tag_block_legacy<s_weapons_and_damage_definition_legacy> nicename("Weapons and Damage") weapons_and_damage_block;
+			s_tag_block_legacy<s_movement_definition_legacy> nicename("Movement") movement_block;
+			s_tag_block_legacy<s_appearance_definition_legacy> nicename("Appearance") appearance_block;
+			s_tag_block_legacy<s_hud_definition_legacy> nicename("HUD") hud_block;
 		};
 
-		struct nicename("Traits When Inactive") s_traits_when_inactive_definition
+		struct nicename("Traits When Inactive") s_traits_when_inactive_definition_legacy
 		{
-			struct nicename("Shields and Health") s_shields_and_health1_definition
+			struct nicename("Shields and Health") s_shields_and_health1_definition_legacy
 			{
 				enum nicename("Damage Resistance") e_damage_resistance : uint8_t
 				{
@@ -1446,7 +1446,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int8_t __unknown1;
 			};
 
-			struct nicename("Weapons and Damage") s_weapons_and_damage1_definition
+			struct nicename("Weapons and Damage") s_weapons_and_damage1_definition_legacy
 			{
 				enum nicename("Damage Modifier") e_damage_modifier : uint8_t
 				{
@@ -1562,7 +1562,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				string_id_legacy nicename("Equipment") equipment;
 			};
 
-			struct nicename("Movement") s_movement1_definition
+			struct nicename("Movement") s_movement1_definition_legacy
 			{
 				enum nicename("Player Speed") e_player_speed : uint8_t
 				{
@@ -1632,7 +1632,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int32_t nicename("Jump Height") jump_height1;
 			};
 
-			struct nicename("Appearance") s_appearance1_definition
+			struct nicename("Appearance") s_appearance1_definition_legacy
 			{
 				enum nicename("Active Camo") e_active_camo : uint8_t
 				{
@@ -1697,7 +1697,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int8_t __unknown2;
 			};
 
-			struct nicename("HUD") s_hud1_definition
+			struct nicename("HUD") s_hud1_definition_legacy
 			{
 				enum nicename("Motion Tracker Mode") e_motion_tracker_mode : uint8_t
 				{
@@ -1733,23 +1733,23 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int8_t __unknown0;
 			};
 
-			s_tag_block_legacy<s_shields_and_health1_definition> nicename("Shields and Health") shields_and_health_block;
-			s_tag_block_legacy<s_weapons_and_damage1_definition> nicename("Weapons and Damage") weapons_and_damage_block;
-			s_tag_block_legacy<s_movement1_definition> nicename("Movement") movement_block;
-			s_tag_block_legacy<s_appearance1_definition> nicename("Appearance") appearance_block;
-			s_tag_block_legacy<s_hud1_definition> nicename("HUD") hud_block;
+			s_tag_block_legacy<s_shields_and_health1_definition_legacy> nicename("Shields and Health") shields_and_health_block;
+			s_tag_block_legacy<s_weapons_and_damage1_definition_legacy> nicename("Weapons and Damage") weapons_and_damage_block;
+			s_tag_block_legacy<s_movement1_definition_legacy> nicename("Movement") movement_block;
+			s_tag_block_legacy<s_appearance1_definition_legacy> nicename("Appearance") appearance_block;
+			s_tag_block_legacy<s_hud1_definition_legacy> nicename("HUD") hud_block;
 		};
 
 		s_undefined32_legacy __unknown0;
-		s_tag_block_legacy<s_traits_when_active_definition> nicename("Traits When Active") traits_when_active_block;
-		s_tag_block_legacy<s_traits_when_inactive_definition> nicename("Traits When Inactive") traits_when_inactive_block;
+		s_tag_block_legacy<s_traits_when_active_definition_legacy> nicename("Traits When Active") traits_when_active_block;
+		s_tag_block_legacy<s_traits_when_inactive_definition_legacy> nicename("Traits When Inactive") traits_when_inactive_block;
 	};
 
-	struct nicename("Invisibility Unknown") s_invisibility_unknown_definition
+	struct nicename("Invisibility Unknown") s_invisibility_unknown_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown7_definition
+		struct nicename("Unknown") s_unknown7_definition_legacy
 		{
-			struct nicename("Unknown") s_unknown8_definition
+			struct nicename("Unknown") s_unknown8_definition_legacy
 			{
 				int8_t __unknown0;
 				int8_t __unknown1;
@@ -1757,12 +1757,12 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int8_t __unknown3;
 			};
 
-			s_tag_block_legacy<s_unknown8_definition> __unknown0;
+			s_tag_block_legacy<s_unknown8_definition_legacy> __unknown0;
 		};
 
-		struct nicename("Unknown") s_unknown9_definition
+		struct nicename("Unknown") s_unknown9_definition_legacy
 		{
-			struct nicename("Unknown") s_unknown10_definition
+			struct nicename("Unknown") s_unknown10_definition_legacy
 			{
 				int8_t __unknown0;
 				int8_t __unknown1;
@@ -1770,14 +1770,14 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 				int8_t __unknown3;
 			};
 
-			s_tag_block_legacy<s_unknown10_definition> __unknown0;
+			s_tag_block_legacy<s_unknown10_definition_legacy> __unknown0;
 		};
 
-		s_tag_block_legacy<s_unknown7_definition> __unknown0;
-		s_tag_block_legacy<s_unknown9_definition> __unknown1;
+		s_tag_block_legacy<s_unknown7_definition_legacy> __unknown0;
+		s_tag_block_legacy<s_unknown9_definition_legacy> __unknown1;
 	};
 
-	struct nicename("Jetpack") s_jetpack_definition
+	struct nicename("Jetpack") s_jetpack_definition_legacy
 	{
 		s_data_reference_legacy nicename("Function") function_data_reference;
 		float nicename("Downforce When Falling") downforce_when_falling;
@@ -1788,7 +1788,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		float nicename("Terminal Velocity Time") terminal_velocity_time;
 	};
 
-	struct nicename("Hologram Properties") s_hologram_properties_definition
+	struct nicename("Hologram Properties") s_hologram_properties_definition_legacy
 	{
 		enum nicename("Flags") b_flags3 : uint32_t /* bitfield */
 		{
@@ -1839,7 +1839,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		s_data_reference_legacy nicename("Function") function_data_reference;
 	};
 
-	struct nicename("Evade") s_evade_definition
+	struct nicename("Evade") s_evade_definition_legacy
 	{
 		string_id_legacy nicename("Forward Animation") forward_animation;
 		string_id_legacy nicename("Left Animation") left_animation;
@@ -1847,7 +1847,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 		string_id_legacy nicename("Right Animation") right_animation;
 	};
 
-	struct nicename("Sprint") s_sprint_definition
+	struct nicename("Sprint") s_sprint_definition_legacy
 	{
 		int8_t __unknown0;
 		int8_t __unknown1;
@@ -1881,24 +1881,24 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	s_tag_reference_legacy nicename("Crate Object") crate_object_reference;
 	s_tag_reference_legacy nicename("Collision Damage") collision_damage_reference;
 	s_tag_reference_legacy nicename("Brittle Collision Damage") brittle_collision_damage_reference;
-	s_tag_block_legacy<s_early_mover_properties_definition> nicename("Early Mover Properties") early_mover_properties_block;
+	s_tag_block_legacy<s_early_mover_properties_definition_legacy> nicename("Early Mover Properties") early_mover_properties_block;
 	s_tag_reference_legacy nicename("Creation Effect") creation_effect_reference;
 	s_tag_reference_legacy nicename("Material Effects") material_effects_reference;
 	s_tag_reference_legacy nicename("Melee Impact") melee_impact_reference;
-	s_tag_block_legacy<s_ai_properties_definition> nicename("AI Properties") ai_properties_block;
-	s_tag_block_legacy<s_functions_definition> nicename("Functions") functions_block;
-	s_tag_block_legacy<s_function_related_definition> nicename("Function Related") function_related_block;
+	s_tag_block_legacy<s_ai_properties_definition_legacy> nicename("AI Properties") ai_properties_block;
+	s_tag_block_legacy<s_functions_definition_legacy> nicename("Functions") functions_block;
+	s_tag_block_legacy<s_function_related_definition_legacy> nicename("Function Related") function_related_block;
 	int16_t nicename("HUD Text Message Index") hud_text_message_index;
 	int16_t __unknown2;
-	s_tag_block_legacy<s_attachments_definition> nicename("Attachments") attachments_block;
-	s_tag_block_legacy<s_material_responses_definition> nicename("Material Responses") material_responses_block;
-	s_tag_block_legacy<s_jet_wash_definition> nicename("Jet Wash") jet_wash_block;
-	s_tag_block_legacy<s_widgets_definition> nicename("Widgets") widgets_block;
-	s_tag_block_legacy<s_change_color_definition> nicename("Change Color") change_color_block;
-	s_tag_block_legacy<s_predicted_resources_definition> nicename("Predicted Resources") predicted_resources_block;
-	s_tag_block_legacy<s_multiplayer_object_properties_definition> nicename("Multiplayer Object Properties") multiplayer_object_properties_block;
+	s_tag_block_legacy<s_attachments_definition_legacy> nicename("Attachments") attachments_block;
+	s_tag_block_legacy<s_material_responses_definition_legacy> nicename("Material Responses") material_responses_block;
+	s_tag_block_legacy<s_jet_wash_definition_legacy> nicename("Jet Wash") jet_wash_block;
+	s_tag_block_legacy<s_widgets_definition_legacy> nicename("Widgets") widgets_block;
+	s_tag_block_legacy<s_change_color_definition_legacy> nicename("Change Color") change_color_block;
+	s_tag_block_legacy<s_predicted_resources_definition_legacy> nicename("Predicted Resources") predicted_resources_block;
+	s_tag_block_legacy<s_multiplayer_object_properties_definition_legacy> nicename("Multiplayer Object Properties") multiplayer_object_properties_block;
 	s_tag_reference_legacy nicename("Simulation Interpolation") simulation_interpolation_reference;
-	s_tag_block_legacy<s_unknown2_definition> __unknown3;
+	s_tag_block_legacy<s_unknown2_definition_legacy> __unknown3;
 	// ITEM : 
 	b_flags1 nicename("Flags") flags1;
 	int16_t nicename("OLD Message Index") old_message_index;
@@ -1915,7 +1915,7 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	string_id_legacy nicename("All Weapons Empty Message") all_weapons_empty_message;
 	string_id_legacy nicename("Overheated Message") overheated_message;
 	s_tag_reference_legacy nicename("Collision Sound") collision_sound_reference;
-	s_tag_block_legacy<s_predicted_bitmaps_definition> nicename("Predicted Bitmaps") predicted_bitmaps_block;
+	s_tag_block_legacy<s_predicted_bitmaps_definition_legacy> nicename("Predicted Bitmaps") predicted_bitmaps_block;
 	s_tag_reference_legacy nicename("Detonation Damage Effect") detonation_damage_effect_reference;
 	float nicename("Detonation Delay min") detonation_delay_min;
 	float nicename("Detonation Delay max") detonation_delay_max;
@@ -1955,21 +1955,21 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	s_undefined32_legacy __unknown8;
 	float __unknown9;
 	string_id_legacy __unknown10;
-	s_tag_block_legacy<s_equipment_camera_definition> nicename("Equipment Camera") equipment_camera_block;
-	s_tag_block_legacy<s_powerup_definition> nicename("Powerup") powerup_block;
-	s_tag_block_legacy<s_object_creation_definition> nicename("Object Creation") object_creation_block;
-	s_tag_block_legacy<s_destruction_definition> nicename("Destruction") destruction_block;
-	s_tag_block_legacy<s_radar_manipulation_definition> nicename("Radar Manipulation") radar_manipulation_block;
+	s_tag_block_legacy<s_equipment_camera_definition_legacy> nicename("Equipment Camera") equipment_camera_block;
+	s_tag_block_legacy<s_powerup_definition_legacy> nicename("Powerup") powerup_block;
+	s_tag_block_legacy<s_object_creation_definition_legacy> nicename("Object Creation") object_creation_block;
+	s_tag_block_legacy<s_destruction_definition_legacy> nicename("Destruction") destruction_block;
+	s_tag_block_legacy<s_radar_manipulation_definition_legacy> nicename("Radar Manipulation") radar_manipulation_block;
 	s_undefined32_legacy __unknown11;
 	s_undefined32_legacy __unknown12;
 	s_undefined32_legacy __unknown13;
-	s_tag_block_legacy<s_armor_lockup_definition> nicename("Armor Lockup") armor_lockup_block;
-	s_tag_block_legacy<s_regenerator_definition> nicename("Regenerator") regenerator_block;
+	s_tag_block_legacy<s_armor_lockup_definition_legacy> nicename("Armor Lockup") armor_lockup_block;
+	s_tag_block_legacy<s_regenerator_definition_legacy> nicename("Regenerator") regenerator_block;
 	s_undefined32_legacy __unknown14;
 	s_undefined32_legacy __unknown15;
 	s_undefined32_legacy __unknown16;
-	s_tag_block_legacy<s_runtime_definition> nicename("Runtime") runtime_block;
-	s_tag_block_legacy<s_invisibility_unknown_definition> nicename("Invisibility Unknown") invisibility_unknown_block;
+	s_tag_block_legacy<s_runtime_definition_legacy> nicename("Runtime") runtime_block;
+	s_tag_block_legacy<s_invisibility_unknown_definition_legacy> nicename("Invisibility Unknown") invisibility_unknown_block;
 	s_undefined32_legacy __unknown17;
 	s_undefined32_legacy __unknown18;
 	s_undefined32_legacy __unknown19;
@@ -1991,16 +1991,16 @@ struct nicename("equipment") tag_group('eqip') s_equipment_definition
 	s_undefined32_legacy __unknown35;
 	s_undefined32_legacy __unknown36;
 	s_undefined32_legacy __unknown37;
-	s_tag_block_legacy<s_jetpack_definition> nicename("Jetpack") jetpack_block;
-	s_tag_block_legacy<s_hologram_properties_definition> nicename("Hologram Properties") hologram_properties_block;
+	s_tag_block_legacy<s_jetpack_definition_legacy> nicename("Jetpack") jetpack_block;
+	s_tag_block_legacy<s_hologram_properties_definition_legacy> nicename("Hologram Properties") hologram_properties_block;
 	s_undefined32_legacy __unknown38;
 	s_undefined32_legacy __unknown39;
 	s_undefined32_legacy __unknown40;
-	s_tag_block_legacy<s_evade_definition> nicename("Evade") evade_block;
+	s_tag_block_legacy<s_evade_definition_legacy> nicename("Evade") evade_block;
 	s_undefined32_legacy __unknown41;
 	s_undefined32_legacy __unknown42;
 	s_undefined32_legacy __unknown43;
-	s_tag_block_legacy<s_sprint_definition> nicename("Sprint") sprint_block;
+	s_tag_block_legacy<s_sprint_definition_legacy> nicename("Sprint") sprint_block;
 	e_damage_reporting_type nicename("Damage Reporting Type") damage_reporting_type;
 	int8_t __unknown44;
 	int8_t __unknown45;

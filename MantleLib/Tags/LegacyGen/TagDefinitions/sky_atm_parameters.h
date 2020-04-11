@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("sky_atm_parameters") tag_group('skya') s_sky_atm_parameters_definition
+struct nicename("sky_atm_parameters") tag_group('skya') s_sky_atm_parameters_definition_legacy
 {
-	struct nicename("Atmosphere Properties") s_atmosphere_properties_definition
+	struct nicename("Atmosphere Properties") s_atmosphere_properties_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int16_t __unknown0;
@@ -39,7 +39,7 @@ struct nicename("sky_atm_parameters") tag_group('skya') s_sky_atm_parameters_def
 		s_undefined32_legacy __unknown26;
 	};
 
-	struct nicename("Underwater") s_underwater_definition
+	struct nicename("Underwater") s_underwater_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_colorf_legacy nicename("Color") color;
@@ -56,7 +56,7 @@ struct nicename("sky_atm_parameters") tag_group('skya') s_sky_atm_parameters_def
 	int8_t __unknown7;
 	int8_t __unknown8;
 	int8_t __unknown9;
-	s_tag_block_legacy<s_atmosphere_properties_definition> nicename("Atmosphere Properties") atmosphere_properties_block;
-	s_tag_block_legacy<s_underwater_definition> nicename("Underwater") underwater_block;
+	s_tag_block_legacy<s_atmosphere_properties_definition_legacy> nicename("Atmosphere Properties") atmosphere_properties_block;
+	s_tag_block_legacy<s_underwater_definition_legacy> nicename("Underwater") underwater_block;
 };
 

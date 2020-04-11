@@ -1,20 +1,20 @@
 #pragma once
 
-struct nicename("cinematic") tag_group('cine') s_cinematic_definition
+struct nicename("cinematic") tag_group('cine') s_cinematic_definition_legacy
 {
-	struct nicename("Scene Unknown") s_scene_unknown_definition
+	struct nicename("Scene Unknown") s_scene_unknown_definition_legacy
 	{
 		int32_t __unknown0;
 	};
 
-	struct nicename("Cinematic Scenes") s_cinematic_scenes_definition
+	struct nicename("Cinematic Scenes") s_cinematic_scenes_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Scene") scene_reference;
 	};
 
 	int32_t __unknown0;
 	int32_t __unknown1;
-	s_tag_block_legacy<s_scene_unknown_definition> nicename("Scene Unknown") scene_unknown_block;
+	s_tag_block_legacy<s_scene_unknown_definition_legacy> nicename("Scene Unknown") scene_unknown_block;
 	s_tag_reference_legacy nicename("Import Scenario") import_scenario_reference;
 	int32_t __unknown2;
 	string_id_legacy nicename("Name") name;
@@ -34,7 +34,7 @@ struct nicename("cinematic") tag_group('cine') s_cinematic_definition
 	s_undefined32_legacy __unknown15;
 	s_tag_reference_legacy __unknown16;
 	s_data_reference_legacy nicename("Import Script") import_script_data_reference;
-	s_tag_block_legacy<s_cinematic_scenes_definition> nicename("Cinematic Scenes") cinematic_scenes_block;
+	s_tag_block_legacy<s_cinematic_scenes_definition_legacy> nicename("Cinematic Scenes") cinematic_scenes_block;
 	s_data_reference_legacy nicename("Import Script") import_script1_data_reference;
 	s_data_reference_legacy nicename("Import Script") import_script2_data_reference;
 };

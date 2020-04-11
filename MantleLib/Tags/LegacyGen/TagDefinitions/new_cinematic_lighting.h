@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("new_cinematic_lighting") tag_group('nclt') s_new_cinematic_lighting_definition
+struct nicename("new_cinematic_lighting") tag_group('nclt') s_new_cinematic_lighting_definition_legacy
 {
-	struct nicename("Unknown 0") s_unknown_0_definition
+	struct nicename("Unknown 0") s_unknown_0_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -30,6 +30,6 @@ struct nicename("new_cinematic_lighting") tag_group('nclt') s_new_cinematic_ligh
 	s_undefined32_legacy __unknown15;
 	s_undefined32_legacy __unknown16;
 	s_undefined32_legacy __unknown17;
-	s_tag_block_legacy<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
+	s_tag_block_legacy<s_unknown_0_definition_legacy> nicename("Unknown 0") unknown_0_block;
 };
 

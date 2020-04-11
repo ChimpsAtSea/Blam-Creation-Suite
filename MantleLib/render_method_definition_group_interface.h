@@ -1,6 +1,6 @@
 #pragma once
 class c_render_method_definition_group_interface :
-	public c_tag_group_interface
+	public c_legacy_tag_group_interface
 {
 public:
 	friend class c_cache_file;

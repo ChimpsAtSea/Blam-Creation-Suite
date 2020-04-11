@@ -6,7 +6,7 @@ c_virtual_resource_manager::c_virtual_resource_manager(c_cache_file& cache_file)
 	REFERENCE_ASSERT(cache_file);
 }
 
-c_virtual_bitmap_resource* c_virtual_resource_manager::load_bitmap_resource(v_tag_interface_legacy<s_bitmap_definition>* bitmap_tag_interface)
+c_virtual_bitmap_resource* c_virtual_resource_manager::load_bitmap_resource(v_tag_interface_legacy<s_bitmap_definition_legacy>* bitmap_tag_interface)
 {
 	if (bitmap_tag_interface == nullptr)
 	{

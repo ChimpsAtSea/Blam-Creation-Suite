@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("style") tag_group('styl') s_style_definition
+struct nicename("style") tag_group('styl') s_style_definition_legacy
 {
 	enum nicename("Combat Status Decay Options") e_combat_status_decay_options : uint16_t
 	{
@@ -302,7 +302,7 @@ struct nicename("style") tag_group('styl') s_style_definition
 		/*nicename("Bit 31")*/ _behaviors8_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Special Movement") s_special_movement_definition
+	struct nicename("Special Movement") s_special_movement_definition_legacy
 	{
 		enum nicename("Special Movement 1") b_special_movement_11 : uint32_t /* bitfield */
 		{
@@ -343,7 +343,7 @@ struct nicename("style") tag_group('styl') s_style_definition
 		b_special_movement_11 nicename("Special Movement 1") special_movement_1;
 	};
 
-	struct nicename("Behavior List") s_behavior_list_definition
+	struct nicename("Behavior List") s_behavior_list_definition_legacy
 	{
 		char nicename("Behavior Name") behavior_name[32];
 	};
@@ -360,7 +360,7 @@ struct nicename("style") tag_group('styl') s_style_definition
 	b_behaviors6 nicename("Behaviors6") behaviors6;
 	b_behaviors7 nicename("Behaviors7") behaviors7;
 	b_behaviors8 nicename("Behaviors8") behaviors8;
-	s_tag_block_legacy<s_special_movement_definition> nicename("Special Movement") special_movement_block;
-	s_tag_block_legacy<s_behavior_list_definition> nicename("Behavior List") behavior_list_block;
+	s_tag_block_legacy<s_special_movement_definition_legacy> nicename("Special Movement") special_movement_block;
+	s_tag_block_legacy<s_behavior_list_definition_legacy> nicename("Behavior List") behavior_list_block;
 };
 

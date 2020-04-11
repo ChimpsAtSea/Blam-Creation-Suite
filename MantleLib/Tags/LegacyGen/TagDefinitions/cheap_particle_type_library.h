@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("cheap_particle_type_library") tag_group('cptl') s_cheap_particle_type_library_definition
+struct nicename("cheap_particle_type_library") tag_group('cptl') s_cheap_particle_type_library_definition_legacy
 {
-	struct nicename("Particle Type Library") s_particle_type_library_definition
+	struct nicename("Particle Type Library") s_particle_type_library_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		float __unknown0;
@@ -24,13 +24,13 @@ struct nicename("cheap_particle_type_library") tag_group('cptl') s_cheap_particl
 		s_undefined32_legacy __unknown12;
 	};
 
-	struct nicename("Bitmaps") s_bitmaps_definition
+	struct nicename("Bitmaps") s_bitmaps_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Bitmap") bitmap_reference;
 	};
 
-	s_tag_block_legacy<s_particle_type_library_definition> nicename("Particle Type Library") particle_type_library_block;
-	s_tag_block_legacy<s_bitmaps_definition> nicename("Bitmaps") bitmaps_block;
+	s_tag_block_legacy<s_particle_type_library_definition_legacy> nicename("Particle Type Library") particle_type_library_block;
+	s_tag_block_legacy<s_bitmaps_definition_legacy> nicename("Bitmaps") bitmaps_block;
 	s_tag_reference_legacy nicename("Random Map") random_map_reference;
 	s_tag_reference_legacy nicename("Turbulence Map") turbulence_map_reference;
 	float __unknown0;

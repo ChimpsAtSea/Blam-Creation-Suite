@@ -1,15 +1,15 @@
 #pragma once
 
-struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure_bsp_definition
+struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure_bsp_definition_legacy
 {
-	struct nicename("Structure Seams") s_structure_seams_definition
+	struct nicename("Structure Seams") s_structure_seams_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown_definition
+		struct nicename("Unknown") s_unknown_definition_legacy
 		{
 			int32_t __unknown0;
 		};
 
-		struct nicename("Seam Clusters") s_seam_clusters_definition
+		struct nicename("Seam Clusters") s_seam_clusters_definition_legacy
 		{
 			int32_t nicename("Cluster Index") cluster_index;
 			float nicename("Centroid X") centroid_x;
@@ -21,11 +21,11 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		uint32_t __unknown1;
 		uint32_t __unknown2;
 		uint32_t __unknown3;
-		s_tag_block_legacy<s_unknown_definition> __unknown4;
-		s_tag_block_legacy<s_seam_clusters_definition> nicename("Seam Clusters") seam_clusters_block;
+		s_tag_block_legacy<s_unknown_definition_legacy> __unknown4;
+		s_tag_block_legacy<s_seam_clusters_definition_legacy> nicename("Seam Clusters") seam_clusters_block;
 	};
 
-	struct nicename("Collision Materials") s_collision_materials_definition
+	struct nicename("Collision Materials") s_collision_materials_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Shader") shader_reference;
 		int16_t nicename("Global Material Index") global_material_index;
@@ -34,12 +34,12 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		int16_t __unknown0;
 	};
 
-	struct nicename("Unknown 2") s_unknown_2_definition
+	struct nicename("Unknown 2") s_unknown_2_definition_legacy
 	{
 		uint8_t __unknown0;
 	};
 
-	struct nicename("Unknown 3") s_unknown_3_definition
+	struct nicename("Unknown 3") s_unknown_3_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
@@ -49,7 +49,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float __unknown5;
 	};
 
-	struct nicename("Cluster Portals") s_cluster_portals_definition
+	struct nicename("Cluster Portals") s_cluster_portals_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint32_t /* bitfield */
 		{
@@ -87,7 +87,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Vertices") s_vertices_definition
+		struct nicename("Vertices") s_vertices_definition_legacy
 		{
 			float nicename("X") x;
 			float nicename("Y") y;
@@ -112,10 +112,10 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float nicename("Centroid Z") centroid_z;
 		float nicename("Bounding Radius") bounding_radius;
 		b_flags nicename("Flags") flags;
-		s_tag_block_legacy<s_vertices_definition> nicename("Vertices") vertices_block;
+		s_tag_block_legacy<s_vertices_definition_legacy> nicename("Vertices") vertices_block;
 	};
 
-	struct nicename("Detail Objects") s_detail_objects_definition
+	struct nicename("Detail Objects") s_detail_objects_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -132,21 +132,21 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		s_undefined32_legacy __unknown12;
 	};
 
-	struct nicename("Clusters") s_clusters_definition
+	struct nicename("Clusters") s_clusters_definition_legacy
 	{
-		struct nicename("Portals") s_portals_definition
+		struct nicename("Portals") s_portals_definition_legacy
 		{
 			int16_t nicename("Portal Index") portal_index;
 		};
 
-		struct nicename("Seams") s_seams_definition
+		struct nicename("Seams") s_seams_definition_legacy
 		{
 			int8_t nicename("Seam Index") seam_index;
 		};
 
-		struct nicename("Decorator Grids") s_decorator_grids_definition
+		struct nicename("Decorator Grids") s_decorator_grids_definition_legacy
 		{
-			struct nicename("Unknown") s_unknown1_definition
+			struct nicename("Unknown") s_unknown1_definition_legacy
 			{
 				s_undefined32_legacy __unknown0;
 				s_undefined32_legacy __unknown1;
@@ -166,17 +166,17 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			float nicename("Bounding Sphere X") bounding_sphere_x;
 			float nicename("Bounding Sphere Y") bounding_sphere_y;
 			float nicename("Bounding Sphere Z") bounding_sphere_z;
-			s_tag_block_legacy<s_unknown1_definition> __unknown1;
+			s_tag_block_legacy<s_unknown1_definition_legacy> __unknown1;
 		};
 
-		struct nicename("Unknown 10") s_unknown_10_definition
+		struct nicename("Unknown 10") s_unknown_10_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 		};
 
-		struct nicename("Unknown 11") s_unknown_11_definition
+		struct nicename("Unknown 11") s_unknown_11_definition_legacy
 		{
-			struct nicename("Unknown 12") s_unknown_12_definition
+			struct nicename("Unknown 12") s_unknown_12_definition_legacy
 			{
 				float __unknown0;
 				float __unknown1;
@@ -186,7 +186,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 
 			int16_t __unknown0;
 			int16_t __unknown1;
-			s_tag_block_legacy<s_unknown_12_definition> nicename("Unknown 12") unknown_12_block;
+			s_tag_block_legacy<s_unknown_12_definition_legacy> nicename("Unknown 12") unknown_12_block;
 		};
 
 		float nicename("Bounds X min") bounds_x_min;
@@ -210,22 +210,22 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		int16_t __unknown10;
 		int16_t __unknown11;
 		s_undefined32_legacy __unknown12;
-		s_tag_block_legacy<s_portals_definition> nicename("Portals") portals_block;
+		s_tag_block_legacy<s_portals_definition_legacy> nicename("Portals") portals_block;
 		int16_t nicename("Mesh Index") mesh_index;
 		int16_t __unknown13;
-		s_tag_block_legacy<s_seams_definition> nicename("Seams") seams_block;
-		s_tag_block_legacy<s_decorator_grids_definition> nicename("Decorator Grids") decorator_grids_block;
+		s_tag_block_legacy<s_seams_definition_legacy> nicename("Seams") seams_block;
+		s_tag_block_legacy<s_decorator_grids_definition_legacy> nicename("Decorator Grids") decorator_grids_block;
 		s_undefined32_legacy __unknown14;
 		s_undefined32_legacy __unknown15;
 		s_undefined32_legacy __unknown16;
 		s_undefined32_legacy __unknown17;
 		s_undefined32_legacy __unknown18;
 		s_undefined32_legacy __unknown19;
-		s_tag_block_legacy<s_unknown_10_definition> nicename("Unknown 10") unknown_10_block;
-		s_tag_block_legacy<s_unknown_11_definition> nicename("Unknown 11") unknown_11_block;
+		s_tag_block_legacy<s_unknown_10_definition_legacy> nicename("Unknown 10") unknown_10_block;
+		s_tag_block_legacy<s_unknown_11_definition_legacy> nicename("Unknown 11") unknown_11_block;
 	};
 
-	struct nicename("Materials") s_materials_definition
+	struct nicename("Materials") s_materials_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Shader") shader_reference;
 		int32_t __unknown0;
@@ -243,12 +243,12 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		int8_t __unknown11;
 	};
 
-	struct nicename("Sky Owner Cluster") s_sky_owner_cluster_definition
+	struct nicename("Sky Owner Cluster") s_sky_owner_cluster_definition_legacy
 	{
 		int16_t nicename("Cluster Owner") cluster_owner;
 	};
 
-	struct nicename("Background Sound Environment Palette") s_background_sound_environment_palette_definition
+	struct nicename("Background Sound Environment Palette") s_background_sound_environment_palette_definition_legacy
 	{
 		enum nicename("Scale Flags") b_scale_flags : uint32_t /* bitfield */
 		{
@@ -303,7 +303,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float nicename("Interpolation Speed") interpolation_speed1;
 	};
 
-	struct nicename("Markers") s_markers_definition
+	struct nicename("Markers") s_markers_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
@@ -317,12 +317,12 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float nicename("Position z") position_z;
 	};
 
-	struct nicename("Unknown 11") s_unknown_111_definition
+	struct nicename("Unknown 11") s_unknown_111_definition_legacy
 	{
 		int16_t __unknown0;
 	};
 
-	struct nicename("Runtime Decals") s_runtime_decals_definition
+	struct nicename("Runtime Decals") s_runtime_decals_definition_legacy
 	{
 		int16_t nicename("Palette Index") palette_index;
 		int8_t nicename("Yaw") yaw;
@@ -338,7 +338,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float nicename("Scale max") scale_max;
 	};
 
-	struct nicename("Environment Object Palette") s_environment_object_palette_definition
+	struct nicename("Environment Object Palette") s_environment_object_palette_definition_legacy
 	{
 		enum nicename("Object Type") b_object_type : uint32_t /* bitfield */
 		{
@@ -381,7 +381,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		b_object_type nicename("Object Type") object_type;
 	};
 
-	struct nicename("Environment Objects") s_environment_objects_definition
+	struct nicename("Environment Objects") s_environment_objects_definition_legacy
 	{
 		char nicename("Name String") name_string[32];
 		float nicename("Rotation i") rotation_i;
@@ -400,7 +400,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		int32_t __unknown1;
 	};
 
-	struct nicename("Instanced Geometry Groups") s_instanced_geometry_groups_definition
+	struct nicename("Instanced Geometry Groups") s_instanced_geometry_groups_definition_legacy
 	{
 		enum b_unknown2 : uint32_t /* bitfield */
 		{
@@ -438,18 +438,18 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			/*nicename("Bit 31")*/ _unknown2_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Members") s_members_definition
+		struct nicename("Members") s_members_definition_legacy
 		{
 			int16_t nicename("Sub Group Index") sub_group_index;
 		};
 
 		b_unknown2 __unknown0;
-		s_tag_block_legacy<s_members_definition> nicename("Members") members_block;
+		s_tag_block_legacy<s_members_definition_legacy> nicename("Members") members_block;
 	};
 
-	struct nicename("Instanced Geometry Sub Groups") s_instanced_geometry_sub_groups_definition
+	struct nicename("Instanced Geometry Sub Groups") s_instanced_geometry_sub_groups_definition_legacy
 	{
-		struct nicename("Members") s_members1_definition
+		struct nicename("Members") s_members1_definition_legacy
 		{
 			int16_t nicename("Name Index") name_index;
 		};
@@ -462,20 +462,20 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		int16_t __unknown2;
 		float __unknown3;
 		float __unknown4;
-		s_tag_block_legacy<s_members1_definition> nicename("Members") members_block;
+		s_tag_block_legacy<s_members1_definition_legacy> nicename("Members") members_block;
 	};
 
-	struct nicename("Instanced Geometry Instances") s_instanced_geometry_instances_definition
+	struct nicename("Instanced Geometry Instances") s_instanced_geometry_instances_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 	};
 
-	struct nicename("Decorators") s_decorators_definition
+	struct nicename("Decorators") s_decorators_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Decorator") decorator_reference;
 	};
 
-	struct nicename("Meshes") s_meshes_definition
+	struct nicename("Meshes") s_meshes_definition_legacy
 	{
 		enum nicename("Vertex Type") e_vertex_type : uint8_t
 		{
@@ -550,7 +550,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
 		};
 
-		struct nicename("Parts") s_parts_definition
+		struct nicename("Parts") s_parts_definition_legacy
 		{
 			int16_t nicename("Material Index") material_index;
 			int16_t nicename("'Unknown Nodey' Index") unknown_nodey_index;
@@ -566,7 +566,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			int16_t __unknown3;
 		};
 
-		struct nicename("Subparts") s_subparts_definition
+		struct nicename("Subparts") s_subparts_definition_legacy
 		{
 			int32_t nicename("Index Buffer Start") index_buffer_start;
 			int32_t nicename("Index Buffer Count") index_buffer_count;
@@ -575,25 +575,25 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			int32_t __unknown0;
 		};
 
-		struct nicename("Instanced Geometry Indices") s_instanced_geometry_indices_definition
+		struct nicename("Instanced Geometry Indices") s_instanced_geometry_indices_definition_legacy
 		{
-			struct nicename("Instanced Geometry Mesh Contents") s_instanced_geometry_mesh_contents_definition
+			struct nicename("Instanced Geometry Mesh Contents") s_instanced_geometry_mesh_contents_definition_legacy
 			{
 				int16_t nicename("Instanced Geometry Index") instanced_geometry_index;
 			};
 
 			int16_t nicename("Instanced Geometry Mesh Index 1") instanced_geometry_mesh_index_1;
 			int16_t nicename("Instanced Geometry Mesh Index 2") instanced_geometry_mesh_index_2;
-			s_tag_block_legacy<s_instanced_geometry_mesh_contents_definition> nicename("Instanced Geometry Mesh Contents") instanced_geometry_mesh_contents_block;
+			s_tag_block_legacy<s_instanced_geometry_mesh_contents_definition_legacy> nicename("Instanced Geometry Mesh Contents") instanced_geometry_mesh_contents_block;
 		};
 
-		struct nicename("Unknown Water") s_unknown_water_definition
+		struct nicename("Unknown Water") s_unknown_water_definition_legacy
 		{
 			int16_t __unknown0;
 		};
 
-		s_tag_block_legacy<s_parts_definition> nicename("Parts") parts_block;
-		s_tag_block_legacy<s_subparts_definition> nicename("Subparts") subparts_block;
+		s_tag_block_legacy<s_parts_definition_legacy> nicename("Parts") parts_block;
+		s_tag_block_legacy<s_subparts_definition_legacy> nicename("Subparts") subparts_block;
 		int16_t nicename("Vertex Buffer Index 1") vertex_buffer_index_1;
 		int16_t nicename("Vertex Buffer Index 2") vertex_buffer_index_2;
 		int16_t nicename("Vertex Buffer Index 3") vertex_buffer_index_3;
@@ -611,15 +611,15 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		int8_t __unknown0;
 		e_index_buffer_type nicename("Index Buffer Type") index_buffer_type;
 		int8_t __unknown1;
-		s_tag_block_legacy<s_instanced_geometry_indices_definition> nicename("Instanced Geometry Indices") instanced_geometry_indices_block;
-		s_tag_block_legacy<s_unknown_water_definition> nicename("Unknown Water") unknown_water_block;
+		s_tag_block_legacy<s_instanced_geometry_indices_definition_legacy> nicename("Instanced Geometry Indices") instanced_geometry_indices_block;
+		s_tag_block_legacy<s_unknown_water_definition_legacy> nicename("Unknown Water") unknown_water_block;
 		s_undefined32_legacy __unknown2;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 	};
 
-	struct nicename("Compression Info") s_compression_info_definition
+	struct nicename("Compression Info") s_compression_info_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
@@ -637,7 +637,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		s_undefined32_legacy __unknown3;
 	};
 
-	struct nicename("Unknown Nodey") s_unknown_nodey_definition
+	struct nicename("Unknown Nodey") s_unknown_nodey_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
@@ -656,29 +656,29 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float __unknown10;
 	};
 
-	struct nicename("Unknown 30") s_unknown_30_definition
+	struct nicename("Unknown 30") s_unknown_30_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
 		s_data_reference_legacy __unknown2;
 	};
 
-	struct nicename("Node Maps") s_node_maps_definition
+	struct nicename("Node Maps") s_node_maps_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown2_definition
+		struct nicename("Unknown") s_unknown2_definition_legacy
 		{
 			uint8_t nicename("Node Index") node_index;
 		};
 
-		s_tag_block_legacy<s_unknown2_definition> __unknown0;
+		s_tag_block_legacy<s_unknown2_definition_legacy> __unknown0;
 	};
 
-	struct nicename("Unknown Yo") s_unknown_yo_definition
+	struct nicename("Unknown Yo") s_unknown_yo_definition_legacy
 	{
 		int16_t nicename("Unknown Index") unknown_index;
 	};
 
-	struct nicename("Water Meshes") s_water_meshes_definition
+	struct nicename("Water Meshes") s_water_meshes_definition_legacy
 	{
 		int16_t nicename("Mesh Index") mesh_index;
 		int16_t __unknown0;
@@ -690,14 +690,14 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float nicename("Z Max") z_max;
 	};
 
-	struct nicename("Unknown Compression Info") s_unknown_compression_info_definition
+	struct nicename("Unknown Compression Info") s_unknown_compression_info_definition_legacy
 	{
 		uint32_t nicename("Polyart Asset Address") polyart_asset_address;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 	};
 
-	struct nicename("Decals") s_decals_definition
+	struct nicename("Decals") s_decals_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Decal") decal_reference;
 		int16_t __unknown0;
@@ -711,7 +711,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		int16_t __unknown4;
 	};
 
-	struct nicename("Decal Properties") s_decal_properties_definition
+	struct nicename("Decal Properties") s_decal_properties_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
@@ -724,7 +724,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float nicename("Tile Y") tile_y;
 	};
 
-	struct nicename("Meshes") s_meshes1_definition
+	struct nicename("Meshes") s_meshes1_definition_legacy
 	{
 		enum nicename("Vertex Type") e_vertex_type : uint8_t
 		{
@@ -799,7 +799,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
 		};
 
-		struct nicename("Parts") s_parts1_definition
+		struct nicename("Parts") s_parts1_definition_legacy
 		{
 			int16_t nicename("Material Index") material_index;
 			int16_t nicename("'Unknown Nodey' Index") unknown_nodey_index;
@@ -815,7 +815,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			int16_t __unknown3;
 		};
 
-		struct nicename("Subparts") s_subparts1_definition
+		struct nicename("Subparts") s_subparts1_definition_legacy
 		{
 			int32_t nicename("Index Buffer Start") index_buffer_start;
 			int32_t nicename("Index Buffer Count") index_buffer_count;
@@ -824,25 +824,25 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			int32_t __unknown0;
 		};
 
-		struct nicename("Instanced Geometry Indices") s_instanced_geometry_indices1_definition
+		struct nicename("Instanced Geometry Indices") s_instanced_geometry_indices1_definition_legacy
 		{
-			struct nicename("Instanced Geometry Mesh Contents") s_instanced_geometry_mesh_contents1_definition
+			struct nicename("Instanced Geometry Mesh Contents") s_instanced_geometry_mesh_contents1_definition_legacy
 			{
 				int16_t nicename("Instanced Geometry Index") instanced_geometry_index;
 			};
 
 			int16_t nicename("Instanced Geometry Mesh Index 1") instanced_geometry_mesh_index_1;
 			int16_t nicename("Instanced Geometry Mesh Index 2") instanced_geometry_mesh_index_2;
-			s_tag_block_legacy<s_instanced_geometry_mesh_contents1_definition> nicename("Instanced Geometry Mesh Contents") instanced_geometry_mesh_contents_block;
+			s_tag_block_legacy<s_instanced_geometry_mesh_contents1_definition_legacy> nicename("Instanced Geometry Mesh Contents") instanced_geometry_mesh_contents_block;
 		};
 
-		struct nicename("Unknown Water") s_unknown_water1_definition
+		struct nicename("Unknown Water") s_unknown_water1_definition_legacy
 		{
 			int16_t __unknown0;
 		};
 
-		s_tag_block_legacy<s_parts1_definition> nicename("Parts") parts_block;
-		s_tag_block_legacy<s_subparts1_definition> nicename("Subparts") subparts_block;
+		s_tag_block_legacy<s_parts1_definition_legacy> nicename("Parts") parts_block;
+		s_tag_block_legacy<s_subparts1_definition_legacy> nicename("Subparts") subparts_block;
 		int16_t nicename("Vertex Buffer Index 1") vertex_buffer_index_1;
 		int16_t nicename("Vertex Buffer Index 2") vertex_buffer_index_2;
 		int16_t nicename("Vertex Buffer Index 3") vertex_buffer_index_3;
@@ -860,15 +860,15 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		int8_t __unknown0;
 		e_index_buffer_type nicename("Index Buffer Type") index_buffer_type;
 		int8_t __unknown1;
-		s_tag_block_legacy<s_instanced_geometry_indices1_definition> nicename("Instanced Geometry Indices") instanced_geometry_indices_block;
-		s_tag_block_legacy<s_unknown_water1_definition> nicename("Unknown Water") unknown_water_block;
+		s_tag_block_legacy<s_instanced_geometry_indices1_definition_legacy> nicename("Instanced Geometry Indices") instanced_geometry_indices_block;
+		s_tag_block_legacy<s_unknown_water1_definition_legacy> nicename("Unknown Water") unknown_water_block;
 		s_undefined32_legacy __unknown2;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 	};
 
-	struct nicename("Compression Info") s_compression_info1_definition
+	struct nicename("Compression Info") s_compression_info1_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
@@ -886,7 +886,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		s_undefined32_legacy __unknown3;
 	};
 
-	struct nicename("Unknown Nodey") s_unknown_nodey1_definition
+	struct nicename("Unknown Nodey") s_unknown_nodey1_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
@@ -905,29 +905,29 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float __unknown10;
 	};
 
-	struct nicename("Unknown 30") s_unknown_301_definition
+	struct nicename("Unknown 30") s_unknown_301_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
 		s_data_reference_legacy __unknown2;
 	};
 
-	struct nicename("Node Maps") s_node_maps1_definition
+	struct nicename("Node Maps") s_node_maps1_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown3_definition
+		struct nicename("Unknown") s_unknown3_definition_legacy
 		{
 			uint8_t nicename("Node Index") node_index;
 		};
 
-		s_tag_block_legacy<s_unknown3_definition> __unknown0;
+		s_tag_block_legacy<s_unknown3_definition_legacy> __unknown0;
 	};
 
-	struct nicename("Unknown Yo") s_unknown_yo1_definition
+	struct nicename("Unknown Yo") s_unknown_yo1_definition_legacy
 	{
 		int16_t nicename("Unknown Index") unknown_index;
 	};
 
-	struct nicename("Water Meshes") s_water_meshes1_definition
+	struct nicename("Water Meshes") s_water_meshes1_definition_legacy
 	{
 		int16_t nicename("Mesh Index") mesh_index;
 		int16_t __unknown0;
@@ -939,32 +939,32 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float nicename("Z Max") z_max;
 	};
 
-	struct nicename("Unknown Compression Info") s_unknown_compression_info1_definition
+	struct nicename("Unknown Compression Info") s_unknown_compression_info1_definition_legacy
 	{
 		uint32_t nicename("Polyart Asset Address") polyart_asset_address;
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
 	};
 
-	struct nicename("Unknown Sound Clusters A") s_unknown_sound_clusters_a_definition
+	struct nicename("Unknown Sound Clusters A") s_unknown_sound_clusters_a_definition_legacy
 	{
-		struct nicename("Portal Designators") s_portal_designators_definition
+		struct nicename("Portal Designators") s_portal_designators_definition_legacy
 		{
 			int16_t nicename("Portal Designator") portal_designator;
 		};
 
-		struct nicename("Interior Cluster Indices") s_interior_cluster_indices_definition
+		struct nicename("Interior Cluster Indices") s_interior_cluster_indices_definition_legacy
 		{
 			int16_t nicename("Interior Cluster Index") interior_cluster_index;
 		};
 
 		int16_t nicename("Background Sound Environment Index") background_sound_environment_index;
 		int16_t __unknown0;
-		s_tag_block_legacy<s_portal_designators_definition> nicename("Portal Designators") portal_designators_block;
-		s_tag_block_legacy<s_interior_cluster_indices_definition> nicename("Interior Cluster Indices") interior_cluster_indices_block;
+		s_tag_block_legacy<s_portal_designators_definition_legacy> nicename("Portal Designators") portal_designators_block;
+		s_tag_block_legacy<s_interior_cluster_indices_definition_legacy> nicename("Interior Cluster Indices") interior_cluster_indices_block;
 	};
 
-	struct nicename("Transparent Planes") s_transparent_planes_definition
+	struct nicename("Transparent Planes") s_transparent_planes_definition_legacy
 	{
 		int16_t nicename("Mesh Index") mesh_index;
 		int16_t nicename("Part Index") part_index;
@@ -974,9 +974,9 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float nicename("Plane d") plane_d;
 	};
 
-	struct nicename("Collision MOPP Codes") s_collision_mopp_codes_definition
+	struct nicename("Collision MOPP Codes") s_collision_mopp_codes_definition_legacy
 	{
-		struct nicename("Data") s_data_definition
+		struct nicename("Data") s_data_definition_legacy
 		{
 			uint8_t nicename("Data Byte") data_byte;
 		};
@@ -1002,13 +1002,13 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
-		s_tag_block_legacy<s_data_definition> nicename("Data") data_block;
+		s_tag_block_legacy<s_data_definition_legacy> nicename("Data") data_block;
 		s_undefined32_legacy __unknown12;
 	};
 
-	struct nicename("Breakable Surface MOPP Codes") s_breakable_surface_mopp_codes_definition
+	struct nicename("Breakable Surface MOPP Codes") s_breakable_surface_mopp_codes_definition_legacy
 	{
-		struct nicename("Data") s_data1_definition
+		struct nicename("Data") s_data1_definition_legacy
 		{
 			uint8_t nicename("Data Byte") data_byte;
 		};
@@ -1034,11 +1034,11 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		s_undefined32_legacy __unknown9;
 		s_undefined32_legacy __unknown10;
 		s_undefined32_legacy __unknown11;
-		s_tag_block_legacy<s_data1_definition> nicename("Data") data_block;
+		s_tag_block_legacy<s_data1_definition_legacy> nicename("Data") data_block;
 		s_undefined32_legacy __unknown12;
 	};
 
-	struct nicename("Breakable Surface Key Table") s_breakable_surface_key_table_definition
+	struct nicename("Breakable Surface Key Table") s_breakable_surface_key_table_definition_legacy
 	{
 		int16_t nicename("Instanced Geometry Index") instanced_geometry_index;
 		int8_t nicename("Breakable Surface Index") breakable_surface_index;
@@ -1052,7 +1052,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float nicename("z1") z1;
 	};
 
-	struct nicename("Meshes") s_meshes2_definition
+	struct nicename("Meshes") s_meshes2_definition_legacy
 	{
 		enum nicename("Vertex Type") e_vertex_type : uint8_t
 		{
@@ -1127,7 +1127,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			/*nicename("Bit 15")*/ _flags_bit_15 = 1ui16 << 15ui16,
 		};
 
-		struct nicename("Parts") s_parts2_definition
+		struct nicename("Parts") s_parts2_definition_legacy
 		{
 			int16_t nicename("Material Index") material_index;
 			int16_t nicename("'Unknown Nodey' Index") unknown_nodey_index;
@@ -1143,7 +1143,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			int16_t __unknown3;
 		};
 
-		struct nicename("Subparts") s_subparts2_definition
+		struct nicename("Subparts") s_subparts2_definition_legacy
 		{
 			int32_t nicename("Index Buffer Start") index_buffer_start;
 			int32_t nicename("Index Buffer Count") index_buffer_count;
@@ -1152,25 +1152,25 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 			int32_t __unknown0;
 		};
 
-		struct nicename("Instanced Geometry Indices") s_instanced_geometry_indices2_definition
+		struct nicename("Instanced Geometry Indices") s_instanced_geometry_indices2_definition_legacy
 		{
-			struct nicename("Instanced Geometry Mesh Contents") s_instanced_geometry_mesh_contents2_definition
+			struct nicename("Instanced Geometry Mesh Contents") s_instanced_geometry_mesh_contents2_definition_legacy
 			{
 				int16_t nicename("Instanced Geometry Index") instanced_geometry_index;
 			};
 
 			int16_t nicename("Instanced Geometry Mesh Index 1") instanced_geometry_mesh_index_1;
 			int16_t nicename("Instanced Geometry Mesh Index 2") instanced_geometry_mesh_index_2;
-			s_tag_block_legacy<s_instanced_geometry_mesh_contents2_definition> nicename("Instanced Geometry Mesh Contents") instanced_geometry_mesh_contents_block;
+			s_tag_block_legacy<s_instanced_geometry_mesh_contents2_definition_legacy> nicename("Instanced Geometry Mesh Contents") instanced_geometry_mesh_contents_block;
 		};
 
-		struct nicename("Unknown Water") s_unknown_water2_definition
+		struct nicename("Unknown Water") s_unknown_water2_definition_legacy
 		{
 			int16_t __unknown0;
 		};
 
-		s_tag_block_legacy<s_parts2_definition> nicename("Parts") parts_block;
-		s_tag_block_legacy<s_subparts2_definition> nicename("Subparts") subparts_block;
+		s_tag_block_legacy<s_parts2_definition_legacy> nicename("Parts") parts_block;
+		s_tag_block_legacy<s_subparts2_definition_legacy> nicename("Subparts") subparts_block;
 		int16_t nicename("Vertex Buffer Index 1") vertex_buffer_index_1;
 		int16_t nicename("Vertex Buffer Index 2") vertex_buffer_index_2;
 		int16_t nicename("Vertex Buffer Index 3") vertex_buffer_index_3;
@@ -1188,15 +1188,15 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		int8_t __unknown0;
 		e_index_buffer_type nicename("Index Buffer Type") index_buffer_type;
 		int8_t __unknown1;
-		s_tag_block_legacy<s_instanced_geometry_indices2_definition> nicename("Instanced Geometry Indices") instanced_geometry_indices_block;
-		s_tag_block_legacy<s_unknown_water2_definition> nicename("Unknown Water") unknown_water_block;
+		s_tag_block_legacy<s_instanced_geometry_indices2_definition_legacy> nicename("Instanced Geometry Indices") instanced_geometry_indices_block;
+		s_tag_block_legacy<s_unknown_water2_definition_legacy> nicename("Unknown Water") unknown_water_block;
 		s_undefined32_legacy __unknown2;
 		s_undefined32_legacy __unknown3;
 		s_undefined32_legacy __unknown4;
 		s_undefined32_legacy __unknown5;
 	};
 
-	struct nicename("Compression Info") s_compression_info2_definition
+	struct nicename("Compression Info") s_compression_info2_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
@@ -1214,7 +1214,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		s_undefined32_legacy __unknown3;
 	};
 
-	struct nicename("Unknown Nodey") s_unknown_nodey2_definition
+	struct nicename("Unknown Nodey") s_unknown_nodey2_definition_legacy
 	{
 		float __unknown0;
 		float __unknown1;
@@ -1233,29 +1233,29 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float __unknown10;
 	};
 
-	struct nicename("Unknown 30") s_unknown_302_definition
+	struct nicename("Unknown 30") s_unknown_302_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
 		s_data_reference_legacy __unknown2;
 	};
 
-	struct nicename("Node Maps") s_node_maps2_definition
+	struct nicename("Node Maps") s_node_maps2_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown4_definition
+		struct nicename("Unknown") s_unknown4_definition_legacy
 		{
 			uint8_t nicename("Node Index") node_index;
 		};
 
-		s_tag_block_legacy<s_unknown4_definition> __unknown0;
+		s_tag_block_legacy<s_unknown4_definition_legacy> __unknown0;
 	};
 
-	struct nicename("Unknown Yo") s_unknown_yo2_definition
+	struct nicename("Unknown Yo") s_unknown_yo2_definition_legacy
 	{
 		int16_t nicename("Unknown Index") unknown_index;
 	};
 
-	struct nicename("Water Meshes") s_water_meshes2_definition
+	struct nicename("Water Meshes") s_water_meshes2_definition_legacy
 	{
 		int16_t nicename("Mesh Index") mesh_index;
 		int16_t __unknown0;
@@ -1267,7 +1267,7 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 		float nicename("Z Max") z_max;
 	};
 
-	struct nicename("Unknown Compression Info") s_unknown_compression_info2_definition
+	struct nicename("Unknown Compression Info") s_unknown_compression_info2_definition_legacy
 	{
 		uint32_t nicename("Polyart Asset Address") polyart_asset_address;
 		s_undefined32_legacy __unknown0;
@@ -1292,13 +1292,13 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 	int16_t __unknown14;
 	int16_t __unknown15;
 	int16_t __unknown16;
-	s_tag_block_legacy<s_structure_seams_definition> nicename("Structure Seams") structure_seams_block;
+	s_tag_block_legacy<s_structure_seams_definition_legacy> nicename("Structure Seams") structure_seams_block;
 	s_undefined32_legacy __unknown17;
 	s_undefined32_legacy __unknown18;
 	s_undefined32_legacy __unknown19;
-	s_tag_block_legacy<s_collision_materials_definition> nicename("Collision Materials") collision_materials_block;
-	s_tag_block_legacy<s_unknown_2_definition> nicename("Unknown 2") unknown_2_block;
-	s_tag_block_legacy<s_unknown_3_definition> nicename("Unknown 3") unknown_3_block;
+	s_tag_block_legacy<s_collision_materials_definition_legacy> nicename("Collision Materials") collision_materials_block;
+	s_tag_block_legacy<s_unknown_2_definition_legacy> nicename("Unknown 2") unknown_2_block;
+	s_tag_block_legacy<s_unknown_3_definition_legacy> nicename("Unknown 3") unknown_3_block;
 	s_undefined32_legacy __unknown20;
 	s_undefined32_legacy __unknown21;
 	s_undefined32_legacy __unknown22;
@@ -1340,11 +1340,11 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 	s_undefined32_legacy __unknown52;
 	s_undefined32_legacy __unknown53;
 	s_undefined32_legacy __unknown54;
-	s_tag_block_legacy<s_cluster_portals_definition> nicename("Cluster Portals") cluster_portals_block;
-	s_tag_block_legacy<s_detail_objects_definition> nicename("Detail Objects") detail_objects_block;
-	s_tag_block_legacy<s_clusters_definition> nicename("Clusters") clusters_block;
-	s_tag_block_legacy<s_materials_definition> nicename("Materials") materials_block;
-	s_tag_block_legacy<s_sky_owner_cluster_definition> nicename("Sky Owner Cluster") sky_owner_cluster_block;
+	s_tag_block_legacy<s_cluster_portals_definition_legacy> nicename("Cluster Portals") cluster_portals_block;
+	s_tag_block_legacy<s_detail_objects_definition_legacy> nicename("Detail Objects") detail_objects_block;
+	s_tag_block_legacy<s_clusters_definition_legacy> nicename("Clusters") clusters_block;
+	s_tag_block_legacy<s_materials_definition_legacy> nicename("Materials") materials_block;
+	s_tag_block_legacy<s_sky_owner_cluster_definition_legacy> nicename("Sky Owner Cluster") sky_owner_cluster_block;
 	s_undefined32_legacy __unknown55;
 	s_undefined32_legacy __unknown56;
 	s_undefined32_legacy __unknown57;
@@ -1360,16 +1360,16 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 	s_undefined32_legacy __unknown67;
 	s_undefined32_legacy __unknown68;
 	s_undefined32_legacy __unknown69;
-	s_tag_block_legacy<s_background_sound_environment_palette_definition> nicename("Background Sound Environment Palette") background_sound_environment_palette_block;
+	s_tag_block_legacy<s_background_sound_environment_palette_definition_legacy> nicename("Background Sound Environment Palette") background_sound_environment_palette_block;
 	s_data_reference_legacy __unknown70;
-	s_tag_block_legacy<s_markers_definition> nicename("Markers") markers_block;
+	s_tag_block_legacy<s_markers_definition_legacy> nicename("Markers") markers_block;
 	s_undefined32_legacy __unknown71;
 	s_undefined32_legacy __unknown72;
 	s_undefined32_legacy __unknown73;
-	s_tag_block_legacy<s_unknown_111_definition> nicename("Unknown 11") unknown_11_block;
-	s_tag_block_legacy<s_runtime_decals_definition> nicename("Runtime Decals") runtime_decals_block;
-	s_tag_block_legacy<s_environment_object_palette_definition> nicename("Environment Object Palette") environment_object_palette_block;
-	s_tag_block_legacy<s_environment_objects_definition> nicename("Environment Objects") environment_objects_block;
+	s_tag_block_legacy<s_unknown_111_definition_legacy> nicename("Unknown 11") unknown_11_block;
+	s_tag_block_legacy<s_runtime_decals_definition_legacy> nicename("Runtime Decals") runtime_decals_block;
+	s_tag_block_legacy<s_environment_object_palette_definition_legacy> nicename("Environment Object Palette") environment_object_palette_block;
+	s_tag_block_legacy<s_environment_objects_definition_legacy> nicename("Environment Objects") environment_objects_block;
 	s_undefined32_legacy __unknown74;
 	s_undefined32_legacy __unknown75;
 	s_undefined32_legacy __unknown76;
@@ -1386,26 +1386,26 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 	s_undefined32_legacy __unknown87;
 	s_undefined32_legacy __unknown88;
 	s_undefined32_legacy __unknown89;
-	s_tag_block_legacy<s_instanced_geometry_groups_definition> nicename("Instanced Geometry Groups") instanced_geometry_groups_block;
-	s_tag_block_legacy<s_instanced_geometry_sub_groups_definition> nicename("Instanced Geometry Sub Groups") instanced_geometry_sub_groups_block;
+	s_tag_block_legacy<s_instanced_geometry_groups_definition_legacy> nicename("Instanced Geometry Groups") instanced_geometry_groups_block;
+	s_tag_block_legacy<s_instanced_geometry_sub_groups_definition_legacy> nicename("Instanced Geometry Sub Groups") instanced_geometry_sub_groups_block;
 	s_undefined32_legacy __unknown90;
 	s_undefined32_legacy __unknown91;
 	s_undefined32_legacy __unknown92;
-	s_tag_block_legacy<s_instanced_geometry_instances_definition> nicename("Instanced Geometry Instances") instanced_geometry_instances_block;
+	s_tag_block_legacy<s_instanced_geometry_instances_definition_legacy> nicename("Instanced Geometry Instances") instanced_geometry_instances_block;
 	s_tag_reference_legacy nicename("Instance Geometry Impostors") instance_geometry_impostors_reference;
-	s_tag_block_legacy<s_decorators_definition> nicename("Decorators") decorators_block;
+	s_tag_block_legacy<s_decorators_definition_legacy> nicename("Decorators") decorators_block;
 	int32_t __unknown93;
-	s_tag_block_legacy<s_meshes_definition> nicename("Meshes") meshes_block;
-	s_tag_block_legacy<s_compression_info_definition> nicename("Compression Info") compression_info_block;
-	s_tag_block_legacy<s_unknown_nodey_definition> nicename("Unknown Nodey") unknown_nodey_block;
-	s_tag_block_legacy<s_unknown_30_definition> nicename("Unknown 30") unknown_30_block;
+	s_tag_block_legacy<s_meshes_definition_legacy> nicename("Meshes") meshes_block;
+	s_tag_block_legacy<s_compression_info_definition_legacy> nicename("Compression Info") compression_info_block;
+	s_tag_block_legacy<s_unknown_nodey_definition_legacy> nicename("Unknown Nodey") unknown_nodey_block;
+	s_tag_block_legacy<s_unknown_30_definition_legacy> nicename("Unknown 30") unknown_30_block;
 	s_undefined32_legacy __unknown94;
 	s_undefined32_legacy __unknown95;
 	s_undefined32_legacy __unknown96;
 	s_undefined32_legacy __unknown97;
 	s_undefined32_legacy __unknown98;
 	s_undefined32_legacy __unknown99;
-	s_tag_block_legacy<s_node_maps_definition> nicename("Node Maps") node_maps_block;
+	s_tag_block_legacy<s_node_maps_definition_legacy> nicename("Node Maps") node_maps_block;
 	s_undefined32_legacy __unknown100;
 	s_undefined32_legacy __unknown101;
 	s_undefined32_legacy __unknown102;
@@ -1415,27 +1415,27 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 	s_undefined32_legacy __unknown106;
 	s_undefined32_legacy __unknown107;
 	s_undefined32_legacy __unknown108;
-	s_tag_block_legacy<s_unknown_yo_definition> nicename("Unknown Yo") unknown_yo_block;
-	s_tag_block_legacy<s_water_meshes_definition> nicename("Water Meshes") water_meshes_block;
+	s_tag_block_legacy<s_unknown_yo_definition_legacy> nicename("Unknown Yo") unknown_yo_block;
+	s_tag_block_legacy<s_water_meshes_definition_legacy> nicename("Water Meshes") water_meshes_block;
 	uint32_t nicename("[zone] Asset Datum 1") zone_asset_datum_1;
 	uint16_t nicename("[easy read] Index 1") easy_read_index_1;
 	uint16_t nicename("[easy read] Salt 1") easy_read_salt_1;
 	int32_t nicename("Useless Padding") useless_padding;
-	s_tag_block_legacy<s_unknown_compression_info_definition> nicename("Unknown Compression Info") unknown_compression_info_block;
-	s_tag_block_legacy<s_decals_definition> nicename("Decals") decals_block;
-	s_tag_block_legacy<s_decal_properties_definition> nicename("Decal Properties") decal_properties_block;
+	s_tag_block_legacy<s_unknown_compression_info_definition_legacy> nicename("Unknown Compression Info") unknown_compression_info_block;
+	s_tag_block_legacy<s_decals_definition_legacy> nicename("Decals") decals_block;
+	s_tag_block_legacy<s_decal_properties_definition_legacy> nicename("Decal Properties") decal_properties_block;
 	int32_t __unknown109;
-	s_tag_block_legacy<s_meshes1_definition> nicename("Meshes") meshes1_block;
-	s_tag_block_legacy<s_compression_info1_definition> nicename("Compression Info") compression_info1_block;
-	s_tag_block_legacy<s_unknown_nodey1_definition> nicename("Unknown Nodey") unknown_nodey1_block;
-	s_tag_block_legacy<s_unknown_301_definition> nicename("Unknown 30") unknown_301_block;
+	s_tag_block_legacy<s_meshes1_definition_legacy> nicename("Meshes") meshes1_block;
+	s_tag_block_legacy<s_compression_info1_definition_legacy> nicename("Compression Info") compression_info1_block;
+	s_tag_block_legacy<s_unknown_nodey1_definition_legacy> nicename("Unknown Nodey") unknown_nodey1_block;
+	s_tag_block_legacy<s_unknown_301_definition_legacy> nicename("Unknown 30") unknown_301_block;
 	s_undefined32_legacy __unknown110;
 	s_undefined32_legacy __unknown111;
 	s_undefined32_legacy __unknown112;
 	s_undefined32_legacy __unknown113;
 	s_undefined32_legacy __unknown114;
 	s_undefined32_legacy __unknown115;
-	s_tag_block_legacy<s_node_maps1_definition> nicename("Node Maps") node_maps1_block;
+	s_tag_block_legacy<s_node_maps1_definition_legacy> nicename("Node Maps") node_maps1_block;
 	s_undefined32_legacy __unknown116;
 	s_undefined32_legacy __unknown117;
 	s_undefined32_legacy __unknown118;
@@ -1445,19 +1445,19 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 	s_undefined32_legacy __unknown122;
 	s_undefined32_legacy __unknown123;
 	s_undefined32_legacy __unknown124;
-	s_tag_block_legacy<s_unknown_yo1_definition> nicename("Unknown Yo") unknown_yo1_block;
-	s_tag_block_legacy<s_water_meshes1_definition> nicename("Water Meshes") water_meshes1_block;
+	s_tag_block_legacy<s_unknown_yo1_definition_legacy> nicename("Unknown Yo") unknown_yo1_block;
+	s_tag_block_legacy<s_water_meshes1_definition_legacy> nicename("Water Meshes") water_meshes1_block;
 	uint32_t nicename("[zone] Asset Datum 2") zone_asset_datum_2;
 	uint16_t nicename("[easy read] Index 2") easy_read_index_2;
 	uint16_t nicename("[easy read] Salt 2") easy_read_salt_2;
 	int32_t nicename("Useless Padding") useless_padding1;
-	s_tag_block_legacy<s_unknown_compression_info1_definition> nicename("Unknown Compression Info") unknown_compression_info1_block;
-	s_tag_block_legacy<s_unknown_sound_clusters_a_definition> nicename("Unknown Sound Clusters A") unknown_sound_clusters_a_block;
-	s_tag_block_legacy<s_transparent_planes_definition> nicename("Transparent Planes") transparent_planes_block;
+	s_tag_block_legacy<s_unknown_compression_info1_definition_legacy> nicename("Unknown Compression Info") unknown_compression_info1_block;
+	s_tag_block_legacy<s_unknown_sound_clusters_a_definition_legacy> nicename("Unknown Sound Clusters A") unknown_sound_clusters_a_block;
+	s_tag_block_legacy<s_transparent_planes_definition_legacy> nicename("Transparent Planes") transparent_planes_block;
 	s_undefined32_legacy __unknown125;
 	s_undefined32_legacy __unknown126;
 	s_undefined32_legacy __unknown127;
-	s_tag_block_legacy<s_collision_mopp_codes_definition> nicename("Collision MOPP Codes") collision_mopp_codes_block;
+	s_tag_block_legacy<s_collision_mopp_codes_definition_legacy> nicename("Collision MOPP Codes") collision_mopp_codes_block;
 	s_undefined32_legacy __unknown128;
 	float nicename("Collision Bounds Min X") collision_bounds_min_x;
 	float nicename("Collision Bounds Min Y") collision_bounds_min_y;
@@ -1465,23 +1465,23 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 	float nicename("Collision Bounds Max X") collision_bounds_max_x;
 	float nicename("Collision Bounds Max Y") collision_bounds_max_y;
 	float nicename("Collision Bounds Max Z") collision_bounds_max_z;
-	s_tag_block_legacy<s_breakable_surface_mopp_codes_definition> nicename("Breakable Surface MOPP Codes") breakable_surface_mopp_codes_block;
-	s_tag_block_legacy<s_breakable_surface_key_table_definition> nicename("Breakable Surface Key Table") breakable_surface_key_table_block;
+	s_tag_block_legacy<s_breakable_surface_mopp_codes_definition_legacy> nicename("Breakable Surface MOPP Codes") breakable_surface_mopp_codes_block;
+	s_tag_block_legacy<s_breakable_surface_key_table_definition_legacy> nicename("Breakable Surface Key Table") breakable_surface_key_table_block;
 	s_undefined32_legacy __unknown129;
 	s_undefined32_legacy __unknown130;
 	s_undefined32_legacy __unknown131;
 	int32_t __unknown132;
-	s_tag_block_legacy<s_meshes2_definition> nicename("Meshes") meshes2_block;
-	s_tag_block_legacy<s_compression_info2_definition> nicename("Compression Info") compression_info2_block;
-	s_tag_block_legacy<s_unknown_nodey2_definition> nicename("Unknown Nodey") unknown_nodey2_block;
-	s_tag_block_legacy<s_unknown_302_definition> nicename("Unknown 30") unknown_302_block;
+	s_tag_block_legacy<s_meshes2_definition_legacy> nicename("Meshes") meshes2_block;
+	s_tag_block_legacy<s_compression_info2_definition_legacy> nicename("Compression Info") compression_info2_block;
+	s_tag_block_legacy<s_unknown_nodey2_definition_legacy> nicename("Unknown Nodey") unknown_nodey2_block;
+	s_tag_block_legacy<s_unknown_302_definition_legacy> nicename("Unknown 30") unknown_302_block;
 	s_undefined32_legacy __unknown133;
 	s_undefined32_legacy __unknown134;
 	s_undefined32_legacy __unknown135;
 	s_undefined32_legacy __unknown136;
 	s_undefined32_legacy __unknown137;
 	s_undefined32_legacy __unknown138;
-	s_tag_block_legacy<s_node_maps2_definition> nicename("Node Maps") node_maps2_block;
+	s_tag_block_legacy<s_node_maps2_definition_legacy> nicename("Node Maps") node_maps2_block;
 	s_undefined32_legacy __unknown139;
 	s_undefined32_legacy __unknown140;
 	s_undefined32_legacy __unknown141;
@@ -1491,13 +1491,13 @@ struct nicename("scenario_structure_bsp") tag_group('sbsp') s_scenario_structure
 	s_undefined32_legacy __unknown145;
 	s_undefined32_legacy __unknown146;
 	s_undefined32_legacy __unknown147;
-	s_tag_block_legacy<s_unknown_yo2_definition> nicename("Unknown Yo") unknown_yo2_block;
-	s_tag_block_legacy<s_water_meshes2_definition> nicename("Water Meshes") water_meshes2_block;
+	s_tag_block_legacy<s_unknown_yo2_definition_legacy> nicename("Unknown Yo") unknown_yo2_block;
+	s_tag_block_legacy<s_water_meshes2_definition_legacy> nicename("Water Meshes") water_meshes2_block;
 	uint32_t nicename("[zone] Asset Datum 3") zone_asset_datum_3;
 	uint16_t nicename("[easy read] Index 3") easy_read_index_3;
 	uint16_t nicename("[easy read] Salt 3") easy_read_salt_3;
 	int32_t nicename("Useless Padding") useless_padding2;
-	s_tag_block_legacy<s_unknown_compression_info2_definition> nicename("Unknown Compression Info") unknown_compression_info2_block;
+	s_tag_block_legacy<s_unknown_compression_info2_definition_legacy> nicename("Unknown Compression Info") unknown_compression_info2_block;
 	s_undefined32_legacy __unknown148;
 	s_undefined32_legacy __unknown149;
 	s_undefined32_legacy __unknown150;

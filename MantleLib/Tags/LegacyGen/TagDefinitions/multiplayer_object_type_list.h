@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("multiplayer_object_type_list") tag_group('motl') s_multiplayer_object_type_list_definition
+struct nicename("multiplayer_object_type_list") tag_group('motl') s_multiplayer_object_type_list_definition_legacy
 {
 	enum nicename("Random Weapon Icon Index") e_random_weapon_icon_index : uint32_t
 	{
@@ -47,13 +47,13 @@ struct nicename("multiplayer_object_type_list") tag_group('motl') s_multiplayer_
 		/*nicename("Vehicle")*/ _random_equipment_icon_index_vehicle = 8ui32,
 	};
 
-	struct nicename("Multiplayer Object List") s_multiplayer_object_list_definition
+	struct nicename("Multiplayer Object List") s_multiplayer_object_list_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_tag_reference_legacy nicename("Object") object_reference;
 	};
 
-	struct nicename("Game Variant Weapons") s_game_variant_weapons_definition
+	struct nicename("Game Variant Weapons") s_game_variant_weapons_definition_legacy
 	{
 		enum nicename("Icon Index") e_icon_index : uint32_t
 		{
@@ -93,7 +93,7 @@ struct nicename("multiplayer_object_type_list") tag_group('motl') s_multiplayer_
 		e_icon_index nicename("Icon Index") icon_index;
 	};
 
-	struct nicename("Game Variant Vehicles") s_game_variant_vehicles_definition
+	struct nicename("Game Variant Vehicles") s_game_variant_vehicles_definition_legacy
 	{
 		int32_t nicename("Object Index") object_index;
 		s_undefined32_legacy __unknown0;
@@ -101,7 +101,7 @@ struct nicename("multiplayer_object_type_list") tag_group('motl') s_multiplayer_
 		int32_t nicename("Icon Index") icon_index;
 	};
 
-	struct nicename("Game Variant Grenades") s_game_variant_grenades_definition
+	struct nicename("Game Variant Grenades") s_game_variant_grenades_definition_legacy
 	{
 		enum nicename("Icon Index") e_icon_index : uint32_t
 		{
@@ -115,7 +115,7 @@ struct nicename("multiplayer_object_type_list") tag_group('motl') s_multiplayer_
 		e_icon_index nicename("Icon Index") icon_index;
 	};
 
-	struct nicename("Game Variant Equipment") s_game_variant_equipment_definition
+	struct nicename("Game Variant Equipment") s_game_variant_equipment_definition_legacy
 	{
 		enum nicename("Icon Index") e_icon_index : uint32_t
 		{
@@ -136,37 +136,37 @@ struct nicename("multiplayer_object_type_list") tag_group('motl') s_multiplayer_
 		e_icon_index nicename("Icon Index") icon_index;
 	};
 
-	struct nicename("Weapon Sets") s_weapon_sets_definition
+	struct nicename("Weapon Sets") s_weapon_sets_definition_legacy
 	{
-		struct nicename("Corrections") s_corrections_definition
+		struct nicename("Corrections") s_corrections_definition_legacy
 		{
 			int32_t nicename("Original Weapon Index") original_weapon_index;
 			int32_t nicename("Replacement Weapon Index") replacement_weapon_index;
 		};
 
 		string_id_legacy nicename("Set Name") set_name;
-		s_tag_block_legacy<s_corrections_definition> nicename("Corrections") corrections_block;
+		s_tag_block_legacy<s_corrections_definition_legacy> nicename("Corrections") corrections_block;
 	};
 
-	struct nicename("Vehicle Sets") s_vehicle_sets_definition
+	struct nicename("Vehicle Sets") s_vehicle_sets_definition_legacy
 	{
-		struct nicename("Corrections") s_corrections1_definition
+		struct nicename("Corrections") s_corrections1_definition_legacy
 		{
 			int32_t nicename("Original Vehicle Index") original_vehicle_index;
 			int32_t nicename("Replacement Vehicle Index") replacement_vehicle_index;
 		};
 
 		string_id_legacy nicename("Set Name") set_name;
-		s_tag_block_legacy<s_corrections1_definition> nicename("Corrections") corrections_block;
+		s_tag_block_legacy<s_corrections1_definition_legacy> nicename("Corrections") corrections_block;
 	};
 
-	s_tag_block_legacy<s_multiplayer_object_list_definition> nicename("Multiplayer Object List") multiplayer_object_list_block;
-	s_tag_block_legacy<s_game_variant_weapons_definition> nicename("Game Variant Weapons") game_variant_weapons_block;
-	s_tag_block_legacy<s_game_variant_vehicles_definition> nicename("Game Variant Vehicles") game_variant_vehicles_block;
-	s_tag_block_legacy<s_game_variant_grenades_definition> nicename("Game Variant Grenades") game_variant_grenades_block;
-	s_tag_block_legacy<s_game_variant_equipment_definition> nicename("Game Variant Equipment") game_variant_equipment_block;
-	s_tag_block_legacy<s_weapon_sets_definition> nicename("Weapon Sets") weapon_sets_block;
-	s_tag_block_legacy<s_vehicle_sets_definition> nicename("Vehicle Sets") vehicle_sets_block;
+	s_tag_block_legacy<s_multiplayer_object_list_definition_legacy> nicename("Multiplayer Object List") multiplayer_object_list_block;
+	s_tag_block_legacy<s_game_variant_weapons_definition_legacy> nicename("Game Variant Weapons") game_variant_weapons_block;
+	s_tag_block_legacy<s_game_variant_vehicles_definition_legacy> nicename("Game Variant Vehicles") game_variant_vehicles_block;
+	s_tag_block_legacy<s_game_variant_grenades_definition_legacy> nicename("Game Variant Grenades") game_variant_grenades_block;
+	s_tag_block_legacy<s_game_variant_equipment_definition_legacy> nicename("Game Variant Equipment") game_variant_equipment_block;
+	s_tag_block_legacy<s_weapon_sets_definition_legacy> nicename("Weapon Sets") weapon_sets_block;
+	s_tag_block_legacy<s_vehicle_sets_definition_legacy> nicename("Vehicle Sets") vehicle_sets_block;
 	e_random_weapon_icon_index nicename("Random Weapon Icon Index") random_weapon_icon_index;
 	e_random_equipment_icon_index nicename("Random Equipment Icon Index") random_equipment_icon_index;
 };

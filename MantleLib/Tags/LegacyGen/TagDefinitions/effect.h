@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("effect") tag_group('effe') s_effect_definition
+struct nicename("effect") tag_group('effe') s_effect_definition_legacy
 {
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
 	{
@@ -38,7 +38,7 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 		/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Locations") s_locations_definition
+	struct nicename("Locations") s_locations_definition_legacy
 	{
 		string_id_legacy nicename("Marker Name") marker_name;
 		int8_t __unknown0;
@@ -47,9 +47,9 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 		int8_t __unknown3;
 	};
 
-	struct nicename("Events") s_events_definition
+	struct nicename("Events") s_events_definition_legacy
 	{
-		struct nicename("Parts") s_parts_definition
+		struct nicename("Parts") s_parts_definition_legacy
 		{
 			enum nicename("Create In Environment") e_create_in_environment : uint16_t
 			{
@@ -264,7 +264,7 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 			b_b_scales_values nicename("B Scales Values") b_scales_values;
 		};
 
-		struct nicename("Accelerations") s_accelerations_definition
+		struct nicename("Accelerations") s_accelerations_definition_legacy
 		{
 			enum nicename("Create In Environment") e_create_in_environment : uint16_t
 			{
@@ -290,7 +290,7 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 			float nicename("Outer Cone Angle") outer_cone_angle;
 		};
 
-		struct nicename("Particle Systems") s_particle_systems_definition
+		struct nicename("Particle Systems") s_particle_systems_definition_legacy
 		{
 			enum nicename("Coordinate System") e_coordinate_system : uint16_t
 			{
@@ -342,7 +342,7 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 				/*nicename("Bit 15")*/ _flags1_bit_15 = 1ui16 << 15ui16,
 			};
 
-			struct nicename("Emitters") s_emitters_definition
+			struct nicename("Emitters") s_emitters_definition_legacy
 			{
 				enum nicename("Output Kind") e_output_kind : uint8_t
 				{
@@ -490,9 +490,9 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 					/*nicename("Bit 15")*/ _unknown_bit_15 = 1ui16 << 15ui16,
 				};
 
-				struct nicename("Unknown") s_unknown_definition
+				struct nicename("Unknown") s_unknown_definition_legacy
 				{
-					struct nicename("Unknown") s_unknown1_definition
+					struct nicename("Unknown") s_unknown1_definition_legacy
 					{
 						enum nicename("Output Kind") e_output_kind : uint8_t
 						{
@@ -512,7 +512,7 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 					};
 
 					int32_t __unknown0;
-					s_tag_block_legacy<s_unknown1_definition> __unknown1;
+					s_tag_block_legacy<s_unknown1_definition_legacy> __unknown1;
 					s_undefined32_legacy __unknown2;
 					s_undefined32_legacy __unknown3;
 				};
@@ -607,7 +607,7 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 				s_undefined32_legacy __unknown49;
 				s_tag_reference_legacy nicename("Particle Physics") particle_physics_reference;
 				s_undefined32_legacy __unknown50;
-				s_tag_block_legacy<s_unknown_definition> __unknown51;
+				s_tag_block_legacy<s_unknown_definition_legacy> __unknown51;
 				s_tag_reference_legacy nicename("Displacement Map") displacement_map_reference;
 				int8_t nicename("Input") input9;
 				int8_t nicename("Input Range") input_range9;
@@ -715,7 +715,7 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 			float nicename("LOD In Distance") lod_in_distance;
 			float nicename("LOD Feather In Delta") lod_feather_in_delta;
 			float __unknown14;
-			s_tag_block_legacy<s_emitters_definition> nicename("Emitters") emitters_block;
+			s_tag_block_legacy<s_emitters_definition_legacy> nicename("Emitters") emitters_block;
 			float __unknown15;
 			float __unknown16;
 		};
@@ -730,12 +730,12 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 		float nicename("Delay Bounds max") delay_bounds_max;
 		float nicename("Duration Bounds min") duration_bounds_min;
 		float nicename("Duration Bounds max") duration_bounds_max;
-		s_tag_block_legacy<s_parts_definition> nicename("Parts") parts_block;
-		s_tag_block_legacy<s_accelerations_definition> nicename("Accelerations") accelerations_block;
-		s_tag_block_legacy<s_particle_systems_definition> nicename("Particle Systems") particle_systems_block;
+		s_tag_block_legacy<s_parts_definition_legacy> nicename("Parts") parts_block;
+		s_tag_block_legacy<s_accelerations_definition_legacy> nicename("Accelerations") accelerations_block;
+		s_tag_block_legacy<s_particle_systems_definition_legacy> nicename("Particle Systems") particle_systems_block;
 	};
 
-	struct nicename("Looping Sounds") s_looping_sounds_definition
+	struct nicename("Looping Sounds") s_looping_sounds_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Looping Sound") looping_sound_reference;
 		int16_t nicename("Location Index") location_index;
@@ -754,9 +754,9 @@ struct nicename("effect") tag_group('effe') s_effect_definition
 	int16_t __unknown8;
 	int16_t __unknown9;
 	s_undefined32_legacy __unknown10;
-	s_tag_block_legacy<s_locations_definition> nicename("Locations") locations_block;
-	s_tag_block_legacy<s_events_definition> nicename("Events") events_block;
-	s_tag_block_legacy<s_looping_sounds_definition> nicename("Looping Sounds") looping_sounds_block;
+	s_tag_block_legacy<s_locations_definition_legacy> nicename("Locations") locations_block;
+	s_tag_block_legacy<s_events_definition_legacy> nicename("Events") events_block;
+	s_tag_block_legacy<s_looping_sounds_definition_legacy> nicename("Looping Sounds") looping_sounds_block;
 	float nicename("Always Play Distance") always_play_distance;
 	float nicename("Never Play Distance") never_play_distance;
 	float __unknown11;

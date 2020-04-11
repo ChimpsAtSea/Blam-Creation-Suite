@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("dialogue") tag_group('udlg') s_dialogue_definition
+struct nicename("dialogue") tag_group('udlg') s_dialogue_definition_legacy
 {
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
 	{
@@ -38,9 +38,9 @@ struct nicename("dialogue") tag_group('udlg') s_dialogue_definition
 		/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Vocalizations") s_vocalizations_definition
+	struct nicename("Vocalizations") s_vocalizations_definition_legacy
 	{
-		struct nicename("Sound") s_sound_definition
+		struct nicename("Sound") s_sound_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
@@ -48,12 +48,12 @@ struct nicename("dialogue") tag_group('udlg') s_dialogue_definition
 		};
 
 		string_id_legacy nicename("Vocalization") vocalization;
-		s_tag_block_legacy<s_sound_definition> nicename("Sound") sound_block;
+		s_tag_block_legacy<s_sound_definition_legacy> nicename("Sound") sound_block;
 	};
 
 	s_tag_reference_legacy nicename("Global Dialogue Info") global_dialogue_info_reference;
 	b_flags nicename("Flags") flags;
-	s_tag_block_legacy<s_vocalizations_definition> nicename("Vocalizations") vocalizations_block;
+	s_tag_block_legacy<s_vocalizations_definition_legacy> nicename("Vocalizations") vocalizations_block;
 	string_id_legacy nicename("Mission Dialogue Designator") mission_dialogue_designator;
 };
 

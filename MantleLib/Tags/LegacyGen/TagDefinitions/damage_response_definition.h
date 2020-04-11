@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("damage_response_definition") tag_group('drdf') s_damage_response_definition_definition
+struct nicename("damage_response_definition") tag_group('drdf') s_damage_response_definition_definition_legacy
 {
-	struct nicename("Responses") s_responses_definition
+	struct nicename("Responses") s_responses_definition_legacy
 	{
 		enum nicename("Response Type") e_response_type : uint16_t
 		{
@@ -11,7 +11,7 @@ struct nicename("damage_response_definition") tag_group('drdf') s_damage_respons
 			/*nicename("All")*/ _response_type_all = 2ui16,
 		};
 
-		struct nicename("Lowpass") s_lowpass_definition
+		struct nicename("Lowpass") s_lowpass_definition_legacy
 		{
 			string_id_legacy nicename("Name") name;
 			s_data_reference_legacy nicename("Lowpass Function") lowpass_function_data_reference;
@@ -40,10 +40,10 @@ struct nicename("damage_response_definition") tag_group('drdf') s_damage_respons
 		s_tag_reference_legacy nicename("Rumble") rumble_reference;
 		s_tag_reference_legacy nicename("Camera Shake") camera_shake_reference;
 		s_tag_reference_legacy nicename("Simulated Input") simulated_input_reference;
-		s_tag_block_legacy<s_lowpass_definition> nicename("Lowpass") lowpass_block;
+		s_tag_block_legacy<s_lowpass_definition_legacy> nicename("Lowpass") lowpass_block;
 	};
 
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		int16_t __unknown0;
 		int16_t __unknown1;
@@ -55,7 +55,7 @@ struct nicename("damage_response_definition") tag_group('drdf') s_damage_respons
 		s_data_reference_legacy __unknown7;
 	};
 
-	s_tag_block_legacy<s_responses_definition> nicename("Responses") responses_block;
-	s_tag_block_legacy<s_unknown_definition> __unknown0;
+	s_tag_block_legacy<s_responses_definition_legacy> nicename("Responses") responses_block;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown0;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("collision_model") tag_group('coll') s_collision_model_definition
+struct nicename("collision_model") tag_group('coll') s_collision_model_definition_legacy
 {
 	enum nicename("Flags") b_flags : uint32_t /* bitfield */
 	{
@@ -38,18 +38,18 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 		/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Materials") s_materials_definition
+	struct nicename("Materials") s_materials_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 	};
 
-	struct nicename("Regions") s_regions_definition
+	struct nicename("Regions") s_regions_definition_legacy
 	{
-		struct nicename("Permutations") s_permutations_definition
+		struct nicename("Permutations") s_permutations_definition_legacy
 		{
-			struct nicename("BSPs") s_bsps_definition
+			struct nicename("BSPs") s_bsps_definition_legacy
 			{
-				struct nicename("BSP 3D Nodes") s_bsp_3d_nodes_definition
+				struct nicename("BSP 3D Nodes") s_bsp_3d_nodes_definition_legacy
 				{
 					uint8_t __unknown0;
 					int16_t nicename("Second Child") second_child;
@@ -58,7 +58,7 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 					int16_t nicename("Plane") plane;
 				};
 
-				struct nicename("Unknown") s_unknown_definition
+				struct nicename("Unknown") s_unknown_definition_legacy
 				{
 					s_undefined32_legacy __unknown0;
 					s_undefined32_legacy __unknown1;
@@ -94,7 +94,7 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 					s_undefined32_legacy __unknown31;
 				};
 
-				struct nicename("Planes") s_planes_definition
+				struct nicename("Planes") s_planes_definition_legacy
 				{
 					float nicename("Plane i") plane_i;
 					float nicename("Plane j") plane_j;
@@ -102,7 +102,7 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 					float nicename("Plane d") plane_d;
 				};
 
-				struct nicename("Leaves") s_leaves_definition
+				struct nicename("Leaves") s_leaves_definition_legacy
 				{
 					int16_t nicename("Flags") flags;
 					int16_t nicename("BSP 2D Reference Count") bsp_2d_reference_count;
@@ -110,13 +110,13 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 					int16_t nicename("First BSP 2D Reference") first_bsp_2d_reference;
 				};
 
-				struct nicename("BSP 2D References") s_bsp_2d_references_definition
+				struct nicename("BSP 2D References") s_bsp_2d_references_definition_legacy
 				{
 					int16_t nicename("Plane") plane;
 					int16_t nicename("BSP 2D Node") bsp_2d_node;
 				};
 
-				struct nicename("BSP 2D Nodes") s_bsp_2d_nodes_definition
+				struct nicename("BSP 2D Nodes") s_bsp_2d_nodes_definition_legacy
 				{
 					float nicename("Plane i") plane_i;
 					float nicename("Plane j") plane_j;
@@ -125,7 +125,7 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 					int16_t nicename("Right Child") right_child;
 				};
 
-				struct nicename("Surfaces") s_surfaces_definition
+				struct nicename("Surfaces") s_surfaces_definition_legacy
 				{
 					int16_t nicename("Plane") plane;
 					int16_t nicename("First Edge") first_edge;
@@ -135,7 +135,7 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 					int16_t __unknown1;
 				};
 
-				struct nicename("Edges") s_edges_definition
+				struct nicename("Edges") s_edges_definition_legacy
 				{
 					int16_t nicename("Start Vertex") start_vertex;
 					int16_t nicename("End Vertex") end_vertex;
@@ -145,7 +145,7 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 					int16_t nicename("Right Surface") right_surface;
 				};
 
-				struct nicename("Vertices") s_vertices_definition
+				struct nicename("Vertices") s_vertices_definition_legacy
 				{
 					s_undefined32_legacy nicename("Point x") point_x;
 					s_undefined32_legacy nicename("Point y") point_y;
@@ -156,18 +156,18 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 
 				int16_t nicename("Node Index") node_index;
 				int16_t __unknown0;
-				s_tag_block_legacy<s_bsp_3d_nodes_definition> nicename("BSP 3D Nodes") bsp_3d_nodes_block;
-				s_tag_block_legacy<s_unknown_definition> __unknown1;
-				s_tag_block_legacy<s_planes_definition> nicename("Planes") planes_block;
-				s_tag_block_legacy<s_leaves_definition> nicename("Leaves") leaves_block;
-				s_tag_block_legacy<s_bsp_2d_references_definition> nicename("BSP 2D References") bsp_2d_references_block;
-				s_tag_block_legacy<s_bsp_2d_nodes_definition> nicename("BSP 2D Nodes") bsp_2d_nodes_block;
-				s_tag_block_legacy<s_surfaces_definition> nicename("Surfaces") surfaces_block;
-				s_tag_block_legacy<s_edges_definition> nicename("Edges") edges_block;
-				s_tag_block_legacy<s_vertices_definition> nicename("Vertices") vertices_block;
+				s_tag_block_legacy<s_bsp_3d_nodes_definition_legacy> nicename("BSP 3D Nodes") bsp_3d_nodes_block;
+				s_tag_block_legacy<s_unknown_definition_legacy> __unknown1;
+				s_tag_block_legacy<s_planes_definition_legacy> nicename("Planes") planes_block;
+				s_tag_block_legacy<s_leaves_definition_legacy> nicename("Leaves") leaves_block;
+				s_tag_block_legacy<s_bsp_2d_references_definition_legacy> nicename("BSP 2D References") bsp_2d_references_block;
+				s_tag_block_legacy<s_bsp_2d_nodes_definition_legacy> nicename("BSP 2D Nodes") bsp_2d_nodes_block;
+				s_tag_block_legacy<s_surfaces_definition_legacy> nicename("Surfaces") surfaces_block;
+				s_tag_block_legacy<s_edges_definition_legacy> nicename("Edges") edges_block;
+				s_tag_block_legacy<s_vertices_definition_legacy> nicename("Vertices") vertices_block;
 			};
 
-			struct nicename("BSP Physics") s_bsp_physics_definition
+			struct nicename("BSP Physics") s_bsp_physics_definition_legacy
 			{
 				int32_t __unknown0;
 				s_undefined32_legacy __unknown1;
@@ -237,9 +237,9 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 				s_undefined32_legacy __unknown53;
 			};
 
-			struct nicename("BSP MOPP Codes") s_bsp_mopp_codes_definition
+			struct nicename("BSP MOPP Codes") s_bsp_mopp_codes_definition_legacy
 			{
-				struct nicename("Data") s_data_definition
+				struct nicename("Data") s_data_definition_legacy
 				{
 					uint8_t nicename("Data Byte") data_byte;
 				};
@@ -265,21 +265,21 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 				s_undefined32_legacy __unknown9;
 				s_undefined32_legacy __unknown10;
 				s_undefined32_legacy __unknown11;
-				s_tag_block_legacy<s_data_definition> nicename("Data") data_block;
+				s_tag_block_legacy<s_data_definition_legacy> nicename("Data") data_block;
 				s_undefined32_legacy __unknown12;
 			};
 
 			string_id_legacy nicename("Name") name;
-			s_tag_block_legacy<s_bsps_definition> nicename("BSPs") bsps_block;
-			s_tag_block_legacy<s_bsp_physics_definition> nicename("BSP Physics") bsp_physics_block;
-			s_tag_block_legacy<s_bsp_mopp_codes_definition> nicename("BSP MOPP Codes") bsp_mopp_codes_block;
+			s_tag_block_legacy<s_bsps_definition_legacy> nicename("BSPs") bsps_block;
+			s_tag_block_legacy<s_bsp_physics_definition_legacy> nicename("BSP Physics") bsp_physics_block;
+			s_tag_block_legacy<s_bsp_mopp_codes_definition_legacy> nicename("BSP MOPP Codes") bsp_mopp_codes_block;
 		};
 
 		string_id_legacy nicename("Name") name;
-		s_tag_block_legacy<s_permutations_definition> nicename("Permutations") permutations_block;
+		s_tag_block_legacy<s_permutations_definition_legacy> nicename("Permutations") permutations_block;
 	};
 
-	struct nicename("Pathfinding Spheres") s_pathfinding_spheres_definition
+	struct nicename("Pathfinding Spheres") s_pathfinding_spheres_definition_legacy
 	{
 		enum nicename("Flags") b_flags1 : uint16_t /* bitfield */
 		{
@@ -309,7 +309,7 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 		float nicename("Radius") radius;
 	};
 
-	struct nicename("Nodes") s_nodes_definition
+	struct nicename("Nodes") s_nodes_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		int16_t __unknown0;
@@ -323,13 +323,13 @@ struct nicename("collision_model") tag_group('coll') s_collision_model_definitio
 	s_undefined32_legacy __unknown1;
 	s_undefined32_legacy __unknown2;
 	b_flags nicename("Flags") flags;
-	s_tag_block_legacy<s_materials_definition> nicename("Materials") materials_block;
-	s_tag_block_legacy<s_regions_definition> nicename("Regions") regions_block;
+	s_tag_block_legacy<s_materials_definition_legacy> nicename("Materials") materials_block;
+	s_tag_block_legacy<s_regions_definition_legacy> nicename("Regions") regions_block;
 	s_undefined32_legacy __unknown3;
 	s_undefined32_legacy __unknown4;
 	s_undefined32_legacy __unknown5;
-	s_tag_block_legacy<s_pathfinding_spheres_definition> nicename("Pathfinding Spheres") pathfinding_spheres_block;
-	s_tag_block_legacy<s_nodes_definition> nicename("Nodes") nodes_block;
+	s_tag_block_legacy<s_pathfinding_spheres_definition_legacy> nicename("Pathfinding Spheres") pathfinding_spheres_block;
+	s_tag_block_legacy<s_nodes_definition_legacy> nicename("Nodes") nodes_block;
 	s_undefined32_legacy __unknown6;
 };
 

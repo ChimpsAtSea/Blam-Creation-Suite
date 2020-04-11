@@ -1,13 +1,13 @@
 #pragma once
 
-struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_definition
+struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_definition_legacy
 {
-	struct nicename("Unknown 0") s_unknown_0_definition
+	struct nicename("Unknown 0") s_unknown_0_definition_legacy
 	{
 		string_id_legacy __unknown0;
 	};
 
-	struct nicename("Vocalizations") s_vocalizations_definition
+	struct nicename("Vocalizations") s_vocalizations_definition_legacy
 	{
 		enum nicename("Perception Type") e_perception_type : uint16_t
 		{
@@ -52,7 +52,7 @@ struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_d
 			/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
 		};
 
-		struct nicename("Responses") s_responses_definition
+		struct nicename("Responses") s_responses_definition_legacy
 		{
 			enum nicename("Flags") b_flags : uint16_t /* bitfield */
 			{
@@ -108,10 +108,10 @@ struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_d
 		float nicename("Skip Fraction4") skip_fraction4;
 		s_undefined32_legacy __unknown0;
 		string_id_legacy nicename("Sample Line") sample_line;
-		s_tag_block_legacy<s_responses_definition> nicename("Responses") responses_block;
+		s_tag_block_legacy<s_responses_definition_legacy> nicename("Responses") responses_block;
 	};
 
-	struct nicename("Patterns") s_patterns_definition
+	struct nicename("Patterns") s_patterns_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint16_t /* bitfield */
 		{
@@ -177,19 +177,19 @@ struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_d
 		string_id_legacy nicename("Subject AI Type Name") subject_ai_type_name;
 	};
 
-	struct nicename("Dialog Data") s_dialog_data_definition
+	struct nicename("Dialog Data") s_dialog_data_definition_legacy
 	{
 		int16_t nicename("Start Index") start_index;
 		int16_t nicename("Length") length;
 	};
 
-	struct nicename("Involuntary Data") s_involuntary_data_definition
+	struct nicename("Involuntary Data") s_involuntary_data_definition_legacy
 	{
 		int16_t nicename("Involuntary Vocalization Index") involuntary_vocalization_index;
 		int16_t __unknown0;
 	};
 
-	struct nicename("Unknown 5") s_unknown_5_definition
+	struct nicename("Unknown 5") s_unknown_5_definition_legacy
 	{
 		int32_t __unknown0;
 	};
@@ -204,14 +204,14 @@ struct nicename("ai_dialogue_globals") tag_group('adlg') s_ai_dialogue_globals_d
 	s_undefined32_legacy __unknown7;
 	float __unknown8;
 	string_id_legacy nicename("Radio Effect") radio_effect;
-	s_tag_block_legacy<s_unknown_0_definition> nicename("Unknown 0") unknown_0_block;
-	s_tag_block_legacy<s_vocalizations_definition> nicename("Vocalizations") vocalizations_block;
-	s_tag_block_legacy<s_patterns_definition> nicename("Patterns") patterns_block;
+	s_tag_block_legacy<s_unknown_0_definition_legacy> nicename("Unknown 0") unknown_0_block;
+	s_tag_block_legacy<s_vocalizations_definition_legacy> nicename("Vocalizations") vocalizations_block;
+	s_tag_block_legacy<s_patterns_definition_legacy> nicename("Patterns") patterns_block;
 	s_undefined32_legacy __unknown9;
 	s_undefined32_legacy __unknown10;
 	s_undefined32_legacy __unknown11;
-	s_tag_block_legacy<s_dialog_data_definition> nicename("Dialog Data") dialog_data_block;
-	s_tag_block_legacy<s_involuntary_data_definition> nicename("Involuntary Data") involuntary_data_block;
-	s_tag_block_legacy<s_unknown_5_definition> nicename("Unknown 5") unknown_5_block;
+	s_tag_block_legacy<s_dialog_data_definition_legacy> nicename("Dialog Data") dialog_data_block;
+	s_tag_block_legacy<s_involuntary_data_definition_legacy> nicename("Involuntary Data") involuntary_data_block;
+	s_tag_block_legacy<s_unknown_5_definition_legacy> nicename("Unknown 5") unknown_5_block;
 };
 

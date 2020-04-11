@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_looping") tag_group('lsnd') s_sound_looping_definition
+struct nicename("sound_looping") tag_group('lsnd') s_sound_looping_definition_legacy
 {
 	enum nicename("Sound Class") e_sound_class : uint16_t
 	{
@@ -113,7 +113,7 @@ struct nicename("sound_looping") tag_group('lsnd') s_sound_looping_definition
 		/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
 	};
 
-	struct nicename("Tracks") s_tracks_definition
+	struct nicename("Tracks") s_tracks_definition_legacy
 	{
 		enum nicename("Output Effect") e_output_effect : uint16_t
 		{
@@ -170,7 +170,7 @@ struct nicename("sound_looping") tag_group('lsnd') s_sound_looping_definition
 		s_undefined32_legacy __unknown9;
 	};
 
-	struct nicename("Detail Sounds") s_detail_sounds_definition
+	struct nicename("Detail Sounds") s_detail_sounds_definition_legacy
 	{
 		enum nicename("Flags") b_flags1 : uint32_t /* bitfield */
 		{
@@ -236,7 +236,7 @@ struct nicename("sound_looping") tag_group('lsnd') s_sound_looping_definition
 	e_sound_class nicename("Sound Class") sound_class;
 	int16_t __unknown5;
 	s_undefined32_legacy __unknown6;
-	s_tag_block_legacy<s_tracks_definition> nicename("Tracks") tracks_block;
-	s_tag_block_legacy<s_detail_sounds_definition> nicename("Detail Sounds") detail_sounds_block;
+	s_tag_block_legacy<s_tracks_definition_legacy> nicename("Tracks") tracks_block;
+	s_tag_block_legacy<s_detail_sounds_definition_legacy> nicename("Detail Sounds") detail_sounds_block;
 };
 

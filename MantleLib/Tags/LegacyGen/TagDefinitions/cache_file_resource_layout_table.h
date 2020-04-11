@@ -1,13 +1,13 @@
 #pragma once
 
-struct nicename("cache_file_resource_layout_table") tag_group('play') s_cache_file_resource_layout_table_definition
+struct nicename("cache_file_resource_layout_table") tag_group('play') s_cache_file_resource_layout_table_definition_legacy
 {
-	struct nicename("Compression Codecs") s_compression_codecs_definition
+	struct nicename("Compression Codecs") s_compression_codecs_definition_legacy
 	{
 		signed char nicename("Guid") guid[16];
 	};
 
-	struct nicename("External Cache References") s_external_cache_references_definition
+	struct nicename("External Cache References") s_external_cache_references_definition_legacy
 	{
 		char nicename("Map Path") map_path[256];
 		int16_t __unknown0;
@@ -15,7 +15,7 @@ struct nicename("cache_file_resource_layout_table") tag_group('play') s_cache_fi
 		s_undefined32_legacy __unknown2;
 	};
 
-	struct nicename("Raw Pages") s_raw_pages_definition
+	struct nicename("Raw Pages") s_raw_pages_definition_legacy
 	{
 		int16_t nicename("Salt") salt;
 		int8_t nicename("Flags") flags;
@@ -34,26 +34,26 @@ struct nicename("cache_file_resource_layout_table") tag_group('play') s_cache_fi
 		int16_t __unknown1;
 	};
 
-	struct nicename("Sizes") s_sizes_definition
+	struct nicename("Sizes") s_sizes_definition_legacy
 	{
-		struct nicename("Parts") s_parts_definition
+		struct nicename("Parts") s_parts_definition_legacy
 		{
 			int32_t __unknown0;
 			int32_t nicename("Size") size;
 		};
 
 		int32_t nicename("Overall Size") overall_size;
-		s_tag_block_legacy<s_parts_definition> nicename("Parts") parts_block;
+		s_tag_block_legacy<s_parts_definition_legacy> nicename("Parts") parts_block;
 	};
 
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		int32_t __unknown0;
 		int32_t __unknown1;
 		int32_t __unknown2;
 	};
 
-	struct nicename("Segments") s_segments_definition
+	struct nicename("Segments") s_segments_definition_legacy
 	{
 		int16_t nicename("Primary Page Index") primary_page_index;
 		int16_t nicename("Secondary Page Index") secondary_page_index;
@@ -63,11 +63,11 @@ struct nicename("cache_file_resource_layout_table") tag_group('play') s_cache_fi
 		int16_t nicename("Secondary Size Index") secondary_size_index;
 	};
 
-	s_tag_block_legacy<s_compression_codecs_definition> nicename("Compression Codecs") compression_codecs_block;
-	s_tag_block_legacy<s_external_cache_references_definition> nicename("External Cache References") external_cache_references_block;
-	s_tag_block_legacy<s_raw_pages_definition> nicename("Raw Pages") raw_pages_block;
-	s_tag_block_legacy<s_sizes_definition> nicename("Sizes") sizes_block;
-	s_tag_block_legacy<s_unknown_definition> __unknown0;
-	s_tag_block_legacy<s_segments_definition> nicename("Segments") segments_block;
+	s_tag_block_legacy<s_compression_codecs_definition_legacy> nicename("Compression Codecs") compression_codecs_block;
+	s_tag_block_legacy<s_external_cache_references_definition_legacy> nicename("External Cache References") external_cache_references_block;
+	s_tag_block_legacy<s_raw_pages_definition_legacy> nicename("Raw Pages") raw_pages_block;
+	s_tag_block_legacy<s_sizes_definition_legacy> nicename("Sizes") sizes_block;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown0;
+	s_tag_block_legacy<s_segments_definition_legacy> nicename("Segments") segments_block;
 };
 

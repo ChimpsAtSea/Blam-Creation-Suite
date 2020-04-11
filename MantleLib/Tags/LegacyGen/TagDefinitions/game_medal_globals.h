@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("game_medal_globals") tag_group('gmeg') s_game_medal_globals_definition
+struct nicename("game_medal_globals") tag_group('gmeg') s_game_medal_globals_definition_legacy
 {
-	struct nicename("Medals") s_medals_definition
+	struct nicename("Medals") s_medals_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		string_id_legacy nicename("Description") description;
@@ -15,6 +15,6 @@ struct nicename("game_medal_globals") tag_group('gmeg') s_game_medal_globals_def
 		int32_t __unknown3;
 	};
 
-	s_tag_block_legacy<s_medals_definition> nicename("Medals") medals_block;
+	s_tag_block_legacy<s_medals_definition_legacy> nicename("Medals") medals_block;
 };
 

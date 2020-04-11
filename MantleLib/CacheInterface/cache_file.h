@@ -8,7 +8,7 @@ class c_cache_file
 {
 public:
 	friend class c_tag_interface;
-	friend class c_tag_group_interface;
+	friend class c_legacy_tag_group_interface;
 
 	c_cache_file(const std::wstring& mapFilePath);
 	~c_cache_file();
@@ -73,20 +73,20 @@ public:
 		return tag_interfaces_sorted_by_path_with_group_id;
 	}
 
-	inline const std::vector<c_tag_group_interface*> get_group_interfaces(bool ignoreLoadingCheck = false) const
+	inline const std::vector<c_legacy_tag_group_interface*> get_group_interfaces(bool ignoreLoadingCheck = false) const
 	{
 		if (!ignoreLoadingCheck && is_loading())
 		{
-			static std::vector<c_tag_group_interface*> sEmptyVector;
+			static std::vector<c_legacy_tag_group_interface*> sEmptyVector;
 			return sEmptyVector;
 		}
 		return m_groupInterfaces;
 	}
-	inline c_tag_group_interface* get_group_interface_by_group_id(e_tag_group groupName)
+	inline c_legacy_tag_group_interface* get_group_interface_by_group_id(e_tag_group groupName)
 	{
-		if (groupName != _tag_group_invalid)
+		if (groupName != _legacy_tag_group_invalid)
 		{
-			for (c_tag_group_interface* pGroupInterface : get_group_interfaces())
+			for (c_legacy_tag_group_interface* pGroupInterface : get_group_interfaces())
 			{
 				if (pGroupInterface->group_magic == underlying_cast(groupName))
 				{
@@ -192,7 +192,7 @@ public:
 	std::vector<c_tag_interface*> tag_interfaces;
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_name_with_group_id;
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_path_with_group_id;
-	std::vector<c_tag_group_interface*> m_groupInterfaces;
+	std::vector<c_legacy_tag_group_interface*> m_groupInterfaces;
 	void generate_cache_file_data_access_data();
 };
 

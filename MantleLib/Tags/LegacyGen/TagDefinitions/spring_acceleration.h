@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("spring_acceleration") tag_group('sadt') s_spring_acceleration_definition
+struct nicename("spring_acceleration") tag_group('sadt') s_spring_acceleration_definition_legacy
 {
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -16,7 +16,7 @@ struct nicename("spring_acceleration") tag_group('sadt') s_spring_acceleration_d
 		s_undefined32_legacy __unknown9;
 	};
 
-	s_tag_block_legacy<s_unknown_definition> __unknown0;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown0;
 	s_undefined32_legacy __unknown1;
 	s_undefined32_legacy __unknown2;
 };

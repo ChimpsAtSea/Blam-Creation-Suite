@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("multiplayer_variant_settings_interface_definition") tag_group('goof') s_multiplayer_variant_settings_interface_definition_definition
+struct nicename("multiplayer_variant_settings_interface_definition") tag_group('goof') s_multiplayer_variant_settings_interface_definition_definition_legacy
 {
-	struct nicename("Game Engine Settings") s_game_engine_settings_definition
+	struct nicename("Game Engine Settings") s_game_engine_settings_definition_legacy
 	{
 		enum nicename("Setting Category") e_setting_category : uint32_t
 		{
@@ -402,7 +402,7 @@ struct nicename("multiplayer_variant_settings_interface_definition") tag_group('
 			/*nicename("Global-Elite Loadouts-Tier 3-Loadout 4")*/ _setting_category_global_elite_loadouts_tier_3_loadout_4 = 393ui32,
 		};
 
-		struct nicename("Options") s_options_definition
+		struct nicename("Options") s_options_definition_legacy
 		{
 			enum nicename("Submenu Setting Category") e_submenu_setting_category : uint32_t
 			{
@@ -812,10 +812,10 @@ struct nicename("multiplayer_variant_settings_interface_definition") tag_group('
 
 		string_id_legacy nicename("Name") name;
 		e_setting_category nicename("Setting Category") setting_category;
-		s_tag_block_legacy<s_options_definition> nicename("Options") options_block;
+		s_tag_block_legacy<s_options_definition_legacy> nicename("Options") options_block;
 	};
 
 	int32_t __unknown0;
-	s_tag_block_legacy<s_game_engine_settings_definition> nicename("Game Engine Settings") game_engine_settings_block;
+	s_tag_block_legacy<s_game_engine_settings_definition_legacy> nicename("Game Engine Settings") game_engine_settings_block;
 };
 

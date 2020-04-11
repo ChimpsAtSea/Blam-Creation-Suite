@@ -495,8 +495,8 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 	{
 		const uint32_t& raw_tag_group = *reinterpret_cast<const uint32_t*>(reflection_type_container.raw_tag_group.data());
 		uint64_t swapped_tag_group = bswap(raw_tag_group);
-		const char* swapped_tag_group_str = reinterpret_cast<const char*>(&swapped_tag_group);
-		reflection_type_container.tag_group = swapped_tag_group_str;
+		const char* swapped_legacy_tag_group_str = reinterpret_cast<const char*>(&swapped_tag_group);
+		reflection_type_container.tag_group = swapped_legacy_tag_group_str;
 	}
 
 	if (disableReflection)

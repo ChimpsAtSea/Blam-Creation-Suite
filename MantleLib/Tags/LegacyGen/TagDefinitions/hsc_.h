@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("hsc_") tag_group('hsc_') s_hsc__definition
+struct nicename("hsc_") tag_group('hsc_') s_hsc__definition_legacy
 {
 	char nicename("Name") name[32];
 	s_data_reference_legacy nicename("Source") source_data_reference;

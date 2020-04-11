@@ -1,14 +1,14 @@
 #pragma once
 
-struct nicename("survival_mode_globals") tag_group('smdt') s_survival_mode_globals_definition
+struct nicename("survival_mode_globals") tag_group('smdt') s_survival_mode_globals_definition_legacy
 {
-	struct nicename("Waves") s_waves_definition
+	struct nicename("Waves") s_waves_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_tag_reference_legacy nicename("Wave") wave_reference;
 	};
 
-	struct nicename("State Responses") s_state_responses_definition
+	struct nicename("State Responses") s_state_responses_definition_legacy
 	{
 		enum nicename("State") e_state : uint16_t
 		{
@@ -74,7 +74,7 @@ struct nicename("survival_mode_globals") tag_group('smdt') s_survival_mode_globa
 		s_undefined32_legacy __unknown3;
 	};
 
-	struct nicename("Firefight Voices") s_firefight_voices_definition
+	struct nicename("Firefight Voices") s_firefight_voices_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 		s_tag_reference_legacy nicename("Dialogue Male") dialogue_male_reference;
@@ -84,7 +84,7 @@ struct nicename("survival_mode_globals") tag_group('smdt') s_survival_mode_globa
 		s_tag_reference_legacy nicename("Sound Preview Female") sound_preview_female_reference;
 	};
 
-	struct nicename("Team Colors") s_team_colors_definition
+	struct nicename("Team Colors") s_team_colors_definition_legacy
 	{
 		s_colorf_legacy nicename("Color") color;
 	};
@@ -94,10 +94,10 @@ struct nicename("survival_mode_globals") tag_group('smdt') s_survival_mode_globa
 	s_tag_reference_legacy nicename("Timer Sound") timer_sound_reference;
 	s_tag_reference_legacy nicename("Timer Sound Zero") timer_sound_zero_reference;
 	s_tag_reference_legacy nicename("Survival Spawning Globals") survival_spawning_globals_reference;
-	s_tag_block_legacy<s_waves_definition> nicename("Waves") waves_block;
-	s_tag_block_legacy<s_state_responses_definition> nicename("State Responses") state_responses_block;
-	s_tag_block_legacy<s_firefight_voices_definition> nicename("Firefight Voices") firefight_voices_block;
-	s_tag_block_legacy<s_team_colors_definition> nicename("Team Colors") team_colors_block;
+	s_tag_block_legacy<s_waves_definition_legacy> nicename("Waves") waves_block;
+	s_tag_block_legacy<s_state_responses_definition_legacy> nicename("State Responses") state_responses_block;
+	s_tag_block_legacy<s_firefight_voices_definition_legacy> nicename("Firefight Voices") firefight_voices_block;
+	s_tag_block_legacy<s_team_colors_definition_legacy> nicename("Team Colors") team_colors_block;
 	s_undefined32_legacy __unknown1;
 	s_undefined32_legacy __unknown2;
 };

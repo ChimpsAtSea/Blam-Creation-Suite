@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file_gestalt_definition
+struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file_gestalt_definition_legacy
 {
-	struct nicename("Platform Codec") s_platform_codec_definition
+	struct nicename("Platform Codec") s_platform_codec_definition_legacy
 	{
 		enum nicename("Sample Rate") e_sample_rate : uint8_t
 		{
@@ -24,7 +24,7 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 		int8_t __unknown0;
 	};
 
-	struct nicename("Playback Parameters") s_playback_parameters_definition
+	struct nicename("Playback Parameters") s_playback_parameters_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint32_t /* bitfield */
 		{
@@ -60,7 +60,7 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 		float nicename("First Person Gain") first_person_gain;
 	};
 
-	struct nicename("Scales") s_scales_definition
+	struct nicename("Scales") s_scales_definition_legacy
 	{
 		float nicename("Gain Modifier min") gain_modifier_min;
 		float nicename("Gain Modifier max") gain_modifier_max;
@@ -70,12 +70,12 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 		float nicename("Skip Fraction Modifier max") skip_fraction_modifier_max;
 	};
 
-	struct nicename("Import Names") s_import_names_definition
+	struct nicename("Import Names") s_import_names_definition_legacy
 	{
 		string_id_legacy nicename("Name") name;
 	};
 
-	struct nicename("Unknown 4") s_unknown_4_definition
+	struct nicename("Unknown 4") s_unknown_4_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -87,7 +87,7 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 		s_undefined32_legacy __unknown7;
 	};
 
-	struct nicename("Pitch Range Parameters") s_pitch_range_parameters_definition
+	struct nicename("Pitch Range Parameters") s_pitch_range_parameters_definition_legacy
 	{
 		int16_t nicename("Natural Pitch") natural_pitch;
 		int16_t __unknown0;
@@ -99,7 +99,7 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 		int16_t nicename("Unknown Bounds max") unknown_bounds_max;
 	};
 
-	struct nicename("Pitch Ranges") s_pitch_ranges_definition
+	struct nicename("Pitch Ranges") s_pitch_ranges_definition_legacy
 	{
 		int16_t nicename("Import Name Index") import_name_index;
 		int16_t nicename("Pitch Range Parameter Index") pitch_range_parameter_index;
@@ -109,7 +109,7 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 		uint16_t nicename("First Permuation Index") first_permuation_index;
 	};
 
-	struct nicename("Permutations") s_permutations_definition
+	struct nicename("Permutations") s_permutations_definition_legacy
 	{
 		int16_t nicename("Import Name Index") import_name_index;
 		int16_t nicename("Encoded Skip Fraction") encoded_skip_fraction;
@@ -122,7 +122,7 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 		uint32_t nicename("FSB Info Value") fsb_info_value;
 	};
 
-	struct nicename("Language Permutations") s_language_permutations_definition
+	struct nicename("Language Permutations") s_language_permutations_definition_legacy
 	{
 		int32_t nicename("Parent Permutation Index") parent_permutation_index;
 		// English : 
@@ -175,7 +175,7 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 		int32_t nicename("Permutation Chunk Count") permutation_chunk_count11;
 	};
 
-	struct nicename("Unknown 9") s_unknown_9_definition
+	struct nicename("Unknown 9") s_unknown_9_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_tag_reference_legacy __unknown1;
@@ -187,7 +187,7 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 		s_undefined32_legacy __unknown7;
 	};
 
-	struct nicename("Languages") s_languages_definition
+	struct nicename("Languages") s_languages_definition_legacy
 	{
 		enum nicename("Language") e_language : uint32_t
 		{
@@ -205,28 +205,28 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 			/*nicename("Polish")*/ _language_polish = 11ui32,
 		};
 
-		struct nicename("Unknown A") s_unknown_a_definition
+		struct nicename("Unknown A") s_unknown_a_definition_legacy
 		{
 			int16_t __unknown0;
 		};
 
-		struct nicename("Unknown B") s_unknown_b_definition
+		struct nicename("Unknown B") s_unknown_b_definition_legacy
 		{
 			int16_t nicename("Unknown A Start Index") unknown_a_start_index;
 			int16_t nicename("Unknown A Count") unknown_a_count;
 		};
 
 		e_language nicename("Language") language;
-		s_tag_block_legacy<s_unknown_a_definition> nicename("Unknown A") unknown_a_block;
-		s_tag_block_legacy<s_unknown_b_definition> nicename("Unknown B") unknown_b_block;
+		s_tag_block_legacy<s_unknown_a_definition_legacy> nicename("Unknown A") unknown_a_block;
+		s_tag_block_legacy<s_unknown_b_definition_legacy> nicename("Unknown B") unknown_b_block;
 	};
 
-	struct nicename("Runtime Permutation Flags") s_runtime_permutation_flags_definition
+	struct nicename("Runtime Permutation Flags") s_runtime_permutation_flags_definition_legacy
 	{
 		int8_t __unknown0;
 	};
 
-	struct nicename("Permutation Chunks") s_permutation_chunks_definition
+	struct nicename("Permutation Chunks") s_permutation_chunks_definition_legacy
 	{
 		enum nicename("Flags") b_flags : uint8_t /* bitfield */
 		{
@@ -252,9 +252,9 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 		s_undefined32_legacy __unknown1;
 	};
 
-	struct nicename("Promotions") s_promotions_definition
+	struct nicename("Promotions") s_promotions_definition_legacy
 	{
-		struct nicename("Rules") s_rules_definition
+		struct nicename("Rules") s_rules_definition_legacy
 		{
 			int16_t nicename("Pitch Range Index") pitch_range_index;
 			int16_t nicename("Maximum Playing Count") maximum_playing_count;
@@ -263,19 +263,19 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 			int32_t __unknown1;
 		};
 
-		struct nicename("Runtime Timers") s_runtime_timers_definition
+		struct nicename("Runtime Timers") s_runtime_timers_definition_legacy
 		{
 			int32_t __unknown0;
 		};
 
-		s_tag_block_legacy<s_rules_definition> nicename("Rules") rules_block;
-		s_tag_block_legacy<s_runtime_timers_definition> nicename("Runtime Timers") runtime_timers_block;
+		s_tag_block_legacy<s_rules_definition_legacy> nicename("Rules") rules_block;
+		s_tag_block_legacy<s_runtime_timers_definition_legacy> nicename("Runtime Timers") runtime_timers_block;
 		int32_t __unknown0;
 		s_undefined32_legacy __unknown1;
 		s_undefined32_legacy __unknown2;
 	};
 
-	struct nicename("Extra Info") s_extra_info_definition
+	struct nicename("Extra Info") s_extra_info_definition_legacy
 	{
 		int32_t nicename("[zone] Asset Datum") zone_asset_datum;
 		uint16_t nicename("[easy read] Index") easy_read_index;
@@ -283,30 +283,30 @@ struct nicename("sound_cache_file_gestalt") tag_group('ugh!') s_sound_cache_file
 		int32_t nicename("Useless Padding") useless_padding;
 	};
 
-	struct nicename("Unknown 15") s_unknown_15_definition
+	struct nicename("Unknown 15") s_unknown_15_definition_legacy
 	{
 		int32_t __unknown0;
 	};
 
 	int32_t __unknown0;
-	s_tag_block_legacy<s_platform_codec_definition> nicename("Platform Codec") platform_codec_block;
-	s_tag_block_legacy<s_playback_parameters_definition> nicename("Playback Parameters") playback_parameters_block;
-	s_tag_block_legacy<s_scales_definition> nicename("Scales") scales_block;
-	s_tag_block_legacy<s_import_names_definition> nicename("Import Names") import_names_block;
-	s_tag_block_legacy<s_unknown_4_definition> nicename("Unknown 4") unknown_4_block;
-	s_tag_block_legacy<s_pitch_range_parameters_definition> nicename("Pitch Range Parameters") pitch_range_parameters_block;
-	s_tag_block_legacy<s_pitch_ranges_definition> nicename("Pitch Ranges") pitch_ranges_block;
-	s_tag_block_legacy<s_permutations_definition> nicename("Permutations") permutations_block;
-	s_tag_block_legacy<s_language_permutations_definition> nicename("Language Permutations") language_permutations_block;
-	s_tag_block_legacy<s_unknown_9_definition> nicename("Unknown 9") unknown_9_block;
-	s_tag_block_legacy<s_languages_definition> nicename("Languages") languages_block;
-	s_tag_block_legacy<s_runtime_permutation_flags_definition> nicename("Runtime Permutation Flags") runtime_permutation_flags_block;
+	s_tag_block_legacy<s_platform_codec_definition_legacy> nicename("Platform Codec") platform_codec_block;
+	s_tag_block_legacy<s_playback_parameters_definition_legacy> nicename("Playback Parameters") playback_parameters_block;
+	s_tag_block_legacy<s_scales_definition_legacy> nicename("Scales") scales_block;
+	s_tag_block_legacy<s_import_names_definition_legacy> nicename("Import Names") import_names_block;
+	s_tag_block_legacy<s_unknown_4_definition_legacy> nicename("Unknown 4") unknown_4_block;
+	s_tag_block_legacy<s_pitch_range_parameters_definition_legacy> nicename("Pitch Range Parameters") pitch_range_parameters_block;
+	s_tag_block_legacy<s_pitch_ranges_definition_legacy> nicename("Pitch Ranges") pitch_ranges_block;
+	s_tag_block_legacy<s_permutations_definition_legacy> nicename("Permutations") permutations_block;
+	s_tag_block_legacy<s_language_permutations_definition_legacy> nicename("Language Permutations") language_permutations_block;
+	s_tag_block_legacy<s_unknown_9_definition_legacy> nicename("Unknown 9") unknown_9_block;
+	s_tag_block_legacy<s_languages_definition_legacy> nicename("Languages") languages_block;
+	s_tag_block_legacy<s_runtime_permutation_flags_definition_legacy> nicename("Runtime Permutation Flags") runtime_permutation_flags_block;
 	s_data_reference_legacy __unknown1;
 	s_undefined32_legacy __unknown2;
 	s_undefined32_legacy __unknown3;
-	s_tag_block_legacy<s_permutation_chunks_definition> nicename("Permutation Chunks") permutation_chunks_block;
-	s_tag_block_legacy<s_promotions_definition> nicename("Promotions") promotions_block;
-	s_tag_block_legacy<s_extra_info_definition> nicename("Extra Info") extra_info_block;
-	s_tag_block_legacy<s_unknown_15_definition> nicename("Unknown 15") unknown_15_block;
+	s_tag_block_legacy<s_permutation_chunks_definition_legacy> nicename("Permutation Chunks") permutation_chunks_block;
+	s_tag_block_legacy<s_promotions_definition_legacy> nicename("Promotions") promotions_block;
+	s_tag_block_legacy<s_extra_info_definition_legacy> nicename("Extra Info") extra_info_block;
+	s_tag_block_legacy<s_unknown_15_definition_legacy> nicename("Unknown 15") unknown_15_block;
 };
 

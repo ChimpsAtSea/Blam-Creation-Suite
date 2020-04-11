@@ -1,6 +1,6 @@
 #pragma once
 
-struct nicename("sound_mix_mastering") tag_group('snmm') s_sound_mix_mastering_definition
+struct nicename("sound_mix_mastering") tag_group('snmm') s_sound_mix_mastering_definition_legacy
 {
 	s_undefined32_legacy __unknown0;
 	s_undefined32_legacy __unknown1;

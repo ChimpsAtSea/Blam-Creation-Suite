@@ -179,17 +179,17 @@ void c_cache_file::initGroupInstances()
 {
 	// allocate buffer space to store pointers back
 	m_groupInterfaces.resize(cache_file_tags_headers->groups.count);
-	c_tag_group_interface** group_interfaces_buffer = m_groupInterfaces.data();
+	c_legacy_tag_group_interface** group_interfaces_buffer = m_groupInterfaces.data();
 	std::function createGroupFunc = [this, group_interfaces_buffer](uint32_t group_index)
 	{
 		s_cache_file_tag_group* cache_file_tag_group = cache_file_tag_groups + group_index;
 		switch (cache_file_tag_group->group_tags[0])
 		{
-		case _tag_group_render_method_definition:
+		case _legacy_tag_group_render_method_definition:
 			group_interfaces_buffer[group_index] = new c_render_method_definition_group_interface(*this, static_cast<uint16_t>(group_index));
 			break;
 		default:
-			group_interfaces_buffer[group_index] = new c_tag_group_interface(*this, static_cast<uint16_t>(group_index));
+			group_interfaces_buffer[group_index] = new c_legacy_tag_group_interface(*this, static_cast<uint16_t>(group_index));
 			break;
 		}
 	};
@@ -246,10 +246,10 @@ bool SortTagInstanceByPathWithGroupID(c_tag_interface* pLeft, c_tag_interface* p
 
 void c_cache_file::initSortedInstanceLists()
 {
-	c_tag_group_interface** ppGroupInterfacesBuffer = m_groupInterfaces.data();
+	c_legacy_tag_group_interface** ppGroupInterfacesBuffer = m_groupInterfaces.data();
 	std::function createGroupFunc = [this, ppGroupInterfacesBuffer](uint32_t index)
 	{
-		c_tag_group_interface* pGroupInterface = ppGroupInterfacesBuffer[index];
+		c_legacy_tag_group_interface* pGroupInterface = ppGroupInterfacesBuffer[index];
 
 		if (!pGroupInterface->tag_interfaces.empty())
 		{
@@ -373,7 +373,7 @@ void c_cache_file::generate_cache_file_data_access_data()
 		}
 	}
 
-	for (c_tag_group_interface* group_interface : m_groupInterfaces)
+	for (c_legacy_tag_group_interface* group_interface : m_groupInterfaces)
 	{
 		uint32_t valid_ranges = 0;
 		uint32_t invalid_ranges = 0;

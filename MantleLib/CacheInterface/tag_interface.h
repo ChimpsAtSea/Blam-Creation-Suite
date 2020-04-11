@@ -1,14 +1,14 @@
 #pragma once
 
 class c_mantle_cache_file_gui_tab;
-class c_tag_group_interface;
+class c_legacy_tag_group_interface;
 
 class c_tag_interface
 {
 public:
 	friend class c_cache_file;
 	friend class c_mantle_cache_file_gui_tab;
-	friend class c_tag_group_interface;
+	friend class c_legacy_tag_group_interface;
 
 	c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex);
 	virtual ~c_tag_interface();
@@ -41,8 +41,8 @@ public:
 	inline const std::string& get_group_short_name() const { return tag_group_short_name; };
 	inline const std::string& get_group_full_name() const { return tag_group_full_name; };
 	inline const s_reflection_structure_type* get_reflection_data() const { return reflection_type; };
-	//inline c_tag_group_interface* get_group_interface() const { return group_interface; }; // #TODO: Use this version and guarantee valid value for cache_file_tag_group_interface
-	c_tag_group_interface* get_group_interface() const; // { return cache_file.get_group_interfaces(true)[group_index]; } 
+	//inline c_legacy_tag_group_interface* get_group_interface() const { return group_interface; }; // #TODO: Use this version and guarantee valid value for cache_file_legacy_tag_group_interface
+	c_legacy_tag_group_interface* get_group_interface() const; // { return cache_file.get_group_interfaces(true)[group_index]; } 
 	s_cache_file_tag_instance* get_raw_instance() const { return cache_file_tag_instance; };
 	s_cache_file_tag_group* get_raw_group() const { return cache_file_tag_group; };
 
@@ -63,7 +63,7 @@ private:
 	std::string tag_name_with_group_name;
 	const s_reflection_structure_type* reflection_type;
 	c_cache_file& cache_file;
-	c_tag_group_interface* group_interface;
+	c_legacy_tag_group_interface* group_interface;
 
 	// !unsure
 	bool search_criteria_result; // #TODO: This is a mantle gui value and doesn't really belong here

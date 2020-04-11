@@ -1,14 +1,14 @@
 #pragma once
 
-struct nicename("scenario_lightmap") tag_group('sLdT') s_scenario_lightmap_definition
+struct nicename("scenario_lightmap") tag_group('sLdT') s_scenario_lightmap_definition_legacy
 {
-	struct nicename("Lightmap Data References") s_lightmap_data_references_definition
+	struct nicename("Lightmap Data References") s_lightmap_data_references_definition_legacy
 	{
 		s_tag_reference_legacy nicename("Lightmap Data") lightmap_data_reference;
 		s_tag_reference_legacy nicename("Wetness Data") wetness_data_reference;
 	};
 
-	struct nicename("Airprobes") s_airprobes_definition
+	struct nicename("Airprobes") s_airprobes_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -26,7 +26,7 @@ struct nicename("scenario_lightmap") tag_group('sLdT') s_scenario_lightmap_defin
 		s_undefined32_legacy __unknown12;
 	};
 
-	struct nicename("Unknown") s_unknown_definition
+	struct nicename("Unknown") s_unknown_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -41,9 +41,9 @@ struct nicename("scenario_lightmap") tag_group('sLdT') s_scenario_lightmap_defin
 		s_undefined32_legacy __unknown10;
 	};
 
-	struct nicename("Unknown") s_unknown1_definition
+	struct nicename("Unknown") s_unknown1_definition_legacy
 	{
-		struct nicename("Unknown") s_unknown2_definition
+		struct nicename("Unknown") s_unknown2_definition_legacy
 		{
 			s_undefined32_legacy __unknown0;
 			s_undefined32_legacy __unknown1;
@@ -76,10 +76,10 @@ struct nicename("scenario_lightmap") tag_group('sLdT') s_scenario_lightmap_defin
 		s_undefined32_legacy __unknown5;
 		s_undefined32_legacy __unknown6;
 		s_undefined32_legacy __unknown7;
-		s_tag_block_legacy<s_unknown2_definition> __unknown8;
+		s_tag_block_legacy<s_unknown2_definition_legacy> __unknown8;
 	};
 
-	struct nicename("Unknown") s_unknown3_definition
+	struct nicename("Unknown") s_unknown3_definition_legacy
 	{
 		s_undefined32_legacy __unknown0;
 		s_undefined32_legacy __unknown1;
@@ -88,13 +88,13 @@ struct nicename("scenario_lightmap") tag_group('sLdT') s_scenario_lightmap_defin
 	};
 
 	s_undefined32_legacy __unknown0;
-	s_tag_block_legacy<s_lightmap_data_references_definition> nicename("Lightmap Data References") lightmap_data_references_block;
-	s_tag_block_legacy<s_airprobes_definition> nicename("Airprobes") airprobes_block;
-	s_tag_block_legacy<s_unknown_definition> __unknown1;
-	s_tag_block_legacy<s_unknown1_definition> __unknown2;
+	s_tag_block_legacy<s_lightmap_data_references_definition_legacy> nicename("Lightmap Data References") lightmap_data_references_block;
+	s_tag_block_legacy<s_airprobes_definition_legacy> nicename("Airprobes") airprobes_block;
+	s_tag_block_legacy<s_unknown_definition_legacy> __unknown1;
+	s_tag_block_legacy<s_unknown1_definition_legacy> __unknown2;
 	s_undefined32_legacy __unknown3;
 	s_undefined32_legacy __unknown4;
 	s_undefined32_legacy __unknown5;
-	s_tag_block_legacy<s_unknown3_definition> __unknown6;
+	s_tag_block_legacy<s_unknown3_definition_legacy> __unknown6;
 };
 

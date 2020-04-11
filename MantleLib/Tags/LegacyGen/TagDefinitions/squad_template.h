@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
+struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition_legacy
 {
-	struct nicename("Squad") s_squad_definition
+	struct nicename("Squad") s_squad_definition_legacy
 	{
 		enum nicename("Difficulty") b_difficulty : uint16_t /* bitfield */
 		{
@@ -24,7 +24,7 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 			/*nicename("Bit 15")*/ _difficulty_bit_15 = 1ui16 << 15ui16,
 		};
 
-		struct nicename("Actors") s_actors_definition
+		struct nicename("Actors") s_actors_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
@@ -36,7 +36,7 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 			int16_t __unknown3;
 		};
 
-		struct nicename("Weapons") s_weapons_definition
+		struct nicename("Weapons") s_weapons_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
@@ -48,7 +48,7 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 			int16_t __unknown3;
 		};
 
-		struct nicename("Secondary Weapons") s_secondary_weapons_definition
+		struct nicename("Secondary Weapons") s_secondary_weapons_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
@@ -60,7 +60,7 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 			int16_t __unknown3;
 		};
 
-		struct nicename("Equipment") s_equipment_definition
+		struct nicename("Equipment") s_equipment_definition_legacy
 		{
 			int16_t __unknown0;
 			int16_t __unknown1;
@@ -81,10 +81,10 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 		int16_t __unknown2;
 		int16_t nicename("Count") count;
 		int16_t __unknown3;
-		s_tag_block_legacy<s_actors_definition> nicename("Actors") actors_block;
-		s_tag_block_legacy<s_weapons_definition> nicename("Weapons") weapons_block;
-		s_tag_block_legacy<s_secondary_weapons_definition> nicename("Secondary Weapons") secondary_weapons_block;
-		s_tag_block_legacy<s_equipment_definition> nicename("Equipment") equipment_block;
+		s_tag_block_legacy<s_actors_definition_legacy> nicename("Actors") actors_block;
+		s_tag_block_legacy<s_weapons_definition_legacy> nicename("Weapons") weapons_block;
+		s_tag_block_legacy<s_secondary_weapons_definition_legacy> nicename("Secondary Weapons") secondary_weapons_block;
+		s_tag_block_legacy<s_equipment_definition_legacy> nicename("Equipment") equipment_block;
 		s_undefined32_legacy __unknown4;
 		s_tag_reference_legacy nicename("Vehicle") vehicle_reference;
 		string_id_legacy nicename("Vehicle Variant") vehicle_variant;
@@ -92,6 +92,6 @@ struct nicename("squad_template") tag_group('sqtm') s_squad_template_definition
 	};
 
 	string_id_legacy nicename("Name") name;
-	s_tag_block_legacy<s_squad_definition> nicename("Squad") squad_block;
+	s_tag_block_legacy<s_squad_definition_legacy> nicename("Squad") squad_block;
 };
 

@@ -1,8 +1,8 @@
 #pragma once
 
-struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definition
+struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definition_legacy
 {
-	struct nicename("HUD Widgets") s_hud_widgets_definition
+	struct nicename("HUD Widgets") s_hud_widgets_definition_legacy
 	{
 		enum nicename("Special HUD Type") e_special_hud_type : uint8_t
 		{
@@ -361,11 +361,11 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 			/*nicename("Value 12")*/ _input_variable_triggers_value_12 = 1ui16 << 12ui16,
 		};
 
-		struct nicename("State Data") s_state_data_definition
+		struct nicename("State Data") s_state_data_definition_legacy
 		{
-			struct nicename("'Yes' States") s_yes_states_definition
+			struct nicename("'Yes' States") s_yes_states_definition_legacy
 			{
-				struct nicename("Triggers") s_triggers_definition
+				struct nicename("Triggers") s_triggers_definition_legacy
 				{
 					enum nicename("Flag") b_flag : uint8_t /* bitfield */
 					{
@@ -379,12 +379,12 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 					int32_t nicename("Trigger Index") trigger_index;
 				};
 
-				s_tag_block_legacy<s_triggers_definition> nicename("Triggers") triggers_block;
+				s_tag_block_legacy<s_triggers_definition_legacy> nicename("Triggers") triggers_block;
 			};
 
-			struct nicename("Unknown States") s_unknown_states_definition
+			struct nicename("Unknown States") s_unknown_states_definition_legacy
 			{
-				struct nicename("Triggers") s_triggers1_definition
+				struct nicename("Triggers") s_triggers1_definition_legacy
 				{
 					enum nicename("Flag") b_flag : uint8_t /* bitfield */
 					{
@@ -398,12 +398,12 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 					int32_t nicename("Trigger Index") trigger_index;
 				};
 
-				s_tag_block_legacy<s_triggers1_definition> nicename("Triggers") triggers_block;
+				s_tag_block_legacy<s_triggers1_definition_legacy> nicename("Triggers") triggers_block;
 			};
 
-			struct nicename("'No' States") s_no_states_definition
+			struct nicename("'No' States") s_no_states_definition_legacy
 			{
-				struct nicename("Triggers") s_triggers2_definition
+				struct nicename("Triggers") s_triggers2_definition_legacy
 				{
 					enum nicename("Flag") b_flag : uint8_t /* bitfield */
 					{
@@ -417,13 +417,13 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 					int32_t nicename("Trigger Index") trigger_index;
 				};
 
-				s_tag_block_legacy<s_triggers2_definition> nicename("Triggers") triggers_block;
+				s_tag_block_legacy<s_triggers2_definition_legacy> nicename("Triggers") triggers_block;
 			};
 
 			// State Data Note : The following blocks are import data.
-			s_tag_block_legacy<s_yes_states_definition> nicename("'Yes' States") yes_states_block;
-			s_tag_block_legacy<s_unknown_states_definition> nicename("Unknown States") unknown_states_block;
-			s_tag_block_legacy<s_no_states_definition> nicename("'No' States") no_states_block;
+			s_tag_block_legacy<s_yes_states_definition_legacy> nicename("'Yes' States") yes_states_block;
+			s_tag_block_legacy<s_unknown_states_definition_legacy> nicename("Unknown States") unknown_states_block;
+			s_tag_block_legacy<s_no_states_definition_legacy> nicename("'No' States") no_states_block;
 			int16_t __unknown0;
 			int16_t __unknown1;
 			int16_t __unknown2;
@@ -433,7 +433,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 			s_undefined32_legacy __unknown6;
 		};
 
-		struct nicename("Placement Data") s_placement_data_definition
+		struct nicename("Placement Data") s_placement_data_definition_legacy
 		{
 			enum nicename("Anchor") e_anchor : uint8_t
 			{
@@ -502,7 +502,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 			float nicename("Scale Y") scale_y;
 		};
 
-		struct nicename("Animation Data") s_animation_data_definition
+		struct nicename("Animation Data") s_animation_data_definition_legacy
 		{
 			enum nicename("Animation 1 Function") e_animation_1_function : uint8_t
 			{
@@ -591,7 +591,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 			s_tag_reference_legacy nicename("Animation 5") animation_5_reference;
 		};
 
-		struct nicename("Render Data") s_render_data_definition
+		struct nicename("Render Data") s_render_data_definition_legacy
 		{
 			enum nicename("Shader Index") e_shader_index : uint8_t
 			{
@@ -1126,9 +1126,9 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 			int16_t __unknown6;
 		};
 
-		struct nicename("Datasource") s_datasource_definition
+		struct nicename("Datasource") s_datasource_definition_legacy
 		{
-			struct nicename("Unknown 6") s_unknown_6_definition
+			struct nicename("Unknown 6") s_unknown_6_definition_legacy
 			{
 				float __unknown0;
 				float __unknown1;
@@ -1145,10 +1145,10 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 			s_undefined32_legacy __unknown6;
 			s_undefined32_legacy __unknown7;
 			s_undefined32_legacy __unknown8;
-			s_tag_block_legacy<s_unknown_6_definition> nicename("Unknown 6") unknown_6_block;
+			s_tag_block_legacy<s_unknown_6_definition_legacy> nicename("Unknown 6") unknown_6_block;
 		};
 
-		struct nicename("Bitmap Widgets") s_bitmap_widgets_definition
+		struct nicename("Bitmap Widgets") s_bitmap_widgets_definition_legacy
 		{
 			enum nicename("Special HUD Type") e_special_hud_type : uint8_t
 			{
@@ -1509,11 +1509,11 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 				/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
 			};
 
-			struct nicename("State Data") s_state_data1_definition
+			struct nicename("State Data") s_state_data1_definition_legacy
 			{
-				struct nicename("'Yes' States") s_yes_states1_definition
+				struct nicename("'Yes' States") s_yes_states1_definition_legacy
 				{
-					struct nicename("Triggers") s_triggers3_definition
+					struct nicename("Triggers") s_triggers3_definition_legacy
 					{
 						enum nicename("Flag") b_flag : uint8_t /* bitfield */
 						{
@@ -1527,12 +1527,12 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 						int32_t nicename("Trigger Index") trigger_index;
 					};
 
-					s_tag_block_legacy<s_triggers3_definition> nicename("Triggers") triggers_block;
+					s_tag_block_legacy<s_triggers3_definition_legacy> nicename("Triggers") triggers_block;
 				};
 
-				struct nicename("Unknown States") s_unknown_states1_definition
+				struct nicename("Unknown States") s_unknown_states1_definition_legacy
 				{
-					struct nicename("Triggers") s_triggers4_definition
+					struct nicename("Triggers") s_triggers4_definition_legacy
 					{
 						enum nicename("Flag") b_flag : uint8_t /* bitfield */
 						{
@@ -1546,12 +1546,12 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 						int32_t nicename("Trigger Index") trigger_index;
 					};
 
-					s_tag_block_legacy<s_triggers4_definition> nicename("Triggers") triggers_block;
+					s_tag_block_legacy<s_triggers4_definition_legacy> nicename("Triggers") triggers_block;
 				};
 
-				struct nicename("'No' States") s_no_states1_definition
+				struct nicename("'No' States") s_no_states1_definition_legacy
 				{
-					struct nicename("Triggers") s_triggers5_definition
+					struct nicename("Triggers") s_triggers5_definition_legacy
 					{
 						enum nicename("Flag") b_flag : uint8_t /* bitfield */
 						{
@@ -1565,13 +1565,13 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 						int32_t nicename("Trigger Index") trigger_index;
 					};
 
-					s_tag_block_legacy<s_triggers5_definition> nicename("Triggers") triggers_block;
+					s_tag_block_legacy<s_triggers5_definition_legacy> nicename("Triggers") triggers_block;
 				};
 
 				// State Data Note : The following blocks are import data.
-				s_tag_block_legacy<s_yes_states1_definition> nicename("'Yes' States") yes_states_block;
-				s_tag_block_legacy<s_unknown_states1_definition> nicename("Unknown States") unknown_states_block;
-				s_tag_block_legacy<s_no_states1_definition> nicename("'No' States") no_states_block;
+				s_tag_block_legacy<s_yes_states1_definition_legacy> nicename("'Yes' States") yes_states_block;
+				s_tag_block_legacy<s_unknown_states1_definition_legacy> nicename("Unknown States") unknown_states_block;
+				s_tag_block_legacy<s_no_states1_definition_legacy> nicename("'No' States") no_states_block;
 				int16_t __unknown0;
 				int16_t __unknown1;
 				int16_t __unknown2;
@@ -1581,7 +1581,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 				s_undefined32_legacy __unknown6;
 			};
 
-			struct nicename("Placement Data") s_placement_data1_definition
+			struct nicename("Placement Data") s_placement_data1_definition_legacy
 			{
 				enum nicename("Anchor") e_anchor : uint8_t
 				{
@@ -1650,7 +1650,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 				float nicename("Scale Y") scale_y;
 			};
 
-			struct nicename("Animation Data") s_animation_data1_definition
+			struct nicename("Animation Data") s_animation_data1_definition_legacy
 			{
 				enum nicename("Animation 1 Function") e_animation_1_function : uint8_t
 				{
@@ -1739,7 +1739,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 				s_tag_reference_legacy nicename("Animation 5") animation_5_reference;
 			};
 
-			struct nicename("Render Data") s_render_data1_definition
+			struct nicename("Render Data") s_render_data1_definition_legacy
 			{
 				enum nicename("Shader Index") e_shader_index : uint8_t
 				{
@@ -2282,13 +2282,13 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 			e_import_input nicename("Import Input") import_input;
 			e_import_range_input nicename("Import Range Input") import_range_input;
 			s_tag_reference_legacy nicename("State Data Template") state_data_template_reference;
-			s_tag_block_legacy<s_state_data1_definition> nicename("State Data") state_data_block;
+			s_tag_block_legacy<s_state_data1_definition_legacy> nicename("State Data") state_data_block;
 			s_tag_reference_legacy nicename("Placement Data Template") placement_data_template_reference;
-			s_tag_block_legacy<s_placement_data1_definition> nicename("Placement Data") placement_data_block;
+			s_tag_block_legacy<s_placement_data1_definition_legacy> nicename("Placement Data") placement_data_block;
 			s_tag_reference_legacy nicename("Animation Data Template") animation_data_template_reference;
-			s_tag_block_legacy<s_animation_data1_definition> nicename("Animation Data") animation_data_block;
+			s_tag_block_legacy<s_animation_data1_definition_legacy> nicename("Animation Data") animation_data_block;
 			s_tag_reference_legacy nicename("Render Data Template") render_data_template_reference;
-			s_tag_block_legacy<s_render_data1_definition> nicename("Render Data") render_data_block;
+			s_tag_block_legacy<s_render_data1_definition_legacy> nicename("Render Data") render_data_block;
 			b_flags nicename("Flags") flags;
 			s_tag_reference_legacy nicename("Bitmap") bitmap_reference;
 			uint8_t nicename("Bitmap Sprite Index") bitmap_sprite_index;
@@ -2299,7 +2299,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 			s_undefined32_legacy __unknown7;
 		};
 
-		struct nicename("Text Widgets") s_text_widgets_definition
+		struct nicename("Text Widgets") s_text_widgets_definition_legacy
 		{
 			enum nicename("Special HUD Type") e_special_hud_type : uint8_t
 			{
@@ -2659,11 +2659,11 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 				/*nicename("'-' Prefix")*/ _flags___prefix = 1ui16 << 15ui16,
 			};
 
-			struct nicename("State Data") s_state_data2_definition
+			struct nicename("State Data") s_state_data2_definition_legacy
 			{
-				struct nicename("'Yes' States") s_yes_states2_definition
+				struct nicename("'Yes' States") s_yes_states2_definition_legacy
 				{
-					struct nicename("Triggers") s_triggers6_definition
+					struct nicename("Triggers") s_triggers6_definition_legacy
 					{
 						enum nicename("Flag") b_flag : uint8_t /* bitfield */
 						{
@@ -2677,12 +2677,12 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 						int32_t nicename("Trigger Index") trigger_index;
 					};
 
-					s_tag_block_legacy<s_triggers6_definition> nicename("Triggers") triggers_block;
+					s_tag_block_legacy<s_triggers6_definition_legacy> nicename("Triggers") triggers_block;
 				};
 
-				struct nicename("Unknown States") s_unknown_states2_definition
+				struct nicename("Unknown States") s_unknown_states2_definition_legacy
 				{
-					struct nicename("Triggers") s_triggers7_definition
+					struct nicename("Triggers") s_triggers7_definition_legacy
 					{
 						enum nicename("Flag") b_flag : uint8_t /* bitfield */
 						{
@@ -2696,12 +2696,12 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 						int32_t nicename("Trigger Index") trigger_index;
 					};
 
-					s_tag_block_legacy<s_triggers7_definition> nicename("Triggers") triggers_block;
+					s_tag_block_legacy<s_triggers7_definition_legacy> nicename("Triggers") triggers_block;
 				};
 
-				struct nicename("'No' States") s_no_states2_definition
+				struct nicename("'No' States") s_no_states2_definition_legacy
 				{
-					struct nicename("Triggers") s_triggers8_definition
+					struct nicename("Triggers") s_triggers8_definition_legacy
 					{
 						enum nicename("Flag") b_flag : uint8_t /* bitfield */
 						{
@@ -2715,13 +2715,13 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 						int32_t nicename("Trigger Index") trigger_index;
 					};
 
-					s_tag_block_legacy<s_triggers8_definition> nicename("Triggers") triggers_block;
+					s_tag_block_legacy<s_triggers8_definition_legacy> nicename("Triggers") triggers_block;
 				};
 
 				// State Data Note : The following blocks are import data.
-				s_tag_block_legacy<s_yes_states2_definition> nicename("'Yes' States") yes_states_block;
-				s_tag_block_legacy<s_unknown_states2_definition> nicename("Unknown States") unknown_states_block;
-				s_tag_block_legacy<s_no_states2_definition> nicename("'No' States") no_states_block;
+				s_tag_block_legacy<s_yes_states2_definition_legacy> nicename("'Yes' States") yes_states_block;
+				s_tag_block_legacy<s_unknown_states2_definition_legacy> nicename("Unknown States") unknown_states_block;
+				s_tag_block_legacy<s_no_states2_definition_legacy> nicename("'No' States") no_states_block;
 				int16_t __unknown0;
 				int16_t __unknown1;
 				int16_t __unknown2;
@@ -2731,7 +2731,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 				s_undefined32_legacy __unknown6;
 			};
 
-			struct nicename("Placement Data") s_placement_data2_definition
+			struct nicename("Placement Data") s_placement_data2_definition_legacy
 			{
 				enum nicename("Anchor") e_anchor : uint8_t
 				{
@@ -2800,7 +2800,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 				float nicename("Scale Y") scale_y;
 			};
 
-			struct nicename("Animation Data") s_animation_data2_definition
+			struct nicename("Animation Data") s_animation_data2_definition_legacy
 			{
 				enum nicename("Animation 1 Function") e_animation_1_function : uint8_t
 				{
@@ -2889,7 +2889,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 				s_tag_reference_legacy nicename("Animation 5") animation_5_reference;
 			};
 
-			struct nicename("Render Data") s_render_data2_definition
+			struct nicename("Render Data") s_render_data2_definition_legacy
 			{
 				enum nicename("Shader Index") e_shader_index : uint8_t
 				{
@@ -3432,13 +3432,13 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 			e_import_input nicename("Import Input") import_input;
 			e_import_range_input nicename("Import Range Input") import_range_input;
 			s_tag_reference_legacy nicename("State Data Template") state_data_template_reference;
-			s_tag_block_legacy<s_state_data2_definition> nicename("State Data") state_data_block;
+			s_tag_block_legacy<s_state_data2_definition_legacy> nicename("State Data") state_data_block;
 			s_tag_reference_legacy nicename("Placement Data Template") placement_data_template_reference;
-			s_tag_block_legacy<s_placement_data2_definition> nicename("Placement Data") placement_data_block;
+			s_tag_block_legacy<s_placement_data2_definition_legacy> nicename("Placement Data") placement_data_block;
 			s_tag_reference_legacy nicename("Animation Data Template") animation_data_template_reference;
-			s_tag_block_legacy<s_animation_data2_definition> nicename("Animation Data") animation_data_block;
+			s_tag_block_legacy<s_animation_data2_definition_legacy> nicename("Animation Data") animation_data_block;
 			s_tag_reference_legacy nicename("Render Data Template") render_data_template_reference;
-			s_tag_block_legacy<s_render_data2_definition> nicename("Render Data") render_data_block;
+			s_tag_block_legacy<s_render_data2_definition_legacy> nicename("Render Data") render_data_block;
 			b_flags nicename("Flags") flags;
 			e_font nicename("Font") font;
 			string_id_legacy nicename("String") string;
@@ -3452,17 +3452,17 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 		e_import_input nicename("Import Input") import_input;
 		e_import_range_input nicename("Import Range Input") import_range_input;
 		s_tag_reference_legacy nicename("State Data Template") state_data_template_reference;
-		s_tag_block_legacy<s_state_data_definition> nicename("State Data") state_data_block;
+		s_tag_block_legacy<s_state_data_definition_legacy> nicename("State Data") state_data_block;
 		s_tag_reference_legacy nicename("Placement Data Template") placement_data_template_reference;
-		s_tag_block_legacy<s_placement_data_definition> nicename("Placement Data") placement_data_block;
+		s_tag_block_legacy<s_placement_data_definition_legacy> nicename("Placement Data") placement_data_block;
 		s_tag_reference_legacy nicename("Animation Data Template") animation_data_template_reference;
-		s_tag_block_legacy<s_animation_data_definition> nicename("Animation Data") animation_data_block;
+		s_tag_block_legacy<s_animation_data_definition_legacy> nicename("Animation Data") animation_data_block;
 		s_tag_reference_legacy nicename("Render Data Template") render_data_template_reference;
-		s_tag_block_legacy<s_render_data_definition> nicename("Render Data") render_data_block;
+		s_tag_block_legacy<s_render_data_definition_legacy> nicename("Render Data") render_data_block;
 		s_tag_reference_legacy nicename("Datasource Template") datasource_template_reference;
-		s_tag_block_legacy<s_datasource_definition> nicename("Datasource") datasource_block;
-		s_tag_block_legacy<s_bitmap_widgets_definition> nicename("Bitmap Widgets") bitmap_widgets_block;
-		s_tag_block_legacy<s_text_widgets_definition> nicename("Text Widgets") text_widgets_block;
+		s_tag_block_legacy<s_datasource_definition_legacy> nicename("Datasource") datasource_block;
+		s_tag_block_legacy<s_bitmap_widgets_definition_legacy> nicename("Bitmap Widgets") bitmap_widgets_block;
+		s_tag_block_legacy<s_text_widgets_definition_legacy> nicename("Text Widgets") text_widgets_block;
 		int32_t __unknown3;
 		int16_t __unknown4;
 		int16_t __unknown5;
@@ -3501,7 +3501,7 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 		int16_t nicename("12") _12;
 	};
 
-	struct nicename("Compiled Widget Data") s_compiled_widget_data_definition
+	struct nicename("Compiled Widget Data") s_compiled_widget_data_definition_legacy
 	{
 		enum nicename("Special HUD Type") e_special_hud_type : uint8_t
 		{
@@ -3993,11 +3993,11 @@ struct nicename("chud_definition") tag_group('chdt') s_chud_definition_definitio
 	   
 	   As for Placement Data, each index likely refers to each "HUD Attributes" index in CHGD to change depending on resolution. */
 	// Render Data Shader Index : While represented as an enum, it is actually an index to the "HUD Shaders" block in CHGD
-	s_tag_block_legacy<s_hud_widgets_definition> nicename("HUD Widgets") hud_widgets_block;
+	s_tag_block_legacy<s_hud_widgets_definition_legacy> nicename("HUD Widgets") hud_widgets_block;
 	int32_t nicename("Low Clip Cutoff") low_clip_cutoff;
 	int32_t nicename("Low Ammo Cutoff") low_ammo_cutoff;
 	int32_t nicename("Age Cutoff") age_cutoff;
 	int32_t nicename("Sword Age Cutoff") sword_age_cutoff;
-	s_tag_block_legacy<s_compiled_widget_data_definition> nicename("Compiled Widget Data") compiled_widget_data_block;
+	s_tag_block_legacy<s_compiled_widget_data_definition_legacy> nicename("Compiled Widget Data") compiled_widget_data_block;
 };
 
