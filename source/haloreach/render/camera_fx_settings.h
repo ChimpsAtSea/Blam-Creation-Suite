@@ -13,6 +13,7 @@ constexpr tag k_camera_fx_settings_group_tag = 'cfxs';
 
 class c_camera_fx_settings
 {
+public:
 	enum e_parameter_flags
 	{
 		_parameter_use_default_bit,
