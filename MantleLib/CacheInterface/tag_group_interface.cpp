@@ -2,7 +2,7 @@
 
 #include "tag_group_names.inl"
 
-const char* get_known_tag_group_name(e_tag_group tag_group)
+const char* get_known_legacy_tag_group_name(e_tag_group tag_group)
 {
 	for (std::pair<int, const char*>& tag_group_id_and_name_pair : tag_group_names)
 	{
@@ -14,7 +14,7 @@ const char* get_known_tag_group_name(e_tag_group tag_group)
 	return nullptr;
 }
 
-c_tag_group_interface::c_tag_group_interface(c_cache_file& cache_file, uint16_t group_index) :
+c_legacy_tag_group_interface::c_legacy_tag_group_interface(c_cache_file& cache_file, uint16_t group_index) :
 	group_index(group_index),
 	cache_file_tag_group(cache_file.cache_file_tag_groups + group_index),
 	group_magic(cache_file_tag_group->group_tags[0]),
@@ -31,28 +31,28 @@ c_tag_group_interface::c_tag_group_interface(c_cache_file& cache_file, uint16_t 
 	short_name = std::string(reversedShortName.rbegin(), reversedShortName.rend());
 
 
-	const char* cache_tag_group_name = cache_file.string_id_to_cstr(*reinterpret_cast<string_id*>(&cache_file_tag_group->name));
-	const char* known_tag_group_name = get_known_tag_group_name(group_magic);
+	const char* cache_legacy_tag_group_name = cache_file.string_id_to_cstr(*reinterpret_cast<string_id_legacy*>(&cache_file_tag_group->name));
+	const char* known_legacy_tag_group_name = get_known_legacy_tag_group_name(group_magic);
 
-	if (known_tag_group_name)
+	if (known_legacy_tag_group_name)
 	{
-		full_name = known_tag_group_name;
-		if (strcmp(known_tag_group_name, cache_tag_group_name) != 0)
+		full_name = known_legacy_tag_group_name;
+		if (strcmp(known_legacy_tag_group_name, cache_legacy_tag_group_name) != 0)
 		{
 			c_console::set_text_color(_console_color_warning);
-			write_line_verbose("Warning: Known tag group '%s' '%s' has invalid cache file name '%s'. String ID sets may be invalid!", short_name.c_str(), full_name.c_str(), cache_tag_group_name);
+			write_line_verbose("Warning: Known tag group '%s' '%s' has invalid cache file name '%s'. String ID sets may be invalid!", short_name.c_str(), full_name.c_str(), cache_legacy_tag_group_name);
 			c_console::set_text_color(_console_color_default);
 		}
 	}
 	else
 	{
-		full_name = cache_tag_group_name;
+		full_name = cache_legacy_tag_group_name;
 		c_console::set_text_color(_console_color_warning);
 		write_line_verbose("Warning: Unknown tag group '%s' '%s'", short_name.c_str(), full_name.c_str());
 		c_console::set_text_color(_console_color_default);
 	}
 
-	reflection_type = get_tag_reflection_data_by_tag_group(cache_file_tag_group->group_tags[0]);
+	reflection_type = reflection_legacy(cache_file_tag_group->group_tags[0]);
 
 	ASSERT(!short_name.empty());
 	ASSERT(!full_name.empty());
@@ -60,12 +60,12 @@ c_tag_group_interface::c_tag_group_interface(c_cache_file& cache_file, uint16_t 
 	initTagGroupRelationship();
 }
 
-c_tag_group_interface::~c_tag_group_interface()
+c_legacy_tag_group_interface::~c_legacy_tag_group_interface()
 {
 
 }
 
-void c_tag_group_interface::initTagGroupRelationship()
+void c_legacy_tag_group_interface::initTagGroupRelationship()
 {
 	for (c_tag_interface* pTagInterface : cache_file.get_tag_interfaces(true))
 	{

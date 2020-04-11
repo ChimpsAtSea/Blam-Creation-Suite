@@ -8,7 +8,7 @@ class c_cache_file
 {
 public:
 	friend class c_tag_interface;
-	friend class c_tag_group_interface;
+	friend class c_legacy_tag_group_interface;
 
 	c_cache_file(const std::wstring& mapFilePath);
 	~c_cache_file();
@@ -73,20 +73,20 @@ public:
 		return tag_interfaces_sorted_by_path_with_group_id;
 	}
 
-	inline const std::vector<c_tag_group_interface*> get_group_interfaces(bool ignoreLoadingCheck = false) const
+	inline const std::vector<c_legacy_tag_group_interface*> get_group_interfaces(bool ignoreLoadingCheck = false) const
 	{
 		if (!ignoreLoadingCheck && is_loading())
 		{
-			static std::vector<c_tag_group_interface*> sEmptyVector;
+			static std::vector<c_legacy_tag_group_interface*> sEmptyVector;
 			return sEmptyVector;
 		}
 		return m_groupInterfaces;
 	}
-	inline c_tag_group_interface* get_group_interface_by_group_id(e_tag_group groupName)
+	inline c_legacy_tag_group_interface* get_group_interface_by_group_id(e_tag_group groupName)
 	{
-		if (groupName != _tag_group_invalid)
+		if (groupName != _legacy_tag_group_invalid)
 		{
-			for (c_tag_group_interface* pGroupInterface : get_group_interfaces())
+			for (c_legacy_tag_group_interface* pGroupInterface : get_group_interfaces())
 			{
 				if (pGroupInterface->group_magic == underlying_cast(groupName))
 				{
@@ -98,20 +98,20 @@ public:
 	}
 	
 	template<typename R, typename T>
-	inline R* GetTagBlockData(s_tag_block_definition<T>& rTagBlock)
+	inline R* GetTagBlockData(s_tag_block_legacy<T>& rTagBlock)
 	{
-		return reinterpret_cast<R*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_definition<>*>(&rTagBlock)));
+		return reinterpret_cast<R*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&rTagBlock)));
 	}
 
 	template<typename T>
-	inline T* GetTagBlockData(s_tag_block_definition<T>& rTagBlock)
+	inline T* GetTagBlockData(s_tag_block_legacy<T>& rTagBlock)
 	{
-		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_definition<>*>(&rTagBlock)));
+		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&rTagBlock)));
 	}
 
-	inline char* get_data_reference_data(DataReference& data_reference)
+	inline char* get_data_reference_data(s_data_reference_legacy& data_reference)
 	{
-		return getDataReferenceDataInternal(data_reference);
+		return get_data_reference_data_internal(data_reference);
 	}
 
 	inline const wchar_t* GetFilePath() const { return m_mapFilePath.c_str(); }
@@ -125,7 +125,7 @@ public:
 		return string_id_str;
 	}
 
-	inline const char* string_id_to_cstr(string_id const id, const char* const error_value = nullptr)
+	inline const char* string_id_to_cstr(string_id_legacy const id, const char* const error_value = nullptr)
 	{
 		uint32_t index = string_id_guesstimator->string_id_to_index(id);
 
@@ -139,7 +139,7 @@ public:
 
 //private:
 
-	inline char* getTagBlockDataInternal(s_tag_block_definition<>& tag_block)
+	inline char* getTagBlockDataInternal(s_tag_block_legacy<>& tag_block)
 	{
 		const SectionCache& section_info = get_section(e_cache_file_section::_cache_file_section_tags);
 		char* tags_section_data = section_info.first;
@@ -150,7 +150,7 @@ public:
 		return data_reference_data_pointer;
 	}
 
-	inline char* getDataReferenceDataInternal(DataReference& data_reference)
+	inline char* get_data_reference_data_internal(s_data_reference_legacy& data_reference)
 	{
 		const SectionCache& section_info = get_section(e_cache_file_section::_cache_file_section_tags);
 		char* tags_section_data = section_info.first;
@@ -180,7 +180,7 @@ public:
 	char* m_pTagNameBuffer;
 	long *m_pStringIDIndices;
 	char *m_pStringIDBuffer;
-	s_cache_file_header* cache_file_header;
+	s_reach_cache_file_header* cache_file_header;
 	s_cache_file_tags_header* cache_file_tags_headers;
 	s_cache_file_tag_instance* cache_file_tag_instances;
 	s_cache_file_tag_group* cache_file_tag_groups;
@@ -192,7 +192,7 @@ public:
 	std::vector<c_tag_interface*> tag_interfaces;
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_name_with_group_id;
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_path_with_group_id;
-	std::vector<c_tag_group_interface*> m_groupInterfaces;
+	std::vector<c_legacy_tag_group_interface*> m_groupInterfaces;
 	void generate_cache_file_data_access_data();
 };
 

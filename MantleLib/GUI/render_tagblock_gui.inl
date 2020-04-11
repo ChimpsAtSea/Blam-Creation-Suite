@@ -7,7 +7,7 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 
 	DEBUG_ASSERT(field_data != nullptr);
 	ImGui::PushID(field_data);
-	s_tag_block_definition<>* tag_block_definition = reinterpret_cast<s_tag_block_definition<>*>(field_data);
+	s_tag_block_legacy<>* tag_block_definition = reinterpret_cast<s_tag_block_legacy<>*>(field_data);
 
 	struct TagBlockDynamicData
 	{
@@ -81,7 +81,7 @@ void render_tagblock_gui(void* field_data, const c_reflection_field& reflection_
 				if (tag_block_reflection_type)
 				{
 					c_mantle_tag_gui_tab::increment_recursion();
-					tag_block_reflection_type->render_type_gui(tag_block_data);
+					tag_block_reflection_type->render_type_gui_legacy(tag_block_data);
 					c_mantle_tag_gui_tab::decrement_recursion();
 
 				}

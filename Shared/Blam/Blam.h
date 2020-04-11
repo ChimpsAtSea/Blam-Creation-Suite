@@ -1,38 +1,40 @@
 #pragma once
 
-typedef uint32_t basic_string_id;
+#include "blamlib-public-pch.h"
 
-#include "basic_buffer.h"
+#include "mcc_skull.h"
+#include "mcc_game_mode.h"
 
-#include "real_vector3d.h"
-#include "observer_camera.h"
+// ------- LEGACY -------
 
-#include "scenario_load_type.h"
-#include "scenario_type.h"
+typedef uint32_t DEPRECATED_basic_string_id;
 
-#include "cache_file_magic.h"
-#include "cache_file_section_file_bounds.h"
-#include "cache_file_section.h"
-#include "cache_file_header.h"
-#include "cache_file_tag_instance.h"
-#include "cache_file_tag_group.h"
-#include "cache_file_tags_header.h"
+#include "legacy/basic_buffer.h"
 
-#include "blamfile_chunk_type.h"
-#include "blamfile_header.h"
-#include "blamfile_level_chunk_flags.h"
-#include "blamfile_level_chunk.h"
+#include "legacy/real_vector3d.h"
+#include "legacy/observer_camera.h"
 
-#include "campaign_difficulty_level.h"
-#include "map_id.h"
-#include "game_mode.h"
-#include "skull.h"
-#include "damage_reporting_type.h"
-#include "campaign_metagame_bucket_type.h"
+#include "legacy/cache_file_magic.h"
+#include "legacy/cache_file_section_file_bounds.h"
+#include "legacy/cache_file_section.h"
+#include "legacy/cache_file_header.h"
+#include "legacy/cache_file_tag_instance.h"
+#include "legacy/cache_file_tag_group.h"
+#include "legacy/cache_file_tags_header.h"
 
-#include "life_cycle_join_result.h"
-#include "network_session_class.h"
-#include "network_session_peer_state.h"
-#include "network_message_type.h"
-#include "network_session_parameter_type.h"
+#include "legacy/blamfile_chunk_type.h"
+#include "legacy/blamfile_header.h"
+#include "legacy/blamfile_level_chunk_flags.h"
+#include "legacy/blamfile_level_chunk.h"
+
+#include "legacy/campaign_difficulty_level.h"
+#include "legacy/map_id.h"
+#include "legacy/damage_reporting_type.h"
+#include "legacy/campaign_metagame_bucket_type.h"
+
+#include "legacy/life_cycle_join_result.h"
+#include "legacy/network_session_class.h"
+#include "legacy/network_session_peer_state.h"
+#include "legacy/network_message_type.h"
+#include "legacy/network_session_parameter_type.h"
 

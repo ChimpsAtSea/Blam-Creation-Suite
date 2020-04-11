@@ -86,7 +86,7 @@ T& tag_definition_get(uint16_t index)
 }
 
 template<typename T>
-T& tag_block_definition_get(s_tag_block_definition<T>& tag_block_ref, uint16_t index)
+T& tag_block_definition_get(s_tag_block_legacy<T>& tag_block_ref, uint16_t index)
 {
 	T* tag_block_definition_ptr = reinterpret_cast<T*>(tag_address_get(tag_block_ref.address));
 
@@ -98,14 +98,13 @@ T& tag_block_definition_get(s_tag_block_definition<T>& tag_block_ref, uint16_t i
 	return *tag_block_definition_ptr;
 }
 
-s_cache_file_header* cache_file_header_get()
+s_reach_cache_file_header* cache_file_header_get()
 {
 	if (!is_valid(g_cache_file_global_loaded_state))
 	{
 		return nullptr;
 	}
 
-	s_cache_file_header& cache_file_header = *reinterpret_cast<s_cache_file_header*>(&g_cache_file_global_loaded_state[0x10]);
+	s_reach_cache_file_header& cache_file_header = *reinterpret_cast<s_reach_cache_file_header*>(&g_cache_file_global_loaded_state[0x10]);
 	return &cache_file_header;
 }
-

@@ -39,7 +39,7 @@ public:
 private:
 	char __padding0[10];
 public:
-	unsigned long long active_game_skull_flags;
+	unsigned long long active_game_mcc_skull_flags;
 private:
 	char __padding1[8];
 public:
@@ -99,7 +99,7 @@ public:
 private:
 	char __padding2[6];
 public:
-	unsigned long long active_game_skull_flags;
+	unsigned long long active_game_mcc_skull_flags;
 
 	s_peer_context party;
 	s_peer_context local;
@@ -141,7 +141,7 @@ public:
 	long& map_id;
 	long& campaign_difficulty_level;
 	unsigned short& campaign_insertion_point;
-	unsigned long long& active_game_skull_flags;
+	unsigned long long& active_game_mcc_skull_flags;
 	s_peer_context& party;
 	s_peer_context& local;
 	s_peer_context(&peers)[17];
@@ -178,7 +178,7 @@ private:
 	reference_getter(map_id);
 	reference_getter(campaign_difficulty_level);
 	reference_getter(campaign_insertion_point);
-	reference_getter(active_game_skull_flags);
+	reference_getter(active_game_mcc_skull_flags);
 	reference_getter(party);
 	reference_getter(local);
 	reference_getter(peers);
@@ -230,7 +230,7 @@ public:
 		map_id(*get_map_id()),
 		campaign_difficulty_level(*get_campaign_difficulty_level()),
 		campaign_insertion_point(*get_campaign_insertion_point()),
-		active_game_skull_flags(*get_active_game_skull_flags()),
+		active_game_mcc_skull_flags(*get_active_game_mcc_skull_flags()),
 		party(*get_party()),
 		local(*get_local()),
 		peers(*get_peers()),

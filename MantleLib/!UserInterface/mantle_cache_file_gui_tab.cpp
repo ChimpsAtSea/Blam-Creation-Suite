@@ -155,7 +155,7 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 			ImGui::InputText("", search_buffer, 1024);
 			ImGui::Dummy(ImVec2(0, 10));
 		}
-		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<c_tag_group_interface*> rGroupInterfaces = cache_file.get_group_interfaces();
+		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<c_legacy_tag_group_interface*> rGroupInterfaces = cache_file.get_group_interfaces();
 
 
 		bool useSearch = search_buffer[0] != 0;
@@ -191,9 +191,9 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 		}
 		else
 		{
-			for (c_tag_group_interface* pGroupInterface : rGroupInterfaces)
+			for (c_legacy_tag_group_interface* pGroupInterface : rGroupInterfaces)
 			{
-				c_tag_group_interface& rGroupInterface = *pGroupInterface;
+				c_legacy_tag_group_interface& rGroupInterface = *pGroupInterface;
 
 				const std::vector<c_tag_interface*>& tag_interfaces = c_mantle_gui::get_use_full_file_length_display()
 					? pGroupInterface->get_tag_interfacesSortedByPathWithGroupID()
@@ -400,7 +400,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 		return;
 	}
 
-	c_tag_group_interface* group_interface = cache_file.get_group_interface_by_group_id(_tag_group_scenario);
+	c_legacy_tag_group_interface* group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_scenario);
 	if (group_interface == nullptr)
 	{
 		return;
@@ -417,19 +417,19 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 
 	if (tag_interface)
 	{
-		s_scenario_definition* scenario = tag_interface->get_data<s_scenario_definition>();
-		s_tag_block_definition<s_scenario_definition::s_trigger_volumes_definition>& trigger_volumes_tag_block = scenario->trigger_volumes_block;
+		s_scenario_definition_legacy* scenario = tag_interface->get_data<s_scenario_definition_legacy>();
+		s_tag_block_legacy<s_scenario_definition_legacy::s_trigger_volumes_definition_legacy>& trigger_volumes_tag_block = scenario->trigger_volumes_block;
 
 		static c_box_primitive& immediate_box_primitive = c_primitive_render_manager::get_immediate_box();
 
 		// #TODO: Remove GetTagBlockData and replace with virtual tag interface/virtual tab block data access
-		s_scenario_definition::s_trigger_volumes_definition* trigger_volumes_tag_block_data = cache_file.GetTagBlockData(trigger_volumes_tag_block);
+		s_scenario_definition_legacy::s_trigger_volumes_definition_legacy* trigger_volumes_tag_block_data = cache_file.GetTagBlockData(trigger_volumes_tag_block);
 		for (uint32_t trigger_volume_index = 0; trigger_volume_index < trigger_volumes_tag_block.count; trigger_volume_index++)
 		{
 			constexpr float k_line_transparency = 0.4f;
 			constexpr float k_text_transparency = 0.6f;
 
-			s_scenario_definition::s_trigger_volumes_definition& trigger_volume = trigger_volumes_tag_block_data[trigger_volume_index];
+			s_scenario_definition_legacy::s_trigger_volumes_definition_legacy& trigger_volume = trigger_volumes_tag_block_data[trigger_volume_index];
 
 			bool is_kill_volume = trigger_volume.kill_volume != 0xFFFFi16;
 			// #REFLECTIONREFACTOR

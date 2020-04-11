@@ -2,7 +2,7 @@
 
 #include "FindOffsetFunction.h"
 
-// #TODO: (Squaresome) Refactor the DataReference API because it is crazy!
+// #TODO: (Squaresome) Refactor the s_data_reference_legacy API because it is crazy!
 
 // these API's require auto in their templates. 
 // copy and pasting this elsewhere in the code could result in your immediate murder.

@@ -4,7 +4,7 @@ template<typename t_value>
 class c_virtual_tag_block
 {
 public:
-	c_virtual_tag_block(c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_block_definition<t_value>& tag_block) :
+	c_virtual_tag_block(c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_block_legacy<t_value>& tag_block) :
 		address(tag_block.address),
 		count(tag_block.count),
 		definition_address(tag_block.definition_address),
@@ -20,9 +20,9 @@ public:
 	t_value* begin() { return begin_pointer; }
 	t_value* end() { return end_pointer; }
 
-	decltype(s_tag_block_definition<>::address)& address;
-	decltype(s_tag_block_definition<>::count)& count;
-	decltype(s_tag_block_definition<>::definition_address)& definition_address;
+	decltype(s_tag_block_legacy<>::address)& address;
+	decltype(s_tag_block_legacy<>::count)& count;
+	decltype(s_tag_block_legacy<>::definition_address)& definition_address;
 
 
 	t_value& operator[](size_t index) const { return begin_pointer[index]; }
@@ -43,6 +43,6 @@ private:
 
 	c_cache_file& cache_file;
 	c_tag_interface& tag_interface;
-	s_tag_block_definition<t_value>& tag_block;
+	s_tag_block_legacy<t_value>& tag_block;
 };
 

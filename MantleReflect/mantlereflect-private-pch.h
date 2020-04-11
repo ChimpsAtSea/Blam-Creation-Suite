@@ -13,6 +13,7 @@
 #include <llvm/Support/CommandLine.h>
 #include <clang/AST/ASTConsumer.h>
 #include <clang/AST/RecursiveASTVisitor.h>
+#include <clang/AST/Comment.h>
 #include <clang/Frontend/CompilerInstance.h>
 #pragma warning( pop )
 
@@ -24,16 +25,28 @@
 #define __TBB_SOURCE_DIRECTLY_INCLUDED 1
 #include <tbb/tbb.h>
 
+
 #include "util.h"
 
 #include "mantlereflect-public-pch.h"
 
-#include "reflection_field_container.h"
-#include "reflection_type_container.h"
-#include "reflection_enum_container.h"
-#include "SourceGenerators/ast_source_generator.h"
-#include "SourceGenerators/mantle_tag_groups_generator.h"
-#include "SourceGenerators/mantle_runtime_reflection_generator.h"
-#include "SourceGenerators/mantle_compile_time_gui_generator.h"
-#include "SourceGenerators/mantle_compile_time_conversion_generator.h"
-#include "SourceGenerators/mantle_virtual_tag_interface_generator.h"
+#include "LLVM/llvm_compiler_interface.h"
+#include "LLVM/llvm_class_visitor.h"
+#include "LLVM/llvm_ast_consumer.h"
+#include "LLVM/llvm_compile_action.h"
+
+#include "LegacyGenerators/legacy_reflection_field_container.h"
+#include "LegacyGenerators/legacy_reflection_type_container.h"
+#include "LegacyGenerators/legacy_reflection_enum_container.h"
+
+#include "BlamlibGenerators/blamlib_compiler_interface.h"
+
+// --- LEGACY GENERATORS ---
+#include "LegacyGenerators/legacy_compiler_interface.h"
+#include "LegacyGenerators/legacy_ast_source_generator.h"
+#include "LegacyGenerators/legacy_tag_groups_generator.h"
+#include "LegacyGenerators/legacy_runtime_reflection_generator.h"
+#include "LegacyGenerators/legacy_compile_time_gui_generator.h"
+#include "LegacyGenerators/legacy_compile_time_conversion_generator.h"
+#include "LegacyGenerators/legacy_virtual_tag_interface_generator.h"
+/// --- END LEGACY GENERATORS ---

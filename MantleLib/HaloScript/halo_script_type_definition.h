@@ -474,7 +474,7 @@ public:
 		type(type),
 		underlying_type(underlying_type),
 		flags_raw(flags),
-		tag_group(_tag_group_invalid),
+		tag_group(_legacy_tag_group_invalid),
 		enums(nullptr),
 		enums_count(0),
 		name(name),

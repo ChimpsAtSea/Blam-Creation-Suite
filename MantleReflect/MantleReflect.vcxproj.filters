@@ -21,72 +21,108 @@
     <ClCompile Include="mantlereflect-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceGenerators\ast_source_generator.cpp">
+    <ClCompile Include="LLVM\llvm_compile_action.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceGenerators\mantle_compile_time_gui_generator.cpp">
+    <ClCompile Include="LLVM\llvm_compiler_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceGenerators\mantle_runtime_reflection_generator.cpp">
+    <ClCompile Include="LLVM\llvm_ast_consumer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceGenerators\mantle_compile_time_conversion_generator.cpp">
+    <ClCompile Include="LLVM\llvm_class_visitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="reflection_type_container.cpp">
+    <ClCompile Include="BlamlibGenerators\blamlib_compiler_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="reflection_field_container.cpp">
+    <ClCompile Include="LegacyGenerators\legacy_compiler_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceGenerators\mantle_tag_groups_generator.cpp">
+    <ClCompile Include="LegacyGenerators\legacy_compile_time_conversion_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SourceGenerators\mantle_virtual_tag_interface_generator.cpp">
+    <ClCompile Include="LegacyGenerators\legacy_reflection_enum_container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="reflection_enum_container.cpp">
+    <ClCompile Include="LegacyGenerators\legacy_reflection_field_container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LegacyGenerators\legacy_reflection_type_container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LegacyGenerators\legacy_runtime_reflection_generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LegacyGenerators\legacy_tag_groups_generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LegacyGenerators\legacy_virtual_tag_interface_generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LegacyGenerators\legacy_compile_time_gui_generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LegacyGenerators\legacy_ast_source_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ReflectionTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="mantlereflect-private-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mantlereflect-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SourceGenerators\ast_source_generator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SourceGenerators\mantle_compile_time_gui_generator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SourceGenerators\mantle_runtime_reflection_generator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SourceGenerators\mantle_compile_time_conversion_generator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection_type_container.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection_field_container.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SourceGenerators\mantle_tag_groups_generator.h">
+    <ClInclude Include="LLVM\llvm_compile_action.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SourceGenerators\mantle_virtual_tag_interface_generator.h">
+    <ClInclude Include="LLVM\llvm_compiler_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="reflection_enum_container.h">
+    <ClInclude Include="LLVM\llvm_ast_consumer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LLVM\llvm_class_visitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlamlibGenerators\blamlib_compiler_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LegacyGenerators\legacy_compiler_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LegacyGenerators\legacy_compile_time_conversion_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LegacyGenerators\legacy_reflection_enum_container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LegacyGenerators\legacy_reflection_field_container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LegacyGenerators\legacy_reflection_type_container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LegacyGenerators\legacy_runtime_reflection_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LegacyGenerators\legacy_tag_groups_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LegacyGenerators\legacy_virtual_tag_interface_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LegacyGenerators\legacy_compile_time_gui_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LegacyGenerators\legacy_ast_source_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="legacy_reflection_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

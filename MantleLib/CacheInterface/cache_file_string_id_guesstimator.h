@@ -14,7 +14,7 @@ public:
 	c_cache_file_string_id_guesstimator(c_cache_file& cache_file);
 	~c_cache_file_string_id_guesstimator();
 
-	uint32_t string_id_to_index(string_id const stringid)
+	uint32_t string_id_to_index(string_id_legacy const stringid)
 	{
 		uint32_t start_index = 0;
 		if (stringid.set == 0 && stringid.index >= engine_string_id_first_set_end_index)

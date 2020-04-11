@@ -163,7 +163,7 @@ void c_mantle_shader_tool_gui_tab::render_source_code_editor_configuration_heade
 	{
 		if (ImGui::Button("Populate from RMT2"))
 		{
-			v_tag_interface<s_render_method_definition_definition>* render_method_definition = dynamic_cast<decltype(render_method_definition)>(selected_render_method_definition_tag_interface);
+			v_tag_interface_legacy<s_render_method_definition_definition_legacy>* render_method_definition = dynamic_cast<decltype(render_method_definition)>(selected_render_method_definition_tag_interface);
 
 			//for (s_render_method_definition_definition::s_option_definition& option : render_method_definition->options)
 			//{
@@ -257,7 +257,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 
 		//if (selected_cache_file_tab)
 		{
-			c_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_tag_group_render_method_definition);
+			c_legacy_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_render_method_definition);
 			c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
 			DEBUG_ASSERT(render_method_definition_interface == tag_group_interface);
 			const std::vector<c_tag_interface*>& tag_interfaces = render_method_definition_interface->get_tag_interfaces();
@@ -270,7 +270,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 					for (c_tag_interface* render_method_definition_tag_interface : tag_interfaces)
 					{
 						DEBUG_ASSERT(render_method_definition_tag_interface->get_group_interface() == render_method_definition_interface);
-						DEBUG_ASSERT(render_method_definition_interface->GetGroupMagic() == _tag_group_render_method_definition);
+						DEBUG_ASSERT(render_method_definition_interface->GetGroupMagic() == _legacy_tag_group_render_method_definition);
 
 						if (ImGui::Selectable(render_method_definition_tag_interface->get_name_cstr(), selected_render_method_definition_tag_interface == render_method_definition_tag_interface))
 						{
@@ -317,7 +317,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 		{
 			// #TODO: This could do with some optimization by adding a subclass to c_tag_interface to store all of this information computed upfront
 
-			c_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_tag_group_render_method_definition);
+			c_legacy_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_render_method_definition);
 			c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
 
 
@@ -329,7 +329,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 			{
 				for (c_tag_interface* render_method_template_tag_interface : render_method_template_tags)
 				{
-					DEBUG_ASSERT(render_method_template_tag_interface->get_group_interface()->GetGroupMagic() == _tag_group_render_method_template);
+					DEBUG_ASSERT(render_method_template_tag_interface->get_group_interface()->GetGroupMagic() == _legacy_tag_group_render_method_template);
 
 					if (ImGui::Selectable(render_method_template_tag_interface->get_name_cstr(), selected_render_method_template_tag_interface == render_method_template_tag_interface))
 					{
@@ -569,12 +569,12 @@ void c_mantle_shader_tool_gui_tab::disassemble_runtime_subroutine() const
 {
 	if (selected_render_method_template_tag_interface)
 	{
-		s_render_method_template_definition* render_method_template = selected_render_method_template_tag_interface->get_data<s_render_method_template_definition>();
+		s_render_method_template_definition_legacy* render_method_template = selected_render_method_template_tag_interface->get_data<s_render_method_template_definition_legacy>();
 		c_tag_interface* pixel_shader_tag_interface = cache_file.get_tag_interface(render_method_template->pixel_shader_reference.index);
-		s_pixel_shader_definition* pixel_shader = pixel_shader_tag_interface->get_data<s_pixel_shader_definition>();
+		s_pixel_shader_definition_legacy* pixel_shader = pixel_shader_tag_interface->get_data<s_pixel_shader_definition_legacy>();
 
 		// #TODO: Remove GetTagBlockData and replace with virtual tag interface/virtual tab block data access
-		s_pixel_shader_definition::s_pixel_shaders_definition* pixel_shader2_block = cache_file.GetTagBlockData(pixel_shader->pixel_shaders_block) + 0;
+		s_pixel_shader_definition_legacy::s_pixel_shaders_definition_legacy* pixel_shader2_block = cache_file.GetTagBlockData(pixel_shader->pixel_shaders_block) + 0;
 
 		std::string disassemble_shader_result;
 		if (use_durango_shader_disassembly)
