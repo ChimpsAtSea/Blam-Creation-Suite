@@ -2,10 +2,10 @@
 
 class c_reflection_type_container;
 
-class c_reflection_field_container
+class c_reflection_field_legacy_container
 {
 public:
-	c_reflection_field_container();
+	c_reflection_field_legacy_container();
 
 	std::string field_name;
 	std::string field_nice_name;

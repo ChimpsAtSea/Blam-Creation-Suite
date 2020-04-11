@@ -204,7 +204,7 @@ void c_cache_file::initTagInstances()
 	std::function createTagFunc = [this, ppTagInterfacesBuffer](uint32_t index)
 	{
 		uint32_t group_index = cache_file_tag_instances[index].group_index;
-		const s_reflection_structure_type* reflection_type = reflection_legacy(cache_file_tag_groups[group_index].group_tags[0]);
+		const s_reflection_structure_type_legacy* reflection_type = reflection_legacy(cache_file_tag_groups[group_index].group_tags[0]);
 		if (reflection_type)
 		{
 			//ASSERT(reflection_type != nullptr); // #TODO: All tags have a reflection type
@@ -273,7 +273,7 @@ void c_cache_file::initSortedInstanceLists()
 struct s_cache_file_data_span_record
 {
 	c_tag_interface& origin_tag;
-	const s_reflection_structure_type& reflection_struct;
+	const s_reflection_structure_type_legacy& reflection_struct;
 	size_t offset = 0;
 	size_t range = 0;
 	bool is_invalid = false;
@@ -291,7 +291,7 @@ void generate_cache_file_data_access_data_struct(
 	std::vector<s_cache_file_data_span_record>& data_span_records,
 	std::vector<s_cache_file_error_record>& error_records,
 	c_tag_interface& tag_interface,
-	const s_reflection_structure_type& reflection_struct,
+	const s_reflection_structure_type_legacy& reflection_struct,
 	const char* cache_file_data_begin,
 	const char* data_position,
 	c_cache_file_access_data_vector::value_type* output_data)
@@ -349,7 +349,7 @@ void c_cache_file::generate_cache_file_data_access_data()
 		c_tag_interface* tag_interface = tag_interfaces[tag_interface_index];
 		if (tag_interface)
 		{
-			const s_reflection_structure_type* reflection_struct = tag_interface->get_reflection_data();
+			const s_reflection_structure_type_legacy* reflection_struct = tag_interface->get_legacy_reflection_data();
 			if (reflection_struct == nullptr)
 			{
 				if (!tag_interface->IsNull())

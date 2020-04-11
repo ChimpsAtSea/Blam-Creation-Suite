@@ -1,7 +1,5 @@
 #include "mantlereflect-private-pch.h"
 
-#pragma optimize("", off)
-
 using namespace llvm;
 using namespace clang;
 using namespace clang::tooling;

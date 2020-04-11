@@ -78,7 +78,7 @@ int c_llvm_compiler_interface::execute_llvm_compiler()
 
 	int clang_tool_result = clang_tool.run(c_llvm_compile_action::new_compiler_action_factory(*this).get());
 
-	//assert(clang_tool_result == 0);
+	//ASSERT(clang_tool_result == 0);
 
 	return clang_tool_result;
 }

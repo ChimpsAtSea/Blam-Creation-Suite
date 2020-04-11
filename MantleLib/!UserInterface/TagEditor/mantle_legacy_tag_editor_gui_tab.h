@@ -30,14 +30,14 @@ public:
 };
 
 template<e_legacy_primitive_type primitive_type, typename T>
-void render_primitive_gui_legacy(void* field_data, const c_reflection_field& reflection_field);
+void render_primitive_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field);
 
 void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* name, c_cache_file& cache_file);
-void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const c_reflection_field& reflection_field);
-void render_tagblock_gui_legacy(void* field_data, const c_reflection_field& reflection_field);
-void render_struct_gui_legacy(void* field_data, const c_reflection_field& reflection_field);
-void render_stringid_gui_legacy(string_id_legacy* field_data, const c_reflection_field& reflection_field);
-void render_enum_gui_legacy(void* field_data, const c_reflection_field& reflection_field);
-void render_dataref_gui_legacy(s_data_reference_legacy* field_data, const c_reflection_field& reflection_field);
-void render_bitfield_gui_legacy(void* field_data, const c_reflection_field& reflection_field);
+void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const c_reflection_field_legacy& reflection_field);
+void render_tagblock_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field);
+void render_struct_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field);
+void render_stringid_gui_legacy(string_id_legacy* field_data, const c_reflection_field_legacy& reflection_field);
+void render_enum_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field);
+void render_dataref_gui_legacy(s_data_reference_legacy* field_data, const c_reflection_field_legacy& reflection_field);
+void render_bitfield_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field);
 

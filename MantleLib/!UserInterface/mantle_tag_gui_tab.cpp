@@ -27,10 +27,18 @@ c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_inter
 		add_tab(*mantle_shader_halogram_gui_tab);
 	}
 
+	if(tag_interface.get_legacy_reflection_data())
 	{
 		c_mantle_legacy_tag_editor_gui_tab* legacy_tag_editor_gui_tab = new c_mantle_legacy_tag_editor_gui_tab(cache_file, this, tag_interface);
 		ASSERT(legacy_tag_editor_gui_tab != nullptr);
 		add_tab(*legacy_tag_editor_gui_tab);
+	}
+
+	//if (tag_interface.get_blamlib_reflection_data())
+	{
+		c_mantle_blamlib_tag_editor_gui_tab* blamlib_tag_editor_gui_tab = new c_mantle_blamlib_tag_editor_gui_tab(cache_file, this, tag_interface);
+		ASSERT(blamlib_tag_editor_gui_tab != nullptr);
+		add_tab(*blamlib_tag_editor_gui_tab);
 	}
 }
 
@@ -42,7 +50,7 @@ c_mantle_tag_gui_tab::~c_mantle_tag_gui_tab()
 	}
 }
 
-void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_structure_type& reflection_type, char* source, char* destination)
+void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_structure_type_legacy& reflection_type, char* source, char* destination)
 {
 	// #TODO: Package up all of the tag data into a single packet
 	// #TODO: Patch the tag address table to make room for extra data
@@ -51,16 +59,16 @@ void c_mantle_tag_gui_tab::copy_data_recursively(const s_reflection_structure_ty
 
 	for (size_t i = 0; i < reflection_type.members_count; i++)
 	{
-		const c_reflection_field& reflection_field = reflection_type.fields[i];
-		const s_reflection_structure_type_info& type_info = reflection_field.type_info;
+		const c_reflection_field_legacy& reflection_field = reflection_type.fields[i];
+		const s_reflection_structure_type_info_legacy& type_info = reflection_field.type_info;
 
 		if (!reflection_field.array_size)
 		{
 			if (type_info.legacy_reflection_type_category == _legacy_reflection_type_category_tag_block)
 			{
 				s_tag_block_legacy<>* tag_block = reinterpret_cast<s_tag_block_legacy<>*>(source + reflection_field.offset);
-				const s_reflection_tag_block_info& rs_reflection_tag_block_info = reflection_field.tag_block_info;
-				const s_reflection_structure_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
+				const s_reflection_tag_block_info_legacy& rs_reflection_tag_block_info_legacy = reflection_field.tag_block_info;
+				const s_reflection_structure_type_legacy* tag_block_reflection_type = rs_reflection_tag_block_info_legacy.reflection_type;
 
 				if (tag_block->count && tag_block->address)
 				{
@@ -98,8 +106,8 @@ void c_mantle_tag_gui_tab::send_to_game()
 	{
 		char* pSource = get_tag_interface().get_data();;
 
-		const s_reflection_structure_type* ps_reflection_structure_type = tag_interface.get_reflection_data();
-		copy_data_recursively(*ps_reflection_structure_type, pSource, pDest);
+		const s_reflection_structure_type_legacy* ps_reflection_structure_type_legacy = tag_interface.get_legacy_reflection_data();
+		copy_data_recursively(*ps_reflection_structure_type_legacy, pSource, pDest);
 
 		write_line_verbose("Successfully poked tag '%s'", get_tag_interface().get_name_with_group_id_cstr());
 	}

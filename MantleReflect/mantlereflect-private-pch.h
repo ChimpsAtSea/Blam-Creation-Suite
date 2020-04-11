@@ -25,15 +25,25 @@
 #define __TBB_SOURCE_DIRECTLY_INCLUDED 1
 #include <tbb/tbb.h>
 
+#include <assert.h>
+#ifdef assert
+#undef assert
+#define assert assert_is_banned_use_ASSERT
+#endif
 
-#include "util.h"
-
-#include "mantlereflect-public-pch.h"
+#define ASSERT(expression) (void)((!!(expression)) || (_wassert(_CRT_WIDE(#expression), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)), 0))
 
 #include "LLVM/llvm_compiler_interface.h"
 #include "LLVM/llvm_class_visitor.h"
 #include "LLVM/llvm_ast_consumer.h"
 #include "LLVM/llvm_compile_action.h"
+
+//#ifdef _DEBUG_FAST /* change build configuration for full debug */
+//#pragma optimize("", off)
+//#endif
+
+#include "util.h"
+#include "mantlereflect-public-pch.h"
 
 #include "LegacyGenerators/legacy_reflection_field_container.h"
 #include "LegacyGenerators/legacy_reflection_type_container.h"

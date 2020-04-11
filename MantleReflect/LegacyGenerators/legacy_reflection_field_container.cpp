@@ -1,7 +1,7 @@
 #include "mantlereflect-private-pch.h"
 
 
-c_reflection_field_container::c_reflection_field_container() : 
+c_reflection_field_legacy_container::c_reflection_field_legacy_container() : 
 	field_name(),
 	field_nice_name(),
 	legacy_reflection_type_category(),

@@ -43,7 +43,7 @@ c_reflection_type_container::~c_reflection_type_container()
 		delete enum_value_container;
 	}
 
-	for (c_reflection_field_container* field_container : fields)
+	for (c_reflection_field_legacy_container* field_container : fields)
 	{
 		delete field_container;
 	}

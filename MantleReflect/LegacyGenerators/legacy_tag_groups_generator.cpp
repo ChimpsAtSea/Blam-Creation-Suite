@@ -21,7 +21,7 @@ void c_legacy_tag_groups_generator::write_tag_group_enum(std::stringstream& stri
 	stringstream << "\t_legacy_tag_group_invalid = -1," << std::endl;
 	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
 	{
-		assert(reflection_type_container);
+		ASSERT(reflection_type_container);
 
 		if (reflection_type_container->raw_tag_group.empty()) continue; 
 

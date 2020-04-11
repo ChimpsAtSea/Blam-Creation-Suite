@@ -34,7 +34,7 @@ ImVec2 render_struct_separator(int recursionDepth, ImVec2* pTopScreenPos = nullp
 	return screenPos;
 }
 
-void render_struct_gui_legacy(void* field_data, const c_reflection_field& reflection_field)
+void render_struct_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
@@ -43,9 +43,9 @@ void render_struct_gui_legacy(void* field_data, const c_reflection_field& reflec
 
 	ImVec2 screenPosTop = render_struct_separator(c_mantle_legacy_tag_editor_gui_tab::g_current_recursion_depth);
 	{
-		const s_reflection_structure_info& rs_reflection_structure_info = reflection_field.structure_info;
+		const s_reflection_structure_info_legacy& rs_reflection_structure_info_legacy = reflection_field.structure_info;
 		// #TODO: Supply structure_reflection_type directly as an argument
-		const s_reflection_structure_type& structure_reflection_type = *rs_reflection_structure_info.reflection_type; //#TODO: Try to make this a reference in the type
+		const s_reflection_structure_type_legacy& structure_reflection_type = *rs_reflection_structure_info_legacy.reflection_type; //#TODO: Try to make this a reference in the type
 		REFERENCE_ASSERT(structure_reflection_type);
 
 		c_mantle_legacy_tag_editor_gui_tab::increment_recursion();

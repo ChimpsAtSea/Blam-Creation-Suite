@@ -175,7 +175,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 	ImGui::PopID();
 }
 
-void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const c_reflection_field& reflection_field)
+void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const c_reflection_field_legacy& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields

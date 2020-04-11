@@ -1,6 +1,6 @@
 
 
-void render_tagblock_gui_legacy(void* field_data, const c_reflection_field& reflection_field)
+void render_tagblock_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
@@ -59,8 +59,8 @@ void render_tagblock_gui_legacy(void* field_data, const c_reflection_field& refl
 		if (tag_block_definition->count && tag_block_definition->address)
 		{
 
-			const s_reflection_tag_block_info& rs_reflection_tag_block_info = reflection_field.tag_block_info;
-			const s_reflection_structure_type* tag_block_reflection_type = rs_reflection_tag_block_info.reflection_type;
+			const s_reflection_tag_block_info_legacy& rs_reflection_tag_block_info_legacy = reflection_field.tag_block_info;
+			const s_reflection_structure_type_legacy* tag_block_reflection_type = rs_reflection_tag_block_info_legacy.reflection_type;
 
 			uint32_t tagBlockDataIndexDataOffset = tag_block_reflection_type->size_of_data * static_cast<uint32_t>(rDynamicTagBlockData.position);
 			/*	#TODO: Investigate the possibility of replacing the usage of get_cache_file with the virtual tag interface/virtual tab block data access

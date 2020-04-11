@@ -26,7 +26,7 @@ public:
 	std::string tag_group;
 	std::string type_name;
 	std::string qualified_type_name;
-	std::vector<c_reflection_field_container*> fields;
+	std::vector<c_reflection_field_legacy_container*> fields;
 	uint32_t data_size;
 	std::string type_nice_name;
 	bool is_template;

@@ -1,6 +1,6 @@
 
 
-void render_stringid_gui_legacy(string_id_legacy* field_data, const c_reflection_field& reflection_field)
+void render_stringid_gui_legacy(string_id_legacy* field_data, const c_reflection_field_legacy& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields

@@ -86,11 +86,11 @@ void c_legacy_compiler_interface::execute_type_generator()
 {
 	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
 	{
-		assert(reflection_type_container != nullptr);
+		ASSERT(reflection_type_container != nullptr);
 		init_type_size_and_offsets(*reflection_type_container);
 		if (reflection_type_container->is_structure)
 		{
-			assert(reflection_type_container->data_size > 0);
+			ASSERT(reflection_type_container->data_size > 0);
 		}
 		create_nice_type_names(*reflection_type_container);
 	}
@@ -104,9 +104,9 @@ uint32_t c_legacy_compiler_interface::init_type_size_and_offsets(c_reflection_ty
 	}
 
 	uint32_t current_offset = 0;
-	for (c_reflection_field_container* reflection_field_container : reflection_type_container.fields)
+	for (c_reflection_field_legacy_container* reflection_field_container : reflection_type_container.fields)
 	{
-		assert(reflection_field_container != nullptr);
+		ASSERT(reflection_field_container != nullptr);
 
 		uint64_t field_size = 0;
 		switch (reflection_field_container->legacy_reflection_type_category)
@@ -150,9 +150,9 @@ void c_legacy_compiler_interface::create_nice_type_names(c_reflection_type_conta
 {
 	rType.type_nice_name = rType.type_name;
 	rType.type_nice_name = format_nice_name_and_is_hidden_property(_legacy_reflection_type_category_structure, rType.type_nice_name.data());
-	for (c_reflection_field_container* pField : rType.fields)
+	for (c_reflection_field_legacy_container* pField : rType.fields)
 	{
-		c_reflection_field_container& rField = *pField;
+		c_reflection_field_legacy_container& rField = *pField;
 
 		rField.field_nice_name = rField.field_name;
 		rField.is_hidden_by_default = false;
@@ -171,7 +171,7 @@ e_legacy_primitive_type c_legacy_compiler_interface::qualified_type_to_legacy_pr
 	{
 		TagDecl* tag_declaraction = qualified_type->getAsTagDecl();
 		EnumDecl* enum_declaration = static_cast<EnumDecl*>(tag_declaraction); // this is nasty!
-		assert(enum_declaration != nullptr);
+		ASSERT(enum_declaration != nullptr);
 		qualified_type = enum_declaration->getIntegerType()->getCanonicalTypeInternal();
 	}
 	const std::string integral_type_name = QualType::getAsString(qualified_type.split(), k_clang_printing_policy);
@@ -184,7 +184,7 @@ e_legacy_primitive_type c_legacy_compiler_interface::qualified_type_to_legacy_pr
 		else if (integral_type_name == "int") primitive_type = _legacy_primitive_type_int32;
 		else if (integral_type_name == "long") primitive_type = _legacy_primitive_type_int32;
 		else if (integral_type_name == "long long") primitive_type = _legacy_primitive_type_int64;
-		else assert(!"Unsupported signed integral type");
+		else ASSERT(!"Unsupported signed integral type");
 	}
 	else if (qualified_type->isUnsignedIntegerType())
 	{
@@ -192,9 +192,9 @@ e_legacy_primitive_type c_legacy_compiler_interface::qualified_type_to_legacy_pr
 		else if (integral_type_name == "unsigned short") primitive_type = _legacy_primitive_type_uint16;
 		else if (integral_type_name == "unsigned int") primitive_type = _legacy_primitive_type_uint32;
 		else if (integral_type_name == "unsigned long long") primitive_type = _legacy_primitive_type_uint64;
-		else assert(!"Unsupported signed integral type");
+		else ASSERT(!"Unsupported signed integral type");
 	}
-	else assert(!"Unsupported integral type");
+	else ASSERT(!"Unsupported integral type");
 
 	// its an enum. convert from its underlying integral type
 	if (is_enum)
@@ -223,7 +223,7 @@ e_legacy_primitive_type c_legacy_compiler_interface::qualified_type_to_legacy_pr
 		case _legacy_primitive_type_enum64:
 			break;
 		default:
-			assert(!"Unsupported enum integral interpretation");
+			ASSERT(!"Unsupported enum integral interpretation");
 		}
 	}
 
@@ -235,7 +235,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_enum_
 	const clang::RecordDecl& record_declaration)
 {
 	const clang::EnumDecl* enum_decl = dyn_cast<EnumDecl>(&record_declaration);
-	assert(enum_decl != nullptr);
+	ASSERT(enum_decl != nullptr);
 
 	std::string declarationName = record_declaration.getNameAsString();
 	std::string qualifiedDeclarationName;
@@ -245,7 +245,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_enum_
 	}
 	else // construct best qualified type name
 	{
-		assert(record_declaration.isEnum());
+		ASSERT(record_declaration.isEnum());
 		if (record_declaration.isEnum())
 		{
 			qualifiedDeclarationName += "enum ";
@@ -375,40 +375,40 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 		return nullptr;
 	}
 
-	c_reflection_type_container* pExistings_reflection_structure_typeContainer = nullptr;
+	c_reflection_type_container* pExistings_reflection_structure_type_legacyContainer = nullptr;
 	{ // handle existing records
 		for (c_reflection_type_container* reflection_typeContainer : reflection_type_containers)
 		{
 			if (reflection_typeContainer->clang_record_declaration == &record_declaration || reflection_typeContainer->qualified_type_name == qualifiedDeclarationName)
 			{
-				pExistings_reflection_structure_typeContainer = reflection_typeContainer;
+				pExistings_reflection_structure_type_legacyContainer = reflection_typeContainer;
 
 			}
 		}
 	}
-	if (pExistings_reflection_structure_typeContainer)
+	if (pExistings_reflection_structure_type_legacyContainer)
 	{
 		if (numFields == 0)
 		{
-			return pExistings_reflection_structure_typeContainer; // we already have data for this
+			return pExistings_reflection_structure_type_legacyContainer; // we already have data for this
 		}
-		else if (!pExistings_reflection_structure_typeContainer->fields.empty())
+		else if (!pExistings_reflection_structure_type_legacyContainer->fields.empty())
 		{
-			return pExistings_reflection_structure_typeContainer; // we already have data for this
+			return pExistings_reflection_structure_type_legacyContainer; // we already have data for this
 		}
 	}
 
 	// if existing reflection container exists and we're updating it, replace all data
 
-	bool createdNewReflectionContainer = pExistings_reflection_structure_typeContainer == nullptr;
-	c_reflection_type_container* ps_reflection_structure_typeContainer = pExistings_reflection_structure_typeContainer;
+	bool createdNewReflectionContainer = pExistings_reflection_structure_type_legacyContainer == nullptr;
+	c_reflection_type_container* ps_reflection_structure_type_legacyContainer = pExistings_reflection_structure_type_legacyContainer;
 	if (createdNewReflectionContainer)
 	{
-		ps_reflection_structure_typeContainer = new c_reflection_type_container();
+		ps_reflection_structure_type_legacyContainer = new c_reflection_type_container();
 	}
-	c_reflection_type_container& reflection_type_container = *ps_reflection_structure_typeContainer;
+	c_reflection_type_container& reflection_type_container = *ps_reflection_structure_type_legacyContainer;
 
-	assert(reflection_type_container.fields.empty());
+	ASSERT(reflection_type_container.fields.empty());
 
 	reflection_type_container.type_name = declarationName;
 	reflection_type_container.qualified_type_name = qualifiedDeclarationName;
@@ -428,14 +428,14 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 			QualType qualifiedType = rArg.getAsType();
 
 			bool isVoid = qualifiedType->isVoidType();
-			assert(rArgList.size() <= 1 || !isVoid); // no voids allowed unless single void template
+			ASSERT(rArgList.size() <= 1 || !isVoid); // no voids allowed unless single void template
 			if (!isVoid)
 			{
 				const std::string reflectionQualifiedTypeName = QualType::getAsString(qualifiedType.split(), k_clang_printing_policy);
 				CXXRecordDecl* pDecl = qualifiedType->getAsCXXRecordDecl();
-				assert(pDecl != nullptr);
+				ASSERT(pDecl != nullptr);
 				c_reflection_type_container* pTemplateType = create_reflected_type(ast_context, &qualifiedType, *pDecl);
-				assert(pTemplateType != nullptr);
+				ASSERT(pTemplateType != nullptr);
 				reflection_type_container.template_types.push_back(pTemplateType);
 			}
 		}
@@ -470,7 +470,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 				const char* pTagGroupStringBegin = pTagGroup + strlen("tag_group:");
 				size_t tagGroupRawStringLength = strlen(pTagGroupStringBegin);
 
-				assert(tagGroupRawStringLength == 5 || tagGroupRawStringLength == 6);
+				ASSERT(tagGroupRawStringLength == 5 || tagGroupRawStringLength == 6);
 				char buffer[5]{}; // #NOTE: We expect to receive these characters swapped. We're swapping them back to the original integer order
 				if (tagGroupRawStringLength == 5)
 				{
@@ -506,7 +506,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 
 	for (FieldDecl* field : fields)
 	{
-		c_reflection_field_container& rFieldData = *reflection_type_container.fields.emplace_back(new c_reflection_field_container());
+		c_reflection_field_legacy_container& rFieldData = *reflection_type_container.fields.emplace_back(new c_reflection_field_legacy_container());
 
 		const clang::QualType fieldQualifiedType = field->getType();
 		const clang::Type* fieldType = fieldQualifiedType.getTypePtr();
@@ -528,12 +528,12 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 			{
 				llvm::APInt arraySizeRaw = pConstantArrayType->getSize();
 				rFieldData.array_size = *arraySizeRaw.getRawData();
-				assert(rFieldData.array_size > 0);
+				ASSERT(rFieldData.array_size > 0);
 
 				QualType elementType = pConstantArrayType->getElementType();
 				reflectionQualifiedType = elementType->getCanonicalTypeInternal();
 			}
-			else assert(!"Unsupported array type");
+			else ASSERT(!"Unsupported array type");
 		}
 		const std::string reflectionQualifiedTypeName = QualType::getAsString(reflectionQualifiedType.split(), k_clang_printing_policy);
 
@@ -559,7 +559,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 				else if (name == "s_undefined32_legacy") reflectionTypeCategory = _legacy_reflection_type_category_primitive;
 				else if (name == "s_undefined64_legacy") reflectionTypeCategory = _legacy_reflection_type_category_primitive;
 				else if (reflectionQualifiedType->isStructureType()) reflectionTypeCategory = _legacy_reflection_type_category_structure;
-				else assert(!"Unsupported class type");
+				else ASSERT(!"Unsupported class type");
 			}
 
 			rFieldData.legacy_reflection_type_category = reflectionTypeCategory;
@@ -570,7 +570,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 				else if (name == "s_undefined16_legacy") primitiveType = _legacy_primitive_type_undefined16;
 				else if (name == "s_undefined32_legacy") primitiveType = _legacy_primitive_type_undefined32;
 				else if (name == "s_undefined64_legacy") primitiveType = _legacy_primitive_type_undefined64;
-				else assert(!"Unsupported primitive type");
+				else ASSERT(!"Unsupported primitive type");
 
 				rFieldData.primitive_type = primitiveType;
 				rFieldData.field_type = get_primitive_reflection_type_container(primitiveType);
@@ -578,7 +578,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 			else
 			{
 				c_reflection_type_container* pType = create_reflected_type(ast_context, &fieldQualifiedType, *pCXXRecord);
-				assert(pType != nullptr);
+				ASSERT(pType != nullptr);
 				rFieldData.field_type = pType;
 			}
 		}
@@ -603,7 +603,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 				const std::string typeName = QualType::getAsString(scalarQualifiedType.split(), k_clang_printing_policy);
 				if (typeName == "float") rFieldData.primitive_type = _legacy_primitive_type_float;
 				else if (typeName == "double") rFieldData.primitive_type = _legacy_primitive_type_float;
-				else assert(!"Unsupported floating point type");
+				else ASSERT(!"Unsupported floating point type");
 			}
 			break;
 			case clang::Type::ScalarTypeKind::STK_CPointer:
@@ -613,14 +613,14 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 			case clang::Type::ScalarTypeKind::STK_IntegralComplex:
 			case clang::Type::ScalarTypeKind::STK_FloatingComplex:
 			case clang::Type::ScalarTypeKind::STK_FixedPoint:
-				assert(!"UNSUPPORTED SCALAR TYPE");
+				ASSERT(!"UNSUPPORTED SCALAR TYPE");
 				break;
 			}
 
-			assert(rFieldData.primitive_type != _legacy_primitive_type_non_primitive);
+			ASSERT(rFieldData.primitive_type != _legacy_primitive_type_non_primitive);
 			rFieldData.field_type = get_primitive_reflection_type_container(rFieldData.primitive_type);
 		}
-		else assert(!"UNSUPPORTED TYPE");
+		else ASSERT(!"UNSUPPORTED TYPE");
 
 		if (reflectionQualifiedType->isEnumeralType())
 		{
@@ -630,7 +630,7 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 			clang::RecordDecl* pCXXRecord = static_cast<clang::RecordDecl*>(pEnumDecl);
 
 			c_reflection_type_container* pType = create_reflected_enum_type(&fieldQualifiedType, *pCXXRecord);
-			assert(pType != nullptr);
+			ASSERT(pType != nullptr);
 			rFieldData.field_type = pType;
 
 			if (!pType->type_name.empty() && std::tolower(pType->type_name.front()) == 'b')
@@ -652,12 +652,12 @@ c_reflection_type_container* c_legacy_compiler_interface::create_reflected_type(
 			}
 		}
 
-		assert(rFieldData.field_type != nullptr);
+		ASSERT(rFieldData.field_type != nullptr);
 	}
 
 	if (createdNewReflectionContainer)
 	{
-		reflection_type_containers.emplace_back(ps_reflection_structure_typeContainer);
+		reflection_type_containers.emplace_back(ps_reflection_structure_type_legacyContainer);
 	}
 
 	return &reflection_type_container;
@@ -703,7 +703,7 @@ c_reflection_type_container* c_legacy_compiler_interface::get_primitive_reflecti
 	case _legacy_primitive_type_static_string16:		return static_wide_string_type;
 	}
 
-	assert(!"s_undefined_legacy primitive type");
+	ASSERT(!"s_undefined_legacy primitive type");
 	return nullptr;
 }
 

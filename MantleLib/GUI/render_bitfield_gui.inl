@@ -1,5 +1,5 @@
 
-void render_bitfield_gui_legacy(void* field_data, const c_reflection_field& reflection_field)
+void render_bitfield_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field)
 {
 	bool unknownItemsVisible = c_mantle_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
@@ -67,7 +67,7 @@ void render_bitfield_gui_legacy(void* field_data, const c_reflection_field& refl
 	{
 		for (uint32_t enum_value_index = 0; enum_value_index < enum_value_count; enum_value_index++)
 		{
-			const s_reflection_enum_value& enum_value = reflection_field.enum_info.reflection_enum_type->values[enum_value_index];
+			const s_reflection_enum_value_legacy& enum_value = reflection_field.enum_info.reflection_enum_type->values[enum_value_index];
 
 			if (ImGui::Checkbox(enum_value.name, rBitFieldDynamicData.bools + enum_value_index))
 			{

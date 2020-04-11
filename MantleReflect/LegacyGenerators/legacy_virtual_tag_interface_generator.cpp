@@ -60,11 +60,11 @@ void c_legacy_virtual_tag_interface_generator::write_virtual_tag_interface(std::
 	{
 		bool is_last = i == (reflection_type_container.fields.size() - 1);
 
-		const c_reflection_field_container* reflection_field_container_ptr = reflection_type_container.fields[i];
+		const c_reflection_field_legacy_container* reflection_field_container_ptr = reflection_type_container.fields[i];
 
-		assert(reflection_field_container_ptr != nullptr);
+		ASSERT(reflection_field_container_ptr != nullptr);
 		c_reflection_type_container* field_type = reflection_field_container_ptr->field_type;
-		assert(field_type != nullptr);
+		ASSERT(field_type != nullptr);
 
 		if (reflection_field_container_ptr->legacy_reflection_type_category == _legacy_reflection_type_category_tag_block)
 		{
@@ -84,15 +84,15 @@ void c_legacy_virtual_tag_interface_generator::write_virtual_tag_interface(std::
 	stringstream << "\t{" << std::endl;
 	stringstream << "\t}" << std::endl;
 
-	for (const c_reflection_field_container* reflection_field_container_ptr : reflection_type_container.fields)
+	for (const c_reflection_field_legacy_container* reflection_field_container_ptr : reflection_type_container.fields)
 	{
-		assert(reflection_field_container_ptr != nullptr);
+		ASSERT(reflection_field_container_ptr != nullptr);
 		c_reflection_type_container* field_type = reflection_field_container_ptr->field_type;
-		assert(field_type != nullptr);
+		ASSERT(field_type != nullptr);
 
 		if (reflection_field_container_ptr->legacy_reflection_type_category == _legacy_reflection_type_category_tag_block)
 		{
-			assert(reflection_field_container_ptr->array_size == 0); // #TODO: Generate an initializer list
+			ASSERT(reflection_field_container_ptr->array_size == 0); // #TODO: Generate an initializer list
 
 			stringstream << "\t" << "c_virtual_tag_block<" << field_type->qualified_type_name << "::t_value> " << reflection_field_container_ptr->field_name << ";" << std::endl;
 		}

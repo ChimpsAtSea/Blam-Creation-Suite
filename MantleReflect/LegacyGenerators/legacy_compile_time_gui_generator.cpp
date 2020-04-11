@@ -17,50 +17,51 @@ void c_legacy_compile_time_gui_generator::run(std::vector<c_reflection_type_cont
 	source_string_stream << "#include <MantleReflect/legacy_reflection_types.h>" << std::endl;
 	source_string_stream << "#include <MantleLib/Tags/Tags.h>" << std::endl;
 	source_string_stream << "#include <assert.h>" << std::endl << std::endl;
+	source_string_stream << "#define ASSERT assert" << std::endl << std::endl;
 
 	source_string_stream << "#ifndef __visual_assist__" << std::endl;
 	source_string_stream << "template<e_legacy_primitive_type primitive_type, typename T>" << std::endl;
-	source_string_stream << "void render_primitive_gui_legacy(void* field_data, const c_reflection_field & reflection_field);" << std::endl;
+	source_string_stream << "void render_primitive_gui_legacy(void* field_data, const c_reflection_field_legacy & reflection_field);" << std::endl;
 
-	//source_string_stream << "void render_primitive_gui_legacy_int8" << "(int8_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_int16" << "(int16_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_int32" << "(int32_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_int64" << "(int64_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_uint8" << "(uint8_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_uint16" << "(uint16_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_uint32" << "(uint32_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_uint64" << "(uint64_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_float" << "(float			* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_double" << "(double		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_boolean8" << "(bool8_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_boolean16" << "(bool16_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_boolean32" << "(bool32_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_boolean64" << "(bool64_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_enum8" << "(enum8_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_enum16" << "(enum16_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_enum32" << "(enum32_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_enum64" << "(enum64_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_bitfield8" << "(bitfield8_t	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_bitfield16" << "(bitfield16_t	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_bitfield32" << "(bitfield32_t	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_bitfield64" << "(bitfield64_t	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_bitflag8" << "(bitflag8_t	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_bitflag16" << "(bitflag16_t	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_bitflag32" << "(bitflag32_t	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_bitflag64" << "(bitflag64_t	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_undefined8" << "(s_undefined8_legacy	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_undefined16" << "(s_undefined16_legacy	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_undefined32" << "(s_undefined32_legacy	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_undefined64" << "(s_undefined64_legacy	* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_character" << "(char			* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	//source_string_stream << "void render_primitive_gui_legacy_widecharacter" << "(wchar_t		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	source_string_stream << "void render_stringid_gui_legacy" << "(string_id_legacy		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	source_string_stream << "void render_struct_gui_legacy" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	source_string_stream << "void render_tagref_gui_legacy" << "(s_tag_reference_legacy		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	source_string_stream << "void render_tagblock_gui_legacy" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	source_string_stream << "void render_dataref_gui_legacy" << "(s_data_reference_legacy		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	source_string_stream << "void render_enum_gui_legacy" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
-	source_string_stream << "void render_bitfield_gui_legacy" << "(void		* field_data, const c_reflection_field& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_int8" << "(int8_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_int16" << "(int16_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_int32" << "(int32_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_int64" << "(int64_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_uint8" << "(uint8_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_uint16" << "(uint16_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_uint32" << "(uint32_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_uint64" << "(uint64_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_float" << "(float			* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_double" << "(double		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_boolean8" << "(bool8_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_boolean16" << "(bool16_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_boolean32" << "(bool32_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_boolean64" << "(bool64_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_enum8" << "(enum8_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_enum16" << "(enum16_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_enum32" << "(enum32_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_enum64" << "(enum64_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_bitfield8" << "(bitfield8_t	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_bitfield16" << "(bitfield16_t	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_bitfield32" << "(bitfield32_t	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_bitfield64" << "(bitfield64_t	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_bitflag8" << "(bitflag8_t	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_bitflag16" << "(bitflag16_t	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_bitflag32" << "(bitflag32_t	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_bitflag64" << "(bitflag64_t	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_undefined8" << "(s_undefined8_legacy	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_undefined16" << "(s_undefined16_legacy	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_undefined32" << "(s_undefined32_legacy	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_undefined64" << "(s_undefined64_legacy	* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_character" << "(char			* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	//source_string_stream << "void render_primitive_gui_legacy_widecharacter" << "(wchar_t		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	source_string_stream << "void render_stringid_gui_legacy" << "(string_id_legacy		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	source_string_stream << "void render_struct_gui_legacy" << "(void		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	source_string_stream << "void render_tagref_gui_legacy" << "(s_tag_reference_legacy		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	source_string_stream << "void render_tagblock_gui_legacy" << "(void		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	source_string_stream << "void render_dataref_gui_legacy" << "(s_data_reference_legacy		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	source_string_stream << "void render_enum_gui_legacy" << "(void		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
+	source_string_stream << "void render_bitfield_gui_legacy" << "(void		* field_data, const c_reflection_field_legacy& reflection_field);" << std::endl;
 
 	source_string_stream << "" << std::endl;
 	source_string_stream << "" << std::endl;
@@ -190,18 +191,18 @@ void c_legacy_compile_time_gui_generator::write_render_gui_type_entry_source(con
 
 	source_string_stream << "void render_type_gui_legacy<" << reflection_type_container.qualified_type_name << ">(void* raw_" << data_variable_name << ")" << std::endl;
 	source_string_stream << "{" << std::endl;
-	source_string_stream << "\tassert(raw_" << data_variable_name << " != nullptr);" << std::endl;
+	source_string_stream << "\tASSERT(raw_" << data_variable_name << " != nullptr);" << std::endl;
 	source_string_stream << "\t" << reflection_type_container.qualified_type_name << "* " << data_variable_name << " = static_cast<" << reflection_type_container.qualified_type_name << "*>(raw_" << data_variable_name << ");" << std::endl << std::endl;
-	source_string_stream << "\tstatic const s_reflection_structure_type& " << reflection_variable_name << " = reflection_structure_legacy<" << reflection_type_container.qualified_type_name << ">();" << std::endl << std::endl;
+	source_string_stream << "\tstatic const s_reflection_structure_type_legacy& " << reflection_variable_name << " = reflection_structure_legacy<" << reflection_type_container.qualified_type_name << ">();" << std::endl << std::endl;
 
 	int reflection_member_index = -1;
-	for (const c_reflection_field_container* reflection_field_container_ptr : reflection_type_container.fields)
+	for (const c_reflection_field_legacy_container* reflection_field_container_ptr : reflection_type_container.fields)
 	{
 		reflection_member_index++;
 
-		assert(reflection_field_container_ptr != nullptr);
-		const c_reflection_field_container& reflection_field_container = *reflection_field_container_ptr;
-		assert(reflection_field_container.field_type != nullptr);
+		ASSERT(reflection_field_container_ptr != nullptr);
+		const c_reflection_field_legacy_container& reflection_field_container = *reflection_field_container_ptr;
+		ASSERT(reflection_field_container.field_type != nullptr);
 		const c_reflection_type_container& reflection_type_container = *reflection_field_container.field_type;
 
 		const char* legacy_reflection_type_category_string = legacy_reflection_type_category_to_string(reflection_field_container.legacy_reflection_type_category);

@@ -3,12 +3,12 @@
 #include "mantlelib-private-pch.h"
 
 
-struct s_reflection_structure_type;
+struct s_reflection_structure_type_legacy;
 template<typename T>
-const s_reflection_structure_type& reflection_structure_legacy();
+const s_reflection_structure_type_legacy& reflection_structure_legacy();
 
 
-extern void register_tag(unsigned int group, const s_reflection_structure_type& tag_reflection);
+extern void register_tag(unsigned int group, const s_reflection_structure_type_legacy& tag_reflection);
 
 void register_blamlib_types()
 {

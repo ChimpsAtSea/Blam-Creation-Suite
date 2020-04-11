@@ -15,7 +15,6 @@ ThreadSafeQueue<WndProcMessage> windowQueue;
 
 
 // #WIP Start Resize Synchronization Across Opus and Game Thread
-#undef auto
 #include <shared_mutex>
 
 enum class DebugUIState : uint32_t

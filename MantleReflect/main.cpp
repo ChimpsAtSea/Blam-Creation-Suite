@@ -1,11 +1,5 @@
 #include "mantlereflect-private-pch.h"
 
-#ifdef _DEBUG_FAST /* change build configuration for full debug */
-#pragma optimize("", off)
-#endif
-
-
-
 int main(int argc, const char** argv)
 {
 	if (argc < 2)
@@ -21,11 +15,11 @@ int main(int argc, const char** argv)
 	std::string solution_directory = argv[1];
 	std::wstring solution_directory_wide = wargv[1];
 
-	std::string mantlelib_directory = solution_directory + "MantleLib\\";
-	std::wstring mantlelib_directory_wide = solution_directory_wide + L"MantleLib\\";
+	std::string mantlelib_directory = solution_directory + "MantleGen\\";
+	std::wstring mantlelib_directory_wide = solution_directory_wide + L"MantleGen\\";
 
-	std::string output_directory = mantlelib_directory + "Tags\\";
-	std::wstring output_directory_wide = mantlelib_directory_wide + L"Tags\\";
+	std::string output_directory = mantlelib_directory + "";
+	std::wstring output_directory_wide = mantlelib_directory_wide + L"";
 
 	bool build_legacy = argc >= 3 && (strcmp(argv[2], "legacy") == 0);
 

@@ -17,8 +17,8 @@ enum e_legacy_reflection_type_category : unsigned __int8
 	_legacy_reflection_type_category_shader_data,
 };
 
-typedef unsigned __int16 s_reflection_structure_typeIndex;
-enum e_legacy_primitive_type : s_reflection_structure_typeIndex
+typedef unsigned __int16 s_reflection_structure_type_legacyIndex;
+enum e_legacy_primitive_type : s_reflection_structure_type_legacyIndex
 {
 	_legacy_primitive_type_non_primitive,
 	_legacy_primitive_type_int8,
@@ -125,40 +125,40 @@ inline const char* legacy_reflection_type_category_to_string(e_legacy_reflection
 #endif
 }
 
-struct s_reflection_structure_type_info
+struct s_reflection_structure_type_info_legacy
 {
 	e_legacy_reflection_type_category legacy_reflection_type_category;
 	union
 	{
 		e_legacy_primitive_type m_primitiveTypeIndex;
-		s_reflection_structure_typeIndex m_reflectionTypeIndex;
+		s_reflection_structure_type_legacyIndex m_reflectionTypeIndex;
 	};
 	const char* type_name;
 	const char* type_nice_name;
 	const char* type_qualified_name;
 };
 
-struct s_reflection_structure_type;
-struct s_reflection_enum_type;
+struct s_reflection_structure_type_legacy;
+struct s_reflection_enum_type_legacy;
 
-struct s_reflection_structure_info : s_reflection_structure_type_info
+struct s_reflection_structure_info_legacy : s_reflection_structure_type_info_legacy
 {
-	const s_reflection_structure_type* reflection_type;
+	const s_reflection_structure_type_legacy* reflection_type;
 };
 
-struct s_reflection_tag_block_info : s_reflection_structure_type_info
+struct s_reflection_tag_block_info_legacy : s_reflection_structure_type_info_legacy
 {
-	const s_reflection_structure_type* reflection_type;
+	const s_reflection_structure_type_legacy* reflection_type;
 };
 
-struct s_reflection_enum_info : s_reflection_structure_type_info
+struct s_reflection_enum_info_legacy : s_reflection_structure_type_info_legacy
 {
-	const s_reflection_enum_type* reflection_enum_type;
+	const s_reflection_enum_type_legacy* reflection_enum_type;
 };
 
-struct c_reflection_field
+struct c_reflection_field_legacy
 {
-	c_reflection_field()
+	c_reflection_field_legacy()
 	{
 		name = {};
 		nice_name = {};
@@ -172,10 +172,10 @@ struct c_reflection_field
 		is_hidden_by_default = {};
 	}
 
-	c_reflection_field(
+	c_reflection_field_legacy(
 		const char* name,
 		const char* nice_name,
-		s_reflection_structure_type_info type_info,
+		s_reflection_structure_type_info_legacy type_info,
 		unsigned __int32 offset,
 		unsigned __int16 size,
 		unsigned __int32 array_size,
@@ -194,10 +194,10 @@ struct c_reflection_field
 		this->type_info = type_info;
 	}
 
-	c_reflection_field(
+	c_reflection_field_legacy(
 		const char* name,
 		const char* nice_name,
-		s_reflection_enum_info enum_info,
+		s_reflection_enum_info_legacy enum_info,
 		unsigned __int32 offset,
 		unsigned __int16 size,
 		unsigned __int32 array_size,
@@ -216,10 +216,10 @@ struct c_reflection_field
 		this->enum_info = enum_info;
 	}
 
-	c_reflection_field(
+	c_reflection_field_legacy(
 		const char* name,
 		const char* nice_name,
-		s_reflection_structure_info structure_info,
+		s_reflection_structure_info_legacy structure_info,
 		unsigned __int32 offset,
 		unsigned __int16 size,
 		unsigned __int32 array_size,
@@ -238,10 +238,10 @@ struct c_reflection_field
 		this->structure_info = structure_info;
 	}
 
-	c_reflection_field(
+	c_reflection_field_legacy(
 		const char* name,
 		const char* nice_name,
-		s_reflection_tag_block_info tag_block_info,
+		s_reflection_tag_block_info_legacy tag_block_info,
 		unsigned __int32 offset,
 		unsigned __int16 size,
 		unsigned __int32 array_size,
@@ -263,10 +263,10 @@ struct c_reflection_field
 	const char* name;
 	const char* nice_name;
 	union {
-		s_reflection_structure_type_info type_info;
-		s_reflection_structure_info structure_info;
-		s_reflection_tag_block_info tag_block_info;
-		s_reflection_enum_info enum_info;
+		s_reflection_structure_type_info_legacy type_info;
+		s_reflection_structure_info_legacy structure_info;
+		s_reflection_tag_block_info_legacy tag_block_info;
+		s_reflection_enum_info_legacy enum_info;
 	};
 	unsigned __int32 offset;
 	unsigned __int16 size;
@@ -274,14 +274,13 @@ struct c_reflection_field
 	bool is_hidden_by_default;
 };
 
-using render_type_gui_legacy_func = void(void*);
-
 class c_tag_interface;
 class c_cache_file;
 
-using virtual_tag_constructor_func = c_tag_interface*(c_cache_file&, uint16_t);
+using render_type_gui_legacy_func_legacy = void(void*);
+using virtual_tag_constructor_func_legacy = c_tag_interface*(c_cache_file&, uint16_t);
 
-struct s_reflection_enum_value
+struct s_reflection_enum_value_legacy
 {
 	const char* name;
 	uint64_t value;
@@ -289,27 +288,27 @@ struct s_reflection_enum_value
 
 #pragma warning( push )
 #pragma warning( disable : 4200 ) // allow using non standard language features without warning
-struct s_reflection_enum_type
+struct s_reflection_enum_type_legacy
 {
 	const char* name;
 	const char* nice_name;
 	unsigned __int32 size_of_data;
 	unsigned __int32 values_count;
-	s_reflection_enum_value values[]; // #NOTE: non standard language feature
+	s_reflection_enum_value_legacy values[]; // #NOTE: non standard language feature
 };
 #pragma warning( pop )
 
 #pragma warning( push )
 #pragma warning( disable : 4200 ) // allow using non standard language features without warning
-struct s_reflection_structure_type
+struct s_reflection_structure_type_legacy
 {
 	const char* name;
 	const char* nice_name;
 	unsigned __int32 size_of_data;
 	unsigned __int32 members_count;
-	render_type_gui_legacy_func* render_type_gui_legacy;
+	render_type_gui_legacy_func_legacy* render_type_gui_legacy;
 	c_tag_interface* (*virtual_tag_constructor)(c_cache_file&, uint16_t);
-	c_reflection_field fields[]; // #NOTE: non standard language feature
+	c_reflection_field_legacy fields[]; // #NOTE: non standard language feature
 };
 #pragma warning( pop )
 

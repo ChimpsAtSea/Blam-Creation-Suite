@@ -46,7 +46,7 @@ void c_legacy_ast_source_generator::write_output_impl(std::stringstream& strings
 	{
 		wprintf(L"MantleReflect> Updating %s\n", output_file);
 		FILE* pReflectionHeader = _wfopen(output_file, L"wb");
-		assert(pReflectionHeader != nullptr);
+		ASSERT(pReflectionHeader != nullptr);
 		fwrite(reflection_header_text.c_str(), 1, reflection_header_text.length(), pReflectionHeader);
 		fflush(pReflectionHeader);
 		fclose(pReflectionHeader);

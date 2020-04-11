@@ -14,7 +14,8 @@ c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
 	tag_name(),
 	tag_name_with_group_id(),
 	tag_name_with_group_name(),
-	reflection_type(nullptr),
+	legacy_reflection_type(nullptr),
+	blamlib_reflection_type(nullptr),
 	cache_file(cache_file),
 	group_interface(nullptr),
 	search_criteria_result(false),
@@ -57,7 +58,7 @@ c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
 				tag_name_with_group_name = PathFindFileNameA(tag_path_with_group_name.c_str());
 			}
 
-			reflection_type = reflection_legacy(cache_file_tag_group->group_tags[0]);
+			legacy_reflection_type = reflection_legacy(cache_file_tag_group->group_tags[0]);
 		}
 		else m_isNull = true;
 	}

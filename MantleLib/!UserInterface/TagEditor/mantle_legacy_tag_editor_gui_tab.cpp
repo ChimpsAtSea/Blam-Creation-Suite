@@ -20,7 +20,7 @@ c_mantle_legacy_tag_editor_gui_tab::c_mantle_legacy_tag_editor_gui_tab(c_cache_f
 	parent_tab(parent_tab),
 	tag_interface(tag_interface)
 {
-
+	allow_close = false;
 }
 
 c_mantle_legacy_tag_editor_gui_tab::~c_mantle_legacy_tag_editor_gui_tab()
@@ -44,11 +44,11 @@ void c_mantle_legacy_tag_editor_gui_tab::render_tab_contents_gui()
 {
 	ImGui::BeginChild("##scroll_view", ImVec2(0, 0), false);
 
-	const s_reflection_structure_type* ps_reflection_structure_type = tag_interface.get_reflection_data();
-	if (ps_reflection_structure_type)
+	const s_reflection_structure_type_legacy* ps_reflection_structure_type_legacy = tag_interface.get_legacy_reflection_data();
+	if (ps_reflection_structure_type_legacy)
 	{
 		g_current_mantle_tag_tab = this;
-		ps_reflection_structure_type->render_type_gui_legacy(tag_interface.get_data());
+		ps_reflection_structure_type_legacy->render_type_gui_legacy(tag_interface.get_data());
 	}
 	else
 	{

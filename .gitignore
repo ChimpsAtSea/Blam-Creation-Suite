@@ -350,15 +350,15 @@ pugixml-build/cmake_x86
 pugixml-build/cmake_x64
                
 #Mantle
-MantleLib/Tags/LegacyGen/reflection_data_legacy.h
-MantleLib/Tags/LegacyGen/reflection_data_legacy.cpp
-MantleLib/Tags/LegacyGen/generated_conversion_legacy.cpp
-MantleLib/Tags/LegacyGen/generated_conversion_legacy.h
-MantleLib/Tags/LegacyGen/generated_gui_legacy.cpp
-MantleLib/Tags/LegacyGen/generated_gui_legacy.h
-MantleLib/Tags/LegacyGen/virtual_tag_interfaces_legacy.cpp
-MantleLib/Tags/LegacyGen/virtual_tag_interfaces_legacy.h
-MantleLib/Tags/LegacyGen/tag_groups_legacy.h
+MantleGen/LegacyGen/reflection_data_legacy.h
+MantleGen/LegacyGen/reflection_data_legacy.cpp
+MantleGen/LegacyGen/generated_conversion_legacy.cpp
+MantleGen/LegacyGen/generated_conversion_legacy.h
+MantleGen/LegacyGen/generated_gui_legacy.cpp
+MantleGen/LegacyGen/generated_gui_legacy.h
+MantleGen/LegacyGen/virtual_tag_interfaces_legacy.cpp
+MantleGen/LegacyGen/virtual_tag_interfaces_legacy.h
+MantleGen/LegacyGen/tag_groups_legacy.h
 
 #CommandLineOptions Plugin
 *.args.json

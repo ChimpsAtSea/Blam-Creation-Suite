@@ -1,9 +1,5 @@
 #pragma once
 
-#ifdef auto
-#undef auto
-#endif
-
 #ifdef ASSERT
 #define blamlib_assert ASSERT
 #endif
@@ -227,7 +223,3 @@
 /* wsdt chud_widget_state_data_template */
 /* wxcg weather_globals */
 /* zone cache_file_resource_gestalt s_cache_file_resource_gestalt*/ //#include <blamlib/source/haloreach/cache/cache_file_resource_definitions.h>
-
-#ifndef auto
-#define auto auto_is_banned
-#endif

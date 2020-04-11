@@ -68,7 +68,6 @@ void c_mantle_shader_halogram_gui_tab::render_tab_contents_gui()
 					if (rmop_default_bitm != nullptr)
 					{
 						// render_tagref_gui_legacy(&option.__unknown4, bitmap_name, cache_file);
-#undef auto
 
 						//c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_block_legacy<t_value>& tag_block
 
