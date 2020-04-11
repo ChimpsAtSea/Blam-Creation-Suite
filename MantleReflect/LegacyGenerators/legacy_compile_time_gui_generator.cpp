@@ -6,7 +6,7 @@ c_legacy_compile_time_gui_generator::c_legacy_compile_time_gui_generator(const w
 
 }
 
-void c_legacy_compile_time_gui_generator::run(std::vector<c_reflection_type_container*>& reflection_type_containers)
+void c_legacy_compile_time_gui_generator::run(std::vector<c_reflection_type_container_legacy*>& reflection_type_containers)
 {
 
 	header_string_stream << "#pragma once" << std::endl << std::endl;
@@ -69,7 +69,7 @@ void c_legacy_compile_time_gui_generator::run(std::vector<c_reflection_type_cont
 	source_string_stream << "" << std::endl;
 	source_string_stream << "" << std::endl;
 
-	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
+	for (c_reflection_type_container_legacy* reflection_type_container : reflection_type_containers)
 	{
 		if (!reflection_type_container->is_enum && !reflection_type_container->is_bitfield)
 		{
@@ -78,7 +78,7 @@ void c_legacy_compile_time_gui_generator::run(std::vector<c_reflection_type_cont
 	}
 	source_string_stream << std::endl;
 
-	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
+	for (c_reflection_type_container_legacy* reflection_type_container : reflection_type_containers)
 	{
 		if (!reflection_type_container->is_enum && !reflection_type_container->is_bitfield)
 		{
@@ -110,7 +110,7 @@ std::string get_variable_name(const std::string& type_name)
 	return data_variable_name;
 }
 
-void c_legacy_compile_time_gui_generator::write_render_gui_type_entry_header(const c_reflection_type_container& reflection_type_container)
+void c_legacy_compile_time_gui_generator::write_render_gui_type_entry_header(const c_reflection_type_container_legacy& reflection_type_container)
 {
 	if (reflection_type_container.is_primitive) return; // skip internal types
 
@@ -179,7 +179,7 @@ const char* get_legacy_reflection_type_category_handler_function(e_legacy_reflec
 	return "##UNKNOWN_REFLECTION_TYPE##";
 }
 
-void c_legacy_compile_time_gui_generator::write_render_gui_type_entry_source(const c_reflection_type_container& reflection_type_container)
+void c_legacy_compile_time_gui_generator::write_render_gui_type_entry_source(const c_reflection_type_container_legacy& reflection_type_container)
 {
 	if (reflection_type_container.is_primitive) return; // skip internal types
 
@@ -203,7 +203,7 @@ void c_legacy_compile_time_gui_generator::write_render_gui_type_entry_source(con
 		ASSERT(reflection_field_container_ptr != nullptr);
 		const c_reflection_field_legacy_container& reflection_field_container = *reflection_field_container_ptr;
 		ASSERT(reflection_field_container.field_type != nullptr);
-		const c_reflection_type_container& reflection_type_container = *reflection_field_container.field_type;
+		const c_reflection_type_container_legacy& reflection_type_container = *reflection_field_container.field_type;
 
 		const char* legacy_reflection_type_category_string = legacy_reflection_type_category_to_string(reflection_field_container.legacy_reflection_type_category);
 		switch (reflection_field_container.legacy_reflection_type_category)

@@ -6,7 +6,7 @@ c_legacy_compile_time_conversion_generator::c_legacy_compile_time_conversion_gen
 
 }
 
-void c_legacy_compile_time_conversion_generator::run(std::vector<c_reflection_type_container*>& reflection_type_containers)
+void c_legacy_compile_time_conversion_generator::run(std::vector<c_reflection_type_container_legacy*>& reflection_type_containers)
 {
 
 }

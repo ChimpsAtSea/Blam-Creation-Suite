@@ -373,3 +373,5 @@ MantleGen/LegacyGen/tag_groups_legacy.h
 *.PVS-Studio.cfg
 
 *Mustard.exe
+MantleGen/BlamlibGen/reflection_data.cpp
+MantleGen/BlamlibGen/reflection_data.h

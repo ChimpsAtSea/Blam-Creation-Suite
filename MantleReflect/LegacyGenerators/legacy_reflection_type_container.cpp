@@ -1,6 +1,6 @@
 #include "mantlereflect-private-pch.h"
 
-c_reflection_type_container::c_reflection_type_container()
+c_reflection_type_container_legacy::c_reflection_type_container_legacy()
 	: is_size_initialized(false)
 	, is_primitive(true)
 	, clang_record_declaration(nullptr)
@@ -18,7 +18,7 @@ c_reflection_type_container::c_reflection_type_container()
 {
 }
 
-c_reflection_type_container::c_reflection_type_container(std::string type_name, std::string qualified_type_name, uint32_t size)
+c_reflection_type_container_legacy::c_reflection_type_container_legacy(std::string type_name, std::string qualified_type_name, uint32_t size)
 	: is_size_initialized(true)
 	, is_primitive(true)
 	, clang_record_declaration(nullptr)
@@ -36,7 +36,7 @@ c_reflection_type_container::c_reflection_type_container(std::string type_name, 
 {
 }
 
-c_reflection_type_container::~c_reflection_type_container()
+c_reflection_type_container_legacy::~c_reflection_type_container_legacy()
 {
 	for (c_reflection_enum_value_container* enum_value_container : enum_values)
 	{

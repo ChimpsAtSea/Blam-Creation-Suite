@@ -66,6 +66,18 @@
     <ClCompile Include="LegacyGenerators\legacy_ast_source_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BlamlibGenerators\reflection_type_container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlamlibGenerators\ast_source_generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlamlibGenerators\runtime_reflection_generator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlamlibGenerators\reflection_field_container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlereflect-private-pch.h">
@@ -126,6 +138,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="reflection_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlamlibGenerators\reflection_type_container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlamlibGenerators\ast_source_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlamlibGenerators\runtime_reflection_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlamlibGenerators\reflection_field_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

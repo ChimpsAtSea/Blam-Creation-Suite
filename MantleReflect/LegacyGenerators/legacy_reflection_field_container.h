@@ -1,6 +1,6 @@
 #pragma once
 
-class c_reflection_type_container;
+class c_reflection_type_container_legacy;
 
 class c_reflection_field_legacy_container
 {
@@ -11,7 +11,7 @@ public:
 	std::string field_nice_name;
 	e_legacy_reflection_type_category legacy_reflection_type_category;
 	e_legacy_primitive_type primitive_type;
-	c_reflection_type_container* field_type;
+	c_reflection_type_container_legacy* field_type;
 	uint64_t array_size;
 	uint64_t static_string_size;
 	uint64_t offset;

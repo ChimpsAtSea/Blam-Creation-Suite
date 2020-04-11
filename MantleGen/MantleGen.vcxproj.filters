@@ -597,6 +597,9 @@
     <ClInclude Include="LegacyGen\virtual_tag_interfaces_legacy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BlamlibGen\reflection_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mantlegen-private-pch.cpp">
@@ -618,6 +621,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlamlibGen\blamlib_reflection_gen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlamlibGen\reflection_data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlamlibGen\blamlib_tag_group_config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

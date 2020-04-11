@@ -6,7 +6,7 @@ c_legacy_runtime_reflection_generator::c_legacy_runtime_reflection_generator(con
 
 }
 
-void c_legacy_runtime_reflection_generator::run(std::vector<c_reflection_type_container*>& reflection_type_containers)
+void c_legacy_runtime_reflection_generator::run(std::vector<c_reflection_type_container_legacy*>& reflection_type_containers)
 {
 	header_string_stream << "#pragma once" << std::endl << std::endl;
 	header_string_stream << "template<typename T>" << std::endl;
@@ -21,14 +21,14 @@ void c_legacy_runtime_reflection_generator::run(std::vector<c_reflection_type_co
 	source_string_stream << "#include <MantleReflect/legacy_reflection_types.h>" << std::endl;
 	source_string_stream << "#include <MantleLib/Tags/Tags.h>" << std::endl << std::endl;
 
-	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
+	for (c_reflection_type_container_legacy* reflection_type_container : reflection_type_containers)
 	{
 		if (!reflection_type_container->is_enum && !reflection_type_container->is_bitfield) // #TODO: Cleanup what is considered a structure type
 		{
 			write_reflection_structure_type_entry_header(source_string_stream, *reflection_type_container);
 		}
 	}
-	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
+	for (c_reflection_type_container_legacy* reflection_type_container : reflection_type_containers)
 	{
 		if (reflection_type_container->is_enum || reflection_type_container->is_bitfield)
 		{
@@ -36,7 +36,7 @@ void c_legacy_runtime_reflection_generator::run(std::vector<c_reflection_type_co
 		}
 	}
 	source_string_stream << std::endl;
-	for (c_reflection_type_container* reflection_type_container : reflection_type_containers)
+	for (c_reflection_type_container_legacy* reflection_type_container : reflection_type_containers)
 	{
 		if (reflection_type_container->is_enum || reflection_type_container->is_bitfield)
 		{
@@ -55,16 +55,16 @@ void c_legacy_runtime_reflection_generator::run(std::vector<c_reflection_type_co
 	source_string_stream << "#endif" << std::endl; // __visual_assist__
 }
 
-void c_legacy_runtime_reflection_generator::write_tag_type_lookup_function(std::stringstream& stringstream, std::vector<c_reflection_type_container*>& reflection_type_containers)
+void c_legacy_runtime_reflection_generator::write_tag_type_lookup_function(std::stringstream& stringstream, std::vector<c_reflection_type_container_legacy*>& reflection_type_containers)
 {
 	stringstream << std::endl;
 	stringstream << "const s_reflection_structure_type_legacy* reflection_legacy(uint32_t tagGroup)" << std::endl;
 	stringstream << "{" << std::endl;
 	stringstream << "\tswitch (tagGroup)" << std::endl;
 	stringstream << "\t{" << std::endl;
-	for (c_reflection_type_container* reflection_type_container_ptr : reflection_type_containers)
+	for (c_reflection_type_container_legacy* reflection_type_container_ptr : reflection_type_containers)
 	{
-		c_reflection_type_container& reflection_type_container = *reflection_type_container_ptr;
+		c_reflection_type_container_legacy& reflection_type_container = *reflection_type_container_ptr;
 		if (reflection_type_container.raw_tag_group.empty()) continue;
 
 		stringstream << "\tcase '" << reflection_type_container.raw_tag_group << "':" << std::endl;
@@ -79,7 +79,7 @@ void c_legacy_runtime_reflection_generator::write_tag_type_lookup_function(std::
 	stringstream << "}" << std::endl;
 	stringstream << std::endl;
 }
-void c_legacy_runtime_reflection_generator::write_reflection_structure_type_entry_header(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
+void c_legacy_runtime_reflection_generator::write_reflection_structure_type_entry_header(std::stringstream& stringstream, const c_reflection_type_container_legacy& reflection_type_container)
 {
 	if (reflection_type_container.is_primitive)
 	{
@@ -91,7 +91,7 @@ void c_legacy_runtime_reflection_generator::write_reflection_structure_type_entr
 	stringstream << "const s_reflection_structure_type_legacy& reflection_structure_legacy<" << reflection_type_container.qualified_type_name << ">();" << std::endl;
 }
 
-void c_legacy_runtime_reflection_generator::write_reflection_structure_type_entry(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
+void c_legacy_runtime_reflection_generator::write_reflection_structure_type_entry(std::stringstream& stringstream, const c_reflection_type_container_legacy& reflection_type_container)
 {
 	if (reflection_type_container.is_primitive)
 	{
@@ -133,7 +133,7 @@ void c_legacy_runtime_reflection_generator::write_reflection_structure_type_entr
 		ASSERT(reflection_field_container_ptr != nullptr);
 		const c_reflection_field_legacy_container& reflection_field_container = *reflection_field_container_ptr;
 		ASSERT(reflection_field_container.field_type != nullptr);
-		const c_reflection_type_container& reflection_type_container = *reflection_field_container.field_type;
+		const c_reflection_type_container_legacy& reflection_type_container = *reflection_field_container.field_type;
 
 		const char* primitive_type_string = primitive_type_to_string(reflection_field_container.primitive_type);
 
@@ -201,7 +201,7 @@ void c_legacy_runtime_reflection_generator::write_reflection_structure_type_entr
 	stringstream << "}" << std::endl << std::endl;
 }
 
-void c_legacy_runtime_reflection_generator::write_reflection_enum_type_entry_header(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
+void c_legacy_runtime_reflection_generator::write_reflection_enum_type_entry_header(std::stringstream& stringstream, const c_reflection_type_container_legacy& reflection_type_container)
 {
 	if (reflection_type_container.is_primitive)
 	{
@@ -213,7 +213,7 @@ void c_legacy_runtime_reflection_generator::write_reflection_enum_type_entry_hea
 	stringstream << "const s_reflection_enum_type_legacy& reflection_enum_legacy<" << reflection_type_container.qualified_type_name << ">();" << std::endl;
 }
 
-void c_legacy_runtime_reflection_generator::write_reflection_enum_type_entry(std::stringstream& stringstream, const c_reflection_type_container& reflection_type_container)
+void c_legacy_runtime_reflection_generator::write_reflection_enum_type_entry(std::stringstream& stringstream, const c_reflection_type_container_legacy& reflection_type_container)
 {
 	stringstream << "template<> ";
 	stringstream << "const s_reflection_enum_type_legacy& reflection_enum_legacy<" << reflection_type_container.qualified_type_name << ">()" << std::endl;

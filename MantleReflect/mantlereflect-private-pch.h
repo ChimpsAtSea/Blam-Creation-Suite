@@ -45,13 +45,16 @@
 #include "util.h"
 #include "mantlereflect-public-pch.h"
 
-#include "LegacyGenerators/legacy_reflection_field_container.h"
-#include "LegacyGenerators/legacy_reflection_type_container.h"
-#include "LegacyGenerators/legacy_reflection_enum_container.h"
-
+#include "BlamlibGenerators/reflection_field_container.h"
+#include "BlamlibGenerators/reflection_type_container.h"
+#include "BlamlibGenerators/ast_source_generator.h"
+#include "BlamlibGenerators/runtime_reflection_generator.h"
 #include "BlamlibGenerators/blamlib_compiler_interface.h"
 
 // --- LEGACY GENERATORS ---
+#include "LegacyGenerators/legacy_reflection_field_container.h"
+#include "LegacyGenerators/legacy_reflection_type_container.h"
+#include "LegacyGenerators/legacy_reflection_enum_container.h"
 #include "LegacyGenerators/legacy_compiler_interface.h"
 #include "LegacyGenerators/legacy_ast_source_generator.h"
 #include "LegacyGenerators/legacy_tag_groups_generator.h"

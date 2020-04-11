@@ -59,6 +59,7 @@ c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
 			}
 
 			legacy_reflection_type = reflection_legacy(cache_file_tag_group->group_tags[0]);
+			blamlib_reflection_type = reflection(cache_file_tag_group->group_tags[0]);
 		}
 		else m_isNull = true;
 	}

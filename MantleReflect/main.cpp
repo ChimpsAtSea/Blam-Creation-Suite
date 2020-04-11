@@ -85,12 +85,17 @@ int main(int argc, const char** argv)
 		std::wstring blamlibgen_directory_wide = output_directory_wide + L"BlamlibGen\\";
 
 		std::string reflection_source_file = blamlibgen_directory + "blamlib_reflection_gen.cpp";
+		std::wstring reflection_output_header = blamlibgen_directory_wide + L"reflection_data.h";
+		std::wstring reflection_output_source = blamlibgen_directory_wide + L"reflection_data.cpp";
 
 		wprintf(L"Blamlib Generator Directory:   '%s'\n", blamlibgen_directory_wide.c_str());
 		wprintf(L"Blamlib Reflection Source File:   '%S'\n", reflection_source_file.c_str());
 
 		c_blamlib_compiler_interface blamlib_compiler_interface = c_blamlib_compiler_interface(argv[0], reflection_source_file.c_str());
 
+		c_runtime_reflection_generator runtime_reflection_generator = { reflection_output_header.c_str(), reflection_output_source.c_str() };
+
+		blamlib_compiler_interface.register_ast_source_generator(&runtime_reflection_generator);
 		blamlib_compiler_interface.set_source_file(reflection_source_file);
 		blamlib_compiler_interface.add_command_line("-Wdocumentation");
 		blamlib_compiler_interface.add_command_line("-Wno-documentation-unknown-command");

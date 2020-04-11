@@ -8,9 +8,10 @@ struct s_reflection_enum;
 
 enum e_reflection_type_class : uint8_t
 {
-	_reflection_type_class_padding,
 	_reflection_type_class_undefined,
+	_reflection_type_class_padding,
 	_reflection_type_class_structure,
+	_reflection_type_class_union,
 	_reflection_type_class_tag_block,
 	_reflection_type_class_tag_reference,
 	_reflection_type_class_data_reference,
@@ -25,6 +26,29 @@ enum e_reflection_type_class : uint8_t
 	reflection_type_class_count
 };
 static_assert(reflection_type_class_count <= 16, "Reflection type count limited to 4 bits of address space. See s_reflection_member for more information.");
+
+inline constexpr const char* reflection_type_class_to_string(e_reflection_type_class reflection_type_class)
+{
+	switch(reflection_type_class)
+	{
+		case _reflection_type_class_undefined:			return "_reflection_type_class_undefined";
+		case _reflection_type_class_padding:			return "_reflection_type_class_padding";
+		case _reflection_type_class_structure:			return "_reflection_type_class_structure";
+		case _reflection_type_class_union:				return "_reflection_type_class_union";
+		case _reflection_type_class_tag_block:			return "_reflection_type_class_tag_block";
+		case _reflection_type_class_tag_reference:		return "_reflection_type_class_tag_reference";
+		case _reflection_type_class_data_reference:		return "_reflection_type_class_data_reference";
+		case _reflection_type_class_uint:				return "_reflection_type_class_uint";
+		case _reflection_type_class_int:				return "_reflection_type_class_int";
+		case _reflection_type_class_enum:				return "_reflection_type_class_enum";
+		case _reflection_type_class_bitflag:			return "_reflection_type_class_bitflag";
+		case _reflection_type_class_bitfield:			return "_reflection_type_class_bitfield";
+		case _reflection_type_class_float:				return "_reflection_type_class_float";
+		case _reflection_type_class_boolean:			return "_reflection_type_class_boolean";
+		case _reflection_type_class_text:				return "_reflection_type_class_text";
+	}
+	return "<unknown e_reflection_type_class>";
+}
 
 struct s_reflection_type
 {
@@ -140,7 +164,7 @@ struct s_reflection_enum : public s_reflection_type
 	const s_reflection_enum_name* names;
 };
 
-extern const s_reflection_member g_fields[];
+extern const s_reflection_member g_members[];
 extern const s_reflection_enum_name g_enum_names[];
 
 template<typename T>
@@ -148,6 +172,8 @@ const s_reflection_enum& enum_reflection();
 
 template<typename T>
 const s_reflection_structure& structure_reflection();
+
+const s_reflection_structure* reflection(uint32_t tag_group);
 
 template<typename T>
 decltype(auto) reflection()
