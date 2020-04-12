@@ -53,6 +53,7 @@
     <ClInclude Include="ImGuiAddons\imgui_memory_editor.h" />
     <ClInclude Include="Rendering\directx_helpers.h" />
     <ClInclude Include="Rendering\dds.h" />
+    <ClInclude Include="shared-types-pch.h" />
     <ClInclude Include="ThreadPrimitives\atomic_temp_value.h" />
     <ClInclude Include="ThreadPrimitives\semaphore.h" />
     <ClInclude Include="ThreadPrimitives\atomic_flip_value.h" />

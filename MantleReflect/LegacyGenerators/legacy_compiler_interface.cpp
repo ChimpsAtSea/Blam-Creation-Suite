@@ -335,7 +335,7 @@ c_reflection_type_container_legacy* c_legacy_compiler_interface::create_reflecte
 
 	for (const clang::EnumDecl::enumerator_iterator::value_type& enum_decl : enum_decl->enumerators())
 	{
-		c_reflection_enum_value_container* enum_value_container = new c_reflection_enum_value_container();
+		c_reflection_enum_value_container_legacy* enum_value_container = new c_reflection_enum_value_container_legacy();
 
 		enum_value_container->value_name = enum_decl->getNameAsString();
 		const llvm::APSInt& init_value = enum_decl->getInitVal();

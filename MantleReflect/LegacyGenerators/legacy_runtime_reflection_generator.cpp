@@ -225,7 +225,7 @@ void c_legacy_runtime_reflection_generator::write_reflection_enum_type_entry(std
 	stringstream << "\t\t" << reflection_type_container.data_size << "," << std::endl;
 	stringstream << "\t\t" << reflection_type_container.enum_values.size() << "," << std::endl;
 	stringstream << "\t\t" << "{" << std::endl;
-	for (c_reflection_enum_value_container* enum_value_container : reflection_type_container.enum_values)
+	for (c_reflection_enum_value_container_legacy* enum_value_container : reflection_type_container.enum_values)
 	{
 		stringstream << "\t\t\t{ \"" << enum_value_container->value_name << "\", " << enum_value_container->value << "ui64 }," << std::endl;
 	}

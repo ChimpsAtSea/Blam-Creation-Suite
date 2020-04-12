@@ -44,7 +44,9 @@
 
 #include "util.h"
 #include "mantlereflect-public-pch.h"
+#include "BlamlibGenerators/template_arguments_iterator.h"
 
+#include "BlamlibGenerators/reflection_enum_name_container.h"
 #include "BlamlibGenerators/reflection_field_container.h"
 #include "BlamlibGenerators/reflection_type_container.h"
 #include "BlamlibGenerators/ast_source_generator.h"

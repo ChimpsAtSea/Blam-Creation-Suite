@@ -204,6 +204,9 @@
     <ClInclude Include="Blam\mcc_game_mode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="shared-types-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shared-private-pch.cpp">

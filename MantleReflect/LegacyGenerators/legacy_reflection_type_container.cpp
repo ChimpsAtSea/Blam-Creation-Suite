@@ -38,7 +38,7 @@ c_reflection_type_container_legacy::c_reflection_type_container_legacy(std::stri
 
 c_reflection_type_container_legacy::~c_reflection_type_container_legacy()
 {
-	for (c_reflection_enum_value_container* enum_value_container : enum_values)
+	for (c_reflection_enum_value_container_legacy* enum_value_container : enum_values)
 	{
 		delete enum_value_container;
 	}

@@ -28,6 +28,7 @@ typedef	uint8_t				undefined8_t;
 typedef	uint16_t			undefined16_t;
 typedef	uint32_t			undefined32_t;
 typedef	uint64_t			undefined64_t;
+typedef char				char8_t;
 
 #pragma pack(push, 1)
 

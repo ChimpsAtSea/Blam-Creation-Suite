@@ -2,6 +2,7 @@
 
 #include "shared-system-pch.h"
 #include "shared-tbb-pch.h"
+#include "shared-types-pch.h"
 
 #include "high_precision_timer.h"
 #include "ThreadPrimitives/ThreadPrimitives.h"

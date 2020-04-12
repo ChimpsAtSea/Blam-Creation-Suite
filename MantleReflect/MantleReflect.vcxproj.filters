@@ -78,6 +78,9 @@
     <ClCompile Include="BlamlibGenerators\reflection_field_container.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BlamlibGenerators\reflection_enum_name_container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlereflect-private-pch.h">
@@ -150,6 +153,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BlamlibGenerators\reflection_field_container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlamlibGenerators\template_arguments_iterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlamlibGenerators\reflection_enum_name_container.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

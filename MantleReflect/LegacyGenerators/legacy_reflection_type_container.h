@@ -1,6 +1,6 @@
 #pragma once
 
-class c_reflection_enum_value_container;
+class c_reflection_enum_value_container_legacy;
 
 class c_reflection_type_container_legacy
 {
@@ -14,7 +14,7 @@ public:
 	bool is_bitfield;
 	
 	// enum information
-	std::vector<c_reflection_enum_value_container*> enum_values;
+	std::vector<c_reflection_enum_value_container_legacy*> enum_values;
 
 
 	// structure information

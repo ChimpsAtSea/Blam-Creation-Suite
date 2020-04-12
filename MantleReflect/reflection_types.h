@@ -71,8 +71,8 @@ struct s_reflection_type
 
 struct s_reflection_member
 {
-	s_reflection_member(const s_reflection_structure& parent, uint32_t underlying_type_size, uint32_t field_offset, const s_reflection_type& type, const char* raw_name, const char* nice_name, const char* description, uint8_t bitfield_offset = 0, uint8_t bitfield_range = 0) :
-		type_class(type.type_class),
+	s_reflection_member(const s_reflection_structure& parent, e_reflection_type_class type_class, uint32_t field_offset, uint32_t underlying_type_size, const s_reflection_type& type, const char* raw_name, const char* nice_name, const char* description, uint8_t bitfield_offset = 0, uint8_t bitfield_range = 0) :
+		type_class(type_class),
 		type(&type),
 		raw_name(raw_name),
 		nice_name(nice_name),
