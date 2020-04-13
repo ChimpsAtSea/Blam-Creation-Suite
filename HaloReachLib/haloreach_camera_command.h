@@ -21,6 +21,8 @@ public:
 	virtual std::string get_command_info(const std::string &topic) const override;
 	virtual std::string get_command_auto_complete(const std::vector<std::string> &Arguments) const override;
 
+	void read_config();
+
 	void set_player_mapping_get_local_player(int(__stdcall *player_mapping_get_local_player_proc)());
 	void set_observer_try_and_get_camera(s_observer_camera *(__fastcall *observer_try_and_get_camera_proc)(signed int local_player));
 
