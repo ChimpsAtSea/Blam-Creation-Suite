@@ -51,6 +51,8 @@ c_halo_reach_game_host::c_halo_reach_game_host(e_engine_type engine_type, e_buil
 		g_haloreach_camera_command->set_player_mapping_get_local_player(player_mapping_get_local_player.base);
 		g_haloreach_camera_command->set_observer_try_and_get_camera(observer_try_and_get_camera.base);
 	}
+
+	g_haloreach_camera_command->read_config();
 }
 
 c_halo_reach_game_host::~c_halo_reach_game_host()
