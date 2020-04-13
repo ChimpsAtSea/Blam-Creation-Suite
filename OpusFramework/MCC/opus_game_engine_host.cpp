@@ -269,7 +269,9 @@ PlayerConfiguration* __fastcall c_opus_game_engine_host::GetPlayerConfiguration(
 	return &player_configuration;
 }
 
-__int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t player_names[4][32], PlayerConfiguration& player_configuration)
+BYTE keyboardState[256] = {};
+
+__int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t player_names[4][16], PlayerConfiguration& player_configuration)
 {
 	// #TODO #LEGACY: The format for UpdatePlayerConfiguration changed sometime after 887
 	if (build <= _build_mcc_1_1035_0_0)
@@ -313,7 +315,6 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 	// grab controller
 	// grab mouse and keyboard
 
-	BYTE keyboardState[256] = {};
 	float mouseInputX = 0;
 	float mouseInputY = 0;
 	bool leftButtonPressed = 0;
@@ -448,40 +449,48 @@ void c_opus_game_engine_host::XInputSetState(DWORD user_index, XINPUT_VIBRATION*
 	::XInputSetState(user_index, xinput_vibration);
 }
 
-bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, wchar_t player_names[4][32], size_t data_size)
+bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, wchar_t player_names[4][16], size_t data_size)
 {
-	if (player_names && data_size)
+	if (player_names == nullptr || data_size == 0)
+	{
+		return false;
+	}
+
+	size_t num_players = data_size / 32;
+
+	constexpr size_t player_name_max_len = _countof(player_names[0]);
+	constexpr size_t player_name_max_index = player_name_max_len - 1;
+
+	for (uint32_t player_index = 0; player_index < __min(num_players, 4u); player_index++)
 	{
 		const wchar_t* ppNames[] = { L"Player", L"Player2", L"Player3",L"Player4" };
-
-		for (int i = 0; i < 4; i++)
+		const wchar_t* pName = ppNames[player_index];
+		
+		if (player_index == 0) // #TODO: Proper player class for interface!
 		{
-			static wchar_t pPlayerNameBuffer[4][16] = {};
-			if (pPlayerNameBuffer[i][0] == 0)
+			static wchar_t player_name_configuration[16] = {};
+			static bool initialized_player_name = false;
+			if (!initialized_player_name)
 			{
-				const wchar_t* pName = ppNames[i];
-				if (i == 0)
-				{
-					if (Settings::ReadStringValueW(SettingsSection::Player, "Name", pPlayerNameBuffer[i], sizeof(pPlayerNameBuffer[i]), ppNames[i]) > 0)
-					{
-						pName = pPlayerNameBuffer[i];
-					}
-				}
-
-				{
-					if (wcsncmp(player_names[i], pName, 16) == 0)
-					{
-						return true;
-					}
-					wcsncpy_s(player_names[i], 32, pName, 16);
-					write_line_verbose("player[%d].Name: set %ls", i, pName);
-				}
+				Settings::ReadStringValueW(SettingsSection::Player, "Name", player_name_configuration, sizeof(player_name_configuration), pName);
+				initialized_player_name = true;
+			}
+			if (player_name_configuration[0])
+			{
+				pName = player_name_configuration;
 			}
 		}
 
-		return true;
+		if (wcsncmp(player_names[player_index], pName, _countof(player_names[player_index])) == 0)
+		{
+			return true;
+		}
+		wcsncpy(player_names[player_index], pName, __min(wcslen(pName) + 1, player_name_max_len));
+		player_names[player_index][player_name_max_index] = 0;
+		write_line_verbose("player[%d].Name: set %ls", player_index, pName);
 	}
-	return false;
+	
+	return true;
 }
 
 void __fastcall c_opus_game_engine_host::Function36(const wchar_t*, const wchar_t*)

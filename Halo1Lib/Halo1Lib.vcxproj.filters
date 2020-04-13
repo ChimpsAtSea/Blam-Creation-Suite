@@ -69,5 +69,8 @@
     <None Include="halo1_game_host.scripting.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="halo1_game_host.console.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -13,7 +13,6 @@ bool s_isHalo1Hooked = false;
 bool initThreadIsHooked = false;
 void nullsub() {}
 
-
 extern void init_halo_reach(e_engine_type engine_type, e_build build);
 extern void deinit_halo_reach(e_engine_type engine_type, e_build build);
 
@@ -54,7 +53,7 @@ FARPROC __stdcall GetProcAddressHook(HMODULE hModule, LPCSTR lpProcName)
 			// reset hook states
 			initThreadIsHooked = false;
 
-			haloreach_dll_loaded_callback();
+			//haloreach_dll_loaded_callback();
 		}
 	}
 	if (!s_isHalo1Hooked)

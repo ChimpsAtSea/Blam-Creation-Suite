@@ -342,7 +342,8 @@ enum class eHaloArmor : long
 	H3_Color_28,
 	H3_Color_29,
 
-	kHaloArmorCount
+	kHaloArmorCount,
+	kHaloArmorNone = -1
 };
 
 struct LoadoutSlot
@@ -374,8 +375,8 @@ struct PlayerConfiguration
 {
 	/* 0x0 */	long SubtitleSetting;
 	/* 0x4 */	long CrosshairLocation;
-	/* 0x8 */	float FOVSetting;
-	/* 0xC */	float VehicleFOVSetting;
+	/* 0x8 */	long FOVSetting;
+	/* 0xC */	long VehicleFOVSetting;
 	/* 0x10 */	bool LookControlsInverted;
 	/* 0x11 */	bool MouseLookControlsInverted;
 	/* 0x12 */	bool VibrationDisabled;

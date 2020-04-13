@@ -81,12 +81,12 @@ bool __fastcall IGameEngineHost::Function26() { CHECK_ADDRESS_SHIFTED(); return 
 bool __fastcall IGameEngineHost::Function27() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function27(); }
 bool __fastcall IGameEngineHost::UpdateGraphics(UpdateGraphicsData* update_graphics_data) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateGraphics(update_graphics_data); }
 PlayerConfiguration* __fastcall IGameEngineHost::GetPlayerConfiguration(__int64 value) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetPlayerConfiguration(value); }
-__int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t player_names[4][32], PlayerConfiguration& player_configuration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerConfiguration(player_names, player_configuration); }
+__int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t player_names[4][16], PlayerConfiguration& player_configuration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerConfiguration(player_names, player_configuration); }
 bool __fastcall __fastcall IGameEngineHost::UpdateInput(_QWORD a1, InputBuffer* input_buffer) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateInput(a1, input_buffer); }
 void IGameEngineHost::Function32(_QWORD a1, float* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function32(a1, a2); }
 void IGameEngineHost::Function33() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function33(); }
 void IGameEngineHost::XInputSetState(DWORD user_index, XINPUT_VIBRATION* xinput_vibration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->XInputSetState(user_index, xinput_vibration); }
-bool __fastcall __fastcall IGameEngineHost::UpdatePlayerNames(__int64* a1, wchar_t player_names[4][32], size_t data_size) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerNames(a1, player_names, data_size); }
+bool __fastcall __fastcall IGameEngineHost::UpdatePlayerNames(__int64* a1, wchar_t player_names[4][16], size_t data_size) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerNames(a1, player_names, data_size); }
 void __fastcall IGameEngineHost::Function36(const wchar_t* a1, const wchar_t* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function36(a1, a2); }
 bool __fastcall IGameEngineHost::Function37(wchar_t* a1, __int64 a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function37(a1, a2); }
 __int64 __fastcall IGameEngineHost::NetworkSendTo(NetworkID network_id, char* buffer, uint32_t buffer_size, int a4) { CHECK_ADDRESS_SHIFTED(); return shifted_this->NetworkSendTo(network_id, buffer, buffer_size, a4); }
@@ -350,6 +350,184 @@ void IGameEngineHost::ConfigureGameEngineHost()
 
 void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_configuration)
 {
+	memset(&player_configuration, 0, sizeof(player_configuration));
+
+
+	player_configuration.SubtitleSetting = 0;
+	player_configuration.CrosshairLocation = 1;
+	player_configuration.FOVSetting = 96;
+	player_configuration.VehicleFOVSetting = 96;
+	player_configuration.LookControlsInverted = false;
+	player_configuration.MouseLookControlsInverted = false;
+	player_configuration.VibrationDisabled = false;
+	player_configuration.ImpulseTriggersDisabled = false;
+	player_configuration.AircraftControlsInverted = false;
+	player_configuration.MouseAircraftControlsInverted = false;
+	player_configuration.AutoCenterEnabled = false;
+	player_configuration.CrouchLockEnabled = false;
+	player_configuration.MKCrouchLockEnabled = false;
+	player_configuration.ClenchProtectionEnabled = false;
+	player_configuration.UseFemaleVoice = false;
+	player_configuration.HoldToZoom = true;
+	player_configuration.PlayerModelPrimaryColorIndex = 0;
+	player_configuration.PlayerModelSecondaryColorIndex = 0;
+	player_configuration.PlayerModelTertiaryColorIndex = 0;
+	player_configuration.UseEliteModel = false;
+	player_configuration.__padding29[0] = 1;
+	player_configuration.__padding29[1] = 0;
+	player_configuration.__padding29[2] = 0;
+	player_configuration.PlayerModelPermutation = 0;
+	player_configuration.HelmetIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.LeftShoulderIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.RightShoulderIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.ChestIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.WristIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.UtilityIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.KneeGuardsIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.VisorColorIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.SpartanArmorEffectIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.SpartanBodyIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.EliteArmorIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.EliteArmorEffectIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.VoiceIndex = eHaloArmor::kHaloArmorNone;
+	player_configuration.PlayerModelPrimaryColor = eHaloArmor::H1_Color_1;
+	player_configuration.PlayerModelSecondaryColor = eHaloArmor::kHaloArmorNone;
+	player_configuration.PlayerModelTertiaryColor = eHaloArmor::kHaloArmorNone;
+	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", player_configuration.ServiceTag, 4, L"117");
+	player_configuration.OnlineMedalFlasher = 0;
+	player_configuration.VerticalLookSensitivity = 4;
+	player_configuration.HorizontalLookSensitivity = 4;
+	player_configuration.LookAcceleration = 4;
+	player_configuration.LookAxialDeadZone = 0.12f;
+	player_configuration.LookRadialDeadZone = 0.12f;
+	player_configuration.ZoomLookSensitivityMultiplier = 1.0f;
+	player_configuration.VehicleLookSensitivityMultiplier = 1.0f;
+	player_configuration.ButtonPreset = 9;
+	player_configuration.StickPreset = 0;
+	player_configuration.LeftyToggle = 0;
+	player_configuration.FlyingCameraTurnSensitivity = 1;
+	player_configuration.FlyingCameraPanning = 0;
+	player_configuration.FlyingCameraSpeed = 1;
+	player_configuration.FlyingCameraThrust = 1;
+	player_configuration.TheaterTurnSensitivity = 1;
+	player_configuration.TheaterPanning = 0;
+	player_configuration.TheaterSpeed = 1;
+	player_configuration.TheaterThrust = 1;
+	player_configuration.SwapTriggersAndBumpers = false;
+	player_configuration.UseModernAimControl = true;
+	player_configuration.UseDoublePressJumpToJetpack = false;
+	player_configuration.__paddingC7 = 0;
+	player_configuration.EnemyPlayerNameColor = 0;
+	player_configuration.GameEngineTimer = 2;
+	player_configuration.__paddingCA[0] = 0;
+	player_configuration.__paddingCA[1] = 0;
+
+	LoadoutSlot default_loadout_slot = {};
+	default_loadout_slot.TacticalPackageIndex = -1;
+	default_loadout_slot.SupportUpgradeIndex = -1;
+	default_loadout_slot.PrimaryWeaponIndex = 1;
+	default_loadout_slot.SecondaryWeaponIndex = 5;
+	default_loadout_slot.PrimaryWeaponVariantIndex = 0;
+	default_loadout_slot.SecondaryWeaponVariantIndex = 0;
+	default_loadout_slot.EquipmentIndex = -1;
+	default_loadout_slot.GrenadeIndex = 0;
+	memset(default_loadout_slot.Name, 0, sizeof(default_loadout_slot.Name));
+
+	player_configuration.Loadouts[0] = default_loadout_slot;
+	player_configuration.Loadouts[1] = default_loadout_slot;
+	player_configuration.Loadouts[2] = default_loadout_slot;
+	player_configuration.Loadouts[3] = default_loadout_slot;
+	player_configuration.Loadouts[4] = default_loadout_slot;
+
+	memset(player_configuration.GameSpecific, 0, sizeof(player_configuration.GameSpecific));
+
+	player_configuration.MouseSensitivity = 0.2f;
+	player_configuration.MouseSmoothing = false;
+	player_configuration.MouseAcceleration = false;
+	player_configuration.__padding2FE[0] = 0;
+	player_configuration.__padding2FE[1] = 0;
+	player_configuration.MouseAccelerationMinRate = 0.0f;
+	player_configuration.MouseAccelerationMaxAccel = 100.0f;
+	player_configuration.MouseAccelerationScale = 0.0f;
+	player_configuration.MouseAccelerationExp = 1.0f;
+	player_configuration.KeyboardMouseButtonPreset = 0;
+
+	player_configuration.GameKeyboardMouseMappings[0] = { 0, {32, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[1] = { 1, {71, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[2] = { 2, {69, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[3] = { 3, {82, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[4] = { 4, {67, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[5] = { 5, {81, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[6] = { 6, {52, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[7] = { 7, {70, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[8] = { 8, {1, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[9] = { 9, {162, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[10] = { 10, {2, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[11] = { 11, {90, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[12] = { 12, {88, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[13] = { 13, {0, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[14] = { 14, {0, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[15] = { 15, {0, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[16] = { 16, {0, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[17] = { 17, {0, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[18] = { 18, {0, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[19] = { 19, {87, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[20] = { 20, {83, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[21] = { 21, {65, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[22] = { 22, {68, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[23] = { 23, {0, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[24] = { 24, {0, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[25] = { 25, {0, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[26] = { 26, {9, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[27] = { 27, {9, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[28] = { 28, {0, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[29] = { 29, {0, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[30] = { 30, {162, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[31] = { 31, {32, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[32] = { 32, {90, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[33] = { 33, {160, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[34] = { 34, {2, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[35] = { 35, {82, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[36] = { 36, {70, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[37] = { 37, {1, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[38] = { 38, {160, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[39] = { 39, {162, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[40] = { 40, {32, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[41] = { 41, {88, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[42] = { 42, {49, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[43] = { 43, {192, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[44] = { 44, {2, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[45] = { 45, {164, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[46] = { 46, {88, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[47] = { 47, {90, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[48] = { 48, {67, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[49] = { 49, {2, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[50] = { 50, {39, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[51] = { 51, {37, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[52] = { 52, {13, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[53] = { 53, {164, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[54] = { 54, {32, 0, 0, 0, 0} };
+	player_configuration.GameKeyboardMouseMappings[55] = { 55, {160, 0, 0, 0, 0} };
+	player_configuration.MasterVolume = 0.35f;
+	player_configuration.MusicVolume = 1.0f;
+	player_configuration.SfxVolume = 1.0f;
+
+	memset(player_configuration.__unknown860, 0, sizeof(player_configuration.__unknown860));
+
+	player_configuration.Brightness = 0;
+	player_configuration.WeaponDisplayOffset[0].X = 0.0f;
+	player_configuration.WeaponDisplayOffset[0].Y = 0.0f;
+	player_configuration.WeaponDisplayOffset[1].X = 0.0f;
+	player_configuration.WeaponDisplayOffset[1].Y = 0.0f;
+	player_configuration.WeaponDisplayOffset[2].X = 0.0f;
+	player_configuration.WeaponDisplayOffset[2].Y = 0.0f;
+	player_configuration.WeaponDisplayOffset[3].X = 0.0f;
+	player_configuration.WeaponDisplayOffset[3].Y = 0.0f;
+	player_configuration.WeaponDisplayOffset[4].X = 0.0f;
+	player_configuration.WeaponDisplayOffset[4].Y = 0.0f;
+
+	return;
+
 	player_configuration.SubtitleSetting = 1;
 	player_configuration.CrosshairLocation = 1;
 	player_configuration.FOVSetting = 100.f;

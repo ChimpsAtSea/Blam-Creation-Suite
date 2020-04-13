@@ -9,7 +9,7 @@ enum DebugUICallbackMode
 class c_debug_gui
 {
 public:
-	typedef void(DebugUICallback)();
+	using DebugUICallback = std::function<void()>;
 
 	static bool IsVisible();
 
@@ -25,8 +25,8 @@ public:
 	static void ProcessWindowMessages();
 	static void AddMessageBreak();
 	static void WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
-	static void register_callback(DebugUICallbackMode callbackMode, DebugUICallback* pDebugUICallback);
-	static void UnregisterCallback(DebugUICallbackMode callbackMode, DebugUICallback* pDebugUICallback);
+	static void register_callback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback);
+	static void UnregisterCallback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback);
 	static bool IsRendering();
 
 private:
@@ -39,7 +39,7 @@ private:
 	static DXGI_SWAP_CHAIN_DESC s_swapChainDescription;
 	static ID3D11RenderTargetView* s_mainRenderTargetView;
 	static IDXGISwapChainPresent s_IDXGISwapChainPresentPointer;
-	static std::vector<DebugUICallback*> s_pToggleableCallbacks;
-	static std::vector<DebugUICallback*> s_pAlwaysRunCallbacks;
+	static std::vector<DebugUICallback> s_pToggleableCallbacks;
+	static std::vector<DebugUICallback> s_pAlwaysRunCallbacks;
 };
 

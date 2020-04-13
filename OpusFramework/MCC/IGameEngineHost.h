@@ -103,7 +103,8 @@ public:
 		char			keyboardState[256];
 		float			MouseX;
 		float			MouseY;
-		_QWORD			unknown10C;
+		float			UnknownA;
+		float			UnknownB;
 		char			mouseButtonBits;
 		char			__padding[3];
 		DWORD           wButtons;
@@ -227,12 +228,12 @@ public:
 	/* 27 */ virtual bool __fastcall Function27();
 	/* 28 */ virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* update_graphics_data);
 	/* 29 */ virtual PlayerConfiguration* __fastcall GetPlayerConfiguration(__int64 value);
-	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t player_names[4][32], PlayerConfiguration& player_configuration);
+	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t player_names[4][16], PlayerConfiguration& player_configuration);
 	/* 31 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* input_buffer);
 	/* 32 */ virtual void Function32(_QWORD, float*);
 	/* 33 */ virtual void Function33();
 	/* 34 */ virtual void XInputSetState(DWORD user_index, XINPUT_VIBRATION* xinput_vibration);
-	/* 35 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t player_names[4][32], size_t data_size);
+	/* 35 */ virtual bool __fastcall __fastcall UpdatePlayerNames(__int64*, wchar_t player_names[4][16], size_t data_size);
 	/* 36 */ virtual void __fastcall Function36(const wchar_t*, const wchar_t*);
 	/* 37 */ virtual bool __fastcall Function37(wchar_t*, __int64);
 	/* 38 */ virtual __int64 __fastcall NetworkSendTo(NetworkID network_id, char* buffer, uint32_t buffer_size, int a4);

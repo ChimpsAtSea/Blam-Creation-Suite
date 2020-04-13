@@ -191,8 +191,9 @@ c_reflection_type_container* c_blamlib_compiler_interface::create_reflected_stru
 		bool is_field_template = field_class_template_specialization_decl != nullptr;
 		bool is_field_custom_enum = is_field_template && decl_name == "c_enum";
 		bool is_field_custom_flags = is_field_template && decl_name == "c_flags";
-		bool is_field_tag_block = is_field_template && decl_name == "c_typed_tag_block";
-		bool is_field_recognised_template = is_field_custom_enum || is_field_custom_flags || is_field_tag_block;
+		bool is_field_typed_tag_block = is_field_template && decl_name == "c_typed_tag_block";
+		bool is_field_tag_block = is_field_template && (is_field_typed_tag_block || decl_name == "s_tag_block");
+		bool is_field_recognised_template = is_field_custom_enum || is_field_custom_flags || is_field_typed_tag_block;
 
 		if (is_field_template && !is_field_recognised_template)
 		{
@@ -212,69 +213,75 @@ c_reflection_type_container* c_blamlib_compiler_interface::create_reflected_stru
 		{
 
 		}
-		else if (is_field_tag_block)
+		else if(is_field_tag_block)
 		{
-			const TemplateArgumentList& template_arguments = field_class_template_specialization_decl->getTemplateArgs();
-			ASSERT(template_arguments.size() == 1);
-
-			const TemplateArgument& argument0 = template_arguments.get(0);
-			clang::QualType tag_block_qualified_type = argument0.getAsType();
-			bool is_void_type = tag_block_qualified_type->isVoidType();
-			ASSERT(!is_void_type);
-
-			const std::string tag_block_qualified_type_name = QualType::getAsString(tag_block_qualified_type.split(), k_clang_printing_policy);
-
-			bool is_tag_block_scalar = tag_block_qualified_type->isScalarType();
-			bool is_tag_block_enum = tag_block_qualified_type->isEnumeralType();
-			bool is_tag_block_struct = tag_block_qualified_type->isStructureType();
-			bool is_tag_block_class = tag_block_qualified_type->isClassType();
-			bool is_tag_block_union = tag_block_qualified_type->isUnionType();
-			bool is_tag_block_object = is_tag_block_struct || is_tag_block_class || is_tag_block_union;
-
-			if (is_tag_block_object)
+			if (is_field_typed_tag_block)
 			{
-				const RecordDecl* tag_block_record_decl = tag_block_qualified_type->getAsRecordDecl();
-				ASSERT(tag_block_record_decl != nullptr);
+				const TemplateArgumentList& template_arguments = field_class_template_specialization_decl->getTemplateArgs();
+				ASSERT(template_arguments.size() == 1);
 
-				field_container->type_container = create_reflected_struct(ast_context, &tag_block_qualified_type, *tag_block_record_decl);
-			}
-			else if (is_tag_block_scalar)
-			{
-				c_reflection_type_container* scalar_type_container = get_reflected_scalar(ast_context, tag_block_qualified_type);
+				const TemplateArgument& argument0 = template_arguments.get(0);
+				clang::QualType tag_block_qualified_type = argument0.getAsType();
+				bool is_void_type = tag_block_qualified_type->isVoidType();
+				ASSERT(!is_void_type);
 
-				if (scalar_type_container)
+				const std::string tag_block_qualified_type_name = QualType::getAsString(tag_block_qualified_type.split(), k_clang_printing_policy);
+
+				bool is_tag_block_scalar = tag_block_qualified_type->isScalarType();
+				bool is_tag_block_enum = tag_block_qualified_type->isEnumeralType();
+				bool is_tag_block_struct = tag_block_qualified_type->isStructureType();
+				bool is_tag_block_class = tag_block_qualified_type->isClassType();
+				bool is_tag_block_union = tag_block_qualified_type->isUnionType();
+				bool is_tag_block_object = is_tag_block_struct || is_tag_block_class || is_tag_block_union;
+
+				if (is_tag_block_object)
 				{
-					field_container->type_container = scalar_type_container;
-					field_container->type_class = field_container->type_container->type_class;
+					const RecordDecl* tag_block_record_decl = tag_block_qualified_type->getAsRecordDecl();
+					ASSERT(tag_block_record_decl != nullptr);
+
+					field_container->type_container = create_reflected_struct(ast_context, &tag_block_qualified_type, *tag_block_record_decl);
+				}
+				else if (is_tag_block_scalar)
+				{
+					c_reflection_type_container* scalar_type_container = get_reflected_scalar(ast_context, tag_block_qualified_type);
+
+					if (scalar_type_container)
+					{
+						field_container->type_container = scalar_type_container;
+					}
+					else
+					{
+						constexpr const char* scalar_type_kind_to_string[] =
+						{
+						"STK_CPointer"
+						"STK_BlockPointer"
+						"STK_ObjCObjectPointer"
+						"STK_MemberPointer"
+						"STK_Bool"
+						"STK_Integral"
+						"STK_Floating"
+						"STK_IntegralComplex"
+						"STK_FloatingComplex"
+						"STK_FixedPoint",
+						"<unknown scalar type kind>"
+						};
+						const clang::Type::ScalarTypeKind scalar_type_kind = tag_block_qualified_type->getScalarTypeKind();
+						const char* scalar_type_kind_str = scalar_type_kind_to_string[__min(scalar_type_kind, _countof(scalar_type_kind_to_string) - 1)];
+						printf("Unknown scalar type for tag block '%s' '%s' (%s)", type_name.c_str(), field_name.c_str(), scalar_type_kind_str);
+					}
 				}
 				else
 				{
-					constexpr const char* scalar_type_kind_to_string[] =
-					{
-					"STK_CPointer"
-					"STK_BlockPointer"
-					"STK_ObjCObjectPointer"
-					"STK_MemberPointer"
-					"STK_Bool"
-					"STK_Integral"
-					"STK_Floating"
-					"STK_IntegralComplex"
-					"STK_FloatingComplex"
-					"STK_FixedPoint",
-					"<unknown scalar type kind>"
-					};
-					const clang::Type::ScalarTypeKind scalar_type_kind = tag_block_qualified_type->getScalarTypeKind();
-					const char* scalar_type_kind_str = scalar_type_kind_to_string[__min(scalar_type_kind, _countof(scalar_type_kind_to_string) - 1)];
-					printf("Unknown scalar type for tag block '%s' '%s' (%s)", type_name.c_str(), field_name.c_str(), scalar_type_kind_str);
+					printf("Unknown type for '%s' '%s'", type_name.c_str(), field_name.c_str());
 				}
 			}
-			else
-			{
-				printf("Unknown type for '%s' '%s'", type_name.c_str(), field_name.c_str());
-			}
-			
-			field_container->type_class = _reflection_type_class_tag_block;
 
+			// #NOTE: Generic tag blocks or types tag blocks that can't find their types
+			// are treated as regular tag blocks but with a nulled type
+			// this is potentially bad if these tag blocks are populated
+			// as we won't know how to access all of the data
+
+			field_container->type_class = _reflection_type_class_tag_block;
 		}
 		else if (is_field_custom_enum || is_field_custom_flags)
 		{
