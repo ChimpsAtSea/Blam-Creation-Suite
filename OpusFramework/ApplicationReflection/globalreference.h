@@ -11,24 +11,24 @@ public:
 
 	static void init_global_reference_tree(e_engine_type engine_type, e_build build);
 	static void deinit_global_reference_tree(e_engine_type engine_type, e_build build);
-	static void DestroyTree();
+	static void destroy_tree();
 private:
 	void init();
-	c_global_reference* initNode(e_engine_type engine_type, e_build build);
-	c_global_reference* deinitNode(e_engine_type engine_type, e_build build);
+	c_global_reference* init_node(e_engine_type engine_type, e_build build);
+	c_global_reference* deinit_node(e_engine_type engine_type, e_build build);
 
-	c_global_reference* m_pNextc_global_reference;
-	e_engine_type m_engine;
-	e_build m_build;
-	intptr_t m_offset;
-	intptr_t m_originalValue;
-	reference_symbol_offset_function* m_pOffsetFunction;
-	const char* m_pReferenceName;
-	void* pDataAddress;
-	PublicSymbol* pPublicSymbol;
-	void** pReference;
+	c_global_reference* next_global_reference;
+	e_engine_type target_engine;
+	e_build target_build;
+	intptr_t offset;
+	intptr_t original_reference_value;
+	reference_symbol_offset_function* offset_function;
+	const char* reference_name;
+	void* data_address;
+	PublicSymbol* public_symbol;
+	void** reference_memory_pointer;
 
-	static c_global_reference* s_pFirstc_global_reference;
-	static c_global_reference* s_pLastc_global_reference;
+	static c_global_reference* first_global_reference;
+	static c_global_reference* last_global_reference;
 };
 

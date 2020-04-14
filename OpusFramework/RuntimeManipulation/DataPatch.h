@@ -33,15 +33,15 @@ public:
 
 	static void init_data_patch_tree(e_engine_type engine_type, e_build build);
 	static void deinit_data_patch_tree(e_engine_type engine_type, e_build build);
-	static void DestroyTree();
+	static void destroy_tree();
 
 	bool ApplyPatch();
 	bool RevertPatch();
 	bool IsPatched() const { return m_isPatched; };
 private:
 	void init();
-	c_data_patch_base* initNode(e_engine_type engine_type, e_build build);
-	c_data_patch_base* deinitNode(e_engine_type engine_type, e_build build);
+	c_data_patch_base* init_node(e_engine_type engine_type, e_build build);
+	c_data_patch_base* deinit_node(e_engine_type engine_type, e_build build);
 
 	c_data_patch_base* m_pNextDataPatch;
 	e_engine_type m_engine;

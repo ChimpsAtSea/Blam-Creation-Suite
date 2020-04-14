@@ -10,7 +10,7 @@ void c_function_hook_base::init_function_hook_tree(e_engine_type engine_type, e_
 	c_function_hook_base* pCurrentFunctionHook = g_pFirstFunctionHook;
 	while (pCurrentFunctionHook)
 	{
-		pCurrentFunctionHook = pCurrentFunctionHook->InitNode(engine_type, build);
+		pCurrentFunctionHook = pCurrentFunctionHook->init_node(engine_type, build);
 	}
 }
 
@@ -21,11 +21,11 @@ void c_function_hook_base::deinit_function_hook_tree(e_engine_type engine_type, 
 	c_function_hook_base* pCurrentFunctionHook = g_pFirstFunctionHook;
 	while (pCurrentFunctionHook)
 	{
-		pCurrentFunctionHook = pCurrentFunctionHook->DeinitNode(engine_type, build);
+		pCurrentFunctionHook = pCurrentFunctionHook->deinit_node(engine_type, build);
 	}
 }
 
-c_function_hook_base* c_function_hook_base::InitNode(e_engine_type engine_type, e_build build)
+c_function_hook_base* c_function_hook_base::init_node(e_engine_type engine_type, e_build build)
 {
 	if ((m_engine == engine_type || m_engine == _engine_type_not_set) && ((build == m_build || (m_build == _build_not_set && m_find_offset_func)) && m_isActive && !m_isHooked))
 	{
@@ -76,7 +76,7 @@ c_function_hook_base* c_function_hook_base::InitNode(e_engine_type engine_type, 
 }
 
 
-c_function_hook_base* c_function_hook_base::DeinitNode(e_engine_type engine_type, e_build build)
+c_function_hook_base* c_function_hook_base::deinit_node(e_engine_type engine_type, e_build build)
 {
 	if (m_isHooked)
 	{

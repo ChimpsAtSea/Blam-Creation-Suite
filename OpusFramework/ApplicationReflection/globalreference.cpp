@@ -1,138 +1,138 @@
 #include "opusframework-private-pch.h"
 
-c_global_reference* c_global_reference::s_pFirstc_global_reference = nullptr;
-c_global_reference* c_global_reference::s_pLastc_global_reference = nullptr;
+c_global_reference* c_global_reference::first_global_reference = nullptr;
+c_global_reference* c_global_reference::last_global_reference = nullptr;
 
 c_global_reference::c_global_reference(const char* pReferenceName, reference_symbol_offset_function* offset_function) :
-	m_pNextc_global_reference(nullptr),
-	m_engine(_engine_type_not_set),
-	m_build(_build_not_set),
-	m_offset(~uintptr_t()),
-	m_pReferenceName(pReferenceName),
-	m_pOffsetFunction(offset_function),
-	pDataAddress(nullptr),
-	pReference(nullptr)
+	next_global_reference(nullptr),
+	target_engine(_engine_type_not_set),
+	target_build(_build_not_set),
+	offset(~uintptr_t()),
+	reference_name(pReferenceName),
+	offset_function(offset_function),
+	data_address(nullptr),
+	reference_memory_pointer(nullptr)
 {
 	init();
 }
 
 c_global_reference::c_global_reference(const char* pReferenceName, e_engine_type engine_type, e_build build, intptr_t offset) :
-	m_pNextc_global_reference(nullptr),
-	m_engine(engine_type),
-	m_build(build),
-	m_offset(offset),
-	m_pReferenceName(pReferenceName),
-	m_pOffsetFunction(nullptr),
-	pDataAddress(nullptr),
-	pReference(nullptr)
+	next_global_reference(nullptr),
+	target_engine(engine_type),
+	target_build(build),
+	offset(offset),
+	reference_name(pReferenceName),
+	offset_function(nullptr),
+	data_address(nullptr),
+	reference_memory_pointer(nullptr)
 {
 	init();
 }
 
 void c_global_reference::init()
 {
-	if (s_pLastc_global_reference)
+	if (last_global_reference)
 	{
-		s_pLastc_global_reference->m_pNextc_global_reference = this;
-		s_pLastc_global_reference = this;
+		last_global_reference->next_global_reference = this;
+		last_global_reference = this;
 	}
 	else
 	{
-		s_pFirstc_global_reference = this;
-		s_pLastc_global_reference = this;
+		first_global_reference = this;
+		last_global_reference = this;
 	}
 }
 
 void c_global_reference::init_global_reference_tree(e_engine_type engine_type, e_build build)
 {
-	c_global_reference* pCurrentc_global_reference = s_pFirstc_global_reference;
-	while (pCurrentc_global_reference)
+	c_global_reference* current_global_reference = first_global_reference;
+	while (current_global_reference)
 	{
-		pCurrentc_global_reference = pCurrentc_global_reference->initNode(engine_type, build);
+		current_global_reference = current_global_reference->init_node(engine_type, build);
 	}
 }
 
 void c_global_reference::deinit_global_reference_tree(e_engine_type engine_type, e_build build)
 {
-	c_global_reference* pCurrentc_global_reference = s_pFirstc_global_reference;
-	while (pCurrentc_global_reference)
+	c_global_reference* current_global_reference = first_global_reference;
+	while (current_global_reference)
 	{
-		pCurrentc_global_reference = pCurrentc_global_reference->deinitNode(engine_type, build);
+		current_global_reference = current_global_reference->deinit_node(engine_type, build);
 	}
 }
 
-void c_global_reference::DestroyTree()
+void c_global_reference::destroy_tree()
 {
-	c_global_reference* pCurrentc_global_reference = s_pFirstc_global_reference;
-	while (pCurrentc_global_reference)
+	c_global_reference* current_global_reference = first_global_reference;
+	while (current_global_reference)
 	{
-		c_global_reference* pNextc_global_reference = pCurrentc_global_reference->m_pNextc_global_reference;
+		c_global_reference* pNextc_global_reference = current_global_reference->next_global_reference;
 
-		delete pCurrentc_global_reference;
+		delete current_global_reference;
 
-		pCurrentc_global_reference = pNextc_global_reference;
+		current_global_reference = pNextc_global_reference;
 	}
 }
 
-c_global_reference* c_global_reference::initNode(e_engine_type engine_type, e_build build)
+c_global_reference* c_global_reference::init_node(e_engine_type engine_type, e_build build)
 {
-	if ((m_engine == e_engine_type::_engine_type_not_set || m_engine == engine_type) && (m_build == _build_not_set || m_build == build))
+	if ((target_engine == e_engine_type::_engine_type_not_set || target_engine == engine_type) && (target_build == _build_not_set || target_build == build))
 	{
-		if (pDataAddress != nullptr)
+		if (data_address != nullptr)
 		{
 			FATAL_ERROR(L"c_global_reference is already initialized. deinitializ first!");
 		}
 
-		if (pPublicSymbol == nullptr)
+		if (public_symbol == nullptr)
 		{
-			pPublicSymbol = MappingFileParser::GetPublicSymbolByName(m_pReferenceName);
-			pReference = nullptr;
-			if (pPublicSymbol == nullptr)
+			public_symbol = MappingFileParser::GetPublicSymbolByName(reference_name);
+			reference_memory_pointer = nullptr;
+			if (public_symbol == nullptr)
 			{
-				write_line_verbose("c_global_reference: WARNING: Failed to find symbol '%s'", m_pReferenceName);
-				DEBUG_ONLY(FATAL_ERROR(L"_global_reference: WARNING: Failed to find symbol '%S'", m_pReferenceName));
+				write_line_verbose("c_global_reference: WARNING: Failed to find symbol '%s'", reference_name);
+				DEBUG_ONLY(FATAL_ERROR(L"c_global_reference: WARNING: Failed to find symbol '%S'", reference_name));
 			}
 			else
 			{
-				uint64_t applicationVirtualAddress = MappingFileParser::GetBaseVirtualAddress();
-				uint64_t symbolVirtualAddress = pPublicSymbol->m_virtualAddress;
-				uint64_t symbolRelativeVirtualAddress = symbolVirtualAddress - applicationVirtualAddress;
-				char* pApplicationBaseAddress = reinterpret_cast<char*>(GetModuleHandle(NULL));
-				char* pSymbolAddress = pApplicationBaseAddress + symbolRelativeVirtualAddress;
-				pReference = reinterpret_cast<void**>(pSymbolAddress);
+				uint64_t application_virtual_address = MappingFileParser::GetBaseVirtualAddress();
+				uint64_t symbol_virtual_address = public_symbol->m_virtualAddress;
+				uint64_t symbol_relative_virtual_address = symbol_virtual_address - application_virtual_address;
+				static char* current_module_base_address = reinterpret_cast<char*>(Runtime::GetCurrentModule());
+				char* symbol_address = current_module_base_address + symbol_relative_virtual_address;
+				reference_memory_pointer = reinterpret_cast<void**>(symbol_address);
 
-				if (pReference == nullptr)
+				if (reference_memory_pointer == nullptr)
 				{
-					write_line_verbose("c_global_reference: WARNING: Failed to find reference address for symbol '%s'", m_pReferenceName);
-					DEBUG_ONLY(FATAL_ERROR(L"_global_reference: WARNING: Failed to find reference address for symbol '%S'", m_pReferenceName));
+					write_line_verbose("c_global_reference: WARNING: Failed to find reference address for symbol '%s'", reference_name);
+					DEBUG_ONLY(FATAL_ERROR(L"c_global_reference: WARNING: Failed to find reference address for symbol '%S'", reference_name));
 				}
 			}
 		}
 		
-		if(pReference != nullptr)
+		if(reference_memory_pointer != nullptr)
 		{
-			intptr_t targetOffset = m_offset;
-			if (m_pOffsetFunction)
+			intptr_t target_offset = offset;
+			if (offset_function)
 			{
-				targetOffset = m_pOffsetFunction(engine_type, build);
+				target_offset = offset_function(engine_type, build);
 			}
-			if (targetOffset == ~uintptr_t())
+			if (target_offset == ~uintptr_t())
 			{
-				return m_pNextc_global_reference;
+				return next_global_reference;
 			}
 			else
 			{
-				uint64_t gameVirtualAddress = GetEngineBaseAddress(engine_type);
-				uint64_t dataVirtualAddress = static_cast<uint64_t>(targetOffset);
-				uint64_t dataRelativeVirtualAddress = dataVirtualAddress - gameVirtualAddress;
-				char* pGameBaseAddress = reinterpret_cast<char*>(GetEngineMemoryAddress(engine_type));
-				pDataAddress = pGameBaseAddress + dataRelativeVirtualAddress;
+				uint64_t engine_virtual_address = GetEngineBaseAddress(engine_type);
+				uint64_t data_virtual_address = static_cast<uint64_t>(target_offset);
+				uint64_t data_relative_virtual_address = data_virtual_address - engine_virtual_address;
+				char* engine_base_address = reinterpret_cast<char*>(GetEngineMemoryAddress(engine_type));
+				data_address = engine_base_address + data_relative_virtual_address;
 			}
 
-			ASSERT(pReference != nullptr);
-			ASSERT(pDataAddress != nullptr);
+			ASSERT(reference_memory_pointer != nullptr);
+			ASSERT(data_address != nullptr);
 
-			intptr_t& dataAddressValue = *reinterpret_cast<intptr_t*>(pReference);
+			intptr_t& reference_value = *reinterpret_cast<intptr_t*>(reference_memory_pointer);
 			//if (m_build != BuildVersion::NotSet) // specific game addresses should be verified
 			//{
 			//	
@@ -140,61 +140,61 @@ c_global_reference* c_global_reference::initNode(e_engine_type engine_type, e_bu
 			//}
 			// take a record of the original value for unpatching
 
-			m_originalValue = dataAddressValue;
+			original_reference_value = reference_value;
 
-			DWORD oldProtect = 0;
-			VirtualProtect(pReference, sizeof(pReference), PAGE_READWRITE, &oldProtect);
-			*pReference = pDataAddress;
-			VirtualProtect(pReference, sizeof(pReference), oldProtect, &oldProtect);
+			DWORD old_protect = 0;
+			VirtualProtect(reference_memory_pointer, sizeof(reference_memory_pointer), PAGE_READWRITE, &old_protect);
+			*reference_memory_pointer = data_address;
+			VirtualProtect(reference_memory_pointer, sizeof(reference_memory_pointer), old_protect, &old_protect);
 
-			intptr_t patchedAddress = dataAddressValue;
+			intptr_t patched_address = reference_value;
 
-			if (pDataAddress)
+			if (data_address)
 			{
-				if (patchedAddress == m_originalValue)
+				if (patched_address == original_reference_value)
 				{
-					write_line_verbose("c_global_reference: Patched %s", m_pReferenceName);
+					write_line_verbose("c_global_reference: Patched %s", reference_name);
 				}
 				else
 				{
-					if (m_originalValue)
+					if (original_reference_value)
 					{
-						write_line_verbose("c_global_reference: Patched %s from 0x%zX to 0x%zX", m_pReferenceName, m_originalValue, patchedAddress);
+						write_line_verbose("c_global_reference: Patched %s from 0x%zX to 0x%zX", reference_name, original_reference_value, patched_address);
 					}
 					else
 					{
-						write_line_verbose("c_global_reference: Patched %s from <null> to 0x%zX", m_pReferenceName, patchedAddress);
+						write_line_verbose("c_global_reference: Patched %s from <null> to 0x%zX", reference_name, patched_address);
 					}
 				}
 			}
 			else
 			{
-				write_line_verbose("c_global_reference: WARNING: Failed to address for symbol '%s'", m_pReferenceName);
+				write_line_verbose("c_global_reference: WARNING: Failed to address for symbol '%s'", reference_name);
 			}
 		}
 		else
 		{
-			write_line_verbose("c_global_reference: WARNING: Failed to find symbol '%s'", m_pReferenceName);
-			DEBUG_ONLY(FATAL_ERROR(L"_global_reference: WARNING: Failed to find symbol '%S'", m_pReferenceName));
+			write_line_verbose("c_global_reference: WARNING: Failed to find symbol '%s'", reference_name);
+			DEBUG_ONLY(FATAL_ERROR(L"c_global_reference: WARNING: Failed to find symbol '%S'", reference_name));
 		}
 	}
-	return m_pNextc_global_reference;
+	return next_global_reference;
 }
 	
-c_global_reference* c_global_reference::deinitNode(e_engine_type engine_type, e_build build)
+c_global_reference* c_global_reference::deinit_node(e_engine_type engine_type, e_build build)
 {
-	if ((m_engine == e_engine_type::_engine_type_not_set || m_engine == engine_type) && (m_build == _build_not_set || m_build == build))
+	if ((target_engine == e_engine_type::_engine_type_not_set || target_engine == engine_type) && (target_build == _build_not_set || target_build == build))
 	{
-		if (pDataAddress)
+		if (data_address)
 		{
-			write_line_verbose("c_global_reference: Unpatched %s", m_pReferenceName);
+			write_line_verbose("c_global_reference: Unpatched %s", reference_name);
 
-			DWORD oldProtect = 0;
-			VirtualProtect(pReference, sizeof(pReference), PAGE_READWRITE, &oldProtect);
-			*pReference = nullptr;
-			VirtualProtect(pReference, sizeof(pReference), oldProtect, &oldProtect);
+			DWORD old_protect = 0;
+			VirtualProtect(reference_memory_pointer, sizeof(reference_memory_pointer), PAGE_READWRITE, &old_protect);
+			*reference_memory_pointer = nullptr;
+			VirtualProtect(reference_memory_pointer, sizeof(reference_memory_pointer), old_protect, &old_protect);
 		}
-		pDataAddress = nullptr;
+		data_address = nullptr;
 	}
-	return m_pNextc_global_reference;
+	return next_global_reference;
 }

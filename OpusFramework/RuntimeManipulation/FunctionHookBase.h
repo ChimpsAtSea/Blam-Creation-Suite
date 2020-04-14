@@ -59,8 +59,8 @@ protected:
 	static c_function_hook_base* g_pFirstFunctionHook;
 	static c_function_hook_base* g_pLastFunctionHook;
 
-	[[nodiscard]] c_function_hook_base* InitNode(e_engine_type engine_type, e_build build);
-	[[nodiscard]] c_function_hook_base* DeinitNode(e_engine_type engine_type, e_build build);
+	[[nodiscard]] c_function_hook_base* init_node(e_engine_type engine_type, e_build build);
+	[[nodiscard]] c_function_hook_base* deinit_node(e_engine_type engine_type, e_build build);
 
 	void SetIsActive(bool isActive)
 	{

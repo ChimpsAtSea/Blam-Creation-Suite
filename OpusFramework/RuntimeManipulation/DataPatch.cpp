@@ -53,7 +53,7 @@ void c_data_patch_base::init_data_patch_tree(e_engine_type engine_type, e_build 
 	c_data_patch_base* pCurrentDataPatch = s_pFirstDataPatch;
 	while (pCurrentDataPatch)
 	{
-		pCurrentDataPatch = pCurrentDataPatch->initNode(engine_type, build);
+		pCurrentDataPatch = pCurrentDataPatch->init_node(engine_type, build);
 	}
 }
 
@@ -62,11 +62,11 @@ void c_data_patch_base::deinit_data_patch_tree(e_engine_type engine_type, e_buil
 	c_data_patch_base* pCurrentDataPatch = s_pFirstDataPatch;
 	while (pCurrentDataPatch)
 	{
-		pCurrentDataPatch = pCurrentDataPatch->deinitNode(engine_type, build);
+		pCurrentDataPatch = pCurrentDataPatch->deinit_node(engine_type, build);
 	}
 }
 
-void c_data_patch_base::DestroyTree()
+void c_data_patch_base::destroy_tree()
 {
 	c_data_patch_base* pCurrentDataPatch = s_pFirstDataPatch;
 	while (pCurrentDataPatch)
@@ -150,7 +150,7 @@ bool c_data_patch_base::RevertPatch()
 	return true;
 }
 
-c_data_patch_base* c_data_patch_base::initNode(e_engine_type engine_type, e_build build)
+c_data_patch_base* c_data_patch_base::init_node(e_engine_type engine_type, e_build build)
 {
 	ASSERT(m_offset == ~uintptr_t(), "DataPatch is already patched! This node should be reset before patching again");
 
@@ -174,7 +174,7 @@ c_data_patch_base* c_data_patch_base::initNode(e_engine_type engine_type, e_buil
 	return m_pNextDataPatch;
 }
 
-c_data_patch_base* c_data_patch_base::deinitNode(e_engine_type engine_type, e_build build)
+c_data_patch_base* c_data_patch_base::deinit_node(e_engine_type engine_type, e_build build)
 {
 	m_offset = ~uintptr_t();
 	m_engine = _engine_type_not_set;
