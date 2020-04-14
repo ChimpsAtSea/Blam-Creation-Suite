@@ -25,6 +25,7 @@ public:
 
 private:
 	static void update_camera_data();
+	static void input_debug_gui();
 	static void draw_camera_debug_ui();
 
 	static c_game_runtime* g_halo1_game_runtime;

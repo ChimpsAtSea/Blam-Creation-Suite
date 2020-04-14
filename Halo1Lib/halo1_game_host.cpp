@@ -48,28 +48,7 @@ c_halo1_game_host::c_halo1_game_host(e_engine_type engine_type, e_build build) :
 		g_halo1_engine_state_command->set_game_engine(game_engine);
 	}
 
-	c_debug_gui::register_callback(_callback_mode_always_run, [this]() {
-		
-		
-		ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(500, 1200), ImGuiCond_Always);
-
-		if (ImGui::Begin("Key Debug"))
-		{
-			if (is_valid(g_keyboard_state))
-			{
-				for (int i = 0; i < 218; i++)
-				{
-					ImGui::Text("Key %i [%u]", i, static_cast<uint32_t>(g_keyboard_state[i]));
-					if ((i - 3) % 4 != 0) ImGui::SameLine();
-				}
-			}
-		}
-		ImGui::End();
-		
-		
-		
-		});
+	c_debug_gui::register_callback(_callback_mode_always_run, input_debug_gui);
 }
 
 c_halo1_game_host::~c_halo1_game_host()
@@ -167,9 +146,9 @@ void c_halo1_game_host::init_runtime_modifications(e_build build)
 	
 	create_dll_hook("api-ms-win-crt-convert-l1-1-0.dll", "_ui64tow_s", _ui64tow_s_hook, ui64tow_s_original);
 
-	c_function_hook_base::init_function_hook_tree(_engine_type_halo1, build);
-	c_global_reference::init_global_reference_tree(_engine_type_halo1, build);
 	c_data_patch_base::init_data_patch_tree(_engine_type_halo1, build);
+	c_global_reference::init_global_reference_tree(_engine_type_halo1, build);
+	c_function_hook_base::init_function_hook_tree(_engine_type_halo1, build);
 	end_detours();
 }
 
@@ -225,19 +204,6 @@ FunctionHookEx<get_local_player_input_blob_offset, char __fastcall(__int64 a1, _
 	return result;
 } };
 
-
-
-uintptr_t input_key_is_down_offset(e_engine_type engine_type, e_build build)
-{
-	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18070E8B0);
-	return ~uintptr_t();
-}
-FunctionHookEx<input_key_is_down_offset, char __fastcall (__int16 a1)> input_key_is_down = { "input_key_is_down", [](__int16 a1) {
-
-	auto result = input_key_is_down(a1);
-	return result;
-} };
-
 uintptr_t sub_18006ECD0_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18006ECD0);
@@ -275,23 +241,109 @@ FunctionHookEx<input_update_offset, void()> input_update = { "input_update", [](
 } };
 
 
+static bool disable_input_state = false;
+static thread_local bool disable_input = false;
 
+uintptr_t g_GameInputSource_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18218CDF4);
+	return ~uintptr_t();
+}
+int& g_GameInputSource = reference_symbol<int>("g_GameInputSource", g_GameInputSource_offset);
 
-uintptr_t sub_18071F200_offset(e_engine_type engine_type, e_build build)
+uintptr_t input_abstraction_update_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18071F200);
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_18071F200_offset, __int64 __fastcall (__int64 a1)> sub_18071F200 = { "sub_18071F200", [](__int64 a1) {
+FunctionHookEx<input_abstraction_update_offset, __int64 __fastcall (__int64 a1)> input_abstraction_update = { "input_abstraction_update", [](__int64 a1) {
 
-	if (GetAsyncKeyState(VK_F6))
-	{
-		return sub_18071F200(a1);
-	}
+	disable_input = disable_input_state;
 
-	return (__int64)0;
+	return input_abstraction_update(a1);
+
+	disable_input = false;
+
+	//static bool enable = true;
+	//if (GetAsyncKeyState(VK_F6) >> 15)
+	//{
+	//	enable = !enable;
+	//}
+
+	//if (enable)
+	//{
+	//	return input_abstraction_update(a1);
+	//}
+
+	//return (__int64)0;
 
 } };
+
+uintptr_t input_key_is_down_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18070E8B0);
+	return ~uintptr_t();
+}
+FunctionHookEx<input_key_is_down_offset, char __fastcall (__int16 a1)> input_key_is_down = { "input_key_is_down", [](__int16 a1) {
+
+	if (disable_input)
+	{
+		return char(0);
+	}
+
+	auto result = input_key_is_down(a1);
+	return result;
+
+} };
+
+bool sub_18071E950_override = 0;
+int32_t sub_18071E950_override_value = 0;
+int16_t sub_18071E950_state = 0;
+
+uintptr_t sub_18071E950_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18071E950);
+	return ~uintptr_t();
+}
+FunctionHookEx<sub_18071E950_offset, __int64 __fastcall (unsigned __int16 a1, QWORD* a2)> sub_18071E950 = { "sub_18071E950", [](unsigned __int16 a1, QWORD* a2) {
+
+	auto result = sub_18071E950(a1, a2);
+
+	int16_t& value = *reinterpret_cast<int16_t*>(a2);
+
+	sub_18071E950_state = value;
+
+	if (sub_18071E950_override)
+	{
+		value = sub_18071E950_override_value;
+	}
+
+	return result;
+
+} };
+
+
+//uintptr_t input_abstraction_update_patch_offset(e_engine_type engine_type, e_build build)
+//{
+//	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18071F200);
+//	return ~uintptr_t();
+//}
+//DataPatch<input_abstraction_update_patch_offset> input_abstraction_update_patch = { [](e_engine_type engine_type, e_build build, char* data, DataPatchPacket& packet)
+//{
+//	char* return_address = data;
+//	packet = MAKE_DATAPATCHPACKET(return_address,  0x18072083F - 0x18071F200);
+//
+//	//nop_address(engine_type, build, 0x18071F5DF, 0x1807207F6 - 0x18071F5DF);
+//
+//	uint8_t data2[] = { 0xC3ui8 };
+//	memcpy_virtual(data + (0x18071F5B1 - 0x18071F200), data2, 1);
+//	//memcpy_virtual(data + (0x18071F200 - 0x18071F200), data2, 1);
+//
+//
+//	//data[0] = 0xC3; // RETN
+//} };
+
+
 
 #define sign(value) (value < 0 ? -1 : 1)
 #define clamp(value, min_value, max_value) ((value) > (max_value) ? (max_value) : ((value) < (min_value) ? (min_value) : (value)))
@@ -302,7 +354,7 @@ uintptr_t input_update_mcc_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_mcc, _build_mcc_1_1389_0_0, 0x1418BFE5C);
 	return ~uintptr_t();
 }
-FunctionHookEx<input_update_mcc_offset, unsigned __int8 __fastcall (void* a1, _QWORD a2, IGameEngineHost::InputBuffer* input_buffer)> input_update_mcc = { "sub_18071F200", [](void* a1, _QWORD a2, IGameEngineHost::InputBuffer* input_buffer) {
+FunctionHookEx<input_update_mcc_offset, unsigned __int8 __fastcall (void* a1, _QWORD a2, IGameEngineHost::InputBuffer* input_buffer)> input_update_mcc = { "input_update_mcc", [](void* a1, _QWORD a2, IGameEngineHost::InputBuffer* input_buffer) {
 
 	auto result = input_update_mcc(a1, a2, input_buffer);
 
@@ -311,6 +363,119 @@ FunctionHookEx<input_update_mcc_offset, unsigned __int8 __fastcall (void* a1, _Q
 } };
 
 
+bool sub_18071E690_override = 0;
+int32_t sub_18071E690_override_value = 0;
+int16_t sub_18071E690_state = 0;
+
+
+uintptr_t sub_18071E690_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18071E690);
+	return ~uintptr_t();
+}
+FunctionHookEx<sub_18071E690_offset, __int64 __fastcall (unsigned int a1, __int16 a2)> sub_18071E690 = { "sub_18071E690", [](unsigned int a1, __int16 a2) {
+
+	sub_18071E690_state = a1;
+	if (sub_18071E690_override)
+	{
+		a1 = sub_18071E690_override_value;
+	}
+
+	write_line_verbose("sub_18071E690 %u %u", a1, static_cast<uint32_t>(a2));
+	auto result = sub_18071E690(a1, a2);
+	return __int64(1);
+	return result;
+
+} };
+
+//uintptr_t Halo1UpdateEngineState_offset(e_engine_type engine_type, e_build build)
+//{
+//	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076490);
+//	return ~uintptr_t();
+//}
+//FunctionHookEx<Halo1UpdateEngineState_offset, __int64 __fastcall (IGameEngine* _this, eEngineState status, _QWORD* extraArgument)> Halo1UpdateEngineState = { "Halo1UpdateEngineState", [](IGameEngine* _this, eEngineState status, _QWORD* extraArgument) {
+//
+//	//auto result = Halo1UpdateEngineState(_this, status, extraArgument);
+//	//return result;
+//	return __int64(0);
+//
+//} };
+
+//__int64 __fastcall UpdateEngineState(IGameEngine* _this, eEngineState status, _QWORD* extraArgument);
+
+uintptr_t dword_18115BB84_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18115BB84);
+	return ~uintptr_t();
+}
+DWORD& dword_18115BB84 = reference_symbol<DWORD>("dword_18115BB84", dword_18115BB84_offset);
+
+uintptr_t word_18115BBB6_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18115BBB6);
+	return ~uintptr_t();
+}
+uint8_t(&word_18115BBB6)[128] = reference_symbol<uint8_t[128]>("word_18115BBB6", word_18115BBB6_offset);
+
+
+uintptr_t sub_18072FCF0_offset(e_engine_type engine_type, e_build build)
+{
+	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18072FCF0);
+	return ~uintptr_t();
+}
+FunctionHookEx<sub_18072FCF0_offset, void* (__int16 a1)> sub_18072FCF0 = { "sub_18072FCF0", [](__int16 a1) {
+
+	static void* result = sub_18072FCF0(a1);
+	return result;
+	return (void*)(nullptr);
+
+} };
+
+void c_halo1_game_host::input_debug_gui()
+{
+	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(600, 1300), ImGuiCond_FirstUseEver);
+
+	if (ImGui::Begin("Key Debug"))
+	{
+		ImGui::Text("g_GameInputSource %i", g_GameInputSource);
+
+		ImGui::Checkbox("sub_18071E950_override", &sub_18071E950_override);
+		ImGui::InputInt("sub_18071E950_override_value", &sub_18071E950_override_value);
+		ImGui::Text("sub_18071E950_state %u", static_cast<uint32_t>(sub_18071E950_state));
+
+		ImGui::Checkbox("sub_18071E690_override", &sub_18071E690_override);
+		ImGui::InputInt("sub_18071E690_override_value", &sub_18071E690_override_value);
+		ImGui::Text("sub_18071E690_state_state %u", static_cast<uint32_t>(sub_18071E690_state));
+		if (is_valid(dword_18115BB84))
+		{
+			ImGui::Text("dword_18115BB84 %d", dword_18115BB84);
+		}
+		
+
+
+		ImGui::Separator();
+
+		if (is_valid(word_18115BBB6))
+		{
+			for (int i = 0; i < 128; i++)
+			{
+				ImGui::Text("Bind %i [%u]", i, static_cast<uint32_t>(word_18115BBB6[i]));
+				if ((i - 3) % 4 != 0) ImGui::SameLine();
+			}
+		}
+
+		//if (is_valid(g_keyboard_state))
+		//{
+		//	for (int i = 0; i < 218; i++)
+		//	{
+		//		ImGui::Text("Key %i [%u]", i, static_cast<uint32_t>(g_keyboard_state[i]));
+		//		if ((i - 3) % 4 != 0) ImGui::SameLine();
+		//	}
+		//}
+	}
+	ImGui::End();
+}
 
 void c_halo1_game_host::draw_camera_debug_ui()
 {
