@@ -4,6 +4,8 @@
 #include "shared-tbb-pch.h"
 #include "shared-types-pch.h"
 
+#include "debug_util.h"
+
 #include "high_precision_timer.h"
 #include "ThreadPrimitives/ThreadPrimitives.h"
 #include "StringUtilities.h"

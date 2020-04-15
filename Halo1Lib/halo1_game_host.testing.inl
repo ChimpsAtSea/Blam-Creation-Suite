@@ -1,24 +1,24 @@
 #include "halo1lib-private-pch.h"
 
-// TODO: get the offset for build 1367
-uintptr_t sub_18019BC50_offset(e_engine_type engine_type, e_build build)
-{
-	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x18019BC50);
-	OFFSET(_engine_type_halo1, _build_mcc_1_1377_0_0, 0x1800EB5E0);
-	OFFSET(_engine_type_halo1, _build_mcc_1_1384_0_0, 0x1800EB5E0);
-	OFFSET(_engine_type_halo1, _build_mcc_1_1387_0_0, 0x1800EB5E0);
-	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1800EB5E0);
-	return ~uintptr_t();
-}
-FunctionHookVarArgsEx<sub_18019BC50_offset, __int64 __fastcall (__int64*, const char*, va_list)> sub_18019BC50 = { "sub_18019BC50", [](__int64* a1, const char* pFormat, va_list args)
-{
-	if (pFormat)
-	{
-		vprintf(pFormat, args);
-		printf("\n");
-	}
-	return sub_18019BC50(a1, pFormat, args);
-} };
+//// TODO: get the offset for build 1367
+//uintptr_t sub_18019BC50_offset(e_engine_type engine_type, e_build build)
+//{
+//	OFFSET(_engine_type_halo1, _build_mcc_1_1350_0_0, 0x18019BC50);
+//	OFFSET(_engine_type_halo1, _build_mcc_1_1377_0_0, 0x1800EB5E0);
+//	OFFSET(_engine_type_halo1, _build_mcc_1_1384_0_0, 0x1800EB5E0);
+//	OFFSET(_engine_type_halo1, _build_mcc_1_1387_0_0, 0x1800EB5E0);
+//	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1800EB5E0);
+//	return ~uintptr_t();
+//}
+//FunctionHookVarArgsEx<sub_18019BC50_offset, __int64 __fastcall (__int64*, const char*, va_list)> sub_18019BC50 = { "sub_18019BC50", [](__int64* a1, const char* pFormat, va_list args)
+//{
+//	if (pFormat)
+//	{
+//		vprintf(pFormat, args);
+//		printf("\n");
+//	}
+//	return sub_18019BC50(a1, pFormat, args);
+//} };
 
 //intptr_t sub_1801FE1B0_offset(EngineVersion engine, BuildVersion build)
 //{

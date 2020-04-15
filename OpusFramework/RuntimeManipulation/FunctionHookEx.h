@@ -18,19 +18,23 @@ public:
 
 		if constexpr (std::is_same<return_type, void>::value)
 		{
+			_InterlockedIncrement(&reference_counter);
 			base(arg...);
 			if (m_pCallback)
 			{
 				m_pCallback(m_pCallbackUserData);
 			}
+			_InterlockedDecrement(&reference_counter);
 		}
 		else
 		{
+			_InterlockedIncrement(&reference_counter);
 			auto result = base(arg...);
 			if (m_pCallback)
 			{
 				m_pCallback(m_pCallbackUserData);
 			}
+			_InterlockedDecrement(&reference_counter);
 			return result;
 		}
 	}
@@ -76,6 +80,7 @@ public:
 
 	base_type* const hook = nullptr;
 	base_type* const base = nullptr;
+	volatile uint32_t reference_counter;
 
 private:
 
@@ -88,5 +93,6 @@ private:
 	{
 		return *const_cast<base_type**>(&base);
 	}
+
 };
 

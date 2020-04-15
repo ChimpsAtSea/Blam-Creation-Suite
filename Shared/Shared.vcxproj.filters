@@ -207,6 +207,9 @@
     <ClInclude Include="shared-types-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="debug_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shared-private-pch.cpp">
@@ -267,6 +270,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ImGuiAddons\imgui_text_editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

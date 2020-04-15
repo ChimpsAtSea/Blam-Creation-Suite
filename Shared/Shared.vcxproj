@@ -49,6 +49,7 @@
     <ClInclude Include="Blam\legacy\real_vector3d.h" />
     <ClInclude Include="Blam\mcc_skull.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="debug_util.h" />
     <ClInclude Include="high_precision_timer.h" />
     <ClInclude Include="ImGuiAddons\imgui_memory_editor.h" />
     <ClInclude Include="Rendering\directx_helpers.h" />
@@ -87,6 +88,7 @@
   <ItemGroup>
     <ClCompile Include="command_line.cpp" />
     <ClCompile Include="console.cpp" />
+    <ClCompile Include="debug_util.cpp" />
     <ClCompile Include="Rendering\directx_helpers.cpp" />
     <ClCompile Include="ThreadPrimitives\semaphore.cpp" />
     <ClCompile Include="ThreadPrimitives\atomic_flip_value.cpp" />

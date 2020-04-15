@@ -7,6 +7,25 @@ bool GameLauncher::s_gameRunning = false;
 c_opus_game_engine_host* pCurrentGameHost = nullptr;
 e_campaign_difficulty_level g_campaign_difficulty_level = _campaign_difficulty_level_normal; // #TODO #REFACTOR
 
+
+// #TODO: #REFACTOR
+static e_map_id halo1_map_ids[] =
+{
+	_map_id_mainmenu,
+	_map_id_halo1_pillar_of_autumn,
+	_map_id_halo1_halo,
+	_map_id_halo1_truth_and_reconciliation,
+	_map_id_halo1_silent_cartographer,
+	_map_id_halo1_assault_on_the_control_room,
+	_map_id_halo1_343_guilty_spark,
+	_map_id_halo1_the_library,
+	_map_id_halo1_two_betrayals,
+	_map_id_halo1_keyes,
+	_map_id_halo1_the_maw,
+};
+e_map_id halo1_map_id = halo1_map_ids[0];
+
+
 static const e_engine_type k_supported_engines[] =
 {
 #ifdef _WIN64
@@ -250,15 +269,23 @@ void GameLauncher::launchMCCGame(e_engine_type engine_type)
 
 	game_context->is_anniversary_mode = use_anniversary_graphics;
 	game_context->is_anniversary_sounds = use_anniversary_sounds;
-	
+
 	{
 		// #TODO: Make a home for this
 		if (game_context->is_host)
 		{
 			if (engine_type == _engine_type_halo1)
 			{
-				game_context->game_mode = _mcc_game_mode_campaign;
-				game_context->map_id = (e_map_id)(4);
+				if (halo1_map_id == _map_id_mainmenu)
+				{
+					game_context->game_mode = _mcc_game_mode_ui_shell;
+				}
+				else
+				{
+					game_context->game_mode = _mcc_game_mode_campaign;
+				}
+
+				game_context->map_id = halo1_map_id;
 				game_context->campaign_difficulty_level = g_campaign_difficulty_level;
 			}
 			else if (engine_type == _engine_type_halo_reach)
@@ -440,6 +467,21 @@ void GameLauncher::renderMainMenu()
 		{
 #ifdef _WIN64
 		case _engine_type_halo1:
+
+			if (ImGui::BeginCombo("Map", map_id_to_string(halo1_map_id)))
+			{
+				for (e_map_id map_id : halo1_map_ids)
+				{
+					bool is_selected = map_id == halo1_map_id;
+
+					if (ImGui::Selectable(map_id_to_string(map_id), is_selected))
+					{
+						halo1_map_id = map_id;
+					}
+				}
+				ImGui::EndCombo();
+			}
+
 			ImGui::Checkbox("Use Anniversary Graphics", &use_anniversary_graphics);
 			ImGui::Checkbox("Use Anniversary Sounds", &use_anniversary_sounds);
 			HaloReachGameOptionSelection::SelectDifficulty(); // #TODO #REFACTOR
