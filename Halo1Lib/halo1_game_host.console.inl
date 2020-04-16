@@ -75,7 +75,7 @@ void update_console()
 {
 	if (is_valid(enable_console))
 	{
-		//enable_console = true;
+		enable_console = true;
 	}
 	if (is_valid(console_open))
 	{
