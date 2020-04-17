@@ -91,6 +91,9 @@ void c_game_launcher::init_game_launcher()
 	bool is_bink2_required = false;
 	bool is_fmod_required = false;
 	bool is_fmod_event_net_required = false;
+	bool is_mopp_required = false;
+	bool is_ati_compress_required = false;
+	bool is_miles_sound_system_required = false;
 	if (PathFileExistsA("haloreach\\haloreach.dll"))
 	{
 		is_bink2_required = true;
@@ -106,6 +109,9 @@ void c_game_launcher::init_game_launcher()
 
 	if (PathFileExistsA("halo2\\halo2.dll"))
 	{
+		is_mopp_required = true;
+		is_ati_compress_required = true;
+		is_miles_sound_system_required = true;
 		g_supported_engine_types.push_back(_engine_type_halo2);
 	}
 
@@ -125,6 +131,22 @@ void c_game_launcher::init_game_launcher()
 	if (is_fmod_event_net_required)
 	{
 		ensure_library_loaded("halo1\\fmod_event_net64.dll", "..\\halo1");
+	}
+	if (is_fmod_event_net_required)
+	{
+		ensure_library_loaded("halo1\\fmod_event_net64.dll", "..\\halo1");
+	}
+	if (is_mopp_required)
+	{
+		ensure_library_loaded("halo2\\MOPP.dll", "..\\halo2");
+	}
+	if (is_ati_compress_required)
+	{
+		ensure_library_loaded("halo2\\ATICompressDLL.dll", "..\\halo2");
+	}
+	if (is_miles_sound_system_required)
+	{
+		ensure_library_loaded("halo2\\mss64.dll", "..\\halo2");
 	}
 #endif
 
