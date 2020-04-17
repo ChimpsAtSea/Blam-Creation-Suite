@@ -27,6 +27,8 @@ e_map_id halo1_map_id = halo1_map_ids[0];
 
 static e_map_id halo2_map_ids[] =
 {
+	_map_id_halo2_coagulation,
+	_map_id_mainmenu,
 	//_map_id_halo2_the_heretic,
 	//_map_id_halo2_the_armory,
 	_map_id_halo2_cairo_station,
@@ -371,8 +373,18 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				game_context->game_mode = game_mode;
 				game_context->map_id = static_cast<e_map_id>(selected_map_info->GetMapID());
 
-				c_halo_reach_game_option_selection_legacy::load_game_variant(c_halo_reach_game_host::get_data_access(), c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str(), *reinterpret_cast<s_game_variant*>(game_context->game_variant_buffer), true);
-				c_halo_reach_game_option_selection_legacy::load_map_variant(c_halo_reach_game_host::get_data_access(), c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str(), *reinterpret_cast<s_map_variant*>(game_context->map_variant_buffer), true);
+				c_halo_reach_game_option_selection_legacy::load_game_variant(
+					c_halo_reach_game_host::get_data_access(), 
+					"haloreach", 
+					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str(), 
+					*reinterpret_cast<s_game_variant*>(game_context->game_variant_buffer), 
+					true);
+				c_halo_reach_game_option_selection_legacy::load_map_variant(
+					c_halo_reach_game_host::get_data_access(), 
+					"haloreach",
+					c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str(), 
+					*reinterpret_cast<s_map_variant*>(game_context->map_variant_buffer), 
+					true);
 				//c_halo_reach_game_option_selection_legacy::load_savegame("gamestate", *game_context);
 				//c_halo_reach_game_option_selection_legacy::load_savefilm(c_halo_reach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_context);
 
@@ -402,13 +414,69 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 			}
 			else if (engine_type == _engine_type_halo2)
 			{
-				game_context->game_mode = _mcc_game_mode_campaign;
+				switch (halo2_map_id)
+				{
+				case _map_id_mainmenu:
+					game_context->game_mode = _mcc_game_mode_ui_shell;
+					break;
+				case _map_id_halo2_the_heretic:
+				case _map_id_halo2_the_armory:
+				case _map_id_halo2_cairo_station:
+				case _map_id_halo2_outskirts:
+				case _map_id_halo2_metropolis:
+				case _map_id_halo2_the_arbiter:
+				case _map_id_halo2_the_oracle:
+				case _map_id_halo2_delta_halo:
+				case _map_id_halo2_regret:
+				case _map_id_halo2_sacred_icon:
+				case _map_id_halo2_quarantine_zone:
+				case _map_id_halo2_gravemind:
+				case _map_id_halo2_uprising:
+				case _map_id_halo2_high_charity:
+				case _map_id_halo2_the_great_journey:
+					game_context->game_mode = _mcc_game_mode_campaign;
+					break;
+				default:
+					game_context->game_mode = _mcc_game_mode_multiplayer;
+				}
+
+				c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "01_slayer";
+				c_halo_reach_game_option_selection_legacy::load_game_variant(
+					c_halo2_game_host::get_data_access(),
+					"halo2",
+					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str(),
+					*reinterpret_cast<s_game_variant*>(game_context->game_variant_buffer),
+					true);
+				//c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline";
+				//c_halo_reach_game_option_selection_legacy::load_map_variant(
+				//	c_groundhog_game_host::get_data_access(),
+				//	"groundhog",
+				//	c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str(),
+				//	*reinterpret_cast<s_map_variant*>(game_context->map_variant_buffer),
+				//	true);
+
 				game_context->map_id = halo2_map_id;
 			}
 			else if (engine_type == _engine_type_groundhog)
 			{
-				game_context->game_mode = _mcc_game_mode_campaign;
+				game_context->game_mode = _mcc_game_mode_multiplayer;
 				game_context->map_id = groundhog_map_id;
+
+				c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "H2A_Team_Slayer";
+				c_halo_reach_game_option_selection_legacy::load_game_variant(
+					c_groundhog_game_host::get_data_access(),
+					"groundhog",
+					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str(),
+					*reinterpret_cast<s_game_variant*>(game_context->game_variant_buffer),
+					true);
+				c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline";
+				c_halo_reach_game_option_selection_legacy::load_map_variant(
+					c_groundhog_game_host::get_data_access(),
+					"groundhog",
+					c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str(),
+					*reinterpret_cast<s_map_variant*>(game_context->map_variant_buffer),
+					true);
+
 			}
 		}
 	}
