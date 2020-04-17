@@ -6,25 +6,25 @@ public:
 
 	static HICON GetIcon();
 	static void SetIcon(HICON hIcon);
-	static HWND GetWindowHandle();
+	static HWND get_window_handle();
 	static bool IsWindowFocused();
 	static void OnDestroyCallback();
 	static void OnUpdateCallback();
 	static void init_window(const char* pWindowTitle, const char* pConsoleTitle, const char* pApplicationName);
 	static void deinit_window();
 	static void update_window();
-	static void UpdateNoCallbacks();
+	static void update_no_callbacks();
 
-	inline static void RegisterWndProcCallback(WNDPROC pWndProcCallback) { s_WndProcCallbacks.push_back(pWndProcCallback); }
-	inline static void UnregisterWndProcCallback(WNDPROC pWndProcCallback) { VectorEraseByValueHelper(s_WndProcCallbacks, pWndProcCallback); }
+	inline static void register_window_procedure_callback(WNDPROC pWndProcCallback) { s_WndProcCallbacks.push_back(pWndProcCallback); }
+	inline static void unregister_window_procedure_callback(WNDPROC pWndProcCallback) { vector_erase_by_value_helper(s_WndProcCallbacks, pWndProcCallback); }
 
 	typedef void(*UpdateCallback)();
 	inline static void register_update_callback(UpdateCallback pUpdateCallback) { s_UpdateCallbacks.push_back(pUpdateCallback); }
-	inline static void unregister_update_callback(UpdateCallback pUpdateCallback) { VectorEraseByValueHelper(s_UpdateCallbacks, pUpdateCallback); }
+	inline static void unregister_update_callback(UpdateCallback pUpdateCallback) { vector_erase_by_value_helper(s_UpdateCallbacks, pUpdateCallback); }
 
 	typedef void(*DestroyCallback)();
 	inline static void register_destroy_callback(DestroyCallback pDestroyCallback) { s_DestroyCallbacks.push_back(pDestroyCallback); }
-	inline static void unregister_destroy_callback(DestroyCallback pDestroyCallback) { VectorEraseByValueHelper(s_DestroyCallbacks, pDestroyCallback); }
+	inline static void unregister_destroy_callback(DestroyCallback pDestroyCallback) { vector_erase_by_value_helper(s_DestroyCallbacks, pDestroyCallback); }
 
 	static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static void set_post_message_thread_id(HANDLE hThread);

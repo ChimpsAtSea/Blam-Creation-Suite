@@ -200,12 +200,12 @@
     <ClCompile Include="RuntimeManipulation\DataPatch.cpp" />
     <ClCompile Include="c_file_array.cpp" />
     <ClCompile Include="c_file_reference.cpp" />
-    <ClCompile Include="FileSystem\BlamFileParser.cpp" />
+    <ClCompile Include="FileSystem\blam_file_parser.cpp" />
     <ClCompile Include="FileSystem\GameTypeManager.cpp" />
     <ClCompile Include="FileSystem\GameType.cpp" />
     <ClCompile Include="MCC\opus_game_engine_host.cpp" />
     <ClCompile Include="MCC\game_runtime.cpp" />
-    <ClCompile Include="MCC\HaloReachGameOptionSelection.cpp" />
+    <ClCompile Include="MCC\halo_reach_game_option_selection_legacy.cpp" />
     <ClCompile Include="platform_configuration.cpp" />
     <ClCompile Include="RuntimeManipulation\opus_legacy\detour_helpers.cpp" />
     <ClCompile Include="CCode\GetIDXGISwapChainPresent.c">
@@ -215,7 +215,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="RuntimeManipulation\FunctionHookBase.cpp" />
-    <ClCompile Include="MCC\GameLauncher.cpp" />
+    <ClCompile Include="MCC\game_launcher.cpp" />
     <ClCompile Include="ApplicationReflection\globalreference.cpp" />
     <ClCompile Include="MCC\Versioning.cpp" />
     <ClCompile Include="MCC\opus_legacy\IFileAccess.cpp" />
@@ -224,15 +224,15 @@
     <ClCompile Include="MCC\opus_legacy\IGameEvents.cpp" />
     <ClCompile Include="ApplicationReflection\mappingfileparser.cpp" />
     <ClCompile Include="FileSystem\MapInfo.cpp" />
-    <ClCompile Include="FileSystem\MapInfoManager.cpp" />
-    <ClCompile Include="MCC\MouseInput.cpp" />
+    <ClCompile Include="FileSystem\map_info_manager.cpp" />
+    <ClCompile Include="MCC\mouse_input.cpp" />
     <ClCompile Include="opusframework-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Settings\opus_legacy\settings.cpp" />
+    <ClCompile Include="Settings\opus_legacy\settings_legacy.cpp" />
     <ClCompile Include="RuntimeManipulation\SystemPatch.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -245,18 +245,18 @@
     <ClInclude Include="ApplicationReflection\offsetfunction.h" />
     <ClInclude Include="c_file_array.h" />
     <ClInclude Include="c_file_reference.h" />
-    <ClInclude Include="FileSystem\BlamFileParser.h" />
+    <ClInclude Include="FileSystem\blam_file_parser.h" />
     <ClInclude Include="FileSystem\FileSystem.h" />
     <ClInclude Include="FileSystem\GameTypeManager.h" />
     <ClInclude Include="FileSystem\GameType.h" />
     <ClInclude Include="MCC\opus_game_engine_host.h" />
     <ClInclude Include="MCC\game_runtime.h" />
-    <ClInclude Include="MCC\HaloReachGameOptionSelection.h" />
+    <ClInclude Include="MCC\halo_reach_game_option_selection_legacy.h" />
     <ClInclude Include="MCC\MCC.h" />
     <ClInclude Include="platform_configuration.h" />
     <ClInclude Include="RuntimeManipulation\FindOffsetFunction.h" />
     <ClInclude Include="RuntimeManipulation\opus_legacy\detour_helpers.h" />
-    <ClInclude Include="MCC\GameLauncher.h" />
+    <ClInclude Include="MCC\game_launcher.h" />
     <ClInclude Include="ApplicationReflection\globalreference.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHook.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHookBase.h" />
@@ -272,8 +272,8 @@
     <ClInclude Include="MCC\opus_legacy\IVariantAccessorBase.h" />
     <ClInclude Include="ApplicationReflection\mappingfileparser.h" />
     <ClInclude Include="FileSystem\MapInfo.h" />
-    <ClInclude Include="FileSystem\MapInfoManager.h" />
-    <ClInclude Include="MCC\MouseInput.h" />
+    <ClInclude Include="FileSystem\map_info_manager.h" />
+    <ClInclude Include="MCC\mouse_input.h" />
     <ClInclude Include="ApplicationReflection\referencesymbol.h" />
     <ClInclude Include="opusframework-private-pch.h" />
     <ClInclude Include="opusframework-public-pch.h" />
@@ -281,9 +281,9 @@
     <ClInclude Include="RuntimeManipulation\FunctionHookVarArgs.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHookVarArgsEx.h" />
     <ClInclude Include="RuntimeManipulation\RuntimeManipulation.h" />
-    <ClInclude Include="Settings\opus_legacy\settings.h" />
+    <ClInclude Include="Settings\opus_legacy\settings_legacy.h" />
     <ClInclude Include="RuntimeManipulation\SystemPatch.h" />
-    <ClInclude Include="Settings\Settings.h" />
+    <ClInclude Include="Settings\settings_legacy.h" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="DataReference.natvis" />

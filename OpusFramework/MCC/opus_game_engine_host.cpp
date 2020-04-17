@@ -51,7 +51,7 @@ void c_opus_game_engine_host::FrameEnd(IDXGISwapChain* swap_chain, _QWORD)
 		}
 	}
 
-	GameLauncher::OpusTick();
+	c_game_launcher::opus_tick();
 }
 
 void c_opus_game_engine_host::Function02(__int64 player_identifier, unsigned int, __int64, float, float, float, float)
@@ -98,7 +98,7 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 		write_line_verbose("%s %u [%s]", __func__, a1, a2);
 	}
 
-	GameLauncher::GameExitedCallback();
+	c_game_launcher::game_exited_callback();
 	
 	return __int64(0);
 }
@@ -296,12 +296,12 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 	bool debugUIVisible = c_debug_gui::IsVisible();
 	bool windowFocused = c_window::IsWindowFocused();
 
-	MouseMode mode = MouseMode::None;
+	e_mouse_mode mode = _mouse_mode_none;
 	if (windowFocused)
 	{
-		mode = debugUIVisible ? MouseMode::UI : MouseMode::Exclusive;
+		mode = debugUIVisible ? _mouse_mode_ui : _mouse_mode_exclusive;
 	}
-	MouseInput::SetMode(mode);
+	c_mouse_input::set_mode(mode);
 
 	// don't update and return an empty zero buffer
 	if (debugUIVisible)
@@ -368,12 +368,12 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 			if (!GetKeyboardState(keyboardState))
 				ZeroMemory(keyboardState, sizeof(keyboardState));
 
-			mouseInputX = MouseInput::GetMouseX();
-			mouseInputY = MouseInput::GetMouseY();
+			mouseInputX = c_mouse_input::get_mouse_x();
+			mouseInputY = c_mouse_input::get_mouse_y();
 
-			leftButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Left);
-			rightButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Right);
-			middleButtonPressed = MouseInput::GetMouseButton(MouseInputButton::Middle);
+			leftButtonPressed = c_mouse_input::get_mouse_button(_mouse_input_button_left);
+			rightButtonPressed = c_mouse_input::get_mouse_button(_mouse_input_button_right);
+			middleButtonPressed = c_mouse_input::get_mouse_button(_mouse_input_button_middle);
 
 			{
 				//for (size_t i = 0; i < sizeof(keyboardState); i++)
@@ -472,7 +472,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, 
 			static bool initialized_player_name = false;
 			if (!initialized_player_name)
 			{
-				Settings::ReadStringValueW(SettingsSection::Player, "Name", player_name_configuration, sizeof(player_name_configuration), pName);
+				c_settings_legacy::read_wstring(_settings_section_legacy_player, "Name", player_name_configuration, sizeof(player_name_configuration), pName);
 				initialized_player_name = true;
 			}
 			if (player_name_configuration[0])

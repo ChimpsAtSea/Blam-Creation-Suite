@@ -30,6 +30,6 @@ public:
 	inline bool IsTheatreEnabled() const { return getLittleEndianLevelChunkFlags().m_isTheatreEnabled; }
 	inline bool IsDLC() const { return getLittleEndianLevelChunkFlags().m_isDLC; }
 	inline bool IsCinematic() const { return getLittleEndianLevelChunkFlags().m_isCinematic; }
-	inline const s_blamfile_level_chunk& GetLevelChunk() const { return m_levelChunk; }
+	inline const s_blamfile_level_chunk& get_level_chunk() const { return m_levelChunk; }
 };
 

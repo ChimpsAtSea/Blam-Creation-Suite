@@ -389,11 +389,11 @@ FunctionHookEx<mcc_map_id_parse_from_reach_offset, int __fastcall (int a1)> mcc_
 
 void ReadConfig()
 {
-	g_frameLimit = __max(30, Settings::ReadIntegerValue(SettingsSection::Game, "FrameLimit", c_render::s_deviceMode.dmDisplayFrequency));
-	g_controlsLayout = Settings::ReadIntegerValue(SettingsSection::Player, "ControlsLayout", 0);
-	g_pancamEnabled = Settings::ReadBoolValue(SettingsSection::Debug, "PancamEnabled", false);
-	g_keyboardPrintKeyState = Settings::ReadBoolValue(SettingsSection::Debug, "PrintKeyState", 0);
-	g_useController = Settings::ReadIntegerValue(SettingsSection::Player, "UseController", 0);
+	g_frameLimit = __max(30, c_settings_legacy::read_integer(_settings_section_legacy_game, "FrameLimit", c_render::s_deviceMode.dmDisplayFrequency));
+	g_controlsLayout = c_settings_legacy::read_integer(_settings_section_legacy_player, "ControlsLayout", 0);
+	g_pancamEnabled = c_settings_legacy::read_boolean(_settings_section_legacy_debug, "PancamEnabled", false);
+	g_keyboardPrintKeyState = c_settings_legacy::read_boolean(_settings_section_legacy_debug, "PrintKeyState", 0);
+	g_useController = c_settings_legacy::read_integer(_settings_section_legacy_player, "UseController", 0);
 	//ReadInputBindings();
 }
 
@@ -815,7 +815,7 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 	end_detours();
 
 	// Allows spawning AI via scripts or effects, props to Zeddikins
-	if (Settings::ReadBoolValue(SettingsSection::Debug, "SpawnAiWithScriptsAndEffects", true))
+	if (c_settings_legacy::read_boolean(_settings_section_legacy_debug, "SpawnAiWithScriptsAndEffects", true))
 	{
 		UINT8 jmp[1] = { 0xEB };
 		switch (build)
@@ -840,7 +840,7 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 	}
 
 	// Allow the use of night vision in multiplayer, props to Zeddikins
-	if (Settings::ReadBoolValue(SettingsSection::Debug, "AllowNightVisionInMultiplayer", true))
+	if (c_settings_legacy::read_boolean(_settings_section_legacy_debug, "AllowNightVisionInMultiplayer", true))
 	{
 		switch (build)
 		{
@@ -858,7 +858,7 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 	}
 
 	// Enable debug hud coordinates
-	if (Settings::ReadBoolValue(SettingsSection::Debug, "PanCamEnabled", true))
+	if (c_settings_legacy::read_boolean(_settings_section_legacy_debug, "PanCamEnabled", true))
 	{
 		switch (build)
 		{
@@ -879,12 +879,12 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 
 	if (hs_function_table != nullptr)
 	{
-		if (Settings::ReadBoolValue(SettingsSection::Debug, "ReplacePrintScriptEvaluate", true))
+		if (c_settings_legacy::read_boolean(_settings_section_legacy_debug, "ReplacePrintScriptEvaluate", true))
 		{
 			hs_script_op* hs_print_function = hs_function_get(0x28);
 			hs_script_op* hs_chud_post_message_function = hs_function_get(build >= _build_mcc_1_1186_0_0 ? 0x509 : 0x508);
 
-			if (Settings::ReadBoolValue(SettingsSection::Debug, "PrintToHud", false))
+			if (c_settings_legacy::read_boolean(_settings_section_legacy_debug, "PrintToHud", false))
 			{
 				hs_print_function->replace_evaluate(hs_chud_post_message_function->evaluate);
 			}

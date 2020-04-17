@@ -1,7 +1,7 @@
 #pragma once
 
-#include "BlamFileParser.h"
+#include "blam_file_parser.h"
 #include "MapInfo.h"
-#include "MapInfoManager.h"
+#include "map_info_manager.h"
 #include "GameType.h"
 #include "GameTypeManager.h"

@@ -1,6 +1,6 @@
 #include "opusframework-private-pch.h"
 
-BlamFileParser::BlamFileParser(char* pBlamFileData)
+c_blam_file_parser::c_blam_file_parser(char* pBlamFileData)
 	:m_isLittleEndian(false)
 {
 	char* pCurrentMapInfoDataPosition = pBlamFileData;
@@ -37,7 +37,7 @@ BlamFileParser::BlamFileParser(char* pBlamFileData)
 	write_line_verbose("BlamFileParser> Parsed %i chunks", static_cast<int>(m_chunks.size()));
 }
 
-s_blamfile_header* BlamFileParser::getFirstChunkByTypeImpl(blamfile_chunk_type chunk_type)
+s_blamfile_header* c_blam_file_parser::getFirstChunkByTypeImpl(blamfile_chunk_type chunk_type)
 {
 	for (s_blamfile_header*& pCurrentChunk : m_chunks)
 	{
@@ -50,7 +50,7 @@ s_blamfile_header* BlamFileParser::getFirstChunkByTypeImpl(blamfile_chunk_type c
 	return nullptr;
 }
 
-s_blamfile_header* BlamFileParser::GetFirstChunkByType(blamfile_chunk_type chunkType)
+s_blamfile_header* c_blam_file_parser::get_first_chunk_by_type(blamfile_chunk_type chunkType)
 {
 	s_blamfile_header* pResult = getFirstChunkByTypeImpl(chunkType);
 	if (pResult == nullptr)

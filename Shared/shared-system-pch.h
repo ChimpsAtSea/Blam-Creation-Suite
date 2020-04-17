@@ -12,7 +12,7 @@
 
 #include "FatalError.h"
 
-#define VectorEraseByValueHelper(vector, value) vector.erase(std::remove(vector.begin(), vector.end(), value), vector.end());
+#define vector_erase_by_value_helper(vector, value) vector.erase(std::remove(vector.begin(), vector.end(), value), vector.end());
 
 #define StaticClassSizeCheck(TYPE) static_assert(sizeof(TYPE) == 1, "Static classes shouldn't contain any data");
 

@@ -56,7 +56,7 @@ public:
 	static void ResizeEnd();
 	static void deinit_render();
 	static void ResizeWindow();
-	static void SetResizeEnabled(bool resizeEnabled) { s_resizeEnabled = resizeEnabled; }
+	static void set_resize_enabled(bool resizeEnabled) { s_resizeEnabled = resizeEnabled; }
 	static bool IsResizeEnabled() { return s_resizeEnabled; }
 
 private:

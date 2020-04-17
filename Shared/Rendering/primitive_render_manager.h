@@ -25,7 +25,7 @@ public:
 	static std::vector<c_box_primitive*> s_boxPrimitives;
 	static std::vector<BoxPrimitiveData> s_immediateBoxPrimitives;
 
-	static void Render();
+	static void render();
 	static ID3D11Buffer* const& GetConstantsBuffer();
 
 	static void RegisterBoxPrimitive(c_box_primitive* pBoxPrimitive);

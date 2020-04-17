@@ -32,7 +32,7 @@ void c_primitive_render_manager::UnregisterBoxPrimitive(c_box_primitive* pBoxPri
 	}
 }
 
-void c_primitive_render_manager::Render()
+void c_primitive_render_manager::render()
 {
 	SetupConstantBuffers();
 	UpdateConstantsBuffer();

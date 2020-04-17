@@ -1,23 +1,23 @@
 #pragma once
 
-class HaloReachGameOptionSelection
+class c_halo_reach_game_option_selection_legacy
 {
 public:
 	static void Init();
-	static void Deinit();
-	static e_mcc_game_mode GetSelectedGameMode();
-	static const MapInfo* GetSelectedMapInfo();
+	static void deinit();
+	static e_mcc_game_mode get_selected_game_mode();
+	static const MapInfo* get_selected_map_info();
 	static void SelectGameMode();
 	static void Render();
 
-	static void LoadMapVariant(IDataAccess *pDataAccess, const char *pVariantName, s_map_variant &out_variant, bool print = false);
-	static void LoadGameVariant(IDataAccess *pDataAccess, const char *pVariantName, s_game_variant &out_variant, bool print = false);
-	static void LoadPreviousGamestate(const char *pFileName, GameContext &gameContext);
-	static void LoadSavedFilmMetadata(const char *pSavedFilmName, GameContext &gameContext);
+	static void load_map_variant(IDataAccess *pDataAccess, const char *pVariantName, s_map_variant &out_variant, bool print = false);
+	static void load_game_variant(IDataAccess *pDataAccess, const char *pVariantName, s_game_variant &out_variant, bool print = false);
+	static void load_savegame(const char *pFileName, GameContext &gameContext);
+	static void load_savefilm(const char *pSavedFilmName, GameContext &gameContext);
 
-	static std::string s_pLaunchGameVariant;
-	static std::string s_pLaunchMapVariant;
-	static std::string s_pLaunchSavedFilm;
+	static std::string s_launch_game_variant;
+	static std::string s_launch_map_variant;
+	static std::string s_launch_saved_film_filepath;
 public:
 
 	enum class SelectedGameModeMapInfoIndex
@@ -54,7 +54,7 @@ public:
 
 	static void RenderHoveredTooltip(const char* pText);
 
-	static MapInfoManager* s_pMapInfoManager;
+	static c_map_info_manager* s_pMapInfoManager;
 	static const MapInfo* s_pSelectedMapInfo[underlying_cast(SelectedGameModeMapInfoIndex::Count)];
 	static constexpr const char* s_kpMapInfoSettingsName[underlying_cast(SelectedGameModeMapInfoIndex::Count)] = { "LastCampaignMap", "LastMultiplayerMap", "LastSurvivalMap", "LastUnknownGamemodeMap" };
 

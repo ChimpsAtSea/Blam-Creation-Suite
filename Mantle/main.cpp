@@ -97,7 +97,7 @@ static void deinit_mantle()
 	c_mantle_gui::unregister_on_close_callback(application_close_callback);
 	c_window::unregister_destroy_callback(application_close_callback);
 	c_window::unregister_update_callback(application_update_callback);
-	c_debug_gui::UnregisterCallback(_callback_mode_always_run, application_ui_callback);
+	c_debug_gui::unregister_callback(_callback_mode_always_run, application_ui_callback);
 
 	c_mantle_gui::deinit_mantle_gui();
 	c_render::deinit_render();

@@ -3,11 +3,12 @@
 enum e_engine_type : uint8_t
 {
 	_engine_type_not_set,
+	_engine_type_mcc,
+	_engine_type_halo_reach,
 	_engine_type_halo1,
 	_engine_type_halo2,
-	_engine_type_halo_reach,
-	_engine_type_mcc,
 	_engine_type_eldorado,
+	_engine_type_groundhog,
 	_engine_type_halo5_forge,
 };
 
@@ -16,10 +17,11 @@ constexpr const char* engine_type_to_string(e_engine_type engine_type)
 	switch (engine_type)
 	{
 	case _engine_type_not_set:		return "_engine_type_not_set";
+	case _engine_type_mcc:			return "_engine_type_mcc";
+	case _engine_type_halo_reach:	return "_engine_type_halo_reach";
 	case _engine_type_halo1:		return "_engine_type_halo1";
 	case _engine_type_halo2:		return "_engine_type_halo2";
-	case _engine_type_halo_reach:	return "_engine_type_halo_reach";
-	case _engine_type_mcc:			return "_engine_type_mcc";
+	case _engine_type_groundhog:	return "_engine_type_groundhog";
 	case _engine_type_eldorado:		return "_engine_type_eldorado";
 	case _engine_type_halo5_forge:	return "_engine_type_halo5_forge";
 	}
@@ -31,10 +33,11 @@ constexpr const char* engine_type_to_nice_name(e_engine_type engine_type)
 	switch (engine_type)
 	{
 	case _engine_type_not_set:		return "Not Set";
+	case _engine_type_mcc:			return "Master Chief Collection";
+	case _engine_type_halo_reach:	return "Halo Reach";
 	case _engine_type_halo1:		return "Halo 1";
 	case _engine_type_halo2:		return "Halo 2";
-	case _engine_type_halo_reach:	return "Halo Reach";
-	case _engine_type_mcc:			return "Master Chief Collection";
+	case _engine_type_groundhog:	return "Groundhog";
 	case _engine_type_eldorado:		return "Eldorado";
 	case _engine_type_halo5_forge:	return "Halo 5 Forge";
 	}
@@ -154,6 +157,8 @@ constexpr uintptr_t GetEngineBaseAddress(e_engine_type engine_type)
 #ifdef _WIN64
 	case _engine_type_halo_reach:
 	case _engine_type_halo1:
+	case _engine_type_halo2:
+	case _engine_type_groundhog:
 		return 0x180000000;
 	case _engine_type_mcc:
 		return 0x140000000;
@@ -241,14 +246,16 @@ constexpr const char* GetEngineModuleFileName(e_engine_type engine_type)
 {
 	switch (engine_type)
 	{
+	case _engine_type_mcc:
+		return "MCC-Win64-Shipping.exe";
 	case _engine_type_halo_reach:
 		return "haloreach.dll";
 	case _engine_type_halo1:
 		return "halo1.dll";
 	case _engine_type_halo2:
 		return "halo2.dll";
-	case _engine_type_mcc:
-		return "MCC-Win64-Shipping.exe";
+	case _engine_type_groundhog:
+		return "groundhog.dll";
 	case _engine_type_eldorado:
 		return "eldorado.exe";
 	case _engine_type_halo5_forge:	

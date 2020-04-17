@@ -16,10 +16,10 @@
 /* LEGACY */ #include "opus_legacy\IDataAccess.h"
 /* LEGACY */ #include "opus_legacy\IFileAccess.h"
 
-#include "MouseInput.h"
-#include "GameLauncher.h"
+#include "mouse_input.h"
+#include "game_launcher.h"
 #ifdef _WIN64
-#include "HaloReachGameOptionSelection.h"
+#include "halo_reach_game_option_selection_legacy.h"
 #endif
 #include "game_runtime.h"
 

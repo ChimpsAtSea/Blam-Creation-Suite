@@ -24,7 +24,7 @@ int WINAPI WinMain(
 	void(*UpdateCallback)() = []()
 	{
 		c_render::begin_frame(true, &clearColor.x);
-		GameLauncher::OpusTick();
+		c_game_launcher::opus_tick();
 		c_render::end_frame();
 	};
 	void(*DestroyCallback)() = []()
@@ -35,7 +35,7 @@ int WINAPI WinMain(
 	c_window::init_window("Opus", "OpusConsole", "opus");
 	c_render::init_render(hInstance);
 	c_mantle_gui::init_mantle_gui(true);
-	GameLauncher::Init();
+	c_game_launcher::init_game_launcher();
 
 	c_window::register_update_callback(UpdateCallback);
 	c_window::register_destroy_callback(DestroyCallback);
@@ -49,7 +49,7 @@ int WINAPI WinMain(
 	c_window::unregister_destroy_callback(DestroyCallback);
 	//MantleGUI::UnregisterOnCloseCallback(DestroyCallback);
 
-	GameLauncher::Deinit();
+	c_game_launcher::deinit_game_launcher();
 	c_mantle_gui::deinit_mantle_gui();
 	c_render::deinit_render();
 	c_window::deinit_window();

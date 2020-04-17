@@ -66,7 +66,7 @@ void c_cache_file::save_map()
 		fflush(pFile);
 		fclose(pFile);
 	}
-	else MessageBoxA(c_window::GetWindowHandle(), "Failed to save map", "File error failed to open for write", 0);
+	else MessageBoxA(c_window::get_window_handle(), "Failed to save map", "File error failed to open for write", 0);
 }
 
 void c_cache_file::loadMap(const std::wstring& mapFilePath)

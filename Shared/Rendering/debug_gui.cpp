@@ -131,13 +131,13 @@ void c_debug_gui::Deinit()
 	// #WIP End Resize Synchronization Across Opus and Game Thread
 }
 
-bool c_debug_gui::IsRendering()
+bool c_debug_gui::is_rendering()
 {
 	bool isRendering = s_uiState == underlying_cast(DebugUIState::RenderingFrame);
 	return isRendering;
 }
 
-void c_debug_gui::StartFrame()
+void c_debug_gui::start_frame()
 {
 	ProcessWindowMessages();
 
@@ -162,7 +162,7 @@ void c_debug_gui::StartFrame()
 	ImGui::NewFrame();
 }
 
-void c_debug_gui::EndFrame()
+void c_debug_gui::end_frame()
 {
 	//bool isRendering = s_uiState == underlying_cast(DebugUIState::RenderingFrame);
 	//if (!isRendering) return;
@@ -197,8 +197,8 @@ void c_debug_gui::EndFrame()
 
 void c_debug_gui::RenderFrame()
 {
-	StartFrame();
-	EndFrame();
+	start_frame();
+	end_frame();
 }
 
 void c_debug_gui::ToggleUI()
@@ -251,7 +251,7 @@ void c_debug_gui::register_callback(DebugUICallbackMode callbackMode, DebugUICal
 	rCallbacks.push_back(debug_ui_callback);
 }
 
-void c_debug_gui::UnregisterCallback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback)
+void c_debug_gui::unregister_callback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback)
 {
 	std::vector<DebugUICallback>& rCallbacks = callbackMode == _callback_mode_toggleable ? s_pToggleableCallbacks : s_pAlwaysRunCallbacks;
 

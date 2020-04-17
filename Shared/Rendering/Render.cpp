@@ -141,7 +141,7 @@ void c_render::CreateSwapchain(IDXGISwapChain1*& swap_chain)
 	}
 	else
 	{
-		HWND hWnd = c_window::GetWindowHandle();
+		HWND hWnd = c_window::get_window_handle();
 		HRESULT createSwapChainForHwndResult = s_pFactory->CreateSwapChainForHwnd(s_pDevice, hWnd, &s_SwapchainDescription, NULL, NULL, &swap_chain);
 		ASSERT(SUCCEEDED(createSwapChainForHwndResult));
 	}

@@ -189,7 +189,7 @@ void c_mantle_gui::register_on_close_callback(on_close_callback_func callback)
 
 void c_mantle_gui::unregister_on_close_callback(on_close_callback_func callback)
 {
-	VectorEraseByValueHelper(g_mantle_on_close_callbacks, callback);
+	vector_erase_by_value_helper(g_mantle_on_close_callbacks, callback);
 }
 
 void c_mantle_gui::open_cache_file_from_filepath(const wchar_t* pFilePath)
@@ -208,7 +208,7 @@ void c_mantle_gui::add_tab(c_mantle_gui_tab& rMantleTab)
 
 void c_mantle_gui::remove_tab(c_mantle_gui_tab& rMantleTab)
 {
-	VectorEraseByValueHelper(g_mantle_gui_tabs, &rMantleTab);
+	vector_erase_by_value_helper(g_mantle_gui_tabs, &rMantleTab);
 }
 
 void c_mantle_gui::set_active_tab(c_mantle_gui_tab* gui_tab)

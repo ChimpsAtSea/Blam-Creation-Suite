@@ -27,9 +27,9 @@ void c_window::SetWindowTitle(const char* pTitle)
 
 void c_window::Show()
 {
-	ShowWindow(GetWindowHandle(), SW_SHOW);
-	SetFocus(GetWindowHandle());
-	SetForegroundWindow(GetWindowHandle());
+	ShowWindow(get_window_handle(), SW_SHOW);
+	SetFocus(get_window_handle());
+	SetForegroundWindow(get_window_handle());
 }
 
 void c_window::set_post_message_thread_id(HANDLE hThread)
@@ -54,7 +54,7 @@ float c_window::get_aspect_ratio()
 	return aspectRatio;
 }
 
-HWND c_window::GetWindowHandle()
+HWND c_window::get_window_handle()
 {
 	return s_hWnd;
 }
@@ -205,7 +205,7 @@ void c_window::deinit_window()
 	UnregisterClassA("mantle_window_class", s_hInstance);
 }
 
-void c_window::UpdateNoCallbacks()
+void c_window::update_no_callbacks()
 {
 	c_console::Update();
 
@@ -225,7 +225,7 @@ void c_window::UpdateNoCallbacks()
 
 void c_window::update_window()
 {
-	UpdateNoCallbacks();
+	update_no_callbacks();
 	OnUpdateCallback();
 }
 

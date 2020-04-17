@@ -387,7 +387,7 @@ void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_c
 	player_configuration.PlayerModelPrimaryColor = eHaloArmor::HR_Color_Brick;
 	player_configuration.PlayerModelSecondaryColor = eHaloArmor::HR_Color_Cyan;
 	player_configuration.PlayerModelTertiaryColor = eHaloArmor::HR_Color_Cyan;
-	Settings::ReadStringValueW(SettingsSection::Player, "ServiceTag", player_configuration.ServiceTag, 4, L"117");
+	c_settings_legacy::read_wstring(_settings_section_legacy_player, "ServiceTag", player_configuration.ServiceTag, 4, L"117");
 	player_configuration.OnlineMedalFlasher = false;
 	//player_configuration.VerticalLookSensitivity          = ;
 	//player_configuration.HorizontalLookSensitivity        = ;

@@ -117,7 +117,7 @@ bool c_haloreach_camera_command::execute_command(const std::vector<std::string> 
 				if (field_of_view > 120.f) field_of_view = 120.f;
 
 				g_field_of_view = field_of_view;
-				Settings::WriteIntegerValue(SettingsSection::Camera, "FieldOfView", static_cast<int>(field_of_view));
+				c_settings_legacy::write_integer(_settings_section_legacy_camera, "FieldOfView", static_cast<int>(field_of_view));
 			}
 			if (is_valid(g_centered_crosshair) && !arg1.compare("crosshair"))
 			{
@@ -126,7 +126,7 @@ bool c_haloreach_camera_command::execute_command(const std::vector<std::string> 
 				if (centered_crosshair > 1) centered_crosshair = 1;
 
 				g_centered_crosshair = centered_crosshair;
-				Settings::WriteBoolValue(SettingsSection::Camera, "CenteredCrosshair", static_cast<bool>(centered_crosshair));
+				c_settings_legacy::write_boolean(_settings_section_legacy_camera, "CenteredCrosshair", static_cast<bool>(centered_crosshair));
 			}
 		}
 		else return false;
@@ -155,10 +155,10 @@ std::string c_haloreach_camera_command::get_command_auto_complete(const std::vec
 
 void c_haloreach_camera_command::read_config()
 {
-	std::string field_of_view = std::to_string(Settings::ReadFloatValue(SettingsSection::Camera, "FieldOfView", 90.f));
+	std::string field_of_view = std::to_string(c_settings_legacy::read_float(_settings_section_legacy_camera, "FieldOfView", 90.f));
 	execute_command({ "camera", "field_of_view", field_of_view.c_str() });
 
-	std::string crosshair = std::to_string(Settings::ReadBoolValue(SettingsSection::Camera, "CenteredCrosshair", true));
+	std::string crosshair = std::to_string(c_settings_legacy::read_boolean(_settings_section_legacy_camera, "CenteredCrosshair", true));
 	execute_command({ "camera", "crosshair", crosshair.c_str() });
 }
 

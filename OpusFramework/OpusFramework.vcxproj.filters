@@ -24,12 +24,6 @@
     <ClCompile Include="CCode\GetIDXGISwapChainPresent.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileSystem\BlamFileParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileSystem\MapInfoManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RuntimeManipulation\SystemPatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -48,19 +42,10 @@
     <ClCompile Include="RuntimeManipulation\opus_legacy\detour_helpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Settings\opus_legacy\settings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MCC\MouseInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ApplicationReflection\globalreference.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ApplicationReflection\mappingfileparser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MCC\GameLauncher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MCC\IGameEngineHost.cpp">
@@ -76,9 +61,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileSystem\GameType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MCC\HaloReachGameOptionSelection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="platform_configuration.cpp">
@@ -97,6 +79,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="session_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC\game_launcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC\mouse_input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC\halo_reach_game_option_selection_legacy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings\opus_legacy\settings_legacy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem\map_info_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem\blam_file_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -123,12 +123,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RuntimeManipulation\FunctionHookVarArgsEx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\BlamFileParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem\MapInfoManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileSystem\FileSystem.h">
@@ -170,15 +164,6 @@
     <ClInclude Include="RuntimeManipulation\opus_legacy\detour_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Settings\Settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Settings\opus_legacy\settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\MouseInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ApplicationReflection\globalreference.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -194,9 +179,6 @@
     <ClInclude Include="ApplicationReflection\ApplicationReflection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MCC\GameLauncher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MCC\IGameEngineHost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -210,9 +192,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileSystem\GameType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\HaloReachGameOptionSelection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="platform_configuration.h">
@@ -243,6 +222,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="is_valid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\game_launcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\mouse_input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\halo_reach_game_option_selection_legacy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings\opus_legacy\settings_legacy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings\settings_legacy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystem\map_info_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystem\blam_file_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

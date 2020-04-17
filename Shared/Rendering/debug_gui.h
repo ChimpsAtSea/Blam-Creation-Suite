@@ -16,8 +16,8 @@ public:
 
 	static void Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapChain* swap_chain, ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
 	static void Deinit();
-	static void StartFrame();
-	static void EndFrame();
+	static void start_frame();
+	static void end_frame();
 	static void RenderFrame();
 	static void ToggleUI();
 	static void show_ui();
@@ -26,8 +26,8 @@ public:
 	static void AddMessageBreak();
 	static void WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static void register_callback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback);
-	static void UnregisterCallback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback);
-	static bool IsRendering();
+	static void unregister_callback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback);
+	static bool is_rendering();
 
 private:
 	typedef HRESULT(__fastcall* IDXGISwapChainPresent)(IDXGISwapChain* swap_chain, UINT SyncInterval, UINT Flags);

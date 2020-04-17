@@ -82,7 +82,7 @@ void c_mantle_gui_tab::add_tab(c_mantle_gui_tab& tab)
 
 void c_mantle_gui_tab::remove_tab(c_mantle_gui_tab& tab)
 {
-	VectorEraseByValueHelper(child_tabs, &tab);
+	vector_erase_by_value_helper(child_tabs, &tab);
 }
 
 void c_mantle_gui_tab::tab_closed_callback(c_mantle_gui_tab& tab)
