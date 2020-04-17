@@ -232,12 +232,6 @@ uintptr_t word_18115BBB6_offset(e_engine_type engine_type, e_build build)
 uint8_t(&byte_18115BBB6)[128] = reference_symbol<uint8_t[128]>("word_18115BBB6", word_18115BBB6_offset); // DESTINATION
 
 
-
-
-
-
-
-
 uintptr_t sub_18072FCF0_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18072FCF0);

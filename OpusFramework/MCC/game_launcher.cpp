@@ -364,7 +364,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 					}
 				}
 			}
-			else if (engine_type == _engine_type_halo1 || engine_type == _engine_type_halo2)
+			else if (engine_type == _engine_type_halo1)
 			{
 				if (halo1_map_id == _map_id_mainmenu)
 				{
