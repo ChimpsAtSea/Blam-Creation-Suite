@@ -2,7 +2,7 @@
 
 c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule, e_build build)
 	: m_engineName(pEngineName)
-	, m_build(build == _build_not_set ? GetLibraryBuildVersion(pLibFileName) : build)
+	, m_build(build == _build_not_set ? get_library_file_version(pLibFileName) : build)
 	, m_enginePath(pLibFileName)
 {
 
@@ -53,42 +53,9 @@ void c_game_runtime::loadLibrary(const char* pLibFileName)
 	pSetLibrarySettings = (SetLibrarySettingsFunc*)GetProcAddress(hGameModule, "SetLibrarySettings");
 }
 
-e_build c_game_runtime::GetLibraryBuildVersion(const char* pFileName)
+e_build c_game_runtime::get_library_file_version(const char* file_path)
 {
-	uint64_t libraryFileVersion = GetLibraryFileVersion(pFileName);
+	uint64_t library_file_version = ::get_library_file_version(file_path);
 
-	return static_cast<e_build>(libraryFileVersion);
-}
-
-uint64_t c_game_runtime::GetLibraryFileVersion(const char* pFileName)
-{
-	uint64_t result = 0;
-	DWORD  verHandle = 0;
-	UINT   size = 0;
-	LPBYTE lbuffer = NULL;
-	DWORD  verSize = GetFileVersionInfoSize(pFileName, &verHandle);
-
-	if (verSize != NULL)
-	{
-		char* verData = static_cast<char*>(alloca(verSize));
-
-		if (GetFileVersionInfo(pFileName, NULL, verSize, verData) != 0)
-		{
-			if (VerQueryValue(verData, "\\", (VOID FAR * FAR*) & lbuffer, &size))
-			{
-				if (size)
-				{
-					VS_FIXEDFILEINFO* verInfo = (VS_FIXEDFILEINFO*)lbuffer;
-					if (verInfo->dwSignature == 0xfeef04bd)
-					{
-						result |= uint64_t(verInfo->dwFileVersionMS);
-						result <<= 32;
-						result |= uint64_t(verInfo->dwFileVersionLS);
-
-					}
-				}
-			}
-		}
-	}
-	return result;
+	return static_cast<e_build>(library_file_version);
 }

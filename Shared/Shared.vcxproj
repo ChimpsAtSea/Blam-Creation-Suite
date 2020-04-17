@@ -84,6 +84,7 @@
     <ClInclude Include="ThreadPrimitives\ThreadPrimitives.h" />
     <ClInclude Include="ThreadSafeQueue.h" />
     <ClInclude Include="ThreadPrimitives\thread_subroutine.h" />
+    <ClInclude Include="xxhash_cx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="command_line.cpp" />

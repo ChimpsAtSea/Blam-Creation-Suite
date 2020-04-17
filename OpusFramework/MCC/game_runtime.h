@@ -45,10 +45,9 @@ public:
 		return m_engineName;
 	}
 
-	static e_build GetLibraryBuildVersion(const char* pFileName);
+	static e_build get_library_file_version(const char* file_path);
 private:
 	void loadLibrary(const char* pLibFileName);
-	static uint64_t GetLibraryFileVersion(const char* pFileName);
 
 	std::string m_engineName;
 	LPCSTR m_enginePath = "";

@@ -210,6 +210,9 @@
     <ClInclude Include="debug_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="xxhash_cx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shared-private-pch.cpp">

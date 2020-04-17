@@ -20,7 +20,7 @@ void haloreach_dll_loaded_callback()
 {
 	write_line_verbose("Halo Reach was loaded!");
 	{
-		e_build build = c_game_runtime::GetLibraryBuildVersion(MCCExecutableFileName);
+		e_build build = c_game_runtime::get_library_file_version(MCCExecutableFileName);
 		c_halo_reach_game_host::init_runtime_modifications(build);
 	}
 }
@@ -29,7 +29,7 @@ void halo1_dll_loaded_callback()
 {
 	write_line_verbose("Halo 1 was loaded!");
 	{
-		e_build build = c_game_runtime::GetLibraryBuildVersion(MCCExecutableFileName);
+		e_build build = c_game_runtime::get_library_file_version(MCCExecutableFileName);
 		c_halo1_game_host::init_runtime_modifications(build);
 	}
 }
@@ -91,7 +91,7 @@ void init_opus()
 		create_dll_hook("KERNEL32.dll", "OutputDebugStringA", nullsub, OutputDebugStringA_Original);
 		create_dll_hook("KERNEL32.dll", "GetProcAddress", GetProcAddressHook, GetProcAddressPtr);
 
-		e_build build = c_game_runtime::GetLibraryBuildVersion(MCCExecutableFileName);
+		e_build build = c_game_runtime::get_library_file_version(MCCExecutableFileName);
 		c_function_hook_base::init_function_hook_tree(_engine_type_mcc, build);
 		c_global_reference::init_global_reference_tree(_engine_type_mcc, build);
 	}

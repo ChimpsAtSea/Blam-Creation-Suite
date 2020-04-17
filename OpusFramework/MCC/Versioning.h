@@ -4,9 +4,11 @@ enum e_engine_type : uint8_t
 {
 	_engine_type_not_set,
 	_engine_type_halo1,
+	_engine_type_halo2,
 	_engine_type_halo_reach,
 	_engine_type_mcc,
-	_engine_type_eldorado
+	_engine_type_eldorado,
+	_engine_type_halo5_forge,
 };
 
 constexpr const char* engine_type_to_string(e_engine_type engine_type)
@@ -15,9 +17,11 @@ constexpr const char* engine_type_to_string(e_engine_type engine_type)
 	{
 	case _engine_type_not_set:		return "_engine_type_not_set";
 	case _engine_type_halo1:		return "_engine_type_halo1";
+	case _engine_type_halo2:		return "_engine_type_halo2";
 	case _engine_type_halo_reach:	return "_engine_type_halo_reach";
 	case _engine_type_mcc:			return "_engine_type_mcc";
 	case _engine_type_eldorado:		return "_engine_type_eldorado";
+	case _engine_type_halo5_forge:	return "_engine_type_halo5_forge";
 	}
 	FATAL_ERROR(L"unknown e_engine_type");
 }
@@ -28,15 +32,19 @@ constexpr const char* engine_type_to_nice_name(e_engine_type engine_type)
 	{
 	case _engine_type_not_set:		return "Not Set";
 	case _engine_type_halo1:		return "Halo 1";
+	case _engine_type_halo2:		return "Halo 2";
 	case _engine_type_halo_reach:	return "Halo Reach";
 	case _engine_type_mcc:			return "Master Chief Collection";
 	case _engine_type_eldorado:		return "Eldorado";
+	case _engine_type_halo5_forge:	return "Halo 5 Forge";
 	}
 	FATAL_ERROR(L"unknown e_engine_type");
 }
 
 #define MAKE_FILE_VERSION(a, b, c, d) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 16) | (uint64_t(d) << 0))
 #define MAKE_PRODUCT_VERSION(a, b, c) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 0))
+#define MAKE_TOOL_VERSION(a, b, c, d, file_description, product_name) (MAKE_FILE_VERSION(a, b, c, d) ^ (file_description##product_name##_xxh64))
+#define HASH_VERSION(a) (a)
 
 enum e_build : uint64_t
 {
@@ -75,6 +83,9 @@ enum e_build : uint64_t
 	_build_eldorado_1_571698_Live = MAKE_PRODUCT_VERSION(11, 1, 571698),
 	_build_eldorado_1_604673_Live = MAKE_PRODUCT_VERSION(11, 1, 604673),
 	_build_eldorado_1_700255_cert_ms30_oct19 = MAKE_PRODUCT_VERSION(12, 1, 700255),
+	_build_halo1_guerilla = MAKE_TOOL_VERSION(1, 0, 0, 609, "Guerilla MFC Application", "Guerilla Application"),
+	_build_halo2_guerilla = MAKE_TOOL_VERSION(1, 0, 0, 0, "Tag Editor", "Halo 2 for Windows Vista"),
+	_build_halo5_forge_1_114_4592_2 = HASH_VERSION(0xc64ebca380e26cdd)
 };
 
 #undef MAKE_FILE_VERSION
@@ -118,6 +129,9 @@ inline const char* build_to_string(e_build build)
 	case _build_eldorado_1_571698_Live: return "Eldorado 1.571698 Live";
 	case _build_eldorado_1_604673_Live: return "Eldorado 1.604673 Live";
 	case _build_eldorado_1_700255_cert_ms30_oct19: return "Eldorado 1.700255 cert_ms30_oct19";
+	case _build_halo1_guerilla: return "Halo 1 Guerilla";
+	case _build_halo2_guerilla: return "Halo 2 Guerilla";
+	case _build_halo5_forge_1_114_4592_2: return "Halo 5 Forge 1.114.4592.2_x64__8wekyb3d8bbwe";
 	}
 	return "<unknown e_build value";
 }
@@ -231,16 +245,24 @@ constexpr const char* GetEngineModuleFileName(e_engine_type engine_type)
 		return "haloreach.dll";
 	case _engine_type_halo1:
 		return "halo1.dll";
+	case _engine_type_halo2:
+		return "halo2.dll";
 	case _engine_type_mcc:
 		return "MCC-Win64-Shipping.exe";
 	case _engine_type_eldorado:
 		return "eldorado.exe";
+	case _engine_type_halo5_forge:	
+		return "halo5forge.exe";
 	}
 	FATAL_ERROR(L"Unsupported GameVersion");
 }
 
 extern bool IsEngineLoaded(e_engine_type engine_type);
 extern void* GetEngineMemoryAddress(e_engine_type engine_type);
+extern uint64_t get_library_file_version(const char* file_path);
+extern uint64_t get_library_file_version(const wchar_t* file_path);
+extern std::wstring get_library_description(const wchar_t* file_path);
+extern std::wstring get_library_product_name(const wchar_t* file_path);
 
 inline char* GetEngineVirtualAddress(e_engine_type engine_type, uintptr_t virtual_address)
 {
