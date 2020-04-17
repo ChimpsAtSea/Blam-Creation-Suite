@@ -30,6 +30,7 @@ IGameEngineHost::IGameEngineHost(e_engine_type engine_type, e_build build, IGame
 	game_events_ptr(game_events),
 	__vtbl_dynamic(__vtbl_dynamic_data)
 {
+	memset(__vtbl_dynamic_data, 0xFF, sizeof(__vtbl_dynamic_data));
 	for (size_t i = 0; i < kTableSize; i++)
 	{
 		__vtbl_dynamic_data[i] = IGameEngineHostEmptyFunction;

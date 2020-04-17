@@ -27,21 +27,21 @@ e_map_id halo1_map_id = halo1_map_ids[0];
 
 static e_map_id halo2_map_ids[] =
 {
-	_map_id_halo2_the_heretic,
-	_map_id_halo2_the_armory,
+	//_map_id_halo2_the_heretic,
+	//_map_id_halo2_the_armory,
 	_map_id_halo2_cairo_station,
-	_map_id_halo2_outskirts,
+	//_map_id_halo2_outskirts,
 	_map_id_halo2_metropolis,
-	_map_id_halo2_the_arbiter,
+	//_map_id_halo2_the_arbiter,
 	_map_id_halo2_the_oracle,
 	_map_id_halo2_delta_halo,
-	_map_id_halo2_regret,
-	_map_id_halo2_sacred_icon,
+	//_map_id_halo2_regret,
+	//_map_id_halo2_sacred_icon,
 	_map_id_halo2_quarantine_zone,
 	_map_id_halo2_gravemind,
-	_map_id_halo2_uprising,
-	_map_id_halo2_high_charity,
-	_map_id_halo2_the_great_journey,
+	//_map_id_halo2_uprising,
+	//_map_id_halo2_high_charity,
+	//_map_id_halo2_the_great_journey,
 };
 e_map_id halo2_map_id = halo2_map_ids[0];
 
@@ -109,6 +109,7 @@ void c_game_launcher::init_game_launcher()
 
 	if (PathFileExistsA("halo2\\halo2.dll"))
 	{
+		is_bink2_required = true;
 		is_mopp_required = true;
 		is_ati_compress_required = true;
 		is_miles_sound_system_required = true;
