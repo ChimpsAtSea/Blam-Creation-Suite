@@ -12,9 +12,12 @@ extern void memcpy_virtual(
 	size_t size
 );
 
-extern void copy_from_address(e_engine_type engine_type, e_build build, intptr_t offset, void *data, size_t length);
-extern void copy_to_address(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length);
-extern void nop_address(e_engine_type engine_type, e_build build, intptr_t offset, size_t count);
+extern void copy_from_address(void* pointer, void* data, size_t length);
+extern void copy_to_address(void* pointer, void* data, size_t length);
+extern void nop_address(void* pointer, size_t count);
+extern void copy_from_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length);
+extern void copy_to_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length);
+extern void nop_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, size_t count);
 
 #define roundup(n, denominator) (((n + denominator - 1) / denominator ) * denominator )
 
@@ -186,7 +189,7 @@ T get_function_ptr()
 }
 
 template<size_t offset>
-void nop_address(const char pModuleName[], size_t baseAddress, size_t count)
+void nop_address_legacy(const char pModuleName[], size_t baseAddress, size_t count)
 {
 	// Find the function address
 	char* const pBaseAddress = reinterpret_cast<char*>(GetModuleHandleA(pModuleName));

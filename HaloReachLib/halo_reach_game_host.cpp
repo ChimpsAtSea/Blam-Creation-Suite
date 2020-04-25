@@ -95,7 +95,16 @@ void c_halo_reach_game_host::init_runtime_modifications(e_build build)
 	g_haloreach_engine_state_command = new c_haloreach_engine_state_command();
 	g_haloreach_camera_command = new c_haloreach_camera_command();
 
-	init_halo_reach(_engine_type_halo_reach, build);
+	//player_mapping_get_local_player
+	spawn_ai_with_scripts_and_effects.set_enabled(c_settings_legacy::read_boolean(_settings_section_legacy_debug, "SpawnAiWithScriptsAndEffects", true));
+	allow_night_vision_in_multiplayer.set_enabled(c_settings_legacy::read_boolean(_settings_section_legacy_debug, "AllowNightVisionInMultiplayer", true));
+	enable_debug_hud_coordinates.set_enabled(c_settings_legacy::read_boolean(_settings_section_legacy_debug, "PanCamEnabled", true));
+
+	init_detours();
+	c_global_reference::init_global_reference_tree(_engine_type_halo_reach, build);
+	c_function_hook_base::init_function_hook_tree(_engine_type_halo_reach, build);
+	c_data_patch_base::init_data_patch_tree(_engine_type_halo_reach, build);
+	end_detours();
 }
 
 void c_halo_reach_game_host::deinit_runtime_modifications(e_build build)
@@ -103,7 +112,11 @@ void c_halo_reach_game_host::deinit_runtime_modifications(e_build build)
 	delete g_haloreach_engine_state_command;
 	delete g_haloreach_camera_command;
 
-	deinit_halo_reach(_engine_type_halo_reach, build);
+	init_detours();
+	c_function_hook_base::deinit_function_hook_tree(_engine_type_halo_reach, build);
+	c_data_patch_base::deinit_data_patch_tree(_engine_type_halo_reach, build);
+	c_global_reference::deinit_global_reference_tree(_engine_type_halo_reach, build);
+	end_detours();
 }
 
 void c_halo_reach_game_host::update_camera_data()

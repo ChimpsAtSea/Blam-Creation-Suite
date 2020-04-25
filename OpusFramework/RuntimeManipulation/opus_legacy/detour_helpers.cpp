@@ -50,7 +50,7 @@ void memcpy_virtual(
 	}
 }
 
-void nop_address(e_engine_type engine_type, e_build build, intptr_t offset, size_t count)
+void nop_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, size_t count)
 {
 	char* pBeginning = (char*)GetEngineMemoryAddress(engine_type);
 	char* pNopAttack = pBeginning + (offset - GetEngineBaseAddress(engine_type));
@@ -62,7 +62,7 @@ void nop_address(e_engine_type engine_type, e_build build, intptr_t offset, size
 	}
 }
 
-void copy_from_address(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length)
+void copy_from_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length)
 {
 	char* pBeginning = (char*)GetEngineMemoryAddress(engine_type);
 	char* pDataAttack = pBeginning + (offset - GetEngineBaseAddress(engine_type));
@@ -70,10 +70,41 @@ void copy_from_address(e_engine_type engine_type, e_build build, intptr_t offset
 	memcpy_virtual(data, pDataAttack, length);
 }
 
-void copy_to_address(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length)
+void copy_to_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length)
 {
 	char* pBeginning = (char*)GetEngineMemoryAddress(engine_type);
 	char* pDataAttack = pBeginning + (offset - GetEngineBaseAddress(engine_type));
 
+	memcpy_virtual(pDataAttack, data, length);
+}
+
+void nop_address(void* pointer, size_t count)
+{
+	char* pNopAttack = reinterpret_cast<char*>(pointer);
+
+	size_t bytes_written = 0;
+
+	static char nop_data[] = { 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8, 0x90i8 };
+
+	while (bytes_written < count)
+	{
+		size_t remaining_bytes = count - bytes_written;
+		size_t bytes_to_write = __min(remaining_bytes, _countof(nop_data));
+
+		memcpy_virtual(pNopAttack, nop_data, bytes_to_write);
+
+		bytes_written += bytes_to_write;
+	}
+}
+
+void copy_from_address(void* pointer, void* data, size_t length)
+{
+	char* pDataAttack = reinterpret_cast<char*>(pointer);
+	memcpy_virtual(data, pDataAttack, length);
+}
+
+void copy_to_address(void* pointer, void* data, size_t length)
+{
+	char* pDataAttack = reinterpret_cast<char*>(pointer);
 	memcpy_virtual(pDataAttack, data, length);
 }

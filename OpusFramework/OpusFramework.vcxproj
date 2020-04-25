@@ -197,7 +197,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="session_manager.cpp" />
-    <ClCompile Include="RuntimeManipulation\DataPatch.cpp" />
+    <ClCompile Include="RuntimeManipulation\data_patch.cpp" />
     <ClCompile Include="c_file_array.cpp" />
     <ClCompile Include="c_file_reference.cpp" />
     <ClCompile Include="FileSystem\blam_file_parser.cpp" />
@@ -241,7 +241,7 @@
     <ClInclude Include="MCC\PlayerConfiguration.h" />
     <ClInclude Include="session_manager.h" />
     <ClInclude Include="MCC\game_context.h" />
-    <ClInclude Include="RuntimeManipulation\DataPatch.h" />
+    <ClInclude Include="RuntimeManipulation\data_patch.h" />
     <ClInclude Include="ApplicationReflection\offsetfunction.h" />
     <ClInclude Include="c_file_array.h" />
     <ClInclude Include="c_file_reference.h" />

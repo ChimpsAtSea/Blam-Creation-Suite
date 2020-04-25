@@ -695,7 +695,7 @@ uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
 	}
 	return ~uintptr_t();
 }
-hs_script_op *(&hs_function_table)[] = reference_symbol<hs_script_op *[]>("hs_function_table", hs_function_table_offset);
+hs_script_op*(&hs_function_table)[] = reference_symbol<hs_script_op *[]>("hs_function_table", hs_function_table_offset);
 
 uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 {
@@ -808,75 +808,6 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 	ReadConfig();
 	//DebugUI::RegisterCallback(halo_reach_debug_callback);
 
-	init_detours();
-	c_function_hook_base::init_function_hook_tree(_engine_type_halo_reach, build);
-	c_global_reference::init_global_reference_tree(_engine_type_halo_reach, build);
-	c_data_patch_base::init_data_patch_tree(_engine_type_halo_reach, build);
-	end_detours();
-
-	// Allows spawning AI via scripts or effects, props to Zeddikins
-	if (c_settings_legacy::read_boolean(_settings_section_legacy_debug, "SpawnAiWithScriptsAndEffects", true))
-	{
-		UINT8 jmp[1] = { 0xEB };
-		switch (build)
-		{
-		case _build_mcc_1_1270_0_0:
-			copy_to_address(_engine_type_halo_reach, _build_mcc_1_1270_0_0, 0x18076F581, jmp, sizeof(jmp));
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1270_0_0, 0x180730287, 6);
-			break;
-		case _build_mcc_1_1305_0_0:
-			copy_to_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x18076E341, jmp, sizeof(jmp));
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x18072F047, 6);
-			break;
-		case _build_mcc_1_1367_0_0:
-		case _build_mcc_1_1377_0_0:
-		case _build_mcc_1_1384_0_0:
-		case _build_mcc_1_1387_0_0:
-		case _build_mcc_1_1389_0_0:
-			copy_to_address(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180779781, jmp, sizeof(jmp));
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x18073A467, 6);
-			break;
-		}
-	}
-
-	// Allow the use of night vision in multiplayer, props to Zeddikins
-	if (c_settings_legacy::read_boolean(_settings_section_legacy_debug, "AllowNightVisionInMultiplayer", true))
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1305_0_0:
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x1805D66B7, 6);
-			break;
-		case _build_mcc_1_1367_0_0:
-		case _build_mcc_1_1377_0_0:
-		case _build_mcc_1_1384_0_0:
-		case _build_mcc_1_1387_0_0:
-		case _build_mcc_1_1389_0_0:
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1805E18D7, 6);
-			break;
-		}
-	}
-
-	// Enable debug hud coordinates
-	if (c_settings_legacy::read_boolean(_settings_section_legacy_debug, "PanCamEnabled", true))
-	{
-		switch (build)
-		{
-		case _build_mcc_1_1305_0_0:
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x1800DCA8A, 6);
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x1800DCA97, 6);
-			break;
-		case _build_mcc_1_1367_0_0:
-		case _build_mcc_1_1377_0_0:
-		case _build_mcc_1_1384_0_0:
-		case _build_mcc_1_1387_0_0:
-		case _build_mcc_1_1389_0_0:
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1800DDF7A, 6);
-			nop_address(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1800DDF87, 6);
-			break;
-		}
-	}
-
 	if (hs_function_table != nullptr)
 	{
 		if (c_settings_legacy::read_boolean(_settings_section_legacy_debug, "ReplacePrintScriptEvaluate", true))
@@ -907,9 +838,5 @@ void deinit_halo_reach(e_engine_type engine_type, e_build build)
 {
 	//DebugUI::UnregisterCallback(halo_reach_debug_callback);
 
-	init_detours();
-	c_function_hook_base::deinit_function_hook_tree(_engine_type_halo_reach, build);
-	c_global_reference::deinit_global_reference_tree(_engine_type_halo_reach, build);
-	c_data_patch_base::deinit_data_patch_tree(_engine_type_halo_reach, build);
-	end_detours();
+
 }

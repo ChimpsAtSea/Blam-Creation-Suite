@@ -1,6 +1,6 @@
 //struct s_game_options;
 //
-//uintptr_t main_game_start_offset(Engine engine, e_build build)
+//uintptr_t main_game_start_offset(e_engine_type engine_type, e_build build)
 //{
 //	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x00567E40);
 //	return ~uintptr_t();
@@ -25,7 +25,7 @@ FunctionHookVarArgsEx<c_stop_watch__start_offset, void()> c_stop_watch__start = 
 	return c_stop_watch__start();
 } };
 
-//uintptr_t language_patch_offset(Engine engine, e_build build)
+//uintptr_t language_patch_offset(e_engine_type engine_type, e_build build)
 //{
 //	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x006333FD);
 //	return ~uintptr_t();
@@ -46,7 +46,7 @@ uintptr_t enable_tag_edits_patch_offset(e_engine_type engine_type, e_build build
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_700255_cert_ms30_oct19, 0);
 	return ~uintptr_t();
 }
-DataPatch<enable_tag_edits_patch_offset> enable_tag_edits = { [](e_engine_type engine_type, e_build build, char*, DataPatchPackets& packets)
+c_data_patch<enable_tag_edits_patch_offset> enable_tag_edits = { [](e_engine_type engine_type, e_build build, char*, DataPatchPackets& packets)
 {
 	// Enable tag edits
 
@@ -92,7 +92,7 @@ uintptr_t no_account_args_patch_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_eldorado, _build_eldorado_1_106708_cert_ms23, 0);
 	return ~uintptr_t();
 }
-DataPatch<no_account_args_patch_offset> no_account_args_patch = { [](e_engine_type engine_type, e_build build, char*, DataPatchPackets& packets)
+c_data_patch<no_account_args_patch_offset> no_account_args_patch = { [](e_engine_type engine_type, e_build build, char*, DataPatchPackets& packets)
 {
 	// No --account args patch
 
@@ -123,12 +123,12 @@ FunctionHookVarArgsEx<GameShieldInit_offset, void()> GameShieldInit = { "GameShi
 	write_line_verbose("GameShieldInit");
 } };
 
-//uintptr_t network_lobby_patch_offset(Engine engine, e_build build)
+//uintptr_t network_lobby_patch_offset(e_engine_type engine_type, e_build build)
 //{
 //	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x00AC34B0);
 //	return ~uintptr_t();
 //}
-//DataPatch<network_lobby_patch_offset> network_lobby_patch = { [](Engine engine, Build, char* data, DataPatchPacket& packet)
+//DataPatch<network_lobby_patch_offset> network_lobby_patch = { [](e_engine_type engine_type, Build, char* data, DataPatchPacket& packet)
 //{
 //	// Fix "Network" setting in lobbies (change broken 0x100B7 menuID to 0x100B6)
 //
@@ -137,12 +137,12 @@ FunctionHookVarArgsEx<GameShieldInit_offset, void()> GameShieldInit = { "GameShi
 //	*network_lobby_patch_data = 0xB6i8;
 //} };
 //
-//uintptr_t main_menu_ui_elements_patch_offset(Engine engine, e_build build)
+//uintptr_t main_menu_ui_elements_patch_offset(e_engine_type engine_type, e_build build)
 //{
 //	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x00AAA870);
 //	return ~uintptr_t();
 //}
-//DataPatch<main_menu_ui_elements_patch_offset> main_menu_ui_elements_patch = { [](Engine engine, Build, char* data, DataPatchPacket& packet)
+//DataPatch<main_menu_ui_elements_patch_offset> main_menu_ui_elements_patch = { [](e_engine_type engine_type, Build, char* data, DataPatchPacket& packet)
 //{
 //	// Fix UI elements automatically closing on mainmenu-loaded maps (todo: find real reason why they close)
 //
@@ -151,12 +151,12 @@ FunctionHookVarArgsEx<GameShieldInit_offset, void()> GameShieldInit = { "GameShi
 //	*network_lobby_patch_data = 0xC3i8;
 //} };
 //
-//uintptr_t load_level_patch_offset(Engine engine, e_build build)
+//uintptr_t load_level_patch_offset(e_engine_type engine_type, e_build build)
 //{
 //	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x006D26DF);
 //	return ~uintptr_t();
 //}
-//DataPatch<load_level_patch_offset> load_level_patch = { [](Engine engine, Build, char* data, DataPatchPacket& packet)
+//DataPatch<load_level_patch_offset> load_level_patch = { [](e_engine_type engine_type, Build, char* data, DataPatchPacket& packet)
 //{
 //	// Level load patch
 //
@@ -165,12 +165,12 @@ FunctionHookVarArgsEx<GameShieldInit_offset, void()> GameShieldInit = { "GameShi
 //	memset(load_level_patch_data, 0x90, 5); // nop
 //} };
 //
-//uintptr_t anti_cheat_patch_offset(Engine engine, e_build build)
+//uintptr_t anti_cheat_patch_offset(e_engine_type engine_type, e_build build)
 //{
 //	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x006006F0);
 //	return ~uintptr_t();
 //}
-//DataPatch<anti_cheat_patch_offset> anti_cheat_patch = { [](Engine engine, Build, char* data, DataPatchPacket& packet)
+//DataPatch<anti_cheat_patch_offset> anti_cheat_patch = { [](e_engine_type engine_type, Build, char* data, DataPatchPacket& packet)
 //{
 //	// Level load patch
 //
@@ -228,7 +228,7 @@ FunctionHookVarArgsEx<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdow
 	//ShutdownSoundSystem();
 } };
 //
-//uintptr_t GameClient__Shutdown_offset(Engine engine, e_build build)
+//uintptr_t GameClient__Shutdown_offset(e_engine_type engine_type, e_build build)
 //{
 //	OFFSET(Engine::Eldorado, Build::Eldorado_1_106708_cert_ms23, 0x005056D0);
 //	return ~uintptr_t();
