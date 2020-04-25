@@ -13,6 +13,9 @@ public:
 	virtual bool Function11() = 0;
 	virtual bool Function12() = 0;
 
-	s_map_variant MapVariant;
-	BYTE data[29484];
+	union
+	{
+		s_map_variant MapVariant;
+		char variant_buffer[0xE800];
+	};
 };

@@ -69,6 +69,9 @@ public:
 	virtual INT32 Function20() = 0;
 	virtual bool Function21(INT32) = 0;
 
-	s_game_variant GameVariant;
-	BYTE data[22060];
+	union
+	{
+		s_game_variant GameVariant;
+		char variant_buffer[0x1CC00];
+	};
 };

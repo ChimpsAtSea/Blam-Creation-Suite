@@ -50,10 +50,10 @@ e_map_id halo2_map_id = halo2_map_ids[0];
 
 static e_map_id groundhog_map_ids[] =
 {
+	_map_id_groundhog_coagulation,
 	_map_id_groundhog_lockout,
 	_map_id_groundhog_ascension,
 	_map_id_groundhog_zanzibar,
-	_map_id_groundhog_coagulation,
 	_map_id_groundhog_warlock,
 	_map_id_groundhog_sanctuary,
 	_map_id_groundhog_forge_skybox01,
@@ -374,18 +374,21 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				game_context->game_mode = game_mode;
 				game_context->map_id = static_cast<e_map_id>(selected_map_info->GetMapID());
 
-				c_halo_reach_game_option_selection_legacy::load_game_variant(
-					c_halo_reach_game_host::get_data_access(), 
-					"haloreach", 
-					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str(), 
-					*reinterpret_cast<s_game_variant*>(game_context->game_variant_buffer), 
-					true);
-				c_halo_reach_game_option_selection_legacy::load_map_variant(
-					c_halo_reach_game_host::get_data_access(), 
-					"haloreach",
-					c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str(), 
-					*reinterpret_cast<s_map_variant*>(game_context->map_variant_buffer), 
-					true);
+				load_variant_from_file(
+					c_halo_reach_game_host::get_data_access(),
+					game_context,
+					engine_type,
+					e_variant_type::_variant_type_game,
+					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str()
+				);
+				load_variant_from_file(
+					c_halo_reach_game_host::get_data_access(),
+					game_context,
+					engine_type,
+					e_variant_type::_variant_type_map,
+					c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str()
+				);
+
 				//c_halo_reach_game_option_selection_legacy::load_savegame("gamestate", *game_context);
 				//c_halo_reach_game_option_selection_legacy::load_savefilm(c_halo_reach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_context);
 
@@ -441,20 +444,26 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 					game_context->game_mode = _mcc_game_mode_multiplayer;
 				}
 
-				//c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "01_slayer";
-				//c_halo_reach_game_option_selection_legacy::load_game_variant(
-				//	c_halo2_game_host::get_data_access(),
-				//	"halo2",
-				//	c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str(),
-				//	*reinterpret_cast<s_game_variant*>(game_context->game_variant_buffer),
-				//	true);
-				//c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline";
-				//c_halo_reach_game_option_selection_legacy::load_map_variant(
-				//	c_groundhog_game_host::get_data_access(),
-				//	"groundhog",
-				//	c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str(),
-				//	*reinterpret_cast<s_map_variant*>(game_context->map_variant_buffer),
-				//	true);
+				if (game_context->game_mode == _mcc_game_mode_multiplayer)
+				{
+					c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
+
+					load_variant_from_file(
+						c_halo2_game_host::get_data_access(),
+						game_context,
+						engine_type,
+						e_variant_type::_variant_type_game,
+						c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str()
+					);
+					c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // map variants don't exist in Halo 2
+					load_variant_from_file(
+						c_halo2_game_host::get_data_access(),
+						game_context,
+						engine_type,
+						e_variant_type::_variant_type_map,
+						c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str()
+					);
+				}
 
 				game_context->map_id = halo2_map_id;
 			}
@@ -463,21 +472,22 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				game_context->game_mode = _mcc_game_mode_multiplayer;
 				game_context->map_id = groundhog_map_id;
 
-				c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "H2A_Team_Slayer";
-				c_halo_reach_game_option_selection_legacy::load_game_variant(
+				c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "H2A_001_001_basic_editing_137";
+				load_variant_from_file(
 					c_groundhog_game_host::get_data_access(),
-					"groundhog",
-					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str(),
-					*reinterpret_cast<s_game_variant*>(game_context->game_variant_buffer),
-					true);
+					game_context,
+					engine_type,
+					e_variant_type::_variant_type_game,
+					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str()
+				);
 				c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline";
-				c_halo_reach_game_option_selection_legacy::load_map_variant(
+				load_variant_from_file(
 					c_groundhog_game_host::get_data_access(),
-					"groundhog",
-					c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str(),
-					*reinterpret_cast<s_map_variant*>(game_context->map_variant_buffer),
-					true);
-
+					game_context,
+					engine_type,
+					e_variant_type::_variant_type_map,
+					c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str()
+				);
 			}
 		}
 	}
@@ -874,4 +884,141 @@ LRESULT CALLBACK c_game_launcher::window_procedure_callback(HWND hwnd, UINT msg,
 		break;
 	}
 	return 0;
+}
+
+bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameContext* game_context, e_engine_type engine_type, e_variant_type variant_type, LPCSTR file_name)
+{
+	ASSERT(is_valid(game_context));
+	ASSERT(is_valid(data_access));
+	ASSERT(engine_type != _engine_type_not_set);
+	ASSERT(is_valid(file_name));
+
+	char* game_context_variant_buffer = nullptr;
+	size_t variant_buffer_size = 0;
+	std::string type_name = "";
+	std::string type_nice_name = "";
+	std::string type_extension = "";
+	std::string engine_name = "";
+
+	switch (engine_type)
+	{
+	case _engine_type_halo_reach:
+		engine_name = "haloreach";
+		break;
+	case _engine_type_halo1:
+		engine_name = "halo1";
+		break;
+	case _engine_type_halo2:
+		engine_name = "halo2";
+		break;
+	case _engine_type_groundhog:
+		engine_name = "groundhog";
+		break;
+	default:
+		return false;
+	}
+
+	switch (variant_type)
+	{
+	case _variant_type_game:
+		game_context_variant_buffer = game_context->game_variant_buffer;
+		variant_buffer_size = k_game_variant_buffer_size;
+		type_name = "game";
+		type_nice_name = "GameType";
+		type_extension = ".bin";
+		break;
+	case _variant_type_map:
+		game_context_variant_buffer = game_context->map_variant_buffer;
+		variant_buffer_size = k_map_variant_buffer_size;
+		type_name = "map";
+		type_nice_name = "Map";
+		type_extension = ".mvar";
+		break;
+	default:
+		return false;
+	}
+	memset(game_context_variant_buffer, 0, variant_buffer_size);
+
+	LPCSTR user_profile_path = GetUserprofileVariable();
+	std::vector<std::string> file_paths =
+	{
+		std::string(engine_name).append("/").append(type_name).append("_variants/").append(file_name).append(type_extension),
+		std::string(engine_name).append("/hopper_").append(type_name).append("_variants/").append(file_name).append(type_extension),
+		std::string(user_profile_path).append("/AppData/LocalLow/HaloMCC/Temporary/UserContent/").append(engine_name).append("/").append(type_nice_name).append("/").append(file_name).append(type_extension),
+		std::string(user_profile_path).append("/AppData/LocalLow/MCC/Temporary/UserContent/").append(engine_name).append("/").append(type_nice_name).append("/").append(file_name).append(type_extension),
+	};
+
+	std::string selected_file_path;
+	for (std::string file_path : file_paths)
+	{
+		if (PathFileExistsA(file_path.c_str()))
+		{
+			selected_file_path = file_path;
+			break;
+		}
+	}
+	
+	char* variant_data = nullptr;
+	size_t variant_data_size = 0;
+
+	char* variant_buffer = nullptr;
+
+	if (!PathFileExistsA(selected_file_path.c_str()))
+	{
+		if (true)
+		{
+			write_line_verbose("Variant file does not exist");
+			return false;
+		}
+		else
+		{
+			write_line_verbose("Variant file does not exist, falling back to default");
+
+			switch (variant_type)
+			{
+			case e_variant_type::_variant_type_game:
+				variant_buffer = data_access->GameVariantCreateDefault(variant_data)->variant_buffer; // This is not correct
+				break;
+			case e_variant_type::_variant_type_map:
+				variant_buffer = data_access->MapVariantCreateFromMapID(game_context->map_id)->variant_buffer;
+				break;
+			default:
+				return false;
+			}
+
+			memcpy(game_context_variant_buffer, variant_buffer, variant_buffer_size);
+
+			return true;
+		}
+	}
+
+	if (!read_file_to_memory(selected_file_path.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
+	{
+		write_line_verbose("Failed to open variant file");
+		return false;
+	}
+	if (variant_data_size == 0)
+	{
+		write_line_verbose("Variant file was zero sized");
+		return false;
+	}
+
+	switch (variant_type)
+	{
+	case e_variant_type::_variant_type_game:
+		variant_buffer = data_access->GameVariantCreateFromFile(variant_data, variant_data_size)->variant_buffer;
+		break;
+	case e_variant_type::_variant_type_map:
+		variant_buffer = data_access->MapVariantCreateFromFile(variant_data, variant_data_size)->variant_buffer;
+		break;
+	default:
+		return false;
+	}
+
+	size_t variant_size = variant_data_size;
+	variant_size = (variant_size < variant_buffer_size ? variant_size : variant_buffer_size);
+	memcpy(game_context_variant_buffer, variant_buffer, variant_size);
+	delete[] variant_data;
+
+	return true;
 }

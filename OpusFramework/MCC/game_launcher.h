@@ -7,6 +7,17 @@ enum e_next_launch_mode
 	_next_launch_mode_theater
 };
 
+enum e_variant_type
+{
+	_variant_type_game,
+	_variant_type_map,
+
+	//_variant_type_film,
+	//_variant_type_save,
+
+	k_number_of_variant_types
+};
+
 class c_game_launcher
 {
 public:
@@ -30,6 +41,7 @@ private:
 #ifdef _WINDOWS_
 	static LRESULT CALLBACK window_procedure_callback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 #endif
+	static bool load_variant_from_file(IDataAccess* data_access, GameContext* game_context, e_engine_type engine_type, e_variant_type variant_type, LPCSTR file_name);
 
 	// #TODO: Move these into each lib
 #ifdef _WIN64
