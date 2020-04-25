@@ -371,95 +371,6 @@ struct RealPoint2D
 	float Y;
 };
 
-struct PlayerConfiguration
-{
-	/* 0x0 */	long SubtitleSetting;
-	/* 0x4 */	long CrosshairLocation;
-	/* 0x8 */	long FOVSetting;
-	/* 0xC */	long VehicleFOVSetting;
-	/* 0x10 */	bool LookControlsInverted;
-	/* 0x11 */	bool MouseLookControlsInverted;
-	/* 0x12 */	bool VibrationDisabled;
-	/* 0x13 */	bool ImpulseTriggersDisabled;
-	/* 0x14 */	bool AircraftControlsInverted;
-	/* 0x15 */	bool MouseAircraftControlsInverted;
-	/* 0x16 */	bool AutoCenterEnabled;
-	/* 0x17 */	bool CrouchLockEnabled;
-	/* 0x18 */	bool MKCrouchLockEnabled;
-	/* 0x19 */	bool ClenchProtectionEnabled;
-	/* 0x1A */	bool UseFemaleVoice;
-	/* 0x1B */	bool HoldToZoom;
-	/* 0x1C */	long PlayerModelPrimaryColorIndex;
-	/* 0x20 */	long PlayerModelSecondaryColorIndex;
-	/* 0x24 */	long PlayerModelTertiaryColorIndex;
-	/* 0x28 */	bool UseEliteModel;
-	/* 0x29 */	char __padding29[3];
-	/* 0x2C */	long PlayerModelPermutation;
-	/* 0x30 */	eHaloArmor HelmetIndex;
-	/* 0x34 */	eHaloArmor LeftShoulderIndex;
-	/* 0x38 */	eHaloArmor RightShoulderIndex;
-	/* 0x3C */	eHaloArmor ChestIndex;
-	/* 0x40 */	eHaloArmor WristIndex;
-	/* 0x44 */	eHaloArmor UtilityIndex;
-	/* 0x48 */	eHaloArmor KneeGuardsIndex;
-	/* 0x4C */	eHaloArmor VisorColorIndex;
-	/* 0x50 */	eHaloArmor SpartanArmorEffectIndex;
-	/* 0x54 */	eHaloArmor SpartanBodyIndex;
-	/* 0x58 */	eHaloArmor EliteArmorIndex;
-	/* 0x5C */	eHaloArmor EliteArmorEffectIndex;
-	/* 0x60 */	eHaloArmor VoiceIndex;
-	/* 0x64 */	eHaloArmor PlayerModelPrimaryColor;
-	/* 0x68 */	eHaloArmor PlayerModelSecondaryColor;
-	/* 0x6C */	eHaloArmor PlayerModelTertiaryColor;
-	/* 0x70 */	wchar_t ServiceTag[4];
-	/* 0x78 */	long OnlineMedalFlasher;
-	/* 0x7C */	long VerticalLookSensitivity;
-	/* 0x80 */	long HorizontalLookSensitivity;
-	/* 0x84 */	long LookAcceleration;
-	/* 0x88 */	float LookAxialDeadZone;
-	/* 0x8C */	float LookRadialDeadZone;
-	/* 0x90 */	float ZoomLookSensitivityMultiplier;
-	/* 0x94 */	float VehicleLookSensitivityMultiplier;
-	/* 0x98 */	long ButtonPreset;
-	/* 0x9C */	long StickPreset;
-	/* 0xA0 */	long LeftyToggle;
-	/* 0xA4 */	long FlyingCameraTurnSensitivity;
-	/* 0xA8 */	long FlyingCameraPanning;
-	/* 0xAC */	long FlyingCameraSpeed;
-	/* 0xB0 */	long FlyingCameraThrust;
-	/* 0xB4 */	long TheaterTurnSensitivity;
-	/* 0xB8 */	long TheaterPanning;
-	/* 0xBC */	long TheaterSpeed;
-	/* 0xC0 */	long TheaterThrust;
-	/* 0xC4 */	bool SwapTriggersAndBumpers;
-	/* 0xC5 */	bool UseModernAimControl;
-	/* 0xC6 */	bool UseDoublePressJumpToJetpack;
-	/* 0xC7 */	char __paddingC7;
-	/* 0xC8 */	char EnemyPlayerNameColor;
-	/* 0xC9 */	char GameEngineTimer;
-	/* 0xCA */	char __paddingCA[2];
-	/* 0xCC */	LoadoutSlot Loadouts[5];
-	/* 0x1F8 */	char GameSpecific[256];
-	/* 0x2F8 */	float MouseSensitivity;
-	/* 0x2FC */	bool MouseSmoothing;
-	/* 0x2FD */	bool MouseAcceleration;
-	/* 0x2FE */	char __padding2FE[2];
-	/* 0x300 */	float MouseAccelerationMinRate;
-	/* 0x304 */	float MouseAccelerationMaxAccel;
-	/* 0x308 */	float MouseAccelerationScale;
-	/* 0x30C */	float MouseAccelerationExp;
-	/* 0x310 */	long KeyboardMouseButtonPreset;
-	/* 0x314 */	GameKeyboardMouseMapping GameKeyboardMouseMappings[56];
-	/* 0x854 */	float MasterVolume;
-	/* 0x858 */	float MusicVolume;
-	/* 0x85C */	float SfxVolume;
-	/* 0x860 */	char __unknown860[16];
-	/* 0x870 */	long Brightness;
-	/* 0x874 */	RealPoint2D WeaponDisplayOffset[5];
-};
-CHECK_STRUCTURE_SIZE(PlayerConfiguration, 0x89C);
-
-
 enum GameAction : long
 {
 	Jump,
@@ -496,7 +407,9 @@ enum GameAction : long
 	SecondaryVehicleTrick,
 	MagnifyZoom,
 	Equipment,
+
 	FireSecondary,
+
 	LiftEditor,
 	DropEditor,
 	GrabObjectEditor,
@@ -517,7 +430,647 @@ enum GameAction : long
 	StopContinuePlaybackTheater,
 	PlaybackSpeedUpTheater,
 	EnterFreeCameraModeTheater,
+
 	MovementSpeedUpTheater,
 
-	Count
+	PanningCameraTheater,
+	CameraMoveUpTheater,
+	CameraMoveDownTheater,
+	DualWield,
+	ZoomCameraTheater,
+
+	Count,
+
+	GameActionV1_Count = Equipment + 1,
+	GameActionV2_Count = FireSecondary + 1,
+	GameActionV3_Count = EnterFreeCameraModeTheater + 1,
+	GameActionV4_Count = MovementSpeedUpTheater + 1,
+	GameActionV5_Count = ZoomCameraTheater + 1,
+};
+
+template<size_t k_number_of_game_actions>
+struct s_player_configuration_v1
+{
+	long SubtitleSetting;
+	long CrosshairLocation;
+	long FOVSetting;
+	bool LookControlsInverted;
+	bool VibrationDisabled;
+	bool ImpulseTriggersDisabled;
+	bool AircraftControlsInverted;
+	bool AutoCenterEnabled;
+	bool CrouchLockEnabled;
+	bool ClenchProtectionEnabled;
+	bool UseFemaleVoice;
+	bool HoldToZoom;
+	char __padding0[3];
+	long PlayerModelPrimaryColorIndex;
+	long PlayerModelSecondaryColorIndex;
+	long PlayerModelTertiaryColorIndex;
+	bool UseEliteModel;
+	char __padding1[3];
+	long PlayerModelPermutation;
+	wchar_t ServiceTag[4];
+	long OnlineMedalFlasher;
+	long VerticalLookSensitivity;
+	long HorizontalLookSensitivity;
+	long LookAcceleration;
+	float LookAxialDeadZone;
+	float LookRadialDeadZone;
+	float ZoomLookSensitivityMultiplier;
+	float VehicleLookSensitivityMultiplier;
+	long ButtonPreset;
+	long StickPreset;
+	long LeftyToggle;
+	long FlyingCameraTurnSensitivity;
+	long FlyingCameraPanning;
+	long FlyingCameraSpeed;
+	long FlyingCameraThrust;
+	long TheaterTurnSensitivity;
+	long TheaterPanning;
+	long TheaterSpeed;
+	long TheaterThrust;
+	bool SwapTriggersAndBumpers;
+	bool UseModernAimControl;
+	bool UseDoublePressJumpToJetpack;
+	char __padding2;
+	char EnemyPlayerNameColor;
+	char GameEngineTimer;
+	char __padding3[2];
+	LoadoutSlot LoadoutSlots[5];
+	char GameSpecific[256];
+	float MouseSensitivity;
+	bool MouseSmoothing;
+	bool MouseAcceleration;
+	char __padding4[2];
+	float MouseAccelerationMinRate;
+	float MouseAccelerationMaxAccel;
+	float MouseAccelerationScale;
+	float MouseAccelerationExp;
+	long KeyboardMouseButtonPreset;
+	GameKeyboardMouseMapping GameKeyboardMouseMappings[k_number_of_game_actions];
+	float MasterVolume;
+	float MusicVolume;
+	float SfxVolume;
+	char __padding5[20];
+	long Brightness;
+};
+
+template<size_t k_number_of_game_actions>
+struct s_player_configuration_v2
+{
+	long SubtitleSetting;
+	long CrosshairLocation;
+	long FOVSetting;
+	/* new in this version */ long VehicleFOVSetting;
+	bool LookControlsInverted;
+	/* new in this version */ bool MouseLookControlsInverted;
+	bool VibrationDisabled;
+	bool ImpulseTriggersDisabled;
+	bool AircraftControlsInverted;
+	/* new in this version */ bool MouseAircraftControlsInverted;
+	bool AutoCenterEnabled;
+	bool CrouchLockEnabled;
+	/* new in this version */ bool MKCrouchLockEnabled;
+	bool ClenchProtectionEnabled;
+	bool UseFemaleVoice;
+	bool HoldToZoom;
+	long PlayerModelPrimaryColorIndex;
+	long PlayerModelSecondaryColorIndex;
+	long PlayerModelTertiaryColorIndex;
+	bool UseEliteModel;
+	char __padding0[3];
+	long PlayerModelPermutation;
+	/* new in this version */ eHaloArmor HelmetIndex;
+	/* new in this version */ eHaloArmor LeftShoulderIndex;
+	/* new in this version */ eHaloArmor RightShoulderIndex;
+	/* new in this version */ eHaloArmor ChestIndex;
+	/* new in this version */ eHaloArmor WristIndex;
+	/* new in this version */ eHaloArmor UtilityIndex;
+	/* new in this version */ eHaloArmor KneeGuardsIndex;
+	/* new in this version */ eHaloArmor VisorColorIndex;
+	/* new in this version */ eHaloArmor SpartanArmorEffectIndex;
+	/* new in this version */ eHaloArmor SpartanBodyIndex;
+	/* new in this version */ eHaloArmor EliteArmorIndex;
+	/* new in this version */ eHaloArmor EliteArmorEffectIndex;
+	/* new in this version */ eHaloArmor VoiceIndex;
+	/* new in this version */ eHaloArmor PlayerModelPrimaryColor;
+	/* new in this version */ eHaloArmor PlayerModelSecondaryColor;
+	/* new in this version */ eHaloArmor PlayerModelTertiaryColor;
+	wchar_t ServiceTag[4];
+	long OnlineMedalFlasher;
+	long VerticalLookSensitivity;
+	long HorizontalLookSensitivity;
+	long LookAcceleration;
+	float LookAxialDeadZone;
+	float LookRadialDeadZone;
+	float ZoomLookSensitivityMultiplier;
+	float VehicleLookSensitivityMultiplier;
+	long ButtonPreset;
+	long StickPreset;
+	long LeftyToggle;
+	long FlyingCameraTurnSensitivity;
+	long FlyingCameraPanning;
+	long FlyingCameraSpeed;
+	long FlyingCameraThrust;
+	long TheaterTurnSensitivity;
+	long TheaterPanning;
+	long TheaterSpeed;
+	long TheaterThrust;
+	bool SwapTriggersAndBumpers;
+	bool UseModernAimControl;
+	bool UseDoublePressJumpToJetpack;
+	char __padding1;
+	char EnemyPlayerNameColor;
+	char GameEngineTimer;
+	char __padding2[2];
+	LoadoutSlot LoadoutSlots[5];
+	char GameSpecific[256];
+	float MouseSensitivity;
+	bool MouseSmoothing;
+	bool MouseAcceleration;
+	char __padding3[2];
+	float MouseAccelerationMinRate;
+	float MouseAccelerationMaxAccel;
+	float MouseAccelerationScale;
+	float MouseAccelerationExp;
+	long KeyboardMouseButtonPreset;
+	GameKeyboardMouseMapping GameKeyboardMouseMappings[k_number_of_game_actions];
+	float MasterVolume;
+	float MusicVolume;
+	float SfxVolume;
+	char __padding4[16];
+	long Brightness;
+};
+
+template<size_t k_number_of_game_actions>
+struct s_player_configuration_v4 : s_player_configuration_v2<k_number_of_game_actions>
+{
+	/* new in this version */ RealPoint2D WeaponDisplayOffsets[5];
+};
+
+template<size_t k_number_of_game_actions>
+struct s_player_configuration_v6
+{
+	long SubtitleSetting;
+	long CrosshairLocation;
+	long FOVSetting;
+	long VehicleFOVSetting;
+	bool LookControlsInverted;
+	bool MouseLookControlsInverted;
+	bool VibrationDisabled;
+	bool ImpulseTriggersDisabled;
+	bool AircraftControlsInverted;
+	bool MouseAircraftControlsInverted;
+	bool AutoCenterEnabled;
+	bool CrouchLockEnabled;
+	bool MKCrouchLockEnabled;
+	bool ClenchProtectionEnabled;
+	bool UseFemaleVoice;
+	bool HoldToZoom;
+	long PlayerModelPrimaryColorIndex;
+	long PlayerModelSecondaryColorIndex;
+	long PlayerModelTertiaryColorIndex;
+	bool UseEliteModel;
+	char __padding0[3];
+	long PlayerModelPermutation;
+	eHaloArmor HelmetIndex;
+	eHaloArmor LeftShoulderIndex;
+	eHaloArmor RightShoulderIndex;
+	eHaloArmor ChestIndex;
+	eHaloArmor WristIndex;
+	eHaloArmor UtilityIndex;
+	eHaloArmor KneeGuardsIndex;
+	eHaloArmor VisorColorIndex;
+	eHaloArmor SpartanArmorEffectIndex;
+	eHaloArmor SpartanBodyIndex;
+	eHaloArmor EliteArmorIndex;
+	eHaloArmor EliteArmorEffectIndex;
+	eHaloArmor VoiceIndex;
+	eHaloArmor PlayerModelPrimaryColor;
+	eHaloArmor PlayerModelSecondaryColor;
+	eHaloArmor PlayerModelTertiaryColor;
+	wchar_t ServiceTag[4];
+	long OnlineMedalFlasher;
+	long VerticalLookSensitivity;
+	long HorizontalLookSensitivity;
+	long LookAcceleration;
+	float LookAxialDeadZone;
+	float LookRadialDeadZone;
+	float ZoomLookSensitivityMultiplier;
+	float VehicleLookSensitivityMultiplier;
+	long ButtonPreset;
+	long StickPreset;
+	long LeftyToggle;
+	long FlyingCameraTurnSensitivity;
+	long FlyingCameraPanning;
+	long FlyingCameraSpeed;
+	long FlyingCameraThrust;
+	long TheaterTurnSensitivity;
+	long TheaterPanning;
+	long TheaterSpeed;
+	long TheaterThrust;
+	/* new in this version */ char __unknown0[16];
+	bool SwapTriggersAndBumpers;
+	bool UseModernAimControl;
+	bool UseDoublePressJumpToJetpack;
+	bool __padding1;
+	char EnemyPlayerNameColor;
+	char GameEngineTimer;
+	char __padding2[2];
+	LoadoutSlot LoadoutSlots[5];
+	char GameSpecific[256];
+	float MouseSensitivity;
+	bool MouseSmoothing;
+	bool MouseAcceleration;
+	char __padding3[2];
+	float MouseAccelerationMinRate;
+	float MouseAccelerationMaxAccel;
+	float MouseAccelerationScale;
+	float MouseAccelerationExp;
+	long KeyboardMouseButtonPreset;
+	GameKeyboardMouseMapping GameKeyboardMouseMappings[k_number_of_game_actions];
+	float MasterVolume;
+	float MusicVolume;
+	float SfxVolume;
+	char __padding4[16];
+	long Brightness;
+	RealPoint2D WeaponDisplayOffsets[5];
+};
+
+using PlayerConfigurationV1 = s_player_configuration_v1<GameActionV1_Count>;
+CHECK_STRUCTURE_SIZE(PlayerConfigurationV1, 0x624);
+using PlayerConfigurationV2 = s_player_configuration_v2<GameActionV1_Count>;
+CHECK_STRUCTURE_SIZE(PlayerConfigurationV2, 0x664);
+using PlayerConfigurationV3 = s_player_configuration_v2<GameActionV2_Count>;
+CHECK_STRUCTURE_SIZE(PlayerConfigurationV3, 0x67C);
+using PlayerConfigurationV4 = s_player_configuration_v4<GameActionV3_Count>;
+CHECK_STRUCTURE_SIZE(PlayerConfigurationV4, 0x884);
+using PlayerConfigurationV5 = s_player_configuration_v4<GameActionV4_Count>;
+CHECK_STRUCTURE_SIZE(PlayerConfigurationV5, 0x89C);
+using PlayerConfigurationV6 = s_player_configuration_v6<GameActionV5_Count>;
+CHECK_STRUCTURE_SIZE(PlayerConfigurationV6, 0x924);
+
+using PlayerConfiguration = PlayerConfigurationV6; // TODO: replace this with `class PlayerConfiguration_` when ready
+
+enum e_player_configuration_version
+{
+	_player_configuration_version_1,
+	_player_configuration_version_2,
+	_player_configuration_version_3,
+	_player_configuration_version_4,
+	_player_configuration_version_5,
+	_player_configuration_version_6,
+};
+
+class PlayerConfiguration_
+{
+private:
+	union
+	{
+		PlayerConfigurationV1 player_configuration_v1;
+		PlayerConfigurationV2 player_configuration_v2;
+		PlayerConfigurationV3 player_configuration_v3;
+		PlayerConfigurationV4 player_configuration_v4;
+		PlayerConfigurationV5 player_configuration_v5;
+		PlayerConfigurationV6 player_configuration_v6;
+	};
+public:
+	e_player_configuration_version const player_configuration_version;
+
+	long& SubtitleSetting;
+	long& CrosshairLocation;
+	long& FOVSetting;
+	long& VehicleFOVSetting;
+	bool& LookControlsInverted;
+	bool& MouseLookControlsInverted;
+	bool& VibrationDisabled;
+	bool& ImpulseTriggersDisabled;
+	bool& AircraftControlsInverted;
+	bool& MouseAircraftControlsInverted;
+	bool& AutoCenterEnabled;
+	bool& CrouchLockEnabled;
+	bool& MKCrouchLockEnabled;
+	bool& ClenchProtectionEnabled;
+	bool& UseFemaleVoice;
+	bool& HoldToZoom;
+	long& PlayerModelPrimaryColorIndex;
+	long& PlayerModelSecondaryColorIndex;
+	long& PlayerModelTertiaryColorIndex;
+	bool& UseEliteModel;
+
+	long& PlayerModelPermutation;
+	eHaloArmor& HelmetIndex;
+	eHaloArmor& LeftShoulderIndex;
+	eHaloArmor& RightShoulderIndex;
+	eHaloArmor& ChestIndex;
+	eHaloArmor& WristIndex;
+	eHaloArmor& UtilityIndex;
+	eHaloArmor& KneeGuardsIndex;
+	eHaloArmor& VisorColorIndex;
+	eHaloArmor& SpartanArmorEffectIndex;
+	eHaloArmor& SpartanBodyIndex;
+	eHaloArmor& EliteArmorIndex;
+	eHaloArmor& EliteArmorEffectIndex;
+	eHaloArmor& VoiceIndex;
+	eHaloArmor& PlayerModelPrimaryColor;
+	eHaloArmor& PlayerModelSecondaryColor;
+	eHaloArmor& PlayerModelTertiaryColor;
+
+	wchar_t (&ServiceTag)[4];
+
+	long& OnlineMedalFlasher;
+	long& VerticalLookSensitivity;
+	long& HorizontalLookSensitivity;
+	long& LookAcceleration;
+	float& LookAxialDeadZone;
+	float& LookRadialDeadZone;
+	float& ZoomLookSensitivityMultiplier;
+	float& VehicleLookSensitivityMultiplier;
+	long& ButtonPreset;
+	long& StickPreset;
+	long& LeftyToggle;
+	long& FlyingCameraTurnSensitivity;
+	long& FlyingCameraPanning;
+	long& FlyingCameraSpeed;
+	long& FlyingCameraThrust;
+	long& TheaterTurnSensitivity;
+	long& TheaterPanning;
+	long& TheaterSpeed;
+	long& TheaterThrust;
+
+	char (&__unknown0)[16];
+
+	bool& SwapTriggersAndBumpers;
+	bool& UseModernAimControl;
+	bool& UseDoublePressJumpToJetpack;
+
+	char& EnemyPlayerNameColor;
+	char& GameEngineTimer;
+
+	LoadoutSlot (&LoadoutSlots)[5];
+	char (&GameSpecific)[256];
+	float& MouseSensitivity;
+	bool& MouseSmoothing;
+	bool& MouseAcceleration;
+
+	float& MouseAccelerationMinRate;
+	float& MouseAccelerationMaxAccel;
+	float& MouseAccelerationScale;
+	float& MouseAccelerationExp;
+	long& KeyboardMouseButtonPreset;
+	//GameKeyboardMouseMapping GameKeyboardMouseMappings[GameActionV5_Count];
+	float& MasterVolume;
+	float& MusicVolume;
+	float& SfxVolume;
+
+	long& Brightness;
+	RealPoint2D (&WeaponDisplayOffsets)[5];
+
+private:
+
+#define reference_getter(field_name) \
+	decltype(&field_name) get_##field_name() \
+	{ \
+		switch (player_configuration_version) \
+		{ \
+		case _player_configuration_version_1: return &player_configuration_v1.field_name; \
+		case _player_configuration_version_2: return &player_configuration_v2.field_name; \
+		case _player_configuration_version_3: return &player_configuration_v3.field_name; \
+		case _player_configuration_version_4: return &player_configuration_v4.field_name; \
+		case _player_configuration_version_5: return &player_configuration_v5.field_name; \
+		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
+		} \
+		return nullptr; \
+	}
+#define reference_getter_v2(field_name) \
+	decltype(&field_name) get_##field_name() \
+	{ \
+		switch (player_configuration_version) \
+		{ \
+		case _player_configuration_version_2: return &player_configuration_v2.field_name; \
+		case _player_configuration_version_3: return &player_configuration_v3.field_name; \
+		case _player_configuration_version_4: return &player_configuration_v4.field_name; \
+		case _player_configuration_version_5: return &player_configuration_v5.field_name; \
+		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
+		} \
+		return nullptr; \
+	}
+#define reference_getter_v4(field_name) \
+	decltype(&field_name) get_##field_name() \
+	{ \
+		switch (player_configuration_version) \
+		{ \
+		case _player_configuration_version_4: return &player_configuration_v4.field_name; \
+		case _player_configuration_version_5: return &player_configuration_v5.field_name; \
+		case _player_configuration_version_6: return &player_configuration_v6.field_name; \
+		} \
+		return nullptr; \
+	}
+
+	reference_getter(SubtitleSetting);
+	reference_getter(CrosshairLocation);
+	reference_getter(FOVSetting);
+	reference_getter_v2(VehicleFOVSetting);
+	reference_getter(LookControlsInverted);
+	reference_getter_v2(MouseLookControlsInverted);
+	reference_getter(VibrationDisabled);
+	reference_getter(ImpulseTriggersDisabled);
+	reference_getter(AircraftControlsInverted);
+	reference_getter_v2(MouseAircraftControlsInverted);
+	reference_getter(AutoCenterEnabled);
+	reference_getter(CrouchLockEnabled);
+	reference_getter_v2(MKCrouchLockEnabled);
+	reference_getter(ClenchProtectionEnabled);
+	reference_getter(UseFemaleVoice);
+	reference_getter(HoldToZoom);
+	reference_getter(PlayerModelPrimaryColorIndex);
+	reference_getter(PlayerModelSecondaryColorIndex);
+	reference_getter(PlayerModelTertiaryColorIndex);
+	reference_getter(UseEliteModel);
+	reference_getter(PlayerModelPermutation);
+	reference_getter_v2(HelmetIndex);
+	reference_getter_v2(LeftShoulderIndex);
+	reference_getter_v2(RightShoulderIndex);
+	reference_getter_v2(ChestIndex);
+	reference_getter_v2(WristIndex);
+	reference_getter_v2(UtilityIndex);
+	reference_getter_v2(KneeGuardsIndex);
+	reference_getter_v2(VisorColorIndex);
+	reference_getter_v2(SpartanArmorEffectIndex);
+	reference_getter_v2(SpartanBodyIndex);
+	reference_getter_v2(EliteArmorIndex);
+	reference_getter_v2(EliteArmorEffectIndex);
+	reference_getter_v2(VoiceIndex);
+	reference_getter_v2(PlayerModelPrimaryColor);
+	reference_getter_v2(PlayerModelSecondaryColor);
+	reference_getter_v2(PlayerModelTertiaryColor);
+	reference_getter(ServiceTag);
+	reference_getter(OnlineMedalFlasher);
+	reference_getter(VerticalLookSensitivity);
+	reference_getter(HorizontalLookSensitivity);
+	reference_getter(LookAcceleration);
+	reference_getter(LookAxialDeadZone);
+	reference_getter(LookRadialDeadZone);
+	reference_getter(ZoomLookSensitivityMultiplier);
+	reference_getter(VehicleLookSensitivityMultiplier);
+	reference_getter(ButtonPreset);
+	reference_getter(StickPreset);
+	reference_getter(LeftyToggle);
+	reference_getter(FlyingCameraTurnSensitivity);
+	reference_getter(FlyingCameraPanning);
+	reference_getter(FlyingCameraSpeed);
+	reference_getter(FlyingCameraThrust);
+	reference_getter(TheaterTurnSensitivity);
+	reference_getter(TheaterPanning);
+	reference_getter(TheaterSpeed);
+	reference_getter(TheaterThrust);
+	//reference_getter_v6(__unknown0);
+	reference_getter(SwapTriggersAndBumpers);
+	reference_getter(UseModernAimControl);
+	reference_getter(UseDoublePressJumpToJetpack);
+	reference_getter(EnemyPlayerNameColor);
+	reference_getter(GameEngineTimer);
+	reference_getter(LoadoutSlots);
+	reference_getter(GameSpecific);
+	reference_getter(MouseSensitivity);
+	reference_getter(MouseSmoothing);
+	reference_getter(MouseAcceleration);
+	reference_getter(MouseAccelerationMinRate);
+	reference_getter(MouseAccelerationMaxAccel);
+	reference_getter(MouseAccelerationScale);
+	reference_getter(MouseAccelerationExp);
+	reference_getter(KeyboardMouseButtonPreset);
+	reference_getter(MasterVolume);
+	reference_getter(MusicVolume);
+	reference_getter(SfxVolume);
+	reference_getter(Brightness);
+	reference_getter_v4(WeaponDisplayOffsets)
+
+#undef reference_getter
+
+	class c_virtual_player_configuration_game_keyboard_mouse_mapping_interface
+	{
+	public:
+		c_virtual_player_configuration_game_keyboard_mouse_mapping_interface(PlayerConfiguration_& parent) :
+			parent(parent)
+		{ }
+
+		PlayerConfiguration_& parent;
+
+		GameKeyboardMouseMapping& operator[](size_t game_action_index) const
+		{
+			switch (parent.player_configuration_version)
+			{
+			case _player_configuration_version_2: return parent.player_configuration_v2.GameKeyboardMouseMappings[game_action_index];
+			case _player_configuration_version_3: return parent.player_configuration_v3.GameKeyboardMouseMappings[game_action_index];
+			case _player_configuration_version_4: return parent.player_configuration_v4.GameKeyboardMouseMappings[game_action_index];
+			case _player_configuration_version_5: return parent.player_configuration_v5.GameKeyboardMouseMappings[game_action_index];
+			case _player_configuration_version_6: return parent.player_configuration_v6.GameKeyboardMouseMappings[game_action_index];
+			}
+			throw;
+		}
+	};
+
+public:
+	//c_virtual_player_configuration_loadout_slot_interface LoadoutSlots;
+	c_virtual_player_configuration_game_keyboard_mouse_mapping_interface GameKeyboardMouseMappings;
+
+	PlayerConfiguration_(e_player_configuration_version player_configuration_version) :
+		player_configuration_v1(),
+		//player_configuration_v2(),
+		//player_configuration_v3(),
+		//player_configuration_v4(),
+		//player_configuration_v5(),
+		//player_configuration_v6(),
+
+		player_configuration_version(player_configuration_version),
+
+		SubtitleSetting(*get_SubtitleSetting()),
+		CrosshairLocation(*get_CrosshairLocation()),
+		FOVSetting(*get_FOVSetting()),
+		VehicleFOVSetting(*get_VehicleFOVSetting()),
+		LookControlsInverted(*get_LookControlsInverted()),
+		MouseLookControlsInverted(*get_MouseLookControlsInverted()),
+		VibrationDisabled(*get_VibrationDisabled()),
+		ImpulseTriggersDisabled(*get_ImpulseTriggersDisabled()),
+		AircraftControlsInverted(*get_AircraftControlsInverted()),
+		MouseAircraftControlsInverted(*get_MouseAircraftControlsInverted()),
+		AutoCenterEnabled(*get_AutoCenterEnabled()),
+		CrouchLockEnabled(*get_CrouchLockEnabled()),
+		MKCrouchLockEnabled(*get_MKCrouchLockEnabled()),
+		ClenchProtectionEnabled(*get_ClenchProtectionEnabled()),
+		UseFemaleVoice(*get_UseFemaleVoice()),
+		HoldToZoom(*get_HoldToZoom()),
+		PlayerModelPrimaryColorIndex(*get_PlayerModelPrimaryColorIndex()),
+		PlayerModelSecondaryColorIndex(*get_PlayerModelSecondaryColorIndex()),
+		PlayerModelTertiaryColorIndex(*get_PlayerModelTertiaryColorIndex()),
+		UseEliteModel(*get_UseEliteModel()),
+		PlayerModelPermutation(*get_PlayerModelPermutation()),
+		HelmetIndex(*get_HelmetIndex()),
+		LeftShoulderIndex(*get_LeftShoulderIndex()),
+		RightShoulderIndex(*get_RightShoulderIndex()),
+		ChestIndex(*get_ChestIndex()),
+		WristIndex(*get_WristIndex()),
+		UtilityIndex(*get_UtilityIndex()),
+		KneeGuardsIndex(*get_KneeGuardsIndex()),
+		VisorColorIndex(*get_VisorColorIndex()),
+		SpartanArmorEffectIndex(*get_SpartanArmorEffectIndex()),
+		SpartanBodyIndex(*get_SpartanBodyIndex()),
+		EliteArmorIndex(*get_EliteArmorIndex()),
+		EliteArmorEffectIndex(*get_EliteArmorEffectIndex()),
+		VoiceIndex(*get_VoiceIndex()),
+		PlayerModelPrimaryColor(*get_PlayerModelPrimaryColor()),
+		PlayerModelSecondaryColor(*get_PlayerModelSecondaryColor()),
+		PlayerModelTertiaryColor(*get_PlayerModelTertiaryColor()),
+		ServiceTag(*get_ServiceTag()),
+		OnlineMedalFlasher(*get_OnlineMedalFlasher()),
+		VerticalLookSensitivity(*get_VerticalLookSensitivity()),
+		HorizontalLookSensitivity(*get_HorizontalLookSensitivity()),
+		LookAcceleration(*get_LookAcceleration()),
+		LookAxialDeadZone(*get_LookAxialDeadZone()),
+		LookRadialDeadZone(*get_LookRadialDeadZone()),
+		ZoomLookSensitivityMultiplier(*get_ZoomLookSensitivityMultiplier()),
+		VehicleLookSensitivityMultiplier(*get_VehicleLookSensitivityMultiplier()),
+		ButtonPreset(*get_ButtonPreset()),
+		StickPreset(*get_StickPreset()),
+		LeftyToggle(*get_LeftyToggle()),
+		FlyingCameraTurnSensitivity(*get_FlyingCameraTurnSensitivity()),
+		FlyingCameraPanning(*get_FlyingCameraPanning()),
+		FlyingCameraSpeed(*get_FlyingCameraSpeed()),
+		FlyingCameraThrust(*get_FlyingCameraThrust()),
+		TheaterTurnSensitivity(*get_TheaterTurnSensitivity()),
+		TheaterPanning(*get_TheaterPanning()),
+		TheaterSpeed(*get_TheaterSpeed()),
+		TheaterThrust(*get_TheaterThrust()),
+		__unknown0(player_configuration_v6.__unknown0),
+		SwapTriggersAndBumpers(*get_SwapTriggersAndBumpers()),
+		UseModernAimControl(*get_UseModernAimControl()),
+		UseDoublePressJumpToJetpack(*get_UseDoublePressJumpToJetpack()),
+		EnemyPlayerNameColor(*get_EnemyPlayerNameColor()),
+		GameEngineTimer(*get_GameEngineTimer()),
+		LoadoutSlots(*get_LoadoutSlots()),
+		GameSpecific(*get_GameSpecific()),
+		MouseSensitivity(*get_MouseSensitivity()),
+		MouseSmoothing(*get_MouseSmoothing()),
+		MouseAcceleration(*get_MouseAcceleration()),
+		MouseAccelerationMinRate(*get_MouseAccelerationMinRate()),
+		MouseAccelerationMaxAccel(*get_MouseAccelerationMaxAccel()),
+		MouseAccelerationScale(*get_MouseAccelerationScale()),
+		MouseAccelerationExp(*get_MouseAccelerationExp()),
+		KeyboardMouseButtonPreset(*get_KeyboardMouseButtonPreset()),
+		GameKeyboardMouseMappings(*this),
+		MasterVolume(*get_MasterVolume()),
+		MusicVolume(*get_MusicVolume()),
+		SfxVolume(*get_SfxVolume()),
+		Brightness(*get_Brightness()),
+		WeaponDisplayOffsets(*get_WeaponDisplayOffsets())
+	{
+		memset(&player_configuration_v1, 0, sizeof(player_configuration_v1));
+		memset(&player_configuration_v2, 0, sizeof(player_configuration_v2));
+		memset(&player_configuration_v3, 0, sizeof(player_configuration_v3));
+		memset(&player_configuration_v4, 0, sizeof(player_configuration_v4));
+		memset(&player_configuration_v5, 0, sizeof(player_configuration_v5));
+		memset(&player_configuration_v6, 0, sizeof(player_configuration_v6));
+	}
 };

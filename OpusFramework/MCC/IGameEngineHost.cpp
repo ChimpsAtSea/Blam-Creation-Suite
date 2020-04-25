@@ -372,22 +372,65 @@ void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_c
 	//player_configuration.PlayerModelTertiaryColorIndex    = ;
 	player_configuration.UseEliteModel = false;
 	//player_configuration.PlayerModelPermutation           = ;
-	player_configuration.HelmetIndex = eHaloArmor::HR_Helmet_EOD_Base;
-	player_configuration.LeftShoulderIndex = eHaloArmor::HR_LeftShoulder_Gungnir;
-	player_configuration.RightShoulderIndex = eHaloArmor::HR_RightShoulder_EVA;
-	player_configuration.ChestIndex = eHaloArmor::HR_Chest_UABaseSecurityW;
-	player_configuration.WristIndex = eHaloArmor::HR_Wrist_Default;
-	player_configuration.UtilityIndex = eHaloArmor::HR_Utility_Default;
-	player_configuration.KneeGuardsIndex = eHaloArmor::HR_KneeGuards_FJPARA;
-	player_configuration.VisorColorIndex = eHaloArmor::HR_VisorColor_Blue;
-	player_configuration.SpartanArmorEffectIndex = eHaloArmor::HR_ArmorEffect_BlueFlames;
-	player_configuration.SpartanBodyIndex = eHaloArmor::HR_Spartan_Female;
-	player_configuration.EliteArmorIndex = eHaloArmor::HR_Elite_FieldMarshall;
-	player_configuration.EliteArmorEffectIndex = eHaloArmor::HR_ArmorEffect_Pestilence;
-	player_configuration.VoiceIndex = eHaloArmor::HR_FirefightVoice_JohnS117;
-	player_configuration.PlayerModelPrimaryColor = eHaloArmor::HR_Color_Brick;
-	player_configuration.PlayerModelSecondaryColor = eHaloArmor::HR_Color_Cyan;
-	player_configuration.PlayerModelTertiaryColor = eHaloArmor::HR_Color_Cyan;
+
+	if (engine_type == _engine_type_halo_reach)
+	{
+		player_configuration.HelmetIndex = eHaloArmor::HR_Helmet_EOD_Base;
+		player_configuration.LeftShoulderIndex = eHaloArmor::HR_LeftShoulder_Gungnir;
+		player_configuration.RightShoulderIndex = eHaloArmor::HR_RightShoulder_EVA;
+		player_configuration.ChestIndex = eHaloArmor::HR_Chest_UABaseSecurityW;
+		player_configuration.WristIndex = eHaloArmor::HR_Wrist_Default;
+		player_configuration.UtilityIndex = eHaloArmor::HR_Utility_Default;
+		player_configuration.KneeGuardsIndex = eHaloArmor::HR_KneeGuards_FJPARA;
+		player_configuration.VisorColorIndex = eHaloArmor::HR_VisorColor_Blue;
+		player_configuration.SpartanArmorEffectIndex = eHaloArmor::HR_ArmorEffect_BlueFlames;
+		player_configuration.SpartanBodyIndex = eHaloArmor::HR_Spartan_Female;
+		player_configuration.EliteArmorIndex = eHaloArmor::HR_Elite_FieldMarshall;
+		player_configuration.EliteArmorEffectIndex = eHaloArmor::HR_ArmorEffect_Pestilence;
+		player_configuration.VoiceIndex = eHaloArmor::HR_FirefightVoice_JohnS117;
+		player_configuration.PlayerModelPrimaryColor = eHaloArmor::HR_Color_Brick;
+		player_configuration.PlayerModelSecondaryColor = eHaloArmor::HR_Color_Cyan;
+		player_configuration.PlayerModelTertiaryColor = eHaloArmor::HR_Color_Cyan;
+	}
+	else if (engine_type == _engine_type_halo1)
+	{
+		player_configuration.HelmetIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.LeftShoulderIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.RightShoulderIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.ChestIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.WristIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.UtilityIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.KneeGuardsIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.VisorColorIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.SpartanArmorEffectIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.SpartanBodyIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.EliteArmorIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.EliteArmorEffectIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.VoiceIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.PlayerModelPrimaryColor = eHaloArmor::H1_Color_1;
+		player_configuration.PlayerModelSecondaryColor = eHaloArmor::H1_Color_1;
+		player_configuration.PlayerModelTertiaryColor = eHaloArmor::H1_Color_1;
+	}
+	else if (engine_type == _engine_type_groundhog)
+	{
+		player_configuration.HelmetIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+		player_configuration.LeftShoulderIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+		player_configuration.RightShoulderIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+		player_configuration.ChestIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+		player_configuration.WristIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+		player_configuration.UtilityIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+		player_configuration.KneeGuardsIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+		player_configuration.VisorColorIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+		player_configuration.SpartanArmorEffectIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+		player_configuration.SpartanBodyIndex = eHaloArmor::HR_Spartan_Female;
+		player_configuration.EliteArmorIndex = eHaloArmor::H2A_ARMOR_ELITE1;
+		player_configuration.EliteArmorEffectIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.VoiceIndex = eHaloArmor::kHaloArmorNone;
+		player_configuration.PlayerModelPrimaryColor = eHaloArmor::H2A_Color_1;
+		player_configuration.PlayerModelSecondaryColor = eHaloArmor::H2A_Color_1;
+		player_configuration.PlayerModelTertiaryColor = eHaloArmor::H2A_Color_1;
+	}
+
 	c_settings_legacy::read_wstring(_settings_section_legacy_player, "ServiceTag", player_configuration.ServiceTag, 4, L"117");
 	player_configuration.OnlineMedalFlasher = false;
 	//player_configuration.VerticalLookSensitivity          = ;
@@ -424,7 +467,7 @@ void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_c
 	//player_configuration.MouseAccelerationExp             = ;
 	//player_configuration.KeyboardMouseButtonPreset        = ;
 
-	for (uint32_t mapping_index = 0; mapping_index < 56; mapping_index++)
+	for (uint32_t mapping_index = 0; mapping_index < GameAction::Count; mapping_index++)
 	{
 		player_configuration.GameKeyboardMouseMappings[mapping_index].AbstractButton = mapping_index;
 	}
@@ -462,7 +505,9 @@ void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_c
 	player_configuration.GameKeyboardMouseMappings[GameAction::SecondaryVehicleTrick].VirtualKeyCodes[0] = VK_SPACE;
 	player_configuration.GameKeyboardMouseMappings[GameAction::MagnifyZoom].VirtualKeyCodes[0] = 'Z';
 	player_configuration.GameKeyboardMouseMappings[GameAction::Equipment].VirtualKeyCodes[0] = VK_LSHIFT;
+
 	player_configuration.GameKeyboardMouseMappings[GameAction::FireSecondary].VirtualKeyCodes[0] = VK_LSHIFT;
+
 	player_configuration.GameKeyboardMouseMappings[GameAction::LiftEditor].VirtualKeyCodes[0] = 'R';
 	player_configuration.GameKeyboardMouseMappings[GameAction::DropEditor].VirtualKeyCodes[0] = 'F';
 	player_configuration.GameKeyboardMouseMappings[GameAction::GrabObjectEditor].VirtualKeyCodes[0] = VK_LBUTTON;
@@ -483,7 +528,14 @@ void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_c
 	player_configuration.GameKeyboardMouseMappings[GameAction::StopContinuePlaybackTheater].VirtualKeyCodes[0] = VK_RETURN;
 	player_configuration.GameKeyboardMouseMappings[GameAction::PlaybackSpeedUpTheater].VirtualKeyCodes[0] = VK_LMENU;
 	player_configuration.GameKeyboardMouseMappings[GameAction::EnterFreeCameraModeTheater].VirtualKeyCodes[0] = VK_SPACE;
+
 	player_configuration.GameKeyboardMouseMappings[GameAction::MovementSpeedUpTheater].VirtualKeyCodes[0] = VK_LSHIFT;
+
+	player_configuration.GameKeyboardMouseMappings[GameAction::PanningCameraTheater].VirtualKeyCodes[0] = VK_OEM_RESET;
+	player_configuration.GameKeyboardMouseMappings[GameAction::CameraMoveUpTheater].VirtualKeyCodes[0] = 'Q';
+	player_configuration.GameKeyboardMouseMappings[GameAction::CameraMoveDownTheater].VirtualKeyCodes[0] = 'E';
+	player_configuration.GameKeyboardMouseMappings[GameAction::DualWield].VirtualKeyCodes[0] = 'Q';
+	player_configuration.GameKeyboardMouseMappings[GameAction::ZoomCameraTheater].VirtualKeyCodes[0] = VK_OEM_RESET;
 
 	player_configuration.MasterVolume = 0.6f;
 	player_configuration.MusicVolume = 0.2f;
@@ -492,6 +544,6 @@ void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_c
 
 	for (int i = 0; i < 5; i++)
 	{
-		player_configuration.WeaponDisplayOffset[i] = { 5.f, 5.f };
+		player_configuration.WeaponDisplayOffsets[i] = { 5.f, 5.f };
 	}
 }
