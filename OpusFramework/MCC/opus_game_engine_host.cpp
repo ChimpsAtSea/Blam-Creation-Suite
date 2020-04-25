@@ -205,6 +205,7 @@ __int64 __fastcall c_opus_game_engine_host::GetMachineIdentifier(_QWORD)
 
 __int64 c_opus_game_engine_host::Function22(Function22Structure* buffer, __int64)
 {
+	memset(buffer, 0, sizeof(*buffer)); // fix a crash when alt-tabbing in Groundhog
 	return __int64(0);
 }
 
