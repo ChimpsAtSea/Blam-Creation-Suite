@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{01203CE0-D287-48EA-A399-9B77AA93CE7E}</ProjectGuid>
-    <RootNamespace>imgui</RootNamespace>
+    <RootNamespace>llvm-build</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

@@ -360,6 +360,10 @@ MantleGen/LegacyGen/virtual_tag_interfaces_legacy.cpp
 MantleGen/LegacyGen/virtual_tag_interfaces_legacy.h
 MantleGen/LegacyGen/tag_groups_legacy.h
 
+#Blamder
+blamder/lib
+blamder/build*
+
 #CommandLineOptions Plugin
 *.args.json
 !Libraries/lib/x64

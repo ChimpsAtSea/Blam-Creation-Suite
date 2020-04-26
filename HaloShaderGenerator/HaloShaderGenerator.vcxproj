@@ -38,7 +38,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{7BD68C51-C995-41ED-8AC6-B19D0E913247}</ProjectGuid>
-    <RootNamespace>imgui</RootNamespace>
+    <RootNamespace>HaloShaderGenerator</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>HaloShaderGenerator</ProjectName>
   </PropertyGroup>

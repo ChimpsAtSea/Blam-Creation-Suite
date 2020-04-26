@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{AB9A2B58-71F9-4D5F-A2A9-9E6AB764328F}</ProjectGuid>
-    <RootNamespace>tbb-build</RootNamespace>
+    <ProjectGuid>{1634C9C1-262F-4707-B5F0-485A12BCE234}</ProjectGuid>
+    <RootNamespace>blamder-build</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -98,29 +98,37 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>set CLANG_OPTIONS=CLANG_OPTIONS=
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
+      <Command>set BUILD_VS_LIBDIRPOST=vc15
+set BUILD_VS_SVNDIR=win64_%BUILD_VS_LIBDIRPOST%
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
-    echo TBB is already configured
+set BUILD_VS_LIBDIR="$(SolutionDir)blamder\lib\%BUILD_VS_SVNDIR%"
+
+if NOT EXIST %BUILD_VS_LIBDIR% (
+	rem #TODO: Check for SVN
+	echo.
+	echo The required external libraries in %BUILD_VS_LIBDIR% are missing
+	echo.
+	echo.
+	echo Downloading %BUILD_VS_SVNDIR% libraries, please wait.
+	echo.
+	svn checkout https://svn.blender.org/svnroot/bf-blender/trunk/lib/%BUILD_VS_SVNDIR% %BUILD_VS_LIBDIR%
+	if errorlevel 1 (
+		echo.
+		echo Error: Download of external libraries failed. 
+		echo This is needed for building, please manually run 'svn cleanup' and 'svn update' in
+		echo %BUILD_VS_LIBDIR% , until this is resolved you CANNOT make a successful blender build
+		echo.
+		exit /b 1
+	)
 ) else (
-    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
+	echo Blender libraries up to date
 )
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
-    echo TBB is already built
-) else (
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
-)
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\Release\tbb_static.lib" (
-    echo TBB Release is already built
+if exist "$(SolutionDir)blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
+	echo Blender BPY up to date
 ) else (
-    msbuild /t:Build /p:Configuration=Release /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+	$(SolutionDir)blamder\blamder\make.bat bpy $(Configuration.toLower())
 )
 </Command>
     </PostBuildEvent>
@@ -141,29 +149,37 @@ if exist "$(ProjectDir)cmake_$(PlatformShortName)\Release\tbb_static.lib" (
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>set CLANG_OPTIONS=CLANG_OPTIONS=
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
+      <Command>set BUILD_VS_LIBDIRPOST=vc15
+set BUILD_VS_SVNDIR=win64_%BUILD_VS_LIBDIRPOST%
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
-    echo TBB is already configured
+set BUILD_VS_LIBDIR="$(SolutionDir)blamder\lib\%BUILD_VS_SVNDIR%"
+
+if NOT EXIST %BUILD_VS_LIBDIR% (
+	rem #TODO: Check for SVN
+	echo.
+	echo The required external libraries in %BUILD_VS_LIBDIR% are missing
+	echo.
+	echo.
+	echo Downloading %BUILD_VS_SVNDIR% libraries, please wait.
+	echo.
+	svn checkout https://svn.blender.org/svnroot/bf-blender/trunk/lib/%BUILD_VS_SVNDIR% %BUILD_VS_LIBDIR%
+	if errorlevel 1 (
+		echo.
+		echo Error: Download of external libraries failed. 
+		echo This is needed for building, please manually run 'svn cleanup' and 'svn update' in
+		echo %BUILD_VS_LIBDIR% , until this is resolved you CANNOT make a successful blender build
+		echo.
+		exit /b 1
+	)
 ) else (
-    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
+	echo Blender libraries up to date
 )
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
-    echo TBB is already built
-) else (
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
-)
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\Release\tbb_static.lib" (
-    echo TBB Release is already built
+if exist "$(SolutionDir)blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
+	echo Blender BPY up to date
 ) else (
-    msbuild /t:Build /p:Configuration=Release /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
+	$(SolutionDir)blamder\blamder\make.bat bpy $(Configuration.toLower())
 )
 </Command>
     </PostBuildEvent>
@@ -188,31 +204,37 @@ if exist "$(ProjectDir)cmake_$(PlatformShortName)\Release\tbb_static.lib" (
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>set CLANG_OPTIONS=CLANG_OPTIONS=
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
+      <Command>set BUILD_VS_LIBDIRPOST=vc15
+set BUILD_VS_SVNDIR=win64_%BUILD_VS_LIBDIRPOST%
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
+set BUILD_VS_LIBDIR="$(SolutionDir)blamder\lib\%BUILD_VS_SVNDIR%"
 
-    echo TBB is already configured
-
+if NOT EXIST %BUILD_VS_LIBDIR% (
+	rem #TODO: Check for SVN
+	echo.
+	echo The required external libraries in %BUILD_VS_LIBDIR% are missing
+	echo.
+	echo.
+	echo Downloading %BUILD_VS_SVNDIR% libraries, please wait.
+	echo.
+	svn checkout https://svn.blender.org/svnroot/bf-blender/trunk/lib/%BUILD_VS_SVNDIR% %BUILD_VS_LIBDIR%
+	if errorlevel 1 (
+		echo.
+		echo Error: Download of external libraries failed. 
+		echo This is needed for building, please manually run 'svn cleanup' and 'svn update' in
+		echo %BUILD_VS_LIBDIR% , until this is resolved you CANNOT make a successful blender build
+		echo.
+		exit /b 1
+	)
 ) else (
-
-    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
-
+	echo Blender libraries up to date
 )
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
 
-    echo TBB is already built
-	
+if exist "$(SolutionDir)blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
+	echo Blender BPY up to date
 ) else (
-
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
-
+	$(SolutionDir)blamder\blamder\make.bat bpy $(Configuration.toLower())
 )
 </Command>
     </PostBuildEvent>
@@ -234,31 +256,37 @@ if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.li
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>set CLANG_OPTIONS=CLANG_OPTIONS=
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
+      <Command>set BUILD_VS_LIBDIRPOST=vc15
+set BUILD_VS_SVNDIR=win64_%BUILD_VS_LIBDIRPOST%
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
+set BUILD_VS_LIBDIR="$(SolutionDir)blamder\lib\%BUILD_VS_SVNDIR%"
 
-    echo TBB is already configured
-
+if NOT EXIST %BUILD_VS_LIBDIR% (
+	rem #TODO: Check for SVN
+	echo.
+	echo The required external libraries in %BUILD_VS_LIBDIR% are missing
+	echo.
+	echo.
+	echo Downloading %BUILD_VS_SVNDIR% libraries, please wait.
+	echo.
+	svn checkout https://svn.blender.org/svnroot/bf-blender/trunk/lib/%BUILD_VS_SVNDIR% %BUILD_VS_LIBDIR%
+	if errorlevel 1 (
+		echo.
+		echo Error: Download of external libraries failed. 
+		echo This is needed for building, please manually run 'svn cleanup' and 'svn update' in
+		echo %BUILD_VS_LIBDIR% , until this is resolved you CANNOT make a successful blender build
+		echo.
+		exit /b 1
+	)
 ) else (
-
-    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
-
+	echo Blender libraries up to date
 )
 
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
 
-    echo TBB is already built
-	
+if exist "$(SolutionDir)blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
+	echo Blender BPY up to date
 ) else (
-
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
-
+	$(SolutionDir)blamder\blamder\make.bat bpy $(Configuration.toLower())
 )
 </Command>
     </PostBuildEvent>

@@ -277,7 +277,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{018F5A90-5FE0-46B7-A986-C6FDDF183037}</ProjectGuid>
-    <RootNamespace>imgui</RootNamespace>
+    <RootNamespace>MantleGen</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
