@@ -99,6 +99,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="halo2_engine_state_command.cpp" />
     <ClCompile Include="halo2_game_host.cpp" />
     <ClCompile Include="halo2lib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -106,6 +107,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="halo2_engine_state_command.h" />
     <ClInclude Include="opus_legacy\c_network.h" />
     <ClInclude Include="halo2_game_host.h" />
     <ClInclude Include="halo2lib-private-pch.h" />
