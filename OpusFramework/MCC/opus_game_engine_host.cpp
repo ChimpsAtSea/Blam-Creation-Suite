@@ -103,9 +103,62 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 	return __int64(0);
 }
 
+extern e_map_id halo1_map_id;
+extern e_map_id halo2_map_id;
+
 __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t buffer_size)
 {
-	write_line_verbose("%s %p %016zx", __FUNCTION__, buffer, buffer_size);
+	//write_line_verbose("%s %p %016zx", __FUNCTION__, buffer, buffer_size);
+
+	static e_engine_type last_engine_type = _engine_type_not_set;
+	static e_map_id map_id = _map_id_none;
+	if (last_engine_type == _engine_type_not_set || last_engine_type != engine_type)
+	{
+		// TODO: add support for halo reach
+		switch (engine_type)
+		{
+		case _engine_type_halo1:
+			map_id = halo1_map_id;
+			break;
+		case _engine_type_halo2:
+			map_id = halo2_map_id;
+			break;
+		default:
+			return __int64(0);
+		}
+	}
+
+	static wchar_t autosave_path[MAX_PATH + 1] = L"autosave/";
+	{
+		time_t now;
+		time(&now);
+		if (!DirectoryExists(autosave_path))
+		{
+			SECURITY_ATTRIBUTES sec_attr = {};
+			CreateDirectoryW(autosave_path, &sec_attr);
+		}
+		_snwprintf(autosave_path, MAX_PATH, L"autosave/%08llX.bin", now);
+	}
+
+	bool result = false;
+
+	// create a new buffer with space for the engine save buffer + our map id
+	{
+		static char *autosave_buffer = nullptr;
+		size_t autosave_buffer_size = buffer_size + 4;
+
+		autosave_buffer = new char[autosave_buffer_size];
+		memset(autosave_buffer, 0, autosave_buffer_size);
+
+		memcpy(autosave_buffer, buffer, buffer_size);
+		*reinterpret_cast<int *>(&autosave_buffer[buffer_size]) = map_id;
+
+		result = write_file_from_memory(autosave_path, autosave_buffer, autosave_buffer_size);
+		delete[] autosave_buffer;
+	}
+
+	write_line_verbose("autosave written to %S [%S]", autosave_path, (result ? L"success" : L"failure"));
+
 	return __int64(0);
 }
 

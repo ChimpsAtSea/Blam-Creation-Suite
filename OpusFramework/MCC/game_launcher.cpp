@@ -464,6 +464,18 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 						c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str()
 					);
 				}
+				else
+				{
+					if (read_file_to_memory(L"autosave/5EA68E0B.bin", reinterpret_cast<void **>(&game_context->game_state_header_ptr), &game_context->game_state_header_size))
+					{
+						if (is_valid(game_context->game_state_header_ptr) && game_context->game_state_header_size > 0)
+						{
+							// take off the last 4 bytes from the size to exclude our added map id
+							game_context->game_state_header_size -= 4;
+							halo2_map_id = *reinterpret_cast<e_map_id *>(&game_context->game_state_header_ptr[game_context->game_state_header_size]);
+						}
+					}
+				}
 
 				game_context->map_id = halo2_map_id;
 			}

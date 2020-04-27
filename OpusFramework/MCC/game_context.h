@@ -43,7 +43,7 @@ public:
 private:
 	char __padding1[8];
 public:
-	void* game_state_header_ptr;
+	char* game_state_header_ptr;
 	uint64_t game_state_header_size;
 
 	const char* saved_film_path_ptr;
@@ -115,7 +115,7 @@ public:
 	char map_variant_buffer[k_map_variant_buffer_size];
 
 	uint64_t game_state_header_size;
-	void* game_state_header_ptr;
+	char* game_state_header_ptr;
 	const char* saved_film_path_ptr;
 	const wchar_t* custom_engine_name;
 };
@@ -153,7 +153,7 @@ public:
 	char(&game_variant_buffer)[k_game_variant_buffer_size];
 	char(&map_variant_buffer)[k_map_variant_buffer_size];
 	uint64_t& game_state_header_size;
-	void*& game_state_header_ptr;
+	char*& game_state_header_ptr;
 	const char*& saved_film_path_ptr;
 	const wchar_t*& custom_engine_name;
 

@@ -346,6 +346,8 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	case _build_mcc_1_1377_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1387_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1389_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1477_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1499_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	}
 }
 
