@@ -217,19 +217,19 @@ uintptr_t dword_18115BB84_offset(e_engine_type engine_type, e_build build)
 }
 DWORD& dword_18115BB84 = reference_symbol<DWORD>("dword_18115BB84", dword_18115BB84_offset);
 
-uintptr_t sub_1811684DA_offset(e_engine_type engine_type, e_build build)
+uintptr_t byte_1811684DA_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1811684DA);
 	return ~uintptr_t();
 }
-uint8_t(&byte_1811684DA)[128] = reference_symbol<uint8_t[128]>("word_1811684DA", sub_1811684DA_offset); // SOURCE
+uint8_t(&byte_1811684DA)[128] = reference_symbol<uint8_t[128]>("byte_1811684DA", byte_1811684DA_offset); // SOURCE
 
 uintptr_t word_18115BBB6_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18115BBB6);
 	return ~uintptr_t();
 }
-uint8_t(&byte_18115BBB6)[128] = reference_symbol<uint8_t[128]>("word_18115BBB6", word_18115BBB6_offset); // DESTINATION
+uint8_t(&word_18115BBB6)[128] = reference_symbol<uint8_t[128]>("word_18115BBB6", word_18115BBB6_offset); // DESTINATION
 
 
 uintptr_t sub_18072FCF0_offset(e_engine_type engine_type, e_build build)

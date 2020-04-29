@@ -221,11 +221,11 @@ void c_halo1_game_host::input_debug_gui()
 
 		ImGui::Separator();
 
-		if (is_valid(byte_18115BBB6))
+		if (is_valid(word_18115BBB6))
 		{
 			for (int i = 0; i < 128; i++)
 			{
-				ImGui::Text("Bind %i [%u]", i, static_cast<uint32_t>(byte_18115BBB6[i]));
+				ImGui::Text("Bind %i [%u]", i, static_cast<uint32_t>(word_18115BBB6[i]));
 				if ((i - 3) % 4 != 0) ImGui::SameLine();
 			}
 		}
