@@ -360,6 +360,16 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	game_context->is_anniversary_mode = use_anniversary_graphics;
 	game_context->is_anniversary_sounds = use_anniversary_sounds;
 
+	if (false && read_file_to_memory(L"opus/autosave/5EA68E0B.bin", reinterpret_cast<void **>(&game_context->game_state_header_ptr), &game_context->game_state_header_size))
+	{
+		if (is_valid(game_context->game_state_header_ptr) && game_context->game_state_header_size > 0)
+		{
+			// take off the last 4 bytes from the size to exclude our added map id
+			game_context->game_state_header_size -= 4;
+			game_context->map_id = *reinterpret_cast<e_map_id *>(&game_context->game_state_header_ptr[game_context->game_state_header_size]);
+		}
+	}
+	else
 	{
 		// #TODO: Make a home for this
 		if (game_context->is_host)
@@ -464,18 +474,6 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 						c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str()
 					);
 				}
-				else
-				{
-					if (read_file_to_memory(L"autosave/5EA68E0B.bin", reinterpret_cast<void **>(&game_context->game_state_header_ptr), &game_context->game_state_header_size))
-					{
-						if (is_valid(game_context->game_state_header_ptr) && game_context->game_state_header_size > 0)
-						{
-							// take off the last 4 bytes from the size to exclude our added map id
-							game_context->game_state_header_size -= 4;
-							halo2_map_id = *reinterpret_cast<e_map_id *>(&game_context->game_state_header_ptr[game_context->game_state_header_size]);
-						}
-					}
-				}
 
 				game_context->map_id = halo2_map_id;
 			}
@@ -485,6 +483,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				game_context->map_id = groundhog_map_id;
 
 				c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "H2A_001_001_basic_editing_137";
+				//c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "temp";
 				load_variant_from_file(
 					c_groundhog_game_host::get_data_access(),
 					game_context,
@@ -493,6 +492,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str()
 				);
 				c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline";
+				//c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "temp";
 				load_variant_from_file(
 					c_groundhog_game_host::get_data_access(),
 					game_context,
@@ -954,6 +954,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 	LPCSTR user_profile_path = GetUserprofileVariable();
 	std::vector<std::string> file_paths =
 	{
+		std::string("opus/").append(type_name).append("_variants/").append(file_name).append(type_extension),
 		std::string(engine_name).append("/").append(type_name).append("_variants/").append(file_name).append(type_extension),
 		std::string(engine_name).append("/hopper_").append(type_name).append("_variants/").append(file_name).append(type_extension),
 		std::string(user_profile_path).append("/AppData/LocalLow/HaloMCC/Temporary/UserContent/").append(engine_name).append("/").append(type_nice_name).append("/").append(file_name).append(type_extension),
@@ -975,7 +976,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	char* variant_buffer = nullptr;
 
-	if (!PathFileExistsA(selected_file_path.c_str()))
+	if (!PathFileExistsA(selected_file_path.c_str()) || strstr(selected_file_path.c_str(), "/.") != 0)
 	{
 		if (true)
 		{

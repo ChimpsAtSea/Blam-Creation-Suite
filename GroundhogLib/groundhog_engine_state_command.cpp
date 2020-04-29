@@ -37,6 +37,14 @@ void groundhog_update_engine_state(IGameEngine* game_engine, const std::string e
 			write_line_verbose("Restarting checkpoint");
 			game_engine->UpdateEngineState(eEngineState::RestartCheckpoint);
 		}
+		else if (!engine_state_str.compare("save"))
+		{
+			write_line_verbose("Saving game variant");
+			game_engine->UpdateEngineState(eEngineState::SaveGameVariant);
+
+			write_line_verbose("Saving map variant");
+			game_engine->UpdateEngineState(eEngineState::SaveMapVariant);
+		}
 
 		return;
 	}

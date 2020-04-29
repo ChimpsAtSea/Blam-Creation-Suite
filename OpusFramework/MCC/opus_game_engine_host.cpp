@@ -108,6 +108,10 @@ extern e_map_id halo2_map_id;
 
 __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t buffer_size)
 {
+	if (buffer_size == 0)
+	{
+		return __int64(0);
+	}
 	//write_line_verbose("%s %p %016zx", __FUNCTION__, buffer, buffer_size);
 
 	static e_engine_type last_engine_type = _engine_type_not_set;
@@ -128,7 +132,7 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 		}
 	}
 
-	static wchar_t autosave_path[MAX_PATH + 1] = L"autosave/";
+	static wchar_t autosave_path[MAX_PATH + 1] = L"opus/autosave/";
 	{
 		time_t now;
 		time(&now);
@@ -137,7 +141,7 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 			SECURITY_ATTRIBUTES sec_attr = {};
 			CreateDirectoryW(autosave_path, &sec_attr);
 		}
-		_snwprintf(autosave_path, MAX_PATH, L"autosave/%08llX.bin", now);
+		_snwprintf(autosave_path, MAX_PATH, L"opus/autosave/%08llX.bin", now);
 	}
 
 	bool result = false;
@@ -195,12 +199,37 @@ IGameEvents* c_opus_game_engine_host::GetGameEvents()
 	return &game_events;
 }
 
+bool save_variant_to_file(const wchar_t* variant_name, IVariantAccessorBase* variant)
+{
+	void*  variant_buffer = 0;
+	size_t variant_buffer_size = 0;
+
+	if (variant->CreateFileFromBuffer(&variant_buffer, &variant_buffer_size))
+	{
+		return write_file_from_memory(variant_name, variant_buffer, variant_buffer_size);
+	}
+
+	return false;
+}
+
 void c_opus_game_engine_host::SaveGameVariant(IGameVariant* game_variant)
 {
+	if (!DirectoryExists(L"opus/game_variants/"))
+	{
+		SECURITY_ATTRIBUTES sec_attr = {};
+		CreateDirectoryW(L"opus/game_variants/", &sec_attr);
+	}
+	save_variant_to_file(L"opus/game_variants/temp.bin", game_variant);
 }
 
 void c_opus_game_engine_host::SaveMapVariant(IMapVariant* map_variant)
 {
+	if (!DirectoryExists(L"opus/map_variants/"))
+	{
+		SECURITY_ATTRIBUTES sec_attr = {};
+		CreateDirectoryW(L"opus/map_variants/", &sec_attr);
+	}
+	save_variant_to_file(L"opus/map_variants/temp.mvar", map_variant);
 }
 
 void c_opus_game_engine_host::Function13(const wchar_t*, const wchar_t*, const void*, unsigned int)
