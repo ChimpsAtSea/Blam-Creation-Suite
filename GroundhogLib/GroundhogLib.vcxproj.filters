@@ -21,6 +21,9 @@
     <ClCompile Include="groundhoglib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="groundhog_engine_state_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="opus_legacy\c_network.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="groundhoglib-public-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="groundhog_engine_state_command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

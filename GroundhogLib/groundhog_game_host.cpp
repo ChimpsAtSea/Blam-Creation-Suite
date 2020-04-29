@@ -7,6 +7,7 @@
 /* ---------- globals */
 
 c_game_runtime* c_groundhog_game_host::g_groundhog_game_runtime;
+static c_groundhog_engine_state_command* g_groundhog_engine_state_command;
 
 /* ---------- private prototypes */
 /* ---------- public code */
@@ -30,6 +31,11 @@ c_groundhog_game_host::c_groundhog_game_host(e_engine_type engine_type, e_build 
 		__int64 create_game_engine_result = get_game_runtime().CreateGameEngine(&game_engine);
 	}
 	ASSERT(game_engine != nullptr);
+
+	if (g_groundhog_engine_state_command != nullptr)
+	{
+		g_groundhog_engine_state_command->set_game_engine(game_engine);
+	}
 }
 
 c_groundhog_game_host::~c_groundhog_game_host()
@@ -77,6 +83,8 @@ c_game_runtime& c_groundhog_game_host::get_game_runtime()
 
 void c_groundhog_game_host::init_runtime_modifications(e_build build)
 {
+	g_groundhog_engine_state_command = new c_groundhog_engine_state_command();
+
 	init_detours();
 	c_global_reference::init_global_reference_tree(_engine_type_groundhog, build);
 	c_data_patch_base::init_data_patch_tree(_engine_type_groundhog, build);
@@ -86,6 +94,8 @@ void c_groundhog_game_host::init_runtime_modifications(e_build build)
 
 void c_groundhog_game_host::deinit_runtime_modifications(e_build build)
 {
+	delete g_groundhog_engine_state_command;
+
 	init_detours();
 	c_function_hook_base::deinit_function_hook_tree(_engine_type_groundhog, build);
 	c_data_patch_base::deinit_data_patch_tree(_engine_type_groundhog, build);

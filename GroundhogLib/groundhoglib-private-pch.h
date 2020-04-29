@@ -9,4 +9,6 @@
 
 #include "groundhoglib-public-pch.h"
 
+#include "groundhog_engine_state_command.h"
+
 #endif
