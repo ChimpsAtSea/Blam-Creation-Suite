@@ -329,14 +329,20 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	case _engine_type_halo1:
 		build = c_halo1_game_host::get_game_runtime().get_build();
 		current_game_host = new c_halo1_game_host(engine_type, build);
+		c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
+		c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Blood Gulch"; // map variants don't exist in Halo 1
 		break;
 	case _engine_type_halo2:
 		build = c_halo2_game_host::get_game_runtime().get_build();
 		current_game_host = new c_halo2_game_host(engine_type, build);
+		c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
+		c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // map variants don't exist in Halo 2
 		break;
 	case _engine_type_groundhog:
 		build = c_groundhog_game_host::get_game_runtime().get_build();
 		current_game_host = new c_groundhog_game_host(engine_type, build);
+		c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "H2A_001_001_basic_editing_137";
+		c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline";
 		break;
 	default:
 		write_line_verbose(__FUNCTION__"> unknown engine_type");
@@ -360,7 +366,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	game_context->is_anniversary_mode = use_anniversary_graphics;
 	game_context->is_anniversary_sounds = use_anniversary_sounds;
 
-	if (false && read_file_to_memory(L"opus/autosave/5EA68E0B.bin", reinterpret_cast<void **>(&game_context->game_state_header_ptr), &game_context->game_state_header_size))
+	if (false && read_file_to_memory(L"opus/autosave/5EA68E0B.halo2.bin", reinterpret_cast<void **>(&game_context->game_state_header_ptr), &game_context->game_state_header_size))
 	{
 		if (is_valid(game_context->game_state_header_ptr) && game_context->game_state_header_size > 0)
 		{
@@ -456,8 +462,6 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 
 				if (game_context->game_mode == _mcc_game_mode_multiplayer)
 				{
-					c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
-
 					load_variant_from_file(
 						c_halo2_game_host::get_data_access(),
 						game_context,
@@ -465,7 +469,6 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 						e_variant_type::_variant_type_game,
 						c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str()
 					);
-					c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // map variants don't exist in Halo 2
 					load_variant_from_file(
 						c_halo2_game_host::get_data_access(),
 						game_context,
@@ -482,8 +485,6 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				game_context->game_mode = _mcc_game_mode_multiplayer;
 				game_context->map_id = groundhog_map_id;
 
-				c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "H2A_001_001_basic_editing_137";
-				//c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "temp";
 				load_variant_from_file(
 					c_groundhog_game_host::get_data_access(),
 					game_context,
@@ -491,8 +492,6 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 					e_variant_type::_variant_type_game,
 					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str()
 				);
-				c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline";
-				//c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "temp";
 				load_variant_from_file(
 					c_groundhog_game_host::get_data_access(),
 					game_context,
@@ -907,10 +906,10 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	char* game_context_variant_buffer = nullptr;
 	size_t variant_buffer_size = 0;
-	std::string type_name = "";
-	std::string type_nice_name = "";
-	std::string type_extension = "";
-	std::string engine_name = "";
+	const char* type_name = "";
+	const char* type_nice_name = "";
+	const char* type_extension = "";
+	const char* engine_name = "";
 
 	switch (engine_type)
 	{

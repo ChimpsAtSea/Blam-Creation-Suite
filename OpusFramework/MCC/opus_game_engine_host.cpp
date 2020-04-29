@@ -116,16 +116,23 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 
 	static e_engine_type last_engine_type = _engine_type_not_set;
 	static e_map_id map_id = _map_id_none;
+	static const wchar_t* engine_name = L"";
 	if (last_engine_type == _engine_type_not_set || last_engine_type != engine_type)
 	{
 		// TODO: add support for halo reach
 		switch (engine_type)
 		{
+		//case _engine_type_halo_reach:
+		//	map_id = halo_reach_map_id;
+		//	engine_name = L"haloreach";
+		//	break;
 		case _engine_type_halo1:
 			map_id = halo1_map_id;
+			engine_name = L"halo1";
 			break;
 		case _engine_type_halo2:
 			map_id = halo2_map_id;
+			engine_name = L"halo2";
 			break;
 		default:
 			return __int64(0);
@@ -141,7 +148,8 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 			SECURITY_ATTRIBUTES sec_attr = {};
 			CreateDirectoryW(autosave_path, &sec_attr);
 		}
-		_snwprintf(autosave_path, MAX_PATH, L"opus/autosave/%08llX.bin", now);
+		//_snwprintf(autosave_path, MAX_PATH, L"opus/autosave/%08llX.bin", now);
+		_snwprintf(autosave_path, MAX_PATH, L"opus/autosave/%08llX.%s.bin", now, engine_name);
 	}
 
 	bool result = false;
@@ -199,14 +207,49 @@ IGameEvents* c_opus_game_engine_host::GetGameEvents()
 	return &game_events;
 }
 
-bool save_variant_to_file(const wchar_t* variant_name, IVariantAccessorBase* variant)
+bool save_variant_to_file(IVariantAccessorBase* variant, e_variant_type variant_type, const wchar_t* file_name, const wchar_t* name, const wchar_t* description)
 {
-	void*  variant_buffer = 0;
-	size_t variant_buffer_size = 0;
+	ASSERT(is_valid(variant));
+	ASSERT(is_valid(file_name));
+	ASSERT(is_valid(name));
+	ASSERT(is_valid(description));
 
-	if (variant->CreateFileFromBuffer(&variant_buffer, &variant_buffer_size))
+	variant->SetName(name);
+	variant->SetDescription(description);
+
+	const wchar_t* variant_directory = L"";
+	const wchar_t* variant_extension = L"";
+
+	switch (variant_type)
 	{
-		return write_file_from_memory(variant_name, variant_buffer, variant_buffer_size);
+	case _variant_type_game:
+		variant_directory = L"opus/game_variants/";
+		variant_extension = L".bin";
+		break;
+	case _variant_type_map:
+		variant_directory = L"opus/map_variants/";
+		variant_extension = L".mvar";
+		break;
+	default:
+		return false;
+	}
+
+	if (!DirectoryExists(variant_directory))
+	{
+		SECURITY_ATTRIBUTES sec_attr = {};
+		CreateDirectoryW(variant_directory, &sec_attr);
+	}
+	
+	{
+		void *variant_buffer = 0;
+		size_t variant_buffer_size = 0;
+		if (variant->CreateFileFromBuffer(&variant_buffer, &variant_buffer_size))
+		{
+			wchar_t variant_path[MAX_PATH + 1] = {};
+			_snwprintf_s(variant_path, MAX_PATH, L"%s%s%s", variant_directory, file_name, variant_extension);
+
+			return write_file_from_memory(variant_path, variant_buffer, variant_buffer_size);
+		}
 	}
 
 	return false;
@@ -214,22 +257,56 @@ bool save_variant_to_file(const wchar_t* variant_name, IVariantAccessorBase* var
 
 void c_opus_game_engine_host::SaveGameVariant(IGameVariant* game_variant)
 {
-	if (!DirectoryExists(L"opus/game_variants/"))
+	const wchar_t* file_name   = L"temp";
+	const wchar_t* name	       = L"Temp test gvar";
+	const wchar_t* description = L"This is a temporary test game variant for testing writing to file.";
+	switch (engine_type)
 	{
-		SECURITY_ATTRIBUTES sec_attr = {};
-		CreateDirectoryW(L"opus/game_variants/", &sec_attr);
+	case _engine_type_halo_reach:
+		file_name = L"temp.haloreach";
+		break;
+	case _engine_type_halo1:
+		file_name = L"temp.halo1";
+		break;
+	case _engine_type_halo2:
+		file_name = L"temp.halo2";
+		break;
+	case _engine_type_groundhog:
+		file_name = L"temp.groundhog";
+		break;
+	default:
+		return;
 	}
-	save_variant_to_file(L"opus/game_variants/temp.bin", game_variant);
+
+	// TODO: add user input for `file_name`, `name`, and `description`
+	save_variant_to_file(game_variant, _variant_type_game, file_name, name, description);
 }
 
 void c_opus_game_engine_host::SaveMapVariant(IMapVariant* map_variant)
 {
-	if (!DirectoryExists(L"opus/map_variants/"))
+	const wchar_t* file_name   = L"temp";
+	const wchar_t* name	       = L"Temp test mvar";
+	const wchar_t* description = L"This is a temporary test map variant for testing writing to file.";
+	switch (engine_type)
 	{
-		SECURITY_ATTRIBUTES sec_attr = {};
-		CreateDirectoryW(L"opus/map_variants/", &sec_attr);
+	case _engine_type_halo_reach:
+		file_name = L"temp.haloreach";
+		break;
+	case _engine_type_halo1:
+		file_name = L"temp.halo1";
+		break;
+	case _engine_type_halo2:
+		file_name = L"temp.halo2";
+		break;
+	case _engine_type_groundhog:
+		file_name = L"temp.groundhog";
+		break;
+	default:
+		return;
 	}
-	save_variant_to_file(L"opus/map_variants/temp.mvar", map_variant);
+
+	// TODO: add user input for `file_name`, `name`, and `description`
+	save_variant_to_file(map_variant, _variant_type_map, file_name, name, description);
 }
 
 void c_opus_game_engine_host::Function13(const wchar_t*, const wchar_t*, const void*, unsigned int)
