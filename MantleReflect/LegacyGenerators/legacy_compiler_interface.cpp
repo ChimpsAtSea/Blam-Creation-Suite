@@ -309,19 +309,20 @@ c_reflection_type_container_legacy* c_legacy_compiler_interface::create_reflecte
 		AnnotateAttr* annotatedAttr = dyn_cast<AnnotateAttr>(&attr);
 		if (annotatedAttr != nullptr)
 		{
-			std::string str = annotatedAttr->getAnnotation();
+			llvm::StringRef string_ref = annotatedAttr->getAnnotation();
+			std::string string = string_ref.str();
 
-			const char* pNoReflection = strstr(str.c_str(), "no_reflection");
-			const char* pNiceName = strstr(str.c_str(), "nice_name");
-			const char* pTagGroup = strstr(str.c_str(), "tag_group");
+			const char* no_reflection = strstr(string.c_str(), "no_reflection");
+			const char* nice_name = strstr(string.c_str(), "nice_name");
+			const char* tag_group = strstr(string.c_str(), "tag_group");
 
-			if (pNoReflection)
+			if (no_reflection)
 			{
 				disableReflection = true;
 			}
-			if (pNiceName)
+			if (nice_name)
 			{
-				nice_name_str = pNiceName + strlen("nice_name:");
+				nice_name_str = nice_name + strlen("nice_name:");
 			}
 		}
 	}
@@ -466,11 +467,12 @@ c_reflection_type_container_legacy* c_legacy_compiler_interface::create_reflecte
 		AnnotateAttr* annotatedAttr = dyn_cast<AnnotateAttr>(&attr);
 		if (annotatedAttr != nullptr)
 		{
-			std::string str = annotatedAttr->getAnnotation();
+			llvm::StringRef string_ref = annotatedAttr->getAnnotation();
+			std::string string = string_ref.str();
 
-			const char* pNoReflection = strstr(str.c_str(), "no_reflection");
-			const char* pNiceName = strstr(str.c_str(), "nice_name");
-			const char* pTagGroup = strstr(str.c_str(), "tag_group");
+			const char* pNoReflection = strstr(string.c_str(), "no_reflection");
+			const char* pNiceName = strstr(string.c_str(), "nice_name");
+			const char* pTagGroup = strstr(string.c_str(), "tag_group");
 
 			if (pNoReflection)
 			{
