@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{4735B7BB-A207-41B7-A10F-C2DD60BBEF2C}</ProjectGuid>
-    <RootNamespace>imgui</RootNamespace>
+    <RootNamespace>pugixml-build</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

@@ -20,32 +20,34 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{AB9A2B58-71F9-4D5F-A2A9-9E6AB764328F}</ProjectGuid>
-    <RootNamespace>tbb-build</RootNamespace>
+    <ProjectGuid>{98F7D141-B2C9-4C77-9654-241755742E2E}</ProjectGuid>
+    <RootNamespace>BlamderInterface</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>
+    </ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -70,20 +72,32 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -91,42 +105,21 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-    </Link>
-    <PostBuildEvent>
-      <Command>set CLANG_OPTIONS=CLANG_OPTIONS=
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
-
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
-    echo TBB is already configured
-) else (
-    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
-)
-
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
-    echo TBB is already built
-) else (
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
-)
-
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\Release\tbb_static.lib" (
-    echo TBB Release is already built
-) else (
-    msbuild /t:Build /p:Configuration=Release /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
-)
-</Command>
-    </PostBuildEvent>
-    <Lib>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>Shared.lib;d3d11.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
-    </Lib>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
+    </Link>
+    <ProjectReference />
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -134,42 +127,21 @@ if exist "$(ProjectDir)cmake_$(PlatformShortName)\Release\tbb_static.lib" (
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-    </Link>
-    <PostBuildEvent>
-      <Command>set CLANG_OPTIONS=CLANG_OPTIONS=
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
-
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
-    echo TBB is already configured
-) else (
-    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
-)
-
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
-    echo TBB is already built
-) else (
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
-)
-
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\Release\tbb_static.lib" (
-    echo TBB Release is already built
-) else (
-    msbuild /t:Build /p:Configuration=Release /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
-)
-</Command>
-    </PostBuildEvent>
-    <Lib>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>Shared.lib;d3d11.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
-    </Lib>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
+    </Link>
+    <ProjectReference />
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -179,43 +151,23 @@ if exist "$(ProjectDir)cmake_$(PlatformShortName)\Release\tbb_static.lib" (
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>Shared.lib;d3d11.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
-    <PostBuildEvent>
-      <Command>set CLANG_OPTIONS=CLANG_OPTIONS=
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
-
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
-
-    echo TBB is already configured
-
-) else (
-
-    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
-
-)
-
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
-
-    echo TBB is already built
-	
-) else (
-
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
-
-)
-</Command>
-    </PostBuildEvent>
+    <ProjectReference />
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -225,44 +177,30 @@ if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.li
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>Shared.lib;d3d11.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
-    <PostBuildEvent>
-      <Command>set CLANG_OPTIONS=CLANG_OPTIONS=
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_SHARED:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_STATIC:BOOL="1"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TBBMALLOC_PROXY:BOOL="0"
-set CLANG_OPTIONS=%CLANG_OPTIONS% -DTBB_BUILD_TESTS:BOOL="0"
-
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" (
-
-    echo TBB is already configured
-
-) else (
-
-    cmake %CLANG_OPTIONS% -G "Visual Studio 16 2019" -A $(Platform) -Thost=$(PlatformShortName) -S "$(SolutionDir)tbb" -B "$(ProjectDir)cmake_$(PlatformShortName)"
-
-)
-
-if exist "$(ProjectDir)cmake_$(PlatformShortName)\$(Configuration)\tbb_static.lib" (
-
-    echo TBB is already built
-	
-) else (
-
-    msbuild /t:Build /p:Configuration=$(Configuration) /p:Platform=$(Platform) "$(ProjectDir)cmake_$(PlatformShortName)\tbb.sln" -verbosity:minimal /p:WarningLevel=0 /NoWarn:MSB8065 -m
-
-)
-</Command>
-    </PostBuildEvent>
+    <ProjectReference />
+    <ProjectReference>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

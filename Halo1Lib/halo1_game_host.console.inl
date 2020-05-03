@@ -94,7 +94,7 @@ void update_console()
 		}
 	}
 }
-void draw_console_debug_gui()
+static void draw_console_debug_gui()
 {
 	ImGui::SetNextWindowPos(ImVec2(100, 100), ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowSize(ImVec2(600, 600), ImGuiCond_FirstUseEver);

@@ -33,9 +33,9 @@ std::unique_ptr<FrontendActionFactory> c_llvm_compile_action::new_compiler_actio
 		}
 		c_llvm_compiler_interface& llvm_compiler_interface;
 
-		FrontendAction* create() override
+		std::unique_ptr<FrontendAction> create() override
 		{
-			return new c_llvm_compile_action(llvm_compiler_interface);
+			return std::unique_ptr<FrontendAction>(new c_llvm_compile_action(llvm_compiler_interface));
 		}
 	};
 

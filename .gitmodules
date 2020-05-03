@@ -11,3 +11,6 @@
 [submodule "blamlib"]
 	path = blamlib
 	url = https://github.com/Assault-on-the-Control-Room/blamlib.git
+[submodule "blamder"]
+	path = blamder/blamder
+	url = https://github.com/Assault-on-the-Control-Room/blamder.git
