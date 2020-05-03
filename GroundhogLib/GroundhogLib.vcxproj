@@ -99,6 +99,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="groundhog_engine_state_command.cpp" />
     <ClCompile Include="groundhog_game_host.cpp" />
     <ClCompile Include="groundhoglib-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -106,6 +107,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="groundhog_engine_state_command.h" />
     <ClInclude Include="opus_legacy\c_network.h" />
     <ClInclude Include="groundhog_game_host.h" />
     <ClInclude Include="groundhoglib-private-pch.h" />

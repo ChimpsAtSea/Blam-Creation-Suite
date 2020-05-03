@@ -7,6 +7,7 @@
 /* ---------- globals */
 
 c_game_runtime* c_halo2_game_host::g_halo2_game_runtime;
+static c_halo2_engine_state_command* g_halo2_engine_state_command;
 
 /* ---------- private prototypes */
 /* ---------- public code */
@@ -30,6 +31,11 @@ c_halo2_game_host::c_halo2_game_host(e_engine_type engine_type, e_build build) :
 		__int64 create_game_engine_result = get_game_runtime().CreateGameEngine(&game_engine);
 	}
 	ASSERT(game_engine != nullptr);
+
+	if (g_halo2_engine_state_command != nullptr)
+	{
+		g_halo2_engine_state_command->set_game_engine(game_engine);
+	}
 }
 
 c_halo2_game_host::~c_halo2_game_host()
@@ -77,6 +83,8 @@ c_game_runtime& c_halo2_game_host::get_game_runtime()
 
 void c_halo2_game_host::init_runtime_modifications(e_build build)
 {
+	g_halo2_engine_state_command = new c_halo2_engine_state_command();
+
 	init_detours();
 	c_global_reference::init_global_reference_tree(_engine_type_halo2, build);
 	c_data_patch_base::init_data_patch_tree(_engine_type_halo2, build);
@@ -86,6 +94,8 @@ void c_halo2_game_host::init_runtime_modifications(e_build build)
 
 void c_halo2_game_host::deinit_runtime_modifications(e_build build)
 {
+	delete g_halo2_engine_state_command;
+
 	init_detours();
 	c_function_hook_base::deinit_function_hook_tree(_engine_type_halo2, build);
 	c_data_patch_base::deinit_data_patch_tree(_engine_type_halo2, build);
