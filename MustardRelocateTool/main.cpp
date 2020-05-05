@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <DbgHelp.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <ASSERT.h>
 
 #define ASSERT assert
@@ -133,7 +134,7 @@ IMAGE_SECTION_HEADER* get_section_header(const char* section_name, IMAGE_NT_HEAD
 	return nullptr;
 }
 
-void rebase_executable_code(UINT_PTR new_virtual_address, char* raw_image_data, IMAGE_NT_HEADERS* raw_nt_headers, IMAGE_SECTION_HEADER* raw_section_header)
+void rebase_executable_code(uintptr_t new_virtual_address, char* raw_image_data, IMAGE_NT_HEADERS* raw_nt_headers, IMAGE_SECTION_HEADER* raw_section_header)
 {
 	if (raw_nt_headers->OptionalHeader.ImageBase == new_virtual_address)
 	{
@@ -144,10 +145,10 @@ void rebase_executable_code(UINT_PTR new_virtual_address, char* raw_image_data, 
 	{
 		printf("Rebasing to 0x%zX\n", new_virtual_address);
 	}
-	UINT_PTR virtual_address_delta = new_virtual_address - raw_nt_headers->OptionalHeader.ImageBase;
+	uintptr_t virtual_address_delta = new_virtual_address - static_cast<uintptr_t>(raw_nt_headers->OptionalHeader.ImageBase);
 	raw_nt_headers->OptionalHeader.ImageBase += virtual_address_delta;
 
-	int virtual_address_delta_signed = static_cast<int>(virtual_address_delta);
+	intptr_t virtual_address_delta_signed = static_cast<int>(virtual_address_delta);
 	if (virtual_address_delta_signed >= 0)
 	{
 		printf("virtual_address_delta 0x%zX\n", virtual_address_delta);
@@ -628,15 +629,15 @@ void insert_virtual_address_padding(DWORD virtual_address_padding, const char* c
 	}
 }
 
-DWORD parse_ul(const char* str)
+uint64_t parse_ull(const char* str)
 {
 	if (strlen(str) >= 2 && str[0] == '0' && (str[1] == 'x' || str[1] == 'X'))
 	{
-		return strtoul(str + 2, nullptr, 16);
+		return strtoull(str + 2, nullptr, 16);
 	}
 	else
 	{
-		return strtoul(str, nullptr, 10);
+		return strtoull(str, nullptr, 10);
 	}
 }
 
@@ -652,8 +653,8 @@ int main(int argc, const char* argv[])
 	const char* custom_section_name = argv[2];
 	const char* custom_base_address_str = argv[3];
 	const char* custom_section_size_str = argv[4];
-	DWORD custom_base_address = parse_ul(custom_base_address_str);
-	DWORD custom_section_size = parse_ul(custom_section_size_str);
+	uintptr_t custom_base_address = parse_ull(custom_base_address_str);
+	DWORD custom_section_size = static_cast<DWORD>(parse_ull(custom_section_size_str));
 
 
 	{
@@ -694,10 +695,10 @@ int main(int argc, const char* argv[])
 			LPVOID section_virtual_address_ptr = reinterpret_cast<LPVOID>(section_virtual_address);
 			IMAGE_SECTION_HEADER* raw_section_header = reinterpret_cast<IMAGE_SECTION_HEADER*>(raw_nt_headers + 1);
 
-			UINT_PTR application_virtual_address = custom_base_address;
+			uintptr_t application_virtual_address = custom_base_address;
 			DWORD inserted_data_size = custom_section_size; 
-			UINT_PTR new_virtual_address = application_virtual_address + inserted_data_size;
-			UINT_PTR virtual_address_delta = new_virtual_address - raw_nt_headers->OptionalHeader.ImageBase;
+			uintptr_t new_virtual_address = application_virtual_address + inserted_data_size;
+			uintptr_t virtual_address_delta = new_virtual_address - raw_nt_headers->OptionalHeader.ImageBase;
 
 			IMAGE_SECTION_HEADER* opus_section_header = get_section_header(custom_section_name, raw_nt_headers, raw_section_header);
 			if (opus_section_header)

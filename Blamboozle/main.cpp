@@ -69,7 +69,7 @@ int run(const wchar_t* output_directory, const wchar_t* binary_filepath)
 		if (hash == _build_halo5_forge_1_114_4592_2)
 		{
 			build = _build_halo5_forge_1_114_4592_2;
-			engine_type = _engine_type_halo5_forge;
+			engine_type = _engine_type_halo5;
 		}
 	}
 

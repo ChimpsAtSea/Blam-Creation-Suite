@@ -6,6 +6,7 @@
 
 // #TODO: Move any interface here inside of Opus Framework
 #include <EldoradoLib\eldoradolib-public-pch.h>
+#include <Halo5Lib\halo5lib-public-pch.h>
 
 #include "mustard-public-pch.h"
 

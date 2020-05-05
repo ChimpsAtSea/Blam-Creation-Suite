@@ -89,6 +89,7 @@
   <ItemGroup>
     <ClCompile Include="command_line.cpp" />
     <ClCompile Include="console.cpp" />
+    <ClCompile Include="DebugLogging.cpp" />
     <ClCompile Include="debug_util.cpp" />
     <ClCompile Include="Rendering\directx_helpers.cpp" />
     <ClCompile Include="ThreadPrimitives\semaphore.cpp" />

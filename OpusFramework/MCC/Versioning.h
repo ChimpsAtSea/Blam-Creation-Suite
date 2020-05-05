@@ -9,7 +9,7 @@ enum e_engine_type : uint8_t
 	_engine_type_halo2,
 	_engine_type_eldorado,
 	_engine_type_groundhog,
-	_engine_type_halo5_forge,
+	_engine_type_halo5,
 };
 
 constexpr const char* engine_type_to_string(e_engine_type engine_type)
@@ -23,7 +23,7 @@ constexpr const char* engine_type_to_string(e_engine_type engine_type)
 	case _engine_type_halo2:		return "_engine_type_halo2";
 	case _engine_type_groundhog:	return "_engine_type_groundhog";
 	case _engine_type_eldorado:		return "_engine_type_eldorado";
-	case _engine_type_halo5_forge:	return "_engine_type_halo5_forge";
+	case _engine_type_halo5:	return "_engine_type_halo5";
 	}
 	FATAL_ERROR(L"unknown e_engine_type");
 }
@@ -39,7 +39,7 @@ constexpr const char* engine_type_to_nice_name(e_engine_type engine_type)
 	case _engine_type_halo2:		return "Halo 2";
 	case _engine_type_groundhog:	return "Groundhog";
 	case _engine_type_eldorado:		return "Eldorado";
-	case _engine_type_halo5_forge:	return "Halo 5 Forge";
+	case _engine_type_halo5:	return "Halo 5 Forge";
 	}
 	FATAL_ERROR(L"unknown e_engine_type");
 }
@@ -90,7 +90,8 @@ enum e_build : uint64_t
 	_build_eldorado_1_700255_cert_ms30_oct19 = MAKE_PRODUCT_VERSION(12, 1, 700255),
 	_build_halo1_guerilla = MAKE_TOOL_VERSION(1, 0, 0, 609, "Guerilla MFC Application", "Guerilla Application"),
 	_build_halo2_guerilla = MAKE_TOOL_VERSION(1, 0, 0, 0, "Tag Editor", "Halo 2 for Windows Vista"),
-	_build_halo5_forge_1_114_4592_2 = HASH_VERSION(0xc64ebca380e26cdd)
+	_build_halo5_forge_1_114_4592_2 = HASH_VERSION(0xc64ebca380e26cdd),
+	_build_halo5_forge_1_194_6192_2 = HASH_VERSION(0xf1bafafca2ec154b)
 };
 
 #undef MAKE_FILE_VERSION
@@ -164,6 +165,7 @@ constexpr uintptr_t GetEngineBaseAddress(e_engine_type engine_type)
 	case _engine_type_halo2:
 	case _engine_type_groundhog:
 		return 0x180000000;
+	case _engine_type_halo5:
 	case _engine_type_mcc:
 		return 0x140000000;
 #else
@@ -200,7 +202,7 @@ constexpr e_game_context_version get_game_context_version_from_build(e_build bui
 constexpr uintptr_t GetEngineTopAddress(e_engine_type engine_type, e_build build)
 {
 #ifdef _WIN64
-	if (engine_type == _engine_type_mcc)
+	if (engine_type == _engine_type_mcc || engine_type == _engine_type_halo5)
 	{
 		// #TODO: Calculate the top address.
 		return 0x14FFFFFFF;
@@ -262,7 +264,7 @@ constexpr const char* GetEngineModuleFileName(e_engine_type engine_type)
 		return "groundhog.dll";
 	case _engine_type_eldorado:
 		return "eldorado.exe";
-	case _engine_type_halo5_forge:	
+	case _engine_type_halo5:	
 		return "halo5forge.exe";
 	}
 	FATAL_ERROR(L"Unsupported GameVersion");

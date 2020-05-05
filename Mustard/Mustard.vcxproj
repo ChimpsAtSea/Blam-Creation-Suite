@@ -117,7 +117,11 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+      <Command>if "$(Platform)" == "Win32" (
+  $(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+) else (
+  rem $(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x140000000 0x20000000
+)
 $(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
@@ -125,8 +129,8 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetDir)$(TargetName).exe" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
-  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)$(TargetName).exe" /Y
+  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)\" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)\$(TargetName).exe" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -140,6 +144,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderFile>mustard-private-pch.h</PrecompiledHeaderFile>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,7 +155,11 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+      <Command>if "$(Platform)" == "Win32" (
+  $(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+) else (
+  rem $(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x140000000 0x20000000
+)
 $(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
@@ -158,8 +167,8 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetDir)$(TargetName).exe" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
-  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)$(TargetName).exe" /Y
+  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)\" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)\$(TargetName).exe" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -187,7 +196,11 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+      <Command>if "$(Platform)" == "Win32" (
+  $(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+) else (
+  rem $(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x140000000 0x20000000
+)
 $(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
@@ -195,8 +208,8 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetDir)$(TargetName).exe" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
-  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)$(TargetName).exe" /Y
+  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)\" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)\$(TargetName).exe" /Y
  )
 )</Command>
     </PostBuildEvent>
@@ -212,6 +225,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mustard-private-pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -224,7 +238,11 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+      <Command>if "$(Platform)" == "Win32" (
+  $(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x400000 0x0760A000
+) else (
+  rem $(OutputPath)MustardRelocateTool.exe $(OutputPath)Mustard.exe .opus 0x140000000 0x20000000
+)
 $(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
@@ -232,8 +250,8 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetDir)$(TargetName).exe" "\\$(RemoteDebuggerServerName)\!MCC\" /Y
 ) else (
  if NOT "$(TargetPath)" == "$(LocalDebuggerCommand)" (
-  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)" /Y
-  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)$(TargetName).exe" /Y
+  echo f|xcopy "$(TargetPath)" "$(LocalDebuggerWorkingDirectory)\" /Y
+  echo f|xcopy "$(TargetDir)$(TargetName).exe" "$(LocalDebuggerWorkingDirectory)\$(TargetName).exe" /Y
  )
 )</Command>
     </PostBuildEvent>

@@ -2,6 +2,14 @@
 
 #include <stdio.h>
 
+enum e_debug_log_mode
+{
+	_debug_log_mode_nothing,
+	_debug_log_mode_verbose,
+	_debug_log_mode_everything,
+};
+extern e_debug_log_mode g_debug_log_mode;
+
 #define _LOGCOMBINE1(X,Y) X##Y  // helper macro
 #define _LOGCOMBINE(X,Y) _LOGCOMBINE1(X,Y)
 
@@ -31,10 +39,18 @@ if(strcmp(_LOGCOMBINE(__buffer_last, __LINE__), _LOGCOMBINE(__buffer_current, __
 } \
 (void)(0)
 
-#define write_line_verbose(str, ...) \
+#define write_line(str, ...) \
 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); \
 printf(str, ##__VA_ARGS__); \
 printf("\n")
+
+#define write_line_verbose(str, ...) \
+do { \
+	if (g_debug_log_mode >= _debug_log_mode_verbose) \
+	{ \
+		write_line(str, ##__VA_ARGS__); \
+	} \
+} while (false)
 
 #define WriteVerbose(str, ...) \
 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); \

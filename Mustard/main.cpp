@@ -1,5 +1,11 @@
 #include "mustard-private-pch.h"
 
+#ifndef _WIN64
+#pragma comment(lib, "EldoradoLib.lib")
+#else
+#pragma comment(lib, "Halo5Lib.lib")
+#endif
+
 const char* c_console::g_console_executable_name = "Mustard";
 
 struct tls_data;
@@ -264,7 +270,7 @@ void parse_import_address_table(HINSTANCE module)
 	}
 }
 
-typedef void (entry_point_function)();
+typedef intmax_t (entry_point_function)();
 entry_point_function* get_module_entry_point(HINSTANCE module)
 {
 	char* module_virtual_address = reinterpret_cast<char*>(module);
@@ -438,6 +444,8 @@ void WINAPI RaiseExceptionHook(
 
 __declspec(dllexport) int main()
 {
+	g_debug_log_mode = _debug_log_mode_nothing;
+
 	c_console::init_console();
 	DetourTransactionBegin();
 	DetourUpdateThread(GetCurrentThread());
@@ -448,13 +456,14 @@ __declspec(dllexport) int main()
 	SetProcessDPIAware();
 
 	HMODULE current_module = GetModuleHandleA(NULL);
-	ASSERT(current_module == reinterpret_cast<void*>(intptr_t(0x00400000)));
-
 	launcher_tls_data_directory = static_cast<IMAGE_TLS_DIRECTORY*>(ImageDirectoryEntryToData(current_module, TRUE, IMAGE_DIRECTORY_ENTRY_TLS, &launcher_import_descriptor_size));
 
+	e_engine_type engine_type = _engine_type_not_set;
 	e_build build = _build_not_set;
+#ifndef _WIN64
 	if (loaded_executable_module == NULL)
 	{
+		ASSERT(current_module == reinterpret_cast<void*>(intptr_t(0x00400000)));
 		loaded_executable_module = load_executable("eldorado.exe");
 
 		if (loaded_executable_module)
@@ -464,9 +473,11 @@ __declspec(dllexport) int main()
 
 		// #TODO: Determine version of Eldorado
 		build = _build_eldorado_1_106708_cert_ms23;
+		engine_type = _engine_type_eldorado;
 	}
 	if (loaded_executable_module == NULL)
 	{
+		ASSERT(current_module == reinterpret_cast<void*>(intptr_t(0x00400000)));
 		loaded_executable_module = load_executable("halo_online.exe");
 
 		if (loaded_executable_module)
@@ -476,24 +487,78 @@ __declspec(dllexport) int main()
 
 		// #TODO: Determine version of Halo Online
 		build = _build_eldorado_1_700255_cert_ms30_oct19;
+		engine_type = _engine_type_eldorado;
 	}
+#else
+	if (loaded_executable_module == NULL)
+	{
+		char* binary_data = nullptr;
+		size_t binary_data_size = 0;
+		if (read_file_to_memory("halo5forge.exe", reinterpret_cast<void**>(&binary_data), &binary_data_size))
+		{
+			engine_type = _engine_type_halo5;
+
+			bool is_supported_halo5_build = false;
+			uint64_t hash = xxhash::xxh64(binary_data, binary_data_size);
+			switch (hash)
+			{
+			case _build_halo5_forge_1_114_4592_2:
+			case _build_halo5_forge_1_194_6192_2:
+				build = static_cast<e_build>(hash);
+				break;
+			default:
+				FATAL_ERROR(L"Unknown Halo 5 build");
+			}
+
+			if (build != _build_not_set)
+			{
+				//loaded_executable_module = load_executable("halo5forge.exe");
+				loaded_executable_module = LoadLibraryA("halo5forge.exe");
+
+				if (loaded_executable_module)
+				{
+					write_line_verbose("Loaded Halo 5 Module");
+				}
+				else
+				{
+					FATAL_ERROR(L"Failed to load Halo 5");
+				}
+			}
+		}
+	}
+#endif
 	ASSERT(loaded_executable_module != NULL);
 
-	parse_import_address_table(loaded_executable_module);
-	apply_module_thread_local_storage_fixup(loaded_executable_module);
 
+
+	switch(engine_type)
+	{
 #ifndef _WIN64
-	c_eldorado_game_host::init_game_host(build);
-	c_eldorado_game_host::init_runtime_modifications(build);
+	case _engine_type_eldorado:
+		parse_import_address_table(loaded_executable_module);
+		apply_module_thread_local_storage_fixup(loaded_executable_module);
+		c_eldorado_game_host::init_game_host(build);
+		c_eldorado_game_host::init_runtime_modifications(build);
+		break;
 #endif
+	case _engine_type_halo5:
+		c_halo5_game_host::init_game_host(build);
+		c_halo5_game_host::init_runtime_modifications(build);
+		break;
+	}
 
 	entry_point_function* entry_point = get_module_entry_point(loaded_executable_module);
 	ASSERT(entry_point);
-	entry_point();
+	intmax_t result = entry_point();
 
-	// the entry point should exit the process and not reach this code
-	FATAL_ERROR(L"Unexpected code region");
-	return 1;
+	if (engine_type == _engine_type_eldorado)
+	{
+		// the entry point should exit the process and not reach this code
+		FATAL_ERROR(L"Unexpected code region");
+		return 1;
+	}
+
+	return static_cast<int>(result);
 }
 
 BOOL WINAPI DllMain(

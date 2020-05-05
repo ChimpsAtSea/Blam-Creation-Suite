@@ -15,27 +15,40 @@ int WINAPI WinMain(
 	_In_ int nShowCmd
 )
 {
-
 	{ //  force some random data into g_thread_local_data
 		int value;
 		memset(g_thread_local_data, static_cast<int>(reinterpret_cast<intptr_t>(&value)), sizeof(g_thread_local_data));
 	}
 
-	HINSTANCE project21 = LoadLibraryA("Mustard.dll");
-	if (project21 == NULL)
+	HINSTANCE mustard_module = LoadLibraryA("Mustard.dll");
+	if (mustard_module == NULL)
 	{
-		printf("failed to load project21.dll\n");
+		printf("failed to load Mustard.dll\n");
 		return 1;
 	}
-	FARPROC project21_main = GetProcAddress(project21, "main");
+	FARPROC mustard_entry_point_func = GetProcAddress(mustard_module, "main");
 	typedef int (main_func)();
-	main_func* project21_main_ptr = reinterpret_cast<main_func*>(project21_main);
-	if (project21_main_ptr == nullptr)
+	main_func* mustard_entry_point = reinterpret_cast<main_func*>(mustard_entry_point_func);
+	if (mustard_entry_point == nullptr)
 	{
-		printf("failed to find project21.dll::main\n");
-		return 1;
+		printf("failed to find Mustard.dll::main\n");
+		return 2;
 	}
 
-	int result = project21_main_ptr();
-	return g_thread_local_data[_countof(g_thread_local_data)-1] | 1;
+	int result = mustard_entry_point();
+	printf("", g_thread_local_data[_countof(g_thread_local_data) - 1] | 1);
+	return result;
+}
+
+int main()
+{
+	SetThreadErrorMode(SEM_NOGPFAULTERRORBOX, NULL);
+	SetErrorMode(SEM_NOGPFAULTERRORBOX);
+
+	HMODULE hInstance = NULL;
+	GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, (LPCTSTR)WinMain, &hInstance);
+
+	LPSTR lpCmdLine = GetCommandLineA();
+
+	return WinMain(hInstance, NULL, lpCmdLine, SW_SHOWNORMAL);
 }
