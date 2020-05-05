@@ -43,6 +43,8 @@ private:
 #endif
 	static bool load_variant_from_file(IDataAccess* data_access, GameContext* game_context, e_engine_type engine_type, e_variant_type variant_type, LPCSTR file_name);
 
+	static bool load_save_from_file(GameContext* game_context, LPCSTR file_name, bool should_run);
+
 	// #TODO: Move these into each lib
 #ifdef _WIN64
 	static void launch_mcc_game(e_engine_type engine_type);

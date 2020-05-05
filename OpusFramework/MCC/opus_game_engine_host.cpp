@@ -103,12 +103,15 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 	return __int64(0);
 }
 
-extern e_map_id halo1_map_id;
-extern e_map_id halo2_map_id;
+extern e_map_id g_halo1_map_id;
+extern e_map_id g_halo2_map_id;
+extern e_map_id g_halo3_map_id;
+extern e_map_id g_halo4_map_id;
+extern e_map_id g_halo3odst_map_id;
 
 __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t buffer_size)
 {
-	if (buffer_size == 0)
+	if (buffer == nullptr || buffer_size == 0)
 	{
 		return __int64(0);
 	}
@@ -116,7 +119,7 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 
 	static e_engine_type last_engine_type = _engine_type_not_set;
 	static e_map_id map_id = _map_id_none;
-	static const wchar_t* engine_name = L"";
+	static const wchar_t* engine_name = engine_type_to_folder_name_wide(engine_type);
 	if (last_engine_type == _engine_type_not_set || last_engine_type != engine_type)
 	{
 		// TODO: add support for halo reach
@@ -127,12 +130,19 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 		//	engine_name = L"haloreach";
 		//	break;
 		case _engine_type_halo1:
-			map_id = halo1_map_id;
-			engine_name = L"halo1";
+			map_id = g_halo1_map_id;
 			break;
 		case _engine_type_halo2:
-			map_id = halo2_map_id;
-			engine_name = L"halo2";
+			map_id = g_halo2_map_id;
+			break;
+		case _engine_type_halo3:
+			map_id = g_halo3_map_id;
+			break;
+		case _engine_type_halo3odst:
+			map_id = g_halo3odst_map_id;
+			break;
+		case _engine_type_halo4:
+			map_id = g_halo4_map_id;
 			break;
 		default:
 			return __int64(0);
