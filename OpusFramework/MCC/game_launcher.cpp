@@ -1034,3 +1034,27 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	return true;
 }
+
+bool c_game_launcher::load_save_from_file(GameContext *game_context, LPCSTR file_name, bool should_run)
+{
+	if (should_run)
+	{
+		std::string file_path = std::string("opus/autosave/").append(file_name).append(".bin");
+		if (read_file_to_memory(file_path.c_str(), reinterpret_cast<void **>(&game_context->game_state_header_ptr), &game_context->game_state_header_size))
+		{
+			if (is_valid(game_context->game_state_header_ptr) && game_context->game_state_header_size > 0)
+			{
+				// take off the last 4 bytes from the size to exclude our added map id
+				game_context->game_state_header_size -= 4;
+				e_map_id map_id = *reinterpret_cast<e_map_id *>(&game_context->game_state_header_ptr[game_context->game_state_header_size]);
+				game_context->game_mode = map_id_to_game_mode(map_id);
+				game_context->map_id = map_id;
+
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	return false;
+};
