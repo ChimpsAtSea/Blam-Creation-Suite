@@ -1,5 +1,9 @@
 #include "blamboozle-private-pch.h"
 
+#if defined(_WIN64)
+#define uintptr_t uint32_t
+#endif
+
 // source material by grimdoomer https://github.com/grimdoomer/Mutation/blob/master/Mutation.HEK/Guerilla/GuerillaReader.cs
 
 struct tag_group
@@ -7,8 +11,8 @@ struct tag_group
 	char name[4];
 };
 
-static constexpr uint32_t base_address = 0x400000;
-static constexpr uint32_t tag_layout_table_address = 0x00901B90;
+static constexpr uintptr_t base_address = 0x400000;
+static constexpr uintptr_t tag_layout_table_address = 0x00901B90;
 static constexpr uint32_t num_tag_layouts = 120;
 
 // #TODO: More sophistocated addressing using sections
@@ -60,12 +64,12 @@ enum e_h2_field_type : short
 	_field_long_block_flags,
 	_field_word_block_flags,
 	_field_byte_block_flags,
-	_field_char_block_index1,
-	_field_char_block_index2,
-	_field_short_block_index1,
-	_field_short_block_index2,
-	_field_long_block_index1,
-	_field_long_block_index2,
+	_field_char_block_index,
+	_field_custom_char_block_index,
+	_field_short_block_index,
+	_field_custom_short_block_index,
+	_field_long_block_index,
+	_field_custom_long_block_index,
 	_field_data,
 	_field_vertex_buffer,
 	_field_array_start,
@@ -77,7 +81,6 @@ enum e_h2_field_type : short
 	_field_custom,
 	_field_struct,
 	_field_terminator,
-	_field_end_element,
 
 	_field_type_max,
 };
@@ -86,8 +89,8 @@ struct s_h2_tag_field_definition
 {
 	e_h2_field_type field_type;
 	uint16_t _padding;
-	uint32_t name_address;
-	uint32_t definition_address;
+	uintptr_t name_address;
+	uintptr_t definition_address;
 	uint32_t group_tag;
 };
 
@@ -110,7 +113,7 @@ struct s_h2_tag_reference_definition
 {
 	uint32_t flags;
 	uint32_t group_tag2;
-	uint32_t group_tags_address;
+	uintptr_t group_tags_address;
 };
 
 class c_h2_tag_field_tag_reference :
@@ -129,10 +132,10 @@ public:
 
 struct s_h2_tag_struct_definition
 {
-	uint32_t name_address;
+	uintptr_t name_address;
 	uint32_t group_tag;
-	uint32_t display_name_address;
-	uint32_t block_definition_address;
+	uintptr_t display_name_address;
+	uintptr_t block_definition_address;
 };
 
 class c_h2_tag_field_struct :
@@ -151,13 +154,13 @@ public:
 
 struct s_h2_tag_data_definition
 {
-	uint32_t definition_name_address;
+	uintptr_t definition_name_address;
 	uint32_t flags;
 	uint32_t alignment_bit;
 	uint32_t maximum_size;
-	uint32_t maximum_size_string_address;
-	uint32_t byteswap_procedure;
-	uint32_t copy_procedure;
+	uintptr_t maximum_size_string_address;
+	uintptr_t byteswap_procedure;
+	uintptr_t copy_procedure;
 };
 
 class c_h2_tag_field_data :
@@ -182,7 +185,7 @@ public:
 struct s_h2_tag_enum_definition
 {
 	uint32_t option_count;
-	uint32_t options_address;
+	uintptr_t options_address;
 	uint32_t flags; //?
 };
 
@@ -199,10 +202,10 @@ public:
 	{
 		tag_enum_definition = reinterpret_cast<const s_h2_tag_enum_definition*>(va_to_pointer(guerilla_data, field_definition->definition_address));
 
-		const uint32_t* options_strings_address = reinterpret_cast<const uint32_t*>(va_to_pointer(guerilla_data, tag_enum_definition->options_address));
+		const uintptr_t* options_strings_address = reinterpret_cast<const uint32_t*>(va_to_pointer(guerilla_data, tag_enum_definition->options_address));
 		for (uint32_t option_index = 0; option_index < tag_enum_definition->option_count; option_index++)
 		{
-			uint32_t option_string_address = options_strings_address[option_index];
+			uintptr_t option_string_address = options_strings_address[option_index];
 			const char* option = va_to_pointer(guerilla_data, option_string_address);
 			options.push_back(option);
 			debug_point;
@@ -212,8 +215,8 @@ public:
 
 struct s_h2_tag_block_index_custom_search_definition
 {
-	uint32_t get_block_proc;
-	uint32_t is_valid_source_block_proc;
+	uintptr_t get_block_procedure;
+	uintptr_t is_valid_source_block_procedure;
 };
 
 class c_h2_tag_field_block_index_custom_search_definition :
@@ -246,16 +249,16 @@ public:
 
 struct s_h2_tag_field_set_version_header
 {
-	uint32_t fields_address;
+	uintptr_t fields_address;
 	uint32_t index;
-	uint32_t upgrade_procedure;
+	uintptr_t upgrade_procedure;
 	uint32_t _unknown;
 	uint32_t size_of;
 };
 
 struct s_h2_byte_swap_definition
 {
-	uint32_t name_address;
+	uintptr_t name_address;
 	uint32_t _unknown0;
 	uint32_t _unknown1;
 	uint32_t magic;
@@ -272,8 +275,8 @@ struct s_h2_tag_field_set_header
 	uint32_t size;
 	uint32_t alignment_bit;
 	uint32_t parent_version_index;
-	uint32_t fields_address;
-	uint32_t size_string_address;
+	uintptr_t fields_address;
+	uintptr_t size_string_address;
 	s_h2_byte_swap_definition byte_swap_definition;
 };
 static_assert(sizeof(s_h2_tag_field_set_header) == 76, "s_h2_tag_field_set_header is incorrect size");
@@ -299,24 +302,26 @@ public:
 		uint32_t field_index = 0;
 		do
 		{
+			c_h2_tag_field* field = nullptr;
+
 			switch (current_field->field_type)
 			{
 			case _field_tag_reference:
 			{
 				c_h2_tag_field_tag_reference* struct_field = new c_h2_tag_field_tag_reference(guerilla_data, current_field);
-				tag_fields.emplace_back(struct_field);
+				field = struct_field;
 				break;
 			}
 			case _field_struct:
 			{
 				c_h2_tag_field_struct* struct_field = new c_h2_tag_field_struct(guerilla_data, current_field);
-				tag_fields.emplace_back(struct_field);
+				field = struct_field;
 				break;
 			}
 			case _field_data:
 			{
 				c_h2_tag_field_data* data_field = new c_h2_tag_field_data(guerilla_data, current_field);
-				tag_fields.emplace_back(data_field);
+				field = data_field;
 				break;
 			}
 			case _field_byte_flags:
@@ -327,30 +332,33 @@ public:
 			case _field_long_enum:
 			{
 				c_h2_tag_field_enum* enum_field = new c_h2_tag_field_enum(guerilla_data, current_field);
-				tag_fields.emplace_back(enum_field);
+				field = enum_field;
 				break;
 			}
-			case _field_char_block_index2:
-			case _field_short_block_index2:
-			case _field_long_block_index2:
+			case _field_char_block_index:
+			case _field_custom_char_block_index:
+			case _field_short_block_index:
+			case _field_custom_short_block_index:
+			case _field_long_block_index:
+			case _field_custom_long_block_index:
 			{
 				c_h2_tag_field_block_index_custom_search_definition* block_index_custom_search_field = new c_h2_tag_field_block_index_custom_search_definition(guerilla_data, current_field);
-				tag_fields.emplace_back(block_index_custom_search_field);
+				field = block_index_custom_search_field;
 				break;
 			}
 			case _field_explanation:
 			{
 				c_h2_tag_field_explaination_definition* explaination_field = new c_h2_tag_field_explaination_definition(guerilla_data, current_field);
-				tag_fields.emplace_back(explaination_field);
+				field = explaination_field;
 				break;
 			}
 			default:
 			{
-				c_h2_tag_field* field = new c_h2_tag_field(guerilla_data, current_field);
-				tag_fields.emplace_back(field);
+				field = new c_h2_tag_field(guerilla_data, current_field);
 				break;
 			}
 			}
+			tag_fields.emplace_back(field);
 
 			current_field++;
 			field_index++;
@@ -361,39 +369,39 @@ public:
 
 struct s_h2_tag_block_definition_header
 {
-	uint32_t display_name_address;
-	uint32_t name_address;
+	uintptr_t display_name_address;
+	uintptr_t name_address;
 	uint32_t flags;
 	uint32_t maximum_element_count;
-	uint32_t maximum_element_count_string_address;
-	uint32_t field_sets_address;
+	uintptr_t maximum_element_count_string_address;
+	uintptr_t field_sets_address;
 	uint32_t field_set_count;
-	uint32_t field_set_latest_address;
+	uintptr_t field_set_latest_address;
 	uint32_t _unknown;
-	uint32_t postprocess_procedure;
-	uint32_t format_procedure;
-	uint32_t generate_default_procedure;
-	uint32_t dispose_element_procedure;
+	uintptr_t postprocess_procedure;
+	uintptr_t format_procedure;
+	uintptr_t generate_default_procedure;
+	uintptr_t dispose_element_procedure;
 };
 
 struct s_h2_tag_layout_header
 {
-	uint32_t name_address;
+	uintptr_t name_address;
 	uint32_t flags;
 	tag_group group_tag;
 	tag_group parent_group_tag;
 	uint16_t version;
 	uint8_t initialized;
 	uint8_t : 8;
-	uint32_t postprocess_procedure;
-	uint32_t save_postprocess_procedure;
-	uint32_t postprocess_for_sync_procedure;
+	uintptr_t postprocess_procedure;
+	uintptr_t save_postprocess_procedure;
+	uintptr_t postprocess_for_sync_procedure;
 	uint32_t inheritance_flags;
-	uint32_t definition_address;
+	uintptr_t definition_address;
 	tag_group child_group_tags[16];
 	uint16_t num_child_group_tags;
 	uint16_t : 16;
-	uint32_t default_tag_path_address;
+	uintptr_t default_tag_path_address;
 };
 static_assert(sizeof(s_h2_tag_layout_header) == 112, "s_h2_tag_layout_header is incorrect size");
 
@@ -427,11 +435,11 @@ public:
 	}
 };
 
-std::map<uint32_t, c_h2_tag_block_definition*> tag_block_definitions;
+std::map<uintptr_t, c_h2_tag_block_definition*> tag_block_definitions;
 
-c_h2_tag_block_definition* get_tag_block_definition(uint32_t virtual_address)
+c_h2_tag_block_definition* get_tag_block_definition(uintptr_t virtual_address)
 {
-	std::map<uint32_t, c_h2_tag_block_definition*>::iterator tag_block_definition_iterator = tag_block_definitions.find(virtual_address);
+	std::map<uintptr_t, c_h2_tag_block_definition*>::iterator tag_block_definition_iterator = tag_block_definitions.find(virtual_address);
 
 	if (tag_block_definition_iterator != tag_block_definitions.end())
 	{
@@ -482,7 +490,7 @@ int c_blamboozle_h2_guerilla::run()
 		return 1;
 	}
 
-	uint32_t(&layout_addresses)[num_tag_layouts] = *reinterpret_cast<decltype(&layout_addresses)>(guerilla_data + va_to_pa(tag_layout_table_address));
+	uintptr_t(&layout_addresses)[num_tag_layouts] = *reinterpret_cast<decltype(&layout_addresses)>(guerilla_data + va_to_pa(tag_layout_table_address));
 
 	std::vector<std::unique_ptr<c_h2_tag_layout>> tag_layouts;
 

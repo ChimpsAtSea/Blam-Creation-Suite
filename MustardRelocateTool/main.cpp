@@ -2,7 +2,9 @@
 #include <windows.h>
 #include <DbgHelp.h>
 #include <stdio.h>
-#include <assert.h>
+#include <ASSERT.h>
+
+#define ASSERT assert
 
 DWORD align(DWORD size, DWORD align, DWORD addr) {
 	if (!(size % align))
@@ -63,13 +65,13 @@ const char* image_debug_directory_type_to_string(DWORD type)
 
 IMAGE_SECTION_HEADER* relative_virtual_address_to_section(DWORD relative_virtual_address, char* raw_image_data)
 {
-	assert(raw_image_data != nullptr);
+	ASSERT(raw_image_data != nullptr);
 
 	IMAGE_DOS_HEADER* dos_header = reinterpret_cast<IMAGE_DOS_HEADER*>(raw_image_data);
-	assert(dos_header->e_magic == IMAGE_DOS_SIGNATURE);
+	ASSERT(dos_header->e_magic == IMAGE_DOS_SIGNATURE);
 
 	IMAGE_NT_HEADERS* raw_nt_headers = reinterpret_cast<IMAGE_NT_HEADERS*>(raw_image_data + dos_header->e_lfanew);
-	assert(raw_nt_headers->Signature == IMAGE_NT_SIGNATURE);
+	ASSERT(raw_nt_headers->Signature == IMAGE_NT_SIGNATURE);
 
 	DWORD address_of_entry_point = raw_nt_headers->OptionalHeader.AddressOfEntryPoint;
 
@@ -97,19 +99,19 @@ IMAGE_SECTION_HEADER* relative_virtual_address_to_section(DWORD relative_virtual
 DWORD relative_virtual_address_to_relative_raw_address(DWORD relative_virtual_address, char* raw_image_data)
 {
 	const IMAGE_SECTION_HEADER* raw_section_header = relative_virtual_address_to_section(relative_virtual_address, raw_image_data);
-	assert(raw_section_header != nullptr);
+	ASSERT(raw_section_header != nullptr);
 	return raw_section_header->PointerToRawData + (relative_virtual_address - raw_section_header->VirtualAddress);
 }
 
 //DWORD virtual_address_to_raw_address(DWORD virtual_address, char* raw_image_data)
 //{
-//	assert(raw_image_data != nullptr);
+//	ASSERT(raw_image_data != nullptr);
 //
 //	IMAGE_DOS_HEADER* dos_header = reinterpret_cast<IMAGE_DOS_HEADER*>(raw_image_data);
-//	assert(dos_header->e_magic == IMAGE_DOS_SIGNATURE);
+//	ASSERT(dos_header->e_magic == IMAGE_DOS_SIGNATURE);
 //
 //	IMAGE_NT_HEADERS* raw_nt_headers = reinterpret_cast<IMAGE_NT_HEADERS*>(raw_image_data + dos_header->e_lfanew);
-//	assert(raw_nt_headers->Signature == IMAGE_NT_SIGNATURE);
+//	ASSERT(raw_nt_headers->Signature == IMAGE_NT_SIGNATURE);
 //
 //	DWORD relative_virtual_address = virtual_address - raw_nt_headers->OptionalHeader.ImageBase;
 //	return relative_virtual_address_to_relative_raw_address(relative_virtual_address, raw_image_data);
@@ -156,7 +158,7 @@ void rebase_executable_code(UINT_PTR new_virtual_address, char* raw_image_data, 
 	}
 
 	const IMAGE_SECTION_HEADER* raw_relocation_section = get_section_header(".reloc", raw_nt_headers, raw_section_header);
-	assert(raw_relocation_section != nullptr);
+	ASSERT(raw_relocation_section != nullptr);
 	char* raw_relocation_section_data = raw_image_data + raw_relocation_section->PointerToRawData;
 
 	IMAGE_BASE_RELOCATION* image_base_relocation = reinterpret_cast<IMAGE_BASE_RELOCATION*>(raw_relocation_section_data);
@@ -193,7 +195,7 @@ void rebase_executable_code(UINT_PTR new_virtual_address, char* raw_image_data, 
 				DWORD& relocation_virtual_address = *reinterpret_cast<DWORD*>(raw_image_data + relative_raw_address);
 				printf(" [0x%X]", relocation_virtual_address);
 				// #TODO: Double check how this is handled for 64bit images
-				assert(virtual_address_delta < ~DWORD()); // can't support more than 32bits of difference at the moment
+				ASSERT(virtual_address_delta < ~DWORD()); // can't support more than 32bits of difference at the moment
 				relocation_virtual_address += static_cast<DWORD>(virtual_address_delta);
 				printf("->[0x%X]", relocation_virtual_address);
 
@@ -351,7 +353,7 @@ void insert_virtual_address_padding(DWORD virtual_address_padding, const char* c
 	{
 
 		IMAGE_SECTION_HEADER* raw_relocation_section = get_section_header(".reloc", raw_nt_headers, raw_section_header);
-		assert(raw_relocation_section != nullptr);
+		ASSERT(raw_relocation_section != nullptr);
 
 		char* raw_relocation_section_data = raw_image_data + raw_relocation_section->PointerToRawData;
 		IMAGE_BASE_RELOCATION* image_base_relocation = reinterpret_cast<IMAGE_BASE_RELOCATION*>(raw_relocation_section_data);
@@ -495,7 +497,7 @@ void insert_virtual_address_padding(DWORD virtual_address_padding, const char* c
 		}
 		else
 		{
-			assert(relocation_data_directory->VirtualAddress == 0); // shouldn't have an existing address if the data wasn't there
+			ASSERT(relocation_data_directory->VirtualAddress == 0); // shouldn't have an existing address if the data wasn't there
 		}
 	}
 
@@ -663,11 +665,11 @@ int main(int argc, const char* argv[])
 				executable_file = CreateFileA(target_executable, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 			}
 		}
-		assert(executable_file != INVALID_HANDLE_VALUE);
+		ASSERT(executable_file != INVALID_HANDLE_VALUE);
 
 		LARGE_INTEGER file_size = {};
 		BOOL getFileSizeExResult = GetFileSizeEx(executable_file, &file_size);
-		assert(getFileSizeExResult != 0);
+		ASSERT(getFileSizeExResult != 0);
 
 		HANDLE executable_file_mapping = CreateFileMappingA(executable_file, NULL, PAGE_READWRITE, file_size.HighPart, file_size.LowPart, NULL);
 		void* file_mapping = MapViewOfFile(executable_file_mapping, FILE_MAP_ALL_ACCESS, 0, 0, static_cast<SIZE_T>(file_size.QuadPart));
@@ -678,13 +680,13 @@ int main(int argc, const char* argv[])
 
 		{
 			char* raw_module_address = reinterpret_cast<char*>(raw_image_data);
-			assert(raw_module_address != nullptr);
+			ASSERT(raw_module_address != nullptr);
 
 			IMAGE_DOS_HEADER* dos_header = reinterpret_cast<IMAGE_DOS_HEADER*>(raw_module_address);
-			assert(dos_header->e_magic == IMAGE_DOS_SIGNATURE);
+			ASSERT(dos_header->e_magic == IMAGE_DOS_SIGNATURE);
 
 			IMAGE_NT_HEADERS* raw_nt_headers = reinterpret_cast<IMAGE_NT_HEADERS*>(raw_module_address + dos_header->e_lfanew);
-			assert(raw_nt_headers->Signature == IMAGE_NT_SIGNATURE);
+			ASSERT(raw_nt_headers->Signature == IMAGE_NT_SIGNATURE);
 
 			DWORD address_of_entry_point = raw_nt_headers->OptionalHeader.AddressOfEntryPoint;
 
@@ -710,11 +712,11 @@ int main(int argc, const char* argv[])
 		}
 
 		BOOL unmapViewOfFileResult = UnmapViewOfFile(file_mapping);
-		assert(unmapViewOfFileResult != 0);
+		ASSERT(unmapViewOfFileResult != 0);
 		BOOL closeHandleResult = CloseHandle(executable_file_mapping);
-		assert(closeHandleResult != 0);
+		ASSERT(closeHandleResult != 0);
 		BOOL closeHandleResult2 = CloseHandle(executable_file);
-		assert(closeHandleResult2 != 0);
+		ASSERT(closeHandleResult2 != 0);
 
 	}
 
