@@ -8,64 +8,23 @@ c_opus_game_engine_host* current_game_host = nullptr;
 e_campaign_difficulty_level g_campaign_difficulty_level = _campaign_difficulty_level_normal; // #TODO #REFACTOR
 
 
-// #TODO: #REFACTOR
-static e_map_id halo1_map_ids[] =
-{
-	_map_id_mainmenu,
-	_map_id_halo1_pillar_of_autumn,
-	_map_id_halo1_halo,
-	_map_id_halo1_truth_and_reconciliation,
-	_map_id_halo1_silent_cartographer,
-	_map_id_halo1_assault_on_the_control_room,
-	_map_id_halo1_343_guilty_spark,
-	_map_id_halo1_the_library,
-	_map_id_halo1_two_betrayals,
-	_map_id_halo1_keyes,
-	_map_id_halo1_the_maw,
-};
-e_map_id halo1_map_id = halo1_map_ids[0];
-
-static e_map_id halo2_map_ids[] =
-{
-	_map_id_halo2_the_heretic,
-	_map_id_halo2_coagulation,
-	_map_id_mainmenu,
-	//_map_id_halo2_the_heretic,
-	//_map_id_halo2_the_armory,
-	_map_id_halo2_cairo_station,
-	//_map_id_halo2_outskirts,
-	_map_id_halo2_metropolis,
-	//_map_id_halo2_the_arbiter,
-	_map_id_halo2_the_oracle,
-	_map_id_halo2_delta_halo,
-	//_map_id_halo2_regret,
-	//_map_id_halo2_sacred_icon,
-	_map_id_halo2_quarantine_zone,
-	_map_id_halo2_gravemind,
-	//_map_id_halo2_uprising,
-	//_map_id_halo2_high_charity,
-	//_map_id_halo2_the_great_journey,
-};
-e_map_id halo2_map_id = halo2_map_ids[0];
-
-static e_map_id groundhog_map_ids[] =
-{
-	_map_id_groundhog_coagulation,
-	_map_id_groundhog_lockout,
-	_map_id_groundhog_ascension,
-	_map_id_groundhog_zanzibar,
-	_map_id_groundhog_warlock,
-	_map_id_groundhog_sanctuary,
-	_map_id_groundhog_forge_skybox01,
-	_map_id_groundhog_forge_skybox02,
-	_map_id_groundhog_forge_skybox03,
-	_map_id_groundhog_relic,
-};
-e_map_id groundhog_map_id = groundhog_map_ids[0];
 
 
 static std::vector<e_engine_type> g_supported_engine_types;
 static e_engine_type g_engine_type = _engine_type_not_set;
+static std::vector<e_map_id> g_haloreach_map_ids;
+static std::vector<e_map_id> g_halo1_map_ids;
+e_map_id g_halo1_map_id = _map_id_halo1_blood_gulch;
+static std::vector<e_map_id> g_halo2_map_ids;
+e_map_id g_halo2_map_id = _map_id_halo2_coagulation;
+static std::vector<e_map_id> g_halo3_map_ids;
+e_map_id g_halo3_map_id = _map_id_halo3_valhalla;
+static std::vector<e_map_id> g_halo3odst_map_ids;
+e_map_id g_halo3odst_map_id = _map_id_halo3odst_mombasa_streets;
+static std::vector<e_map_id> g_halo4_map_ids;
+e_map_id g_halo4_map_id = _map_id_halo4_ragnarok;
+static std::vector<e_map_id> g_groundhog_map_ids;
+e_map_id g_groundhog_map_id = _map_id_groundhog_coagulation;
 static bool has_auto_started = false;
 static bool k_autostart_halo_reach = false;
 static bool k_autostart_halo_halo1 = false;
@@ -153,6 +112,38 @@ void c_game_launcher::init_game_launcher()
 		ensure_library_loaded("halo2\\mss64.dll", "..\\halo2");
 	}
 #endif
+
+	for (long i = 0; i < k_number_of_map_ids; i++)
+	{
+		e_map_id map_id = static_cast<e_map_id>(i);
+		long engine_type = map_id_to_engine_type(map_id);
+		switch (engine_type)
+		{
+		case _engine_type_halo_reach:
+			g_haloreach_map_ids.push_back(map_id);
+			break;
+		case _engine_type_halo1:
+			g_halo1_map_ids.push_back(map_id);
+			break;
+		case _engine_type_halo2:
+			g_halo2_map_ids.push_back(map_id);
+			break;
+		case _engine_type_halo3:
+			g_halo3_map_ids.push_back(map_id);
+			break;
+		case _engine_type_halo3odst:
+			g_halo3odst_map_ids.push_back(map_id);
+			break;
+		case _engine_type_halo4:
+			g_halo4_map_ids.push_back(map_id);
+			break;
+		case _engine_type_groundhog:
+			g_groundhog_map_ids.push_back(map_id);
+			break;
+		}
+	}
+	g_halo1_map_ids.push_back(_map_id_mainmenu);
+	g_halo2_map_ids.push_back(_map_id_mainmenu);
 
 	// #TODO: Attempt to restore from previously selected engine
 	g_engine_type = g_supported_engine_types.empty() ? _engine_type_not_set : g_supported_engine_types.front();
@@ -366,51 +357,30 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	game_context->is_anniversary_mode = use_anniversary_graphics;
 	game_context->is_anniversary_sounds = use_anniversary_sounds;
 
-	if (false && read_file_to_memory(L"opus/autosave/5EA68E0B.halo2.bin", reinterpret_cast<void **>(&game_context->game_state_header_ptr), &game_context->game_state_header_size))
-	{
-		if (is_valid(game_context->game_state_header_ptr) && game_context->game_state_header_size > 0)
-		{
-			// take off the last 4 bytes from the size to exclude our added map id
-			game_context->game_state_header_size -= 4;
-			game_context->map_id = *reinterpret_cast<e_map_id *>(&game_context->game_state_header_ptr[game_context->game_state_header_size]);
-		}
-	}
-	else
+	if (!load_save_from_file(game_context, "5EA68E0B.halo2", false))
 	{
 		// #TODO: Make a home for this
 		if (game_context->is_host)
 		{
+			IDataAccess *data_access = nullptr;
+
 			game_context->campaign_difficulty_level = g_campaign_difficulty_level;
 
 			if (engine_type == _engine_type_halo_reach)
 			{
-				const MapInfo* selected_map_info = c_halo_reach_game_option_selection_legacy::get_selected_map_info();
+				const MapInfo *selected_map_info = c_halo_reach_game_option_selection_legacy::get_selected_map_info();
 				e_mcc_game_mode game_mode = c_halo_reach_game_option_selection_legacy::get_selected_game_mode();
 
 				game_context->game_mode = game_mode;
 				game_context->map_id = static_cast<e_map_id>(selected_map_info->GetMapID());
-
-				load_variant_from_file(
-					c_halo_reach_game_host::get_data_access(),
-					game_context,
-					engine_type,
-					e_variant_type::_variant_type_game,
-					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str()
-				);
-				load_variant_from_file(
-					c_halo_reach_game_host::get_data_access(),
-					game_context,
-					engine_type,
-					e_variant_type::_variant_type_map,
-					c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str()
-				);
+				data_access = c_halo_reach_game_host::get_data_access();
 
 				//c_halo_reach_game_option_selection_legacy::load_savegame("gamestate", *game_context);
 				//c_halo_reach_game_option_selection_legacy::load_savefilm(c_halo_reach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_context);
 
 				{
 					// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mantle
-					const char* map_file_name = selected_map_info->GetMapFileName();
+					const char *map_file_name = selected_map_info->GetMapFileName();
 					write_line_verbose("Loading map '%s.map'", map_file_name);
 					{
 						wchar_t map_filepath[MAX_PATH + 1] = {};
@@ -419,84 +389,53 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 					}
 				}
 			}
-			else if (engine_type == _engine_type_halo1)
-			{
-				if (halo1_map_id == _map_id_mainmenu)
-				{
-					game_context->game_mode = _mcc_game_mode_ui_shell;
-				}
-				else
-				{
-					game_context->game_mode = _mcc_game_mode_campaign;
-				}
 
-				game_context->map_id = halo1_map_id;
-			}
-			else if (engine_type == _engine_type_halo2)
+			switch (engine_type)
 			{
-				switch (halo2_map_id)
-				{
-				case _map_id_halo2_the_heretic:
-				case _map_id_mainmenu:
-					game_context->game_mode = _mcc_game_mode_ui_shell;
-					break;
-				case _map_id_halo2_the_armory:
-				case _map_id_halo2_cairo_station:
-				case _map_id_halo2_outskirts:
-				case _map_id_halo2_metropolis:
-				case _map_id_halo2_the_arbiter:
-				case _map_id_halo2_the_oracle:
-				case _map_id_halo2_delta_halo:
-				case _map_id_halo2_regret:
-				case _map_id_halo2_sacred_icon:
-				case _map_id_halo2_quarantine_zone:
-				case _map_id_halo2_gravemind:
-				case _map_id_halo2_uprising:
-				case _map_id_halo2_high_charity:
-				case _map_id_halo2_the_great_journey:
-					game_context->game_mode = _mcc_game_mode_campaign;
-					break;
-				default:
-					game_context->game_mode = _mcc_game_mode_multiplayer;
-				}
-
+			case _engine_type_halo1:
+				game_context->game_mode = map_id_to_game_mode(g_halo1_map_id);
+				game_context->map_id = g_halo1_map_id;
 				if (game_context->game_mode == _mcc_game_mode_multiplayer)
 				{
-					load_variant_from_file(
-						c_halo2_game_host::get_data_access(),
-						game_context,
-						engine_type,
-						e_variant_type::_variant_type_game,
-						c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str()
-					);
-					load_variant_from_file(
-						c_halo2_game_host::get_data_access(),
-						game_context,
-						engine_type,
-						e_variant_type::_variant_type_map,
-						c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str()
-					);
+					data_access = c_halo1_game_host::get_data_access();
 				}
-
-				game_context->map_id = halo2_map_id;
+				break;
+			case _engine_type_halo2:
+				game_context->game_mode = map_id_to_game_mode(g_halo2_map_id);
+				game_context->map_id = g_halo2_map_id;
+				if (game_context->game_mode == _mcc_game_mode_multiplayer)
+				{
+					data_access = c_halo2_game_host::get_data_access();
+				}
+				break;
+			case _engine_type_halo3:
+				game_context->game_mode = map_id_to_game_mode(g_halo3_map_id);
+				game_context->map_id = g_halo3_map_id;
+				//data_access = c_halo3_game_host::get_data_access();
+				break;
+			case _engine_type_halo3odst:
+				game_context->game_mode = map_id_to_game_mode(g_halo3odst_map_id);
+				game_context->map_id = g_halo3odst_map_id;
+				//data_access = c_halo3odst_game_host::get_data_access();
+				break;
+			case _engine_type_halo4:
+				game_context->game_mode = map_id_to_game_mode(g_halo4_map_id);
+				game_context->map_id = g_halo4_map_id;
+				//data_access = c_halo4_game_host::get_data_access();
+				break;
+			case _engine_type_groundhog:
+				game_context->game_mode = map_id_to_game_mode(g_groundhog_map_id);
+				game_context->map_id = g_groundhog_map_id;
+				data_access = c_groundhog_game_host::get_data_access();
+				break;
 			}
-			else if (engine_type == _engine_type_groundhog)
-			{
-				game_context->game_mode = _mcc_game_mode_multiplayer;
-				game_context->map_id = groundhog_map_id;
 
-				load_variant_from_file(
-					c_groundhog_game_host::get_data_access(),
-					game_context,
-					engine_type,
-					e_variant_type::_variant_type_game,
+			if (data_access != nullptr)
+			{
+				load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_game,
 					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str()
 				);
-				load_variant_from_file(
-					c_groundhog_game_host::get_data_access(),
-					game_context,
-					engine_type,
-					e_variant_type::_variant_type_map,
+				load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_map,
 					c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str()
 				);
 			}
@@ -652,66 +591,71 @@ void c_game_launcher::render_main_menu()
 		{
 #ifdef _WIN64
 		case _engine_type_halo1:
-
-			if (ImGui::BeginCombo("Map", map_id_to_string(halo1_map_id)))
+		{
+			if (ImGui::BeginCombo("Map", map_id_to_string(g_halo1_map_id)))
 			{
-				for (e_map_id map_id : halo1_map_ids)
+				for (e_map_id map_id : g_halo1_map_ids)
 				{
-					bool is_selected = map_id == halo1_map_id;
+					bool is_selected = map_id == g_halo1_map_id;
 
 					if (ImGui::Selectable(map_id_to_string(map_id), is_selected))
 					{
-						halo1_map_id = map_id;
+						g_halo1_map_id = map_id;
 					}
 				}
 				ImGui::EndCombo();
 			}
 
-			ImGui::Checkbox("Use Anniversary Graphics", &use_anniversary_graphics);
-			ImGui::Checkbox("Use Anniversary Sounds", &use_anniversary_sounds);
-			c_halo_reach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
-			break;
+			if (map_id_to_game_mode(g_halo1_map_id) == _mcc_game_mode_campaign)
+			{
+				ImGui::Checkbox("Use Anniversary Graphics", &use_anniversary_graphics);
+				ImGui::Checkbox("Use Anniversary Sounds", &use_anniversary_sounds);
+				c_halo_reach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
+			}
+		}
+		break;
 		case _engine_type_halo_reach:
 			c_halo_reach_game_option_selection_legacy::Render();
 			break;
 		case _engine_type_halo2:
 		{
-			if (ImGui::BeginCombo("Map", map_id_to_string(halo2_map_id)))
+			if (ImGui::BeginCombo("Map", map_id_to_string(g_halo2_map_id)))
 			{
-				for (e_map_id map_id : halo2_map_ids)
+				for (e_map_id map_id : g_halo2_map_ids)
 				{
-					bool is_selected = map_id == halo2_map_id;
+					bool is_selected = map_id == g_halo2_map_id;
 
 					if (ImGui::Selectable(map_id_to_string(map_id), is_selected))
 					{
-						halo2_map_id = map_id;
+						g_halo2_map_id = map_id;
 					}
 				}
 				ImGui::EndCombo();
 			}
 
-			ImGui::Checkbox("Use Anniversary Graphics", &use_anniversary_graphics);
-			ImGui::Checkbox("Use Anniversary Sounds", &use_anniversary_sounds);
-			c_halo_reach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
+			if (map_id_to_game_mode(g_halo2_map_id) == _mcc_game_mode_campaign)
+			{
+				ImGui::Checkbox("Use Anniversary Graphics", &use_anniversary_graphics);
+				ImGui::Checkbox("Use Anniversary Sounds", &use_anniversary_sounds);
+				c_halo_reach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
+			}
 		}
 		break;
 		case _engine_type_groundhog:
 		{
-			if (ImGui::BeginCombo("Map", map_id_to_string(groundhog_map_id)))
+			if (ImGui::BeginCombo("Map", map_id_to_string(g_groundhog_map_id)))
 			{
-				for (e_map_id map_id : groundhog_map_ids)
+				for (e_map_id map_id : g_groundhog_map_ids)
 				{
-					bool is_selected = map_id == groundhog_map_id;
+					bool is_selected = map_id == g_groundhog_map_id;
 
 					if (ImGui::Selectable(map_id_to_string(map_id), is_selected))
 					{
-						groundhog_map_id = map_id;
+						g_groundhog_map_id = map_id;
 					}
 				}
 				ImGui::EndCombo();
 			}
-
-			c_halo_reach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
 		}
 		break;
 
@@ -909,25 +853,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 	const char* type_name = "";
 	const char* type_nice_name = "";
 	const char* type_extension = "";
-	const char* engine_name = "";
-
-	switch (engine_type)
-	{
-	case _engine_type_halo_reach:
-		engine_name = "haloreach";
-		break;
-	case _engine_type_halo1:
-		engine_name = "halo1";
-		break;
-	case _engine_type_halo2:
-		engine_name = "halo2";
-		break;
-	case _engine_type_groundhog:
-		engine_name = "groundhog";
-		break;
-	default:
-		return false;
-	}
+	const char* engine_name = engine_type_to_folder_name(engine_type);
 
 	switch (variant_type)
 	{
