@@ -11,7 +11,7 @@ enum e_mcc_game_mode : int
 	k_number_of_mcc_game_modes,
 };
 
-constexpr const char* mcc_mcc_game_mode_to_string(e_mcc_game_mode game_mode)
+constexpr const char* mcc_game_mode_to_string(e_mcc_game_mode game_mode)
 {
 	switch (game_mode)
 	{
@@ -25,7 +25,7 @@ constexpr const char* mcc_mcc_game_mode_to_string(e_mcc_game_mode game_mode)
 	return nullptr;
 }
 
-constexpr const char* mcc_mcc_game_mode_to_local_string(e_mcc_game_mode game_mode)
+constexpr const char* mcc_game_mode_to_local_string(e_mcc_game_mode game_mode)
 {
 	switch (game_mode)
 	{
@@ -43,7 +43,7 @@ static inline e_mcc_game_mode string_to_mcc_game_mode(const char* game_mode_stri
 {
 	for (underlying(e_mcc_game_mode) current_game_mode = 0; current_game_mode < k_number_of_mcc_game_modes; current_game_mode++)
 	{
-		const char* current_mcc_game_mode_string = mcc_mcc_game_mode_to_string(static_cast<e_mcc_game_mode>(current_game_mode));
+		const char* current_mcc_game_mode_string = mcc_game_mode_to_string(static_cast<e_mcc_game_mode>(current_game_mode));
 
 		if (strcmp(current_mcc_game_mode_string, game_mode_string) == 0)
 		{

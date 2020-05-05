@@ -108,19 +108,19 @@ void c_halo_reach_game_option_selection_legacy::SelectGameMode()
 {
 	if (c_command_line::has_command_line_arg("-showallmodes"))
 	{
-		const char* selected_mcc_game_mode_string = mcc_mcc_game_mode_to_local_string(s_currentGameMode);
+		const char* selected_mcc_game_mode_string = mcc_game_mode_to_local_string(s_currentGameMode);
 		if (ImGui::BeginCombo("###MODE", selected_mcc_game_mode_string))
 		{
 			for (underlying(e_mcc_game_mode) i = 0; i < k_number_of_mcc_game_modes; i++)
 			{
-				const char* current_mcc_game_mode_string = mcc_mcc_game_mode_to_local_string(static_cast<e_mcc_game_mode>(i));
+				const char* current_mcc_game_mode_string = mcc_game_mode_to_local_string(static_cast<e_mcc_game_mode>(i));
 				DEBUG_ASSERT(current_mcc_game_mode_string != nullptr);
 
 				bool selected = selected_mcc_game_mode_string == current_mcc_game_mode_string;
 				if (ImGui::Selectable(current_mcc_game_mode_string, &selected))
 				{
 					s_currentGameMode = static_cast<e_mcc_game_mode>(i);
-					c_settings_legacy::write_string(_settings_section_legacy_launch, "GameMode", mcc_mcc_game_mode_to_string(s_currentGameMode));
+					c_settings_legacy::write_string(_settings_section_legacy_launch, "GameMode", mcc_game_mode_to_string(s_currentGameMode));
 				}
 			}
 
@@ -129,7 +129,7 @@ void c_halo_reach_game_option_selection_legacy::SelectGameMode()
 	}
 	else
 	{
-		LPCSTR s_pCurrentGameModeStr = mcc_mcc_game_mode_to_local_string(s_currentGameMode);
+		LPCSTR s_pCurrentGameModeStr = mcc_game_mode_to_local_string(s_currentGameMode);
 		if (ImGui::BeginCombo("###MODE", s_pCurrentGameModeStr))
 		{
 			for (underlying(SelectedGameModeMapInfoIndex) i = 0; i < underlying_cast(SelectedGameModeMapInfoIndex::Count); i++)
@@ -140,14 +140,14 @@ void c_halo_reach_game_option_selection_legacy::SelectGameMode()
 				}
 
 				e_mcc_game_mode gameMode = SelectedGameModeMapInfoIndexToGameMode(static_cast<SelectedGameModeMapInfoIndex>(i));
-				LPCSTR pGameModeStr = mcc_mcc_game_mode_to_local_string(gameMode);
+				LPCSTR pGameModeStr = mcc_game_mode_to_local_string(gameMode);
 				if (pGameModeStr)
 				{
 					bool selected = s_pCurrentGameModeStr == pGameModeStr;
 					if (ImGui::Selectable(pGameModeStr, &selected))
 					{
 						s_currentGameMode = gameMode;
-						c_settings_legacy::write_string(_settings_section_legacy_launch, "GameMode", mcc_mcc_game_mode_to_string(s_currentGameMode));
+						c_settings_legacy::write_string(_settings_section_legacy_launch, "GameMode", mcc_game_mode_to_string(s_currentGameMode));
 					}
 				}
 			}
