@@ -1,4 +1,4 @@
-#include "blamboozle-private-pch.h"
+#include "blamboozlelib-private-pch.h"
 
 c_blamboozle_base::c_blamboozle_base(const wchar_t* _output_directory, const wchar_t* _binary_filepath) :
 	output_directory(_output_directory),

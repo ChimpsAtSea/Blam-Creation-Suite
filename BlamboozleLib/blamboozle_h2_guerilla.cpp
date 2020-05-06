@@ -1,15 +1,10 @@
-#include "blamboozle-private-pch.h"
+#include "blamboozlelib-private-pch.h"
 
 #if defined(_WIN64)
 #define uintptr_t uint32_t
 #endif
 
 // source material by grimdoomer https://github.com/grimdoomer/Mutation/blob/master/Mutation.HEK/Guerilla/GuerillaReader.cs
-
-struct tag_group
-{
-	char name[4];
-};
 
 static constexpr uintptr_t base_address = 0x400000;
 static constexpr uintptr_t tag_layout_table_address = 0x00901B90;
@@ -19,75 +14,75 @@ static constexpr uint32_t num_tag_layouts = 120;
 #define va_to_pa(address) (address - base_address)
 #define va_to_pointer(data, address) (address ? ((const char*)(data + va_to_pa(address))) : 0)
 
-enum e_h2_field_type : short
+enum e_h2_field_type_type : short
 {
-	_field_string,
-	_field_long_string,
-	_field_string_id,
-	_field_old_string_id,
-	_field_char_integer,
-	_field_short_integer,
-	_field_long_integer,
-	_field_angle,
-	_field_tag,
-	_field_char_enum,
-	_field_enum,
-	_field_long_enum,
-	_field_long_flags,
-	_field_word_flags,
-	_field_byte_flags,
-	_field_point_2d,
-	_field_rectangle_2d,
-	_field_rgb_color,
-	_field_argb_color,
-	_field_real,
-	_field_real_fraction,
-	_field_real_point_2d,
-	_field_real_point_3d,
-	_field_real_vector_2d,
-	_field_real_vector_3d,
-	_field_real_quaternion,
-	_field_real_euler_angles_2d,
-	_field_real_euler_angles_3d,
-	_field_real_plane_2d,
-	_field_real_plane_3d,
-	_field_real_rgb_color,
-	_field_real_argb_color,
-	_field_real_hsv_color,
-	_field_real_ahsv_color,
-	_field_short_bounds,
-	_field_angle_bounds,
-	_field_real_bounds,
-	_field_real_fraction_bounds,
-	_field_tag_reference,
-	_field_block,
-	_field_long_block_flags,
-	_field_word_block_flags,
-	_field_byte_block_flags,
-	_field_char_block_index,
-	_field_custom_char_block_index,
-	_field_short_block_index,
-	_field_custom_short_block_index,
-	_field_long_block_index,
-	_field_custom_long_block_index,
-	_field_data,
-	_field_vertex_buffer,
-	_field_array_start,
-	_field_array_end,
-	_field_pad,
-	_field_useless_pad,
-	_field_skip,
-	_field_explanation,
-	_field_custom,
-	_field_struct,
-	_field_terminator,
+	_h2_field_type_string,
+	_h2_field_type_long_string,
+	_h2_field_type_string_id,
+	_h2_field_type_old_string_id,
+	_h2_field_type_char_integer,
+	_h2_field_type_short_integer,
+	_h2_field_type_long_integer,
+	_h2_field_type_angle,
+	_h2_field_type_tag,
+	_h2_field_type_char_enum,
+	_h2_field_type_enum,
+	_h2_field_type_long_enum,
+	_h2_field_type_long_flags,
+	_h2_field_type_word_flags,
+	_h2_field_type_byte_flags,
+	_h2_field_type_point_2d,
+	_h2_field_type_rectangle_2d,
+	_h2_field_type_rgb_color,
+	_h2_field_type_argb_color,
+	_h2_field_type_real,
+	_h2_field_type_real_fraction,
+	_h2_field_type_real_point_2d,
+	_h2_field_type_real_point_3d,
+	_h2_field_type_real_vector_2d,
+	_h2_field_type_real_vector_3d,
+	_h2_field_type_real_quaternion,
+	_h2_field_type_real_euler_angles_2d,
+	_h2_field_type_real_euler_angles_3d,
+	_h2_field_type_real_plane_2d,
+	_h2_field_type_real_plane_3d,
+	_h2_field_type_real_rgb_color,
+	_h2_field_type_real_argb_color,
+	_h2_field_type_real_hsv_color,
+	_h2_field_type_real_ahsv_color,
+	_h2_field_type_short_bounds,
+	_h2_field_type_angle_bounds,
+	_h2_field_type_real_bounds,
+	_h2_field_type_real_fraction_bounds,
+	_h2_field_type_tag_reference,
+	_h2_field_type_block,
+	_h2_field_type_long_block_flags,
+	_h2_field_type_word_block_flags,
+	_h2_field_type_byte_block_flags,
+	_h2_field_type_char_block_index,
+	_h2_field_type_custom_char_block_index,
+	_h2_field_type_short_block_index,
+	_h2_field_type_custom_short_block_index,
+	_h2_field_type_long_block_index,
+	_h2_field_type_custom_long_block_index,
+	_h2_field_type_data,
+	_h2_field_type_vertex_buffer,
+	_h2_field_type_array_start,
+	_h2_field_type_array_end,
+	_h2_field_type_pad,
+	_h2_field_type_useless_pad,
+	_h2_field_type_skip,
+	_h2_field_type_explanation,
+	_h2_field_type_custom,
+	_h2_field_type_struct,
+	_h2_field_type_terminator,
 
-	_field_type_max,
+	_h2_field_type_type_max,
 };
 
-struct s_h2_tag_field_definition
+struct s_h2_tag_h2_field_type_definition
 {
-	e_h2_field_type field_type;
+	e_h2_field_type_type field_type;
 	uint16_t _padding;
 	uintptr_t name_address;
 	uintptr_t definition_address;
@@ -100,7 +95,7 @@ public:
 	const char* name;
 	const char* definition;
 
-	c_h2_tag_field(const char* guerilla_data, const s_h2_tag_field_definition* field_definition)
+	c_h2_tag_field(const char* guerilla_data, const s_h2_tag_h2_field_type_definition* field_definition)
 	{
 		ASSERT(field_definition->_padding == 0);
 
@@ -116,13 +111,13 @@ struct s_h2_tag_reference_definition
 	uintptr_t group_tags_address;
 };
 
-class c_h2_tag_field_tag_reference :
+class c_h2_tag_h2_field_type_tag_reference :
 	public c_h2_tag_field
 {
 public:
 	const s_h2_tag_reference_definition* tag_reference_definition;
 
-	c_h2_tag_field_tag_reference(const char* guerilla_data, const s_h2_tag_field_definition* field_definition) :
+	c_h2_tag_h2_field_type_tag_reference(const char* guerilla_data, const s_h2_tag_h2_field_type_definition* field_definition) :
 		c_h2_tag_field(guerilla_data, field_definition)
 	{
 		tag_reference_definition = reinterpret_cast<const s_h2_tag_reference_definition*>(va_to_pointer(guerilla_data, field_definition->definition_address));
@@ -138,13 +133,13 @@ struct s_h2_tag_struct_definition
 	uintptr_t block_definition_address;
 };
 
-class c_h2_tag_field_struct :
+class c_h2_tag_h2_field_type_struct :
 	public c_h2_tag_field
 {
 public:
 	const s_h2_tag_struct_definition* tag_struct_definition;
 
-	c_h2_tag_field_struct(const char* guerilla_data, const s_h2_tag_field_definition* field_definition) :
+	c_h2_tag_h2_field_type_struct(const char* guerilla_data, const s_h2_tag_h2_field_type_definition* field_definition) :
 		c_h2_tag_field(guerilla_data, field_definition)
 	{
 		tag_struct_definition = reinterpret_cast<const s_h2_tag_struct_definition*>(va_to_pointer(guerilla_data, field_definition->definition_address));
@@ -163,7 +158,7 @@ struct s_h2_tag_data_definition
 	uintptr_t copy_procedure;
 };
 
-class c_h2_tag_field_data :
+class c_h2_tag_h2_field_type_data :
 	public c_h2_tag_field
 {
 public:
@@ -171,7 +166,7 @@ public:
 	const char* definition_name;
 	const char* maximum_size;
 
-	c_h2_tag_field_data(const char* guerilla_data, const s_h2_tag_field_definition* field_definition) :
+	c_h2_tag_h2_field_type_data(const char* guerilla_data, const s_h2_tag_h2_field_type_definition* field_definition) :
 		c_h2_tag_field(guerilla_data, field_definition)
 	{
 		tag_data_definition = reinterpret_cast<const s_h2_tag_data_definition*>(va_to_pointer(guerilla_data, field_definition->definition_address));
@@ -189,7 +184,7 @@ struct s_h2_tag_enum_definition
 	uint32_t flags; //?
 };
 
-class c_h2_tag_field_enum :
+class c_h2_tag_h2_field_type_enum :
 	public c_h2_tag_field
 {
 public:
@@ -197,7 +192,7 @@ public:
 	std::vector<const char*> options;
 
 
-	c_h2_tag_field_enum(const char* guerilla_data, const s_h2_tag_field_definition* field_definition) :
+	c_h2_tag_h2_field_type_enum(const char* guerilla_data, const s_h2_tag_h2_field_type_definition* field_definition) :
 		c_h2_tag_field(guerilla_data, field_definition)
 	{
 		tag_enum_definition = reinterpret_cast<const s_h2_tag_enum_definition*>(va_to_pointer(guerilla_data, field_definition->definition_address));
@@ -219,13 +214,13 @@ struct s_h2_tag_block_index_custom_search_definition
 	uintptr_t is_valid_source_block_procedure;
 };
 
-class c_h2_tag_field_block_index_custom_search_definition :
+class c_h2_tag_h2_field_type_block_index_custom_search_definition :
 	public c_h2_tag_field
 {
 public:
 	const s_h2_tag_block_index_custom_search_definition* tag_block_index_custom_search_definition;
 
-	c_h2_tag_field_block_index_custom_search_definition(const char* guerilla_data, const s_h2_tag_field_definition* field_definition) :
+	c_h2_tag_h2_field_type_block_index_custom_search_definition(const char* guerilla_data, const s_h2_tag_h2_field_type_definition* field_definition) :
 		c_h2_tag_field(guerilla_data, field_definition)
 	{
 		tag_block_index_custom_search_definition = reinterpret_cast<const s_h2_tag_block_index_custom_search_definition*>(va_to_pointer(guerilla_data, field_definition->definition_address));
@@ -233,13 +228,13 @@ public:
 	}
 };
 
-class c_h2_tag_field_explaination_definition :
+class c_h2_tag_h2_field_type_explaination_definition :
 	public c_h2_tag_field
 {
 public:
 	const char* explaination;
 
-	c_h2_tag_field_explaination_definition(const char* guerilla_data, const s_h2_tag_field_definition* field_definition) :
+	c_h2_tag_h2_field_type_explaination_definition(const char* guerilla_data, const s_h2_tag_h2_field_type_definition* field_definition) :
 		c_h2_tag_field(guerilla_data, field_definition)
 	{
 		explaination = reinterpret_cast<const char*>(va_to_pointer(guerilla_data, field_definition->definition_address));
@@ -247,7 +242,7 @@ public:
 	}
 };
 
-struct s_h2_tag_field_set_version_header
+struct s_h2_tag_h2_field_type_set_version_header
 {
 	uintptr_t fields_address;
 	uint32_t index;
@@ -269,9 +264,9 @@ struct s_h2_byte_swap_definition
 	uint32_t _unknown6;
 };
 
-struct s_h2_tag_field_set_header
+struct s_h2_tag_h2_field_type_set_header
 {
-	s_h2_tag_field_set_version_header version;
+	s_h2_tag_h2_field_type_set_version_header version;
 	uint32_t size;
 	uint32_t alignment_bit;
 	uint32_t parent_version_index;
@@ -279,26 +274,26 @@ struct s_h2_tag_field_set_header
 	uintptr_t size_string_address;
 	s_h2_byte_swap_definition byte_swap_definition;
 };
-static_assert(sizeof(s_h2_tag_field_set_header) == 76, "s_h2_tag_field_set_header is incorrect size");
+static_assert(sizeof(s_h2_tag_h2_field_type_set_header) == 76, "s_h2_tag_h2_field_type_set_header is incorrect size");
 
-class c_h2_tag_field_set
+class c_h2_tag_h2_field_type_set
 {
 public:
-	const s_h2_tag_field_definition* fields;
+	const s_h2_tag_h2_field_type_definition* fields;
 	const char* size_string;
 	const char* byte_swap_definition_name;
 	std::vector<std::unique_ptr<c_h2_tag_field>> tag_fields;
 
-	c_h2_tag_field_set(const char* guerilla_data, const s_h2_tag_field_set_header* set_header)
+	c_h2_tag_h2_field_type_set(const char* guerilla_data, const s_h2_tag_h2_field_type_set_header* set_header)
 	{
 		const char* version_fields = va_to_pointer(guerilla_data, set_header->version.fields_address);
 
-		fields = reinterpret_cast<const s_h2_tag_field_definition*>(va_to_pointer(guerilla_data, set_header->fields_address));
+		fields = reinterpret_cast<const s_h2_tag_h2_field_type_definition*>(va_to_pointer(guerilla_data, set_header->fields_address));
 		size_string = va_to_pointer(guerilla_data, set_header->size_string_address);
 
 		byte_swap_definition_name = va_to_pointer(guerilla_data, set_header->byte_swap_definition.name_address);
 
-		const s_h2_tag_field_definition* current_field = fields;
+		const s_h2_tag_h2_field_type_definition* current_field = fields;
 		uint32_t field_index = 0;
 		do
 		{
@@ -306,49 +301,49 @@ public:
 
 			switch (current_field->field_type)
 			{
-			case _field_tag_reference:
+			case _h2_field_type_tag_reference:
 			{
-				c_h2_tag_field_tag_reference* struct_field = new c_h2_tag_field_tag_reference(guerilla_data, current_field);
+				c_h2_tag_h2_field_type_tag_reference* struct_field = new c_h2_tag_h2_field_type_tag_reference(guerilla_data, current_field);
 				field = struct_field;
 				break;
 			}
-			case _field_struct:
+			case _h2_field_type_struct:
 			{
-				c_h2_tag_field_struct* struct_field = new c_h2_tag_field_struct(guerilla_data, current_field);
+				c_h2_tag_h2_field_type_struct* struct_field = new c_h2_tag_h2_field_type_struct(guerilla_data, current_field);
 				field = struct_field;
 				break;
 			}
-			case _field_data:
+			case _h2_field_type_data:
 			{
-				c_h2_tag_field_data* data_field = new c_h2_tag_field_data(guerilla_data, current_field);
+				c_h2_tag_h2_field_type_data* data_field = new c_h2_tag_h2_field_type_data(guerilla_data, current_field);
 				field = data_field;
 				break;
 			}
-			case _field_byte_flags:
-			case _field_long_flags:
-			case _field_word_flags:
-			case _field_char_enum:
-			case _field_enum:
-			case _field_long_enum:
+			case _h2_field_type_byte_flags:
+			case _h2_field_type_long_flags:
+			case _h2_field_type_word_flags:
+			case _h2_field_type_char_enum:
+			case _h2_field_type_enum:
+			case _h2_field_type_long_enum:
 			{
-				c_h2_tag_field_enum* enum_field = new c_h2_tag_field_enum(guerilla_data, current_field);
+				c_h2_tag_h2_field_type_enum* enum_field = new c_h2_tag_h2_field_type_enum(guerilla_data, current_field);
 				field = enum_field;
 				break;
 			}
-			case _field_char_block_index:
-			case _field_custom_char_block_index:
-			case _field_short_block_index:
-			case _field_custom_short_block_index:
-			case _field_long_block_index:
-			case _field_custom_long_block_index:
+			case _h2_field_type_char_block_index:
+			case _h2_field_type_custom_char_block_index:
+			case _h2_field_type_short_block_index:
+			case _h2_field_type_custom_short_block_index:
+			case _h2_field_type_long_block_index:
+			case _h2_field_type_custom_long_block_index:
 			{
-				c_h2_tag_field_block_index_custom_search_definition* block_index_custom_search_field = new c_h2_tag_field_block_index_custom_search_definition(guerilla_data, current_field);
+				c_h2_tag_h2_field_type_block_index_custom_search_definition* block_index_custom_search_field = new c_h2_tag_h2_field_type_block_index_custom_search_definition(guerilla_data, current_field);
 				field = block_index_custom_search_field;
 				break;
 			}
-			case _field_explanation:
+			case _h2_field_type_explanation:
 			{
-				c_h2_tag_field_explaination_definition* explaination_field = new c_h2_tag_field_explaination_definition(guerilla_data, current_field);
+				c_h2_tag_h2_field_type_explaination_definition* explaination_field = new c_h2_tag_h2_field_type_explaination_definition(guerilla_data, current_field);
 				field = explaination_field;
 				break;
 			}
@@ -362,7 +357,7 @@ public:
 
 			current_field++;
 			field_index++;
-		} while (current_field->field_type != _field_terminator);
+		} while (current_field->field_type != _h2_field_type_terminator);
 
 	}
 };
@@ -410,14 +405,14 @@ class c_h2_tag_block_definition
 public:
 	const char* display_name;
 	const char* name;
-	std::vector<std::unique_ptr<c_h2_tag_field_set>> tag_field_sets;
+	std::vector<std::unique_ptr<c_h2_tag_h2_field_type_set>> tag_h2_field_type_sets;
 
 	c_h2_tag_block_definition(const char* guerilla_data, const s_h2_tag_block_definition_header* definition_header, const s_h2_tag_layout_header* tag_layout_header = nullptr)
 	{
 		display_name = va_to_pointer(guerilla_data, definition_header->display_name_address);
 		name = va_to_pointer(guerilla_data, definition_header->name_address);
 		const char* maximum_element_count_string = va_to_pointer(guerilla_data, definition_header->maximum_element_count_string_address);
-		const s_h2_tag_field_set_header* field_sets = reinterpret_cast<const s_h2_tag_field_set_header*>(va_to_pointer(guerilla_data, definition_header->field_sets_address));
+		const s_h2_tag_h2_field_type_set_header* field_sets = reinterpret_cast<const s_h2_tag_h2_field_type_set_header*>(va_to_pointer(guerilla_data, definition_header->field_sets_address));
 		const void* field_set_latest = va_to_pointer(guerilla_data, definition_header->field_set_latest_address);
 
 		bool unsupported_inheritance_flag = tag_layout_header ? !!(tag_layout_header->inheritance_flags & 2) : false;
@@ -427,9 +422,9 @@ public:
 		{
 			for (uint32_t set_index = 0; set_index < definition_header->field_set_count; set_index++)
 			{
-				const s_h2_tag_field_set_header* field_set = field_sets + set_index;
-				c_h2_tag_field_set* tag_field_set = new c_h2_tag_field_set(guerilla_data, field_sets + set_index);
-				tag_field_sets.emplace_back(tag_field_set);
+				const s_h2_tag_h2_field_type_set_header* field_set = field_sets + set_index;
+				c_h2_tag_h2_field_type_set* tag_h2_field_type_set = new c_h2_tag_h2_field_type_set(guerilla_data, field_sets + set_index);
+				tag_h2_field_type_sets.emplace_back(tag_h2_field_type_set);
 			}
 		}
 	}
@@ -502,6 +497,8 @@ int c_blamboozle_h2_guerilla::run()
 		c_h2_tag_layout* tag_layout = new c_h2_tag_layout(guerilla_data, tag_layout_data);
 		tag_layouts.emplace_back(tag_layout);
 	}
+
+	delete[] guerilla_data;
 
 	return 0;
 }

@@ -33,3 +33,25 @@ std::string c_command_line::get_command_line_arg(const char* command)
 	}
 	return "";
 }
+
+std::wstring c_command_line::get_command_line_warg(const char* command)
+{
+	// #TODO: Proper wide char version
+	std::string argument = get_command_line_arg(command);
+	return std::wstring(argument.begin(), argument.end());
+}
+
+int c_command_line::get_argc()
+{
+	return __argc;
+}
+
+const char** c_command_line::get_argv()
+{
+	return const_cast<const char**>(__argv);
+}
+
+const wchar_t** c_command_line::get_wargv()
+{
+	return const_cast<const wchar_t**>(__wargv);
+}
