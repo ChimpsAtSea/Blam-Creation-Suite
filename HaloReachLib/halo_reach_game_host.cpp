@@ -21,6 +21,7 @@ static c_haloreach_camera_command *g_haloreach_camera_command;
 #include "halo_reach_game_host.camera.inl"
 #include "halo_reach_game_host.memory.inl"
 #include "halo_reach_game_host.scripting.inl"
+#include "halo_reach_game_host.legacy.inl"
 
 void register_haloreachlib()
 {

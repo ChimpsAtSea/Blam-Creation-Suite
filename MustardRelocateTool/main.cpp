@@ -653,7 +653,7 @@ int main(int argc, const char* argv[])
 	const char* custom_section_name = argv[2];
 	const char* custom_base_address_str = argv[3];
 	const char* custom_section_size_str = argv[4];
-	uintptr_t custom_base_address = parse_ull(custom_base_address_str);
+	uintptr_t custom_base_address = static_cast<uintptr_t>(parse_ull(custom_base_address_str));
 	DWORD custom_section_size = static_cast<DWORD>(parse_ull(custom_section_size_str));
 
 

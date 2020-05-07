@@ -75,5 +75,8 @@
     <None Include="halo_reach_game_host.scripting.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="halo_reach_game_host.legacy.inl">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

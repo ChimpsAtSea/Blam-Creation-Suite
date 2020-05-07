@@ -79,7 +79,7 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 
 			char* pFontData;
 			size_t pFontSize;
-			bool fontResourceFound = ResourcesManager::GetResource(ResourceType::ImGUIFont, &pFontData, &pFontSize);
+			bool fontResourceFound = c_resources_manager::get_resource(_resource_type_imgui_font, &pFontData, &pFontSize);
 			ASSERT(fontResourceFound);
 			ASSERT(pFontSize < INT_MAX);
 			rImguiIO.Fonts->AddFontFromMemoryTTF(pFontData, static_cast<int>(pFontSize), 20.0f, NULL, rImguiIO.Fonts->GetGlyphRangesDefault());

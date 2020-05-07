@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="halo_reach_game_host.camera.inl" />
+    <None Include="halo_reach_game_host.legacy.inl" />
     <None Include="halo_reach_game_host.memory.inl" />
     <None Include="halo_reach_game_host.scripting.inl" />
   </ItemGroup>

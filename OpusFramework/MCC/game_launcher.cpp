@@ -966,8 +966,10 @@ bool c_game_launcher::load_save_from_file(GameContext *game_context, LPCSTR file
 	if (should_run)
 	{
 		std::string file_path = std::string("opus/autosave/").append(file_name).append(".bin");
-		if (read_file_to_memory(file_path.c_str(), reinterpret_cast<void **>(&game_context->game_state_header_ptr), &game_context->game_state_header_size))
+		uint32_t game_state_header_size = 0;
+		if (read_file_to_memory(file_path.c_str(), &game_context->game_state_header_ptr, &game_state_header_size))
 		{
+			game_context->game_state_header_size = game_state_header_size;
 			if (is_valid(game_context->game_state_header_ptr) && game_context->game_state_header_size > 0)
 			{
 				// take off the last 4 bytes from the size to exclude our added map id

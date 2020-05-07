@@ -2,6 +2,7 @@
 
 #include <Shared/shared-public-pch.h>
 #include <MantleLib/mantlelib-public-pch.h>
+#include <SymbolsLib/symbolslib-public-pch.h>
 
 #include "opusframework-public-pch.h"
 

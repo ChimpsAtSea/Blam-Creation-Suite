@@ -21,7 +21,7 @@ c_map_info_manager::c_map_info_manager(const char* directory_path)
 	}
 	else
 	{
-		write_line_verbose("MapInfoManager> Failed to find map info directory '%S'. Is Opus running in the correct working directory?", directory_path);
+		write_line_verbose("MapInfoManager> Failed to find map info directory '%s'. Is Opus running in the correct working directory?", directory_path);
 	}
 }
 

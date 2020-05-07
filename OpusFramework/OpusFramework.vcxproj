@@ -222,7 +222,6 @@
     <ClCompile Include="MCC\opus_legacy\IGameEngine.cpp" />
     <ClCompile Include="MCC\IGameEngineHost.cpp" />
     <ClCompile Include="MCC\opus_legacy\IGameEvents.cpp" />
-    <ClCompile Include="ApplicationReflection\mappingfileparser.cpp" />
     <ClCompile Include="FileSystem\MapInfo.cpp" />
     <ClCompile Include="FileSystem\map_info_manager.cpp" />
     <ClCompile Include="MCC\mouse_input.cpp" />
@@ -242,7 +241,6 @@
     <ClInclude Include="session_manager.h" />
     <ClInclude Include="MCC\game_context.h" />
     <ClInclude Include="RuntimeManipulation\data_patch.h" />
-    <ClInclude Include="ApplicationReflection\offsetfunction.h" />
     <ClInclude Include="c_file_array.h" />
     <ClInclude Include="c_file_reference.h" />
     <ClInclude Include="FileSystem\blam_file_parser.h" />
@@ -270,7 +268,6 @@
     <ClInclude Include="MCC\opus_legacy\IMapVariant.h" />
     <ClInclude Include="MCC\opus_legacy\ISaveFilmMetadata.h" />
     <ClInclude Include="MCC\opus_legacy\IVariantAccessorBase.h" />
-    <ClInclude Include="ApplicationReflection\mappingfileparser.h" />
     <ClInclude Include="FileSystem\MapInfo.h" />
     <ClInclude Include="FileSystem\map_info_manager.h" />
     <ClInclude Include="MCC\mouse_input.h" />

@@ -119,7 +119,7 @@ bool c_data_patch_base::ApplyPatch()
 
 	if (public_symbol)
 	{
-		write_line_verbose("Applying DataPatch: %s", public_symbol->m_name.c_str());
+		write_line_verbose("Applying DataPatch: %s", public_symbol->symbol_name);
 	}
 	else
 	{
@@ -170,7 +170,7 @@ bool c_data_patch_base::RevertPatch()
 
 	if (public_symbol)
 	{
-		write_line_verbose("Reverting DataPatch: %s", public_symbol->m_name.c_str());
+		write_line_verbose("Reverting DataPatch: %s", public_symbol->symbol_name);
 	}
 	else
 	{
@@ -192,7 +192,7 @@ c_data_patch_base* c_data_patch_base::init_node(e_engine_type engine_type, e_bui
 
 	if (public_symbol == nullptr)
 	{
-		public_symbol = MappingFileParser::GetPublicSymbolByVirtualAddress(this);
+		public_symbol = c_runtime_symbols::get_public_symbol_by_virtual_address(this);
 	}
 
 	if (search_function)

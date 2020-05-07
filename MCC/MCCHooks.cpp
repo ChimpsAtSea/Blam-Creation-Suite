@@ -1,5 +1,6 @@
-#include <Shared\shared-public-pch.h>
-#include <OpusFramework\opusframework-public-pch.h>
+#include <Shared/shared-public-pch.h>
+#include <SymbolsLib/symbolslib-public-pch.h>
+#include <OpusFramework/opusframework-public-pch.h>
 
 
 uintptr_t Function29_offset(e_engine_type engine_type, e_build build)

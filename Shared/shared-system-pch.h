@@ -48,6 +48,7 @@ using namespace tbb;
 #include <gdiplus.h>
 #include <sqltypes.h>
 #include <shlwapi.h>
+#include <DbgHelp.h>
 
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
@@ -157,7 +158,7 @@ constexpr decltype(auto) underlying_cast(T value)
 #define static_assert_32 static_assert
 #endif
 
-#include "!Resources/ResourcesManager.h"
+#include "!Resources/resources_manager.h"
 
 #ifdef min
 #undef min

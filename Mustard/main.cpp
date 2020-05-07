@@ -540,11 +540,12 @@ __declspec(dllexport) int main()
 		c_eldorado_game_host::init_game_host(build);
 		c_eldorado_game_host::init_runtime_modifications(build);
 		break;
-#endif
+#else
 	case _engine_type_halo5:
 		c_halo5_game_host::init_game_host(build);
 		c_halo5_game_host::init_runtime_modifications(build);
 		break;
+#endif
 	}
 
 	entry_point_function* entry_point = get_module_entry_point(loaded_executable_module);

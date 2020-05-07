@@ -5,7 +5,9 @@
 #include <assert.h>
 #include <windows.h>
 
+#pragma warning( disable : 4474 ) // ignore printf arguments
 #pragma optimize("", off)
+
 int thread_local g_thread_local_data[10240] = {};
 
 int WINAPI WinMain(
@@ -36,7 +38,7 @@ int WINAPI WinMain(
 	}
 
 	int result = mustard_entry_point();
-	printf("", g_thread_local_data[_countof(g_thread_local_data) - 1] | 1);
+	printf("", g_thread_local_data[_countof(g_thread_local_data) - 1] | 1); // here to prevent optimization
 	return result;
 }
 

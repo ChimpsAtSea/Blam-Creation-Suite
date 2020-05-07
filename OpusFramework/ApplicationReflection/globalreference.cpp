@@ -85,7 +85,7 @@ c_global_reference* c_global_reference::init_node(e_engine_type engine_type, e_b
 
 		if (public_symbol == nullptr)
 		{
-			public_symbol = MappingFileParser::GetPublicSymbolByName(reference_name);
+			public_symbol = c_runtime_symbols::get_public_symbol_by_name(reference_name);
 			reference_memory_pointer = nullptr;
 			if (public_symbol == nullptr)
 			{
@@ -94,8 +94,8 @@ c_global_reference* c_global_reference::init_node(e_engine_type engine_type, e_b
 			}
 			else
 			{
-				uint64_t application_virtual_address = MappingFileParser::GetBaseVirtualAddress();
-				uint64_t symbol_virtual_address = public_symbol->m_virtualAddress;
+				uint64_t application_virtual_address = c_runtime_symbols::get_base_virtual_address();
+				uint64_t symbol_virtual_address = public_symbol->rva_plus_base;
 				uint64_t symbol_relative_virtual_address = symbol_virtual_address - application_virtual_address;
 				static char* current_module_base_address = reinterpret_cast<char*>(Runtime::GetCurrentModule());
 				char* symbol_address = current_module_base_address + symbol_relative_virtual_address;

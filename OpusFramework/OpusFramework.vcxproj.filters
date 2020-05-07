@@ -45,9 +45,6 @@
     <ClCompile Include="ApplicationReflection\globalreference.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ApplicationReflection\mappingfileparser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MCC\IGameEngineHost.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -165,12 +162,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ApplicationReflection\globalreference.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ApplicationReflection\mappingfileparser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ApplicationReflection\offsetfunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ApplicationReflection\referencesymbol.h">

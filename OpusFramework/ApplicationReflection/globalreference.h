@@ -25,7 +25,7 @@ private:
 	reference_symbol_offset_function* offset_function;
 	const char* reference_name;
 	void* data_address;
-	PublicSymbol* public_symbol;
+	s_symbol_file_public* public_symbol;
 	void** reference_memory_pointer;
 
 	static c_global_reference* first_global_reference;

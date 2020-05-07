@@ -5,6 +5,18 @@ bool write_file_from_memory(const char* filepath, const void* buffer, size_t buf
 bool read_file_to_memory(const wchar_t* filepath, void** buffer, size_t* buffer_size);
 bool write_file_from_memory(const wchar_t* filepath, const void* buffer, size_t buffer_size);
 
+template<typename T>
+bool read_file_to_memory(const char* filepath, T** buffer, size_t* buffer_size)
+{
+	return read_file_to_memory(filepath, (void**)buffer, buffer_size);
+}
+
+template<typename T>
+bool read_file_to_memory(const wchar_t* filepath, T** buffer, size_t* buffer_size)
+{
+	return read_file_to_memory(filepath, (void**)buffer, buffer_size);
+}
+
 
 
 // ------------- LEGACY -----------------

@@ -15,7 +15,7 @@ extern "C" __declspec(dllexport) void run(ID3D11Device* pDevice, IDXGISwapChain1
 {
 	 static HMODULE hInstance = GetModuleHandleA("OpusXIGameInterface.dll");
 
-	 c_window::SetIcon(LoadIconA(hInstance, ResourcesManager::GetResourceIntResource(ResourceType::Icon)));
+	 c_window::SetIcon(LoadIconA(hInstance, c_resources_manager::get_resource_int_resource(_resource_type_icon)));
 	 SystemPatch::PatchEnumWindows();
 
 	 static bool s_running = true;

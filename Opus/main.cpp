@@ -17,7 +17,7 @@ int WINAPI WinMain(
 
 	c_console::init_console();
 
-	c_window::SetIcon(LoadIconA(hInstance, ResourcesManager::GetResourceIntResource(ResourceType::Icon)));
+	c_window::SetIcon(LoadIconA(hInstance, c_resources_manager::get_resource_int_resource(_resource_type_icon)));
 	SystemPatch::PatchEnumWindows();
 
 	static bool s_running = true;
