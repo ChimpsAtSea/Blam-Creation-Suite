@@ -186,21 +186,9 @@
     <ClCompile Include="blamboozle_base.cpp" />
     <ClCompile Include="blamboozle_h1_guerilla.cpp" />
     <ClCompile Include="blamboozle_h2_guerilla.cpp" />
-    <ClCompile Include="halo5\h5_tag_field_string.cpp" />
-    <ClCompile Include="halo5\h5_tag_field_skip.cpp" />
-    <ClCompile Include="halo5\h5_tag_field_string_id.cpp" />
-    <ClCompile Include="halo5\h5_tag_field_pad.cpp" />
-    <ClCompile Include="halo5\h5_tag_field_block_64.cpp" />
     <ClCompile Include="halo5\blamboozle_h5_forge.cpp" />
     <ClCompile Include="halo5\h5_tag_block_definition.cpp" />
-    <ClCompile Include="halo5\h5_tag_field.cpp" />
-    <ClCompile Include="halo5\h5_tag_field_block_index_custom_search_definition.cpp" />
-    <ClCompile Include="halo5\h5_tag_field_data_64.cpp" />
-    <ClCompile Include="halo5\h5_tag_field_enum.cpp" />
-    <ClCompile Include="halo5\h5_tag_field_explaination_definition.cpp" />
     <ClCompile Include="halo5\h5_tag_field_set.cpp" />
-    <ClCompile Include="halo5\h5_tag_field_struct.cpp" />
-    <ClCompile Include="halo5\h5_tag_field_tag_reference_64.cpp" />
     <ClCompile Include="halo5\h5_tag_layout.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -210,22 +198,11 @@
     <ClInclude Include="blamboozle_base.h" />
     <ClInclude Include="blamboozle_h1_guerilla.h" />
     <ClInclude Include="blamboozle_h2_guerilla.h" />
-    <ClInclude Include="halo5\h5_tag_field_string.h" />
-    <ClInclude Include="halo5\h5_tag_field_skip.h" />
-    <ClInclude Include="halo5\h5_tag_field_string_id.h" />
-    <ClInclude Include="halo5\h5_tag_field_pad.h" />
-    <ClInclude Include="halo5\h5_tag_field_block_64.h" />
     <ClInclude Include="halo5\blamboozle_h5_forge.h" />
     <ClInclude Include="halo5\h5_field_type.h" />
     <ClInclude Include="halo5\h5_tag_block_definition.h" />
     <ClInclude Include="halo5\h5_tag_field.h" />
-    <ClInclude Include="halo5\h5_tag_field_block_index_custom_search_definition.h" />
-    <ClInclude Include="halo5\h5_tag_field_data_64.h" />
-    <ClInclude Include="halo5\h5_tag_field_enum.h" />
-    <ClInclude Include="halo5\h5_tag_field_explaination_definition.h" />
     <ClInclude Include="halo5\h5_tag_field_set.h" />
-    <ClInclude Include="halo5\h5_tag_field_struct.h" />
-    <ClInclude Include="halo5\h5_tag_field_tag_reference_64.h" />
     <ClInclude Include="halo5\h5_tag_layout.h" />
     <ClInclude Include="halo5\halo5_forge.h" />
   </ItemGroup>

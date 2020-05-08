@@ -1,7 +1,7 @@
 #pragma once
 
 class c_h5_tag_block_definition;
-struct s_h5_tag_block_definition_header;
+struct s_h5_tag_block_definition;
 struct s_h5_tag_layout_header;
 
 class c_blamboozle_h5_forge :
@@ -15,7 +15,7 @@ public:
 	static c_h5_tag_block_definition* get_tag_block_definition(
 		void* virtual_address, 
 		const char* halo5_forge_data, 
-		const s_h5_tag_block_definition_header* definition_header, 
+		const s_h5_tag_block_definition* definition_header, 
 		const s_h5_tag_layout_header* tag_layout_header = nullptr);
 	static std::map<void*, c_h5_tag_block_definition*> tag_block_definitions;
 };

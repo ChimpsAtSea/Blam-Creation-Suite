@@ -1,6 +1,6 @@
 #include "blamboozlelib-private-pch.h"
 
-c_h5_tag_block_definition::c_h5_tag_block_definition(const char* halo5_forge_data, const s_h5_tag_block_definition_header* tag_block_definition_header, const s_h5_tag_layout_header* tag_layout_header)
+c_h5_tag_block_definition::c_h5_tag_block_definition(const char* halo5_forge_data, const s_h5_tag_block_definition* tag_block_definition_header, const s_h5_tag_layout_header* tag_layout_header)
 {
 	display_name = h5_aa_to_pointer(halo5_forge_data, tag_block_definition_header->display_name_address);
 	name = h5_aa_to_pointer(halo5_forge_data, tag_block_definition_header->name_address);

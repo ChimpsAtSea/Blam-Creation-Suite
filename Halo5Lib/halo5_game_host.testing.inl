@@ -16,18 +16,6 @@ uintptr_t unk_143307FF8_offset(e_engine_type engine_type, e_build build)
 }
 _PVFV& unk_143307FF8 = reference_symbol<_PVFV>("unk_143307FF8", unk_143307FF8_offset);
 
-
-#include <signal.h>
-
-bool caused_error = false;
-
-void SignalHandler(int signal)
-{
-	printf("Signal %d", signal);
-	caused_error = true;
-	throw "!Access Violation!";
-}
-
 uintptr_t __scrt_common_main_seh_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo5, _build_halo5_forge_1_194_6192_2, 0x1410EB6A8);
@@ -160,6 +148,7 @@ FunctionHookEx<__scrt_common_main_seh_offset, __int64()> __scrt_common_main_seh 
 			66688, 66693, 66694, 66696, 66699, 66700, 66701, 66702, 66705, 66706, 66707, 66740,
 		};
 
+		bool caused_error = false;
 		uint32_t current_index = 0;
 		for (_PVFV* current_pos = &unk_143285930; current_pos < &unk_143307FF8; current_pos++)
 		{
@@ -174,7 +163,6 @@ FunctionHookEx<__scrt_common_main_seh_offset, __int64()> __scrt_common_main_seh 
 
 			if (_PVFV function = *current_pos)
 			{
-				caused_error = false;
 				try
 				{
 					function();
@@ -182,10 +170,6 @@ FunctionHookEx<__scrt_common_main_seh_offset, __int64()> __scrt_common_main_seh 
 				catch (...)
 				{
 					caused_error = true;
-				}
-				if (caused_error)
-				{
-
 				}
 			}
 
@@ -195,7 +179,7 @@ FunctionHookEx<__scrt_common_main_seh_offset, __int64()> __scrt_common_main_seh 
 
 		blamboozle_run(output_directory.c_str(), L"halo5forge.exe");
 
-		return __int64(0);
+		return __int64(caused_error ? 1 : 0);
 }
 };
 c_data_patch<__scrt_common_main_seh_offset> __scrt_common_main_seh_patch =

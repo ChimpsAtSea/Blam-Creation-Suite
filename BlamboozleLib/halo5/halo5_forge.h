@@ -10,3 +10,6 @@ static constexpr uint32_t h5_num_tag_layouts = 285; // _build_halo5_forge_1_194_
 #define h5_va_to_pa(data, address) static_cast<DWORD>(address - h5_base_address)
 #define h5_va_to_pointer(data, address) (address ? ((const char*)(data + h5_va_to_pa(data, address))) : 0)
 #define h5_aa_to_pointer(data, address) ((char*)(address))
+#define h5_pointer_to_va(data, pointer) (h5_base_address + static_cast<uintptr_t>((((char*)pointer) - ((char*)data))))
+
+

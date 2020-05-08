@@ -30,49 +30,13 @@
     <ClCompile Include="halo5\h5_tag_block_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field_block_index_custom_search_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field_data_64.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field_enum.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field_explaination_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="halo5\h5_tag_field_set.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field_struct.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field_tag_reference_64.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="halo5\h5_tag_layout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="halo5\blamboozle_h5_forge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field_block_64.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field_pad.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field_string_id.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field_skip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="halo5\h5_tag_field_string.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,25 +65,7 @@
     <ClInclude Include="halo5\h5_tag_field.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="halo5\h5_tag_field_block_index_custom_search_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo5\h5_tag_field_data_64.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo5\h5_tag_field_enum.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo5\h5_tag_field_explaination_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="halo5\h5_tag_field_set.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo5\h5_tag_field_struct.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo5\h5_tag_field_tag_reference_64.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="halo5\h5_tag_layout.h">
@@ -132,21 +78,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="halo5\blamboozle_h5_forge.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo5\h5_tag_field_block_64.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo5\h5_tag_field_pad.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo5\h5_tag_field_string_id.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo5\h5_tag_field_skip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo5\h5_tag_field_string.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

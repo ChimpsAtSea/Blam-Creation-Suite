@@ -16,7 +16,7 @@ c_blamboozle_h5_forge::~c_blamboozle_h5_forge()
 c_h5_tag_block_definition* c_blamboozle_h5_forge::get_tag_block_definition(
 	void* virtual_address,
 	const char* halo5_forge_data, 
-	const s_h5_tag_block_definition_header* tag_block_definition_header, 
+	const s_h5_tag_block_definition* tag_block_definition_header, 
 	const s_h5_tag_layout_header* tag_layout_header
 )
 {
