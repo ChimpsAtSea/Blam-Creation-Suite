@@ -82,7 +82,7 @@ bool __fastcall IGameEngineHost::Function26() { CHECK_ADDRESS_SHIFTED(); return 
 bool __fastcall IGameEngineHost::Function27() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function27(); }
 bool __fastcall IGameEngineHost::UpdateGraphics(UpdateGraphicsData* update_graphics_data) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateGraphics(update_graphics_data); }
 PlayerConfiguration* __fastcall IGameEngineHost::GetPlayerConfiguration(__int64 value) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetPlayerConfiguration(value); }
-__int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t player_names[4][16], PlayerConfiguration& player_configuration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerConfiguration(player_names, player_configuration); }
+__int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t player_names[4][16], PlayerConfiguration* player_configuration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerConfiguration(player_names, player_configuration); }
 bool __fastcall __fastcall IGameEngineHost::UpdateInput(_QWORD a1, InputBuffer* input_buffer) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateInput(a1, input_buffer); }
 void IGameEngineHost::Function32(_QWORD a1, float* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function32(a1, a2); }
 void IGameEngineHost::Function33() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function33(); }
@@ -348,7 +348,55 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	case _build_mcc_1_1389_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1477_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1499_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1520_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	}
+}
+
+bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, PlayerConfiguration **player_configuration)
+{
+	ASSERT(build != e_build::_build_not_set);
+	ASSERT(player_configuration != nullptr);
+
+	switch (build)
+	{
+	case _build_mcc_1_824_0_0:
+	case _build_mcc_1_887_0_0:
+		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_1);
+		break;
+	case _build_mcc_1_1035_0_0:
+		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_2);
+		break;
+	case _build_mcc_1_1186_0_0:
+	case _build_mcc_1_1211_0_0:
+	case _build_mcc_1_1246_0_0:
+	case _build_mcc_1_1270_0_0:
+	case _build_mcc_1_1305_0_0:
+		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_3);
+		break;
+	case _build_mcc_1_1350_0_0:
+		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_4);
+		break;
+	case _build_mcc_1_1367_0_0:
+	case _build_mcc_1_1377_0_0:
+	case _build_mcc_1_1384_0_0:
+	case _build_mcc_1_1387_0_0:
+	case _build_mcc_1_1389_0_0:
+		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_5);
+		break;
+	case _build_mcc_1_1477_0_0:
+	case _build_mcc_1_1499_0_0:
+	case _build_mcc_1_1520_0_0:
+	default:
+		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_6);
+		break;
+	}
+
+	if (!is_valid(*player_configuration))
+	{
+		return false;
+	}
+
+	return true;
 }
 
 void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_configuration)
@@ -356,16 +404,13 @@ void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_c
 	player_configuration.SubtitleSetting = 1;
 	player_configuration.CrosshairLocation = 1;
 	player_configuration.FOVSetting = 90;
-	player_configuration.VehicleFOVSetting = 100;
+
 	player_configuration.LookControlsInverted = false;
-	player_configuration.MouseLookControlsInverted = false;
 	player_configuration.VibrationDisabled = false;
 	player_configuration.ImpulseTriggersDisabled = false;
 	player_configuration.AircraftControlsInverted = false;
-	player_configuration.MouseAircraftControlsInverted = false;
 	player_configuration.AutoCenterEnabled = false;
 	player_configuration.CrouchLockEnabled = false;
-	player_configuration.MKCrouchLockEnabled = false;
 	player_configuration.ClenchProtectionEnabled = false;
 	player_configuration.UseFemaleVoice = true;
 	player_configuration.HoldToZoom = true;
@@ -375,63 +420,72 @@ void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_c
 	player_configuration.UseEliteModel = false;
 	//player_configuration.PlayerModelPermutation           = ;
 
-	if (engine_type == _engine_type_halo_reach)
+	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
 	{
-		player_configuration.HelmetIndex = eHaloArmor::HR_Helmet_EOD_Base;
-		player_configuration.LeftShoulderIndex = eHaloArmor::HR_LeftShoulder_Gungnir;
-		player_configuration.RightShoulderIndex = eHaloArmor::HR_RightShoulder_EVA;
-		player_configuration.ChestIndex = eHaloArmor::HR_Chest_UABaseSecurityW;
-		player_configuration.WristIndex = eHaloArmor::HR_Wrist_Default;
-		player_configuration.UtilityIndex = eHaloArmor::HR_Utility_Default;
-		player_configuration.KneeGuardsIndex = eHaloArmor::HR_KneeGuards_FJPARA;
-		player_configuration.VisorColorIndex = eHaloArmor::HR_VisorColor_Blue;
-		player_configuration.SpartanArmorEffectIndex = eHaloArmor::HR_ArmorEffect_BlueFlames;
-		player_configuration.SpartanBodyIndex = eHaloArmor::HR_Spartan_Female;
-		player_configuration.EliteArmorIndex = eHaloArmor::HR_Elite_FieldMarshall;
-		player_configuration.EliteArmorEffectIndex = eHaloArmor::HR_ArmorEffect_Pestilence;
-		player_configuration.VoiceIndex = eHaloArmor::HR_FirefightVoice_JohnS117;
-		player_configuration.PlayerModelPrimaryColor = eHaloArmor::HR_Color_Brick;
-		player_configuration.PlayerModelSecondaryColor = eHaloArmor::HR_Color_Cyan;
-		player_configuration.PlayerModelTertiaryColor = eHaloArmor::HR_Color_Cyan;
+		player_configuration.VehicleFOVSetting = 100;
+		player_configuration.MouseLookControlsInverted = false;
+		player_configuration.MouseAircraftControlsInverted = false;
+		player_configuration.MKCrouchLockEnabled = false;
+
+		if (engine_type == _engine_type_halo_reach)
+		{
+			player_configuration.HelmetIndex = eHaloArmor::HR_Helmet_EOD_Base;
+			player_configuration.LeftShoulderIndex = eHaloArmor::HR_LeftShoulder_Gungnir;
+			player_configuration.RightShoulderIndex = eHaloArmor::HR_RightShoulder_EVA;
+			player_configuration.ChestIndex = eHaloArmor::HR_Chest_UABaseSecurityW;
+			player_configuration.WristIndex = eHaloArmor::HR_Wrist_Default;
+			player_configuration.UtilityIndex = eHaloArmor::HR_Utility_Default;
+			player_configuration.KneeGuardsIndex = eHaloArmor::HR_KneeGuards_FJPARA;
+			player_configuration.VisorColorIndex = eHaloArmor::HR_VisorColor_Blue;
+			player_configuration.SpartanArmorEffectIndex = eHaloArmor::HR_ArmorEffect_BlueFlames;
+			player_configuration.SpartanBodyIndex = eHaloArmor::HR_Spartan_Female;
+			player_configuration.EliteArmorIndex = eHaloArmor::HR_Elite_FieldMarshall;
+			player_configuration.EliteArmorEffectIndex = eHaloArmor::HR_ArmorEffect_Pestilence;
+			player_configuration.VoiceIndex = eHaloArmor::HR_FirefightVoice_JohnS117;
+			player_configuration.PlayerModelPrimaryColor = eHaloArmor::HR_Color_Brick;
+			player_configuration.PlayerModelSecondaryColor = eHaloArmor::HR_Color_Cyan;
+			player_configuration.PlayerModelTertiaryColor = eHaloArmor::HR_Color_Cyan;
+		}
+		else if (engine_type == _engine_type_halo1)
+		{
+			player_configuration.HelmetIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.LeftShoulderIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.RightShoulderIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.ChestIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.WristIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.UtilityIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.KneeGuardsIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.VisorColorIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.SpartanArmorEffectIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.SpartanBodyIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.EliteArmorIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.EliteArmorEffectIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.VoiceIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.PlayerModelPrimaryColor = eHaloArmor::H1_Color_1;
+			player_configuration.PlayerModelSecondaryColor = eHaloArmor::H1_Color_1;
+			player_configuration.PlayerModelTertiaryColor = eHaloArmor::H1_Color_1;
+		}
+		else if (engine_type == _engine_type_groundhog)
+		{
+			player_configuration.HelmetIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.LeftShoulderIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.RightShoulderIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.ChestIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.WristIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.UtilityIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.KneeGuardsIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.VisorColorIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.SpartanArmorEffectIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.SpartanBodyIndex = eHaloArmor::HR_Spartan_Female;
+			player_configuration.EliteArmorIndex = eHaloArmor::H2A_ARMOR_ELITE1;
+			player_configuration.EliteArmorEffectIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.VoiceIndex = eHaloArmor::kHaloArmorNone;
+			player_configuration.PlayerModelPrimaryColor = eHaloArmor::H2A_Color_1;
+			player_configuration.PlayerModelSecondaryColor = eHaloArmor::H2A_Color_1;
+			player_configuration.PlayerModelTertiaryColor = eHaloArmor::H2A_Color_1;
+		}
 	}
-	else if (engine_type == _engine_type_halo1)
-	{
-		player_configuration.HelmetIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.LeftShoulderIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.RightShoulderIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.ChestIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.WristIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.UtilityIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.KneeGuardsIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.VisorColorIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.SpartanArmorEffectIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.SpartanBodyIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.EliteArmorIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.EliteArmorEffectIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.VoiceIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.PlayerModelPrimaryColor = eHaloArmor::H1_Color_1;
-		player_configuration.PlayerModelSecondaryColor = eHaloArmor::H1_Color_1;
-		player_configuration.PlayerModelTertiaryColor = eHaloArmor::H1_Color_1;
-	}
-	else if (engine_type == _engine_type_groundhog)
-	{
-		player_configuration.HelmetIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-		player_configuration.LeftShoulderIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-		player_configuration.RightShoulderIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-		player_configuration.ChestIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-		player_configuration.WristIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-		player_configuration.UtilityIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-		player_configuration.KneeGuardsIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-		player_configuration.VisorColorIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-		player_configuration.SpartanArmorEffectIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-		player_configuration.SpartanBodyIndex = eHaloArmor::HR_Spartan_Female;
-		player_configuration.EliteArmorIndex = eHaloArmor::H2A_ARMOR_ELITE1;
-		player_configuration.EliteArmorEffectIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.VoiceIndex = eHaloArmor::kHaloArmorNone;
-		player_configuration.PlayerModelPrimaryColor = eHaloArmor::H2A_Color_1;
-		player_configuration.PlayerModelSecondaryColor = eHaloArmor::H2A_Color_1;
-		player_configuration.PlayerModelTertiaryColor = eHaloArmor::H2A_Color_1;
-	}
+
 
 	c_settings_legacy::read_wstring(_settings_section_legacy_player, "ServiceTag", player_configuration.ServiceTag, 4, L"117");
 	player_configuration.OnlineMedalFlasher = false;
@@ -469,10 +523,33 @@ void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_c
 	//player_configuration.MouseAccelerationExp             = ;
 	//player_configuration.KeyboardMouseButtonPreset        = ;
 
-	for (uint32_t mapping_index = 0; mapping_index < GameAction::Count; mapping_index++)
+	long game_action_count = GameAction::Count;
+
+	switch (player_configuration.player_configuration_version)
+	{
+	case _player_configuration_version_1:
+	case _player_configuration_version_2:
+		game_action_count = GameActionV1_Count;
+		break;
+	case _player_configuration_version_3:
+		game_action_count = GameActionV2_Count;
+		break;
+	case _player_configuration_version_4:
+		game_action_count = GameActionV3_Count;
+		break;
+	case _player_configuration_version_5:
+		game_action_count = GameActionV4_Count;
+		break;
+	case _player_configuration_version_6:
+		game_action_count = GameActionV5_Count;
+		break;
+	}
+
+	for (long mapping_index = 0; mapping_index < game_action_count; mapping_index++)
 	{
 		player_configuration.GameKeyboardMouseMappings[mapping_index].AbstractButton = mapping_index;
 	}
+
 	player_configuration.GameKeyboardMouseMappings[GameAction::Jump].VirtualKeyCodes[0] = VK_SPACE;
 	player_configuration.GameKeyboardMouseMappings[GameAction::SwitchGrenade].VirtualKeyCodes[0] = 'G';
 	player_configuration.GameKeyboardMouseMappings[GameAction::ContextPrimary].VirtualKeyCodes[0] = 'E';
@@ -507,45 +584,56 @@ void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_c
 	player_configuration.GameKeyboardMouseMappings[GameAction::SecondaryVehicleTrick].VirtualKeyCodes[0] = VK_SPACE;
 	player_configuration.GameKeyboardMouseMappings[GameAction::MagnifyZoom].VirtualKeyCodes[0] = 'Z';
 	player_configuration.GameKeyboardMouseMappings[GameAction::Equipment].VirtualKeyCodes[0] = VK_LSHIFT;
-
-	player_configuration.GameKeyboardMouseMappings[GameAction::FireSecondary].VirtualKeyCodes[0] = VK_LSHIFT;
-
-	player_configuration.GameKeyboardMouseMappings[GameAction::LiftEditor].VirtualKeyCodes[0] = 'R';
-	player_configuration.GameKeyboardMouseMappings[GameAction::DropEditor].VirtualKeyCodes[0] = 'F';
-	player_configuration.GameKeyboardMouseMappings[GameAction::GrabObjectEditor].VirtualKeyCodes[0] = VK_LBUTTON;
-	player_configuration.GameKeyboardMouseMappings[GameAction::BoostEditor].VirtualKeyCodes[0] = VK_LSHIFT;
-	player_configuration.GameKeyboardMouseMappings[GameAction::CrouchEditor].VirtualKeyCodes[0] = VK_LCONTROL;
-	player_configuration.GameKeyboardMouseMappings[GameAction::DeleteObjectEditor].VirtualKeyCodes[0] = VK_DELETE;
-	player_configuration.GameKeyboardMouseMappings[GameAction::CreateObjectEditor].VirtualKeyCodes[0] = VK_SPACE;
-	player_configuration.GameKeyboardMouseMappings[GameAction::OpenToolMenuEditor].VirtualKeyCodes[0] = 'X';
-	player_configuration.GameKeyboardMouseMappings[GameAction::SwitchPlayerModeEditor].VirtualKeyCodes[0] = VK_UP;
-	player_configuration.GameKeyboardMouseMappings[GameAction::ScopeZoomEditor].VirtualKeyCodes[0] = VK_RBUTTON;
-	player_configuration.GameKeyboardMouseMappings[GameAction::PlayerLockForManipulationEditor].VirtualKeyCodes[0] = VK_LMENU;
-	player_configuration.GameKeyboardMouseMappings[GameAction::ShowHidePannelTheater].VirtualKeyCodes[0] = 'X';
-	player_configuration.GameKeyboardMouseMappings[GameAction::ShowHideInterfaceTheater].VirtualKeyCodes[0] = 'Z';
-	player_configuration.GameKeyboardMouseMappings[GameAction::ToggleFirstThirdPersonViewTheater].VirtualKeyCodes[0] = 'C';
-	player_configuration.GameKeyboardMouseMappings[GameAction::CameraFocusTheater].VirtualKeyCodes[0] = VK_RBUTTON;
-	player_configuration.GameKeyboardMouseMappings[GameAction::FastForwardTheater].VirtualKeyCodes[0] = VK_RIGHT;
-	player_configuration.GameKeyboardMouseMappings[GameAction::FastRewindTheater].VirtualKeyCodes[0] = VK_LEFT;
-	player_configuration.GameKeyboardMouseMappings[GameAction::StopContinuePlaybackTheater].VirtualKeyCodes[0] = VK_RETURN;
-	player_configuration.GameKeyboardMouseMappings[GameAction::PlaybackSpeedUpTheater].VirtualKeyCodes[0] = VK_LMENU;
-	player_configuration.GameKeyboardMouseMappings[GameAction::EnterFreeCameraModeTheater].VirtualKeyCodes[0] = VK_SPACE;
-
-	player_configuration.GameKeyboardMouseMappings[GameAction::MovementSpeedUpTheater].VirtualKeyCodes[0] = VK_LSHIFT;
-
-	player_configuration.GameKeyboardMouseMappings[GameAction::PanningCameraTheater].VirtualKeyCodes[0] = VK_OEM_RESET;
-	player_configuration.GameKeyboardMouseMappings[GameAction::CameraMoveUpTheater].VirtualKeyCodes[0] = 'Q';
-	player_configuration.GameKeyboardMouseMappings[GameAction::CameraMoveDownTheater].VirtualKeyCodes[0] = 'E';
-	player_configuration.GameKeyboardMouseMappings[GameAction::DualWield].VirtualKeyCodes[0] = 'Q';
-	player_configuration.GameKeyboardMouseMappings[GameAction::ZoomCameraTheater].VirtualKeyCodes[0] = VK_OEM_RESET;
+	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_3)
+	{
+		player_configuration.GameKeyboardMouseMappings[GameAction::FireSecondary].VirtualKeyCodes[0] = VK_LSHIFT;
+	}
+	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_4)
+	{
+		player_configuration.GameKeyboardMouseMappings[GameAction::LiftEditor].VirtualKeyCodes[0] = 'R';
+		player_configuration.GameKeyboardMouseMappings[GameAction::DropEditor].VirtualKeyCodes[0] = 'F';
+		player_configuration.GameKeyboardMouseMappings[GameAction::GrabObjectEditor].VirtualKeyCodes[0] = VK_LBUTTON;
+		player_configuration.GameKeyboardMouseMappings[GameAction::BoostEditor].VirtualKeyCodes[0] = VK_LSHIFT;
+		player_configuration.GameKeyboardMouseMappings[GameAction::CrouchEditor].VirtualKeyCodes[0] = VK_LCONTROL;
+		player_configuration.GameKeyboardMouseMappings[GameAction::DeleteObjectEditor].VirtualKeyCodes[0] = VK_DELETE;
+		player_configuration.GameKeyboardMouseMappings[GameAction::CreateObjectEditor].VirtualKeyCodes[0] = VK_SPACE;
+		player_configuration.GameKeyboardMouseMappings[GameAction::OpenToolMenuEditor].VirtualKeyCodes[0] = 'X';
+		player_configuration.GameKeyboardMouseMappings[GameAction::SwitchPlayerModeEditor].VirtualKeyCodes[0] = VK_UP;
+		player_configuration.GameKeyboardMouseMappings[GameAction::ScopeZoomEditor].VirtualKeyCodes[0] = VK_RBUTTON;
+		player_configuration.GameKeyboardMouseMappings[GameAction::PlayerLockForManipulationEditor].VirtualKeyCodes[0] = VK_LMENU;
+		player_configuration.GameKeyboardMouseMappings[GameAction::ShowHidePannelTheater].VirtualKeyCodes[0] = 'X';
+		player_configuration.GameKeyboardMouseMappings[GameAction::ShowHideInterfaceTheater].VirtualKeyCodes[0] = 'Z';
+		player_configuration.GameKeyboardMouseMappings[GameAction::ToggleFirstThirdPersonViewTheater].VirtualKeyCodes[0] = 'C';
+		player_configuration.GameKeyboardMouseMappings[GameAction::CameraFocusTheater].VirtualKeyCodes[0] = VK_RBUTTON;
+		player_configuration.GameKeyboardMouseMappings[GameAction::FastForwardTheater].VirtualKeyCodes[0] = VK_RIGHT;
+		player_configuration.GameKeyboardMouseMappings[GameAction::FastRewindTheater].VirtualKeyCodes[0] = VK_LEFT;
+		player_configuration.GameKeyboardMouseMappings[GameAction::StopContinuePlaybackTheater].VirtualKeyCodes[0] = VK_RETURN;
+		player_configuration.GameKeyboardMouseMappings[GameAction::PlaybackSpeedUpTheater].VirtualKeyCodes[0] = VK_LMENU;
+		player_configuration.GameKeyboardMouseMappings[GameAction::EnterFreeCameraModeTheater].VirtualKeyCodes[0] = VK_SPACE;
+	}
+	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_5)
+	{
+		player_configuration.GameKeyboardMouseMappings[GameAction::MovementSpeedUpTheater].VirtualKeyCodes[0] = VK_LSHIFT;
+	}
+	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_6)
+	{
+		player_configuration.GameKeyboardMouseMappings[GameAction::PanningCameraTheater].VirtualKeyCodes[0] = VK_OEM_RESET;
+		player_configuration.GameKeyboardMouseMappings[GameAction::CameraMoveUpTheater].VirtualKeyCodes[0] = 'Q';
+		player_configuration.GameKeyboardMouseMappings[GameAction::CameraMoveDownTheater].VirtualKeyCodes[0] = 'E';
+		player_configuration.GameKeyboardMouseMappings[GameAction::DualWield].VirtualKeyCodes[0] = 'Q';
+		player_configuration.GameKeyboardMouseMappings[GameAction::ZoomCameraTheater].VirtualKeyCodes[0] = VK_OEM_RESET;
+	}
 
 	player_configuration.MasterVolume = 0.6f;
 	player_configuration.MusicVolume = 0.2f;
 	player_configuration.SfxVolume = 0.8f;
 	//player_configuration.Brightness                         = ;
 
-	for (int i = 0; i < 5; i++)
+	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_4)
 	{
-		player_configuration.WeaponDisplayOffsets[i] = { 5.f, 5.f };
+		for (int i = 0; i < 5; i++)
+		{
+			player_configuration.WeaponDisplayOffsets[i] = { 5.f, 5.f };
+		}
 	}
 }

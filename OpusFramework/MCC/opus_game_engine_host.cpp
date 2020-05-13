@@ -325,21 +325,26 @@ void c_opus_game_engine_host::Function13(const wchar_t*, const wchar_t*, const v
 
 char c_opus_game_engine_host::InvertLookControls(int controller_index, bool inverted)
 {
-	static PlayerConfiguration player_configuration = {};
-	ConfigurePlayerConfiguration(player_configuration);
+	static PlayerConfiguration* player_configuration = nullptr;
+	if (PlayerConfigurationFromBuild(build, &player_configuration))
+	{
+		ConfigurePlayerConfiguration(*player_configuration);
 
-	player_configuration.LookControlsInverted = inverted;
-	player_configuration.MouseLookControlsInverted = inverted;
+		player_configuration->LookControlsInverted = inverted;
+		player_configuration->MouseLookControlsInverted = inverted;
+	}
 
 	return 1;
 }
 
 char c_opus_game_engine_host::GetGameSpecificBindings(int controller_index, char(*buffer)[256])
 {
-	static PlayerConfiguration player_configuration = {};
-	ConfigurePlayerConfiguration(player_configuration);
-
-	memcpy(&player_configuration.GameSpecific, buffer, 256);
+	static PlayerConfiguration* player_configuration = nullptr;
+	if (PlayerConfigurationFromBuild(build, &player_configuration))
+	{
+		ConfigurePlayerConfiguration(*player_configuration);
+		memcpy(&player_configuration->GameSpecific, buffer, 256);
+	}
 
 	return 1;
 }
@@ -433,26 +438,29 @@ PlayerConfiguration* __fastcall c_opus_game_engine_host::GetPlayerConfiguration(
 {
 	RUNONCE({ write_line_verbose(__FUNCTION__); });
 
-	static PlayerConfiguration player_configuration = {};
-	ConfigurePlayerConfiguration(player_configuration);
+	static PlayerConfiguration *player_configuration = nullptr;
+	if (PlayerConfigurationFromBuild(build, &player_configuration))
+	{
+		ConfigurePlayerConfiguration(*player_configuration);
+	}
 
-	return &player_configuration;
+	return player_configuration;
 }
 
 BYTE keyboardState[256] = {};
 
-__int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t player_names[4][16], PlayerConfiguration& player_configuration)
+__int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t player_names[4][16], PlayerConfiguration* player_configuration)
 {
 	// #TODO #LEGACY: The format for UpdatePlayerConfiguration changed sometime after 887
-	if (build <= _build_mcc_1_1389_0_0) // was previously `_build_mcc_1_1035_0_0`
+	if (build <= _build_mcc_1_887_0_0 || !is_valid(player_configuration))
 	{
 		return false; // skips a large chunk of code that crashes out because the format changed
 	}
-	
-	REFERENCE_ASSERT(player_configuration);
-	player_configuration = {}; // reset values
 
-	ConfigurePlayerConfiguration(player_configuration);
+	if (PlayerConfigurationFromBuild(build, &player_configuration))
+	{
+		ConfigurePlayerConfiguration(*player_configuration);
+	}
 
 	//WriteStackBackTrace("IOpusGameEngineHost::UpdatePlayerConfiguration");
 	return __int64(1);

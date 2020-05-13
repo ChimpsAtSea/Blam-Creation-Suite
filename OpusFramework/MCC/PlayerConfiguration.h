@@ -711,7 +711,7 @@ CHECK_STRUCTURE_SIZE(PlayerConfigurationV5, 0x89C);
 using PlayerConfigurationV6 = s_player_configuration_v6<GameActionV5_Count>;
 CHECK_STRUCTURE_SIZE(PlayerConfigurationV6, 0x924);
 
-using PlayerConfiguration = PlayerConfigurationV6; // TODO: replace this with `class PlayerConfiguration_` when ready
+//using PlayerConfiguration = PlayerConfigurationV6; // TODO: replace this with `class PlayerConfiguration_` when ready
 
 enum e_player_configuration_version
 {
@@ -723,7 +723,7 @@ enum e_player_configuration_version
 	_player_configuration_version_6,
 };
 
-class PlayerConfiguration_
+class PlayerConfiguration
 {
 private:
 	union
@@ -952,16 +952,17 @@ private:
 	class c_virtual_player_configuration_game_keyboard_mouse_mapping_interface
 	{
 	public:
-		c_virtual_player_configuration_game_keyboard_mouse_mapping_interface(PlayerConfiguration_& parent) :
+		c_virtual_player_configuration_game_keyboard_mouse_mapping_interface(PlayerConfiguration& parent) :
 			parent(parent)
 		{ }
 
-		PlayerConfiguration_& parent;
+		PlayerConfiguration& parent;
 
 		GameKeyboardMouseMapping& operator[](size_t game_action_index) const
 		{
 			switch (parent.player_configuration_version)
 			{
+			//case _player_configuration_version_1: return parent.player_configuration_v1.GameKeyboardMouseMappings[game_action_index];
 			case _player_configuration_version_2: return parent.player_configuration_v2.GameKeyboardMouseMappings[game_action_index];
 			case _player_configuration_version_3: return parent.player_configuration_v3.GameKeyboardMouseMappings[game_action_index];
 			case _player_configuration_version_4: return parent.player_configuration_v4.GameKeyboardMouseMappings[game_action_index];
@@ -976,7 +977,7 @@ public:
 	//c_virtual_player_configuration_loadout_slot_interface LoadoutSlots;
 	c_virtual_player_configuration_game_keyboard_mouse_mapping_interface GameKeyboardMouseMappings;
 
-	PlayerConfiguration_(e_player_configuration_version player_configuration_version) :
+	PlayerConfiguration(e_player_configuration_version player_configuration_version) :
 		player_configuration_v1(),
 		//player_configuration_v2(),
 		//player_configuration_v3(),
