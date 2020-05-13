@@ -61,7 +61,7 @@ std::vector<uintptr_t> spawn_ai_with_scripts_and_effects_offsets(e_engine_type e
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return { 0x180779781, 0x18073A467 };
-		case _build_mcc_1_1520_0_0: return { 0x180779781, 0x18073B657 };
+		case _build_mcc_1_1520_0_0: return { 0x18077A971, 0x18073B657 };
 		}
 	}
 	return {};
