@@ -61,6 +61,7 @@ std::vector<uintptr_t> spawn_ai_with_scripts_and_effects_offsets(e_engine_type e
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return { 0x180779781, 0x18073A467 };
+		case _build_mcc_1_1520_0_0: return { 0x180779781, 0x18073B657 };
 		}
 	}
 	return {};
@@ -91,6 +92,7 @@ uintptr_t allow_night_vision_in_multiplayer_offset(e_engine_type engine_type, e_
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return 0x1805E18D7;
+		case _build_mcc_1_1520_0_0: return 0x1805E2AC7;
 		}
 	}
 	return ~uintptr_t();
@@ -116,6 +118,7 @@ std::vector<uintptr_t> enable_debug_hud_coordinates_offsets(e_engine_type engine
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return { 0x1800DDF7A, 0x1800DDF87 };
+		case _build_mcc_1_1520_0_0: return { 0x1800DE0DA, 0x1800DE0E7 };
 		}
 	}
 	return {};
