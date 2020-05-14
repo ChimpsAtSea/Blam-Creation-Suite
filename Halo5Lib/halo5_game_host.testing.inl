@@ -177,7 +177,7 @@ FunctionHookEx<__scrt_common_main_seh_offset, __int64()> __scrt_common_main_seh 
 			current_index++;
 		}
 
-		blamboozle_run(output_directory.c_str(), L"halo5forge.exe");
+		blamboozle_run(output_directory.c_str(), L"halo5forge.exe", _engine_type_halo5);
 
 		return __int64(caused_error ? 1 : 0);
 }

@@ -140,7 +140,7 @@ class c_h5_tag_field_pad :
 	public c_h5_tag_field_template<void>
 {
 public:
-	uintptr_t& const padding;
+	uintptr_t const&  padding;
 
 	c_h5_tag_field_pad(const char* halo5_forge_data, const s_h5_tag_field_definition* field_definition) :
 		c_h5_tag_field_template(halo5_forge_data, field_definition),
@@ -154,7 +154,7 @@ class c_h5_tag_field_skip :
 	public c_h5_tag_field_template<void>
 {
 public:
-	uintptr_t& const length;
+	uintptr_t const&  length;
 
 	c_h5_tag_field_skip(const char* halo5_forge_data, const s_h5_tag_field_definition* field_definition) :
 		c_h5_tag_field_template(halo5_forge_data, field_definition),

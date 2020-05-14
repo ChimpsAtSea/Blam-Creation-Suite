@@ -110,7 +110,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Shared.lib;MantleLib.lib;MantleGen.lib;d3d11.lib;dxgi.lib;imgui.lib;tbb_static.lib;Shlwapi.lib;fsblib.lib;HaloShaderGenerator.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shlwapi.lib;Shared.lib;MantleLib.lib;MantleGen.lib;d3d11.lib;dxgi.lib;imgui.lib;tbb_static.lib;Shlwapi.lib;fsblib.lib;HaloShaderGenerator.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -158,7 +158,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Shared.lib;MantleLib.lib;MantleGen.lib;d3d11.lib;dxgi.lib;imgui.lib;tbb_static.lib;Shlwapi.lib;fsblib.lib;HaloShaderGenerator.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shlwapi.lib;Shared.lib;MantleLib.lib;MantleGen.lib;d3d11.lib;dxgi.lib;imgui.lib;tbb_static.lib;Shlwapi.lib;fsblib.lib;HaloShaderGenerator.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>

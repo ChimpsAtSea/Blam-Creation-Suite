@@ -49,6 +49,7 @@ using namespace tbb;
 #include <sqltypes.h>
 #include <shlwapi.h>
 #include <DbgHelp.h>
+#include <Shlobj.h>
 
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>

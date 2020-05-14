@@ -12,4 +12,8 @@ static constexpr uint32_t h5_num_tag_layouts = 285; // _build_halo5_forge_1_194_
 #define h5_aa_to_pointer(data, address) ((char*)(address))
 #define h5_pointer_to_va(data, pointer) (h5_base_address + static_cast<uintptr_t>((((char*)pointer) - ((char*)data))))
 
-
+#include "halo5/h5_field_type.h"
+#include "halo5/h5_tag_field.h"
+#include "halo5/h5_tag_field_set.h"
+#include "halo5/h5_tag_block_definition.h"
+#include "halo5/h5_tag_layout.h"

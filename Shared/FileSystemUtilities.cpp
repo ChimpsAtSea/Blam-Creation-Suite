@@ -65,9 +65,19 @@ bool read_file_to_memory(const wchar_t* filepath, void** buffer, size_t* buffer_
 
 bool write_file_from_memory(const char* filepath, const void* buffer, size_t buffer_size)
 {
+	ASSERT(!IsBadReadPtr(buffer, 1));
 	ASSERT(filepath != nullptr);
 	if (buffer_size == 0) return false;
 	ASSERT(buffer != nullptr);
+
+	char directory_buffer[MAX_PATH + 1];
+	GetFullPathNameA(filepath, MAX_PATH, directory_buffer, NULL);
+	PathRemoveFileSpecA(directory_buffer);
+	bool path_file_exists_result = PathFileExistsA(directory_buffer);
+	if (!path_file_exists_result)
+	{
+		SHCreateDirectoryEx(NULL, directory_buffer, NULL);
+	}
 
 	FILE* file_handle = fopen(filepath, "wb");
 	if (file_handle)
