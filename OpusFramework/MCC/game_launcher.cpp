@@ -903,31 +903,29 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	if (!PathFileExistsA(selected_file_path.c_str()) || strstr(selected_file_path.c_str(), "/.") != 0)
 	{
-		if (true)
+		write_line_verbose("Variant file '%s' does not exist, falling back to default", selected_file_path.c_str());
+
+		switch (variant_type)
 		{
-			write_line_verbose("Variant file does not exist");
+		case e_variant_type::_variant_type_game:
+			variant_data = new char[variant_buffer_size];
+			memset(variant_data, 0, variant_buffer_size);
+			variant_buffer = data_access->GameVariantCreateDefault(variant_data)->variant_buffer; // This is not correct
+			break;
+		case e_variant_type::_variant_type_map:
+			variant_buffer = data_access->MapVariantCreateFromMapID(game_context->map_id)->variant_buffer;
+			break;
+		default:
 			return false;
 		}
-		else
+
+		memcpy(game_context_variant_buffer, variant_buffer, variant_buffer_size);
+		if (is_valid(variant_data))
 		{
-			write_line_verbose("Variant file does not exist, falling back to default");
-
-			switch (variant_type)
-			{
-			case e_variant_type::_variant_type_game:
-				variant_buffer = data_access->GameVariantCreateDefault(variant_data)->variant_buffer; // This is not correct
-				break;
-			case e_variant_type::_variant_type_map:
-				variant_buffer = data_access->MapVariantCreateFromMapID(game_context->map_id)->variant_buffer;
-				break;
-			default:
-				return false;
-			}
-
-			memcpy(game_context_variant_buffer, variant_buffer, variant_buffer_size);
-
-			return true;
+			delete[] variant_data;
 		}
+
+		return true;
 	}
 
 	if (!read_file_to_memory(selected_file_path.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
