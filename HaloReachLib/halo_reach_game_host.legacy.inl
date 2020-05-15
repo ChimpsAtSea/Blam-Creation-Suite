@@ -154,6 +154,7 @@ uintptr_t external_launch_individual_state_offset(e_engine_type engine_type, e_b
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1384_0_0, 0x180D05EF4);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x180D05EF4);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180D05EF4);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1520_0_0, 0x180D08274);
 	return ~uintptr_t();
 }
 int& external_launch_individual_state = reference_symbol<int>("external_launch_individual_state", external_launch_individual_state_offset);
@@ -174,6 +175,7 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1384_0_0, 0x180012520);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x180012520);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180012520);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1520_0_0, 0x180012550);
 
 	if (engine_type == _engine_type_halo_reach)
 	{
@@ -690,6 +692,7 @@ uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return 0x180AB2820;
+		case _build_mcc_1_1520_0_0: return 0x180AB4850;
 		}
 	}
 	return ~uintptr_t();
@@ -716,6 +719,7 @@ uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return 0x1801F1610;
+		case _build_mcc_1_1520_0_0: return 0x1801F17D0;
 		}
 	}
 	return ~uintptr_t();
@@ -744,6 +748,7 @@ uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return 0x1801F0D80;
+		case _build_mcc_1_1520_0_0: return 0x1801F0F40;
 		}
 	}
 	return ~uintptr_t();
@@ -783,6 +788,7 @@ uintptr_t hs_inspect_str_offset(e_engine_type engine_type, e_build build)
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return 0x1801EEF00;
+		case _build_mcc_1_1520_0_0: return 0x1801EF0C0;
 		}
 	}
 	return ~uintptr_t();
