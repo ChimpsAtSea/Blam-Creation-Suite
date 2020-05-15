@@ -70,14 +70,14 @@ bool c_h4_tag_group_container::operator ==(const c_h4_tag_group_container& conta
 	return &tag_group == &container.tag_group;
 }
 
-c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& block, c_h4_generator_preprocessor& preprocessor, bool is_tag) :
-	block(block),
-	name(block.name),
+c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_h4_generator_preprocessor& preprocessor, bool is_tag) :
+	tag_block(tag_block),
+	name(tag_block.name),
 	name_uppercase(),
 	is_tag(is_tag),
 	has_traversed(false)
 {
-	REFERENCE_ASSERT(block);
+	REFERENCE_ASSERT(tag_block);
 
 	name = name.substr(0, name.rfind("_block"));
 	bool y = name == "authored_light_probe";
@@ -92,12 +92,12 @@ c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& block, c_h4_g
 	name_uppercase = name;
 	std::transform(name_uppercase.begin(), name_uppercase.end(), name_uppercase.begin(), ::toupper);
 
-	preprocessor.tag_blocks.push_back(this);
+	preprocessor.tag_block_containers.push_back(this);
 }
 
 bool c_h4_tag_block_container::operator ==(const c_h4_tag_block_container& container) const
 {
-	return &block == &container.block;
+	return &tag_block == &container.tag_block;
 }
 
 c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blamboozle) :
@@ -123,9 +123,9 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 	}
 	cleanup_tag_blocks();
 
-	for (c_h4_tag_block_container* tag_block_container : tag_blocks)
+	for (c_h4_tag_block_container* tag_block_container : tag_block_containers)
 	{
-		c_h4_tag_block& tag_block = tag_block_container->block;
+		c_h4_tag_block& tag_block = tag_block_container->tag_block;
 
 		const char* perforce_path = strstr(tag_block.tag_struct->filepath, perforce_blofeld_path);
 		ASSERT(perforce_path != nullptr);
@@ -143,9 +143,9 @@ c_h4_generator_preprocessor::~c_h4_generator_preprocessor()
 
 c_h4_tag_block_container* c_h4_generator_preprocessor::find_existing_tag_block_container(c_h4_tag_block* tag_block)
 {
-	for (c_h4_tag_block_container* tag_block_container : tag_blocks)
+	for (c_h4_tag_block_container* tag_block_container : tag_block_containers)
 	{
-		if (&tag_block_container->block == tag_block)
+		if (&tag_block_container->tag_block == tag_block)
 		{
 			return tag_block_container;
 		}
@@ -159,7 +159,7 @@ c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_
 	if (tag_block_container == nullptr)
 	{
 		tag_block_container = new c_h4_tag_block_container(*tag_block, *this, is_tag);
-		tag_blocks.push_back(tag_block_container);
+		tag_block_containers.push_back(tag_block_container);
 	}
 	if(traverse && !tag_block_container->has_traversed)
 	{
@@ -186,8 +186,8 @@ c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_
 
 void c_h4_generator_preprocessor::cleanup_tag_blocks()
 {
-	decltype(tag_blocks)::iterator tag_blocks_new_end = std::unique(tag_blocks.begin(), tag_blocks.end());
-	tag_blocks.erase(tag_blocks_new_end, tag_blocks.end());
+	decltype(tag_block_containers)::iterator tag_blocks_new_end = std::unique(tag_block_containers.begin(), tag_block_containers.end());
+	tag_block_containers.erase(tag_blocks_new_end, tag_block_containers.end());
 }
 
 c_h4_source_file& c_h4_generator_preprocessor::get_source_file(const char* filepath, c_h4_generator_preprocessor& preprocessor)

@@ -14,6 +14,7 @@ public:
 	const char* display_name;
 	const char* filepath;
 	const s_h4_tag_field_definition* fields;
+	uint32_t size;
 	const char* size_string;
 	const char* byte_swap_definition_name;
 	std::vector<c_h4_tag_field*> tag_fields;

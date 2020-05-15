@@ -105,6 +105,22 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			ASSERT(blamgen_source_write_file_result);
 		}
 		{
+			std::string header_output_filepath = output_directory + "\\halo4_validation_data.h";
+			std::stringstream hs;
+			create_validation_header(hs);
+			std::string header_code = hs.str();
+			bool blamgen_header_write_file_result = write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
+			ASSERT(blamgen_header_write_file_result);
+		}
+		{
+			std::string source_output_filepath = output_directory + "\\halo4_validation_data.cpp";
+			std::stringstream ss;
+			create_validation_source(ss);
+			std::string source_code = ss.str();
+			bool blamgen_source_write_file_result = write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			ASSERT(blamgen_source_write_file_result);
+		}
+		{
 			std::string source_output_filepath = output_directory + "\\constants.txt";
 			std::stringstream ss;
 			for (std::string& defintion : preprocessor.maximum_count_constants_source_lines_define)
@@ -184,6 +200,38 @@ void c_h4_source_generator::create_blamgen_source(std::stringstream& ss)
 	ss << "} // namespace blofeld" << std::endl << std::endl;
 }
 
+void c_h4_source_generator::create_validation_header(std::stringstream& hs)
+{
+	hs << "#pragma once" << std::endl << std::endl;
+
+	hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+
+	hs << "extern s_tag_block_validation_data halo4_tag_block_validation_data[" << preprocessor.tag_block_containers.size() << "];" << std::endl;
+
+	hs << "} // namespace blofeld" << std::endl << std::endl;
+	hs << std::endl;
+}
+
+void c_h4_source_generator::create_validation_source(std::stringstream& ss)
+{
+	ss << "#include <blofeld-private-pch.h>" << std::endl << std::endl;
+
+	ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+
+	ss << "s_tag_block_validation_data halo4_tag_block_validation_data[" << preprocessor.tag_block_containers.size() << "] = " << std::endl;
+	ss << "{" << std::endl;
+	for (c_h4_tag_block_container* tag_block_container : preprocessor.tag_block_containers)
+	{
+		c_h4_tag_struct* tag_struct = tag_block_container->tag_block.tag_struct;
+
+		ss << "\t{ " << tag_block_container->name << "_block, " << tag_struct->size << " }," << std::endl;
+	}
+	ss << "};" << std::endl;
+	ss << std::endl;
+
+	ss << "} // namespace blofeld" << std::endl << std::endl;
+}
+
 std::string parse_tag_group_string(const tag_group& group_tag)
 {
 	std::string result;
@@ -209,7 +257,7 @@ void c_h4_source_generator::create_tag_group_header(std::stringstream& hs, c_h4_
 
 void c_h4_source_generator::create_tag_block_header(std::stringstream& hs, c_h4_tag_block_container& tag_block_container)
 {
-	c_h4_tag_block& tag_block = tag_block_container.block;
+	c_h4_tag_block& tag_block = tag_block_container.tag_block;
 	c_h4_tag_struct* tag_struct = tag_block.tag_struct;
 
 	hs << "extern s_tag_block " << tag_block_container.name << "_block;" << std::endl;
@@ -217,7 +265,7 @@ void c_h4_source_generator::create_tag_block_header(std::stringstream& hs, c_h4_
 }
 void c_h4_source_generator::create_tag_block_source(std::stringstream& ss, c_h4_tag_block_container& tag_block_container)
 {
-	c_h4_tag_block& tag_block = tag_block_container.block;
+	c_h4_tag_block& tag_block = tag_block_container.tag_block;
 	c_h4_tag_struct* tag_struct = tag_block.tag_struct;
 
 	ss << "TAG_BLOCK(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ")" << std::endl;

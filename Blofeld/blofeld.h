@@ -6,13 +6,7 @@
 
 namespace blofeld
 {
-	struct s_tag_group;
-
-	s_tag_group* get_tag_group_by_group_tag(uint32_t group_tag);
-
 	constexpr unsigned long INVALID_TAG = 0xFFFFFFFF;
-
-	struct s_tag_block;
 
 	enum e_field
 	{
@@ -84,6 +78,82 @@ namespace blofeld
 		_field_dword_integer,
 		_field_qword_integer,
 	};
+
+	inline uint32_t get_blofeld_field_size(blofeld::e_field field)
+	{
+
+		switch (field)
+		{
+		case blofeld::_field_string:							return sizeof(::c_static_string<32>);
+		case blofeld::_field_long_string:						return sizeof(::c_static_string<256>);
+		case blofeld::_field_string_id:							return sizeof(string_id);
+		case blofeld::_field_old_string_id:						return sizeof(::c_old_string_id);
+		case blofeld::_field_char_integer:						return sizeof(char);
+		case blofeld::_field_short_integer:						return sizeof(short);
+		case blofeld::_field_long_integer:						return sizeof(long);
+		case blofeld::_field_int64_integer:						return sizeof(int64);
+		case blofeld::_field_angle:								return sizeof(angle);
+		case blofeld::_field_tag:								return sizeof(tag);
+		case blofeld::_field_char_enum:							return sizeof(char);
+		case blofeld::_field_enum:								return sizeof(short);
+		case blofeld::_field_long_enum:							return sizeof(long);
+		case blofeld::_field_long_flags:						return sizeof(long);
+		case blofeld::_field_word_flags:						return sizeof(word);
+		case blofeld::_field_byte_flags:						return sizeof(byte);
+		case blofeld::_field_point_2d:							return sizeof(::s_point2d);
+		case blofeld::_field_rectangle_2d:						return sizeof(::s_rectangle2d);
+		case blofeld::_field_rgb_color:							return sizeof(::pixel32);
+		case blofeld::_field_argb_color:						return sizeof(::pixel32);
+		case blofeld::_field_real:								return sizeof(::real);
+		case blofeld::_field_real_fraction:						return sizeof(::real_fraction);
+		case blofeld::_field_real_point_2d:						return sizeof(::real_point2d);
+		case blofeld::_field_real_point_3d:						return sizeof(::real_point3d);
+		case blofeld::_field_real_vector_2d:					return sizeof(::real_vector2d);
+		case blofeld::_field_real_vector_3d:					return sizeof(::real_vector3d);
+		case blofeld::_field_real_quaternion:					return sizeof(::real_quaternion);
+		case blofeld::_field_real_euler_angles_2d:				return sizeof(::real_euler_angles2d);
+		case blofeld::_field_real_euler_angles_3d:				return sizeof(::real_euler_angles3d);
+		case blofeld::_field_real_plane_2d:						return sizeof(::real_plane2d);
+		case blofeld::_field_real_plane_3d:						return sizeof(::real_plane3d);
+		case blofeld::_field_real_rgb_color:					return sizeof(::rgb_color);
+		case blofeld::_field_real_argb_color:					return sizeof(::argb_color);
+		case blofeld::_field_real_hsv_color:					return sizeof(::real_hsv_color);
+		case blofeld::_field_real_ahsv_color:					return sizeof(::real_ahsv_color);
+		case blofeld::_field_short_bounds:						return sizeof(::short_bounds);
+		case blofeld::_field_angle_bounds:						return sizeof(::angle_bounds);
+		case blofeld::_field_real_bounds:						return sizeof(::real_bounds);
+		case blofeld::_field_real_fraction_bounds:				return sizeof(::real_bounds);
+		case blofeld::_field_tag_reference:						return sizeof(::s_tag_reference);
+		case blofeld::_field_block:								return sizeof(::s_tag_block);
+		case blofeld::_field_long_block_flags:					return sizeof(long);
+		case blofeld::_field_word_block_flags:					return sizeof(word);
+		case blofeld::_field_byte_block_flags:					return sizeof(byte);
+		case blofeld::_field_char_block_index:					return sizeof(char);
+		case blofeld::_field_custom_char_block_index:			return sizeof(char);
+		case blofeld::_field_short_block_index:					return sizeof(short);
+		case blofeld::_field_custom_short_block_index:			return sizeof(short);
+		case blofeld::_field_long_block_index:					return sizeof(long);
+		case blofeld::_field_custom_long_block_index:			return sizeof(long);
+		case blofeld::_field_data:								return sizeof(::s_tag_data);
+		case blofeld::_field_vertex_buffer:						return sizeof(::s_tag_d3d_vertex_buffer);
+		case blofeld::_field_pad:								return 0;	// dynamic
+		case blofeld::_field_useless_pad:						return 0;	// dynamic
+		case blofeld::_field_skip:								return 0;	// dynamic
+		case blofeld::_field_non_cache_runtime_value:			return sizeof(long);
+		case blofeld::_field_explanation:						return 0;	// empty
+		case blofeld::_field_custom:							return 0;	// empty
+		case blofeld::_field_struct:							return 0;	// dynamic
+		case blofeld::_field_array:								return 0;	// dynamic
+		case blofeld::_field_pageable:							return sizeof(::s_tag_resource);
+		case blofeld::_field_api_interop:						return sizeof(::s_tag_interop);
+		case blofeld::_field_terminator:						return 0;	// empty
+		case blofeld::_field_byte_integer:						return sizeof(byte);
+		case blofeld::_field_word_integer:						return sizeof(word);
+		case blofeld::_field_dword_integer:						return sizeof(dword);
+		case blofeld::_field_qword_integer:						return sizeof(qword);
+		default: FATAL_ERROR(L"unknown field type");
+		}
+	}
 
 	inline const char* field_to_string(e_field field)
 	{
@@ -160,6 +230,16 @@ namespace blofeld
 		return nullptr;
 	}
 
+	struct s_tag_block;
+	struct s_tag_group;
+
+	s_tag_group* get_tag_group_by_group_tag(uint32_t group_tag);
+	struct s_tag_block_validation_data
+	{
+		const s_tag_block& tag_block;
+		uint32_t size;
+	};
+
 	struct s_tag_field
 	{
 		e_field const field_type;
@@ -167,9 +247,11 @@ namespace blofeld
 		union
 		{
 			void* const value1;
-			s_tag_block* tag_block;
+			const s_tag_block* const tag_block;
+			uint32_t padding;
+			uint32_t length;
 		};
-		void* const value2;
+		const void* const value2;
 		//enum e_build const min_version;
 		//enum e_build const max_version;
 
@@ -243,17 +325,18 @@ namespace blofeld
 		const char* const name;
 		const char* const display_name;
 		GUID const guid;
-		s_tag_field* const tag_fields;
+		const s_tag_field* const tag_fields;
 	};
 
 	struct s_tag_block
 	{
-		const char* name;
-		const char* display_name;
-		unsigned long max_count;
-		const char* max_count_string;
-		s_tag_field_set* field_set;
-
+		const char* const name;
+		const char* const display_name;
+		const char* const filename;
+		int32_t const line;
+		unsigned long const max_count;
+		const char* const max_count_string;
+		const s_tag_field_set& field_set;
 	};
 
 	struct s_tag_group
@@ -261,11 +344,11 @@ namespace blofeld
 		const char* const name;
 		unsigned long const group_tag;
 		unsigned long const parent_group_tag;
-		s_tag_block* const block;
-		s_tag_group* parent_tag_group;
+		const s_tag_block& block;
+		const s_tag_group* const parent_tag_group;
 	};
 
-	struct  s_tag_reference
+	struct s_tag_reference
 	{
 		unsigned long const flags;
 		unsigned long const group_tag;

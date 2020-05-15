@@ -150,6 +150,7 @@
     <ClCompile Include="game\variant_definitions.cpp" />
     <ClCompile Include="geometry\geometry_definitions.cpp" />
     <ClCompile Include="geometry\geometry_definitions_new.cpp" />
+    <ClCompile Include="halo4_validation_data.cpp" />
     <ClCompile Include="hs\hs_scenario_definitions.cpp" />
     <ClCompile Include="inline_files.cpp" />
     <ClCompile Include="interface\chud\polyart\polyartbasedefinitions.cpp" />
@@ -281,6 +282,7 @@
     <ClCompile Include="units\unit_definitions.cpp" />
     <ClCompile Include="units\unit_trick_definitions.cpp" />
     <ClCompile Include="units\vehicle_definitions.cpp" />
+    <ClCompile Include="validation.cpp" />
     <ClCompile Include="weather\weather_control.cpp" />
     <ClCompile Include="weather\weather_definition.cpp" />
   </ItemGroup>
@@ -413,6 +415,7 @@
     <ClInclude Include="game\variant_definitions.h" />
     <ClInclude Include="geometry\geometry_definitions.h" />
     <ClInclude Include="geometry\geometry_definitions_new.h" />
+    <ClInclude Include="halo4_validation_data.h" />
     <ClInclude Include="hs\hs_scenario_definitions.h" />
     <ClInclude Include="interface\chud\polyart\polyartbasedefinitions.h" />
     <ClInclude Include="interface\chud\polyart\polyartdefinitions.h" />
@@ -546,6 +549,7 @@
     <ClInclude Include="units\unit_definitions.h" />
     <ClInclude Include="units\unit_trick_definitions.h" />
     <ClInclude Include="units\vehicle_definitions.h" />
+    <ClInclude Include="validation.h" />
     <ClInclude Include="weather\weather_control.h" />
     <ClInclude Include="weather\weather_definition.h" />
   </ItemGroup>
@@ -557,7 +561,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{5810EFB5-BA9B-454B-B6F8-411F83CF7103}</ProjectGuid>
-    <RootNamespace>MantleLib</RootNamespace>
+    <RootNamespace>Blofeld</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

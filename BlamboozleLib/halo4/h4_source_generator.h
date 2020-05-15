@@ -10,6 +10,8 @@ public:
 	~c_h4_source_generator();
 	void create_blamgen_header(std::stringstream& hs);
 	void create_blamgen_source(std::stringstream& ss);
+	void create_validation_header(std::stringstream& hs);
+	void create_validation_source(std::stringstream& ss);
 	void create_tag_group_header(std::stringstream& hs, c_h4_tag_group_container& tag_group_container);
 	void create_tag_block_header(std::stringstream& hs, c_h4_tag_block_container& tag_block_container);
 	void create_tag_block_source(std::stringstream& ss, c_h4_tag_block_container& tag_block_container);

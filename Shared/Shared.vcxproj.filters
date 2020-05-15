@@ -189,9 +189,6 @@
     <ClInclude Include="Blam\legacy\observer_camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Blam\legacy\real_vector3d.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Blam\blamlib-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>

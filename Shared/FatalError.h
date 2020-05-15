@@ -6,7 +6,7 @@
 #else
 void __FatalErrorInternal(const wchar_t* pReason, const wchar_t* pFile, unsigned int line, ...);
 #define FATAL_ERROR_NO_THROW(reason, ...) __FatalErrorInternal(reason, _CRT_WIDE(__FILE__), (unsigned)(__LINE__), ##__VA_ARGS__)
-#define FATAL_ERROR(reason, ...) do { FATAL_ERROR_NO_THROW(reason, ##__VA_ARGS__); throw; } while(false)
+#define FATAL_ERROR(reason, ...) (FATAL_ERROR_NO_THROW(reason, ##__VA_ARGS__), throw)
 #define DEBUG_FATAL_ERROR(reason, ...) do { if (IsDebuggerPresent()) { __FatalErrorInternal(reason, _CRT_WIDE(__FILE__), (unsigned)(__LINE__), ##__VA_ARGS__); } } while(false); throw
 #endif
 

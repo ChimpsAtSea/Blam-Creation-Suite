@@ -74,6 +74,81 @@ enum e_h4_field_type : uint32_t
 	_h4_field_type_max,
 };
 
+inline uint32_t h4_field_type_get_size(e_h4_field_type field_type)
+{
+	switch (field_type)
+	{
+	case _h4_field_type_string: return 32;
+	case _h4_field_type_long_string: return 256;
+	case _h4_field_type_string_id: return 4;
+	case _h4_field_type_old_string_id: return 4;
+	case _h4_field_type_char_integer: return 1;
+	case _h4_field_type_short_integer: return 2;
+	case _h4_field_type_long_integer: return 4;
+	case _h4_field_type_int64_integer: return 8;
+	case _h4_field_type_angle: return 4;
+	case _h4_field_type_tag: return 4;
+	case _h4_field_type_char_enum: return 1;
+	case _h4_field_type_enum: return 2;
+	case _h4_field_type_long_enum: return 4;
+	case _h4_field_type_long_flags: return 4;
+	case _h4_field_type_word_flags: return 2;
+	case _h4_field_type_byte_flags: return 1;
+	case _h4_field_type_point_2d: return 4;
+	case _h4_field_type_rectangle_2d: return 8;
+	case _h4_field_type_rgb_color: return 4;
+	case _h4_field_type_argb_color: return 4;
+	case _h4_field_type_real: return 4;
+	case _h4_field_type_real_fraction: return 4;
+	case _h4_field_type_real_point_2d: return 8;
+	case _h4_field_type_real_point_3d: return 12;
+	case _h4_field_type_real_vector_2d: return 8;
+	case _h4_field_type_real_vector_3d: return 12;
+	case _h4_field_type_real_quaternion: return 16;
+	case _h4_field_type_real_euler_angles_2d: return 8;
+	case _h4_field_type_real_euler_angles_3d: return 12;
+	case _h4_field_type_real_plane_2d: return 12;
+	case _h4_field_type_real_plane_3d: return 16;
+	case _h4_field_type_real_rgb_color: return 12;
+	case _h4_field_type_real_argb_color: return 16;
+	case _h4_field_type_real_hsv_color: return 12;
+	case _h4_field_type_real_ahsv_color: return 16;
+	case _h4_field_type_short_bounds: return 4;
+	case _h4_field_type_angle_bounds: return 8;
+	case _h4_field_type_real_bounds: return 8;
+	case _h4_field_type_real_fraction_bounds: return 8;
+	case _h4_field_type_tag_reference: return 16;
+	case _h4_field_type_block: return 12;
+	case _h4_field_type_long_block_flags: return 4;
+	case _h4_field_type_word_block_flags: return 2;
+	case _h4_field_type_byte_block_flags: return 1;
+	case _h4_field_type_char_block_index: return 1;
+	case _h4_field_type_custom_char_block_index: return 1;
+	case _h4_field_type_short_block_index: return 2;
+	case _h4_field_type_custom_short_block_index: return 2;
+	case _h4_field_type_long_block_index: return 4;
+	case _h4_field_type_custom_long_block_index: return 4;
+	case _h4_field_type_data: return 20;
+	case _h4_field_type_vertex_buffer: return 32;
+	case _h4_field_type_pad: return 0;
+	case _h4_field_type_useless_pad: return 0;
+	case _h4_field_type_skip: return 0;
+	case _h4_field_type_non_cache_runtime_value: return 4;
+	case _h4_field_type_explanation: return 0;
+	case _h4_field_type_custom: return 0;
+	case _h4_field_type_struct: return 0;
+	case _h4_field_type_array: return 0;
+	case _h4_field_type_pageable: return 8;
+	case _h4_field_type_api_interop: return 12;
+	case _h4_field_type_terminator: return 0;
+	case _h4_field_type_byte_integer: return 1;
+	case _h4_field_type_word_integer: return 2;
+	case _h4_field_type_dword_integer: return 4;
+	case _h4_field_type_qword_integer: return 8;
+	}
+	throw;
+}
+
 inline const char* h4_field_type_to_generic_field_type(e_h4_field_type field_type)
 {
 	switch (field_type)

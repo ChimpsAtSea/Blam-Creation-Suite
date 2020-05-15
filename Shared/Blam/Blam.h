@@ -11,7 +11,6 @@ typedef uint32_t DEPRECATED_basic_string_id;
 
 #include "legacy/basic_buffer.h"
 
-#include "legacy/real_vector3d.h"
 #include "legacy/observer_camera.h"
 
 #include "legacy/cache_file_magic.h"

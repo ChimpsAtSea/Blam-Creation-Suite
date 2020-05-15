@@ -46,7 +46,6 @@
     <ClInclude Include="Blam\legacy\network_session_parameter_type.h" />
     <ClInclude Include="Blam\legacy\network_session_peer_state.h" />
     <ClInclude Include="Blam\legacy\observer_camera.h" />
-    <ClInclude Include="Blam\legacy\real_vector3d.h" />
     <ClInclude Include="Blam\mcc_skull.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="debug_util.h" />

@@ -7,10 +7,10 @@ struct s_h4_tag_struct_definition
 	bpointer32<const char*> display_name;
 	bpointer32<const char*> name;
 	bpointer32<const char*> filepath;
-	uint32_t : 32;
+	buint32_t line_number;
 	GUID _unknownguid;
 	bpointer32<void*> fields_address;
-	uint32_t size;
+	buint32_t size;
 	bpointer32<const char*> size_string_address;
 	uint32_t : 32;
 	uint64_t : 64;

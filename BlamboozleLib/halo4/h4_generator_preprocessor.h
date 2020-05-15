@@ -39,10 +39,10 @@ public:
 class c_h4_tag_block_container
 {
 public:
-	c_h4_tag_block_container(c_h4_tag_block& block, c_h4_generator_preprocessor& preprocessor, bool is_tag);
+	c_h4_tag_block_container(c_h4_tag_block& tag_block, c_h4_generator_preprocessor& preprocessor, bool is_tag);
 	bool operator ==(const c_h4_tag_block_container& container) const;
 
-	c_h4_tag_block& block;
+	c_h4_tag_block& tag_block;
 	std::string name;
 	std::string name_uppercase;
 	bool is_tag;
@@ -65,7 +65,7 @@ public:
 	c_h4_blamboozle& blamboozle;
 	std::vector<c_h4_source_file*> source_files;
 	std::vector<c_h4_tag_group_container*> tag_group_containers;
-	std::vector<c_h4_tag_block_container*> tag_blocks;
+	std::vector<c_h4_tag_block_container*> tag_block_containers;
 	std::vector<std::string> maximum_count_constants_source_lines_define;
 	std::vector<std::string> maximum_count_constants_source_lines_constant;
 	std::vector<std::string> maximum_count_constants_source_lines_struct;

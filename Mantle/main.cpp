@@ -113,6 +113,7 @@ int WINAPI wWinMain(
 	_In_ int nShowCmd						/* [input] show state of window */
 )
 {
+	blofeld::validate_halo4();
 	int result = 0;
 	if (run_tests(lpCmdLine)) // allow program to exit without running
 	{
