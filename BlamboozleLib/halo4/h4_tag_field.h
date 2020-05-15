@@ -34,7 +34,7 @@ struct s_h4_tag_block_definition
 {
 	bpointer32<const char*> display_name_address;
 	bpointer32<const char*> name_address;
-	uint32_t maximum_element_count;
+	buint32_t maximum_element_count;
 	bpointer32<const char*> maximum_element_count_string_address;
 	bpointer32<s_h4_tag_struct_definition*> struct_definition;
 };

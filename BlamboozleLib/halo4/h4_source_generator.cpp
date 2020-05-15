@@ -45,8 +45,16 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 		std::stringstream& hs = source_file->header_stream;
 		std::stringstream& ss = source_file->source_stream;
 
-		hs << std::endl << std::endl;
+		hs << "#pragma once" << std::endl << std::endl;
 		ss << "#include <blamgen.h>" << std::endl << std::endl;
+
+		for (c_h4_tag_block_container* tag_block_container : source_file->tag_blocks)
+		{
+			if (tag_block_container->is_tag) continue; // these are created manually through c_h4_tag_group_container
+			create_tag_block_header(hs, *tag_block_container);
+			create_tag_block_source(ss, *tag_block_container);
+		}
+		hs << std::endl;
 
 		for (c_h4_tag_group_container* tag_group_container : source_file->tag_groups)
 		{
@@ -90,8 +98,28 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			bool blamgen_source_write_file_result = write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
 			ASSERT(blamgen_source_write_file_result);
 		}
-
-
+		{
+			std::string source_output_filepath = output_directory + "\\constants.txt";
+			std::stringstream ss;
+			for (std::string& defintion : preprocessor.maximum_count_constants_source_lines_define)
+			{
+				ss << defintion;
+			}
+			ss << std::endl;
+			for (std::string& defintion : preprocessor.maximum_count_constants_source_lines_constant)
+			{
+				ss << defintion;
+			}
+			ss << std::endl;
+			for (std::string& defintion : preprocessor.maximum_count_constants_source_lines_struct)
+			{
+				ss << defintion;
+			}
+			ss << std::endl;
+			std::string source_code = ss.str();
+			bool blamgen_source_write_file_result = write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			ASSERT(blamgen_source_write_file_result);
+		}
 	}
 }
 
@@ -99,15 +127,26 @@ c_h4_source_generator::~c_h4_source_generator()
 {
 
 }
+#include <set>
 
 void c_h4_source_generator::create_blamgen_header(std::stringstream& hs)
 {
-	for (c_h4_tag_group_container* tag_group_container : preprocessor.tag_group_containers)
-	{
-		c_h4_tag_group& tag_group = tag_group_container->tag_group;
-		c_h4_tag_struct* tag_struct = tag_group.tag_block->tag_struct;
+	std::set<std::string> includes;
+	//for (c_h4_tag_group_container* tag_group_container : preprocessor.tag_group_containers)
+	//{
+	//	c_h4_tag_group& tag_group = tag_group_container->tag_group;
+	//	c_h4_tag_struct* tag_struct = tag_group.tag_block->tag_struct;
 
-		hs << "#include \"" << tag_group_container->source_file.header_output_filepath << "\"" << std::endl;
+	//	includes.emplace(tag_group_container->source_file.header_output_filepath);
+	//}
+	for (c_h4_source_file* source_file : preprocessor.source_files)
+	{
+		includes.emplace(source_file->header_output_filepath);
+	}
+
+	for (const std::string& include : includes)
+	{
+		hs << "#include \"" << include  << "\"" << std::endl;
 	}
 	hs << std::endl;
 	hs << "extern s_tag_group* tag_groups[" << preprocessor.tag_group_containers.size() << "];" << std::endl;
@@ -124,7 +163,7 @@ void c_h4_source_generator::create_blamgen_source(std::stringstream& ss)
 		c_h4_tag_group& tag_group = tag_group_container->tag_group;
 		c_h4_tag_struct* tag_struct = tag_group.tag_block->tag_struct;
 
-		ss << "\t&" << tag_group_container->tag_group.name << "," << std::endl;
+		ss << "\t&" << tag_group_container->tag_group.name << "_group," << std::endl;
 	}
 	ss << "};" << std::endl;
 	ss << std::endl;
@@ -136,7 +175,8 @@ void c_h4_source_generator::create_tag_group_header(std::stringstream& hs, c_h4_
 	c_h4_tag_struct* tag_struct = tag_group.tag_block->tag_struct;
 
 	hs << "extern const unsigned long " << tag_group_container.name_uppercase << "_TAG;" << std::endl;
-	hs << "extern s_tag_group " << tag_group.name << ";" << std::endl;
+	hs << "extern s_tag_block " << tag_group.name << "_block;" << std::endl;
+	hs << "extern s_tag_group " << tag_group.name << "_group;" << std::endl;
 
 }
 
@@ -151,38 +191,70 @@ std::string parse_tag_group_string(const tag_group& group_tag)
 	return result;
 }
 
+void c_h4_source_generator::create_tag_block_header(std::stringstream& hs, c_h4_tag_block_container& tag_block_container)
+{
+	c_h4_tag_block& tag_block = tag_block_container.block;
+	c_h4_tag_struct* tag_struct = tag_block.tag_struct;
+
+	hs << "extern s_tag_block " << tag_block_container.name << "_block;" << std::endl;
+
+}
+void c_h4_source_generator::create_tag_block_source(std::stringstream& ss, c_h4_tag_block_container& tag_block_container)
+{
+	c_h4_tag_block& tag_block = tag_block_container.block;
+	c_h4_tag_struct* tag_struct = tag_block.tag_struct;
+
+	ss << "TAG_BLOCK(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ")" << std::endl;
+	ss << "{" << std::endl;
+	generate_tag_fields_source(ss, tag_struct->tag_fields);
+	ss << "};" << std::endl;
+	ss << std::endl;
+
+}
+
 void c_h4_source_generator::create_tag_group_source(std::stringstream& ss, c_h4_tag_group_container& tag_group_container)
 {
 	c_h4_tag_group& tag_group = tag_group_container.tag_group;
 	c_h4_tag_struct* tag_struct = tag_group.tag_block->tag_struct;
+	c_h4_tag_block_container* tag_block_container = preprocessor.find_existing_tag_block_container(tag_group.tag_block);
 
-	//for (c_h4_tag_block* tag_block : tag_blocks)
-	//{
-	//	ss << "TAG_BLOCK(item_permutation, MAXIMUM_NUMBER_OF_PERMUTATIONS_PER_ITEM_GROUP)" << std::endl;
-	//	ss << "{" << std::endl;
-	//	generate_tag_fields_source(ss, tag_struct->tag_fields);
-	//	ss << "};" << std::endl;
-	//}
-
-	ss << "const unsigned long " << tag_group_container.name_uppercase << "_TAG = '" << parse_tag_group_string(tag_group.group_tag) <<"';" << std::endl << std::endl;
+	ss << "const unsigned long " << tag_group_container.name_uppercase << "_TAG = '" << parse_tag_group_string(tag_group.group_tag) << "';" << std::endl << std::endl;
 
 	if (tag_group.parent_group_tag.value == 0xFFFFFFFF)
 	{
-		ss << "TAG_GROUP(" << tag_group.name << ", " << tag_group_container.name_uppercase << "_TAG)" << std::endl;
+		if (tag_group_container.use_standard_naming_convention)
+		{
+			ss << "TAG_GROUP(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG)" << std::endl;
+		}
+		else
+		{
+			ss << "TAG_GROUP_FROM_BLOCK(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG, " << tag_block_container->name << "_block)" << std::endl;
+			
+		}
 	}
 	else
 	{
-		c_h4_tag_group_container* parent_tag_group_container = preprocessor.get_container_by_group_tag(tag_group.parent_group_tag.value);
-		ASSERT(parent_tag_group_container);
-		c_h4_tag_group& parent_tag_group = parent_tag_group_container->tag_group;
+		if (tag_group_container.use_standard_naming_convention)
+		{
+			c_h4_tag_group_container* parent_tag_group_container = preprocessor.get_container_by_group_tag(tag_group.parent_group_tag.value);
+			ASSERT(parent_tag_group_container);
+			c_h4_tag_group& parent_tag_group = parent_tag_group_container->tag_group;
 
-		ss << "TAG_GROUP_INHERIT(" << tag_group.name << ", " << tag_group_container.name_uppercase << "_TAG, " << parent_tag_group.name << ", "<< parent_tag_group_container->name_uppercase <<"_TAG)" << std::endl;
+			ss << "TAG_GROUP_INHERIT(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG, " << parent_tag_group.name << ", " << parent_tag_group_container->name_uppercase << "_TAG)" << std::endl;
+		}
+		else
+		{
+			FATAL_ERROR(L"Not implemented");
+		}
 	}
-	
-	ss << "{" << std::endl;
-	generate_tag_fields_source(ss, tag_struct->tag_fields);
-	ss << "};" << std::endl;
 
+	if (tag_group_container.use_standard_naming_convention)
+	{
+		ss << "{" << std::endl;
+		generate_tag_fields_source(ss, tag_struct->tag_fields);
+		ss << "};" << std::endl;
+	}
+	ss << std::endl;
 }
 
 void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, std::vector<c_h4_tag_field*>& tag_fields)
@@ -190,6 +262,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 	for (c_h4_tag_field* tag_field : tag_fields)
 	{
 		const char* field_generic_type_name = h4_field_type_to_generic_field_type(tag_field->field_type);
+		std::string field_name = tag_field->name ? escape_string(tag_field->name) : "";
 
 		switch (tag_field->field_type)
 		{
@@ -233,7 +306,6 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		case _h4_field_type_real_bounds:
 		case _h4_field_type_real_fraction_bounds:
 		case _h4_field_type_tag_reference:
-		case _h4_field_type_block:
 		case _h4_field_type_long_block_flags:
 		case _h4_field_type_word_block_flags:
 		case _h4_field_type_byte_block_flags:
@@ -260,7 +332,6 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		case _h4_field_type_useless_pad:
 			if (tag_field->name)
 			{
-				std::string field_name = escape_string(tag_field->name);
 				ss << "\t{ " << field_generic_type_name << ", \"" << field_name << "\" }," << std::endl;
 			}
 			else
@@ -268,6 +339,17 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				ss << "\t{ " << field_generic_type_name << " }," << std::endl;
 			}
 			break;
+		case _h4_field_type_block:
+		{
+			c_h4_tag_field_block* block_field = dynamic_cast<c_h4_tag_field_block*>(tag_field);
+			ASSERT(block_field);
+			ASSERT(block_field->name);
+			c_h4_tag_block_container* tag_block_container = preprocessor.find_existing_tag_block_container(block_field->tag_block_definition);
+			ASSERT(tag_block_container);
+
+			ss << "\t{ " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_block_container->name << "_block }," << std::endl;
+			break;
+		}
 		case _h4_field_type_pad:
 		case _h4_field_type_skip:
 		{
@@ -280,7 +362,6 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 
 			if (tag_field->name)
 			{
-				std::string field_name = escape_string(tag_field->name);
 				ss << "\t{ " << field_generic_type_name << ", \"" << field_name << "\", " << argument << " }," << std::endl;
 			}
 			else
