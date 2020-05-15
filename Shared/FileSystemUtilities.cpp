@@ -76,7 +76,7 @@ bool write_file_from_memory(const char* filepath, const void* buffer, size_t buf
 	bool path_file_exists_result = PathFileExistsA(directory_buffer);
 	if (!path_file_exists_result)
 	{
-		SHCreateDirectoryEx(NULL, directory_buffer, NULL);
+		SHCreateDirectoryExA(NULL, directory_buffer, NULL);
 	}
 
 	FILE* file_handle = fopen(filepath, "wb");
@@ -100,9 +100,19 @@ bool write_file_from_memory(const char* filepath, const void* buffer, size_t buf
 
 bool write_file_from_memory(const wchar_t* filepath, const void* buffer, size_t buffer_size)
 {
+	ASSERT(!IsBadReadPtr(buffer, 1));
 	ASSERT(filepath != nullptr);
 	if (buffer_size == 0) return false;
 	ASSERT(buffer != nullptr);
+
+	wchar_t directory_buffer[MAX_PATH + 1];
+	GetFullPathNameW(filepath, MAX_PATH, directory_buffer, NULL);
+	PathRemoveFileSpecW(directory_buffer);
+	bool path_file_exists_result = PathFileExistsW(directory_buffer);
+	if (!path_file_exists_result)
+	{
+		SHCreateDirectoryExW(NULL, directory_buffer, NULL);
+	}
 
 	FILE* file_handle = _wfopen(filepath, L"wb");
 	if (file_handle)
