@@ -46,7 +46,10 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 		std::stringstream& ss = source_file->source_stream;
 
 		hs << "#pragma once" << std::endl << std::endl;
-		ss << "#include <blamgen.h>" << std::endl << std::endl;
+		ss << "#include <blofeld-private-pch.h>" << std::endl << std::endl;
+
+		hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+		ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 
 		for (c_h4_tag_block_container* tag_block_container : source_file->tag_blocks)
 		{
@@ -61,6 +64,9 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			create_tag_group_header(hs, *tag_group_container);
 			create_tag_group_source(ss, *tag_group_container);
 		}
+
+		hs << "} // namespace blofeld" << std::endl << std::endl;
+		ss << "} // namespace blofeld" << std::endl << std::endl;
 	}
 
 	for (c_h4_source_file* source_file : preprocessor.source_files)
@@ -131,6 +137,8 @@ c_h4_source_generator::~c_h4_source_generator()
 
 void c_h4_source_generator::create_blamgen_header(std::stringstream& hs)
 {
+	hs << "#pragma once" << std::endl << std::endl;
+
 	std::set<std::string> includes;
 	//for (c_h4_tag_group_container* tag_group_container : preprocessor.tag_group_containers)
 	//{
@@ -149,14 +157,19 @@ void c_h4_source_generator::create_blamgen_header(std::stringstream& hs)
 		hs << "#include \"" << include  << "\"" << std::endl;
 	}
 	hs << std::endl;
+	hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 	hs << "extern s_tag_group* tag_groups[" << preprocessor.tag_group_containers.size() << "];" << std::endl;
+	hs << "} // namespace blofeld" << std::endl << std::endl;
 	hs << std::endl;
 }
 
 void c_h4_source_generator::create_blamgen_source(std::stringstream& ss)
 {
-	ss << "#include <blamgen.h>" << std::endl << std::endl;
-	ss << "extern s_tag_group* tag_groups[" << preprocessor.tag_group_containers.size() << "] = " << std::endl;
+	ss << "#include <blofeld-private-pch.h>" << std::endl << std::endl;
+
+	ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+
+	ss << "s_tag_group* tag_groups[" << preprocessor.tag_group_containers.size() << "] = " << std::endl;
 	ss << "{" << std::endl;
 	for (c_h4_tag_group_container* tag_group_container : preprocessor.tag_group_containers)
 	{
@@ -167,17 +180,8 @@ void c_h4_source_generator::create_blamgen_source(std::stringstream& ss)
 	}
 	ss << "};" << std::endl;
 	ss << std::endl;
-}
 
-void c_h4_source_generator::create_tag_group_header(std::stringstream& hs, c_h4_tag_group_container& tag_group_container)
-{
-	c_h4_tag_group& tag_group = tag_group_container.tag_group;
-	c_h4_tag_struct* tag_struct = tag_group.tag_block->tag_struct;
-
-	hs << "extern const unsigned long " << tag_group_container.name_uppercase << "_TAG;" << std::endl;
-	hs << "extern s_tag_block " << tag_group.name << "_block;" << std::endl;
-	hs << "extern s_tag_group " << tag_group.name << "_group;" << std::endl;
-
+	ss << "} // namespace blofeld" << std::endl << std::endl;
 }
 
 std::string parse_tag_group_string(const tag_group& group_tag)
@@ -189,6 +193,18 @@ std::string parse_tag_group_string(const tag_group& group_tag)
 	group_tag.name[0] ? result += group_tag.name[0] : (result.empty() ? "" : "\\0");
 
 	return result;
+}
+
+void c_h4_source_generator::create_tag_group_header(std::stringstream& hs, c_h4_tag_group_container& tag_group_container)
+{
+	c_h4_tag_group& tag_group = tag_group_container.tag_group;
+	c_h4_tag_struct* tag_struct = tag_group.tag_block->tag_struct;
+
+	//hs << "extern const unsigned long " << tag_group_container.name_uppercase << "_TAG;" << std::endl;
+	hs << "constexpr unsigned long " << tag_group_container.name_uppercase << "_TAG = '" << parse_tag_group_string(tag_group.group_tag) << "';" << std::endl << std::endl;
+	hs << "extern s_tag_block " << tag_group.name << "_block;" << std::endl;
+	hs << "extern s_tag_group " << tag_group.name << "_group;" << std::endl;
+
 }
 
 void c_h4_source_generator::create_tag_block_header(std::stringstream& hs, c_h4_tag_block_container& tag_block_container)
@@ -218,7 +234,7 @@ void c_h4_source_generator::create_tag_group_source(std::stringstream& ss, c_h4_
 	c_h4_tag_struct* tag_struct = tag_group.tag_block->tag_struct;
 	c_h4_tag_block_container* tag_block_container = preprocessor.find_existing_tag_block_container(tag_group.tag_block);
 
-	ss << "const unsigned long " << tag_group_container.name_uppercase << "_TAG = '" << parse_tag_group_string(tag_group.group_tag) << "';" << std::endl << std::endl;
+	//ss << "const unsigned long " << tag_group_container.name_uppercase << "_TAG = '" << parse_tag_group_string(tag_group.group_tag) << "';" << std::endl << std::endl;
 
 	if (tag_group.parent_group_tag.value == 0xFFFFFFFF)
 	{

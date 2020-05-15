@@ -1,0 +1,96 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block scenario_profiles_block;
+extern s_tag_block performance_template_actor_block;
+extern s_tag_block scenario_performance_line_block;
+extern s_tag_block scenario_performance_line_script_fragment_block;
+extern s_tag_block scenario_performance_line_point_interaction_block;
+extern s_tag_block scenario_performance_line_animation_block;
+extern s_tag_block scenario_performance_line_sync_action_block;
+extern s_tag_block scenario_performance_line_sync_action_actor_block;
+extern s_tag_block scenario_performance_line_scenery_sync_action_block;
+extern s_tag_block scenario_performance_line_dialog_block;
+extern s_tag_block scenario_performance_line_sound_block;
+extern s_tag_block performance_template_point_block;
+extern s_tag_block scenario_child_references_block;
+extern s_tag_block scenario_structure_bsp_reference_block;
+extern s_tag_block scenario_design_reference_block;
+extern s_tag_block scenario_sky_reference_block;
+extern s_tag_block scenario_zone_set_pvs_block;
+extern s_tag_block scenario_zone_set_bsp_checksum_block;
+extern s_tag_block scenario_zone_set_bsp_pvs_block;
+extern s_tag_block scenario_zone_set_cluster_pvs_block;
+extern s_tag_block scenario_zone_set_bsp_bits_block;
+extern s_tag_block scenario_zone_set_cluster_pvs_bit_vector_block;
+extern s_tag_block scenario_zone_set_bsp_seam_cluster_mappings_block;
+extern s_tag_block scenario_zone_set_cluster_reference_block;
+extern s_tag_block scenario_zone_set_block;
+extern s_tag_block scenario_zone_set_budget_override_block;
+extern s_tag_block scenario_zone_set_lipsync_block;
+extern s_tag_block scenario_lighting_zone_set_block;
+extern s_tag_block scenario_function_block;
+extern s_tag_block editor_comment_block;
+extern s_tag_block dont_use_me_scenario_environment_object_block;
+extern s_tag_block scenario_object_names_block;
+extern s_tag_block scenarioAttachedEffectsBlock_block;
+extern s_tag_block scenarioAttachedLensFlaresBlock_block;
+extern s_tag_block scenarioAttachedLightConesBlock_block;
+extern s_tag_block scenario_soft_ceilings_block;
+extern s_tag_block scenario_players_block;
+extern s_tag_block scenario_trigger_volume_block;
+extern s_tag_block trigger_volume_point_block;
+extern s_tag_block trigger_volume_runtime_triangles_block;
+extern s_tag_block scenario_zone_set_switch_trigger_volume_block;
+extern s_tag_block scenario_decals_block;
+extern s_tag_block scenario_decal_palette_block;
+extern s_tag_block scenario_detail_object_collection_palette_block;
+extern s_tag_block scenario_cutscene_flag_block;
+extern s_tag_block scenario_cutscene_camera_point_block;
+extern s_tag_block scenario_kill_trigger_volumes_block;
+extern s_tag_block scenario_safe_zone_trigger_volumes_block;
+extern s_tag_block trigger_volume_mopp_code_block;
+extern s_tag_block scenario_requisition_trigger_volumes_block;
+extern s_tag_block scenario_location_name_trigger_volumes_block;
+extern s_tag_block scenarioUnsafeSpawnZoneTriggerVolumesBlock_block;
+extern s_tag_block scenario_atmosphere_palette_block;
+extern s_tag_block scenario_camera_fx_palette_block;
+extern s_tag_block scenario_weather_palette_block;
+extern s_tag_block scenario_cluster_data_block;
+extern s_tag_block scenario_cluster_points_block;
+extern s_tag_block scenario_cluster_acoustics_block;
+extern s_tag_block scenario_cluster_atmosphere_properties_block;
+extern s_tag_block scenario_cluster_camera_fx_properties_block;
+extern s_tag_block scenario_cluster_weather_properties_block;
+extern s_tag_block scenario_spawn_data_block;
+extern s_tag_block SoundSubtitleBlock_block;
+extern s_tag_block scenario_cheap_particle_system_palette_block;
+extern s_tag_block scenario_cheap_particle_systems_block;
+extern s_tag_block scenario_cinematic_lighting_palette_block;
+extern s_tag_block scenario_airprobes_block;
+extern s_tag_block scenario_budget_references_block;
+extern s_tag_block model_references_block;
+extern s_tag_block scenario_performances_block;
+extern s_tag_block scenario_performance_actor_block;
+extern s_tag_block scenario_performance_task_block;
+extern s_tag_block scenarioRandomOrdnanceDropSetBlock_block;
+extern s_tag_block scenarioRandomOrdnanceDropPointBlock_block;
+extern s_tag_block ScenarioUnitRecordingBlock_block;
+extern s_tag_block loadScreenReferenceBlock_block;
+
+constexpr unsigned long PERFORMANCE_TEMPLATE_TAG = 'pfmc';
+
+extern s_tag_block performance_template_block;
+extern s_tag_group performance_template_group;
+constexpr unsigned long SCENARIO_TAG = 'scnr';
+
+extern s_tag_block scenario_block;
+extern s_tag_group scenario_group;
+constexpr unsigned long SCENARIO_REQUIRED_RESOURCE_TAG = 'sdzg';
+
+extern s_tag_block scenario_required_resource_block;
+extern s_tag_group scenario_required_resource_group;
+} // namespace blofeld
+

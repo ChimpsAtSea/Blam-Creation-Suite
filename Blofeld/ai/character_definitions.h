@@ -1,0 +1,87 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block character_variants_block;
+extern s_tag_block character_voice_block;
+extern s_tag_block character_voice_region_filter_block;
+extern s_tag_block character_voice_region_permutation_filter_block;
+extern s_tag_block character_voice_properties_block;
+extern s_tag_block character_general_block;
+extern s_tag_block disallowed_weapons_for_trading_block;
+extern s_tag_block character_proto_spawn_block;
+extern s_tag_block character_interact_block;
+extern s_tag_block character_emotions_block;
+extern s_tag_block character_emotions_situational_danger_block;
+extern s_tag_block character_vitality_block;
+extern s_tag_block character_placement_block;
+extern s_tag_block character_perception_block;
+extern s_tag_block character_target_block;
+extern s_tag_block character_look_block;
+extern s_tag_block character_hopping_block;
+extern s_tag_block characterHopDefinitionBlock_block;
+extern s_tag_block character_movement_block;
+extern s_tag_block movement_stationary_pause_block;
+extern s_tag_block movement_throttle_control_block;
+extern s_tag_block movement_throttle_block;
+extern s_tag_block character_throttle_style_block;
+extern s_tag_block character_movement_set_block;
+extern s_tag_block movement_mapping_block;
+extern s_tag_block character_flocking_block;
+extern s_tag_block character_swarm_block;
+extern s_tag_block character_firing_point_evaluator_block;
+extern s_tag_block evaluator_definition_block;
+extern s_tag_block character_ready_block;
+extern s_tag_block character_engage_block;
+extern s_tag_block character_charge_block;
+extern s_tag_block character_charge_difficulty_limits_block;
+extern s_tag_block character_evasion_block;
+extern s_tag_block character_cover_block;
+extern s_tag_block character_retreat_block;
+extern s_tag_block character_search_block;
+extern s_tag_block character_presearch_block;
+extern s_tag_block character_idle_block;
+extern s_tag_block character_vocalization_block;
+extern s_tag_block character_boarding_block;
+extern s_tag_block character_vehicle_boarding_block;
+extern s_tag_block character_kungfu_block;
+extern s_tag_block character_bunker_block;
+extern s_tag_block character_guardian_block;
+extern s_tag_block character_combatform_block;
+extern s_tag_block character_engineer_block;
+extern s_tag_block character_inspect_block;
+extern s_tag_block character_scarab_block;
+extern s_tag_block character_weapons_block;
+extern s_tag_block character_firing_pattern_properties_block;
+extern s_tag_block character_firing_pattern_block;
+extern s_tag_block character_grenades_block;
+extern s_tag_block character_vehicle_block;
+extern s_tag_block character_flying_movement_block;
+extern s_tag_block character_morph_block;
+extern s_tag_block character_equipment_block;
+extern s_tag_block character_equipment_usage_block;
+extern s_tag_block character_stimuli_response_block;
+extern s_tag_block character_activity_object_block;
+extern s_tag_block character_pain_screen_block;
+extern s_tag_block character_bishop_block;
+extern s_tag_block character_combotron_parent_block;
+extern s_tag_block character_combotron_child_block;
+extern s_tag_block character_handle_dismemberment_block;
+extern s_tag_block character_cover_fight_block;
+extern s_tag_block character_emerge_block;
+extern s_tag_block dynamic_task_block;
+extern s_tag_block character_advance_block;
+extern s_tag_block character_cover_evasion_block;
+extern s_tag_block character_pack_stalk_block;
+extern s_tag_block character_fight_circle_block;
+extern s_tag_block character_hamstring_charge_block;
+extern s_tag_block character_forerunner_block;
+extern s_tag_block character_gravity_jump_block;
+
+constexpr unsigned long CHARACTER_TAG = 'char';
+
+extern s_tag_block character_block;
+extern s_tag_group character_group;
+} // namespace blofeld
+

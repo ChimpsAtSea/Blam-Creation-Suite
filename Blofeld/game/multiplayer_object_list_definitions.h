@@ -1,0 +1,23 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block multiplayer_object_type_block;
+extern s_tag_block multiplayer_weapon_collection_block;
+extern s_tag_block multiplayer_vehicle_collection_block;
+extern s_tag_block multiplayer_grenade_collection_block;
+extern s_tag_block multiplayer_equipment_collection_block;
+extern s_tag_block multiplayer_weapon_remap_table_block;
+extern s_tag_block multiplayer_weapon_remap_table_entry_block;
+extern s_tag_block multiplayer_vehicle_remap_table_block;
+extern s_tag_block multiplayer_vehicle_remap_table_entry_block;
+extern s_tag_block multiplayer_equipment_remap_table_block;
+extern s_tag_block multiplayer_equipment_remap_table_entry_block;
+
+constexpr unsigned long MULTIPLAYER_OBJECT_TYPE_LIST_TAG = 'motl';
+
+extern s_tag_block multiplayer_object_type_list_block;
+extern s_tag_group multiplayer_object_type_list_group;
+} // namespace blofeld
+

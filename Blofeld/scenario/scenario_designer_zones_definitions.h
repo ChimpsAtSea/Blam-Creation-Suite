@@ -1,0 +1,29 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block scenario_designer_zone_block;
+extern s_tag_block scenarioDesignerZoneTagReferenceBlock_block;
+extern s_tag_block biped_block_index_flags_block;
+extern s_tag_block vehicle_block_index_flags_block;
+extern s_tag_block weapon_block_index_flags_block;
+extern s_tag_block equipment_block_index_flags_block;
+extern s_tag_block scenery_block_index_flags_block;
+extern s_tag_block machine_block_index_flags_block;
+extern s_tag_block terminal_block_index_flags_block;
+extern s_tag_block control_block_index_flags_block;
+extern s_tag_block dispenser_block_index_flags_block;
+extern s_tag_block sound_scenery_block_index_flags_block;
+extern s_tag_block crate_block_index_flags_block;
+extern s_tag_block creature_block_index_flags_block;
+extern s_tag_block giant_block_index_flags_block;
+extern s_tag_block effect_scenery_block_index_flags_block;
+extern s_tag_block character_block_index_flags_block;
+extern s_tag_block spawner_block_index_flags_block;
+extern s_tag_block budget_reference_block_index_flags_block;
+extern s_tag_block bink_block_index_flags_block;
+extern s_tag_block scenarioDesignerResourceDependenciesBlock_block;
+
+} // namespace blofeld
+

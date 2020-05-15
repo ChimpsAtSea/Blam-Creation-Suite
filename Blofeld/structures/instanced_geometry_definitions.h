@@ -1,0 +1,14 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block global_render_model_instance_placement_block;
+extern s_tag_block structure_bsp_instanced_geometry_instances_block;
+extern s_tag_block structure_bsp_instanced_geometry_instances_names_block;
+extern s_tag_block structureIOHavokDataBlock_block;
+extern s_tag_block SerializedHavokGeometryDataBlock_block;
+extern s_tag_block structure_bsp_instanced_geometry_definition_block;
+
+} // namespace blofeld
+

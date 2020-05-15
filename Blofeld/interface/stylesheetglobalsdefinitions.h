@@ -1,0 +1,26 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block UserInterfaceStyleSheetLanguagesBlock_block;
+extern s_tag_block UserInterfaceStyleSheetsFontBlock_block;
+extern s_tag_block UserInterfaceStyleSheetFontIdBlock_block;
+extern s_tag_block UserInterfaceStyleSheetTextCaseBlock_block;
+extern s_tag_block UserInterfaceStyleSheetJustificationBlock_block;
+extern s_tag_block UserInterfaceStyleSheetAlignmentBlock_block;
+extern s_tag_block UserInterfaceStyleSheetScaleBlock_block;
+extern s_tag_block UserInterfaceStyleSheetFixedHeightBlock_block;
+extern s_tag_block UserInterfaceStyleSheetsVisualBlock_block;
+extern s_tag_block UserInterfaceStyleSheetDropShadowStyleBlock_block;
+extern s_tag_block UserInterfaceStyleSheetColorBlock_block;
+extern s_tag_block UserInterfaceStyleSheetGradientBlock_block;
+extern s_tag_block UserInterfaceStyleSheetDropshadowBlock_block;
+extern s_tag_block UserInterfaceStyleSheetOuterGlowBlock_block;
+
+constexpr unsigned long STYLE_SHEET_LIST_TAG = 'uiss';
+
+extern s_tag_block style_sheet_list_block;
+extern s_tag_group style_sheet_list_group;
+} // namespace blofeld
+

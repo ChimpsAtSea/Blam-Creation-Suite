@@ -1,0 +1,40 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block scenario_scenery_block;
+extern s_tag_block scenario_scenery_palette_block;
+extern s_tag_block scenario_biped_block;
+extern s_tag_block scenario_biped_palette_block;
+extern s_tag_block scenario_vehicle_block;
+extern s_tag_block scenario_vehicle_palette_block;
+extern s_tag_block scenario_equipment_block;
+extern s_tag_block scenario_equipment_palette_block;
+extern s_tag_block scenario_weapon_block;
+extern s_tag_block scenario_weapon_palette_block;
+extern s_tag_block device_group_block;
+extern s_tag_block scenario_machine_block;
+extern s_tag_block scenario_machine_palette_block;
+extern s_tag_block scenario_terminal_block;
+extern s_tag_block scenario_terminal_palette_block;
+extern s_tag_block scenario_control_block;
+extern s_tag_block scenario_control_palette_block;
+extern s_tag_block ScenarioDispenserBlock_block;
+extern s_tag_block ScenarioDispenserPaletteBlock_block;
+extern s_tag_block scenario_sound_scenery_block;
+extern s_tag_block scenario_sound_scenery_palette_block;
+extern s_tag_block scenario_giant_block;
+extern s_tag_block scenario_giant_palette_block;
+extern s_tag_block scenario_effect_scenery_block;
+extern s_tag_block scenario_effect_scenery_palette_block;
+extern s_tag_block scenario_spawner_block;
+extern s_tag_block scenario_spawner_palette_block;
+extern s_tag_block scenario_requisition_palette_block;
+extern s_tag_block scenario_crate_block;
+extern s_tag_block scenario_crate_palette_block;
+extern s_tag_block scenario_creature_block;
+extern s_tag_block scenario_creature_palette_block;
+
+} // namespace blofeld
+

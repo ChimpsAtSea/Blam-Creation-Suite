@@ -1,0 +1,17 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block structure_lighting_generic_light_definition_block;
+extern s_tag_block structure_lighting_generic_light_instance_block;
+extern s_tag_block screen_space_light_shader_override_block;
+extern s_tag_block structureLightingCinematicLightInstanceBlock_block;
+extern s_tag_block structureLightingCinematicObjectBlock_block;
+
+constexpr unsigned long SCENARIO_STRUCTURE_LIGHTING_INFO_TAG = 'stli';
+
+extern s_tag_block scenario_structure_lighting_info_block;
+extern s_tag_group scenario_structure_lighting_info_group;
+} // namespace blofeld
+

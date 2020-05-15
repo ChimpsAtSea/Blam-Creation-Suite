@@ -1,0 +1,32 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block user_hint_block;
+extern s_tag_block user_hint_line_segment_block;
+extern s_tag_block user_hint_parallelogram_block;
+extern s_tag_block user_hint_jump_block;
+extern s_tag_block hint_vertex_block;
+extern s_tag_block user_hint_climb_block;
+extern s_tag_block user_hint_well_block;
+extern s_tag_block user_hint_well_point_block;
+extern s_tag_block user_hint_flight_block;
+extern s_tag_block user_hint_flight_point_block;
+extern s_tag_block user_hint_volume_avoidance_block;
+extern s_tag_block user_hint_spline_block;
+extern s_tag_block user_hint_spline_control_point_block;
+extern s_tag_block user_hint_spline_intersect_point_block;
+extern s_tag_block user_hint_cookie_cutter_block;
+extern s_tag_block user_hint_sector_point_block;
+extern s_tag_block hint_object_id_block;
+extern s_tag_block user_hint_navmesh_area_block;
+extern s_tag_block user_hint_giant_block;
+extern s_tag_block user_hint_giant_sector_block;
+extern s_tag_block user_hint_giant_rail_block;
+extern s_tag_block user_hint_flood_block;
+extern s_tag_block user_hint_flood_sector_block;
+extern s_tag_block special_movement_block;
+
+} // namespace blofeld
+

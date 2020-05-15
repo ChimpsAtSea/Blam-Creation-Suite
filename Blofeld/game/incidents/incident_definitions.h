@@ -1,0 +1,36 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block incident_definition_block;
+extern s_tag_block suppressed_incident_block;
+extern s_tag_block SuppressedIncidentBlockReferenceDefinition_block;
+extern s_tag_block specialized_incident_block;
+extern s_tag_block specialized_incident_kill_implement_block;
+extern s_tag_block specialized_incident_object_properties_block;
+extern s_tag_block specialized_incident_object_riding_in_vehicle_properties_block;
+extern s_tag_block specialized_incident_special_kill_type_block;
+extern s_tag_block specializedIncidentGameOverBlock_block;
+extern s_tag_block specializedIncidentRandomOrdnanceBlock_block;
+extern s_tag_block specializedIncidentCustomDataFilterBlock_block;
+extern s_tag_block specializedIncidentDistanceFilterBlock_block;
+extern s_tag_block incident_accumulator_block;
+extern s_tag_block incident_accumulator_child_incident_block;
+extern s_tag_block incident_sum_accumulator_block;
+extern s_tag_block incident_sum_accumulator_child_incident_block;
+
+constexpr unsigned long INCIDENT_GLOBAL_PROPERTIES_DEFINITION_TAG = 'igpd';
+
+extern s_tag_block incident_global_properties_definition_block;
+extern s_tag_group incident_global_properties_definition_group;
+constexpr unsigned long INCIDENT_GLOBALS_DEFINITION_TAG = 'ingd';
+
+extern s_tag_block incident_globals_definition_block;
+extern s_tag_group incident_globals_definition_group;
+constexpr unsigned long SUPPRESSEDINCIDENT_TAG = 'sigd';
+
+extern s_tag_block SuppressedIncident_block;
+extern s_tag_group SuppressedIncident_group;
+} // namespace blofeld
+

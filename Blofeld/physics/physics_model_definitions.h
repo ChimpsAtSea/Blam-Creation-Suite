@@ -1,0 +1,51 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block physics_model_damped_spring_motor_block;
+extern s_tag_block physics_model_position_motor_block;
+extern s_tag_block phantom_types_block;
+extern s_tag_block physics_model_powered_chains_block;
+extern s_tag_block physics_model_powered_chain_nodes_block;
+extern s_tag_block physics_model_powered_chain_constraints_block;
+extern s_tag_block physics_model_node_constraint_edge_block;
+extern s_tag_block physics_model_constraint_edge_constraint_block;
+extern s_tag_block physics_model_ragdoll_motors_block;
+extern s_tag_block physics_model_limited_hinge_motors_block;
+extern s_tag_block rigid_bodies_block;
+extern s_tag_block materials$2_block;
+extern s_tag_block spheres_block;
+extern s_tag_block multi_spheres_block;
+extern s_tag_block pills_block;
+extern s_tag_block boxes_block;
+extern s_tag_block triangles_block;
+extern s_tag_block polyhedra_block;
+extern s_tag_block polyhedron_four_vectors_block;
+extern s_tag_block polyhedron_plane_equations_block;
+extern s_tag_block mass_distributions_block;
+extern s_tag_block lists_block;
+extern s_tag_block list_shapes_block;
+extern s_tag_block mopps_block;
+extern s_tag_block hinge_constraints_block;
+extern s_tag_block ragdoll_constraints_block;
+extern s_tag_block regions_block;
+extern s_tag_block permutations_block;
+extern s_tag_block rigid_body_indices_block;
+extern s_tag_block nodes_block;
+extern s_tag_block point_to_path_curve_block;
+extern s_tag_block point_to_path_curve_point_block;
+extern s_tag_block limited_hinge_constraints_block;
+extern s_tag_block ball_and_socket_constraints_block;
+extern s_tag_block stiff_spring_constraints_block;
+extern s_tag_block prismatic_constraints_block;
+extern s_tag_block phantoms_block;
+extern s_tag_block RigidBodySerializedShapesBlock_block;
+extern s_tag_block MoppSerializedHavokDataBlock_block;
+
+constexpr unsigned long PHYSICS_MODEL_TAG = 'phmo';
+
+extern s_tag_block physics_model_block;
+extern s_tag_group physics_model_group;
+} // namespace blofeld
+

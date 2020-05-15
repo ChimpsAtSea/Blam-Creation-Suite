@@ -16,6 +16,7 @@
 
 #define StaticClassSizeCheck(TYPE) static_assert(sizeof(TYPE) == 1, "Static classes shouldn't contain any data");
 
+#define CONCAT(x, y) x##y
 #define STRINGIFY(s) __STRINGIFY(s)
 #define __STRINGIFY(s) #s
 

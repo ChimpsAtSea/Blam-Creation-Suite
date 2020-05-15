@@ -6,6 +6,15 @@ c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_inter
 	cache_file(cache_file),
 	parent_tab(parent_tab)
 {
+	const blofeld::s_tag_group* blofeld_reflection = tag_interface.get_blofeld_reflection_data();
+	if (blofeld_reflection)
+	{
+		c_mantle_blofeld_tag_editor_gui_tab* blofeld_tag_editor_gui_tab = new c_mantle_blofeld_tag_editor_gui_tab(cache_file, this, tag_interface);
+		ASSERT(blofeld_tag_editor_gui_tab != nullptr);
+		add_tab(*blofeld_tag_editor_gui_tab);
+	}
+
+
 	const s_reflection_structure* blamlib_reflection = tag_interface.get_blamlib_reflection_data();
 	if (blamlib_reflection)
 	{

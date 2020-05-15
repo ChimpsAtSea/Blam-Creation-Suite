@@ -16,6 +16,7 @@ c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
 	tag_name_with_group_name(),
 	legacy_reflection_type(nullptr),
 	blamlib_reflection_type(nullptr),
+	blofeld_reflection_type(nullptr),
 	cache_file(cache_file),
 	group_interface(nullptr),
 	search_criteria_result(false),
@@ -60,6 +61,8 @@ c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
 
 			legacy_reflection_type = reflection_legacy(cache_file_tag_group->group_tags[0]);
 			blamlib_reflection_type = reflection(cache_file_tag_group->group_tags[0]);
+			blofeld_reflection_type = blofeld::get_tag_group_by_group_tag(cache_file_tag_group->group_tags[0]);
+			debug_point;
 		}
 		else m_isNull = true;
 	}

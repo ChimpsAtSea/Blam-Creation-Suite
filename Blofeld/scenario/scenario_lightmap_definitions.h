@@ -1,0 +1,45 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block scenario_lightmap_cluster_data_block;
+extern s_tag_block scenario_lightmap_instance_data_block;
+extern s_tag_block scenario_lightmap_lightprobe_value_block;
+extern s_tag_block scenario_lightmap_instance_index_block;
+extern s_tag_block scenario_lightmap_global_perpixel_padding_data_block;
+extern s_tag_block scenario_lightmap_rasterized_chart_data_block;
+extern s_tag_block scenario_lightmap_rasterized_chart_source_block;
+extern s_tag_block scenario_lightmap_rasterized_chart_element_block;
+extern s_tag_block scenario_lightmap_new_ao_data_block;
+extern s_tag_block scenario_lightmap_adjacent_bounce_vertex_block;
+extern s_tag_block scenario_lightmap_adjacent_bounce_index_block;
+extern s_tag_block triangle_mapping_per_mesh_block;
+extern s_tag_block triangle_mapping_block;
+extern s_tag_block scenario_lightmap_dynamic_light_instance_block;
+extern s_tag_block scenario_lightmap_dynamic_light_instance_data_block;
+extern s_tag_block scenario_lightmap_structure_light_instance_block;
+extern s_tag_block s_scenario_lightmap_silhouette_vertex_block;
+extern s_tag_block s_scenario_lightmap_silhouette_edge_block;
+extern s_tag_block s_scenario_lightmap_silhouette_group_block;
+extern s_tag_block scenario_lightmap_airprobe_value_block;
+extern s_tag_block scenario_lightmap_bsp_data_reference_block;
+extern s_tag_block wentness_bit_vector_block;
+extern s_tag_block wentness_byte_vector_block;
+extern s_tag_block cluster_wetness_offset_block;
+extern s_tag_block instance_wetness_instance_block;
+
+constexpr unsigned long SCENARIO_LIGHTMAP_BSP_DATA_TAG = 'Lbsp';
+
+extern s_tag_block scenario_lightmap_bsp_data_block;
+extern s_tag_group scenario_lightmap_bsp_data_group;
+constexpr unsigned long SCENARIO_LIGHTMAP_TAG = 'sLdT';
+
+extern s_tag_block scenario_lightmap_block;
+extern s_tag_group scenario_lightmap_group;
+constexpr unsigned long SCENARIO_WETNESS_BSP_DATA_TAG = 'wetn';
+
+extern s_tag_block scenario_wetness_bsp_data_block;
+extern s_tag_group scenario_wetness_bsp_data_group;
+} // namespace blofeld
+

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Shared/shared-public-pch.h>
+#include <Blofeld/blofeld-public-pch.h>
 #include "mantlelib-public-pch.h"
 #include "VirtualMemoryContainer.h"
 

@@ -129,6 +129,9 @@
     <ClCompile Include="!UserInterface\TagEditor\mantle_blamlib_tag_editor_gui_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mantlelib-public-pch.h">
@@ -456,6 +459,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="!UserInterface\TagEditor\mantle_blamlib_tag_editor_gui_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

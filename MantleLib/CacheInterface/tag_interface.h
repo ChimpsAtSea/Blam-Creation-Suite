@@ -43,6 +43,7 @@ public:
 	inline const s_reflection_structure_type_legacy* get_legacy_reflection_data() const { return legacy_reflection_type; };
 	//inline c_legacy_tag_group_interface* get_group_interface() const { return group_interface; }; // #TODO: Use this version and guarantee valid value for cache_file_legacy_tag_group_interface
 	inline const s_reflection_structure* get_blamlib_reflection_data() const { return blamlib_reflection_type; };
+	inline const blofeld::s_tag_group* get_blofeld_reflection_data() const { return blofeld_reflection_type; }
 	c_legacy_tag_group_interface* get_group_interface() const; // { return cache_file.get_group_interfaces(true)[group_index]; } 
 	s_cache_file_tag_instance* get_raw_instance() const { return cache_file_tag_instance; };
 	s_cache_file_tag_group* get_raw_group() const { return cache_file_tag_group; };
@@ -64,6 +65,7 @@ private:
 	std::string tag_name_with_group_name;
 	const s_reflection_structure_type_legacy* legacy_reflection_type;
 	const s_reflection_structure* blamlib_reflection_type;
+	const blofeld::s_tag_group* blofeld_reflection_type;
 	c_cache_file& cache_file;
 	c_legacy_tag_group_interface* group_interface;
 

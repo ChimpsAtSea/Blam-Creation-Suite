@@ -22,6 +22,7 @@
     <ClCompile Include="!UserInterface\mantle_cache_file_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_gui.cpp" />
+    <ClCompile Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\TagEditor\mantle_legacy_tag_editor_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\TagEditor\mantle_blamlib_tag_editor_gui_tab.cpp" />
@@ -70,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!UserInterface\shader_profile.h" />
+    <ClInclude Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.h" />
     <ClInclude Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.h" />
     <ClInclude Include="!UserInterface\UserInterface.h" />
     <ClInclude Include="CacheInterface\CacheVersions\eldorado_cache_file.h" />

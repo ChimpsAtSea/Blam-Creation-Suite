@@ -1,0 +1,24 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block CookiePurchaseFamilyAppearanceDefinitionBlock_block;
+extern s_tag_block CookiePurchaseAppearanceDefinitionReferenceBlock_block;
+extern s_tag_block CookiePurchaseFamilyLoadoutDefinitionBlock_block;
+extern s_tag_block CookiePurchaseLoadoutDefinitionReferenceBlock_block;
+extern s_tag_block CookiePurchaseFamilyOrdnanceDefinitionBlock_block;
+extern s_tag_block CookiePurchaseOrdnanceDefinitionReferenceBlock_block;
+extern s_tag_block CookiePurchaseAppearanceDefinitionBlock_block;
+extern s_tag_block CookiePurchaseExternalUnlockableBlockAppearanceDefinition_block;
+extern s_tag_block CookiePurchaseLoadoutDefinitionBlock_block;
+extern s_tag_block CookiePurchaseExternalUnlockableBlockLoadoutDefinition_block;
+extern s_tag_block CookiePurchaseOrdnanceDefinitionBlock_block;
+extern s_tag_block CookiePurchaseExternalUnlockableBlockOrdnanceDefinition_block;
+
+constexpr unsigned long COOKIE_PURCHASE_GLOBALS_TAG = 'cpgd';
+
+extern s_tag_block cookie_purchase_globals_block;
+extern s_tag_group cookie_purchase_globals_group;
+} // namespace blofeld
+

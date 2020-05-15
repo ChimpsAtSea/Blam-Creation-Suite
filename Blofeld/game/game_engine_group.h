@@ -1,0 +1,35 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block game_engine_ai_traits_list_block;
+extern s_tag_block game_engine_sandbox_variant_block;
+extern s_tag_block game_engine_miscellaneous_options_block;
+extern s_tag_block game_engine_prototype_options_block;
+extern s_tag_block game_engine_respawn_options_block;
+extern s_tag_block game_engine_social_options_block;
+extern s_tag_block game_engine_map_override_options_block;
+extern s_tag_block game_engine_team_options_block;
+extern s_tag_block gameEngineOrdnanceOptionsBlock_block;
+extern s_tag_block game_engine_survival_variant_block;
+extern s_tag_block game_engine_survival_set_properties_block;
+extern s_tag_block game_engine_survival_round_properties_block;
+extern s_tag_block game_engine_survival_custom_skull_block;
+extern s_tag_block GameEngineFirefightVariantShellBlock_block;
+extern s_tag_block game_engine_campaign_variant_block;
+
+constexpr unsigned long GAMEENGINEFIREFIGHTVARIANTTAG_TAG = 'ffgt';
+
+extern s_tag_block GameEngineFirefightVariantTag_block;
+extern s_tag_group GameEngineFirefightVariantTag_group;
+constexpr unsigned long GAME_ENGINE_GLOBALS_TAG = 'gegl';
+
+extern s_tag_block game_engine_globals_block;
+extern s_tag_group game_engine_globals_group;
+constexpr unsigned long GAME_ENGINE_SETTINGS_DEFINITION_TAG = 'wezr';
+
+extern s_tag_block game_engine_settings_definition_block;
+extern s_tag_group game_engine_settings_definition_group;
+} // namespace blofeld
+

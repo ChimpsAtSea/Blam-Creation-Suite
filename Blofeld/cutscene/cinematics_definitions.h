@@ -1,0 +1,53 @@
+#pragma once
+
+namespace blofeld
+{
+
+extern s_tag_block cinematic_scene_reference_block;
+extern s_tag_block cinematic_scene_object_block;
+extern s_tag_block scene_object_attachment_block;
+extern s_tag_block cinematic_shot_block;
+extern s_tag_block cinematic_shot_lighting_block;
+extern s_tag_block cinematic_shot_clip_block;
+extern s_tag_block cinematic_shot_clip_subject_block;
+extern s_tag_block cinematic_shot_music_block;
+extern s_tag_block cinematic_shot_object_function_block;
+extern s_tag_block cinematic_shot_object_function_keyframe_block;
+extern s_tag_block cinematic_shot_screen_effect_block;
+extern s_tag_block cinematic_shot_user_input_constraints_block;
+extern s_tag_block cinematicShotTextureMovieBlock_block;
+extern s_tag_block cinematicStructureLightingBlock_block;
+extern s_tag_block cinematicSceneDataObjectBlock_block;
+extern s_tag_block cinematicDataShotBlock_block;
+extern s_tag_block cinematic_shot_dialogue_block;
+extern s_tag_block cinematic_shot_effect_block;
+extern s_tag_block cinematic_shot_custom_script_block;
+extern s_tag_block cinematic_shot_frame_block;
+extern s_tag_block cinematic_shot_frame_dynamic_block;
+extern s_tag_block cinematic_shot_frame_constant_block;
+extern s_tag_block cinematic_shot_extra_camera_block;
+extern s_tag_block cinematic_extra_camera_shot_block;
+extern s_tag_block cinematic_extra_camera_frame_block;
+extern s_tag_block cinematics_globals_block;
+extern s_tag_block cinematic_characters_block;
+extern s_tag_block scenario_cutscene_title_block;
+extern s_tag_block scenario_cinematics_block;
+
+constexpr unsigned long CINEMATIC_TAG = 'cine';
+
+extern s_tag_block cinematic_block;
+extern s_tag_group cinematic_group;
+constexpr unsigned long CINEMATIC_SCENE_TAG = 'cisc';
+
+extern s_tag_block cinematic_scene_block;
+extern s_tag_group cinematic_scene_group;
+constexpr unsigned long CINEMATIC_SCENE_DATA_TAG = 'cisd';
+
+extern s_tag_block cinematic_scene_data_block;
+extern s_tag_group cinematic_scene_data_group;
+constexpr unsigned long CINEMATIC_TRANSITION_TAG = 'citr';
+
+extern s_tag_block cinematic_transition_block;
+extern s_tag_group cinematic_transition_group;
+} // namespace blofeld
+
