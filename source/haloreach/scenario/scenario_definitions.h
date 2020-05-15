@@ -344,7 +344,7 @@ struct s_scenario_zone_set_audibility
 {
 	long door_portal_count;
 	long room_count;
-	s_real_bounds room_distance_bounds;
+	real_bounds room_distance_bounds;
 	c_typed_tag_block<s_door_encoded_pas> encoded_door_pas;
 	c_typed_tag_block<s_room_door_portal_encoded_pas> room_door_portal_encoded_pas;
 	c_typed_tag_block<s_ai_deafening_encoded_pas> ai_deafening_pas;

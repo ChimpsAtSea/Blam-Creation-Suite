@@ -114,8 +114,8 @@ struct s_projectile_material_response_old
 	c_enum<e_projectile_material_response_type, short> potential_response;
 	c_flags<e_projectile_material_response_flags, word> response_flags;
 	real chance_fraction;
-	s_real_bounds between;
-	s_real_bounds and_;
+	real_bounds between;
+	real_bounds and_;
 	c_enum<e_projectile_material_response_effect_scale, short> scale_effects_by;
 	short : 16;
 	real angular_noise;
@@ -132,8 +132,8 @@ struct s_projectile_material_response
 	short runtime_material_index;
 	c_flags<e_projectile_material_response_flags, word> response_flags;
 	real chance_fraction;
-	s_real_bounds between;
-	s_real_bounds and_;
+	real_bounds between;
+	real_bounds and_;
 	c_enum<e_projectile_material_response_type, short> response;
 	c_enum<e_projectile_material_response_effect_scale, short> scale_effects_by;
 	real angular_noise;
@@ -187,7 +187,7 @@ struct s_projectile_definition : s_object_definition
 	real danger_stimuli_radius;
 	short danger_group_burst_count;
 	short danger_group_burst_max_count;
-	s_real_bounds timer;
+	real_bounds timer;
 	real minimum_velocity;
 	real maximum_range;
 	real bounce_maximum_range;
@@ -219,9 +219,9 @@ struct s_projectile_definition : s_object_definition
 	s_tag_reference boarding_detonation_damage;
 	s_tag_reference boarding_attached_detonation_damage;
 	real air_gravity_scale;
-	s_real_bounds air_damage_range;
+	real_bounds air_damage_range;
 	real water_gravity_scale;
-	s_real_bounds water_damage_range;
+	real_bounds water_damage_range;
 	real initial_velocity;
 	real final_velocity;
 	real indirect_fire_velocity;
@@ -233,7 +233,7 @@ struct s_projectile_definition : s_object_definition
 	real guided_angular_velocity_lower;
 	real guided_angular_velocity_upper;
 	real guided_angular_velocity_at_rest;
-	s_real_bounds acceleration_range;
+	real_bounds acceleration_range;
 	real runtime_acceleration_bound_inverse;
 	real ai_target_leading_scale;
 	real targeted_leading_fraction;

@@ -90,7 +90,7 @@ static_assert(sizeof(s_structure_seam_edge_mapping) == 0x4);
 struct s_structure_seam_cluster_mapping
 {
 	c_tag_block_index<s_structure_bsp_cluster, long> cluster;
-	s_real_point3d cluster_center;
+	real_point3d cluster_center;
 };
 static_assert(sizeof(s_structure_seam_cluster_mapping) == 0x10);
 
@@ -214,15 +214,15 @@ enum e_structure_bsp_cluster_portal_flags
 
 struct s_structure_bsp_cluster_portal_vertex
 {
-	s_real_point3d point;
+	real_point3d point;
 };
 static_assert(sizeof(s_structure_bsp_cluster_portal_vertex) == 0xC);
 
 struct s_oriented_bounds
 {
-	s_real_point3d center;
-	s_real_vector3d extents;
-	s_real_quaternion orientation;
+	real_point3d center;
+	real_vector3d extents;
+	real_quaternion orientation;
 };
 static_assert(sizeof(s_oriented_bounds) == 0x28);
 
@@ -232,7 +232,7 @@ struct s_structure_bsp_cluster_portal
 	c_tag_block_index<s_structure_bsp_cluster, short> back_cluster;
 	c_tag_block_index<s_structure_bsp_cluster, short> front_cluster;
 	c_tag_block_index<s_structure_bsp_plane, long> plane;
-	s_real_point3d centroid;
+	real_point3d centroid;
 	real bounding_radius;
 	c_flags<e_structure_bsp_cluster_portal_flags, dword> flags;
 	c_typed_tag_block<s_structure_bsp_cluster_portal_vertex> vertices;
@@ -253,9 +253,9 @@ static_assert(sizeof(s_structure_bsp_cluster_seam_index));
 
 struct s_structure_bsp_cluster
 {
-	s_real_bounds x_bounds;
-	s_real_bounds y_bounds;
-	s_real_bounds z_bounds;
+	real_bounds x_bounds;
+	real_bounds y_bounds;
+	real_bounds z_bounds;
 	char unknown1; // TODO: block index
 	char sky_index; // TODO: block index
 	char camera_effect_index; // TODO: block index
@@ -296,8 +296,8 @@ static_assert(sizeof(s_structure_bsp_sky_owner_cluster) == 0x2);
 
 struct s_structure_bsp_conveyor_surface
 {
-	s_real_vector3d u;
-	s_real_vector3d v;
+	real_vector3d u;
+	real_vector3d v;
 };
 static_assert(sizeof(s_structure_bsp_conveyor_surface) == 0x18);
 
@@ -305,7 +305,7 @@ struct s_structure_bsp_breakable_surface
 {
 	short instanced_geometry_instance; // TODO: block index
 	short breakable_surface_index; // TODO: block index
-	s_real_point3d centroid;
+	real_point3d centroid;
 	real radius;
 	long collision_surface_index; // TODO: block index
 };
@@ -325,7 +325,7 @@ static_assert(sizeof(s_structure_bsp_instanced_geometry_name_index) == 0x2);
 
 struct s_structure_instance_group
 {
-	s_real_point3d center;
+	real_point3d center;
 	real radius;
 	short unknown10;
 	short unknown12;
@@ -351,7 +351,7 @@ static_assert(sizeof(s_structure_instance_cluster) == 0x10);
 struct s_structure_instanced_geometry_definition
 {
 	long checksum;
-	s_real_point3d bounding_sphere_offset;
+	real_point3d bounding_sphere_offset;
 	real bounding_sphere_radius;
 	s_collision_bsp collision_bsp;
 	s_tag_block unknown1;
@@ -404,10 +404,10 @@ struct s_structure_bsp_instanced_geometry_instance
 	c_tag_block_index<s_mesh, short> mesh;
 	c_tag_block_index<s_geometry_compression_info_constant_buffer, short> compression;
 	long seam_bitvector[4];
-	s_real_bounds x_bounds;
-	s_real_bounds y_bounds;
-	s_real_bounds z_bounds;
-	s_real_point3d world_bounding_sphere_center;
+	real_bounds x_bounds;
+	real_bounds y_bounds;
+	real_bounds z_bounds;
+	real_point3d world_bounding_sphere_center;
 	real world_bounding_sphere_radius;
 	real unknown1;
 	real unknown2;
@@ -472,10 +472,10 @@ struct s_structure_instanced_geometry_instance
 	c_tag_block_index<s_mesh, short> mesh;
 	c_tag_block_index<s_geometry_compression_info_constant_buffer, short> compression;
 	long seam_bitvector[4];
-	s_real_bounds x_bounds;
-	s_real_bounds y_bounds;
-	s_real_bounds z_bounds;
-	s_real_point3d world_bounding_sphere_center;
+	real_bounds x_bounds;
+	real_bounds y_bounds;
+	real_bounds z_bounds;
+	real_point3d world_bounding_sphere_center;
 	real world_bounding_sphere_radius;
 	real imposter_transition_complete_distance;
 	long transform_checksum;
@@ -552,9 +552,9 @@ struct s_structure_bsp_definition
 	c_typed_tag_block<s_structure_super_node_traversal_geometry> super_node_traversal_geometry;
 	s_collision_kd_hierarchy_static instance_kd_hierarchy;
 	long : 32;
-	s_real_bounds world_bounds_x;
-	s_real_bounds world_bounds_y;
-	s_real_bounds world_bounds_z;
+	real_bounds world_bounds_x;
+	real_bounds world_bounds_y;
+	real_bounds world_bounds_z;
 	c_typed_tag_block<s_structure_bsp_surface> surfaces;
 	c_typed_tag_block<s_structure_bsp_plane> planes;
 	c_typed_tag_block<s_structure_bsp_cluster_portal> cluster_portals;
@@ -596,9 +596,9 @@ struct s_structure_bsp_definition
 	s_tag_block unknown11;
 	s_tag_block collision_mopp_codes;
 	long unknown12;
-	s_real_bounds collision_bounds_x;
-	s_real_bounds collision_bounds_y;
-	s_real_bounds collision_bounds_z;
+	real_bounds collision_bounds_x;
+	real_bounds collision_bounds_y;
+	real_bounds collision_bounds_z;
 	s_tag_block breakable_surface_mopp_codes;
 	s_tag_block breakable_surface_key_table;
 	s_tag_block unknown13;

@@ -13,14 +13,14 @@ constexpr tag k_antenna_group_tag = 'ant!';
 
 struct s_antenna_vertex
 {
-	s_real_euler_angles2d angles; // direction toward next vertex
+	real_euler_angles2d angles; // direction toward next vertex
 	real length; // distance between this vertex and the next
 	short sequence_index; // bitmap group sequence index for this vertex's texture
 	short : 16;
-	s_real_argb_color color; // color at this vertex
-	s_real_argb_color lod_color; // color at this vertex for the low-LOD line primitives
+	argb_color color; // color at this vertex
+	argb_color lod_color; // color at this vertex for the low-LOD line primitives
 	real hermite_t;
-	s_real_vector3d vector_to_next;
+	real_vector3d vector_to_next;
 };
 static_assert(sizeof(s_antenna_vertex) == 0x40);
 

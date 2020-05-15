@@ -5,33 +5,47 @@
 /* ---------- types */
 
 using real = float;
+using angle = real;
+using real_fraction = real;
 
-struct s_real_bounds
+struct real_bounds
 {
 	real lower;
 	real upper;
 };
 
-struct s_real_point2d
+struct angle_bounds
+{
+	angle lower;
+	angle upper;
+};
+
+struct real_fraction_bounds
+{
+	real_fraction lower;
+	real_fraction upper;
+};
+
+struct real_point2d
 {
 	real x;
 	real y;
 };
 
-struct s_real_point3d
+struct real_point3d
 {
 	real x;
 	real y;
 	real z;
 };
 
-struct s_real_vector2d
+struct real_vector2d
 {
 	real i;
 	real j;
 };
 
-struct s_real_vector3d
+struct real_vector3d
 {
 	real i;
 	real j;
@@ -46,7 +60,7 @@ struct s_real_vector4d
 	real w;
 };
 
-struct s_real_quaternion
+struct real_quaternion
 {
 	real i;
 	real j;
@@ -54,75 +68,75 @@ struct s_real_quaternion
 	real w;
 };
 
-struct s_real_euler_angles2d
+struct real_euler_angles2d
 {
 	real yaw;
 	real pitch;
 };
 
-struct s_real_euler_angles3d
+struct real_euler_angles3d
 {
 	real yaw;
 	real pitch;
 	real roll;
 };
 
-struct s_real_plane2d
+struct real_plane2d
 {
-	s_real_vector2d normal;
+	real_vector2d normal;
 	real distance;
 };
 
-struct s_real_plane3d
+struct real_plane3d
 {
-	s_real_vector3d normal;
+	real_vector3d normal;
 	real distance;
 };
 
 struct s_real_matrix3x3
 {
-	s_real_vector3d forward;
-	s_real_vector3d left;
-	s_real_vector3d up;
+	real_vector3d forward;
+	real_vector3d left;
+	real_vector3d up;
 };
 
 struct s_real_matrix4x3
 {
-	s_real_vector3d forward;
-	s_real_vector3d left;
-	s_real_vector3d up;
-	s_real_point3d position;
+	real_vector3d forward;
+	real_vector3d left;
+	real_vector3d up;
+	real_point3d position;
 	real scale;
 };
 
 struct s_real_orientation
 {
-	s_real_quaternion rotation;
-	s_real_point3d translation;
+	real_quaternion rotation;
+	real_point3d translation;
 	real scale;
 };
 
 struct s_real_rectangle2d
 {
-	s_real_bounds x;
-	s_real_bounds y;
+	real_bounds x;
+	real_bounds y;
 };
 
 struct s_real_rectangle3d
 {
-	s_real_bounds x;
-	s_real_bounds y;
-	s_real_bounds z;
+	real_bounds x;
+	real_bounds y;
+	real_bounds z;
 };
 
-struct s_real_rgb_color
+struct rgb_color
 {
 	real red;
 	real green;
 	real blue;
 };
 
-struct s_real_argb_color
+struct argb_color
 {
 	real alpha;
 	real red;
@@ -130,14 +144,14 @@ struct s_real_argb_color
 	real blue;
 };
 
-struct s_real_hsv_color
+struct real_hsv_color
 {
 	real hue;
 	real saturation;
 	real value;
 };
 
-struct s_real_ahsv_color
+struct real_ahsv_color
 {
 	real alpha;
 	real hue;

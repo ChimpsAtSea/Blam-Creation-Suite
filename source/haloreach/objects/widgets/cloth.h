@@ -46,8 +46,8 @@ static_assert(sizeof(s_cloth_properties) == 0x30);
 
 struct s_cloth_vertex
 {
-	s_real_point3d initial_position;
-	s_real_vector2d uv;
+	real_point3d initial_position;
+	real_vector2d uv;
 };
 static_assert(sizeof(s_cloth_vertex) == 0x14);
 

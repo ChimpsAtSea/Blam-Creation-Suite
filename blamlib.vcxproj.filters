@@ -357,6 +357,9 @@
     <ClInclude Include="source\haloreach\cutscene\cinematics_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\tag_files\tag_vertex_buffers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\cache\cache_files.cpp">

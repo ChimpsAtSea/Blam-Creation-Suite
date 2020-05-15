@@ -89,7 +89,7 @@ static_assert(sizeof(s_scenario_lightmap_bsp_data_unknown3) == 0xC);
 
 struct s_scenario_lightmap_airprobe
 {
-	s_real_point3d position;
+	real_point3d position;
 	string_id name;
 	long unknown10;
 	long unknown14;

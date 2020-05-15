@@ -279,7 +279,7 @@ struct s_ai_globals_data
 	real decay_time_ping;
 	real search_pattern_radius;
 	short search_pattern_shell_count;
-	s_short_bounds search_pattern_cells_per_shell_range;
+	short_bounds search_pattern_cells_per_shell_range;
 	short : 16;
 };
 static_assert(sizeof(s_ai_globals_data) == 0x1B0);

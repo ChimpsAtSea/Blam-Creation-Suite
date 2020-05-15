@@ -341,7 +341,7 @@ struct s_bitmap_usage
 	c_enum<e_bitmap_downsample_filter, char> downsample_filter;
 	char filter_radius_bias;
 	c_flags<e_bitmap_downsample_flags, word> downsample_flags;
-	s_real_rgb_color sprite_background_color;
+	rgb_color sprite_background_color;
 	c_enum<e_bitmap_swizzle, char> swizzle_red;
 	c_enum<e_bitmap_swizzle, char> swizzle_green;
 	c_enum<e_bitmap_swizzle, char> swizzle_blue;
@@ -359,7 +359,7 @@ struct s_bitmap_sequence_sprite
 	real right;
 	real top;
 	real bottom;
-	s_real_point2d registration_point;
+	real_point2d registration_point;
 };
 static_assert(sizeof(s_bitmap_sequence_sprite) == 0x20);
 

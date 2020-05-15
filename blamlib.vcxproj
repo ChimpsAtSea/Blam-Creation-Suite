@@ -133,6 +133,7 @@
     <ClInclude Include="source\tag_files\tag_api_interop.h" />
     <ClInclude Include="source\tag_files\tag_groups.h" />
     <ClInclude Include="source\tag_files\tag_resource_internals.h" />
+    <ClInclude Include="source\tag_files\tag_vertex_buffers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\cache\cache_files.cpp" />

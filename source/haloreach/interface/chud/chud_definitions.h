@@ -31,7 +31,7 @@ enum e_chud_animation_flags
 struct s_chud_animation_position_frame
 {
 	real frame_number;
-	s_real_point3d position;
+	real_point3d position;
 };
 static_assert(sizeof(s_chud_animation_position_frame) == 0x10);
 
@@ -45,7 +45,7 @@ static_assert(sizeof(s_chud_animation_position_definition) == 0x20);
 struct s_chud_animation_rotation_frame
 {
 	real frame_number;
-	s_real_euler_angles3d rotation;
+	real_euler_angles3d rotation;
 };
 static_assert(sizeof(s_chud_animation_rotation_frame) == 0x10);
 
@@ -101,8 +101,8 @@ static_assert(sizeof(s_chud_animation_alpha_definition) == 0x20);
 struct s_chud_animation_texture_coordinate_frame
 {
 	real frame_number;
-	s_real_point2d coordinate1;
-	s_real_point2d coordinate2;
+	real_point2d coordinate1;
+	real_point2d coordinate2;
 };
 static_assert(sizeof(s_chud_animation_texture_coordinate_frame) == 0x14);
 

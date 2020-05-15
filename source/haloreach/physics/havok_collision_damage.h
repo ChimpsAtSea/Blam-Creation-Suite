@@ -23,7 +23,7 @@ struct s_collision_damage_definition
 
     real minimum_velocity_for_game_damage;
     s_tag_function game_collision_damage_function;
-    s_real_bounds game_acceleration;
+    real_bounds game_acceleration;
 
     /* ------ Applying Absolute Collision Damage:
         for things that want to cause more or less collision damage */
@@ -36,6 +36,6 @@ struct s_collision_damage_definition
 
     real minimum_velocity_for_absolute_damage;
     s_tag_function absolute_collision_damage_function;
-    s_real_bounds absolute_acceleration;
+    real_bounds absolute_acceleration;
 };
 static_assert(sizeof(s_collision_damage_definition) == 0x50);

@@ -51,7 +51,7 @@ struct s_item_definition : s_object_definition
 	s_tag_reference collision_sound;
 	c_typed_tag_block<s_item_predicted_bitmap> predicted_bitmaps;
 	s_tag_reference detonation_damage_effect;
-	s_real_bounds detonation_delay;
+	real_bounds detonation_delay;
 	s_tag_reference detonating_effect;
 	s_tag_reference detonation_effect;
 	real ground_scale;

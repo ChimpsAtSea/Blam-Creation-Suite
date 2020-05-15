@@ -31,7 +31,7 @@ struct s_scenario_cheap_particle_system
 {
 	c_tag_block_index<s_scenario_cheap_particle_emitter_palette_entry, short> palette_index;
 	short : 16;
-	s_real_point3d position;
-	s_real_euler_angles3d rotation;
+	real_point3d position;
+	real_euler_angles3d rotation;
 };
 static_assert(sizeof(s_scenario_cheap_particle_system) == 0x1C);

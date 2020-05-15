@@ -53,7 +53,7 @@ public:
 
 	struct s_real_exposure_parameter : s_real_parameter
 	{
-		s_real_bounds range; // the absolute target exposure is clamped to this range
+		real_bounds range; // the absolute target exposure is clamped to this range
 		real auto_exposure_screen_brightness; // [0.0001-1] how bright you want the screen to be - auto-exposure will make it happen
 		real auto_exposure_delay; // [0.1-1] seconds; how long to wait before auto-exposure kicks in to adjust the exposure
 	};
@@ -61,7 +61,7 @@ public:
 
 	struct s_color_parameter : s_parameter
 	{
-		s_real_rgb_color color;
+		rgb_color color;
 	};
 	static_assert(sizeof(s_color_parameter) == 0x10);
 

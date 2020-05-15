@@ -4,12 +4,12 @@
 
 /* ---------- types */
 
-struct s_short_bounds
+struct short_bounds
 {
 	short lower;
 	short upper;
 };
-static_assert(sizeof(s_short_bounds) == 0x4);
+static_assert(sizeof(short_bounds) == 0x4);
 
 struct s_point2d
 {
@@ -26,6 +26,19 @@ struct s_rectangle2d
 	short right;
 };
 static_assert(sizeof(s_rectangle2d) == 0x8);
+
+union pixel32
+{
+	struct
+	{
+		byte : 8;
+		byte red;
+		byte green;
+		byte blue;
+	};
+	dword value;
+};
+static_assert(sizeof(pixel32) == 0x4);
 
 /* ---------- prototypes/INTEGER_MATH.CPP */
 

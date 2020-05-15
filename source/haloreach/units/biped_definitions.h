@@ -69,9 +69,9 @@ struct s_biped_leaping_data
 	real roll_delay;
 	real cannonball_off_axis_scale;
 	real cannonball_off_track_scale;
-	s_real_bounds cannonball_roll_bounds;
-	s_real_bounds anticipation_ratio_bounds;
-	s_real_bounds reaction_force_bounds;
+	real_bounds cannonball_roll_bounds;
+	real_bounds anticipation_ratio_bounds;
+	real_bounds reaction_force_bounds;
 	real lobbing_desire;
 };
 static_assert(sizeof(s_biped_leaping_data) == 0x30);
@@ -160,7 +160,7 @@ struct s_biped_definition : s_unit_definition
 	c_typed_tag_block<s_biped_camera_height> camera_heights;
 	real camera_interpolation_start;
 	real camera_interpolation_end;
-	s_real_vector3d camera_offset;
+	real_vector3d camera_offset;
 	real root_offset_camera_scale;
 	real root_offset_camera_dampening;
 	real autoaim_width;

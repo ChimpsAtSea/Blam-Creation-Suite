@@ -30,7 +30,7 @@ enum e_volume_texture_fog_flags
 struct s_volume_texture_fog_color
 {
 	string_id name;
-	s_real_argb_color color;
+	argb_color color;
 };
 static_assert(sizeof(s_volume_texture_fog_color) == 0x14);
 

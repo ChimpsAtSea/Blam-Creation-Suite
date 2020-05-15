@@ -338,8 +338,8 @@ struct s_equipment_definition : s_item_definition
 	c_enum<e_equipment_activation_source, char> activation_mode;
 	char object_noise_adjustment; // for AI perception. while active, adjusts noises made by the owner unit by this many 'notches'. note that this is additive, so a positive number is louder and a negative number is quieter
 	string_id unit_stow_marker; // the marker on the unit to attach this equipment to when it is stowed. The equipment should have a marker named "equipment_stow_anchor"
-	s_real_argb_color forced_primary_change_color; // sets the primary change color on the unit to this if the flag above is checked
-	s_real_argb_color forced_secondary_change_color; // sets the secondary change color on the unit to this if the flag above is checked
+	argb_color forced_primary_change_color; // sets the primary change color on the unit to this if the flag above is checked
+	argb_color forced_secondary_change_color; // sets the secondary change color on the unit to this if the flag above is checked
 
 	/* ------ ai */
 

@@ -54,7 +54,7 @@ struct s_machine_definition : s_device_definition
 	c_enum<e_machine_type, short> machine_type;
 	c_flags<e_machine_flags, word> machine_flags;
 	real door_open_time;
-	s_real_bounds door_occlusion_bounds;
+	real_bounds door_occlusion_bounds;
 	c_enum<e_machine_collision_response, short> collision_response;
 	short elevator_node;
 	c_enum<e_machine_pathfinding_policy, short> pathfinding_policy;

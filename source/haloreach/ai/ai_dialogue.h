@@ -280,7 +280,7 @@ struct s_ai_dialogue_globals
 {
 	/* ------ global timing */
 
-	s_real_bounds strike_delay_bounds;
+	real_bounds strike_delay_bounds;
 	real remind_delay;
 	real cover_curse_chance;
 

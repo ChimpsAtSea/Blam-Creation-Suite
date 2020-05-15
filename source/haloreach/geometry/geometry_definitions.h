@@ -46,8 +46,8 @@ static_assert(sizeof(s_geometry_material) == 0x2C);
 
 struct s_sorting_position
 {
-	s_real_plane3d plane;
-	s_real_point3d position;
+	real_plane3d plane;
+	real_point3d position;
 	real radius;
 	byte node_indices[k_number_of_node_indices_per_vertex];
 	real node_weights[k_number_of_node_weights_per_vertex];
@@ -251,11 +251,11 @@ struct s_compression_info
 {
 	c_flags<e_compression_flags, word> flags;
 	short : 16;
-	s_real_bounds position_x;
-	s_real_bounds position_y;
-	s_real_bounds position_z;
-	s_real_bounds texcoord_u;
-	s_real_bounds texcoord_v;
+	real_bounds position_x;
+	real_bounds position_y;
+	real_bounds position_z;
+	real_bounds texcoord_u;
+	real_bounds texcoord_v;
 	long : 32;
 	long : 32;
 };
@@ -324,8 +324,8 @@ struct s_water_bounding_box
 {
 	c_tag_block_index<s_mesh, short> mesh;
 	c_tag_block_index<s_part, short> part;
-	s_real_point3d position_lower;
-	s_real_point3d position_upper;
+	real_point3d position_lower;
+	real_point3d position_upper;
 };
 static_assert(sizeof(s_water_bounding_box) == 0x1C);
 

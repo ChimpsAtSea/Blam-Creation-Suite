@@ -21,7 +21,7 @@ struct s_airstrike_battery
 	long shots_per_launch; // number of rounds to fire per launch
 	long default_shot_count; // default number of rounds in the battery
 	s_tag_reference fire_effect; // the effect that will be created when the strike fires
-	c_typed_tag_block<s_real_point2d> fire_offsets; // offsets on the x/y plane from the sky the strike fires from
+	c_typed_tag_block<real_point2d> fire_offsets; // offsets on the x/y plane from the sky the strike fires from
 	s_tag_reference affected_weapon; // the weapon affected by the strike
 };
 static_assert(sizeof(s_airstrike_battery) == 0x4C);

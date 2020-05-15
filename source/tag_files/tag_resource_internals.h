@@ -5,6 +5,7 @@
 #include <memory/data.h>
 #include <memory/wrapped_arrays.h>
 #include <tag_files/tag_api_interop.h>
+#include <tag_files/tag_vertex_buffers.h>
 
 /* ---------- types */
 

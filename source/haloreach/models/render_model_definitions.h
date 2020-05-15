@@ -64,8 +64,8 @@ struct s_render_model_node
 	c_tag_block_index<s_render_model_node, short> first_child_node;
 	c_tag_block_index<s_render_model_node, short> next_sibling_node;
 	c_tag_block_index<s_render_model_node, short> import_node;
-	s_real_point3d default_translation;
-	s_real_quaternion default_rotation;
+	real_point3d default_translation;
+	real_quaternion default_rotation;
 	s_real_matrix4x3 inverse_matrix;
 	real distance_from_parent;
 };
@@ -85,10 +85,10 @@ struct s_render_model_marker
 	c_tag_block_index<s_render_model_permutation, char> permutation;
 	c_tag_block_index<s_render_model_node, char> node;
 	c_flags<e_render_model_marker_flags, byte> flags;
-	s_real_point3d translation;
-	s_real_quaternion rotation;
+	real_point3d translation;
+	real_quaternion rotation;
 	real scale;
-	s_real_vector3d direction;
+	real_vector3d direction;
 };
 static_assert(sizeof(s_render_model_marker) == 0x30);
 
@@ -208,8 +208,8 @@ static_assert(sizeof(s_render_model_unknown2) == 0x150);
 
 struct s_default_node_orientation
 {
-	s_real_quaternion default_rotation;
-	s_real_point3d default_translation;
+	real_quaternion default_rotation;
+	real_point3d default_translation;
 	real default_scale;
 };
 static_assert(sizeof(s_default_node_orientation) == 0x20);

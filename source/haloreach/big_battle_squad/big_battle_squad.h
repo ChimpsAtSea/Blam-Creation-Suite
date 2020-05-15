@@ -57,7 +57,7 @@ struct s_big_battle_creature_definition
 
 	/* ------ death and destruction */
 
-	s_real_bounds destroy_after_death_time; // if non-zero, the creature will destroy itself upon death after this much time
+	real_bounds destroy_after_death_time; // if non-zero, the creature will destroy itself upon death after this much time
 
 	/* ------ big battle:
 		the following fields only affect creatures configured as boids for big battle */
@@ -65,15 +65,15 @@ struct s_big_battle_creature_definition
 	c_flags<e_big_battle_flags, dword, k_number_of_big_battle_flags> big_battle_flags;
 
 	s_tag_reference big_battle_weapon_emitter;
-	s_real_point3d big_battle_weapon_offset;
+	real_point3d big_battle_weapon_offset;
 
 	s_tag_reference big_battle_weapon_emitter2; // if you leave this empty, only the first emitter will fire
-	s_real_point3d big_battle_weapon_offset2;
+	real_point3d big_battle_weapon_offset2;
 
 	c_typed_tag_block<s_tag_function> big_battle_weapon_fire_timing;
 
 	s_tag_reference big_battle_expensive_weapon_effect; // this fires a full effect from location up, oriented along vehicle's forward and up axes
-	s_real_bounds expensive_weapon_fire_time; // seconds
+	real_bounds expensive_weapon_fire_time; // seconds
 
 	s_tag_reference big_battle_death_effect;
 

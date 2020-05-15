@@ -74,15 +74,15 @@ static_assert(sizeof(s_scenario_acoustics_palette_entry) == 0x78);
 
 struct s_real_sector_point
 {
-	s_real_point3d position;
+	real_point3d position;
 };
 static_assert(sizeof(s_real_sector_point) == 0xC);
 
 struct s_scenario_acoustic_sector
 {
 	c_typed_tag_block<s_real_sector_point> points;
-	s_real_plane3d top_plane;
-	s_real_plane3d bottom_plane;
+	real_plane3d top_plane;
+	real_plane3d bottom_plane;
 	c_tag_block_index<s_scenario_acoustics_palette_entry, short> acoustics;
 	c_tag_block_index<s_scenario_editor_folder, short> editor_folder;
 	real height;
@@ -99,9 +99,9 @@ static_assert(sizeof(s_scenario_acoustic_location) == 0x4);
 
 struct s_scenario_acoustic_transition
 {
-	s_real_point3d center;
-	s_real_point3d forward;
-	s_real_point3d up;
+	real_point3d center;
+	real_point3d forward;
+	real_point3d up;
 	real half_width;
 	real half_height;
 	real sample_point_offsets[2];
@@ -118,12 +118,12 @@ public:
 	virtual bool get_sector_position_value(
 		s_tag_block *positions_block,
 		long position_index,
-		s_real_point3d *out_position) = 0;
+		real_point3d *out_position) = 0;
 
 	virtual bool get_sector_orientation_value(
 		s_tag_block *orientations_block,
 		long orientation_index,
-		s_real_euler_angles2d *out_orientation) = 0;
+		real_euler_angles2d *out_orientation) = 0;
 };
 
 class c_acoustic_sector_accessor final :
@@ -133,28 +133,28 @@ public:
 	bool get_sector_position_value(
 		s_tag_block *positions_block,
 		long position_index,
-		s_real_point3d *out_position);
+		real_point3d *out_position);
 
 	bool get_sector_orientation_value(
 		s_tag_block *orientations_block,
 		long orientation_index,
-		s_real_euler_angles2d *out_orientation);
+		real_euler_angles2d *out_orientation);
 };
 
 /* ---------- prototypes/SOUND_ACOUSTICS_DEFINITIONS.CPP */
 
 bool point_in_acoustic_sector(
-	s_real_point3d const &point,
+	real_point3d const &point,
 	s_scenario_acoustic_sector const &sector);
 
 float distance_to_acoustic_transition(
-	s_real_point3d const &point,
+	real_point3d const &point,
 	s_scenario_acoustic_transition const &transition);
 
 bool point_in_front_of_acoustic_transition(
-	s_real_point3d const &point,
+	real_point3d const &point,
 	s_scenario_acoustic_transition const &transition);
 
 bool point_in_acoustic_transition(
-	s_real_point3d const &point,
+	real_point3d const &point,
 	s_scenario_acoustic_transition const &transition);

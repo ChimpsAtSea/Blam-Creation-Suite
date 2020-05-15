@@ -103,8 +103,8 @@ struct s_unit_camera_gamepad_stick_info
     char : 8;
     short : 16;
     real peg_threshold;
-    s_real_point2d pegged_time;
-    s_real_point2d pegged_scale;
+    real_point2d pegged_time;
+    real_point2d pegged_scale;
     real peg_max_angular_velocity;
     c_typed_tag_block<s_unit_camera_gamepad_stick_function> input_mapping_function;
 };
@@ -125,7 +125,7 @@ struct s_unit_camera
     short : 16;
     string_id camera_marker_name;
     real pitch_auto_level;
-    s_real_bounds pitch_range;
+    real_bounds pitch_range;
     c_typed_tag_block<s_unit_camera_track_reference> camera_tracks;
     real pitch_minimum_spring;
     real pitch_maximum_spring;
@@ -144,7 +144,7 @@ static_assert(sizeof(s_unit_camera) == 0x78);
 struct s_unit_posture
 {
     string_id name;
-    s_real_point3d pill_offset;
+    real_point3d pill_offset;
 };
 static_assert(sizeof(s_unit_posture) == 0x10);
 
@@ -268,8 +268,8 @@ struct s_unit_seat
     c_tag_block_index<s_unit_seat, short> boarding_seat;
     c_typed_tag_block<s_unit_boarding_seat> additional_boarding_seats;
     real listener_interpolation_factor;
-    s_real_bounds yaw_rate_bounds;
-    s_real_bounds pitch_rate_bounds;
+    real_bounds yaw_rate_bounds;
+    real_bounds pitch_rate_bounds;
     real pitch_interpolation_time;
     real min_speed_reference;
     real max_speed_reference;
@@ -277,7 +277,7 @@ struct s_unit_seat
     s_unit_camera unit_camera;
     c_typed_tag_block<s_unit_hud_interface_reference> hud_interface_references;
     string_id enter_seat_string;
-    s_real_bounds yaw_range;
+    real_bounds yaw_range;
     s_tag_reference built_in_gunner;
     real entry_radius;
     real entry_marker_cone_angle;
@@ -369,7 +369,7 @@ struct s_unit_trick_definition
 	char : 8;
 	real camera_interpolation_time;
 	real trick_exit_time;
-	s_real_bounds trick_exit_camera_interpolation_time;
+	real_bounds trick_exit_camera_interpolation_time;
 	real trick_exit_displacement_reference;
 	real cooldown_time;
 };

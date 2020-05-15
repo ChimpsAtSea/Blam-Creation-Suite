@@ -113,7 +113,7 @@ enum e_weapon_secondary_trigger_mode
 
 struct s_melee_damage_parameters
 {
-	s_real_euler_angles2d damage_pyramid_angles; // defines the frustum from the camera that the melee-attack uses to find targets
+	real_euler_angles2d damage_pyramid_angles; // defines the frustum from the camera that the melee-attack uses to find targets
 	real damage_pyramid_depth; // how far the melee attack searches for a target
 	real maximum_lunge_range; // 0 defaults to k_default_player_melee_lunge_distance
 	real damage_lunge_explosive_depth; // the distance out from the pyramid center to spawn explosive effects. This value will be clamped to the damage pyramid depth. 0 defaults to the damage pyramid depth
@@ -413,14 +413,14 @@ enum e_weapon_barrel_definition_flags
 
 struct s_weapon_barrel_firing_parameters
 {
-	s_real_bounds rounds_per_second; // the number of firing effects created per second. 0 defaults to 60
+	real_bounds rounds_per_second; // the number of firing effects created per second. 0 defaults to 60
 	string_id rate_of_fire_acceleration; // function value sets the current rate of fire when the barrel is firing
 	real acceleration_time; // the continuous firing time it takes for the weapon to achieve its final rounds per second
 	string_id rate_of_fire_deceleration; // function value sets the current rate of fire when the barrel is not firing
 	real deceleration_time; // the continuous idle time it takes for the weapon to return from its final rounds per second to its initial
 	real barrel_spin_scale; // scale the barrel spin speed by this amount
 	real blurred_rate_of_fire; // a percentage between 0 and 1 which controls how soon in its firing animation the weapon blurs
-	s_short_bounds shots_per_fire; // allows designer caps to the shots you can fire from one firing action
+	short_bounds shots_per_fire; // allows designer caps to the shots you can fire from one firing action
 	real fire_recovery_time; // how long after a set of shots it takes before the barrel can fire again
 	real soft_recovery_fraction; // how much of the recovery allows shots to be queued
 	real melee_fire_recovery_time; // how long after a set of shots it takes before the weapon can melee
@@ -455,7 +455,7 @@ static_assert(sizeof(s_weapon_barrel_projectile_distribution) == 0x8);
 struct s_weapon_barrel_projectile_error_parameters
 {
 	real minimum_error; // projectile direction is randomly selected between this and max_error_angle below
-	s_real_bounds error_angle; // current barrel_error is linearly interpolated between these to generate max_error_angle
+	real_bounds error_angle; // current barrel_error is linearly interpolated between these to generate max_error_angle
 };
 static_assert(sizeof(s_weapon_barrel_projectile_error_parameters) == 0xC);
 
@@ -482,13 +482,13 @@ static_assert(sizeof(s_weapon_barrel_accuracy_penalties) == 0x78);
 
 struct s_weapon_barrel_first_person_offset
 {
-	s_real_point3d first_person_offset; // +x is forward, +z is up, +y is left
+	real_point3d first_person_offset; // +x is forward, +z is up, +y is left
 };
 static_assert(sizeof(s_weapon_barrel_first_person_offset) == 0xC);
 
 struct s_weapon_barrel_firing_effect
 {
-	s_short_bounds shot_count_range; // the range of the number of times this firing effect will be used, once it has been chosen
+	short_bounds shot_count_range; // the range of the number of times this firing effect will be used, once it has been chosen
 	s_tag_reference firing_effect; // this effect is used when the weapon is loaded and fired normally
 	s_tag_reference misfire_effect; // this effect is used when the weapon is loaded but fired while overheated
 	s_tag_reference empty_effect; // this effect is used when the weapon is not loaded
@@ -530,7 +530,7 @@ struct s_weapon_barrel_definition
 
 	real acceleration_time;
 	real deceleration_time;
-	s_real_bounds damage_error_bounds;
+	real_bounds damage_error_bounds;
 
 	/* ------ error turn rates */
 
@@ -631,7 +631,7 @@ struct s_weapon_definition : s_item_definition
 	/* ------ zoom */
 
 	short magnification_levels; // the number of magnification levels this weapon allows
-	s_real_bounds magnification_range;
+	real_bounds magnification_range;
 
 	/* ------ aim assist */
 
@@ -640,8 +640,8 @@ struct s_weapon_definition : s_item_definition
 
 	/* ------ ballistics */
 
-	s_real_bounds ballistic_arcing_firing_bounds; // word units; at the min range (or closer), the minimum ballistic arcing is used, at the max (or farther away), the maximum arcing is used
-	s_real_bounds ballistic_arcing_fraction_bounds; // controls speed and degree of arc. 0 = low, fast, 1 = high, slow
+	real_bounds ballistic_arcing_firing_bounds; // word units; at the min range (or closer), the minimum ballistic arcing is used, at the max (or farther away), the maximum arcing is used
+	real_bounds ballistic_arcing_fraction_bounds; // controls speed and degree of arc. 0 = low, fast, 1 = high, slow
 
 	/* ------ movement */
 
@@ -713,9 +713,9 @@ struct s_weapon_definition : s_item_definition
 	real campaign_external_aging_amount;
 	real external_heat_amount;
 
-	s_real_vector3d first_person_weapon_offset;
-	s_real_vector2d first_person_scope_size;
-	s_real_bounds support_third_person_camera_range; // range in degrees. 0 is straight, -90 is down, 90 is up
+	real_vector3d first_person_weapon_offset;
+	real_vector2d first_person_scope_size;
+	real_bounds support_third_person_camera_range; // range in degrees. 0 is straight, -90 is down, 90 is up
 
 	real weapon_zoom_time; // in seconds
 	real weapon_ready_for_use_time; // in seconds

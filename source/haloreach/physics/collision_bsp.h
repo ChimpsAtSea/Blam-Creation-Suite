@@ -37,7 +37,7 @@ static_assert(sizeof(s_collision_bsp_leaf) == 0x8);
 
 struct s_bsp2d_node
 {
-	s_real_plane2d plane;
+	real_plane2d plane;
 	c_tag_block_index<s_bsp2d_node, short> left_child;
 	c_tag_block_index<s_bsp2d_node, short> right_child;
 };
@@ -45,7 +45,7 @@ static_assert(sizeof(s_bsp2d_node) == 0x10);
 
 struct s_bsp2d_reference
 {
-	c_tag_block_index<s_real_plane3d, short> plane;
+	c_tag_block_index<real_plane3d, short> plane;
 	c_tag_block_index<s_bsp2d_node, short> bsp2d_node;
 };
 static_assert(sizeof(s_bsp2d_reference) == 0x4);
@@ -55,7 +55,7 @@ struct s_collision_bsp_edge;
 
 struct s_collision_bsp_vertex
 {
-	s_real_point3d point;
+	real_point3d point;
 	c_tag_block_index<s_collision_bsp_edge, word> first_edge;
 	short sink;
 };
@@ -86,7 +86,7 @@ enum e_collision_bsp_surface_flags
 
 struct s_collision_bsp_surface
 {
-	c_tag_block_index<s_real_plane3d, word> plane;
+	c_tag_block_index<real_plane3d, word> plane;
 	c_tag_block_index<s_collision_bsp_edge, word> first_edge;
 	short material_index; // TODO: block index
 	c_enum<e_collision_bsp_surface_flags, byte> flags;
@@ -98,7 +98,7 @@ struct s_collision_bsp
 {
 	c_typed_tag_block<s_bsp3d_node> bsp3d_nodes;
 	c_typed_tag_block<s_bsp3d_kd_supernode> bsp3d_supernodes;
-	c_typed_tag_block<s_real_plane3d> planes;
+	c_typed_tag_block<real_plane3d> planes;
 	c_typed_tag_block<s_collision_bsp_leaf> leaves;
 	c_typed_tag_block<s_bsp2d_reference> bsp2d_references;
 	c_typed_tag_block<s_bsp2d_node> bsp2d_nodes;

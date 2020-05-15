@@ -106,10 +106,10 @@ enum e_object_runtime_flags
 struct s_object_early_mover_obb
 {
 	string_id node_name;
-	s_real_bounds x_bounds;
-	s_real_bounds y_bounds;
-	s_real_bounds z_bounds;
-	s_real_euler_angles3d angles;
+	real_bounds x_bounds;
+	real_bounds y_bounds;
+	real_bounds z_bounds;
+	real_euler_angles3d angles;
 };
 static_assert(sizeof(s_object_early_mover_obb) == 0x28);
 
@@ -250,8 +250,8 @@ static_assert(sizeof(s_object_widget) == 0x10);
 struct s_object_change_color_initial_permutation
 {
 	real weight;
-	s_real_rgb_color color_lower_bound;
-	s_real_rgb_color color_upper_bound;
+	rgb_color color_lower_bound;
+	rgb_color color_upper_bound;
 	string_id variant_name;
 };
 static_assert(sizeof(s_object_change_color_initial_permutation) == 0x20);
@@ -266,8 +266,8 @@ enum e_object_change_color_function_flags
 struct s_object_change_color_function
 {
 	c_enum<e_object_change_color_function_flags, long> flags;
-	s_real_rgb_color color_lower_bound;
-	s_real_rgb_color color_upper_bound;
+	rgb_color color_lower_bound;
+	rgb_color color_upper_bound;
 	string_id darken_by;
 	string_id scale_by;
 };
@@ -300,7 +300,7 @@ struct s_object_definition
 	short : 16;
 	c_enum<e_object_flags, long> object_flags;
 	real bounding_radius;
-	s_real_point3d bounding_offset;
+	real_point3d bounding_offset;
 	real horizontal_acceleration_scale;
 	real vertical_acceleration_scale;
 	real angular_acceleration_scale;
@@ -309,7 +309,7 @@ struct s_object_definition
 	c_enum<e_water_density, char> water_density;
 	c_flags<e_object_runtime_flags, dword> runtime_flags;
 	real dynamic_light_sphere_radius;
-	s_real_point3d dynamic_light_sphere_offset;
+	real_point3d dynamic_light_sphere_offset;
 	string_id generic_hud_text;
 	s_tag_reference generic_name_list;
 	s_tag_reference generic_service_tag_list;
