@@ -110,7 +110,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Shlwapi.lib;Dbghelp.lib;SymbolsLib.lib;Shared.lib;MantleLib.lib;MantleGen.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;ketchup.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>blofeld.lib;Shlwapi.lib;Dbghelp.lib;SymbolsLib.lib;Shared.lib;MantleLib.lib;MantleGen.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;ketchup.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -144,7 +144,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>Shlwapi.lib;Dbghelp.lib;SymbolsLib.lib;Shared.lib;MantleLib.lib;MantleGen.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;ketchup.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>blofeld.lib;Shlwapi.lib;Dbghelp.lib;SymbolsLib.lib;Shared.lib;MantleLib.lib;MantleGen.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;ketchup.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -182,7 +182,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Shlwapi.lib;Dbghelp.lib;SymbolsLib.lib;Shared.lib;MantleLib.lib;MantleGen.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;ketchup.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>blofeld.lib;Shlwapi.lib;Dbghelp.lib;SymbolsLib.lib;Shared.lib;MantleLib.lib;MantleGen.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;ketchup.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
@@ -220,7 +220,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>Shlwapi.lib;Dbghelp.lib;SymbolsLib.lib;Shared.lib;MantleLib.lib;MantleGen.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;ketchup.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>blofeld.lib;Shlwapi.lib;Dbghelp.lib;SymbolsLib.lib;Shared.lib;MantleLib.lib;MantleGen.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;opusframework.lib;ketchup.lib;tbb_static.lib;fsblib.lib;zlib.lib;blamlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
