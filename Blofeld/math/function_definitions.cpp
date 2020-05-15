@@ -5,8 +5,8 @@ namespace blofeld
 
 TAG_GROUP(curve_scalar, CURVE_SCALAR_TAG)
 {
-	{ _field_struct, "function" },
-	{ _field_terminator },
+	FIELD( _field_struct, "function" ),
+	FIELD( _field_terminator )
 };
 
 } // namespace blofeld

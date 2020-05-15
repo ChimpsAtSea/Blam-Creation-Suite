@@ -5,25 +5,25 @@ namespace blofeld
 
 TAG_BLOCK(bitmap_group_sequence, MAXIMUM_SEQUENCES_PER_BITMAP_GROUP)
 {
-	{ _field_string, "name^" },
-	{ _field_short_integer, "first bitmap index*" },
-	{ _field_short_integer, "bitmap count*" },
-	{ _field_pad, "OTXYKQ", 16 },
-	{ _field_block, "sprites*", &bitmap_group_sprite_block },
-	{ _field_terminator },
+	FIELD( _field_string, "name^" ),
+	FIELD( _field_short_integer, "first bitmap index*" ),
+	FIELD( _field_short_integer, "bitmap count*" ),
+	FIELD( _field_pad, "OTXYKQ", 16 ),
+	FIELD( _field_block, "sprites*", &bitmap_group_sprite_block ),
+	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(bitmap_group_sprite, MAXIMUM_SPRITES_PER_SEQUENCE)
 {
-	{ _field_short_integer, "bitmap index*" },
-	{ _field_pad, "D", 2 },
-	{ _field_pad, "GMLJPJIMC", 4 },
-	{ _field_real, "left*" },
-	{ _field_real, "right*" },
-	{ _field_real, "top*" },
-	{ _field_real, "bottom*" },
-	{ _field_real_point_2d, "registration point*" },
-	{ _field_terminator },
+	FIELD( _field_short_integer, "bitmap index*" ),
+	FIELD( _field_pad, "D", 2 ),
+	FIELD( _field_pad, "GMLJPJIMC", 4 ),
+	FIELD( _field_real, "left*" ),
+	FIELD( _field_real, "right*" ),
+	FIELD( _field_real, "top*" ),
+	FIELD( _field_real, "bottom*" ),
+	FIELD( _field_real_point_2d, "registration point*" ),
+	FIELD( _field_terminator )
 };
 
 } // namespace blofeld

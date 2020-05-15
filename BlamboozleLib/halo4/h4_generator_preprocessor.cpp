@@ -80,7 +80,6 @@ c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_
 	REFERENCE_ASSERT(tag_block);
 
 	name = name.substr(0, name.rfind("_block"));
-	bool y = name == "authored_light_probe";
 	uint32_t index = preprocessor.tag_block_name_unique_counter[name]++;
 	if (index > 0)
 	{
@@ -88,7 +87,6 @@ c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_
 		name += "$";
 		name += suffix;
 	}
-	bool x = name == "authored_light_probe2";
 	name_uppercase = name;
 	std::transform(name_uppercase.begin(), name_uppercase.end(), name_uppercase.begin(), ::toupper);
 

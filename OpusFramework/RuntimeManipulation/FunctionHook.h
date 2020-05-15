@@ -10,8 +10,10 @@ struct FunctionHook<build, offset, R(Args...)> : c_function_hook_base
 public:
 	typedef R(base_type)(Args...);
 
+#ifndef __clang__
 	static_assert(build == _build_not_set || offset >= GetEngineBaseAddress(engine_type), "Offset is out of bounds");
 	static_assert(build == _build_not_set || offset < GetEngineTopAddress(engine_type, build), "Offset is out of bounds");
+#endif
 
 	__forceinline decltype(auto) operator()(Args... arg)
 	{

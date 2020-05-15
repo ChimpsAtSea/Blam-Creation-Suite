@@ -17,6 +17,8 @@ struct s_cache_file_tag_interop
 	long count;
 };
 
+constexpr uint32_t k_cache_file_tags_section_signature = 'tags';
+
 struct s_cache_file_tags_header
 {
 	template <typename t_type>

@@ -5,16 +5,16 @@ namespace blofeld
 
 TAG_GROUP(wind, WIND_TAG)
 {
-	{ _field_explanation, "WIND DIRECTION" },
-	{ _field_struct, "direction" },
-	{ _field_struct, "speed" },
-	{ _field_explanation, "DECORATOR WIND MOTION" },
-	{ _field_struct, "bend" },
-	{ _field_struct, "oscillation" },
-	{ _field_struct, "frequency" },
-	{ _field_real, "gust size:world units" },
-	{ _field_tag_reference, "gust noise bitmap" },
-	{ _field_terminator },
+	FIELD( _field_explanation, "WIND DIRECTION" ),
+	FIELD( _field_struct, "direction" ),
+	FIELD( _field_struct, "speed" ),
+	FIELD( _field_explanation, "DECORATOR WIND MOTION" ),
+	FIELD( _field_struct, "bend" ),
+	FIELD( _field_struct, "oscillation" ),
+	FIELD( _field_struct, "frequency" ),
+	FIELD( _field_real, "gust size:world units" ),
+	FIELD( _field_tag_reference, "gust noise bitmap" ),
+	FIELD( _field_terminator )
 };
 
 } // namespace blofeld

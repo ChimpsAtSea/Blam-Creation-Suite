@@ -230,8 +230,9 @@ namespace blofeld
 		return nullptr;
 	}
 
-	struct s_tag_block;
 	struct s_tag_group;
+	struct s_tag_block;
+	struct s_tag_struct;
 
 	s_tag_group* get_tag_group_by_group_tag(uint32_t group_tag);
 	struct s_tag_block_validation_data
@@ -244,10 +245,13 @@ namespace blofeld
 	{
 		e_field const field_type;
 		const char* const name;
+		const char* const filename;
+		int32_t const line;
 		union
 		{
 			void* const value1;
 			const s_tag_block* const tag_block;
+			const s_tag_struct* const tag_struct;
 			uint32_t padding;
 			uint32_t length;
 		};
@@ -258,13 +262,17 @@ namespace blofeld
 		template<typename A, typename B>
 		s_tag_field(
 			e_field field_type,
-			const char* const name,
+			const char* filename,
+			int32_t line,
+			const char* name,
 			A&& value1,
 			B&& value2/*,
 			e_build min_version = 0,
 			e_build max_version = 0*/) :
 			field_type(field_type),
 			name(name),
+			filename(filename),
+			line(line),
 			value1((void*)(value1)),
 			value2((void*)(value1))/*,
 			min_version(min_version),
@@ -276,12 +284,16 @@ namespace blofeld
 		template<typename A>
 		s_tag_field(
 			e_field field_type,
-			const char* const name,
+			const char* filename,
+			int32_t line,
+			const char* name,
 			A&& value1/*,
 			e_build min_version = (e_build)0,
 			e_build max_version = (e_build)0*/) :
 			field_type(field_type),
 			name(name),
+			filename(filename),
+			line(line),
 			value1((void*)(value1)),
 			value2(nullptr)/*,
 			min_version(min_version),
@@ -292,11 +304,15 @@ namespace blofeld
 
 		s_tag_field(
 			e_field field_type,
-			const char* const name/*,
+			const char* filename,
+			int32_t line,
+			const char* name/*,
 			e_build min_version = (e_build)0,
 			e_build max_version = (e_build)0*/) :
 			field_type(field_type),
 			name(name),
+			filename(filename),
+			line(line),
 			value1(nullptr),
 			value2(nullptr)/*,
 			min_version(min_version),
@@ -306,11 +322,15 @@ namespace blofeld
 		}
 
 		s_tag_field(
-			e_field field_type/*,
+			e_field field_type,
+			const char* filename,
+			int32_t line/*,
 			e_build min_version = (e_build)0,
 			e_build max_version = (e_build)0*/) :
 			field_type(field_type),
 			name(nullptr),
+			filename(filename),
+			line(line),
 			value1(nullptr),
 			value2(nullptr)/*,
 			min_version(min_version),
@@ -320,7 +340,7 @@ namespace blofeld
 		}
 	};
 
-	struct s_tag_field_set
+	struct s_tag_struct
 	{
 		const char* const name;
 		const char* const display_name;
@@ -336,7 +356,7 @@ namespace blofeld
 		int32_t const line;
 		unsigned long const max_count;
 		const char* const max_count_string;
-		const s_tag_field_set& field_set;
+		const s_tag_struct& tag_struct;
 	};
 
 	struct s_tag_group

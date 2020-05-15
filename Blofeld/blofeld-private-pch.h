@@ -12,9 +12,11 @@
 #define VERSION_MAX(maximum_version) _build_not_set, maximum_version
 #define VERSION_MIN(minimum_version) minimum_version, _build_not_set
 
+#define FIELD(type, ...) { type, __FILE__, __LINE__ , ##__VA_ARGS__ }
+
 #define TAG_GROUP(tag_group_name, group_tag) \
 s_tag_field CONCAT(tag_group_name, _fields)[]; \
-s_tag_field_set CONCAT(tag_group_name, _field_set) = { #tag_group_name"_block_struct", #tag_group_name"_block_struct", {0}, CONCAT(tag_group_name, _fields) }; \
+s_tag_struct CONCAT(tag_group_name, _field_set) = { #tag_group_name"_block_struct", #tag_group_name"_block_struct", {0}, CONCAT(tag_group_name, _fields) }; \
 s_tag_block CONCAT(tag_group_name, _block) = { #tag_group_name"_block", #tag_group_name"_block", __FILE__, __LINE__, 1, "1", CONCAT(tag_group_name, _field_set) }; \
 s_tag_group CONCAT(tag_group_name, _group) = { #tag_group_name, group_tag, INVALID_TAG, CONCAT(tag_group_name, _block), nullptr }; \
 s_tag_field CONCAT(tag_group_name, _fields)[] =
@@ -24,14 +26,14 @@ s_tag_group CONCAT(tag_group_name, _group) = { #tag_group_name, group_tag, INVAL
 
 #define TAG_GROUP_INHERIT(tag_group_name, group_tag, parent_tag_group_name, parent_group_tag) \
 s_tag_field CONCAT(tag_group_name, _fields)[]; \
-s_tag_field_set CONCAT(tag_group_name, _field_set) = { #tag_group_name"_block_struct", #tag_group_name"_block_struct", {0}, CONCAT(tag_group_name, _fields) }; \
+s_tag_struct CONCAT(tag_group_name, _field_set) = { #tag_group_name"_block_struct", #tag_group_name"_block_struct", {0}, CONCAT(tag_group_name, _fields) }; \
 s_tag_block CONCAT(tag_group_name, _block) = { #tag_group_name"_block", #tag_group_name"_block", __FILE__, __LINE__, 1, "1", CONCAT(tag_group_name, _field_set) }; \
 s_tag_group CONCAT(tag_group_name, _group) = { #tag_group_name, group_tag, parent_group_tag, CONCAT(tag_group_name, _block), &CONCAT(parent_tag_group_name, _group) }; \
 s_tag_field CONCAT(tag_group_name, _fields)[] =
 
 #define TAG_BLOCK(tag_block_name, block_count) \
 s_tag_field CONCAT(tag_block_name, _fields)[]; \
-s_tag_field_set CONCAT(tag_block_name, _field_set) = { #tag_block_name"_block_struct", #tag_block_name"_block_struct", {0}, CONCAT(tag_block_name, _fields) }; \
+s_tag_struct CONCAT(tag_block_name, _field_set) = { #tag_block_name"_block_struct", #tag_block_name"_block_struct", {0}, CONCAT(tag_block_name, _fields) }; \
 s_tag_block CONCAT(tag_block_name, _block) = { #tag_block_name"_block", #tag_block_name"_block", __FILE__, __LINE__, block_count, #block_count, CONCAT(tag_block_name, _field_set) }; \
 s_tag_field CONCAT(tag_block_name, _fields)[] =
 

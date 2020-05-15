@@ -24,3 +24,17 @@ int WINAPI wWinMain(
 	bool failed_validation = blofeld::validate_halo4();
 	return fatal_validation ? fatal_validation : 0;
 }
+
+int main()
+{
+	SetThreadErrorMode(SEM_NOGPFAULTERRORBOX, NULL);
+	SetErrorMode(SEM_NOGPFAULTERRORBOX);
+
+	HMODULE hInstance = NULL;
+	GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, (LPCTSTR)wWinMain, &hInstance);
+
+	LPWSTR lpCmdLine = GetCommandLineW();
+
+	return wWinMain(hInstance, NULL, lpCmdLine, SW_SHOWNORMAL);
+}
+

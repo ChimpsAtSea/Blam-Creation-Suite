@@ -5,99 +5,99 @@ namespace blofeld
 
 TAG_BLOCK(pathfinding_data, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 {
-	{ _field_long_integer, "runtimeNavMesh*~!" },
-	{ _field_long_integer, "runtimeNavGraph*~!" },
-	{ _field_long_integer, "runtimeNavMediator*~!" },
-	{ _field_pad, "pads", 4 },
-	{ _field_data, "navGraphData*~" },
-	{ _field_data, "navMediatorData*~" },
-	{ _field_block, "faceUserData*~", &FaceUserDataBlock_block },
-	{ _field_long_integer, "structure checksum*~" },
-	{ _field_pad, "pads2", 8 },
-	{ _field_terminator },
+	FIELD( _field_long_integer, "runtimeNavMesh*~!" ),
+	FIELD( _field_long_integer, "runtimeNavGraph*~!" ),
+	FIELD( _field_long_integer, "runtimeNavMediator*~!" ),
+	FIELD( _field_pad, "pads", 4 ),
+	FIELD( _field_data, "navGraphData*~" ),
+	FIELD( _field_data, "navMediatorData*~" ),
+	FIELD( _field_block, "faceUserData*~", &FaceUserDataBlock_block ),
+	FIELD( _field_long_integer, "structure checksum*~" ),
+	FIELD( _field_pad, "pads2", 8 ),
+	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(FaceUserDataBlock, 256*1024)
 {
-	{ _field_short_integer, "m_flags*~" },
-	{ _field_pad, "pad", 2 },
-	{ _field_real, "currentMinPathDistance!*~" },
-	{ _field_real, "currentMinTargetApproachDistance!*~" },
-	{ _field_terminator },
+	FIELD( _field_short_integer, "m_flags*~" ),
+	FIELD( _field_pad, "pad", 2 ),
+	FIELD( _field_real, "currentMinPathDistance!*~" ),
+	FIELD( _field_real, "currentMinTargetApproachDistance!*~" ),
+	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(MobileNavMeshBlock, MAX_NUM_MOBILE_NAVMESHES)
 {
-	{ _field_long_integer, "runtimeNavMesh*~!" },
-	{ _field_long_integer, "runtimeNavGraph*~!" },
-	{ _field_long_integer, "runtimeNavMediator*~!" },
-	{ _field_pad, "pads2", 4 },
-	{ _field_data, "navGraphData*~" },
-	{ _field_data, "navMediatorData*~" },
-	{ _field_block, "faceUserData*~", &FaceUserDataBlock_block },
-	{ _field_struct, "object id" },
-	{ _field_byte_flags, "flags" },
-	{ _field_pad, "pads", 3 },
-	{ _field_terminator },
+	FIELD( _field_long_integer, "runtimeNavMesh*~!" ),
+	FIELD( _field_long_integer, "runtimeNavGraph*~!" ),
+	FIELD( _field_long_integer, "runtimeNavMediator*~!" ),
+	FIELD( _field_pad, "pads2", 4 ),
+	FIELD( _field_data, "navGraphData*~" ),
+	FIELD( _field_data, "navMediatorData*~" ),
+	FIELD( _field_block, "faceUserData*~", &FaceUserDataBlock_block ),
+	FIELD( _field_struct, "object id" ),
+	FIELD( _field_byte_flags, "flags" ),
+	FIELD( _field_pad, "pads", 3 ),
+	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(NavVolumeBlock, MAX_NUM_NAV_VOLUMES)
 {
-	{ _field_short_integer, "zoneIndex*~" },
-	{ _field_short_integer, "areaIndex*~" },
-	{ _field_long_integer, "runtimeNavVolume*~!" },
-	{ _field_long_integer, "runtimeNavMediator*~!" },
-	{ _field_data, "navMediatorData*~" },
-	{ _field_terminator },
+	FIELD( _field_short_integer, "zoneIndex*~" ),
+	FIELD( _field_short_integer, "areaIndex*~" ),
+	FIELD( _field_long_integer, "runtimeNavVolume*~!" ),
+	FIELD( _field_long_integer, "runtimeNavMediator*~!" ),
+	FIELD( _field_data, "navMediatorData*~" ),
+	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(NavClimbBlock, MAX_NUM_NAV_CLIMBS)
 {
-	{ _field_long_integer, "runtimeNavMesh*~!" },
-	{ _field_long_integer, "runtimeNavGraph*~!" },
-	{ _field_long_integer, "runtimeNavMediator*~!" },
-	{ _field_pad, "pads", 4 },
-	{ _field_data, "navGraphData*~" },
-	{ _field_data, "navMediatorData*~" },
-	{ _field_block, "faceUserData*~", &FaceUserDataBlock_block },
-	{ _field_short_integer, "zoneIndex*~" },
-	{ _field_short_integer, "areaIndex*~" },
-	{ _field_pad, "pads2", 8 },
-	{ _field_terminator },
+	FIELD( _field_long_integer, "runtimeNavMesh*~!" ),
+	FIELD( _field_long_integer, "runtimeNavGraph*~!" ),
+	FIELD( _field_long_integer, "runtimeNavMediator*~!" ),
+	FIELD( _field_pad, "pads", 4 ),
+	FIELD( _field_data, "navGraphData*~" ),
+	FIELD( _field_data, "navMediatorData*~" ),
+	FIELD( _field_block, "faceUserData*~", &FaceUserDataBlock_block ),
+	FIELD( _field_short_integer, "zoneIndex*~" ),
+	FIELD( _field_short_integer, "areaIndex*~" ),
+	FIELD( _field_pad, "pads2", 8 ),
+	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(user_edge, 4*1024)
 {
-	{ _field_real_vector_3d, "m_x*~" },
-	{ _field_real, "havok w m_x*~!" },
-	{ _field_real_vector_3d, "m_y*~" },
-	{ _field_real, "havok w m_y*~!" },
-	{ _field_real_vector_3d, "m_z*~" },
-	{ _field_real, "havok w m_z*~!" },
-	{ _field_long_integer, "m_meshUidA*~" },
-	{ _field_long_integer, "m_meshUidB*~" },
-	{ _field_long_integer, "m_faceA*~" },
-	{ _field_long_integer, "m_faceB*~" },
-	{ _field_long_integer, "m_userDataA*~" },
-	{ _field_long_integer, "m_userDataB*~" },
-	{ _field_short_integer, "m_costAtoB*~" },
-	{ _field_short_integer, "m_costBtoA*~" },
-	{ _field_char_integer, "m_direction*~" },
-	{ _field_pad, "padding", 3 },
-	{ _field_terminator },
+	FIELD( _field_real_vector_3d, "m_x*~" ),
+	FIELD( _field_real, "havok w m_x*~!" ),
+	FIELD( _field_real_vector_3d, "m_y*~" ),
+	FIELD( _field_real, "havok w m_y*~!" ),
+	FIELD( _field_real_vector_3d, "m_z*~" ),
+	FIELD( _field_real, "havok w m_z*~!" ),
+	FIELD( _field_long_integer, "m_meshUidA*~" ),
+	FIELD( _field_long_integer, "m_meshUidB*~" ),
+	FIELD( _field_long_integer, "m_faceA*~" ),
+	FIELD( _field_long_integer, "m_faceB*~" ),
+	FIELD( _field_long_integer, "m_userDataA*~" ),
+	FIELD( _field_long_integer, "m_userDataB*~" ),
+	FIELD( _field_short_integer, "m_costAtoB*~" ),
+	FIELD( _field_short_integer, "m_costBtoA*~" ),
+	FIELD( _field_char_integer, "m_direction*~" ),
+	FIELD( _field_pad, "padding", 3 ),
+	FIELD( _field_terminator )
 };
 
 TAG_GROUP(pathfinding, PATHFINDING_TAG)
 {
-	{ _field_block, "bsp pathfinding data", &pathfinding_data_block },
-	{ _field_block, "mobileNavMeshes*~", &MobileNavMeshBlock_block },
-	{ _field_block, "navVolumes*~", &NavVolumeBlock_block },
-	{ _field_block, "navClimbs*~", &NavClimbBlock_block },
-	{ _field_block, "user edges*~", &user_edge_block },
-	{ _field_block, "hints", &user_hint_block },
-	{ _field_byte_integer, "already Converted!" },
-	{ _field_pad, "fuckPad", 3 },
-	{ _field_terminator },
+	FIELD( _field_block, "bsp pathfinding data", &pathfinding_data_block ),
+	FIELD( _field_block, "mobileNavMeshes*~", &MobileNavMeshBlock_block ),
+	FIELD( _field_block, "navVolumes*~", &NavVolumeBlock_block ),
+	FIELD( _field_block, "navClimbs*~", &NavClimbBlock_block ),
+	FIELD( _field_block, "user edges*~", &user_edge_block ),
+	FIELD( _field_block, "hints", &user_hint_block ),
+	FIELD( _field_byte_integer, "already Converted!" ),
+	FIELD( _field_pad, "fuckPad", 3 ),
+	FIELD( _field_terminator )
 };
 
 } // namespace blofeld

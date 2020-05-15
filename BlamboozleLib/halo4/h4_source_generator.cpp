@@ -396,11 +396,11 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		case _h4_field_type_useless_pad:
 			if (tag_field->name)
 			{
-				ss << "\t{ " << field_generic_type_name << ", \"" << field_name << "\" }," << std::endl;
+				ss << "\tFIELD( " << field_generic_type_name << ", \"" << field_name << "\" )," << std::endl;
 			}
 			else
 			{
-				ss << "\t{ " << field_generic_type_name << " }," << std::endl;
+				ss << "\tFIELD( " << field_generic_type_name << " )," << std::endl;
 			}
 			break;
 		case _h4_field_type_block:
@@ -411,7 +411,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			c_h4_tag_block_container* tag_block_container = preprocessor.find_existing_tag_block_container(block_field->tag_block_definition);
 			ASSERT(tag_block_container);
 
-			ss << "\t{ " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_block_container->name << "_block }," << std::endl;
+			ss << "\tFIELD( " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_block_container->name << "_block )," << std::endl;
 			break;
 		}
 		case _h4_field_type_pad:
@@ -426,11 +426,11 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 
 			if (tag_field->name)
 			{
-				ss << "\t{ " << field_generic_type_name << ", \"" << field_name << "\", " << argument << " }," << std::endl;
+				ss << "\tFIELD( " << field_generic_type_name << ", \"" << field_name << "\", " << argument << " )," << std::endl;
 			}
 			else
 			{
-				ss << "\t{ " << field_generic_type_name << ", " << argument << " }," << std::endl;
+				ss << "\tFIELD( " << field_generic_type_name << ", " << argument << " )," << std::endl;
 			}
 			break;
 		}
@@ -438,5 +438,5 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			throw; // unexpected type
 		}
 	}
-	ss << "\t{ " << "_field_terminator" << " }," << std::endl;
+	ss << "\tFIELD( _field_terminator )" << std::endl;
 }
