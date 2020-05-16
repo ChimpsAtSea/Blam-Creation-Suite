@@ -61,7 +61,7 @@ namespace blofeld
 			block_failed_validation |= computed_size != expected_size;
 			if (block_failed_validation)
 			{
-				write_line_verbose("%s(%i): warning V2000: struct '%s' failed validation. size 0x%x expected 0x%x", tag_struct.filename, tag_struct.line, block_name, computed_size, expected_size);
+				write_line_verbose("%s(%i): warning V2000: struct '%s' failed validation. computed size 0x%x expected 0x%x", tag_struct.filename, tag_struct.line, block_name, computed_size, expected_size);
 			}
 			else
 			{
