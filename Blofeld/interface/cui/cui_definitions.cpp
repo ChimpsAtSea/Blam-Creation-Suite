@@ -3,68 +3,17 @@
 namespace blofeld
 {
 
-TAG_STRUCT(cui_logic_struct_definition)
-{
-	FIELD( _field_string_id, "logic name" ),
-	FIELD( _field_tag_reference, "string list" ),
-	FIELD( _field_struct, "system", &cui_system_struct_definition ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(cui_logic, CUI_LOGIC_TAG, cui_logic_block_block )
 
-TAG_STRUCT(cui_screen_struct_definition)
-{
-	FIELD( _field_block, "string references", &string_file_references ),
-	FIELD( _field_tag_reference, "logic" ),
-	FIELD( _field_struct, "system", &cui_system_struct_definition ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(cui_screen, CUI_SCREEN_TAG, cui_screen_block_block )
 
-TAG_STRUCT(cui_static_data_struct_definition)
-{
-	FIELD( _field_struct, "static data", &static_data_struct_struct_definition ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(cui_static_data, CUI_STATIC_DATA_TAG, cui_static_data_block_block )
 
-TAG_STRUCT(properties_struct)
-{
-	FIELD( _field_block, "long properties", &property_long_value ),
-	FIELD( _field_block, "real properties", &property_real_value ),
-	FIELD( _field_block, "string_id properties", &property_string_id_value ),
-	FIELD( _field_block, "component ptr properties", &propertyComponentPtrValue ),
-	FIELD( _field_block, "tag reference properties", &property_tag_reference_value ),
-	FIELD( _field_block, "string properties", &property_text_value ),
-	FIELD( _field_block, "argb color properties", &property_argb_color_value ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(cui_logic_block, 1, cui_logic_struct_definition_struct_definition );
 
-TAG_STRUCT(cui_system)
-{
-	FIELD( _field_block, "template instantiations", &template_instantiation_block_definition ),
-	FIELD( _field_block, "components", &component_definition ),
-	FIELD( _field_block, "component indices", &component_index_block_definition ),
-	FIELD( _field_block, "overlays", &overlay_definition ),
-	FIELD( _field_block, "overlays editor only", &overlay_editor_only_definition ),
-	FIELD( _field_block, "property bindings", &property_binding ),
-	FIELD( _field_block, "binding conversion long comparisons", &binding_conversion_long_comparison_block_definition ),
-	FIELD( _field_block, "static data tables", &static_data_table ),
-	FIELD( _field_block, "expressions", &expression ),
-	FIELD( _field_block, "encapsulated properties", &encapsulatedProperties ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(cui_screen_block, 1, cui_screen_struct_definition_struct_definition );
 
-TAG_STRUCT(static_data_struct)
-{
-	FIELD( _field_block, "columns", &static_data_column ),
-	FIELD( _field_block, "rows", &static_data_row ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(animation_scalar_function)
-{
-	FIELD( _field_custom ),
-	FIELD( _field_struct, "scalar function", &mapping_function_struct_definition ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(cui_static_data_block, 1, cui_static_data_struct_definition_struct_definition );
 
 TAG_BLOCK(template_instantiation_block_definition, k_cui_max_component_count)
 {
@@ -94,8 +43,8 @@ TAG_BLOCK(overlay_definition, k_cui_max_overlay_count)
 {
 	FIELD( _field_string_id, "resolution" ),
 	FIELD( _field_string_id, "theme" ),
-	FIELD( _field_block, "components", &component_properties_definition ),
-	FIELD( _field_block, "animations", &animation_definition ),
+	FIELD( _field_block, "components", &component_properties_definition_block ),
+	FIELD( _field_block, "animations", &animation_definition_block ),
 	FIELD( _field_terminator )
 };
 
@@ -164,7 +113,7 @@ TAG_BLOCK(animation_definition, k_cui_max_animation_count)
 	FIELD( _field_real, "time exponential offset" ),
 	FIELD( _field_char_enum, "animation input" ),
 	FIELD( _field_pad, "pad0", 3 ),
-	FIELD( _field_block, "components", &animation_component_definition ),
+	FIELD( _field_block, "components", &animation_component_definition_block ),
 	FIELD( _field_terminator )
 };
 
@@ -172,8 +121,8 @@ TAG_BLOCK(animation_component_definition, k_cui_max_component_count)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_long_integer, "total milliseconds" ),
-	FIELD( _field_block, "real properties", &animation_component_real_property ),
-	FIELD( _field_block, "argb color properties", &animation_component_argb_color_property ),
+	FIELD( _field_block, "real properties", &animation_component_real_property_block ),
+	FIELD( _field_block, "argb color properties", &animation_component_argb_color_property_block ),
 	FIELD( _field_terminator )
 };
 
@@ -184,7 +133,7 @@ TAG_BLOCK(animation_component_real_property, 8*k_kilo)
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_pad, "pad0", 1 ),
 	FIELD( _field_long_integer, "total milliseconds" ),
-	FIELD( _field_block, "real keyframes", &animation_property_keyframe_real_value ),
+	FIELD( _field_block, "real keyframes", &animation_property_keyframe_real_value_block ),
 	FIELD( _field_terminator )
 };
 
@@ -203,7 +152,7 @@ TAG_BLOCK(animation_component_argb_color_property, 8*k_kilo)
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_pad, "pad0", 1 ),
 	FIELD( _field_long_integer, "total milliseconds" ),
-	FIELD( _field_block, "argb color keyframes", &animation_property_keyframe_argb_color_value ),
+	FIELD( _field_block, "argb color keyframes", &animation_property_keyframe_argb_color_value_block ),
 	FIELD( _field_terminator )
 };
 
@@ -220,8 +169,8 @@ TAG_BLOCK(overlay_editor_only_definition, k_cui_max_overlay_count)
 	FIELD( _field_string_id, "resolution" ),
 	FIELD( _field_string_id, "theme" ),
 	FIELD( _field_byte_flags, "flags" ),
-	FIELD( _field_block, "components editor only", &component_editor_only_definition ),
-	FIELD( _field_block, "animations editor only", &animation_editor_only_definition ),
+	FIELD( _field_block, "components editor only", &component_editor_only_definition_block ),
+	FIELD( _field_block, "animations editor only", &animation_editor_only_definition_block ),
 	FIELD( _field_pad, "pad0", 3 ),
 	FIELD( _field_terminator )
 };
@@ -229,7 +178,7 @@ TAG_BLOCK(overlay_editor_only_definition, k_cui_max_overlay_count)
 TAG_BLOCK(component_editor_only_definition, k_cui_max_component_count)
 {
 	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_block, "properties editor only", &property_editor_only_definition ),
+	FIELD( _field_block, "properties editor only", &property_editor_only_definition_block ),
 	FIELD( _field_terminator )
 };
 
@@ -244,7 +193,7 @@ TAG_BLOCK(property_editor_only_definition, k_cui_max_property_count)
 TAG_BLOCK(animation_editor_only_definition, k_cui_max_animation_count)
 {
 	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_block, "components editor only", &component_editor_only_definition ),
+	FIELD( _field_block, "components editor only", &component_editor_only_definition_block ),
 	FIELD( _field_terminator )
 };
 
@@ -291,7 +240,7 @@ TAG_BLOCK(expression, 128)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_long_string, "expression text" ),
-	FIELD( _field_block, "steps", &expression_step ),
+	FIELD( _field_block, "steps", &expression_step_block ),
 	FIELD( _field_terminator )
 };
 
@@ -309,7 +258,7 @@ TAG_BLOCK(expression_step, s_cui_expression_step_definition::k_maximum_step_coun
 TAG_BLOCK(encapsulatedProperties, k_cuiMaxEncapsulationCount)
 {
 	FIELD( _field_string_id, "encapsulation name^" ),
-	FIELD( _field_block, "properties", &static_data_column ),
+	FIELD( _field_block, "properties", &static_data_column_block ),
 	FIELD( _field_terminator )
 };
 
@@ -319,7 +268,7 @@ TAG_BLOCK(string_file_references, 16)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(cui_logic_block, CUI_LOGIC_TAG)
+TAG_STRUCT(cui_logic_struct_definition)
 {
 	FIELD( _field_string_id, "logic name" ),
 	FIELD( _field_tag_reference, "string list" ),
@@ -327,17 +276,58 @@ TAG_GROUP(cui_logic_block, CUI_LOGIC_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(cui_screen_block, CUI_SCREEN_TAG)
+TAG_STRUCT(cui_screen_struct_definition)
 {
-	FIELD( _field_block, "string references", &string_file_references ),
+	FIELD( _field_block, "string references", &string_file_references_block ),
 	FIELD( _field_tag_reference, "logic" ),
 	FIELD( _field_struct, "system", &cui_system_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(cui_static_data_block, CUI_STATIC_DATA_TAG)
+TAG_STRUCT(cui_static_data_struct_definition)
 {
 	FIELD( _field_struct, "static data", &static_data_struct_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(properties_struct)
+{
+	FIELD( _field_block, "long properties", &property_long_value_block ),
+	FIELD( _field_block, "real properties", &property_real_value_block ),
+	FIELD( _field_block, "string_id properties", &property_string_id_value_block ),
+	FIELD( _field_block, "component ptr properties", &propertyComponentPtrValue_block ),
+	FIELD( _field_block, "tag reference properties", &property_tag_reference_value_block ),
+	FIELD( _field_block, "string properties", &property_text_value_block ),
+	FIELD( _field_block, "argb color properties", &property_argb_color_value_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(cui_system)
+{
+	FIELD( _field_block, "template instantiations", &template_instantiation_block_definition_block ),
+	FIELD( _field_block, "components", &component_definition_block ),
+	FIELD( _field_block, "component indices", &component_index_block_definition_block ),
+	FIELD( _field_block, "overlays", &overlay_definition_block ),
+	FIELD( _field_block, "overlays editor only", &overlay_editor_only_definition_block ),
+	FIELD( _field_block, "property bindings", &property_binding_block ),
+	FIELD( _field_block, "binding conversion long comparisons", &binding_conversion_long_comparison_block_definition_block ),
+	FIELD( _field_block, "static data tables", &static_data_table_block ),
+	FIELD( _field_block, "expressions", &expression_block ),
+	FIELD( _field_block, "encapsulated properties", &encapsulatedProperties_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(static_data_struct)
+{
+	FIELD( _field_block, "columns", &static_data_column_block ),
+	FIELD( _field_block, "rows", &static_data_row_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(animation_scalar_function)
+{
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "scalar function", &mapping_function_struct_definition ),
 	FIELD( _field_terminator )
 };
 

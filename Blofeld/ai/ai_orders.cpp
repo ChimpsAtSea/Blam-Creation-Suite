@@ -24,12 +24,12 @@ TAG_BLOCK(orders_block, 300)
 	FIELD( _field_short_integer, "Script index*!" ),
 	FIELD( _field_short_block_index, "Follow squad" ),
 	FIELD( _field_real, "follow radius" ),
-	FIELD( _field_block, "Primary area set", &area_reference_block ),
-	FIELD( _field_block, "Secondary area set", &area_reference_block ),
-	FIELD( _field_block, "Secondary set trigger", &secondary_set_trigger_block ),
-	FIELD( _field_block, "Special movement", &special_movement_block ),
+	FIELD( _field_block, "Primary area set", &area_reference_block_block ),
+	FIELD( _field_block, "Secondary area set", &area_reference_block_block ),
+	FIELD( _field_block, "Secondary set trigger", &secondary_set_trigger_block_block ),
+	FIELD( _field_block, "Special movement", &special_movement_block_block ),
 	FIELD( _field_useless_pad ),
-	FIELD( _field_block, "Order endings", &order_ending_block ),
+	FIELD( _field_block, "Order endings", &order_ending_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -37,7 +37,7 @@ TAG_BLOCK(secondary_set_trigger_block, 1)
 {
 	FIELD( _field_enum, "combination rule" ),
 	FIELD( _field_enum, "dialogue type#when this ending is triggered, launch a dialogue event of the given type" ),
-	FIELD( _field_block, "triggers", &trigger_references ),
+	FIELD( _field_block, "triggers", &trigger_references_block ),
 	FIELD( _field_terminator )
 };
 
@@ -49,7 +49,7 @@ TAG_BLOCK(order_ending_block, 12)
 	FIELD( _field_enum, "dialogue type#when this ending is triggered, launch a dialogue event of the given type" ),
 	FIELD( _field_pad, "YVKPCQIYY", 2 ),
 	FIELD( _field_useless_pad ),
-	FIELD( _field_block, "triggers", &trigger_references ),
+	FIELD( _field_block, "triggers", &trigger_references_block ),
 	FIELD( _field_terminator )
 };
 
@@ -61,7 +61,7 @@ TAG_BLOCK(triggers_block, 256)
 	FIELD( _field_enum, "combination rule" ),
 	FIELD( _field_pad, "XXCMMRUP", 2 ),
 	FIELD( _field_useless_pad ),
-	FIELD( _field_block, "conditions", &order_completion_condition ),
+	FIELD( _field_block, "conditions", &order_completion_condition_block ),
 	FIELD( _field_terminator )
 };
 

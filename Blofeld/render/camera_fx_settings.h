@@ -3,6 +3,13 @@
 namespace blofeld
 {
 
+constexpr unsigned long CAMERA_FX_SETTINGS_TAG = 'cfxs';
+
+extern s_tag_struct camera_fx_settings_block_struct;
+extern s_tag_block_definition camera_fx_settings_block;
+extern s_tag_group camera_fx_settings_group;
+
+
 extern s_tag_struct camera_fx_exposure_struct_struct_definition;
 extern s_tag_struct camera_fx_exposure_sensitivity_struct_struct_definition;
 extern s_tag_struct camera_fx_bloom_highlight_struct_struct_definition;
@@ -21,10 +28,5 @@ extern s_tag_struct camera_fx_self_illum_scale_struct_struct_definition;
 extern s_tag_struct camera_fx_color_grading_struct_struct_definition;
 extern s_tag_struct camera_fx_filmic_tone_curve_struct_struct_definition;
 
-
-constexpr unsigned long CAMERA_FX_SETTINGS_TAG = 'cfxs';
-
-extern s_tag_block_definition camera_fx_settings_block;
-extern s_tag_group camera_fx_settings_group;
 } // namespace blofeld
 

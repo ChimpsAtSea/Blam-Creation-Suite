@@ -3,29 +3,6 @@
 namespace blofeld
 {
 
-TAG_STRUCT(structureIOHavokDataBlock_struct)
-{
-	FIELD( _field_long_integer, "version*" ),
-	FIELD( _field_long_integer, "RuntimeDeserializedBody Pointer*!" ),
-	FIELD( _field_long_integer, "RuntimeDeserializedData Pointer*!" ),
-	FIELD( _field_long_integer, "Prefab Index*!" ),
-	FIELD( _field_data, "Serialized Havok Data*" ),
-	FIELD( _field_block, "Serialized Per Collision Type Havok Geometry", &SerializedHavokGeometryDataBlock ),
-	FIELD( _field_real_point_3d, "Shapes bounds min!*" ),
-	FIELD( _field_real_point_3d, "Shapes bounds max!*" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(SerializedHavokGeometryDataBlock_struct)
-{
-	FIELD( _field_data, "Serialized Havok Data*" ),
-	FIELD( _field_data, "Serialized Static Havok Data*" ),
-	FIELD( _field_long_integer, "collision type" ),
-	FIELD( _field_long_integer, "RuntimeDeserializedBody Pointer*!" ),
-	FIELD( _field_long_integer, "RuntimeDeserializedData Pointer*!" ),
-	FIELD( _field_terminator )
-};
-
 TAG_BLOCK(global_render_model_instance_placement_block, k_maximum_instance_placements_per_render_model)
 {
 	FIELD( _field_string_id, "name^*" ),
@@ -101,6 +78,29 @@ TAG_BLOCK(structure_bsp_instanced_geometry_definition_block, k_maximum_instance_
 TAG_BLOCK_FROM_STRUCT(structureIOHavokDataBlock, 1, structureIOHavokDataBlock_struct_struct_definition );
 
 TAG_BLOCK_FROM_STRUCT(SerializedHavokGeometryDataBlock, 5, SerializedHavokGeometryDataBlock_struct_struct_definition );
+
+TAG_STRUCT(structureIOHavokDataBlock_struct)
+{
+	FIELD( _field_long_integer, "version*" ),
+	FIELD( _field_long_integer, "RuntimeDeserializedBody Pointer*!" ),
+	FIELD( _field_long_integer, "RuntimeDeserializedData Pointer*!" ),
+	FIELD( _field_long_integer, "Prefab Index*!" ),
+	FIELD( _field_data, "Serialized Havok Data*" ),
+	FIELD( _field_block, "Serialized Per Collision Type Havok Geometry", &SerializedHavokGeometryDataBlock_block ),
+	FIELD( _field_real_point_3d, "Shapes bounds min!*" ),
+	FIELD( _field_real_point_3d, "Shapes bounds max!*" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(SerializedHavokGeometryDataBlock_struct)
+{
+	FIELD( _field_data, "Serialized Havok Data*" ),
+	FIELD( _field_data, "Serialized Static Havok Data*" ),
+	FIELD( _field_long_integer, "collision type" ),
+	FIELD( _field_long_integer, "RuntimeDeserializedBody Pointer*!" ),
+	FIELD( _field_long_integer, "RuntimeDeserializedData Pointer*!" ),
+	FIELD( _field_terminator )
+};
 
 } // namespace blofeld
 

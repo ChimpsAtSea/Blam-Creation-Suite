@@ -3,6 +3,10 @@
 namespace blofeld
 {
 
+TAG_GROUP_FROM_BLOCK(curve_scalar, CURVE_SCALAR_TAG, curve_scalar_block_block )
+
+TAG_BLOCK_FROM_STRUCT(curve_scalar_block, 1, curve_scalar_struct_definition_struct_definition );
+
 TAG_STRUCT(curve_scalar_struct_definition)
 {
 	FIELD( _field_struct, "function", &scalar_function_named_struct_default_one_struct_definition ),
@@ -43,12 +47,6 @@ TAG_STRUCT(color_function_named_struct)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_struct, "function", &mapping_function_struct_definition ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(curve_scalar_block, CURVE_SCALAR_TAG)
-{
-	FIELD( _field_struct, "function", &scalar_function_named_struct_default_one_struct_definition ),
 	FIELD( _field_terminator )
 };
 

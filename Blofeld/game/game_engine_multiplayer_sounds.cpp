@@ -3,17 +3,13 @@
 namespace blofeld
 {
 
-TAG_STRUCT(sound_response_struct_definition)
-{
-	FIELD( _field_block, "responses", &sound_response_data_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(sound_response, SOUND_RESPONSE_TAG, sound_response_block_block )
 
-TAG_STRUCT(sound_incident_response_struct_definition)
-{
-	FIELD( _field_block, "responses", &sound_incident_response_data_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(sound_incident_response, SOUND_INCIDENT_RESPONSE_TAG, sound_incident_response_block_block )
+
+TAG_BLOCK_FROM_STRUCT(sound_response_block, 1, sound_response_struct_definition_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(sound_incident_response_block, 1, sound_incident_response_struct_definition_struct_definition );
 
 TAG_BLOCK(sound_response_data_block, 10)
 {
@@ -26,8 +22,8 @@ TAG_BLOCK(sound_response_data_block, 10)
 	FIELD( _field_real, "gap after sound" ),
 	FIELD( _field_byte_flags, "queue behavior" ),
 	FIELD( _field_pad, "SRBQXEK", 3 ),
-	FIELD( _field_block, "potential responses", &sound_response_permutation_block ),
-	FIELD( _field_block, "combiners", &sound_combine_response_block ),
+	FIELD( _field_block, "potential responses", &sound_response_permutation_block_block ),
+	FIELD( _field_block, "combiners", &sound_combine_response_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -56,15 +52,15 @@ TAG_BLOCK(sound_incident_response_data_block, 10)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(sound_response_block, SOUND_RESPONSE_TAG)
+TAG_STRUCT(sound_response_struct_definition)
 {
-	FIELD( _field_block, "responses", &sound_response_data_block ),
+	FIELD( _field_block, "responses", &sound_response_data_block_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(sound_incident_response_block, SOUND_INCIDENT_RESPONSE_TAG)
+TAG_STRUCT(sound_incident_response_struct_definition)
 {
-	FIELD( _field_block, "responses", &sound_incident_response_data_block ),
+	FIELD( _field_block, "responses", &sound_incident_response_data_block_block ),
 	FIELD( _field_terminator )
 };
 

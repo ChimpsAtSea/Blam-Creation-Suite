@@ -3,54 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(lens_flare_struct_definition)
-{
-	FIELD( _field_explanation, "LENS FLARE" ),
-	FIELD( _field_angle, "falloff angle:degrees" ),
-	FIELD( _field_angle, "cutoff angle:degrees" ),
-	FIELD( _field_explanation, "OCCLUSION" ),
-	FIELD( _field_long_integer, "occlusion reflection index#occlusion information will be generated against the size of this reflection" ),
-	FIELD( _field_real, "occlusion offset distance:world units#distance along offset direction used to test occlusion" ),
-	FIELD( _field_enum, "occlusion offset direction" ),
-	FIELD( _field_pad, "PANTS", 2 ),
-	FIELD( _field_real, "occlusion inner radius scale#percent of the corona to occlude against (ie 0.25, 0.125, etc)" ),
-	FIELD( _field_real, "near fade begin distance:world units#distance where the lens flare starts to fade in" ),
-	FIELD( _field_real, "near fade end distance:world units#distance where the lens flare is fully faded in" ),
-	FIELD( _field_real, "near fade distance:world units#distance at which the lens flare brightness is maximum" ),
-	FIELD( _field_real, "far fade distance:world units#distance at which the lens flare brightness is minimum; set to zero to disable distance fading" ),
-	FIELD( _field_tag_reference, "bitmap" ),
-	FIELD( _field_word_flags, "flags" ),
-	FIELD( _field_short_integer, "runtime flags!" ),
-	FIELD( _field_enum, "rotation function" ),
-	FIELD( _field_pad, "WWZC", 2 ),
-	FIELD( _field_angle, "rotation function scale:degrees" ),
-	FIELD( _field_explanation, "EFFECT PARAMETERS" ),
-	FIELD( _field_enum, "falloff function" ),
-	FIELD( _field_pad, "COYUTLR", 2 ),
-	FIELD( _field_block, "reflections", &lens_flare_reflection_block ),
-	FIELD( _field_explanation, "ANIMATION" ),
-	FIELD( _field_word_flags, "animation flags" ),
-	FIELD( _field_pad, "AQVC", 2 ),
-	FIELD( _field_block, "time brightness", &lens_flare_scalar_animation_block ),
-	FIELD( _field_block, "age brightness", &lens_flare_scalar_animation_block ),
-	FIELD( _field_block, "time color", &lens_flare_color_animation_block ),
-	FIELD( _field_block, "age color", &lens_flare_color_animation_block ),
-	FIELD( _field_block, "time rotation", &lens_flare_scalar_animation_block ),
-	FIELD( _field_block, "age rotation", &lens_flare_scalar_animation_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(lens_flare, LENS_FLARE_TAG, lens_flare_block_block )
 
-TAG_STRUCT(lens_flare_color_function_struct)
-{
-	FIELD( _field_string_id, "Input Variable!" ),
-	FIELD( _field_string_id, "Range Variable!" ),
-	FIELD( _field_enum, "Output Modifier!" ),
-	FIELD( _field_pad, "BVCG1", 2 ),
-	FIELD( _field_string_id, "Output Modifier Input!" ),
-	FIELD( _field_custom ),
-	FIELD( _field_struct, "lens flare color mapping", &mapping_function_struct_definition ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(lens_flare_block, 1, lens_flare_struct_definition_struct_definition );
 
 TAG_BLOCK(lens_flare_reflection_block, k_maximum_reflections_per_lens_flare)
 {
@@ -86,7 +41,7 @@ TAG_BLOCK(lens_flare_color_animation_block, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(lens_flare_block, LENS_FLARE_TAG)
+TAG_STRUCT(lens_flare_struct_definition)
 {
 	FIELD( _field_explanation, "LENS FLARE" ),
 	FIELD( _field_angle, "falloff angle:degrees" ),
@@ -110,16 +65,28 @@ TAG_GROUP(lens_flare_block, LENS_FLARE_TAG)
 	FIELD( _field_explanation, "EFFECT PARAMETERS" ),
 	FIELD( _field_enum, "falloff function" ),
 	FIELD( _field_pad, "COYUTLR", 2 ),
-	FIELD( _field_block, "reflections", &lens_flare_reflection_block ),
+	FIELD( _field_block, "reflections", &lens_flare_reflection_block_block ),
 	FIELD( _field_explanation, "ANIMATION" ),
 	FIELD( _field_word_flags, "animation flags" ),
 	FIELD( _field_pad, "AQVC", 2 ),
-	FIELD( _field_block, "time brightness", &lens_flare_scalar_animation_block ),
-	FIELD( _field_block, "age brightness", &lens_flare_scalar_animation_block ),
-	FIELD( _field_block, "time color", &lens_flare_color_animation_block ),
-	FIELD( _field_block, "age color", &lens_flare_color_animation_block ),
-	FIELD( _field_block, "time rotation", &lens_flare_scalar_animation_block ),
-	FIELD( _field_block, "age rotation", &lens_flare_scalar_animation_block ),
+	FIELD( _field_block, "time brightness", &lens_flare_scalar_animation_block_block ),
+	FIELD( _field_block, "age brightness", &lens_flare_scalar_animation_block_block ),
+	FIELD( _field_block, "time color", &lens_flare_color_animation_block_block ),
+	FIELD( _field_block, "age color", &lens_flare_color_animation_block_block ),
+	FIELD( _field_block, "time rotation", &lens_flare_scalar_animation_block_block ),
+	FIELD( _field_block, "age rotation", &lens_flare_scalar_animation_block_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(lens_flare_color_function_struct)
+{
+	FIELD( _field_string_id, "Input Variable!" ),
+	FIELD( _field_string_id, "Range Variable!" ),
+	FIELD( _field_enum, "Output Modifier!" ),
+	FIELD( _field_pad, "BVCG1", 2 ),
+	FIELD( _field_string_id, "Output Modifier Input!" ),
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "lens flare color mapping", &mapping_function_struct_definition ),
 	FIELD( _field_terminator )
 };
 

@@ -16,9 +16,9 @@ TAG_BLOCK(campaign_metagame_bucket_block, 1)
 
 TAG_BLOCK(campaign_metagame_globals_block, 1)
 {
-	FIELD( _field_block, "styles", &campaign_metagame_style_type_block ),
-	FIELD( _field_block, "difficulty", &campaign_metagame_difficulty_scale_block ),
-	FIELD( _field_block, "skulls{Primary Skulls}", &campaign_metagame_skull_block ),
+	FIELD( _field_block, "styles", &campaign_metagame_style_type_block_block ),
+	FIELD( _field_block, "difficulty", &campaign_metagame_difficulty_scale_block_block ),
+	FIELD( _field_block, "skulls{Primary Skulls}", &campaign_metagame_skull_block_block ),
 	FIELD( _field_long_integer, "friendly_death_point_count" ),
 	FIELD( _field_long_integer, "player_death_point_count" ),
 	FIELD( _field_long_integer, "player_betrayal_point_count" ),
@@ -49,7 +49,7 @@ TAG_BLOCK(campaign_metagame_skull_block, k_game_skull_count)
 TAG_BLOCK(campaign_metagame_scenario_block, 1)
 {
 	FIELD( _field_real, "par score" ),
-	FIELD( _field_block, "time bonuses", &campaign_metagame_scenario_bonuses_block ),
+	FIELD( _field_block, "time bonuses", &campaign_metagame_scenario_bonuses_block_block ),
 	FIELD( _field_terminator )
 };
 

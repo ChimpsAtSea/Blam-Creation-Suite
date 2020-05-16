@@ -5,7 +5,7 @@ namespace blofeld
 
 TAG_BLOCK(global_target_tracking_parameters_block, 1)
 {
-	FIELD( _field_block, "tracking types#specify the kinds of targets this tracking system can lock on", &tracking_type_block ),
+	FIELD( _field_block, "tracking types#specify the kinds of targets this tracking system can lock on", &tracking_type_block_block ),
 	FIELD( _field_real, "acquire time:s" ),
 	FIELD( _field_real, "grace time:s" ),
 	FIELD( _field_real, "decay time:s" ),

@@ -4,14 +4,15 @@ namespace blofeld
 {
 
 
-extern s_tag_struct player_information_block_struct_definition;
-extern s_tag_block_definition player_information_block;
-extern s_tag_struct player_momentum_data_block_struct_definition;
-extern s_tag_block_definition player_momentum_data_block;
-extern s_tag_struct player_representation_block_struct_definition;
-extern s_tag_block_definition player_representation_block;
-extern s_tag_struct firstPersonpHiddenBodyRegionsBlock_struct_definition;
-extern s_tag_block_definition firstPersonpHiddenBodyRegionsBlock;
+extern s_tag_struct player_information_block_block_struct;
+extern s_tag_block_definition player_information_block_block;
+extern s_tag_struct player_momentum_data_block_block_struct;
+extern s_tag_block_definition player_momentum_data_block_block;
+extern s_tag_struct player_representation_block_block_struct;
+extern s_tag_block_definition player_representation_block_block;
+extern s_tag_struct firstPersonpHiddenBodyRegionsBlock_block_struct;
+extern s_tag_block_definition firstPersonpHiddenBodyRegionsBlock_block;
+
 
 } // namespace blofeld
 

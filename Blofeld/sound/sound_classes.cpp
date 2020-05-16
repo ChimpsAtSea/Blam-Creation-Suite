@@ -3,6 +3,12 @@
 namespace blofeld
 {
 
+TAG_GROUP(sound_classes, SOUND_CLASSES_TAG)
+{
+	FIELD( _field_block, "sound classes", &sound_class_block_block ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(sound_class_block, NUMBER_OF_SOUND_CLASSES)
 {
 	FIELD( _field_short_integer, "max sounds per tag [1,16]#maximum number of sounds playing per individual sound tag" ),
@@ -66,12 +72,6 @@ TAG_BLOCK(sound_class_block, NUMBER_OF_SOUND_CLASSES)
 	FIELD( _field_long_integer, "minimum facial animation delay:msecs#setting this forces sounds of this class to be delayed while the facial animation resource loads." ),
 	FIELD( _field_long_integer, "maximum facial animation delay:msecs#setting this allows sounds of this class to be delayed while the facial animation resource loads." ),
 	FIELD( _field_long_integer, "maximum facial animation blend:msecs#setting this makes sounds blends in facial animation (will cut off at maximum facial animation delay)." ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(sound_classes_block, SOUND_CLASSES_TAG)
-{
-	FIELD( _field_block, "sound classes", &sound_class_block ),
 	FIELD( _field_terminator )
 };
 

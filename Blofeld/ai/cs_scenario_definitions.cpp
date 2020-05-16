@@ -5,8 +5,8 @@ namespace blofeld
 
 TAG_BLOCK(cs_script_data_block, 1)
 {
-	FIELD( _field_block, "point sets", &cs_point_set_block ),
-	FIELD( _field_block, "animation points", &cs_animation_point_block ),
+	FIELD( _field_block, "point sets", &cs_point_set_block_block ),
+	FIELD( _field_block, "animation points", &cs_animation_point_block_block ),
 	FIELD( _field_pad, "TPHWNCUR", 120 ),
 	FIELD( _field_terminator )
 };
@@ -14,7 +14,7 @@ TAG_BLOCK(cs_script_data_block, 1)
 TAG_BLOCK(cs_point_set_block, k_max_point_sets_per_map)
 {
 	FIELD( _field_string, "name^" ),
-	FIELD( _field_block, "points", &cs_point_block ),
+	FIELD( _field_block, "points", &cs_point_block_block ),
 	FIELD( _field_short_block_index, "bsp index" ),
 	FIELD( _field_pad, "PAD1", 2 ),
 	FIELD( _field_long_flags, "flags" ),

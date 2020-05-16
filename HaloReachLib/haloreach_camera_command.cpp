@@ -18,9 +18,9 @@ void haloreach_debug_save_camera(int(__stdcall *player_mapping_get_local_player)
 		FILE *stream = fopen("camera.txt", "w");
 		if (stream)
 		{
-			fprintf(stream, "%f %f %f\n", observer_camera->position.I, observer_camera->position.J, observer_camera->position.K);
-			fprintf(stream, "%f %f %f\n", observer_camera->forward.I, observer_camera->forward.J, observer_camera->forward.K);
-			fprintf(stream, "%f %f %f\n", observer_camera->up.I, observer_camera->up.J, observer_camera->up.K);
+			fprintf(stream, "%f %f %f\n", observer_camera->position.i, observer_camera->position.j, observer_camera->position.k);
+			fprintf(stream, "%f %f %f\n", observer_camera->forward.i, observer_camera->forward.j, observer_camera->forward.k);
+			fprintf(stream, "%f %f %f\n", observer_camera->up.i, observer_camera->up.j, observer_camera->up.k);
 			fprintf(stream, "%f\n", observer_camera->field_of_view);
 			fclose(stream);
 		}
@@ -41,9 +41,9 @@ void haloreach_debug_load_camera(int(__stdcall *player_mapping_get_local_player)
 		FILE *stream = fopen("camera.txt", "r");
 		if (stream)
 		{
-			fscanf(stream, "%f %f %f\n", &observer_camera->position.I, &observer_camera->position.J, &observer_camera->position.K);
-			fscanf(stream, "%f %f %f\n", &observer_camera->forward.I, &observer_camera->forward.J, &observer_camera->forward.K);
-			fscanf(stream, "%f %f %f\n", &observer_camera->up.I, &observer_camera->up.J, &observer_camera->up.K);
+			fscanf(stream, "%f %f %f\n", &observer_camera->position.i, &observer_camera->position.j, &observer_camera->position.k);
+			fscanf(stream, "%f %f %f\n", &observer_camera->forward.i, &observer_camera->forward.j, &observer_camera->forward.k);
+			fscanf(stream, "%f %f %f\n", &observer_camera->up.i, &observer_camera->up.j, &observer_camera->up.k);
 			fscanf(stream, "%f\n", &observer_camera->field_of_view);
 			fclose(stream);
 		}

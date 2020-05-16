@@ -3,13 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(sound_effect_template_struct_definition)
-{
-	FIELD( _field_block, "template collection", &sound_effect_templates_block ),
-	FIELD( _field_string_id, "internal dsp effect name{input effect name}" ),
-	FIELD( _field_block, "additional sound inputs", &sound_effect_template_additional_sound_input_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(sound_effect_template, SOUND_EFFECT_TEMPLATE_TAG, sound_effect_template_block_block )
+
+TAG_BLOCK_FROM_STRUCT(sound_effect_template_block, 1, sound_effect_template_struct_definition_struct_definition );
 
 TAG_BLOCK(sound_effect_templates_block, k_maximum_number_of_sound_effect_templates)
 {
@@ -19,7 +15,7 @@ TAG_BLOCK(sound_effect_templates_block, k_maximum_number_of_sound_effect_templat
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_short_integer, "dsp state offset!" ),
 	FIELD( _field_short_integer, "dsp state size!" ),
-	FIELD( _field_block, "parameters", &sound_effect_template_parameter_block ),
+	FIELD( _field_block, "parameters", &sound_effect_template_parameter_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -47,11 +43,11 @@ TAG_BLOCK(sound_effect_template_additional_sound_input_block, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(sound_effect_template_block, SOUND_EFFECT_TEMPLATE_TAG)
+TAG_STRUCT(sound_effect_template_struct_definition)
 {
-	FIELD( _field_block, "template collection", &sound_effect_templates_block ),
+	FIELD( _field_block, "template collection", &sound_effect_templates_block_block ),
 	FIELD( _field_string_id, "internal dsp effect name{input effect name}" ),
-	FIELD( _field_block, "additional sound inputs", &sound_effect_template_additional_sound_input_block ),
+	FIELD( _field_block, "additional sound inputs", &sound_effect_template_additional_sound_input_block_block ),
 	FIELD( _field_terminator )
 };
 

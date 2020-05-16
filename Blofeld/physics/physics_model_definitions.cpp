@@ -3,178 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(physics_model_struct_definition)
-{
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_real, "mass scale#scales the mass of each rigid body.  If you leave this field as 0, then it will be calculated from the total mass below." ),
-	FIELD( _field_real, "mass#override total mass of all rigid bodies.  Note that this will NOT be the mass of the object if not all rigid bodies are present (for example if you are using permutations)\nIf you set a mass scale above, this field is unused." ),
-	FIELD( _field_real, "low freq. deactivation scale#0 is default (1). LESS than 1 deactivates less aggressively. GREATER than 1 is more agressive." ),
-	FIELD( _field_real, "high freq. deactivation scale#0 is default (1). LESS than 1 deactivates less aggressively. GREATER than 1 is more agressive." ),
-	FIELD( _field_real, "custom shape radius!#0 defaults to .016.  This field is intentionally hidden because we should only alter this for very special situations.  Lower number == lower performance" ),
-	FIELD( _field_real, "maximum penetration depth scale#0 is default (1). for objects that are prone to falling through the world we can reduce this number at the cost of performance" ),
-	FIELD( _field_char_integer, "import version*!" ),
-	FIELD( _field_pad, "pad0", 3 ),
-	FIELD( _field_block, "damped spring motors", &physics_model_damped_spring_motor_block ),
-	FIELD( _field_block, "position motors", &physics_model_position_motor_block ),
-	FIELD( _field_block, "phantom types", &phantom_types_block ),
-	FIELD( _field_block, "powered chains", &physics_model_powered_chains_block ),
-	FIELD( _field_block, "node edges*", &physics_model_node_constraint_edge_block ),
-	FIELD( _field_block, "rigid bodies*", &rigid_bodies_block ),
-	FIELD( _field_block, "materials*", &materials_block$3 ),
-	FIELD( _field_block, "spheres*", &spheres_block ),
-	FIELD( _field_block, "multi spheres*", &multi_spheres_block ),
-	FIELD( _field_block, "pills*", &pills_block ),
-	FIELD( _field_block, "boxes*", &boxes_block ),
-	FIELD( _field_block, "triangles*", &triangles_block ),
-	FIELD( _field_block, "polyhedra*", &polyhedra_block ),
-	FIELD( _field_block, "polyhedron four vectors*!", &polyhedron_four_vectors_block ),
-	FIELD( _field_block, "polyhedron plane equations*!", &polyhedron_plane_equations_block ),
-	FIELD( _field_block, "mass distributions*!", &mass_distributions_block ),
-	FIELD( _field_block, "lists*!", &lists_block ),
-	FIELD( _field_block, "list shapes*!", &list_shapes_block ),
-	FIELD( _field_block, "mopps*!", &mopps_block ),
-	FIELD( _field_data, "mopp codes*!" ),
-	FIELD( _field_block, "hinge constraints*!", &hinge_constraints_block ),
-	FIELD( _field_block, "ragdoll constraints*!", &ragdoll_constraints_block ),
-	FIELD( _field_block, "regions*", &regions_block ),
-	FIELD( _field_block, "nodes*", &nodes_block ),
-	FIELD( _field_block, "errors*!", &global_error_report_categories_block ),
-	FIELD( _field_block, "point to path curves*!", &point_to_path_curve_block ),
-	FIELD( _field_block, "limited hinge constraints*!", &limited_hinge_constraints_block ),
-	FIELD( _field_block, "ball and socket constraints*!", &ball_and_socket_constraints_block ),
-	FIELD( _field_block, "stiff spring constraints*!", &stiff_spring_constraints_block ),
-	FIELD( _field_block, "prismatic constraints*!", &prismatic_constraints_block ),
-	FIELD( _field_block, "phantoms*!", &phantoms_block ),
-	FIELD( _field_block, "RigidBody Serialized Shapes*", &RigidBodySerializedShapesBlock ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(physics_model, PHYSICS_MODEL_TAG, physics_model_block_block )
 
-TAG_STRUCT(physics_model_motor_reference_struct)
-{
-	FIELD( _field_enum, "motor type" ),
-	FIELD( _field_custom_short_block_index, "index" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(havok_primitive_struct)
-{
-	FIELD( _field_string_id, "name^*!" ),
-	FIELD( _field_char_block_index, "material*" ),
-	FIELD( _field_byte_flags, "material flags*" ),
-	FIELD( _field_short_integer, "runtime material type*~!" ),
-	FIELD( _field_real, "relative mass scale" ),
-	FIELD( _field_real_fraction, "friction" ),
-	FIELD( _field_real_fraction, "restitution" ),
-	FIELD( _field_real, "volume *" ),
-	FIELD( _field_real, "mass*!" ),
-	FIELD( _field_short_integer, "mass distribution index!" ),
-	FIELD( _field_char_block_index, "phantom*" ),
-	FIELD( _field_explanation, "collision group override" ),
-	FIELD( _field_char_enum, "proxy collision group" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(havok_convex_shape_struct)
-{
-	FIELD( _field_struct, "base", &havok_shape_struct_struct_definition ),
-	FIELD( _field_real, "radius*!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(havok_shape_struct)
-{
-	FIELD( _field_long_integer, "field pointer skip!~" ),
-	FIELD( _field_short_integer, "size*~!" ),
-	FIELD( _field_short_integer, "count*~!" ),
-	FIELD( _field_char_integer, "type*~!" ),
-	FIELD( _field_char_integer, "dispatchType*~!" ),
-	FIELD( _field_char_integer, "bitsPerKey*~!" ),
-	FIELD( _field_char_integer, "codecType*~!" ),
-	FIELD( _field_long_integer, "user data*~!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(havok_convex_translate_shape_struct)
-{
-	FIELD( _field_struct, "convex", &havok_convex_shape_struct_struct_definition ),
-	FIELD( _field_long_integer, "field pointer skip!~" ),
-	FIELD( _field_struct, "havok shape reference struct", &havok_shape_reference_struct_struct_definition ),
-	FIELD( _field_long_integer, "child shape size" ),
-	FIELD( _field_real_vector_3d, "translation*!" ),
-	FIELD( _field_real, "havok w translation*!!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(havok_shape_reference_struct)
-{
-	FIELD( _field_enum, "shape type*" ),
-	FIELD( _field_custom_short_block_index, "shape*" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(havok_shape_collection_struct_2010_2)
-{
-	FIELD( _field_struct, "base", &havok_shape_struct_2010_2_struct_definition ),
-	FIELD( _field_long_integer, "field pointer skip!~" ),
-	FIELD( _field_char_integer, "disable welding*~" ),
-	FIELD( _field_char_integer, "collection type*~" ),
-	FIELD( _field_pad, "VDVAPBSS", 2 ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(havok_shape_struct_2010_2)
-{
-	FIELD( _field_long_integer, "field pointer skip!~" ),
-	FIELD( _field_short_integer, "size*~!" ),
-	FIELD( _field_short_integer, "count*~!" ),
-	FIELD( _field_long_integer, "user data*~!" ),
-	FIELD( _field_long_integer, "type*~!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(havok_convex_transform_shape_struct)
-{
-	FIELD( _field_struct, "convex", &havok_convex_shape_struct_struct_definition ),
-	FIELD( _field_long_integer, "field pointer skip!~" ),
-	FIELD( _field_struct, "havok shape reference struct", &havok_shape_reference_struct_struct_definition ),
-	FIELD( _field_long_integer, "child shape size" ),
-	FIELD( _field_real_vector_3d, "rotation i*!" ),
-	FIELD( _field_real, "havok w rotation i*!!" ),
-	FIELD( _field_real_vector_3d, "rotation j*!" ),
-	FIELD( _field_real, "havok w rotation j*!!" ),
-	FIELD( _field_real_vector_3d, "rotation k*!" ),
-	FIELD( _field_real, "havok w rotation k*!!" ),
-	FIELD( _field_real_vector_3d, "translation*!" ),
-	FIELD( _field_real, "havok w translation*!!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(havok_convex_shape_struct_2010_2)
-{
-	FIELD( _field_struct, "base", &havok_shape_struct_2010_2_struct_definition ),
-	FIELD( _field_real, "radius*!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(constraint_bodies_struct)
-{
-	FIELD( _field_string_id, "name^*!" ),
-	FIELD( _field_short_block_index, "node a*!" ),
-	FIELD( _field_short_block_index, "node b*!" ),
-	FIELD( _field_real, "a scale*!" ),
-	FIELD( _field_real_vector_3d, "a forward*!" ),
-	FIELD( _field_real_vector_3d, "a left*!" ),
-	FIELD( _field_real_vector_3d, "a up*!" ),
-	FIELD( _field_real_point_3d, "a position*!" ),
-	FIELD( _field_real, "b scale*!" ),
-	FIELD( _field_real_vector_3d, "b forward*!" ),
-	FIELD( _field_real_vector_3d, "b left*!" ),
-	FIELD( _field_real_vector_3d, "b up*!" ),
-	FIELD( _field_real_point_3d, "b position*!" ),
-	FIELD( _field_short_block_index, "edge index*!" ),
-	FIELD( _field_pad, "H", 2 ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(physics_model_block, 1, physics_model_struct_definition_struct_definition );
 
 TAG_BLOCK(spheres_block, k_maximum_shapes_per_physics_model)
 {
@@ -286,8 +117,8 @@ TAG_BLOCK(phantom_types_block, k_maximum_phantom_types_per_physics_model)
 
 TAG_BLOCK(physics_model_powered_chains_block, k_maximum_constraints_per_physics_model)
 {
-	FIELD( _field_block, "nodes", &physics_model_powered_chain_nodes_block ),
-	FIELD( _field_block, "constraints", &physics_model_powered_chain_constraints_block ),
+	FIELD( _field_block, "nodes", &physics_model_powered_chain_nodes_block_block ),
+	FIELD( _field_block, "constraints", &physics_model_powered_chain_constraints_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -313,7 +144,7 @@ TAG_BLOCK(physics_model_node_constraint_edge_block, k_maximum_node_constraint_ed
 	FIELD( _field_short_integer, "runtime material type b!" ),
 	FIELD( _field_short_block_index, "node a*!" ),
 	FIELD( _field_short_block_index, "node b*!" ),
-	FIELD( _field_block, "constraints*", &physics_model_constraint_edge_constraint_block ),
+	FIELD( _field_block, "constraints*", &physics_model_constraint_edge_constraint_block_block ),
 	FIELD( _field_string_id, "node a material#if you don\'t fill this out we will pluck the material from the first primitive, of the first rigid body attached to node a" ),
 	FIELD( _field_string_id, "node b material#if you don\'t fill this out we will pluck the material from the first primitive, of the first rigid body attached to node b, if node b is none we use whatever material a has" ),
 	FIELD( _field_terminator )
@@ -325,8 +156,8 @@ TAG_BLOCK(physics_model_constraint_edge_constraint_block, k_maximum_constraints_
 	FIELD( _field_custom_short_block_index, "index*!" ),
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_real, "friction#0 is the default (takes what it was set in max) anything else overrides that value" ),
-	FIELD( _field_block, "ragdoll motors", &physics_model_ragdoll_motors_block ),
-	FIELD( _field_block, "limited hinge motors", &physics_model_limited_hinge_motors_block ),
+	FIELD( _field_block, "ragdoll motors", &physics_model_ragdoll_motors_block_block ),
+	FIELD( _field_block, "limited hinge motors", &physics_model_limited_hinge_motors_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -548,14 +379,14 @@ TAG_BLOCK(ragdoll_constraints_block, k_maximum_constraints_per_physics_model)
 TAG_BLOCK(regions_block, MAXIMUM_REGIONS_PER_MODEL)
 {
 	FIELD( _field_string_id, "name^*!" ),
-	FIELD( _field_block, "permutations", &permutations_block ),
+	FIELD( _field_block, "permutations", &permutations_block_block ),
 	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(permutations_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 {
 	FIELD( _field_string_id, "name^*!" ),
-	FIELD( _field_block, "rigid bodies", &rigid_body_indices_block ),
+	FIELD( _field_block, "rigid bodies", &rigid_body_indices_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -580,7 +411,7 @@ TAG_BLOCK(point_to_path_curve_block, k_maximum_rigid_bodies_per_physics_model)
 	FIELD( _field_string_id, "name^*!" ),
 	FIELD( _field_short_block_index, "node index*!" ),
 	FIELD( _field_pad, "TNLRSOSY", 2 ),
-	FIELD( _field_block, "points*!", &point_to_path_curve_point_block ),
+	FIELD( _field_block, "points*!", &point_to_path_curve_point_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -638,7 +469,7 @@ TAG_BLOCK(phantoms_block, k_maximum_phantoms_per_physics_model)
 
 TAG_BLOCK(RigidBodySerializedShapesBlock, k_maximum_shapes_per_physics_model)
 {
-	FIELD( _field_block, "Mopp Serialized Havok Data", &MoppSerializedHavokDataBlock ),
+	FIELD( _field_block, "Mopp Serialized Havok Data", &MoppSerializedHavokDataBlock_block ),
 	FIELD( _field_terminator )
 };
 
@@ -652,7 +483,7 @@ TAG_BLOCK(MoppSerializedHavokDataBlock, k_maximum_rigid_bodies_per_physics_model
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(physics_model_block, PHYSICS_MODEL_TAG)
+TAG_STRUCT(physics_model_struct_definition)
 {
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_real, "mass scale#scales the mass of each rigid body.  If you leave this field as 0, then it will be calculated from the total mass below." ),
@@ -663,38 +494,165 @@ TAG_GROUP(physics_model_block, PHYSICS_MODEL_TAG)
 	FIELD( _field_real, "maximum penetration depth scale#0 is default (1). for objects that are prone to falling through the world we can reduce this number at the cost of performance" ),
 	FIELD( _field_char_integer, "import version*!" ),
 	FIELD( _field_pad, "pad0", 3 ),
-	FIELD( _field_block, "damped spring motors", &physics_model_damped_spring_motor_block ),
-	FIELD( _field_block, "position motors", &physics_model_position_motor_block ),
-	FIELD( _field_block, "phantom types", &phantom_types_block ),
-	FIELD( _field_block, "powered chains", &physics_model_powered_chains_block ),
-	FIELD( _field_block, "node edges*", &physics_model_node_constraint_edge_block ),
-	FIELD( _field_block, "rigid bodies*", &rigid_bodies_block ),
-	FIELD( _field_block, "materials*", &materials_block$3 ),
-	FIELD( _field_block, "spheres*", &spheres_block ),
-	FIELD( _field_block, "multi spheres*", &multi_spheres_block ),
-	FIELD( _field_block, "pills*", &pills_block ),
-	FIELD( _field_block, "boxes*", &boxes_block ),
-	FIELD( _field_block, "triangles*", &triangles_block ),
-	FIELD( _field_block, "polyhedra*", &polyhedra_block ),
-	FIELD( _field_block, "polyhedron four vectors*!", &polyhedron_four_vectors_block ),
-	FIELD( _field_block, "polyhedron plane equations*!", &polyhedron_plane_equations_block ),
-	FIELD( _field_block, "mass distributions*!", &mass_distributions_block ),
-	FIELD( _field_block, "lists*!", &lists_block ),
-	FIELD( _field_block, "list shapes*!", &list_shapes_block ),
-	FIELD( _field_block, "mopps*!", &mopps_block ),
+	FIELD( _field_block, "damped spring motors", &physics_model_damped_spring_motor_block_block ),
+	FIELD( _field_block, "position motors", &physics_model_position_motor_block_block ),
+	FIELD( _field_block, "phantom types", &phantom_types_block_block ),
+	FIELD( _field_block, "powered chains", &physics_model_powered_chains_block_block ),
+	FIELD( _field_block, "node edges*", &physics_model_node_constraint_edge_block_block ),
+	FIELD( _field_block, "rigid bodies*", &rigid_bodies_block_block ),
+	FIELD( _field_block, "materials*", &materials_block$3_block ),
+	FIELD( _field_block, "spheres*", &spheres_block_block ),
+	FIELD( _field_block, "multi spheres*", &multi_spheres_block_block ),
+	FIELD( _field_block, "pills*", &pills_block_block ),
+	FIELD( _field_block, "boxes*", &boxes_block_block ),
+	FIELD( _field_block, "triangles*", &triangles_block_block ),
+	FIELD( _field_block, "polyhedra*", &polyhedra_block_block ),
+	FIELD( _field_block, "polyhedron four vectors*!", &polyhedron_four_vectors_block_block ),
+	FIELD( _field_block, "polyhedron plane equations*!", &polyhedron_plane_equations_block_block ),
+	FIELD( _field_block, "mass distributions*!", &mass_distributions_block_block ),
+	FIELD( _field_block, "lists*!", &lists_block_block ),
+	FIELD( _field_block, "list shapes*!", &list_shapes_block_block ),
+	FIELD( _field_block, "mopps*!", &mopps_block_block ),
 	FIELD( _field_data, "mopp codes*!" ),
-	FIELD( _field_block, "hinge constraints*!", &hinge_constraints_block ),
-	FIELD( _field_block, "ragdoll constraints*!", &ragdoll_constraints_block ),
-	FIELD( _field_block, "regions*", &regions_block ),
-	FIELD( _field_block, "nodes*", &nodes_block ),
-	FIELD( _field_block, "errors*!", &global_error_report_categories_block ),
-	FIELD( _field_block, "point to path curves*!", &point_to_path_curve_block ),
-	FIELD( _field_block, "limited hinge constraints*!", &limited_hinge_constraints_block ),
-	FIELD( _field_block, "ball and socket constraints*!", &ball_and_socket_constraints_block ),
-	FIELD( _field_block, "stiff spring constraints*!", &stiff_spring_constraints_block ),
-	FIELD( _field_block, "prismatic constraints*!", &prismatic_constraints_block ),
-	FIELD( _field_block, "phantoms*!", &phantoms_block ),
-	FIELD( _field_block, "RigidBody Serialized Shapes*", &RigidBodySerializedShapesBlock ),
+	FIELD( _field_block, "hinge constraints*!", &hinge_constraints_block_block ),
+	FIELD( _field_block, "ragdoll constraints*!", &ragdoll_constraints_block_block ),
+	FIELD( _field_block, "regions*", &regions_block_block ),
+	FIELD( _field_block, "nodes*", &nodes_block_block ),
+	FIELD( _field_block, "errors*!", &global_error_report_categories_block_block ),
+	FIELD( _field_block, "point to path curves*!", &point_to_path_curve_block_block ),
+	FIELD( _field_block, "limited hinge constraints*!", &limited_hinge_constraints_block_block ),
+	FIELD( _field_block, "ball and socket constraints*!", &ball_and_socket_constraints_block_block ),
+	FIELD( _field_block, "stiff spring constraints*!", &stiff_spring_constraints_block_block ),
+	FIELD( _field_block, "prismatic constraints*!", &prismatic_constraints_block_block ),
+	FIELD( _field_block, "phantoms*!", &phantoms_block_block ),
+	FIELD( _field_block, "RigidBody Serialized Shapes*", &RigidBodySerializedShapesBlock_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(physics_model_motor_reference_struct)
+{
+	FIELD( _field_enum, "motor type" ),
+	FIELD( _field_custom_short_block_index, "index" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(havok_primitive_struct)
+{
+	FIELD( _field_string_id, "name^*!" ),
+	FIELD( _field_char_block_index, "material*" ),
+	FIELD( _field_byte_flags, "material flags*" ),
+	FIELD( _field_short_integer, "runtime material type*~!" ),
+	FIELD( _field_real, "relative mass scale" ),
+	FIELD( _field_real_fraction, "friction" ),
+	FIELD( _field_real_fraction, "restitution" ),
+	FIELD( _field_real, "volume *" ),
+	FIELD( _field_real, "mass*!" ),
+	FIELD( _field_short_integer, "mass distribution index!" ),
+	FIELD( _field_char_block_index, "phantom*" ),
+	FIELD( _field_explanation, "collision group override" ),
+	FIELD( _field_char_enum, "proxy collision group" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(havok_convex_shape_struct)
+{
+	FIELD( _field_struct, "base", &havok_shape_struct_struct_definition ),
+	FIELD( _field_real, "radius*!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(havok_shape_struct)
+{
+	FIELD( _field_long_integer, "field pointer skip!~" ),
+	FIELD( _field_short_integer, "size*~!" ),
+	FIELD( _field_short_integer, "count*~!" ),
+	FIELD( _field_char_integer, "type*~!" ),
+	FIELD( _field_char_integer, "dispatchType*~!" ),
+	FIELD( _field_char_integer, "bitsPerKey*~!" ),
+	FIELD( _field_char_integer, "codecType*~!" ),
+	FIELD( _field_long_integer, "user data*~!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(havok_convex_translate_shape_struct)
+{
+	FIELD( _field_struct, "convex", &havok_convex_shape_struct_struct_definition ),
+	FIELD( _field_long_integer, "field pointer skip!~" ),
+	FIELD( _field_struct, "havok shape reference struct", &havok_shape_reference_struct_struct_definition ),
+	FIELD( _field_long_integer, "child shape size" ),
+	FIELD( _field_real_vector_3d, "translation*!" ),
+	FIELD( _field_real, "havok w translation*!!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(havok_shape_reference_struct)
+{
+	FIELD( _field_enum, "shape type*" ),
+	FIELD( _field_custom_short_block_index, "shape*" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(havok_shape_collection_struct_2010_2)
+{
+	FIELD( _field_struct, "base", &havok_shape_struct_2010_2_struct_definition ),
+	FIELD( _field_long_integer, "field pointer skip!~" ),
+	FIELD( _field_char_integer, "disable welding*~" ),
+	FIELD( _field_char_integer, "collection type*~" ),
+	FIELD( _field_pad, "VDVAPBSS", 2 ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(havok_shape_struct_2010_2)
+{
+	FIELD( _field_long_integer, "field pointer skip!~" ),
+	FIELD( _field_short_integer, "size*~!" ),
+	FIELD( _field_short_integer, "count*~!" ),
+	FIELD( _field_long_integer, "user data*~!" ),
+	FIELD( _field_long_integer, "type*~!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(havok_convex_transform_shape_struct)
+{
+	FIELD( _field_struct, "convex", &havok_convex_shape_struct_struct_definition ),
+	FIELD( _field_long_integer, "field pointer skip!~" ),
+	FIELD( _field_struct, "havok shape reference struct", &havok_shape_reference_struct_struct_definition ),
+	FIELD( _field_long_integer, "child shape size" ),
+	FIELD( _field_real_vector_3d, "rotation i*!" ),
+	FIELD( _field_real, "havok w rotation i*!!" ),
+	FIELD( _field_real_vector_3d, "rotation j*!" ),
+	FIELD( _field_real, "havok w rotation j*!!" ),
+	FIELD( _field_real_vector_3d, "rotation k*!" ),
+	FIELD( _field_real, "havok w rotation k*!!" ),
+	FIELD( _field_real_vector_3d, "translation*!" ),
+	FIELD( _field_real, "havok w translation*!!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(havok_convex_shape_struct_2010_2)
+{
+	FIELD( _field_struct, "base", &havok_shape_struct_2010_2_struct_definition ),
+	FIELD( _field_real, "radius*!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(constraint_bodies_struct)
+{
+	FIELD( _field_string_id, "name^*!" ),
+	FIELD( _field_short_block_index, "node a*!" ),
+	FIELD( _field_short_block_index, "node b*!" ),
+	FIELD( _field_real, "a scale*!" ),
+	FIELD( _field_real_vector_3d, "a forward*!" ),
+	FIELD( _field_real_vector_3d, "a left*!" ),
+	FIELD( _field_real_vector_3d, "a up*!" ),
+	FIELD( _field_real_point_3d, "a position*!" ),
+	FIELD( _field_real, "b scale*!" ),
+	FIELD( _field_real_vector_3d, "b forward*!" ),
+	FIELD( _field_real_vector_3d, "b left*!" ),
+	FIELD( _field_real_vector_3d, "b up*!" ),
+	FIELD( _field_real_point_3d, "b position*!" ),
+	FIELD( _field_short_block_index, "edge index*!" ),
+	FIELD( _field_pad, "H", 2 ),
 	FIELD( _field_terminator )
 };
 

@@ -33,9 +33,11 @@ public:
 	c_h4_tag_group& tag_group;
 	c_h4_source_file& source_file;
 	c_h4_tag_block_container* tag_block_container;
+	c_h4_tag_struct_container* tag_struct_container;
 	std::string name;
+	std::string symbol_name;
 	std::string name_uppercase;
-	bool use_tag_group_definition;
+	bool define_tag_group_block_and_fields;
 };
 
 class c_h4_tag_block_container
@@ -47,9 +49,10 @@ public:
 	c_h4_tag_block& tag_block;
 	c_h4_tag_struct_container* tag_struct_container;
 	std::string name;
+	std::string symbol_name;
 	std::string name_uppercase;
 	bool use_tag_block_definition;
-	bool is_tag;
+	bool defined_by_tag_group;
 	bool has_traversed;
 };
 
@@ -61,8 +64,10 @@ public:
 
 	c_h4_tag_struct& tag_struct;
 	std::string name;
+	std::string symbol_name;
 	std::string name_uppercase;
 	bool is_block;
+	bool is_tag_group;
 	bool has_traversed;
 };
 

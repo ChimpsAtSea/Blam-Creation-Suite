@@ -3,15 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(spring_acceleration_struct_definition)
-{
-	FIELD( _field_block, "linear acceleartions", &spring_linear_acceleration_block ),
-	FIELD( _field_short_block_index, "x-axis" ),
-	FIELD( _field_short_block_index, "y-axis" ),
-	FIELD( _field_short_block_index, "z-axis" ),
-	FIELD( _field_pad, "pad", 2 ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(spring_acceleration, SPRING_ACCELERATION_TAG, spring_acceleration_block_block )
+
+TAG_BLOCK_FROM_STRUCT(spring_acceleration_block, 1, spring_acceleration_struct_definition_struct_definition );
 
 TAG_BLOCK(spring_linear_acceleration_block, k_dimensions_in_3d_count)
 {
@@ -25,9 +19,9 @@ TAG_BLOCK(spring_linear_acceleration_block, k_dimensions_in_3d_count)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(spring_acceleration_block, SPRING_ACCELERATION_TAG)
+TAG_STRUCT(spring_acceleration_struct_definition)
 {
-	FIELD( _field_block, "linear acceleartions", &spring_linear_acceleration_block ),
+	FIELD( _field_block, "linear acceleartions", &spring_linear_acceleration_block_block ),
 	FIELD( _field_short_block_index, "x-axis" ),
 	FIELD( _field_short_block_index, "y-axis" ),
 	FIELD( _field_short_block_index, "z-axis" ),

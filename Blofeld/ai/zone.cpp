@@ -3,12 +3,6 @@
 namespace blofeld
 {
 
-TAG_STRUCT(NavMeshAttachmentsStruct)
-{
-	FIELD( _field_block, "attachments", &NavMeshAttachmentBlock ),
-	FIELD( _field_terminator )
-};
-
 TAG_BLOCK(zone_block, k_max_zones_per_map)
 {
 	FIELD( _field_custom ),
@@ -17,8 +11,8 @@ TAG_BLOCK(zone_block, k_max_zones_per_map)
 	FIELD( _field_string, "name^" ),
 	FIELD( _field_word_flags, "flags" ),
 	FIELD( _field_short_block_index, "editor folder index!" ),
-	FIELD( _field_block, "firing positions", &firing_positions_block ),
-	FIELD( _field_block, "areas", &areas_block ),
+	FIELD( _field_block, "firing positions", &firing_positions_block_block ),
+	FIELD( _field_block, "areas", &areas_block_block ),
 	FIELD( _field_struct, "Nav Mesh Attachments*", &NavMeshAttachmentsStruct_struct_definition ),
 	FIELD( _field_struct, "disallowed attachment bsps", &manualBspFlagsReferences_struct_definition ),
 	FIELD( _field_terminator )
@@ -43,8 +37,8 @@ TAG_BLOCK(areas_block, k_max_areas_per_zone)
 	FIELD( _field_short_integer, "runtime count!" ),
 	FIELD( _field_struct, "Nav Mesh Attachments*", &NavMeshAttachmentsStruct_struct_definition ),
 	FIELD( _field_array, "cluster occupancy!" ),
-	FIELD( _field_block, "flight_hints", &flight_reference_block ),
-	FIELD( _field_block, "points^", &area_sector_point_block ),
+	FIELD( _field_block, "flight_hints", &flight_reference_block_block ),
+	FIELD( _field_block, "points^", &area_sector_point_block_block ),
 	FIELD( _field_explanation, "Generation Properties" ),
 	FIELD( _field_enum, "preset" ),
 	FIELD( _field_short_integer, "runtimeCarverInversion*~!" ),
@@ -84,6 +78,12 @@ TAG_BLOCK(area_sector_point_block, k_maximum_points_per_sector)
 	FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),
 	FIELD( _field_custom_long_block_index, "navMeshUIDOffaceref~!" ),
 	FIELD( _field_real_euler_angles_2d, "normal" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(NavMeshAttachmentsStruct)
+{
+	FIELD( _field_block, "attachments", &NavMeshAttachmentBlock_block ),
 	FIELD( _field_terminator )
 };
 

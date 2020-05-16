@@ -3,6 +3,13 @@
 namespace blofeld
 {
 
+TAG_BLOCK(collision_bsp_physics_block, (1024))
+{
+	FIELD( _field_struct, "collision bsp shape", &collision_geometry_shape_struct_struct_definition ),
+	FIELD( _field_struct, "mopp bv tree shap", &mopp_bv_tree_shape_struct_struct_definition ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(collision_geometry_shape_struct)
 {
 	FIELD( _field_struct, "base", &havok_shape_collection_struct_2010_2_struct_definition ),
@@ -38,13 +45,6 @@ TAG_STRUCT(mopp_bv_tree_shape_struct)
 	FIELD( _field_pad, "mopp alignment*!~", 4 ),
 	FIELD( _field_real, "mopp scale*" ),
 	FIELD( _field_pad, "final pad", 12 ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(collision_bsp_physics_block, (1024))
-{
-	FIELD( _field_struct, "collision bsp shape", &collision_geometry_shape_struct_struct_definition ),
-	FIELD( _field_struct, "mopp bv tree shap", &mopp_bv_tree_shape_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 

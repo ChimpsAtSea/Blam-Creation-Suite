@@ -3,11 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(scenario_interpolator_struct_definition)
-{
-	FIELD( _field_block, "interpolators", &scenario_interpolator_data_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(scenario_interpolator, SCENARIO_INTERPOLATOR_TAG, scenario_interpolator_block_block )
+
+TAG_BLOCK_FROM_STRUCT(scenario_interpolator_block, 1, scenario_interpolator_struct_definition_struct_definition );
 
 TAG_BLOCK(scenario_interpolator_data_block, k_maximum_interpolators_per_scenario)
 {
@@ -24,9 +22,9 @@ TAG_BLOCK(scenario_interpolator_data_block, k_maximum_interpolators_per_scenario
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(scenario_interpolator_block, SCENARIO_INTERPOLATOR_TAG)
+TAG_STRUCT(scenario_interpolator_struct_definition)
 {
-	FIELD( _field_block, "interpolators", &scenario_interpolator_data_block ),
+	FIELD( _field_block, "interpolators", &scenario_interpolator_data_block_block ),
 	FIELD( _field_terminator )
 };
 

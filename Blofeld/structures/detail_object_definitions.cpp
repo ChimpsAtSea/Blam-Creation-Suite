@@ -3,17 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(detail_object_collection_struct_definition)
-{
-	FIELD( _field_enum, "collection type" ),
-	FIELD( _field_pad, "YN", 2 ),
-	FIELD( _field_real, "global z offset:applied to all detail objects of in this collection so they don\'t float above the ground" ),
-	FIELD( _field_pad, "EBGQ", 44 ),
-	FIELD( _field_tag_reference, "sprite plate" ),
-	FIELD( _field_block, "types", &detail_object_type_block ),
-	FIELD( _field_pad, "ZQUVEZKGL", 48 ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(detail_object_collection, DETAIL_OBJECT_COLLECTION_TAG, detail_object_collection_block_block )
+
+TAG_BLOCK_FROM_STRUCT(detail_object_collection_block, 1, detail_object_collection_struct_definition_struct_definition );
 
 TAG_BLOCK(detail_object_type_block, MAXIMUM_DETAIL_OBJECT_TYPES_PER_COLLECTION)
 {
@@ -72,14 +64,14 @@ TAG_BLOCK(global_z_reference_vector_block, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUC
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(detail_object_collection_block, DETAIL_OBJECT_COLLECTION_TAG)
+TAG_STRUCT(detail_object_collection_struct_definition)
 {
 	FIELD( _field_enum, "collection type" ),
 	FIELD( _field_pad, "YN", 2 ),
 	FIELD( _field_real, "global z offset:applied to all detail objects of in this collection so they don\'t float above the ground" ),
 	FIELD( _field_pad, "EBGQ", 44 ),
 	FIELD( _field_tag_reference, "sprite plate" ),
-	FIELD( _field_block, "types", &detail_object_type_block ),
+	FIELD( _field_block, "types", &detail_object_type_block_block ),
 	FIELD( _field_pad, "ZQUVEZKGL", 48 ),
 	FIELD( _field_terminator )
 };

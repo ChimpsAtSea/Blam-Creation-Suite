@@ -3,52 +3,57 @@
 namespace blofeld
 {
 
-extern s_tag_struct global_cache_file_pixel_shaders_struct_definition_struct_definition;
-extern s_tag_struct hlsl_include_struct_definition_struct_definition;
-extern s_tag_struct rasterizer_compiled_shader_struct_struct_definition;
-
-extern s_tag_struct global_shader_entry_point_block_struct_definition;
-extern s_tag_block_definition global_shader_entry_point_block;
-extern s_tag_struct global_shader_category_dependency_struct_definition;
-extern s_tag_block_definition global_shader_category_dependency;
-extern s_tag_struct global_shader_option_dependency_struct_definition;
-extern s_tag_block_definition global_shader_option_dependency;
-extern s_tag_struct compiled_pixel_shader_block_struct_definition;
-extern s_tag_block_definition compiled_pixel_shader_block;
-extern s_tag_struct global_vertex_shader_vertex_types_block_struct_definition;
-extern s_tag_block_definition global_vertex_shader_vertex_types_block;
-extern s_tag_struct compiled_vertex_shader_block_struct_definition;
-extern s_tag_block_definition compiled_vertex_shader_block;
-extern s_tag_struct pixel_entry_point_block_struct_definition;
-extern s_tag_block_definition pixel_entry_point_block;
-extern s_tag_struct vertex_entry_point_block_struct_definition;
-extern s_tag_block_definition vertex_entry_point_block;
-extern s_tag_struct vertex_types_block_struct_definition;
-extern s_tag_block_definition vertex_types_block$3;
-
 constexpr unsigned long GLOBAL_PIXEL_SHADER_TAG = 'glps';
 
+extern s_tag_struct global_pixel_shader_block_struct;
 extern s_tag_block_definition global_pixel_shader_block;
 extern s_tag_group global_pixel_shader_group;
 constexpr unsigned long GLOBAL_VERTEX_SHADER_TAG = 'glvs';
 
+extern s_tag_struct global_vertex_shader_block_struct;
 extern s_tag_block_definition global_vertex_shader_block;
 extern s_tag_group global_vertex_shader_group;
 constexpr unsigned long GLOBAL_CACHE_FILE_PIXEL_SHADERS_TAG = 'gpix';
 
-extern s_tag_block_definition global_cache_file_pixel_shaders_block;
 extern s_tag_group global_cache_file_pixel_shaders_group;
 constexpr unsigned long HLSL_INCLUDE_TAG = 'hlsl';
 
-extern s_tag_block_definition hlsl_include_block;
 extern s_tag_group hlsl_include_group;
 constexpr unsigned long PIXEL_SHADER_TAG = 'pixl';
 
+extern s_tag_struct pixel_shader_block_struct;
 extern s_tag_block_definition pixel_shader_block;
 extern s_tag_group pixel_shader_group;
 constexpr unsigned long VERTEX_SHADER_TAG = 'vtsh';
 
+extern s_tag_struct vertex_shader_block_struct;
 extern s_tag_block_definition vertex_shader_block;
 extern s_tag_group vertex_shader_group;
+
+extern s_tag_block_definition global_cache_file_pixel_shaders_block_block;
+extern s_tag_block_definition hlsl_include_block_block;
+extern s_tag_struct global_shader_entry_point_block_block_struct;
+extern s_tag_block_definition global_shader_entry_point_block_block;
+extern s_tag_struct global_shader_category_dependency_block_struct;
+extern s_tag_block_definition global_shader_category_dependency_block;
+extern s_tag_struct global_shader_option_dependency_block_struct;
+extern s_tag_block_definition global_shader_option_dependency_block;
+extern s_tag_struct compiled_pixel_shader_block_block_struct;
+extern s_tag_block_definition compiled_pixel_shader_block_block;
+extern s_tag_struct global_vertex_shader_vertex_types_block_block_struct;
+extern s_tag_block_definition global_vertex_shader_vertex_types_block_block;
+extern s_tag_struct compiled_vertex_shader_block_block_struct;
+extern s_tag_block_definition compiled_vertex_shader_block_block;
+extern s_tag_struct pixel_entry_point_block_block_struct;
+extern s_tag_block_definition pixel_entry_point_block_block;
+extern s_tag_struct vertex_entry_point_block_block_struct;
+extern s_tag_block_definition vertex_entry_point_block_block;
+extern s_tag_struct vertex_types_block$3_block_struct;
+extern s_tag_block_definition vertex_types_block$3_block;
+
+extern s_tag_struct global_cache_file_pixel_shaders_struct_definition_struct_definition; // tag group
+extern s_tag_struct hlsl_include_struct_definition_struct_definition; // tag group
+extern s_tag_struct rasterizer_compiled_shader_struct_struct_definition;
+
 } // namespace blofeld
 

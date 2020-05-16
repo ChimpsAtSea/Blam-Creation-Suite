@@ -7,7 +7,7 @@ TAG_BLOCK(structure_cluster_cubemap, k_max_cubemaps_per_cluster)
 {
 	FIELD( _field_short_integer, "scenario cubemap index" ),
 	FIELD( _field_short_integer, "cubemap bitmap index" ),
-	FIELD( _field_block, "reference points", &cubemap_reference_points_block ),
+	FIELD( _field_block, "reference points", &cubemap_reference_points_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -27,7 +27,7 @@ TAG_BLOCK(scenario_cubemap_block, k_max_cubemaps_per_scenario)
 	FIELD( _field_pad, "post-cubemap-resolution-pad", 2 ),
 	FIELD( _field_explanation, "bsps it could belong to" ),
 	FIELD( _field_struct, "manual bsp flags", &manualBspFlagsReferences_struct_definition ),
-	FIELD( _field_block, "reference points", &cubemap_reference_points_block ),
+	FIELD( _field_block, "reference points", &cubemap_reference_points_block_block ),
 	FIELD( _field_terminator )
 };
 

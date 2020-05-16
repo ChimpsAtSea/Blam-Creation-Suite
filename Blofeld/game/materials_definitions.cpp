@@ -3,59 +3,6 @@
 namespace blofeld
 {
 
-TAG_STRUCT(wet_proxies_struct)
-{
-	FIELD( _field_explanation, "when rained on, we report this material" ),
-	FIELD( _field_string_id, "wet material" ),
-	FIELD( _field_short_integer, "runtime proxy material index*!" ),
-	FIELD( _field_pad, "wpb1", 2 ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(material_physics_properties_struct)
-{
-	FIELD( _field_long_integer, "flags!" ),
-	FIELD( _field_real, "friction" ),
-	FIELD( _field_real_fraction, "restitution" ),
-	FIELD( _field_real, "density:kg/m^3" ),
-	FIELD( _field_explanation, "Drag" ),
-	FIELD( _field_tag_reference, "water physics drag properties" ),
-	FIELD( _field_block, "drag overrides", &object_type_drag_properties_block ),
-	FIELD( _field_explanation, "Floatation" ),
-	FIELD( _field_pad, "default", 4 ),
-	FIELD( _field_real, "super floater" ),
-	FIELD( _field_real, "floater" ),
-	FIELD( _field_real, "neutral" ),
-	FIELD( _field_real, "sinker" ),
-	FIELD( _field_real, "super sinker" ),
-	FIELD( _field_pad, "none", 4 ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(materials_sweeteners_struct)
-{
-	FIELD( _field_tag_reference, "sound sweetener (small)" ),
-	FIELD( _field_tag_reference, "sound sweetener (medium)" ),
-	FIELD( _field_tag_reference, "sound sweetener (large)" ),
-	FIELD( _field_tag_reference, "sound sweetener rolling" ),
-	FIELD( _field_tag_reference, "sound sweetener grinding" ),
-	FIELD( _field_tag_reference, "sound sweetener (melee small)" ),
-	FIELD( _field_tag_reference, "sound sweetener (melee)#this is a medium sweetener and was the old default" ),
-	FIELD( _field_tag_reference, "sound sweetener (melee large)" ),
-	FIELD( _field_tag_reference, "effect sweetener (small)" ),
-	FIELD( _field_tag_reference, "effect sweetener (medium)" ),
-	FIELD( _field_tag_reference, "effect sweetener (large)" ),
-	FIELD( _field_tag_reference, "effect sweetener rolling" ),
-	FIELD( _field_tag_reference, "effect sweetener grinding" ),
-	FIELD( _field_tag_reference, "effect sweetener (melee)" ),
-	FIELD( _field_tag_reference, "water ripple (small)" ),
-	FIELD( _field_tag_reference, "water ripple (medium)" ),
-	FIELD( _field_tag_reference, "water ripple (large)" ),
-	FIELD( _field_explanation, "sweetener inheritance flags" ),
-	FIELD( _field_long_flags, "sweetener inheritance flags" ),
-	FIELD( _field_terminator )
-};
-
 TAG_BLOCK(materials_block, k_maximum_editable_material_types)
 {
 	FIELD( _field_string_id, "name^" ),
@@ -71,7 +18,7 @@ TAG_BLOCK(materials_block, k_maximum_editable_material_types)
 	FIELD( _field_tag_reference, "breakable surface" ),
 	FIELD( _field_struct, "sweeteners", &materials_sweeteners_struct_struct_definition ),
 	FIELD( _field_tag_reference, "material effects" ),
-	FIELD( _field_block, "underwater proxies", &underwater_proxies_block ),
+	FIELD( _field_block, "underwater proxies", &underwater_proxies_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -107,7 +54,60 @@ TAG_BLOCK(runtime_materials_block, k_maximum_material_types)
 	FIELD( _field_tag_reference, "breakable surface" ),
 	FIELD( _field_struct, "sweeteners", &materials_sweeteners_struct_struct_definition ),
 	FIELD( _field_tag_reference, "material effects" ),
-	FIELD( _field_block, "underwater proxies", &underwater_proxies_block ),
+	FIELD( _field_block, "underwater proxies", &underwater_proxies_block_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(wet_proxies_struct)
+{
+	FIELD( _field_explanation, "when rained on, we report this material" ),
+	FIELD( _field_string_id, "wet material" ),
+	FIELD( _field_short_integer, "runtime proxy material index*!" ),
+	FIELD( _field_pad, "wpb1", 2 ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(material_physics_properties_struct)
+{
+	FIELD( _field_long_integer, "flags!" ),
+	FIELD( _field_real, "friction" ),
+	FIELD( _field_real_fraction, "restitution" ),
+	FIELD( _field_real, "density:kg/m^3" ),
+	FIELD( _field_explanation, "Drag" ),
+	FIELD( _field_tag_reference, "water physics drag properties" ),
+	FIELD( _field_block, "drag overrides", &object_type_drag_properties_block_block ),
+	FIELD( _field_explanation, "Floatation" ),
+	FIELD( _field_pad, "default", 4 ),
+	FIELD( _field_real, "super floater" ),
+	FIELD( _field_real, "floater" ),
+	FIELD( _field_real, "neutral" ),
+	FIELD( _field_real, "sinker" ),
+	FIELD( _field_real, "super sinker" ),
+	FIELD( _field_pad, "none", 4 ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(materials_sweeteners_struct)
+{
+	FIELD( _field_tag_reference, "sound sweetener (small)" ),
+	FIELD( _field_tag_reference, "sound sweetener (medium)" ),
+	FIELD( _field_tag_reference, "sound sweetener (large)" ),
+	FIELD( _field_tag_reference, "sound sweetener rolling" ),
+	FIELD( _field_tag_reference, "sound sweetener grinding" ),
+	FIELD( _field_tag_reference, "sound sweetener (melee small)" ),
+	FIELD( _field_tag_reference, "sound sweetener (melee)#this is a medium sweetener and was the old default" ),
+	FIELD( _field_tag_reference, "sound sweetener (melee large)" ),
+	FIELD( _field_tag_reference, "effect sweetener (small)" ),
+	FIELD( _field_tag_reference, "effect sweetener (medium)" ),
+	FIELD( _field_tag_reference, "effect sweetener (large)" ),
+	FIELD( _field_tag_reference, "effect sweetener rolling" ),
+	FIELD( _field_tag_reference, "effect sweetener grinding" ),
+	FIELD( _field_tag_reference, "effect sweetener (melee)" ),
+	FIELD( _field_tag_reference, "water ripple (small)" ),
+	FIELD( _field_tag_reference, "water ripple (medium)" ),
+	FIELD( _field_tag_reference, "water ripple (large)" ),
+	FIELD( _field_explanation, "sweetener inheritance flags" ),
+	FIELD( _field_long_flags, "sweetener inheritance flags" ),
 	FIELD( _field_terminator )
 };
 

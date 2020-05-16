@@ -11,7 +11,7 @@ TAG_BLOCK(gamepad_stick_info_block, 1)
 	FIELD( _field_real_point_2d, "pegged time#time for a pegged look to reach maximum effect" ),
 	FIELD( _field_real_point_2d, "pegged scale#the maximum effect achieved over the duration of the pegged time." ),
 	FIELD( _field_angle, "peg max angular velocity:degrees per sec#the maximum turning speed during peg" ),
-	FIELD( _field_block, "input mapping function", &input_mapping_function_block ),
+	FIELD( _field_block, "input mapping function", &input_mapping_function_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -30,9 +30,9 @@ TAG_BLOCK(controller_input_block, 1)
 
 TAG_BLOCK(player_control_block, 1)
 {
-	FIELD( _field_block, "controller button mappings", &controller_mapping_reference_block ),
-	FIELD( _field_block, "move stick info", &gamepad_stick_info_block ),
-	FIELD( _field_block, "look stick info", &gamepad_stick_info_block ),
+	FIELD( _field_block, "controller button mappings", &controller_mapping_reference_block_block ),
+	FIELD( _field_block, "move stick info", &gamepad_stick_info_block_block ),
+	FIELD( _field_block, "look stick info", &gamepad_stick_info_block_block ),
 	FIELD( _field_real_fraction, "magnetism friction#how much the crosshair slows over enemies" ),
 	FIELD( _field_real_fraction, "magnetism adhesion#how much the crosshair sticks to enemies" ),
 	FIELD( _field_real_fraction, "inconsequential target scale#scales magnetism level for inconsequential targets like infection forms" ),

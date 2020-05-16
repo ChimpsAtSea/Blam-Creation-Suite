@@ -3,12 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(multiplayer_globals_struct_definition)
-{
-	FIELD( _field_block, "universal", &multiplayer_universal_block ),
-	FIELD( _field_block, "runtime", &multiplayer_runtime_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(multiplayer_globals, MULTIPLAYER_GLOBALS_TAG, multiplayer_globals_block_block )
+
+TAG_BLOCK_FROM_STRUCT(multiplayer_globals_block, 1, multiplayer_globals_struct_definition_struct_definition );
 
 TAG_BLOCK(spawn_influence_weight_falloff_function_block, 1)
 {
@@ -20,14 +17,14 @@ TAG_BLOCK(multiplayer_universal_block, 1)
 {
 	FIELD( _field_tag_reference, "random player names" ),
 	FIELD( _field_tag_reference, "team names" ),
-	FIELD( _field_block, "teams", &teamDefinitionBlock ),
+	FIELD( _field_block, "teams", &teamDefinitionBlock_block ),
 	FIELD( _field_tag_reference, "multiplayer text" ),
 	FIELD( _field_tag_reference, "sandbox text" ),
 	FIELD( _field_tag_reference, "sandbox object properties values" ),
 	FIELD( _field_tag_reference, "effects" ),
-	FIELD( _field_block, "multiplayer roles", &global_team_role_block ),
-	FIELD( _field_block, "requisition constants", &requisition_constants_block ),
-	FIELD( _field_block, "player starting profile", &scenario_profiles_block ),
+	FIELD( _field_block, "multiplayer roles", &global_team_role_block_block ),
+	FIELD( _field_block, "requisition constants", &requisition_constants_block_block ),
+	FIELD( _field_block, "player starting profile", &scenario_profiles_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -78,7 +75,7 @@ TAG_BLOCK(requisition_constants_block, 1)
 	FIELD( _field_long_integer, "Bronze advancement time" ),
 	FIELD( _field_long_integer, "Silver advancement time" ),
 	FIELD( _field_long_integer, "Gold advancement time" ),
-	FIELD( _field_block, "Requisition palette", &requisition_palette_block ),
+	FIELD( _field_block, "Requisition palette", &requisition_palette_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -100,14 +97,14 @@ TAG_BLOCK(multiplayer_runtime_block, 1)
 	FIELD( _field_tag_reference, "assault bomb" ),
 	FIELD( _field_tag_reference, "vip influence area" ),
 	FIELD( _field_tag_reference, "in game text" ),
-	FIELD( _field_block, "sounds", &sounds_block ),
-	FIELD( _field_block, "looping sounds", &looping_sounds_block ),
+	FIELD( _field_block, "sounds", &sounds_block_block ),
+	FIELD( _field_block, "looping sounds", &looping_sounds_block_block ),
 	FIELD( _field_tag_reference, "megalo sounds{english}" ),
 	FIELD( _field_tag_reference, "communication sounds{comm english}" ),
 	FIELD( _field_long_integer, "maximum frag count" ),
 	FIELD( _field_long_integer, "maximum plasma count" ),
-	FIELD( _field_block, "multiplayer constants", &multiplayer_constants_block ),
-	FIELD( _field_block, "state responses", &game_engine_status_response_block ),
+	FIELD( _field_block, "multiplayer constants", &multiplayer_constants_block_block ),
+	FIELD( _field_block, "state responses", &game_engine_status_response_block_block ),
 	FIELD( _field_tag_reference, "scoreboard emblem bitmap" ),
 	FIELD( _field_tag_reference, "scoreboard dead emblem bitmap" ),
 	FIELD( _field_tag_reference, "hill shader" ),
@@ -182,10 +179,10 @@ TAG_BLOCK(multiplayer_color_block$3, 32)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(multiplayer_globals_block, MULTIPLAYER_GLOBALS_TAG)
+TAG_STRUCT(multiplayer_globals_struct_definition)
 {
-	FIELD( _field_block, "universal", &multiplayer_universal_block ),
-	FIELD( _field_block, "runtime", &multiplayer_runtime_block ),
+	FIELD( _field_block, "universal", &multiplayer_universal_block_block ),
+	FIELD( _field_block, "runtime", &multiplayer_runtime_block_block ),
 	FIELD( _field_terminator )
 };
 

@@ -3,9 +3,23 @@
 namespace blofeld
 {
 
+TAG_GROUP_FROM_BLOCK(lightmap_model_globals, LIGHTMAP_MODEL_GLOBALS_TAG, lightmap_model_globals_block_block )
+
+TAG_GROUP_FROM_BLOCK(lightmapper_globals, LIGHTMAPPER_GLOBALS_TAG, lightmapper_globals_block_block )
+
+TAG_BLOCK_FROM_STRUCT(lightmap_model_globals_block, 1, lightmap_model_globals_struct_definition_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(lightmapper_globals_block, 1, lightmapper_globals_struct_definition_struct_definition );
+
+TAG_BLOCK(lightmap_model_reference_block, SHORT_MAX)
+{
+	FIELD( _field_tag_reference, "Model Reference" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(lightmap_model_globals_struct_definition)
 {
-	FIELD( _field_block, "Lightmapped Models", &lightmap_model_reference_block ),
+	FIELD( _field_block, "Lightmapped Models", &lightmap_model_reference_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -80,30 +94,6 @@ TAG_STRUCT(global_lightmap_local_override_settings_struct)
 	FIELD( _field_long_integer, "High Quality Average Jitter Samples" ),
 	FIELD( _field_long_integer, "Per Vertex Supersample Count" ),
 	FIELD( _field_long_integer, "Indirect Quality Offset" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(lightmap_model_reference_block, SHORT_MAX)
-{
-	FIELD( _field_tag_reference, "Model Reference" ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(lightmap_model_globals_block, LIGHTMAP_MODEL_GLOBALS_TAG)
-{
-	FIELD( _field_block, "Lightmapped Models", &lightmap_model_reference_block ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(lightmapper_globals_block, LIGHTMAPPER_GLOBALS_TAG)
-{
-	FIELD( _field_long_integer, "Version!" ),
-	FIELD( _field_custom, "GLOBAL QUALITY SETTINGS" ),
-	FIELD( _field_struct, "Global lightmapper settings", &global_lightmap_global_settings_struct_struct_definition ),
-	FIELD( _field_custom ),
-	FIELD( _field_custom, "LOCAL SETTINGS" ),
-	FIELD( _field_struct, "Local lightmapper settings", &global_lightmap_local_settings_struct_struct_definition ),
-	FIELD( _field_custom ),
 	FIELD( _field_terminator )
 };
 

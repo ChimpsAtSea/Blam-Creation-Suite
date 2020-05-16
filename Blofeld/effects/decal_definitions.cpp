@@ -3,19 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(decal_system_struct_definition)
-{
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_long_integer, "ring buffer size (in triangles)#bigger sizes keep more decals around but use much more memory" ),
-	FIELD( _field_long_integer, "ring buffer size single player (in triangles)#above entry is for MP -- SP can be different" ),
-	FIELD( _field_real, "material shader fade time#material shader lifetime is modulated from 1 to 0 over this time" ),
-	FIELD( _field_real_point_2d, "decal scale override#NOTE - If set to non-zero, this will override manual scaling in Sapien and smash it with these values" ),
-	FIELD( _field_explanation, "Decal bucket sharing" ),
-	FIELD( _field_short_bounds, "random sprite index bounds#if zero, will use random sprite" ),
-	FIELD( _field_block, "decals", &decal_definition_block ),
-	FIELD( _field_real, "runtime max radius!" ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(decal_system, DECAL_SYSTEM_TAG, decal_system_block_block )
+
+TAG_BLOCK_FROM_STRUCT(decal_system_block, 1, decal_system_struct_definition_struct_definition );
 
 TAG_BLOCK(decal_definition_block, c_decal_system_definition::k_max_decal)
 {
@@ -39,7 +29,7 @@ TAG_BLOCK(decal_definition_block, c_decal_system_definition::k_max_decal)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(decal_system_block, DECAL_SYSTEM_TAG)
+TAG_STRUCT(decal_system_struct_definition)
 {
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_long_integer, "ring buffer size (in triangles)#bigger sizes keep more decals around but use much more memory" ),
@@ -48,7 +38,7 @@ TAG_GROUP(decal_system_block, DECAL_SYSTEM_TAG)
 	FIELD( _field_real_point_2d, "decal scale override#NOTE - If set to non-zero, this will override manual scaling in Sapien and smash it with these values" ),
 	FIELD( _field_explanation, "Decal bucket sharing" ),
 	FIELD( _field_short_bounds, "random sprite index bounds#if zero, will use random sprite" ),
-	FIELD( _field_block, "decals", &decal_definition_block ),
+	FIELD( _field_block, "decals", &decal_definition_block_block ),
 	FIELD( _field_real, "runtime max radius!" ),
 	FIELD( _field_terminator )
 };

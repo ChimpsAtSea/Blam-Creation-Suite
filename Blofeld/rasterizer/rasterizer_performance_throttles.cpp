@@ -3,12 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(performance_throttles_struct_definition)
-{
-	FIELD( _field_explanation, "Performance Throttles" ),
-	FIELD( _field_block, "Performance Throttles", &performane_throttle_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(performance_throttles, PERFORMANCE_THROTTLES_TAG, performance_throttles_block_block )
+
+TAG_BLOCK_FROM_STRUCT(performance_throttles_block, 1, performance_throttles_struct_definition_struct_definition );
 
 TAG_BLOCK(performane_throttle_block, 7)
 {
@@ -40,10 +37,10 @@ TAG_BLOCK(performane_throttle_block, 7)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(performance_throttles_block, PERFORMANCE_THROTTLES_TAG)
+TAG_STRUCT(performance_throttles_struct_definition)
 {
 	FIELD( _field_explanation, "Performance Throttles" ),
-	FIELD( _field_block, "Performance Throttles", &performane_throttle_block ),
+	FIELD( _field_block, "Performance Throttles", &performane_throttle_block_block ),
 	FIELD( _field_terminator )
 };
 

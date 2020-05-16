@@ -3,23 +3,6 @@
 namespace blofeld
 {
 
-TAG_STRUCT(global_vehicle_engine_struct)
-{
-	FIELD( _field_explanation, "engine" ),
-	FIELD( _field_real, "engine moment#higher moments make engine spin up slower" ),
-	FIELD( _field_real, "engine max angular velocity#higher moments make engine spin up slower" ),
-	FIELD( _field_block, "gears", &gear_block ),
-	FIELD( _field_tag_reference, "gear shift sound" ),
-	FIELD( _field_block, "load and cruise sound", &load_and_cruise_block ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(torque_curve_struct)
-{
-	FIELD( _field_struct, "function", &scalar_function_named_struct_struct_definition ),
-	FIELD( _field_terminator )
-};
-
 TAG_BLOCK(gear_block, s_vehicle_engine_definition::k_gear_count_max)
 {
 	FIELD( _field_explanation, "loaded torque" ),
@@ -41,6 +24,23 @@ TAG_BLOCK(load_and_cruise_block, s_vehicle_engine_definition::k_load_and_cruise_
 {
 	FIELD( _field_string_id, "load cruise function" ),
 	FIELD( _field_long_block_index, "attachment index" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(global_vehicle_engine_struct)
+{
+	FIELD( _field_explanation, "engine" ),
+	FIELD( _field_real, "engine moment#higher moments make engine spin up slower" ),
+	FIELD( _field_real, "engine max angular velocity#higher moments make engine spin up slower" ),
+	FIELD( _field_block, "gears", &gear_block_block ),
+	FIELD( _field_tag_reference, "gear shift sound" ),
+	FIELD( _field_block, "load and cruise sound", &load_and_cruise_block_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(torque_curve_struct)
+{
+	FIELD( _field_struct, "function", &scalar_function_named_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 

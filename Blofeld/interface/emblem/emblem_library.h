@@ -3,26 +3,27 @@
 namespace blofeld
 {
 
-extern s_tag_struct emblem_library_struct_definition_struct_definition;
+constexpr unsigned long EMBLEM_LIBRARY_TAG = 'mlib';
+
+extern s_tag_group emblem_library_group;
+
+extern s_tag_block_definition emblem_library_block_block;
+extern s_tag_struct emblem_bitmap_list_block_struct;
+extern s_tag_block_definition emblem_bitmap_list_block;
+extern s_tag_struct emblem_shape_list_block_struct;
+extern s_tag_block_definition emblem_shape_list_block;
+extern s_tag_struct emblem_front_list_block_struct;
+extern s_tag_block_definition emblem_front_list_block;
+extern s_tag_struct emblem_back_list_block_struct;
+extern s_tag_block_definition emblem_back_list_block;
+extern s_tag_struct emblem_runtime_front_list_block_struct;
+extern s_tag_block_definition emblem_runtime_front_list_block;
+extern s_tag_struct emblem_runtime_back_list_block_struct;
+extern s_tag_block_definition emblem_runtime_back_list_block;
+
+extern s_tag_struct emblem_library_struct_definition_struct_definition; // tag group
 extern s_tag_struct emblem_transform_struct_definition;
 extern s_tag_struct emblem_layer_struct_definition;
 
-extern s_tag_struct emblem_bitmap_list_struct_definition;
-extern s_tag_block_definition emblem_bitmap_list;
-extern s_tag_struct emblem_shape_list_struct_definition;
-extern s_tag_block_definition emblem_shape_list;
-extern s_tag_struct emblem_front_list_struct_definition;
-extern s_tag_block_definition emblem_front_list;
-extern s_tag_struct emblem_back_list_struct_definition;
-extern s_tag_block_definition emblem_back_list;
-extern s_tag_struct emblem_runtime_front_list_struct_definition;
-extern s_tag_block_definition emblem_runtime_front_list;
-extern s_tag_struct emblem_runtime_back_list_struct_definition;
-extern s_tag_block_definition emblem_runtime_back_list;
-
-constexpr unsigned long EMBLEM_LIBRARY_TAG = 'mlib';
-
-extern s_tag_block_definition emblem_library_block;
-extern s_tag_group emblem_library_group;
 } // namespace blofeld
 

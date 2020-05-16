@@ -3,11 +3,11 @@
 namespace blofeld
 {
 
-TAG_STRUCT(material_struct)
+TAG_GROUP(material, MATERIAL_TAG)
 {
 	FIELD( _field_tag_reference, "material shader" ),
-	FIELD( _field_block, "material parameters", &material_shader_parameter_block ),
-	FIELD( _field_block, "postprocess definition!", &material_postprocess_block ),
+	FIELD( _field_block, "material parameters", &material_shader_parameter_block_block ),
+	FIELD( _field_block, "postprocess definition!", &material_postprocess_block_block ),
 	FIELD( _field_string_id, "physics material name" ),
 	FIELD( _field_string_id, "physics material name 2" ),
 	FIELD( _field_string_id, "physics material name 3" ),
@@ -24,20 +24,20 @@ TAG_STRUCT(material_struct)
 
 TAG_BLOCK(material_postprocess_block, 1)
 {
-	FIELD( _field_block, "textures", &material_postprocess_texture_block ),
-	FIELD( _field_block, "texture constants", &real_vector4d_block$3 ),
-	FIELD( _field_block, "real vectors", &real_vector4d_block$3 ),
-	FIELD( _field_block, "real vertex vectors", &real_vector4d_block$3 ),
-	FIELD( _field_block, "int constants", &int_block$3 ),
+	FIELD( _field_block, "textures", &material_postprocess_texture_block_block ),
+	FIELD( _field_block, "texture constants", &real_vector4d_block$3_block ),
+	FIELD( _field_block, "real vectors", &real_vector4d_block$3_block ),
+	FIELD( _field_block, "real vertex vectors", &real_vector4d_block$3_block ),
+	FIELD( _field_block, "int constants", &int_block$3_block ),
 	FIELD( _field_long_integer, "bool constants" ),
 	FIELD( _field_long_integer, "used bool constants" ),
 	FIELD( _field_long_integer, "bool render phase mask" ),
 	FIELD( _field_long_integer, "vertex bool constants" ),
 	FIELD( _field_long_integer, "used vertex bool constants" ),
 	FIELD( _field_long_integer, "vertex bool render phase mask" ),
-	FIELD( _field_block, "functions", &material_shader_function_parameter_block ),
-	FIELD( _field_block, "function parameters", &functionParameterBlock ),
-	FIELD( _field_block, "extern parameters", &externParameterBlock ),
+	FIELD( _field_block, "functions", &material_shader_function_parameter_block_block ),
+	FIELD( _field_block, "function parameters", &functionParameterBlock_block ),
+	FIELD( _field_block, "extern parameters", &externParameterBlock_block ),
 	FIELD( _field_char_enum, "alpha blend mode" ),
 	FIELD( _field_char_enum, "layer blend mode" ),
 	FIELD( _field_word_flags, "flags" ),
@@ -94,11 +94,11 @@ TAG_BLOCK(externParameterBlock, k_uint8_max)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(material_block, MATERIAL_TAG)
+TAG_STRUCT(material_struct)
 {
 	FIELD( _field_tag_reference, "material shader" ),
-	FIELD( _field_block, "material parameters", &material_shader_parameter_block ),
-	FIELD( _field_block, "postprocess definition!", &material_postprocess_block ),
+	FIELD( _field_block, "material parameters", &material_shader_parameter_block_block ),
+	FIELD( _field_block, "postprocess definition!", &material_postprocess_block_block ),
 	FIELD( _field_string_id, "physics material name" ),
 	FIELD( _field_string_id, "physics material name 2" ),
 	FIELD( _field_string_id, "physics material name 3" ),

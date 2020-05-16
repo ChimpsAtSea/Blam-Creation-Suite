@@ -3,12 +3,13 @@
 namespace blofeld
 {
 
-extern s_tag_struct havok_vehicle_physics_struct_struct_definition;
 
-extern s_tag_struct anti_gravity_point_definition_block_struct_definition;
-extern s_tag_block_definition anti_gravity_point_definition_block;
-extern s_tag_struct friction_point_definition_block_struct_definition;
-extern s_tag_block_definition friction_point_definition_block;
+extern s_tag_struct anti_gravity_point_definition_block_block_struct;
+extern s_tag_block_definition anti_gravity_point_definition_block_block;
+extern s_tag_struct friction_point_definition_block_block_struct;
+extern s_tag_block_definition friction_point_definition_block_block;
+
+extern s_tag_struct havok_vehicle_physics_struct_struct_definition;
 
 } // namespace blofeld
 

@@ -3,31 +3,32 @@
 namespace blofeld
 {
 
-extern s_tag_struct KillCamCameraParamter_struct_definition_struct_definition;
-extern s_tag_struct projectile_group_struct_definition;
-extern s_tag_struct super_detonation_damage_struct_struct_definition;
-extern s_tag_struct angular_velocity_lower_bound_struct_struct_definition;
-
-extern s_tag_struct old_projectile_material_response_block_struct_definition;
-extern s_tag_block_definition old_projectile_material_response_block;
-extern s_tag_struct projectile_material_response_block_struct_definition;
-extern s_tag_block_definition projectile_material_response_block;
-extern s_tag_struct brute_grenade_block_struct_definition;
-extern s_tag_block_definition brute_grenade_block;
-extern s_tag_struct fire_bomb_grenade_block_struct_definition;
-extern s_tag_block_definition fire_bomb_grenade_block;
-extern s_tag_struct conical_projection_block_struct_definition;
-extern s_tag_block_definition conical_projection_block;
-extern s_tag_struct ProjectileSoundRTPCBlock_struct_definition;
-extern s_tag_block_definition ProjectileSoundRTPCBlock;
-
 constexpr unsigned long KILLCAMCAMERAPARAMTER_TAG = 'kccd';
 
-extern s_tag_block_definition KillCamCameraParamter_block;
 extern s_tag_group KillCamCameraParamter_group;
 constexpr unsigned long PROJECTILE_TAG = 'proj';
 
-extern s_tag_block_definition projectile_block;
 extern s_tag_group projectile_group;
+
+extern s_tag_block_definition KillCamCameraParamter_block_block;
+extern s_tag_block_definition projectile_block_block;
+extern s_tag_struct old_projectile_material_response_block_block_struct;
+extern s_tag_block_definition old_projectile_material_response_block_block;
+extern s_tag_struct projectile_material_response_block_block_struct;
+extern s_tag_block_definition projectile_material_response_block_block;
+extern s_tag_struct brute_grenade_block_block_struct;
+extern s_tag_block_definition brute_grenade_block_block;
+extern s_tag_struct fire_bomb_grenade_block_block_struct;
+extern s_tag_block_definition fire_bomb_grenade_block_block;
+extern s_tag_struct conical_projection_block_block_struct;
+extern s_tag_block_definition conical_projection_block_block;
+extern s_tag_struct ProjectileSoundRTPCBlock_block_struct;
+extern s_tag_block_definition ProjectileSoundRTPCBlock_block;
+
+extern s_tag_struct KillCamCameraParamter_struct_definition_struct_definition; // tag group
+extern s_tag_struct projectile_group_struct_definition; // tag group
+extern s_tag_struct super_detonation_damage_struct_struct_definition;
+extern s_tag_struct angular_velocity_lower_bound_struct_struct_definition;
+
 } // namespace blofeld
 

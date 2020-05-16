@@ -3,11 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(multiplayer_scenario_description_struct_definition)
-{
-	FIELD( _field_block, "multiplayer scenarios", &scenario_description_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(multiplayer_scenario_description, MULTIPLAYER_SCENARIO_DESCRIPTION_TAG, multiplayer_scenario_description_block_block )
+
+TAG_BLOCK_FROM_STRUCT(multiplayer_scenario_description_block, 1, multiplayer_scenario_description_struct_definition_struct_definition );
 
 TAG_BLOCK(scenario_description_block, MAXIMUM_NUMBER_OF_MULTIPLAYER_SCENARIOS)
 {
@@ -19,9 +17,9 @@ TAG_BLOCK(scenario_description_block, MAXIMUM_NUMBER_OF_MULTIPLAYER_SCENARIOS)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(multiplayer_scenario_description_block, MULTIPLAYER_SCENARIO_DESCRIPTION_TAG)
+TAG_STRUCT(multiplayer_scenario_description_struct_definition)
 {
-	FIELD( _field_block, "multiplayer scenarios", &scenario_description_block ),
+	FIELD( _field_block, "multiplayer scenarios", &scenario_description_block_block ),
 	FIELD( _field_terminator )
 };
 

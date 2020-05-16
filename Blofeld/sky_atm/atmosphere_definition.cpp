@@ -3,48 +3,7 @@
 namespace blofeld
 {
 
-TAG_STRUCT(solo_fog_parameters_struct_definition)
-{
-	FIELD( _field_real, "base height:world units" ),
-	FIELD( _field_real, "fog height:world units" ),
-	FIELD( _field_real, "fog thickness [0.0 to 1.0]" ),
-	FIELD( _field_real, "fog falloff end{max fog distance}" ),
-	FIELD( _field_real_rgb_color, "fog color" ),
-	FIELD( _field_real, "fog color intensity#scales color up or down to allow for HDR values" ),
-	FIELD( _field_block, "Function", &soloFogFunctionBlock ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(fog_light_struct_definition)
-{
-	FIELD( _field_real, "pitch angle [-90 to 90]:degree" ),
-	FIELD( _field_real, "yaw angle [0 to 360]:degree" ),
-	FIELD( _field_real, "angular radius [0 to 180]:degree" ),
-	FIELD( _field_real_rgb_color, "tint color" ),
-	FIELD( _field_real, "tint color intensity" ),
-	FIELD( _field_real, "angular falloff steepness" ),
-	FIELD( _field_real, "distance falloff steepness" ),
-	FIELD( _field_real, "nearby cutoff percentage" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(VolumeFogParametersDefinition)
-{
-	FIELD( _field_real_rgb_color, "volume fog color" ),
-	FIELD( _field_real, "volume fog color intensity" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(LightShaftParametersDefinition)
-{
-	FIELD( _field_real_rgb_color, "light shaft tint color" ),
-	FIELD( _field_real, "light shaft intensity" ),
-	FIELD( _field_real, "light shaft decay rate" ),
-	FIELD( _field_real, "maximum screen distance" ),
-	FIELD( _field_real, "sample density" ),
-	FIELD( _field_real, "minimum caster distance" ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(atmosphere_fog, ATMOSPHERE_FOG_TAG, atmosphere_definition_block_block )
 
 TAG_BLOCK(atmosphere_definition_block, k_max_atmosphere_settings)
 {
@@ -92,7 +51,48 @@ TAG_BLOCK(soloFogFunctionBlock, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_FROM_BLOCK(atmosphere_fog, ATMOSPHERE_FOG_TAG, atmosphere_definition_block)
+TAG_STRUCT(solo_fog_parameters_struct_definition)
+{
+	FIELD( _field_real, "base height:world units" ),
+	FIELD( _field_real, "fog height:world units" ),
+	FIELD( _field_real, "fog thickness [0.0 to 1.0]" ),
+	FIELD( _field_real, "fog falloff end{max fog distance}" ),
+	FIELD( _field_real_rgb_color, "fog color" ),
+	FIELD( _field_real, "fog color intensity#scales color up or down to allow for HDR values" ),
+	FIELD( _field_block, "Function", &soloFogFunctionBlock_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(fog_light_struct_definition)
+{
+	FIELD( _field_real, "pitch angle [-90 to 90]:degree" ),
+	FIELD( _field_real, "yaw angle [0 to 360]:degree" ),
+	FIELD( _field_real, "angular radius [0 to 180]:degree" ),
+	FIELD( _field_real_rgb_color, "tint color" ),
+	FIELD( _field_real, "tint color intensity" ),
+	FIELD( _field_real, "angular falloff steepness" ),
+	FIELD( _field_real, "distance falloff steepness" ),
+	FIELD( _field_real, "nearby cutoff percentage" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(VolumeFogParametersDefinition)
+{
+	FIELD( _field_real_rgb_color, "volume fog color" ),
+	FIELD( _field_real, "volume fog color intensity" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(LightShaftParametersDefinition)
+{
+	FIELD( _field_real_rgb_color, "light shaft tint color" ),
+	FIELD( _field_real, "light shaft intensity" ),
+	FIELD( _field_real, "light shaft decay rate" ),
+	FIELD( _field_real, "maximum screen distance" ),
+	FIELD( _field_real, "sample density" ),
+	FIELD( _field_real, "minimum caster distance" ),
+	FIELD( _field_terminator )
+};
 
 } // namespace blofeld
 

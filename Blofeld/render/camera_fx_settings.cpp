@@ -3,6 +3,30 @@
 namespace blofeld
 {
 
+TAG_GROUP(camera_fx_settings, CAMERA_FX_SETTINGS_TAG)
+{
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "exposure", &camera_fx_exposure_struct_struct_definition ),
+	FIELD( _field_struct, "auto_exposure_sensitivity", &camera_fx_exposure_sensitivity_struct_struct_definition ),
+	FIELD( _field_struct, "bloom_highlight{bloom_point}", &camera_fx_bloom_highlight_struct_struct_definition ),
+	FIELD( _field_struct, "bloom_inherent", &camera_fx_bloom_inherent_struct_struct_definition ),
+	FIELD( _field_struct, "bloom_self_illum", &camera_fx_bloom_self_illum_struct_struct_definition ),
+	FIELD( _field_struct, "bloom_intensity", &camera_fx_bloom_intensity_struct_struct_definition ),
+	FIELD( _field_struct, "bloom_large_color", &camera_fx_bloom_large_color_struct_struct_definition ),
+	FIELD( _field_struct, "bloom_medium_color", &camera_fx_bloom_medium_color_struct_struct_definition ),
+	FIELD( _field_struct, "bloom_small_color", &camera_fx_bloom_small_color_struct_struct_definition ),
+	FIELD( _field_struct, "bling_intensity!", &camera_fx_bling_intensity_struct_struct_definition ),
+	FIELD( _field_struct, "bling_size!", &camera_fx_bling_size_struct_struct_definition ),
+	FIELD( _field_struct, "bling_angle!", &camera_fx_bling_angle_struct_struct_definition ),
+	FIELD( _field_struct, "bling_count!", &camera_fx_bling_count_struct_struct_definition ),
+	FIELD( _field_struct, "self_illum_preferred", &camera_fx_self_illum_preferred_struct_struct_definition ),
+	FIELD( _field_struct, "self_illum_scale", &camera_fx_self_illum_scale_struct_struct_definition ),
+	FIELD( _field_struct, "color_grading", &camera_fx_color_grading_struct_struct_definition ),
+	FIELD( _field_struct, "filmic_tone_curve", &camera_fx_filmic_tone_curve_struct_struct_definition ),
+	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(camera_fx_exposure_struct)
 {
 	FIELD( _field_custom ),
@@ -182,30 +206,6 @@ TAG_STRUCT(camera_fx_filmic_tone_curve_struct)
 	FIELD( _field_real, "toe numerator#Numerator of toe slope" ),
 	FIELD( _field_real, "toe denominator#Denominator of toe slope" ),
 	FIELD( _field_real, "linear white point#The white point in linear space" ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(camera_fx_settings_block, CAMERA_FX_SETTINGS_TAG)
-{
-	FIELD( _field_custom ),
-	FIELD( _field_struct, "exposure", &camera_fx_exposure_struct_struct_definition ),
-	FIELD( _field_struct, "auto_exposure_sensitivity", &camera_fx_exposure_sensitivity_struct_struct_definition ),
-	FIELD( _field_struct, "bloom_highlight{bloom_point}", &camera_fx_bloom_highlight_struct_struct_definition ),
-	FIELD( _field_struct, "bloom_inherent", &camera_fx_bloom_inherent_struct_struct_definition ),
-	FIELD( _field_struct, "bloom_self_illum", &camera_fx_bloom_self_illum_struct_struct_definition ),
-	FIELD( _field_struct, "bloom_intensity", &camera_fx_bloom_intensity_struct_struct_definition ),
-	FIELD( _field_struct, "bloom_large_color", &camera_fx_bloom_large_color_struct_struct_definition ),
-	FIELD( _field_struct, "bloom_medium_color", &camera_fx_bloom_medium_color_struct_struct_definition ),
-	FIELD( _field_struct, "bloom_small_color", &camera_fx_bloom_small_color_struct_struct_definition ),
-	FIELD( _field_struct, "bling_intensity!", &camera_fx_bling_intensity_struct_struct_definition ),
-	FIELD( _field_struct, "bling_size!", &camera_fx_bling_size_struct_struct_definition ),
-	FIELD( _field_struct, "bling_angle!", &camera_fx_bling_angle_struct_struct_definition ),
-	FIELD( _field_struct, "bling_count!", &camera_fx_bling_count_struct_struct_definition ),
-	FIELD( _field_struct, "self_illum_preferred", &camera_fx_self_illum_preferred_struct_struct_definition ),
-	FIELD( _field_struct, "self_illum_scale", &camera_fx_self_illum_scale_struct_struct_definition ),
-	FIELD( _field_struct, "color_grading", &camera_fx_color_grading_struct_struct_definition ),
-	FIELD( _field_struct, "filmic_tone_curve", &camera_fx_filmic_tone_curve_struct_struct_definition ),
-	FIELD( _field_custom ),
 	FIELD( _field_terminator )
 };
 

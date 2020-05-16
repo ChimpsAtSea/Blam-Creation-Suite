@@ -235,6 +235,8 @@ namespace blofeld
 	{
 		const char* const name;
 		const char* const display_name;
+		const char* const filename;
+		int32_t const line;
 		GUID const guid;
 		const s_tag_field* const tag_fields;
 	};
@@ -267,9 +269,9 @@ namespace blofeld
 	};
 
 	s_tag_group* get_tag_group_by_group_tag(uint32_t group_tag);
-	struct s_tag_block_definition_validation_data
+	struct s_tag_struct_validation_data
 	{
-		const s_tag_block_definition& tag_block;
+		const s_tag_struct& tag_struct;
 		uint32_t size;
 	};
 

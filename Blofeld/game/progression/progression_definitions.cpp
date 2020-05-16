@@ -3,6 +3,8 @@
 namespace blofeld
 {
 
+TAG_GROUP_FROM_BLOCK(progression, PROGRESSION_TAG, progressionGlobalsBlock_block )
+
 TAG_BLOCK(progressionGlobalsBlock, 1)
 {
 	FIELD( _field_long_integer, "ordnance points gained on killing another player" ),
@@ -14,8 +16,6 @@ TAG_BLOCK(progressionGlobalsBlock, 1)
 	FIELD( _field_tag_reference, "drop pod locator (effect)#used by random ordnance drop system for air drops" ),
 	FIELD( _field_terminator )
 };
-
-TAG_GROUP_FROM_BLOCK(progression, PROGRESSION_TAG, progressionGlobalsBlock)
 
 } // namespace blofeld
 

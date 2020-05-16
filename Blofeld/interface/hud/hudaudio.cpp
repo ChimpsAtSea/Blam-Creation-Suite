@@ -5,7 +5,7 @@ namespace blofeld
 
 TAG_BLOCK(hud_unit_sound_block, 1)
 {
-	FIELD( _field_block, "Hud audio cues", &hud_unit_sound_cue_block ),
+	FIELD( _field_block, "Hud audio cues", &hud_unit_sound_cue_block_block ),
 	FIELD( _field_custom, "health thresholds" ),
 	FIELD( _field_real, "health minor" ),
 	FIELD( _field_real, "health major" ),

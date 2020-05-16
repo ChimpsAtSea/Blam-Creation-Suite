@@ -3,23 +3,15 @@
 namespace blofeld
 {
 
-TAG_STRUCT(effect_globals_struct_definition)
-{
-	FIELD( _field_explanation, "EFFECT HOLDBACKS" ),
-	FIELD( _field_block, "holdbacks", &effect_component_holdbacks_block ),
-	FIELD( _field_tag_reference, "grunt birthday effect" ),
-	FIELD( _field_explanation, "Spawn Effects" ),
-	FIELD( _field_block, "multiplayer", &effect_global_spawn_effects_block ),
-	FIELD( _field_block, "survival", &effect_global_spawn_effects_block ),
-	FIELD( _field_block, "campaign", &effect_global_spawn_effects_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(effect_globals, EFFECT_GLOBALS_TAG, effect_globals_block_block )
+
+TAG_BLOCK_FROM_STRUCT(effect_globals_block, 1, effect_globals_struct_definition_struct_definition );
 
 TAG_BLOCK(effect_component_holdbacks_block, k_effect_holdback_type_max)
 {
 	FIELD( _field_long_enum, "holdback type^*" ),
 	FIELD( _field_dword_integer, "overall budget*#from code" ),
-	FIELD( _field_block, "priorities", &effect_component_holdback_block ),
+	FIELD( _field_block, "priorities", &effect_component_holdback_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -42,15 +34,15 @@ TAG_BLOCK(effect_global_spawn_effects_block, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(effect_globals_block, EFFECT_GLOBALS_TAG)
+TAG_STRUCT(effect_globals_struct_definition)
 {
 	FIELD( _field_explanation, "EFFECT HOLDBACKS" ),
-	FIELD( _field_block, "holdbacks", &effect_component_holdbacks_block ),
+	FIELD( _field_block, "holdbacks", &effect_component_holdbacks_block_block ),
 	FIELD( _field_tag_reference, "grunt birthday effect" ),
 	FIELD( _field_explanation, "Spawn Effects" ),
-	FIELD( _field_block, "multiplayer", &effect_global_spawn_effects_block ),
-	FIELD( _field_block, "survival", &effect_global_spawn_effects_block ),
-	FIELD( _field_block, "campaign", &effect_global_spawn_effects_block ),
+	FIELD( _field_block, "multiplayer", &effect_global_spawn_effects_block_block ),
+	FIELD( _field_block, "survival", &effect_global_spawn_effects_block_block ),
+	FIELD( _field_block, "campaign", &effect_global_spawn_effects_block_block ),
 	FIELD( _field_terminator )
 };
 

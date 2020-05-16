@@ -3,26 +3,45 @@
 namespace blofeld
 {
 
-TAG_STRUCT(imposter_model_struct_definition)
+TAG_GROUP_FROM_BLOCK(imposter_model, IMPOSTER_MODEL_TAG, imposter_model_block_block )
+
+TAG_GROUP(render_model, RENDER_MODEL_TAG)
 {
 	FIELD( _field_string_id, "name*" ),
-	FIELD( _field_short_integer, "quality" ),
-	FIELD( _field_pad, "NBOML", 2 ),
-	FIELD( _field_real, "brightness adjustment" ),
-	FIELD( _field_block, "node maps", &imposter_mode_node_block ),
-	FIELD( _field_block, "regions*", &render_model_region_block ),
-	FIELD( _field_custom, "render geometry" ),
-	FIELD( _field_struct, "geometry*", &global_render_geometry_struct_struct_definition ),
+	FIELD( _field_word_flags, "flags*" ),
+	FIELD( _field_word_integer, "version!" ),
 	FIELD( _field_custom ),
+	FIELD( _field_long_integer, "runtime import info checksum!" ),
+	FIELD( _field_custom ),
+	FIELD( _field_block, "regions*", &render_model_region_block_block ),
+	FIELD( _field_char_integer, "L1 section group index*:(low)" ),
+	FIELD( _field_char_integer, "L2 section group index*:(high)" ),
+	FIELD( _field_pad, "PUJJ", 2 ),
+	FIELD( _field_long_block_index, "instance mesh index*" ),
+	FIELD( _field_block, "instance placements", &global_render_model_instance_placement_block_block ),
+	FIELD( _field_long_integer, "node list checksum*" ),
+	FIELD( _field_block, "nodes*", &render_model_node_block_block ),
+	FIELD( _field_block, "marker groups*", &render_model_marker_group_block_block ),
+	FIELD( _field_block, "materials", &global_geometry_material_block_block ),
+	FIELD( _field_block, "errors*", &global_error_report_categories_block_block ),
+	FIELD( _field_real, "don\'t draw over camera cosine angle#dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." ),
+	FIELD( _field_struct, "render geometry*", &global_render_geometry_struct_struct_definition ),
+	FIELD( _field_block, "node map mapping*", &instance_node_map_mapping_block_block ),
+	FIELD( _field_block, "volume samples", &volume_samples_block_block ),
+	FIELD( _field_block, "runtime node orientations!", &default_node_orientations_block_block ),
+	FIELD( _field_block, "bone groups", &RenderModelBoneGroupBlock_block ),
+	FIELD( _field_explanation, "Static Lightmap" ),
+	FIELD( _field_tag_reference, "structure meta data*" ),
+	FIELD( _field_tag_reference, "lightmap bsp data reference" ),
+	FIELD( _field_tag_reference, "forge lightmap atlases" ),
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(render_model_lightmap_atlas_struct_definition)
-{
-	FIELD( _field_struct, "atlas geometry*", &global_render_geometry_struct_struct_definition ),
-	FIELD( _field_real, "world scale ratio" ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(render_model_lightmap_atlas, RENDER_MODEL_LIGHTMAP_ATLAS_TAG, render_model_lightmap_atlas_block_block )
+
+TAG_BLOCK_FROM_STRUCT(imposter_model_block, 1, imposter_model_struct_definition_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(render_model_lightmap_atlas_block, 1, render_model_lightmap_atlas_struct_definition_struct_definition );
 
 TAG_BLOCK(imposter_mode_node_block, k_kilo)
 {
@@ -35,7 +54,7 @@ TAG_BLOCK(imposter_mode_node_block, k_kilo)
 TAG_BLOCK(render_model_region_block, MAXIMUM_REGIONS_PER_MODEL)
 {
 	FIELD( _field_string_id, "name^*" ),
-	FIELD( _field_block, "permutations*", &render_model_permutation_block ),
+	FIELD( _field_block, "permutations*", &render_model_permutation_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -82,7 +101,7 @@ TAG_BLOCK(render_model_node_block, MAXIMUM_NODES_PER_MODEL)
 TAG_BLOCK(render_model_marker_group_block, MAXIMUM_MARKER_GROUPS_PER_RENDER_MODEL)
 {
 	FIELD( _field_string_id, "name^*" ),
-	FIELD( _field_block, "markers*", &render_model_marker_block ),
+	FIELD( _field_block, "markers*", &render_model_marker_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -123,7 +142,7 @@ TAG_BLOCK(default_node_orientations_block, MAXIMUM_NODES_PER_MODEL)
 TAG_BLOCK(RenderModelBoneGroupBlock, MAXIMUM_BONE_GROUPS_PER_MODEL)
 {
 	FIELD( _field_string_id, "name^*" ),
-	FIELD( _field_block, "bones*", &RenderModelNodeIndexBlock ),
+	FIELD( _field_block, "bones*", &RenderModelNodeIndexBlock_block ),
 	FIELD( _field_terminator )
 };
 
@@ -133,53 +152,21 @@ TAG_BLOCK(RenderModelNodeIndexBlock, MAXIMUM_NODES_PER_MODEL)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(imposter_model_block, IMPOSTER_MODEL_TAG)
+TAG_STRUCT(imposter_model_struct_definition)
 {
 	FIELD( _field_string_id, "name*" ),
 	FIELD( _field_short_integer, "quality" ),
 	FIELD( _field_pad, "NBOML", 2 ),
 	FIELD( _field_real, "brightness adjustment" ),
-	FIELD( _field_block, "node maps", &imposter_mode_node_block ),
-	FIELD( _field_block, "regions*", &render_model_region_block ),
+	FIELD( _field_block, "node maps", &imposter_mode_node_block_block ),
+	FIELD( _field_block, "regions*", &render_model_region_block_block ),
 	FIELD( _field_custom, "render geometry" ),
 	FIELD( _field_struct, "geometry*", &global_render_geometry_struct_struct_definition ),
 	FIELD( _field_custom ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(render_model_block, RENDER_MODEL_TAG)
-{
-	FIELD( _field_string_id, "name*" ),
-	FIELD( _field_word_flags, "flags*" ),
-	FIELD( _field_word_integer, "version!" ),
-	FIELD( _field_custom ),
-	FIELD( _field_long_integer, "runtime import info checksum!" ),
-	FIELD( _field_custom ),
-	FIELD( _field_block, "regions*", &render_model_region_block ),
-	FIELD( _field_char_integer, "L1 section group index*:(low)" ),
-	FIELD( _field_char_integer, "L2 section group index*:(high)" ),
-	FIELD( _field_pad, "PUJJ", 2 ),
-	FIELD( _field_long_block_index, "instance mesh index*" ),
-	FIELD( _field_block, "instance placements", &global_render_model_instance_placement_block ),
-	FIELD( _field_long_integer, "node list checksum*" ),
-	FIELD( _field_block, "nodes*", &render_model_node_block ),
-	FIELD( _field_block, "marker groups*", &render_model_marker_group_block ),
-	FIELD( _field_block, "materials", &global_geometry_material_block ),
-	FIELD( _field_block, "errors*", &global_error_report_categories_block ),
-	FIELD( _field_real, "don\'t draw over camera cosine angle#dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." ),
-	FIELD( _field_struct, "render geometry*", &global_render_geometry_struct_struct_definition ),
-	FIELD( _field_block, "node map mapping*", &instance_node_map_mapping_block ),
-	FIELD( _field_block, "volume samples", &volume_samples_block ),
-	FIELD( _field_block, "runtime node orientations!", &default_node_orientations_block ),
-	FIELD( _field_block, "bone groups", &RenderModelBoneGroupBlock ),
-	FIELD( _field_explanation, "Static Lightmap" ),
-	FIELD( _field_tag_reference, "structure meta data*" ),
-	FIELD( _field_tag_reference, "lightmap bsp data reference" ),
-	FIELD( _field_tag_reference, "forge lightmap atlases" ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(render_model_lightmap_atlas_block, RENDER_MODEL_LIGHTMAP_ATLAS_TAG)
+TAG_STRUCT(render_model_lightmap_atlas_struct_definition)
 {
 	FIELD( _field_struct, "atlas geometry*", &global_render_geometry_struct_struct_definition ),
 	FIELD( _field_real, "world scale ratio" ),

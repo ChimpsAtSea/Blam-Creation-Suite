@@ -3,63 +3,6 @@
 namespace blofeld
 {
 
-TAG_STRUCT(model_damage_info_struct)
-{
-	FIELD( _field_explanation, "Damage Info" ),
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_real, "maximum vitality#value of zero implies \'damage sections\' should be empty" ),
-	FIELD( _field_string_id, "indirect material name#absorbes AOE or child damage" ),
-	FIELD( _field_short_block_index, "indirect damage section#absorbes AOE or child damage" ),
-	FIELD( _field_short_block_index, "shielded state damage section#the model\'s shielded/unshielded state reflects the depletion of this damage section" ),
-	FIELD( _field_char_enum, "collision damage reporting type" ),
-	FIELD( _field_char_enum, "response damage reporting type" ),
-	FIELD( _field_pad, "MDIBP0", 2 ),
-	FIELD( _field_block, "damage sections", &new_global_damage_section_block ),
-	FIELD( _field_block, "damage constraints", &damage_constraint_info_block ),
-	FIELD( _field_block, "nodes*", &global_damage_nodes_block ),
-	FIELD( _field_short_integer, "runtime indirect material type!*" ),
-	FIELD( _field_pad, "MDIBP1", 2 ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(instantaneous_response_damage_effect_struct)
-{
-	FIELD( _field_tag_reference, "transition damage effect" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(instantaneous_response_damage_effect_marker_struct)
-{
-	FIELD( _field_string_id, "damage effect marker name" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(damage_body_parameters_struct)
-{
-	FIELD( _field_real, "maximum vitality" ),
-	FIELD( _field_real, "minimum stun damage#the minimum damage required to stun this object\'s health" ),
-	FIELD( _field_real, "stun time:seconds#the length of time the health stay stunned (do not recharge) after taking damage" ),
-	FIELD( _field_real, "recharge time:seconds#the length of time it would take for the shields to fully recharge after being completely depleted" ),
-	FIELD( _field_real_fraction, "recharge fraction#0 defaults to 1 - to what maximum level the body health will be allowed to recharge" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(damage_shield_parameters_struct)
-{
-	FIELD( _field_real, "maximum shield vitality#the default initial and maximum shield vitality of this object" ),
-	FIELD( _field_string_id, "global shield material name" ),
-	FIELD( _field_real, "minimum stun damage#the minimum damage required to stun this object\'s shields" ),
-	FIELD( _field_real, "stun time:seconds#the length of time the shields stay stunned (do not recharge) after taking damage" ),
-	FIELD( _field_real, "recharge time:seconds#the length of time it would take for the shields to fully recharge after being completely depleted" ),
-	FIELD( _field_real, "shield overcharge fraction#fraction to which shields will automatically overcharge, values <= 1.0 are ignored" ),
-	FIELD( _field_real, "shield overcharge time#time it takes to reach full \"shield overcharge fraction\"" ),
-	FIELD( _field_real, "shield damaged threshold" ),
-	FIELD( _field_tag_reference, "shield damaged effect" ),
-	FIELD( _field_tag_reference, "shield depleted effect" ),
-	FIELD( _field_tag_reference, "shield recharging effect" ),
-	FIELD( _field_terminator )
-};
-
 TAG_BLOCK(global_damage_info_block, 1)
 {
 	FIELD( _field_long_flags, "flags" ),
@@ -76,15 +19,15 @@ TAG_BLOCK(global_damage_info_block, 1)
 	FIELD( _field_pad, "IKEIDYSCX", 64 ),
 	FIELD( _field_explanation, "shield" ),
 	FIELD( _field_struct, "shield", &damage_shield_parameters_struct_struct_definition ),
-	FIELD( _field_block, "damage sections", &global_damage_section_block ),
-	FIELD( _field_block, "nodes*", &global_damage_nodes_block ),
+	FIELD( _field_block, "damage sections", &global_damage_section_block_block ),
+	FIELD( _field_block, "nodes*", &global_damage_nodes_block_block ),
 	FIELD( _field_short_integer, "runtime shield material type!*" ),
 	FIELD( _field_short_integer, "runtime indirect material type!*" ),
 	FIELD( _field_real, "runtime shield recharge velocity!*" ),
 	FIELD( _field_real, "runtime overcharge velocity!*" ),
 	FIELD( _field_real, "runtime health recharge velocity!*" ),
-	FIELD( _field_block, "damage seats", &damage_seat_info_block ),
-	FIELD( _field_block, "damage constraints", &damage_constraint_info_block ),
+	FIELD( _field_block, "damage seats", &damage_seat_info_block_block ),
+	FIELD( _field_block, "damage constraints", &damage_constraint_info_block_block ),
 	FIELD( _field_explanation, "overshield" ),
 	FIELD( _field_terminator )
 };
@@ -95,9 +38,9 @@ TAG_BLOCK(global_damage_section_block, MAXIMUM_DAMAGE_SECTIONS_PER_MODEL)
 	FIELD( _field_explanation, "damage section flags" ),
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_real_fraction, "vitality percentage:[0.1]#percentage of total object vitality" ),
-	FIELD( _field_block, "instant responses", &instantaneous_damage_repsonse_block ),
-	FIELD( _field_block, "unused0", &g_null_block ),
-	FIELD( _field_block, "unused1", &g_null_block ),
+	FIELD( _field_block, "instant responses", &instantaneous_damage_repsonse_block_block ),
+	FIELD( _field_block, "unused0", &g_null_block_block ),
+	FIELD( _field_block, "unused1", &g_null_block_block ),
 	FIELD( _field_real, "stun time:seconds" ),
 	FIELD( _field_real, "recharge time:seconds" ),
 	FIELD( _field_real, "runtime recharge velocity!*" ),
@@ -165,7 +108,7 @@ TAG_BLOCK(damage_seat_info_block, MAXIMUM_DAMAGE_SEAT_INFOS_PER_MODEL)
 	FIELD( _field_real, "damage transfer fall-off radius" ),
 	FIELD( _field_real, "maximum transfer damage scale" ),
 	FIELD( _field_real, "minimum transfer damage scale" ),
-	FIELD( _field_block, "region-specific-damage", &damage_seat_region_setting_block ),
+	FIELD( _field_block, "region-specific-damage", &damage_seat_region_setting_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -209,8 +152,8 @@ TAG_BLOCK(new_global_damage_section_block, MAXIMUM_DAMAGE_SECTIONS_PER_MODEL)
 	FIELD( _field_real, "minimum stun damage#the minimum damage required to stun this object\'s health" ),
 	FIELD( _field_explanation, "recharge" ),
 	FIELD( _field_real, "recharge time:seconds" ),
-	FIELD( _field_block, "recharge speed curve", &damage_section_recharge_speed_curve_block ),
-	FIELD( _field_block, "recharge fractions", &damage_section_segmented_recharge_fraction ),
+	FIELD( _field_block, "recharge speed curve", &damage_section_recharge_speed_curve_block_block ),
+	FIELD( _field_block, "recharge fractions", &damage_section_segmented_recharge_fraction_block ),
 	FIELD( _field_tag_reference, "recharging effect" ),
 	FIELD( _field_real, "pre recharge effect warn time:seconds#(main shield only) how long before the recharge begins the pre-recharge effect fires" ),
 	FIELD( _field_tag_reference, "pre recharge effect#(main shield only)" ),
@@ -225,9 +168,9 @@ TAG_BLOCK(new_global_damage_section_block, MAXIMUM_DAMAGE_SECTIONS_PER_MODEL)
 	FIELD( _field_real, "decay time:seconds#time for need for this section to fully decay with full health." ),
 	FIELD( _field_explanation, "resurrection" ),
 	FIELD( _field_string_id, "resurrection restored region name" ),
-	FIELD( _field_block, "instant responses", &new_instantaneous_damage_response_block ),
-	FIELD( _field_block, "section damage transfers", &damage_transfer_block ),
-	FIELD( _field_block, "rendering", &damage_section_rendering_paramters ),
+	FIELD( _field_block, "instant responses", &new_instantaneous_damage_response_block_block ),
+	FIELD( _field_block, "section damage transfers", &damage_transfer_block_block ),
+	FIELD( _field_block, "rendering", &damage_section_rendering_paramters_block ),
 	FIELD( _field_real, "runtime recharge velocity!*" ),
 	FIELD( _field_real, "runtime overcharge velocity!*" ),
 	FIELD( _field_short_integer, "runtime resurrection restored region index!*" ),
@@ -261,15 +204,15 @@ TAG_BLOCK(new_instantaneous_damage_response_block, MAXIMUM_RESPONSES_PER_DAMAGE_
 	FIELD( _field_struct, "damage effect", &instantaneous_response_damage_effect_struct_struct_definition ),
 	FIELD( _field_struct, "damage effect marker", &instantaneous_response_damage_effect_marker_struct_struct_definition ),
 	FIELD( _field_tag_reference, "looping effect#will play until the next response is triggered." ),
-	FIELD( _field_block, "region_transitions", &damage_response_region_transition_block ),
-	FIELD( _field_block, "response damage transfers", &damage_transfer_block ),
+	FIELD( _field_block, "region_transitions", &damage_response_region_transition_block_block ),
+	FIELD( _field_block, "response damage transfers", &damage_transfer_block_block ),
 	FIELD( _field_short_block_index, "destroy instance group#all possible instances from this group will be destroyed" ),
 	FIELD( _field_enum, "custom response behavior" ),
 	FIELD( _field_string_id, "custom response label" ),
 	FIELD( _field_real, "response delay:seconds#time to wait until firing the response. This delay is pre-empted if another timed response for the same section fires." ),
 	FIELD( _field_tag_reference, "delay effect#plays while the timer is counting down" ),
 	FIELD( _field_string_id, "delay effect marker name" ),
-	FIELD( _field_block, "seat eject", &seat_ejection_block ),
+	FIELD( _field_block, "seat eject", &seat_ejection_block_block ),
 	FIELD( _field_real_fraction, "skip fraction#0.0 always fires, 1.0 never fires" ),
 	FIELD( _field_string_id, "destroyed child object marker name#when this response fires, any children objects created at the supplied marker name will be destroyed" ),
 	FIELD( _field_real_fraction, "total damage threshold#scale on total damage section vitality" ),
@@ -307,6 +250,63 @@ TAG_BLOCK(damage_section_rendering_paramters, 1)
 {
 	FIELD( _field_tag_reference, "3rd person impact parameters" ),
 	FIELD( _field_tag_reference, "1st person impact parameters" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(model_damage_info_struct)
+{
+	FIELD( _field_explanation, "Damage Info" ),
+	FIELD( _field_long_flags, "flags" ),
+	FIELD( _field_real, "maximum vitality#value of zero implies \'damage sections\' should be empty" ),
+	FIELD( _field_string_id, "indirect material name#absorbes AOE or child damage" ),
+	FIELD( _field_short_block_index, "indirect damage section#absorbes AOE or child damage" ),
+	FIELD( _field_short_block_index, "shielded state damage section#the model\'s shielded/unshielded state reflects the depletion of this damage section" ),
+	FIELD( _field_char_enum, "collision damage reporting type" ),
+	FIELD( _field_char_enum, "response damage reporting type" ),
+	FIELD( _field_pad, "MDIBP0", 2 ),
+	FIELD( _field_block, "damage sections", &new_global_damage_section_block_block ),
+	FIELD( _field_block, "damage constraints", &damage_constraint_info_block_block ),
+	FIELD( _field_block, "nodes*", &global_damage_nodes_block_block ),
+	FIELD( _field_short_integer, "runtime indirect material type!*" ),
+	FIELD( _field_pad, "MDIBP1", 2 ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(instantaneous_response_damage_effect_struct)
+{
+	FIELD( _field_tag_reference, "transition damage effect" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(instantaneous_response_damage_effect_marker_struct)
+{
+	FIELD( _field_string_id, "damage effect marker name" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(damage_body_parameters_struct)
+{
+	FIELD( _field_real, "maximum vitality" ),
+	FIELD( _field_real, "minimum stun damage#the minimum damage required to stun this object\'s health" ),
+	FIELD( _field_real, "stun time:seconds#the length of time the health stay stunned (do not recharge) after taking damage" ),
+	FIELD( _field_real, "recharge time:seconds#the length of time it would take for the shields to fully recharge after being completely depleted" ),
+	FIELD( _field_real_fraction, "recharge fraction#0 defaults to 1 - to what maximum level the body health will be allowed to recharge" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(damage_shield_parameters_struct)
+{
+	FIELD( _field_real, "maximum shield vitality#the default initial and maximum shield vitality of this object" ),
+	FIELD( _field_string_id, "global shield material name" ),
+	FIELD( _field_real, "minimum stun damage#the minimum damage required to stun this object\'s shields" ),
+	FIELD( _field_real, "stun time:seconds#the length of time the shields stay stunned (do not recharge) after taking damage" ),
+	FIELD( _field_real, "recharge time:seconds#the length of time it would take for the shields to fully recharge after being completely depleted" ),
+	FIELD( _field_real, "shield overcharge fraction#fraction to which shields will automatically overcharge, values <= 1.0 are ignored" ),
+	FIELD( _field_real, "shield overcharge time#time it takes to reach full \"shield overcharge fraction\"" ),
+	FIELD( _field_real, "shield damaged threshold" ),
+	FIELD( _field_tag_reference, "shield damaged effect" ),
+	FIELD( _field_tag_reference, "shield depleted effect" ),
+	FIELD( _field_tag_reference, "shield recharging effect" ),
 	FIELD( _field_terminator )
 };
 

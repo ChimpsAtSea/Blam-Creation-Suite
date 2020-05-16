@@ -3,12 +3,6 @@
 namespace blofeld
 {
 
-TAG_STRUCT(task_direction_block_v2_struct)
-{
-	FIELD( _field_block, "points", &task_direction_point_block ),
-	FIELD( _field_terminator )
-};
-
 TAG_BLOCK(area_reference_block, k_maximum_areas_per_task)
 {
 	FIELD( _field_enum, "area type" ),
@@ -27,12 +21,12 @@ TAG_BLOCK(area_reference_block, k_maximum_areas_per_task)
 TAG_BLOCK(objectives_block, k_maximum_objectives_per_map)
 {
 	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_block, "opposing objectives", &opposing_objective_block ),
+	FIELD( _field_block, "opposing objectives", &opposing_objective_block_block ),
 	FIELD( _field_word_flags, "objective flags" ),
 	FIELD( _field_short_block_index, "zone index*!" ),
 	FIELD( _field_short_block_index, "first task index*!" ),
 	FIELD( _field_short_block_index, "editor folder!" ),
-	FIELD( _field_block, "tasks*!", &tasks_block ),
+	FIELD( _field_block, "tasks*!", &tasks_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -75,7 +69,7 @@ TAG_BLOCK(tasks_block, k_maximum_tasks_per_objective)
 	FIELD( _field_short_block_index, "first_child*" ),
 	FIELD( _field_short_block_index, "next_sibling*" ),
 	FIELD( _field_short_block_index, "parent*" ),
-	FIELD( _field_block, "activation script", &script_fragment_block ),
+	FIELD( _field_block, "activation script", &script_fragment_block_block ),
 	FIELD( _field_short_block_index, "script index *~" ),
 	FIELD( _field_short_integer, "lifetime count#task will never want to suck in more then n guys over lifetime (soft ceiling only applied when limit exceeded" ),
 	FIELD( _field_word_flags, "filter flags" ),
@@ -84,8 +78,8 @@ TAG_BLOCK(tasks_block, k_maximum_tasks_per_objective)
 	FIELD( _field_short_integer, "max body count#task becomes inactive after the given number of casualties" ),
 	FIELD( _field_enum, "attitude" ),
 	FIELD( _field_real, "min strength:[0,1]#task becomes inactive after the strength of the participants falls below the given level" ),
-	FIELD( _field_block, "areas", &area_reference_block ),
-	FIELD( _field_block, "direction", &task_direction_block_v2 ),
+	FIELD( _field_block, "areas", &area_reference_block_block ),
+	FIELD( _field_block, "direction", &task_direction_block_v2_block ),
 	FIELD( _field_terminator )
 };
 
@@ -105,6 +99,12 @@ TAG_BLOCK(task_direction_point_block, k_max_points_per_task_direction)
 	FIELD( _field_real_point_3d, "point0" ),
 	FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),
 	FIELD( _field_custom_long_block_index, "navMeshUIDOffaceref~!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(task_direction_block_v2_struct)
+{
+	FIELD( _field_block, "points", &task_direction_point_block_block ),
 	FIELD( _field_terminator )
 };
 

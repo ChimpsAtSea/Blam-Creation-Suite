@@ -7,9 +7,9 @@ TAG_BLOCK(squad_patrol_block, k_max_squad_patrols_per_map)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_block, "squads", &squad_patrol_member_block ),
-	FIELD( _field_block, "points", &squad_patrol_point_block ),
-	FIELD( _field_block, "transitions", &squad_patrol_transition_block ),
+	FIELD( _field_block, "squads", &squad_patrol_member_block_block ),
+	FIELD( _field_block, "points", &squad_patrol_point_block_block ),
+	FIELD( _field_block, "transitions", &squad_patrol_transition_block_block ),
 	FIELD( _field_short_block_index, "editor folder!" ),
 	FIELD( _field_pad, "pad", 2 ),
 	FIELD( _field_terminator )
@@ -41,7 +41,7 @@ TAG_BLOCK(squad_patrol_transition_block, k_max_squad_patrol_transitions)
 {
 	FIELD( _field_short_block_index, "point1" ),
 	FIELD( _field_short_block_index, "point2" ),
-	FIELD( _field_block, "waypoints", &squad_patrol_waypoint_block ),
+	FIELD( _field_block, "waypoints", &squad_patrol_waypoint_block_block ),
 	FIELD( _field_terminator )
 };
 

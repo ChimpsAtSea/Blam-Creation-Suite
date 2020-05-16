@@ -18,11 +18,11 @@ TAG_BLOCK(game_incident_response_block, MAXIMUM_GAME_INCIDENT_RESPONSES_PER_BLOC
 	FIELD( _field_string_id, "commendation" ),
 	FIELD( _field_string_id, "achievement" ),
 	FIELD( _field_string_id, "avatar award" ),
-	FIELD( _field_block, "challenges", &game_incident_daily_challenge_to_increment_block ),
+	FIELD( _field_block, "challenges", &game_incident_daily_challenge_to_increment_block_block ),
 	FIELD( _field_string_id, "hs script" ),
 	FIELD( _field_short_integer, "internal hs script index!*~" ),
 	FIELD( _field_pad, "VHSLKJNE", 2 ),
-	FIELD( _field_block, "fanfare", &specialized_incident_fanfare_block ),
+	FIELD( _field_block, "fanfare", &specialized_incident_fanfare_block_block ),
 	FIELD( _field_tag_reference, "sound response" ),
 	FIELD( _field_terminator )
 };

@@ -3,6 +3,136 @@
 namespace blofeld
 {
 
+TAG_BLOCK(PuppetShowsBlock, MAXIMUM_PERFORMANCES_PER_SCENARIO)
+{
+	FIELD( _field_string_id, "name^" ),
+	FIELD( _field_string_id, "designerZone" ),
+	FIELD( _field_struct, "manual bsp flags*", &manualBspFlagsReferences_struct_definition ),
+	FIELD( _field_byte_flags, "flags" ),
+	FIELD( _field_pad, "pad", 3 ),
+	FIELD( _field_string, "icsPoint0" ),
+	FIELD( _field_string, "icsPoint1" ),
+	FIELD( _field_string, "icsPoint2" ),
+	FIELD( _field_string, "icsPoint3" ),
+	FIELD( _field_long_integer, "lastActionId" ),
+	FIELD( _field_block, "puppets", &PuppetBlock_block ),
+	FIELD( _field_block, "puppetHeaders", &PuppetHeaderBlock_block ),
+	FIELD( _field_block, "actions", &PuppetActionHeaderBlock_block ),
+	FIELD( _field_block, "subActions", &PuppetSubActionHeaderBlock_block ),
+	FIELD( _field_block, "animations", &PuppetAnimationBlock_block ),
+	FIELD( _field_block, "paths", &PuppetPathBlock_block ),
+	FIELD( _field_block, "points", &PuppetPointBlock_block ),
+	FIELD( _field_block, "branches", &PuppetBranchBlock_block ),
+	FIELD( _field_block, "scripts", &PuppetScriptBlock_block ),
+	FIELD( _field_block, "comments", &CommentsBlock_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(PuppetBlock, MAX_PUPPETS_PER_SHOW)
+{
+	FIELD( _field_struct, "header", &PuppetHeaderStruct_struct_definition ),
+	FIELD( _field_block, "actions", &PuppetActionBlock_block ),
+	FIELD( _field_block, "subActions", &PuppetSubActionBlock_block ),
+	FIELD( _field_block, "subTracks", &SubTracksBlock_block ),
+	FIELD( _field_long_string, "comment" ),
+	FIELD( _field_long_string, "startScript" ),
+	FIELD( _field_long_string, "endScript" ),
+	FIELD( _field_short_integer, "height" ),
+	FIELD( _field_byte_flags, "editorFlags!*" ),
+	FIELD( _field_pad, "pad", 1 ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(PuppetActionBlock, MAX_ACTIONS_PER_PUPPET)
+{
+	FIELD( _field_struct, "header", &PuppetActionHeaderStruct_struct_definition ),
+	FIELD( _field_struct, "animation", &PuppetActionAnimationStruct_struct_definition ),
+	FIELD( _field_struct, "path", &PuppetActionPathStruct_struct_definition ),
+	FIELD( _field_long_string, "comment" ),
+	FIELD( _field_long_string, "animCondition" ),
+	FIELD( _field_dword_integer, "color" ),
+	FIELD( _field_byte_flags, "editorFlags!*" ),
+	FIELD( _field_pad, "pad", 3 ),
+	FIELD( _field_long_integer, "startFrame*" ),
+	FIELD( _field_long_integer, "endFrame*" ),
+	FIELD( _field_long_integer, "blendFrame*" ),
+	FIELD( _field_long_integer, "startPixel*" ),
+	FIELD( _field_long_integer, "endPixel*" ),
+	FIELD( _field_long_integer, "blendPixel*" ),
+	FIELD( _field_long_integer, "blendInDrag*" ),
+	FIELD( _field_long_integer, "lengthDrag*" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK_FROM_STRUCT(PuppetPathPointBlock, MAX_POINTS_PER_PATH, PuppetPathPointStruct_struct_definition );
+
+TAG_BLOCK(PuppetSubActionBlock, MAX_SUB_ACTIONS_PER_PUPPET)
+{
+	FIELD( _field_struct, "header", &PuppetSubActionHeaderStruct_struct_definition ),
+	FIELD( _field_struct, "point", &PuppetSubActionPointStruct_struct_definition ),
+	FIELD( _field_struct, "branch", &PuppetSubActionBranchStruct_struct_definition ),
+	FIELD( _field_struct, "script", &PuppetSubActionScriptStruct_struct_definition ),
+	FIELD( _field_long_string, "comment" ),
+	FIELD( _field_long_string, "startCondition" ),
+	FIELD( _field_long_string, "endCondition" ),
+	FIELD( _field_long_string, "scriptText" ),
+	FIELD( _field_block, "branchConditions", &PuppetScriptTextBlock_block ),
+	FIELD( _field_dword_integer, "color" ),
+	FIELD( _field_byte_integer, "subTrack" ),
+	FIELD( _field_byte_flags, "editorFlags!*" ),
+	FIELD( _field_pad, "pad", 2 ),
+	FIELD( _field_long_integer, "startFrame*" ),
+	FIELD( _field_long_integer, "endFrame*" ),
+	FIELD( _field_long_integer, "startPixel*" ),
+	FIELD( _field_long_integer, "endPixel*" ),
+	FIELD( _field_long_integer, "subTrackDrag*" ),
+	FIELD( _field_long_integer, "startOffsetDrag*" ),
+	FIELD( _field_long_integer, "endOffsetDrag*" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(PuppetSubActionBranchElementBlock, MAX_BRANCHES_PER_SUB_ACTION)
+{
+	FIELD( _field_long_integer, "targetAction" ),
+	FIELD( _field_string_id, "conditionScriptName" ),
+	FIELD( _field_long_integer, "condition~" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(PuppetScriptTextBlock, MAX_BRANCHES_PER_SUB_ACTION)
+{
+	FIELD( _field_long_string, "scriptText" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(SubTracksBlock, MAX_SUB_TRACKS)
+{
+	FIELD( _field_string_id, "name^" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK_FROM_STRUCT(PuppetHeaderBlock, MAX_PUPPETS_PER_SHOW, PuppetHeaderStruct_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(PuppetActionHeaderBlock, MAX_ACTIONS_PER_SHOW, PuppetActionHeaderStruct_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(PuppetSubActionHeaderBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionHeaderStruct_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(PuppetAnimationBlock, MAX_ACTIONS_PER_SHOW, PuppetActionAnimationStruct_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(PuppetPathBlock, MAX_ACTIONS_PER_SHOW, PuppetActionPathStruct_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(PuppetPointBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionPointStruct_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(PuppetBranchBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionBranchStruct_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(PuppetScriptBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionScriptStruct_struct_definition );
+
+TAG_BLOCK(CommentsBlock, 65536)
+{
+	FIELD( _field_char_integer, "char" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(PuppetPathPointStruct)
 {
 	FIELD( _field_char_enum, "type" ),
@@ -91,7 +221,7 @@ TAG_STRUCT(PuppetActionAnimationStruct)
 TAG_STRUCT(PuppetActionPathStruct)
 {
 	FIELD( _field_real, "throttle" ),
-	FIELD( _field_block, "points", &PuppetPathPointBlock ),
+	FIELD( _field_block, "points", &PuppetPathPointBlock_block ),
 	FIELD( _field_terminator )
 };
 
@@ -106,7 +236,7 @@ TAG_STRUCT(PuppetSubActionPointStruct)
 
 TAG_STRUCT(PuppetSubActionBranchStruct)
 {
-	FIELD( _field_block, "elements", &PuppetSubActionBranchElementBlock ),
+	FIELD( _field_block, "elements", &PuppetSubActionBranchElementBlock_block ),
 	FIELD( _field_terminator )
 };
 
@@ -114,136 +244,6 @@ TAG_STRUCT(PuppetSubActionScriptStruct)
 {
 	FIELD( _field_string_id, "scriptName" ),
 	FIELD( _field_long_integer, "script~" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(PuppetShowsBlock, MAXIMUM_PERFORMANCES_PER_SCENARIO)
-{
-	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_string_id, "designerZone" ),
-	FIELD( _field_struct, "manual bsp flags*", &manualBspFlagsReferences_struct_definition ),
-	FIELD( _field_byte_flags, "flags" ),
-	FIELD( _field_pad, "pad", 3 ),
-	FIELD( _field_string, "icsPoint0" ),
-	FIELD( _field_string, "icsPoint1" ),
-	FIELD( _field_string, "icsPoint2" ),
-	FIELD( _field_string, "icsPoint3" ),
-	FIELD( _field_long_integer, "lastActionId" ),
-	FIELD( _field_block, "puppets", &PuppetBlock ),
-	FIELD( _field_block, "puppetHeaders", &PuppetHeaderBlock ),
-	FIELD( _field_block, "actions", &PuppetActionHeaderBlock ),
-	FIELD( _field_block, "subActions", &PuppetSubActionHeaderBlock ),
-	FIELD( _field_block, "animations", &PuppetAnimationBlock ),
-	FIELD( _field_block, "paths", &PuppetPathBlock ),
-	FIELD( _field_block, "points", &PuppetPointBlock ),
-	FIELD( _field_block, "branches", &PuppetBranchBlock ),
-	FIELD( _field_block, "scripts", &PuppetScriptBlock ),
-	FIELD( _field_block, "comments", &CommentsBlock ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(PuppetBlock, MAX_PUPPETS_PER_SHOW)
-{
-	FIELD( _field_struct, "header", &PuppetHeaderStruct_struct_definition ),
-	FIELD( _field_block, "actions", &PuppetActionBlock ),
-	FIELD( _field_block, "subActions", &PuppetSubActionBlock ),
-	FIELD( _field_block, "subTracks", &SubTracksBlock ),
-	FIELD( _field_long_string, "comment" ),
-	FIELD( _field_long_string, "startScript" ),
-	FIELD( _field_long_string, "endScript" ),
-	FIELD( _field_short_integer, "height" ),
-	FIELD( _field_byte_flags, "editorFlags!*" ),
-	FIELD( _field_pad, "pad", 1 ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(PuppetActionBlock, MAX_ACTIONS_PER_PUPPET)
-{
-	FIELD( _field_struct, "header", &PuppetActionHeaderStruct_struct_definition ),
-	FIELD( _field_struct, "animation", &PuppetActionAnimationStruct_struct_definition ),
-	FIELD( _field_struct, "path", &PuppetActionPathStruct_struct_definition ),
-	FIELD( _field_long_string, "comment" ),
-	FIELD( _field_long_string, "animCondition" ),
-	FIELD( _field_dword_integer, "color" ),
-	FIELD( _field_byte_flags, "editorFlags!*" ),
-	FIELD( _field_pad, "pad", 3 ),
-	FIELD( _field_long_integer, "startFrame*" ),
-	FIELD( _field_long_integer, "endFrame*" ),
-	FIELD( _field_long_integer, "blendFrame*" ),
-	FIELD( _field_long_integer, "startPixel*" ),
-	FIELD( _field_long_integer, "endPixel*" ),
-	FIELD( _field_long_integer, "blendPixel*" ),
-	FIELD( _field_long_integer, "blendInDrag*" ),
-	FIELD( _field_long_integer, "lengthDrag*" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK_FROM_STRUCT(PuppetPathPointBlock, MAX_POINTS_PER_PATH, PuppetPathPointStruct_struct_definition );
-
-TAG_BLOCK(PuppetSubActionBlock, MAX_SUB_ACTIONS_PER_PUPPET)
-{
-	FIELD( _field_struct, "header", &PuppetSubActionHeaderStruct_struct_definition ),
-	FIELD( _field_struct, "point", &PuppetSubActionPointStruct_struct_definition ),
-	FIELD( _field_struct, "branch", &PuppetSubActionBranchStruct_struct_definition ),
-	FIELD( _field_struct, "script", &PuppetSubActionScriptStruct_struct_definition ),
-	FIELD( _field_long_string, "comment" ),
-	FIELD( _field_long_string, "startCondition" ),
-	FIELD( _field_long_string, "endCondition" ),
-	FIELD( _field_long_string, "scriptText" ),
-	FIELD( _field_block, "branchConditions", &PuppetScriptTextBlock ),
-	FIELD( _field_dword_integer, "color" ),
-	FIELD( _field_byte_integer, "subTrack" ),
-	FIELD( _field_byte_flags, "editorFlags!*" ),
-	FIELD( _field_pad, "pad", 2 ),
-	FIELD( _field_long_integer, "startFrame*" ),
-	FIELD( _field_long_integer, "endFrame*" ),
-	FIELD( _field_long_integer, "startPixel*" ),
-	FIELD( _field_long_integer, "endPixel*" ),
-	FIELD( _field_long_integer, "subTrackDrag*" ),
-	FIELD( _field_long_integer, "startOffsetDrag*" ),
-	FIELD( _field_long_integer, "endOffsetDrag*" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(PuppetSubActionBranchElementBlock, MAX_BRANCHES_PER_SUB_ACTION)
-{
-	FIELD( _field_long_integer, "targetAction" ),
-	FIELD( _field_string_id, "conditionScriptName" ),
-	FIELD( _field_long_integer, "condition~" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(PuppetScriptTextBlock, MAX_BRANCHES_PER_SUB_ACTION)
-{
-	FIELD( _field_long_string, "scriptText" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(SubTracksBlock, MAX_SUB_TRACKS)
-{
-	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK_FROM_STRUCT(PuppetHeaderBlock, MAX_PUPPETS_PER_SHOW, PuppetHeaderStruct_struct_definition );
-
-TAG_BLOCK_FROM_STRUCT(PuppetActionHeaderBlock, MAX_ACTIONS_PER_SHOW, PuppetActionHeaderStruct_struct_definition );
-
-TAG_BLOCK_FROM_STRUCT(PuppetSubActionHeaderBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionHeaderStruct_struct_definition );
-
-TAG_BLOCK_FROM_STRUCT(PuppetAnimationBlock, MAX_ACTIONS_PER_SHOW, PuppetActionAnimationStruct_struct_definition );
-
-TAG_BLOCK_FROM_STRUCT(PuppetPathBlock, MAX_ACTIONS_PER_SHOW, PuppetActionPathStruct_struct_definition );
-
-TAG_BLOCK_FROM_STRUCT(PuppetPointBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionPointStruct_struct_definition );
-
-TAG_BLOCK_FROM_STRUCT(PuppetBranchBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionBranchStruct_struct_definition );
-
-TAG_BLOCK_FROM_STRUCT(PuppetScriptBlock, MAX_SUB_ACTIONS_PER_SHOW, PuppetSubActionScriptStruct_struct_definition );
-
-TAG_BLOCK(CommentsBlock, 65536)
-{
-	FIELD( _field_char_integer, "char" ),
 	FIELD( _field_terminator )
 };
 

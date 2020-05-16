@@ -3,113 +3,13 @@
 namespace blofeld
 {
 
-TAG_STRUCT(KillCamCameraParamter_struct_definition)
-{
-	FIELD( _field_real, "distance from camera" ),
-	FIELD( _field_real, "height above object" ),
-	FIELD( _field_real, "minimum velocity to update" ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(KillCamCameraParamter, KILLCAMCAMERAPARAMTER_TAG, KillCamCameraParamter_block_block )
 
-TAG_STRUCT(projectile_group)
-{
-	FIELD( _field_struct, "object", &object_struct_definition_struct_definition ),
-	FIELD( _field_custom, "$$$ PROJECTILE $$$" ),
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_long_flags, "secondary flags" ),
-	FIELD( _field_enum, "detonation timer starts" ),
-	FIELD( _field_enum, "impact noise" ),
-	FIELD( _field_real, "detonation biped proximity:wu#if >0, both \'detonation timer starts\' + a biped must be within this proximity for condition to be met; see \'biped proximity enemies only\' flag" ),
-	FIELD( _field_real, "max lifetime to detonate:seconds#if >0, projectile will detonate regardless of other conditions after this total time" ),
-	FIELD( _field_real, "collision radius:world units" ),
-	FIELD( _field_explanation, "detonation" ),
-	FIELD( _field_real, "arming time:seconds#won\'t detonate before this time elapses" ),
-	FIELD( _field_real, "danger radius:world units" ),
-	FIELD( _field_real, "danger stimuli radius:world units#Overrides the danger radius when non-zero for stimuli related danger radius calculations." ),
-	FIELD( _field_short_integer, "danger group burst count#The number of projectiles in this burst before this burst is considered dangerous" ),
-	FIELD( _field_short_integer, "danger group burst max count#The maximum number of projectiles we allow in a group" ),
-	FIELD( _field_real_bounds, "timer:seconds#detonation countdown (zero is untimed)" ),
-	FIELD( _field_real, "minimum velocity:world units per second#detonates when slowed below this velocity" ),
-	FIELD( _field_real, "maximum range:world units#detonates after travelling this distance" ),
-	FIELD( _field_real, "bounce maximum range:world units#detonates after travelling this distance, but is reset after a bounce.  Combines with maximum range" ),
-	FIELD( _field_real, "max latch time to detonate:seconds#projectile will detonate regardless of weapon latching after this total time" ),
-	FIELD( _field_real, "max latch time to arm:seconds#projectile will arm itself regardless of detonation mode if latched for this amount of time." ),
-	FIELD( _field_enum, "detonation noise" ),
-	FIELD( _field_short_integer, "super det. projectile count" ),
-	FIELD( _field_real, "super det. time" ),
-	FIELD( _field_real_bounds, "super det. range:world units#The range within which supercombine will happen - outside this range, no supercombine" ),
-	FIELD( _field_tag_reference, "super det. behavior#An equipment reference that is attached to the target upon super detonation" ),
-	FIELD( _field_real, "tether release safety delay#if the weapon the projectile is tethered to loses its owner, this amount of time will pass before detonation" ),
-	FIELD( _field_explanation, "tethering" ),
-	FIELD( _field_tag_reference, "detonation started#effect" ),
-	FIELD( _field_tag_reference, "detonation effect (airborne)" ),
-	FIELD( _field_tag_reference, "detonation effect (ground)" ),
-	FIELD( _field_tag_reference, "detonation damage" ),
-	FIELD( _field_tag_reference, "detonation behavior#An equipment reference that is attached to the target upon detonation" ),
-	FIELD( _field_tag_reference, "attached detonation damage" ),
-	FIELD( _field_tag_reference, "super detonation" ),
-	FIELD( _field_struct, "your momma", &super_detonation_damage_struct_struct_definition ),
-	FIELD( _field_tag_reference, "detonation sound" ),
-	FIELD( _field_char_enum, "damage reporting type" ),
-	FIELD( _field_pad, "UAQLONXGN", 1 ),
-	FIELD( _field_word_flags, "super detonation object types" ),
-	FIELD( _field_tag_reference, "super attached detonation damage" ),
-	FIELD( _field_real, "material effect radius#radius within we will generate material effects" ),
-	FIELD( _field_explanation, "flyby/impact" ),
-	FIELD( _field_tag_reference, "flyby sound" ),
-	FIELD( _field_tag_reference, "flyby damage response" ),
-	FIELD( _field_real, "flyby damage response max distance" ),
-	FIELD( _field_tag_reference, "impact effect" ),
-	FIELD( _field_tag_reference, "object impact effect" ),
-	FIELD( _field_tag_reference, "impact damage" ),
-	FIELD( _field_explanation, "boarding fields" ),
-	FIELD( _field_real, "boarding detonation time" ),
-	FIELD( _field_tag_reference, "boarding detonation damage" ),
-	FIELD( _field_tag_reference, "boarding attached detonation damage" ),
-	FIELD( _field_explanation, "physics" ),
-	FIELD( _field_real, "air gravity scale#the proportion of normal gravity applied to the projectile when in air." ),
-	FIELD( _field_real_bounds, "air damage range:world units#the range over which damage is scaled when the projectile is in air." ),
-	FIELD( _field_real, "water gravity scale#the proportion of normal gravity applied to the projectile when in water." ),
-	FIELD( _field_real_bounds, "water damage range:world units#the range over which damage is scaled when the projectile is in water." ),
-	FIELD( _field_real, "initial velocity:world units per second#bullet\'s velocity when inflicting maximum damage" ),
-	FIELD( _field_real, "final velocity:world units per second#bullet\'s velocity when inflicting minimum damage" ),
-	FIELD( _field_real, "indirect fire velocity:world units per second#base velocity used for ballistics calculations for indirect firing." ),
-	FIELD( _field_real, "ai velocity scale (normal):[0-1]#scale on the initial velocity when fired by the ai on normal difficulty (0 defaults to 1.0" ),
-	FIELD( _field_real, "ai velocity scale (heroic):[0-1]#scale on the initial velocity when fired by the ai on heroic difficulty (0 defaults to 1.0)" ),
-	FIELD( _field_real, "ai velocity scale (legendary):[0-1]#scale on the initial velocity when fired by the ai on legendary difficulty (0 defaults to 1.0)" ),
-	FIELD( _field_real, "ai guided angular velocity scale (normal):[0-1]#scale on the guided angular velocity when fired by the ai on normal difficulty (0 defaults to 1.0" ),
-	FIELD( _field_real, "ai guided angular velocity scale (legendary):[0-1]#scale on the guided angular velocity when fired by the ai on legendary difficulty (0 defaults to 1.0)" ),
-	FIELD( _field_struct, "blah", &angular_velocity_lower_bound_struct_struct_definition ),
-	FIELD( _field_angle, "guided angular velocity (upper):degrees per second" ),
-	FIELD( _field_angle, "guided angular velocity at rest:degrees per second" ),
-	FIELD( _field_real_bounds, "acceleration range:world units#what distance range the projectile goes from initial velocity to final velocity" ),
-	FIELD( _field_real, "runtime acceleration bound inverse!" ),
-	FIELD( _field_real_fraction, "targeted leading fraction" ),
-	FIELD( _field_real, "guided projectile (outer range) error radius" ),
-	FIELD( _field_real, "autoaim leading max lead time" ),
-	FIELD( _field_block, "old material responses{material responses}!", &old_projectile_material_response_block ),
-	FIELD( _field_block, "material response", &projectile_material_response_block ),
-	FIELD( _field_block, "brute grenade", &brute_grenade_block ),
-	FIELD( _field_block, "fire bomb grenade", &fire_bomb_grenade_block ),
-	FIELD( _field_block, "conical spread", &conical_projection_block ),
-	FIELD( _field_tag_reference, "grounded friction settings#If not present, the default from global.globals is used." ),
-	FIELD( _field_tag_reference, "killcam parameters# if not present, first person will be used." ),
-	FIELD( _field_block, "Sound RTPCs", &ProjectileSoundRTPCBlock ),
-	FIELD( _field_custom ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_INHERIT_FROM_BLOCK(projectile, PROJECTILE_TAG, object, OBJECT_TAG, projectile_block_block )
 
-TAG_STRUCT(super_detonation_damage_struct)
-{
-	FIELD( _field_tag_reference, "super detonation damage" ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(KillCamCameraParamter_block, 1, KillCamCameraParamter_struct_definition_struct_definition );
 
-TAG_STRUCT(angular_velocity_lower_bound_struct)
-{
-	FIELD( _field_angle, "guided angular velocity (lower):degrees per second" ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(projectile_block, 1, projectile_group_struct_definition );
 
 TAG_BLOCK(old_projectile_material_response_block, k_maximum_material_responses)
 {
@@ -205,7 +105,7 @@ TAG_BLOCK(ProjectileSoundRTPCBlock, k_maxProjectileSoundRTPCBlocks)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(KillCamCameraParamter_block, KILLCAMCAMERAPARAMTER_TAG)
+TAG_STRUCT(KillCamCameraParamter_struct_definition)
 {
 	FIELD( _field_real, "distance from camera" ),
 	FIELD( _field_real, "height above object" ),
@@ -213,7 +113,7 @@ TAG_GROUP(KillCamCameraParamter_block, KILLCAMCAMERAPARAMTER_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_INHERIT(projectile_block, PROJECTILE_TAG, object, OBJECT_TAG)
+TAG_STRUCT(projectile_group)
 {
 	FIELD( _field_struct, "object", &object_struct_definition_struct_definition ),
 	FIELD( _field_custom, "$$$ PROJECTILE $$$" ),
@@ -289,15 +189,27 @@ TAG_GROUP_INHERIT(projectile_block, PROJECTILE_TAG, object, OBJECT_TAG)
 	FIELD( _field_real_fraction, "targeted leading fraction" ),
 	FIELD( _field_real, "guided projectile (outer range) error radius" ),
 	FIELD( _field_real, "autoaim leading max lead time" ),
-	FIELD( _field_block, "old material responses{material responses}!", &old_projectile_material_response_block ),
-	FIELD( _field_block, "material response", &projectile_material_response_block ),
-	FIELD( _field_block, "brute grenade", &brute_grenade_block ),
-	FIELD( _field_block, "fire bomb grenade", &fire_bomb_grenade_block ),
-	FIELD( _field_block, "conical spread", &conical_projection_block ),
+	FIELD( _field_block, "old material responses{material responses}!", &old_projectile_material_response_block_block ),
+	FIELD( _field_block, "material response", &projectile_material_response_block_block ),
+	FIELD( _field_block, "brute grenade", &brute_grenade_block_block ),
+	FIELD( _field_block, "fire bomb grenade", &fire_bomb_grenade_block_block ),
+	FIELD( _field_block, "conical spread", &conical_projection_block_block ),
 	FIELD( _field_tag_reference, "grounded friction settings#If not present, the default from global.globals is used." ),
 	FIELD( _field_tag_reference, "killcam parameters# if not present, first person will be used." ),
-	FIELD( _field_block, "Sound RTPCs", &ProjectileSoundRTPCBlock ),
+	FIELD( _field_block, "Sound RTPCs", &ProjectileSoundRTPCBlock_block ),
 	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(super_detonation_damage_struct)
+{
+	FIELD( _field_tag_reference, "super detonation damage" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(angular_velocity_lower_bound_struct)
+{
+	FIELD( _field_angle, "guided angular velocity (lower):degrees per second" ),
 	FIELD( _field_terminator )
 };
 

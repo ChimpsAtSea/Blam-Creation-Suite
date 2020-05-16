@@ -3,6 +3,29 @@
 namespace blofeld
 {
 
+TAG_GROUP(sound_radio_settings, SOUND_RADIO_SETTINGS_TAG)
+{
+	FIELD( _field_explanation, "mix settings" ),
+	FIELD( _field_long_enum, "mix" ),
+	FIELD( _field_explanation, "distortion settings" ),
+	FIELD( _field_struct, "distortion settings", &global_sound_look_up_table_distortion_block_struct_definition ),
+	FIELD( _field_explanation, "equalizer settings" ),
+	FIELD( _field_struct, "equalizer settings", &global_sound_equalizer_block_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(sound_equalizer_band_settings_block, k_maximum_sound_equalizer_bands)
+{
+	FIELD( _field_long_enum, "type^" ),
+	FIELD( _field_custom, "frequency:Hz" ),
+	FIELD( _field_real, "frequency:Hz" ),
+	FIELD( _field_custom, "gain:dB" ),
+	FIELD( _field_real, "gain:dB" ),
+	FIELD( _field_custom, "q" ),
+	FIELD( _field_real, "q" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(global_sound_reverb_block)
 {
 	FIELD( _field_custom, "room intensity:dB#intensity of the room effect" ),
@@ -65,30 +88,7 @@ TAG_STRUCT(global_sound_equalizer_block)
 	FIELD( _field_real, "input gain:dB" ),
 	FIELD( _field_custom, "output gain:dB" ),
 	FIELD( _field_real, "output gain:dB" ),
-	FIELD( _field_block, "band settings", &sound_equalizer_band_settings_block ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(sound_equalizer_band_settings_block, k_maximum_sound_equalizer_bands)
-{
-	FIELD( _field_long_enum, "type^" ),
-	FIELD( _field_custom, "frequency:Hz" ),
-	FIELD( _field_real, "frequency:Hz" ),
-	FIELD( _field_custom, "gain:dB" ),
-	FIELD( _field_real, "gain:dB" ),
-	FIELD( _field_custom, "q" ),
-	FIELD( _field_real, "q" ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(sound_radio_settings_block, SOUND_RADIO_SETTINGS_TAG)
-{
-	FIELD( _field_explanation, "mix settings" ),
-	FIELD( _field_long_enum, "mix" ),
-	FIELD( _field_explanation, "distortion settings" ),
-	FIELD( _field_struct, "distortion settings", &global_sound_look_up_table_distortion_block_struct_definition ),
-	FIELD( _field_explanation, "equalizer settings" ),
-	FIELD( _field_struct, "equalizer settings", &global_sound_equalizer_block_struct_definition ),
+	FIELD( _field_block, "band settings", &sound_equalizer_band_settings_block_block ),
 	FIELD( _field_terminator )
 };
 

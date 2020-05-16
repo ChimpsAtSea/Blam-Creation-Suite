@@ -3,54 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(emblem_library_struct_definition)
-{
-	FIELD( _field_explanation, "Emblem Library" ),
-	FIELD( _field_short_integer, "version!" ),
-	FIELD( _field_pad, "jfejkjjg", 2 ),
-	FIELD( _field_custom, "Bitmaps" ),
-	FIELD( _field_explanation, "Bitmaps" ),
-	FIELD( _field_real, "bitmap resolution:pixels#used to calculate appropriate antialiasing settings" ),
-	FIELD( _field_real, "antialias sharpen#default 1.0, global control on antialias sharpness" ),
-	FIELD( _field_tag_reference, "emblem bitmaps" ),
-	FIELD( _field_tag_reference, "emblem bitmaps hi rez" ),
-	FIELD( _field_block, "bitmaps", &emblem_bitmap_list ),
-	FIELD( _field_custom ),
-	FIELD( _field_explanation, "Shapes" ),
-	FIELD( _field_block, "shapes", &emblem_shape_list ),
-	FIELD( _field_explanation, "Emblems" ),
-	FIELD( _field_block, "front emblems", &emblem_front_list ),
-	FIELD( _field_block, "back emblems", &emblem_back_list ),
-	FIELD( _field_block, "runtime front!", &emblem_runtime_front_list ),
-	FIELD( _field_block, "runtime back!", &emblem_runtime_back_list ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(emblem_library, EMBLEM_LIBRARY_TAG, emblem_library_block_block )
 
-TAG_STRUCT(emblem_transform)
-{
-	FIELD( _field_real_point_2d, "scale" ),
-	FIELD( _field_real_point_2d, "shear" ),
-	FIELD( _field_real, "rotation" ),
-	FIELD( _field_real_point_2d, "offset" ),
-	FIELD( _field_real, "expand contract#amount to expand (positive) or contract (negative) the shape outline" ),
-	FIELD( _field_real, "blur#amount to blur the shape outline" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(emblem_layer)
-{
-	FIELD( _field_explanation, "Shape 0" ),
-	FIELD( _field_short_block_index, "shape 0" ),
-	FIELD( _field_pad, "fkkfkll", 2 ),
-	FIELD( _field_real, "multiplier 0" ),
-	FIELD( _field_struct, "transform 0", &emblem_transform_struct_definition ),
-	FIELD( _field_explanation, "Shape 1" ),
-	FIELD( _field_short_block_index, "shape 1" ),
-	FIELD( _field_pad, "fkkfkllf", 2 ),
-	FIELD( _field_real, "multiplier 1" ),
-	FIELD( _field_struct, "transform 1", &emblem_transform_struct_definition ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(emblem_library_block, 1, emblem_library_struct_definition_struct_definition );
 
 TAG_BLOCK(emblem_bitmap_list, s_emblem_library::k_max_bitmap_list_count)
 {
@@ -146,7 +101,7 @@ TAG_BLOCK(emblem_runtime_back_list, s_emblem_library::k_max_back_emblem_count)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(emblem_library_block, EMBLEM_LIBRARY_TAG)
+TAG_STRUCT(emblem_library_struct_definition)
 {
 	FIELD( _field_explanation, "Emblem Library" ),
 	FIELD( _field_short_integer, "version!" ),
@@ -157,15 +112,41 @@ TAG_GROUP(emblem_library_block, EMBLEM_LIBRARY_TAG)
 	FIELD( _field_real, "antialias sharpen#default 1.0, global control on antialias sharpness" ),
 	FIELD( _field_tag_reference, "emblem bitmaps" ),
 	FIELD( _field_tag_reference, "emblem bitmaps hi rez" ),
-	FIELD( _field_block, "bitmaps", &emblem_bitmap_list ),
+	FIELD( _field_block, "bitmaps", &emblem_bitmap_list_block ),
 	FIELD( _field_custom ),
 	FIELD( _field_explanation, "Shapes" ),
-	FIELD( _field_block, "shapes", &emblem_shape_list ),
+	FIELD( _field_block, "shapes", &emblem_shape_list_block ),
 	FIELD( _field_explanation, "Emblems" ),
-	FIELD( _field_block, "front emblems", &emblem_front_list ),
-	FIELD( _field_block, "back emblems", &emblem_back_list ),
-	FIELD( _field_block, "runtime front!", &emblem_runtime_front_list ),
-	FIELD( _field_block, "runtime back!", &emblem_runtime_back_list ),
+	FIELD( _field_block, "front emblems", &emblem_front_list_block ),
+	FIELD( _field_block, "back emblems", &emblem_back_list_block ),
+	FIELD( _field_block, "runtime front!", &emblem_runtime_front_list_block ),
+	FIELD( _field_block, "runtime back!", &emblem_runtime_back_list_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(emblem_transform)
+{
+	FIELD( _field_real_point_2d, "scale" ),
+	FIELD( _field_real_point_2d, "shear" ),
+	FIELD( _field_real, "rotation" ),
+	FIELD( _field_real_point_2d, "offset" ),
+	FIELD( _field_real, "expand contract#amount to expand (positive) or contract (negative) the shape outline" ),
+	FIELD( _field_real, "blur#amount to blur the shape outline" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(emblem_layer)
+{
+	FIELD( _field_explanation, "Shape 0" ),
+	FIELD( _field_short_block_index, "shape 0" ),
+	FIELD( _field_pad, "fkkfkll", 2 ),
+	FIELD( _field_real, "multiplier 0" ),
+	FIELD( _field_struct, "transform 0", &emblem_transform_struct_definition ),
+	FIELD( _field_explanation, "Shape 1" ),
+	FIELD( _field_short_block_index, "shape 1" ),
+	FIELD( _field_pad, "fkkfkllf", 2 ),
+	FIELD( _field_real, "multiplier 1" ),
+	FIELD( _field_struct, "transform 1", &emblem_transform_struct_definition ),
 	FIELD( _field_terminator )
 };
 

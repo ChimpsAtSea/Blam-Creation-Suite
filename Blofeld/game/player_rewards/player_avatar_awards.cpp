@@ -3,11 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(avatar_awards_struct_definition)
-{
-	FIELD( _field_block, "avatar_award", &single_avatar_award_definition_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(avatar_awards, AVATAR_AWARDS_TAG, avatar_awards_block_block )
+
+TAG_BLOCK_FROM_STRUCT(avatar_awards_block, 1, avatar_awards_struct_definition_struct_definition );
 
 TAG_BLOCK(single_avatar_award_definition_block, k_online_avatar_award_count)
 {
@@ -16,9 +14,9 @@ TAG_BLOCK(single_avatar_award_definition_block, k_online_avatar_award_count)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(avatar_awards_block, AVATAR_AWARDS_TAG)
+TAG_STRUCT(avatar_awards_struct_definition)
 {
-	FIELD( _field_block, "avatar_award", &single_avatar_award_definition_block ),
+	FIELD( _field_block, "avatar_award", &single_avatar_award_definition_block_block ),
 	FIELD( _field_terminator )
 };
 

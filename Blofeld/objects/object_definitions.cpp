@@ -3,74 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(object_struct_definition)
-{
-	FIELD( _field_custom, "OBJECT" ),
-	FIELD( _field_short_integer, "runtime object type!" ),
-	FIELD( _field_char_enum, "Nav Mesh Cutting" ),
-	FIELD( _field_char_enum, "Nav Mesh Obstacle" ),
-	FIELD( _field_real_vector_3d, "Nav Mesh Cutting OBB Offset" ),
-	FIELD( _field_real_vector_3d, "Nav Mesh Cutting OBB Scale" ),
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_real, "bounding radius#If you edit this field manually, beware that the render model is no longer respected for radius calculation and that you need to set the bounding offset as well." ),
-	FIELD( _field_real_point_3d, "bounding offset" ),
-	FIELD( _field_real, "horizontal acceleration scale{acceleration scale}:[0,+inf]" ),
-	FIELD( _field_real, "vertical acceleration scale" ),
-	FIELD( _field_real, "angular acceleration scale" ),
-	FIELD( _field_enum, "lightmap shadow mode" ),
-	FIELD( _field_char_enum, "sweetener size" ),
-	FIELD( _field_char_enum, "water density" ),
-	FIELD( _field_long_integer, "runtime flags!*" ),
-	FIELD( _field_real, "dynamic light sphere radius#sphere to use for dynamic lights and shadows. only used if not 0" ),
-	FIELD( _field_real_point_3d, "dynamic light sphere offset#only used if radius not 0" ),
-	FIELD( _field_string_id, "generic hud text" ),
-	FIELD( _field_tag_reference, "generic name list" ),
-	FIELD( _field_tag_reference, "generic service tag list" ),
-	FIELD( _field_block, "source sidecar", &sidecarBlock ),
-	FIELD( _field_string_id, "default model variant" ),
-	FIELD( _field_tag_reference, "model" ),
-	FIELD( _field_tag_reference, "crate object" ),
-	FIELD( _field_explanation, "only set this tag if you want to override the default collision damage values in globals.globals" ),
-	FIELD( _field_tag_reference, "collision damage" ),
-	FIELD( _field_tag_reference, "brittle collision damage" ),
-	FIELD( _field_block, "early mover OBB", &object_early_mover_obb_block ),
-	FIELD( _field_tag_reference, "creation effect" ),
-	FIELD( _field_tag_reference, "material effects" ),
-	FIELD( _field_tag_reference, "melee sound#this is the sound that is made when I am meleed.  This overrides the sweetener sound of my material." ),
-	FIELD( _field_real, "self-destruct time:seconds#if non-zero, any instances of this object will destroy themselves after this many seconds." ),
-	FIELD( _field_block, "ai properties", &object_ai_properties_block ),
-	FIELD( _field_block, "functions", &object_function_block ),
-	FIELD( _field_block, "runtime interpolator functions*!", &object_runtime_interpolator_functions_block ),
-	FIELD( _field_block, "function switches", &objectFunctionSwitchBlock ),
-	FIELD( _field_short_integer, "hud text message index" ),
-	FIELD( _field_word_flags, "secondary flags" ),
-	FIELD( _field_block, "attachments", &global_object_attachment_block ),
-	FIELD( _field_block, "hull surfaces", &water_physics_hull_surface_definition_block ),
-	FIELD( _field_block, "jetwash", &jetwash_definition_block ),
-	FIELD( _field_block, "widgets", &object_widget_block ),
-	FIELD( _field_block, "change colors", &object_change_colors ),
-	FIELD( _field_block, "predicted resources*", &g_null_block ),
-	FIELD( _field_block, "multiplayer object", &multiplayer_object_block ),
-	FIELD( _field_tag_reference, "simulation_interpolation#Set to a specific interpolation definition, or leave blank to inherit the default for the object type (there are defaults for bipeds, vehicles, and crates in multiplayer_globals).  To disable interpolation on a particular object whose type has interpolation by default, set this reference to the special disable_interpolation.simulation_interpolation tag." ),
-	FIELD( _field_block, "spawn effects", &object_spawn_effects_block ),
-	FIELD( _field_block, "model dissolve data", &modelDissolveDataBlock ),
-	FIELD( _field_struct, "script data*!", &hs_script_data_struct_struct_definition ),
-	FIELD( _field_block, "script tagalongs", &hs_references_block ),
-	FIELD( _field_block, "scripted dependencies", &hs_references_block ),
-	FIELD( _field_explanation, "Object Abandoment" ),
-	FIELD( _field_struct, "object abandonment", &object_abandonment_struct_struct_definition ),
-	FIELD( _field_custom ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(object, OBJECT_TAG, object_block_block )
 
-TAG_STRUCT(object_abandonment_struct)
-{
-	FIELD( _field_real, "Vitality Limit To Start Countdown" ),
-	FIELD( _field_real, "Countdown Time In Seconds" ),
-	FIELD( _field_byte_flags, "flags" ),
-	FIELD( _field_pad, "DPKP", 3 ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(object_block, 1, object_struct_definition_struct_definition );
 
 TAG_BLOCK(sidecarBlock, 1)
 {
@@ -113,7 +48,7 @@ TAG_BLOCK(object_function_block, k_maximum_object_functions)
 	FIELD( _field_custom ),
 	FIELD( _field_struct, "default function", &mapping_function_struct_definition ),
 	FIELD( _field_string_id, "scale by" ),
-	FIELD( _field_block, "interpolation", &object_function_interpolation_block ),
+	FIELD( _field_block, "interpolation", &object_function_interpolation_block_block ),
 	FIELD( _field_long_block_index, "runtime interpolator index*!" ),
 	FIELD( _field_terminator )
 };
@@ -140,7 +75,7 @@ TAG_BLOCK(objectFunctionSwitchBlock, ObjectFunctionSwitchDefinition::k_maxCount)
 {
 	FIELD( _field_string_id, "switch function name" ),
 	FIELD( _field_string_id, "export name" ),
-	FIELD( _field_block, "switched functions", &objectFunctionSwitchFunctionBlock ),
+	FIELD( _field_block, "switched functions", &objectFunctionSwitchFunctionBlock_block ),
 	FIELD( _field_terminator )
 };
 
@@ -174,8 +109,8 @@ TAG_BLOCK(object_widget_block, MAXIMUM_WIDGETS_PER_OBJECT)
 TAG_BLOCK(object_change_colors, k_object_change_color_count)
 {
 	FIELD( _field_useless_pad ),
-	FIELD( _field_block, "initial permutations", &object_change_color_initial_permutation ),
-	FIELD( _field_block, "functions", &object_change_color_function ),
+	FIELD( _field_block, "initial permutations", &object_change_color_initial_permutation_block ),
+	FIELD( _field_block, "functions", &object_change_color_function_block ),
 	FIELD( _field_terminator )
 };
 
@@ -221,7 +156,7 @@ TAG_BLOCK(multiplayer_object_block, k_maximum_multiplayer_object_blocks)
 	FIELD( _field_pad, "pad1", 2 ),
 	FIELD( _field_explanation, "RESPAWN ZONE DATA" ),
 	FIELD( _field_real, "normal weight:aka natural weight" ),
-	FIELD( _field_block, "falloff function#Multiplier applied to weight (domain is center to radius, range should be 0 to 1).", &spawn_influence_weight_falloff_function_block ),
+	FIELD( _field_block, "falloff function#Multiplier applied to weight (domain is center to radius, range should be 0 to 1).", &spawn_influence_weight_falloff_function_block_block ),
 	FIELD( _field_explanation, "MARKER DATA" ),
 	FIELD( _field_custom ),
 	FIELD( _field_string_id, "boundary center marker" ),
@@ -254,7 +189,7 @@ TAG_BLOCK(object_spawn_effects_block, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(object_block, OBJECT_TAG)
+TAG_STRUCT(object_struct_definition)
 {
 	FIELD( _field_custom, "OBJECT" ),
 	FIELD( _field_short_integer, "runtime object type!" ),
@@ -277,40 +212,49 @@ TAG_GROUP(object_block, OBJECT_TAG)
 	FIELD( _field_string_id, "generic hud text" ),
 	FIELD( _field_tag_reference, "generic name list" ),
 	FIELD( _field_tag_reference, "generic service tag list" ),
-	FIELD( _field_block, "source sidecar", &sidecarBlock ),
+	FIELD( _field_block, "source sidecar", &sidecarBlock_block ),
 	FIELD( _field_string_id, "default model variant" ),
 	FIELD( _field_tag_reference, "model" ),
 	FIELD( _field_tag_reference, "crate object" ),
 	FIELD( _field_explanation, "only set this tag if you want to override the default collision damage values in globals.globals" ),
 	FIELD( _field_tag_reference, "collision damage" ),
 	FIELD( _field_tag_reference, "brittle collision damage" ),
-	FIELD( _field_block, "early mover OBB", &object_early_mover_obb_block ),
+	FIELD( _field_block, "early mover OBB", &object_early_mover_obb_block_block ),
 	FIELD( _field_tag_reference, "creation effect" ),
 	FIELD( _field_tag_reference, "material effects" ),
 	FIELD( _field_tag_reference, "melee sound#this is the sound that is made when I am meleed.  This overrides the sweetener sound of my material." ),
 	FIELD( _field_real, "self-destruct time:seconds#if non-zero, any instances of this object will destroy themselves after this many seconds." ),
-	FIELD( _field_block, "ai properties", &object_ai_properties_block ),
-	FIELD( _field_block, "functions", &object_function_block ),
-	FIELD( _field_block, "runtime interpolator functions*!", &object_runtime_interpolator_functions_block ),
-	FIELD( _field_block, "function switches", &objectFunctionSwitchBlock ),
+	FIELD( _field_block, "ai properties", &object_ai_properties_block_block ),
+	FIELD( _field_block, "functions", &object_function_block_block ),
+	FIELD( _field_block, "runtime interpolator functions*!", &object_runtime_interpolator_functions_block_block ),
+	FIELD( _field_block, "function switches", &objectFunctionSwitchBlock_block ),
 	FIELD( _field_short_integer, "hud text message index" ),
 	FIELD( _field_word_flags, "secondary flags" ),
-	FIELD( _field_block, "attachments", &global_object_attachment_block ),
-	FIELD( _field_block, "hull surfaces", &water_physics_hull_surface_definition_block ),
-	FIELD( _field_block, "jetwash", &jetwash_definition_block ),
-	FIELD( _field_block, "widgets", &object_widget_block ),
-	FIELD( _field_block, "change colors", &object_change_colors ),
-	FIELD( _field_block, "predicted resources*", &g_null_block ),
-	FIELD( _field_block, "multiplayer object", &multiplayer_object_block ),
+	FIELD( _field_block, "attachments", &global_object_attachment_block_block ),
+	FIELD( _field_block, "hull surfaces", &water_physics_hull_surface_definition_block_block ),
+	FIELD( _field_block, "jetwash", &jetwash_definition_block_block ),
+	FIELD( _field_block, "widgets", &object_widget_block_block ),
+	FIELD( _field_block, "change colors", &object_change_colors_block ),
+	FIELD( _field_block, "predicted resources*", &g_null_block_block ),
+	FIELD( _field_block, "multiplayer object", &multiplayer_object_block_block ),
 	FIELD( _field_tag_reference, "simulation_interpolation#Set to a specific interpolation definition, or leave blank to inherit the default for the object type (there are defaults for bipeds, vehicles, and crates in multiplayer_globals).  To disable interpolation on a particular object whose type has interpolation by default, set this reference to the special disable_interpolation.simulation_interpolation tag." ),
-	FIELD( _field_block, "spawn effects", &object_spawn_effects_block ),
-	FIELD( _field_block, "model dissolve data", &modelDissolveDataBlock ),
+	FIELD( _field_block, "spawn effects", &object_spawn_effects_block_block ),
+	FIELD( _field_block, "model dissolve data", &modelDissolveDataBlock_block ),
 	FIELD( _field_struct, "script data*!", &hs_script_data_struct_struct_definition ),
-	FIELD( _field_block, "script tagalongs", &hs_references_block ),
-	FIELD( _field_block, "scripted dependencies", &hs_references_block ),
+	FIELD( _field_block, "script tagalongs", &hs_references_block_block ),
+	FIELD( _field_block, "scripted dependencies", &hs_references_block_block ),
 	FIELD( _field_explanation, "Object Abandoment" ),
 	FIELD( _field_struct, "object abandonment", &object_abandonment_struct_struct_definition ),
 	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(object_abandonment_struct)
+{
+	FIELD( _field_real, "Vitality Limit To Start Countdown" ),
+	FIELD( _field_real, "Countdown Time In Seconds" ),
+	FIELD( _field_byte_flags, "flags" ),
+	FIELD( _field_pad, "DPKP", 3 ),
 	FIELD( _field_terminator )
 };
 

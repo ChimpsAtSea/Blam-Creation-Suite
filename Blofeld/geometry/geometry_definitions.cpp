@@ -3,40 +3,10 @@
 namespace blofeld
 {
 
-TAG_STRUCT(global_render_geometry_struct)
-{
-	FIELD( _field_explanation, "Render Geometry" ),
-	FIELD( _field_long_flags, "runtime flags*!" ),
-	FIELD( _field_block, "meshes*", &global_mesh_block ),
-	FIELD( _field_block, "PCA Mesh Indices*", &PCAMeshIndexBlock ),
-	FIELD( _field_block, "compression info*", &compression_info_block ),
-	FIELD( _field_block, "part sorting position*", &sorting_position_block ),
-	FIELD( _field_block, "user data*", &user_data_block ),
-	FIELD( _field_block, "per mesh temporary*", &per_mesh_raw_data_block ),
-	FIELD( _field_pad, "pad3", 12 ),
-	FIELD( _field_block, "per mesh node map*", &per_mesh_node_map_block ),
-	FIELD( _field_block, "per mesh subpart visibility*", &per_mesh_subpart_visibility_block ),
-	FIELD( _field_block, "per_mesh_prt_data*", &per_mesh_prt_data_block ),
-	FIELD( _field_block, "per_instance_lightmap_texcoords*", &per_instance_lightmap_texcoords_block ),
-	FIELD( _field_block, "water bounding box block*", &water_bounding_box_block ),
-	FIELD( _field_pageable, "api resource" ),
-	FIELD( _field_block, "Optional PVS data", &render_geometry_pvs_data_block ),
-	FIELD( _field_block, "shapeNames*", &shapeNameBlock ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(global_render_geometry_user_data_header_struct)
-{
-	FIELD( _field_char_enum, "data type^*" ),
-	FIELD( _field_char_integer, "data count*" ),
-	FIELD( _field_word_integer, "data size*" ),
-	FIELD( _field_terminator )
-};
-
 TAG_BLOCK(global_mesh_block, (8*1024-1))
 {
-	FIELD( _field_block, "parts*", &part_block ),
-	FIELD( _field_block, "subparts*", &subpart_block ),
+	FIELD( _field_block, "parts*", &part_block_block ),
+	FIELD( _field_block, "subparts*", &subpart_block_block ),
 	FIELD( _field_array, "vertex buffer indices*" ),
 	FIELD( _field_short_integer, "index buffer index*" ),
 	FIELD( _field_short_integer, "index buffer tessellation*" ),
@@ -48,11 +18,11 @@ TAG_BLOCK(global_mesh_block, (8*1024-1))
 	FIELD( _field_char_enum, "index buffer type*" ),
 	FIELD( _field_pad, "BAASDFIR", 1 ),
 	FIELD( _field_short_integer, "pca mesh index*" ),
-	FIELD( _field_block, "instance buckets*", &global_instance_bucket_block ),
-	FIELD( _field_block, "water indices start", &indices_word_block ),
+	FIELD( _field_block, "instance buckets*", &global_instance_bucket_block_block ),
+	FIELD( _field_block, "water indices start", &indices_word_block_block ),
 	FIELD( _field_real, "runtime bounding radius:world units*!" ),
 	FIELD( _field_real_point_3d, "runtime bounding offset*!" ),
-	FIELD( _field_block, "vertex keys*", &vertexKeyBlock ),
+	FIELD( _field_block, "vertex keys*", &vertexKeyBlock_block ),
 	FIELD( _field_short_block_index, "clone index*" ),
 	FIELD( _field_short_integer, "cumulative part count (initialized by PVS building code)" ),
 	FIELD( _field_terminator )
@@ -88,7 +58,7 @@ TAG_BLOCK(global_instance_bucket_block, (2*1024))
 {
 	FIELD( _field_short_integer, "mesh index*" ),
 	FIELD( _field_short_integer, "definition index*" ),
-	FIELD( _field_block, "instances", &instance_index_word_block ),
+	FIELD( _field_block, "instances", &instance_index_word_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -150,13 +120,13 @@ TAG_BLOCK(user_data_block, 64)
 
 TAG_BLOCK(per_mesh_raw_data_block, (8*1024-1))
 {
-	FIELD( _field_block, "raw vertices*", &raw_vertex_block ),
-	FIELD( _field_block, "raw indices*", &indices_word_block ),
-	FIELD( _field_block, "raw indices32*", &indices_dword_block ),
-	FIELD( _field_block, "raw water data", &raw_water_block ),
-	FIELD( _field_block, "raw imposter data", &raw_imposter_brdf_block ),
-	FIELD( _field_block, "raw instance imposter verts", &raw_instance_imposter_block ),
-	FIELD( _field_block, "raw blendshapes*", &raw_blendshape_block ),
+	FIELD( _field_block, "raw vertices*", &raw_vertex_block_block ),
+	FIELD( _field_block, "raw indices*", &indices_word_block_block ),
+	FIELD( _field_block, "raw indices32*", &indices_dword_block_block ),
+	FIELD( _field_block, "raw water data", &raw_water_block_block ),
+	FIELD( _field_block, "raw imposter data", &raw_imposter_brdf_block_block ),
+	FIELD( _field_block, "raw instance imposter verts", &raw_instance_imposter_block_block ),
+	FIELD( _field_block, "raw blendshapes*", &raw_blendshape_block_block ),
 	FIELD( _field_long_integer, "per vertex lighting vertex size" ),
 	FIELD( _field_short_integer, "parameterized texture width" ),
 	FIELD( _field_short_integer, "parameterized texture height" ),
@@ -187,8 +157,8 @@ TAG_BLOCK(indices_dword_block, 2147483647L)
 
 TAG_BLOCK(raw_water_block, 1024)
 {
-	FIELD( _field_block, "raw water indices*", &indices_word_block ),
-	FIELD( _field_block, "raw water vertices*", &raw_water_append_block ),
+	FIELD( _field_block, "raw water indices*", &indices_word_block_block ),
+	FIELD( _field_block, "raw water vertices*", &raw_water_append_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -228,7 +198,7 @@ TAG_BLOCK(raw_blendshape_block, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
 
 TAG_BLOCK(per_mesh_node_map_block, (8*1024-1))
 {
-	FIELD( _field_block, "node map*", &node_map_byte_block ),
+	FIELD( _field_block, "node map*", &node_map_byte_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -240,14 +210,14 @@ TAG_BLOCK(node_map_byte_block, BYTE_MAX)
 
 TAG_BLOCK(per_mesh_subpart_visibility_block, 64)
 {
-	FIELD( _field_block, "bounding_sphere*", &sorting_position_block ),
+	FIELD( _field_block, "bounding_sphere*", &sorting_position_block_block ),
 	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(per_mesh_prt_data_block, (8*1024-1))
 {
 	FIELD( _field_data, "mesh pca data*" ),
-	FIELD( _field_block, "per instance prt data", &per_instance_prt_data_block ),
+	FIELD( _field_block, "per instance prt data", &per_instance_prt_data_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -259,8 +229,8 @@ TAG_BLOCK(per_instance_prt_data_block, UNSIGNED_SHORT_MAX)
 
 TAG_BLOCK(per_instance_lightmap_texcoords_block, UNSIGNED_SHORT_MAX)
 {
-	FIELD( _field_block, "texture coordinates", &raw_vertex_block ),
-	FIELD( _field_block, "texture coordinates (concise)", &raw_texcoord_block ),
+	FIELD( _field_block, "texture coordinates", &raw_vertex_block_block ),
+	FIELD( _field_block, "texture coordinates (concise)", &raw_texcoord_block_block ),
 	FIELD( _field_short_integer, "vertex buffer index*" ),
 	FIELD( _field_pad, "HTJIAHA", 2 ),
 	FIELD( _field_terminator )
@@ -283,8 +253,8 @@ TAG_BLOCK(water_bounding_box_block, (8*1024-1))
 
 TAG_BLOCK(render_geometry_pvs_data_block, 16)
 {
-	FIELD( _field_block, "Visibility array", &render_geometry_pvs_data_visibility_value_block ),
-	FIELD( _field_block, "Per-block visibility offset array", &render_geometry_pvs_data_visibility_index_block ),
+	FIELD( _field_block, "Visibility array", &render_geometry_pvs_data_visibility_value_block_block ),
+	FIELD( _field_block, "Per-block visibility offset array", &render_geometry_pvs_data_visibility_index_block_block ),
 	FIELD( _field_long_integer, "Bits per block" ),
 	FIELD( _field_real_point_3d, "Object space grid AABB min" ),
 	FIELD( _field_real_point_3d, "Object space grid AABB max" ),
@@ -311,6 +281,36 @@ TAG_BLOCK(shapeNameBlock, 8192)
 {
 	FIELD( _field_long_integer, "key*" ),
 	FIELD( _field_long_string, "name*" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(global_render_geometry_struct)
+{
+	FIELD( _field_explanation, "Render Geometry" ),
+	FIELD( _field_long_flags, "runtime flags*!" ),
+	FIELD( _field_block, "meshes*", &global_mesh_block_block ),
+	FIELD( _field_block, "PCA Mesh Indices*", &PCAMeshIndexBlock_block ),
+	FIELD( _field_block, "compression info*", &compression_info_block_block ),
+	FIELD( _field_block, "part sorting position*", &sorting_position_block_block ),
+	FIELD( _field_block, "user data*", &user_data_block_block ),
+	FIELD( _field_block, "per mesh temporary*", &per_mesh_raw_data_block_block ),
+	FIELD( _field_pad, "pad3", 12 ),
+	FIELD( _field_block, "per mesh node map*", &per_mesh_node_map_block_block ),
+	FIELD( _field_block, "per mesh subpart visibility*", &per_mesh_subpart_visibility_block_block ),
+	FIELD( _field_block, "per_mesh_prt_data*", &per_mesh_prt_data_block_block ),
+	FIELD( _field_block, "per_instance_lightmap_texcoords*", &per_instance_lightmap_texcoords_block_block ),
+	FIELD( _field_block, "water bounding box block*", &water_bounding_box_block_block ),
+	FIELD( _field_pageable, "api resource" ),
+	FIELD( _field_block, "Optional PVS data", &render_geometry_pvs_data_block_block ),
+	FIELD( _field_block, "shapeNames*", &shapeNameBlock_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(global_render_geometry_user_data_header_struct)
+{
+	FIELD( _field_char_enum, "data type^*" ),
+	FIELD( _field_char_integer, "data count*" ),
+	FIELD( _field_word_integer, "data size*" ),
 	FIELD( _field_terminator )
 };
 

@@ -3,27 +3,13 @@
 namespace blofeld
 {
 
-TAG_STRUCT(medal_challenge_aggregator_list_struct_definition)
-{
-	FIELD( _field_block, "lists", &medalChallengeAggregator ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(medal_challenge_aggregator_list, MEDAL_CHALLENGE_AGGREGATOR_LIST_TAG, medal_challenge_aggregator_list_block_block )
 
-TAG_STRUCT(medal_commendation_aggregator_list_struct_definition)
-{
-	FIELD( _field_block, "lists", &medalCommendationAggregator ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(medal_commendation_aggregator_list, MEDAL_COMMENDATION_AGGREGATOR_LIST_TAG, medal_commendation_aggregator_list_block_block )
 
-TAG_STRUCT(medalAggregator)
-{
-	FIELD( _field_string_id, "display name^" ),
-	FIELD( _field_custom, "allowed game modes" ),
-	FIELD( _field_struct, "allowed game modes", &game_mode_flags_struct_struct_definition ),
-	FIELD( _field_custom ),
-	FIELD( _field_block, "contributing medals", &medalAggregatorEntry ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(medal_challenge_aggregator_list_block, 1, medal_challenge_aggregator_list_struct_definition_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(medal_commendation_aggregator_list_block, 1, medal_commendation_aggregator_list_struct_definition_struct_definition );
 
 TAG_BLOCK(medalChallengeAggregator, MedalChallengeAggregator::k_medalChallengeAggregatorMaxCount)
 {
@@ -45,15 +31,25 @@ TAG_BLOCK(medalCommendationAggregator, MedalCommendationAggregator::k_medalComme
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(medal_challenge_aggregator_list_block, MEDAL_CHALLENGE_AGGREGATOR_LIST_TAG)
+TAG_STRUCT(medal_challenge_aggregator_list_struct_definition)
 {
-	FIELD( _field_block, "lists", &medalChallengeAggregator ),
+	FIELD( _field_block, "lists", &medalChallengeAggregator_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(medal_commendation_aggregator_list_block, MEDAL_COMMENDATION_AGGREGATOR_LIST_TAG)
+TAG_STRUCT(medal_commendation_aggregator_list_struct_definition)
 {
-	FIELD( _field_block, "lists", &medalCommendationAggregator ),
+	FIELD( _field_block, "lists", &medalCommendationAggregator_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(medalAggregator)
+{
+	FIELD( _field_string_id, "display name^" ),
+	FIELD( _field_custom, "allowed game modes" ),
+	FIELD( _field_struct, "allowed game modes", &game_mode_flags_struct_struct_definition ),
+	FIELD( _field_custom ),
+	FIELD( _field_block, "contributing medals", &medalAggregatorEntry_block ),
 	FIELD( _field_terminator )
 };
 

@@ -3,19 +3,16 @@
 namespace blofeld
 {
 
-TAG_STRUCT(challenge_globals_definition_struct_definition)
-{
-	FIELD( _field_tag_reference, "medal aggregators" ),
-	FIELD( _field_block, "challenge_categories", &challenge_category_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(challenge_globals_definition, CHALLENGE_GLOBALS_DEFINITION_TAG, challenge_globals_definition_block_block )
+
+TAG_BLOCK_FROM_STRUCT(challenge_globals_definition_block, 1, challenge_globals_definition_struct_definition_struct_definition );
 
 TAG_BLOCK(challenge_category_block, k_roomEnoughToConvertAllExistingCategories)
 {
 	FIELD( _field_string_id, "category_name^" ),
 	FIELD( _field_char_enum, "challenge category^" ),
 	FIELD( _field_pad, "WAT1", 3 ),
-	FIELD( _field_block, "challenges", &challenge_block ),
+	FIELD( _field_block, "challenges", &challenge_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -52,10 +49,10 @@ TAG_BLOCK(challenge_block, k_maximum_challenges_per_category)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(challenge_globals_definition_block, CHALLENGE_GLOBALS_DEFINITION_TAG)
+TAG_STRUCT(challenge_globals_definition_struct_definition)
 {
 	FIELD( _field_tag_reference, "medal aggregators" ),
-	FIELD( _field_block, "challenge_categories", &challenge_category_block ),
+	FIELD( _field_block, "challenge_categories", &challenge_category_block_block ),
 	FIELD( _field_terminator )
 };
 

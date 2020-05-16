@@ -3,39 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(light_volume_system_struct_definition)
-{
-	FIELD( _field_block, "light_volumes", &light_volume_definition_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(light_volume_system, LIGHT_VOLUME_SYSTEM_TAG, light_volume_system_block_block )
 
-TAG_STRUCT(light_volume_property_real)
-{
-	FIELD( _field_char_enum, "Input Variable" ),
-	FIELD( _field_char_enum, "Range Variable" ),
-	FIELD( _field_char_enum, "Output Modifier" ),
-	FIELD( _field_char_enum, "Output Modifier Input" ),
-	FIELD( _field_custom ),
-	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
-	FIELD( _field_real, "runtime m_constant_value!" ),
-	FIELD( _field_word_integer, "runtime m_flags!" ),
-	FIELD( _field_pad, "DSFDSGLKJ", 2 ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(light_volume_property_real_rgb_color)
-{
-	FIELD( _field_char_enum, "Input Variable" ),
-	FIELD( _field_char_enum, "Range Variable" ),
-	FIELD( _field_char_enum, "Output Modifier" ),
-	FIELD( _field_char_enum, "Output Modifier Input" ),
-	FIELD( _field_custom ),
-	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
-	FIELD( _field_real, "runtime m_constant_value!" ),
-	FIELD( _field_word_integer, "runtime m_flags!" ),
-	FIELD( _field_pad, "DSFDSGLKJ", 2 ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(light_volume_system_block, 1, light_volume_system_struct_definition_struct_definition );
 
 TAG_BLOCK(light_volume_definition_block, c_light_volume_system_definition::k_max_light_volume)
 {
@@ -68,7 +38,7 @@ TAG_BLOCK(light_volume_definition_block, c_light_volume_system_definition::k_max
 	FIELD( _field_dword_integer, "runtime m_used_states!" ),
 	FIELD( _field_dword_integer, "runtime m_max_profile_count!" ),
 	FIELD( _field_struct, "runtime m_gpu_data!", &gpu_property_function_color_struct_struct_definition ),
-	FIELD( _field_block, "precompiled vertices", &light_volume_precompiled_vert_block ),
+	FIELD( _field_block, "precompiled vertices", &light_volume_precompiled_vert_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -81,9 +51,37 @@ TAG_BLOCK(light_volume_precompiled_vert_block, c_light_volume_definition::k_max_
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(light_volume_system_block, LIGHT_VOLUME_SYSTEM_TAG)
+TAG_STRUCT(light_volume_system_struct_definition)
 {
-	FIELD( _field_block, "light_volumes", &light_volume_definition_block ),
+	FIELD( _field_block, "light_volumes", &light_volume_definition_block_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(light_volume_property_real)
+{
+	FIELD( _field_char_enum, "Input Variable" ),
+	FIELD( _field_char_enum, "Range Variable" ),
+	FIELD( _field_char_enum, "Output Modifier" ),
+	FIELD( _field_char_enum, "Output Modifier Input" ),
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
+	FIELD( _field_real, "runtime m_constant_value!" ),
+	FIELD( _field_word_integer, "runtime m_flags!" ),
+	FIELD( _field_pad, "DSFDSGLKJ", 2 ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(light_volume_property_real_rgb_color)
+{
+	FIELD( _field_char_enum, "Input Variable" ),
+	FIELD( _field_char_enum, "Range Variable" ),
+	FIELD( _field_char_enum, "Output Modifier" ),
+	FIELD( _field_char_enum, "Output Modifier Input" ),
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
+	FIELD( _field_real, "runtime m_constant_value!" ),
+	FIELD( _field_word_integer, "runtime m_flags!" ),
+	FIELD( _field_pad, "DSFDSGLKJ", 2 ),
 	FIELD( _field_terminator )
 };
 

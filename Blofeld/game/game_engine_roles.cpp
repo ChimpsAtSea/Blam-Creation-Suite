@@ -8,7 +8,7 @@ TAG_BLOCK(global_team_role_block, k_multiplayer_team_game_team_count)
 	FIELD( _field_long_flags, "flags!" ),
 	FIELD( _field_enum, "team^!" ),
 	FIELD( _field_pad, "QVO", 2 ),
-	FIELD( _field_block, "player roles", &player_role_block ),
+	FIELD( _field_block, "player roles", &player_role_block_block ),
 	FIELD( _field_terminator )
 };
 

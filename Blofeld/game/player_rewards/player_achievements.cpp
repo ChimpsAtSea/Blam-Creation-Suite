@@ -3,11 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(achievements_struct_definition)
-{
-	FIELD( _field_block, "achievement", &single_achievement_definition_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(achievements, ACHIEVEMENTS_TAG, achievements_block_block )
+
+TAG_BLOCK_FROM_STRUCT(achievements_block, 1, achievements_struct_definition_struct_definition );
 
 TAG_BLOCK(single_achievement_definition_block, k_maximum_achievements)
 {
@@ -15,7 +13,7 @@ TAG_BLOCK(single_achievement_definition_block, k_maximum_achievements)
 	FIELD( _field_char_enum, "type" ),
 	FIELD( _field_byte_flags, "difficulty" ),
 	FIELD( _field_pad, "VJNOSNJER", 2 ),
-	FIELD( _field_block, "restricted levels", &single_achievement_restricted_level_block ),
+	FIELD( _field_block, "restricted levels", &single_achievement_restricted_level_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -25,9 +23,9 @@ TAG_BLOCK(single_achievement_restricted_level_block, s_single_achivement_restric
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(achievements_block, ACHIEVEMENTS_TAG)
+TAG_STRUCT(achievements_struct_definition)
 {
-	FIELD( _field_block, "achievement", &single_achievement_definition_block ),
+	FIELD( _field_block, "achievement", &single_achievement_definition_block_block ),
 	FIELD( _field_terminator )
 };
 

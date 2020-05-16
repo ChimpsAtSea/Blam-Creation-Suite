@@ -2,7 +2,7 @@
 
 namespace blofeld
 {
-	uint32_t calculate_structure_size(const s_tag_struct& tag_struct, bool* block_failed_validation)
+	uint32_t calculate_struct_size(const s_tag_struct& tag_struct, bool* block_failed_validation)
 	{
 		uint32_t computed_size = 0;
 
@@ -31,10 +31,11 @@ namespace blofeld
 				computed_size += current_field->length;
 				break;
 			case _field_struct:
-				computed_size += calculate_structure_size(*current_field->tag_struct, block_failed_validation);
+				computed_size += calculate_struct_size(*current_field->tag_struct, block_failed_validation);
 				break;
 			case _field_array:
-				throw;
+				write_line_verbose("%s(%i): warning V3000: field '%s':'%s' [_field_array] failed validation. array is not implemented!", current_field->filename, current_field->line, tag_struct.name, current_field->name);
+				break;
 			default:
 				computed_size += get_blofeld_field_size(current_field->field_type);
 				break;
@@ -47,22 +48,31 @@ namespace blofeld
 	bool validate_halo4()
 	{
 		bool any_block_failed_validation = false;
-		for (s_tag_block_definition_validation_data& validation_data : halo4_tag_block_validation_data)
+		uint32_t successful_validation_attempts = 0;
+		for (s_tag_struct_validation_data& validation_data : halo4_tag_struct_validation_data)
 		{
 			bool block_failed_validation = false;
-			const s_tag_block_definition& tag_block = validation_data.tag_block;
-			const s_tag_struct& tag_struct = tag_block.tag_struct;
-			const char* const block_name = tag_block.name;
+			const s_tag_struct& tag_struct = validation_data.tag_struct;
+			const char* const block_name = tag_struct.name;
 			uint32_t const expected_size = validation_data.size;
 
-			uint32_t computed_size = calculate_structure_size(tag_struct, &block_failed_validation);
+			uint32_t computed_size = calculate_struct_size(tag_struct, &block_failed_validation);
 
 			block_failed_validation |= computed_size != expected_size;
 			if (block_failed_validation)
 			{
-				write_line_verbose("blofeld> warning block '%s' failed validation. size 0x%x expected 0x%x", block_name, computed_size, expected_size);
+				write_line_verbose("%s(%i): warning V2000: struct '%s' failed validation. size 0x%x expected 0x%x", tag_struct.filename, tag_struct.line, block_name, computed_size, expected_size);
+			}
+			else
+			{
+				successful_validation_attempts++;
 			}
 			any_block_failed_validation |= block_failed_validation;
+		}
+		float percentage = 100.0f * float(successful_validation_attempts) / float(_countof(halo4_tag_struct_validation_data));
+		if (percentage != 100.0f)
+		{
+			write_line_verbose("warning V1000: failed to validate all tags. success rate %.1f.", percentage);
 		}
 		return any_block_failed_validation;
 	}

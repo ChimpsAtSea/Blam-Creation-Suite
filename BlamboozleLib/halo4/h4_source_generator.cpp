@@ -51,7 +51,21 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 		hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 		ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 
-		
+		for (c_h4_tag_group_container* tag_group_container : source_file->tag_groups)
+		{
+			create_tag_group_header(hs, *tag_group_container);
+			create_tag_group_source(ss, *tag_group_container);
+		}
+		hs << std::endl;
+
+		for (c_h4_tag_block_container* tag_block_container : source_file->tag_blocks)
+		{
+			if (tag_block_container->defined_by_tag_group) continue; // these are created manually through c_h4_tag_group_container
+			create_tag_block_header(hs, *tag_block_container);
+			create_tag_block_source(ss, *tag_block_container);
+		}
+		hs << std::endl;
+
 		for (c_h4_tag_struct_container* tag_struct_container : source_file->tag_structs)
 		{
 			bool y = std::string(tag_struct_container->tag_struct.name) == "character_perception_block_struct";
@@ -60,20 +74,6 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			create_tag_struct_source(ss, *tag_struct_container);
 		}
 		hs << std::endl;
-
-		for (c_h4_tag_block_container* tag_block_container : source_file->tag_blocks)
-		{
-			if (tag_block_container->is_tag) continue; // these are created manually through c_h4_tag_group_container
-			create_tag_block_header(hs, *tag_block_container);
-			create_tag_block_source(ss, *tag_block_container);
-		}
-		hs << std::endl;
-
-		for (c_h4_tag_group_container* tag_group_container : source_file->tag_groups)
-		{
-			create_tag_group_header(hs, *tag_group_container);
-			create_tag_group_source(ss, *tag_group_container);
-		}
 
 		hs << "} // namespace blofeld" << std::endl << std::endl;
 		ss << "} // namespace blofeld" << std::endl << std::endl;
@@ -216,7 +216,7 @@ void c_h4_source_generator::create_validation_header(std::stringstream& hs)
 
 	hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 
-	hs << "extern s_tag_block_definition_validation_data halo4_tag_block_validation_data[" << preprocessor.tag_block_containers.size() << "];" << std::endl;
+	hs << "extern s_tag_struct_validation_data halo4_tag_struct_validation_data[" << preprocessor.tag_block_containers.size() << "];" << std::endl;
 
 	hs << "} // namespace blofeld" << std::endl << std::endl;
 	hs << std::endl;
@@ -228,15 +228,31 @@ void c_h4_source_generator::create_validation_source(std::stringstream& ss)
 
 	ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 
-	ss << "s_tag_block_definition_validation_data halo4_tag_block_validation_data[" << preprocessor.tag_block_containers.size() << "] = " << std::endl;
-	ss << "{" << std::endl;
+	ss << "\ts_tag_struct_validation_data halo4_tag_struct_validation_data[" << preprocessor.tag_block_containers.size() << "] = " << std::endl;
+	ss << "\t{" << std::endl;
 	for (c_h4_tag_block_container* tag_block_container : preprocessor.tag_block_containers)
 	{
-		c_h4_tag_struct& tag_struct = tag_block_container->tag_block.tag_struct;
+		c_h4_tag_struct_container& tag_struct_container = *tag_block_container->tag_struct_container;
+		c_h4_tag_struct& tag_struct = tag_struct_container.tag_struct;
 
-		ss << "\t{ " << tag_block_container->name << ", " << tag_struct.size << " }," << std::endl;
+		if (!tag_block_container->defined_by_tag_group && tag_block_container->use_tag_block_definition)
+		{
+			ss << "\t\t{ " << tag_block_container->name << "_block_struct, " << tag_struct.size << " }, // block" << std::endl;
+		}
+		else if (tag_struct_container.is_block)
+		{
+			ss << "\t\t{ " << tag_struct_container.symbol_name << "_block_struct, " << tag_struct.size << " }, // block" << std::endl;
+		}
+		else if (tag_struct_container.is_tag_group)
+		{
+			ss << "\t\t{ " << tag_struct_container.name << "_struct_definition, " << tag_struct.size << " }, // tag_group" << std::endl;
+		}
+		else
+		{
+			ss << "\t\t{ " << tag_struct_container.name << "_struct_definition, " << tag_struct.size << " }," << std::endl;
+		}
 	}
-	ss << "};" << std::endl;
+	ss << "\t};" << std::endl;
 	ss << std::endl;
 
 	ss << "} // namespace blofeld" << std::endl << std::endl;
@@ -255,14 +271,16 @@ std::string parse_tag_group_string(const tag_group& group_tag)
 
 void c_h4_source_generator::create_tag_group_header(std::stringstream& hs, c_h4_tag_group_container& tag_group_container)
 {
+	c_h4_tag_block_container& tag_block_container = *tag_group_container.tag_block_container;
 	c_h4_tag_group& tag_group = tag_group_container.tag_group;
 	c_h4_tag_struct& tag_struct = tag_group.tag_block.tag_struct;
 
 	//hs << "extern const unsigned long " << tag_group_container.name_uppercase << "_TAG;" << std::endl;
 	hs << "constexpr unsigned long " << tag_group_container.name_uppercase << "_TAG = '" << parse_tag_group_string(tag_group.group_tag) << "';" << std::endl << std::endl;
-	if (tag_group_container.use_tag_group_definition)
+	if (tag_group_container.define_tag_group_block_and_fields)
 	{
-		hs << "extern s_tag_block_definition " << tag_group.name << "_block;" << std::endl;
+		hs << "extern s_tag_struct " << tag_block_container.symbol_name << "_struct;" << std::endl;
+		hs << "extern s_tag_block_definition " << tag_block_container.symbol_name << ";" << std::endl;
 	}
 	hs << "extern s_tag_group " << tag_group.name << "_group;" << std::endl;
 
@@ -278,38 +296,39 @@ void c_h4_source_generator::create_tag_group_source(std::stringstream& ss, c_h4_
 
 	if (tag_group.parent_group_tag.value == 0xFFFFFFFF)
 	{
-		if (tag_group_container.use_tag_group_definition)
+		if (tag_group_container.define_tag_group_block_and_fields)
 		{
 			ss << "TAG_GROUP(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG)" << std::endl;
 		}
 		else
 		{
-			ss << "TAG_GROUP_FROM_BLOCK(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG, " << tag_block_container->name << ")" << std::endl;
-
+			ss << "TAG_GROUP_FROM_BLOCK(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG, " << tag_block_container->symbol_name << " )" << std::endl;
 		}
 	}
 	else
 	{
-		if (tag_group_container.use_tag_group_definition)
-		{
-			c_h4_tag_group_container* parent_tag_group_container = preprocessor.get_container_by_group_tag(tag_group.parent_group_tag.value);
-			ASSERT(parent_tag_group_container);
-			c_h4_tag_group& parent_tag_group = parent_tag_group_container->tag_group;
+		c_h4_tag_group_container* parent_tag_group_container = preprocessor.get_container_by_group_tag(tag_group.parent_group_tag.value);
+		ASSERT(parent_tag_group_container);
+		c_h4_tag_group& parent_tag_group = parent_tag_group_container->tag_group;
 
+		if (tag_group_container.define_tag_group_block_and_fields)
+		{
 			ss << "TAG_GROUP_INHERIT(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG, " << parent_tag_group.name << ", " << parent_tag_group_container->name_uppercase << "_TAG)" << std::endl;
 		}
 		else
 		{
-			FATAL_ERROR(L"Not implemented");
+			ss << "TAG_GROUP_INHERIT_FROM_BLOCK(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG, " << parent_tag_group.name << ", " << parent_tag_group_container->name_uppercase << "_TAG, " << tag_block_container->symbol_name << " )" << std::endl;
 		}
 	}
 
-	if (tag_group_container.use_tag_group_definition)
+	if (tag_group_container.define_tag_group_block_and_fields)
 	{
 		ss << "{" << std::endl;
 		generate_tag_fields_source(ss, tag_struct.tag_fields);
 		ss << "};" << std::endl;
 	}
+
+
 	ss << std::endl;
 }
 
@@ -318,11 +337,12 @@ void c_h4_source_generator::create_tag_block_header(std::stringstream& hs, c_h4_
 	c_h4_tag_block& tag_block = tag_block_container.tag_block;
 	c_h4_tag_struct& tag_struct = tag_block.tag_struct;
 
-	if (!tag_block_container.is_tag && tag_block_container.use_tag_block_definition)
+	if (!tag_block_container.defined_by_tag_group && tag_block_container.use_tag_block_definition)
 	{
-		hs << "extern s_tag_struct " << tag_block_container.tag_struct_container->name << "_struct_definition;" << std::endl;
+		//hs << "extern s_tag_struct " << tag_block_container.tag_struct_container->name << "_block_struct;" << std::endl;
+		hs << "extern s_tag_struct " << tag_block_container.name << "_block_struct;" << std::endl;
 	}
-	hs << "extern s_tag_block_definition " << tag_block_container.name << ";" << std::endl;
+	hs << "extern s_tag_block_definition " << tag_block_container.symbol_name << ";" << std::endl;
 
 
 }
@@ -331,7 +351,6 @@ void c_h4_source_generator::create_tag_block_source(std::stringstream& ss, c_h4_
 	c_h4_tag_block& tag_block = tag_block_container.tag_block;
 	c_h4_tag_struct_container& tag_struct_container = *tag_block_container.tag_struct_container;
 	c_h4_tag_struct& tag_struct = tag_block.tag_struct;
-	bool y = std::string(tag_struct.name) == "cache_file_tag_zone_manifest_struct";
 
 	if (tag_block_container.use_tag_block_definition)
 	{
@@ -343,7 +362,15 @@ void c_h4_source_generator::create_tag_block_source(std::stringstream& ss, c_h4_
 	}
 	else
 	{
-		ss << "TAG_BLOCK_FROM_STRUCT(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ", " << tag_struct_container.name << "_struct_definition );" << std::endl;
+		if (tag_struct_container.is_block)
+		{
+			ss << "TAG_BLOCK_FROM_STRUCT(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ", " << tag_struct_container.name << "_block_struct );" << std::endl;
+		}
+		else
+		{
+			ss << "TAG_BLOCK_FROM_STRUCT(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ", " << tag_struct_container.name << "_struct_definition );" << std::endl;
+		}
+		
 		ss << std::endl;
 	}
 }
@@ -352,7 +379,26 @@ void c_h4_source_generator::create_tag_struct_header(std::stringstream& hs, c_h4
 {
 	c_h4_tag_struct& tag_struct = tag_struct_container.tag_struct;
 
-	hs << "extern s_tag_struct " << tag_struct_container.name << "_struct_definition;" << std::endl;
+	bool y = std::string(tag_struct_container.name) == "ai_dialogue_globals_struct_definition";
+
+
+
+
+	if (tag_struct_container.is_block)
+	{
+		hs << "extern s_tag_struct " << tag_struct_container.name << "_block_struct; // block" << std::endl;
+	}
+	else if (tag_struct_container.is_tag_group)
+	{
+		hs << "extern s_tag_struct " << tag_struct_container.name << "_struct_definition; // tag group" << std::endl;
+		//hs << "extern s_tag_struct " << tag_struct_container.source_name << "; // tag group" << std::endl;
+	}
+	else
+	{
+		hs << "extern s_tag_struct " << tag_struct_container.name << "_struct_definition;" << std::endl;
+	}
+
+
 
 }
 void c_h4_source_generator::create_tag_struct_source(std::stringstream& ss, c_h4_tag_struct_container& tag_struct_container)
@@ -456,6 +502,7 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			c_h4_tag_struct_container* tag_struct_container = preprocessor.find_existing_tag_struct_container(*struct_field->tag_struct);
 			ASSERT(tag_struct_container);
 
+			
 			if (tag_struct_container->is_block)
 			{
 				ss << "\tFIELD( " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_struct_container->name << "_block_struct )," << std::endl;
@@ -474,11 +521,14 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			ASSERT(block_field->name);
 			ASSERT(block_field->tag_block_definition);
 			c_h4_tag_block_container* tag_block_container = preprocessor.find_existing_tag_block_container(*block_field->tag_block_definition);
+
+			bool x = std::string(field_name) == "source files*";
+
 			if (tag_block_container)
 			{
 				ASSERT(tag_block_container);
 
-				ss << "\tFIELD( " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_block_container->name << " )," << std::endl;
+				ss << "\tFIELD( " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_block_container->symbol_name << " )," << std::endl;
 			}
 			else
 			{

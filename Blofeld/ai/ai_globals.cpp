@@ -3,11 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(ai_globals_struct_definition)
-{
-	FIELD( _field_block, "data", &ai_globals_data_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(ai_globals, AI_GLOBALS_TAG, ai_globals_block_block )
+
+TAG_BLOCK_FROM_STRUCT(ai_globals_block, 1, ai_globals_struct_definition_struct_definition );
 
 TAG_BLOCK(ai_globals_data_block, 1)
 {
@@ -48,7 +46,7 @@ TAG_BLOCK(ai_globals_data_block, 1)
 	FIELD( _field_real, "search range flying:wus" ),
 	FIELD( _field_real, "search range vehicle:wus" ),
 	FIELD( _field_real, "search range giant:wus" ),
-	FIELD( _field_block, "gravemind properties", &ai_globals_gravemind_block ),
+	FIELD( _field_block, "gravemind properties", &ai_globals_gravemind_block_block ),
 	FIELD( _field_real, "scary target threhold#A target of this scariness is offically considered scary (by combat dialogue, etc.)" ),
 	FIELD( _field_real, "scary weapon threhold#A weapon of this scariness is offically considered scary (by combat dialogue, etc.)" ),
 	FIELD( _field_real, "player scariness" ),
@@ -63,11 +61,11 @@ TAG_BLOCK(ai_globals_data_block, 1)
 	FIELD( _field_explanation, "TELEPORTATION" ),
 	FIELD( _field_real, "cover search duration:seconds#The number of seconds that must elapse before we try to look for a firing point behind cover to teleport to." ),
 	FIELD( _field_real, "task direction search duration:seconds#The number of seconds we try to look for a firing point that aligns us with the actor\'s task direction." ),
-	FIELD( _field_block, "spawn formations", &ai_globals_formation_block ),
-	FIELD( _field_block, "squad template folders", &ai_globals_squad_template_folder_block ),
-	FIELD( _field_block, "performance template folders", &ai_globals_performance_template_folder_block ),
-	FIELD( _field_block, "custom stimuli", &ai_globals_custom_stimuli_block ),
-	FIELD( _field_block, "cue templates", &ai_cue_template_block ),
+	FIELD( _field_block, "spawn formations", &ai_globals_formation_block_block ),
+	FIELD( _field_block, "squad template folders", &ai_globals_squad_template_folder_block_block ),
+	FIELD( _field_block, "performance template folders", &ai_globals_performance_template_folder_block_block ),
+	FIELD( _field_block, "custom stimuli", &ai_globals_custom_stimuli_block_block ),
+	FIELD( _field_block, "cue templates", &ai_cue_template_block_block ),
 	FIELD( _field_explanation, "CLUMP THROTTLING" ),
 	FIELD( _field_real, "stop dist:wu#At this distance from the squad, stop." ),
 	FIELD( _field_real, "resume dist:wu#At this distance from the squad, start again." ),
@@ -92,10 +90,10 @@ TAG_BLOCK(ai_globals_data_block, 1)
 	FIELD( _field_short_integer, "guard count" ),
 	FIELD( _field_short_integer, "investigate count" ),
 	FIELD( _field_custom ),
-	FIELD( _field_block, "vision traits", &ai_trait_vision_block ),
-	FIELD( _field_block, "sound traits", &ai_trait_sound_block ),
-	FIELD( _field_block, "luck traits", &ai_trait_luck_block ),
-	FIELD( _field_block, "grenade traits", &ai_trait_grenade_block ),
+	FIELD( _field_block, "vision traits", &ai_trait_vision_block_block ),
+	FIELD( _field_block, "sound traits", &ai_trait_sound_block_block ),
+	FIELD( _field_block, "luck traits", &ai_trait_luck_block_block ),
+	FIELD( _field_block, "grenade traits", &ai_trait_grenade_block_block ),
 	FIELD( _field_custom, "Search Pattern Specification" ),
 	FIELD( _field_real, "max decay time" ),
 	FIELD( _field_real, "decay time ping" ),
@@ -124,15 +122,15 @@ TAG_BLOCK(ai_globals_formation_block, k_global_formations_count)
 TAG_BLOCK(ai_globals_squad_template_folder_block, k_global_squad_template_folder_count)
 {
 	FIELD( _field_string_id, "folder name^" ),
-	FIELD( _field_block, "sub folders", &ai_globals_squad_template_sub_folder_block ),
-	FIELD( _field_block, "templates", &ai_globals_squad_template_block ),
+	FIELD( _field_block, "sub folders", &ai_globals_squad_template_sub_folder_block_block ),
+	FIELD( _field_block, "templates", &ai_globals_squad_template_block_block ),
 	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(ai_globals_squad_template_sub_folder_block, k_global_squad_template_folder_count)
 {
 	FIELD( _field_string_id, "sub folder name^" ),
-	FIELD( _field_block, "templates", &ai_globals_squad_template_block ),
+	FIELD( _field_block, "templates", &ai_globals_squad_template_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -145,15 +143,15 @@ TAG_BLOCK(ai_globals_squad_template_block, k_global_squad_templates_count)
 TAG_BLOCK(ai_globals_performance_template_folder_block, k_global_performance_template_folder_count)
 {
 	FIELD( _field_string_id, "folder name^" ),
-	FIELD( _field_block, "sub folders", &ai_globals_performance_template_sub_folder_block ),
-	FIELD( _field_block, "templates", &ai_globals_performance_template_block ),
+	FIELD( _field_block, "sub folders", &ai_globals_performance_template_sub_folder_block_block ),
+	FIELD( _field_block, "templates", &ai_globals_performance_template_block_block ),
 	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(ai_globals_performance_template_sub_folder_block, k_global_performance_template_folder_count)
 {
 	FIELD( _field_string_id, "sub folder name^" ),
-	FIELD( _field_block, "templates", &ai_globals_performance_template_block ),
+	FIELD( _field_block, "templates", &ai_globals_performance_template_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -214,9 +212,9 @@ TAG_BLOCK(ai_trait_grenade_block, k_num_ai_trait_grenade-2)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(ai_globals_block, AI_GLOBALS_TAG)
+TAG_STRUCT(ai_globals_struct_definition)
 {
-	FIELD( _field_block, "data", &ai_globals_data_block ),
+	FIELD( _field_block, "data", &ai_globals_data_block_block ),
 	FIELD( _field_terminator )
 };
 

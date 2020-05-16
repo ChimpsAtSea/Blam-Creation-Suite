@@ -3,1761 +3,1761 @@
 namespace blofeld
 {
 
-s_tag_block_definition_validation_data halo4_tag_block_validation_data[1752] = 
-{
-	{ shader_particle_block, 152 },
-	{ cache_file_sound_block, 36 },
-	{ sound_effect_template_block, 28 },
-	{ stereo_system_block, 4 },
-	{ lightmap_model_globals_block, 12 },
-	{ lightmapper_globals_block, 152 },
-	{ scenario_lightmap_bsp_data_block, 1000 },
-	{ streamingzoneset_block, 40 },
-	{ achievements_block, 12 },
-	{ ai_dialogue_globals_block, 124 },
-	{ ai_globals_block, 12 },
-	{ airstrike_block, 12 },
-	{ antenna_block, 80 },
-	{ armormod_globals_block, 80 },
-	{ atmosphere_globals_block, 68 },
-	{ authored_light_probe_block, 136 },
-	{ avatar_awards_block, 12 },
-	{ big_battle_creature_block, 424 },
-	{ death_program_selector_block, 28 },
-	{ bink_block, 28 },
-	{ biped_block, 2544 },
-	{ bitmap_block, 204 },
-	{ crate_block, 576 },
-	{ breakable_surface_block, 104 },
-	{ custom_app_globals_block, 20 },
-	{ collision_damage_block, 100 },
-	{ camera_fx_settings_block, 288 },
-	{ character_block, 828 },
-	{ challenge_globals_definition_block, 28 },
-	{ cinematic_block, 200 },
-	{ cinematic_scene_block, 104 },
-	{ cinematic_scene_data_block, 40 },
-	{ cinematic_transition_block, 460 },
-	{ cloth_block, 148 },
-	{ camo_block, 60 },
-	{ controller_mapping_block, 92 },
-	{ commendation_aggregator_list_block, 12 },
-	{ collision_model_block, 88 },
-	{ color_table_block, 12 },
-	{ commendation_globals_definition_block, 64 },
-	{ communication_sounds_block, 3312 },
-	{ reward_globals_definition_block, 12 },
-	{ coop_spawning_globals_definition_block, 56 },
-	{ cheap_particle_emitter_block, 268 },
-	{ cookie_purchase_globals_block, 336 },
-	{ cheap_particle_type_library_block, 100 },
-	{ creature_block, 924 },
-	{ curve_scalar_block, 20 },
-	{ camera_shake_block, 112 },
-	{ device_control_block, 828 },
-	{ cui_logic_block, 140 },
-	{ cui_screen_block, 148 },
-	{ cui_static_data_block, 24 },
-	{ decorator_set_block, 256 },
-	{ decal_system_block, 44 },
-	{ device_block, 692 },
-	{ cellular_automata_block, 564 },
-	{ detail_object_collection_block, 128 },
-	{ dependency_block, 12 },
-	{ rasterizer_cache_file_globals_block, 12 },
-	{ damage_response_definition_block, 24 },
-	{ device_dispenser_block, 784 },
-	{ particle_emitter_boat_hull_shape_block, 16 },
-	{ effect_block, 104 },
-	{ effect_globals_block, 64 },
-	{ effect_scenery_block, 516 },
-	{ effect_global_force_block, 16 },
-	{ entity_block, 520 },
-	{ equipment_block, 924 },
-	{ firefight_globals_block, 44 },
-	{ GameEngineFirefightVariantTag_block, 172 },
-	{ flock_block, 96 },
-	{ fluid_dynamics_block, 376 },
-	{ atmosphere_definition_block, 300 },
-	{ material_effects_block, 12 },
-	{ forge_globals_block, 88 },
-	{ formation_block, 16 },
-	{ frame_event_list_block, 36 },
-	{ fx_test_block, 12 },
-	{ game_completion_rewards_globals_block, 40 },
-	{ game_engine_globals_block, 44 },
-	{ game_globals_grenade_list_block, 12 },
-	{ game_globals_ordnance_list_block, 52 },
-	{ giant_block, 1608 },
-	{ cheap_light_block, 128 },
-	{ global_pixel_shader_block, 28 },
-	{ global_vertex_shader_block, 28 },
-	{ game_medal_globals_block, 24 },
-	{ multiplayer_variant_settings_interface_definition_block, 16 },
-	{ global_cache_file_pixel_shaders_block, 28 },
-	{ game_performance_throttle_block, 12 },
-	{ grounded_friction_block, 36 },
-	{ havok_collision_filter_block, 272 },
-	{ model_block, 608 },
-	{ hlsl_include_block, 20 },
-	{ hs_source_files_block, 56 },
-	{ script_container_block, 40 },
-	{ script_block, 116 },
-	{ incident_global_properties_definition_block, 136 },
-	{ instance_imposter_definition_block, 240 },
-	{ imposter_model_block, 216 },
-	{ incident_globals_definition_block, 12 },
-	{ item_block, 720 },
-	{ InfinityUIImages_block, 12 },
-	{ model_animation_graph_block, 532 },
-	{ sandbox_text_value_pair_definition_block, 12 },
-	{ damage_effect_block, 328 },
-	{ KillCamCameraParamter_block, 12 },
-	{ loadScreenBlock, 96 },
-	{ lens_flare_block, 160 },
-	{ loadout_globals_definition_block, 48 },
-	{ light_cone_block, 88 },
-	{ light_block, 420 },
-	{ location_name_globals_definition_block, 28 },
-	{ light_rig_block, 64 },
-	{ sound_looping_block, 60 },
-	{ leaf_system_block, 88 },
-	{ light_volume_system_block, 12 },
-	{ device_machine_block, 724 },
-	{ material_block, 68 },
-	{ globals_block, 2272 },
-	{ material_shader_block, 88 },
-	{ ai_mission_dialogue_block, 12 },
-	{ model_dissolve_definition_block, 240 },
-	{ medal_challenge_aggregator_list_block, 12 },
-	{ medal_commendation_aggregator_list_block, 12 },
-	{ meter_block, 172 },
-	{ muffin_block, 56 },
-	{ multiplayerEffects_block, 12 },
-	{ megalogamengine_sounds_block, 3840 },
-	{ emblem_library_block, 116 },
-	{ main_menu_voiceover_block, 12 },
-	{ render_model_block, 376 },
-	{ multiplayer_object_type_list_block, 112 },
-	{ multiplayer_scenario_description_block, 12 },
-	{ megalo_string_id_table_block, 24 },
-	{ material_shader_bank_block, 60 },
-	{ multiplayer_globals_block, 24 },
-	{ mux_generator_block, 164 },
-	{ NarrativeGlobals_block, 12 },
-	{ new_cinematic_lighting_block, 108 },
-	{ object_block, 516 },
-	{ polyart_asset_block, 92 },
-	{ tag_package_manifest_block, 12 },
-	{ patch_globals_block, 1156 },
-	{ pca_animation_block, 76 },
-	{ pgcr_enemy_to_category_mapping_definition_block, 24 },
-	{ pgcr_damage_type_image_mapping_definition_block, 12 },
-	{ particle_emitter_custom_points_block, 52 },
-	{ player_enlistment_globals_definition_block, 12 },
-	{ performance_throttles_block, 12 },
-	{ performance_template_block, 44 },
-	{ pathfinding_block, 76 },
-	{ planar_fog_parameters_block, 136 },
-	{ player_grade_globals_definition_block, 12 },
-	{ physics_model_block, 424 },
-	{ pixel_shader_block, 28 },
-	{ cache_file_resource_layout_table_block, 68 },
-	{ particleman_block, 36 },
-	{ player_model_customization_globals_block, 200 },
-	{ particle_model_block, 192 },
-	{ particle_physics_block, 52 },
-	{ point_physics_block, 64 },
-	{ portrait_poses_definition_block, 12 },
-	{ prefab_block, 16 },
-	{ progressionGlobalsBlock, 76 },
-	{ projectile_block, 1104 },
-	{ particle_block, 568 },
-	{ rain_definition_block, 320 },
-	{ rasterizer_globals_block, 200 },
-	{ render_method_block, 100 },
-	{ rumble_block, 48 },
-	{ shader_custom_block, 104 },
-	{ shader_cortana_block, 104 },
-	{ shader_decal_block, 104 },
-	{ render_method_definition_block, 348 },
-	{ shader_foliage_block, 104 },
-	{ shader_fur_stencil_block, 104 },
-	{ shader_fur_block, 104 },
-	{ shader_glass_block, 104 },
-	{ shader_halogram_block, 104 },
-	{ render_model_lightmap_atlas_block, 184 },
-	{ shader_light_volume_block, 100 },
-	{ shader_mux_material_block, 104 },
-	{ shader_mux_block, 128 },
-	{ render_method_option_block, 12 },
-	{ shader_block, 104 },
-	{ shader_skin_block, 104 },
-	{ shader_screen_block, 108 },
-	{ render_method_template_block, 132 },
-	{ shader_terrain_block, 128 },
-	{ shader_water_block, 100 },
-	{ shader_waterfall_block, 104 },
-	{ render_water_ripple_block, 80 },
-	{ scenario_lightmap_block, 16 },
-	{ spring_acceleration_block, 20 },
-	{ soundbank_block, 32 },
-	{ scenario_structure_bsp_block, 1456 },
-	{ scenery_block, 540 },
-	{ sound_combiner_block, 24 },
-	{ scenario_block, 2444 },
-	{ scenario_ordnance_list_block, 24 },
-	{ structure_design_block, 364 },
-	{ scenario_required_resource_block, 12 },
-	{ area_screen_effect_block, 16 },
-	{ sound_effect_collection_block, 12 },
-	{ sound_global_propagation_block, 72 },
-	{ sound_response_block, 12 },
-	{ shield_impact_block, 524 },
-	{ self_illumination_block, 12 },
-	{ simulated_input_block, 128 },
-	{ SuppressedIncident_block, 12 },
-	{ simulation_interpolation_block, 244 },
-	{ text_value_pair_definition_block, 28 },
-	{ sound_incident_response_block, 12 },
-	{ scenario_interpolator_block, 12 },
-	{ silent_assist_globals_block, 12 },
-	{ survival_mode_globals_block, 104 },
-	{ structure_meta_block, 60 },
-	{ sound_classes_block, 12 },
-	{ sound_block, 72 },
-	{ sound_environment_block, 72 },
-	{ sound_old_block, 224 },
-	{ sound2_block, 224 },
-	{ sound_mix_block, 148 },
-	{ sound_dialogue_constants_block, 40 },
-	{ spawner_block, 532 },
-	{ squad_template_block, 16 },
-	{ sound_radio_settings_block, 36 },
-	{ ssao_definition_block, 176 },
-	{ sound_scenery_block, 532 },
-	{ SpawnSettings_block, 316 },
-	{ scenario_structure_lighting_info_block, 88 },
-	{ structure_seams_block, 100 },
-	{ style_block, 96 },
-	{ device_terminal_block, 764 },
-	{ tracer_system_block, 32 },
-	{ camera_track_block, 16 },
-	{ dialogue_block, 36 },
-	{ sound_cache_file_gestalt_block, 220 },
-	{ user_interface_hud_globals_definition_block, 352 },
-	{ user_interface_sounds_definition_block, 1376 },
-	{ style_sheet_list_block, 48 },
-	{ multilingual_unicode_string_list_block, 112 },
-	{ unit_block, 1552 },
-	{ vectorart_asset_block, 96 },
-	{ vector_hud_definition_block, 20 },
-	{ vehicle_block, 2020 },
-	{ vision_mode_block, 68 },
-	{ variant_globals_block, 36 },
-	{ vertex_shader_block, 28 },
-	{ wave_template_block, 12 },
-	{ weapon_block, 1688 },
-	{ scenario_wetness_bsp_data_block, 92 },
-	{ game_engine_settings_definition_block, 76 },
-	{ user_interface_globals_definition_block, 308 },
-	{ cellular_automata2d_block, 556 },
-	{ user_interface_shared_globals_definition_block, 380 },
-	{ wind_block, 120 },
-	{ water_physics_drag_properties_block, 56 },
-	{ weather_globals_block, 56 },
-	{ cache_file_resource_gestalt_block, 556 },
-	{ short_block, 2 },
-	{ render_method_parameter_block, 60 },
-	{ render_method_animated_parameter_block, 36 },
-	{ render_method_postprocess_block, 172 },
-	{ render_method_postprocess_texture_block, 24 },
-	{ real_vector4d_block, 16 },
-	{ int_block, 4 },
-	{ tag_block_index_block, 2 },
-	{ render_method_postprocess_pass_block, 6 },
-	{ render_method_routing_info_block, 4 },
-	{ render_method_locked_parameter_block, 12 },
-	{ sound_effect_templates_block, 44 },
-	{ sound_effect_template_parameter_block, 48 },
-	{ sound_effect_template_additional_sound_input_block, 28 },
-	{ lightmap_model_reference_block, 16 },
-	{ scenario_lightmap_cluster_data, 8 },
-	{ scenario_lightmap_instance_data, 36 },
-	{ scenario_lightmap_lightprobe_value, 92 },
-	{ scenario_lightmap_instance_index_block, 4 },
-	{ scenario_lightmap_global_perpixel_padding_data, 16 },
-	{ scenario_lightmap_rasterized_chart_data, 56 },
-	{ scenario_lightmap_rasterized_chart_source, 8 },
-	{ scenario_lightmap_rasterized_chart_element, 1 },
-	{ scenario_lightmap_new_ao_data_block, 1 },
-	{ scenario_lightmap_adjacent_bounce_vertex_block, 20 },
-	{ scenario_lightmap_adjacent_bounce_index_block, 4 },
-	{ global_mesh_block, 112 },
-	{ part_block, 24 },
-	{ subpart_block, 16 },
-	{ global_instance_bucket_block, 16 },
-	{ instance_index_word_block, 2 },
-	{ indices_word_block, 2 },
-	{ vertexKeyBlock, 8 },
-	{ PCAMeshIndexBlock, 4 },
-	{ compression_info_block, 52 },
-	{ sorting_position_block, 48 },
-	{ user_data_block, 24 },
-	{ per_mesh_raw_data_block, 96 },
-	{ raw_vertex_block, 104 },
-	{ indices_dword_block, 4 },
-	{ raw_water_block, 24 },
-	{ raw_water_append_block, 8 },
-	{ raw_imposter_brdf_block, 76 },
-	{ raw_instance_imposter_block, 20 },
-	{ raw_blendshape_block, 40 },
-	{ per_mesh_node_map_block, 12 },
-	{ node_map_byte_block, 1 },
-	{ per_mesh_subpart_visibility_block, 12 },
-	{ per_mesh_prt_data_block, 32 },
-	{ per_instance_prt_data_block, 20 },
-	{ per_instance_lightmap_texcoords_block, 28 },
-	{ raw_texcoord_block, 8 },
-	{ water_bounding_box_block, 28 },
-	{ render_geometry_pvs_data_block, 76 },
-	{ render_geometry_pvs_data_visibility_value_block, 4 },
-	{ render_geometry_pvs_data_visibility_index_block, 2 },
-	{ shapeNameBlock, 260 },
-	{ triangle_mapping_per_mesh_block, 12 },
-	{ triangle_mapping_block, 4 },
-	{ scenario_lightmap_dynamic_light_instance, 20 },
-	{ scenario_lightmap_dynamic_light_instance_data_block, 8 },
-	{ scenario_lightmap_structure_light_instance, 4 },
-	{ s_scenario_lightmap_silhouette_vertex, 12 },
-	{ s_scenario_lightmap_silhouette_edge, 8 },
-	{ s_scenario_lightmap_silhouette_group, 32 },
-	{ scenario_lightmap_airprobe_value, 80 },
-	{ global_error_report_categories_block, 280 },
-	{ error_reports_block, 184 },
-	{ error_report_vertices_block, 52 },
-	{ error_report_vectors_block, 64 },
-	{ error_report_lines_block, 80 },
-	{ error_report_triangles_block, 112 },
-	{ error_report_quads_block, 144 },
-	{ error_report_comments_block, 68 },
-	{ global_self_track_block, 576 },
-	{ StreamingZoneSetResourceIdBlock, 16 },
-	{ StreamingZoneSetResourceSubregionDataBlock, 28 },
-	{ StreamingZoneSetResourceLevelsBlock, 1 },
-	{ single_achievement_definition_block, 20 },
-	{ single_achievement_restricted_level_block, 4 },
-	{ default_stimulus_suppressor_block, 4 },
-	{ vocalization_definitions_block, 100 },
-	{ response_block, 12 },
-	{ vocalization_patterns_block, 56 },
-	{ dialogue_data_block, 4 },
-	{ involuntary_data_block, 4 },
-	{ predicted_data_block, 4 },
-	{ ai_globals_data_block, 432 },
-	{ ai_globals_gravemind_block, 12 },
-	{ ai_globals_formation_block, 16 },
-	{ ai_globals_squad_template_folder_block, 28 },
-	{ ai_globals_squad_template_sub_folder_block, 16 },
-	{ ai_globals_squad_template_block, 16 },
-	{ ai_globals_performance_template_folder_block, 28 },
-	{ ai_globals_performance_template_sub_folder_block, 16 },
-	{ ai_globals_performance_template_block, 16 },
-	{ ai_globals_custom_stimuli_block, 4 },
-	{ ai_cue_template_block, 44 },
-	{ firing_point_payload_block, 4 },
-	{ stimulus_payload_block, 4 },
-	{ combat_cue_payload_block, 52 },
-	{ ai_trait_vision_block, 8 },
-	{ ai_trait_sound_block, 4 },
-	{ ai_trait_luck_block, 44 },
-	{ ai_trait_grenade_block, 28 },
-	{ airstrike_battery_block, 72 },
-	{ airstrike_fire_location_block, 8 },
-	{ antenna_vertex_block, 64 },
-	{ aural_enhancement_audio_settings_block, 8 },
-	{ underwater_setting_block, 20 },
-	{ authored_light_probe_lights_block, 56 },
-	{ single_avatar_award_definition_block, 8 },
-	{ spheres_block, 112 },
-	{ pills_block, 96 },
-	{ lists_block, 112 },
-	{ list_shapes_block, 16 },
-	{ campaign_metagame_bucket_block, 8 },
-	{ creature_scalar_timing_block, 20 },
-	{ death_program_special_block, 16 },
-	{ death_program_damage_reporting_block, 16 },
-	{ death_program_velocity_gate_block, 16 },
-	{ unit_screen_effect_block, 16 },
-	{ unit_postures_block, 16 },
-	{ hud_unit_sound_block, 36 },
-	{ hud_unit_sound_cue_block, 24 },
-	{ dialogue_variant_block, 20 },
-	{ powered_seat_block, 8 },
-	{ unit_weapon_block, 168 },
-	{ SentryPropertiesBlock, 84 },
-	{ global_target_tracking_parameters_block, 56 },
-	{ tracking_type_block, 4 },
-	{ unit_seat_block, 364 },
-	{ boarding_seat_block, 4 },
-	{ unit_camera_track_block, 32 },
-	{ unit_camera_acceleration_displacement_block, 112 },
-	{ gamepad_stick_info_block, 40 },
-	{ input_mapping_function_block, 20 },
-	{ unit_trick_definition_block, 32 },
-	{ biped_camera_height_block, 12 },
-	{ biped_wall_proximity_block, 24 },
-	{ biped_movement_gate_block, 40 },
-	{ contact_point_block, 4 },
-	{ biped_grab_object_animation_set_block, 12 },
-	{ BipedSoundRTPCBlock, 12 },
-	{ BipedSoundSweetenerBlock, 28 },
-	{ BipedAimingJointFixupBlock, 32 },
-	{ bitmap_usage_block, 40 },
-	{ bitmap_group_sequence_block_def, 64 },
-	{ bitmap_group_sprite_block_def, 32 },
-	{ bitmap_tight_bounds_block_def, 8 },
-	{ bitmap_data_block_def, 44 },
-	{ bitmap_texture_interop_block, 8 },
-	{ stitchable_bitmap_texture_interop_block, 8 },
-	{ bitmap_texture_interleaved_interop_block, 8 },
-	{ sidecarBlock, 256 },
-	{ object_early_mover_obb_block, 44 },
-	{ object_ai_properties_block, 16 },
-	{ object_function_block, 64 },
-	{ object_function_interpolation_block, 24 },
-	{ object_runtime_interpolator_functions_block, 4 },
-	{ objectFunctionSwitchBlock, 20 },
-	{ objectFunctionSwitchFunctionBlock, 12 },
-	{ global_object_attachment_block, 32 },
-	{ water_physics_hull_surface_definition_block, 24 },
-	{ water_physics_material_override, 60 },
-	{ jetwash_definition_block, 36 },
-	{ object_widget_block, 16 },
-	{ object_change_colors, 24 },
-	{ object_change_color_initial_permutation, 32 },
-	{ object_change_color_function, 40 },
-	{ g_null_block, 0 },
-	{ multiplayer_object_block, 204 },
-	{ spawn_influence_weight_falloff_function_block, 20 },
-	{ object_spawn_effects_block, 48 },
-	{ modelDissolveDataBlock, 16 },
-	{ hs_references_block, 16 },
-	{ particle_system_definition_block_new, 124 },
-	{ particle_system_emitter_definition_block, 964 },
-	{ particle_controller, 24 },
-	{ particle_controller_parameters, 36 },
-	{ emitterGlobalForceBlock, 40 },
-	{ emitterClipSphereBlock, 16 },
-	{ gpu_property_block, 16 },
-	{ gpu_function_block, 64 },
-	{ gpu_color_block, 16 },
-	{ custom_app_block, 60 },
-	{ game_engine_player_traits_block, 60 },
-	{ player_traits_vitality_block, 64 },
-	{ player_traits_weapons_block, 128 },
-	{ player_traits_movement_block, 28 },
-	{ player_traits_appearance_block, 12 },
-	{ player_traits_sensors_block, 20 },
-	{ custom_app_damage_modifier_block, 8 },
-	{ character_variants_block, 24 },
-	{ character_voice_block, 36 },
-	{ character_voice_region_filter_block, 16 },
-	{ character_voice_region_permutation_filter_block, 4 },
-	{ character_voice_properties_block, 16 },
-	{ character_general_block, 92 },
-	{ disallowed_weapons_for_trading_block, 16 },
-	{ character_proto_spawn_block, 4 },
-	{ character_interact_block, 4 },
-	{ character_emotions_block, 20 },
-	{ character_emotions_situational_danger_block, 8 },
-	{ character_vitality_block, 104 },
-	{ character_placement_block, 52 },
-	{ character_perception_block, 160 },
-	{ character_target_block, 4 },
-	{ character_look_block, 80 },
-	{ character_hopping_block, 16 },
-	{ characterHopDefinitionBlock, 72 },
-	{ character_movement_block, 264 },
-	{ movement_stationary_pause_block, 8 },
-	{ movement_throttle_control_block, 16 },
-	{ movement_throttle_block, 8 },
-	{ character_throttle_style_block, 60 },
-	{ character_movement_set_block, 16 },
-	{ movement_mapping_block, 64 },
-	{ character_flocking_block, 24 },
-	{ character_swarm_block, 56 },
-	{ character_firing_point_evaluator_block, 16 },
-	{ evaluator_definition_block, 12 },
-	{ character_ready_block, 8 },
-	{ character_engage_block, 104 },
-	{ character_charge_block, 184 },
-	{ character_charge_difficulty_limits_block, 6 },
-	{ character_evasion_block, 20 },
-	{ character_cover_block, 88 },
-	{ character_retreat_block, 88 },
-	{ character_search_block, 44 },
-	{ character_presearch_block, 40 },
-	{ character_idle_block, 20 },
-	{ character_vocalization_block, 12 },
-	{ character_boarding_block, 40 },
-	{ character_vehicle_boarding_block, 20 },
-	{ character_kungfu_block, 8 },
-	{ character_bunker_block, 96 },
-	{ character_guardian_block, 24 },
-	{ character_combatform_block, 8 },
-	{ character_engineer_block, 56 },
-	{ character_inspect_block, 20 },
-	{ character_scarab_block, 24 },
-	{ character_weapons_block, 204 },
-	{ character_firing_pattern_properties_block, 28 },
-	{ character_firing_pattern_block, 64 },
-	{ character_grenades_block, 64 },
-	{ character_vehicle_block, 332 },
-	{ character_flying_movement_block, 224 },
-	{ character_morph_block, 228 },
-	{ character_equipment_block, 36 },
-	{ character_equipment_usage_block, 12 },
-	{ character_stimuli_response_block, 20 },
-	{ character_activity_object_block, 28 },
-	{ character_pain_screen_block, 28 },
-	{ character_bishop_block, 312 },
-	{ character_combotron_parent_block, 68 },
-	{ character_combotron_child_block, 88 },
-	{ character_handle_dismemberment_block, 40 },
-	{ character_cover_fight_block, 144 },
-	{ character_emerge_block, 32 },
-	{ dynamic_task_block, 56 },
-	{ character_advance_block, 116 },
-	{ character_cover_evasion_block, 36 },
-	{ character_pack_stalk_block, 20 },
-	{ character_fight_circle_block, 40 },
-	{ character_hamstring_charge_block, 32 },
-	{ character_forerunner_block, 36 },
-	{ character_gravity_jump_block, 32 },
-	{ challenge_category_block, 20 },
-	{ challenge_block, 84 },
-	{ cinematic_shot_playback_data_block, 8 },
-	{ cinematic_scene_reference_block, 32 },
-	{ cinematic_scene_object_block, 64 },
-	{ scene_object_attachment_block, 32 },
-	{ cinematic_shot_block, 200 },
-	{ cinematic_shot_lighting_block, 28 },
-	{ cinematic_shot_clip_block, 44 },
-	{ cinematic_shot_clip_subject_block, 4 },
-	{ cinematic_shot_music_block, 24 },
-	{ cinematic_shot_object_function_block, 20 },
-	{ cinematic_shot_object_function_keyframe_block, 16 },
-	{ cinematic_shot_screen_effect_block, 28 },
-	{ cinematic_shot_user_input_constraints_block, 20 },
-	{ cinematicShotTextureMovieBlock, 24 },
-	{ cinematicStructureLightingBlock, 16 },
-	{ cinematicSceneDataObjectBlock, 48 },
-	{ cinematicDataShotBlock, 76 },
-	{ cinematic_shot_dialogue_block, 60 },
-	{ cinematic_shot_effect_block, 52 },
-	{ cinematic_shot_custom_script_block, 36 },
-	{ cinematic_shot_frame_block, 68 },
-	{ cinematic_shot_frame_dynamic_block, 36 },
-	{ cinematic_shot_frame_constant_block, 36 },
-	{ cinematic_shot_extra_camera_block, 20 },
-	{ cinematic_extra_camera_shot_block, 12 },
-	{ cinematic_extra_camera_frame_block, 72 },
-	{ cinematic_transition_global_gain_block, 8 },
-	{ cinematic_transition_sound_class_gain_block, 12 },
-	{ cinematic_transition_sound_reference_block, 16 },
-	{ cinematic_transition_looping_sound_reference_block, 16 },
-	{ cinematic_transition_looping_sound_state_block, 24 },
-	{ collision_sphere_block, 8 },
-	{ cloth_vertices_block, 20 },
-	{ cloth_indices_block, 2 },
-	{ cloth_links_block, 16 },
-	{ commendationAggregator, 40 },
-	{ commendationRewardBlock, 4 },
-	{ commendationAggregatorDependent, 8 },
-	{ collision_model_material_block, 4 },
-	{ collision_model_region_block, 16 },
-	{ collision_model_permutation_block, 44 },
-	{ collision_model_bsp_block, 112 },
-	{ bsp3d_nodes_block, 8 },
-	{ bsp3d_kd_supdernodes_block, 128 },
-	{ planes_block, 16 },
-	{ leaves_block, 8 },
-	{ bsp2d_references_block, 4 },
-	{ bsp2d_nodes_block, 16 },
-	{ surfaces_block, 12 },
-	{ edges_block, 12 },
-	{ vertices_block, 16 },
-	{ collision_bsp_physics_block, 176 },
-	{ mopp_code_definition_block, 64 },
-	{ mopp_code_data_definition_block, 1 },
-	{ collision_model_pathfinding_sphere_block, 20 },
-	{ collision_model_node_block, 12 },
-	{ color_block, 48 },
-	{ commendationBlock, 132 },
-	{ purchase_prerequisite_grade_definition_block, 8 },
-	{ purchase_prerequisite_commendation_definition_block, 8 },
-	{ PurchasePrerequisitePurchasedAppearanceItemDefinitionBlock, 4 },
-	{ PurchasePrerequisitePurchasedLoadoutItemDefinitionBlock, 4 },
-	{ PurchasePrerequisitePurchasedOrdnanceItemDefinitionBlock, 4 },
-	{ purchase_prerequisites_unlockable_definition_block, 4 },
-	{ purchase_prerequisites_offer_definition_block, 4 },
-	{ commendationLevelBlock, 24 },
-	{ rewardDefinitionBlock, 20 },
-	{ rewardBlock, 4 },
-	{ CookiePurchaseFamilyAppearanceDefinitionBlock, 40 },
-	{ CookiePurchaseAppearanceDefinitionReferenceBlock, 4 },
-	{ CookiePurchaseFamilyLoadoutDefinitionBlock, 40 },
-	{ CookiePurchaseLoadoutDefinitionReferenceBlock, 4 },
-	{ CookiePurchaseFamilyOrdnanceDefinitionBlock, 40 },
-	{ CookiePurchaseOrdnanceDefinitionReferenceBlock, 4 },
-	{ CookiePurchaseAppearanceDefinitionBlock, 320 },
-	{ purchase_player_appearance_effect_model_permutation_block, 8 },
-	{ purchase_player_appearance_effect_non_model_permutation_block, 8 },
-	{ purchase_player_appearance_effect_visor_tint_block, 4 },
-	{ purchase_player_appearance_effect_emblem_index_block, 1 },
-	{ PurchasePlayerAppearancePoseBlock, 4 },
-	{ CookiePurchaseExternalUnlockableBlockAppearanceDefinition, 12 },
-	{ CookiePurchaseLoadoutDefinitionBlock, 312 },
-	{ purchase_player_item_block, 12 },
-	{ purchase_player_app_block, 4 },
-	{ purchase_player_loadout_slot_block, 1 },
-	{ purchase_player_app_mod_slot_block, 2 },
-	{ CookiePurchaseExternalUnlockableBlockLoadoutDefinition, 12 },
-	{ CookiePurchaseOrdnanceDefinitionBlock, 284 },
-	{ PurchasePlayerOrdnanceItemBlock, 4 },
-	{ PurchasePlayerOrdnanceSlotBlock, 1 },
-	{ CookiePurchaseExternalUnlockableBlockOrdnanceDefinition, 12 },
-	{ cheap_particle_type_block, 84 },
-	{ cheap_particle_bitmap_reference_block, 16 },
-	{ cheapParticleTurbulenceTypeBlock, 36 },
-	{ template_instantiation_block_definition, 16 },
-	{ component_definition, 16 },
-	{ component_index_block_definition, 8 },
-	{ overlay_definition, 32 },
-	{ component_properties_definition, 88 },
-	{ property_long_value, 8 },
-	{ property_real_value, 8 },
-	{ property_string_id_value, 8 },
-	{ propertyComponentPtrValue, 12 },
-	{ property_tag_reference_value, 20 },
-	{ property_text_value, 260 },
-	{ property_argb_color_value, 20 },
-	{ animation_definition, 28 },
-	{ animation_component_definition, 32 },
-	{ animation_component_real_property, 24 },
-	{ animation_property_keyframe_real_value, 28 },
-	{ animation_component_argb_color_property, 24 },
-	{ animation_property_keyframe_argb_color_value, 40 },
-	{ overlay_editor_only_definition, 36 },
-	{ component_editor_only_definition, 16 },
-	{ property_editor_only_definition, 8 },
-	{ animation_editor_only_definition, 16 },
-	{ property_binding, 20 },
-	{ binding_conversion_long_comparison_block_definition, 16 },
-	{ static_data_table, 32 },
-	{ static_data_column, 8 },
-	{ static_data_row, 84 },
-	{ expression, 272 },
-	{ expression_step, 12 },
-	{ encapsulatedProperties, 16 },
-	{ string_file_references, 16 },
-	{ decorator_set_instance_name_block, 4 },
-	{ global_decorator_type_block, 100 },
-	{ decal_definition_block, 124 },
-	{ material_shader_parameter_block, 168 },
-	{ material_shader_function_parameter_block, 44 },
-	{ material_postprocess_block, 156 },
-	{ material_postprocess_texture_block, 24 },
-	{ real_vector4d_block$3, 16 },
-	{ int_block$3, 4 },
-	{ functionParameterBlock, 4 },
-	{ externParameterBlock, 4 },
-	{ detail_object_type_block, 96 },
-	{ one_dependency_block_definition, 16 },
-	{ damage_response_class_block, 168 },
-	{ damage_response_global_sound_effect_block, 24 },
-	{ area_control_block, 76 },
-	{ particle_emitter_boat_hull_group_block, 4 },
-	{ effect_locations_block, 8 },
-	{ effect_event_block, 68 },
-	{ effect_part_block, 116 },
-	{ effect_accelerations_block, 20 },
-	{ effect_looping_sound_block, 20 },
-	{ effect_conical_distribution_block, 12 },
-	{ effect_component_holdbacks_block, 20 },
-	{ effect_component_holdback_block, 16 },
-	{ effect_global_spawn_effects_block, 64 },
-	{ predicted_bitmaps_block, 16 },
-	{ optionalUnitCameraBlock, 120 },
-	{ equipmentAbilityDatum, 572 },
-	{ equipmentAbilityTypeMultiplayerPowerupBlock, 4 },
-	{ equipmentAbilityTypeSpawnerBlock, 52 },
-	{ equipmentAbilityTypeAiSpawnerBlock, 36 },
-	{ equipmentAbilityTypeProximityMineBlock, 48 },
-	{ equipmentAbilityTypeMotionTrackerNoiseBlock, 20 },
-	{ equipmentAbilityTypeInvincibilityBlock, 128 },
-	{ equipmentEffectWithThresholdBlock, 24 },
-	{ equipmentAbilityTypeTreeOfLifeBlock, 12 },
-	{ equipmentAbilityTypeShapeshifterBlock, 12 },
-	{ equipmentAbilityTypePlayerTraitFieldBlock, 28 },
-	{ equipmentAbilityTypeAiTraitFieldBlock, 24 },
-	{ aiEquipmentTraitsBlock, 12 },
-	{ aiEquipmentTraitAppearanceBlock, 4 },
-	{ equipmentAbilityTypeRepulsorFieldBlock, 12 },
-	{ equipmentAbilityTypeStasisFieldBlock, 32 },
-	{ equipmentAbilityTypeBallLightningBlock, 32 },
-	{ equipmentAbilityTypeDaddyBlock, 96 },
-	{ equipmentAbilityTypeLaserDesignationBlock, 4 },
-	{ equipmentAbilityTypeSuperJumpBlock, 20 },
-	{ equipmentAbilityTypeAmmoPackBlock, 36 },
-	{ equipmentAbilityTypePowerFistBlock, 64 },
-	{ equipmentAbilityTypeHealthPackBlock, 20 },
-	{ equipmentAbilityTypeJetPackBlock, 112 },
-	{ equipmentAbilityPartCowCatcherBlock, 44 },
-	{ equipmentAbilityTypeHologramBlock, 100 },
-	{ equipmentAbilityTypeSpecialWeaponBlock, 16 },
-	{ equipmentAbilityTypeSpecialMoveBlock, 44 },
-	{ equipmentAbilityTypeEngineerShieldsBlock, 12 },
-	{ equipmentAbilityTypeSprintBlock, 1 },
-	{ equipmentAbilityTypeTeleporterBlock, 92 },
-	{ equipmentAbilityTypeAutoTurretBlock, 136 },
-	{ equipmentAbilityTypeVisionModeBlock, 44 },
-	{ equipmentAbilityTypeShieldProjectorBlock, 80 },
-	{ equipmentAbilityTypeProjectileCollectorBlock, 64 },
-	{ equipmentAbilityTypeRemoteStrikeBlock, 36 },
-	{ equipmentAbilityTypeEquipmentHackerBlock, 60 },
-	{ equipmentHackerDrainLevel, 8 },
-	{ equipmentAbilityTypeRemoteVehicleBlock, 40 },
-	{ equipmentAbilityTypeSuicideBombBlock, 32 },
-	{ equipmentAbilityTypeActiveShieldBlock, 1 },
-	{ EquipmentSoundRTPCBlock, 16 },
-	{ EquipmentSoundSweetenerBlock, 28 },
-	{ firefightWaveTemplatesBlock, 20 },
-	{ game_engine_miscellaneous_options_block, 8 },
-	{ game_engine_prototype_options_block, 6 },
-	{ game_engine_respawn_options_block, 20 },
-	{ game_engine_social_options_block, 4 },
-	{ game_engine_map_override_options_block, 60 },
-	{ game_engine_team_options_block, 196 },
-	{ game_engine_loadout_options_block, 16 },
-	{ game_engine_loadout_palette_entry_block, 4 },
-	{ gameEngineOrdnanceOptionsBlock, 1 },
-	{ GameEngineFirefightPlayerGoalPropertiesBlock, 104 },
-	{ GameEngineFirefightWavePropertiesBlock, 76 },
-	{ fluid_dynamics_squirter_block, 56 },
-	{ fluid_dynamics_inflow_block, 16 },
-	{ fluid_dynamics_outflow_block, 4 },
-	{ fluid_dynamics_obstacle_block, 4 },
-	{ soloFogFunctionBlock, 20 },
-	{ material_effect_block_v2, 36 },
-	{ old_material_effect_material_block, 44 },
-	{ material_effect_material_block, 44 },
-	{ forge_color_block, 16 },
-	{ formation_primitive_definition, 36 },
-	{ formation_point_definition, 8 },
-	{ animation_graph_sound_reference_block, 40 },
-	{ animation_graph_effect_reference_block, 40 },
-	{ import_animation_event_block, 68 },
-	{ import_frame_event_block, 20 },
-	{ animation_sound_event_block_extended, 12 },
-	{ animation_effects_event_block_extended, 16 },
-	{ animation_dialogue_event_block_extended, 8 },
-	{ animation_script_event_block_extended, 8 },
-	{ fx_property_block, 876 },
-	{ fx_property_default_block, 4 },
-	{ game_completion_rewards_difficulty_block, 60 },
-	{ game_completion_rewards_definition_block, 32 },
-	{ game_completion_rewards_falloff_point_block, 4 },
-	{ game_completion_rewards_multiplayer_block, 60 },
-	{ game_engine_event_block, 88 },
-	{ sound_response_definition_block, 24 },
-	{ GameGlobalsGrenadeBlock, 120 },
-	{ GameGlobalsOrdnanceBlock, 76 },
-	{ OrdnanceRemappingVariantBlock, 48 },
-	{ OrdnanceRemappingBlock, 8 },
-	{ giant_buckle_parameters_block, 92 },
-	{ global_shader_entry_point_block, 16 },
-	{ global_shader_category_dependency, 16 },
-	{ global_shader_option_dependency, 4 },
-	{ compiled_pixel_shader_block, 88 },
-	{ global_vertex_shader_vertex_types_block, 12 },
-	{ compiled_vertex_shader_block, 88 },
-	{ gameMedalTiers, 12 },
-	{ game_medal_block, 20 },
-	{ variant_setting_edit_reference_block, 20 },
-	{ variant_option_block, 60 },
-	{ game_performance_throttle_entries_block, 32 },
-	{ havok_collision_filter_group_block, 4 },
-	{ model_variant_block, 108 },
-	{ model_variant_region_block, 24 },
-	{ model_variant_permutation_block, 36 },
-	{ model_variant_state_block, 12 },
-	{ model_variant_object_block, 36 },
-	{ model_variant_muted_node_block, 4 },
-	{ region_name_block, 4 },
-	{ global_model_instance_group_block, 24 },
-	{ model_instance_group_member_block, 28 },
-	{ model_material_block_new, 20 },
-	{ global_damage_info_block, 268 },
-	{ global_damage_section_block, 68 },
-	{ instantaneous_damage_repsonse_block, 152 },
-	{ global_damage_nodes_block, 16 },
-	{ damage_seat_info_block, 32 },
-	{ damage_seat_region_setting_block, 44 },
-	{ damage_constraint_info_block, 20 },
-	{ new_global_damage_section_block, 180 },
-	{ damage_section_recharge_speed_curve_block, 20 },
-	{ damage_section_segmented_recharge_fraction, 4 },
-	{ new_instantaneous_damage_response_block, 180 },
-	{ damage_response_region_transition_block, 8 },
-	{ damage_transfer_block, 16 },
-	{ seat_ejection_block, 4 },
-	{ damage_section_rendering_paramters, 32 },
-	{ model_target_block_old, 36 },
-	{ model_target_block_new, 40 },
-	{ model_region_block, 20 },
-	{ model_permutation_block, 8 },
-	{ model_node_block, 92 },
-	{ global_scenario_load_parameters_block, 68 },
-	{ model_game_mode_render_model_override, 20 },
-	{ model_self_shadow_region_cast_override_block, 8 },
-	{ model_self_shadow_region_receive_override_block, 8 },
-	{ model_occlusion_sphere_block, 20 },
-	{ hs_source_reference_block, 16 },
-	{ hs_scripts_block, 32 },
-	{ hs_script_parameters_block, 36 },
-	{ hs_globals_block, 12 },
-	{ HSInstancedVariablesBlock, 12 },
-	{ hs_unit_seat_block, 12 },
-	{ hs_syntax_datum_block, 28 },
-	{ HSImportManifestBlock, 28 },
-	{ HSImportManifestEntryBlock, 12 },
-	{ incident_definition_block, 84 },
-	{ suppressed_incident_block, 8 },
-	{ SuppressedIncidentBlockReferenceDefinition, 16 },
-	{ specialized_incident_block, 100 },
-	{ specialized_incident_kill_implement_block, 4 },
-	{ specialized_incident_object_properties_block, 52 },
-	{ specialized_incident_object_riding_in_vehicle_properties_block, 4 },
-	{ specialized_incident_special_kill_type_block, 4 },
-	{ specializedIncidentGameOverBlock, 8 },
-	{ specializedIncidentRandomOrdnanceBlock, 4 },
-	{ specializedIncidentCustomDataFilterBlock, 8 },
-	{ specializedIncidentDistanceFilterBlock, 8 },
-	{ incident_accumulator_block, 16 },
-	{ incident_accumulator_child_incident_block, 20 },
-	{ incident_sum_accumulator_block, 20 },
-	{ incident_sum_accumulator_child_incident_block, 12 },
-	{ game_incident_response_block, 84 },
-	{ game_incident_daily_challenge_to_increment_block, 4 },
-	{ specialized_incident_fanfare_block, 52 },
-	{ instance_imposter_block, 4 },
-	{ instance_imposter_checksum_block, 76 },
-	{ imposter_mode_node_block, 8 },
-	{ render_model_region_block, 16 },
-	{ render_model_permutation_block, 28 },
-	{ InfinityMissionSeasonImagesDefinition, 32 },
-	{ InfinityMissionImagesDefinition, 64 },
-	{ animation_usage_block, 4 },
-	{ animation_node_mask_block, 48 },
-	{ animation_node_mask_entry_block, 4 },
-	{ animation_function_block, 24 },
-	{ model_animation_variant_block, 20 },
-	{ mode_or_stance_alias_block, 8 },
-	{ animation_graph_node_block, 44 },
-	{ animation_blend_screen_block, 28 },
-	{ foot_tracking_member_block, 28 },
-	{ animation_pool_block, 64 },
-	{ shared_model_animation_block, 220 },
-	{ animation_frame_event_block, 4 },
-	{ animation_sound_event_block, 8 },
-	{ animation_effect_event_block, 12 },
-	{ animation_dialogue_event_block, 4 },
-	{ animation_script_event_block, 8 },
-	{ object_space_node_data_block, 28 },
-	{ foot_tracking_block, 16 },
-	{ foot_lock_cycle_block, 20 },
-	{ object_space_offset_node_block, 4 },
-	{ fik_anchor_node_block, 4 },
-	{ animation_ik_chain_events, 28 },
-	{ animation_ik_chain_proxies, 12 },
-	{ animation_facial_wrinkle_events, 20 },
-	{ animation_extended_events, 16 },
-	{ animation_object_functions, 32 },
-	{ new_animation_blend_screen_block, 44 },
-	{ new_animation_function_overlay_block, 24 },
-	{ overlay_group_definition_block, 28 },
-	{ blend_screen_item_definition_block, 8 },
-	{ function_overlay_item_definition_block, 4 },
-	{ animation_gait_block, 20 },
-	{ animation_gait_group_block, 16 },
-	{ animation_gait_item_block, 4 },
-	{ animation_ik_block, 28 },
-	{ animation_ik_set, 16 },
-	{ animation_ik_set_item, 4 },
-	{ animation_ik_chain_block, 16 },
-	{ g_compositeTag, 60 },
-	{ CompositeAxisDefinition, 60 },
-	{ CompositeDeadZoneDefinition, 28 },
-	{ CompositeEntryDefinition, 24 },
-	{ CompositeEntryValueDefinition, 4 },
-	{ CompositePhaseSetDefinition, 132 },
-	{ SyncKeyBlock, 2 },
-	{ StringBlock, 4 },
-	{ animation_mode_block, 48 },
-	{ weapon_class_block, 56 },
-	{ weapon_type_block, 20 },
-	{ animation_set_block, 72 },
-	{ animation_entry_block, 12 },
-	{ damage_animation_block, 16 },
-	{ damage_direction_block, 12 },
-	{ damage_region_block, 4 },
-	{ animation_transition_source_block, 16 },
-	{ animation_transition_destination_block, 12 },
-	{ animation_velocity_boundaries_block, 32 },
-	{ animation_ik_block_v1, 8 },
-	{ animation_ranged_action_block, 36 },
-	{ ranged_animation_entry_block, 16 },
-	{ triangulation_entry_block, 24 },
-	{ triangulation_point_block, 8 },
-	{ triangulation_triangle_block, 8 },
-	{ animation_sync_action_group_block, 16 },
-	{ animation_sync_action_block, 28 },
-	{ animation_sync_action_same_type_participant, 60 },
-	{ animation_sync_action_other_type_participant, 20 },
-	{ foot_tracking_defaults, 4 },
-	{ vehicle_suspension_block, 48 },
-	{ function_overlay_animation_block, 20 },
-	{ inherited_animation_block, 48 },
-	{ inherited_animation_node_map_block, 2 },
-	{ inherited_animation_node_map_flag_block, 4 },
-	{ weapon_class_lookup_block, 8 },
-	{ additional_node_data_block, 60 },
-	{ model_animation_tag_resource_group, 12 },
-	{ sandbox_property_allowed_values_reference_block, 20 },
-	{ text_value_pair_reference_block, 24 },
-	{ custom_damage_response_label_block, 4 },
-	{ damage_effect_sound_block, 20 },
-	{ vertexBlock, 12 },
-	{ lens_flare_reflection_block, 148 },
-	{ lens_flare_scalar_animation_block, 20 },
-	{ lens_flare_color_animation_block, 36 },
-	{ loadout_definition_block, 36 },
-	{ loadout_palette_definition_block, 16 },
-	{ loadout_index_block, 4 },
-	{ loadout_name_block, 4 },
-	{ custom_loadout_defaults_block, 36 },
-	{ location_name_block, 4 },
-	{ directionalLightRigBlock, 32 },
-	{ looping_sound_track_block, 176 },
-	{ looping_sound_detail_block, 72 },
-	{ leaf_type_block, 60 },
-	{ light_volume_definition_block, 424 },
-	{ light_volume_precompiled_vert_block, 8 },
-	{ havok_cleanup_resources_block, 16 },
-	{ sound_globals_block, 184 },
-	{ StreamingPackBlock, 36 },
-	{ campaign_unspatialized_sounds_block, 16 },
-	{ game_globals_damage_block, 12 },
-	{ damage_group_block, 16 },
-	{ armor_modifier_block, 8 },
-	{ sound_block$2, 16 },
-	{ camera_block, 216 },
-	{ controller_input_block, 8 },
-	{ player_control_block, 364 },
-	{ controller_mapping_reference_block, 16 },
-	{ difficulty_block, 644 },
-	{ coop_difficulty_block, 132 },
-	{ soft_ceiling_globals_block, 28 },
-	{ interface_tag_references, 304 },
-	{ cheat_weapons_block, 16 },
-	{ cheat_powerups_block, 16 },
-	{ player_information_block, 220 },
-	{ player_momentum_data_block, 56 },
-	{ player_representation_block, 128 },
-	{ firstPersonpHiddenBodyRegionsBlock, 8 },
-	{ damage_globals_block, 212 },
-	{ shield_boost_block, 12 },
-	{ materials_block, 424 },
-	{ object_type_drag_properties_block, 16 },
-	{ underwater_proxies_block, 12 },
-	{ multiplayer_color_block, 12 },
-	{ visor_color_block, 28 },
-	{ cinematics_globals_block, 76 },
-	{ cinematic_characters_block, 28 },
-	{ campaign_metagame_globals_block, 56 },
-	{ campaign_metagame_style_type_block, 8 },
-	{ campaign_metagame_difficulty_scale_block, 4 },
-	{ campaign_metagame_skull_block, 4 },
-	{ active_camo_globals_block, 160 },
-	{ active_camo_level_definition_block, 36 },
-	{ garbage_collection_block, 36 },
-	{ global_camera_impulse_block, 20 },
-	{ runtime_materials_block, 424 },
-	{ hologramLightingGlobalsBlock, 52 },
-	{ material_shader_source_file_block, 276 },
-	{ compiled_effects_block, 20 },
-	{ material_vertex_shader_entry_point_block, 12 },
-	{ compiled_vertex_shader_refererence_block, 8 },
-	{ compiled_pixel_shader_refererence_block, 8 },
-	{ mission_dialogue_lines_block, 20 },
-	{ mission_dialogue_variants_block, 24 },
-	{ modelDissolvePerRegionTimeOffsetBlock, 8 },
-	{ medalChallengeAggregator, 24 },
-	{ medalAggregatorEntry, 4 },
-	{ medalCommendationAggregator, 24 },
-	{ muffin_permutation_name_block, 4 },
-	{ muffin_marker_block, 8 },
-	{ global_muffin_type_block, 112 },
-	{ multiplayerEffectsBlock, 20 },
-	{ emblem_bitmap_list, 12 },
-	{ emblem_shape_list, 48 },
-	{ emblem_front_list, 184 },
-	{ emblem_back_list, 92 },
-	{ emblem_runtime_front_list, 228 },
-	{ emblem_runtime_back_list, 112 },
-	{ main_menu_voiceover_lines_block, 16 },
-	{ global_render_model_instance_placement_block, 60 },
-	{ render_model_node_block, 112 },
-	{ render_model_marker_group_block, 16 },
-	{ render_model_marker_block, 48 },
-	{ global_geometry_material_block, 44 },
-	{ instance_node_map_mapping_block, 2 },
-	{ volume_samples_block, 336 },
-	{ default_node_orientations_block, 32 },
-	{ RenderModelBoneGroupBlock, 16 },
-	{ RenderModelNodeIndexBlock, 2 },
-	{ multiplayer_object_type_block, 20 },
-	{ multiplayer_weapon_collection_block, 28 },
-	{ multiplayer_vehicle_collection_block, 28 },
-	{ multiplayer_grenade_collection_block, 28 },
-	{ multiplayer_equipment_collection_block, 28 },
-	{ multiplayer_weapon_remap_table_block, 16 },
-	{ multiplayer_weapon_remap_table_entry_block, 8 },
-	{ multiplayer_vehicle_remap_table_block, 16 },
-	{ multiplayer_vehicle_remap_table_entry_block, 8 },
-	{ multiplayer_equipment_remap_table_block, 16 },
-	{ multiplayer_equipment_remap_table_entry_block, 8 },
-	{ scenario_description_block, 68 },
-	{ megalo_string_id_block, 4 },
-	{ megalo_string_id_to_sprite_index_block, 8 },
-	{ compiled_shader_hash_block, 4 },
-	{ vertexShaderUniqueBindingInfoBlock, 12 },
-	{ multiplayer_universal_block, 144 },
-	{ teamDefinitionBlock, 36 },
-	{ global_team_role_block, 20 },
-	{ player_role_block, 148 },
-	{ requisition_constants_block, 104 },
-	{ requisition_palette_block, 24 },
-	{ scenario_profiles_block, 124 },
-	{ multiplayer_runtime_block, 392 },
-	{ sounds_block, 16 },
-	{ looping_sounds_block, 16 },
-	{ multiplayer_constants_block, 104 },
-	{ game_engine_status_response_block, 36 },
-	{ mux_generator_material_block, 20 },
-	{ NarrativeFlagDefinitionBlock, 8 },
-	{ hologramLightingBlock, 96 },
-	{ cinematic_dynamic_light_block, 32 },
-	{ polyartCameraBlock, 28 },
-	{ polyartVertexBlock, 12 },
-	{ polyartIndexBlock, 2 },
-	{ vertexBuffersBlock, 12 },
-	{ indexBuffersBlock, 12 },
-	{ tag_patch_block, 32 },
-	{ PCAImportedFrameDatablock, 20 },
-	{ PCAImportedMeshDataBlock, 100 },
-	{ PCAImportedAnimationDataBlock, 28 },
-	{ pgcr_enemy_to_category_list_block, 32 },
-	{ pgcr_player_to_category_entry_block, 4 },
-	{ pgcr_enemy_to_category_entry_block, 4 },
-	{ pgcr_damage_type_image_block, 28 },
-	{ particle_emitter_custom_point_block, 10 },
-	{ playerEnlistmentDefinitionBlock, 60 },
-	{ player_grade_definition_block, 28 },
-	{ performane_throttle_block, 68 },
-	{ performance_template_actor_block, 64 },
-	{ scenario_performance_line_block, 100 },
-	{ scenario_performance_line_script_fragment_block, 516 },
-	{ scenario_performance_line_point_interaction_block, 16 },
-	{ scenario_performance_line_animation_block, 28 },
-	{ scenario_performance_line_sync_action_block, 24 },
-	{ scenario_performance_line_sync_action_actor_block, 4 },
-	{ scenario_performance_line_scenery_sync_action_block, 32 },
-	{ scenario_performance_line_dialog_block, 8 },
-	{ scenario_performance_line_sound_block, 24 },
-	{ performance_template_point_block, 24 },
-	{ pathfinding_data_block, 80 },
-	{ FaceUserDataBlock, 12 },
-	{ MobileNavMeshBlock, 80 },
-	{ NavVolumeBlock, 32 },
-	{ NavClimbBlock, 80 },
-	{ user_edge_block, 80 },
-	{ user_hint_block, 144 },
-	{ user_hint_line_segment_block, 44 },
-	{ user_hint_parallelogram_block, 88 },
-	{ user_hint_jump_block, 32 },
-	{ hint_vertex_block, 12 },
-	{ user_hint_climb_block, 32 },
-	{ user_hint_well_block, 16 },
-	{ user_hint_well_point_block, 32 },
-	{ user_hint_flight_block, 12 },
-	{ user_hint_flight_point_block, 12 },
-	{ user_hint_volume_avoidance, 44 },
-	{ user_hint_spline_block, 40 },
-	{ user_hint_spline_control_point_block, 32 },
-	{ user_hint_spline_intersect_point_block, 28 },
-	{ user_hint_cookie_cutter_block, 52 },
-	{ user_hint_sector_point_block, 28 },
-	{ hint_object_id_block, 8 },
-	{ user_hint_navmesh_area_block, 72 },
-	{ user_hint_giant_block, 24 },
-	{ user_hint_giant_sector_block, 12 },
-	{ user_hint_giant_rail_block, 4 },
-	{ user_hint_flood_block, 12 },
-	{ user_hint_flood_sector_block, 12 },
-	{ physics_model_damped_spring_motor_block, 24 },
-	{ physics_model_position_motor_block, 32 },
-	{ phantom_types_block, 116 },
-	{ physics_model_powered_chains_block, 24 },
-	{ physics_model_powered_chain_nodes_block, 2 },
-	{ physics_model_powered_chain_constraints_block, 16 },
-	{ physics_model_node_constraint_edge_block, 28 },
-	{ physics_model_constraint_edge_constraint_block, 36 },
-	{ physics_model_ragdoll_motors_block, 12 },
-	{ physics_model_limited_hinge_motors_block, 4 },
-	{ rigid_bodies_block, 192 },
-	{ materials_block$3, 16 },
-	{ multi_spheres_block, 192 },
-	{ boxes_block, 176 },
-	{ triangles_block, 128 },
-	{ polyhedra_block, 144 },
-	{ polyhedron_four_vectors_block, 48 },
-	{ polyhedron_plane_equations_block, 16 },
-	{ mass_distributions_block, 64 },
-	{ mopps_block, 80 },
-	{ hinge_constraints_block, 120 },
-	{ ragdoll_constraints_block, 148 },
-	{ regions_block, 16 },
-	{ permutations_block, 16 },
-	{ rigid_body_indices_block, 2 },
-	{ nodes_block, 12 },
-	{ point_to_path_curve_block, 20 },
-	{ point_to_path_curve_point_block, 16 },
-	{ limited_hinge_constraints_block, 132 },
-	{ ball_and_socket_constraints_block, 120 },
-	{ stiff_spring_constraints_block, 124 },
-	{ prismatic_constraints_block, 132 },
-	{ phantoms_block, 44 },
-	{ RigidBodySerializedShapesBlock, 12 },
-	{ MoppSerializedHavokDataBlock, 80 },
-	{ pixel_entry_point_block, 2 },
-	{ cache_file_codec_identifier_block, 16 },
-	{ cache_file_shared_file_block, 264 },
-	{ cache_file_resource_file_page_block, 88 },
-	{ cache_file_resource_streaming_subpage_table_block, 16 },
-	{ cache_file_resource_streaming_subpage_block, 8 },
-	{ cache_file_resource_section_block, 24 },
-	{ customized_model_selection_block, 20 },
-	{ customized_model_player_bits_block, 12 },
-	{ gpu_variants_block, 16 },
-	{ gui_portrait_pose_block, 16 },
-	{ old_projectile_material_response_block, 60 },
-	{ projectile_material_response_block, 52 },
-	{ brute_grenade_block, 48 },
-	{ fire_bomb_grenade_block, 4 },
-	{ conical_projection_block, 12 },
-	{ ProjectileSoundRTPCBlock, 12 },
-	{ attachment_block, 24 },
-	{ gpu_sprite_block, 16 },
-	{ default_textures_refs_block, 20 },
-	{ material_textures_refs_block, 16 },
-	{ explicit_shader_refs_block, 36 },
-	{ render_method_category_block, 24 },
-	{ render_method_options_block, 28 },
-	{ render_method_entry_points_block, 16 },
-	{ render_method_pass_block, 28 },
-	{ render_method_pass_category_dependencies, 2 },
-	{ vertex_types_block, 4 },
-	{ render_method_option_parameter_block, 96 },
-	{ render_method_template_pass_block, 28 },
-	{ render_method_template_constant_table_block, 4 },
-	{ render_method_template_platform_block, 120 },
-	{ scenario_lightmap_bsp_data_reference_block, 32 },
-	{ spring_linear_acceleration_block, 56 },
-	{ SoundBankBlock, 4 },
-	{ structure_seam_mapping_block, 40 },
-	{ structure_seam_edge_mapping_block, 4 },
-	{ structure_seam_cluster_mapping_block, 16 },
-	{ structure_edge_to_seam_edge_mapping_block, 4 },
-	{ structure_collision_materials_block, 28 },
-	{ structure_bsp_leaf_block, 1 },
-	{ structure_super_node_aabbs_block, 24 },
-	{ super_node_mappings_block, 20 },
-	{ super_node_recursable_masks_block, 2 },
-	{ structure_super_node_traversal_geometry_block, 24 },
-	{ structure_super_node_traversal_geometry_indices_block, 2 },
-	{ collision_kd_hierarchy_static_hash_table_data_block, 16 },
-	{ collision_kd_hierarchy_static_hash_table_short_block, 2 },
-	{ collision_kd_hierarchy_static_nodes_block, 32 },
-	{ collision_kd_hierarchy_static_hash_table_headers_block, 16 },
-	{ collision_kd_hierarchy_static_in_use_masks_block, 4 },
-	{ cluster_table_block, 12 },
-	{ super_node_mappings_block$3, 64 },
-	{ structure_surface_block, 8 },
-	{ structure_surface_to_triangle_mapping_block, 4 },
-	{ structure_bsp_cluster_portal_block, 80 },
-	{ structure_bsp_cluster_portal_vertex_block, 12 },
-	{ structure_bsp_detail_object_data_block, 52 },
-	{ global_detail_object_cells_block, 32 },
-	{ global_detail_object_block, 6 },
-	{ global_detail_object_counts_block, 2 },
-	{ global_z_reference_vector_block, 16 },
-	{ structure_bsp_cluster_block, 140 },
-	{ structure_bsp_cluster_portal_index_block, 2 },
-	{ seam_indices_block_definition, 1 },
-	{ decorator_runtime_cluster_block, 48 },
-	{ cheap_light_marker_ref_block, 4 },
-	{ pvs_bound_object_identifiers_block, 8 },
-	{ pvs_bound_object_references_block, 4 },
-	{ structure_cluster_cubemap, 16 },
-	{ cubemap_reference_points_block, 16 },
-	{ structure_material_lighting_info_block, 40 },
-	{ structure_bsp_sky_owner_cluster_block, 2 },
-	{ structure_bsp_conveyor_surface_block, 24 },
-	{ breakable_surface_set_block, 32 },
-	{ structure_cookie_cutter_definition, 108 },
-	{ scenario_acoustics_palette_block_definition, 152 },
-	{ structure_bsp_marker_block, 64 },
-	{ structure_bsp_marker_light_palette, 16 },
-	{ structure_bsp_marker_light_index, 2 },
-	{ structure_bsp_runtime_decal_block, 60 },
-	{ scenarioBspReferenceBlock, 16 },
-	{ structure_bsp_environment_object_palette_block, 36 },
-	{ structure_bsp_environment_object_block, 84 },
-	{ global_map_leaf_block, 24 },
-	{ map_leaf_face_block, 16 },
-	{ map_leaf_face_vertex_block, 12 },
-	{ map_leaf_connection_index_block, 4 },
-	{ global_leaf_connection_block, 28 },
-	{ leaf_connection_vertex_block, 12 },
-	{ structure_instance_cluster_definition, 16 },
-	{ index_list_block, 2 },
-	{ structure_instance_group_definition, 44 },
-	{ structure_bsp_instanced_geometry_instances_block, 408 },
-	{ structure_bsp_instanced_geometry_instances_names_block, 4 },
-	{ structure_instance_imposter_info_block, 12 },
-	{ runtime_decorator_set_block, 16 },
-	{ bsp_preplaced_decal_set_reference_block, 28 },
-	{ bsp_preplaced_decal_reference_block, 28 },
-	{ structure_bsp_sound_cluster_block, 28 },
-	{ structure_sound_cluster_portal_designators, 2 },
-	{ structure_sound_cluster_interior_cluster_indices, 2 },
-	{ transparent_planes_block, 20 },
-	{ structure_bsp_debug_info_block, 100 },
-	{ structure_bsp_cluster_debug_info_block, 92 },
-	{ structure_bsp_debug_info_render_line_block, 32 },
-	{ structure_bsp_debug_info_indices_block, 4 },
-	{ structure_bsp_fog_plane_debug_info_block, 68 },
-	{ structure_bsp_fog_zone_debug_info_block, 80 },
-	{ breakable_surface_key_table_block, 32 },
-	{ widget_reference_block, 20 },
-	{ cheap_light_reference_block, 20 },
-	{ structure_bsp_raw_resources, 48 },
-	{ global_collision_bsp_block, 108 },
-	{ global_large_collision_bsp_block, 108 },
-	{ large_bsp3d_nodes_block, 12 },
-	{ large_leaves_block, 8 },
-	{ large_bsp2d_references_block, 8 },
-	{ large_bsp2d_nodes_block, 20 },
-	{ large_surfaces_block, 16 },
-	{ large_edges_block, 24 },
-	{ large_vertices_block, 20 },
-	{ structure_bsp_instanced_geometry_definition_block, 20 },
-	{ structureIOHavokDataBlock, 72 },
-	{ SerializedHavokGeometryDataBlock, 52 },
-	{ structure_external_instanced_geometry_references_block, 112 },
-	{ structure_bsp_obb_volume_block, 52 },
-	{ AnimGraphDependencyBlock, 16 },
-	{ sound_combiner_definition_entry_block, 24 },
-	{ scenario_child_references_block, 16 },
-	{ scenario_structure_bsp_reference_block, 336 },
-	{ scenario_design_reference_block, 32 },
-	{ scenario_sky_reference_block, 52 },
-	{ scenario_zone_set_pvs_block, 44 },
-	{ scenario_zone_set_bsp_checksum_block, 4 },
-	{ scenario_zone_set_bsp_pvs_block, 36 },
-	{ scenario_zone_set_cluster_pvs_block, 12 },
-	{ scenario_zone_set_bsp_bits_block, 12 },
-	{ scenario_zone_set_cluster_pvs_bit_vector_block, 4 },
-	{ scenario_zone_set_bsp_seam_cluster_mappings_block, 36 },
-	{ scenario_zone_set_cluster_reference_block, 2 },
-	{ structure_portal_device_mapping_block, 36 },
-	{ structure_device_portal_association_block, 12 },
-	{ game_portal_to_portal_mapping_block, 2 },
-	{ occluding_portal_to_portal_mapping_block, 2 },
-	{ game_audibility_block, 100 },
-	{ door_encoded_pas_block, 4 },
-	{ room_door_portal_encoded_pas_block, 4 },
-	{ ai_deafening_encoded_pas_block, 4 },
-	{ encoded_room_distances_block, 1 },
-	{ game_portal_to_door_occluder_block, 8 },
-	{ bsp_cluster_to_room_bounds, 8 },
-	{ bsp_cluster_to_room_indices, 2 },
-	{ scenario_zone_set_block, 416 },
-	{ planar_fog_zone_set_visibility_definition_block, 12 },
-	{ planar_fog_structure_visibility_definition_block, 12 },
-	{ planar_fog_cluster_visibility_definition_block, 12 },
-	{ planar_fog_reference_definition_block, 4 },
-	{ scenario_zone_set_budget_override_block, 16 },
-	{ scenario_zone_set_lipsync_block, 16 },
-	{ scenario_lighting_zone_set_block, 12 },
-	{ scenario_function_block, 120 },
-	{ editor_comment_block, 304 },
-	{ dont_use_me_scenario_environment_object_block, 64 },
-	{ scenario_object_names_block, 8 },
-	{ scenario_scenery_block, 384 },
-	{ scenario_object_node_orientations_block, 28 },
-	{ scenario_object_node_orientations_bit_vector_block, 1 },
-	{ scenario_object_node_orientations_orientations_block, 2 },
-	{ scriptListBlock, 4 },
-	{ commandLinkBlock, 20 },
-	{ pathfinding_object_index_list_block, 4 },
-	{ scenario_scenery_palette_block, 16 },
-	{ scenario_biped_block, 372 },
-	{ scenario_biped_palette_block, 16 },
-	{ scenario_vehicle_block, 388 },
-	{ scenario_vehicle_palette_block, 16 },
-	{ scenario_equipment_block, 344 },
-	{ scenario_equipment_palette_block, 16 },
-	{ scenario_weapon_block, 372 },
-	{ scenario_weapon_palette_block, 16 },
-	{ device_group_block, 44 },
-	{ scenario_machine_block, 392 },
-	{ scenario_machine_palette_block, 16 },
-	{ scenario_terminal_block, 196 },
-	{ scenario_terminal_palette_block, 16 },
-	{ scenario_control_block, 384 },
-	{ scenario_control_palette_block, 16 },
-	{ ScenarioDispenserBlock, 376 },
-	{ ScenarioDispenserPaletteBlock, 16 },
-	{ scenario_sound_scenery_block, 212 },
-	{ scenario_sound_scenery_palette_block, 16 },
-	{ scenario_giant_block, 208 },
-	{ scenario_giant_palette_block, 16 },
-	{ scenario_effect_scenery_block, 344 },
-	{ scenario_effect_scenery_palette_block, 16 },
-	{ scenario_spawner_block, 192 },
-	{ scenario_spawner_palette_block, 16 },
-	{ binkPaletteBlock, 16 },
-	{ scenarioAttachedEffectsBlock, 20 },
-	{ scenarioAttachedLensFlaresBlock, 20 },
-	{ scenarioAttachedLightConesBlock, 64 },
-	{ map_variant_palette_block, 20 },
-	{ map_variant_palette_entry_block, 24 },
-	{ map_variant_object_variant_block, 72 },
-	{ mapVariantPaletteDependencyBlock, 4 },
-	{ resourceHandleBlock, 4 },
-	{ scenario_requisition_palette_block, 108 },
-	{ scenario_soft_ceilings_block, 12 },
-	{ scenario_players_block, 36 },
-	{ scenario_trigger_volume_block, 132 },
-	{ trigger_volume_point_block, 20 },
-	{ trigger_volume_runtime_triangles_block, 112 },
-	{ scenario_acoustic_sector_block, 64 },
-	{ acoustic_sector_point_block, 12 },
-	{ scenario_acoustic_transition_block, 68 },
-	{ scenario_atmosphere_dumpling_block, 60 },
-	{ dumpling_point_block, 20 },
-	{ scenario_weather_dumpling_block, 60 },
-	{ recorded_animation_block, 64 },
-	{ scenario_zone_set_switch_trigger_volume_block, 8 },
-	{ scenario_named_location_volume_block, 24 },
-	{ named_location_volume_point_block, 20 },
-	{ scenario_decals_block, 60 },
-	{ scenario_decal_palette_block, 20 },
-	{ scenario_detail_object_collection_palette_block, 48 },
-	{ style_palette_block, 16 },
-	{ squad_groups_block, 40 },
-	{ squads_block, 108 },
-	{ spawn_formation_block, 84 },
-	{ patrol_point_block, 28 },
-	{ spawn_points_block, 124 },
-	{ cell_block, 100 },
-	{ character_palette_choice_block, 8 },
-	{ weapon_palette_choice_block, 8 },
-	{ equipment_palette_choice_block, 8 },
-	{ zone_block, 88 },
-	{ firing_positions_block, 48 },
-	{ areas_block, 192 },
-	{ NavMeshAttachmentBlock, 4 },
-	{ flight_reference_block, 8 },
-	{ area_sector_point_block, 28 },
-	{ squad_patrol_block, 44 },
-	{ squad_patrol_member_block, 4 },
-	{ squad_patrol_point_block, 20 },
-	{ squad_patrol_transition_block, 16 },
-	{ squad_patrol_waypoint_block, 20 },
-	{ ai_cue_block, 164 },
-	{ task_distribution_block, 4 },
-	{ script_payload_block, 4 },
-	{ combat_sync_action_group_payload_block, 8 },
-	{ ai_full_cue_block, 164 },
-	{ ai_quick_cue_block, 64 },
-	{ ai_scene_block, 32 },
-	{ ai_scene_trigger_block, 16 },
-	{ trigger_references, 8 },
-	{ ai_scene_role_block, 20 },
-	{ ai_scene_role_variants_block, 4 },
-	{ character_palette_block, 16 },
-	{ ai_recording_reference_block, 40 },
-	{ cs_script_data_block, 144 },
-	{ cs_point_set_block, 60 },
-	{ cs_point_block, 64 },
-	{ cs_animation_point_block, 68 },
-	{ scenario_cutscene_flag_block, 36 },
-	{ scenario_cutscene_camera_point_block, 68 },
-	{ scenario_cutscene_title_block, 52 },
-	{ scenario_kill_trigger_volumes_block, 4 },
-	{ scenario_safe_zone_trigger_volumes_block, 4 },
-	{ trigger_volume_mopp_code_block, 16 },
-	{ scenario_requisition_trigger_volumes_block, 4 },
-	{ scenario_location_name_trigger_volumes_block, 34 },
-	{ scenarioUnsafeSpawnZoneTriggerVolumesBlock, 2 },
-	{ orders_block, 144 },
-	{ area_reference_block, 28 },
-	{ secondary_set_trigger_block, 16 },
-	{ special_movement_block, 4 },
-	{ order_ending_block, 24 },
-	{ triggers_block, 52 },
-	{ order_completion_condition, 56 },
-	{ scenario_atmosphere_palette_block, 24 },
-	{ scenario_camera_fx_palette_block, 48 },
-	{ scenario_weather_palette_block, 20 },
-	{ scenario_cluster_data_block, 84 },
-	{ scenario_cluster_points_block, 12 },
-	{ scenario_cluster_acoustics_block, 4 },
-	{ scenario_cluster_atmosphere_properties_block, 4 },
-	{ scenario_cluster_camera_fx_properties_block, 4 },
-	{ scenario_cluster_weather_properties_block, 4 },
-	{ scenario_spawn_data_block, 4 },
-	{ scenario_crate_block, 380 },
-	{ scenario_crate_palette_block, 16 },
-	{ flock_palette_block, 16 },
-	{ flock_instance_block, 84 },
-	{ flock_source_block, 40 },
-	{ flock_destination_block, 32 },
-	{ SoundSubtitleBlock, 8 },
-	{ scenario_creature_block, 160 },
-	{ scenario_creature_palette_block, 16 },
-	{ big_battle_creature_palette_block, 16 },
-	{ g_scenario_editor_folder_block, 272 },
-	{ ai_scenario_mission_dialogue_block, 16 },
-	{ objectives_block, 36 },
-	{ opposing_objective_block, 4 },
-	{ tasks_block, 132 },
-	{ script_fragment_block, 264 },
-	{ task_direction_block_v2, 12 },
-	{ task_direction_point_block, 20 },
-	{ scenario_designer_zone_block, 244 },
-	{ scenarioDesignerZoneTagReferenceBlock, 16 },
-	{ biped_block_index_flags_block, 2 },
-	{ vehicle_block_index_flags_block, 2 },
-	{ weapon_block_index_flags_block, 2 },
-	{ equipment_block_index_flags_block, 2 },
-	{ scenery_block_index_flags_block, 2 },
-	{ machine_block_index_flags_block, 2 },
-	{ terminal_block_index_flags_block, 2 },
-	{ control_block_index_flags_block, 2 },
-	{ dispenser_block_index_flags_block, 2 },
-	{ sound_scenery_block_index_flags_block, 2 },
-	{ crate_block_index_flags_block, 2 },
-	{ creature_block_index_flags_block, 2 },
-	{ giant_block_index_flags_block, 2 },
-	{ effect_scenery_block_index_flags_block, 2 },
-	{ character_block_index_flags_block, 2 },
-	{ spawner_block_index_flags_block, 2 },
-	{ budget_reference_block_index_flags_block, 2 },
-	{ bink_block_index_flags_block, 2 },
-	{ scenarioDesignerResourceDependenciesBlock, 16 },
-	{ scenario_zone_debugger_block_definition, 4 },
-	{ scenario_decorator_block, 156 },
-	{ decorator_palette, 36 },
-	{ decorator_scenario_set_block, 28 },
-	{ global_decorator_placement_block, 80 },
-	{ scenario_cheap_particle_system_palette_block, 16 },
-	{ scenario_cheap_particle_systems_block, 28 },
-	{ scriptableLightRigBlock, 20 },
-	{ scenario_cinematics_block, 20 },
-	{ scenario_cinematic_lighting_palette_block, 20 },
-	{ campaign_metagame_scenario_block, 16 },
-	{ campaign_metagame_scenario_bonuses_block, 8 },
-	{ soft_surfaces_definition_block, 24 },
-	{ scenario_cubemap_block, 48 },
-	{ scenario_airprobes_block, 20 },
-	{ scenario_budget_references_block, 16 },
-	{ model_references_block, 16 },
-	{ scenario_performances_block, 96 },
-	{ scenario_performance_actor_block, 20 },
-	{ scenario_performance_task_block, 4 },
-	{ PuppetShowsBlock, 280 },
-	{ PuppetBlock, 916 },
-	{ PuppetActionBlock, 664 },
-	{ PuppetPathPointBlock, 40 },
-	{ PuppetSubActionBlock, 1192 },
-	{ PuppetSubActionBranchElementBlock, 12 },
-	{ PuppetScriptTextBlock, 256 },
-	{ SubTracksBlock, 4 },
-	{ PuppetHeaderBlock, 108 },
-	{ PuppetActionHeaderBlock, 24 },
-	{ PuppetSubActionHeaderBlock, 40 },
-	{ PuppetAnimationBlock, 72 },
-	{ PuppetPathBlock, 16 },
-	{ PuppetPointBlock, 60 },
-	{ PuppetBranchBlock, 12 },
-	{ PuppetScriptBlock, 8 },
-	{ CommentsBlock, 1 },
-	{ scenarioRandomOrdnanceDropSetBlock, 68 },
-	{ scenarioRandomOrdnanceDropPointBlock, 2 },
-	{ ScenarioUnitRecordingBlock, 64 },
-	{ loadScreenReferenceBlock, 24 },
-	{ RandomOrdnanceItemBlock, 4 },
-	{ PlayerOrdnanceGroupBlock, 12 },
-	{ PlayerOrdnanceItemBlock, 36 },
-	{ structure_soft_ceiling_block, 20 },
-	{ structure_soft_ceiling_triangle_block, 68 },
-	{ structure_water_groups_block, 4 },
-	{ structure_water_instances_block, 84 },
-	{ structure_water_instance_planes_block, 16 },
-	{ structure_water_instance_debug_triangles_block, 36 },
-	{ planar_fog_definition_block, 60 },
-	{ planar_fog_vertex_block, 12 },
-	{ planar_fog_triangle_block, 12 },
-	{ planar_fog_triangle_planes_block, 16 },
-	{ single_screen_effect, 280 },
-	{ platform_sound_playback_block, 96 },
-	{ platform_sound_playback_lowpass_block, 16 },
-	{ platform_sound_playback_component_block, 24 },
-	{ sound_response_data_block, 56 },
-	{ sound_response_permutation_block, 16 },
-	{ sound_combine_response_block, 24 },
-	{ self_illumination_state, 76 },
-	{ sound_incident_response_data_block, 20 },
-	{ scenario_interpolator_data_block, 52 },
-	{ silentAssistLevelBlock, 40 },
-	{ survival_mode_wave_templates, 20 },
-	{ multiplayer_color_block$3, 12 },
-	{ structureBspFxMarkerBlock, 76 },
-	{ structureMetadataLightConeMarkerBlock, 120 },
-	{ sound_class_block, 212 },
-	{ soundLipSyncInfoBlock, 28 },
-	{ deterministicSpeechEventBlock, 16 },
-	{ facial_animation_language_block, 12 },
-	{ sound_promotion_rule_block, 16 },
-	{ sound_promotion_runtime_timer_block, 4 },
-	{ sound_pitch_range_block, 72 },
-	{ sound_permutations_block, 36 },
-	{ sound_permutation_languages_block, 16 },
-	{ sound_permutation_chunk_block, 20 },
-	{ sound_platform_sound_playback_block, 92 },
-	{ sound_extra_info_block, 24 },
-	{ sound_definition_language_permutation_info_block, 12 },
-	{ sound_permutation_raw_info_block, 76 },
-	{ sound_permutation_marker_block, 12 },
-	{ sound_xma2_seek_table_block, 24 },
-	{ sound_language_info_block, 28 },
-	{ sound_permutation_language_info, 2 },
-	{ sound_pitch_range_language_info, 4 },
-	{ cell_template_block, 88 },
-	{ character_ref_choice_block, 24 },
-	{ weapon_ref_choice_block, 24 },
-	{ equipment_ref_choice_block, 24 },
-	{ sound_equalizer_band_settings_block, 16 },
-	{ influencerSpawnSettingsBlock, 12 },
-	{ weaponSpawnInfluenceBlock, 32 },
-	{ vehicleSpawnInfluenceBlock, 40 },
-	{ projectileSpawnInfluenceBlock, 28 },
-	{ equipmentSpawnInfluenceBlock, 20 },
-	{ structure_lighting_generic_light_definition_block, 456 },
-	{ structure_lighting_generic_light_instance_block, 96 },
-	{ screen_space_light_shader_override_block, 44 },
-	{ structureLightingCinematicLightInstanceBlock, 40 },
-	{ structureLightingCinematicObjectBlock, 4 },
-	{ structure_manifest_bsp_block, 304 },
-	{ structure_seam_block, 76 },
-	{ structure_seam_original_vertex_block, 28 },
-	{ structure_seam_original_vertex_plane_normals_block, 12 },
-	{ structure_seam_final_planes_block, 16 },
-	{ structure_seam_final_points_block, 12 },
-	{ structure_seam_final_triangles_block, 12 },
-	{ structure_seam_final_edges_block, 4 },
-	{ behavior_names_block, 32 },
-	{ terminal_page_block_definition, 8 },
-	{ tracerDefinitionBlock, 688 },
-	{ camera_track_control_point_block, 28 },
-	{ sound_references_block, 16 },
-	{ vocalization_stimuli_block_definition, 24 },
-	{ sound_gestalt_codec_block, 3 },
-	{ sound_gestalt_playback_block, 84 },
-	{ sound_gestalt_scale_block, 20 },
-	{ sound_gestalt_import_names_block, 4 },
-	{ sound_pitch_range_distances_block, 32 },
-	{ sound_gestalt_pitch_range_parameters_block, 16 },
-	{ sound_gestalt_pitch_ranges_block, 12 },
-	{ sound_gestalt_permutations_block, 20 },
-	{ sound_gestalt_permutation_languages_block, 208 },
-	{ sound_gestalt_custom_playback_block, 92 },
-	{ sound_gestalt_runtime_permutation_bit_vector_block, 1 },
-	{ sound_gestalt_promotions_block, 36 },
-	{ sound_gestalt_facial_animation_block, 8 },
-	{ sound_gestalt_layer_markers_block, 4 },
-	{ player_training_entry_data_block, 20 },
-	{ UserInterfaceStyleSheetLanguagesBlock, 28 },
-	{ UserInterfaceStyleSheetsFontBlock, 76 },
-	{ UserInterfaceStyleSheetFontIdBlock, 4 },
-	{ UserInterfaceStyleSheetTextCaseBlock, 4 },
-	{ UserInterfaceStyleSheetJustificationBlock, 4 },
-	{ UserInterfaceStyleSheetAlignmentBlock, 4 },
-	{ UserInterfaceStyleSheetScaleBlock, 4 },
-	{ UserInterfaceStyleSheetFixedHeightBlock, 4 },
-	{ UserInterfaceStyleSheetsVisualBlock, 52 },
-	{ UserInterfaceStyleSheetDropShadowStyleBlock, 4 },
-	{ UserInterfaceStyleSheetColorBlock, 16 },
-	{ UserInterfaceStyleSheetGradientBlock, 92 },
-	{ UserInterfaceStyleSheetDropshadowBlock, 36 },
-	{ UserInterfaceStyleSheetOuterGlowBlock, 28 },
-	{ multilingual_unicode_string_reference_block, 72 },
-	{ string_substitution_pair_block, 12 },
-	{ WeaponSpecificMarkersBlock, 20 },
-	{ human_tank_block, 148 },
-	{ gear_block, 92 },
-	{ load_and_cruise_block, 8 },
-	{ human_jeep_block, 92 },
-	{ boat_engine_definition_block, 108 },
-	{ human_plane_block, 100 },
-	{ wolverine_block, 96 },
-	{ alien_scout_block, 120 },
-	{ alien_fighter_block, 104 },
-	{ turret_block, 20 },
-	{ mantis_block, 172 },
-	{ walker_physics_leg_block, 160 },
-	{ vtol_block, 208 },
-	{ vtol_speed_interpolated_block, 32 },
-	{ chopper_block, 124 },
-	{ guardian_block, 48 },
-	{ jackal_glider_block, 368 },
-	{ boat_block, 96 },
-	{ space_fighter_block, 272 },
-	{ revenant_block, 204 },
-	{ anti_gravity_point_definition_block, 72 },
-	{ friction_point_definition_block, 68 },
-	{ SoundRTPCBlock, 16 },
-	{ SoundSweetenerBlock, 28 },
-	{ physics_transitions_block, 20 },
-	{ visionModeScreenPassBlock, 68 },
-	{ visionModeEnvironmentPassBlock, 68 },
-	{ visionModeBipedPassesBlock, 44 },
-	{ visionModeBipedPassBlock, 76 },
-	{ visionModeBipedThreatBlock, 20 },
-	{ visionModeOrdnanceVehiclePassBlock, 80 },
-	{ visionModeOrdnanceVehicleTypeBlock, 40 },
-	{ visionModeOrdnanceCrosshairBlock, 68 },
-	{ single_variant_block, 296 },
-	{ FallbackHopperFileBlock, 276 },
-	{ vertex_entry_point_block, 12 },
-	{ vertex_types_block$3, 2 },
-	{ wave_squad_specification_struct, 28 },
-	{ melee_damage_parameters_block, 200 },
-	{ globalAimAssistBlock, 68 },
-	{ globalAimSwimBlock, 36 },
-	{ weapon_first_person_interface_block, 40 },
-	{ magazines, 132 },
-	{ magazine_objects, 20 },
-	{ weapon_triggers, 172 },
-	{ weapon_trigger_charging_fire_fraction, 4 },
-	{ weapon_barrels, 400 },
-	{ projectileDistributionCustomVector, 8 },
-	{ weapon_barrel_first_person_offset_block, 12 },
-	{ barrel_firing_effect_block, 244 },
-	{ weaponScaleshotStruct, 28 },
-	{ weaponScaleshotLevelStruct, 44 },
-	{ weapon_screen_effect_block, 20 },
-	{ WeaponSoundRTPCBlock, 16 },
-	{ WeaponSoundSweetenerBlock, 28 },
-	{ wentness_bit_vector, 4 },
-	{ wentness_byte_vector, 1 },
-	{ cluster_wetness_offset_block, 4 },
-	{ instance_wetness_instance_block, 8 },
-	{ game_engine_player_traits_list_block, 64 },
-	{ game_engine_ai_traits_list_block, 16 },
-	{ game_engine_sandbox_variant_block, 116 },
-	{ game_engine_survival_variant_block, 208 },
-	{ game_engine_survival_set_properties_block, 4 },
-	{ game_engine_survival_round_properties_block, 52 },
-	{ survival_wave_squad_block, 4 },
-	{ game_engine_survival_custom_skull_block, 12 },
-	{ GameEngineFirefightVariantShellBlock, 16 },
-	{ game_engine_campaign_variant_block, 104 },
-	{ cui_component_screen_reference_block_definition, 20 },
-	{ cui_overlay_camera_block_definition, 24 },
-	{ cui_player_model_camera_settings_definition, 100 },
-	{ cui_player_model_controller_settings_definition, 56 },
-	{ cui_player_model_transition_settings_definition, 20 },
-	{ cui_active_roster_settings_block, 20 },
-	{ campaign_state_screen_script_block_definition, 24 },
-	{ UserInterfaceGameScreenSequenceStepDefinition, 24 },
-	{ SwapTagReferenceDefinition, 32 },
-	{ rules_block, 88 },
-	{ states_block, 96 },
-	{ color_presets_block, 20 },
-	{ tint_colors_block, 128 },
-	{ color_list_block, 16 },
-	{ gui_alert_description_block, 16 },
-	{ gui_dialog_description_block, 40 },
-	{ pgcr_incident_block, 8 },
-	{ global_textures_refs_block, 16 },
-	{ cache_file_resource_type_identifier_block, 32 },
-	{ cache_file_interop_type_identifier_block, 20 },
-	{ cache_file_resource_data_block, 68 },
-	{ cache_file_resource_fixup_location_block, 8 },
-	{ cache_file_resource_interop_location_block, 8 },
-	{ cache_file_resource_priority_data_block, 4 },
-	{ cache_file_designer_zone_block, 144 },
-	{ cache_file_tag_resources_bitvector_block, 4 },
-	{ cache_file_tag_resource_usage_block, 28 },
-	{ cache_file_zone_resource_visit_node_block, 16 },
-	{ cache_file_zone_resource_visit_node_link_block, 2 },
-	{ cache_file_global_zone_block, 144 },
-	{ cache_file_tag_zone_block, 144 },
-	{ cache_file_bsp_zone_block, 144 },
-	{ cache_file_cinematic_zone_block, 144 },
-	{ cache_file_full_zone_sets_block, 144 },
-	{ cache_file_zone_set_zone_usage_block, 40 },
-	{ cache_file_bsp_reference_block, 16 },
-	{ cache_file_resource_owner_block, 20 },
-	{ cache_file_model_variant_usage_block, 20 },
-	{ cache_file_resource_owner_reference_block, 2 },
-	{ cache_file_character_usage_block, 16 },
-	{ cache_file_model_variant_usage_reference_block, 2 },
-	{ cache_file_bsp_game_attachments_block, 36 },
-	{ cache_file_bsp_attachment_block, 16 },
-	{ debug_cache_file_model_variant_zone_block, 168 },
-	{ debug_cache_file_combat_dialogue_zone_block, 168 },
-	{ debug_cache_file_tag_zone_block, 168 },
-	{ cache_file_debug_resource_definition_block, 12 },
-	{ resource_category_block, 4 },
-	{ cache_file_resource_layout_block, 56 },
-	{ cache_file_tag_resource_properties_block, 12 },
-	{ cache_file_tag_resource_named_value_block, 24 },
-	{ cache_file_tag_parentage_block, 44 },
-	{ cache_file_tag_parentage_reference_block, 4 },
-	{ cache_file_tag_resource_prediction_quantum_block, 4 },
-	{ cache_file_tag_resource_prediction_atom_block, 8 },
-	{ cache_file_tag_resource_prediction_molecule_atom_reference_block, 4 },
-	{ cache_file_tag_resource_prediction_molecule_block, 8 },
-	{ cache_file_tag_resource_prediction_molecule_keys_block, 12 },
-};
+	s_tag_struct_validation_data halo4_tag_struct_validation_data[1752] = 
+	{
+		{ shader_particle_struct_definition_struct_definition, 152 }, // tag_group
+		{ cache_file_sound_struct_definition_struct_definition, 36 }, // tag_group
+		{ sound_effect_template_struct_definition_struct_definition, 28 }, // tag_group
+		{ stereo_system_struct_definition_struct_definition, 4 }, // tag_group
+		{ lightmap_model_globals_struct_definition_struct_definition, 12 }, // tag_group
+		{ lightmapper_globals_struct_definition_struct_definition, 152 }, // tag_group
+		{ scenario_lightmap_bsp_data_block_struct, 1000 }, // block
+		{ streamingzoneset_struct_definition_struct_definition, 40 }, // tag_group
+		{ achievements_struct_definition_struct_definition, 12 }, // tag_group
+		{ ai_dialogue_globals_struct_definition_struct_definition, 124 }, // tag_group
+		{ ai_globals_struct_definition_struct_definition, 12 }, // tag_group
+		{ airstrike_struct_definition_struct_definition, 12 }, // tag_group
+		{ antenna_struct_definition_struct_definition, 80 }, // tag_group
+		{ armormod_globals_struct_definition_struct_definition, 80 }, // tag_group
+		{ atmosphere_globals_struct_definition_struct_definition, 68 }, // tag_group
+		{ authored_light_probe_block_struct, 136 }, // block
+		{ avatar_awards_struct_definition_struct_definition, 12 }, // tag_group
+		{ big_battle_creature_block_struct, 424 }, // block
+		{ death_program_selector_struct_definition_struct_definition, 28 }, // tag_group
+		{ bink_struct_definition_struct_definition, 28 }, // tag_group
+		{ biped_group_struct_definition, 2544 }, // tag_group
+		{ bitmap_block_struct, 204 }, // block
+		{ crate_struct_definition_struct_definition, 576 }, // tag_group
+		{ breakable_surface_struct_definition_struct_definition, 104 }, // tag_group
+		{ custom_app_globals_struct_definition_struct_definition, 20 }, // tag_group
+		{ collision_damage_struct_definition_struct_definition, 100 }, // tag_group
+		{ camera_fx_settings_block_struct, 288 }, // block
+		{ character_struct_definition_struct_definition, 828 }, // tag_group
+		{ challenge_globals_definition_struct_definition_struct_definition, 28 }, // tag_group
+		{ cinematic_block_struct, 200 }, // block
+		{ cinematic_scene_struct_definition_struct_definition, 104 }, // tag_group
+		{ cinematic_scene_data_struct_definition_struct_definition, 40 }, // tag_group
+		{ cinematic_transition_block_struct, 460 }, // block
+		{ cloth_struct_definition_struct_definition, 148 }, // tag_group
+		{ camo_struct_definition_struct_definition, 60 }, // tag_group
+		{ controller_mapping_struct_definition_struct_definition, 92 }, // tag_group
+		{ commendation_aggregator_list_struct_definition_struct_definition, 12 }, // tag_group
+		{ collision_model_block_struct, 88 }, // block
+		{ color_table_struct_definition_struct_definition, 12 }, // tag_group
+		{ commendation_globals_definition_struct_definition_struct_definition, 64 }, // tag_group
+		{ communication_sounds_struct_definition_struct_definition, 3312 }, // tag_group
+		{ reward_globals_definition_struct_definition_struct_definition, 12 }, // tag_group
+		{ coop_spawning_globals_definition_struct_definition_struct_definition, 56 }, // tag_group
+		{ cheap_particle_emitter_struct_definition_struct_definition, 268 }, // tag_group
+		{ cookie_purchase_globals_struct_definition_struct_definition, 336 }, // tag_group
+		{ cheap_particle_type_library_struct_definition_struct_definition, 100 }, // tag_group
+		{ creature_struct_definition_struct_definition, 924 }, // tag_group
+		{ curve_scalar_struct_definition_struct_definition, 20 }, // tag_group
+		{ camera_shake_struct_definition_struct_definition, 112 }, // tag_group
+		{ device_control_struct_definition_struct_definition, 828 }, // tag_group
+		{ cui_logic_struct_definition_struct_definition, 140 }, // tag_group
+		{ cui_screen_struct_definition_struct_definition, 148 }, // tag_group
+		{ cui_static_data_struct_definition_struct_definition, 24 }, // tag_group
+		{ decorator_set_block_struct, 256 }, // block
+		{ decal_system_struct_definition_struct_definition, 44 }, // tag_group
+		{ device_struct_definition_struct_definition, 692 }, // tag_group
+		{ cellular_automata_struct_definition_struct_definition, 564 }, // tag_group
+		{ detail_object_collection_struct_definition_struct_definition, 128 }, // tag_group
+		{ dependency_struct_definition_struct_definition, 12 }, // tag_group
+		{ rasterizer_cache_file_globals_struct_definition_struct_definition, 12 }, // tag_group
+		{ damage_response_definition_struct_definition_struct_definition, 24 }, // tag_group
+		{ device_dispenser_struct_definition_struct_definition, 784 }, // tag_group
+		{ particle_emitter_boat_hull_shape_struct_definition_struct_definition, 16 }, // tag_group
+		{ effect_block_struct, 104 }, // block
+		{ effect_globals_struct_definition_struct_definition, 64 }, // tag_group
+		{ effect_scenery_struct_definition_struct_definition, 516 }, // tag_group
+		{ effect_global_force_struct_definition_struct_definition, 16 }, // tag_group
+		{ entity_struct_definition_struct_definition, 520 }, // tag_group
+		{ equipment_struct_definition_struct_definition, 924 }, // tag_group
+		{ firefight_globals_block_struct, 44 }, // block
+		{ GameEngineFirefightVariantTag_block_struct, 172 }, // block
+		{ flock_struct_definition_struct_definition, 96 }, // tag_group
+		{ fluid_dynamics_struct_definition_struct_definition, 376 }, // tag_group
+		{ atmosphere_definition_block_block_struct, 300 }, // block
+		{ material_effects_block_struct, 12 }, // block
+		{ forge_globals_block_struct, 88 }, // block
+		{ formation_block_struct, 16 }, // block
+		{ frame_event_list_struct_definition_struct_definition, 36 }, // tag_group
+		{ fx_test_struct_definition_struct_definition, 12 }, // tag_group
+		{ game_completion_rewards_globals_struct_definition_struct_definition, 40 }, // tag_group
+		{ game_engine_globals_struct_definition_struct_definition, 44 }, // tag_group
+		{ game_globals_grenade_list_struct_definition_struct_definition, 12 }, // tag_group
+		{ game_globals_ordnance_list_struct_definition_struct_definition, 52 }, // tag_group
+		{ giant_struct_definition_struct_definition, 1608 }, // tag_group
+		{ cheap_light_struct_definition_struct_definition, 128 }, // tag_group
+		{ global_pixel_shader_block_struct, 28 }, // block
+		{ global_vertex_shader_block_struct, 28 }, // block
+		{ game_medal_globals_struct_definition_struct_definition, 24 }, // tag_group
+		{ multiplayer_variant_settings_interface_definition_struct_definition_struct_definition, 16 }, // tag_group
+		{ global_cache_file_pixel_shaders_struct_definition_struct_definition, 28 }, // tag_group
+		{ game_performance_throttle_struct_definition_struct_definition, 12 }, // tag_group
+		{ grounded_friction_struct_definition_struct_definition, 36 }, // tag_group
+		{ havok_collision_filter_struct_definition_struct_definition, 272 }, // tag_group
+		{ model_block_struct, 608 }, // block
+		{ hlsl_include_struct_definition_struct_definition, 20 }, // tag_group
+		{ hs_source_files_block_block_struct, 56 }, // block
+		{ script_container_struct_definition_struct_definition, 40 }, // tag_group
+		{ script_struct_definition_struct_definition, 116 }, // tag_group
+		{ incident_global_properties_definition_struct_definition_struct_definition, 136 }, // tag_group
+		{ instance_imposter_definition_struct_definition_struct_definition, 240 }, // tag_group
+		{ imposter_model_struct_definition_struct_definition, 216 }, // tag_group
+		{ incident_globals_definition_block_struct, 12 }, // block
+		{ item_struct_definition_struct_definition, 720 }, // tag_group
+		{ InfinityUIImages_struct_definition_struct_definition, 12 }, // tag_group
+		{ model_animation_graph_block_struct, 532 }, // block
+		{ sandbox_text_value_pair_definition_struct_definition_struct_definition, 12 }, // tag_group
+		{ damage_effect_group_struct_definition, 328 }, // tag_group
+		{ KillCamCameraParamter_struct_definition_struct_definition, 12 }, // tag_group
+		{ loadScreenBlock_block_struct, 96 }, // block
+		{ lens_flare_struct_definition_struct_definition, 160 }, // tag_group
+		{ loadout_globals_definition_struct_definition_struct_definition, 48 }, // tag_group
+		{ light_cone_struct_definition_struct_definition, 88 }, // tag_group
+		{ light_struct_definition_struct_definition, 420 }, // tag_group
+		{ location_name_globals_definition_struct_definition_struct_definition, 28 }, // tag_group
+		{ light_rig_struct_definition_struct_definition, 64 }, // tag_group
+		{ sound_looping_struct_definition_struct_definition, 60 }, // tag_group
+		{ leaf_system_struct_definition_struct_definition, 88 }, // tag_group
+		{ light_volume_system_struct_definition_struct_definition, 12 }, // tag_group
+		{ device_machine_struct_definition_struct_definition, 724 }, // tag_group
+		{ material_block_struct, 68 }, // block
+		{ globals_struct_definition_struct_definition, 2272 }, // tag_group
+		{ material_shader_block_struct, 88 }, // block
+		{ ai_mission_dialogue_struct_definition_struct_definition, 12 }, // tag_group
+		{ model_dissolve_definition_struct_definition_struct_definition, 240 }, // tag_group
+		{ medal_challenge_aggregator_list_struct_definition_struct_definition, 12 }, // tag_group
+		{ medal_commendation_aggregator_list_struct_definition_struct_definition, 12 }, // tag_group
+		{ meter_struct_definition_struct_definition, 172 }, // tag_group
+		{ muffin_block_struct, 56 }, // block
+		{ multiplayerEffects_struct_definition_struct_definition, 12 }, // tag_group
+		{ megalogamengine_sounds_struct_definition_struct_definition, 3840 }, // tag_group
+		{ emblem_library_struct_definition_struct_definition, 116 }, // tag_group
+		{ main_menu_voiceover_struct_definition_struct_definition, 12 }, // tag_group
+		{ render_model_block_struct, 376 }, // block
+		{ multiplayer_object_type_list_struct_definition_struct_definition, 112 }, // tag_group
+		{ multiplayer_scenario_description_struct_definition_struct_definition, 12 }, // tag_group
+		{ megalo_string_id_table_struct_definition_struct_definition, 24 }, // tag_group
+		{ material_shader_bank_block_struct, 60 }, // block
+		{ multiplayer_globals_struct_definition_struct_definition, 24 }, // tag_group
+		{ mux_generator_struct_definition_struct_definition, 164 }, // tag_group
+		{ NarrativeGlobals_struct_definition_struct_definition, 12 }, // tag_group
+		{ new_cinematic_lighting_struct_definition_struct_definition, 108 }, // tag_group
+		{ object_struct_definition_struct_definition, 516 }, // tag_group
+		{ polyart_asset_block_struct, 92 }, // block
+		{ tag_package_manifest_block_struct, 12 }, // block
+		{ patch_globals_struct_definition_struct_definition, 1156 }, // tag_group
+		{ pca_animation_block_struct, 76 }, // block
+		{ pgcr_enemy_to_category_mapping_definition_struct_definition_struct_definition, 24 }, // tag_group
+		{ pgcr_damage_type_image_mapping_definition_struct_definition_struct_definition, 12 }, // tag_group
+		{ particle_emitter_custom_points_struct_definition_struct_definition, 52 }, // tag_group
+		{ player_enlistment_globals_definition_struct_definition_struct_definition, 12 }, // tag_group
+		{ performance_throttles_struct_definition_struct_definition, 12 }, // tag_group
+		{ performance_template_block_struct, 44 }, // block
+		{ pathfinding_block_struct, 76 }, // block
+		{ planar_fog_parameters_struct_definition_struct_definition, 136 }, // tag_group
+		{ player_grade_globals_definition_struct_definition_struct_definition, 12 }, // tag_group
+		{ physics_model_struct_definition_struct_definition, 424 }, // tag_group
+		{ pixel_shader_block_struct, 28 }, // block
+		{ cache_file_resource_layout_table_block_struct, 68 }, // block
+		{ particleman_struct_definition_struct_definition, 36 }, // tag_group
+		{ player_model_customization_globals_struct_definition_struct_definition, 200 }, // tag_group
+		{ particle_model_struct_definition_struct_definition, 192 }, // tag_group
+		{ particle_physics_struct_definition_struct_definition, 52 }, // tag_group
+		{ point_physics_struct_definition_struct_definition, 64 }, // tag_group
+		{ portrait_poses_definition_struct_definition_struct_definition, 12 }, // tag_group
+		{ prefab_struct_definition_struct_definition, 16 }, // tag_group
+		{ progressionGlobalsBlock_block_struct, 76 }, // block
+		{ projectile_group_struct_definition, 1104 }, // tag_group
+		{ particle_struct_definition_struct_definition, 568 }, // tag_group
+		{ rain_definition_struct_definition_struct_definition, 320 }, // tag_group
+		{ rasterizer_globals_struct_definition_struct_definition, 200 }, // tag_group
+		{ render_method_struct_definition_struct_definition, 100 }, // tag_group
+		{ rumble_struct_definition_struct_definition, 48 }, // tag_group
+		{ shader_custom_struct_definition_struct_definition, 104 }, // tag_group
+		{ shader_cortana_struct_definition_struct_definition, 104 }, // tag_group
+		{ shader_decal_struct_definition_struct_definition, 104 }, // tag_group
+		{ render_method_definition_struct_definition_struct_definition, 348 }, // tag_group
+		{ shader_foliage_struct_definition_struct_definition, 104 }, // tag_group
+		{ shader_fur_stencil_struct_definition_struct_definition, 104 }, // tag_group
+		{ shader_fur_struct_definition_struct_definition, 104 }, // tag_group
+		{ shader_glass_struct_definition_struct_definition, 104 }, // tag_group
+		{ shader_halogram_struct_definition_struct_definition, 104 }, // tag_group
+		{ render_model_lightmap_atlas_struct_definition_struct_definition, 184 }, // tag_group
+		{ shader_light_volume_struct_definition_struct_definition, 100 }, // tag_group
+		{ shader_mux_material_struct_definition_struct_definition, 104 }, // tag_group
+		{ shader_mux_struct_definition_struct_definition, 128 }, // tag_group
+		{ render_method_option_struct_definition_struct_definition, 12 }, // tag_group
+		{ shader_struct_definition_struct_definition, 104 }, // tag_group
+		{ shader_skin_struct_definition_struct_definition, 104 }, // tag_group
+		{ shader_screen_struct_definition_struct_definition, 108 }, // tag_group
+		{ render_method_template_struct_definition_struct_definition, 132 }, // tag_group
+		{ shader_terrain_struct_definition_struct_definition, 128 }, // tag_group
+		{ shader_water_struct_definition_struct_definition, 100 }, // tag_group
+		{ shader_waterfall_struct_definition_struct_definition, 104 }, // tag_group
+		{ render_water_ripple_struct_definition_struct_definition, 80 }, // tag_group
+		{ scenario_lightmap_block_struct, 16 }, // block
+		{ spring_acceleration_struct_definition_struct_definition, 20 }, // tag_group
+		{ soundbank_block_struct, 32 }, // block
+		{ scenario_structure_bsp_block_struct, 1456 }, // block
+		{ scenery_group_struct_definition, 540 }, // tag_group
+		{ sound_combiner_block_struct, 24 }, // block
+		{ scenario_struct_definition_struct_definition, 2444 }, // tag_group
+		{ scenario_ordnance_list_struct_definition_struct_definition, 24 }, // tag_group
+		{ structure_design_block_struct, 364 }, // block
+		{ scenario_required_resource_struct_definition_struct_definition, 12 }, // tag_group
+		{ area_screen_effect_struct_definition_struct_definition, 16 }, // tag_group
+		{ sound_effect_collection_block_struct, 12 }, // block
+		{ sound_global_propagation_block_struct, 72 }, // block
+		{ sound_response_struct_definition_struct_definition, 12 }, // tag_group
+		{ shield_impact_struct_definition_struct_definition, 524 }, // tag_group
+		{ self_illumination_struct_definition_struct_definition, 12 }, // tag_group
+		{ simulated_input_struct_definition_struct_definition, 128 }, // tag_group
+		{ SuppressedIncident_struct_definition_struct_definition, 12 }, // tag_group
+		{ simulation_interpolation_struct_definition_struct_definition, 244 }, // tag_group
+		{ text_value_pair_definition_struct_definition_struct_definition, 28 }, // tag_group
+		{ sound_incident_response_struct_definition_struct_definition, 12 }, // tag_group
+		{ scenario_interpolator_struct_definition_struct_definition, 12 }, // tag_group
+		{ silent_assist_globals_struct_definition_struct_definition, 12 }, // tag_group
+		{ survival_mode_globals_struct_definition_struct_definition, 104 }, // tag_group
+		{ structure_meta_struct_definition_struct_definition, 60 }, // tag_group
+		{ sound_classes_block_struct, 12 }, // block
+		{ sound_block_struct, 72 }, // block
+		{ sound_environment_block_struct, 72 }, // block
+		{ sound_old_block_struct, 224 }, // block
+		{ sound2_block_struct, 224 }, // block
+		{ sound_mix_block_struct, 148 }, // block
+		{ sound_dialogue_constants_struct_definition_struct_definition, 40 }, // tag_group
+		{ spawner_struct_definition_struct_definition, 532 }, // tag_group
+		{ squad_template_block_struct, 16 }, // block
+		{ sound_radio_settings_block_struct, 36 }, // block
+		{ ssao_definition_struct_definition_struct_definition, 176 }, // tag_group
+		{ sound_scenery_struct_definition_struct_definition, 532 }, // tag_group
+		{ SpawnSettings_struct_definition_struct_definition, 316 }, // tag_group
+		{ scenario_structure_lighting_info_struct_definition_struct_definition, 88 }, // tag_group
+		{ structure_seams_struct_definition_struct_definition, 100 }, // tag_group
+		{ style_struct_definition_struct_definition, 96 }, // tag_group
+		{ device_terminal_struct_definition_struct_definition, 764 }, // tag_group
+		{ tracer_system_struct_definition_struct_definition, 32 }, // tag_group
+		{ camera_track_struct_definition_struct_definition, 16 }, // tag_group
+		{ dialogue_block_struct, 36 }, // block
+		{ sound_cache_file_gestalt_struct_definition_struct_definition, 220 }, // tag_group
+		{ user_interface_hud_globals_definition_struct_definition_struct_definition, 352 }, // tag_group
+		{ user_interface_sounds_definition_struct_definition_struct_definition, 1376 }, // tag_group
+		{ style_sheet_list_struct_definition_struct_definition, 48 }, // tag_group
+		{ multilingual_unicode_string_list_struct_definition_struct_definition, 112 }, // tag_group
+		{ unit_struct_definition_struct_definition, 1552 }, // tag_group
+		{ vectorart_asset_block_struct, 96 }, // block
+		{ vector_hud_definition_struct_definition_struct_definition, 20 }, // tag_group
+		{ vehicle_group_struct_definition, 2020 }, // tag_group
+		{ vision_mode_struct_definition_struct_definition, 68 }, // tag_group
+		{ variant_globals_struct_definition_struct_definition, 36 }, // tag_group
+		{ vertex_shader_block_struct, 28 }, // block
+		{ wave_template_block_struct, 12 }, // block
+		{ weapon_block_struct, 1688 }, // block
+		{ scenario_wetness_bsp_data_struct_definition_struct_definition, 92 }, // tag_group
+		{ game_engine_settings_definition_struct_definition_struct_definition, 76 }, // tag_group
+		{ user_interface_globals_definition_struct_definition_struct_definition, 308 }, // tag_group
+		{ cellular_automata2d_struct_definition_struct_definition, 556 }, // tag_group
+		{ user_interface_shared_globals_definition_struct_definition_struct_definition, 380 }, // tag_group
+		{ wind_block_struct, 120 }, // block
+		{ water_physics_drag_properties_struct_definition_struct_definition, 56 }, // tag_group
+		{ weather_globals_struct_definition_struct_definition, 56 }, // tag_group
+		{ cache_file_resource_gestalt_block_struct, 556 }, // block
+		{ short_block_block_struct, 2 }, // block
+		{ render_method_parameter_block_block_struct, 60 }, // block
+		{ render_method_animated_parameter_block_block_struct, 36 }, // block
+		{ render_method_postprocess_block_block_struct, 172 }, // block
+		{ render_method_postprocess_texture_block_block_struct, 24 }, // block
+		{ real_vector4d_block_block_struct, 16 }, // block
+		{ int_block_block_struct, 4 }, // block
+		{ tag_block_index_block_block_struct, 2 }, // block
+		{ render_method_postprocess_pass_block_block_struct, 6 }, // block
+		{ render_method_routing_info_block_block_struct, 4 }, // block
+		{ render_method_locked_parameter_block_block_struct, 12 }, // block
+		{ sound_effect_templates_block_block_struct, 44 }, // block
+		{ sound_effect_template_parameter_block_block_struct, 48 }, // block
+		{ sound_effect_template_additional_sound_input_block_block_struct, 28 }, // block
+		{ lightmap_model_reference_block_block_struct, 16 }, // block
+		{ scenario_lightmap_cluster_data_block_struct, 8 }, // block
+		{ scenario_lightmap_instance_data_block_struct, 36 }, // block
+		{ scenario_lightmap_lightprobe_value_block_struct, 92 }, // block
+		{ scenario_lightmap_instance_index_block_block_struct, 4 }, // block
+		{ scenario_lightmap_global_perpixel_padding_data_block_struct, 16 }, // block
+		{ scenario_lightmap_rasterized_chart_data_block_struct, 56 }, // block
+		{ scenario_lightmap_rasterized_chart_source_block_struct, 8 }, // block
+		{ scenario_lightmap_rasterized_chart_element_block_struct, 1 }, // block
+		{ scenario_lightmap_new_ao_data_block_block_struct, 1 }, // block
+		{ scenario_lightmap_adjacent_bounce_vertex_block_block_struct, 20 }, // block
+		{ scenario_lightmap_adjacent_bounce_index_block_block_struct, 4 }, // block
+		{ global_mesh_block_block_struct, 112 }, // block
+		{ part_block_block_struct, 24 }, // block
+		{ subpart_block_block_struct, 16 }, // block
+		{ global_instance_bucket_block_block_struct, 16 }, // block
+		{ instance_index_word_block_block_struct, 2 }, // block
+		{ indices_word_block_block_struct, 2 }, // block
+		{ vertexKeyBlock_block_struct, 8 }, // block
+		{ PCAMeshIndexBlock_block_struct, 4 }, // block
+		{ compression_info_block_block_struct, 52 }, // block
+		{ sorting_position_block_block_struct, 48 }, // block
+		{ user_data_block_block_struct, 24 }, // block
+		{ per_mesh_raw_data_block_block_struct, 96 }, // block
+		{ raw_vertex_block_block_struct, 104 }, // block
+		{ indices_dword_block_block_struct, 4 }, // block
+		{ raw_water_block_block_struct, 24 }, // block
+		{ raw_water_append_block_block_struct, 8 }, // block
+		{ raw_imposter_brdf_block_block_struct, 76 }, // block
+		{ raw_instance_imposter_block_block_struct, 20 }, // block
+		{ raw_blendshape_block_block_struct, 40 }, // block
+		{ per_mesh_node_map_block_block_struct, 12 }, // block
+		{ node_map_byte_block_block_struct, 1 }, // block
+		{ per_mesh_subpart_visibility_block_block_struct, 12 }, // block
+		{ per_mesh_prt_data_block_block_struct, 32 }, // block
+		{ per_instance_prt_data_block_block_struct, 20 }, // block
+		{ per_instance_lightmap_texcoords_block_block_struct, 28 }, // block
+		{ raw_texcoord_block_block_struct, 8 }, // block
+		{ water_bounding_box_block_block_struct, 28 }, // block
+		{ render_geometry_pvs_data_block_block_struct, 76 }, // block
+		{ render_geometry_pvs_data_visibility_value_block_block_struct, 4 }, // block
+		{ render_geometry_pvs_data_visibility_index_block_block_struct, 2 }, // block
+		{ shapeNameBlock_block_struct, 260 }, // block
+		{ triangle_mapping_per_mesh_block_block_struct, 12 }, // block
+		{ triangle_mapping_block_block_struct, 4 }, // block
+		{ scenario_lightmap_dynamic_light_instance_block_struct, 20 }, // block
+		{ scenario_lightmap_dynamic_light_instance_data_block_block_struct, 8 }, // block
+		{ scenario_lightmap_structure_light_instance_block_struct, 4 }, // block
+		{ s_scenario_lightmap_silhouette_vertex_block_struct, 12 }, // block
+		{ s_scenario_lightmap_silhouette_edge_block_struct, 8 }, // block
+		{ s_scenario_lightmap_silhouette_group_block_struct, 32 }, // block
+		{ scenario_lightmap_airprobe_value_block_struct, 80 }, // block
+		{ global_error_report_categories_block_block_struct, 280 }, // block
+		{ error_reports_block_block_struct, 184 }, // block
+		{ error_report_vertices_block_block_struct, 52 }, // block
+		{ error_report_vectors_block_block_struct, 64 }, // block
+		{ error_report_lines_block_block_struct, 80 }, // block
+		{ error_report_triangles_block_block_struct, 112 }, // block
+		{ error_report_quads_block_block_struct, 144 }, // block
+		{ error_report_comments_block_block_struct, 68 }, // block
+		{ global_self_track_block_block_struct, 576 }, // block
+		{ StreamingZoneSetResourceIdBlock_block_struct, 16 }, // block
+		{ StreamingZoneSetResourceSubregionDataBlock_block_struct, 28 }, // block
+		{ StreamingZoneSetResourceLevelsBlock_block_struct, 1 }, // block
+		{ single_achievement_definition_block_block_struct, 20 }, // block
+		{ single_achievement_restricted_level_block_block_struct, 4 }, // block
+		{ default_stimulus_suppressor_block_block_struct, 4 }, // block
+		{ vocalization_definitions_block_block_struct, 100 }, // block
+		{ response_block_block_struct, 12 }, // block
+		{ vocalization_patterns_block_block_struct, 56 }, // block
+		{ dialogue_data_block_block_struct, 4 }, // block
+		{ involuntary_data_block_block_struct, 4 }, // block
+		{ predicted_data_block_block_struct, 4 }, // block
+		{ ai_globals_data_block_block_struct, 432 }, // block
+		{ ai_globals_gravemind_block_block_struct, 12 }, // block
+		{ ai_globals_formation_block_block_struct, 16 }, // block
+		{ ai_globals_squad_template_folder_block_block_struct, 28 }, // block
+		{ ai_globals_squad_template_sub_folder_block_block_struct, 16 }, // block
+		{ ai_globals_squad_template_block_block_struct, 16 }, // block
+		{ ai_globals_performance_template_folder_block_block_struct, 28 }, // block
+		{ ai_globals_performance_template_sub_folder_block_block_struct, 16 }, // block
+		{ ai_globals_performance_template_block_block_struct, 16 }, // block
+		{ ai_globals_custom_stimuli_block_block_struct, 4 }, // block
+		{ ai_cue_template_block_block_struct, 44 }, // block
+		{ firing_point_payload_block_block_struct, 4 }, // block
+		{ stimulus_payload_block_block_struct, 4 }, // block
+		{ combat_cue_payload_block_block_struct, 52 }, // block
+		{ ai_trait_vision_block_block_struct, 8 }, // block
+		{ ai_trait_sound_block_block_struct, 4 }, // block
+		{ ai_trait_luck_block_block_struct, 44 }, // block
+		{ ai_trait_grenade_block_block_struct, 28 }, // block
+		{ airstrike_battery_block_block_struct, 72 }, // block
+		{ airstrike_fire_location_block_block_struct, 8 }, // block
+		{ antenna_vertex_block_block_struct, 64 }, // block
+		{ aural_enhancement_audio_settings_block_block_struct, 8 }, // block
+		{ underwater_setting_block_block_struct, 20 }, // block
+		{ authored_light_probe_lights_block_block_struct, 56 }, // block
+		{ single_avatar_award_definition_block_block_struct, 8 }, // block
+		{ spheres_block_block_struct, 112 }, // block
+		{ pills_block_block_struct, 96 }, // block
+		{ lists_block_block_struct, 112 }, // block
+		{ list_shapes_block_block_struct, 16 }, // block
+		{ campaign_metagame_bucket_block_block_struct, 8 }, // block
+		{ creature_scalar_timing_block_block_struct, 20 }, // block
+		{ death_program_special_block_block_struct, 16 }, // block
+		{ death_program_damage_reporting_block_block_struct, 16 }, // block
+		{ death_program_velocity_gate_block_block_struct, 16 }, // block
+		{ unit_screen_effect_block_block_struct, 16 }, // block
+		{ unit_postures_block_block_struct, 16 }, // block
+		{ hud_unit_sound_block_block_struct, 36 }, // block
+		{ hud_unit_sound_cue_block_block_struct, 24 }, // block
+		{ dialogue_variant_block_block_struct, 20 }, // block
+		{ powered_seat_block_block_struct, 8 }, // block
+		{ unit_weapon_block_block_struct, 168 }, // block
+		{ SentryPropertiesBlock_block_struct, 84 }, // block
+		{ global_target_tracking_parameters_block_block_struct, 56 }, // block
+		{ tracking_type_block_block_struct, 4 }, // block
+		{ unit_seat_block_block_struct, 364 }, // block
+		{ boarding_seat_block_block_struct, 4 }, // block
+		{ unit_camera_track_block_block_struct, 32 }, // block
+		{ unit_camera_acceleration_displacement_block_block_struct, 112 }, // block
+		{ gamepad_stick_info_block_block_struct, 40 }, // block
+		{ input_mapping_function_block_block_struct, 20 }, // block
+		{ unit_trick_definition_block_block_struct, 32 }, // block
+		{ biped_camera_height_block_block_struct, 12 }, // block
+		{ biped_wall_proximity_block_block_struct, 24 }, // block
+		{ biped_movement_gate_block_block_struct, 40 }, // block
+		{ contact_point_block_block_struct, 4 }, // block
+		{ biped_grab_object_animation_set_block_block_struct, 12 }, // block
+		{ BipedSoundRTPCBlock_block_struct, 12 }, // block
+		{ BipedSoundSweetenerBlock_block_struct, 28 }, // block
+		{ BipedAimingJointFixupBlock_block_struct, 32 }, // block
+		{ bitmap_usage_block_block_struct, 40 }, // block
+		{ bitmap_group_sequence_block_def_block_struct, 64 }, // block
+		{ bitmap_group_sprite_block_def_block_struct, 32 }, // block
+		{ bitmap_tight_bounds_block_def_block_struct, 8 }, // block
+		{ bitmap_data_block_def_block_struct, 44 }, // block
+		{ bitmap_texture_interop_block_block_struct, 8 }, // block
+		{ stitchable_bitmap_texture_interop_block_block_struct, 8 }, // block
+		{ bitmap_texture_interleaved_interop_block_block_struct, 8 }, // block
+		{ sidecarBlock_block_struct, 256 }, // block
+		{ object_early_mover_obb_block_block_struct, 44 }, // block
+		{ object_ai_properties_block_block_struct, 16 }, // block
+		{ object_function_block_block_struct, 64 }, // block
+		{ object_function_interpolation_block_block_struct, 24 }, // block
+		{ object_runtime_interpolator_functions_block_block_struct, 4 }, // block
+		{ objectFunctionSwitchBlock_block_struct, 20 }, // block
+		{ objectFunctionSwitchFunctionBlock_block_struct, 12 }, // block
+		{ global_object_attachment_block_block_struct, 32 }, // block
+		{ water_physics_hull_surface_definition_block_block_struct, 24 }, // block
+		{ water_physics_material_override_block_struct, 60 }, // block
+		{ jetwash_definition_block_block_struct, 36 }, // block
+		{ object_widget_block_block_struct, 16 }, // block
+		{ object_change_colors_block_struct, 24 }, // block
+		{ object_change_color_initial_permutation_block_struct, 32 }, // block
+		{ object_change_color_function_block_struct, 40 }, // block
+		{ g_null_block_block_struct, 0 }, // block
+		{ multiplayer_object_block_block_struct, 204 }, // block
+		{ spawn_influence_weight_falloff_function_block_block_struct, 20 }, // block
+		{ object_spawn_effects_block_block_struct, 48 }, // block
+		{ modelDissolveDataBlock_block_struct, 16 }, // block
+		{ hs_references_block_block_struct, 16 }, // block
+		{ particle_system_definition_block_new_block_struct, 124 }, // block
+		{ particle_system_emitter_definition_block_block_struct, 964 }, // block
+		{ particle_controller_block_struct, 24 }, // block
+		{ particle_controller_parameters_block_struct, 36 }, // block
+		{ emitterGlobalForceBlock_block_struct, 40 }, // block
+		{ emitterClipSphereBlock_block_struct, 16 }, // block
+		{ gpu_property_block_block_struct, 16 }, // block
+		{ gpu_function_block_block_struct, 64 }, // block
+		{ gpu_color_block_block_struct, 16 }, // block
+		{ custom_app_block_block_struct, 60 }, // block
+		{ game_engine_player_traits_block_block_struct, 60 }, // block
+		{ player_traits_vitality_block_block_struct, 64 }, // block
+		{ player_traits_weapons_block_block_struct, 128 }, // block
+		{ player_traits_movement_block_block_struct, 28 }, // block
+		{ player_traits_appearance_block_block_struct, 12 }, // block
+		{ player_traits_sensors_block_block_struct, 20 }, // block
+		{ custom_app_damage_modifier_block_block_struct, 8 }, // block
+		{ character_variants_block_block_struct, 24 }, // block
+		{ character_voice_block_block_struct, 36 }, // block
+		{ character_voice_region_filter_block_block_struct, 16 }, // block
+		{ character_voice_region_permutation_filter_block_block_struct, 4 }, // block
+		{ character_voice_properties_block_block_struct, 16 }, // block
+		{ character_general_block_block_struct, 92 }, // block
+		{ disallowed_weapons_for_trading_block_block_struct, 16 }, // block
+		{ character_proto_spawn_block_block_struct, 4 }, // block
+		{ character_interact_block_block_struct, 4 }, // block
+		{ character_emotions_block_block_struct, 20 }, // block
+		{ character_emotions_situational_danger_block_block_struct, 8 }, // block
+		{ character_vitality_block_block_struct, 104 }, // block
+		{ character_placement_block_block_struct, 52 }, // block
+		{ character_perception_block_block_struct, 160 }, // block
+		{ character_target_block_block_struct, 4 }, // block
+		{ character_look_block_block_struct, 80 }, // block
+		{ character_hopping_block_block_struct, 16 }, // block
+		{ characterHopDefinitionBlock_block_struct, 72 }, // block
+		{ character_movement_block_block_struct, 264 }, // block
+		{ movement_stationary_pause_block_block_struct, 8 }, // block
+		{ movement_throttle_control_block_block_struct, 16 }, // block
+		{ movement_throttle_block_block_struct, 8 }, // block
+		{ character_throttle_style_block_block_struct, 60 }, // block
+		{ character_movement_set_block_block_struct, 16 }, // block
+		{ movement_mapping_block_block_struct, 64 }, // block
+		{ character_flocking_block_block_struct, 24 }, // block
+		{ character_swarm_block_block_struct, 56 }, // block
+		{ character_firing_point_evaluator_block_block_struct, 16 }, // block
+		{ evaluator_definition_block_block_struct, 12 }, // block
+		{ character_ready_block_block_struct, 8 }, // block
+		{ character_engage_block_block_struct, 104 }, // block
+		{ character_charge_block_block_struct, 184 }, // block
+		{ character_charge_difficulty_limits_block_block_struct, 6 }, // block
+		{ character_evasion_block_block_struct, 20 }, // block
+		{ character_cover_block_block_struct, 88 }, // block
+		{ character_retreat_block_block_struct, 88 }, // block
+		{ character_search_block_block_struct, 44 }, // block
+		{ character_presearch_block_block_struct, 40 }, // block
+		{ character_idle_block_block_struct, 20 }, // block
+		{ character_vocalization_block_block_struct, 12 }, // block
+		{ character_boarding_block_block_struct, 40 }, // block
+		{ character_vehicle_boarding_block_block_struct, 20 }, // block
+		{ character_kungfu_block_block_struct, 8 }, // block
+		{ character_bunker_block_block_struct, 96 }, // block
+		{ character_guardian_block_block_struct, 24 }, // block
+		{ character_combatform_block_block_struct, 8 }, // block
+		{ character_engineer_block_block_struct, 56 }, // block
+		{ character_inspect_block_block_struct, 20 }, // block
+		{ character_scarab_block_block_struct, 24 }, // block
+		{ character_weapons_block_block_struct, 204 }, // block
+		{ character_firing_pattern_properties_block_block_struct, 28 }, // block
+		{ character_firing_pattern_block_block_struct, 64 }, // block
+		{ character_grenades_block_block_struct, 64 }, // block
+		{ character_vehicle_block_block_struct, 332 }, // block
+		{ character_flying_movement_block_block_struct, 224 }, // block
+		{ character_morph_block_block_struct, 228 }, // block
+		{ character_equipment_block_block_struct, 36 }, // block
+		{ character_equipment_usage_block_block_struct, 12 }, // block
+		{ character_stimuli_response_block_block_struct, 20 }, // block
+		{ character_activity_object_block_block_struct, 28 }, // block
+		{ character_pain_screen_block_block_struct, 28 }, // block
+		{ character_bishop_block_block_struct, 312 }, // block
+		{ character_combotron_parent_block_block_struct, 68 }, // block
+		{ character_combotron_child_block_block_struct, 88 }, // block
+		{ character_handle_dismemberment_block_block_struct, 40 }, // block
+		{ character_cover_fight_block_block_struct, 144 }, // block
+		{ character_emerge_block_block_struct, 32 }, // block
+		{ dynamic_task_block_block_struct, 56 }, // block
+		{ character_advance_block_block_struct, 116 }, // block
+		{ character_cover_evasion_block_block_struct, 36 }, // block
+		{ character_pack_stalk_block_block_struct, 20 }, // block
+		{ character_fight_circle_block_block_struct, 40 }, // block
+		{ character_hamstring_charge_block_block_struct, 32 }, // block
+		{ character_forerunner_block_block_struct, 36 }, // block
+		{ character_gravity_jump_block_block_struct, 32 }, // block
+		{ challenge_category_block_block_struct, 20 }, // block
+		{ challenge_block_block_struct, 84 }, // block
+		{ cinematic_shot_playback_data_block_block_struct, 8 }, // block
+		{ cinematic_scene_reference_block_block_struct, 32 }, // block
+		{ cinematic_scene_object_block_block_struct, 64 }, // block
+		{ scene_object_attachment_block_block_struct, 32 }, // block
+		{ cinematic_shot_block_block_struct, 200 }, // block
+		{ cinematic_shot_lighting_block_block_struct, 28 }, // block
+		{ cinematic_shot_clip_block_block_struct, 44 }, // block
+		{ cinematic_shot_clip_subject_block_block_struct, 4 }, // block
+		{ cinematic_shot_music_block_block_struct, 24 }, // block
+		{ cinematic_shot_object_function_block_block_struct, 20 }, // block
+		{ cinematic_shot_object_function_keyframe_block_block_struct, 16 }, // block
+		{ cinematic_shot_screen_effect_block_block_struct, 28 }, // block
+		{ cinematic_shot_user_input_constraints_block_block_struct, 20 }, // block
+		{ cinematicShotTextureMovieBlock_block_struct, 24 }, // block
+		{ cinematicStructureLightingBlock_block_struct, 16 }, // block
+		{ cinematicSceneDataObjectBlock_struct_struct_definition, 48 },
+		{ cinematicDataShotBlock_block_struct, 76 }, // block
+		{ cinematic_shot_dialogue_block_block_struct, 60 }, // block
+		{ cinematic_shot_effect_block_block_struct, 52 }, // block
+		{ cinematic_shot_custom_script_block_block_struct, 36 }, // block
+		{ cinematic_shot_frame_block_block_struct, 68 }, // block
+		{ cinematic_shot_frame_dynamic_block_block_struct, 36 }, // block
+		{ cinematic_shot_frame_constant_block_block_struct, 36 }, // block
+		{ cinematic_shot_extra_camera_block_block_struct, 20 }, // block
+		{ cinematic_extra_camera_shot_block_block_struct, 12 }, // block
+		{ cinematic_extra_camera_frame_block_block_struct, 72 }, // block
+		{ cinematic_transition_global_gain_block_block_struct, 8 }, // block
+		{ cinematic_transition_sound_class_gain_block_block_struct, 12 }, // block
+		{ cinematic_transition_sound_reference_block_block_struct, 16 }, // block
+		{ cinematic_transition_looping_sound_reference_block_block_struct, 16 }, // block
+		{ cinematic_transition_looping_sound_state_block_block_struct, 24 }, // block
+		{ collision_sphere_block_block_struct, 8 }, // block
+		{ cloth_vertices_block_block_struct, 20 }, // block
+		{ cloth_indices_block_block_struct, 2 }, // block
+		{ cloth_links_block_block_struct, 16 }, // block
+		{ commendationAggregator_block_struct, 40 }, // block
+		{ commendationRewardBlock_block_struct, 4 }, // block
+		{ commendationAggregatorDependent_struct_struct_definition, 8 },
+		{ collision_model_material_block_block_struct, 4 }, // block
+		{ collision_model_region_block_block_struct, 16 }, // block
+		{ collision_model_permutation_block_block_struct, 44 }, // block
+		{ collision_model_bsp_struct_struct_definition, 112 },
+		{ bsp3d_nodes_block_block_struct, 8 }, // block
+		{ bsp3d_kd_supdernodes_block_block_struct, 128 }, // block
+		{ planes_block_block_struct, 16 }, // block
+		{ collision_leaf_struct_struct_definition, 8 },
+		{ bsp2d_references_block_block_struct, 4 }, // block
+		{ bsp2d_nodes_block_block_struct, 16 }, // block
+		{ surfaces_block_block_struct, 12 }, // block
+		{ edges_block_block_struct, 12 }, // block
+		{ vertices_block_block_struct, 16 }, // block
+		{ collision_bsp_physics_block_block_struct, 176 }, // block
+		{ mopp_code_definition_block_block_struct, 64 }, // block
+		{ mopp_code_data_definition_block_block_struct, 1 }, // block
+		{ collision_model_pathfinding_sphere_block_block_struct, 20 }, // block
+		{ collision_model_node_block_block_struct, 12 }, // block
+		{ color_block_block_struct, 48 }, // block
+		{ commendationBlock_block_struct, 132 }, // block
+		{ purchase_prerequisite_grade_definition_block_block_struct, 8 }, // block
+		{ purchase_prerequisite_commendation_definition_block_block_struct, 8 }, // block
+		{ PurchasePrerequisitePurchasedAppearanceItemDefinitionBlock_block_struct, 4 }, // block
+		{ PurchasePrerequisitePurchasedLoadoutItemDefinitionBlock_block_struct, 4 }, // block
+		{ PurchasePrerequisitePurchasedOrdnanceItemDefinitionBlock_block_struct, 4 }, // block
+		{ purchase_prerequisites_unlockable_definition_block_block_struct, 4 }, // block
+		{ purchase_prerequisites_offer_definition_block_block_struct, 4 }, // block
+		{ commendationLevelBlock_block_struct, 24 }, // block
+		{ rewardDefinitionBlock_block_struct, 20 }, // block
+		{ rewardBlock_block_struct, 4 }, // block
+		{ CookiePurchaseFamilyAppearanceDefinitionBlock_block_struct, 40 }, // block
+		{ CookiePurchaseAppearanceDefinitionReferenceBlock_block_struct, 4 }, // block
+		{ CookiePurchaseFamilyLoadoutDefinitionBlock_block_struct, 40 }, // block
+		{ CookiePurchaseLoadoutDefinitionReferenceBlock_block_struct, 4 }, // block
+		{ CookiePurchaseFamilyOrdnanceDefinitionBlock_block_struct, 40 }, // block
+		{ CookiePurchaseOrdnanceDefinitionReferenceBlock_block_struct, 4 }, // block
+		{ CookiePurchaseAppearanceDefinitionBlock_block_struct, 320 }, // block
+		{ purchase_player_appearance_effect_model_permutation_block_block_struct, 8 }, // block
+		{ purchase_player_appearance_effect_non_model_permutation_block_block_struct, 8 }, // block
+		{ purchase_player_appearance_effect_visor_tint_block_block_struct, 4 }, // block
+		{ purchase_player_appearance_effect_emblem_index_block_block_struct, 1 }, // block
+		{ PurchasePlayerAppearancePoseBlock_block_struct, 4 }, // block
+		{ CookiePurchaseExternalUnlockableBlockAppearanceDefinition_block_struct, 12 }, // block
+		{ CookiePurchaseLoadoutDefinitionBlock_block_struct, 312 }, // block
+		{ purchase_player_item_block_block_struct, 12 }, // block
+		{ purchase_player_app_block_block_struct, 4 }, // block
+		{ purchase_player_loadout_slot_block_block_struct, 1 }, // block
+		{ purchase_player_app_mod_slot_block_block_struct, 2 }, // block
+		{ CookiePurchaseExternalUnlockableBlockLoadoutDefinition_block_struct, 12 }, // block
+		{ CookiePurchaseOrdnanceDefinitionBlock_block_struct, 284 }, // block
+		{ PurchasePlayerOrdnanceItemBlock_block_struct, 4 }, // block
+		{ PurchasePlayerOrdnanceSlotBlock_block_struct, 1 }, // block
+		{ CookiePurchaseExternalUnlockableBlockOrdnanceDefinition_block_struct, 12 }, // block
+		{ cheap_particle_type_block_block_struct, 84 }, // block
+		{ cheap_particle_bitmap_reference_block_block_struct, 16 }, // block
+		{ cheapParticleTurbulenceTypeBlock_block_struct, 36 }, // block
+		{ template_instantiation_block_definition_block_struct, 16 }, // block
+		{ component_definition_block_struct, 16 }, // block
+		{ component_index_block_definition_block_struct, 8 }, // block
+		{ overlay_definition_block_struct, 32 }, // block
+		{ component_properties_definition_block_struct, 88 }, // block
+		{ property_long_value_block_struct, 8 }, // block
+		{ property_real_value_block_struct, 8 }, // block
+		{ property_string_id_value_block_struct, 8 }, // block
+		{ propertyComponentPtrValue_block_struct, 12 }, // block
+		{ property_tag_reference_value_block_struct, 20 }, // block
+		{ property_text_value_block_struct, 260 }, // block
+		{ property_argb_color_value_block_struct, 20 }, // block
+		{ animation_definition_block_struct, 28 }, // block
+		{ animation_component_definition_block_struct, 32 }, // block
+		{ animation_component_real_property_block_struct, 24 }, // block
+		{ animation_property_keyframe_real_value_block_struct, 28 }, // block
+		{ animation_component_argb_color_property_block_struct, 24 }, // block
+		{ animation_property_keyframe_argb_color_value_block_struct, 40 }, // block
+		{ overlay_editor_only_definition_block_struct, 36 }, // block
+		{ component_editor_only_definition_block_struct, 16 }, // block
+		{ property_editor_only_definition_block_struct, 8 }, // block
+		{ animation_editor_only_definition_block_struct, 16 }, // block
+		{ property_binding_block_struct, 20 }, // block
+		{ binding_conversion_long_comparison_block_definition_block_struct, 16 }, // block
+		{ static_data_table_block_struct, 32 }, // block
+		{ static_data_column_block_struct, 8 }, // block
+		{ properties_struct_struct_definition, 84 },
+		{ expression_block_struct, 272 }, // block
+		{ expression_step_block_struct, 12 }, // block
+		{ encapsulatedProperties_block_struct, 16 }, // block
+		{ string_file_references_block_struct, 16 }, // block
+		{ decorator_set_instance_name_block_block_struct, 4 }, // block
+		{ global_decorator_type_struct_struct_definition, 100 },
+		{ decal_definition_block_block_struct, 124 }, // block
+		{ material_shader_parameter_block_block_struct, 168 }, // block
+		{ material_shader_function_parameter_block_block_struct, 44 }, // block
+		{ material_postprocess_block_block_struct, 156 }, // block
+		{ material_postprocess_texture_block_block_struct, 24 }, // block
+		{ real_vector4d_block$3_block_struct, 16 }, // block
+		{ int_block$3_block_struct, 4 }, // block
+		{ functionParameterBlock_block_struct, 4 }, // block
+		{ externParameterBlock_block_struct, 4 }, // block
+		{ detail_object_type_block_block_struct, 96 }, // block
+		{ one_dependency_block_definition_block_struct, 16 }, // block
+		{ damage_response_class_block_block_struct, 168 }, // block
+		{ damage_response_global_sound_effect_block_block_struct, 24 }, // block
+		{ area_control_block_block_struct, 76 }, // block
+		{ particle_emitter_boat_hull_group_block_block_struct, 4 }, // block
+		{ effect_locations_block_block_struct, 8 }, // block
+		{ effect_event_block_block_struct, 68 }, // block
+		{ effect_part_block_block_struct, 116 }, // block
+		{ effect_accelerations_block_block_struct, 20 }, // block
+		{ effect_looping_sound_block_block_struct, 20 }, // block
+		{ effect_conical_distribution_block_block_struct, 12 }, // block
+		{ effect_component_holdbacks_block_block_struct, 20 }, // block
+		{ effect_component_holdback_block_block_struct, 16 }, // block
+		{ effect_global_spawn_effects_block_block_struct, 64 }, // block
+		{ predicted_bitmaps_block_block_struct, 16 }, // block
+		{ optionalUnitCameraBlock_block_struct, 120 }, // block
+		{ equipmentAbilityDatum_block_struct, 572 }, // block
+		{ equipmentAbilityTypeMultiplayerPowerupBlock_block_struct, 4 }, // block
+		{ equipmentAbilityTypeSpawnerBlock_block_struct, 52 }, // block
+		{ equipmentAbilityTypeAiSpawnerBlock_block_struct, 36 }, // block
+		{ equipmentAbilityTypeProximityMineBlock_block_struct, 48 }, // block
+		{ equipmentAbilityTypeMotionTrackerNoiseBlock_block_struct, 20 }, // block
+		{ equipmentAbilityTypeInvincibilityBlock_block_struct, 128 }, // block
+		{ equipmentEffectWithThresholdBlock_block_struct, 24 }, // block
+		{ equipmentAbilityTypeTreeOfLifeBlock_block_struct, 12 }, // block
+		{ equipmentAbilityTypeShapeshifterBlock_block_struct, 12 }, // block
+		{ equipmentAbilityTypePlayerTraitFieldBlock_block_struct, 28 }, // block
+		{ equipmentAbilityTypeAiTraitFieldBlock_block_struct, 24 }, // block
+		{ aiEquipmentTraitsBlock_block_struct, 12 }, // block
+		{ aiEquipmentTraitAppearanceBlock_block_struct, 4 }, // block
+		{ equipmentAbilityTypeRepulsorFieldBlock_block_struct, 12 }, // block
+		{ equipmentAbilityTypeStasisFieldBlock_block_struct, 32 }, // block
+		{ equipmentAbilityTypeBallLightningBlock_block_struct, 32 }, // block
+		{ equipmentAbilityTypeDaddyBlock_block_struct, 96 }, // block
+		{ equipmentAbilityTypeLaserDesignationBlock_block_struct, 4 }, // block
+		{ equipmentAbilityTypeSuperJumpBlock_block_struct, 20 }, // block
+		{ equipmentAbilityTypeAmmoPackBlock_block_struct, 36 }, // block
+		{ equipmentAbilityTypePowerFistBlock_block_struct, 64 }, // block
+		{ equipmentAbilityTypeHealthPackBlock_block_struct, 20 }, // block
+		{ equipmentAbilityTypeJetPackBlock_block_struct, 112 }, // block
+		{ equipmentAbilityPartCowCatcherBlock_block_struct, 44 }, // block
+		{ equipmentAbilityTypeHologramBlock_block_struct, 100 }, // block
+		{ equipmentAbilityTypeSpecialWeaponBlock_block_struct, 16 }, // block
+		{ equipmentAbilityTypeSpecialMoveBlock_block_struct, 44 }, // block
+		{ equipmentAbilityTypeEngineerShieldsBlock_block_struct, 12 }, // block
+		{ equipmentAbilityTypeSprintBlock_block_struct, 1 }, // block
+		{ equipmentAbilityTypeTeleporterBlock_block_struct, 92 }, // block
+		{ equipmentAbilityTypeAutoTurretBlock_block_struct, 136 }, // block
+		{ equipmentAbilityTypeVisionModeBlock_block_struct, 44 }, // block
+		{ equipmentAbilityTypeShieldProjectorBlock_block_struct, 80 }, // block
+		{ equipmentAbilityTypeProjectileCollectorBlock_block_struct, 64 }, // block
+		{ equipmentAbilityTypeRemoteStrikeBlock_block_struct, 36 }, // block
+		{ equipmentAbilityTypeEquipmentHackerBlock_block_struct, 60 }, // block
+		{ equipmentHackerDrainLevel_block_struct, 8 }, // block
+		{ equipmentAbilityTypeRemoteVehicleBlock_block_struct, 40 }, // block
+		{ equipmentAbilityTypeSuicideBombBlock_block_struct, 32 }, // block
+		{ equipmentAbilityTypeActiveShieldBlock_block_struct, 1 }, // block
+		{ EquipmentSoundRTPCBlock_block_struct, 16 }, // block
+		{ EquipmentSoundSweetenerBlock_block_struct, 28 }, // block
+		{ firefightWaveTemplatesBlock_struct_struct_definition, 20 },
+		{ game_engine_miscellaneous_options_block_block_struct, 8 }, // block
+		{ game_engine_prototype_options_block_block_struct, 6 }, // block
+		{ game_engine_respawn_options_block_block_struct, 20 }, // block
+		{ game_engine_social_options_block_block_struct, 4 }, // block
+		{ game_engine_map_override_options_block_block_struct, 60 }, // block
+		{ game_engine_team_options_block_block_struct, 196 }, // block
+		{ game_engine_loadout_options_block_block_struct, 16 }, // block
+		{ game_engine_loadout_palette_entry_block_block_struct, 4 }, // block
+		{ gameEngineOrdnanceOptionsBlock_block_struct, 1 }, // block
+		{ GameEngineFirefightPlayerGoalPropertiesBlock_block_struct, 104 }, // block
+		{ GameEngineFirefightWavePropertiesBlock_block_struct, 76 }, // block
+		{ fluid_dynamics_squirter_block_block_struct, 56 }, // block
+		{ fluid_dynamics_inflow_block_block_struct, 16 }, // block
+		{ fluid_dynamics_outflow_block_block_struct, 4 }, // block
+		{ fluid_dynamics_obstacle_block_block_struct, 4 }, // block
+		{ soloFogFunctionBlock_block_struct, 20 }, // block
+		{ material_effect_block_v2_block_struct, 36 }, // block
+		{ old_material_effect_material_block_block_struct, 44 }, // block
+		{ material_effect_material_block_block_struct, 44 }, // block
+		{ forge_color_block_block_struct, 16 }, // block
+		{ formation_primitive_definition_block_struct, 36 }, // block
+		{ formation_point_definition_block_struct, 8 }, // block
+		{ animation_graph_sound_reference_block_block_struct, 40 }, // block
+		{ animation_graph_effect_reference_block_block_struct, 40 }, // block
+		{ import_animation_event_block_block_struct, 68 }, // block
+		{ import_frame_event_block_block_struct, 20 }, // block
+		{ animation_sound_event_block_extended_block_struct, 12 }, // block
+		{ animation_effects_event_block_extended_block_struct, 16 }, // block
+		{ animation_dialogue_event_block_extended_block_struct, 8 }, // block
+		{ animation_script_event_block_extended_block_struct, 8 }, // block
+		{ fx_property_block_block_struct, 876 }, // block
+		{ fx_property_default_block_block_struct, 4 }, // block
+		{ game_completion_rewards_difficulty_block_block_struct, 60 }, // block
+		{ game_completion_rewards_definition_block_block_struct, 32 }, // block
+		{ game_completion_rewards_falloff_point_block_block_struct, 4 }, // block
+		{ game_completion_rewards_multiplayer_block_block_struct, 60 }, // block
+		{ game_engine_event_block_block_struct, 88 }, // block
+		{ sound_response_definition_block_block_struct, 24 }, // block
+		{ GameGlobalsGrenadeBlock_block_struct, 120 }, // block
+		{ GameGlobalsOrdnanceBlock_block_struct, 76 }, // block
+		{ OrdnanceRemappingVariantBlock_block_struct, 48 }, // block
+		{ OrdnanceRemappingBlock_block_struct, 8 }, // block
+		{ giant_buckle_parameters_block_block_struct, 92 }, // block
+		{ global_shader_entry_point_block_block_struct, 16 }, // block
+		{ global_shader_category_dependency_block_struct, 16 }, // block
+		{ global_shader_option_dependency_block_struct, 4 }, // block
+		{ compiled_pixel_shader_block_block_struct, 88 }, // block
+		{ global_vertex_shader_vertex_types_block_block_struct, 12 }, // block
+		{ compiled_vertex_shader_block_block_struct, 88 }, // block
+		{ gameMedalTiers_block_struct, 12 }, // block
+		{ game_medal_block_block_struct, 20 }, // block
+		{ variant_setting_edit_reference_block_block_struct, 20 }, // block
+		{ variant_option_block_block_struct, 60 }, // block
+		{ game_performance_throttle_entries_block_block_struct, 32 }, // block
+		{ havok_collision_filter_group_block_block_struct, 4 }, // block
+		{ model_variant_block_block_struct, 108 }, // block
+		{ model_variant_region_block_block_struct, 24 }, // block
+		{ model_variant_permutation_block_block_struct, 36 }, // block
+		{ model_variant_state_block_block_struct, 12 }, // block
+		{ model_variant_object_block_block_struct, 36 }, // block
+		{ model_variant_muted_node_block_block_struct, 4 }, // block
+		{ region_name_block_block_struct, 4 }, // block
+		{ global_model_instance_group_block_block_struct, 24 }, // block
+		{ model_instance_group_member_block_block_struct, 28 }, // block
+		{ model_material_block_new_block_struct, 20 }, // block
+		{ global_damage_info_block_block_struct, 268 }, // block
+		{ global_damage_section_block_block_struct, 68 }, // block
+		{ instantaneous_damage_repsonse_block_block_struct, 152 }, // block
+		{ global_damage_nodes_block_block_struct, 16 }, // block
+		{ damage_seat_info_block_block_struct, 32 }, // block
+		{ damage_seat_region_setting_block_block_struct, 44 }, // block
+		{ damage_constraint_info_block_block_struct, 20 }, // block
+		{ new_global_damage_section_block_block_struct, 180 }, // block
+		{ damage_section_recharge_speed_curve_block_block_struct, 20 }, // block
+		{ damage_section_segmented_recharge_fraction_block_struct, 4 }, // block
+		{ new_instantaneous_damage_response_block_block_struct, 180 }, // block
+		{ damage_response_region_transition_block_block_struct, 8 }, // block
+		{ damage_transfer_block_block_struct, 16 }, // block
+		{ seat_ejection_block_block_struct, 4 }, // block
+		{ damage_section_rendering_paramters_block_struct, 32 }, // block
+		{ model_target_block_old_block_struct, 36 }, // block
+		{ model_target_block_new_block_struct, 40 }, // block
+		{ model_region_block_block_struct, 20 }, // block
+		{ model_permutation_block_block_struct, 8 }, // block
+		{ model_node_block_block_struct, 92 }, // block
+		{ global_scenario_load_parameters_block_block_struct, 68 }, // block
+		{ model_game_mode_render_model_override_block_struct, 20 }, // block
+		{ model_self_shadow_region_cast_override_block_block_struct, 8 }, // block
+		{ model_self_shadow_region_receive_override_block_block_struct, 8 }, // block
+		{ model_occlusion_sphere_block_block_struct, 20 }, // block
+		{ hs_source_reference_block_block_struct, 16 }, // block
+		{ hs_scripts_block_block_struct, 32 }, // block
+		{ hs_script_parameters_block_block_struct, 36 }, // block
+		{ hs_globals_block_block_struct, 12 }, // block
+		{ HSInstancedVariablesBlock_block_struct, 12 }, // block
+		{ hs_unit_seat_block_block_struct, 12 }, // block
+		{ hs_syntax_datum_block_block_struct, 28 }, // block
+		{ HSImportManifestBlock_block_struct, 28 }, // block
+		{ HSImportManifestEntryBlock_block_struct, 12 }, // block
+		{ incident_definition_block_block_struct, 84 }, // block
+		{ suppressed_incident_block_block_struct, 8 }, // block
+		{ SuppressedIncidentBlockReferenceDefinition_block_struct, 16 }, // block
+		{ specialized_incident_block_block_struct, 100 }, // block
+		{ specialized_incident_kill_implement_block_block_struct, 4 }, // block
+		{ specialized_incident_object_properties_block_block_struct, 52 }, // block
+		{ specialized_incident_object_riding_in_vehicle_properties_block_block_struct, 4 }, // block
+		{ specialized_incident_special_kill_type_block_block_struct, 4 }, // block
+		{ specializedIncidentGameOverBlock_block_struct, 8 }, // block
+		{ specializedIncidentRandomOrdnanceBlock_block_struct, 4 }, // block
+		{ specializedIncidentCustomDataFilterBlock_block_struct, 8 }, // block
+		{ specializedIncidentDistanceFilterBlock_block_struct, 8 }, // block
+		{ incident_accumulator_block_block_struct, 16 }, // block
+		{ incident_accumulator_child_incident_block_block_struct, 20 }, // block
+		{ incident_sum_accumulator_block_block_struct, 20 }, // block
+		{ incident_sum_accumulator_child_incident_block_block_struct, 12 }, // block
+		{ game_incident_response_block_block_struct, 84 }, // block
+		{ game_incident_daily_challenge_to_increment_block_block_struct, 4 }, // block
+		{ specialized_incident_fanfare_block_block_struct, 52 }, // block
+		{ instance_imposter_block_block_struct, 4 }, // block
+		{ instance_imposter_checksum_block_block_struct, 76 }, // block
+		{ imposter_mode_node_block_block_struct, 8 }, // block
+		{ render_model_region_block_block_struct, 16 }, // block
+		{ render_model_permutation_block_block_struct, 28 }, // block
+		{ InfinityMissionSeasonImagesDefinition_block_struct, 32 }, // block
+		{ InfinityMissionImagesDefinition_block_struct, 64 }, // block
+		{ animation_usage_block_block_struct, 4 }, // block
+		{ animation_node_mask_block_block_struct, 48 }, // block
+		{ animation_node_mask_entry_block_block_struct, 4 }, // block
+		{ animation_function_block_block_struct, 24 }, // block
+		{ model_animation_variant_block_block_struct, 20 }, // block
+		{ mode_or_stance_alias_block_block_struct, 8 }, // block
+		{ animation_graph_node_block_block_struct, 44 }, // block
+		{ animation_blend_screen_block_block_struct, 28 }, // block
+		{ foot_tracking_member_block_block_struct, 28 }, // block
+		{ animation_pool_block_block_struct, 64 }, // block
+		{ shared_model_animation_block_block_struct, 220 }, // block
+		{ animation_frame_event_block_block_struct, 4 }, // block
+		{ animation_sound_event_block_block_struct, 8 }, // block
+		{ animation_effect_event_block_block_struct, 12 }, // block
+		{ animation_dialogue_event_block_block_struct, 4 }, // block
+		{ animation_script_event_block_block_struct, 8 }, // block
+		{ object_space_node_data_block_block_struct, 28 }, // block
+		{ foot_tracking_block_block_struct, 16 }, // block
+		{ foot_lock_cycle_block_block_struct, 20 }, // block
+		{ object_space_offset_node_block_block_struct, 4 }, // block
+		{ fik_anchor_node_block_block_struct, 4 }, // block
+		{ animation_ik_chain_events_struct_struct_definition, 28 },
+		{ animation_ik_chain_proxies_struct_struct_definition, 12 },
+		{ animation_facial_wrinkle_events_struct_struct_definition, 20 },
+		{ animation_extended_events_struct_struct_definition, 16 },
+		{ animation_object_functions_struct_struct_definition, 32 },
+		{ new_animation_blend_screen_block_block_struct, 44 }, // block
+		{ new_animation_function_overlay_block_block_struct, 24 }, // block
+		{ overlay_group_definition_block_block_struct, 28 }, // block
+		{ blend_screen_item_definition_block_block_struct, 8 }, // block
+		{ function_overlay_item_definition_block_block_struct, 4 }, // block
+		{ animation_gait_block_block_struct, 20 }, // block
+		{ animation_gait_group_block_block_struct, 16 }, // block
+		{ animation_gait_item_block_block_struct, 4 }, // block
+		{ animation_ik_block_block_struct, 28 }, // block
+		{ animation_ik_set_block_struct, 16 }, // block
+		{ animation_ik_set_item_block_struct, 4 }, // block
+		{ animation_ik_chain_block_block_struct, 16 }, // block
+		{ g_compositeTag_struct_struct_definition, 60 },
+		{ CompositeAxisDefinition_block_struct, 60 }, // block
+		{ CompositeDeadZoneDefinition_block_struct, 28 }, // block
+		{ CompositeEntryDefinition_block_struct, 24 }, // block
+		{ CompositeEntryValueDefinition_block_struct, 4 }, // block
+		{ CompositePhaseSetDefinition_block_struct, 132 }, // block
+		{ SyncKeyBlock_block_struct, 2 }, // block
+		{ StringBlock_block_struct, 4 }, // block
+		{ animation_mode_block_block_struct, 48 }, // block
+		{ weapon_class_block_block_struct, 56 }, // block
+		{ weapon_type_block_block_struct, 20 }, // block
+		{ animation_set_block_block_struct, 72 }, // block
+		{ animation_entry_block_block_struct, 12 }, // block
+		{ damage_animation_block_block_struct, 16 }, // block
+		{ damage_direction_block_block_struct, 12 }, // block
+		{ damage_region_block_block_struct, 4 }, // block
+		{ animation_transition_source_block_block_struct, 16 }, // block
+		{ animation_transition_destination_block_block_struct, 12 }, // block
+		{ animation_velocity_boundaries_block_block_struct, 32 }, // block
+		{ animation_ik_block_v1_block_struct, 8 }, // block
+		{ animation_ranged_action_block_block_struct, 36 }, // block
+		{ ranged_animation_entry_block_block_struct, 16 }, // block
+		{ triangulation_entry_block_block_struct, 24 }, // block
+		{ triangulation_point_block_block_struct, 8 }, // block
+		{ triangulation_triangle_block_block_struct, 8 }, // block
+		{ animation_sync_action_group_block_block_struct, 16 }, // block
+		{ animation_sync_action_block_block_struct, 28 }, // block
+		{ animation_sync_action_same_type_participant_block_struct, 60 }, // block
+		{ animation_sync_action_other_type_participant_block_struct, 20 }, // block
+		{ foot_tracking_defaults_block_struct, 4 }, // block
+		{ vehicle_suspension_block_block_struct, 48 }, // block
+		{ function_overlay_animation_block_block_struct, 20 }, // block
+		{ inherited_animation_block_block_struct, 48 }, // block
+		{ inherited_animation_node_map_block_block_struct, 2 }, // block
+		{ inherited_animation_node_map_flag_block_block_struct, 4 }, // block
+		{ weapon_class_lookup_block_block_struct, 8 }, // block
+		{ additional_node_data_block_block_struct, 60 }, // block
+		{ model_animation_tag_resource_group_block_struct, 12 }, // block
+		{ sandbox_property_allowed_values_reference_block_block_struct, 20 }, // block
+		{ text_value_pair_reference_block_block_struct, 24 }, // block
+		{ custom_damage_response_label_block_block_struct, 4 }, // block
+		{ damage_effect_sound_block_block_struct, 20 }, // block
+		{ vertexBlock_block_struct, 12 }, // block
+		{ lens_flare_reflection_block_block_struct, 148 }, // block
+		{ lens_flare_scalar_animation_block_block_struct, 20 }, // block
+		{ lens_flare_color_animation_block_block_struct, 36 }, // block
+		{ loadout_definition_struct_struct_definition, 36 },
+		{ loadout_palette_definition_block_block_struct, 16 }, // block
+		{ loadout_index_block_block_struct, 4 }, // block
+		{ loadout_name_block_block_struct, 4 }, // block
+		{ loadout_definition_struct_struct_definition, 36 },
+		{ location_name_block_block_struct, 4 }, // block
+		{ directionalLightRigBlock_block_struct, 32 }, // block
+		{ looping_sound_track_block_block_struct, 176 }, // block
+		{ looping_sound_detail_block_block_struct, 72 }, // block
+		{ leaf_type_block_block_struct, 60 }, // block
+		{ light_volume_definition_block_block_struct, 424 }, // block
+		{ light_volume_precompiled_vert_block_block_struct, 8 }, // block
+		{ havok_cleanup_resources_block_block_struct, 16 }, // block
+		{ sound_globals_block_block_struct, 184 }, // block
+		{ StreamingPackBlock_block_struct, 36 }, // block
+		{ campaign_unspatialized_sounds_block_block_struct, 16 }, // block
+		{ game_globals_damage_block_block_struct, 12 }, // block
+		{ damage_group_block_block_struct, 16 }, // block
+		{ armor_modifier_block_block_struct, 8 }, // block
+		{ sound_block$2_block_struct, 16 }, // block
+		{ camera_block_block_struct, 216 }, // block
+		{ controller_input_block_block_struct, 8 }, // block
+		{ player_control_block_block_struct, 364 }, // block
+		{ controller_mapping_reference_block_block_struct, 16 }, // block
+		{ difficulty_block_block_struct, 644 }, // block
+		{ coop_difficulty_block_block_struct, 132 }, // block
+		{ soft_ceiling_globals_block_block_struct, 28 }, // block
+		{ interface_tag_references_block_struct, 304 }, // block
+		{ cheat_weapons_block_block_struct, 16 }, // block
+		{ cheat_powerups_block_block_struct, 16 }, // block
+		{ player_information_block_block_struct, 220 }, // block
+		{ player_momentum_data_block_block_struct, 56 }, // block
+		{ player_representation_block_block_struct, 128 }, // block
+		{ firstPersonpHiddenBodyRegionsBlock_block_struct, 8 }, // block
+		{ damage_globals_block_block_struct, 212 }, // block
+		{ shield_boost_block_block_struct, 12 }, // block
+		{ materials_block_block_struct, 424 }, // block
+		{ object_type_drag_properties_block_block_struct, 16 }, // block
+		{ underwater_proxies_block_block_struct, 12 }, // block
+		{ multiplayer_color_block_block_struct, 12 }, // block
+		{ visor_color_block_block_struct, 28 }, // block
+		{ cinematics_globals_block_block_struct, 76 }, // block
+		{ cinematic_characters_block_block_struct, 28 }, // block
+		{ campaign_metagame_globals_block_block_struct, 56 }, // block
+		{ campaign_metagame_style_type_block_block_struct, 8 }, // block
+		{ campaign_metagame_difficulty_scale_block_block_struct, 4 }, // block
+		{ campaign_metagame_skull_block_block_struct, 4 }, // block
+		{ active_camo_globals_block_block_struct, 160 }, // block
+		{ active_camo_level_definition_block_block_struct, 36 }, // block
+		{ garbage_collection_block_block_struct, 36 }, // block
+		{ global_camera_impulse_block_block_struct, 20 }, // block
+		{ runtime_materials_block_block_struct, 424 }, // block
+		{ hologramLightingGlobalsBlock_block_struct, 52 }, // block
+		{ material_shader_source_file_block_block_struct, 276 }, // block
+		{ compiled_effects_block_block_struct, 20 }, // block
+		{ material_vertex_shader_entry_point_block_block_struct, 12 }, // block
+		{ compiled_vertex_shader_refererence_block_block_struct, 8 }, // block
+		{ compiled_pixel_shader_refererence_block_block_struct, 8 }, // block
+		{ mission_dialogue_lines_block_block_struct, 20 }, // block
+		{ mission_dialogue_variants_block_block_struct, 24 }, // block
+		{ modelDissolvePerRegionTimeOffsetBlock_block_struct, 8 }, // block
+		{ medalChallengeAggregator_block_struct, 24 }, // block
+		{ medalAggregatorEntry_block_struct, 4 }, // block
+		{ medalCommendationAggregator_block_struct, 24 }, // block
+		{ muffin_permutation_name_block_block_struct, 4 }, // block
+		{ muffin_marker_block_block_struct, 8 }, // block
+		{ global_muffin_type_struct_struct_definition, 112 },
+		{ multiplayerEffectsBlock_block_struct, 20 }, // block
+		{ emblem_bitmap_list_block_struct, 12 }, // block
+		{ emblem_shape_list_block_struct, 48 }, // block
+		{ emblem_front_list_block_struct, 184 }, // block
+		{ emblem_back_list_block_struct, 92 }, // block
+		{ emblem_runtime_front_list_block_struct, 228 }, // block
+		{ emblem_runtime_back_list_block_struct, 112 }, // block
+		{ main_menu_voiceover_lines_block_block_struct, 16 }, // block
+		{ global_render_model_instance_placement_block_block_struct, 60 }, // block
+		{ render_model_node_block_block_struct, 112 }, // block
+		{ render_model_marker_group_block_block_struct, 16 }, // block
+		{ render_model_marker_block_block_struct, 48 }, // block
+		{ global_geometry_material_block_block_struct, 44 }, // block
+		{ instance_node_map_mapping_block_block_struct, 2 }, // block
+		{ volume_samples_block_block_struct, 336 }, // block
+		{ default_node_orientations_block_block_struct, 32 }, // block
+		{ RenderModelBoneGroupBlock_block_struct, 16 }, // block
+		{ RenderModelNodeIndexBlock_block_struct, 2 }, // block
+		{ multiplayer_object_type_block_block_struct, 20 }, // block
+		{ multiplayer_object_collection_struct_struct_definition, 28 },
+		{ multiplayer_object_collection_struct_struct_definition, 28 },
+		{ multiplayer_object_collection_struct_struct_definition, 28 },
+		{ multiplayer_object_collection_struct_struct_definition, 28 },
+		{ multiplayer_weapon_remap_table_block_block_struct, 16 }, // block
+		{ multiplayer_weapon_remap_table_entry_block_block_struct, 8 }, // block
+		{ multiplayer_vehicle_remap_table_block_block_struct, 16 }, // block
+		{ multiplayer_vehicle_remap_table_entry_block_block_struct, 8 }, // block
+		{ multiplayer_equipment_remap_table_block_block_struct, 16 }, // block
+		{ multiplayer_equipment_remap_table_entry_block_block_struct, 8 }, // block
+		{ scenario_description_block_block_struct, 68 }, // block
+		{ megalo_string_id_block_block_struct, 4 }, // block
+		{ megalo_string_id_to_sprite_index_block_block_struct, 8 }, // block
+		{ compiled_shader_hash_block_block_struct, 4 }, // block
+		{ vertexShaderUniqueBindingInfoBlock_block_struct, 12 }, // block
+		{ multiplayer_universal_block_block_struct, 144 }, // block
+		{ teamDefinitionBlock_block_struct, 36 }, // block
+		{ global_team_role_block_block_struct, 20 }, // block
+		{ player_role_block_block_struct, 148 }, // block
+		{ requisition_constants_block_block_struct, 104 }, // block
+		{ requisition_palette_block_block_struct, 24 }, // block
+		{ scenario_profiles_block_block_struct, 124 }, // block
+		{ multiplayer_runtime_block_block_struct, 392 }, // block
+		{ sounds_block_block_struct, 16 }, // block
+		{ looping_sounds_block_block_struct, 16 }, // block
+		{ multiplayer_constants_block_block_struct, 104 }, // block
+		{ game_engine_status_response_block_block_struct, 36 }, // block
+		{ mux_generator_material_block_block_struct, 20 }, // block
+		{ NarrativeFlagDefinitionBlock_block_struct, 8 }, // block
+		{ hologramLightingBlock_struct_struct_definition, 96 },
+		{ cinematic_dynamic_light_block_block_struct, 32 }, // block
+		{ polyartCameraBlock_block_struct, 28 }, // block
+		{ polyartVertexBlock_block_struct, 12 }, // block
+		{ polyartIndexBlock_block_struct, 2 }, // block
+		{ vertexBuffersBlock_struct_struct_definition, 12 },
+		{ indexBuffersBlock_struct_struct_definition, 12 },
+		{ tag_patch_block_block_struct, 32 }, // block
+		{ PCAImportedFrameDatablock_block_struct, 20 }, // block
+		{ PCAImportedMeshDataBlock_block_struct, 100 }, // block
+		{ PCAImportedAnimationDataBlock_block_struct, 28 }, // block
+		{ pgcr_enemy_to_category_list_block_block_struct, 32 }, // block
+		{ pgcr_player_to_category_entry_block_block_struct, 4 }, // block
+		{ pgcr_enemy_to_category_entry_block_block_struct, 4 }, // block
+		{ pgcr_damage_type_image_block_block_struct, 28 }, // block
+		{ particle_emitter_custom_point_block_block_struct, 10 }, // block
+		{ playerEnlistmentDefinitionBlock_block_struct, 60 }, // block
+		{ player_grade_definition_block_block_struct, 28 }, // block
+		{ performane_throttle_block_block_struct, 68 }, // block
+		{ performance_template_actor_block_block_struct, 64 }, // block
+		{ scenario_performance_line_block_block_struct, 100 }, // block
+		{ scenario_performance_line_script_fragment_block_block_struct, 516 }, // block
+		{ scenario_performance_line_point_interaction_block_block_struct, 16 }, // block
+		{ scenario_performance_line_animation_block_block_struct, 28 }, // block
+		{ scenario_performance_line_sync_action_block_block_struct, 24 }, // block
+		{ scenario_performance_line_sync_action_actor_block_block_struct, 4 }, // block
+		{ scenario_performance_line_scenery_sync_action_block_block_struct, 32 }, // block
+		{ scenario_performance_line_dialog_block_block_struct, 8 }, // block
+		{ scenario_performance_line_sound_block_block_struct, 24 }, // block
+		{ performance_template_point_block_block_struct, 24 }, // block
+		{ pathfinding_data_block_block_struct, 80 }, // block
+		{ FaceUserDataBlock_block_struct, 12 }, // block
+		{ MobileNavMeshBlock_block_struct, 80 }, // block
+		{ NavVolumeBlock_block_struct, 32 }, // block
+		{ NavClimbBlock_block_struct, 80 }, // block
+		{ user_edge_block_block_struct, 80 }, // block
+		{ user_hint_block_block_struct, 144 }, // block
+		{ user_hint_line_segment_block_block_struct, 44 }, // block
+		{ user_hint_parallelogram_block_block_struct, 88 }, // block
+		{ user_hint_jump_block_block_struct, 32 }, // block
+		{ hint_vertex_block_block_struct, 12 }, // block
+		{ user_hint_climb_block_block_struct, 32 }, // block
+		{ user_hint_well_block_block_struct, 16 }, // block
+		{ user_hint_well_point_block_block_struct, 32 }, // block
+		{ user_hint_flight_block_block_struct, 12 }, // block
+		{ user_hint_flight_point_block_block_struct, 12 }, // block
+		{ user_hint_volume_avoidance_struct_struct_definition, 44 },
+		{ user_hint_spline_block_block_struct, 40 }, // block
+		{ user_hint_spline_control_point_block_block_struct, 32 }, // block
+		{ user_hint_spline_intersect_point_block_block_struct, 28 }, // block
+		{ user_hint_cookie_cutter_block_block_struct, 52 }, // block
+		{ user_hint_sector_point_block_block_struct, 28 }, // block
+		{ hint_object_id_block_block_struct, 8 }, // block
+		{ user_hint_navmesh_area_block_block_struct, 72 }, // block
+		{ user_hint_giant_block_block_struct, 24 }, // block
+		{ user_hint_giant_sector_block_block_struct, 12 }, // block
+		{ user_hint_giant_rail_block_block_struct, 4 }, // block
+		{ user_hint_flood_block_block_struct, 12 }, // block
+		{ user_hint_flood_sector_block_block_struct, 12 }, // block
+		{ physics_model_damped_spring_motor_block_block_struct, 24 }, // block
+		{ physics_model_position_motor_block_block_struct, 32 }, // block
+		{ phantom_types_block_block_struct, 116 }, // block
+		{ physics_model_powered_chains_block_block_struct, 24 }, // block
+		{ physics_model_powered_chain_nodes_block_block_struct, 2 }, // block
+		{ physics_model_powered_chain_constraints_block_block_struct, 16 }, // block
+		{ physics_model_node_constraint_edge_block_block_struct, 28 }, // block
+		{ physics_model_constraint_edge_constraint_block_block_struct, 36 }, // block
+		{ physics_model_ragdoll_motors_block_block_struct, 12 }, // block
+		{ physics_model_limited_hinge_motors_block_block_struct, 4 }, // block
+		{ rigid_bodies_block_block_struct, 192 }, // block
+		{ materials_block$3_block_struct, 16 }, // block
+		{ multi_spheres_block_block_struct, 192 }, // block
+		{ boxes_block_block_struct, 176 }, // block
+		{ triangles_block_block_struct, 128 }, // block
+		{ polyhedra_block_block_struct, 144 }, // block
+		{ polyhedron_four_vectors_block_block_struct, 48 }, // block
+		{ polyhedron_plane_equations_block_block_struct, 16 }, // block
+		{ mass_distributions_block_block_struct, 64 }, // block
+		{ mopps_block_block_struct, 80 }, // block
+		{ hinge_constraints_block_block_struct, 120 }, // block
+		{ ragdoll_constraints_block_block_struct, 148 }, // block
+		{ regions_block_block_struct, 16 }, // block
+		{ permutations_block_block_struct, 16 }, // block
+		{ rigid_body_indices_block_block_struct, 2 }, // block
+		{ nodes_block_block_struct, 12 }, // block
+		{ point_to_path_curve_block_block_struct, 20 }, // block
+		{ point_to_path_curve_point_block_block_struct, 16 }, // block
+		{ limited_hinge_constraints_block_block_struct, 132 }, // block
+		{ ball_and_socket_constraints_block_block_struct, 120 }, // block
+		{ stiff_spring_constraints_block_block_struct, 124 }, // block
+		{ prismatic_constraints_block_block_struct, 132 }, // block
+		{ phantoms_block_block_struct, 44 }, // block
+		{ RigidBodySerializedShapesBlock_block_struct, 12 }, // block
+		{ MoppSerializedHavokDataBlock_block_struct, 80 }, // block
+		{ pixel_entry_point_block_block_struct, 2 }, // block
+		{ cache_file_codec_identifier_block_block_struct, 16 }, // block
+		{ cache_file_shared_file_block_block_struct, 264 }, // block
+		{ cache_file_resource_page_struct_struct_definition, 88 },
+		{ cache_file_resource_streaming_subpage_table_block_block_struct, 16 }, // block
+		{ cache_file_resource_streaming_subpage_block_block_struct, 8 }, // block
+		{ cache_file_resource_section_block_block_struct, 24 }, // block
+		{ customized_model_selection_block_block_struct, 20 }, // block
+		{ customized_model_player_bits_block_block_struct, 12 }, // block
+		{ gpu_variants_block_block_struct, 16 }, // block
+		{ gui_portrait_pose_block_block_struct, 16 }, // block
+		{ old_projectile_material_response_block_block_struct, 60 }, // block
+		{ projectile_material_response_block_block_struct, 52 }, // block
+		{ brute_grenade_block_block_struct, 48 }, // block
+		{ fire_bomb_grenade_block_block_struct, 4 }, // block
+		{ conical_projection_block_block_struct, 12 }, // block
+		{ ProjectileSoundRTPCBlock_block_struct, 12 }, // block
+		{ attachment_block_block_struct, 24 }, // block
+		{ gpu_sprite_block_block_struct, 16 }, // block
+		{ default_textures_refs_block_block_struct, 20 }, // block
+		{ material_textures_refs_block_block_struct, 16 }, // block
+		{ explicit_shader_refs_block_block_struct, 36 }, // block
+		{ render_method_category_block_block_struct, 24 }, // block
+		{ render_method_options_block_block_struct, 28 }, // block
+		{ render_method_entry_points_block_block_struct, 16 }, // block
+		{ render_method_pass_block_block_struct, 28 }, // block
+		{ render_method_pass_category_dependencies_block_struct, 2 }, // block
+		{ vertex_types_block_block_struct, 4 }, // block
+		{ render_method_option_parameter_block_block_struct, 96 }, // block
+		{ render_method_template_pass_block_block_struct, 28 }, // block
+		{ render_method_template_constant_table_block_block_struct, 4 }, // block
+		{ render_method_template_platform_block_block_struct, 120 }, // block
+		{ scenario_lightmap_bsp_data_reference_block_block_struct, 32 }, // block
+		{ spring_linear_acceleration_block_block_struct, 56 }, // block
+		{ SoundBankBlock_block_struct, 4 }, // block
+		{ structure_seam_mapping_block_block_struct, 40 }, // block
+		{ structure_seam_edge_mapping_block_block_struct, 4 }, // block
+		{ structure_seam_cluster_mapping_block_block_struct, 16 }, // block
+		{ structure_edge_to_seam_edge_mapping_block_block_struct, 4 }, // block
+		{ structure_collision_materials_block_block_struct, 28 }, // block
+		{ structure_bsp_leaf_block_block_struct, 1 }, // block
+		{ structure_super_node_aabbs_block_block_struct, 24 }, // block
+		{ super_node_mappings_block_block_struct, 20 }, // block
+		{ super_node_recursable_masks_block_block_struct, 2 }, // block
+		{ structure_super_node_traversal_geometry_block_block_struct, 24 }, // block
+		{ structure_super_node_traversal_geometry_indices_block_block_struct, 2 }, // block
+		{ collision_kd_hierarchy_static_hash_table_data_block_block_struct, 16 }, // block
+		{ collision_kd_hierarchy_static_hash_table_short_block_block_struct, 2 }, // block
+		{ collision_kd_hierarchy_static_nodes_block_block_struct, 32 }, // block
+		{ collision_kd_hierarchy_static_hash_table_headers_block_block_struct, 16 }, // block
+		{ collision_kd_hierarchy_static_in_use_masks_block_block_struct, 4 }, // block
+		{ cluster_table_block_block_struct, 12 }, // block
+		{ super_node_mappings_block$3_block_struct, 64 }, // block
+		{ structure_surface_block_block_struct, 8 }, // block
+		{ structure_surface_to_triangle_mapping_block_block_struct, 4 }, // block
+		{ structure_bsp_cluster_portal_block_block_struct, 80 }, // block
+		{ structure_bsp_cluster_portal_vertex_block_block_struct, 12 }, // block
+		{ structure_bsp_detail_object_data_block_block_struct, 52 }, // block
+		{ global_detail_object_cells_block_block_struct, 32 }, // block
+		{ global_detail_object_block_block_struct, 6 }, // block
+		{ global_detail_object_counts_block_block_struct, 2 }, // block
+		{ global_z_reference_vector_block_block_struct, 16 }, // block
+		{ structure_bsp_cluster_block_block_struct, 140 }, // block
+		{ structure_bsp_cluster_portal_index_block_block_struct, 2 }, // block
+		{ seam_indices_block_definition_block_struct, 1 }, // block
+		{ decorator_runtime_cluster_block_block_struct, 48 }, // block
+		{ cheap_light_marker_ref_block_block_struct, 4 }, // block
+		{ pvs_bound_object_identifiers_block_block_struct, 8 }, // block
+		{ pvs_bound_object_references_block_block_struct, 4 }, // block
+		{ structure_cluster_cubemap_block_struct, 16 }, // block
+		{ cubemap_reference_points_block_block_struct, 16 }, // block
+		{ structure_material_lighting_info_block_block_struct, 40 }, // block
+		{ structure_bsp_sky_owner_cluster_block_block_struct, 2 }, // block
+		{ structure_bsp_conveyor_surface_block_block_struct, 24 }, // block
+		{ breakable_surface_set_block_block_struct, 32 }, // block
+		{ structure_cookie_cutter_definition_block_struct, 108 }, // block
+		{ scenario_acoustics_palette_block_definition_struct_struct_definition, 152 },
+		{ structure_bsp_marker_block_block_struct, 64 }, // block
+		{ structure_bsp_marker_light_palette_block_struct, 16 }, // block
+		{ structure_bsp_marker_light_index_block_struct, 2 }, // block
+		{ structure_bsp_runtime_decal_block_block_struct, 60 }, // block
+		{ scenarioBspReferenceBlock_block_struct, 16 }, // block
+		{ structure_bsp_environment_object_palette_block_block_struct, 36 }, // block
+		{ structure_bsp_environment_object_block_block_struct, 84 }, // block
+		{ global_map_leaf_block_block_struct, 24 }, // block
+		{ map_leaf_face_block_block_struct, 16 }, // block
+		{ map_leaf_face_vertex_block_block_struct, 12 }, // block
+		{ map_leaf_connection_index_block_block_struct, 4 }, // block
+		{ global_leaf_connection_block_block_struct, 28 }, // block
+		{ leaf_connection_vertex_block_block_struct, 12 }, // block
+		{ structure_instance_cluster_definition_block_struct, 16 }, // block
+		{ index_list_block_block_struct, 2 }, // block
+		{ structure_instance_group_definition_block_struct, 44 }, // block
+		{ structure_bsp_instanced_geometry_instances_block_block_struct, 408 }, // block
+		{ structure_bsp_instanced_geometry_instances_names_block_block_struct, 4 }, // block
+		{ structure_instance_imposter_info_block_block_struct, 12 }, // block
+		{ runtime_decorator_set_block_block_struct, 16 }, // block
+		{ bsp_preplaced_decal_set_reference_block_block_struct, 28 }, // block
+		{ bsp_preplaced_decal_reference_block_block_struct, 28 }, // block
+		{ structure_bsp_sound_cluster_block_block_struct, 28 }, // block
+		{ structure_sound_cluster_portal_designators_block_struct, 2 }, // block
+		{ structure_sound_cluster_interior_cluster_indices_block_struct, 2 }, // block
+		{ transparent_planes_block_block_struct, 20 }, // block
+		{ structure_bsp_debug_info_block_block_struct, 100 }, // block
+		{ structure_bsp_cluster_debug_info_block_block_struct, 92 }, // block
+		{ structure_bsp_debug_info_render_line_block_block_struct, 32 }, // block
+		{ structure_bsp_debug_info_indices_block_block_struct, 4 }, // block
+		{ structure_bsp_fog_plane_debug_info_block_block_struct, 68 }, // block
+		{ structure_bsp_fog_zone_debug_info_block_block_struct, 80 }, // block
+		{ breakable_surface_key_table_block_block_struct, 32 }, // block
+		{ widget_reference_block_block_struct, 20 }, // block
+		{ cheap_light_reference_block_block_struct, 20 }, // block
+		{ structure_bsp_raw_resources_block_struct, 48 }, // block
+		{ global_collision_bsp_block_block_struct, 108 }, // block
+		{ global_large_collision_bsp_block_block_struct, 108 }, // block
+		{ large_bsp3d_nodes_block_block_struct, 12 }, // block
+		{ large_leaves_block_block_struct, 8 }, // block
+		{ large_bsp2d_references_block_block_struct, 8 }, // block
+		{ large_bsp2d_nodes_block_block_struct, 20 }, // block
+		{ large_surfaces_block_block_struct, 16 }, // block
+		{ large_edges_block_block_struct, 24 }, // block
+		{ large_vertices_block_block_struct, 20 }, // block
+		{ structure_bsp_instanced_geometry_definition_block_block_struct, 20 }, // block
+		{ structureIOHavokDataBlock_struct_struct_definition, 72 },
+		{ SerializedHavokGeometryDataBlock_struct_struct_definition, 52 },
+		{ structure_external_instanced_geometry_references_block_block_struct, 112 }, // block
+		{ structure_bsp_obb_volume_block_block_struct, 52 }, // block
+		{ AnimGraphDependencyBlock_block_struct, 16 }, // block
+		{ sound_combiner_definition_entry_block_block_struct, 24 }, // block
+		{ scenario_child_references_block_block_struct, 16 }, // block
+		{ scenario_structure_bsp_reference_block_block_struct, 336 }, // block
+		{ scenario_design_reference_block_block_struct, 32 }, // block
+		{ scenario_sky_reference_block_block_struct, 52 }, // block
+		{ scenario_zone_set_pvs_block_block_struct, 44 }, // block
+		{ scenario_zone_set_bsp_checksum_block_block_struct, 4 }, // block
+		{ scenario_zone_set_bsp_pvs_block_block_struct, 36 }, // block
+		{ scenario_zone_set_cluster_pvs_block_block_struct, 12 }, // block
+		{ scenario_zone_set_bsp_bits_block_block_struct, 12 }, // block
+		{ scenario_zone_set_cluster_pvs_bit_vector_block_block_struct, 4 }, // block
+		{ scenario_zone_set_bsp_seam_cluster_mappings_block_block_struct, 36 }, // block
+		{ scenario_zone_set_cluster_reference_block_block_struct, 2 }, // block
+		{ structure_portal_device_mapping_block_block_struct, 36 }, // block
+		{ structure_device_portal_association_block_block_struct, 12 }, // block
+		{ game_portal_to_portal_mapping_block_block_struct, 2 }, // block
+		{ occluding_portal_to_portal_mapping_block_block_struct, 2 }, // block
+		{ game_audibility_block_block_struct, 100 }, // block
+		{ door_encoded_pas_block_block_struct, 4 }, // block
+		{ room_door_portal_encoded_pas_block_block_struct, 4 }, // block
+		{ ai_deafening_encoded_pas_block_block_struct, 4 }, // block
+		{ encoded_room_distances_block_block_struct, 1 }, // block
+		{ game_portal_to_door_occluder_block_block_struct, 8 }, // block
+		{ bsp_cluster_to_room_bounds_block_struct, 8 }, // block
+		{ bsp_cluster_to_room_indices_block_struct, 2 }, // block
+		{ scenario_zone_set_block_block_struct, 416 }, // block
+		{ planar_fog_zone_set_visibility_definition_block_block_struct, 12 }, // block
+		{ planar_fog_structure_visibility_definition_block_block_struct, 12 }, // block
+		{ planar_fog_cluster_visibility_definition_block_block_struct, 12 }, // block
+		{ planar_fog_reference_definition_block_block_struct, 4 }, // block
+		{ scenario_zone_set_budget_override_block_block_struct, 16 }, // block
+		{ scenario_zone_set_lipsync_block_block_struct, 16 }, // block
+		{ scenario_lighting_zone_set_block_block_struct, 12 }, // block
+		{ scenario_function_block_block_struct, 120 }, // block
+		{ editor_comment_block_block_struct, 304 }, // block
+		{ dont_use_me_scenario_environment_object_block_block_struct, 64 }, // block
+		{ scenario_object_names_block_block_struct, 8 }, // block
+		{ scenario_scenery_block_block_struct, 384 }, // block
+		{ scenario_object_node_orientations_block_block_struct, 28 }, // block
+		{ scenario_object_node_orientations_bit_vector_block_block_struct, 1 }, // block
+		{ scenario_object_node_orientations_orientations_block_block_struct, 2 }, // block
+		{ scriptListBlock_block_struct, 4 }, // block
+		{ commandLinkBlock_block_struct, 20 }, // block
+		{ pathfinding_object_index_list_block_block_struct, 4 }, // block
+		{ scenario_scenery_palette_block_block_struct, 16 }, // block
+		{ scenario_biped_block_block_struct, 372 }, // block
+		{ scenario_biped_palette_block_block_struct, 16 }, // block
+		{ scenario_vehicle_block_block_struct, 388 }, // block
+		{ scenario_vehicle_palette_block_block_struct, 16 }, // block
+		{ scenario_equipment_block_block_struct, 344 }, // block
+		{ scenario_equipment_palette_block_block_struct, 16 }, // block
+		{ scenario_weapon_block_block_struct, 372 }, // block
+		{ scenario_weapon_palette_block_block_struct, 16 }, // block
+		{ device_group_block_block_struct, 44 }, // block
+		{ scenario_machine_block_block_struct, 392 }, // block
+		{ scenario_machine_palette_block_block_struct, 16 }, // block
+		{ scenario_terminal_block_block_struct, 196 }, // block
+		{ scenario_terminal_palette_block_block_struct, 16 }, // block
+		{ scenario_control_block_block_struct, 384 }, // block
+		{ scenario_control_palette_block_block_struct, 16 }, // block
+		{ ScenarioDispenserBlock_block_struct, 376 }, // block
+		{ ScenarioDispenserPaletteBlock_block_struct, 16 }, // block
+		{ scenario_sound_scenery_block_block_struct, 212 }, // block
+		{ scenario_sound_scenery_palette_block_block_struct, 16 }, // block
+		{ scenario_giant_block_block_struct, 208 }, // block
+		{ scenario_giant_palette_block_block_struct, 16 }, // block
+		{ scenario_effect_scenery_block_block_struct, 344 }, // block
+		{ scenario_effect_scenery_palette_block_block_struct, 16 }, // block
+		{ scenario_spawner_block_block_struct, 192 }, // block
+		{ scenario_spawner_palette_block_block_struct, 16 }, // block
+		{ binkPaletteBlock_block_struct, 16 }, // block
+		{ scenarioAttachedEffectsBlock_block_struct, 20 }, // block
+		{ scenarioAttachedLensFlaresBlock_block_struct, 20 }, // block
+		{ scenarioAttachedLightConesBlock_block_struct, 64 }, // block
+		{ map_variant_palette_block_block_struct, 20 }, // block
+		{ map_variant_palette_entry_block_block_struct, 24 }, // block
+		{ map_variant_object_variant_block_block_struct, 72 }, // block
+		{ mapVariantPaletteDependencyBlock_block_struct, 4 }, // block
+		{ resourceHandleBlock_block_struct, 4 }, // block
+		{ scenario_requisition_palette_block_block_struct, 108 }, // block
+		{ scenario_soft_ceilings_block_block_struct, 12 }, // block
+		{ scenario_players_block_block_struct, 36 }, // block
+		{ scenario_trigger_volume_struct_struct_definition, 132 },
+		{ trigger_volume_point_block_block_struct, 20 }, // block
+		{ trigger_volume_runtime_triangles_block_block_struct, 112 }, // block
+		{ scenario_acoustic_sector_block_block_struct, 64 }, // block
+		{ acoustic_sector_point_block_block_struct, 12 }, // block
+		{ scenario_acoustic_transition_block_block_struct, 68 }, // block
+		{ scenario_atmosphere_dumpling_block_block_struct, 60 }, // block
+		{ dumpling_point_block_block_struct, 20 }, // block
+		{ scenario_weather_dumpling_block_block_struct, 60 }, // block
+		{ recorded_animation_block_block_struct, 64 }, // block
+		{ scenario_zone_set_switch_trigger_volume_block_block_struct, 8 }, // block
+		{ scenario_named_location_volume_block_block_struct, 24 }, // block
+		{ named_location_volume_point_block_block_struct, 20 }, // block
+		{ scenario_decals_block_block_struct, 60 }, // block
+		{ scenario_decal_palette_block_block_struct, 20 }, // block
+		{ scenario_detail_object_collection_palette_block_block_struct, 48 }, // block
+		{ style_palette_block_block_struct, 16 }, // block
+		{ squad_groups_block_block_struct, 40 }, // block
+		{ squads_block_block_struct, 108 }, // block
+		{ spawn_formation_block_block_struct, 84 }, // block
+		{ patrol_point_block_block_struct, 28 }, // block
+		{ spawn_points_block_block_struct, 124 }, // block
+		{ cell_block_block_struct, 100 }, // block
+		{ character_palette_choice_block_block_struct, 8 }, // block
+		{ weapon_palette_choice_block_block_struct, 8 }, // block
+		{ equipment_palette_choice_block_block_struct, 8 }, // block
+		{ zone_block_block_struct, 88 }, // block
+		{ firing_positions_block_block_struct, 48 }, // block
+		{ areas_block_block_struct, 192 }, // block
+		{ NavMeshAttachmentBlock_block_struct, 4 }, // block
+		{ flight_reference_block_block_struct, 8 }, // block
+		{ area_sector_point_block_block_struct, 28 }, // block
+		{ squad_patrol_block_block_struct, 44 }, // block
+		{ squad_patrol_member_block_block_struct, 4 }, // block
+		{ squad_patrol_point_block_block_struct, 20 }, // block
+		{ squad_patrol_transition_block_block_struct, 16 }, // block
+		{ squad_patrol_waypoint_block_block_struct, 20 }, // block
+		{ ai_cue_block_block_struct, 164 }, // block
+		{ task_distribution_block_block_struct, 4 }, // block
+		{ script_payload_block_block_struct, 4 }, // block
+		{ combat_sync_action_group_payload_block_block_struct, 8 }, // block
+		{ ai_full_cue_block_block_struct, 164 }, // block
+		{ ai_quick_cue_block_block_struct, 64 }, // block
+		{ ai_scene_block_block_struct, 32 }, // block
+		{ ai_scene_trigger_block_block_struct, 16 }, // block
+		{ trigger_references_block_struct, 8 }, // block
+		{ ai_scene_role_block_block_struct, 20 }, // block
+		{ ai_scene_role_variants_block_block_struct, 4 }, // block
+		{ character_palette_block_block_struct, 16 }, // block
+		{ ai_recording_reference_block_block_struct, 40 }, // block
+		{ cs_script_data_block_block_struct, 144 }, // block
+		{ cs_point_set_block_block_struct, 60 }, // block
+		{ cs_point_block_block_struct, 64 }, // block
+		{ cs_animation_point_block_block_struct, 68 }, // block
+		{ scenario_cutscene_flag_block_block_struct, 36 }, // block
+		{ scenario_cutscene_camera_point_block_block_struct, 68 }, // block
+		{ scenario_cutscene_title_struct_struct_definition, 52 },
+		{ scenario_kill_trigger_volumes_block_block_struct, 4 }, // block
+		{ scenario_safe_zone_trigger_volumes_block_block_struct, 4 }, // block
+		{ trigger_volume_mopp_code_block_block_struct, 16 }, // block
+		{ scenario_requisition_trigger_volumes_block_block_struct, 4 }, // block
+		{ scenario_location_name_trigger_volumes_block_block_struct, 34 }, // block
+		{ scenarioUnsafeSpawnZoneTriggerVolumesBlock_block_struct, 2 }, // block
+		{ orders_block_block_struct, 144 }, // block
+		{ area_reference_block_block_struct, 28 }, // block
+		{ secondary_set_trigger_block_block_struct, 16 }, // block
+		{ special_movement_block_block_struct, 4 }, // block
+		{ order_ending_block_block_struct, 24 }, // block
+		{ triggers_block_block_struct, 52 }, // block
+		{ order_completion_condition_block_struct, 56 }, // block
+		{ scenario_atmosphere_palette_block_block_struct, 24 }, // block
+		{ scenario_camera_fx_palette_block_block_struct, 48 }, // block
+		{ scenario_weather_palette_block_block_struct, 20 }, // block
+		{ scenario_cluster_data_block_block_struct, 84 }, // block
+		{ scenario_cluster_points_block_block_struct, 12 }, // block
+		{ scenario_cluster_acoustics_block_block_struct, 4 }, // block
+		{ scenario_cluster_atmosphere_properties_block_block_struct, 4 }, // block
+		{ scenario_cluster_camera_fx_properties_block_block_struct, 4 }, // block
+		{ scenario_cluster_weather_properties_block_block_struct, 4 }, // block
+		{ scenario_spawn_data_block_block_struct, 4 }, // block
+		{ scenario_crate_block_block_struct, 380 }, // block
+		{ scenario_crate_palette_block_block_struct, 16 }, // block
+		{ flock_palette_block_block_struct, 16 }, // block
+		{ flock_instance_block_block_struct, 84 }, // block
+		{ flock_source_block_block_struct, 40 }, // block
+		{ flock_destination_block_block_struct, 32 }, // block
+		{ SoundSubtitleBlock_block_struct, 8 }, // block
+		{ scenario_creature_block_block_struct, 160 }, // block
+		{ scenario_creature_palette_block_block_struct, 16 }, // block
+		{ big_battle_creature_palette_block_block_struct, 16 }, // block
+		{ g_scenario_editor_folder_block_block_struct, 272 }, // block
+		{ ai_scenario_mission_dialogue_block_block_struct, 16 }, // block
+		{ objectives_block_block_struct, 36 }, // block
+		{ opposing_objective_block_block_struct, 4 }, // block
+		{ tasks_block_block_struct, 132 }, // block
+		{ script_fragment_block_block_struct, 264 }, // block
+		{ task_direction_block_v2_struct_struct_definition, 12 },
+		{ task_direction_point_block_block_struct, 20 }, // block
+		{ scenario_designer_zone_block_block_struct, 244 }, // block
+		{ scenarioDesignerZoneTagReferenceBlock_block_struct, 16 }, // block
+		{ biped_block_index_flags_block_block_struct, 2 }, // block
+		{ vehicle_block_index_flags_block_block_struct, 2 }, // block
+		{ weapon_block_index_flags_block_block_struct, 2 }, // block
+		{ equipment_block_index_flags_block_block_struct, 2 }, // block
+		{ scenery_block_index_flags_block_block_struct, 2 }, // block
+		{ machine_block_index_flags_block_block_struct, 2 }, // block
+		{ terminal_block_index_flags_block_block_struct, 2 }, // block
+		{ control_block_index_flags_block_block_struct, 2 }, // block
+		{ dispenser_block_index_flags_block_block_struct, 2 }, // block
+		{ sound_scenery_block_index_flags_block_block_struct, 2 }, // block
+		{ crate_block_index_flags_block_block_struct, 2 }, // block
+		{ creature_block_index_flags_block_block_struct, 2 }, // block
+		{ giant_block_index_flags_block_block_struct, 2 }, // block
+		{ effect_scenery_block_index_flags_block_block_struct, 2 }, // block
+		{ character_block_index_flags_block_block_struct, 2 }, // block
+		{ spawner_block_index_flags_block_block_struct, 2 }, // block
+		{ budget_reference_block_index_flags_block_block_struct, 2 }, // block
+		{ bink_block_index_flags_block_block_struct, 2 }, // block
+		{ scenarioDesignerResourceDependenciesBlock_block_struct, 16 }, // block
+		{ scenario_zone_debugger_block_definition_struct_struct_definition, 4 },
+		{ scenario_decorator_block_block_struct, 156 }, // block
+		{ decorator_palette_block_struct, 36 }, // block
+		{ decorator_scenario_set_block_block_struct, 28 }, // block
+		{ global_decorator_placement_block_block_struct, 80 }, // block
+		{ scenario_cheap_particle_system_palette_block_block_struct, 16 }, // block
+		{ scenario_cheap_particle_systems_block_block_struct, 28 }, // block
+		{ scriptableLightRigBlock_block_struct, 20 }, // block
+		{ scenario_cinematics_block_block_struct, 20 }, // block
+		{ scenario_cinematic_lighting_palette_block_block_struct, 20 }, // block
+		{ campaign_metagame_scenario_block_block_struct, 16 }, // block
+		{ campaign_metagame_scenario_bonuses_block_block_struct, 8 }, // block
+		{ soft_surfaces_definition_block_block_struct, 24 }, // block
+		{ scenario_cubemap_block_block_struct, 48 }, // block
+		{ scenario_airprobes_block_block_struct, 20 }, // block
+		{ scenario_budget_references_block_block_struct, 16 }, // block
+		{ model_references_block_block_struct, 16 }, // block
+		{ scenario_performances_block_block_struct, 96 }, // block
+		{ scenario_performance_actor_block_block_struct, 20 }, // block
+		{ scenario_performance_task_block_block_struct, 4 }, // block
+		{ PuppetShowsBlock_block_struct, 280 }, // block
+		{ PuppetBlock_block_struct, 916 }, // block
+		{ PuppetActionBlock_block_struct, 664 }, // block
+		{ PuppetPathPointStruct_struct_definition, 40 },
+		{ PuppetSubActionBlock_block_struct, 1192 }, // block
+		{ PuppetSubActionBranchElementBlock_block_struct, 12 }, // block
+		{ PuppetScriptTextBlock_block_struct, 256 }, // block
+		{ SubTracksBlock_block_struct, 4 }, // block
+		{ PuppetHeaderStruct_struct_definition, 108 },
+		{ PuppetActionHeaderStruct_struct_definition, 24 },
+		{ PuppetSubActionHeaderStruct_struct_definition, 40 },
+		{ PuppetActionAnimationStruct_struct_definition, 72 },
+		{ PuppetActionPathStruct_struct_definition, 16 },
+		{ PuppetSubActionPointStruct_struct_definition, 60 },
+		{ PuppetSubActionBranchStruct_struct_definition, 12 },
+		{ PuppetSubActionScriptStruct_struct_definition, 8 },
+		{ CommentsBlock_block_struct, 1 }, // block
+		{ scenarioRandomOrdnanceDropSetBlock_block_struct, 68 }, // block
+		{ scenarioRandomOrdnanceDropPointBlock_block_struct, 2 }, // block
+		{ ScenarioUnitRecordingBlock_struct_struct_definition, 64 },
+		{ loadScreenReferenceBlock_block_struct, 24 }, // block
+		{ RandomOrdnanceItemBlock_block_struct, 4 }, // block
+		{ PlayerOrdnanceGroupBlock_block_struct, 12 }, // block
+		{ PlayerOrdnanceItemBlock_block_struct, 36 }, // block
+		{ structure_soft_ceiling_block_block_struct, 20 }, // block
+		{ structure_soft_ceiling_triangle_block_block_struct, 68 }, // block
+		{ structure_water_groups_block_block_struct, 4 }, // block
+		{ structure_water_instances_block_block_struct, 84 }, // block
+		{ structure_water_instance_planes_block_block_struct, 16 }, // block
+		{ structure_water_instance_debug_triangles_block_block_struct, 36 }, // block
+		{ planar_fog_definition_block_block_struct, 60 }, // block
+		{ planar_fog_vertex_block_block_struct, 12 }, // block
+		{ planar_fog_triangle_block_block_struct, 12 }, // block
+		{ planar_fog_triangle_planes_block_block_struct, 16 }, // block
+		{ single_screen_effect_block_struct, 280 }, // block
+		{ platform_sound_playback_block_block_struct, 96 }, // block
+		{ platform_sound_playback_lowpass_block_block_struct, 16 }, // block
+		{ platform_sound_playback_component_block_block_struct, 24 }, // block
+		{ sound_response_data_block_block_struct, 56 }, // block
+		{ sound_response_permutation_block_block_struct, 16 }, // block
+		{ sound_combine_response_block_block_struct, 24 }, // block
+		{ self_illumination_state_block_struct, 76 }, // block
+		{ sound_incident_response_data_block_block_struct, 20 }, // block
+		{ scenario_interpolator_data_block_block_struct, 52 }, // block
+		{ silentAssistLevelBlock_block_struct, 40 }, // block
+		{ survival_mode_wave_templates_struct_struct_definition, 20 },
+		{ multiplayer_color_block$3_block_struct, 12 }, // block
+		{ structureBspFxMarkerBlock_block_struct, 76 }, // block
+		{ structureMetadataLightConeMarkerBlock_block_struct, 120 }, // block
+		{ sound_class_block_block_struct, 212 }, // block
+		{ soundLipSyncInfoBlock_struct_struct_definition, 28 },
+		{ deterministicSpeechEventBlock_struct_struct_definition, 16 },
+		{ facial_animation_language_block_block_struct, 12 }, // block
+		{ sound_promotion_rule_block_block_struct, 16 }, // block
+		{ sound_promotion_runtime_timer_block_block_struct, 4 }, // block
+		{ sound_pitch_range_block_block_struct, 72 }, // block
+		{ sound_permutations_block_block_struct, 36 }, // block
+		{ sound_permutation_languages_block_block_struct, 16 }, // block
+		{ sound_permutation_chunk_block_block_struct, 20 }, // block
+		{ sound_platform_sound_playback_block_block_struct, 92 }, // block
+		{ sound_extra_info_block_block_struct, 24 }, // block
+		{ sound_definition_language_permutation_info_block_block_struct, 12 }, // block
+		{ sound_permutation_raw_info_block_block_struct, 76 }, // block
+		{ sound_permutation_marker_block_block_struct, 12 }, // block
+		{ sound_xma2_seek_table_block_block_struct, 24 }, // block
+		{ sound_language_info_block_block_struct, 28 }, // block
+		{ sound_permutation_language_info_block_struct, 2 }, // block
+		{ sound_pitch_range_language_info_block_struct, 4 }, // block
+		{ cell_template_block_block_struct, 88 }, // block
+		{ character_ref_choice_block_block_struct, 24 }, // block
+		{ weapon_ref_choice_block_block_struct, 24 }, // block
+		{ equipment_ref_choice_block_block_struct, 24 }, // block
+		{ sound_equalizer_band_settings_block_block_struct, 16 }, // block
+		{ influencerSpawnSettingsBlock_block_struct, 12 }, // block
+		{ weaponSpawnInfluenceBlock_block_struct, 32 }, // block
+		{ vehicleSpawnInfluenceBlock_block_struct, 40 }, // block
+		{ projectileSpawnInfluenceBlock_block_struct, 28 }, // block
+		{ equipmentSpawnInfluenceBlock_block_struct, 20 }, // block
+		{ structure_lighting_generic_light_definition_block_block_struct, 456 }, // block
+		{ structure_lighting_generic_light_instance_block_block_struct, 96 }, // block
+		{ screen_space_light_shader_override_block_block_struct, 44 }, // block
+		{ structureLightingCinematicLightInstanceBlock_struct_struct_definition, 40 },
+		{ structureLightingCinematicObjectBlock_block_struct, 4 }, // block
+		{ structure_manifest_bsp_block_block_struct, 304 }, // block
+		{ structure_seam_block_block_struct, 76 }, // block
+		{ structure_seam_original_vertex_block_block_struct, 28 }, // block
+		{ structure_seam_original_vertex_plane_normals_block_block_struct, 12 }, // block
+		{ structure_seam_final_planes_block_block_struct, 16 }, // block
+		{ structure_seam_final_points_block_block_struct, 12 }, // block
+		{ structure_seam_final_triangles_block_block_struct, 12 }, // block
+		{ structure_seam_final_edges_block_block_struct, 4 }, // block
+		{ behavior_names_block_block_struct, 32 }, // block
+		{ terminal_page_block_definition_block_struct, 8 }, // block
+		{ tracerDefinitionBlock_block_struct, 688 }, // block
+		{ camera_track_control_point_block_block_struct, 28 }, // block
+		{ sound_references_block_block_struct, 16 }, // block
+		{ vocalization_stimuli_block_definition_block_struct, 24 }, // block
+		{ sound_gestalt_codec_block_block_struct, 3 }, // block
+		{ sound_gestalt_playback_block_block_struct, 84 }, // block
+		{ sound_gestalt_scale_block_block_struct, 20 }, // block
+		{ sound_gestalt_import_names_block_block_struct, 4 }, // block
+		{ sound_distance_parameters_struct_struct_definition, 32 },
+		{ sound_gestalt_pitch_range_parameters_block_block_struct, 16 }, // block
+		{ sound_gestalt_pitch_ranges_block_block_struct, 12 }, // block
+		{ sound_gestalt_permutations_block_block_struct, 20 }, // block
+		{ sound_gestalt_permutation_languages_block_block_struct, 208 }, // block
+		{ sound_gestalt_custom_playback_block_block_struct, 92 }, // block
+		{ sound_gestalt_runtime_permutation_bit_vector_block_block_struct, 1 }, // block
+		{ sound_gestalt_promotions_block_block_struct, 36 }, // block
+		{ sound_gestalt_facial_animation_block_block_struct, 8 }, // block
+		{ sound_gestalt_layer_markers_block_block_struct, 4 }, // block
+		{ player_training_entry_data_block_block_struct, 20 }, // block
+		{ UserInterfaceStyleSheetLanguagesBlock_block_struct, 28 }, // block
+		{ UserInterfaceStyleSheetsFontBlock_block_struct, 76 }, // block
+		{ UserInterfaceStyleSheetFontIdBlock_block_struct, 4 }, // block
+		{ UserInterfaceStyleSheetTextCaseBlock_block_struct, 4 }, // block
+		{ UserInterfaceStyleSheetJustificationBlock_block_struct, 4 }, // block
+		{ UserInterfaceStyleSheetAlignmentBlock_block_struct, 4 }, // block
+		{ UserInterfaceStyleSheetScaleBlock_block_struct, 4 }, // block
+		{ UserInterfaceStyleSheetFixedHeightBlock_block_struct, 4 }, // block
+		{ UserInterfaceStyleSheetsVisualBlock_block_struct, 52 }, // block
+		{ UserInterfaceStyleSheetDropShadowStyleBlock_block_struct, 4 }, // block
+		{ UserInterfaceStyleSheetColorBlock_block_struct, 16 }, // block
+		{ UserInterfaceStyleSheetGradientBlock_block_struct, 92 }, // block
+		{ UserInterfaceStyleSheetDropshadowBlock_block_struct, 36 }, // block
+		{ UserInterfaceStyleSheetOuterGlowBlock_block_struct, 28 }, // block
+		{ multilingual_unicode_string_reference_block_block_struct, 72 }, // block
+		{ string_substitution_pair_block_block_struct, 12 }, // block
+		{ WeaponSpecificMarkersBlock_block_struct, 20 }, // block
+		{ human_tank_struct_struct_definition, 148 },
+		{ gear_block_block_struct, 92 }, // block
+		{ load_and_cruise_block_block_struct, 8 }, // block
+		{ human_jeep_block_block_struct, 92 }, // block
+		{ boat_engine_definition_block_block_struct, 108 }, // block
+		{ human_plane_block_block_struct, 100 }, // block
+		{ wolverine_block_block_struct, 96 }, // block
+		{ alien_scout_block_block_struct, 120 }, // block
+		{ alien_fighter_block_block_struct, 104 }, // block
+		{ turret_block_block_struct, 20 }, // block
+		{ mantis_block_block_struct, 172 }, // block
+		{ walker_physics_leg_block_block_struct, 160 }, // block
+		{ vtol_block_block_struct, 208 }, // block
+		{ vtol_speed_interpolated_block_block_struct, 32 }, // block
+		{ chopper_block_block_struct, 124 }, // block
+		{ guardian_block_block_struct, 48 }, // block
+		{ jackal_glider_block_block_struct, 368 }, // block
+		{ boat_block_block_struct, 96 }, // block
+		{ space_fighter_block_block_struct, 272 }, // block
+		{ revenant_block_block_struct, 204 }, // block
+		{ anti_gravity_point_definition_block_block_struct, 72 }, // block
+		{ friction_point_definition_block_block_struct, 68 }, // block
+		{ SoundRTPCBlock_block_struct, 16 }, // block
+		{ SoundSweetenerBlock_block_struct, 28 }, // block
+		{ physics_transitions_block_block_struct, 20 }, // block
+		{ visionModeScreenPassBlock_block_struct, 68 }, // block
+		{ visionModeEnvironmentPassBlock_block_struct, 68 }, // block
+		{ visionModeBipedPassesBlock_block_struct, 44 }, // block
+		{ visionModeBipedPassBlock_block_struct, 76 }, // block
+		{ visionModeBipedThreatBlock_block_struct, 20 }, // block
+		{ visionModeOrdnanceVehiclePassBlock_block_struct, 80 }, // block
+		{ visionModeOrdnanceVehicleTypeBlock_block_struct, 40 }, // block
+		{ visionModeOrdnanceCrosshairBlock_block_struct, 68 }, // block
+		{ single_variant_block_block_struct, 296 }, // block
+		{ FallbackHopperFileBlock_block_struct, 276 }, // block
+		{ vertex_entry_point_block_block_struct, 12 }, // block
+		{ vertex_types_block$3_block_struct, 2 }, // block
+		{ wave_squad_specification_struct_struct_struct_definition, 28 },
+		{ melee_damage_parameters_block_block_struct, 200 }, // block
+		{ globalAimAssistBlock_block_struct, 68 }, // block
+		{ globalAimSwimBlock_block_struct, 36 }, // block
+		{ weapon_first_person_interface_block_block_struct, 40 }, // block
+		{ magazines_block_struct, 132 }, // block
+		{ magazine_objects_block_struct, 20 }, // block
+		{ weapon_triggers_block_struct, 172 }, // block
+		{ weapon_trigger_charging_fire_fraction_block_struct, 4 }, // block
+		{ weapon_barrels_block_struct, 400 }, // block
+		{ projectileDistributionCustomVector_block_struct, 8 }, // block
+		{ weapon_barrel_first_person_offset_block_block_struct, 12 }, // block
+		{ barrel_firing_effect_block_block_struct, 244 }, // block
+		{ weaponScaleshotStruct_block_struct, 28 }, // block
+		{ weaponScaleshotLevelStruct_block_struct, 44 }, // block
+		{ weapon_screen_effect_block_block_struct, 20 }, // block
+		{ WeaponSoundRTPCBlock_block_struct, 16 }, // block
+		{ WeaponSoundSweetenerBlock_block_struct, 28 }, // block
+		{ wentness_bit_vector_block_struct, 4 }, // block
+		{ wentness_byte_vector_block_struct, 1 }, // block
+		{ cluster_wetness_offset_block_block_struct, 4 }, // block
+		{ instance_wetness_instance_block_block_struct, 8 }, // block
+		{ game_engine_player_traits_list_block_block_struct, 64 }, // block
+		{ game_engine_ai_traits_list_block_block_struct, 16 }, // block
+		{ game_engine_sandbox_variant_block_block_struct, 116 }, // block
+		{ game_engine_survival_variant_block_block_struct, 208 }, // block
+		{ game_engine_survival_set_properties_block_block_struct, 4 }, // block
+		{ game_engine_survival_round_properties_block_block_struct, 52 }, // block
+		{ survival_wave_squad_block_block_struct, 4 }, // block
+		{ game_engine_survival_custom_skull_block_block_struct, 12 }, // block
+		{ GameEngineFirefightVariantShellBlock_block_struct, 16 }, // block
+		{ game_engine_campaign_variant_block_block_struct, 104 }, // block
+		{ cui_component_screen_reference_block_definition_block_struct, 20 }, // block
+		{ cui_overlay_camera_block_definition_block_struct, 24 }, // block
+		{ cui_player_model_camera_settings_definition_block_struct, 100 }, // block
+		{ cui_player_model_controller_settings_definition_block_struct, 56 }, // block
+		{ cui_player_model_transition_settings_definition_block_struct, 20 }, // block
+		{ cui_active_roster_settings_block_block_struct, 20 }, // block
+		{ campaign_state_screen_script_block_definition_block_struct, 24 }, // block
+		{ UserInterfaceGameScreenSequenceStepDefinition_block_struct, 24 }, // block
+		{ SwapTagReferenceDefinition_block_struct, 32 }, // block
+		{ rules_block_block_struct, 88 }, // block
+		{ states_block_block_struct, 96 }, // block
+		{ color_presets_block_block_struct, 20 }, // block
+		{ tint_colors_block_block_struct, 128 }, // block
+		{ color_list_block_block_struct, 16 }, // block
+		{ gui_alert_description_block_block_struct, 16 }, // block
+		{ gui_dialog_description_block_block_struct, 40 }, // block
+		{ pgcr_incident_block_block_struct, 8 }, // block
+		{ global_textures_refs_block_block_struct, 16 }, // block
+		{ cache_file_resource_type_identifier_block_block_struct, 32 }, // block
+		{ cache_file_interop_type_identifier_block_block_struct, 20 }, // block
+		{ cache_file_resource_data_block_block_struct, 68 }, // block
+		{ cache_file_resource_fixup_location_block_block_struct, 8 }, // block
+		{ cache_file_resource_interop_location_block_block_struct, 8 }, // block
+		{ cache_file_resource_priority_data_block_block_struct, 4 }, // block
+		{ cache_file_tag_zone_manifest_struct_struct_definition, 144 },
+		{ cache_file_tag_resources_bitvector_block_block_struct, 4 }, // block
+		{ cache_file_tag_resource_usage_block_block_struct, 28 }, // block
+		{ cache_file_zone_resource_visit_node_block_block_struct, 16 }, // block
+		{ cache_file_zone_resource_visit_node_link_block_block_struct, 2 }, // block
+		{ cache_file_tag_zone_manifest_struct_struct_definition, 144 },
+		{ cache_file_tag_zone_manifest_struct_struct_definition, 144 },
+		{ cache_file_tag_zone_manifest_struct_struct_definition, 144 },
+		{ cache_file_tag_zone_manifest_struct_struct_definition, 144 },
+		{ cache_file_tag_zone_manifest_struct_struct_definition, 144 },
+		{ cache_file_zone_set_zone_usage_block_block_struct, 40 }, // block
+		{ cache_file_bsp_reference_block_block_struct, 16 }, // block
+		{ cache_file_resource_owner_block_block_struct, 20 }, // block
+		{ cache_file_model_variant_usage_block_block_struct, 20 }, // block
+		{ cache_file_resource_owner_reference_block_block_struct, 2 }, // block
+		{ cache_file_character_usage_block_block_struct, 16 }, // block
+		{ cache_file_model_variant_usage_reference_block_block_struct, 2 }, // block
+		{ cache_file_bsp_game_attachments_block_block_struct, 36 }, // block
+		{ cache_file_bsp_attachment_block_block_struct, 16 }, // block
+		{ debug_cache_file_zone_manifest_struct_struct_definition, 168 },
+		{ debug_cache_file_zone_manifest_struct_struct_definition, 168 },
+		{ debug_cache_file_zone_manifest_struct_struct_definition, 168 },
+		{ cache_file_debug_resource_definition_block_block_struct, 12 }, // block
+		{ resource_category_block_block_struct, 4 }, // block
+		{ cache_file_resource_layout_block_block_struct, 56 }, // block
+		{ cache_file_tag_resource_properties_block_block_struct, 12 }, // block
+		{ cache_file_tag_resource_named_value_block_block_struct, 24 }, // block
+		{ cache_file_tag_parentage_block_block_struct, 44 }, // block
+		{ cache_file_tag_parentage_reference_block_block_struct, 4 }, // block
+		{ cache_file_tag_resource_prediction_quantum_block_block_struct, 4 }, // block
+		{ cache_file_tag_resource_prediction_atom_block_block_struct, 8 }, // block
+		{ cache_file_tag_resource_prediction_molecule_atom_reference_block_block_struct, 4 }, // block
+		{ cache_file_tag_resource_prediction_molecule_block_block_struct, 8 }, // block
+		{ cache_file_tag_resource_prediction_molecule_keys_block_block_struct, 12 }, // block
+	};
 
 } // namespace blofeld
 

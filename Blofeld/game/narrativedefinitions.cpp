@@ -3,11 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(NarrativeGlobals_struct_definition)
-{
-	FIELD( _field_block, "Narrative Flag Definitions", &NarrativeFlagDefinitionBlock ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(NarrativeGlobals, NARRATIVEGLOBALS_TAG, NarrativeGlobals_block_block )
+
+TAG_BLOCK_FROM_STRUCT(NarrativeGlobals_block, 1, NarrativeGlobals_struct_definition_struct_definition );
 
 TAG_BLOCK(NarrativeFlagDefinitionBlock, 64)
 {
@@ -17,9 +15,9 @@ TAG_BLOCK(NarrativeFlagDefinitionBlock, 64)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(NarrativeGlobals_block, NARRATIVEGLOBALS_TAG)
+TAG_STRUCT(NarrativeGlobals_struct_definition)
 {
-	FIELD( _field_block, "Narrative Flag Definitions", &NarrativeFlagDefinitionBlock ),
+	FIELD( _field_block, "Narrative Flag Definitions", &NarrativeFlagDefinitionBlock_block ),
 	FIELD( _field_terminator )
 };
 

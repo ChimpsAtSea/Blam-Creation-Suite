@@ -3,6 +3,8 @@
 namespace blofeld
 {
 
+TAG_GROUP_FROM_BLOCK(load_screen, LOAD_SCREEN_TAG, loadScreenBlock_block )
+
 TAG_BLOCK(loadScreenBlock, 1)
 {
 	FIELD( _field_long_flags, "flags" ),
@@ -21,7 +23,7 @@ TAG_BLOCK(loadScreenBlock, 1)
 	FIELD( _field_real, "particle initial offset multiplier#If flag particles spawn radially is set, this is the multiple of the particle location along the radial axis.\nIf not, this the random spawn distance from the particle destination." ),
 	FIELD( _field_explanation, "Generated data" ),
 	FIELD( _field_long_integer, "computed model vertex count:vertices" ),
-	FIELD( _field_block, "model vertices*", &vertexBlock ),
+	FIELD( _field_block, "model vertices*", &vertexBlock_block ),
 	FIELD( _field_terminator )
 };
 
@@ -30,8 +32,6 @@ TAG_BLOCK(vertexBlock, 77824)
 	FIELD( _field_real_point_3d, "point*" ),
 	FIELD( _field_terminator )
 };
-
-TAG_GROUP_FROM_BLOCK(load_screen, LOAD_SCREEN_TAG, loadScreenBlock)
 
 } // namespace blofeld
 

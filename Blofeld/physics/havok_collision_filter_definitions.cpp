@@ -3,10 +3,20 @@
 namespace blofeld
 {
 
+TAG_GROUP_FROM_BLOCK(havok_collision_filter, HAVOK_COLLISION_FILTER_TAG, havok_collision_filter_block_block )
+
+TAG_BLOCK_FROM_STRUCT(havok_collision_filter_block, 1, havok_collision_filter_struct_definition_struct_definition );
+
+TAG_BLOCK(havok_collision_filter_group_block, k_havok_group_count)
+{
+	FIELD( _field_long_flags, "filter" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(havok_collision_filter_struct_definition)
 {
 	FIELD( _field_explanation, "specify what each group collides with" ),
-	FIELD( _field_block, "groups", &havok_collision_filter_group_block ),
+	FIELD( _field_block, "groups", &havok_collision_filter_group_block_block ),
 	FIELD( _field_pad, "alignment_pad", 4 ),
 	FIELD( _field_struct, "group filter*!", &havok_group_filter_filter_struct_struct_definition ),
 	FIELD( _field_terminator )
@@ -66,21 +76,6 @@ TAG_STRUCT(havok_group_filter_filter_struct)
 	FIELD( _field_real, "havok w m_pad256[2]*~!!" ),
 	FIELD( _field_real_vector_3d, "m_pad256[3]*~!" ),
 	FIELD( _field_real, "havok w m_pad256[3]*~!!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(havok_collision_filter_group_block, k_havok_group_count)
-{
-	FIELD( _field_long_flags, "filter" ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(havok_collision_filter_block, HAVOK_COLLISION_FILTER_TAG)
-{
-	FIELD( _field_explanation, "specify what each group collides with" ),
-	FIELD( _field_block, "groups", &havok_collision_filter_group_block ),
-	FIELD( _field_pad, "alignment_pad", 4 ),
-	FIELD( _field_struct, "group filter*!", &havok_group_filter_filter_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 

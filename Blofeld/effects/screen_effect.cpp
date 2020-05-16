@@ -3,29 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(area_screen_effect_struct_definition)
-{
-	FIELD( _field_word_flags, "global flags" ),
-	FIELD( _field_word_flags, "global hidden flags!" ),
-	FIELD( _field_block, "screen effects", &single_screen_effect ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(area_screen_effect, AREA_SCREEN_EFFECT_TAG, area_screen_effect_block_block )
 
-TAG_STRUCT(screen_effect_scalar_function_struct)
-{
-	FIELD( _field_custom ),
-	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(screen_effect_scalar_object_function_struct)
-{
-	FIELD( _field_string_id, "Input Variable!" ),
-	FIELD( _field_string_id, "Range Variable!" ),
-	FIELD( _field_custom ),
-	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(area_screen_effect_block, 1, area_screen_effect_struct_definition_struct_definition );
 
 TAG_BLOCK(single_screen_effect, s_area_screen_effect_definition::k_maximum_effects_per_tag)
 {
@@ -76,11 +56,27 @@ TAG_BLOCK(single_screen_effect, s_area_screen_effect_definition::k_maximum_effec
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(area_screen_effect_block, AREA_SCREEN_EFFECT_TAG)
+TAG_STRUCT(area_screen_effect_struct_definition)
 {
 	FIELD( _field_word_flags, "global flags" ),
 	FIELD( _field_word_flags, "global hidden flags!" ),
-	FIELD( _field_block, "screen effects", &single_screen_effect ),
+	FIELD( _field_block, "screen effects", &single_screen_effect_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(screen_effect_scalar_function_struct)
+{
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(screen_effect_scalar_object_function_struct)
+{
+	FIELD( _field_string_id, "Input Variable!" ),
+	FIELD( _field_string_id, "Range Variable!" ),
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
 	FIELD( _field_terminator )
 };
 

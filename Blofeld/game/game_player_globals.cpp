@@ -32,7 +32,7 @@ TAG_BLOCK(player_information_block, k_player_character_type_count)
 	FIELD( _field_real, "fire team sandbox range" ),
 	FIELD( _field_real, "fire team cone angle: in degrees" ),
 	FIELD( _field_explanation, "sprinting/momentum" ),
-	FIELD( _field_block, "momentum and sprinting", &player_momentum_data_block ),
+	FIELD( _field_block, "momentum and sprinting", &player_momentum_data_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -65,7 +65,7 @@ TAG_BLOCK(player_representation_block, k_player_character_type_count)
 	FIELD( _field_string_id, "first person multiplayer hands variant" ),
 	FIELD( _field_tag_reference, "first person body model" ),
 	FIELD( _field_string_id, "first person multiplayer body variant" ),
-	FIELD( _field_block, "hidden fpBody regions", &firstPersonpHiddenBodyRegionsBlock ),
+	FIELD( _field_block, "hidden fpBody regions", &firstPersonpHiddenBodyRegionsBlock_block ),
 	FIELD( _field_tag_reference, "third person unit" ),
 	FIELD( _field_string_id, "third person variant" ),
 	FIELD( _field_tag_reference, "binoculars zoom in sound" ),

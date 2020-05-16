@@ -3,52 +3,7 @@
 namespace blofeld
 {
 
-TAG_STRUCT(global_decorator_type_struct)
-{
-	FIELD( _field_long_integer, "index!" ),
-	FIELD( _field_long_block_index, "mesh^" ),
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_real, "scale min:[0.0 - 5.0]" ),
-	FIELD( _field_real, "scale max:[0.0 - 5.0]" ),
-	FIELD( _field_real, "tilt min:degrees" ),
-	FIELD( _field_real, "tilt max:degrees" ),
-	FIELD( _field_real, "wind min:[0.0 - 1.0]" ),
-	FIELD( _field_real, "wind max:[0.0 - 1.0]" ),
-	FIELD( _field_real_rgb_color, "color 0" ),
-	FIELD( _field_real_rgb_color, "color 1" ),
-	FIELD( _field_real_rgb_color, "color 2" ),
-	FIELD( _field_real, "ground tint min:[0.0 - 1.0]" ),
-	FIELD( _field_real, "ground tint max:[0.0 - 1.0]" ),
-	FIELD( _field_real, "hover min:[-1.0 - 1.0]" ),
-	FIELD( _field_real, "hover max:[-1.0 - 1.0]" ),
-	FIELD( _field_real, "minimum distance between decorators:world units" ),
-	FIELD( _field_real, "placement weight:[0.0 - 1.0]" ),
-	FIELD( _field_real, "postprocessed weight!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(decorator_set_instance_name_block, SHORT_MAX)
-{
-	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK_FROM_STRUCT(global_decorator_type_block, BYTE_MAX-1, global_decorator_type_struct_struct_definition );
-
-TAG_BLOCK(decorator_runtime_cluster_block, MAXIMUM_BLOCKS_PER_CLUSTER)
-{
-	FIELD( _field_word_integer, "decorator placement count*" ),
-	FIELD( _field_byte_integer, "decorator set index*" ),
-	FIELD( _field_byte_integer, "decorator instance buffer index*" ),
-	FIELD( _field_long_integer, "decorator instance buffer offset*" ),
-	FIELD( _field_real_vector_3d, "position bounds min*" ),
-	FIELD( _field_real, "bounding sphere radius*" ),
-	FIELD( _field_real_vector_3d, "position bounds size*" ),
-	FIELD( _field_real_vector_3d, "bounding sphere center*" ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(decorator_set_block, DECORATOR_SET_TAG)
+TAG_GROUP(decorator_set, DECORATOR_SET_TAG)
 {
 	FIELD( _field_custom, "link to render model" ),
 	FIELD( _field_explanation, "Render models:" ),
@@ -56,7 +11,7 @@ TAG_GROUP(decorator_set_block, DECORATOR_SET_TAG)
 	FIELD( _field_tag_reference, "Lod2{render model_lod1}*" ),
 	FIELD( _field_tag_reference, "Lod3{render model_lod2}*" ),
 	FIELD( _field_tag_reference, "Lod4{render model_lod3}*" ),
-	FIELD( _field_block, "render model instance names!", &decorator_set_instance_name_block ),
+	FIELD( _field_block, "render model instance names!", &decorator_set_instance_name_block_block ),
 	FIELD( _field_long_integer, "render model instance name valid count!" ),
 	FIELD( _field_tag_reference, "texture" ),
 	FIELD( _field_explanation, "RENDERING" ),
@@ -107,7 +62,52 @@ TAG_GROUP(decorator_set_block, DECORATOR_SET_TAG)
 	FIELD( _field_real, "scale3!" ),
 	FIELD( _field_real, "offset3!" ),
 	FIELD( _field_explanation, "DECORATOR TYPES" ),
-	FIELD( _field_block, "decorator types", &global_decorator_type_block ),
+	FIELD( _field_block, "decorator types", &global_decorator_type_block_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(decorator_set_instance_name_block, SHORT_MAX)
+{
+	FIELD( _field_string_id, "name^" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK_FROM_STRUCT(global_decorator_type_block, BYTE_MAX-1, global_decorator_type_struct_struct_definition );
+
+TAG_BLOCK(decorator_runtime_cluster_block, MAXIMUM_BLOCKS_PER_CLUSTER)
+{
+	FIELD( _field_word_integer, "decorator placement count*" ),
+	FIELD( _field_byte_integer, "decorator set index*" ),
+	FIELD( _field_byte_integer, "decorator instance buffer index*" ),
+	FIELD( _field_long_integer, "decorator instance buffer offset*" ),
+	FIELD( _field_real_vector_3d, "position bounds min*" ),
+	FIELD( _field_real, "bounding sphere radius*" ),
+	FIELD( _field_real_vector_3d, "position bounds size*" ),
+	FIELD( _field_real_vector_3d, "bounding sphere center*" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(global_decorator_type_struct)
+{
+	FIELD( _field_long_integer, "index!" ),
+	FIELD( _field_long_block_index, "mesh^" ),
+	FIELD( _field_long_flags, "flags" ),
+	FIELD( _field_real, "scale min:[0.0 - 5.0]" ),
+	FIELD( _field_real, "scale max:[0.0 - 5.0]" ),
+	FIELD( _field_real, "tilt min:degrees" ),
+	FIELD( _field_real, "tilt max:degrees" ),
+	FIELD( _field_real, "wind min:[0.0 - 1.0]" ),
+	FIELD( _field_real, "wind max:[0.0 - 1.0]" ),
+	FIELD( _field_real_rgb_color, "color 0" ),
+	FIELD( _field_real_rgb_color, "color 1" ),
+	FIELD( _field_real_rgb_color, "color 2" ),
+	FIELD( _field_real, "ground tint min:[0.0 - 1.0]" ),
+	FIELD( _field_real, "ground tint max:[0.0 - 1.0]" ),
+	FIELD( _field_real, "hover min:[-1.0 - 1.0]" ),
+	FIELD( _field_real, "hover max:[-1.0 - 1.0]" ),
+	FIELD( _field_real, "minimum distance between decorators:world units" ),
+	FIELD( _field_real, "placement weight:[0.0 - 1.0]" ),
+	FIELD( _field_real, "postprocessed weight!" ),
 	FIELD( _field_terminator )
 };
 

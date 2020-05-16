@@ -3,6 +3,31 @@
 namespace blofeld
 {
 
+TAG_GROUP(effect, EFFECT_TAG)
+{
+	FIELD( _field_long_flags, "flags" ),
+	FIELD( _field_dword_integer, "fixed random seed#If this is non-zero, the effect will usually be exactly repeatable" ),
+	FIELD( _field_real, "restart if within{overlap threshold}:world units" ),
+	FIELD( _field_real, "continue if within:world units" ),
+	FIELD( _field_real, "death_delay" ),
+	FIELD( _field_short_block_index, "loop start event" ),
+	FIELD( _field_char_enum, "priority!*" ),
+	FIELD( _field_pad, "asdfsdf", 1 ),
+	FIELD( _field_real, "global size scale" ),
+	FIELD( _field_string_id, "scale A override#Handle with care. FYI only works if the effect is attached to an object" ),
+	FIELD( _field_string_id, "scale B override#Handle with care. FYI only works if the effect is attached to an object" ),
+	FIELD( _field_real, "runtime danger radius!" ),
+	FIELD( _field_block, "locations", &effect_locations_block_block ),
+	FIELD( _field_block, "events", &effect_event_block_block ),
+	FIELD( _field_block, "looping sounds", &effect_looping_sound_block_block ),
+	FIELD( _field_real, "always play distance" ),
+	FIELD( _field_real, "never play distance" ),
+	FIELD( _field_real, "runtime lightprobe_death_delay!" ),
+	FIELD( _field_real, "runtime local_space_death_delay!" ),
+	FIELD( _field_block, "conical distribution", &effect_conical_distribution_block_block ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(effect_locations_block, k_maximum_effect_locations_count)
 {
 	FIELD( _field_explanation, "MARKER NAMES" ),
@@ -27,9 +52,9 @@ TAG_BLOCK(effect_event_block, k_maximum_effect_events_count)
 	FIELD( _field_real_bounds, "duration bounds:seconds#duration of this event" ),
 	FIELD( _field_explanation, "event age duration override" ),
 	FIELD( _field_real, "event age duration override:seconds#the amount of time over which the \"event age\" function input goes from 0 to 1" ),
-	FIELD( _field_block, "parts", &effect_part_block ),
-	FIELD( _field_block, "accelerations", &effect_accelerations_block ),
-	FIELD( _field_block, "particle systems", &particle_system_definition_block_new ),
+	FIELD( _field_block, "parts", &effect_part_block_block ),
+	FIELD( _field_block, "accelerations", &effect_accelerations_block_block ),
+	FIELD( _field_block, "particle systems", &particle_system_definition_block_new_block ),
 	FIELD( _field_terminator )
 };
 
@@ -90,31 +115,6 @@ TAG_BLOCK(effect_conical_distribution_block, 1)
 	FIELD( _field_short_integer, "pitch count" ),
 	FIELD( _field_real, "distribution exponent#exp==.5 even distribution, exp>.5== tighter" ),
 	FIELD( _field_angle, "spread#degrees" ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(effect_block, EFFECT_TAG)
-{
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_dword_integer, "fixed random seed#If this is non-zero, the effect will usually be exactly repeatable" ),
-	FIELD( _field_real, "restart if within{overlap threshold}:world units" ),
-	FIELD( _field_real, "continue if within:world units" ),
-	FIELD( _field_real, "death_delay" ),
-	FIELD( _field_short_block_index, "loop start event" ),
-	FIELD( _field_char_enum, "priority!*" ),
-	FIELD( _field_pad, "asdfsdf", 1 ),
-	FIELD( _field_real, "global size scale" ),
-	FIELD( _field_string_id, "scale A override#Handle with care. FYI only works if the effect is attached to an object" ),
-	FIELD( _field_string_id, "scale B override#Handle with care. FYI only works if the effect is attached to an object" ),
-	FIELD( _field_real, "runtime danger radius!" ),
-	FIELD( _field_block, "locations", &effect_locations_block ),
-	FIELD( _field_block, "events", &effect_event_block ),
-	FIELD( _field_block, "looping sounds", &effect_looping_sound_block ),
-	FIELD( _field_real, "always play distance" ),
-	FIELD( _field_real, "never play distance" ),
-	FIELD( _field_real, "runtime lightprobe_death_delay!" ),
-	FIELD( _field_real, "runtime local_space_death_delay!" ),
-	FIELD( _field_block, "conical distribution", &effect_conical_distribution_block ),
 	FIELD( _field_terminator )
 };
 

@@ -3,18 +3,19 @@
 namespace blofeld
 {
 
+
+extern s_tag_struct materials_block_block_struct;
+extern s_tag_block_definition materials_block_block;
+extern s_tag_struct object_type_drag_properties_block_block_struct;
+extern s_tag_block_definition object_type_drag_properties_block_block;
+extern s_tag_struct underwater_proxies_block_block_struct;
+extern s_tag_block_definition underwater_proxies_block_block;
+extern s_tag_struct runtime_materials_block_block_struct;
+extern s_tag_block_definition runtime_materials_block_block;
+
 extern s_tag_struct wet_proxies_struct_struct_definition;
 extern s_tag_struct material_physics_properties_struct_struct_definition;
 extern s_tag_struct materials_sweeteners_struct_struct_definition;
-
-extern s_tag_struct materials_block_struct_definition;
-extern s_tag_block_definition materials_block;
-extern s_tag_struct object_type_drag_properties_block_struct_definition;
-extern s_tag_block_definition object_type_drag_properties_block;
-extern s_tag_struct underwater_proxies_block_struct_definition;
-extern s_tag_block_definition underwater_proxies_block;
-extern s_tag_struct runtime_materials_block_struct_definition;
-extern s_tag_block_definition runtime_materials_block;
 
 } // namespace blofeld
 

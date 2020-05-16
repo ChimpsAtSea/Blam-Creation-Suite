@@ -4,18 +4,19 @@ namespace blofeld
 {
 
 
-extern s_tag_struct trigger_references_struct_definition;
-extern s_tag_block_definition trigger_references;
-extern s_tag_struct orders_block_struct_definition;
-extern s_tag_block_definition orders_block;
-extern s_tag_struct secondary_set_trigger_block_struct_definition;
-extern s_tag_block_definition secondary_set_trigger_block;
-extern s_tag_struct order_ending_block_struct_definition;
-extern s_tag_block_definition order_ending_block;
-extern s_tag_struct triggers_block_struct_definition;
-extern s_tag_block_definition triggers_block;
-extern s_tag_struct order_completion_condition_struct_definition;
-extern s_tag_block_definition order_completion_condition;
+extern s_tag_struct trigger_references_block_struct;
+extern s_tag_block_definition trigger_references_block;
+extern s_tag_struct orders_block_block_struct;
+extern s_tag_block_definition orders_block_block;
+extern s_tag_struct secondary_set_trigger_block_block_struct;
+extern s_tag_block_definition secondary_set_trigger_block_block;
+extern s_tag_struct order_ending_block_block_struct;
+extern s_tag_block_definition order_ending_block_block;
+extern s_tag_struct triggers_block_block_struct;
+extern s_tag_block_definition triggers_block_block;
+extern s_tag_struct order_completion_condition_block_struct;
+extern s_tag_block_definition order_completion_condition_block;
+
 
 } // namespace blofeld
 

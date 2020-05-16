@@ -3,11 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(self_illumination_struct_definition)
-{
-	FIELD( _field_block, "States", &self_illumination_state ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(self_illumination, SELF_ILLUMINATION_TAG, self_illumination_block_block )
+
+TAG_BLOCK_FROM_STRUCT(self_illumination_block, 1, self_illumination_struct_definition_struct_definition );
 
 TAG_BLOCK(self_illumination_state, SelfIlluminationDefinition::MAX_STATES)
 {
@@ -22,9 +20,9 @@ TAG_BLOCK(self_illumination_state, SelfIlluminationDefinition::MAX_STATES)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(self_illumination_block, SELF_ILLUMINATION_TAG)
+TAG_STRUCT(self_illumination_struct_definition)
 {
-	FIELD( _field_block, "States", &self_illumination_state ),
+	FIELD( _field_block, "States", &self_illumination_state_block ),
 	FIELD( _field_terminator )
 };
 

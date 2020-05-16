@@ -3,33 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(ai_dialogue_globals_struct_definition)
-{
-	FIELD( _field_explanation, "Global timing" ),
-	FIELD( _field_real_bounds, "strike delay bounds:secs" ),
-	FIELD( _field_real, "remind delay:secs" ),
-	FIELD( _field_real, "cover curse chance" ),
-	FIELD( _field_explanation, "Player look settings" ),
-	FIELD( _field_real, "player look max distance:wu#defaults to 10 wu" ),
-	FIELD( _field_real, "player look:secs#defaults to 3 secs" ),
-	FIELD( _field_real, "player look long time:secs#defaults to 15 secs" ),
-	FIELD( _field_explanation, "Spartan nearby search distance" ),
-	FIELD( _field_real, "spartan nearby search distance:wu#defaults to 7 wu" ),
-	FIELD( _field_explanation, "Face friendly player distance" ),
-	FIELD( _field_real, "face friendly player distance:wu#0: disable facing behavior" ),
-	FIELD( _field_explanation, "Space dialogue effect" ),
-	FIELD( _field_string_id, "space dialogue effect#used for dialog lines started by a pattern with \"speaker in space\" set" ),
-	FIELD( _field_explanation, "Default stimulus suppressors" ),
-	FIELD( _field_block, "default stimulus suppressors", &default_stimulus_suppressor_block ),
-	FIELD( _field_explanation, "Imported Data. Don\'t touch me." ),
-	FIELD( _field_block, "vocalizations", &vocalization_definitions_block ),
-	FIELD( _field_block, "patterns", &vocalization_patterns_block ),
-	FIELD( _field_pad, "WWKMVLL", 12 ),
-	FIELD( _field_block, "dialogue data", &dialogue_data_block ),
-	FIELD( _field_block, "involuntary data", &involuntary_data_block ),
-	FIELD( _field_block, "predicted vocalizations", &predicted_data_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(ai_dialogue_globals, AI_DIALOGUE_GLOBALS_TAG, ai_dialogue_globals_block_block )
+
+TAG_BLOCK_FROM_STRUCT(ai_dialogue_globals_block, 1, ai_dialogue_globals_struct_definition_struct_definition );
 
 TAG_BLOCK(default_stimulus_suppressor_block, 4)
 {
@@ -67,7 +43,7 @@ TAG_BLOCK(vocalization_definitions_block, 500)
 	FIELD( _field_short_integer, "mission min value#The lowest mission id that we play this line in" ),
 	FIELD( _field_short_integer, "mission max value#The highest mission id that we play this line in" ),
 	FIELD( _field_string_id, "Sample line" ),
-	FIELD( _field_block, "reponses", &response_block ),
+	FIELD( _field_block, "reponses", &response_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -134,7 +110,7 @@ TAG_BLOCK(predicted_data_block, 32)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(ai_dialogue_globals_block, AI_DIALOGUE_GLOBALS_TAG)
+TAG_STRUCT(ai_dialogue_globals_struct_definition)
 {
 	FIELD( _field_explanation, "Global timing" ),
 	FIELD( _field_real_bounds, "strike delay bounds:secs" ),
@@ -151,14 +127,14 @@ TAG_GROUP(ai_dialogue_globals_block, AI_DIALOGUE_GLOBALS_TAG)
 	FIELD( _field_explanation, "Space dialogue effect" ),
 	FIELD( _field_string_id, "space dialogue effect#used for dialog lines started by a pattern with \"speaker in space\" set" ),
 	FIELD( _field_explanation, "Default stimulus suppressors" ),
-	FIELD( _field_block, "default stimulus suppressors", &default_stimulus_suppressor_block ),
+	FIELD( _field_block, "default stimulus suppressors", &default_stimulus_suppressor_block_block ),
 	FIELD( _field_explanation, "Imported Data. Don\'t touch me." ),
-	FIELD( _field_block, "vocalizations", &vocalization_definitions_block ),
-	FIELD( _field_block, "patterns", &vocalization_patterns_block ),
+	FIELD( _field_block, "vocalizations", &vocalization_definitions_block_block ),
+	FIELD( _field_block, "patterns", &vocalization_patterns_block_block ),
 	FIELD( _field_pad, "WWKMVLL", 12 ),
-	FIELD( _field_block, "dialogue data", &dialogue_data_block ),
-	FIELD( _field_block, "involuntary data", &involuntary_data_block ),
-	FIELD( _field_block, "predicted vocalizations", &predicted_data_block ),
+	FIELD( _field_block, "dialogue data", &dialogue_data_block_block ),
+	FIELD( _field_block, "involuntary data", &involuntary_data_block_block ),
+	FIELD( _field_block, "predicted vocalizations", &predicted_data_block_block ),
 	FIELD( _field_terminator )
 };
 

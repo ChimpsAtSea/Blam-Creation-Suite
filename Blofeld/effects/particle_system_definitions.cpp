@@ -3,14 +3,6 @@
 namespace blofeld
 {
 
-TAG_STRUCT(gpu_property_function_color_struct)
-{
-	FIELD( _field_block, "runtime gpu_property_block!", &gpu_property_block ),
-	FIELD( _field_block, "runtime gpu_functions_block!", &gpu_function_block ),
-	FIELD( _field_block, "runtime gpu_colors_block!", &gpu_color_block ),
-	FIELD( _field_terminator )
-};
-
 TAG_BLOCK(particle_system_definition_block_new, c_particle_system_definition::k_maximum_particle_systems_per_block)
 {
 	FIELD( _field_custom ),
@@ -43,7 +35,7 @@ TAG_BLOCK(particle_system_definition_block_new, c_particle_system_definition::k_
 	FIELD( _field_real, "LOD feather out delta#0 defaults to 5.0, minimum is 0.0001" ),
 	FIELD( _field_real, "inverse LOD feather out!" ),
 	FIELD( _field_custom ),
-	FIELD( _field_block, "emitters", &particle_system_emitter_definition_block ),
+	FIELD( _field_block, "emitters", &particle_system_emitter_definition_block_block ),
 	FIELD( _field_real, "runtime max lifespan!" ),
 	FIELD( _field_real, "runtime overdraw!" ),
 	FIELD( _field_terminator )
@@ -86,8 +78,8 @@ TAG_BLOCK(particle_system_emitter_definition_block, c_particle_system_definition
 	FIELD( _field_custom ),
 	FIELD( _field_struct, "particle movement", &particle_physics_struct_struct_definition ),
 	FIELD( _field_custom ),
-	FIELD( _field_block, "particle attractor/repulsor", &emitterGlobalForceBlock ),
-	FIELD( _field_block, "particle clip sphere", &emitterClipSphereBlock ),
+	FIELD( _field_block, "particle attractor/repulsor", &emitterGlobalForceBlock_block ),
+	FIELD( _field_block, "particle clip sphere", &emitterClipSphereBlock_block ),
 	FIELD( _field_struct, "particle self-acceleration:world units per second per second", &particle_property_real_vector3d_struct_new_struct_definition ),
 	FIELD( _field_struct, "particle initial velocity{particle velocity}:world units per second", &particle_property_scalar_struct_new_struct_definition ),
 	FIELD( _field_struct, "particle rotation:.25=90°, .5=180°, 1=360° ... adds to physics", &particle_property_scalar_struct_new_struct_definition ),
@@ -141,6 +133,14 @@ TAG_BLOCK(gpu_function_block, k_max_gpu_functions)
 TAG_BLOCK(gpu_color_block, k_max_gpu_colors)
 {
 	FIELD( _field_array, "runtime gpu_color_sub_array!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(gpu_property_function_color_struct)
+{
+	FIELD( _field_block, "runtime gpu_property_block!", &gpu_property_block_block ),
+	FIELD( _field_block, "runtime gpu_functions_block!", &gpu_function_block_block ),
+	FIELD( _field_block, "runtime gpu_colors_block!", &gpu_color_block_block ),
 	FIELD( _field_terminator )
 };
 

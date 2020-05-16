@@ -17,7 +17,7 @@ TAG_BLOCK(active_camo_globals_block, 1)
 	FIELD( _field_tag_reference, "camo distortion texture" ),
 	FIELD( _field_real, "camo depth bias max distance#This is used to deal with ugly rendering artifacts when camo is not fully on" ),
 	FIELD( _field_struct, "camo depth bias function#This is used to deal with ugly rendering artifacts when camo is not fully on", &scalar_function_named_struct_struct_definition ),
-	FIELD( _field_block, "camo levels", &active_camo_level_definition_block ),
+	FIELD( _field_block, "camo levels", &active_camo_level_definition_block_block ),
 	FIELD( _field_terminator )
 };
 

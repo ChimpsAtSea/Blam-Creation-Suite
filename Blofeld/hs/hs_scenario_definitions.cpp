@@ -3,6 +3,8 @@
 namespace blofeld
 {
 
+TAG_GROUP_FROM_BLOCK(hsc, HSC_TAG, hs_source_files_block_block )
+
 TAG_BLOCK(hs_source_files_block, k_maximum_hs_source_files_per_context)
 {
 	FIELD( _field_string, "name*" ),
@@ -25,7 +27,7 @@ TAG_BLOCK(hs_scripts_block, k_maximum_hs_scripts_per_context)
 	FIELD( _field_long_enum, "return type*" ),
 	FIELD( _field_long_integer, "root expression index*" ),
 	FIELD( _field_long_integer, "locals stack space" ),
-	FIELD( _field_block, "parameters", &hs_script_parameters_block ),
+	FIELD( _field_block, "parameters", &hs_script_parameters_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -77,8 +79,8 @@ TAG_BLOCK(hs_syntax_datum_block, k_maximum_hs_syntax_nodes_per_context)
 TAG_BLOCK(HSImportManifestBlock, 128)
 {
 	FIELD( _field_tag, "callee tag*" ),
-	FIELD( _field_block, "script table*", &HSImportManifestEntryBlock ),
-	FIELD( _field_block, "variable table*", &HSImportManifestEntryBlock ),
+	FIELD( _field_block, "script table*", &HSImportManifestEntryBlock_block ),
+	FIELD( _field_block, "variable table*", &HSImportManifestEntryBlock_block ),
 	FIELD( _field_terminator )
 };
 
@@ -89,8 +91,6 @@ TAG_BLOCK(HSImportManifestEntryBlock, k_maximum_hs_scripts_per_context)
 	FIELD( _field_long_integer, "index!~" ),
 	FIELD( _field_terminator )
 };
-
-TAG_GROUP_FROM_BLOCK(hsc, HSC_TAG, hs_source_files_block)
 
 } // namespace blofeld
 

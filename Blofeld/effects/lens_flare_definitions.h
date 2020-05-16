@@ -3,19 +3,20 @@
 namespace blofeld
 {
 
-extern s_tag_struct lens_flare_struct_definition_struct_definition;
-extern s_tag_struct lens_flare_color_function_struct_struct_definition;
-
-extern s_tag_struct lens_flare_reflection_block_struct_definition;
-extern s_tag_block_definition lens_flare_reflection_block;
-extern s_tag_struct lens_flare_scalar_animation_block_struct_definition;
-extern s_tag_block_definition lens_flare_scalar_animation_block;
-extern s_tag_struct lens_flare_color_animation_block_struct_definition;
-extern s_tag_block_definition lens_flare_color_animation_block;
-
 constexpr unsigned long LENS_FLARE_TAG = 'lens';
 
-extern s_tag_block_definition lens_flare_block;
 extern s_tag_group lens_flare_group;
+
+extern s_tag_block_definition lens_flare_block_block;
+extern s_tag_struct lens_flare_reflection_block_block_struct;
+extern s_tag_block_definition lens_flare_reflection_block_block;
+extern s_tag_struct lens_flare_scalar_animation_block_block_struct;
+extern s_tag_block_definition lens_flare_scalar_animation_block_block;
+extern s_tag_struct lens_flare_color_animation_block_block_struct;
+extern s_tag_block_definition lens_flare_color_animation_block_block;
+
+extern s_tag_struct lens_flare_struct_definition_struct_definition; // tag group
+extern s_tag_struct lens_flare_color_function_struct_struct_definition;
+
 } // namespace blofeld
 

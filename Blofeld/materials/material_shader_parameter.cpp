@@ -24,7 +24,7 @@ TAG_BLOCK(material_shader_parameter_block, s_material_shader_parameter::k_max_ma
 	FIELD( _field_byte_integer, "bitmap min mipmap" ),
 	FIELD( _field_byte_integer, "bitmap max mipmap" ),
 	FIELD( _field_byte_integer, "render phases used" ),
-	FIELD( _field_block, "function parameters", &material_shader_function_parameter_block ),
+	FIELD( _field_block, "function parameters", &material_shader_function_parameter_block_block ),
 	FIELD( _field_data, "display name*" ),
 	FIELD( _field_data, "display group*" ),
 	FIELD( _field_data, "display help text*" ),

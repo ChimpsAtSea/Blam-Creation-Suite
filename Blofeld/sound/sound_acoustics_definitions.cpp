@@ -3,6 +3,46 @@
 namespace blofeld
 {
 
+TAG_BLOCK_FROM_STRUCT(scenario_acoustics_palette_block_definition, k_maximum_cluster_sound_palette_entries_per_structure, scenario_acoustics_palette_block_definition_struct_struct_definition );
+
+TAG_BLOCK(scenario_acoustic_sector_block, s_scenario_acoustic_sector::k_maximum_scenario_acoustic_sectors)
+{
+	FIELD( _field_block, "points", &acoustic_sector_point_block_block ),
+	FIELD( _field_real_plane_3d, "top plane!" ),
+	FIELD( _field_real_plane_3d, "bottom plane!" ),
+	FIELD( _field_long_flags, "flags" ),
+	FIELD( _field_real, "occlusion value" ),
+	FIELD( _field_short_block_index, "acoustics^" ),
+	FIELD( _field_short_block_index, "editor folder!" ),
+	FIELD( _field_real, "height" ),
+	FIELD( _field_real, "sink" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(acoustic_sector_point_block, k_maximum_points_per_sector)
+{
+	FIELD( _field_real_point_3d, "position" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(scenario_acoustic_transition_block, s_scenario_acoustic_transition::k_maximum_scenario_acoustic_transitions)
+{
+	FIELD( _field_real_point_3d, "center!" ),
+	FIELD( _field_real_point_3d, "forward!" ),
+	FIELD( _field_real_point_3d, "up!" ),
+	FIELD( _field_real, "half width!" ),
+	FIELD( _field_real, "half height!" ),
+	FIELD( _field_real, "sample point offset 0!" ),
+	FIELD( _field_real, "sample point offset 1!" ),
+	FIELD( _field_short_block_index, "sample 0*" ),
+	FIELD( _field_short_block_index, "sample 1*" ),
+	FIELD( _field_struct, "location 0*!", &scenario_acoustic_location_definition_struct_definition ),
+	FIELD( _field_struct, "location 1*!", &scenario_acoustic_location_definition_struct_definition ),
+	FIELD( _field_short_block_index, "editor folder!" ),
+	FIELD( _field_pad, "CKJEWRSDF", 2 ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(scenario_acoustics_palette_block_definition_struct)
 {
 	FIELD( _field_string_id, "name^" ),
@@ -51,46 +91,6 @@ TAG_STRUCT(scenario_acoustic_cluster_reference_definition)
 {
 	FIELD( _field_char_integer, "bsp index*!" ),
 	FIELD( _field_byte_integer, "cluster index*!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK_FROM_STRUCT(scenario_acoustics_palette_block_definition, k_maximum_cluster_sound_palette_entries_per_structure, scenario_acoustics_palette_block_definition_struct_struct_definition );
-
-TAG_BLOCK(scenario_acoustic_sector_block, s_scenario_acoustic_sector::k_maximum_scenario_acoustic_sectors)
-{
-	FIELD( _field_block, "points", &acoustic_sector_point_block ),
-	FIELD( _field_real_plane_3d, "top plane!" ),
-	FIELD( _field_real_plane_3d, "bottom plane!" ),
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_real, "occlusion value" ),
-	FIELD( _field_short_block_index, "acoustics^" ),
-	FIELD( _field_short_block_index, "editor folder!" ),
-	FIELD( _field_real, "height" ),
-	FIELD( _field_real, "sink" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(acoustic_sector_point_block, k_maximum_points_per_sector)
-{
-	FIELD( _field_real_point_3d, "position" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(scenario_acoustic_transition_block, s_scenario_acoustic_transition::k_maximum_scenario_acoustic_transitions)
-{
-	FIELD( _field_real_point_3d, "center!" ),
-	FIELD( _field_real_point_3d, "forward!" ),
-	FIELD( _field_real_point_3d, "up!" ),
-	FIELD( _field_real, "half width!" ),
-	FIELD( _field_real, "half height!" ),
-	FIELD( _field_real, "sample point offset 0!" ),
-	FIELD( _field_real, "sample point offset 1!" ),
-	FIELD( _field_short_block_index, "sample 0*" ),
-	FIELD( _field_short_block_index, "sample 1*" ),
-	FIELD( _field_struct, "location 0*!", &scenario_acoustic_location_definition_struct_definition ),
-	FIELD( _field_struct, "location 1*!", &scenario_acoustic_location_definition_struct_definition ),
-	FIELD( _field_short_block_index, "editor folder!" ),
-	FIELD( _field_pad, "CKJEWRSDF", 2 ),
 	FIELD( _field_terminator )
 };
 

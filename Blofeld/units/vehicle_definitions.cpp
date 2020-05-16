@@ -3,175 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(vehicle_group)
-{
-	FIELD( _field_struct, "unit", &unit_struct_definition_struct_definition ),
-	FIELD( _field_custom, "$$$ VEHICLE $$$" ),
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_explanation, "physics type" ),
-	FIELD( _field_struct, "physics types", &vehicle_physics_types_struct_struct_definition ),
-	FIELD( _field_explanation, "friction and antigravity points" ),
-	FIELD( _field_struct, "havok vehicle physics", &havok_vehicle_physics_struct_struct_definition ),
-	FIELD( _field_block, "tricks", &unit_trick_definition_block ),
-	FIELD( _field_char_enum, "player training vehicle type" ),
-	FIELD( _field_char_enum, "vehicle size#The size determine what kind of seats in larger vehicles it may occupy (i.e. small or large cargo seats)" ),
-	FIELD( _field_char_integer, "complex suspension sample count#How many additional raycasts to perform per side of a tire." ),
-	FIELD( _field_pad, "VQWHV", 1 ),
-	FIELD( _field_angle, "complex suspension distribution angle:degrees#0-90 degrees of the wedge portion of the wheel to test suspension" ),
-	FIELD( _field_real, "complex suspension wheel diameter" ),
-	FIELD( _field_real, "complex suspension wheel width" ),
-	FIELD( _field_real, "minimum flipping angular velocity" ),
-	FIELD( _field_real, "maximum flipping angular velocity" ),
-	FIELD( _field_real, "crouch transition time:seconds" ),
-	FIELD( _field_real, "HOOJYTSU!" ),
-	FIELD( _field_real, "seat enterance acceleration scale#how much do we scale the force the vehicle the applies down on the seat when he enters. 0 == no acceleration" ),
-	FIELD( _field_real, "seat exit accelersation scale#how much do we scale the force the vehicle the applies down on the seat when he exits. 0 == no acceleration" ),
-	FIELD( _field_real, "blur speed" ),
-	FIELD( _field_string_id, "flip message" ),
-	FIELD( _field_explanation, "sounds and effects" ),
-	FIELD( _field_tag_reference, "Player vehicle sound bank#High quality player sound bank to be prefetched. Can be empty." ),
-	FIELD( _field_tag_reference, "suspension sound" ),
-	FIELD( _field_real, "fake audio speed - speed increase amount#amount to increase per frame while speeding up(.002 is a good number)" ),
-	FIELD( _field_real, "fake audio speed - boost speed increase amount#amount to increase per frame while boosting (.006 is a good number)" ),
-	FIELD( _field_real, "fake audio speed - speed decrease amount#amount to decrease per frame while slowing down (.002 is a good number)" ),
-	FIELD( _field_real, "fake audio speed - non-boost limit#max value while not boosting (maximum is 1)" ),
-	FIELD( _field_real, "fake audio speed - max speed scale#scales speed value. Must be > 0 for this to work (ie for banshee, 5 is good)" ),
-	FIELD( _field_block, "Sound RTPCs", &SoundRTPCBlock ),
-	FIELD( _field_block, "Sound Sweeteners", &SoundSweetenerBlock ),
-	FIELD( _field_tag_reference, "special effect" ),
-	FIELD( _field_tag_reference, "driver boost damage effect or response" ),
-	FIELD( _field_tag_reference, "rider boost damage effect or response" ),
-	FIELD( _field_string_id, "vehicle name" ),
-	FIELD( _field_block, "physics transitions", &physics_transitions_block ),
-	FIELD( _field_custom ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_INHERIT_FROM_BLOCK(vehicle, VEHICLE_TAG, unit, UNIT_TAG, vehicle_block_block )
 
-TAG_STRUCT(human_tank_struct)
-{
-	FIELD( _field_angle, "forward arc#outside of this arc the vehicle reverse direciton, around 110 degrees seems to be nice..." ),
-	FIELD( _field_angle, "perpendicular forward arc#this is the value of forward arc when turned sideways.  We interpolate from forward arc to this value when camera becomes perpendicular to the vehicle" ),
-	FIELD( _field_real, "flip window#seconds" ),
-	FIELD( _field_real, "pegged fraction#0-1" ),
-	FIELD( _field_real, "forward turn scale#think of this as oversteer" ),
-	FIELD( _field_real, "reverse turn scale#think of this as oversteer" ),
-	FIELD( _field_explanation, "forward differential" ),
-	FIELD( _field_real, "maximum left differential" ),
-	FIELD( _field_real, "maximum right differential" ),
-	FIELD( _field_real, "differential acceleration" ),
-	FIELD( _field_real, "differential deceleration" ),
-	FIELD( _field_explanation, "reverse differential" ),
-	FIELD( _field_real, "maximum left reverse differential" ),
-	FIELD( _field_real, "maximum right reverse differential" ),
-	FIELD( _field_real, "differential reverse acceleration" ),
-	FIELD( _field_real, "differential reverse deceleration" ),
-	FIELD( _field_struct, "engine", &global_vehicle_engine_struct_struct_definition ),
-	FIELD( _field_explanation, "wheel circumferance" ),
-	FIELD( _field_real, "wheel circumferance" ),
-	FIELD( _field_real, "gravity adjust#0-1 fraction by which we scale gravity that is not along the ground plane" ),
-	FIELD( _field_explanation, "New Tank Controls" ),
-	FIELD( _field_byte_flags, "control flags" ),
-	FIELD( _field_pad, "pad", 3 ),
-	FIELD( _field_real, "at rest forward angle(purple)" ),
-	FIELD( _field_real, "at rest reverse angle(violet)" ),
-	FIELD( _field_real, "at rest side on reverse angle closest to front(green)#first angle starting arc in which the control will cause the tank to reverse while at rest and facing side on" ),
-	FIELD( _field_real, "at rest side on reverse angle furthest from front(blue)#second angle ending arc in which the control will cause the tank to reverse while at rest and facing side on" ),
-	FIELD( _field_real, "at rest facing forward reverse angle(yellow)#angle forming arc in which the control will cause the tank to reverse while at rest and facing forward" ),
-	FIELD( _field_real, "at rest facing backward reverse angle(pink)##angle forming arc in which the control will cause the tank to reverse while at rest and facing backwards" ),
-	FIELD( _field_real, "in motion opposing direction angle#when in motion the angle in which the control must be to start moving in the opposite direction" ),
-	FIELD( _field_real, "in motion speed#the speed a tank must reach before we consider it in motion, changing the control mode" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(vehicle_physics_types_struct)
-{
-	FIELD( _field_custom ),
-	FIELD( _field_block, "type-human_tank", &human_tank_block ),
-	FIELD( _field_block, "type-human_jeep", &human_jeep_block ),
-	FIELD( _field_block, "type-human_plane", &human_plane_block ),
-	FIELD( _field_block, "type-wolverine", &wolverine_block ),
-	FIELD( _field_block, "type-alien_scout", &alien_scout_block ),
-	FIELD( _field_block, "type-alien_fighter", &alien_fighter_block ),
-	FIELD( _field_block, "type-turret", &turret_block ),
-	FIELD( _field_block, "type-mantis", &mantis_block ),
-	FIELD( _field_block, "type-vtol", &vtol_block ),
-	FIELD( _field_block, "type-chopper", &chopper_block ),
-	FIELD( _field_block, "type-guardian", &guardian_block ),
-	FIELD( _field_block, "type-jackal-glider", &jackal_glider_block ),
-	FIELD( _field_block, "type-boat", &boat_block ),
-	FIELD( _field_block, "type-space-fighter", &space_fighter_block ),
-	FIELD( _field_block, "type-revenant", &revenant_block ),
-	FIELD( _field_custom ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(vehicle_steering_control_struct)
-{
-	FIELD( _field_explanation, "steering overdampening" ),
-	FIELD( _field_real, "overdampen cusp angle:degrees" ),
-	FIELD( _field_real, "overdampen exponent" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(vehicle_turning_control_struct)
-{
-	FIELD( _field_explanation, "turning" ),
-	FIELD( _field_real, "maximum left turn" ),
-	FIELD( _field_real, "maximum right turn (negative)" ),
-	FIELD( _field_real, "turn rate" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(steering_animation_struct)
-{
-	FIELD( _field_explanation, "steering animation and interpolation\n" ),
-	FIELD( _field_real, "interpolation scale#1= heavy interp. of steering animations" ),
-	FIELD( _field_angle, "max angle#non-zero= max angle delta per frame" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(engine_function_struct)
-{
-	FIELD( _field_string_id, "object function damage region#this is the name of the region by which we gauge the overall damage of the vehicle" ),
-	FIELD( _field_real, "min anti gravity engine speed#speed at which engine position funciton  moves.  value of 1 means goes from 0-1 in 1 second" ),
-	FIELD( _field_real, "max anti gravity engine speed#speed at which engine position funciton  moves.  value of 1 means goes from 0-1 in 1 second" ),
-	FIELD( _field_real, "engine speed acceleration#strictly used for object funtion. in 0-1 space" ),
-	FIELD( _field_real, "maximum vehicle speed#function is capped by speed of the vehicle. So when we slow down for any reason we see the function go down" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(vtol_descent_function_struct)
-{
-	FIELD( _field_struct, "descent to boost", &scalar_function_named_struct_struct_definition ),
-	FIELD( _field_real, "max downward speed:wu/s" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(flight_surface_struct)
-{
-	FIELD( _field_char_enum, "offset axis" ),
-	FIELD( _field_char_enum, "pivot axis" ),
-	FIELD( _field_char_enum, "rotation axis" ),
-	FIELD( _field_char_enum, "normal axis" ),
-	FIELD( _field_real, "offset distance" ),
-	FIELD( _field_real, "pivot distance" ),
-	FIELD( _field_explanation, "normal force" ),
-	FIELD( _field_real, "q" ),
-	FIELD( _field_real, "k" ),
-	FIELD( _field_real, "function ceiling" ),
-	FIELD( _field_angle, "maximum angle" ),
-	FIELD( _field_real, "render debug radius" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(jackal_glider_drag_struct)
-{
-	FIELD( _field_explanation, "drag" ),
-	FIELD( _field_real, "q" ),
-	FIELD( _field_real, "k" ),
-	FIELD( _field_real, "constant deceleration" ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(vehicle_block, 1, vehicle_group_struct_definition );
 
 TAG_BLOCK_FROM_STRUCT(human_tank_block, 1, human_tank_struct_struct_definition );
 
@@ -180,7 +14,7 @@ TAG_BLOCK(human_jeep_block, 1)
 	FIELD( _field_struct, "steering control", &vehicle_steering_control_struct_struct_definition ),
 	FIELD( _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition ),
 	FIELD( _field_struct, "engine", &global_vehicle_engine_struct_struct_definition ),
-	FIELD( _field_block, "boat engine", &boat_engine_definition_block ),
+	FIELD( _field_block, "boat engine", &boat_engine_definition_block_block ),
 	FIELD( _field_explanation, "wheel circumferance" ),
 	FIELD( _field_real, "wheel circumferance" ),
 	FIELD( _field_real, "gravity adjust#0-1 fraction by which we scale gravity that is not along the ground plane" ),
@@ -373,7 +207,7 @@ TAG_BLOCK(vtol_block, 1)
 	FIELD( _field_struct, "SPEED_TROTTLE_CEILING()", &scalar_function_named_struct_struct_definition ),
 	FIELD( _field_struct, "INTERPOLATION_ACC()", &scalar_function_named_struct_struct_definition ),
 	FIELD( _field_struct, "A_B_INTERPOLATION() interpolation mapping", &scalar_function_named_struct_struct_definition ),
-	FIELD( _field_block, "speed interpolated parameters", &vtol_speed_interpolated_block ),
+	FIELD( _field_block, "speed interpolated parameters", &vtol_speed_interpolated_block_block ),
 	FIELD( _field_angle, "lift angles acc#how fast can the engine animations accelerate their turn in degress/SQR(sec)" ),
 	FIELD( _field_angle, "render lift angles acc#how fast can the engine animations accelerate their turn in degress/SQR(sec)" ),
 	FIELD( _field_real, "alt. lock offset coefficient#scalar for altitude lock based on distance to target - higher numbers reach the target more quickly but may cause bounciness" ),
@@ -502,7 +336,7 @@ TAG_BLOCK(boat_block, 1)
 	FIELD( _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition ),
 	FIELD( _field_real, "gravity scale#0 means 0.  How hard is it to type 1\?" ),
 	FIELD( _field_struct, "engine", &global_vehicle_engine_struct_struct_definition ),
-	FIELD( _field_block, "boat engine", &boat_engine_definition_block ),
+	FIELD( _field_block, "boat engine", &boat_engine_definition_block_block ),
 	FIELD( _field_custom ),
 	FIELD( _field_string_id, "hull marker name#the name of the hull surface used to spew effects along the hull of the vehicle." ),
 	FIELD( _field_terminator )
@@ -640,7 +474,7 @@ TAG_BLOCK(physics_transitions_block, k_max_vehicle_physics_transitions)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_INHERIT(vehicle_block, VEHICLE_TAG, unit, UNIT_TAG)
+TAG_STRUCT(vehicle_group)
 {
 	FIELD( _field_struct, "unit", &unit_struct_definition_struct_definition ),
 	FIELD( _field_custom, "$$$ VEHICLE $$$" ),
@@ -649,7 +483,7 @@ TAG_GROUP_INHERIT(vehicle_block, VEHICLE_TAG, unit, UNIT_TAG)
 	FIELD( _field_struct, "physics types", &vehicle_physics_types_struct_struct_definition ),
 	FIELD( _field_explanation, "friction and antigravity points" ),
 	FIELD( _field_struct, "havok vehicle physics", &havok_vehicle_physics_struct_struct_definition ),
-	FIELD( _field_block, "tricks", &unit_trick_definition_block ),
+	FIELD( _field_block, "tricks", &unit_trick_definition_block_block ),
 	FIELD( _field_char_enum, "player training vehicle type" ),
 	FIELD( _field_char_enum, "vehicle size#The size determine what kind of seats in larger vehicles it may occupy (i.e. small or large cargo seats)" ),
 	FIELD( _field_char_integer, "complex suspension sample count#How many additional raycasts to perform per side of a tire." ),
@@ -673,14 +507,140 @@ TAG_GROUP_INHERIT(vehicle_block, VEHICLE_TAG, unit, UNIT_TAG)
 	FIELD( _field_real, "fake audio speed - speed decrease amount#amount to decrease per frame while slowing down (.002 is a good number)" ),
 	FIELD( _field_real, "fake audio speed - non-boost limit#max value while not boosting (maximum is 1)" ),
 	FIELD( _field_real, "fake audio speed - max speed scale#scales speed value. Must be > 0 for this to work (ie for banshee, 5 is good)" ),
-	FIELD( _field_block, "Sound RTPCs", &SoundRTPCBlock ),
-	FIELD( _field_block, "Sound Sweeteners", &SoundSweetenerBlock ),
+	FIELD( _field_block, "Sound RTPCs", &SoundRTPCBlock_block ),
+	FIELD( _field_block, "Sound Sweeteners", &SoundSweetenerBlock_block ),
 	FIELD( _field_tag_reference, "special effect" ),
 	FIELD( _field_tag_reference, "driver boost damage effect or response" ),
 	FIELD( _field_tag_reference, "rider boost damage effect or response" ),
 	FIELD( _field_string_id, "vehicle name" ),
-	FIELD( _field_block, "physics transitions", &physics_transitions_block ),
+	FIELD( _field_block, "physics transitions", &physics_transitions_block_block ),
 	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(human_tank_struct)
+{
+	FIELD( _field_angle, "forward arc#outside of this arc the vehicle reverse direciton, around 110 degrees seems to be nice..." ),
+	FIELD( _field_angle, "perpendicular forward arc#this is the value of forward arc when turned sideways.  We interpolate from forward arc to this value when camera becomes perpendicular to the vehicle" ),
+	FIELD( _field_real, "flip window#seconds" ),
+	FIELD( _field_real, "pegged fraction#0-1" ),
+	FIELD( _field_real, "forward turn scale#think of this as oversteer" ),
+	FIELD( _field_real, "reverse turn scale#think of this as oversteer" ),
+	FIELD( _field_explanation, "forward differential" ),
+	FIELD( _field_real, "maximum left differential" ),
+	FIELD( _field_real, "maximum right differential" ),
+	FIELD( _field_real, "differential acceleration" ),
+	FIELD( _field_real, "differential deceleration" ),
+	FIELD( _field_explanation, "reverse differential" ),
+	FIELD( _field_real, "maximum left reverse differential" ),
+	FIELD( _field_real, "maximum right reverse differential" ),
+	FIELD( _field_real, "differential reverse acceleration" ),
+	FIELD( _field_real, "differential reverse deceleration" ),
+	FIELD( _field_struct, "engine", &global_vehicle_engine_struct_struct_definition ),
+	FIELD( _field_explanation, "wheel circumferance" ),
+	FIELD( _field_real, "wheel circumferance" ),
+	FIELD( _field_real, "gravity adjust#0-1 fraction by which we scale gravity that is not along the ground plane" ),
+	FIELD( _field_explanation, "New Tank Controls" ),
+	FIELD( _field_byte_flags, "control flags" ),
+	FIELD( _field_pad, "pad", 3 ),
+	FIELD( _field_real, "at rest forward angle(purple)" ),
+	FIELD( _field_real, "at rest reverse angle(violet)" ),
+	FIELD( _field_real, "at rest side on reverse angle closest to front(green)#first angle starting arc in which the control will cause the tank to reverse while at rest and facing side on" ),
+	FIELD( _field_real, "at rest side on reverse angle furthest from front(blue)#second angle ending arc in which the control will cause the tank to reverse while at rest and facing side on" ),
+	FIELD( _field_real, "at rest facing forward reverse angle(yellow)#angle forming arc in which the control will cause the tank to reverse while at rest and facing forward" ),
+	FIELD( _field_real, "at rest facing backward reverse angle(pink)##angle forming arc in which the control will cause the tank to reverse while at rest and facing backwards" ),
+	FIELD( _field_real, "in motion opposing direction angle#when in motion the angle in which the control must be to start moving in the opposite direction" ),
+	FIELD( _field_real, "in motion speed#the speed a tank must reach before we consider it in motion, changing the control mode" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(vehicle_physics_types_struct)
+{
+	FIELD( _field_custom ),
+	FIELD( _field_block, "type-human_tank", &human_tank_block_block ),
+	FIELD( _field_block, "type-human_jeep", &human_jeep_block_block ),
+	FIELD( _field_block, "type-human_plane", &human_plane_block_block ),
+	FIELD( _field_block, "type-wolverine", &wolverine_block_block ),
+	FIELD( _field_block, "type-alien_scout", &alien_scout_block_block ),
+	FIELD( _field_block, "type-alien_fighter", &alien_fighter_block_block ),
+	FIELD( _field_block, "type-turret", &turret_block_block ),
+	FIELD( _field_block, "type-mantis", &mantis_block_block ),
+	FIELD( _field_block, "type-vtol", &vtol_block_block ),
+	FIELD( _field_block, "type-chopper", &chopper_block_block ),
+	FIELD( _field_block, "type-guardian", &guardian_block_block ),
+	FIELD( _field_block, "type-jackal-glider", &jackal_glider_block_block ),
+	FIELD( _field_block, "type-boat", &boat_block_block ),
+	FIELD( _field_block, "type-space-fighter", &space_fighter_block_block ),
+	FIELD( _field_block, "type-revenant", &revenant_block_block ),
+	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(vehicle_steering_control_struct)
+{
+	FIELD( _field_explanation, "steering overdampening" ),
+	FIELD( _field_real, "overdampen cusp angle:degrees" ),
+	FIELD( _field_real, "overdampen exponent" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(vehicle_turning_control_struct)
+{
+	FIELD( _field_explanation, "turning" ),
+	FIELD( _field_real, "maximum left turn" ),
+	FIELD( _field_real, "maximum right turn (negative)" ),
+	FIELD( _field_real, "turn rate" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(steering_animation_struct)
+{
+	FIELD( _field_explanation, "steering animation and interpolation\n" ),
+	FIELD( _field_real, "interpolation scale#1= heavy interp. of steering animations" ),
+	FIELD( _field_angle, "max angle#non-zero= max angle delta per frame" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(engine_function_struct)
+{
+	FIELD( _field_string_id, "object function damage region#this is the name of the region by which we gauge the overall damage of the vehicle" ),
+	FIELD( _field_real, "min anti gravity engine speed#speed at which engine position funciton  moves.  value of 1 means goes from 0-1 in 1 second" ),
+	FIELD( _field_real, "max anti gravity engine speed#speed at which engine position funciton  moves.  value of 1 means goes from 0-1 in 1 second" ),
+	FIELD( _field_real, "engine speed acceleration#strictly used for object funtion. in 0-1 space" ),
+	FIELD( _field_real, "maximum vehicle speed#function is capped by speed of the vehicle. So when we slow down for any reason we see the function go down" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(vtol_descent_function_struct)
+{
+	FIELD( _field_struct, "descent to boost", &scalar_function_named_struct_struct_definition ),
+	FIELD( _field_real, "max downward speed:wu/s" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(flight_surface_struct)
+{
+	FIELD( _field_char_enum, "offset axis" ),
+	FIELD( _field_char_enum, "pivot axis" ),
+	FIELD( _field_char_enum, "rotation axis" ),
+	FIELD( _field_char_enum, "normal axis" ),
+	FIELD( _field_real, "offset distance" ),
+	FIELD( _field_real, "pivot distance" ),
+	FIELD( _field_explanation, "normal force" ),
+	FIELD( _field_real, "q" ),
+	FIELD( _field_real, "k" ),
+	FIELD( _field_real, "function ceiling" ),
+	FIELD( _field_angle, "maximum angle" ),
+	FIELD( _field_real, "render debug radius" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(jackal_glider_drag_struct)
+{
+	FIELD( _field_explanation, "drag" ),
+	FIELD( _field_real, "q" ),
+	FIELD( _field_real, "k" ),
+	FIELD( _field_real, "constant deceleration" ),
 	FIELD( _field_terminator )
 };
 

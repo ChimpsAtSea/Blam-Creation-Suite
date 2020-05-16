@@ -3,34 +3,20 @@
 namespace blofeld
 {
 
-TAG_STRUCT(user_hint_volume_avoidance_struct)
-{
-	FIELD( _field_long_enum, "type" ),
-	FIELD( _field_real_point_3d, "origin{center}" ),
-	FIELD( _field_real, "radius" ),
-	FIELD( _field_real_vector_3d, "facing vector#for pills" ),
-	FIELD( _field_real, "height#for pills" ),
-	FIELD( _field_short_block_index, "bsp" ),
-	FIELD( _field_short_integer, "spline_count*!" ),
-	FIELD( _field_short_integer, "zone_index*!" ),
-	FIELD( _field_short_integer, "area_index*!" ),
-	FIELD( _field_terminator )
-};
-
 TAG_BLOCK(user_hint_block, 1)
 {
-	FIELD( _field_block, "line segment geometry", &user_hint_line_segment_block ),
-	FIELD( _field_block, "parallelogram geometry", &user_hint_parallelogram_block ),
-	FIELD( _field_block, "jump hints", &user_hint_jump_block ),
-	FIELD( _field_block, "climb hints", &user_hint_climb_block ),
-	FIELD( _field_block, "well hints", &user_hint_well_block ),
-	FIELD( _field_block, "flight hints", &user_hint_flight_block ),
-	FIELD( _field_block, "volume avoidance hints", &user_hint_volume_avoidance ),
-	FIELD( _field_block, "spline hints", &user_hint_spline_block ),
-	FIELD( _field_block, "cookie cutters", &user_hint_cookie_cutter_block ),
-	FIELD( _field_block, "navmesh areas", &user_hint_navmesh_area_block ),
-	FIELD( _field_block, "giant hints", &user_hint_giant_block ),
-	FIELD( _field_block, "flood hints", &user_hint_flood_block ),
+	FIELD( _field_block, "line segment geometry", &user_hint_line_segment_block_block ),
+	FIELD( _field_block, "parallelogram geometry", &user_hint_parallelogram_block_block ),
+	FIELD( _field_block, "jump hints", &user_hint_jump_block_block ),
+	FIELD( _field_block, "climb hints", &user_hint_climb_block_block ),
+	FIELD( _field_block, "well hints", &user_hint_well_block_block ),
+	FIELD( _field_block, "flight hints", &user_hint_flight_block_block ),
+	FIELD( _field_block, "volume avoidance hints", &user_hint_volume_avoidance_block ),
+	FIELD( _field_block, "spline hints", &user_hint_spline_block_block ),
+	FIELD( _field_block, "cookie cutters", &user_hint_cookie_cutter_block_block ),
+	FIELD( _field_block, "navmesh areas", &user_hint_navmesh_area_block_block ),
+	FIELD( _field_block, "giant hints", &user_hint_giant_block_block ),
+	FIELD( _field_block, "flood hints", &user_hint_flood_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -70,7 +56,7 @@ TAG_BLOCK(user_hint_jump_block, k_max_hint_geometries)
 {
 	FIELD( _field_enum, "hint type" ),
 	FIELD( _field_short_block_index, "Squad group filter" ),
-	FIELD( _field_block, "hint vertices*~", &hint_vertex_block ),
+	FIELD( _field_block, "hint vertices*~", &hint_vertex_block_block ),
 	FIELD( _field_long_integer, "hint data 0*" ),
 	FIELD( _field_short_integer, "hint data 1*" ),
 	FIELD( _field_byte_integer, "hint data 2*" ),
@@ -92,7 +78,7 @@ TAG_BLOCK(user_hint_climb_block, k_max_climb_hints)
 {
 	FIELD( _field_enum, "hint type" ),
 	FIELD( _field_short_block_index, "Squad group filter" ),
-	FIELD( _field_block, "hint vertices*~", &hint_vertex_block ),
+	FIELD( _field_block, "hint vertices*~", &hint_vertex_block_block ),
 	FIELD( _field_long_integer, "hint data 0*" ),
 	FIELD( _field_short_integer, "hint data 1*" ),
 	FIELD( _field_byte_integer, "hint data 2*" ),
@@ -107,7 +93,7 @@ TAG_BLOCK(user_hint_climb_block, k_max_climb_hints)
 TAG_BLOCK(user_hint_well_block, k_max_hint_geometries)
 {
 	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_block, "points", &user_hint_well_point_block ),
+	FIELD( _field_block, "points", &user_hint_well_point_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -124,7 +110,7 @@ TAG_BLOCK(user_hint_well_point_block, k_max_hint_geometries)
 
 TAG_BLOCK(user_hint_flight_block, k_max_flight_hints_per_bsp)
 {
-	FIELD( _field_block, "points", &user_hint_flight_point_block ),
+	FIELD( _field_block, "points", &user_hint_flight_point_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -141,10 +127,10 @@ TAG_BLOCK(user_hint_spline_block, k_max_spline_hints_per_bsp)
 	FIELD( _field_string_id, "name" ),
 	FIELD( _field_real, "radius:wus" ),
 	FIELD( _field_real, "time between points:sec" ),
-	FIELD( _field_block, "control points", &user_hint_spline_control_point_block ),
+	FIELD( _field_block, "control points", &user_hint_spline_control_point_block_block ),
 	FIELD( _field_short_block_index, "bsp" ),
 	FIELD( _field_pad, "post-bsp-pad", 2 ),
-	FIELD( _field_block, "volume intersect points*!", &user_hint_spline_intersect_point_block ),
+	FIELD( _field_block, "volume intersect points*!", &user_hint_spline_intersect_point_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -172,8 +158,8 @@ TAG_BLOCK(user_hint_cookie_cutter_block, k_max_cookie_cutters)
 	FIELD( _field_long_integer, "hkaiVolume vtable*~!" ),
 	FIELD( _field_short_integer, "size*~!" ),
 	FIELD( _field_short_integer, "count*~!" ),
-	FIELD( _field_block, "points", &user_hint_sector_point_block ),
-	FIELD( _field_block, "pointsObjectIds", &hint_object_id_block ),
+	FIELD( _field_block, "points", &user_hint_sector_point_block_block ),
+	FIELD( _field_block, "pointsObjectIds", &hint_object_id_block_block ),
 	FIELD( _field_real, "z height" ),
 	FIELD( _field_real, "z sink" ),
 	FIELD( _field_enum, "type" ),
@@ -206,7 +192,7 @@ TAG_BLOCK(user_hint_navmesh_area_block, k_max_navmesh_areas)
 	FIELD( _field_long_integer, "hkaiVolume vtable*~!" ),
 	FIELD( _field_short_integer, "size*~!" ),
 	FIELD( _field_short_integer, "count*~!" ),
-	FIELD( _field_block, "points", &user_hint_sector_point_block ),
+	FIELD( _field_block, "points", &user_hint_sector_point_block_block ),
 	FIELD( _field_real, "z height" ),
 	FIELD( _field_real, "z sink" ),
 	FIELD( _field_real, "step height" ),
@@ -233,14 +219,14 @@ TAG_BLOCK(user_hint_navmesh_area_block, k_max_navmesh_areas)
 
 TAG_BLOCK(user_hint_giant_block, 1)
 {
-	FIELD( _field_block, "giant sector hints", &user_hint_giant_sector_block ),
-	FIELD( _field_block, "giant rail hints", &user_hint_giant_rail_block ),
+	FIELD( _field_block, "giant sector hints", &user_hint_giant_sector_block_block ),
+	FIELD( _field_block, "giant rail hints", &user_hint_giant_rail_block_block ),
 	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(user_hint_giant_sector_block, k_max_hint_geometries)
 {
-	FIELD( _field_block, "points", &user_hint_sector_point_block ),
+	FIELD( _field_block, "points", &user_hint_sector_point_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -253,19 +239,33 @@ TAG_BLOCK(user_hint_giant_rail_block, k_max_hint_geometries)
 
 TAG_BLOCK(user_hint_flood_block, 1)
 {
-	FIELD( _field_block, "flood sector hints", &user_hint_flood_sector_block ),
+	FIELD( _field_block, "flood sector hints", &user_hint_flood_sector_block_block ),
 	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(user_hint_flood_sector_block, k_max_hint_geometries)
 {
-	FIELD( _field_block, "points", &user_hint_sector_point_block ),
+	FIELD( _field_block, "points", &user_hint_sector_point_block_block ),
 	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(special_movement_block, 1)
 {
 	FIELD( _field_long_flags, "Special movement 1" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(user_hint_volume_avoidance_struct)
+{
+	FIELD( _field_long_enum, "type" ),
+	FIELD( _field_real_point_3d, "origin{center}" ),
+	FIELD( _field_real, "radius" ),
+	FIELD( _field_real_vector_3d, "facing vector#for pills" ),
+	FIELD( _field_real, "height#for pills" ),
+	FIELD( _field_short_block_index, "bsp" ),
+	FIELD( _field_short_integer, "spline_count*!" ),
+	FIELD( _field_short_integer, "zone_index*!" ),
+	FIELD( _field_short_integer, "area_index*!" ),
 	FIELD( _field_terminator )
 };
 

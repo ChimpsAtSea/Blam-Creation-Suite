@@ -3,148 +3,16 @@
 namespace blofeld
 {
 
-TAG_STRUCT(character_struct_definition)
-{
-	FIELD( _field_long_flags, "Character flags" ),
-	FIELD( _field_tag_reference, "parent character" ),
-	FIELD( _field_tag_reference, "unit" ),
-	FIELD( _field_tag_reference, "creature#Creature reference for swarm characters ONLY" ),
-	FIELD( _field_tag_reference, "style" ),
-	FIELD( _field_tag_reference, "major character" ),
-	FIELD( _field_block, "variants", &character_variants_block ),
-	FIELD( _field_block, "voice", &character_voice_properties_block ),
-	FIELD( _field_block, "general properties", &character_general_block ),
-	FIELD( _field_block, "proto spawn properties", &character_proto_spawn_block ),
-	FIELD( _field_block, "interact properties", &character_interact_block ),
-	FIELD( _field_block, "emotion properties", &character_emotions_block ),
-	FIELD( _field_block, "vitality properties", &character_vitality_block ),
-	FIELD( _field_block, "placement properties", &character_placement_block ),
-	FIELD( _field_block, "perception properties", &character_perception_block ),
-	FIELD( _field_block, "target properties", &character_target_block ),
-	FIELD( _field_block, "look properties", &character_look_block ),
-	FIELD( _field_block, "hopping properties", &character_hopping_block ),
-	FIELD( _field_block, "movement properties", &character_movement_block ),
-	FIELD( _field_block, "throttle styles", &character_throttle_style_block ),
-	FIELD( _field_block, "movement sets", &character_movement_set_block ),
-	FIELD( _field_block, "flocking properties", &character_flocking_block ),
-	FIELD( _field_block, "swarm properties", &character_swarm_block ),
-	FIELD( _field_block, "firing point evaluator properties", &character_firing_point_evaluator_block ),
-	FIELD( _field_block, "ready properties", &character_ready_block ),
-	FIELD( _field_block, "engage properties", &character_engage_block ),
-	FIELD( _field_block, "charge properties", &character_charge_block ),
-	FIELD( _field_explanation, "Danger Values" ),
-	FIELD( _field_block, "evasion properties", &character_evasion_block ),
-	FIELD( _field_block, "cover properties", &character_cover_block ),
-	FIELD( _field_block, "retreat properties", &character_retreat_block ),
-	FIELD( _field_block, "search properties", &character_search_block ),
-	FIELD( _field_block, "pre-search properties", &character_presearch_block ),
-	FIELD( _field_block, "idle properties", &character_idle_block ),
-	FIELD( _field_block, "vocalization properties", &character_vocalization_block ),
-	FIELD( _field_block, "boarding properties", &character_boarding_block ),
-	FIELD( _field_block, "kungfu properties", &character_kungfu_block ),
-	FIELD( _field_block, "bunker properties", &character_bunker_block ),
-	FIELD( _field_block, "guardian properties", &character_guardian_block ),
-	FIELD( _field_block, "combatform properties", &character_combatform_block ),
-	FIELD( _field_block, "engineer properties", &character_engineer_block ),
-	FIELD( _field_block, "inspect properties", &character_inspect_block ),
-	FIELD( _field_block, "scarab properties", &character_scarab_block ),
-	FIELD( _field_block, "weapons properties", &character_weapons_block ),
-	FIELD( _field_block, "firing pattern properties", &character_firing_pattern_properties_block ),
-	FIELD( _field_block, "extreme range firing pattern properties", &character_firing_pattern_properties_block ),
-	FIELD( _field_block, "grenades properties", &character_grenades_block ),
-	FIELD( _field_block, "vehicle properties", &character_vehicle_block ),
-	FIELD( _field_block, "flying movement properties", &character_flying_movement_block ),
-	FIELD( _field_block, "morph properties", &character_morph_block ),
-	FIELD( _field_block, "equipment definitions", &character_equipment_block ),
-	FIELD( _field_block, "stimuli responses", &character_stimuli_response_block ),
-	FIELD( _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block ),
-	FIELD( _field_block, "activity objects", &character_activity_object_block ),
-	FIELD( _field_block, "pain screen properties", &character_pain_screen_block ),
-	FIELD( _field_block, "bishop properties", &character_bishop_block ),
-	FIELD( _field_block, "combotron parent properties", &character_combotron_parent_block ),
-	FIELD( _field_block, "combotron child properties", &character_combotron_child_block ),
-	FIELD( _field_block, "handle dismemberment properties", &character_handle_dismemberment_block ),
-	FIELD( _field_block, "Fight From Cover", &character_cover_fight_block ),
-	FIELD( _field_block, "Emerge", &character_emerge_block ),
-	FIELD( _field_block, "Dynamic Task", &dynamic_task_block ),
-	FIELD( _field_block, "Advance Properties", &character_advance_block ),
-	FIELD( _field_block, "Cover Evasion", &character_cover_evasion_block ),
-	FIELD( _field_block, "Pack Stalk", &character_pack_stalk_block ),
-	FIELD( _field_block, "Fight Circle", &character_fight_circle_block ),
-	FIELD( _field_block, "Hamstring", &character_hamstring_charge_block ),
-	FIELD( _field_block, "Forerunner", &character_forerunner_block ),
-	FIELD( _field_block, "Gravity Jump", &character_gravity_jump_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(character, CHARACTER_TAG, character_block_block )
 
-TAG_STRUCT(character_hop_struct)
-{
-	FIELD( _field_real, "Min hop distance#Pathing shorter than this, no hopping" ),
-	FIELD( _field_real, "Min hop distance to path end#Pathing shorter than this, no hopping to end of path" ),
-	FIELD( _field_real_bounds, "Hop wait timer min/max#Character will wait this random ranged timer before hopping again.(Seconds)" ),
-	FIELD( _field_real, "Max hop distance#Pathing longer than this, no hopping." ),
-	FIELD( _field_real, "pad!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(active_camo_perception_properties)
-{
-	FIELD( _field_real_fraction, "partial invis amount:[0,1]#this amount of active camouflage makes a target \'partially invisible\'" ),
-	FIELD( _field_real, "partial invis vision distance:world units#maximum vision distance for partially invisible targets. 0= unlimited" ),
-	FIELD( _field_real, "partial invis awareness multiplier:[0,1]#multiplier on our awareness speed for partially invisible targets. 0= no change. Should be in (0, 1]." ),
-	FIELD( _field_real_fraction, "full invis amount:[0,1]#this amount of active camouflage makes a target \'fully invisible\'" ),
-	FIELD( _field_real, "full invis vision distance:world units#maximum vision distance for fully invisible targets. 0= unlimited" ),
-	FIELD( _field_real, "full invis awareness multiplier:[0,1]#multiplier on our awareness speed for fully invisible targets. 0= no change. Should be in (0, 1]." ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(SmoothThrottleStruct)
-{
-	FIELD( _field_custom, "Smooth Throttle" ),
-	FIELD( _field_enum, "settings options" ),
-	FIELD( _field_explanation, "Override Settings" ),
-	FIELD( _field_pad, "csts_pad_2", 2 ),
-	FIELD( _field_real, "Starting Rate:(0.0 to 1.0)#interpolation weight used for the first frame of movement from a stopped position." ),
-	FIELD( _field_real, "Stopping Rate:(0.0 to 1.0)#interpolation weight used for transitioning to a zero (stopped) throttle." ),
-	FIELD( _field_real, "Max Linear Acceleration:throttle units per tick#maximum linear acceleration limit for throttle magnitude during regular movement." ),
-	FIELD( _field_real, "Max Linear Deceleration:throttle units per tick#maximum linear deceleration limit for throttle magnitude during regular movement." ),
-	FIELD( _field_angle, "Max Angular Acceleration:degrees per tick#maximum angular acceleration/deceleration limit for throttle changes." ),
-	FIELD( _field_real, "Max Reversal Linear Acceleration:throttle units per tick#maximum linear Accel/Decel limit for throttle magnitude when reversing direction." ),
-	FIELD( _field_angle, "Max Reversal Angular Acceleration:degrees per tick#maximum angular Accel/Decel limit for throttle heading when reversing direction." ),
-	FIELD( _field_custom ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(SmoothStoppingStruct)
-{
-	FIELD( _field_custom, "Smooth Stopping" ),
-	FIELD( _field_enum, "settings options" ),
-	FIELD( _field_explanation, "Override Settings" ),
-	FIELD( _field_pad, "csst_pad_2", 2 ),
-	FIELD( _field_real_bounds, "Stopping Distance:[wu]#Distance at which to begin slowing to a stop. Range provides variance." ),
-	FIELD( _field_real_bounds, "Arrival Throttle:range (0.05, 1.0)#Throttle magnitude desired upon arrival. Should be non zero, and greater than 0.1 to avoid super-slow stops" ),
-	FIELD( _field_real_bounds, "Stopping Power:exponent#Power value used to determine stopping curve. Values <1 produce sharper stops, >1 produce more ease-in." ),
-	FIELD( _field_real_bounds, "Idle Time:exponent#seconds to idle when stopped." ),
-	FIELD( _field_custom ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(character_bunker_timings_struct)
-{
-	FIELD( _field_real_bounds, "open time:seconds#How long we should open for" ),
-	FIELD( _field_real, "closed min time:seconds#How long we must stay closed for before opening or peeking again" ),
-	FIELD( _field_real, "close danger level#Force close at this danger level" ),
-	FIELD( _field_real, "open chance:chance per second#What chance we have of opening per second" ),
-	FIELD( _field_real, "peek chance:chance per second#What chance we have of peeking per second" ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(character_block, 1, character_struct_definition_struct_definition );
 
 TAG_BLOCK(character_variants_block, k_maximum_variants_per_model)
 {
 	FIELD( _field_string_id, "variant name^" ),
 	FIELD( _field_short_integer, "variant index*" ),
 	FIELD( _field_pad, "VN", 2 ),
-	FIELD( _field_block, "voices", &character_voice_block ),
+	FIELD( _field_block, "voices", &character_voice_block_block ),
 	FIELD( _field_string_id, "default dialogue effect id#gets applied if the vocalization has no dialogue effect id." ),
 	FIELD( _field_terminator )
 };
@@ -154,14 +22,14 @@ TAG_BLOCK(character_voice_block, k_maximum_variants_per_model)
 	FIELD( _field_tag_reference, "dialogue^" ),
 	FIELD( _field_string_id, "designator*" ),
 	FIELD( _field_real, "weight" ),
-	FIELD( _field_block, "region filters", &character_voice_region_filter_block ),
+	FIELD( _field_block, "region filters", &character_voice_region_filter_block_block ),
 	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(character_voice_region_filter_block, MAXIMUM_REGIONS_PER_MODEL)
 {
 	FIELD( _field_string_id, "region name^" ),
-	FIELD( _field_block, "permutation filters", &character_voice_region_permutation_filter_block ),
+	FIELD( _field_block, "permutation filters", &character_voice_region_permutation_filter_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -173,7 +41,7 @@ TAG_BLOCK(character_voice_region_permutation_filter_block, MAXIMUM_PERMUTATIONS_
 
 TAG_BLOCK(character_voice_properties_block, c_character_voice_properties_internal::k_block_count)
 {
-	FIELD( _field_block, "voices", &character_voice_block ),
+	FIELD( _field_block, "voices", &character_voice_block_block ),
 	FIELD( _field_string_id, "default dialogue effect id#gets applied if the vocalization has no dialogue effect id." ),
 	FIELD( _field_terminator )
 };
@@ -191,7 +59,7 @@ TAG_BLOCK(character_general_block, c_character_general_properties_internal::k_bl
 	FIELD( _field_real, "scariness#the inherent scariness of the character" ),
 	FIELD( _field_enum, "default grenade type" ),
 	FIELD( _field_enum, "behavior tree root" ),
-	FIELD( _field_block, "disallowed weapons from trading", &disallowed_weapons_for_trading_block ),
+	FIELD( _field_block, "disallowed weapons from trading", &disallowed_weapons_for_trading_block_block ),
 	FIELD( _field_tag_reference, "Initial Primary Weapon #Overrides initial primary weapon set in unit tag." ),
 	FIELD( _field_tag_reference, "Initial Secondary Weapon #Overrides initial secondary weapon set in unit tag." ),
 	FIELD( _field_tag_reference, "Initial Equipment #Fallback used if initial equipment not specified as drop item or in scenario." ),
@@ -219,7 +87,7 @@ TAG_BLOCK(character_interact_block, c_character_interact_properties_internal::k_
 
 TAG_BLOCK(character_emotions_block, c_character_emotions_properties_internal::k_block_count)
 {
-	FIELD( _field_block, "situational danger", &character_emotions_situational_danger_block ),
+	FIELD( _field_block, "situational danger", &character_emotions_situational_danger_block_block ),
 	FIELD( _field_real, "perceived danger increase half-life:seconds#How many seconds until it rises up to half between its current and target value" ),
 	FIELD( _field_real, "perceived danger decay half-life:seconds#How many seconds until it decays to half between its current and target values" ),
 	FIELD( _field_terminator )
@@ -341,7 +209,7 @@ TAG_BLOCK(character_look_block, c_character_look_properties_internal::k_block_co
 TAG_BLOCK(character_hopping_block, 1)
 {
 	FIELD( _field_long_flags, "Hopping Flags" ),
-	FIELD( _field_block, "Hopping Definition", &characterHopDefinitionBlock ),
+	FIELD( _field_block, "Hopping Definition", &characterHopDefinitionBlock_block ),
 	FIELD( _field_terminator )
 };
 
@@ -386,10 +254,10 @@ TAG_BLOCK(character_movement_block, 1)
 	FIELD( _field_custom, "Throttle and inertia" ),
 	FIELD( _field_long_integer, "minimum movement ticks:ticks#We will move at least this long in a single direction when starting movement" ),
 	FIELD( _field_real, "minimum movement ticks reset angle:degrees#If the character changes movement direction by more than this angle, he will have to move for at least minimum movement ticks until he can change his mind." ),
-	FIELD( _field_block, "change direction pause", &movement_stationary_pause_block ),
+	FIELD( _field_block, "change direction pause", &movement_stationary_pause_block_block ),
 	FIELD( _field_real, "maximum throttle:[0-1]#The character will never throttle beyond this value" ),
 	FIELD( _field_real, "minimum throttle:[0-1]#The character will not throttle below this value" ),
-	FIELD( _field_block, "movement throttle control", &movement_throttle_control_block ),
+	FIELD( _field_block, "movement throttle control", &movement_throttle_control_block_block ),
 	FIELD( _field_real, "minimum juke throttle:[0-1]#The character will consider juking at this throttle and above" ),
 	FIELD( _field_angle, "minimum direction change juke angle:deg#If we change movement direction by more this angle, we will attempt a juke" ),
 	FIELD( _field_real, "non direction change juke probability#Probability to do a juke for a given tick, even if you are not planning to change direction (and provided you have not already performed a juke within the timeout time" ),
@@ -432,7 +300,7 @@ TAG_BLOCK(movement_throttle_control_block, NUMBER_OF_ACTOR_COMBAT_STATUS_LEVELS)
 {
 	FIELD( _field_enum, "combat status#When combat status is bigger or equal to this combat status, use the throttle settings below." ),
 	FIELD( _field_word_flags, "flags" ),
-	FIELD( _field_block, "throttle settings", &movement_throttle_block ),
+	FIELD( _field_block, "throttle settings", &movement_throttle_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -458,7 +326,7 @@ TAG_BLOCK(character_throttle_style_block, c_character_throttle_style_properties_
 TAG_BLOCK(character_movement_set_block, k_max_movement_sets)
 {
 	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_block, "variants", &movement_mapping_block ),
+	FIELD( _field_block, "variants", &movement_mapping_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -518,7 +386,7 @@ TAG_BLOCK(character_firing_point_evaluator_block, c_character_firing_point_evalu
 	FIELD( _field_long_enum, "mode^" ),
 	FIELD( _field_custom ),
 	FIELD( _field_explanation, "DESIGNERS BEWARE" ),
-	FIELD( _field_block, "evaluators", &evaluator_definition_block ),
+	FIELD( _field_block, "evaluators", &evaluator_definition_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -597,7 +465,7 @@ TAG_BLOCK(character_charge_block, c_character_charge_properties_internal::k_bloc
 	FIELD( _field_real, "Perimeter Range#How far we will melee charge outside our firing points before starting perimeter (defaults to 5wu)" ),
 	FIELD( _field_real, "Perimeter Range Close#How far we will melee charge outside our firing points before starting perimeter when the target is close to me (within 3wu) (defaults to 9wu)" ),
 	FIELD( _field_real, "Perimeter Damage Timeout:secs#How long will we take damage from our target before either seeking cover or berserking (defaults to 3secs)" ),
-	FIELD( _field_block, "difficulty limits", &character_charge_difficulty_limits_block ),
+	FIELD( _field_block, "difficulty limits", &character_charge_difficulty_limits_block_block ),
 	FIELD( _field_real_bounds, "balling melee leap range" ),
 	FIELD( _field_real, "balling melee leap attack range" ),
 	FIELD( _field_real, "balling melee leap chance" ),
@@ -733,7 +601,7 @@ TAG_BLOCK(character_boarding_block, c_character_boarding_properties_internal::k_
 	FIELD( _field_real, "max speed:wu/s#maximum speed at which we will consider boarding" ),
 	FIELD( _field_real, "board time:seconds#maximum time we will melee board for" ),
 	FIELD( _field_real_bounds, "boarding timeout:seconds#The amount of time after boarding before we\'ll consider boarding again" ),
-	FIELD( _field_block, "vehicle specific properties", &character_vehicle_boarding_block ),
+	FIELD( _field_block, "vehicle specific properties", &character_vehicle_boarding_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -865,7 +733,7 @@ TAG_BLOCK(character_weapons_block, c_character_weapon_properties_internal::k_blo
 TAG_BLOCK(character_firing_pattern_properties_block, c_character_firing_pattern_properties_internal::k_block_count)
 {
 	FIELD( _field_tag_reference, "weapon^" ),
-	FIELD( _field_block, "firing patterns", &character_firing_pattern_block ),
+	FIELD( _field_block, "firing patterns", &character_firing_pattern_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -1110,7 +978,7 @@ TAG_BLOCK(character_equipment_block, 8)
 	FIELD( _field_tag_reference, "equipment#The equipment item that is to be usable" ),
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_real, "relative drop chance#The relative chance of this equipment being dropped with respect to the other pieces of equipment specified in this block" ),
-	FIELD( _field_block, "equipment use", &character_equipment_usage_block ),
+	FIELD( _field_block, "equipment use", &character_equipment_usage_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -1382,7 +1250,7 @@ TAG_BLOCK(character_gravity_jump_block, c_character_gravity_jump_properties_inte
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(character_block, CHARACTER_TAG)
+TAG_STRUCT(character_struct_definition)
 {
 	FIELD( _field_long_flags, "Character flags" ),
 	FIELD( _field_tag_reference, "parent character" ),
@@ -1390,69 +1258,131 @@ TAG_GROUP(character_block, CHARACTER_TAG)
 	FIELD( _field_tag_reference, "creature#Creature reference for swarm characters ONLY" ),
 	FIELD( _field_tag_reference, "style" ),
 	FIELD( _field_tag_reference, "major character" ),
-	FIELD( _field_block, "variants", &character_variants_block ),
-	FIELD( _field_block, "voice", &character_voice_properties_block ),
-	FIELD( _field_block, "general properties", &character_general_block ),
-	FIELD( _field_block, "proto spawn properties", &character_proto_spawn_block ),
-	FIELD( _field_block, "interact properties", &character_interact_block ),
-	FIELD( _field_block, "emotion properties", &character_emotions_block ),
-	FIELD( _field_block, "vitality properties", &character_vitality_block ),
-	FIELD( _field_block, "placement properties", &character_placement_block ),
-	FIELD( _field_block, "perception properties", &character_perception_block ),
-	FIELD( _field_block, "target properties", &character_target_block ),
-	FIELD( _field_block, "look properties", &character_look_block ),
-	FIELD( _field_block, "hopping properties", &character_hopping_block ),
-	FIELD( _field_block, "movement properties", &character_movement_block ),
-	FIELD( _field_block, "throttle styles", &character_throttle_style_block ),
-	FIELD( _field_block, "movement sets", &character_movement_set_block ),
-	FIELD( _field_block, "flocking properties", &character_flocking_block ),
-	FIELD( _field_block, "swarm properties", &character_swarm_block ),
-	FIELD( _field_block, "firing point evaluator properties", &character_firing_point_evaluator_block ),
-	FIELD( _field_block, "ready properties", &character_ready_block ),
-	FIELD( _field_block, "engage properties", &character_engage_block ),
-	FIELD( _field_block, "charge properties", &character_charge_block ),
+	FIELD( _field_block, "variants", &character_variants_block_block ),
+	FIELD( _field_block, "voice", &character_voice_properties_block_block ),
+	FIELD( _field_block, "general properties", &character_general_block_block ),
+	FIELD( _field_block, "proto spawn properties", &character_proto_spawn_block_block ),
+	FIELD( _field_block, "interact properties", &character_interact_block_block ),
+	FIELD( _field_block, "emotion properties", &character_emotions_block_block ),
+	FIELD( _field_block, "vitality properties", &character_vitality_block_block ),
+	FIELD( _field_block, "placement properties", &character_placement_block_block ),
+	FIELD( _field_block, "perception properties", &character_perception_block_block ),
+	FIELD( _field_block, "target properties", &character_target_block_block ),
+	FIELD( _field_block, "look properties", &character_look_block_block ),
+	FIELD( _field_block, "hopping properties", &character_hopping_block_block ),
+	FIELD( _field_block, "movement properties", &character_movement_block_block ),
+	FIELD( _field_block, "throttle styles", &character_throttle_style_block_block ),
+	FIELD( _field_block, "movement sets", &character_movement_set_block_block ),
+	FIELD( _field_block, "flocking properties", &character_flocking_block_block ),
+	FIELD( _field_block, "swarm properties", &character_swarm_block_block ),
+	FIELD( _field_block, "firing point evaluator properties", &character_firing_point_evaluator_block_block ),
+	FIELD( _field_block, "ready properties", &character_ready_block_block ),
+	FIELD( _field_block, "engage properties", &character_engage_block_block ),
+	FIELD( _field_block, "charge properties", &character_charge_block_block ),
 	FIELD( _field_explanation, "Danger Values" ),
-	FIELD( _field_block, "evasion properties", &character_evasion_block ),
-	FIELD( _field_block, "cover properties", &character_cover_block ),
-	FIELD( _field_block, "retreat properties", &character_retreat_block ),
-	FIELD( _field_block, "search properties", &character_search_block ),
-	FIELD( _field_block, "pre-search properties", &character_presearch_block ),
-	FIELD( _field_block, "idle properties", &character_idle_block ),
-	FIELD( _field_block, "vocalization properties", &character_vocalization_block ),
-	FIELD( _field_block, "boarding properties", &character_boarding_block ),
-	FIELD( _field_block, "kungfu properties", &character_kungfu_block ),
-	FIELD( _field_block, "bunker properties", &character_bunker_block ),
-	FIELD( _field_block, "guardian properties", &character_guardian_block ),
-	FIELD( _field_block, "combatform properties", &character_combatform_block ),
-	FIELD( _field_block, "engineer properties", &character_engineer_block ),
-	FIELD( _field_block, "inspect properties", &character_inspect_block ),
-	FIELD( _field_block, "scarab properties", &character_scarab_block ),
-	FIELD( _field_block, "weapons properties", &character_weapons_block ),
-	FIELD( _field_block, "firing pattern properties", &character_firing_pattern_properties_block ),
-	FIELD( _field_block, "extreme range firing pattern properties", &character_firing_pattern_properties_block ),
-	FIELD( _field_block, "grenades properties", &character_grenades_block ),
-	FIELD( _field_block, "vehicle properties", &character_vehicle_block ),
-	FIELD( _field_block, "flying movement properties", &character_flying_movement_block ),
-	FIELD( _field_block, "morph properties", &character_morph_block ),
-	FIELD( _field_block, "equipment definitions", &character_equipment_block ),
-	FIELD( _field_block, "stimuli responses", &character_stimuli_response_block ),
-	FIELD( _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block ),
-	FIELD( _field_block, "activity objects", &character_activity_object_block ),
-	FIELD( _field_block, "pain screen properties", &character_pain_screen_block ),
-	FIELD( _field_block, "bishop properties", &character_bishop_block ),
-	FIELD( _field_block, "combotron parent properties", &character_combotron_parent_block ),
-	FIELD( _field_block, "combotron child properties", &character_combotron_child_block ),
-	FIELD( _field_block, "handle dismemberment properties", &character_handle_dismemberment_block ),
-	FIELD( _field_block, "Fight From Cover", &character_cover_fight_block ),
-	FIELD( _field_block, "Emerge", &character_emerge_block ),
-	FIELD( _field_block, "Dynamic Task", &dynamic_task_block ),
-	FIELD( _field_block, "Advance Properties", &character_advance_block ),
-	FIELD( _field_block, "Cover Evasion", &character_cover_evasion_block ),
-	FIELD( _field_block, "Pack Stalk", &character_pack_stalk_block ),
-	FIELD( _field_block, "Fight Circle", &character_fight_circle_block ),
-	FIELD( _field_block, "Hamstring", &character_hamstring_charge_block ),
-	FIELD( _field_block, "Forerunner", &character_forerunner_block ),
-	FIELD( _field_block, "Gravity Jump", &character_gravity_jump_block ),
+	FIELD( _field_block, "evasion properties", &character_evasion_block_block ),
+	FIELD( _field_block, "cover properties", &character_cover_block_block ),
+	FIELD( _field_block, "retreat properties", &character_retreat_block_block ),
+	FIELD( _field_block, "search properties", &character_search_block_block ),
+	FIELD( _field_block, "pre-search properties", &character_presearch_block_block ),
+	FIELD( _field_block, "idle properties", &character_idle_block_block ),
+	FIELD( _field_block, "vocalization properties", &character_vocalization_block_block ),
+	FIELD( _field_block, "boarding properties", &character_boarding_block_block ),
+	FIELD( _field_block, "kungfu properties", &character_kungfu_block_block ),
+	FIELD( _field_block, "bunker properties", &character_bunker_block_block ),
+	FIELD( _field_block, "guardian properties", &character_guardian_block_block ),
+	FIELD( _field_block, "combatform properties", &character_combatform_block_block ),
+	FIELD( _field_block, "engineer properties", &character_engineer_block_block ),
+	FIELD( _field_block, "inspect properties", &character_inspect_block_block ),
+	FIELD( _field_block, "scarab properties", &character_scarab_block_block ),
+	FIELD( _field_block, "weapons properties", &character_weapons_block_block ),
+	FIELD( _field_block, "firing pattern properties", &character_firing_pattern_properties_block_block ),
+	FIELD( _field_block, "extreme range firing pattern properties", &character_firing_pattern_properties_block_block ),
+	FIELD( _field_block, "grenades properties", &character_grenades_block_block ),
+	FIELD( _field_block, "vehicle properties", &character_vehicle_block_block ),
+	FIELD( _field_block, "flying movement properties", &character_flying_movement_block_block ),
+	FIELD( _field_block, "morph properties", &character_morph_block_block ),
+	FIELD( _field_block, "equipment definitions", &character_equipment_block_block ),
+	FIELD( _field_block, "stimuli responses", &character_stimuli_response_block_block ),
+	FIELD( _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block_block ),
+	FIELD( _field_block, "activity objects", &character_activity_object_block_block ),
+	FIELD( _field_block, "pain screen properties", &character_pain_screen_block_block ),
+	FIELD( _field_block, "bishop properties", &character_bishop_block_block ),
+	FIELD( _field_block, "combotron parent properties", &character_combotron_parent_block_block ),
+	FIELD( _field_block, "combotron child properties", &character_combotron_child_block_block ),
+	FIELD( _field_block, "handle dismemberment properties", &character_handle_dismemberment_block_block ),
+	FIELD( _field_block, "Fight From Cover", &character_cover_fight_block_block ),
+	FIELD( _field_block, "Emerge", &character_emerge_block_block ),
+	FIELD( _field_block, "Dynamic Task", &dynamic_task_block_block ),
+	FIELD( _field_block, "Advance Properties", &character_advance_block_block ),
+	FIELD( _field_block, "Cover Evasion", &character_cover_evasion_block_block ),
+	FIELD( _field_block, "Pack Stalk", &character_pack_stalk_block_block ),
+	FIELD( _field_block, "Fight Circle", &character_fight_circle_block_block ),
+	FIELD( _field_block, "Hamstring", &character_hamstring_charge_block_block ),
+	FIELD( _field_block, "Forerunner", &character_forerunner_block_block ),
+	FIELD( _field_block, "Gravity Jump", &character_gravity_jump_block_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(character_hop_struct)
+{
+	FIELD( _field_real, "Min hop distance#Pathing shorter than this, no hopping" ),
+	FIELD( _field_real, "Min hop distance to path end#Pathing shorter than this, no hopping to end of path" ),
+	FIELD( _field_real_bounds, "Hop wait timer min/max#Character will wait this random ranged timer before hopping again.(Seconds)" ),
+	FIELD( _field_real, "Max hop distance#Pathing longer than this, no hopping." ),
+	FIELD( _field_real, "pad!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(active_camo_perception_properties)
+{
+	FIELD( _field_real_fraction, "partial invis amount:[0,1]#this amount of active camouflage makes a target \'partially invisible\'" ),
+	FIELD( _field_real, "partial invis vision distance:world units#maximum vision distance for partially invisible targets. 0= unlimited" ),
+	FIELD( _field_real, "partial invis awareness multiplier:[0,1]#multiplier on our awareness speed for partially invisible targets. 0= no change. Should be in (0, 1]." ),
+	FIELD( _field_real_fraction, "full invis amount:[0,1]#this amount of active camouflage makes a target \'fully invisible\'" ),
+	FIELD( _field_real, "full invis vision distance:world units#maximum vision distance for fully invisible targets. 0= unlimited" ),
+	FIELD( _field_real, "full invis awareness multiplier:[0,1]#multiplier on our awareness speed for fully invisible targets. 0= no change. Should be in (0, 1]." ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(SmoothThrottleStruct)
+{
+	FIELD( _field_custom, "Smooth Throttle" ),
+	FIELD( _field_enum, "settings options" ),
+	FIELD( _field_explanation, "Override Settings" ),
+	FIELD( _field_pad, "csts_pad_2", 2 ),
+	FIELD( _field_real, "Starting Rate:(0.0 to 1.0)#interpolation weight used for the first frame of movement from a stopped position." ),
+	FIELD( _field_real, "Stopping Rate:(0.0 to 1.0)#interpolation weight used for transitioning to a zero (stopped) throttle." ),
+	FIELD( _field_real, "Max Linear Acceleration:throttle units per tick#maximum linear acceleration limit for throttle magnitude during regular movement." ),
+	FIELD( _field_real, "Max Linear Deceleration:throttle units per tick#maximum linear deceleration limit for throttle magnitude during regular movement." ),
+	FIELD( _field_angle, "Max Angular Acceleration:degrees per tick#maximum angular acceleration/deceleration limit for throttle changes." ),
+	FIELD( _field_real, "Max Reversal Linear Acceleration:throttle units per tick#maximum linear Accel/Decel limit for throttle magnitude when reversing direction." ),
+	FIELD( _field_angle, "Max Reversal Angular Acceleration:degrees per tick#maximum angular Accel/Decel limit for throttle heading when reversing direction." ),
+	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(SmoothStoppingStruct)
+{
+	FIELD( _field_custom, "Smooth Stopping" ),
+	FIELD( _field_enum, "settings options" ),
+	FIELD( _field_explanation, "Override Settings" ),
+	FIELD( _field_pad, "csst_pad_2", 2 ),
+	FIELD( _field_real_bounds, "Stopping Distance:[wu]#Distance at which to begin slowing to a stop. Range provides variance." ),
+	FIELD( _field_real_bounds, "Arrival Throttle:range (0.05, 1.0)#Throttle magnitude desired upon arrival. Should be non zero, and greater than 0.1 to avoid super-slow stops" ),
+	FIELD( _field_real_bounds, "Stopping Power:exponent#Power value used to determine stopping curve. Values <1 produce sharper stops, >1 produce more ease-in." ),
+	FIELD( _field_real_bounds, "Idle Time:exponent#seconds to idle when stopped." ),
+	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(character_bunker_timings_struct)
+{
+	FIELD( _field_real_bounds, "open time:seconds#How long we should open for" ),
+	FIELD( _field_real, "closed min time:seconds#How long we must stay closed for before opening or peeking again" ),
+	FIELD( _field_real, "close danger level#Force close at this danger level" ),
+	FIELD( _field_real, "open chance:chance per second#What chance we have of opening per second" ),
+	FIELD( _field_real, "peek chance:chance per second#What chance we have of peeking per second" ),
 	FIELD( _field_terminator )
 };
 

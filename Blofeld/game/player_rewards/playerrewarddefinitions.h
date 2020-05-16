@@ -4,8 +4,9 @@ namespace blofeld
 {
 
 
-extern s_tag_struct rewardBlock_struct_definition;
-extern s_tag_block_definition rewardBlock;
+extern s_tag_struct rewardBlock_block_struct;
+extern s_tag_block_definition rewardBlock_block;
+
 
 } // namespace blofeld
 

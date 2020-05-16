@@ -3,16 +3,9 @@
 namespace blofeld
 {
 
-TAG_BLOCK(forge_color_block, k_forge_named_color_count)
+TAG_GROUP(forge_globals, FORGE_GLOBALS_TAG)
 {
-	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_real_rgb_color, "color" ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(forge_globals_block, FORGE_GLOBALS_TAG)
-{
-	FIELD( _field_block, "forge colors", &forge_color_block ),
+	FIELD( _field_block, "forge colors", &forge_color_block_block ),
 	FIELD( _field_explanation, "Magnets" ),
 	FIELD( _field_tag_reference, "magnet effect scenery" ),
 	FIELD( _field_string_id, "parent magnet marker name" ),
@@ -31,6 +24,13 @@ TAG_GROUP(forge_globals_block, FORGE_GLOBALS_TAG)
 	FIELD( _field_real, "minimum focal distance#minimum manipulation camera distance" ),
 	FIELD( _field_real, "maximum focal distance#maximum manipulation camera distance" ),
 	FIELD( _field_real, "focal distance multiplier#effective maximum distance = MIN(max_focal_distance, multiplier x min_focal_distance)" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(forge_color_block, k_forge_named_color_count)
+{
+	FIELD( _field_string_id, "name^" ),
+	FIELD( _field_real_rgb_color, "color" ),
 	FIELD( _field_terminator )
 };
 

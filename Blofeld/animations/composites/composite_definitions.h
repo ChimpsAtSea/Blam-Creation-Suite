@@ -3,23 +3,24 @@
 namespace blofeld
 {
 
-extern s_tag_struct g_compositeTag_struct_struct_definition;
 
-extern s_tag_block_definition g_compositeTag;
-extern s_tag_struct CompositeAxisDefinition_struct_definition;
-extern s_tag_block_definition CompositeAxisDefinition;
-extern s_tag_struct CompositeDeadZoneDefinition_struct_definition;
-extern s_tag_block_definition CompositeDeadZoneDefinition;
-extern s_tag_struct CompositeEntryDefinition_struct_definition;
-extern s_tag_block_definition CompositeEntryDefinition;
-extern s_tag_struct CompositeEntryValueDefinition_struct_definition;
-extern s_tag_block_definition CompositeEntryValueDefinition;
-extern s_tag_struct CompositePhaseSetDefinition_struct_definition;
-extern s_tag_block_definition CompositePhaseSetDefinition;
-extern s_tag_struct SyncKeyBlock_struct_definition;
-extern s_tag_block_definition SyncKeyBlock;
-extern s_tag_struct StringBlock_struct_definition;
-extern s_tag_block_definition StringBlock;
+extern s_tag_block_definition g_compositeTag_block;
+extern s_tag_struct CompositeAxisDefinition_block_struct;
+extern s_tag_block_definition CompositeAxisDefinition_block;
+extern s_tag_struct CompositeDeadZoneDefinition_block_struct;
+extern s_tag_block_definition CompositeDeadZoneDefinition_block;
+extern s_tag_struct CompositeEntryDefinition_block_struct;
+extern s_tag_block_definition CompositeEntryDefinition_block;
+extern s_tag_struct CompositeEntryValueDefinition_block_struct;
+extern s_tag_block_definition CompositeEntryValueDefinition_block;
+extern s_tag_struct CompositePhaseSetDefinition_block_struct;
+extern s_tag_block_definition CompositePhaseSetDefinition_block;
+extern s_tag_struct SyncKeyBlock_block_struct;
+extern s_tag_block_definition SyncKeyBlock_block;
+extern s_tag_struct StringBlock_block_struct;
+extern s_tag_block_definition StringBlock_block;
+
+extern s_tag_struct g_compositeTag_struct_struct_definition;
 
 } // namespace blofeld
 

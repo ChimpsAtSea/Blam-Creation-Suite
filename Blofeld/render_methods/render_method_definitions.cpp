@@ -3,67 +3,21 @@
 namespace blofeld
 {
 
-TAG_STRUCT(render_method_struct_definition)
-{
-	FIELD( _field_custom ),
-	FIELD( _field_tag_reference, "definition*" ),
-	FIELD( _field_tag_reference, "reference" ),
-	FIELD( _field_block, "options", &short_block ),
-	FIELD( _field_block, "parameters", &render_method_parameter_block ),
-	FIELD( _field_block, "postprocess", &render_method_postprocess_block ),
-	FIELD( _field_long_integer, "is template" ),
-	FIELD( _field_long_flags, "locked options" ),
-	FIELD( _field_block, "locked parameters", &render_method_locked_parameter_block ),
-	FIELD( _field_word_flags, "shader flags*" ),
-	FIELD( _field_char_enum, "sort layer*" ),
-	FIELD( _field_char_integer, "version!" ),
-	FIELD( _field_long_integer, "Custom fog setting index" ),
-	FIELD( _field_long_block_index, "prediction atom index!" ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(render_method, RENDER_METHOD_TAG, render_method_block_block )
 
-TAG_STRUCT(render_method_definition_struct_definition)
-{
-	FIELD( _field_tag_reference, "global options" ),
-	FIELD( _field_block, "categories", &render_method_category_block ),
-	FIELD( _field_block, "entry_points", &render_method_entry_points_block ),
-	FIELD( _field_block, "vertex_types", &vertex_types_block ),
-	FIELD( _field_tag_reference, "shared pixel shaders*" ),
-	FIELD( _field_tag_reference, "shared vertex shaders*" ),
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_dword_integer, "version:bump to force recompile" ),
-	FIELD( _field_explanation, "source file location" ),
-	FIELD( _field_long_string, "location" ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(render_method_definition, RENDER_METHOD_DEFINITION_TAG, render_method_definition_block_block )
 
-TAG_STRUCT(render_method_option_struct_definition)
-{
-	FIELD( _field_block, "parameters", &render_method_option_parameter_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(render_method_option, RENDER_METHOD_OPTION_TAG, render_method_option_block_block )
 
-TAG_STRUCT(render_method_template_struct_definition)
-{
-	FIELD( _field_tag_reference, "vertex shader" ),
-	FIELD( _field_tag_reference, "pixel shader" ),
-	FIELD( _field_dword_integer, "available entry points*" ),
-	FIELD( _field_block, "entry points", &tag_block_index_block ),
-	FIELD( _field_block, "passes", &render_method_template_pass_block ),
-	FIELD( _field_block, "routing info", &render_method_routing_info_block ),
-	FIELD( _field_block, "float constants", &render_method_template_constant_table_block ),
-	FIELD( _field_block, "int constants", &render_method_template_constant_table_block ),
-	FIELD( _field_block, "bool constants", &render_method_template_constant_table_block ),
-	FIELD( _field_block, "textures", &render_method_template_constant_table_block ),
-	FIELD( _field_block, "other platforms", &render_method_template_platform_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(render_method_template, RENDER_METHOD_TEMPLATE_TAG, render_method_template_block_block )
 
-TAG_STRUCT(tag_block_index_struct)
-{
-	FIELD( _field_word_integer, "block index data#divide by 1024 for count, remainder is start index" ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(render_method_block, 1, render_method_struct_definition_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(render_method_definition_block, 1, render_method_definition_struct_definition_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(render_method_option_block, 1, render_method_option_struct_definition_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(render_method_template_block, 1, render_method_template_struct_definition_struct_definition );
 
 TAG_BLOCK(short_block, k_kilo)
 {
@@ -86,7 +40,7 @@ TAG_BLOCK(render_method_parameter_block, c_render_method::k_maximum_parameters)
 	FIELD( _field_short_integer, "bitmap anisotropy amount" ),
 	FIELD( _field_short_integer, "bitmap extern RTT mode" ),
 	FIELD( _field_word_integer, "bitmap sharpen mode" ),
-	FIELD( _field_block, "animated parameters", &render_method_animated_parameter_block ),
+	FIELD( _field_block, "animated parameters", &render_method_animated_parameter_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -105,14 +59,14 @@ TAG_BLOCK(render_method_animated_parameter_block, k_kilo)
 TAG_BLOCK(render_method_postprocess_block, 1)
 {
 	FIELD( _field_tag_reference, "shader template" ),
-	FIELD( _field_block, "textures", &render_method_postprocess_texture_block ),
-	FIELD( _field_block, "real vectors", &real_vector4d_block ),
-	FIELD( _field_block, "int constants", &int_block ),
+	FIELD( _field_block, "textures", &render_method_postprocess_texture_block_block ),
+	FIELD( _field_block, "real vectors", &real_vector4d_block_block ),
+	FIELD( _field_block, "int constants", &int_block_block ),
 	FIELD( _field_long_integer, "bool constants" ),
-	FIELD( _field_block, "entry points", &tag_block_index_block ),
-	FIELD( _field_block, "passes", &render_method_postprocess_pass_block ),
-	FIELD( _field_block, "routing info", &render_method_routing_info_block ),
-	FIELD( _field_block, "overlays", &render_method_animated_parameter_block ),
+	FIELD( _field_block, "entry points", &tag_block_index_block_block ),
+	FIELD( _field_block, "passes", &render_method_postprocess_pass_block_block ),
+	FIELD( _field_block, "routing info", &render_method_routing_info_block_block ),
+	FIELD( _field_block, "overlays", &render_method_animated_parameter_block_block ),
 	FIELD( _field_long_integer, "blend mode" ),
 	FIELD( _field_long_integer, "flags" ),
 	FIELD( _field_long_integer, "im_so_fired_pad!*" ),
@@ -178,7 +132,7 @@ TAG_BLOCK(render_method_locked_parameter_block, c_render_method_option::k_maximu
 TAG_BLOCK(render_method_category_block, c_render_method_definition::k_maximum_categories)
 {
 	FIELD( _field_string_id, "category name" ),
-	FIELD( _field_block, "options", &render_method_options_block ),
+	FIELD( _field_block, "options", &render_method_options_block_block ),
 	FIELD( _field_string_id, "vertex function" ),
 	FIELD( _field_string_id, "pixel function" ),
 	FIELD( _field_terminator )
@@ -196,7 +150,7 @@ TAG_BLOCK(render_method_options_block, c_render_method_definition::k_maximum_cat
 TAG_BLOCK(render_method_entry_points_block, c_render_method_definition::k_maximum_entry_points)
 {
 	FIELD( _field_long_enum, "entry point" ),
-	FIELD( _field_block, "passes", &render_method_pass_block ),
+	FIELD( _field_block, "passes", &render_method_pass_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -204,8 +158,8 @@ TAG_BLOCK(render_method_pass_block, k_kilo)
 {
 	FIELD( _field_word_flags, "flags" ),
 	FIELD( _field_pad, "nothing", 2 ),
-	FIELD( _field_block, "category dependencies&shared PS category dependencies", &render_method_pass_category_dependencies ),
-	FIELD( _field_block, "shared VS category dependencies", &render_method_pass_category_dependencies ),
+	FIELD( _field_block, "category dependencies&shared PS category dependencies", &render_method_pass_category_dependencies_block ),
+	FIELD( _field_block, "shared VS category dependencies", &render_method_pass_category_dependencies_block ),
 	FIELD( _field_terminator )
 };
 
@@ -276,27 +230,27 @@ TAG_BLOCK(render_method_template_platform_block, 1)
 	FIELD( _field_tag_reference, "vertex shader" ),
 	FIELD( _field_tag_reference, "pixel shader" ),
 	FIELD( _field_dword_integer, "available entry_points*" ),
-	FIELD( _field_block, "entry points", &tag_block_index_block ),
-	FIELD( _field_block, "passes", &render_method_template_pass_block ),
-	FIELD( _field_block, "routing info", &render_method_routing_info_block ),
-	FIELD( _field_block, "float constants", &render_method_template_constant_table_block ),
-	FIELD( _field_block, "int constants", &render_method_template_constant_table_block ),
-	FIELD( _field_block, "bool constants", &render_method_template_constant_table_block ),
-	FIELD( _field_block, "textures", &render_method_template_constant_table_block ),
+	FIELD( _field_block, "entry points", &tag_block_index_block_block ),
+	FIELD( _field_block, "passes", &render_method_template_pass_block_block ),
+	FIELD( _field_block, "routing info", &render_method_routing_info_block_block ),
+	FIELD( _field_block, "float constants", &render_method_template_constant_table_block_block ),
+	FIELD( _field_block, "int constants", &render_method_template_constant_table_block_block ),
+	FIELD( _field_block, "bool constants", &render_method_template_constant_table_block_block ),
+	FIELD( _field_block, "textures", &render_method_template_constant_table_block_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(render_method_block, RENDER_METHOD_TAG)
+TAG_STRUCT(render_method_struct_definition)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_tag_reference, "definition*" ),
 	FIELD( _field_tag_reference, "reference" ),
-	FIELD( _field_block, "options", &short_block ),
-	FIELD( _field_block, "parameters", &render_method_parameter_block ),
-	FIELD( _field_block, "postprocess", &render_method_postprocess_block ),
+	FIELD( _field_block, "options", &short_block_block ),
+	FIELD( _field_block, "parameters", &render_method_parameter_block_block ),
+	FIELD( _field_block, "postprocess", &render_method_postprocess_block_block ),
 	FIELD( _field_long_integer, "is template" ),
 	FIELD( _field_long_flags, "locked options" ),
-	FIELD( _field_block, "locked parameters", &render_method_locked_parameter_block ),
+	FIELD( _field_block, "locked parameters", &render_method_locked_parameter_block_block ),
 	FIELD( _field_word_flags, "shader flags*" ),
 	FIELD( _field_char_enum, "sort layer*" ),
 	FIELD( _field_char_integer, "version!" ),
@@ -305,12 +259,12 @@ TAG_GROUP(render_method_block, RENDER_METHOD_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(render_method_definition_block, RENDER_METHOD_DEFINITION_TAG)
+TAG_STRUCT(render_method_definition_struct_definition)
 {
 	FIELD( _field_tag_reference, "global options" ),
-	FIELD( _field_block, "categories", &render_method_category_block ),
-	FIELD( _field_block, "entry_points", &render_method_entry_points_block ),
-	FIELD( _field_block, "vertex_types", &vertex_types_block ),
+	FIELD( _field_block, "categories", &render_method_category_block_block ),
+	FIELD( _field_block, "entry_points", &render_method_entry_points_block_block ),
+	FIELD( _field_block, "vertex_types", &vertex_types_block_block ),
 	FIELD( _field_tag_reference, "shared pixel shaders*" ),
 	FIELD( _field_tag_reference, "shared vertex shaders*" ),
 	FIELD( _field_long_flags, "flags" ),
@@ -320,25 +274,31 @@ TAG_GROUP(render_method_definition_block, RENDER_METHOD_DEFINITION_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(render_method_option_block, RENDER_METHOD_OPTION_TAG)
+TAG_STRUCT(render_method_option_struct_definition)
 {
-	FIELD( _field_block, "parameters", &render_method_option_parameter_block ),
+	FIELD( _field_block, "parameters", &render_method_option_parameter_block_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(render_method_template_block, RENDER_METHOD_TEMPLATE_TAG)
+TAG_STRUCT(render_method_template_struct_definition)
 {
 	FIELD( _field_tag_reference, "vertex shader" ),
 	FIELD( _field_tag_reference, "pixel shader" ),
 	FIELD( _field_dword_integer, "available entry points*" ),
-	FIELD( _field_block, "entry points", &tag_block_index_block ),
-	FIELD( _field_block, "passes", &render_method_template_pass_block ),
-	FIELD( _field_block, "routing info", &render_method_routing_info_block ),
-	FIELD( _field_block, "float constants", &render_method_template_constant_table_block ),
-	FIELD( _field_block, "int constants", &render_method_template_constant_table_block ),
-	FIELD( _field_block, "bool constants", &render_method_template_constant_table_block ),
-	FIELD( _field_block, "textures", &render_method_template_constant_table_block ),
-	FIELD( _field_block, "other platforms", &render_method_template_platform_block ),
+	FIELD( _field_block, "entry points", &tag_block_index_block_block ),
+	FIELD( _field_block, "passes", &render_method_template_pass_block_block ),
+	FIELD( _field_block, "routing info", &render_method_routing_info_block_block ),
+	FIELD( _field_block, "float constants", &render_method_template_constant_table_block_block ),
+	FIELD( _field_block, "int constants", &render_method_template_constant_table_block_block ),
+	FIELD( _field_block, "bool constants", &render_method_template_constant_table_block_block ),
+	FIELD( _field_block, "textures", &render_method_template_constant_table_block_block ),
+	FIELD( _field_block, "other platforms", &render_method_template_platform_block_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(tag_block_index_struct)
+{
+	FIELD( _field_word_integer, "block index data#divide by 1024 for count, remainder is start index" ),
 	FIELD( _field_terminator )
 };
 

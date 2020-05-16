@@ -3,11 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(multiplayerEffects_struct_definition)
-{
-	FIELD( _field_block, "effects", &multiplayerEffectsBlock ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(multiplayerEffects, MULTIPLAYEREFFECTS_TAG, multiplayerEffects_block_block )
+
+TAG_BLOCK_FROM_STRUCT(multiplayerEffects_block, 1, multiplayerEffects_struct_definition_struct_definition );
 
 TAG_BLOCK(multiplayerEffectsBlock, k_multiplayer_effect_maximum_count)
 {
@@ -16,9 +14,9 @@ TAG_BLOCK(multiplayerEffectsBlock, k_multiplayer_effect_maximum_count)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(multiplayerEffects_block, MULTIPLAYEREFFECTS_TAG)
+TAG_STRUCT(multiplayerEffects_struct_definition)
 {
-	FIELD( _field_block, "effects", &multiplayerEffectsBlock ),
+	FIELD( _field_block, "effects", &multiplayerEffectsBlock_block ),
 	FIELD( _field_terminator )
 };
 

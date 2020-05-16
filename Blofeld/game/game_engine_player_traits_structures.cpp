@@ -5,11 +5,11 @@ namespace blofeld
 
 TAG_BLOCK(game_engine_player_traits_block, 1)
 {
-	FIELD( _field_block, "vitality traits", &player_traits_vitality_block ),
-	FIELD( _field_block, "weapon traits", &player_traits_weapons_block ),
-	FIELD( _field_block, "movement traits", &player_traits_movement_block ),
-	FIELD( _field_block, "appearance traits", &player_traits_appearance_block ),
-	FIELD( _field_block, "sensor traits", &player_traits_sensors_block ),
+	FIELD( _field_block, "vitality traits", &player_traits_vitality_block_block ),
+	FIELD( _field_block, "weapon traits", &player_traits_weapons_block_block ),
+	FIELD( _field_block, "movement traits", &player_traits_movement_block_block ),
+	FIELD( _field_block, "appearance traits", &player_traits_appearance_block_block ),
+	FIELD( _field_block, "sensor traits", &player_traits_sensors_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -137,11 +137,11 @@ TAG_BLOCK(player_traits_sensors_block, 1)
 TAG_BLOCK(game_engine_player_traits_list_block, 64)
 {
 	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_block, "vitality traits", &player_traits_vitality_block ),
-	FIELD( _field_block, "weapon traits", &player_traits_weapons_block ),
-	FIELD( _field_block, "movement traits", &player_traits_movement_block ),
-	FIELD( _field_block, "appearance traits", &player_traits_appearance_block ),
-	FIELD( _field_block, "sensor traits", &player_traits_sensors_block ),
+	FIELD( _field_block, "vitality traits", &player_traits_vitality_block_block ),
+	FIELD( _field_block, "weapon traits", &player_traits_weapons_block_block ),
+	FIELD( _field_block, "movement traits", &player_traits_movement_block_block ),
+	FIELD( _field_block, "appearance traits", &player_traits_appearance_block_block ),
+	FIELD( _field_block, "sensor traits", &player_traits_sensors_block_block ),
 	FIELD( _field_terminator )
 };
 

@@ -3,9 +3,10 @@
 namespace blofeld
 {
 
-TAG_STRUCT(squad_definition_internal_struct)
+TAG_GROUP(squad_template, SQUAD_TEMPLATE_TAG)
 {
-	FIELD( _field_block, "cells", &cell_block ),
+	FIELD( _field_string_id, "name^" ),
+	FIELD( _field_block, "cell templates", &cell_template_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -30,8 +31,8 @@ TAG_BLOCK(squads_block, k_maximum_squads_per_map)
 	FIELD( _field_short_block_index, "initial objective" ),
 	FIELD( _field_custom_short_block_index, "initial task" ),
 	FIELD( _field_short_block_index, "editor folder!" ),
-	FIELD( _field_block, "spawn formations!", &spawn_formation_block ),
-	FIELD( _field_block, "spawn points!", &spawn_points_block ),
+	FIELD( _field_block, "spawn formations!", &spawn_formation_block_block ),
+	FIELD( _field_block, "spawn points!", &spawn_points_block_block ),
 	FIELD( _field_long_enum, "wave placement filter#Filter which squads in Firefight waves can be spawned into this squad" ),
 	FIELD( _field_string_id, "template" ),
 	FIELD( _field_long_integer, "squad template index!" ),
@@ -59,7 +60,7 @@ TAG_BLOCK(spawn_formation_block, k_maximum_spawn_formations_per_squad)
 	FIELD( _field_string_id, "movement set" ),
 	FIELD( _field_custom_short_block_index, "point set" ),
 	FIELD( _field_enum, "patrol mode" ),
-	FIELD( _field_block, "points", &patrol_point_block ),
+	FIELD( _field_block, "points", &patrol_point_block_block ),
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_pad, "post-flags-pad", 3 ),
 	FIELD( _field_terminator )
@@ -116,7 +117,7 @@ TAG_BLOCK(spawn_points_block, k_maximum_spawn_points_per_squad)
 	FIELD( _field_string_id, "movement set" ),
 	FIELD( _field_custom_short_block_index, "point set" ),
 	FIELD( _field_enum, "patrol mode" ),
-	FIELD( _field_block, "points", &patrol_point_block ),
+	FIELD( _field_block, "points", &patrol_point_block_block ),
 	FIELD( _field_short_block_index, "vehicle body" ),
 	FIELD( _field_pad, "post-vehicle_index-pad", 2 ),
 	FIELD( _field_terminator )
@@ -129,10 +130,10 @@ TAG_BLOCK(cell_block, k_maximum_cells_per_squad)
 	FIELD( _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition ),
 	FIELD( _field_short_integer, "normal diff count#initial number of actors on normal difficulty" ),
 	FIELD( _field_enum, "major upgrade" ),
-	FIELD( _field_block, "character type", &character_palette_choice_block ),
-	FIELD( _field_block, "initial weapon", &weapon_palette_choice_block ),
-	FIELD( _field_block, "initial secondary weapon", &weapon_palette_choice_block ),
-	FIELD( _field_block, "initial equipment", &equipment_palette_choice_block ),
+	FIELD( _field_block, "character type", &character_palette_choice_block_block ),
+	FIELD( _field_block, "initial weapon", &weapon_palette_choice_block_block ),
+	FIELD( _field_block, "initial secondary weapon", &weapon_palette_choice_block_block ),
+	FIELD( _field_block, "initial equipment", &equipment_palette_choice_block_block ),
 	FIELD( _field_enum, "grenade type" ),
 	FIELD( _field_short_block_index, "vehicle type" ),
 	FIELD( _field_string_id, "vehicle variant" ),
@@ -143,7 +144,7 @@ TAG_BLOCK(cell_block, k_maximum_cells_per_squad)
 	FIELD( _field_string_id, "movement set" ),
 	FIELD( _field_custom_short_block_index, "point set" ),
 	FIELD( _field_enum, "patrol mode" ),
-	FIELD( _field_block, "points!", &patrol_point_block ),
+	FIELD( _field_block, "points!", &patrol_point_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -181,10 +182,10 @@ TAG_BLOCK(cell_template_block, k_maximum_cells_per_squad)
 	FIELD( _field_short_integer, "normal diff count#initial number of actors on normal difficulty" ),
 	FIELD( _field_enum, "major upgrade" ),
 	FIELD( _field_explanation, "Character Build" ),
-	FIELD( _field_block, "character type", &character_ref_choice_block ),
-	FIELD( _field_block, "initial weapon", &weapon_ref_choice_block ),
-	FIELD( _field_block, "initial secondary weapon", &weapon_ref_choice_block ),
-	FIELD( _field_block, "initial equipment", &equipment_ref_choice_block ),
+	FIELD( _field_block, "character type", &character_ref_choice_block_block ),
+	FIELD( _field_block, "initial weapon", &weapon_ref_choice_block_block ),
+	FIELD( _field_block, "initial secondary weapon", &weapon_ref_choice_block_block ),
+	FIELD( _field_block, "initial equipment", &equipment_ref_choice_block_block ),
 	FIELD( _field_enum, "grenade type" ),
 	FIELD( _field_pad, "post-grenade", 2 ),
 	FIELD( _field_tag_reference, "vehicle type" ),
@@ -220,10 +221,9 @@ TAG_BLOCK(equipment_ref_choice_block, k_maximum_palette_choices)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(squad_template_block, SQUAD_TEMPLATE_TAG)
+TAG_STRUCT(squad_definition_internal_struct)
 {
-	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_block, "cell templates", &cell_template_block ),
+	FIELD( _field_block, "cells", &cell_block_block ),
 	FIELD( _field_terminator )
 };
 

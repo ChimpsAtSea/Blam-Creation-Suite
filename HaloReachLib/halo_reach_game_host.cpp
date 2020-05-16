@@ -133,15 +133,15 @@ void c_halo_reach_game_host::update_camera_data()
 		float horizontal_field_of_view = observer_camera->field_of_view;
 		c_render::update_perspective(horizontal_field_of_view, aspect_ratio);
 		c_render::update_view(
-			observer_camera->forward.I,
-			observer_camera->forward.J,
-			observer_camera->forward.K,
-			observer_camera->up.I,
-			observer_camera->up.J,
-			observer_camera->up.K,
-			observer_camera->position.I,
-			observer_camera->position.J,
-			observer_camera->position.K
+			observer_camera->forward.i,
+			observer_camera->forward.k,
+			observer_camera->forward.k,
+			observer_camera->up.i,
+			observer_camera->up.k,
+			observer_camera->up.k,
+			observer_camera->position.i,
+			observer_camera->position.k,
+			observer_camera->position.k
 		);
 	}
 }
@@ -201,14 +201,14 @@ void c_halo_reach_game_host::draw_camera_debug_ui()
 
 			if (observer_camera)
 			{
-				ImGui::Text("position:       %f, %f, %f", observer_camera->position.I, observer_camera->position.J, observer_camera->position.K);
-				ImGui::Text("position_shift: %f, %f, %f", observer_camera->position_shift.I, observer_camera->position_shift.J, observer_camera->position_shift.K);
+				ImGui::Text("position:       %f, %f, %f", observer_camera->position.i, observer_camera->position.j, observer_camera->position.k);
+				ImGui::Text("position_shift: %f, %f, %f", observer_camera->position_shift.i, observer_camera->position_shift.j, observer_camera->position_shift.k);
 				ImGui::Text("look:           %f", observer_camera->look);
 				ImGui::Text("look_shift:     %f", observer_camera->look_shift);
 				ImGui::Text("depth:          %f", observer_camera->depth);
 				ImGui::Text("unknown0:       %f", observer_camera->unknown0);
-				ImGui::Text("forward:        %f, %f, %f", observer_camera->forward.I, observer_camera->forward.J, observer_camera->forward.K);
-				ImGui::Text("up:             %f, %f, %f", observer_camera->up.I, observer_camera->up.J, observer_camera->up.K);
+				ImGui::Text("forward:        %f, %f, %f", observer_camera->forward.i, observer_camera->forward.j, observer_camera->forward.k);
+				ImGui::Text("up:             %f, %f, %f", observer_camera->up.i, observer_camera->up.j, observer_camera->up.k);
 				ImGui::Text("field_of_view:  %f", observer_camera->field_of_view);
 				ImGui::Text("unknown1:       %f", observer_camera->unknown1);
 				ImGui::Text("unknown2:       %f", observer_camera->unknown2);

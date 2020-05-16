@@ -2,6 +2,16 @@
 
 class c_h4_tag_group_container;
 
+bool string_ends_with(std::string const& string, std::string const& ending)
+{
+	if (string.length() >= ending.length())
+	{
+		return (0 == string.compare(string.length() - ending.length(), ending.length(), ending));
+	}
+	return false;
+}
+
+
 c_h4_source_file::c_h4_source_file(const char* filepath, c_h4_generator_preprocessor& preprocessor) :
 	filepath(filepath),
 	preprocessor(preprocessor),
@@ -25,32 +35,56 @@ c_h4_tag_group_container::c_h4_tag_group_container(c_h4_tag_group& tag_group, c_
 	tag_group(tag_group),
 	source_file(source_file),
 	name(tag_group.name),
+	symbol_name(name),
 	name_uppercase(),
-	use_tag_group_definition(true)
+	define_tag_group_block_and_fields(true)
 {
 	REFERENCE_ASSERT(tag_group);
 	REFERENCE_ASSERT(source_file);
 
 	// #TODO: Use a better name based off of the group tag and the known String ID's
 
-	name_uppercase = name;
-	std::transform(name_uppercase.begin(), name_uppercase.end(), name_uppercase.begin(), ::toupper);
+
+	bool x = std::string(name) == "hsc";
+
 
 	// create the block ready for traversal so we can reserve structure names for tag groups as priority
-	std::string expected_block_name = std::string(tag_group.name) + "_block";
-	use_tag_group_definition = expected_block_name == tag_group.tag_block.name;
-	tag_block_container = &preprocessor.traverse_tag_blocks(tag_group.tag_block, use_tag_group_definition, false);
-	tag_block_container->is_tag = use_tag_group_definition;
 
-	// fixup
-	// #NOTE: Sometimes the tag's block is different from
-	// the name. Usually `stereo_system_group` has `stereo_system_block`
-	// but the HSC tag has `hsc_group` and `hs_source_files_block`
-	if (use_tag_group_definition) // setup the name to correspond with the expected block name
+	//bool define_fields_candidate = string_ends_with(tag_group.tag_block.name, "_block");
+	std::string expected_name = name + "_block";
+	bool define_fields_candidate = tag_group.tag_block.name == expected_name;
+	tag_block_container = &preprocessor.traverse_tag_blocks(tag_group.tag_block, define_fields_candidate, false);
+	tag_struct_container = tag_block_container->tag_struct_container;
+	tag_struct_container->is_tag_group = true;
+
+	// #NOTE: If the struct isn't a block, we have to create a block to be able to use the structure!
+	define_tag_group_block_and_fields = tag_struct_container->is_block && define_fields_candidate;
+	tag_block_container->defined_by_tag_group = define_tag_group_block_and_fields;
+
+
+
+	if (!tag_block_container->use_tag_block_definition)
 	{
-		name = tag_block_container->name;
+		ASSERT(!tag_struct_container->is_block);
 	}
 
+
+	if (define_tag_group_block_and_fields) // fixups
+	{
+		std::string expected_block_symbol_name = name + "_block";
+		tag_block_container->symbol_name = expected_block_symbol_name;
+
+		//std::string expected_struct_symbol_name = name + "_block_struct";
+		std::string expected_struct_symbol_name = name;
+		tag_struct_container->symbol_name = expected_struct_symbol_name;
+	}
+	symbol_name = name + "_group";
+	if (symbol_name == tag_struct_container->symbol_name)
+	{
+		tag_struct_container->symbol_name += "_struct_definition";
+	}
+	name_uppercase = name;
+	std::transform(name_uppercase.begin(), name_uppercase.end(), name_uppercase.begin(), ::toupper);
 	source_file.tag_groups.push_back(this);
 }
 
@@ -59,21 +93,13 @@ bool c_h4_tag_group_container::operator ==(const c_h4_tag_group_container& conta
 	return &tag_group == &container.tag_group;
 }
 
-bool string_ends_with(std::string const& string, std::string const& ending) 
-{
-	if (string.length() >= ending.length()) 
-	{
-		return (0 == string.compare(string.length() - ending.length(), ending.length(), ending));
-	}
-	return false;
-}
-
 c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_h4_generator_preprocessor& preprocessor, bool is_tag) :
 	tag_block(tag_block),
 	name(tag_block.name),
+	symbol_name(name),
 	name_uppercase(),
 	use_tag_block_definition(true),
-	is_tag(is_tag),
+	defined_by_tag_group(is_tag),
 	has_traversed(false)
 {
 	REFERENCE_ASSERT(tag_block);
@@ -85,8 +111,6 @@ c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_
 		name += "$";
 		name += suffix;
 	}
-	name_uppercase = name;
-	std::transform(name_uppercase.begin(), name_uppercase.end(), name_uppercase.begin(), ::toupper);
 
 
 	bool is_havok_convex_shape = std::string("loadScreenBlock") == name;
@@ -99,6 +123,9 @@ c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_
 	tag_struct_container = &preprocessor.traverse_tag_structs(tag_block.tag_struct, use_tag_block_definition, false);
 	tag_struct_container->is_block = use_tag_block_definition;
 
+	symbol_name = name + "_block";
+	name_uppercase = name;
+	std::transform(name_uppercase.begin(), name_uppercase.end(), name_uppercase.begin(), ::toupper);
 	preprocessor.tag_block_containers.push_back(this);
 }
 
@@ -110,8 +137,10 @@ bool c_h4_tag_block_container::operator ==(const c_h4_tag_block_container& conta
 c_h4_tag_struct_container::c_h4_tag_struct_container(c_h4_tag_struct& tag_struct, c_h4_generator_preprocessor& preprocessor, bool is_block) :
 	tag_struct(tag_struct),
 	name(tag_struct.name),
+	symbol_name(name),
 	name_uppercase(),
 	is_block(is_block),
+	is_tag_group(false),
 	has_traversed(false)
 {
 	REFERENCE_ASSERT(tag_struct);
@@ -128,9 +157,10 @@ c_h4_tag_struct_container::c_h4_tag_struct_container(c_h4_tag_struct& tag_struct
 			name += suffix;
 		}
 	}
+
+	symbol_name = name;
 	name_uppercase = name;
 	std::transform(name_uppercase.begin(), name_uppercase.end(), name_uppercase.begin(), ::toupper);
-
 	preprocessor.tag_struct_containers.push_back(this);
 }
 
@@ -158,7 +188,7 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 	for (c_h4_tag_group_container* tag_group_container : tag_group_containers) // traverse tag groups to create tag blocks
 	{
 		c_h4_tag_group& tag_group = tag_group_container->tag_group;
-		traverse_tag_blocks(tag_group.tag_block, tag_group_container->use_tag_group_definition);
+		traverse_tag_blocks(tag_group.tag_block, tag_group_container->define_tag_group_block_and_fields);
 	}
 	cleanup_tag_blocks();
 

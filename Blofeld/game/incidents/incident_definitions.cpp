@@ -3,42 +3,19 @@
 namespace blofeld
 {
 
-TAG_STRUCT(incident_global_properties_definition_struct_definition)
+TAG_GROUP_FROM_BLOCK(incident_global_properties_definition, INCIDENT_GLOBAL_PROPERTIES_DEFINITION_TAG, incident_global_properties_definition_block_block )
+
+TAG_GROUP(incident_globals_definition, INCIDENT_GLOBALS_DEFINITION_TAG)
 {
-	FIELD( _field_real, "campaign multikill time:s" ),
-	FIELD( _field_real, "survival multikill time:s" ),
-	FIELD( _field_real, "multiplayer multikill time:s" ),
-	FIELD( _field_real, "low health threshold:[0,1]" ),
-	FIELD( _field_real, "shield recharge threshold:[0,1]" ),
-	FIELD( _field_real, "maximum vengeance time:s" ),
-	FIELD( _field_real, "lifesaver damage threshold:[0,2]" ),
-	FIELD( _field_real, "avenger dead time:s" ),
-	FIELD( _field_real, "hologram recently used maximum time:s" ),
-	FIELD( _field_long_enum, "active camouflage incident minimum level" ),
-	FIELD( _field_real, "thruster pack recently used maximum time:s" ),
-	FIELD( _field_real, "active shield recently used maximum time:s" ),
-	FIELD( _field_real, "damage threshold for hologram incidents:[0,1]" ),
-	FIELD( _field_real, "damage threshold for distraction incident killer:[0,1]" ),
-	FIELD( _field_real, "damage threshold for distraction incident distractor:[0,1]" ),
-	FIELD( _field_tag_reference, "reward globals!" ),
-	FIELD( _field_tag_reference, "commendation globals" ),
-	FIELD( _field_custom, "HEAT" ),
-	FIELD( _field_short_integer, "maximum heat" ),
-	FIELD( _field_pad, "KVLHESKH", 2 ),
-	FIELD( _field_real, "full heat decay time:S#seconds to completely deplete a full heat meter" ),
-	FIELD( _field_real, "full heat stun time:s#seconds from the time you are at maximum heat until it starts decaying again" ),
-	FIELD( _field_real, "betrayal heat stun time:s#seconds from the time you are at maximum heat until it starts decaying again" ),
-	FIELD( _field_custom ),
-	FIELD( _field_tag_reference, "incident definitions" ),
-	FIELD( _field_block, "default incident definition!*#generated in code", &incident_definition_block ),
+	FIELD( _field_block, "incidents", &incident_definition_block_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(SuppressedIncident_struct_definition)
-{
-	FIELD( _field_block, "suppressed incidents", &suppressed_incident_block ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(SuppressedIncident, SUPPRESSEDINCIDENT_TAG, SuppressedIncident_block_block )
+
+TAG_BLOCK_FROM_STRUCT(incident_global_properties_definition_block, 1, incident_global_properties_definition_struct_definition_struct_definition );
+
+TAG_BLOCK_FROM_STRUCT(SuppressedIncident_block, 1, SuppressedIncident_struct_definition_struct_definition );
 
 TAG_BLOCK(incident_definition_block, s_incident_definition::k_maximum_incidents_per_definition)
 {
@@ -49,15 +26,15 @@ TAG_BLOCK(incident_definition_block, s_incident_definition::k_maximum_incidents_
 	FIELD( _field_custom, "DISALLOWED GAME MODES" ),
 	FIELD( _field_struct, "disallowed game modes", &game_mode_flags_struct_struct_definition ),
 	FIELD( _field_custom ),
-	FIELD( _field_block, "suppressed incidents", &suppressed_incident_block ),
-	FIELD( _field_block, "suppressed incident blocks", &SuppressedIncidentBlockReferenceDefinition ),
+	FIELD( _field_block, "suppressed incidents", &suppressed_incident_block_block ),
+	FIELD( _field_block, "suppressed incident blocks", &SuppressedIncidentBlockReferenceDefinition_block ),
 	FIELD( _field_custom ),
 	FIELD( _field_custom, "CREATION" ),
-	FIELD( _field_block, "specialized incidents", &specialized_incident_block ),
-	FIELD( _field_block, "accumulator incidents", &incident_accumulator_block ),
-	FIELD( _field_block, "sum accumulator incidents", &incident_sum_accumulator_block ),
+	FIELD( _field_block, "specialized incidents", &specialized_incident_block_block ),
+	FIELD( _field_block, "accumulator incidents", &incident_accumulator_block_block ),
+	FIELD( _field_block, "sum accumulator incidents", &incident_sum_accumulator_block_block ),
 	FIELD( _field_custom ),
-	FIELD( _field_block, "response", &game_incident_response_block ),
+	FIELD( _field_block, "response", &game_incident_response_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -78,14 +55,14 @@ TAG_BLOCK(SuppressedIncidentBlockReferenceDefinition, 8)
 TAG_BLOCK(specialized_incident_block, 1)
 {
 	FIELD( _field_string_id, "base incident^" ),
-	FIELD( _field_block, "kill implements", &specialized_incident_kill_implement_block ),
-	FIELD( _field_block, "cause object", &specialized_incident_object_properties_block ),
-	FIELD( _field_block, "effect object{kill bucket}", &specialized_incident_object_properties_block ),
-	FIELD( _field_block, "special kill type", &specialized_incident_special_kill_type_block ),
-	FIELD( _field_block, "game over filter", &specializedIncidentGameOverBlock ),
-	FIELD( _field_block, "ordnance filter", &specializedIncidentRandomOrdnanceBlock ),
-	FIELD( _field_block, "custom data filter", &specializedIncidentCustomDataFilterBlock ),
-	FIELD( _field_block, "distance filter", &specializedIncidentDistanceFilterBlock ),
+	FIELD( _field_block, "kill implements", &specialized_incident_kill_implement_block_block ),
+	FIELD( _field_block, "cause object", &specialized_incident_object_properties_block_block ),
+	FIELD( _field_block, "effect object{kill bucket}", &specialized_incident_object_properties_block_block ),
+	FIELD( _field_block, "special kill type", &specialized_incident_special_kill_type_block_block ),
+	FIELD( _field_block, "game over filter", &specializedIncidentGameOverBlock_block ),
+	FIELD( _field_block, "ordnance filter", &specializedIncidentRandomOrdnanceBlock_block ),
+	FIELD( _field_block, "custom data filter", &specializedIncidentCustomDataFilterBlock_block ),
+	FIELD( _field_block, "distance filter", &specializedIncidentDistanceFilterBlock_block ),
 	FIELD( _field_terminator )
 };
 
@@ -103,7 +80,7 @@ TAG_BLOCK(specialized_incident_object_properties_block, 10)
 	FIELD( _field_char_enum, "bucket class^" ),
 	FIELD( _field_pad, "PAD0", 2 ),
 	FIELD( _field_string, "gamertag" ),
-	FIELD( _field_block, "riding in vehicles", &specialized_incident_object_riding_in_vehicle_properties_block ),
+	FIELD( _field_block, "riding in vehicles", &specialized_incident_object_riding_in_vehicle_properties_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -156,7 +133,7 @@ TAG_BLOCK(incident_accumulator_block, 1)
 	FIELD( _field_char_enum, "aggregation type" ),
 	FIELD( _field_char_enum, "resets on" ),
 	FIELD( _field_pad, "VJIOEJNLKS", 2 ),
-	FIELD( _field_block, "child incidents", &incident_accumulator_child_incident_block ),
+	FIELD( _field_block, "child incidents", &incident_accumulator_child_incident_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -177,7 +154,7 @@ TAG_BLOCK(incident_sum_accumulator_block, 1)
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_pad, "XSEXEC", 2 ),
 	FIELD( _field_long_integer, "count" ),
-	FIELD( _field_block, "child incidents", &incident_sum_accumulator_child_incident_block ),
+	FIELD( _field_block, "child incidents", &incident_sum_accumulator_child_incident_block_block ),
 	FIELD( _field_terminator )
 };
 
@@ -189,7 +166,7 @@ TAG_BLOCK(incident_sum_accumulator_child_incident_block, 60)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(incident_global_properties_definition_block, INCIDENT_GLOBAL_PROPERTIES_DEFINITION_TAG)
+TAG_STRUCT(incident_global_properties_definition_struct_definition)
 {
 	FIELD( _field_real, "campaign multikill time:s" ),
 	FIELD( _field_real, "survival multikill time:s" ),
@@ -216,19 +193,13 @@ TAG_GROUP(incident_global_properties_definition_block, INCIDENT_GLOBAL_PROPERTIE
 	FIELD( _field_real, "betrayal heat stun time:s#seconds from the time you are at maximum heat until it starts decaying again" ),
 	FIELD( _field_custom ),
 	FIELD( _field_tag_reference, "incident definitions" ),
-	FIELD( _field_block, "default incident definition!*#generated in code", &incident_definition_block ),
+	FIELD( _field_block, "default incident definition!*#generated in code", &incident_definition_block_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(incident_globals_definition_block, INCIDENT_GLOBALS_DEFINITION_TAG)
+TAG_STRUCT(SuppressedIncident_struct_definition)
 {
-	FIELD( _field_block, "incidents", &incident_definition_block ),
-	FIELD( _field_terminator )
-};
-
-TAG_GROUP(SuppressedIncident_block, SUPPRESSEDINCIDENT_TAG)
-{
-	FIELD( _field_block, "suppressed incidents", &suppressed_incident_block ),
+	FIELD( _field_block, "suppressed incidents", &suppressed_incident_block_block ),
 	FIELD( _field_terminator )
 };
 

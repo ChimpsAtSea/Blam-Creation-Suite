@@ -3,12 +3,9 @@
 namespace blofeld
 {
 
-TAG_STRUCT(player_enlistment_globals_definition_struct_definition)
-{
-	FIELD( _field_explanation, "Enlistments" ),
-	FIELD( _field_block, "enlistments", &playerEnlistmentDefinitionBlock ),
-	FIELD( _field_terminator )
-};
+TAG_GROUP_FROM_BLOCK(player_enlistment_globals_definition, PLAYER_ENLISTMENT_GLOBALS_DEFINITION_TAG, player_enlistment_globals_definition_block_block )
+
+TAG_BLOCK_FROM_STRUCT(player_enlistment_globals_definition_block, 1, player_enlistment_globals_definition_struct_definition_struct_definition );
 
 TAG_BLOCK(playerEnlistmentDefinitionBlock, k_maximumPlayerEnlistments - 1)
 {
@@ -26,14 +23,14 @@ TAG_BLOCK(playerEnlistmentDefinitionBlock, k_maximumPlayerEnlistments - 1)
 	FIELD( _field_string_id, "unlocked arms" ),
 	FIELD( _field_string_id, "unlocked legs" ),
 	FIELD( _field_string_id, "unlocked visor" ),
-	FIELD( _field_block, "grades#the grades that define the leveling track for this enlistment", &player_grade_definition_block ),
+	FIELD( _field_block, "grades#the grades that define the leveling track for this enlistment", &player_grade_definition_block_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(player_enlistment_globals_definition_block, PLAYER_ENLISTMENT_GLOBALS_DEFINITION_TAG)
+TAG_STRUCT(player_enlistment_globals_definition_struct_definition)
 {
 	FIELD( _field_explanation, "Enlistments" ),
-	FIELD( _field_block, "enlistments", &playerEnlistmentDefinitionBlock ),
+	FIELD( _field_block, "enlistments", &playerEnlistmentDefinitionBlock_block ),
 	FIELD( _field_terminator )
 };
 

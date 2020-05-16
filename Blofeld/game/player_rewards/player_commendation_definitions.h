@@ -3,27 +3,28 @@
 namespace blofeld
 {
 
-extern s_tag_struct commendation_aggregator_list_struct_definition_struct_definition;
-extern s_tag_struct commendation_globals_definition_struct_definition_struct_definition;
-extern s_tag_struct commendationAggregatorDependent_struct_struct_definition;
-
-extern s_tag_struct commendationAggregator_struct_definition;
-extern s_tag_block_definition commendationAggregator;
-extern s_tag_struct commendationRewardBlock_struct_definition;
-extern s_tag_block_definition commendationRewardBlock;
-extern s_tag_block_definition commendationAggregatorDependent;
-extern s_tag_struct commendationBlock_struct_definition;
-extern s_tag_block_definition commendationBlock;
-extern s_tag_struct commendationLevelBlock_struct_definition;
-extern s_tag_block_definition commendationLevelBlock;
-
 constexpr unsigned long COMMENDATION_AGGREGATOR_LIST_TAG = 'coag';
 
-extern s_tag_block_definition commendation_aggregator_list_block;
 extern s_tag_group commendation_aggregator_list_group;
 constexpr unsigned long COMMENDATION_GLOBALS_DEFINITION_TAG = 'comg';
 
-extern s_tag_block_definition commendation_globals_definition_block;
 extern s_tag_group commendation_globals_definition_group;
+
+extern s_tag_block_definition commendation_aggregator_list_block_block;
+extern s_tag_block_definition commendation_globals_definition_block_block;
+extern s_tag_struct commendationAggregator_block_struct;
+extern s_tag_block_definition commendationAggregator_block;
+extern s_tag_struct commendationRewardBlock_block_struct;
+extern s_tag_block_definition commendationRewardBlock_block;
+extern s_tag_block_definition commendationAggregatorDependent_block;
+extern s_tag_struct commendationBlock_block_struct;
+extern s_tag_block_definition commendationBlock_block;
+extern s_tag_struct commendationLevelBlock_block_struct;
+extern s_tag_block_definition commendationLevelBlock_block;
+
+extern s_tag_struct commendation_aggregator_list_struct_definition_struct_definition; // tag group
+extern s_tag_struct commendation_globals_definition_struct_definition_struct_definition; // tag group
+extern s_tag_struct commendationAggregatorDependent_struct_struct_definition;
+
 } // namespace blofeld
 

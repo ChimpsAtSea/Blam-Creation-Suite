@@ -3,15 +3,6 @@
 namespace blofeld
 {
 
-TAG_STRUCT(sound_response_definition_struct)
-{
-	FIELD( _field_byte_flags, "sound flags" ),
-	FIELD( _field_pad, "AGQD", 3 ),
-	FIELD( _field_tag_reference, "sound{english sound}^" ),
-	FIELD( _field_real, "probability#Ignored for the default sound - used for sound permutation block entries only." ),
-	FIELD( _field_terminator )
-};
-
 TAG_BLOCK(game_engine_event_block, k_maximum_game_engine_event_responses)
 {
 	FIELD( _field_string_id, "name{incident}^" ),
@@ -34,13 +25,22 @@ TAG_BLOCK(game_engine_event_block, k_maximum_game_engine_event_responses)
 	FIELD( _field_string_id, "category_for_pair_culling#e.g. flag taken and flag dropped should use the same id here, while ball taken and ball dropped should use another shared id." ),
 	FIELD( _field_long_integer, "pair_id#0 or 1, used to recognized matched pairs.  If both a 0 and a 1 are in the queue at the same time, and neither has started playing, both are removed." ),
 	FIELD( _field_real, "delay_before_considering_sound_seconds:seconds#Used to keep a sound in the queue so later sounds can priority-suppress or pair-suppress it" ),
-	FIELD( _field_block, "sound permutations", &sound_response_definition_block ),
+	FIELD( _field_block, "sound permutations", &sound_response_definition_block_block ),
 	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(sound_response_definition_block, 10)
 {
 	FIELD( _field_struct, "sound_response_definition_struct", &sound_response_definition_struct_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(sound_response_definition_struct)
+{
+	FIELD( _field_byte_flags, "sound flags" ),
+	FIELD( _field_pad, "AGQD", 3 ),
+	FIELD( _field_tag_reference, "sound{english sound}^" ),
+	FIELD( _field_real, "probability#Ignored for the default sound - used for sound permutation block entries only." ),
 	FIELD( _field_terminator )
 };
 
