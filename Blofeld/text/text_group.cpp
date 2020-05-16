@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(multilingual_unicode_string_list, MULTILINGUAL_UNICODE_STRING_LIST_TAG, multilingual_unicode_string_list_block_block )
+TAG_GROUP_FROM_BLOCK(multilingual_unicode_string_list, MULTILINGUAL_UNICODE_STRING_LIST_TAG, multilingual_unicode_string_list_block_block );
 
 TAG_BLOCK_FROM_STRUCT(multilingual_unicode_string_list_block, 1, multilingual_unicode_string_list_struct_definition_struct_definition );
 

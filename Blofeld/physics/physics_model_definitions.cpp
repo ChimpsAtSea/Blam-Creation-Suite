@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(physics_model, PHYSICS_MODEL_TAG, physics_model_block_block )
+TAG_GROUP_FROM_BLOCK(physics_model, PHYSICS_MODEL_TAG, physics_model_block_block );
 
 TAG_BLOCK_FROM_STRUCT(physics_model_block, 1, physics_model_struct_definition_struct_definition );
 
@@ -529,13 +529,6 @@ TAG_STRUCT(physics_model_struct_definition)
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(physics_model_motor_reference_struct)
-{
-	FIELD( _field_enum, "motor type" ),
-	FIELD( _field_custom_short_block_index, "index" ),
-	FIELD( _field_terminator )
-};
-
 TAG_STRUCT(havok_primitive_struct)
 {
 	FIELD( _field_string_id, "name^*!" ),
@@ -609,6 +602,13 @@ TAG_STRUCT(havok_shape_struct_2010_2)
 	FIELD( _field_short_integer, "count*~!" ),
 	FIELD( _field_long_integer, "user data*~!" ),
 	FIELD( _field_long_integer, "type*~!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(physics_model_motor_reference_struct)
+{
+	FIELD( _field_enum, "motor type" ),
+	FIELD( _field_custom_short_block_index, "index" ),
 	FIELD( _field_terminator )
 };
 

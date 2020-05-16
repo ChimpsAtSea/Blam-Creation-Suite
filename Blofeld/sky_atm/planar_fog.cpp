@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(planar_fog_parameters, PLANAR_FOG_PARAMETERS_TAG, planar_fog_parameters_block_block )
+TAG_GROUP_FROM_BLOCK(planar_fog_parameters, PLANAR_FOG_PARAMETERS_TAG, planar_fog_parameters_block_block );
 
 TAG_BLOCK_FROM_STRUCT(planar_fog_parameters_block, 1, planar_fog_parameters_struct_definition_struct_definition );
 

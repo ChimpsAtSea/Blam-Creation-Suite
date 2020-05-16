@@ -183,6 +183,7 @@ public:
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid)
 	{
 		uint32_t definition_address = field_definition->definition_address;
+
 		debug_point;
 	}
 };
@@ -194,13 +195,12 @@ public:
 	c_h4_tag_struct* tag_struct;
 
 	c_h4_tag_field_struct(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
-		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid)
+		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
+		tag_struct(c_h4_blamboozle::get_tag_struct_definition(h4_data, definition))
 	{
 		uint32_t definition_address = field_definition->definition_address;
-
 		const char* field_set_display_name = h4_va_to_pointer(h4_data, definition->display_name);
 		const char* field_set_name = h4_va_to_pointer(h4_data, definition->name);
-		tag_struct = c_h4_blamboozle::get_tag_struct_definition(h4_data, definition);
 
 		debug_point;
 	}
@@ -213,11 +213,10 @@ public:
 	c_h4_tag_block* tag_block_definition;
 
 	c_h4_tag_field_block(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
-		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid)
+		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
+		tag_block_definition(c_h4_blamboozle::get_tag_block_definition(h4_data, definition, nullptr))
 	{
 		uint32_t definition_address = field_definition->definition_address;
-
-		tag_block_definition = c_h4_blamboozle::get_tag_block_definition(h4_data, definition, nullptr);
 
 		debug_point;
 	}
@@ -227,21 +226,13 @@ class c_h4_tag_field_enum :
 	public t_h4_tag_field<s_h4_tag_enum_definition>
 {
 public:
-	std::vector<const char*> options;
+	c_h4_tag_enum* tag_enum;
 
 	c_h4_tag_field_enum(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
-		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid)
+		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
+		tag_enum(c_h4_blamboozle::get_tag_enum_definition(h4_data, definition))
 	{
 		uint32_t definition_address = field_definition->definition_address;
-
-		const bpointer32<const char*>* options_address = h4_va_to_pointer<const bpointer32<const char*>>(h4_data, definition->options_address);
-		for (uint32_t option_index = 0; option_index < definition->option_count; option_index++)
-		{
-			const bpointer32<const char*>& option_address = options_address[option_index];
-			const char* option = h4_va_to_pointer(h4_data, option_address);
-
-			options.push_back(option);
-		}
 
 		debug_point;
 	}

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(light_volume_system, LIGHT_VOLUME_SYSTEM_TAG, light_volume_system_block_block )
+TAG_GROUP_FROM_BLOCK(light_volume_system, LIGHT_VOLUME_SYSTEM_TAG, light_volume_system_block_block );
 
 TAG_BLOCK_FROM_STRUCT(light_volume_system_block, 1, light_volume_system_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(streamingzoneset, STREAMINGZONESET_TAG, streamingzoneset_block_block )
+TAG_GROUP_FROM_BLOCK(streamingzoneset, STREAMINGZONESET_TAG, streamingzoneset_block_block );
 
 TAG_BLOCK_FROM_STRUCT(streamingzoneset_block, 1, streamingzoneset_struct_definition_struct_definition );
 

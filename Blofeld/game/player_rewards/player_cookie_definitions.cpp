@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(reward_globals_definition, REWARD_GLOBALS_DEFINITION_TAG, reward_globals_definition_block_block )
+TAG_GROUP_FROM_BLOCK(reward_globals_definition, REWARD_GLOBALS_DEFINITION_TAG, reward_globals_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(reward_globals_definition_block, 1, reward_globals_definition_struct_definition_struct_definition );
 

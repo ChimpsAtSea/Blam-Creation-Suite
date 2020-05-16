@@ -111,7 +111,7 @@ TAG_GROUP(sound_mix, SOUND_MIX_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_FROM_BLOCK(sound_dialogue_constants, SOUND_DIALOGUE_CONSTANTS_TAG, sound_dialogue_constants_block_block )
+TAG_GROUP_FROM_BLOCK(sound_dialogue_constants, SOUND_DIALOGUE_CONSTANTS_TAG, sound_dialogue_constants_block_block );
 
 TAG_BLOCK_FROM_STRUCT(sound_dialogue_constants_block, 1, sound_dialogue_constants_struct_definition_struct_definition );
 
@@ -298,23 +298,6 @@ TAG_STRUCT(sound_dialogue_constants_struct_definition)
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(soundLipSyncInfoBlock_struct)
-{
-	FIELD( _field_long_integer, "number of usable facial animations" ),
-	FIELD( _field_block, "deterministic event info", &deterministicSpeechEventBlock_block ),
-	FIELD( _field_block, "facial animation resource languages", &facial_animation_language_block_block ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(deterministicSpeechEventBlock_struct)
-{
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_string_id, "voice file path" ),
-	FIELD( _field_real, "event duration" ),
-	FIELD( _field_real, "skip fraction#Percent this file will be skipped when picked. 0 is always, 0.99 is almost never" ),
-	FIELD( _field_terminator )
-};
-
 TAG_STRUCT(sound_distance_parameters_struct)
 {
 	FIELD( _field_explanation, "attenuation distances" ),
@@ -337,6 +320,23 @@ TAG_STRUCT(sound_propagation_definition_struct)
 	FIELD( _field_real, "environment ducking#scales the surrounding background sound by this much:dB" ),
 	FIELD( _field_tag_reference, "entry sound" ),
 	FIELD( _field_tag_reference, "exit sound" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(soundLipSyncInfoBlock_struct)
+{
+	FIELD( _field_long_integer, "number of usable facial animations" ),
+	FIELD( _field_block, "deterministic event info", &deterministicSpeechEventBlock_block ),
+	FIELD( _field_block, "facial animation resource languages", &facial_animation_language_block_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(deterministicSpeechEventBlock_struct)
+{
+	FIELD( _field_long_flags, "flags" ),
+	FIELD( _field_string_id, "voice file path" ),
+	FIELD( _field_real, "event duration" ),
+	FIELD( _field_real, "skip fraction#Percent this file will be skipped when picked. 0 is always, 0.99 is almost never" ),
 	FIELD( _field_terminator )
 };
 

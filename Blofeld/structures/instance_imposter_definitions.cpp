@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(instance_imposter_definition, INSTANCE_IMPOSTER_DEFINITION_TAG, instance_imposter_definition_block_block )
+TAG_GROUP_FROM_BLOCK(instance_imposter_definition, INSTANCE_IMPOSTER_DEFINITION_TAG, instance_imposter_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(instance_imposter_definition_block, 1, instance_imposter_definition_struct_definition_struct_definition );
 

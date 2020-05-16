@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(avatar_awards, AVATAR_AWARDS_TAG, avatar_awards_block_block )
+TAG_GROUP_FROM_BLOCK(avatar_awards, AVATAR_AWARDS_TAG, avatar_awards_block_block );
 
 TAG_BLOCK_FROM_STRUCT(avatar_awards_block, 1, avatar_awards_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(havok_collision_filter, HAVOK_COLLISION_FILTER_TAG, havok_collision_filter_block_block )
+TAG_GROUP_FROM_BLOCK(havok_collision_filter, HAVOK_COLLISION_FILTER_TAG, havok_collision_filter_block_block );
 
 TAG_BLOCK_FROM_STRUCT(havok_collision_filter_block, 1, havok_collision_filter_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(survival_mode_globals, SURVIVAL_MODE_GLOBALS_TAG, survival_mode_globals_block_block )
+TAG_GROUP_FROM_BLOCK(survival_mode_globals, SURVIVAL_MODE_GLOBALS_TAG, survival_mode_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(survival_mode_globals_block, 1, survival_mode_globals_struct_definition_struct_definition );
 

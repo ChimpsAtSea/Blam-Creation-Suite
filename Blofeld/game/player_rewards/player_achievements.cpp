@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(achievements, ACHIEVEMENTS_TAG, achievements_block_block )
+TAG_GROUP_FROM_BLOCK(achievements, ACHIEVEMENTS_TAG, achievements_block_block );
 
 TAG_BLOCK_FROM_STRUCT(achievements_block, 1, achievements_struct_definition_struct_definition );
 

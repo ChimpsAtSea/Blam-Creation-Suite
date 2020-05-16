@@ -3,9 +3,9 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(globals, GLOBALS_TAG, globals_block_block )
+TAG_GROUP_FROM_BLOCK(globals, GLOBALS_TAG, globals_block_block );
 
-TAG_GROUP_FROM_BLOCK(patch_globals, PATCH_GLOBALS_TAG, patch_globals_block_block )
+TAG_GROUP_FROM_BLOCK(patch_globals, PATCH_GLOBALS_TAG, patch_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(globals_block, 1, globals_struct_definition_struct_definition );
 

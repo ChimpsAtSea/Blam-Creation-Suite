@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_INHERIT_FROM_BLOCK(equipment, EQUIPMENT_TAG, item, ITEM_TAG, equipment_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(equipment, EQUIPMENT_TAG, item, ITEM_TAG, equipment_block_block );
 
 TAG_BLOCK_FROM_STRUCT(equipment_block, 1, equipment_struct_definition_struct_definition );
 

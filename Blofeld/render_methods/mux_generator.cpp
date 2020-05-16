@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(mux_generator, MUX_GENERATOR_TAG, mux_generator_block_block )
+TAG_GROUP_FROM_BLOCK(mux_generator, MUX_GENERATOR_TAG, mux_generator_block_block );
 
 TAG_BLOCK_FROM_STRUCT(mux_generator_block, 1, mux_generator_struct_definition_struct_definition );
 

@@ -3,9 +3,9 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(KillCamCameraParamter, KILLCAMCAMERAPARAMTER_TAG, KillCamCameraParamter_block_block )
+TAG_GROUP_FROM_BLOCK(KillCamCameraParamter, KILLCAMCAMERAPARAMTER_TAG, KillCamCameraParamter_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(projectile, PROJECTILE_TAG, object, OBJECT_TAG, projectile_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(projectile, PROJECTILE_TAG, object, OBJECT_TAG, projectile_block_block );
 
 TAG_BLOCK_FROM_STRUCT(KillCamCameraParamter_block, 1, KillCamCameraParamter_struct_definition_struct_definition );
 

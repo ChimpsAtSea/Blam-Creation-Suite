@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(progression, PROGRESSION_TAG, progressionGlobalsBlock_block )
+TAG_GROUP_FROM_BLOCK(progression, PROGRESSION_TAG, progressionGlobalsBlock_block );
 
 TAG_BLOCK(progressionGlobalsBlock, 1)
 {

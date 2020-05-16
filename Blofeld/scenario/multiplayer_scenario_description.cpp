@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(multiplayer_scenario_description, MULTIPLAYER_SCENARIO_DESCRIPTION_TAG, multiplayer_scenario_description_block_block )
+TAG_GROUP_FROM_BLOCK(multiplayer_scenario_description, MULTIPLAYER_SCENARIO_DESCRIPTION_TAG, multiplayer_scenario_description_block_block );
 
 TAG_BLOCK_FROM_STRUCT(multiplayer_scenario_description_block, 1, multiplayer_scenario_description_struct_definition_struct_definition );
 

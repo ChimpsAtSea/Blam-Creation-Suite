@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(multiplayer_object_type_list, MULTIPLAYER_OBJECT_TYPE_LIST_TAG, multiplayer_object_type_list_block_block )
+TAG_GROUP_FROM_BLOCK(multiplayer_object_type_list, MULTIPLAYER_OBJECT_TYPE_LIST_TAG, multiplayer_object_type_list_block_block );
 
 TAG_BLOCK_FROM_STRUCT(multiplayer_object_type_list_block, 1, multiplayer_object_type_list_struct_definition_struct_definition );
 

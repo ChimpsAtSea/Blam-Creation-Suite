@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(scenario_interpolator, SCENARIO_INTERPOLATOR_TAG, scenario_interpolator_block_block )
+TAG_GROUP_FROM_BLOCK(scenario_interpolator, SCENARIO_INTERPOLATOR_TAG, scenario_interpolator_block_block );
 
 TAG_BLOCK_FROM_STRUCT(scenario_interpolator_block, 1, scenario_interpolator_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_INHERIT_FROM_BLOCK(scenery, SCENERY_TAG, object, OBJECT_TAG, scenery_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(scenery, SCENERY_TAG, object, OBJECT_TAG, scenery_block_block );
 
 TAG_BLOCK_FROM_STRUCT(scenery_block, 1, scenery_group_struct_definition );
 

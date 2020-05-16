@@ -65,7 +65,7 @@ TAG_GROUP(scenario_lightmap, SCENARIO_LIGHTMAP_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_FROM_BLOCK(scenario_wetness_bsp_data, SCENARIO_WETNESS_BSP_DATA_TAG, scenario_wetness_bsp_data_block_block )
+TAG_GROUP_FROM_BLOCK(scenario_wetness_bsp_data, SCENARIO_WETNESS_BSP_DATA_TAG, scenario_wetness_bsp_data_block_block );
 
 TAG_BLOCK_FROM_STRUCT(scenario_wetness_bsp_data_block, 1, scenario_wetness_bsp_data_struct_definition_struct_definition );
 

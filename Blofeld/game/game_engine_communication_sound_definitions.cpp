@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(communication_sounds, COMMUNICATION_SOUNDS_TAG, communication_sounds_block_block )
+TAG_GROUP_FROM_BLOCK(communication_sounds, COMMUNICATION_SOUNDS_TAG, communication_sounds_block_block );
 
 TAG_BLOCK_FROM_STRUCT(communication_sounds_block, 1, communication_sounds_struct_definition_struct_definition );
 

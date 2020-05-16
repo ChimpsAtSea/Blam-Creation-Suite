@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(cookie_purchase_globals, COOKIE_PURCHASE_GLOBALS_TAG, cookie_purchase_globals_block_block )
+TAG_GROUP_FROM_BLOCK(cookie_purchase_globals, COOKIE_PURCHASE_GLOBALS_TAG, cookie_purchase_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(cookie_purchase_globals_block, 1, cookie_purchase_globals_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(atmosphere_globals, ATMOSPHERE_GLOBALS_TAG, atmosphere_globals_block_block )
+TAG_GROUP_FROM_BLOCK(atmosphere_globals, ATMOSPHERE_GLOBALS_TAG, atmosphere_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(atmosphere_globals_block, 1, atmosphere_globals_struct_definition_struct_definition );
 

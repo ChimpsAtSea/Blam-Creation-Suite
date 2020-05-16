@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(airstrike, AIRSTRIKE_TAG, airstrike_block_block )
+TAG_GROUP_FROM_BLOCK(airstrike, AIRSTRIKE_TAG, airstrike_block_block );
 
 TAG_BLOCK_FROM_STRUCT(airstrike_block, 1, airstrike_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(silent_assist_globals, SILENT_ASSIST_GLOBALS_TAG, silent_assist_globals_block_block )
+TAG_GROUP_FROM_BLOCK(silent_assist_globals, SILENT_ASSIST_GLOBALS_TAG, silent_assist_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(silent_assist_globals_block, 1, silent_assist_globals_struct_definition_struct_definition );
 

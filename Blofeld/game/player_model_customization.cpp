@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(player_model_customization_globals, PLAYER_MODEL_CUSTOMIZATION_GLOBALS_TAG, player_model_customization_globals_block_block )
+TAG_GROUP_FROM_BLOCK(player_model_customization_globals, PLAYER_MODEL_CUSTOMIZATION_GLOBALS_TAG, player_model_customization_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(player_model_customization_globals_block, 1, player_model_customization_globals_struct_definition_struct_definition );
 

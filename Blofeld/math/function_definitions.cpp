@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(curve_scalar, CURVE_SCALAR_TAG, curve_scalar_block_block )
+TAG_GROUP_FROM_BLOCK(curve_scalar, CURVE_SCALAR_TAG, curve_scalar_block_block );
 
 TAG_BLOCK_FROM_STRUCT(curve_scalar_block, 1, curve_scalar_struct_definition_struct_definition );
 

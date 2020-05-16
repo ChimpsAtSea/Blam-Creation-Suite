@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(water_physics_drag_properties, WATER_PHYSICS_DRAG_PROPERTIES_TAG, water_physics_drag_properties_block_block )
+TAG_GROUP_FROM_BLOCK(water_physics_drag_properties, WATER_PHYSICS_DRAG_PROPERTIES_TAG, water_physics_drag_properties_block_block );
 
 TAG_BLOCK_FROM_STRUCT(water_physics_drag_properties_block, 1, water_physics_drag_properties_struct_definition_struct_definition );
 

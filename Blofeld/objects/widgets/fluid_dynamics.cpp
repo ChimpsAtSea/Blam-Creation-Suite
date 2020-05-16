@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(fluid_dynamics, FLUID_DYNAMICS_TAG, fluid_dynamics_block_block )
+TAG_GROUP_FROM_BLOCK(fluid_dynamics, FLUID_DYNAMICS_TAG, fluid_dynamics_block_block );
 
 TAG_BLOCK_FROM_STRUCT(fluid_dynamics_block, 1, fluid_dynamics_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(effect_global_force, EFFECT_GLOBAL_FORCE_TAG, effect_global_force_block_block )
+TAG_GROUP_FROM_BLOCK(effect_global_force, EFFECT_GLOBAL_FORCE_TAG, effect_global_force_block_block );
 
 TAG_BLOCK_FROM_STRUCT(effect_global_force_block, 1, effect_global_force_struct_definition_struct_definition );
 

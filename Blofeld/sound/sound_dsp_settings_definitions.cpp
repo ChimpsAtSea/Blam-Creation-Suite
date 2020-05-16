@@ -26,6 +26,15 @@ TAG_BLOCK(sound_equalizer_band_settings_block, k_maximum_sound_equalizer_bands)
 	FIELD( _field_terminator )
 };
 
+TAG_STRUCT(global_sound_lowpass_block)
+{
+	FIELD( _field_custom, "cutoff frequency:Hz" ),
+	FIELD( _field_real, "cutoff frequency:Hz" ),
+	FIELD( _field_custom, "output gain:dB" ),
+	FIELD( _field_real, "output gain:dB" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(global_sound_reverb_block)
 {
 	FIELD( _field_custom, "room intensity:dB#intensity of the room effect" ),
@@ -60,15 +69,6 @@ TAG_STRUCT(global_sound_reverb_block)
 	FIELD( _field_real, "Wet mix value#0 to 1 with 0 being none, and 1 being full." ),
 	FIELD( _field_custom, "Player wet mix value#0 to 1 with 0 being none, and 1 being full." ),
 	FIELD( _field_real, "Player wet mix value#0 to 1 with 0 being none, and 1 being full." ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(global_sound_lowpass_block)
-{
-	FIELD( _field_custom, "cutoff frequency:Hz" ),
-	FIELD( _field_real, "cutoff frequency:Hz" ),
-	FIELD( _field_custom, "output gain:dB" ),
-	FIELD( _field_real, "output gain:dB" ),
 	FIELD( _field_terminator )
 };
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(imposter_model, IMPOSTER_MODEL_TAG, imposter_model_block_block )
+TAG_GROUP_FROM_BLOCK(imposter_model, IMPOSTER_MODEL_TAG, imposter_model_block_block );
 
 TAG_GROUP(render_model, RENDER_MODEL_TAG)
 {
@@ -37,7 +37,7 @@ TAG_GROUP(render_model, RENDER_MODEL_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_FROM_BLOCK(render_model_lightmap_atlas, RENDER_MODEL_LIGHTMAP_ATLAS_TAG, render_model_lightmap_atlas_block_block )
+TAG_GROUP_FROM_BLOCK(render_model_lightmap_atlas, RENDER_MODEL_LIGHTMAP_ATLAS_TAG, render_model_lightmap_atlas_block_block );
 
 TAG_BLOCK_FROM_STRUCT(imposter_model_block, 1, imposter_model_struct_definition_struct_definition );
 

@@ -73,6 +73,35 @@ TAG_BLOCK(task_distribution_block, k_max_task_distributions_per_cue)
 	FIELD( _field_terminator )
 };
 
+TAG_BLOCK(radial_distribution_block, k_max_radial_distributions_per_cue)
+{
+	FIELD( _field_real, "radius" ),
+	FIELD( _field_short_integer, "travel time (ticks)" ),
+	FIELD( _field_pad, "post-travel-time", 2 ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(probability_distribution_block, k_max_probability_distributions_per_cue)
+{
+	FIELD( _field_real, "chance per second" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(character_distribution_block, k_max_character_distributions_per_cue)
+{
+	FIELD( _field_short_block_index, "character" ),
+	FIELD( _field_byte_flags, "flags" ),
+	FIELD( _field_pad, "post-flags", 1 ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(weapon_distribution_block, k_max_weapon_distributions_per_cue)
+{
+	FIELD( _field_short_block_index, "weapon" ),
+	FIELD( _field_pad, "post-weapon-palette-index", 2 ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(script_payload_block, 1)
 {
 	FIELD( _field_string_id, "script function name" ),
@@ -137,10 +166,10 @@ TAG_STRUCT(cue_distribution_struct)
 
 TAG_STRUCT(cue_stimulus_distribution_struct)
 {
-	FIELD( _field_block, "radius" ),
-	FIELD( _field_block, "probability" ),
-	FIELD( _field_block, "characters" ),
-	FIELD( _field_block, "weapons" ),
+	FIELD( _field_block, "radius", &radial_distribution_block_block ),
+	FIELD( _field_block, "probability", &probability_distribution_block_block ),
+	FIELD( _field_block, "characters", &character_distribution_block_block ),
+	FIELD( _field_block, "weapons", &weapon_distribution_block_block ),
 	FIELD( _field_terminator )
 };
 

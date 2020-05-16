@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(megalogamengine_sounds, MEGALOGAMENGINE_SOUNDS_TAG, megalogamengine_sounds_block_block )
+TAG_GROUP_FROM_BLOCK(megalogamengine_sounds, MEGALOGAMENGINE_SOUNDS_TAG, megalogamengine_sounds_block_block );
 
 TAG_BLOCK_FROM_STRUCT(megalogamengine_sounds_block, 1, megalogamengine_sounds_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(multiplayerEffects, MULTIPLAYEREFFECTS_TAG, multiplayerEffects_block_block )
+TAG_GROUP_FROM_BLOCK(multiplayerEffects, MULTIPLAYEREFFECTS_TAG, multiplayerEffects_block_block );
 
 TAG_BLOCK_FROM_STRUCT(multiplayerEffects_block, 1, multiplayerEffects_struct_definition_struct_definition );
 

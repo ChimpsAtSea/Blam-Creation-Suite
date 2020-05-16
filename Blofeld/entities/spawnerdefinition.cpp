@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_INHERIT_FROM_BLOCK(spawner, SPAWNER_TAG, entity, ENTITY_TAG, spawner_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(spawner, SPAWNER_TAG, entity, ENTITY_TAG, spawner_block_block );
 
 TAG_BLOCK_FROM_STRUCT(spawner_block, 1, spawner_struct_definition_struct_definition );
 

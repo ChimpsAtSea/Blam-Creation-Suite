@@ -3,9 +3,9 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(sound_response, SOUND_RESPONSE_TAG, sound_response_block_block )
+TAG_GROUP_FROM_BLOCK(sound_response, SOUND_RESPONSE_TAG, sound_response_block_block );
 
-TAG_GROUP_FROM_BLOCK(sound_incident_response, SOUND_INCIDENT_RESPONSE_TAG, sound_incident_response_block_block )
+TAG_GROUP_FROM_BLOCK(sound_incident_response, SOUND_INCIDENT_RESPONSE_TAG, sound_incident_response_block_block );
 
 TAG_BLOCK_FROM_STRUCT(sound_response_block, 1, sound_response_struct_definition_struct_definition );
 

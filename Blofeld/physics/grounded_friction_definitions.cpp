@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(grounded_friction, GROUNDED_FRICTION_TAG, grounded_friction_block_block )
+TAG_GROUP_FROM_BLOCK(grounded_friction, GROUNDED_FRICTION_TAG, grounded_friction_block_block );
 
 TAG_BLOCK_FROM_STRUCT(grounded_friction_block, 1, grounded_friction_struct_definition_struct_definition );
 

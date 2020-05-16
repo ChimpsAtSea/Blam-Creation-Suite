@@ -13,9 +13,9 @@ TAG_GROUP(performance_template, PERFORMANCE_TEMPLATE_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_FROM_BLOCK(scenario, SCENARIO_TAG, scenario_block_block )
+TAG_GROUP_FROM_BLOCK(scenario, SCENARIO_TAG, scenario_block_block );
 
-TAG_GROUP_FROM_BLOCK(scenario_required_resource, SCENARIO_REQUIRED_RESOURCE_TAG, scenario_required_resource_block_block )
+TAG_GROUP_FROM_BLOCK(scenario_required_resource, SCENARIO_REQUIRED_RESOURCE_TAG, scenario_required_resource_block_block );
 
 TAG_BLOCK_FROM_STRUCT(scenario_block, 1, scenario_struct_definition_struct_definition );
 
@@ -999,46 +999,6 @@ TAG_STRUCT(scenario_required_resource_struct_definition)
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(scenario_trigger_volume_struct)
-{
-	FIELD( _field_explanation, "naming" ),
-	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_short_block_index, "object name" ),
-	FIELD( _field_short_integer, "runtime node index!" ),
-	FIELD( _field_string_id, "node name" ),
-	FIELD( _field_enum, "type" ),
-	FIELD( _field_pad, "padding", 2 ),
-	FIELD( _field_real_vector_3d, "forward!" ),
-	FIELD( _field_real_vector_3d, "up!" ),
-	FIELD( _field_real_point_3d, "position" ),
-	FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),
-	FIELD( _field_custom_long_block_index, "navMeshUIDOffaceref~!" ),
-	FIELD( _field_real_point_3d, "extents" ),
-	FIELD( _field_real, "z sink#this is only valid for sector type trigger volumes" ),
-	FIELD( _field_block, "sector points", &trigger_volume_point_block_block ),
-	FIELD( _field_block, "runtime triangles*!", &trigger_volume_runtime_triangles_block_block ),
-	FIELD( _field_real, "runtime sector bounds x0*!" ),
-	FIELD( _field_real, "runtime sector bounds x1*!" ),
-	FIELD( _field_real, "runtime sector bounds y0*!" ),
-	FIELD( _field_real, "runtime sector bounds y1*!" ),
-	FIELD( _field_real, "runtime sector bounds z0*!" ),
-	FIELD( _field_real, "runtime sector bounds z1*!" ),
-	FIELD( _field_real, "C!" ),
-	FIELD( _field_short_block_index, "kill trigger volume*" ),
-	FIELD( _field_short_block_index, "editor folder!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(ScenarioUnitRecordingBlock_struct)
-{
-	FIELD( _field_string, "name^" ),
-	FIELD( _field_long_integer, "sampling rate" ),
-	FIELD( _field_long_integer, "num samples*" ),
-	FIELD( _field_long_integer, "Unit Recording version*!" ),
-	FIELD( _field_data, "Unit Recording Data*!" ),
-	FIELD( _field_terminator )
-};
-
 TAG_STRUCT(manualBspFlagsReferences)
 {
 	FIELD( _field_custom, "manual bsp flags" ),
@@ -1084,6 +1044,46 @@ TAG_STRUCT(scenario_lightmap_setting_struct)
 	FIELD( _field_real, "analytical light bounce modifier (when per bsp flag is on)" ),
 	FIELD( _field_real, "non analytical light bounce modifier (when per bsp flag is on)" ),
 	FIELD( _field_long_block_flags, "extra lighting bsp flags#neighbor bsp that occlude or contribute light (including bounce light)" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(scenario_trigger_volume_struct)
+{
+	FIELD( _field_explanation, "naming" ),
+	FIELD( _field_string_id, "name^" ),
+	FIELD( _field_short_block_index, "object name" ),
+	FIELD( _field_short_integer, "runtime node index!" ),
+	FIELD( _field_string_id, "node name" ),
+	FIELD( _field_enum, "type" ),
+	FIELD( _field_pad, "padding", 2 ),
+	FIELD( _field_real_vector_3d, "forward!" ),
+	FIELD( _field_real_vector_3d, "up!" ),
+	FIELD( _field_real_point_3d, "position" ),
+	FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),
+	FIELD( _field_custom_long_block_index, "navMeshUIDOffaceref~!" ),
+	FIELD( _field_real_point_3d, "extents" ),
+	FIELD( _field_real, "z sink#this is only valid for sector type trigger volumes" ),
+	FIELD( _field_block, "sector points", &trigger_volume_point_block_block ),
+	FIELD( _field_block, "runtime triangles*!", &trigger_volume_runtime_triangles_block_block ),
+	FIELD( _field_real, "runtime sector bounds x0*!" ),
+	FIELD( _field_real, "runtime sector bounds x1*!" ),
+	FIELD( _field_real, "runtime sector bounds y0*!" ),
+	FIELD( _field_real, "runtime sector bounds y1*!" ),
+	FIELD( _field_real, "runtime sector bounds z0*!" ),
+	FIELD( _field_real, "runtime sector bounds z1*!" ),
+	FIELD( _field_real, "C!" ),
+	FIELD( _field_short_block_index, "kill trigger volume*" ),
+	FIELD( _field_short_block_index, "editor folder!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(ScenarioUnitRecordingBlock_struct)
+{
+	FIELD( _field_string, "name^" ),
+	FIELD( _field_long_integer, "sampling rate" ),
+	FIELD( _field_long_integer, "num samples*" ),
+	FIELD( _field_long_integer, "Unit Recording version*!" ),
+	FIELD( _field_data, "Unit Recording Data*!" ),
 	FIELD( _field_terminator )
 };
 

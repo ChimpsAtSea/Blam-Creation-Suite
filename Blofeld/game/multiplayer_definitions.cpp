@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(multiplayer_globals, MULTIPLAYER_GLOBALS_TAG, multiplayer_globals_block_block )
+TAG_GROUP_FROM_BLOCK(multiplayer_globals, MULTIPLAYER_GLOBALS_TAG, multiplayer_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(multiplayer_globals_block, 1, multiplayer_globals_struct_definition_struct_definition );
 

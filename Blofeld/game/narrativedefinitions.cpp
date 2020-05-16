@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(NarrativeGlobals, NARRATIVEGLOBALS_TAG, NarrativeGlobals_block_block )
+TAG_GROUP_FROM_BLOCK(NarrativeGlobals, NARRATIVEGLOBALS_TAG, NarrativeGlobals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(NarrativeGlobals_block, 1, NarrativeGlobals_struct_definition_struct_definition );
 

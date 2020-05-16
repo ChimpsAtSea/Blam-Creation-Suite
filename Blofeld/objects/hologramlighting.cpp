@@ -22,6 +22,15 @@ TAG_BLOCK(hologramLightingGlobalsBlock, 1)
 
 TAG_BLOCK_FROM_STRUCT(hologramLightingBlock, 1, hologramLightingBlock_struct_struct_definition );
 
+TAG_STRUCT(hologramLightFunctions)
+{
+	FIELD( _field_string_id, "Intensity" ),
+	FIELD( _field_string_id, "Forward" ),
+	FIELD( _field_string_id, "Right" ),
+	FIELD( _field_string_id, "Up" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(hologramLightingBlock_struct)
 {
 	FIELD( _field_custom, "HOLOGRAM" ),
@@ -40,15 +49,6 @@ TAG_STRUCT(hologramLightingBlock_struct)
 	FIELD( _field_custom, "RIM LIGHT" ),
 	FIELD( _field_struct, "Rim Light", &hologramLight_struct_definition ),
 	FIELD( _field_custom ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(hologramLightFunctions)
-{
-	FIELD( _field_string_id, "Intensity" ),
-	FIELD( _field_string_id, "Forward" ),
-	FIELD( _field_string_id, "Right" ),
-	FIELD( _field_string_id, "Up" ),
 	FIELD( _field_terminator )
 };
 

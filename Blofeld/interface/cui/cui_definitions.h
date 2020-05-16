@@ -81,10 +81,10 @@ extern s_tag_block_definition string_file_references_block;
 extern s_tag_struct cui_logic_struct_definition_struct_definition; // tag group
 extern s_tag_struct cui_screen_struct_definition_struct_definition; // tag group
 extern s_tag_struct cui_static_data_struct_definition_struct_definition; // tag group
-extern s_tag_struct properties_struct_struct_definition;
 extern s_tag_struct cui_system_struct_definition;
-extern s_tag_struct static_data_struct_struct_definition;
+extern s_tag_struct properties_struct_struct_definition;
 extern s_tag_struct animation_scalar_function_struct_definition;
+extern s_tag_struct static_data_struct_struct_definition;
 
 } // namespace blofeld
 

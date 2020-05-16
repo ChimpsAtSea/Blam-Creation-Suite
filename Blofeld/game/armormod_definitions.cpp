@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(armormod_globals, ARMORMOD_GLOBALS_TAG, armormod_globals_block_block )
+TAG_GROUP_FROM_BLOCK(armormod_globals, ARMORMOD_GLOBALS_TAG, armormod_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(armormod_globals_block, 1, armormod_globals_struct_definition_struct_definition );
 

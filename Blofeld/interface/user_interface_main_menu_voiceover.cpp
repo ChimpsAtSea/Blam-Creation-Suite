@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(main_menu_voiceover, MAIN_MENU_VOICEOVER_TAG, main_menu_voiceover_block_block )
+TAG_GROUP_FROM_BLOCK(main_menu_voiceover, MAIN_MENU_VOICEOVER_TAG, main_menu_voiceover_block_block );
 
 TAG_BLOCK_FROM_STRUCT(main_menu_voiceover_block, 1, main_menu_voiceover_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(prefab, PREFAB_TAG, prefab_block_block )
+TAG_GROUP_FROM_BLOCK(prefab, PREFAB_TAG, prefab_block_block );
 
 TAG_GROUP(scenario_structure_bsp, SCENARIO_STRUCTURE_BSP_TAG)
 {
@@ -595,20 +595,20 @@ TAG_STRUCT(prefab_struct_definition)
 	FIELD( _field_terminator )
 };
 
+TAG_STRUCT(structure_bsp_cluster_portal_oriented_bounds_block)
+{
+	FIELD( _field_real_point_3d, "center*!" ),
+	FIELD( _field_real_vector_3d, "extents*!" ),
+	FIELD( _field_real_quaternion, "orientation*!" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(structure_bsp_resource_interface)
 {
 	FIELD( _field_block, "raw_resources", &structure_bsp_raw_resources_block ),
 	FIELD( _field_pageable, "tag_resources" ),
 	FIELD( _field_pageable, "cache_file_resources" ),
 	FIELD( _field_long_integer, "use resource items*" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(structure_bsp_cluster_portal_oriented_bounds_block)
-{
-	FIELD( _field_real_point_3d, "center*!" ),
-	FIELD( _field_real_vector_3d, "extents*!" ),
-	FIELD( _field_real_quaternion, "orientation*!" ),
 	FIELD( _field_terminator )
 };
 

@@ -14,9 +14,6 @@ c_mantle_blofeld_tag_editor_gui_tab::~c_mantle_blofeld_tag_editor_gui_tab()
 
 }
 
-
-
-
 uint32_t c_mantle_blofeld_tag_editor_gui_tab::render_tag_group(char* data, const blofeld::s_tag_group& group)
 {
 	if (group.parent_group_tag)
@@ -32,13 +29,6 @@ uint32_t c_mantle_blofeld_tag_editor_gui_tab::render_tag_group(char* data, const
 	while (current_field->field_type != blofeld::_field_terminator)
 	{
 		const char* field_typename = field_to_string(current_field->field_type);
-
-
-
-
-
-
-
 
 		ImGui::Text("%s %s", field_typename, current_field->name ? current_field->name : "");
 		current_field++;

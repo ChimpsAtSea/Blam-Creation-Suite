@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(load_screen, LOAD_SCREEN_TAG, loadScreenBlock_block )
+TAG_GROUP_FROM_BLOCK(load_screen, LOAD_SCREEN_TAG, loadScreenBlock_block );
 
 TAG_BLOCK(loadScreenBlock, 1)
 {

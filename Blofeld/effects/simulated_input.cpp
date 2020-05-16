@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(simulated_input, SIMULATED_INPUT_TAG, simulated_input_block_block )
+TAG_GROUP_FROM_BLOCK(simulated_input, SIMULATED_INPUT_TAG, simulated_input_block_block );
 
 TAG_BLOCK_FROM_STRUCT(simulated_input_block, 1, simulated_input_struct_definition_struct_definition );
 

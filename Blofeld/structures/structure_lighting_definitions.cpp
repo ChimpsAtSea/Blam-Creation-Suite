@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(scenario_structure_lighting_info, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG, scenario_structure_lighting_info_block_block )
+TAG_GROUP_FROM_BLOCK(scenario_structure_lighting_info, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG, scenario_structure_lighting_info_block_block );
 
 TAG_BLOCK_FROM_STRUCT(scenario_structure_lighting_info_block, 1, scenario_structure_lighting_info_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(structure_seams, STRUCTURE_SEAMS_TAG, structure_seams_block_block )
+TAG_GROUP_FROM_BLOCK(structure_seams, STRUCTURE_SEAMS_TAG, structure_seams_block_block );
 
 TAG_BLOCK_FROM_STRUCT(structure_seams_block, 1, structure_seams_struct_definition_struct_definition );
 

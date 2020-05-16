@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(ai_dialogue_globals, AI_DIALOGUE_GLOBALS_TAG, ai_dialogue_globals_block_block )
+TAG_GROUP_FROM_BLOCK(ai_dialogue_globals, AI_DIALOGUE_GLOBALS_TAG, ai_dialogue_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(ai_dialogue_globals_block, 1, ai_dialogue_globals_struct_definition_struct_definition );
 

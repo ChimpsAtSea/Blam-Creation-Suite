@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(game_medal_globals, GAME_MEDAL_GLOBALS_TAG, game_medal_globals_block_block )
+TAG_GROUP_FROM_BLOCK(game_medal_globals, GAME_MEDAL_GLOBALS_TAG, game_medal_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(game_medal_globals_block, 1, game_medal_globals_struct_definition_struct_definition );
 

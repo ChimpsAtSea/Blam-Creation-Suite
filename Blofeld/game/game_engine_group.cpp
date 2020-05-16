@@ -9,9 +9,9 @@ TAG_GROUP(GameEngineFirefightVariantTag, GAMEENGINEFIREFIGHTVARIANTTAG_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_FROM_BLOCK(game_engine_globals, GAME_ENGINE_GLOBALS_TAG, game_engine_globals_block_block )
+TAG_GROUP_FROM_BLOCK(game_engine_globals, GAME_ENGINE_GLOBALS_TAG, game_engine_globals_block_block );
 
-TAG_GROUP_FROM_BLOCK(game_engine_settings_definition, GAME_ENGINE_SETTINGS_DEFINITION_TAG, game_engine_settings_definition_block_block )
+TAG_GROUP_FROM_BLOCK(game_engine_settings_definition, GAME_ENGINE_SETTINGS_DEFINITION_TAG, game_engine_settings_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(game_engine_globals_block, 1, game_engine_globals_struct_definition_struct_definition );
 
@@ -321,15 +321,6 @@ TAG_STRUCT(gameEngineFirefightVariantDefinition)
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(game_engine_survival_wave_properties_struct)
-{
-	FIELD( _field_byte_flags, "flags" ),
-	FIELD( _field_char_enum, "wave selection type" ),
-	FIELD( _field_pad, "VJKNMFEN", 2 ),
-	FIELD( _field_block, "wave squads", &survival_wave_squad_block_block ),
-	FIELD( _field_terminator )
-};
-
 TAG_STRUCT(game_engine_ai_traits_struct)
 {
 	FIELD( _field_char_enum, "vision traits" ),
@@ -343,6 +334,15 @@ TAG_STRUCT(game_engine_ai_traits_struct)
 	FIELD( _field_char_enum, "damage resistance percentage" ),
 	FIELD( _field_char_enum, "damage modifier percentage" ),
 	FIELD( _field_pad, "pad", 2 ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(game_engine_survival_wave_properties_struct)
+{
+	FIELD( _field_byte_flags, "flags" ),
+	FIELD( _field_char_enum, "wave selection type" ),
+	FIELD( _field_pad, "VJKNMFEN", 2 ),
+	FIELD( _field_block, "wave squads", &survival_wave_squad_block_block ),
 	FIELD( _field_terminator )
 };
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_INHERIT_FROM_BLOCK(crate, CRATE_TAG, object, OBJECT_TAG, crate_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(crate, CRATE_TAG, object, OBJECT_TAG, crate_block_block );
 
 TAG_BLOCK_FROM_STRUCT(crate_block, 1, crate_struct_definition_struct_definition );
 

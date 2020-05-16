@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(spring_acceleration, SPRING_ACCELERATION_TAG, spring_acceleration_block_block )
+TAG_GROUP_FROM_BLOCK(spring_acceleration, SPRING_ACCELERATION_TAG, spring_acceleration_block_block );
 
 TAG_BLOCK_FROM_STRUCT(spring_acceleration_block, 1, spring_acceleration_struct_definition_struct_definition );
 

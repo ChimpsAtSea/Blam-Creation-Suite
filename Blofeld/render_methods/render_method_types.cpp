@@ -3,41 +3,41 @@
 namespace blofeld
 {
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_particle, SHADER_PARTICLE_TAG, render_method, RENDER_METHOD_TAG, shader_particle_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_particle, SHADER_PARTICLE_TAG, render_method, RENDER_METHOD_TAG, shader_particle_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_custom, SHADER_CUSTOM_TAG, render_method, RENDER_METHOD_TAG, shader_custom_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_custom, SHADER_CUSTOM_TAG, render_method, RENDER_METHOD_TAG, shader_custom_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_cortana, SHADER_CORTANA_TAG, render_method, RENDER_METHOD_TAG, shader_cortana_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_cortana, SHADER_CORTANA_TAG, render_method, RENDER_METHOD_TAG, shader_cortana_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_decal, SHADER_DECAL_TAG, render_method, RENDER_METHOD_TAG, shader_decal_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_decal, SHADER_DECAL_TAG, render_method, RENDER_METHOD_TAG, shader_decal_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_foliage, SHADER_FOLIAGE_TAG, render_method, RENDER_METHOD_TAG, shader_foliage_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_foliage, SHADER_FOLIAGE_TAG, render_method, RENDER_METHOD_TAG, shader_foliage_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_fur_stencil, SHADER_FUR_STENCIL_TAG, render_method, RENDER_METHOD_TAG, shader_fur_stencil_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_fur_stencil, SHADER_FUR_STENCIL_TAG, render_method, RENDER_METHOD_TAG, shader_fur_stencil_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_fur, SHADER_FUR_TAG, render_method, RENDER_METHOD_TAG, shader_fur_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_fur, SHADER_FUR_TAG, render_method, RENDER_METHOD_TAG, shader_fur_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_glass, SHADER_GLASS_TAG, render_method, RENDER_METHOD_TAG, shader_glass_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_glass, SHADER_GLASS_TAG, render_method, RENDER_METHOD_TAG, shader_glass_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_halogram, SHADER_HALOGRAM_TAG, render_method, RENDER_METHOD_TAG, shader_halogram_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_halogram, SHADER_HALOGRAM_TAG, render_method, RENDER_METHOD_TAG, shader_halogram_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_light_volume, SHADER_LIGHT_VOLUME_TAG, render_method, RENDER_METHOD_TAG, shader_light_volume_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_light_volume, SHADER_LIGHT_VOLUME_TAG, render_method, RENDER_METHOD_TAG, shader_light_volume_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_mux_material, SHADER_MUX_MATERIAL_TAG, render_method, RENDER_METHOD_TAG, shader_mux_material_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_mux_material, SHADER_MUX_MATERIAL_TAG, render_method, RENDER_METHOD_TAG, shader_mux_material_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_mux, SHADER_MUX_TAG, render_method, RENDER_METHOD_TAG, shader_mux_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_mux, SHADER_MUX_TAG, render_method, RENDER_METHOD_TAG, shader_mux_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader, SHADER_TAG, render_method, RENDER_METHOD_TAG, shader_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader, SHADER_TAG, render_method, RENDER_METHOD_TAG, shader_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_skin, SHADER_SKIN_TAG, render_method, RENDER_METHOD_TAG, shader_skin_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_skin, SHADER_SKIN_TAG, render_method, RENDER_METHOD_TAG, shader_skin_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_screen, SHADER_SCREEN_TAG, render_method, RENDER_METHOD_TAG, shader_screen_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_screen, SHADER_SCREEN_TAG, render_method, RENDER_METHOD_TAG, shader_screen_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_terrain, SHADER_TERRAIN_TAG, render_method, RENDER_METHOD_TAG, shader_terrain_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_terrain, SHADER_TERRAIN_TAG, render_method, RENDER_METHOD_TAG, shader_terrain_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_water, SHADER_WATER_TAG, render_method, RENDER_METHOD_TAG, shader_water_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_water, SHADER_WATER_TAG, render_method, RENDER_METHOD_TAG, shader_water_block_block );
 
-TAG_GROUP_INHERIT_FROM_BLOCK(shader_waterfall, SHADER_WATERFALL_TAG, render_method, RENDER_METHOD_TAG, shader_waterfall_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(shader_waterfall, SHADER_WATERFALL_TAG, render_method, RENDER_METHOD_TAG, shader_waterfall_block_block );
 
 TAG_BLOCK_FROM_STRUCT(shader_particle_block, 1, shader_particle_struct_definition_struct_definition );
 
@@ -224,6 +224,12 @@ TAG_STRUCT(shader_waterfall_struct_definition)
 	FIELD( _field_terminator )
 };
 
+TAG_STRUCT(material_type_struct)
+{
+	FIELD( _field_short_integer, "global material index" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(shader_particle_struct_definition$2)
 {
 	FIELD( _field_custom ),
@@ -246,12 +252,6 @@ TAG_STRUCT(shader_particle_struct_definition$2)
 	FIELD( _field_real, "blur weight" ),
 	FIELD( _field_real, "intensity scale" ),
 	FIELD( _field_tag_reference, "palette" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(material_type_struct)
-{
-	FIELD( _field_short_integer, "global material index" ),
 	FIELD( _field_terminator )
 };
 

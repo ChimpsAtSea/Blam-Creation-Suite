@@ -133,20 +133,6 @@ TAG_BLOCK(CommentsBlock, 65536)
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(PuppetPathPointStruct)
-{
-	FIELD( _field_char_enum, "type" ),
-	FIELD( _field_byte_flags, "flags" ),
-	FIELD( _field_char_enum, "indexType~" ),
-	FIELD( _field_pad, "pad", 1 ),
-	FIELD( _field_string_id, "objectName" ),
-	FIELD( _field_long_integer, "index~" ),
-	FIELD( _field_string_id, "marker" ),
-	FIELD( _field_real_point_3d, "pos" ),
-	FIELD( _field_real_euler_angles_3d, "rot" ),
-	FIELD( _field_terminator )
-};
-
 TAG_STRUCT(PuppetHeaderStruct)
 {
 	FIELD( _field_byte_flags, "flags" ),
@@ -169,6 +155,20 @@ TAG_STRUCT(PuppetHeaderStruct)
 	FIELD( _field_terminator )
 };
 
+TAG_STRUCT(PuppetPathPointStruct)
+{
+	FIELD( _field_char_enum, "type" ),
+	FIELD( _field_byte_flags, "flags" ),
+	FIELD( _field_char_enum, "indexType~" ),
+	FIELD( _field_pad, "pad", 1 ),
+	FIELD( _field_string_id, "objectName" ),
+	FIELD( _field_long_integer, "index~" ),
+	FIELD( _field_string_id, "marker" ),
+	FIELD( _field_real_point_3d, "pos" ),
+	FIELD( _field_real_euler_angles_3d, "rot" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(PuppetActionHeaderStruct)
 {
 	FIELD( _field_string_id, "name" ),
@@ -179,26 +179,6 @@ TAG_STRUCT(PuppetActionHeaderStruct)
 	FIELD( _field_char_enum, "blendType" ),
 	FIELD( _field_char_enum, "type" ),
 	FIELD( _field_short_integer, "dataIndex" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(PuppetSubActionHeaderStruct)
-{
-	FIELD( _field_char_enum, "type" ),
-	FIELD( _field_char_enum, "startType" ),
-	FIELD( _field_char_enum, "endType" ),
-	FIELD( _field_pad, "pad1", 1 ),
-	FIELD( _field_long_integer, "startAction" ),
-	FIELD( _field_long_integer, "startOffset" ),
-	FIELD( _field_string_id, "startConditionScriptName" ),
-	FIELD( _field_string_id, "endConditionScriptName" ),
-	FIELD( _field_short_integer, "startCondition~" ),
-	FIELD( _field_short_integer, "endCondition~" ),
-	FIELD( _field_long_integer, "endAction" ),
-	FIELD( _field_long_integer, "endOffset" ),
-	FIELD( _field_long_integer, "comment" ),
-	FIELD( _field_short_integer, "dataIndex" ),
-	FIELD( _field_pad, "pad2", 2 ),
 	FIELD( _field_terminator )
 };
 
@@ -222,6 +202,26 @@ TAG_STRUCT(PuppetActionPathStruct)
 {
 	FIELD( _field_real, "throttle" ),
 	FIELD( _field_block, "points", &PuppetPathPointBlock_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(PuppetSubActionHeaderStruct)
+{
+	FIELD( _field_char_enum, "type" ),
+	FIELD( _field_char_enum, "startType" ),
+	FIELD( _field_char_enum, "endType" ),
+	FIELD( _field_pad, "pad1", 1 ),
+	FIELD( _field_long_integer, "startAction" ),
+	FIELD( _field_long_integer, "startOffset" ),
+	FIELD( _field_string_id, "startConditionScriptName" ),
+	FIELD( _field_string_id, "endConditionScriptName" ),
+	FIELD( _field_short_integer, "startCondition~" ),
+	FIELD( _field_short_integer, "endCondition~" ),
+	FIELD( _field_long_integer, "endAction" ),
+	FIELD( _field_long_integer, "endOffset" ),
+	FIELD( _field_long_integer, "comment" ),
+	FIELD( _field_short_integer, "dataIndex" ),
+	FIELD( _field_pad, "pad2", 2 ),
 	FIELD( _field_terminator )
 };
 

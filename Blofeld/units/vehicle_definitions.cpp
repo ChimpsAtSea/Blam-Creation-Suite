@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_INHERIT_FROM_BLOCK(vehicle, VEHICLE_TAG, unit, UNIT_TAG, vehicle_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(vehicle, VEHICLE_TAG, unit, UNIT_TAG, vehicle_block_block );
 
 TAG_BLOCK_FROM_STRUCT(vehicle_block, 1, vehicle_group_struct_definition );
 
@@ -518,6 +518,28 @@ TAG_STRUCT(vehicle_group)
 	FIELD( _field_terminator )
 };
 
+TAG_STRUCT(vehicle_physics_types_struct)
+{
+	FIELD( _field_custom ),
+	FIELD( _field_block, "type-human_tank", &human_tank_block_block ),
+	FIELD( _field_block, "type-human_jeep", &human_jeep_block_block ),
+	FIELD( _field_block, "type-human_plane", &human_plane_block_block ),
+	FIELD( _field_block, "type-wolverine", &wolverine_block_block ),
+	FIELD( _field_block, "type-alien_scout", &alien_scout_block_block ),
+	FIELD( _field_block, "type-alien_fighter", &alien_fighter_block_block ),
+	FIELD( _field_block, "type-turret", &turret_block_block ),
+	FIELD( _field_block, "type-mantis", &mantis_block_block ),
+	FIELD( _field_block, "type-vtol", &vtol_block_block ),
+	FIELD( _field_block, "type-chopper", &chopper_block_block ),
+	FIELD( _field_block, "type-guardian", &guardian_block_block ),
+	FIELD( _field_block, "type-jackal-glider", &jackal_glider_block_block ),
+	FIELD( _field_block, "type-boat", &boat_block_block ),
+	FIELD( _field_block, "type-space-fighter", &space_fighter_block_block ),
+	FIELD( _field_block, "type-revenant", &revenant_block_block ),
+	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(human_tank_struct)
 {
 	FIELD( _field_angle, "forward arc#outside of this arc the vehicle reverse direciton, around 110 degrees seems to be nice..." ),
@@ -551,28 +573,6 @@ TAG_STRUCT(human_tank_struct)
 	FIELD( _field_real, "at rest facing backward reverse angle(pink)##angle forming arc in which the control will cause the tank to reverse while at rest and facing backwards" ),
 	FIELD( _field_real, "in motion opposing direction angle#when in motion the angle in which the control must be to start moving in the opposite direction" ),
 	FIELD( _field_real, "in motion speed#the speed a tank must reach before we consider it in motion, changing the control mode" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(vehicle_physics_types_struct)
-{
-	FIELD( _field_custom ),
-	FIELD( _field_block, "type-human_tank", &human_tank_block_block ),
-	FIELD( _field_block, "type-human_jeep", &human_jeep_block_block ),
-	FIELD( _field_block, "type-human_plane", &human_plane_block_block ),
-	FIELD( _field_block, "type-wolverine", &wolverine_block_block ),
-	FIELD( _field_block, "type-alien_scout", &alien_scout_block_block ),
-	FIELD( _field_block, "type-alien_fighter", &alien_fighter_block_block ),
-	FIELD( _field_block, "type-turret", &turret_block_block ),
-	FIELD( _field_block, "type-mantis", &mantis_block_block ),
-	FIELD( _field_block, "type-vtol", &vtol_block_block ),
-	FIELD( _field_block, "type-chopper", &chopper_block_block ),
-	FIELD( _field_block, "type-guardian", &guardian_block_block ),
-	FIELD( _field_block, "type-jackal-glider", &jackal_glider_block_block ),
-	FIELD( _field_block, "type-boat", &boat_block_block ),
-	FIELD( _field_block, "type-space-fighter", &space_fighter_block_block ),
-	FIELD( _field_block, "type-revenant", &revenant_block_block ),
-	FIELD( _field_custom ),
 	FIELD( _field_terminator )
 };
 

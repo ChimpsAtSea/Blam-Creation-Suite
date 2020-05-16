@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(rasterizer_globals, RASTERIZER_GLOBALS_TAG, rasterizer_globals_block_block )
+TAG_GROUP_FROM_BLOCK(rasterizer_globals, RASTERIZER_GLOBALS_TAG, rasterizer_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(rasterizer_globals_block, 1, rasterizer_globals_struct_definition_struct_definition );
 

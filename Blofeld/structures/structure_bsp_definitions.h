@@ -117,8 +117,8 @@ extern s_tag_struct structureMetadataLightConeMarkerBlock_block_struct;
 extern s_tag_block_definition structureMetadataLightConeMarkerBlock_block;
 
 extern s_tag_struct prefab_struct_definition_struct_definition; // tag group
-extern s_tag_struct structure_bsp_resource_interface_struct_definition;
 extern s_tag_struct structure_bsp_cluster_portal_oriented_bounds_block_struct_definition;
+extern s_tag_struct structure_bsp_resource_interface_struct_definition;
 extern s_tag_struct structure_bsp_resource_struct_struct_definition;
 
 } // namespace blofeld

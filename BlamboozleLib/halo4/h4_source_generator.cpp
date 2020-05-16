@@ -302,7 +302,7 @@ void c_h4_source_generator::create_tag_group_source(std::stringstream& ss, c_h4_
 		}
 		else
 		{
-			ss << "TAG_GROUP_FROM_BLOCK(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG, " << tag_block_container->symbol_name << " )" << std::endl;
+			ss << "TAG_GROUP_FROM_BLOCK(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG, " << tag_block_container->symbol_name << " );" << std::endl;
 		}
 	}
 	else
@@ -317,7 +317,7 @@ void c_h4_source_generator::create_tag_group_source(std::stringstream& ss, c_h4_
 		}
 		else
 		{
-			ss << "TAG_GROUP_INHERIT_FROM_BLOCK(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG, " << parent_tag_group.name << ", " << parent_tag_group_container->name_uppercase << "_TAG, " << tag_block_container->symbol_name << " )" << std::endl;
+			ss << "TAG_GROUP_INHERIT_FROM_BLOCK(" << tag_group_container.name << ", " << tag_group_container.name_uppercase << "_TAG, " << parent_tag_group.name << ", " << parent_tag_group_container->name_uppercase << "_TAG, " << tag_block_container->symbol_name << " );" << std::endl;
 		}
 	}
 

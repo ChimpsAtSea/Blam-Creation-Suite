@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(emblem_library, EMBLEM_LIBRARY_TAG, emblem_library_block_block )
+TAG_GROUP_FROM_BLOCK(emblem_library, EMBLEM_LIBRARY_TAG, emblem_library_block_block );
 
 TAG_BLOCK_FROM_STRUCT(emblem_library_block, 1, emblem_library_struct_definition_struct_definition );
 

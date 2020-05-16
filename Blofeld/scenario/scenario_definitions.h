@@ -172,12 +172,12 @@ extern s_tag_block_definition loadScreenReferenceBlock_block;
 
 extern s_tag_struct scenario_struct_definition_struct_definition; // tag group
 extern s_tag_struct scenario_required_resource_struct_definition_struct_definition; // tag group
-extern s_tag_struct scenario_trigger_volume_struct_struct_definition;
-extern s_tag_struct ScenarioUnitRecordingBlock_struct_struct_definition;
 extern s_tag_struct manualBspFlagsReferences_struct_definition;
 extern s_tag_struct scenarioVolumetricLightShaftSettingsStruct_struct_definition;
 extern s_tag_struct scenarioFloatingShadowSettingsStruct_struct_definition;
 extern s_tag_struct scenario_lightmap_setting_struct_struct_definition;
+extern s_tag_struct scenario_trigger_volume_struct_struct_definition;
+extern s_tag_struct ScenarioUnitRecordingBlock_struct_struct_definition;
 
 } // namespace blofeld
 

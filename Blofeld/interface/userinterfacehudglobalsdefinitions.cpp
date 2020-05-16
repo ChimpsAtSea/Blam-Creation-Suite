@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(user_interface_hud_globals_definition, USER_INTERFACE_HUD_GLOBALS_DEFINITION_TAG, user_interface_hud_globals_definition_block_block )
+TAG_GROUP_FROM_BLOCK(user_interface_hud_globals_definition, USER_INTERFACE_HUD_GLOBALS_DEFINITION_TAG, user_interface_hud_globals_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(user_interface_hud_globals_definition_block, 1, user_interface_hud_globals_definition_struct_definition_struct_definition );
 

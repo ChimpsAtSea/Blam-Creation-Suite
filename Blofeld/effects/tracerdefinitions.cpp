@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(tracer_system, TRACER_SYSTEM_TAG, tracer_system_block_block )
+TAG_GROUP_FROM_BLOCK(tracer_system, TRACER_SYSTEM_TAG, tracer_system_block_block );
 
 TAG_BLOCK_FROM_STRUCT(tracer_system_block, 1, tracer_system_struct_definition_struct_definition );
 

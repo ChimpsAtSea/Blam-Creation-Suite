@@ -3,9 +3,9 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(script_container, SCRIPT_CONTAINER_TAG, script_container_block_block )
+TAG_GROUP_FROM_BLOCK(script_container, SCRIPT_CONTAINER_TAG, script_container_block_block );
 
-TAG_GROUP_FROM_BLOCK(script, SCRIPT_TAG, script_block_block )
+TAG_GROUP_FROM_BLOCK(script, SCRIPT_TAG, script_block_block );
 
 TAG_BLOCK_FROM_STRUCT(script_container_block, 1, script_container_struct_definition_struct_definition );
 

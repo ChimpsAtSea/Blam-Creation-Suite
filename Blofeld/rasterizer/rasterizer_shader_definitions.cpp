@@ -19,9 +19,9 @@ TAG_GROUP(global_vertex_shader, GLOBAL_VERTEX_SHADER_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_FROM_BLOCK(global_cache_file_pixel_shaders, GLOBAL_CACHE_FILE_PIXEL_SHADERS_TAG, global_cache_file_pixel_shaders_block_block )
+TAG_GROUP_FROM_BLOCK(global_cache_file_pixel_shaders, GLOBAL_CACHE_FILE_PIXEL_SHADERS_TAG, global_cache_file_pixel_shaders_block_block );
 
-TAG_GROUP_FROM_BLOCK(hlsl_include, HLSL_INCLUDE_TAG, hlsl_include_block_block )
+TAG_GROUP_FROM_BLOCK(hlsl_include, HLSL_INCLUDE_TAG, hlsl_include_block_block );
 
 TAG_GROUP(pixel_shader, PIXEL_SHADER_TAG)
 {

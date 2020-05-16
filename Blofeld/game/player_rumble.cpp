@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(rumble, RUMBLE_TAG, rumble_block_block )
+TAG_GROUP_FROM_BLOCK(rumble, RUMBLE_TAG, rumble_block_block );
 
 TAG_BLOCK_FROM_STRUCT(rumble_block, 1, rumble_struct_definition_struct_definition );
 

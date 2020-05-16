@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(character, CHARACTER_TAG, character_block_block )
+TAG_GROUP_FROM_BLOCK(character, CHARACTER_TAG, character_block_block );
 
 TAG_BLOCK_FROM_STRUCT(character_block, 1, character_struct_definition_struct_definition );
 
@@ -1324,16 +1324,6 @@ TAG_STRUCT(character_struct_definition)
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(character_hop_struct)
-{
-	FIELD( _field_real, "Min hop distance#Pathing shorter than this, no hopping" ),
-	FIELD( _field_real, "Min hop distance to path end#Pathing shorter than this, no hopping to end of path" ),
-	FIELD( _field_real_bounds, "Hop wait timer min/max#Character will wait this random ranged timer before hopping again.(Seconds)" ),
-	FIELD( _field_real, "Max hop distance#Pathing longer than this, no hopping." ),
-	FIELD( _field_real, "pad!" ),
-	FIELD( _field_terminator )
-};
-
 TAG_STRUCT(active_camo_perception_properties)
 {
 	FIELD( _field_real_fraction, "partial invis amount:[0,1]#this amount of active camouflage makes a target \'partially invisible\'" ),
@@ -1342,6 +1332,16 @@ TAG_STRUCT(active_camo_perception_properties)
 	FIELD( _field_real_fraction, "full invis amount:[0,1]#this amount of active camouflage makes a target \'fully invisible\'" ),
 	FIELD( _field_real, "full invis vision distance:world units#maximum vision distance for fully invisible targets. 0= unlimited" ),
 	FIELD( _field_real, "full invis awareness multiplier:[0,1]#multiplier on our awareness speed for fully invisible targets. 0= no change. Should be in (0, 1]." ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(character_hop_struct)
+{
+	FIELD( _field_real, "Min hop distance#Pathing shorter than this, no hopping" ),
+	FIELD( _field_real, "Min hop distance to path end#Pathing shorter than this, no hopping to end of path" ),
+	FIELD( _field_real_bounds, "Hop wait timer min/max#Character will wait this random ranged timer before hopping again.(Seconds)" ),
+	FIELD( _field_real, "Max hop distance#Pathing longer than this, no hopping." ),
+	FIELD( _field_real, "pad!" ),
 	FIELD( _field_terminator )
 };
 

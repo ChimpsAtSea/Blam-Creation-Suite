@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(game_completion_rewards_globals, GAME_COMPLETION_REWARDS_GLOBALS_TAG, game_completion_rewards_globals_block_block )
+TAG_GROUP_FROM_BLOCK(game_completion_rewards_globals, GAME_COMPLETION_REWARDS_GLOBALS_TAG, game_completion_rewards_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(game_completion_rewards_globals_block, 1, game_completion_rewards_globals_struct_definition_struct_definition );
 

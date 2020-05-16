@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(new_cinematic_lighting, NEW_CINEMATIC_LIGHTING_TAG, new_cinematic_lighting_block_block )
+TAG_GROUP_FROM_BLOCK(new_cinematic_lighting, NEW_CINEMATIC_LIGHTING_TAG, new_cinematic_lighting_block_block );
 
 TAG_BLOCK_FROM_STRUCT(new_cinematic_lighting_block, 1, new_cinematic_lighting_struct_definition_struct_definition );
 

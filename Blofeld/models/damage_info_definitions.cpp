@@ -253,37 +253,6 @@ TAG_BLOCK(damage_section_rendering_paramters, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(model_damage_info_struct)
-{
-	FIELD( _field_explanation, "Damage Info" ),
-	FIELD( _field_long_flags, "flags" ),
-	FIELD( _field_real, "maximum vitality#value of zero implies \'damage sections\' should be empty" ),
-	FIELD( _field_string_id, "indirect material name#absorbes AOE or child damage" ),
-	FIELD( _field_short_block_index, "indirect damage section#absorbes AOE or child damage" ),
-	FIELD( _field_short_block_index, "shielded state damage section#the model\'s shielded/unshielded state reflects the depletion of this damage section" ),
-	FIELD( _field_char_enum, "collision damage reporting type" ),
-	FIELD( _field_char_enum, "response damage reporting type" ),
-	FIELD( _field_pad, "MDIBP0", 2 ),
-	FIELD( _field_block, "damage sections", &new_global_damage_section_block_block ),
-	FIELD( _field_block, "damage constraints", &damage_constraint_info_block_block ),
-	FIELD( _field_block, "nodes*", &global_damage_nodes_block_block ),
-	FIELD( _field_short_integer, "runtime indirect material type!*" ),
-	FIELD( _field_pad, "MDIBP1", 2 ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(instantaneous_response_damage_effect_struct)
-{
-	FIELD( _field_tag_reference, "transition damage effect" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(instantaneous_response_damage_effect_marker_struct)
-{
-	FIELD( _field_string_id, "damage effect marker name" ),
-	FIELD( _field_terminator )
-};
-
 TAG_STRUCT(damage_body_parameters_struct)
 {
 	FIELD( _field_real, "maximum vitality" ),
@@ -307,6 +276,37 @@ TAG_STRUCT(damage_shield_parameters_struct)
 	FIELD( _field_tag_reference, "shield damaged effect" ),
 	FIELD( _field_tag_reference, "shield depleted effect" ),
 	FIELD( _field_tag_reference, "shield recharging effect" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(instantaneous_response_damage_effect_struct)
+{
+	FIELD( _field_tag_reference, "transition damage effect" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(instantaneous_response_damage_effect_marker_struct)
+{
+	FIELD( _field_string_id, "damage effect marker name" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(model_damage_info_struct)
+{
+	FIELD( _field_explanation, "Damage Info" ),
+	FIELD( _field_long_flags, "flags" ),
+	FIELD( _field_real, "maximum vitality#value of zero implies \'damage sections\' should be empty" ),
+	FIELD( _field_string_id, "indirect material name#absorbes AOE or child damage" ),
+	FIELD( _field_short_block_index, "indirect damage section#absorbes AOE or child damage" ),
+	FIELD( _field_short_block_index, "shielded state damage section#the model\'s shielded/unshielded state reflects the depletion of this damage section" ),
+	FIELD( _field_char_enum, "collision damage reporting type" ),
+	FIELD( _field_char_enum, "response damage reporting type" ),
+	FIELD( _field_pad, "MDIBP0", 2 ),
+	FIELD( _field_block, "damage sections", &new_global_damage_section_block_block ),
+	FIELD( _field_block, "damage constraints", &damage_constraint_info_block_block ),
+	FIELD( _field_block, "nodes*", &global_damage_nodes_block_block ),
+	FIELD( _field_short_integer, "runtime indirect material type!*" ),
+	FIELD( _field_pad, "MDIBP1", 2 ),
 	FIELD( _field_terminator )
 };
 

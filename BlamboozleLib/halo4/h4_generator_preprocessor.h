@@ -71,6 +71,21 @@ public:
 	bool has_traversed;
 };
 
+class c_h4_tag_enum_container
+{
+public:
+	c_h4_tag_enum_container(c_h4_tag_enum& tag_enum, c_h4_generator_preprocessor& preprocessor, bool is_tag);
+	bool operator ==(const c_h4_tag_enum_container& container) const;
+
+	c_h4_tag_enum& tag_enum;
+	std::string name;
+	std::string symbol_name;
+	std::string name_uppercase;
+	bool is_block;
+	bool is_tag_group;
+	bool has_traversed;
+};
+
 class c_h4_generator_preprocessor
 {
 public:
@@ -92,6 +107,7 @@ public:
 	std::vector<c_h4_tag_group_container*> tag_group_containers;
 	std::vector<c_h4_tag_block_container*> tag_block_containers;
 	std::vector<c_h4_tag_struct_container*> tag_struct_containers;
+	std::vector<c_h4_tag_enum_container*> tag_enum_containers;
 	std::vector<std::string> maximum_count_constants_source_lines_define;
 	std::vector<std::string> maximum_count_constants_source_lines_constant;
 	std::vector<std::string> maximum_count_constants_source_lines_struct;

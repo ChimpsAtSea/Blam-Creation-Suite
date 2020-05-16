@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(particle_emitter_boat_hull_shape, PARTICLE_EMITTER_BOAT_HULL_SHAPE_TAG, particle_emitter_boat_hull_shape_block_block )
+TAG_GROUP_FROM_BLOCK(particle_emitter_boat_hull_shape, PARTICLE_EMITTER_BOAT_HULL_SHAPE_TAG, particle_emitter_boat_hull_shape_block_block );
 
 TAG_BLOCK_FROM_STRUCT(particle_emitter_boat_hull_shape_block, 1, particle_emitter_boat_hull_shape_struct_definition_struct_definition );
 

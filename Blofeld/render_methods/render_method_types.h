@@ -95,8 +95,8 @@ extern s_tag_struct shader_screen_struct_definition_struct_definition; // tag gr
 extern s_tag_struct shader_terrain_struct_definition_struct_definition; // tag group
 extern s_tag_struct shader_water_struct_definition_struct_definition; // tag group
 extern s_tag_struct shader_waterfall_struct_definition_struct_definition; // tag group
-extern s_tag_struct shader_particle_struct_definition$2_struct_definition;
 extern s_tag_struct material_type_struct_struct_definition;
+extern s_tag_struct shader_particle_struct_definition$2_struct_definition;
 
 } // namespace blofeld
 

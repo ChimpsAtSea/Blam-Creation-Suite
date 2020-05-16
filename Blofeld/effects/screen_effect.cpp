@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(area_screen_effect, AREA_SCREEN_EFFECT_TAG, area_screen_effect_block_block )
+TAG_GROUP_FROM_BLOCK(area_screen_effect, AREA_SCREEN_EFFECT_TAG, area_screen_effect_block_block );
 
 TAG_BLOCK_FROM_STRUCT(area_screen_effect_block, 1, area_screen_effect_struct_definition_struct_definition );
 

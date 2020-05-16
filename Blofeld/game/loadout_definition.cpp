@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(loadout_globals_definition, LOADOUT_GLOBALS_DEFINITION_TAG, loadout_globals_definition_block_block )
+TAG_GROUP_FROM_BLOCK(loadout_globals_definition, LOADOUT_GLOBALS_DEFINITION_TAG, loadout_globals_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(loadout_globals_definition_block, 1, loadout_globals_definition_struct_definition_struct_definition );
 

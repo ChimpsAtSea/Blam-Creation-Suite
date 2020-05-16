@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(frame_event_list, FRAME_EVENT_LIST_TAG, frame_event_list_block_block )
+TAG_GROUP_FROM_BLOCK(frame_event_list, FRAME_EVENT_LIST_TAG, frame_event_list_block_block );
 
 TAG_GROUP(model_animation_graph, MODEL_ANIMATION_GRAPH_TAG)
 {
@@ -459,6 +459,13 @@ TAG_BLOCK(animation_ik_chain_block, k_animation_maximum_ik_chains)
 	FIELD( _field_terminator )
 };
 
+TAG_BLOCK(PCAGroupSettingsBlock, k_max_animations_per_graph)
+{
+	FIELD( _field_string_id, "Group Name^" ),
+	FIELD( _field_long_integer, "Desired Mesh Count" ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(animation_mode_block, k_max_modes_per_graph)
 {
 	FIELD( _field_string_id, "label^" ),
@@ -731,12 +738,102 @@ TAG_BLOCK(model_animation_tag_resource_group, k_max_animations_per_graph*3)
 	FIELD( _field_terminator )
 };
 
+TAG_BLOCK(shared_static_data_codec_rotation_block, k_max_animations_per_graph * k_max_nodes_per_animation)
+{
+	FIELD( _field_short_integer, "i" ),
+	FIELD( _field_short_integer, "j" ),
+	FIELD( _field_short_integer, "k" ),
+	FIELD( _field_short_integer, "w" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(shared_static_data_codec_translation_block, k_max_animations_per_graph * k_max_nodes_per_animation)
+{
+	FIELD( _field_real, "x" ),
+	FIELD( _field_real, "y" ),
+	FIELD( _field_real, "z" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(shared_static_data_codec_scale_block, k_max_animations_per_graph * k_max_nodes_per_animation)
+{
+	FIELD( _field_real, "scale" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(frame_event_list_struct_definition)
 {
 	FIELD( _field_explanation, "IMPORTANT TAG NOTES" ),
 	FIELD( _field_block, "sound references|ABCDCC", &animation_graph_sound_reference_block_block ),
 	FIELD( _field_block, "effect references|ABCDCC", &animation_graph_effect_reference_block_block ),
 	FIELD( _field_block, "frame events|ABCDCC", &import_animation_event_block_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(animation_graph_definitions_struct)
+{
+	FIELD( _field_explanation, "GRAPH DATA" ),
+	FIELD( _field_tag_reference, "parent animation graph" ),
+	FIELD( _field_byte_flags, "inheritance flags" ),
+	FIELD( _field_byte_flags, "private flags*" ),
+	FIELD( _field_short_integer, "animation codec pack*" ),
+	FIELD( _field_enum, "force compression setting*" ),
+	FIELD( _field_word_flags, "misc graph flags" ),
+	FIELD( _field_long_integer, "skeleton checksum" ),
+	FIELD( _field_long_integer, "skeleton checksum lite" ),
+	FIELD( _field_tag_reference, "imported events|ABCDCC" ),
+	FIELD( _field_block, "node usage*|ABCDCC", &animation_usage_block_block ),
+	FIELD( _field_block, "node masks|ABCDCC", &animation_node_mask_block_block ),
+	FIELD( _field_block, "functions|ABCDCC", &animation_function_block_block ),
+	FIELD( _field_block, "model animation variants|ABCDCC", &model_animation_variant_block_block ),
+	FIELD( _field_block, "skeleton nodes*|ABCDCC", &animation_graph_node_block_block ),
+	FIELD( _field_block, "sound references|ABCDCC!*#Legacy field - please edit in new frame event tag below", &animation_graph_sound_reference_block_block ),
+	FIELD( _field_block, "effect references|ABCDCC!*#Legacy field - please edit in new frame event tag below", &animation_graph_effect_reference_block_block ),
+	FIELD( _field_block, "blend screens|ABCDCC!*#Legacy field - please edit in NEW blend screens tag below", &animation_blend_screen_block_block ),
+	FIELD( _field_block, "foot markers|ABCDCC", &foot_tracking_member_block_block ),
+	FIELD( _field_block, "animations*|ABCDCC", &animation_pool_block_block ),
+	FIELD( _field_block, "NEW blend screens|CCBBAA", &new_animation_blend_screen_block_block ),
+	FIELD( _field_block, "NEW function overlays|CCAABB", &new_animation_function_overlay_block_block ),
+	FIELD( _field_block, "overlay groups{pose overlays|NEW overlays}|CCBBAA", &overlay_group_definition_block_block ),
+	FIELD( _field_block, "gaits|ABCDCC", &animation_gait_block_block ),
+	FIELD( _field_block, "gait groups|ABCDCC", &animation_gait_group_block_block ),
+	FIELD( _field_block, "ik data|CCBBAA", &animation_ik_block_block ),
+	FIELD( _field_block, "ik sets|CCBBAA", &animation_ik_set_block ),
+	FIELD( _field_block, "ik chains|CCBBAA", &animation_ik_chain_block_block ),
+	FIELD( _field_block, "composites", &g_compositeTag_block ),
+	FIELD( _field_struct, "pca data", &PCAAnimationDataStruct_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(animation_aiming_screen_struct)
+{
+	FIELD( _field_angle, "right yaw per frame" ),
+	FIELD( _field_angle, "left yaw per frame" ),
+	FIELD( _field_short_integer, "right frame count" ),
+	FIELD( _field_short_integer, "left frame count" ),
+	FIELD( _field_angle, "down pitch per frame" ),
+	FIELD( _field_angle, "up pitch per frame" ),
+	FIELD( _field_short_integer, "down pitch frame count" ),
+	FIELD( _field_short_integer, "up pitch frame count" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(shared_animation_reference_block)
+{
+	FIELD( _field_tag_reference, "graph reference!" ),
+	FIELD( _field_short_block_index, "shared animation index!" ),
+	FIELD( _field_pad, "sarbp", 2 ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(quantized_orientation_struct)
+{
+	FIELD( _field_short_integer, "rotation x*" ),
+	FIELD( _field_short_integer, "rotation y*" ),
+	FIELD( _field_short_integer, "rotation z*" ),
+	FIELD( _field_short_integer, "rotation w*" ),
+	FIELD( _field_real_point_3d, "default translation*" ),
+	FIELD( _field_real, "default scale*" ),
 	FIELD( _field_terminator )
 };
 
@@ -809,45 +906,17 @@ TAG_STRUCT(animation_object_functions_struct)
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(animation_graph_definitions_struct)
+TAG_STRUCT(animation_index_struct)
 {
-	FIELD( _field_explanation, "GRAPH DATA" ),
-	FIELD( _field_tag_reference, "parent animation graph" ),
-	FIELD( _field_byte_flags, "inheritance flags" ),
-	FIELD( _field_byte_flags, "private flags*" ),
-	FIELD( _field_short_integer, "animation codec pack*" ),
-	FIELD( _field_enum, "force compression setting*" ),
-	FIELD( _field_word_flags, "misc graph flags" ),
-	FIELD( _field_long_integer, "skeleton checksum" ),
-	FIELD( _field_long_integer, "skeleton checksum lite" ),
-	FIELD( _field_tag_reference, "imported events|ABCDCC" ),
-	FIELD( _field_block, "node usage*|ABCDCC", &animation_usage_block_block ),
-	FIELD( _field_block, "node masks|ABCDCC", &animation_node_mask_block_block ),
-	FIELD( _field_block, "functions|ABCDCC", &animation_function_block_block ),
-	FIELD( _field_block, "model animation variants|ABCDCC", &model_animation_variant_block_block ),
-	FIELD( _field_block, "skeleton nodes*|ABCDCC", &animation_graph_node_block_block ),
-	FIELD( _field_block, "sound references|ABCDCC!*#Legacy field - please edit in new frame event tag below", &animation_graph_sound_reference_block_block ),
-	FIELD( _field_block, "effect references|ABCDCC!*#Legacy field - please edit in new frame event tag below", &animation_graph_effect_reference_block_block ),
-	FIELD( _field_block, "blend screens|ABCDCC!*#Legacy field - please edit in NEW blend screens tag below", &animation_blend_screen_block_block ),
-	FIELD( _field_block, "foot markers|ABCDCC", &foot_tracking_member_block_block ),
-	FIELD( _field_block, "animations*|ABCDCC", &animation_pool_block_block ),
-	FIELD( _field_block, "NEW blend screens|CCBBAA", &new_animation_blend_screen_block_block ),
-	FIELD( _field_block, "NEW function overlays|CCAABB", &new_animation_function_overlay_block_block ),
-	FIELD( _field_block, "overlay groups{pose overlays|NEW overlays}|CCBBAA", &overlay_group_definition_block_block ),
-	FIELD( _field_block, "gaits|ABCDCC", &animation_gait_block_block ),
-	FIELD( _field_block, "gait groups|ABCDCC", &animation_gait_group_block_block ),
-	FIELD( _field_block, "ik data|CCBBAA", &animation_ik_block_block ),
-	FIELD( _field_block, "ik sets|CCBBAA", &animation_ik_set_block ),
-	FIELD( _field_block, "ik chains|CCBBAA", &animation_ik_chain_block_block ),
-	FIELD( _field_block, "composites", &g_compositeTag_block ),
-	FIELD( _field_struct, "pca data", &PCAAnimationDataStruct_struct_definition ),
+	FIELD( _field_short_integer, "graph index!" ),
+	FIELD( _field_short_block_index, "animation" ),
 	FIELD( _field_terminator )
 };
 
 TAG_STRUCT(PCAAnimationDataStruct)
 {
 	FIELD( _field_explanation, "Group Settings" ),
-	FIELD( _field_block, "PCA Groups" ),
+	FIELD( _field_block, "PCA Groups", &PCAGroupSettingsBlock_block ),
 	FIELD( _field_explanation, "PCA Animation Tag" ),
 	FIELD( _field_tag_reference, "pca animation|ABCDCC" ),
 	FIELD( _field_long_integer, "PCA Animation Count*!" ),
@@ -864,13 +933,6 @@ TAG_STRUCT(animation_graph_contents_struct)
 	FIELD( _field_explanation, "SPECIAL CASE ANIMS" ),
 	FIELD( _field_block, "vehicle suspension|CCAABB", &vehicle_suspension_block_block ),
 	FIELD( _field_block, "function overlays{object overlays}|CCAABB", &function_overlay_animation_block_block ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(animation_index_struct)
-{
-	FIELD( _field_short_integer, "graph index!" ),
-	FIELD( _field_short_block_index, "animation" ),
 	FIELD( _field_terminator )
 };
 
@@ -896,41 +958,9 @@ TAG_STRUCT(animation_codec_data_struct)
 TAG_STRUCT(shared_static_data_codec_graph_data_struct)
 {
 	FIELD( _field_explanation, "Shared Static Codec" ),
-	FIELD( _field_block, "rotations*!" ),
-	FIELD( _field_block, "translations*!" ),
-	FIELD( _field_block, "scale*!" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(animation_aiming_screen_struct)
-{
-	FIELD( _field_angle, "right yaw per frame" ),
-	FIELD( _field_angle, "left yaw per frame" ),
-	FIELD( _field_short_integer, "right frame count" ),
-	FIELD( _field_short_integer, "left frame count" ),
-	FIELD( _field_angle, "down pitch per frame" ),
-	FIELD( _field_angle, "up pitch per frame" ),
-	FIELD( _field_short_integer, "down pitch frame count" ),
-	FIELD( _field_short_integer, "up pitch frame count" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(shared_animation_reference_block)
-{
-	FIELD( _field_tag_reference, "graph reference!" ),
-	FIELD( _field_short_block_index, "shared animation index!" ),
-	FIELD( _field_pad, "sarbp", 2 ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(quantized_orientation_struct)
-{
-	FIELD( _field_short_integer, "rotation x*" ),
-	FIELD( _field_short_integer, "rotation y*" ),
-	FIELD( _field_short_integer, "rotation z*" ),
-	FIELD( _field_short_integer, "rotation w*" ),
-	FIELD( _field_real_point_3d, "default translation*" ),
-	FIELD( _field_real, "default scale*" ),
+	FIELD( _field_block, "rotations*!", &shared_static_data_codec_rotation_block_block ),
+	FIELD( _field_block, "translations*!", &shared_static_data_codec_translation_block_block ),
+	FIELD( _field_block, "scale*!", &shared_static_data_codec_scale_block_block ),
 	FIELD( _field_terminator )
 };
 

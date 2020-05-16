@@ -190,15 +190,6 @@ TAG_BLOCK(large_vertices_block, ((true) ? 1310720 : 131072))
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(collision_leaf_struct)
-{
-	FIELD( _field_byte_flags, "flags*" ),
-	FIELD( _field_pad, "pad", 1 ),
-	FIELD( _field_word_integer, "bsp2d reference count*" ),
-	FIELD( _field_dword_integer, "first bsp2d reference*" ),
-	FIELD( _field_terminator )
-};
-
 TAG_STRUCT(global_collision_bsp_struct)
 {
 	FIELD( _field_block, "bsp3d nodes*", &bsp3d_nodes_block_block ),
@@ -210,6 +201,15 @@ TAG_STRUCT(global_collision_bsp_struct)
 	FIELD( _field_block, "surfaces*", &surfaces_block_block ),
 	FIELD( _field_block, "edges*", &edges_block_block ),
 	FIELD( _field_block, "vertices*", &vertices_block_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(collision_leaf_struct)
+{
+	FIELD( _field_byte_flags, "flags*" ),
+	FIELD( _field_pad, "pad", 1 ),
+	FIELD( _field_word_integer, "bsp2d reference count*" ),
+	FIELD( _field_dword_integer, "first bsp2d reference*" ),
 	FIELD( _field_terminator )
 };
 

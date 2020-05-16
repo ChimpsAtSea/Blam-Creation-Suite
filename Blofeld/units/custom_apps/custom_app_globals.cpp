@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(custom_app_globals, CUSTOM_APP_GLOBALS_TAG, custom_app_globals_block_block )
+TAG_GROUP_FROM_BLOCK(custom_app_globals, CUSTOM_APP_GLOBALS_TAG, custom_app_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(custom_app_globals_block, 1, custom_app_globals_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(incident_global_properties_definition, INCIDENT_GLOBAL_PROPERTIES_DEFINITION_TAG, incident_global_properties_definition_block_block )
+TAG_GROUP_FROM_BLOCK(incident_global_properties_definition, INCIDENT_GLOBAL_PROPERTIES_DEFINITION_TAG, incident_global_properties_definition_block_block );
 
 TAG_GROUP(incident_globals_definition, INCIDENT_GLOBALS_DEFINITION_TAG)
 {
@@ -11,7 +11,7 @@ TAG_GROUP(incident_globals_definition, INCIDENT_GLOBALS_DEFINITION_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_FROM_BLOCK(SuppressedIncident, SUPPRESSEDINCIDENT_TAG, SuppressedIncident_block_block )
+TAG_GROUP_FROM_BLOCK(SuppressedIncident, SUPPRESSEDINCIDENT_TAG, SuppressedIncident_block_block );
 
 TAG_BLOCK_FROM_STRUCT(incident_global_properties_definition_block, 1, incident_global_properties_definition_struct_definition_struct_definition );
 

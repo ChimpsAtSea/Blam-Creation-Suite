@@ -3,9 +3,9 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(commendation_aggregator_list, COMMENDATION_AGGREGATOR_LIST_TAG, commendation_aggregator_list_block_block )
+TAG_GROUP_FROM_BLOCK(commendation_aggregator_list, COMMENDATION_AGGREGATOR_LIST_TAG, commendation_aggregator_list_block_block );
 
-TAG_GROUP_FROM_BLOCK(commendation_globals_definition, COMMENDATION_GLOBALS_DEFINITION_TAG, commendation_globals_definition_block_block )
+TAG_GROUP_FROM_BLOCK(commendation_globals_definition, COMMENDATION_GLOBALS_DEFINITION_TAG, commendation_globals_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(commendation_aggregator_list_block, 1, commendation_aggregator_list_struct_definition_struct_definition );
 

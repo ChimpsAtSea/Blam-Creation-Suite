@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(vision_mode, VISION_MODE_TAG, vision_mode_block_block )
+TAG_GROUP_FROM_BLOCK(vision_mode, VISION_MODE_TAG, vision_mode_block_block );
 
 TAG_BLOCK_FROM_STRUCT(vision_mode_block, 1, vision_mode_struct_definition_struct_definition );
 

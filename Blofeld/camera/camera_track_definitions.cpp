@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(camera_track, CAMERA_TRACK_TAG, camera_track_block_block )
+TAG_GROUP_FROM_BLOCK(camera_track, CAMERA_TRACK_TAG, camera_track_block_block );
 
 TAG_BLOCK_FROM_STRUCT(camera_track_block, 1, camera_track_struct_definition_struct_definition );
 

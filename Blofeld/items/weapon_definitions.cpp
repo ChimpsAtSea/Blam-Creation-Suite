@@ -327,6 +327,12 @@ TAG_BLOCK(projectileDistributionCustomVector, k_projectile_maximum_custom_vector
 	FIELD( _field_terminator )
 };
 
+TAG_BLOCK(weapon_barrel_function_block, 1)
+{
+	FIELD( _field_struct, "function", &scalar_function_named_struct_struct_definition ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(weapon_barrel_first_person_offset_block, k_first_person_weapon_offset_type_count)
 {
 	FIELD( _field_real_point_3d, "first person offset:world units#+x is forward, +z is up, +y is left" ),
@@ -523,10 +529,10 @@ TAG_STRUCT(weapon_barrel_projectile_accuracy_penalty_struct)
 
 TAG_STRUCT(weapon_barrel_projectile_accuracy_penalty_function_struct)
 {
-	FIELD( _field_block, "firing penalty function#percentage accuracy lost when the barrel has fired" ),
-	FIELD( _field_block, "firing crouched penalty function#percentage accuracy lost when the barrel has fired from a crouched position" ),
-	FIELD( _field_block, "moving penalty function#percentage accuracy lost when moving" ),
-	FIELD( _field_block, "turning penalty function#percentage accuracy lost when turning the camera" ),
+	FIELD( _field_block, "firing penalty function#percentage accuracy lost when the barrel has fired", &weapon_barrel_function_block_block ),
+	FIELD( _field_block, "firing crouched penalty function#percentage accuracy lost when the barrel has fired from a crouched position", &weapon_barrel_function_block_block ),
+	FIELD( _field_block, "moving penalty function#percentage accuracy lost when moving", &weapon_barrel_function_block_block ),
+	FIELD( _field_block, "turning penalty function#percentage accuracy lost when turning the camera", &weapon_barrel_function_block_block ),
 	FIELD( _field_real, "error angle max rotation#angle which represents the maximum input to the turning penalty function." ),
 	FIELD( _field_terminator )
 };

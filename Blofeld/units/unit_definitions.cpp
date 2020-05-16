@@ -3,13 +3,42 @@
 namespace blofeld
 {
 
-TAG_GROUP_INHERIT_FROM_BLOCK(unit, UNIT_TAG, object, OBJECT_TAG, unit_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(unit, UNIT_TAG, object, OBJECT_TAG, unit_block_block );
 
 TAG_BLOCK_FROM_STRUCT(unit_block, 1, unit_struct_definition_struct_definition );
 
 TAG_BLOCK(unit_screen_effect_block, 4)
 {
 	FIELD( _field_tag_reference, "screen effect^" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(unit_camera_track_block, MAXIMUM_NUMBER_OF_UNIT_CAMERA_TRACKS)
+{
+	FIELD( _field_tag_reference, "track" ),
+	FIELD( _field_tag_reference, "screen effect" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(unit_camera_acceleration_displacement_block, 1)
+{
+	FIELD( _field_real, "maximum camera velocity:wu/s#how quickly the camera can move to a new displacement (if the velocity suddenly changes).\nDuring this time the aim vector for the unit will be inaccurate, so don\'t set this too low.\n0 defaults to infinite." ),
+	FIELD( _field_explanation, "" ),
+	FIELD( _field_struct, "forward/back", &unit_camera_acceleration_displacement_function_struct_struct_definition ),
+	FIELD( _field_struct, "left/right", &unit_camera_acceleration_displacement_function_struct_struct_definition ),
+	FIELD( _field_struct, "up/down", &unit_camera_acceleration_displacement_function_struct_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(WeaponSpecificMarkersBlock, WEAPON_SPECIFIC_MARKERS_COUNT)
+{
+	FIELD( _field_string_id, "complete weapon name^" ),
+	FIELD( _field_string_id, "weapon class" ),
+	FIELD( _field_string_id, "weapon name" ),
+	FIELD( _field_custom ),
+	FIELD( _field_string_id, "right hand marker" ),
+	FIELD( _field_custom ),
+	FIELD( _field_string_id, "left hand marker" ),
 	FIELD( _field_terminator )
 };
 
@@ -167,35 +196,6 @@ TAG_BLOCK(boarding_seat_block, MAXIMUM_SEATS_PER_UNIT_DEFINITION)
 {
 	FIELD( _field_short_block_index, "seat^" ),
 	FIELD( _field_pad, "PAD", 2 ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(unit_camera_track_block, MAXIMUM_NUMBER_OF_UNIT_CAMERA_TRACKS)
-{
-	FIELD( _field_tag_reference, "track" ),
-	FIELD( _field_tag_reference, "screen effect" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(unit_camera_acceleration_displacement_block, 1)
-{
-	FIELD( _field_real, "maximum camera velocity:wu/s#how quickly the camera can move to a new displacement (if the velocity suddenly changes).\nDuring this time the aim vector for the unit will be inaccurate, so don\'t set this too low.\n0 defaults to infinite." ),
-	FIELD( _field_explanation, "" ),
-	FIELD( _field_struct, "forward/back", &unit_camera_acceleration_displacement_function_struct_struct_definition ),
-	FIELD( _field_struct, "left/right", &unit_camera_acceleration_displacement_function_struct_struct_definition ),
-	FIELD( _field_struct, "up/down", &unit_camera_acceleration_displacement_function_struct_struct_definition ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(WeaponSpecificMarkersBlock, WEAPON_SPECIFIC_MARKERS_COUNT)
-{
-	FIELD( _field_string_id, "complete weapon name^" ),
-	FIELD( _field_string_id, "weapon class" ),
-	FIELD( _field_string_id, "weapon name" ),
-	FIELD( _field_custom ),
-	FIELD( _field_string_id, "right hand marker" ),
-	FIELD( _field_custom ),
-	FIELD( _field_string_id, "left hand marker" ),
 	FIELD( _field_terminator )
 };
 
@@ -359,6 +359,18 @@ TAG_STRUCT(unit_camera_struct)
 	FIELD( _field_terminator )
 };
 
+TAG_STRUCT(unit_camera_acceleration_displacement_function_struct)
+{
+	FIELD( _field_char_enum, "Input Variable" ),
+	FIELD( _field_pad, "blah", 3 ),
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "mapping", &mapping_function_struct_definition ),
+	FIELD( _field_real, "maximum value#for linear velocity; this is wu/s\nfor linear acceleration; this is the fraction of the seat acceleration\nfor angular velocity; this is deg/s" ),
+	FIELD( _field_real, "camera scale (axial)#scale factor used when this acceleration component is along the axis of the forward vector of the camera" ),
+	FIELD( _field_real, "camera scale (perpendicular)#scale factor used when this acceleration component is perpendicular to the camera" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(unit_additional_node_names_struct)
 {
 	FIELD( _field_string_id, "preferred_gun_node#if found, use this gun marker" ),
@@ -411,18 +423,6 @@ TAG_STRUCT(unit_birth_struct)
 	FIELD( _field_short_block_index, "seat^" ),
 	FIELD( _field_pad, "PAD", 2 ),
 	FIELD( _field_string_id, "birthing region#if found, this region will be set to destroyed during birth" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(unit_camera_acceleration_displacement_function_struct)
-{
-	FIELD( _field_char_enum, "Input Variable" ),
-	FIELD( _field_pad, "blah", 3 ),
-	FIELD( _field_custom ),
-	FIELD( _field_struct, "mapping", &mapping_function_struct_definition ),
-	FIELD( _field_real, "maximum value#for linear velocity; this is wu/s\nfor linear acceleration; this is the fraction of the seat acceleration\nfor angular velocity; this is deg/s" ),
-	FIELD( _field_real, "camera scale (axial)#scale factor used when this acceleration component is along the axis of the forward vector of the camera" ),
-	FIELD( _field_real, "camera scale (perpendicular)#scale factor used when this acceleration component is perpendicular to the camera" ),
 	FIELD( _field_terminator )
 };
 

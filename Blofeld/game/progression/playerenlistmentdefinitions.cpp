@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(player_enlistment_globals_definition, PLAYER_ENLISTMENT_GLOBALS_DEFINITION_TAG, player_enlistment_globals_definition_block_block )
+TAG_GROUP_FROM_BLOCK(player_enlistment_globals_definition, PLAYER_ENLISTMENT_GLOBALS_DEFINITION_TAG, player_enlistment_globals_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(player_enlistment_globals_definition_block, 1, player_enlistment_globals_definition_struct_definition_struct_definition );
 

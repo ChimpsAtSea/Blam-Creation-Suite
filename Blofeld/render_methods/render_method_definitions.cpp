@@ -3,13 +3,13 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(render_method, RENDER_METHOD_TAG, render_method_block_block )
+TAG_GROUP_FROM_BLOCK(render_method, RENDER_METHOD_TAG, render_method_block_block );
 
-TAG_GROUP_FROM_BLOCK(render_method_definition, RENDER_METHOD_DEFINITION_TAG, render_method_definition_block_block )
+TAG_GROUP_FROM_BLOCK(render_method_definition, RENDER_METHOD_DEFINITION_TAG, render_method_definition_block_block );
 
-TAG_GROUP_FROM_BLOCK(render_method_option, RENDER_METHOD_OPTION_TAG, render_method_option_block_block )
+TAG_GROUP_FROM_BLOCK(render_method_option, RENDER_METHOD_OPTION_TAG, render_method_option_block_block );
 
-TAG_GROUP_FROM_BLOCK(render_method_template, RENDER_METHOD_TEMPLATE_TAG, render_method_template_block_block )
+TAG_GROUP_FROM_BLOCK(render_method_template, RENDER_METHOD_TEMPLATE_TAG, render_method_template_block_block );
 
 TAG_BLOCK_FROM_STRUCT(render_method_block, 1, render_method_struct_definition_struct_definition );
 

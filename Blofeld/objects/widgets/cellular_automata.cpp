@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(cellular_automata, CELLULAR_AUTOMATA_TAG, cellular_automata_block_block )
+TAG_GROUP_FROM_BLOCK(cellular_automata, CELLULAR_AUTOMATA_TAG, cellular_automata_block_block );
 
 TAG_BLOCK_FROM_STRUCT(cellular_automata_block, 1, cellular_automata_struct_definition_struct_definition );
 

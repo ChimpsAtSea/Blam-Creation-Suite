@@ -40,8 +40,8 @@ extern s_tag_block_definition large_edges_block_block;
 extern s_tag_struct large_vertices_block_block_struct;
 extern s_tag_block_definition large_vertices_block_block;
 
-extern s_tag_struct collision_leaf_struct_struct_definition;
 extern s_tag_struct global_collision_bsp_struct_struct_definition;
+extern s_tag_struct collision_leaf_struct_struct_definition;
 
 } // namespace blofeld
 

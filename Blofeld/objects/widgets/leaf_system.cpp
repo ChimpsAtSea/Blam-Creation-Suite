@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(leaf_system, LEAF_SYSTEM_TAG, leaf_system_block_block )
+TAG_GROUP_FROM_BLOCK(leaf_system, LEAF_SYSTEM_TAG, leaf_system_block_block );
 
 TAG_BLOCK_FROM_STRUCT(leaf_system_block, 1, leaf_system_struct_definition_struct_definition );
 

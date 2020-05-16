@@ -34,7 +34,7 @@ TAG_GROUP(big_battle_creature, BIG_BATTLE_CREATURE_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_INHERIT_FROM_BLOCK(creature, CREATURE_TAG, object, OBJECT_TAG, creature_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(creature, CREATURE_TAG, object, OBJECT_TAG, creature_block_block );
 
 TAG_BLOCK_FROM_STRUCT(creature_block, 1, creature_struct_definition_struct_definition );
 

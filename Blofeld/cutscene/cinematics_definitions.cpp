@@ -30,9 +30,9 @@ TAG_GROUP(cinematic, CINEMATIC_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_FROM_BLOCK(cinematic_scene, CINEMATIC_SCENE_TAG, cinematic_scene_block_block )
+TAG_GROUP_FROM_BLOCK(cinematic_scene, CINEMATIC_SCENE_TAG, cinematic_scene_block_block );
 
-TAG_GROUP_FROM_BLOCK(cinematic_scene_data, CINEMATIC_SCENE_DATA_TAG, cinematic_scene_data_block_block )
+TAG_GROUP_FROM_BLOCK(cinematic_scene_data, CINEMATIC_SCENE_DATA_TAG, cinematic_scene_data_block_block );
 
 TAG_GROUP(cinematic_transition, CINEMATIC_TRANSITION_TAG)
 {
@@ -422,35 +422,6 @@ TAG_STRUCT(cinematic_scene_data_struct_definition)
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(cinematicSceneDataObjectBlock_struct)
-{
-	FIELD( _field_string_id, "name*^" ),
-	FIELD( _field_string_id, "identifier*" ),
-	FIELD( _field_tag_reference, "model animation graph*" ),
-	FIELD( _field_tag_reference, "object type*" ),
-	FIELD( _field_custom, "shots active flags*" ),
-	FIELD( _field_array, "shots active flags*" ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(scenario_cutscene_title_struct)
-{
-	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_real_fraction_bounds, "text bounds X" ),
-	FIELD( _field_real_fraction_bounds, "text bounds Y" ),
-	FIELD( _field_enum, "justification" ),
-	FIELD( _field_enum, "vertical justification" ),
-	FIELD( _field_enum, "font" ),
-	FIELD( _field_pad, "padding", 2 ),
-	FIELD( _field_rgb_color, "text color" ),
-	FIELD( _field_rgb_color, "shadow color" ),
-	FIELD( _field_real, "fade in time [seconds]" ),
-	FIELD( _field_real, "up time [seconds]" ),
-	FIELD( _field_real, "fade out time [seconds]" ),
-	FIELD( _field_real, "letter print time:seconds" ),
-	FIELD( _field_terminator )
-};
-
 TAG_STRUCT(cinematic_playback_data_block)
 {
 	FIELD( _field_long_block_flags, "scenes!" ),
@@ -471,6 +442,17 @@ TAG_STRUCT(scenario_and_zone_set_struct)
 TAG_STRUCT(cinematic_custom_script_block)
 {
 	FIELD( _field_data, "script{ }" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(cinematicSceneDataObjectBlock_struct)
+{
+	FIELD( _field_string_id, "name*^" ),
+	FIELD( _field_string_id, "identifier*" ),
+	FIELD( _field_tag_reference, "model animation graph*" ),
+	FIELD( _field_tag_reference, "object type*" ),
+	FIELD( _field_custom, "shots active flags*" ),
+	FIELD( _field_array, "shots active flags*" ),
 	FIELD( _field_terminator )
 };
 
@@ -519,6 +501,24 @@ TAG_STRUCT(cinematic_transition_global_fade_block)
 {
 	FIELD( _field_real_rgb_color, "fade_color^" ),
 	FIELD( _field_long_integer, "fade time:hs_ticks" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(scenario_cutscene_title_struct)
+{
+	FIELD( _field_string_id, "name^" ),
+	FIELD( _field_real_fraction_bounds, "text bounds X" ),
+	FIELD( _field_real_fraction_bounds, "text bounds Y" ),
+	FIELD( _field_enum, "justification" ),
+	FIELD( _field_enum, "vertical justification" ),
+	FIELD( _field_enum, "font" ),
+	FIELD( _field_pad, "padding", 2 ),
+	FIELD( _field_rgb_color, "text color" ),
+	FIELD( _field_rgb_color, "shadow color" ),
+	FIELD( _field_real, "fade in time [seconds]" ),
+	FIELD( _field_real, "up time [seconds]" ),
+	FIELD( _field_real, "fade out time [seconds]" ),
+	FIELD( _field_real, "letter print time:seconds" ),
 	FIELD( _field_terminator )
 };
 

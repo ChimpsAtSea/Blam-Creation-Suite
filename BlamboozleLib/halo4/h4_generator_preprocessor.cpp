@@ -169,6 +169,41 @@ bool c_h4_tag_struct_container::operator ==(const c_h4_tag_struct_container& con
 	return &tag_struct == &container.tag_struct;
 }
 
+c_h4_tag_enum_container::c_h4_tag_enum_container(c_h4_tag_enum& tag_enum, c_h4_generator_preprocessor& preprocessor, bool is_block) :
+	tag_enum(tag_enum),
+	name(tag_enum.name),
+	symbol_name(name),
+	name_uppercase(),
+	is_block(is_block),
+	is_tag_group(false),
+	has_traversed(false)
+{
+	REFERENCE_ASSERT(tag_enum);
+
+	uint32_t index = preprocessor.tag_type_name_unique_counter[name]++;
+	bool is_havok_convex_shape = std::string("havok_convex_shape_enum") == name;
+	if (!is_block)
+	{
+		//name = name.substr(0, name.rfind("_enum"));
+		if (index > 0)
+		{
+			std::string suffix = std::to_string(index + 1);
+			name += "$";
+			name += suffix;
+		}
+	}
+
+	symbol_name = name;
+	name_uppercase = name;
+	std::transform(name_uppercase.begin(), name_uppercase.end(), name_uppercase.begin(), ::toupper);
+	preprocessor.tag_enum_containers.push_back(this);
+}
+
+bool c_h4_tag_enum_container::operator ==(const c_h4_tag_enum_container& container) const
+{
+	return &tag_enum == &container.tag_enum;
+}
+
 c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blamboozle) :
 	blamboozle(blamboozle),
 	source_files()
@@ -280,6 +315,7 @@ c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_
 			{
 				c_h4_tag_struct* _struct = struct_field->tag_struct;
 				ASSERT(_struct != nullptr);
+				traverse_tag_structs(*_struct, false);
 
 				for (c_h4_tag_field* tag_field : _struct->tag_fields)
 				{
@@ -292,6 +328,7 @@ c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_
 					}
 				}
 			}
+
 		}
 		tag_block_container->has_traversed = true;
 	}
@@ -325,6 +362,7 @@ c_h4_tag_struct_container& c_h4_generator_preprocessor::traverse_tag_structs(c_h
 			{
 				c_h4_tag_block* block = block_field->tag_block_definition;
 				ASSERT(block != nullptr);
+				traverse_tag_blocks(*block, false, true);
 
 				for (c_h4_tag_field* tag_field : block->tag_struct.tag_fields)
 				{

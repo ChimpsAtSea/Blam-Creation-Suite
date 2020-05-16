@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-	s_tag_struct_validation_data halo4_tag_struct_validation_data[1752] = 
+	s_tag_struct_validation_data halo4_tag_struct_validation_data[1762] = 
 	{
 		{ shader_particle_struct_definition_struct_definition, 152 }, // tag_group
 		{ cache_file_sound_struct_definition_struct_definition, 36 }, // tag_group
@@ -388,39 +388,6 @@ namespace blofeld
 		{ death_program_special_block_block_struct, 16 }, // block
 		{ death_program_damage_reporting_block_block_struct, 16 }, // block
 		{ death_program_velocity_gate_block_block_struct, 16 }, // block
-		{ unit_screen_effect_block_block_struct, 16 }, // block
-		{ unit_postures_block_block_struct, 16 }, // block
-		{ hud_unit_sound_block_block_struct, 36 }, // block
-		{ hud_unit_sound_cue_block_block_struct, 24 }, // block
-		{ dialogue_variant_block_block_struct, 20 }, // block
-		{ powered_seat_block_block_struct, 8 }, // block
-		{ unit_weapon_block_block_struct, 168 }, // block
-		{ SentryPropertiesBlock_block_struct, 84 }, // block
-		{ global_target_tracking_parameters_block_block_struct, 56 }, // block
-		{ tracking_type_block_block_struct, 4 }, // block
-		{ unit_seat_block_block_struct, 364 }, // block
-		{ boarding_seat_block_block_struct, 4 }, // block
-		{ unit_camera_track_block_block_struct, 32 }, // block
-		{ unit_camera_acceleration_displacement_block_block_struct, 112 }, // block
-		{ gamepad_stick_info_block_block_struct, 40 }, // block
-		{ input_mapping_function_block_block_struct, 20 }, // block
-		{ unit_trick_definition_block_block_struct, 32 }, // block
-		{ biped_camera_height_block_block_struct, 12 }, // block
-		{ biped_wall_proximity_block_block_struct, 24 }, // block
-		{ biped_movement_gate_block_block_struct, 40 }, // block
-		{ contact_point_block_block_struct, 4 }, // block
-		{ biped_grab_object_animation_set_block_block_struct, 12 }, // block
-		{ BipedSoundRTPCBlock_block_struct, 12 }, // block
-		{ BipedSoundSweetenerBlock_block_struct, 28 }, // block
-		{ BipedAimingJointFixupBlock_block_struct, 32 }, // block
-		{ bitmap_usage_block_block_struct, 40 }, // block
-		{ bitmap_group_sequence_block_def_block_struct, 64 }, // block
-		{ bitmap_group_sprite_block_def_block_struct, 32 }, // block
-		{ bitmap_tight_bounds_block_def_block_struct, 8 }, // block
-		{ bitmap_data_block_def_block_struct, 44 }, // block
-		{ bitmap_texture_interop_block_block_struct, 8 }, // block
-		{ stitchable_bitmap_texture_interop_block_block_struct, 8 }, // block
-		{ bitmap_texture_interleaved_interop_block_block_struct, 8 }, // block
 		{ sidecarBlock_block_struct, 256 }, // block
 		{ object_early_mover_obb_block_block_struct, 44 }, // block
 		{ object_ai_properties_block_block_struct, 16 }, // block
@@ -442,7 +409,42 @@ namespace blofeld
 		{ spawn_influence_weight_falloff_function_block_block_struct, 20 }, // block
 		{ object_spawn_effects_block_block_struct, 48 }, // block
 		{ modelDissolveDataBlock_block_struct, 16 }, // block
+		{ hs_source_reference_block_block_struct, 16 }, // block
 		{ hs_references_block_block_struct, 16 }, // block
+		{ unit_screen_effect_block_block_struct, 16 }, // block
+		{ unit_camera_track_block_block_struct, 32 }, // block
+		{ unit_camera_acceleration_displacement_block_block_struct, 112 }, // block
+		{ gamepad_stick_info_block_block_struct, 40 }, // block
+		{ input_mapping_function_block_block_struct, 20 }, // block
+		{ WeaponSpecificMarkersBlock_block_struct, 20 }, // block
+		{ unit_postures_block_block_struct, 16 }, // block
+		{ hud_unit_sound_block_block_struct, 36 }, // block
+		{ hud_unit_sound_cue_block_block_struct, 24 }, // block
+		{ dialogue_variant_block_block_struct, 20 }, // block
+		{ powered_seat_block_block_struct, 8 }, // block
+		{ unit_weapon_block_block_struct, 168 }, // block
+		{ SentryPropertiesBlock_block_struct, 84 }, // block
+		{ global_target_tracking_parameters_block_block_struct, 56 }, // block
+		{ tracking_type_block_block_struct, 4 }, // block
+		{ unit_seat_block_block_struct, 364 }, // block
+		{ boarding_seat_block_block_struct, 4 }, // block
+		{ unit_trick_definition_block_block_struct, 32 }, // block
+		{ biped_camera_height_block_block_struct, 12 }, // block
+		{ biped_wall_proximity_block_block_struct, 24 }, // block
+		{ biped_movement_gate_block_block_struct, 40 }, // block
+		{ contact_point_block_block_struct, 4 }, // block
+		{ biped_grab_object_animation_set_block_block_struct, 12 }, // block
+		{ BipedSoundRTPCBlock_block_struct, 12 }, // block
+		{ BipedSoundSweetenerBlock_block_struct, 28 }, // block
+		{ BipedAimingJointFixupBlock_block_struct, 32 }, // block
+		{ bitmap_usage_block_block_struct, 40 }, // block
+		{ bitmap_group_sequence_block_def_block_struct, 64 }, // block
+		{ bitmap_group_sprite_block_def_block_struct, 32 }, // block
+		{ bitmap_tight_bounds_block_def_block_struct, 8 }, // block
+		{ bitmap_data_block_def_block_struct, 44 }, // block
+		{ bitmap_texture_interop_block_block_struct, 8 }, // block
+		{ stitchable_bitmap_texture_interop_block_block_struct, 8 }, // block
+		{ bitmap_texture_interleaved_interop_block_block_struct, 8 }, // block
 		{ particle_system_definition_block_new_block_struct, 124 }, // block
 		{ particle_system_emitter_definition_block_block_struct, 964 }, // block
 		{ particle_controller_block_struct, 24 }, // block
@@ -781,6 +783,7 @@ namespace blofeld
 		{ global_shader_category_dependency_block_struct, 16 }, // block
 		{ global_shader_option_dependency_block_struct, 4 }, // block
 		{ compiled_pixel_shader_block_block_struct, 88 }, // block
+		{ rasterizer_constant_block_block_struct, 8 }, // block
 		{ global_vertex_shader_vertex_types_block_block_struct, 12 }, // block
 		{ compiled_vertex_shader_block_block_struct, 88 }, // block
 		{ gameMedalTiers_block_struct, 12 }, // block
@@ -824,7 +827,6 @@ namespace blofeld
 		{ model_self_shadow_region_cast_override_block_block_struct, 8 }, // block
 		{ model_self_shadow_region_receive_override_block_block_struct, 8 }, // block
 		{ model_occlusion_sphere_block_block_struct, 20 }, // block
-		{ hs_source_reference_block_block_struct, 16 }, // block
 		{ hs_scripts_block_block_struct, 32 }, // block
 		{ hs_script_parameters_block_block_struct, 36 }, // block
 		{ hs_globals_block_block_struct, 12 }, // block
@@ -905,6 +907,7 @@ namespace blofeld
 		{ CompositePhaseSetDefinition_block_struct, 132 }, // block
 		{ SyncKeyBlock_block_struct, 2 }, // block
 		{ StringBlock_block_struct, 4 }, // block
+		{ PCAGroupSettingsBlock_block_struct, 8 }, // block
 		{ animation_mode_block_block_struct, 48 }, // block
 		{ weapon_class_block_block_struct, 56 }, // block
 		{ weapon_type_block_block_struct, 20 }, // block
@@ -935,6 +938,9 @@ namespace blofeld
 		{ weapon_class_lookup_block_block_struct, 8 }, // block
 		{ additional_node_data_block_block_struct, 60 }, // block
 		{ model_animation_tag_resource_group_block_struct, 12 }, // block
+		{ shared_static_data_codec_rotation_block_block_struct, 8 }, // block
+		{ shared_static_data_codec_translation_block_block_struct, 12 }, // block
+		{ shared_static_data_codec_scale_block_block_struct, 4 }, // block
 		{ sandbox_property_allowed_values_reference_block_block_struct, 20 }, // block
 		{ text_value_pair_reference_block_block_struct, 24 }, // block
 		{ custom_damage_response_label_block_block_struct, 4 }, // block
@@ -1401,6 +1407,10 @@ namespace blofeld
 		{ squad_patrol_waypoint_block_block_struct, 20 }, // block
 		{ ai_cue_block_block_struct, 164 }, // block
 		{ task_distribution_block_block_struct, 4 }, // block
+		{ radial_distribution_block_block_struct, 8 }, // block
+		{ probability_distribution_block_block_struct, 4 }, // block
+		{ character_distribution_block_block_struct, 4 }, // block
+		{ weapon_distribution_block_block_struct, 4 }, // block
 		{ script_payload_block_block_struct, 4 }, // block
 		{ combat_sync_action_group_payload_block_block_struct, 8 }, // block
 		{ ai_full_cue_block_block_struct, 164 }, // block
@@ -1629,7 +1639,6 @@ namespace blofeld
 		{ UserInterfaceStyleSheetOuterGlowBlock_block_struct, 28 }, // block
 		{ multilingual_unicode_string_reference_block_block_struct, 72 }, // block
 		{ string_substitution_pair_block_block_struct, 12 }, // block
-		{ WeaponSpecificMarkersBlock_block_struct, 20 }, // block
 		{ human_tank_struct_struct_definition, 148 },
 		{ gear_block_block_struct, 92 }, // block
 		{ load_and_cruise_block_block_struct, 8 }, // block
@@ -1678,6 +1687,7 @@ namespace blofeld
 		{ weapon_trigger_charging_fire_fraction_block_struct, 4 }, // block
 		{ weapon_barrels_block_struct, 400 }, // block
 		{ projectileDistributionCustomVector_block_struct, 8 }, // block
+		{ weapon_barrel_function_block_block_struct, 20 }, // block
 		{ weapon_barrel_first_person_offset_block_block_struct, 12 }, // block
 		{ barrel_firing_effect_block_block_struct, 244 }, // block
 		{ weaponScaleshotStruct_block_struct, 28 }, // block

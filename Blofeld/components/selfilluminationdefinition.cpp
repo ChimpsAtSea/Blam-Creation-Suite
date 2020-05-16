@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(self_illumination, SELF_ILLUMINATION_TAG, self_illumination_block_block )
+TAG_GROUP_FROM_BLOCK(self_illumination, SELF_ILLUMINATION_TAG, self_illumination_block_block );
 
 TAG_BLOCK_FROM_STRUCT(self_illumination_block, 1, self_illumination_struct_definition_struct_definition );
 

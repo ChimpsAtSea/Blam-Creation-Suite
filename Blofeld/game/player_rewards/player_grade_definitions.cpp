@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(player_grade_globals_definition, PLAYER_GRADE_GLOBALS_DEFINITION_TAG, player_grade_globals_definition_block_block )
+TAG_GROUP_FROM_BLOCK(player_grade_globals_definition, PLAYER_GRADE_GLOBALS_DEFINITION_TAG, player_grade_globals_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(player_grade_globals_definition_block, 1, player_grade_globals_definition_struct_definition_struct_definition );
 

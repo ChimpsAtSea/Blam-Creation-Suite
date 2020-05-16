@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(shield_impact, SHIELD_IMPACT_TAG, shield_impact_block_block )
+TAG_GROUP_FROM_BLOCK(shield_impact, SHIELD_IMPACT_TAG, shield_impact_block_block );
 
 TAG_BLOCK_FROM_STRUCT(shield_impact_block, 1, shield_impact_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_INHERIT_FROM_BLOCK(biped, BIPED_TAG, unit, UNIT_TAG, biped_block_block )
+TAG_GROUP_INHERIT_FROM_BLOCK(biped, BIPED_TAG, unit, UNIT_TAG, biped_block_block );
 
 TAG_BLOCK_FROM_STRUCT(biped_block, 1, biped_group_struct_definition );
 

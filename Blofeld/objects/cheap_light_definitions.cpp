@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(cheap_light, CHEAP_LIGHT_TAG, cheap_light_block_block )
+TAG_GROUP_FROM_BLOCK(cheap_light, CHEAP_LIGHT_TAG, cheap_light_block_block );
 
 TAG_BLOCK_FROM_STRUCT(cheap_light_block, 1, cheap_light_struct_definition_struct_definition );
 

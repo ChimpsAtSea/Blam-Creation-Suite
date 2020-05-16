@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(lens_flare, LENS_FLARE_TAG, lens_flare_block_block )
+TAG_GROUP_FROM_BLOCK(lens_flare, LENS_FLARE_TAG, lens_flare_block_block );
 
 TAG_BLOCK_FROM_STRUCT(lens_flare_block, 1, lens_flare_struct_definition_struct_definition );
 

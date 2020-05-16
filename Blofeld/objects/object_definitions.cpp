@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(object, OBJECT_TAG, object_block_block )
+TAG_GROUP_FROM_BLOCK(object, OBJECT_TAG, object_block_block );
 
 TAG_BLOCK_FROM_STRUCT(object_block, 1, object_struct_definition_struct_definition );
 

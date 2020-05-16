@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(color_table, COLOR_TABLE_TAG, color_table_block_block )
+TAG_GROUP_FROM_BLOCK(color_table, COLOR_TABLE_TAG, color_table_block_block );
 
 TAG_BLOCK_FROM_STRUCT(color_table_block, 1, color_table_struct_definition_struct_definition );
 

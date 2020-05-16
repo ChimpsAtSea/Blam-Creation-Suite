@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(coop_spawning_globals_definition, COOP_SPAWNING_GLOBALS_DEFINITION_TAG, coop_spawning_globals_definition_block_block )
+TAG_GROUP_FROM_BLOCK(coop_spawning_globals_definition, COOP_SPAWNING_GLOBALS_DEFINITION_TAG, coop_spawning_globals_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(coop_spawning_globals_definition_block, 1, coop_spawning_globals_definition_struct_definition_struct_definition );
 

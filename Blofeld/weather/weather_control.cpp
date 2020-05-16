@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(weather_globals, WEATHER_GLOBALS_TAG, weather_globals_block_block )
+TAG_GROUP_FROM_BLOCK(weather_globals, WEATHER_GLOBALS_TAG, weather_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(weather_globals_block, 1, weather_globals_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(particleman, PARTICLEMAN_TAG, particleman_block_block )
+TAG_GROUP_FROM_BLOCK(particleman, PARTICLEMAN_TAG, particleman_block_block );
 
 TAG_BLOCK_FROM_STRUCT(particleman_block, 1, particleman_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(decal_system, DECAL_SYSTEM_TAG, decal_system_block_block )
+TAG_GROUP_FROM_BLOCK(decal_system, DECAL_SYSTEM_TAG, decal_system_block_block );
 
 TAG_BLOCK_FROM_STRUCT(decal_system_block, 1, decal_system_struct_definition_struct_definition );
 

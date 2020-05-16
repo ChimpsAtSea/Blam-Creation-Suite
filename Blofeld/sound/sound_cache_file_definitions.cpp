@@ -3,9 +3,9 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(cache_file_sound, CACHE_FILE_SOUND_TAG, cache_file_sound_block_block )
+TAG_GROUP_FROM_BLOCK(cache_file_sound, CACHE_FILE_SOUND_TAG, cache_file_sound_block_block );
 
-TAG_GROUP_FROM_BLOCK(sound_cache_file_gestalt, SOUND_CACHE_FILE_GESTALT_TAG, sound_cache_file_gestalt_block_block )
+TAG_GROUP_FROM_BLOCK(sound_cache_file_gestalt, SOUND_CACHE_FILE_GESTALT_TAG, sound_cache_file_gestalt_block_block );
 
 TAG_BLOCK_FROM_STRUCT(cache_file_sound_block, 1, cache_file_sound_struct_definition_struct_definition );
 

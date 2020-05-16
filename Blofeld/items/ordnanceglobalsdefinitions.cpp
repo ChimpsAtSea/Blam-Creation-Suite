@@ -3,9 +3,9 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(game_globals_ordnance_list, GAME_GLOBALS_ORDNANCE_LIST_TAG, game_globals_ordnance_list_block_block )
+TAG_GROUP_FROM_BLOCK(game_globals_ordnance_list, GAME_GLOBALS_ORDNANCE_LIST_TAG, game_globals_ordnance_list_block_block );
 
-TAG_GROUP_FROM_BLOCK(scenario_ordnance_list, SCENARIO_ORDNANCE_LIST_TAG, scenario_ordnance_list_block_block )
+TAG_GROUP_FROM_BLOCK(scenario_ordnance_list, SCENARIO_ORDNANCE_LIST_TAG, scenario_ordnance_list_block_block );
 
 TAG_BLOCK_FROM_STRUCT(game_globals_ordnance_list_block, 1, game_globals_ordnance_list_struct_definition_struct_definition );
 

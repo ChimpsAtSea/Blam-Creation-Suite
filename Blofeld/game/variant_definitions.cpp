@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(variant_globals, VARIANT_GLOBALS_TAG, variant_globals_block_block )
+TAG_GROUP_FROM_BLOCK(variant_globals, VARIANT_GLOBALS_TAG, variant_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(variant_globals_block, 1, variant_globals_struct_definition_struct_definition );
 

@@ -3,9 +3,9 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(lightmap_model_globals, LIGHTMAP_MODEL_GLOBALS_TAG, lightmap_model_globals_block_block )
+TAG_GROUP_FROM_BLOCK(lightmap_model_globals, LIGHTMAP_MODEL_GLOBALS_TAG, lightmap_model_globals_block_block );
 
-TAG_GROUP_FROM_BLOCK(lightmapper_globals, LIGHTMAPPER_GLOBALS_TAG, lightmapper_globals_block_block )
+TAG_GROUP_FROM_BLOCK(lightmapper_globals, LIGHTMAPPER_GLOBALS_TAG, lightmapper_globals_block_block );
 
 TAG_BLOCK_FROM_STRUCT(lightmap_model_globals_block, 1, lightmap_model_globals_struct_definition_struct_definition );
 

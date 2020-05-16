@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(breakable_surface, BREAKABLE_SURFACE_TAG, breakable_surface_block_block )
+TAG_GROUP_FROM_BLOCK(breakable_surface, BREAKABLE_SURFACE_TAG, breakable_surface_block_block );
 
 TAG_BLOCK_FROM_STRUCT(breakable_surface_block, 1, breakable_surface_struct_definition_struct_definition );
 

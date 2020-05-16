@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(death_program_selector, DEATH_PROGRAM_SELECTOR_TAG, death_program_selector_block_block )
+TAG_GROUP_FROM_BLOCK(death_program_selector, DEATH_PROGRAM_SELECTOR_TAG, death_program_selector_block_block );
 
 TAG_BLOCK_FROM_STRUCT(death_program_selector_block, 1, death_program_selector_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(damage_response_definition, DAMAGE_RESPONSE_DEFINITION_TAG, damage_response_definition_block_block )
+TAG_GROUP_FROM_BLOCK(damage_response_definition, DAMAGE_RESPONSE_DEFINITION_TAG, damage_response_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(damage_response_definition_block, 1, damage_response_definition_struct_definition_struct_definition );
 

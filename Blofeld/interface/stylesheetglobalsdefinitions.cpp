@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(style_sheet_list, STYLE_SHEET_LIST_TAG, style_sheet_list_block_block )
+TAG_GROUP_FROM_BLOCK(style_sheet_list, STYLE_SHEET_LIST_TAG, style_sheet_list_block_block );
 
 TAG_BLOCK_FROM_STRUCT(style_sheet_list_block, 1, style_sheet_list_struct_definition_struct_definition );
 

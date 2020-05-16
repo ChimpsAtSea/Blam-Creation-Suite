@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(location_name_globals_definition, LOCATION_NAME_GLOBALS_DEFINITION_TAG, location_name_globals_definition_block_block )
+TAG_GROUP_FROM_BLOCK(location_name_globals_definition, LOCATION_NAME_GLOBALS_DEFINITION_TAG, location_name_globals_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(location_name_globals_definition_block, 1, location_name_globals_definition_struct_definition_struct_definition );
 

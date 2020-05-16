@@ -160,8 +160,8 @@ extern s_tag_struct character_gravity_jump_block_block_struct;
 extern s_tag_block_definition character_gravity_jump_block_block;
 
 extern s_tag_struct character_struct_definition_struct_definition; // tag group
-extern s_tag_struct character_hop_struct_struct_definition;
 extern s_tag_struct active_camo_perception_properties_struct_definition;
+extern s_tag_struct character_hop_struct_struct_definition;
 extern s_tag_struct SmoothThrottleStruct_struct_definition;
 extern s_tag_struct SmoothStoppingStruct_struct_definition;
 extern s_tag_struct character_bunker_timings_struct_struct_definition;

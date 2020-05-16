@@ -399,6 +399,15 @@ TAG_STRUCT(cache_file_resource_page_struct)
 	FIELD( _field_terminator )
 };
 
+TAG_STRUCT(resource_checksum_struct)
+{
+	FIELD( _field_long_integer, "checksum" ),
+	FIELD( _field_array, "entire hash" ),
+	FIELD( _field_array, "first chunk hash" ),
+	FIELD( _field_array, "last chunk hash" ),
+	FIELD( _field_terminator )
+};
+
 TAG_STRUCT(cache_file_tag_zone_manifest_struct)
 {
 	FIELD( _field_block, "cached resource bitvector", &cache_file_tag_resources_bitvector_block_block ),
@@ -437,15 +446,6 @@ TAG_STRUCT(cache_file_tag_resource_prediction_table)
 	FIELD( _field_block, "prediction molecule atoms", &cache_file_tag_resource_prediction_molecule_atom_reference_block_block ),
 	FIELD( _field_block, "prediction molecules", &cache_file_tag_resource_prediction_molecule_block_block ),
 	FIELD( _field_block, "prediction molecule keys", &cache_file_tag_resource_prediction_molecule_keys_block_block ),
-	FIELD( _field_terminator )
-};
-
-TAG_STRUCT(resource_checksum_struct)
-{
-	FIELD( _field_long_integer, "checksum" ),
-	FIELD( _field_array, "entire hash" ),
-	FIELD( _field_array, "first chunk hash" ),
-	FIELD( _field_array, "last chunk hash" ),
 	FIELD( _field_terminator )
 };
 

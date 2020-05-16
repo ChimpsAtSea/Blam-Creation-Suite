@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(game_globals_grenade_list, GAME_GLOBALS_GRENADE_LIST_TAG, game_globals_grenade_list_block_block )
+TAG_GROUP_FROM_BLOCK(game_globals_grenade_list, GAME_GLOBALS_GRENADE_LIST_TAG, game_globals_grenade_list_block_block );
 
 TAG_BLOCK_FROM_STRUCT(game_globals_grenade_list_block, 1, game_globals_grenade_list_struct_definition_struct_definition );
 

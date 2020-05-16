@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(controller_mapping, CONTROLLER_MAPPING_TAG, controller_mapping_block_block )
+TAG_GROUP_FROM_BLOCK(controller_mapping, CONTROLLER_MAPPING_TAG, controller_mapping_block_block );
 
 TAG_BLOCK_FROM_STRUCT(controller_mapping_block, 1, controller_mapping_struct_definition_struct_definition );
 

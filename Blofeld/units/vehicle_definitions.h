@@ -47,8 +47,8 @@ extern s_tag_struct physics_transitions_block_block_struct;
 extern s_tag_block_definition physics_transitions_block_block;
 
 extern s_tag_struct vehicle_group_struct_definition; // tag group
-extern s_tag_struct human_tank_struct_struct_definition;
 extern s_tag_struct vehicle_physics_types_struct_struct_definition;
+extern s_tag_struct human_tank_struct_struct_definition;
 extern s_tag_struct vehicle_steering_control_struct_struct_definition;
 extern s_tag_struct vehicle_turning_control_struct_struct_definition;
 extern s_tag_struct steering_animation_struct_struct_definition;

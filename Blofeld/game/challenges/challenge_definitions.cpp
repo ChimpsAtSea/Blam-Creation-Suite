@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(challenge_globals_definition, CHALLENGE_GLOBALS_DEFINITION_TAG, challenge_globals_definition_block_block )
+TAG_GROUP_FROM_BLOCK(challenge_globals_definition, CHALLENGE_GLOBALS_DEFINITION_TAG, challenge_globals_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(challenge_globals_definition_block, 1, challenge_globals_definition_struct_definition_struct_definition );
 

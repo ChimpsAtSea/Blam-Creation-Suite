@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(performance_throttles, PERFORMANCE_THROTTLES_TAG, performance_throttles_block_block )
+TAG_GROUP_FROM_BLOCK(performance_throttles, PERFORMANCE_THROTTLES_TAG, performance_throttles_block_block );
 
 TAG_BLOCK_FROM_STRUCT(performance_throttles_block, 1, performance_throttles_struct_definition_struct_definition );
 

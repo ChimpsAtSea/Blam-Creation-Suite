@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(SpawnSettings, SPAWNSETTINGS_TAG, SpawnSettings_block_block )
+TAG_GROUP_FROM_BLOCK(SpawnSettings, SPAWNSETTINGS_TAG, SpawnSettings_block_block );
 
 TAG_BLOCK_FROM_STRUCT(SpawnSettings_block, 1, SpawnSettings_struct_definition_struct_definition );
 

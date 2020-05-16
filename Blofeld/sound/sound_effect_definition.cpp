@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(sound_effect_template, SOUND_EFFECT_TEMPLATE_TAG, sound_effect_template_block_block )
+TAG_GROUP_FROM_BLOCK(sound_effect_template, SOUND_EFFECT_TEMPLATE_TAG, sound_effect_template_block_block );
 
 TAG_BLOCK_FROM_STRUCT(sound_effect_template_block, 1, sound_effect_template_struct_definition_struct_definition );
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(antenna, ANTENNA_TAG, antenna_block_block )
+TAG_GROUP_FROM_BLOCK(antenna, ANTENNA_TAG, antenna_block_block );
 
 TAG_BLOCK_FROM_STRUCT(antenna_block, 1, antenna_struct_definition_struct_definition );
 

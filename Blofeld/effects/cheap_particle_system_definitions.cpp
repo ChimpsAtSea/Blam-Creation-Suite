@@ -3,9 +3,9 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(cheap_particle_emitter, CHEAP_PARTICLE_EMITTER_TAG, cheap_particle_emitter_block_block )
+TAG_GROUP_FROM_BLOCK(cheap_particle_emitter, CHEAP_PARTICLE_EMITTER_TAG, cheap_particle_emitter_block_block );
 
-TAG_GROUP_FROM_BLOCK(cheap_particle_type_library, CHEAP_PARTICLE_TYPE_LIBRARY_TAG, cheap_particle_type_library_block_block )
+TAG_GROUP_FROM_BLOCK(cheap_particle_type_library, CHEAP_PARTICLE_TYPE_LIBRARY_TAG, cheap_particle_type_library_block_block );
 
 TAG_BLOCK_FROM_STRUCT(cheap_particle_emitter_block, 1, cheap_particle_emitter_struct_definition_struct_definition );
 

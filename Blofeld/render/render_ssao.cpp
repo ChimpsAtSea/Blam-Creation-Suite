@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(ssao_definition, SSAO_DEFINITION_TAG, ssao_definition_block_block )
+TAG_GROUP_FROM_BLOCK(ssao_definition, SSAO_DEFINITION_TAG, ssao_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(ssao_definition_block, 1, ssao_definition_struct_definition_struct_definition );
 

@@ -540,13 +540,16 @@ namespace blofeld
 	const unsigned long k_max_gpu_properties = 17;
 	const unsigned long k_max_gpu_functions = 25;
 	const unsigned long k_max_gpu_colors = 8;
+	const unsigned long k_max_radial_distributions_per_cue = 1;
+	const unsigned long k_max_probability_distributions_per_cue = 1;
+	const unsigned long k_max_character_distributions_per_cue = 8;
+	const unsigned long k_max_weapon_distributions_per_cue = 8;
 
 
-
-
-
-
-
+	struct c_rasterizer_constant_table_definition
+	{
+		static const unsigned long k_max_constants = 426;
+	};
 	struct MedalAggregatorEntry
 	{
 		static const unsigned long k_medalAggregatorEntryMaxCount = 12;

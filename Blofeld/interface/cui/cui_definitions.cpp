@@ -3,11 +3,11 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(cui_logic, CUI_LOGIC_TAG, cui_logic_block_block )
+TAG_GROUP_FROM_BLOCK(cui_logic, CUI_LOGIC_TAG, cui_logic_block_block );
 
-TAG_GROUP_FROM_BLOCK(cui_screen, CUI_SCREEN_TAG, cui_screen_block_block )
+TAG_GROUP_FROM_BLOCK(cui_screen, CUI_SCREEN_TAG, cui_screen_block_block );
 
-TAG_GROUP_FROM_BLOCK(cui_static_data, CUI_STATIC_DATA_TAG, cui_static_data_block_block )
+TAG_GROUP_FROM_BLOCK(cui_static_data, CUI_STATIC_DATA_TAG, cui_static_data_block_block );
 
 TAG_BLOCK_FROM_STRUCT(cui_logic_block, 1, cui_logic_struct_definition_struct_definition );
 
@@ -290,18 +290,6 @@ TAG_STRUCT(cui_static_data_struct_definition)
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(properties_struct)
-{
-	FIELD( _field_block, "long properties", &property_long_value_block ),
-	FIELD( _field_block, "real properties", &property_real_value_block ),
-	FIELD( _field_block, "string_id properties", &property_string_id_value_block ),
-	FIELD( _field_block, "component ptr properties", &propertyComponentPtrValue_block ),
-	FIELD( _field_block, "tag reference properties", &property_tag_reference_value_block ),
-	FIELD( _field_block, "string properties", &property_text_value_block ),
-	FIELD( _field_block, "argb color properties", &property_argb_color_value_block ),
-	FIELD( _field_terminator )
-};
-
 TAG_STRUCT(cui_system)
 {
 	FIELD( _field_block, "template instantiations", &template_instantiation_block_definition_block ),
@@ -317,10 +305,15 @@ TAG_STRUCT(cui_system)
 	FIELD( _field_terminator )
 };
 
-TAG_STRUCT(static_data_struct)
+TAG_STRUCT(properties_struct)
 {
-	FIELD( _field_block, "columns", &static_data_column_block ),
-	FIELD( _field_block, "rows", &static_data_row_block ),
+	FIELD( _field_block, "long properties", &property_long_value_block ),
+	FIELD( _field_block, "real properties", &property_real_value_block ),
+	FIELD( _field_block, "string_id properties", &property_string_id_value_block ),
+	FIELD( _field_block, "component ptr properties", &propertyComponentPtrValue_block ),
+	FIELD( _field_block, "tag reference properties", &property_tag_reference_value_block ),
+	FIELD( _field_block, "string properties", &property_text_value_block ),
+	FIELD( _field_block, "argb color properties", &property_argb_color_value_block ),
 	FIELD( _field_terminator )
 };
 
@@ -328,6 +321,13 @@ TAG_STRUCT(animation_scalar_function)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_struct, "scalar function", &mapping_function_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(static_data_struct)
+{
+	FIELD( _field_block, "columns", &static_data_column_block ),
+	FIELD( _field_block, "rows", &static_data_row_block ),
 	FIELD( _field_terminator )
 };
 

@@ -168,6 +168,7 @@ const char* h4_va_to_pointer2(const char* data, uint32_t address)
 
 std::map<const void*, c_h4_tag_block*> c_h4_blamboozle::tag_block_definitions;
 std::map<const void*, c_h4_tag_struct*> c_h4_blamboozle::tag_struct_definitions;
+std::map<const void*, c_h4_tag_enum*> c_h4_blamboozle::tag_enum_definitions;
 
 c_h4_blamboozle::c_h4_blamboozle(const wchar_t* _output_directory, const wchar_t* _binary_filepath) :
 	c_blamboozle_base(_output_directory, _binary_filepath),
@@ -243,7 +244,35 @@ c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(
 	return tag_struct_definition;
 }
 
+c_h4_tag_enum* c_h4_blamboozle::get_tag_enum_definition(
+	const char* h4_data,
+	const s_h4_tag_enum_definition* tag_enum_definition_header
+)
+{
+	if (tag_enum_definition_header == nullptr)
+	{
+		return nullptr;
+	}
+	ASSERT(h4_data != nullptr);
 
+	std::map<const void*, c_h4_tag_enum*>::iterator tag_enum_definition_iterator = tag_enum_definitions.find(tag_enum_definition_header);
+
+	if (tag_enum_definition_iterator != tag_enum_definitions.end())
+	{
+		return tag_enum_definition_iterator->second;
+	}
+
+	c_h4_tag_enum* tag_enum_definition = reinterpret_cast<c_h4_tag_enum*>(malloc(sizeof(c_h4_tag_enum)));
+	tag_enum_definitions[tag_enum_definition_header] = tag_enum_definition;
+	new(tag_enum_definition) c_h4_tag_enum(h4_data, tag_enum_definition_header);
+
+
+	return tag_enum_definition;
+}
+
+static c_h4_tag_struct* get_tag_enum_definition(
+	const char* h4_data,
+	const s_h4_tag_struct_definition* definition_header);
 
 int c_h4_blamboozle::run()
 {

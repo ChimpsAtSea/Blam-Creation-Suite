@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(simulation_interpolation, SIMULATION_INTERPOLATION_TAG, simulation_interpolation_block_block )
+TAG_GROUP_FROM_BLOCK(simulation_interpolation, SIMULATION_INTERPOLATION_TAG, simulation_interpolation_block_block );
 
 TAG_BLOCK_FROM_STRUCT(simulation_interpolation_block, 1, simulation_interpolation_struct_definition_struct_definition );
 

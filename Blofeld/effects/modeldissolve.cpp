@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(model_dissolve_definition, MODEL_DISSOLVE_DEFINITION_TAG, model_dissolve_definition_block_block )
+TAG_GROUP_FROM_BLOCK(model_dissolve_definition, MODEL_DISSOLVE_DEFINITION_TAG, model_dissolve_definition_block_block );
 
 TAG_BLOCK_FROM_STRUCT(model_dissolve_definition_block, 1, model_dissolve_definition_struct_definition_struct_definition );
 

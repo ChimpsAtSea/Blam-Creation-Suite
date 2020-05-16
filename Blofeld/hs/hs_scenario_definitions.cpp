@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(hsc, HSC_TAG, hs_source_files_block_block )
+TAG_GROUP_FROM_BLOCK(hsc, HSC_TAG, hs_source_files_block_block );
 
 TAG_BLOCK(hs_source_files_block, k_maximum_hs_source_files_per_context)
 {

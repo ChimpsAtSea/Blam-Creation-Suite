@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(megalo_string_id_table, MEGALO_STRING_ID_TABLE_TAG, megalo_string_id_table_block_block )
+TAG_GROUP_FROM_BLOCK(megalo_string_id_table, MEGALO_STRING_ID_TABLE_TAG, megalo_string_id_table_block_block );
 
 TAG_BLOCK_FROM_STRUCT(megalo_string_id_table_block, 1, megalo_string_id_table_struct_definition_struct_definition );
 
