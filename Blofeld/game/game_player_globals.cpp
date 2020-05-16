@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(player_information, k_player_character_type_count)
+TAG_BLOCK(player_information_block, k_player_character_type_count)
 {
 	FIELD( _field_real, "walking speed:world units per second" ),
 	FIELD( _field_real, "run forward:world units per second" ),
@@ -17,7 +17,7 @@ TAG_BLOCK(player_information, k_player_character_type_count)
 	FIELD( _field_real, "airborne acceleration:world units per second squared" ),
 	FIELD( _field_real, "weapon ready anim scaler" ),
 	FIELD( _field_real_point_3d, "grenade origin" ),
-	FIELD( _field_struct, "grenade aiming#determines the distance along the aiming vector to orient the grenade based on the camera pitch" ),
+	FIELD( _field_struct, "grenade aiming#determines the distance along the aiming vector to orient the grenade based on the camera pitch", &scalar_function_named_struct_struct_definition ),
 	FIELD( _field_real_bounds, "first person idle time:seconds" ),
 	FIELD( _field_real_fraction, "first person skip fraction:[0,1]" ),
 	FIELD( _field_tag_reference, "coop countdown sound" ),
@@ -36,7 +36,7 @@ TAG_BLOCK(player_information, k_player_character_type_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(player_momentum_data, k_player_momentum_count)
+TAG_BLOCK(player_momentum_data_block, k_player_momentum_count)
 {
 	FIELD( _field_byte_flags, "flag" ),
 	FIELD( _field_pad, "PAD", 3 ),
@@ -56,7 +56,7 @@ TAG_BLOCK(player_momentum_data, k_player_momentum_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(player_representation, k_player_character_type_count)
+TAG_BLOCK(player_representation_block, k_player_character_type_count)
 {
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_pad, "pad", 3 ),
@@ -65,7 +65,7 @@ TAG_BLOCK(player_representation, k_player_character_type_count)
 	FIELD( _field_string_id, "first person multiplayer hands variant" ),
 	FIELD( _field_tag_reference, "first person body model" ),
 	FIELD( _field_string_id, "first person multiplayer body variant" ),
-	FIELD( _field_block, "hidden fpBody regions", &firstPersonpHiddenBodyRegionsBlock_block ),
+	FIELD( _field_block, "hidden fpBody regions", &firstPersonpHiddenBodyRegionsBlock ),
 	FIELD( _field_tag_reference, "third person unit" ),
 	FIELD( _field_string_id, "third person variant" ),
 	FIELD( _field_tag_reference, "binoculars zoom in sound" ),

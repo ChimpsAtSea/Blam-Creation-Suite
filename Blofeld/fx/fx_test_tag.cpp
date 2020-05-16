@@ -3,7 +3,22 @@
 namespace blofeld
 {
 
-TAG_BLOCK(fx_property, s_fx_test::k_max_properties)
+TAG_STRUCT(fx_test_struct_definition)
+{
+	FIELD( _field_block, "properties", &fx_property_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(fx_test_scalar_function_struct)
+{
+	FIELD( _field_string_id, "Input Variable!" ),
+	FIELD( _field_string_id, "Range Variable!" ),
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(fx_property_block, s_fx_test::k_max_properties)
 {
 	FIELD( _field_string, "name^" ),
 	FIELD( _field_long_flags, "flags" ),
@@ -19,17 +34,17 @@ TAG_BLOCK(fx_property, s_fx_test::k_max_properties)
 	FIELD( _field_char_enum, "address_mode_x" ),
 	FIELD( _field_char_enum, "address_mode_y" ),
 	FIELD( _field_char_enum, "mip_bias_mode" ),
-	FIELD( _field_struct, "function" ),
+	FIELD( _field_struct, "function", &fx_test_scalar_function_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(fx_property_default, s_fx_test::k_max_defaults)
+TAG_BLOCK(fx_property_default_block, s_fx_test::k_max_defaults)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(fx_test, FX_TEST_TAG)
+TAG_GROUP(fx_test_block, FX_TEST_TAG)
 {
 	FIELD( _field_block, "properties", &fx_property_block ),
 	FIELD( _field_terminator )

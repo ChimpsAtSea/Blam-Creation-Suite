@@ -3,13 +3,27 @@
 namespace blofeld
 {
 
-TAG_BLOCK(decal_definition, c_decal_system_definition::k_max_decal)
+TAG_STRUCT(decal_system_struct_definition)
+{
+	FIELD( _field_long_flags, "flags" ),
+	FIELD( _field_long_integer, "ring buffer size (in triangles)#bigger sizes keep more decals around but use much more memory" ),
+	FIELD( _field_long_integer, "ring buffer size single player (in triangles)#above entry is for MP -- SP can be different" ),
+	FIELD( _field_real, "material shader fade time#material shader lifetime is modulated from 1 to 0 over this time" ),
+	FIELD( _field_real_point_2d, "decal scale override#NOTE - If set to non-zero, this will override manual scaling in Sapien and smash it with these values" ),
+	FIELD( _field_explanation, "Decal bucket sharing" ),
+	FIELD( _field_short_bounds, "random sprite index bounds#if zero, will use random sprite" ),
+	FIELD( _field_block, "decals", &decal_definition_block ),
+	FIELD( _field_real, "runtime max radius!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(decal_definition_block, c_decal_system_definition::k_max_decal)
 {
 	FIELD( _field_string_id, "decal name^" ),
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_custom, "material" ),
 	FIELD( _field_custom ),
-	FIELD( _field_struct, "actual material\?" ),
+	FIELD( _field_struct, "actual material\?", &material_struct_struct_definition ),
 	FIELD( _field_custom ),
 	FIELD( _field_real_bounds, "radius:world units" ),
 	FIELD( _field_real_bounds, "decay time:seconds!" ),
@@ -25,7 +39,7 @@ TAG_BLOCK(decal_definition, c_decal_system_definition::k_max_decal)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(decal_system, DECAL_SYSTEM_TAG)
+TAG_GROUP(decal_system_block, DECAL_SYSTEM_TAG)
 {
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_long_integer, "ring buffer size (in triangles)#bigger sizes keep more decals around but use much more memory" ),

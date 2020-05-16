@@ -3,10 +3,32 @@
 namespace blofeld
 {
 
-TAG_BLOCK(structure_lighting_generic_light_definition, SHORT_MAX)
+TAG_STRUCT(scenario_structure_lighting_info_struct_definition)
+{
+	FIELD( _field_long_integer, "import info checksum" ),
+	FIELD( _field_block, "generic light definitions", &structure_lighting_generic_light_definition_block ),
+	FIELD( _field_block, "generic light instances", &structure_lighting_generic_light_instance_block ),
+	FIELD( _field_block, "screen space light shader override", &screen_space_light_shader_override_block ),
+	FIELD( _field_block, "cinematic light instances", &structureLightingCinematicLightInstanceBlock ),
+	FIELD( _field_struct, "Sun Intensity Multiplier", &light_scalar_function_struct_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(structureLightingCinematicLightInstanceBlock_struct)
+{
+	FIELD( _field_int64_integer, "Light Instance ID!" ),
+	FIELD( _field_long_block_index, "Light Definition Index" ),
+	FIELD( _field_long_block_index, "Light Instance Index" ),
+	FIELD( _field_array, "Active Shots" ),
+	FIELD( _field_block, "Linked Objects", &structureLightingCinematicObjectBlock ),
+	FIELD( _field_pad, "padding", 4 ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(structure_lighting_generic_light_definition_block, SHORT_MAX)
 {
 	FIELD( _field_int64_integer, "Definition Identifier!" ),
-	FIELD( _field_struct, "Midnight_Light_Parameters" ),
+	FIELD( _field_struct, "Midnight_Light_Parameters", &midnight_light_struct_struct_definition ),
 	FIELD( _field_long_integer, "Source File Identifier!" ),
 	FIELD( _field_explanation, "Static Only Parameters" ),
 	FIELD( _field_real, "indirect amplification factor" ),
@@ -21,7 +43,7 @@ TAG_BLOCK(structure_lighting_generic_light_definition, SHORT_MAX)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_lighting_generic_light_instance, SHORT_MAX)
+TAG_BLOCK(structure_lighting_generic_light_instance_block, SHORT_MAX)
 {
 	FIELD( _field_int64_integer, "Light Definition ID!" ),
 	FIELD( _field_int64_integer, "Light Instance ID!" ),
@@ -39,7 +61,7 @@ TAG_BLOCK(structure_lighting_generic_light_instance, SHORT_MAX)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(screen_space_light_shader_override, SHORT_MAX)
+TAG_BLOCK(screen_space_light_shader_override_block, SHORT_MAX)
 {
 	FIELD( _field_real_rgb_color, "specular color normal" ),
 	FIELD( _field_real, "specular steepness" ),
@@ -51,16 +73,7 @@ TAG_BLOCK(screen_space_light_shader_override, SHORT_MAX)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structureLightingCinematicLightInstanceBlock, SHORT_MAX)
-{
-	FIELD( _field_int64_integer, "Light Instance ID!" ),
-	FIELD( _field_long_block_index, "Light Definition Index" ),
-	FIELD( _field_long_block_index, "Light Instance Index" ),
-	FIELD( _field_array, "Active Shots" ),
-	FIELD( _field_block, "Linked Objects", &structureLightingCinematicObjectBlock_block ),
-	FIELD( _field_pad, "padding", 4 ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(structureLightingCinematicLightInstanceBlock, SHORT_MAX, structureLightingCinematicLightInstanceBlock_struct_struct_definition );
 
 TAG_BLOCK(structureLightingCinematicObjectBlock, SHORT_MAX)
 {
@@ -68,14 +81,14 @@ TAG_BLOCK(structureLightingCinematicObjectBlock, SHORT_MAX)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(scenario_structure_lighting_info, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG)
+TAG_GROUP(scenario_structure_lighting_info_block, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG)
 {
 	FIELD( _field_long_integer, "import info checksum" ),
 	FIELD( _field_block, "generic light definitions", &structure_lighting_generic_light_definition_block ),
 	FIELD( _field_block, "generic light instances", &structure_lighting_generic_light_instance_block ),
 	FIELD( _field_block, "screen space light shader override", &screen_space_light_shader_override_block ),
-	FIELD( _field_block, "cinematic light instances", &structureLightingCinematicLightInstanceBlock_block ),
-	FIELD( _field_struct, "Sun Intensity Multiplier" ),
+	FIELD( _field_block, "cinematic light instances", &structureLightingCinematicLightInstanceBlock ),
+	FIELD( _field_struct, "Sun Intensity Multiplier", &light_scalar_function_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 

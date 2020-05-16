@@ -3,23 +3,32 @@
 namespace blofeld
 {
 
+TAG_STRUCT(style_sheet_list_struct_definition)
+{
+	FIELD( _field_block, "style sheet languages", &UserInterfaceStyleSheetLanguagesBlock ),
+	FIELD( _field_block, "gradients", &UserInterfaceStyleSheetGradientBlock ),
+	FIELD( _field_block, "dropshadows", &UserInterfaceStyleSheetDropshadowBlock ),
+	FIELD( _field_block, "outer glows", &UserInterfaceStyleSheetOuterGlowBlock ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(UserInterfaceStyleSheetLanguagesBlock, k_language_count)
 {
 	FIELD( _field_long_enum, "language^" ),
-	FIELD( _field_block, "font style sheets", &UserInterfaceStyleSheetsFontBlock_block ),
-	FIELD( _field_block, "visual style sheets", &UserInterfaceStyleSheetsVisualBlock_block ),
+	FIELD( _field_block, "font style sheets", &UserInterfaceStyleSheetsFontBlock ),
+	FIELD( _field_block, "visual style sheets", &UserInterfaceStyleSheetsVisualBlock ),
 	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(UserInterfaceStyleSheetsFontBlock, k_maximumNumberOfStyleSheets)
 {
 	FIELD( _field_string_id, "style sheet name^" ),
-	FIELD( _field_block, "font id", &UserInterfaceStyleSheetFontIdBlock_block ),
-	FIELD( _field_block, "text case", &UserInterfaceStyleSheetTextCaseBlock_block ),
-	FIELD( _field_block, "justification", &UserInterfaceStyleSheetJustificationBlock_block ),
-	FIELD( _field_block, "alignment", &UserInterfaceStyleSheetAlignmentBlock_block ),
-	FIELD( _field_block, "scale", &UserInterfaceStyleSheetScaleBlock_block ),
-	FIELD( _field_block, "fixed height", &UserInterfaceStyleSheetFixedHeightBlock_block ),
+	FIELD( _field_block, "font id", &UserInterfaceStyleSheetFontIdBlock ),
+	FIELD( _field_block, "text case", &UserInterfaceStyleSheetTextCaseBlock ),
+	FIELD( _field_block, "justification", &UserInterfaceStyleSheetJustificationBlock ),
+	FIELD( _field_block, "alignment", &UserInterfaceStyleSheetAlignmentBlock ),
+	FIELD( _field_block, "scale", &UserInterfaceStyleSheetScaleBlock ),
+	FIELD( _field_block, "fixed height", &UserInterfaceStyleSheetFixedHeightBlock ),
 	FIELD( _field_terminator )
 };
 
@@ -62,9 +71,9 @@ TAG_BLOCK(UserInterfaceStyleSheetFixedHeightBlock, 1)
 TAG_BLOCK(UserInterfaceStyleSheetsVisualBlock, k_maximumNumberOfStyleSheets)
 {
 	FIELD( _field_string_id, "style sheet name^" ),
-	FIELD( _field_block, "drop shadow style", &UserInterfaceStyleSheetDropShadowStyleBlock_block ),
-	FIELD( _field_block, "text color", &UserInterfaceStyleSheetColorBlock_block ),
-	FIELD( _field_block, "drop shadow color", &UserInterfaceStyleSheetColorBlock_block ),
+	FIELD( _field_block, "drop shadow style", &UserInterfaceStyleSheetDropShadowStyleBlock ),
+	FIELD( _field_block, "text color", &UserInterfaceStyleSheetColorBlock ),
+	FIELD( _field_block, "drop shadow color", &UserInterfaceStyleSheetColorBlock ),
 	FIELD( _field_string_id, "gradient name" ),
 	FIELD( _field_string_id, "dropshadow name" ),
 	FIELD( _field_string_id, "outer glow name" ),
@@ -118,12 +127,12 @@ TAG_BLOCK(UserInterfaceStyleSheetOuterGlowBlock, 32)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(style_sheet_list, STYLE_SHEET_LIST_TAG)
+TAG_GROUP(style_sheet_list_block, STYLE_SHEET_LIST_TAG)
 {
-	FIELD( _field_block, "style sheet languages", &UserInterfaceStyleSheetLanguagesBlock_block ),
-	FIELD( _field_block, "gradients", &UserInterfaceStyleSheetGradientBlock_block ),
-	FIELD( _field_block, "dropshadows", &UserInterfaceStyleSheetDropshadowBlock_block ),
-	FIELD( _field_block, "outer glows", &UserInterfaceStyleSheetOuterGlowBlock_block ),
+	FIELD( _field_block, "style sheet languages", &UserInterfaceStyleSheetLanguagesBlock ),
+	FIELD( _field_block, "gradients", &UserInterfaceStyleSheetGradientBlock ),
+	FIELD( _field_block, "dropshadows", &UserInterfaceStyleSheetDropshadowBlock ),
+	FIELD( _field_block, "outer glows", &UserInterfaceStyleSheetOuterGlowBlock ),
 	FIELD( _field_terminator )
 };
 

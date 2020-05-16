@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(g_null, 0)
+TAG_BLOCK(g_null_block, 0)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_terminator )

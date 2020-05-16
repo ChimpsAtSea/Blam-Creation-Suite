@@ -3,14 +3,23 @@
 namespace blofeld
 {
 
-extern s_tag_block game_audibility_block;
-extern s_tag_block door_encoded_pas_block;
-extern s_tag_block room_door_portal_encoded_pas_block;
-extern s_tag_block ai_deafening_encoded_pas_block;
-extern s_tag_block encoded_room_distances_block;
-extern s_tag_block game_portal_to_door_occluder_block;
-extern s_tag_block bsp_cluster_to_room_bounds_block;
-extern s_tag_block bsp_cluster_to_room_indices_block;
+
+extern s_tag_struct game_audibility_block_struct_definition;
+extern s_tag_block_definition game_audibility_block;
+extern s_tag_struct door_encoded_pas_block_struct_definition;
+extern s_tag_block_definition door_encoded_pas_block;
+extern s_tag_struct room_door_portal_encoded_pas_block_struct_definition;
+extern s_tag_block_definition room_door_portal_encoded_pas_block;
+extern s_tag_struct ai_deafening_encoded_pas_block_struct_definition;
+extern s_tag_block_definition ai_deafening_encoded_pas_block;
+extern s_tag_struct encoded_room_distances_block_struct_definition;
+extern s_tag_block_definition encoded_room_distances_block;
+extern s_tag_struct game_portal_to_door_occluder_block_struct_definition;
+extern s_tag_block_definition game_portal_to_door_occluder_block;
+extern s_tag_struct bsp_cluster_to_room_bounds_struct_definition;
+extern s_tag_block_definition bsp_cluster_to_room_bounds;
+extern s_tag_struct bsp_cluster_to_room_indices_struct_definition;
+extern s_tag_block_definition bsp_cluster_to_room_indices;
 
 } // namespace blofeld
 

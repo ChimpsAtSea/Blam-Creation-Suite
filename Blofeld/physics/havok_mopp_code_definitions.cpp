@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(mopp_code_definition, SHORT_MAX)
+TAG_BLOCK(mopp_code_definition_block, SHORT_MAX)
 {
 	FIELD( _field_long_integer, "field pointer skip!~" ),
 	FIELD( _field_short_integer, "size*!" ),
@@ -26,7 +26,7 @@ TAG_BLOCK(mopp_code_definition, SHORT_MAX)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(mopp_code_data_definition, 16*(1024*1024))
+TAG_BLOCK(mopp_code_data_definition_block, 16*(1024*1024))
 {
 	FIELD( _field_byte_integer, "mopp data*!" ),
 	FIELD( _field_terminator )

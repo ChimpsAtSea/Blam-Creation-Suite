@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(authored_light_probe_lights, 1)
+TAG_BLOCK(authored_light_probe_lights_block, 1)
 {
 	FIELD( _field_custom, "Authored Light Probe" ),
 	FIELD( _field_custom, "Direction 1&Direction(D)" ),
@@ -27,7 +27,7 @@ TAG_BLOCK(authored_light_probe_lights, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(authored_light_probe, AUTHORED_LIGHT_PROBE_TAG)
+TAG_GROUP(authored_light_probe_block, AUTHORED_LIGHT_PROBE_TAG)
 {
 	FIELD( _field_explanation, "Character Lighting" ),
 	FIELD( _field_block, "Lights*", &authored_light_probe_lights_block ),

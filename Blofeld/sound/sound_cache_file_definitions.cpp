@@ -3,7 +3,52 @@
 namespace blofeld
 {
 
-TAG_BLOCK(sound_gestalt_codec, SHORT_MAX)
+TAG_STRUCT(cache_file_sound_struct_definition)
+{
+	FIELD( _field_word_flags, "flags" ),
+	FIELD( _field_char_enum, "sound class*" ),
+	FIELD( _field_char_integer, "pitch range count" ),
+	FIELD( _field_short_integer, "codec index" ),
+	FIELD( _field_short_integer, "first pitch range index" ),
+	FIELD( _field_short_integer, "first language duration pitch range index" ),
+	FIELD( _field_short_integer, "runtime gestalt index storage~" ),
+	FIELD( _field_short_integer, "sub priority" ),
+	FIELD( _field_short_integer, "playback index" ),
+	FIELD( _field_short_integer, "scale index" ),
+	FIELD( _field_char_integer, "promotion index" ),
+	FIELD( _field_char_integer, "custom playback index" ),
+	FIELD( _field_short_integer, "extra info index" ),
+	FIELD( _field_pad, "pad", 2 ),
+	FIELD( _field_long_integer, "maximum play time:ms" ),
+	FIELD( _field_pageable, "sound data resource" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(sound_cache_file_gestalt_struct_definition)
+{
+	FIELD( _field_block, "codecs", &sound_gestalt_codec_block ),
+	FIELD( _field_block, "playbacks", &sound_gestalt_playback_block ),
+	FIELD( _field_block, "scales", &sound_gestalt_scale_block ),
+	FIELD( _field_block, "import names", &sound_gestalt_import_names_block ),
+	FIELD( _field_block, "pitch range distances", &sound_pitch_range_distances_block ),
+	FIELD( _field_block, "pitch range parameters", &sound_gestalt_pitch_range_parameters_block ),
+	FIELD( _field_block, "pitch ranges", &sound_gestalt_pitch_ranges_block ),
+	FIELD( _field_block, "permutations", &sound_gestalt_permutations_block ),
+	FIELD( _field_block, "permutation languages", &sound_gestalt_permutation_languages_block ),
+	FIELD( _field_block, "custom playbacks", &sound_gestalt_custom_playback_block ),
+	FIELD( _field_block, "language durations", &sound_language_info_block ),
+	FIELD( _field_block, "runtime permutation flags", &sound_gestalt_runtime_permutation_bit_vector_block ),
+	FIELD( _field_data, "naive sample data" ),
+	FIELD( _field_long_integer, "no one listens to me" ),
+	FIELD( _field_long_integer, "but now I\'m used to it" ),
+	FIELD( _field_block, "chunks", &sound_permutation_chunk_block ),
+	FIELD( _field_block, "promotions", &sound_gestalt_promotions_block ),
+	FIELD( _field_block, "facial animations", &sound_gestalt_facial_animation_block ),
+	FIELD( _field_block, "layer markers", &sound_gestalt_layer_markers_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(sound_gestalt_codec_block, SHORT_MAX)
 {
 	FIELD( _field_char_enum, "sample rate*" ),
 	FIELD( _field_char_enum, "encoding*" ),
@@ -11,25 +56,25 @@ TAG_BLOCK(sound_gestalt_codec, SHORT_MAX)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_playback, SHORT_MAX)
+TAG_BLOCK(sound_gestalt_playback_block, SHORT_MAX)
 {
-	FIELD( _field_struct, "playback!" ),
+	FIELD( _field_struct, "playback!", &sound_playback_parameters_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_scale, SHORT_MAX)
+TAG_BLOCK(sound_gestalt_scale_block, SHORT_MAX)
 {
-	FIELD( _field_struct, "scale!" ),
+	FIELD( _field_struct, "scale!", &sound_scale_modifiers_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_import_names, SHORT_MAX)
+TAG_BLOCK(sound_gestalt_import_names_block, SHORT_MAX)
 {
 	FIELD( _field_string_id, "import name^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_pitch_range_parameters, SHORT_MAX)
+TAG_BLOCK(sound_gestalt_pitch_range_parameters_block, SHORT_MAX)
 {
 	FIELD( _field_short_integer, "natural pitch:cents" ),
 	FIELD( _field_short_integer, "PAD" ),
@@ -39,7 +84,7 @@ TAG_BLOCK(sound_gestalt_pitch_range_parameters, SHORT_MAX)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_pitch_ranges, SHORT_MAX)
+TAG_BLOCK(sound_gestalt_pitch_ranges_block, SHORT_MAX)
 {
 	FIELD( _field_short_block_index, "name^" ),
 	FIELD( _field_short_block_index, "parameters" ),
@@ -49,7 +94,7 @@ TAG_BLOCK(sound_gestalt_pitch_ranges, SHORT_MAX)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_permutations, k_maximum_sound_cache_file_gestalt_permutations)
+TAG_BLOCK(sound_gestalt_permutations_block, k_maximum_sound_cache_file_gestalt_permutations)
 {
 	FIELD( _field_short_block_index, "name^" ),
 	FIELD( _field_short_integer, "encoded skip fraction" ),
@@ -63,7 +108,7 @@ TAG_BLOCK(sound_gestalt_permutations, k_maximum_sound_cache_file_gestalt_permuta
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_permutation_languages, k_maximum_sound_cache_file_gestalt_permutation_languages)
+TAG_BLOCK(sound_gestalt_permutation_languages_block, k_maximum_sound_cache_file_gestalt_permutation_languages)
 {
 	FIELD( _field_long_integer, "permutation index" ),
 	FIELD( _field_long_integer, "english uncompressed sample count" ),
@@ -120,37 +165,37 @@ TAG_BLOCK(sound_gestalt_permutation_languages, k_maximum_sound_cache_file_gestal
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_custom_playback, SHORT_MAX)
+TAG_BLOCK(sound_gestalt_custom_playback_block, SHORT_MAX)
 {
-	FIELD( _field_struct, "playback definition" ),
+	FIELD( _field_struct, "playback definition", &platform_sound_playback_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_runtime_permutation_bit_vector, SHORT_MAX)
+TAG_BLOCK(sound_gestalt_runtime_permutation_bit_vector_block, SHORT_MAX)
 {
 	FIELD( _field_char_integer, "runtime permutation bit vector~!" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_promotions, 127 + 1)
+TAG_BLOCK(sound_gestalt_promotions_block, 127 + 1)
 {
-	FIELD( _field_struct, "runtime promotion storage~!" ),
+	FIELD( _field_struct, "runtime promotion storage~!", &sound_promotion_parameters_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_facial_animation, SHORT_MAX)
+TAG_BLOCK(sound_gestalt_facial_animation_block, SHORT_MAX)
 {
 	FIELD( _field_pageable, "facial animation resource" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_gestalt_layer_markers, SHORT_MAX)
+TAG_BLOCK(sound_gestalt_layer_markers_block, SHORT_MAX)
 {
 	FIELD( _field_long_integer, "sample offset" ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(cache_file_sound, CACHE_FILE_SOUND_TAG)
+TAG_GROUP(cache_file_sound_block, CACHE_FILE_SOUND_TAG)
 {
 	FIELD( _field_word_flags, "flags" ),
 	FIELD( _field_char_enum, "sound class*" ),
@@ -171,7 +216,7 @@ TAG_GROUP(cache_file_sound, CACHE_FILE_SOUND_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(sound_cache_file_gestalt, SOUND_CACHE_FILE_GESTALT_TAG)
+TAG_GROUP(sound_cache_file_gestalt_block, SOUND_CACHE_FILE_GESTALT_TAG)
 {
 	FIELD( _field_block, "codecs", &sound_gestalt_codec_block ),
 	FIELD( _field_block, "playbacks", &sound_gestalt_playback_block ),

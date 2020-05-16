@@ -3,13 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(decorator_set_instance_name, SHORT_MAX)
-{
-	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(global_decorator_type, BYTE_MAX-1)
+TAG_STRUCT(global_decorator_type_struct)
 {
 	FIELD( _field_long_integer, "index!" ),
 	FIELD( _field_long_block_index, "mesh^" ),
@@ -33,7 +27,15 @@ TAG_BLOCK(global_decorator_type, BYTE_MAX-1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(decorator_runtime_cluster, MAXIMUM_BLOCKS_PER_CLUSTER)
+TAG_BLOCK(decorator_set_instance_name_block, SHORT_MAX)
+{
+	FIELD( _field_string_id, "name^" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK_FROM_STRUCT(global_decorator_type_block, BYTE_MAX-1, global_decorator_type_struct_struct_definition );
+
+TAG_BLOCK(decorator_runtime_cluster_block, MAXIMUM_BLOCKS_PER_CLUSTER)
 {
 	FIELD( _field_word_integer, "decorator placement count*" ),
 	FIELD( _field_byte_integer, "decorator set index*" ),
@@ -46,7 +48,7 @@ TAG_BLOCK(decorator_runtime_cluster, MAXIMUM_BLOCKS_PER_CLUSTER)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(decorator_set, DECORATOR_SET_TAG)
+TAG_GROUP(decorator_set_block, DECORATOR_SET_TAG)
 {
 	FIELD( _field_custom, "link to render model" ),
 	FIELD( _field_explanation, "Render models:" ),

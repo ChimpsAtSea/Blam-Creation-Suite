@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(cs_script_data, 1)
+TAG_BLOCK(cs_script_data_block, 1)
 {
 	FIELD( _field_block, "point sets", &cs_point_set_block ),
 	FIELD( _field_block, "animation points", &cs_animation_point_block ),
@@ -11,7 +11,7 @@ TAG_BLOCK(cs_script_data, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(cs_point_set, k_max_point_sets_per_map)
+TAG_BLOCK(cs_point_set_block, k_max_point_sets_per_map)
 {
 	FIELD( _field_string, "name^" ),
 	FIELD( _field_block, "points", &cs_point_block ),
@@ -24,7 +24,7 @@ TAG_BLOCK(cs_point_set, k_max_point_sets_per_map)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(cs_point, 32)
+TAG_BLOCK(cs_point_block, 32)
 {
 	FIELD( _field_string, "name^" ),
 	FIELD( _field_string_id, "name_id*!" ),
@@ -35,7 +35,7 @@ TAG_BLOCK(cs_point, 32)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(cs_animation_point, k_max_animation_points_per_map)
+TAG_BLOCK(cs_animation_point_block, k_max_animation_points_per_map)
 {
 	FIELD( _field_string, "name^" ),
 	FIELD( _field_long_block_index, "Animating Object" ),

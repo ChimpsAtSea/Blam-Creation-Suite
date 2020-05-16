@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(recorded_animation, MAXIMUM_RECORDED_ANIMATIONS_PER_MAP)
+TAG_BLOCK(recorded_animation_block, MAXIMUM_RECORDED_ANIMATIONS_PER_MAP)
 {
 	FIELD( _field_string, "name^" ),
 	FIELD( _field_char_integer, "version*" ),

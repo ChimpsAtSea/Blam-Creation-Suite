@@ -3,10 +3,15 @@
 namespace blofeld
 {
 
-extern s_tag_block player_information_block;
-extern s_tag_block player_momentum_data_block;
-extern s_tag_block player_representation_block;
-extern s_tag_block firstPersonpHiddenBodyRegionsBlock_block;
+
+extern s_tag_struct player_information_block_struct_definition;
+extern s_tag_block_definition player_information_block;
+extern s_tag_struct player_momentum_data_block_struct_definition;
+extern s_tag_block_definition player_momentum_data_block;
+extern s_tag_struct player_representation_block_struct_definition;
+extern s_tag_block_definition player_representation_block;
+extern s_tag_struct firstPersonpHiddenBodyRegionsBlock_struct_definition;
+extern s_tag_block_definition firstPersonpHiddenBodyRegionsBlock;
 
 } // namespace blofeld
 

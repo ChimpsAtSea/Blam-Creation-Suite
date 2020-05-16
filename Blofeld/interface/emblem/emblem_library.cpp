@@ -3,6 +3,55 @@
 namespace blofeld
 {
 
+TAG_STRUCT(emblem_library_struct_definition)
+{
+	FIELD( _field_explanation, "Emblem Library" ),
+	FIELD( _field_short_integer, "version!" ),
+	FIELD( _field_pad, "jfejkjjg", 2 ),
+	FIELD( _field_custom, "Bitmaps" ),
+	FIELD( _field_explanation, "Bitmaps" ),
+	FIELD( _field_real, "bitmap resolution:pixels#used to calculate appropriate antialiasing settings" ),
+	FIELD( _field_real, "antialias sharpen#default 1.0, global control on antialias sharpness" ),
+	FIELD( _field_tag_reference, "emblem bitmaps" ),
+	FIELD( _field_tag_reference, "emblem bitmaps hi rez" ),
+	FIELD( _field_block, "bitmaps", &emblem_bitmap_list ),
+	FIELD( _field_custom ),
+	FIELD( _field_explanation, "Shapes" ),
+	FIELD( _field_block, "shapes", &emblem_shape_list ),
+	FIELD( _field_explanation, "Emblems" ),
+	FIELD( _field_block, "front emblems", &emblem_front_list ),
+	FIELD( _field_block, "back emblems", &emblem_back_list ),
+	FIELD( _field_block, "runtime front!", &emblem_runtime_front_list ),
+	FIELD( _field_block, "runtime back!", &emblem_runtime_back_list ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(emblem_transform)
+{
+	FIELD( _field_real_point_2d, "scale" ),
+	FIELD( _field_real_point_2d, "shear" ),
+	FIELD( _field_real, "rotation" ),
+	FIELD( _field_real_point_2d, "offset" ),
+	FIELD( _field_real, "expand contract#amount to expand (positive) or contract (negative) the shape outline" ),
+	FIELD( _field_real, "blur#amount to blur the shape outline" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(emblem_layer)
+{
+	FIELD( _field_explanation, "Shape 0" ),
+	FIELD( _field_short_block_index, "shape 0" ),
+	FIELD( _field_pad, "fkkfkll", 2 ),
+	FIELD( _field_real, "multiplier 0" ),
+	FIELD( _field_struct, "transform 0", &emblem_transform_struct_definition ),
+	FIELD( _field_explanation, "Shape 1" ),
+	FIELD( _field_short_block_index, "shape 1" ),
+	FIELD( _field_pad, "fkkfkllf", 2 ),
+	FIELD( _field_real, "multiplier 1" ),
+	FIELD( _field_struct, "transform 1", &emblem_transform_struct_definition ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(emblem_bitmap_list, s_emblem_library::k_max_bitmap_list_count)
 {
 	FIELD( _field_string_id, "name^" ),
@@ -19,7 +68,7 @@ TAG_BLOCK(emblem_shape_list, s_emblem_library::k_max_shape_list_count)
 	FIELD( _field_enum, "address mode x" ),
 	FIELD( _field_enum, "address mode y" ),
 	FIELD( _field_pad, "FGKKGKHL", 2 ),
-	FIELD( _field_struct, "transform" ),
+	FIELD( _field_struct, "transform", &emblem_transform_struct_definition ),
 	FIELD( _field_terminator )
 };
 
@@ -27,9 +76,9 @@ TAG_BLOCK(emblem_front_list, s_emblem_library::k_max_front_emblem_count)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_explanation, "Layer 0 (foreground)" ),
-	FIELD( _field_struct, "layer 0" ),
+	FIELD( _field_struct, "layer 0", &emblem_layer_struct_definition ),
 	FIELD( _field_explanation, "Layer 1 (midground)" ),
-	FIELD( _field_struct, "layer 1" ),
+	FIELD( _field_struct, "layer 1", &emblem_layer_struct_definition ),
 	FIELD( _field_explanation, "Misc" ),
 	FIELD( _field_char_enum, "primary layer#layer that is considered \"primary\" and which will use the primary color" ),
 	FIELD( _field_pad, "pad0", 1 ),
@@ -41,7 +90,7 @@ TAG_BLOCK(emblem_back_list, s_emblem_library::k_max_back_emblem_count)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_explanation, "Layer 2 (background)" ),
-	FIELD( _field_struct, "layer 2" ),
+	FIELD( _field_struct, "layer 2", &emblem_layer_struct_definition ),
 	FIELD( _field_terminator )
 };
 
@@ -97,7 +146,7 @@ TAG_BLOCK(emblem_runtime_back_list, s_emblem_library::k_max_back_emblem_count)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(emblem_library, EMBLEM_LIBRARY_TAG)
+TAG_GROUP(emblem_library_block, EMBLEM_LIBRARY_TAG)
 {
 	FIELD( _field_explanation, "Emblem Library" ),
 	FIELD( _field_short_integer, "version!" ),
@@ -108,15 +157,15 @@ TAG_GROUP(emblem_library, EMBLEM_LIBRARY_TAG)
 	FIELD( _field_real, "antialias sharpen#default 1.0, global control on antialias sharpness" ),
 	FIELD( _field_tag_reference, "emblem bitmaps" ),
 	FIELD( _field_tag_reference, "emblem bitmaps hi rez" ),
-	FIELD( _field_block, "bitmaps", &emblem_bitmap_list_block ),
+	FIELD( _field_block, "bitmaps", &emblem_bitmap_list ),
 	FIELD( _field_custom ),
 	FIELD( _field_explanation, "Shapes" ),
-	FIELD( _field_block, "shapes", &emblem_shape_list_block ),
+	FIELD( _field_block, "shapes", &emblem_shape_list ),
 	FIELD( _field_explanation, "Emblems" ),
-	FIELD( _field_block, "front emblems", &emblem_front_list_block ),
-	FIELD( _field_block, "back emblems", &emblem_back_list_block ),
-	FIELD( _field_block, "runtime front!", &emblem_runtime_front_list_block ),
-	FIELD( _field_block, "runtime back!", &emblem_runtime_back_list_block ),
+	FIELD( _field_block, "front emblems", &emblem_front_list ),
+	FIELD( _field_block, "back emblems", &emblem_back_list ),
+	FIELD( _field_block, "runtime front!", &emblem_runtime_front_list ),
+	FIELD( _field_block, "runtime back!", &emblem_runtime_back_list ),
 	FIELD( _field_terminator )
 };
 

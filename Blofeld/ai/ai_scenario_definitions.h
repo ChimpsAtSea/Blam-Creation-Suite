@@ -3,9 +3,13 @@
 namespace blofeld
 {
 
-extern s_tag_block character_palette_block;
-extern s_tag_block ai_recording_reference_block;
-extern s_tag_block big_battle_creature_palette_block;
+
+extern s_tag_struct character_palette_block_struct_definition;
+extern s_tag_block_definition character_palette_block;
+extern s_tag_struct ai_recording_reference_block_struct_definition;
+extern s_tag_block_definition ai_recording_reference_block;
+extern s_tag_struct big_battle_creature_palette_block_struct_definition;
+extern s_tag_block_definition big_battle_creature_palette_block;
 
 } // namespace blofeld
 

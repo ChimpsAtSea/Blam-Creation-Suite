@@ -3,6 +3,13 @@
 namespace blofeld
 {
 
+TAG_STRUCT(game_medal_globals_struct_definition)
+{
+	FIELD( _field_block, "tiers", &gameMedalTiers ),
+	FIELD( _field_block, "medals", &game_medal_block ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(gameMedalTiers, GameMedalTierDefinition::k_maximumGameMedalTierDefinitions)
 {
 	FIELD( _field_string_id, "name^" ),
@@ -12,7 +19,7 @@ TAG_BLOCK(gameMedalTiers, GameMedalTierDefinition::k_maximumGameMedalTierDefinit
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(game_medal, s_game_medal_definition::k_maximum_game_medal_definitions)
+TAG_BLOCK(game_medal_block, s_game_medal_definition::k_maximum_game_medal_definitions)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_string_id, "description" ),
@@ -26,9 +33,9 @@ TAG_BLOCK(game_medal, s_game_medal_definition::k_maximum_game_medal_definitions)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(game_medal_globals, GAME_MEDAL_GLOBALS_TAG)
+TAG_GROUP(game_medal_globals_block, GAME_MEDAL_GLOBALS_TAG)
 {
-	FIELD( _field_block, "tiers", &gameMedalTiers_block ),
+	FIELD( _field_block, "tiers", &gameMedalTiers ),
 	FIELD( _field_block, "medals", &game_medal_block ),
 	FIELD( _field_terminator )
 };

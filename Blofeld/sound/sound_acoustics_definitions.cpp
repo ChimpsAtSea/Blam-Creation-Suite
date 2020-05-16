@@ -3,20 +3,60 @@
 namespace blofeld
 {
 
-TAG_BLOCK(scenario_acoustics_palette, k_maximum_cluster_sound_palette_entries_per_structure)
+TAG_STRUCT(scenario_acoustics_palette_block_definition_struct)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_explanation, "SOUND ENVIRONMENT" ),
-	FIELD( _field_struct, "reverb" ),
+	FIELD( _field_struct, "reverb", &scenario_acoustics_environment_definition_struct_definition ),
 	FIELD( _field_explanation, "BACKGROUND SOUND" ),
-	FIELD( _field_struct, "ambience" ),
+	FIELD( _field_struct, "ambience", &scenario_acoustics_ambience_definition_struct_definition ),
 	FIELD( _field_explanation, "SOUND BANK" ),
 	FIELD( _field_tag_reference, "Sound bank tag" ),
 	FIELD( _field_tag_reference, "DVD Only sound bank tag" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(scenario_acoustic_sector, s_scenario_acoustic_sector::k_maximum_scenario_acoustic_sectors)
+TAG_STRUCT(scenario_acoustics_environment_definition)
+{
+	FIELD( _field_tag_reference, "sound environment" ),
+	FIELD( _field_long_enum, "type" ),
+	FIELD( _field_real, "cutoff distance" ),
+	FIELD( _field_real, "interpolation time{interpolation speed}:seconds" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(scenario_acoustics_ambience_definition)
+{
+	FIELD( _field_tag_reference, "background sound" ),
+	FIELD( _field_tag_reference, "weather sound#plays when rain is active, weather rate gets applied to scale." ),
+	FIELD( _field_tag_reference, "entry sound#plays when entering this area" ),
+	FIELD( _field_tag_reference, "exit sound#plays when leaving this area" ),
+	FIELD( _field_real, "cutoff distance" ),
+	FIELD( _field_real, "interpolation time{interpolation speed}:seconds" ),
+	FIELD( _field_long_flags, "scale flags DEPRICATED!" ),
+	FIELD( _field_real_fraction, "interior scale DEPRICATED!" ),
+	FIELD( _field_real_fraction, "portal scale DEPRICATED!" ),
+	FIELD( _field_real_fraction, "exterior scale DEPRICATED!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(scenario_acoustic_location_definition)
+{
+	FIELD( _field_short_block_index, "sector index*!" ),
+	FIELD( _field_struct, "cluster reference*!", &scenario_acoustic_cluster_reference_definition_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(scenario_acoustic_cluster_reference_definition)
+{
+	FIELD( _field_char_integer, "bsp index*!" ),
+	FIELD( _field_byte_integer, "cluster index*!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK_FROM_STRUCT(scenario_acoustics_palette_block_definition, k_maximum_cluster_sound_palette_entries_per_structure, scenario_acoustics_palette_block_definition_struct_struct_definition );
+
+TAG_BLOCK(scenario_acoustic_sector_block, s_scenario_acoustic_sector::k_maximum_scenario_acoustic_sectors)
 {
 	FIELD( _field_block, "points", &acoustic_sector_point_block ),
 	FIELD( _field_real_plane_3d, "top plane!" ),
@@ -30,13 +70,13 @@ TAG_BLOCK(scenario_acoustic_sector, s_scenario_acoustic_sector::k_maximum_scenar
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(acoustic_sector_point, k_maximum_points_per_sector)
+TAG_BLOCK(acoustic_sector_point_block, k_maximum_points_per_sector)
 {
 	FIELD( _field_real_point_3d, "position" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(scenario_acoustic_transition, s_scenario_acoustic_transition::k_maximum_scenario_acoustic_transitions)
+TAG_BLOCK(scenario_acoustic_transition_block, s_scenario_acoustic_transition::k_maximum_scenario_acoustic_transitions)
 {
 	FIELD( _field_real_point_3d, "center!" ),
 	FIELD( _field_real_point_3d, "forward!" ),
@@ -47,8 +87,8 @@ TAG_BLOCK(scenario_acoustic_transition, s_scenario_acoustic_transition::k_maximu
 	FIELD( _field_real, "sample point offset 1!" ),
 	FIELD( _field_short_block_index, "sample 0*" ),
 	FIELD( _field_short_block_index, "sample 1*" ),
-	FIELD( _field_struct, "location 0*!" ),
-	FIELD( _field_struct, "location 1*!" ),
+	FIELD( _field_struct, "location 0*!", &scenario_acoustic_location_definition_struct_definition ),
+	FIELD( _field_struct, "location 1*!", &scenario_acoustic_location_definition_struct_definition ),
 	FIELD( _field_short_block_index, "editor folder!" ),
 	FIELD( _field_pad, "CKJEWRSDF", 2 ),
 	FIELD( _field_terminator )

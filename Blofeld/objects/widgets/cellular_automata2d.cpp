@@ -3,7 +3,43 @@
 namespace blofeld
 {
 
-TAG_BLOCK(rules, MAXIMUM_RULES_PER_CA)
+TAG_STRUCT(cellular_automata2d_struct_definition)
+{
+	FIELD( _field_explanation, "properties" ),
+	FIELD( _field_short_integer, "updates per second:Hz" ),
+	FIELD( _field_pad, "IFJ", 2 ),
+	FIELD( _field_real, "dead cell penalty" ),
+	FIELD( _field_real, "live cell bonus" ),
+	FIELD( _field_pad, "EPTNF", 80 ),
+	FIELD( _field_explanation, "height map" ),
+	FIELD( _field_short_integer, "width:cells" ),
+	FIELD( _field_short_integer, "height:cells" ),
+	FIELD( _field_real, " cell width:world units" ),
+	FIELD( _field_real, " height:world units" ),
+	FIELD( _field_real_vector_2d, "velocity:cells/update" ),
+	FIELD( _field_pad, "KHXCI", 28 ),
+	FIELD( _field_old_string_id, "marker" ),
+	FIELD( _field_long_flags, "interpolation flags" ),
+	FIELD( _field_real_rgb_color, "base color" ),
+	FIELD( _field_real_rgb_color, "peak color" ),
+	FIELD( _field_pad, "IXKLNR", 76 ),
+	FIELD( _field_explanation, "detail map" ),
+	FIELD( _field_short_integer, "  width:cells" ),
+	FIELD( _field_short_integer, "  height:cells" ),
+	FIELD( _field_real, "  cell width:world units" ),
+	FIELD( _field_real_vector_2d, " velocity:cells/update" ),
+	FIELD( _field_pad, "JXB", 48 ),
+	FIELD( _field_old_string_id, " marker" ),
+	FIELD( _field_short_integer, "texture width:cells" ),
+	FIELD( _field_pad, "HNOIXYJ", 2 ),
+	FIELD( _field_pad, "DDIGC", 48 ),
+	FIELD( _field_tag_reference, "texture" ),
+	FIELD( _field_pad, "HSJQLXWS", 160 ),
+	FIELD( _field_block, "rules", &rules_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(rules_block, MAXIMUM_RULES_PER_CA)
 {
 	FIELD( _field_string, "name^" ),
 	FIELD( _field_real_rgb_color, "tint color" ),
@@ -12,7 +48,7 @@ TAG_BLOCK(rules, MAXIMUM_RULES_PER_CA)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(states, MAXIMUM_STATES_PER_RULE)
+TAG_BLOCK(states_block, MAXIMUM_STATES_PER_RULE)
 {
 	FIELD( _field_string, "name^" ),
 	FIELD( _field_real_rgb_color, "color" ),
@@ -33,7 +69,7 @@ TAG_BLOCK(states, MAXIMUM_STATES_PER_RULE)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(cellular_automata2d, CELLULAR_AUTOMATA2D_TAG)
+TAG_GROUP(cellular_automata2d_block, CELLULAR_AUTOMATA2D_TAG)
 {
 	FIELD( _field_explanation, "properties" ),
 	FIELD( _field_short_integer, "updates per second:Hz" ),

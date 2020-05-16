@@ -3,10 +3,10 @@
 namespace blofeld
 {
 
-TAG_BLOCK(wave_squad_specification_struct, k_max_squad_specifications_per_wave)
+TAG_STRUCT(wave_squad_specification_struct_struct)
 {
 	FIELD( _field_tag_reference, "squad template^" ),
-	FIELD( _field_struct, "spawn conditions" ),
+	FIELD( _field_struct, "spawn conditions", &ai_spawn_conditions_struct_struct_definition ),
 	FIELD( _field_short_integer, "weight#The relative weight given to this squad spawning" ),
 	FIELD( _field_explanation, "MIN/MAX SPAWN COUNTS" ),
 	FIELD( _field_char_integer, "min spawn#Spawn AT LEAST this number of squads. Value of 0 means \"no minimum\"" ),
@@ -15,9 +15,11 @@ TAG_BLOCK(wave_squad_specification_struct, k_max_squad_specifications_per_wave)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(wave_template, WAVE_TEMPLATE_TAG)
+TAG_BLOCK_FROM_STRUCT(wave_squad_specification_struct, k_max_squad_specifications_per_wave, wave_squad_specification_struct_struct_struct_definition );
+
+TAG_GROUP(wave_template_block, WAVE_TEMPLATE_TAG)
 {
-	FIELD( _field_block, "squad specifications", &wave_squad_specification_struct_block ),
+	FIELD( _field_block, "squad specifications", &wave_squad_specification_struct ),
 	FIELD( _field_terminator )
 };
 

@@ -3,7 +3,13 @@
 namespace blofeld
 {
 
-TAG_BLOCK(zone, k_max_zones_per_map)
+TAG_STRUCT(NavMeshAttachmentsStruct)
+{
+	FIELD( _field_block, "attachments", &NavMeshAttachmentBlock ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(zone_block, k_max_zones_per_map)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_custom ),
@@ -13,12 +19,12 @@ TAG_BLOCK(zone, k_max_zones_per_map)
 	FIELD( _field_short_block_index, "editor folder index!" ),
 	FIELD( _field_block, "firing positions", &firing_positions_block ),
 	FIELD( _field_block, "areas", &areas_block ),
-	FIELD( _field_struct, "Nav Mesh Attachments*" ),
-	FIELD( _field_struct, "disallowed attachment bsps" ),
+	FIELD( _field_struct, "Nav Mesh Attachments*", &NavMeshAttachmentsStruct_struct_definition ),
+	FIELD( _field_struct, "disallowed attachment bsps", &manualBspFlagsReferences_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(areas, k_max_areas_per_zone)
+TAG_BLOCK(areas_block, k_max_areas_per_zone)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_custom ),
@@ -35,7 +41,7 @@ TAG_BLOCK(areas, k_max_areas_per_zone)
 	FIELD( _field_real, "runtime standard deviation!" ),
 	FIELD( _field_short_integer, "runtime starting index!" ),
 	FIELD( _field_short_integer, "runtime count!" ),
-	FIELD( _field_struct, "Nav Mesh Attachments*" ),
+	FIELD( _field_struct, "Nav Mesh Attachments*", &NavMeshAttachmentsStruct_struct_definition ),
 	FIELD( _field_array, "cluster occupancy!" ),
 	FIELD( _field_block, "flight_hints", &flight_reference_block ),
 	FIELD( _field_block, "points^", &area_sector_point_block ),
@@ -57,7 +63,13 @@ TAG_BLOCK(areas, k_max_areas_per_zone)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(flight_reference, k_max_flight_references_per_area)
+TAG_BLOCK(NavMeshAttachmentBlock, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO + MAX_NUM_MOBILE_NAVMESHES)
+{
+	FIELD( _field_dword_integer, "navMeshUID" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(flight_reference_block, k_max_flight_references_per_area)
 {
 	FIELD( _field_short_integer, "flight hint index" ),
 	FIELD( _field_short_integer, "point index" ),
@@ -66,7 +78,7 @@ TAG_BLOCK(flight_reference, k_max_flight_references_per_area)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(area_sector_point, k_maximum_points_per_sector)
+TAG_BLOCK(area_sector_point_block, k_maximum_points_per_sector)
 {
 	FIELD( _field_real_point_3d, "point" ),
 	FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),

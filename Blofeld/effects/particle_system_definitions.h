@@ -3,10 +3,22 @@
 namespace blofeld
 {
 
-extern s_tag_block particle_system_definition_block;
-extern s_tag_block particle_system_emitter_definition_block;
-extern s_tag_block emitterGlobalForceBlock_block;
-extern s_tag_block emitterClipSphereBlock_block;
+extern s_tag_struct gpu_property_function_color_struct_struct_definition;
+
+extern s_tag_struct particle_system_definition_block_new_struct_definition;
+extern s_tag_block_definition particle_system_definition_block_new;
+extern s_tag_struct particle_system_emitter_definition_block_struct_definition;
+extern s_tag_block_definition particle_system_emitter_definition_block;
+extern s_tag_struct emitterGlobalForceBlock_struct_definition;
+extern s_tag_block_definition emitterGlobalForceBlock;
+extern s_tag_struct emitterClipSphereBlock_struct_definition;
+extern s_tag_block_definition emitterClipSphereBlock;
+extern s_tag_struct gpu_property_block_struct_definition;
+extern s_tag_block_definition gpu_property_block;
+extern s_tag_struct gpu_function_block_struct_definition;
+extern s_tag_block_definition gpu_function_block;
+extern s_tag_struct gpu_color_block_struct_definition;
+extern s_tag_block_definition gpu_color_block;
 
 } // namespace blofeld
 

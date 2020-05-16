@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(global_self_track, UNSIGNED_SHORT_MAX)
+TAG_BLOCK(global_self_track_block, UNSIGNED_SHORT_MAX)
 {
 	FIELD( _field_string, "time" ),
 	FIELD( _field_string, "machine" ),

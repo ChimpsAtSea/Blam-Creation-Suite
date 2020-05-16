@@ -3,7 +3,13 @@
 namespace blofeld
 {
 
-TAG_BLOCK(ai_globals_data, 1)
+TAG_STRUCT(ai_globals_struct_definition)
+{
+	FIELD( _field_block, "data", &ai_globals_data_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(ai_globals_data_block, 1)
 {
 	FIELD( _field_real, "AI infantry-on-AI weapon damage scale:[0,1]#Global scale on weapon damage made by AI on other AI" ),
 	FIELD( _field_real, "AI vehicle-on-AI weapon damage scale:[0,1]#Global scale on weapon damage made by AI in a vehicle on other AI" ),
@@ -101,7 +107,7 @@ TAG_BLOCK(ai_globals_data, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_globals_gravemind, 1)
+TAG_BLOCK(ai_globals_gravemind_block, 1)
 {
 	FIELD( _field_real, "min retreat time:secs" ),
 	FIELD( _field_real, "ideal retreat time:secs" ),
@@ -109,13 +115,13 @@ TAG_BLOCK(ai_globals_gravemind, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_globals_formation, k_global_formations_count)
+TAG_BLOCK(ai_globals_formation_block, k_global_formations_count)
 {
 	FIELD( _field_tag_reference, "formation^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_globals_squad_template_folder, k_global_squad_template_folder_count)
+TAG_BLOCK(ai_globals_squad_template_folder_block, k_global_squad_template_folder_count)
 {
 	FIELD( _field_string_id, "folder name^" ),
 	FIELD( _field_block, "sub folders", &ai_globals_squad_template_sub_folder_block ),
@@ -123,20 +129,20 @@ TAG_BLOCK(ai_globals_squad_template_folder, k_global_squad_template_folder_count
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_globals_squad_template_sub_folder, k_global_squad_template_folder_count)
+TAG_BLOCK(ai_globals_squad_template_sub_folder_block, k_global_squad_template_folder_count)
 {
 	FIELD( _field_string_id, "sub folder name^" ),
 	FIELD( _field_block, "templates", &ai_globals_squad_template_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_globals_squad_template, k_global_squad_templates_count)
+TAG_BLOCK(ai_globals_squad_template_block, k_global_squad_templates_count)
 {
 	FIELD( _field_tag_reference, "squad_template^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_globals_performance_template_folder, k_global_performance_template_folder_count)
+TAG_BLOCK(ai_globals_performance_template_folder_block, k_global_performance_template_folder_count)
 {
 	FIELD( _field_string_id, "folder name^" ),
 	FIELD( _field_block, "sub folders", &ai_globals_performance_template_sub_folder_block ),
@@ -144,26 +150,26 @@ TAG_BLOCK(ai_globals_performance_template_folder, k_global_performance_template_
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_globals_performance_template_sub_folder, k_global_performance_template_folder_count)
+TAG_BLOCK(ai_globals_performance_template_sub_folder_block, k_global_performance_template_folder_count)
 {
 	FIELD( _field_string_id, "sub folder name^" ),
 	FIELD( _field_block, "templates", &ai_globals_performance_template_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_globals_performance_template, k_global_performance_templates_count)
+TAG_BLOCK(ai_globals_performance_template_block, k_global_performance_templates_count)
 {
 	FIELD( _field_tag_reference, "thespian_template^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_globals_custom_stimuli, k_max_custom_stimuli_count)
+TAG_BLOCK(ai_globals_custom_stimuli_block, k_max_custom_stimuli_count)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_trait_vision, k_num_ai_trait_vision-2)
+TAG_BLOCK(ai_trait_vision_block, k_num_ai_trait_vision-2)
 {
 	FIELD( _field_explanation, "Vision Traits" ),
 	FIELD( _field_real, "vision distance scale#Scale the distance at which an AI can see their target." ),
@@ -171,14 +177,14 @@ TAG_BLOCK(ai_trait_vision, k_num_ai_trait_vision-2)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_trait_sound, k_num_ai_trait_sound-2)
+TAG_BLOCK(ai_trait_sound_block, k_num_ai_trait_sound-2)
 {
 	FIELD( _field_explanation, "Sound Traits" ),
 	FIELD( _field_real, "hearing distance scale#Scale the character\'s hearing distance." ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_trait_luck, k_num_ai_trait_luck-2)
+TAG_BLOCK(ai_trait_luck_block, k_num_ai_trait_luck-2)
 {
 	FIELD( _field_explanation, "Luck Traits" ),
 	FIELD( _field_real, "evasion chance scale#Scale the chance of evading fire." ),
@@ -195,7 +201,7 @@ TAG_BLOCK(ai_trait_luck, k_num_ai_trait_luck-2)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_trait_grenade, k_num_ai_trait_grenade-2)
+TAG_BLOCK(ai_trait_grenade_block, k_num_ai_trait_grenade-2)
 {
 	FIELD( _field_explanation, "Grenade Traits" ),
 	FIELD( _field_real, "velocity scale#Scale the velocity at which AI throws grenades" ),
@@ -208,7 +214,7 @@ TAG_BLOCK(ai_trait_grenade, k_num_ai_trait_grenade-2)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(ai_globals, AI_GLOBALS_TAG)
+TAG_GROUP(ai_globals_block, AI_GLOBALS_TAG)
 {
 	FIELD( _field_block, "data", &ai_globals_data_block ),
 	FIELD( _field_terminator )

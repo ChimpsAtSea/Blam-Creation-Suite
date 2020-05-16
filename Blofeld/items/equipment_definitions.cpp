@@ -3,9 +3,46 @@
 namespace blofeld
 {
 
+TAG_STRUCT(equipment_struct_definition)
+{
+	FIELD( _field_struct, "item", &item_struct_definition_struct_definition ),
+	FIELD( _field_custom, "$$$ EQUIPMENT $$$" ),
+	FIELD( _field_custom, "Energy" ),
+	FIELD( _field_real, "initial energy" ),
+	FIELD( _field_real, "energy recovery time:seconds#after deactivation, energy stays constant for this long before starting to change by \'inactive energy rate\'" ),
+	FIELD( _field_real, "inactive energy rate:energy/second" ),
+	FIELD( _field_custom ),
+	FIELD( _field_long_flags, "flags" ),
+	FIELD( _field_string_id, "unit stow marker name#the marker on the unit to attach this equipment to when it is stowed.\nThe equipment should have a marker named \"equipment_stow_anchor\"" ),
+	FIELD( _field_char_enum, "pickup behavior" ),
+	FIELD( _field_pad, "IJKMOP", 3 ),
+	FIELD( _field_real_argb_color, "forced primary change color#sets the primary change color on the unit to this if the flag above is checked" ),
+	FIELD( _field_real_argb_color, "forced secondary change color#sets the secondary change color on the unit to this if the flag above is checked" ),
+	FIELD( _field_custom, "AI" ),
+	FIELD( _field_explanation, "AI" ),
+	FIELD( _field_real, "danger radius#How large a danger zone we should create around this equipment (0 means no danger zone)" ),
+	FIELD( _field_real, "min deployment distance:wus#How far does my target have to be for me to throw this at them\?" ),
+	FIELD( _field_real, "awareness time:seconds#How long I should go unnoticed by nearby enemies" ),
+	FIELD( _field_string_id, "ai dialogue equipment type#The equipment ability type name used by the ai dialog system used to filter equipment activation dialogue events." ),
+	FIELD( _field_custom ),
+	FIELD( _field_block, "override camera", &optionalUnitCameraBlock ),
+	FIELD( _field_block, "abilities", &equipmentAbilityDatum ),
+	FIELD( _field_char_enum, "damage reporting type" ),
+	FIELD( _field_pad, "LKSHFDIJ", 3 ),
+	FIELD( _field_tag_reference, "hud screen reference" ),
+	FIELD( _field_tag_reference, "pickup sound" ),
+	FIELD( _field_tag_reference, "energy charged effect" ),
+	FIELD( _field_tag_reference, "unable to activate sound" ),
+	FIELD( _field_tag_reference, "Player sound bank#High quality player sound bank to be prefetched. Can be empty." ),
+	FIELD( _field_block, "Sound RTPCs", &EquipmentSoundRTPCBlock ),
+	FIELD( _field_block, "Sound Sweeteners", &EquipmentSoundSweetenerBlock ),
+	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(optionalUnitCameraBlock, 1)
 {
-	FIELD( _field_struct, "unit camera" ),
+	FIELD( _field_struct, "unit camera", &unit_camera_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
@@ -24,7 +61,7 @@ TAG_BLOCK(equipmentAbilityDatum, k_equipmentMaxAbilityCount)
 	FIELD( _field_real, "activation energy cost" ),
 	FIELD( _field_real, "deactivation energy cost" ),
 	FIELD( _field_real, "active energy rate:energy/second" ),
-	FIELD( _field_struct, "movement speed to energy rate:1/s" ),
+	FIELD( _field_struct, "movement speed to energy rate:1/s", &scalar_function_named_struct_struct_definition ),
 	FIELD( _field_real, "movement speed domain:wu/s" ),
 	FIELD( _field_custom ),
 	FIELD( _field_long_flags, "flags" ),
@@ -33,41 +70,41 @@ TAG_BLOCK(equipmentAbilityDatum, k_equipmentMaxAbilityCount)
 	FIELD( _field_char_enum, "activation mode^" ),
 	FIELD( _field_char_integer, "object noise adjustment#for AI perception.\nwhile active, adjusts noises made by the owner unit by this many \'notches\'.\nnote that this is additive, so a positive number is louder and a negative number is quieter" ),
 	FIELD( _field_custom, "Type Definitions" ),
-	FIELD( _field_block, "multiplayer powerup", &equipmentAbilityTypeMultiplayerPowerupBlock_block ),
-	FIELD( _field_block, "spawner", &equipmentAbilityTypeSpawnerBlock_block ),
-	FIELD( _field_block, "ai spawner", &equipmentAbilityTypeAiSpawnerBlock_block ),
-	FIELD( _field_block, "proximity mine", &equipmentAbilityTypeProximityMineBlock_block ),
-	FIELD( _field_block, "moition tracker noise", &equipmentAbilityTypeMotionTrackerNoiseBlock_block ),
-	FIELD( _field_block, "invincibility mode", &equipmentAbilityTypeInvincibilityBlock_block ),
-	FIELD( _field_block, "tree of life", &equipmentAbilityTypeTreeOfLifeBlock_block ),
-	FIELD( _field_block, "shapeshifter", &equipmentAbilityTypeShapeshifterBlock_block ),
-	FIELD( _field_block, "player trait field", &equipmentAbilityTypePlayerTraitFieldBlock_block ),
-	FIELD( _field_block, "ai trait field", &equipmentAbilityTypeAiTraitFieldBlock_block ),
-	FIELD( _field_block, "repulsor field", &equipmentAbilityTypeRepulsorFieldBlock_block ),
-	FIELD( _field_block, "stasis field", &equipmentAbilityTypeStasisFieldBlock_block ),
-	FIELD( _field_block, "ball lightning", &equipmentAbilityTypeBallLightningBlock_block ),
-	FIELD( _field_block, "IWHBYDaddy", &equipmentAbilityTypeDaddyBlock_block ),
-	FIELD( _field_block, "laser designation", &equipmentAbilityTypeLaserDesignationBlock_block ),
-	FIELD( _field_block, "super jump", &equipmentAbilityTypeSuperJumpBlock_block ),
-	FIELD( _field_block, "ammo pack", &equipmentAbilityTypeAmmoPackBlock_block ),
-	FIELD( _field_block, "power fist", &equipmentAbilityTypePowerFistBlock_block ),
-	FIELD( _field_block, "health pack", &equipmentAbilityTypeHealthPackBlock_block ),
-	FIELD( _field_block, "jet pack", &equipmentAbilityTypeJetPackBlock_block ),
-	FIELD( _field_block, "hologram", &equipmentAbilityTypeHologramBlock_block ),
-	FIELD( _field_block, "special weapon", &equipmentAbilityTypeSpecialWeaponBlock_block ),
-	FIELD( _field_block, "special move", &equipmentAbilityTypeSpecialMoveBlock_block ),
-	FIELD( _field_block, "engineer shields", &equipmentAbilityTypeEngineerShieldsBlock_block ),
-	FIELD( _field_block, "sprint", &equipmentAbilityTypeSprintBlock_block ),
-	FIELD( _field_block, "teleporter", &equipmentAbilityTypeTeleporterBlock_block ),
-	FIELD( _field_block, "auto turret", &equipmentAbilityTypeAutoTurretBlock_block ),
-	FIELD( _field_block, "vision mode", &equipmentAbilityTypeVisionModeBlock_block ),
-	FIELD( _field_block, "shield projector", &equipmentAbilityTypeShieldProjectorBlock_block ),
-	FIELD( _field_block, "projectile collector", &equipmentAbilityTypeProjectileCollectorBlock_block ),
-	FIELD( _field_block, "remote strike", &equipmentAbilityTypeRemoteStrikeBlock_block ),
-	FIELD( _field_block, "equipment hacker", &equipmentAbilityTypeEquipmentHackerBlock_block ),
-	FIELD( _field_block, "remote vehicle", &equipmentAbilityTypeRemoteVehicleBlock_block ),
-	FIELD( _field_block, "suicide bomb", &equipmentAbilityTypeSuicideBombBlock_block ),
-	FIELD( _field_block, "active shield", &equipmentAbilityTypeActiveShieldBlock_block ),
+	FIELD( _field_block, "multiplayer powerup", &equipmentAbilityTypeMultiplayerPowerupBlock ),
+	FIELD( _field_block, "spawner", &equipmentAbilityTypeSpawnerBlock ),
+	FIELD( _field_block, "ai spawner", &equipmentAbilityTypeAiSpawnerBlock ),
+	FIELD( _field_block, "proximity mine", &equipmentAbilityTypeProximityMineBlock ),
+	FIELD( _field_block, "moition tracker noise", &equipmentAbilityTypeMotionTrackerNoiseBlock ),
+	FIELD( _field_block, "invincibility mode", &equipmentAbilityTypeInvincibilityBlock ),
+	FIELD( _field_block, "tree of life", &equipmentAbilityTypeTreeOfLifeBlock ),
+	FIELD( _field_block, "shapeshifter", &equipmentAbilityTypeShapeshifterBlock ),
+	FIELD( _field_block, "player trait field", &equipmentAbilityTypePlayerTraitFieldBlock ),
+	FIELD( _field_block, "ai trait field", &equipmentAbilityTypeAiTraitFieldBlock ),
+	FIELD( _field_block, "repulsor field", &equipmentAbilityTypeRepulsorFieldBlock ),
+	FIELD( _field_block, "stasis field", &equipmentAbilityTypeStasisFieldBlock ),
+	FIELD( _field_block, "ball lightning", &equipmentAbilityTypeBallLightningBlock ),
+	FIELD( _field_block, "IWHBYDaddy", &equipmentAbilityTypeDaddyBlock ),
+	FIELD( _field_block, "laser designation", &equipmentAbilityTypeLaserDesignationBlock ),
+	FIELD( _field_block, "super jump", &equipmentAbilityTypeSuperJumpBlock ),
+	FIELD( _field_block, "ammo pack", &equipmentAbilityTypeAmmoPackBlock ),
+	FIELD( _field_block, "power fist", &equipmentAbilityTypePowerFistBlock ),
+	FIELD( _field_block, "health pack", &equipmentAbilityTypeHealthPackBlock ),
+	FIELD( _field_block, "jet pack", &equipmentAbilityTypeJetPackBlock ),
+	FIELD( _field_block, "hologram", &equipmentAbilityTypeHologramBlock ),
+	FIELD( _field_block, "special weapon", &equipmentAbilityTypeSpecialWeaponBlock ),
+	FIELD( _field_block, "special move", &equipmentAbilityTypeSpecialMoveBlock ),
+	FIELD( _field_block, "engineer shields", &equipmentAbilityTypeEngineerShieldsBlock ),
+	FIELD( _field_block, "sprint", &equipmentAbilityTypeSprintBlock ),
+	FIELD( _field_block, "teleporter", &equipmentAbilityTypeTeleporterBlock ),
+	FIELD( _field_block, "auto turret", &equipmentAbilityTypeAutoTurretBlock ),
+	FIELD( _field_block, "vision mode", &equipmentAbilityTypeVisionModeBlock ),
+	FIELD( _field_block, "shield projector", &equipmentAbilityTypeShieldProjectorBlock ),
+	FIELD( _field_block, "projectile collector", &equipmentAbilityTypeProjectileCollectorBlock ),
+	FIELD( _field_block, "remote strike", &equipmentAbilityTypeRemoteStrikeBlock ),
+	FIELD( _field_block, "equipment hacker", &equipmentAbilityTypeEquipmentHackerBlock ),
+	FIELD( _field_block, "remote vehicle", &equipmentAbilityTypeRemoteVehicleBlock ),
+	FIELD( _field_block, "suicide bomb", &equipmentAbilityTypeSuicideBombBlock ),
+	FIELD( _field_block, "active shield", &equipmentAbilityTypeActiveShieldBlock ),
 	FIELD( _field_custom ),
 	FIELD( _field_tag_reference, "activation while disabled by player traits sound" ),
 	FIELD( _field_tag_reference, "activate effect" ),
@@ -144,10 +181,10 @@ TAG_BLOCK(equipmentAbilityTypeInvincibilityBlock, 1)
 	FIELD( _field_tag_reference, "player melee reflect damage" ),
 	FIELD( _field_string_id, "loop-invincibility shield name#active while the equipment is in use (used for shield rendering effects)" ),
 	FIELD( _field_string_id, "post-invincibility shield name#active once the equipment is no longer in use" ),
-	FIELD( _field_struct, "post-invincibility time to shield level function" ),
+	FIELD( _field_struct, "post-invincibility time to shield level function", &scalar_function_named_struct_struct_definition ),
 	FIELD( _field_real, "maximum vertical velocity:WU/SEC#we use this to specify the domain of the active vertical velocity funtion" ),
-	FIELD( _field_struct, "active vertical velocity damping" ),
-	FIELD( _field_block, "threshold effects#the effect with the highest threshold will play on deactivation", &equipmentEffectWithThresholdBlock_block ),
+	FIELD( _field_struct, "active vertical velocity damping", &scalar_function_named_struct_struct_definition ),
+	FIELD( _field_block, "threshold effects#the effect with the highest threshold will play on deactivation", &equipmentEffectWithThresholdBlock ),
 	FIELD( _field_terminator )
 };
 
@@ -185,14 +222,14 @@ TAG_BLOCK(equipmentAbilityTypePlayerTraitFieldBlock, 1)
 
 TAG_BLOCK(equipmentAbilityTypeAiTraitFieldBlock, 1)
 {
-	FIELD( _field_block, "active ai equipment traits", &aiEquipmentTraitsBlock_block ),
-	FIELD( _field_block, "inactive ai equipment traits", &aiEquipmentTraitsBlock_block ),
+	FIELD( _field_block, "active ai equipment traits", &aiEquipmentTraitsBlock ),
+	FIELD( _field_block, "inactive ai equipment traits", &aiEquipmentTraitsBlock ),
 	FIELD( _field_terminator )
 };
 
 TAG_BLOCK(aiEquipmentTraitsBlock, 1)
 {
-	FIELD( _field_block, "appearance traits", &aiEquipmentTraitAppearanceBlock_block ),
+	FIELD( _field_block, "appearance traits", &aiEquipmentTraitAppearanceBlock ),
 	FIELD( _field_terminator )
 };
 
@@ -267,7 +304,7 @@ TAG_BLOCK(equipmentAbilityTypeLaserDesignationBlock, 1)
 
 TAG_BLOCK(equipmentAbilityTypeSuperJumpBlock, 1)
 {
-	FIELD( _field_struct, "energy to jump" ),
+	FIELD( _field_struct, "energy to jump", &scalar_function_named_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
@@ -296,7 +333,7 @@ TAG_BLOCK(equipmentAbilityTypePowerFistBlock, 1)
 
 TAG_BLOCK(equipmentAbilityTypeHealthPackBlock, 1)
 {
-	FIELD( _field_struct, "health given over energy used" ),
+	FIELD( _field_struct, "health given over energy used", &scalar_function_named_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
@@ -304,8 +341,8 @@ TAG_BLOCK(equipmentAbilityTypeJetPackBlock, 1)
 {
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_pad, "pad after useCamAndMoveForThrustDirection", 3 ),
-	FIELD( _field_struct, "thrust to acceleration function" ),
-	FIELD( _field_struct, "Infinite energy thrust to acceleration function" ),
+	FIELD( _field_struct, "thrust to acceleration function", &scalar_function_named_struct_struct_definition ),
+	FIELD( _field_struct, "Infinite energy thrust to acceleration function", &scalar_function_named_struct_struct_definition ),
 	FIELD( _field_real, "thrust attack time:s" ),
 	FIELD( _field_real, "thrust decay time:s" ),
 	FIELD( _field_real, "negative velocity acceleration scale#when falling, scale the thrust by this (so you can \'catch\' yourself easier)" ),
@@ -321,7 +358,7 @@ TAG_BLOCK(equipmentAbilityTypeJetPackBlock, 1)
 	FIELD( _field_real, "drag" ),
 	FIELD( _field_real, "drag cutoff time#if 0, drag is always applied" ),
 	FIELD( _field_real, "cow catcher duration" ),
-	FIELD( _field_block, "cow catcher parameters", &equipmentAbilityPartCowCatcherBlock_block ),
+	FIELD( _field_block, "cow catcher parameters", &equipmentAbilityPartCowCatcherBlock ),
 	FIELD( _field_terminator )
 };
 
@@ -349,7 +386,7 @@ TAG_BLOCK(equipmentAbilityTypeHologramBlock, 1)
 	FIELD( _field_tag_reference, "destruction effect" ),
 	FIELD( _field_real, "shimmer decrease rate:1.0/s#how fast shimmer decreases" ),
 	FIELD( _field_real, "shimmer bullet ping:0-1#how much to ping shimmer when hit by a bullet" ),
-	FIELD( _field_struct, "shimmer to camo function#this is a periodic function with a period of 1 second\nthe shimmer value is used as the range input (interpolates between green and red)" ),
+	FIELD( _field_struct, "shimmer to camo function#this is a periodic function with a period of 1 second\nthe shimmer value is used as the range input (interpolates between green and red)", &scalar_function_named_struct_struct_definition ),
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_pad, "pad after hologram flags", 3 ),
 	FIELD( _field_terminator )
@@ -416,7 +453,7 @@ TAG_BLOCK(equipmentAbilityTypeTeleporterBlock, 1)
 	FIELD( _field_custom ),
 	FIELD( _field_custom, "Collision" ),
 	FIELD( _field_explanation, "Collision" ),
-	FIELD( _field_block, "cow catcher parameters", &equipmentAbilityPartCowCatcherBlock_block ),
+	FIELD( _field_block, "cow catcher parameters", &equipmentAbilityPartCowCatcherBlock ),
 	FIELD( _field_custom ),
 	FIELD( _field_terminator )
 };
@@ -510,7 +547,7 @@ TAG_BLOCK(equipmentAbilityTypeEquipmentHackerBlock, 1)
 	FIELD( _field_real, "Base drain per second#Will be multiplied by a value from the drain level block." ),
 	FIELD( _field_real, "Energy recovery delay#The targeted equipment will not start regenerating energy until at least this much time has gone by." ),
 	FIELD( _field_real, "Cone angle degrees#Degrees away from the reticle at which targets are in the cone." ),
-	FIELD( _field_block, "Drain levels", &equipmentHackerDrainLevel_block ),
+	FIELD( _field_block, "Drain levels", &equipmentHackerDrainLevel ),
 	FIELD( _field_tag_reference, "cone effect#an effect that will shoot out of your face" ),
 	FIELD( _field_tag_reference, "target effect#an effect that will play on the target" ),
 	FIELD( _field_terminator )
@@ -563,9 +600,9 @@ TAG_BLOCK(EquipmentSoundSweetenerBlock, k_maxEquipmentSoundSweetenerBlocks)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_INHERIT(equipment, EQUIPMENT_TAG, item, ITEM_TAG)
+TAG_GROUP_INHERIT(equipment_block, EQUIPMENT_TAG, item, ITEM_TAG)
 {
-	FIELD( _field_struct, "item" ),
+	FIELD( _field_struct, "item", &item_struct_definition_struct_definition ),
 	FIELD( _field_custom, "$$$ EQUIPMENT $$$" ),
 	FIELD( _field_custom, "Energy" ),
 	FIELD( _field_real, "initial energy" ),
@@ -585,8 +622,8 @@ TAG_GROUP_INHERIT(equipment, EQUIPMENT_TAG, item, ITEM_TAG)
 	FIELD( _field_real, "awareness time:seconds#How long I should go unnoticed by nearby enemies" ),
 	FIELD( _field_string_id, "ai dialogue equipment type#The equipment ability type name used by the ai dialog system used to filter equipment activation dialogue events." ),
 	FIELD( _field_custom ),
-	FIELD( _field_block, "override camera", &optionalUnitCameraBlock_block ),
-	FIELD( _field_block, "abilities", &equipmentAbilityDatum_block ),
+	FIELD( _field_block, "override camera", &optionalUnitCameraBlock ),
+	FIELD( _field_block, "abilities", &equipmentAbilityDatum ),
 	FIELD( _field_char_enum, "damage reporting type" ),
 	FIELD( _field_pad, "LKSHFDIJ", 3 ),
 	FIELD( _field_tag_reference, "hud screen reference" ),
@@ -594,8 +631,8 @@ TAG_GROUP_INHERIT(equipment, EQUIPMENT_TAG, item, ITEM_TAG)
 	FIELD( _field_tag_reference, "energy charged effect" ),
 	FIELD( _field_tag_reference, "unable to activate sound" ),
 	FIELD( _field_tag_reference, "Player sound bank#High quality player sound bank to be prefetched. Can be empty." ),
-	FIELD( _field_block, "Sound RTPCs", &EquipmentSoundRTPCBlock_block ),
-	FIELD( _field_block, "Sound Sweeteners", &EquipmentSoundSweetenerBlock_block ),
+	FIELD( _field_block, "Sound RTPCs", &EquipmentSoundRTPCBlock ),
+	FIELD( _field_block, "Sound Sweeteners", &EquipmentSoundSweetenerBlock ),
 	FIELD( _field_custom ),
 	FIELD( _field_terminator )
 };

@@ -3,7 +3,17 @@
 namespace blofeld
 {
 
-TAG_BLOCK(custom_app, k_maximum_custom_app_count)
+TAG_STRUCT(custom_app_globals_struct_definition)
+{
+	FIELD( _field_long_integer, "maximum active apps:(-1 = unlimited)" ),
+	FIELD( _field_explanation, "Update Frequency" ),
+	FIELD( _field_enum, "custom app update frequency" ),
+	FIELD( _field_pad, "wahoo", 2 ),
+	FIELD( _field_block, "custom apps", &custom_app_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(custom_app_block, k_maximum_custom_app_count)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_string_id, "headerText" ),
@@ -20,7 +30,7 @@ TAG_BLOCK(custom_app, k_maximum_custom_app_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(custom_app_damage_modifier, k_maximum_custom_app_damage_modifier_count)
+TAG_BLOCK(custom_app_damage_modifier_block, k_maximum_custom_app_damage_modifier_count)
 {
 	FIELD( _field_string_id, "damage type^" ),
 	FIELD( _field_explanation, "damage resistance" ),
@@ -28,7 +38,7 @@ TAG_BLOCK(custom_app_damage_modifier, k_maximum_custom_app_damage_modifier_count
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(custom_app_globals, CUSTOM_APP_GLOBALS_TAG)
+TAG_GROUP(custom_app_globals_block, CUSTOM_APP_GLOBALS_TAG)
 {
 	FIELD( _field_long_integer, "maximum active apps:(-1 = unlimited)" ),
 	FIELD( _field_explanation, "Update Frequency" ),

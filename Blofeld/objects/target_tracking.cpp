@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(global_target_tracking_parameters, 1)
+TAG_BLOCK(global_target_tracking_parameters_block, 1)
 {
 	FIELD( _field_block, "tracking types#specify the kinds of targets this tracking system can lock on", &tracking_type_block ),
 	FIELD( _field_real, "acquire time:s" ),
@@ -14,7 +14,7 @@ TAG_BLOCK(global_target_tracking_parameters, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(tracking_type, 16)
+TAG_BLOCK(tracking_type_block, 16)
 {
 	FIELD( _field_string_id, "tracking type^" ),
 	FIELD( _field_terminator )

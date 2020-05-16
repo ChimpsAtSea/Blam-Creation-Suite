@@ -3,6 +3,13 @@
 namespace blofeld
 {
 
+TAG_STRUCT(player_enlistment_globals_definition_struct_definition)
+{
+	FIELD( _field_explanation, "Enlistments" ),
+	FIELD( _field_block, "enlistments", &playerEnlistmentDefinitionBlock ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(playerEnlistmentDefinitionBlock, k_maximumPlayerEnlistments - 1)
 {
 	FIELD( _field_string_id, "name#the string id of the name of this enlistment" ),
@@ -23,10 +30,10 @@ TAG_BLOCK(playerEnlistmentDefinitionBlock, k_maximumPlayerEnlistments - 1)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(player_enlistment_globals_definition, PLAYER_ENLISTMENT_GLOBALS_DEFINITION_TAG)
+TAG_GROUP(player_enlistment_globals_definition_block, PLAYER_ENLISTMENT_GLOBALS_DEFINITION_TAG)
 {
 	FIELD( _field_explanation, "Enlistments" ),
-	FIELD( _field_block, "enlistments", &playerEnlistmentDefinitionBlock_block ),
+	FIELD( _field_block, "enlistments", &playerEnlistmentDefinitionBlock ),
 	FIELD( _field_terminator )
 };
 

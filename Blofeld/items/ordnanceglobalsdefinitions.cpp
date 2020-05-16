@@ -3,6 +3,24 @@
 namespace blofeld
 {
 
+TAG_STRUCT(game_globals_ordnance_list_struct_definition)
+{
+	FIELD( _field_real, "ordnance map width:world units" ),
+	FIELD( _field_real, "random ordnance fanfare duration:seconds" ),
+	FIELD( _field_tag_reference, "drop pod cleanup effect" ),
+	FIELD( _field_block, "ordnances", &GameGlobalsOrdnanceBlock ),
+	FIELD( _field_block, "ordnance remapping tables", &OrdnanceRemappingVariantBlock ),
+	FIELD( _field_real, "equipment invulnerable seconds" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(scenario_ordnance_list_struct_definition)
+{
+	FIELD( _field_block, "Random ordnance drop list", &RandomOrdnanceItemBlock ),
+	FIELD( _field_block, "Player ordnance drop groups", &PlayerOrdnanceGroupBlock ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(GameGlobalsOrdnanceBlock, k_maximumNumberOfMultiplayerOrdnanceSelections)
 {
 	FIELD( _field_string_id, "ordnance name^" ),
@@ -22,7 +40,7 @@ TAG_BLOCK(OrdnanceRemappingVariantBlock, 64)
 {
 	FIELD( _field_string_id, "name" ),
 	FIELD( _field_string, "internal name!" ),
-	FIELD( _field_block, "remappings", &OrdnanceRemappingBlock_block ),
+	FIELD( _field_block, "remappings", &OrdnanceRemappingBlock ),
 	FIELD( _field_terminator )
 };
 
@@ -41,7 +59,7 @@ TAG_BLOCK(RandomOrdnanceItemBlock, k_maximum_random_ordnance_items)
 
 TAG_BLOCK(PlayerOrdnanceGroupBlock, 3)
 {
-	FIELD( _field_block, "Player ordnance drops", &PlayerOrdnanceItemBlock_block ),
+	FIELD( _field_block, "Player ordnance drops", &PlayerOrdnanceItemBlock ),
 	FIELD( _field_terminator )
 };
 
@@ -52,21 +70,21 @@ TAG_BLOCK(PlayerOrdnanceItemBlock, 8)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(game_globals_ordnance_list, GAME_GLOBALS_ORDNANCE_LIST_TAG)
+TAG_GROUP(game_globals_ordnance_list_block, GAME_GLOBALS_ORDNANCE_LIST_TAG)
 {
 	FIELD( _field_real, "ordnance map width:world units" ),
 	FIELD( _field_real, "random ordnance fanfare duration:seconds" ),
 	FIELD( _field_tag_reference, "drop pod cleanup effect" ),
-	FIELD( _field_block, "ordnances", &GameGlobalsOrdnanceBlock_block ),
-	FIELD( _field_block, "ordnance remapping tables", &OrdnanceRemappingVariantBlock_block ),
+	FIELD( _field_block, "ordnances", &GameGlobalsOrdnanceBlock ),
+	FIELD( _field_block, "ordnance remapping tables", &OrdnanceRemappingVariantBlock ),
 	FIELD( _field_real, "equipment invulnerable seconds" ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(scenario_ordnance_list, SCENARIO_ORDNANCE_LIST_TAG)
+TAG_GROUP(scenario_ordnance_list_block, SCENARIO_ORDNANCE_LIST_TAG)
 {
-	FIELD( _field_block, "Random ordnance drop list", &RandomOrdnanceItemBlock_block ),
-	FIELD( _field_block, "Player ordnance drop groups", &PlayerOrdnanceGroupBlock_block ),
+	FIELD( _field_block, "Random ordnance drop list", &RandomOrdnanceItemBlock ),
+	FIELD( _field_block, "Player ordnance drop groups", &PlayerOrdnanceGroupBlock ),
 	FIELD( _field_terminator )
 };
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(unit_trick_definition, k_maximum_trick_definitions_per_unit)
+TAG_BLOCK(unit_trick_definition_block, k_maximum_trick_definitions_per_unit)
 {
 	FIELD( _field_string_id, "animation name^" ),
 	FIELD( _field_char_enum, "activation type" ),

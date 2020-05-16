@@ -3,21 +3,34 @@
 namespace blofeld
 {
 
-extern s_tag_block multiplayer_universal_block;
-extern s_tag_block teamDefinitionBlock_block;
-extern s_tag_block requisition_constants_block;
-extern s_tag_block requisition_palette_block;
-extern s_tag_block multiplayer_runtime_block;
-extern s_tag_block sounds_block;
-extern s_tag_block looping_sounds_block;
-extern s_tag_block multiplayer_constants_block;
-extern s_tag_block game_engine_status_response_block;
-extern s_tag_block spawn_influence_weight_falloff_function_block;
-extern s_tag_block multiplayer_color$2_block;
+extern s_tag_struct multiplayer_globals_struct_definition_struct_definition;
+
+extern s_tag_struct spawn_influence_weight_falloff_function_block_struct_definition;
+extern s_tag_block_definition spawn_influence_weight_falloff_function_block;
+extern s_tag_struct multiplayer_universal_block_struct_definition;
+extern s_tag_block_definition multiplayer_universal_block;
+extern s_tag_struct teamDefinitionBlock_struct_definition;
+extern s_tag_block_definition teamDefinitionBlock;
+extern s_tag_struct requisition_constants_block_struct_definition;
+extern s_tag_block_definition requisition_constants_block;
+extern s_tag_struct requisition_palette_block_struct_definition;
+extern s_tag_block_definition requisition_palette_block;
+extern s_tag_struct multiplayer_runtime_block_struct_definition;
+extern s_tag_block_definition multiplayer_runtime_block;
+extern s_tag_struct sounds_block_struct_definition;
+extern s_tag_block_definition sounds_block;
+extern s_tag_struct looping_sounds_block_struct_definition;
+extern s_tag_block_definition looping_sounds_block;
+extern s_tag_struct multiplayer_constants_block_struct_definition;
+extern s_tag_block_definition multiplayer_constants_block;
+extern s_tag_struct game_engine_status_response_block_struct_definition;
+extern s_tag_block_definition game_engine_status_response_block;
+extern s_tag_struct multiplayer_color_block_struct_definition;
+extern s_tag_block_definition multiplayer_color_block$3;
 
 constexpr unsigned long MULTIPLAYER_GLOBALS_TAG = 'mulg';
 
-extern s_tag_block multiplayer_globals_block;
+extern s_tag_block_definition multiplayer_globals_block;
 extern s_tag_group multiplayer_globals_group;
 } // namespace blofeld
 

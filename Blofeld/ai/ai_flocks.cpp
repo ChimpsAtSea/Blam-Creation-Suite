@@ -3,13 +3,44 @@
 namespace blofeld
 {
 
-TAG_BLOCK(flock_palette, k_max_flock_instances_per_map)
+TAG_STRUCT(flock_struct_definition)
+{
+	FIELD( _field_explanation, "Simple flocking" ),
+	FIELD( _field_real, "forward weight{forward scale}:[0..1]#weight given to boid\'s desire to fly straight ahead" ),
+	FIELD( _field_real, "leveling force weight{leveling force scale}:[0..1]#weight given to boids desire to fly level" ),
+	FIELD( _field_real, "destination weight{sink scale}:[0..1]#weight given to boid\'s desire to fly towards its sinks" ),
+	FIELD( _field_real, "average throttle:[0..1]#throttle at which boids will naturally fly" ),
+	FIELD( _field_real, "maximum throttle:[0..1]#maximum throttle applicable" ),
+	FIELD( _field_real, "movement weight threshold#The threshold of accumulated weight over which movement occurs" ),
+	FIELD( _field_real, "danger radius:wus#distance within which boids will avoid a dangerous object (e.g. the player)" ),
+	FIELD( _field_real, "danger weight{danger scale}#weight given to boid\'s desire to avoid danger" ),
+	FIELD( _field_real, "target weight{target scale}:[0..1]#weight given to boid\'s desire to attack fly after their target, if they have one" ),
+	FIELD( _field_real, "target distance:wus#distance within which we aggressively pursue a target" ),
+	FIELD( _field_real, "target delay time:seconds#amount of time we need to be locked onto a target before we might start killing it" ),
+	FIELD( _field_real, "target kill chance:chance per second#probability of killing your target in one second" ),
+	FIELD( _field_real, "ai destroy chance:chance per second#if targetted by AI, the probability of dying in one second" ),
+	FIELD( _field_explanation, "Perlin noise parameters" ),
+	FIELD( _field_real, "random offset weight{random offset scale}:[0..1]#weight given to boid\'s random heading offset" ),
+	FIELD( _field_real_bounds, "random offset period:seconds" ),
+	FIELD( _field_explanation, "Complex Flocking" ),
+	FIELD( _field_real, "neighborhood radius:world units#distance within which one boid is affected by another" ),
+	FIELD( _field_angle, "perception angle:degrees#angle-from-forward within which one boid can perceive and react to another" ),
+	FIELD( _field_real, "avoidance weight{avoidance scale}:[0..1]#weight given to boid\'s desire to avoid collisions with other boids, when within the avoidance radius" ),
+	FIELD( _field_real, "avoidance radius:world units#distance that a boid tries to maintain from another" ),
+	FIELD( _field_real, "alignment weight{alignment scale}:[0..1]#weight given to boid\'s desire to align itself with neighboring boids" ),
+	FIELD( _field_real, "position weight{position scale}:[0..1]#weight given to boid\'s desire to be near flock center" ),
+	FIELD( _field_real, "position min radius:wus#distance to flock center beyond which an attracting force is applied" ),
+	FIELD( _field_real, "position max radius:wus#distance to flock center at which the maximum attracting force is applied" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(flock_palette_block, k_max_flock_instances_per_map)
 {
 	FIELD( _field_tag_reference, "reference^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(flock_instance, k_max_flock_instances_per_map)
+TAG_BLOCK(flock_instance_block, k_max_flock_instances_per_map)
 {
 	FIELD( _field_string_id, "flock name^" ),
 	FIELD( _field_short_block_index, "flock definition" ),
@@ -33,7 +64,7 @@ TAG_BLOCK(flock_instance, k_max_flock_instances_per_map)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(flock_source, k_max_sources_per_flock)
+TAG_BLOCK(flock_source_block, k_max_sources_per_flock)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_long_flags, "source flags" ),
@@ -47,7 +78,7 @@ TAG_BLOCK(flock_source, k_max_sources_per_flock)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(flock_destination, k_max_destinations_per_flock)
+TAG_BLOCK(flock_destination_block, k_max_destinations_per_flock)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_long_enum, "type^" ),
@@ -59,7 +90,7 @@ TAG_BLOCK(flock_destination, k_max_destinations_per_flock)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(flock, FLOCK_TAG)
+TAG_GROUP(flock_block, FLOCK_TAG)
 {
 	FIELD( _field_explanation, "Simple flocking" ),
 	FIELD( _field_real, "forward weight{forward scale}:[0..1]#weight given to boid\'s desire to fly straight ahead" ),

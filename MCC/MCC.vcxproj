@@ -45,14 +45,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>

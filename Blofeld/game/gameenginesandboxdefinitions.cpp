@@ -3,14 +3,14 @@
 namespace blofeld
 {
 
-TAG_BLOCK(forge_color, k_forge_named_color_count)
+TAG_BLOCK(forge_color_block, k_forge_named_color_count)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_real_rgb_color, "color" ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(forge_globals, FORGE_GLOBALS_TAG)
+TAG_GROUP(forge_globals_block, FORGE_GLOBALS_TAG)
 {
 	FIELD( _field_block, "forge colors", &forge_color_block ),
 	FIELD( _field_explanation, "Magnets" ),

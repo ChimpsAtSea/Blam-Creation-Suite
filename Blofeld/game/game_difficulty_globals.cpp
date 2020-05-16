@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(difficulty, 1)
+TAG_BLOCK(difficulty_block, 1)
 {
 	FIELD( _field_explanation, "health" ),
 	FIELD( _field_real, "easy enemy damage#enemy damage multiplier on easy difficulty" ),
@@ -130,7 +130,7 @@ TAG_BLOCK(difficulty, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(coop_difficulty, 1)
+TAG_BLOCK(coop_difficulty_block, 1)
 {
 	FIELD( _field_explanation, "vitality" ),
 	FIELD( _field_real, "two-player shield recharge delay#multiplier on enemy shield recharge delay with two coop players" ),

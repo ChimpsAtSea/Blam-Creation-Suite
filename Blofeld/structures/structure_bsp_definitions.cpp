@@ -3,14 +3,46 @@
 namespace blofeld
 {
 
-TAG_BLOCK(structure_edge_to_seam_edge_mapping, ((true) ? 2621440 : UNSIGNED_SHORT_MAX))
+TAG_STRUCT(prefab_struct_definition)
+{
+	FIELD( _field_tag_reference, "bsp reference" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(structure_bsp_resource_interface)
+{
+	FIELD( _field_block, "raw_resources", &structure_bsp_raw_resources ),
+	FIELD( _field_pageable, "tag_resources" ),
+	FIELD( _field_pageable, "cache_file_resources" ),
+	FIELD( _field_long_integer, "use resource items*" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(structure_bsp_cluster_portal_oriented_bounds_block)
+{
+	FIELD( _field_real_point_3d, "center*!" ),
+	FIELD( _field_real_vector_3d, "extents*!" ),
+	FIELD( _field_real_quaternion, "orientation*!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(structure_bsp_resource_struct)
+{
+	FIELD( _field_block, "collision bsp*", &global_collision_bsp_block ),
+	FIELD( _field_block, "large collision bsp*", &global_large_collision_bsp_block ),
+	FIELD( _field_block, "instanced geometries definitions*", &structure_bsp_instanced_geometry_definition_block ),
+	FIELD( _field_block, "Havok Data*", &structureIOHavokDataBlock ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(structure_edge_to_seam_edge_mapping_block, ((true) ? 2621440 : UNSIGNED_SHORT_MAX))
 {
 	FIELD( _field_short_integer, "seam_index*!" ),
 	FIELD( _field_short_integer, "seam_edge_index*!" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_collision_materials, MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE)
+TAG_BLOCK(structure_collision_materials_block, MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE)
 {
 	FIELD( _field_tag_reference, "render method{old shader}*^" ),
 	FIELD( _field_string_id, "override material name" ),
@@ -21,13 +53,13 @@ TAG_BLOCK(structure_collision_materials, MAXIMUM_COLLISION_MATERIALS_PER_STRUCTU
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_leaf, ((true) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))))
+TAG_BLOCK(structure_bsp_leaf_block, ((true) ? 16*((1<<(k_bsp3d_node_child_index_bits-1))) : ((1<<(k_bsp3d_node_child_index_bits-1)))))
 {
 	FIELD( _field_byte_integer, "cluster*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_super_node_aabbs, (k_bsp3d_maximum_super_node_count)*k_super_node_child_indices_count)
+TAG_BLOCK(structure_super_node_aabbs_block, (k_bsp3d_maximum_super_node_count)*k_super_node_child_indices_count)
 {
 	FIELD( _field_real, "x0" ),
 	FIELD( _field_real, "x1" ),
@@ -38,7 +70,7 @@ TAG_BLOCK(structure_super_node_aabbs, (k_bsp3d_maximum_super_node_count)*k_super
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(super_node_mappings, (k_bsp3d_maximum_super_node_count))
+TAG_BLOCK(super_node_mappings_block, (k_bsp3d_maximum_super_node_count))
 {
 	FIELD( _field_short_integer, "parent_super_node_index!*" ),
 	FIELD( _field_char_integer, "parent_internal_node_index!*" ),
@@ -52,41 +84,41 @@ TAG_BLOCK(super_node_mappings, (k_bsp3d_maximum_super_node_count))
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(super_node_recursable_masks, (k_bsp3d_maximum_super_node_count))
+TAG_BLOCK(super_node_recursable_masks_block, (k_bsp3d_maximum_super_node_count))
 {
 	FIELD( _field_short_integer, "mask!*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_super_node_traversal_geometry, k_short_max)
+TAG_BLOCK(structure_super_node_traversal_geometry_block, k_short_max)
 {
 	FIELD( _field_block, "portal_indices!*", &structure_super_node_traversal_geometry_indices_block ),
 	FIELD( _field_block, "seam_indices!*", &structure_super_node_traversal_geometry_indices_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_super_node_traversal_geometry_indices, ((MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)>(k_structure_seam_maximum_seam_count)?(MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE):(k_structure_seam_maximum_seam_count)))
+TAG_BLOCK(structure_super_node_traversal_geometry_indices_block, ((MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)>(k_structure_seam_maximum_seam_count)?(MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE):(k_structure_seam_maximum_seam_count)))
 {
 	FIELD( _field_short_integer, "index!*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_surface, ((true) ? SHORT_MAX<<3 : SHORT_MAX))
+TAG_BLOCK(structure_surface_block, ((true) ? SHORT_MAX<<3 : SHORT_MAX))
 {
 	FIELD( _field_long_integer, "first_structure_surface_to_triangle_mapping_index*" ),
 	FIELD( _field_long_integer, "structure_surface_to_triangle_mapping_count*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_surface_to_triangle_mapping, (8*((true) ? SHORT_MAX<<3 : SHORT_MAX)))
+TAG_BLOCK(structure_surface_to_triangle_mapping_block, (8*((true) ? SHORT_MAX<<3 : SHORT_MAX)))
 {
 	FIELD( _field_dword_integer, "manual byteswarp1*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_cluster_portal, MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)
+TAG_BLOCK(structure_bsp_cluster_portal_block, MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)
 {
-	FIELD( _field_struct, "oriented bounds" ),
+	FIELD( _field_struct, "oriented bounds", &structure_bsp_cluster_portal_oriented_bounds_block_struct_definition ),
 	FIELD( _field_short_integer, "back cluster*" ),
 	FIELD( _field_short_integer, "front cluster*" ),
 	FIELD( _field_long_integer, "plane index*" ),
@@ -97,13 +129,13 @@ TAG_BLOCK(structure_bsp_cluster_portal, MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_cluster_portal_vertex, MAXIMUM_VERTICES_PER_CLUSTER_PORTAL)
+TAG_BLOCK(structure_bsp_cluster_portal_vertex_block, MAXIMUM_VERTICES_PER_CLUSTER_PORTAL)
 {
 	FIELD( _field_real_point_3d, "point*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_detail_object_data, 1)
+TAG_BLOCK(structure_bsp_detail_object_data_block, 1)
 {
 	FIELD( _field_block, "cells", &global_detail_object_cells_block ),
 	FIELD( _field_block, "instances", &global_detail_object_block ),
@@ -114,7 +146,7 @@ TAG_BLOCK(structure_bsp_detail_object_data, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_cluster, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+TAG_BLOCK(structure_bsp_cluster_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 {
 	FIELD( _field_explanation, "CLUSTER INFO" ),
 	FIELD( _field_real_bounds, "bounds x*" ),
@@ -134,47 +166,47 @@ TAG_BLOCK(structure_bsp_cluster, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	FIELD( _field_block, "portals*", &structure_bsp_cluster_portal_index_block ),
 	FIELD( _field_short_integer, "mesh index*" ),
 	FIELD( _field_short_integer, "instance imposter cluster mopp index" ),
-	FIELD( _field_block, "seam indices*!", &seam_indices_block ),
+	FIELD( _field_block, "seam indices*!", &seam_indices_block_definition ),
 	FIELD( _field_block, "decorator groups*", &decorator_runtime_cluster_block ),
 	FIELD( _field_block, "cheap light marker refs*", &cheap_light_marker_ref_block ),
 	FIELD( _field_block, "pvs bound object identifiers*!", &pvs_bound_object_identifiers_block ),
 	FIELD( _field_block, "pvs bound object references*!", &pvs_bound_object_references_block ),
-	FIELD( _field_block, "cluster cubemaps", &structure_cluster_cubemap_block ),
+	FIELD( _field_block, "cluster cubemaps", &structure_cluster_cubemap ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_cluster_portal_index, MAXIMUM_CLUSTER_PORTALS_PER_CLUSTER)
+TAG_BLOCK(structure_bsp_cluster_portal_index_block, MAXIMUM_CLUSTER_PORTALS_PER_CLUSTER)
 {
 	FIELD( _field_short_integer, "portal index*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(seam_indices, k_structure_seam_maximum_seam_count)
+TAG_BLOCK(seam_indices_block_definition, k_structure_seam_maximum_seam_count)
 {
 	FIELD( _field_char_integer, "seam index*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(cheap_light_marker_ref, MAXIMUM_MARKERS_PER_STRUCTURE)
+TAG_BLOCK(cheap_light_marker_ref_block, MAXIMUM_MARKERS_PER_STRUCTURE)
 {
 	FIELD( _field_short_block_index, "cheap light reference reference" ),
 	FIELD( _field_pad, "WHATIZZIT", 2 ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(pvs_bound_object_identifiers, k_maximum_scenario_object_datum_count)
+TAG_BLOCK(pvs_bound_object_identifiers_block, k_maximum_scenario_object_datum_count)
 {
-	FIELD( _field_struct, "object ID*!" ),
+	FIELD( _field_struct, "object ID*!", &scenario_object_id_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(pvs_bound_object_references, k_maximum_scenario_object_datum_count)
+TAG_BLOCK(pvs_bound_object_references_block, k_maximum_scenario_object_datum_count)
 {
-	FIELD( _field_struct, "scenario object reference*!" ),
+	FIELD( _field_struct, "scenario object reference*!", &scenario_object_reference_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_material_lighting_info, SHORT_MAX)
+TAG_BLOCK(structure_material_lighting_info_block, SHORT_MAX)
 {
 	FIELD( _field_real, "emissive power" ),
 	FIELD( _field_real_rgb_color, "emissive color" ),
@@ -187,13 +219,13 @@ TAG_BLOCK(structure_material_lighting_info, SHORT_MAX)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_sky_owner_cluster, MAXIMUM_SKIES_PER_SCENARIO)
+TAG_BLOCK(structure_bsp_sky_owner_cluster_block, MAXIMUM_SKIES_PER_SCENARIO)
 {
 	FIELD( _field_short_integer, "cluster owner*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_conveyor_surface, MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE)
+TAG_BLOCK(structure_bsp_conveyor_surface_block, MAXIMUM_COLLISION_MATERIALS_PER_STRUCTURE)
 {
 	FIELD( _field_real_vector_3d, "u" ),
 	FIELD( _field_real_vector_3d, "v" ),
@@ -203,12 +235,12 @@ TAG_BLOCK(structure_bsp_conveyor_surface, MAXIMUM_COLLISION_MATERIALS_PER_STRUCT
 TAG_BLOCK(structure_cookie_cutter_definition, k_kilo)
 {
 	FIELD( _field_custom, "Cookie Cutter" ),
-	FIELD( _field_struct, "collision model" ),
+	FIELD( _field_struct, "collision model", &global_collision_bsp_struct_struct_definition ),
 	FIELD( _field_custom ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_marker, MAXIMUM_MARKERS_PER_STRUCTURE)
+TAG_BLOCK(structure_bsp_marker_block, MAXIMUM_MARKERS_PER_STRUCTURE)
 {
 	FIELD( _field_char_enum, "marker type*" ),
 	FIELD( _field_pad, "pad", 3 ),
@@ -230,11 +262,11 @@ TAG_BLOCK(structure_bsp_marker_light_index, MAXIMUM_MARKERS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_runtime_decal, MAXIMUM_DECALS_PER_STRUCTURE)
+TAG_BLOCK(structure_bsp_runtime_decal_block, MAXIMUM_DECALS_PER_STRUCTURE)
 {
 	FIELD( _field_short_integer, "decal palette index!" ),
 	FIELD( _field_pad, "post-decal-palette-index-pad", 2 ),
-	FIELD( _field_struct, "manual bsp flags" ),
+	FIELD( _field_struct, "manual bsp flags", &manualBspFlagsReferences_struct_definition ),
 	FIELD( _field_real_quaternion, "rotation*" ),
 	FIELD( _field_real_point_3d, "position*" ),
 	FIELD( _field_real, "scale_x(scale}*" ),
@@ -243,7 +275,7 @@ TAG_BLOCK(structure_bsp_runtime_decal, MAXIMUM_DECALS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_environment_object_palette, MAXIMUM_ENVIRONMENT_OBJECT_PALETTE_ENTRIES_PER_STRUCTURE)
+TAG_BLOCK(structure_bsp_environment_object_palette_block, MAXIMUM_ENVIRONMENT_OBJECT_PALETTE_ENTRIES_PER_STRUCTURE)
 {
 	FIELD( _field_tag_reference, "definition^" ),
 	FIELD( _field_tag_reference, "model" ),
@@ -251,7 +283,7 @@ TAG_BLOCK(structure_bsp_environment_object_palette, MAXIMUM_ENVIRONMENT_OBJECT_P
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_environment_object, MAXIMUM_ENVIRONMENT_OBJECTS_PER_STRUCTURE)
+TAG_BLOCK(structure_bsp_environment_object_block, MAXIMUM_ENVIRONMENT_OBJECTS_PER_STRUCTURE)
 {
 	FIELD( _field_string, "name^" ),
 	FIELD( _field_real_quaternion, "rotation" ),
@@ -274,7 +306,7 @@ TAG_BLOCK(structure_instance_cluster_definition, k_maximum_cluster_to_instance_g
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(index_list, 4 * k_kilo)
+TAG_BLOCK(index_list_block, 4 * k_kilo)
 {
 	FIELD( _field_word_integer, "index" ),
 	FIELD( _field_terminator )
@@ -293,7 +325,7 @@ TAG_BLOCK(structure_instance_group_definition, 4 * k_kilo)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_instance_imposter_info, k_maximum_instance_geometry_instances_per_structure_bsp)
+TAG_BLOCK(structure_instance_imposter_info_block, k_maximum_instance_geometry_instances_per_structure_bsp)
 {
 	FIELD( _field_string_id, "name" ),
 	FIELD( _field_char_integer, "imposter policy" ),
@@ -302,13 +334,13 @@ TAG_BLOCK(structure_instance_imposter_info, k_maximum_instance_geometry_instance
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(runtime_decorator_set, MAXIMUM_DECORATOR_SETS_PER_SCENARIO)
+TAG_BLOCK(runtime_decorator_set_block, MAXIMUM_DECORATOR_SETS_PER_SCENARIO)
 {
 	FIELD( _field_tag_reference, "decorator set reference*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(bsp_preplaced_decal_set_reference, MAXIMUM_DECALS_PER_STRUCTURE)
+TAG_BLOCK(bsp_preplaced_decal_set_reference_block, MAXIMUM_DECALS_PER_STRUCTURE)
 {
 	FIELD( _field_long_integer, "decal definition index!" ),
 	FIELD( _field_char_integer, "location bsp 0!" ),
@@ -325,7 +357,7 @@ TAG_BLOCK(bsp_preplaced_decal_set_reference, MAXIMUM_DECALS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(bsp_preplaced_decal_reference, MAXIMUM_DECALS_PER_STRUCTURE)
+TAG_BLOCK(bsp_preplaced_decal_reference_block, MAXIMUM_DECALS_PER_STRUCTURE)
 {
 	FIELD( _field_short_integer, "index start" ),
 	FIELD( _field_short_integer, "index count" ),
@@ -338,7 +370,7 @@ TAG_BLOCK(bsp_preplaced_decal_reference, MAXIMUM_DECALS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(transparent_planes, 32*k_kilo)
+TAG_BLOCK(transparent_planes_block, 32*k_kilo)
 {
 	FIELD( _field_short_integer, "section index" ),
 	FIELD( _field_short_integer, "part index" ),
@@ -346,7 +378,7 @@ TAG_BLOCK(transparent_planes, 32*k_kilo)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_debug_info, 1)
+TAG_BLOCK(structure_bsp_debug_info_block, 1)
 {
 	FIELD( _field_pad, "BRQYEF", 64 ),
 	FIELD( _field_block, "clusters*", &structure_bsp_cluster_debug_info_block ),
@@ -355,7 +387,7 @@ TAG_BLOCK(structure_bsp_debug_info, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_cluster_debug_info, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+TAG_BLOCK(structure_bsp_cluster_debug_info_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 {
 	FIELD( _field_word_flags, "errors*" ),
 	FIELD( _field_word_flags, "warnings*" ),
@@ -368,7 +400,7 @@ TAG_BLOCK(structure_bsp_cluster_debug_info, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_debug_info_render_line, SHORT_MAX)
+TAG_BLOCK(structure_bsp_debug_info_render_line_block, SHORT_MAX)
 {
 	FIELD( _field_enum, "type*" ),
 	FIELD( _field_short_integer, "code*" ),
@@ -379,13 +411,13 @@ TAG_BLOCK(structure_bsp_debug_info_render_line, SHORT_MAX)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_debug_info_indices, SHORT_MAX)
+TAG_BLOCK(structure_bsp_debug_info_indices_block, SHORT_MAX)
 {
 	FIELD( _field_long_integer, "index*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_fog_plane_debug_info, MAXIMUM_FOG_PLANES_PER_STRUCTURE)
+TAG_BLOCK(structure_bsp_fog_plane_debug_info_block, MAXIMUM_FOG_PLANES_PER_STRUCTURE)
 {
 	FIELD( _field_long_integer, "fog zone index*" ),
 	FIELD( _field_pad, "WZGH", 24 ),
@@ -396,7 +428,7 @@ TAG_BLOCK(structure_bsp_fog_plane_debug_info, MAXIMUM_FOG_PLANES_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_fog_zone_debug_info, MAXIMUM_FOG_ZONES_PER_STRUCTURE)
+TAG_BLOCK(structure_bsp_fog_zone_debug_info_block, MAXIMUM_FOG_ZONES_PER_STRUCTURE)
 {
 	FIELD( _field_long_integer, "media index:scenario fog plane*" ),
 	FIELD( _field_long_integer, "base fog plane index*" ),
@@ -408,7 +440,7 @@ TAG_BLOCK(structure_bsp_fog_zone_debug_info, MAXIMUM_FOG_ZONES_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(widget_reference, MAXIMUM_MARKERS_PER_STRUCTURE)
+TAG_BLOCK(widget_reference_block, MAXIMUM_MARKERS_PER_STRUCTURE)
 {
 	FIELD( _field_short_integer, "marker index*" ),
 	FIELD( _field_pad, "gnlao", 2 ),
@@ -416,7 +448,7 @@ TAG_BLOCK(widget_reference, MAXIMUM_MARKERS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(cheap_light_reference, MAXIMUM_MARKERS_PER_STRUCTURE)
+TAG_BLOCK(cheap_light_reference_block, MAXIMUM_MARKERS_PER_STRUCTURE)
 {
 	FIELD( _field_short_integer, "marker index*" ),
 	FIELD( _field_pad, "ldajk", 2 ),
@@ -424,7 +456,13 @@ TAG_BLOCK(cheap_light_reference, MAXIMUM_MARKERS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_external_instanced_geometry_references, k_external_instanced_geometry_max)
+TAG_BLOCK(structure_bsp_raw_resources, 1)
+{
+	FIELD( _field_struct, "raw_items", &structure_bsp_resource_struct_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(structure_external_instanced_geometry_references_block, k_external_instanced_geometry_max)
 {
 	FIELD( _field_tag_reference, "prefab reference" ),
 	FIELD( _field_string_id, "name*^" ),
@@ -454,7 +492,7 @@ TAG_BLOCK(structure_external_instanced_geometry_references, k_external_instanced
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(structure_bsp_obb_volume, 4096)
+TAG_BLOCK(structure_bsp_obb_volume_block, 4096)
 {
 	FIELD( _field_real_point_3d, "origin" ),
 	FIELD( _field_real_vector_3d, "axis 1" ),
@@ -493,16 +531,16 @@ TAG_BLOCK(structureMetadataLightConeMarkerBlock, MAXIMUM_MARKERS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(prefab, PREFAB_TAG)
+TAG_GROUP(prefab_block, PREFAB_TAG)
 {
 	FIELD( _field_tag_reference, "bsp reference" ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(scenario_structure_bsp, SCENARIO_STRUCTURE_BSP_TAG)
+TAG_GROUP(scenario_structure_bsp_block, SCENARIO_STRUCTURE_BSP_TAG)
 {
-	FIELD( _field_struct, "build identifier*" ),
-	FIELD( _field_struct, "parent build identifier*" ),
+	FIELD( _field_struct, "build identifier*", &structure_manifest_build_identifier_struct_struct_definition ),
+	FIELD( _field_struct, "parent build identifier*", &structure_manifest_build_identifier_struct_struct_definition ),
 	FIELD( _field_long_integer, "import info checksum*" ),
 	FIELD( _field_tag_reference, "structure lighting_info^" ),
 	FIELD( _field_long_integer, "import version*!" ),
@@ -519,7 +557,7 @@ TAG_GROUP(scenario_structure_bsp, SCENARIO_STRUCTURE_BSP_TAG)
 	FIELD( _field_block, "super node parent mappings*!", &super_node_mappings_block ),
 	FIELD( _field_block, "super node recursable_masks*!", &super_node_recursable_masks_block ),
 	FIELD( _field_block, "structure_super_node_traversal_geometry_block*!", &structure_super_node_traversal_geometry_block ),
-	FIELD( _field_struct, "instance kd hierarchy!" ),
+	FIELD( _field_struct, "instance kd hierarchy!", &collision_kd_hierarchy_static_struct_struct_definition ),
 	FIELD( _field_real_bounds, "world bounds x*" ),
 	FIELD( _field_real_bounds, "world bounds y*" ),
 	FIELD( _field_real_bounds, "world bounds z*" ),
@@ -534,12 +572,12 @@ TAG_GROUP(scenario_structure_bsp, SCENARIO_STRUCTURE_BSP_TAG)
 	FIELD( _field_block, "conveyor surfaces*", &structure_bsp_conveyor_surface_block ),
 	FIELD( _field_block, "breakable surface sets*", &breakable_surface_set_block ),
 	FIELD( _field_block, "pathfinding data", &pathfinding_data_block ),
-	FIELD( _field_block, "cookie cutters", &structure_cookie_cutter_definition_block ),
-	FIELD( _field_block, "acoustics palette", &scenario_acoustics_palette_block ),
+	FIELD( _field_block, "cookie cutters", &structure_cookie_cutter_definition ),
+	FIELD( _field_block, "acoustics palette", &scenario_acoustics_palette_block_definition ),
 	FIELD( _field_data, "sound PAS data*" ),
 	FIELD( _field_block, "markers*", &structure_bsp_marker_block ),
-	FIELD( _field_block, "marker light palette*", &structure_bsp_marker_light_palette_block ),
-	FIELD( _field_block, "marker light palette index*", &structure_bsp_marker_light_index_block ),
+	FIELD( _field_block, "marker light palette*", &structure_bsp_marker_light_palette ),
+	FIELD( _field_block, "marker light palette index*", &structure_bsp_marker_light_index ),
 	FIELD( _field_block, "runtime decals*", &structure_bsp_runtime_decal_block ),
 	FIELD( _field_block, "(DEPRECATED) environment object palette*", &structure_bsp_environment_object_palette_block ),
 	FIELD( _field_block, "(DEPRECATED) environment objects*", &structure_bsp_environment_object_block ),
@@ -549,8 +587,8 @@ TAG_GROUP(scenario_structure_bsp, SCENARIO_STRUCTURE_BSP_TAG)
 	FIELD( _field_block, "errors*", &global_error_report_categories_block ),
 	FIELD( _field_block, "cluster to instance group mopps", &mopp_code_definition_block ),
 	FIELD( _field_block, "instance group to instance mopps", &mopp_code_definition_block ),
-	FIELD( _field_block, "cluster to instance group spheres", &structure_instance_cluster_definition_block ),
-	FIELD( _field_block, "instance group to instance spheres", &structure_instance_group_definition_block ),
+	FIELD( _field_block, "cluster to instance group spheres", &structure_instance_cluster_definition ),
+	FIELD( _field_block, "instance group to instance spheres", &structure_instance_group_definition ),
 	FIELD( _field_block, "instanced geometry instances*", &structure_bsp_instanced_geometry_instances_block ),
 	FIELD( _field_block, "instanced geometry instance names*", &structure_bsp_instanced_geometry_instances_names_block ),
 	FIELD( _field_tag_reference, "instance imposters" ),
@@ -558,30 +596,30 @@ TAG_GROUP(scenario_structure_bsp, SCENARIO_STRUCTURE_BSP_TAG)
 	FIELD( _field_long_integer, "Instance Geometry Tag Instance Count!" ),
 	FIELD( _field_custom, "decorator info" ),
 	FIELD( _field_block, "decorator sets*", &runtime_decorator_set_block ),
-	FIELD( _field_struct, "decorator instance buffer!*" ),
+	FIELD( _field_struct, "decorator instance buffer!*", &global_render_geometry_struct_struct_definition ),
 	FIELD( _field_custom ),
 	FIELD( _field_custom, "decals info" ),
 	FIELD( _field_block, "preplaced decal sets*", &bsp_preplaced_decal_set_reference_block ),
 	FIELD( _field_block, "preplaced decals*", &bsp_preplaced_decal_reference_block ),
-	FIELD( _field_struct, "preplaced decal geometry!*" ),
+	FIELD( _field_struct, "preplaced decal geometry!*", &global_render_geometry_struct_struct_definition ),
 	FIELD( _field_custom ),
 	FIELD( _field_block, "acoustics sound clusters!", &structure_bsp_sound_cluster_block ),
 	FIELD( _field_block, "transparent planes*", &transparent_planes_block ),
 	FIELD( _field_block, "debug info*", &structure_bsp_debug_info_block ),
-	FIELD( _field_struct, "structure_physics*" ),
-	FIELD( _field_struct, "render geometry*" ),
+	FIELD( _field_struct, "structure_physics*", &global_structure_physics_struct_struct_definition ),
+	FIELD( _field_struct, "render geometry*", &global_render_geometry_struct_struct_definition ),
 	FIELD( _field_block, "widget references", &widget_reference_block ),
 	FIELD( _field_block, "cheap light references", &cheap_light_reference_block ),
-	FIELD( _field_struct, "resource interface" ),
+	FIELD( _field_struct, "resource interface", &structure_bsp_resource_interface_struct_definition ),
 	FIELD( _field_custom, "Any Platform Temporary Storage" ),
-	FIELD( _field_block, "Any Platform Temp Havok Data*!", &structureIOHavokDataBlock_block ),
+	FIELD( _field_block, "Any Platform Temp Havok Data*!", &structureIOHavokDataBlock ),
 	FIELD( _field_custom ),
 	FIELD( _field_block, "external references", &structure_external_instanced_geometry_references_block ),
 	FIELD( _field_tag_reference, "dependencies" ),
 	FIELD( _field_long_integer, "base material count*!" ),
 	FIELD( _field_block, "obb volume list", &structure_bsp_obb_volume_block ),
 	FIELD( _field_block, "scripted dependencies", &hs_references_block ),
-	FIELD( _field_block, "pupAnimations*!", &AnimGraphDependencyBlock_block ),
+	FIELD( _field_block, "pupAnimations*!", &AnimGraphDependencyBlock ),
 	FIELD( _field_terminator )
 };
 

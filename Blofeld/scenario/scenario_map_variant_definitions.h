@@ -3,9 +3,18 @@
 namespace blofeld
 {
 
-extern s_tag_block map_variant_palette_block;
-extern s_tag_block map_variant_palette_entry_block;
-extern s_tag_block map_variant_object_variant_block;
+extern s_tag_struct mapVariantResourceManifest_struct_definition;
+
+extern s_tag_struct map_variant_palette_block_struct_definition;
+extern s_tag_block_definition map_variant_palette_block;
+extern s_tag_struct map_variant_palette_entry_block_struct_definition;
+extern s_tag_block_definition map_variant_palette_entry_block;
+extern s_tag_struct map_variant_object_variant_block_struct_definition;
+extern s_tag_block_definition map_variant_object_variant_block;
+extern s_tag_struct mapVariantPaletteDependencyBlock_struct_definition;
+extern s_tag_block_definition mapVariantPaletteDependencyBlock;
+extern s_tag_struct resourceHandleBlock_struct_definition;
+extern s_tag_block_definition resourceHandleBlock;
 
 } // namespace blofeld
 

@@ -3,7 +3,16 @@
 namespace blofeld
 {
 
-TAG_BLOCK(game_engine_event, k_maximum_game_engine_event_responses)
+TAG_STRUCT(sound_response_definition_struct)
+{
+	FIELD( _field_byte_flags, "sound flags" ),
+	FIELD( _field_pad, "AGQD", 3 ),
+	FIELD( _field_tag_reference, "sound{english sound}^" ),
+	FIELD( _field_real, "probability#Ignored for the default sound - used for sound permutation block entries only." ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(game_engine_event_block, k_maximum_game_engine_event_responses)
 {
 	FIELD( _field_string_id, "name{incident}^" ),
 	FIELD( _field_char_enum, "audience^" ),
@@ -16,7 +25,7 @@ TAG_BLOCK(game_engine_event, k_maximum_game_engine_event_responses)
 	FIELD( _field_string_id, "primary string#This string can use a bunch of neat tokens for substitution of runtime data (e.g. player names).  See an engineer for more info." ),
 	FIELD( _field_long_integer, "primary string duration:seconds" ),
 	FIELD( _field_real, "sound delay (announcer only)#After we commit to playing this sound, wait this long to actually play it.  Used to control announcer cadence." ),
-	FIELD( _field_struct, "default_sound" ),
+	FIELD( _field_struct, "default_sound", &sound_response_definition_struct_struct_definition ),
 	FIELD( _field_explanation, "SOUND PRIORITIZATION" ),
 	FIELD( _field_string_id, "category_for_prioritization#which family does this response live in for announcer-spew-suppression\?  e.g. all multi-kills should use the same string_id here." ),
 	FIELD( _field_long_integer, "sound priority#higher numbers mean more important" ),
@@ -29,9 +38,9 @@ TAG_BLOCK(game_engine_event, k_maximum_game_engine_event_responses)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_response_definition, 10)
+TAG_BLOCK(sound_response_definition_block, 10)
 {
-	FIELD( _field_struct, "sound_response_definition_struct" ),
+	FIELD( _field_struct, "sound_response_definition_struct", &sound_response_definition_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 

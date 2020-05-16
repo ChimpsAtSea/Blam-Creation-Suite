@@ -3,7 +3,6 @@
 #pragma warning( push )
 #pragma warning( disable : 4312 ) // warning C4312: 'type cast': conversion from 'A' to 'void *' of greater size
 
-
 namespace blofeld
 {
 	constexpr unsigned long INVALID_TAG = 0xFFFFFFFF;
@@ -230,14 +229,47 @@ namespace blofeld
 		return nullptr;
 	}
 
-	struct s_tag_group;
-	struct s_tag_block;
-	struct s_tag_struct;
+	struct s_tag_field;
+
+	struct s_tag_struct
+	{
+		const char* const name;
+		const char* const display_name;
+		GUID const guid;
+		const s_tag_field* const tag_fields;
+	};
+
+	struct s_tag_block_definition
+	{
+		const char* const name;
+		const char* const display_name;
+		const char* const filename;
+		int32_t const line;
+		unsigned long const max_count;
+		const char* const max_count_string;
+		const s_tag_struct& tag_struct;
+	};
+
+	struct s_tag_group
+	{
+		const char* const name;
+		unsigned long const group_tag;
+		unsigned long const parent_group_tag;
+		const s_tag_block_definition& block;
+		const s_tag_group* const parent_tag_group;
+	};
+
+	struct s_tag_reference
+	{
+		unsigned long const flags;
+		unsigned long const group_tag;
+		const unsigned long* const group_tags;
+	};
 
 	s_tag_group* get_tag_group_by_group_tag(uint32_t group_tag);
-	struct s_tag_block_validation_data
+	struct s_tag_block_definition_validation_data
 	{
-		const s_tag_block& tag_block;
+		const s_tag_block_definition& tag_block;
 		uint32_t size;
 	};
 
@@ -250,7 +282,7 @@ namespace blofeld
 		union
 		{
 			void* const value1;
-			const s_tag_block* const tag_block;
+			const s_tag_block_definition* const tag_block;
 			const s_tag_struct* const tag_struct;
 			uint32_t padding;
 			uint32_t length;
@@ -338,41 +370,6 @@ namespace blofeld
 		{
 
 		}
-	};
-
-	struct s_tag_struct
-	{
-		const char* const name;
-		const char* const display_name;
-		GUID const guid;
-		const s_tag_field* const tag_fields;
-	};
-
-	struct s_tag_block
-	{
-		const char* const name;
-		const char* const display_name;
-		const char* const filename;
-		int32_t const line;
-		unsigned long const max_count;
-		const char* const max_count_string;
-		const s_tag_struct& tag_struct;
-	};
-
-	struct s_tag_group
-	{
-		const char* const name;
-		unsigned long const group_tag;
-		unsigned long const parent_group_tag;
-		const s_tag_block& block;
-		const s_tag_group* const parent_tag_group;
-	};
-
-	struct s_tag_reference
-	{
-		unsigned long const flags;
-		unsigned long const group_tag;
-		const unsigned long* const group_tags;
 	};
 
 #pragma warning( pop )

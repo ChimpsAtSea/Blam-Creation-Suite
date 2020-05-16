@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(campaign_metagame_bucket, 1)
+TAG_BLOCK(campaign_metagame_bucket_block, 1)
 {
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_char_enum, "type" ),
@@ -14,7 +14,7 @@ TAG_BLOCK(campaign_metagame_bucket, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(campaign_metagame_globals, 1)
+TAG_BLOCK(campaign_metagame_globals_block, 1)
 {
 	FIELD( _field_block, "styles", &campaign_metagame_style_type_block ),
 	FIELD( _field_block, "difficulty", &campaign_metagame_difficulty_scale_block ),
@@ -27,33 +27,33 @@ TAG_BLOCK(campaign_metagame_globals, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(campaign_metagame_style_type, 100)
+TAG_BLOCK(campaign_metagame_style_type_block, 100)
 {
 	FIELD( _field_string_id, "incident name^" ),
 	FIELD( _field_real, "style multiplier" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(campaign_metagame_difficulty_scale, k_campaign_difficulty_levels_count)
+TAG_BLOCK(campaign_metagame_difficulty_scale_block, k_campaign_difficulty_levels_count)
 {
 	FIELD( _field_real, "difficulty multiplier" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(campaign_metagame_skull, k_game_skull_count)
+TAG_BLOCK(campaign_metagame_skull_block, k_game_skull_count)
 {
 	FIELD( _field_real, "difficulty multiplier" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(campaign_metagame_scenario, 1)
+TAG_BLOCK(campaign_metagame_scenario_block, 1)
 {
 	FIELD( _field_real, "par score" ),
 	FIELD( _field_block, "time bonuses", &campaign_metagame_scenario_bonuses_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(campaign_metagame_scenario_bonuses, k_maximum_campaign_metagame_scenario_completion_bonus_count)
+TAG_BLOCK(campaign_metagame_scenario_bonuses_block, k_maximum_campaign_metagame_scenario_completion_bonus_count)
 {
 	FIELD( _field_real, "time#if you finish in under this time you get the following bonus" ),
 	FIELD( _field_real, "score multiplier" ),

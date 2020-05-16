@@ -3,12 +3,12 @@
 namespace blofeld
 {
 
-TAG_BLOCK(structure_bsp_sound_cluster, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+TAG_BLOCK(structure_bsp_sound_cluster_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 {
 	FIELD( _field_short_integer, "palette index!" ),
 	FIELD( _field_pad, "HRSFKJT", 2 ),
-	FIELD( _field_block, "enclosing portal designators", &structure_sound_cluster_portal_designators_block ),
-	FIELD( _field_block, "interior cluster indices", &structure_sound_cluster_interior_cluster_indices_block ),
+	FIELD( _field_block, "enclosing portal designators", &structure_sound_cluster_portal_designators ),
+	FIELD( _field_block, "interior cluster indices", &structure_sound_cluster_interior_cluster_indices ),
 	FIELD( _field_terminator )
 };
 

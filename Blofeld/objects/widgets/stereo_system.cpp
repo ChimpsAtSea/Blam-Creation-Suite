@@ -3,7 +3,13 @@
 namespace blofeld
 {
 
-TAG_GROUP(stereo_system, STEREO_SYSTEM_TAG)
+TAG_STRUCT(stereo_system_struct_definition)
+{
+	FIELD( _field_long_integer, "unused" ),
+	FIELD( _field_terminator )
+};
+
+TAG_GROUP(stereo_system_block, STEREO_SYSTEM_TAG)
 {
 	FIELD( _field_long_integer, "unused" ),
 	FIELD( _field_terminator )

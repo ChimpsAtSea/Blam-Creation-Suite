@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(material_shader_parameter, s_material_shader_parameter::k_max_material_shader_parameters)
+TAG_BLOCK(material_shader_parameter_block, s_material_shader_parameter::k_max_material_shader_parameters)
 {
 	FIELD( _field_string_id, "parameter name^*" ),
 	FIELD( _field_long_enum, "parameter type*" ),
@@ -37,7 +37,7 @@ TAG_BLOCK(material_shader_parameter, s_material_shader_parameter::k_max_material
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(material_shader_function_parameter, s_material_shader_parameter::k_max_material_shader_parameters)
+TAG_BLOCK(material_shader_function_parameter_block, s_material_shader_parameter::k_max_material_shader_parameters)
 {
 	FIELD( _field_long_enum, "type^" ),
 	FIELD( _field_string_id, "input name" ),
@@ -48,7 +48,7 @@ TAG_BLOCK(material_shader_function_parameter, s_material_shader_parameter::k_max
 	FIELD( _field_real, "time period:seconds" ),
 	FIELD( _field_explanation, "FUNCTION" ),
 	FIELD( _field_custom ),
-	FIELD( _field_struct, "function" ),
+	FIELD( _field_struct, "function", &mapping_function_struct_definition ),
 	FIELD( _field_terminator )
 };
 

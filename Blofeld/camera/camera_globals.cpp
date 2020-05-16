@@ -3,11 +3,11 @@
 namespace blofeld
 {
 
-TAG_BLOCK(camera, 1)
+TAG_BLOCK(camera_block, 1)
 {
 	FIELD( _field_tag_reference, "default unit camera track" ),
 	FIELD( _field_explanation, "SANDBOX" ),
-	FIELD( _field_struct, "pitch to vertical offset" ),
+	FIELD( _field_struct, "pitch to vertical offset", &scalar_function_named_struct_struct_definition ),
 	FIELD( _field_explanation, "CAMERA UNIVERSALS" ),
 	FIELD( _field_real, "field of view:degrees" ),
 	FIELD( _field_real, "yaw scale" ),
@@ -56,7 +56,7 @@ TAG_BLOCK(camera, 1)
 	FIELD( _field_real, "enter vehicle transition time:seconds#how long it takes the camera to move from first to third person when entering a vehicle" ),
 	FIELD( _field_real, "exit vehicle transition time:seconds#see above" ),
 	FIELD( _field_explanation, "CAMERA OBSTRUCTION" ),
-	FIELD( _field_struct, "obstruction" ),
+	FIELD( _field_struct, "obstruction", &camera_obstruction_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 

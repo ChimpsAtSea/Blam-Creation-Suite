@@ -3,6 +3,12 @@
 namespace blofeld
 {
 
+TAG_STRUCT(silent_assist_globals_struct_definition)
+{
+	FIELD( _field_block, "levels", &silentAssistLevelBlock ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(silentAssistLevelBlock, SilentAssistGlobals::k_maxSilentAssistLevel+1)
 {
 	FIELD( _field_real, "grenade damage" ),
@@ -20,9 +26,9 @@ TAG_BLOCK(silentAssistLevelBlock, SilentAssistGlobals::k_maxSilentAssistLevel+1)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(silent_assist_globals, SILENT_ASSIST_GLOBALS_TAG)
+TAG_GROUP(silent_assist_globals_block, SILENT_ASSIST_GLOBALS_TAG)
 {
-	FIELD( _field_block, "levels", &silentAssistLevelBlock_block ),
+	FIELD( _field_block, "levels", &silentAssistLevelBlock ),
 	FIELD( _field_terminator )
 };
 

@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(effect_locations, k_maximum_effect_locations_count)
+TAG_BLOCK(effect_locations_block, k_maximum_effect_locations_count)
 {
 	FIELD( _field_explanation, "MARKER NAMES" ),
 	FIELD( _field_custom ),
@@ -14,7 +14,7 @@ TAG_BLOCK(effect_locations, k_maximum_effect_locations_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(effect_event, k_maximum_effect_events_count)
+TAG_BLOCK(effect_event_block, k_maximum_effect_events_count)
 {
 	FIELD( _field_string_id, "event name^" ),
 	FIELD( _field_word_flags, "flags" ),
@@ -29,11 +29,11 @@ TAG_BLOCK(effect_event, k_maximum_effect_events_count)
 	FIELD( _field_real, "event age duration override:seconds#the amount of time over which the \"event age\" function input goes from 0 to 1" ),
 	FIELD( _field_block, "parts", &effect_part_block ),
 	FIELD( _field_block, "accelerations", &effect_accelerations_block ),
-	FIELD( _field_block, "particle systems", &particle_system_definition_block ),
+	FIELD( _field_block, "particle systems", &particle_system_definition_block_new ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(effect_part, k_maximum_effect_parts_per_event_count)
+TAG_BLOCK(effect_part_block, k_maximum_effect_parts_per_event_count)
 {
 	FIELD( _field_enum, "create in" ),
 	FIELD( _field_enum, "violence mode" ),
@@ -63,7 +63,7 @@ TAG_BLOCK(effect_part, k_maximum_effect_parts_per_event_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(effect_accelerations, k_maximum_effect_accelerations_per_event_count)
+TAG_BLOCK(effect_accelerations_block, k_maximum_effect_accelerations_per_event_count)
 {
 	FIELD( _field_enum, "create in" ),
 	FIELD( _field_enum, "violence mode" ),
@@ -75,7 +75,7 @@ TAG_BLOCK(effect_accelerations, k_maximum_effect_accelerations_per_event_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(effect_looping_sound, k_maximum_effect_looping_sounds_count)
+TAG_BLOCK(effect_looping_sound_block, k_maximum_effect_looping_sounds_count)
 {
 	FIELD( _field_tag_reference, "looping sound^" ),
 	FIELD( _field_short_block_index, "location" ),
@@ -83,7 +83,7 @@ TAG_BLOCK(effect_looping_sound, k_maximum_effect_looping_sounds_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(effect_conical_distribution, 1)
+TAG_BLOCK(effect_conical_distribution_block, 1)
 {
 	FIELD( _field_explanation, "conical_projection: AKA shotgun" ),
 	FIELD( _field_short_integer, "yaw count" ),
@@ -93,7 +93,7 @@ TAG_BLOCK(effect_conical_distribution, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(effect, EFFECT_TAG)
+TAG_GROUP(effect_block, EFFECT_TAG)
 {
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_dword_integer, "fixed random seed#If this is non-zero, the effect will usually be exactly repeatable" ),

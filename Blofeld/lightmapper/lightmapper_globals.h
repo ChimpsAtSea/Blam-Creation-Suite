@@ -3,15 +3,24 @@
 namespace blofeld
 {
 
-extern s_tag_block lightmap_model_reference_block;
+extern s_tag_struct lightmap_model_globals_struct_definition_struct_definition;
+extern s_tag_struct lightmapper_globals_struct_definition_struct_definition;
+extern s_tag_struct global_lightmap_global_settings_struct_struct_definition;
+extern s_tag_struct global_lightmap_local_settings_struct_struct_definition;
+extern s_tag_struct global_lightmap_ao_settings_struct_struct_definition;
+extern s_tag_struct global_lightmap_global_illumination_falloff_settings_struct_struct_definition;
+extern s_tag_struct global_lightmap_local_override_settings_struct_struct_definition;
+
+extern s_tag_struct lightmap_model_reference_block_struct_definition;
+extern s_tag_block_definition lightmap_model_reference_block;
 
 constexpr unsigned long LIGHTMAP_MODEL_GLOBALS_TAG = 'LMMg';
 
-extern s_tag_block lightmap_model_globals_block;
+extern s_tag_block_definition lightmap_model_globals_block;
 extern s_tag_group lightmap_model_globals_group;
 constexpr unsigned long LIGHTMAPPER_GLOBALS_TAG = 'LMgS';
 
-extern s_tag_block lightmapper_globals_block;
+extern s_tag_block_definition lightmapper_globals_block;
 extern s_tag_group lightmapper_globals_group;
 } // namespace blofeld
 

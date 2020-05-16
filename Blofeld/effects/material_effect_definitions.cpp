@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(material_effect, k_material_effect_type_count)
+TAG_BLOCK(material_effect_block_v2, k_material_effect_type_count)
 {
 	FIELD( _field_block, "old materials (DO NOT USE)!", &old_material_effect_material_block ),
 	FIELD( _field_block, "sounds", &material_effect_material_block ),
@@ -11,7 +11,7 @@ TAG_BLOCK(material_effect, k_material_effect_type_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(old_material_effect_material, 33)
+TAG_BLOCK(old_material_effect_material_block, 33)
 {
 	FIELD( _field_tag_reference, "effect" ),
 	FIELD( _field_tag_reference, "sound" ),
@@ -24,7 +24,7 @@ TAG_BLOCK(old_material_effect_material, 33)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(material_effect_material, k_maximum_material_effect_blocks)
+TAG_BLOCK(material_effect_material_block, k_maximum_material_effect_blocks)
 {
 	FIELD( _field_tag_reference, "tag (effect or sound)" ),
 	FIELD( _field_tag_reference, "secondary tag (effect or sound)" ),
@@ -36,9 +36,9 @@ TAG_BLOCK(material_effect_material, k_maximum_material_effect_blocks)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(material_effects, MATERIAL_EFFECTS_TAG)
+TAG_GROUP(material_effects_block, MATERIAL_EFFECTS_TAG)
 {
-	FIELD( _field_block, "effects", &material_effect_block ),
+	FIELD( _field_block, "effects", &material_effect_block_v2 ),
 	FIELD( _field_useless_pad ),
 	FIELD( _field_terminator )
 };

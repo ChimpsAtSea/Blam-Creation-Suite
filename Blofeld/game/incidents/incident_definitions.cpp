@@ -3,17 +3,54 @@
 namespace blofeld
 {
 
-TAG_BLOCK(incident_definition, s_incident_definition::k_maximum_incidents_per_definition)
+TAG_STRUCT(incident_global_properties_definition_struct_definition)
+{
+	FIELD( _field_real, "campaign multikill time:s" ),
+	FIELD( _field_real, "survival multikill time:s" ),
+	FIELD( _field_real, "multiplayer multikill time:s" ),
+	FIELD( _field_real, "low health threshold:[0,1]" ),
+	FIELD( _field_real, "shield recharge threshold:[0,1]" ),
+	FIELD( _field_real, "maximum vengeance time:s" ),
+	FIELD( _field_real, "lifesaver damage threshold:[0,2]" ),
+	FIELD( _field_real, "avenger dead time:s" ),
+	FIELD( _field_real, "hologram recently used maximum time:s" ),
+	FIELD( _field_long_enum, "active camouflage incident minimum level" ),
+	FIELD( _field_real, "thruster pack recently used maximum time:s" ),
+	FIELD( _field_real, "active shield recently used maximum time:s" ),
+	FIELD( _field_real, "damage threshold for hologram incidents:[0,1]" ),
+	FIELD( _field_real, "damage threshold for distraction incident killer:[0,1]" ),
+	FIELD( _field_real, "damage threshold for distraction incident distractor:[0,1]" ),
+	FIELD( _field_tag_reference, "reward globals!" ),
+	FIELD( _field_tag_reference, "commendation globals" ),
+	FIELD( _field_custom, "HEAT" ),
+	FIELD( _field_short_integer, "maximum heat" ),
+	FIELD( _field_pad, "KVLHESKH", 2 ),
+	FIELD( _field_real, "full heat decay time:S#seconds to completely deplete a full heat meter" ),
+	FIELD( _field_real, "full heat stun time:s#seconds from the time you are at maximum heat until it starts decaying again" ),
+	FIELD( _field_real, "betrayal heat stun time:s#seconds from the time you are at maximum heat until it starts decaying again" ),
+	FIELD( _field_custom ),
+	FIELD( _field_tag_reference, "incident definitions" ),
+	FIELD( _field_block, "default incident definition!*#generated in code", &incident_definition_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(SuppressedIncident_struct_definition)
+{
+	FIELD( _field_block, "suppressed incidents", &suppressed_incident_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(incident_definition_block, s_incident_definition::k_maximum_incidents_per_definition)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_custom, "PROPERTIES" ),
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_pad, "JKOPEIE", 3 ),
 	FIELD( _field_custom, "DISALLOWED GAME MODES" ),
-	FIELD( _field_struct, "disallowed game modes" ),
+	FIELD( _field_struct, "disallowed game modes", &game_mode_flags_struct_struct_definition ),
 	FIELD( _field_custom ),
 	FIELD( _field_block, "suppressed incidents", &suppressed_incident_block ),
-	FIELD( _field_block, "suppressed incident blocks", &SuppressedIncidentBlockReferenceDefinition_block ),
+	FIELD( _field_block, "suppressed incident blocks", &SuppressedIncidentBlockReferenceDefinition ),
 	FIELD( _field_custom ),
 	FIELD( _field_custom, "CREATION" ),
 	FIELD( _field_block, "specialized incidents", &specialized_incident_block ),
@@ -24,7 +61,7 @@ TAG_BLOCK(incident_definition, s_incident_definition::k_maximum_incidents_per_de
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(suppressed_incident, 1000)
+TAG_BLOCK(suppressed_incident_block, 1000)
 {
 	FIELD( _field_string_id, "incident name^" ),
 	FIELD( _field_byte_flags, "suppression type" ),
@@ -38,28 +75,28 @@ TAG_BLOCK(SuppressedIncidentBlockReferenceDefinition, 8)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(specialized_incident, 1)
+TAG_BLOCK(specialized_incident_block, 1)
 {
 	FIELD( _field_string_id, "base incident^" ),
 	FIELD( _field_block, "kill implements", &specialized_incident_kill_implement_block ),
 	FIELD( _field_block, "cause object", &specialized_incident_object_properties_block ),
 	FIELD( _field_block, "effect object{kill bucket}", &specialized_incident_object_properties_block ),
 	FIELD( _field_block, "special kill type", &specialized_incident_special_kill_type_block ),
-	FIELD( _field_block, "game over filter", &specializedIncidentGameOverBlock_block ),
-	FIELD( _field_block, "ordnance filter", &specializedIncidentRandomOrdnanceBlock_block ),
-	FIELD( _field_block, "custom data filter", &specializedIncidentCustomDataFilterBlock_block ),
-	FIELD( _field_block, "distance filter", &specializedIncidentDistanceFilterBlock_block ),
+	FIELD( _field_block, "game over filter", &specializedIncidentGameOverBlock ),
+	FIELD( _field_block, "ordnance filter", &specializedIncidentRandomOrdnanceBlock ),
+	FIELD( _field_block, "custom data filter", &specializedIncidentCustomDataFilterBlock ),
+	FIELD( _field_block, "distance filter", &specializedIncidentDistanceFilterBlock ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(specialized_incident_kill_implement, 50)
+TAG_BLOCK(specialized_incident_kill_implement_block, 50)
 {
 	FIELD( _field_char_enum, "damage reporting type^" ),
 	FIELD( _field_pad, "ACNUIEHF", 3 ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(specialized_incident_object_properties, 10)
+TAG_BLOCK(specialized_incident_object_properties_block, 10)
 {
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_char_enum, "bucket type^" ),
@@ -70,13 +107,13 @@ TAG_BLOCK(specialized_incident_object_properties, 10)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(specialized_incident_object_riding_in_vehicle_properties, 10)
+TAG_BLOCK(specialized_incident_object_riding_in_vehicle_properties_block, 10)
 {
 	FIELD( _field_long_enum, "vehicle type" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(specialized_incident_special_kill_type, 10)
+TAG_BLOCK(specialized_incident_special_kill_type_block, 10)
 {
 	FIELD( _field_char_enum, "special kill type^" ),
 	FIELD( _field_pad, "CVUIHEN", 3 ),
@@ -114,7 +151,7 @@ TAG_BLOCK(specializedIncidentDistanceFilterBlock, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(incident_accumulator, 1)
+TAG_BLOCK(incident_accumulator_block, 1)
 {
 	FIELD( _field_char_enum, "aggregation type" ),
 	FIELD( _field_char_enum, "resets on" ),
@@ -123,7 +160,7 @@ TAG_BLOCK(incident_accumulator, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(incident_accumulator_child_incident, 60)
+TAG_BLOCK(incident_accumulator_child_incident_block, 60)
 {
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_pad, "VLHSJNRE", 3 ),
@@ -134,7 +171,7 @@ TAG_BLOCK(incident_accumulator_child_incident, 60)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(incident_sum_accumulator, 1)
+TAG_BLOCK(incident_sum_accumulator_block, 1)
 {
 	FIELD( _field_char_enum, "resets on" ),
 	FIELD( _field_byte_flags, "flags" ),
@@ -144,7 +181,7 @@ TAG_BLOCK(incident_sum_accumulator, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(incident_sum_accumulator_child_incident, 60)
+TAG_BLOCK(incident_sum_accumulator_child_incident_block, 60)
 {
 	FIELD( _field_string_id, "incident name" ),
 	FIELD( _field_string_id, "reset incident name" ),
@@ -152,7 +189,7 @@ TAG_BLOCK(incident_sum_accumulator_child_incident, 60)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(incident_global_properties_definition, INCIDENT_GLOBAL_PROPERTIES_DEFINITION_TAG)
+TAG_GROUP(incident_global_properties_definition_block, INCIDENT_GLOBAL_PROPERTIES_DEFINITION_TAG)
 {
 	FIELD( _field_real, "campaign multikill time:s" ),
 	FIELD( _field_real, "survival multikill time:s" ),
@@ -183,13 +220,13 @@ TAG_GROUP(incident_global_properties_definition, INCIDENT_GLOBAL_PROPERTIES_DEFI
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(incident_globals_definition, INCIDENT_GLOBALS_DEFINITION_TAG)
+TAG_GROUP(incident_globals_definition_block, INCIDENT_GLOBALS_DEFINITION_TAG)
 {
 	FIELD( _field_block, "incidents", &incident_definition_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(SuppressedIncident, SUPPRESSEDINCIDENT_TAG)
+TAG_GROUP(SuppressedIncident_block, SUPPRESSEDINCIDENT_TAG)
 {
 	FIELD( _field_block, "suppressed incidents", &suppressed_incident_block ),
 	FIELD( _field_terminator )

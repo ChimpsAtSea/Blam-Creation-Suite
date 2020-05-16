@@ -3,11 +3,24 @@
 namespace blofeld
 {
 
-TAG_BLOCK(multiplayer_universal, 1)
+TAG_STRUCT(multiplayer_globals_struct_definition)
+{
+	FIELD( _field_block, "universal", &multiplayer_universal_block ),
+	FIELD( _field_block, "runtime", &multiplayer_runtime_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(spawn_influence_weight_falloff_function_block, 1)
+{
+	FIELD( _field_struct, "function", &scalar_function_named_struct_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(multiplayer_universal_block, 1)
 {
 	FIELD( _field_tag_reference, "random player names" ),
 	FIELD( _field_tag_reference, "team names" ),
-	FIELD( _field_block, "teams", &teamDefinitionBlock_block ),
+	FIELD( _field_block, "teams", &teamDefinitionBlock ),
 	FIELD( _field_tag_reference, "multiplayer text" ),
 	FIELD( _field_tag_reference, "sandbox text" ),
 	FIELD( _field_tag_reference, "sandbox object properties values" ),
@@ -35,7 +48,7 @@ TAG_BLOCK(teamDefinitionBlock, k_multiplayer_team_game_team_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(requisition_constants, 1)
+TAG_BLOCK(requisition_constants_block, 1)
 {
 	FIELD( _field_real, "FTL bonus fraction#multiplier to apply to money earned by minions to also give to the fireteam leader" ),
 	FIELD( _field_explanation, "AWARD AMOUNTS" ),
@@ -69,7 +82,7 @@ TAG_BLOCK(requisition_constants, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(requisition_palette, k_infinity_requisition_palette_maximum_count)
+TAG_BLOCK(requisition_palette_block, k_infinity_requisition_palette_maximum_count)
 {
 	FIELD( _field_explanation, "CUSTOM APPS" ),
 	FIELD( _field_tag_reference, "name" ),
@@ -78,7 +91,7 @@ TAG_BLOCK(requisition_palette, k_infinity_requisition_palette_maximum_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(multiplayer_runtime, 1)
+TAG_BLOCK(multiplayer_runtime_block, 1)
 {
 	FIELD( _field_tag_reference, "editor biped" ),
 	FIELD( _field_tag_reference, "editor helper" ),
@@ -110,19 +123,19 @@ TAG_BLOCK(multiplayer_runtime, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sounds, k_maximum_multiplayer_sounds)
+TAG_BLOCK(sounds_block, k_maximum_multiplayer_sounds)
 {
 	FIELD( _field_tag_reference, "sound^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(looping_sounds, k_maximum_multiplayer_sounds)
+TAG_BLOCK(looping_sounds_block, k_maximum_multiplayer_sounds)
 {
 	FIELD( _field_tag_reference, "looping sound^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(multiplayer_constants, 1)
+TAG_BLOCK(multiplayer_constants_block, 1)
 {
 	FIELD( _field_explanation, "PLAYER SPAWN INFLUENCERS" ),
 	FIELD( _field_tag_reference, "Default Spawn Settings" ),
@@ -150,7 +163,7 @@ TAG_BLOCK(multiplayer_constants, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(game_engine_status_response, k_maximum_status_response_count)
+TAG_BLOCK(game_engine_status_response_block, k_maximum_status_response_count)
 {
 	FIELD( _field_word_flags, "flags" ),
 	FIELD( _field_pad, "FAW", 2 ),
@@ -163,19 +176,13 @@ TAG_BLOCK(game_engine_status_response, k_maximum_status_response_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(spawn_influence_weight_falloff_function, 1)
-{
-	FIELD( _field_struct, "function" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(multiplayer_color$2, 32)
+TAG_BLOCK(multiplayer_color_block$3, 32)
 {
 	FIELD( _field_real_rgb_color, "color" ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(multiplayer_globals, MULTIPLAYER_GLOBALS_TAG)
+TAG_GROUP(multiplayer_globals_block, MULTIPLAYER_GLOBALS_TAG)
 {
 	FIELD( _field_block, "universal", &multiplayer_universal_block ),
 	FIELD( _field_block, "runtime", &multiplayer_runtime_block ),

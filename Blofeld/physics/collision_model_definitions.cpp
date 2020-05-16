@@ -3,20 +3,29 @@
 namespace blofeld
 {
 
-TAG_BLOCK(collision_model_material, MAXIMUM_MATERIALS_PER_MODEL)
+TAG_STRUCT(collision_model_bsp_struct)
+{
+	FIELD( _field_short_integer, "node index*" ),
+	FIELD( _field_pad, "KXGCEIEI", 2 ),
+	FIELD( _field_useless_pad ),
+	FIELD( _field_struct, "bsp*", &global_collision_bsp_struct_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(collision_model_material_block, MAXIMUM_MATERIALS_PER_MODEL)
 {
 	FIELD( _field_string_id, "name^*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(collision_model_region, MAXIMUM_REGIONS_PER_MODEL)
+TAG_BLOCK(collision_model_region_block, MAXIMUM_REGIONS_PER_MODEL)
 {
 	FIELD( _field_string_id, "name^*" ),
 	FIELD( _field_block, "permutations*", &collision_model_permutation_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(collision_model_permutation, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
+TAG_BLOCK(collision_model_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 {
 	FIELD( _field_string_id, "name^*" ),
 	FIELD( _field_short_integer, "resourceBspOffset*!" ),
@@ -27,16 +36,9 @@ TAG_BLOCK(collision_model_permutation, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(collision_model_bsp, MAXIMUM_BSPS_PER_COLLISION_REGION)
-{
-	FIELD( _field_short_integer, "node index*" ),
-	FIELD( _field_pad, "KXGCEIEI", 2 ),
-	FIELD( _field_useless_pad ),
-	FIELD( _field_struct, "bsp*" ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(collision_model_bsp_block, MAXIMUM_BSPS_PER_COLLISION_REGION, collision_model_bsp_struct_struct_definition );
 
-TAG_BLOCK(collision_model_pathfinding_sphere, MAXIMUM_PATHFINDING_SPHERES_PER_COLLISION_MODEL)
+TAG_BLOCK(collision_model_pathfinding_sphere_block, MAXIMUM_PATHFINDING_SPHERES_PER_COLLISION_MODEL)
 {
 	FIELD( _field_short_block_index, "node*" ),
 	FIELD( _field_word_flags, "flags" ),
@@ -46,7 +48,7 @@ TAG_BLOCK(collision_model_pathfinding_sphere, MAXIMUM_PATHFINDING_SPHERES_PER_CO
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(collision_model_node, MAXIMUM_NODES_PER_MODEL)
+TAG_BLOCK(collision_model_node_block, MAXIMUM_NODES_PER_MODEL)
 {
 	FIELD( _field_string_id, "name^*" ),
 	FIELD( _field_pad, "PFPPD", 2 ),
@@ -56,7 +58,7 @@ TAG_BLOCK(collision_model_node, MAXIMUM_NODES_PER_MODEL)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(collision_model, COLLISION_MODEL_TAG)
+TAG_GROUP(collision_model_block, COLLISION_MODEL_TAG)
 {
 	FIELD( _field_long_integer, "import_info_checksum*!" ),
 	FIELD( _field_block, "errors*", &global_error_report_categories_block ),

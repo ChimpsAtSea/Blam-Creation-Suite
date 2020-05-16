@@ -3,10 +3,18 @@
 namespace blofeld
 {
 
-extern s_tag_block zone_block;
-extern s_tag_block areas_block;
-extern s_tag_block flight_reference_block;
-extern s_tag_block area_sector_point_block;
+extern s_tag_struct NavMeshAttachmentsStruct_struct_definition;
+
+extern s_tag_struct zone_block_struct_definition;
+extern s_tag_block_definition zone_block;
+extern s_tag_struct areas_block_struct_struct_definition;
+extern s_tag_block_definition areas_block;
+extern s_tag_struct NavMeshAttachmentBlock_struct_definition;
+extern s_tag_block_definition NavMeshAttachmentBlock;
+extern s_tag_struct flight_reference_block_struct_definition;
+extern s_tag_block_definition flight_reference_block;
+extern s_tag_struct area_sector_point_block_struct_definition;
+extern s_tag_block_definition area_sector_point_block;
 
 } // namespace blofeld
 

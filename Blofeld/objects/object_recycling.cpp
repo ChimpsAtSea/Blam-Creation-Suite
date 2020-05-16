@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(garbage_collection, 1)
+TAG_BLOCK(garbage_collection_block, 1)
 {
 	FIELD( _field_explanation, "Garbage Times" ),
 	FIELD( _field_real, "Dropped item:seconds" ),

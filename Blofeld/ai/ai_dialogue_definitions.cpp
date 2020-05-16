@@ -3,13 +3,41 @@
 namespace blofeld
 {
 
-TAG_BLOCK(default_stimulus_suppressor, 4)
+TAG_STRUCT(ai_dialogue_globals_struct_definition)
+{
+	FIELD( _field_explanation, "Global timing" ),
+	FIELD( _field_real_bounds, "strike delay bounds:secs" ),
+	FIELD( _field_real, "remind delay:secs" ),
+	FIELD( _field_real, "cover curse chance" ),
+	FIELD( _field_explanation, "Player look settings" ),
+	FIELD( _field_real, "player look max distance:wu#defaults to 10 wu" ),
+	FIELD( _field_real, "player look:secs#defaults to 3 secs" ),
+	FIELD( _field_real, "player look long time:secs#defaults to 15 secs" ),
+	FIELD( _field_explanation, "Spartan nearby search distance" ),
+	FIELD( _field_real, "spartan nearby search distance:wu#defaults to 7 wu" ),
+	FIELD( _field_explanation, "Face friendly player distance" ),
+	FIELD( _field_real, "face friendly player distance:wu#0: disable facing behavior" ),
+	FIELD( _field_explanation, "Space dialogue effect" ),
+	FIELD( _field_string_id, "space dialogue effect#used for dialog lines started by a pattern with \"speaker in space\" set" ),
+	FIELD( _field_explanation, "Default stimulus suppressors" ),
+	FIELD( _field_block, "default stimulus suppressors", &default_stimulus_suppressor_block ),
+	FIELD( _field_explanation, "Imported Data. Don\'t touch me." ),
+	FIELD( _field_block, "vocalizations", &vocalization_definitions_block ),
+	FIELD( _field_block, "patterns", &vocalization_patterns_block ),
+	FIELD( _field_pad, "WWKMVLL", 12 ),
+	FIELD( _field_block, "dialogue data", &dialogue_data_block ),
+	FIELD( _field_block, "involuntary data", &involuntary_data_block ),
+	FIELD( _field_block, "predicted vocalizations", &predicted_data_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(default_stimulus_suppressor_block, 4)
 {
 	FIELD( _field_string_id, "stimulus^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(vocalization_definitions, 500)
+TAG_BLOCK(vocalization_definitions_block, 500)
 {
 	FIELD( _field_string_id, "vocalization^" ),
 	FIELD( _field_short_block_index, "parent index*" ),
@@ -43,7 +71,7 @@ TAG_BLOCK(vocalization_definitions, 500)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(response, 20)
+TAG_BLOCK(response_block, 20)
 {
 	FIELD( _field_string_id, "vocalization name" ),
 	FIELD( _field_word_flags, "flags" ),
@@ -53,7 +81,7 @@ TAG_BLOCK(response, 20)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(vocalization_patterns, 1000)
+TAG_BLOCK(vocalization_patterns_block, 1000)
 {
 	FIELD( _field_enum, "dialogue type" ),
 	FIELD( _field_short_integer, "vocalization index" ),
@@ -86,27 +114,27 @@ TAG_BLOCK(vocalization_patterns, 1000)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(dialogue_data, k_dialogue_type_count)
+TAG_BLOCK(dialogue_data_block, k_dialogue_type_count)
 {
 	FIELD( _field_short_integer, "start index (postprocess)*" ),
 	FIELD( _field_short_integer, "length (postprocess)*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(involuntary_data, 100)
+TAG_BLOCK(involuntary_data_block, 100)
 {
 	FIELD( _field_short_integer, "involuntary vocalization index*" ),
 	FIELD( _field_pad, "JXIFX", 2 ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(predicted_data, 32)
+TAG_BLOCK(predicted_data_block, 32)
 {
 	FIELD( _field_long_integer, "predicted vocalization index*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(ai_dialogue_globals, AI_DIALOGUE_GLOBALS_TAG)
+TAG_GROUP(ai_dialogue_globals_block, AI_DIALOGUE_GLOBALS_TAG)
 {
 	FIELD( _field_explanation, "Global timing" ),
 	FIELD( _field_real_bounds, "strike delay bounds:secs" ),

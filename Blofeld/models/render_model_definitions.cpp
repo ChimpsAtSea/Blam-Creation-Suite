@@ -3,7 +3,28 @@
 namespace blofeld
 {
 
-TAG_BLOCK(imposter_mode_node, k_kilo)
+TAG_STRUCT(imposter_model_struct_definition)
+{
+	FIELD( _field_string_id, "name*" ),
+	FIELD( _field_short_integer, "quality" ),
+	FIELD( _field_pad, "NBOML", 2 ),
+	FIELD( _field_real, "brightness adjustment" ),
+	FIELD( _field_block, "node maps", &imposter_mode_node_block ),
+	FIELD( _field_block, "regions*", &render_model_region_block ),
+	FIELD( _field_custom, "render geometry" ),
+	FIELD( _field_struct, "geometry*", &global_render_geometry_struct_struct_definition ),
+	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(render_model_lightmap_atlas_struct_definition)
+{
+	FIELD( _field_struct, "atlas geometry*", &global_render_geometry_struct_struct_definition ),
+	FIELD( _field_real, "world scale ratio" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(imposter_mode_node_block, k_kilo)
 {
 	FIELD( _field_string_id, "name" ),
 	FIELD( _field_short_integer, "base node index" ),
@@ -11,14 +32,14 @@ TAG_BLOCK(imposter_mode_node, k_kilo)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(render_model_region, MAXIMUM_REGIONS_PER_MODEL)
+TAG_BLOCK(render_model_region_block, MAXIMUM_REGIONS_PER_MODEL)
 {
 	FIELD( _field_string_id, "name^*" ),
 	FIELD( _field_block, "permutations*", &render_model_permutation_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(render_model_permutation, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
+TAG_BLOCK(render_model_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 {
 	FIELD( _field_string_id, "name^*" ),
 	FIELD( _field_short_integer, "mesh index*" ),
@@ -31,7 +52,7 @@ TAG_BLOCK(render_model_permutation, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(render_model_node, MAXIMUM_NODES_PER_MODEL)
+TAG_BLOCK(render_model_node_block, MAXIMUM_NODES_PER_MODEL)
 {
 	FIELD( _field_string_id, "name^*" ),
 	FIELD( _field_short_block_index, "parent node*" ),
@@ -58,14 +79,14 @@ TAG_BLOCK(render_model_node, MAXIMUM_NODES_PER_MODEL)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(render_model_marker_group, MAXIMUM_MARKER_GROUPS_PER_RENDER_MODEL)
+TAG_BLOCK(render_model_marker_group_block, MAXIMUM_MARKER_GROUPS_PER_RENDER_MODEL)
 {
 	FIELD( _field_string_id, "name^*" ),
 	FIELD( _field_block, "markers*", &render_model_marker_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(render_model_marker, MAXIMUM_MARKERS_PER_RENDER_MODEL_MARKER_GROUP)
+TAG_BLOCK(render_model_marker_block, MAXIMUM_MARKERS_PER_RENDER_MODEL_MARKER_GROUP)
 {
 	FIELD( _field_char_integer, "region index*" ),
 	FIELD( _field_char_integer, "permutation index*" ),
@@ -78,20 +99,20 @@ TAG_BLOCK(render_model_marker, MAXIMUM_MARKERS_PER_RENDER_MODEL_MARKER_GROUP)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(instance_node_map_mapping, MAXIMUM_NODES_PER_MODEL)
+TAG_BLOCK(instance_node_map_mapping_block, MAXIMUM_NODES_PER_MODEL)
 {
 	FIELD( _field_short_integer, "instance_node map region node index*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(volume_samples, k_max_volume_samples_per_render_model)
+TAG_BLOCK(volume_samples_block, k_max_volume_samples_per_render_model)
 {
 	FIELD( _field_real_vector_3d, "position" ),
 	FIELD( _field_array, "radiance transfer matrix*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(default_node_orientations, MAXIMUM_NODES_PER_MODEL)
+TAG_BLOCK(default_node_orientations_block, MAXIMUM_NODES_PER_MODEL)
 {
 	FIELD( _field_real_quaternion, "rotation*" ),
 	FIELD( _field_real_point_3d, "translation*" ),
@@ -102,7 +123,7 @@ TAG_BLOCK(default_node_orientations, MAXIMUM_NODES_PER_MODEL)
 TAG_BLOCK(RenderModelBoneGroupBlock, MAXIMUM_BONE_GROUPS_PER_MODEL)
 {
 	FIELD( _field_string_id, "name^*" ),
-	FIELD( _field_block, "bones*", &RenderModelNodeIndexBlock_block ),
+	FIELD( _field_block, "bones*", &RenderModelNodeIndexBlock ),
 	FIELD( _field_terminator )
 };
 
@@ -112,7 +133,7 @@ TAG_BLOCK(RenderModelNodeIndexBlock, MAXIMUM_NODES_PER_MODEL)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(imposter_model, IMPOSTER_MODEL_TAG)
+TAG_GROUP(imposter_model_block, IMPOSTER_MODEL_TAG)
 {
 	FIELD( _field_string_id, "name*" ),
 	FIELD( _field_short_integer, "quality" ),
@@ -121,12 +142,12 @@ TAG_GROUP(imposter_model, IMPOSTER_MODEL_TAG)
 	FIELD( _field_block, "node maps", &imposter_mode_node_block ),
 	FIELD( _field_block, "regions*", &render_model_region_block ),
 	FIELD( _field_custom, "render geometry" ),
-	FIELD( _field_struct, "geometry*" ),
+	FIELD( _field_struct, "geometry*", &global_render_geometry_struct_struct_definition ),
 	FIELD( _field_custom ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(render_model, RENDER_MODEL_TAG)
+TAG_GROUP(render_model_block, RENDER_MODEL_TAG)
 {
 	FIELD( _field_string_id, "name*" ),
 	FIELD( _field_word_flags, "flags*" ),
@@ -146,11 +167,11 @@ TAG_GROUP(render_model, RENDER_MODEL_TAG)
 	FIELD( _field_block, "materials", &global_geometry_material_block ),
 	FIELD( _field_block, "errors*", &global_error_report_categories_block ),
 	FIELD( _field_real, "don\'t draw over camera cosine angle#dont draw fp model when camera > this angle cosine (-1,1) Sugg. -0.2. 0 disables." ),
-	FIELD( _field_struct, "render geometry*" ),
+	FIELD( _field_struct, "render geometry*", &global_render_geometry_struct_struct_definition ),
 	FIELD( _field_block, "node map mapping*", &instance_node_map_mapping_block ),
 	FIELD( _field_block, "volume samples", &volume_samples_block ),
 	FIELD( _field_block, "runtime node orientations!", &default_node_orientations_block ),
-	FIELD( _field_block, "bone groups", &RenderModelBoneGroupBlock_block ),
+	FIELD( _field_block, "bone groups", &RenderModelBoneGroupBlock ),
 	FIELD( _field_explanation, "Static Lightmap" ),
 	FIELD( _field_tag_reference, "structure meta data*" ),
 	FIELD( _field_tag_reference, "lightmap bsp data reference" ),
@@ -158,9 +179,9 @@ TAG_GROUP(render_model, RENDER_MODEL_TAG)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(render_model_lightmap_atlas, RENDER_MODEL_LIGHTMAP_ATLAS_TAG)
+TAG_GROUP(render_model_lightmap_atlas_block, RENDER_MODEL_LIGHTMAP_ATLAS_TAG)
 {
-	FIELD( _field_struct, "atlas geometry*" ),
+	FIELD( _field_struct, "atlas geometry*", &global_render_geometry_struct_struct_definition ),
 	FIELD( _field_real, "world scale ratio" ),
 	FIELD( _field_terminator )
 };

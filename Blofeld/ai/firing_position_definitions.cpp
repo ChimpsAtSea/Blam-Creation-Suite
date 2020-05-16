@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(firing_positions, k_max_firing_positions_per_zone)
+TAG_BLOCK(firing_positions_block, k_max_firing_positions_per_zone)
 {
 	FIELD( _field_explanation, "CONTROLS~" ),
 	FIELD( _field_real_point_3d, "position (local)" ),

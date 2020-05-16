@@ -3,7 +3,17 @@
 namespace blofeld
 {
 
-TAG_BLOCK(model_variant, k_maximum_variants_per_model)
+TAG_STRUCT(model_target_lock_on_data_struct)
+{
+	FIELD( _field_explanation, "lock-on fields" ),
+	FIELD( _field_byte_flags, "flags" ),
+	FIELD( _field_pad, "SVLKJERAF", 3 ),
+	FIELD( _field_real, "lock on distance" ),
+	FIELD( _field_string_id, "tracking type#a weapon can track/lock on this target if this string is in the weapon\'s tracking block" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(model_variant_block, k_maximum_variants_per_model)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_array, "runtime variant region indices!" ),
@@ -15,7 +25,7 @@ TAG_BLOCK(model_variant, k_maximum_variants_per_model)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_variant_region, MAXIMUM_REGIONS_PER_MODEL)
+TAG_BLOCK(model_variant_region_block, MAXIMUM_REGIONS_PER_MODEL)
 {
 	FIELD( _field_string_id, "region name^:must match region name in render_model" ),
 	FIELD( _field_char_integer, "runtime region index!" ),
@@ -27,7 +37,7 @@ TAG_BLOCK(model_variant_region, MAXIMUM_REGIONS_PER_MODEL)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_variant_permutation, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
+TAG_BLOCK(model_variant_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 {
 	FIELD( _field_string_id, "permutation name^" ),
 	FIELD( _field_char_integer, "runtime permutation index!" ),
@@ -40,7 +50,7 @@ TAG_BLOCK(model_variant_permutation, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_variant_state, MAXIMUM_STATES_PER_MODEL_PERMUTATION)
+TAG_BLOCK(model_variant_state_block, MAXIMUM_STATES_PER_MODEL_PERMUTATION)
 {
 	FIELD( _field_string_id, "permutation name" ),
 	FIELD( _field_char_integer, "runtime permutation index!" ),
@@ -50,7 +60,7 @@ TAG_BLOCK(model_variant_state, MAXIMUM_STATES_PER_MODEL_PERMUTATION)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_variant_object, k_maximum_objects_per_model_variant)
+TAG_BLOCK(model_variant_object_block, k_maximum_objects_per_model_variant)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_string_id, "parent marker^" ),
@@ -65,19 +75,19 @@ TAG_BLOCK(model_variant_object, k_maximum_objects_per_model_variant)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_variant_muted_node, k_maximum_muted_nodes_per_model_variant)
+TAG_BLOCK(model_variant_muted_node_block, k_maximum_muted_nodes_per_model_variant)
 {
 	FIELD( _field_string_id, "node name^:must match node name in render_model" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(region_name, k_kilo)
+TAG_BLOCK(region_name_block, k_kilo)
 {
 	FIELD( _field_string_id, "name" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(global_model_instance_group, k_maximum_instance_groups_per_model)
+TAG_BLOCK(global_model_instance_group_block, k_maximum_instance_groups_per_model)
 {
 	FIELD( _field_string_id, "name^#name of this instance group" ),
 	FIELD( _field_long_enum, "choice#how to choose members" ),
@@ -86,7 +96,7 @@ TAG_BLOCK(global_model_instance_group, k_maximum_instance_groups_per_model)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_instance_group_member, k_maximum_members_per_instance_group)
+TAG_BLOCK(model_instance_group_member_block, k_maximum_members_per_instance_group)
 {
 	FIELD( _field_long_block_index, "subgroup#if this member is chosen, this subgroup will be chosen as well" ),
 	FIELD( _field_string_id, "instances#instance name, a partial name will choose all matching instances, leave blank for NONE" ),
@@ -98,7 +108,7 @@ TAG_BLOCK(model_instance_group_member, k_maximum_members_per_instance_group)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_material, MAXIMUM_MATERIALS_PER_MODEL)
+TAG_BLOCK(model_material_block_new, MAXIMUM_MATERIALS_PER_MODEL)
 {
 	FIELD( _field_string_id, "material name*" ),
 	FIELD( _field_pad, "unused flags", 2 ),
@@ -111,7 +121,7 @@ TAG_BLOCK(model_material, MAXIMUM_MATERIALS_PER_MODEL)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_target, MAXIMUM_MODEL_TARGETS_PER_MODEL)
+TAG_BLOCK(model_target_block_old, MAXIMUM_MODEL_TARGETS_PER_MODEL)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_string_id, "marker name^#multiple markers become multiple spheres of the same radius" ),
@@ -121,11 +131,11 @@ TAG_BLOCK(model_target, MAXIMUM_MODEL_TARGETS_PER_MODEL)
 	FIELD( _field_short_block_index, "variant#the target will only appear with this variant" ),
 	FIELD( _field_real_fraction, "targeting relevance#higher relevances turn into stronger magnetisms" ),
 	FIELD( _field_real, "aoe exclusion radius#ignored if zero" ),
-	FIELD( _field_struct, "lock-on data" ),
+	FIELD( _field_struct, "lock-on data", &model_target_lock_on_data_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_target$2, MAXIMUM_MODEL_TARGETS_PER_MODEL)
+TAG_BLOCK(model_target_block_new, MAXIMUM_MODEL_TARGETS_PER_MODEL)
 {
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_pad, "MTBNP1", 3 ),
@@ -137,11 +147,11 @@ TAG_BLOCK(model_target$2, MAXIMUM_MODEL_TARGETS_PER_MODEL)
 	FIELD( _field_short_block_index, "variant#the target will only appear with this variant" ),
 	FIELD( _field_real_fraction, "targeting relevance#higher relevances turn into stronger magnetisms" ),
 	FIELD( _field_real, "aoe exclusion radius#ignored if zero" ),
-	FIELD( _field_struct, "lock-on data" ),
+	FIELD( _field_struct, "lock-on data", &model_target_lock_on_data_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_region, MAXIMUM_REGIONS_PER_MODEL)
+TAG_BLOCK(model_region_block, MAXIMUM_REGIONS_PER_MODEL)
 {
 	FIELD( _field_string_id, "name*^" ),
 	FIELD( _field_char_integer, "collision region index*" ),
@@ -151,7 +161,7 @@ TAG_BLOCK(model_region, MAXIMUM_REGIONS_PER_MODEL)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_permutation, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
+TAG_BLOCK(model_permutation_block, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 {
 	FIELD( _field_string_id, "name*^" ),
 	FIELD( _field_byte_flags, "flags*" ),
@@ -161,7 +171,7 @@ TAG_BLOCK(model_permutation, MAXIMUM_PERMUTATIONS_PER_MODEL_REGION)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_node, MAXIMUM_NODES_PER_MODEL)
+TAG_BLOCK(model_node_block, MAXIMUM_NODES_PER_MODEL)
 {
 	FIELD( _field_string_id, "name*^" ),
 	FIELD( _field_short_block_index, "parent node*" ),
@@ -186,21 +196,21 @@ TAG_BLOCK(model_game_mode_render_model_override, k_maximum_model_game_mode_types
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_self_shadow_region_cast_override, MAXIMUM_REGIONS_PER_MODEL)
+TAG_BLOCK(model_self_shadow_region_cast_override_block, MAXIMUM_REGIONS_PER_MODEL)
 {
 	FIELD( _field_string_id, "region" ),
 	FIELD( _field_string_id, "shadow cast permutation#leave blank for none" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_self_shadow_region_receive_override, MAXIMUM_REGIONS_PER_MODEL)
+TAG_BLOCK(model_self_shadow_region_receive_override_block, MAXIMUM_REGIONS_PER_MODEL)
 {
 	FIELD( _field_string_id, "region" ),
 	FIELD( _field_long_enum, "shadow type" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(model_occlusion_sphere, MAXIMUM_REGIONS_PER_MODEL)
+TAG_BLOCK(model_occlusion_sphere_block, MAXIMUM_REGIONS_PER_MODEL)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_string_id, "marker 1 name" ),
@@ -212,7 +222,7 @@ TAG_BLOCK(model_occlusion_sphere, MAXIMUM_REGIONS_PER_MODEL)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(model, MODEL_TAG)
+TAG_GROUP(model_block, MODEL_TAG)
 {
 	FIELD( _field_explanation, "MODEL" ),
 	FIELD( _field_custom ),
@@ -252,11 +262,11 @@ TAG_GROUP(model, MODEL_TAG)
 	FIELD( _field_block, "variants", &model_variant_block ),
 	FIELD( _field_block, "region sort", &region_name_block ),
 	FIELD( _field_block, "instance groups", &global_model_instance_group_block ),
-	FIELD( _field_block, "model materials*", &model_material_block ),
+	FIELD( _field_block, "model materials*", &model_material_block_new ),
 	FIELD( _field_block, "new damage info!", &global_damage_info_block ),
-	FIELD( _field_struct, "damage info" ),
-	FIELD( _field_block, "targets old{targets}!", &model_target_block ),
-	FIELD( _field_block, "model targets", &model_target$2_block ),
+	FIELD( _field_struct, "damage info", &model_damage_info_struct_struct_definition ),
+	FIELD( _field_block, "targets old{targets}!", &model_target_block_old ),
+	FIELD( _field_block, "model targets", &model_target_block_new ),
 	FIELD( _field_block, "runtime regions!", &model_region_block ),
 	FIELD( _field_block, "runtime nodes!", &model_node_block ),
 	FIELD( _field_long_integer, "runtime node list checksum!" ),
@@ -269,7 +279,7 @@ TAG_GROUP(model, MODEL_TAG)
 	FIELD( _field_array, "render-only section flags*!" ),
 	FIELD( _field_long_flags, "runtime flags*!" ),
 	FIELD( _field_block, "scenario load parameters", &global_scenario_load_parameters_block ),
-	FIELD( _field_block, "game mode render model override", &model_game_mode_render_model_override_block ),
+	FIELD( _field_block, "game mode render model override", &model_game_mode_render_model_override ),
 	FIELD( _field_real_fraction, "Sky parallax percent#If flag checked % between sky pos and camera pos 0=camera" ),
 	FIELD( _field_real, "shadow depth compare bias#Default is 0.002" ),
 	FIELD( _field_real, "shadow slope scale bias:degrees#controls cutoff point for shadows around edges.  Default is 81 degrees" ),

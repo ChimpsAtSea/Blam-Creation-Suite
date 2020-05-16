@@ -3,7 +3,16 @@
 namespace blofeld
 {
 
-TAG_BLOCK(game_completion_rewards_difficulty, 1)
+TAG_STRUCT(game_completion_rewards_globals_struct_definition)
+{
+	FIELD( _field_block, "campaign#rewards given for playing campaign games online", &game_completion_rewards_difficulty_block ),
+	FIELD( _field_block, "firefight#rewards given for playing firefight games online", &game_completion_rewards_difficulty_block ),
+	FIELD( _field_block, "multiplayer#rewards given for playing PvP multiplayer games online", &game_completion_rewards_multiplayer_block ),
+	FIELD( _field_real, "fast track armor modifier#this multiplier is applied to the combined reward of timespent, score and performance, multiplied by the percentage time the player has the armor mod active" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(game_completion_rewards_difficulty_block, 1)
 {
 	FIELD( _field_block, "easy matchmaking#this block is used for easy matchmade games", &game_completion_rewards_definition_block ),
 	FIELD( _field_block, "normal matchmaking#this block is used for normal matchmade games", &game_completion_rewards_definition_block ),
@@ -13,7 +22,7 @@ TAG_BLOCK(game_completion_rewards_difficulty, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(game_completion_rewards_definition, eCT_count)
+TAG_BLOCK(game_completion_rewards_definition_block, eCT_count)
 {
 	FIELD( _field_long_integer, "initial amount per minute{initial cookies per minute}#base amount of reward given for each minute of play up until the start of the falloff curve" ),
 	FIELD( _field_real, "hopper scaling factor#the player\'s time-based reward value is multiplied by this factor before being awarded; this value can be overridden by the hopper" ),
@@ -24,14 +33,14 @@ TAG_BLOCK(game_completion_rewards_definition, eCT_count)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(game_completion_rewards_falloff_point, s_game_completion_rewards_globals::k_max_falloff_curve_points)
+TAG_BLOCK(game_completion_rewards_falloff_point_block, s_game_completion_rewards_globals::k_max_falloff_curve_points)
 {
 	FIELD( _field_short_integer, "start time#minutes into the game after which this new reward rate applies" ),
 	FIELD( _field_short_integer, "amount per minute{cookies per minute}#points awarded per minute once the given time is reached" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(game_completion_rewards_multiplayer, 1)
+TAG_BLOCK(game_completion_rewards_multiplayer_block, 1)
 {
 	FIELD( _field_block, "matchmaking#this block is used for matchmade games", &game_completion_rewards_definition_block ),
 	FIELD( _field_block, "custom#this block is used for custom games", &game_completion_rewards_definition_block ),
@@ -41,7 +50,7 @@ TAG_BLOCK(game_completion_rewards_multiplayer, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(game_completion_rewards_globals, GAME_COMPLETION_REWARDS_GLOBALS_TAG)
+TAG_GROUP(game_completion_rewards_globals_block, GAME_COMPLETION_REWARDS_GLOBALS_TAG)
 {
 	FIELD( _field_block, "campaign#rewards given for playing campaign games online", &game_completion_rewards_difficulty_block ),
 	FIELD( _field_block, "firefight#rewards given for playing firefight games online", &game_completion_rewards_difficulty_block ),

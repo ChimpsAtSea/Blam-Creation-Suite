@@ -3,7 +3,13 @@
 namespace blofeld
 {
 
-TAG_BLOCK(scenario_description, MAXIMUM_NUMBER_OF_MULTIPLAYER_SCENARIOS)
+TAG_STRUCT(multiplayer_scenario_description_struct_definition)
+{
+	FIELD( _field_block, "multiplayer scenarios", &scenario_description_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(scenario_description_block, MAXIMUM_NUMBER_OF_MULTIPLAYER_SCENARIOS)
 {
 	FIELD( _field_explanation, "net map info" ),
 	FIELD( _field_tag_reference, "descriptive bitmap" ),
@@ -13,7 +19,7 @@ TAG_BLOCK(scenario_description, MAXIMUM_NUMBER_OF_MULTIPLAYER_SCENARIOS)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(multiplayer_scenario_description, MULTIPLAYER_SCENARIO_DESCRIPTION_TAG)
+TAG_GROUP(multiplayer_scenario_description_block, MULTIPLAYER_SCENARIO_DESCRIPTION_TAG)
 {
 	FIELD( _field_block, "multiplayer scenarios", &scenario_description_block ),
 	FIELD( _field_terminator )

@@ -3,14 +3,14 @@
 namespace blofeld
 {
 
-TAG_BLOCK(sound_references, 500)
+TAG_BLOCK(sound_references_block, 500)
 {
 	FIELD( _field_string_id, "vocalization^" ),
-	FIELD( _field_block, "stimuli", &vocalization_stimuli_block ),
+	FIELD( _field_block, "stimuli", &vocalization_stimuli_block_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(vocalization_stimuli, 6)
+TAG_BLOCK(vocalization_stimuli_block_definition, 6)
 {
 	FIELD( _field_word_flags, "flags" ),
 	FIELD( _field_pad, "AN", 2 ),
@@ -19,7 +19,7 @@ TAG_BLOCK(vocalization_stimuli, 6)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(dialogue, DIALOGUE_TAG)
+TAG_GROUP(dialogue_block, DIALOGUE_TAG)
 {
 	FIELD( _field_tag_reference, "global dialogue info" ),
 	FIELD( _field_long_flags, "flags" ),

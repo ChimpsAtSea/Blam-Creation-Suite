@@ -32,7 +32,7 @@ public:
 protected:
 	const s_h4_tag_block_definition* block_definition;
 public:
-	c_h4_tag_block* tag_block;
+	c_h4_tag_block& tag_block;
 private:
 	c_h4_tag_group(const char* h4_data, const s_h4_tag_group* layout_header);
 };

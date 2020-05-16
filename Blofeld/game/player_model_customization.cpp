@@ -3,7 +3,28 @@
 namespace blofeld
 {
 
-TAG_BLOCK(customized_model_selection, k_maximum_number_of_model_customization_selections_per_area)
+TAG_STRUCT(player_model_customization_globals_struct_definition)
+{
+	FIELD( _field_tag_reference, "spartan render model#used for string list generation" ),
+	FIELD( _field_tag_reference, "elite render model!" ),
+	FIELD( _field_block, "helmet selections", &customized_model_selection_block ),
+	FIELD( _field_block, "chest selections", &customized_model_selection_block ),
+	FIELD( _field_block, "elite selections!", &customized_model_selection_block ),
+	FIELD( _field_block, "left shoulder", &customized_model_selection_block ),
+	FIELD( _field_block, "right shoulder", &customized_model_selection_block ),
+	FIELD( _field_block, "arms", &customized_model_selection_block ),
+	FIELD( _field_block, "legs", &customized_model_selection_block ),
+	FIELD( _field_block, "unused 5!", &customized_model_selection_block ),
+	FIELD( _field_block, "spartan armor effect selections", &customized_model_selection_block ),
+	FIELD( _field_block, "elite armor effect selections!", &customized_model_selection_block ),
+	FIELD( _field_block, "male spartan selections", &customized_model_player_bits_block ),
+	FIELD( _field_block, "female spartan selections", &customized_model_player_bits_block ),
+	FIELD( _field_block, "spartan model defaults", &customized_model_player_bits_block ),
+	FIELD( _field_block, "elite model defaults!", &customized_model_player_bits_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(customized_model_selection_block, k_maximum_number_of_model_customization_selections_per_area)
 {
 	FIELD( _field_string_id, "selection name^" ),
 	FIELD( _field_string_id, "app name#Which player-stats modifier should be activated when this item is equipped" ),
@@ -11,7 +32,7 @@ TAG_BLOCK(customized_model_selection, k_maximum_number_of_model_customization_se
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(customized_model_player_bits, k_maximum_number_of_model_customization_bits_per_selection)
+TAG_BLOCK(customized_model_player_bits_block, k_maximum_number_of_model_customization_bits_per_selection)
 {
 	FIELD( _field_string_id, "region name^" ),
 	FIELD( _field_string_id, "permutation name" ),
@@ -20,7 +41,7 @@ TAG_BLOCK(customized_model_player_bits, k_maximum_number_of_model_customization_
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(player_model_customization_globals, PLAYER_MODEL_CUSTOMIZATION_GLOBALS_TAG)
+TAG_GROUP(player_model_customization_globals_block, PLAYER_MODEL_CUSTOMIZATION_GLOBALS_TAG)
 {
 	FIELD( _field_tag_reference, "spartan render model#used for string list generation" ),
 	FIELD( _field_tag_reference, "elite render model!" ),

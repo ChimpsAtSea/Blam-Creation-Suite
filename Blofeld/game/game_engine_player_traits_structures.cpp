@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(game_engine_player_traits, 1)
+TAG_BLOCK(game_engine_player_traits_block, 1)
 {
 	FIELD( _field_block, "vitality traits", &player_traits_vitality_block ),
 	FIELD( _field_block, "weapon traits", &player_traits_weapons_block ),
@@ -13,7 +13,7 @@ TAG_BLOCK(game_engine_player_traits, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(player_traits_vitality, 1)
+TAG_BLOCK(player_traits_vitality_block, 1)
 {
 	FIELD( _field_long_flags, "should apply trait" ),
 	FIELD( _field_explanation, "damage resistance" ),
@@ -39,7 +39,7 @@ TAG_BLOCK(player_traits_vitality, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(player_traits_weapons, 1)
+TAG_BLOCK(player_traits_weapons_block, 1)
 {
 	FIELD( _field_long_flags, "should apply trait" ),
 	FIELD( _field_real, "damage multiplier" ),
@@ -89,7 +89,7 @@ TAG_BLOCK(player_traits_weapons, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(player_traits_movement, 1)
+TAG_BLOCK(player_traits_movement_block, 1)
 {
 	FIELD( _field_long_flags, "should apply trait" ),
 	FIELD( _field_real, "speed" ),
@@ -106,7 +106,7 @@ TAG_BLOCK(player_traits_movement, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(player_traits_appearance, 1)
+TAG_BLOCK(player_traits_appearance_block, 1)
 {
 	FIELD( _field_char_enum, "active camo" ),
 	FIELD( _field_char_enum, "waypoint" ),
@@ -118,7 +118,7 @@ TAG_BLOCK(player_traits_appearance, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(player_traits_sensors, 1)
+TAG_BLOCK(player_traits_sensors_block, 1)
 {
 	FIELD( _field_long_flags, "should apply trait" ),
 	FIELD( _field_real, "motion tracker range" ),
@@ -134,7 +134,7 @@ TAG_BLOCK(player_traits_sensors, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(game_engine_player_traits_list, 64)
+TAG_BLOCK(game_engine_player_traits_list_block, 64)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_block, "vitality traits", &player_traits_vitality_block ),

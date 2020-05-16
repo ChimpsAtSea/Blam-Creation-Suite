@@ -3,14 +3,32 @@
 namespace blofeld
 {
 
-TAG_BLOCK(controller_input, 1)
+TAG_BLOCK(gamepad_stick_info_block, 1)
+{
+	FIELD( _field_char_enum, "input shape" ),
+	FIELD( _field_pad, "F", 3 ),
+	FIELD( _field_real_fraction, "peg threshold [0,1]#magnitude of analog input for pegged acceleration to kick in" ),
+	FIELD( _field_real_point_2d, "pegged time#time for a pegged look to reach maximum effect" ),
+	FIELD( _field_real_point_2d, "pegged scale#the maximum effect achieved over the duration of the pegged time." ),
+	FIELD( _field_angle, "peg max angular velocity:degrees per sec#the maximum turning speed during peg" ),
+	FIELD( _field_block, "input mapping function", &input_mapping_function_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(input_mapping_function_block, 1)
+{
+	FIELD( _field_struct, "function", &scalar_function_named_struct_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(controller_input_block, 1)
 {
 	FIELD( _field_real, "axial dead zone" ),
 	FIELD( _field_real, "radial dead zone" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(player_control, 1)
+TAG_BLOCK(player_control_block, 1)
 {
 	FIELD( _field_block, "controller button mappings", &controller_mapping_reference_block ),
 	FIELD( _field_block, "move stick info", &gamepad_stick_info_block ),
@@ -105,27 +123,9 @@ TAG_BLOCK(player_control, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(controller_mapping_reference, k_button_presets_count)
+TAG_BLOCK(controller_mapping_reference_block, k_button_presets_count)
 {
 	FIELD( _field_tag_reference, "mapping" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(gamepad_stick_info, 1)
-{
-	FIELD( _field_char_enum, "input shape" ),
-	FIELD( _field_pad, "F", 3 ),
-	FIELD( _field_real_fraction, "peg threshold [0,1]#magnitude of analog input for pegged acceleration to kick in" ),
-	FIELD( _field_real_point_2d, "pegged time#time for a pegged look to reach maximum effect" ),
-	FIELD( _field_real_point_2d, "pegged scale#the maximum effect achieved over the duration of the pegged time." ),
-	FIELD( _field_angle, "peg max angular velocity:degrees per sec#the maximum turning speed during peg" ),
-	FIELD( _field_block, "input mapping function", &input_mapping_function_block ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(input_mapping_function, 1)
-{
-	FIELD( _field_struct, "function" ),
 	FIELD( _field_terminator )
 };
 

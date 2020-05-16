@@ -3,7 +3,15 @@
 namespace blofeld
 {
 
-TAG_BLOCK(sound_effect_templates, k_maximum_number_of_sound_effect_templates)
+TAG_STRUCT(sound_effect_template_struct_definition)
+{
+	FIELD( _field_block, "template collection", &sound_effect_templates_block ),
+	FIELD( _field_string_id, "internal dsp effect name{input effect name}" ),
+	FIELD( _field_block, "additional sound inputs", &sound_effect_template_additional_sound_input_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(sound_effect_templates_block, k_maximum_number_of_sound_effect_templates)
 {
 	FIELD( _field_string_id, "dsp effect" ),
 	FIELD( _field_explanation, "WARNING" ),
@@ -15,7 +23,7 @@ TAG_BLOCK(sound_effect_templates, k_maximum_number_of_sound_effect_templates)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_effect_template_parameter, k_maximum_number_of_sound_effect_parameters)
+TAG_BLOCK(sound_effect_template_parameter_block, k_maximum_number_of_sound_effect_parameters)
 {
 	FIELD( _field_string_id, "name" ),
 	FIELD( _field_enum, "type" ),
@@ -24,22 +32,22 @@ TAG_BLOCK(sound_effect_template_parameter, k_maximum_number_of_sound_effect_para
 	FIELD( _field_long_integer, "default enum integer value" ),
 	FIELD( _field_real, "default scalar value" ),
 	FIELD( _field_custom ),
-	FIELD( _field_struct, "default function" ),
+	FIELD( _field_struct, "default function", &mapping_function_struct_definition ),
 	FIELD( _field_real, "minimum scalar value" ),
 	FIELD( _field_real, "maximum scalar value" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_effect_template_additional_sound_input, 1)
+TAG_BLOCK(sound_effect_template_additional_sound_input_block, 1)
 {
 	FIELD( _field_string_id, "dsp effect" ),
 	FIELD( _field_custom ),
-	FIELD( _field_struct, "low frequency sound" ),
+	FIELD( _field_struct, "low frequency sound", &mapping_function_struct_definition ),
 	FIELD( _field_real, "time period: seconds" ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(sound_effect_template, SOUND_EFFECT_TEMPLATE_TAG)
+TAG_GROUP(sound_effect_template_block, SOUND_EFFECT_TEMPLATE_TAG)
 {
 	FIELD( _field_block, "template collection", &sound_effect_templates_block ),
 	FIELD( _field_string_id, "internal dsp effect name{input effect name}" ),

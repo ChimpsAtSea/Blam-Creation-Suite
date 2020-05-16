@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(game_audibility, k_maximum_scenario_zone_set_count)
+TAG_BLOCK(game_audibility_block, k_maximum_scenario_zone_set_count)
 {
 	FIELD( _field_long_integer, "door portal count" ),
 	FIELD( _field_long_integer, "room count" ),
@@ -13,36 +13,36 @@ TAG_BLOCK(game_audibility, k_maximum_scenario_zone_set_count)
 	FIELD( _field_block, "ai deafening pas", &ai_deafening_encoded_pas_block ),
 	FIELD( _field_block, "room distances", &encoded_room_distances_block ),
 	FIELD( _field_block, "game portal to door occluder mapping", &game_portal_to_door_occluder_block ),
-	FIELD( _field_block, "bsp cluster to room bounds", &bsp_cluster_to_room_bounds_block ),
-	FIELD( _field_block, "bsp cluster to room indices", &bsp_cluster_to_room_indices_block ),
+	FIELD( _field_block, "bsp cluster to room bounds", &bsp_cluster_to_room_bounds ),
+	FIELD( _field_block, "bsp cluster to room indices", &bsp_cluster_to_room_indices ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(door_encoded_pas, k_maximum_audibility_door_count*2*((((k_maximum_rooms_per_game)+(k_int32_bits-1))>>k_int32_bits_bits)))
+TAG_BLOCK(door_encoded_pas_block, k_maximum_audibility_door_count*2*((((k_maximum_rooms_per_game)+(k_int32_bits-1))>>k_int32_bits_bits)))
 {
 	FIELD( _field_long_integer, "encoded data" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(room_door_portal_encoded_pas, k_maximum_rooms_per_game*((((k_maximum_audibility_door_count)+(k_int32_bits-1))>>k_int32_bits_bits)))
+TAG_BLOCK(room_door_portal_encoded_pas_block, k_maximum_rooms_per_game*((((k_maximum_audibility_door_count)+(k_int32_bits-1))>>k_int32_bits_bits)))
 {
 	FIELD( _field_long_integer, "encoded data" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(ai_deafening_encoded_pas, (((((k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2)+(k_int32_bits-1))>>k_int32_bits_bits)))
+TAG_BLOCK(ai_deafening_encoded_pas_block, (((((k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2)+(k_int32_bits-1))>>k_int32_bits_bits)))
 {
 	FIELD( _field_long_integer, "encoded data" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(encoded_room_distances, (k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2)
+TAG_BLOCK(encoded_room_distances_block, (k_maximum_rooms_per_game*(k_maximum_rooms_per_game-1))/2)
 {
 	FIELD( _field_char_integer, "encoded data" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(game_portal_to_door_occluder, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
+TAG_BLOCK(game_portal_to_door_occluder_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 {
 	FIELD( _field_long_integer, "first door occluder index" ),
 	FIELD( _field_long_integer, "door occluder count" ),

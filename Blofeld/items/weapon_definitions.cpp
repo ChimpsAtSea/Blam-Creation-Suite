@@ -3,7 +3,141 @@
 namespace blofeld
 {
 
-TAG_BLOCK(melee_damage_parameters, k_melee_damage_class_count)
+TAG_STRUCT(aim_assist_struct)
+{
+	FIELD( _field_real, "autoaim stick time:seconds!#the number of seconds that the crosshair needs to be on target before the larger autoaim stick kicks in" ),
+	FIELD( _field_angle, "autoaim stick angle:degrees!#the maximum angle that autoaim works to \'stick\' a target.  set to zero to use default behavior." ),
+	FIELD( _field_angle, "autoaim angle:degrees#the maximum angle that autoaim works at full strength!" ),
+	FIELD( _field_real, "autoaim range:world units#the maximum distance that autoaim works at full strength!" ),
+	FIELD( _field_real, "autoaim falloff range:world units#at what point the autoaim starts falling off!" ),
+	FIELD( _field_real, "autoaim near falloff range:world units#at what point the autoaim reaches full power!" ),
+	FIELD( _field_angle, "magnetism angle:degrees#the maximum angle that magnetism works at full strength!" ),
+	FIELD( _field_real, "magnetism range:world units#the maximum distance that magnetism works at full strength!" ),
+	FIELD( _field_real, "magnetism falloff range:world units#at what point magnetism starts falling off!" ),
+	FIELD( _field_real, "magnetism near falloff range:world units#at what point magnetism reaches full power!" ),
+	FIELD( _field_angle, "deviation angle:degrees#the maximum angle that a projectile is allowed to deviate from the gun barrel due to autoaim OR network lead vector reconstruction!" ),
+	FIELD( _field_pad, "ZHV", 4 ),
+	FIELD( _field_pad, "CVYGPMLMX", 16 ),
+	FIELD( _field_pad, "UQXKLVAXI", 4 ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(WeaponBarrelIronSightsStruct)
+{
+	FIELD( _field_real, "spread multiplier#multiplies the spread error - use < 1.0 for more accuracy" ),
+	FIELD( _field_real, "movement multiplier#multipliers player maximum move speed" ),
+	FIELD( _field_real, "aim speed multiplier" ),
+	FIELD( _field_real, "auto zoom out time#tick delay before zooming out upon release of iron sights zoom -- use 0 for single-zoom weapons, 5-10 for multi-zooms like sniper rifle" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(weapon_interface_struct)
+{
+	FIELD( _field_explanation, "interface" ),
+	FIELD( _field_struct, "shared interface", &weapon_shared_interface_struct_struct_definition ),
+	FIELD( _field_block, "first person", &weapon_first_person_interface_block ),
+	FIELD( _field_tag_reference, "hud screen reference" ),
+	FIELD( _field_tag_reference, "alternate hud screen reference#the parent of the weapon can indicate that this hud should be used instead of the default" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(weapon_shared_interface_struct)
+{
+	FIELD( _field_pad, "PWGUS", 16 ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(weapon_trigger_autofire_struct)
+{
+	FIELD( _field_explanation, "AUTOFIRE" ),
+	FIELD( _field_real, "autofire time" ),
+	FIELD( _field_real, "autofire throw" ),
+	FIELD( _field_enum, "secondary action" ),
+	FIELD( _field_enum, "primary action" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(weapon_trigger_charging_struct)
+{
+	FIELD( _field_explanation, "CHARGING" ),
+	FIELD( _field_real, "charging time:seconds#the amount of time it takes for this trigger to become fully charged" ),
+	FIELD( _field_real, "charged time:seconds#the amount of time this trigger can be charged before becoming overcharged" ),
+	FIELD( _field_char_enum, "overcharged action" ),
+	FIELD( _field_byte_flags, "flags" ),
+	FIELD( _field_short_integer, "cancelled trigger throw#96 was the constant in code for the pp" ),
+	FIELD( _field_real, "charged illumination:[0,1]#the amount of illumination given off when the weapon is fully charged" ),
+	FIELD( _field_tag_reference, "charging effect#the charging effect is created once when the trigger begins to charge" ),
+	FIELD( _field_tag_reference, "charging damage effect#the charging effect is created once when the trigger begins to charge" ),
+	FIELD( _field_tag_reference, "charging continuous damage response#plays every tick you\'re charging or charged, scaled to charging fraction" ),
+	FIELD( _field_real, "charged drain rate#how much battery to drain per second when charged" ),
+	FIELD( _field_tag_reference, "discharge effect#the discharging effect is created once when the trigger releases its charge" ),
+	FIELD( _field_tag_reference, "discharge damage effect#the discharging effect is created once when the trigger releases its charge" ),
+	FIELD( _field_block, "fire fractions", &weapon_trigger_charging_fire_fraction ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(weapon_barrel_firing_parameters_struct)
+{
+	FIELD( _field_real_bounds, "rounds per second#the number of firing effects created per second" ),
+	FIELD( _field_string_id, "rate of fire acceleration#function value sets the current rate of fire when the barrel is firing" ),
+	FIELD( _field_real, "acceleration time:seconds#the continuous firing time it takes for the weapon to achieve its final rounds per second" ),
+	FIELD( _field_string_id, "rate of fire deceleration#function value sets the current rate of fire when the barrel is not firing" ),
+	FIELD( _field_real, "deceleration time:seconds#the continuous idle time it takes for the weapon to return from its final rounds per second to its initial" ),
+	FIELD( _field_real, "barrel spin scale#scale the barrel spin speed by this amount" ),
+	FIELD( _field_real_fraction, "blurred rate of fire#a percentage between 0 and 1 which controls how soon in its firing animation the weapon blurs" ),
+	FIELD( _field_short_bounds, "shots per fire#allows designer caps to the shots you can fire from one firing action" ),
+	FIELD( _field_real, "fire recovery time:seconds#how long after a set of shots it takes before the barrel can fire again" ),
+	FIELD( _field_real_fraction, "soft recovery fraction#how much of the recovery allows shots to be queued" ),
+	FIELD( _field_real, "melee  fire recovery time:seconds#how long after a set of shots it takes before the weapon can melee" ),
+	FIELD( _field_real_fraction, "melee soft recovery fraction#how much of the melee recovery allows melee to be queued" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(weapon_barrel_firing_error_struct)
+{
+	FIELD( _field_real, "deceleration time:seconds#the continuous idle time it would take for a barrel_error of 1.0 to return to its minimum value.\nMinimum value is usually 0.0 but sprinting can override this. See\n\'globals@Player information.momentum and sprinting.min weapon error\'" ),
+	FIELD( _field_real_bounds, "damage error#the range of angles (in degrees) that a damaged weapon will skew fire" ),
+	FIELD( _field_angle, "min error look pitch rate#yaw rate is doubled" ),
+	FIELD( _field_angle, "full error look pitch rate#yaw rate is doubled" ),
+	FIELD( _field_real, "look pitch error power#use to soften or sharpen the rate ding" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(weapon_barrel_projectile_accuracy_penalty_struct)
+{
+	FIELD( _field_custom, "accuracy penalties" ),
+	FIELD( _field_real, "reload penalty#percentage accuracy lost when reloading" ),
+	FIELD( _field_real, "switch penalty#percentage accuracy lost when switching weapons" ),
+	FIELD( _field_real, "zoom penalty#percentage accuracy lost when zooming in/out" ),
+	FIELD( _field_real, "jump penalty#percentage accuracy lost when jumping" ),
+	FIELD( _field_explanation, "barrel_error penalty functions" ),
+	FIELD( _field_custom, "single wield penalties" ),
+	FIELD( _field_struct, "single wield penalties", &weapon_barrel_projectile_accuracy_penalty_function_struct_struct_definition ),
+	FIELD( _field_custom ),
+	FIELD( _field_custom, "dual wield penalties" ),
+	FIELD( _field_struct, "dual wield penalties", &weapon_barrel_projectile_accuracy_penalty_function_struct_struct_definition ),
+	FIELD( _field_custom ),
+	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(weapon_barrel_projectile_accuracy_penalty_function_struct)
+{
+	FIELD( _field_block, "firing penalty function#percentage accuracy lost when the barrel has fired" ),
+	FIELD( _field_block, "firing crouched penalty function#percentage accuracy lost when the barrel has fired from a crouched position" ),
+	FIELD( _field_block, "moving penalty function#percentage accuracy lost when moving" ),
+	FIELD( _field_block, "turning penalty function#percentage accuracy lost when turning the camera" ),
+	FIELD( _field_real, "error angle max rotation#angle which represents the maximum input to the turning penalty function." ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(weapon_barrel_damage_effect_struct)
+{
+	FIELD( _field_tag_reference, "damage effect" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(melee_damage_parameters_block, k_melee_damage_class_count)
 {
 	FIELD( _field_explanation, "melee damage parameters" ),
 	FIELD( _field_real_euler_angles_2d, "damage pyramid angles" ),
@@ -62,6 +196,15 @@ TAG_BLOCK(globalAimSwimBlock, 3)
 	FIELD( _field_terminator )
 };
 
+TAG_BLOCK(weapon_first_person_interface_block, k_first_person_interface_count)
+{
+	FIELD( _field_tag_reference, "first person model" ),
+	FIELD( _field_tag_reference, "first person animations" ),
+	FIELD( _field_real, "first person fov scale#the multiplier by the standard first person FOV to use when this weapon is held" ),
+	FIELD( _field_real, "first person dof distance#the distance to apply depth of field to the weapon" ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(magazines, MAXIMUM_NUMBER_OF_MAGAZINES_PER_WEAPON)
 {
 	FIELD( _field_long_flags, "flags" ),
@@ -84,7 +227,7 @@ TAG_BLOCK(magazines, MAXIMUM_NUMBER_OF_MAGAZINES_PER_WEAPON)
 	FIELD( _field_tag_reference, "chambering effect" ),
 	FIELD( _field_tag_reference, "chambering damage effect" ),
 	FIELD( _field_useless_pad ),
-	FIELD( _field_block, "magazines", &magazine_objects_block ),
+	FIELD( _field_block, "magazines", &magazine_objects ),
 	FIELD( _field_terminator )
 };
 
@@ -106,10 +249,16 @@ TAG_BLOCK(weapon_triggers, k_weapon_trigger_count)
 	FIELD( _field_enum, "prediction" ),
 	FIELD( _field_pad, "GNFR", 2 ),
 	FIELD( _field_useless_pad ),
-	FIELD( _field_struct, "autofire" ),
-	FIELD( _field_struct, "charging" ),
+	FIELD( _field_struct, "autofire", &weapon_trigger_autofire_struct_struct_definition ),
+	FIELD( _field_struct, "charging", &weapon_trigger_charging_struct_struct_definition ),
 	FIELD( _field_tag_reference, "double latch projectile releasable effect#created once player is able to release the tethered projectile" ),
 	FIELD( _field_tag_reference, "double latch projectile released effect#created when player releases the tethered projectile" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(weapon_trigger_charging_fire_fraction, MAXIMUM_CHARGING_FIRE_FRACTIONS_PER_TRIGGER)
+{
+	FIELD( _field_real_fraction, "charge fraction^:[0.1]#charging fraction at which the weapon should additionally fire a shot." ),
 	FIELD( _field_terminator )
 };
 
@@ -117,7 +266,7 @@ TAG_BLOCK(weapon_barrels, k_weapon_barrel_count)
 {
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_explanation, "firing" ),
-	FIELD( _field_struct, "firing" ),
+	FIELD( _field_struct, "firing", &weapon_barrel_firing_parameters_struct_struct_definition ),
 	FIELD( _field_short_block_index, "magazine#the magazine from which this trigger draws its ammunition" ),
 	FIELD( _field_short_integer, "rounds per shot#the number of rounds expended to create a single firing effect" ),
 	FIELD( _field_short_integer, "minimum rounds loaded#the minimum number of rounds necessary to fire the weapon" ),
@@ -130,21 +279,21 @@ TAG_BLOCK(weapon_barrels, k_weapon_barrel_count)
 	FIELD( _field_real, "event_synchronized_projectiles_per_second#Valid only for barrels set to prediction type \"continuous\". Controls how many projectiles per second can be individually synchronized (use debug_projectiles to diagnose)." ),
 	FIELD( _field_real, "maximum_barrel_error_for_event_synchronization#Valid only for barrels set to prediction type \"continuous\". If the barrel\'s current error level is over this value (zero to one scale), we will not consider synchronizing projectiles with individual events (use debug_projectiles to diagnose)." ),
 	FIELD( _field_explanation, "firing error" ),
-	FIELD( _field_struct, "firing error" ),
+	FIELD( _field_struct, "firing error", &weapon_barrel_firing_error_struct_struct_definition ),
 	FIELD( _field_explanation, "projectile" ),
 	FIELD( _field_enum, "distribution function" ),
 	FIELD( _field_short_integer, "projectiles per shot" ),
-	FIELD( _field_block, "custom vectors#Custom vectors must be set in distribution function above", &projectileDistributionCustomVector_block ),
+	FIELD( _field_block, "custom vectors#Custom vectors must be set in distribution function above", &projectileDistributionCustomVector ),
 	FIELD( _field_real, "distribution angle:degrees#used by distribution function \'horizontal fan\' above" ),
 	FIELD( _field_angle, "minimum error:degrees#projectile direction is randomly selected between this and max_error_angle below" ),
 	FIELD( _field_angle_bounds, "error angle:degrees (max_error_angle)#current barrel_error is linearly interpolated between these to generate max_error_angle" ),
-	FIELD( _field_struct, "accuracy penalties" ),
+	FIELD( _field_struct, "accuracy penalties", &weapon_barrel_projectile_accuracy_penalty_struct_struct_definition ),
 	FIELD( _field_block, "first person offset", &weapon_barrel_first_person_offset_block ),
 	FIELD( _field_char_enum, "damage effect reporting type" ),
 	FIELD( _field_pad, "DGSXQ", 3 ),
 	FIELD( _field_tag_reference, "projectile" ),
 	FIELD( _field_tag_reference, "optional secondary projectile" ),
-	FIELD( _field_struct, "eh" ),
+	FIELD( _field_struct, "eh", &weapon_barrel_damage_effect_struct_struct_definition ),
 	FIELD( _field_tag_reference, "crate projectile" ),
 	FIELD( _field_real, "crate projectile speed" ),
 	FIELD( _field_explanation, "misc" ),
@@ -170,13 +319,13 @@ TAG_BLOCK(projectileDistributionCustomVector, k_projectile_maximum_custom_vector
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(weapon_barrel_first_person_offset, k_first_person_weapon_offset_type_count)
+TAG_BLOCK(weapon_barrel_first_person_offset_block, k_first_person_weapon_offset_type_count)
 {
 	FIELD( _field_real_point_3d, "first person offset:world units#+x is forward, +z is up, +y is left" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(barrel_firing_effect, k_weapon_barrel_effect_count)
+TAG_BLOCK(barrel_firing_effect_block, k_weapon_barrel_effect_count)
 {
 	FIELD( _field_short_integer, "shot count lower bound#the minimum number of times this firing effect will be used, once it has been chosen" ),
 	FIELD( _field_short_integer, "shot count upper bound#the maximum number of times this firing effect will be used, once it has been chosen" ),
@@ -205,7 +354,7 @@ TAG_BLOCK(weaponScaleshotStruct, 1)
 	FIELD( _field_real, "power per hit#the amount of scaleshot power you get when a projectile from this weapon hits an enemy" ),
 	FIELD( _field_real, "power change per second#the change per second in power" ),
 	FIELD( _field_explanation, "power levels" ),
-	FIELD( _field_block, "power levels", &weaponScaleshotLevelStruct_block ),
+	FIELD( _field_block, "power levels", &weaponScaleshotLevelStruct ),
 	FIELD( _field_terminator )
 };
 
@@ -220,7 +369,7 @@ TAG_BLOCK(weaponScaleshotLevelStruct, WeaponScaleshotLevelDefinition::k_maxLevel
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(weapon_screen_effect, 4)
+TAG_BLOCK(weapon_screen_effect_block, 4)
 {
 	FIELD( _field_byte_flags, "flags" ),
 	FIELD( _field_pad, "LKSZJFSE", 3 ),
@@ -246,9 +395,9 @@ TAG_BLOCK(WeaponSoundSweetenerBlock, k_maxWeaponSoundSweetenerBlocks)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_INHERIT(weapon, WEAPON_TAG, item, ITEM_TAG)
+TAG_GROUP_INHERIT(weapon_block, WEAPON_TAG, item, ITEM_TAG)
 {
-	FIELD( _field_struct, "item" ),
+	FIELD( _field_struct, "item", &item_struct_definition_struct_definition ),
 	FIELD( _field_custom, "$$$ WEAPON $$$" ),
 	FIELD( _field_explanation, "" ),
 	FIELD( _field_long_flags, "flags" ),
@@ -293,12 +442,12 @@ TAG_GROUP_INHERIT(weapon, WEAPON_TAG, item, ITEM_TAG)
 	FIELD( _field_pad, "wzt", 3 ),
 	FIELD( _field_tag_reference, "zoom effect#effect that is played while zoomed" ),
 	FIELD( _field_explanation, "weapon aim assist!#DEPRECATED -- this will go away in favor of aim assist modes below" ),
-	FIELD( _field_struct, "weapon aim assist" ),
-	FIELD( _field_struct, "iron sights modifiers" ),
-	FIELD( _field_block, "aim assist modes#First mode is normal, second mode is iron sights/scoped", &globalAimAssistBlock_block ),
+	FIELD( _field_struct, "weapon aim assist", &aim_assist_struct_struct_definition ),
+	FIELD( _field_struct, "iron sights modifiers", &WeaponBarrelIronSightsStruct_struct_definition ),
+	FIELD( _field_block, "aim assist modes#First mode is normal, second mode is iron sights/scoped", &globalAimAssistBlock ),
 	FIELD( _field_block, "target tracking", &global_target_tracking_parameters_block ),
 	FIELD( _field_explanation, "aim swim indexing" ),
-	FIELD( _field_block, "aim swim", &globalAimSwimBlock_block ),
+	FIELD( _field_block, "aim swim", &globalAimSwimBlock ),
 	FIELD( _field_explanation, "ballistics" ),
 	FIELD( _field_real_bounds, "ballistic arcing firing bounds:world units#At the min range (or closer), the minimum ballistic arcing is used, at the max (or farther away), the maximum arcing is used" ),
 	FIELD( _field_real_bounds, "ballistic arcing fraction bounds:[0-1]#Controls speed and degree of arc. 0 = low, fast, 1 = high, slow" ),
@@ -337,13 +486,13 @@ TAG_GROUP_INHERIT(weapon, WEAPON_TAG, item, ITEM_TAG)
 	FIELD( _field_pad, "PAD", 3 ),
 	FIELD( _field_enum, "weapon type" ),
 	FIELD( _field_short_integer, "low ammo threshold" ),
-	FIELD( _field_struct, "player interface" ),
+	FIELD( _field_struct, "player interface", &weapon_interface_struct_struct_definition ),
 	FIELD( _field_block, "predicted resources", &g_null_block ),
-	FIELD( _field_block, "magazines", &magazines_block ),
-	FIELD( _field_block, "new triggers", &weapon_triggers_block ),
-	FIELD( _field_block, "barrels", &weapon_barrels_block ),
+	FIELD( _field_block, "magazines", &magazines ),
+	FIELD( _field_block, "new triggers", &weapon_triggers ),
+	FIELD( _field_block, "barrels", &weapon_barrels ),
 	FIELD( _field_explanation, "scaleshot" ),
-	FIELD( _field_block, "scaleshot parameters", &weaponScaleshotStruct_block ),
+	FIELD( _field_block, "scaleshot parameters", &weaponScaleshotStruct ),
 	FIELD( _field_real, "runtime weapon power on velocity!" ),
 	FIELD( _field_real, "runtime weapon power off velocity!" ),
 	FIELD( _field_useless_pad ),
@@ -380,8 +529,8 @@ TAG_GROUP_INHERIT(weapon, WEAPON_TAG, item, ITEM_TAG)
 	FIELD( _field_long_integer, "Reload cancel event hash!" ),
 	FIELD( _field_tag_reference, "single shot fire for automatics" ),
 	FIELD( _field_tag_reference, "firing loop for automatics" ),
-	FIELD( _field_block, "Sound RTPCs", &WeaponSoundRTPCBlock_block ),
-	FIELD( _field_block, "Sound Sweeteners", &WeaponSoundSweetenerBlock_block ),
+	FIELD( _field_block, "Sound RTPCs", &WeaponSoundRTPCBlock ),
+	FIELD( _field_block, "Sound Sweeteners", &WeaponSoundSweetenerBlock ),
 	FIELD( _field_string_id, "Locking Reticle Screen Name" ),
 	FIELD( _field_string_id, "Locked On Reticle Screen Name" ),
 	FIELD( _field_custom ),

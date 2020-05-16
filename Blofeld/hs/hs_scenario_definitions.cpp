@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(hs_source_files, k_maximum_hs_source_files_per_context)
+TAG_BLOCK(hs_source_files_block, k_maximum_hs_source_files_per_context)
 {
 	FIELD( _field_string, "name*" ),
 	FIELD( _field_data, "source*" ),
@@ -11,7 +11,13 @@ TAG_BLOCK(hs_source_files, k_maximum_hs_source_files_per_context)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(hs_scripts, k_maximum_hs_scripts_per_context)
+TAG_BLOCK(hs_references_block, k_maximum_hs_references_per_context)
+{
+	FIELD( _field_tag_reference, "reference*^" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(hs_scripts_block, k_maximum_hs_scripts_per_context)
 {
 	FIELD( _field_string_id, "name^*" ),
 	FIELD( _field_enum, "script type*" ),
@@ -23,14 +29,14 @@ TAG_BLOCK(hs_scripts, k_maximum_hs_scripts_per_context)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(hs_script_parameters, k_maximum_hs_parameters_per_script)
+TAG_BLOCK(hs_script_parameters_block, k_maximum_hs_parameters_per_script)
 {
 	FIELD( _field_string, "name^*" ),
 	FIELD( _field_long_enum, "return type*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(hs_globals, k_maximum_hs_globals_per_context)
+TAG_BLOCK(hs_globals_block, k_maximum_hs_globals_per_context)
 {
 	FIELD( _field_string_id, "name*" ),
 	FIELD( _field_long_enum, "type*" ),
@@ -46,13 +52,7 @@ TAG_BLOCK(HSInstancedVariablesBlock, k_maximum_hs_instanced_variables_per_contex
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(hs_references, k_maximum_hs_references_per_context)
-{
-	FIELD( _field_tag_reference, "reference*^" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(hs_unit_seat, k_maximum_hs_unit_seat_mappings)
+TAG_BLOCK(hs_unit_seat_block, k_maximum_hs_unit_seat_mappings)
 {
 	FIELD( _field_long_integer, "unit definition tag index!" ),
 	FIELD( _field_long_integer, "unit seats!" ),
@@ -60,7 +60,7 @@ TAG_BLOCK(hs_unit_seat, k_maximum_hs_unit_seat_mappings)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(hs_syntax_datum, k_maximum_hs_syntax_nodes_per_context)
+TAG_BLOCK(hs_syntax_datum_block, k_maximum_hs_syntax_nodes_per_context)
 {
 	FIELD( _field_short_integer, "datum header~" ),
 	FIELD( _field_short_integer, "script index/function index/constant type union" ),
@@ -77,8 +77,8 @@ TAG_BLOCK(hs_syntax_datum, k_maximum_hs_syntax_nodes_per_context)
 TAG_BLOCK(HSImportManifestBlock, 128)
 {
 	FIELD( _field_tag, "callee tag*" ),
-	FIELD( _field_block, "script table*", &HSImportManifestEntryBlock_block ),
-	FIELD( _field_block, "variable table*", &HSImportManifestEntryBlock_block ),
+	FIELD( _field_block, "script table*", &HSImportManifestEntryBlock ),
+	FIELD( _field_block, "variable table*", &HSImportManifestEntryBlock ),
 	FIELD( _field_terminator )
 };
 

@@ -3,7 +3,13 @@
 namespace blofeld
 {
 
-TAG_BLOCK(area_reference, k_maximum_areas_per_task)
+TAG_STRUCT(task_direction_block_v2_struct)
+{
+	FIELD( _field_block, "points", &task_direction_point_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(area_reference_block, k_maximum_areas_per_task)
 {
 	FIELD( _field_enum, "area type" ),
 	FIELD( _field_byte_flags, "flags" ),
@@ -18,7 +24,7 @@ TAG_BLOCK(area_reference, k_maximum_areas_per_task)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(objectives, k_maximum_objectives_per_map)
+TAG_BLOCK(objectives_block, k_maximum_objectives_per_map)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_block, "opposing objectives", &opposing_objective_block ),
@@ -30,14 +36,14 @@ TAG_BLOCK(objectives, k_maximum_objectives_per_map)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(opposing_objective, k_maximum_opposing_objectives)
+TAG_BLOCK(opposing_objective_block, k_maximum_opposing_objectives)
 {
 	FIELD( _field_short_block_index, "objective" ),
 	FIELD( _field_pad, "pad0", 2 ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(tasks, k_maximum_tasks_per_objective)
+TAG_BLOCK(tasks_block, k_maximum_tasks_per_objective)
 {
 	FIELD( _field_word_flags, "flags" ),
 	FIELD( _field_word_flags, "inhibit groups" ),
@@ -79,11 +85,11 @@ TAG_BLOCK(tasks, k_maximum_tasks_per_objective)
 	FIELD( _field_enum, "attitude" ),
 	FIELD( _field_real, "min strength:[0,1]#task becomes inactive after the strength of the participants falls below the given level" ),
 	FIELD( _field_block, "areas", &area_reference_block ),
-	FIELD( _field_block, "direction", &task_direction_block ),
+	FIELD( _field_block, "direction", &task_direction_block_v2 ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(script_fragment, 1)
+TAG_BLOCK(script_fragment_block, 1)
 {
 	FIELD( _field_string_id, "script name*" ),
 	FIELD( _field_long_string, "script source" ),
@@ -92,13 +98,9 @@ TAG_BLOCK(script_fragment, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(task_direction, 1)
-{
-	FIELD( _field_block, "points", &task_direction_point_block ),
-	FIELD( _field_terminator )
-};
+TAG_BLOCK_FROM_STRUCT(task_direction_block_v2, 1, task_direction_block_v2_struct_struct_definition );
 
-TAG_BLOCK(task_direction_point, k_max_points_per_task_direction)
+TAG_BLOCK(task_direction_point_block, k_max_points_per_task_direction)
 {
 	FIELD( _field_real_point_3d, "point0" ),
 	FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),

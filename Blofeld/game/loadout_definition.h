@@ -3,17 +3,25 @@
 namespace blofeld
 {
 
-extern s_tag_block loadout_definition_block;
-extern s_tag_block loadout_palette_definition_block;
-extern s_tag_block loadout_index_block;
-extern s_tag_block loadout_name_block;
-extern s_tag_block custom_loadout_defaults_block;
-extern s_tag_block game_engine_loadout_options_block;
-extern s_tag_block game_engine_loadout_palette_entry_block;
+extern s_tag_struct loadout_globals_definition_struct_definition_struct_definition;
+extern s_tag_struct loadout_definition_struct_struct_definition;
+
+extern s_tag_struct game_engine_loadout_options_block_struct_definition;
+extern s_tag_block_definition game_engine_loadout_options_block;
+extern s_tag_struct game_engine_loadout_palette_entry_block_struct_definition;
+extern s_tag_block_definition game_engine_loadout_palette_entry_block;
+extern s_tag_block_definition loadout_definition_block;
+extern s_tag_struct loadout_palette_definition_block_struct_definition;
+extern s_tag_block_definition loadout_palette_definition_block;
+extern s_tag_struct loadout_index_block_struct_definition;
+extern s_tag_block_definition loadout_index_block;
+extern s_tag_struct loadout_name_block_struct_definition;
+extern s_tag_block_definition loadout_name_block;
+extern s_tag_block_definition custom_loadout_defaults_block;
 
 constexpr unsigned long LOADOUT_GLOBALS_DEFINITION_TAG = 'lgtd';
 
-extern s_tag_block loadout_globals_definition_block;
+extern s_tag_block_definition loadout_globals_definition_block;
 extern s_tag_group loadout_globals_definition_group;
 } // namespace blofeld
 

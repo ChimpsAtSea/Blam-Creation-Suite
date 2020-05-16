@@ -3,11 +3,11 @@
 namespace blofeld
 {
 
-TAG_BLOCK(sound_language_info, k_language_count)
+TAG_BLOCK(sound_language_info_block, k_language_count)
 {
 	FIELD( _field_long_enum, "language" ),
-	FIELD( _field_block, "permutation durations", &sound_permutation_language_info_block ),
-	FIELD( _field_block, "pitch range durations", &sound_pitch_range_language_info_block ),
+	FIELD( _field_block, "permutation durations", &sound_permutation_language_info ),
+	FIELD( _field_block, "pitch range durations", &sound_pitch_range_language_info ),
 	FIELD( _field_terminator )
 };
 

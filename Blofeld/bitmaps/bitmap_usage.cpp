@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(bitmap_usage, 1)
+TAG_BLOCK(bitmap_usage_block, 1)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_real, "source gamma:0.0 to use xenon curve (default)" ),

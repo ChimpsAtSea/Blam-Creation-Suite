@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(global_geometry_material, MAXIMUM_MATERIALS_PER_GEOMETRY)
+TAG_BLOCK(global_geometry_material_block, MAXIMUM_MATERIALS_PER_GEOMETRY)
 {
 	FIELD( _field_tag_reference, "render method^*" ),
 	FIELD( _field_long_integer, "imported material index*" ),

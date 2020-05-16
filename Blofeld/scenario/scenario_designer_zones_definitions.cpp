@@ -3,10 +3,10 @@
 namespace blofeld
 {
 
-TAG_BLOCK(scenario_designer_zone, k_maximum_designer_zone_count)
+TAG_BLOCK(scenario_designer_zone_block, k_maximum_designer_zone_count)
 {
 	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_block, "references*", &scenarioDesignerZoneTagReferenceBlock_block ),
+	FIELD( _field_block, "references*", &scenarioDesignerZoneTagReferenceBlock ),
 	FIELD( _field_custom, "biped" ),
 	FIELD( _field_block, "biped", &biped_block_index_flags_block ),
 	FIELD( _field_custom, "vehicle" ),
@@ -43,7 +43,7 @@ TAG_BLOCK(scenario_designer_zone, k_maximum_designer_zone_count)
 	FIELD( _field_block, "budget_reference", &budget_reference_block_index_flags_block ),
 	FIELD( _field_custom, "bink" ),
 	FIELD( _field_block, "bink", &bink_block_index_flags_block ),
-	FIELD( _field_block, "resource dependencies*!", &scenarioDesignerResourceDependenciesBlock_block ),
+	FIELD( _field_block, "resource dependencies*!", &scenarioDesignerResourceDependenciesBlock ),
 	FIELD( _field_terminator )
 };
 
@@ -53,109 +53,109 @@ TAG_BLOCK(scenarioDesignerZoneTagReferenceBlock, MAXIMUM_SCENARIO_OBJECT_PALETTE
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(biped_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(biped_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(vehicle_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(vehicle_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(weapon_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(weapon_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(equipment_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(equipment_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(scenery_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(scenery_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(machine_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(machine_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(terminal_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(terminal_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(control_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(control_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(dispenser_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(dispenser_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_scenery_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(sound_scenery_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(crate_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(crate_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(creature_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(creature_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(giant_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(giant_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(effect_scenery_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(effect_scenery_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(character_block_index_flags, 64)
+TAG_BLOCK(character_block_index_flags_block, 64)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(spawner_block_index_flags, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(spawner_block_index_flags_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(budget_reference_block_index_flags, k_maximum_hs_references_per_context)
+TAG_BLOCK(budget_reference_block_index_flags_block, k_maximum_hs_references_per_context)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(bink_block_index_flags, MAXIMUM_BINK_PALETTE_ENTRIES_PER_BLOCK)
+TAG_BLOCK(bink_block_index_flags_block, MAXIMUM_BINK_PALETTE_ENTRIES_PER_BLOCK)
 {
 	FIELD( _field_short_block_index, "palette index^" ),
 	FIELD( _field_terminator )

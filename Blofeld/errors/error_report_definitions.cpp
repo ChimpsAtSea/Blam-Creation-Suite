@@ -3,7 +3,15 @@
 namespace blofeld
 {
 
-TAG_BLOCK(global_error_report_categories, MAXIMUM_ERROR_REPORT_CATEGORIES)
+TAG_STRUCT(error_report_point_definition)
+{
+	FIELD( _field_real_point_3d, "position*" ),
+	FIELD( _field_array, "node indices*" ),
+	FIELD( _field_array, "node weights*" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(global_error_report_categories_block, MAXIMUM_ERROR_REPORT_CATEGORIES)
 {
 	FIELD( _field_long_string, "name^*" ),
 	FIELD( _field_enum, "report type*" ),
@@ -15,7 +23,7 @@ TAG_BLOCK(global_error_report_categories, MAXIMUM_ERROR_REPORT_CATEGORIES)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(error_reports, MAXIMUM_REPORTS_PER_ERROR_REPORT_CATEGORY)
+TAG_BLOCK(error_reports_block, MAXIMUM_REPORTS_PER_ERROR_REPORT_CATEGORY)
 {
 	FIELD( _field_char_enum, "type*" ),
 	FIELD( _field_char_enum, "source*" ),
@@ -39,48 +47,48 @@ TAG_BLOCK(error_reports, MAXIMUM_REPORTS_PER_ERROR_REPORT_CATEGORY)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(error_report_vertices, MAXIMUM_VERTICES_PER_ERROR_REPORT)
+TAG_BLOCK(error_report_vertices_block, MAXIMUM_VERTICES_PER_ERROR_REPORT)
 {
-	FIELD( _field_struct, "point" ),
+	FIELD( _field_struct, "point", &error_report_point_definition_struct_definition ),
 	FIELD( _field_real_argb_color, "color*" ),
 	FIELD( _field_real, "screen size*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(error_report_vectors, MAXIMUM_VECTORS_PER_ERROR_REPORT)
+TAG_BLOCK(error_report_vectors_block, MAXIMUM_VECTORS_PER_ERROR_REPORT)
 {
-	FIELD( _field_struct, "point" ),
+	FIELD( _field_struct, "point", &error_report_point_definition_struct_definition ),
 	FIELD( _field_real_argb_color, "color*" ),
 	FIELD( _field_real_vector_3d, "normal*" ),
 	FIELD( _field_real, "screen length*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(error_report_lines, MAXIMUM_LINES_PER_ERROR_REPORT)
+TAG_BLOCK(error_report_lines_block, MAXIMUM_LINES_PER_ERROR_REPORT)
 {
 	FIELD( _field_array, "points*" ),
 	FIELD( _field_real_argb_color, "color*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(error_report_triangles, MAXIMUM_TRIANGLES_PER_ERROR_REPORT)
+TAG_BLOCK(error_report_triangles_block, MAXIMUM_TRIANGLES_PER_ERROR_REPORT)
 {
 	FIELD( _field_array, "points*" ),
 	FIELD( _field_real_argb_color, "color*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(error_report_quads, MAXIMUM_QUADS_PER_ERROR_REPORT)
+TAG_BLOCK(error_report_quads_block, MAXIMUM_QUADS_PER_ERROR_REPORT)
 {
 	FIELD( _field_array, "points*" ),
 	FIELD( _field_real_argb_color, "color*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(error_report_comments, MAXIMUM_COMMENTS_PER_ERROR_REPORT)
+TAG_BLOCK(error_report_comments_block, MAXIMUM_COMMENTS_PER_ERROR_REPORT)
 {
 	FIELD( _field_data, "text*" ),
-	FIELD( _field_struct, "point" ),
+	FIELD( _field_struct, "point", &error_report_point_definition_struct_definition ),
 	FIELD( _field_real_argb_color, "color*" ),
 	FIELD( _field_terminator )
 };

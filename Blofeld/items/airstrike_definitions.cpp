@@ -3,7 +3,13 @@
 namespace blofeld
 {
 
-TAG_BLOCK(airstrike_battery, AirStrikeDefinition::k_max_airstrike_batteries)
+TAG_STRUCT(airstrike_struct_definition)
+{
+	FIELD( _field_block, "batteries", &airstrike_battery_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(airstrike_battery_block, AirStrikeDefinition::k_max_airstrike_batteries)
 {
 	FIELD( _field_real, "launch radius:wu#each shot will be fired with a random offset in this radius in the x/y plane above the target location" ),
 	FIELD( _field_real, "launch z height:wu#strike will be launched at this plane height above the target location" ),
@@ -18,13 +24,13 @@ TAG_BLOCK(airstrike_battery, AirStrikeDefinition::k_max_airstrike_batteries)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(airstrike_fire_location, s_airstrike_battery_definition::max_fire_locations)
+TAG_BLOCK(airstrike_fire_location_block, s_airstrike_battery_definition::max_fire_locations)
 {
 	FIELD( _field_real_point_2d, "offset" ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(airstrike, AIRSTRIKE_TAG)
+TAG_GROUP(airstrike_block, AIRSTRIKE_TAG)
 {
 	FIELD( _field_block, "batteries", &airstrike_battery_block ),
 	FIELD( _field_terminator )

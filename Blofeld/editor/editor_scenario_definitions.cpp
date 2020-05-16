@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(g_scenario_editor_folder, k_maximum_scenario_editor_folders)
+TAG_BLOCK(g_scenario_editor_folder_block, k_maximum_scenario_editor_folders)
 {
 	FIELD( _field_long_block_index, "parent folder" ),
 	FIELD( _field_long_string, "name^" ),

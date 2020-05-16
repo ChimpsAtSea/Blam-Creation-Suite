@@ -3,30 +3,16 @@
 namespace blofeld
 {
 
-TAG_BLOCK(muffin_permutation_name, SHORT_MAX)
-{
-	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(muffin_marker, SHORT_MAX)
-{
-	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_word_integer, "muffinage chance:percent [0 - 100]#how often muffins will appear on this marker" ),
-	FIELD( _field_word_block_flags, "allowed muffin types" ),
-	FIELD( _field_terminator )
-};
-
-TAG_BLOCK(global_muffin_type, 16)
+TAG_STRUCT(global_muffin_type_struct)
 {
 	FIELD( _field_short_block_index, "mesh^" ),
 	FIELD( _field_word_flags, "flags" ),
 	FIELD( _field_real_bounds, "spawn delay:seconds#how long to wait before spawning these muffins" ),
 	FIELD( _field_explanation, "SCALE" ),
 	FIELD( _field_real_bounds, "random scale:[0-1]" ),
-	FIELD( _field_struct, "initial growth" ),
+	FIELD( _field_struct, "initial growth", &muffin_scalar_function_struct_struct_definition ),
 	FIELD( _field_real, "growth time:seconds" ),
-	FIELD( _field_struct, "periodic noise" ),
+	FIELD( _field_struct, "periodic noise", &muffin_scalar_function_struct_struct_definition ),
 	FIELD( _field_explanation, "JIGGLE" ),
 	FIELD( _field_real, "jiggle:[0.0 - 1.0]#how much the muffin jiggles (0 = perfectly rigid, 1 = full jiggle, subject to parameters below)" ),
 	FIELD( _field_real, "jiggle spring length:world units#spring length affects how the spring reacts to the model moving (this should be approximately how far the muffin sticks out from the model)" ),
@@ -40,7 +26,30 @@ TAG_BLOCK(global_muffin_type, 16)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(muffin, MUFFIN_TAG)
+TAG_STRUCT(muffin_scalar_function_struct)
+{
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(muffin_permutation_name_block, SHORT_MAX)
+{
+	FIELD( _field_string_id, "name^" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(muffin_marker_block, SHORT_MAX)
+{
+	FIELD( _field_string_id, "name^" ),
+	FIELD( _field_word_integer, "muffinage chance:percent [0 - 100]#how often muffins will appear on this marker" ),
+	FIELD( _field_word_block_flags, "allowed muffin types" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK_FROM_STRUCT(global_muffin_type_block, 16, global_muffin_type_struct_struct_definition );
+
+TAG_GROUP(muffin_block, MUFFIN_TAG)
 {
 	FIELD( _field_custom, "link to render model" ),
 	FIELD( _field_tag_reference, "render model*" ),

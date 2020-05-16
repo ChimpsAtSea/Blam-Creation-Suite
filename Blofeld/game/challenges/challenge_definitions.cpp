@@ -3,7 +3,14 @@
 namespace blofeld
 {
 
-TAG_BLOCK(challenge_category, k_roomEnoughToConvertAllExistingCategories)
+TAG_STRUCT(challenge_globals_definition_struct_definition)
+{
+	FIELD( _field_tag_reference, "medal aggregators" ),
+	FIELD( _field_block, "challenge_categories", &challenge_category_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(challenge_category_block, k_roomEnoughToConvertAllExistingCategories)
 {
 	FIELD( _field_string_id, "category_name^" ),
 	FIELD( _field_char_enum, "challenge category^" ),
@@ -12,7 +19,7 @@ TAG_BLOCK(challenge_category, k_roomEnoughToConvertAllExistingCategories)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(challenge, k_maximum_challenges_per_category)
+TAG_BLOCK(challenge_block, k_maximum_challenges_per_category)
 {
 	FIELD( _field_string_id, "challenge_name^" ),
 	FIELD( _field_string_id, "display_string#in the UI, name and description" ),
@@ -31,7 +38,7 @@ TAG_BLOCK(challenge, k_maximum_challenges_per_category)
 	FIELD( _field_long_flags, "auto progress on:#Conditions that progress this challenge magically (aside from incidents, which can progress any challenge)" ),
 	FIELD( _field_custom, "requirements" ),
 	FIELD( _field_custom, "permitted game types" ),
-	FIELD( _field_struct, "permitted game types" ),
+	FIELD( _field_struct, "permitted game types", &game_mode_flags_struct_struct_definition ),
 	FIELD( _field_custom ),
 	FIELD( _field_string_id, "level_name#can only be progressed on this level, if specified" ),
 	FIELD( _field_long_integer, "map_id#can only be progressed on this map, if > 0 (only works for campaign and spartan ops)" ),
@@ -45,7 +52,7 @@ TAG_BLOCK(challenge, k_maximum_challenges_per_category)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(challenge_globals_definition, CHALLENGE_GLOBALS_DEFINITION_TAG)
+TAG_GROUP(challenge_globals_definition_block, CHALLENGE_GLOBALS_DEFINITION_TAG)
 {
 	FIELD( _field_tag_reference, "medal aggregators" ),
 	FIELD( _field_block, "challenge_categories", &challenge_category_block ),

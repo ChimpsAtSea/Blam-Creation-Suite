@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(player_training_entry_data, k_player_training_count)
+TAG_BLOCK(player_training_entry_data_block, k_player_training_count)
 {
 	FIELD( _field_string_id, "display string#comes out of the HUD text globals" ),
 	FIELD( _field_word_integer, "max display time#how long the message can be on screen before being hidden" ),

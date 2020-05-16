@@ -3,15 +3,21 @@
 namespace blofeld
 {
 
-extern s_tag_block material_shader_source_file_block;
-extern s_tag_block compiled_effects_block;
-extern s_tag_block material_vertex_shader_entry_point_block;
-extern s_tag_block compiled_vertex_shader_refererence_block;
-extern s_tag_block compiled_pixel_shader_refererence_block;
+
+extern s_tag_struct material_shader_source_file_block_struct_definition;
+extern s_tag_block_definition material_shader_source_file_block;
+extern s_tag_struct compiled_effects_block_struct_definition;
+extern s_tag_block_definition compiled_effects_block;
+extern s_tag_struct material_vertex_shader_entry_point_block_struct_struct_definition;
+extern s_tag_block_definition material_vertex_shader_entry_point_block;
+extern s_tag_struct compiled_vertex_shader_refererence_block_struct_struct_definition;
+extern s_tag_block_definition compiled_vertex_shader_refererence_block;
+extern s_tag_struct compiled_pixel_shader_refererence_block_struct_struct_definition;
+extern s_tag_block_definition compiled_pixel_shader_refererence_block;
 
 constexpr unsigned long MATERIAL_SHADER_TAG = 'mats';
 
-extern s_tag_block material_shader_block;
+extern s_tag_block_definition material_shader_block;
 extern s_tag_group material_shader_group;
 } // namespace blofeld
 

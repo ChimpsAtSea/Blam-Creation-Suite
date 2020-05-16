@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(looping_sound_detail, MAXIMUM_DETAIL_SOUNDS_PER_LOOPING_SOUND)
+TAG_BLOCK(looping_sound_detail_block, MAXIMUM_DETAIL_SOUNDS_PER_LOOPING_SOUND)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_tag_reference, "sound" ),

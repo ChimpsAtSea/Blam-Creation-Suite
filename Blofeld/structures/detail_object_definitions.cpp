@@ -3,7 +3,19 @@
 namespace blofeld
 {
 
-TAG_BLOCK(detail_object_type, MAXIMUM_DETAIL_OBJECT_TYPES_PER_COLLECTION)
+TAG_STRUCT(detail_object_collection_struct_definition)
+{
+	FIELD( _field_enum, "collection type" ),
+	FIELD( _field_pad, "YN", 2 ),
+	FIELD( _field_real, "global z offset:applied to all detail objects of in this collection so they don\'t float above the ground" ),
+	FIELD( _field_pad, "EBGQ", 44 ),
+	FIELD( _field_tag_reference, "sprite plate" ),
+	FIELD( _field_block, "types", &detail_object_type_block ),
+	FIELD( _field_pad, "ZQUVEZKGL", 48 ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(detail_object_type_block, MAXIMUM_DETAIL_OBJECT_TYPES_PER_COLLECTION)
 {
 	FIELD( _field_string, "name^" ),
 	FIELD( _field_char_integer, "sequence index:[0,15]" ),
@@ -22,7 +34,7 @@ TAG_BLOCK(detail_object_type, MAXIMUM_DETAIL_OBJECT_TYPES_PER_COLLECTION)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(global_detail_object_cells, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE)
+TAG_BLOCK(global_detail_object_cells_block, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE)
 {
 	FIELD( _field_short_integer, "cell x!*" ),
 	FIELD( _field_short_integer, "cell y!*" ),
@@ -35,7 +47,7 @@ TAG_BLOCK(global_detail_object_cells, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(global_detail_object, MAXIMUM_DETAIL_OBJECTS_PER_STRUCTURE)
+TAG_BLOCK(global_detail_object_block, MAXIMUM_DETAIL_OBJECTS_PER_STRUCTURE)
 {
 	FIELD( _field_char_integer, "position x!*" ),
 	FIELD( _field_char_integer, "position y!*" ),
@@ -45,13 +57,13 @@ TAG_BLOCK(global_detail_object, MAXIMUM_DETAIL_OBJECTS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(global_detail_object_counts, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE*MAXIMUM_DETAIL_OBJECT_LAYERS_PER_STRUCTURE)
+TAG_BLOCK(global_detail_object_counts_block, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE*MAXIMUM_DETAIL_OBJECT_LAYERS_PER_STRUCTURE)
 {
 	FIELD( _field_short_integer, "count!*" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(global_z_reference_vector, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE)
+TAG_BLOCK(global_z_reference_vector_block, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE)
 {
 	FIELD( _field_real, "z reference i!*" ),
 	FIELD( _field_real, "z reference j!*" ),
@@ -60,7 +72,7 @@ TAG_BLOCK(global_z_reference_vector, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(detail_object_collection, DETAIL_OBJECT_COLLECTION_TAG)
+TAG_GROUP(detail_object_collection_block, DETAIL_OBJECT_COLLECTION_TAG)
 {
 	FIELD( _field_enum, "collection type" ),
 	FIELD( _field_pad, "YN", 2 ),

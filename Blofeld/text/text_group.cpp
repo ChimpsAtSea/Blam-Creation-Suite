@@ -3,7 +3,32 @@
 namespace blofeld
 {
 
-TAG_BLOCK(multilingual_unicode_string_reference, k_maximum_multilingual_unicode_strings_per_string_list)
+TAG_STRUCT(multilingual_unicode_string_list_struct_definition)
+{
+	FIELD( _field_custom, "import" ),
+	FIELD( _field_custom, "import clean" ),
+	FIELD( _field_block, "string references*", &multilingual_unicode_string_reference_block ),
+	FIELD( _field_block, "substitution pairs*", &string_substitution_pair_block ),
+	FIELD( _field_data, "string data utf8*" ),
+	FIELD( _field_array, "language pack offsets!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(language_pack_definition)
+{
+	FIELD( _field_long_integer, "string reference pointer!" ),
+	FIELD( _field_long_integer, "string data pointer!" ),
+	FIELD( _field_long_integer, "number of strings!" ),
+	FIELD( _field_long_integer, "string data size!" ),
+	FIELD( _field_long_integer, "string reference cache offset!" ),
+	FIELD( _field_long_integer, "string data cache offset!" ),
+	FIELD( _field_array, "string reference checksum!" ),
+	FIELD( _field_array, "string data checksum!" ),
+	FIELD( _field_long_integer, "data loaded boolean~!" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(multilingual_unicode_string_reference_block, k_maximum_multilingual_unicode_strings_per_string_list)
 {
 	FIELD( _field_string_id, "string id^*" ),
 	FIELD( _field_long_integer, "english offset*" ),
@@ -26,7 +51,7 @@ TAG_BLOCK(multilingual_unicode_string_reference, k_maximum_multilingual_unicode_
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(string_substitution_pair, k_maximum_strings_per_string_list)
+TAG_BLOCK(string_substitution_pair_block, k_maximum_strings_per_string_list)
 {
 	FIELD( _field_string_id, "first string id^*!" ),
 	FIELD( _field_string_id, "second string id*!" ),
@@ -34,7 +59,7 @@ TAG_BLOCK(string_substitution_pair, k_maximum_strings_per_string_list)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(multilingual_unicode_string_list, MULTILINGUAL_UNICODE_STRING_LIST_TAG)
+TAG_GROUP(multilingual_unicode_string_list_block, MULTILINGUAL_UNICODE_STRING_LIST_TAG)
 {
 	FIELD( _field_custom, "import" ),
 	FIELD( _field_custom, "import clean" ),

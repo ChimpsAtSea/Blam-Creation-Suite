@@ -3,7 +3,14 @@
 namespace blofeld
 {
 
-TAG_BLOCK(performane_throttle, 7)
+TAG_STRUCT(performance_throttles_struct_definition)
+{
+	FIELD( _field_explanation, "Performance Throttles" ),
+	FIELD( _field_block, "Performance Throttles", &performane_throttle_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(performane_throttle_block, 7)
 {
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_real, "water tessellation scale" ),
@@ -33,7 +40,7 @@ TAG_BLOCK(performane_throttle, 7)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(performance_throttles, PERFORMANCE_THROTTLES_TAG)
+TAG_GROUP(performance_throttles_block, PERFORMANCE_THROTTLES_TAG)
 {
 	FIELD( _field_explanation, "Performance Throttles" ),
 	FIELD( _field_block, "Performance Throttles", &performane_throttle_block ),

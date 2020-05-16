@@ -3,10 +3,16 @@
 namespace blofeld
 {
 
-extern s_tag_block scenario_decorator_block;
-extern s_tag_block decorator_palette_block;
-extern s_tag_block decorator_scenario_set_block;
-extern s_tag_block global_decorator_placement_block;
+extern s_tag_struct decorator_brush_struct_struct_definition;
+
+extern s_tag_struct scenario_decorator_block_struct_definition;
+extern s_tag_block_definition scenario_decorator_block;
+extern s_tag_struct decorator_palette_struct_definition;
+extern s_tag_block_definition decorator_palette;
+extern s_tag_struct decorator_scenario_set_block_struct_definition;
+extern s_tag_block_definition decorator_scenario_set_block;
+extern s_tag_struct global_decorator_placement_block_struct_definition;
+extern s_tag_block_definition global_decorator_placement_block;
 
 } // namespace blofeld
 

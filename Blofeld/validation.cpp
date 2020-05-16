@@ -47,10 +47,10 @@ namespace blofeld
 	bool validate_halo4()
 	{
 		bool any_block_failed_validation = false;
-		for (s_tag_block_validation_data& validation_data : halo4_tag_block_validation_data)
+		for (s_tag_block_definition_validation_data& validation_data : halo4_tag_block_validation_data)
 		{
 			bool block_failed_validation = false;
-			const s_tag_block& tag_block = validation_data.tag_block;
+			const s_tag_block_definition& tag_block = validation_data.tag_block;
 			const s_tag_struct& tag_struct = tag_block.tag_struct;
 			const char* const block_name = tag_block.name;
 			uint32_t const expected_size = validation_data.size;

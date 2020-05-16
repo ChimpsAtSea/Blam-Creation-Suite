@@ -3,7 +3,19 @@
 namespace blofeld
 {
 
-TAG_BLOCK(sound_response_data, 10)
+TAG_STRUCT(sound_response_struct_definition)
+{
+	FIELD( _field_block, "responses", &sound_response_data_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(sound_incident_response_struct_definition)
+{
+	FIELD( _field_block, "responses", &sound_incident_response_data_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(sound_response_data_block, 10)
 {
 	FIELD( _field_string_id, "name" ),
 	FIELD( _field_string_id, "channel" ),
@@ -19,13 +31,13 @@ TAG_BLOCK(sound_response_data, 10)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_response_permutation, 10)
+TAG_BLOCK(sound_response_permutation_block, 10)
 {
 	FIELD( _field_tag_reference, "sound" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_combine_response, 10)
+TAG_BLOCK(sound_combine_response_block, 10)
 {
 	FIELD( _field_string_id, "name" ),
 	FIELD( _field_byte_flags, "response behavior" ),
@@ -34,7 +46,7 @@ TAG_BLOCK(sound_combine_response, 10)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(sound_incident_response_data, 10)
+TAG_BLOCK(sound_incident_response_data_block, 10)
 {
 	FIELD( _field_byte_flags, "audience" ),
 	FIELD( _field_byte_flags, "excluded audience" ),
@@ -44,13 +56,13 @@ TAG_BLOCK(sound_incident_response_data, 10)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(sound_response, SOUND_RESPONSE_TAG)
+TAG_GROUP(sound_response_block, SOUND_RESPONSE_TAG)
 {
 	FIELD( _field_block, "responses", &sound_response_data_block ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(sound_incident_response, SOUND_INCIDENT_RESPONSE_TAG)
+TAG_GROUP(sound_incident_response_block, SOUND_INCIDENT_RESPONSE_TAG)
 {
 	FIELD( _field_block, "responses", &sound_incident_response_data_block ),
 	FIELD( _field_terminator )

@@ -3,14 +3,24 @@
 namespace blofeld
 {
 
-extern s_tag_block global_error_report_categories_block;
-extern s_tag_block error_reports_block;
-extern s_tag_block error_report_vertices_block;
-extern s_tag_block error_report_vectors_block;
-extern s_tag_block error_report_lines_block;
-extern s_tag_block error_report_triangles_block;
-extern s_tag_block error_report_quads_block;
-extern s_tag_block error_report_comments_block;
+extern s_tag_struct error_report_point_definition_struct_definition;
+
+extern s_tag_struct global_error_report_categories_block_struct_definition;
+extern s_tag_block_definition global_error_report_categories_block;
+extern s_tag_struct error_reports_block_struct_definition;
+extern s_tag_block_definition error_reports_block;
+extern s_tag_struct error_report_vertices_block_struct_definition;
+extern s_tag_block_definition error_report_vertices_block;
+extern s_tag_struct error_report_vectors_block_struct_definition;
+extern s_tag_block_definition error_report_vectors_block;
+extern s_tag_struct error_report_lines_block_struct_definition;
+extern s_tag_block_definition error_report_lines_block;
+extern s_tag_struct error_report_triangles_block_struct_definition;
+extern s_tag_block_definition error_report_triangles_block;
+extern s_tag_struct error_report_quads_block_struct_definition;
+extern s_tag_block_definition error_report_quads_block;
+extern s_tag_struct error_report_comments_block_struct_definition;
+extern s_tag_block_definition error_report_comments_block;
 
 } // namespace blofeld
 

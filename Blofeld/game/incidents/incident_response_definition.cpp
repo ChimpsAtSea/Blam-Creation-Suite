@@ -3,10 +3,10 @@
 namespace blofeld
 {
 
-TAG_BLOCK(game_incident_response, MAXIMUM_GAME_INCIDENT_RESPONSES_PER_BLOCK)
+TAG_BLOCK(game_incident_response_block, MAXIMUM_GAME_INCIDENT_RESPONSES_PER_BLOCK)
 {
 	FIELD( _field_custom, "allowed game modes" ),
-	FIELD( _field_struct, "allowed game modes" ),
+	FIELD( _field_struct, "allowed game modes", &game_mode_flags_struct_struct_definition ),
 	FIELD( _field_custom ),
 	FIELD( _field_custom, "allowed campaign and firefight" ),
 	FIELD( _field_string_id, "allowed level name#Can only be triggered on this level." ),
@@ -27,13 +27,13 @@ TAG_BLOCK(game_incident_response, MAXIMUM_GAME_INCIDENT_RESPONSES_PER_BLOCK)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(game_incident_daily_challenge_to_increment, MAXIMUM_CHALLENGES_TO_PROGRESS_PER_BLOCK)
+TAG_BLOCK(game_incident_daily_challenge_to_increment_block, MAXIMUM_CHALLENGES_TO_PROGRESS_PER_BLOCK)
 {
 	FIELD( _field_string_id, "daily challenge^" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(specialized_incident_fanfare, 1)
+TAG_BLOCK(specialized_incident_fanfare_block, 1)
 {
 	FIELD( _field_long_integer, "priority#0 is highest prioroty" ),
 	FIELD( _field_char_enum, "queue type" ),

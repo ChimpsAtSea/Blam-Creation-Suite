@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ai\ai.cpp" />
     <ClCompile Include="ai\ai_cues.cpp" />
     <ClCompile Include="ai\ai_dialogue_definitions.cpp" />
     <ClCompile Include="ai\ai_flocks.cpp" />
@@ -40,6 +41,7 @@
     <ClCompile Include="ai\wave_template_definitions.cpp" />
     <ClCompile Include="ai\zone.cpp" />
     <ClCompile Include="animations\animation_definitions.cpp" />
+    <ClCompile Include="animations\composites\composite_definitions.cpp" />
     <ClCompile Include="animations\pca\pca_animation_definitions.cpp" />
     <ClCompile Include="bink\bink_definitions.cpp" />
     <ClCompile Include="bitmaps\bitmap_group_old_tag_definition.cpp" />
@@ -58,6 +60,7 @@
     <ClCompile Include="cache\cache_file_builder_tag_resource_manager.cpp" />
     <ClCompile Include="cache\cache_file_tag_package_definitions.cpp" />
     <ClCompile Include="camera\camera_globals.cpp" />
+    <ClCompile Include="camera\camera_obstruction.cpp" />
     <ClCompile Include="camera\camera_track_definitions.cpp" />
     <ClCompile Include="components\selfilluminationdefinition.cpp" />
     <ClCompile Include="creatures\creature_definitions.cpp" />
@@ -88,6 +91,7 @@
     <ClCompile Include="effects\particle_emitter_custom_shapes.cpp" />
     <ClCompile Include="effects\particle_model_definitions.cpp" />
     <ClCompile Include="effects\particle_movement_definitions.cpp" />
+    <ClCompile Include="effects\particle_property_definitions.cpp" />
     <ClCompile Include="effects\particle_system_definitions.cpp" />
     <ClCompile Include="effects\screen_effect.cpp" />
     <ClCompile Include="effects\shield_impact_definitions.cpp" />
@@ -116,6 +120,7 @@
     <ClCompile Include="game\game_engine_roles.cpp" />
     <ClCompile Include="game\game_engine_spawn_settings.cpp" />
     <ClCompile Include="game\game_globals.cpp" />
+    <ClCompile Include="game\game_mode_definitions.cpp" />
     <ClCompile Include="game\game_performance_throttle_definitions.cpp" />
     <ClCompile Include="game\game_player_globals.cpp" />
     <ClCompile Include="game\game_ui_globals.cpp" />
@@ -141,6 +146,7 @@
     <ClCompile Include="game\player_rewards\player_cookie_purchase_definitions.cpp" />
     <ClCompile Include="game\player_rewards\player_grade_definitions.cpp" />
     <ClCompile Include="game\player_rewards\player_medals.cpp" />
+    <ClCompile Include="game\player_rewards\prerequisites_definitions.cpp" />
     <ClCompile Include="game\player_rumble.cpp" />
     <ClCompile Include="game\player_training.cpp" />
     <ClCompile Include="game\progression\playerenlistmentdefinitions.cpp" />
@@ -179,6 +185,7 @@
     <ClCompile Include="materials\material_shader.cpp" />
     <ClCompile Include="materials\material_shader_bank.cpp" />
     <ClCompile Include="materials\material_shader_parameter.cpp" />
+    <ClCompile Include="math\color_math.cpp" />
     <ClCompile Include="math\function_definitions.cpp" />
     <ClCompile Include="models\damage_info_definitions.cpp" />
     <ClCompile Include="models\model_definitions.cpp" />
@@ -190,6 +197,7 @@
     <ClCompile Include="objects\damage_response_definitions.cpp" />
     <ClCompile Include="objects\hologramlighting.cpp" />
     <ClCompile Include="objects\light_definitions.cpp" />
+    <ClCompile Include="objects\midnight_light_definitions.cpp" />
     <ClCompile Include="objects\object_definitions.cpp" />
     <ClCompile Include="objects\object_recycling.cpp" />
     <ClCompile Include="objects\scenery_group.cpp" />
@@ -202,18 +210,26 @@
     <ClCompile Include="objects\widgets\leaf_system.cpp" />
     <ClCompile Include="objects\widgets\muffins.cpp" />
     <ClCompile Include="objects\widgets\stereo_system.cpp" />
+    <ClCompile Include="physics\boat_engine_definitions.cpp" />
+    <ClCompile Include="physics\boat_physics_definitions.cpp" />
     <ClCompile Include="physics\breakable_surfaces.cpp" />
     <ClCompile Include="physics\breakable_surface_set_definitions.cpp" />
+    <ClCompile Include="physics\character_physics_definitions.cpp" />
+    <ClCompile Include="physics\collision_bsp_definitions.cpp" />
     <ClCompile Include="physics\collision_bsp_physics_definitions.cpp" />
+    <ClCompile Include="physics\collision_kd_hierarchy_static_definitions.cpp" />
     <ClCompile Include="physics\collision_model_definitions.cpp" />
     <ClCompile Include="physics\grounded_friction_definitions.cpp" />
     <ClCompile Include="physics\havok_collision_filter_definitions.cpp" />
     <ClCompile Include="physics\havok_mopp_code_definitions.cpp" />
+    <ClCompile Include="physics\havok_vehicle_physics_definitions.cpp" />
     <ClCompile Include="physics\physics_model_definitions.cpp" />
     <ClCompile Include="physics\point_physics.cpp" />
     <ClCompile Include="physics\spring_acceleration_definitions.cpp" />
+    <ClCompile Include="physics\walker_physics_definitions.cpp" />
     <ClCompile Include="physics\water_physics.cpp" />
     <ClCompile Include="rasterizer\rasterizer_cache_file_globals.cpp" />
+    <ClCompile Include="rasterizer\rasterizer_constant_table.cpp" />
     <ClCompile Include="rasterizer\rasterizer_global_definitions.cpp" />
     <ClCompile Include="rasterizer\rasterizer_loading_screen_definitions.cpp" />
     <ClCompile Include="rasterizer\rasterizer_performance_throttles.cpp" />
@@ -266,6 +282,7 @@
     <ClCompile Include="structures\structure_bsp_definitions.cpp" />
     <ClCompile Include="structures\structure_design_definitions.cpp" />
     <ClCompile Include="structures\structure_lighting_definitions.cpp" />
+    <ClCompile Include="structures\structure_manifest_definitions.cpp" />
     <ClCompile Include="structures\structure_object_associations.cpp" />
     <ClCompile Include="structures\structure_physics_definitions.cpp" />
     <ClCompile Include="structures\structure_seam_definitions.cpp" />
@@ -282,11 +299,13 @@
     <ClCompile Include="units\unit_definitions.cpp" />
     <ClCompile Include="units\unit_trick_definitions.cpp" />
     <ClCompile Include="units\vehicle_definitions.cpp" />
+    <ClCompile Include="units\vehicle_engine_definitions.cpp" />
     <ClCompile Include="validation.cpp" />
     <ClCompile Include="weather\weather_control.cpp" />
     <ClCompile Include="weather\weather_definition.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ai\ai.h" />
     <ClInclude Include="ai\ai_cues.h" />
     <ClInclude Include="ai\ai_dialogue_definitions.h" />
     <ClInclude Include="ai\ai_flocks.h" />
@@ -308,6 +327,7 @@
     <ClInclude Include="ai\wave_template_definitions.h" />
     <ClInclude Include="ai\zone.h" />
     <ClInclude Include="animations\animation_definitions.h" />
+    <ClInclude Include="animations\composites\composite_definitions.h" />
     <ClInclude Include="animations\pca\pca_animation_definitions.h" />
     <ClInclude Include="bink\bink_definitions.h" />
     <ClInclude Include="bitmaps\bitmap_group_old_tag_definition.h" />
@@ -322,6 +342,7 @@
     <ClInclude Include="cache\cache_file_builder_tag_resource_manager.h" />
     <ClInclude Include="cache\cache_file_tag_package_definitions.h" />
     <ClInclude Include="camera\camera_globals.h" />
+    <ClInclude Include="camera\camera_obstruction.h" />
     <ClInclude Include="camera\camera_track_definitions.h" />
     <ClInclude Include="components\selfilluminationdefinition.h" />
     <ClInclude Include="constants.h" />
@@ -353,6 +374,7 @@
     <ClInclude Include="effects\particle_emitter_custom_shapes.h" />
     <ClInclude Include="effects\particle_model_definitions.h" />
     <ClInclude Include="effects\particle_movement_definitions.h" />
+    <ClInclude Include="effects\particle_property_definitions.h" />
     <ClInclude Include="effects\particle_system_definitions.h" />
     <ClInclude Include="effects\screen_effect.h" />
     <ClInclude Include="effects\shield_impact_definitions.h" />
@@ -381,6 +403,7 @@
     <ClInclude Include="game\game_engine_roles.h" />
     <ClInclude Include="game\game_engine_spawn_settings.h" />
     <ClInclude Include="game\game_globals.h" />
+    <ClInclude Include="game\game_mode_definitions.h" />
     <ClInclude Include="game\game_performance_throttle_definitions.h" />
     <ClInclude Include="game\game_player_globals.h" />
     <ClInclude Include="game\game_ui_globals.h" />
@@ -406,6 +429,7 @@
     <ClInclude Include="game\player_rewards\player_cookie_purchase_definitions.h" />
     <ClInclude Include="game\player_rewards\player_grade_definitions.h" />
     <ClInclude Include="game\player_rewards\player_medals.h" />
+    <ClInclude Include="game\player_rewards\prerequisites_definitions.h" />
     <ClInclude Include="game\player_rumble.h" />
     <ClInclude Include="game\player_training.h" />
     <ClInclude Include="game\progression\playerenlistmentdefinitions.h" />
@@ -443,6 +467,7 @@
     <ClInclude Include="materials\material_shader.h" />
     <ClInclude Include="materials\material_shader_bank.h" />
     <ClInclude Include="materials\material_shader_parameter.h" />
+    <ClInclude Include="math\color_math.h" />
     <ClInclude Include="math\function_definitions.h" />
     <ClInclude Include="models\damage_info_definitions.h" />
     <ClInclude Include="models\model_definitions.h" />
@@ -454,6 +479,7 @@
     <ClInclude Include="objects\damage_response_definitions.h" />
     <ClInclude Include="objects\hologramlighting.h" />
     <ClInclude Include="objects\light_definitions.h" />
+    <ClInclude Include="objects\midnight_light_definitions.h" />
     <ClInclude Include="objects\object_definitions.h" />
     <ClInclude Include="objects\object_recycling.h" />
     <ClInclude Include="objects\scenery_group.h" />
@@ -466,18 +492,26 @@
     <ClInclude Include="objects\widgets\leaf_system.h" />
     <ClInclude Include="objects\widgets\muffins.h" />
     <ClInclude Include="objects\widgets\stereo_system.h" />
+    <ClInclude Include="physics\boat_engine_definitions.h" />
+    <ClInclude Include="physics\boat_physics_definitions.h" />
     <ClInclude Include="physics\breakable_surfaces.h" />
     <ClInclude Include="physics\breakable_surface_set_definitions.h" />
+    <ClInclude Include="physics\character_physics_definitions.h" />
+    <ClInclude Include="physics\collision_bsp_definitions.h" />
     <ClInclude Include="physics\collision_bsp_physics_definitions.h" />
+    <ClInclude Include="physics\collision_kd_hierarchy_static_definitions.h" />
     <ClInclude Include="physics\collision_model_definitions.h" />
     <ClInclude Include="physics\grounded_friction_definitions.h" />
     <ClInclude Include="physics\havok_collision_filter_definitions.h" />
     <ClInclude Include="physics\havok_mopp_code_definitions.h" />
+    <ClInclude Include="physics\havok_vehicle_physics_definitions.h" />
     <ClInclude Include="physics\physics_model_definitions.h" />
     <ClInclude Include="physics\point_physics.h" />
     <ClInclude Include="physics\spring_acceleration_definitions.h" />
+    <ClInclude Include="physics\walker_physics_definitions.h" />
     <ClInclude Include="physics\water_physics.h" />
     <ClInclude Include="rasterizer\rasterizer_cache_file_globals.h" />
+    <ClInclude Include="rasterizer\rasterizer_constant_table.h" />
     <ClInclude Include="rasterizer\rasterizer_global_definitions.h" />
     <ClInclude Include="rasterizer\rasterizer_loading_screen_definitions.h" />
     <ClInclude Include="rasterizer\rasterizer_performance_throttles.h" />
@@ -533,6 +567,7 @@
     <ClInclude Include="structures\structure_bsp_definitions.h" />
     <ClInclude Include="structures\structure_design_definitions.h" />
     <ClInclude Include="structures\structure_lighting_definitions.h" />
+    <ClInclude Include="structures\structure_manifest_definitions.h" />
     <ClInclude Include="structures\structure_object_associations.h" />
     <ClInclude Include="structures\structure_physics_definitions.h" />
     <ClInclude Include="structures\structure_seam_definitions.h" />
@@ -549,6 +584,7 @@
     <ClInclude Include="units\unit_definitions.h" />
     <ClInclude Include="units\unit_trick_definitions.h" />
     <ClInclude Include="units\vehicle_definitions.h" />
+    <ClInclude Include="units\vehicle_engine_definitions.h" />
     <ClInclude Include="validation.h" />
     <ClInclude Include="weather\weather_control.h" />
     <ClInclude Include="weather\weather_definition.h" />
@@ -611,22 +647,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\source\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

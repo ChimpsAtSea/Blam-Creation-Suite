@@ -3,6 +3,30 @@
 namespace blofeld
 {
 
+TAG_STRUCT(area_screen_effect_struct_definition)
+{
+	FIELD( _field_word_flags, "global flags" ),
+	FIELD( _field_word_flags, "global hidden flags!" ),
+	FIELD( _field_block, "screen effects", &single_screen_effect ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(screen_effect_scalar_function_struct)
+{
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
+	FIELD( _field_terminator )
+};
+
+TAG_STRUCT(screen_effect_scalar_object_function_struct)
+{
+	FIELD( _field_string_id, "Input Variable!" ),
+	FIELD( _field_string_id, "Range Variable!" ),
+	FIELD( _field_custom ),
+	FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
+	FIELD( _field_terminator )
+};
+
 TAG_BLOCK(single_screen_effect, s_area_screen_effect_definition::k_maximum_effects_per_tag)
 {
 	FIELD( _field_string_id, "name^" ),
@@ -10,15 +34,15 @@ TAG_BLOCK(single_screen_effect, s_area_screen_effect_definition::k_maximum_effec
 	FIELD( _field_word_flags, "hidden flags!" ),
 	FIELD( _field_explanation, "DISTANCE FALLOFF" ),
 	FIELD( _field_real, "maximum distance:world units#the maximum distance this screen effect will affect" ),
-	FIELD( _field_struct, "distance falloff" ),
+	FIELD( _field_struct, "distance falloff", &screen_effect_scalar_function_struct_struct_definition ),
 	FIELD( _field_explanation, "TIME EVOLUTION" ),
 	FIELD( _field_real, "delay:seconds#the effect will start after this many seconds (ignored if the play sequentially flag is set)" ),
 	FIELD( _field_real, "lifetime:seconds#the effect is destroyed after this many seconds (0 = never dies)" ),
-	FIELD( _field_struct, "time falloff" ),
+	FIELD( _field_struct, "time falloff", &screen_effect_scalar_function_struct_struct_definition ),
 	FIELD( _field_explanation, "ANGLE FALLOFF" ),
-	FIELD( _field_struct, "angle falloff" ),
+	FIELD( _field_struct, "angle falloff", &screen_effect_scalar_function_struct_struct_definition ),
 	FIELD( _field_explanation, "OBJECT FALLOFF" ),
-	FIELD( _field_struct, "object falloff" ),
+	FIELD( _field_struct, "object falloff", &screen_effect_scalar_object_function_struct_struct_definition ),
 	FIELD( _field_explanation, "EFFECTS" ),
 	FIELD( _field_tag_reference, "color grading look-up-texture" ),
 	FIELD( _field_real, "runtime color grading strength!:[do not edit]#do not edit" ),
@@ -52,11 +76,11 @@ TAG_BLOCK(single_screen_effect, s_area_screen_effect_definition::k_maximum_effec
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(area_screen_effect, AREA_SCREEN_EFFECT_TAG)
+TAG_GROUP(area_screen_effect_block, AREA_SCREEN_EFFECT_TAG)
 {
 	FIELD( _field_word_flags, "global flags" ),
 	FIELD( _field_word_flags, "global hidden flags!" ),
-	FIELD( _field_block, "screen effects", &single_screen_effect_block ),
+	FIELD( _field_block, "screen effects", &single_screen_effect ),
 	FIELD( _field_terminator )
 };
 

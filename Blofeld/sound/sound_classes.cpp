@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(sound_class, NUMBER_OF_SOUND_CLASSES)
+TAG_BLOCK(sound_class_block, NUMBER_OF_SOUND_CLASSES)
 {
 	FIELD( _field_short_integer, "max sounds per tag [1,16]#maximum number of sounds playing per individual sound tag" ),
 	FIELD( _field_short_integer, "max sounds per object per tag [1,16]{max sounds per object [1,16]}#maximum number of sounds per individual sound tag playing on an object" ),
@@ -28,7 +28,7 @@ TAG_BLOCK(sound_class, NUMBER_OF_SOUND_CLASSES)
 	FIELD( _field_real, "underwater base obstruction" ),
 	FIELD( _field_real, "underwater base occlusion" ),
 	FIELD( _field_real, "override speaker gain:dB" ),
-	FIELD( _field_struct, "distance parameters" ),
+	FIELD( _field_struct, "distance parameters", &sound_distance_parameters_struct_struct_definition ),
 	FIELD( _field_custom ),
 	FIELD( _field_real_bounds, "gain bounds:dB~" ),
 	FIELD( _field_explanation, "lowpass wetmixes" ),
@@ -69,7 +69,7 @@ TAG_BLOCK(sound_class, NUMBER_OF_SOUND_CLASSES)
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(sound_classes, SOUND_CLASSES_TAG)
+TAG_GROUP(sound_classes_block, SOUND_CLASSES_TAG)
 {
 	FIELD( _field_block, "sound classes", &sound_class_block ),
 	FIELD( _field_terminator )

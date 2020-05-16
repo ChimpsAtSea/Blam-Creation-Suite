@@ -3,7 +3,13 @@
 namespace blofeld
 {
 
-TAG_BLOCK(squad_groups, k_max_squad_groups_per_map)
+TAG_STRUCT(squad_definition_internal_struct)
+{
+	FIELD( _field_block, "cells", &cell_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(squad_groups_block, k_max_squad_groups_per_map)
 {
 	FIELD( _field_string, "name^" ),
 	FIELD( _field_short_block_index, "parent" ),
@@ -13,7 +19,7 @@ TAG_BLOCK(squad_groups, k_max_squad_groups_per_map)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(squads, k_maximum_squads_per_map)
+TAG_BLOCK(squads_block, k_maximum_squads_per_map)
 {
 	FIELD( _field_custom ),
 	FIELD( _field_string, "name^" ),
@@ -30,14 +36,14 @@ TAG_BLOCK(squads, k_maximum_squads_per_map)
 	FIELD( _field_string_id, "template" ),
 	FIELD( _field_long_integer, "squad template index!" ),
 	FIELD( _field_custom ),
-	FIELD( _field_struct, "designer" ),
-	FIELD( _field_struct, "templated*!" ),
+	FIELD( _field_struct, "designer", &squad_definition_internal_struct_struct_definition ),
+	FIELD( _field_struct, "templated*!", &squad_definition_internal_struct_struct_definition ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(spawn_formation, k_maximum_spawn_formations_per_squad)
+TAG_BLOCK(spawn_formation_block, k_maximum_spawn_formations_per_squad)
 {
-	FIELD( _field_struct, "place on" ),
+	FIELD( _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition ),
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_real_point_3d, "position" ),
 	FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),
@@ -59,7 +65,7 @@ TAG_BLOCK(spawn_formation, k_maximum_spawn_formations_per_squad)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(patrol_point, 32)
+TAG_BLOCK(patrol_point_block, 32)
 {
 	FIELD( _field_custom_short_block_index, "point^" ),
 	FIELD( _field_word_flags, "flags" ),
@@ -74,9 +80,9 @@ TAG_BLOCK(patrol_point, 32)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(spawn_points, k_maximum_spawn_points_per_squad)
+TAG_BLOCK(spawn_points_block, k_maximum_spawn_points_per_squad)
 {
-	FIELD( _field_struct, "place on" ),
+	FIELD( _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition ),
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_custom_short_block_index, "cell" ),
 	FIELD( _field_pad, "post-cell-index-pad", 2 ),
@@ -116,10 +122,62 @@ TAG_BLOCK(spawn_points, k_maximum_spawn_points_per_squad)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(cell_template, k_maximum_cells_per_squad)
+TAG_BLOCK(cell_block, k_maximum_cells_per_squad)
+{
+	FIELD( _field_explanation, "Character Build" ),
+	FIELD( _field_string_id, "name^" ),
+	FIELD( _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition ),
+	FIELD( _field_short_integer, "normal diff count#initial number of actors on normal difficulty" ),
+	FIELD( _field_enum, "major upgrade" ),
+	FIELD( _field_block, "character type", &character_palette_choice_block ),
+	FIELD( _field_block, "initial weapon", &weapon_palette_choice_block ),
+	FIELD( _field_block, "initial secondary weapon", &weapon_palette_choice_block ),
+	FIELD( _field_block, "initial equipment", &equipment_palette_choice_block ),
+	FIELD( _field_enum, "grenade type" ),
+	FIELD( _field_short_block_index, "vehicle type" ),
+	FIELD( _field_string_id, "vehicle variant" ),
+	FIELD( _field_string_id, "Placement script" ),
+	FIELD( _field_short_integer, "placement script index!~" ),
+	FIELD( _field_pad, "plsc", 2 ),
+	FIELD( _field_string_id, "activity name" ),
+	FIELD( _field_string_id, "movement set" ),
+	FIELD( _field_custom_short_block_index, "point set" ),
+	FIELD( _field_enum, "patrol mode" ),
+	FIELD( _field_block, "points!", &patrol_point_block ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(character_palette_choice_block, k_maximum_palette_choices)
+{
+	FIELD( _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition ),
+	FIELD( _field_short_block_index, "character type^" ),
+	FIELD( _field_custom ),
+	FIELD( _field_short_integer, "chance" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(weapon_palette_choice_block, k_maximum_palette_choices)
+{
+	FIELD( _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition ),
+	FIELD( _field_short_block_index, "weapon type^" ),
+	FIELD( _field_custom ),
+	FIELD( _field_short_integer, "chance" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(equipment_palette_choice_block, k_maximum_palette_choices)
+{
+	FIELD( _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition ),
+	FIELD( _field_short_block_index, "equipment type^" ),
+	FIELD( _field_custom ),
+	FIELD( _field_short_integer, "chance" ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(cell_template_block, k_maximum_cells_per_squad)
 {
 	FIELD( _field_string_id, "name^" ),
-	FIELD( _field_struct, "place on" ),
+	FIELD( _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition ),
 	FIELD( _field_short_integer, "normal diff count#initial number of actors on normal difficulty" ),
 	FIELD( _field_enum, "major upgrade" ),
 	FIELD( _field_explanation, "Character Build" ),
@@ -135,34 +193,34 @@ TAG_BLOCK(cell_template, k_maximum_cells_per_squad)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(character_ref_choice, k_maximum_palette_choices)
+TAG_BLOCK(character_ref_choice_block, k_maximum_palette_choices)
 {
-	FIELD( _field_struct, "place on" ),
+	FIELD( _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition ),
 	FIELD( _field_tag_reference, "character type^" ),
 	FIELD( _field_short_integer, "chance" ),
 	FIELD( _field_pad, "post-chance", 2 ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(weapon_ref_choice, k_maximum_palette_choices)
+TAG_BLOCK(weapon_ref_choice_block, k_maximum_palette_choices)
 {
-	FIELD( _field_struct, "place on" ),
+	FIELD( _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition ),
 	FIELD( _field_tag_reference, "weapon type^" ),
 	FIELD( _field_short_integer, "chance" ),
 	FIELD( _field_pad, "post-chance", 2 ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(equipment_ref_choice, k_maximum_palette_choices)
+TAG_BLOCK(equipment_ref_choice_block, k_maximum_palette_choices)
 {
-	FIELD( _field_struct, "place on" ),
+	FIELD( _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition ),
 	FIELD( _field_tag_reference, "equipment type^" ),
 	FIELD( _field_short_integer, "chance" ),
 	FIELD( _field_pad, "post-chance", 2 ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(squad_template, SQUAD_TEMPLATE_TAG)
+TAG_GROUP(squad_template_block, SQUAD_TEMPLATE_TAG)
 {
 	FIELD( _field_string_id, "name^" ),
 	FIELD( _field_block, "cell templates", &cell_template_block ),

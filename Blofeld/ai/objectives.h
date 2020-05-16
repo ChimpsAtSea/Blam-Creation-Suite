@@ -3,13 +3,21 @@
 namespace blofeld
 {
 
-extern s_tag_block area_reference_block;
-extern s_tag_block objectives_block;
-extern s_tag_block opposing_objective_block;
-extern s_tag_block tasks_block;
-extern s_tag_block script_fragment_block;
-extern s_tag_block task_direction_block;
-extern s_tag_block task_direction_point_block;
+extern s_tag_struct task_direction_block_v2_struct_struct_definition;
+
+extern s_tag_struct area_reference_block_struct_struct_definition;
+extern s_tag_block_definition area_reference_block;
+extern s_tag_struct objectives_block_struct_definition;
+extern s_tag_block_definition objectives_block;
+extern s_tag_struct opposing_objective_block_struct_definition;
+extern s_tag_block_definition opposing_objective_block;
+extern s_tag_struct tasks_block_struct_struct_definition;
+extern s_tag_block_definition tasks_block;
+extern s_tag_struct script_fragment_block_struct_definition;
+extern s_tag_block_definition script_fragment_block;
+extern s_tag_block_definition task_direction_block_v2;
+extern s_tag_struct task_direction_point_block_struct_definition;
+extern s_tag_block_definition task_direction_point_block;
 
 } // namespace blofeld
 

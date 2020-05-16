@@ -3,15 +3,56 @@
 namespace blofeld
 {
 
-TAG_BLOCK(predicted_bitmaps, 8)
+TAG_STRUCT(item_struct_definition)
+{
+	FIELD( _field_struct, "object", &object_struct_definition_struct_definition ),
+	FIELD( _field_custom, "$$$ ITEM $$$" ),
+	FIELD( _field_long_flags, "flags" ),
+	FIELD( _field_short_integer, "OLD message index" ),
+	FIELD( _field_short_integer, "sort order" ),
+	FIELD( _field_real, "OLD multiplayer on-ground scale" ),
+	FIELD( _field_real, "OLD campaign on-ground scale" ),
+	FIELD( _field_explanation, "NEW hud messages" ),
+	FIELD( _field_string_id, "pickup message" ),
+	FIELD( _field_string_id, "swap message" ),
+	FIELD( _field_string_id, "pickup message (dual)" ),
+	FIELD( _field_string_id, "swap message (dual)" ),
+	FIELD( _field_string_id, "picked up msg" ),
+	FIELD( _field_string_id, "switch-to msg" ),
+	FIELD( _field_string_id, "switch-to from ai msg" ),
+	FIELD( _field_string_id, "notify empty msg" ),
+	FIELD( _field_string_id, "notify overheated message" ),
+	FIELD( _field_tag_reference, "collision sound" ),
+	FIELD( _field_block, "predicted bitmaps", &predicted_bitmaps_block ),
+	FIELD( _field_tag_reference, "detonation damage effect" ),
+	FIELD( _field_real_bounds, "detonation delay:seconds" ),
+	FIELD( _field_tag_reference, "detonating effect" ),
+	FIELD( _field_tag_reference, "detonation effect" ),
+	FIELD( _field_explanation, "Item scale settings" ),
+	FIELD( _field_real, "ground scale" ),
+	FIELD( _field_real, "small unit (armed)" ),
+	FIELD( _field_real, "small unit (stowed)" ),
+	FIELD( _field_real, "medium unit (armed)" ),
+	FIELD( _field_real, "medium unit (stowed)" ),
+	FIELD( _field_real, "large unit (armed)" ),
+	FIELD( _field_real, "large unit (stowed)" ),
+	FIELD( _field_real, "huge unit (armed)" ),
+	FIELD( _field_real, "huge unit (stowed)" ),
+	FIELD( _field_tag_reference, "grounded friction settings#If not present, the default from global.globals is used." ),
+	FIELD( _field_tag_reference, "Tossed Override# Used to override the object tossed when item owner is killed.  Is overridden by tossed weapon override." ),
+	FIELD( _field_custom ),
+	FIELD( _field_terminator )
+};
+
+TAG_BLOCK(predicted_bitmaps_block, 8)
 {
 	FIELD( _field_tag_reference, "bitmap" ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP_INHERIT(item, ITEM_TAG, object, OBJECT_TAG)
+TAG_GROUP_INHERIT(item_block, ITEM_TAG, object, OBJECT_TAG)
 {
-	FIELD( _field_struct, "object" ),
+	FIELD( _field_struct, "object", &object_struct_definition_struct_definition ),
 	FIELD( _field_custom, "$$$ ITEM $$$" ),
 	FIELD( _field_long_flags, "flags" ),
 	FIELD( _field_short_integer, "OLD message index" ),

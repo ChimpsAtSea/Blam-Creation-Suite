@@ -3,25 +3,25 @@
 namespace blofeld
 {
 
-TAG_BLOCK(bitmap_texture_interop, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
+TAG_BLOCK(bitmap_texture_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 {
 	FIELD( _field_pageable, "texture resource" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(stitchable_bitmap_texture_interop, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
+TAG_BLOCK(stitchable_bitmap_texture_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 {
 	FIELD( _field_pageable, "texture resource" ),
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(bitmap_texture_interleaved_interop, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
+TAG_BLOCK(bitmap_texture_interleaved_interop_block, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
 {
 	FIELD( _field_pageable, "interleaved texture resource" ),
 	FIELD( _field_terminator )
 };
 
-TAG_GROUP(bitmap, BITMAP_TAG)
+TAG_GROUP(bitmap_block, BITMAP_TAG)
 {
 	FIELD( _field_custom, "show bitmap" ),
 	FIELD( _field_explanation, "IMPORT SETTINGS" ),
@@ -39,15 +39,15 @@ TAG_GROUP(bitmap, BITMAP_TAG)
 	FIELD( _field_enum, "force bitmap format#overrides the format defined by usage" ),
 	FIELD( _field_real, "tight bounds threshold:[0.0 - 1.0]#This is the level cutoff for tight bounds.  0.0 is monochrome black, 1.0 is monochrome white" ),
 	FIELD( _field_block, "usage override", &bitmap_usage_block ),
-	FIELD( _field_block, "manual_sequences*", &bitmap_group_sequence_block ),
+	FIELD( _field_block, "manual_sequences*", &bitmap_group_sequence_block_def ),
 	FIELD( _field_explanation, "IMPORT DATA" ),
-	FIELD( _field_block, "tight bounds", &bitmap_tight_bounds_block ),
+	FIELD( _field_block, "tight bounds", &bitmap_tight_bounds_block_def ),
 	FIELD( _field_data, "source data*" ),
 	FIELD( _field_data, "processed pixel data*" ),
-	FIELD( _field_block, "sequences*", &bitmap_group_sequence_block ),
-	FIELD( _field_block, "bitmaps*", &bitmap_data_block ),
+	FIELD( _field_block, "sequences*", &bitmap_group_sequence_block_def ),
+	FIELD( _field_block, "bitmaps*", &bitmap_data_block_def ),
 	FIELD( _field_data, "xenon processed pixel data*" ),
-	FIELD( _field_block, "xenon bitmaps*", &bitmap_data_block ),
+	FIELD( _field_block, "xenon bitmaps*", &bitmap_data_block_def ),
 	FIELD( _field_block, "hardware textures", &bitmap_texture_interop_block ),
 	FIELD( _field_block, "stitchable hardware textures", &stitchable_bitmap_texture_interop_block ),
 	FIELD( _field_block, "interleaved hardware textures", &bitmap_texture_interleaved_interop_block ),

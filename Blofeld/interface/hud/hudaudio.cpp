@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-TAG_BLOCK(hud_unit_sound, 1)
+TAG_BLOCK(hud_unit_sound_block, 1)
 {
 	FIELD( _field_block, "Hud audio cues", &hud_unit_sound_cue_block ),
 	FIELD( _field_custom, "health thresholds" ),
@@ -19,7 +19,7 @@ TAG_BLOCK(hud_unit_sound, 1)
 	FIELD( _field_terminator )
 };
 
-TAG_BLOCK(hud_unit_sound_cue, k_maximumHudUnitSoundCues)
+TAG_BLOCK(hud_unit_sound_cue_block, k_maximumHudUnitSoundCues)
 {
 	FIELD( _field_tag_reference, "sound^" ),
 	FIELD( _field_long_flags, "latched to" ),

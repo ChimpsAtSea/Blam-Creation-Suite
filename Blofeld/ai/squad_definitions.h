@@ -3,19 +3,38 @@
 namespace blofeld
 {
 
-extern s_tag_block squad_groups_block;
-extern s_tag_block squads_block;
-extern s_tag_block spawn_formation_block;
-extern s_tag_block patrol_point_block;
-extern s_tag_block spawn_points_block;
-extern s_tag_block cell_template_block;
-extern s_tag_block character_ref_choice_block;
-extern s_tag_block weapon_ref_choice_block;
-extern s_tag_block equipment_ref_choice_block;
+extern s_tag_struct squad_definition_internal_struct_struct_definition;
+
+extern s_tag_struct squad_groups_block_struct_definition;
+extern s_tag_block_definition squad_groups_block;
+extern s_tag_struct squads_block_struct_struct_definition;
+extern s_tag_block_definition squads_block;
+extern s_tag_struct spawn_formation_block_struct_struct_definition;
+extern s_tag_block_definition spawn_formation_block;
+extern s_tag_struct patrol_point_block_struct_definition;
+extern s_tag_block_definition patrol_point_block;
+extern s_tag_struct spawn_points_block_struct_struct_definition;
+extern s_tag_block_definition spawn_points_block;
+extern s_tag_struct cell_block_struct_struct_definition;
+extern s_tag_block_definition cell_block;
+extern s_tag_struct character_palette_choice_block_struct_struct_definition;
+extern s_tag_block_definition character_palette_choice_block;
+extern s_tag_struct weapon_palette_choice_block_struct_struct_definition;
+extern s_tag_block_definition weapon_palette_choice_block;
+extern s_tag_struct equipment_palette_choice_block_struct_struct_definition;
+extern s_tag_block_definition equipment_palette_choice_block;
+extern s_tag_struct cell_template_block_struct_struct_definition;
+extern s_tag_block_definition cell_template_block;
+extern s_tag_struct character_ref_choice_block_struct_struct_definition;
+extern s_tag_block_definition character_ref_choice_block;
+extern s_tag_struct weapon_ref_choice_block_struct_struct_definition;
+extern s_tag_block_definition weapon_ref_choice_block;
+extern s_tag_struct equipment_ref_choice_block_struct_struct_definition;
+extern s_tag_block_definition equipment_ref_choice_block;
 
 constexpr unsigned long SQUAD_TEMPLATE_TAG = 'sqtm';
 
-extern s_tag_block squad_template_block;
+extern s_tag_block_definition squad_template_block;
 extern s_tag_group squad_template_group;
 } // namespace blofeld
 
