@@ -153,12 +153,6 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 	{
 		time_t now;
 		time(&now);
-		if (!DirectoryExists(autosave_path))
-		{
-			SECURITY_ATTRIBUTES sec_attr = {};
-			CreateDirectoryW(autosave_path, &sec_attr);
-		}
-		//_snwprintf(autosave_path, MAX_PATH, L"opus/autosave/%08llX.bin", now);
 		_snwprintf(autosave_path, MAX_PATH, L"opus/autosave/%08llX.%s.bin", now, engine_name);
 	}
 
@@ -242,12 +236,6 @@ bool save_variant_to_file(IVariantAccessorBase* variant, e_variant_type variant_
 		break;
 	default:
 		return false;
-	}
-
-	if (!DirectoryExists(variant_directory))
-	{
-		SECURITY_ATTRIBUTES sec_attr = {};
-		CreateDirectoryW(variant_directory, &sec_attr);
 	}
 	
 	{

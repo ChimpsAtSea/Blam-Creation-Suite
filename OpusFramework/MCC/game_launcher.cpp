@@ -34,6 +34,7 @@ static bool k_autostart_halo_eldorado = false;
 static bool k_autostart_halo_online = false;
 static bool use_anniversary_graphics = true;
 static bool use_anniversary_sounds = true;
+static bool start_as_forge_mode = true;
 
 void c_game_launcher::init_game_launcher()
 {
@@ -332,8 +333,10 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	case _engine_type_groundhog:
 		build = c_groundhog_game_host::get_game_runtime().get_build();
 		current_game_host = new c_groundhog_game_host(engine_type, build);
-		c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "H2A_001_001_basic_editing_137";
-		c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline";
+
+		// commented out `start_as_forge_mode` checkbox due to incompatibility with normal multiplayer game modes, who doesn't want forge to be default anyway
+		c_halo_reach_game_option_selection_legacy::s_launch_game_variant = start_as_forge_mode ? "H2A_001_001_basic_editing_137" : "H2A_100_250_Slayer_BR_137";
+		//c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // if left blank a default map variant is created
 		break;
 	default:
 		write_line_verbose(__FUNCTION__"> unknown engine_type");
@@ -656,6 +659,8 @@ void c_game_launcher::render_main_menu()
 				}
 				ImGui::EndCombo();
 			}
+			// commented out due to incompatibility with normal multiplayer game modes, who doesn't want forge to be default anyway
+			//ImGui::Checkbox("Forge Mode", &start_as_forge_mode);
 		}
 		break;
 
@@ -903,31 +908,29 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	if (!PathFileExistsA(selected_file_path.c_str()) || strstr(selected_file_path.c_str(), "/.") != 0)
 	{
-		if (true)
+		write_line_verbose("Variant file '%s' does not exist, falling back to default", selected_file_path.c_str());
+
+		switch (variant_type)
 		{
-			write_line_verbose("Variant file does not exist");
+		case e_variant_type::_variant_type_game:
+			variant_data = new char[variant_buffer_size];
+			memset(variant_data, 0, variant_buffer_size);
+			variant_buffer = data_access->GameVariantCreateDefault(variant_data)->variant_buffer; // This is not correct
+			break;
+		case e_variant_type::_variant_type_map:
+			variant_buffer = data_access->MapVariantCreateFromMapID(game_context->map_id)->variant_buffer;
+			break;
+		default:
 			return false;
 		}
-		else
+
+		memcpy(game_context_variant_buffer, variant_buffer, variant_buffer_size);
+		if (is_valid(variant_data))
 		{
-			write_line_verbose("Variant file does not exist, falling back to default");
-
-			switch (variant_type)
-			{
-			case e_variant_type::_variant_type_game:
-				variant_buffer = data_access->GameVariantCreateDefault(variant_data)->variant_buffer; // This is not correct
-				break;
-			case e_variant_type::_variant_type_map:
-				variant_buffer = data_access->MapVariantCreateFromMapID(game_context->map_id)->variant_buffer;
-				break;
-			default:
-				return false;
-			}
-
-			memcpy(game_context_variant_buffer, variant_buffer, variant_buffer_size);
-
-			return true;
+			delete[] variant_data;
 		}
+
+		return true;
 	}
 
 	if (!read_file_to_memory(selected_file_path.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
