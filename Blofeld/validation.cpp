@@ -56,7 +56,7 @@ namespace blofeld
 				const s_tag_struct_definition& struct_definition = array_definition.struct_definition;
 				REFERENCE_ASSERT(struct_definition);
 				uint32_t struct_size = calculate_struct_size(struct_definition, block_failed_validation);
-				uint32_t array_data_size = struct_size * array_definition.max_count;
+				uint32_t array_data_size = struct_size * array_definition.count;
 				computed_size += array_data_size;
 				break;
 			}
