@@ -268,6 +268,15 @@ namespace blofeld
 		const unsigned long* const group_tags;
 	};
 
+	struct s_string_list_definition
+	{
+		const char* name;
+		uint32_t count;
+		const char** strings;
+		const char* const filename;
+		int32_t const line;
+	};
+
 	s_tag_group* get_tag_group_by_group_tag(uint32_t group_tag);
 	struct s_tag_struct_validation_data
 	{
@@ -286,6 +295,7 @@ namespace blofeld
 			void* const value1;
 			const s_tag_block_definition* const tag_block;
 			const s_tag_struct* const tag_struct;
+			const s_string_list_definition* string_list_definition;
 			uint32_t padding;
 			uint32_t length;
 		};

@@ -2,19 +2,15 @@
 
 class c_h4_tag_group_container;
 
-bool string_ends_with(std::string const& string, std::string const& ending)
-{
-	if (string.length() >= ending.length())
-	{
-		return (0 == string.compare(string.length() - ending.length(), ending.length(), ending));
-	}
-	return false;
-}
+
 
 
 c_h4_source_file::c_h4_source_file(const char* filepath, c_h4_generator_preprocessor& preprocessor) :
-	filepath(filepath),
 	preprocessor(preprocessor),
+	is_header(string_ends_with(filepath, ".h")),
+	is_inline(string_ends_with(filepath, ".inl")),
+	source_output_filepath(filepath),
+	header_output_filepath(filepath),
 	full_source_output_filepath(),
 	full_header_output_filepath(),
 	tag_groups()
@@ -43,10 +39,6 @@ c_h4_tag_group_container::c_h4_tag_group_container(c_h4_tag_group& tag_group, c_
 	REFERENCE_ASSERT(source_file);
 
 	// #TODO: Use a better name based off of the group tag and the known String ID's
-
-
-	bool x = std::string(name) == "hsc";
-
 
 	// create the block ready for traversal so we can reserve structure names for tag groups as priority
 
@@ -112,10 +104,6 @@ c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_
 		name += suffix;
 	}
 
-
-	bool is_havok_convex_shape = std::string("loadScreenBlock") == name;
-	bool y = std::string(tag_block.tag_struct.name) == "character_perception_block_struct";
-
 	//std::string expected_struct_name = std::string(tag_block.tag_struct.name) + "_block_struct";
 	//use_tag_block_definition = expected_struct_name == tag_block.tag_struct.name;
 	use_tag_block_definition = string_ends_with(tag_block.tag_struct.name, "_block_struct") || (std::string(tag_block.name) == tag_block.tag_struct.name);
@@ -146,7 +134,6 @@ c_h4_tag_struct_container::c_h4_tag_struct_container(c_h4_tag_struct& tag_struct
 	REFERENCE_ASSERT(tag_struct);
 
 	uint32_t index = preprocessor.tag_type_name_unique_counter[name]++;
-	bool is_havok_convex_shape = std::string("havok_convex_shape_struct") == name;
 	if (!is_block)
 	{
 		//name = name.substr(0, name.rfind("_struct"));
@@ -169,28 +156,20 @@ bool c_h4_tag_struct_container::operator ==(const c_h4_tag_struct_container& con
 	return &tag_struct == &container.tag_struct;
 }
 
-c_h4_tag_enum_container::c_h4_tag_enum_container(c_h4_tag_enum& tag_enum, c_h4_generator_preprocessor& preprocessor, bool is_block) :
+c_h4_tag_enum_container::c_h4_tag_enum_container(c_h4_tag_enum& tag_enum, c_h4_generator_preprocessor& preprocessor) :
 	tag_enum(tag_enum),
 	name(tag_enum.name),
 	symbol_name(name),
-	name_uppercase(),
-	is_block(is_block),
-	is_tag_group(false),
-	has_traversed(false)
+	name_uppercase()
 {
 	REFERENCE_ASSERT(tag_enum);
 
 	uint32_t index = preprocessor.tag_type_name_unique_counter[name]++;
-	bool is_havok_convex_shape = std::string("havok_convex_shape_enum") == name;
-	if (!is_block)
+	if (index > 0)
 	{
-		//name = name.substr(0, name.rfind("_enum"));
-		if (index > 0)
-		{
-			std::string suffix = std::to_string(index + 1);
-			name += "$";
-			name += suffix;
-		}
+		std::string suffix = std::to_string(index + 1);
+		name += "$";
+		name += suffix;
 	}
 
 	symbol_name = name;
@@ -258,6 +237,29 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 		c_h4_source_file& source_file = get_source_file(filepath, *this);
 		source_file.tag_structs.push_back(tag_struct_container);
 	}
+
+	for (std::pair<const void*, c_h4_tag_enum*> tag_enum_key : c_h4_blamboozle::tag_enum_definitions)
+	{
+		c_h4_tag_enum& tag_enum = *tag_enum_key.second;
+
+		c_h4_tag_enum_container* tag_enum_container = find_existing_tag_enum_container(tag_enum);
+		if (tag_enum_container == nullptr)
+		{
+			tag_enum_container = new c_h4_tag_enum_container(tag_enum, *this);
+		}
+	}
+
+	for (c_h4_tag_enum_container* tag_enum_container : tag_enum_containers) // associate tag structs with source file
+	{
+		c_h4_tag_enum& tag_enum = tag_enum_container->tag_enum;
+
+		const char* perforce_path = strstr(tag_enum.filepath, perforce_blofeld_path);
+		ASSERT(perforce_path != nullptr);
+		const char* filepath = perforce_path + strlen(perforce_blofeld_path);
+
+		c_h4_source_file& source_file = get_source_file(filepath, *this);
+		source_file.tag_enums.push_back(tag_enum_container);
+	}
 }
 
 c_h4_generator_preprocessor::~c_h4_generator_preprocessor()
@@ -284,6 +286,18 @@ c_h4_tag_struct_container* c_h4_generator_preprocessor::find_existing_tag_struct
 		if (&tag_struct_container->tag_struct == &tag_struct)
 		{
 			return tag_struct_container;
+		}
+	}
+	return nullptr;
+}
+
+c_h4_tag_enum_container* c_h4_generator_preprocessor::find_existing_tag_enum_container(c_h4_tag_enum& tag_enum)
+{
+	for (c_h4_tag_enum_container* tag_enum_container : tag_enum_containers)
+	{
+		if (&tag_enum_container->tag_enum == &tag_enum)
+		{
+			return tag_enum_container;
 		}
 	}
 	return nullptr;
@@ -328,7 +342,6 @@ c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_
 					}
 				}
 			}
-
 		}
 		tag_block_container->has_traversed = true;
 	}
@@ -399,7 +412,12 @@ c_h4_source_file& c_h4_generator_preprocessor::get_source_file(const char* filep
 	c_h4_source_file* source_file = nullptr;
 	for (c_h4_source_file* current_source_file : source_files)
 	{
-		if (current_source_file->filepath == filepath)
+		if (current_source_file->source_output_filepath == filepath)
+		{
+			source_file = current_source_file;
+			break;
+		}
+		if (current_source_file->header_output_filepath == filepath)
 		{
 			source_file = current_source_file;
 			break;

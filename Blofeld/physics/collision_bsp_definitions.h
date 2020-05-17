@@ -3,45 +3,50 @@
 namespace blofeld
 {
 
+	extern const char* leaf_flags_strings[];
+	extern s_string_list_definition leaf_flags;
+	extern const char* surface_flags_strings[];
+	extern s_string_list_definition surface_flags;
 
-extern s_tag_struct bsp3d_nodes_block_block_struct;
-extern s_tag_block_definition bsp3d_nodes_block_block;
-extern s_tag_struct bsp3d_kd_supdernodes_block_block_struct;
-extern s_tag_block_definition bsp3d_kd_supdernodes_block_block;
-extern s_tag_struct planes_block_block_struct;
-extern s_tag_block_definition planes_block_block;
-extern s_tag_block_definition leaves_block_block;
-extern s_tag_struct bsp2d_references_block_block_struct;
-extern s_tag_block_definition bsp2d_references_block_block;
-extern s_tag_struct bsp2d_nodes_block_block_struct;
-extern s_tag_block_definition bsp2d_nodes_block_block;
-extern s_tag_struct surfaces_block_block_struct;
-extern s_tag_block_definition surfaces_block_block;
-extern s_tag_struct edges_block_block_struct;
-extern s_tag_block_definition edges_block_block;
-extern s_tag_struct vertices_block_block_struct;
-extern s_tag_block_definition vertices_block_block;
-extern s_tag_struct global_collision_bsp_block_block_struct;
-extern s_tag_block_definition global_collision_bsp_block_block;
-extern s_tag_struct global_large_collision_bsp_block_block_struct;
-extern s_tag_block_definition global_large_collision_bsp_block_block;
-extern s_tag_struct large_bsp3d_nodes_block_block_struct;
-extern s_tag_block_definition large_bsp3d_nodes_block_block;
-extern s_tag_struct large_leaves_block_block_struct;
-extern s_tag_block_definition large_leaves_block_block;
-extern s_tag_struct large_bsp2d_references_block_block_struct;
-extern s_tag_block_definition large_bsp2d_references_block_block;
-extern s_tag_struct large_bsp2d_nodes_block_block_struct;
-extern s_tag_block_definition large_bsp2d_nodes_block_block;
-extern s_tag_struct large_surfaces_block_block_struct;
-extern s_tag_block_definition large_surfaces_block_block;
-extern s_tag_struct large_edges_block_block_struct;
-extern s_tag_block_definition large_edges_block_block;
-extern s_tag_struct large_vertices_block_block_struct;
-extern s_tag_block_definition large_vertices_block_block;
 
-extern s_tag_struct global_collision_bsp_struct_struct_definition;
-extern s_tag_struct collision_leaf_struct_struct_definition;
+	extern s_tag_struct bsp3d_nodes_block_block_struct;
+	extern s_tag_block_definition bsp3d_nodes_block_block;
+	extern s_tag_struct bsp3d_kd_supdernodes_block_block_struct;
+	extern s_tag_block_definition bsp3d_kd_supdernodes_block_block;
+	extern s_tag_struct planes_block_block_struct;
+	extern s_tag_block_definition planes_block_block;
+	extern s_tag_block_definition leaves_block_block;
+	extern s_tag_struct bsp2d_references_block_block_struct;
+	extern s_tag_block_definition bsp2d_references_block_block;
+	extern s_tag_struct bsp2d_nodes_block_block_struct;
+	extern s_tag_block_definition bsp2d_nodes_block_block;
+	extern s_tag_struct surfaces_block_block_struct;
+	extern s_tag_block_definition surfaces_block_block;
+	extern s_tag_struct edges_block_block_struct;
+	extern s_tag_block_definition edges_block_block;
+	extern s_tag_struct vertices_block_block_struct;
+	extern s_tag_block_definition vertices_block_block;
+	extern s_tag_struct global_collision_bsp_block_block_struct;
+	extern s_tag_block_definition global_collision_bsp_block_block;
+	extern s_tag_struct global_large_collision_bsp_block_block_struct;
+	extern s_tag_block_definition global_large_collision_bsp_block_block;
+	extern s_tag_struct large_bsp3d_nodes_block_block_struct;
+	extern s_tag_block_definition large_bsp3d_nodes_block_block;
+	extern s_tag_struct large_leaves_block_block_struct;
+	extern s_tag_block_definition large_leaves_block_block;
+	extern s_tag_struct large_bsp2d_references_block_block_struct;
+	extern s_tag_block_definition large_bsp2d_references_block_block;
+	extern s_tag_struct large_bsp2d_nodes_block_block_struct;
+	extern s_tag_block_definition large_bsp2d_nodes_block_block;
+	extern s_tag_struct large_surfaces_block_block_struct;
+	extern s_tag_block_definition large_surfaces_block_block;
+	extern s_tag_struct large_edges_block_block_struct;
+	extern s_tag_block_definition large_edges_block_block;
+	extern s_tag_struct large_vertices_block_block_struct;
+	extern s_tag_block_definition large_vertices_block_block;
+
+	extern s_tag_struct global_collision_bsp_struct_struct_definition;
+	extern s_tag_struct collision_leaf_struct_struct_definition;
 
 } // namespace blofeld
 

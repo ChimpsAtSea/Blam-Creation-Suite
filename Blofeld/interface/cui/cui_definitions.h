@@ -3,88 +3,117 @@
 namespace blofeld
 {
 
-constexpr unsigned long CUI_LOGIC_TAG = 'culo';
+	extern const char* propertyComponentPtrFlags_strings[];
+	extern s_string_list_definition propertyComponentPtrFlags;
+	extern const char* property_type_strings[];
+	extern s_string_list_definition property_type;
+	extern const char* property_binding_flags_strings[];
+	extern s_string_list_definition property_binding_flags;
+	extern const char* binding_conversion_function_enum_definition_strings[];
+	extern s_string_list_definition binding_conversion_function_enum_definition;
+	extern const char* binding_conversion_comparison_operator_enum_definition_strings[];
+	extern s_string_list_definition binding_conversion_comparison_operator_enum_definition;
+	extern const char* animation_property_composition_type_strings[];
+	extern s_string_list_definition animation_property_composition_type;
+	extern const char* animation_property_flags_strings[];
+	extern s_string_list_definition animation_property_flags;
+	extern const char* animationInputType_strings[];
+	extern s_string_list_definition animationInputType;
+	extern const char* step_type_strings[];
+	extern s_string_list_definition step_type;
+	extern const char* step_operator_strings[];
+	extern s_string_list_definition step_operator;
+	extern const char* step_variable_strings[];
+	extern s_string_list_definition step_variable;
+	extern const char* component_definition_flags_strings[];
+	extern s_string_list_definition component_definition_flags;
+	extern const char* editor_overlay_info_flags_strings[];
+	extern s_string_list_definition editor_overlay_info_flags;
+	extern const char* editor_property_info_flags_strings[];
+	extern s_string_list_definition editor_property_info_flags;
 
-extern s_tag_group cui_logic_group;
-constexpr unsigned long CUI_SCREEN_TAG = 'cusc';
+	constexpr unsigned long CUI_LOGIC_TAG = 'culo';
 
-extern s_tag_group cui_screen_group;
-constexpr unsigned long CUI_STATIC_DATA_TAG = 'cust';
+	extern s_tag_group cui_logic_group;
+	constexpr unsigned long CUI_SCREEN_TAG = 'cusc';
 
-extern s_tag_group cui_static_data_group;
+	extern s_tag_group cui_screen_group;
+	constexpr unsigned long CUI_STATIC_DATA_TAG = 'cust';
 
-extern s_tag_block_definition cui_logic_block_block;
-extern s_tag_block_definition cui_screen_block_block;
-extern s_tag_block_definition cui_static_data_block_block;
-extern s_tag_struct template_instantiation_block_definition_block_struct;
-extern s_tag_block_definition template_instantiation_block_definition_block;
-extern s_tag_struct component_definition_block_struct;
-extern s_tag_block_definition component_definition_block;
-extern s_tag_struct component_index_block_definition_block_struct;
-extern s_tag_block_definition component_index_block_definition_block;
-extern s_tag_struct overlay_definition_block_struct;
-extern s_tag_block_definition overlay_definition_block;
-extern s_tag_struct component_properties_definition_block_struct;
-extern s_tag_block_definition component_properties_definition_block;
-extern s_tag_struct property_long_value_block_struct;
-extern s_tag_block_definition property_long_value_block;
-extern s_tag_struct property_real_value_block_struct;
-extern s_tag_block_definition property_real_value_block;
-extern s_tag_struct property_string_id_value_block_struct;
-extern s_tag_block_definition property_string_id_value_block;
-extern s_tag_struct propertyComponentPtrValue_block_struct;
-extern s_tag_block_definition propertyComponentPtrValue_block;
-extern s_tag_struct property_tag_reference_value_block_struct;
-extern s_tag_block_definition property_tag_reference_value_block;
-extern s_tag_struct property_text_value_block_struct;
-extern s_tag_block_definition property_text_value_block;
-extern s_tag_struct property_argb_color_value_block_struct;
-extern s_tag_block_definition property_argb_color_value_block;
-extern s_tag_struct animation_definition_block_struct;
-extern s_tag_block_definition animation_definition_block;
-extern s_tag_struct animation_component_definition_block_struct;
-extern s_tag_block_definition animation_component_definition_block;
-extern s_tag_struct animation_component_real_property_block_struct;
-extern s_tag_block_definition animation_component_real_property_block;
-extern s_tag_struct animation_property_keyframe_real_value_block_struct;
-extern s_tag_block_definition animation_property_keyframe_real_value_block;
-extern s_tag_struct animation_component_argb_color_property_block_struct;
-extern s_tag_block_definition animation_component_argb_color_property_block;
-extern s_tag_struct animation_property_keyframe_argb_color_value_block_struct;
-extern s_tag_block_definition animation_property_keyframe_argb_color_value_block;
-extern s_tag_struct overlay_editor_only_definition_block_struct;
-extern s_tag_block_definition overlay_editor_only_definition_block;
-extern s_tag_struct component_editor_only_definition_block_struct;
-extern s_tag_block_definition component_editor_only_definition_block;
-extern s_tag_struct property_editor_only_definition_block_struct;
-extern s_tag_block_definition property_editor_only_definition_block;
-extern s_tag_struct animation_editor_only_definition_block_struct;
-extern s_tag_block_definition animation_editor_only_definition_block;
-extern s_tag_struct property_binding_block_struct;
-extern s_tag_block_definition property_binding_block;
-extern s_tag_struct binding_conversion_long_comparison_block_definition_block_struct;
-extern s_tag_block_definition binding_conversion_long_comparison_block_definition_block;
-extern s_tag_struct static_data_table_block_struct;
-extern s_tag_block_definition static_data_table_block;
-extern s_tag_struct static_data_column_block_struct;
-extern s_tag_block_definition static_data_column_block;
-extern s_tag_block_definition static_data_row_block;
-extern s_tag_struct expression_block_struct;
-extern s_tag_block_definition expression_block;
-extern s_tag_struct expression_step_block_struct;
-extern s_tag_block_definition expression_step_block;
-extern s_tag_struct encapsulatedProperties_block_struct;
-extern s_tag_block_definition encapsulatedProperties_block;
-extern s_tag_struct string_file_references_block_struct;
-extern s_tag_block_definition string_file_references_block;
+	extern s_tag_group cui_static_data_group;
 
-extern s_tag_struct cui_logic_struct_definition_struct_definition; // tag group
-extern s_tag_struct cui_screen_struct_definition_struct_definition; // tag group
-extern s_tag_struct cui_static_data_struct_definition_struct_definition; // tag group
-extern s_tag_struct cui_system_struct_definition;
-extern s_tag_struct properties_struct_struct_definition;
-extern s_tag_struct animation_scalar_function_struct_definition;
-extern s_tag_struct static_data_struct_struct_definition;
+	extern s_tag_block_definition cui_logic_block_block;
+	extern s_tag_block_definition cui_screen_block_block;
+	extern s_tag_block_definition cui_static_data_block_block;
+	extern s_tag_struct template_instantiation_block_definition_block_struct;
+	extern s_tag_block_definition template_instantiation_block_definition_block;
+	extern s_tag_struct component_definition_block_struct;
+	extern s_tag_block_definition component_definition_block;
+	extern s_tag_struct component_index_block_definition_block_struct;
+	extern s_tag_block_definition component_index_block_definition_block;
+	extern s_tag_struct overlay_definition_block_struct;
+	extern s_tag_block_definition overlay_definition_block;
+	extern s_tag_struct component_properties_definition_block_struct;
+	extern s_tag_block_definition component_properties_definition_block;
+	extern s_tag_struct property_long_value_block_struct;
+	extern s_tag_block_definition property_long_value_block;
+	extern s_tag_struct property_real_value_block_struct;
+	extern s_tag_block_definition property_real_value_block;
+	extern s_tag_struct property_string_id_value_block_struct;
+	extern s_tag_block_definition property_string_id_value_block;
+	extern s_tag_struct propertyComponentPtrValue_block_struct;
+	extern s_tag_block_definition propertyComponentPtrValue_block;
+	extern s_tag_struct property_tag_reference_value_block_struct;
+	extern s_tag_block_definition property_tag_reference_value_block;
+	extern s_tag_struct property_text_value_block_struct;
+	extern s_tag_block_definition property_text_value_block;
+	extern s_tag_struct property_argb_color_value_block_struct;
+	extern s_tag_block_definition property_argb_color_value_block;
+	extern s_tag_struct animation_definition_block_struct;
+	extern s_tag_block_definition animation_definition_block;
+	extern s_tag_struct animation_component_definition_block_struct;
+	extern s_tag_block_definition animation_component_definition_block;
+	extern s_tag_struct animation_component_real_property_block_struct;
+	extern s_tag_block_definition animation_component_real_property_block;
+	extern s_tag_struct animation_property_keyframe_real_value_block_struct;
+	extern s_tag_block_definition animation_property_keyframe_real_value_block;
+	extern s_tag_struct animation_component_argb_color_property_block_struct;
+	extern s_tag_block_definition animation_component_argb_color_property_block;
+	extern s_tag_struct animation_property_keyframe_argb_color_value_block_struct;
+	extern s_tag_block_definition animation_property_keyframe_argb_color_value_block;
+	extern s_tag_struct overlay_editor_only_definition_block_struct;
+	extern s_tag_block_definition overlay_editor_only_definition_block;
+	extern s_tag_struct component_editor_only_definition_block_struct;
+	extern s_tag_block_definition component_editor_only_definition_block;
+	extern s_tag_struct property_editor_only_definition_block_struct;
+	extern s_tag_block_definition property_editor_only_definition_block;
+	extern s_tag_struct animation_editor_only_definition_block_struct;
+	extern s_tag_block_definition animation_editor_only_definition_block;
+	extern s_tag_struct property_binding_block_struct;
+	extern s_tag_block_definition property_binding_block;
+	extern s_tag_struct binding_conversion_long_comparison_block_definition_block_struct;
+	extern s_tag_block_definition binding_conversion_long_comparison_block_definition_block;
+	extern s_tag_struct static_data_table_block_struct;
+	extern s_tag_block_definition static_data_table_block;
+	extern s_tag_struct static_data_column_block_struct;
+	extern s_tag_block_definition static_data_column_block;
+	extern s_tag_block_definition static_data_row_block;
+	extern s_tag_struct expression_block_struct;
+	extern s_tag_block_definition expression_block;
+	extern s_tag_struct expression_step_block_struct;
+	extern s_tag_block_definition expression_step_block;
+	extern s_tag_struct encapsulatedProperties_block_struct;
+	extern s_tag_block_definition encapsulatedProperties_block;
+	extern s_tag_struct string_file_references_block_struct;
+	extern s_tag_block_definition string_file_references_block;
+
+	extern s_tag_struct cui_logic_struct_definition_struct_definition; // tag group
+	extern s_tag_struct cui_screen_struct_definition_struct_definition; // tag group
+	extern s_tag_struct cui_static_data_struct_definition_struct_definition; // tag group
+	extern s_tag_struct cui_system_struct_definition;
+	extern s_tag_struct properties_struct_struct_definition;
+	extern s_tag_struct animation_scalar_function_struct_definition;
+	extern s_tag_struct static_data_struct_struct_definition;
 
 } // namespace blofeld
 

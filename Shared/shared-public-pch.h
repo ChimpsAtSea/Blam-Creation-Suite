@@ -9,6 +9,7 @@ using namespace xxhash;
 using namespace xxhash::literals;
 
 #include "debug_util.h"
+#include "string_helpers.h"
 
 #include "high_precision_timer.h"
 #include "ThreadPrimitives/ThreadPrimitives.h"

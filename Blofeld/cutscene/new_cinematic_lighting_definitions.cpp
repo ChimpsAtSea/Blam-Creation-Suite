@@ -3,57 +3,64 @@
 namespace blofeld
 {
 
-TAG_GROUP_FROM_BLOCK(new_cinematic_lighting, NEW_CINEMATIC_LIGHTING_TAG, new_cinematic_lighting_block_block );
+	TAG_ENUM(cinematic_dynamic_light_flags, 3)
+	{
+		OPTION("debug this light"),
+		OPTION("follow object"),
+		OPTION("position at marker"),
+	};
 
-TAG_BLOCK_FROM_STRUCT(new_cinematic_lighting_block, 1, new_cinematic_lighting_struct_definition_struct_definition );
+	TAG_GROUP_FROM_BLOCK(new_cinematic_lighting, NEW_CINEMATIC_LIGHTING_TAG, new_cinematic_lighting_block_block );
 
-TAG_BLOCK(cinematic_dynamic_light_block, 16)
-{
-	FIELD( _field_long_flags, "Flags" ),
-	FIELD( _field_custom, "Dynamic Light" ),
-	FIELD( _field_custom, "Direction" ),
-	FIELD( _field_real, "Direction" ),
-	FIELD( _field_custom, "Front-Back" ),
-	FIELD( _field_real, "Front-Back" ),
-	FIELD( _field_real, "Distance:world units" ),
-	FIELD( _field_tag_reference, "light" ),
-	FIELD( _field_terminator )
-};
+	TAG_BLOCK_FROM_STRUCT(new_cinematic_lighting_block, 1, new_cinematic_lighting_struct_definition_struct_definition );
+
+	TAG_BLOCK(cinematic_dynamic_light_block, 16)
+	{
+		FIELD( _field_long_flags, "Flags", &cinematic_dynamic_light_flags ),
+		FIELD( _field_custom, "Dynamic Light" ),
+		FIELD( _field_custom, "Direction" ),
+		FIELD( _field_real, "Direction" ),
+		FIELD( _field_custom, "Front-Back" ),
+		FIELD( _field_real, "Front-Back" ),
+		FIELD( _field_real, "Distance:world units" ),
+		FIELD( _field_tag_reference, "light" ),
+		FIELD( _field_terminator )
+	};
 
 TAG_STRUCT(new_cinematic_lighting_struct_definition)
 {
-	FIELD( _field_custom, "Cinematic Lighting" ),
-	FIELD( _field_custom, "Cinema Lighting" ),
-	FIELD( _field_long_integer, "version!" ),
-	FIELD( _field_custom, "Direction&Direction(D)" ),
-	FIELD( _field_real, "Direction&Direction(D)" ),
-	FIELD( _field_custom, "Front-Back&Front-Back(D)" ),
-	FIELD( _field_real, "Front-Back&Front-Back(D)" ),
-	FIELD( _field_custom, "Shadow Interpolation" ),
-	FIELD( _field_real, "Shadow Interpolation" ),
-	FIELD( _field_custom, "Overall weight" ),
-	FIELD( _field_real, "Overall weight" ),
-	FIELD( _field_custom, "Direct weight" ),
-	FIELD( _field_real, "Direct weight" ),
-	FIELD( _field_custom, "Indirect weight" ),
-	FIELD( _field_real, "Indirect weight" ),
-	FIELD( _field_custom, "Airprobe weight" ),
-	FIELD( _field_real, "Airprobe weight" ),
-	FIELD( _field_custom, "Sun weight" ),
-	FIELD( _field_real, "Sun weight" ),
-	FIELD( _field_real_rgb_color, "Direct color" ),
-	FIELD( _field_custom, "Direct intensity" ),
-	FIELD( _field_real, "Direct intensity" ),
-	FIELD( _field_real_rgb_color, "Indirect color" ),
-	FIELD( _field_custom, "Indirect intensity" ),
-	FIELD( _field_real, "Indirect intensity" ),
-	FIELD( _field_custom, "Interpolation" ),
-	FIELD( _field_real, "Interpolation" ),
-	FIELD( _field_custom ),
-	FIELD( _field_block, "Authored Light Probe", &authored_light_probe_block ),
-	FIELD( _field_block, "Cortana Lighting", &hologramLightingBlock_block ),
-	FIELD( _field_block, "dynamic lights!", &cinematic_dynamic_light_block_block ),
-	FIELD( _field_terminator )
+		FIELD( _field_custom, "Cinematic Lighting" ),
+		FIELD( _field_custom, "Cinema Lighting" ),
+		FIELD( _field_long_integer, "version!" ),
+		FIELD( _field_custom, "Direction&Direction(D)" ),
+		FIELD( _field_real, "Direction&Direction(D)" ),
+		FIELD( _field_custom, "Front-Back&Front-Back(D)" ),
+		FIELD( _field_real, "Front-Back&Front-Back(D)" ),
+		FIELD( _field_custom, "Shadow Interpolation" ),
+		FIELD( _field_real, "Shadow Interpolation" ),
+		FIELD( _field_custom, "Overall weight" ),
+		FIELD( _field_real, "Overall weight" ),
+		FIELD( _field_custom, "Direct weight" ),
+		FIELD( _field_real, "Direct weight" ),
+		FIELD( _field_custom, "Indirect weight" ),
+		FIELD( _field_real, "Indirect weight" ),
+		FIELD( _field_custom, "Airprobe weight" ),
+		FIELD( _field_real, "Airprobe weight" ),
+		FIELD( _field_custom, "Sun weight" ),
+		FIELD( _field_real, "Sun weight" ),
+		FIELD( _field_real_rgb_color, "Direct color" ),
+		FIELD( _field_custom, "Direct intensity" ),
+		FIELD( _field_real, "Direct intensity" ),
+		FIELD( _field_real_rgb_color, "Indirect color" ),
+		FIELD( _field_custom, "Indirect intensity" ),
+		FIELD( _field_real, "Indirect intensity" ),
+		FIELD( _field_custom, "Interpolation" ),
+		FIELD( _field_real, "Interpolation" ),
+		FIELD( _field_custom ),
+		FIELD( _field_block, "Authored Light Probe", &authored_light_probe_block ),
+		FIELD( _field_block, "Cortana Lighting", &hologramLightingBlock_block ),
+		FIELD( _field_block, "dynamic lights!", &cinematic_dynamic_light_block_block ),
+		FIELD( _field_terminator )
 };
 
 } // namespace blofeld

@@ -46,6 +46,7 @@
     <ClCompile Include="bink\bink_definitions.cpp" />
     <ClCompile Include="bitmaps\bitmap_group_old_tag_definition.cpp" />
     <ClCompile Include="bitmaps\bitmap_group_tag_definition.cpp" />
+    <ClCompile Include="bitmaps\bitmap_group_xenon_interop.cpp" />
     <ClCompile Include="bitmaps\bitmap_tag_definition.cpp" />
     <ClCompile Include="bitmaps\bitmap_tight_bounds_definitions.cpp" />
     <ClCompile Include="bitmaps\bitmap_usage.cpp" />
@@ -106,8 +107,10 @@
     <ClCompile Include="game\campaign_metagame_definitions.cpp" />
     <ClCompile Include="game\challenges\challenge_definitions.cpp" />
     <ClCompile Include="game\firefight_globals.cpp" />
+    <ClCompile Include="game\game.cpp" />
     <ClCompile Include="game\gameenginesandboxdefinitions.cpp" />
     <ClCompile Include="game\game_active_camo_globals.cpp" />
+    <ClCompile Include="game\game_constants.cpp" />
     <ClCompile Include="game\game_controller_globals.cpp" />
     <ClCompile Include="game\game_coop_spawning_globals.cpp" />
     <ClCompile Include="game\game_damage_globals.cpp" />
@@ -116,6 +119,7 @@
     <ClCompile Include="game\game_engine_event_definitions.cpp" />
     <ClCompile Include="game\game_engine_group.cpp" />
     <ClCompile Include="game\game_engine_multiplayer_sounds.cpp" />
+    <ClCompile Include="game\game_engine_player_traits_definitions.cpp" />
     <ClCompile Include="game\game_engine_player_traits_structures.cpp" />
     <ClCompile Include="game\game_engine_roles.cpp" />
     <ClCompile Include="game\game_engine_spawn_settings.cpp" />
@@ -162,6 +166,7 @@
     <ClCompile Include="interface\chud\polyart\polyartbasedefinitions.cpp" />
     <ClCompile Include="interface\chud\polyart\polyartdefinitions.cpp" />
     <ClCompile Include="interface\chud\polyart\vectorartdefinitions.cpp" />
+    <ClCompile Include="interface\components\hud\motionsensorbliplist.cpp" />
     <ClCompile Include="interface\controller_mapping_definitions.cpp" />
     <ClCompile Include="interface\cui\cui_definitions.cpp" />
     <ClCompile Include="interface\emblem\emblem_library.cpp" />
@@ -187,6 +192,7 @@
     <ClCompile Include="materials\material_shader_parameter.cpp" />
     <ClCompile Include="math\color_math.cpp" />
     <ClCompile Include="math\function_definitions.cpp" />
+    <ClCompile Include="math\periodic_functions.cpp" />
     <ClCompile Include="models\damage_info_definitions.cpp" />
     <ClCompile Include="models\model_definitions.cpp" />
     <ClCompile Include="models\render_model_definitions.cpp" />
@@ -194,10 +200,12 @@
     <ClCompile Include="objects\collision_damage_definitions.cpp" />
     <ClCompile Include="objects\crate_definitions.cpp" />
     <ClCompile Include="objects\damage_effect_definitions.cpp" />
+    <ClCompile Include="objects\damage_reporting.cpp" />
     <ClCompile Include="objects\damage_response_definitions.cpp" />
     <ClCompile Include="objects\hologramlighting.cpp" />
     <ClCompile Include="objects\light_definitions.cpp" />
     <ClCompile Include="objects\midnight_light_definitions.cpp" />
+    <ClCompile Include="objects\multiplayer_game_objects_constants.cpp" />
     <ClCompile Include="objects\object_definitions.cpp" />
     <ClCompile Include="objects\object_recycling.cpp" />
     <ClCompile Include="objects\scenery_group.cpp" />
@@ -234,6 +242,7 @@
     <ClCompile Include="rasterizer\rasterizer_loading_screen_definitions.cpp" />
     <ClCompile Include="rasterizer\rasterizer_performance_throttles.cpp" />
     <ClCompile Include="rasterizer\rasterizer_shader_definitions.cpp" />
+    <ClCompile Include="rasterizer\rasterizer_states.cpp" />
     <ClCompile Include="render\authoredlightprobe.cpp" />
     <ClCompile Include="render\camera_fx_settings.cpp" />
     <ClCompile Include="render\render_ssao.cpp" />
@@ -290,6 +299,7 @@
     <ClCompile Include="tag_files\tag_dependency_definitions.cpp" />
     <ClCompile Include="tag_files\tag_group_definitions.cpp" />
     <ClCompile Include="tag_groups.cpp" />
+    <ClCompile Include="text\font_list.cpp" />
     <ClCompile Include="text\text_group.cpp" />
     <ClCompile Include="units\biped_definitions.cpp" />
     <ClCompile Include="units\custom_apps\custom_app_globals.cpp" />
@@ -332,6 +342,7 @@
     <ClInclude Include="bink\bink_definitions.h" />
     <ClInclude Include="bitmaps\bitmap_group_old_tag_definition.h" />
     <ClInclude Include="bitmaps\bitmap_group_tag_definition.h" />
+    <ClInclude Include="bitmaps\bitmap_group_xenon_interop.h" />
     <ClInclude Include="bitmaps\bitmap_tag_definition.h" />
     <ClInclude Include="bitmaps\bitmap_tight_bounds_definitions.h" />
     <ClInclude Include="bitmaps\bitmap_usage.h" />
@@ -389,8 +400,10 @@
     <ClInclude Include="game\campaign_metagame_definitions.h" />
     <ClInclude Include="game\challenges\challenge_definitions.h" />
     <ClInclude Include="game\firefight_globals.h" />
+    <ClInclude Include="game\game.h" />
     <ClInclude Include="game\gameenginesandboxdefinitions.h" />
     <ClInclude Include="game\game_active_camo_globals.h" />
+    <ClInclude Include="game\game_constants.h" />
     <ClInclude Include="game\game_controller_globals.h" />
     <ClInclude Include="game\game_coop_spawning_globals.h" />
     <ClInclude Include="game\game_damage_globals.h" />
@@ -399,6 +412,7 @@
     <ClInclude Include="game\game_engine_event_definitions.h" />
     <ClInclude Include="game\game_engine_group.h" />
     <ClInclude Include="game\game_engine_multiplayer_sounds.h" />
+    <ClInclude Include="game\game_engine_player_traits_definitions.h" />
     <ClInclude Include="game\game_engine_player_traits_structures.h" />
     <ClInclude Include="game\game_engine_roles.h" />
     <ClInclude Include="game\game_engine_spawn_settings.h" />
@@ -444,6 +458,7 @@
     <ClInclude Include="interface\chud\polyart\polyartbasedefinitions.h" />
     <ClInclude Include="interface\chud\polyart\polyartdefinitions.h" />
     <ClInclude Include="interface\chud\polyart\vectorartdefinitions.h" />
+    <ClInclude Include="interface\components\hud\motionsensorbliplist.h" />
     <ClInclude Include="interface\controller_mapping_definitions.h" />
     <ClInclude Include="interface\cui\cui_definitions.h" />
     <ClInclude Include="interface\emblem\emblem_library.h" />
@@ -469,6 +484,7 @@
     <ClInclude Include="materials\material_shader_parameter.h" />
     <ClInclude Include="math\color_math.h" />
     <ClInclude Include="math\function_definitions.h" />
+    <ClInclude Include="math\periodic_functions.h" />
     <ClInclude Include="models\damage_info_definitions.h" />
     <ClInclude Include="models\model_definitions.h" />
     <ClInclude Include="models\render_model_definitions.h" />
@@ -476,10 +492,12 @@
     <ClInclude Include="objects\collision_damage_definitions.h" />
     <ClInclude Include="objects\crate_definitions.h" />
     <ClInclude Include="objects\damage_effect_definitions.h" />
+    <ClInclude Include="objects\damage_reporting.h" />
     <ClInclude Include="objects\damage_response_definitions.h" />
     <ClInclude Include="objects\hologramlighting.h" />
     <ClInclude Include="objects\light_definitions.h" />
     <ClInclude Include="objects\midnight_light_definitions.h" />
+    <ClInclude Include="objects\multiplayer_game_objects_constants.h" />
     <ClInclude Include="objects\object_definitions.h" />
     <ClInclude Include="objects\object_recycling.h" />
     <ClInclude Include="objects\scenery_group.h" />
@@ -516,6 +534,7 @@
     <ClInclude Include="rasterizer\rasterizer_loading_screen_definitions.h" />
     <ClInclude Include="rasterizer\rasterizer_performance_throttles.h" />
     <ClInclude Include="rasterizer\rasterizer_shader_definitions.h" />
+    <ClInclude Include="rasterizer\rasterizer_states.h" />
     <ClInclude Include="render\authoredlightprobe.h" />
     <ClInclude Include="render\camera_fx_settings.h" />
     <ClInclude Include="render\render_ssao.h" />
@@ -575,6 +594,7 @@
     <ClInclude Include="tag_files\tag_dependency_definitions.h" />
     <ClInclude Include="tag_files\tag_group_definitions.h" />
     <ClInclude Include="tag_groups.h" />
+    <ClInclude Include="text\font_list.h" />
     <ClInclude Include="text\text_group.h" />
     <ClInclude Include="units\biped_definitions.h" />
     <ClInclude Include="units\custom_apps\custom_app_globals.h" />

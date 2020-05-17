@@ -134,11 +134,11 @@ using c_h4_tag_field_explanation = t_h4_tag_field<t_h4_tag_numerical_definition<
 
 struct s_h4_tag_enum_definition
 {
-	bpointer32<const char*> name_address;
+	bpointer32<const char*> name;
 	buint32_t option_count;
-	bpointer32<bpointer32<const char*>*> options_address;
-	bpointer32<const char*> filename_address;
-	buint32_t flags;
+	bpointer32<bpointer32<const char*>*> options;
+	bpointer32<const char*> filepath;
+	buint32_t line_number;
 };
 
 class c_h4_tag_field_tag_reference :

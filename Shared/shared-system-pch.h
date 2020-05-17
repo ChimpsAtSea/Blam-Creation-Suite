@@ -101,6 +101,7 @@ using namespace tbb;
 #include <mutex> // #TODO: replace
 #include <condition_variable>
 #include <chrono>
+#include <set>
 
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 #else

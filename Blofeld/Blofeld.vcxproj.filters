@@ -33,12 +33,6 @@
     <ClCompile Include="validation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="weather\weather_control.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="weather\weather_definition.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ai\ai.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -118,6 +112,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bitmaps\bitmap_group_tag_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bitmaps\bitmap_group_xenon_interop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bitmaps\bitmap_tag_definition.cpp">
@@ -333,7 +330,13 @@
     <ClCompile Include="game\firefight_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="game\game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="game\game_active_camo_globals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game_constants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game\game_controller_globals.cpp">
@@ -358,6 +361,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game\game_engine_multiplayer_sounds.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game_engine_player_traits_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="game\game_engine_player_traits_structures.cpp">
@@ -441,6 +447,9 @@
     <ClCompile Include="interface\chud\polyart\vectorartdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="interface\components\hud\motionsensorbliplist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="interface\cui\cui_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -516,6 +525,9 @@
     <ClCompile Include="math\function_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="math\periodic_functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="models\damage_info_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -561,6 +573,9 @@
     <ClCompile Include="objects\damage_effect_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="objects\damage_reporting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="objects\damage_response_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -571,6 +586,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="objects\midnight_light_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\multiplayer_game_objects_constants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="objects\object_definitions.cpp">
@@ -655,6 +673,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="rasterizer\rasterizer_shader_definitions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rasterizer\rasterizer_states.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="render\authoredlightprobe.cpp">
@@ -822,6 +843,9 @@
     <ClCompile Include="tag_files\tag_group_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="text\font_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="text\text_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -852,6 +876,12 @@
     <ClCompile Include="units\vehicle_engine_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="weather\weather_control.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="weather\weather_definition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld-private-pch.h">
@@ -873,12 +903,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="validation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="weather\weather_control.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="weather\weather_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ai\ai.h">
@@ -960,6 +984,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bitmaps\bitmap_group_tag_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bitmaps\bitmap_group_xenon_interop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bitmaps\bitmap_tag_definition.h">
@@ -1175,7 +1202,13 @@
     <ClInclude Include="game\firefight_globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="game\game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="game\game_active_camo_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game_constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game\game_controller_globals.h">
@@ -1200,6 +1233,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game\game_engine_multiplayer_sounds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game_engine_player_traits_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game\game_engine_player_traits_structures.h">
@@ -1283,6 +1319,9 @@
     <ClInclude Include="interface\chud\polyart\vectorartdefinitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="interface\components\hud\motionsensorbliplist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="interface\cui\cui_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1358,6 +1397,9 @@
     <ClInclude Include="math\function_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="math\periodic_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="models\damage_info_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1403,6 +1445,9 @@
     <ClInclude Include="objects\damage_effect_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="objects\damage_reporting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="objects\damage_response_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1413,6 +1458,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="objects\midnight_light_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\multiplayer_game_objects_constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="objects\object_definitions.h">
@@ -1497,6 +1545,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="rasterizer\rasterizer_shader_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rasterizer\rasterizer_states.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="render\authoredlightprobe.h">
@@ -1673,6 +1724,9 @@
     <ClInclude Include="tag_files\tag_group_definitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="text\font_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="text\text_group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1701,6 +1755,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="units\vehicle_engine_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="weather\weather_control.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="weather\weather_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

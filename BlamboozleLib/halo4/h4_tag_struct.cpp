@@ -1,15 +1,15 @@
 #include "blamboozlelib-private-pch.h"
 
-c_h4_tag_struct::c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_definition* set_header)
+c_h4_tag_struct::c_h4_tag_struct(const char* h4_data, const s_h4_tag_struct_definition* set_header) :
+	name(h4_va_to_pointer(h4_data, set_header->name)),
+	display_name(h4_va_to_pointer(h4_data, set_header->display_name)),
+	filepath(h4_va_to_pointer(h4_data, set_header->filepath)),
+	line_number(set_header->line_number),
+	fields(h4_va_to_pointer<s_h4_tag_field_definition>(h4_data, set_header->fields_address)),
+	size(set_header->size),
+	size_string(h4_va_to_pointer(h4_data, set_header->size_string_address)),
+	tag_fields()
 {
-	display_name = h4_va_to_pointer(h4_data, set_header->display_name);
-	name = h4_va_to_pointer(h4_data, set_header->name);
-	filepath = h4_va_to_pointer(h4_data, set_header->filepath);
-	size = set_header->size;
-	size_string = h4_va_to_pointer(h4_data, set_header->size_string_address);
-	uint32_t fields_address = set_header->fields_address;
-	fields = reinterpret_cast<const s_h4_tag_field_definition*>(h4_va_to_pointer(h4_data, set_header->fields_address));
-
 	ASSERT(fields != nullptr);
 
 	const s_h4_tag_field_definition* field_definition = fields;

@@ -3,25 +3,30 @@
 namespace blofeld
 {
 
-constexpr unsigned long COLLISION_MODEL_TAG = 'coll';
+	extern const char* pathfinding_sphere_flags_strings[];
+	extern s_string_list_definition pathfinding_sphere_flags;
+	extern const char* collision_model_flags_strings[];
+	extern s_string_list_definition collision_model_flags;
 
-extern s_tag_struct collision_model_block_struct;
-extern s_tag_block_definition collision_model_block;
-extern s_tag_group collision_model_group;
+	constexpr unsigned long COLLISION_MODEL_TAG = 'coll';
 
-extern s_tag_struct collision_model_material_block_block_struct;
-extern s_tag_block_definition collision_model_material_block_block;
-extern s_tag_struct collision_model_region_block_block_struct;
-extern s_tag_block_definition collision_model_region_block_block;
-extern s_tag_struct collision_model_permutation_block_block_struct;
-extern s_tag_block_definition collision_model_permutation_block_block;
-extern s_tag_block_definition collision_model_bsp_block_block;
-extern s_tag_struct collision_model_pathfinding_sphere_block_block_struct;
-extern s_tag_block_definition collision_model_pathfinding_sphere_block_block;
-extern s_tag_struct collision_model_node_block_block_struct;
-extern s_tag_block_definition collision_model_node_block_block;
+	extern s_tag_struct collision_model_block_struct;
+	extern s_tag_block_definition collision_model_block;
+	extern s_tag_group collision_model_group;
 
-extern s_tag_struct collision_model_bsp_struct_struct_definition;
+	extern s_tag_struct collision_model_material_block_block_struct;
+	extern s_tag_block_definition collision_model_material_block_block;
+	extern s_tag_struct collision_model_region_block_block_struct;
+	extern s_tag_block_definition collision_model_region_block_block;
+	extern s_tag_struct collision_model_permutation_block_block_struct;
+	extern s_tag_block_definition collision_model_permutation_block_block;
+	extern s_tag_block_definition collision_model_bsp_block_block;
+	extern s_tag_struct collision_model_pathfinding_sphere_block_block_struct;
+	extern s_tag_block_definition collision_model_pathfinding_sphere_block_block;
+	extern s_tag_struct collision_model_node_block_block_struct;
+	extern s_tag_block_definition collision_model_node_block_block;
+
+	extern s_tag_struct collision_model_bsp_struct_struct_definition;
 
 } // namespace blofeld
 

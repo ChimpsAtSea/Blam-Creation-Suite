@@ -22,6 +22,7 @@ namespace blofeld
 	struct s_tag_struct;
 	struct s_tag_block_definition;
 	struct s_tag_group;
+	struct s_string_list_definition;
 
 #define TAG_STRUCT_FIELDS_FORWARD(tag_fields_name) \
 extern s_tag_field CONCAT(tag_fields_name, _fields)[];
@@ -84,4 +85,15 @@ extern unsigned long CONCAT(name, _tag_groups)[]; \
 s_tag_reference name = { 0, INVALID_TAG, CONCAT(name, _tag_groups) }; \
 unsigned long CONCAT(name, _tag_groups)[] =
 
+#define TAG_ENUM(name, count) \
+extern const char* CONCAT(name, _strings)[]; \
+s_string_list_definition name = { STRINGIFY(name), count, CONCAT(name, _strings), __FILE__, __LINE__ }; \
+const char* CONCAT(name, _strings)[] = 
+
+#define TAG_ENUM_EMPTY(name, count) \
+extern const char* CONCAT(name, _strings)[]; \
+s_string_list_definition name = { STRINGIFY(name), count, CONCAT(name, _strings), __FILE__, __LINE__ }; \
+const char* CONCAT(name, _strings)[] = { "" }
+
+#define OPTION(option) (STRINGIFY(option))
 }

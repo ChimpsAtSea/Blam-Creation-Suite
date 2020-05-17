@@ -3,19 +3,22 @@
 namespace blofeld
 {
 
+	extern const char* map_variant_palette_flags_strings[];
+	extern s_string_list_definition map_variant_palette_flags;
 
-extern s_tag_struct map_variant_palette_block_block_struct;
-extern s_tag_block_definition map_variant_palette_block_block;
-extern s_tag_struct map_variant_palette_entry_block_block_struct;
-extern s_tag_block_definition map_variant_palette_entry_block_block;
-extern s_tag_struct map_variant_object_variant_block_block_struct;
-extern s_tag_block_definition map_variant_object_variant_block_block;
-extern s_tag_struct mapVariantPaletteDependencyBlock_block_struct;
-extern s_tag_block_definition mapVariantPaletteDependencyBlock_block;
-extern s_tag_struct resourceHandleBlock_block_struct;
-extern s_tag_block_definition resourceHandleBlock_block;
 
-extern s_tag_struct mapVariantResourceManifest_struct_definition;
+	extern s_tag_struct map_variant_palette_block_block_struct;
+	extern s_tag_block_definition map_variant_palette_block_block;
+	extern s_tag_struct map_variant_palette_entry_block_block_struct;
+	extern s_tag_block_definition map_variant_palette_entry_block_block;
+	extern s_tag_struct map_variant_object_variant_block_block_struct;
+	extern s_tag_block_definition map_variant_object_variant_block_block;
+	extern s_tag_struct mapVariantPaletteDependencyBlock_block_struct;
+	extern s_tag_block_definition mapVariantPaletteDependencyBlock_block;
+	extern s_tag_struct resourceHandleBlock_block_struct;
+	extern s_tag_block_definition resourceHandleBlock_block;
+
+	extern s_tag_struct mapVariantResourceManifest_struct_definition;
 
 } // namespace blofeld
 

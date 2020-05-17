@@ -6,15 +6,31 @@ namespace blofeld
 	{
 		uint32_t computed_size = 0;
 
+
 		for(const s_tag_field* current_field = tag_struct.tag_fields; current_field->field_type != _field_terminator; current_field++)
 		{
+			const char* field_string = field_to_string(current_field->field_type);
+			const char* nice_field_string = field_string + 1;
+
 			// data validation
 			switch (current_field->field_type)
 			{
+			case _field_char_enum:
+			case _field_enum:
+			case _field_long_enum:
+			case _field_long_flags:
+			case _field_word_flags:
+			case _field_byte_flags:
+				if (current_field->string_list_definition == nullptr)
+				{
+					write_line_verbose("%s(%i): warning V5000: '%s' '%s':'%s' failed validation. no string list specified.", current_field->filename, current_field->line, nice_field_string, tag_struct.name, current_field->name);
+					if (block_failed_validation) *block_failed_validation |= true;
+				}
+				break;
 			case _field_struct:
 				if (current_field->tag_struct == nullptr)
 				{
-					write_line_verbose("blofeld> warning field '%s':'%s' [_field_struct] failed validation. no structure specified.", tag_struct.name, current_field->name);
+					write_line_verbose("%s(%i): warning V4000: '%s' '%s':'%s' failed validation. array is not implemented!", current_field->filename, current_field->line, nice_field_string, tag_struct.name, current_field->name);
 					if (block_failed_validation) *block_failed_validation |= true;
 					continue;
 				}
@@ -34,7 +50,7 @@ namespace blofeld
 				computed_size += calculate_struct_size(*current_field->tag_struct, block_failed_validation);
 				break;
 			case _field_array:
-				write_line_verbose("%s(%i): warning V3000: field '%s':'%s' [_field_array] failed validation. array is not implemented!", current_field->filename, current_field->line, tag_struct.name, current_field->name);
+				write_line_verbose("%s(%i): warning V3000: '%s' '%s':'%s' failed validation. array is not implemented!", current_field->filename, current_field->line, nice_field_string, tag_struct.name, current_field->name);
 				break;
 			default:
 				computed_size += get_blofeld_field_size(current_field->field_type);
@@ -61,7 +77,7 @@ namespace blofeld
 			block_failed_validation |= computed_size != expected_size;
 			if (block_failed_validation)
 			{
-				write_line_verbose("%s(%i): warning V2000: struct '%s' failed validation. computed size 0x%x expected 0x%x", tag_struct.filename, tag_struct.line, block_name, computed_size, expected_size);
+				write_line_verbose("%s(%i): warning V2000: s_tag_struct '%s' failed validation. computed size 0x%x expected 0x%x", tag_struct.filename, tag_struct.line, block_name, computed_size, expected_size);
 			}
 			else
 			{

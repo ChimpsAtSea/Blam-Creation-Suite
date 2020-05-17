@@ -3,26 +3,29 @@
 namespace blofeld
 {
 
-constexpr unsigned long LOADOUT_GLOBALS_DEFINITION_TAG = 'lgtd';
+	extern const char* loadout_flags_definition_strings[];
+	extern s_string_list_definition loadout_flags_definition;
 
-extern s_tag_group loadout_globals_definition_group;
+	constexpr unsigned long LOADOUT_GLOBALS_DEFINITION_TAG = 'lgtd';
 
-extern s_tag_block_definition loadout_globals_definition_block_block;
-extern s_tag_struct game_engine_loadout_options_block_block_struct;
-extern s_tag_block_definition game_engine_loadout_options_block_block;
-extern s_tag_struct game_engine_loadout_palette_entry_block_block_struct;
-extern s_tag_block_definition game_engine_loadout_palette_entry_block_block;
-extern s_tag_block_definition loadout_definition_block_block;
-extern s_tag_struct loadout_palette_definition_block_block_struct;
-extern s_tag_block_definition loadout_palette_definition_block_block;
-extern s_tag_struct loadout_index_block_block_struct;
-extern s_tag_block_definition loadout_index_block_block;
-extern s_tag_struct loadout_name_block_block_struct;
-extern s_tag_block_definition loadout_name_block_block;
-extern s_tag_block_definition custom_loadout_defaults_block_block;
+	extern s_tag_group loadout_globals_definition_group;
 
-extern s_tag_struct loadout_globals_definition_struct_definition_struct_definition; // tag group
-extern s_tag_struct loadout_definition_struct_struct_definition;
+	extern s_tag_block_definition loadout_globals_definition_block_block;
+	extern s_tag_struct game_engine_loadout_options_block_block_struct;
+	extern s_tag_block_definition game_engine_loadout_options_block_block;
+	extern s_tag_struct game_engine_loadout_palette_entry_block_block_struct;
+	extern s_tag_block_definition game_engine_loadout_palette_entry_block_block;
+	extern s_tag_block_definition loadout_definition_block_block;
+	extern s_tag_struct loadout_palette_definition_block_block_struct;
+	extern s_tag_block_definition loadout_palette_definition_block_block;
+	extern s_tag_struct loadout_index_block_block_struct;
+	extern s_tag_block_definition loadout_index_block_block;
+	extern s_tag_struct loadout_name_block_block_struct;
+	extern s_tag_block_definition loadout_name_block_block;
+	extern s_tag_block_definition custom_loadout_defaults_block_block;
+
+	extern s_tag_struct loadout_globals_definition_struct_definition_struct_definition; // tag group
+	extern s_tag_struct loadout_definition_struct_struct_definition;
 
 } // namespace blofeld
 

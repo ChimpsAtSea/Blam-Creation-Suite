@@ -3,39 +3,50 @@
 namespace blofeld
 {
 
+	extern const char* cue_flags_strings[];
+	extern s_string_list_definition cue_flags;
+	extern const char* cue_template_flags_strings[];
+	extern s_string_list_definition cue_template_flags;
+	extern const char* quick_cue_flags_strings[];
+	extern s_string_list_definition quick_cue_flags;
+	extern const char* distribution_character_flags_strings[];
+	extern s_string_list_definition distribution_character_flags;
+	extern const char* combat_cue_preference_enum_strings[];
+	extern s_string_list_definition combat_cue_preference_enum;
 
-extern s_tag_struct ai_cue_template_block_block_struct;
-extern s_tag_block_definition ai_cue_template_block_block;
-extern s_tag_struct firing_point_payload_block_block_struct;
-extern s_tag_block_definition firing_point_payload_block_block;
-extern s_tag_struct stimulus_payload_block_block_struct;
-extern s_tag_block_definition stimulus_payload_block_block;
-extern s_tag_struct combat_cue_payload_block_block_struct;
-extern s_tag_block_definition combat_cue_payload_block_block;
-extern s_tag_struct ai_cue_block_block_struct;
-extern s_tag_block_definition ai_cue_block_block;
-extern s_tag_struct task_distribution_block_block_struct;
-extern s_tag_block_definition task_distribution_block_block;
-extern s_tag_struct radial_distribution_block_block_struct;
-extern s_tag_block_definition radial_distribution_block_block;
-extern s_tag_struct probability_distribution_block_block_struct;
-extern s_tag_block_definition probability_distribution_block_block;
-extern s_tag_struct character_distribution_block_block_struct;
-extern s_tag_block_definition character_distribution_block_block;
-extern s_tag_struct weapon_distribution_block_block_struct;
-extern s_tag_block_definition weapon_distribution_block_block;
-extern s_tag_struct script_payload_block_block_struct;
-extern s_tag_block_definition script_payload_block_block;
-extern s_tag_struct combat_sync_action_group_payload_block_block_struct;
-extern s_tag_block_definition combat_sync_action_group_payload_block_block;
-extern s_tag_struct ai_full_cue_block_block_struct;
-extern s_tag_block_definition ai_full_cue_block_block;
-extern s_tag_struct ai_quick_cue_block_block_struct;
-extern s_tag_block_definition ai_quick_cue_block_block;
 
-extern s_tag_struct cue_distribution_struct_struct_definition;
-extern s_tag_struct cue_stimulus_distribution_struct_struct_definition;
-extern s_tag_struct cue_payload_struct_struct_definition;
+	extern s_tag_struct ai_cue_template_block_block_struct;
+	extern s_tag_block_definition ai_cue_template_block_block;
+	extern s_tag_struct firing_point_payload_block_block_struct;
+	extern s_tag_block_definition firing_point_payload_block_block;
+	extern s_tag_struct stimulus_payload_block_block_struct;
+	extern s_tag_block_definition stimulus_payload_block_block;
+	extern s_tag_struct combat_cue_payload_block_block_struct;
+	extern s_tag_block_definition combat_cue_payload_block_block;
+	extern s_tag_struct ai_cue_block_block_struct;
+	extern s_tag_block_definition ai_cue_block_block;
+	extern s_tag_struct task_distribution_block_block_struct;
+	extern s_tag_block_definition task_distribution_block_block;
+	extern s_tag_struct radial_distribution_block_block_struct;
+	extern s_tag_block_definition radial_distribution_block_block;
+	extern s_tag_struct probability_distribution_block_block_struct;
+	extern s_tag_block_definition probability_distribution_block_block;
+	extern s_tag_struct character_distribution_block_block_struct;
+	extern s_tag_block_definition character_distribution_block_block;
+	extern s_tag_struct weapon_distribution_block_block_struct;
+	extern s_tag_block_definition weapon_distribution_block_block;
+	extern s_tag_struct script_payload_block_block_struct;
+	extern s_tag_block_definition script_payload_block_block;
+	extern s_tag_struct combat_sync_action_group_payload_block_block_struct;
+	extern s_tag_block_definition combat_sync_action_group_payload_block_block;
+	extern s_tag_struct ai_full_cue_block_block_struct;
+	extern s_tag_block_definition ai_full_cue_block_block;
+	extern s_tag_struct ai_quick_cue_block_block_struct;
+	extern s_tag_block_definition ai_quick_cue_block_block;
+
+	extern s_tag_struct cue_distribution_struct_struct_definition;
+	extern s_tag_struct cue_stimulus_distribution_struct_struct_definition;
+	extern s_tag_struct cue_payload_struct_struct_definition;
 
 } // namespace blofeld
 

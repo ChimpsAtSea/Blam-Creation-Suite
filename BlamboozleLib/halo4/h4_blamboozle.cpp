@@ -236,6 +236,18 @@ c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(
 		return tag_struct_definition_iterator->second;
 	}
 
+	uint32_t line_number = tag_struct_definition_header->line_number;
+	const char* name = h4_va_to_pointer(h4_data, tag_struct_definition_header->name);
+	const char* filepath = h4_va_to_pointer(h4_data, tag_struct_definition_header->filepath);
+	for (const std::pair<const void*, c_h4_tag_struct*>& tag_struct_key : tag_struct_definitions)
+	{
+		c_h4_tag_struct& tag_struct = *tag_struct_key.second;
+		if (tag_struct.line_number == line_number && strcmp(tag_struct.name, name) == 0 && strcmp(tag_struct.filepath, filepath) == 0)
+		{
+			return tag_struct_key.second;
+		}
+	}
+
 	c_h4_tag_struct* tag_struct_definition = reinterpret_cast<c_h4_tag_struct*>(malloc(sizeof(c_h4_tag_struct)));
 	tag_struct_definitions[tag_struct_definition_header] = tag_struct_definition;
 	new(tag_struct_definition) c_h4_tag_struct(h4_data, tag_struct_definition_header);
@@ -260,6 +272,18 @@ c_h4_tag_enum* c_h4_blamboozle::get_tag_enum_definition(
 	if (tag_enum_definition_iterator != tag_enum_definitions.end())
 	{
 		return tag_enum_definition_iterator->second;
+	}
+
+	uint32_t line_number = tag_enum_definition_header->line_number;
+	const char* name = h4_va_to_pointer(h4_data, tag_enum_definition_header->name);
+	const char* filepath = h4_va_to_pointer(h4_data, tag_enum_definition_header->filepath);
+	for (const std::pair<const void*, c_h4_tag_enum*>& tag_enum_key : tag_enum_definitions)
+	{
+		c_h4_tag_enum& tag_enum = *tag_enum_key.second;
+		if (tag_enum.line_number == line_number && strcmp(tag_enum.name, name) == 0 && strcmp(tag_enum.filepath, filepath) == 0)
+		{
+			return tag_enum_key.second;
+		}
 	}
 
 	c_h4_tag_enum* tag_enum_definition = reinterpret_cast<c_h4_tag_enum*>(malloc(sizeof(c_h4_tag_enum)));

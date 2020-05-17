@@ -54,6 +54,7 @@
     <ClInclude Include="Rendering\directx_helpers.h" />
     <ClInclude Include="Rendering\dds.h" />
     <ClInclude Include="shared-types-pch.h" />
+    <ClInclude Include="string_helpers.h" />
     <ClInclude Include="ThreadPrimitives\atomic_temp_value.h" />
     <ClInclude Include="ThreadPrimitives\semaphore.h" />
     <ClInclude Include="ThreadPrimitives\atomic_flip_value.h" />
@@ -91,6 +92,7 @@
     <ClCompile Include="DebugLogging.cpp" />
     <ClCompile Include="debug_util.cpp" />
     <ClCompile Include="Rendering\directx_helpers.cpp" />
+    <ClCompile Include="string_helpers.cpp" />
     <ClCompile Include="ThreadPrimitives\semaphore.cpp" />
     <ClCompile Include="ThreadPrimitives\atomic_flip_value.cpp" />
     <ClCompile Include="FatalError.cpp" />

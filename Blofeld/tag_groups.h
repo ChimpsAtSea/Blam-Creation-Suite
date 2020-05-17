@@ -27,6 +27,7 @@
 #include "bink\bink_definitions.h"
 #include "bitmaps\bitmap_group_old_tag_definition.h"
 #include "bitmaps\bitmap_group_tag_definition.h"
+#include "bitmaps\bitmap_group_xenon_interop.h"
 #include "bitmaps\bitmap_tag_definition.h"
 #include "bitmaps\bitmap_tight_bounds_definitions.h"
 #include "bitmaps\bitmap_usage.h"
@@ -80,7 +81,9 @@
 #include "game\campaign_metagame_definitions.h"
 #include "game\challenges\challenge_definitions.h"
 #include "game\firefight_globals.h"
+#include "game\game.h"
 #include "game\game_active_camo_globals.h"
+#include "game\game_constants.h"
 #include "game\game_controller_globals.h"
 #include "game\game_coop_spawning_globals.h"
 #include "game\game_damage_globals.h"
@@ -89,6 +92,7 @@
 #include "game\game_engine_event_definitions.h"
 #include "game\game_engine_group.h"
 #include "game\game_engine_multiplayer_sounds.h"
+#include "game\game_engine_player_traits_definitions.h"
 #include "game\game_engine_player_traits_structures.h"
 #include "game\game_engine_roles.h"
 #include "game\game_engine_spawn_settings.h"
@@ -134,6 +138,7 @@
 #include "interface\chud\polyart\polyartbasedefinitions.h"
 #include "interface\chud\polyart\polyartdefinitions.h"
 #include "interface\chud\polyart\vectorartdefinitions.h"
+#include "interface\components\hud\motionsensorbliplist.h"
 #include "interface\controller_mapping_definitions.h"
 #include "interface\cui\cui_definitions.h"
 #include "interface\emblem\emblem_library.h"
@@ -159,6 +164,7 @@
 #include "materials\material_shader_parameter.h"
 #include "math\color_math.h"
 #include "math\function_definitions.h"
+#include "math\periodic_functions.h"
 #include "models\damage_info_definitions.h"
 #include "models\model_definitions.h"
 #include "models\render_model_definitions.h"
@@ -166,10 +172,12 @@
 #include "objects\collision_damage_definitions.h"
 #include "objects\crate_definitions.h"
 #include "objects\damage_effect_definitions.h"
+#include "objects\damage_reporting.h"
 #include "objects\damage_response_definitions.h"
 #include "objects\hologramlighting.h"
 #include "objects\light_definitions.h"
 #include "objects\midnight_light_definitions.h"
+#include "objects\multiplayer_game_objects_constants.h"
 #include "objects\object_definitions.h"
 #include "objects\object_recycling.h"
 #include "objects\scenery_group.h"
@@ -206,6 +214,7 @@
 #include "rasterizer\rasterizer_loading_screen_definitions.h"
 #include "rasterizer\rasterizer_performance_throttles.h"
 #include "rasterizer\rasterizer_shader_definitions.h"
+#include "rasterizer\rasterizer_states.h"
 #include "render\authoredlightprobe.h"
 #include "render\camera_fx_settings.h"
 #include "render\render_ssao.h"
@@ -264,6 +273,7 @@
 #include "tag_files\self_tracking\file_self_track.h"
 #include "tag_files\tag_dependency_definitions.h"
 #include "tag_files\tag_group_definitions.h"
+#include "text\font_list.h"
 #include "text\text_group.h"
 #include "units\biped_definitions.h"
 #include "units\custom_apps\custom_app_globals.h"
@@ -280,7 +290,7 @@
 namespace blofeld
 {
 
-extern s_tag_group* tag_groups[262];
+	extern s_tag_group* tag_groups[262];
 } // namespace blofeld
 
 

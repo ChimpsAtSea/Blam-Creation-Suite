@@ -10,13 +10,13 @@ class c_h4_tag_struct
 public:
 	friend class c_h4_blamboozle;
 
-	const char* name;
-	const char* display_name;
-	const char* filepath;
-	const s_h4_tag_field_definition* fields;
-	uint32_t size;
-	const char* size_string;
-	const char* byte_swap_definition_name;
+	const char* const name;
+	const char* const display_name;
+	const char* const filepath;
+	uint32_t const line_number;
+	const s_h4_tag_field_definition* const fields;
+	uint32_t const size;
+	const char* const size_string;
 	std::vector<c_h4_tag_field*> tag_fields;
 
 protected:
