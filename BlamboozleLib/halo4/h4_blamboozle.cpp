@@ -194,17 +194,17 @@ c_h4_blamboozle::~c_h4_blamboozle()
 
 c_h4_tag_block* c_h4_blamboozle::get_tag_block_definition(
 	const char* h4_data,
-	const s_h4_tag_block_definition* tag_block_definition_header,
+	const s_h4_tag_block_definition* definition_header,
 	const s_h4_tag_group* tag_layout_header
 )
 {
-	if (tag_block_definition_header == nullptr)
+	if (definition_header == nullptr)
 	{
 		return nullptr;
 	}
 	ASSERT(h4_data != nullptr);
 
-	std::map<const void*, c_h4_tag_block*>::iterator tag_block_definition_iterator = tag_block_definitions.find(tag_block_definition_header);
+	std::map<const void*, c_h4_tag_block*>::iterator tag_block_definition_iterator = tag_block_definitions.find(definition_header);
 
 	if (tag_block_definition_iterator != tag_block_definitions.end())
 	{
@@ -212,8 +212,30 @@ c_h4_tag_block* c_h4_blamboozle::get_tag_block_definition(
 	}
 
 	c_h4_tag_block* tag_block_definition = reinterpret_cast<c_h4_tag_block*>(malloc(sizeof(c_h4_tag_block)));
-	tag_block_definitions[tag_block_definition_header] = tag_block_definition;
-	new(tag_block_definition) c_h4_tag_block(h4_data, tag_block_definition_header, tag_layout_header);
+	tag_block_definitions[definition_header] = tag_block_definition;
+	new(tag_block_definition) c_h4_tag_block(h4_data, definition_header, tag_layout_header);
+
+	return tag_block_definition;
+}
+
+c_h4_tag_array* c_h4_blamboozle::get_tag_array_definition(const char* h4_data, const s_h4_tag_array_definition* definition_header)
+{
+	if (definition_header == nullptr)
+	{
+		return nullptr;
+	}
+	ASSERT(h4_data != nullptr);
+
+	std::map<const void*, c_h4_tag_block*>::iterator tag_block_definition_iterator = tag_block_definitions.find(definition_header);
+
+	if (tag_block_definition_iterator != tag_block_definitions.end())
+	{
+		return tag_block_definition_iterator->second;
+	}
+
+	c_h4_tag_block* tag_block_definition = reinterpret_cast<c_h4_tag_block*>(malloc(sizeof(c_h4_tag_block)));
+	tag_block_definitions[definition_header] = tag_block_definition;
+	new(tag_block_definition) c_h4_tag_block(h4_data, definition_header);
 
 	return tag_block_definition;
 }

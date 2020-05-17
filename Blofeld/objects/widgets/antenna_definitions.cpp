@@ -5,8 +5,6 @@ namespace blofeld
 
 	TAG_GROUP_FROM_BLOCK(antenna, ANTENNA_TAG, antenna_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(antenna_block, 1, antenna_struct_definition_struct_definition );
-
 	TAG_BLOCK(antenna_vertex_block, MAXIMUM_NUMBER_OF_ANTENNA_VERTICES)
 	{
 		FIELD( _field_real_euler_angles_2d, "angles#direction toward next vertex!" ),
@@ -20,8 +18,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(antenna_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(antenna_block, 1, antenna_struct_definition_struct_definition );
+
+	TAG_STRUCT(antenna_struct_definition)
+	{
 		FIELD( _field_old_string_id, "attachment marker name#the marker name where the antenna should be attached" ),
 		FIELD( _field_tag_reference, "bitmaps" ),
 		FIELD( _field_tag_reference, "physics" ),
@@ -35,7 +35,7 @@ TAG_STRUCT(antenna_struct_definition)
 		FIELD( _field_real, "runtime total length!" ),
 		FIELD( _field_block, "vertices", &antenna_vertex_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

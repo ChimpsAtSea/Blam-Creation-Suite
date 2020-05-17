@@ -3,50 +3,6 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(scenario_designer_zone_block, k_maximum_designer_zone_count)
-	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_block, "references*", &scenarioDesignerZoneTagReferenceBlock_block ),
-		FIELD( _field_custom, "biped" ),
-		FIELD( _field_block, "biped", &biped_block_index_flags_block_block ),
-		FIELD( _field_custom, "vehicle" ),
-		FIELD( _field_block, "vehicle", &vehicle_block_index_flags_block_block ),
-		FIELD( _field_custom, "weapon" ),
-		FIELD( _field_block, "weapon", &weapon_block_index_flags_block_block ),
-		FIELD( _field_custom, "equipment" ),
-		FIELD( _field_block, "equipment", &equipment_block_index_flags_block_block ),
-		FIELD( _field_custom, "scenery" ),
-		FIELD( _field_block, "scenery", &scenery_block_index_flags_block_block ),
-		FIELD( _field_custom, "machine" ),
-		FIELD( _field_block, "machine", &machine_block_index_flags_block_block ),
-		FIELD( _field_custom, "terminal" ),
-		FIELD( _field_block, "terminal", &terminal_block_index_flags_block_block ),
-		FIELD( _field_custom, "control" ),
-		FIELD( _field_block, "control", &control_block_index_flags_block_block ),
-		FIELD( _field_custom, "dispenser" ),
-		FIELD( _field_block, "dispenser", &dispenser_block_index_flags_block_block ),
-		FIELD( _field_custom, "sound_scenery" ),
-		FIELD( _field_block, "sound_scenery", &sound_scenery_block_index_flags_block_block ),
-		FIELD( _field_custom, "crate" ),
-		FIELD( _field_block, "crate", &crate_block_index_flags_block_block ),
-		FIELD( _field_custom, "creature" ),
-		FIELD( _field_block, "creature", &creature_block_index_flags_block_block ),
-		FIELD( _field_custom, "giant" ),
-		FIELD( _field_block, "giant", &giant_block_index_flags_block_block ),
-		FIELD( _field_custom, "effect_scenery" ),
-		FIELD( _field_block, "effect_scenery", &effect_scenery_block_index_flags_block_block ),
-		FIELD( _field_custom, "character" ),
-		FIELD( _field_block, "character", &character_block_index_flags_block_block ),
-		FIELD( _field_custom, "spawner" ),
-		FIELD( _field_block, "spawner", &spawner_block_index_flags_block_block ),
-		FIELD( _field_custom, "budget_reference" ),
-		FIELD( _field_block, "budget_reference", &budget_reference_block_index_flags_block_block ),
-		FIELD( _field_custom, "bink" ),
-		FIELD( _field_block, "bink", &bink_block_index_flags_block_block ),
-		FIELD( _field_block, "resource dependencies*!", &scenarioDesignerResourceDependenciesBlock_block ),
-		FIELD( _field_terminator )
-	};
-
 	TAG_BLOCK(scenarioDesignerZoneTagReferenceBlock, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK*k_scenario_designer_zone_palette_count)
 	{
 		FIELD( _field_tag_reference, "tag^" ),
@@ -164,6 +120,50 @@ namespace blofeld
 	TAG_BLOCK(scenarioDesignerResourceDependenciesBlock, 16*1024)
 	{
 		FIELD( _field_tag_reference, "tag^" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(scenario_designer_zone_block, k_maximum_designer_zone_count)
+	{
+		FIELD( _field_string_id, "name^" ),
+		FIELD( _field_block, "references*", &scenarioDesignerZoneTagReferenceBlock_block ),
+		FIELD( _field_custom, "biped" ),
+		FIELD( _field_block, "biped", &biped_block_index_flags_block_block ),
+		FIELD( _field_custom, "vehicle" ),
+		FIELD( _field_block, "vehicle", &vehicle_block_index_flags_block_block ),
+		FIELD( _field_custom, "weapon" ),
+		FIELD( _field_block, "weapon", &weapon_block_index_flags_block_block ),
+		FIELD( _field_custom, "equipment" ),
+		FIELD( _field_block, "equipment", &equipment_block_index_flags_block_block ),
+		FIELD( _field_custom, "scenery" ),
+		FIELD( _field_block, "scenery", &scenery_block_index_flags_block_block ),
+		FIELD( _field_custom, "machine" ),
+		FIELD( _field_block, "machine", &machine_block_index_flags_block_block ),
+		FIELD( _field_custom, "terminal" ),
+		FIELD( _field_block, "terminal", &terminal_block_index_flags_block_block ),
+		FIELD( _field_custom, "control" ),
+		FIELD( _field_block, "control", &control_block_index_flags_block_block ),
+		FIELD( _field_custom, "dispenser" ),
+		FIELD( _field_block, "dispenser", &dispenser_block_index_flags_block_block ),
+		FIELD( _field_custom, "sound_scenery" ),
+		FIELD( _field_block, "sound_scenery", &sound_scenery_block_index_flags_block_block ),
+		FIELD( _field_custom, "crate" ),
+		FIELD( _field_block, "crate", &crate_block_index_flags_block_block ),
+		FIELD( _field_custom, "creature" ),
+		FIELD( _field_block, "creature", &creature_block_index_flags_block_block ),
+		FIELD( _field_custom, "giant" ),
+		FIELD( _field_block, "giant", &giant_block_index_flags_block_block ),
+		FIELD( _field_custom, "effect_scenery" ),
+		FIELD( _field_block, "effect_scenery", &effect_scenery_block_index_flags_block_block ),
+		FIELD( _field_custom, "character" ),
+		FIELD( _field_block, "character", &character_block_index_flags_block_block ),
+		FIELD( _field_custom, "spawner" ),
+		FIELD( _field_block, "spawner", &spawner_block_index_flags_block_block ),
+		FIELD( _field_custom, "budget_reference" ),
+		FIELD( _field_block, "budget_reference", &budget_reference_block_index_flags_block_block ),
+		FIELD( _field_custom, "bink" ),
+		FIELD( _field_block, "bink", &bink_block_index_flags_block_block ),
+		FIELD( _field_block, "resource dependencies*!", &scenarioDesignerResourceDependenciesBlock_block ),
 		FIELD( _field_terminator )
 	};
 

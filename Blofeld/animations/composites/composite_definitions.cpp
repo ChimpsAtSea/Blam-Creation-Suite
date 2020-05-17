@@ -3,13 +3,16 @@
 namespace blofeld
 {
 
-	TAG_ENUM(CompositeAxisFlags, 2)
+	TAG_BLOCK(CompositeDeadZoneDefinition, MAX_DEAD_ZONES_PER_COMPOSITE_AXIS)
 	{
-		OPTION("wrapped"),
-		OPTION("clamped"),
+		FIELD( _field_real_bounds, "bounds" ),
+		FIELD( _field_real, "rate" ),
+		FIELD( _field_real, "center*!" ),
+		FIELD( _field_real, "radius*!" ),
+		FIELD( _field_real, "amount*!" ),
+		FIELD( _field_long_integer, "delay*!" ),
+		FIELD( _field_terminator )
 	};
-
-	TAG_BLOCK_FROM_STRUCT(g_compositeTag, MAX_COMPOSITES_PER_GRAPH, g_compositeTag_struct_struct_definition );
 
 	TAG_BLOCK(CompositeAxisDefinition, MAX_VALUES_PER_COMPOSITE_ENTRY)
 	{
@@ -30,14 +33,9 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(CompositeDeadZoneDefinition, MAX_DEAD_ZONES_PER_COMPOSITE_AXIS)
+	TAG_BLOCK(CompositeEntryValueDefinition, MAX_VALUES_PER_COMPOSITE_ENTRY)
 	{
-		FIELD( _field_real_bounds, "bounds" ),
-		FIELD( _field_real, "rate" ),
-		FIELD( _field_real, "center*!" ),
-		FIELD( _field_real, "radius*!" ),
-		FIELD( _field_real, "amount*!" ),
-		FIELD( _field_long_integer, "delay*!" ),
+		FIELD( _field_real, "value^" ),
 		FIELD( _field_terminator )
 	};
 
@@ -52,9 +50,9 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(CompositeEntryValueDefinition, MAX_VALUES_PER_COMPOSITE_ENTRY)
+	TAG_BLOCK(SyncKeyBlock, Composite::MAX_SYNC_KEYS)
 	{
-		FIELD( _field_real, "value^" ),
+		FIELD( _field_enum, "key*^", &frame_event_type_new ),
 		FIELD( _field_terminator )
 	};
 
@@ -75,20 +73,16 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(SyncKeyBlock, Composite::MAX_SYNC_KEYS)
-	{
-		FIELD( _field_enum, "key*^", &frame_event_type_new ),
-		FIELD( _field_terminator )
-	};
-
 	TAG_BLOCK(StringBlock, k_kilo)
 	{
 		FIELD( _field_string_id, "name*^" ),
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(g_compositeTag_struct)
-{
+	TAG_BLOCK_FROM_STRUCT(g_compositeTag, MAX_COMPOSITES_PER_GRAPH, g_compositeTag_struct_struct_definition );
+
+	TAG_STRUCT(g_compositeTag_struct)
+	{
 		FIELD( _field_string_id, "name*^" ),
 		FIELD( _field_block, "axes*", &CompositeAxisDefinition_block ),
 		FIELD( _field_block, "anims*", &CompositeEntryDefinition_block ),
@@ -98,7 +92,13 @@ TAG_STRUCT(g_compositeTag_struct)
 		FIELD( _field_short_integer, "timingAnimIndex*!" ),
 		FIELD( _field_pad, "PAD", 2 ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(CompositeAxisFlags, 2)
+	{
+		OPTION("wrapped"),
+		OPTION("clamped"),
+	};
 
 } // namespace blofeld
 

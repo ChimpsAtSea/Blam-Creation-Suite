@@ -13,13 +13,13 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(bink_struct_definition)
-{
+	TAG_STRUCT(bink_struct_definition)
+	{
 		FIELD( _field_long_integer, "frame count*" ),
 		FIELD( _field_pageable, "bink resource" ),
 		FIELD( _field_tag_reference, "external sound track^" ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

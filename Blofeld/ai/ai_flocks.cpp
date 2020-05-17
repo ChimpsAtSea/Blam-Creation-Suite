@@ -3,30 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(flock_source_flags, 1)
-	{
-		OPTION("ground source"),
-	};
-
-	TAG_ENUM(destination_type_enum, 3)
-	{
-		OPTION("sink"),
-		OPTION("front"),
-		OPTION("circle"),
-	};
-
-	TAG_ENUM(flock_flags, 8)
-	{
-		OPTION("not initially created"),
-		OPTION("hard boundaries on volume"),
-		OPTION("flock initially stopped"),
-		OPTION("flock initially perched"),
-		OPTION("one creature per source"),
-		OPTION("scared by AI"),
-		OPTION("creatures respect kill volumes"),
-		OPTION("big battle squad"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(flock, FLOCK_TAG, flock_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(flock_block, 1, flock_struct_definition_struct_definition );
@@ -34,30 +10,6 @@ namespace blofeld
 	TAG_BLOCK(flock_palette_block, k_max_flock_instances_per_map)
 	{
 		FIELD( _field_tag_reference, "reference^" ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(flock_instance_block, k_max_flock_instances_per_map)
-	{
-		FIELD( _field_string_id, "flock name^" ),
-		FIELD( _field_short_block_index, "flock definition" ),
-		FIELD( _field_short_block_index, "bsp" ),
-		FIELD( _field_short_block_index, "bounding volume" ),
-		FIELD( _field_word_flags, "flags", &flock_flags ),
-		FIELD( _field_real, "ecology margin:wus#distance from ecology boundary that creature begins to be repulsed" ),
-		FIELD( _field_block, "sources", &flock_source_block_block ),
-		FIELD( _field_block, "destinations{sinks}", &flock_destination_block_block ),
-		FIELD( _field_real_bounds, "production frequency bounds:boids/sec#How frequently boids are produced at one of the sources (limited by the max boid count)" ),
-		FIELD( _field_real_bounds, "scale" ),
-		FIELD( _field_real, "source scale to 0 radius:wus#Distance from a source at which the creature scales to full size" ),
-		FIELD( _field_real, "sink scale to 0 radius:wus#Distance from a sink at which the creature begins to scale to zero" ),
-		FIELD( _field_real, "flock destroy duration:sec#The number of seconds it takes to kill all units in the flock if it gets destroyed" ),
-		FIELD( _field_short_block_index, "boid creature" ),
-		FIELD( _field_short_block_index, "big battle creature" ),
-		FIELD( _field_short_bounds, "boid count" ),
-		FIELD( _field_short_block_index, "enemy flock" ),
-		FIELD( _field_pad, "post-enemy-flock", 2 ),
-		FIELD( _field_real, "enemy flock max target distance" ),
 		FIELD( _field_terminator )
 	};
 
@@ -87,8 +39,32 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(flock_struct_definition)
-{
+	TAG_BLOCK(flock_instance_block, k_max_flock_instances_per_map)
+	{
+		FIELD( _field_string_id, "flock name^" ),
+		FIELD( _field_short_block_index, "flock definition" ),
+		FIELD( _field_short_block_index, "bsp" ),
+		FIELD( _field_short_block_index, "bounding volume" ),
+		FIELD( _field_word_flags, "flags", &flock_flags ),
+		FIELD( _field_real, "ecology margin:wus#distance from ecology boundary that creature begins to be repulsed" ),
+		FIELD( _field_block, "sources", &flock_source_block_block ),
+		FIELD( _field_block, "destinations{sinks}", &flock_destination_block_block ),
+		FIELD( _field_real_bounds, "production frequency bounds:boids/sec#How frequently boids are produced at one of the sources (limited by the max boid count)" ),
+		FIELD( _field_real_bounds, "scale" ),
+		FIELD( _field_real, "source scale to 0 radius:wus#Distance from a source at which the creature scales to full size" ),
+		FIELD( _field_real, "sink scale to 0 radius:wus#Distance from a sink at which the creature begins to scale to zero" ),
+		FIELD( _field_real, "flock destroy duration:sec#The number of seconds it takes to kill all units in the flock if it gets destroyed" ),
+		FIELD( _field_short_block_index, "boid creature" ),
+		FIELD( _field_short_block_index, "big battle creature" ),
+		FIELD( _field_short_bounds, "boid count" ),
+		FIELD( _field_short_block_index, "enemy flock" ),
+		FIELD( _field_pad, "post-enemy-flock", 2 ),
+		FIELD( _field_real, "enemy flock max target distance" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_STRUCT(flock_struct_definition)
+	{
 		FIELD( _field_explanation, "Simple flocking" ),
 		FIELD( _field_real, "forward weight{forward scale}:[0..1]#weight given to boid\'s desire to fly straight ahead" ),
 		FIELD( _field_real, "leveling force weight{leveling force scale}:[0..1]#weight given to boids desire to fly level" ),
@@ -116,7 +92,31 @@ TAG_STRUCT(flock_struct_definition)
 		FIELD( _field_real, "position min radius:wus#distance to flock center beyond which an attracting force is applied" ),
 		FIELD( _field_real, "position max radius:wus#distance to flock center at which the maximum attracting force is applied" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(flock_source_flags, 1)
+	{
+		OPTION("ground source"),
+	};
+
+	TAG_ENUM(destination_type_enum, 3)
+	{
+		OPTION("sink"),
+		OPTION("front"),
+		OPTION("circle"),
+	};
+
+	TAG_ENUM(flock_flags, 8)
+	{
+		OPTION("not initially created"),
+		OPTION("hard boundaries on volume"),
+		OPTION("flock initially stopped"),
+		OPTION("flock initially perched"),
+		OPTION("one creature per source"),
+		OPTION("scared by AI"),
+		OPTION("creatures respect kill volumes"),
+		OPTION("big battle squad"),
+	};
 
 } // namespace blofeld
 

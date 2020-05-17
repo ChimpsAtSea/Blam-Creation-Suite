@@ -3,33 +3,34 @@
 namespace blofeld
 {
 
-	extern const char* planar_fog_flags_strings[];
-	extern s_string_list_definition planar_fog_flags;
-
 	constexpr unsigned long PLANAR_FOG_PARAMETERS_TAG = 'pfpt';
 
 	extern s_tag_group planar_fog_parameters_group;
 
 	extern s_tag_block_definition planar_fog_parameters_block_block;
-	extern s_tag_struct planar_fog_zone_set_visibility_definition_block_block_struct;
-	extern s_tag_block_definition planar_fog_zone_set_visibility_definition_block_block;
-	extern s_tag_struct planar_fog_structure_visibility_definition_block_block_struct;
-	extern s_tag_block_definition planar_fog_structure_visibility_definition_block_block;
-	extern s_tag_struct planar_fog_cluster_visibility_definition_block_block_struct;
-	extern s_tag_block_definition planar_fog_cluster_visibility_definition_block_block;
-	extern s_tag_struct planar_fog_reference_definition_block_block_struct;
+	extern s_tag_struct_definition planar_fog_reference_definition_block_block_struct;
 	extern s_tag_block_definition planar_fog_reference_definition_block_block;
-	extern s_tag_struct planar_fog_definition_block_block_struct;
-	extern s_tag_block_definition planar_fog_definition_block_block;
-	extern s_tag_struct planar_fog_vertex_block_block_struct;
+	extern s_tag_struct_definition planar_fog_cluster_visibility_definition_block_block_struct;
+	extern s_tag_block_definition planar_fog_cluster_visibility_definition_block_block;
+	extern s_tag_struct_definition planar_fog_structure_visibility_definition_block_block_struct;
+	extern s_tag_block_definition planar_fog_structure_visibility_definition_block_block;
+	extern s_tag_struct_definition planar_fog_zone_set_visibility_definition_block_block_struct;
+	extern s_tag_block_definition planar_fog_zone_set_visibility_definition_block_block;
+	extern s_tag_struct_definition planar_fog_vertex_block_block_struct;
 	extern s_tag_block_definition planar_fog_vertex_block_block;
-	extern s_tag_struct planar_fog_triangle_block_block_struct;
-	extern s_tag_block_definition planar_fog_triangle_block_block;
-	extern s_tag_struct planar_fog_triangle_planes_block_block_struct;
+	extern s_tag_struct_definition planar_fog_triangle_planes_block_block_struct;
 	extern s_tag_block_definition planar_fog_triangle_planes_block_block;
+	extern s_tag_struct_definition planar_fog_triangle_block_block_struct;
+	extern s_tag_block_definition planar_fog_triangle_block_block;
+	extern s_tag_struct_definition planar_fog_definition_block_block_struct;
+	extern s_tag_block_definition planar_fog_definition_block_block;
 
-	extern s_tag_struct planar_fog_parameters_struct_definition_struct_definition; // tag group
-	extern s_tag_struct planar_fog_set_definition_struct_struct_definition;
+
+	extern s_tag_struct_definition planar_fog_parameters_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition planar_fog_set_definition_struct_struct_definition;
+
+	extern const char* planar_fog_flags_strings[];
+	extern s_string_list_definition planar_fog_flags;
 
 } // namespace blofeld
 

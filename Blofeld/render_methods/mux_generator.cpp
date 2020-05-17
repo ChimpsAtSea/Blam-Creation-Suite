@@ -5,8 +5,6 @@ namespace blofeld
 
 	TAG_GROUP_FROM_BLOCK(mux_generator, MUX_GENERATOR_TAG, mux_generator_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(mux_generator_block, 1, mux_generator_struct_definition_struct_definition );
-
 	TAG_BLOCK(mux_generator_material_block, s_mux_generator::k_max_materials)
 	{
 		FIELD( _field_string_id, "name^" ),
@@ -14,8 +12,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(mux_generator_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(mux_generator_block, 1, mux_generator_struct_definition_struct_definition );
+
+	TAG_STRUCT(mux_generator_struct_definition)
+	{
 		FIELD( _field_custom, "generate" ),
 		FIELD( _field_explanation, "Blend Map" ),
 		FIELD( _field_tag_reference, "blend texture" ),
@@ -32,7 +32,7 @@ TAG_STRUCT(mux_generator_struct_definition)
 		FIELD( _field_tag_reference, "target material 0" ),
 		FIELD( _field_tag_reference, "target material 1" ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

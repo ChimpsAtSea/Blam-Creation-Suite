@@ -24,7 +24,7 @@ uint32_t c_mantle_blofeld_tag_editor_gui_tab::render_tag_group(char* data, const
 	//}
 
 	uint32_t bytes_traversed = 0;
-	const blofeld::s_tag_field* const fields_begin = group.block.tag_struct.tag_fields;
+	const blofeld::s_tag_field* const fields_begin = group.block_definition.struct_definition.fields;
 	const blofeld::s_tag_field* current_field = fields_begin;
 	//if (group.parent_group_tag) current_field++; // skip inheritance struct
 	while (current_field->field_type != blofeld::_field_terminator)

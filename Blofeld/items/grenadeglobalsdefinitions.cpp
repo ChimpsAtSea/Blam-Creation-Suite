@@ -3,21 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(global_grenade_type_enum, 8)
-	{
-		OPTION("human fragmentation"),
-		OPTION("covenant plasma"),
-		OPTION("pulse grenade"),
-		OPTION("grenade type 3"),
-		OPTION("grenade type 4"),
-		OPTION("grenade type 5"),
-		OPTION("grenade type 6"),
-		OPTION("grenade type 7"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(game_globals_grenade_list, GAME_GLOBALS_GRENADE_LIST_TAG, game_globals_grenade_list_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(game_globals_grenade_list_block, 1, game_globals_grenade_list_struct_definition_struct_definition );
 
 	TAG_BLOCK(GameGlobalsGrenadeBlock, eUGT_count)
 	{
@@ -43,11 +29,25 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(game_globals_grenade_list_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(game_globals_grenade_list_block, 1, game_globals_grenade_list_struct_definition_struct_definition );
+
+	TAG_STRUCT(game_globals_grenade_list_struct_definition)
+	{
 		FIELD( _field_block, "grenades", &GameGlobalsGrenadeBlock_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(global_grenade_type_enum, 8)
+	{
+		OPTION("human fragmentation"),
+		OPTION("covenant plasma"),
+		OPTION("pulse grenade"),
+		OPTION("grenade type 3"),
+		OPTION("grenade type 4"),
+		OPTION("grenade type 5"),
+		OPTION("grenade type 6"),
+		OPTION("grenade type 7"),
+	};
 
 } // namespace blofeld
 

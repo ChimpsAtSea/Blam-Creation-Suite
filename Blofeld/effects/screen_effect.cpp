@@ -3,43 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(area_screen_effect_global_flags_definition, 6)
-	{
-		OPTION("play sequentially - ignore delay settings"),
-		OPTION("debug this screen effect"),
-		OPTION("force delete when attached to dead object"),
-		OPTION("force max one per object"),
-		OPTION("force looping (dangerous; lasts forever)"),
-		OPTION("only spawn killcam version during killcam"),
-	};
-
-	TAG_ENUM(area_screen_effect_global_hidden_flags_definition, 2)
-	{
-		OPTION("update thread"),
-		OPTION("render thread"),
-	};
-
-	TAG_ENUM(area_screen_effect_flags_definition, 8)
-	{
-		OPTION("debug disable"),
-		OPTION("allow effect outside radius"),
-		OPTION("unattached"),
-		OPTION("first person{first person only}"),
-		OPTION("third person{third person only}"),
-		OPTION("disable camera falloffs{cinematic}#disables distance and angle falloffs"),
-		OPTION("only affects attached object"),
-		OPTION("draw precisely one (ask Bill before you check this)"),
-	};
-
-	TAG_ENUM(area_screen_effect_hidden_flags_definition, 2)
-	{
-		OPTION("update thread"),
-		OPTION("render thread"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(area_screen_effect, AREA_SCREEN_EFFECT_TAG, area_screen_effect_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(area_screen_effect_block, 1, area_screen_effect_struct_definition_struct_definition );
 
 	TAG_BLOCK(single_screen_effect, s_area_screen_effect_definition::k_maximum_effects_per_tag)
 	{
@@ -90,29 +54,65 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(area_screen_effect_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(area_screen_effect_block, 1, area_screen_effect_struct_definition_struct_definition );
+
+	TAG_STRUCT(area_screen_effect_struct_definition)
+	{
 		FIELD( _field_word_flags, "global flags", &area_screen_effect_global_flags_definition ),
 		FIELD( _field_word_flags, "global hidden flags!", &area_screen_effect_global_hidden_flags_definition ),
 		FIELD( _field_block, "screen effects", &single_screen_effect_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(screen_effect_scalar_function_struct)
-{
+	TAG_STRUCT(screen_effect_scalar_function_struct)
+	{
 		FIELD( _field_custom ),
 		FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(screen_effect_scalar_object_function_struct)
-{
+	TAG_STRUCT(screen_effect_scalar_object_function_struct)
+	{
 		FIELD( _field_string_id, "Input Variable!" ),
 		FIELD( _field_string_id, "Range Variable!" ),
 		FIELD( _field_custom ),
 		FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(area_screen_effect_global_flags_definition, 6)
+	{
+		OPTION("play sequentially - ignore delay settings"),
+		OPTION("debug this screen effect"),
+		OPTION("force delete when attached to dead object"),
+		OPTION("force max one per object"),
+		OPTION("force looping (dangerous; lasts forever)"),
+		OPTION("only spawn killcam version during killcam"),
+	};
+
+	TAG_ENUM(area_screen_effect_global_hidden_flags_definition, 2)
+	{
+		OPTION("update thread"),
+		OPTION("render thread"),
+	};
+
+	TAG_ENUM(area_screen_effect_flags_definition, 8)
+	{
+		OPTION("debug disable"),
+		OPTION("allow effect outside radius"),
+		OPTION("unattached"),
+		OPTION("first person{first person only}"),
+		OPTION("third person{third person only}"),
+		OPTION("disable camera falloffs{cinematic}#disables distance and angle falloffs"),
+		OPTION("only affects attached object"),
+		OPTION("draw precisely one (ask Bill before you check this)"),
+	};
+
+	TAG_ENUM(area_screen_effect_hidden_flags_definition, 2)
+	{
+		OPTION("update thread"),
+		OPTION("render thread"),
+	};
 
 } // namespace blofeld
 

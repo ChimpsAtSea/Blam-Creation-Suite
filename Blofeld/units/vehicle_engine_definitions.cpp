@@ -27,8 +27,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(global_vehicle_engine_struct)
-{
+	TAG_STRUCT(global_vehicle_engine_struct)
+	{
 		FIELD( _field_explanation, "engine" ),
 		FIELD( _field_real, "engine moment#higher moments make engine spin up slower" ),
 		FIELD( _field_real, "engine max angular velocity#higher moments make engine spin up slower" ),
@@ -36,13 +36,13 @@ TAG_STRUCT(global_vehicle_engine_struct)
 		FIELD( _field_tag_reference, "gear shift sound" ),
 		FIELD( _field_block, "load and cruise sound", &load_and_cruise_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(torque_curve_struct)
-{
+	TAG_STRUCT(torque_curve_struct)
+	{
 		FIELD( _field_struct, "function", &scalar_function_named_struct_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

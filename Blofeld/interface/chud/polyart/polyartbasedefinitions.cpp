@@ -3,18 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(g_polyartAssetStateFlags, 2)
-	{
-		OPTION("processed*!"),
-		OPTION("available*!"),
-	};
-
-	TAG_ENUM(PolyartVertexFormatTypeEnum, 2)
-	{
-		OPTION("Position"),
-		OPTION("Position And UV"),
-	};
-
 	TAG_BLOCK(polyartVertexBlock, k_chudPolyArtVertexMaxCount)
 	{
 		FIELD( _field_short_integer, "half x*" ),
@@ -36,25 +24,37 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(indexBuffersBlock, 1, indexBuffersBlock_struct_struct_definition );
 
-TAG_STRUCT(vertexBuffersBlock_struct)
-{
+	TAG_STRUCT(vertexBuffersBlock_struct)
+	{
 		FIELD( _field_byte_integer, "declaration type*" ),
 		FIELD( _field_byte_integer, "stride*" ),
 		FIELD( _field_pad, "vertex buffer pad", 2 ),
 		FIELD( _field_dword_integer, "count*" ),
 		FIELD( _field_long_integer, "d3d hardware format*" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(indexBuffersBlock_struct)
-{
+	TAG_STRUCT(indexBuffersBlock_struct)
+	{
 		FIELD( _field_byte_integer, "declaration type*" ),
 		FIELD( _field_byte_integer, "stride*" ),
 		FIELD( _field_pad, "vertex buffer pad", 2 ),
 		FIELD( _field_dword_integer, "count*" ),
 		FIELD( _field_long_integer, "d3d hardware format*" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(g_polyartAssetStateFlags, 2)
+	{
+		OPTION("processed*!"),
+		OPTION("available*!"),
+	};
+
+	TAG_ENUM(PolyartVertexFormatTypeEnum, 2)
+	{
+		OPTION("Position"),
+		OPTION("Position And UV"),
+	};
 
 } // namespace blofeld
 

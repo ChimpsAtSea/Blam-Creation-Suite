@@ -7,11 +7,11 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(vector_hud_definition_block, 1, vector_hud_definition_struct_definition_struct_definition );
 
-TAG_STRUCT(vector_hud_definition_struct_definition)
-{
+	TAG_STRUCT(vector_hud_definition_struct_definition)
+	{
 		FIELD( _field_data, "raw hud data" ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

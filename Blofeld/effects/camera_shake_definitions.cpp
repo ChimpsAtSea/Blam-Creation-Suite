@@ -3,18 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(animated_camera_shake_playback_type_enum, 2)
-	{
-		OPTION("looping"),
-		OPTION("frame ratio"),
-	};
-
-	TAG_ENUM(animated_camera_shake_weight_type_enum, 2)
-	{
-		OPTION("effect scale"),
-		OPTION("full"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(camera_shake, CAMERA_SHAKE_TAG, camera_shake_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(camera_shake_block, 1, camera_shake_struct_definition_struct_definition );
@@ -26,17 +14,17 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(camera_shake_struct_definition)
-{
+	TAG_STRUCT(camera_shake_struct_definition)
+	{
 		FIELD( _field_explanation, "camera impulse" ),
 		FIELD( _field_struct, "camera impulse", &camera_impulse_struct_struct_definition ),
 		FIELD( _field_explanation, "camera shake" ),
 		FIELD( _field_struct, "camera shake", &camera_shake_struct_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(camera_impulse_struct)
-{
+	TAG_STRUCT(camera_impulse_struct)
+	{
 		FIELD( _field_real, "impulse duration:seconds" ),
 		FIELD( _field_custom ),
 		FIELD( _field_struct, "mapping", &mapping_function_struct_definition ),
@@ -44,10 +32,10 @@ TAG_STRUCT(camera_impulse_struct)
 		FIELD( _field_real, "pushback:world units" ),
 		FIELD( _field_real_bounds, "jitter:world units" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(camera_shake_struct)
-{
+	TAG_STRUCT(camera_shake_struct)
+	{
 		FIELD( _field_real, "shake duration:seconds#the effect will last for this duration." ),
 		FIELD( _field_explanation, "procedural camera shake" ),
 		FIELD( _field_custom ),
@@ -65,7 +53,19 @@ TAG_STRUCT(camera_shake_struct)
 		FIELD( _field_real, "zoom penalty linear #multiplier penalty that increases linearly with zoom over 1" ),
 		FIELD( _field_real, "zoom penalty squareroot #multiplier penalty that increases with square root of zoom over 1" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(animated_camera_shake_playback_type_enum, 2)
+	{
+		OPTION("looping"),
+		OPTION("frame ratio"),
+	};
+
+	TAG_ENUM(animated_camera_shake_weight_type_enum, 2)
+	{
+		OPTION("effect scale"),
+		OPTION("full"),
+	};
 
 } // namespace blofeld
 

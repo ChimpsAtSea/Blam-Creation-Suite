@@ -3,29 +3,12 @@
 namespace blofeld
 {
 
-	TAG_ENUM_EMPTY(meter_flags, 0);
-
-	TAG_ENUM(color_interpolation_modes_enum, 4)
-	{
-		OPTION("linearly"),
-		OPTION("faster near empty"),
-		OPTION("faster near full"),
-		OPTION("through random noise"),
-	};
-
-	TAG_ENUM(color_anchors_enum, 3)
-	{
-		OPTION("at both ends"),
-		OPTION("at empty"),
-		OPTION("at full"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(meter, METER_TAG, meter_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(meter_block, 1, meter_struct_definition_struct_definition );
 
-TAG_STRUCT(meter_struct_definition)
-{
+	TAG_STRUCT(meter_struct_definition)
+	{
 		FIELD( _field_long_flags, "flags", &meter_flags ),
 		FIELD( _field_tag_reference, "stencil bitmaps#two bitmaps specifying the mask and the meter levels" ),
 		FIELD( _field_tag_reference, "source bitmap#optional bitmap to draw into the unmasked regions of the meter (modulated by the colors below)" ),
@@ -44,7 +27,24 @@ TAG_STRUCT(meter_struct_definition)
 		FIELD( _field_pad, "SBQWDR", 20 ),
 		FIELD( _field_data, "encoded stencil" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM_EMPTY(meter_flags, 0);
+
+	TAG_ENUM(color_interpolation_modes_enum, 4)
+	{
+		OPTION("linearly"),
+		OPTION("faster near empty"),
+		OPTION("faster near full"),
+		OPTION("through random noise"),
+	};
+
+	TAG_ENUM(color_anchors_enum, 3)
+	{
+		OPTION("at both ends"),
+		OPTION("at empty"),
+		OPTION("at full"),
+	};
 
 } // namespace blofeld
 

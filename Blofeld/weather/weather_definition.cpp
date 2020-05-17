@@ -3,18 +3,12 @@
 namespace blofeld
 {
 
-	TAG_ENUM(rain_particle_flags, 2)
-	{
-		OPTION("alpha blend"),
-		OPTION("disable collision"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(rain_definition, RAIN_DEFINITION_TAG, rain_definition_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(rain_definition_block, 1, rain_definition_struct_definition_struct_definition );
 
-TAG_STRUCT(rain_definition_struct_definition)
-{
+	TAG_STRUCT(rain_definition_struct_definition)
+	{
 		FIELD( _field_long_integer, "version!#INTERNAL TAG USE ONLY DO NOT CHANGE" ),
 		FIELD( _field_real, "rain amount:[0,1]#fade control for all rain effects" ),
 		FIELD( _field_explanation, "Rain Effects" ),
@@ -80,7 +74,13 @@ TAG_STRUCT(rain_definition_struct_definition)
 		FIELD( _field_real, "dim of decorators" ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(rain_particle_flags, 2)
+	{
+		OPTION("alpha blend"),
+		OPTION("disable collision"),
+	};
 
 } // namespace blofeld
 

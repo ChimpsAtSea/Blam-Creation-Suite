@@ -3,37 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(creature_big_battle_definition_flags, 3)
-	{
-		OPTION("boid aims at big battle target#setting this forces boid to aim at target instead of firing straight ahead"),
-		OPTION("boids fly with no pitch#flying boids will always stay level when changing altitude"),
-		OPTION("boids fly non-directionally#flying boids will move like helicopters"),
-	};
-
-	TAG_ENUM(creature_definition_flags, 7)
-	{
-		OPTION("unused"),
-		OPTION("immune to falling damage"),
-		OPTION("rotate while airborne"),
-		OPTION("zapped by shields"),
-		OPTION("attach upon impact"),
-		OPTION("not on motion sensor"),
-		OPTION("force ground movement"),
-	};
-
-	TAG_ENUM(unit_default_teams, 9)
-	{
-		OPTION("default"),
-		OPTION("player"),
-		OPTION("human"),
-		OPTION("covenant"),
-		OPTION("brute"),
-		OPTION("mule"),
-		OPTION("spare"),
-		OPTION("covenant_player"),
-		OPTION("forerunner"),
-	};
-
 	TAG_GROUP(big_battle_creature, BIG_BATTLE_CREATURE_TAG)
 	{
 		FIELD( _field_custom, "CREATURE" ),
@@ -67,16 +36,16 @@ namespace blofeld
 
 	TAG_GROUP_INHERIT_FROM_BLOCK(creature, CREATURE_TAG, object, OBJECT_TAG, creature_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(creature_block, 1, creature_struct_definition_struct_definition );
-
 	TAG_BLOCK(creature_scalar_timing_block, 1)
 	{
 		FIELD( _field_struct, "function_curve", &scalar_function_named_struct_struct_definition ),
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(creature_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(creature_block, 1, creature_struct_definition_struct_definition );
+
+	TAG_STRUCT(creature_struct_definition)
+	{
 		FIELD( _field_struct, "object", &object_struct_definition_struct_definition ),
 		FIELD( _field_custom, "$$$ CREATURE $$$" ),
 		FIELD( _field_long_flags, "flags", &creature_definition_flags ),
@@ -104,7 +73,38 @@ TAG_STRUCT(creature_struct_definition)
 		FIELD( _field_tag_reference, "big battle death effect" ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(creature_big_battle_definition_flags, 3)
+	{
+		OPTION("boid aims at big battle target#setting this forces boid to aim at target instead of firing straight ahead"),
+		OPTION("boids fly with no pitch#flying boids will always stay level when changing altitude"),
+		OPTION("boids fly non-directionally#flying boids will move like helicopters"),
+	};
+
+	TAG_ENUM(creature_definition_flags, 7)
+	{
+		OPTION("unused"),
+		OPTION("immune to falling damage"),
+		OPTION("rotate while airborne"),
+		OPTION("zapped by shields"),
+		OPTION("attach upon impact"),
+		OPTION("not on motion sensor"),
+		OPTION("force ground movement"),
+	};
+
+	TAG_ENUM(unit_default_teams, 9)
+	{
+		OPTION("default"),
+		OPTION("player"),
+		OPTION("human"),
+		OPTION("covenant"),
+		OPTION("brute"),
+		OPTION("mule"),
+		OPTION("spare"),
+		OPTION("covenant_player"),
+		OPTION("forerunner"),
+	};
 
 } // namespace blofeld
 

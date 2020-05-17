@@ -3,17 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(self_illumination_flags, 4)
-	{
-		OPTION("Looping"),
-		OPTION("Triggered By AI State"),
-		OPTION("Triggered By Anim State"),
-		OPTION("Triggered By Dialog"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(self_illumination, SELF_ILLUMINATION_TAG, self_illumination_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(self_illumination_block, 1, self_illumination_struct_definition_struct_definition );
 
 	TAG_BLOCK(self_illumination_state, SelfIlluminationDefinition::MAX_STATES)
 	{
@@ -28,11 +18,21 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(self_illumination_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(self_illumination_block, 1, self_illumination_struct_definition_struct_definition );
+
+	TAG_STRUCT(self_illumination_struct_definition)
+	{
 		FIELD( _field_block, "States", &self_illumination_state_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(self_illumination_flags, 4)
+	{
+		OPTION("Looping"),
+		OPTION("Triggered By AI State"),
+		OPTION("Triggered By Anim State"),
+		OPTION("Triggered By Dialog"),
+	};
 
 } // namespace blofeld
 

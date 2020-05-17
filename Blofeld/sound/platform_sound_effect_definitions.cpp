@@ -3,30 +3,9 @@
 namespace blofeld
 {
 
-	TAG_ENUM(platform_sound_playback_component_flags, 4)
-	{
-		OPTION("don\'t play at start"),
-		OPTION("play on stop"),
-		OPTION("play alternate"),
-		OPTION("sync with origin looping sound"),
-	};
-
-	TAG_ENUM(platform_sound_effect_flags_definition, 2)
-	{
-		OPTION("turn off in splitscreen"),
-		OPTION("only turn on in first person"),
-	};
-
 	TAG_GROUP(sound_effect_collection, SOUND_EFFECT_COLLECTION_TAG)
 	{
 		FIELD( _field_block, "sound effects", &platform_sound_playback_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(platform_sound_playback_block, 128)
-	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_struct, "playback", &platform_sound_playback_struct_struct_definition ),
 		FIELD( _field_terminator )
 	};
 
@@ -46,8 +25,15 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(platform_sound_playback_struct)
-{
+	TAG_BLOCK(platform_sound_playback_block, 128)
+	{
+		FIELD( _field_string_id, "name^" ),
+		FIELD( _field_struct, "playback", &platform_sound_playback_struct_struct_definition ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_STRUCT(platform_sound_playback_struct)
+	{
 		FIELD( _field_long_flags, "flags", &platform_sound_effect_flags_definition ),
 		FIELD( _field_tag_reference, "radio effect" ),
 		FIELD( _field_tag_reference, "Start event" ),
@@ -56,7 +42,21 @@ TAG_STRUCT(platform_sound_playback_struct)
 		FIELD( _field_block, "lowpass effect", &platform_sound_playback_lowpass_block_block ),
 		FIELD( _field_block, "sound components", &platform_sound_playback_component_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(platform_sound_playback_component_flags, 4)
+	{
+		OPTION("don\'t play at start"),
+		OPTION("play on stop"),
+		OPTION("play alternate"),
+		OPTION("sync with origin looping sound"),
+	};
+
+	TAG_ENUM(platform_sound_effect_flags_definition, 2)
+	{
+		OPTION("turn off in splitscreen"),
+		OPTION("only turn on in first person"),
+	};
 
 } // namespace blofeld
 

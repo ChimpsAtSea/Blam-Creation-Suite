@@ -14,12 +14,12 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(firefightWaveTemplatesBlock, FirefightWaveTemplateDefinition::k_maximumAIWaveTemplates, firefightWaveTemplatesBlock_struct_struct_definition );
 
-TAG_STRUCT(firefightWaveTemplatesBlock_struct)
-{
+	TAG_STRUCT(firefightWaveTemplatesBlock_struct)
+	{
 		FIELD( _field_string_id, "name^" ),
 		FIELD( _field_tag_reference, "wave template" ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

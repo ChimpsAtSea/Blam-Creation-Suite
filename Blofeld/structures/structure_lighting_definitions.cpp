@@ -3,31 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(structure_lighting_light_mode_enum, 3)
-	{
-		OPTION("Dynamic"),
-		OPTION("Static"),
-		OPTION("Analytic"),
-	};
-
-	TAG_ENUM(structure_lighting_generic_light_jitter_quality_enum, 3)
-	{
-		OPTION("low"),
-		OPTION("medium"),
-		OPTION("high"),
-	};
-
-	TAG_ENUM(structure_lighting_generic_light_flags, 4)
-	{
-		OPTION("use near attenuation"),
-		OPTION("use far attenuation"),
-		OPTION("invere squared falloff"),
-		OPTION("light version 1"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(scenario_structure_lighting_info, SCENARIO_STRUCTURE_LIGHTING_INFO_TAG, scenario_structure_lighting_info_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(scenario_structure_lighting_info_block, 1, scenario_structure_lighting_info_struct_definition_struct_definition );
 
 	TAG_BLOCK(structure_lighting_generic_light_definition_block, SHORT_MAX)
 	{
@@ -77,16 +53,18 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK_FROM_STRUCT(structureLightingCinematicLightInstanceBlock, SHORT_MAX, structureLightingCinematicLightInstanceBlock_struct_struct_definition );
-
 	TAG_BLOCK(structureLightingCinematicObjectBlock, SHORT_MAX)
 	{
 		FIELD( _field_string_id, "name" ),
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(scenario_structure_lighting_info_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(structureLightingCinematicLightInstanceBlock, SHORT_MAX, structureLightingCinematicLightInstanceBlock_struct_struct_definition );
+
+	TAG_BLOCK_FROM_STRUCT(scenario_structure_lighting_info_block, 1, scenario_structure_lighting_info_struct_definition_struct_definition );
+
+	TAG_STRUCT(scenario_structure_lighting_info_struct_definition)
+	{
 		FIELD( _field_long_integer, "import info checksum" ),
 		FIELD( _field_block, "generic light definitions", &structure_lighting_generic_light_definition_block_block ),
 		FIELD( _field_block, "generic light instances", &structure_lighting_generic_light_instance_block_block ),
@@ -94,18 +72,40 @@ TAG_STRUCT(scenario_structure_lighting_info_struct_definition)
 		FIELD( _field_block, "cinematic light instances", &structureLightingCinematicLightInstanceBlock_block ),
 		FIELD( _field_struct, "Sun Intensity Multiplier", &light_scalar_function_struct_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(structureLightingCinematicLightInstanceBlock_struct)
-{
+	TAG_STRUCT(structureLightingCinematicLightInstanceBlock_struct)
+	{
 		FIELD( _field_int64_integer, "Light Instance ID!" ),
 		FIELD( _field_long_block_index, "Light Definition Index" ),
 		FIELD( _field_long_block_index, "Light Instance Index" ),
-		FIELD( _field_array, "Active Shots" ),
+		FIELD( _field_array, "Active Shots", &g_cinematicShotFlagArray_array ),
 		FIELD( _field_block, "Linked Objects", &structureLightingCinematicObjectBlock_block ),
 		FIELD( _field_pad, "padding", 4 ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(structure_lighting_light_mode_enum, 3)
+	{
+		OPTION("Dynamic"),
+		OPTION("Static"),
+		OPTION("Analytic"),
+	};
+
+	TAG_ENUM(structure_lighting_generic_light_jitter_quality_enum, 3)
+	{
+		OPTION("low"),
+		OPTION("medium"),
+		OPTION("high"),
+	};
+
+	TAG_ENUM(structure_lighting_generic_light_flags, 4)
+	{
+		OPTION("use near attenuation"),
+		OPTION("use far attenuation"),
+		OPTION("invere squared falloff"),
+		OPTION("light version 1"),
+	};
 
 } // namespace blofeld
 

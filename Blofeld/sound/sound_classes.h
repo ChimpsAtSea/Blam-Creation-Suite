@@ -3,6 +3,17 @@
 namespace blofeld
 {
 
+	constexpr unsigned long SOUND_CLASSES_TAG = 'sncl';
+
+	extern s_tag_struct_definition sound_classes_block_struct;
+	extern s_tag_block_definition sound_classes_block;
+	extern s_tag_group sound_classes_group;
+
+	extern s_tag_struct_definition sound_class_block_block_struct;
+	extern s_tag_block_definition sound_class_block_block;
+
+
+
 	extern const char* sound_class_internal_flags_definition_strings[];
 	extern s_string_list_definition sound_class_internal_flags_definition;
 	extern const char* sound_class_external_flags_definition_strings[];
@@ -15,16 +26,6 @@ namespace blofeld
 	extern s_string_list_definition sound_class_acoustics_string_definition;
 	extern const char* sound_class_suppress_spatialization_string_defintion_strings[];
 	extern s_string_list_definition sound_class_suppress_spatialization_string_defintion;
-
-	constexpr unsigned long SOUND_CLASSES_TAG = 'sncl';
-
-	extern s_tag_struct sound_classes_block_struct;
-	extern s_tag_block_definition sound_classes_block;
-	extern s_tag_group sound_classes_group;
-
-	extern s_tag_struct sound_class_block_block_struct;
-	extern s_tag_block_definition sound_class_block_block;
-
 
 } // namespace blofeld
 

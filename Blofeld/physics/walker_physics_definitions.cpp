@@ -3,23 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(walker_physics_leg_group_enum, 2)
-	{
-		OPTION("primary"),
-		OPTION("secondary"),
-	};
-
-	TAG_ENUM(walker_physics_leg_side_enum, 2)
-	{
-		OPTION("left"),
-		OPTION("right"),
-	};
-
-	TAG_ENUM(walker_physics_leg_flags, 1)
-	{
-		OPTION("constrained plant"),
-	};
-
 	TAG_BLOCK(walker_physics_leg_block, s_walker_physics_definition::k_maximum_leg_count)
 	{
 		FIELD( _field_explanation, "walker physics" ),
@@ -52,8 +35,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(walker_physics_struct)
-{
+	TAG_STRUCT(walker_physics_struct)
+	{
 		FIELD( _field_real_vector_3d, "maximum leg motion#in WU, how far can we displace the legs in x,y,z each step" ),
 		FIELD( _field_real, "maximum turn#in degrees, how much can this walker turn in one step" ),
 		FIELD( _field_block, "legs", &walker_physics_leg_block_block ),
@@ -62,7 +45,24 @@ TAG_STRUCT(walker_physics_struct)
 		FIELD( _field_real, "drop exponent# x(0-1) power exponent" ),
 		FIELD( _field_real_vector_3d, "object space pivot position!" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(walker_physics_leg_group_enum, 2)
+	{
+		OPTION("primary"),
+		OPTION("secondary"),
+	};
+
+	TAG_ENUM(walker_physics_leg_side_enum, 2)
+	{
+		OPTION("left"),
+		OPTION("right"),
+	};
+
+	TAG_ENUM(walker_physics_leg_flags, 1)
+	{
+		OPTION("constrained plant"),
+	};
 
 } // namespace blofeld
 

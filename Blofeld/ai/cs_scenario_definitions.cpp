@@ -3,25 +3,14 @@
 namespace blofeld
 {
 
-	TAG_ENUM(point_set_flags, 4)
+	TAG_BLOCK(cs_point_block, 32)
 	{
-		OPTION("manual reference frame"),
-		OPTION("turret deployment"),
-		OPTION("giant set"),
-		OPTION("invalid sector refs"),
-	};
-
-	TAG_ENUM(point_set_traversal_flags, 2)
-	{
-		OPTION("curve the traversal path"),
-		OPTION("loop when end is reached"),
-	};
-
-	TAG_BLOCK(cs_script_data_block, 1)
-	{
-		FIELD( _field_block, "point sets", &cs_point_set_block_block ),
-		FIELD( _field_block, "animation points", &cs_animation_point_block_block ),
-		FIELD( _field_pad, "TPHWNCUR", 120 ),
+		FIELD( _field_string, "name^" ),
+		FIELD( _field_string_id, "name_id*!" ),
+		FIELD( _field_real_point_3d, "position" ),
+		FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),
+		FIELD( _field_custom_long_block_index, "navMeshUIDOffaceref~!" ),
+		FIELD( _field_real_euler_angles_2d, "facing direction" ),
 		FIELD( _field_terminator )
 	};
 
@@ -38,17 +27,6 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(cs_point_block, 32)
-	{
-		FIELD( _field_string, "name^" ),
-		FIELD( _field_string_id, "name_id*!" ),
-		FIELD( _field_real_point_3d, "position" ),
-		FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),
-		FIELD( _field_custom_long_block_index, "navMeshUIDOffaceref~!" ),
-		FIELD( _field_real_euler_angles_2d, "facing direction" ),
-		FIELD( _field_terminator )
-	};
-
 	TAG_BLOCK(cs_animation_point_block, k_max_animation_points_per_map)
 	{
 		FIELD( _field_string, "name^" ),
@@ -60,6 +38,28 @@ namespace blofeld
 		FIELD( _field_real, "Animation Time Offset" ),
 		FIELD( _field_real, "Assumed Playback Rate" ),
 		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(cs_script_data_block, 1)
+	{
+		FIELD( _field_block, "point sets", &cs_point_set_block_block ),
+		FIELD( _field_block, "animation points", &cs_animation_point_block_block ),
+		FIELD( _field_pad, "TPHWNCUR", 120 ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ENUM(point_set_flags, 4)
+	{
+		OPTION("manual reference frame"),
+		OPTION("turret deployment"),
+		OPTION("giant set"),
+		OPTION("invalid sector refs"),
+	};
+
+	TAG_ENUM(point_set_traversal_flags, 2)
+	{
+		OPTION("curve the traversal path"),
+		OPTION("loop when end is reached"),
 	};
 
 } // namespace blofeld

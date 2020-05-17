@@ -7,8 +7,8 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(megalogamengine_sounds_block, 1, megalogamengine_sounds_struct_definition_struct_definition );
 
-TAG_STRUCT(megalogamengine_sounds_struct_definition)
-{
+	TAG_STRUCT(megalogamengine_sounds_struct_definition)
+	{
 		FIELD( _field_tag_reference, "slayer" ),
 		FIELD( _field_tag_reference, "ctf" ),
 		FIELD( _field_tag_reference, "flag_captured" ),
@@ -250,7 +250,7 @@ TAG_STRUCT(megalogamengine_sounds_struct_definition)
 		FIELD( _field_tag_reference, "escape_switch_portal_off" ),
 		FIELD( _field_tag_reference, "escape_title" ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

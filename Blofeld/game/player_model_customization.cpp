@@ -3,24 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(model_customization_player_permutation_flags, 3)
-	{
-		OPTION("male_only#this permutation only applies to male players"),
-		OPTION("female_only#this permutation only applies to female players"),
-		OPTION("mandibles_hidden#this permutation is an elite with enclosed helmet"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(player_model_customization_globals, PLAYER_MODEL_CUSTOMIZATION_GLOBALS_TAG, player_model_customization_globals_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(player_model_customization_globals_block, 1, player_model_customization_globals_struct_definition_struct_definition );
-
-	TAG_BLOCK(customized_model_selection_block, k_maximum_number_of_model_customization_selections_per_area)
-	{
-		FIELD( _field_string_id, "selection name^" ),
-		FIELD( _field_string_id, "app name#Which player-stats modifier should be activated when this item is equipped" ),
-		FIELD( _field_block, "customized bits", &customized_model_player_bits_block_block ),
-		FIELD( _field_terminator )
-	};
 
 	TAG_BLOCK(customized_model_player_bits_block, k_maximum_number_of_model_customization_bits_per_selection)
 	{
@@ -31,8 +14,18 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(player_model_customization_globals_struct_definition)
-{
+	TAG_BLOCK(customized_model_selection_block, k_maximum_number_of_model_customization_selections_per_area)
+	{
+		FIELD( _field_string_id, "selection name^" ),
+		FIELD( _field_string_id, "app name#Which player-stats modifier should be activated when this item is equipped" ),
+		FIELD( _field_block, "customized bits", &customized_model_player_bits_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK_FROM_STRUCT(player_model_customization_globals_block, 1, player_model_customization_globals_struct_definition_struct_definition );
+
+	TAG_STRUCT(player_model_customization_globals_struct_definition)
+	{
 		FIELD( _field_tag_reference, "spartan render model#used for string list generation" ),
 		FIELD( _field_tag_reference, "elite render model!" ),
 		FIELD( _field_block, "helmet selections", &customized_model_selection_block_block ),
@@ -50,7 +43,14 @@ TAG_STRUCT(player_model_customization_globals_struct_definition)
 		FIELD( _field_block, "spartan model defaults", &customized_model_player_bits_block_block ),
 		FIELD( _field_block, "elite model defaults!", &customized_model_player_bits_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(model_customization_player_permutation_flags, 3)
+	{
+		OPTION("male_only#this permutation only applies to male players"),
+		OPTION("female_only#this permutation only applies to female players"),
+		OPTION("mandibles_hidden#this permutation is an elite with enclosed helmet"),
+	};
 
 } // namespace blofeld
 

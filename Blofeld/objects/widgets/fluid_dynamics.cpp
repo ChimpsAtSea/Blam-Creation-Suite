@@ -3,24 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(fluid_dynamics_flags, 11)
-	{
-		OPTION("use tracers"),
-		OPTION("use density diffuse"),
-		OPTION("wrap particles width"),
-		OPTION("wrap particles height"),
-		OPTION("flat horizontal"),
-		OPTION("flat vertical(default)"),
-		OPTION("cylindrical horizontal"),
-		OPTION("cylindrical vertical"),
-		OPTION("approximate volume"),
-		OPTION("random particle placement"),
-		OPTION("tracer jump around"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(fluid_dynamics, FLUID_DYNAMICS_TAG, fluid_dynamics_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(fluid_dynamics_block, 1, fluid_dynamics_struct_definition_struct_definition );
 
 	TAG_BLOCK(fluid_dynamics_squirter_block, MAXIMUM_SQUIRTERS_PER_FLUID_DYNAMICS)
 	{
@@ -51,8 +34,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(fluid_dynamics_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(fluid_dynamics_block, 1, fluid_dynamics_struct_definition_struct_definition );
+
+	TAG_STRUCT(fluid_dynamics_struct_definition)
+	{
 		FIELD( _field_long_flags, "flags", &fluid_dynamics_flags ),
 		FIELD( _field_string_id, "marker attachment name" ),
 		FIELD( _field_real, "diffusion rate#0.0000001->0.0000100" ),
@@ -88,16 +73,31 @@ TAG_STRUCT(fluid_dynamics_struct_definition)
 		FIELD( _field_explanation, "Cylinder map" ),
 		FIELD( _field_struct, "cylindrical radius", &g_single_scalar_function_evaluation_struct_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(g_single_scalar_function_evaluation_struct)
-{
+	TAG_STRUCT(g_single_scalar_function_evaluation_struct)
+	{
 		FIELD( _field_real, "input" ),
 		FIELD( _field_custom ),
 		FIELD( _field_struct, "scalar", &mapping_function_struct_definition ),
 		FIELD( _field_pad, "LOHRT", 16 ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(fluid_dynamics_flags, 11)
+	{
+		OPTION("use tracers"),
+		OPTION("use density diffuse"),
+		OPTION("wrap particles width"),
+		OPTION("wrap particles height"),
+		OPTION("flat horizontal"),
+		OPTION("flat vertical(default)"),
+		OPTION("cylindrical horizontal"),
+		OPTION("cylindrical vertical"),
+		OPTION("approximate volume"),
+		OPTION("random particle placement"),
+		OPTION("tracer jump around"),
+	};
 
 } // namespace blofeld
 

@@ -3,18 +3,9 @@
 namespace blofeld
 {
 
-	TAG_ENUM(GuiOrdnancePrimiumFlag, 1)
-	{
-		OPTION("premium ordnance"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(game_globals_ordnance_list, GAME_GLOBALS_ORDNANCE_LIST_TAG, game_globals_ordnance_list_block_block );
 
 	TAG_GROUP_FROM_BLOCK(scenario_ordnance_list, SCENARIO_ORDNANCE_LIST_TAG, scenario_ordnance_list_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(game_globals_ordnance_list_block, 1, game_globals_ordnance_list_struct_definition_struct_definition );
-
-	TAG_BLOCK_FROM_STRUCT(scenario_ordnance_list_block, 1, scenario_ordnance_list_struct_definition_struct_definition );
 
 	TAG_BLOCK(GameGlobalsOrdnanceBlock, k_maximumNumberOfMultiplayerOrdnanceSelections)
 	{
@@ -31,6 +22,13 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(OrdnanceRemappingBlock, 128)
+	{
+		FIELD( _field_string_id, "from^#This must match one of the global ordnance objects." ),
+		FIELD( _field_string_id, "to^#This must match one of the global ordnance objects." ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(OrdnanceRemappingVariantBlock, 64)
 	{
 		FIELD( _field_string_id, "name" ),
@@ -39,22 +37,11 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(OrdnanceRemappingBlock, 128)
-	{
-		FIELD( _field_string_id, "from^#This must match one of the global ordnance objects." ),
-		FIELD( _field_string_id, "to^#This must match one of the global ordnance objects." ),
-		FIELD( _field_terminator )
-	};
+	TAG_BLOCK_FROM_STRUCT(game_globals_ordnance_list_block, 1, game_globals_ordnance_list_struct_definition_struct_definition );
 
 	TAG_BLOCK(RandomOrdnanceItemBlock, k_maximum_random_ordnance_items)
 	{
 		FIELD( _field_string_id, "ordnance_name^#This must match one of the global ordnance objects." ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(PlayerOrdnanceGroupBlock, 3)
-	{
-		FIELD( _field_block, "Player ordnance drops", &PlayerOrdnanceItemBlock_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -65,8 +52,16 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(game_globals_ordnance_list_struct_definition)
-{
+	TAG_BLOCK(PlayerOrdnanceGroupBlock, 3)
+	{
+		FIELD( _field_block, "Player ordnance drops", &PlayerOrdnanceItemBlock_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK_FROM_STRUCT(scenario_ordnance_list_block, 1, scenario_ordnance_list_struct_definition_struct_definition );
+
+	TAG_STRUCT(game_globals_ordnance_list_struct_definition)
+	{
 		FIELD( _field_real, "ordnance map width:world units" ),
 		FIELD( _field_real, "random ordnance fanfare duration:seconds" ),
 		FIELD( _field_tag_reference, "drop pod cleanup effect" ),
@@ -74,14 +69,19 @@ TAG_STRUCT(game_globals_ordnance_list_struct_definition)
 		FIELD( _field_block, "ordnance remapping tables", &OrdnanceRemappingVariantBlock_block ),
 		FIELD( _field_real, "equipment invulnerable seconds" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(scenario_ordnance_list_struct_definition)
-{
+	TAG_STRUCT(scenario_ordnance_list_struct_definition)
+	{
 		FIELD( _field_block, "Random ordnance drop list", &RandomOrdnanceItemBlock_block ),
 		FIELD( _field_block, "Player ordnance drop groups", &PlayerOrdnanceGroupBlock_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(GuiOrdnancePrimiumFlag, 1)
+	{
+		OPTION("premium ordnance"),
+	};
 
 } // namespace blofeld
 

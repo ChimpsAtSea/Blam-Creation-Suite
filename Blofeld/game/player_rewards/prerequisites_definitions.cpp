@@ -3,42 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(MarketplaceOfferTypeEnum, 32)
-	{
-		OPTION("DeadeyeHelmet"),
-		OPTION("LocusHelmet"),
-		OPTION("GungnirPulse"),
-		OPTION("VenatorRaptor"),
-		OPTION("CIOWeb"),
-		OPTION("HazopForest"),
-		OPTION("OceanicCircuit"),
-		OPTION("BattleRifleArctic"),
-		OPTION("BonebreakerEmblem"),
-		OPTION("AssassinEmblem"),
-		OPTION("BulletproofEmblem"),
-		OPTION("SpartanEmblem"),
-		OPTION("MjolnirEmblem"),
-		OPTION("LCE1Emblem"),
-		OPTION("SpartanIVArmorUnique"),
-		OPTION("AssaultRifleUnique"),
-		OPTION("Specializations"),
-		OPTION("UnicornEmblem"),
-		OPTION("UnicornArmor"),
-		OPTION("UnicornLightRifle"),
-		OPTION("LiveEmblem"),
-		OPTION("ScannerHelmet"),
-		OPTION("StriderHelmet"),
-		OPTION("FalconEmblem"),
-		OPTION("Reserved01"),
-		OPTION("Reserved02"),
-		OPTION("Reserved04"),
-		OPTION("Reserved08"),
-		OPTION("Reserved10"),
-		OPTION("Reserved20"),
-		OPTION("Reserved40"),
-		OPTION("ReservedDoNotUse80"),
-	};
-
 	TAG_BLOCK(purchase_prerequisite_grade_definition_block, 1)
 	{
 		FIELD( _field_long_integer, "enlistment index" ),
@@ -86,8 +50,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(PurchasePrerequisitesUnifiedDefinitionBlock)
-{
+	TAG_STRUCT(PurchasePrerequisitesUnifiedDefinitionBlock)
+	{
 		FIELD( _field_string_id, "prerequisite purchased item error string" ),
 		FIELD( _field_string_id, "prerequisite unlockable error string" ),
 		FIELD( _field_string_id, "prerequisite offers error string" ),
@@ -100,28 +64,64 @@ TAG_STRUCT(PurchasePrerequisitesUnifiedDefinitionBlock)
 		FIELD( _field_block, "prerequisite unlockables", &purchase_prerequisites_unlockable_definition_block_block ),
 		FIELD( _field_block, "prerequisite offers", &purchase_prerequisites_offer_definition_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(PurchaseAppearanceDefinitionReferenceStruct)
-{
+	TAG_STRUCT(PurchaseAppearanceDefinitionReferenceStruct)
+	{
 		FIELD( _field_short_block_index, "item reference^" ),
 		FIELD( _field_pad, "pad1", 2 ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(PurchaseLoadoutDefinitionReferenceStruct)
-{
+	TAG_STRUCT(PurchaseLoadoutDefinitionReferenceStruct)
+	{
 		FIELD( _field_short_block_index, "item reference^" ),
 		FIELD( _field_pad, "pad1", 2 ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(PurchaseOrdnanceDefinitionReferenceStruct)
-{
+	TAG_STRUCT(PurchaseOrdnanceDefinitionReferenceStruct)
+	{
 		FIELD( _field_short_block_index, "item reference^" ),
 		FIELD( _field_pad, "pad1", 2 ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(MarketplaceOfferTypeEnum, 32)
+	{
+		OPTION("DeadeyeHelmet"),
+		OPTION("LocusHelmet"),
+		OPTION("GungnirPulse"),
+		OPTION("VenatorRaptor"),
+		OPTION("CIOWeb"),
+		OPTION("HazopForest"),
+		OPTION("OceanicCircuit"),
+		OPTION("BattleRifleArctic"),
+		OPTION("BonebreakerEmblem"),
+		OPTION("AssassinEmblem"),
+		OPTION("BulletproofEmblem"),
+		OPTION("SpartanEmblem"),
+		OPTION("MjolnirEmblem"),
+		OPTION("LCE1Emblem"),
+		OPTION("SpartanIVArmorUnique"),
+		OPTION("AssaultRifleUnique"),
+		OPTION("Specializations"),
+		OPTION("UnicornEmblem"),
+		OPTION("UnicornArmor"),
+		OPTION("UnicornLightRifle"),
+		OPTION("LiveEmblem"),
+		OPTION("ScannerHelmet"),
+		OPTION("StriderHelmet"),
+		OPTION("FalconEmblem"),
+		OPTION("Reserved01"),
+		OPTION("Reserved02"),
+		OPTION("Reserved04"),
+		OPTION("Reserved08"),
+		OPTION("Reserved10"),
+		OPTION("Reserved20"),
+		OPTION("Reserved40"),
+		OPTION("ReservedDoNotUse80"),
+	};
 
 } // namespace blofeld
 

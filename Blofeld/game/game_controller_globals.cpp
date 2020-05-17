@@ -3,11 +3,10 @@
 namespace blofeld
 {
 
-	TAG_ENUM(input_mapping_shape_enum, 3)
+	TAG_BLOCK(input_mapping_function_block, 1)
 	{
-		OPTION("none"),
-		OPTION("unit_circle"),
-		OPTION("unit_square"),
+		FIELD( _field_struct, "function", &scalar_function_named_struct_struct_definition ),
+		FIELD( _field_terminator )
 	};
 
 	TAG_BLOCK(gamepad_stick_info_block, 1)
@@ -22,16 +21,16 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(input_mapping_function_block, 1)
-	{
-		FIELD( _field_struct, "function", &scalar_function_named_struct_struct_definition ),
-		FIELD( _field_terminator )
-	};
-
 	TAG_BLOCK(controller_input_block, 1)
 	{
 		FIELD( _field_real, "axial dead zone" ),
 		FIELD( _field_real, "radial dead zone" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(controller_mapping_reference_block, k_button_presets_count)
+	{
+		FIELD( _field_tag_reference, "mapping" ),
 		FIELD( _field_terminator )
 	};
 
@@ -130,10 +129,11 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(controller_mapping_reference_block, k_button_presets_count)
+	TAG_ENUM(input_mapping_shape_enum, 3)
 	{
-		FIELD( _field_tag_reference, "mapping" ),
-		FIELD( _field_terminator )
+		OPTION("none"),
+		OPTION("unit_circle"),
+		OPTION("unit_square"),
 	};
 
 } // namespace blofeld

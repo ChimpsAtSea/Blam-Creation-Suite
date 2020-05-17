@@ -3,17 +3,12 @@
 namespace blofeld
 {
 
-	TAG_ENUM(lightConeFlags, 1)
-	{
-		OPTION("disabled in split-screen"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(light_cone, LIGHT_CONE_TAG, light_cone_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(light_cone_block, 1, light_cone_struct_definition_struct_definition );
 
-TAG_STRUCT(light_cone_struct_definition)
-{
+	TAG_STRUCT(light_cone_struct_definition)
+	{
 		FIELD( _field_byte_flags, "flags", &lightConeFlags ),
 		FIELD( _field_pad, "gosh", 3 ),
 		FIELD( _field_custom, "material" ),
@@ -25,7 +20,12 @@ TAG_STRUCT(light_cone_struct_definition)
 		FIELD( _field_real, "far fade range:wus" ),
 		FIELD( _field_real, "far fade cutoff:wus" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(lightConeFlags, 1)
+	{
+		OPTION("disabled in split-screen"),
+	};
 
 } // namespace blofeld
 

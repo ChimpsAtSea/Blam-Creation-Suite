@@ -19,9 +19,11 @@ namespace blofeld
 #define FIELD(type, ...) { type, __FILE__, __LINE__ , ##__VA_ARGS__ }
 
 	struct s_tag_field;
-	struct s_tag_struct;
-	struct s_tag_block_definition;
 	struct s_tag_group;
+	struct s_tag_reference;
+	struct s_tag_struct_definition;
+	struct s_tag_block_definition;
+	struct s_tag_array_definition;
 	struct s_string_list_definition;
 
 #define TAG_STRUCT_FIELDS_FORWARD(tag_fields_name) \
@@ -31,7 +33,10 @@ extern s_tag_field CONCAT(tag_fields_name, _fields)[];
 extern s_tag_field CONCAT(tag_fields_name, _fields)[];
 
 #define TAG_BLOCK_STRUCT_FORWARD(tag_struct_name) \
-extern s_tag_struct CONCAT(tag_struct_name, _struct);
+extern s_tag_struct_definition CONCAT(tag_struct_name, _struct);
+
+#define TAG_STRUCT_FORWARD(tag_struct_name) \
+extern s_tag_struct_definition CONCAT(tag_struct_name, _struct_definition);
 
 #define TAG_BLOCK_FORWARD(tag_block_name) \
 extern s_tag_block_definition CONCAT(tag_block_name, _block);
@@ -45,18 +50,18 @@ s_tag_field CONCAT(tag_fields_name, _fields)[] =
 
 #define TAG_STRUCT(tag_struct_name) \
 TAG_STRUCT_FIELDS_FORWARD(CONCAT(tag_struct_name, _struct_definition)) \
-s_tag_struct CONCAT(tag_struct_name, _struct_definition) = { STRINGIFY(tag_struct_name), STRINGIFY(tag_struct_name), __FILE__, __LINE__, {0}, CONCAT(tag_struct_name, _struct_definition_fields) }; \
+s_tag_struct_definition CONCAT(tag_struct_name, _struct_definition) = { STRINGIFY(tag_struct_name), STRINGIFY(tag_struct_name), __FILE__, __LINE__, {0}, CONCAT(tag_struct_name, _struct_definition_fields) }; \
 TAG_FIELDS(CONCAT(tag_struct_name, _struct_definition))
 
-#define TAG_STRUCT_SUFFIX(tag_struct_name) \
+#define TAG_BLOCK_STRUCT(tag_struct_name) \
 TAG_STRUCT_SUFFIX_FIELDS_FORWARD(CONCAT(tag_struct_name, _struct)) \
-s_tag_struct CONCAT(tag_struct_name, _struct) = { STRINGIFY(tag_struct_name)"_struct", STRINGIFY(tag_struct_name)"_struct", __FILE__, __LINE__, {0}, CONCAT(tag_struct_name, _struct_fields) }; \
+s_tag_struct_definition CONCAT(tag_struct_name, _struct) = { STRINGIFY(tag_struct_name)"_struct", STRINGIFY(tag_struct_name)"_struct", __FILE__, __LINE__, {0}, CONCAT(tag_struct_name, _struct_fields) }; \
 TAG_FIELDS(CONCAT(tag_struct_name, _struct))
 
 #define TAG_BLOCK(tag_block_name, block_count) \
 TAG_BLOCK_STRUCT_FORWARD(CONCAT(tag_block_name, _block)) \
 s_tag_block_definition CONCAT(tag_block_name, _block) = { STRINGIFY(tag_block_name)"_block", STRINGIFY(tag_block_name)"_block", __FILE__, __LINE__, block_count, #block_count, CONCAT(tag_block_name, _block_struct) }; \
-TAG_STRUCT_SUFFIX(CONCAT(tag_block_name, _block))
+TAG_BLOCK_STRUCT(CONCAT(tag_block_name, _block))
 
 #define TAG_GROUP(tag_group_name, group_tag) \
 TAG_BLOCK_FORWARD(tag_group_name) \
@@ -96,4 +101,10 @@ s_string_list_definition name = { STRINGIFY(name), count, CONCAT(name, _strings)
 const char* CONCAT(name, _strings)[] = { "" }
 
 #define OPTION(option) (STRINGIFY(option))
+
+#define TAG_ARRAY(tag_array_name, array_count) \
+TAG_STRUCT_FORWARD(tag_array_name) \
+s_tag_array_definition CONCAT(tag_array_name, _array) = { STRINGIFY(tag_array_name)"_array", STRINGIFY(tag_array_name)"_array", __FILE__, __LINE__, array_count, #array_count, CONCAT(tag_array_name, _struct_definition) }; \
+TAG_STRUCT(tag_array_name)
+
 }

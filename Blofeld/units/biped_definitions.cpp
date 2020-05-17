@@ -3,61 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(biped_definition_flags, 15)
-	{
-		OPTION("turns without animating"),
-		OPTION("has physical rigid bodies when alive"),
-		OPTION("immune to falling damage"),
-		OPTION("has animated jetpack"),
-		OPTION("unused1!"),
-		OPTION("unused2!"),
-		OPTION("random speed increase"),
-		OPTION("unused3!"),
-		OPTION("spawn death children on destroy"),
-		OPTION("stunned by emp damage"),
-		OPTION("dead physics when stunned"),
-		OPTION("always ragdoll when dead"),
-		OPTION("snaps turns"),
-		OPTION("sync action always projects on ground"),
-		OPTION("orient facing to movement (Mantis)"),
-	};
-
-	TAG_ENUM(biped_leap_flags_definition, 1)
-	{
-		OPTION("force early roll"),
-	};
-
-	TAG_ENUM(grab_biped_throw_control_modes, 2)
-	{
-		OPTION("camera facing"),
-		OPTION("control stick direction"),
-	};
-
-	TAG_ENUM(biped_ground_fitting_flags_definition, 11)
-	{
-		OPTION("foot fixup enabled"),
-		OPTION("root offset enabled"),
-		OPTION("free foot enabled:deprecated#deprecated"),
-		OPTION("z leg enabled"),
-		OPTION("foot pull pinned"),
-		OPTION("footlock adjusts root:deprecated#deprecated"),
-		OPTION("raycast vehicles#slow"),
-		OPTION("foot fixup on composites:deprecated#deprecated"),
-		OPTION("allow feet below grade#noramlly, we will force the feet to lock to the ground surface"),
-		OPTION("use biped up direction#for characters that climb walls"),
-		OPTION("snap marker above contact#prevents ground marker from going below the contact point"),
-	};
-
-	TAG_ENUM(biped_wall_proximity_composition_mode, 3)
-	{
-		OPTION("most compressed#pick the marker that has the closest obstacle"),
-		OPTION("least compressed#pick the marker that has the furthest obstacle"),
-		OPTION("average#average the distances from each marker"),
-	};
-
 	TAG_GROUP_INHERIT_FROM_BLOCK(biped, BIPED_TAG, unit, UNIT_TAG, biped_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(biped_block, 1, biped_group_struct_definition );
 
 	TAG_BLOCK(biped_camera_height_block, 16)
 	{
@@ -136,8 +82,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(biped_group)
-{
+	TAG_BLOCK_FROM_STRUCT(biped_block, 1, biped_group_struct_definition );
+
+	TAG_STRUCT(biped_group)
+	{
 		FIELD( _field_struct, "unit", &unit_struct_definition_struct_definition ),
 		FIELD( _field_custom, "$$$ BIPED $$$" ),
 		FIELD( _field_angle, "moving turning speed:degrees per second" ),
@@ -221,10 +169,10 @@ TAG_STRUCT(biped_group)
 		FIELD( _field_block, "Aiming Fixup", &BipedAimingJointFixupBlock_block ),
 		FIELD( _field_tag_reference, "Self Illumination" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(biped_leaping_data_struct)
-{
+	TAG_STRUCT(biped_leaping_data_struct)
+	{
 		FIELD( _field_custom, "wall-leaping" ),
 		FIELD( _field_explanation, "wall-leaping fields" ),
 		FIELD( _field_long_flags, "leap flags", &biped_leap_flags_definition ),
@@ -238,10 +186,10 @@ TAG_STRUCT(biped_leaping_data_struct)
 		FIELD( _field_real_fraction, "lobbing desire:1= heavy arc, 0= no arc" ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(biped_vaulting_data_struct)
-{
+	TAG_STRUCT(biped_vaulting_data_struct)
+	{
 		FIELD( _field_custom, "vaulting" ),
 		FIELD( _field_explanation, "vaulting fields" ),
 		FIELD( _field_real_bounds, "vault height bounds:wus" ),
@@ -251,10 +199,10 @@ TAG_STRUCT(biped_vaulting_data_struct)
 		FIELD( _field_real, "search width:wus, the side-to-side width of the search path" ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(biped_grab_biped_data_struct)
-{
+	TAG_STRUCT(biped_grab_biped_data_struct)
+	{
 		FIELD( _field_custom, "grab biped" ),
 		FIELD( _field_explanation, "grab biped fields" ),
 		FIELD( _field_string_id, "grab biped animation class" ),
@@ -262,19 +210,19 @@ TAG_STRUCT(biped_grab_biped_data_struct)
 		FIELD( _field_pad, "hurgh", 3 ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(biped_grab_object_data_struct)
-{
+	TAG_STRUCT(biped_grab_object_data_struct)
+	{
 		FIELD( _field_custom, "grab object" ),
 		FIELD( _field_explanation, "grab object fields" ),
 		FIELD( _field_block, "grab object animation sets", &biped_grab_object_animation_set_block_block ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(biped_ground_fitting_data_struct)
-{
+	TAG_STRUCT(biped_ground_fitting_data_struct)
+	{
 		FIELD( _field_custom, "ground fitting" ),
 		FIELD( _field_explanation, "ground fitting data" ),
 		FIELD( _field_long_flags, "ground fitting flags", &biped_ground_fitting_flags_definition ),
@@ -327,10 +275,10 @@ TAG_STRUCT(biped_ground_fitting_data_struct)
 		FIELD( _field_real, "footlock Max Throttle: (0-1) #throttle at which foot lock should be fully off" ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(BipedMovementHipLeaningStruct)
-{
+	TAG_STRUCT(BipedMovementHipLeaningStruct)
+	{
 		FIELD( _field_custom, "Movement Hip Leaning" ),
 		FIELD( _field_explanation, "Movement Hip Leaning" ),
 		FIELD( _field_real, "prediction seconds:predict ahead to determine lean. 0= off, more time=more lean" ),
@@ -340,7 +288,59 @@ TAG_STRUCT(BipedMovementHipLeaningStruct)
 		FIELD( _field_real, "max lean angle cosine:set on post-process, don\'t edit!*" ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(biped_definition_flags, 15)
+	{
+		OPTION("turns without animating"),
+		OPTION("has physical rigid bodies when alive"),
+		OPTION("immune to falling damage"),
+		OPTION("has animated jetpack"),
+		OPTION("unused1!"),
+		OPTION("unused2!"),
+		OPTION("random speed increase"),
+		OPTION("unused3!"),
+		OPTION("spawn death children on destroy"),
+		OPTION("stunned by emp damage"),
+		OPTION("dead physics when stunned"),
+		OPTION("always ragdoll when dead"),
+		OPTION("snaps turns"),
+		OPTION("sync action always projects on ground"),
+		OPTION("orient facing to movement (Mantis)"),
+	};
+
+	TAG_ENUM(biped_leap_flags_definition, 1)
+	{
+		OPTION("force early roll"),
+	};
+
+	TAG_ENUM(grab_biped_throw_control_modes, 2)
+	{
+		OPTION("camera facing"),
+		OPTION("control stick direction"),
+	};
+
+	TAG_ENUM(biped_ground_fitting_flags_definition, 11)
+	{
+		OPTION("foot fixup enabled"),
+		OPTION("root offset enabled"),
+		OPTION("free foot enabled:deprecated#deprecated"),
+		OPTION("z leg enabled"),
+		OPTION("foot pull pinned"),
+		OPTION("footlock adjusts root:deprecated#deprecated"),
+		OPTION("raycast vehicles#slow"),
+		OPTION("foot fixup on composites:deprecated#deprecated"),
+		OPTION("allow feet below grade#noramlly, we will force the feet to lock to the ground surface"),
+		OPTION("use biped up direction#for characters that climb walls"),
+		OPTION("snap marker above contact#prevents ground marker from going below the contact point"),
+	};
+
+	TAG_ENUM(biped_wall_proximity_composition_mode, 3)
+	{
+		OPTION("most compressed#pick the marker that has the closest obstacle"),
+		OPTION("least compressed#pick the marker that has the furthest obstacle"),
+		OPTION("average#average the distances from each marker"),
+	};
 
 } // namespace blofeld
 

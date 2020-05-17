@@ -3,101 +3,11 @@
 namespace blofeld
 {
 
-	TAG_ENUM(effect_scale_enum, 2)
-	{
-		OPTION("damage"),
-		OPTION("angle"),
-	};
-
-	TAG_ENUM(material_response, 8)
-	{
-		OPTION("impact (detonate)"),
-		OPTION("fizzle"),
-		OPTION("overpenetrate"),
-		OPTION("attach"),
-		OPTION("bounce"),
-		OPTION("bounce (dud)"),
-		OPTION("fizzle (ricochet)"),
-		OPTION("turn physical"),
-	};
-
-	TAG_ENUM(material_possible_response_flags, 11)
-	{
-		OPTION("only against units (except giants){only against units}"),
-		OPTION("never against units (except giants){never against units}"),
-		OPTION("only against bipeds"),
-		OPTION("only against vehicles"),
-		OPTION("never against wuss players"),
-		OPTION("only when tethered"),
-		OPTION("only when not tethered"),
-		OPTION("only against dead bipeds"),
-		OPTION("never against dead bipeds"),
-		OPTION("only AI projectiles"),
-		OPTION("never AI projectiles"),
-	};
-
-	TAG_ENUM(projectile_flags, 32)
-	{
-		OPTION("oriented along velocity"),
-		OPTION("AI must use ballistic aiming"),
-		OPTION("detonation max time if attached#If attach happens timeout is set to timer.high"),
-		OPTION("damage scales based on distance"),
-		OPTION("steering adjusts orientation"),
-		OPTION("don\'t noise up steering"),
-		OPTION("can track behind itself"),
-		OPTION("ROBOTRON STEERING#or robotech, maybe"),
-		OPTION("affected by phantom volumes"),
-		OPTION("notifies target units"),
-		OPTION("use ground detonation when attached"),
-		OPTION("AI minor tracking threat"),
-		OPTION("dangerous when inactive"),
-		OPTION("AI stimulus when attached"),
-		OPTION("OverPeneDetonation"),
-		OPTION("no impact effects on bounce"),
-		OPTION("RC1 overpenetration fixes"),
-		OPTION("Disable instantaneous first tick"),
-		OPTION("Constrain gravity to velocity bounds"),
-		OPTION("allow deceleration below final velocity#use for bouncing projectiles that also have initial/final velocity so that can reliably come to rest."),
-		OPTION("supports tethering#projectile waits for trigger unlatch before immediately detonating"),
-		OPTION("damage_not_predictable_by_clients#used on the focus rifle to disable observer shield flash prediction for a high-dps weapon that does low damage per projectile"),
-		OPTION("collides with physics-only surfaces#aka sphere-only collision.  Use this for projectiles that you want to bounce smoothly up stairs, but don\'t use it for projectiles that may come to rest on stairs"),
-		OPTION("detonates when attached to objects#when projectiles move slowly enough they attach to objects or come to rest.  Check this for projectiles that don\'t normally attach to things like frag grenades"),
-		OPTION("cannot be detached by equipment#armor lock will not detach these projectiles - for the airstrike"),
-		OPTION("always attach regardless of material"),
-		OPTION("does not collide with world geometry#this gun shoots through schools"),
-		OPTION("is collectible#Projectile is collectible by projectile collector equipment"),
-		OPTION("continuous damage while attached and tethered"),
-		OPTION("combinations of projectiles from different weapons or different bursts of the same weapon will not trigger super combine detonation"),
-		OPTION("distance based damage scaling uses damage range low bounds#damage scales from 1.f --> 0.f  between \'damage range - low\' --> \'damage range - high\'"),
-		OPTION("skip object first tick#similar to Disable instantaneous first tick, but there\'s actually two types of ticks"),
-	};
-
-	TAG_ENUM(secondary_projectile_flags, 7)
-	{
-		OPTION("Use projectile radius for thickness testing#IF THIS IS OFF, NO THICKNESS OR CHUBBY TESTS ARE PERFORMED."),
-		OPTION("Expensive chubby test#Will only be active if thickness testing is ON."),
-		OPTION("Use play collision#Will use simple and smooth collision mesh."),
-		OPTION("Highlight projectile in vision mode#Makes the projectile show up as an enemy in vision mode"),
-		OPTION("biped proximity enemies only#modifies behavior of \'detonation biped proximity\'"),
-		OPTION("always use localized physics#overrides early mover localize projectiles"),
-		OPTION("never use localized physics#overrides early mover localize projectiles"),
-	};
-
-	TAG_ENUM(projectile_detonation_timer_modes, 4)
-	{
-		OPTION("immediately"),
-		OPTION("after first bounce off floor{after first bounce}"),
-		OPTION("when at rest"),
-		OPTION("after first bounce off any surface"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(KillCamCameraParamter, KILLCAMCAMERAPARAMTER_TAG, KillCamCameraParamter_block_block );
 
 	TAG_GROUP_INHERIT_FROM_BLOCK(projectile, PROJECTILE_TAG, object, OBJECT_TAG, projectile_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(KillCamCameraParamter_block, 1, KillCamCameraParamter_struct_definition_struct_definition );
-
-	TAG_BLOCK_FROM_STRUCT(projectile_block, 1, projectile_group_struct_definition );
 
 	TAG_BLOCK(old_projectile_material_response_block, k_maximum_material_responses)
 	{
@@ -193,16 +103,18 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(KillCamCameraParamter_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(projectile_block, 1, projectile_group_struct_definition );
+
+	TAG_STRUCT(KillCamCameraParamter_struct_definition)
+	{
 		FIELD( _field_real, "distance from camera" ),
 		FIELD( _field_real, "height above object" ),
 		FIELD( _field_real, "minimum velocity to update" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(projectile_group)
-{
+	TAG_STRUCT(projectile_group)
+	{
 		FIELD( _field_struct, "object", &object_struct_definition_struct_definition ),
 		FIELD( _field_custom, "$$$ PROJECTILE $$$" ),
 		FIELD( _field_long_flags, "flags", &projectile_flags ),
@@ -287,19 +199,107 @@ TAG_STRUCT(projectile_group)
 		FIELD( _field_block, "Sound RTPCs", &ProjectileSoundRTPCBlock_block ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(super_detonation_damage_struct)
-{
+	TAG_STRUCT(super_detonation_damage_struct)
+	{
 		FIELD( _field_tag_reference, "super detonation damage" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(angular_velocity_lower_bound_struct)
-{
+	TAG_STRUCT(angular_velocity_lower_bound_struct)
+	{
 		FIELD( _field_angle, "guided angular velocity (lower):degrees per second" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(effect_scale_enum, 2)
+	{
+		OPTION("damage"),
+		OPTION("angle"),
+	};
+
+	TAG_ENUM(material_response, 8)
+	{
+		OPTION("impact (detonate)"),
+		OPTION("fizzle"),
+		OPTION("overpenetrate"),
+		OPTION("attach"),
+		OPTION("bounce"),
+		OPTION("bounce (dud)"),
+		OPTION("fizzle (ricochet)"),
+		OPTION("turn physical"),
+	};
+
+	TAG_ENUM(material_possible_response_flags, 11)
+	{
+		OPTION("only against units (except giants){only against units}"),
+		OPTION("never against units (except giants){never against units}"),
+		OPTION("only against bipeds"),
+		OPTION("only against vehicles"),
+		OPTION("never against wuss players"),
+		OPTION("only when tethered"),
+		OPTION("only when not tethered"),
+		OPTION("only against dead bipeds"),
+		OPTION("never against dead bipeds"),
+		OPTION("only AI projectiles"),
+		OPTION("never AI projectiles"),
+	};
+
+	TAG_ENUM(projectile_flags, 32)
+	{
+		OPTION("oriented along velocity"),
+		OPTION("AI must use ballistic aiming"),
+		OPTION("detonation max time if attached#If attach happens timeout is set to timer.high"),
+		OPTION("damage scales based on distance"),
+		OPTION("steering adjusts orientation"),
+		OPTION("don\'t noise up steering"),
+		OPTION("can track behind itself"),
+		OPTION("ROBOTRON STEERING#or robotech, maybe"),
+		OPTION("affected by phantom volumes"),
+		OPTION("notifies target units"),
+		OPTION("use ground detonation when attached"),
+		OPTION("AI minor tracking threat"),
+		OPTION("dangerous when inactive"),
+		OPTION("AI stimulus when attached"),
+		OPTION("OverPeneDetonation"),
+		OPTION("no impact effects on bounce"),
+		OPTION("RC1 overpenetration fixes"),
+		OPTION("Disable instantaneous first tick"),
+		OPTION("Constrain gravity to velocity bounds"),
+		OPTION("allow deceleration below final velocity#use for bouncing projectiles that also have initial/final velocity so that can reliably come to rest."),
+		OPTION("supports tethering#projectile waits for trigger unlatch before immediately detonating"),
+		OPTION("damage_not_predictable_by_clients#used on the focus rifle to disable observer shield flash prediction for a high-dps weapon that does low damage per projectile"),
+		OPTION("collides with physics-only surfaces#aka sphere-only collision.  Use this for projectiles that you want to bounce smoothly up stairs, but don\'t use it for projectiles that may come to rest on stairs"),
+		OPTION("detonates when attached to objects#when projectiles move slowly enough they attach to objects or come to rest.  Check this for projectiles that don\'t normally attach to things like frag grenades"),
+		OPTION("cannot be detached by equipment#armor lock will not detach these projectiles - for the airstrike"),
+		OPTION("always attach regardless of material"),
+		OPTION("does not collide with world geometry#this gun shoots through schools"),
+		OPTION("is collectible#Projectile is collectible by projectile collector equipment"),
+		OPTION("continuous damage while attached and tethered"),
+		OPTION("combinations of projectiles from different weapons or different bursts of the same weapon will not trigger super combine detonation"),
+		OPTION("distance based damage scaling uses damage range low bounds#damage scales from 1.f --> 0.f  between \'damage range - low\' --> \'damage range - high\'"),
+		OPTION("skip object first tick#similar to Disable instantaneous first tick, but there\'s actually two types of ticks"),
+	};
+
+	TAG_ENUM(secondary_projectile_flags, 7)
+	{
+		OPTION("Use projectile radius for thickness testing#IF THIS IS OFF, NO THICKNESS OR CHUBBY TESTS ARE PERFORMED."),
+		OPTION("Expensive chubby test#Will only be active if thickness testing is ON."),
+		OPTION("Use play collision#Will use simple and smooth collision mesh."),
+		OPTION("Highlight projectile in vision mode#Makes the projectile show up as an enemy in vision mode"),
+		OPTION("biped proximity enemies only#modifies behavior of \'detonation biped proximity\'"),
+		OPTION("always use localized physics#overrides early mover localize projectiles"),
+		OPTION("never use localized physics#overrides early mover localize projectiles"),
+	};
+
+	TAG_ENUM(projectile_detonation_timer_modes, 4)
+	{
+		OPTION("immediately"),
+		OPTION("after first bounce off floor{after first bounce}"),
+		OPTION("when at rest"),
+		OPTION("after first bounce off any surface"),
+	};
 
 } // namespace blofeld
 

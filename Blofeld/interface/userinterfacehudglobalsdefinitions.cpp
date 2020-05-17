@@ -3,23 +3,18 @@
 namespace blofeld
 {
 
-	TAG_ENUM(HUDMotionSensorGlobalsFlags, 1)
-	{
-		OPTION("show scripted pings at any distance"),
-	};
-
-	TAG_ENUM(high_contrast_flags, 2)
-	{
-		OPTION("disable dynamic contrast"),
-		OPTION("disable double draw"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(user_interface_hud_globals_definition, USER_INTERFACE_HUD_GLOBALS_DEFINITION_TAG, user_interface_hud_globals_definition_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(user_interface_hud_globals_definition_block, 1, user_interface_hud_globals_definition_struct_definition_struct_definition );
 
-TAG_STRUCT(user_interface_hud_globals_definition_struct_definition)
-{
+	TAG_ARRAY(screen_transform_basis_array_definition, 9)
+	{
+		FIELD( _field_real_point_2d, "screen transform basis element" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_STRUCT(user_interface_hud_globals_definition_struct_definition)
+	{
 		FIELD( _field_explanation, "Motion sensor globals" ),
 		FIELD( _field_byte_flags, "flags", &HUDMotionSensorGlobalsFlags ),
 		FIELD( _field_pad, "pad0", 3 ),
@@ -61,7 +56,7 @@ TAG_STRUCT(user_interface_hud_globals_definition_struct_definition)
 		FIELD( _field_real, "mesh alpha gradient" ),
 		FIELD( _field_real, "mesh alpha at centre (0..1)" ),
 		FIELD( _field_real, "mesh alpha at screen edge (0..1)" ),
-		FIELD( _field_array, "screen transform basis" ),
+		FIELD( _field_array, "screen transform basis", &screen_transform_basis_array_definition_array ),
 		FIELD( _field_explanation, "Reticule globals" ),
 		FIELD( _field_real, "Reticule maximum spread angle:degrees#Maximum spread for all weapon reticules. This should be set to the largest spread angle of all the weapons." ),
 		FIELD( _field_explanation, "Sounds" ),
@@ -89,7 +84,18 @@ TAG_STRUCT(user_interface_hud_globals_definition_struct_definition)
 		FIELD( _field_explanation, "Player Training" ),
 		FIELD( _field_block, "player training data", &player_training_entry_data_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(HUDMotionSensorGlobalsFlags, 1)
+	{
+		OPTION("show scripted pings at any distance"),
+	};
+
+	TAG_ENUM(high_contrast_flags, 2)
+	{
+		OPTION("disable dynamic contrast"),
+		OPTION("disable double draw"),
+	};
 
 } // namespace blofeld
 

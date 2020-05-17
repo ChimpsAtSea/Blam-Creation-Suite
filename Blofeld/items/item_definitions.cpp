@@ -3,18 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(item_definition_flags, 5)
-	{
-		OPTION("always maintains z up"),
-		OPTION("blocks headshots#like jackal shield"),
-		OPTION("use ground scale for all unspecified attachments"),
-		OPTION("fixup position upon detaching from parent"),
-		OPTION("fixup position after attaching to parent"),
-	};
-
 	TAG_GROUP_INHERIT_FROM_BLOCK(item, ITEM_TAG, object, OBJECT_TAG, item_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(item_block, 1, item_struct_definition_struct_definition );
 
 	TAG_BLOCK(predicted_bitmaps_block, 8)
 	{
@@ -22,8 +11,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(item_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(item_block, 1, item_struct_definition_struct_definition );
+
+	TAG_STRUCT(item_struct_definition)
+	{
 		FIELD( _field_struct, "object", &object_struct_definition_struct_definition ),
 		FIELD( _field_custom, "$$$ ITEM $$$" ),
 		FIELD( _field_long_flags, "flags", &item_definition_flags ),
@@ -61,7 +52,16 @@ TAG_STRUCT(item_struct_definition)
 		FIELD( _field_tag_reference, "Tossed Override# Used to override the object tossed when item owner is killed.  Is overridden by tossed weapon override." ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(item_definition_flags, 5)
+	{
+		OPTION("always maintains z up"),
+		OPTION("blocks headshots#like jackal shield"),
+		OPTION("use ground scale for all unspecified attachments"),
+		OPTION("fixup position upon detaching from parent"),
+		OPTION("fixup position after attaching to parent"),
+	};
 
 } // namespace blofeld
 

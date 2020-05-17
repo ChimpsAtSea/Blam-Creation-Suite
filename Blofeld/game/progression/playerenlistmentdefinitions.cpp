@@ -3,14 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(playerEnlistmentFlags, 1)
-	{
-		OPTION("disabled#since we can\'t reorder the list after ship, this allows us to disable/enable this enlistment"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(player_enlistment_globals_definition, PLAYER_ENLISTMENT_GLOBALS_DEFINITION_TAG, player_enlistment_globals_definition_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(player_enlistment_globals_definition_block, 1, player_enlistment_globals_definition_struct_definition_struct_definition );
 
 	TAG_BLOCK(playerEnlistmentDefinitionBlock, k_maximumPlayerEnlistments - 1)
 	{
@@ -32,12 +25,19 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(player_enlistment_globals_definition_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(player_enlistment_globals_definition_block, 1, player_enlistment_globals_definition_struct_definition_struct_definition );
+
+	TAG_STRUCT(player_enlistment_globals_definition_struct_definition)
+	{
 		FIELD( _field_explanation, "Enlistments" ),
 		FIELD( _field_block, "enlistments", &playerEnlistmentDefinitionBlock_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(playerEnlistmentFlags, 1)
+	{
+		OPTION("disabled#since we can\'t reorder the list after ship, this allows us to disable/enable this enlistment"),
+	};
 
 } // namespace blofeld
 

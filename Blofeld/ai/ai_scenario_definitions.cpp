@@ -3,15 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(ai_sound_volume_enum, 5)
-	{
-		OPTION("silent#ai will not respond to this sound"),
-		OPTION("quiet"),
-		OPTION("medium"),
-		OPTION("shout"),
-		OPTION("loud#ai can hear this sound at any range"),
-	};
-
 	TAG_BLOCK(character_palette_block, 64)
 	{
 		FIELD( _field_tag_reference, "reference^" ),
@@ -29,6 +20,15 @@ namespace blofeld
 	{
 		FIELD( _field_tag_reference, "reference^" ),
 		FIELD( _field_terminator )
+	};
+
+	TAG_ENUM(ai_sound_volume_enum, 5)
+	{
+		OPTION("silent#ai will not respond to this sound"),
+		OPTION("quiet"),
+		OPTION("medium"),
+		OPTION("shout"),
+		OPTION("loud#ai can hear this sound at any range"),
 	};
 
 } // namespace blofeld

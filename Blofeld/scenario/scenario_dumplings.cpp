@@ -3,18 +3,18 @@
 namespace blofeld
 {
 
+	TAG_BLOCK(dumpling_point_block, k_maximum_points_per_sector)
+	{
+		FIELD( _field_real_point_3d, "position" ),
+		FIELD( _field_real_euler_angles_2d, "normal" ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(scenario_atmosphere_dumpling_block, s_scenario_atmosphere_dumpling::k_maximum_scenario_atmosphere_dumplings)
 	{
 		FIELD( _field_struct, "dumpling", &scenario_dumpling_struct_struct_definition ),
 		FIELD( _field_short_block_index, "atmosphere" ),
 		FIELD( _field_pad, "pad", 2 ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(dumpling_point_block, k_maximum_points_per_sector)
-	{
-		FIELD( _field_real_point_3d, "position" ),
-		FIELD( _field_real_euler_angles_2d, "normal" ),
 		FIELD( _field_terminator )
 	};
 
@@ -26,8 +26,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(scenario_dumpling_struct)
-{
+	TAG_STRUCT(scenario_dumpling_struct)
+	{
 		FIELD( _field_block, "inner points", &dumpling_point_block_block ),
 		FIELD( _field_block, "outer points", &dumpling_point_block_block ),
 		FIELD( _field_real, "height" ),
@@ -37,7 +37,7 @@ TAG_STRUCT(scenario_dumpling_struct)
 		FIELD( _field_real_point_3d, "center point!" ),
 		FIELD( _field_real, "trivial cull radius squared!" ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

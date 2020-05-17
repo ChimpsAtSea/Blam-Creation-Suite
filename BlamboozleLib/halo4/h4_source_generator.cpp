@@ -61,14 +61,27 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 		for (c_h4_tag_block_container* tag_block_container : source_file->tag_blocks)
 		{
 			if (tag_block_container->defined_by_tag_group) continue; // these are created manually through c_h4_tag_group_container
-			create_tag_block_header(hs, *tag_block_container);
-			create_tag_block_source(ss, *tag_block_container);
+			if (tag_block_container->tag_block.is_block)
+			{
+				create_tag_block_header(hs, *tag_block_container);
+				create_tag_block_source(ss, *tag_block_container);
+			}
+		}
+		hs << std::endl;
+
+		for (c_h4_tag_block_container* tag_block_container : source_file->tag_blocks)
+		{
+			if (tag_block_container->defined_by_tag_group) continue; // these are created manually through c_h4_tag_group_container
+			if (tag_block_container->tag_block.is_array)
+			{
+				create_tag_array_header(hs, *tag_block_container);
+				create_tag_array_source(ss, *tag_block_container);
+			}
 		}
 		hs << std::endl;
 
 		for (c_h4_tag_struct_container* tag_struct_container : source_file->tag_structs)
 		{
-			bool y = std::string(tag_struct_container->tag_struct.name) == "character_perception_block_struct";
 			if (tag_struct_container->is_block) continue; // these are created manually through c_h4_tag_block_container
 			create_tag_struct_header(hs, *tag_struct_container);
 			create_tag_struct_source(ss, *tag_struct_container);
@@ -240,8 +253,13 @@ void c_h4_source_generator::create_validation_source(std::stringstream& ss)
 	{
 		c_h4_tag_struct_container& tag_struct_container = *tag_block_container->tag_struct_container;
 		c_h4_tag_struct& tag_struct = tag_struct_container.tag_struct;
+		c_h4_tag_block& tag_block = tag_block_container->tag_block;
 
-		if (!tag_block_container->defined_by_tag_group && tag_block_container->use_tag_block_definition)
+		if (tag_block.is_array)
+		{
+			ss << "\t\t{ " << tag_block.name << "_struct_definition, " << tag_struct.size << " }, // array" << std::endl;
+		}
+		else if (!tag_block_container->defined_by_tag_group && tag_block_container->use_tag_block_definition)
 		{
 			ss << "\t\t{ " << tag_block_container->name << "_block_struct, " << tag_struct.size << " }, // block" << std::endl;
 		}
@@ -251,7 +269,7 @@ void c_h4_source_generator::create_validation_source(std::stringstream& ss)
 		}
 		else if (tag_struct_container.is_tag_group)
 		{
-			ss << "\t\t{ " << tag_struct_container.name << "_struct_definition, " << tag_struct.size << " }, // tag_group" << std::endl;
+			ss << "\t\t{ " << tag_struct_container.name << "_struct_definition, " << tag_struct.size << " }, // group" << std::endl;
 		}
 		else
 		{
@@ -285,7 +303,7 @@ void c_h4_source_generator::create_tag_group_header(std::stringstream& hs, c_h4_
 	hs << "\tconstexpr unsigned long " << tag_group_container.name_uppercase << "_TAG = '" << parse_tag_group_string(tag_group.group_tag) << "';" << std::endl << std::endl;
 	if (tag_group_container.define_tag_group_block_and_fields)
 	{
-		hs << "\textern s_tag_struct " << tag_block_container.symbol_name << "_struct;" << std::endl;
+		hs << "\textern s_tag_struct_definition " << tag_block_container.symbol_name << "_struct;" << std::endl;
 		hs << "\textern s_tag_block_definition " << tag_block_container.symbol_name << ";" << std::endl;
 	}
 	hs << "\textern s_tag_group " << tag_group.name << "_group;" << std::endl;
@@ -384,8 +402,8 @@ void c_h4_source_generator::create_tag_block_header(std::stringstream& hs, c_h4_
 
 	if (!tag_block_container.defined_by_tag_group && tag_block_container.use_tag_block_definition)
 	{
-		//hs << "extern s_tag_struct " << tag_block_container.tag_struct_container->name << "_block_struct;" << std::endl;
-		hs << "\textern s_tag_struct " << tag_block_container.name << "_block_struct;" << std::endl;
+		//hs << "extern s_tag_struct_definition " << tag_block_container.tag_struct_container->name << "_block_struct;" << std::endl;
+		hs << "\textern s_tag_struct_definition " << tag_block_container.name << "_block_struct;" << std::endl;
 	}
 	hs << "\textern s_tag_block_definition " << tag_block_container.symbol_name << ";" << std::endl;
 
@@ -420,22 +438,68 @@ void c_h4_source_generator::create_tag_block_source(std::stringstream& ss, c_h4_
 	}
 }
 
+void c_h4_source_generator::create_tag_array_header(std::stringstream& hs, c_h4_tag_block_container& tag_block_container)
+{
+	c_h4_tag_block& tag_block = tag_block_container.tag_block;
+	c_h4_tag_struct& tag_struct = tag_block.tag_struct;
+
+	if (!tag_block_container.defined_by_tag_group && tag_block_container.use_tag_block_definition)
+	{
+		hs << "\textern s_tag_struct_definition " << tag_block_container.name << "_struct_definition;" << std::endl;
+	}
+	hs << "\textern s_tag_array_definition " << tag_block_container.symbol_name << ";" << std::endl;
+
+
+}
+void c_h4_source_generator::create_tag_array_source(std::stringstream& ss, c_h4_tag_block_container& tag_block_container)
+{
+	c_h4_tag_block& tag_block = tag_block_container.tag_block;
+	c_h4_tag_struct_container& tag_struct_container = *tag_block_container.tag_struct_container;
+	c_h4_tag_struct& tag_struct = tag_block.tag_struct;
+
+	if (tag_block_container.use_tag_block_definition)
+	{
+		ss << "\tTAG_ARRAY(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ")" << std::endl;
+		ss << "\t{" << std::endl;
+		generate_tag_fields_source(ss, tag_struct.tag_fields);
+		ss << "\t};" << std::endl;
+		ss << std::endl;
+	}
+	else
+	{
+		if (tag_struct_container.is_block)
+		{
+			ss << "\tTAG_ARRAY_FROM_STRUCT(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ", " << tag_struct_container.name << "_block_struct );" << std::endl;
+		}
+		else
+		{
+			ss << "\tTAG_ARRAY_FROM_STRUCT(" << tag_block_container.name << ", " << tag_block.maximum_element_count_string << ", " << tag_struct_container.name << "_struct_definition );" << std::endl;
+		}
+
+		ss << std::endl;
+	}
+}
+
 void c_h4_source_generator::create_tag_struct_header(std::stringstream& hs, c_h4_tag_struct_container& tag_struct_container)
 {
 	c_h4_tag_struct& tag_struct = tag_struct_container.tag_struct;
 
-	if (tag_struct_container.is_block)
+	if (tag_struct_container.is_array)
 	{
-		hs << "\textern s_tag_struct " << tag_struct_container.name << "_block_struct; // block" << std::endl;
+		hs << "\textern s_tag_struct_definition " << tag_struct_container.name << "_struct_definition; // array" << std::endl;
+	}
+	else if (tag_struct_container.is_block)
+	{
+		hs << "\textern s_tag_struct_definition " << tag_struct_container.name << "_block_struct; // block" << std::endl;
 	}
 	else if (tag_struct_container.is_tag_group)
 	{
-		hs << "\textern s_tag_struct " << tag_struct_container.name << "_struct_definition; // tag group" << std::endl;
-		//hs << "\textern s_tag_struct " << tag_struct_container.source_name << "; // tag group" << std::endl;
+		hs << "\textern s_tag_struct_definition " << tag_struct_container.name << "_struct_definition; // tag group" << std::endl;
+		//hs << "\textern s_tag_struct_definition " << tag_struct_container.source_name << "; // tag group" << std::endl;
 	}
 	else
 	{
-		hs << "\textern s_tag_struct " << tag_struct_container.name << "_struct_definition;" << std::endl;
+		hs << "\textern s_tag_struct_definition " << tag_struct_container.name << "_struct_definition;" << std::endl;
 	}
 
 
@@ -445,10 +509,10 @@ void c_h4_source_generator::create_tag_struct_source(std::stringstream& ss, c_h4
 {
 	c_h4_tag_struct& tag_struct = tag_struct_container.tag_struct;
 
-	ss << "TAG_STRUCT(" << tag_struct_container.name << ")" << std::endl;
-	ss << "{" << std::endl;
+	ss << "\tTAG_STRUCT(" << tag_struct_container.name << ")" << std::endl;
+	ss << "\t{" << std::endl;
 	generate_tag_fields_source(ss, tag_struct.tag_fields);
-	ss << "};" << std::endl;
+	ss << "\t};" << std::endl;
 	ss << std::endl;
 
 }
@@ -510,7 +574,6 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		case _h4_field_type_non_cache_runtime_value:
 		case _h4_field_type_explanation:
 		case _h4_field_type_custom:
-		case _h4_field_type_array:
 		case _h4_field_type_pageable:
 		case _h4_field_type_api_interop:
 		case _h4_field_type_terminator:
@@ -548,6 +611,18 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 
 			break;
 		}
+		case _h4_field_type_array:
+		{
+			c_h4_tag_field_array* tag_field_array = dynamic_cast<c_h4_tag_field_array*>(tag_field);
+			ASSERT(tag_field_array);
+			ASSERT(tag_field_array->name);
+			ASSERT(tag_field_array->tag_array_definition);
+			c_h4_tag_block_container* tag_block_container = preprocessor.find_existing_tag_block_container(*tag_field_array->tag_array_definition);
+
+			ASSERT(tag_block_container);
+			ss << "\t\tFIELD( " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_block_container->symbol_name << " )," << std::endl;
+			break;
+		}
 		case _h4_field_type_block:
 		{
 			c_h4_tag_field_block* tag_field_block = dynamic_cast<c_h4_tag_field_block*>(tag_field);
@@ -556,17 +631,8 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 			ASSERT(tag_field_block->tag_block_definition);
 			c_h4_tag_block_container* tag_block_container = preprocessor.find_existing_tag_block_container(*tag_field_block->tag_block_definition);
 
-			if (tag_block_container)
-			{
-				ASSERT(tag_block_container);
-
-				ss << "\t\tFIELD( " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_block_container->symbol_name << " )," << std::endl;
-			}
-			else
-			{
-				write_line_verbose("blamboozle> warning: block field '%s' has no definition", tag_field_block->name);
-				ss << "\t\tFIELD( " << field_generic_type_name << ", \"" << field_name << "\" )," << std::endl;
-			}
+			ASSERT(tag_block_container);
+			ss << "\t\tFIELD( " << field_generic_type_name << ", \"" << field_name << "\", &" << tag_block_container->symbol_name << " )," << std::endl;
 			break;
 		}
 		case _h4_field_type_char_enum:

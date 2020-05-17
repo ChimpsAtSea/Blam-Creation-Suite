@@ -3,29 +3,12 @@
 namespace blofeld
 {
 
-	TAG_ENUM(ssao_downsample_enum_definition, 2)
-	{
-		OPTION("block downsample"),
-		OPTION("clover downsample"),
-	};
-
-	TAG_ENUM(ssao_type_enum_definition, 7)
-	{
-		OPTION("off"),
-		OPTION("hdao large 32 sample"),
-		OPTION("hdao large 64 predicated"),
-		OPTION("hdao small 24 sample"),
-		OPTION("hdao screenshot"),
-		OPTION("debug mask"),
-		OPTION("ssao midnight 16 sample"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(ssao_definition, SSAO_DEFINITION_TAG, ssao_definition_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(ssao_definition_block, 1, ssao_definition_struct_definition_struct_definition );
 
-TAG_STRUCT(ssao_definition_struct_definition)
-{
+	TAG_STRUCT(ssao_definition_struct_definition)
+	{
 		FIELD( _field_char_enum, "downsample*", &ssao_downsample_enum_definition ),
 		FIELD( _field_char_enum, "ssao type*", &ssao_type_enum_definition ),
 		FIELD( _field_byte_integer, "version!" ),
@@ -53,7 +36,24 @@ TAG_STRUCT(ssao_definition_struct_definition)
 		FIELD( _field_real_argb_color, "runtime_data_5!" ),
 		FIELD( _field_real_argb_color, "runtime_data_7!" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(ssao_downsample_enum_definition, 2)
+	{
+		OPTION("block downsample"),
+		OPTION("clover downsample"),
+	};
+
+	TAG_ENUM(ssao_type_enum_definition, 7)
+	{
+		OPTION("off"),
+		OPTION("hdao large 32 sample"),
+		OPTION("hdao large 64 predicated"),
+		OPTION("hdao small 24 sample"),
+		OPTION("hdao screenshot"),
+		OPTION("debug mask"),
+		OPTION("ssao midnight 16 sample"),
+	};
 
 } // namespace blofeld
 

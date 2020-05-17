@@ -3,20 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(InfluencerSpawnSettingsFlagsDefinition, 2)
-	{
-		OPTION("Only use largest influence"),
-		OPTION("Pin influence to Minimum and Maximum"),
-	};
-
-	TAG_ENUM(SpawnSettingsFlagsDefinition, 1)
-	{
-		OPTION("Allow negative weights in randomization#If checked, negative weighted respawn points are treated the same as ones with positive weight.\nIf not checked, negative respawn points aren\'t grouped with positive weighted respawn points."),
-	};
-
 	TAG_GROUP_FROM_BLOCK(SpawnSettings, SPAWNSETTINGS_TAG, SpawnSettings_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(SpawnSettings_block, 1, SpawnSettings_struct_definition_struct_definition );
 
 	TAG_BLOCK(influencerSpawnSettingsBlock, k_spawn_influencer_type_count)
 	{
@@ -64,8 +51,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(SpawnSettings_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(SpawnSettings_block, 1, SpawnSettings_struct_definition_struct_definition );
+
+	TAG_STRUCT(SpawnSettings_struct_definition)
+	{
 		FIELD( _field_real, "minimum spawn time:seconds#Absolute floor.  Used to put a few-frame delay between death and instaspawn.  Will not override longer minimum times." ),
 		FIELD( _field_real, "min acceptable spawn score#spawns with a score lower than this will never be used" ),
 		FIELD( _field_explanation, "Spawn Randomization" ),
@@ -135,7 +124,18 @@ TAG_STRUCT(SpawnSettings_struct_definition)
 		FIELD( _field_explanation, "EQUIPMENT INFLUENCERS" ),
 		FIELD( _field_block, "equipment influencers", &equipmentSpawnInfluenceBlock_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(InfluencerSpawnSettingsFlagsDefinition, 2)
+	{
+		OPTION("Only use largest influence"),
+		OPTION("Pin influence to Minimum and Maximum"),
+	};
+
+	TAG_ENUM(SpawnSettingsFlagsDefinition, 1)
+	{
+		OPTION("Allow negative weights in randomization#If checked, negative weighted respawn points are treated the same as ones with positive weight.\nIf not checked, negative respawn points aren\'t grouped with positive weighted respawn points."),
+	};
 
 } // namespace blofeld
 

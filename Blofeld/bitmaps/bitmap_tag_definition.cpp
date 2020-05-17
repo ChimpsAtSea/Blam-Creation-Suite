@@ -3,6 +3,31 @@
 namespace blofeld
 {
 
+	TAG_BLOCK(bitmap_data_block_def, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
+	{
+		FIELD( _field_short_integer, "width*:pixels#DO NOT CHANGE" ),
+		FIELD( _field_short_integer, "height*:pixels#DO NOT CHANGE" ),
+		FIELD( _field_char_integer, "depth*:pixels#DO NOT CHANGE" ),
+		FIELD( _field_byte_flags, "more flags!", &bitmap_more_flags_definition ),
+		FIELD( _field_char_enum, "type*#DO NOT CHANGE", &bitmap_types ),
+		FIELD( _field_char_integer, "four times log2 size*#DO NOT CHANGE" ),
+		FIELD( _field_enum, "format*#DO NOT CHANGE", &bitmap_formats ),
+		FIELD( _field_byte_flags, "flags*", &bitmap_flags ),
+		FIELD( _field_char_integer, "exponent bias" ),
+		FIELD( _field_point_2d, "registration point#the \'center\' of the bitmap - i.e. for particles" ),
+		FIELD( _field_char_integer, "mipmap count*#DO NOT CHANGE (not counting the highest resolution)" ),
+		FIELD( _field_char_enum, "curve#how to convert from pixel value to linear", &bitmap_curve_enum ),
+		FIELD( _field_char_block_index, "interleaved interop" ),
+		FIELD( _field_char_integer, "interleaved texture index" ),
+		FIELD( _field_long_integer, "pixels offset!:bytes#DO NOT CHANGE (offset of the beginning of this bitmap, into pixel data)" ),
+		FIELD( _field_long_integer, "pixels size!:bytes#DO NOT CHANGE (total bytes used by this bitmap)" ),
+		FIELD( _field_long_integer, "medium res pixels size!#DO NOT CHANGE" ),
+		FIELD( _field_long_integer, "high res pixels size!#DO NOT CHANGE" ),
+		FIELD( _field_long_integer, "hardware format*!" ),
+		FIELD( _field_long_integer, "runtime tag base address*!" ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_ENUM(bitmap_types, 4)
 	{
 		OPTION("2D texture"),
@@ -91,31 +116,6 @@ namespace blofeld
 		OPTION("xbox360 high resolution offset is valid!*#DO NOT CHANGE"),
 		OPTION("xbox360 use interleaved textures!*#DO NOT CHANGE"),
 		OPTION("xbox360 use on demand only!*#DO NOT CHANGE"),
-	};
-
-	TAG_BLOCK(bitmap_data_block_def, MAXIMUM_BITMAPS_PER_BITMAP_GROUP)
-	{
-		FIELD( _field_short_integer, "width*:pixels#DO NOT CHANGE" ),
-		FIELD( _field_short_integer, "height*:pixels#DO NOT CHANGE" ),
-		FIELD( _field_char_integer, "depth*:pixels#DO NOT CHANGE" ),
-		FIELD( _field_byte_flags, "more flags!", &bitmap_more_flags_definition ),
-		FIELD( _field_char_enum, "type*#DO NOT CHANGE", &bitmap_types ),
-		FIELD( _field_char_integer, "four times log2 size*#DO NOT CHANGE" ),
-		FIELD( _field_enum, "format*#DO NOT CHANGE", &bitmap_formats ),
-		FIELD( _field_byte_flags, "flags*", &bitmap_flags ),
-		FIELD( _field_char_integer, "exponent bias" ),
-		FIELD( _field_point_2d, "registration point#the \'center\' of the bitmap - i.e. for particles" ),
-		FIELD( _field_char_integer, "mipmap count*#DO NOT CHANGE (not counting the highest resolution)" ),
-		FIELD( _field_char_enum, "curve#how to convert from pixel value to linear", &bitmap_curve_enum ),
-		FIELD( _field_char_block_index, "interleaved interop" ),
-		FIELD( _field_char_integer, "interleaved texture index" ),
-		FIELD( _field_long_integer, "pixels offset!:bytes#DO NOT CHANGE (offset of the beginning of this bitmap, into pixel data)" ),
-		FIELD( _field_long_integer, "pixels size!:bytes#DO NOT CHANGE (total bytes used by this bitmap)" ),
-		FIELD( _field_long_integer, "medium res pixels size!#DO NOT CHANGE" ),
-		FIELD( _field_long_integer, "high res pixels size!#DO NOT CHANGE" ),
-		FIELD( _field_long_integer, "hardware format*!" ),
-		FIELD( _field_long_integer, "runtime tag base address*!" ),
-		FIELD( _field_terminator )
 	};
 
 } // namespace blofeld

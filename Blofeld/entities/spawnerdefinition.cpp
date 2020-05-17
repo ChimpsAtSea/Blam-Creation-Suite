@@ -3,17 +3,12 @@
 namespace blofeld
 {
 
-	TAG_ENUM(SpawnerFlags, 1)
-	{
-		OPTION("Cooldown Waits for Object Death"),
-	};
-
 	TAG_GROUP_INHERIT_FROM_BLOCK(spawner, SPAWNER_TAG, entity, ENTITY_TAG, spawner_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(spawner_block, 1, spawner_struct_definition_struct_definition );
 
-TAG_STRUCT(spawner_struct_definition)
-{
+	TAG_STRUCT(spawner_struct_definition)
+	{
 		FIELD( _field_struct, "entity", &entity_struct_definition_struct_definition ),
 		FIELD( _field_custom, "$$$ SPAWNER $$$" ),
 		FIELD( _field_byte_flags, "Spawner Flags", &SpawnerFlags ),
@@ -22,7 +17,12 @@ TAG_STRUCT(spawner_struct_definition)
 		FIELD( _field_real, "Activation Task Priority #Priority of task to activate this spawner." ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(SpawnerFlags, 1)
+	{
+		OPTION("Cooldown Waits for Object Death"),
+	};
 
 } // namespace blofeld
 

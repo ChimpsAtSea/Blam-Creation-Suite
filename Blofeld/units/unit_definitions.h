@@ -3,6 +3,44 @@
 namespace blofeld
 {
 
+	constexpr unsigned long UNIT_TAG = 'unit';
+
+	extern s_tag_group unit_group;
+
+	extern s_tag_struct_definition unit_screen_effect_block_block_struct;
+	extern s_tag_block_definition unit_screen_effect_block_block;
+	extern s_tag_struct_definition unit_camera_track_block_block_struct;
+	extern s_tag_block_definition unit_camera_track_block_block;
+	extern s_tag_struct_definition unit_camera_acceleration_displacement_block_block_struct;
+	extern s_tag_block_definition unit_camera_acceleration_displacement_block_block;
+	extern s_tag_struct_definition WeaponSpecificMarkersBlock_block_struct;
+	extern s_tag_block_definition WeaponSpecificMarkersBlock_block;
+	extern s_tag_struct_definition unit_postures_block_block_struct;
+	extern s_tag_block_definition unit_postures_block_block;
+	extern s_tag_struct_definition dialogue_variant_block_block_struct;
+	extern s_tag_block_definition dialogue_variant_block_block;
+	extern s_tag_struct_definition powered_seat_block_block_struct;
+	extern s_tag_block_definition powered_seat_block_block;
+	extern s_tag_struct_definition SentryPropertiesBlock_block_struct;
+	extern s_tag_block_definition SentryPropertiesBlock_block;
+	extern s_tag_struct_definition unit_weapon_block_block_struct;
+	extern s_tag_block_definition unit_weapon_block_block;
+	extern s_tag_struct_definition boarding_seat_block_block_struct;
+	extern s_tag_block_definition boarding_seat_block_block;
+	extern s_tag_struct_definition unit_seat_block_block_struct;
+	extern s_tag_block_definition unit_seat_block_block;
+	extern s_tag_block_definition unit_block_block;
+
+
+	extern s_tag_struct_definition unit_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition unit_camera_struct_struct_definition;
+	extern s_tag_struct_definition unit_camera_acceleration_displacement_function_struct_struct_definition;
+	extern s_tag_struct_definition unit_additional_node_names_struct_struct_definition;
+	extern s_tag_struct_definition unit_boarding_melee_struct_struct_definition;
+	extern s_tag_struct_definition unit_boost_struct_struct_definition;
+	extern s_tag_struct_definition unit_lipsync_scales_struct_struct_definition;
+	extern s_tag_struct_definition unit_birth_struct_struct_definition;
+
 	extern const char* unit_camera_acceleration_displacement_input_strings[];
 	extern s_string_list_definition unit_camera_acceleration_displacement_input;
 	extern const char* unit_camera_flags_definition_strings[];
@@ -27,43 +65,6 @@ namespace blofeld
 	extern s_string_list_definition boost_flags;
 	extern const char* unit_item_owner_size_enum_strings[];
 	extern s_string_list_definition unit_item_owner_size_enum;
-
-	constexpr unsigned long UNIT_TAG = 'unit';
-
-	extern s_tag_group unit_group;
-
-	extern s_tag_block_definition unit_block_block;
-	extern s_tag_struct unit_screen_effect_block_block_struct;
-	extern s_tag_block_definition unit_screen_effect_block_block;
-	extern s_tag_struct unit_camera_track_block_block_struct;
-	extern s_tag_block_definition unit_camera_track_block_block;
-	extern s_tag_struct unit_camera_acceleration_displacement_block_block_struct;
-	extern s_tag_block_definition unit_camera_acceleration_displacement_block_block;
-	extern s_tag_struct WeaponSpecificMarkersBlock_block_struct;
-	extern s_tag_block_definition WeaponSpecificMarkersBlock_block;
-	extern s_tag_struct unit_postures_block_block_struct;
-	extern s_tag_block_definition unit_postures_block_block;
-	extern s_tag_struct dialogue_variant_block_block_struct;
-	extern s_tag_block_definition dialogue_variant_block_block;
-	extern s_tag_struct powered_seat_block_block_struct;
-	extern s_tag_block_definition powered_seat_block_block;
-	extern s_tag_struct unit_weapon_block_block_struct;
-	extern s_tag_block_definition unit_weapon_block_block;
-	extern s_tag_struct SentryPropertiesBlock_block_struct;
-	extern s_tag_block_definition SentryPropertiesBlock_block;
-	extern s_tag_struct unit_seat_block_block_struct;
-	extern s_tag_block_definition unit_seat_block_block;
-	extern s_tag_struct boarding_seat_block_block_struct;
-	extern s_tag_block_definition boarding_seat_block_block;
-
-	extern s_tag_struct unit_struct_definition_struct_definition; // tag group
-	extern s_tag_struct unit_camera_struct_struct_definition;
-	extern s_tag_struct unit_camera_acceleration_displacement_function_struct_struct_definition;
-	extern s_tag_struct unit_additional_node_names_struct_struct_definition;
-	extern s_tag_struct unit_boarding_melee_struct_struct_definition;
-	extern s_tag_struct unit_boost_struct_struct_definition;
-	extern s_tag_struct unit_lipsync_scales_struct_struct_definition;
-	extern s_tag_struct unit_birth_struct_struct_definition;
 
 } // namespace blofeld
 

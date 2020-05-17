@@ -5,7 +5,11 @@ namespace blofeld
 
 	TAG_GROUP_FROM_BLOCK(airstrike, AIRSTRIKE_TAG, airstrike_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(airstrike_block, 1, airstrike_struct_definition_struct_definition );
+	TAG_BLOCK(airstrike_fire_location_block, s_airstrike_battery_definition::max_fire_locations)
+	{
+		FIELD( _field_real_point_2d, "offset" ),
+		FIELD( _field_terminator )
+	};
 
 	TAG_BLOCK(airstrike_battery_block, AirStrikeDefinition::k_max_airstrike_batteries)
 	{
@@ -22,17 +26,13 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(airstrike_fire_location_block, s_airstrike_battery_definition::max_fire_locations)
-	{
-		FIELD( _field_real_point_2d, "offset" ),
-		FIELD( _field_terminator )
-	};
+	TAG_BLOCK_FROM_STRUCT(airstrike_block, 1, airstrike_struct_definition_struct_definition );
 
-TAG_STRUCT(airstrike_struct_definition)
-{
+	TAG_STRUCT(airstrike_struct_definition)
+	{
 		FIELD( _field_block, "batteries", &airstrike_battery_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

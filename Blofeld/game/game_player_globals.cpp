@@ -3,20 +3,24 @@
 namespace blofeld
 {
 
-	TAG_ENUM(MomentumFlag, 2)
+	TAG_BLOCK(player_momentum_data_block, k_player_momentum_count)
 	{
-		OPTION("disable soft ping check"),
-		OPTION("disable hard ping check"),
-	};
-
-	TAG_ENUM(player_representation_flags, 1)
-	{
-		OPTION("can use health packs"),
-	};
-
-	TAG_ENUM(FpBodyRegionFlags, 1)
-	{
-		OPTION("visible in ICS"),
+		FIELD( _field_byte_flags, "flag", &MomentumFlag ),
+		FIELD( _field_pad, "PAD", 3 ),
+		FIELD( _field_real, "seconds to start#how long you must be pegged before you gain momentum" ),
+		FIELD( _field_real, "seconds to full speed#how long you must have momentum before you reach top speed" ),
+		FIELD( _field_real, "decay rate#how fast being unpegged decays the timer (seconds per second)" ),
+		FIELD( _field_real, "full speed multiplier#how much faster we actually go when at full momentum" ),
+		FIELD( _field_real, "sprint turn multiplier#how much faster to turn when sprinting" ),
+		FIELD( _field_real, "pegged magnitude#how far the stick needs to be pressed before being considered pegged" ),
+		FIELD( _field_real, "pegged angular threshold#how far off straight up (in degrees) we consider pegged" ),
+		FIELD( _field_angle, "max look yaw velocity:degrees per second" ),
+		FIELD( _field_angle, "max look pitch velocity:degrees per second" ),
+		FIELD( _field_real, "minimum player velocity to be considered in a momentum state:world units per second" ),
+		FIELD( _field_real, "look window length:seconds#period of time over which we record the biped\'s look angle for deciding if we should drop him out of momentum" ),
+		FIELD( _field_string_id, "momentum animation stance" ),
+		FIELD( _field_real, "min weapon error#[0, 1] while using this type of momentum, the player\'s weapon error cannot drop below this value" ),
+		FIELD( _field_terminator )
 	};
 
 	TAG_BLOCK(player_information_block, k_player_character_type_count)
@@ -52,23 +56,11 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(player_momentum_data_block, k_player_momentum_count)
+	TAG_BLOCK(firstPersonpHiddenBodyRegionsBlock, 32)
 	{
-		FIELD( _field_byte_flags, "flag", &MomentumFlag ),
-		FIELD( _field_pad, "PAD", 3 ),
-		FIELD( _field_real, "seconds to start#how long you must be pegged before you gain momentum" ),
-		FIELD( _field_real, "seconds to full speed#how long you must have momentum before you reach top speed" ),
-		FIELD( _field_real, "decay rate#how fast being unpegged decays the timer (seconds per second)" ),
-		FIELD( _field_real, "full speed multiplier#how much faster we actually go when at full momentum" ),
-		FIELD( _field_real, "sprint turn multiplier#how much faster to turn when sprinting" ),
-		FIELD( _field_real, "pegged magnitude#how far the stick needs to be pressed before being considered pegged" ),
-		FIELD( _field_real, "pegged angular threshold#how far off straight up (in degrees) we consider pegged" ),
-		FIELD( _field_angle, "max look yaw velocity:degrees per second" ),
-		FIELD( _field_angle, "max look pitch velocity:degrees per second" ),
-		FIELD( _field_real, "minimum player velocity to be considered in a momentum state:world units per second" ),
-		FIELD( _field_real, "look window length:seconds#period of time over which we record the biped\'s look angle for deciding if we should drop him out of momentum" ),
-		FIELD( _field_string_id, "momentum animation stance" ),
-		FIELD( _field_real, "min weapon error#[0, 1] while using this type of momentum, the player\'s weapon error cannot drop below this value" ),
+		FIELD( _field_string_id, "hidden region^" ),
+		FIELD( _field_byte_flags, "flags", &FpBodyRegionFlags ),
+		FIELD( _field_pad, "pad", 3 ),
 		FIELD( _field_terminator )
 	};
 
@@ -90,12 +82,20 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(firstPersonpHiddenBodyRegionsBlock, 32)
+	TAG_ENUM(MomentumFlag, 2)
 	{
-		FIELD( _field_string_id, "hidden region^" ),
-		FIELD( _field_byte_flags, "flags", &FpBodyRegionFlags ),
-		FIELD( _field_pad, "pad", 3 ),
-		FIELD( _field_terminator )
+		OPTION("disable soft ping check"),
+		OPTION("disable hard ping check"),
+	};
+
+	TAG_ENUM(player_representation_flags, 1)
+	{
+		OPTION("can use health packs"),
+	};
+
+	TAG_ENUM(FpBodyRegionFlags, 1)
+	{
+		OPTION("visible in ICS"),
 	};
 
 } // namespace blofeld

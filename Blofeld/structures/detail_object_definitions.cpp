@@ -3,23 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(detail_object_collection_type_enum_definition, 2)
-	{
-		OPTION("screen-facing"),
-		OPTION("viewer-facing"),
-	};
-
-	TAG_ENUM(detail_object_type_flags_definition, 4)
-	{
-		OPTION("unused0!"),
-		OPTION("unused1!"),
-		OPTION("interpolate color in hsv"),
-		OPTION("...more colors"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(detail_object_collection, DETAIL_OBJECT_COLLECTION_TAG, detail_object_collection_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(detail_object_collection_block, 1, detail_object_collection_struct_definition_struct_definition );
 
 	TAG_BLOCK(detail_object_type_block, MAXIMUM_DETAIL_OBJECT_TYPES_PER_COLLECTION)
 	{
@@ -39,6 +23,8 @@ namespace blofeld
 		FIELD( _field_pad, "VCXJHYY", 4 ),
 		FIELD( _field_terminator )
 	};
+
+	TAG_BLOCK_FROM_STRUCT(detail_object_collection_block, 1, detail_object_collection_struct_definition_struct_definition );
 
 	TAG_BLOCK(global_detail_object_cells_block, MAXIMUM_DETAIL_OBJECT_CELLS_PER_STRUCTURE)
 	{
@@ -78,8 +64,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(detail_object_collection_struct_definition)
-{
+	TAG_STRUCT(detail_object_collection_struct_definition)
+	{
 		FIELD( _field_enum, "collection type", &detail_object_collection_type_enum_definition ),
 		FIELD( _field_pad, "YN", 2 ),
 		FIELD( _field_real, "global z offset:applied to all detail objects of in this collection so they don\'t float above the ground" ),
@@ -88,7 +74,21 @@ TAG_STRUCT(detail_object_collection_struct_definition)
 		FIELD( _field_block, "types", &detail_object_type_block_block ),
 		FIELD( _field_pad, "ZQUVEZKGL", 48 ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(detail_object_collection_type_enum_definition, 2)
+	{
+		OPTION("screen-facing"),
+		OPTION("viewer-facing"),
+	};
+
+	TAG_ENUM(detail_object_type_flags_definition, 4)
+	{
+		OPTION("unused0!"),
+		OPTION("unused1!"),
+		OPTION("interpolate color in hsv"),
+		OPTION("...more colors"),
+	};
 
 } // namespace blofeld
 

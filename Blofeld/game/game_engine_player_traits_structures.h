@@ -3,6 +3,24 @@
 namespace blofeld
 {
 
+
+	extern s_tag_struct_definition player_traits_vitality_block_block_struct;
+	extern s_tag_block_definition player_traits_vitality_block_block;
+	extern s_tag_struct_definition player_traits_weapons_block_block_struct;
+	extern s_tag_block_definition player_traits_weapons_block_block;
+	extern s_tag_struct_definition player_traits_movement_block_block_struct;
+	extern s_tag_block_definition player_traits_movement_block_block;
+	extern s_tag_struct_definition player_traits_appearance_block_block_struct;
+	extern s_tag_block_definition player_traits_appearance_block_block;
+	extern s_tag_struct_definition player_traits_sensors_block_block_struct;
+	extern s_tag_block_definition player_traits_sensors_block_block;
+	extern s_tag_struct_definition game_engine_player_traits_block_block_struct;
+	extern s_tag_block_definition game_engine_player_traits_block_block;
+	extern s_tag_struct_definition game_engine_player_traits_list_block_block_struct;
+	extern s_tag_block_definition game_engine_player_traits_list_block_block;
+
+
+
 	extern const char* player_trait_bool_enum_strings[];
 	extern s_string_list_definition player_trait_bool_enum;
 	extern const char* player_trait_initial_grenade_count_enum_strings[];
@@ -33,23 +51,6 @@ namespace blofeld
 	extern s_string_list_definition player_traits_movement_float_flags;
 	extern const char* player_traits_sensors_float_flags_strings[];
 	extern s_string_list_definition player_traits_sensors_float_flags;
-
-
-	extern s_tag_struct game_engine_player_traits_block_block_struct;
-	extern s_tag_block_definition game_engine_player_traits_block_block;
-	extern s_tag_struct player_traits_vitality_block_block_struct;
-	extern s_tag_block_definition player_traits_vitality_block_block;
-	extern s_tag_struct player_traits_weapons_block_block_struct;
-	extern s_tag_block_definition player_traits_weapons_block_block;
-	extern s_tag_struct player_traits_movement_block_block_struct;
-	extern s_tag_block_definition player_traits_movement_block_block;
-	extern s_tag_struct player_traits_appearance_block_block_struct;
-	extern s_tag_block_definition player_traits_appearance_block_block;
-	extern s_tag_struct player_traits_sensors_block_block_struct;
-	extern s_tag_block_definition player_traits_sensors_block_block;
-	extern s_tag_struct game_engine_player_traits_list_block_block_struct;
-	extern s_tag_block_definition game_engine_player_traits_list_block_block;
-
 
 } // namespace blofeld
 

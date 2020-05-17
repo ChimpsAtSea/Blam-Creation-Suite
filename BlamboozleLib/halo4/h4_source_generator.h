@@ -15,6 +15,8 @@ public:
 	void create_tag_group_header(std::stringstream& hs, c_h4_tag_group_container& tag_group_container);
 	void create_tag_block_header(std::stringstream& hs, c_h4_tag_block_container& tag_block_container);
 	void create_tag_block_source(std::stringstream& ss, c_h4_tag_block_container& tag_block_container);
+	void create_tag_array_header(std::stringstream& hs, c_h4_tag_block_container& tag_block_container);
+	void create_tag_array_source(std::stringstream& ss, c_h4_tag_block_container& tag_block_container);
 	void create_tag_struct_header(std::stringstream& hs, c_h4_tag_struct_container& tag_struct_container);
 	void create_tag_struct_source(std::stringstream& ss, c_h4_tag_struct_container& tag_struct_container);
 	void create_tag_group_source(std::stringstream& ss, c_h4_tag_group_container& tag_group_container);

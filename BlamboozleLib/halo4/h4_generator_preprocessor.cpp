@@ -108,10 +108,17 @@ c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_
 	//use_tag_block_definition = expected_struct_name == tag_block.tag_struct.name;
 	use_tag_block_definition = string_ends_with(tag_block.tag_struct.name, "_block_struct") || (std::string(tag_block.name) == tag_block.tag_struct.name);
 	// && !string_ends_with(tag_block.tag_struct.name, "_struct_definition");
-	tag_struct_container = &preprocessor.traverse_tag_structs(tag_block.tag_struct, use_tag_block_definition, false);
+	tag_struct_container = &preprocessor.traverse_tag_structs(tag_block.tag_struct, use_tag_block_definition, tag_block.is_array, true);
 	tag_struct_container->is_block = use_tag_block_definition;
 
-	symbol_name = name + "_block";
+	if (tag_block.is_block)
+	{
+		symbol_name = name + "_block";
+	}
+	if (tag_block.is_array)
+	{
+		symbol_name = name + "_array";
+	}
 	name_uppercase = name;
 	std::transform(name_uppercase.begin(), name_uppercase.end(), name_uppercase.begin(), ::toupper);
 	preprocessor.tag_block_containers.push_back(this);
@@ -122,12 +129,13 @@ bool c_h4_tag_block_container::operator ==(const c_h4_tag_block_container& conta
 	return &tag_block == &container.tag_block;
 }
 
-c_h4_tag_struct_container::c_h4_tag_struct_container(c_h4_tag_struct& tag_struct, c_h4_generator_preprocessor& preprocessor, bool is_block) :
+c_h4_tag_struct_container::c_h4_tag_struct_container(c_h4_tag_struct& tag_struct, c_h4_generator_preprocessor& preprocessor, bool is_block, bool is_array) :
 	tag_struct(tag_struct),
 	name(tag_struct.name),
 	symbol_name(name),
 	name_uppercase(),
 	is_block(is_block),
+	is_array(is_array),
 	is_tag_group(false),
 	has_traversed(false)
 {
@@ -221,8 +229,7 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 	for (c_h4_tag_block_container* tag_block_container : tag_block_containers) // traverse tag blocks to create tag structs
 	{
 		c_h4_tag_block& tag_block = tag_block_container->tag_block;
-		bool y = std::string(tag_block_container->tag_block.tag_struct.name) == "cache_file_tag_zone_manifest_struct";
-		traverse_tag_structs(tag_block.tag_struct, true);
+		traverse_tag_structs(tag_block.tag_struct, true, false, true);
 	}
 	cleanup_tag_structs();
 
@@ -303,6 +310,38 @@ c_h4_tag_enum_container* c_h4_generator_preprocessor::find_existing_tag_enum_con
 	return nullptr;
 }
 
+void c_h4_generator_preprocessor::process_tag_block_field(c_h4_tag_field* tag_field)
+{
+	c_h4_tag_field_block* tag_field_block = dynamic_cast<c_h4_tag_field_block*>(tag_field);
+	if (tag_field_block != nullptr)
+	{
+		c_h4_tag_block* tag_block = tag_field_block->tag_block_definition;
+		ASSERT(tag_block != nullptr);
+		traverse_tag_blocks(*tag_block);
+	}
+
+	c_h4_tag_field_array* tag_field_array = dynamic_cast<c_h4_tag_field_array*>(tag_field);
+	if (tag_field_array != nullptr)
+	{
+		c_h4_tag_array* tag_struct = tag_field_array->tag_array_definition;
+		ASSERT(tag_struct != nullptr);
+		traverse_tag_blocks(*tag_struct);
+	}
+
+	c_h4_tag_field_struct* tag_field_struct = dynamic_cast<c_h4_tag_field_struct*>(tag_field); // found a struct, traverse it for more tag blocks
+	if (tag_field_struct != nullptr)
+	{
+		c_h4_tag_struct* tag_struct = tag_field_struct->tag_struct;
+		ASSERT(tag_struct != nullptr);
+		traverse_tag_structs(*tag_struct, false, false, true);
+
+		for (c_h4_tag_field* tag_field : tag_struct->tag_fields)
+		{
+			process_tag_struct_field(tag_field);
+		}
+	}
+}
+
 c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_tag_block& tag_block, bool is_tag, bool traverse)
 {
 	c_h4_tag_block_container* tag_block_container = find_existing_tag_block_container(tag_block);
@@ -316,32 +355,7 @@ c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_
 
 		for (c_h4_tag_field* tag_field : tag_block.tag_struct.tag_fields)
 		{
-			c_h4_tag_field_block* block_field = dynamic_cast<c_h4_tag_field_block*>(tag_field);
-			if (block_field != nullptr)
-			{
-				c_h4_tag_block* block = block_field->tag_block_definition;
-				ASSERT(block != nullptr);
-				traverse_tag_blocks(*block);
-			}
-
-			c_h4_tag_field_struct* struct_field = dynamic_cast<c_h4_tag_field_struct*>(tag_field); // found a struct, traverse it for more tag blocks
-			if (struct_field != nullptr)
-			{
-				c_h4_tag_struct* _struct = struct_field->tag_struct;
-				ASSERT(_struct != nullptr);
-				traverse_tag_structs(*_struct, false);
-
-				for (c_h4_tag_field* tag_field : _struct->tag_fields)
-				{
-					c_h4_tag_field_block* block_field = dynamic_cast<c_h4_tag_field_block*>(tag_field);
-					if (block_field != nullptr)
-					{
-						c_h4_tag_block* block = block_field->tag_block_definition;
-						ASSERT(block != nullptr);
-						traverse_tag_blocks(*block);
-					}
-				}
-			}
+			process_tag_block_field(tag_field);
 		}
 		tag_block_container->has_traversed = true;
 	}
@@ -349,45 +363,52 @@ c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_
 	return *tag_block_container;
 }
 
-c_h4_tag_struct_container& c_h4_generator_preprocessor::traverse_tag_structs(c_h4_tag_struct& tag_struct, bool is_block, bool traverse)
+void c_h4_generator_preprocessor::process_tag_struct_field(c_h4_tag_field* tag_field)
+{
+	c_h4_tag_field_struct* struct_field = dynamic_cast<c_h4_tag_field_struct*>(tag_field);
+	//bool x = tag_field->name ? std::string(tag_field->name) == "cache zone manifest" : false;
+	if (struct_field != nullptr)
+	{
+		c_h4_tag_struct* _struct = struct_field->tag_struct;
+		ASSERT(_struct != nullptr);
+		traverse_tag_structs(*_struct, false, false, true);
+	}
+
+	c_h4_tag_field_array* tag_field_array = dynamic_cast<c_h4_tag_field_array*>(tag_field);
+	if (tag_field_array != nullptr)
+	{
+		c_h4_tag_array* tag_array = tag_field_array->tag_array_definition;
+		ASSERT(tag_array != nullptr);
+		traverse_tag_blocks(*tag_array);
+	}
+
+	c_h4_tag_field_block* block_field = dynamic_cast<c_h4_tag_field_block*>(tag_field); // found a block, traverse it for more tag blocks
+	if (block_field != nullptr)
+	{
+		c_h4_tag_block* block = block_field->tag_block_definition;
+		ASSERT(block != nullptr);
+		traverse_tag_blocks(*block, false, true);
+
+		for (c_h4_tag_field* tag_field : block->tag_struct.tag_fields)
+		{
+			process_tag_block_field(tag_field);
+		}
+	}
+}
+
+c_h4_tag_struct_container& c_h4_generator_preprocessor::traverse_tag_structs(c_h4_tag_struct& tag_struct, bool is_block, bool is_array, bool traverse)
 {
 	//bool y = std::string(tag_struct.name) == "cache_file_tag_zone_manifest_struct";
 	c_h4_tag_struct_container* tag_struct_container = find_existing_tag_struct_container(tag_struct);
 	if (tag_struct_container == nullptr)
 	{
-		tag_struct_container = new c_h4_tag_struct_container(tag_struct, *this, is_block);
+		tag_struct_container = new c_h4_tag_struct_container(tag_struct, *this, is_block, is_array);
 	}
 	if (traverse && !tag_struct_container->has_traversed)
 	{
 		for (c_h4_tag_field* tag_field : tag_struct.tag_fields)
 		{
-			c_h4_tag_field_struct* struct_field = dynamic_cast<c_h4_tag_field_struct*>(tag_field);
-			//bool x = tag_field->name ? std::string(tag_field->name) == "cache zone manifest" : false;
-			if (struct_field != nullptr)
-			{
-				c_h4_tag_struct* _struct = struct_field->tag_struct;
-				ASSERT(_struct != nullptr);
-				traverse_tag_structs(*_struct);
-			}
-
-			c_h4_tag_field_block* block_field = dynamic_cast<c_h4_tag_field_block*>(tag_field); // found a block, traverse it for more tag blocks
-			if (block_field != nullptr)
-			{
-				c_h4_tag_block* block = block_field->tag_block_definition;
-				ASSERT(block != nullptr);
-				traverse_tag_blocks(*block, false, true);
-
-				for (c_h4_tag_field* tag_field : block->tag_struct.tag_fields)
-				{
-					c_h4_tag_field_block* block_field = dynamic_cast<c_h4_tag_field_block*>(tag_field);
-					if (block_field != nullptr)
-					{
-						c_h4_tag_block* block = block_field->tag_block_definition;
-						ASSERT(block != nullptr);
-						traverse_tag_structs(block->tag_struct, true);
-					}
-				}
-			}
+			process_tag_struct_field(tag_field);
 		}
 		tag_struct_container->has_traversed = true;
 	}

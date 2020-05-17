@@ -3,6 +3,31 @@
 namespace blofeld
 {
 
+	TAG_BLOCK(bitmap_usage_block, 1)
+	{
+		FIELD( _field_custom ),
+		FIELD( _field_real, "source gamma:0.0 to use xenon curve (default)" ),
+		FIELD( _field_long_enum, "bitmap curve", &bitmap_curve_enum ),
+		FIELD( _field_byte_flags, "flags", &bitmap_usage_flags_def ),
+		FIELD( _field_char_enum, "slicer", &bitmap_usage_slicer_def ),
+		FIELD( _field_byte_flags, "dicer flags", &bitmap_usage_dicer_flags_def ),
+		FIELD( _field_char_enum, "packer", &bitmap_usage_packer_def ),
+		FIELD( _field_byte_flags, "packer flags", &bitmap_usage_packer_flags_def ),
+		FIELD( _field_char_enum, "type", &bitmap_types ),
+		FIELD( _field_char_integer, "mipmap limit" ),
+		FIELD( _field_char_enum, "smallest mip", &bitmap_smallest_mip_def ),
+		FIELD( _field_char_enum, "downsample filter", &bitmap_usage_downsample_filter_def ),
+		FIELD( _field_char_integer, "filter radius bias" ),
+		FIELD( _field_word_flags, "downsample flags", &bitmap_usage_downsample_flags_def ),
+		FIELD( _field_real_rgb_color, "sprite background color" ),
+		FIELD( _field_char_enum, "swizzle red", &bitmap_usage_swizzle_def ),
+		FIELD( _field_char_enum, "swizzle green", &bitmap_usage_swizzle_def ),
+		FIELD( _field_char_enum, "swizzle blue", &bitmap_usage_swizzle_def ),
+		FIELD( _field_char_enum, "swizzle alpha", &bitmap_usage_swizzle_def ),
+		FIELD( _field_long_enum, "bitmap format", &bitmap_usage_format_def ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_ENUM(bitmap_usage_global_enum, 41)
 	{
 		OPTION("Diffuse Map"),
@@ -206,31 +231,6 @@ namespace blofeld
 		OPTION("16-bit Normals"),
 		OPTION("32-bit Normals"),
 		OPTION("8-bit 4-channel Vector"),
-	};
-
-	TAG_BLOCK(bitmap_usage_block, 1)
-	{
-		FIELD( _field_custom ),
-		FIELD( _field_real, "source gamma:0.0 to use xenon curve (default)" ),
-		FIELD( _field_long_enum, "bitmap curve", &bitmap_curve_enum ),
-		FIELD( _field_byte_flags, "flags", &bitmap_usage_flags_def ),
-		FIELD( _field_char_enum, "slicer", &bitmap_usage_slicer_def ),
-		FIELD( _field_byte_flags, "dicer flags", &bitmap_usage_dicer_flags_def ),
-		FIELD( _field_char_enum, "packer", &bitmap_usage_packer_def ),
-		FIELD( _field_byte_flags, "packer flags", &bitmap_usage_packer_flags_def ),
-		FIELD( _field_char_enum, "type", &bitmap_types ),
-		FIELD( _field_char_integer, "mipmap limit" ),
-		FIELD( _field_char_enum, "smallest mip", &bitmap_smallest_mip_def ),
-		FIELD( _field_char_enum, "downsample filter", &bitmap_usage_downsample_filter_def ),
-		FIELD( _field_char_integer, "filter radius bias" ),
-		FIELD( _field_word_flags, "downsample flags", &bitmap_usage_downsample_flags_def ),
-		FIELD( _field_real_rgb_color, "sprite background color" ),
-		FIELD( _field_char_enum, "swizzle red", &bitmap_usage_swizzle_def ),
-		FIELD( _field_char_enum, "swizzle green", &bitmap_usage_swizzle_def ),
-		FIELD( _field_char_enum, "swizzle blue", &bitmap_usage_swizzle_def ),
-		FIELD( _field_char_enum, "swizzle alpha", &bitmap_usage_swizzle_def ),
-		FIELD( _field_long_enum, "bitmap format", &bitmap_usage_format_def ),
-		FIELD( _field_terminator )
 	};
 
 } // namespace blofeld

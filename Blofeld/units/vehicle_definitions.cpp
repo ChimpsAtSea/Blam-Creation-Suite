@@ -3,116 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(vehicle_flags, 24)
-	{
-		OPTION("no friction w/driver"),
-		OPTION("autoaim when teamless"),
-		OPTION("ai weapon cannot rotate"),
-		OPTION("ai does not require driver"),
-		OPTION("ai driver enable"),
-		OPTION("ai driver flying"),
-		OPTION("ai driver can-sidestep"),
-		OPTION("ai driver hovering"),
-		OPTION("noncombat vehicle"),
-		OPTION("does not cause collision damage"),
-		OPTION("huge vehicle physics group"),
-		OPTION("enable wheelie-popping hack"),
-		OPTION("ai auto turret#will attempt to spawn Unit\'s \'spawned turret character\' to control this turret"),
-		OPTION("ai sentry turret"),
-		OPTION("ignore camera pitch"),
-		OPTION("auto turret#will be ignored if \'ai auto turret\' is set in campaign or survival"),
-		OPTION("ignore kill volumes#Suppress kill volume checks performed by unmanned vehicles (needed by RemoteStrike/power weapon ordnance)"),
-		OPTION("targetable when open#makes this targetable if it is in an open state"),
-		OPTION("vehicle wants to recieve reduced weapon acceleration when on ground#if set, vehicle will use all tag damage_effect->alt instantaneous acceleration fields if it is on the ground"),
-		OPTION("vehicle wants to recieve reduced weapon acceleration when airborne#if set, vehicle will use all tag damage_effect->alt instantaneous acceleration fields if it is airborne"),
-		OPTION("do not force units to exit when upside down"),
-		OPTION("vehicle creates enemy spawn influencers#Used for Dominion Sentry Turrets, which enemies should not spawn in range of"),
-		OPTION("driver cannot take damage"),
-		OPTION("player cannot flip vehicle#the player isn\'t allowed to flip the vehicle under any circumstances"),
-	};
-
-	TAG_ENUM(vehicle_size_enum, 2)
-	{
-		OPTION("small"),
-		OPTION("large"),
-	};
-
-	TAG_ENUM(alien_scout_specific_type_enum, 5)
-	{
-		OPTION("none"),
-		OPTION("ghost"),
-		OPTION("spectre"),
-		OPTION("wraith"),
-		OPTION("hover craft"),
-	};
-
-	TAG_ENUM(vehicle_type_enum, 15)
-	{
-		OPTION("vehicle_type_human_tank"),
-		OPTION("vehicle_type_human_jeep"),
-		OPTION("vehicle_type_human_plane"),
-		OPTION("vehicle_type_wolverine"),
-		OPTION("vehicle_type_alien_scout"),
-		OPTION("vehicle_type_alien_fighter"),
-		OPTION("vehicle_type_turret"),
-		OPTION("vehicle_type_mantis"),
-		OPTION("vehicle_type_vtol"),
-		OPTION("vehicle_type_chopper"),
-		OPTION("vehicle_type_guardian"),
-		OPTION("vehicle_type_jackal_glider"),
-		OPTION("vehicle_type_boat"),
-		OPTION("vehicle_type_space_fighter"),
-		OPTION("vehicle_type_revenant"),
-	};
-
-	TAG_ENUM(alien_scout_flags, 1)
-	{
-		OPTION("locked camera"),
-	};
-
-	TAG_ENUM(tank_flags, 3)
-	{
-		OPTION("Enable New Control"),
-		OPTION("Use Linear Velocity#Used to decide if we use linear velocity to calculate if we are in motion"),
-		OPTION("Use Angular Velocity#Used to decide if we use angular velocity to calculate if we are in motion"),
-	};
-
-	TAG_ENUM(dimensions_enum, 3)
-	{
-		OPTION("foward"),
-		OPTION("left"),
-		OPTION("up"),
-	};
-
-	TAG_ENUM(turret_flags, 6)
-	{
-		OPTION("powered by parent#this is basicly a flag for the wolverine.  This turret pops up when the wolverine activates"),
-		OPTION("idles in default position#this turret holds its default position instead of swinging freely when not controlled"),
-		OPTION("reverse yaw motor direction"),
-		OPTION("reverse pitch motor direction"),
-		OPTION("reverse elevate motor direction"),
-		OPTION("targetable when open"),
-	};
-
-	TAG_ENUM(boat_flags, 2)
-	{
-		OPTION("brick on throttle#use this for torpedoes"),
-		OPTION("use tank controls"),
-	};
-
-	TAG_ENUM(space_fighter_turn_back_flags, 1)
-	{
-		OPTION("turn back to tangent"),
-	};
-
-	TAG_ENUM(space_fighter_roll_flags, 1)
-	{
-		OPTION("use new roll"),
-	};
-
 	TAG_GROUP_INHERIT_FROM_BLOCK(vehicle, VEHICLE_TAG, unit, UNIT_TAG, vehicle_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(vehicle_block, 1, vehicle_group_struct_definition );
 
 	TAG_BLOCK_FROM_STRUCT(human_tank_block, 1, human_tank_struct_struct_definition );
 
@@ -288,6 +179,19 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(vtol_speed_interpolated_block, 2)
+	{
+		FIELD( _field_real, "rotor damping#maxes out around 30" ),
+		FIELD( _field_real, "maximum left acceleration" ),
+		FIELD( _field_real, "maximum forward acceleration" ),
+		FIELD( _field_real, "drag coeficient" ),
+		FIELD( _field_real, "constant deceleration" ),
+		FIELD( _field_real, "magic angular acc exp#magic force that torques vehicle back towards up" ),
+		FIELD( _field_real, "magic angular acc scale#magic force that torques vehicle back towards up" ),
+		FIELD( _field_real, "magic angular acc k#magic force that torques vehicle back towards up" ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(vtol_block, 1)
 	{
 		FIELD( _field_struct, "turning control", &vehicle_turning_control_struct_struct_definition ),
@@ -326,19 +230,6 @@ namespace blofeld
 		FIELD( _field_real, "takeoff time:s#how long it takes to leave the landed state" ),
 		FIELD( _field_real, "landing linear velocity:wu/s#must be under this linear velocity to enter/maintain landing state" ),
 		FIELD( _field_real, "landing angular velocity:rad/s#must be under this angular velocity to enter/maintain landing state" ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(vtol_speed_interpolated_block, 2)
-	{
-		FIELD( _field_real, "rotor damping#maxes out around 30" ),
-		FIELD( _field_real, "maximum left acceleration" ),
-		FIELD( _field_real, "maximum forward acceleration" ),
-		FIELD( _field_real, "drag coeficient" ),
-		FIELD( _field_real, "constant deceleration" ),
-		FIELD( _field_real, "magic angular acc exp#magic force that torques vehicle back towards up" ),
-		FIELD( _field_real, "magic angular acc scale#magic force that torques vehicle back towards up" ),
-		FIELD( _field_real, "magic angular acc k#magic force that torques vehicle back towards up" ),
 		FIELD( _field_terminator )
 	};
 
@@ -581,8 +472,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(vehicle_group)
-{
+	TAG_BLOCK_FROM_STRUCT(vehicle_block, 1, vehicle_group_struct_definition );
+
+	TAG_STRUCT(vehicle_group)
+	{
 		FIELD( _field_struct, "unit", &unit_struct_definition_struct_definition ),
 		FIELD( _field_custom, "$$$ VEHICLE $$$" ),
 		FIELD( _field_long_flags, "flags", &vehicle_flags ),
@@ -623,10 +516,10 @@ TAG_STRUCT(vehicle_group)
 		FIELD( _field_block, "physics transitions", &physics_transitions_block_block ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(vehicle_physics_types_struct)
-{
+	TAG_STRUCT(vehicle_physics_types_struct)
+	{
 		FIELD( _field_custom ),
 		FIELD( _field_block, "type-human_tank", &human_tank_block_block ),
 		FIELD( _field_block, "type-human_jeep", &human_jeep_block_block ),
@@ -645,10 +538,10 @@ TAG_STRUCT(vehicle_physics_types_struct)
 		FIELD( _field_block, "type-revenant", &revenant_block_block ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(human_tank_struct)
-{
+	TAG_STRUCT(human_tank_struct)
+	{
 		FIELD( _field_angle, "forward arc#outside of this arc the vehicle reverse direciton, around 110 degrees seems to be nice..." ),
 		FIELD( _field_angle, "perpendicular forward arc#this is the value of forward arc when turned sideways.  We interpolate from forward arc to this value when camera becomes perpendicular to the vehicle" ),
 		FIELD( _field_real, "flip window#seconds" ),
@@ -681,52 +574,52 @@ TAG_STRUCT(human_tank_struct)
 		FIELD( _field_real, "in motion opposing direction angle#when in motion the angle in which the control must be to start moving in the opposite direction" ),
 		FIELD( _field_real, "in motion speed#the speed a tank must reach before we consider it in motion, changing the control mode" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(vehicle_steering_control_struct)
-{
+	TAG_STRUCT(vehicle_steering_control_struct)
+	{
 		FIELD( _field_explanation, "steering overdampening" ),
 		FIELD( _field_real, "overdampen cusp angle:degrees" ),
 		FIELD( _field_real, "overdampen exponent" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(vehicle_turning_control_struct)
-{
+	TAG_STRUCT(vehicle_turning_control_struct)
+	{
 		FIELD( _field_explanation, "turning" ),
 		FIELD( _field_real, "maximum left turn" ),
 		FIELD( _field_real, "maximum right turn (negative)" ),
 		FIELD( _field_real, "turn rate" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(steering_animation_struct)
-{
+	TAG_STRUCT(steering_animation_struct)
+	{
 		FIELD( _field_explanation, "steering animation and interpolation\n" ),
 		FIELD( _field_real, "interpolation scale#1= heavy interp. of steering animations" ),
 		FIELD( _field_angle, "max angle#non-zero= max angle delta per frame" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(engine_function_struct)
-{
+	TAG_STRUCT(engine_function_struct)
+	{
 		FIELD( _field_string_id, "object function damage region#this is the name of the region by which we gauge the overall damage of the vehicle" ),
 		FIELD( _field_real, "min anti gravity engine speed#speed at which engine position funciton  moves.  value of 1 means goes from 0-1 in 1 second" ),
 		FIELD( _field_real, "max anti gravity engine speed#speed at which engine position funciton  moves.  value of 1 means goes from 0-1 in 1 second" ),
 		FIELD( _field_real, "engine speed acceleration#strictly used for object funtion. in 0-1 space" ),
 		FIELD( _field_real, "maximum vehicle speed#function is capped by speed of the vehicle. So when we slow down for any reason we see the function go down" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(vtol_descent_function_struct)
-{
+	TAG_STRUCT(vtol_descent_function_struct)
+	{
 		FIELD( _field_struct, "descent to boost", &scalar_function_named_struct_struct_definition ),
 		FIELD( _field_real, "max downward speed:wu/s" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(flight_surface_struct)
-{
+	TAG_STRUCT(flight_surface_struct)
+	{
 		FIELD( _field_char_enum, "offset axis", &dimensions_enum ),
 		FIELD( _field_char_enum, "pivot axis", &dimensions_enum ),
 		FIELD( _field_char_enum, "rotation axis", &dimensions_enum ),
@@ -740,16 +633,123 @@ TAG_STRUCT(flight_surface_struct)
 		FIELD( _field_angle, "maximum angle" ),
 		FIELD( _field_real, "render debug radius" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(jackal_glider_drag_struct)
-{
+	TAG_STRUCT(jackal_glider_drag_struct)
+	{
 		FIELD( _field_explanation, "drag" ),
 		FIELD( _field_real, "q" ),
 		FIELD( _field_real, "k" ),
 		FIELD( _field_real, "constant deceleration" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(vehicle_flags, 24)
+	{
+		OPTION("no friction w/driver"),
+		OPTION("autoaim when teamless"),
+		OPTION("ai weapon cannot rotate"),
+		OPTION("ai does not require driver"),
+		OPTION("ai driver enable"),
+		OPTION("ai driver flying"),
+		OPTION("ai driver can-sidestep"),
+		OPTION("ai driver hovering"),
+		OPTION("noncombat vehicle"),
+		OPTION("does not cause collision damage"),
+		OPTION("huge vehicle physics group"),
+		OPTION("enable wheelie-popping hack"),
+		OPTION("ai auto turret#will attempt to spawn Unit\'s \'spawned turret character\' to control this turret"),
+		OPTION("ai sentry turret"),
+		OPTION("ignore camera pitch"),
+		OPTION("auto turret#will be ignored if \'ai auto turret\' is set in campaign or survival"),
+		OPTION("ignore kill volumes#Suppress kill volume checks performed by unmanned vehicles (needed by RemoteStrike/power weapon ordnance)"),
+		OPTION("targetable when open#makes this targetable if it is in an open state"),
+		OPTION("vehicle wants to recieve reduced weapon acceleration when on ground#if set, vehicle will use all tag damage_effect->alt instantaneous acceleration fields if it is on the ground"),
+		OPTION("vehicle wants to recieve reduced weapon acceleration when airborne#if set, vehicle will use all tag damage_effect->alt instantaneous acceleration fields if it is airborne"),
+		OPTION("do not force units to exit when upside down"),
+		OPTION("vehicle creates enemy spawn influencers#Used for Dominion Sentry Turrets, which enemies should not spawn in range of"),
+		OPTION("driver cannot take damage"),
+		OPTION("player cannot flip vehicle#the player isn\'t allowed to flip the vehicle under any circumstances"),
+	};
+
+	TAG_ENUM(vehicle_size_enum, 2)
+	{
+		OPTION("small"),
+		OPTION("large"),
+	};
+
+	TAG_ENUM(alien_scout_specific_type_enum, 5)
+	{
+		OPTION("none"),
+		OPTION("ghost"),
+		OPTION("spectre"),
+		OPTION("wraith"),
+		OPTION("hover craft"),
+	};
+
+	TAG_ENUM(vehicle_type_enum, 15)
+	{
+		OPTION("vehicle_type_human_tank"),
+		OPTION("vehicle_type_human_jeep"),
+		OPTION("vehicle_type_human_plane"),
+		OPTION("vehicle_type_wolverine"),
+		OPTION("vehicle_type_alien_scout"),
+		OPTION("vehicle_type_alien_fighter"),
+		OPTION("vehicle_type_turret"),
+		OPTION("vehicle_type_mantis"),
+		OPTION("vehicle_type_vtol"),
+		OPTION("vehicle_type_chopper"),
+		OPTION("vehicle_type_guardian"),
+		OPTION("vehicle_type_jackal_glider"),
+		OPTION("vehicle_type_boat"),
+		OPTION("vehicle_type_space_fighter"),
+		OPTION("vehicle_type_revenant"),
+	};
+
+	TAG_ENUM(alien_scout_flags, 1)
+	{
+		OPTION("locked camera"),
+	};
+
+	TAG_ENUM(tank_flags, 3)
+	{
+		OPTION("Enable New Control"),
+		OPTION("Use Linear Velocity#Used to decide if we use linear velocity to calculate if we are in motion"),
+		OPTION("Use Angular Velocity#Used to decide if we use angular velocity to calculate if we are in motion"),
+	};
+
+	TAG_ENUM(dimensions_enum, 3)
+	{
+		OPTION("foward"),
+		OPTION("left"),
+		OPTION("up"),
+	};
+
+	TAG_ENUM(turret_flags, 6)
+	{
+		OPTION("powered by parent#this is basicly a flag for the wolverine.  This turret pops up when the wolverine activates"),
+		OPTION("idles in default position#this turret holds its default position instead of swinging freely when not controlled"),
+		OPTION("reverse yaw motor direction"),
+		OPTION("reverse pitch motor direction"),
+		OPTION("reverse elevate motor direction"),
+		OPTION("targetable when open"),
+	};
+
+	TAG_ENUM(boat_flags, 2)
+	{
+		OPTION("brick on throttle#use this for torpedoes"),
+		OPTION("use tank controls"),
+	};
+
+	TAG_ENUM(space_fighter_turn_back_flags, 1)
+	{
+		OPTION("turn back to tangent"),
+	};
+
+	TAG_ENUM(space_fighter_roll_flags, 1)
+	{
+		OPTION("use new roll"),
+	};
 
 } // namespace blofeld
 

@@ -3,6 +3,62 @@
 namespace blofeld
 {
 
+	constexpr unsigned long WEAPON_TAG = 'weap';
+
+	extern s_tag_struct_definition weapon_block_struct;
+	extern s_tag_block_definition weapon_block;
+	extern s_tag_group weapon_group;
+
+	extern s_tag_struct_definition melee_damage_parameters_block_block_struct;
+	extern s_tag_block_definition melee_damage_parameters_block_block;
+	extern s_tag_struct_definition globalAimAssistBlock_block_struct;
+	extern s_tag_block_definition globalAimAssistBlock_block;
+	extern s_tag_struct_definition globalAimSwimBlock_block_struct;
+	extern s_tag_block_definition globalAimSwimBlock_block;
+	extern s_tag_struct_definition weapon_first_person_interface_block_block_struct;
+	extern s_tag_block_definition weapon_first_person_interface_block_block;
+	extern s_tag_struct_definition magazine_objects_block_struct;
+	extern s_tag_block_definition magazine_objects_block;
+	extern s_tag_struct_definition magazines_block_struct;
+	extern s_tag_block_definition magazines_block;
+	extern s_tag_struct_definition weapon_trigger_charging_fire_fraction_block_struct;
+	extern s_tag_block_definition weapon_trigger_charging_fire_fraction_block;
+	extern s_tag_struct_definition weapon_triggers_block_struct;
+	extern s_tag_block_definition weapon_triggers_block;
+	extern s_tag_struct_definition projectileDistributionCustomVector_block_struct;
+	extern s_tag_block_definition projectileDistributionCustomVector_block;
+	extern s_tag_struct_definition weapon_barrel_function_block_block_struct;
+	extern s_tag_block_definition weapon_barrel_function_block_block;
+	extern s_tag_struct_definition weapon_barrel_first_person_offset_block_block_struct;
+	extern s_tag_block_definition weapon_barrel_first_person_offset_block_block;
+	extern s_tag_struct_definition barrel_firing_effect_block_block_struct;
+	extern s_tag_block_definition barrel_firing_effect_block_block;
+	extern s_tag_struct_definition weapon_barrels_block_struct;
+	extern s_tag_block_definition weapon_barrels_block;
+	extern s_tag_struct_definition weaponScaleshotLevelStruct_block_struct;
+	extern s_tag_block_definition weaponScaleshotLevelStruct_block;
+	extern s_tag_struct_definition weaponScaleshotStruct_block_struct;
+	extern s_tag_block_definition weaponScaleshotStruct_block;
+	extern s_tag_struct_definition weapon_screen_effect_block_block_struct;
+	extern s_tag_block_definition weapon_screen_effect_block_block;
+	extern s_tag_struct_definition WeaponSoundRTPCBlock_block_struct;
+	extern s_tag_block_definition WeaponSoundRTPCBlock_block;
+	extern s_tag_struct_definition WeaponSoundSweetenerBlock_block_struct;
+	extern s_tag_block_definition WeaponSoundSweetenerBlock_block;
+
+
+	extern s_tag_struct_definition aim_assist_struct_struct_definition;
+	extern s_tag_struct_definition WeaponBarrelIronSightsStruct_struct_definition;
+	extern s_tag_struct_definition weapon_interface_struct_struct_definition;
+	extern s_tag_struct_definition weapon_shared_interface_struct_struct_definition;
+	extern s_tag_struct_definition weapon_trigger_autofire_struct_struct_definition;
+	extern s_tag_struct_definition weapon_trigger_charging_struct_struct_definition;
+	extern s_tag_struct_definition weapon_barrel_firing_parameters_struct_struct_definition;
+	extern s_tag_struct_definition weapon_barrel_firing_error_struct_struct_definition;
+	extern s_tag_struct_definition weapon_barrel_projectile_accuracy_penalty_struct_struct_definition;
+	extern s_tag_struct_definition weapon_barrel_projectile_accuracy_penalty_function_struct_struct_definition;
+	extern s_tag_struct_definition weapon_barrel_damage_effect_struct_struct_definition;
+
 	extern const char* magazine_flags_strings[];
 	extern s_string_list_definition magazine_flags;
 	extern const char* barrel_prediction_type_enum_strings[];
@@ -45,61 +101,6 @@ namespace blofeld
 	extern s_string_list_definition weaponScaleshotLevelFlags;
 	extern const char* weaponScaleshotFlags_strings[];
 	extern s_string_list_definition weaponScaleshotFlags;
-
-	constexpr unsigned long WEAPON_TAG = 'weap';
-
-	extern s_tag_struct weapon_block_struct;
-	extern s_tag_block_definition weapon_block;
-	extern s_tag_group weapon_group;
-
-	extern s_tag_struct melee_damage_parameters_block_block_struct;
-	extern s_tag_block_definition melee_damage_parameters_block_block;
-	extern s_tag_struct globalAimAssistBlock_block_struct;
-	extern s_tag_block_definition globalAimAssistBlock_block;
-	extern s_tag_struct globalAimSwimBlock_block_struct;
-	extern s_tag_block_definition globalAimSwimBlock_block;
-	extern s_tag_struct weapon_first_person_interface_block_block_struct;
-	extern s_tag_block_definition weapon_first_person_interface_block_block;
-	extern s_tag_struct magazines_block_struct;
-	extern s_tag_block_definition magazines_block;
-	extern s_tag_struct magazine_objects_block_struct;
-	extern s_tag_block_definition magazine_objects_block;
-	extern s_tag_struct weapon_triggers_block_struct;
-	extern s_tag_block_definition weapon_triggers_block;
-	extern s_tag_struct weapon_trigger_charging_fire_fraction_block_struct;
-	extern s_tag_block_definition weapon_trigger_charging_fire_fraction_block;
-	extern s_tag_struct weapon_barrels_block_struct;
-	extern s_tag_block_definition weapon_barrels_block;
-	extern s_tag_struct projectileDistributionCustomVector_block_struct;
-	extern s_tag_block_definition projectileDistributionCustomVector_block;
-	extern s_tag_struct weapon_barrel_function_block_block_struct;
-	extern s_tag_block_definition weapon_barrel_function_block_block;
-	extern s_tag_struct weapon_barrel_first_person_offset_block_block_struct;
-	extern s_tag_block_definition weapon_barrel_first_person_offset_block_block;
-	extern s_tag_struct barrel_firing_effect_block_block_struct;
-	extern s_tag_block_definition barrel_firing_effect_block_block;
-	extern s_tag_struct weaponScaleshotStruct_block_struct;
-	extern s_tag_block_definition weaponScaleshotStruct_block;
-	extern s_tag_struct weaponScaleshotLevelStruct_block_struct;
-	extern s_tag_block_definition weaponScaleshotLevelStruct_block;
-	extern s_tag_struct weapon_screen_effect_block_block_struct;
-	extern s_tag_block_definition weapon_screen_effect_block_block;
-	extern s_tag_struct WeaponSoundRTPCBlock_block_struct;
-	extern s_tag_block_definition WeaponSoundRTPCBlock_block;
-	extern s_tag_struct WeaponSoundSweetenerBlock_block_struct;
-	extern s_tag_block_definition WeaponSoundSweetenerBlock_block;
-
-	extern s_tag_struct aim_assist_struct_struct_definition;
-	extern s_tag_struct WeaponBarrelIronSightsStruct_struct_definition;
-	extern s_tag_struct weapon_interface_struct_struct_definition;
-	extern s_tag_struct weapon_shared_interface_struct_struct_definition;
-	extern s_tag_struct weapon_trigger_autofire_struct_struct_definition;
-	extern s_tag_struct weapon_trigger_charging_struct_struct_definition;
-	extern s_tag_struct weapon_barrel_firing_parameters_struct_struct_definition;
-	extern s_tag_struct weapon_barrel_firing_error_struct_struct_definition;
-	extern s_tag_struct weapon_barrel_projectile_accuracy_penalty_struct_struct_definition;
-	extern s_tag_struct weapon_barrel_projectile_accuracy_penalty_function_struct_struct_definition;
-	extern s_tag_struct weapon_barrel_damage_effect_struct_struct_definition;
 
 } // namespace blofeld
 

@@ -3,24 +3,12 @@
 namespace blofeld
 {
 
-	TAG_ENUM(hud_sound_cue_flags, 16)
+	TAG_BLOCK(hud_unit_sound_cue_block, k_maximumHudUnitSoundCues)
 	{
-		OPTION("health recharging"),
-		OPTION("health minor damaged"),
-		OPTION("health major damaged"),
-		OPTION("health critical damaged"),
-		OPTION("health minor"),
-		OPTION("health major"),
-		OPTION("health critical"),
-		OPTION("shield recharging"),
-		OPTION("shield minor damaged"),
-		OPTION("shield major damaged"),
-		OPTION("shield critical damaged"),
-		OPTION("shield minor"),
-		OPTION("shield major"),
-		OPTION("shield critical"),
-		OPTION("player tracked"),
-		OPTION("player locked"),
+		FIELD( _field_tag_reference, "sound^" ),
+		FIELD( _field_long_flags, "latched to", &hud_sound_cue_flags ),
+		FIELD( _field_real, "scale" ),
+		FIELD( _field_terminator )
 	};
 
 	TAG_BLOCK(hud_unit_sound_block, 1)
@@ -39,12 +27,24 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(hud_unit_sound_cue_block, k_maximumHudUnitSoundCues)
+	TAG_ENUM(hud_sound_cue_flags, 16)
 	{
-		FIELD( _field_tag_reference, "sound^" ),
-		FIELD( _field_long_flags, "latched to", &hud_sound_cue_flags ),
-		FIELD( _field_real, "scale" ),
-		FIELD( _field_terminator )
+		OPTION("health recharging"),
+		OPTION("health minor damaged"),
+		OPTION("health major damaged"),
+		OPTION("health critical damaged"),
+		OPTION("health minor"),
+		OPTION("health major"),
+		OPTION("health critical"),
+		OPTION("shield recharging"),
+		OPTION("shield minor damaged"),
+		OPTION("shield major damaged"),
+		OPTION("shield critical damaged"),
+		OPTION("shield minor"),
+		OPTION("shield major"),
+		OPTION("shield critical"),
+		OPTION("player tracked"),
+		OPTION("player locked"),
 	};
 
 } // namespace blofeld

@@ -3,19 +3,12 @@
 namespace blofeld
 {
 
-	TAG_ENUM(shield_flags, 3)
-	{
-		OPTION("render always"),
-		OPTION("render first person"),
-		OPTION("dont render third person"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(shield_impact, SHIELD_IMPACT_TAG, shield_impact_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(shield_impact_block, 1, shield_impact_struct_definition_struct_definition );
 
-TAG_STRUCT(shield_impact_struct_definition)
-{
+	TAG_STRUCT(shield_impact_struct_definition)
+	{
 		FIELD( _field_explanation, "Shield Controls" ),
 		FIELD( _field_word_flags, "flags", &shield_flags ),
 		FIELD( _field_short_integer, "version!" ),
@@ -72,25 +65,32 @@ TAG_STRUCT(shield_impact_struct_definition)
 		FIELD( _field_real_quaternion, "plasma_scales!" ),
 		FIELD( _field_real_quaternion, "depth_fade_params!" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shield_color_function_struct)
-{
+	TAG_STRUCT(shield_color_function_struct)
+	{
 		FIELD( _field_string_id, "Input Variable!" ),
 		FIELD( _field_string_id, "Range Variable!" ),
 		FIELD( _field_custom ),
 		FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shield_scalar_function_struct)
-{
+	TAG_STRUCT(shield_scalar_function_struct)
+	{
 		FIELD( _field_string_id, "Input Variable!" ),
 		FIELD( _field_string_id, "Range Variable!" ),
 		FIELD( _field_custom ),
 		FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(shield_flags, 3)
+	{
+		OPTION("render always"),
+		OPTION("render first person"),
+		OPTION("dont render third person"),
+	};
 
 } // namespace blofeld
 

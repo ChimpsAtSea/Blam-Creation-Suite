@@ -13,7 +13,12 @@ protected:
 	const s_h4_tag_struct_definition* const struct_definition;
 public:
 	c_h4_tag_struct& tag_struct;
+	bool is_block;
+	bool is_array;
 
 	c_h4_tag_block(const char* h4_data, const s_h4_tag_block_definition* tag_block_definition_header, const s_h4_tag_group* tag_layout_header = nullptr);
+	c_h4_tag_block(const char* h4_data, const s_h4_tag_array_definition* tag_block_definition_header);
 
-};	
+};
+
+using c_h4_tag_array = c_h4_tag_block;

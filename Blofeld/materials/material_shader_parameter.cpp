@@ -3,33 +3,19 @@
 namespace blofeld
 {
 
-	TAG_ENUM(material_shader_parameter_type_enum, 5)
+	TAG_BLOCK(material_shader_function_parameter_block, s_material_shader_parameter::k_max_material_shader_parameters)
 	{
-		OPTION("bitmap"),
-		OPTION("real"),
-		OPTION("int"),
-		OPTION("bool"),
-		OPTION("color"),
-	};
-
-	TAG_ENUM(material_animated_parameter_type_enum, 9)
-	{
-		OPTION("value"),
-		OPTION("color"),
-		OPTION("scale uniform"),
-		OPTION("scale u"),
-		OPTION("scale v"),
-		OPTION("offset u"),
-		OPTION("offset v"),
-		OPTION("frame index"),
-		OPTION("alpha"),
-	};
-
-	TAG_ENUM(materialFunctionOutputModEnum, 3)
-	{
-		OPTION(" "),
-		OPTION("Add"),
-		OPTION("Multiply"),
+		FIELD( _field_long_enum, "type^", &material_animated_parameter_type_enum ),
+		FIELD( _field_string_id, "input name" ),
+		FIELD( _field_string_id, "range name" ),
+		FIELD( _field_char_enum, "Output Modifier!", &materialFunctionOutputModEnum ),
+		FIELD( _field_pad, "BVCG", 3 ),
+		FIELD( _field_string_id, "Output Modifier Input!" ),
+		FIELD( _field_real, "time period:seconds" ),
+		FIELD( _field_explanation, "FUNCTION" ),
+		FIELD( _field_custom ),
+		FIELD( _field_struct, "function", &mapping_function_struct_definition ),
+		FIELD( _field_terminator )
 	};
 
 	TAG_BLOCK(material_shader_parameter_block, s_material_shader_parameter::k_max_material_shader_parameters)
@@ -66,19 +52,33 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(material_shader_function_parameter_block, s_material_shader_parameter::k_max_material_shader_parameters)
+	TAG_ENUM(material_shader_parameter_type_enum, 5)
 	{
-		FIELD( _field_long_enum, "type^", &material_animated_parameter_type_enum ),
-		FIELD( _field_string_id, "input name" ),
-		FIELD( _field_string_id, "range name" ),
-		FIELD( _field_char_enum, "Output Modifier!", &materialFunctionOutputModEnum ),
-		FIELD( _field_pad, "BVCG", 3 ),
-		FIELD( _field_string_id, "Output Modifier Input!" ),
-		FIELD( _field_real, "time period:seconds" ),
-		FIELD( _field_explanation, "FUNCTION" ),
-		FIELD( _field_custom ),
-		FIELD( _field_struct, "function", &mapping_function_struct_definition ),
-		FIELD( _field_terminator )
+		OPTION("bitmap"),
+		OPTION("real"),
+		OPTION("int"),
+		OPTION("bool"),
+		OPTION("color"),
+	};
+
+	TAG_ENUM(material_animated_parameter_type_enum, 9)
+	{
+		OPTION("value"),
+		OPTION("color"),
+		OPTION("scale uniform"),
+		OPTION("scale u"),
+		OPTION("scale v"),
+		OPTION("offset u"),
+		OPTION("offset v"),
+		OPTION("frame index"),
+		OPTION("alpha"),
+	};
+
+	TAG_ENUM(materialFunctionOutputModEnum, 3)
+	{
+		OPTION(" "),
+		OPTION("Add"),
+		OPTION("Multiply"),
 	};
 
 } // namespace blofeld

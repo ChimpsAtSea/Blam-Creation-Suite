@@ -3,45 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(cue_flags, 2)
-	{
-		OPTION("not initially placed"),
-		OPTION("passive stimulus"),
-	};
-
-	TAG_ENUM(cue_template_flags, 2)
-	{
-		OPTION("ignored"),
-		OPTION("passive stimulus"),
-	};
-
-	TAG_ENUM(quick_cue_flags, 1)
-	{
-		OPTION("don\'t distribute to children"),
-	};
-
-	TAG_ENUM(distribution_character_flags, 1)
-	{
-		OPTION("don\'t distribute to children"),
-	};
-
-	TAG_ENUM(combat_cue_preference_enum, 3)
-	{
-		OPTION("low"),
-		OPTION("high"),
-		OPTION("total"),
-	};
-
-	TAG_BLOCK(ai_cue_template_block, k_max_ai_cue_templates)
-	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_long_flags, "template_flags", &cue_template_flags ),
-		FIELD( _field_block, "firing points", &firing_point_payload_block_block ),
-		FIELD( _field_block, "stimulus", &stimulus_payload_block_block ),
-		FIELD( _field_block, "combat cue", &combat_cue_payload_block_block ),
-		FIELD( _field_terminator )
-	};
-
 	TAG_BLOCK(firing_point_payload_block, 1)
 	{
 		FIELD( _field_real, "radius" ),
@@ -74,24 +35,13 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(ai_cue_block, k_max_ai_cues_per_level)
+	TAG_BLOCK(ai_cue_template_block, k_max_ai_cue_templates)
 	{
 		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_byte_flags, "flags", &cue_flags ),
-		FIELD( _field_char_integer, "quick cue*!" ),
-		FIELD( _field_short_integer, "editor folder!" ),
-		FIELD( _field_real_point_3d, "position!" ),
-		FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),
-		FIELD( _field_custom_long_block_index, "navMeshUIDOffaceref~!" ),
-		FIELD( _field_real_euler_angles_2d, "facing (yaw, pitch):degrees" ),
-		FIELD( _field_real, "roll" ),
-		FIELD( _field_custom, "distribution" ),
-		FIELD( _field_struct, "distribution", &cue_distribution_struct_struct_definition ),
-		FIELD( _field_custom ),
-		FIELD( _field_custom, "payload" ),
-		FIELD( _field_struct, "payload", &cue_payload_struct_struct_definition ),
-		FIELD( _field_custom ),
-		FIELD( _field_pad, "no-cue-definition-index", 4 ),
+		FIELD( _field_long_flags, "template_flags", &cue_template_flags ),
+		FIELD( _field_block, "firing points", &firing_point_payload_block_block ),
+		FIELD( _field_block, "stimulus", &stimulus_payload_block_block ),
+		FIELD( _field_block, "combat cue", &combat_cue_payload_block_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -144,6 +94,27 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(ai_cue_block, k_max_ai_cues_per_level)
+	{
+		FIELD( _field_string_id, "name^" ),
+		FIELD( _field_byte_flags, "flags", &cue_flags ),
+		FIELD( _field_char_integer, "quick cue*!" ),
+		FIELD( _field_short_integer, "editor folder!" ),
+		FIELD( _field_real_point_3d, "position!" ),
+		FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),
+		FIELD( _field_custom_long_block_index, "navMeshUIDOffaceref~!" ),
+		FIELD( _field_real_euler_angles_2d, "facing (yaw, pitch):degrees" ),
+		FIELD( _field_real, "roll" ),
+		FIELD( _field_custom, "distribution" ),
+		FIELD( _field_struct, "distribution", &cue_distribution_struct_struct_definition ),
+		FIELD( _field_custom ),
+		FIELD( _field_custom, "payload" ),
+		FIELD( _field_struct, "payload", &cue_payload_struct_struct_definition ),
+		FIELD( _field_custom ),
+		FIELD( _field_pad, "no-cue-definition-index", 4 ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(ai_full_cue_block, k_max_ai_cues_per_level)
 	{
 		FIELD( _field_string_id, "name^" ),
@@ -186,31 +157,60 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(cue_distribution_struct)
-{
+	TAG_STRUCT(cue_distribution_struct)
+	{
 		FIELD( _field_block, "tasks*!", &task_distribution_block_block ),
 		FIELD( _field_struct, "distribution", &cue_stimulus_distribution_struct_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(cue_stimulus_distribution_struct)
-{
+	TAG_STRUCT(cue_stimulus_distribution_struct)
+	{
 		FIELD( _field_block, "radius", &radial_distribution_block_block ),
 		FIELD( _field_block, "probability", &probability_distribution_block_block ),
 		FIELD( _field_block, "characters", &character_distribution_block_block ),
 		FIELD( _field_block, "weapons", &weapon_distribution_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(cue_payload_struct)
-{
+	TAG_STRUCT(cue_payload_struct)
+	{
 		FIELD( _field_block, "firing points", &firing_point_payload_block_block ),
 		FIELD( _field_block, "script", &script_payload_block_block ),
 		FIELD( _field_block, "combat sync action", &combat_sync_action_group_payload_block_block ),
 		FIELD( _field_block, "stimulus", &stimulus_payload_block_block ),
 		FIELD( _field_block, "combat cue", &combat_cue_payload_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(cue_flags, 2)
+	{
+		OPTION("not initially placed"),
+		OPTION("passive stimulus"),
+	};
+
+	TAG_ENUM(cue_template_flags, 2)
+	{
+		OPTION("ignored"),
+		OPTION("passive stimulus"),
+	};
+
+	TAG_ENUM(quick_cue_flags, 1)
+	{
+		OPTION("don\'t distribute to children"),
+	};
+
+	TAG_ENUM(distribution_character_flags, 1)
+	{
+		OPTION("don\'t distribute to children"),
+	};
+
+	TAG_ENUM(combat_cue_preference_enum, 3)
+	{
+		OPTION("low"),
+		OPTION("high"),
+		OPTION("total"),
+	};
 
 } // namespace blofeld
 

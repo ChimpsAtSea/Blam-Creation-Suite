@@ -3,122 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(structure_material_lighting_info_flags, 3)
-	{
-		OPTION("reserved{use attenuation}"),
-		OPTION("power per unit area"),
-		OPTION("use shader gel"),
-	};
-
-	TAG_ENUM(structure_bsp_cluster_portal_flags_definition, 6)
-	{
-		OPTION("ai can\'t hear through this shit"),
-		OPTION("one-way"),
-		OPTION("door"),
-		OPTION("no-way"),
-		OPTION("one-way-reversed"),
-		OPTION("no one can hear through this"),
-	};
-
-	TAG_ENUM(structure_cluster_flags, 5)
-	{
-		OPTION("one way portal"),
-		OPTION("door portal"),
-		OPTION("postprocessed geometry"),
-		OPTION("is the sky"),
-		OPTION("decorators are lit"),
-	};
-
-	TAG_ENUM(structure_collision_materialg_flags, 1)
-	{
-		OPTION("is seam"),
-	};
-
-	TAG_ENUM(structure_marker_type_enum, 6)
-	{
-		OPTION("none"),
-		OPTION("cheap light"),
-		OPTION("falling leaf generator"),
-		OPTION("light"),
-		OPTION("sky (unused)"),
-		OPTION("model"),
-	};
-
-	TAG_ENUM(environmentObjectFlagsDefinition, 1)
-	{
-		OPTION("scripts always run"),
-	};
-
-	TAG_ENUM(structure_super_node_mapping_flags, 1)
-	{
-		OPTION("above"),
-	};
-
-	TAG_ENUM(structure_bsp_debug_info_cluster_error_flags, 3)
-	{
-		OPTION("multiple fog planes"),
-		OPTION("fog zone collision"),
-		OPTION("fog zone immersion"),
-	};
-
-	TAG_ENUM(structure_bsp_debug_info_cluster_warning_flags, 3)
-	{
-		OPTION("multiple visible fog planes"),
-		OPTION("visible fog cluster omission"),
-		OPTION("fog plane missed render-bsp"),
-	};
-
-	TAG_ENUM(structure_bsp_debug_info_render_line_type_enum, 7)
-	{
-		OPTION("fog plane boundary edge"),
-		OPTION("fog plane internal edge"),
-		OPTION("fog zone floodfill"),
-		OPTION("fog zone cluster centroid"),
-		OPTION("fog zone cluster geometry"),
-		OPTION("fog zone portal centroid"),
-		OPTION("fog zone portal geometry"),
-	};
-
-	TAG_ENUM(structure_bsp_flags_definition, 6)
-	{
-		OPTION("has instance groups"),
-		OPTION("surface to triangle mapping remapped*"),
-		OPTION("external references converted to io"),
-		OPTION("structure mopp needs rebuilt"),
-		OPTION("structure prefab materials need postprocessing"),
-		OPTION("serialized havok data converted to target platform"),
-	};
-
-	TAG_ENUM(structure_bsp_content_policy_flag, 2)
-	{
-		OPTION("has working pathfinding"),
-		OPTION("convex decomposition enabled"),
-	};
-
-	TAG_ENUM(structure_instance_cluster_flags, 1)
-	{
-		OPTION("optimized mopp"),
-	};
-
-	TAG_ENUM(structure_instance_group_flags, 4)
-	{
-		OPTION("contains card imposters"),
-		OPTION("contains poly imposters"),
-		OPTION("is decorator type"),
-		OPTION("optimized mopp"),
-	};
-
-	TAG_ENUM(prefabOverrideFlags, 7)
-	{
-		OPTION("override pathfinding policy"),
-		OPTION("override lightmapping policy"),
-		OPTION("override lmposter policy"),
-		OPTION("override lightmap resolution policy"),
-		OPTION("override imposter transition distance policy"),
-		OPTION("override light channel flags policy"),
-		OPTION("override imposter brightness"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(prefab, PREFAB_TAG, prefab_block_block );
 
 	TAG_GROUP(scenario_structure_bsp, SCENARIO_STRUCTURE_BSP_TAG)
@@ -264,16 +148,16 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(structure_super_node_traversal_geometry_indices_block, ((MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)>(k_structure_seam_maximum_seam_count)?(MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE):(k_structure_seam_maximum_seam_count)))
+	{
+		FIELD( _field_short_integer, "index!*" ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(structure_super_node_traversal_geometry_block, k_short_max)
 	{
 		FIELD( _field_block, "portal_indices!*", &structure_super_node_traversal_geometry_indices_block_block ),
 		FIELD( _field_block, "seam_indices!*", &structure_super_node_traversal_geometry_indices_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(structure_super_node_traversal_geometry_indices_block, ((MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)>(k_structure_seam_maximum_seam_count)?(MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE):(k_structure_seam_maximum_seam_count)))
-	{
-		FIELD( _field_short_integer, "index!*" ),
 		FIELD( _field_terminator )
 	};
 
@@ -290,6 +174,12 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(structure_bsp_cluster_portal_vertex_block, MAXIMUM_VERTICES_PER_CLUSTER_PORTAL)
+	{
+		FIELD( _field_real_point_3d, "point*" ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(structure_bsp_cluster_portal_block, MAXIMUM_CLUSTER_PORTALS_PER_STRUCTURE)
 	{
 		FIELD( _field_struct, "oriented bounds", &structure_bsp_cluster_portal_oriented_bounds_block_struct_definition ),
@@ -303,12 +193,6 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(structure_bsp_cluster_portal_vertex_block, MAXIMUM_VERTICES_PER_CLUSTER_PORTAL)
-	{
-		FIELD( _field_real_point_3d, "point*" ),
-		FIELD( _field_terminator )
-	};
-
 	TAG_BLOCK(structure_bsp_detail_object_data_block, 1)
 	{
 		FIELD( _field_block, "cells", &global_detail_object_cells_block_block ),
@@ -317,35 +201,6 @@ namespace blofeld
 		FIELD( _field_block, "z reference vectors", &global_z_reference_vector_block_block ),
 		FIELD( _field_pad, "KXILLD", 1 ),
 		FIELD( _field_pad, "EDFPN", 3 ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(structure_bsp_cluster_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
-	{
-		FIELD( _field_explanation, "CLUSTER INFO" ),
-		FIELD( _field_real_bounds, "bounds x*" ),
-		FIELD( _field_real_bounds, "bounds y*" ),
-		FIELD( _field_real_bounds, "bounds z*" ),
-		FIELD( _field_pad, "DING", 1 ),
-		FIELD( _field_char_integer, "atmosphere index*" ),
-		FIELD( _field_char_integer, "camera fx index*" ),
-		FIELD( _field_char_integer, "weather index*" ),
-		FIELD( _field_short_block_index, "acoustics*" ),
-		FIELD( _field_short_integer, "acoustics sound cluster index" ),
-		FIELD( _field_short_integer, "runtime first decal index!" ),
-		FIELD( _field_short_integer, "runtime decal cound!" ),
-		FIELD( _field_word_flags, "flags", &structure_cluster_flags ),
-		FIELD( _field_pad, "ERERRFQ", 2 ),
-		FIELD( _field_block, "predicted resources*", &g_null_block_block ),
-		FIELD( _field_block, "portals*", &structure_bsp_cluster_portal_index_block_block ),
-		FIELD( _field_short_integer, "mesh index*" ),
-		FIELD( _field_short_integer, "instance imposter cluster mopp index" ),
-		FIELD( _field_block, "seam indices*!", &seam_indices_block_definition_block ),
-		FIELD( _field_block, "decorator groups*", &decorator_runtime_cluster_block_block ),
-		FIELD( _field_block, "cheap light marker refs*", &cheap_light_marker_ref_block_block ),
-		FIELD( _field_block, "pvs bound object identifiers*!", &pvs_bound_object_identifiers_block_block ),
-		FIELD( _field_block, "pvs bound object references*!", &pvs_bound_object_references_block_block ),
-		FIELD( _field_block, "cluster cubemaps", &structure_cluster_cubemap_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -377,6 +232,35 @@ namespace blofeld
 	TAG_BLOCK(pvs_bound_object_references_block, k_maximum_scenario_object_datum_count)
 	{
 		FIELD( _field_struct, "scenario object reference*!", &scenario_object_reference_struct_struct_definition ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(structure_bsp_cluster_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	{
+		FIELD( _field_explanation, "CLUSTER INFO" ),
+		FIELD( _field_real_bounds, "bounds x*" ),
+		FIELD( _field_real_bounds, "bounds y*" ),
+		FIELD( _field_real_bounds, "bounds z*" ),
+		FIELD( _field_pad, "DING", 1 ),
+		FIELD( _field_char_integer, "atmosphere index*" ),
+		FIELD( _field_char_integer, "camera fx index*" ),
+		FIELD( _field_char_integer, "weather index*" ),
+		FIELD( _field_short_block_index, "acoustics*" ),
+		FIELD( _field_short_integer, "acoustics sound cluster index" ),
+		FIELD( _field_short_integer, "runtime first decal index!" ),
+		FIELD( _field_short_integer, "runtime decal cound!" ),
+		FIELD( _field_word_flags, "flags", &structure_cluster_flags ),
+		FIELD( _field_pad, "ERERRFQ", 2 ),
+		FIELD( _field_block, "predicted resources*", &g_null_block_block ),
+		FIELD( _field_block, "portals*", &structure_bsp_cluster_portal_index_block_block ),
+		FIELD( _field_short_integer, "mesh index*" ),
+		FIELD( _field_short_integer, "instance imposter cluster mopp index" ),
+		FIELD( _field_block, "seam indices*!", &seam_indices_block_definition_block ),
+		FIELD( _field_block, "decorator groups*", &decorator_runtime_cluster_block_block ),
+		FIELD( _field_block, "cheap light marker refs*", &cheap_light_marker_ref_block_block ),
+		FIELD( _field_block, "pvs bound object identifiers*!", &pvs_bound_object_identifiers_block_block ),
+		FIELD( _field_block, "pvs bound object references*!", &pvs_bound_object_references_block_block ),
+		FIELD( _field_block, "cluster cubemaps", &structure_cluster_cubemap_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -473,16 +357,16 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(index_list_block, 4 * k_kilo)
+	{
+		FIELD( _field_word_integer, "index" ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(structure_instance_cluster_definition, k_maximum_cluster_to_instance_group_block_size)
 	{
 		FIELD( _field_long_flags, "flags", &structure_instance_cluster_flags ),
 		FIELD( _field_block, "instance group indices", &index_list_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(index_list_block, 4 * k_kilo)
-	{
-		FIELD( _field_word_integer, "index" ),
 		FIELD( _field_terminator )
 	};
 
@@ -552,28 +436,6 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(structure_bsp_debug_info_block, 1)
-	{
-		FIELD( _field_pad, "BRQYEF", 64 ),
-		FIELD( _field_block, "clusters*", &structure_bsp_cluster_debug_info_block_block ),
-		FIELD( _field_block, "fog planes*", &structure_bsp_fog_plane_debug_info_block_block ),
-		FIELD( _field_block, "fog zones*", &structure_bsp_fog_zone_debug_info_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(structure_bsp_cluster_debug_info_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
-	{
-		FIELD( _field_word_flags, "errors*", &structure_bsp_debug_info_cluster_error_flags ),
-		FIELD( _field_word_flags, "warnings*", &structure_bsp_debug_info_cluster_warning_flags ),
-		FIELD( _field_pad, "KHWRB", 28 ),
-		FIELD( _field_block, "lines*", &structure_bsp_debug_info_render_line_block_block ),
-		FIELD( _field_block, "fog plane indices*", &structure_bsp_debug_info_indices_block_block ),
-		FIELD( _field_block, "visible fog plane indices*", &structure_bsp_debug_info_indices_block_block ),
-		FIELD( _field_block, "vis-fog omission cluster indices*", &structure_bsp_debug_info_indices_block_block ),
-		FIELD( _field_block, "containing fog zone indices*", &structure_bsp_debug_info_indices_block_block ),
-		FIELD( _field_terminator )
-	};
-
 	TAG_BLOCK(structure_bsp_debug_info_render_line_block, SHORT_MAX)
 	{
 		FIELD( _field_enum, "type*", &structure_bsp_debug_info_render_line_type_enum ),
@@ -588,6 +450,19 @@ namespace blofeld
 	TAG_BLOCK(structure_bsp_debug_info_indices_block, SHORT_MAX)
 	{
 		FIELD( _field_long_integer, "index*" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(structure_bsp_cluster_debug_info_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
+	{
+		FIELD( _field_word_flags, "errors*", &structure_bsp_debug_info_cluster_error_flags ),
+		FIELD( _field_word_flags, "warnings*", &structure_bsp_debug_info_cluster_warning_flags ),
+		FIELD( _field_pad, "KHWRB", 28 ),
+		FIELD( _field_block, "lines*", &structure_bsp_debug_info_render_line_block_block ),
+		FIELD( _field_block, "fog plane indices*", &structure_bsp_debug_info_indices_block_block ),
+		FIELD( _field_block, "visible fog plane indices*", &structure_bsp_debug_info_indices_block_block ),
+		FIELD( _field_block, "vis-fog omission cluster indices*", &structure_bsp_debug_info_indices_block_block ),
+		FIELD( _field_block, "containing fog zone indices*", &structure_bsp_debug_info_indices_block_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -611,6 +486,15 @@ namespace blofeld
 		FIELD( _field_block, "immersed cluster indices*", &structure_bsp_debug_info_indices_block_block ),
 		FIELD( _field_block, "bounding fog plane indices*", &structure_bsp_debug_info_indices_block_block ),
 		FIELD( _field_block, "collision fog plane indices*", &structure_bsp_debug_info_indices_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(structure_bsp_debug_info_block, 1)
+	{
+		FIELD( _field_pad, "BRQYEF", 64 ),
+		FIELD( _field_block, "clusters*", &structure_bsp_cluster_debug_info_block_block ),
+		FIELD( _field_block, "fog planes*", &structure_bsp_fog_plane_debug_info_block_block ),
+		FIELD( _field_block, "fog zones*", &structure_bsp_fog_zone_debug_info_block_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -705,37 +589,153 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(prefab_struct_definition)
-{
+	TAG_STRUCT(prefab_struct_definition)
+	{
 		FIELD( _field_tag_reference, "bsp reference" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(structure_bsp_cluster_portal_oriented_bounds_block)
-{
+	TAG_STRUCT(structure_bsp_cluster_portal_oriented_bounds_block)
+	{
 		FIELD( _field_real_point_3d, "center*!" ),
 		FIELD( _field_real_vector_3d, "extents*!" ),
 		FIELD( _field_real_quaternion, "orientation*!" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(structure_bsp_resource_interface)
-{
+	TAG_STRUCT(structure_bsp_resource_interface)
+	{
 		FIELD( _field_block, "raw_resources", &structure_bsp_raw_resources_block ),
 		FIELD( _field_pageable, "tag_resources" ),
 		FIELD( _field_pageable, "cache_file_resources" ),
 		FIELD( _field_long_integer, "use resource items*" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(structure_bsp_resource_struct)
-{
+	TAG_STRUCT(structure_bsp_resource_struct)
+	{
 		FIELD( _field_block, "collision bsp*", &global_collision_bsp_block_block ),
 		FIELD( _field_block, "large collision bsp*", &global_large_collision_bsp_block_block ),
 		FIELD( _field_block, "instanced geometries definitions*", &structure_bsp_instanced_geometry_definition_block_block ),
 		FIELD( _field_block, "Havok Data*", &structureIOHavokDataBlock_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(structure_material_lighting_info_flags, 3)
+	{
+		OPTION("reserved{use attenuation}"),
+		OPTION("power per unit area"),
+		OPTION("use shader gel"),
+	};
+
+	TAG_ENUM(structure_bsp_cluster_portal_flags_definition, 6)
+	{
+		OPTION("ai can\'t hear through this shit"),
+		OPTION("one-way"),
+		OPTION("door"),
+		OPTION("no-way"),
+		OPTION("one-way-reversed"),
+		OPTION("no one can hear through this"),
+	};
+
+	TAG_ENUM(structure_cluster_flags, 5)
+	{
+		OPTION("one way portal"),
+		OPTION("door portal"),
+		OPTION("postprocessed geometry"),
+		OPTION("is the sky"),
+		OPTION("decorators are lit"),
+	};
+
+	TAG_ENUM(structure_collision_materialg_flags, 1)
+	{
+		OPTION("is seam"),
+	};
+
+	TAG_ENUM(structure_marker_type_enum, 6)
+	{
+		OPTION("none"),
+		OPTION("cheap light"),
+		OPTION("falling leaf generator"),
+		OPTION("light"),
+		OPTION("sky (unused)"),
+		OPTION("model"),
+	};
+
+	TAG_ENUM(environmentObjectFlagsDefinition, 1)
+	{
+		OPTION("scripts always run"),
+	};
+
+	TAG_ENUM(structure_super_node_mapping_flags, 1)
+	{
+		OPTION("above"),
+	};
+
+	TAG_ENUM(structure_bsp_debug_info_cluster_error_flags, 3)
+	{
+		OPTION("multiple fog planes"),
+		OPTION("fog zone collision"),
+		OPTION("fog zone immersion"),
+	};
+
+	TAG_ENUM(structure_bsp_debug_info_cluster_warning_flags, 3)
+	{
+		OPTION("multiple visible fog planes"),
+		OPTION("visible fog cluster omission"),
+		OPTION("fog plane missed render-bsp"),
+	};
+
+	TAG_ENUM(structure_bsp_debug_info_render_line_type_enum, 7)
+	{
+		OPTION("fog plane boundary edge"),
+		OPTION("fog plane internal edge"),
+		OPTION("fog zone floodfill"),
+		OPTION("fog zone cluster centroid"),
+		OPTION("fog zone cluster geometry"),
+		OPTION("fog zone portal centroid"),
+		OPTION("fog zone portal geometry"),
+	};
+
+	TAG_ENUM(structure_bsp_flags_definition, 6)
+	{
+		OPTION("has instance groups"),
+		OPTION("surface to triangle mapping remapped*"),
+		OPTION("external references converted to io"),
+		OPTION("structure mopp needs rebuilt"),
+		OPTION("structure prefab materials need postprocessing"),
+		OPTION("serialized havok data converted to target platform"),
+	};
+
+	TAG_ENUM(structure_bsp_content_policy_flag, 2)
+	{
+		OPTION("has working pathfinding"),
+		OPTION("convex decomposition enabled"),
+	};
+
+	TAG_ENUM(structure_instance_cluster_flags, 1)
+	{
+		OPTION("optimized mopp"),
+	};
+
+	TAG_ENUM(structure_instance_group_flags, 4)
+	{
+		OPTION("contains card imposters"),
+		OPTION("contains poly imposters"),
+		OPTION("is decorator type"),
+		OPTION("optimized mopp"),
+	};
+
+	TAG_ENUM(prefabOverrideFlags, 7)
+	{
+		OPTION("override pathfinding policy"),
+		OPTION("override lightmapping policy"),
+		OPTION("override lmposter policy"),
+		OPTION("override lightmap resolution policy"),
+		OPTION("override imposter transition distance policy"),
+		OPTION("override light channel flags policy"),
+		OPTION("override imposter brightness"),
+	};
 
 } // namespace blofeld
 

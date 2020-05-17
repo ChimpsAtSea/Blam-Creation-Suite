@@ -3,27 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(look_up_table_flags_definition, 1)
-	{
-		OPTION("interpolate"),
-	};
-
-	TAG_ENUM(equalizer_band_type_definition, 5)
-	{
-		OPTION("band pass"),
-		OPTION("low shelf"),
-		OPTION("high shelf"),
-		OPTION("low pass"),
-		OPTION("high pass"),
-	};
-
-	TAG_ENUM(radio_mix_setting_definition, 3)
-	{
-		OPTION("full#full unspatialized radio effect"),
-		OPTION("3d#mixes in the unspatialized radio effect with distance"),
-		OPTION("none#essentially turns off the radio effect!"),
-	};
-
 	TAG_GROUP(sound_radio_settings, SOUND_RADIO_SETTINGS_TAG)
 	{
 		FIELD( _field_explanation, "mix settings" ),
@@ -47,17 +26,17 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(global_sound_lowpass_block)
-{
+	TAG_STRUCT(global_sound_lowpass_block)
+	{
 		FIELD( _field_custom, "cutoff frequency:Hz" ),
 		FIELD( _field_real, "cutoff frequency:Hz" ),
 		FIELD( _field_custom, "output gain:dB" ),
 		FIELD( _field_real, "output gain:dB" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(global_sound_reverb_block)
-{
+	TAG_STRUCT(global_sound_reverb_block)
+	{
 		FIELD( _field_custom, "room intensity:dB#intensity of the room effect" ),
 		FIELD( _field_real, "room intensity:dB#intensity of the room effect" ),
 		FIELD( _field_custom, "room intensity hf:dB#intensity of the room effect above the reference high frequency" ),
@@ -91,27 +70,48 @@ TAG_STRUCT(global_sound_reverb_block)
 		FIELD( _field_custom, "Player wet mix value#0 to 1 with 0 being none, and 1 being full." ),
 		FIELD( _field_real, "Player wet mix value#0 to 1 with 0 being none, and 1 being full." ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(global_sound_look_up_table_distortion_block)
-{
+	TAG_STRUCT(global_sound_look_up_table_distortion_block)
+	{
 		FIELD( _field_custom, "table size" ),
 		FIELD( _field_long_integer, "table size" ),
 		FIELD( _field_custom, "noise amount" ),
 		FIELD( _field_real, "noise amount" ),
 		FIELD( _field_long_flags, "flags", &look_up_table_flags_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(global_sound_equalizer_block)
-{
+	TAG_STRUCT(global_sound_equalizer_block)
+	{
 		FIELD( _field_custom, "input gain:dB" ),
 		FIELD( _field_real, "input gain:dB" ),
 		FIELD( _field_custom, "output gain:dB" ),
 		FIELD( _field_real, "output gain:dB" ),
 		FIELD( _field_block, "band settings", &sound_equalizer_band_settings_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(look_up_table_flags_definition, 1)
+	{
+		OPTION("interpolate"),
+	};
+
+	TAG_ENUM(equalizer_band_type_definition, 5)
+	{
+		OPTION("band pass"),
+		OPTION("low shelf"),
+		OPTION("high shelf"),
+		OPTION("low pass"),
+		OPTION("high pass"),
+	};
+
+	TAG_ENUM(radio_mix_setting_definition, 3)
+	{
+		OPTION("full#full unspatialized radio effect"),
+		OPTION("3d#mixes in the unspatialized radio effect with distance"),
+		OPTION("none#essentially turns off the radio effect!"),
+	};
 
 } // namespace blofeld
 

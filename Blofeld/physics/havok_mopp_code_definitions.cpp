@@ -3,6 +3,12 @@
 namespace blofeld
 {
 
+	TAG_BLOCK(mopp_code_data_definition_block, 16*(1024*1024))
+	{
+		FIELD( _field_byte_integer, "mopp data*!" ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(mopp_code_definition_block, SHORT_MAX)
 	{
 		FIELD( _field_long_integer, "field pointer skip!~" ),
@@ -23,12 +29,6 @@ namespace blofeld
 		FIELD( _field_custom ),
 		FIELD( _field_char_integer, "mopp build type!*#they say it only matters for ps3" ),
 		FIELD( _field_pad, "explicit alignment pad 3", 3 ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(mopp_code_data_definition_block, 16*(1024*1024))
-	{
-		FIELD( _field_byte_integer, "mopp data*!" ),
 		FIELD( _field_terminator )
 	};
 

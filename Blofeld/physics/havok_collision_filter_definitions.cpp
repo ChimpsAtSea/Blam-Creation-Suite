@@ -3,44 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(collision_filter_enum, 31)
-	{
-		OPTION("everything"),
-		OPTION("environment default"),
-		OPTION("environment only"),
-		OPTION("small crate"),
-		OPTION("crate"),
-		OPTION("huge crate"),
-		OPTION("item"),
-		OPTION("projectile"),
-		OPTION("machine"),
-		OPTION("early mover machine"),
-		OPTION("creature"),
-		OPTION("biped"),
-		OPTION("dead biped"),
-		OPTION("super collidable ragdoll"),
-		OPTION("ragdoll"),
-		OPTION("vehicle"),
-		OPTION("decal"),
-		OPTION("forge dynamic scenary"),
-		OPTION("small expensive plant"),
-		OPTION("tech art custom"),
-		OPTION("proxy"),
-		OPTION("huge vehicle"),
-		OPTION("ignore environment"),
-		OPTION("character posture"),
-		OPTION("item blocker"),
-		OPTION("user00"),
-		OPTION("zero extent"),
-		OPTION("physical projectile"),
-		OPTION("environment invisible wall"),
-		OPTION("environment play collision"),
-		OPTION("environment bullet collision"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(havok_collision_filter, HAVOK_COLLISION_FILTER_TAG, havok_collision_filter_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(havok_collision_filter_block, 1, havok_collision_filter_struct_definition_struct_definition );
 
 	TAG_BLOCK(havok_collision_filter_group_block, k_havok_group_count)
 	{
@@ -48,17 +11,19 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(havok_collision_filter_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(havok_collision_filter_block, 1, havok_collision_filter_struct_definition_struct_definition );
+
+	TAG_STRUCT(havok_collision_filter_struct_definition)
+	{
 		FIELD( _field_explanation, "specify what each group collides with" ),
 		FIELD( _field_block, "groups", &havok_collision_filter_group_block_block ),
 		FIELD( _field_pad, "alignment_pad", 4 ),
 		FIELD( _field_struct, "group filter*!", &havok_group_filter_filter_struct_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(havok_group_filter_filter_struct)
-{
+	TAG_STRUCT(havok_group_filter_filter_struct)
+	{
 		FIELD( _field_long_integer, "hkReferencedObject vtable*~!" ),
 		FIELD( _field_short_integer, "size*~!" ),
 		FIELD( _field_short_integer, "count*~!" ),
@@ -112,7 +77,42 @@ TAG_STRUCT(havok_group_filter_filter_struct)
 		FIELD( _field_real_vector_3d, "m_pad256[3]*~!" ),
 		FIELD( _field_real, "havok w m_pad256[3]*~!!" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(collision_filter_enum, 31)
+	{
+		OPTION("everything"),
+		OPTION("environment default"),
+		OPTION("environment only"),
+		OPTION("small crate"),
+		OPTION("crate"),
+		OPTION("huge crate"),
+		OPTION("item"),
+		OPTION("projectile"),
+		OPTION("machine"),
+		OPTION("early mover machine"),
+		OPTION("creature"),
+		OPTION("biped"),
+		OPTION("dead biped"),
+		OPTION("super collidable ragdoll"),
+		OPTION("ragdoll"),
+		OPTION("vehicle"),
+		OPTION("decal"),
+		OPTION("forge dynamic scenary"),
+		OPTION("small expensive plant"),
+		OPTION("tech art custom"),
+		OPTION("proxy"),
+		OPTION("huge vehicle"),
+		OPTION("ignore environment"),
+		OPTION("character posture"),
+		OPTION("item blocker"),
+		OPTION("user00"),
+		OPTION("zero extent"),
+		OPTION("physical projectile"),
+		OPTION("environment invisible wall"),
+		OPTION("environment play collision"),
+		OPTION("environment bullet collision"),
+	};
 
 } // namespace blofeld
 

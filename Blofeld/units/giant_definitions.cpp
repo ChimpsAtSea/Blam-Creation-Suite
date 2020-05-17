@@ -3,22 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM_EMPTY(giant_definition_flags, 0);
-
-	TAG_ENUM(slider_movement_patterns, 7)
-	{
-		OPTION("linear"),
-		OPTION("light_ease_in"),
-		OPTION("full_ease_in"),
-		OPTION("light_ease_out"),
-		OPTION("full_ease_out"),
-		OPTION("light_ease_in_and_out"),
-		OPTION("full_ease_in_and_out"),
-	};
-
 	TAG_GROUP_INHERIT_FROM_BLOCK(giant, GIANT_TAG, unit, UNIT_TAG, giant_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(giant_block, 1, giant_struct_definition_struct_definition );
 
 	TAG_BLOCK(giant_buckle_parameters_block, k_giant_buckle_total_types)
 	{
@@ -52,8 +37,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(giant_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(giant_block, 1, giant_struct_definition_struct_definition );
+
+	TAG_STRUCT(giant_struct_definition)
+	{
 		FIELD( _field_struct, "unit", &unit_struct_definition_struct_definition ),
 		FIELD( _field_custom, "$$$ GIANT $$$" ),
 		FIELD( _field_long_flags, "flags", &giant_definition_flags ),
@@ -73,7 +60,20 @@ TAG_STRUCT(giant_struct_definition)
 		FIELD( _field_real, "ankle ik scale:lower values drop the ankles towards the ground when computing ik" ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM_EMPTY(giant_definition_flags, 0);
+
+	TAG_ENUM(slider_movement_patterns, 7)
+	{
+		OPTION("linear"),
+		OPTION("light_ease_in"),
+		OPTION("full_ease_in"),
+		OPTION("light_ease_out"),
+		OPTION("full_ease_out"),
+		OPTION("light_ease_in_and_out"),
+		OPTION("full_ease_in_and_out"),
+	};
 
 } // namespace blofeld
 

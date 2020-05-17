@@ -3,15 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(lightRigLocation, 2)
-	{
-		OPTION("follow object"),
-		OPTION("position at marker"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(light_rig, LIGHT_RIG_TAG, light_rig_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(light_rig_block, 1, light_rig_struct_definition_struct_definition );
 
 	TAG_BLOCK(directionalLightRigBlock, lightRigDirectionalCount)
 	{
@@ -25,6 +17,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK_FROM_STRUCT(light_rig_block, 1, light_rig_struct_definition_struct_definition );
+
 	TAG_BLOCK(scriptableLightRigBlock, e_scriptableLightRigMax)
 	{
 		FIELD( _field_explanation, "Scriptable Light Rig" ),
@@ -33,8 +27,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(light_rig_struct_definition)
-{
+	TAG_STRUCT(light_rig_struct_definition)
+	{
 		FIELD( _field_explanation, "Character Light Rig" ),
 		FIELD( _field_custom, "Environment vmf lobe weight" ),
 		FIELD( _field_real, "Environment vmf lobe weight" ),
@@ -54,7 +48,13 @@ TAG_STRUCT(light_rig_struct_definition)
 		FIELD( _field_custom, "Rig vmf lobe vs fill scale" ),
 		FIELD( _field_real, "Rig vmf lobe vs fill scale" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(lightRigLocation, 2)
+	{
+		OPTION("follow object"),
+		OPTION("position at marker"),
+	};
 
 } // namespace blofeld
 

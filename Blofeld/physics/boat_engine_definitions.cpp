@@ -3,11 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(boat_flags$2, 1)
-	{
-		OPTION("uses fake physics"),
-	};
-
 	TAG_BLOCK(boat_engine_definition_block, 1)
 	{
 		FIELD( _field_byte_flags, "flags", &boat_flags ),
@@ -30,6 +25,11 @@ namespace blofeld
 		FIELD( _field_struct, "boost drag", &scalar_function_named_struct_struct_definition ),
 		FIELD( _field_struct, "air drag", &scalar_function_named_struct_struct_definition ),
 		FIELD( _field_terminator )
+	};
+
+	TAG_ENUM(boat_flags$2, 1)
+	{
+		OPTION("uses fake physics"),
 	};
 
 } // namespace blofeld

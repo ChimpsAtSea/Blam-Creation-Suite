@@ -3,13 +3,14 @@
 namespace blofeld
 {
 
-	TAG_ENUM(active_camo_enum_definition, 5)
+	TAG_BLOCK(active_camo_level_definition_block, k_number_of_active_camo_levels)
 	{
-		OPTION("poor"),
-		OPTION("good"),
-		OPTION("excellent"),
-		OPTION("invisible"),
-		OPTION("ai"),
+		FIELD( _field_real, "grenade throw penalty:0..1#reduces camo value by this much when throwing a grenade" ),
+		FIELD( _field_real, "melee penalty:0..1#reduces camo by this much when meleeing" ),
+		FIELD( _field_real, "minimum dinged value#when taking damage or doing other actions that reduce camo, we will never drop below this value" ),
+		FIELD( _field_real, "interpolation time:s#time it takes to interpolate from 0.0 to 1.0" ),
+		FIELD( _field_struct, "speed to maximum camo", &scalar_function_named_struct_struct_definition ),
+		FIELD( _field_terminator )
 	};
 
 	TAG_BLOCK(active_camo_globals_block, 1)
@@ -30,14 +31,13 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(active_camo_level_definition_block, k_number_of_active_camo_levels)
+	TAG_ENUM(active_camo_enum_definition, 5)
 	{
-		FIELD( _field_real, "grenade throw penalty:0..1#reduces camo value by this much when throwing a grenade" ),
-		FIELD( _field_real, "melee penalty:0..1#reduces camo by this much when meleeing" ),
-		FIELD( _field_real, "minimum dinged value#when taking damage or doing other actions that reduce camo, we will never drop below this value" ),
-		FIELD( _field_real, "interpolation time:s#time it takes to interpolate from 0.0 to 1.0" ),
-		FIELD( _field_struct, "speed to maximum camo", &scalar_function_named_struct_struct_definition ),
-		FIELD( _field_terminator )
+		OPTION("poor"),
+		OPTION("good"),
+		OPTION("excellent"),
+		OPTION("invisible"),
+		OPTION("ai"),
 	};
 
 } // namespace blofeld

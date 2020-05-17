@@ -3,53 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(cache_file_shared_file_flags_definition, 3)
-	{
-		OPTION("use header io offset"),
-		OPTION("not required"),
-		OPTION("use header locations"),
-	};
-
-	TAG_ENUM(cache_file_tag_resource_page_flags, 6)
-	{
-		OPTION("valid checksum"),
-		OPTION("shared and required"),
-		OPTION("dvd only shared and required"),
-		OPTION("dvd only and required"),
-		OPTION("referenced by cache file header"),
-		OPTION("only full valid checksum"),
-	};
-
-	TAG_ENUM(cache_file_resource_data_flags_definition, 3)
-	{
-		OPTION("has highest priority data"),
-		OPTION("has medium priority data"),
-		OPTION("has low priority data"),
-	};
-
-	TAG_ENUM(cache_file_resource_global_zone_attachment_flags, 5)
-	{
-		OPTION("global"),
-		OPTION("script"),
-		OPTION("hdd only"),
-		OPTION("always streaming"),
-		OPTION("unattached"),
-	};
-
-	TAG_ENUM(named_value_type_enum, 4)
-	{
-		OPTION("unknown"),
-		OPTION("string"),
-		OPTION("real"),
-		OPTION("int"),
-	};
-
-	TAG_ENUM(cache_file_tag_parentage_flags_definition, 2)
-	{
-		OPTION("loaded by game"),
-		OPTION("unloaded"),
-	};
-
 	TAG_GROUP(cache_file_resource_layout_table, CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG)
 	{
 		FIELD( _field_block, "codec identifiers*", &cache_file_codec_identifier_block_block ),
@@ -135,13 +88,6 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(cache_file_resource_file_page_block, UNSIGNED_SHORT_MAX, cache_file_resource_page_struct_struct_definition );
 
-	TAG_BLOCK(cache_file_resource_streaming_subpage_table_block, SHORT_MAX)
-	{
-		FIELD( _field_long_integer, "total memory size" ),
-		FIELD( _field_block, "streaming subpages", &cache_file_resource_streaming_subpage_block_block ),
-		FIELD( _field_terminator )
-	};
-
 	TAG_BLOCK(cache_file_resource_streaming_subpage_block, SHORT_MAX)
 	{
 		FIELD( _field_long_integer, "memory offset" ),
@@ -149,11 +95,18 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(cache_file_resource_streaming_subpage_table_block, SHORT_MAX)
+	{
+		FIELD( _field_long_integer, "total memory size" ),
+		FIELD( _field_block, "streaming subpages", &cache_file_resource_streaming_subpage_block_block ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(cache_file_resource_section_block, SHORT_MAX)
 	{
-		FIELD( _field_array, "page offsets" ),
-		FIELD( _field_array, "file page indexes" ),
-		FIELD( _field_array, "subpage table indexes" ),
+		FIELD( _field_array, "page offsets", &location_offsets_array_definition_array ),
+		FIELD( _field_array, "file page indexes", &file_location_indexes_array_definition_array ),
+		FIELD( _field_array, "subpage table indexes", &sublocation_table_indexes_array_definition_array ),
 		FIELD( _field_terminator )
 	};
 
@@ -165,7 +118,7 @@ namespace blofeld
 		FIELD( _field_long_integer, "identifier part 3" ),
 		FIELD( _field_long_integer, "definition flags" ),
 		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_array, "page alignment bits" ),
+		FIELD( _field_array, "page alignment bits", &tag_resource_alignment_bits_array_definition_array ),
 		FIELD( _field_pad, "pad0", 2 ),
 		FIELD( _field_terminator )
 	};
@@ -177,22 +130,6 @@ namespace blofeld
 		FIELD( _field_long_integer, "identifier part 2" ),
 		FIELD( _field_long_integer, "identifier part 3" ),
 		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(cache_file_resource_data_block, SHORT_MAX)
-	{
-		FIELD( _field_tag_reference, "owner tag^*" ),
-		FIELD( _field_short_integer, "resource salt" ),
-		FIELD( _field_char_block_index, "resource type index*" ),
-		FIELD( _field_char_integer, "control alignment bits" ),
-		FIELD( _field_long_integer, "control size" ),
-		FIELD( _field_word_flags, "flags", &cache_file_resource_data_flags_definition ),
-		FIELD( _field_short_block_index, "page" ),
-		FIELD( _field_long_integer, "root fixup" ),
-		FIELD( _field_block, "control fixups", &cache_file_resource_fixup_location_block_block ),
-		FIELD( _field_block, "interop locations", &cache_file_resource_interop_location_block_block ),
-		FIELD( _field_block, "priority level data", &cache_file_resource_priority_data_block_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -216,7 +153,21 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK_FROM_STRUCT(cache_file_designer_zone_block, k_maximum_designer_zone_count, cache_file_tag_zone_manifest_struct_struct_definition );
+	TAG_BLOCK(cache_file_resource_data_block, SHORT_MAX)
+	{
+		FIELD( _field_tag_reference, "owner tag^*" ),
+		FIELD( _field_short_integer, "resource salt" ),
+		FIELD( _field_char_block_index, "resource type index*" ),
+		FIELD( _field_char_integer, "control alignment bits" ),
+		FIELD( _field_long_integer, "control size" ),
+		FIELD( _field_word_flags, "flags", &cache_file_resource_data_flags_definition ),
+		FIELD( _field_short_block_index, "page" ),
+		FIELD( _field_long_integer, "root fixup" ),
+		FIELD( _field_block, "control fixups", &cache_file_resource_fixup_location_block_block ),
+		FIELD( _field_block, "interop locations", &cache_file_resource_interop_location_block_block ),
+		FIELD( _field_block, "priority level data", &cache_file_resource_priority_data_block_block ),
+		FIELD( _field_terminator )
+	};
 
 	TAG_BLOCK(cache_file_tag_resources_bitvector_block, SHORT_MAX)
 	{
@@ -227,10 +178,16 @@ namespace blofeld
 	TAG_BLOCK(cache_file_tag_resource_usage_block, k_maximum_cache_file_tag_resource_types)
 	{
 		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_array, "page sizes" ),
+		FIELD( _field_array, "page sizes", &resource_usage_page_size_array_definition_array ),
 		FIELD( _field_long_integer, "deferred required size" ),
 		FIELD( _field_long_integer, "streamed resource size" ),
 		FIELD( _field_long_integer, "dvd in-memory resource size" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(cache_file_zone_resource_visit_node_link_block, SHORT_MAX)
+	{
+		FIELD( _field_short_block_index, "child tag^" ),
 		FIELD( _field_terminator )
 	};
 
@@ -242,11 +199,7 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(cache_file_zone_resource_visit_node_link_block, SHORT_MAX)
-	{
-		FIELD( _field_short_block_index, "child tag^" ),
-		FIELD( _field_terminator )
-	};
+	TAG_BLOCK_FROM_STRUCT(cache_file_designer_zone_block, k_maximum_designer_zone_count, cache_file_tag_zone_manifest_struct_struct_definition );
 
 	TAG_BLOCK_FROM_STRUCT(cache_file_global_zone_block, 1, cache_file_tag_zone_manifest_struct_struct_definition );
 
@@ -284,6 +237,12 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(cache_file_resource_owner_reference_block, SHORT_MAX)
+	{
+		FIELD( _field_short_block_index, "tag^" ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(cache_file_model_variant_usage_block, SHORT_MAX)
 	{
 		FIELD( _field_short_block_index, "model^" ),
@@ -293,9 +252,9 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(cache_file_resource_owner_reference_block, SHORT_MAX)
+	TAG_BLOCK(cache_file_model_variant_usage_reference_block, SHORT_MAX)
 	{
-		FIELD( _field_short_block_index, "tag^" ),
+		FIELD( _field_short_block_index, "model variant^" ),
 		FIELD( _field_terminator )
 	};
 
@@ -307,9 +266,9 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(cache_file_model_variant_usage_reference_block, SHORT_MAX)
+	TAG_BLOCK(cache_file_bsp_attachment_block, SHORT_MAX)
 	{
-		FIELD( _field_short_block_index, "model variant^" ),
+		FIELD( _field_tag_reference, "attachment^" ),
 		FIELD( _field_terminator )
 	};
 
@@ -321,23 +280,11 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(cache_file_bsp_attachment_block, SHORT_MAX)
-	{
-		FIELD( _field_tag_reference, "attachment^" ),
-		FIELD( _field_terminator )
-	};
-
 	TAG_BLOCK_FROM_STRUCT(debug_cache_file_model_variant_zone_block, k_maximum_simultaneous_tag_instances, debug_cache_file_zone_manifest_struct_struct_definition );
 
 	TAG_BLOCK_FROM_STRUCT(debug_cache_file_combat_dialogue_zone_block, k_maximum_simultaneous_tag_instances, debug_cache_file_zone_manifest_struct_struct_definition );
 
 	TAG_BLOCK_FROM_STRUCT(debug_cache_file_tag_zone_block, k_maximum_simultaneous_tag_instances, debug_cache_file_zone_manifest_struct_struct_definition );
-
-	TAG_BLOCK(cache_file_debug_resource_definition_block, k_maximum_cache_file_tag_resource_types)
-	{
-		FIELD( _field_block, "categories", &resource_category_block_block ),
-		FIELD( _field_terminator )
-	};
 
 	TAG_BLOCK(resource_category_block, k_maximum_categories_per_resource)
 	{
@@ -345,10 +292,16 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(cache_file_debug_resource_definition_block, k_maximum_cache_file_tag_resource_types)
+	{
+		FIELD( _field_block, "categories", &resource_category_block_block ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(cache_file_resource_layout_block, SHORT_MAX)
 	{
-		FIELD( _field_array, "memory sizes" ),
-		FIELD( _field_array, "compressed sizes" ),
+		FIELD( _field_array, "memory sizes", &resource_layout_memory_size_array_definition_array ),
+		FIELD( _field_array, "compressed sizes", &resource_layout_compressed_size_array_definition_array ),
 		FIELD( _field_long_integer, "deferred required resource size" ),
 		FIELD( _field_long_integer, "unused resource size" ),
 		FIELD( _field_word_flags, "global zone attachment", &cache_file_resource_global_zone_attachment_flags ),
@@ -357,12 +310,6 @@ namespace blofeld
 		FIELD( _field_qword_integer, "designer zone attachment" ),
 		FIELD( _field_long_block_flags, "cinematic zone attachment" ),
 		FIELD( _field_pad, "64 bit alignment pad", 4 ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(cache_file_tag_resource_properties_block, SHORT_MAX)
-	{
-		FIELD( _field_block, "named values", &cache_file_tag_resource_named_value_block_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -377,6 +324,18 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(cache_file_tag_resource_properties_block, SHORT_MAX)
+	{
+		FIELD( _field_block, "named values", &cache_file_tag_resource_named_value_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(cache_file_tag_parentage_reference_block, k_maximum_tag_parentages_count)
+	{
+		FIELD( _field_long_block_index, "link^" ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(cache_file_tag_parentage_block, k_maximum_tag_parentages_count)
 	{
 		FIELD( _field_tag_reference, "tag" ),
@@ -384,12 +343,6 @@ namespace blofeld
 		FIELD( _field_short_integer, "resource owner index" ),
 		FIELD( _field_block, "parents", &cache_file_tag_parentage_reference_block_block ),
 		FIELD( _field_block, "children", &cache_file_tag_parentage_reference_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(cache_file_tag_parentage_reference_block, k_maximum_tag_parentages_count)
-	{
-		FIELD( _field_long_block_index, "link^" ),
 		FIELD( _field_terminator )
 	};
 
@@ -430,8 +383,56 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(cache_file_resource_page_struct)
-{
+	TAG_ARRAY(resource_hash_definition, k_hash_size)
+	{
+		FIELD( _field_byte_integer, "hash byte" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ARRAY(location_offsets_array_definition, k_numberOfResourcePriorities)
+	{
+		FIELD( _field_long_integer, "offset" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ARRAY(file_location_indexes_array_definition, k_numberOfResourcePriorities)
+	{
+		FIELD( _field_short_block_index, "page index" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ARRAY(sublocation_table_indexes_array_definition, k_numberOfResourcePriorities)
+	{
+		FIELD( _field_short_block_index, "subpage table index" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ARRAY(tag_resource_alignment_bits_array_definition, k_numberOfResourcePriorities)
+	{
+		FIELD( _field_short_integer, "page alignment bits" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ARRAY(resource_usage_page_size_array_definition, k_numberOfResourcePriorities)
+	{
+		FIELD( _field_long_integer, "page size" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ARRAY(resource_layout_memory_size_array_definition, k_numberOfResourcePriorities)
+	{
+		FIELD( _field_long_integer, "memory size" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ARRAY(resource_layout_compressed_size_array_definition, k_numberOfResourcePriorities)
+	{
+		FIELD( _field_long_integer, "compressed size" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_STRUCT(cache_file_resource_page_struct)
+	{
 		FIELD( _field_short_integer, "header salt at runtime" ),
 		FIELD( _field_byte_flags, "flags", &cache_file_tag_resource_page_flags ),
 		FIELD( _field_char_block_index, "codec" ),
@@ -444,23 +445,23 @@ TAG_STRUCT(cache_file_resource_page_struct)
 		FIELD( _field_short_integer, "resource reference count" ),
 		FIELD( _field_short_block_index, "streaming subpage table" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(resource_checksum_struct)
-{
+	TAG_STRUCT(resource_checksum_struct)
+	{
 		FIELD( _field_long_integer, "checksum" ),
-		FIELD( _field_array, "entire hash" ),
-		FIELD( _field_array, "first chunk hash" ),
-		FIELD( _field_array, "last chunk hash" ),
+		FIELD( _field_array, "entire hash", &resource_hash_definition_array ),
+		FIELD( _field_array, "first chunk hash", &resource_hash_definition_array ),
+		FIELD( _field_array, "last chunk hash", &resource_hash_definition_array ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(cache_file_tag_zone_manifest_struct)
-{
+	TAG_STRUCT(cache_file_tag_zone_manifest_struct)
+	{
 		FIELD( _field_block, "cached resource bitvector", &cache_file_tag_resources_bitvector_block_block ),
 		FIELD( _field_block, "streamed resource bitvector", &cache_file_tag_resources_bitvector_block_block ),
 		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_array, "page sizes" ),
+		FIELD( _field_array, "page sizes", &resource_usage_page_size_array_definition_array ),
 		FIELD( _field_long_integer, "deferred required size" ),
 		FIELD( _field_long_integer, "streamed resource size" ),
 		FIELD( _field_long_integer, "dvd in-memory resource size" ),
@@ -475,26 +476,73 @@ TAG_STRUCT(cache_file_tag_zone_manifest_struct)
 		FIELD( _field_long_integer, "cinematic zone mask!" ),
 		FIELD( _field_qword_integer, "designer zone mask!" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(debug_cache_file_zone_manifest_struct)
-{
+	TAG_STRUCT(debug_cache_file_zone_manifest_struct)
+	{
 		FIELD( _field_struct, "cache zone manifest", &cache_file_tag_zone_manifest_struct_struct_definition ),
 		FIELD( _field_long_integer, "disk size" ),
 		FIELD( _field_long_integer, "unused size" ),
 		FIELD( _field_tag_reference, "owner tag^" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(cache_file_tag_resource_prediction_table)
-{
+	TAG_STRUCT(cache_file_tag_resource_prediction_table)
+	{
 		FIELD( _field_block, "prediction quanta", &cache_file_tag_resource_prediction_quantum_block_block ),
 		FIELD( _field_block, "prediction atoms", &cache_file_tag_resource_prediction_atom_block_block ),
 		FIELD( _field_block, "prediction molecule atoms", &cache_file_tag_resource_prediction_molecule_atom_reference_block_block ),
 		FIELD( _field_block, "prediction molecules", &cache_file_tag_resource_prediction_molecule_block_block ),
 		FIELD( _field_block, "prediction molecule keys", &cache_file_tag_resource_prediction_molecule_keys_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(cache_file_shared_file_flags_definition, 3)
+	{
+		OPTION("use header io offset"),
+		OPTION("not required"),
+		OPTION("use header locations"),
+	};
+
+	TAG_ENUM(cache_file_tag_resource_page_flags, 6)
+	{
+		OPTION("valid checksum"),
+		OPTION("shared and required"),
+		OPTION("dvd only shared and required"),
+		OPTION("dvd only and required"),
+		OPTION("referenced by cache file header"),
+		OPTION("only full valid checksum"),
+	};
+
+	TAG_ENUM(cache_file_resource_data_flags_definition, 3)
+	{
+		OPTION("has highest priority data"),
+		OPTION("has medium priority data"),
+		OPTION("has low priority data"),
+	};
+
+	TAG_ENUM(cache_file_resource_global_zone_attachment_flags, 5)
+	{
+		OPTION("global"),
+		OPTION("script"),
+		OPTION("hdd only"),
+		OPTION("always streaming"),
+		OPTION("unattached"),
+	};
+
+	TAG_ENUM(named_value_type_enum, 4)
+	{
+		OPTION("unknown"),
+		OPTION("string"),
+		OPTION("real"),
+		OPTION("int"),
+	};
+
+	TAG_ENUM(cache_file_tag_parentage_flags_definition, 2)
+	{
+		OPTION("loaded by game"),
+		OPTION("unloaded"),
+	};
 
 } // namespace blofeld
 

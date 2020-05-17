@@ -3,6 +3,24 @@
 namespace blofeld
 {
 
+
+	extern s_tag_struct_definition area_reference_block_block_struct;
+	extern s_tag_block_definition area_reference_block_block;
+	extern s_tag_struct_definition opposing_objective_block_block_struct;
+	extern s_tag_block_definition opposing_objective_block_block;
+	extern s_tag_struct_definition script_fragment_block_block_struct;
+	extern s_tag_block_definition script_fragment_block_block;
+	extern s_tag_struct_definition task_direction_point_block_block_struct;
+	extern s_tag_block_definition task_direction_point_block_block;
+	extern s_tag_block_definition task_direction_block_v2_block;
+	extern s_tag_struct_definition tasks_block_block_struct;
+	extern s_tag_block_definition tasks_block_block;
+	extern s_tag_struct_definition objectives_block_block_struct;
+	extern s_tag_block_definition objectives_block_block;
+
+
+	extern s_tag_struct_definition task_direction_block_v2_struct_struct_definition;
+
 	extern const char* fragment_state_enum_strings[];
 	extern s_string_list_definition fragment_state_enum;
 	extern const char* task_flags_definition_strings[];
@@ -31,23 +49,6 @@ namespace blofeld
 	extern s_string_list_definition task_runtime_flags;
 	extern const char* task_attitude_enum_strings[];
 	extern s_string_list_definition task_attitude_enum;
-
-
-	extern s_tag_struct area_reference_block_block_struct;
-	extern s_tag_block_definition area_reference_block_block;
-	extern s_tag_struct objectives_block_block_struct;
-	extern s_tag_block_definition objectives_block_block;
-	extern s_tag_struct opposing_objective_block_block_struct;
-	extern s_tag_block_definition opposing_objective_block_block;
-	extern s_tag_struct tasks_block_block_struct;
-	extern s_tag_block_definition tasks_block_block;
-	extern s_tag_struct script_fragment_block_block_struct;
-	extern s_tag_block_definition script_fragment_block_block;
-	extern s_tag_block_definition task_direction_block_v2_block;
-	extern s_tag_struct task_direction_point_block_block_struct;
-	extern s_tag_block_definition task_direction_point_block_block;
-
-	extern s_tag_struct task_direction_block_v2_struct_struct_definition;
 
 } // namespace blofeld
 

@@ -3,16 +3,18 @@
 namespace blofeld
 {
 
-	TAG_ENUM(formation_primitive_flags, 2)
-	{
-		OPTION("radial"),
-		OPTION("leader"),
-	};
-
 	TAG_GROUP(formation, FORMATION_TAG)
 	{
 		FIELD( _field_string_id, "name^" ),
 		FIELD( _field_block, "primitives", &formation_primitive_definition_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(formation_point_definition, k_max_points_per_primitive)
+	{
+		FIELD( _field_explanation, "" ),
+		FIELD( _field_angle, "angle" ),
+		FIELD( _field_real, "offset" ),
 		FIELD( _field_terminator )
 	};
 
@@ -31,12 +33,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(formation_point_definition, k_max_points_per_primitive)
+	TAG_ENUM(formation_primitive_flags, 2)
 	{
-		FIELD( _field_explanation, "" ),
-		FIELD( _field_angle, "angle" ),
-		FIELD( _field_real, "offset" ),
-		FIELD( _field_terminator )
+		OPTION("radial"),
+		OPTION("leader"),
 	};
 
 } // namespace blofeld

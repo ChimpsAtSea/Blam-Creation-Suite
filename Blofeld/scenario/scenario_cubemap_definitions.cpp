@@ -3,13 +3,11 @@
 namespace blofeld
 {
 
-	TAG_ENUM(cubemap_resolution_enum, 5)
+	TAG_BLOCK(cubemap_reference_points_block, k_max_cubemap_reference_point_count)
 	{
-		OPTION("16"),
-		OPTION("32"),
-		OPTION("64"),
-		OPTION("128"),
-		OPTION("256"),
+		FIELD( _field_real_point_3d, "reference point" ),
+		FIELD( _field_long_integer, "point index!" ),
+		FIELD( _field_terminator )
 	};
 
 	TAG_BLOCK(structure_cluster_cubemap, k_max_cubemaps_per_cluster)
@@ -17,13 +15,6 @@ namespace blofeld
 		FIELD( _field_short_integer, "scenario cubemap index" ),
 		FIELD( _field_short_integer, "cubemap bitmap index" ),
 		FIELD( _field_block, "reference points", &cubemap_reference_points_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(cubemap_reference_points_block, k_max_cubemap_reference_point_count)
-	{
-		FIELD( _field_real_point_3d, "reference point" ),
-		FIELD( _field_long_integer, "point index!" ),
 		FIELD( _field_terminator )
 	};
 
@@ -38,6 +29,15 @@ namespace blofeld
 		FIELD( _field_struct, "manual bsp flags", &manualBspFlagsReferences_struct_definition ),
 		FIELD( _field_block, "reference points", &cubemap_reference_points_block_block ),
 		FIELD( _field_terminator )
+	};
+
+	TAG_ENUM(cubemap_resolution_enum, 5)
+	{
+		OPTION("16"),
+		OPTION("32"),
+		OPTION("64"),
+		OPTION("128"),
+		OPTION("256"),
 	};
 
 } // namespace blofeld

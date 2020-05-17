@@ -7,8 +7,8 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(cellular_automata_block, 1, cellular_automata_struct_definition_struct_definition );
 
-TAG_STRUCT(cellular_automata_struct_definition)
-{
+	TAG_STRUCT(cellular_automata_struct_definition)
+	{
 		FIELD( _field_explanation, "parameters" ),
 		FIELD( _field_short_integer, "updates per second:Hz" ),
 		FIELD( _field_short_integer, " x (width):cells" ),
@@ -48,7 +48,7 @@ TAG_STRUCT(cellular_automata_struct_definition)
 		FIELD( _field_tag_reference, "mask bitmap" ),
 		FIELD( _field_pad, "BW", 240 ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

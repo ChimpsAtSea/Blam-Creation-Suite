@@ -231,14 +231,14 @@ namespace blofeld
 
 	struct s_tag_field;
 
-	struct s_tag_struct
+	struct s_tag_struct_definition
 	{
 		const char* const name;
 		const char* const display_name;
 		const char* const filename;
 		int32_t const line;
 		GUID const guid;
-		const s_tag_field* const tag_fields;
+		const s_tag_field* const fields;
 	};
 
 	struct s_tag_block_definition
@@ -249,7 +249,7 @@ namespace blofeld
 		int32_t const line;
 		unsigned long const max_count;
 		const char* const max_count_string;
-		const s_tag_struct& tag_struct;
+		const s_tag_struct_definition& struct_definition;
 	};
 
 	struct s_tag_group
@@ -257,8 +257,19 @@ namespace blofeld
 		const char* const name;
 		unsigned long const group_tag;
 		unsigned long const parent_group_tag;
-		const s_tag_block_definition& block;
+		const s_tag_block_definition& block_definition;
 		const s_tag_group* const parent_tag_group;
+	};
+
+	struct s_tag_array_definition
+	{
+		const char* const name;
+		const char* const display_name;
+		const char* const filename;
+		int32_t const line;
+		unsigned long const max_count;
+		const char* const max_count_string;
+		const s_tag_struct_definition& struct_definition;
 	};
 
 	struct s_tag_reference
@@ -280,7 +291,7 @@ namespace blofeld
 	s_tag_group* get_tag_group_by_group_tag(uint32_t group_tag);
 	struct s_tag_struct_validation_data
 	{
-		const s_tag_struct& tag_struct;
+		const s_tag_struct_definition& struct_definition;
 		uint32_t size;
 	};
 
@@ -293,9 +304,10 @@ namespace blofeld
 		union
 		{
 			void* const value1;
-			const s_tag_block_definition* const tag_block;
-			const s_tag_struct* const tag_struct;
-			const s_string_list_definition* string_list_definition;
+			const s_tag_block_definition* const block_definition;
+			const s_tag_struct_definition* const struct_definition;
+			const s_tag_array_definition* const array_definition;
+			const s_string_list_definition* const string_list_definition;
 			uint32_t padding;
 			uint32_t length;
 		};

@@ -5,17 +5,6 @@ namespace blofeld
 
 	TAG_GROUP_FROM_BLOCK(cellular_automata2d, CELLULAR_AUTOMATA2D_TAG, cellular_automata2d_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(cellular_automata2d_block, 1, cellular_automata2d_struct_definition_struct_definition );
-
-	TAG_BLOCK(rules_block, MAXIMUM_RULES_PER_CA)
-	{
-		FIELD( _field_string, "name^" ),
-		FIELD( _field_real_rgb_color, "tint color" ),
-		FIELD( _field_pad, "VJSKSPI", 32 ),
-		FIELD( _field_block, "states", &states_block_block ),
-		FIELD( _field_terminator )
-	};
-
 	TAG_BLOCK(states_block, MAXIMUM_STATES_PER_RULE)
 	{
 		FIELD( _field_string, "name^" ),
@@ -37,8 +26,19 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(cellular_automata2d_struct_definition)
-{
+	TAG_BLOCK(rules_block, MAXIMUM_RULES_PER_CA)
+	{
+		FIELD( _field_string, "name^" ),
+		FIELD( _field_real_rgb_color, "tint color" ),
+		FIELD( _field_pad, "VJSKSPI", 32 ),
+		FIELD( _field_block, "states", &states_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK_FROM_STRUCT(cellular_automata2d_block, 1, cellular_automata2d_struct_definition_struct_definition );
+
+	TAG_STRUCT(cellular_automata2d_struct_definition)
+	{
 		FIELD( _field_explanation, "properties" ),
 		FIELD( _field_short_integer, "updates per second:Hz" ),
 		FIELD( _field_pad, "IFJ", 2 ),
@@ -71,7 +71,7 @@ TAG_STRUCT(cellular_automata2d_struct_definition)
 		FIELD( _field_pad, "HSJQLXWS", 160 ),
 		FIELD( _field_block, "rules", &rules_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

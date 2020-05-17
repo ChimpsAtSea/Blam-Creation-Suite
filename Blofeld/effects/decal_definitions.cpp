@@ -3,21 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(decal_flags, 1)
-	{
-		OPTION("render in transparents pass"),
-	};
-
-	TAG_ENUM(decal_system_flags, 3)
-	{
-		OPTION("random rotation"),
-		OPTION("force planar"),
-		OPTION("is strip"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(decal_system, DECAL_SYSTEM_TAG, decal_system_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(decal_system_block, 1, decal_system_struct_definition_struct_definition );
 
 	TAG_BLOCK(decal_definition_block, c_decal_system_definition::k_max_decal)
 	{
@@ -41,8 +27,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(decal_system_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(decal_system_block, 1, decal_system_struct_definition_struct_definition );
+
+	TAG_STRUCT(decal_system_struct_definition)
+	{
 		FIELD( _field_long_flags, "flags", &decal_system_flags ),
 		FIELD( _field_long_integer, "ring buffer size (in triangles)#bigger sizes keep more decals around but use much more memory" ),
 		FIELD( _field_long_integer, "ring buffer size single player (in triangles)#above entry is for MP -- SP can be different" ),
@@ -53,7 +41,19 @@ TAG_STRUCT(decal_system_struct_definition)
 		FIELD( _field_block, "decals", &decal_definition_block_block ),
 		FIELD( _field_real, "runtime max radius!" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(decal_flags, 1)
+	{
+		OPTION("render in transparents pass"),
+	};
+
+	TAG_ENUM(decal_system_flags, 3)
+	{
+		OPTION("random rotation"),
+		OPTION("force planar"),
+		OPTION("is strip"),
+	};
 
 } // namespace blofeld
 

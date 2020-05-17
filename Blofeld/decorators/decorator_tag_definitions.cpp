@@ -3,41 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(decorator_type_flags_definition, 5)
-	{
-		OPTION("only on ground"),
-		OPTION("random rotation"),
-		OPTION("rotate x axis down"),
-		OPTION("align to normal"),
-		OPTION("align random"),
-	};
-
-	TAG_ENUM(decorator_set_render_flags_definition, 5)
-	{
-		OPTION("render two sided"),
-		OPTION("dont sample light through geometry#takes twice as long to light"),
-		OPTION("Use decimation method for random structured decorators"),
-		OPTION("more strictly respect block size#or there could only be 10x10 blocks per cluster"),
-		OPTION("do not desaturate#only matters if the do not desaturate decorators checkbox is unchecked in the structure bsps block of the .scenario tag"),
-	};
-
-	TAG_ENUM(decorator_set_render_shader_enum_definition, 7)
-	{
-		OPTION("billboard + wind + dynamic lights{wind + dynamic lights}"),
-		OPTION("billboard + dynamic lights{still + dynamic lights}"),
-		OPTION("solid mesh + dynamic lights{still + no lights}"),
-		OPTION("solid mesh{still + sun light only}"),
-		OPTION("underwater + dynamic lights{wavy + dynamic lights}"),
-		OPTION("volumetric billboard + dynamic lights{shaded + dynamic lights}"),
-		OPTION("volumetric billboard + wind + dynamic lights"),
-	};
-
-	TAG_ENUM(decorator_set_lighting_sample_pattern_enum_definition, 2)
-	{
-		OPTION("ground default"),
-		OPTION("hanging"),
-	};
-
 	TAG_GROUP(decorator_set, DECORATOR_SET_TAG)
 	{
 		FIELD( _field_custom, "link to render model" ),
@@ -122,8 +87,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(global_decorator_type_struct)
-{
+	TAG_STRUCT(global_decorator_type_struct)
+	{
 		FIELD( _field_long_integer, "index!" ),
 		FIELD( _field_long_block_index, "mesh^" ),
 		FIELD( _field_long_flags, "flags", &decorator_type_flags_definition ),
@@ -144,7 +109,42 @@ TAG_STRUCT(global_decorator_type_struct)
 		FIELD( _field_real, "placement weight:[0.0 - 1.0]" ),
 		FIELD( _field_real, "postprocessed weight!" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(decorator_type_flags_definition, 5)
+	{
+		OPTION("only on ground"),
+		OPTION("random rotation"),
+		OPTION("rotate x axis down"),
+		OPTION("align to normal"),
+		OPTION("align random"),
+	};
+
+	TAG_ENUM(decorator_set_render_flags_definition, 5)
+	{
+		OPTION("render two sided"),
+		OPTION("dont sample light through geometry#takes twice as long to light"),
+		OPTION("Use decimation method for random structured decorators"),
+		OPTION("more strictly respect block size#or there could only be 10x10 blocks per cluster"),
+		OPTION("do not desaturate#only matters if the do not desaturate decorators checkbox is unchecked in the structure bsps block of the .scenario tag"),
+	};
+
+	TAG_ENUM(decorator_set_render_shader_enum_definition, 7)
+	{
+		OPTION("billboard + wind + dynamic lights{wind + dynamic lights}"),
+		OPTION("billboard + dynamic lights{still + dynamic lights}"),
+		OPTION("solid mesh + dynamic lights{still + no lights}"),
+		OPTION("solid mesh{still + sun light only}"),
+		OPTION("underwater + dynamic lights{wavy + dynamic lights}"),
+		OPTION("volumetric billboard + dynamic lights{shaded + dynamic lights}"),
+		OPTION("volumetric billboard + wind + dynamic lights"),
+	};
+
+	TAG_ENUM(decorator_set_lighting_sample_pattern_enum_definition, 2)
+	{
+		OPTION("ground default"),
+		OPTION("hanging"),
+	};
 
 } // namespace blofeld
 

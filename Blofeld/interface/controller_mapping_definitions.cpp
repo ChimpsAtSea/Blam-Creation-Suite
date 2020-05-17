@@ -3,32 +3,12 @@
 namespace blofeld
 {
 
-	TAG_ENUM(gamepad_button_definition, 16)
-	{
-		OPTION("left trigger"),
-		OPTION("right trigger"),
-		OPTION("dpad up"),
-		OPTION("dpad down"),
-		OPTION("dpad left"),
-		OPTION("dpad right"),
-		OPTION("start"),
-		OPTION("back"),
-		OPTION("left thumb"),
-		OPTION("right thumb"),
-		OPTION("button a"),
-		OPTION("button b"),
-		OPTION("button x"),
-		OPTION("button y"),
-		OPTION("left bumper"),
-		OPTION("right bumper"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(controller_mapping, CONTROLLER_MAPPING_TAG, controller_mapping_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(controller_mapping_block, 1, controller_mapping_struct_definition_struct_definition );
 
-TAG_STRUCT(controller_mapping_struct_definition)
-{
+	TAG_STRUCT(controller_mapping_struct_definition)
+	{
 		FIELD( _field_long_integer, "auto zoom out ticks#set to 0 for instant unzoom on trigger release (trigger style) or 15 for toggle (thumbstick style)" ),
 		FIELD( _field_explanation, "Start/Back" ),
 		FIELD( _field_enum, "jump", &gamepad_button_definition ),
@@ -76,7 +56,27 @@ TAG_STRUCT(controller_mapping_struct_definition)
 		FIELD( _field_enum, "mantis melee attack", &gamepad_button_definition ),
 		FIELD( _field_enum, "mantis crouch", &gamepad_button_definition ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(gamepad_button_definition, 16)
+	{
+		OPTION("left trigger"),
+		OPTION("right trigger"),
+		OPTION("dpad up"),
+		OPTION("dpad down"),
+		OPTION("dpad left"),
+		OPTION("dpad right"),
+		OPTION("start"),
+		OPTION("back"),
+		OPTION("left thumb"),
+		OPTION("right thumb"),
+		OPTION("button a"),
+		OPTION("button b"),
+		OPTION("button x"),
+		OPTION("button y"),
+		OPTION("left bumper"),
+		OPTION("right bumper"),
+	};
 
 } // namespace blofeld
 

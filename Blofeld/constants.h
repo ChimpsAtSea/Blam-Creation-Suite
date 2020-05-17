@@ -163,6 +163,15 @@ namespace blofeld
 #define MAXIMUM_CHARGING_FIRE_FRACTIONS_PER_TRIGGER 16
 #define MAXIMUM_DAMAGE_TRANSFERS_PER_MODEL 32
 #define NUMBER_OF_OBJECT_TYPES 16
+#define MAXIMUM_NODE_INDICES_PER_ERROR_POINT 4
+
+
+	struct s_numberof_sizeof
+	{
+		char data[9];
+	};
+	template<size_t x, typename type>
+	s_numberof_sizeof* numberof_sizeof_proxy(type);
 
 	// manually calculated don't lose difficult 
 
@@ -171,9 +180,15 @@ namespace blofeld
 	constexpr unsigned long k_maximum_audibility_door_count = 128;
 	constexpr unsigned long k_int32_bits_bits = 5;
 
-	const unsigned long k_bsp3d_node_plane_index_bits = 28; // WARN: this validation is accepted for any value between 0 and 28, and any multiple of 32. The true value of this isn't known yet!
+	// #UNCONFRMED: this validation is accepted for any value between 0 and 28, and any multiple of 32. The true value of this isn't known yet!
+	const unsigned long k_bsp3d_node_plane_index_bits = 28; 
 	static constexpr unsigned long validate_k_bsp3d_node_plane_index_bits = (1 << k_bsp3d_node_plane_index_bits) > (2147483647L >> 2) ? (1 << k_bsp3d_node_plane_index_bits) : (2147483647L >> 2);
 	static_assert(validate_k_bsp3d_node_plane_index_bits == 536870911, "k_bsp3d_node_plane_index_bits is invalid value");
+
+	// #UNCONFIRMED: this validation is accepted for any value between 128 and 256
+	const unsigned long k_maximum_breakable_surfaces_per_breakable_surface_set = 256;
+	constexpr unsigned long validate_k_maximum_breakable_surfaces_per_breakable_surface_set = ((((k_maximum_breakable_surfaces_per_breakable_surface_set)+(k_int32_bits - 1)) >> k_int32_bits_bits));
+	static_assert(validate_k_maximum_breakable_surfaces_per_breakable_surface_set == 8, "k_maximum_breakable_surfaces_per_breakable_surface_set is invalid value");
 
 	// already defined in blamlib
 
@@ -392,6 +407,7 @@ namespace blofeld
 	const unsigned long k_structure_seam_maximum_clusters_on_seam_count = 255;
 	static constexpr unsigned long k_bsp3d_node_child_index_bits = 24;
 	const unsigned long k_super_node_child_indices_count = 16;
+	const unsigned long k_super_node_node_count = 15;
 	const unsigned long k_bsp3d_maximum_super_node_count = 2048;
 	const unsigned long k_short_max = 32767;
 	const unsigned long k_maximum_scenario_object_datum_count = 6304;
@@ -544,8 +560,37 @@ namespace blofeld
 	const unsigned long k_max_probability_distributions_per_cue = 1;
 	const unsigned long k_max_character_distributions_per_cue = 8;
 	const unsigned long k_max_weapon_distributions_per_cue = 8;
+	const unsigned long k_hash_size = 20;
+	const unsigned long k_maximum_number_of_object_salts = 32;
+	const unsigned long k_dual_vmf_basis_real_coefficients_count = 16;
+	const unsigned long k_animation_maximum_velocity_boundary_entries = 8;
+	const unsigned long k_number_of_model_states = 5;
+	const unsigned long k_vertices_per_line_count = 2;
+	const unsigned long k_vertices_per_quadrilateral_count = 4;
 
 
+	struct s_material_postprocess_definition
+	{
+		static const unsigned long k_runtime_queryable_properties_count = 12;
+	};
+	struct c_particle_emitter_gpu
+	{
+		static const unsigned long _sizeof_gpu_property = 16;
+		static const unsigned long _sizeof_gpu_function = 64;
+		static const unsigned long _sizeof_gpu_color = 16;
+	};
+	struct c_cinematic_shot_flags
+	{
+		static const unsigned long k_flag_chunk_count = 2;
+	};
+	struct c_node_flags
+	{
+		static const unsigned long k_flag_chunk_count = 8;
+	};
+	struct s_render_method_postprocess_definition
+	{
+		static const unsigned long k_runtime_queryable_properties_count = 28;
+	};
 	struct c_rasterizer_constant_table_definition
 	{
 		static const unsigned long k_max_constants = 426;

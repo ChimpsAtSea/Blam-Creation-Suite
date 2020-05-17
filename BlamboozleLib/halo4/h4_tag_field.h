@@ -32,10 +32,10 @@ struct s_h4_tag_field_definition
 
 struct s_h4_tag_block_definition
 {
-	bpointer32<const char*> display_name_address;
-	bpointer32<const char*> name_address;
+	bpointer32<const char*> display_name;
+	bpointer32<const char*> name;
 	buint32_t maximum_element_count;
-	bpointer32<const char*> maximum_element_count_string_address;
+	bpointer32<const char*> maximum_element_count_string;
 	bpointer32<s_h4_tag_struct_definition*> struct_definition;
 };
 
@@ -291,10 +291,10 @@ public:
 	{
 		uint32_t definition_address = field_definition->definition_address;
 
-		name = h4_va_to_pointer(h4_data, definition->name_address);
-		display_name = h4_va_to_pointer(h4_data, definition->display_name_address);
+		name = h4_va_to_pointer(h4_data, definition->name);
+		display_name = h4_va_to_pointer(h4_data, definition->display_name);
 		maximum_elememt_count = definition->maximum_element_count;
-		maximum_element_count_string = h4_va_to_pointer(h4_data, definition->maximum_element_count_string_address);
+		maximum_element_count_string = h4_va_to_pointer(h4_data, definition->maximum_element_count_string);
 
 		const s_h4_tag_struct_definition* struct_definition = reinterpret_cast<const s_h4_tag_struct_definition*>(h4_va_to_pointer(h4_data, definition->struct_definition));
 		ASSERT(struct_definition != nullptr);
@@ -356,16 +356,16 @@ public:
 	}
 };
 
-struct s_h4_tag_array
+struct s_h4_tag_array_definition
 {
 	bpointer32<const char*> name;
-	buint32_t count;
-	bpointer32<const char*> count_string;
+	buint32_t element_count;
+	bpointer32<const char*> element_count_string;
 	bpointer32<s_h4_tag_struct_definition*> struct_definition;
 };
 
 class c_h4_tag_field_array :
-	public t_h4_tag_field<s_h4_tag_array>
+	public t_h4_tag_field<s_h4_tag_array_definition>
 {
 public:
 	const char* const name;
@@ -375,14 +375,16 @@ protected:
 	const s_h4_tag_struct_definition* struct_definition;
 public:
 	c_h4_tag_struct* tag_struct_definition;
+	c_h4_tag_array* tag_array_definition;
 
 	c_h4_tag_field_array(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
 		t_h4_tag_field(h4_data, field_definition, _h4_tag_field_validation_check_ensure_valid),
 		name(h4_va_to_pointer(h4_data, definition->name)),
-		count(definition->count),
-		count_string(h4_va_to_pointer(h4_data, definition->count_string)),
+		count(definition->element_count),
+		count_string(h4_va_to_pointer(h4_data, definition->element_count_string)),
 		struct_definition(h4_va_to_pointer<s_h4_tag_struct_definition>(h4_data, definition->struct_definition)),
-		tag_struct_definition(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition))
+		tag_struct_definition(c_h4_blamboozle::get_tag_struct_definition(h4_data, struct_definition)),
+		tag_array_definition(c_h4_blamboozle::get_tag_array_definition(h4_data, definition))
 	{
 		uint32_t definition_address = field_definition->definition_address;
 		uint32_t struct_definition_address = definition->struct_definition;

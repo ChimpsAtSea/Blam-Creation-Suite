@@ -3,9 +3,10 @@
 namespace blofeld
 {
 
-	TAG_BLOCK(game_globals_damage_block, s_damage_globals_definition::k_numBlockElements)
+	TAG_BLOCK(armor_modifier_block, k_maximum_material_types)
 	{
-		FIELD( _field_block, "damage groups", &damage_group_block_block ),
+		FIELD( _field_string_id, "name^" ),
+		FIELD( _field_real, "damage multiplier" ),
 		FIELD( _field_terminator )
 	};
 
@@ -16,10 +17,9 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(armor_modifier_block, k_maximum_material_types)
+	TAG_BLOCK(game_globals_damage_block, s_damage_globals_definition::k_numBlockElements)
 	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_real, "damage multiplier" ),
+		FIELD( _field_block, "damage groups", &damage_group_block_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -57,15 +57,15 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(damage_decay_struct)
-{
+	TAG_STRUCT(damage_decay_struct)
+	{
 		FIELD( _field_real, "current damage decay delay:seconds#current damage begins to fall after a time delay has passed since last the damage (MAX 4.1, because timer is stored in a char so 127 ticks maximum)" ),
 		FIELD( _field_real, "current damage decay time:seconds#amount of time it would take for 100% current damage to decay to 0" ),
 		FIELD( _field_real, "current damage decay rate:damage/second#amount of damage that decays from our current damage every second" ),
 		FIELD( _field_real, "recent damage decay delay:seconds#recent damage begins to fall after a time delay has passed since last the damage (MAX 4.1, because timer is stored in a char so 127 ticks maximum)" ),
 		FIELD( _field_real, "recent damage decay time:seconds#amount of time it would take for 100% recent damage to decay to 0" ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

@@ -3,25 +3,10 @@
 namespace blofeld
 {
 
-	TAG_ENUM(sweeneter_mode_enum, 3)
-	{
-		OPTION("sweetener default"),
-		OPTION("sweetener enabled"),
-		OPTION("sweetener disabled"),
-	};
-
 	TAG_GROUP(material_effects, MATERIAL_EFFECTS_TAG)
 	{
 		FIELD( _field_block, "effects", &material_effect_block_v2_block ),
 		FIELD( _field_useless_pad ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(material_effect_block_v2, k_material_effect_type_count)
-	{
-		FIELD( _field_block, "old materials (DO NOT USE)!", &old_material_effect_material_block_block ),
-		FIELD( _field_block, "sounds", &material_effect_material_block_block ),
-		FIELD( _field_block, "effects", &material_effect_material_block_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -48,6 +33,21 @@ namespace blofeld
 		FIELD( _field_pad, "L", 1 ),
 		FIELD( _field_real, "max_visibility_distance#manual override for the max distance this effect can be from the camera and still be rendered (not valid for sounds)." ),
 		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(material_effect_block_v2, k_material_effect_type_count)
+	{
+		FIELD( _field_block, "old materials (DO NOT USE)!", &old_material_effect_material_block_block ),
+		FIELD( _field_block, "sounds", &material_effect_material_block_block ),
+		FIELD( _field_block, "effects", &material_effect_material_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ENUM(sweeneter_mode_enum, 3)
+	{
+		OPTION("sweetener default"),
+		OPTION("sweetener enabled"),
+		OPTION("sweetener disabled"),
 	};
 
 } // namespace blofeld

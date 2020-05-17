@@ -3,6 +3,42 @@
 namespace blofeld
 {
 
+	constexpr unsigned long SQUAD_TEMPLATE_TAG = 'sqtm';
+
+	extern s_tag_struct_definition squad_template_block_struct;
+	extern s_tag_block_definition squad_template_block;
+	extern s_tag_group squad_template_group;
+
+	extern s_tag_struct_definition squad_groups_block_block_struct;
+	extern s_tag_block_definition squad_groups_block_block;
+	extern s_tag_struct_definition patrol_point_block_block_struct;
+	extern s_tag_block_definition patrol_point_block_block;
+	extern s_tag_struct_definition spawn_formation_block_block_struct;
+	extern s_tag_block_definition spawn_formation_block_block;
+	extern s_tag_struct_definition spawn_points_block_block_struct;
+	extern s_tag_block_definition spawn_points_block_block;
+	extern s_tag_struct_definition character_palette_choice_block_block_struct;
+	extern s_tag_block_definition character_palette_choice_block_block;
+	extern s_tag_struct_definition weapon_palette_choice_block_block_struct;
+	extern s_tag_block_definition weapon_palette_choice_block_block;
+	extern s_tag_struct_definition equipment_palette_choice_block_block_struct;
+	extern s_tag_block_definition equipment_palette_choice_block_block;
+	extern s_tag_struct_definition cell_block_block_struct;
+	extern s_tag_block_definition cell_block_block;
+	extern s_tag_struct_definition squads_block_block_struct;
+	extern s_tag_block_definition squads_block_block;
+	extern s_tag_struct_definition character_ref_choice_block_block_struct;
+	extern s_tag_block_definition character_ref_choice_block_block;
+	extern s_tag_struct_definition weapon_ref_choice_block_block_struct;
+	extern s_tag_block_definition weapon_ref_choice_block_block;
+	extern s_tag_struct_definition equipment_ref_choice_block_block_struct;
+	extern s_tag_block_definition equipment_ref_choice_block_block;
+	extern s_tag_struct_definition cell_template_block_block_struct;
+	extern s_tag_block_definition cell_template_block_block;
+
+
+	extern s_tag_struct_definition squad_definition_internal_struct_struct_definition;
+
 	extern const char* patrol_point_flags_strings[];
 	extern s_string_list_definition patrol_point_flags;
 	extern const char* patrol_mode_enum_strings[];
@@ -23,41 +59,6 @@ namespace blofeld
 	extern s_string_list_definition g_activity_enum;
 	extern const char* ai_team_enum_strings[];
 	extern s_string_list_definition ai_team_enum;
-
-	constexpr unsigned long SQUAD_TEMPLATE_TAG = 'sqtm';
-
-	extern s_tag_struct squad_template_block_struct;
-	extern s_tag_block_definition squad_template_block;
-	extern s_tag_group squad_template_group;
-
-	extern s_tag_struct squad_groups_block_block_struct;
-	extern s_tag_block_definition squad_groups_block_block;
-	extern s_tag_struct squads_block_block_struct;
-	extern s_tag_block_definition squads_block_block;
-	extern s_tag_struct spawn_formation_block_block_struct;
-	extern s_tag_block_definition spawn_formation_block_block;
-	extern s_tag_struct patrol_point_block_block_struct;
-	extern s_tag_block_definition patrol_point_block_block;
-	extern s_tag_struct spawn_points_block_block_struct;
-	extern s_tag_block_definition spawn_points_block_block;
-	extern s_tag_struct cell_block_block_struct;
-	extern s_tag_block_definition cell_block_block;
-	extern s_tag_struct character_palette_choice_block_block_struct;
-	extern s_tag_block_definition character_palette_choice_block_block;
-	extern s_tag_struct weapon_palette_choice_block_block_struct;
-	extern s_tag_block_definition weapon_palette_choice_block_block;
-	extern s_tag_struct equipment_palette_choice_block_block_struct;
-	extern s_tag_block_definition equipment_palette_choice_block_block;
-	extern s_tag_struct cell_template_block_block_struct;
-	extern s_tag_block_definition cell_template_block_block;
-	extern s_tag_struct character_ref_choice_block_block_struct;
-	extern s_tag_block_definition character_ref_choice_block_block;
-	extern s_tag_struct weapon_ref_choice_block_block_struct;
-	extern s_tag_block_definition weapon_ref_choice_block_block;
-	extern s_tag_struct equipment_ref_choice_block_block_struct;
-	extern s_tag_block_definition equipment_ref_choice_block_block;
-
-	extern s_tag_struct squad_definition_internal_struct_struct_definition;
 
 } // namespace blofeld
 

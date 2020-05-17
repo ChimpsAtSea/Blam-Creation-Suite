@@ -3,11 +3,6 @@
 namespace blofeld
 {
 
-	extern const char* global_screen_shader_render_layer_enum_strings[];
-	extern s_string_list_definition global_screen_shader_render_layer_enum;
-	extern const char* global_screen_shader_flags_definition_strings[];
-	extern s_string_list_definition global_screen_shader_flags_definition;
-
 	constexpr unsigned long SHADER_PARTICLE_TAG = 'rmp';
 
 	extern s_tag_group shader_particle_group;
@@ -82,25 +77,31 @@ namespace blofeld
 	extern s_tag_block_definition shader_water_block_block;
 	extern s_tag_block_definition shader_waterfall_block_block;
 
-	extern s_tag_struct shader_particle_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_custom_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_cortana_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_decal_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_foliage_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_fur_stencil_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_fur_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_glass_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_halogram_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_light_volume_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_mux_material_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_mux_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_skin_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_screen_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_terrain_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_water_struct_definition_struct_definition; // tag group
-	extern s_tag_struct shader_waterfall_struct_definition_struct_definition; // tag group
-	extern s_tag_struct material_type_struct_struct_definition;
+
+	extern s_tag_struct_definition shader_particle_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition material_type_struct_struct_definition;
+	extern s_tag_struct_definition shader_custom_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_cortana_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_decal_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_foliage_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_fur_stencil_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_fur_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_glass_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_halogram_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_light_volume_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_mux_material_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_mux_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_skin_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_screen_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_terrain_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_water_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition shader_waterfall_struct_definition_struct_definition; // tag group
+
+	extern const char* global_screen_shader_render_layer_enum_strings[];
+	extern s_string_list_definition global_screen_shader_render_layer_enum;
+	extern const char* global_screen_shader_flags_definition_strings[];
+	extern s_string_list_definition global_screen_shader_flags_definition;
 
 } // namespace blofeld
 

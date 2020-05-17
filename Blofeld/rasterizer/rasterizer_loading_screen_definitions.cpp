@@ -3,14 +3,13 @@
 namespace blofeld
 {
 
-	TAG_ENUM(loadscreenFlags, 3)
-	{
-		OPTION("resolve two sided"),
-		OPTION("do not sort vertex order"),
-		OPTION("particles spawn radially#see particle initial offset multiplier"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(load_screen, LOAD_SCREEN_TAG, loadScreenBlock_block );
+
+	TAG_BLOCK(vertexBlock, 77824)
+	{
+		FIELD( _field_real_point_3d, "point*" ),
+		FIELD( _field_terminator )
+	};
 
 	TAG_BLOCK(loadScreenBlock, 1)
 	{
@@ -34,10 +33,11 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(vertexBlock, 77824)
+	TAG_ENUM(loadscreenFlags, 3)
 	{
-		FIELD( _field_real_point_3d, "point*" ),
-		FIELD( _field_terminator )
+		OPTION("resolve two sided"),
+		OPTION("do not sort vertex order"),
+		OPTION("particles spawn radially#see particle initial offset multiplier"),
 	};
 
 } // namespace blofeld

@@ -1,11 +1,13 @@
 #pragma once
 
-struct s_h4_tag_block_definition;
-struct s_h4_tag_struct_definition;
 struct s_h4_tag_group;
+struct s_h4_tag_block_definition;
+struct s_h4_tag_array_definition;
+struct s_h4_tag_struct_definition;
 struct s_h4_tag_enum_definition;
 
 class c_h4_tag_block;
+using c_h4_tag_array = c_h4_tag_block;
 class c_h4_tag_struct;
 class c_h4_tag_group;
 class c_h4_tag_enum;
@@ -22,6 +24,7 @@ public:
 		const char* h4_data,
 		const s_h4_tag_block_definition* definition_header,
 		const s_h4_tag_group* tag_layout_header = nullptr);
+	static c_h4_tag_array* get_tag_array_definition(const char* h4_data, const s_h4_tag_array_definition* definition_header);
 	static std::map<const void*, c_h4_tag_block*> tag_block_definitions;
 
 	static c_h4_tag_struct* get_tag_struct_definition(

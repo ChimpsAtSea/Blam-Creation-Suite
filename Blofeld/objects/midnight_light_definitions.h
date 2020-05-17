@@ -3,6 +3,11 @@
 namespace blofeld
 {
 
+
+
+
+	extern s_tag_struct_definition midnight_light_struct_struct_definition;
+
 	extern const char* midnight_light_type_enum_definition_strings[];
 	extern s_string_list_definition midnight_light_type_enum_definition;
 	extern const char* midnight_lighting_mode_definition_strings[];
@@ -19,10 +24,6 @@ namespace blofeld
 	extern s_string_list_definition channelDefinitionFlags;
 	extern const char* light_definition_flags_strings[];
 	extern s_string_list_definition light_definition_flags;
-
-
-
-	extern s_tag_struct midnight_light_struct_struct_definition;
 
 } // namespace blofeld
 

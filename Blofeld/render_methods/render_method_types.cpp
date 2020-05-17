@@ -3,18 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(global_screen_shader_render_layer_enum, 3)
-	{
-		OPTION("pre-UI"),
-		OPTION("post-UI"),
-		OPTION("pre-transparents"),
-	};
-
-	TAG_ENUM(global_screen_shader_flags_definition, 1)
-	{
-		OPTION("resolve screen"),
-	};
-
 	TAG_GROUP_INHERIT_FROM_BLOCK(shader_particle, SHADER_PARTICLE_TAG, render_method, RENDER_METHOD_TAG, shader_particle_block_block );
 
 	TAG_GROUP_INHERIT_FROM_BLOCK(shader_custom, SHADER_CUSTOM_TAG, render_method, RENDER_METHOD_TAG, shader_custom_block_block );
@@ -87,8 +75,8 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(shader_waterfall_block, 1, shader_waterfall_struct_definition_struct_definition );
 
-TAG_STRUCT(shader_particle_struct_definition)
-{
+	TAG_STRUCT(shader_particle_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_real_rgb_color, "bright tint" ),
 		FIELD( _field_real_rgb_color, "ambient tint" ),
@@ -97,79 +85,85 @@ TAG_STRUCT(shader_particle_struct_definition)
 		FIELD( _field_real, "intensity scale" ),
 		FIELD( _field_tag_reference, "palette" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_custom_struct_definition)
-{
+	TAG_STRUCT(material_type_struct)
+	{
+		FIELD( _field_short_integer, "global material index" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_STRUCT(shader_custom_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_cortana_struct_definition)
-{
+	TAG_STRUCT(shader_cortana_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_decal_struct_definition)
-{
+	TAG_STRUCT(shader_decal_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_long_integer, "specular_modulate!" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_foliage_struct_definition)
-{
+	TAG_STRUCT(shader_foliage_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_fur_stencil_struct_definition)
-{
+	TAG_STRUCT(shader_fur_stencil_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_fur_struct_definition)
-{
+	TAG_STRUCT(shader_fur_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_glass_struct_definition)
-{
+	TAG_STRUCT(shader_glass_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_halogram_struct_definition)
-{
+	TAG_STRUCT(shader_halogram_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_light_volume_struct_definition)
-{
+	TAG_STRUCT(shader_light_volume_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_mux_material_struct_definition)
-{
+	TAG_STRUCT(shader_mux_material_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_mux_struct_definition)
-{
+	TAG_STRUCT(shader_mux_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name 0#defines global material type for channel 0 of the mux shader" ),
 		FIELD( _field_string_id, "material name 1#defines global material type for channel 1 of the mux shader" ),
@@ -181,24 +175,24 @@ TAG_STRUCT(shader_mux_struct_definition)
 		FIELD( _field_struct, "material type 3!", &material_type_struct_struct_definition ),
 		FIELD( _field_long_integer, "single material!" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_struct_definition)
-{
+	TAG_STRUCT(shader_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_skin_struct_definition)
-{
+	TAG_STRUCT(shader_skin_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_screen_struct_definition)
-{
+	TAG_STRUCT(shader_screen_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_char_enum, "render layer", &global_screen_shader_render_layer_enum ),
@@ -206,10 +200,10 @@ TAG_STRUCT(shader_screen_struct_definition)
 		FIELD( _field_byte_flags, "render flags", &global_screen_shader_flags_definition ),
 		FIELD( _field_pad, "fefjjjfrjg", 1 ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_terrain_struct_definition)
-{
+	TAG_STRUCT(shader_terrain_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name 0#defines global material type for channel 0 of the terrain shader" ),
 		FIELD( _field_string_id, "material name 1#defines global material type for channel 1 of the terrain shader" ),
@@ -221,26 +215,32 @@ TAG_STRUCT(shader_terrain_struct_definition)
 		FIELD( _field_struct, "material type 3!", &material_type_struct_struct_definition ),
 		FIELD( _field_long_integer, "single material!" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_water_struct_definition)
-{
+	TAG_STRUCT(shader_water_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(shader_waterfall_struct_definition)
-{
+	TAG_STRUCT(shader_waterfall_struct_definition)
+	{
 		FIELD( _field_struct, "render_method", &render_method_struct_definition_struct_definition ),
 		FIELD( _field_string_id, "material name" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(material_type_struct)
-{
-		FIELD( _field_short_integer, "global material index" ),
-		FIELD( _field_terminator )
-};
+	TAG_ENUM(global_screen_shader_render_layer_enum, 3)
+	{
+		OPTION("pre-UI"),
+		OPTION("post-UI"),
+		OPTION("pre-transparents"),
+	};
+
+	TAG_ENUM(global_screen_shader_flags_definition, 1)
+	{
+		OPTION("resolve screen"),
+	};
 
 } // namespace blofeld
 

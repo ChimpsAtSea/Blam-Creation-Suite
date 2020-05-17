@@ -3,6 +3,19 @@
 namespace blofeld
 {
 
+	constexpr unsigned long STYLE_TAG = 'styl';
+
+	extern s_tag_group style_group;
+
+	extern s_tag_struct_definition style_palette_block_block_struct;
+	extern s_tag_block_definition style_palette_block_block;
+	extern s_tag_struct_definition behavior_names_block_block_struct;
+	extern s_tag_block_definition behavior_names_block_block;
+	extern s_tag_block_definition style_block_block;
+
+
+	extern s_tag_struct_definition style_struct_definition_struct_definition; // tag group
+
 	extern const char* behavior_set1_strings[];
 	extern s_string_list_definition behavior_set1;
 	extern const char* behavior_set2_strings[];
@@ -23,18 +36,6 @@ namespace blofeld
 	extern s_string_list_definition style_control_flags;
 	extern const char* combat_status_enum$2_strings[];
 	extern s_string_list_definition combat_status_enum$2;
-
-	constexpr unsigned long STYLE_TAG = 'styl';
-
-	extern s_tag_group style_group;
-
-	extern s_tag_block_definition style_block_block;
-	extern s_tag_struct style_palette_block_block_struct;
-	extern s_tag_block_definition style_palette_block_block;
-	extern s_tag_struct behavior_names_block_block_struct;
-	extern s_tag_block_definition behavior_names_block_block;
-
-	extern s_tag_struct style_struct_definition_struct_definition; // tag group
 
 } // namespace blofeld
 

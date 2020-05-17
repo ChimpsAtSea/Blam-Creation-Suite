@@ -3,11 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(MobileNavMeshFlagsDefinition, 1)
-	{
-		OPTION("always loaded"),
-	};
-
 	TAG_GROUP(pathfinding, PATHFINDING_TAG)
 	{
 		FIELD( _field_block, "bsp pathfinding data", &pathfinding_data_block_block ),
@@ -18,6 +13,15 @@ namespace blofeld
 		FIELD( _field_block, "hints", &user_hint_block_block ),
 		FIELD( _field_byte_integer, "already Converted!" ),
 		FIELD( _field_pad, "fuckPad", 3 ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(FaceUserDataBlock, 256*1024)
+	{
+		FIELD( _field_short_integer, "m_flags*~" ),
+		FIELD( _field_pad, "pad", 2 ),
+		FIELD( _field_real, "currentMinPathDistance!*~" ),
+		FIELD( _field_real, "currentMinTargetApproachDistance!*~" ),
 		FIELD( _field_terminator )
 	};
 
@@ -32,15 +36,6 @@ namespace blofeld
 		FIELD( _field_block, "faceUserData*~", &FaceUserDataBlock_block ),
 		FIELD( _field_long_integer, "structure checksum*~" ),
 		FIELD( _field_pad, "pads2", 8 ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(FaceUserDataBlock, 256*1024)
-	{
-		FIELD( _field_short_integer, "m_flags*~" ),
-		FIELD( _field_pad, "pad", 2 ),
-		FIELD( _field_real, "currentMinPathDistance!*~" ),
-		FIELD( _field_real, "currentMinTargetApproachDistance!*~" ),
 		FIELD( _field_terminator )
 	};
 
@@ -103,6 +98,11 @@ namespace blofeld
 		FIELD( _field_char_integer, "m_direction*~" ),
 		FIELD( _field_pad, "padding", 3 ),
 		FIELD( _field_terminator )
+	};
+
+	TAG_ENUM(MobileNavMeshFlagsDefinition, 1)
+	{
+		OPTION("always loaded"),
 	};
 
 } // namespace blofeld

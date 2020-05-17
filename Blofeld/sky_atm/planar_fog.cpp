@@ -3,27 +3,14 @@
 namespace blofeld
 {
 
-	TAG_ENUM(planar_fog_flags, 4)
-	{
-		OPTION("enable patchy effect"),
-		OPTION("enable color palette"),
-		OPTION("enable alpha palette"),
-		OPTION("render only"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(planar_fog_parameters, PLANAR_FOG_PARAMETERS_TAG, planar_fog_parameters_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(planar_fog_parameters_block, 1, planar_fog_parameters_struct_definition_struct_definition );
 
-	TAG_BLOCK(planar_fog_zone_set_visibility_definition_block, 1)
+	TAG_BLOCK(planar_fog_reference_definition_block, k_short_max)
 	{
-		FIELD( _field_block, "structure visiblity*", &planar_fog_structure_visibility_definition_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(planar_fog_structure_visibility_definition_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
-	{
-		FIELD( _field_block, "cluster visiblity*", &planar_fog_cluster_visibility_definition_block_block ),
+		FIELD( _field_short_integer, "structure design index*" ),
+		FIELD( _field_short_integer, "fog index*" ),
 		FIELD( _field_terminator )
 	};
 
@@ -33,10 +20,33 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(planar_fog_reference_definition_block, k_short_max)
+	TAG_BLOCK(planar_fog_structure_visibility_definition_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
-		FIELD( _field_short_integer, "structure design index*" ),
-		FIELD( _field_short_integer, "fog index*" ),
+		FIELD( _field_block, "cluster visiblity*", &planar_fog_cluster_visibility_definition_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(planar_fog_zone_set_visibility_definition_block, 1)
+	{
+		FIELD( _field_block, "structure visiblity*", &planar_fog_structure_visibility_definition_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(planar_fog_vertex_block, s_planar_fog_definition::k_maximum_triangle_count*k_vertices_per_triangle_count)
+	{
+		FIELD( _field_real_point_3d, "position*" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(planar_fog_triangle_planes_block, s_planar_fog_definition::k_maximum_triangle_count)
+	{
+		FIELD( _field_real_plane_3d, "plane*!" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(planar_fog_triangle_block, k_short_max)
+	{
+		FIELD( _field_block, "planes*", &planar_fog_triangle_planes_block_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -51,26 +61,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(planar_fog_vertex_block, s_planar_fog_definition::k_maximum_triangle_count*k_vertices_per_triangle_count)
+	TAG_STRUCT(planar_fog_parameters_struct_definition)
 	{
-		FIELD( _field_real_point_3d, "position*" ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(planar_fog_triangle_block, k_short_max)
-	{
-		FIELD( _field_block, "planes*", &planar_fog_triangle_planes_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(planar_fog_triangle_planes_block, s_planar_fog_definition::k_maximum_triangle_count)
-	{
-		FIELD( _field_real_plane_3d, "plane*!" ),
-		FIELD( _field_terminator )
-	};
-
-TAG_STRUCT(planar_fog_parameters_struct_definition)
-{
 		FIELD( _field_word_flags, "flags", &planar_fog_flags ),
 		FIELD( _field_pad, "ABCDadf", 2 ),
 		FIELD( _field_real, "fog thickness [0.0 to 1.0]" ),
@@ -99,14 +91,22 @@ TAG_STRUCT(planar_fog_parameters_struct_definition)
 		FIELD( _field_real, "patchy fade end distance:world units" ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(planar_fog_set_definition_struct)
-{
+	TAG_STRUCT(planar_fog_set_definition_struct)
+	{
 		FIELD( _field_block, "planar fogs", &planar_fog_definition_block_block ),
 		FIELD( _field_block, "mopp code*!", &mopp_code_definition_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(planar_fog_flags, 4)
+	{
+		OPTION("enable patchy effect"),
+		OPTION("enable color palette"),
+		OPTION("enable alpha palette"),
+		OPTION("render only"),
+	};
 
 } // namespace blofeld
 

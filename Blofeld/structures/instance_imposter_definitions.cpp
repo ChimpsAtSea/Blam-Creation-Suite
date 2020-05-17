@@ -3,25 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(instance_imposter_flags_definition, 4)
-	{
-		OPTION("raw geometry compressed"),
-		OPTION("use raw instance imposter verts"),
-		OPTION("valid and good to go"),
-		OPTION("build completed"),
-	};
-
-	TAG_ENUM(instance_imposter_element_flags_definition, 4)
-	{
-		OPTION("card"),
-		OPTION("poly"),
-		OPTION("rainbow box"),
-		OPTION("occlusion"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(instance_imposter_definition, INSTANCE_IMPOSTER_DEFINITION_TAG, instance_imposter_definition_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(instance_imposter_definition_block, 1, instance_imposter_definition_struct_definition_struct_definition );
 
 	TAG_BLOCK(instance_imposter_block, k_maximum_instance_geometry_instances_per_structure_bsp)
 	{
@@ -49,8 +31,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(instance_imposter_definition_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(instance_imposter_definition_block, 1, instance_imposter_definition_struct_definition_struct_definition );
+
+	TAG_STRUCT(instance_imposter_definition_struct_definition)
+	{
 		FIELD( _field_long_flags, "flags", &instance_imposter_flags_definition ),
 		FIELD( _field_string_id, "bsp name" ),
 		FIELD( _field_long_integer, "checksum" ),
@@ -67,7 +51,23 @@ TAG_STRUCT(instance_imposter_definition_struct_definition)
 		FIELD( _field_struct, "render geometry", &global_render_geometry_struct_struct_definition ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(instance_imposter_flags_definition, 4)
+	{
+		OPTION("raw geometry compressed"),
+		OPTION("use raw instance imposter verts"),
+		OPTION("valid and good to go"),
+		OPTION("build completed"),
+	};
+
+	TAG_ENUM(instance_imposter_element_flags_definition, 4)
+	{
+		OPTION("card"),
+		OPTION("poly"),
+		OPTION("rainbow box"),
+		OPTION("occlusion"),
+	};
 
 } // namespace blofeld
 

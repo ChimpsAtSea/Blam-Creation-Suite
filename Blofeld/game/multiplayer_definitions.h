@@ -3,6 +3,37 @@
 namespace blofeld
 {
 
+	constexpr unsigned long MULTIPLAYER_GLOBALS_TAG = 'mulg';
+
+	extern s_tag_group multiplayer_globals_group;
+
+	extern s_tag_struct_definition spawn_influence_weight_falloff_function_block_block_struct;
+	extern s_tag_block_definition spawn_influence_weight_falloff_function_block_block;
+	extern s_tag_struct_definition teamDefinitionBlock_block_struct;
+	extern s_tag_block_definition teamDefinitionBlock_block;
+	extern s_tag_struct_definition requisition_palette_block_block_struct;
+	extern s_tag_block_definition requisition_palette_block_block;
+	extern s_tag_struct_definition requisition_constants_block_block_struct;
+	extern s_tag_block_definition requisition_constants_block_block;
+	extern s_tag_struct_definition multiplayer_universal_block_block_struct;
+	extern s_tag_block_definition multiplayer_universal_block_block;
+	extern s_tag_struct_definition sounds_block_block_struct;
+	extern s_tag_block_definition sounds_block_block;
+	extern s_tag_struct_definition looping_sounds_block_block_struct;
+	extern s_tag_block_definition looping_sounds_block_block;
+	extern s_tag_struct_definition multiplayer_constants_block_block_struct;
+	extern s_tag_block_definition multiplayer_constants_block_block;
+	extern s_tag_struct_definition game_engine_status_response_block_block_struct;
+	extern s_tag_block_definition game_engine_status_response_block_block;
+	extern s_tag_struct_definition multiplayer_runtime_block_block_struct;
+	extern s_tag_block_definition multiplayer_runtime_block_block;
+	extern s_tag_block_definition multiplayer_globals_block_block;
+	extern s_tag_struct_definition multiplayer_color_block$3_block_struct;
+	extern s_tag_block_definition multiplayer_color_block$3_block;
+
+
+	extern s_tag_struct_definition multiplayer_globals_struct_definition_struct_definition; // tag group
+
 	extern const char* requisition_special_buy_enum_strings[];
 	extern s_string_list_definition requisition_special_buy_enum;
 	extern const char* emblemInfoFlags_strings[];
@@ -13,36 +44,6 @@ namespace blofeld
 	extern s_string_list_definition game_engine_status_enum_definition;
 	extern const char* game_engine_status_flags_definition_strings[];
 	extern s_string_list_definition game_engine_status_flags_definition;
-
-	constexpr unsigned long MULTIPLAYER_GLOBALS_TAG = 'mulg';
-
-	extern s_tag_group multiplayer_globals_group;
-
-	extern s_tag_block_definition multiplayer_globals_block_block;
-	extern s_tag_struct spawn_influence_weight_falloff_function_block_block_struct;
-	extern s_tag_block_definition spawn_influence_weight_falloff_function_block_block;
-	extern s_tag_struct multiplayer_universal_block_block_struct;
-	extern s_tag_block_definition multiplayer_universal_block_block;
-	extern s_tag_struct teamDefinitionBlock_block_struct;
-	extern s_tag_block_definition teamDefinitionBlock_block;
-	extern s_tag_struct requisition_constants_block_block_struct;
-	extern s_tag_block_definition requisition_constants_block_block;
-	extern s_tag_struct requisition_palette_block_block_struct;
-	extern s_tag_block_definition requisition_palette_block_block;
-	extern s_tag_struct multiplayer_runtime_block_block_struct;
-	extern s_tag_block_definition multiplayer_runtime_block_block;
-	extern s_tag_struct sounds_block_block_struct;
-	extern s_tag_block_definition sounds_block_block;
-	extern s_tag_struct looping_sounds_block_block_struct;
-	extern s_tag_block_definition looping_sounds_block_block;
-	extern s_tag_struct multiplayer_constants_block_block_struct;
-	extern s_tag_block_definition multiplayer_constants_block_block;
-	extern s_tag_struct game_engine_status_response_block_block_struct;
-	extern s_tag_block_definition game_engine_status_response_block_block;
-	extern s_tag_struct multiplayer_color_block$3_block_struct;
-	extern s_tag_block_definition multiplayer_color_block$3_block;
-
-	extern s_tag_struct multiplayer_globals_struct_definition_struct_definition; // tag group
 
 } // namespace blofeld
 

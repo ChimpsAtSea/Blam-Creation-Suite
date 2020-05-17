@@ -11,7 +11,7 @@ namespace blofeld
 		FIELD( _field_real, "Authored Light Probe Intensity Scale!" ),
 		FIELD( _field_custom, "Generated Air Probe Intensity Scale!" ),
 		FIELD( _field_real, "Generated Air Probe Intensity Scale!" ),
-		FIELD( _field_array, "raw sh data!" ),
+		FIELD( _field_array, "raw sh data!", &real_rgb_lightprobe_array_array ),
 		FIELD( _field_char_enum, "Is Camera-space", &midnight_boolean_enum_definition ),
 		FIELD( _field_char_enum, "Apply to First Person Geometry", &midnight_boolean_enum_definition ),
 		FIELD( _field_pad, "pdd", 2 ),
@@ -42,6 +42,12 @@ namespace blofeld
 		FIELD( _field_real, "Authored Light Probe Intensity Scale" ),
 		FIELD( _field_custom, "Generated Air Probe Intensity Scale" ),
 		FIELD( _field_real, "Generated Air Probe Intensity Scale" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ARRAY(real_rgb_lightprobe_array, ((3)*(3)) * 3)
+	{
+		FIELD( _field_real, "sh data" ),
 		FIELD( _field_terminator )
 	};
 

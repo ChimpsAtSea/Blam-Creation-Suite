@@ -3,34 +3,9 @@
 namespace blofeld
 {
 
-	TAG_ENUM(language_enum, 17)
-	{
-		OPTION("english"),
-		OPTION("japanese"),
-		OPTION("german"),
-		OPTION("french"),
-		OPTION("spanish"),
-		OPTION("mexican spanish"),
-		OPTION("italian"),
-		OPTION("korean"),
-		OPTION("chinese-traditional"),
-		OPTION("chinese-simplified"),
-		OPTION("portuguese"),
-		OPTION("polish"),
-		OPTION("russian"),
-		OPTION("danish"),
-		OPTION("finnish"),
-		OPTION("dutch"),
-		OPTION("norwegian"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(globals, GLOBALS_TAG, globals_block_block );
 
 	TAG_GROUP_FROM_BLOCK(patch_globals, PATCH_GLOBALS_TAG, patch_globals_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(globals_block, 1, globals_struct_definition_struct_definition );
-
-	TAG_BLOCK_FROM_STRUCT(patch_globals_block, 1, patch_globals_struct_definition_struct_definition );
 
 	TAG_BLOCK(havok_cleanup_resources_block, 1)
 	{
@@ -38,7 +13,7 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(sound_block$2, NUMBER_OF_GLOBAL_SOUNDS)
+	TAG_BLOCK(sound_block, NUMBER_OF_GLOBAL_SOUNDS)
 	{
 		FIELD( _field_tag_reference, "sound (OBSOLETE)" ),
 		FIELD( _field_terminator )
@@ -82,8 +57,12 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(globals_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(globals_block, 1, globals_struct_definition_struct_definition );
+
+	TAG_BLOCK_FROM_STRUCT(patch_globals_block, 1, patch_globals_struct_definition_struct_definition );
+
+	TAG_STRUCT(globals_struct_definition)
+	{
 		FIELD( _field_pad, "YJLTWDSL", 172 ),
 		FIELD( _field_long_enum, "language", &language_enum ),
 		FIELD( _field_block, "havok cleanup resources", &havok_cleanup_resources_block_block ),
@@ -92,7 +71,7 @@ TAG_STRUCT(globals_struct_definition)
 		FIELD( _field_block, "DEPRECATED{ai globals}*!", &ai_globals_data_block_block ),
 		FIELD( _field_tag_reference, "ai globals ref" ),
 		FIELD( _field_block, "damage table", &game_globals_damage_block_block ),
-		FIELD( _field_block, "sounds", &sound_block$2_block ),
+		FIELD( _field_block, "sounds", &sound_block_block ),
 		FIELD( _field_block, "camera", &camera_block_block ),
 		FIELD( _field_block, "controller input", &controller_input_block_block ),
 		FIELD( _field_block, "player control", &player_control_block_block ),
@@ -182,10 +161,17 @@ TAG_STRUCT(globals_struct_definition)
 		FIELD( _field_block, "Hologram Lighting", &hologramLightingGlobalsBlock_block ),
 		FIELD( _field_tag_reference, "Narrative globals" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(patch_globals_struct_definition)
-{
+	TAG_STRUCT(elite_specular_color_struct)
+	{
+		FIELD( _field_real_rgb_color, "tertiary color" ),
+		FIELD( _field_real_rgb_color, "quaternary color" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_STRUCT(patch_globals_struct_definition)
+	{
 		FIELD( _field_struct, "language pack1!", &language_pack_definition_struct_definition ),
 		FIELD( _field_struct, "language pack2!", &language_pack_definition_struct_definition ),
 		FIELD( _field_struct, "language pack3!", &language_pack_definition_struct_definition ),
@@ -204,14 +190,28 @@ TAG_STRUCT(patch_globals_struct_definition)
 		FIELD( _field_struct, "language pack16!", &language_pack_definition_struct_definition ),
 		FIELD( _field_struct, "language pack17!", &language_pack_definition_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(elite_specular_color_struct)
-{
-		FIELD( _field_real_rgb_color, "tertiary color" ),
-		FIELD( _field_real_rgb_color, "quaternary color" ),
-		FIELD( _field_terminator )
-};
+	TAG_ENUM(language_enum, 17)
+	{
+		OPTION("english"),
+		OPTION("japanese"),
+		OPTION("german"),
+		OPTION("french"),
+		OPTION("spanish"),
+		OPTION("mexican spanish"),
+		OPTION("italian"),
+		OPTION("korean"),
+		OPTION("chinese-traditional"),
+		OPTION("chinese-simplified"),
+		OPTION("portuguese"),
+		OPTION("polish"),
+		OPTION("russian"),
+		OPTION("danish"),
+		OPTION("finnish"),
+		OPTION("dutch"),
+		OPTION("norwegian"),
+	};
 
 } // namespace blofeld
 

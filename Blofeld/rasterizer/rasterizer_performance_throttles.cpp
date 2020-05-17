@@ -3,28 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(performance_throttle_flags, 15)
-	{
-		OPTION("disable object attachment lights"),
-		OPTION("disable first person shadow"),
-		OPTION("disable cheap particles"),
-		OPTION("disable blob shadows"),
-		OPTION("disable patchy fog"),
-		OPTION("disable screen distortion"),
-		OPTION("disable light shafts"),
-		OPTION("disable first person depth of field"),
-		OPTION("disable motion blur"),
-		OPTION("disable particles continue offscreen"),
-		OPTION("disable light cones"),
-		OPTION("disable water interraction"),
-		OPTION("disable water refraction"),
-		OPTION("disable decorators"),
-		OPTION("disable instance occlusion queries#WARNING Will likely hurt perf on most maps"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(performance_throttles, PERFORMANCE_THROTTLES_TAG, performance_throttles_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(performance_throttles_block, 1, performance_throttles_struct_definition_struct_definition );
 
 	TAG_BLOCK(performane_throttle_block, 7)
 	{
@@ -56,12 +35,33 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(performance_throttles_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(performance_throttles_block, 1, performance_throttles_struct_definition_struct_definition );
+
+	TAG_STRUCT(performance_throttles_struct_definition)
+	{
 		FIELD( _field_explanation, "Performance Throttles" ),
 		FIELD( _field_block, "Performance Throttles", &performane_throttle_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(performance_throttle_flags, 15)
+	{
+		OPTION("disable object attachment lights"),
+		OPTION("disable first person shadow"),
+		OPTION("disable cheap particles"),
+		OPTION("disable blob shadows"),
+		OPTION("disable patchy fog"),
+		OPTION("disable screen distortion"),
+		OPTION("disable light shafts"),
+		OPTION("disable first person depth of field"),
+		OPTION("disable motion blur"),
+		OPTION("disable particles continue offscreen"),
+		OPTION("disable light cones"),
+		OPTION("disable water interraction"),
+		OPTION("disable water refraction"),
+		OPTION("disable decorators"),
+		OPTION("disable instance occlusion queries#WARNING Will likely hurt perf on most maps"),
+	};
 
 } // namespace blofeld
 

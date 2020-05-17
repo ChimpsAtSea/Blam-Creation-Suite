@@ -3,29 +3,6 @@
 namespace blofeld
 {
 
-	extern const char* gui_alert_flags_strings[];
-	extern s_string_list_definition gui_alert_flags;
-	extern const char* gui_error_category_enum_strings[];
-	extern s_string_list_definition gui_error_category_enum;
-	extern const char* gui_error_icon_enum_strings[];
-	extern s_string_list_definition gui_error_icon_enum;
-	extern const char* gui_dialog_choice_enum_strings[];
-	extern s_string_list_definition gui_dialog_choice_enum;
-	extern const char* gui_dialog_b_button_action_enum_strings[];
-	extern s_string_list_definition gui_dialog_b_button_action_enum;
-	extern const char* gui_dialog_flags_strings[];
-	extern s_string_list_definition gui_dialog_flags;
-	extern const char* pgcr_enemy_to_category_entry_flags_strings[];
-	extern s_string_list_definition pgcr_enemy_to_category_entry_flags;
-	extern const char* pgcr_player_type_enum_strings[];
-	extern s_string_list_definition pgcr_player_type_enum;
-	extern const char* cui_camera_pivot_corner_enum_definition_strings[];
-	extern s_string_list_definition cui_camera_pivot_corner_enum_definition;
-	extern const char* UIGameStartSequenceFlagsDefinition_strings[];
-	extern s_string_list_definition UIGameStartSequenceFlagsDefinition;
-	extern const char* UserInterfaceTagGlobalsFlagsDefinition_strings[];
-	extern s_string_list_definition UserInterfaceTagGlobalsFlagsDefinition;
-
 	constexpr unsigned long INFINITYUIIMAGES_TAG = 'iuii';
 
 	extern s_tag_group InfinityUIImages_group;
@@ -48,65 +25,89 @@ namespace blofeld
 
 	extern s_tag_group user_interface_shared_globals_definition_group;
 
+	extern s_tag_struct_definition InfinityMissionImagesDefinition_block_struct;
+	extern s_tag_block_definition InfinityMissionImagesDefinition_block;
+	extern s_tag_struct_definition InfinityMissionSeasonImagesDefinition_block_struct;
+	extern s_tag_block_definition InfinityMissionSeasonImagesDefinition_block;
 	extern s_tag_block_definition InfinityUIImages_block_block;
+	extern s_tag_struct_definition pgcr_player_to_category_entry_block_block_struct;
+	extern s_tag_block_definition pgcr_player_to_category_entry_block_block;
+	extern s_tag_struct_definition pgcr_enemy_to_category_entry_block_block_struct;
+	extern s_tag_block_definition pgcr_enemy_to_category_entry_block_block;
+	extern s_tag_struct_definition pgcr_enemy_to_category_list_block_block_struct;
+	extern s_tag_block_definition pgcr_enemy_to_category_list_block_block;
 	extern s_tag_block_definition pgcr_enemy_to_category_mapping_definition_block_block;
+	extern s_tag_struct_definition pgcr_damage_type_image_block_block_struct;
+	extern s_tag_block_definition pgcr_damage_type_image_block_block;
 	extern s_tag_block_definition pgcr_damage_type_image_mapping_definition_block_block;
+	extern s_tag_struct_definition gui_portrait_pose_block_block_struct;
+	extern s_tag_block_definition gui_portrait_pose_block_block;
 	extern s_tag_block_definition portrait_poses_definition_block_block;
 	extern s_tag_block_definition user_interface_sounds_definition_block_block;
-	extern s_tag_block_definition user_interface_globals_definition_block_block;
-	extern s_tag_block_definition user_interface_shared_globals_definition_block_block;
-	extern s_tag_struct InfinityMissionSeasonImagesDefinition_block_struct;
-	extern s_tag_block_definition InfinityMissionSeasonImagesDefinition_block;
-	extern s_tag_struct InfinityMissionImagesDefinition_block_struct;
-	extern s_tag_block_definition InfinityMissionImagesDefinition_block;
-	extern s_tag_struct pgcr_enemy_to_category_list_block_block_struct;
-	extern s_tag_block_definition pgcr_enemy_to_category_list_block_block;
-	extern s_tag_struct pgcr_player_to_category_entry_block_block_struct;
-	extern s_tag_block_definition pgcr_player_to_category_entry_block_block;
-	extern s_tag_struct pgcr_enemy_to_category_entry_block_block_struct;
-	extern s_tag_block_definition pgcr_enemy_to_category_entry_block_block;
-	extern s_tag_struct pgcr_damage_type_image_block_block_struct;
-	extern s_tag_block_definition pgcr_damage_type_image_block_block;
-	extern s_tag_struct gui_portrait_pose_block_block_struct;
-	extern s_tag_block_definition gui_portrait_pose_block_block;
-	extern s_tag_struct cui_component_screen_reference_block_definition_block_struct;
+	extern s_tag_struct_definition cui_component_screen_reference_block_definition_block_struct;
 	extern s_tag_block_definition cui_component_screen_reference_block_definition_block;
-	extern s_tag_struct cui_overlay_camera_block_definition_block_struct;
+	extern s_tag_struct_definition cui_overlay_camera_block_definition_block_struct;
 	extern s_tag_block_definition cui_overlay_camera_block_definition_block;
-	extern s_tag_struct cui_player_model_camera_settings_definition_block_struct;
+	extern s_tag_struct_definition cui_player_model_camera_settings_definition_block_struct;
 	extern s_tag_block_definition cui_player_model_camera_settings_definition_block;
-	extern s_tag_struct cui_player_model_controller_settings_definition_block_struct;
+	extern s_tag_struct_definition cui_player_model_controller_settings_definition_block_struct;
 	extern s_tag_block_definition cui_player_model_controller_settings_definition_block;
-	extern s_tag_struct cui_player_model_transition_settings_definition_block_struct;
+	extern s_tag_struct_definition cui_player_model_transition_settings_definition_block_struct;
 	extern s_tag_block_definition cui_player_model_transition_settings_definition_block;
-	extern s_tag_struct cui_active_roster_settings_block_block_struct;
+	extern s_tag_struct_definition cui_active_roster_settings_block_block_struct;
 	extern s_tag_block_definition cui_active_roster_settings_block_block;
-	extern s_tag_struct campaign_state_screen_script_block_definition_block_struct;
+	extern s_tag_struct_definition campaign_state_screen_script_block_definition_block_struct;
 	extern s_tag_block_definition campaign_state_screen_script_block_definition_block;
-	extern s_tag_struct UserInterfaceGameScreenSequenceStepDefinition_block_struct;
+	extern s_tag_struct_definition UserInterfaceGameScreenSequenceStepDefinition_block_struct;
 	extern s_tag_block_definition UserInterfaceGameScreenSequenceStepDefinition_block;
-	extern s_tag_struct SwapTagReferenceDefinition_block_struct;
+	extern s_tag_struct_definition SwapTagReferenceDefinition_block_struct;
 	extern s_tag_block_definition SwapTagReferenceDefinition_block;
-	extern s_tag_struct color_presets_block_block_struct;
+	extern s_tag_block_definition user_interface_globals_definition_block_block;
+	extern s_tag_struct_definition color_presets_block_block_struct;
 	extern s_tag_block_definition color_presets_block_block;
-	extern s_tag_struct tint_colors_block_block_struct;
-	extern s_tag_block_definition tint_colors_block_block;
-	extern s_tag_struct color_list_block_block_struct;
+	extern s_tag_struct_definition color_list_block_block_struct;
 	extern s_tag_block_definition color_list_block_block;
-	extern s_tag_struct gui_alert_description_block_block_struct;
+	extern s_tag_struct_definition tint_colors_block_block_struct;
+	extern s_tag_block_definition tint_colors_block_block;
+	extern s_tag_struct_definition gui_alert_description_block_block_struct;
 	extern s_tag_block_definition gui_alert_description_block_block;
-	extern s_tag_struct gui_dialog_description_block_block_struct;
+	extern s_tag_struct_definition gui_dialog_description_block_block_struct;
 	extern s_tag_block_definition gui_dialog_description_block_block;
-	extern s_tag_struct pgcr_incident_block_block_struct;
+	extern s_tag_struct_definition pgcr_incident_block_block_struct;
 	extern s_tag_block_definition pgcr_incident_block_block;
+	extern s_tag_block_definition user_interface_shared_globals_definition_block_block;
 
-	extern s_tag_struct InfinityUIImages_struct_definition_struct_definition; // tag group
-	extern s_tag_struct pgcr_enemy_to_category_mapping_definition_struct_definition_struct_definition; // tag group
-	extern s_tag_struct pgcr_damage_type_image_mapping_definition_struct_definition_struct_definition; // tag group
-	extern s_tag_struct portrait_poses_definition_struct_definition_struct_definition; // tag group
-	extern s_tag_struct user_interface_sounds_definition_struct_definition_struct_definition; // tag group
-	extern s_tag_struct user_interface_globals_definition_struct_definition_struct_definition; // tag group
-	extern s_tag_struct user_interface_shared_globals_definition_struct_definition_struct_definition; // tag group
+
+	extern s_tag_struct_definition InfinityUIImages_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition pgcr_enemy_to_category_mapping_definition_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition pgcr_damage_type_image_mapping_definition_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition portrait_poses_definition_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition user_interface_sounds_definition_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition user_interface_globals_definition_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition user_interface_shared_globals_definition_struct_definition_struct_definition; // tag group
+
+	extern const char* gui_alert_flags_strings[];
+	extern s_string_list_definition gui_alert_flags;
+	extern const char* gui_error_category_enum_strings[];
+	extern s_string_list_definition gui_error_category_enum;
+	extern const char* gui_error_icon_enum_strings[];
+	extern s_string_list_definition gui_error_icon_enum;
+	extern const char* gui_dialog_choice_enum_strings[];
+	extern s_string_list_definition gui_dialog_choice_enum;
+	extern const char* gui_dialog_b_button_action_enum_strings[];
+	extern s_string_list_definition gui_dialog_b_button_action_enum;
+	extern const char* gui_dialog_flags_strings[];
+	extern s_string_list_definition gui_dialog_flags;
+	extern const char* pgcr_enemy_to_category_entry_flags_strings[];
+	extern s_string_list_definition pgcr_enemy_to_category_entry_flags;
+	extern const char* pgcr_player_type_enum_strings[];
+	extern s_string_list_definition pgcr_player_type_enum;
+	extern const char* cui_camera_pivot_corner_enum_definition_strings[];
+	extern s_string_list_definition cui_camera_pivot_corner_enum_definition;
+	extern const char* UIGameStartSequenceFlagsDefinition_strings[];
+	extern s_string_list_definition UIGameStartSequenceFlagsDefinition;
+	extern const char* UserInterfaceTagGlobalsFlagsDefinition_strings[];
+	extern s_string_list_definition UserInterfaceTagGlobalsFlagsDefinition;
 
 } // namespace blofeld
 

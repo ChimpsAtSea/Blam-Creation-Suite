@@ -3,12 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(muffin_type_flags_definition, 2)
-	{
-		OPTION("disable for debug"),
-		OPTION("jump to marker on transition#forces the muffins to the new marker location when they are transferred to a new model, may cause popping if the markers aren\'t aligned"),
-	};
-
 	TAG_GROUP(muffin, MUFFIN_TAG)
 	{
 		FIELD( _field_custom, "link to render model" ),
@@ -36,8 +30,8 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(global_muffin_type_block, 16, global_muffin_type_struct_struct_definition );
 
-TAG_STRUCT(global_muffin_type_struct)
-{
+	TAG_STRUCT(global_muffin_type_struct)
+	{
 		FIELD( _field_short_block_index, "mesh^" ),
 		FIELD( _field_word_flags, "flags", &muffin_type_flags_definition ),
 		FIELD( _field_real_bounds, "spawn delay:seconds#how long to wait before spawning these muffins" ),
@@ -57,14 +51,20 @@ TAG_STRUCT(global_muffin_type_struct)
 		FIELD( _field_real, "immortality chance:[0.0 - 1.0]#the chance that any give muffin of this type will live forever" ),
 		FIELD( _field_tag_reference, "death effect" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(muffin_scalar_function_struct)
-{
+	TAG_STRUCT(muffin_scalar_function_struct)
+	{
 		FIELD( _field_custom ),
 		FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(muffin_type_flags_definition, 2)
+	{
+		OPTION("disable for debug"),
+		OPTION("jump to marker on transition#forces the muffins to the new marker location when they are transferred to a new model, may cause popping if the markers aren\'t aligned"),
+	};
 
 } // namespace blofeld
 

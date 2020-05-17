@@ -7,8 +7,8 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(simulation_interpolation_block, 1, simulation_interpolation_struct_definition_struct_definition );
 
-TAG_STRUCT(simulation_interpolation_struct_definition)
-{
+	TAG_STRUCT(simulation_interpolation_struct_definition)
+	{
 		FIELD( _field_explanation, "SIMULATION INTERPOLATION" ),
 		FIELD( _field_custom, "High level settings" ),
 		FIELD( _field_real, "position_client_ignore_tolerance:WU#How much rope clients have WRT their controlled object of this type. They are free to ignore host updates within this tolerance." ),
@@ -33,10 +33,10 @@ TAG_STRUCT(simulation_interpolation_struct_definition)
 		FIELD( _field_struct, "rotation_while_uncontrolled#All speeds in here are degrees/s", &single_domain_configuration_struct_struct_definition ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(single_domain_configuration_struct)
-{
+	TAG_STRUCT(single_domain_configuration_struct)
+	{
 		FIELD( _field_explanation, "SINGLE DOMAIN INTERPOLATION" ),
 		FIELD( _field_real, "discrepancy_threshold_above_which_we_use_blending:WU or degrees#Below this threshold we use velocity bumps." ),
 		FIELD( _field_real, "coming_to_rest_speed:WU/s or degrees/s#When our velocity is below this threshold, we will consider using a blend to minimize at-rest error." ),
@@ -48,10 +48,10 @@ TAG_STRUCT(single_domain_configuration_struct)
 		FIELD( _field_struct, "blending", &single_domain_blending_configuration_struct_struct_definition ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(single_domain_velocity_bumps_configuration_struct)
-{
+	TAG_STRUCT(single_domain_velocity_bumps_configuration_struct)
+	{
 		FIELD( _field_explanation, "SINGLE DOMAIN VELOCITY BUMPS" ),
 		FIELD( _field_real, "velocity_scale#Fraction of delta that becomes the velocity bump" ),
 		FIELD( _field_real, "velocity_min:WU or degrees per second#Minimum size of any given velocity bump" ),
@@ -60,10 +60,10 @@ TAG_STRUCT(single_domain_velocity_bumps_configuration_struct)
 		FIELD( _field_real, "velocity_difference_ignore_threshold:WU or degrees per second#The new velocity must differ from the old velocity by less than this to allow suppression." ),
 		FIELD( _field_real, "velocity_difference_absolute_ignore_threshold:WU or degrees#The new position/rotation must differ from the old position/rotation by less than this to allow suppression." ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(single_domain_blending_configuration_struct)
-{
+	TAG_STRUCT(single_domain_blending_configuration_struct)
+	{
 		FIELD( _field_explanation, "SINGLE DOMAIN BLENDING CONFIGURATION" ),
 		FIELD( _field_real, "min_object_speed:WU or degrees per second#Approximate minimum speed for this object (either controlled or uncontrolled)." ),
 		FIELD( _field_real, "max_object_speed:WU or degrees per second#Approximate maximum speed for this object (either controlled or uncontrolled)." ),
@@ -72,7 +72,7 @@ TAG_STRUCT(single_domain_blending_configuration_struct)
 		FIELD( _field_real, "min_speed_at_min_object_speed:WU or degrees per second#Minimum misprediction error consumption speed if object is at or below min_object_speed.  Linterp is executed at intermediate object speeds." ),
 		FIELD( _field_real, "min_speed_at_max_object_speed:WU or degrees per second#Minimum misprediction error consumption speed if object is at or above max_object_speed. Linterp is executed at intermediate object speeds." ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

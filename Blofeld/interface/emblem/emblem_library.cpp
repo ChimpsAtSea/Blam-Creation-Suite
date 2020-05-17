@@ -3,15 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(front_emblem_primary_layer, 2)
-	{
-		OPTION("Layer 0 (foreground)"),
-		OPTION("Layer 1 (midground)"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(emblem_library, EMBLEM_LIBRARY_TAG, emblem_library_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(emblem_library_block, 1, emblem_library_struct_definition_struct_definition );
 
 	TAG_BLOCK(emblem_bitmap_list, s_emblem_library::k_max_bitmap_list_count)
 	{
@@ -107,8 +99,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(emblem_library_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(emblem_library_block, 1, emblem_library_struct_definition_struct_definition );
+
+	TAG_STRUCT(emblem_library_struct_definition)
+	{
 		FIELD( _field_explanation, "Emblem Library" ),
 		FIELD( _field_short_integer, "version!" ),
 		FIELD( _field_pad, "jfejkjjg", 2 ),
@@ -128,10 +122,10 @@ TAG_STRUCT(emblem_library_struct_definition)
 		FIELD( _field_block, "runtime front!", &emblem_runtime_front_list_block ),
 		FIELD( _field_block, "runtime back!", &emblem_runtime_back_list_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(emblem_transform)
-{
+	TAG_STRUCT(emblem_transform)
+	{
 		FIELD( _field_real_point_2d, "scale" ),
 		FIELD( _field_real_point_2d, "shear" ),
 		FIELD( _field_real, "rotation" ),
@@ -139,10 +133,10 @@ TAG_STRUCT(emblem_transform)
 		FIELD( _field_real, "expand contract#amount to expand (positive) or contract (negative) the shape outline" ),
 		FIELD( _field_real, "blur#amount to blur the shape outline" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(emblem_layer)
-{
+	TAG_STRUCT(emblem_layer)
+	{
 		FIELD( _field_explanation, "Shape 0" ),
 		FIELD( _field_short_block_index, "shape 0" ),
 		FIELD( _field_pad, "fkkfkll", 2 ),
@@ -154,7 +148,13 @@ TAG_STRUCT(emblem_layer)
 		FIELD( _field_real, "multiplier 1" ),
 		FIELD( _field_struct, "transform 1", &emblem_transform_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(front_emblem_primary_layer, 2)
+	{
+		OPTION("Layer 0 (foreground)"),
+		OPTION("Layer 1 (midground)"),
+	};
 
 } // namespace blofeld
 

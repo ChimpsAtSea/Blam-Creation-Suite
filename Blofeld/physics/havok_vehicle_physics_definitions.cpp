@@ -3,53 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(anti_gravity_point_definition_flags, 2)
-	{
-		OPTION("gets damage from region"),
-		OPTION("only active on water"),
-	};
-
-	TAG_ENUM(anti_gravity_point_definition_damping, 5)
-	{
-		OPTION("normal"),
-		OPTION("damped left"),
-		OPTION("damped right"),
-		OPTION("undamped left"),
-		OPTION("undamped right"),
-	};
-
-	TAG_ENUM(friction_point_definition_flags, 9)
-	{
-		OPTION("gets damage from region"),
-		OPTION("powered"),
-		OPTION("front turning"),
-		OPTION("rear turning"),
-		OPTION("AI force rear turning"),
-		OPTION("attached to e-brake"),
-		OPTION("can be destroyed"),
-		OPTION("AI override ground friction scale"),
-		OPTION("AI override moving friction scale"),
-	};
-
-	TAG_ENUM(havok_vehicle_physics_definition_flags, 2)
-	{
-		OPTION("has suspension*!"),
-		OPTION("friction points test only environment"),
-	};
-
-	TAG_ENUM(physics_update_period_enum, 9)
-	{
-		OPTION("defaults (every other frame)"),
-		OPTION("every frame"),
-		OPTION("every other frame"),
-		OPTION("every 3rd frame"),
-		OPTION("every 4th frame"),
-		OPTION("every 5th frame"),
-		OPTION("every 6th frame"),
-		OPTION("every 7th frame"),
-		OPTION("every 8th frame"),
-	};
-
 	TAG_BLOCK(anti_gravity_point_definition_block, k_maximum_anti_gravity_points_per_vehicle_physics_definition)
 	{
 		FIELD( _field_custom ),
@@ -104,8 +57,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(havok_vehicle_physics_struct)
-{
+	TAG_STRUCT(havok_vehicle_physics_struct)
+	{
 		FIELD( _field_long_flags, "flags*", &havok_vehicle_physics_definition_flags ),
 		FIELD( _field_custom ),
 		FIELD( _field_real, "ground friction#this sucks.  for friction based vehicles only" ),
@@ -127,7 +80,54 @@ TAG_STRUCT(havok_vehicle_physics_struct)
 		FIELD( _field_block, "friction points", &friction_point_definition_block_block ),
 		FIELD( _field_struct, "boat physics", &boat_physics_definition_struct_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(anti_gravity_point_definition_flags, 2)
+	{
+		OPTION("gets damage from region"),
+		OPTION("only active on water"),
+	};
+
+	TAG_ENUM(anti_gravity_point_definition_damping, 5)
+	{
+		OPTION("normal"),
+		OPTION("damped left"),
+		OPTION("damped right"),
+		OPTION("undamped left"),
+		OPTION("undamped right"),
+	};
+
+	TAG_ENUM(friction_point_definition_flags, 9)
+	{
+		OPTION("gets damage from region"),
+		OPTION("powered"),
+		OPTION("front turning"),
+		OPTION("rear turning"),
+		OPTION("AI force rear turning"),
+		OPTION("attached to e-brake"),
+		OPTION("can be destroyed"),
+		OPTION("AI override ground friction scale"),
+		OPTION("AI override moving friction scale"),
+	};
+
+	TAG_ENUM(havok_vehicle_physics_definition_flags, 2)
+	{
+		OPTION("has suspension*!"),
+		OPTION("friction points test only environment"),
+	};
+
+	TAG_ENUM(physics_update_period_enum, 9)
+	{
+		OPTION("defaults (every other frame)"),
+		OPTION("every frame"),
+		OPTION("every other frame"),
+		OPTION("every 3rd frame"),
+		OPTION("every 4th frame"),
+		OPTION("every 5th frame"),
+		OPTION("every 6th frame"),
+		OPTION("every 7th frame"),
+		OPTION("every 8th frame"),
+	};
 
 } // namespace blofeld
 

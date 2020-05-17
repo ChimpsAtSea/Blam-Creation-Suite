@@ -3,6 +3,43 @@
 namespace blofeld
 {
 
+	TAG_GROUP_FROM_BLOCK(style, STYLE_TAG, style_block_block );
+
+	TAG_BLOCK(style_palette_block, 50)
+	{
+		FIELD( _field_tag_reference, "reference^" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(behavior_names_block, k_maximum_behavior_count)
+	{
+		FIELD( _field_string, "behavior name*^" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK_FROM_STRUCT(style_block, 1, style_struct_definition_struct_definition );
+
+	TAG_STRUCT(style_struct_definition)
+	{
+		FIELD( _field_string, "name^" ),
+		FIELD( _field_explanation, "Combat status decay options" ),
+		FIELD( _field_enum, "Combat status decay options", &combat_status_enum ),
+		FIELD( _field_pad, "hghq", 2 ),
+		FIELD( _field_explanation, "Style Behavior Control" ),
+		FIELD( _field_long_flags, "Style control", &style_control_flags ),
+		FIELD( _field_long_flags, "Behaviors1", &behavior_set1 ),
+		FIELD( _field_long_flags, "Behaviors2", &behavior_set2 ),
+		FIELD( _field_long_flags, "Behaviors3", &behavior_set3 ),
+		FIELD( _field_long_flags, "Behaviors4", &behavior_set4 ),
+		FIELD( _field_long_flags, "Behaviors5", &behavior_set5 ),
+		FIELD( _field_long_flags, "Behaviors6", &behavior_set6 ),
+		FIELD( _field_long_flags, "Behaviors7", &behavior_set7 ),
+		FIELD( _field_long_flags, "Behaviors8", &behavior_set8 ),
+		FIELD( _field_block, "Special movement", &special_movement_block_block ),
+		FIELD( _field_block, "Behavior list", &behavior_names_block_block ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_ENUM(behavior_set1, 32)
 	{
 		OPTION("------GENERAL------"),
@@ -256,43 +293,6 @@ namespace blofeld
 		OPTION("Latch at Alert"),
 		OPTION("Latch at Combat"),
 	};
-
-	TAG_GROUP_FROM_BLOCK(style, STYLE_TAG, style_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(style_block, 1, style_struct_definition_struct_definition );
-
-	TAG_BLOCK(style_palette_block, 50)
-	{
-		FIELD( _field_tag_reference, "reference^" ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(behavior_names_block, k_maximum_behavior_count)
-	{
-		FIELD( _field_string, "behavior name*^" ),
-		FIELD( _field_terminator )
-	};
-
-TAG_STRUCT(style_struct_definition)
-{
-		FIELD( _field_string, "name^" ),
-		FIELD( _field_explanation, "Combat status decay options" ),
-		FIELD( _field_enum, "Combat status decay options", &combat_status_enum ),
-		FIELD( _field_pad, "hghq", 2 ),
-		FIELD( _field_explanation, "Style Behavior Control" ),
-		FIELD( _field_long_flags, "Style control", &style_control_flags ),
-		FIELD( _field_long_flags, "Behaviors1", &behavior_set1 ),
-		FIELD( _field_long_flags, "Behaviors2", &behavior_set2 ),
-		FIELD( _field_long_flags, "Behaviors3", &behavior_set3 ),
-		FIELD( _field_long_flags, "Behaviors4", &behavior_set4 ),
-		FIELD( _field_long_flags, "Behaviors5", &behavior_set5 ),
-		FIELD( _field_long_flags, "Behaviors6", &behavior_set6 ),
-		FIELD( _field_long_flags, "Behaviors7", &behavior_set7 ),
-		FIELD( _field_long_flags, "Behaviors8", &behavior_set8 ),
-		FIELD( _field_block, "Special movement", &special_movement_block_block ),
-		FIELD( _field_block, "Behavior list", &behavior_names_block_block ),
-		FIELD( _field_terminator )
-};
 
 } // namespace blofeld
 

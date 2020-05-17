@@ -3,82 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(gui_alert_flags, 2)
-	{
-		OPTION("allow auto dismissal"),
-		OPTION("show spinner"),
-	};
-
-	TAG_ENUM(gui_error_category_enum, 4)
-	{
-		OPTION("default"),
-		OPTION("networking"),
-		OPTION("storage (reading/writing failure)"),
-		OPTION("controller"),
-	};
-
-	TAG_ENUM(gui_error_icon_enum, 5)
-	{
-		OPTION("default alert"),
-		OPTION("downloading"),
-		OPTION("paused"),
-		OPTION("uploading"),
-		OPTION("completed"),
-	};
-
-	TAG_ENUM(gui_dialog_choice_enum, 4)
-	{
-		OPTION("first item"),
-		OPTION("second item"),
-		OPTION("third item"),
-		OPTION("fourth item"),
-	};
-
-	TAG_ENUM(gui_dialog_b_button_action_enum, 6)
-	{
-		OPTION("dismisses dialog"),
-		OPTION("button ignored"),
-		OPTION("first item activates"),
-		OPTION("second item activates"),
-		OPTION("third item activates"),
-		OPTION("fourth item activates"),
-	};
-
-	TAG_ENUM(gui_dialog_flags, 1)
-	{
-		OPTION("unused"),
-	};
-
-	TAG_ENUM(pgcr_enemy_to_category_entry_flags, 1)
-	{
-		OPTION("category contains players"),
-	};
-
-	TAG_ENUM(pgcr_player_type_enum, 2)
-	{
-		OPTION("UNSC"),
-		OPTION("Covenant"),
-	};
-
-	TAG_ENUM(cui_camera_pivot_corner_enum_definition, 4)
-	{
-		OPTION("top left"),
-		OPTION("top right"),
-		OPTION("bottom right"),
-		OPTION("bottom left"),
-	};
-
-	TAG_ENUM(UIGameStartSequenceFlagsDefinition, 2)
-	{
-		OPTION("show loadout menu"),
-		OPTION("loadout menu close ends sequence"),
-	};
-
-	TAG_ENUM(UserInterfaceTagGlobalsFlagsDefinition, 1)
-	{
-		OPTION("show ammo navpoints#show navpoints over ammo-crates and weapon-racks when below a clip-full of ammo"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(InfinityUIImages, INFINITYUIIMAGES_TAG, InfinityUIImages_block_block );
 
 	TAG_GROUP_FROM_BLOCK(pgcr_enemy_to_category_mapping_definition, PGCR_ENEMY_TO_CATEGORY_MAPPING_DEFINITION_TAG, pgcr_enemy_to_category_mapping_definition_block_block );
@@ -93,19 +17,14 @@ namespace blofeld
 
 	TAG_GROUP_FROM_BLOCK(user_interface_shared_globals_definition, USER_INTERFACE_SHARED_GLOBALS_DEFINITION_TAG, user_interface_shared_globals_definition_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(InfinityUIImages_block, 1, InfinityUIImages_struct_definition_struct_definition );
-
-	TAG_BLOCK_FROM_STRUCT(pgcr_enemy_to_category_mapping_definition_block, 1, pgcr_enemy_to_category_mapping_definition_struct_definition_struct_definition );
-
-	TAG_BLOCK_FROM_STRUCT(pgcr_damage_type_image_mapping_definition_block, 1, pgcr_damage_type_image_mapping_definition_struct_definition_struct_definition );
-
-	TAG_BLOCK_FROM_STRUCT(portrait_poses_definition_block, 1, portrait_poses_definition_struct_definition_struct_definition );
-
-	TAG_BLOCK_FROM_STRUCT(user_interface_sounds_definition_block, 1, user_interface_sounds_definition_struct_definition_struct_definition );
-
-	TAG_BLOCK_FROM_STRUCT(user_interface_globals_definition_block, 1, user_interface_globals_definition_struct_definition_struct_definition );
-
-	TAG_BLOCK_FROM_STRUCT(user_interface_shared_globals_definition_block, 1, user_interface_shared_globals_definition_struct_definition_struct_definition );
+	TAG_BLOCK(InfinityMissionImagesDefinition, k_infinityMaximumMissionsPerSeason)
+	{
+		FIELD( _field_tag_reference, "card image^" ),
+		FIELD( _field_tag_reference, "detail image" ),
+		FIELD( _field_tag_reference, "lobby image" ),
+		FIELD( _field_tag_reference, "match image" ),
+		FIELD( _field_terminator )
+	};
 
 	TAG_BLOCK(InfinityMissionSeasonImagesDefinition, k_infinityMaximumSeasonCount)
 	{
@@ -116,25 +35,7 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(InfinityMissionImagesDefinition, k_infinityMaximumMissionsPerSeason)
-	{
-		FIELD( _field_tag_reference, "card image^" ),
-		FIELD( _field_tag_reference, "detail image" ),
-		FIELD( _field_tag_reference, "lobby image" ),
-		FIELD( _field_tag_reference, "match image" ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(pgcr_enemy_to_category_list_block, k_pgcr_maximum_number_of_categories_per_bucket)
-	{
-		FIELD( _field_string_id, "category display name^" ),
-		FIELD( _field_short_integer, "sprite index" ),
-		FIELD( _field_byte_flags, "flags", &pgcr_enemy_to_category_entry_flags ),
-		FIELD( _field_pad, "pad0", 1 ),
-		FIELD( _field_block, "player types", &pgcr_player_to_category_entry_block_block ),
-		FIELD( _field_block, "enemy types", &pgcr_enemy_to_category_entry_block_block ),
-		FIELD( _field_terminator )
-	};
+	TAG_BLOCK_FROM_STRUCT(InfinityUIImages_block, 1, InfinityUIImages_struct_definition_struct_definition );
 
 	TAG_BLOCK(pgcr_player_to_category_entry_block, k_pgcr_maximum_number_of_player_entries_per_category)
 	{
@@ -151,6 +52,19 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(pgcr_enemy_to_category_list_block, k_pgcr_maximum_number_of_categories_per_bucket)
+	{
+		FIELD( _field_string_id, "category display name^" ),
+		FIELD( _field_short_integer, "sprite index" ),
+		FIELD( _field_byte_flags, "flags", &pgcr_enemy_to_category_entry_flags ),
+		FIELD( _field_pad, "pad0", 1 ),
+		FIELD( _field_block, "player types", &pgcr_player_to_category_entry_block_block ),
+		FIELD( _field_block, "enemy types", &pgcr_enemy_to_category_entry_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK_FROM_STRUCT(pgcr_enemy_to_category_mapping_definition_block, 1, pgcr_enemy_to_category_mapping_definition_struct_definition_struct_definition );
+
 	TAG_BLOCK(pgcr_damage_type_image_block, k_damage_reporting_type_count)
 	{
 		FIELD( _field_long_enum, "damage type^", &global_damage_reporting_enum_definition ),
@@ -161,6 +75,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK_FROM_STRUCT(pgcr_damage_type_image_mapping_definition_block, 1, pgcr_damage_type_image_mapping_definition_struct_definition_struct_definition );
+
 	TAG_BLOCK(gui_portrait_pose_block, k_maxPortraitPoses)
 	{
 		FIELD( _field_string_id, "pose name^" ),
@@ -169,6 +85,10 @@ namespace blofeld
 		FIELD( _field_long_integer, "scenario profile index" ),
 		FIELD( _field_terminator )
 	};
+
+	TAG_BLOCK_FROM_STRUCT(portrait_poses_definition_block, 1, portrait_poses_definition_struct_definition_struct_definition );
+
+	TAG_BLOCK_FROM_STRUCT(user_interface_sounds_definition_block, 1, user_interface_sounds_definition_struct_definition_struct_definition );
 
 	TAG_BLOCK(cui_component_screen_reference_block_definition, k_maximum_number_of_screen_widgets)
 	{
@@ -258,9 +178,17 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK_FROM_STRUCT(user_interface_globals_definition_block, 1, user_interface_globals_definition_struct_definition_struct_definition );
+
 	TAG_BLOCK(color_presets_block, s_color_preset::k_maximum_color_presets)
 	{
 		FIELD( _field_string_id, "name^" ),
+		FIELD( _field_real_argb_color, "color" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(color_list_block, ((k_player_color_index_count)>(k_multiplayer_team_game_team_count+1)?(k_player_color_index_count):(k_multiplayer_team_game_team_count+1)))
+	{
 		FIELD( _field_real_argb_color, "color" ),
 		FIELD( _field_terminator )
 	};
@@ -280,12 +208,6 @@ namespace blofeld
 		FIELD( _field_real_argb_color, "bitmap flood" ),
 		FIELD( _field_real_argb_color, "bitmap spartans" ),
 		FIELD( _field_custom ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(color_list_block, ((k_player_color_index_count)>(k_multiplayer_team_game_team_count+1)?(k_player_color_index_count):(k_multiplayer_team_game_team_count+1)))
-	{
-		FIELD( _field_real_argb_color, "color" ),
 		FIELD( _field_terminator )
 	};
 
@@ -325,33 +247,35 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(InfinityUIImages_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(user_interface_shared_globals_definition_block, 1, user_interface_shared_globals_definition_struct_definition_struct_definition );
+
+	TAG_STRUCT(InfinityUIImages_struct_definition)
+	{
 		FIELD( _field_block, "seasons", &InfinityMissionSeasonImagesDefinition_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(pgcr_enemy_to_category_mapping_definition_struct_definition)
-{
+	TAG_STRUCT(pgcr_enemy_to_category_mapping_definition_struct_definition)
+	{
 		FIELD( _field_block, "character categories", &pgcr_enemy_to_category_list_block_block ),
 		FIELD( _field_block, "vehicle categories", &pgcr_enemy_to_category_list_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(pgcr_damage_type_image_mapping_definition_struct_definition)
-{
+	TAG_STRUCT(pgcr_damage_type_image_mapping_definition_struct_definition)
+	{
 		FIELD( _field_block, "damage type mapping", &pgcr_damage_type_image_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(portrait_poses_definition_struct_definition)
-{
+	TAG_STRUCT(portrait_poses_definition_struct_definition)
+	{
 		FIELD( _field_block, "portrait poses", &gui_portrait_pose_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(user_interface_sounds_definition_struct_definition)
-{
+	TAG_STRUCT(user_interface_sounds_definition_struct_definition)
+	{
 		FIELD( _field_custom, "Controller Input Events" ),
 		FIELD( _field_tag_reference, "tab up" ),
 		FIELD( _field_tag_reference, "tab left" ),
@@ -451,10 +375,10 @@ TAG_STRUCT(user_interface_sounds_definition_struct_definition)
 		FIELD( _field_tag_reference, "rewards" ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(user_interface_globals_definition_struct_definition)
-{
+	TAG_STRUCT(user_interface_globals_definition_struct_definition)
+	{
 		FIELD( _field_long_flags, "flags", &UserInterfaceTagGlobalsFlagsDefinition ),
 		FIELD( _field_explanation, "Shared Globals" ),
 		FIELD( _field_tag_reference, "shared globals" ),
@@ -487,10 +411,10 @@ TAG_STRUCT(user_interface_globals_definition_struct_definition)
 		FIELD( _field_tag_reference, "portrait poses" ),
 		FIELD( _field_block, "swap tags", &SwapTagReferenceDefinition_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(user_interface_shared_globals_definition_struct_definition)
-{
+	TAG_STRUCT(user_interface_shared_globals_definition_struct_definition)
+	{
 		FIELD( _field_explanation, "UI Rendering Globals" ),
 		FIELD( _field_short_integer, "inc. text update period:milliseconds" ),
 		FIELD( _field_short_integer, "inc. text block character:ASCII code" ),
@@ -550,7 +474,83 @@ TAG_STRUCT(user_interface_shared_globals_definition_struct_definition)
 		FIELD( _field_long_integer, "delay:seconds" ),
 		FIELD( _field_block, "PGCR per player tracked incidents", &pgcr_incident_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(gui_alert_flags, 2)
+	{
+		OPTION("allow auto dismissal"),
+		OPTION("show spinner"),
+	};
+
+	TAG_ENUM(gui_error_category_enum, 4)
+	{
+		OPTION("default"),
+		OPTION("networking"),
+		OPTION("storage (reading/writing failure)"),
+		OPTION("controller"),
+	};
+
+	TAG_ENUM(gui_error_icon_enum, 5)
+	{
+		OPTION("default alert"),
+		OPTION("downloading"),
+		OPTION("paused"),
+		OPTION("uploading"),
+		OPTION("completed"),
+	};
+
+	TAG_ENUM(gui_dialog_choice_enum, 4)
+	{
+		OPTION("first item"),
+		OPTION("second item"),
+		OPTION("third item"),
+		OPTION("fourth item"),
+	};
+
+	TAG_ENUM(gui_dialog_b_button_action_enum, 6)
+	{
+		OPTION("dismisses dialog"),
+		OPTION("button ignored"),
+		OPTION("first item activates"),
+		OPTION("second item activates"),
+		OPTION("third item activates"),
+		OPTION("fourth item activates"),
+	};
+
+	TAG_ENUM(gui_dialog_flags, 1)
+	{
+		OPTION("unused"),
+	};
+
+	TAG_ENUM(pgcr_enemy_to_category_entry_flags, 1)
+	{
+		OPTION("category contains players"),
+	};
+
+	TAG_ENUM(pgcr_player_type_enum, 2)
+	{
+		OPTION("UNSC"),
+		OPTION("Covenant"),
+	};
+
+	TAG_ENUM(cui_camera_pivot_corner_enum_definition, 4)
+	{
+		OPTION("top left"),
+		OPTION("top right"),
+		OPTION("bottom right"),
+		OPTION("bottom left"),
+	};
+
+	TAG_ENUM(UIGameStartSequenceFlagsDefinition, 2)
+	{
+		OPTION("show loadout menu"),
+		OPTION("loadout menu close ends sequence"),
+	};
+
+	TAG_ENUM(UserInterfaceTagGlobalsFlagsDefinition, 1)
+	{
+		OPTION("show ammo navpoints#show navpoints over ammo-crates and weapon-racks when below a clip-full of ammo"),
+	};
 
 } // namespace blofeld
 

@@ -3,37 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(lightmapDebugUVPolicyDefinition, 8)
-	{
-		OPTION("None"),
-		OPTION("Probe"),
-		OPTION("Vertex"),
-		OPTION("Vertex AO"),
-		OPTION("Supplied UV"),
-		OPTION("Auto UV"),
-		OPTION("Diffuse UV"),
-		OPTION("Auto/Diffuse"),
-	};
-
-	TAG_ENUM(scenario_lightmap_bsp_flags, 15)
-	{
-		OPTION("compressed"),
-		OPTION("xsynced geometry*!"),
-		OPTION("relightmapped"),
-		OPTION("generate fake small lightmaps"),
-		OPTION("generated from match data"),
-		OPTION("only a checker board"),
-		OPTION("surface to triangle mapping pruned{surface to tirnalge mapping pruned}"),
-		OPTION("faked lightmap tag for cache build"),
-		OPTION("Optimized for less dp all"),
-		OPTION("Floating shadows enabled"),
-		OPTION("Atlas unrefined packing"),
-		OPTION("Atlas repacked"),
-		OPTION("Using simplified irradiance lighting"),
-		OPTION("Disable Shadow Geometry"),
-		OPTION("Disable Hybrid Refinement"),
-	};
-
 	TAG_GROUP(scenario_lightmap_bsp_data, SCENARIO_LIGHTMAP_BSP_DATA_TAG)
 	{
 		FIELD( _field_word_flags, "flags", &scenario_lightmap_bsp_flags ),
@@ -98,8 +67,6 @@ namespace blofeld
 
 	TAG_GROUP_FROM_BLOCK(scenario_wetness_bsp_data, SCENARIO_WETNESS_BSP_DATA_TAG, scenario_wetness_bsp_data_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(scenario_wetness_bsp_data_block, 1, scenario_wetness_bsp_data_struct_definition_struct_definition );
-
 	TAG_BLOCK(scenario_lightmap_cluster_data, UNSIGNED_SHORT_MAX)
 	{
 		FIELD( _field_short_integer, "lightprobe texture array index" ),
@@ -125,7 +92,7 @@ namespace blofeld
 
 	TAG_BLOCK(scenario_lightmap_lightprobe_value, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_array, "vmf terms" ),
+		FIELD( _field_array, "vmf terms", &dual_vmf_terms_array ),
 		FIELD( _field_dword_integer, "analytical light index" ),
 		FIELD( _field_struct, "sh terms", &half_rgb_lightprobe_struct_struct_definition ),
 		FIELD( _field_terminator )
@@ -146,6 +113,19 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(scenario_lightmap_rasterized_chart_source, 2147483647L)
+	{
+		FIELD( _field_long_integer, "streamIndex" ),
+		FIELD( _field_long_integer, "vertexIndex" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(scenario_lightmap_rasterized_chart_element, 1024 * 1024 * 4)
+	{
+		FIELD( _field_byte_integer, "composite" ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(scenario_lightmap_rasterized_chart_data, 1024 * 1024)
 	{
 		FIELD( _field_long_integer, "width" ),
@@ -157,19 +137,6 @@ namespace blofeld
 		FIELD( _field_real_vector_2d, "roundedSize" ),
 		FIELD( _field_block, "sourceVertices", &scenario_lightmap_rasterized_chart_source_block ),
 		FIELD( _field_block, "chartBitmap", &scenario_lightmap_rasterized_chart_element_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(scenario_lightmap_rasterized_chart_source, 2147483647L)
-	{
-		FIELD( _field_long_integer, "streamIndex" ),
-		FIELD( _field_long_integer, "vertexIndex" ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(scenario_lightmap_rasterized_chart_element, 1024 * 1024 * 4)
-	{
-		FIELD( _field_byte_integer, "composite" ),
 		FIELD( _field_terminator )
 	};
 
@@ -195,15 +162,22 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK(triangle_mapping_block, 2147483647L)
+	{
+		FIELD( _field_long_integer, "word*" ),
+		FIELD( _field_terminator )
+	};
+
 	TAG_BLOCK(triangle_mapping_per_mesh_block, (8*1024-1))
 	{
 		FIELD( _field_block, "mesh", &triangle_mapping_block_block ),
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(triangle_mapping_block, 2147483647L)
+	TAG_BLOCK(scenario_lightmap_dynamic_light_instance_data_block, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_long_integer, "word*" ),
+		FIELD( _field_long_integer, "Index" ),
+		FIELD( _field_long_integer, "Shadow Geometry Mesh Index" ),
 		FIELD( _field_terminator )
 	};
 
@@ -212,13 +186,6 @@ namespace blofeld
 		FIELD( _field_real, "Min Depth" ),
 		FIELD( _field_long_integer, "Light Instance Checksum" ),
 		FIELD( _field_block, "instance indices", &scenario_lightmap_dynamic_light_instance_data_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(scenario_lightmap_dynamic_light_instance_data_block, UNSIGNED_SHORT_MAX)
-	{
-		FIELD( _field_long_integer, "Index" ),
-		FIELD( _field_long_integer, "Shadow Geometry Mesh Index" ),
 		FIELD( _field_terminator )
 	};
 
@@ -296,8 +263,16 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(scenario_wetness_bsp_data_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(scenario_wetness_bsp_data_block, 1, scenario_wetness_bsp_data_struct_definition_struct_definition );
+
+	TAG_ARRAY(dual_vmf_terms, k_dual_vmf_basis_real_coefficients_count)
+	{
+		FIELD( _field_short_integer, "dual vmf coefficient*" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_STRUCT(scenario_wetness_bsp_data_struct_definition)
+	{
 		FIELD( _field_short_integer, "bsp reference index" ),
 		FIELD( _field_pad, "LHWCHFX", 2 ),
 		FIELD( _field_long_integer, "structure BSP import checksum" ),
@@ -312,7 +287,38 @@ TAG_STRUCT(scenario_wetness_bsp_data_struct_definition)
 		FIELD( _field_block, "cluster_offset", &cluster_wetness_offset_block_block ),
 		FIELD( _field_block, "instance_offset", &instance_wetness_instance_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(lightmapDebugUVPolicyDefinition, 8)
+	{
+		OPTION("None"),
+		OPTION("Probe"),
+		OPTION("Vertex"),
+		OPTION("Vertex AO"),
+		OPTION("Supplied UV"),
+		OPTION("Auto UV"),
+		OPTION("Diffuse UV"),
+		OPTION("Auto/Diffuse"),
+	};
+
+	TAG_ENUM(scenario_lightmap_bsp_flags, 15)
+	{
+		OPTION("compressed"),
+		OPTION("xsynced geometry*!"),
+		OPTION("relightmapped"),
+		OPTION("generate fake small lightmaps"),
+		OPTION("generated from match data"),
+		OPTION("only a checker board"),
+		OPTION("surface to triangle mapping pruned{surface to tirnalge mapping pruned}"),
+		OPTION("faked lightmap tag for cache build"),
+		OPTION("Optimized for less dp all"),
+		OPTION("Floating shadows enabled"),
+		OPTION("Atlas unrefined packing"),
+		OPTION("Atlas repacked"),
+		OPTION("Using simplified irradiance lighting"),
+		OPTION("Disable Shadow Geometry"),
+		OPTION("Disable Hybrid Refinement"),
+	};
 
 } // namespace blofeld
 

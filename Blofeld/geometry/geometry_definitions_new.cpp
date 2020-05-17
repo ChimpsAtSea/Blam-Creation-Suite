@@ -3,14 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(global_geometry_material_lightmap_flags, 4)
-	{
-		OPTION("ignore default resolution scale"),
-		OPTION("transparency override"),
-		OPTION("lighting from both sides"),
-		OPTION("version1"),
-	};
-
 	TAG_BLOCK(global_geometry_material_block, MAXIMUM_MATERIALS_PER_GEOMETRY)
 	{
 		FIELD( _field_tag_reference, "render method^*" ),
@@ -24,6 +16,14 @@ namespace blofeld
 		FIELD( _field_char_integer, "breakable surface index*" ),
 		FIELD( _field_short_integer, "lightmap chart group index" ),
 		FIELD( _field_terminator )
+	};
+
+	TAG_ENUM(global_geometry_material_lightmap_flags, 4)
+	{
+		OPTION("ignore default resolution scale"),
+		OPTION("transparency override"),
+		OPTION("lighting from both sides"),
+		OPTION("version1"),
 	};
 
 } // namespace blofeld

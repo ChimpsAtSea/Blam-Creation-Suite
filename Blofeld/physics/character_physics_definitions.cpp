@@ -3,30 +3,8 @@
 namespace blofeld
 {
 
-	TAG_ENUM(flying_physics_flags, 1)
+	TAG_STRUCT(character_physics_struct)
 	{
-		OPTION("use world up"),
-	};
-
-	TAG_ENUM(character_physics_flags, 13)
-	{
-		OPTION("centered_at_origin"),
-		OPTION("shape spherical"),
-		OPTION("use player physics"),
-		OPTION("climb any surface"),
-		OPTION("flying"),
-		OPTION("not physical"),
-		OPTION("dead character collision group"),
-		OPTION("suppress ground planes on bipeds"),
-		OPTION("physical ragdoll"),
-		OPTION("do not resize dead spheres"),
-		OPTION("multiple Mantis shapes"),
-		OPTION("I am an Extreme Slipsurface"),
-		OPTION("slips off movers"),
-	};
-
-TAG_STRUCT(character_physics_struct)
-{
 		FIELD( _field_long_flags, "flags", &character_physics_flags ),
 		FIELD( _field_real, "height standing" ),
 		FIELD( _field_real, "height crouching" ),
@@ -49,10 +27,10 @@ TAG_STRUCT(character_physics_struct)
 		FIELD( _field_explanation, "flying" ),
 		FIELD( _field_struct, "flying physics", &character_physics_flying_struct_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(character_physics_ground_struct)
-{
+	TAG_STRUCT(character_physics_ground_struct)
+	{
 		FIELD( _field_angle, "maximum slope angle:degrees" ),
 		FIELD( _field_angle, "downhill falloff angle:degrees" ),
 		FIELD( _field_angle, "downhill cutoff angle:degrees" ),
@@ -71,10 +49,10 @@ TAG_STRUCT(character_physics_ground_struct)
 		FIELD( _field_real, "gravity scale#scale on gravity for this entity" ),
 		FIELD( _field_real, "airborne acceleration scale#scale on airborne acceleration maximum" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(character_physics_flying_struct)
-{
+	TAG_STRUCT(character_physics_flying_struct)
+	{
 		FIELD( _field_angle, "bank angle:degrees#angle at which we bank left/right when sidestepping or turning while moving forwards" ),
 		FIELD( _field_real, "bank apply time:seconds#time it takes us to apply a bank" ),
 		FIELD( _field_real, "bank decay time:seconds#time it takes us to recover from a bank" ),
@@ -88,7 +66,29 @@ TAG_STRUCT(character_physics_flying_struct)
 		FIELD( _field_real, "crouch velocity modifier:[0,1]#how much slower we fly if crouching (zero = same speed)" ),
 		FIELD( _field_long_flags, "flags", &flying_physics_flags ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(flying_physics_flags, 1)
+	{
+		OPTION("use world up"),
+	};
+
+	TAG_ENUM(character_physics_flags, 13)
+	{
+		OPTION("centered_at_origin"),
+		OPTION("shape spherical"),
+		OPTION("use player physics"),
+		OPTION("climb any surface"),
+		OPTION("flying"),
+		OPTION("not physical"),
+		OPTION("dead character collision group"),
+		OPTION("suppress ground planes on bipeds"),
+		OPTION("physical ragdoll"),
+		OPTION("do not resize dead spheres"),
+		OPTION("multiple Mantis shapes"),
+		OPTION("I am an Extreme Slipsurface"),
+		OPTION("slips off movers"),
+	};
 
 } // namespace blofeld
 

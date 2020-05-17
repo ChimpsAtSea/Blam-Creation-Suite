@@ -3,15 +3,6 @@
 namespace blofeld
 {
 
-	extern const char* game_engine_settings_strings[];
-	extern s_string_list_definition game_engine_settings;
-	extern const char* game_variant_parameters_strings[];
-	extern s_string_list_definition game_variant_parameters;
-	extern const char* text_value_pair_flags_strings[];
-	extern s_string_list_definition text_value_pair_flags;
-	extern const char* text_value_pair_parameter_type_strings[];
-	extern s_string_list_definition text_value_pair_parameter_type;
-
 	constexpr unsigned long MULTIPLAYER_VARIANT_SETTINGS_INTERFACE_DEFINITION_TAG = 'goof';
 
 	extern s_tag_group multiplayer_variant_settings_interface_definition_group;
@@ -22,21 +13,31 @@ namespace blofeld
 
 	extern s_tag_group text_value_pair_definition_group;
 
+	extern s_tag_struct_definition variant_option_block_block_struct;
+	extern s_tag_block_definition variant_option_block_block;
+	extern s_tag_struct_definition variant_setting_edit_reference_block_block_struct;
+	extern s_tag_block_definition variant_setting_edit_reference_block_block;
 	extern s_tag_block_definition multiplayer_variant_settings_interface_definition_block_block;
+	extern s_tag_struct_definition text_value_pair_reference_block_block_struct;
+	extern s_tag_block_definition text_value_pair_reference_block_block;
+	extern s_tag_struct_definition sandbox_property_allowed_values_reference_block_block_struct;
+	extern s_tag_block_definition sandbox_property_allowed_values_reference_block_block;
 	extern s_tag_block_definition sandbox_text_value_pair_definition_block_block;
 	extern s_tag_block_definition text_value_pair_definition_block_block;
-	extern s_tag_struct variant_setting_edit_reference_block_block_struct;
-	extern s_tag_block_definition variant_setting_edit_reference_block_block;
-	extern s_tag_struct variant_option_block_block_struct;
-	extern s_tag_block_definition variant_option_block_block;
-	extern s_tag_struct sandbox_property_allowed_values_reference_block_block_struct;
-	extern s_tag_block_definition sandbox_property_allowed_values_reference_block_block;
-	extern s_tag_struct text_value_pair_reference_block_block_struct;
-	extern s_tag_block_definition text_value_pair_reference_block_block;
 
-	extern s_tag_struct multiplayer_variant_settings_interface_definition_struct_definition_struct_definition; // tag group
-	extern s_tag_struct sandbox_text_value_pair_definition_struct_definition_struct_definition; // tag group
-	extern s_tag_struct text_value_pair_definition_struct_definition_struct_definition; // tag group
+
+	extern s_tag_struct_definition multiplayer_variant_settings_interface_definition_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition sandbox_text_value_pair_definition_struct_definition_struct_definition; // tag group
+	extern s_tag_struct_definition text_value_pair_definition_struct_definition_struct_definition; // tag group
+
+	extern const char* game_engine_settings_strings[];
+	extern s_string_list_definition game_engine_settings;
+	extern const char* game_variant_parameters_strings[];
+	extern s_string_list_definition game_variant_parameters;
+	extern const char* text_value_pair_flags_strings[];
+	extern s_string_list_definition text_value_pair_flags;
+	extern const char* text_value_pair_parameter_type_strings[];
+	extern s_string_list_definition text_value_pair_parameter_type;
 
 } // namespace blofeld
 

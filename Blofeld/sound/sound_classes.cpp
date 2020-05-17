@@ -3,63 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(sound_class_internal_flags_definition, 11)
-	{
-		OPTION("valid"),
-		OPTION("is speech"),
-		OPTION("scripted"),
-		OPTION("stops with object"),
-		OPTION("valid xma compression level"),
-		OPTION("valid doppler factor"),
-		OPTION("valid obstruction factor"),
-		OPTION("multilingual"),
-		OPTION("don\'t strip languages"),
-		OPTION("valid underwater propagation"),
-		OPTION("valid suppress spatialization"),
-	};
-
-	TAG_ENUM(sound_class_external_flags_definition, 14)
-	{
-		OPTION("plays during pause"),
-		OPTION("bypass default dsp effects{dry stereo mix}"),
-		OPTION("no object obstruction!"),
-		OPTION("use center speaker unspatialized"),
-		OPTION("send (mono) to lfe"),
-		OPTION("deterministic"),
-		OPTION("use huge transmission"),
-		OPTION("always use speakers"),
-		OPTION("don\'t strip from main menu"),
-		OPTION("ignore stereo headroom"),
-		OPTION("loop fade out is linear"),
-		OPTION("stop when object dies"),
-		OPTION("don\'t fade on game over"),
-		OPTION("don\'t promote priority by proximity"),
-	};
-
-	TAG_ENUM(sound_class_cache_miss_mode_definition, 2)
-	{
-		OPTION("discard"),
-		OPTION("postpone"),
-	};
-
-	TAG_ENUM(sound_class_stereo_playback_definition, 2)
-	{
-		OPTION("first person"),
-		OPTION("ambient"),
-	};
-
-	TAG_ENUM(sound_class_acoustics_string_definition, 2)
-	{
-		OPTION("outside"),
-		OPTION("inside"),
-	};
-
-	TAG_ENUM(sound_class_suppress_spatialization_string_defintion, 2)
-	{
-		OPTION("first person"),
-		OPTION("third person"),
-	};
-
 	TAG_GROUP(sound_classes, SOUND_CLASSES_TAG)
 	{
 		FIELD( _field_block, "sound classes", &sound_class_block_block ),
@@ -130,6 +73,63 @@ namespace blofeld
 		FIELD( _field_long_integer, "maximum facial animation delay:msecs#setting this allows sounds of this class to be delayed while the facial animation resource loads." ),
 		FIELD( _field_long_integer, "maximum facial animation blend:msecs#setting this makes sounds blends in facial animation (will cut off at maximum facial animation delay)." ),
 		FIELD( _field_terminator )
+	};
+
+	TAG_ENUM(sound_class_internal_flags_definition, 11)
+	{
+		OPTION("valid"),
+		OPTION("is speech"),
+		OPTION("scripted"),
+		OPTION("stops with object"),
+		OPTION("valid xma compression level"),
+		OPTION("valid doppler factor"),
+		OPTION("valid obstruction factor"),
+		OPTION("multilingual"),
+		OPTION("don\'t strip languages"),
+		OPTION("valid underwater propagation"),
+		OPTION("valid suppress spatialization"),
+	};
+
+	TAG_ENUM(sound_class_external_flags_definition, 14)
+	{
+		OPTION("plays during pause"),
+		OPTION("bypass default dsp effects{dry stereo mix}"),
+		OPTION("no object obstruction!"),
+		OPTION("use center speaker unspatialized"),
+		OPTION("send (mono) to lfe"),
+		OPTION("deterministic"),
+		OPTION("use huge transmission"),
+		OPTION("always use speakers"),
+		OPTION("don\'t strip from main menu"),
+		OPTION("ignore stereo headroom"),
+		OPTION("loop fade out is linear"),
+		OPTION("stop when object dies"),
+		OPTION("don\'t fade on game over"),
+		OPTION("don\'t promote priority by proximity"),
+	};
+
+	TAG_ENUM(sound_class_cache_miss_mode_definition, 2)
+	{
+		OPTION("discard"),
+		OPTION("postpone"),
+	};
+
+	TAG_ENUM(sound_class_stereo_playback_definition, 2)
+	{
+		OPTION("first person"),
+		OPTION("ambient"),
+	};
+
+	TAG_ENUM(sound_class_acoustics_string_definition, 2)
+	{
+		OPTION("outside"),
+		OPTION("inside"),
+	};
+
+	TAG_ENUM(sound_class_suppress_spatialization_string_defintion, 2)
+	{
+		OPTION("first person"),
+		OPTION("third person"),
 	};
 
 } // namespace blofeld

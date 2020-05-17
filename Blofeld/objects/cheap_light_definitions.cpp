@@ -3,19 +3,12 @@
 namespace blofeld
 {
 
-	TAG_ENUM(cheapLightFunctionInputEnum, 3)
-	{
-		OPTION("time/age"),
-		OPTION("scale A"),
-		OPTION("scale B"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(cheap_light, CHEAP_LIGHT_TAG, cheap_light_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(cheap_light_block, 1, cheap_light_struct_definition_struct_definition );
 
-TAG_STRUCT(cheap_light_struct_definition)
-{
+	TAG_STRUCT(cheap_light_struct_definition)
+	{
 		FIELD( _field_explanation, "Cheap Lights" ),
 		FIELD( _field_char_enum, "function input", &cheapLightFunctionInputEnum ),
 		FIELD( _field_pad, "clblah", 3 ),
@@ -29,7 +22,14 @@ TAG_STRUCT(cheap_light_struct_definition)
 		FIELD( _field_real, "far fade begin:world units" ),
 		FIELD( _field_real, "far fade cutoff:world units" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(cheapLightFunctionInputEnum, 3)
+	{
+		OPTION("time/age"),
+		OPTION("scale A"),
+		OPTION("scale B"),
+	};
 
 } // namespace blofeld
 

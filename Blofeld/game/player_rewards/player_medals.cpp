@@ -3,20 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(medal_class_enum, 7)
-	{
-		OPTION("special"),
-		OPTION("role spree"),
-		OPTION("spree"),
-		OPTION("multikill"),
-		OPTION("objectives"),
-		OPTION("circumstance"),
-		OPTION("finesse"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(game_medal_globals, GAME_MEDAL_GLOBALS_TAG, game_medal_globals_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(game_medal_globals_block, 1, game_medal_globals_struct_definition_struct_definition );
 
 	TAG_BLOCK(gameMedalTiers, GameMedalTierDefinition::k_maximumGameMedalTierDefinitions)
 	{
@@ -41,12 +28,25 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(game_medal_globals_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(game_medal_globals_block, 1, game_medal_globals_struct_definition_struct_definition );
+
+	TAG_STRUCT(game_medal_globals_struct_definition)
+	{
 		FIELD( _field_block, "tiers", &gameMedalTiers_block ),
 		FIELD( _field_block, "medals", &game_medal_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(medal_class_enum, 7)
+	{
+		OPTION("special"),
+		OPTION("role spree"),
+		OPTION("spree"),
+		OPTION("multikill"),
+		OPTION("objectives"),
+		OPTION("circumstance"),
+		OPTION("finesse"),
+	};
 
 } // namespace blofeld
 

@@ -3,43 +3,16 @@
 namespace blofeld
 {
 
-	TAG_ENUM(light_volume_state_input_enum, 10)
-	{
-		OPTION("profile position"),
-		OPTION("game time"),
-		OPTION("light volume age"),
-		OPTION("light volume random"),
-		OPTION("light volume correlation 1"),
-		OPTION("light volume correlation 2"),
-		OPTION("light volume lod"),
-		OPTION("effect a scale"),
-		OPTION("effect b scale"),
-		OPTION("invalid state --- please set again"),
-	};
-
-	TAG_ENUM(output_mod_enum$2, 3)
-	{
-		OPTION(" "),
-		OPTION("Plus"),
-		OPTION("Times"),
-	};
-
-	TAG_ENUM_EMPTY(light_volume_appearance_flags, 0);
-
-	TAG_ENUM(light_volume_flags, 7)
-	{
-		OPTION("lod enabled#if not checked, the following flags do not matter, nor do LOD parameters below"),
-		OPTION("lod always 1.0{ignore lod (render always)}"),
-		OPTION("lod same in splitscreen"),
-		OPTION("disable precompiled profiles"),
-		OPTION("force precompile profiles"),
-		OPTION("can be low res"),
-		OPTION("precompiled!"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(light_volume_system, LIGHT_VOLUME_SYSTEM_TAG, light_volume_system_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(light_volume_system_block, 1, light_volume_system_struct_definition_struct_definition );
+	TAG_BLOCK(light_volume_precompiled_vert_block, c_light_volume_definition::k_max_precompiled_profiles)
+	{
+		FIELD( _field_word_integer, "r" ),
+		FIELD( _field_word_integer, "g" ),
+		FIELD( _field_word_integer, "b" ),
+		FIELD( _field_word_integer, "thickness" ),
+		FIELD( _field_terminator )
+	};
 
 	TAG_BLOCK(light_volume_definition_block, c_light_volume_system_definition::k_max_light_volume)
 	{
@@ -76,23 +49,16 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(light_volume_precompiled_vert_block, c_light_volume_definition::k_max_precompiled_profiles)
+	TAG_BLOCK_FROM_STRUCT(light_volume_system_block, 1, light_volume_system_struct_definition_struct_definition );
+
+	TAG_STRUCT(light_volume_system_struct_definition)
 	{
-		FIELD( _field_word_integer, "r" ),
-		FIELD( _field_word_integer, "g" ),
-		FIELD( _field_word_integer, "b" ),
-		FIELD( _field_word_integer, "thickness" ),
+		FIELD( _field_block, "light_volumes", &light_volume_definition_block_block ),
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(light_volume_system_struct_definition)
-{
-		FIELD( _field_block, "light_volumes", &light_volume_definition_block_block ),
-		FIELD( _field_terminator )
-};
-
-TAG_STRUCT(light_volume_property_real)
-{
+	TAG_STRUCT(light_volume_property_real)
+	{
 		FIELD( _field_char_enum, "Input Variable", &light_volume_state_input_enum ),
 		FIELD( _field_char_enum, "Range Variable", &light_volume_state_input_enum ),
 		FIELD( _field_char_enum, "Output Modifier", &output_mod_enum ),
@@ -103,10 +69,10 @@ TAG_STRUCT(light_volume_property_real)
 		FIELD( _field_word_integer, "runtime m_flags!" ),
 		FIELD( _field_pad, "DSFDSGLKJ", 2 ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(light_volume_property_real_rgb_color)
-{
+	TAG_STRUCT(light_volume_property_real_rgb_color)
+	{
 		FIELD( _field_char_enum, "Input Variable", &light_volume_state_input_enum ),
 		FIELD( _field_char_enum, "Range Variable", &light_volume_state_input_enum ),
 		FIELD( _field_char_enum, "Output Modifier", &output_mod_enum ),
@@ -117,7 +83,41 @@ TAG_STRUCT(light_volume_property_real_rgb_color)
 		FIELD( _field_word_integer, "runtime m_flags!" ),
 		FIELD( _field_pad, "DSFDSGLKJ", 2 ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(light_volume_state_input_enum, 10)
+	{
+		OPTION("profile position"),
+		OPTION("game time"),
+		OPTION("light volume age"),
+		OPTION("light volume random"),
+		OPTION("light volume correlation 1"),
+		OPTION("light volume correlation 2"),
+		OPTION("light volume lod"),
+		OPTION("effect a scale"),
+		OPTION("effect b scale"),
+		OPTION("invalid state --- please set again"),
+	};
+
+	TAG_ENUM(output_mod_enum$2, 3)
+	{
+		OPTION(" "),
+		OPTION("Plus"),
+		OPTION("Times"),
+	};
+
+	TAG_ENUM_EMPTY(light_volume_appearance_flags, 0);
+
+	TAG_ENUM(light_volume_flags, 7)
+	{
+		OPTION("lod enabled#if not checked, the following flags do not matter, nor do LOD parameters below"),
+		OPTION("lod always 1.0{ignore lod (render always)}"),
+		OPTION("lod same in splitscreen"),
+		OPTION("disable precompiled profiles"),
+		OPTION("force precompile profiles"),
+		OPTION("can be low res"),
+		OPTION("precompiled!"),
+	};
 
 } // namespace blofeld
 

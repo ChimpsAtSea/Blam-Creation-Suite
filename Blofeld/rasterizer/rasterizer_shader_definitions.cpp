@@ -3,11 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(shader_flags, 1)
-	{
-		OPTION("requires constant table"),
-	};
-
 	TAG_GROUP(global_pixel_shader, GLOBAL_PIXEL_SHADER_TAG)
 	{
 		FIELD( _field_block, "entry points", &global_shader_entry_point_block_block ),
@@ -44,14 +39,9 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK_FROM_STRUCT(global_cache_file_pixel_shaders_block, 1, global_cache_file_pixel_shaders_struct_definition_struct_definition );
-
-	TAG_BLOCK_FROM_STRUCT(hlsl_include_block, 1, hlsl_include_struct_definition_struct_definition );
-
-	TAG_BLOCK(global_shader_entry_point_block, k_number_of_entry_points*2)
+	TAG_BLOCK(global_shader_option_dependency, c_render_method_definition::k_maximum_category_options)
 	{
-		FIELD( _field_block, "category dependency", &global_shader_category_dependency_block ),
-		FIELD( _field_long_integer, "default compiled shader index" ),
+		FIELD( _field_long_integer, "compiled shader index" ),
 		FIELD( _field_terminator )
 	};
 
@@ -62,9 +52,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(global_shader_option_dependency, c_render_method_definition::k_maximum_category_options)
+	TAG_BLOCK(global_shader_entry_point_block, k_number_of_entry_points*2)
 	{
-		FIELD( _field_long_integer, "compiled shader index" ),
+		FIELD( _field_block, "category dependency", &global_shader_category_dependency_block ),
+		FIELD( _field_long_integer, "default compiled shader index" ),
 		FIELD( _field_terminator )
 	};
 
@@ -88,7 +79,18 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
+	TAG_BLOCK_FROM_STRUCT(global_cache_file_pixel_shaders_block, 1, global_cache_file_pixel_shaders_struct_definition_struct_definition );
+
+	TAG_BLOCK_FROM_STRUCT(hlsl_include_block, 1, hlsl_include_struct_definition_struct_definition );
+
 	TAG_BLOCK(pixel_entry_point_block, k_kilo)
+	{
+		FIELD( _field_byte_integer, "start index" ),
+		FIELD( _field_byte_integer, "count" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(vertex_types_block$3, k_kilo)
 	{
 		FIELD( _field_byte_integer, "start index" ),
 		FIELD( _field_byte_integer, "count" ),
@@ -101,31 +103,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(vertex_types_block$3, k_kilo)
+	TAG_STRUCT(rasterizer_compiled_shader_struct)
 	{
-		FIELD( _field_byte_integer, "start index" ),
-		FIELD( _field_byte_integer, "count" ),
-		FIELD( _field_terminator )
-	};
-
-TAG_STRUCT(global_cache_file_pixel_shaders_struct_definition)
-{
-		FIELD( _field_long_integer, "shader count" ),
-		FIELD( _field_long_integer, "cached shader count" ),
-		FIELD( _field_long_integer, "total memory size" ),
-		FIELD( _field_long_integer, "cached memory size" ),
-		FIELD( _field_block, "compiled shaders", &compiled_pixel_shader_block_block ),
-		FIELD( _field_terminator )
-};
-
-TAG_STRUCT(hlsl_include_struct_definition)
-{
-		FIELD( _field_data, "include file" ),
-		FIELD( _field_terminator )
-};
-
-TAG_STRUCT(rasterizer_compiled_shader_struct)
-{
 		FIELD( _field_long_flags, "shader flags", &shader_flags ),
 		FIELD( _field_data, "xenon compiled shader{..:xenon compiled shader}" ),
 		FIELD( _field_data, "dx9 compiled shader{..:dx9 compiled shader}" ),
@@ -136,7 +115,28 @@ TAG_STRUCT(rasterizer_compiled_shader_struct)
 		FIELD( _field_dword_integer, "gprs{..:gprs}" ),
 		FIELD( _field_long_integer, "cache file reference*" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_STRUCT(global_cache_file_pixel_shaders_struct_definition)
+	{
+		FIELD( _field_long_integer, "shader count" ),
+		FIELD( _field_long_integer, "cached shader count" ),
+		FIELD( _field_long_integer, "total memory size" ),
+		FIELD( _field_long_integer, "cached memory size" ),
+		FIELD( _field_block, "compiled shaders", &compiled_pixel_shader_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_STRUCT(hlsl_include_struct_definition)
+	{
+		FIELD( _field_data, "include file" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ENUM(shader_flags, 1)
+	{
+		OPTION("requires constant table"),
+	};
 
 } // namespace blofeld
 

@@ -5,8 +5,6 @@ namespace blofeld
 
 	TAG_GROUP_FROM_BLOCK(multilingual_unicode_string_list, MULTILINGUAL_UNICODE_STRING_LIST_TAG, multilingual_unicode_string_list_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(multilingual_unicode_string_list_block, 1, multilingual_unicode_string_list_struct_definition_struct_definition );
-
 	TAG_BLOCK(multilingual_unicode_string_reference_block, k_maximum_multilingual_unicode_strings_per_string_list)
 	{
 		FIELD( _field_string_id, "string id^*" ),
@@ -38,30 +36,45 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(multilingual_unicode_string_list_struct_definition)
-{
-		FIELD( _field_custom, "import" ),
-		FIELD( _field_custom, "import clean" ),
-		FIELD( _field_block, "string references*", &multilingual_unicode_string_reference_block_block ),
-		FIELD( _field_block, "substitution pairs*", &string_substitution_pair_block_block ),
-		FIELD( _field_data, "string data utf8*" ),
-		FIELD( _field_array, "language pack offsets!" ),
-		FIELD( _field_terminator )
-};
+	TAG_BLOCK_FROM_STRUCT(multilingual_unicode_string_list_block, 1, multilingual_unicode_string_list_struct_definition_struct_definition );
 
-TAG_STRUCT(language_pack_definition)
-{
+	TAG_ARRAY(data_hash_definition, k_hash_size)
+	{
+		FIELD( _field_byte_integer, "hash byte!" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_ARRAY(multilingual_unicode_string_list_language_pack_offsets, k_language_count)
+	{
+		FIELD( _field_short_integer, "start index!" ),
+		FIELD( _field_short_integer, "string count!" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_STRUCT(language_pack_definition)
+	{
 		FIELD( _field_long_integer, "string reference pointer!" ),
 		FIELD( _field_long_integer, "string data pointer!" ),
 		FIELD( _field_long_integer, "number of strings!" ),
 		FIELD( _field_long_integer, "string data size!" ),
 		FIELD( _field_long_integer, "string reference cache offset!" ),
 		FIELD( _field_long_integer, "string data cache offset!" ),
-		FIELD( _field_array, "string reference checksum!" ),
-		FIELD( _field_array, "string data checksum!" ),
+		FIELD( _field_array, "string reference checksum!", &data_hash_definition_array ),
+		FIELD( _field_array, "string data checksum!", &data_hash_definition_array ),
 		FIELD( _field_long_integer, "data loaded boolean~!" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_STRUCT(multilingual_unicode_string_list_struct_definition)
+	{
+		FIELD( _field_custom, "import" ),
+		FIELD( _field_custom, "import clean" ),
+		FIELD( _field_block, "string references*", &multilingual_unicode_string_reference_block_block ),
+		FIELD( _field_block, "substitution pairs*", &string_substitution_pair_block_block ),
+		FIELD( _field_data, "string data utf8*" ),
+		FIELD( _field_array, "language pack offsets!", &multilingual_unicode_string_list_language_pack_offsets_array ),
+		FIELD( _field_terminator )
+	};
 
 } // namespace blofeld
 

@@ -9,8 +9,6 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(cache_file_sound_block, 1, cache_file_sound_struct_definition_struct_definition );
 
-	TAG_BLOCK_FROM_STRUCT(sound_cache_file_gestalt_block, 1, sound_cache_file_gestalt_struct_definition_struct_definition );
-
 	TAG_BLOCK(sound_gestalt_codec_block, SHORT_MAX)
 	{
 		FIELD( _field_char_enum, "sample rate*", &sound_sample_rate_enum ),
@@ -158,8 +156,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(cache_file_sound_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(sound_cache_file_gestalt_block, 1, sound_cache_file_gestalt_struct_definition_struct_definition );
+
+	TAG_STRUCT(cache_file_sound_struct_definition)
+	{
 		FIELD( _field_word_flags, "flags", &sound_definition_flags ),
 		FIELD( _field_char_enum, "sound class*", &sound_class_enum ),
 		FIELD( _field_char_integer, "pitch range count" ),
@@ -177,10 +177,10 @@ TAG_STRUCT(cache_file_sound_struct_definition)
 		FIELD( _field_long_integer, "maximum play time:ms" ),
 		FIELD( _field_pageable, "sound data resource" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(sound_cache_file_gestalt_struct_definition)
-{
+	TAG_STRUCT(sound_cache_file_gestalt_struct_definition)
+	{
 		FIELD( _field_block, "codecs", &sound_gestalt_codec_block_block ),
 		FIELD( _field_block, "playbacks", &sound_gestalt_playback_block_block ),
 		FIELD( _field_block, "scales", &sound_gestalt_scale_block_block ),
@@ -201,7 +201,7 @@ TAG_STRUCT(sound_cache_file_gestalt_struct_definition)
 		FIELD( _field_block, "facial animations", &sound_gestalt_facial_animation_block_block ),
 		FIELD( _field_block, "layer markers", &sound_gestalt_layer_markers_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

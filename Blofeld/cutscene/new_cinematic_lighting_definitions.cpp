@@ -3,16 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(cinematic_dynamic_light_flags, 3)
-	{
-		OPTION("debug this light"),
-		OPTION("follow object"),
-		OPTION("position at marker"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(new_cinematic_lighting, NEW_CINEMATIC_LIGHTING_TAG, new_cinematic_lighting_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(new_cinematic_lighting_block, 1, new_cinematic_lighting_struct_definition_struct_definition );
 
 	TAG_BLOCK(cinematic_dynamic_light_block, 16)
 	{
@@ -27,8 +18,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(new_cinematic_lighting_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(new_cinematic_lighting_block, 1, new_cinematic_lighting_struct_definition_struct_definition );
+
+	TAG_STRUCT(new_cinematic_lighting_struct_definition)
+	{
 		FIELD( _field_custom, "Cinematic Lighting" ),
 		FIELD( _field_custom, "Cinema Lighting" ),
 		FIELD( _field_long_integer, "version!" ),
@@ -61,7 +54,14 @@ TAG_STRUCT(new_cinematic_lighting_struct_definition)
 		FIELD( _field_block, "Cortana Lighting", &hologramLightingBlock_block ),
 		FIELD( _field_block, "dynamic lights!", &cinematic_dynamic_light_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(cinematic_dynamic_light_flags, 3)
+	{
+		OPTION("debug this light"),
+		OPTION("follow object"),
+		OPTION("position at marker"),
+	};
 
 } // namespace blofeld
 

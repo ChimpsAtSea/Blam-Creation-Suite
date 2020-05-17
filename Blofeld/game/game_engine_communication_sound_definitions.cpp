@@ -7,8 +7,8 @@ namespace blofeld
 
 	TAG_BLOCK_FROM_STRUCT(communication_sounds_block, 1, communication_sounds_struct_definition_struct_definition );
 
-TAG_STRUCT(communication_sounds_struct_definition)
-{
+	TAG_STRUCT(communication_sounds_struct_definition)
+	{
 		FIELD( _field_tag_reference, "silence" ),
 		FIELD( _field_tag_reference, "alert_holding" ),
 		FIELD( _field_tag_reference, "enemy_1_enemy" ),
@@ -217,7 +217,7 @@ TAG_STRUCT(communication_sounds_struct_definition)
 		FIELD( _field_tag_reference, "loc_se_eastpath" ),
 		FIELD( _field_tag_reference, "loc_se_northside" ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

@@ -3,13 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(pca_animation_tag_flags, 3)
-	{
-		OPTION("lookup table ready"),
-		OPTION("resources generated"),
-		OPTION("resources committed"),
-	};
-
 	TAG_GROUP(pca_animation, PCA_ANIMATION_TAG)
 	{
 		FIELD( _field_explanation, "Links" ),
@@ -29,6 +22,18 @@ namespace blofeld
 	TAG_BLOCK(PCAImportedFrameDatablock, 64 * k_meg)
 	{
 		FIELD( _field_data, "Coefficients" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(PCAImportedAnimationDataBlock, k_max_animations_per_graph)
+	{
+		FIELD( _field_string_id, "Name^*" ),
+		FIELD( _field_long_integer, "Offset*" ),
+		FIELD( _field_long_integer, "Count*" ),
+		FIELD( _field_long_integer, "PCA Shape Offset*!" ),
+		FIELD( _field_long_integer, "PCA coefficient Count*!" ),
+		FIELD( _field_explanation, "Resource Data" ),
+		FIELD( _field_pageable, "CoefficientResource*" ),
 		FIELD( _field_terminator )
 	};
 
@@ -52,16 +57,11 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(PCAImportedAnimationDataBlock, k_max_animations_per_graph)
+	TAG_ENUM(pca_animation_tag_flags, 3)
 	{
-		FIELD( _field_string_id, "Name^*" ),
-		FIELD( _field_long_integer, "Offset*" ),
-		FIELD( _field_long_integer, "Count*" ),
-		FIELD( _field_long_integer, "PCA Shape Offset*!" ),
-		FIELD( _field_long_integer, "PCA coefficient Count*!" ),
-		FIELD( _field_explanation, "Resource Data" ),
-		FIELD( _field_pageable, "CoefficientResource*" ),
-		FIELD( _field_terminator )
+		OPTION("lookup table ready"),
+		OPTION("resources generated"),
+		OPTION("resources committed"),
 	};
 
 } // namespace blofeld

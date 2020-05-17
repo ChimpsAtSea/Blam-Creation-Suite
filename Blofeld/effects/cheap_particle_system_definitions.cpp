@@ -3,28 +3,11 @@
 namespace blofeld
 {
 
-	TAG_ENUM(cheap_particle_emitter_flags, 5)
-	{
-		OPTION("correlate position and velocity"),
-		OPTION("position texture in local space"),
-		OPTION("velocity texture in local space"),
-		OPTION("normalize velocity before scaling"),
-		OPTION("randomly rotate emitter about up vector"),
-	};
-
-	TAG_ENUM(cheap_particle_type_orientation, 2)
-	{
-		OPTION("velocity"),
-		OPTION("screen facing"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(cheap_particle_emitter, CHEAP_PARTICLE_EMITTER_TAG, cheap_particle_emitter_block_block );
 
 	TAG_GROUP_FROM_BLOCK(cheap_particle_type_library, CHEAP_PARTICLE_TYPE_LIBRARY_TAG, cheap_particle_type_library_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(cheap_particle_emitter_block, 1, cheap_particle_emitter_struct_definition_struct_definition );
-
-	TAG_BLOCK_FROM_STRUCT(cheap_particle_type_library_block, 1, cheap_particle_type_library_struct_definition_struct_definition );
 
 	TAG_BLOCK(cheap_particle_type_block, s_cheap_particle_type::k_maximum_types)
 	{
@@ -72,8 +55,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(cheap_particle_emitter_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(cheap_particle_type_library_block, 1, cheap_particle_type_library_struct_definition_struct_definition );
+
+	TAG_STRUCT(cheap_particle_emitter_struct_definition)
+	{
 		FIELD( _field_word_flags, "flags", &cheap_particle_emitter_flags ),
 		FIELD( _field_word_integer, "version!" ),
 		FIELD( _field_real, "spawn rate!:particles per second" ),
@@ -118,10 +103,19 @@ TAG_STRUCT(cheap_particle_emitter_struct_definition)
 		FIELD( _field_real_quaternion, "spawn_params4!" ),
 		FIELD( _field_tag_reference, "global type library!" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(cheap_particle_type_library_struct_definition)
-{
+	TAG_STRUCT(cheap_particle_scalar_object_function_struct)
+	{
+		FIELD( _field_string_id, "Input Variable!" ),
+		FIELD( _field_string_id, "Range Variable!" ),
+		FIELD( _field_custom ),
+		FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_STRUCT(cheap_particle_type_library_struct_definition)
+	{
 		FIELD( _field_custom, "compile" ),
 		FIELD( _field_block, "types", &cheap_particle_type_block_block ),
 		FIELD( _field_block, "textures", &cheap_particle_bitmap_reference_block_block ),
@@ -131,16 +125,22 @@ TAG_STRUCT(cheap_particle_type_library_struct_definition)
 		FIELD( _field_tag_reference, "render_texture!" ),
 		FIELD( _field_tag_reference, "turbulenceTexture!" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(cheap_particle_scalar_object_function_struct)
-{
-		FIELD( _field_string_id, "Input Variable!" ),
-		FIELD( _field_string_id, "Range Variable!" ),
-		FIELD( _field_custom ),
-		FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
-		FIELD( _field_terminator )
-};
+	TAG_ENUM(cheap_particle_emitter_flags, 5)
+	{
+		OPTION("correlate position and velocity"),
+		OPTION("position texture in local space"),
+		OPTION("velocity texture in local space"),
+		OPTION("normalize velocity before scaling"),
+		OPTION("randomly rotate emitter about up vector"),
+	};
+
+	TAG_ENUM(cheap_particle_type_orientation, 2)
+	{
+		OPTION("velocity"),
+		OPTION("screen facing"),
+	};
 
 } // namespace blofeld
 

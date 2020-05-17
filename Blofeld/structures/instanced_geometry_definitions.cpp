@@ -3,68 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(instanced_geometry_flags, 14)
-	{
-		OPTION("not in lightprobes"),
-		OPTION("render only"),
-		OPTION("does not block aoe damage"),
-		OPTION("collidable"),
-		OPTION("decal spacing"),
-		OPTION("rain blocker"),
-		OPTION("vertical rain sheet"),
-		OPTION("outside map"),
-		OPTION("seam colliding"),
-		OPTION("(mostly) planar"),
-		OPTION("remove from shadow geometry"),
-		OPTION("cinema only"),
-		OPTION("exclude from cinema"),
-		OPTION("disallow object lighting samples"),
-	};
-
-	TAG_ENUM(instanced_geometry_imposter_policy_enum, 6)
-	{
-		OPTION("polygon default"),
-		OPTION("polygon high"),
-		OPTION("cards medium"),
-		OPTION("cards high"),
-		OPTION("none"),
-		OPTION("rainbow box (runtime only)"),
-	};
-
-	TAG_ENUM(instanced_geometry_pathfinding_policy_enum, 3)
-	{
-		OPTION("cut-out"),
-		OPTION("static"),
-		OPTION("none"),
-	};
-
-	TAG_ENUM(instanced_geometry_lightmapping_policy_enum, 6)
-	{
-		OPTION("per-pixel shared"),
-		OPTION("per-vertex"),
-		OPTION("single-probe"),
-		OPTION("exclude"),
-		OPTION("per-pixel ao"),
-		OPTION("per-vertex ao"),
-	};
-
-	TAG_ENUM(instanced_geometry_streamingpriority_enum, 3)
-	{
-		OPTION("default"),
-		OPTION("higher"),
-		OPTION("highest"),
-	};
-
-	TAG_ENUM(instanced_geometry_definition_flags, 6)
-	{
-		OPTION("miscolored bsp"),
-		OPTION("error free"),
-		OPTION("surface to triangle remapped"),
-		OPTION("external reference mesh"),
-		OPTION("no physics"),
-		OPTION("stitched physics"),
-	};
-
 	TAG_BLOCK(global_render_model_instance_placement_block, k_maximum_instance_placements_per_render_model)
 	{
 		FIELD( _field_string_id, "name^*" ),
@@ -137,12 +75,12 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK_FROM_STRUCT(structureIOHavokDataBlock, 1, structureIOHavokDataBlock_struct_struct_definition );
-
 	TAG_BLOCK_FROM_STRUCT(SerializedHavokGeometryDataBlock, 5, SerializedHavokGeometryDataBlock_struct_struct_definition );
 
-TAG_STRUCT(structureIOHavokDataBlock_struct)
-{
+	TAG_BLOCK_FROM_STRUCT(structureIOHavokDataBlock, 1, structureIOHavokDataBlock_struct_struct_definition );
+
+	TAG_STRUCT(structureIOHavokDataBlock_struct)
+	{
 		FIELD( _field_long_integer, "version*" ),
 		FIELD( _field_long_integer, "RuntimeDeserializedBody Pointer*!" ),
 		FIELD( _field_long_integer, "RuntimeDeserializedData Pointer*!" ),
@@ -152,17 +90,79 @@ TAG_STRUCT(structureIOHavokDataBlock_struct)
 		FIELD( _field_real_point_3d, "Shapes bounds min!*" ),
 		FIELD( _field_real_point_3d, "Shapes bounds max!*" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(SerializedHavokGeometryDataBlock_struct)
-{
+	TAG_STRUCT(SerializedHavokGeometryDataBlock_struct)
+	{
 		FIELD( _field_data, "Serialized Havok Data*" ),
 		FIELD( _field_data, "Serialized Static Havok Data*" ),
 		FIELD( _field_long_integer, "collision type" ),
 		FIELD( _field_long_integer, "RuntimeDeserializedBody Pointer*!" ),
 		FIELD( _field_long_integer, "RuntimeDeserializedData Pointer*!" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(instanced_geometry_flags, 14)
+	{
+		OPTION("not in lightprobes"),
+		OPTION("render only"),
+		OPTION("does not block aoe damage"),
+		OPTION("collidable"),
+		OPTION("decal spacing"),
+		OPTION("rain blocker"),
+		OPTION("vertical rain sheet"),
+		OPTION("outside map"),
+		OPTION("seam colliding"),
+		OPTION("(mostly) planar"),
+		OPTION("remove from shadow geometry"),
+		OPTION("cinema only"),
+		OPTION("exclude from cinema"),
+		OPTION("disallow object lighting samples"),
+	};
+
+	TAG_ENUM(instanced_geometry_imposter_policy_enum, 6)
+	{
+		OPTION("polygon default"),
+		OPTION("polygon high"),
+		OPTION("cards medium"),
+		OPTION("cards high"),
+		OPTION("none"),
+		OPTION("rainbow box (runtime only)"),
+	};
+
+	TAG_ENUM(instanced_geometry_pathfinding_policy_enum, 3)
+	{
+		OPTION("cut-out"),
+		OPTION("static"),
+		OPTION("none"),
+	};
+
+	TAG_ENUM(instanced_geometry_lightmapping_policy_enum, 6)
+	{
+		OPTION("per-pixel shared"),
+		OPTION("per-vertex"),
+		OPTION("single-probe"),
+		OPTION("exclude"),
+		OPTION("per-pixel ao"),
+		OPTION("per-vertex ao"),
+	};
+
+	TAG_ENUM(instanced_geometry_streamingpriority_enum, 3)
+	{
+		OPTION("default"),
+		OPTION("higher"),
+		OPTION("highest"),
+	};
+
+	TAG_ENUM(instanced_geometry_definition_flags, 6)
+	{
+		OPTION("miscolored bsp"),
+		OPTION("error free"),
+		OPTION("surface to triangle remapped"),
+		OPTION("external reference mesh"),
+		OPTION("no physics"),
+		OPTION("stitched physics"),
+	};
 
 } // namespace blofeld
 

@@ -3,14 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(global_bitmap_flags, 1)
-	{
-		OPTION("don\'t load bitmap by default"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(rasterizer_globals, RASTERIZER_GLOBALS_TAG, rasterizer_globals_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(rasterizer_globals_block, 1, rasterizer_globals_struct_definition_struct_definition );
 
 	TAG_BLOCK(default_textures_refs_block, 32)
 	{
@@ -33,8 +26,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(rasterizer_globals_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(rasterizer_globals_block, 1, rasterizer_globals_struct_definition_struct_definition );
+
+	TAG_STRUCT(rasterizer_globals_struct_definition)
+	{
 		FIELD( _field_explanation, "default bitmaps:" ),
 		FIELD( _field_block, "default bitmaps", &default_textures_refs_block_block ),
 		FIELD( _field_explanation, "material textures:" ),
@@ -60,7 +55,12 @@ TAG_STRUCT(rasterizer_globals_struct_definition)
 		FIELD( _field_real, "Global load screen gradient coordinate" ),
 		FIELD( _field_tag_reference, "airprobe render model" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(global_bitmap_flags, 1)
+	{
+		OPTION("don\'t load bitmap by default"),
+	};
 
 } // namespace blofeld
 

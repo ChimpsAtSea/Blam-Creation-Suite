@@ -3,27 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(modelDissolveFlags, 7)
-	{
-		OPTION("draw backfaces on overlay"),
-		OPTION("reverse dissolve"),
-		OPTION("pin to animation"),
-		OPTION("time particles to die when arriving"),
-		OPTION("needs transmission over network"),
-		OPTION("can be restarted"),
-		OPTION("bounding center effect is taint spawn"),
-	};
-
-	TAG_ENUM(modelDissolveParticleSpawnPosition, 3)
-	{
-		OPTION("dissolve surface"),
-		OPTION("dissolve point"),
-		OPTION("opposite from dissolve point"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(model_dissolve_definition, MODEL_DISSOLVE_DEFINITION_TAG, model_dissolve_definition_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(model_dissolve_definition_block, 1, model_dissolve_definition_struct_definition_struct_definition );
 
 	TAG_BLOCK(modelDissolveDataBlock, ModelDissolveDefinition::eTT_count)
 	{
@@ -38,8 +18,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(model_dissolve_definition_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(model_dissolve_definition_block, 1, model_dissolve_definition_struct_definition_struct_definition );
+
+	TAG_STRUCT(model_dissolve_definition_struct_definition)
+	{
 		FIELD( _field_byte_flags, "flags", &modelDissolveFlags ),
 		FIELD( _field_char_enum, "particle spawn position", &modelDissolveParticleSpawnPosition ),
 		FIELD( _field_pad, "graaag", 2 ),
@@ -71,7 +53,25 @@ TAG_STRUCT(model_dissolve_definition_struct_definition)
 		FIELD( _field_struct, "actual material\?", &material_struct_struct_definition ),
 		FIELD( _field_custom ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(modelDissolveFlags, 7)
+	{
+		OPTION("draw backfaces on overlay"),
+		OPTION("reverse dissolve"),
+		OPTION("pin to animation"),
+		OPTION("time particles to die when arriving"),
+		OPTION("needs transmission over network"),
+		OPTION("can be restarted"),
+		OPTION("bounding center effect is taint spawn"),
+	};
+
+	TAG_ENUM(modelDissolveParticleSpawnPosition, 3)
+	{
+		OPTION("dissolve surface"),
+		OPTION("dissolve point"),
+		OPTION("opposite from dissolve point"),
+	};
 
 } // namespace blofeld
 

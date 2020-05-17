@@ -3,22 +3,12 @@
 namespace blofeld
 {
 
-	TAG_ENUM(point_physics_definition_flags, 6)
-	{
-		OPTION("UNUSED"),
-		OPTION("collides with structures"),
-		OPTION("collides with water surface"),
-		OPTION("uses simple wind#the wind on this point won\'t have high-frequency variations"),
-		OPTION("uses damped wind#the wind on this point will be artificially slow"),
-		OPTION("no gravity#the point is not affected by gravity"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(point_physics, POINT_PHYSICS_TAG, point_physics_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(point_physics_block, 1, point_physics_struct_definition_struct_definition );
 
-TAG_STRUCT(point_physics_struct_definition)
-{
+	TAG_STRUCT(point_physics_struct_definition)
+	{
 		FIELD( _field_long_flags, "flags", &point_physics_definition_flags ),
 		FIELD( _field_real, "runtime mass over radius cubed!" ),
 		FIELD( _field_real, "runtime inverse density!" ),
@@ -35,7 +25,17 @@ TAG_STRUCT(point_physics_struct_definition)
 		FIELD( _field_pad, "DR", 12 ),
 		FIELD( _field_explanation, "Densities (g/mL)" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(point_physics_definition_flags, 6)
+	{
+		OPTION("UNUSED"),
+		OPTION("collides with structures"),
+		OPTION("collides with water surface"),
+		OPTION("uses simple wind#the wind on this point won\'t have high-frequency variations"),
+		OPTION("uses damped wind#the wind on this point will be artificially slow"),
+		OPTION("no gravity#the point is not affected by gravity"),
+	};
 
 } // namespace blofeld
 

@@ -5,15 +5,10 @@ namespace blofeld
 
 	TAG_GROUP_FROM_BLOCK(game_completion_rewards_globals, GAME_COMPLETION_REWARDS_GLOBALS_TAG, game_completion_rewards_globals_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(game_completion_rewards_globals_block, 1, game_completion_rewards_globals_struct_definition_struct_definition );
-
-	TAG_BLOCK(game_completion_rewards_difficulty_block, 1)
+	TAG_BLOCK(game_completion_rewards_falloff_point_block, s_game_completion_rewards_globals::k_max_falloff_curve_points)
 	{
-		FIELD( _field_block, "easy matchmaking#this block is used for easy matchmade games", &game_completion_rewards_definition_block_block ),
-		FIELD( _field_block, "normal matchmaking#this block is used for normal matchmade games", &game_completion_rewards_definition_block_block ),
-		FIELD( _field_block, "heroic matchmaking#this block is used for heroic matchmade games", &game_completion_rewards_definition_block_block ),
-		FIELD( _field_block, "legendary matchmaking#this block is used for legendary matchmade games", &game_completion_rewards_definition_block_block ),
-		FIELD( _field_block, "custom#this block is used for custom games", &game_completion_rewards_definition_block_block ),
+		FIELD( _field_short_integer, "start time#minutes into the game after which this new reward rate applies" ),
+		FIELD( _field_short_integer, "amount per minute{cookies per minute}#points awarded per minute once the given time is reached" ),
 		FIELD( _field_terminator )
 	};
 
@@ -28,10 +23,13 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(game_completion_rewards_falloff_point_block, s_game_completion_rewards_globals::k_max_falloff_curve_points)
+	TAG_BLOCK(game_completion_rewards_difficulty_block, 1)
 	{
-		FIELD( _field_short_integer, "start time#minutes into the game after which this new reward rate applies" ),
-		FIELD( _field_short_integer, "amount per minute{cookies per minute}#points awarded per minute once the given time is reached" ),
+		FIELD( _field_block, "easy matchmaking#this block is used for easy matchmade games", &game_completion_rewards_definition_block_block ),
+		FIELD( _field_block, "normal matchmaking#this block is used for normal matchmade games", &game_completion_rewards_definition_block_block ),
+		FIELD( _field_block, "heroic matchmaking#this block is used for heroic matchmade games", &game_completion_rewards_definition_block_block ),
+		FIELD( _field_block, "legendary matchmaking#this block is used for legendary matchmade games", &game_completion_rewards_definition_block_block ),
+		FIELD( _field_block, "custom#this block is used for custom games", &game_completion_rewards_definition_block_block ),
 		FIELD( _field_terminator )
 	};
 
@@ -45,14 +43,16 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(game_completion_rewards_globals_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(game_completion_rewards_globals_block, 1, game_completion_rewards_globals_struct_definition_struct_definition );
+
+	TAG_STRUCT(game_completion_rewards_globals_struct_definition)
+	{
 		FIELD( _field_block, "campaign#rewards given for playing campaign games online", &game_completion_rewards_difficulty_block_block ),
 		FIELD( _field_block, "firefight#rewards given for playing firefight games online", &game_completion_rewards_difficulty_block_block ),
 		FIELD( _field_block, "multiplayer#rewards given for playing PvP multiplayer games online", &game_completion_rewards_multiplayer_block_block ),
 		FIELD( _field_real, "fast track armor modifier#this multiplier is applied to the combined reward of timespent, score and performance, multiplied by the percentage time the player has the armor mod active" ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 

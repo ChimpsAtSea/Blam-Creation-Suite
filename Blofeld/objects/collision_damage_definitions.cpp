@@ -3,18 +3,12 @@
 namespace blofeld
 {
 
-	TAG_ENUM(collisionDamageFlags, 2)
-	{
-		OPTION("Don\'t scale damage#typically, we scale the damage to make only \"lethal\" collision damage kill people; this flag overrides that behavior"),
-		OPTION("Object may choose not to deal damage#in some cases (notably, the thruster pack) we should ask an object if it wants to opt out of dealing damage for one reason or another"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(collision_damage, COLLISION_DAMAGE_TAG, collision_damage_block_block );
 
 	TAG_BLOCK_FROM_STRUCT(collision_damage_block, 1, collision_damage_struct_definition_struct_definition );
 
-TAG_STRUCT(collision_damage_struct_definition)
-{
+	TAG_STRUCT(collision_damage_struct_definition)
+	{
 		FIELD( _field_long_flags, "Flags", &collisionDamageFlags ),
 		FIELD( _field_explanation, "Applying collision damage" ),
 		FIELD( _field_real, "Apply collision damage scale#0 means 1.  1 is standard scale.  Some things may want to apply more damage" ),
@@ -33,14 +27,20 @@ TAG_STRUCT(collision_damage_struct_definition)
 		FIELD( _field_explanation, "Alternative damage effect" ),
 		FIELD( _field_tag_reference, "alternative damage effect" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(collision_damage_function)
-{
+	TAG_STRUCT(collision_damage_function)
+	{
 		FIELD( _field_custom ),
 		FIELD( _field_struct, "mapping", &mapping_function_struct_definition ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(collisionDamageFlags, 2)
+	{
+		OPTION("Don\'t scale damage#typically, we scale the damage to make only \"lethal\" collision damage kill people; this flag overrides that behavior"),
+		OPTION("Object may choose not to deal damage#in some cases (notably, the thruster pack) we should ask an object if it wants to opt out of dealing damage for one reason or another"),
+	};
 
 } // namespace blofeld
 

@@ -3,23 +3,6 @@
 namespace blofeld
 {
 
-	TAG_ENUM(leaf_flags, 1)
-	{
-		OPTION("contains double-sided surfaces"),
-	};
-
-	TAG_ENUM(surface_flags, 8)
-	{
-		OPTION("two sided"),
-		OPTION("invisible"),
-		OPTION("climbable"),
-		OPTION("breakable"),
-		OPTION("invalid"),
-		OPTION("conveyor"),
-		OPTION("slip"),
-		OPTION("plane negated"),
-	};
-
 	TAG_BLOCK(bsp3d_nodes_block, ((false) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_child_index_bits-1)))))
 	{
 		FIELD( _field_int64_integer, "node data designator!" ),
@@ -131,20 +114,6 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(global_large_collision_bsp_block, 1)
-	{
-		FIELD( _field_block, "bsp3d nodes*", &large_bsp3d_nodes_block_block ),
-		FIELD( _field_block, "bsp3d supernodes*", &bsp3d_kd_supdernodes_block_block ),
-		FIELD( _field_block, "planes*", &planes_block_block ),
-		FIELD( _field_block, "leaves*", &large_leaves_block_block ),
-		FIELD( _field_block, "bsp2d references*", &large_bsp2d_references_block_block ),
-		FIELD( _field_block, "bsp2d nodes*", &large_bsp2d_nodes_block_block ),
-		FIELD( _field_block, "surfaces*", &large_surfaces_block_block ),
-		FIELD( _field_block, "edges*", &large_edges_block_block ),
-		FIELD( _field_block, "vertices*", &large_vertices_block_block ),
-		FIELD( _field_terminator )
-	};
-
 	TAG_BLOCK(large_bsp3d_nodes_block, ((true) ? 2147483647L>>2 : ((1<<(k_bsp3d_node_child_index_bits-1)))))
 	{
 		FIELD( _field_long_integer, "plane*" ),
@@ -207,8 +176,22 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(global_collision_bsp_struct)
-{
+	TAG_BLOCK(global_large_collision_bsp_block, 1)
+	{
+		FIELD( _field_block, "bsp3d nodes*", &large_bsp3d_nodes_block_block ),
+		FIELD( _field_block, "bsp3d supernodes*", &bsp3d_kd_supdernodes_block_block ),
+		FIELD( _field_block, "planes*", &planes_block_block ),
+		FIELD( _field_block, "leaves*", &large_leaves_block_block ),
+		FIELD( _field_block, "bsp2d references*", &large_bsp2d_references_block_block ),
+		FIELD( _field_block, "bsp2d nodes*", &large_bsp2d_nodes_block_block ),
+		FIELD( _field_block, "surfaces*", &large_surfaces_block_block ),
+		FIELD( _field_block, "edges*", &large_edges_block_block ),
+		FIELD( _field_block, "vertices*", &large_vertices_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_STRUCT(global_collision_bsp_struct)
+	{
 		FIELD( _field_block, "bsp3d nodes*", &bsp3d_nodes_block_block ),
 		FIELD( _field_block, "bsp3d supernodes*", &bsp3d_kd_supdernodes_block_block ),
 		FIELD( _field_block, "planes*", &planes_block_block ),
@@ -219,16 +202,33 @@ TAG_STRUCT(global_collision_bsp_struct)
 		FIELD( _field_block, "edges*", &edges_block_block ),
 		FIELD( _field_block, "vertices*", &vertices_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(collision_leaf_struct)
-{
+	TAG_STRUCT(collision_leaf_struct)
+	{
 		FIELD( _field_byte_flags, "flags*", &leaf_flags ),
 		FIELD( _field_pad, "pad", 1 ),
 		FIELD( _field_word_integer, "bsp2d reference count*" ),
 		FIELD( _field_dword_integer, "first bsp2d reference*" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(leaf_flags, 1)
+	{
+		OPTION("contains double-sided surfaces"),
+	};
+
+	TAG_ENUM(surface_flags, 8)
+	{
+		OPTION("two sided"),
+		OPTION("invisible"),
+		OPTION("climbable"),
+		OPTION("breakable"),
+		OPTION("invalid"),
+		OPTION("conveyor"),
+		OPTION("slip"),
+		OPTION("plane negated"),
+	};
 
 } // namespace blofeld
 

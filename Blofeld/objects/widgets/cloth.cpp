@@ -3,20 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(cloth_flags, 2)
-	{
-		OPTION("Doesn\'t use wind"),
-		OPTION("Uses grid attach top"),
-	};
-
-	TAG_ENUM(cloth_integration_enum, 1)
-	{
-		OPTION("verlet"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(cloth, CLOTH_TAG, cloth_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(cloth_block, 1, cloth_struct_definition_struct_definition );
 
 	TAG_BLOCK(collision_sphere_block, k_maximum_collision_spheres_per_cloth)
 	{
@@ -47,8 +34,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(cloth_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(cloth_block, 1, cloth_struct_definition_struct_definition );
+
+	TAG_STRUCT(cloth_struct_definition)
+	{
 		FIELD( _field_long_flags, "flags", &cloth_flags ),
 		FIELD( _field_string_id, "marker attachment name" ),
 		FIELD( _field_string_id, "secondary axis attachment name" ),
@@ -67,10 +56,10 @@ TAG_STRUCT(cloth_struct_definition)
 		FIELD( _field_block, "strip indices*", &cloth_indices_block_block ),
 		FIELD( _field_block, "links*", &cloth_links_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(cloth_properties)
-{
+	TAG_STRUCT(cloth_properties)
+	{
 		FIELD( _field_enum, "Integration type*", &cloth_integration_enum ),
 		FIELD( _field_short_integer, "Number iterations#[1-8] sug 1" ),
 		FIELD( _field_real, "weight#[-10.0 - 10.0] sug 1.0" ),
@@ -80,7 +69,18 @@ TAG_STRUCT(cloth_properties)
 		FIELD( _field_real, "longest_rod#[1.0 - 10.0] sug 3.5" ),
 		FIELD( _field_pad, "WXLH", 24 ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(cloth_flags, 2)
+	{
+		OPTION("Doesn\'t use wind"),
+		OPTION("Uses grid attach top"),
+	};
+
+	TAG_ENUM(cloth_integration_enum, 1)
+	{
+		OPTION("verlet"),
+	};
 
 } // namespace blofeld
 

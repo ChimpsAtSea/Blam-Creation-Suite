@@ -3,17 +3,7 @@
 namespace blofeld
 {
 
-	TAG_ENUM(leaf_flags$2, 4)
-	{
-		OPTION("collides structure"),
-		OPTION("collides objects"),
-		OPTION("collides water"),
-		OPTION("affected by explosions"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(leaf_system, LEAF_SYSTEM_TAG, leaf_system_block_block );
-
-	TAG_BLOCK_FROM_STRUCT(leaf_system_block, 1, leaf_system_struct_definition_struct_definition );
 
 	TAG_BLOCK(leaf_type_block, k_maximum_leaf_type_definitions)
 	{
@@ -34,8 +24,10 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-TAG_STRUCT(leaf_system_struct_definition)
-{
+	TAG_BLOCK_FROM_STRUCT(leaf_system_block, 1, leaf_system_struct_definition_struct_definition );
+
+	TAG_STRUCT(leaf_system_struct_definition)
+	{
 		FIELD( _field_long_flags, "flags!", &leaf_flags ),
 		FIELD( _field_string_id, "marker attach name" ),
 		FIELD( _field_tag_reference, "bitmap sprite plate" ),
@@ -51,7 +43,15 @@ TAG_STRUCT(leaf_system_struct_definition)
 		FIELD( _field_real, "fade out time!" ),
 		FIELD( _field_block, "leaf types", &leaf_type_block_block ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(leaf_flags$2, 4)
+	{
+		OPTION("collides structure"),
+		OPTION("collides objects"),
+		OPTION("collides water"),
+		OPTION("affected by explosions"),
+	};
 
 } // namespace blofeld
 

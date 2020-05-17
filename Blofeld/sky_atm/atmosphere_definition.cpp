@@ -3,20 +3,14 @@
 namespace blofeld
 {
 
-	TAG_ENUM(atmosphere_flags, 9)
-	{
-		OPTION("Sky Fog Enabled"),
-		OPTION("Ground Fog Enabled"),
-		OPTION("Ceiling Fog Enabled"),
-		OPTION("Fog Light Enabled"),
-		OPTION("Patchy Fog Enabled"),
-		OPTION("Sky Fog Height Camera Relative"),
-		OPTION("Ground Fog Height Camera Relative"),
-		OPTION("Use Floating Shadow for Fog Light"),
-		OPTION("Only use fog light for light shafts"),
-	};
-
 	TAG_GROUP_FROM_BLOCK(atmosphere_fog, ATMOSPHERE_FOG_TAG, atmosphere_definition_block_block );
+
+	TAG_BLOCK(soloFogFunctionBlock, 1)
+	{
+		FIELD( _field_custom ),
+		FIELD( _field_struct, "mapping", &mapping_function_struct_definition ),
+		FIELD( _field_terminator )
+	};
 
 	TAG_BLOCK(atmosphere_definition_block, k_max_atmosphere_settings)
 	{
@@ -57,15 +51,8 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(soloFogFunctionBlock, 1)
+	TAG_STRUCT(solo_fog_parameters_struct_definition)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_struct, "mapping", &mapping_function_struct_definition ),
-		FIELD( _field_terminator )
-	};
-
-TAG_STRUCT(solo_fog_parameters_struct_definition)
-{
 		FIELD( _field_real, "base height:world units" ),
 		FIELD( _field_real, "fog height:world units" ),
 		FIELD( _field_real, "fog thickness [0.0 to 1.0]" ),
@@ -74,10 +61,10 @@ TAG_STRUCT(solo_fog_parameters_struct_definition)
 		FIELD( _field_real, "fog color intensity#scales color up or down to allow for HDR values" ),
 		FIELD( _field_block, "Function", &soloFogFunctionBlock_block ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(fog_light_struct_definition)
-{
+	TAG_STRUCT(fog_light_struct_definition)
+	{
 		FIELD( _field_real, "pitch angle [-90 to 90]:degree" ),
 		FIELD( _field_real, "yaw angle [0 to 360]:degree" ),
 		FIELD( _field_real, "angular radius [0 to 180]:degree" ),
@@ -87,17 +74,17 @@ TAG_STRUCT(fog_light_struct_definition)
 		FIELD( _field_real, "distance falloff steepness" ),
 		FIELD( _field_real, "nearby cutoff percentage" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(VolumeFogParametersDefinition)
-{
+	TAG_STRUCT(VolumeFogParametersDefinition)
+	{
 		FIELD( _field_real_rgb_color, "volume fog color" ),
 		FIELD( _field_real, "volume fog color intensity" ),
 		FIELD( _field_terminator )
-};
+	};
 
-TAG_STRUCT(LightShaftParametersDefinition)
-{
+	TAG_STRUCT(LightShaftParametersDefinition)
+	{
 		FIELD( _field_real_rgb_color, "light shaft tint color" ),
 		FIELD( _field_real, "light shaft intensity" ),
 		FIELD( _field_real, "light shaft decay rate" ),
@@ -105,7 +92,20 @@ TAG_STRUCT(LightShaftParametersDefinition)
 		FIELD( _field_real, "sample density" ),
 		FIELD( _field_real, "minimum caster distance" ),
 		FIELD( _field_terminator )
-};
+	};
+
+	TAG_ENUM(atmosphere_flags, 9)
+	{
+		OPTION("Sky Fog Enabled"),
+		OPTION("Ground Fog Enabled"),
+		OPTION("Ceiling Fog Enabled"),
+		OPTION("Fog Light Enabled"),
+		OPTION("Patchy Fog Enabled"),
+		OPTION("Sky Fog Height Camera Relative"),
+		OPTION("Ground Fog Height Camera Relative"),
+		OPTION("Use Floating Shadow for Fog Light"),
+		OPTION("Only use fog light for light shafts"),
+	};
 
 } // namespace blofeld
 

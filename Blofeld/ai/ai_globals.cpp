@@ -5,7 +5,112 @@ namespace blofeld
 
 	TAG_GROUP_FROM_BLOCK(ai_globals, AI_GLOBALS_TAG, ai_globals_block_block );
 
-	TAG_BLOCK_FROM_STRUCT(ai_globals_block, 1, ai_globals_struct_definition_struct_definition );
+	TAG_BLOCK(ai_globals_gravemind_block, 1)
+	{
+		FIELD( _field_real, "min retreat time:secs" ),
+		FIELD( _field_real, "ideal retreat time:secs" ),
+		FIELD( _field_real, "max retreat time:secs" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_globals_formation_block, k_global_formations_count)
+	{
+		FIELD( _field_tag_reference, "formation^" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_globals_squad_template_block, k_global_squad_templates_count)
+	{
+		FIELD( _field_tag_reference, "squad_template^" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_globals_squad_template_sub_folder_block, k_global_squad_template_folder_count)
+	{
+		FIELD( _field_string_id, "sub folder name^" ),
+		FIELD( _field_block, "templates", &ai_globals_squad_template_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_globals_squad_template_folder_block, k_global_squad_template_folder_count)
+	{
+		FIELD( _field_string_id, "folder name^" ),
+		FIELD( _field_block, "sub folders", &ai_globals_squad_template_sub_folder_block_block ),
+		FIELD( _field_block, "templates", &ai_globals_squad_template_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_globals_performance_template_block, k_global_performance_templates_count)
+	{
+		FIELD( _field_tag_reference, "thespian_template^" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_globals_performance_template_sub_folder_block, k_global_performance_template_folder_count)
+	{
+		FIELD( _field_string_id, "sub folder name^" ),
+		FIELD( _field_block, "templates", &ai_globals_performance_template_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_globals_performance_template_folder_block, k_global_performance_template_folder_count)
+	{
+		FIELD( _field_string_id, "folder name^" ),
+		FIELD( _field_block, "sub folders", &ai_globals_performance_template_sub_folder_block_block ),
+		FIELD( _field_block, "templates", &ai_globals_performance_template_block_block ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_globals_custom_stimuli_block, k_max_custom_stimuli_count)
+	{
+		FIELD( _field_string_id, "name^" ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_trait_vision_block, k_num_ai_trait_vision-2)
+	{
+		FIELD( _field_explanation, "Vision Traits" ),
+		FIELD( _field_real, "vision distance scale#Scale the distance at which an AI can see their target." ),
+		FIELD( _field_real, "vision angle scale#Scale the angles of the AI\'s vision cone." ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_trait_sound_block, k_num_ai_trait_sound-2)
+	{
+		FIELD( _field_explanation, "Sound Traits" ),
+		FIELD( _field_real, "hearing distance scale#Scale the character\'s hearing distance." ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_trait_luck_block, k_num_ai_trait_luck-2)
+	{
+		FIELD( _field_explanation, "Luck Traits" ),
+		FIELD( _field_real, "evasion chance scale#Scale the chance of evading fire." ),
+		FIELD( _field_real, "grenade dive chance scale#Scale the chance of diving from grenades." ),
+		FIELD( _field_real, "broken kamikaze chance scale#Scale the chance of going kamikaze when broken." ),
+		FIELD( _field_real, "leader dead retreat chance scale#Scale the chance of retreating when your leader dies." ),
+		FIELD( _field_real, "dive retreat chance scale#Scale the chance of retreating after a dive." ),
+		FIELD( _field_real, "shield depleted berserk chance scale#Scale the chance of berserking when your shield is depleted." ),
+		FIELD( _field_real, "leader abandoned berserk chance scale#Scale the chance of a leader berserking when all his followers die." ),
+		FIELD( _field_real, "melee attack delay timer scale#Scale the time between melee attacks." ),
+		FIELD( _field_real, "melee chance scale#Scale the chance of meleeing." ),
+		FIELD( _field_real, "melee leap delay timer scale#Scale the delay for performing melee leaps." ),
+		FIELD( _field_real, "throw grenade delay scale#Scale the time between grenade throws." ),
+		FIELD( _field_terminator )
+	};
+
+	TAG_BLOCK(ai_trait_grenade_block, k_num_ai_trait_grenade-2)
+	{
+		FIELD( _field_explanation, "Grenade Traits" ),
+		FIELD( _field_real, "velocity scale#Scale the velocity at which AI throws grenades" ),
+		FIELD( _field_real, "throw grenade delay scale#Scale the time between grenade throws." ),
+		FIELD( _field_real, "don\'t drop grenades chance scale" ),
+		FIELD( _field_real, "grenade uncover chance scale" ),
+		FIELD( _field_real, "retreat throw grenade chance scale" ),
+		FIELD( _field_real, "anti vehicle grenade chance scale" ),
+		FIELD( _field_real, "throw grenade chance scale" ),
+		FIELD( _field_terminator )
+	};
 
 	TAG_BLOCK(ai_globals_data_block, 1)
 	{
@@ -105,118 +210,13 @@ namespace blofeld
 		FIELD( _field_terminator )
 	};
 
-	TAG_BLOCK(ai_globals_gravemind_block, 1)
-	{
-		FIELD( _field_real, "min retreat time:secs" ),
-		FIELD( _field_real, "ideal retreat time:secs" ),
-		FIELD( _field_real, "max retreat time:secs" ),
-		FIELD( _field_terminator )
-	};
+	TAG_BLOCK_FROM_STRUCT(ai_globals_block, 1, ai_globals_struct_definition_struct_definition );
 
-	TAG_BLOCK(ai_globals_formation_block, k_global_formations_count)
+	TAG_STRUCT(ai_globals_struct_definition)
 	{
-		FIELD( _field_tag_reference, "formation^" ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(ai_globals_squad_template_folder_block, k_global_squad_template_folder_count)
-	{
-		FIELD( _field_string_id, "folder name^" ),
-		FIELD( _field_block, "sub folders", &ai_globals_squad_template_sub_folder_block_block ),
-		FIELD( _field_block, "templates", &ai_globals_squad_template_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(ai_globals_squad_template_sub_folder_block, k_global_squad_template_folder_count)
-	{
-		FIELD( _field_string_id, "sub folder name^" ),
-		FIELD( _field_block, "templates", &ai_globals_squad_template_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(ai_globals_squad_template_block, k_global_squad_templates_count)
-	{
-		FIELD( _field_tag_reference, "squad_template^" ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(ai_globals_performance_template_folder_block, k_global_performance_template_folder_count)
-	{
-		FIELD( _field_string_id, "folder name^" ),
-		FIELD( _field_block, "sub folders", &ai_globals_performance_template_sub_folder_block_block ),
-		FIELD( _field_block, "templates", &ai_globals_performance_template_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(ai_globals_performance_template_sub_folder_block, k_global_performance_template_folder_count)
-	{
-		FIELD( _field_string_id, "sub folder name^" ),
-		FIELD( _field_block, "templates", &ai_globals_performance_template_block_block ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(ai_globals_performance_template_block, k_global_performance_templates_count)
-	{
-		FIELD( _field_tag_reference, "thespian_template^" ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(ai_globals_custom_stimuli_block, k_max_custom_stimuli_count)
-	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(ai_trait_vision_block, k_num_ai_trait_vision-2)
-	{
-		FIELD( _field_explanation, "Vision Traits" ),
-		FIELD( _field_real, "vision distance scale#Scale the distance at which an AI can see their target." ),
-		FIELD( _field_real, "vision angle scale#Scale the angles of the AI\'s vision cone." ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(ai_trait_sound_block, k_num_ai_trait_sound-2)
-	{
-		FIELD( _field_explanation, "Sound Traits" ),
-		FIELD( _field_real, "hearing distance scale#Scale the character\'s hearing distance." ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(ai_trait_luck_block, k_num_ai_trait_luck-2)
-	{
-		FIELD( _field_explanation, "Luck Traits" ),
-		FIELD( _field_real, "evasion chance scale#Scale the chance of evading fire." ),
-		FIELD( _field_real, "grenade dive chance scale#Scale the chance of diving from grenades." ),
-		FIELD( _field_real, "broken kamikaze chance scale#Scale the chance of going kamikaze when broken." ),
-		FIELD( _field_real, "leader dead retreat chance scale#Scale the chance of retreating when your leader dies." ),
-		FIELD( _field_real, "dive retreat chance scale#Scale the chance of retreating after a dive." ),
-		FIELD( _field_real, "shield depleted berserk chance scale#Scale the chance of berserking when your shield is depleted." ),
-		FIELD( _field_real, "leader abandoned berserk chance scale#Scale the chance of a leader berserking when all his followers die." ),
-		FIELD( _field_real, "melee attack delay timer scale#Scale the time between melee attacks." ),
-		FIELD( _field_real, "melee chance scale#Scale the chance of meleeing." ),
-		FIELD( _field_real, "melee leap delay timer scale#Scale the delay for performing melee leaps." ),
-		FIELD( _field_real, "throw grenade delay scale#Scale the time between grenade throws." ),
-		FIELD( _field_terminator )
-	};
-
-	TAG_BLOCK(ai_trait_grenade_block, k_num_ai_trait_grenade-2)
-	{
-		FIELD( _field_explanation, "Grenade Traits" ),
-		FIELD( _field_real, "velocity scale#Scale the velocity at which AI throws grenades" ),
-		FIELD( _field_real, "throw grenade delay scale#Scale the time between grenade throws." ),
-		FIELD( _field_real, "don\'t drop grenades chance scale" ),
-		FIELD( _field_real, "grenade uncover chance scale" ),
-		FIELD( _field_real, "retreat throw grenade chance scale" ),
-		FIELD( _field_real, "anti vehicle grenade chance scale" ),
-		FIELD( _field_real, "throw grenade chance scale" ),
-		FIELD( _field_terminator )
-	};
-
-TAG_STRUCT(ai_globals_struct_definition)
-{
 		FIELD( _field_block, "data", &ai_globals_data_block_block ),
 		FIELD( _field_terminator )
-};
+	};
 
 } // namespace blofeld
 
