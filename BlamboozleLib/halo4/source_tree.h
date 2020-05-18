@@ -2,5 +2,5 @@
 
 static constexpr const char* source_tree[] =
 {
-
+	""
 };
