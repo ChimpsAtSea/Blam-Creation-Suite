@@ -111,3 +111,22 @@ s_reach_cache_file_header* cache_file_header_get()
 	s_reach_cache_file_header& cache_file_header = *reinterpret_cast<s_reach_cache_file_header*>(&g_cache_file_global_loaded_state[0x10]);
 	return &cache_file_header;
 }
+
+uintptr_t t_restricted_allocation_manager__reserve_memory_offset(e_engine_type engine_type, e_build build)
+{
+	if (engine_type == _engine_type_halo_reach)
+	{
+		switch (build)
+		{
+		case _build_mcc_1_1270_0_0: return 0x180211A20;
+		}
+	}
+	return ~uintptr_t();
+}
+#define t_restricted_allocation_manager__reserve_memory_offset_args void* __this, const char* szName, __int64 a3, __int64 a4, __int64 a5, __int64 a6, __int64 a7, __int64 a8
+FunctionHookEx<t_restricted_allocation_manager__reserve_memory_offset, __int64 __fastcall (t_restricted_allocation_manager__reserve_memory_offset_args)> t_restricted_allocation_manager__reserve_memory = { "t_restricted_allocation_manager__reserve_memory", [](t_restricted_allocation_manager__reserve_memory_offset_args)
+{
+	__int64 result = t_restricted_allocation_manager__reserve_memory(__this, szName, a3, a4, a5, a6, a7, a8);
+	write_line_verbose("t_restricted_allocation_manager> Allocating memory for '%s'", szName);
+	return result;
+} };

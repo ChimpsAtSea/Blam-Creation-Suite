@@ -192,3 +192,32 @@ uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build 
 	return ~uintptr_t();
 }
 FunctionHookEx<observer_try_and_get_camera_offset, s_observer_camera * __fastcall (signed int a1)> observer_try_and_get_camera;
+
+std::vector<uintptr_t> enable_debug_hud_coordinates_offsets(e_engine_type engine_type, e_build build)
+{
+	if (engine_type == _engine_type_halo_reach)
+	{
+		switch (build)
+		{
+		case _build_mcc_1_1305_0_0: return { 0x1800DCA8A, 0x1800DCA97 };
+		case _build_mcc_1_1367_0_0:
+		case _build_mcc_1_1377_0_0:
+		case _build_mcc_1_1384_0_0:
+		case _build_mcc_1_1387_0_0:
+		case _build_mcc_1_1389_0_0: return { 0x1800DDF7A, 0x1800DDF87 };
+		case _build_mcc_1_1520_0_0: return { 0x1800DE0DA, 0x1800DE0E7 };
+		}
+	}
+	return {};
+}
+// Enable debug hud coordinates
+c_multi_data_patch<enable_debug_hud_coordinates_offsets> enable_debug_hud_coordinates = {
+	[](e_engine_type engine_type, e_build build, char *data[], DataPatchPackets &packets)
+	{
+		packets.push_back(MAKE_DATAPATCHPACKET(data[0], 6));
+		nop_address(data[0], 6);
+
+		packets.push_back(MAKE_DATAPATCHPACKET(data[1], 6));
+		nop_address(data[1], 6);
+	}
+};
