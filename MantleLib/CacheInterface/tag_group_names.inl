@@ -1,5 +1,5 @@
 
-std::pair<int, const char*> tag_group_names[] =
+static std::pair<int, const char*> tag_group_names[] =
 {
 	{'rmc' , "shader_contrail"}										,
 	{'rmp' , "shader_particle"}										,
