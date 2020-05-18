@@ -959,7 +959,10 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 	size_t variant_size = variant_data_size;
 	variant_size = (variant_size < variant_buffer_size ? variant_size : variant_buffer_size);
 	memcpy(game_context_variant_buffer, variant_buffer, variant_size);
-	delete[] variant_data;
+	if (is_valid(variant_data))
+	{
+		delete[] variant_data;
+	}
 
 	return true;
 }

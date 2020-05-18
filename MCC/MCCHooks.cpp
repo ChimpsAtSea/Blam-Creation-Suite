@@ -14,9 +14,9 @@ uintptr_t Function29_offset(e_engine_type engine_type, e_build build)
 	}
 	return ~uintptr_t();
 }
-FunctionHookEx<Function29_offset, PlayerConfiguration* __fastcall (void* _this, __int64 value)> GetPlayerConfiguration = { "GetPlayerConfiguration", [](void* _this, __int64 value)
+FunctionHookEx<Function29_offset, c_player_configuration* __fastcall (void* _this, __int64 value)> player_configuration_get = { "player_configuration_get", [](void* _this, __int64 value)
 {
-	PlayerConfiguration* result = GetPlayerConfiguration(_this, value);
+	c_player_configuration* result = player_configuration_get(_this, value);
 
 
 

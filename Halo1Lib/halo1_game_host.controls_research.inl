@@ -259,13 +259,13 @@ uintptr_t g_player_configuration_offset(e_engine_type engine_type, e_build build
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x1820b9900);
 	return ~uintptr_t();
 }
-PlayerConfiguration& g_player_configuration = reference_symbol<PlayerConfiguration>("g_player_configuration", g_player_configuration_offset);
+c_player_configuration& g_player_configuration = reference_symbol<c_player_configuration>("g_player_configuration", g_player_configuration_offset);
 uintptr_t sub_180093240_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180093240);
 	return ~uintptr_t();
 }
-FunctionHookEx<sub_180093240_offset, void __fastcall (PlayerConfiguration* player_configuration)> sub_180093240 = { "sub_180093240", [](PlayerConfiguration* player_configuration) {
+FunctionHookEx<sub_180093240_offset, void __fastcall (c_player_configuration* player_configuration)> sub_180093240 = { "sub_180093240", [](c_player_configuration* player_configuration) {
 
 	sub_180093240(player_configuration);
 	printf("");

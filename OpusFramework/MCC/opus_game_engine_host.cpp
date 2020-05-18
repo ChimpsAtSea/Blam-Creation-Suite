@@ -313,13 +313,13 @@ void c_opus_game_engine_host::Function13(const wchar_t*, const wchar_t*, const v
 
 char c_opus_game_engine_host::InvertLookControls(int controller_index, bool inverted)
 {
-	static PlayerConfiguration* player_configuration = nullptr;
+	static c_player_configuration* player_configuration = nullptr;
 	if (PlayerConfigurationFromBuild(build, &player_configuration))
 	{
 		ConfigurePlayerConfiguration(*player_configuration);
 
-		player_configuration->LookControlsInverted = inverted;
-		player_configuration->MouseLookControlsInverted = inverted;
+		player_configuration->look_controls_inverted = inverted;
+		player_configuration->mouse_look_controls_inverted = inverted;
 	}
 
 	return 1;
@@ -327,11 +327,11 @@ char c_opus_game_engine_host::InvertLookControls(int controller_index, bool inve
 
 char c_opus_game_engine_host::GetGameSpecificBindings(int controller_index, char(*buffer)[256])
 {
-	static PlayerConfiguration* player_configuration = nullptr;
+	static c_player_configuration* player_configuration = nullptr;
 	if (PlayerConfigurationFromBuild(build, &player_configuration))
 	{
 		ConfigurePlayerConfiguration(*player_configuration);
-		memcpy(&player_configuration->GameSpecific, buffer, 256);
+		memcpy(&player_configuration->game_specific, buffer, 256);
 	}
 
 	return 1;
@@ -422,11 +422,11 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* upda
 	return !(update_graphics_data->VIDEO_FPS_Lock || update_graphics_data->VIDEO_Wait_VSync);
 }
 
-PlayerConfiguration* __fastcall c_opus_game_engine_host::GetPlayerConfiguration(__int64 value)
+c_player_configuration* __fastcall c_opus_game_engine_host::GetPlayerConfiguration(__int64 value)
 {
 	RUNONCE({ write_line_verbose(__FUNCTION__); });
 
-	static PlayerConfiguration *player_configuration = nullptr;
+	static c_player_configuration *player_configuration = nullptr;
 	if (PlayerConfigurationFromBuild(build, &player_configuration))
 	{
 		ConfigurePlayerConfiguration(*player_configuration);
@@ -437,7 +437,7 @@ PlayerConfiguration* __fastcall c_opus_game_engine_host::GetPlayerConfiguration(
 
 BYTE keyboardState[256] = {};
 
-__int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t player_names[4][16], PlayerConfiguration* player_configuration)
+__int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t player_names[4][16], c_player_configuration* player_configuration)
 {
 	// #TODO #LEGACY: The format for UpdatePlayerConfiguration changed sometime after 887
 	if (build <= _build_mcc_1_887_0_0 || !is_valid(player_configuration))

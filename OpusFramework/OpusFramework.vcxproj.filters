@@ -206,9 +206,6 @@
     <ClInclude Include="session_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MCC\PlayerConfiguration.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="is_valid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -234,6 +231,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RuntimeManipulation\data_patch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\player_configuration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

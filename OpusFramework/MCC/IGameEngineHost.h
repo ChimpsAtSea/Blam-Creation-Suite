@@ -227,8 +227,8 @@ public:
 	/* 26 */ virtual bool __fastcall Function26();
 	/* 27 */ virtual bool __fastcall Function27();
 	/* 28 */ virtual bool __fastcall UpdateGraphics(UpdateGraphicsData* update_graphics_data);
-	/* 29 */ virtual PlayerConfiguration* __fastcall GetPlayerConfiguration(__int64 value);
-	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t player_names[4][16], PlayerConfiguration* player_configuration);
+	/* 29 */ virtual c_player_configuration* __fastcall GetPlayerConfiguration(__int64 value);
+	/* 30 */ virtual __int64 __fastcall UpdatePlayerConfiguration(wchar_t player_names[4][16], c_player_configuration* player_configuration);
 	/* 31 */ virtual bool __fastcall __fastcall UpdateInput(_QWORD, InputBuffer* input_buffer);
 	/* 32 */ virtual void Function32(_QWORD, float*);
 	/* 33 */ virtual void Function33();
@@ -280,8 +280,8 @@ public:
 	uintptr_t __vtbl_known_address0 = known_address0;
 	uintptr_t __vtbl_known_address1 = known_address1;
 
-	bool PlayerConfigurationFromBuild(e_build build, PlayerConfiguration** player_configuration);
-	void ConfigurePlayerConfiguration(PlayerConfiguration& player_configuration);
+	bool PlayerConfigurationFromBuild(e_build build, c_player_configuration** player_configuration);
+	void ConfigurePlayerConfiguration(c_player_configuration& player_configuration);
 };
 //CHECK_STRUCTURE_SIZE(IGameEngineHost, 0xB748);
 #pragma pack(pop)

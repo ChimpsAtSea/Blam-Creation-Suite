@@ -81,8 +81,8 @@ void __fastcall IGameEngineHost::MembershipUpdate(s_session_membership* session_
 bool __fastcall IGameEngineHost::Function26() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function26(); }
 bool __fastcall IGameEngineHost::Function27() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function27(); }
 bool __fastcall IGameEngineHost::UpdateGraphics(UpdateGraphicsData* update_graphics_data) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateGraphics(update_graphics_data); }
-PlayerConfiguration* __fastcall IGameEngineHost::GetPlayerConfiguration(__int64 value) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetPlayerConfiguration(value); }
-__int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t player_names[4][16], PlayerConfiguration* player_configuration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerConfiguration(player_names, player_configuration); }
+c_player_configuration* __fastcall IGameEngineHost::GetPlayerConfiguration(__int64 value) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetPlayerConfiguration(value); }
+__int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t player_names[4][16], c_player_configuration* player_configuration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerConfiguration(player_names, player_configuration); }
 bool __fastcall __fastcall IGameEngineHost::UpdateInput(_QWORD a1, InputBuffer* input_buffer) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateInput(a1, input_buffer); }
 void IGameEngineHost::Function32(_QWORD a1, float* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function32(a1, a2); }
 void IGameEngineHost::Function33() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function33(); }
@@ -352,7 +352,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	}
 }
 
-bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, PlayerConfiguration **player_configuration)
+bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_configuration **player_configuration)
 {
 	ASSERT(build != e_build::_build_not_set);
 	ASSERT(player_configuration != nullptr);
@@ -361,33 +361,33 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, PlayerConfigur
 	{
 	case _build_mcc_1_824_0_0:
 	case _build_mcc_1_887_0_0:
-		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_1);
+		*player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_1);
 		break;
 	case _build_mcc_1_1035_0_0:
-		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_2);
+		*player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_2);
 		break;
 	case _build_mcc_1_1186_0_0:
 	case _build_mcc_1_1211_0_0:
 	case _build_mcc_1_1246_0_0:
 	case _build_mcc_1_1270_0_0:
 	case _build_mcc_1_1305_0_0:
-		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_3);
+		*player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_3);
 		break;
 	case _build_mcc_1_1350_0_0:
-		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_4);
+		*player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_4);
 		break;
 	case _build_mcc_1_1367_0_0:
 	case _build_mcc_1_1377_0_0:
 	case _build_mcc_1_1384_0_0:
 	case _build_mcc_1_1387_0_0:
 	case _build_mcc_1_1389_0_0:
-		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_5);
+		*player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_5);
 		break;
 	case _build_mcc_1_1477_0_0:
 	case _build_mcc_1_1499_0_0:
 	case _build_mcc_1_1520_0_0:
 	default:
-		*player_configuration = new PlayerConfiguration(e_player_configuration_version::_player_configuration_version_6);
+		*player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_6);
 		break;
 	}
 
@@ -399,241 +399,241 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, PlayerConfigur
 	return true;
 }
 
-void IGameEngineHost::ConfigurePlayerConfiguration(PlayerConfiguration& player_configuration)
+void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& player_configuration)
 {
-	player_configuration.SubtitleSetting = 1;
-	player_configuration.CrosshairLocation = 1;
-	player_configuration.FOVSetting = 90;
+	player_configuration.subtitle_setting = 1;
+	player_configuration.crosshair_location = 1;
+	player_configuration.fov_setting = 90;
 
-	player_configuration.LookControlsInverted = false;
-	player_configuration.VibrationDisabled = false;
-	player_configuration.ImpulseTriggersDisabled = false;
-	player_configuration.AircraftControlsInverted = false;
-	player_configuration.AutoCenterEnabled = false;
-	player_configuration.CrouchLockEnabled = false;
-	player_configuration.ClenchProtectionEnabled = false;
-	player_configuration.UseFemaleVoice = true;
-	player_configuration.HoldToZoom = true;
-	//player_configuration.PlayerModelPrimaryColorIndex     = ;
-	//player_configuration.PlayerModelSecondaryColorIndex   = ;
-	//player_configuration.PlayerModelTertiaryColorIndex    = ;
-	player_configuration.UseEliteModel = false;
-	//player_configuration.PlayerModelPermutation           = ;
+	player_configuration.look_controls_inverted = false;
+	player_configuration.vibration_disabled = false;
+	player_configuration.impulse_triggers_disabled = false;
+	player_configuration.arcraft_controls_inverted = false;
+	player_configuration.auto_center_enabled = false;
+	player_configuration.crouch_lock_enabled = false;
+	player_configuration.clench_protection_enabled = false;
+	player_configuration.use_female_voice = true;
+	player_configuration.hold_to_zoom = true;
+	//player_configuration.player_model_primary_color_index = ;
+	//player_configuration.player_model_secondary_color_index = ;
+	//player_configuration.player_model_tertiary_color_index = ;
+	player_configuration.use_elite_model = false;
+	//player_configuration.player_model_permutation = ;
 
 	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_2)
 	{
-		player_configuration.VehicleFOVSetting = 100;
-		player_configuration.MouseLookControlsInverted = false;
-		player_configuration.MouseAircraftControlsInverted = false;
-		player_configuration.MKCrouchLockEnabled = false;
+		player_configuration.vehicle_fov_setting = 100;
+		player_configuration.mouse_look_controls_inverted = false;
+		player_configuration.mouse_arcraft_controls_inverted = false;
+		player_configuration.mk_crouch_lock_enabled = false;
 
 		if (engine_type == _engine_type_halo_reach)
 		{
-			player_configuration.HelmetIndex = eHaloArmor::HR_Helmet_EOD_Base;
-			player_configuration.LeftShoulderIndex = eHaloArmor::HR_LeftShoulder_Gungnir;
-			player_configuration.RightShoulderIndex = eHaloArmor::HR_RightShoulder_EVA;
-			player_configuration.ChestIndex = eHaloArmor::HR_Chest_UABaseSecurityW;
-			player_configuration.WristIndex = eHaloArmor::HR_Wrist_Default;
-			player_configuration.UtilityIndex = eHaloArmor::HR_Utility_Default;
-			player_configuration.KneeGuardsIndex = eHaloArmor::HR_KneeGuards_FJPARA;
-			player_configuration.VisorColorIndex = eHaloArmor::HR_VisorColor_Blue;
-			player_configuration.SpartanArmorEffectIndex = eHaloArmor::HR_ArmorEffect_BlueFlames;
-			player_configuration.SpartanBodyIndex = eHaloArmor::HR_Spartan_Female;
-			player_configuration.EliteArmorIndex = eHaloArmor::HR_Elite_FieldMarshall;
-			player_configuration.EliteArmorEffectIndex = eHaloArmor::HR_ArmorEffect_Pestilence;
-			player_configuration.VoiceIndex = eHaloArmor::HR_FirefightVoice_JohnS117;
-			player_configuration.PlayerModelPrimaryColor = eHaloArmor::HR_Color_Brick;
-			player_configuration.PlayerModelSecondaryColor = eHaloArmor::HR_Color_Cyan;
-			player_configuration.PlayerModelTertiaryColor = eHaloArmor::HR_Color_Cyan;
+			player_configuration.helmet_index = eHaloArmor::HR_Helmet_EOD_Base;
+			player_configuration.left_shoulder_index = eHaloArmor::HR_LeftShoulder_Gungnir;
+			player_configuration.right_shoulder_index = eHaloArmor::HR_RightShoulder_EVA;
+			player_configuration.chest_index = eHaloArmor::HR_Chest_UABaseSecurityW;
+			player_configuration.wrist_index = eHaloArmor::HR_Wrist_Default;
+			player_configuration.utility_index = eHaloArmor::HR_Utility_Default;
+			player_configuration.knee_guards_index = eHaloArmor::HR_KneeGuards_FJPARA;
+			player_configuration.visor_color_index = eHaloArmor::HR_VisorColor_Blue;
+			player_configuration.spartan_armor_effect_index = eHaloArmor::HR_ArmorEffect_BlueFlames;
+			player_configuration.spartan_body_index = eHaloArmor::HR_Spartan_Female;
+			player_configuration.elite_armor_index = eHaloArmor::HR_Elite_FieldMarshall;
+			player_configuration.elite_armor_effect_index = eHaloArmor::HR_ArmorEffect_Pestilence;
+			player_configuration.voice_index = eHaloArmor::HR_FirefightVoice_JohnS117;
+			player_configuration.player_model_primary_color = eHaloArmor::HR_Color_Brick;
+			player_configuration.player_model_secondary_color = eHaloArmor::HR_Color_Cyan;
+			player_configuration.player_model_tertiary_color = eHaloArmor::HR_Color_Cyan;
 		}
 		else if (engine_type == _engine_type_halo1)
 		{
-			player_configuration.HelmetIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.LeftShoulderIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.RightShoulderIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.ChestIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.WristIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.UtilityIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.KneeGuardsIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.VisorColorIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.SpartanArmorEffectIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.SpartanBodyIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.EliteArmorIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.EliteArmorEffectIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.VoiceIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.PlayerModelPrimaryColor = eHaloArmor::H1_Color_1;
-			player_configuration.PlayerModelSecondaryColor = eHaloArmor::H1_Color_1;
-			player_configuration.PlayerModelTertiaryColor = eHaloArmor::H1_Color_1;
+			player_configuration.helmet_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.left_shoulder_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.right_shoulder_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.chest_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.wrist_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.utility_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.knee_guards_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.visor_color_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.spartan_armor_effect_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.spartan_body_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.elite_armor_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.elite_armor_effect_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.voice_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.player_model_primary_color = eHaloArmor::H1_Color_1;
+			player_configuration.player_model_secondary_color = eHaloArmor::H1_Color_1;
+			player_configuration.player_model_tertiary_color = eHaloArmor::H1_Color_1;
 		}
 		else if (engine_type == _engine_type_groundhog)
 		{
-			player_configuration.HelmetIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.LeftShoulderIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.RightShoulderIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.ChestIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.WristIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.UtilityIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.KneeGuardsIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.VisorColorIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.SpartanArmorEffectIndex = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.SpartanBodyIndex = eHaloArmor::HR_Spartan_Female;
-			player_configuration.EliteArmorIndex = eHaloArmor::H2A_ARMOR_ELITE1;
-			player_configuration.EliteArmorEffectIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.VoiceIndex = eHaloArmor::kHaloArmorNone;
-			player_configuration.PlayerModelPrimaryColor = eHaloArmor::H2A_Color_1;
-			player_configuration.PlayerModelSecondaryColor = eHaloArmor::H2A_Color_1;
-			player_configuration.PlayerModelTertiaryColor = eHaloArmor::H2A_Color_1;
+			player_configuration.helmet_index = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.left_shoulder_index = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.right_shoulder_index = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.chest_index = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.wrist_index = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.utility_index = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.knee_guards_index = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.visor_color_index = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.spartan_armor_effect_index = eHaloArmor::H2A_ARMOR0_MARKVI;
+			player_configuration.spartan_body_index = eHaloArmor::HR_Spartan_Female;
+			player_configuration.elite_armor_index = eHaloArmor::H2A_ARMOR_ELITE1;
+			player_configuration.elite_armor_effect_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.voice_index = eHaloArmor::kHaloArmorNone;
+			player_configuration.player_model_primary_color = eHaloArmor::H2A_Color_1;
+			player_configuration.player_model_secondary_color = eHaloArmor::H2A_Color_1;
+			player_configuration.player_model_tertiary_color = eHaloArmor::H2A_Color_1;
 		}
 	}
 
 
-	c_settings_legacy::read_wstring(_settings_section_legacy_player, "ServiceTag", player_configuration.ServiceTag, 4, L"117");
-	player_configuration.OnlineMedalFlasher = false;
-	//player_configuration.VerticalLookSensitivity          = ;
-	//player_configuration.HorizontalLookSensitivity        = ;
-	//player_configuration.LookAcceleration                 = ;
-	//player_configuration.LookAxialDeadZone                = ;
-	//player_configuration.LookRadialDeadZone               = ;
-	//player_configuration.ZoomLookSensitivityMultiplier    = ;
-	//player_configuration.VehicleLookSensitivityMultiplier = ;
-	//player_configuration.ButtonPreset                     = ;
-	//player_configuration.StickPreset                      = ;
-	//player_configuration.LeftyToggle                      = ;
-	//player_configuration.FlyingCameraTurnSensitivity      = ;
-	//player_configuration.FlyingCameraPanning              = ;
-	//player_configuration.FlyingCameraSpeed                = ;
-	//player_configuration.FlyingCameraThrust               = ;
-	//player_configuration.TheaterTurnSensitivity           = ;
-	//player_configuration.TheaterPanning                   = ;
-	//player_configuration.TheaterSpeed                     = ;
-	//player_configuration.TheaterThrust                    = ;
-	//player_configuration.SwapTriggersAndBumpers           = ;
-	//player_configuration.UseModernAimControl              = ;
-	player_configuration.UseDoublePressJumpToJetpack = true;
-	//player_configuration.EnemyPlayerNameColor             = ;
-	//player_configuration.GameEngineTimer                  = ;
+	c_settings_legacy::read_wstring(_settings_section_legacy_player, "service_tag", player_configuration.service_tag, 4, L"117");
+	player_configuration.online_medal_flasher = false;
+	//player_configuration.vertical_look_sensitivity = ;
+	//player_configuration.horizontal_look_sensitivity = ;
+	//player_configuration.look_acceleration = ;
+	//player_configuration.look_axial_dead_zone = ;
+	//player_configuration.look_radial_dead_zone = ;
+	//player_configuration.zoom_look_sensitivity_multiplier = ;
+	//player_configuration.vehicle_look_sensitivity_multiplier = ;
+	//player_configuration.button_preset = ;
+	//player_configuration.stick_preset = ;
+	//player_configuration.lefty_toggle = ;
+	//player_configuration.flying_camera_turn_sensitivity = ;
+	//player_configuration.flying_camera_panning = ;
+	//player_configuration.flying_camera_speed = ;
+	//player_configuration.flying_camera_thrust = ;
+	//player_configuration.theater_turn_sensitivity = ;
+	//player_configuration.theater_panning = ;
+	//player_configuration.theater_speed = ;
+	//player_configuration.theater_thrust = ;
+	//player_configuration.swap_triggers_and_bumpers = ;
+	//player_configuration.use_modern_aim_control = ;
+	player_configuration.use_double_press_jump_to_jetpack = true;
+	//player_configuration.enemy_player_name_color = ;
+	//player_configuration.game_engine_timer = ;
 	//player_configuration.Loadouts[5];
-	//player_configuration.GameSpecific[256];
-	//player_configuration.MouseSensitivity                 = ;
-	//player_configuration.MouseSmoothing                   = ;
-	//player_configuration.MouseAcceleration                = ;
-	//player_configuration.MouseAccelerationMinRate         = ;
-	//player_configuration.MouseAccelerationMaxAccel        = ;
-	//player_configuration.MouseAccelerationScale           = ;
-	//player_configuration.MouseAccelerationExp             = ;
-	//player_configuration.KeyboardMouseButtonPreset        = ;
+	//player_configuration.game_specific[256];
+	//player_configuration.mouse_sensitivity = ;
+	//player_configuration.mouse_smoothing = ;
+	//player_configuration.mouse_acceleration = ;
+	//player_configuration.mouse_acceleration_min_rate = ;
+	//player_configuration.mouse_acceleration_max_accel = ;
+	//player_configuration.mouse_acceleration_scale = ;
+	//player_configuration.mouse_acceleration_exp = ;
+	//player_configuration.keyboard_mouse_button_preset = ;
 
-	long game_action_count = GameAction::Count;
+	long game_action_count = e_game_action::k_number_of_game_actions;
 
 	switch (player_configuration.player_configuration_version)
 	{
 	case _player_configuration_version_1:
 	case _player_configuration_version_2:
-		game_action_count = GameActionV1_Count;
+		game_action_count = k_number_of_game_actions_v1;
 		break;
 	case _player_configuration_version_3:
-		game_action_count = GameActionV2_Count;
+		game_action_count = k_number_of_game_actions_v2;
 		break;
 	case _player_configuration_version_4:
-		game_action_count = GameActionV3_Count;
+		game_action_count = k_number_of_game_actions_v3;
 		break;
 	case _player_configuration_version_5:
-		game_action_count = GameActionV4_Count;
+		game_action_count = k_number_of_game_actions_v4;
 		break;
 	case _player_configuration_version_6:
-		game_action_count = GameActionV5_Count;
+		game_action_count = k_number_of_game_actions_v5;
 		break;
 	}
 
 	for (long mapping_index = 0; mapping_index < game_action_count; mapping_index++)
 	{
-		player_configuration.GameKeyboardMouseMappings[mapping_index].AbstractButton = mapping_index;
+		player_configuration.game_keyboard_mouse_mappings[mapping_index].abstract_button = mapping_index;
 	}
 
-	player_configuration.GameKeyboardMouseMappings[GameAction::Jump].VirtualKeyCodes[0] = VK_SPACE;
-	player_configuration.GameKeyboardMouseMappings[GameAction::SwitchGrenade].VirtualKeyCodes[0] = 'G';
-	player_configuration.GameKeyboardMouseMappings[GameAction::ContextPrimary].VirtualKeyCodes[0] = 'E';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Reload].VirtualKeyCodes[0] = 'R';
-	player_configuration.GameKeyboardMouseMappings[GameAction::SwitchWeapon].VirtualKeyCodes[0] = 'C';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Melee].VirtualKeyCodes[0] = 'V';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Flashlight].VirtualKeyCodes[0] = '4';
-	player_configuration.GameKeyboardMouseMappings[GameAction::ThrowGrenade].VirtualKeyCodes[0] = 'F';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Fire].VirtualKeyCodes[0] = VK_LBUTTON;
-	player_configuration.GameKeyboardMouseMappings[GameAction::Crouch].VirtualKeyCodes[0] = VK_LCONTROL;
-	player_configuration.GameKeyboardMouseMappings[GameAction::Zoom].VirtualKeyCodes[0] = VK_RBUTTON;
-	player_configuration.GameKeyboardMouseMappings[GameAction::ZoomIn].VirtualKeyCodes[0] = 'Z';
-	player_configuration.GameKeyboardMouseMappings[GameAction::ZoomOut].VirtualKeyCodes[0] = 'X';
-	player_configuration.GameKeyboardMouseMappings[GameAction::ExchangeWeapon].VirtualKeyCodes[0] = 'E';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Trick].VirtualKeyCodes[0] = VK_SPACE;
-	player_configuration.GameKeyboardMouseMappings[GameAction::Brake].VirtualKeyCodes[0] = VK_LSHIFT;
-	player_configuration.GameKeyboardMouseMappings[GameAction::Ebrake].VirtualKeyCodes[0] = VK_SPACE;
-	player_configuration.GameKeyboardMouseMappings[GameAction::Sprint].VirtualKeyCodes[0] = VK_LSHIFT;
-	player_configuration.GameKeyboardMouseMappings[GameAction::BansheeBomb].VirtualKeyCodes[0] = 'F';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Forward].VirtualKeyCodes[0] = 'W';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Backward].VirtualKeyCodes[0] = 'S';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Left].VirtualKeyCodes[0] = 'A';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Right].VirtualKeyCodes[0] = 'D';
-	player_configuration.GameKeyboardMouseMappings[GameAction::LeanLeft].VirtualKeyCodes[0] = '8';
-	player_configuration.GameKeyboardMouseMappings[GameAction::LeanRight].VirtualKeyCodes[0] = '9';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Start].VirtualKeyCodes[0] = '7';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Back].VirtualKeyCodes[0] = VK_TAB;
-	player_configuration.GameKeyboardMouseMappings[GameAction::ShowScores].VirtualKeyCodes[0] = VK_TAB;
-	player_configuration.GameKeyboardMouseMappings[GameAction::Accept].VirtualKeyCodes[0] = '5';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Cancel].VirtualKeyCodes[0] = '6';
-	player_configuration.GameKeyboardMouseMappings[GameAction::PrimaryVehicleTrick].VirtualKeyCodes[0] = VK_LCONTROL;
-	player_configuration.GameKeyboardMouseMappings[GameAction::SecondaryVehicleTrick].VirtualKeyCodes[0] = VK_SPACE;
-	player_configuration.GameKeyboardMouseMappings[GameAction::MagnifyZoom].VirtualKeyCodes[0] = 'Z';
-	player_configuration.GameKeyboardMouseMappings[GameAction::Equipment].VirtualKeyCodes[0] = VK_LSHIFT;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_jump].virtual_key_codes[0] = VK_SPACE;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_switch_grenade].virtual_key_codes[0] = 'G';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_context_primary].virtual_key_codes[0] = 'E';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_reload].virtual_key_codes[0] = 'R';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_switch_weapon].virtual_key_codes[0] = 'C';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_melee].virtual_key_codes[0] = 'V';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_flashlight].virtual_key_codes[0] = '4';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_throw_grenade].virtual_key_codes[0] = 'F';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_fire].virtual_key_codes[0] = VK_LBUTTON;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_crouch].virtual_key_codes[0] = VK_LCONTROL;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_zoom].virtual_key_codes[0] = VK_RBUTTON;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_zoom_in].virtual_key_codes[0] = 'Z';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_zoom_out].virtual_key_codes[0] = 'X';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_exchange_weapon].virtual_key_codes[0] = 'E';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_trick].virtual_key_codes[0] = VK_SPACE;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_brake].virtual_key_codes[0] = VK_LSHIFT;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_ebrake].virtual_key_codes[0] = VK_SPACE;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_sprint].virtual_key_codes[0] = VK_LSHIFT;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_banshee_bomb].virtual_key_codes[0] = 'F';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_forward].virtual_key_codes[0] = 'W';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_backward].virtual_key_codes[0] = 'S';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_left].virtual_key_codes[0] = 'A';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_right].virtual_key_codes[0] = 'D';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_lean_left].virtual_key_codes[0] = '8';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_lean_right].virtual_key_codes[0] = '9';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_start].virtual_key_codes[0] = '7';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_back].virtual_key_codes[0] = VK_TAB;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_show_scores].virtual_key_codes[0] = VK_TAB;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_accept].virtual_key_codes[0] = '5';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_cancel].virtual_key_codes[0] = '6';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_primary_vehicle_trick].virtual_key_codes[0] = VK_LCONTROL;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_secondary_vehicle_trick].virtual_key_codes[0] = VK_SPACE;
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_magnify_zoom].virtual_key_codes[0] = 'Z';
+	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_equipment].virtual_key_codes[0] = VK_LSHIFT;
 	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_3)
 	{
-		player_configuration.GameKeyboardMouseMappings[GameAction::FireSecondary].VirtualKeyCodes[0] = VK_LSHIFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_fire_secondary].virtual_key_codes[0] = VK_LSHIFT;
 	}
 	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_4)
 	{
-		player_configuration.GameKeyboardMouseMappings[GameAction::LiftEditor].VirtualKeyCodes[0] = 'R';
-		player_configuration.GameKeyboardMouseMappings[GameAction::DropEditor].VirtualKeyCodes[0] = 'F';
-		player_configuration.GameKeyboardMouseMappings[GameAction::GrabObjectEditor].VirtualKeyCodes[0] = VK_LBUTTON;
-		player_configuration.GameKeyboardMouseMappings[GameAction::BoostEditor].VirtualKeyCodes[0] = VK_LSHIFT;
-		player_configuration.GameKeyboardMouseMappings[GameAction::CrouchEditor].VirtualKeyCodes[0] = VK_LCONTROL;
-		player_configuration.GameKeyboardMouseMappings[GameAction::DeleteObjectEditor].VirtualKeyCodes[0] = VK_DELETE;
-		player_configuration.GameKeyboardMouseMappings[GameAction::CreateObjectEditor].VirtualKeyCodes[0] = VK_SPACE;
-		player_configuration.GameKeyboardMouseMappings[GameAction::OpenToolMenuEditor].VirtualKeyCodes[0] = 'X';
-		player_configuration.GameKeyboardMouseMappings[GameAction::SwitchPlayerModeEditor].VirtualKeyCodes[0] = VK_UP;
-		player_configuration.GameKeyboardMouseMappings[GameAction::ScopeZoomEditor].VirtualKeyCodes[0] = VK_RBUTTON;
-		player_configuration.GameKeyboardMouseMappings[GameAction::PlayerLockForManipulationEditor].VirtualKeyCodes[0] = VK_LMENU;
-		player_configuration.GameKeyboardMouseMappings[GameAction::ShowHidePannelTheater].VirtualKeyCodes[0] = 'X';
-		player_configuration.GameKeyboardMouseMappings[GameAction::ShowHideInterfaceTheater].VirtualKeyCodes[0] = 'Z';
-		player_configuration.GameKeyboardMouseMappings[GameAction::ToggleFirstThirdPersonViewTheater].VirtualKeyCodes[0] = 'C';
-		player_configuration.GameKeyboardMouseMappings[GameAction::CameraFocusTheater].VirtualKeyCodes[0] = VK_RBUTTON;
-		player_configuration.GameKeyboardMouseMappings[GameAction::FastForwardTheater].VirtualKeyCodes[0] = VK_RIGHT;
-		player_configuration.GameKeyboardMouseMappings[GameAction::FastRewindTheater].VirtualKeyCodes[0] = VK_LEFT;
-		player_configuration.GameKeyboardMouseMappings[GameAction::StopContinuePlaybackTheater].VirtualKeyCodes[0] = VK_RETURN;
-		player_configuration.GameKeyboardMouseMappings[GameAction::PlaybackSpeedUpTheater].VirtualKeyCodes[0] = VK_LMENU;
-		player_configuration.GameKeyboardMouseMappings[GameAction::EnterFreeCameraModeTheater].VirtualKeyCodes[0] = VK_SPACE;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_lift_editor].virtual_key_codes[0] = 'R';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_drop_editor].virtual_key_codes[0] = 'F';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_grab_object_editor].virtual_key_codes[0] = VK_LBUTTON;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_boost_editor].virtual_key_codes[0] = VK_LSHIFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_crouch_editor].virtual_key_codes[0] = VK_LCONTROL;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_delete_object_editor].virtual_key_codes[0] = VK_DELETE;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_create_object_editor].virtual_key_codes[0] = VK_SPACE;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_open_tool_menu_editor].virtual_key_codes[0] = 'X';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_switch_player_mode_editor].virtual_key_codes[0] = VK_UP;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_scope_zoom_editor].virtual_key_codes[0] = VK_RBUTTON;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_player_lock_for_manipulation_editor].virtual_key_codes[0] = VK_LMENU;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_show_hide_pannel_theater].virtual_key_codes[0] = 'X';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_show_hide_interface_theater].virtual_key_codes[0] = 'Z';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_toggle_first_third_person_view_theater].virtual_key_codes[0] = 'C';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_camera_focus_theater].virtual_key_codes[0] = VK_RBUTTON;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_fast_forward_theater].virtual_key_codes[0] = VK_RIGHT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_fast_rewind_theater].virtual_key_codes[0] = VK_LEFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_stop_continue_playback_theater].virtual_key_codes[0] = VK_RETURN;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_playback_speed_up_theater].virtual_key_codes[0] = VK_LMENU;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_enter_free_camera_mode_theater].virtual_key_codes[0] = VK_SPACE;
 	}
 	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_5)
 	{
-		player_configuration.GameKeyboardMouseMappings[GameAction::MovementSpeedUpTheater].VirtualKeyCodes[0] = VK_LSHIFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_movement_speed_up_theater].virtual_key_codes[0] = VK_LSHIFT;
 	}
 	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_6)
 	{
-		player_configuration.GameKeyboardMouseMappings[GameAction::PanningCameraTheater].VirtualKeyCodes[0] = VK_OEM_RESET;
-		player_configuration.GameKeyboardMouseMappings[GameAction::CameraMoveUpTheater].VirtualKeyCodes[0] = 'Q';
-		player_configuration.GameKeyboardMouseMappings[GameAction::CameraMoveDownTheater].VirtualKeyCodes[0] = 'E';
-		player_configuration.GameKeyboardMouseMappings[GameAction::DualWield].VirtualKeyCodes[0] = 'Q';
-		player_configuration.GameKeyboardMouseMappings[GameAction::ZoomCameraTheater].VirtualKeyCodes[0] = VK_OEM_RESET;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_panning_camera_theater].virtual_key_codes[0] = VK_OEM_RESET;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_camera_move_up_theater].virtual_key_codes[0] = 'Q';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_camera_move_down_theater].virtual_key_codes[0] = 'E';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_dual_wield].virtual_key_codes[0] = 'Q';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_zoom_camera_theater].virtual_key_codes[0] = VK_OEM_RESET;
 	}
 
-	player_configuration.MasterVolume = 0.6f;
-	player_configuration.MusicVolume = 0.2f;
-	player_configuration.SfxVolume = 0.8f;
-	//player_configuration.Brightness                         = ;
+	player_configuration.master_volume = 0.6f;
+	player_configuration.music_volume = 0.2f;
+	player_configuration.sfx_volume = 0.8f;
+	//player_configuration.brightness = ;
 
 	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_4)
 	{
 		for (int i = 0; i < 5; i++)
 		{
-			player_configuration.WeaponDisplayOffsets[i] = { 5.f, 5.f };
+			player_configuration.weapon_display_offsets[i] = { 5.f, 5.f };
 		}
 	}
 }
