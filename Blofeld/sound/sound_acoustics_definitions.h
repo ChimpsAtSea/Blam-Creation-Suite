@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_block_definition scenario_acoustics_palette_block_definition_block;
 	extern s_tag_struct_definition acoustic_sector_point_block_block_struct;
 	extern s_tag_block_definition acoustic_sector_point_block_block;
@@ -11,7 +10,6 @@ namespace blofeld
 	extern s_tag_block_definition scenario_acoustic_sector_block_block;
 	extern s_tag_struct_definition scenario_acoustic_transition_block_block_struct;
 	extern s_tag_block_definition scenario_acoustic_transition_block_block;
-
 
 	extern s_tag_struct_definition scenario_acoustics_palette_block_definition_struct_struct_definition;
 	extern s_tag_struct_definition scenario_acoustics_environment_definition_struct_definition;

@@ -13,7 +13,5 @@ namespace blofeld
 	extern s_tag_block_definition sound_combiner_definition_entry_block_block;
 
 
-
-
 } // namespace blofeld
 

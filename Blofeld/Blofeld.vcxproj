@@ -44,6 +44,7 @@
     <ClCompile Include="animations\composites\composite_definitions.cpp" />
     <ClCompile Include="animations\pca\pca_animation_definitions.cpp" />
     <ClCompile Include="bink\bink_definitions.cpp" />
+    <ClCompile Include="bitmaps\bitmap_group.cpp" />
     <ClCompile Include="bitmaps\bitmap_group_old_tag_definition.cpp" />
     <ClCompile Include="bitmaps\bitmap_group_tag_definition.cpp" />
     <ClCompile Include="bitmaps\bitmap_group_xenon_interop.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="items\projectile_definitions.cpp" />
     <ClCompile Include="items\weapon_definitions.cpp" />
     <ClCompile Include="lightmapper\lightmapper_globals.cpp" />
+    <ClCompile Include="manual_tag_references.cpp" />
     <ClCompile Include="materials\material.cpp" />
     <ClCompile Include="materials\material_shader.cpp" />
     <ClCompile Include="materials\material_shader_bank.cpp" />
@@ -299,6 +301,7 @@
     <ClCompile Include="tag_files\tag_dependency_definitions.cpp" />
     <ClCompile Include="tag_files\tag_group_definitions.cpp" />
     <ClCompile Include="tag_groups.cpp" />
+    <ClCompile Include="__unknown\tag_references.cpp" />
     <ClCompile Include="text\font_list.cpp" />
     <ClCompile Include="text\text_group.cpp" />
     <ClCompile Include="units\biped_definitions.cpp" />
@@ -340,6 +343,7 @@
     <ClInclude Include="animations\composites\composite_definitions.h" />
     <ClInclude Include="animations\pca\pca_animation_definitions.h" />
     <ClInclude Include="bink\bink_definitions.h" />
+    <ClInclude Include="bitmaps\bitmap_group.h" />
     <ClInclude Include="bitmaps\bitmap_group_old_tag_definition.h" />
     <ClInclude Include="bitmaps\bitmap_group_tag_definition.h" />
     <ClInclude Include="bitmaps\bitmap_group_xenon_interop.h" />
@@ -350,6 +354,7 @@
     <ClInclude Include="blofeld-private-pch.h" />
     <ClInclude Include="blofeld-public-pch.h" />
     <ClInclude Include="blofeld.h" />
+    <ClInclude Include="blofeld_field_type_override.h" />
     <ClInclude Include="cache\cache_file_builder_tag_resource_manager.h" />
     <ClInclude Include="cache\cache_file_tag_package_definitions.h" />
     <ClInclude Include="camera\camera_globals.h" />
@@ -478,6 +483,7 @@
     <ClInclude Include="items\projectile_definitions.h" />
     <ClInclude Include="items\weapon_definitions.h" />
     <ClInclude Include="lightmapper\lightmapper_globals.h" />
+    <ClInclude Include="manual_tag_references.h" />
     <ClInclude Include="materials\material.h" />
     <ClInclude Include="materials\material_shader.h" />
     <ClInclude Include="materials\material_shader_bank.h" />
@@ -594,6 +600,7 @@
     <ClInclude Include="tag_files\tag_dependency_definitions.h" />
     <ClInclude Include="tag_files\tag_group_definitions.h" />
     <ClInclude Include="tag_groups.h" />
+    <ClInclude Include="__unknown\tag_references.h" />
     <ClInclude Include="text\font_list.h" />
     <ClInclude Include="text\text_group.h" />
     <ClInclude Include="units\biped_definitions.h" />

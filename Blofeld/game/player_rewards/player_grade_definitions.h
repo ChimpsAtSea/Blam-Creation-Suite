@@ -11,9 +11,7 @@ namespace blofeld
 	extern s_tag_block_definition player_grade_definition_block_block;
 	extern s_tag_block_definition player_grade_globals_definition_block_block;
 
-
 	extern s_tag_struct_definition player_grade_globals_definition_struct_definition_struct_definition; // tag group
-
 
 } // namespace blofeld
 

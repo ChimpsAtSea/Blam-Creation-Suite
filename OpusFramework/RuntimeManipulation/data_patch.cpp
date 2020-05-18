@@ -192,7 +192,7 @@ c_data_patch_base* c_data_patch_base::init_node(e_engine_type engine_type, e_bui
 
 	if (public_symbol == nullptr)
 	{
-		public_symbol = c_runtime_symbols::get_public_symbol_by_virtual_address(this);
+		public_symbol = c_runtime_symbols::runtime().get_public_symbol_by_virtual_address(this);
 	}
 
 	if (search_function)

@@ -25,7 +25,6 @@ namespace blofeld
 	extern s_tag_block_definition ProjectileSoundRTPCBlock_block;
 	extern s_tag_block_definition projectile_block_block;
 
-
 	extern s_tag_struct_definition KillCamCameraParamter_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition projectile_group_struct_definition; // tag group
 	extern s_tag_struct_definition super_detonation_damage_struct_struct_definition;
@@ -43,6 +42,8 @@ namespace blofeld
 	extern s_string_list_definition secondary_projectile_flags;
 	extern const char* projectile_detonation_timer_modes_strings[];
 	extern s_string_list_definition projectile_detonation_timer_modes;
+
+	extern s_tag_reference_definition behavior_object_reference;
 
 } // namespace blofeld
 

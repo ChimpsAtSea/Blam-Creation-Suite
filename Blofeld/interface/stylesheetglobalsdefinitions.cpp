@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -7,186 +8,194 @@ namespace blofeld
 
 	TAG_BLOCK(UserInterfaceStyleSheetFontIdBlock, 1)
 	{
-		FIELD( _field_long_enum, "font id", &global_font_id_enum_definition ),
-		FIELD( _field_terminator )
+		{ _field_long_enum, "font id", &global_font_id_enum_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetTextCaseBlock, 1)
 	{
-		FIELD( _field_long_enum, "text case", &text_case_enum ),
-		FIELD( _field_terminator )
+		{ _field_long_enum, "text case", &text_case_enum },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetJustificationBlock, 1)
 	{
-		FIELD( _field_long_enum, "justification", &justification_enum ),
-		FIELD( _field_terminator )
+		{ _field_long_enum, "justification", &justification_enum },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetAlignmentBlock, 1)
 	{
-		FIELD( _field_long_enum, "alignment", &alignment_enum ),
-		FIELD( _field_terminator )
+		{ _field_long_enum, "alignment", &alignment_enum },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetScaleBlock, 1)
 	{
-		FIELD( _field_real, "value" ),
-		FIELD( _field_terminator )
+		{ _field_real, "value" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetFixedHeightBlock, 1)
 	{
-		FIELD( _field_real, "height" ),
-		FIELD( _field_terminator )
+		{ _field_real, "height" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetsFontBlock, k_maximumNumberOfStyleSheets)
 	{
-		FIELD( _field_string_id, "style sheet name^" ),
-		FIELD( _field_block, "font id", &UserInterfaceStyleSheetFontIdBlock_block ),
-		FIELD( _field_block, "text case", &UserInterfaceStyleSheetTextCaseBlock_block ),
-		FIELD( _field_block, "justification", &UserInterfaceStyleSheetJustificationBlock_block ),
-		FIELD( _field_block, "alignment", &UserInterfaceStyleSheetAlignmentBlock_block ),
-		FIELD( _field_block, "scale", &UserInterfaceStyleSheetScaleBlock_block ),
-		FIELD( _field_block, "fixed height", &UserInterfaceStyleSheetFixedHeightBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "style sheet name^" },
+		{ _field_block, "font id", &UserInterfaceStyleSheetFontIdBlock_block },
+		{ _field_block, "text case", &UserInterfaceStyleSheetTextCaseBlock_block },
+		{ _field_block, "justification", &UserInterfaceStyleSheetJustificationBlock_block },
+		{ _field_block, "alignment", &UserInterfaceStyleSheetAlignmentBlock_block },
+		{ _field_block, "scale", &UserInterfaceStyleSheetScaleBlock_block },
+		{ _field_block, "fixed height", &UserInterfaceStyleSheetFixedHeightBlock_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetDropShadowStyleBlock, 1)
 	{
-		FIELD( _field_long_enum, "drop shadow style", &drop_shadow_style_enum ),
-		FIELD( _field_terminator )
+		{ _field_long_enum, "drop shadow style", &drop_shadow_style_enum },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetColorBlock, 1)
 	{
-		FIELD( _field_real_argb_color, "color" ),
-		FIELD( _field_terminator )
+		{ _field_real_argb_color, "color" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetsVisualBlock, k_maximumNumberOfStyleSheets)
 	{
-		FIELD( _field_string_id, "style sheet name^" ),
-		FIELD( _field_block, "drop shadow style", &UserInterfaceStyleSheetDropShadowStyleBlock_block ),
-		FIELD( _field_block, "text color", &UserInterfaceStyleSheetColorBlock_block ),
-		FIELD( _field_block, "drop shadow color", &UserInterfaceStyleSheetColorBlock_block ),
-		FIELD( _field_string_id, "gradient name" ),
-		FIELD( _field_string_id, "dropshadow name" ),
-		FIELD( _field_string_id, "outer glow name" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "style sheet name^" },
+		{ _field_block, "drop shadow style", &UserInterfaceStyleSheetDropShadowStyleBlock_block },
+		{ _field_block, "text color", &UserInterfaceStyleSheetColorBlock_block },
+		{ _field_block, "drop shadow color", &UserInterfaceStyleSheetColorBlock_block },
+		{ _field_string_id, "gradient name" },
+		{ _field_string_id, "dropshadow name" },
+		{ _field_string_id, "outer glow name" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetLanguagesBlock, k_language_count)
 	{
-		FIELD( _field_long_enum, "language^", &style_sheet_language_enum_definition ),
-		FIELD( _field_block, "font style sheets", &UserInterfaceStyleSheetsFontBlock_block ),
-		FIELD( _field_block, "visual style sheets", &UserInterfaceStyleSheetsVisualBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_long_enum, "language^", &style_sheet_language_enum_definition },
+		{ _field_block, "font style sheets", &UserInterfaceStyleSheetsFontBlock_block },
+		{ _field_block, "visual style sheets", &UserInterfaceStyleSheetsVisualBlock_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetGradientBlock, 32)
 	{
-		FIELD( _field_string_id, "gradient name^" ),
-		FIELD( _field_real_argb_color, "color1" ),
-		FIELD( _field_real_argb_color, "color2" ),
-		FIELD( _field_real_argb_color, "color3" ),
-		FIELD( _field_real_argb_color, "color4" ),
-		FIELD( _field_real, "angle" ),
-		FIELD( _field_real, "scale" ),
-		FIELD( _field_real_vector_2d, "offset" ),
-		FIELD( _field_long_integer, "number of colors" ),
-		FIELD( _field_long_enum, "gradient shape", &gradient_shape_enum ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "gradient name^" },
+		{ _field_real_argb_color, "color1" },
+		{ _field_real_argb_color, "color2" },
+		{ _field_real_argb_color, "color3" },
+		{ _field_real_argb_color, "color4" },
+		{ _field_real, "angle" },
+		{ _field_real, "scale" },
+		{ _field_real_vector_2d, "offset" },
+		{ _field_long_integer, "number of colors" },
+		{ _field_long_enum, "gradient shape", &gradient_shape_enum },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetDropshadowBlock, 32)
 	{
-		FIELD( _field_string_id, "dropshadow name^" ),
-		FIELD( _field_real_argb_color, "color" ),
-		FIELD( _field_real, "angle" ),
-		FIELD( _field_real, "distance" ),
-		FIELD( _field_real, "spread" ),
-		FIELD( _field_real, "size" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "dropshadow name^" },
+		{ _field_real_argb_color, "color" },
+		{ _field_real, "angle" },
+		{ _field_real, "distance" },
+		{ _field_real, "spread" },
+		{ _field_real, "size" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(UserInterfaceStyleSheetOuterGlowBlock, 32)
 	{
-		FIELD( _field_string_id, "outer glow name^" ),
-		FIELD( _field_real_argb_color, "color" ),
-		FIELD( _field_real, "spread" ),
-		FIELD( _field_real, "size" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "outer glow name^" },
+		{ _field_real_argb_color, "color" },
+		{ _field_real, "spread" },
+		{ _field_real, "size" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(style_sheet_list_block, 1, style_sheet_list_struct_definition_struct_definition );
 
 	TAG_STRUCT(style_sheet_list_struct_definition)
 	{
-		FIELD( _field_block, "style sheet languages", &UserInterfaceStyleSheetLanguagesBlock_block ),
-		FIELD( _field_block, "gradients", &UserInterfaceStyleSheetGradientBlock_block ),
-		FIELD( _field_block, "dropshadows", &UserInterfaceStyleSheetDropshadowBlock_block ),
-		FIELD( _field_block, "outer glows", &UserInterfaceStyleSheetOuterGlowBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "style sheet languages", &UserInterfaceStyleSheetLanguagesBlock_block },
+		{ _field_block, "gradients", &UserInterfaceStyleSheetGradientBlock_block },
+		{ _field_block, "dropshadows", &UserInterfaceStyleSheetDropshadowBlock_block },
+		{ _field_block, "outer glows", &UserInterfaceStyleSheetOuterGlowBlock_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(text_case_enum, 3)
+	STRINGS(text_case_enum)
 	{
-		OPTION("normal"),
-		OPTION("uppercase"),
-		OPTION("lowercase"),
+		"normal",
+		"uppercase",
+		"lowercase"
 	};
+	STRING_LIST(text_case_enum, text_case_enum_strings, _countof(text_case_enum_strings));
 
-	TAG_ENUM(justification_enum, 3)
+	STRINGS(justification_enum)
 	{
-		OPTION("left"),
-		OPTION("right"),
-		OPTION("center"),
+		"left",
+		"right",
+		"center"
 	};
+	STRING_LIST(justification_enum, justification_enum_strings, _countof(justification_enum_strings));
 
-	TAG_ENUM(alignment_enum, 3)
+	STRINGS(alignment_enum)
 	{
-		OPTION("top"),
-		OPTION("bottom"),
-		OPTION("center"),
+		"top",
+		"bottom",
+		"center"
 	};
+	STRING_LIST(alignment_enum, alignment_enum_strings, _countof(alignment_enum_strings));
 
-	TAG_ENUM(drop_shadow_style_enum, 3)
+	STRINGS(drop_shadow_style_enum)
 	{
-		OPTION("none"),
-		OPTION("drop"),
-		OPTION("outline"),
+		"none",
+		"drop",
+		"outline"
 	};
+	STRING_LIST(drop_shadow_style_enum, drop_shadow_style_enum_strings, _countof(drop_shadow_style_enum_strings));
 
-	TAG_ENUM(style_sheet_language_enum_definition, 17)
+	STRINGS(style_sheet_language_enum_definition)
 	{
-		OPTION("english"),
-		OPTION("japanese"),
-		OPTION("german"),
-		OPTION("french"),
-		OPTION("spanish"),
-		OPTION("mexican spanish"),
-		OPTION("italian"),
-		OPTION("korean"),
-		OPTION("chinese-traditional"),
-		OPTION("chinese-simplified"),
-		OPTION("portuguese"),
-		OPTION("polish"),
-		OPTION("russian"),
-		OPTION("danish"),
-		OPTION("finnish"),
-		OPTION("dutch"),
-		OPTION("norwegian"),
+		"english",
+		"japanese",
+		"german",
+		"french",
+		"spanish",
+		"mexican spanish",
+		"italian",
+		"korean",
+		"chinese-traditional",
+		"chinese-simplified",
+		"portuguese",
+		"polish",
+		"russian",
+		"danish",
+		"finnish",
+		"dutch",
+		"norwegian"
 	};
+	STRING_LIST(style_sheet_language_enum_definition, style_sheet_language_enum_definition_strings, _countof(style_sheet_language_enum_definition_strings));
 
-	TAG_ENUM(gradient_shape_enum, 4)
+	STRINGS(gradient_shape_enum)
 	{
-		OPTION("linear"),
-		OPTION("circular"),
-		OPTION("diamond"),
-		OPTION("square"),
+		"linear",
+		"circular",
+		"diamond",
+		"square"
 	};
+	STRING_LIST(gradient_shape_enum, gradient_shape_enum_strings, _countof(gradient_shape_enum_strings));
+
+	TAG_REFERENCE(style_sheets_global_reference, STYLE_SHEET_LIST_TAG);
 
 } // namespace blofeld
 

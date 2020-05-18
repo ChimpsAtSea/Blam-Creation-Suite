@@ -53,13 +53,6 @@ struct s_h4_tag_data_definition
 	uint32_t : 32; // unknown
 };
 
-struct s_h4_tag_reference_definition
-{
-	uint32_t flags;
-	uint32_t group_tag;
-	bpointer32<buint32_t*> group_tags_address;
-};
-
 
 class c_h4_tag_field
 {
@@ -141,37 +134,26 @@ struct s_h4_tag_enum_definition
 	buint32_t line_number;
 };
 
+struct s_h4_tag_reference_definition
+{
+	buint32_t flags;
+	buint32_t group_tag;
+	bpointer32<buint32_t*> group_tags_address;
+};
+
 class c_h4_tag_field_tag_reference :
 	public t_h4_tag_field<s_h4_tag_reference_definition>
 {
 public:
-	std::vector<tag_group> tag_groups;
-
-
+	c_h4_tag_reference* const reference;
 	c_h4_tag_field_tag_reference(const char* h4_data, const s_h4_tag_field_definition* field_definition) :
-		t_h4_tag_field(h4_data, field_definition)
+		t_h4_tag_field(h4_data, field_definition),
+		reference(c_h4_blamboozle::get_tag_reference_definition(h4_data, definition, field_definition->definition_address))
 	{
 		uint32_t definition_address = field_definition->definition_address;
 		uint32_t group_tags_address = this->definition->group_tags_address;
 
-		if (this->definition->group_tag != 0xFFFFFFFF)
-		{
-			uint32_t value = this->definition->group_tag;
-			tag_group group = { value };
-			tag_groups.push_back(group);
-		}
-		else if (definition->group_tags_address != 0)
-		{
-			const uint32_t* current_group = h4_va_to_pointer<uint32_t>(h4_data, definition->group_tags_address);
-			while (static_cast<uint32_t>(*current_group) != 0xFFFFFFFF)
-			{
-				uint32_t value = *current_group;
-				tag_group group = { value };
-				tag_groups.push_back(group);
-
-				current_group++;
-			}
-		}
+		debug_point;
 	}
 };
 

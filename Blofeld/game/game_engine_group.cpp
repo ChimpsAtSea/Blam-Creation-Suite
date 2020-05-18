@@ -1,12 +1,13 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
 	TAG_GROUP(GameEngineFirefightVariantTag, GAMEENGINEFIREFIGHTVARIANTTAG_TAG)
 	{
-		FIELD( _field_struct, "variant", &gameEngineFirefightVariantDefinition_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_struct, "variant", &gameEngineFirefightVariantDefinition_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_GROUP_FROM_BLOCK(game_engine_globals, GAME_ENGINE_GLOBALS_TAG, game_engine_globals_block_block );
@@ -15,603 +16,633 @@ namespace blofeld
 
 	TAG_BLOCK(game_engine_miscellaneous_options_block, 1)
 	{
-		FIELD( _field_word_flags, "flags", &game_engine_miscellaneous_options_flags ),
-		FIELD( _field_char_integer, "early victory win count" ),
-		FIELD( _field_char_integer, "round time limit:minutes" ),
-		FIELD( _field_char_integer, "number of rounds" ),
-		FIELD( _field_char_enum, "mosh difficulty level", &mosh_difficulty ),
-		FIELD( _field_byte_integer, "overshield deplete time" ),
-		FIELD( _field_pad, "RXXH", 1 ),
-		FIELD( _field_terminator )
+		{ _field_word_flags, "flags", &game_engine_miscellaneous_options_flags },
+		{ _field_char_integer, "early victory win count" },
+		{ _field_char_integer, "round time limit:minutes" },
+		{ _field_char_integer, "number of rounds" },
+		{ _field_char_enum, "mosh difficulty level", &mosh_difficulty },
+		{ _field_byte_integer, "overshield deplete time" },
+		{ _field_pad, "RXXH", 1 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(game_engine_prototype_options_block, 1)
 	{
-		FIELD( _field_char_integer, "prototype mode" ),
-		FIELD( _field_char_integer, "promethean energy kill percent" ),
-		FIELD( _field_char_integer, "promethean energy time percent" ),
-		FIELD( _field_char_integer, "promethean energy medal percent" ),
-		FIELD( _field_char_integer, "promethean duration" ),
-		FIELD( _field_char_integer, "class color override" ),
-		FIELD( _field_terminator )
+		{ _field_char_integer, "prototype mode" },
+		{ _field_char_integer, "promethean energy kill percent" },
+		{ _field_char_integer, "promethean energy time percent" },
+		{ _field_char_integer, "promethean energy medal percent" },
+		{ _field_char_integer, "promethean duration" },
+		{ _field_char_integer, "class color override" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(game_engine_respawn_options_block, 1)
 	{
-		FIELD( _field_word_flags, "flags", &game_engine_respawn_options_flags ),
-		FIELD( _field_char_integer, "lives per round" ),
-		FIELD( _field_char_integer, "team lives per round" ),
-		FIELD( _field_char_integer, "min respawn time:seconds" ),
-		FIELD( _field_char_integer, "respawn time:seconds" ),
-		FIELD( _field_char_integer, "suicide penalty:seconds" ),
-		FIELD( _field_char_integer, "betrayal penalty:seconds" ),
-		FIELD( _field_char_integer, "respawn growth:seconds" ),
-		FIELD( _field_pad, "EOTOTRXV", 3 ),
-		FIELD( _field_string_id, "respawn player traits name" ),
-		FIELD( _field_char_integer, "initial loadout selection time:seconds#delay before spawning in at start of round" ),
-		FIELD( _field_char_integer, "respawn player traits duration:seconds" ),
-		FIELD( _field_pad, "woman bound for glory, why you leaving me again\?", 2 ),
-		FIELD( _field_terminator )
+		{ _field_word_flags, "flags", &game_engine_respawn_options_flags },
+		{ _field_char_integer, "lives per round" },
+		{ _field_char_integer, "team lives per round" },
+		{ _field_char_integer, "min respawn time:seconds" },
+		{ _field_char_integer, "respawn time:seconds" },
+		{ _field_char_integer, "suicide penalty:seconds" },
+		{ _field_char_integer, "betrayal penalty:seconds" },
+		{ _field_char_integer, "respawn growth:seconds" },
+		{ _field_pad, "EOTOTRXV", 3 },
+		{ _field_string_id, "respawn player traits name" },
+		{ _field_char_integer, "initial loadout selection time:seconds#delay before spawning in at start of round" },
+		{ _field_char_integer, "respawn player traits duration:seconds" },
+		{ _field_pad, "woman bound for glory, why you leaving me again\?", 2 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(game_engine_social_options_block, 1)
 	{
-		FIELD( _field_long_flags, "flags", &game_engine_social_options_flags ),
-		FIELD( _field_terminator )
+		{ _field_long_flags, "flags", &game_engine_social_options_flags },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(game_engine_map_override_options_block, 1)
 	{
-		FIELD( _field_string_id, "player traits name" ),
-		FIELD( _field_string_id, "weapon set name" ),
-		FIELD( _field_string_id, "vehicle set name" ),
-		FIELD( _field_string_id, "equipment set name" ),
-		FIELD( _field_string_id, "red powerup traits name" ),
-		FIELD( _field_string_id, "blue powerup traits name" ),
-		FIELD( _field_string_id, "yellow powerup traits name" ),
-		FIELD( _field_string_id, "custom powerup traits name" ),
-		FIELD( _field_char_integer, "red powerup duration:seconds" ),
-		FIELD( _field_char_integer, "blue powerup duration:seconds" ),
-		FIELD( _field_char_integer, "yellow powerup duration:seconds" ),
-		FIELD( _field_char_integer, "custom powerup duration:seconds" ),
-		FIELD( _field_string_id, "red powerup secondary traits name" ),
-		FIELD( _field_string_id, "blue powerup secondary traits name" ),
-		FIELD( _field_string_id, "yellow powerup secondary traits name" ),
-		FIELD( _field_string_id, "custom powerup secondary traits name" ),
-		FIELD( _field_char_integer, "red powerup secondary duration:seconds" ),
-		FIELD( _field_char_integer, "blue powerup secondary duration:seconds" ),
-		FIELD( _field_char_integer, "yellow powerup secondary duration:seconds" ),
-		FIELD( _field_char_integer, "custom powerup secondary duration:seconds" ),
-		FIELD( _field_byte_flags, "flags", &game_engine_map_override_options_flags ),
-		FIELD( _field_pad, "pad", 3 ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "player traits name" },
+		{ _field_string_id, "weapon set name" },
+		{ _field_string_id, "vehicle set name" },
+		{ _field_string_id, "equipment set name" },
+		{ _field_string_id, "red powerup traits name" },
+		{ _field_string_id, "blue powerup traits name" },
+		{ _field_string_id, "yellow powerup traits name" },
+		{ _field_string_id, "custom powerup traits name" },
+		{ _field_char_integer, "red powerup duration:seconds" },
+		{ _field_char_integer, "blue powerup duration:seconds" },
+		{ _field_char_integer, "yellow powerup duration:seconds" },
+		{ _field_char_integer, "custom powerup duration:seconds" },
+		{ _field_string_id, "red powerup secondary traits name" },
+		{ _field_string_id, "blue powerup secondary traits name" },
+		{ _field_string_id, "yellow powerup secondary traits name" },
+		{ _field_string_id, "custom powerup secondary traits name" },
+		{ _field_char_integer, "red powerup secondary duration:seconds" },
+		{ _field_char_integer, "blue powerup secondary duration:seconds" },
+		{ _field_char_integer, "yellow powerup secondary duration:seconds" },
+		{ _field_char_integer, "custom powerup secondary duration:seconds" },
+		{ _field_byte_flags, "flags", &game_engine_map_override_options_flags },
+		{ _field_pad, "pad", 3 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(game_engine_team_options_block, 1)
 	{
-		FIELD( _field_char_enum, "model override type", &game_engine_team_options_model_override_type ),
-		FIELD( _field_char_enum, "designator switch type", &game_engine_team_options_designator_switch_type ),
-		FIELD( _field_pad, "pad", 2 ),
-		FIELD( _field_array, "teams", &game_engine_team_options_team_block_array ),
-		FIELD( _field_terminator )
+		{ _field_char_enum, "model override type", &game_engine_team_options_model_override_type },
+		{ _field_char_enum, "designator switch type", &game_engine_team_options_designator_switch_type },
+		{ _field_pad, "pad", 2 },
+		{ _field_array, "teams", &game_engine_team_options_team_block_array },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(gameEngineOrdnanceOptionsBlock, 1)
 	{
-		FIELD( _field_byte_flags, "flags", &gameEngineOrdnanceOptionsFlags ),
-		FIELD( _field_terminator )
+		{ _field_byte_flags, "flags", &gameEngineOrdnanceOptionsFlags },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(GameEngineFirefightWavePropertiesBlock, k_firefightWavesPerGoal)
 	{
-		FIELD( _field_string_id, "squad type^#survival_mode_get_wave_squad" ),
-		FIELD( _field_char_enum, "Delivery type", &FirefightWaveDeliveryMethod ),
-		FIELD( _field_char_integer, "AI allowed before next wave spawns" ),
-		FIELD( _field_char_integer, "Enemies Left Before HUD Marking" ),
-		FIELD( _field_char_integer, "Wave Type" ),
-		FIELD( _field_char_integer, "Weapon to drop" ),
-		FIELD( _field_char_integer, "Vehicle to drop" ),
-		FIELD( _field_char_integer, "Squad 1" ),
-		FIELD( _field_char_integer, "Squad 2" ),
-		FIELD( _field_string, "Start Event" ),
-		FIELD( _field_string, "End Event" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "squad type^#survival_mode_get_wave_squad" },
+		{ _field_char_enum, "Delivery type", &FirefightWaveDeliveryMethod },
+		{ _field_char_integer, "AI allowed before next wave spawns" },
+		{ _field_char_integer, "Enemies Left Before HUD Marking" },
+		{ _field_char_integer, "Wave Type" },
+		{ _field_char_integer, "Weapon to drop" },
+		{ _field_char_integer, "Vehicle to drop" },
+		{ _field_char_integer, "Squad 1" },
+		{ _field_char_integer, "Squad 2" },
+		{ _field_string, "Start Event" },
+		{ _field_string, "End Event" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(GameEngineFirefightPlayerGoalPropertiesBlock, k_firefightMaxPlayerGoals)
 	{
-		FIELD( _field_char_enum, "Player Goal", &FirefightGoal ),
-		FIELD( _field_char_integer, "Lives" ),
-		FIELD( _field_char_integer, "Time Limit#minutes" ),
-		FIELD( _field_byte_flags, "Wave Difficulty", &FirefightWaveDifficulty ),
-		FIELD( _field_block, "Firefight Waves", &GameEngineFirefightWavePropertiesBlock_block ),
-		FIELD( _field_long_flags, "Player Goal Flags", &GameEnginePlayerGoalFlags ),
-		FIELD( _field_string_id, "spartan player traits" ),
-		FIELD( _field_string_id, "ai traits" ),
-		FIELD( _field_string, "Start Event" ),
-		FIELD( _field_string, "End Event" ),
-		FIELD( _field_long_flags, "skulls^{primary skulls}", &skull_flags ),
-		FIELD( _field_char_integer, "objective 1" ),
-		FIELD( _field_char_integer, "objective 2" ),
-		FIELD( _field_char_integer, "objective 3" ),
-		FIELD( _field_char_integer, "objective 4" ),
-		FIELD( _field_char_integer, "User Data" ),
-		FIELD( _field_char_integer, "start location folder" ),
-		FIELD( _field_pad, "BLAH", 2 ),
-		FIELD( _field_terminator )
+		{ _field_char_enum, "Player Goal", &FirefightGoal },
+		{ _field_char_integer, "Lives" },
+		{ _field_char_integer, "Time Limit#minutes" },
+		{ _field_byte_flags, "Wave Difficulty", &FirefightWaveDifficulty },
+		{ _field_block, "Firefight Waves", &GameEngineFirefightWavePropertiesBlock_block },
+		{ _field_long_flags, "Player Goal Flags", &GameEnginePlayerGoalFlags },
+		{ _field_string_id, "spartan player traits" },
+		{ _field_string_id, "ai traits" },
+		{ _field_string, "Start Event" },
+		{ _field_string, "End Event" },
+		{ _field_long_flags, "skulls^{primary skulls}", &skull_flags },
+		{ _field_char_integer, "objective 1" },
+		{ _field_char_integer, "objective 2" },
+		{ _field_char_integer, "objective 3" },
+		{ _field_char_integer, "objective 4" },
+		{ _field_char_integer, "User Data" },
+		{ _field_char_integer, "start location folder" },
+		{ _field_pad, "BLAH", 2 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(game_engine_globals_block, 1, game_engine_globals_struct_definition_struct_definition );
 
 	TAG_BLOCK(game_engine_ai_traits_list_block, 64)
 	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_struct, "ai traits", &game_engine_ai_traits_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name^" },
+		{ _field_struct, "ai traits", &game_engine_ai_traits_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(game_engine_sandbox_variant_block, 32)
 	{
-		FIELD( _field_string_id, "localizable name^" ),
-		FIELD( _field_string_id, "localizable description" ),
-		FIELD( _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block_block ),
-		FIELD( _field_block, "prototype options", &game_engine_prototype_options_block_block ),
-		FIELD( _field_block, "respawn options", &game_engine_respawn_options_block_block ),
-		FIELD( _field_block, "social options", &game_engine_social_options_block_block ),
-		FIELD( _field_block, "map override options", &game_engine_map_override_options_block_block ),
-		FIELD( _field_block, "team options", &game_engine_team_options_block_block ),
-		FIELD( _field_block, "loadout options", &game_engine_loadout_options_block_block ),
-		FIELD( _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block ),
-		FIELD( _field_long_flags, "flags", &sandbox_flags ),
-		FIELD( _field_enum, "edit mode", &sandbox_editing_mode ),
-		FIELD( _field_enum, "respawn time", &sandbox_respawn_time ),
-		FIELD( _field_string_id, "all players traits" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "localizable name^" },
+		{ _field_string_id, "localizable description" },
+		{ _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block_block },
+		{ _field_block, "prototype options", &game_engine_prototype_options_block_block },
+		{ _field_block, "respawn options", &game_engine_respawn_options_block_block },
+		{ _field_block, "social options", &game_engine_social_options_block_block },
+		{ _field_block, "map override options", &game_engine_map_override_options_block_block },
+		{ _field_block, "team options", &game_engine_team_options_block_block },
+		{ _field_block, "loadout options", &game_engine_loadout_options_block_block },
+		{ _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block },
+		{ _field_long_flags, "flags", &sandbox_flags },
+		{ _field_enum, "edit mode", &sandbox_editing_mode },
+		{ _field_enum, "respawn time", &sandbox_respawn_time },
+		{ _field_string_id, "all players traits" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(game_engine_survival_set_properties_block, 10)
 	{
-		FIELD( _field_long_flags, "skulls^{primary skulls}", &skull_flags ),
-		FIELD( _field_terminator )
+		{ _field_long_flags, "skulls^{primary skulls}", &skull_flags },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(survival_wave_squad_block, k_maximum_survival_possible_wave_squads)
 	{
-		FIELD( _field_string_id, "squad type^#survival_mode_get_wave_squad" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "squad type^#survival_mode_get_wave_squad" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(game_engine_survival_round_properties_block, k_survival_full_rounds_per_set)
 	{
-		FIELD( _field_long_flags, "skulls^{primary skulls}", &skull_flags ),
-		FIELD( _field_custom, "initial wave" ),
-		FIELD( _field_struct, "initial waves", &game_engine_survival_wave_properties_struct_struct_definition ),
-		FIELD( _field_custom ),
-		FIELD( _field_custom, "primary wave" ),
-		FIELD( _field_struct, "primary waves", &game_engine_survival_wave_properties_struct_struct_definition ),
-		FIELD( _field_custom ),
-		FIELD( _field_custom, "boss wave" ),
-		FIELD( _field_struct, "boss waves", &game_engine_survival_wave_properties_struct_struct_definition ),
-		FIELD( _field_custom ),
-		FIELD( _field_terminator )
+		{ _field_long_flags, "skulls^{primary skulls}", &skull_flags },
+		{ _field_custom, "initial wave" },
+		{ _field_struct, "initial waves", &game_engine_survival_wave_properties_struct_struct_definition },
+		{ _field_custom },
+		{ _field_custom, "primary wave" },
+		{ _field_struct, "primary waves", &game_engine_survival_wave_properties_struct_struct_definition },
+		{ _field_custom },
+		{ _field_custom, "boss wave" },
+		{ _field_struct, "boss waves", &game_engine_survival_wave_properties_struct_struct_definition },
+		{ _field_custom },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(game_engine_survival_custom_skull_block, k_maximum_survival_custom_skulls)
 	{
-		FIELD( _field_string_id, "spartan player traits" ),
-		FIELD( _field_string_id, "elite player traits" ),
-		FIELD( _field_string_id, "ai traits" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "spartan player traits" },
+		{ _field_string_id, "elite player traits" },
+		{ _field_string_id, "ai traits" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(game_engine_survival_variant_block, 32)
 	{
-		FIELD( _field_string_id, "localizable name^" ),
-		FIELD( _field_string_id, "localizable description" ),
-		FIELD( _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block_block ),
-		FIELD( _field_block, "prototype options", &game_engine_prototype_options_block_block ),
-		FIELD( _field_block, "respawn options", &game_engine_respawn_options_block_block ),
-		FIELD( _field_block, "social options", &game_engine_social_options_block_block ),
-		FIELD( _field_block, "map override options", &game_engine_map_override_options_block_block ),
-		FIELD( _field_block, "team options", &game_engine_team_options_block_block ),
-		FIELD( _field_block, "loadout options", &game_engine_loadout_options_block_block ),
-		FIELD( _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block ),
-		FIELD( _field_byte_flags, "flags", &game_engine_survival_variant_flags ),
-		FIELD( _field_char_enum, "game difficulty", &global_campaign_difficulty_enum ),
-		FIELD( _field_pad, "SDFHJREN", 2 ),
-		FIELD( _field_char_integer, "set count#survival_mode_get_set_count, -1 to loop last, -2 to loop last 3, -3 to loop all" ),
-		FIELD( _field_char_integer, "bonus lives awarded#survival_mode_get_bonus_lives_awarded" ),
-		FIELD( _field_short_integer, "bonus target#survival_mode_get_bonus_target" ),
-		FIELD( _field_short_integer, "spartan lives on elite death" ),
-		FIELD( _field_short_integer, "extra life score target" ),
-		FIELD( _field_short_integer, "shared team life count" ),
-		FIELD( _field_short_integer, "elite life count" ),
-		FIELD( _field_short_integer, "maximum lives" ),
-		FIELD( _field_short_integer, "generator count" ),
-		FIELD( _field_string_id, "spartan player traits" ),
-		FIELD( _field_string_id, "elite player traits" ),
-		FIELD( _field_string_id, "ai traits" ),
-		FIELD( _field_block, "elite respawn options", &game_engine_respawn_options_block_block ),
-		FIELD( _field_block, "set properties", &game_engine_survival_set_properties_block_block ),
-		FIELD( _field_block, "round properties", &game_engine_survival_round_properties_block_block ),
-		FIELD( _field_custom, "bonus round" ),
-		FIELD( _field_struct, "bonus round properties", &game_engine_survival_bonus_wave_properties_struct_struct_definition ),
-		FIELD( _field_custom ),
-		FIELD( _field_block, "custom skulls", &game_engine_survival_custom_skull_block_block ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "localizable name^" },
+		{ _field_string_id, "localizable description" },
+		{ _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block_block },
+		{ _field_block, "prototype options", &game_engine_prototype_options_block_block },
+		{ _field_block, "respawn options", &game_engine_respawn_options_block_block },
+		{ _field_block, "social options", &game_engine_social_options_block_block },
+		{ _field_block, "map override options", &game_engine_map_override_options_block_block },
+		{ _field_block, "team options", &game_engine_team_options_block_block },
+		{ _field_block, "loadout options", &game_engine_loadout_options_block_block },
+		{ _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block },
+		{ _field_byte_flags, "flags", &game_engine_survival_variant_flags },
+		{ _field_char_enum, "game difficulty", &global_campaign_difficulty_enum },
+		{ _field_pad, "SDFHJREN", 2 },
+		{ _field_char_integer, "set count#survival_mode_get_set_count, -1 to loop last, -2 to loop last 3, -3 to loop all" },
+		{ _field_char_integer, "bonus lives awarded#survival_mode_get_bonus_lives_awarded" },
+		{ _field_short_integer, "bonus target#survival_mode_get_bonus_target" },
+		{ _field_short_integer, "spartan lives on elite death" },
+		{ _field_short_integer, "extra life score target" },
+		{ _field_short_integer, "shared team life count" },
+		{ _field_short_integer, "elite life count" },
+		{ _field_short_integer, "maximum lives" },
+		{ _field_short_integer, "generator count" },
+		{ _field_string_id, "spartan player traits" },
+		{ _field_string_id, "elite player traits" },
+		{ _field_string_id, "ai traits" },
+		{ _field_block, "elite respawn options", &game_engine_respawn_options_block_block },
+		{ _field_block, "set properties", &game_engine_survival_set_properties_block_block },
+		{ _field_block, "round properties", &game_engine_survival_round_properties_block_block },
+		{ _field_custom, "bonus round" },
+		{ _field_struct, "bonus round properties", &game_engine_survival_bonus_wave_properties_struct_struct_definition },
+		{ _field_custom },
+		{ _field_block, "custom skulls", &game_engine_survival_custom_skull_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(GameEngineFirefightVariantShellBlock, 128)
 	{
-		FIELD( _field_tag_reference, "variant" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "variant", &GameEngineFirefightVariantReference },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(game_engine_campaign_variant_block, 32)
 	{
-		FIELD( _field_string_id, "localizable name^" ),
-		FIELD( _field_string_id, "localizable description" ),
-		FIELD( _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block_block ),
-		FIELD( _field_block, "prototype options", &game_engine_prototype_options_block_block ),
-		FIELD( _field_block, "respawn options", &game_engine_respawn_options_block_block ),
-		FIELD( _field_block, "social options", &game_engine_social_options_block_block ),
-		FIELD( _field_block, "map override options", &game_engine_map_override_options_block_block ),
-		FIELD( _field_block, "team options", &game_engine_team_options_block_block ),
-		FIELD( _field_block, "loadout options", &game_engine_loadout_options_block_block ),
-		FIELD( _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "localizable name^" },
+		{ _field_string_id, "localizable description" },
+		{ _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block_block },
+		{ _field_block, "prototype options", &game_engine_prototype_options_block_block },
+		{ _field_block, "respawn options", &game_engine_respawn_options_block_block },
+		{ _field_block, "social options", &game_engine_social_options_block_block },
+		{ _field_block, "map override options", &game_engine_map_override_options_block_block },
+		{ _field_block, "team options", &game_engine_team_options_block_block },
+		{ _field_block, "loadout options", &game_engine_loadout_options_block_block },
+		{ _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(game_engine_settings_definition_block, 1, game_engine_settings_definition_struct_definition_struct_definition );
 
 	TAG_ARRAY(game_engine_team_options_team_block, k_multiplayer_team_game_team_count)
 	{
-		FIELD( _field_byte_flags, "flags", &game_engine_team_options_team_flags ),
-		FIELD( _field_char_enum, "initial team designator", &global_multiplayer_team_designator_enum_definition ),
-		FIELD( _field_char_enum, "model override", &game_engine_team_options_player_model_choice ),
-		FIELD( _field_byte_integer, "number of fireteams" ),
-		FIELD( _field_string_id, "description" ),
-		FIELD( _field_rgb_color, "primary color override{color override}" ),
-		FIELD( _field_rgb_color, "secondary color override" ),
-		FIELD( _field_argb_color, "ui text tint color override" ),
-		FIELD( _field_argb_color, "ui bitmap tint color override" ),
-		FIELD( _field_terminator )
+		{ _field_byte_flags, "flags", &game_engine_team_options_team_flags },
+		{ _field_char_enum, "initial team designator", &global_multiplayer_team_designator_enum_definition },
+		{ _field_char_enum, "model override", &game_engine_team_options_player_model_choice },
+		{ _field_byte_integer, "number of fireteams" },
+		{ _field_string_id, "description" },
+		{ _field_rgb_color, "primary color override{color override}" },
+		{ _field_rgb_color, "secondary color override" },
+		{ _field_argb_color, "ui text tint color override" },
+		{ _field_argb_color, "ui bitmap tint color override" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(gameEngineFirefightVariantDefinition)
 	{
-		FIELD( _field_string_id, "localizable name^" ),
-		FIELD( _field_string_id, "localizable description" ),
-		FIELD( _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block_block ),
-		FIELD( _field_block, "prototype options", &game_engine_prototype_options_block_block ),
-		FIELD( _field_block, "respawn options", &game_engine_respawn_options_block_block ),
-		FIELD( _field_block, "social options", &game_engine_social_options_block_block ),
-		FIELD( _field_block, "map override options", &game_engine_map_override_options_block_block ),
-		FIELD( _field_block, "team options", &game_engine_team_options_block_block ),
-		FIELD( _field_block, "loadout options", &game_engine_loadout_options_block_block ),
-		FIELD( _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block ),
-		FIELD( _field_long_integer, "mission_id" ),
-		FIELD( _field_char_enum, "game difficulty", &global_campaign_difficulty_enum ),
-		FIELD( _field_byte_flags, "firefight variant flags", &GameEngineFirefightVariantFlags ),
-		FIELD( _field_short_integer, "shared team life count" ),
-		FIELD( _field_short_integer, "maximum lives" ),
-		FIELD( _field_char_integer, "Starting Crate 1" ),
-		FIELD( _field_char_integer, "Starting Crate 2" ),
-		FIELD( _field_char_integer, "Starting Crate 3" ),
-		FIELD( _field_char_integer, "Starting Crate 4" ),
-		FIELD( _field_char_integer, "Starting Crate 5" ),
-		FIELD( _field_char_integer, "Starting Crate 6" ),
-		FIELD( _field_char_integer, "Starting Crate 7" ),
-		FIELD( _field_char_integer, "Starting Crate 8" ),
-		FIELD( _field_char_integer, "Starting Crate 9" ),
-		FIELD( _field_char_integer, "Starting Crate 10" ),
-		FIELD( _field_char_integer, "Starting Crate 11" ),
-		FIELD( _field_char_integer, "Starting Crate 12" ),
-		FIELD( _field_char_integer, "Starting Crate 13" ),
-		FIELD( _field_char_integer, "Starting Crate 14" ),
-		FIELD( _field_string, "Variant Event#This event is always set for script" ),
-		FIELD( _field_block, "Midnight Player Goal Properties", &GameEngineFirefightPlayerGoalPropertiesBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "localizable name^" },
+		{ _field_string_id, "localizable description" },
+		{ _field_block, "miscellaneous options", &game_engine_miscellaneous_options_block_block },
+		{ _field_block, "prototype options", &game_engine_prototype_options_block_block },
+		{ _field_block, "respawn options", &game_engine_respawn_options_block_block },
+		{ _field_block, "social options", &game_engine_social_options_block_block },
+		{ _field_block, "map override options", &game_engine_map_override_options_block_block },
+		{ _field_block, "team options", &game_engine_team_options_block_block },
+		{ _field_block, "loadout options", &game_engine_loadout_options_block_block },
+		{ _field_block, "ordnance options", &gameEngineOrdnanceOptionsBlock_block },
+		{ _field_long_integer, "mission_id" },
+		{ _field_char_enum, "game difficulty", &global_campaign_difficulty_enum },
+		{ _field_byte_flags, "firefight variant flags", &GameEngineFirefightVariantFlags },
+		{ _field_short_integer, "shared team life count" },
+		{ _field_short_integer, "maximum lives" },
+		{ _field_char_integer, "Starting Crate 1" },
+		{ _field_char_integer, "Starting Crate 2" },
+		{ _field_char_integer, "Starting Crate 3" },
+		{ _field_char_integer, "Starting Crate 4" },
+		{ _field_char_integer, "Starting Crate 5" },
+		{ _field_char_integer, "Starting Crate 6" },
+		{ _field_char_integer, "Starting Crate 7" },
+		{ _field_char_integer, "Starting Crate 8" },
+		{ _field_char_integer, "Starting Crate 9" },
+		{ _field_char_integer, "Starting Crate 10" },
+		{ _field_char_integer, "Starting Crate 11" },
+		{ _field_char_integer, "Starting Crate 12" },
+		{ _field_char_integer, "Starting Crate 13" },
+		{ _field_char_integer, "Starting Crate 14" },
+		{ _field_string, "Variant Event#This event is always set for script" },
+		{ _field_block, "Midnight Player Goal Properties", &GameEngineFirefightPlayerGoalPropertiesBlock_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(game_engine_globals_struct_definition)
 	{
-		FIELD( _field_tag_reference, "game engine settings" ),
-		FIELD( _field_tag_reference, "game engine text" ),
-		FIELD( _field_block, "game engine event response list", &game_engine_event_block_block ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "game engine settings", &game_engine_settings_definition_reference },
+		{ _field_tag_reference, "game engine text", &global_multilingual_unicode_string_list_reference },
+		{ _field_block, "game engine event response list", &game_engine_event_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(game_engine_settings_definition_struct_definition)
 	{
-		FIELD( _field_explanation, "Game Engine Settings" ),
-		FIELD( _field_long_flags, "flags", &game_engine_settings_flags ),
-		FIELD( _field_block, "player traits", &game_engine_player_traits_list_block_block ),
-		FIELD( _field_block, "ai traits", &game_engine_ai_traits_list_block_block ),
-		FIELD( _field_block, "sandbox variants", &game_engine_sandbox_variant_block_block ),
-		FIELD( _field_block, "survival variants", &game_engine_survival_variant_block_block ),
-		FIELD( _field_block, "new firefight variants{firefight variants new}", &GameEngineFirefightVariantShellBlock_block ),
-		FIELD( _field_block, "campaign variants", &game_engine_campaign_variant_block_block ),
-		FIELD( _field_terminator )
+		{ _field_explanation, "Game Engine Settings" },
+		{ _field_long_flags, "flags", &game_engine_settings_flags },
+		{ _field_block, "player traits", &game_engine_player_traits_list_block_block },
+		{ _field_block, "ai traits", &game_engine_ai_traits_list_block_block },
+		{ _field_block, "sandbox variants", &game_engine_sandbox_variant_block_block },
+		{ _field_block, "survival variants", &game_engine_survival_variant_block_block },
+		{ _field_block, "new firefight variants{firefight variants new}", &GameEngineFirefightVariantShellBlock_block },
+		{ _field_block, "campaign variants", &game_engine_campaign_variant_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(game_engine_ai_traits_struct)
 	{
-		FIELD( _field_char_enum, "vision traits", &ai_trait_vision_settings ),
-		FIELD( _field_char_enum, "sound traits", &ai_trait_sound_settings ),
-		FIELD( _field_char_enum, "luck traits", &ai_trait_luck_settings ),
-		FIELD( _field_char_enum, "weapon traits", &global_ai_trait_weapon_settings ),
-		FIELD( _field_char_enum, "grenade traits", &ai_trait_grenade_settings ),
-		FIELD( _field_char_enum, "drop equipment on death", &player_trait_bool_enum ),
-		FIELD( _field_char_enum, "assassination immunity", &player_trait_bool_enum ),
-		FIELD( _field_char_enum, "headshot immunity", &player_trait_bool_enum ),
-		FIELD( _field_char_enum, "damage resistance percentage", &player_trait_damage_resistance ),
-		FIELD( _field_char_enum, "damage modifier percentage", &player_trait_damage_modifier ),
-		FIELD( _field_pad, "pad", 2 ),
-		FIELD( _field_terminator )
+		{ _field_char_enum, "vision traits", &ai_trait_vision_settings },
+		{ _field_char_enum, "sound traits", &ai_trait_sound_settings },
+		{ _field_char_enum, "luck traits", &ai_trait_luck_settings },
+		{ _field_char_enum, "weapon traits", &global_ai_trait_weapon_settings },
+		{ _field_char_enum, "grenade traits", &ai_trait_grenade_settings },
+		{ _field_char_enum, "drop equipment on death", &player_trait_bool_enum },
+		{ _field_char_enum, "assassination immunity", &player_trait_bool_enum },
+		{ _field_char_enum, "headshot immunity", &player_trait_bool_enum },
+		{ _field_char_enum, "damage resistance percentage", &player_trait_damage_resistance },
+		{ _field_char_enum, "damage modifier percentage", &player_trait_damage_modifier },
+		{ _field_pad, "pad", 2 },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(game_engine_survival_wave_properties_struct)
 	{
-		FIELD( _field_byte_flags, "flags", &survival_wave_properties_flags ),
-		FIELD( _field_char_enum, "wave selection type", &survival_wave_squad_advance_type_enum ),
-		FIELD( _field_pad, "VJKNMFEN", 2 ),
-		FIELD( _field_block, "wave squads", &survival_wave_squad_block_block ),
-		FIELD( _field_terminator )
+		{ _field_byte_flags, "flags", &survival_wave_properties_flags },
+		{ _field_char_enum, "wave selection type", &survival_wave_squad_advance_type_enum },
+		{ _field_pad, "VJKNMFEN", 2 },
+		{ _field_block, "wave squads", &survival_wave_squad_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(game_engine_survival_bonus_wave_properties_struct)
 	{
-		FIELD( _field_long_flags, "skulls^{primary skulls}", &skull_flags ),
-		FIELD( _field_short_integer, "duration:s" ),
-		FIELD( _field_pad, "CLKJSDF", 2 ),
-		FIELD( _field_struct, "base properties", &game_engine_survival_wave_properties_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_long_flags, "skulls^{primary skulls}", &skull_flags },
+		{ _field_short_integer, "duration:s" },
+		{ _field_pad, "CLKJSDF", 2 },
+		{ _field_struct, "base properties", &game_engine_survival_wave_properties_struct_struct_definition },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(ai_trait_vision_settings, 5)
+	STRINGS(ai_trait_vision_settings)
 	{
-		OPTION("unchanged"),
-		OPTION("normal"),
-		OPTION("blind"),
-		OPTION("near sighted"),
-		OPTION("eagle eye"),
+		"unchanged",
+		"normal",
+		"blind",
+		"near sighted",
+		"eagle eye"
 	};
+	STRING_LIST(ai_trait_vision_settings, ai_trait_vision_settings_strings, _countof(ai_trait_vision_settings_strings));
 
-	TAG_ENUM(ai_trait_sound_settings, 4)
+	STRINGS(ai_trait_sound_settings)
 	{
-		OPTION("unchanged"),
-		OPTION("normal"),
-		OPTION("deaf"),
-		OPTION("sharp"),
+		"unchanged",
+		"normal",
+		"deaf",
+		"sharp"
 	};
+	STRING_LIST(ai_trait_sound_settings, ai_trait_sound_settings_strings, _countof(ai_trait_sound_settings_strings));
 
-	TAG_ENUM(ai_trait_luck_settings, 5)
+	STRINGS(ai_trait_luck_settings)
 	{
-		OPTION("unchanged"),
-		OPTION("normal"),
-		OPTION("unlucky"),
-		OPTION("lucky"),
-		OPTION("leprechaun"),
+		"unchanged",
+		"normal",
+		"unlucky",
+		"lucky",
+		"leprechaun"
 	};
+	STRING_LIST(ai_trait_luck_settings, ai_trait_luck_settings_strings, _countof(ai_trait_luck_settings_strings));
 
-	TAG_ENUM(global_ai_trait_weapon_settings, 4)
+	STRINGS(global_ai_trait_weapon_settings)
 	{
-		OPTION("unchanged"),
-		OPTION("normal"),
-		OPTION("marksman"),
-		OPTION("trigger happy"),
+		"unchanged",
+		"normal",
+		"marksman",
+		"trigger happy"
 	};
+	STRING_LIST(global_ai_trait_weapon_settings, global_ai_trait_weapon_settings_strings, _countof(global_ai_trait_weapon_settings_strings));
 
-	TAG_ENUM(ai_trait_grenade_settings, 4)
+	STRINGS(ai_trait_grenade_settings)
 	{
-		OPTION("unchanged"),
-		OPTION("normal"),
-		OPTION("none"),
-		OPTION("catch"),
+		"unchanged",
+		"normal",
+		"none",
+		"catch"
 	};
+	STRING_LIST(ai_trait_grenade_settings, ai_trait_grenade_settings_strings, _countof(ai_trait_grenade_settings_strings));
 
-	TAG_ENUM(game_engine_miscellaneous_options_flags, 9)
+	STRINGS(game_engine_miscellaneous_options_flags)
 	{
-		OPTION("teams enabled"),
-		OPTION("round reset players"),
-		OPTION("round reset map"),
-		OPTION("perfection enabled"),
-		OPTION("mosh"),
-		OPTION("drop weapons on death"),
-		OPTION("killcam enabled"),
-		OPTION("medal scoring enabled"),
-		OPTION("asymmetric round scoring"),
+		"teams enabled",
+		"round reset players",
+		"round reset map",
+		"perfection enabled",
+		"mosh",
+		"drop weapons on death",
+		"killcam enabled",
+		"medal scoring enabled",
+		"asymmetric round scoring"
 	};
+	STRING_LIST(game_engine_miscellaneous_options_flags, game_engine_miscellaneous_options_flags_strings, _countof(game_engine_miscellaneous_options_flags_strings));
 
-	TAG_ENUM(mosh_difficulty, 4)
+	STRINGS(mosh_difficulty)
 	{
-		OPTION("easy"),
-		OPTION("normal"),
-		OPTION("heroic"),
-		OPTION("legendary"),
+		"easy",
+		"normal",
+		"heroic",
+		"legendary"
 	};
+	STRING_LIST(mosh_difficulty, mosh_difficulty_strings, _countof(mosh_difficulty_strings));
 
-	TAG_ENUM(game_engine_respawn_options_flags, 5)
+	STRINGS(game_engine_respawn_options_flags)
 	{
-		OPTION("inherit respawn time"),
-		OPTION("respawn with teammate"),
-		OPTION("respawn at location"),
-		OPTION("respawn on kills"),
-		OPTION("early respawn allowed"),
+		"inherit respawn time",
+		"respawn with teammate",
+		"respawn at location",
+		"respawn on kills",
+		"early respawn allowed"
 	};
+	STRING_LIST(game_engine_respawn_options_flags, game_engine_respawn_options_flags_strings, _countof(game_engine_respawn_options_flags_strings));
 
-	TAG_ENUM(game_engine_social_options_flags, 8)
+	STRINGS(game_engine_social_options_flags)
 	{
-		OPTION("observers enabled"),
-		OPTION("team changing enabled"),
-		OPTION("team changing balancing only"),
-		OPTION("friendly fire enabled"),
-		OPTION("betrayal booting enabled"),
-		OPTION("enemy voice enabled"),
-		OPTION("open channel voice enabled"),
-		OPTION("dead player voice enabled"),
+		"observers enabled",
+		"team changing enabled",
+		"team changing balancing only",
+		"friendly fire enabled",
+		"betrayal booting enabled",
+		"enemy voice enabled",
+		"open channel voice enabled",
+		"dead player voice enabled"
 	};
+	STRING_LIST(game_engine_social_options_flags, game_engine_social_options_flags_strings, _countof(game_engine_social_options_flags_strings));
 
-	TAG_ENUM(game_engine_map_override_options_flags, 6)
+	STRINGS(game_engine_map_override_options_flags)
 	{
-		OPTION("grenades on map"),
-		OPTION("shortcuts on map"),
-		OPTION("equipment on map"),
-		OPTION("powerups on map"),
-		OPTION("turrets on map"),
-		OPTION("indestructible vehicles"),
+		"grenades on map",
+		"shortcuts on map",
+		"equipment on map",
+		"powerups on map",
+		"turrets on map",
+		"indestructible vehicles"
 	};
+	STRING_LIST(game_engine_map_override_options_flags, game_engine_map_override_options_flags_strings, _countof(game_engine_map_override_options_flags_strings));
 
-	TAG_ENUM(game_engine_team_options_team_flags, 6)
+	STRINGS(game_engine_team_options_team_flags)
 	{
-		OPTION("enabled"),
-		OPTION("primary override color"),
-		OPTION("secondary override color"),
-		OPTION("override ui text tint color"),
-		OPTION("override ui bitmap tint color"),
-		OPTION("override emblem"),
+		"enabled",
+		"primary override color",
+		"secondary override color",
+		"override ui text tint color",
+		"override ui bitmap tint color",
+		"override emblem"
 	};
+	STRING_LIST(game_engine_team_options_team_flags, game_engine_team_options_team_flags_strings, _countof(game_engine_team_options_team_flags_strings));
 
-	TAG_ENUM(game_engine_team_options_player_model_choice, 2)
+	STRINGS(game_engine_team_options_player_model_choice)
 	{
-		OPTION("spartan"),
-		OPTION("elite"),
+		"spartan",
+		"elite"
 	};
+	STRING_LIST(game_engine_team_options_player_model_choice, game_engine_team_options_player_model_choice_strings, _countof(game_engine_team_options_player_model_choice_strings));
 
-	TAG_ENUM(game_engine_team_options_model_override_type, 5)
+	STRINGS(game_engine_team_options_model_override_type)
 	{
-		OPTION("none (player choice)"),
-		OPTION("force spartan"),
-		OPTION("force elite"),
-		OPTION("set by team"),
-		OPTION("set by designator"),
+		"none (player choice)",
+		"force spartan",
+		"force elite",
+		"set by team",
+		"set by designator"
 	};
+	STRING_LIST(game_engine_team_options_model_override_type, game_engine_team_options_model_override_type_strings, _countof(game_engine_team_options_model_override_type_strings));
 
-	TAG_ENUM(game_engine_team_options_designator_switch_type, 3)
+	STRINGS(game_engine_team_options_designator_switch_type)
 	{
-		OPTION("none"),
-		OPTION("random"),
-		OPTION("rotate"),
+		"none",
+		"random",
+		"rotate"
 	};
+	STRING_LIST(game_engine_team_options_designator_switch_type, game_engine_team_options_designator_switch_type_strings, _countof(game_engine_team_options_designator_switch_type_strings));
 
-	TAG_ENUM(gameEngineOrdnanceOptionsFlags, 1)
+	STRINGS(gameEngineOrdnanceOptionsFlags)
 	{
-		OPTION("ordnance enabled"),
+		"ordnance enabled"
 	};
+	STRING_LIST(gameEngineOrdnanceOptionsFlags, gameEngineOrdnanceOptionsFlags_strings, _countof(gameEngineOrdnanceOptionsFlags_strings));
 
-	TAG_ENUM(sandbox_flags, 2)
+	STRINGS(sandbox_flags)
 	{
-		OPTION("open channel voice"),
-		OPTION("requires all objects"),
+		"open channel voice",
+		"requires all objects"
 	};
+	STRING_LIST(sandbox_flags, sandbox_flags_strings, _countof(sandbox_flags_strings));
 
-	TAG_ENUM(sandbox_editing_mode, 2)
+	STRINGS(sandbox_editing_mode)
 	{
-		OPTION("All players"),
-		OPTION("Only Leader"),
+		"All players",
+		"Only Leader"
 	};
+	STRING_LIST(sandbox_editing_mode, sandbox_editing_mode_strings, _countof(sandbox_editing_mode_strings));
 
-	TAG_ENUM(sandbox_respawn_time, 12)
+	STRINGS(sandbox_respawn_time)
 	{
-		OPTION("instant"),
-		OPTION("3 seconds"),
-		OPTION("4 seconds"),
-		OPTION("5 seconds"),
-		OPTION("6 seconds"),
-		OPTION("7 seconds"),
-		OPTION("8 seconds"),
-		OPTION("9 seconds"),
-		OPTION("10 seconds"),
-		OPTION("15 seconds"),
-		OPTION("30 seconds"),
-		OPTION("60 seconds"),
+		"instant",
+		"3 seconds",
+		"4 seconds",
+		"5 seconds",
+		"6 seconds",
+		"7 seconds",
+		"8 seconds",
+		"9 seconds",
+		"10 seconds",
+		"15 seconds",
+		"30 seconds",
+		"60 seconds"
 	};
+	STRING_LIST(sandbox_respawn_time, sandbox_respawn_time_strings, _countof(sandbox_respawn_time_strings));
 
-	TAG_ENUM(skull_flags, 17)
+	STRINGS(skull_flags)
 	{
-		OPTION("skull_iron"),
-		OPTION("skull_black_eye"),
-		OPTION("skull_tough_luck"),
-		OPTION("skull_catch"),
-		OPTION("skull_fog"),
-		OPTION("skull_famine"),
-		OPTION("skull_thunderstorm"),
-		OPTION("skull_tilt"),
-		OPTION("skull_mythic"),
-		OPTION("skull_assassin"),
-		OPTION("skull_blind"),
-		OPTION("skull_superman"),
-		OPTION("skull_birthday_party"),
-		OPTION("skull_daddy"),
-		OPTION("skull_red"),
-		OPTION("skull_yellow"),
-		OPTION("skull_blue"),
+		"skull_iron",
+		"skull_black_eye",
+		"skull_tough_luck",
+		"skull_catch",
+		"skull_fog",
+		"skull_famine",
+		"skull_thunderstorm",
+		"skull_tilt",
+		"skull_mythic",
+		"skull_assassin",
+		"skull_blind",
+		"skull_superman",
+		"skull_birthday_party",
+		"skull_daddy",
+		"skull_red",
+		"skull_yellow",
+		"skull_blue"
 	};
+	STRING_LIST(skull_flags, skull_flags_strings, _countof(skull_flags_strings));
 
-	TAG_ENUM(survival_wave_squad_advance_type_enum, 2)
+	STRINGS(survival_wave_squad_advance_type_enum)
 	{
-		OPTION("random"),
-		OPTION("sequence"),
+		"random",
+		"sequence"
 	};
+	STRING_LIST(survival_wave_squad_advance_type_enum, survival_wave_squad_advance_type_enum_strings, _countof(survival_wave_squad_advance_type_enum_strings));
 
-	TAG_ENUM(survival_wave_properties_flags, 1)
+	STRINGS(survival_wave_properties_flags)
 	{
-		OPTION("delivered via dropship"),
+		"delivered via dropship"
 	};
+	STRING_LIST(survival_wave_properties_flags, survival_wave_properties_flags_strings, _countof(survival_wave_properties_flags_strings));
 
-	TAG_ENUM(game_engine_survival_variant_flags, 5)
+	STRINGS(game_engine_survival_variant_flags)
 	{
-		OPTION("enable scenario hazards"),
-		OPTION("generator defend all"),
-		OPTION("generator random spawn"),
-		OPTION("enable weapon drops"),
-		OPTION("enable ammo crates"),
+		"enable scenario hazards",
+		"generator defend all",
+		"generator random spawn",
+		"enable weapon drops",
+		"enable ammo crates"
 	};
+	STRING_LIST(game_engine_survival_variant_flags, game_engine_survival_variant_flags_strings, _countof(game_engine_survival_variant_flags_strings));
 
-	TAG_ENUM(FirefightWaveDeliveryMethod, 4)
+	STRINGS(FirefightWaveDeliveryMethod)
 	{
-		OPTION("Dropship"),
-		OPTION("Monster Closet"),
-		OPTION("Drop Pod"),
-		OPTION("Test Spawn"),
+		"Dropship",
+		"Monster Closet",
+		"Drop Pod",
+		"Test Spawn"
 	};
+	STRING_LIST(FirefightWaveDeliveryMethod, FirefightWaveDeliveryMethod_strings, _countof(FirefightWaveDeliveryMethod_strings));
 
-	TAG_ENUM(FirefightWaveDifficulty, 3)
+	STRINGS(FirefightWaveDifficulty)
 	{
-		OPTION("Easy"),
-		OPTION("Medium"),
-		OPTION("Hard"),
+		"Easy",
+		"Medium",
+		"Hard"
 	};
+	STRING_LIST(FirefightWaveDifficulty, FirefightWaveDifficulty_strings, _countof(FirefightWaveDifficulty_strings));
 
-	TAG_ENUM(FirefightGoal, 8)
+	STRINGS(FirefightGoal)
 	{
-		OPTION("Object Destruction"),
-		OPTION("Object Delivery"),
-		OPTION("Location Arrival"),
-		OPTION("Time Passed"),
-		OPTION("No More Waves"),
-		OPTION("Kill Boss"),
-		OPTION("Defense"),
-		OPTION("Other"),
+		"Object Destruction",
+		"Object Delivery",
+		"Location Arrival",
+		"Time Passed",
+		"No More Waves",
+		"Kill Boss",
+		"Defense",
+		"Other"
 	};
+	STRING_LIST(FirefightGoal, FirefightGoal_strings, _countof(FirefightGoal_strings));
 
-	TAG_ENUM(GameEnginePlayerGoalFlags, 2)
+	STRINGS(GameEnginePlayerGoalFlags)
 	{
-		OPTION("Looping"),
-		OPTION("Random Waves"),
+		"Looping",
+		"Random Waves"
 	};
+	STRING_LIST(GameEnginePlayerGoalFlags, GameEnginePlayerGoalFlags_strings, _countof(GameEnginePlayerGoalFlags_strings));
 
-	TAG_ENUM(GameEngineFirefightVariantFlags, 2)
+	STRINGS(GameEngineFirefightVariantFlags)
 	{
-		OPTION("Use Ammo Crates"),
-		OPTION("Players Respawn on Wave"),
+		"Use Ammo Crates",
+		"Players Respawn on Wave"
 	};
+	STRING_LIST(GameEngineFirefightVariantFlags, GameEngineFirefightVariantFlags_strings, _countof(GameEngineFirefightVariantFlags_strings));
 
-	TAG_ENUM(game_engine_settings_flags, 1)
+	STRINGS(game_engine_settings_flags)
 	{
-		OPTION("unused"),
+		"unused"
 	};
+	STRING_LIST(game_engine_settings_flags, game_engine_settings_flags_strings, _countof(game_engine_settings_flags_strings));
+
+	TAG_REFERENCE(GameEngineFirefightVariantReference, GAMEENGINEFIREFIGHTVARIANTTAG_TAG);
 
 } // namespace blofeld
 

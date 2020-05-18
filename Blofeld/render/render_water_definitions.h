@@ -9,7 +9,6 @@ namespace blofeld
 
 	extern s_tag_block_definition render_water_ripple_block_block;
 
-
 	extern s_tag_struct_definition render_water_ripple_struct_definition_struct_definition; // tag group
 
 	extern const char* ripple_behavior_flags_strings[];

@@ -21,7 +21,6 @@ namespace blofeld
 	extern s_tag_block_definition sound_incident_response_data_block_block;
 	extern s_tag_block_definition sound_incident_response_block_block;
 
-
 	extern s_tag_struct_definition sound_response_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition sound_incident_response_struct_definition_struct_definition; // tag group
 
@@ -33,6 +32,9 @@ namespace blofeld
 	extern s_string_list_definition sound_audience_flags;
 	extern const char* sound_splitscreen_flags_strings[];
 	extern s_string_list_definition sound_splitscreen_flags;
+
+	extern s_tag_reference_definition sound_response_group_reference;
+	extern s_tag_reference_definition sound_incident_response_group_reference;
 
 } // namespace blofeld
 

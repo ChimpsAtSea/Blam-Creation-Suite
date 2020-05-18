@@ -11,11 +11,12 @@ namespace blofeld
 	extern s_tag_block_definition NarrativeFlagDefinitionBlock_block;
 	extern s_tag_block_definition NarrativeGlobals_block_block;
 
-
 	extern s_tag_struct_definition NarrativeGlobals_struct_definition_struct_definition; // tag group
 
 	extern const char* NarrativeFlagTypeEnum_strings[];
 	extern s_string_list_definition NarrativeFlagTypeEnum;
+
+	extern s_tag_reference_definition NarrativeGlobalsReference;
 
 } // namespace blofeld
 

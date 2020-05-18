@@ -13,7 +13,6 @@ namespace blofeld
 	extern s_tag_block_definition sound_class_block_block;
 
 
-
 	extern const char* sound_class_internal_flags_definition_strings[];
 	extern s_string_list_definition sound_class_internal_flags_definition;
 	extern const char* sound_class_external_flags_definition_strings[];

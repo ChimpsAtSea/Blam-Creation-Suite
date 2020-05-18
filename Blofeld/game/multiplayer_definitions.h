@@ -31,7 +31,6 @@ namespace blofeld
 	extern s_tag_struct_definition multiplayer_color_block$3_block_struct;
 	extern s_tag_block_definition multiplayer_color_block$3_block;
 
-
 	extern s_tag_struct_definition multiplayer_globals_struct_definition_struct_definition; // tag group
 
 	extern const char* requisition_special_buy_enum_strings[];
@@ -44,6 +43,7 @@ namespace blofeld
 	extern s_string_list_definition game_engine_status_enum_definition;
 	extern const char* game_engine_status_flags_definition_strings[];
 	extern s_string_list_definition game_engine_status_flags_definition;
+
 
 } // namespace blofeld
 

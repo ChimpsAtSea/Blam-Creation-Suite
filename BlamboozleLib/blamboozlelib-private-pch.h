@@ -49,7 +49,6 @@ public:
 
 		throw;
 	}
-private:
 	T value;
 };
 

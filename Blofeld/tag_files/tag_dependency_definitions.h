@@ -11,9 +11,9 @@ namespace blofeld
 	extern s_tag_block_definition one_dependency_block_definition_block;
 	extern s_tag_block_definition dependency_block_block;
 
-
 	extern s_tag_struct_definition dependency_struct_definition_struct_definition; // tag group
 
+	extern s_tag_reference_definition dependency_reference_definition;
 
 } // namespace blofeld
 

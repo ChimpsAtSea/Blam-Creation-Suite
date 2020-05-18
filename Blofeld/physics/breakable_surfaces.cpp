@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,18 +10,20 @@ namespace blofeld
 
 	TAG_STRUCT(breakable_surface_struct_definition)
 	{
-		FIELD( _field_explanation, "VITALITY" ),
-		FIELD( _field_real_bounds, "direct damage vitality#this is damage from bullets hitting the surface" ),
-		FIELD( _field_real_bounds, "collision damage impulse thresholds#not really vitality - this is mass * velocity into the surface.  Running player bipeds cap out around 255\nrun \'event_display_category physics:breakable_surfaces verbose\' to get verbose information about damage to breakable surfaces" ),
-		FIELD( _field_real_bounds, "AoE damage vitality!#not actually in use yet..." ),
-		FIELD( _field_tag_reference, "effect" ),
-		FIELD( _field_tag_reference, "sound" ),
-		FIELD( _field_block, "particle effects", &particle_system_definition_block_new_block ),
-		FIELD( _field_real, "particle density" ),
-		FIELD( _field_tag_reference, "crack bitmap" ),
-		FIELD( _field_tag_reference, "hole bitmap" ),
-		FIELD( _field_terminator )
+		{ _field_explanation, "VITALITY" },
+		{ _field_real_bounds, "direct damage vitality#this is damage from bullets hitting the surface" },
+		{ _field_real_bounds, "collision damage impulse thresholds#not really vitality - this is mass * velocity into the surface.  Running player bipeds cap out around 255\nrun \'event_display_category physics:breakable_surfaces verbose\' to get verbose information about damage to breakable surfaces" },
+		{ _field_real_bounds, "AoE damage vitality!#not actually in use yet..." },
+		{ _field_tag_reference, "effect", &global_effect_reference },
+		{ _field_tag_reference, "sound", &global_sound_reference },
+		{ _field_block, "particle effects", &particle_system_definition_block_new_block },
+		{ _field_real, "particle density" },
+		{ _field_tag_reference, "crack bitmap", &global_bitmap_reference },
+		{ _field_tag_reference, "hole bitmap", &global_bitmap_reference },
+		{ _field_terminator }
 	};
+
+	TAG_REFERENCE(global_breakable_surface_reference, BREAKABLE_SURFACE_TAG);
 
 } // namespace blofeld
 

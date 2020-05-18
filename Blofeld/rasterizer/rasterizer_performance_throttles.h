@@ -11,11 +11,12 @@ namespace blofeld
 	extern s_tag_block_definition performane_throttle_block_block;
 	extern s_tag_block_definition performance_throttles_block_block;
 
-
 	extern s_tag_struct_definition performance_throttles_struct_definition_struct_definition; // tag group
 
 	extern const char* performance_throttle_flags_strings[];
 	extern s_string_list_definition performance_throttle_flags;
+
+	extern s_tag_reference_definition global_performance_throttles_reference;
 
 } // namespace blofeld
 

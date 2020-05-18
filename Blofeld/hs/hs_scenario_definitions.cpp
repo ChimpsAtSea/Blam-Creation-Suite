@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -7,219 +8,223 @@ namespace blofeld
 
 	TAG_BLOCK(hs_references_block, k_maximum_hs_references_per_context)
 	{
-		FIELD( _field_tag_reference, "reference*^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "reference*^", &hs_references_block_reference_reference },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(hs_source_files_block, k_maximum_hs_source_files_per_context)
 	{
-		FIELD( _field_string, "name*" ),
-		FIELD( _field_data, "source*" ),
-		FIELD( _field_long_flags, "flags", &hs_source_file_flags ),
-		FIELD( _field_terminator )
+		{ _field_string, "name*" },
+		{ _field_data, "source*" },
+		{ _field_long_flags, "flags", &hs_source_file_flags },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(hs_script_parameters_block, k_maximum_hs_parameters_per_script)
 	{
-		FIELD( _field_string, "name^*" ),
-		FIELD( _field_long_enum, "return type*", &hs_types_enum ),
-		FIELD( _field_terminator )
+		{ _field_string, "name^*" },
+		{ _field_long_enum, "return type*", &hs_types_enum },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(hs_scripts_block, k_maximum_hs_scripts_per_context)
 	{
-		FIELD( _field_string_id, "name^*" ),
-		FIELD( _field_enum, "script type*", &hs_script_types_enum ),
-		FIELD( _field_word_flags, "script flags*", &scriptFlagsEnumDefinition ),
-		FIELD( _field_long_enum, "return type*", &hs_types_enum ),
-		FIELD( _field_long_integer, "root expression index*" ),
-		FIELD( _field_long_integer, "locals stack space" ),
-		FIELD( _field_block, "parameters", &hs_script_parameters_block_block ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name^*" },
+		{ _field_enum, "script type*", &hs_script_types_enum },
+		{ _field_word_flags, "script flags*", &scriptFlagsEnumDefinition },
+		{ _field_long_enum, "return type*", &hs_types_enum },
+		{ _field_long_integer, "root expression index*" },
+		{ _field_long_integer, "locals stack space" },
+		{ _field_block, "parameters", &hs_script_parameters_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(hs_globals_block, k_maximum_hs_globals_per_context)
 	{
-		FIELD( _field_string_id, "name*" ),
-		FIELD( _field_long_enum, "type*", &hs_types_enum ),
-		FIELD( _field_long_integer, "initialization expression index*" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name*" },
+		{ _field_long_enum, "type*", &hs_types_enum },
+		{ _field_long_integer, "initialization expression index*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(HSInstancedVariablesBlock, k_maximum_hs_instanced_variables_per_context)
 	{
-		FIELD( _field_string_id, "name*" ),
-		FIELD( _field_long_enum, "type*", &hs_types_enum ),
-		FIELD( _field_long_integer, "initialization expression index*" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name*" },
+		{ _field_long_enum, "type*", &hs_types_enum },
+		{ _field_long_integer, "initialization expression index*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(hs_unit_seat_block, k_maximum_hs_unit_seat_mappings)
 	{
-		FIELD( _field_long_integer, "unit definition tag index!" ),
-		FIELD( _field_long_integer, "unit seats!" ),
-		FIELD( _field_long_integer, "unit seats2!" ),
-		FIELD( _field_terminator )
+		{ _field_long_integer, "unit definition tag index!" },
+		{ _field_long_integer, "unit seats!" },
+		{ _field_long_integer, "unit seats2!" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(hs_syntax_datum_block, k_maximum_hs_syntax_nodes_per_context)
 	{
-		FIELD( _field_short_integer, "datum header~" ),
-		FIELD( _field_short_integer, "script index/function index/constant type union" ),
-		FIELD( _field_long_integer, "next node" ),
-		FIELD( _field_long_integer, "source data" ),
-		FIELD( _field_long_integer, "source offset location" ),
-		FIELD( _field_long_enum, "node expression type", &hs_types_enum ),
-		FIELD( _field_short_integer, "flags" ),
-		FIELD( _field_short_integer, "source file index" ),
-		FIELD( _field_long_integer, "source file offset" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "datum header~" },
+		{ _field_short_integer, "script index/function index/constant type union" },
+		{ _field_long_integer, "next node" },
+		{ _field_long_integer, "source data" },
+		{ _field_long_integer, "source offset location" },
+		{ _field_long_enum, "node expression type", &hs_types_enum },
+		{ _field_short_integer, "flags" },
+		{ _field_short_integer, "source file index" },
+		{ _field_long_integer, "source file offset" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(HSImportManifestEntryBlock, k_maximum_hs_scripts_per_context)
 	{
-		FIELD( _field_string_id, "script name*" ),
-		FIELD( _field_long_integer, "argCount*" ),
-		FIELD( _field_long_integer, "index!~" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "script name*" },
+		{ _field_long_integer, "argCount*" },
+		{ _field_long_integer, "index!~" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(HSImportManifestBlock, 128)
 	{
-		FIELD( _field_tag, "callee tag*" ),
-		FIELD( _field_block, "script table*", &HSImportManifestEntryBlock_block ),
-		FIELD( _field_block, "variable table*", &HSImportManifestEntryBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_tag, "callee tag*" },
+		{ _field_block, "script table*", &HSImportManifestEntryBlock_block },
+		{ _field_block, "variable table*", &HSImportManifestEntryBlock_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(hs_script_types_enum, 6)
+	STRINGS(hs_script_types_enum)
 	{
-		OPTION("startup"),
-		OPTION("dormant"),
-		OPTION("continuous"),
-		OPTION("static"),
-		OPTION("command_script"),
-		OPTION("stub"),
+		"startup",
+		"dormant",
+		"continuous",
+		"static",
+		"command_script",
+		"stub"
 	};
+	STRING_LIST(hs_script_types_enum, hs_script_types_enum_strings, _countof(hs_script_types_enum_strings));
 
-	TAG_ENUM(scriptFlagsEnumDefinition, 2)
+	STRINGS(scriptFlagsEnumDefinition)
 	{
-		OPTION("instanced"),
-		OPTION("cinema"),
+		"instanced",
+		"cinema"
 	};
+	STRING_LIST(scriptFlagsEnumDefinition, scriptFlagsEnumDefinition_strings, _countof(scriptFlagsEnumDefinition_strings));
 
-	TAG_ENUM(hs_types_enum, 102)
+	STRINGS(hs_types_enum)
 	{
-		OPTION("unparsed"),
-		OPTION("special_form"),
-		OPTION("function_name"),
-		OPTION("passthrough"),
-		OPTION("void"),
-		OPTION("boolean"),
-		OPTION("real"),
-		OPTION("short"),
-		OPTION("long"),
-		OPTION("string"),
-		OPTION("script"),
-		OPTION("string_id"),
-		OPTION("unit_seat_mapping"),
-		OPTION("trigger_volume"),
-		OPTION("sound_event"),
-		OPTION("cutscene_flag"),
-		OPTION("cutscene_camera_point"),
-		OPTION("cutscene_title"),
-		OPTION("cutscene_recording"),
-		OPTION("device_group"),
-		OPTION("ai"),
-		OPTION("ai_command_list"),
-		OPTION("ai_command_script"),
-		OPTION("ai_behavior"),
-		OPTION("ai_orders"),
-		OPTION("ai_line"),
-		OPTION("starting_profile"),
-		OPTION("conversation"),
-		OPTION("player"),
-		OPTION("zone_set"),
-		OPTION("designer_zone"),
-		OPTION("point_reference"),
-		OPTION("point_set_reference"),
-		OPTION("style"),
-		OPTION("object_list"),
-		OPTION("folder"),
-		OPTION("sound"),
-		OPTION("effect"),
-		OPTION("damage"),
-		OPTION("looping_sound"),
-		OPTION("animation_graph"),
-		OPTION("damage_effect"),
-		OPTION("object_definition"),
-		OPTION("bitmap"),
-		OPTION("shader"),
-		OPTION("render_model"),
-		OPTION("structure_definition"),
-		OPTION("lightmap_definition"),
-		OPTION("cinematic_definition"),
-		OPTION("cinematic_scene_definition"),
-		OPTION("cinematic_scene_data_definition"),
-		OPTION("cinematic_transition_definition"),
-		OPTION("bink_definition"),
-		OPTION("cui_screen_definition"),
-		OPTION("any_tag"),
-		OPTION("any_tag_not_resolving"),
-		OPTION("game_difficulty"),
-		OPTION("team"),
-		OPTION("mp_team"),
-		OPTION("controller"),
-		OPTION("button_preset"),
-		OPTION("joystick_preset"),
-		OPTION("player_color"),
-		OPTION("player_model_choice"),
-		OPTION("voice_output_setting"),
-		OPTION("voice_mask"),
-		OPTION("subtitle_setting"),
-		OPTION("actor_type"),
-		OPTION("model_state"),
-		OPTION("event"),
-		OPTION("character_physics"),
-		OPTION("skull"),
-		OPTION("firing_point_evaluator"),
-		OPTION("damage_region"),
-		OPTION("currency_type"),
-		OPTION("delivery_method"),
-		OPTION("wave_difficulty"),
-		OPTION("firefight_goal"),
-		OPTION("firefight_wave_type"),
-		OPTION("font"),
-		OPTION("text_justification"),
-		OPTION("text_alignment"),
-		OPTION("text_drop_shadow_type"),
-		OPTION("havok_group"),
-		OPTION("object"),
-		OPTION("unit"),
-		OPTION("vehicle"),
-		OPTION("weapon"),
-		OPTION("device"),
-		OPTION("scenery"),
-		OPTION("effect_scenery"),
-		OPTION("object_name"),
-		OPTION("unit_name"),
-		OPTION("vehicle_name"),
-		OPTION("weapon_name"),
-		OPTION("device_name"),
-		OPTION("scenery_name"),
-		OPTION("effect_scenery_name"),
-		OPTION("cinematic_lightprobe"),
-		OPTION("animation_budget_reference"),
-		OPTION("looping_sound_budget_reference"),
-		OPTION("sound_budget_reference"),
+		"unparsed",
+		"special_form",
+		"function_name",
+		"passthrough",
+		"void",
+		"boolean",
+		"real",
+		"short",
+		"long",
+		"string",
+		"script",
+		"string_id",
+		"unit_seat_mapping",
+		"trigger_volume",
+		"sound_event",
+		"cutscene_flag",
+		"cutscene_camera_point",
+		"cutscene_title",
+		"cutscene_recording",
+		"device_group",
+		"ai",
+		"ai_command_list",
+		"ai_command_script",
+		"ai_behavior",
+		"ai_orders",
+		"ai_line",
+		"starting_profile",
+		"conversation",
+		"player",
+		"zone_set",
+		"designer_zone",
+		"point_reference",
+		"point_set_reference",
+		"style",
+		"object_list",
+		"folder",
+		"sound",
+		"effect",
+		"damage",
+		"looping_sound",
+		"animation_graph",
+		"damage_effect",
+		"object_definition",
+		"bitmap",
+		"shader",
+		"render_model",
+		"structure_definition",
+		"lightmap_definition",
+		"cinematic_definition",
+		"cinematic_scene_definition",
+		"cinematic_scene_data_definition",
+		"cinematic_transition_definition",
+		"bink_definition",
+		"cui_screen_definition",
+		"any_tag",
+		"any_tag_not_resolving",
+		"game_difficulty",
+		"team",
+		"mp_team",
+		"controller",
+		"button_preset",
+		"joystick_preset",
+		"player_color",
+		"player_model_choice",
+		"voice_output_setting",
+		"voice_mask",
+		"subtitle_setting",
+		"actor_type",
+		"model_state",
+		"event",
+		"character_physics",
+		"skull",
+		"firing_point_evaluator",
+		"damage_region",
+		"currency_type",
+		"delivery_method",
+		"wave_difficulty",
+		"firefight_goal",
+		"firefight_wave_type",
+		"font",
+		"text_justification",
+		"text_alignment",
+		"text_drop_shadow_type",
+		"havok_group",
+		"object",
+		"unit",
+		"vehicle",
+		"weapon",
+		"device",
+		"scenery",
+		"effect_scenery",
+		"object_name",
+		"unit_name",
+		"vehicle_name",
+		"weapon_name",
+		"device_name",
+		"scenery_name",
+		"effect_scenery_name",
+		"cinematic_lightprobe",
+		"animation_budget_reference",
+		"looping_sound_budget_reference",
+		"sound_budget_reference"
 	};
+	STRING_LIST(hs_types_enum, hs_types_enum_strings, _countof(hs_types_enum_strings));
 
-	TAG_ENUM(hs_source_file_flags, 3)
+	STRINGS(hs_source_file_flags)
 	{
-		OPTION("generated at runtime"),
-		OPTION("ai fragments"),
-		OPTION("ai performances"),
+		"generated at runtime",
+		"ai fragments",
+		"ai performances"
 	};
+	STRING_LIST(hs_source_file_flags, hs_source_file_flags_strings, _countof(hs_source_file_flags_strings));
 
 } // namespace blofeld
 

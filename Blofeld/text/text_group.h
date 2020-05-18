@@ -17,10 +17,10 @@ namespace blofeld
 	extern s_tag_array_definition data_hash_definition_array;
 	extern s_tag_struct_definition multilingual_unicode_string_list_language_pack_offsets_struct_definition;
 	extern s_tag_array_definition multilingual_unicode_string_list_language_pack_offsets_array;
-
 	extern s_tag_struct_definition language_pack_definition_struct_definition;
 	extern s_tag_struct_definition multilingual_unicode_string_list_struct_definition_struct_definition; // tag group
 
+	extern s_tag_reference_definition global_multilingual_unicode_string_list_reference;
 
 } // namespace blofeld
 

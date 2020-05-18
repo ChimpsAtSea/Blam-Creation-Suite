@@ -13,7 +13,6 @@ namespace blofeld
 	extern s_tag_block_definition single_achievement_definition_block_block;
 	extern s_tag_block_definition achievements_block_block;
 
-
 	extern s_tag_struct_definition achievements_struct_definition_struct_definition; // tag group
 
 	extern const char* global_achievement_enum_strings[];

@@ -11,7 +11,6 @@ namespace blofeld
 	extern s_tag_block_definition aural_enhancement_audio_settings_block_block;
 	extern s_tag_block_definition armormod_globals_block_block;
 
-
 	extern s_tag_struct_definition armormod_globals_struct_definition_struct_definition; // tag group
 
 	extern const char* stealthFlagsDefs_strings[];

@@ -116,7 +116,6 @@ namespace blofeld
 	extern s_tag_struct_definition structureMetadataLightConeMarkerBlock_block_struct;
 	extern s_tag_block_definition structureMetadataLightConeMarkerBlock_block;
 
-
 	extern s_tag_struct_definition prefab_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition structure_bsp_cluster_portal_oriented_bounds_block_struct_definition;
 	extern s_tag_struct_definition structure_bsp_resource_interface_struct_definition;
@@ -152,6 +151,8 @@ namespace blofeld
 	extern s_string_list_definition structure_instance_group_flags;
 	extern const char* prefabOverrideFlags_strings[];
 	extern s_string_list_definition prefabOverrideFlags;
+
+	extern s_tag_reference_definition structure_lighting_bsp_reference;
 
 } // namespace blofeld
 

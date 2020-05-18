@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -7,80 +8,82 @@ namespace blofeld
 
 	TAG_BLOCK(mission_dialogue_variants_block, k_max_variants_per_line)
 	{
-		FIELD( _field_string_id, "variant designation#3-letter designation for the character^" ),
-		FIELD( _field_tag_reference, "sound" ),
-		FIELD( _field_string_id, "sound effect" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "variant designation#3-letter designation for the character^" },
+		{ _field_tag_reference, "sound", &sound_reference },
+		{ _field_string_id, "sound effect" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(mission_dialogue_lines_block, k_max_lines_per_scenario)
 	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_block, "variants", &mission_dialogue_variants_block_block ),
-		FIELD( _field_string_id, "default sound effect" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name^" },
+		{ _field_block, "variants", &mission_dialogue_variants_block_block },
+		{ _field_string_id, "default sound effect" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(ai_mission_dialogue_block, 1, ai_mission_dialogue_struct_definition_struct_definition );
 
 	TAG_BLOCK(ai_scene_trigger_block, 1)
 	{
-		FIELD( _field_enum, "combination rule", &combination_rules_enum ),
-		FIELD( _field_pad, "NJBJMKU", 2 ),
-		FIELD( _field_block, "triggers", &trigger_references_block ),
-		FIELD( _field_terminator )
+		{ _field_enum, "combination rule", &combination_rules_enum },
+		{ _field_pad, "NJBJMKU", 2 },
+		{ _field_block, "triggers", &trigger_references_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(ai_scene_role_variants_block, k_max_variants_per_line)
 	{
-		FIELD( _field_string_id, "variant designation^" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "variant designation^" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(ai_scene_role_block, k_max_roles_per_scene)
 	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_enum, "group", &role_group_enum ),
-		FIELD( _field_pad, "XZUW", 2 ),
-		FIELD( _field_useless_pad ),
-		FIELD( _field_block, "role variants", &ai_scene_role_variants_block_block ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name^" },
+		{ _field_enum, "group", &role_group_enum },
+		{ _field_pad, "XZUW", 2 },
+		{ _field_useless_pad },
+		{ _field_block, "role variants", &ai_scene_role_variants_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(ai_scene_block, k_max_scenes_per_scenario)
 	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_long_flags, "flags", &scene_flags ),
-		FIELD( _field_block, "trigger conditions", &ai_scene_trigger_block_block ),
-		FIELD( _field_useless_pad ),
-		FIELD( _field_block, "roles", &ai_scene_role_block_block ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name^" },
+		{ _field_long_flags, "flags", &scene_flags },
+		{ _field_block, "trigger conditions", &ai_scene_trigger_block_block },
+		{ _field_useless_pad },
+		{ _field_block, "roles", &ai_scene_role_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(ai_scenario_mission_dialogue_block, 1)
 	{
-		FIELD( _field_tag_reference, "mission dialogue" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "mission dialogue", &ai_mission_dialogue_reference },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(ai_mission_dialogue_struct_definition)
 	{
-		FIELD( _field_block, "lines", &mission_dialogue_lines_block_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "lines", &mission_dialogue_lines_block_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(role_group_enum, 3)
+	STRINGS(role_group_enum)
 	{
-		OPTION("group 1"),
-		OPTION("group 2"),
-		OPTION("group 3"),
+		"group 1",
+		"group 2",
+		"group 3"
 	};
+	STRING_LIST(role_group_enum, role_group_enum_strings, _countof(role_group_enum_strings));
 
-	TAG_ENUM(scene_flags, 2)
+	STRINGS(scene_flags)
 	{
-		OPTION("scene can play multiple times"),
-		OPTION("enable combat dialogue"),
+		"scene can play multiple times",
+		"enable combat dialogue"
 	};
+	STRING_LIST(scene_flags, scene_flags_strings, _countof(scene_flags_strings));
 
 } // namespace blofeld
 

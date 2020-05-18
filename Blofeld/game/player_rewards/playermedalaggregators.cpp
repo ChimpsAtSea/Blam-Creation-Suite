@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,48 +10,48 @@ namespace blofeld
 
 	TAG_BLOCK(medalAggregatorEntry, MedalAggregatorEntry::k_medalAggregatorEntryMaxCount)
 	{
-		FIELD( _field_string_id, "medal name^" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "medal name^" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(medalChallengeAggregator, MedalChallengeAggregator::k_medalChallengeAggregatorMaxCount)
 	{
-		FIELD( _field_string_id, "challenge to increment^" ),
-		FIELD( _field_struct, "medals", &medalAggregator_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "challenge to increment^" },
+		{ _field_struct, "medals", &medalAggregator_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(medal_challenge_aggregator_list_block, 1, medal_challenge_aggregator_list_struct_definition_struct_definition );
 
 	TAG_BLOCK(medalCommendationAggregator, MedalCommendationAggregator::k_medalCommendationAggregatorMaxCount)
 	{
-		FIELD( _field_string_id, "commendation to award^" ),
-		FIELD( _field_struct, "medals", &medalAggregator_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "commendation to award^" },
+		{ _field_struct, "medals", &medalAggregator_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(medal_commendation_aggregator_list_block, 1, medal_commendation_aggregator_list_struct_definition_struct_definition );
 
 	TAG_STRUCT(medal_challenge_aggregator_list_struct_definition)
 	{
-		FIELD( _field_block, "lists", &medalChallengeAggregator_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "lists", &medalChallengeAggregator_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(medalAggregator)
 	{
-		FIELD( _field_string_id, "display name^" ),
-		FIELD( _field_custom, "allowed game modes" ),
-		FIELD( _field_struct, "allowed game modes", &game_mode_flags_struct_struct_definition ),
-		FIELD( _field_custom ),
-		FIELD( _field_block, "contributing medals", &medalAggregatorEntry_block ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "display name^" },
+		{ _field_custom, "allowed game modes" },
+		{ _field_struct, "allowed game modes", &game_mode_flags_struct_struct_definition },
+		{ _field_custom },
+		{ _field_block, "contributing medals", &medalAggregatorEntry_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(medal_commendation_aggregator_list_struct_definition)
 	{
-		FIELD( _field_block, "lists", &medalCommendationAggregator_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "lists", &medalCommendationAggregator_block },
+		{ _field_terminator }
 	};
 
 } // namespace blofeld

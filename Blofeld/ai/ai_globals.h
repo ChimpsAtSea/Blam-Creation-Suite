@@ -37,9 +37,7 @@ namespace blofeld
 	extern s_tag_block_definition ai_globals_data_block_block;
 	extern s_tag_block_definition ai_globals_block_block;
 
-
 	extern s_tag_struct_definition ai_globals_struct_definition_struct_definition; // tag group
-
 
 } // namespace blofeld
 

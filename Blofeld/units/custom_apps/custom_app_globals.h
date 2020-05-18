@@ -13,13 +13,14 @@ namespace blofeld
 	extern s_tag_block_definition custom_app_block_block;
 	extern s_tag_block_definition custom_app_globals_block_block;
 
-
 	extern s_tag_struct_definition custom_app_globals_struct_definition_struct_definition; // tag group
 
 	extern const char* custom_app_flags$2_strings[];
 	extern s_string_list_definition custom_app_flags$2;
 	extern const char* custom_app_update_frequencies_strings[];
 	extern s_string_list_definition custom_app_update_frequencies;
+
+	extern s_tag_reference_definition global_custom_app_globals_reference;
 
 } // namespace blofeld
 

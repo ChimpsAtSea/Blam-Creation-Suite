@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition player_momentum_data_block_block_struct;
 	extern s_tag_block_definition player_momentum_data_block_block;
 	extern s_tag_struct_definition player_information_block_block_struct;
@@ -12,7 +11,6 @@ namespace blofeld
 	extern s_tag_block_definition firstPersonpHiddenBodyRegionsBlock_block;
 	extern s_tag_struct_definition player_representation_block_block_struct;
 	extern s_tag_block_definition player_representation_block_block;
-
 
 
 	extern const char* MomentumFlag_strings[];

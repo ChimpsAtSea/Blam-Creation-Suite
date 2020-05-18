@@ -15,7 +15,6 @@ namespace blofeld
 	extern s_tag_block_definition area_control_block_block;
 	extern s_tag_block_definition damage_response_definition_block_block;
 
-
 	extern s_tag_struct_definition damage_response_definition_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition damage_response_directional_flash_struct_struct_definition;
 	extern s_tag_struct_definition damage_response_motion_sensor_ping_struct_definition;
@@ -28,6 +27,9 @@ namespace blofeld
 	extern s_string_list_definition damage_response_class_type_enum;
 	extern const char* damage_response_class_flags_strings[];
 	extern s_string_list_definition damage_response_class_flags;
+
+	extern s_tag_reference_definition global_damage_effect_or_response_definition_reference;
+	extern s_tag_reference_definition global_damage_response_definition_reference;
 
 } // namespace blofeld
 

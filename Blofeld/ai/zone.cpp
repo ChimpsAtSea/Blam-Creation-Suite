@@ -1,141 +1,146 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
 	TAG_BLOCK(NavMeshAttachmentBlock, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO + MAX_NUM_MOBILE_NAVMESHES)
 	{
-		FIELD( _field_dword_integer, "navMeshUID" ),
-		FIELD( _field_terminator )
+		{ _field_dword_integer, "navMeshUID" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(flight_reference_block, k_max_flight_references_per_area)
 	{
-		FIELD( _field_short_integer, "flight hint index" ),
-		FIELD( _field_short_integer, "point index" ),
-		FIELD( _field_short_integer, "structure index" ),
-		FIELD( _field_pad, "post-structure-index-pad", 2 ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "flight hint index" },
+		{ _field_short_integer, "point index" },
+		{ _field_short_integer, "structure index" },
+		{ _field_pad, "post-structure-index-pad", 2 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(area_sector_point_block, k_maximum_points_per_sector)
 	{
-		FIELD( _field_real_point_3d, "point" ),
-		FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),
-		FIELD( _field_custom_long_block_index, "navMeshUIDOffaceref~!" ),
-		FIELD( _field_real_euler_angles_2d, "normal" ),
-		FIELD( _field_terminator )
+		{ _field_real_point_3d, "point" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
+		{ _field_real_euler_angles_2d, "normal" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(areas_block, k_max_areas_per_zone)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_custom ),
-		FIELD( _field_custom ),
-		FIELD( _field_custom ),
-		FIELD( _field_long_integer, "hkaiVolume vtable*~!" ),
-		FIELD( _field_short_integer, "size*~!" ),
-		FIELD( _field_short_integer, "count*~!" ),
-		FIELD( _field_string, "name^`" ),
-		FIELD( _field_long_flags, "area flags", &area_flags ),
-		FIELD( _field_real_point_3d, "runtime relative mean point!" ),
-		FIELD( _field_custom_long_block_index, "packedKeyOffaceref~!" ),
-		FIELD( _field_custom_long_block_index, "navMeshUIDOffaceref~!" ),
-		FIELD( _field_real, "runtime standard deviation!" ),
-		FIELD( _field_short_integer, "runtime starting index!" ),
-		FIELD( _field_short_integer, "runtime count!" ),
-		FIELD( _field_struct, "Nav Mesh Attachments*", &NavMeshAttachmentsStruct_struct_definition ),
-		FIELD( _field_array, "cluster occupancy!", &area_cluster_occupancy_bitvector_array_array ),
-		FIELD( _field_block, "flight_hints", &flight_reference_block_block ),
-		FIELD( _field_block, "points^", &area_sector_point_block_block ),
-		FIELD( _field_explanation, "Generation Properties" ),
-		FIELD( _field_enum, "preset", &generate_preset_enum ),
-		FIELD( _field_short_integer, "runtimeCarverInversion*~!" ),
-		FIELD( _field_long_flags, "flags", &generate_flags ),
-		FIELD( _field_real, "extrusion" ),
-		FIELD( _field_real, "sink" ),
-		FIELD( _field_angle, "firing point orientation" ),
-		FIELD( _field_angle, "grid orientation" ),
-		FIELD( _field_real, "nav volume cell size" ),
-		FIELD( _field_real, "spacing*" ),
-		FIELD( _field_real, "airborne spacing*" ),
-		FIELD( _field_real, "min cover length*" ),
-		FIELD( _field_real, "cover spacing*" ),
-		FIELD( _field_real, "cover offset distance*" ),
-		FIELD( _field_real, "too close distance*" ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_custom },
+		{ _field_custom },
+		{ _field_custom },
+		{ _field_long_integer, "hkaiVolume vtable*~!" },
+		{ _field_short_integer, "size*~!" },
+		{ _field_short_integer, "count*~!" },
+		{ _field_string, "name^`" },
+		{ _field_long_flags, "area flags", &area_flags },
+		{ _field_real_point_3d, "runtime relative mean point!" },
+		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
+		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },
+		{ _field_real, "runtime standard deviation!" },
+		{ _field_short_integer, "runtime starting index!" },
+		{ _field_short_integer, "runtime count!" },
+		{ _field_struct, "Nav Mesh Attachments*", &NavMeshAttachmentsStruct_struct_definition },
+		{ _field_array, "cluster occupancy!", &area_cluster_occupancy_bitvector_array_array },
+		{ _field_block, "flight_hints", &flight_reference_block_block },
+		{ _field_block, "points^", &area_sector_point_block_block },
+		{ _field_explanation, "Generation Properties" },
+		{ _field_enum, "preset", &generate_preset_enum },
+		{ _field_short_integer, "runtimeCarverInversion*~!" },
+		{ _field_long_flags, "flags", &generate_flags },
+		{ _field_real, "extrusion" },
+		{ _field_real, "sink" },
+		{ _field_angle, "firing point orientation" },
+		{ _field_angle, "grid orientation" },
+		{ _field_real, "nav volume cell size" },
+		{ _field_real, "spacing*" },
+		{ _field_real, "airborne spacing*" },
+		{ _field_real, "min cover length*" },
+		{ _field_real, "cover spacing*" },
+		{ _field_real, "cover offset distance*" },
+		{ _field_real, "too close distance*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(zone_block, k_max_zones_per_map)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_custom ),
-		FIELD( _field_custom ),
-		FIELD( _field_string, "name^" ),
-		FIELD( _field_word_flags, "flags", &zone_flags ),
-		FIELD( _field_short_block_index, "editor folder index!" ),
-		FIELD( _field_block, "firing positions", &firing_positions_block_block ),
-		FIELD( _field_block, "areas", &areas_block_block ),
-		FIELD( _field_struct, "Nav Mesh Attachments*", &NavMeshAttachmentsStruct_struct_definition ),
-		FIELD( _field_struct, "disallowed attachment bsps", &manualBspFlagsReferences_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_custom },
+		{ _field_custom },
+		{ _field_string, "name^" },
+		{ _field_word_flags, "flags", &zone_flags },
+		{ _field_short_block_index, "editor folder index!" },
+		{ _field_block, "firing positions", &firing_positions_block_block },
+		{ _field_block, "areas", &areas_block_block },
+		{ _field_struct, "Nav Mesh Attachments*", &NavMeshAttachmentsStruct_struct_definition },
+		{ _field_struct, "disallowed attachment bsps", &manualBspFlagsReferences_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_ARRAY(area_cluster_occupancy_bitvector_array, ((((MAXIMUM_CLUSTERS_PER_STRUCTURE)+(k_int32_bits-1))>>k_int32_bits_bits)))
 	{
-		FIELD( _field_long_integer, "bitvector data!" ),
-		FIELD( _field_terminator )
+		{ _field_long_integer, "bitvector data!" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(NavMeshAttachmentsStruct)
 	{
-		FIELD( _field_block, "attachments", &NavMeshAttachmentBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "attachments", &NavMeshAttachmentBlock_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(area_flags, 7)
+	STRINGS(area_flags)
 	{
-		OPTION("vehicle area"),
-		OPTION("wall climb"),
-		OPTION("manual reference frame"),
-		OPTION("turret deployment area"),
-		OPTION("invalid sector def!"),
-		OPTION("air volume navigation"),
-		OPTION("generate wall climb nav mesh"),
+		"vehicle area",
+		"wall climb",
+		"manual reference frame",
+		"turret deployment area",
+		"invalid sector def!",
+		"air volume navigation",
+		"generate wall climb nav mesh"
 	};
+	STRING_LIST(area_flags, area_flags_strings, _countof(area_flags_strings));
 
-	TAG_ENUM(generate_flags, 7)
+	STRINGS(generate_flags)
 	{
-		OPTION("exclude cover"),
-		OPTION("ignore existing"),
-		OPTION("generate radial"),
-		OPTION("don\'t stagger"),
-		OPTION("airborne"),
-		OPTION("airborne stagger"),
-		OPTION("continue casting"),
+		"exclude cover",
+		"ignore existing",
+		"generate radial",
+		"don\'t stagger",
+		"airborne",
+		"airborne stagger",
+		"continue casting"
 	};
+	STRING_LIST(generate_flags, generate_flags_strings, _countof(generate_flags_strings));
 
-	TAG_ENUM(generate_preset_enum, 13)
+	STRINGS(generate_preset_enum)
 	{
-		OPTION("high density{dense}"),
-		OPTION("medium density"),
-		OPTION("low density{loose}"),
-		OPTION("high density vehicle"),
-		OPTION("medium density vehicle{vehicle}"),
-		OPTION("airborne"),
-		OPTION("engineer"),
-		OPTION("dogfight"),
-		OPTION("dropship"),
-		OPTION("orbital"),
-		OPTION("bishop high density"),
-		OPTION("bishop medium density"),
-		OPTION("bishop low density"),
+		"high density{dense}",
+		"medium density",
+		"low density{loose}",
+		"high density vehicle",
+		"medium density vehicle{vehicle}",
+		"airborne",
+		"engineer",
+		"dogfight",
+		"dropship",
+		"orbital",
+		"bishop high density",
+		"bishop medium density",
+		"bishop low density"
 	};
+	STRING_LIST(generate_preset_enum, generate_preset_enum_strings, _countof(generate_preset_enum_strings));
 
-	TAG_ENUM(zone_flags, 1)
+	STRINGS(zone_flags)
 	{
-		OPTION("giants zone"),
+		"giants zone"
 	};
+	STRING_LIST(zone_flags, zone_flags_strings, _countof(zone_flags_strings));
 
 } // namespace blofeld
 

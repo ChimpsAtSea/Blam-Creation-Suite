@@ -23,7 +23,6 @@ namespace blofeld
 	extern s_tag_struct_definition ai_scenario_mission_dialogue_block_block_struct;
 	extern s_tag_block_definition ai_scenario_mission_dialogue_block_block;
 
-
 	extern s_tag_struct_definition ai_mission_dialogue_struct_definition_struct_definition; // tag group
 
 	extern const char* role_group_enum_strings[];

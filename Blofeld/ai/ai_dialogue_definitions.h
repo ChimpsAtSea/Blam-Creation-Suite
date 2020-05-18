@@ -23,7 +23,6 @@ namespace blofeld
 	extern s_tag_block_definition predicted_data_block_block;
 	extern s_tag_block_definition ai_dialogue_globals_block_block;
 
-
 	extern s_tag_struct_definition ai_dialogue_globals_struct_definition_struct_definition; // tag group
 
 	extern const char* dialogue_names_enum_strings[];
@@ -66,6 +65,8 @@ namespace blofeld
 	extern s_string_list_definition spatial_relation_enum;
 	extern const char* dialogue_condition_flags_strings[];
 	extern s_string_list_definition dialogue_condition_flags;
+
+	extern s_tag_reference_definition global_dialogue_reference;
 
 } // namespace blofeld
 

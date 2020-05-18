@@ -25,7 +25,6 @@ namespace blofeld
 	extern s_tag_block_definition PlayerOrdnanceGroupBlock_block;
 	extern s_tag_block_definition scenario_ordnance_list_block_block;
 
-
 	extern s_tag_struct_definition game_globals_ordnance_list_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition scenario_ordnance_list_struct_definition_struct_definition; // tag group
 

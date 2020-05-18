@@ -1,13 +1,15 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
-	TAG_ENUM(boolean_enum_definition, 2)
+	STRINGS(boolean_enum_definition)
 	{
-		OPTION("false"),
-		OPTION("true"),
+		"false",
+		"true"
 	};
+	STRING_LIST(boolean_enum_definition, boolean_enum_definition_strings, _countof(boolean_enum_definition_strings));
 
 } // namespace blofeld
 

@@ -65,7 +65,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition runtime_queryable_properties_struct_definition;
 	extern s_tag_array_definition runtime_queryable_properties_array;
-
 	extern s_tag_struct_definition render_method_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition tag_block_index_struct_struct_definition;
 	extern s_tag_struct_definition render_method_definition_struct_definition_struct_definition; // tag group

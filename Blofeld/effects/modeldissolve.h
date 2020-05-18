@@ -13,13 +13,13 @@ namespace blofeld
 	extern s_tag_block_definition modelDissolvePerRegionTimeOffsetBlock_block;
 	extern s_tag_block_definition model_dissolve_definition_block_block;
 
-
 	extern s_tag_struct_definition model_dissolve_definition_struct_definition_struct_definition; // tag group
 
 	extern const char* modelDissolveFlags_strings[];
 	extern s_string_list_definition modelDissolveFlags;
 	extern const char* modelDissolveParticleSpawnPosition_strings[];
 	extern s_string_list_definition modelDissolveParticleSpawnPosition;
+
 
 } // namespace blofeld
 

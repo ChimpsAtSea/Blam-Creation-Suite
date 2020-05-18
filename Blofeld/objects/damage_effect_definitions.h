@@ -13,7 +13,6 @@ namespace blofeld
 	extern s_tag_block_definition damage_effect_sound_block_block;
 	extern s_tag_block_definition damage_effect_block_block;
 
-
 	extern s_tag_struct_definition damage_effect_group_struct_definition; // tag group
 	extern s_tag_struct_definition damage_outer_cone_angle_struct_struct_definition;
 
@@ -31,6 +30,8 @@ namespace blofeld
 	extern s_string_list_definition damage_effect_sound_type_flags;
 	extern const char* damage_effect_flags_strings[];
 	extern s_string_list_definition damage_effect_flags;
+
+	extern s_tag_reference_definition global_damage_reference;
 
 } // namespace blofeld
 

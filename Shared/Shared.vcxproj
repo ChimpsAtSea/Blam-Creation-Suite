@@ -60,7 +60,7 @@
     <ClInclude Include="ThreadPrimitives\atomic_flip_value.h" />
     <ClInclude Include="DebugLogging.h" />
     <ClInclude Include="FatalError.h" />
-    <ClInclude Include="FileSystemUtilities.h" />
+    <ClInclude Include="filesystem_util.h" />
     <ClInclude Include="hexrays_defs.h" />
     <ClInclude Include="ImGuiAddons\dirent\dirent.h" />
     <ClInclude Include="ImGuiAddons\!imgui_addons.h" />
@@ -96,7 +96,7 @@
     <ClCompile Include="ThreadPrimitives\semaphore.cpp" />
     <ClCompile Include="ThreadPrimitives\atomic_flip_value.cpp" />
     <ClCompile Include="FatalError.cpp" />
-    <ClCompile Include="FileSystemUtilities.cpp" />
+    <ClCompile Include="filesystem_util.cpp" />
     <ClCompile Include="ImGuiAddons\imgui_file_browser.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>

@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -7,41 +8,42 @@ namespace blofeld
 
 	TAG_BLOCK(rewardDefinitionBlock, RewardGlobalDefinition::k_maximum_count)
 	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_char_enum, "type", &rewardTypeEnum ),
-		FIELD( _field_pad, "PJB1", 3 ),
-		FIELD( _field_block, "rewards", &rewardBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name^" },
+		{ _field_char_enum, "type", &rewardTypeEnum },
+		{ _field_pad, "PJB1", 3 },
+		{ _field_block, "rewards", &rewardBlock_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(reward_globals_definition_block, 1, reward_globals_definition_struct_definition_struct_definition );
 
 	TAG_STRUCT(reward_globals_definition_struct_definition)
 	{
-		FIELD( _field_block, "reward definitions{cookie awards}", &rewardDefinitionBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "reward definitions{cookie awards}", &rewardDefinitionBlock_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(rewardTypeEnum, 17)
+	STRINGS(rewardTypeEnum)
 	{
-		OPTION("invasion"),
-		OPTION("bounties"),
-		OPTION("slot machine"),
-		OPTION("heat"),
-		OPTION("mission scripting"),
-		OPTION("commendation"),
-		OPTION("daily challenge"),
-		OPTION("achievement"),
-		OPTION("console scripting"),
-		OPTION("game complete"),
-		OPTION("time spent"),
-		OPTION("score"),
-		OPTION("winning"),
-		OPTION("hopper"),
-		OPTION("slot machinelsp_jackpot"),
-		OPTION("double_xp"),
-		OPTION("fast_track_armor"),
+		"invasion",
+		"bounties",
+		"slot machine",
+		"heat",
+		"mission scripting",
+		"commendation",
+		"daily challenge",
+		"achievement",
+		"console scripting",
+		"game complete",
+		"time spent",
+		"score",
+		"winning",
+		"hopper",
+		"slot machinelsp_jackpot",
+		"double_xp",
+		"fast_track_armor"
 	};
+	STRING_LIST(rewardTypeEnum, rewardTypeEnum_strings, _countof(rewardTypeEnum_strings));
 
 } // namespace blofeld
 

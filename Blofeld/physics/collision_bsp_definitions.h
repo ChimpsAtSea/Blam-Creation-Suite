@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition bsp3d_nodes_block_block_struct;
 	extern s_tag_block_definition bsp3d_nodes_block_block;
 	extern s_tag_struct_definition bsp3d_kd_supdernodes_block_block_struct;
@@ -39,7 +38,6 @@ namespace blofeld
 	extern s_tag_block_definition large_vertices_block_block;
 	extern s_tag_struct_definition global_large_collision_bsp_block_block_struct;
 	extern s_tag_block_definition global_large_collision_bsp_block_block;
-
 
 	extern s_tag_struct_definition global_collision_bsp_struct_struct_definition;
 	extern s_tag_struct_definition collision_leaf_struct_struct_definition;

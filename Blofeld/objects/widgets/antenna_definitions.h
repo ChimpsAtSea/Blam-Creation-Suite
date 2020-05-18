@@ -11,9 +11,7 @@ namespace blofeld
 	extern s_tag_block_definition antenna_vertex_block_block;
 	extern s_tag_block_definition antenna_block_block;
 
-
 	extern s_tag_struct_definition antenna_struct_definition_struct_definition; // tag group
-
 
 } // namespace blofeld
 

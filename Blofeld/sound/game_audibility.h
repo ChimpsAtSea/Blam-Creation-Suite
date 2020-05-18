@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition door_encoded_pas_block_block_struct;
 	extern s_tag_block_definition door_encoded_pas_block_block;
 	extern s_tag_struct_definition room_door_portal_encoded_pas_block_block_struct;
@@ -20,8 +19,6 @@ namespace blofeld
 	extern s_tag_block_definition bsp_cluster_to_room_indices_block;
 	extern s_tag_struct_definition game_audibility_block_block_struct;
 	extern s_tag_block_definition game_audibility_block_block;
-
-
 
 
 } // namespace blofeld

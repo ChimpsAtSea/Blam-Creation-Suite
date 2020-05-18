@@ -12,6 +12,8 @@
 
 namespace blofeld
 {
+#define _countof_safe(value) (sizeof(value) / sizeof(value[0]))
+
 #define VERSION_RANGE(minimum_version, maximum_version) minimum_version, maximum_version
 #define VERSION_MAX(maximum_version) _build_not_set, maximum_version
 #define VERSION_MIN(minimum_version) minimum_version, _build_not_set
@@ -20,7 +22,7 @@ namespace blofeld
 
 	struct s_tag_field;
 	struct s_tag_group;
-	struct s_tag_reference;
+	struct s_tag_reference_definition;
 	struct s_tag_struct_definition;
 	struct s_tag_block_definition;
 	struct s_tag_array_definition;
@@ -82,25 +84,29 @@ s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), group_
 #define TAG_GROUP_INHERIT_FROM_BLOCK(tag_group_name, group_tag, parent_tag_group_name, parent_group_tag, block_name) \
 s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), group_tag, parent_group_tag, block_name, &CONCAT(parent_tag_group_name, _group) };
 
-#define TAG_REFERENCE_DEFINITION(name, tag_group) \
-s_tag_reference name = { 0, tag_group, 0 };
+#define TAG_REFERENCE(tag_reference_symbolname, ...) \
+s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition(__VA_ARGS__)
 
-#define TAG_REFERENCE_DEFINITION_EX(name, tag_group) \
-extern unsigned long CONCAT(name, _tag_groups)[]; \
-s_tag_reference name = { 0, INVALID_TAG, CONCAT(name, _tag_groups) }; \
-unsigned long CONCAT(name, _tag_groups)[] =
+#define TAG_REFERENCE_GROUP(tag_reference_symbolname, ...) \
+extern unsigned long CONCAT(tag_reference_symbolname, _reference)[]; \
+s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition(__VA_ARGS__); \
+unsigned long CONCAT(tag_reference_symbolname, _reference)[] =
 
-#define TAG_ENUM(name, count) \
+#define STRINGS(name) \
+extern const char* CONCAT(name, _strings)[] =
+
+#define STRING_LIST(name, string_list, count) \
+s_string_list_definition name = { STRINGIFY(name), count, static_cast<const char**>(string_list), __FILE__, __LINE__ }
+
+#define _TAG_ENUM(name, count) \
 extern const char* CONCAT(name, _strings)[]; \
 s_string_list_definition name = { STRINGIFY(name), count, CONCAT(name, _strings), __FILE__, __LINE__ }; \
 const char* CONCAT(name, _strings)[] = 
 
-#define TAG_ENUM_EMPTY(name, count) \
+#define _TAG_ENUM_EMPTY(name, count) \
 extern const char* CONCAT(name, _strings)[]; \
 s_string_list_definition name = { STRINGIFY(name), count, CONCAT(name, _strings), __FILE__, __LINE__ }; \
 const char* CONCAT(name, _strings)[] = { "" }
-
-#define OPTION(option) (STRINGIFY(option))
 
 #define TAG_ARRAY(tag_array_name, array_count) \
 TAG_STRUCT_FORWARD(tag_array_name) \

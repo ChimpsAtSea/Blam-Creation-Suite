@@ -11,7 +11,6 @@ namespace blofeld
 	extern s_tag_block_definition rewardDefinitionBlock_block;
 	extern s_tag_block_definition reward_globals_definition_block_block;
 
-
 	extern s_tag_struct_definition reward_globals_definition_struct_definition_struct_definition; // tag group
 
 	extern const char* rewardTypeEnum_strings[];

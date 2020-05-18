@@ -1,14 +1,16 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
-	TAG_ENUM(global_chud_blip_type_definition, 3)
+	STRINGS(global_chud_blip_type_definition)
 	{
-		OPTION("medium"),
-		OPTION("small"),
-		OPTION("large"),
+		"medium",
+		"small",
+		"large"
 	};
+	STRING_LIST(global_chud_blip_type_definition, global_chud_blip_type_definition_strings, _countof(global_chud_blip_type_definition_strings));
 
 } // namespace blofeld
 

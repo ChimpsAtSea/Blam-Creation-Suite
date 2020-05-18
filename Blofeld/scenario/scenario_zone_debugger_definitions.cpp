@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -7,8 +8,8 @@ namespace blofeld
 
 	TAG_STRUCT(scenario_zone_debugger_block_definition_struct)
 	{
-		FIELD( _field_long_block_flags, "active designer zones" ),
-		FIELD( _field_terminator )
+		{ _field_long_block_flags, "active designer zones" },
+		{ _field_terminator }
 	};
 
 } // namespace blofeld

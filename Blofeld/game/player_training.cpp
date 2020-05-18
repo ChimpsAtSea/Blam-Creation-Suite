@@ -1,36 +1,39 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
 	TAG_BLOCK(player_training_entry_data_block, k_player_training_count)
 	{
-		FIELD( _field_string_id, "display string#comes out of the HUD text globals" ),
-		FIELD( _field_word_integer, "max display time#how long the message can be on screen before being hidden" ),
-		FIELD( _field_word_integer, "display count#how many times a training message will get displayed (0-3 only!)" ),
-		FIELD( _field_word_integer, "dissapear delay#how long a displayed but untriggered message stays up" ),
-		FIELD( _field_word_integer, "redisplay delay#how long after display this message will stay hidden" ),
-		FIELD( _field_real, "display delay (s)#how long the event can be triggered before it\'s displayed" ),
-		FIELD( _field_word_flags, "flags", &player_training_flags ),
-		FIELD( _field_pad, "HURLUV", 2 ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "display string#comes out of the HUD text globals" },
+		{ _field_word_integer, "max display time#how long the message can be on screen before being hidden" },
+		{ _field_word_integer, "display count#how many times a training message will get displayed (0-3 only!)" },
+		{ _field_word_integer, "dissapear delay#how long a displayed but untriggered message stays up" },
+		{ _field_word_integer, "redisplay delay#how long after display this message will stay hidden" },
+		{ _field_real, "display delay (s)#how long the event can be triggered before it\'s displayed" },
+		{ _field_word_flags, "flags", &player_training_flags },
+		{ _field_pad, "HURLUV", 2 },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(player_training_flags, 1)
+	STRINGS(player_training_flags)
 	{
-		OPTION("not in multiplayer"),
+		"not in multiplayer"
 	};
+	STRING_LIST(player_training_flags, player_training_flags_strings, _countof(player_training_flags_strings));
 
-	TAG_ENUM(player_training_vehicle_type_enum, 7)
+	STRINGS(player_training_vehicle_type_enum)
 	{
-		OPTION("none"),
-		OPTION("warthog"),
-		OPTION("warthog turret"),
-		OPTION("ghost"),
-		OPTION("banshee"),
-		OPTION("tank"),
-		OPTION("wraith"),
+		"none",
+		"warthog",
+		"warthog turret",
+		"ghost",
+		"banshee",
+		"tank",
+		"wraith"
 	};
+	STRING_LIST(player_training_vehicle_type_enum, player_training_vehicle_type_enum_strings, _countof(player_training_vehicle_type_enum_strings));
 
 } // namespace blofeld
 

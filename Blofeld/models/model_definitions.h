@@ -52,7 +52,6 @@ namespace blofeld
 	extern s_tag_array_definition runtime_region_index_array_array;
 	extern s_tag_struct_definition model_state_permutation_index_array_struct_definition;
 	extern s_tag_array_definition model_state_permutation_index_array_array;
-
 	extern s_tag_struct_definition model_target_lock_on_data_struct_struct_definition;
 
 	extern const char* model_flags_definition_strings[];

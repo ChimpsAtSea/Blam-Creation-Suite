@@ -3,10 +3,8 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition looping_sound_detail_block_block_struct;
 	extern s_tag_block_definition looping_sound_detail_block_block;
-
 
 
 	extern const char* looping_sound_detail_flags_strings[];

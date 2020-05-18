@@ -39,7 +39,6 @@ namespace blofeld
 	extern s_tag_block_definition object_spawn_effects_block_block;
 	extern s_tag_block_definition object_block_block;
 
-
 	extern s_tag_struct_definition object_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition object_abandonment_struct_struct_definition;
 

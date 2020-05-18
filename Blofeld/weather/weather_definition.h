@@ -9,11 +9,12 @@ namespace blofeld
 
 	extern s_tag_block_definition rain_definition_block_block;
 
-
 	extern s_tag_struct_definition rain_definition_struct_definition_struct_definition; // tag group
 
 	extern const char* rain_particle_flags_strings[];
 	extern s_string_list_definition rain_particle_flags;
+
+	extern s_tag_reference_definition global_rain_definition_reference;
 
 } // namespace blofeld
 

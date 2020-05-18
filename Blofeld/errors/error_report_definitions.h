@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition error_report_vertices_block_block_struct;
 	extern s_tag_block_definition error_report_vertices_block_block;
 	extern s_tag_struct_definition error_report_vectors_block_block_struct;
@@ -31,7 +30,6 @@ namespace blofeld
 	extern s_tag_array_definition error_report_triangle_point_array_array;
 	extern s_tag_struct_definition error_report_quad_point_array_struct_definition;
 	extern s_tag_array_definition error_report_quad_point_array_array;
-
 	extern s_tag_struct_definition error_report_point_definition_struct_definition;
 
 	extern const char* error_report_types_strings[];

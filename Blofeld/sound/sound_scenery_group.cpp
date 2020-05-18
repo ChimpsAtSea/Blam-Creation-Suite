@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,13 +10,13 @@ namespace blofeld
 
 	TAG_STRUCT(sound_scenery_struct_definition)
 	{
-		FIELD( _field_struct, "object", &object_struct_definition_struct_definition ),
-		FIELD( _field_long_integer, "YJNXHAWAO1!" ),
-		FIELD( _field_long_integer, "YJNXHAWAO2!" ),
-		FIELD( _field_long_integer, "YJNXHAWAO3!" ),
-		FIELD( _field_long_integer, "YJNXHAWAO4!" ),
-		FIELD( _field_useless_pad ),
-		FIELD( _field_terminator )
+		{ _field_struct, "object", &object_struct_definition_struct_definition },
+		{ _field_long_integer, "YJNXHAWAO1!" },
+		{ _field_long_integer, "YJNXHAWAO2!" },
+		{ _field_long_integer, "YJNXHAWAO3!" },
+		{ _field_long_integer, "YJNXHAWAO4!" },
+		{ _field_useless_pad },
+		{ _field_terminator }
 	};
 
 } // namespace blofeld

@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,33 +10,36 @@ namespace blofeld
 
 	TAG_STRUCT(point_physics_struct_definition)
 	{
-		FIELD( _field_long_flags, "flags", &point_physics_definition_flags ),
-		FIELD( _field_real, "runtime mass over radius cubed!" ),
-		FIELD( _field_real, "runtime inverse density!" ),
-		FIELD( _field_long_integer, "IGNORE1!" ),
-		FIELD( _field_long_integer, "IGNORE2!" ),
-		FIELD( _field_long_integer, "IGNORE3!" ),
-		FIELD( _field_long_integer, "IGNORE4!" ),
-		FIELD( _field_long_integer, "IGNORE5!" ),
-		FIELD( _field_real, "density:g/mL" ),
-		FIELD( _field_real, "air friction" ),
-		FIELD( _field_real, "water friction" ),
-		FIELD( _field_real, "surface friction#when hitting the ground or interior, percentage of velocity lost in one collision" ),
-		FIELD( _field_real, "elasticity#0.0 is inelastic collisions (no bounce) 1.0 is perfectly elastic (reflected velocity equals incoming velocity)" ),
-		FIELD( _field_pad, "DR", 12 ),
-		FIELD( _field_explanation, "Densities (g/mL)" ),
-		FIELD( _field_terminator )
+		{ _field_long_flags, "flags", &point_physics_definition_flags },
+		{ _field_real, "runtime mass over radius cubed!" },
+		{ _field_real, "runtime inverse density!" },
+		{ _field_long_integer, "IGNORE1!" },
+		{ _field_long_integer, "IGNORE2!" },
+		{ _field_long_integer, "IGNORE3!" },
+		{ _field_long_integer, "IGNORE4!" },
+		{ _field_long_integer, "IGNORE5!" },
+		{ _field_real, "density:g/mL" },
+		{ _field_real, "air friction" },
+		{ _field_real, "water friction" },
+		{ _field_real, "surface friction#when hitting the ground or interior, percentage of velocity lost in one collision" },
+		{ _field_real, "elasticity#0.0 is inelastic collisions (no bounce) 1.0 is perfectly elastic (reflected velocity equals incoming velocity)" },
+		{ _field_pad, "DR", 12 },
+		{ _field_explanation, "Densities (g/mL)" },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(point_physics_definition_flags, 6)
+	STRINGS(point_physics_definition_flags)
 	{
-		OPTION("UNUSED"),
-		OPTION("collides with structures"),
-		OPTION("collides with water surface"),
-		OPTION("uses simple wind#the wind on this point won\'t have high-frequency variations"),
-		OPTION("uses damped wind#the wind on this point will be artificially slow"),
-		OPTION("no gravity#the point is not affected by gravity"),
+		"UNUSED",
+		"collides with structures",
+		"collides with water surface",
+		"uses simple wind#the wind on this point won\'t have high-frequency variations",
+		"uses damped wind#the wind on this point will be artificially slow",
+		"no gravity#the point is not affected by gravity"
 	};
+	STRING_LIST(point_physics_definition_flags, point_physics_definition_flags_strings, _countof(point_physics_definition_flags_strings));
+
+	TAG_REFERENCE(global_point_physics_reference, POINT_PHYSICS_TAG);
 
 } // namespace blofeld
 

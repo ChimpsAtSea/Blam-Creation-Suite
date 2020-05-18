@@ -3,9 +3,6 @@
 namespace blofeld
 {
 
-
-
-
 	extern s_tag_struct_definition midnight_light_struct_struct_definition;
 
 	extern const char* midnight_light_type_enum_definition_strings[];

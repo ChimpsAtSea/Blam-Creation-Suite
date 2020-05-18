@@ -13,7 +13,5 @@ namespace blofeld
 	extern s_tag_block_definition forge_color_block_block;
 
 
-
-
 } // namespace blofeld
 

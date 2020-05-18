@@ -10,10 +10,8 @@ namespace blofeld
 	extern s_tag_block_definition survival_mode_wave_templates_block;
 	extern s_tag_block_definition survival_mode_globals_block_block;
 
-
 	extern s_tag_struct_definition survival_mode_globals_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition survival_mode_wave_templates_struct_struct_definition;
-
 
 } // namespace blofeld
 

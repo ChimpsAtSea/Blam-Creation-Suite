@@ -13,7 +13,6 @@ namespace blofeld
 	extern s_tag_block_definition game_medal_block_block;
 	extern s_tag_block_definition game_medal_globals_block_block;
 
-
 	extern s_tag_struct_definition game_medal_globals_struct_definition_struct_definition; // tag group
 
 	extern const char* medal_class_enum_strings[];

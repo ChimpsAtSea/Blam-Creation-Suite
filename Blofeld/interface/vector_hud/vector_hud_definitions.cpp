@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,8 +10,8 @@ namespace blofeld
 
 	TAG_STRUCT(vector_hud_definition_struct_definition)
 	{
-		FIELD( _field_data, "raw hud data" ),
-		FIELD( _field_terminator )
+		{ _field_data, "raw hud data" },
+		{ _field_terminator }
 	};
 
 } // namespace blofeld

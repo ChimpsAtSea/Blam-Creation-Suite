@@ -3,10 +3,8 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition rewardBlock_block_struct;
 	extern s_tag_block_definition rewardBlock_block;
-
 
 
 	extern const char* currencyTypeEnumDefinition_strings[];

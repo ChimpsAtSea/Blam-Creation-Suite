@@ -9,9 +9,7 @@ namespace blofeld
 
 	extern s_tag_block_definition entity_block_block;
 
-
 	extern s_tag_struct_definition entity_struct_definition_struct_definition; // tag group
-
 
 } // namespace blofeld
 

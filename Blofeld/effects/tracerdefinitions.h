@@ -11,7 +11,6 @@ namespace blofeld
 	extern s_tag_block_definition tracerDefinitionBlock_block;
 	extern s_tag_block_definition tracer_system_block_block;
 
-
 	extern s_tag_struct_definition tracer_system_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition tracerProperty_real_Struct_struct_definition;
 	extern s_tag_struct_definition tracerProperty_real_vector3d_Struct_struct_definition;

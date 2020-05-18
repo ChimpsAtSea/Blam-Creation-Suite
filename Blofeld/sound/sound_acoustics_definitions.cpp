@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -7,106 +8,108 @@ namespace blofeld
 
 	TAG_BLOCK(acoustic_sector_point_block, k_maximum_points_per_sector)
 	{
-		FIELD( _field_real_point_3d, "position" ),
-		FIELD( _field_terminator )
+		{ _field_real_point_3d, "position" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_acoustic_sector_block, s_scenario_acoustic_sector::k_maximum_scenario_acoustic_sectors)
 	{
-		FIELD( _field_block, "points", &acoustic_sector_point_block_block ),
-		FIELD( _field_real_plane_3d, "top plane!" ),
-		FIELD( _field_real_plane_3d, "bottom plane!" ),
-		FIELD( _field_long_flags, "flags", &acousticPaletteFlags ),
-		FIELD( _field_real, "occlusion value" ),
-		FIELD( _field_short_block_index, "acoustics^" ),
-		FIELD( _field_short_block_index, "editor folder!" ),
-		FIELD( _field_real, "height" ),
-		FIELD( _field_real, "sink" ),
-		FIELD( _field_terminator )
+		{ _field_block, "points", &acoustic_sector_point_block_block },
+		{ _field_real_plane_3d, "top plane!" },
+		{ _field_real_plane_3d, "bottom plane!" },
+		{ _field_long_flags, "flags", &acousticPaletteFlags },
+		{ _field_real, "occlusion value" },
+		{ _field_short_block_index, "acoustics^" },
+		{ _field_short_block_index, "editor folder!" },
+		{ _field_real, "height" },
+		{ _field_real, "sink" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_acoustic_transition_block, s_scenario_acoustic_transition::k_maximum_scenario_acoustic_transitions)
 	{
-		FIELD( _field_real_point_3d, "center!" ),
-		FIELD( _field_real_point_3d, "forward!" ),
-		FIELD( _field_real_point_3d, "up!" ),
-		FIELD( _field_real, "half width!" ),
-		FIELD( _field_real, "half height!" ),
-		FIELD( _field_real, "sample point offset 0!" ),
-		FIELD( _field_real, "sample point offset 1!" ),
-		FIELD( _field_short_block_index, "sample 0*" ),
-		FIELD( _field_short_block_index, "sample 1*" ),
-		FIELD( _field_struct, "location 0*!", &scenario_acoustic_location_definition_struct_definition ),
-		FIELD( _field_struct, "location 1*!", &scenario_acoustic_location_definition_struct_definition ),
-		FIELD( _field_short_block_index, "editor folder!" ),
-		FIELD( _field_pad, "CKJEWRSDF", 2 ),
-		FIELD( _field_terminator )
+		{ _field_real_point_3d, "center!" },
+		{ _field_real_point_3d, "forward!" },
+		{ _field_real_point_3d, "up!" },
+		{ _field_real, "half width!" },
+		{ _field_real, "half height!" },
+		{ _field_real, "sample point offset 0!" },
+		{ _field_real, "sample point offset 1!" },
+		{ _field_short_block_index, "sample 0*" },
+		{ _field_short_block_index, "sample 1*" },
+		{ _field_struct, "location 0*!", &scenario_acoustic_location_definition_struct_definition },
+		{ _field_struct, "location 1*!", &scenario_acoustic_location_definition_struct_definition },
+		{ _field_short_block_index, "editor folder!" },
+		{ _field_pad, "CKJEWRSDF", 2 },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_acoustics_palette_block_definition_struct)
 	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_explanation, "SOUND ENVIRONMENT" ),
-		FIELD( _field_struct, "reverb", &scenario_acoustics_environment_definition_struct_definition ),
-		FIELD( _field_explanation, "BACKGROUND SOUND" ),
-		FIELD( _field_struct, "ambience", &scenario_acoustics_ambience_definition_struct_definition ),
-		FIELD( _field_explanation, "SOUND BANK" ),
-		FIELD( _field_tag_reference, "Sound bank tag" ),
-		FIELD( _field_tag_reference, "DVD Only sound bank tag" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name^" },
+		{ _field_explanation, "SOUND ENVIRONMENT" },
+		{ _field_struct, "reverb", &scenario_acoustics_environment_definition_struct_definition },
+		{ _field_explanation, "BACKGROUND SOUND" },
+		{ _field_struct, "ambience", &scenario_acoustics_ambience_definition_struct_definition },
+		{ _field_explanation, "SOUND BANK" },
+		{ _field_tag_reference, "Sound bank tag", &global_soundbank_reference },
+		{ _field_tag_reference, "DVD Only sound bank tag", &global_soundbank_reference },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_acoustics_environment_definition)
 	{
-		FIELD( _field_tag_reference, "sound environment" ),
-		FIELD( _field_long_enum, "type", &sound_class_acoustics_string_definition ),
-		FIELD( _field_real, "cutoff distance" ),
-		FIELD( _field_real, "interpolation time{interpolation speed}:seconds" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "sound environment", &global_sound_environment_reference },
+		{ _field_long_enum, "type", &sound_class_acoustics_string_definition },
+		{ _field_real, "cutoff distance" },
+		{ _field_real, "interpolation time{interpolation speed}:seconds" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_acoustics_ambience_definition)
 	{
-		FIELD( _field_tag_reference, "background sound" ),
-		FIELD( _field_tag_reference, "weather sound#plays when rain is active, weather rate gets applied to scale." ),
-		FIELD( _field_tag_reference, "entry sound#plays when entering this area" ),
-		FIELD( _field_tag_reference, "exit sound#plays when leaving this area" ),
-		FIELD( _field_real, "cutoff distance" ),
-		FIELD( _field_real, "interpolation time{interpolation speed}:seconds" ),
-		FIELD( _field_long_flags, "scale flags DEPRICATED!", &background_sound_scale_flags_definition ),
-		FIELD( _field_real_fraction, "interior scale DEPRICATED!" ),
-		FIELD( _field_real_fraction, "portal scale DEPRICATED!" ),
-		FIELD( _field_real_fraction, "exterior scale DEPRICATED!" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "background sound", &global_looping_sound_reference },
+		{ _field_tag_reference, "weather sound#plays when rain is active, weather rate gets applied to scale.", &global_looping_sound_reference },
+		{ _field_tag_reference, "entry sound#plays when entering this area", &global_sound_reference },
+		{ _field_tag_reference, "exit sound#plays when leaving this area", &global_sound_reference },
+		{ _field_real, "cutoff distance" },
+		{ _field_real, "interpolation time{interpolation speed}:seconds" },
+		{ _field_long_flags, "scale flags DEPRICATED!", &background_sound_scale_flags_definition },
+		{ _field_real_fraction, "interior scale DEPRICATED!" },
+		{ _field_real_fraction, "portal scale DEPRICATED!" },
+		{ _field_real_fraction, "exterior scale DEPRICATED!" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_acoustic_location_definition)
 	{
-		FIELD( _field_short_block_index, "sector index*!" ),
-		FIELD( _field_struct, "cluster reference*!", &scenario_acoustic_cluster_reference_definition_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_short_block_index, "sector index*!" },
+		{ _field_struct, "cluster reference*!", &scenario_acoustic_cluster_reference_definition_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_acoustic_cluster_reference_definition)
 	{
-		FIELD( _field_char_integer, "bsp index*!" ),
-		FIELD( _field_byte_integer, "cluster index*!" ),
-		FIELD( _field_terminator )
+		{ _field_char_integer, "bsp index*!" },
+		{ _field_byte_integer, "cluster index*!" },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(background_sound_scale_flags_definition, 4)
+	STRINGS(background_sound_scale_flags_definition)
 	{
-		OPTION("override default scale"),
-		OPTION("use adjacent cluster as portal scale"),
-		OPTION("use adjacent cluster as exterior scale"),
-		OPTION("scale with weather intensity"),
+		"override default scale",
+		"use adjacent cluster as portal scale",
+		"use adjacent cluster as exterior scale",
+		"scale with weather intensity"
 	};
+	STRING_LIST(background_sound_scale_flags_definition, background_sound_scale_flags_definition_strings, _countof(background_sound_scale_flags_definition_strings));
 
-	TAG_ENUM(acousticPaletteFlags, 2)
+	STRINGS(acousticPaletteFlags)
 	{
-		OPTION("occlude if above"),
-		OPTION("occlude if below"),
+		"occlude if above",
+		"occlude if below"
 	};
+	STRING_LIST(acousticPaletteFlags, acousticPaletteFlags_strings, _countof(acousticPaletteFlags_strings));
 
 } // namespace blofeld
 

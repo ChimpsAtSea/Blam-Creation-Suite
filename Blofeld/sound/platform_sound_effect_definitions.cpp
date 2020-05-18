@@ -1,62 +1,65 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
 	TAG_GROUP(sound_effect_collection, SOUND_EFFECT_COLLECTION_TAG)
 	{
-		FIELD( _field_block, "sound effects", &platform_sound_playback_block_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "sound effects", &platform_sound_playback_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(platform_sound_playback_lowpass_block, 1)
 	{
-		FIELD( _field_real, "attack:seconds" ),
-		FIELD( _field_real, "release:seconds" ),
-		FIELD( _field_struct, "settings", &global_sound_lowpass_block_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_real, "attack:seconds" },
+		{ _field_real, "release:seconds" },
+		{ _field_struct, "settings", &global_sound_lowpass_block_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(platform_sound_playback_component_block, k_maximum_number_of_platform_sound_playback_components)
 	{
-		FIELD( _field_tag_reference, "sound^" ),
-		FIELD( _field_real, "gain:dB#additional attenuation to sound" ),
-		FIELD( _field_long_flags, "flags", &platform_sound_playback_component_flags ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "sound^", &global_sound_and_looping_sound_reference },
+		{ _field_real, "gain:dB#additional attenuation to sound" },
+		{ _field_long_flags, "flags", &platform_sound_playback_component_flags },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(platform_sound_playback_block, 128)
 	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_struct, "playback", &platform_sound_playback_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name^" },
+		{ _field_struct, "playback", &platform_sound_playback_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(platform_sound_playback_struct)
 	{
-		FIELD( _field_long_flags, "flags", &platform_sound_effect_flags_definition ),
-		FIELD( _field_tag_reference, "radio effect" ),
-		FIELD( _field_tag_reference, "Start event" ),
-		FIELD( _field_tag_reference, "End event" ),
-		FIELD( _field_tag_reference, "Immediate stop event#Must clear the effect without any transition - used for exiting levels, etc" ),
-		FIELD( _field_block, "lowpass effect", &platform_sound_playback_lowpass_block_block ),
-		FIELD( _field_block, "sound components", &platform_sound_playback_component_block_block ),
-		FIELD( _field_terminator )
+		{ _field_long_flags, "flags", &platform_sound_effect_flags_definition },
+		{ _field_tag_reference, "radio effect", &global_sound_radio_settings_reference },
+		{ _field_tag_reference, "Start event", &global_sound_reference },
+		{ _field_tag_reference, "End event", &global_sound_reference },
+		{ _field_tag_reference, "Immediate stop event#Must clear the effect without any transition - used for exiting levels, etc", &global_sound_reference },
+		{ _field_block, "lowpass effect", &platform_sound_playback_lowpass_block_block },
+		{ _field_block, "sound components", &platform_sound_playback_component_block_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(platform_sound_playback_component_flags, 4)
+	STRINGS(platform_sound_playback_component_flags)
 	{
-		OPTION("don\'t play at start"),
-		OPTION("play on stop"),
-		OPTION("play alternate"),
-		OPTION("sync with origin looping sound"),
+		"don\'t play at start",
+		"play on stop",
+		"play alternate",
+		"sync with origin looping sound"
 	};
+	STRING_LIST(platform_sound_playback_component_flags, platform_sound_playback_component_flags_strings, _countof(platform_sound_playback_component_flags_strings));
 
-	TAG_ENUM(platform_sound_effect_flags_definition, 2)
+	STRINGS(platform_sound_effect_flags_definition)
 	{
-		OPTION("turn off in splitscreen"),
-		OPTION("only turn on in first person"),
+		"turn off in splitscreen",
+		"only turn on in first person"
 	};
+	STRING_LIST(platform_sound_effect_flags_definition, platform_sound_effect_flags_definition_strings, _countof(platform_sound_effect_flags_definition_strings));
 
 } // namespace blofeld
 

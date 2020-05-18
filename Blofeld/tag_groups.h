@@ -1,5 +1,7 @@
 #pragma once
 
+#include "manual_tag_references.h"
+#include "__unknown\tag_references.h"
 #include "ai\ai.h"
 #include "ai\ai_cues.h"
 #include "ai\ai_dialogue_definitions.h"
@@ -25,6 +27,7 @@
 #include "animations\composites\composite_definitions.h"
 #include "animations\pca\pca_animation_definitions.h"
 #include "bink\bink_definitions.h"
+#include "bitmaps\bitmap_group.h"
 #include "bitmaps\bitmap_group_old_tag_definition.h"
 #include "bitmaps\bitmap_group_tag_definition.h"
 #include "bitmaps\bitmap_group_xenon_interop.h"

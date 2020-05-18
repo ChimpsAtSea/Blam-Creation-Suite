@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition structure_device_portal_association_block_block_struct;
 	extern s_tag_block_definition structure_device_portal_association_block_block;
 	extern s_tag_struct_definition game_portal_to_portal_mapping_block_block_struct;
@@ -12,8 +11,6 @@ namespace blofeld
 	extern s_tag_block_definition occluding_portal_to_portal_mapping_block_block;
 	extern s_tag_struct_definition structure_portal_device_mapping_block_block_struct;
 	extern s_tag_block_definition structure_portal_device_mapping_block_block;
-
-
 
 
 } // namespace blofeld

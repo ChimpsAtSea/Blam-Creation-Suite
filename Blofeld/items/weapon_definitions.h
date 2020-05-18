@@ -46,7 +46,6 @@ namespace blofeld
 	extern s_tag_struct_definition WeaponSoundSweetenerBlock_block_struct;
 	extern s_tag_block_definition WeaponSoundSweetenerBlock_block;
 
-
 	extern s_tag_struct_definition aim_assist_struct_struct_definition;
 	extern s_tag_struct_definition WeaponBarrelIronSightsStruct_struct_definition;
 	extern s_tag_struct_definition weapon_interface_struct_struct_definition;
@@ -101,6 +100,9 @@ namespace blofeld
 	extern s_string_list_definition weaponScaleshotLevelFlags;
 	extern const char* weaponScaleshotFlags_strings[];
 	extern s_string_list_definition weaponScaleshotFlags;
+
+	extern s_tag_reference_definition global_weapon_reference;
+	extern s_tag_reference_definition crate_projectile_reference;
 
 } // namespace blofeld
 

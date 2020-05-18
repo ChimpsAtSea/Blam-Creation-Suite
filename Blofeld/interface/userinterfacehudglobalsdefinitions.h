@@ -11,7 +11,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition screen_transform_basis_array_definition_struct_definition;
 	extern s_tag_array_definition screen_transform_basis_array_definition_array;
-
 	extern s_tag_struct_definition user_interface_hud_globals_definition_struct_definition_struct_definition; // tag group
 
 	extern const char* HUDMotionSensorGlobalsFlags_strings[];

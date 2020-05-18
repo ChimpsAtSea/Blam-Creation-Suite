@@ -174,7 +174,6 @@ namespace blofeld
 	extern s_tag_array_definition scenarioFloatingShadowCascadeSettingsArray_array;
 	extern s_tag_struct_definition object_salt_storage_array_struct_definition;
 	extern s_tag_array_definition object_salt_storage_array_array;
-
 	extern s_tag_struct_definition manualBspFlagsReferences_struct_definition;
 	extern s_tag_struct_definition scenario_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition scenarioVolumetricLightShaftSettingsStruct_struct_definition;

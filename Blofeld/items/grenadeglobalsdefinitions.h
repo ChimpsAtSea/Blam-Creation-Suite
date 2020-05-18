@@ -11,11 +11,11 @@ namespace blofeld
 	extern s_tag_block_definition GameGlobalsGrenadeBlock_block;
 	extern s_tag_block_definition game_globals_grenade_list_block_block;
 
-
 	extern s_tag_struct_definition game_globals_grenade_list_struct_definition_struct_definition; // tag group
 
 	extern const char* global_grenade_type_enum_strings[];
 	extern s_string_list_definition global_grenade_type_enum;
+
 
 } // namespace blofeld
 

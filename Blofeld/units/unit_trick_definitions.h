@@ -3,10 +3,8 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition unit_trick_definition_block_block_struct;
 	extern s_tag_block_definition unit_trick_definition_block_block;
-
 
 
 	extern const char* unit_trick_activation_type_enum_strings[];

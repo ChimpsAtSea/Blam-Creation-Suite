@@ -17,7 +17,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition gpu_single_constant_register_array_struct_definition;
 	extern s_tag_array_definition gpu_single_constant_register_array_array;
-
 	extern s_tag_struct_definition particle_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition gpu_data_struct$2_struct_definition;
 

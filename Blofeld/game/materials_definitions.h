@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition object_type_drag_properties_block_block_struct;
 	extern s_tag_block_definition object_type_drag_properties_block_block;
 	extern s_tag_struct_definition underwater_proxies_block_block_struct;
@@ -12,7 +11,6 @@ namespace blofeld
 	extern s_tag_block_definition materials_block_block;
 	extern s_tag_struct_definition runtime_materials_block_block_struct;
 	extern s_tag_block_definition runtime_materials_block_block;
-
 
 	extern s_tag_struct_definition wet_proxies_struct_struct_definition;
 	extern s_tag_struct_definition material_physics_properties_struct_struct_definition;

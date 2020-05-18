@@ -19,13 +19,14 @@ namespace blofeld
 	extern s_tag_struct_definition global_z_reference_vector_block_block_struct;
 	extern s_tag_block_definition global_z_reference_vector_block_block;
 
-
 	extern s_tag_struct_definition detail_object_collection_struct_definition_struct_definition; // tag group
 
 	extern const char* detail_object_collection_type_enum_definition_strings[];
 	extern s_string_list_definition detail_object_collection_type_enum_definition;
 	extern const char* detail_object_type_flags_definition_strings[];
 	extern s_string_list_definition detail_object_type_flags_definition;
+
+	extern s_tag_reference_definition global_detail_object_collection_reference;
 
 } // namespace blofeld
 

@@ -3,9 +3,6 @@
 namespace blofeld
 {
 
-
-
-
 	extern s_tag_struct_definition particle_property_real_point3d_struct_new_struct_definition;
 	extern s_tag_struct_definition particle_property_real_euler_angles2d_struct_new_struct_definition;
 	extern s_tag_struct_definition particle_property_scalar_struct_new_struct_definition;

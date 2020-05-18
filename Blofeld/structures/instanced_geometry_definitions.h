@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition global_render_model_instance_placement_block_block_struct;
 	extern s_tag_block_definition global_render_model_instance_placement_block_block;
 	extern s_tag_struct_definition structure_bsp_instanced_geometry_instances_block_block_struct;
@@ -14,7 +13,6 @@ namespace blofeld
 	extern s_tag_block_definition structure_bsp_instanced_geometry_definition_block_block;
 	extern s_tag_block_definition SerializedHavokGeometryDataBlock_block;
 	extern s_tag_block_definition structureIOHavokDataBlock_block;
-
 
 	extern s_tag_struct_definition structureIOHavokDataBlock_struct_struct_definition;
 	extern s_tag_struct_definition SerializedHavokGeometryDataBlock_struct_struct_definition;

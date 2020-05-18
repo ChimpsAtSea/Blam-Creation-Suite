@@ -21,7 +21,7 @@ using namespace xxhash::literals;
 #include "ImGuiAddons/!imgui_addons.h"
 #include "DebugLogging.h"
 #include "command_line.h"
-#include "FileSystemUtilities.h"
+#include "filesystem_util.h"
 #include "Rendering/Rendering.h"
 #include "Blam/Blam.h"
 

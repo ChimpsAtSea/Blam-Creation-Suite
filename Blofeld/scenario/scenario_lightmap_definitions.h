@@ -71,13 +71,14 @@ namespace blofeld
 
 	extern s_tag_struct_definition dual_vmf_terms_struct_definition;
 	extern s_tag_array_definition dual_vmf_terms_array;
-
 	extern s_tag_struct_definition scenario_wetness_bsp_data_struct_definition_struct_definition; // tag group
 
 	extern const char* lightmapDebugUVPolicyDefinition_strings[];
 	extern s_string_list_definition lightmapDebugUVPolicyDefinition;
 	extern const char* scenario_lightmap_bsp_flags_strings[];
 	extern s_string_list_definition scenario_lightmap_bsp_flags;
+
+	extern s_tag_reference_definition scenario_lightmap_bsp_data_reference;
 
 } // namespace blofeld
 

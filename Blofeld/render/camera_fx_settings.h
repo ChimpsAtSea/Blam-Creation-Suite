@@ -9,8 +9,6 @@ namespace blofeld
 	extern s_tag_block_definition camera_fx_settings_block;
 	extern s_tag_group camera_fx_settings_group;
 
-
-
 	extern s_tag_struct_definition camera_fx_exposure_struct_struct_definition;
 	extern s_tag_struct_definition camera_fx_exposure_sensitivity_struct_struct_definition;
 	extern s_tag_struct_definition camera_fx_bloom_highlight_struct_struct_definition;
@@ -37,6 +35,8 @@ namespace blofeld
 	extern s_string_list_definition camera_fx_parameter_flags_enabled;
 	extern const char* camera_fx_parameter_flags_bling_spikes_strings[];
 	extern s_string_list_definition camera_fx_parameter_flags_bling_spikes;
+
+	extern s_tag_reference_definition global_camera_fx_settings_reference;
 
 } // namespace blofeld
 

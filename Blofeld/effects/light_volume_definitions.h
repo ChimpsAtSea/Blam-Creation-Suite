@@ -13,7 +13,6 @@ namespace blofeld
 	extern s_tag_block_definition light_volume_definition_block_block;
 	extern s_tag_block_definition light_volume_system_block_block;
 
-
 	extern s_tag_struct_definition light_volume_system_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition light_volume_property_real_struct_definition;
 	extern s_tag_struct_definition light_volume_property_real_rgb_color_struct_definition;

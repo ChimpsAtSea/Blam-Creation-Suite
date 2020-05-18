@@ -11,7 +11,6 @@ namespace blofeld
 	extern s_tag_block_definition giant_buckle_parameters_block_block;
 	extern s_tag_block_definition giant_block_block;
 
-
 	extern s_tag_struct_definition giant_struct_definition_struct_definition; // tag group
 
 	extern const char* giant_definition_flags_strings[];

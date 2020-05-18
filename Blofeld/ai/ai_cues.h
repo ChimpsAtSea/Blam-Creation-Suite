@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition firing_point_payload_block_block_struct;
 	extern s_tag_block_definition firing_point_payload_block_block;
 	extern s_tag_struct_definition stimulus_payload_block_block_struct;
@@ -32,7 +31,6 @@ namespace blofeld
 	extern s_tag_block_definition ai_full_cue_block_block;
 	extern s_tag_struct_definition ai_quick_cue_block_block_struct;
 	extern s_tag_block_definition ai_quick_cue_block_block;
-
 
 	extern s_tag_struct_definition cue_distribution_struct_struct_definition;
 	extern s_tag_struct_definition cue_stimulus_distribution_struct_struct_definition;

@@ -6,6 +6,7 @@ class c_h4_tag_group_container;
 class c_h4_tag_block_container;
 class c_h4_tag_struct_container;
 class c_h4_tag_enum_container;
+class c_h4_tag_reference_container;
 
 class c_h4_source_file
 {
@@ -24,6 +25,7 @@ public:
 	std::vector<c_h4_tag_block_container*> tag_arrays;
 	std::vector<c_h4_tag_struct_container*> tag_structs;
 	std::vector<c_h4_tag_enum_container*> tag_enums;
+	std::vector<c_h4_tag_reference_container*> tag_references;
 	std::stringstream source_stream;
 	std::stringstream header_stream;
 };
@@ -88,6 +90,21 @@ public:
 	std::string name_uppercase;
 };
 
+class c_h4_tag_reference_container
+{
+public:
+	c_h4_tag_reference_container(c_h4_tag_reference& tag_reference, c_h4_generator_preprocessor& preprocessor);
+	bool operator ==(const c_h4_tag_reference_container& container) const;
+
+	c_h4_tag_reference& tag_reference;
+	std::string name;
+	std::string symbol_name;
+	std::string name_uppercase;
+	bool is_tag_group_reference;
+	bool is_empty_and_unknown_reference;
+	bool is_template;
+};
+
 class c_h4_generator_preprocessor
 {
 public:
@@ -96,11 +113,16 @@ public:
 	c_h4_tag_block_container* find_existing_tag_block_container(c_h4_tag_block& tag_block);
 	c_h4_tag_struct_container* find_existing_tag_struct_container(c_h4_tag_struct& tag_struct);
 	c_h4_tag_enum_container* find_existing_tag_enum_container(c_h4_tag_enum& tag_enum);
-	void process_tag_block_field(c_h4_tag_field* tag_field);
+	c_h4_tag_reference_container* find_existing_tag_reference_container(c_h4_tag_reference& tag_reference);
 	c_h4_source_file& get_source_file(const char* filepath, c_h4_generator_preprocessor& preprocessor);
+
 	c_h4_tag_block_container& traverse_tag_blocks(c_h4_tag_block& tag_block, bool is_tag = false, bool traverse = true);
-	void process_tag_struct_field(c_h4_tag_field* tag_field);
 	c_h4_tag_struct_container& traverse_tag_structs(c_h4_tag_struct& tag_struct, bool is_block, bool is_array, bool traverse);
+
+	void process_tag_block_field(c_h4_tag_field* tag_field, c_h4_tag_struct& tag_struct);
+	void process_tag_struct_field(c_h4_tag_field* tag_field, c_h4_tag_struct& tag_struct);
+	void process_tag_reference_field(c_h4_tag_field* tag_field, c_h4_tag_struct& tag_struct);
+
 	void cleanup_tag_blocks();
 	void cleanup_tag_structs();
 
@@ -109,10 +131,11 @@ public:
 
 	c_h4_blamboozle& blamboozle;
 	std::vector<c_h4_source_file*> source_files;
-	std::vector<c_h4_tag_group_container*> tag_group_containers;
+	std::vector<c_h4_tag_group_container*> group_containers;
 	std::vector<c_h4_tag_block_container*> tag_block_containers;
 	std::vector<c_h4_tag_struct_container*> tag_struct_containers;
 	std::vector<c_h4_tag_enum_container*> tag_enum_containers;
+	std::vector<c_h4_tag_reference_container*> tag_reference_containers;
 	std::vector<std::string> maximum_count_constants_source_lines_define;
 	std::vector<std::string> maximum_count_constants_source_lines_constant;
 	std::vector<std::string> maximum_count_constants_source_lines_struct;

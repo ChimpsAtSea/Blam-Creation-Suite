@@ -1,518 +1,531 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
 	TAG_BLOCK(part_block, BYTE_MAX)
 	{
-		FIELD( _field_short_block_index, "render method index^*" ),
-		FIELD( _field_short_block_index, "transparent sorting index*" ),
-		FIELD( _field_long_integer, "index start*" ),
-		FIELD( _field_long_integer, "index count*" ),
-		FIELD( _field_short_integer, "subpart start*" ),
-		FIELD( _field_short_integer, "subpart count*" ),
-		FIELD( _field_char_integer, "part type*" ),
-		FIELD( _field_char_enum, "specialized render", &specialized_render_definition ),
-		FIELD( _field_word_flags, "part flags*", &part_flags ),
-		FIELD( _field_word_integer, "budget vertex count" ),
-		FIELD( _field_enum, "tessellation", &tessellation_mode_definition ),
-		FIELD( _field_terminator )
+		{ _field_short_block_index, "render method index^*" },
+		{ _field_short_block_index, "transparent sorting index*" },
+		{ _field_long_integer, "index start*" },
+		{ _field_long_integer, "index count*" },
+		{ _field_short_integer, "subpart start*" },
+		{ _field_short_integer, "subpart count*" },
+		{ _field_char_integer, "part type*" },
+		{ _field_char_enum, "specialized render", &specialized_render_definition },
+		{ _field_word_flags, "part flags*", &part_flags },
+		{ _field_word_integer, "budget vertex count" },
+		{ _field_enum, "tessellation", &tessellation_mode_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(subpart_block, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_long_integer, "index start*" ),
-		FIELD( _field_long_integer, "index count*" ),
-		FIELD( _field_short_block_index, "part index*" ),
-		FIELD( _field_word_integer, "budget vertex count" ),
-		FIELD( _field_dword_integer, "analytical light index" ),
-		FIELD( _field_terminator )
+		{ _field_long_integer, "index start*" },
+		{ _field_long_integer, "index count*" },
+		{ _field_short_block_index, "part index*" },
+		{ _field_word_integer, "budget vertex count" },
+		{ _field_dword_integer, "analytical light index" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(instance_index_word_block, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_short_integer, "instance index*" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "instance index*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(global_instance_bucket_block, (2*1024))
 	{
-		FIELD( _field_short_integer, "mesh index*" ),
-		FIELD( _field_short_integer, "definition index*" ),
-		FIELD( _field_block, "instances", &instance_index_word_block_block ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "mesh index*" },
+		{ _field_short_integer, "definition index*" },
+		{ _field_block, "instances", &instance_index_word_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(indices_word_block, 2147483647L)
 	{
-		FIELD( _field_short_integer, "word*" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "word*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(vertexKeyBlock, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
 	{
-		FIELD( _field_long_integer, "key1*" ),
-		FIELD( _field_long_integer, "key2*" ),
-		FIELD( _field_terminator )
+		{ _field_long_integer, "key1*" },
+		{ _field_long_integer, "key2*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(global_mesh_block, (8*1024-1))
 	{
-		FIELD( _field_block, "parts*", &part_block_block ),
-		FIELD( _field_block, "subparts*", &subpart_block_block ),
-		FIELD( _field_array, "vertex buffer indices*", &vertex_buffer_indices_word_array_array ),
-		FIELD( _field_short_integer, "index buffer index*" ),
-		FIELD( _field_short_integer, "index buffer tessellation*" ),
-		FIELD( _field_word_flags, "mesh flags*", &mesh_flags ),
-		FIELD( _field_char_integer, "rigid node index*" ),
-		FIELD( _field_char_enum, "vertex type*", &mesh_vertex_type_definition ),
-		FIELD( _field_char_enum, "PRT vertex type*", &mesh_transfer_vertex_type_definition ),
-		FIELD( _field_char_enum, "lighting policy", &mesh_lighting_policy_type_definition ),
-		FIELD( _field_char_enum, "index buffer type*", &mesh_index_buffer_type_definition ),
-		FIELD( _field_pad, "BAASDFIR", 1 ),
-		FIELD( _field_short_integer, "pca mesh index*" ),
-		FIELD( _field_block, "instance buckets*", &global_instance_bucket_block_block ),
-		FIELD( _field_block, "water indices start", &indices_word_block_block ),
-		FIELD( _field_real, "runtime bounding radius:world units*!" ),
-		FIELD( _field_real_point_3d, "runtime bounding offset*!" ),
-		FIELD( _field_block, "vertex keys*", &vertexKeyBlock_block ),
-		FIELD( _field_short_block_index, "clone index*" ),
-		FIELD( _field_short_integer, "cumulative part count (initialized by PVS building code)" ),
-		FIELD( _field_terminator )
+		{ _field_block, "parts*", &part_block_block },
+		{ _field_block, "subparts*", &subpart_block_block },
+		{ _field_array, "vertex buffer indices*", &vertex_buffer_indices_word_array_array },
+		{ _field_short_integer, "index buffer index*" },
+		{ _field_short_integer, "index buffer tessellation*" },
+		{ _field_word_flags, "mesh flags*", &mesh_flags },
+		{ _field_char_integer, "rigid node index*" },
+		{ _field_char_enum, "vertex type*", &mesh_vertex_type_definition },
+		{ _field_char_enum, "PRT vertex type*", &mesh_transfer_vertex_type_definition },
+		{ _field_char_enum, "lighting policy", &mesh_lighting_policy_type_definition },
+		{ _field_char_enum, "index buffer type*", &mesh_index_buffer_type_definition },
+		{ _field_pad, "BAASDFIR", 1 },
+		{ _field_short_integer, "pca mesh index*" },
+		{ _field_block, "instance buckets*", &global_instance_bucket_block_block },
+		{ _field_block, "water indices start", &indices_word_block_block },
+		{ _field_real, "runtime bounding radius:world units*!" },
+		{ _field_real_point_3d, "runtime bounding offset*!" },
+		{ _field_block, "vertex keys*", &vertexKeyBlock_block },
+		{ _field_short_block_index, "clone index*" },
+		{ _field_short_integer, "cumulative part count (initialized by PVS building code)" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(PCAMeshIndexBlock, (8*1024-1))
 	{
-		FIELD( _field_long_block_index, "mesh index" ),
-		FIELD( _field_terminator )
+		{ _field_long_block_index, "mesh index" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(compression_info_block, 1+UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_word_flags, "compression flags*", &compression_flags ),
-		FIELD( _field_pad, "JOJOBOMO", 2 ),
-		FIELD( _field_explanation, "WARNING" ),
-		FIELD( _field_real_point_3d, "position bounds 0*" ),
-		FIELD( _field_real_point_3d, "position bounds 1*" ),
-		FIELD( _field_real_point_2d, "texcoord bounds 0*" ),
-		FIELD( _field_real_point_2d, "texcoord bounds 1*" ),
-		FIELD( _field_real, "unused0*" ),
-		FIELD( _field_real, "unused1*" ),
-		FIELD( _field_terminator )
+		{ _field_word_flags, "compression flags*", &compression_flags },
+		{ _field_pad, "JOJOBOMO", 2 },
+		{ _field_explanation, "WARNING" },
+		{ _field_real_point_3d, "position bounds 0*" },
+		{ _field_real_point_3d, "position bounds 1*" },
+		{ _field_real_point_2d, "texcoord bounds 0*" },
+		{ _field_real_point_2d, "texcoord bounds 1*" },
+		{ _field_real, "unused0*" },
+		{ _field_real, "unused1*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(sorting_position_block, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_real_plane_3d, "plane*" ),
-		FIELD( _field_real_point_3d, "position*" ),
-		FIELD( _field_real, "radius*" ),
-		FIELD( _field_array, "node indices*", &node_indices_array_array ),
-		FIELD( _field_array, "node weights*", &node_weights_implicit_array_array ),
-		FIELD( _field_terminator )
+		{ _field_real_plane_3d, "plane*" },
+		{ _field_real_point_3d, "position*" },
+		{ _field_real, "radius*" },
+		{ _field_array, "node indices*", &node_indices_array_array },
+		{ _field_array, "node weights*", &node_weights_implicit_array_array },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(user_data_block, 64)
 	{
-		FIELD( _field_struct, "user data header*", &global_render_geometry_user_data_header_struct_struct_definition ),
-		FIELD( _field_data, "user data*" ),
-		FIELD( _field_terminator )
+		{ _field_struct, "user data header*", &global_render_geometry_user_data_header_struct_struct_definition },
+		{ _field_data, "user data*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(raw_vertex_block, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
 	{
-		FIELD( _field_real_point_3d, "position*" ),
-		FIELD( _field_real_point_2d, "texcoord*" ),
-		FIELD( _field_real_point_3d, "normal*" ),
-		FIELD( _field_real_point_3d, "binormal*" ),
-		FIELD( _field_real_point_3d, "tangent*" ),
-		FIELD( _field_real_point_2d, "lightmap texcoord*" ),
-		FIELD( _field_array, "node indices*", &node_indices_array_array ),
-		FIELD( _field_array, "node weights*", &node_weights_complete_array_array ),
-		FIELD( _field_real_point_3d, "vertex color*" ),
-		FIELD( _field_real_point_2d, "texcoord1*" ),
-		FIELD( _field_terminator )
+		{ _field_real_point_3d, "position*" },
+		{ _field_real_point_2d, "texcoord*" },
+		{ _field_real_point_3d, "normal*" },
+		{ _field_real_point_3d, "binormal*" },
+		{ _field_real_point_3d, "tangent*" },
+		{ _field_real_point_2d, "lightmap texcoord*" },
+		{ _field_array, "node indices*", &node_indices_array_array },
+		{ _field_array, "node weights*", &node_weights_complete_array_array },
+		{ _field_real_point_3d, "vertex color*" },
+		{ _field_real_point_2d, "texcoord1*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(indices_dword_block, 2147483647L)
 	{
-		FIELD( _field_long_integer, "dword*" ),
-		FIELD( _field_terminator )
+		{ _field_long_integer, "dword*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(raw_water_append_block, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_real_point_2d, "base texcoord*" ),
-		FIELD( _field_terminator )
+		{ _field_real_point_2d, "base texcoord*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(raw_water_block, 1024)
 	{
-		FIELD( _field_block, "raw water indices*", &indices_word_block_block ),
-		FIELD( _field_block, "raw water vertices*", &raw_water_append_block_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "raw water indices*", &indices_word_block_block },
+		{ _field_block, "raw water vertices*", &raw_water_append_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(raw_imposter_brdf_block, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_real_rgb_color, "diffuse" ),
-		FIELD( _field_real_rgb_color, "ambient" ),
-		FIELD( _field_real_rgb_color, "specular" ),
-		FIELD( _field_real, "shininess" ),
-		FIELD( _field_real, "alpha" ),
-		FIELD( _field_real_argb_color, "change color tint of diffuse" ),
-		FIELD( _field_real_argb_color, "change color tint of specular" ),
-		FIELD( _field_terminator )
+		{ _field_real_rgb_color, "diffuse" },
+		{ _field_real_rgb_color, "ambient" },
+		{ _field_real_rgb_color, "specular" },
+		{ _field_real, "shininess" },
+		{ _field_real, "alpha" },
+		{ _field_real_argb_color, "change color tint of diffuse" },
+		{ _field_real_argb_color, "change color tint of specular" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(raw_instance_imposter_block, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_real_vector_3d, "position" ),
-		FIELD( _field_dword_integer, "color" ),
-		FIELD( _field_real, "HDR scaler" ),
-		FIELD( _field_terminator )
+		{ _field_real_vector_3d, "position" },
+		{ _field_dword_integer, "color" },
+		{ _field_real, "HDR scaler" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(raw_blendshape_block, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
 	{
-		FIELD( _field_real_vector_3d, "position*" ),
-		FIELD( _field_real_vector_3d, "normal*" ),
-		FIELD( _field_real_argb_color, "tension and ambient occlusion*" ),
-		FIELD( _field_terminator )
+		{ _field_real_vector_3d, "position*" },
+		{ _field_real_vector_3d, "normal*" },
+		{ _field_real_argb_color, "tension and ambient occlusion*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(per_mesh_raw_data_block, (8*1024-1))
 	{
-		FIELD( _field_block, "raw vertices*", &raw_vertex_block_block ),
-		FIELD( _field_block, "raw indices*", &indices_word_block_block ),
-		FIELD( _field_block, "raw indices32*", &indices_dword_block_block ),
-		FIELD( _field_block, "raw water data", &raw_water_block_block ),
-		FIELD( _field_block, "raw imposter data", &raw_imposter_brdf_block_block ),
-		FIELD( _field_block, "raw instance imposter verts", &raw_instance_imposter_block_block ),
-		FIELD( _field_block, "raw blendshapes*", &raw_blendshape_block_block ),
-		FIELD( _field_long_integer, "per vertex lighting vertex size" ),
-		FIELD( _field_short_integer, "parameterized texture width" ),
-		FIELD( _field_short_integer, "parameterized texture height" ),
-		FIELD( _field_long_flags, "flags", &per_mesh_raw_data_flags ),
-		FIELD( _field_terminator )
+		{ _field_block, "raw vertices*", &raw_vertex_block_block },
+		{ _field_block, "raw indices*", &indices_word_block_block },
+		{ _field_block, "raw indices32*", &indices_dword_block_block },
+		{ _field_block, "raw water data", &raw_water_block_block },
+		{ _field_block, "raw imposter data", &raw_imposter_brdf_block_block },
+		{ _field_block, "raw instance imposter verts", &raw_instance_imposter_block_block },
+		{ _field_block, "raw blendshapes*", &raw_blendshape_block_block },
+		{ _field_long_integer, "per vertex lighting vertex size" },
+		{ _field_short_integer, "parameterized texture width" },
+		{ _field_short_integer, "parameterized texture height" },
+		{ _field_long_flags, "flags", &per_mesh_raw_data_flags },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(node_map_byte_block, BYTE_MAX)
 	{
-		FIELD( _field_char_integer, "node index*" ),
-		FIELD( _field_terminator )
+		{ _field_char_integer, "node index*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(per_mesh_node_map_block, (8*1024-1))
 	{
-		FIELD( _field_block, "node map*", &node_map_byte_block_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "node map*", &node_map_byte_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(per_mesh_subpart_visibility_block, 64)
 	{
-		FIELD( _field_block, "bounding_sphere*", &sorting_position_block_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "bounding_sphere*", &sorting_position_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(per_instance_prt_data_block, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_data, "mesh pca data*" ),
-		FIELD( _field_terminator )
+		{ _field_data, "mesh pca data*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(per_mesh_prt_data_block, (8*1024-1))
 	{
-		FIELD( _field_data, "mesh pca data*" ),
-		FIELD( _field_block, "per instance prt data", &per_instance_prt_data_block_block ),
-		FIELD( _field_terminator )
+		{ _field_data, "mesh pca data*" },
+		{ _field_block, "per instance prt data", &per_instance_prt_data_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(raw_texcoord_block, MAXIMUM_VERTICES_PER_GEOMETRY_SECTION)
 	{
-		FIELD( _field_real_point_2d, "texcoord*" ),
-		FIELD( _field_terminator )
+		{ _field_real_point_2d, "texcoord*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(per_instance_lightmap_texcoords_block, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_block, "texture coordinates", &raw_vertex_block_block ),
-		FIELD( _field_block, "texture coordinates (concise)", &raw_texcoord_block_block ),
-		FIELD( _field_short_integer, "vertex buffer index*" ),
-		FIELD( _field_pad, "HTJIAHA", 2 ),
-		FIELD( _field_terminator )
+		{ _field_block, "texture coordinates", &raw_vertex_block_block },
+		{ _field_block, "texture coordinates (concise)", &raw_texcoord_block_block },
+		{ _field_short_integer, "vertex buffer index*" },
+		{ _field_pad, "HTJIAHA", 2 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(water_bounding_box_block, (8*1024-1))
 	{
-		FIELD( _field_short_integer, "mesh index" ),
-		FIELD( _field_short_integer, "part index" ),
-		FIELD( _field_real_point_3d, "position bounds 0" ),
-		FIELD( _field_real_point_3d, "position bounds 1" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "mesh index" },
+		{ _field_short_integer, "part index" },
+		{ _field_real_point_3d, "position bounds 0" },
+		{ _field_real_point_3d, "position bounds 1" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_geometry_pvs_data_visibility_value_block, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_dword_integer, "Value" ),
-		FIELD( _field_terminator )
+		{ _field_dword_integer, "Value" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_geometry_pvs_data_visibility_index_block, UNSIGNED_SHORT_MAX)
 	{
-		FIELD( _field_word_integer, "Index" ),
-		FIELD( _field_terminator )
+		{ _field_word_integer, "Index" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_geometry_pvs_data_block, 16)
 	{
-		FIELD( _field_block, "Visibility array", &render_geometry_pvs_data_visibility_value_block_block ),
-		FIELD( _field_block, "Per-block visibility offset array", &render_geometry_pvs_data_visibility_index_block_block ),
-		FIELD( _field_long_integer, "Bits per block" ),
-		FIELD( _field_real_point_3d, "Object space grid AABB min" ),
-		FIELD( _field_real_point_3d, "Object space grid AABB max" ),
-		FIELD( _field_real_vector_3d, "Block Size" ),
-		FIELD( _field_long_integer, "Num blocks X" ),
-		FIELD( _field_long_integer, "Num blocks Y" ),
-		FIELD( _field_long_integer, "Num blocks Z" ),
-		FIELD( _field_terminator )
+		{ _field_block, "Visibility array", &render_geometry_pvs_data_visibility_value_block_block },
+		{ _field_block, "Per-block visibility offset array", &render_geometry_pvs_data_visibility_index_block_block },
+		{ _field_long_integer, "Bits per block" },
+		{ _field_real_point_3d, "Object space grid AABB min" },
+		{ _field_real_point_3d, "Object space grid AABB max" },
+		{ _field_real_vector_3d, "Block Size" },
+		{ _field_long_integer, "Num blocks X" },
+		{ _field_long_integer, "Num blocks Y" },
+		{ _field_long_integer, "Num blocks Z" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(shapeNameBlock, 8192)
 	{
-		FIELD( _field_long_integer, "key*" ),
-		FIELD( _field_long_string, "name*" ),
-		FIELD( _field_terminator )
+		{ _field_long_integer, "key*" },
+		{ _field_long_string, "name*" },
+		{ _field_terminator }
 	};
 
 	TAG_ARRAY(vertex_buffer_indices_word_array, ((sizeof(*numberof_sizeof_proxy<(sizeof(((((s_mesh *)0)->vertex_buffer_indices)))/sizeof(((((s_mesh *)0)->vertex_buffer_indices))[0]))>(((((s_mesh *)0)->vertex_buffer_indices)))))))
 	{
-		FIELD( _field_word_integer, "vertex buffer index*" ),
-		FIELD( _field_terminator )
+		{ _field_word_integer, "vertex buffer index*" },
+		{ _field_terminator }
 	};
 
 	TAG_ARRAY(node_indices_array, 4)
 	{
-		FIELD( _field_byte_integer, "node index*" ),
-		FIELD( _field_terminator )
+		{ _field_byte_integer, "node index*" },
+		{ _field_terminator }
 	};
 
 	TAG_ARRAY(node_weights_implicit_array, 4-1)
 	{
-		FIELD( _field_real, "node weight*" ),
-		FIELD( _field_terminator )
+		{ _field_real, "node weight*" },
+		{ _field_terminator }
 	};
 
 	TAG_ARRAY(node_weights_complete_array, 4)
 	{
-		FIELD( _field_real, "node weight*" ),
-		FIELD( _field_terminator )
+		{ _field_real, "node weight*" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(global_render_geometry_struct)
 	{
-		FIELD( _field_explanation, "Render Geometry" ),
-		FIELD( _field_long_flags, "runtime flags*!", &render_geometry_flags ),
-		FIELD( _field_block, "meshes*", &global_mesh_block_block ),
-		FIELD( _field_block, "PCA Mesh Indices*", &PCAMeshIndexBlock_block ),
-		FIELD( _field_block, "compression info*", &compression_info_block_block ),
-		FIELD( _field_block, "part sorting position*", &sorting_position_block_block ),
-		FIELD( _field_block, "user data*", &user_data_block_block ),
-		FIELD( _field_block, "per mesh temporary*", &per_mesh_raw_data_block_block ),
-		FIELD( _field_pad, "pad3", 12 ),
-		FIELD( _field_block, "per mesh node map*", &per_mesh_node_map_block_block ),
-		FIELD( _field_block, "per mesh subpart visibility*", &per_mesh_subpart_visibility_block_block ),
-		FIELD( _field_block, "per_mesh_prt_data*", &per_mesh_prt_data_block_block ),
-		FIELD( _field_block, "per_instance_lightmap_texcoords*", &per_instance_lightmap_texcoords_block_block ),
-		FIELD( _field_block, "water bounding box block*", &water_bounding_box_block_block ),
-		FIELD( _field_pageable, "api resource" ),
-		FIELD( _field_block, "Optional PVS data", &render_geometry_pvs_data_block_block ),
-		FIELD( _field_block, "shapeNames*", &shapeNameBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_explanation, "Render Geometry" },
+		{ _field_long_flags, "runtime flags*!", &render_geometry_flags },
+		{ _field_block, "meshes*", &global_mesh_block_block },
+		{ _field_block, "PCA Mesh Indices*", &PCAMeshIndexBlock_block },
+		{ _field_block, "compression info*", &compression_info_block_block },
+		{ _field_block, "part sorting position*", &sorting_position_block_block },
+		{ _field_block, "user data*", &user_data_block_block },
+		{ _field_block, "per mesh temporary*", &per_mesh_raw_data_block_block },
+		{ _field_pad, "pad3", 12 },
+		{ _field_block, "per mesh node map*", &per_mesh_node_map_block_block },
+		{ _field_block, "per mesh subpart visibility*", &per_mesh_subpart_visibility_block_block },
+		{ _field_block, "per_mesh_prt_data*", &per_mesh_prt_data_block_block },
+		{ _field_block, "per_instance_lightmap_texcoords*", &per_instance_lightmap_texcoords_block_block },
+		{ _field_block, "water bounding box block*", &water_bounding_box_block_block },
+		{ _field_pageable, "api resource" },
+		{ _field_block, "Optional PVS data", &render_geometry_pvs_data_block_block },
+		{ _field_block, "shapeNames*", &shapeNameBlock_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(global_render_geometry_user_data_header_struct)
 	{
-		FIELD( _field_char_enum, "data type^*", &render_geometry_user_data_type_definition ),
-		FIELD( _field_char_integer, "data count*" ),
-		FIELD( _field_word_integer, "data size*" ),
-		FIELD( _field_terminator )
+		{ _field_char_enum, "data type^*", &render_geometry_user_data_type_definition },
+		{ _field_char_integer, "data count*" },
+		{ _field_word_integer, "data size*" },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(part_flags, 14)
+	STRINGS(part_flags)
 	{
-		OPTION("is water surface"),
-		OPTION("per vertex lightmap part"),
-		OPTION("debug flag instance part"),
-		OPTION("subparts has uberlights info"),
-		OPTION("draw cull distance medium"),
-		OPTION("draw cull distance close"),
-		OPTION("draw cull rendering shields"),
-		OPTION("cannot single pass render"),
-		OPTION("is transparent"),
-		OPTION("cannot two pass"),
-		OPTION("transparent should output depth for DoF#expensive"),
-		OPTION("do not include in static lightmap"),
-		OPTION("do not include in PVS generation"),
-		OPTION("draw cull rendering active camo"),
+		"is water surface",
+		"per vertex lightmap part",
+		"debug flag instance part",
+		"subparts has uberlights info",
+		"draw cull distance medium",
+		"draw cull distance close",
+		"draw cull rendering shields",
+		"cannot single pass render",
+		"is transparent",
+		"cannot two pass",
+		"transparent should output depth for DoF#expensive",
+		"do not include in static lightmap",
+		"do not include in PVS generation",
+		"draw cull rendering active camo"
 	};
+	STRING_LIST(part_flags, part_flags_strings, _countof(part_flags_strings));
 
-	TAG_ENUM(tessellation_mode_definition, 4)
+	STRINGS(tessellation_mode_definition)
 	{
-		OPTION("none"),
-		OPTION("fixed x4 faces"),
-		OPTION("fixed x9 faces"),
-		OPTION("fixed x36 faces"),
+		"none",
+		"fixed x4 faces",
+		"fixed x9 faces",
+		"fixed x36 faces"
 	};
+	STRING_LIST(tessellation_mode_definition, tessellation_mode_definition_strings, _countof(tessellation_mode_definition_strings));
 
-	TAG_ENUM(specialized_render_definition, 9)
+	STRINGS(specialized_render_definition)
 	{
-		OPTION("none"),
-		OPTION("fail"),
-		OPTION("fur"),
-		OPTION("fur_stencil"),
-		OPTION("decal"),
-		OPTION("shield"),
-		OPTION("water"),
-		OPTION("lightmap_only"),
-		OPTION("hologram"),
+		"none",
+		"fail",
+		"fur",
+		"fur_stencil",
+		"decal",
+		"shield",
+		"water",
+		"lightmap_only",
+		"hologram"
 	};
+	STRING_LIST(specialized_render_definition, specialized_render_definition_strings, _countof(specialized_render_definition_strings));
 
-	TAG_ENUM(compression_flags, 3)
+	STRINGS(compression_flags)
 	{
-		OPTION("compressed position"),
-		OPTION("compressed texcoord"),
-		OPTION("compression optimized"),
+		"compressed position",
+		"compressed texcoord",
+		"compression optimized"
 	};
+	STRING_LIST(compression_flags, compression_flags_strings, _countof(compression_flags_strings));
 
-	TAG_ENUM(mesh_flags, 16)
+	STRINGS(mesh_flags)
 	{
-		OPTION("mesh has vertex color"),
-		OPTION("use region index for sorting"),
-		OPTION("use vertex buffers for indices"),
-		OPTION("mesh has per-instance lighting (do not modify)"),
-		OPTION("mesh is unindexed (do not modify)"),
-		OPTION("subpart were merged"),
-		OPTION("mesh has fur"),
-		OPTION("mesh has decal"),
-		OPTION("mesh doesnt use compressed position"),
-		OPTION("use uncompressed vertex format"),
-		OPTION("mesh is PCA"),
-		OPTION("mesh compression determined"),
-		OPTION("mesh has authored lightmap texture coords"),
-		OPTION("mesh has a useful set of second texture coords"),
-		OPTION("mesh has no lightmap"),
-		OPTION("per vertex lighting"),
+		"mesh has vertex color",
+		"use region index for sorting",
+		"use vertex buffers for indices",
+		"mesh has per-instance lighting (do not modify)",
+		"mesh is unindexed (do not modify)",
+		"subpart were merged",
+		"mesh has fur",
+		"mesh has decal",
+		"mesh doesnt use compressed position",
+		"use uncompressed vertex format",
+		"mesh is PCA",
+		"mesh compression determined",
+		"mesh has authored lightmap texture coords",
+		"mesh has a useful set of second texture coords",
+		"mesh has no lightmap",
+		"per vertex lighting"
 	};
+	STRING_LIST(mesh_flags, mesh_flags_strings, _countof(mesh_flags_strings));
 
-	TAG_ENUM(mesh_vertex_type_definition, 54)
+	STRINGS(mesh_vertex_type_definition)
 	{
-		OPTION("world"),
-		OPTION("rigid"),
-		OPTION("skinned"),
-		OPTION("particle_model"),
-		OPTION("flat world"),
-		OPTION("flat rigid"),
-		OPTION("flat skinned"),
-		OPTION("screen"),
-		OPTION("debug"),
-		OPTION("transparent"),
-		OPTION("particle"),
-		OPTION("unused0"),
-		OPTION("light_volume"),
-		OPTION("chud_simple"),
-		OPTION("chud_fancy"),
-		OPTION("decorator"),
-		OPTION("position only"),
-		OPTION("patchy_fog"),
-		OPTION("water"),
-		OPTION("ripple"),
-		OPTION("implicit geometry"),
-		OPTION("unused1"),
-		OPTION("world_tessellated"),
-		OPTION("rigid_tessellated"),
-		OPTION("skinned_tessellated"),
-		OPTION("shader_cache"),
-		OPTION("structure_instance_imposter"),
-		OPTION("object_instance_imposter"),
-		OPTION("rigid compressed"),
-		OPTION("skinned uncompressed"),
-		OPTION("light volume precompiled"),
-		OPTION("blendshape_rigid"),
-		OPTION("blendshape_rigid_blendshaped"),
-		OPTION("rigid_blendshaped"),
-		OPTION("blendshape_skinned"),
-		OPTION("blendshape_skinned_blendshaped"),
-		OPTION("skinned_blendshaped"),
-		OPTION("VirtualGeometryHWtess"),
-		OPTION("VirtualGeometryMemexport"),
-		OPTION("position_only"),
-		OPTION("VirtualGeometryDebug"),
-		OPTION("blendshapeRigidCompressed"),
-		OPTION("skinnedUncompressedBlendshaped"),
-		OPTION("blendshapeSkinnedCompressed"),
-		OPTION("tracer"),
-		OPTION("polyart"),
-		OPTION("vectorart"),
-		OPTION("rigid_boned"),
-		OPTION("rigid_boned_2uv"),
-		OPTION("blendshape_skinned_2uv"),
-		OPTION("blendshape_skinned_2uv_blendshaped"),
-		OPTION("skinned_2uv_blendshaped"),
-		OPTION("polyartUV"),
-		OPTION("blendshape_skinned_uncompressed_blendshaped"),
+		"world",
+		"rigid",
+		"skinned",
+		"particle_model",
+		"flat world",
+		"flat rigid",
+		"flat skinned",
+		"screen",
+		"debug",
+		"transparent",
+		"particle",
+		"unused0",
+		"light_volume",
+		"chud_simple",
+		"chud_fancy",
+		"decorator",
+		"position only",
+		"patchy_fog",
+		"water",
+		"ripple",
+		"implicit geometry",
+		"unused1",
+		"world_tessellated",
+		"rigid_tessellated",
+		"skinned_tessellated",
+		"shader_cache",
+		"structure_instance_imposter",
+		"object_instance_imposter",
+		"rigid compressed",
+		"skinned uncompressed",
+		"light volume precompiled",
+		"blendshape_rigid",
+		"blendshape_rigid_blendshaped",
+		"rigid_blendshaped",
+		"blendshape_skinned",
+		"blendshape_skinned_blendshaped",
+		"skinned_blendshaped",
+		"VirtualGeometryHWtess",
+		"VirtualGeometryMemexport",
+		"position_only",
+		"VirtualGeometryDebug",
+		"blendshapeRigidCompressed",
+		"skinnedUncompressedBlendshaped",
+		"blendshapeSkinnedCompressed",
+		"tracer",
+		"polyart",
+		"vectorart",
+		"rigid_boned",
+		"rigid_boned_2uv",
+		"blendshape_skinned_2uv",
+		"blendshape_skinned_2uv_blendshaped",
+		"skinned_2uv_blendshaped",
+		"polyartUV",
+		"blendshape_skinned_uncompressed_blendshaped"
 	};
+	STRING_LIST(mesh_vertex_type_definition, mesh_vertex_type_definition_strings, _countof(mesh_vertex_type_definition_strings));
 
-	TAG_ENUM(mesh_transfer_vertex_type_definition, 4)
+	STRINGS(mesh_transfer_vertex_type_definition)
 	{
-		OPTION("No PRT"),
-		OPTION("PRT Ambient"),
-		OPTION("PRT Linear"),
-		OPTION("PRT Quadratic"),
+		"No PRT",
+		"PRT Ambient",
+		"PRT Linear",
+		"PRT Quadratic"
 	};
+	STRING_LIST(mesh_transfer_vertex_type_definition, mesh_transfer_vertex_type_definition_strings, _countof(mesh_transfer_vertex_type_definition_strings));
 
-	TAG_ENUM(mesh_lighting_policy_type_definition, 3)
+	STRINGS(mesh_lighting_policy_type_definition)
 	{
-		OPTION("vertex color"),
-		OPTION("single probe"),
-		OPTION("prt ambient"),
+		"vertex color",
+		"single probe",
+		"prt ambient"
 	};
+	STRING_LIST(mesh_lighting_policy_type_definition, mesh_lighting_policy_type_definition_strings, _countof(mesh_lighting_policy_type_definition_strings));
 
-	TAG_ENUM(mesh_index_buffer_type_definition, 8)
+	STRINGS(mesh_index_buffer_type_definition)
 	{
-		OPTION("DEFAULT"),
-		OPTION("line list"),
-		OPTION("line strip"),
-		OPTION("triangle list"),
-		OPTION("triangle fan"),
-		OPTION("triangle strip"),
-		OPTION("quad list"),
-		OPTION("rect list"),
+		"DEFAULT",
+		"line list",
+		"line strip",
+		"triangle list",
+		"triangle fan",
+		"triangle strip",
+		"quad list",
+		"rect list"
 	};
+	STRING_LIST(mesh_index_buffer_type_definition, mesh_index_buffer_type_definition_strings, _countof(mesh_index_buffer_type_definition_strings));
 
-	TAG_ENUM(per_mesh_raw_data_flags, 3)
+	STRINGS(per_mesh_raw_data_flags)
 	{
-		OPTION("indices are triangle strips"),
-		OPTION("indices are triangle lists"),
-		OPTION("indices are quad lists"),
+		"indices are triangle strips",
+		"indices are triangle lists",
+		"indices are quad lists"
 	};
+	STRING_LIST(per_mesh_raw_data_flags, per_mesh_raw_data_flags_strings, _countof(per_mesh_raw_data_flags_strings));
 
-	TAG_ENUM(render_geometry_user_data_type_definition, 1)
+	STRINGS(render_geometry_user_data_type_definition)
 	{
-		OPTION("PRT Info"),
+		"PRT Info"
 	};
+	STRING_LIST(render_geometry_user_data_type_definition, render_geometry_user_data_type_definition_strings, _countof(render_geometry_user_data_type_definition_strings));
 
-	TAG_ENUM(render_geometry_flags, 9)
+	STRINGS(render_geometry_flags)
 	{
-		OPTION("processed*!"),
-		OPTION("available*!"),
-		OPTION("has valid budgets (really)*!"),
-		OPTION("manual resource creation*!"),
-		OPTION("keep raw geometry*!"),
-		OPTION("dont use compressed vertex positions*!"),
-		OPTION("pca animation table sorted*!"),
-		OPTION("needs no lightmap uvs*!"),
-		OPTION("always needs lightmap uvs*!"),
+		"processed*!",
+		"available*!",
+		"has valid budgets (really)*!",
+		"manual resource creation*!",
+		"keep raw geometry*!",
+		"dont use compressed vertex positions*!",
+		"pca animation table sorted*!",
+		"needs no lightmap uvs*!",
+		"always needs lightmap uvs*!"
 	};
+	STRING_LIST(render_geometry_flags, render_geometry_flags_strings, _countof(render_geometry_flags_strings));
 
 } // namespace blofeld
 

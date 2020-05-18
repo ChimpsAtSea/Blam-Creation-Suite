@@ -56,7 +56,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition game_engine_team_options_team_block_struct_definition;
 	extern s_tag_array_definition game_engine_team_options_team_block_array;
-
 	extern s_tag_struct_definition gameEngineFirefightVariantDefinition_struct_definition;
 	extern s_tag_struct_definition game_engine_globals_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition game_engine_settings_definition_struct_definition_struct_definition; // tag group
@@ -120,6 +119,8 @@ namespace blofeld
 	extern s_string_list_definition GameEngineFirefightVariantFlags;
 	extern const char* game_engine_settings_flags_strings[];
 	extern s_string_list_definition game_engine_settings_flags;
+
+	extern s_tag_reference_definition GameEngineFirefightVariantReference;
 
 } // namespace blofeld
 

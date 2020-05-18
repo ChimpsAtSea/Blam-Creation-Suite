@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,12 +10,12 @@ namespace blofeld
 
 	TAG_STRUCT(structure_meta_struct_definition)
 	{
-		FIELD( _field_block, "Effects markers*", &structureBspFxMarkerBlock_block ),
-		FIELD( _field_block, "Airprobes*", &scenario_airprobes_block_block ),
-		FIELD( _field_block, "Light Cones*", &structureMetadataLightConeMarkerBlock_block ),
-		FIELD( _field_block, "Object Palette*", &structure_bsp_environment_object_palette_block_block ),
-		FIELD( _field_block, "Objects*", &structure_bsp_environment_object_block_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "Effects markers*", &structureBspFxMarkerBlock_block },
+		{ _field_block, "Airprobes*", &scenario_airprobes_block_block },
+		{ _field_block, "Light Cones*", &structureMetadataLightConeMarkerBlock_block },
+		{ _field_block, "Object Palette*", &structure_bsp_environment_object_palette_block_block },
+		{ _field_block, "Objects*", &structure_bsp_environment_object_block_block },
+		{ _field_terminator }
 	};
 
 } // namespace blofeld

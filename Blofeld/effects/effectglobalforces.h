@@ -9,7 +9,6 @@ namespace blofeld
 
 	extern s_tag_block_definition effect_global_force_block_block;
 
-
 	extern s_tag_struct_definition effect_global_force_struct_definition_struct_definition; // tag group
 
 	extern const char* globalForceFlags_strings[];

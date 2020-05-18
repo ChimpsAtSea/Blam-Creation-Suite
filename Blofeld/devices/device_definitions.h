@@ -27,7 +27,6 @@ namespace blofeld
 	extern s_tag_block_definition terminal_page_block_definition_block;
 	extern s_tag_block_definition device_terminal_block_block;
 
-
 	extern s_tag_struct_definition device_control_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition device_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition device_dispenser_struct_definition_struct_definition; // tag group

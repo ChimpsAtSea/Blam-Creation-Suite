@@ -9,9 +9,7 @@ namespace blofeld
 
 	extern s_tag_block_definition rasterizer_cache_file_globals_block_block;
 
-
 	extern s_tag_struct_definition rasterizer_cache_file_globals_struct_definition_struct_definition; // tag group
-
 
 } // namespace blofeld
 

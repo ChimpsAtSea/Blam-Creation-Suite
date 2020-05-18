@@ -13,9 +13,10 @@ namespace blofeld
 	extern s_tag_block_definition loadScreenBlock_block;
 
 
-
 	extern const char* loadscreenFlags_strings[];
 	extern s_string_list_definition loadscreenFlags;
+
+	extern s_tag_reference_definition global_loadscreen_reference;
 
 } // namespace blofeld
 

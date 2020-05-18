@@ -13,7 +13,5 @@ namespace blofeld
 	extern s_tag_block_definition polyartCameraBlock_block;
 
 
-
-
 } // namespace blofeld
 

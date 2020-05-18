@@ -11,7 +11,6 @@ namespace blofeld
 	extern s_tag_block_definition self_illumination_state_block;
 	extern s_tag_block_definition self_illumination_block_block;
 
-
 	extern s_tag_struct_definition self_illumination_struct_definition_struct_definition; // tag group
 
 	extern const char* self_illumination_flags_strings[];

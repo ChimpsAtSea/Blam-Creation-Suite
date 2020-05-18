@@ -77,7 +77,6 @@ namespace blofeld
 	extern s_tag_block_definition pgcr_incident_block_block;
 	extern s_tag_block_definition user_interface_shared_globals_definition_block_block;
 
-
 	extern s_tag_struct_definition InfinityUIImages_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition pgcr_enemy_to_category_mapping_definition_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition pgcr_damage_type_image_mapping_definition_struct_definition_struct_definition; // tag group
@@ -108,6 +107,9 @@ namespace blofeld
 	extern s_string_list_definition UIGameStartSequenceFlagsDefinition;
 	extern const char* UserInterfaceTagGlobalsFlagsDefinition_strings[];
 	extern s_string_list_definition UserInterfaceTagGlobalsFlagsDefinition;
+
+	extern s_tag_reference_definition g_user_interface_globals_reference;
+	extern s_tag_reference_definition g_user_interface_shared_globals_reference;
 
 } // namespace blofeld
 

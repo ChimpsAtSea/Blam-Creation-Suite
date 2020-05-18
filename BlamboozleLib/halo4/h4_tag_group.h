@@ -4,8 +4,8 @@ struct s_h4_tag_group
 {
 	buint32_t name_address;
 	buint32_t flags;
-	btag_group group_tag;
-	btag_group parent_group_tag;
+	tag_group group_tag;
+	tag_group parent_group_tag;
 	buint16_t version;
 	uint8_t initialized;
 	uint8_t : 8;

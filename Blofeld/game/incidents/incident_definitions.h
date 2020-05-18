@@ -50,7 +50,6 @@ namespace blofeld
 	extern s_tag_block_definition incident_global_properties_definition_block_block;
 	extern s_tag_block_definition SuppressedIncident_block_block;
 
-
 	extern s_tag_struct_definition incident_global_properties_definition_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition SuppressedIncident_struct_definition_struct_definition; // tag group
 
@@ -70,6 +69,8 @@ namespace blofeld
 	extern s_string_list_definition incident_accumulator_reset_enum;
 	extern const char* incident_accumulator_aggregation_method_enum_strings[];
 	extern s_string_list_definition incident_accumulator_aggregation_method_enum;
+
+	extern s_tag_reference_definition SuppressedIncidentGroupReference;
 
 } // namespace blofeld
 

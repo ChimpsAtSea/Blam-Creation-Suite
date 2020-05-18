@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_block_definition PuppetPathPointBlock_block;
 	extern s_tag_struct_definition PuppetActionBlock_block_struct;
 	extern s_tag_block_definition PuppetActionBlock_block;
@@ -29,7 +28,6 @@ namespace blofeld
 	extern s_tag_block_definition CommentsBlock_block;
 	extern s_tag_struct_definition PuppetShowsBlock_block_struct;
 	extern s_tag_block_definition PuppetShowsBlock_block;
-
 
 	extern s_tag_struct_definition PuppetHeaderStruct_struct_definition;
 	extern s_tag_struct_definition PuppetPathPointStruct_struct_definition;

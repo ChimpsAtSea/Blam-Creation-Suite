@@ -13,7 +13,5 @@ namespace blofeld
 	extern s_tag_block_definition tag_patch_block_block;
 
 
-
-
 } // namespace blofeld
 

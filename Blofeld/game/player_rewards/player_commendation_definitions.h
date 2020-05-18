@@ -22,7 +22,6 @@ namespace blofeld
 	extern s_tag_block_definition commendationBlock_block;
 	extern s_tag_block_definition commendation_globals_definition_block_block;
 
-
 	extern s_tag_struct_definition commendation_aggregator_list_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition commendationAggregatorDependent_struct_struct_definition;
 	extern s_tag_struct_definition commendation_globals_definition_struct_definition_struct_definition; // tag group
@@ -35,6 +34,7 @@ namespace blofeld
 	extern s_string_list_definition commendationSubcategoryEnum;
 	extern const char* aggregatorDependentTypeEnumDefinition_strings[];
 	extern s_string_list_definition aggregatorDependentTypeEnumDefinition;
+
 
 } // namespace blofeld
 

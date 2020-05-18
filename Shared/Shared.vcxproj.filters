@@ -33,9 +33,6 @@
     <ClInclude Include="Rendering\Render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileSystemUtilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="hexrays_defs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -213,15 +210,15 @@
     <ClInclude Include="string_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="shared-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Render.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileSystemUtilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\BoxRenderer.cpp">
@@ -282,6 +279,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="string_helpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

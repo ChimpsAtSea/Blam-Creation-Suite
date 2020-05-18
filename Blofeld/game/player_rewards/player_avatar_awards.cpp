@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -7,25 +8,26 @@ namespace blofeld
 
 	TAG_BLOCK(single_avatar_award_definition_block, k_online_avatar_award_count)
 	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_long_enum, "type", &global_avatar_award_enum ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name^" },
+		{ _field_long_enum, "type", &global_avatar_award_enum },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(avatar_awards_block, 1, avatar_awards_struct_definition_struct_definition );
 
 	TAG_STRUCT(avatar_awards_struct_definition)
 	{
-		FIELD( _field_block, "avatar_award", &single_avatar_award_definition_block_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "avatar_award", &single_avatar_award_definition_block_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(global_avatar_award_enum, 3)
+	STRINGS(global_avatar_award_enum)
 	{
-		OPTION("award_0"),
-		OPTION("award_1"),
-		OPTION("award_2"),
+		"award_0",
+		"award_1",
+		"award_2"
 	};
+	STRING_LIST(global_avatar_award_enum, global_avatar_award_enum_strings, _countof(global_avatar_award_enum_strings));
 
 } // namespace blofeld
 

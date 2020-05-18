@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition map_leaf_face_vertex_block_block_struct;
 	extern s_tag_block_definition map_leaf_face_vertex_block_block;
 	extern s_tag_struct_definition map_leaf_face_block_block_struct;
@@ -16,8 +15,6 @@ namespace blofeld
 	extern s_tag_block_definition leaf_connection_vertex_block_block;
 	extern s_tag_struct_definition global_leaf_connection_block_block_struct;
 	extern s_tag_block_definition global_leaf_connection_block_block;
-
-
 
 
 } // namespace blofeld

@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition mapVariantPaletteDependencyBlock_block_struct;
 	extern s_tag_block_definition mapVariantPaletteDependencyBlock_block;
 	extern s_tag_struct_definition resourceHandleBlock_block_struct;
@@ -14,7 +13,6 @@ namespace blofeld
 	extern s_tag_block_definition map_variant_palette_entry_block_block;
 	extern s_tag_struct_definition map_variant_palette_block_block_struct;
 	extern s_tag_block_definition map_variant_palette_block_block;
-
 
 	extern s_tag_struct_definition mapVariantResourceManifest_struct_definition;
 

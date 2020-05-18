@@ -11,9 +11,7 @@ namespace blofeld
 	extern s_tag_block_definition spring_linear_acceleration_block_block;
 	extern s_tag_block_definition spring_acceleration_block_block;
 
-
 	extern s_tag_struct_definition spring_acceleration_struct_definition_struct_definition; // tag group
-
 
 } // namespace blofeld
 

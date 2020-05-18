@@ -9,7 +9,6 @@ namespace blofeld
 
 	extern s_tag_block_definition camo_block_block;
 
-
 	extern s_tag_struct_definition camo_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition camo_scalar_function_struct_struct_definition;
 

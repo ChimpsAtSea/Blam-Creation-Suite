@@ -15,11 +15,12 @@ namespace blofeld
 	extern s_tag_block_definition explicit_shader_refs_block_block;
 	extern s_tag_block_definition rasterizer_globals_block_block;
 
-
 	extern s_tag_struct_definition rasterizer_globals_struct_definition_struct_definition; // tag group
 
 	extern const char* global_bitmap_flags_strings[];
 	extern s_string_list_definition global_bitmap_flags;
+
+	extern s_tag_reference_definition global_rasterizer_globals_reference;
 
 } // namespace blofeld
 

@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,34 +10,35 @@ namespace blofeld
 
 	TAG_STRUCT(crate_struct_definition)
 	{
-		FIELD( _field_struct, "object", &object_struct_definition_struct_definition ),
-		FIELD( _field_custom, "$$$ CRATE $$$" ),
-		FIELD( _field_word_flags, "flags", &crate_flags ),
-		FIELD( _field_pad, "KOQVK", 2 ),
-		FIELD( _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block_block ),
-		FIELD( _field_long_integer, "self destruction timer:seconds" ),
-		FIELD( _field_tag_reference, "particleize#optional particleization effect definition, if you want this to particleize when it takes damage" ),
-		FIELD( _field_string_id, "grab animation set#the animation set to use when this crate is grabbed" ),
-		FIELD( _field_string_id, "grab pickup string#the string to display when the player can grab this object, from ui/hud/hud_messages" ),
-		FIELD( _field_tag_reference, "projectile bounce effect#effect to play when a projectile bounces because of the \"all projectiles bounce off\" flag" ),
-		FIELD( _field_custom ),
-		FIELD( _field_terminator )
+		{ _field_struct, "object", &object_struct_definition_struct_definition },
+		{ _field_custom, "$$$ CRATE $$$" },
+		{ _field_word_flags, "flags", &crate_flags },
+		{ _field_pad, "KOQVK", 2 },
+		{ _field_block, "campaign metagame bucket", &campaign_metagame_bucket_block_block },
+		{ _field_long_integer, "self destruction timer:seconds" },
+		{ _field_tag_reference, "particleize#optional particleization effect definition, if you want this to particleize when it takes damage", &global_particleize_parameters_reference },
+		{ _field_string_id, "grab animation set#the animation set to use when this crate is grabbed" },
+		{ _field_string_id, "grab pickup string#the string to display when the player can grab this object, from ui/hud/hud_messages" },
+		{ _field_tag_reference, "projectile bounce effect#effect to play when a projectile bounces because of the \"all projectiles bounce off\" flag", &global_effect_reference },
+		{ _field_custom },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(crate_flags, 11)
+	STRINGS(crate_flags)
 	{
-		OPTION("does not block AOE"),
-		OPTION("attach texture camera hack"),
-		OPTION("can be grabbed"),
-		OPTION("all projectiles bounce off"),
-		OPTION("targetable"),
-		OPTION("crate walls block AOE#for crates that behave like a bubble shield but are not attached to equipment"),
-		OPTION("crate blocks damage flash damage response"),
-		OPTION("crate blocks rumble damage response"),
-		OPTION("crate takes top level aoe damage#crate takes top level aoe damage when parented to another object"),
-		OPTION("crate blocks forced projectile overpenetration#so that the active shield can block the splaser"),
-		OPTION("unimportant#some rotational and velocity attributes are not synchronized from host to client"),
+		"does not block AOE",
+		"attach texture camera hack",
+		"can be grabbed",
+		"all projectiles bounce off",
+		"targetable",
+		"crate walls block AOE#for crates that behave like a bubble shield but are not attached to equipment",
+		"crate blocks damage flash damage response",
+		"crate blocks rumble damage response",
+		"crate takes top level aoe damage#crate takes top level aoe damage when parented to another object",
+		"crate blocks forced projectile overpenetration#so that the active shield can block the splaser",
+		"unimportant#some rotational and velocity attributes are not synchronized from host to client"
 	};
+	STRING_LIST(crate_flags, crate_flags_strings, _countof(crate_flags_strings));
 
 } // namespace blofeld
 

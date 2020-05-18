@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition trigger_references_block_struct;
 	extern s_tag_block_definition trigger_references_block;
 	extern s_tag_struct_definition secondary_set_trigger_block_block_struct;
@@ -16,7 +15,6 @@ namespace blofeld
 	extern s_tag_block_definition order_completion_condition_block;
 	extern s_tag_struct_definition triggers_block_block_struct;
 	extern s_tag_block_definition triggers_block_block;
-
 
 
 	extern const char* condition_type_enum_strings[];

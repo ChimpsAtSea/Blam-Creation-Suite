@@ -9,7 +9,6 @@ namespace blofeld
 
 	extern s_tag_block_definition curve_scalar_block_block;
 
-
 	extern s_tag_struct_definition mapping_function_struct_definition;
 	extern s_tag_struct_definition scalar_function_named_struct_default_one_struct_definition;
 	extern s_tag_struct_definition mapping_function_default_one_struct_definition;

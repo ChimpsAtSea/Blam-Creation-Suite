@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -13,589 +14,602 @@ namespace blofeld
 
 	TAG_BLOCK(short_block, k_kilo)
 	{
-		FIELD( _field_short_integer, "short" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "short" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_animated_parameter_block, k_kilo)
 	{
-		FIELD( _field_long_enum, "type^", &render_method_animated_parameter_type_enum ),
-		FIELD( _field_string_id, "input name" ),
-		FIELD( _field_string_id, "range name" ),
-		FIELD( _field_real, "time period:seconds" ),
-		FIELD( _field_explanation, "FUNCTION" ),
-		FIELD( _field_custom ),
-		FIELD( _field_struct, "function", &mapping_function_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_long_enum, "type^", &render_method_animated_parameter_type_enum },
+		{ _field_string_id, "input name" },
+		{ _field_string_id, "range name" },
+		{ _field_real, "time period:seconds" },
+		{ _field_explanation, "FUNCTION" },
+		{ _field_custom },
+		{ _field_struct, "function", &mapping_function_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_parameter_block, c_render_method::k_maximum_parameters)
 	{
-		FIELD( _field_string_id, "parameter name^" ),
-		FIELD( _field_long_enum, "parameter type", &render_method_parameter_type_enum ),
-		FIELD( _field_tag_reference, "bitmap" ),
-		FIELD( _field_real, "real" ),
-		FIELD( _field_long_integer, "int/bool" ),
-		FIELD( _field_word_integer, "bitmap flags" ),
-		FIELD( _field_word_integer, "bitmap filter mode" ),
-		FIELD( _field_word_integer, "bitmap address mode" ),
-		FIELD( _field_word_integer, "bitmap address mode x" ),
-		FIELD( _field_word_integer, "bitmap address mode y" ),
-		FIELD( _field_short_integer, "bitmap anisotropy amount" ),
-		FIELD( _field_short_integer, "bitmap extern RTT mode" ),
-		FIELD( _field_word_integer, "bitmap sharpen mode" ),
-		FIELD( _field_block, "animated parameters", &render_method_animated_parameter_block_block ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "parameter name^" },
+		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
+		{ _field_tag_reference, "bitmap", &bitmap_reference },
+		{ _field_real, "real" },
+		{ _field_long_integer, "int/bool" },
+		{ _field_word_integer, "bitmap flags" },
+		{ _field_word_integer, "bitmap filter mode" },
+		{ _field_word_integer, "bitmap address mode" },
+		{ _field_word_integer, "bitmap address mode x" },
+		{ _field_word_integer, "bitmap address mode y" },
+		{ _field_short_integer, "bitmap anisotropy amount" },
+		{ _field_short_integer, "bitmap extern RTT mode" },
+		{ _field_word_integer, "bitmap sharpen mode" },
+		{ _field_block, "animated parameters", &render_method_animated_parameter_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_postprocess_texture_block, c_render_method::k_maximum_postprocess_textures)
 	{
-		FIELD( _field_tag_reference, "bitmap reference" ),
-		FIELD( _field_short_integer, "bitmap index" ),
-		FIELD( _field_byte_integer, "address mode" ),
-		FIELD( _field_byte_integer, "filter mode" ),
-		FIELD( _field_byte_integer, "extern texture mode" ),
-		FIELD( _field_char_block_index, "texture transform constant index" ),
-		FIELD( _field_struct, "texture transform overlay indices", &tag_block_index_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "bitmap reference", &global_bitmap_reference },
+		{ _field_short_integer, "bitmap index" },
+		{ _field_byte_integer, "address mode" },
+		{ _field_byte_integer, "filter mode" },
+		{ _field_byte_integer, "extern texture mode" },
+		{ _field_char_block_index, "texture transform constant index" },
+		{ _field_struct, "texture transform overlay indices", &tag_block_index_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(real_vector4d_block, k_kilo)
 	{
-		FIELD( _field_real_vector_3d, "vector" ),
-		FIELD( _field_real, "vector w" ),
-		FIELD( _field_terminator )
+		{ _field_real_vector_3d, "vector" },
+		{ _field_real, "vector w" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(int_block, k_kilo)
 	{
-		FIELD( _field_long_integer, "int value" ),
-		FIELD( _field_terminator )
+		{ _field_long_integer, "int value" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(tag_block_index_block, k_kilo)
 	{
-		FIELD( _field_struct, "block index", &tag_block_index_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_struct, "block index", &tag_block_index_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_postprocess_pass_block, k_kilo)
 	{
-		FIELD( _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "vertex real#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "pixel real#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_terminator )
+		{ _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "vertex real#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "pixel real#divide by 1024 for count, remainder is start index" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_routing_info_block, c_render_method_template::k_maximum_routing_info)
 	{
-		FIELD( _field_word_integer, "destination index#D3D constant index or sampler index" ),
-		FIELD( _field_byte_integer, "source index#into constant tables below, unless this is an extern parameter" ),
-		FIELD( _field_byte_integer, "type specific#bitmap flags or shader component mask" ),
-		FIELD( _field_terminator )
+		{ _field_word_integer, "destination index#D3D constant index or sampler index" },
+		{ _field_byte_integer, "source index#into constant tables below, unless this is an extern parameter" },
+		{ _field_byte_integer, "type specific#bitmap flags or shader component mask" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_postprocess_block, 1)
 	{
-		FIELD( _field_tag_reference, "shader template" ),
-		FIELD( _field_block, "textures", &render_method_postprocess_texture_block_block ),
-		FIELD( _field_block, "real vectors", &real_vector4d_block_block ),
-		FIELD( _field_block, "int constants", &int_block_block ),
-		FIELD( _field_long_integer, "bool constants" ),
-		FIELD( _field_block, "entry points", &tag_block_index_block_block ),
-		FIELD( _field_block, "passes", &render_method_postprocess_pass_block_block ),
-		FIELD( _field_block, "routing info", &render_method_routing_info_block_block ),
-		FIELD( _field_block, "overlays", &render_method_animated_parameter_block_block ),
-		FIELD( _field_long_integer, "blend mode" ),
-		FIELD( _field_long_integer, "flags" ),
-		FIELD( _field_long_integer, "im_so_fired_pad!*" ),
-		FIELD( _field_array, "runtime queryable properties table", &runtime_queryable_properties_array ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "shader template", &render_method_template_reference },
+		{ _field_block, "textures", &render_method_postprocess_texture_block_block },
+		{ _field_block, "real vectors", &real_vector4d_block_block },
+		{ _field_block, "int constants", &int_block_block },
+		{ _field_long_integer, "bool constants" },
+		{ _field_block, "entry points", &tag_block_index_block_block },
+		{ _field_block, "passes", &render_method_postprocess_pass_block_block },
+		{ _field_block, "routing info", &render_method_routing_info_block_block },
+		{ _field_block, "overlays", &render_method_animated_parameter_block_block },
+		{ _field_long_integer, "blend mode" },
+		{ _field_long_integer, "flags" },
+		{ _field_long_integer, "im_so_fired_pad!*" },
+		{ _field_array, "runtime queryable properties table", &runtime_queryable_properties_array },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_locked_parameter_block, c_render_method_option::k_maximum_parameters)
 	{
-		FIELD( _field_string_id, "parameter name" ),
-		FIELD( _field_long_enum, "parameter type", &render_method_parameter_type_enum ),
-		FIELD( _field_dword_integer, "animated parameter flags" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "parameter name" },
+		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
+		{ _field_dword_integer, "animated parameter flags" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(render_method_block, 1, render_method_struct_definition_struct_definition );
 
 	TAG_BLOCK(render_method_options_block, c_render_method_definition::k_maximum_category_options)
 	{
-		FIELD( _field_string_id, "option name" ),
-		FIELD( _field_tag_reference, "option" ),
-		FIELD( _field_string_id, "vertex function" ),
-		FIELD( _field_string_id, "pixel function" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "option name" },
+		{ _field_tag_reference, "option", &render_method_option_reference },
+		{ _field_string_id, "vertex function" },
+		{ _field_string_id, "pixel function" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_category_block, c_render_method_definition::k_maximum_categories)
 	{
-		FIELD( _field_string_id, "category name" ),
-		FIELD( _field_block, "options", &render_method_options_block_block ),
-		FIELD( _field_string_id, "vertex function" ),
-		FIELD( _field_string_id, "pixel function" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "category name" },
+		{ _field_block, "options", &render_method_options_block_block },
+		{ _field_string_id, "vertex function" },
+		{ _field_string_id, "pixel function" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_pass_category_dependencies, 1)
 	{
-		FIELD( _field_short_block_index, "category" ),
-		FIELD( _field_terminator )
+		{ _field_short_block_index, "category" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_pass_block, k_kilo)
 	{
-		FIELD( _field_word_flags, "flags", &render_method_pass_flags ),
-		FIELD( _field_pad, "nothing", 2 ),
-		FIELD( _field_block, "category dependencies&shared PS category dependencies", &render_method_pass_category_dependencies_block ),
-		FIELD( _field_block, "shared VS category dependencies", &render_method_pass_category_dependencies_block ),
-		FIELD( _field_terminator )
+		{ _field_word_flags, "flags", &render_method_pass_flags },
+		{ _field_pad, "nothing", 2 },
+		{ _field_block, "category dependencies&shared PS category dependencies", &render_method_pass_category_dependencies_block },
+		{ _field_block, "shared VS category dependencies", &render_method_pass_category_dependencies_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_entry_points_block, c_render_method_definition::k_maximum_entry_points)
 	{
-		FIELD( _field_long_enum, "entry point", &entry_point_enum ),
-		FIELD( _field_block, "passes", &render_method_pass_block_block ),
-		FIELD( _field_terminator )
+		{ _field_long_enum, "entry point", &entry_point_enum },
+		{ _field_block, "passes", &render_method_pass_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(vertex_types_block, k_number_of_vertex_types)
 	{
-		FIELD( _field_enum, "vertex type", &vertex_types_names_enum ),
-		FIELD( _field_pad, "blahasdf", 2 ),
-		FIELD( _field_terminator )
+		{ _field_enum, "vertex type", &vertex_types_names_enum },
+		{ _field_pad, "blahasdf", 2 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(render_method_definition_block, 1, render_method_definition_struct_definition_struct_definition );
 
 	TAG_BLOCK(render_method_option_parameter_block, c_render_method_option::k_maximum_parameters)
 	{
-		FIELD( _field_string_id, "parameter name" ),
-		FIELD( _field_string_id, "parameter ui override name" ),
-		FIELD( _field_long_enum, "parameter type", &render_method_parameter_type_enum ),
-		FIELD( _field_long_enum, "source extern", &render_method_extern_enum ),
-		FIELD( _field_tag_reference, "default bitmap" ),
-		FIELD( _field_real, "default real value" ),
-		FIELD( _field_long_integer, "default int/bool value" ),
-		FIELD( _field_word_integer, "flags" ),
-		FIELD( _field_enum, "default filter mode", &render_method_bitmap_filter_mode_enum ),
-		FIELD( _field_enum, "default address mode", &render_method_bitmap_address_mode_enum ),
-		FIELD( _field_word_integer, "anisotropy amount" ),
-		FIELD( _field_argb_color, "default color" ),
-		FIELD( _field_real, "default bitmap scale" ),
-		FIELD( _field_long_flags, "usage flags", &ui_and_usage_flags ),
-		FIELD( _field_enum, "force function type", &function_type_enum_definition ),
-		FIELD( _field_enum, "force function color count", &color_graph_type_enum_definition ),
-		FIELD( _field_real, "suggested real min" ),
-		FIELD( _field_real, "suggested real max" ),
-		FIELD( _field_long_integer, "ticks from min to max" ),
-		FIELD( _field_data, "help text" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "parameter name" },
+		{ _field_string_id, "parameter ui override name" },
+		{ _field_long_enum, "parameter type", &render_method_parameter_type_enum },
+		{ _field_long_enum, "source extern", &render_method_extern_enum },
+		{ _field_tag_reference, "default bitmap", &global_bitmap_reference },
+		{ _field_real, "default real value" },
+		{ _field_long_integer, "default int/bool value" },
+		{ _field_word_integer, "flags" },
+		{ _field_enum, "default filter mode", &render_method_bitmap_filter_mode_enum },
+		{ _field_enum, "default address mode", &render_method_bitmap_address_mode_enum },
+		{ _field_word_integer, "anisotropy amount" },
+		{ _field_argb_color, "default color" },
+		{ _field_real, "default bitmap scale" },
+		{ _field_long_flags, "usage flags", &ui_and_usage_flags },
+		{ _field_enum, "force function type", &function_type_enum_definition },
+		{ _field_enum, "force function color count", &color_graph_type_enum_definition },
+		{ _field_real, "suggested real min" },
+		{ _field_real, "suggested real max" },
+		{ _field_long_integer, "ticks from min to max" },
+		{ _field_data, "help text" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(render_method_option_block, 1, render_method_option_struct_definition_struct_definition );
 
 	TAG_BLOCK(render_method_template_pass_block, c_render_method_template::k_maximum_passes)
 	{
-		FIELD( _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "vertex real constants#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "vertex int constants#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "vertex bool constants#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "pixel real constants#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "pixel int constants#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "pixel bool constants#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "extern bitmaps#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "extern vertex real constants#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "extern vertex int constants#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "extern pixel real constants#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_word_integer, "extern pixel int constants#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_long_integer, "alpha blend mode" ),
-		FIELD( _field_terminator )
+		{ _field_word_integer, "bitmaps#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "vertex real constants#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "vertex int constants#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "vertex bool constants#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "pixel real constants#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "pixel int constants#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "pixel bool constants#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "extern bitmaps#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "extern vertex real constants#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "extern vertex int constants#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "extern pixel real constants#divide by 1024 for count, remainder is start index" },
+		{ _field_word_integer, "extern pixel int constants#divide by 1024 for count, remainder is start index" },
+		{ _field_long_integer, "alpha blend mode" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_template_constant_table_block, 254)
 	{
-		FIELD( _field_string_id, "parameter name" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "parameter name" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(render_method_template_platform_block, 1)
 	{
-		FIELD( _field_tag_reference, "vertex shader" ),
-		FIELD( _field_tag_reference, "pixel shader" ),
-		FIELD( _field_dword_integer, "available entry_points*" ),
-		FIELD( _field_block, "entry points", &tag_block_index_block_block ),
-		FIELD( _field_block, "passes", &render_method_template_pass_block_block ),
-		FIELD( _field_block, "routing info", &render_method_routing_info_block_block ),
-		FIELD( _field_block, "float constants", &render_method_template_constant_table_block_block ),
-		FIELD( _field_block, "int constants", &render_method_template_constant_table_block_block ),
-		FIELD( _field_block, "bool constants", &render_method_template_constant_table_block_block ),
-		FIELD( _field_block, "textures", &render_method_template_constant_table_block_block ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
+		{ _field_tag_reference, "pixel shader", &pixel_shader_reference },
+		{ _field_dword_integer, "available entry_points*" },
+		{ _field_block, "entry points", &tag_block_index_block_block },
+		{ _field_block, "passes", &render_method_template_pass_block_block },
+		{ _field_block, "routing info", &render_method_routing_info_block_block },
+		{ _field_block, "float constants", &render_method_template_constant_table_block_block },
+		{ _field_block, "int constants", &render_method_template_constant_table_block_block },
+		{ _field_block, "bool constants", &render_method_template_constant_table_block_block },
+		{ _field_block, "textures", &render_method_template_constant_table_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(render_method_template_block, 1, render_method_template_struct_definition_struct_definition );
 
 	TAG_ARRAY(runtime_queryable_properties, s_render_method_postprocess_definition::k_runtime_queryable_properties_count)
 	{
-		FIELD( _field_short_block_index, "index" ),
-		FIELD( _field_terminator )
+		{ _field_short_block_index, "index" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(render_method_struct_definition)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_tag_reference, "definition*" ),
-		FIELD( _field_tag_reference, "reference" ),
-		FIELD( _field_block, "options", &short_block_block ),
-		FIELD( _field_block, "parameters", &render_method_parameter_block_block ),
-		FIELD( _field_block, "postprocess", &render_method_postprocess_block_block ),
-		FIELD( _field_long_integer, "is template" ),
-		FIELD( _field_long_flags, "locked options", &global_render_method_lock_option_flags_defintion ),
-		FIELD( _field_block, "locked parameters", &render_method_locked_parameter_block_block ),
-		FIELD( _field_word_flags, "shader flags*", &global_render_method_flags_defintion ),
-		FIELD( _field_char_enum, "sort layer*", &global_sort_layer_enum_defintion ),
-		FIELD( _field_char_integer, "version!" ),
-		FIELD( _field_long_integer, "Custom fog setting index" ),
-		FIELD( _field_long_block_index, "prediction atom index!" ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_tag_reference, "definition*", &render_method_definition_reference },
+		{ _field_tag_reference, "reference", &render_method_reference },
+		{ _field_block, "options", &short_block_block },
+		{ _field_block, "parameters", &render_method_parameter_block_block },
+		{ _field_block, "postprocess", &render_method_postprocess_block_block },
+		{ _field_long_integer, "is template" },
+		{ _field_long_flags, "locked options", &global_render_method_lock_option_flags_defintion },
+		{ _field_block, "locked parameters", &render_method_locked_parameter_block_block },
+		{ _field_word_flags, "shader flags*", &global_render_method_flags_defintion },
+		{ _field_char_enum, "sort layer*", &global_sort_layer_enum_defintion },
+		{ _field_char_integer, "version!" },
+		{ _field_long_integer, "Custom fog setting index" },
+		{ _field_long_block_index, "prediction atom index!" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(tag_block_index_struct)
 	{
-		FIELD( _field_word_integer, "block index data#divide by 1024 for count, remainder is start index" ),
-		FIELD( _field_terminator )
+		{ _field_word_integer, "block index data#divide by 1024 for count, remainder is start index" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(render_method_definition_struct_definition)
 	{
-		FIELD( _field_tag_reference, "global options" ),
-		FIELD( _field_block, "categories", &render_method_category_block_block ),
-		FIELD( _field_block, "entry_points", &render_method_entry_points_block_block ),
-		FIELD( _field_block, "vertex_types", &vertex_types_block_block ),
-		FIELD( _field_tag_reference, "shared pixel shaders*" ),
-		FIELD( _field_tag_reference, "shared vertex shaders*" ),
-		FIELD( _field_long_flags, "flags", &render_method_definition_flags ),
-		FIELD( _field_dword_integer, "version:bump to force recompile" ),
-		FIELD( _field_explanation, "source file location" ),
-		FIELD( _field_long_string, "location" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "global options", &render_method_option_reference },
+		{ _field_block, "categories", &render_method_category_block_block },
+		{ _field_block, "entry_points", &render_method_entry_points_block_block },
+		{ _field_block, "vertex_types", &vertex_types_block_block },
+		{ _field_tag_reference, "shared pixel shaders*", &global_pixel_shader_reference },
+		{ _field_tag_reference, "shared vertex shaders*", &global_vertex_shader_reference },
+		{ _field_long_flags, "flags", &render_method_definition_flags },
+		{ _field_dword_integer, "version:bump to force recompile" },
+		{ _field_explanation, "source file location" },
+		{ _field_long_string, "location" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(render_method_option_struct_definition)
 	{
-		FIELD( _field_block, "parameters", &render_method_option_parameter_block_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "parameters", &render_method_option_parameter_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(render_method_template_struct_definition)
 	{
-		FIELD( _field_tag_reference, "vertex shader" ),
-		FIELD( _field_tag_reference, "pixel shader" ),
-		FIELD( _field_dword_integer, "available entry points*" ),
-		FIELD( _field_block, "entry points", &tag_block_index_block_block ),
-		FIELD( _field_block, "passes", &render_method_template_pass_block_block ),
-		FIELD( _field_block, "routing info", &render_method_routing_info_block_block ),
-		FIELD( _field_block, "float constants", &render_method_template_constant_table_block_block ),
-		FIELD( _field_block, "int constants", &render_method_template_constant_table_block_block ),
-		FIELD( _field_block, "bool constants", &render_method_template_constant_table_block_block ),
-		FIELD( _field_block, "textures", &render_method_template_constant_table_block_block ),
-		FIELD( _field_block, "other platforms", &render_method_template_platform_block_block ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "vertex shader", &vertex_shader_reference },
+		{ _field_tag_reference, "pixel shader", &pixel_shader_reference },
+		{ _field_dword_integer, "available entry points*" },
+		{ _field_block, "entry points", &tag_block_index_block_block },
+		{ _field_block, "passes", &render_method_template_pass_block_block },
+		{ _field_block, "routing info", &render_method_routing_info_block_block },
+		{ _field_block, "float constants", &render_method_template_constant_table_block_block },
+		{ _field_block, "int constants", &render_method_template_constant_table_block_block },
+		{ _field_block, "bool constants", &render_method_template_constant_table_block_block },
+		{ _field_block, "textures", &render_method_template_constant_table_block_block },
+		{ _field_block, "other platforms", &render_method_template_platform_block_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(render_method_parameter_type_enum, 6)
+	STRINGS(render_method_parameter_type_enum)
 	{
-		OPTION("bitmap"),
-		OPTION("color"),
-		OPTION("real"),
-		OPTION("int"),
-		OPTION("bool"),
-		OPTION("argb color"),
+		"bitmap",
+		"color",
+		"real",
+		"int",
+		"bool",
+		"argb color"
 	};
+	STRING_LIST(render_method_parameter_type_enum, render_method_parameter_type_enum_strings, _countof(render_method_parameter_type_enum_strings));
 
-	TAG_ENUM(render_method_bitmap_filter_mode_enum, 10)
+	STRINGS(render_method_bitmap_filter_mode_enum)
 	{
-		OPTION("trilinear"),
-		OPTION("point"),
-		OPTION("bilinear"),
-		OPTION("UNUSED 0"),
-		OPTION("anisotropic (2) expensive"),
-		OPTION("UNUSED 1"),
-		OPTION("anisotropic (4) EXPENSIVE"),
-		OPTION("lightprobe texture array"),
-		OPTION("texture array quadlinear"),
-		OPTION("texture array quadanisotropic (2)"),
+		"trilinear",
+		"point",
+		"bilinear",
+		"UNUSED 0",
+		"anisotropic (2) expensive",
+		"UNUSED 1",
+		"anisotropic (4) EXPENSIVE",
+		"lightprobe texture array",
+		"texture array quadlinear",
+		"texture array quadanisotropic (2)"
 	};
+	STRING_LIST(render_method_bitmap_filter_mode_enum, render_method_bitmap_filter_mode_enum_strings, _countof(render_method_bitmap_filter_mode_enum_strings));
 
-	TAG_ENUM(render_method_bitmap_address_mode_enum, 6)
+	STRINGS(render_method_bitmap_address_mode_enum)
 	{
-		OPTION("wrap"),
-		OPTION("clamp"),
-		OPTION("mirror"),
-		OPTION("black border"),
-		OPTION("mirroronce"),
-		OPTION("mirroronce border"),
+		"wrap",
+		"clamp",
+		"mirror",
+		"black border",
+		"mirroronce",
+		"mirroronce border"
 	};
+	STRING_LIST(render_method_bitmap_address_mode_enum, render_method_bitmap_address_mode_enum_strings, _countof(render_method_bitmap_address_mode_enum_strings));
 
-	TAG_ENUM(render_method_animated_parameter_type_enum, 9)
+	STRINGS(render_method_animated_parameter_type_enum)
 	{
-		OPTION("value"),
-		OPTION("color"),
-		OPTION("scale uniform"),
-		OPTION("scale x"),
-		OPTION("scale y"),
-		OPTION("translation x"),
-		OPTION("translation y"),
-		OPTION("frame index"),
-		OPTION("alpha"),
+		"value",
+		"color",
+		"scale uniform",
+		"scale x",
+		"scale y",
+		"translation x",
+		"translation y",
+		"frame index",
+		"alpha"
 	};
+	STRING_LIST(render_method_animated_parameter_type_enum, render_method_animated_parameter_type_enum_strings, _countof(render_method_animated_parameter_type_enum_strings));
 
-	TAG_ENUM(render_method_extern_enum, 61)
+	STRINGS(render_method_extern_enum)
 	{
-		OPTION("none"),
-		OPTION("texaccum target"),
-		OPTION("normal target"),
-		OPTION("z target"),
-		OPTION("shadow mask"),
-		OPTION("shadow 1 target"),
-		OPTION("shadow 2 target"),
-		OPTION("shadow 3 target"),
-		OPTION("shadow 4 target"),
-		OPTION("texture camera target"),
-		OPTION("reflection target"),
-		OPTION("refraction target"),
-		OPTION("dualvmf direction ps"),
-		OPTION("dualvmf intensity ps"),
-		OPTION("dualvmf direction vs"),
-		OPTION("dualvmf intensity vs"),
-		OPTION("gel texture of analytical light"),
-		OPTION("unused 1"),
-		OPTION("unused 2"),
-		OPTION("change color primary"),
-		OPTION("change color secondary"),
-		OPTION("change color tertiary"),
-		OPTION("change color quaternary"),
-		OPTION("emblem color background"),
-		OPTION("emblem color primary"),
-		OPTION("emblem color secondary"),
-		OPTION("dynamic environment map 1"),
-		OPTION("dynamic environment map 2"),
-		OPTION("cook torrance array"),
-		OPTION("vmf diffuse table"),
-		OPTION("vmf diffuse table vs"),
-		OPTION("direction lut"),
-		OPTION("zonal rotation table"),
-		OPTION("phong specular table"),
-		OPTION("diffuse power specular table"),
-		OPTION("light dir 0"),
-		OPTION("light color 0"),
-		OPTION("light dir 1"),
-		OPTION("light color 1"),
-		OPTION("light dir 2"),
-		OPTION("light color 2"),
-		OPTION("light dir 3"),
-		OPTION("light color 3"),
-		OPTION("unused 3"),
-		OPTION("unused 4"),
-		OPTION("unused 5"),
-		OPTION("dynamic light gel 0"),
-		OPTION("flat envmap matrix x"),
-		OPTION("flat envmap matrix y"),
-		OPTION("flat envmap matrix z"),
-		OPTION("debug tint"),
-		OPTION("screen constants"),
-		OPTION("active camo distortion texture"),
-		OPTION("scene ldr texture"),
-		OPTION("water memexport addr"),
-		OPTION("tree animation timer"),
-		OPTION("depth constants"),
-		OPTION("camera forward"),
-		OPTION("wrinkle weights a"),
-		OPTION("wrinkle weights b"),
-		OPTION("static lighting previs"),
+		"none",
+		"texaccum target",
+		"normal target",
+		"z target",
+		"shadow mask",
+		"shadow 1 target",
+		"shadow 2 target",
+		"shadow 3 target",
+		"shadow 4 target",
+		"texture camera target",
+		"reflection target",
+		"refraction target",
+		"dualvmf direction ps",
+		"dualvmf intensity ps",
+		"dualvmf direction vs",
+		"dualvmf intensity vs",
+		"gel texture of analytical light",
+		"unused 1",
+		"unused 2",
+		"change color primary",
+		"change color secondary",
+		"change color tertiary",
+		"change color quaternary",
+		"emblem color background",
+		"emblem color primary",
+		"emblem color secondary",
+		"dynamic environment map 1",
+		"dynamic environment map 2",
+		"cook torrance array",
+		"vmf diffuse table",
+		"vmf diffuse table vs",
+		"direction lut",
+		"zonal rotation table",
+		"phong specular table",
+		"diffuse power specular table",
+		"light dir 0",
+		"light color 0",
+		"light dir 1",
+		"light color 1",
+		"light dir 2",
+		"light color 2",
+		"light dir 3",
+		"light color 3",
+		"unused 3",
+		"unused 4",
+		"unused 5",
+		"dynamic light gel 0",
+		"flat envmap matrix x",
+		"flat envmap matrix y",
+		"flat envmap matrix z",
+		"debug tint",
+		"screen constants",
+		"active camo distortion texture",
+		"scene ldr texture",
+		"water memexport addr",
+		"tree animation timer",
+		"depth constants",
+		"camera forward",
+		"wrinkle weights a",
+		"wrinkle weights b",
+		"static lighting previs"
 	};
+	STRING_LIST(render_method_extern_enum, render_method_extern_enum_strings, _countof(render_method_extern_enum_strings));
 
-	TAG_ENUM(render_method_definition_flags, 2)
+	STRINGS(render_method_definition_flags)
 	{
-		OPTION("use automatic macros"),
-		OPTION("build constant table in shader"),
+		"use automatic macros",
+		"build constant table in shader"
 	};
+	STRING_LIST(render_method_definition_flags, render_method_definition_flags_strings, _countof(render_method_definition_flags_strings));
 
-	TAG_ENUM(entry_point_enum, 40)
+	STRINGS(entry_point_enum)
 	{
-		OPTION("default"),
-		OPTION("albedo"),
-		OPTION("static_per_pixel"),
-		OPTION("static_per_pixel_hybrid_refinement"),
-		OPTION("static_per_pixel_analytic"),
-		OPTION("static_per_pixel_analytic_hybrid_refinement"),
-		OPTION("static_per_pixel_floating_shadow"),
-		OPTION("static_per_vertex"),
-		OPTION("static_probe"),
-		OPTION("static_per_pixel_forge"),
-		OPTION("static_per_pixel_object"),
-		OPTION("static_per_vertex_object"),
-		OPTION("dynamic_light"),
-		OPTION("shadow_generate"),
-		OPTION("shadow_apply"),
-		OPTION("active_camo"),
-		OPTION("lightmap_debug_mode"),
-		OPTION("vertex_color_lighting"),
-		OPTION("water_tessellation"),
-		OPTION("water_shading"),
-		OPTION("unused2"),
-		OPTION("single_pass_per_pixel"),
-		OPTION("single_pass_per_vertex"),
-		OPTION("single_pass_single_probe"),
-		OPTION("single_pass_as_decal"),
-		OPTION("midnight_spotlight"),
-		OPTION("midnight_spotlight_transparents"),
-		OPTION("motion_blur"),
-		OPTION("volume_fog_stencil"),
-		OPTION("volume_fog_depth"),
-		OPTION("curved_cui"),
-		OPTION("single_pass_shadowed_no_fog_per_pixel"),
-		OPTION("single_pass_shadowed_no_fog_per_vertex"),
-		OPTION("single_pass_shadowed_no_fog_single_probe"),
-		OPTION("static_per_pixel_floating_shadow_simple"),
-		OPTION("static_per_pixel_simple"),
-		OPTION("static_per_pixel_ao"),
-		OPTION("static_per_vertex_ao"),
-		OPTION("static_lit_cui"),
-		OPTION("curved_static_lit_cui"),
+		"default",
+		"albedo",
+		"static_per_pixel",
+		"static_per_pixel_hybrid_refinement",
+		"static_per_pixel_analytic",
+		"static_per_pixel_analytic_hybrid_refinement",
+		"static_per_pixel_floating_shadow",
+		"static_per_vertex",
+		"static_probe",
+		"static_per_pixel_forge",
+		"static_per_pixel_object",
+		"static_per_vertex_object",
+		"dynamic_light",
+		"shadow_generate",
+		"shadow_apply",
+		"active_camo",
+		"lightmap_debug_mode",
+		"vertex_color_lighting",
+		"water_tessellation",
+		"water_shading",
+		"unused2",
+		"single_pass_per_pixel",
+		"single_pass_per_vertex",
+		"single_pass_single_probe",
+		"single_pass_as_decal",
+		"midnight_spotlight",
+		"midnight_spotlight_transparents",
+		"motion_blur",
+		"volume_fog_stencil",
+		"volume_fog_depth",
+		"curved_cui",
+		"single_pass_shadowed_no_fog_per_pixel",
+		"single_pass_shadowed_no_fog_per_vertex",
+		"single_pass_shadowed_no_fog_single_probe",
+		"static_per_pixel_floating_shadow_simple",
+		"static_per_pixel_simple",
+		"static_per_pixel_ao",
+		"static_per_vertex_ao",
+		"static_lit_cui",
+		"curved_static_lit_cui"
 	};
+	STRING_LIST(entry_point_enum, entry_point_enum_strings, _countof(entry_point_enum_strings));
 
-	TAG_ENUM(render_method_pass_flags, 4)
+	STRINGS(render_method_pass_flags)
 	{
-		OPTION("shared entry point compilation&shared pixel shader compilation"),
-		OPTION("shared VS only care non-default option of depended category"),
-		OPTION("only be compiled to xenon platform"),
-		OPTION("allow failed shader compile"),
+		"shared entry point compilation&shared pixel shader compilation",
+		"shared VS only care non-default option of depended category",
+		"only be compiled to xenon platform",
+		"allow failed shader compile"
 	};
+	STRING_LIST(render_method_pass_flags, render_method_pass_flags_strings, _countof(render_method_pass_flags_strings));
 
-	TAG_ENUM(vertex_types_names_enum, 54)
+	STRINGS(vertex_types_names_enum)
 	{
-		OPTION("world"),
-		OPTION("rigid"),
-		OPTION("skinned"),
-		OPTION("particle_model"),
-		OPTION("flat_world"),
-		OPTION("flat_rigid"),
-		OPTION("flat_skinned"),
-		OPTION("screen"),
-		OPTION("debug"),
-		OPTION("transparent"),
-		OPTION("particle"),
-		OPTION("rigid2uv"),
-		OPTION("light_volume"),
-		OPTION("chud_simple"),
-		OPTION("chud_fancy"),
-		OPTION("decorator"),
-		OPTION("tiny position"),
-		OPTION("patchy fog"),
-		OPTION("water"),
-		OPTION("ripple"),
-		OPTION("implicit geometry"),
-		OPTION("skinned2uv"),
-		OPTION("world_tessellated"),
-		OPTION("rigid_tessellated"),
-		OPTION("skinned_tessellated"),
-		OPTION("shader_cache"),
-		OPTION("structure_instance_imposter"),
-		OPTION("object_imposter"),
-		OPTION("rigid compressed"),
-		OPTION("skinned uncompressed"),
-		OPTION("light_volume_precompiled"),
-		OPTION("blendshape_rigid"),
-		OPTION("blendshape_rigid_blendshaped"),
-		OPTION("rigid_blendshaped"),
-		OPTION("blendshape_skinned"),
-		OPTION("blendshape_skinned_blendshaped"),
-		OPTION("skinned_blendshaped"),
-		OPTION("VirtualGeometryHWtess"),
-		OPTION("VirtualGeometryMemexport"),
-		OPTION("position_only"),
-		OPTION("VirtualGeometryDebug"),
-		OPTION("BlendshapeRigidCompressedPosition"),
-		OPTION("SkinnedUncompressedPositionBlendshaped"),
-		OPTION("BlendshapeSkinnedUncompressedPosition"),
-		OPTION("tracer"),
-		OPTION("polyart"),
-		OPTION("vectorart"),
-		OPTION("rigid_boned"),
-		OPTION("rigid_boned_2uv"),
-		OPTION("blendshape_skinned_2uv"),
-		OPTION("blendshape_skinned_2uv_blendshaped"),
-		OPTION("skinned_2uv_blendshaped"),
-		OPTION("polyartUV"),
-		OPTION("BlendshapeSkinnedUncompressedPositionBlendshaped"),
+		"world",
+		"rigid",
+		"skinned",
+		"particle_model",
+		"flat_world",
+		"flat_rigid",
+		"flat_skinned",
+		"screen",
+		"debug",
+		"transparent",
+		"particle",
+		"rigid2uv",
+		"light_volume",
+		"chud_simple",
+		"chud_fancy",
+		"decorator",
+		"tiny position",
+		"patchy fog",
+		"water",
+		"ripple",
+		"implicit geometry",
+		"skinned2uv",
+		"world_tessellated",
+		"rigid_tessellated",
+		"skinned_tessellated",
+		"shader_cache",
+		"structure_instance_imposter",
+		"object_imposter",
+		"rigid compressed",
+		"skinned uncompressed",
+		"light_volume_precompiled",
+		"blendshape_rigid",
+		"blendshape_rigid_blendshaped",
+		"rigid_blendshaped",
+		"blendshape_skinned",
+		"blendshape_skinned_blendshaped",
+		"skinned_blendshaped",
+		"VirtualGeometryHWtess",
+		"VirtualGeometryMemexport",
+		"position_only",
+		"VirtualGeometryDebug",
+		"BlendshapeRigidCompressedPosition",
+		"SkinnedUncompressedPositionBlendshaped",
+		"BlendshapeSkinnedUncompressedPosition",
+		"tracer",
+		"polyart",
+		"vectorart",
+		"rigid_boned",
+		"rigid_boned_2uv",
+		"blendshape_skinned_2uv",
+		"blendshape_skinned_2uv_blendshaped",
+		"skinned_2uv_blendshaped",
+		"polyartUV",
+		"BlendshapeSkinnedUncompressedPositionBlendshaped"
 	};
+	STRING_LIST(vertex_types_names_enum, vertex_types_names_enum_strings, _countof(vertex_types_names_enum_strings));
 
-	TAG_ENUM(ui_and_usage_flags, 4)
+	STRINGS(ui_and_usage_flags)
 	{
-		OPTION("use force function type"),
-		OPTION("use force function color count"),
-		OPTION("parameter invisible in ui"),
-		OPTION("lock function value"),
+		"use force function type",
+		"use force function color count",
+		"parameter invisible in ui",
+		"lock function value"
 	};
+	STRING_LIST(ui_and_usage_flags, ui_and_usage_flags_strings, _countof(ui_and_usage_flags_strings));
 
-	TAG_ENUM(global_render_method_lock_option_flags_defintion, 32)
+	STRINGS(global_render_method_lock_option_flags_defintion)
 	{
-		OPTION("option 0"),
-		OPTION("option 1"),
-		OPTION("option 2"),
-		OPTION("option 3"),
-		OPTION("option 4"),
-		OPTION("option 5"),
-		OPTION("option 6"),
-		OPTION("option 7"),
-		OPTION("option 8"),
-		OPTION("option 9"),
-		OPTION("option 10"),
-		OPTION("option 11"),
-		OPTION("option 12"),
-		OPTION("option 13"),
-		OPTION("option 14"),
-		OPTION("option 15"),
-		OPTION("option 16"),
-		OPTION("option 17"),
-		OPTION("option 18"),
-		OPTION("option 19"),
-		OPTION("option 20"),
-		OPTION("option 21"),
-		OPTION("option 22"),
-		OPTION("option 23"),
-		OPTION("option 24"),
-		OPTION("option 25"),
-		OPTION("option 26"),
-		OPTION("option 27"),
-		OPTION("option 28"),
-		OPTION("option 29"),
-		OPTION("option 30"),
-		OPTION("option 31"),
+		"option 0",
+		"option 1",
+		"option 2",
+		"option 3",
+		"option 4",
+		"option 5",
+		"option 6",
+		"option 7",
+		"option 8",
+		"option 9",
+		"option 10",
+		"option 11",
+		"option 12",
+		"option 13",
+		"option 14",
+		"option 15",
+		"option 16",
+		"option 17",
+		"option 18",
+		"option 19",
+		"option 20",
+		"option 21",
+		"option 22",
+		"option 23",
+		"option 24",
+		"option 25",
+		"option 26",
+		"option 27",
+		"option 28",
+		"option 29",
+		"option 30",
+		"option 31"
 	};
+	STRING_LIST(global_render_method_lock_option_flags_defintion, global_render_method_lock_option_flags_defintion_strings, _countof(global_render_method_lock_option_flags_defintion_strings));
 
-	TAG_ENUM(global_render_method_flags_defintion, 5)
+	STRINGS(global_render_method_flags_defintion)
 	{
-		OPTION("don\'t fog me"),
-		OPTION("use custom setting"),
-		OPTION("calculate Z camera"),
-		OPTION("never render for shields"),
-		OPTION("only render for shields"),
+		"don\'t fog me",
+		"use custom setting",
+		"calculate Z camera",
+		"never render for shields",
+		"only render for shields"
 	};
+	STRING_LIST(global_render_method_flags_defintion, global_render_method_flags_defintion_strings, _countof(global_render_method_flags_defintion_strings));
 
-	TAG_ENUM(global_sort_layer_enum_defintion, 4)
+	STRINGS(global_sort_layer_enum_defintion)
 	{
-		OPTION("invalid"),
-		OPTION("pre-pass"),
-		OPTION("normal"),
-		OPTION("post-pass"),
+		"invalid",
+		"pre-pass",
+		"normal",
+		"post-pass"
 	};
+	STRING_LIST(global_sort_layer_enum_defintion, global_sort_layer_enum_defintion_strings, _countof(global_sort_layer_enum_defintion_strings));
 
 } // namespace blofeld
 

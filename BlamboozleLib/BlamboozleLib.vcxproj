@@ -191,6 +191,7 @@
     <ClCompile Include="halo4\h4_source_generator.cpp" />
     <ClCompile Include="halo4\h4_blamboozle.cpp" />
     <ClCompile Include="halo4\h4_tag_block.cpp" />
+    <ClCompile Include="halo4\h4_tag_reference.cpp" />
     <ClCompile Include="halo4\h4_tag_struct.cpp" />
     <ClCompile Include="halo4\h4_tag_group.cpp" />
     <ClCompile Include="halo5\blamboozle_h5_forge.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="halo4\h4_field_type.h" />
     <ClInclude Include="halo4\h4_tag_block.h" />
     <ClInclude Include="halo4\h4_tag_field.h" />
+    <ClInclude Include="halo4\h4_tag_reference.h" />
     <ClInclude Include="halo4\h4_tag_struct.h" />
     <ClInclude Include="halo4\h4_tag_group.h" />
     <ClInclude Include="halo4\halo4.h" />
@@ -222,6 +224,7 @@
     <ClInclude Include="halo5\h5_tag_field_set.h" />
     <ClInclude Include="halo5\h5_tag_layout.h" />
     <ClInclude Include="halo5\halo5_forge.h" />
+    <ClInclude Include="halo4\source_tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />

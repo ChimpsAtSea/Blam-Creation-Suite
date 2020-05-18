@@ -11,7 +11,6 @@ namespace blofeld
 	extern s_tag_block_definition playerEnlistmentDefinitionBlock_block;
 	extern s_tag_block_definition player_enlistment_globals_definition_block_block;
 
-
 	extern s_tag_struct_definition player_enlistment_globals_definition_struct_definition_struct_definition; // tag group
 
 	extern const char* playerEnlistmentFlags_strings[];

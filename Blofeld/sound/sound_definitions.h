@@ -76,7 +76,6 @@ namespace blofeld
 	extern s_tag_block_definition sound_dialogue_constants_block_block;
 	extern s_tag_block_definition sound_pitch_range_distances_block_block;
 
-
 	extern s_tag_struct_definition sound_distance_parameters_struct_struct_definition;
 	extern s_tag_struct_definition sound_propagation_definition_struct_struct_definition;
 	extern s_tag_struct_definition soundLipSyncInfoBlock_struct_struct_definition;

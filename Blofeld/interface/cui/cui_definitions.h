@@ -78,7 +78,6 @@ namespace blofeld
 	extern s_tag_block_definition cui_screen_block_block;
 	extern s_tag_block_definition cui_static_data_block_block;
 
-
 	extern s_tag_struct_definition cui_logic_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition cui_system_struct_definition;
 	extern s_tag_struct_definition properties_struct_struct_definition;

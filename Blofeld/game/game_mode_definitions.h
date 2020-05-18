@@ -3,9 +3,6 @@
 namespace blofeld
 {
 
-
-
-
 	extern s_tag_struct_definition game_mode_flags_struct_struct_definition;
 
 	extern const char* game_type_enum_definition_strings[];

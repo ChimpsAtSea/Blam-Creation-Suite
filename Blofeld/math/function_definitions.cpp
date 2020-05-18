@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,70 +10,72 @@ namespace blofeld
 
 	TAG_STRUCT(mapping_function)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_data, "data" ),
-		FIELD( _field_custom ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_data, "data" },
+		{ _field_custom },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scalar_function_named_struct_default_one)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_struct, "function", &mapping_function_default_one_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_struct, "function", &mapping_function_default_one_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(mapping_function_default_one)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_data, "data" ),
-		FIELD( _field_custom ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_data, "data" },
+		{ _field_custom },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scalar_function_named_struct)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_struct, "function", &mapping_function_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_struct, "function", &mapping_function_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(curve_scalar_struct_definition)
 	{
-		FIELD( _field_struct, "function", &scalar_function_named_struct_default_one_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_struct, "function", &scalar_function_named_struct_default_one_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(color_function_named_struct)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_struct, "function", &mapping_function_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_struct, "function", &mapping_function_struct_definition },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(function_type_enum_definition, 11)
+	STRINGS(function_type_enum_definition)
 	{
-		OPTION("identity"),
-		OPTION("constant"),
-		OPTION("transition"),
-		OPTION("periodic"),
-		OPTION("linear"),
-		OPTION("linear key"),
-		OPTION("multi linear key"),
-		OPTION("spline"),
-		OPTION("multi spline"),
-		OPTION("exponent"),
-		OPTION("spline2"),
+		"identity",
+		"constant",
+		"transition",
+		"periodic",
+		"linear",
+		"linear key",
+		"multi linear key",
+		"spline",
+		"multi spline",
+		"exponent",
+		"spline2"
 	};
+	STRING_LIST(function_type_enum_definition, function_type_enum_definition_strings, _countof(function_type_enum_definition_strings));
 
-	TAG_ENUM(color_graph_type_enum_definition, 5)
+	STRINGS(color_graph_type_enum_definition)
 	{
-		OPTION("scalar (intensity)"),
-		OPTION("constant"),
-		OPTION("2-color"),
-		OPTION("3-color"),
-		OPTION("4-color"),
+		"scalar (intensity)",
+		"constant",
+		"2-color",
+		"3-color",
+		"4-color"
 	};
+	STRING_LIST(color_graph_type_enum_definition, color_graph_type_enum_definition_strings, _countof(color_graph_type_enum_definition_strings));
 
 } // namespace blofeld
 

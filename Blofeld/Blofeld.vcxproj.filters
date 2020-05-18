@@ -882,6 +882,15 @@
     <ClCompile Include="weather\weather_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="manual_tag_references.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="__unknown\tag_references.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bitmaps\bitmap_group.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld-private-pch.h">
@@ -1761,6 +1770,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="weather\weather_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld_field_type_override.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="manual_tag_references.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="__unknown\tag_references.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bitmaps\bitmap_group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

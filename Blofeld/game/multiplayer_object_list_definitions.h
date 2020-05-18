@@ -27,10 +27,10 @@ namespace blofeld
 	extern s_tag_block_definition multiplayer_equipment_remap_table_block_block;
 	extern s_tag_block_definition multiplayer_object_type_list_block_block;
 
-
 	extern s_tag_struct_definition multiplayer_object_type_list_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition multiplayer_object_collection_struct_struct_definition;
 
+	extern s_tag_reference_definition global_multiplayer_object_type_list_reference;
 
 } // namespace blofeld
 

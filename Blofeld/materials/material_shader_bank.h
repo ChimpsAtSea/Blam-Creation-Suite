@@ -15,7 +15,5 @@ namespace blofeld
 	extern s_tag_block_definition vertexShaderUniqueBindingInfoBlock_block;
 
 
-
-
 } // namespace blofeld
 

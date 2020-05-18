@@ -9,7 +9,6 @@ namespace blofeld
 
 	extern s_tag_block_definition scenery_block_block;
 
-
 	extern s_tag_struct_definition scenery_group_struct_definition; // tag group
 
 	extern const char* pathfinding_policy_enum$2_strings[];

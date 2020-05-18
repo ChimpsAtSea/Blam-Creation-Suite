@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -7,47 +8,48 @@ namespace blofeld
 
 	TAG_BLOCK(GameGlobalsGrenadeBlock, eUGT_count)
 	{
-		FIELD( _field_short_integer, "maximum count" ),
-		FIELD( _field_pad, "CXVLKJE", 2 ),
-		FIELD( _field_short_integer, "initial count (Campaign)" ),
-		FIELD( _field_short_integer, "initial count (Firefight)" ),
-		FIELD( _field_short_integer, "initial count (Multiplayer)" ),
-		FIELD( _field_short_integer, "grenadier extra count (Campaign)" ),
-		FIELD( _field_short_integer, "grenadier extra count (Firefight)" ),
-		FIELD( _field_short_integer, "grenadier extra count (Multiplayer)" ),
-		FIELD( _field_real, "drop percentage (Campaign)" ),
-		FIELD( _field_real, "drop percentage (Firefight)" ),
-		FIELD( _field_real, "drop percentage (Multiplayer)" ),
-		FIELD( _field_real, "resourceful scavenge percentage (Campaign)" ),
-		FIELD( _field_real, "resourceful scavenge percentage (Firefight)" ),
-		FIELD( _field_real, "resourceful scavenge percentage (Multiplayer)" ),
-		FIELD( _field_tag_reference, "throwing effect" ),
-		FIELD( _field_tag_reference, "equipment" ),
-		FIELD( _field_tag_reference, "projectile" ),
-		FIELD( _field_tag_reference, "equipment (PvE)" ),
-		FIELD( _field_tag_reference, "projectile (PvE)" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "maximum count" },
+		{ _field_pad, "CXVLKJE", 2 },
+		{ _field_short_integer, "initial count (Campaign)" },
+		{ _field_short_integer, "initial count (Firefight)" },
+		{ _field_short_integer, "initial count (Multiplayer)" },
+		{ _field_short_integer, "grenadier extra count (Campaign)" },
+		{ _field_short_integer, "grenadier extra count (Firefight)" },
+		{ _field_short_integer, "grenadier extra count (Multiplayer)" },
+		{ _field_real, "drop percentage (Campaign)" },
+		{ _field_real, "drop percentage (Firefight)" },
+		{ _field_real, "drop percentage (Multiplayer)" },
+		{ _field_real, "resourceful scavenge percentage (Campaign)" },
+		{ _field_real, "resourceful scavenge percentage (Firefight)" },
+		{ _field_real, "resourceful scavenge percentage (Multiplayer)" },
+		{ _field_tag_reference, "throwing effect", &Tag::Reference<struct effect_definition>::s_defaultDefinition },
+		{ _field_tag_reference, "equipment", &Tag::Reference<struct equipment_definition>::s_defaultDefinition },
+		{ _field_tag_reference, "projectile", &Tag::Reference<struct projectile_definition>::s_defaultDefinition },
+		{ _field_tag_reference, "equipment (PvE)", &Tag::Reference<struct equipment_definition>::s_defaultDefinition },
+		{ _field_tag_reference, "projectile (PvE)", &Tag::Reference<struct projectile_definition>::s_defaultDefinition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(game_globals_grenade_list_block, 1, game_globals_grenade_list_struct_definition_struct_definition );
 
 	TAG_STRUCT(game_globals_grenade_list_struct_definition)
 	{
-		FIELD( _field_block, "grenades", &GameGlobalsGrenadeBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "grenades", &GameGlobalsGrenadeBlock_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(global_grenade_type_enum, 8)
+	STRINGS(global_grenade_type_enum)
 	{
-		OPTION("human fragmentation"),
-		OPTION("covenant plasma"),
-		OPTION("pulse grenade"),
-		OPTION("grenade type 3"),
-		OPTION("grenade type 4"),
-		OPTION("grenade type 5"),
-		OPTION("grenade type 6"),
-		OPTION("grenade type 7"),
+		"human fragmentation",
+		"covenant plasma",
+		"pulse grenade",
+		"grenade type 3",
+		"grenade type 4",
+		"grenade type 5",
+		"grenade type 6",
+		"grenade type 7"
 	};
+	STRING_LIST(global_grenade_type_enum, global_grenade_type_enum_strings, _countof(global_grenade_type_enum_strings));
 
 } // namespace blofeld
 

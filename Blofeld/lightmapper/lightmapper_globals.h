@@ -15,7 +15,6 @@ namespace blofeld
 	extern s_tag_block_definition lightmap_model_globals_block_block;
 	extern s_tag_block_definition lightmapper_globals_block_block;
 
-
 	extern s_tag_struct_definition lightmap_model_globals_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition lightmapper_globals_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition global_lightmap_global_settings_struct_struct_definition;

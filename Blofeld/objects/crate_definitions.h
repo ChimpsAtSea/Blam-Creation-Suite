@@ -9,7 +9,6 @@ namespace blofeld
 
 	extern s_tag_block_definition crate_block_block;
 
-
 	extern s_tag_struct_definition crate_struct_definition_struct_definition; // tag group
 
 	extern const char* crate_flags_strings[];

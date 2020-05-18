@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition user_hint_line_segment_block_block_struct;
 	extern s_tag_block_definition user_hint_line_segment_block_block;
 	extern s_tag_struct_definition user_hint_parallelogram_block_block_struct;
@@ -51,7 +50,6 @@ namespace blofeld
 	extern s_tag_block_definition user_hint_block_block;
 	extern s_tag_struct_definition special_movement_block_block_struct;
 	extern s_tag_block_definition special_movement_block_block;
-
 
 	extern s_tag_struct_definition user_hint_volume_avoidance_struct_struct_definition;
 

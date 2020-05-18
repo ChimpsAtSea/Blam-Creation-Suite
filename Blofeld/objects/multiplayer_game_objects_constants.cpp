@@ -1,55 +1,58 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
-	TAG_ENUM(multiplayer_object_boundary_shape, 4)
+	STRINGS(multiplayer_object_boundary_shape)
 	{
-		OPTION("unused"),
-		OPTION("sphere"),
-		OPTION("cylinder"),
-		OPTION("box"),
+		"unused",
+		"sphere",
+		"cylinder",
+		"box"
 	};
+	STRING_LIST(multiplayer_object_boundary_shape, multiplayer_object_boundary_shape_strings, _countof(multiplayer_object_boundary_shape_strings));
 
-	TAG_ENUM(multiplayer_object_type, 36)
+	STRINGS(multiplayer_object_type)
 	{
-		OPTION("ordinary"),
-		OPTION("weapon"),
-		OPTION("grenade"),
-		OPTION("projectile"),
-		OPTION("powerup"),
-		OPTION("equipment"),
-		OPTION("ammo pack"),
-		OPTION("light land vehicle"),
-		OPTION("heavy land vehicle"),
-		OPTION("flying vehicle"),
-		OPTION("turret"),
-		OPTION("device"),
-		OPTION("dispenser"),
-		OPTION("teleporter 2way"),
-		OPTION("teleporter sender"),
-		OPTION("teleporter receiver"),
-		OPTION("player spawn location"),
-		OPTION("player respawn zone"),
-		OPTION("secondary objective"),
-		OPTION("primary objective"),
-		OPTION("named location area"),
-		OPTION("danger zone"),
-		OPTION("fireteam 1 respawn zone"),
-		OPTION("fireteam 2 respawn zone"),
-		OPTION("fireteam 3 respawn zone"),
-		OPTION("fireteam 4 respawn zone"),
-		OPTION("safe volume"),
-		OPTION("kill volume"),
-		OPTION("cinematic camera position"),
-		OPTION("mosh enemy spawn location"),
-		OPTION("ordnance drop point"),
-		OPTION("trait zone"),
-		OPTION("initial ordnance drop point"),
-		OPTION("random ordnance drop point"),
-		OPTION("objective ordnance drop point"),
-		OPTION("personal ordnance drop point"),
+		"ordinary",
+		"weapon",
+		"grenade",
+		"projectile",
+		"powerup",
+		"equipment",
+		"ammo pack",
+		"light land vehicle",
+		"heavy land vehicle",
+		"flying vehicle",
+		"turret",
+		"device",
+		"dispenser",
+		"teleporter 2way",
+		"teleporter sender",
+		"teleporter receiver",
+		"player spawn location",
+		"player respawn zone",
+		"secondary objective",
+		"primary objective",
+		"named location area",
+		"danger zone",
+		"fireteam 1 respawn zone",
+		"fireteam 2 respawn zone",
+		"fireteam 3 respawn zone",
+		"fireteam 4 respawn zone",
+		"safe volume",
+		"kill volume",
+		"cinematic camera position",
+		"mosh enemy spawn location",
+		"ordnance drop point",
+		"trait zone",
+		"initial ordnance drop point",
+		"random ordnance drop point",
+		"objective ordnance drop point",
+		"personal ordnance drop point"
 	};
+	STRING_LIST(multiplayer_object_type, multiplayer_object_type_strings, _countof(multiplayer_object_type_strings));
 
 } // namespace blofeld
 

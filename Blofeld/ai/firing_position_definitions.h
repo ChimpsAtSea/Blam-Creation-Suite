@@ -3,10 +3,8 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition firing_positions_block_block_struct;
 	extern s_tag_block_definition firing_positions_block_block;
-
 
 
 	extern const char* g_firing_position_flags_strings[];

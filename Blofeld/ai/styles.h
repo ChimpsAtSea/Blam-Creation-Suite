@@ -13,7 +13,6 @@ namespace blofeld
 	extern s_tag_block_definition behavior_names_block_block;
 	extern s_tag_block_definition style_block_block;
 
-
 	extern s_tag_struct_definition style_struct_definition_struct_definition; // tag group
 
 	extern const char* behavior_set1_strings[];

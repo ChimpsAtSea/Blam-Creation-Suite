@@ -39,10 +39,8 @@ namespace blofeld
 	extern s_tag_block_definition sound_gestalt_layer_markers_block_block;
 	extern s_tag_block_definition sound_cache_file_gestalt_block_block;
 
-
 	extern s_tag_struct_definition cache_file_sound_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition sound_cache_file_gestalt_struct_definition_struct_definition; // tag group
-
 
 } // namespace blofeld
 

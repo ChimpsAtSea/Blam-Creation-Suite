@@ -13,13 +13,14 @@ namespace blofeld
 	extern s_tag_block_definition water_physics_hull_surface_definition_block_block;
 	extern s_tag_block_definition water_physics_drag_properties_block_block;
 
-
 	extern s_tag_struct_definition water_physics_drag_properties_struct_struct_definition;
 	extern s_tag_struct_definition physics_force_function_struct_struct_definition;
 	extern s_tag_struct_definition water_physics_drag_properties_struct_definition_struct_definition; // tag group
 
 	extern const char* water_physics_hull_surface_definition_flags_strings[];
 	extern s_string_list_definition water_physics_hull_surface_definition_flags;
+
+	extern s_tag_reference_definition water_physics_drag_properties_reference;
 
 } // namespace blofeld
 

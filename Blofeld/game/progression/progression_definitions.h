@@ -11,7 +11,7 @@ namespace blofeld
 	extern s_tag_block_definition progressionGlobalsBlock_block;
 
 
-
+	extern s_tag_reference_definition global_progression_reference;
 
 } // namespace blofeld
 

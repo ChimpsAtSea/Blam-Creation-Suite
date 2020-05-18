@@ -15,7 +15,6 @@ namespace blofeld
 	extern s_tag_block_definition sound_effect_template_additional_sound_input_block_block;
 	extern s_tag_block_definition sound_effect_template_block_block;
 
-
 	extern s_tag_struct_definition sound_effect_template_struct_definition_struct_definition; // tag group
 
 	extern const char* sound_effect_template_type_enum_definition_strings[];

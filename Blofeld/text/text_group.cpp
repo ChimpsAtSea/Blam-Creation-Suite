@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -7,74 +8,76 @@ namespace blofeld
 
 	TAG_BLOCK(multilingual_unicode_string_reference_block, k_maximum_multilingual_unicode_strings_per_string_list)
 	{
-		FIELD( _field_string_id, "string id^*" ),
-		FIELD( _field_long_integer, "english offset*" ),
-		FIELD( _field_long_integer, "japanese offset*" ),
-		FIELD( _field_long_integer, "german offset*" ),
-		FIELD( _field_long_integer, "french offset*" ),
-		FIELD( _field_long_integer, "spanish offset*" ),
-		FIELD( _field_long_integer, "mexican spanish offset*" ),
-		FIELD( _field_long_integer, "italian offset*" ),
-		FIELD( _field_long_integer, "korean offset*" ),
-		FIELD( _field_long_integer, "traditional chinese offset*" ),
-		FIELD( _field_long_integer, "simplified chinese offset*" ),
-		FIELD( _field_long_integer, "portuguese offset*" ),
-		FIELD( _field_long_integer, "polish offset*" ),
-		FIELD( _field_long_integer, "russian offset*" ),
-		FIELD( _field_long_integer, "danish offset*" ),
-		FIELD( _field_long_integer, "finnish offset*" ),
-		FIELD( _field_long_integer, "dutch offset*" ),
-		FIELD( _field_long_integer, "norwegian offset*" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "string id^*" },
+		{ _field_long_integer, "english offset*" },
+		{ _field_long_integer, "japanese offset*" },
+		{ _field_long_integer, "german offset*" },
+		{ _field_long_integer, "french offset*" },
+		{ _field_long_integer, "spanish offset*" },
+		{ _field_long_integer, "mexican spanish offset*" },
+		{ _field_long_integer, "italian offset*" },
+		{ _field_long_integer, "korean offset*" },
+		{ _field_long_integer, "traditional chinese offset*" },
+		{ _field_long_integer, "simplified chinese offset*" },
+		{ _field_long_integer, "portuguese offset*" },
+		{ _field_long_integer, "polish offset*" },
+		{ _field_long_integer, "russian offset*" },
+		{ _field_long_integer, "danish offset*" },
+		{ _field_long_integer, "finnish offset*" },
+		{ _field_long_integer, "dutch offset*" },
+		{ _field_long_integer, "norwegian offset*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(string_substitution_pair_block, k_maximum_strings_per_string_list)
 	{
-		FIELD( _field_string_id, "first string id^*!" ),
-		FIELD( _field_string_id, "second string id*!" ),
-		FIELD( _field_long_integer, "associated value*!" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "first string id^*!" },
+		{ _field_string_id, "second string id*!" },
+		{ _field_long_integer, "associated value*!" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(multilingual_unicode_string_list_block, 1, multilingual_unicode_string_list_struct_definition_struct_definition );
 
 	TAG_ARRAY(data_hash_definition, k_hash_size)
 	{
-		FIELD( _field_byte_integer, "hash byte!" ),
-		FIELD( _field_terminator )
+		{ _field_byte_integer, "hash byte!" },
+		{ _field_terminator }
 	};
 
 	TAG_ARRAY(multilingual_unicode_string_list_language_pack_offsets, k_language_count)
 	{
-		FIELD( _field_short_integer, "start index!" ),
-		FIELD( _field_short_integer, "string count!" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "start index!" },
+		{ _field_short_integer, "string count!" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(language_pack_definition)
 	{
-		FIELD( _field_long_integer, "string reference pointer!" ),
-		FIELD( _field_long_integer, "string data pointer!" ),
-		FIELD( _field_long_integer, "number of strings!" ),
-		FIELD( _field_long_integer, "string data size!" ),
-		FIELD( _field_long_integer, "string reference cache offset!" ),
-		FIELD( _field_long_integer, "string data cache offset!" ),
-		FIELD( _field_array, "string reference checksum!", &data_hash_definition_array ),
-		FIELD( _field_array, "string data checksum!", &data_hash_definition_array ),
-		FIELD( _field_long_integer, "data loaded boolean~!" ),
-		FIELD( _field_terminator )
+		{ _field_long_integer, "string reference pointer!" },
+		{ _field_long_integer, "string data pointer!" },
+		{ _field_long_integer, "number of strings!" },
+		{ _field_long_integer, "string data size!" },
+		{ _field_long_integer, "string reference cache offset!" },
+		{ _field_long_integer, "string data cache offset!" },
+		{ _field_array, "string reference checksum!", &data_hash_definition_array },
+		{ _field_array, "string data checksum!", &data_hash_definition_array },
+		{ _field_long_integer, "data loaded boolean~!" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(multilingual_unicode_string_list_struct_definition)
 	{
-		FIELD( _field_custom, "import" ),
-		FIELD( _field_custom, "import clean" ),
-		FIELD( _field_block, "string references*", &multilingual_unicode_string_reference_block_block ),
-		FIELD( _field_block, "substitution pairs*", &string_substitution_pair_block_block ),
-		FIELD( _field_data, "string data utf8*" ),
-		FIELD( _field_array, "language pack offsets!", &multilingual_unicode_string_list_language_pack_offsets_array ),
-		FIELD( _field_terminator )
+		{ _field_custom, "import" },
+		{ _field_custom, "import clean" },
+		{ _field_block, "string references*", &multilingual_unicode_string_reference_block_block },
+		{ _field_block, "substitution pairs*", &string_substitution_pair_block_block },
+		{ _field_data, "string data utf8*" },
+		{ _field_array, "language pack offsets!", &multilingual_unicode_string_list_language_pack_offsets_array },
+		{ _field_terminator }
 	};
+
+	TAG_REFERENCE(global_multilingual_unicode_string_list_reference, MULTILINGUAL_UNICODE_STRING_LIST_TAG);
 
 } // namespace blofeld
 

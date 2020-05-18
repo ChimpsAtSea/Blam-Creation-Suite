@@ -13,7 +13,6 @@ namespace blofeld
 	extern s_tag_block_definition challenge_category_block_block;
 	extern s_tag_block_definition challenge_globals_definition_block_block;
 
-
 	extern s_tag_struct_definition challenge_globals_definition_struct_definition_struct_definition; // tag group
 
 	extern const char* challenge_definition_flags_strings[];
@@ -26,6 +25,7 @@ namespace blofeld
 	extern s_string_list_definition challenge_category_enum_definition;
 	extern const char* skull_flags_definition_strings[];
 	extern s_string_list_definition skull_flags_definition;
+
 
 } // namespace blofeld
 

@@ -37,7 +37,6 @@ namespace blofeld
 	extern s_tag_block_definition UserInterfaceStyleSheetOuterGlowBlock_block;
 	extern s_tag_block_definition style_sheet_list_block_block;
 
-
 	extern s_tag_struct_definition style_sheet_list_struct_definition_struct_definition; // tag group
 
 	extern const char* text_case_enum_strings[];
@@ -52,6 +51,8 @@ namespace blofeld
 	extern s_string_list_definition style_sheet_language_enum_definition;
 	extern const char* gradient_shape_enum_strings[];
 	extern s_string_list_definition gradient_shape_enum;
+
+	extern s_tag_reference_definition style_sheets_global_reference;
 
 } // namespace blofeld
 

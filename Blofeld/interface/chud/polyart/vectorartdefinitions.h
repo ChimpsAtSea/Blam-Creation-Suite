@@ -10,8 +10,5 @@ namespace blofeld
 	extern s_tag_group vectorart_asset_group;
 
 
-
-
-
 } // namespace blofeld
 

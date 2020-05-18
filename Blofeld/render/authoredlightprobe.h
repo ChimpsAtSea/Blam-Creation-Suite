@@ -15,7 +15,7 @@ namespace blofeld
 	extern s_tag_struct_definition real_rgb_lightprobe_array_struct_definition;
 	extern s_tag_array_definition real_rgb_lightprobe_array_array;
 
-
+	extern s_tag_reference_definition AuthoredLightProbeReference;
 
 } // namespace blofeld
 

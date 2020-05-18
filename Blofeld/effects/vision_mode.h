@@ -25,7 +25,6 @@ namespace blofeld
 	extern s_tag_block_definition visionModeOrdnanceCrosshairBlock_block;
 	extern s_tag_block_definition vision_mode_block_block;
 
-
 	extern s_tag_struct_definition vision_mode_struct_definition_struct_definition; // tag group
 
 	extern const char* visionModeBipedTeamTypes_strings[];
@@ -36,6 +35,7 @@ namespace blofeld
 	extern s_string_list_definition visionModeBipedPassesFlags;
 	extern const char* visionModeFlags_strings[];
 	extern s_string_list_definition visionModeFlags;
+
 
 } // namespace blofeld
 

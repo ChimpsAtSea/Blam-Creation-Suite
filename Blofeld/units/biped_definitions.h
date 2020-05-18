@@ -25,7 +25,6 @@ namespace blofeld
 	extern s_tag_block_definition BipedAimingJointFixupBlock_block;
 	extern s_tag_block_definition biped_block_block;
 
-
 	extern s_tag_struct_definition biped_group_struct_definition; // tag group
 	extern s_tag_struct_definition biped_leaping_data_struct_struct_definition;
 	extern s_tag_struct_definition biped_vaulting_data_struct_struct_definition;

@@ -21,13 +21,14 @@ namespace blofeld
 	extern s_tag_block_definition emblem_runtime_back_list_block;
 	extern s_tag_block_definition emblem_library_block_block;
 
-
 	extern s_tag_struct_definition emblem_library_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition emblem_transform_struct_definition;
 	extern s_tag_struct_definition emblem_layer_struct_definition;
 
 	extern const char* front_emblem_primary_layer_strings[];
 	extern s_string_list_definition front_emblem_primary_layer;
+
+	extern s_tag_reference_definition global_emblem_library_parameters_reference;
 
 } // namespace blofeld
 

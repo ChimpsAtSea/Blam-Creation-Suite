@@ -23,7 +23,6 @@ namespace blofeld
 	extern s_tag_block_definition effect_conical_distribution_block_block;
 
 
-
 	extern const char* effect_dispositions_strings[];
 	extern s_string_list_definition effect_dispositions;
 	extern const char* effect_environments_strings[];
@@ -42,6 +41,9 @@ namespace blofeld
 	extern s_string_list_definition event_flags;
 	extern const char* effect_flags_strings[];
 	extern s_string_list_definition effect_flags;
+
+	extern s_tag_reference_definition global_effect_reference;
+	extern s_tag_reference_definition globalEffectReferenceNonResourceDependency;
 
 } // namespace blofeld
 

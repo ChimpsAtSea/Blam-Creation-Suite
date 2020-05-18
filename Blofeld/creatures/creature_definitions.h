@@ -16,7 +16,6 @@ namespace blofeld
 	extern s_tag_block_definition creature_scalar_timing_block_block;
 	extern s_tag_block_definition creature_block_block;
 
-
 	extern s_tag_struct_definition creature_struct_definition_struct_definition; // tag group
 
 	extern const char* creature_big_battle_definition_flags_strings[];

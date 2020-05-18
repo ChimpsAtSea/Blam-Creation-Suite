@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,20 +10,21 @@ namespace blofeld
 
 	TAG_STRUCT(spawner_struct_definition)
 	{
-		FIELD( _field_struct, "entity", &entity_struct_definition_struct_definition ),
-		FIELD( _field_custom, "$$$ SPAWNER $$$" ),
-		FIELD( _field_byte_flags, "Spawner Flags", &SpawnerFlags ),
-		FIELD( _field_pad, "FlagPad1", 3 ),
-		FIELD( _field_long_integer, "Post Spawn Cooldown (ticks)" ),
-		FIELD( _field_real, "Activation Task Priority #Priority of task to activate this spawner." ),
-		FIELD( _field_custom ),
-		FIELD( _field_terminator )
+		{ _field_struct, "entity", &entity_struct_definition_struct_definition },
+		{ _field_custom, "$$$ SPAWNER $$$" },
+		{ _field_byte_flags, "Spawner Flags", &SpawnerFlags },
+		{ _field_pad, "FlagPad1", 3 },
+		{ _field_long_integer, "Post Spawn Cooldown (ticks)" },
+		{ _field_real, "Activation Task Priority #Priority of task to activate this spawner." },
+		{ _field_custom },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(SpawnerFlags, 1)
+	STRINGS(SpawnerFlags)
 	{
-		OPTION("Cooldown Waits for Object Death"),
+		"Cooldown Waits for Object Death"
 	};
+	STRING_LIST(SpawnerFlags, SpawnerFlags_strings, _countof(SpawnerFlags_strings));
 
 } // namespace blofeld
 

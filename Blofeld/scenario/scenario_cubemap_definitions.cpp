@@ -1,44 +1,48 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
 	TAG_BLOCK(cubemap_reference_points_block, k_max_cubemap_reference_point_count)
 	{
-		FIELD( _field_real_point_3d, "reference point" ),
-		FIELD( _field_long_integer, "point index!" ),
-		FIELD( _field_terminator )
+		{ _field_real_point_3d, "reference point" },
+		{ _field_long_integer, "point index!" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(structure_cluster_cubemap, k_max_cubemaps_per_cluster)
 	{
-		FIELD( _field_short_integer, "scenario cubemap index" ),
-		FIELD( _field_short_integer, "cubemap bitmap index" ),
-		FIELD( _field_block, "reference points", &cubemap_reference_points_block_block ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "scenario cubemap index" },
+		{ _field_short_integer, "cubemap bitmap index" },
+		{ _field_block, "reference points", &cubemap_reference_points_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_cubemap_block, k_max_cubemaps_per_scenario)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_string_id, "name" ),
-		FIELD( _field_real_point_3d, "cubemap position" ),
-		FIELD( _field_enum, "cubemap resolution", &cubemap_resolution_enum ),
-		FIELD( _field_pad, "post-cubemap-resolution-pad", 2 ),
-		FIELD( _field_explanation, "bsps it could belong to" ),
-		FIELD( _field_struct, "manual bsp flags", &manualBspFlagsReferences_struct_definition ),
-		FIELD( _field_block, "reference points", &cubemap_reference_points_block_block ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_string_id, "name" },
+		{ _field_real_point_3d, "cubemap position" },
+		{ _field_enum, "cubemap resolution", &cubemap_resolution_enum },
+		{ _field_pad, "post-cubemap-resolution-pad", 2 },
+		{ _field_explanation, "bsps it could belong to" },
+		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences_struct_definition },
+		{ _field_block, "reference points", &cubemap_reference_points_block_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(cubemap_resolution_enum, 5)
+	STRINGS(cubemap_resolution_enum)
 	{
-		OPTION("16"),
-		OPTION("32"),
-		OPTION("64"),
-		OPTION("128"),
-		OPTION("256"),
+		"16",
+		"32",
+		"64",
+		"128",
+		"256"
 	};
+	STRING_LIST(cubemap_resolution_enum, cubemap_resolution_enum_strings, _countof(cubemap_resolution_enum_strings));
+
+	TAG_REFERENCE(scenario_cubemap_bitmap_reference, BITMAP_TAG, _tag_reference_flag_dont_resolve_in_editor | _tag_reference_flag_not_a_resource_dependency);
 
 } // namespace blofeld
 

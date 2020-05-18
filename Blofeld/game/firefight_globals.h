@@ -11,9 +11,7 @@ namespace blofeld
 
 	extern s_tag_block_definition firefightWaveTemplatesBlock_block;
 
-
 	extern s_tag_struct_definition firefightWaveTemplatesBlock_struct_struct_definition;
-
 
 } // namespace blofeld
 

@@ -55,7 +55,6 @@ namespace blofeld
 	extern s_tag_block_definition CookiePurchaseExternalUnlockableBlockOrdnanceDefinition_block;
 	extern s_tag_block_definition cookie_purchase_globals_block_block;
 
-
 	extern s_tag_struct_definition cookie_purchase_globals_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition PurchasePlayerAppearanceStruct_struct_definition;
 	extern s_tag_struct_definition PurchasePlayerLoadoutStruct_struct_definition;

@@ -67,7 +67,9 @@ inline const T* h4_va_to_pointer(const char* data, uint32_t address)
 
 
 #include "halo4/h4_field_type.h"
+#include "halo4/source_tree.h"
 #include "halo4/h4_tag_enum.h"
+#include "halo4/h4_tag_reference.h"
 #include "halo4/h4_tag_struct.h"
 #include "halo4/h4_tag_field.h"
 #include "halo4/h4_tag_block.h"

@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition part_block_block_struct;
 	extern s_tag_block_definition part_block_block;
 	extern s_tag_struct_definition subpart_block_block_struct;
@@ -75,7 +74,6 @@ namespace blofeld
 	extern s_tag_array_definition node_weights_implicit_array_array;
 	extern s_tag_struct_definition node_weights_complete_array_struct_definition;
 	extern s_tag_array_definition node_weights_complete_array_array;
-
 	extern s_tag_struct_definition global_render_geometry_struct_struct_definition;
 	extern s_tag_struct_definition global_render_geometry_user_data_header_struct_struct_definition;
 

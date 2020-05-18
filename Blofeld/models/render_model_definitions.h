@@ -42,7 +42,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition radiance_transfer_matrix_struct_definition;
 	extern s_tag_array_definition radiance_transfer_matrix_array;
-
 	extern s_tag_struct_definition imposter_model_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition render_model_lightmap_atlas_struct_definition_struct_definition; // tag group
 
@@ -56,6 +55,8 @@ namespace blofeld
 	extern s_string_list_definition render_model_instance_bitfield_flags_definition;
 	extern const char* render_model_marker_flags_definition_strings[];
 	extern s_string_list_definition render_model_marker_flags_definition;
+
+	extern s_tag_reference_definition RenderModelLightmapAtlasReference;
 
 } // namespace blofeld
 

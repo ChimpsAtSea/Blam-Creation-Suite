@@ -77,7 +77,6 @@ namespace blofeld
 	extern s_tag_block_definition shader_water_block_block;
 	extern s_tag_block_definition shader_waterfall_block_block;
 
-
 	extern s_tag_struct_definition shader_particle_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition material_type_struct_struct_definition;
 	extern s_tag_struct_definition shader_custom_struct_definition_struct_definition; // tag group

@@ -9,7 +9,6 @@ namespace blofeld
 
 	extern s_tag_block_definition light_block_block;
 
-
 	extern s_tag_struct_definition light_color_function_struct_struct_definition;
 	extern s_tag_struct_definition light_scalar_function_struct_struct_definition;
 	extern s_tag_struct_definition light_struct_definition_struct_definition; // tag group

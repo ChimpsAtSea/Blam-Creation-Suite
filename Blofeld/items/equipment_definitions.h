@@ -97,7 +97,6 @@ namespace blofeld
 	extern s_tag_block_definition EquipmentSoundSweetenerBlock_block;
 	extern s_tag_block_definition equipment_block_block;
 
-
 	extern s_tag_struct_definition equipment_struct_definition_struct_definition; // tag group
 
 	extern const char* multiplayer_powerup_flavor_strings[];
@@ -142,6 +141,8 @@ namespace blofeld
 	extern s_string_list_definition equipment_activation_mode;
 	extern const char* equipment_pickup_behavior_strings[];
 	extern s_string_list_definition equipment_pickup_behavior;
+
+	extern s_tag_reference_definition global_equipment_reference;
 
 } // namespace blofeld
 

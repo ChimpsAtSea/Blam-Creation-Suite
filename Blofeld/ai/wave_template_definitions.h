@@ -11,7 +11,6 @@ namespace blofeld
 
 	extern s_tag_block_definition wave_squad_specification_struct_block;
 
-
 	extern s_tag_struct_definition wave_squad_specification_struct_struct_struct_definition;
 
 	extern const char* wave_placement_filter_enum_strings[];

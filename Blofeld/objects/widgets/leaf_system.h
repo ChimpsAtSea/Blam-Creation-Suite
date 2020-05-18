@@ -11,7 +11,6 @@ namespace blofeld
 	extern s_tag_block_definition leaf_type_block_block;
 	extern s_tag_block_definition leaf_system_block_block;
 
-
 	extern s_tag_struct_definition leaf_system_struct_definition_struct_definition; // tag group
 
 	extern const char* leaf_flags$2_strings[];

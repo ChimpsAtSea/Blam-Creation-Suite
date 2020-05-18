@@ -51,7 +51,6 @@ namespace blofeld
 	extern s_tag_struct_definition vertex_entry_point_block_block_struct;
 	extern s_tag_block_definition vertex_entry_point_block_block;
 
-
 	extern s_tag_struct_definition rasterizer_compiled_shader_struct_struct_definition;
 	extern s_tag_struct_definition global_cache_file_pixel_shaders_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition hlsl_include_struct_definition_struct_definition; // tag group

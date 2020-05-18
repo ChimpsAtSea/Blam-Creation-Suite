@@ -29,12 +29,10 @@ namespace blofeld
 	extern s_tag_block_definition structure_seam_block_block;
 	extern s_tag_block_definition structure_seams_block_block;
 
-
 	extern s_tag_struct_definition structure_seam_identifier_struct_struct_definition;
 	extern s_tag_struct_definition structure_seams_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition structure_seam_original_geometry_struct_struct_definition;
 	extern s_tag_struct_definition structure_seam_final_geometry_struct_struct_definition;
-
 
 } // namespace blofeld
 

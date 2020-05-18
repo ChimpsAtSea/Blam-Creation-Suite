@@ -10,8 +10,5 @@ namespace blofeld
 	extern s_tag_group structure_design_group;
 
 
-
-
-
 } // namespace blofeld
 

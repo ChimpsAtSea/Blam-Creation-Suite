@@ -10,8 +10,7 @@ namespace blofeld
 	extern s_tag_group sound_environment_group;
 
 
-
-
+	extern s_tag_reference_definition global_sound_environment_reference;
 
 } // namespace blofeld
 

@@ -1,890 +1,924 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
 	TAG_BLOCK(scenario_object_node_orientations_bit_vector_block, 2*(((((MAXIMUM_NODES_PER_MODEL)+(k_int32_bits-1))>>k_int32_bits_bits))*sizeof(int32)))
 	{
-		FIELD( _field_byte_integer, "data*!" ),
-		FIELD( _field_terminator )
+		{ _field_byte_integer, "data*!" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_object_node_orientations_orientations_block, MAXIMUM_NODES_PER_MODEL*7)
 	{
-		FIELD( _field_short_integer, "number*!" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "number*!" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_object_node_orientations_block, 1)
 	{
-		FIELD( _field_short_integer, "node count*!" ),
-		FIELD( _field_pad, "paddington", 2 ),
-		FIELD( _field_block, "bit vector*!", &scenario_object_node_orientations_bit_vector_block_block ),
-		FIELD( _field_block, "orientations*!", &scenario_object_node_orientations_orientations_block_block ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "node count*!" },
+		{ _field_pad, "paddington", 2 },
+		{ _field_block, "bit vector*!", &scenario_object_node_orientations_bit_vector_block_block },
+		{ _field_block, "orientations*!", &scenario_object_node_orientations_orientations_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scriptListBlock, k_maximum_hs_source_files_per_context)
 	{
-		FIELD( _field_string_id, "script name^" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "script name^" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(commandLinkBlock, CommandDispatcher::MAX_LINKS)
 	{
-		FIELD( _field_long_enum, "Trigger^", &internal_event_enum_definition ),
-		FIELD( _field_long_block_index, "Target" ),
-		FIELD( _field_long_enum, "Command", &command_event_enum_definition ),
-		FIELD( _field_real, "Delay (sec)" ),
-		FIELD( _field_long_flags, "Flags", &commandLinkFlags ),
-		FIELD( _field_terminator )
+		{ _field_long_enum, "Trigger^", &internal_event_enum_definition },
+		{ _field_long_block_index, "Target" },
+		{ _field_long_enum, "Command", &command_event_enum_definition },
+		{ _field_real, "Delay (sec)" },
+		{ _field_long_flags, "Flags", &commandLinkFlags },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(pathfinding_object_index_list_block, MAXIMUM_STRUCTURE_BSPS_PER_SCENARIO)
 	{
-		FIELD( _field_short_integer, "bsp index" ),
-		FIELD( _field_short_integer, "pathfinding object index" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "bsp index" },
+		{ _field_short_integer, "pathfinding object index" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_scenery_block, MAXIMUM_SCENERY_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition ),
-		FIELD( _field_struct, "scenery data", &scenario_scenery_datum_struct_v4_struct_definition ),
-		FIELD( _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "scenery data", &scenario_scenery_datum_struct_v4_struct_definition },
+		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_scenery_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &scenery_reference$4 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_biped_block, MAXIMUM_BIPED_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition ),
-		FIELD( _field_struct, "unit data", &scenario_unit_struct_struct_definition ),
-		FIELD( _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "unit data", &scenario_unit_struct_struct_definition },
+		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_biped_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &biped_reference },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_vehicle_block, MAXIMUM_VEHICLE_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition ),
-		FIELD( _field_struct, "unit data", &scenario_unit_struct_struct_definition ),
-		FIELD( _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition ),
-		FIELD( _field_struct, "vehicle data", &scenario_vehicle_datum_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "unit data", &scenario_unit_struct_struct_definition },
+		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition },
+		{ _field_struct, "vehicle data", &scenario_vehicle_datum_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_vehicle_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &vehicle_reference$2 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_equipment_block, MAXIMUM_EQUIPMENT_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "equipment data", &scenario_equipment_datum_struct_struct_definition ),
-		FIELD( _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "equipment data", &scenario_equipment_datum_struct_struct_definition },
+		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_equipment_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &equipment_reference$3 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_weapon_block, MAXIMUM_WEAPON_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition ),
-		FIELD( _field_struct, "weapon data", &scenario_weapon_datum_struct_struct_definition ),
-		FIELD( _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "weapon data", &scenario_weapon_datum_struct_struct_definition },
+		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_weapon_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &weapon_reference$7 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(device_group_block, MAXIMUM_DEVICE_GROUPS_PER_SCENARIO)
 	{
-		FIELD( _field_string, "name^" ),
-		FIELD( _field_real, "initial value:[0,1]" ),
-		FIELD( _field_long_flags, "flags", &device_group_flags ),
-		FIELD( _field_short_block_index, "editor folder!" ),
-		FIELD( _field_pad, "WAFNDIO", 2 ),
-		FIELD( _field_terminator )
+		{ _field_string, "name^" },
+		{ _field_real, "initial value:[0,1]" },
+		{ _field_long_flags, "flags", &device_group_flags },
+		{ _field_short_block_index, "editor folder!" },
+		{ _field_pad, "WAFNDIO", 2 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_machine_block, MAXIMUM_MACHINE_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition ),
-		FIELD( _field_struct, "device data", &scenario_device_struct_struct_definition ),
-		FIELD( _field_struct, "machine data", &scenario_machine_struct_v3_struct_definition ),
-		FIELD( _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "device data", &scenario_device_struct_struct_definition },
+		{ _field_struct, "machine data", &scenario_machine_struct_v3_struct_definition },
+		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_machine_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &device_machine_reference },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_terminal_block, MAXIMUM_TERMINAL_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition ),
-		FIELD( _field_struct, "device data", &scenario_device_struct_struct_definition ),
-		FIELD( _field_struct, "terminal data", &scenario_terminal_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "device data", &scenario_device_struct_struct_definition },
+		{ _field_struct, "terminal data", &scenario_terminal_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_terminal_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &device_terminal_reference },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_control_block, MAXIMUM_CONTROL_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition ),
-		FIELD( _field_struct, "device data", &scenario_device_struct_struct_definition ),
-		FIELD( _field_struct, "control data", &scenario_control_struct_struct_definition ),
-		FIELD( _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "device data", &scenario_device_struct_struct_definition },
+		{ _field_struct, "control data", &scenario_control_struct_struct_definition },
+		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_control_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &device_control_reference },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(ScenarioDispenserBlock, MAXIMUM_DISPENSER_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition ),
-		FIELD( _field_struct, "device data", &scenario_device_struct_struct_definition ),
-		FIELD( _field_struct, "dispenser data", &ScenarioDispenserStruct_struct_definition ),
-		FIELD( _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "device data", &scenario_device_struct_struct_definition },
+		{ _field_struct, "dispenser data", &ScenarioDispenserStruct_struct_definition },
+		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(ScenarioDispenserPaletteBlock, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &device_dispenser_reference },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_sound_scenery_block, MAXIMUM_SOUND_SCENERY_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "sound_scenery", &sound_scenery_datum_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "sound_scenery", &sound_scenery_datum_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_sound_scenery_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &sound_scenery_reference },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_giant_block, MAXIMUM_GIANT_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition ),
-		FIELD( _field_struct, "unit data", &scenario_unit_struct_struct_definition ),
-		FIELD( _field_struct, "giant data", &scenario_giant_datum_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "unit data", &scenario_unit_struct_struct_definition },
+		{ _field_struct, "giant data", &scenario_giant_datum_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_giant_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &giant_reference },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_effect_scenery_block, MAXIMUM_EFFECT_SCENERY_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "effect scenery data", &scenario_effect_scenery_datum_struct_struct_definition ),
-		FIELD( _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "effect scenery data", &scenario_effect_scenery_datum_struct_struct_definition },
+		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_effect_scenery_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &effect_scenery_reference$2 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_spawner_block, MAXIMUM_SPAWNER_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition ),
-		FIELD( _field_struct, "Entity Data", &ScenarioEntityStruct_struct_definition ),
-		FIELD( _field_struct, "Spawner Data", &ScenarioSpawnerStruct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "Entity Data", &ScenarioEntityStruct_struct_definition },
+		{ _field_struct, "Spawner Data", &ScenarioSpawnerStruct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_spawner_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &spawner_reference },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_requisition_palette_block, MAXIMUM_REQUISITION_MENU_SIZE)
 	{
-		FIELD( _field_explanation, "CUSTOM APPS" ),
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_tag_reference, "second name^" ),
-		FIELD( _field_tag_reference, "third name^" ),
-		FIELD( _field_string_id, "display_name^" ),
-		FIELD( _field_long_enum, "Submenu#controls which requisition submenu this object should appear in", &requisition_submenu_global_enum ),
-		FIELD( _field_long_integer, "maximum allowed#cant buy more if there are too many in play" ),
-		FIELD( _field_real, "price per instance" ),
-		FIELD( _field_string_id, "model variant name" ),
-		FIELD( _field_real, "bounty for destruction" ),
-		FIELD( _field_short_integer, "min fireteam tier#0=Bronze, 1=Silver, or 2=Gold" ),
-		FIELD( _field_byte_integer, "additional frag grenades" ),
-		FIELD( _field_byte_integer, "additional plasma grenades" ),
-		FIELD( _field_long_flags, "built-in palettes for which item is enabled by default", &scenario_requisition_palette_presence ),
-		FIELD( _field_long_enum, "special buy", &requisition_special_buy_enum ),
-		FIELD( _field_long_integer, "starting ammo#1..100 for ammoless weapons, 0 = default for all weapons" ),
-		FIELD( _field_real, "warm-up time:seconds#item will be unavailable until x seconds into the scenario" ),
-		FIELD( _field_real, "player purchase frequency:seconds" ),
-		FIELD( _field_real, "team purchase frequency:seconds" ),
-		FIELD( _field_real, "price increase factor#price = original-price x increase-factor to-the n_times_bought" ),
-		FIELD( _field_byte_integer, "maximum buy count:per player" ),
-		FIELD( _field_byte_integer, "total maximum buy count:per team" ),
-		FIELD( _field_pad, "SMYE", 2 ),
-		FIELD( _field_terminator )
+		{ _field_explanation, "CUSTOM APPS" },
+		{ _field_tag_reference, "name^", &scenario_requisition_palette_block_name_reference },
+		{ _field_tag_reference, "second name^", &scenario_requisition_palette_block_name_reference },
+		{ _field_tag_reference, "third name^", &scenario_requisition_palette_block_name_reference },
+		{ _field_string_id, "display_name^" },
+		{ _field_long_enum, "Submenu#controls which requisition submenu this object should appear in", &requisition_submenu_global_enum },
+		{ _field_long_integer, "maximum allowed#cant buy more if there are too many in play" },
+		{ _field_real, "price per instance" },
+		{ _field_string_id, "model variant name" },
+		{ _field_real, "bounty for destruction" },
+		{ _field_short_integer, "min fireteam tier#0=Bronze, 1=Silver, or 2=Gold" },
+		{ _field_byte_integer, "additional frag grenades" },
+		{ _field_byte_integer, "additional plasma grenades" },
+		{ _field_long_flags, "built-in palettes for which item is enabled by default", &scenario_requisition_palette_presence },
+		{ _field_long_enum, "special buy", &requisition_special_buy_enum },
+		{ _field_long_integer, "starting ammo#1..100 for ammoless weapons, 0 = default for all weapons" },
+		{ _field_real, "warm-up time:seconds#item will be unavailable until x seconds into the scenario" },
+		{ _field_real, "player purchase frequency:seconds" },
+		{ _field_real, "team purchase frequency:seconds" },
+		{ _field_real, "price increase factor#price = original-price x increase-factor to-the n_times_bought" },
+		{ _field_byte_integer, "maximum buy count:per player" },
+		{ _field_byte_integer, "total maximum buy count:per team" },
+		{ _field_pad, "SMYE", 2 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_crate_block, MAXIMUM_CRATE_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition ),
-		FIELD( _field_struct, "crate data", &scenario_crate_datum_struct_struct_definition ),
-		FIELD( _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_struct, "permutation data", &scenario_object_permutation_struct_struct_definition },
+		{ _field_struct, "crate data", &scenario_crate_datum_struct_struct_definition },
+		{ _field_struct, "multiplayer data", &scenario_multiplayer_object_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_crate_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &crate_reference$6 },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_creature_block, MAXIMUM_CREATURE_DATUMS_PER_SCENARIO)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "type" ),
-		FIELD( _field_custom ),
-		FIELD( _field_short_block_index, "name^" ),
-		FIELD( _field_struct, "object data", &scenario_object_datum_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_short_block_index, "type" },
+		{ _field_custom },
+		{ _field_short_block_index, "name^" },
+		{ _field_struct, "object data", &scenario_object_datum_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(scenario_creature_palette_block, MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK)
 	{
-		FIELD( _field_tag_reference, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_tag_reference, "name^", &creature_reference$2 },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_object_id_struct)
 	{
-		FIELD( _field_long_integer, "unique id*" ),
-		FIELD( _field_short_block_index, "origin bsp index*" ),
-		FIELD( _field_char_enum, "type*", &object_type_enum_definition ),
-		FIELD( _field_char_enum, "source*", &object_source_enum_definition ),
-		FIELD( _field_terminator )
+		{ _field_long_integer, "unique id*" },
+		{ _field_short_block_index, "origin bsp index*" },
+		{ _field_char_enum, "type*", &object_type_enum_definition },
+		{ _field_char_enum, "source*", &object_source_enum_definition },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_object_reference_struct)
 	{
-		FIELD( _field_short_integer, "object index*" ),
-		FIELD( _field_short_integer, "scenario object index*" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "object index*" },
+		{ _field_short_integer, "scenario object index*" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_object_datum_struct)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_long_flags, "placement flags", &object_location_placement_flags ),
-		FIELD( _field_real_point_3d, "position" ),
-		FIELD( _field_real_euler_angles_3d, "rotation" ),
-		FIELD( _field_real, "scale" ),
-		FIELD( _field_block, "node orientations!*", &scenario_object_node_orientations_block_block ),
-		FIELD( _field_real, "gravity override" ),
-		FIELD( _field_byte_flags, "gravity flags", &object_gravity_flags ),
-		FIELD( _field_pad, "ZEE", 1 ),
-		FIELD( _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition ),
-		FIELD( _field_byte_flags, "script flags", &scenarioObjectScriptFlagsDefinition ),
-		FIELD( _field_block, "force enabled scripts", &scriptListBlock_block ),
-		FIELD( _field_block, "disabled scripts", &scriptListBlock_block ),
-		FIELD( _field_struct, "manual bsp flags*", &manualBspFlagsReferences_struct_definition ),
-		FIELD( _field_word_flags, "transform flags!", &object_transform_flags ),
-		FIELD( _field_char_enum, "Nav Mesh Cutting", &NavMeshCuttingOverrideEnum ),
-		FIELD( _field_char_enum, "Nav Mesh Obstacle", &BooleanOverrideEnum ),
-		FIELD( _field_byte_flags, "Nav Mesh Flags", &object_navmesh_flags ),
-		FIELD( _field_pad, "ZEE2", 3 ),
-		FIELD( _field_string_id, "light airprobe name" ),
-		FIELD( _field_struct, "object id", &scenario_object_id_struct_struct_definition ),
-		FIELD( _field_long_flags, "Light Channels:", &channelDefinitionFlags ),
-		FIELD( _field_non_cache_runtime_value, "runtimeObjectHandle!*" ),
-		FIELD( _field_short_block_index, "editor folder!" ),
-		FIELD( _field_pad, "NCIUNE", 2 ),
-		FIELD( _field_struct, "parent id", &scenario_object_parent_struct_struct_definition ),
-		FIELD( _field_long_block_flags, "can attach to bsp flags*!" ),
-		FIELD( _field_real, "Directional Acceleration Mult. #Multiplier applied to all phantoms\' direction acceleration factors.  Used to scale man-cannon strength." ),
-		FIELD( _field_block, "Command Links", &commandLinkBlock_block ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_long_flags, "placement flags", &object_location_placement_flags },
+		{ _field_real_point_3d, "position" },
+		{ _field_real_euler_angles_3d, "rotation" },
+		{ _field_real, "scale" },
+		{ _field_block, "node orientations!*", &scenario_object_node_orientations_block_block },
+		{ _field_real, "gravity override" },
+		{ _field_byte_flags, "gravity flags", &object_gravity_flags },
+		{ _field_pad, "ZEE", 1 },
+		{ _field_char_enum, "bsp policy", &scenario_object_bsp_placement_policy_definition },
+		{ _field_byte_flags, "script flags", &scenarioObjectScriptFlagsDefinition },
+		{ _field_block, "force enabled scripts", &scriptListBlock_block },
+		{ _field_block, "disabled scripts", &scriptListBlock_block },
+		{ _field_struct, "manual bsp flags*", &manualBspFlagsReferences_struct_definition },
+		{ _field_word_flags, "transform flags!", &object_transform_flags },
+		{ _field_char_enum, "Nav Mesh Cutting", &NavMeshCuttingOverrideEnum },
+		{ _field_char_enum, "Nav Mesh Obstacle", &BooleanOverrideEnum },
+		{ _field_byte_flags, "Nav Mesh Flags", &object_navmesh_flags },
+		{ _field_pad, "ZEE2", 3 },
+		{ _field_string_id, "light airprobe name" },
+		{ _field_struct, "object id", &scenario_object_id_struct_struct_definition },
+		{ _field_long_flags, "Light Channels:", &channelDefinitionFlags },
+		{ _field_non_cache_runtime_value, "runtimeObjectHandle!*" },
+		{ _field_short_block_index, "editor folder!" },
+		{ _field_pad, "NCIUNE", 2 },
+		{ _field_struct, "parent id", &scenario_object_parent_struct_struct_definition },
+		{ _field_long_block_flags, "can attach to bsp flags*!" },
+		{ _field_real, "Directional Acceleration Mult. #Multiplier applied to all phantoms\' direction acceleration factors.  Used to scale man-cannon strength." },
+		{ _field_block, "Command Links", &commandLinkBlock_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_object_parent_struct)
 	{
-		FIELD( _field_pad, "der", 2 ),
-		FIELD( _field_short_block_index, "parent object#if an object with this name exists, we attach to it as a child" ),
-		FIELD( _field_string_id, "parent marker" ),
-		FIELD( _field_custom ),
-		FIELD( _field_string_id, "connection marker" ),
-		FIELD( _field_terminator )
+		{ _field_pad, "der", 2 },
+		{ _field_short_block_index, "parent object#if an object with this name exists, we attach to it as a child" },
+		{ _field_string_id, "parent marker" },
+		{ _field_custom },
+		{ _field_string_id, "connection marker" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_object_permutation_struct)
 	{
-		FIELD( _field_string_id, "variant name" ),
-		FIELD( _field_byte_flags, "active change colors", &scenario_object_active_change_color_flags ),
-		FIELD( _field_pad, "SLCJNEROH", 3 ),
-		FIELD( _field_rgb_color, "primary color" ),
-		FIELD( _field_rgb_color, "secondary color" ),
-		FIELD( _field_rgb_color, "tertiary color" ),
-		FIELD( _field_rgb_color, "quaternary color" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "variant name" },
+		{ _field_byte_flags, "active change colors", &scenario_object_active_change_color_flags },
+		{ _field_pad, "SLCJNEROH", 3 },
+		{ _field_rgb_color, "primary color" },
+		{ _field_rgb_color, "secondary color" },
+		{ _field_rgb_color, "tertiary color" },
+		{ _field_rgb_color, "quaternary color" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_scenery_datum_struct_v4)
 	{
-		FIELD( _field_custom ),
-		FIELD( _field_enum, "Pathfinding policy", &pathfinding_policy_enum ),
-		FIELD( _field_enum, "Lightmapping policy", &scenery_lightmap_policy_enum ),
-		FIELD( _field_block, "pathfinding references*", &pathfinding_object_index_list_block_block ),
-		FIELD( _field_short_integer, "havok mopp index!" ),
-		FIELD( _field_short_block_index, "ai spawning squad" ),
-		FIELD( _field_terminator )
+		{ _field_custom },
+		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
+		{ _field_enum, "Lightmapping policy", &scenery_lightmap_policy_enum },
+		{ _field_block, "pathfinding references*", &pathfinding_object_index_list_block_block },
+		{ _field_short_integer, "havok mopp index!" },
+		{ _field_short_block_index, "ai spawning squad" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_multiplayer_object_struct)
 	{
-		FIELD( _field_explanation, "Multiplayer Data" ),
-		FIELD( _field_string, "megalo label" ),
-		FIELD( _field_string, "megalo label 2" ),
-		FIELD( _field_string, "megalo label 3" ),
-		FIELD( _field_string, "megalo label 4" ),
-		FIELD( _field_char_enum, "game engine symmetric placement", &game_engine_symmetry_placement_flags ),
-		FIELD( _field_byte_flags, "game engine flags", &global_game_engine_type_flags ),
-		FIELD( _field_char_enum, "owner team", &global_multiplayer_team_designator_enum_definition ),
-		FIELD( _field_byte_flags, "spawn flags", &multiplayer_object_placement_spawn_flags ),
-		FIELD( _field_char_integer, "quota minimum" ),
-		FIELD( _field_char_integer, "quota maximum:<=0 for unlimited" ),
-		FIELD( _field_char_enum, "remapping policy", &multiplayer_object_remapping_policy ),
-		FIELD( _field_char_enum, "teleporter channel", &multiplayer_teleporter_channel ),
-		FIELD( _field_byte_flags, "teleporter passability", &teleporter_passability_flags ),
-		FIELD( _field_char_integer, "spawn order:-1 for random" ),
-		FIELD( _field_char_integer, "user data 2" ),
-		FIELD( _field_char_enum, "trait zone channel", &multiplayer_teleporter_channel ),
-		FIELD( _field_real, "boundary width or radius" ),
-		FIELD( _field_real, "boundary box length" ),
-		FIELD( _field_real, "boundary positive height" ),
-		FIELD( _field_real, "boundary negative height" ),
-		FIELD( _field_char_enum, "boundary shape", &multiplayer_goal_area_boundary_shape_enum ),
-		FIELD( _field_pad, "boundary_pad", 3 ),
-		FIELD( _field_short_integer, "spawn time:seconds" ),
-		FIELD( _field_short_integer, "abandonment time:seconds" ),
-		FIELD( _field_string_id, "location name" ),
-		FIELD( _field_struct, "map variant parent", &scenario_object_parent_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_explanation, "Multiplayer Data" },
+		{ _field_string, "megalo label" },
+		{ _field_string, "megalo label 2" },
+		{ _field_string, "megalo label 3" },
+		{ _field_string, "megalo label 4" },
+		{ _field_char_enum, "game engine symmetric placement", &game_engine_symmetry_placement_flags },
+		{ _field_byte_flags, "game engine flags", &global_game_engine_type_flags },
+		{ _field_char_enum, "owner team", &global_multiplayer_team_designator_enum_definition },
+		{ _field_byte_flags, "spawn flags", &multiplayer_object_placement_spawn_flags },
+		{ _field_char_integer, "quota minimum" },
+		{ _field_char_integer, "quota maximum:<=0 for unlimited" },
+		{ _field_char_enum, "remapping policy", &multiplayer_object_remapping_policy },
+		{ _field_char_enum, "teleporter channel", &multiplayer_teleporter_channel },
+		{ _field_byte_flags, "teleporter passability", &teleporter_passability_flags },
+		{ _field_char_integer, "spawn order:-1 for random" },
+		{ _field_char_integer, "user data 2" },
+		{ _field_char_enum, "trait zone channel", &multiplayer_teleporter_channel },
+		{ _field_real, "boundary width or radius" },
+		{ _field_real, "boundary box length" },
+		{ _field_real, "boundary positive height" },
+		{ _field_real, "boundary negative height" },
+		{ _field_char_enum, "boundary shape", &multiplayer_goal_area_boundary_shape_enum },
+		{ _field_pad, "boundary_pad", 3 },
+		{ _field_short_integer, "spawn time:seconds" },
+		{ _field_short_integer, "abandonment time:seconds" },
+		{ _field_string_id, "location name" },
+		{ _field_struct, "map variant parent", &scenario_object_parent_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_unit_struct)
 	{
-		FIELD( _field_real, "body vitality:[0,1]" ),
-		FIELD( _field_long_flags, "flags", &scenario_unit_datum_flags ),
-		FIELD( _field_terminator )
+		{ _field_real, "body vitality:[0,1]" },
+		{ _field_long_flags, "flags", &scenario_unit_datum_flags },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_vehicle_datum_struct)
 	{
-		FIELD( _field_enum, "Pathfinding policy", &pathfinding_policy_enum ),
-		FIELD( _field_pad, "post-pathfinding", 2 ),
-		FIELD( _field_block, "pathfinding references*", &pathfinding_object_index_list_block_block ),
-		FIELD( _field_terminator )
+		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
+		{ _field_pad, "post-pathfinding", 2 },
+		{ _field_block, "pathfinding references*", &pathfinding_object_index_list_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_equipment_datum_struct)
 	{
-		FIELD( _field_long_flags, "equipment flags", &scenario_equipment_flags_definition ),
-		FIELD( _field_terminator )
+		{ _field_long_flags, "equipment flags", &scenario_equipment_flags_definition },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_weapon_datum_struct)
 	{
-		FIELD( _field_short_integer, "rounds left" ),
-		FIELD( _field_short_integer, "rounds loaded" ),
-		FIELD( _field_long_flags, "flags", &scenario_weapon_datum_flags ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "rounds left" },
+		{ _field_short_integer, "rounds loaded" },
+		{ _field_long_flags, "flags", &scenario_weapon_datum_flags },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_device_struct)
 	{
-		FIELD( _field_short_block_index, "power group" ),
-		FIELD( _field_short_block_index, "position group" ),
-		FIELD( _field_long_flags, "flags", &scenario_device_flags ),
-		FIELD( _field_terminator )
+		{ _field_short_block_index, "power group" },
+		{ _field_short_block_index, "position group" },
+		{ _field_long_flags, "flags", &scenario_device_flags },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_machine_struct_v3)
 	{
-		FIELD( _field_long_flags, "flags", &scenario_machine_flags ),
-		FIELD( _field_block, "pathfinding references*", &pathfinding_object_index_list_block_block ),
-		FIELD( _field_enum, "pathfinding policy", &scenario_machine_pathfinding_policy_enum ),
-		FIELD( _field_pad, "post-pathfinding-policy", 2 ),
-		FIELD( _field_terminator )
+		{ _field_long_flags, "flags", &scenario_machine_flags },
+		{ _field_block, "pathfinding references*", &pathfinding_object_index_list_block_block },
+		{ _field_enum, "pathfinding policy", &scenario_machine_pathfinding_policy_enum },
+		{ _field_pad, "post-pathfinding-policy", 2 },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_terminal_struct)
 	{
-		FIELD( _field_long_integer, "pah pah" ),
-		FIELD( _field_terminator )
+		{ _field_long_integer, "pah pah" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_control_struct)
 	{
-		FIELD( _field_long_flags, "flags", &scenario_control_flags ),
-		FIELD( _field_short_integer, "DON\'T TOUCH THIS!*" ),
-		FIELD( _field_short_integer, "health station charges#if this control is a health station, this sets the number of charges it contains.\nUse 0 for infinite" ),
-		FIELD( _field_enum, "allowed players", &scenario_control_character_types ),
-		FIELD( _field_pad, "SCSP1", 2 ),
-		FIELD( _field_terminator )
+		{ _field_long_flags, "flags", &scenario_control_flags },
+		{ _field_short_integer, "DON\'T TOUCH THIS!*" },
+		{ _field_short_integer, "health station charges#if this control is a health station, this sets the number of charges it contains.\nUse 0 for infinite" },
+		{ _field_enum, "allowed players", &scenario_control_character_types },
+		{ _field_pad, "SCSP1", 2 },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(ScenarioDispenserStruct)
 	{
-		FIELD( _field_byte_flags, "flags", &ScenarioDispenserFlags ),
-		FIELD( _field_pad, "pad", 3 ),
-		FIELD( _field_terminator )
+		{ _field_byte_flags, "flags", &ScenarioDispenserFlags },
+		{ _field_pad, "pad", 3 },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(sound_scenery_datum_struct)
 	{
-		FIELD( _field_long_enum, "volume type", &sound_volume_type_enumeration ),
-		FIELD( _field_real, "height" ),
-		FIELD( _field_angle_bounds, "override cone angle bounds" ),
-		FIELD( _field_real, "override outer cone gain:dB" ),
-		FIELD( _field_struct, "override distance parameters", &sound_distance_parameters_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_long_enum, "volume type", &sound_volume_type_enumeration },
+		{ _field_real, "height" },
+		{ _field_angle_bounds, "override cone angle bounds" },
+		{ _field_real, "override outer cone gain:dB" },
+		{ _field_struct, "override distance parameters", &sound_distance_parameters_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_giant_datum_struct)
 	{
-		FIELD( _field_enum, "Pathfinding policy", &pathfinding_policy_enum ),
-		FIELD( _field_pad, "post-pathfinding", 2 ),
-		FIELD( _field_block, "pathfinding references*", &pathfinding_object_index_list_block_block ),
-		FIELD( _field_terminator )
+		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
+		{ _field_pad, "post-pathfinding", 2 },
+		{ _field_block, "pathfinding references*", &pathfinding_object_index_list_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_effect_scenery_datum_struct)
 	{
-		FIELD( _field_real, "effect size scale" ),
-		FIELD( _field_terminator )
+		{ _field_real, "effect size scale" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(ScenarioEntityStruct)
 	{
-		FIELD( _field_real, "Entity Placeholder" ),
-		FIELD( _field_terminator )
+		{ _field_real, "Entity Placeholder" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(ScenarioSpawnerStruct)
 	{
-		FIELD( _field_real, "Spawner Placeholder" ),
-		FIELD( _field_terminator )
+		{ _field_real, "Spawner Placeholder" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(scenario_crate_datum_struct)
 	{
-		FIELD( _field_enum, "Pathfinding policy", &pathfinding_policy_enum ),
-		FIELD( _field_pad, "post-path-policy", 2 ),
-		FIELD( _field_block, "pathfinding references*", &pathfinding_object_index_list_block_block ),
-		FIELD( _field_terminator )
+		{ _field_enum, "Pathfinding policy", &pathfinding_policy_enum },
+		{ _field_pad, "post-path-policy", 2 },
+		{ _field_block, "pathfinding references*", &pathfinding_object_index_list_block_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(object_location_placement_flags, 15)
+	STRINGS(object_location_placement_flags)
 	{
-		OPTION("not automatically"),
-		OPTION("unused0"),
-		OPTION("unused1"),
-		OPTION("unused2"),
-		OPTION("lock type to env. object"),
-		OPTION("lock transform to env. object"),
-		OPTION("never placed"),
-		OPTION("lock name to env. object"),
-		OPTION("create at rest"),
-		OPTION("store orientations"),
-		OPTION("pvs bound"),
-		OPTION("startup"),
-		OPTION("attach physically"),
-		OPTION("attach with scale"),
-		OPTION("no parent lighting"),
+		"not automatically",
+		"unused0",
+		"unused1",
+		"unused2",
+		"lock type to env. object",
+		"lock transform to env. object",
+		"never placed",
+		"lock name to env. object",
+		"create at rest",
+		"store orientations",
+		"pvs bound",
+		"startup",
+		"attach physically",
+		"attach with scale",
+		"no parent lighting"
 	};
+	STRING_LIST(object_location_placement_flags, object_location_placement_flags_strings, _countof(object_location_placement_flags_strings));
 
-	TAG_ENUM(object_gravity_flags, 2)
+	STRINGS(object_gravity_flags)
 	{
-		OPTION("apply override"),
-		OPTION("apply to children also"),
+		"apply override",
+		"apply to children also"
 	};
+	STRING_LIST(object_gravity_flags, object_gravity_flags_strings, _countof(object_gravity_flags_strings));
 
-	TAG_ENUM(object_navmesh_flags, 2)
+	STRINGS(object_navmesh_flags)
 	{
-		OPTION("children inherit navmesh interaction"),
-		OPTION("navmesh always loaded"),
+		"children inherit navmesh interaction",
+		"navmesh always loaded"
 	};
+	STRING_LIST(object_navmesh_flags, object_navmesh_flags_strings, _countof(object_navmesh_flags_strings));
 
-	TAG_ENUM(object_transform_flags, 1)
+	STRINGS(object_transform_flags)
 	{
-		OPTION("mirrored"),
+		"mirrored"
 	};
+	STRING_LIST(object_transform_flags, object_transform_flags_strings, _countof(object_transform_flags_strings));
 
-	TAG_ENUM(scenario_object_active_change_color_flags, 4)
+	STRINGS(scenario_object_active_change_color_flags)
 	{
-		OPTION("primary"),
-		OPTION("secondary"),
-		OPTION("tertiary"),
-		OPTION("quaternary"),
+		"primary",
+		"secondary",
+		"tertiary",
+		"quaternary"
 	};
+	STRING_LIST(scenario_object_active_change_color_flags, scenario_object_active_change_color_flags_strings, _countof(scenario_object_active_change_color_flags_strings));
 
-	TAG_ENUM(scenarioObjectScriptFlagsDefinition, 3)
+	STRINGS(scenarioObjectScriptFlagsDefinition)
 	{
-		OPTION("scripts disabled"),
-		OPTION("use override lists"),
-		OPTION("scripts always run"),
+		"scripts disabled",
+		"use override lists",
+		"scripts always run"
 	};
+	STRING_LIST(scenarioObjectScriptFlagsDefinition, scenarioObjectScriptFlagsDefinition_strings, _countof(scenarioObjectScriptFlagsDefinition_strings));
 
-	TAG_ENUM(object_type_enum_definition, 16)
+	STRINGS(object_type_enum_definition)
 	{
-		OPTION("biped"),
-		OPTION("vehicle"),
-		OPTION("weapon"),
-		OPTION("equipment"),
-		OPTION("terminal"),
-		OPTION("projectile"),
-		OPTION("scenery"),
-		OPTION("machine"),
-		OPTION("control"),
-		OPTION("dispenser"),
-		OPTION("sound_scenery"),
-		OPTION("crate"),
-		OPTION("creature"),
-		OPTION("giant"),
-		OPTION("effect_scenery"),
-		OPTION("spawner"),
+		"biped",
+		"vehicle",
+		"weapon",
+		"equipment",
+		"terminal",
+		"projectile",
+		"scenery",
+		"machine",
+		"control",
+		"dispenser",
+		"sound_scenery",
+		"crate",
+		"creature",
+		"giant",
+		"effect_scenery",
+		"spawner"
 	};
+	STRING_LIST(object_type_enum_definition, object_type_enum_definition_strings, _countof(object_type_enum_definition_strings));
 
-	TAG_ENUM(object_source_enum_definition, 6)
+	STRINGS(object_source_enum_definition)
 	{
-		OPTION("structure"),
-		OPTION("editor"),
-		OPTION("dynamic"),
-		OPTION("legacy"),
-		OPTION("sky"),
-		OPTION("parent"),
+		"structure",
+		"editor",
+		"dynamic",
+		"legacy",
+		"sky",
+		"parent"
 	};
+	STRING_LIST(object_source_enum_definition, object_source_enum_definition_strings, _countof(object_source_enum_definition_strings));
 
-	TAG_ENUM(command_event_enum_definition, 3)
+	STRINGS(command_event_enum_definition)
 	{
-		OPTION("Interact"),
-		OPTION("InitShardSpawn"),
-		OPTION("InitKnightTaint"),
+		"Interact",
+		"InitShardSpawn",
+		"InitKnightTaint"
 	};
+	STRING_LIST(command_event_enum_definition, command_event_enum_definition_strings, _countof(command_event_enum_definition_strings));
 
-	TAG_ENUM(internal_event_enum_definition, 5)
+	STRINGS(internal_event_enum_definition)
 	{
-		OPTION("OnBirth"),
-		OPTION("OnDeath"),
-		OPTION("OnInteract"),
-		OPTION("OnInitSpawnerShard"),
-		OPTION("OnInitKnightTaint"),
+		"OnBirth",
+		"OnDeath",
+		"OnInteract",
+		"OnInitSpawnerShard",
+		"OnInitKnightTaint"
 	};
+	STRING_LIST(internal_event_enum_definition, internal_event_enum_definition_strings, _countof(internal_event_enum_definition_strings));
 
-	TAG_ENUM(commandLinkFlags, 1)
+	STRINGS(commandLinkFlags)
 	{
-		OPTION("Fire Once"),
+		"Fire Once"
 	};
+	STRING_LIST(commandLinkFlags, commandLinkFlags_strings, _countof(commandLinkFlags_strings));
 
-	TAG_ENUM(scenario_object_bsp_placement_policy_definition, 3)
+	STRINGS(scenario_object_bsp_placement_policy_definition)
 	{
-		OPTION("default"),
-		OPTION("always placed"),
-		OPTION("manual bsp placement"),
+		"default",
+		"always placed",
+		"manual bsp placement"
 	};
+	STRING_LIST(scenario_object_bsp_placement_policy_definition, scenario_object_bsp_placement_policy_definition_strings, _countof(scenario_object_bsp_placement_policy_definition_strings));
 
-	TAG_ENUM(game_engine_symmetry_placement_flags, 3)
+	STRINGS(game_engine_symmetry_placement_flags)
 	{
-		OPTION("ignore"),
-		OPTION("symmetric"),
-		OPTION("asymmetric"),
+		"ignore",
+		"symmetric",
+		"asymmetric"
 	};
+	STRING_LIST(game_engine_symmetry_placement_flags, game_engine_symmetry_placement_flags_strings, _countof(game_engine_symmetry_placement_flags_strings));
 
-	TAG_ENUM(global_game_engine_type_flags, 6)
+	STRINGS(global_game_engine_type_flags)
 	{
-		OPTION("none"),
-		OPTION("sandbox"),
-		OPTION("megalogamengine"),
-		OPTION("campaign"),
-		OPTION("survival"),
-		OPTION("firefight"),
+		"none",
+		"sandbox",
+		"megalogamengine",
+		"campaign",
+		"survival",
+		"firefight"
 	};
+	STRING_LIST(global_game_engine_type_flags, global_game_engine_type_flags_strings, _countof(global_game_engine_type_flags_strings));
 
-	TAG_ENUM(multiplayer_object_remapping_policy, 3)
+	STRINGS(multiplayer_object_remapping_policy)
 	{
-		OPTION("normal-default"),
-		OPTION("do not replace"),
-		OPTION("only replace"),
+		"normal-default",
+		"do not replace",
+		"only replace"
 	};
+	STRING_LIST(multiplayer_object_remapping_policy, multiplayer_object_remapping_policy_strings, _countof(multiplayer_object_remapping_policy_strings));
 
-	TAG_ENUM(multiplayer_goal_area_boundary_shape_enum, 4)
+	STRINGS(multiplayer_goal_area_boundary_shape_enum)
 	{
-		OPTION("unused"),
-		OPTION("sphere"),
-		OPTION("cylinder"),
-		OPTION("box"),
+		"unused",
+		"sphere",
+		"cylinder",
+		"box"
 	};
+	STRING_LIST(multiplayer_goal_area_boundary_shape_enum, multiplayer_goal_area_boundary_shape_enum_strings, _countof(multiplayer_goal_area_boundary_shape_enum_strings));
 
-	TAG_ENUM(multiplayer_teleporter_channel, 26)
+	STRINGS(multiplayer_teleporter_channel)
 	{
-		OPTION("alpha"),
-		OPTION("bravo"),
-		OPTION("charlie"),
-		OPTION("delta"),
-		OPTION("echo"),
-		OPTION("foxtrot"),
-		OPTION("golf"),
-		OPTION("hotel"),
-		OPTION("india"),
-		OPTION("juliet"),
-		OPTION("kilo"),
-		OPTION("lima"),
-		OPTION("mike"),
-		OPTION("november"),
-		OPTION("oscar"),
-		OPTION("papa"),
-		OPTION("quebec"),
-		OPTION("romeo"),
-		OPTION("sierra"),
-		OPTION("tango"),
-		OPTION("uniform"),
-		OPTION("victor"),
-		OPTION("whiskey"),
-		OPTION("xray"),
-		OPTION("yankee"),
-		OPTION("zulu"),
+		"alpha",
+		"bravo",
+		"charlie",
+		"delta",
+		"echo",
+		"foxtrot",
+		"golf",
+		"hotel",
+		"india",
+		"juliet",
+		"kilo",
+		"lima",
+		"mike",
+		"november",
+		"oscar",
+		"papa",
+		"quebec",
+		"romeo",
+		"sierra",
+		"tango",
+		"uniform",
+		"victor",
+		"whiskey",
+		"xray",
+		"yankee",
+		"zulu"
 	};
+	STRING_LIST(multiplayer_teleporter_channel, multiplayer_teleporter_channel_strings, _countof(multiplayer_teleporter_channel_strings));
 
-	TAG_ENUM(multiplayer_object_placement_spawn_flags, 6)
+	STRINGS(multiplayer_object_placement_spawn_flags)
 	{
-		OPTION("unique spawn"),
-		OPTION("not initially placed"),
-		OPTION("hide unless megalo required"),
-		OPTION("is shortcut object"),
-		OPTION("can spawn on bipeds"),
-		OPTION("spawner starts inactive"),
+		"unique spawn",
+		"not initially placed",
+		"hide unless megalo required",
+		"is shortcut object",
+		"can spawn on bipeds",
+		"spawner starts inactive"
 	};
+	STRING_LIST(multiplayer_object_placement_spawn_flags, multiplayer_object_placement_spawn_flags_strings, _countof(multiplayer_object_placement_spawn_flags_strings));
 
-	TAG_ENUM(pathfinding_policy_enum, 5)
+	STRINGS(pathfinding_policy_enum)
 	{
-		OPTION("Tag Default"),
-		OPTION("Pathfinding DYNAMIC"),
-		OPTION("Pathfinding CUT-OUT"),
-		OPTION("Pathfinding STATIC"),
-		OPTION("Pathfinding NONE"),
+		"Tag Default",
+		"Pathfinding DYNAMIC",
+		"Pathfinding CUT-OUT",
+		"Pathfinding STATIC",
+		"Pathfinding NONE"
 	};
+	STRING_LIST(pathfinding_policy_enum, pathfinding_policy_enum_strings, _countof(pathfinding_policy_enum_strings));
 
-	TAG_ENUM(scenery_lightmap_policy_enum, 3)
+	STRINGS(scenery_lightmap_policy_enum)
 	{
-		OPTION("Tag Default"),
-		OPTION("Dynamic"),
-		OPTION("Per-Vertex"),
+		"Tag Default",
+		"Dynamic",
+		"Per-Vertex"
 	};
+	STRING_LIST(scenery_lightmap_policy_enum, scenery_lightmap_policy_enum_strings, _countof(scenery_lightmap_policy_enum_strings));
 
-	TAG_ENUM(scenario_equipment_flags_definition, 3)
+	STRINGS(scenario_equipment_flags_definition)
 	{
-		OPTION("OBSOLETE0"),
-		OPTION("OBSOLETE1"),
-		OPTION("does accelerate (moves due to explosions)"),
+		"OBSOLETE0",
+		"OBSOLETE1",
+		"does accelerate (moves due to explosions)"
 	};
+	STRING_LIST(scenario_equipment_flags_definition, scenario_equipment_flags_definition_strings, _countof(scenario_equipment_flags_definition_strings));
 
-	TAG_ENUM(scenario_weapon_datum_flags, 3)
+	STRINGS(scenario_weapon_datum_flags)
 	{
-		OPTION("initially at rest (doesn\'t fall)"),
-		OPTION("obsolete"),
-		OPTION("does accelerate (moves due to explosions)"),
+		"initially at rest (doesn\'t fall)",
+		"obsolete",
+		"does accelerate (moves due to explosions)"
 	};
+	STRING_LIST(scenario_weapon_datum_flags, scenario_weapon_datum_flags_strings, _countof(scenario_weapon_datum_flags_strings));
 
-	TAG_ENUM(scenario_unit_datum_flags, 3)
+	STRINGS(scenario_unit_datum_flags)
 	{
-		OPTION("dead"),
-		OPTION("opened"),
-		OPTION("not enterable by player"),
+		"dead",
+		"opened",
+		"not enterable by player"
 	};
+	STRING_LIST(scenario_unit_datum_flags, scenario_unit_datum_flags_strings, _countof(scenario_unit_datum_flags_strings));
 
-	TAG_ENUM(requisition_submenu_global_enum, 1)
+	STRINGS(requisition_submenu_global_enum)
 	{
-		OPTION("Support"),
+		"Support"
 	};
+	STRING_LIST(requisition_submenu_global_enum, requisition_submenu_global_enum_strings, _countof(requisition_submenu_global_enum_strings));
 
-	TAG_ENUM(scenario_requisition_palette_presence, 4)
+	STRINGS(scenario_requisition_palette_presence)
 	{
-		OPTION("empty palette"),
-		OPTION("full palette"),
-		OPTION("spartan palette"),
-		OPTION("elite palette"),
+		"empty palette",
+		"full palette",
+		"spartan palette",
+		"elite palette"
 	};
+	STRING_LIST(scenario_requisition_palette_presence, scenario_requisition_palette_presence_strings, _countof(scenario_requisition_palette_presence_strings));
 
-	TAG_ENUM(device_group_flags, 1)
+	STRINGS(device_group_flags)
 	{
-		OPTION("can change only once"),
+		"can change only once"
 	};
+	STRING_LIST(device_group_flags, device_group_flags_strings, _countof(device_group_flags_strings));
 
-	TAG_ENUM(scenario_device_flags, 6)
+	STRINGS(scenario_device_flags)
 	{
-		OPTION("initially open (1.0)"),
-		OPTION("initially off (0.0)"),
-		OPTION("can change only once"),
-		OPTION("position reversed"),
-		OPTION("not usable from any side"),
-		OPTION("closes without power"),
+		"initially open (1.0)",
+		"initially off (0.0)",
+		"can change only once",
+		"position reversed",
+		"not usable from any side",
+		"closes without power"
 	};
+	STRING_LIST(scenario_device_flags, scenario_device_flags_strings, _countof(scenario_device_flags_strings));
 
-	TAG_ENUM(scenario_machine_flags, 8)
+	STRINGS(scenario_machine_flags)
 	{
-		OPTION("does not operate automatically"),
-		OPTION("one-sided"),
-		OPTION("never appears locked"),
-		OPTION("opened by melee attack"),
-		OPTION("one-sided for player"),
-		OPTION("does not close automatically"),
-		OPTION("ignores player"),
-		OPTION("ignores ai"),
+		"does not operate automatically",
+		"one-sided",
+		"never appears locked",
+		"opened by melee attack",
+		"one-sided for player",
+		"does not close automatically",
+		"ignores player",
+		"ignores ai"
 	};
+	STRING_LIST(scenario_machine_flags, scenario_machine_flags_strings, _countof(scenario_machine_flags_strings));
 
-	TAG_ENUM(scenario_machine_pathfinding_policy_enum, 5)
+	STRINGS(scenario_machine_pathfinding_policy_enum)
 	{
-		OPTION("default"),
-		OPTION("discs"),
-		OPTION("sectors"),
-		OPTION("cut-out"),
-		OPTION("none"),
+		"default",
+		"discs",
+		"sectors",
+		"cut-out",
+		"none"
 	};
+	STRING_LIST(scenario_machine_pathfinding_policy_enum, scenario_machine_pathfinding_policy_enum_strings, _countof(scenario_machine_pathfinding_policy_enum_strings));
 
-	TAG_ENUM(scenario_control_flags, 1)
+	STRINGS(scenario_control_flags)
 	{
-		OPTION("usable from both sides"),
+		"usable from both sides"
 	};
+	STRING_LIST(scenario_control_flags, scenario_control_flags_strings, _countof(scenario_control_flags_strings));
 
-	TAG_ENUM(scenario_control_character_types, 3)
+	STRINGS(scenario_control_character_types)
 	{
-		OPTION("any"),
-		OPTION("spartan"),
-		OPTION("elite"),
+		"any",
+		"spartan",
+		"elite"
 	};
+	STRING_LIST(scenario_control_character_types, scenario_control_character_types_strings, _countof(scenario_control_character_types_strings));
 
-	TAG_ENUM(ScenarioDispenserFlags, 1)
+	STRINGS(ScenarioDispenserFlags)
 	{
-		OPTION("usable from front only"),
+		"usable from front only"
 	};
+	STRING_LIST(ScenarioDispenserFlags, ScenarioDispenserFlags_strings, _countof(ScenarioDispenserFlags_strings));
 
-	TAG_ENUM(sound_volume_type_enumeration, 3)
+	STRINGS(sound_volume_type_enumeration)
 	{
-		OPTION("sphere"),
-		OPTION("vertical cylinder"),
-		OPTION("pill{volume pill}"),
+		"sphere",
+		"vertical cylinder",
+		"pill{volume pill}"
 	};
+	STRING_LIST(sound_volume_type_enumeration, sound_volume_type_enumeration_strings, _countof(sound_volume_type_enumeration_strings));
 
 } // namespace blofeld
 

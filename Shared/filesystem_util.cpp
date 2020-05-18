@@ -1,6 +1,18 @@
 #include "shared-private-pch.h"
 
 
+bool filepath_exists(const char* filepath)
+{
+	bool path_file_exists_result = PathFileExistsA(filepath);
+	return path_file_exists_result;
+}
+
+bool filepath_exists(const wchar_t* filepath)
+{
+	bool path_file_exists_result = PathFileExistsW(filepath);
+	return path_file_exists_result;
+}
+
 bool read_file_to_memory(const char* filepath, void** buffer, size_t* buffer_size)
 {
 	ASSERT(filepath != nullptr);

@@ -36,7 +36,6 @@ namespace blofeld
 	extern s_tag_struct_definition cell_template_block_block_struct;
 	extern s_tag_block_definition cell_template_block_block;
 
-
 	extern s_tag_struct_definition squad_definition_internal_struct_struct_definition;
 
 	extern const char* patrol_point_flags_strings[];

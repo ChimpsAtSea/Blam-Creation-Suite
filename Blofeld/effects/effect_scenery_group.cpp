@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,8 +10,8 @@ namespace blofeld
 
 	TAG_STRUCT(effect_scenery_struct_definition)
 	{
-		FIELD( _field_struct, "object", &object_struct_definition_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_struct, "object", &object_struct_definition_struct_definition },
+		{ _field_terminator }
 	};
 
 } // namespace blofeld

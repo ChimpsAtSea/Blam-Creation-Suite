@@ -1,37 +1,41 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
 	TAG_STRUCT(game_mode_flags_struct)
 	{
-		FIELD( _field_byte_flags, "game mode", &game_type_enum_definition ),
-		FIELD( _field_byte_flags, "matchmaking type", &game_matchmaking_flags_definition ),
-		FIELD( _field_byte_flags, "difficulty", &global_campaign_difficulty_flags ),
-		FIELD( _field_char_enum, "player count", &game_player_count_flags_definition ),
-		FIELD( _field_terminator )
+		{ _field_byte_flags, "game mode", &game_type_enum_definition },
+		{ _field_byte_flags, "matchmaking type", &game_matchmaking_flags_definition },
+		{ _field_byte_flags, "difficulty", &global_campaign_difficulty_flags },
+		{ _field_char_enum, "player count", &game_player_count_flags_definition },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(game_type_enum_definition, 3)
+	STRINGS(game_type_enum_definition)
 	{
-		OPTION("campaign"),
-		OPTION("firefight"),
-		OPTION("multiplayer"),
+		"campaign",
+		"firefight",
+		"multiplayer"
 	};
+	STRING_LIST(game_type_enum_definition, game_type_enum_definition_strings, _countof(game_type_enum_definition_strings));
 
-	TAG_ENUM(game_matchmaking_flags_definition, 2)
+	STRINGS(game_matchmaking_flags_definition)
 	{
-		OPTION("custom game"),
-		OPTION("matchmaking"),
+		"custom game",
+		"matchmaking"
 	};
+	STRING_LIST(game_matchmaking_flags_definition, game_matchmaking_flags_definition_strings, _countof(game_matchmaking_flags_definition_strings));
 
-	TAG_ENUM(game_player_count_flags_definition, 4)
+	STRINGS(game_player_count_flags_definition)
 	{
-		OPTION("any"),
-		OPTION("1 player only"),
-		OPTION("4 players only"),
-		OPTION("more than one player"),
+		"any",
+		"1 player only",
+		"4 players only",
+		"more than one player"
 	};
+	STRING_LIST(game_player_count_flags_definition, game_player_count_flags_definition_strings, _countof(game_player_count_flags_definition_strings));
 
 } // namespace blofeld
 

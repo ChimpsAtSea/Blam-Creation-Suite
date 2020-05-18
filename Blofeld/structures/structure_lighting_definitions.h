@@ -18,7 +18,6 @@ namespace blofeld
 	extern s_tag_block_definition structureLightingCinematicLightInstanceBlock_block;
 	extern s_tag_block_definition scenario_structure_lighting_info_block_block;
 
-
 	extern s_tag_struct_definition scenario_structure_lighting_info_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition structureLightingCinematicLightInstanceBlock_struct_struct_definition;
 
@@ -28,6 +27,7 @@ namespace blofeld
 	extern s_string_list_definition structure_lighting_generic_light_jitter_quality_enum;
 	extern const char* structure_lighting_generic_light_flags_strings[];
 	extern s_string_list_definition structure_lighting_generic_light_flags;
+
 
 } // namespace blofeld
 

@@ -12,7 +12,6 @@ namespace blofeld
 	extern s_tag_struct_definition sound_equalizer_band_settings_block_block_struct;
 	extern s_tag_block_definition sound_equalizer_band_settings_block_block;
 
-
 	extern s_tag_struct_definition global_sound_lowpass_block_struct_definition;
 	extern s_tag_struct_definition global_sound_reverb_block_struct_definition;
 	extern s_tag_struct_definition global_sound_look_up_table_distortion_block_struct_definition;
@@ -24,6 +23,8 @@ namespace blofeld
 	extern s_string_list_definition equalizer_band_type_definition;
 	extern const char* radio_mix_setting_definition_strings[];
 	extern s_string_list_definition radio_mix_setting_definition;
+
+	extern s_tag_reference_definition global_sound_radio_settings_reference;
 
 } // namespace blofeld
 

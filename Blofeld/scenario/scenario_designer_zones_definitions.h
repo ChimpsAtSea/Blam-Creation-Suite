@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition scenarioDesignerZoneTagReferenceBlock_block_struct;
 	extern s_tag_block_definition scenarioDesignerZoneTagReferenceBlock_block;
 	extern s_tag_struct_definition biped_block_index_flags_block_block_struct;
@@ -46,8 +45,6 @@ namespace blofeld
 	extern s_tag_block_definition scenarioDesignerResourceDependenciesBlock_block;
 	extern s_tag_struct_definition scenario_designer_zone_block_block_struct;
 	extern s_tag_block_definition scenario_designer_zone_block_block;
-
-
 
 
 } // namespace blofeld

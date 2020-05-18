@@ -1,15 +1,16 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
 	TAG_BLOCK(g_scenario_editor_folder_block, k_maximum_scenario_editor_folders)
 	{
-		FIELD( _field_long_block_index, "parent folder" ),
-		FIELD( _field_long_string, "name^" ),
-		FIELD( _field_pad, "pad", 4 ),
-		FIELD( _field_int64_integer, "offset*!" ),
-		FIELD( _field_terminator )
+		{ _field_long_block_index, "parent folder" },
+		{ _field_long_string, "name^" },
+		{ _field_pad, "pad", 4 },
+		{ _field_int64_integer, "offset*!" },
+		{ _field_terminator }
 	};
 
 } // namespace blofeld

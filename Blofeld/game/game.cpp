@@ -1,23 +1,26 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
-	TAG_ENUM(global_campaign_difficulty_enum, 4)
+	STRINGS(global_campaign_difficulty_enum)
 	{
-		OPTION("easy"),
-		OPTION("normal"),
-		OPTION("heroic"),
-		OPTION("legendary"),
+		"easy",
+		"normal",
+		"heroic",
+		"legendary"
 	};
+	STRING_LIST(global_campaign_difficulty_enum, global_campaign_difficulty_enum_strings, _countof(global_campaign_difficulty_enum_strings));
 
-	TAG_ENUM(global_campaign_difficulty_flags, 4)
+	STRINGS(global_campaign_difficulty_flags)
 	{
-		OPTION("easy"),
-		OPTION("normal"),
-		OPTION("heroic"),
-		OPTION("legendary"),
+		"easy",
+		"normal",
+		"heroic",
+		"legendary"
 	};
+	STRING_LIST(global_campaign_difficulty_flags, global_campaign_difficulty_flags_strings, _countof(global_campaign_difficulty_flags_strings));
 
 } // namespace blofeld
 

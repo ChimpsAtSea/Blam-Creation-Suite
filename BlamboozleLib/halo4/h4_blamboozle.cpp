@@ -169,6 +169,8 @@ const char* h4_va_to_pointer2(const char* data, uint32_t address)
 std::map<const void*, c_h4_tag_block*> c_h4_blamboozle::tag_block_definitions;
 std::map<const void*, c_h4_tag_struct*> c_h4_blamboozle::tag_struct_definitions;
 std::map<const void*, c_h4_tag_enum*> c_h4_blamboozle::tag_enum_definitions;
+std::map<const void*, c_h4_tag_reference*> c_h4_blamboozle::tag_reference_definitions;
+c_runtime_symbols* c_h4_blamboozle::symbols = nullptr;
 
 c_h4_blamboozle::c_h4_blamboozle(const wchar_t* _output_directory, const wchar_t* _binary_filepath) :
 	c_blamboozle_base(_output_directory, _binary_filepath),
@@ -242,25 +244,25 @@ c_h4_tag_array* c_h4_blamboozle::get_tag_array_definition(const char* h4_data, c
 
 c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(
 	const char* h4_data,
-	const s_h4_tag_struct_definition* tag_struct_definition_header
+	const s_h4_tag_struct_definition* definition_header
 )
 {
-	if (tag_struct_definition_header == nullptr)
+	if (definition_header == nullptr)
 	{
 		return nullptr;
 	}
 	ASSERT(h4_data != nullptr);
 
-	std::map<const void*, c_h4_tag_struct*>::iterator tag_struct_definition_iterator = tag_struct_definitions.find(tag_struct_definition_header);
+	std::map<const void*, c_h4_tag_struct*>::iterator tag_struct_definition_iterator = tag_struct_definitions.find(definition_header);
 
 	if (tag_struct_definition_iterator != tag_struct_definitions.end())
 	{
 		return tag_struct_definition_iterator->second;
 	}
 
-	uint32_t line_number = tag_struct_definition_header->line_number;
-	const char* name = h4_va_to_pointer(h4_data, tag_struct_definition_header->name);
-	const char* filepath = h4_va_to_pointer(h4_data, tag_struct_definition_header->filepath);
+	uint32_t line_number = definition_header->line_number;
+	const char* name = h4_va_to_pointer(h4_data, definition_header->name);
+	const char* filepath = h4_va_to_pointer(h4_data, definition_header->filepath);
 	for (const std::pair<const void*, c_h4_tag_struct*>& tag_struct_key : tag_struct_definitions)
 	{
 		c_h4_tag_struct& tag_struct = *tag_struct_key.second;
@@ -271,8 +273,8 @@ c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(
 	}
 
 	c_h4_tag_struct* tag_struct_definition = reinterpret_cast<c_h4_tag_struct*>(malloc(sizeof(c_h4_tag_struct)));
-	tag_struct_definitions[tag_struct_definition_header] = tag_struct_definition;
-	new(tag_struct_definition) c_h4_tag_struct(h4_data, tag_struct_definition_header);
+	tag_struct_definitions[definition_header] = tag_struct_definition;
+	new(tag_struct_definition) c_h4_tag_struct(h4_data, definition_header);
 
 
 	return tag_struct_definition;
@@ -280,25 +282,25 @@ c_h4_tag_struct* c_h4_blamboozle::get_tag_struct_definition(
 
 c_h4_tag_enum* c_h4_blamboozle::get_tag_enum_definition(
 	const char* h4_data,
-	const s_h4_tag_enum_definition* tag_enum_definition_header
+	const s_h4_tag_enum_definition* definition_header
 )
 {
-	if (tag_enum_definition_header == nullptr)
+	if (definition_header == nullptr)
 	{
 		return nullptr;
 	}
 	ASSERT(h4_data != nullptr);
 
-	std::map<const void*, c_h4_tag_enum*>::iterator tag_enum_definition_iterator = tag_enum_definitions.find(tag_enum_definition_header);
+	std::map<const void*, c_h4_tag_enum*>::iterator tag_enum_definition_iterator = tag_enum_definitions.find(definition_header);
 
 	if (tag_enum_definition_iterator != tag_enum_definitions.end())
 	{
 		return tag_enum_definition_iterator->second;
 	}
 
-	uint32_t line_number = tag_enum_definition_header->line_number;
-	const char* name = h4_va_to_pointer(h4_data, tag_enum_definition_header->name);
-	const char* filepath = h4_va_to_pointer(h4_data, tag_enum_definition_header->filepath);
+	uint32_t line_number = definition_header->line_number;
+	const char* name = h4_va_to_pointer(h4_data, definition_header->name);
+	const char* filepath = h4_va_to_pointer(h4_data, definition_header->filepath);
 	for (const std::pair<const void*, c_h4_tag_enum*>& tag_enum_key : tag_enum_definitions)
 	{
 		c_h4_tag_enum& tag_enum = *tag_enum_key.second;
@@ -309,16 +311,35 @@ c_h4_tag_enum* c_h4_blamboozle::get_tag_enum_definition(
 	}
 
 	c_h4_tag_enum* tag_enum_definition = reinterpret_cast<c_h4_tag_enum*>(malloc(sizeof(c_h4_tag_enum)));
-	tag_enum_definitions[tag_enum_definition_header] = tag_enum_definition;
-	new(tag_enum_definition) c_h4_tag_enum(h4_data, tag_enum_definition_header);
+	tag_enum_definitions[definition_header] = tag_enum_definition;
+	new(tag_enum_definition) c_h4_tag_enum(h4_data, definition_header);
 
 
 	return tag_enum_definition;
 }
 
-static c_h4_tag_struct* get_tag_enum_definition(
-	const char* h4_data,
-	const s_h4_tag_struct_definition* definition_header);
+c_h4_tag_reference* c_h4_blamboozle::get_tag_reference_definition(const char* h4_data, const s_h4_tag_reference_definition* definition_header, uint32_t definition_address)
+{
+	if (definition_header == nullptr)
+	{
+		return nullptr;
+	}
+	ASSERT(h4_data != nullptr);
+
+	std::map<const void*, c_h4_tag_reference*>::iterator tag_reference_definition_iterator = tag_reference_definitions.find(definition_header);
+
+	if (tag_reference_definition_iterator != tag_reference_definitions.end())
+	{
+		return tag_reference_definition_iterator->second;
+	}
+
+	c_h4_tag_reference* tag_reference_definition = reinterpret_cast<c_h4_tag_reference*>(malloc(sizeof(c_h4_tag_reference)));
+	tag_reference_definitions[definition_header] = tag_reference_definition;
+	new(tag_reference_definition) c_h4_tag_reference(h4_data, definition_header, definition_address);
+
+
+	return tag_reference_definition;
+}
 
 int c_h4_blamboozle::run()
 {
@@ -332,6 +353,24 @@ int c_h4_blamboozle::run()
 	{
 		return 1;
 	}
+
+	std::wstring mapping_filepath = c_command_line::get_command_line_warg("-blamboozle-halo4-tag-test-map");
+	std::wstring symbols_filepath = c_command_line::get_command_line_warg("-blamboozle-halo4-tag-test-sym");
+	if (!filepath_exists(symbols_filepath.c_str()))
+	{
+		c_map_file_parser map_file_parser = c_map_file_parser(mapping_filepath.c_str(), nullptr, 0);
+		map_file_parser.write_output(symbols_filepath.c_str());
+	}
+
+	char* symbols_buffer;
+	size_t symbols_buffer_size;
+	if (!read_file_to_memory(symbols_filepath.c_str(), &symbols_buffer, &symbols_buffer_size))
+	{
+		return 1;
+	}
+
+	c_runtime_symbols runtime_symbols = c_runtime_symbols(symbols_buffer, symbols_buffer_size);
+	symbols = &runtime_symbols;
 
 	struct s_h4_tag_layout_entry
 	{

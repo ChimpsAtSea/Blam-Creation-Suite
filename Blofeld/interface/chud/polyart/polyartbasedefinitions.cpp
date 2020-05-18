@@ -1,23 +1,24 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
 	TAG_BLOCK(polyartVertexBlock, k_chudPolyArtVertexMaxCount)
 	{
-		FIELD( _field_short_integer, "half x*" ),
-		FIELD( _field_short_integer, "half y*" ),
-		FIELD( _field_short_integer, "half z*" ),
-		FIELD( _field_short_integer, "half alpha*" ),
-		FIELD( _field_short_integer, "half u*" ),
-		FIELD( _field_short_integer, "half v*" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "half x*" },
+		{ _field_short_integer, "half y*" },
+		{ _field_short_integer, "half z*" },
+		{ _field_short_integer, "half alpha*" },
+		{ _field_short_integer, "half u*" },
+		{ _field_short_integer, "half v*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(polyartIndexBlock, PolyartIndex::k_chudPolyArtIndexMaxCount)
 	{
-		FIELD( _field_short_integer, "index*" ),
-		FIELD( _field_terminator )
+		{ _field_short_integer, "index*" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(vertexBuffersBlock, 1, vertexBuffersBlock_struct_struct_definition );
@@ -26,35 +27,37 @@ namespace blofeld
 
 	TAG_STRUCT(vertexBuffersBlock_struct)
 	{
-		FIELD( _field_byte_integer, "declaration type*" ),
-		FIELD( _field_byte_integer, "stride*" ),
-		FIELD( _field_pad, "vertex buffer pad", 2 ),
-		FIELD( _field_dword_integer, "count*" ),
-		FIELD( _field_long_integer, "d3d hardware format*" ),
-		FIELD( _field_terminator )
+		{ _field_byte_integer, "declaration type*" },
+		{ _field_byte_integer, "stride*" },
+		{ _field_pad, "vertex buffer pad", 2 },
+		{ _field_dword_integer, "count*" },
+		{ _field_long_integer, "d3d hardware format*" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(indexBuffersBlock_struct)
 	{
-		FIELD( _field_byte_integer, "declaration type*" ),
-		FIELD( _field_byte_integer, "stride*" ),
-		FIELD( _field_pad, "vertex buffer pad", 2 ),
-		FIELD( _field_dword_integer, "count*" ),
-		FIELD( _field_long_integer, "d3d hardware format*" ),
-		FIELD( _field_terminator )
+		{ _field_byte_integer, "declaration type*" },
+		{ _field_byte_integer, "stride*" },
+		{ _field_pad, "vertex buffer pad", 2 },
+		{ _field_dword_integer, "count*" },
+		{ _field_long_integer, "d3d hardware format*" },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(g_polyartAssetStateFlags, 2)
+	STRINGS(g_polyartAssetStateFlags)
 	{
-		OPTION("processed*!"),
-		OPTION("available*!"),
+		"processed*!",
+		"available*!"
 	};
+	STRING_LIST(g_polyartAssetStateFlags, g_polyartAssetStateFlags_strings, _countof(g_polyartAssetStateFlags_strings));
 
-	TAG_ENUM(PolyartVertexFormatTypeEnum, 2)
+	STRINGS(PolyartVertexFormatTypeEnum)
 	{
-		OPTION("Position"),
-		OPTION("Position And UV"),
+		"Position",
+		"Position And UV"
 	};
+	STRING_LIST(PolyartVertexFormatTypeEnum, PolyartVertexFormatTypeEnum_strings, _countof(PolyartVertexFormatTypeEnum_strings));
 
 } // namespace blofeld
 

@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -7,53 +8,59 @@ namespace blofeld
 
 	TAG_BLOCK(scenario_interpolator_data_block, k_maximum_interpolators_per_scenario)
 	{
-		FIELD( _field_word_flags, "flags", &scenario_interpolator_flags ),
-		FIELD( _field_pad, "SCBP1", 2 ),
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_struct, "function", &scalar_function_named_struct_struct_definition ),
-		FIELD( _field_real, "duration:seconds" ),
-		FIELD( _field_long_enum, "map reset type", &scenario_interpolator_reset_value_enum ),
-		FIELD( _field_real_fraction, "custom map reset value" ),
-		FIELD( _field_long_enum, "start type", &scenario_interpolator_start_value_enum ),
-		FIELD( _field_long_enum, "stop type", &scenario_interpolator_stop_value_enum ),
-		FIELD( _field_real_fraction, "custom stop value" ),
-		FIELD( _field_terminator )
+		{ _field_word_flags, "flags", &scenario_interpolator_flags },
+		{ _field_pad, "SCBP1", 2 },
+		{ _field_string_id, "name^" },
+		{ _field_struct, "function", &scalar_function_named_struct_struct_definition },
+		{ _field_real, "duration:seconds" },
+		{ _field_long_enum, "map reset type", &scenario_interpolator_reset_value_enum },
+		{ _field_real_fraction, "custom map reset value" },
+		{ _field_long_enum, "start type", &scenario_interpolator_start_value_enum },
+		{ _field_long_enum, "stop type", &scenario_interpolator_stop_value_enum },
+		{ _field_real_fraction, "custom stop value" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(scenario_interpolator_block, 1, scenario_interpolator_struct_definition_struct_definition );
 
 	TAG_STRUCT(scenario_interpolator_struct_definition)
 	{
-		FIELD( _field_block, "interpolators", &scenario_interpolator_data_block_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "interpolators", &scenario_interpolator_data_block_block },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(scenario_interpolator_reset_value_enum, 3)
+	STRINGS(scenario_interpolator_reset_value_enum)
 	{
-		OPTION("initial"),
-		OPTION("ending"),
-		OPTION("custom"),
+		"initial",
+		"ending",
+		"custom"
 	};
+	STRING_LIST(scenario_interpolator_reset_value_enum, scenario_interpolator_reset_value_enum_strings, _countof(scenario_interpolator_reset_value_enum_strings));
 
-	TAG_ENUM(scenario_interpolator_start_value_enum, 2)
+	STRINGS(scenario_interpolator_start_value_enum)
 	{
-		OPTION("initial"),
-		OPTION("unchanged"),
+		"initial",
+		"unchanged"
 	};
+	STRING_LIST(scenario_interpolator_start_value_enum, scenario_interpolator_start_value_enum_strings, _countof(scenario_interpolator_start_value_enum_strings));
 
-	TAG_ENUM(scenario_interpolator_stop_value_enum, 4)
+	STRINGS(scenario_interpolator_stop_value_enum)
 	{
-		OPTION("initial"),
-		OPTION("hold"),
-		OPTION("ending"),
-		OPTION("custom"),
+		"initial",
+		"hold",
+		"ending",
+		"custom"
 	};
+	STRING_LIST(scenario_interpolator_stop_value_enum, scenario_interpolator_stop_value_enum_strings, _countof(scenario_interpolator_stop_value_enum_strings));
 
-	TAG_ENUM(scenario_interpolator_flags, 2)
+	STRINGS(scenario_interpolator_flags)
 	{
-		OPTION("loops#will continue to play until stopped.  if checked, no wrap should also be checked"),
-		OPTION("always active#will be started when the map loads.  good for looping interpolators"),
+		"loops#will continue to play until stopped.  if checked, no wrap should also be checked",
+		"always active#will be started when the map loads.  good for looping interpolators"
 	};
+	STRING_LIST(scenario_interpolator_flags, scenario_interpolator_flags_strings, _countof(scenario_interpolator_flags_strings));
+
+	TAG_REFERENCE(global_scenario_interpolator_reference, SCENARIO_INTERPOLATOR_TAG);
 
 } // namespace blofeld
 

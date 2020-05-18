@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,10 +10,10 @@ namespace blofeld
 
 	TAG_STRUCT(rasterizer_cache_file_globals_struct_definition)
 	{
-		FIELD( _field_long_integer, "texture header count" ),
-		FIELD( _field_long_integer, "maximum vertex shader gprs" ),
-		FIELD( _field_long_integer, "maximum pixel shader gprs" ),
-		FIELD( _field_terminator )
+		{ _field_long_integer, "texture header count" },
+		{ _field_long_integer, "maximum vertex shader gprs" },
+		{ _field_long_integer, "maximum pixel shader gprs" },
+		{ _field_terminator }
 	};
 
 } // namespace blofeld

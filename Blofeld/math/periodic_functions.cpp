@@ -1,47 +1,51 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
-	TAG_ENUM(global_periodic_functions_enum, 12)
+	STRINGS(global_periodic_functions_enum)
 	{
-		OPTION("one"),
-		OPTION("zero"),
-		OPTION("cosine"),
-		OPTION("cosine (variable period)"),
-		OPTION("diagonal wave"),
-		OPTION("diagonal wave (variable period)"),
-		OPTION("slide"),
-		OPTION("slide (variable period)"),
-		OPTION("noise"),
-		OPTION("jitter"),
-		OPTION("wander"),
-		OPTION("spark"),
+		"one",
+		"zero",
+		"cosine",
+		"cosine (variable period)",
+		"diagonal wave",
+		"diagonal wave (variable period)",
+		"slide",
+		"slide (variable period)",
+		"noise",
+		"jitter",
+		"wander",
+		"spark"
 	};
+	STRING_LIST(global_periodic_functions_enum, global_periodic_functions_enum_strings, _countof(global_periodic_functions_enum_strings));
 
-	TAG_ENUM(global_transition_functions_enum, 8)
+	STRINGS(global_transition_functions_enum)
 	{
-		OPTION("linear"),
-		OPTION("early"),
-		OPTION("very early"),
-		OPTION("late"),
-		OPTION("very late"),
-		OPTION("cosine"),
-		OPTION("one"),
-		OPTION("zero"),
+		"linear",
+		"early",
+		"very early",
+		"late",
+		"very late",
+		"cosine",
+		"one",
+		"zero"
 	};
+	STRING_LIST(global_transition_functions_enum, global_transition_functions_enum_strings, _countof(global_transition_functions_enum_strings));
 
-	TAG_ENUM(global_reverse_transition_functions_enum, 8)
+	STRINGS(global_reverse_transition_functions_enum)
 	{
-		OPTION("linear"),
-		OPTION("late"),
-		OPTION("very late"),
-		OPTION("early"),
-		OPTION("very early"),
-		OPTION("cosine"),
-		OPTION("zero"),
-		OPTION("one"),
+		"linear",
+		"late",
+		"very late",
+		"early",
+		"very early",
+		"cosine",
+		"zero",
+		"one"
 	};
+	STRING_LIST(global_reverse_transition_functions_enum, global_reverse_transition_functions_enum_strings, _countof(global_reverse_transition_functions_enum_strings));
 
 } // namespace blofeld
 

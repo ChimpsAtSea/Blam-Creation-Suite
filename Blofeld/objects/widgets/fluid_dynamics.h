@@ -17,7 +17,6 @@ namespace blofeld
 	extern s_tag_block_definition fluid_dynamics_obstacle_block_block;
 	extern s_tag_block_definition fluid_dynamics_block_block;
 
-
 	extern s_tag_struct_definition fluid_dynamics_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition g_single_scalar_function_evaluation_struct_struct_definition;
 

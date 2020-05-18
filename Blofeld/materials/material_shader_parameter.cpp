@@ -1,85 +1,89 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
 	TAG_BLOCK(material_shader_function_parameter_block, s_material_shader_parameter::k_max_material_shader_parameters)
 	{
-		FIELD( _field_long_enum, "type^", &material_animated_parameter_type_enum ),
-		FIELD( _field_string_id, "input name" ),
-		FIELD( _field_string_id, "range name" ),
-		FIELD( _field_char_enum, "Output Modifier!", &materialFunctionOutputModEnum ),
-		FIELD( _field_pad, "BVCG", 3 ),
-		FIELD( _field_string_id, "Output Modifier Input!" ),
-		FIELD( _field_real, "time period:seconds" ),
-		FIELD( _field_explanation, "FUNCTION" ),
-		FIELD( _field_custom ),
-		FIELD( _field_struct, "function", &mapping_function_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_long_enum, "type^", &material_animated_parameter_type_enum },
+		{ _field_string_id, "input name" },
+		{ _field_string_id, "range name" },
+		{ _field_char_enum, "Output Modifier!", &materialFunctionOutputModEnum },
+		{ _field_pad, "BVCG", 3 },
+		{ _field_string_id, "Output Modifier Input!" },
+		{ _field_real, "time period:seconds" },
+		{ _field_explanation, "FUNCTION" },
+		{ _field_custom },
+		{ _field_struct, "function", &mapping_function_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(material_shader_parameter_block, s_material_shader_parameter::k_max_material_shader_parameters)
 	{
-		FIELD( _field_string_id, "parameter name^*" ),
-		FIELD( _field_long_enum, "parameter type*", &material_shader_parameter_type_enum ),
-		FIELD( _field_long_integer, "parameter index*!" ),
-		FIELD( _field_tag_reference, "bitmap" ),
-		FIELD( _field_string_id, "bitmap path" ),
-		FIELD( _field_real_argb_color, "color" ),
-		FIELD( _field_real, "real" ),
-		FIELD( _field_real_vector_3d, "vector" ),
-		FIELD( _field_long_integer, "int/bool" ),
-		FIELD( _field_word_integer, "bitmap flags" ),
-		FIELD( _field_word_integer, "bitmap filter mode" ),
-		FIELD( _field_word_integer, "bitmap address mode" ),
-		FIELD( _field_word_integer, "bitmap address mode x" ),
-		FIELD( _field_word_integer, "bitmap address mode y" ),
-		FIELD( _field_word_integer, "bitmap sharpen mode" ),
-		FIELD( _field_byte_integer, "bitmap extern mode" ),
-		FIELD( _field_byte_integer, "bitmap min mipmap" ),
-		FIELD( _field_byte_integer, "bitmap max mipmap" ),
-		FIELD( _field_byte_integer, "render phases used" ),
-		FIELD( _field_block, "function parameters", &material_shader_function_parameter_block_block ),
-		FIELD( _field_data, "display name*" ),
-		FIELD( _field_data, "display group*" ),
-		FIELD( _field_data, "display help text*" ),
-		FIELD( _field_real, "display minimum" ),
-		FIELD( _field_real, "display maximum" ),
-		FIELD( _field_byte_integer, "register index*!" ),
-		FIELD( _field_byte_integer, "register offset*!" ),
-		FIELD( _field_byte_integer, "register count*!" ),
-		FIELD( _field_char_enum, "register set*!", &register_set_enum ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "parameter name^*" },
+		{ _field_long_enum, "parameter type*", &material_shader_parameter_type_enum },
+		{ _field_long_integer, "parameter index*!" },
+		{ _field_tag_reference, "bitmap", &bitmap_reference$7 },
+		{ _field_string_id, "bitmap path" },
+		{ _field_real_argb_color, "color" },
+		{ _field_real, "real" },
+		{ _field_real_vector_3d, "vector" },
+		{ _field_long_integer, "int/bool" },
+		{ _field_word_integer, "bitmap flags" },
+		{ _field_word_integer, "bitmap filter mode" },
+		{ _field_word_integer, "bitmap address mode" },
+		{ _field_word_integer, "bitmap address mode x" },
+		{ _field_word_integer, "bitmap address mode y" },
+		{ _field_word_integer, "bitmap sharpen mode" },
+		{ _field_byte_integer, "bitmap extern mode" },
+		{ _field_byte_integer, "bitmap min mipmap" },
+		{ _field_byte_integer, "bitmap max mipmap" },
+		{ _field_byte_integer, "render phases used" },
+		{ _field_block, "function parameters", &material_shader_function_parameter_block_block },
+		{ _field_data, "display name*" },
+		{ _field_data, "display group*" },
+		{ _field_data, "display help text*" },
+		{ _field_real, "display minimum" },
+		{ _field_real, "display maximum" },
+		{ _field_byte_integer, "register index*!" },
+		{ _field_byte_integer, "register offset*!" },
+		{ _field_byte_integer, "register count*!" },
+		{ _field_char_enum, "register set*!", &register_set_enum },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(material_shader_parameter_type_enum, 5)
+	STRINGS(material_shader_parameter_type_enum)
 	{
-		OPTION("bitmap"),
-		OPTION("real"),
-		OPTION("int"),
-		OPTION("bool"),
-		OPTION("color"),
+		"bitmap",
+		"real",
+		"int",
+		"bool",
+		"color"
 	};
+	STRING_LIST(material_shader_parameter_type_enum, material_shader_parameter_type_enum_strings, _countof(material_shader_parameter_type_enum_strings));
 
-	TAG_ENUM(material_animated_parameter_type_enum, 9)
+	STRINGS(material_animated_parameter_type_enum)
 	{
-		OPTION("value"),
-		OPTION("color"),
-		OPTION("scale uniform"),
-		OPTION("scale u"),
-		OPTION("scale v"),
-		OPTION("offset u"),
-		OPTION("offset v"),
-		OPTION("frame index"),
-		OPTION("alpha"),
+		"value",
+		"color",
+		"scale uniform",
+		"scale u",
+		"scale v",
+		"offset u",
+		"offset v",
+		"frame index",
+		"alpha"
 	};
+	STRING_LIST(material_animated_parameter_type_enum, material_animated_parameter_type_enum_strings, _countof(material_animated_parameter_type_enum_strings));
 
-	TAG_ENUM(materialFunctionOutputModEnum, 3)
+	STRINGS(materialFunctionOutputModEnum)
 	{
-		OPTION(" "),
-		OPTION("Add"),
-		OPTION("Multiply"),
+		" ",
+		"Add",
+		"Multiply"
 	};
+	STRING_LIST(materialFunctionOutputModEnum, materialFunctionOutputModEnum_strings, _countof(materialFunctionOutputModEnum_strings));
 
 } // namespace blofeld
 

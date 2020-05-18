@@ -1,20 +1,22 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
 
-	TAG_ENUM(global_multiplayer_team_designator_enum_definition, 9)
+	STRINGS(global_multiplayer_team_designator_enum_definition)
 	{
-		OPTION("defender"),
-		OPTION("attacker"),
-		OPTION("third party"),
-		OPTION("fourth party"),
-		OPTION("fifth party"),
-		OPTION("sixth party"),
-		OPTION("seventh party"),
-		OPTION("eighth party{eigth party}"),
-		OPTION("neutral"),
+		"defender",
+		"attacker",
+		"third party",
+		"fourth party",
+		"fifth party",
+		"sixth party",
+		"seventh party",
+		"eighth party{eigth party}",
+		"neutral"
 	};
+	STRING_LIST(global_multiplayer_team_designator_enum_definition, global_multiplayer_team_designator_enum_definition_strings, _countof(global_multiplayer_team_designator_enum_definition_strings));
 
 } // namespace blofeld
 

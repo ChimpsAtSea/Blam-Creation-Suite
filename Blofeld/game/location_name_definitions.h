@@ -11,9 +11,9 @@ namespace blofeld
 	extern s_tag_block_definition location_name_block_block;
 	extern s_tag_block_definition location_name_globals_definition_block_block;
 
-
 	extern s_tag_struct_definition location_name_globals_definition_struct_definition_struct_definition; // tag group
 
+	extern s_tag_reference_definition global_location_name_globals_reference;
 
 } // namespace blofeld
 

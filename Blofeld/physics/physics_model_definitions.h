@@ -89,7 +89,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition multi_sphere_vector_storage_struct_definition;
 	extern s_tag_array_definition multi_sphere_vector_storage_array;
-
 	extern s_tag_struct_definition havok_primitive_struct_struct_definition;
 	extern s_tag_struct_definition havok_convex_shape_struct_struct_definition;
 	extern s_tag_struct_definition havok_shape_struct_struct_definition;

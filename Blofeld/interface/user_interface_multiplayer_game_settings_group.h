@@ -25,7 +25,6 @@ namespace blofeld
 	extern s_tag_block_definition sandbox_text_value_pair_definition_block_block;
 	extern s_tag_block_definition text_value_pair_definition_block_block;
 
-
 	extern s_tag_struct_definition multiplayer_variant_settings_interface_definition_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition sandbox_text_value_pair_definition_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition text_value_pair_definition_struct_definition_struct_definition; // tag group
@@ -38,6 +37,10 @@ namespace blofeld
 	extern s_string_list_definition text_value_pair_flags;
 	extern const char* text_value_pair_parameter_type_strings[];
 	extern s_string_list_definition text_value_pair_parameter_type;
+
+	extern s_tag_reference_definition g_multiplayer_variant_settings_interface_reference;
+	extern s_tag_reference_definition g_text_value_pair_reference;
+	extern s_tag_reference_definition g_sandbox_object_properties_interface_reference;
 
 } // namespace blofeld
 

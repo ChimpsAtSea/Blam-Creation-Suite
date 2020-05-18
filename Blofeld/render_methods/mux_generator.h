@@ -11,7 +11,6 @@ namespace blofeld
 	extern s_tag_block_definition mux_generator_material_block_block;
 	extern s_tag_block_definition mux_generator_block_block;
 
-
 	extern s_tag_struct_definition mux_generator_struct_definition_struct_definition; // tag group
 
 

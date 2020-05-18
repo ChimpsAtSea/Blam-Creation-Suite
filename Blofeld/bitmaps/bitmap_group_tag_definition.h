@@ -17,7 +17,6 @@ namespace blofeld
 	extern s_tag_block_definition bitmap_texture_interleaved_interop_block_block;
 
 
-
 	extern const char* bitmap_group_flags_def_strings[];
 	extern s_string_list_definition bitmap_group_flags_def;
 	extern const char* bitmap_curve_override_enum_strings[];

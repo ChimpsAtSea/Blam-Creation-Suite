@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition player_traits_vitality_block_block_struct;
 	extern s_tag_block_definition player_traits_vitality_block_block;
 	extern s_tag_struct_definition player_traits_weapons_block_block_struct;
@@ -18,7 +17,6 @@ namespace blofeld
 	extern s_tag_block_definition game_engine_player_traits_block_block;
 	extern s_tag_struct_definition game_engine_player_traits_list_block_block_struct;
 	extern s_tag_block_definition game_engine_player_traits_list_block_block;
-
 
 
 	extern const char* player_trait_bool_enum_strings[];

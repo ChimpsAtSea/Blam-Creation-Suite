@@ -17,7 +17,6 @@ namespace blofeld
 	extern s_tag_struct_definition flock_instance_block_block_struct;
 	extern s_tag_block_definition flock_instance_block_block;
 
-
 	extern s_tag_struct_definition flock_struct_definition_struct_definition; // tag group
 
 	extern const char* flock_source_flags_strings[];

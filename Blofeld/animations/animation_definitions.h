@@ -173,7 +173,6 @@ namespace blofeld
 	extern s_tag_array_definition g_node_flag_storage_array_array;
 	extern s_tag_struct_definition animation_velocity_boundaries_struct_definition;
 	extern s_tag_array_definition animation_velocity_boundaries_array;
-
 	extern s_tag_struct_definition frame_event_list_struct_definition_struct_definition; // tag group
 	extern s_tag_struct_definition animation_graph_definitions_struct_struct_definition;
 	extern s_tag_struct_definition animation_aiming_screen_struct_struct_definition;
@@ -269,6 +268,9 @@ namespace blofeld
 	extern s_string_list_definition public_animation_graph_flags;
 	extern const char* animation_graph_misc_flags_strings[];
 	extern s_string_list_definition animation_graph_misc_flags;
+
+	extern s_tag_reference_definition global_animation_graph_reference;
+	extern s_tag_reference_definition global_frame_event_list_reference;
 
 } // namespace blofeld
 

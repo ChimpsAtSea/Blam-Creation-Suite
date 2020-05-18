@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition campaign_metagame_bucket_block_block_struct;
 	extern s_tag_block_definition campaign_metagame_bucket_block_block;
 	extern s_tag_struct_definition campaign_metagame_style_type_block_block_struct;
@@ -18,7 +17,6 @@ namespace blofeld
 	extern s_tag_block_definition campaign_metagame_scenario_bonuses_block_block;
 	extern s_tag_struct_definition campaign_metagame_scenario_block_block_struct;
 	extern s_tag_block_definition campaign_metagame_scenario_block_block;
-
 
 
 	extern const char* campaign_metagame_bucket_type_enum_strings[];

@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition scenario_object_node_orientations_bit_vector_block_block_struct;
 	extern s_tag_block_definition scenario_object_node_orientations_bit_vector_block_block;
 	extern s_tag_struct_definition scenario_object_node_orientations_orientations_block_block_struct;
@@ -80,7 +79,6 @@ namespace blofeld
 	extern s_tag_block_definition scenario_creature_block_block;
 	extern s_tag_struct_definition scenario_creature_palette_block_block_struct;
 	extern s_tag_block_definition scenario_creature_palette_block_block;
-
 
 	extern s_tag_struct_definition scenario_object_id_struct_struct_definition;
 	extern s_tag_struct_definition scenario_object_reference_struct_struct_definition;

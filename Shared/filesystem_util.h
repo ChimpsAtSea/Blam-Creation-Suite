@@ -1,5 +1,7 @@
 #pragma once
 
+bool filepath_exists(const char* filepath);
+bool filepath_exists(const wchar_t* filepath);
 bool read_file_to_memory(const char* filepath, void** buffer, size_t* buffer_size);
 bool write_file_from_memory(const char* filepath, const void* buffer, size_t buffer_size);
 bool read_file_to_memory(const wchar_t* filepath, void** buffer, size_t* buffer_size);

@@ -191,6 +191,86 @@ bool c_h4_tag_enum_container::operator ==(const c_h4_tag_enum_container& contain
 	return &tag_enum == &container.tag_enum;
 }
 
+#include <MantleLib\CacheInterface\tag_group_names.inl>
+
+c_h4_tag_reference_container::c_h4_tag_reference_container(c_h4_tag_reference& tag_reference, c_h4_generator_preprocessor& preprocessor) :
+	tag_reference(tag_reference),
+	name(),
+	symbol_name(),
+	name_uppercase(),
+	is_tag_group_reference(false),
+	is_empty_and_unknown_reference(false),
+	is_template(false)
+{
+	REFERENCE_ASSERT(tag_reference);
+
+	if (tag_reference.public_symbol)
+	{
+		name = tag_reference.public_symbol->symbol_name;
+		//if (!string_replace(name, "Tag::Reference<s_", "Tag::Reference<struct s_"))
+		{
+			//string_replace(name, "Tag::Reference<", "Tag::Reference<class ");
+		}
+		is_template = string_replace(name, "Tag::Reference<c_", "Tag::Reference<class c_") || string_replace(name, "Tag::Reference<", "Tag::Reference<struct ");
+
+		symbol_name = name;
+
+	}
+	else if (tag_reference.tag_groups.size() == 0)
+	{
+		is_empty_and_unknown_reference = true; // don't know its symbol name, and it accepts any input. ignore it.
+	}
+	else if (tag_reference.tag_groups.size() == 1)
+	{
+		is_tag_group_reference = true;
+		for (c_h4_tag_group* tag_group : preprocessor.blamboozle.tag_groups)
+		{
+			if (tag_reference.tag_groups[0].value == tag_group->group_tag.value)
+			{
+				name = std::string(tag_group->name) + "_reference";
+				goto found;
+			}
+			if (tag_reference.tag_groups[0].value == _byteswap_ulong(*reinterpret_cast<const unsigned long*>(&tag_group->group_tag.value)))
+			{
+				name = std::string(tag_group->name) + "_reference";
+				goto found;
+			}
+		}
+		FATAL_ERROR(L"Whhhaaaattt???");
+		for (std::pair<int, const char*>& tag_group : tag_group_names)
+		{
+			if (tag_reference.tag_groups[0].value == _byteswap_ulong(*reinterpret_cast<const unsigned long*>(&tag_group.first)))
+			{
+				name = std::string(tag_group.second) + "_reference";
+				goto found;
+			}
+		}
+		found:
+
+		ASSERT(tag_reference.tag_groups.size() == 1);
+	}
+
+	if (!name.empty())
+	{
+		uint32_t index = preprocessor.tag_type_name_unique_counter[name]++;
+		if (index > 0)
+		{
+			std::string suffix = std::to_string(index + 1);
+			name += "$";
+			name += suffix;
+		}
+	}
+
+	name_uppercase = name;
+	std::transform(name_uppercase.begin(), name_uppercase.end(), name_uppercase.begin(), ::toupper);
+	preprocessor.tag_reference_containers.push_back(this);
+}
+
+bool c_h4_tag_reference_container::operator ==(const c_h4_tag_reference_container& container) const
+{
+	return &tag_reference == &container.tag_reference;
+}
+
 c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blamboozle) :
 	blamboozle(blamboozle),
 	source_files()
@@ -203,14 +283,14 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 		const char* filepath = perforce_path + strlen(perforce_blofeld_path);
 
 		c_h4_source_file& source_file = get_source_file(filepath, *this);
-		c_h4_tag_group_container* tag_group_container = new c_h4_tag_group_container(*tag_group, *this, source_file);
-		tag_group_containers.push_back(tag_group_container);
+		c_h4_tag_group_container* group_container = new c_h4_tag_group_container(*tag_group, *this, source_file);
+		group_containers.push_back(group_container);
 	}
 
-	for (c_h4_tag_group_container* tag_group_container : tag_group_containers) // traverse tag groups to create tag blocks
+	for (c_h4_tag_group_container* group_container : group_containers) // traverse tag groups to create tag blocks
 	{
-		c_h4_tag_group& tag_group = tag_group_container->tag_group;
-		traverse_tag_blocks(tag_group.tag_block, tag_group_container->define_tag_group_block_and_fields);
+		c_h4_tag_group& tag_group = group_container->tag_group;
+		traverse_tag_blocks(tag_group.tag_block, group_container->define_tag_group_block_and_fields);
 	}
 	cleanup_tag_blocks();
 
@@ -267,6 +347,79 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 		c_h4_source_file& source_file = get_source_file(filepath, *this);
 		source_file.tag_enums.push_back(tag_enum_container);
 	}
+
+	for (std::pair<const void*, c_h4_tag_reference*> tag_reference_key : c_h4_blamboozle::tag_reference_definitions)
+	{
+		c_h4_tag_reference& tag_reference = *tag_reference_key.second;
+
+		c_h4_tag_reference_container* tag_reference_container = find_existing_tag_reference_container(tag_reference);
+		if (tag_reference_container == nullptr)
+		{
+			tag_reference_container = new c_h4_tag_reference_container(tag_reference, *this);
+		}
+	}
+
+	for (c_h4_tag_reference_container* tag_reference_container : tag_reference_containers) // associate tag structs with source file
+	{
+		c_h4_tag_reference& tag_reference = tag_reference_container->tag_reference;
+
+		c_h4_source_file* assumed_source_file = nullptr;
+		if (tag_reference_container->tag_reference.public_symbol)
+		{
+			if (string_ends_with(tag_reference_container->tag_reference.public_symbol->lib_and_object, ".obj"))
+			{
+				std::string approximate_filename = tag_reference_container->tag_reference.public_symbol->lib_and_object;
+				size_t begin = approximate_filename.find(":") + 1;
+				approximate_filename = std::string(approximate_filename.begin() + begin, approximate_filename.end() - 4);
+				approximate_filename += ".cpp";
+				string_transform_lowercase(&approximate_filename.front(), &approximate_filename.back());
+
+				for (uint32_t pos = 0; pos < approximate_filename.size(); pos++)
+				{
+					approximate_filename[pos] = approximate_filename[pos];
+				}
+
+				for (c_h4_source_file* source_file : source_files)
+				{
+					if (string_ends_with(source_file->source_output_filepath, approximate_filename))
+					{
+						assumed_source_file = source_file;
+						break;
+					}
+				}
+
+				for (const char* filepath : source_tree)
+				{
+					if (string_ends_with(filepath, approximate_filename))
+					{
+						approximate_filename = filepath;
+
+						const char* perforce_path = strstr(filepath, perforce_blofeld_path);
+						ASSERT(perforce_path != nullptr);
+						approximate_filename = perforce_path + strlen(perforce_blofeld_path);
+
+						assumed_source_file = &get_source_file(approximate_filename.c_str(), *this);
+						break;
+					}
+				}
+
+				if (!assumed_source_file)
+				{
+					approximate_filename = std::string("__unknown\\") + approximate_filename;
+					assumed_source_file = &get_source_file(approximate_filename.c_str(), *this);
+				}
+			}
+		}
+		if (assumed_source_file == nullptr)
+		{
+			assumed_source_file = &get_source_file("__unknown\\tag_references.cpp", *this);
+		}
+
+		ASSERT(assumed_source_file != nullptr);
+		c_h4_source_file& source_file = *assumed_source_file;
+
+		source_file.tag_references.push_back(tag_reference_container);
+	}
 }
 
 c_h4_generator_preprocessor::~c_h4_generator_preprocessor()
@@ -310,26 +463,88 @@ c_h4_tag_enum_container* c_h4_generator_preprocessor::find_existing_tag_enum_con
 	return nullptr;
 }
 
-void c_h4_generator_preprocessor::process_tag_block_field(c_h4_tag_field* tag_field)
+c_h4_tag_reference_container* c_h4_generator_preprocessor::find_existing_tag_reference_container(c_h4_tag_reference& tag_reference)
 {
-	c_h4_tag_field_block* tag_field_block = dynamic_cast<c_h4_tag_field_block*>(tag_field);
-	if (tag_field_block != nullptr)
+	for (c_h4_tag_reference_container* tag_reference_container : tag_reference_containers)
+	{
+		if (&tag_reference_container->tag_reference == &tag_reference)
+		{
+			return tag_reference_container;
+		}
+	}
+	return nullptr;
+}
+
+void c_h4_generator_preprocessor::process_tag_reference_field(c_h4_tag_field* tag_field, c_h4_tag_struct& tag_struct)
+{
+	c_h4_tag_field_tag_reference* tag_field_reference = dynamic_cast<c_h4_tag_field_tag_reference*>(tag_field);
+	ASSERT(tag_field_reference);
+
+	c_h4_tag_reference* tag_reference = tag_field_reference->reference;
+	ASSERT(tag_reference != nullptr);
+
+	c_h4_tag_reference_container* tag_reference_container = find_existing_tag_reference_container(*tag_reference);
+	if (tag_reference_container == nullptr)
+	{
+		tag_reference_container = new c_h4_tag_reference_container(*tag_reference, *this);
+	}
+
+	if (tag_reference_container->name.empty())
+	{
+		std::vector<char> field_name_data = { tag_field->name, tag_field->name + (tag_field->name ? strlen(tag_field->name) : 0) };
+
+		field_name_data.push_back(0);
+		for (char& c : field_name_data)
+		{
+			if (c == '{' || c == '#')
+			{
+				c = 0;
+				break;
+			}
+		}
+
+
+		tag_reference_container->name = std::string(tag_struct.name) + "_" + field_name_data.data() + "_reference";
+
+
+		string_remove(tag_reference_container->name, "^");
+		string_remove(tag_reference_container->name, "*");
+		string_remove(tag_reference_container->name, "(");
+		string_remove(tag_reference_container->name, ")");
+		string_replace(tag_reference_container->name, " ", "_");
+
+		tag_reference_container->symbol_name = tag_reference_container->name;
+		tag_reference_container->name_uppercase = tag_reference_container->name;
+		string_transform_uppercase(tag_reference_container->name_uppercase.data(), tag_reference_container->name_uppercase.size());
+
+
+
+		debug_point;
+	}
+}
+
+void c_h4_generator_preprocessor::process_tag_block_field(c_h4_tag_field* tag_field, c_h4_tag_struct& tag_struct)
+{
+	if (c_h4_tag_field_block* tag_field_block = dynamic_cast<c_h4_tag_field_block*>(tag_field))
 	{
 		c_h4_tag_block* tag_block = tag_field_block->tag_block_definition;
 		ASSERT(tag_block != nullptr);
 		traverse_tag_blocks(*tag_block);
 	}
 
-	c_h4_tag_field_array* tag_field_array = dynamic_cast<c_h4_tag_field_array*>(tag_field);
-	if (tag_field_array != nullptr)
+	if (c_h4_tag_field_array* tag_field_array = dynamic_cast<c_h4_tag_field_array*>(tag_field))
 	{
 		c_h4_tag_array* tag_struct = tag_field_array->tag_array_definition;
 		ASSERT(tag_struct != nullptr);
 		traverse_tag_blocks(*tag_struct);
 	}
 
-	c_h4_tag_field_struct* tag_field_struct = dynamic_cast<c_h4_tag_field_struct*>(tag_field); // found a struct, traverse it for more tag blocks
-	if (tag_field_struct != nullptr)
+	if (c_h4_tag_field_tag_reference* tag_field_reference = dynamic_cast<c_h4_tag_field_tag_reference*>(tag_field))
+	{
+		process_tag_reference_field(tag_field, tag_struct);
+	}
+
+	if (c_h4_tag_field_struct* tag_field_struct = dynamic_cast<c_h4_tag_field_struct*>(tag_field)) // found a struct, traverse it for more tag blocks
 	{
 		c_h4_tag_struct* tag_struct = tag_field_struct->tag_struct;
 		ASSERT(tag_struct != nullptr);
@@ -337,7 +552,7 @@ void c_h4_generator_preprocessor::process_tag_block_field(c_h4_tag_field* tag_fi
 
 		for (c_h4_tag_field* tag_field : tag_struct->tag_fields)
 		{
-			process_tag_struct_field(tag_field);
+			process_tag_struct_field(tag_field, *tag_struct);
 		}
 	}
 }
@@ -355,7 +570,7 @@ c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_
 
 		for (c_h4_tag_field* tag_field : tag_block.tag_struct.tag_fields)
 		{
-			process_tag_block_field(tag_field);
+			process_tag_block_field(tag_field, tag_block.tag_struct);
 		}
 		tag_block_container->has_traversed = true;
 	}
@@ -363,27 +578,29 @@ c_h4_tag_block_container& c_h4_generator_preprocessor::traverse_tag_blocks(c_h4_
 	return *tag_block_container;
 }
 
-void c_h4_generator_preprocessor::process_tag_struct_field(c_h4_tag_field* tag_field)
+void c_h4_generator_preprocessor::process_tag_struct_field(c_h4_tag_field* tag_field, c_h4_tag_struct& tag_struct)
 {
-	c_h4_tag_field_struct* struct_field = dynamic_cast<c_h4_tag_field_struct*>(tag_field);
-	//bool x = tag_field->name ? std::string(tag_field->name) == "cache zone manifest" : false;
-	if (struct_field != nullptr)
+	if (c_h4_tag_field_struct* struct_field = dynamic_cast<c_h4_tag_field_struct*>(tag_field))
 	{
 		c_h4_tag_struct* _struct = struct_field->tag_struct;
 		ASSERT(_struct != nullptr);
 		traverse_tag_structs(*_struct, false, false, true);
 	}
 
-	c_h4_tag_field_array* tag_field_array = dynamic_cast<c_h4_tag_field_array*>(tag_field);
-	if (tag_field_array != nullptr)
+	if (c_h4_tag_field_array* tag_field_array = dynamic_cast<c_h4_tag_field_array*>(tag_field))
 	{
 		c_h4_tag_array* tag_array = tag_field_array->tag_array_definition;
 		ASSERT(tag_array != nullptr);
 		traverse_tag_blocks(*tag_array);
 	}
 
-	c_h4_tag_field_block* block_field = dynamic_cast<c_h4_tag_field_block*>(tag_field); // found a block, traverse it for more tag blocks
-	if (block_field != nullptr)
+	if (c_h4_tag_field_tag_reference* tag_field_reference = dynamic_cast<c_h4_tag_field_tag_reference*>(tag_field))
+	{
+		process_tag_reference_field(tag_field, tag_struct);
+	}
+
+	// found a block, traverse it for more tag blocks
+	if (c_h4_tag_field_block* block_field = dynamic_cast<c_h4_tag_field_block*>(tag_field))
 	{
 		c_h4_tag_block* block = block_field->tag_block_definition;
 		ASSERT(block != nullptr);
@@ -391,7 +608,7 @@ void c_h4_generator_preprocessor::process_tag_struct_field(c_h4_tag_field* tag_f
 
 		for (c_h4_tag_field* tag_field : block->tag_struct.tag_fields)
 		{
-			process_tag_block_field(tag_field);
+			process_tag_block_field(tag_field, block->tag_struct);
 		}
 	}
 }
@@ -408,7 +625,7 @@ c_h4_tag_struct_container& c_h4_generator_preprocessor::traverse_tag_structs(c_h
 	{
 		for (c_h4_tag_field* tag_field : tag_struct.tag_fields)
 		{
-			process_tag_struct_field(tag_field);
+			process_tag_struct_field(tag_field, tag_struct);
 		}
 		tag_struct_container->has_traversed = true;
 	}
@@ -458,11 +675,11 @@ c_h4_tag_group_container* c_h4_generator_preprocessor::get_container_by_group_ta
 {
 	if (group_tag != 0xFFFFFFFF)
 	{
-		for (c_h4_tag_group_container* tag_group_container : tag_group_containers)
+		for (c_h4_tag_group_container* group_container : group_containers)
 		{
-			if (tag_group_container->tag_group.group_tag.value == group_tag)
+			if (group_container->tag_group.group_tag.value == group_tag)
 			{
-				return tag_group_container;
+				return group_container;
 			}
 		}
 	}

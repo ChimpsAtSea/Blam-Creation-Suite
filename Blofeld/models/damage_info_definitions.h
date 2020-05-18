@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition instantaneous_damage_repsonse_block_block_struct;
 	extern s_tag_block_definition instantaneous_damage_repsonse_block_block;
 	extern s_tag_struct_definition global_damage_section_block_block_struct;
@@ -34,7 +33,6 @@ namespace blofeld
 	extern s_tag_block_definition damage_section_rendering_paramters_block;
 	extern s_tag_struct_definition new_global_damage_section_block_block_struct;
 	extern s_tag_block_definition new_global_damage_section_block_block;
-
 
 	extern s_tag_struct_definition damage_body_parameters_struct_struct_definition;
 	extern s_tag_struct_definition damage_shield_parameters_struct_struct_definition;

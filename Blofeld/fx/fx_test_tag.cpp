@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -7,89 +8,94 @@ namespace blofeld
 
 	TAG_BLOCK(fx_property_default_block, s_fx_test::k_max_defaults)
 	{
-		FIELD( _field_string_id, "name^" ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "name^" },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK(fx_property_block, s_fx_test::k_max_properties)
 	{
-		FIELD( _field_string, "name^" ),
-		FIELD( _field_long_flags, "flags", &fx_property_flags ),
-		FIELD( _field_long_integer, "scope" ),
-		FIELD( _field_long_enum, "value type", &fx_property_value_type_enum ),
-		FIELD( _field_long_string, "expression" ),
-		FIELD( _field_long_string, "initialize" ),
-		FIELD( _field_long_string, "update" ),
-		FIELD( _field_block, "defaults", &fx_property_default_block_block ),
-		FIELD( _field_string_id, "default name" ),
-		FIELD( _field_tag_reference, "reference" ),
-		FIELD( _field_char_enum, "filter_mode", &fx_property_bitmap_filter_enum ),
-		FIELD( _field_char_enum, "address_mode_x", &fx_property_bitmap_address_enum ),
-		FIELD( _field_char_enum, "address_mode_y", &fx_property_bitmap_address_enum ),
-		FIELD( _field_char_enum, "mip_bias_mode", &fx_property_bitmap_bias_enum ),
-		FIELD( _field_struct, "function", &fx_test_scalar_function_struct_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_string, "name^" },
+		{ _field_long_flags, "flags", &fx_property_flags },
+		{ _field_long_integer, "scope" },
+		{ _field_long_enum, "value type", &fx_property_value_type_enum },
+		{ _field_long_string, "expression" },
+		{ _field_long_string, "initialize" },
+		{ _field_long_string, "update" },
+		{ _field_block, "defaults", &fx_property_default_block_block },
+		{ _field_string_id, "default name" },
+		{ _field_tag_reference, "reference", &global_bitmap_reference },
+		{ _field_char_enum, "filter_mode", &fx_property_bitmap_filter_enum },
+		{ _field_char_enum, "address_mode_x", &fx_property_bitmap_address_enum },
+		{ _field_char_enum, "address_mode_y", &fx_property_bitmap_address_enum },
+		{ _field_char_enum, "mip_bias_mode", &fx_property_bitmap_bias_enum },
+		{ _field_struct, "function", &fx_test_scalar_function_struct_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_BLOCK_FROM_STRUCT(fx_test_block, 1, fx_test_struct_definition_struct_definition );
 
 	TAG_STRUCT(fx_test_struct_definition)
 	{
-		FIELD( _field_block, "properties", &fx_property_block_block ),
-		FIELD( _field_terminator )
+		{ _field_block, "properties", &fx_property_block_block },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(fx_test_scalar_function_struct)
 	{
-		FIELD( _field_string_id, "Input Variable!" ),
-		FIELD( _field_string_id, "Range Variable!" ),
-		FIELD( _field_custom ),
-		FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "Input Variable!" },
+		{ _field_string_id, "Range Variable!" },
+		{ _field_custom },
+		{ _field_struct, "Mapping", &mapping_function_struct_definition },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(fx_property_flags, 3)
+	STRINGS(fx_property_flags)
 	{
-		OPTION("predefined"),
-		OPTION("state"),
-		OPTION("derived"),
+		"predefined",
+		"state",
+		"derived"
 	};
+	STRING_LIST(fx_property_flags, fx_property_flags_strings, _countof(fx_property_flags_strings));
 
-	TAG_ENUM(fx_property_value_type_enum, 4)
+	STRINGS(fx_property_value_type_enum)
 	{
-		OPTION("default"),
-		OPTION("expression"),
-		OPTION("texture"),
-		OPTION("function"),
+		"default",
+		"expression",
+		"texture",
+		"function"
 	};
+	STRING_LIST(fx_property_value_type_enum, fx_property_value_type_enum_strings, _countof(fx_property_value_type_enum_strings));
 
-	TAG_ENUM(fx_property_bitmap_filter_enum, 6)
+	STRINGS(fx_property_bitmap_filter_enum)
 	{
-		OPTION("default"),
-		OPTION("point"),
-		OPTION("bilinear"),
-		OPTION("trilinear"),
-		OPTION("anisotropic_2x"),
-		OPTION("anisotropic_4x"),
+		"default",
+		"point",
+		"bilinear",
+		"trilinear",
+		"anisotropic_2x",
+		"anisotropic_4x"
 	};
+	STRING_LIST(fx_property_bitmap_filter_enum, fx_property_bitmap_filter_enum_strings, _countof(fx_property_bitmap_filter_enum_strings));
 
-	TAG_ENUM(fx_property_bitmap_address_enum, 5)
+	STRINGS(fx_property_bitmap_address_enum)
 	{
-		OPTION("default"),
-		OPTION("wrap"),
-		OPTION("clamp"),
-		OPTION("mirror"),
-		OPTION("border"),
+		"default",
+		"wrap",
+		"clamp",
+		"mirror",
+		"border"
 	};
+	STRING_LIST(fx_property_bitmap_address_enum, fx_property_bitmap_address_enum_strings, _countof(fx_property_bitmap_address_enum_strings));
 
-	TAG_ENUM(fx_property_bitmap_bias_enum, 5)
+	STRINGS(fx_property_bitmap_bias_enum)
 	{
-		OPTION("default"),
-		OPTION("bias 0"),
-		OPTION("bias 1"),
-		OPTION("bias 2"),
-		OPTION("bias 3"),
+		"default",
+		"bias 0",
+		"bias 1",
+		"bias 2",
+		"bias 3"
 	};
+	STRING_LIST(fx_property_bitmap_bias_enum, fx_property_bitmap_bias_enum_strings, _countof(fx_property_bitmap_bias_enum_strings));
 
 } // namespace blofeld
 

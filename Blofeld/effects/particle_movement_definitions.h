@@ -13,7 +13,6 @@ namespace blofeld
 	extern s_tag_block_definition particle_controller_block;
 	extern s_tag_block_definition particle_physics_block_block;
 
-
 	extern s_tag_struct_definition particle_physics_struct_struct_definition;
 	extern s_tag_struct_definition particle_physics_struct_definition_struct_definition; // tag group
 
@@ -23,6 +22,8 @@ namespace blofeld
 	extern s_string_list_definition particle_movement_type;
 	extern const char* particle_controller_flags_strings[];
 	extern s_string_list_definition particle_controller_flags;
+
+	extern s_tag_reference_definition particle_movement_definition;
 
 } // namespace blofeld
 

@@ -1,4 +1,5 @@
 #include <blofeld-private-pch.h>
+#include <blofeld_field_type_override.h>
 
 namespace blofeld
 {
@@ -9,88 +10,91 @@ namespace blofeld
 
 	TAG_STRUCT(shield_impact_struct_definition)
 	{
-		FIELD( _field_explanation, "Shield Controls" ),
-		FIELD( _field_word_flags, "flags", &shield_flags ),
-		FIELD( _field_short_integer, "version!" ),
-		FIELD( _field_custom, "Shield Intensity" ),
-		FIELD( _field_explanation, "Shield Intensity" ),
-		FIELD( _field_real, "Recent Damage Intensity" ),
-		FIELD( _field_real, "Current Damage Intensity" ),
-		FIELD( _field_custom ),
-		FIELD( _field_custom, "Shield Edge" ),
-		FIELD( _field_explanation, "Shield Edge" ),
-		FIELD( _field_real, "Depth Fade Range:world units" ),
-		FIELD( _field_real, "Outer Fade Radius:[0-1]" ),
-		FIELD( _field_real, "Center Radius:[0-1]" ),
-		FIELD( _field_real, "Inner Fade Radius:[0-1]" ),
-		FIELD( _field_struct, "Edge Glow Color", &shield_color_function_struct_struct_definition ),
-		FIELD( _field_struct, "Edge Glow Intensity", &shield_scalar_function_struct_struct_definition ),
-		FIELD( _field_custom ),
-		FIELD( _field_custom, "Plasma" ),
-		FIELD( _field_explanation, "Plasma" ),
-		FIELD( _field_real, "Plasma Depth Fade Range:world units" ),
-		FIELD( _field_tag_reference, "Plasma Noise Texture 0" ),
-		FIELD( _field_tag_reference, "Plasma Noise Texture 1" ),
-		FIELD( _field_real, "Tiling Scale" ),
-		FIELD( _field_real, "Scroll Speed" ),
-		FIELD( _field_real, "Edge Sharpness" ),
-		FIELD( _field_real, "Center Sharpness" ),
-		FIELD( _field_real, "Plasma Outer Fade Radius:[0-1]" ),
-		FIELD( _field_real, "Plasma Center Radius:[0-1]" ),
-		FIELD( _field_real, "Plasma Inner Fade Radius:[0-1]" ),
-		FIELD( _field_struct, "Plasma Center Color", &shield_color_function_struct_struct_definition ),
-		FIELD( _field_struct, "Plasma Center Intensity", &shield_scalar_function_struct_struct_definition ),
-		FIELD( _field_struct, "Plasma Edge Color", &shield_color_function_struct_struct_definition ),
-		FIELD( _field_struct, "Plasma Edge Intensity", &shield_scalar_function_struct_struct_definition ),
-		FIELD( _field_custom ),
-		FIELD( _field_custom, "Extrusion Oscillation" ),
-		FIELD( _field_explanation, "Extrusion Oscillation" ),
-		FIELD( _field_tag_reference, "Oscillation Texture 0" ),
-		FIELD( _field_tag_reference, "Oscillation Texture 1" ),
-		FIELD( _field_real, "Oscillation Tiling Scale" ),
-		FIELD( _field_real, "Oscillation Scroll Speed" ),
-		FIELD( _field_struct, "Extrusion Amount", &shield_scalar_function_struct_struct_definition ),
-		FIELD( _field_struct, "Oscillation Amplitude", &shield_scalar_function_struct_struct_definition ),
-		FIELD( _field_custom ),
-		FIELD( _field_custom, "Hit Response" ),
-		FIELD( _field_explanation, "Hit Response" ),
-		FIELD( _field_real, "Hit Time:seconds" ),
-		FIELD( _field_struct, "Hit Color", &shield_color_function_struct_struct_definition ),
-		FIELD( _field_struct, "Hit Intensity", &shield_scalar_function_struct_struct_definition ),
-		FIELD( _field_struct, "Hit Radius", &shield_scalar_function_struct_struct_definition ),
-		FIELD( _field_tag_reference, "hit blob texture (adds significant cost)" ),
-		FIELD( _field_custom ),
-		FIELD( _field_real_quaternion, "edge_scales!" ),
-		FIELD( _field_real_quaternion, "edge_offsets!" ),
-		FIELD( _field_real_quaternion, "plasma_scales!" ),
-		FIELD( _field_real_quaternion, "depth_fade_params!" ),
-		FIELD( _field_terminator )
+		{ _field_explanation, "Shield Controls" },
+		{ _field_word_flags, "flags", &shield_flags },
+		{ _field_short_integer, "version!" },
+		{ _field_custom, "Shield Intensity" },
+		{ _field_explanation, "Shield Intensity" },
+		{ _field_real, "Recent Damage Intensity" },
+		{ _field_real, "Current Damage Intensity" },
+		{ _field_custom },
+		{ _field_custom, "Shield Edge" },
+		{ _field_explanation, "Shield Edge" },
+		{ _field_real, "Depth Fade Range:world units" },
+		{ _field_real, "Outer Fade Radius:[0-1]" },
+		{ _field_real, "Center Radius:[0-1]" },
+		{ _field_real, "Inner Fade Radius:[0-1]" },
+		{ _field_struct, "Edge Glow Color", &shield_color_function_struct_struct_definition },
+		{ _field_struct, "Edge Glow Intensity", &shield_scalar_function_struct_struct_definition },
+		{ _field_custom },
+		{ _field_custom, "Plasma" },
+		{ _field_explanation, "Plasma" },
+		{ _field_real, "Plasma Depth Fade Range:world units" },
+		{ _field_tag_reference, "Plasma Noise Texture 0", &global_bitmap_reference },
+		{ _field_tag_reference, "Plasma Noise Texture 1", &global_bitmap_reference },
+		{ _field_real, "Tiling Scale" },
+		{ _field_real, "Scroll Speed" },
+		{ _field_real, "Edge Sharpness" },
+		{ _field_real, "Center Sharpness" },
+		{ _field_real, "Plasma Outer Fade Radius:[0-1]" },
+		{ _field_real, "Plasma Center Radius:[0-1]" },
+		{ _field_real, "Plasma Inner Fade Radius:[0-1]" },
+		{ _field_struct, "Plasma Center Color", &shield_color_function_struct_struct_definition },
+		{ _field_struct, "Plasma Center Intensity", &shield_scalar_function_struct_struct_definition },
+		{ _field_struct, "Plasma Edge Color", &shield_color_function_struct_struct_definition },
+		{ _field_struct, "Plasma Edge Intensity", &shield_scalar_function_struct_struct_definition },
+		{ _field_custom },
+		{ _field_custom, "Extrusion Oscillation" },
+		{ _field_explanation, "Extrusion Oscillation" },
+		{ _field_tag_reference, "Oscillation Texture 0", &global_bitmap_reference },
+		{ _field_tag_reference, "Oscillation Texture 1", &global_bitmap_reference },
+		{ _field_real, "Oscillation Tiling Scale" },
+		{ _field_real, "Oscillation Scroll Speed" },
+		{ _field_struct, "Extrusion Amount", &shield_scalar_function_struct_struct_definition },
+		{ _field_struct, "Oscillation Amplitude", &shield_scalar_function_struct_struct_definition },
+		{ _field_custom },
+		{ _field_custom, "Hit Response" },
+		{ _field_explanation, "Hit Response" },
+		{ _field_real, "Hit Time:seconds" },
+		{ _field_struct, "Hit Color", &shield_color_function_struct_struct_definition },
+		{ _field_struct, "Hit Intensity", &shield_scalar_function_struct_struct_definition },
+		{ _field_struct, "Hit Radius", &shield_scalar_function_struct_struct_definition },
+		{ _field_tag_reference, "hit blob texture (adds significant cost)", &Tag::Reference<struct bitmap_group>::s_defaultDefinition },
+		{ _field_custom },
+		{ _field_real_quaternion, "edge_scales!" },
+		{ _field_real_quaternion, "edge_offsets!" },
+		{ _field_real_quaternion, "plasma_scales!" },
+		{ _field_real_quaternion, "depth_fade_params!" },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(shield_color_function_struct)
 	{
-		FIELD( _field_string_id, "Input Variable!" ),
-		FIELD( _field_string_id, "Range Variable!" ),
-		FIELD( _field_custom ),
-		FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "Input Variable!" },
+		{ _field_string_id, "Range Variable!" },
+		{ _field_custom },
+		{ _field_struct, "Mapping", &mapping_function_struct_definition },
+		{ _field_terminator }
 	};
 
 	TAG_STRUCT(shield_scalar_function_struct)
 	{
-		FIELD( _field_string_id, "Input Variable!" ),
-		FIELD( _field_string_id, "Range Variable!" ),
-		FIELD( _field_custom ),
-		FIELD( _field_struct, "Mapping", &mapping_function_struct_definition ),
-		FIELD( _field_terminator )
+		{ _field_string_id, "Input Variable!" },
+		{ _field_string_id, "Range Variable!" },
+		{ _field_custom },
+		{ _field_struct, "Mapping", &mapping_function_struct_definition },
+		{ _field_terminator }
 	};
 
-	TAG_ENUM(shield_flags, 3)
+	STRINGS(shield_flags)
 	{
-		OPTION("render always"),
-		OPTION("render first person"),
-		OPTION("dont render third person"),
+		"render always",
+		"render first person",
+		"dont render third person"
 	};
+	STRING_LIST(shield_flags, shield_flags_strings, _countof(shield_flags_strings));
+
+	TAG_REFERENCE(global_shield_parameters_reference, SHIELD_IMPACT_TAG);
 
 } // namespace blofeld
 

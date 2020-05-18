@@ -15,7 +15,6 @@ namespace blofeld
 	extern s_tag_block_definition muffin_marker_block_block;
 	extern s_tag_block_definition global_muffin_type_block_block;
 
-
 	extern s_tag_struct_definition global_muffin_type_struct_struct_definition;
 	extern s_tag_struct_definition muffin_scalar_function_struct_struct_definition;
 

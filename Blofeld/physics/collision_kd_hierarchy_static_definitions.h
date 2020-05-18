@@ -3,7 +3,6 @@
 namespace blofeld
 {
 
-
 	extern s_tag_struct_definition collision_kd_hierarchy_static_hash_table_data_block_block_struct;
 	extern s_tag_block_definition collision_kd_hierarchy_static_hash_table_data_block_block;
 	extern s_tag_struct_definition collision_kd_hierarchy_static_hash_table_short_block_block_struct;
@@ -21,7 +20,6 @@ namespace blofeld
 
 	extern s_tag_struct_definition super_node_mapping_index_array_struct_definition;
 	extern s_tag_array_definition super_node_mapping_index_array_array;
-
 	extern s_tag_struct_definition collision_kd_hierarchy_static_struct_struct_definition;
 
 	extern const char* collision_kd_hierarchy_static_hash_table_cull_flags_strings[];
