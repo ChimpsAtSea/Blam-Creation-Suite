@@ -9,8 +9,8 @@
 	path = ThirdParty/pugixml
 	url = https://github.com/zeux/pugixml.git
 [submodule "blamlib"]
-	path = blamlib
+	path = Framework/blamlib
 	url = https://github.com/Assault-on-the-Control-Room/blamlib.git
 [submodule "blamder"]
-	path = Blender/blamder/blamder
+	path = Tooling/Blender/blamder/blamder
 	url = https://github.com/Assault-on-the-Control-Room/blamder.git

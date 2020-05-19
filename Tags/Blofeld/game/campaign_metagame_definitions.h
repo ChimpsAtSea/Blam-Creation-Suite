@@ -1,0 +1,34 @@
+#pragma once
+
+namespace blofeld
+{
+
+	extern s_tag_struct_definition campaign_metagame_bucket_block_block_struct;
+	extern s_tag_block_definition campaign_metagame_bucket_block_block;
+	extern s_tag_struct_definition campaign_metagame_style_type_block_block_struct;
+	extern s_tag_block_definition campaign_metagame_style_type_block_block;
+	extern s_tag_struct_definition campaign_metagame_difficulty_scale_block_block_struct;
+	extern s_tag_block_definition campaign_metagame_difficulty_scale_block_block;
+	extern s_tag_struct_definition campaign_metagame_skull_block_block_struct;
+	extern s_tag_block_definition campaign_metagame_skull_block_block;
+	extern s_tag_struct_definition campaign_metagame_globals_block_block_struct;
+	extern s_tag_block_definition campaign_metagame_globals_block_block;
+	extern s_tag_struct_definition campaign_metagame_scenario_bonuses_block_block_struct;
+	extern s_tag_block_definition campaign_metagame_scenario_bonuses_block_block;
+	extern s_tag_struct_definition campaign_metagame_scenario_block_block_struct;
+	extern s_tag_block_definition campaign_metagame_scenario_block_block;
+
+
+	extern const char* campaign_metagame_bucket_type_enum_strings[];
+	extern s_string_list_definition campaign_metagame_bucket_type_enum;
+	extern const char* campaign_metagame_bucket_class_enum_strings[];
+	extern s_string_list_definition campaign_metagame_bucket_class_enum;
+	extern const char* campaign_metagame_bucket_type_with_none_enum_strings[];
+	extern s_string_list_definition campaign_metagame_bucket_type_with_none_enum;
+	extern const char* campaign_metagame_bucket_class_with_none_enum_strings[];
+	extern s_string_list_definition campaign_metagame_bucket_class_with_none_enum;
+	extern const char* campaign_metagame_bucket_flags_strings[];
+	extern s_string_list_definition campaign_metagame_bucket_flags;
+
+} // namespace blofeld
+

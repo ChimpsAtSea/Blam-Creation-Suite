@@ -1,0 +1,318 @@
+#pragma once
+
+struct nicename("cinematic_scene") tag_group('cisc') s_cinematic_scene_definition_legacy
+{
+	struct nicename("Puppets") s_puppets_definition_legacy
+	{
+		enum nicename("Flags") b_flags : uint32_t /* bitfield */
+		{
+			/*nicename("Bit 0")*/ _flags_bit_0 = 1ui32 << 0ui32,
+			/*nicename("Bit 1")*/ _flags_bit_1 = 1ui32 << 1ui32,
+			/*nicename("Bit 2")*/ _flags_bit_2 = 1ui32 << 2ui32,
+			/*nicename("Bit 3")*/ _flags_bit_3 = 1ui32 << 3ui32,
+			/*nicename("Bit 4")*/ _flags_bit_4 = 1ui32 << 4ui32,
+			/*nicename("Player")*/ _flags_player = 1ui32 << 5ui32,
+			/*nicename("Bit 6")*/ _flags_bit_6 = 1ui32 << 6ui32,
+			/*nicename("Bit 7")*/ _flags_bit_7 = 1ui32 << 7ui32,
+			/*nicename("Bit 8")*/ _flags_bit_8 = 1ui32 << 8ui32,
+			/*nicename("Bit 9")*/ _flags_bit_9 = 1ui32 << 9ui32,
+			/*nicename("Bit 10")*/ _flags_bit_10 = 1ui32 << 10ui32,
+			/*nicename("Bit 11")*/ _flags_bit_11 = 1ui32 << 11ui32,
+			/*nicename("Bit 12")*/ _flags_bit_12 = 1ui32 << 12ui32,
+			/*nicename("Bit 13")*/ _flags_bit_13 = 1ui32 << 13ui32,
+			/*nicename("Bit 14")*/ _flags_bit_14 = 1ui32 << 14ui32,
+			/*nicename("Bit 15")*/ _flags_bit_15 = 1ui32 << 15ui32,
+			/*nicename("Bit 16")*/ _flags_bit_16 = 1ui32 << 16ui32,
+			/*nicename("Bit 17")*/ _flags_bit_17 = 1ui32 << 17ui32,
+			/*nicename("Bit 18")*/ _flags_bit_18 = 1ui32 << 18ui32,
+			/*nicename("Bit 19")*/ _flags_bit_19 = 1ui32 << 19ui32,
+			/*nicename("Bit 20")*/ _flags_bit_20 = 1ui32 << 20ui32,
+			/*nicename("Bit 21")*/ _flags_bit_21 = 1ui32 << 21ui32,
+			/*nicename("Bit 22")*/ _flags_bit_22 = 1ui32 << 22ui32,
+			/*nicename("Bit 23")*/ _flags_bit_23 = 1ui32 << 23ui32,
+			/*nicename("Bit 24")*/ _flags_bit_24 = 1ui32 << 24ui32,
+			/*nicename("Bit 25")*/ _flags_bit_25 = 1ui32 << 25ui32,
+			/*nicename("Bit 26")*/ _flags_bit_26 = 1ui32 << 26ui32,
+			/*nicename("Bit 27")*/ _flags_bit_27 = 1ui32 << 27ui32,
+			/*nicename("Bit 28")*/ _flags_bit_28 = 1ui32 << 28ui32,
+			/*nicename("Bit 29")*/ _flags_bit_29 = 1ui32 << 29ui32,
+			/*nicename("Bit 30")*/ _flags_bit_30 = 1ui32 << 30ui32,
+			/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
+		};
+
+		struct nicename("Puppet Firing") s_puppet_firing_definition_legacy
+		{
+			int16_t __unknown0;
+			int16_t __unknown1;
+			string_id_legacy __unknown2;
+			string_id_legacy nicename("Name") name;
+			string_id_legacy __unknown3;
+			s_tag_reference_legacy nicename("Object") object_reference;
+		};
+
+		string_id_legacy nicename("Import Name") import_name;
+		string_id_legacy nicename("Name") name;
+		string_id_legacy nicename("Variant") variant;
+		s_tag_reference_legacy nicename("Puppet Animation") puppet_animation_reference;
+		s_tag_reference_legacy nicename("Puppet Object") puppet_object_reference;
+		b_flags nicename("Flags") flags;
+		uint32_t __unknown0;
+		int32_t __unknown1;
+		s_undefined32_legacy __unknown2;
+		s_data_reference_legacy nicename("Import Script") import_script_data_reference;
+		s_tag_block_legacy<s_puppet_firing_definition_legacy> nicename("Puppet Firing") puppet_firing_block;
+	};
+
+	struct nicename("Shots") s_shots_definition_legacy
+	{
+		struct nicename("Lighting") s_lighting_definition_legacy
+		{
+			int32_t __unknown0;
+			s_tag_reference_legacy nicename("Cinematic Light") cinematic_light_reference;
+			int32_t nicename("Owner Puppet Index") owner_puppet_index;
+			int32_t __unknown1;
+		};
+
+		struct nicename("Sounds") s_sounds_definition_legacy
+		{
+			s_tag_reference_legacy nicename("Sound") sound_reference;
+			s_tag_reference_legacy nicename("Sound") sound1_reference;
+			int32_t nicename("Frame") frame;
+			float __unknown0;
+			string_id_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+			string_id_legacy __unknown3;
+			string_id_legacy __unknown4;
+			string_id_legacy __unknown5;
+		};
+
+		struct nicename("Background Sounds") s_background_sounds_definition_legacy
+		{
+			s_undefined32_legacy __unknown0;
+			s_tag_reference_legacy nicename("Sound") sound_reference;
+			int32_t nicename("Frame") frame;
+		};
+
+		struct nicename("Effects") s_effects_definition_legacy
+		{
+			s_undefined32_legacy __unknown0;
+			s_tag_reference_legacy nicename("Effect") effect_reference;
+			int32_t nicename("Frame") frame;
+			string_id_legacy nicename("Marker") marker;
+			int32_t nicename("Owner Puppet Index") owner_puppet_index;
+			s_undefined32_legacy __unknown1;
+			s_undefined32_legacy __unknown2;
+		};
+
+		struct nicename("Functions") s_functions_definition_legacy
+		{
+			struct nicename("Values") s_values_definition_legacy
+			{
+				s_undefined32_legacy __unknown0;
+				int32_t __unknown1;
+				float __unknown2;
+				float __unknown3;
+			};
+
+			int32_t nicename("Owner Puppet Index") owner_puppet_index;
+			string_id_legacy nicename("Target Function Name") target_function_name;
+			s_tag_block_legacy<s_values_definition_legacy> nicename("Values") values_block;
+		};
+
+		struct nicename("Screen Effects") s_screen_effects_definition_legacy
+		{
+			s_tag_reference_legacy nicename("Effect") effect_reference;
+			int32_t nicename("Start Frame") start_frame;
+			int32_t nicename("End Frame") end_frame;
+		};
+
+		struct nicename("Import Scripts") s_import_scripts_definition_legacy
+		{
+			int8_t __unknown0;
+			int8_t __unknown1;
+			int8_t __unknown2;
+			int8_t __unknown3;
+			int32_t nicename("Frame") frame;
+			s_data_reference_legacy nicename("Import Script") import_script_data_reference;
+			uint32_t __unknown4;
+			int32_t __unknown5;
+		};
+
+		struct nicename("Unknown 10") s_unknown_10_definition_legacy
+		{
+			int32_t __unknown0;
+			int32_t __unknown1;
+			int16_t __unknown2;
+			int16_t __unknown3;
+			int16_t __unknown4;
+			int16_t __unknown5;
+			float __unknown6;
+		};
+
+		struct nicename("Camera Frames") s_camera_frames_definition_legacy
+		{
+			float nicename("X") x;
+			float nicename("Y") y;
+			float nicename("Z") z;
+			float __unknown0;
+			float __unknown1;
+			float __unknown2;
+			float __unknown3;
+			float __unknown4;
+			float __unknown5;
+		};
+
+		struct nicename("Depth Of Field Frames") s_depth_of_field_frames_definition_legacy
+		{
+			enum nicename("Flags") b_flags : uint32_t /* bitfield */
+			{
+				/*nicename("Enable Depth Of Field")*/ _flags_enable_depth_of_field = 1ui32 << 0ui32,
+				/*nicename("Bit 1")*/ _flags_bit_1 = 1ui32 << 1ui32,
+				/*nicename("Bit 2")*/ _flags_bit_2 = 1ui32 << 2ui32,
+				/*nicename("Bit 3")*/ _flags_bit_3 = 1ui32 << 3ui32,
+				/*nicename("Bit 4")*/ _flags_bit_4 = 1ui32 << 4ui32,
+				/*nicename("Bit 5")*/ _flags_bit_5 = 1ui32 << 5ui32,
+				/*nicename("Bit 6")*/ _flags_bit_6 = 1ui32 << 6ui32,
+				/*nicename("Bit 7")*/ _flags_bit_7 = 1ui32 << 7ui32,
+				/*nicename("Bit 8")*/ _flags_bit_8 = 1ui32 << 8ui32,
+				/*nicename("Bit 9")*/ _flags_bit_9 = 1ui32 << 9ui32,
+				/*nicename("Bit 10")*/ _flags_bit_10 = 1ui32 << 10ui32,
+				/*nicename("Bit 11")*/ _flags_bit_11 = 1ui32 << 11ui32,
+				/*nicename("Bit 12")*/ _flags_bit_12 = 1ui32 << 12ui32,
+				/*nicename("Bit 13")*/ _flags_bit_13 = 1ui32 << 13ui32,
+				/*nicename("Bit 14")*/ _flags_bit_14 = 1ui32 << 14ui32,
+				/*nicename("Bit 15")*/ _flags_bit_15 = 1ui32 << 15ui32,
+				/*nicename("Bit 16")*/ _flags_bit_16 = 1ui32 << 16ui32,
+				/*nicename("Bit 17")*/ _flags_bit_17 = 1ui32 << 17ui32,
+				/*nicename("Bit 18")*/ _flags_bit_18 = 1ui32 << 18ui32,
+				/*nicename("Bit 19")*/ _flags_bit_19 = 1ui32 << 19ui32,
+				/*nicename("Bit 20")*/ _flags_bit_20 = 1ui32 << 20ui32,
+				/*nicename("Bit 21")*/ _flags_bit_21 = 1ui32 << 21ui32,
+				/*nicename("Bit 22")*/ _flags_bit_22 = 1ui32 << 22ui32,
+				/*nicename("Bit 23")*/ _flags_bit_23 = 1ui32 << 23ui32,
+				/*nicename("Bit 24")*/ _flags_bit_24 = 1ui32 << 24ui32,
+				/*nicename("Bit 25")*/ _flags_bit_25 = 1ui32 << 25ui32,
+				/*nicename("Bit 26")*/ _flags_bit_26 = 1ui32 << 26ui32,
+				/*nicename("Bit 27")*/ _flags_bit_27 = 1ui32 << 27ui32,
+				/*nicename("Bit 28")*/ _flags_bit_28 = 1ui32 << 28ui32,
+				/*nicename("Bit 29")*/ _flags_bit_29 = 1ui32 << 29ui32,
+				/*nicename("Bit 30")*/ _flags_bit_30 = 1ui32 << 30ui32,
+				/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
+			};
+
+			int32_t nicename("Frame") frame;
+			float nicename("FOV") fov;
+			b_flags nicename("Flags") flags;
+			float nicename("Near Plane") near_plane;
+			float nicename("Far Plane") far_plane;
+			float nicename("Focal Depth") focal_depth;
+			float nicename("Blur Amount") blur_amount;
+		};
+
+		s_data_reference_legacy nicename("Opening Import Script") opening_import_script_data_reference;
+		int32_t __unknown0;
+		float __unknown1;
+		float __unknown2;
+		s_undefined32_legacy __unknown3;
+		s_undefined32_legacy __unknown4;
+		s_undefined32_legacy __unknown5;
+		s_tag_block_legacy<s_lighting_definition_legacy> nicename("Lighting") lighting_block;
+		s_undefined32_legacy __unknown6;
+		s_undefined32_legacy __unknown7;
+		s_undefined32_legacy __unknown8;
+		s_tag_block_legacy<s_sounds_definition_legacy> nicename("Sounds") sounds_block;
+		s_tag_block_legacy<s_background_sounds_definition_legacy> nicename("Background Sounds") background_sounds_block;
+		s_tag_block_legacy<s_effects_definition_legacy> nicename("Effects") effects_block;
+		s_tag_block_legacy<s_functions_definition_legacy> nicename("Functions") functions_block;
+		s_tag_block_legacy<s_screen_effects_definition_legacy> nicename("Screen Effects") screen_effects_block;
+		s_tag_block_legacy<s_import_scripts_definition_legacy> nicename("Import Scripts") import_scripts_block;
+		s_tag_block_legacy<s_unknown_10_definition_legacy> nicename("Unknown 10") unknown_10_block;
+		s_data_reference_legacy nicename("Import Script") import_script_data_reference;
+		int32_t nicename("Loaded Frame Count") loaded_frame_count;
+		s_undefined32_legacy __unknown9;
+		s_undefined32_legacy __unknown10;
+		s_undefined32_legacy __unknown11;
+		s_tag_block_legacy<s_camera_frames_definition_legacy> nicename("Camera Frames") camera_frames_block;
+		s_tag_block_legacy<s_depth_of_field_frames_definition_legacy> nicename("Depth Of Field Frames") depth_of_field_frames_block;
+	};
+
+	struct nicename("Texture Cameras") s_texture_cameras_definition_legacy
+	{
+		struct nicename("Shots") s_shots1_definition_legacy
+		{
+			struct nicename("Frames") s_frames_definition_legacy
+			{
+				enum nicename("Flags") b_flags : uint32_t /* bitfield */
+				{
+					/*nicename("Enable Depth Of Field")*/ _flags_enable_depth_of_field = 1ui32 << 0ui32,
+					/*nicename("Bit 1")*/ _flags_bit_1 = 1ui32 << 1ui32,
+					/*nicename("Bit 2")*/ _flags_bit_2 = 1ui32 << 2ui32,
+					/*nicename("Bit 3")*/ _flags_bit_3 = 1ui32 << 3ui32,
+					/*nicename("Bit 4")*/ _flags_bit_4 = 1ui32 << 4ui32,
+					/*nicename("Bit 5")*/ _flags_bit_5 = 1ui32 << 5ui32,
+					/*nicename("Bit 6")*/ _flags_bit_6 = 1ui32 << 6ui32,
+					/*nicename("Bit 7")*/ _flags_bit_7 = 1ui32 << 7ui32,
+					/*nicename("Bit 8")*/ _flags_bit_8 = 1ui32 << 8ui32,
+					/*nicename("Bit 9")*/ _flags_bit_9 = 1ui32 << 9ui32,
+					/*nicename("Bit 10")*/ _flags_bit_10 = 1ui32 << 10ui32,
+					/*nicename("Bit 11")*/ _flags_bit_11 = 1ui32 << 11ui32,
+					/*nicename("Bit 12")*/ _flags_bit_12 = 1ui32 << 12ui32,
+					/*nicename("Bit 13")*/ _flags_bit_13 = 1ui32 << 13ui32,
+					/*nicename("Bit 14")*/ _flags_bit_14 = 1ui32 << 14ui32,
+					/*nicename("Bit 15")*/ _flags_bit_15 = 1ui32 << 15ui32,
+					/*nicename("Bit 16")*/ _flags_bit_16 = 1ui32 << 16ui32,
+					/*nicename("Bit 17")*/ _flags_bit_17 = 1ui32 << 17ui32,
+					/*nicename("Bit 18")*/ _flags_bit_18 = 1ui32 << 18ui32,
+					/*nicename("Bit 19")*/ _flags_bit_19 = 1ui32 << 19ui32,
+					/*nicename("Bit 20")*/ _flags_bit_20 = 1ui32 << 20ui32,
+					/*nicename("Bit 21")*/ _flags_bit_21 = 1ui32 << 21ui32,
+					/*nicename("Bit 22")*/ _flags_bit_22 = 1ui32 << 22ui32,
+					/*nicename("Bit 23")*/ _flags_bit_23 = 1ui32 << 23ui32,
+					/*nicename("Bit 24")*/ _flags_bit_24 = 1ui32 << 24ui32,
+					/*nicename("Bit 25")*/ _flags_bit_25 = 1ui32 << 25ui32,
+					/*nicename("Bit 26")*/ _flags_bit_26 = 1ui32 << 26ui32,
+					/*nicename("Bit 27")*/ _flags_bit_27 = 1ui32 << 27ui32,
+					/*nicename("Bit 28")*/ _flags_bit_28 = 1ui32 << 28ui32,
+					/*nicename("Bit 29")*/ _flags_bit_29 = 1ui32 << 29ui32,
+					/*nicename("Bit 30")*/ _flags_bit_30 = 1ui32 << 30ui32,
+					/*nicename("Bit 31")*/ _flags_bit_31 = 1ui32 << 31ui32,
+				};
+
+				int32_t __unknown0;
+				float nicename("X") x;
+				float nicename("Y") y;
+				float nicename("Z") z;
+				float __unknown1;
+				float __unknown2;
+				float __unknown3;
+				float __unknown4;
+				float __unknown5;
+				float __unknown6;
+				float nicename("FOV") fov;
+				// Depth Of Field : 
+				b_flags nicename("Flags") flags;
+				float nicename("Near Plane") near_plane;
+				float nicename("Far Plane") far_plane;
+				float nicename("Focal Depth") focal_depth;
+				float nicename("Blur Amount") blur_amount;
+			};
+
+			s_tag_block_legacy<s_frames_definition_legacy> nicename("Frames") frames_block;
+		};
+
+		string_id_legacy nicename("Name") name;
+		string_id_legacy __unknown0;
+		s_tag_block_legacy<s_shots1_definition_legacy> nicename("Shots") shots_block;
+	};
+
+	string_id_legacy nicename("Name") name;
+	string_id_legacy nicename("Anchor Name") anchor_name;
+	s_undefined32_legacy __unknown0;
+	s_data_reference_legacy nicename("Import Script") import_script_data_reference;
+	s_tag_block_legacy<s_puppets_definition_legacy> nicename("Puppets") puppets_block;
+	s_tag_block_legacy<s_shots_definition_legacy> nicename("Shots") shots_block;
+	s_tag_block_legacy<s_texture_cameras_definition_legacy> nicename("Texture Cameras") texture_cameras_block;
+	s_data_reference_legacy nicename("Import Script") import_script1_data_reference;
+	int32_t __unknown1;
+};
+

@@ -1,1 +1,0 @@
-#include "bindimagevalidationtool-private-pch.h"

@@ -1,0 +1,82 @@
+#pragma once
+
+namespace blofeld
+{
+
+	extern s_tag_struct_definition user_hint_line_segment_block_block_struct;
+	extern s_tag_block_definition user_hint_line_segment_block_block;
+	extern s_tag_struct_definition user_hint_parallelogram_block_block_struct;
+	extern s_tag_block_definition user_hint_parallelogram_block_block;
+	extern s_tag_struct_definition hint_vertex_block_block_struct;
+	extern s_tag_block_definition hint_vertex_block_block;
+	extern s_tag_struct_definition user_hint_jump_block_block_struct;
+	extern s_tag_block_definition user_hint_jump_block_block;
+	extern s_tag_struct_definition user_hint_climb_block_block_struct;
+	extern s_tag_block_definition user_hint_climb_block_block;
+	extern s_tag_struct_definition user_hint_well_point_block_block_struct;
+	extern s_tag_block_definition user_hint_well_point_block_block;
+	extern s_tag_struct_definition user_hint_well_block_block_struct;
+	extern s_tag_block_definition user_hint_well_block_block;
+	extern s_tag_struct_definition user_hint_flight_point_block_block_struct;
+	extern s_tag_block_definition user_hint_flight_point_block_block;
+	extern s_tag_struct_definition user_hint_flight_block_block_struct;
+	extern s_tag_block_definition user_hint_flight_block_block;
+	extern s_tag_block_definition user_hint_volume_avoidance_block;
+	extern s_tag_struct_definition user_hint_spline_control_point_block_block_struct;
+	extern s_tag_block_definition user_hint_spline_control_point_block_block;
+	extern s_tag_struct_definition user_hint_spline_intersect_point_block_block_struct;
+	extern s_tag_block_definition user_hint_spline_intersect_point_block_block;
+	extern s_tag_struct_definition user_hint_spline_block_block_struct;
+	extern s_tag_block_definition user_hint_spline_block_block;
+	extern s_tag_struct_definition user_hint_sector_point_block_block_struct;
+	extern s_tag_block_definition user_hint_sector_point_block_block;
+	extern s_tag_struct_definition hint_object_id_block_block_struct;
+	extern s_tag_block_definition hint_object_id_block_block;
+	extern s_tag_struct_definition user_hint_cookie_cutter_block_block_struct;
+	extern s_tag_block_definition user_hint_cookie_cutter_block_block;
+	extern s_tag_struct_definition user_hint_navmesh_area_block_block_struct;
+	extern s_tag_block_definition user_hint_navmesh_area_block_block;
+	extern s_tag_struct_definition user_hint_giant_sector_block_block_struct;
+	extern s_tag_block_definition user_hint_giant_sector_block_block;
+	extern s_tag_struct_definition user_hint_giant_rail_block_block_struct;
+	extern s_tag_block_definition user_hint_giant_rail_block_block;
+	extern s_tag_struct_definition user_hint_giant_block_block_struct;
+	extern s_tag_block_definition user_hint_giant_block_block;
+	extern s_tag_struct_definition user_hint_flood_sector_block_block_struct;
+	extern s_tag_block_definition user_hint_flood_sector_block_block;
+	extern s_tag_struct_definition user_hint_flood_block_block_struct;
+	extern s_tag_block_definition user_hint_flood_block_block;
+	extern s_tag_struct_definition user_hint_block_block_struct;
+	extern s_tag_block_definition user_hint_block_block;
+	extern s_tag_struct_definition special_movement_block_block_struct;
+	extern s_tag_block_definition special_movement_block_block;
+
+	extern s_tag_struct_definition user_hint_volume_avoidance_struct_struct_definition;
+
+	extern const char* user_hint_geometry_flags_strings[];
+	extern s_string_list_definition user_hint_geometry_flags;
+	extern const char* parallelogram_points_invalid_flags_strings[];
+	extern s_string_list_definition parallelogram_points_invalid_flags;
+	extern const char* hint_type_enum_strings[];
+	extern s_string_list_definition hint_type_enum;
+	extern const char* jump_flags_strings[];
+	extern s_string_list_definition jump_flags;
+	extern const char* forced_hoist_height_enum_strings[];
+	extern s_string_list_definition forced_hoist_height_enum;
+	extern const char* user_hint_well_geometry_flags_strings[];
+	extern s_string_list_definition user_hint_well_geometry_flags;
+	extern const char* user_hint_well_point_type_enum_strings[];
+	extern s_string_list_definition user_hint_well_point_type_enum;
+	extern const char* user_hint_avoidance_volume_enum_strings[];
+	extern s_string_list_definition user_hint_avoidance_volume_enum;
+	extern const char* user_hint_spline_segment_flags_strings[];
+	extern s_string_list_definition user_hint_spline_segment_flags;
+	extern const char* cookie_cutter_type_enum_strings[];
+	extern s_string_list_definition cookie_cutter_type_enum;
+	extern const char* navmesh_area_type_enum_strings[];
+	extern s_string_list_definition navmesh_area_type_enum;
+	extern const char* special_movement_flags_strings[];
+	extern s_string_list_definition special_movement_flags;
+
+} // namespace blofeld
+
