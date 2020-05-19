@@ -18,877 +18,877 @@
     <ClCompile Include="blofeld-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tag_groups.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="blofeld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="inline_files.cpp">
+    <ClCompile Include="blofeld\__unknown\tag_references.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="halo4_validation_data.cpp">
+    <ClCompile Include="blofeld\ai\ai.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="validation.cpp">
+    <ClCompile Include="blofeld\ai\ai_cues.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\ai.cpp">
+    <ClCompile Include="blofeld\ai\ai_dialogue_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\ai_cues.cpp">
+    <ClCompile Include="blofeld\ai\ai_flocks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\ai_dialogue_definitions.cpp">
+    <ClCompile Include="blofeld\ai\ai_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\ai_flocks.cpp">
+    <ClCompile Include="blofeld\ai\ai_hint_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\ai_globals.cpp">
+    <ClCompile Include="blofeld\ai\ai_mission_dialogue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\ai_hint_definitions.cpp">
+    <ClCompile Include="blofeld\ai\ai_orders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\ai_mission_dialogue.cpp">
+    <ClCompile Include="blofeld\ai\ai_scenario_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\ai_orders.cpp">
+    <ClCompile Include="blofeld\ai\character_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\ai_scenario_definitions.cpp">
+    <ClCompile Include="blofeld\ai\cs_scenario_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\character_definitions.cpp">
+    <ClCompile Include="blofeld\ai\firing_position_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\cs_scenario_definitions.cpp">
+    <ClCompile Include="blofeld\ai\formations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\firing_position_definitions.cpp">
+    <ClCompile Include="blofeld\ai\objectives.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\formations.cpp">
+    <ClCompile Include="blofeld\ai\puppeteerdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\objectives.cpp">
+    <ClCompile Include="blofeld\ai\sector_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\puppeteerdefinitions.cpp">
+    <ClCompile Include="blofeld\ai\squad_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\sector_definitions.cpp">
+    <ClCompile Include="blofeld\ai\squad_patrol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\squad_definitions.cpp">
+    <ClCompile Include="blofeld\ai\styles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\squad_patrol.cpp">
+    <ClCompile Include="blofeld\ai\wave_template_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\styles.cpp">
+    <ClCompile Include="blofeld\ai\zone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\wave_template_definitions.cpp">
+    <ClCompile Include="blofeld\animations\composites\composite_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ai\zone.cpp">
+    <ClCompile Include="blofeld\animations\pca\pca_animation_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="animations\composites\composite_definitions.cpp">
+    <ClCompile Include="blofeld\animations\animation_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="animations\pca\pca_animation_definitions.cpp">
+    <ClCompile Include="blofeld\bink\bink_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="animations\animation_definitions.cpp">
+    <ClCompile Include="blofeld\bitmaps\bitmap_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bink\bink_definitions.cpp">
+    <ClCompile Include="blofeld\bitmaps\bitmap_group_old_tag_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bitmaps\bitmap_group_old_tag_definition.cpp">
+    <ClCompile Include="blofeld\bitmaps\bitmap_group_tag_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bitmaps\bitmap_group_tag_definition.cpp">
+    <ClCompile Include="blofeld\bitmaps\bitmap_group_xenon_interop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bitmaps\bitmap_group_xenon_interop.cpp">
+    <ClCompile Include="blofeld\bitmaps\bitmap_tag_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bitmaps\bitmap_tag_definition.cpp">
+    <ClCompile Include="blofeld\bitmaps\bitmap_tight_bounds_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bitmaps\bitmap_tight_bounds_definitions.cpp">
+    <ClCompile Include="blofeld\bitmaps\bitmap_usage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bitmaps\bitmap_usage.cpp">
+    <ClCompile Include="blofeld\bitmaps\color_table_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bitmaps\color_table_group.cpp">
+    <ClCompile Include="blofeld\cache\cache_file_builder_tag_resource_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cache\cache_file_builder_tag_resource_manager.cpp">
+    <ClCompile Include="blofeld\cache\cache_file_tag_package_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cache\cache_file_tag_package_definitions.cpp">
+    <ClCompile Include="blofeld\camera\camera_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="camera\camera_globals.cpp">
+    <ClCompile Include="blofeld\camera\camera_obstruction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="camera\camera_obstruction.cpp">
+    <ClCompile Include="blofeld\camera\camera_track_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="camera\camera_track_definitions.cpp">
+    <ClCompile Include="blofeld\components\selfilluminationdefinition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="components\selfilluminationdefinition.cpp">
+    <ClCompile Include="blofeld\creatures\creature_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="creatures\creature_definitions.cpp">
+    <ClCompile Include="blofeld\cutscene\cinematics_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cutscene\cinematics_definitions.cpp">
+    <ClCompile Include="blofeld\cutscene\lightrig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cutscene\lightrig.cpp">
+    <ClCompile Include="blofeld\cutscene\new_cinematic_lighting_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cutscene\new_cinematic_lighting_definitions.cpp">
+    <ClCompile Include="blofeld\cutscene\recorded_animation_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cutscene\recorded_animation_definitions.cpp">
+    <ClCompile Include="blofeld\decorators\decorator_tag_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="decorators\decorator_tag_definitions.cpp">
+    <ClCompile Include="blofeld\devices\device_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="devices\device_definitions.cpp">
+    <ClCompile Include="blofeld\editor\editor_scenario_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="editor\editor_scenario_definitions.cpp">
+    <ClCompile Include="blofeld\effects\camera_shake_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\camera_shake_definitions.cpp">
+    <ClCompile Include="blofeld\effects\camo_effect_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\camo_effect_definition.cpp">
+    <ClCompile Include="blofeld\effects\cheap_particle_system_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\cheap_particle_system_definitions.cpp">
+    <ClCompile Include="blofeld\effects\decal_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\decal_definitions.cpp">
+    <ClCompile Include="blofeld\effects\effect_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\effect_definitions.cpp">
+    <ClCompile Include="blofeld\effects\effect_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\effect_globals.cpp">
+    <ClCompile Include="blofeld\effects\effect_scenery_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\effect_scenery_group.cpp">
+    <ClCompile Include="blofeld\effects\effectglobalforces.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\effectglobalforces.cpp">
+    <ClCompile Include="blofeld\effects\jetwash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\jetwash.cpp">
+    <ClCompile Include="blofeld\effects\lens_flare_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\lens_flare_definitions.cpp">
+    <ClCompile Include="blofeld\effects\light_volume_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\light_volume_definitions.cpp">
+    <ClCompile Include="blofeld\effects\lightcones.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\lightcones.cpp">
+    <ClCompile Include="blofeld\effects\material_effect_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\material_effect_definitions.cpp">
+    <ClCompile Include="blofeld\effects\modeldissolve.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\modeldissolve.cpp">
+    <ClCompile Include="blofeld\effects\particle_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\particle_definitions.cpp">
+    <ClCompile Include="blofeld\effects\particle_emitter_boat_hull_shapes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\particle_emitter_boat_hull_shapes.cpp">
+    <ClCompile Include="blofeld\effects\particle_emitter_custom_shapes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\particle_emitter_custom_shapes.cpp">
+    <ClCompile Include="blofeld\effects\particle_model_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\particle_model_definitions.cpp">
+    <ClCompile Include="blofeld\effects\particle_movement_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\particle_movement_definitions.cpp">
+    <ClCompile Include="blofeld\effects\particle_property_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\particle_property_definitions.cpp">
+    <ClCompile Include="blofeld\effects\particle_system_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\particle_system_definitions.cpp">
+    <ClCompile Include="blofeld\effects\particleize_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\particleize_definitions.cpp">
+    <ClCompile Include="blofeld\effects\screen_effect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\screen_effect.cpp">
+    <ClCompile Include="blofeld\effects\shield_impact_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\shield_impact_definitions.cpp">
+    <ClCompile Include="blofeld\effects\simulated_input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\simulated_input.cpp">
+    <ClCompile Include="blofeld\effects\tracerdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\tracerdefinitions.cpp">
+    <ClCompile Include="blofeld\effects\vision_mode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="effects\vision_mode.cpp">
+    <ClCompile Include="blofeld\entities\entitydefinition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entities\entitydefinition.cpp">
+    <ClCompile Include="blofeld\entities\spawnerdefinition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entities\spawnerdefinition.cpp">
+    <ClCompile Include="blofeld\errors\error_report_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="errors\error_report_definitions.cpp">
+    <ClCompile Include="blofeld\fx\fx_test_tag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fx\fx_test_tag.cpp">
+    <ClCompile Include="blofeld\game\challenges\challenge_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\challenges\challenge_definitions.cpp">
+    <ClCompile Include="blofeld\game\incidents\incident_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\incidents\incident_definitions.cpp">
+    <ClCompile Include="blofeld\game\incidents\incident_response_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\incidents\incident_response_definition.cpp">
+    <ClCompile Include="blofeld\game\megalogamengine\megalogamengine_effect_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\megalogamengine\megalogamengine_effect_definitions.cpp">
+    <ClCompile Include="blofeld\game\megalogamengine\megalogamengine_sound_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\megalogamengine\megalogamengine_sound_definitions.cpp">
+    <ClCompile Include="blofeld\game\megalogamengine\megalogamengine_string_id_table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\megalogamengine\megalogamengine_string_id_table.cpp">
+    <ClCompile Include="blofeld\game\player_rewards\game_completion_rewards_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rewards\game_completion_rewards_definitions.cpp">
+    <ClCompile Include="blofeld\game\player_rewards\player_achievements.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rewards\player_achievements.cpp">
+    <ClCompile Include="blofeld\game\player_rewards\player_avatar_awards.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rewards\player_avatar_awards.cpp">
+    <ClCompile Include="blofeld\game\player_rewards\player_commendation_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rewards\player_commendation_definitions.cpp">
+    <ClCompile Include="blofeld\game\player_rewards\player_cookie_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rewards\player_cookie_definitions.cpp">
+    <ClCompile Include="blofeld\game\player_rewards\player_cookie_purchase_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rewards\player_cookie_purchase_definitions.cpp">
+    <ClCompile Include="blofeld\game\player_rewards\player_grade_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rewards\player_grade_definitions.cpp">
+    <ClCompile Include="blofeld\game\player_rewards\player_medals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rewards\player_medals.cpp">
+    <ClCompile Include="blofeld\game\player_rewards\playermedalaggregators.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rewards\playermedalaggregators.cpp">
+    <ClCompile Include="blofeld\game\player_rewards\playerrewarddefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rewards\playerrewarddefinitions.cpp">
+    <ClCompile Include="blofeld\game\player_rewards\prerequisites_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rewards\prerequisites_definitions.cpp">
+    <ClCompile Include="blofeld\game\progression\playerenlistmentdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\progression\playerenlistmentdefinitions.cpp">
+    <ClCompile Include="blofeld\game\progression\progression_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\progression\progression_definitions.cpp">
+    <ClCompile Include="blofeld\game\armormod_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\armormod_definitions.cpp">
+    <ClCompile Include="blofeld\game\campaign_metagame_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\campaign_metagame_definitions.cpp">
+    <ClCompile Include="blofeld\game\firefight_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\firefight_globals.cpp">
+    <ClCompile Include="blofeld\game\game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game.cpp">
+    <ClCompile Include="blofeld\game\game_active_camo_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_active_camo_globals.cpp">
+    <ClCompile Include="blofeld\game\game_constants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_constants.cpp">
+    <ClCompile Include="blofeld\game\game_controller_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_controller_globals.cpp">
+    <ClCompile Include="blofeld\game\game_coop_spawning_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_coop_spawning_globals.cpp">
+    <ClCompile Include="blofeld\game\game_damage_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_damage_globals.cpp">
+    <ClCompile Include="blofeld\game\game_difficulty_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_difficulty_globals.cpp">
+    <ClCompile Include="blofeld\game\game_engine_communication_sound_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_engine_communication_sound_definitions.cpp">
+    <ClCompile Include="blofeld\game\game_engine_event_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_engine_event_definitions.cpp">
+    <ClCompile Include="blofeld\game\game_engine_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_engine_group.cpp">
+    <ClCompile Include="blofeld\game\game_engine_multiplayer_sounds.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_engine_multiplayer_sounds.cpp">
+    <ClCompile Include="blofeld\game\game_engine_player_traits_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_engine_player_traits_definitions.cpp">
+    <ClCompile Include="blofeld\game\game_engine_player_traits_structures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_engine_player_traits_structures.cpp">
+    <ClCompile Include="blofeld\game\game_engine_roles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_engine_roles.cpp">
+    <ClCompile Include="blofeld\game\game_engine_spawn_settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_engine_spawn_settings.cpp">
+    <ClCompile Include="blofeld\game\game_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_globals.cpp">
+    <ClCompile Include="blofeld\game\game_mode_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_mode_definitions.cpp">
+    <ClCompile Include="blofeld\game\game_performance_throttle_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_performance_throttle_definitions.cpp">
+    <ClCompile Include="blofeld\game\game_player_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_player_globals.cpp">
+    <ClCompile Include="blofeld\game\game_ui_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\game_ui_globals.cpp">
+    <ClCompile Include="blofeld\game\gameenginesandboxdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\gameenginesandboxdefinitions.cpp">
+    <ClCompile Include="blofeld\game\loadout_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\loadout_definition.cpp">
+    <ClCompile Include="blofeld\game\location_name_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\location_name_definitions.cpp">
+    <ClCompile Include="blofeld\game\materials_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\materials_definitions.cpp">
+    <ClCompile Include="blofeld\game\multiplayer_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\multiplayer_definitions.cpp">
+    <ClCompile Include="blofeld\game\multiplayer_object_list_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\multiplayer_object_list_definitions.cpp">
+    <ClCompile Include="blofeld\game\narrativedefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\narrativedefinitions.cpp">
+    <ClCompile Include="blofeld\game\player_model_customization.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_model_customization.cpp">
+    <ClCompile Include="blofeld\game\player_rumble.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_rumble.cpp">
+    <ClCompile Include="blofeld\game\player_training.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\player_training.cpp">
+    <ClCompile Include="blofeld\game\silent_assist_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\silent_assist_definitions.cpp">
+    <ClCompile Include="blofeld\game\survival_mode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\survival_mode.cpp">
+    <ClCompile Include="blofeld\game\variant_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game\variant_definitions.cpp">
+    <ClCompile Include="blofeld\geometry\geometry_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="geometry\geometry_definitions.cpp">
+    <ClCompile Include="blofeld\geometry\geometry_definitions_new.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="geometry\geometry_definitions_new.cpp">
+    <ClCompile Include="blofeld\hs\hs_scenario_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hs\hs_scenario_definitions.cpp">
+    <ClCompile Include="blofeld\interface\chud\polyart\polyartbasedefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\chud\polyart\polyartbasedefinitions.cpp">
+    <ClCompile Include="blofeld\interface\chud\polyart\polyartdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\chud\polyart\polyartdefinitions.cpp">
+    <ClCompile Include="blofeld\interface\chud\polyart\vectorartdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\chud\polyart\vectorartdefinitions.cpp">
+    <ClCompile Include="blofeld\interface\components\hud\motionsensorbliplist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\components\hud\motionsensorbliplist.cpp">
+    <ClCompile Include="blofeld\interface\cui\cui_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\cui\cui_definitions.cpp">
+    <ClCompile Include="blofeld\interface\emblem\emblem_library.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\emblem\emblem_library.cpp">
+    <ClCompile Include="blofeld\interface\hud\hudaudio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\hud\hudaudio.cpp">
+    <ClCompile Include="blofeld\interface\vector_hud\vector_hud_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\vector_hud\vector_hud_definitions.cpp">
+    <ClCompile Include="blofeld\interface\controller_mapping_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\controller_mapping_definitions.cpp">
+    <ClCompile Include="blofeld\interface\meter_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\meter_definitions.cpp">
+    <ClCompile Include="blofeld\interface\stylesheetglobalsdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\stylesheetglobalsdefinitions.cpp">
+    <ClCompile Include="blofeld\interface\user_interface_main_menu_voiceover.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\user_interface_main_menu_voiceover.cpp">
+    <ClCompile Include="blofeld\interface\user_interface_multiplayer_game_settings_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\user_interface_multiplayer_game_settings_group.cpp">
+    <ClCompile Include="blofeld\interface\user_interface_widget_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\user_interface_widget_group.cpp">
+    <ClCompile Include="blofeld\interface\userinterfacehudglobalsdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="interface\userinterfacehudglobalsdefinitions.cpp">
+    <ClCompile Include="blofeld\items\airstrike_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="items\airstrike_definitions.cpp">
+    <ClCompile Include="blofeld\items\equipment_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="items\equipment_definitions.cpp">
+    <ClCompile Include="blofeld\items\grenadeglobalsdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="items\grenadeglobalsdefinitions.cpp">
+    <ClCompile Include="blofeld\items\item_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="items\item_definitions.cpp">
+    <ClCompile Include="blofeld\items\ordnanceglobalsdefinitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="items\ordnanceglobalsdefinitions.cpp">
+    <ClCompile Include="blofeld\items\projectile_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="items\projectile_definitions.cpp">
+    <ClCompile Include="blofeld\items\weapon_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="items\weapon_definitions.cpp">
+    <ClCompile Include="blofeld\lightmapper\lightmapper_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lightmapper\lightmapper_globals.cpp">
+    <ClCompile Include="blofeld\materials\material.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="materials\material.cpp">
+    <ClCompile Include="blofeld\materials\material_shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="materials\material_shader.cpp">
+    <ClCompile Include="blofeld\materials\material_shader_bank.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="materials\material_shader_bank.cpp">
+    <ClCompile Include="blofeld\materials\material_shader_parameter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="materials\material_shader_parameter.cpp">
+    <ClCompile Include="blofeld\math\color_math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="math\color_math.cpp">
+    <ClCompile Include="blofeld\math\function_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="math\function_definitions.cpp">
+    <ClCompile Include="blofeld\math\periodic_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="math\periodic_functions.cpp">
+    <ClCompile Include="blofeld\models\damage_info_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="models\damage_info_definitions.cpp">
+    <ClCompile Include="blofeld\models\model_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="models\model_definitions.cpp">
+    <ClCompile Include="blofeld\models\render_model_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="models\render_model_definitions.cpp">
+    <ClCompile Include="blofeld\objects\widgets\antenna_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\widgets\antenna_definitions.cpp">
+    <ClCompile Include="blofeld\objects\widgets\cellular_automata.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\widgets\cellular_automata.cpp">
+    <ClCompile Include="blofeld\objects\widgets\cellular_automata2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\widgets\cellular_automata2d.cpp">
+    <ClCompile Include="blofeld\objects\widgets\cloth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\widgets\cloth.cpp">
+    <ClCompile Include="blofeld\objects\widgets\fluid_dynamics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\widgets\fluid_dynamics.cpp">
+    <ClCompile Include="blofeld\objects\widgets\leaf_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\widgets\leaf_system.cpp">
+    <ClCompile Include="blofeld\objects\widgets\muffins.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\widgets\muffins.cpp">
+    <ClCompile Include="blofeld\objects\widgets\stereo_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\widgets\stereo_system.cpp">
+    <ClCompile Include="blofeld\objects\cheap_light_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\cheap_light_definitions.cpp">
+    <ClCompile Include="blofeld\objects\collision_damage_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\collision_damage_definitions.cpp">
+    <ClCompile Include="blofeld\objects\crate_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\crate_definitions.cpp">
+    <ClCompile Include="blofeld\objects\damage_effect_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\damage_effect_definitions.cpp">
+    <ClCompile Include="blofeld\objects\damage_reporting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\damage_reporting.cpp">
+    <ClCompile Include="blofeld\objects\damage_response_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\damage_response_definitions.cpp">
+    <ClCompile Include="blofeld\objects\hologramlighting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\hologramlighting.cpp">
+    <ClCompile Include="blofeld\objects\light_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\light_definitions.cpp">
+    <ClCompile Include="blofeld\objects\midnight_light_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\midnight_light_definitions.cpp">
+    <ClCompile Include="blofeld\objects\multiplayer_game_objects_constants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\multiplayer_game_objects_constants.cpp">
+    <ClCompile Include="blofeld\objects\object_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\object_definitions.cpp">
+    <ClCompile Include="blofeld\objects\object_recycling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\object_recycling.cpp">
+    <ClCompile Include="blofeld\objects\scenery_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\scenery_group.cpp">
+    <ClCompile Include="blofeld\objects\target_tracking.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\target_tracking.cpp">
+    <ClCompile Include="blofeld\physics\boat_engine_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\boat_engine_definitions.cpp">
+    <ClCompile Include="blofeld\physics\boat_physics_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\boat_physics_definitions.cpp">
+    <ClCompile Include="blofeld\physics\breakable_surface_set_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\breakable_surface_set_definitions.cpp">
+    <ClCompile Include="blofeld\physics\breakable_surfaces.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\breakable_surfaces.cpp">
+    <ClCompile Include="blofeld\physics\character_physics_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\character_physics_definitions.cpp">
+    <ClCompile Include="blofeld\physics\collision_bsp_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\collision_bsp_definitions.cpp">
+    <ClCompile Include="blofeld\physics\collision_bsp_physics_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\collision_bsp_physics_definitions.cpp">
+    <ClCompile Include="blofeld\physics\collision_kd_hierarchy_static_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\collision_kd_hierarchy_static_definitions.cpp">
+    <ClCompile Include="blofeld\physics\collision_model_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\collision_model_definitions.cpp">
+    <ClCompile Include="blofeld\physics\grounded_friction_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\grounded_friction_definitions.cpp">
+    <ClCompile Include="blofeld\physics\havok_collision_filter_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\havok_collision_filter_definitions.cpp">
+    <ClCompile Include="blofeld\physics\havok_mopp_code_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\havok_mopp_code_definitions.cpp">
+    <ClCompile Include="blofeld\physics\havok_vehicle_physics_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\havok_vehicle_physics_definitions.cpp">
+    <ClCompile Include="blofeld\physics\physics_model_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\physics_model_definitions.cpp">
+    <ClCompile Include="blofeld\physics\point_physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\point_physics.cpp">
+    <ClCompile Include="blofeld\physics\spring_acceleration_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\spring_acceleration_definitions.cpp">
+    <ClCompile Include="blofeld\physics\walker_physics_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\walker_physics_definitions.cpp">
+    <ClCompile Include="blofeld\physics\water_physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="physics\water_physics.cpp">
+    <ClCompile Include="blofeld\rasterizer\rasterizer_cache_file_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rasterizer\rasterizer_cache_file_globals.cpp">
+    <ClCompile Include="blofeld\rasterizer\rasterizer_constant_table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rasterizer\rasterizer_constant_table.cpp">
+    <ClCompile Include="blofeld\rasterizer\rasterizer_global_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rasterizer\rasterizer_global_definitions.cpp">
+    <ClCompile Include="blofeld\rasterizer\rasterizer_loading_screen_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rasterizer\rasterizer_loading_screen_definitions.cpp">
+    <ClCompile Include="blofeld\rasterizer\rasterizer_performance_throttles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rasterizer\rasterizer_performance_throttles.cpp">
+    <ClCompile Include="blofeld\rasterizer\rasterizer_shader_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rasterizer\rasterizer_shader_definitions.cpp">
+    <ClCompile Include="blofeld\rasterizer\rasterizer_states.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rasterizer\rasterizer_states.cpp">
+    <ClCompile Include="blofeld\render\authoredlightprobe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render\authoredlightprobe.cpp">
+    <ClCompile Include="blofeld\render\camera_fx_settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render\camera_fx_settings.cpp">
+    <ClCompile Include="blofeld\render\render_ssao.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render\render_ssao.cpp">
+    <ClCompile Include="blofeld\render\render_water_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render\render_water_definitions.cpp">
+    <ClCompile Include="blofeld\render_methods\mux_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render_methods\mux_generator.cpp">
+    <ClCompile Include="blofeld\render_methods\render_method_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render_methods\render_method_definitions.cpp">
+    <ClCompile Include="blofeld\render_methods\render_method_types.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render_methods\render_method_types.cpp">
+    <ClCompile Include="blofeld\scenario\multiplayer_scenario_description.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\multiplayer_scenario_description.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_cubemap_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_cubemap_definitions.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_decorator_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_decorator_definitions.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_definitions.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_designer_zones_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_designer_zones_definitions.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_dumplings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_dumplings.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_interpolators.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_interpolators.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_lightmap_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_lightmap_definitions.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_load_parameters.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_load_parameters.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_map_variant_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_map_variant_definitions.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_named_location_volumes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_named_location_volumes.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_object_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_object_definitions.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_resource_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_resource_definitions.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_zone_debugger_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_zone_debugger_definitions.cpp">
+    <ClCompile Include="blofeld\scenario\scenario_zone_set_streaming_cache.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\scenario_zone_set_streaming_cache.cpp">
+    <ClCompile Include="blofeld\scenario\wind_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scenario\wind_definitions.cpp">
+    <ClCompile Include="blofeld\simulation\game_interface\simulation_game_interpolation_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simulation\game_interface\simulation_game_interpolation_definitions.cpp">
+    <ClCompile Include="blofeld\sky_atm\atmosphere_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sky_atm\atmosphere_definition.cpp">
+    <ClCompile Include="blofeld\sky_atm\atmosphere_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sky_atm\atmosphere_globals.cpp">
+    <ClCompile Include="blofeld\sky_atm\planar_fog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sky_atm\planar_fog.cpp">
+    <ClCompile Include="blofeld\sound\game_audibility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\game_audibility.cpp">
+    <ClCompile Include="blofeld\sound\platform_sound_effect_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\platform_sound_effect_definitions.cpp">
+    <ClCompile Include="blofeld\sound\sound_acoustics_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\sound_acoustics_definitions.cpp">
+    <ClCompile Include="blofeld\sound\sound_cache_file_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\sound_cache_file_definitions.cpp">
+    <ClCompile Include="blofeld\sound\sound_classes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\sound_classes.cpp">
+    <ClCompile Include="blofeld\sound\sound_clusters.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\sound_clusters.cpp">
+    <ClCompile Include="blofeld\sound\sound_combiner_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\sound_combiner_definition.cpp">
+    <ClCompile Include="blofeld\sound\sound_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\sound_definitions.cpp">
+    <ClCompile Include="blofeld\sound\sound_dsp_settings_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\sound_dsp_settings_definitions.cpp">
+    <ClCompile Include="blofeld\sound\sound_effect_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\sound_effect_definition.cpp">
+    <ClCompile Include="blofeld\sound\sound_environment_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\sound_environment_definitions.cpp">
+    <ClCompile Include="blofeld\sound\sound_language_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\sound_language_definitions.cpp">
+    <ClCompile Include="blofeld\sound\sound_scenery_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sound\sound_scenery_group.cpp">
+    <ClCompile Include="blofeld\structures\detail_object_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\detail_object_definitions.cpp">
+    <ClCompile Include="blofeld\structures\instance_imposter_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\instance_imposter_definitions.cpp">
+    <ClCompile Include="blofeld\structures\instanced_geometry_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\instanced_geometry_definitions.cpp">
+    <ClCompile Include="blofeld\structures\leaf_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\leaf_map.cpp">
+    <ClCompile Include="blofeld\structures\structure_bsp_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\structure_bsp_definitions.cpp">
+    <ClCompile Include="blofeld\structures\structure_design_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\structure_design_definitions.cpp">
+    <ClCompile Include="blofeld\structures\structure_lighting_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\structure_lighting_definitions.cpp">
+    <ClCompile Include="blofeld\structures\structure_manifest_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\structure_manifest_definitions.cpp">
+    <ClCompile Include="blofeld\structures\structure_object_associations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\structure_object_associations.cpp">
+    <ClCompile Include="blofeld\structures\structure_physics_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\structure_physics_definitions.cpp">
+    <ClCompile Include="blofeld\structures\structure_seam_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\structure_seam_definitions.cpp">
+    <ClCompile Include="blofeld\structures\structuremetadata.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="structures\structuremetadata.cpp">
+    <ClCompile Include="blofeld\tag_files\self_tracking\file_self_track.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tag_files\self_tracking\file_self_track.cpp">
+    <ClCompile Include="blofeld\tag_files\tag_dependency_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tag_files\tag_dependency_definitions.cpp">
+    <ClCompile Include="blofeld\tag_files\tag_group_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tag_files\tag_group_definitions.cpp">
+    <ClCompile Include="blofeld\text\font_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="text\font_list.cpp">
+    <ClCompile Include="blofeld\text\text_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="text\text_group.cpp">
+    <ClCompile Include="blofeld\units\custom_apps\custom_app_globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="units\custom_apps\custom_app_globals.cpp">
+    <ClCompile Include="blofeld\units\biped_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="units\biped_definitions.cpp">
+    <ClCompile Include="blofeld\units\death_program_selection_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="units\death_program_selection_definitions.cpp">
+    <ClCompile Include="blofeld\units\dialogue_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="units\dialogue_definitions.cpp">
+    <ClCompile Include="blofeld\units\giant_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="units\giant_definitions.cpp">
+    <ClCompile Include="blofeld\units\unit_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="units\unit_definitions.cpp">
+    <ClCompile Include="blofeld\units\unit_trick_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="units\unit_trick_definitions.cpp">
+    <ClCompile Include="blofeld\units\vehicle_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="units\vehicle_definitions.cpp">
+    <ClCompile Include="blofeld\units\vehicle_engine_definitions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="units\vehicle_engine_definitions.cpp">
+    <ClCompile Include="blofeld\weather\weather_control.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="weather\weather_control.cpp">
+    <ClCompile Include="blofeld\weather\weather_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="weather\weather_definition.cpp">
+    <ClCompile Include="blofeld\halo4_validation_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="manual_tag_references.cpp">
+    <ClCompile Include="blofeld\inline_files.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="__unknown\tag_references.cpp">
+    <ClCompile Include="blofeld\manual_tag_references.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bitmaps\bitmap_group.cpp">
+    <ClCompile Include="blofeld\tag_groups.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="blofeld\validation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -899,900 +899,900 @@
     <ClInclude Include="blofeld-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tag_groups.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="blofeld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="halo4_validation_data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="validation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_cues.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_dialogue_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_flocks.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_hint_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_mission_dialogue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_orders.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\ai_scenario_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\character_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\cs_scenario_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\firing_position_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\formations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\objectives.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\puppeteerdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\sector_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\squad_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\squad_patrol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\styles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\wave_template_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ai\zone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animations\composites\composite_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animations\pca\pca_animation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="animations\animation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bink\bink_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bitmaps\bitmap_group_old_tag_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bitmaps\bitmap_group_tag_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bitmaps\bitmap_group_xenon_interop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bitmaps\bitmap_tag_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bitmaps\bitmap_tight_bounds_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bitmaps\bitmap_usage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bitmaps\color_table_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cache\cache_file_builder_tag_resource_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cache\cache_file_tag_package_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camera\camera_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camera\camera_obstruction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camera\camera_track_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="components\selfilluminationdefinition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="creatures\creature_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cutscene\cinematics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cutscene\lightrig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cutscene\new_cinematic_lighting_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cutscene\recorded_animation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="decorators\decorator_tag_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="devices\device_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="editor\editor_scenario_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\camera_shake_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\camo_effect_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\cheap_particle_system_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\decal_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\effect_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\effect_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\effect_scenery_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\effectglobalforces.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\jetwash.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\lens_flare_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\light_volume_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\lightcones.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\material_effect_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\modeldissolve.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\particle_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\particle_emitter_boat_hull_shapes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\particle_emitter_custom_shapes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\particle_model_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\particle_movement_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\particle_property_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\particle_system_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\particleize_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\screen_effect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\shield_impact_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\simulated_input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\tracerdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="effects\vision_mode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="entities\entitydefinition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="entities\spawnerdefinition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="errors\error_report_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="fx\fx_test_tag.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\challenges\challenge_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\incidents\incident_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\incidents\incident_response_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\megalogamengine\megalogamengine_effect_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\megalogamengine\megalogamengine_sound_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\megalogamengine\megalogamengine_string_id_table.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rewards\game_completion_rewards_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rewards\player_achievements.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rewards\player_avatar_awards.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rewards\player_commendation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rewards\player_cookie_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rewards\player_cookie_purchase_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rewards\player_grade_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rewards\player_medals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rewards\playermedalaggregators.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rewards\playerrewarddefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rewards\prerequisites_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\progression\playerenlistmentdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\progression\progression_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\armormod_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\campaign_metagame_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\firefight_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_active_camo_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_controller_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_coop_spawning_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_damage_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_difficulty_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_engine_communication_sound_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_engine_event_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_engine_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_engine_multiplayer_sounds.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_engine_player_traits_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_engine_player_traits_structures.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_engine_roles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_engine_spawn_settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_mode_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_performance_throttle_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_player_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\game_ui_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\gameenginesandboxdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\loadout_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\location_name_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\materials_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\multiplayer_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\multiplayer_object_list_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\narrativedefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_model_customization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_rumble.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player_training.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\silent_assist_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\survival_mode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game\variant_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\geometry_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\geometry_definitions_new.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="hs\hs_scenario_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\chud\polyart\polyartbasedefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\chud\polyart\polyartdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\chud\polyart\vectorartdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\components\hud\motionsensorbliplist.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\cui\cui_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\emblem\emblem_library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\hud\hudaudio.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\vector_hud\vector_hud_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\controller_mapping_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\meter_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\stylesheetglobalsdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\user_interface_main_menu_voiceover.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\user_interface_multiplayer_game_settings_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\user_interface_widget_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="interface\userinterfacehudglobalsdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="items\airstrike_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="items\equipment_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="items\grenadeglobalsdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="items\item_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="items\ordnanceglobalsdefinitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="items\projectile_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="items\weapon_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lightmapper\lightmapper_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="materials\material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="materials\material_shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="materials\material_shader_bank.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="materials\material_shader_parameter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="math\color_math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="math\function_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="math\periodic_functions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="models\damage_info_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="models\model_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="models\render_model_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\widgets\antenna_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\widgets\cellular_automata.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\widgets\cellular_automata2d.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\widgets\cloth.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\widgets\fluid_dynamics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\widgets\leaf_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\widgets\muffins.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\widgets\stereo_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\cheap_light_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\collision_damage_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\crate_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\damage_effect_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\damage_reporting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\damage_response_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\hologramlighting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\light_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\midnight_light_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\multiplayer_game_objects_constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\object_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\object_recycling.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\scenery_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="objects\target_tracking.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\boat_engine_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\boat_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\breakable_surface_set_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\breakable_surfaces.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\character_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\collision_bsp_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\collision_bsp_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\collision_kd_hierarchy_static_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\collision_model_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\grounded_friction_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\havok_collision_filter_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\havok_mopp_code_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\havok_vehicle_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\physics_model_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\point_physics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\spring_acceleration_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\walker_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\water_physics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rasterizer\rasterizer_cache_file_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rasterizer\rasterizer_constant_table.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rasterizer\rasterizer_global_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rasterizer\rasterizer_loading_screen_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rasterizer\rasterizer_performance_throttles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rasterizer\rasterizer_shader_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rasterizer\rasterizer_states.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="render\authoredlightprobe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="render\camera_fx_settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="render\render_ssao.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="render\render_water_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="render_methods\mux_generator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="render_methods\render_method_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="render_methods\render_method_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\multiplayer_scenario_description.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_cubemap_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_decorator_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_designer_zones_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_dumplings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_interpolators.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_lightmap_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_load_parameters.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_map_variant_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_named_location_volumes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_object_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_resource_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_zone_debugger_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\scenario_zone_set_streaming_cache.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scenario\wind_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simulation\game_interface\simulation_game_interpolation_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sky_atm\atmosphere_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sky_atm\atmosphere_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sky_atm\planar_fog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\game_audibility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\looping_sound_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\looping_sound_detail_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\looping_sound_track_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\platform_sound_effect_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\sound_acoustics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\sound_cache_file_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\sound_classes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\sound_clusters.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\sound_combiner_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\sound_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\sound_dsp_settings_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\sound_effect_definition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\sound_environment_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\sound_language_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sound\sound_scenery_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\detail_object_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\instance_imposter_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\instanced_geometry_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\leaf_map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\structure_bsp_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\structure_design_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\structure_lighting_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\structure_manifest_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\structure_object_associations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\structure_physics_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\structure_seam_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="structures\structuremetadata.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tag_files\self_tracking\file_self_track.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tag_files\tag_dependency_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tag_files\tag_group_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="text\font_list.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="text\text_group.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="units\custom_apps\custom_app_globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="units\biped_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="units\death_program_selection_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="units\dialogue_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="units\giant_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="units\unit_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="units\unit_trick_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="units\vehicle_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="units\vehicle_engine_definitions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="weather\weather_control.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="weather\weather_definition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld_field_type_override.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="manual_tag_references.h">
+    <ClInclude Include="blofeld\__unknown\tag_references.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="__unknown\tag_references.h">
+    <ClInclude Include="blofeld\ai\ai.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bitmaps\bitmap_group.h">
+    <ClInclude Include="blofeld\ai\ai_cues.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\ai_dialogue_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\ai_flocks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\ai_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\ai_hint_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\ai_mission_dialogue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\ai_orders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\ai_scenario_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\character_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\cs_scenario_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\firing_position_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\formations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\objectives.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\puppeteerdefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\sector_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\squad_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\squad_patrol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\styles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\wave_template_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\ai\zone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\animations\composites\composite_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\animations\pca\pca_animation_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\animations\animation_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\bink\bink_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\bitmaps\bitmap_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\bitmaps\bitmap_group_old_tag_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\bitmaps\bitmap_group_tag_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\bitmaps\bitmap_group_xenon_interop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\bitmaps\bitmap_tag_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\bitmaps\bitmap_tight_bounds_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\bitmaps\bitmap_usage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\bitmaps\color_table_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\cache\cache_file_builder_tag_resource_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\cache\cache_file_tag_package_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\camera\camera_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\camera\camera_obstruction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\camera\camera_track_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\components\selfilluminationdefinition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\creatures\creature_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\cutscene\cinematics_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\cutscene\lightrig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\cutscene\new_cinematic_lighting_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\cutscene\recorded_animation_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\decorators\decorator_tag_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\devices\device_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\editor\editor_scenario_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\camera_shake_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\camo_effect_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\cheap_particle_system_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\decal_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\effect_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\effect_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\effect_scenery_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\effectglobalforces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\jetwash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\lens_flare_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\light_volume_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\lightcones.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\material_effect_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\modeldissolve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\particle_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\particle_emitter_boat_hull_shapes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\particle_emitter_custom_shapes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\particle_model_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\particle_movement_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\particle_property_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\particle_system_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\particleize_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\screen_effect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\shield_impact_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\simulated_input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\tracerdefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\effects\vision_mode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\entities\entitydefinition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\entities\spawnerdefinition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\errors\error_report_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\fx\fx_test_tag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\challenges\challenge_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\incidents\incident_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\incidents\incident_response_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\megalogamengine\megalogamengine_effect_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\megalogamengine\megalogamengine_sound_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\megalogamengine\megalogamengine_string_id_table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rewards\game_completion_rewards_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rewards\player_achievements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rewards\player_avatar_awards.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rewards\player_commendation_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rewards\player_cookie_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rewards\player_cookie_purchase_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rewards\player_grade_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rewards\player_medals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rewards\playermedalaggregators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rewards\playerrewarddefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rewards\prerequisites_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\progression\playerenlistmentdefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\progression\progression_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\armormod_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\campaign_metagame_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\firefight_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_active_camo_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_controller_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_coop_spawning_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_damage_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_difficulty_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_engine_communication_sound_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_engine_event_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_engine_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_engine_multiplayer_sounds.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_engine_player_traits_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_engine_player_traits_structures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_engine_roles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_engine_spawn_settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_mode_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_performance_throttle_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_player_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\game_ui_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\gameenginesandboxdefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\loadout_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\location_name_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\materials_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\multiplayer_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\multiplayer_object_list_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\narrativedefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_model_customization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_rumble.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\player_training.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\silent_assist_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\survival_mode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\game\variant_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\geometry\geometry_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\geometry\geometry_definitions_new.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\hs\hs_scenario_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\chud\polyart\polyartbasedefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\chud\polyart\polyartdefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\chud\polyart\vectorartdefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\components\hud\motionsensorbliplist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\cui\cui_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\emblem\emblem_library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\hud\hudaudio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\vector_hud\vector_hud_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\controller_mapping_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\meter_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\stylesheetglobalsdefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\user_interface_main_menu_voiceover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\user_interface_multiplayer_game_settings_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\user_interface_widget_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\interface\userinterfacehudglobalsdefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\items\airstrike_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\items\equipment_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\items\grenadeglobalsdefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\items\item_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\items\ordnanceglobalsdefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\items\projectile_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\items\weapon_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\lightmapper\lightmapper_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\materials\material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\materials\material_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\materials\material_shader_bank.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\materials\material_shader_parameter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\math\color_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\math\function_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\math\periodic_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\models\damage_info_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\models\model_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\models\render_model_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\widgets\antenna_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\widgets\cellular_automata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\widgets\cellular_automata2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\widgets\cloth.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\widgets\fluid_dynamics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\widgets\leaf_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\widgets\muffins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\widgets\stereo_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\cheap_light_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\collision_damage_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\crate_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\damage_effect_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\damage_reporting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\damage_response_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\hologramlighting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\light_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\midnight_light_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\multiplayer_game_objects_constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\object_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\object_recycling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\scenery_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\objects\target_tracking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\boat_engine_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\boat_physics_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\breakable_surface_set_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\breakable_surfaces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\character_physics_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\collision_bsp_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\collision_bsp_physics_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\collision_kd_hierarchy_static_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\collision_model_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\grounded_friction_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\havok_collision_filter_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\havok_mopp_code_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\havok_vehicle_physics_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\physics_model_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\point_physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\spring_acceleration_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\walker_physics_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\physics\water_physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\rasterizer\rasterizer_cache_file_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\rasterizer\rasterizer_constant_table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\rasterizer\rasterizer_global_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\rasterizer\rasterizer_loading_screen_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\rasterizer\rasterizer_performance_throttles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\rasterizer\rasterizer_shader_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\rasterizer\rasterizer_states.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\render\authoredlightprobe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\render\camera_fx_settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\render\render_ssao.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\render\render_water_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\render_methods\mux_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\render_methods\render_method_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\render_methods\render_method_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\multiplayer_scenario_description.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_cubemap_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_decorator_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_designer_zones_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_dumplings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_interpolators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_lightmap_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_load_parameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_map_variant_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_named_location_volumes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_object_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_resource_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_zone_debugger_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\scenario_zone_set_streaming_cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\scenario\wind_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\simulation\game_interface\simulation_game_interpolation_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sky_atm\atmosphere_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sky_atm\atmosphere_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sky_atm\planar_fog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\game_audibility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\looping_sound_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\looping_sound_detail_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\looping_sound_track_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\platform_sound_effect_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\sound_acoustics_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\sound_cache_file_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\sound_classes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\sound_clusters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\sound_combiner_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\sound_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\sound_dsp_settings_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\sound_effect_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\sound_environment_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\sound_language_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\sound\sound_scenery_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\detail_object_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\instance_imposter_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\instanced_geometry_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\leaf_map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\structure_bsp_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\structure_design_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\structure_lighting_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\structure_manifest_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\structure_object_associations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\structure_physics_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\structure_seam_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\structures\structuremetadata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\tag_files\self_tracking\file_self_track.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\tag_files\tag_dependency_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\tag_files\tag_group_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\text\font_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\text\text_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\units\custom_apps\custom_app_globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\units\biped_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\units\death_program_selection_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\units\dialogue_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\units\giant_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\units\unit_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\units\unit_trick_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\units\vehicle_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\units\vehicle_engine_definitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\weather\weather_control.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\weather\weather_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\halo4_validation_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\manual_tag_references.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\tag_groups.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\validation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="sound\looping_sound_definition.inl">
+    <None Include="blofeld\sound\looping_sound_definition.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="sound\looping_sound_detail_definition.inl">
+    <None Include="blofeld\sound\looping_sound_detail_definition.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="sound\looping_sound_track_definition.inl">
+    <None Include="blofeld\sound\looping_sound_track_definition.inl">
       <Filter>Header Files</Filter>
     </None>
   </ItemGroup>
