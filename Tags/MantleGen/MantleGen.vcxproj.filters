@@ -600,6 +600,12 @@
     <ClInclude Include="BlamlibGen\reflection_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="reflection_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="legacy_reflection_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mantlegen-private-pch.cpp">

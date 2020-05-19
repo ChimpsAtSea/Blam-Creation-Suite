@@ -56,15 +56,15 @@ inline qword get_page_offset(qword virtual_base_address, dword address)
 
 void c_cache_file::save_map()
 {
-	FILE* filepath = _wfopen(m_mafilepathPath.c_str(), L"wb");
-	if (filepath)
+	FILE* file = _wfopen(m_mafilepathPath.c_str(), L"wb");
+	if (file != nullptr)
 	{
 		size_t mapSize = m_rVirtualMemoryContainer.GetSize();
 		char* pMapData = m_rVirtualMemoryContainer.GetData();
 
-		fwrite(pMapData, 1, mapSize, filepath);
-		fflush(filepath);
-		fclose(filepath);
+		fwrite(pMapData, 1, mapSize, file);
+		fflush(file);
+		fclose(file);
 	}
 	else MessageBoxA(c_window_win32::get_window_handle(), "Failed to save map", "File error failed to open for write", 0);
 }

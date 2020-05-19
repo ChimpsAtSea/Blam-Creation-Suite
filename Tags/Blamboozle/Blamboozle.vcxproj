@@ -169,7 +169,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />
+    <ResourceCompile Include="$(SolutionDir)\Framework\Platform\!Resources\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blamboozle-private-pch.h" />

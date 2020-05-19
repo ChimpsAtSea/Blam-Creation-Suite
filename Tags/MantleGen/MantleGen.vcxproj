@@ -211,9 +211,11 @@
     <ClInclude Include="LegacyGen\TagTypes\uniclist_legacy.h" />
     <ClInclude Include="LegacyGen\tag_groups_legacy.h" />
     <ClInclude Include="LegacyGen\virtual_tag_interfaces_legacy.h" />
+    <ClInclude Include="legacy_reflection_types.h" />
     <ClInclude Include="mantlegen-private-pch.h" />
     <ClInclude Include="mantlegen-public-pch.h" />
     <ClInclude Include="BlamlibGen\reflection_data.h" />
+    <ClInclude Include="reflection_types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BlamlibGen\blamlib_reflection_gen.cpp">

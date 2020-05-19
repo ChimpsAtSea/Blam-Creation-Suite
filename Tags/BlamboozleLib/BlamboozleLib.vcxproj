@@ -210,9 +210,6 @@
     <ClInclude Include="halo5\halo5_forge.h" />
     <ClInclude Include="halo4\source_tree.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

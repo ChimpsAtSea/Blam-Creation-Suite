@@ -38,7 +38,7 @@ c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
 
 			// #TODO: Group interface
 			{
-				uint64_t groupIDBuffer = bswap(cache_file_tag_group->group_tags[0]);
+				uint64_t groupIDBuffer = _byteswap_ulong(cache_file_tag_group->group_tags[0]);
 				const char* pGroupIDBufferStr = reinterpret_cast<const char*>(&groupIDBuffer);
 
 				tag_group_short_name = pGroupIDBufferStr;

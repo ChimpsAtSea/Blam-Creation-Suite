@@ -164,7 +164,7 @@ bool filesystem_directory_exists(const wchar_t* directorypath)
 
 // ------------- LEGACY -----------------
 
-void FileSystemReadToBufferImpl(FILE* filepathHandle, char* buffer, size_t readLength)
+void FileSystemReadToBufferImpl(FILE* fileHandle, char* buffer, size_t readLength)
 {
 	uint32_t iterations = 0;
 	for (size_t currentPosition = 0; currentPosition < readLength; iterations++)
@@ -179,7 +179,7 @@ void FileSystemReadToBufferImpl(FILE* filepathHandle, char* buffer, size_t readL
 
 char* FileSystemReadToMemory(const wchar_t* filepathPath, size_t* pAllocatedSize)
 {
-	FILE* filepathHandle = _wfopen(filepathPath, L"rb");
+	FILE* fileHandle = _wfopen(filepathPath, L"rb");
 	if (filepathHandle == nullptr)
 	{
 		return nullptr;
@@ -206,7 +206,7 @@ char* FileSystemReadToMemory(const wchar_t* filepathPath, size_t* pAllocatedSize
 
 size_t FileSystemGetFileSize(const wchar_t* filepathPath)
 {
-	FILE* filepathHandle = _wfopen(filepathPath, L"rb");
+	FILE* fileHandle = _wfopen(filepathPath, L"rb");
 	if (filepathHandle == nullptr)
 	{
 		return 0;
@@ -225,7 +225,7 @@ size_t FileSystemGetFileSize(const wchar_t* filepathPath)
 
 char* FileSystemReadToMemory2(const wchar_t* filepathPath, char* buffer, size_t* pAllocatedSize)
 {
-	FILE* filepathHandle = _wfopen(filepathPath, L"rb");
+	FILE* fileHandle = _wfopen(filepathPath, L"rb");
 	if (filepathHandle == nullptr)
 	{
 		return nullptr;

@@ -1,3 +1,4 @@
 #pragma once
 
-#include "mantlegen-public-pch.h"
+#include "reflection_types.h"
+#include "legacy_reflection_types.h"

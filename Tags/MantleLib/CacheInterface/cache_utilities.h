@@ -4,6 +4,7 @@ template<typename T>
 class v_tag_interface_legacy;
 
 class c_virtual_tag_interface;
+class c_tag_interface;
 
 #ifdef __INTELLISENSE__
 

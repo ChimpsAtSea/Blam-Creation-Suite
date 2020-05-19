@@ -1,5 +1,8 @@
 #pragma once
 
+struct s_reflection_structure_type_legacy;
+struct s_reflection_enum_type_legacy;
+
 template<typename T>
 const s_reflection_structure_type_legacy& reflection_structure_legacy();
 

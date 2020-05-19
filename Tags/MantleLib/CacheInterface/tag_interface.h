@@ -2,6 +2,7 @@
 
 class c_mantle_cache_file_gui_tab;
 class c_legacy_tag_group_interface;
+struct s_reflection_structure;
 
 class c_tag_interface
 {

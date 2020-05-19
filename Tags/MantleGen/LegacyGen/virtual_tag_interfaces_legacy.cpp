@@ -1,5 +1,7 @@
 #ifndef __visual_assist__
 #include <MantleLib/mantlelib-private-pch.h>
+#include <MantleGen/reflection_types.h>
+#include <MantleGen/legacy_reflection_types.h>
 
 c_tag_interface* v_light_volume_system_definition_legacy_ctor(c_cache_file& cache_file, uint16_t tag_index)
 {

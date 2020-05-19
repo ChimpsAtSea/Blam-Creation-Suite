@@ -4,8 +4,13 @@
 #include <Shared/shared-public-pch.h>
 #include <blamlib.h>
 #include <TagDefinitions/tagdefinitions-public-pch.h>
+
+#include <MantleGen/reflection_types.h>
+#include <MantleGen/legacy_reflection_types.h>
+
 #include "mantlelib-public-pch.h"
 #include "VirtualMemoryContainer.h"
+
 
 inline ImGuiDataType primitive_type_to_imgui_data_type(e_legacy_primitive_type primitive_type)
 {

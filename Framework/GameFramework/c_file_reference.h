@@ -3,7 +3,7 @@
 struct c_file_reference
 {
 	LPCSTR filepath;
-	FILE* filepath;
+	FILE* file;
 	char* buffer;
 	size_t buffer_size;
 
