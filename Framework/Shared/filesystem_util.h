@@ -23,10 +23,10 @@ bool read_file_to_memory(const wchar_t* filepath, T** buffer, size_t* buffer_siz
 
 // ------------- LEGACY -----------------
 
-char* FileSystemReadToMemory2(const wchar_t* pFilePath, char* buffer, size_t* pAllocatedSize);
-size_t FileSystemGetFileSize(const wchar_t* pFilePath);
-char* FileSystemReadToBuffer(const wchar_t* pFilePath, char* buffer, size_t buffer_size);
-char* FileSystemReadToMemory(const wchar_t* pFilePath, size_t* pAllocatedSize = nullptr);
+char* FileSystemReadToMemory2(const wchar_t* filepathPath, char* buffer, size_t* pAllocatedSize);
+size_t FileSystemGetFileSize(const wchar_t* filepathPath);
+char* FileSystemReadToBuffer(const wchar_t* filepathPath, char* buffer, size_t buffer_size);
+char* FileSystemReadToMemory(const wchar_t* filepathPath, size_t* pAllocatedSize = nullptr);
 
 const char* GetUserprofileVariable();
 bool DirectoryExists(const wchar_t* szPath);

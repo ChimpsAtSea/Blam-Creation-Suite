@@ -20,103 +20,32 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!Resources\resource.h" />
-    <ClInclude Include="AtomicLock.h" />
-    <ClInclude Include="Blam\blamlib-public-pch.h" />
-    <ClInclude Include="Blam\legacy\basic_buffer.h" />
-    <ClInclude Include="Blam\Blam.h" />
-    <ClInclude Include="Blam\legacy\blamfile_chunk_type.h" />
-    <ClInclude Include="Blam\legacy\blamfile_header.h" />
-    <ClInclude Include="Blam\legacy\blamfile_level_chunk.h" />
-    <ClInclude Include="Blam\legacy\blamfile_level_chunk_flags.h" />
-    <ClInclude Include="Blam\legacy\cache_file_header.h" />
-    <ClInclude Include="Blam\legacy\cache_file_magic.h" />
-    <ClInclude Include="Blam\legacy\cache_file_section.h" />
-    <ClInclude Include="Blam\legacy\cache_file_section_file_bounds.h" />
-    <ClInclude Include="Blam\legacy\cache_file_tags_header.h" />
-    <ClInclude Include="Blam\legacy\cache_file_tag_group.h" />
-    <ClInclude Include="Blam\legacy\cache_file_tag_instance.h" />
-    <ClInclude Include="Blam\legacy\campaign_difficulty_level.h" />
-    <ClInclude Include="Blam\legacy\campaign_metagame_bucket_type.h" />
-    <ClInclude Include="Blam\legacy\damage_reporting_type.h" />
-    <ClInclude Include="Blam\mcc_game_mode.h" />
-    <ClInclude Include="Blam\legacy\life_cycle_join_result.h" />
-    <ClInclude Include="Blam\legacy\map_id.h" />
-    <ClInclude Include="Blam\legacy\network_message_type.h" />
-    <ClInclude Include="Blam\legacy\network_session_class.h" />
-    <ClInclude Include="Blam\legacy\network_session_parameter_type.h" />
-    <ClInclude Include="Blam\legacy\network_session_peer_state.h" />
-    <ClInclude Include="Blam\legacy\observer_camera.h" />
-    <ClInclude Include="Blam\mcc_skull.h" />
-    <ClInclude Include="debug_util.h" />
-    <ClInclude Include="high_precision_timer.h" />
-    <ClInclude Include="ImGuiAddons\imgui_memory_editor.h" />
-    <ClInclude Include="Rendering\directx_helpers.h" />
-    <ClInclude Include="Rendering\dds.h" />
-    <ClInclude Include="shared-types-pch.h" />
-    <ClInclude Include="string_helpers.h" />
-    <ClInclude Include="ThreadPrimitives\atomic_temp_value.h" />
-    <ClInclude Include="ThreadPrimitives\semaphore.h" />
-    <ClInclude Include="ThreadPrimitives\atomic_flip_value.h" />
-    <ClInclude Include="DebugLogging.h" />
-    <ClInclude Include="filesystem_util.h" />
-    <ClInclude Include="hexrays_defs.h" />
-    <ClInclude Include="ImGuiAddons\dirent\dirent.h" />
-    <ClInclude Include="ImGuiAddons\!imgui_addons.h" />
-    <ClInclude Include="ImGuiAddons\imgui_file_browser.h" />
-    <ClInclude Include="ImGuiAddons\imgui_text_editor.h" />
-    <ClInclude Include="Runtime.h" />
-    <ClInclude Include="Rendering\box_primitive.h" />
-    <ClInclude Include="Rendering\BoxRenderer.h" />
-    <ClInclude Include="Rendering\debug_gui.h" />
-    <ClInclude Include="Rendering\primitive_render_manager.h" />
-    <ClInclude Include="Rendering\render.h" />
-    <ClInclude Include="Rendering\Rendering.h" />
     <ClInclude Include="!Resources\resources_manager.h" />
-    <ClInclude Include="shared-private-pch.h" />
-    <ClInclude Include="shared-public-pch.h" />
-    <ClInclude Include="shared-system-pch.h" />
-    <ClInclude Include="shared-tbb-pch.h" />
-    <ClInclude Include="StringUtilities.h" />
-    <ClInclude Include="ThreadPrimitives\ThreadPrimitives.h" />
-    <ClInclude Include="ThreadSafeQueue.h" />
-    <ClInclude Include="ThreadPrimitives\thread_subroutine.h" />
-    <ClInclude Include="xxhash_cx.h" />
+    <ClInclude Include="error_handling.h" />
+    <ClInclude Include="intrinsics.h" />
+    <ClInclude Include="language_runtime.h" />
+    <ClInclude Include="macro_utils.h" />
+    <ClInclude Include="platform-private-pch.h" />
+    <ClInclude Include="platform-public-pch.h" />
+    <ClInclude Include="platform_types.h" />
+    <ClInclude Include="threading.h" />
+    <ClInclude Include="Windows\command_line.h" />
+    <ClInclude Include="Windows\console.h" />
+    <ClInclude Include="Windows\window_win32.h" />
+    <ClInclude Include="windows_api.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DebugLogging.cpp" />
-    <ClCompile Include="debug_util.cpp" />
-    <ClCompile Include="Rendering\directx_helpers.cpp" />
-    <ClCompile Include="string_helpers.cpp" />
-    <ClCompile Include="ThreadPrimitives\semaphore.cpp" />
-    <ClCompile Include="ThreadPrimitives\atomic_flip_value.cpp" />
-    <ClCompile Include="filesystem_util.cpp" />
-    <ClCompile Include="ImGuiAddons\imgui_file_browser.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ImGuiAddons\imgui_text_editor.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="Runtime.cpp" />
-    <ClCompile Include="Rendering\box_primitive.cpp" />
-    <ClCompile Include="Rendering\BoxRenderer.cpp" />
-    <ClCompile Include="Rendering\debug_gui.cpp" />
-    <ClCompile Include="Rendering\primitive_render_manager.cpp" />
-    <ClCompile Include="Rendering\render.cpp" />
     <ClCompile Include="!Resources\resources_manager.cpp" />
-    <ClCompile Include="shared-private-pch.cpp">
+    <ClCompile Include="error_handling.cpp" />
+    <ClCompile Include="platform-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="StringUtilities.cpp" />
-    <ClCompile Include="ThreadPrimitives\thread_subroutine.cpp" />
+    <ClCompile Include="Windows\command_line.cpp" />
+    <ClCompile Include="Windows\console.cpp" />
+    <ClCompile Include="Windows\window_win32.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="!Resources\Resource.rc" />
@@ -146,7 +75,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{994A9382-A035-4981-9A50-69BBB6059F3E}</ProjectGuid>
+    <ProjectGuid>{EC423DE6-76A4-42B0-AC97-D6D758EB7182}</ProjectGuid>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -196,25 +125,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
@@ -227,7 +156,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>shared-private-pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>platform-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -248,7 +177,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>shared-private-pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>platform-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -271,7 +200,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>shared-private-pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>platform-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -293,7 +222,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>shared-private-pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>platform-private-pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

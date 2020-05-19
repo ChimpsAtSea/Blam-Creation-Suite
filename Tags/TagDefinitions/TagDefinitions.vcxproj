@@ -19,12 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="blofeld-private-pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="blofeld.cpp" />
     <ClCompile Include="blofeld\ai\ai.cpp" />
     <ClCompile Include="blofeld\ai\ai_cues.cpp" />
@@ -316,10 +310,10 @@
     <ClCompile Include="blofeld\weather\weather_control.cpp" />
     <ClCompile Include="blofeld\weather\weather_definition.cpp" />
     <ClCompile Include="blofeld\__unknown\tag_references.cpp" />
+    <ClCompile Include="tagdefinitions-private-pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tagdefinitions-private-pch.h" />
-    <ClInclude Include="blofeld-public-pch.h" />
     <ClInclude Include="blofeld.h" />
     <ClInclude Include="blofeld\ai\ai.h" />
     <ClInclude Include="blofeld\ai\ai_cues.h" />
@@ -615,6 +609,7 @@
     <ClInclude Include="blofeld\weather\weather_definition.h" />
     <ClInclude Include="blofeld\__unknown\tag_references.h" />
     <ClInclude Include="blofeld_field_type_override.h" />
+    <ClInclude Include="tagdefinitions-public-pch.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="blofeld\sound\looping_sound_definition.inl" />

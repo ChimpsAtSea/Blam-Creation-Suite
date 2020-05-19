@@ -1,6 +1,6 @@
 #pragma once
 
-class c_window
+class c_window_win32
 {
 public:
 

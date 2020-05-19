@@ -11,8 +11,8 @@ c_map_info_manager::c_map_info_manager(const char* directory_path)
 			const std::filesystem::path& rFilepath = rDirectoryEntry.path();
 			if (rFilepath.has_extension())
 			{
-				std::wstring pFileExtension = rFilepath.extension();
-				if (_wcsicmp(pFileExtension.c_str(), L".mapinfo") == 0)
+				std::wstring filepathExtension = rFilepath.extension();
+				if (_wcsicmp(filepathExtension.c_str(), L".mapinfo") == 0)
 				{
 					parse_map_info(rFilepath);
 				}

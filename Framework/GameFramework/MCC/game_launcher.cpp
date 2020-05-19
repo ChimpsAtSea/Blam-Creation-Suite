@@ -153,11 +153,11 @@ void c_game_launcher::init_game_launcher()
 #ifdef _WIN64
 	c_halo_reach_game_option_selection_legacy::Init();
 #endif
-	c_window::register_window_procedure_callback(window_procedure_callback);
+	c_window_win32::register_window_procedure_callback(window_procedure_callback);
 	c_debug_gui::register_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::register_callback(_callback_mode_toggleable, render_ui);
 
-	c_window::register_destroy_callback(window_destroy_callback);
+	c_window_win32::register_destroy_callback(window_destroy_callback);
 
 	if (!has_auto_started)
 	{
@@ -171,10 +171,10 @@ void c_game_launcher::init_game_launcher()
 
 void c_game_launcher::deinit_game_launcher()
 {
-	c_window::unregister_destroy_callback(window_destroy_callback);
+	c_window_win32::unregister_destroy_callback(window_destroy_callback);
 	c_debug_gui::unregister_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::unregister_callback(_callback_mode_toggleable, render_ui);
-	c_window::unregister_window_procedure_callback(window_procedure_callback);
+	c_window_win32::unregister_window_procedure_callback(window_procedure_callback);
 #ifdef _WIN64
 	c_halo_reach_game_option_selection_legacy::deinit();
 #endif
@@ -220,7 +220,7 @@ void c_game_launcher::opus_tick()
 			ImGuiWindowFlags_NoDecoration |
 			ImGuiWindowFlags_NoInputs;
 		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(c_window::get_width()), static_cast<float>(c_window::get_height())), ImGuiCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(c_window_win32::get_width()), static_cast<float>(c_window_win32::get_height())), ImGuiCond_Always);
 		if (ImGui::Begin("##debug", NULL, k_debug_window_flags)) // render inside of the dummy imgui window for on screen text display
 		{
 			game_render();
@@ -240,7 +240,7 @@ void c_game_launcher::update()
 	if (s_is_game_running)
 	{
 		// need some place to update the launcher, might as well do it here for now
-		c_window::update_no_callbacks();
+		c_window_win32::update_no_callbacks();
 	}
 	else
 	{
@@ -383,7 +383,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 
 				{
 					// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mantle
-					const char *map_file_name = selected_map_info->GetMapFileName();
+					const char *map_file_name = selected_map_info->GetMafilepath();
 					write_line_verbose("Loading map '%s.map'", map_file_name);
 					{
 						wchar_t map_filepath[MAX_PATH + 1] = {};
@@ -467,7 +467,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	game_engine->InitGraphics(c_render::s_pDevice, c_render::s_pDeviceContext, c_render::s_swap_chain, c_render::s_swap_chain);
 	game_main_thread = game_engine->InitThread(game_engine_host, game_context);
 
-	c_window::set_post_message_thread_id(game_main_thread);
+	c_window_win32::set_post_message_thread_id(game_main_thread);
 
 	// #TODO: Absolutely terrible thread sync here
 	{
@@ -548,7 +548,7 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 	}
 	if (!module_handle)
 	{
-		MessageBox(c_window::get_window_handle(), library_name, "failed to load library", MB_ICONERROR);
+		MessageBox(c_window_win32::get_window_handle(), library_name, "failed to load library", MB_ICONERROR);
 	}
 	ASSERT(module_handle != NULL);
 }
@@ -558,7 +558,7 @@ void c_game_launcher::render_main_menu()
 	if (s_is_game_running) return;
 	c_mouse_input::set_mode(_mouse_mode_ui);
 
-	ImVec2 global_window_size = ImVec2(static_cast<float>(c_window::get_width()), static_cast<float>(c_window::get_height()));
+	ImVec2 global_window_size = ImVec2(static_cast<float>(c_window_win32::get_width()), static_cast<float>(c_window_win32::get_height()));
 	ImVec2 imgui_window_size = ImVec2(global_window_size.x * 0.75f, global_window_size.y * 0.75f);
 	ImVec2 imgui_window_offset = ImVec2((global_window_size.x - imgui_window_size.x) / 2.0f, (global_window_size.y - imgui_window_size.y) / 2.0f);
 	ImGui::SetNextWindowSize(imgui_window_size, ImGuiCond_Always);
@@ -573,7 +573,7 @@ void c_game_launcher::render_main_menu()
 	if (ImGui::Begin("Main Menu", nullptr, window_flags))
 	{
 		ImGui::Columns(2);
-		ImGui::SetColumnOffset(1, c_window::get_width() * 0.5f);
+		ImGui::SetColumnOffset(1, c_window_win32::get_width() * 0.5f);
 
 		const char* current_engine_name = engine_type_to_nice_name(g_engine_type);
 		if (ImGui::BeginCombo("Game", current_engine_name))
@@ -718,7 +718,7 @@ void c_game_launcher::render_pause_menu()
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
-	ImVec2 global_window_size = ImVec2(static_cast<float>(c_window::get_width()), static_cast<float>(c_window::get_height()));
+	ImVec2 global_window_size = ImVec2(static_cast<float>(c_window_win32::get_width()), static_cast<float>(c_window_win32::get_height()));
 	ImVec2 imgui_window_size = ImVec2(global_window_size.x * 0.75f, global_window_size.y * 0.75f);
 	ImVec2 imgui_window_offset = ImVec2((global_window_size.x - imgui_window_size.x) / 2.0f, (global_window_size.y - imgui_window_size.y) / 2.0f);
 	ImGui::SetNextWindowSize(imgui_window_size, ImGuiCond_Always);

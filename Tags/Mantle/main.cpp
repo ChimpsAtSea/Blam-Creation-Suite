@@ -71,13 +71,13 @@ static void init_mantle(const wchar_t* command_line)
 	const wchar_t* launch_filepath_command_line_argument = get_launch_filepath_command_line_argument(command_line);
 	
 	c_console::init_console();
-	c_window::init_window("Mantle", "Mantle Console", "mantle");
+	c_window_win32::init_window("Mantle", "Mantle Console", "mantle");
 	c_render::init_render(NULL, true);
 	c_mantle_gui::init_mantle_gui(false, launch_filepath_command_line_argument);
 
 	c_debug_gui::register_callback(_callback_mode_always_run, application_ui_callback);
-	c_window::register_update_callback(application_update_callback);
-	c_window::register_destroy_callback(application_close_callback);
+	c_window_win32::register_update_callback(application_update_callback);
+	c_window_win32::register_destroy_callback(application_close_callback);
 	c_mantle_gui::register_on_close_callback(application_close_callback);
 
 	c_debug_gui::show_ui();
@@ -88,7 +88,7 @@ static int run_mantle()
 {
 	while (g_mantle_running)
 	{
-		c_window::update_window();
+		c_window_win32::update_window();
 	}
 	return 0;
 }
@@ -96,13 +96,13 @@ static int run_mantle()
 static void deinit_mantle()
 {
 	c_mantle_gui::unregister_on_close_callback(application_close_callback);
-	c_window::unregister_destroy_callback(application_close_callback);
-	c_window::unregister_update_callback(application_update_callback);
+	c_window_win32::unregister_destroy_callback(application_close_callback);
+	c_window_win32::unregister_update_callback(application_update_callback);
 	c_debug_gui::unregister_callback(_callback_mode_always_run, application_ui_callback);
 
 	c_mantle_gui::deinit_mantle_gui();
 	c_render::deinit_render();
-	c_window::deinit_window();
+	c_window_win32::deinit_window();
 	c_console::deinit_console();
 }
 

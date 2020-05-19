@@ -10,7 +10,7 @@ public:
 	friend class c_tag_interface;
 	friend class c_legacy_tag_group_interface;
 
-	c_cache_file(const std::wstring& mapFilePath);
+	c_cache_file(const std::wstring& mafilepathPath);
 	~c_cache_file();
 
 	void save_map();
@@ -114,10 +114,10 @@ public:
 		return get_data_reference_data_internal(data_reference);
 	}
 
-	inline const wchar_t* GetFilePath() const { return m_mapFilePath.c_str(); }
-	inline const wchar_t* GetFileName() const { return m_mapFileName.c_str(); }
-	inline const char* GetFilePathChar() const { return m_mapFilePathChar.c_str(); }
-	inline const char* GetFileNameChar() const { return m_mapFileNameChar.c_str(); }
+	inline const wchar_t* GetFilePath() const { return m_mafilepathPath.c_str(); }
+	inline const wchar_t* GetFileName() const { return m_mafilepath.c_str(); }
+	inline const char* GetFilePathChar() const { return m_mafilepathPathChar.c_str(); }
+	inline const char* GetFileNameChar() const { return m_mafilepathChar.c_str(); }
 
 	inline const char* get_string_id_by_raw_index(uint32_t index)
 	{
@@ -161,7 +161,7 @@ public:
 		return data_reference_data_pointer;
 	}
 
-	void loadMap(const std::wstring& mapFilePath);
+	void loadMap(const std::wstring& mafilepathPath);
 
 	/* initialize each group instance */
 	void initGroupInstances();
@@ -169,10 +169,10 @@ public:
 	void initTagInstances();
 	void initSortedInstanceLists();
 	volatile bool m_isMapLoading;
-	std::wstring m_mapFilePath;
-	std::wstring m_mapFileName;
-	std::string m_mapFilePathChar;
-	std::string m_mapFileNameChar;
+	std::wstring m_mafilepathPath;
+	std::wstring m_mafilepath;
+	std::string m_mafilepathPathChar;
+	std::string m_mafilepathChar;
 	VirtualMemoryContainer& m_rVirtualMemoryContainer;
 
 	// raw data

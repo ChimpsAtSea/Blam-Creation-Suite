@@ -1,4 +1,4 @@
-#include "shared-private-pch.h"
+#include "platform-private-pch.h"
 
 std::map<std::string, c_console_command*> c_console::Commands;
 std::vector<std::vector<std::string>> c_console::PrevCommands;
@@ -11,8 +11,7 @@ void* c_console::ConsoleHandle;
 bool c_console::s_consoleAllocated;
 
 const char* Credits[] = {
-	"Squaresome",
-	"Twister",
+	"Assault on the Control Room"
 };
 
 void c_console::Update()

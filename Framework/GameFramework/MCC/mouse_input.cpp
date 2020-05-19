@@ -112,7 +112,7 @@ void c_mouse_input::set_clip_mode(e_mouse_mode mode)
 {
 	if (mode == _mouse_mode_exclusive)
 	{
-		HWND window_handle = c_window::get_window_handle();
+		HWND window_handle = c_window_win32::get_window_handle();
 		RECT window_rectangle = {};
 		GetClientRect(window_handle, &window_rectangle);
 		POINT upper_left;

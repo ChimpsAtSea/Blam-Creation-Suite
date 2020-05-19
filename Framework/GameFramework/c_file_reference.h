@@ -2,8 +2,8 @@
 
 struct c_file_reference
 {
-	LPCSTR pFileName;
-	FILE* pFile;
+	LPCSTR filepath;
+	FILE* filepath;
 	char* buffer;
 	size_t buffer_size;
 
@@ -16,7 +16,7 @@ struct c_file_reference
 	template<typename T>
 	void read_type(T* value, long offset = 0)
 	{
-		ASSERT(pFile != nullptr);
+		ASSERT(filepath != nullptr);
 		*value = *(T*)&buffer[offset];
 	}
 

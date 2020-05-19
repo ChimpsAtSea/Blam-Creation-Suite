@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="blofeld-private-pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="blofeld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -891,14 +888,11 @@
     <ClCompile Include="blofeld\validation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tagdefinitions-private-pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="blofeld-private-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="blofeld-public-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="blofeld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1782,6 +1776,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="blofeld\validation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tagdefinitions-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tagdefinitions-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

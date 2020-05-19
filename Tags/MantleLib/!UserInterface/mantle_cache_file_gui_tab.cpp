@@ -545,8 +545,8 @@ void c_mantle_cache_file_gui_tab::render_file_dialogue_gui()
 {
 	if (debug_file_dialogue_gui)
 	{
-		float file_browser_window_width = std::clamp(c_window::get_width_float(), 700.0f, 1200.0f);
-		float file_browser_window_height = std::clamp(c_window::get_height_float(), 310.0f, 675.0f);
+		float file_browser_window_width = std::clamp(c_window_win32::get_width_float(), 700.0f, 1200.0f);
+		float file_browser_window_height = std::clamp(c_window_win32::get_height_float(), 310.0f, 675.0f);
 		if (file_browser.show_save_file_dialog("Save File", ImVec2(file_browser_window_width, file_browser_window_height), ".txt", "debug.txt"))
 		{
 			const char* filename = file_browser.get_selected_file_name();

@@ -2,15 +2,15 @@
 
 #pragma optimize("", off)
 
-c_cache_file::c_cache_file(const std::wstring& mapFilePath)
+c_cache_file::c_cache_file(const std::wstring& mafilepathPath)
 	: m_rVirtualMemoryContainer(*new VirtualMemoryContainer(1024 * 1024 * 1024))
 	//m_pMapData(nullptr)
 	//, m_mapDataLength(0)
 	, m_isMapLoading(false)
-	, m_mapFilePath(mapFilePath)
+	, m_mafilepathPath(mafilepathPath)
 	, string_id_guesstimator(nullptr)
 {
-	loadMap(mapFilePath);
+	loadMap(mafilepathPath);
 
 	//// #TODO: Version detection
 	//if (true)
@@ -27,17 +27,17 @@ c_cache_file::c_cache_file(const std::wstring& mapFilePath)
 
 
 
-	m_mapFileName = PathFindFileNameW(m_mapFilePath.c_str());
+	m_mafilepath = PathFindFileNameW(m_mafilepathPath.c_str());
 
 	char buffer[MAX_PATH + 1];
 
-	snprintf(buffer, MAX_PATH, "%S", m_mapFileName.c_str());
+	snprintf(buffer, MAX_PATH, "%S", m_mafilepath.c_str());
 	buffer[MAX_PATH] = 0;
-	m_mapFileNameChar = buffer;
+	m_mafilepathChar = buffer;
 
-	snprintf(buffer, MAX_PATH, "%S", m_mapFilePath.c_str());
+	snprintf(buffer, MAX_PATH, "%S", m_mafilepathPath.c_str());
 	buffer[MAX_PATH] = 0;
-	m_mapFilePathChar = buffer;
+	m_mafilepathPathChar = buffer;
 
 }
 
@@ -56,29 +56,29 @@ inline qword get_page_offset(qword virtual_base_address, dword address)
 
 void c_cache_file::save_map()
 {
-	FILE* pFile = _wfopen(m_mapFilePath.c_str(), L"wb");
-	if (pFile)
+	FILE* filepath = _wfopen(m_mafilepathPath.c_str(), L"wb");
+	if (filepath)
 	{
 		size_t mapSize = m_rVirtualMemoryContainer.GetSize();
 		char* pMapData = m_rVirtualMemoryContainer.GetData();
 
-		fwrite(pMapData, 1, mapSize, pFile);
-		fflush(pFile);
-		fclose(pFile);
+		fwrite(pMapData, 1, mapSize, filepath);
+		fflush(filepath);
+		fclose(filepath);
 	}
-	else MessageBoxA(c_window::get_window_handle(), "Failed to save map", "File error failed to open for write", 0);
+	else MessageBoxA(c_window_win32::get_window_handle(), "Failed to save map", "File error failed to open for write", 0);
 }
 
-void c_cache_file::loadMap(const std::wstring& mapFilePath)
+void c_cache_file::loadMap(const std::wstring& mafilepathPath)
 {
 	m_isMapLoading = true;
 
 	tbb::task::enqueue(*lambda_task([=]() {
 
 		char* pMapVirtualData = m_rVirtualMemoryContainer.GetData();
-		size_t mapSize = FileSystemGetFileSize(mapFilePath.c_str());
+		size_t mapSize = FileSystemGetFileSize(mafilepathPath.c_str());
 		m_rVirtualMemoryContainer.SetSize(mapSize);
-		char* pMapData = FileSystemReadToMemory2(mapFilePath.c_str(), pMapVirtualData, &mapSize);
+		char* pMapData = FileSystemReadToMemory2(mafilepathPath.c_str(), pMapVirtualData, &mapSize);
 
 		if (pMapData)
 		{

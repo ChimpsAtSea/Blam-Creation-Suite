@@ -129,7 +129,7 @@ void c_halo_reach_game_host::update_camera_data()
 	s_observer_camera* observer_camera = observer_try_and_get_camera(player_index);
 	if (observer_camera)
 	{
-		float aspect_ratio = c_window::get_aspect_ratio();
+		float aspect_ratio = c_window_win32::get_aspect_ratio();
 		float horizontal_field_of_view = observer_camera->field_of_view;
 		c_render::update_perspective(horizontal_field_of_view, aspect_ratio);
 		c_render::update_view(

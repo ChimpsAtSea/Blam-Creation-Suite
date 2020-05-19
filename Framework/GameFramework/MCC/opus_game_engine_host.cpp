@@ -21,13 +21,13 @@ c_opus_game_engine_host::c_opus_game_engine_host(e_engine_type engine_type, e_bu
 	window_title.append(build_string);
 	window_title.append(" ");
 	window_title.append(build_configuration);
-	c_window::SetWindowTitle(window_title.c_str());
+	c_window_win32::SetWindowTitle(window_title.c_str());
 }
 
 c_opus_game_engine_host::~c_opus_game_engine_host()
 {
 	std::string window_title = "Opus";
-	c_window::SetWindowTitle(window_title.c_str());
+	c_window_win32::SetWindowTitle(window_title.c_str());
 }
 
 char c_opus_game_engine_host::FrameStart()
@@ -403,8 +403,8 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* upda
 	DEBUG_ASSERT(update_graphics_data != nullptr);
 
 	// set resolution to 4k
-	update_graphics_data->VIDEO_SizeX = c_window::get_width();
-	update_graphics_data->VIDEO_SizeY = c_window::get_height();
+	update_graphics_data->VIDEO_SizeX = c_window_win32::get_width();
+	update_graphics_data->VIDEO_SizeY = c_window_win32::get_height();
 
 	update_graphics_data->VIDEO_FPS_Lock = false;
 	update_graphics_data->VIDEO_Wait_VSync = false;
@@ -460,7 +460,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 	memset(input_buffer, 0, sizeof(*input_buffer));
 
 	bool debugUIVisible = c_debug_gui::IsVisible();
-	bool windowFocused = c_window::IsWindowFocused();
+	bool windowFocused = c_window_win32::IsWindowFocused();
 
 	e_mouse_mode mode = _mouse_mode_none;
 	if (windowFocused)

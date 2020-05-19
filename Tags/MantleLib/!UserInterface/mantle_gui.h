@@ -20,7 +20,7 @@ public:
 
 	using on_close_callback_func = void(*)();
 
-	static void init_mantle_gui(bool inGameMode, const wchar_t* pStartupFilePath = nullptr);
+	static void init_mantle_gui(bool inGameMode, const wchar_t* pStartufilepathPath = nullptr);
 	static void render_in_game_gui(); // should only be called from game render code
 	static void render_gui();
 	static void deinit_mantle_gui();
@@ -28,7 +28,7 @@ public:
 	static void register_on_close_callback(on_close_callback_func callback);
 	static void unregister_on_close_callback(on_close_callback_func callback);
 
-	static void open_cache_file_from_filepath(const wchar_t* pFilePath);
+	static void open_cache_file_from_filepath(const wchar_t* filepathPath);
 	static void add_tab(c_mantle_gui_tab& mantle_gui_tab);
 	static void remove_tab(c_mantle_gui_tab& mantle_gui_tab);
 

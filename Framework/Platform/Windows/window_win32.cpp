@@ -1,18 +1,18 @@
-#include "shared-private-pch.h"
+#include "platform-private-pch.h"
 
-SIZE c_window::s_size = {};
-HICON c_window::s_hIcon = NULL;
-HWND c_window::s_hWnd = NULL;
-HWND c_window::s_hFocusWnd = NULL;
-HWND c_window::s_hForegroundWnd = NULL;
-HINSTANCE c_window::s_hInstance = NULL;
-HANDLE c_window::s_hPostMessageThread = NULL;
-DWORD c_window::s_hPostMessageThreadId = NULL;
-std::vector<WNDPROC>  c_window::s_WndProcCallbacks;
-std::vector< c_window::UpdateCallback>  c_window::s_UpdateCallbacks;
-std::vector< c_window::DestroyCallback>  c_window::s_DestroyCallbacks;
+SIZE c_window_win32::s_size = {};
+HICON c_window_win32::s_hIcon = NULL;
+HWND c_window_win32::s_hWnd = NULL;
+HWND c_window_win32::s_hFocusWnd = NULL;
+HWND c_window_win32::s_hForegroundWnd = NULL;
+HINSTANCE c_window_win32::s_hInstance = NULL;
+HANDLE c_window_win32::s_hPostMessageThread = NULL;
+DWORD c_window_win32::s_hPostMessageThreadId = NULL;
+std::vector<WNDPROC>  c_window_win32::s_WndProcCallbacks;
+std::vector< c_window_win32::UpdateCallback>  c_window_win32::s_UpdateCallbacks;
+std::vector< c_window_win32::DestroyCallback>  c_window_win32::s_DestroyCallbacks;
 
-void c_window::updateWindowSize(SIZE& rSize)
+void c_window_win32::updateWindowSize(SIZE& rSize)
 {
 	RECT rect = {};
 	GetClientRect(s_hWnd, &rect);
@@ -20,61 +20,61 @@ void c_window::updateWindowSize(SIZE& rSize)
 	rSize.cy = rect.bottom - rect.top;
 }
 
-void c_window::SetWindowTitle(const char* pTitle)
+void c_window_win32::SetWindowTitle(const char* pTitle)
 {
 	::SetWindowTextA(s_hWnd, pTitle);
 }
 
-void c_window::Show()
+void c_window_win32::Show()
 {
 	ShowWindow(get_window_handle(), SW_SHOW);
 	SetFocus(get_window_handle());
 	SetForegroundWindow(get_window_handle());
 }
 
-void c_window::set_post_message_thread_id(HANDLE hThread)
+void c_window_win32::set_post_message_thread_id(HANDLE hThread)
 {
 	s_hPostMessageThread = hThread;
 	s_hPostMessageThreadId = GetThreadId(s_hPostMessageThread);
 }
 
-int c_window::get_width()
+int c_window_win32::get_width()
 {
 	return __max(1l, s_size.cx);
 }
 
-int c_window::get_height()
+int c_window_win32::get_height()
 {
 	return __max(1l, s_size.cy);
 }
 
-float c_window::get_aspect_ratio()
+float c_window_win32::get_aspect_ratio()
 {
-	float aspectRatio = static_cast<float>(c_window::get_width()) / static_cast<float>(c_window::get_height());
+	float aspectRatio = static_cast<float>(c_window_win32::get_width()) / static_cast<float>(c_window_win32::get_height());
 	return aspectRatio;
 }
 
-HWND c_window::get_window_handle()
+HWND c_window_win32::get_window_handle()
 {
 	return s_hWnd;
 }
 
-bool c_window::IsWindowFocused()
+bool c_window_win32::IsWindowFocused()
 {
 	return s_hWnd == s_hFocusWnd;
 }
 
-HICON c_window::GetIcon()
+HICON c_window_win32::GetIcon()
 {
 	return s_hIcon;
 }
 
-void c_window::SetIcon(HICON hIcon)
+void c_window_win32::SetIcon(HICON hIcon)
 {
 	s_hIcon = hIcon;
 }
 
-void c_window::OnDestroyCallback()
+void c_window_win32::OnDestroyCallback()
 {
 	for (DestroyCallback destroyCallback : s_DestroyCallbacks)
 	{
@@ -82,7 +82,7 @@ void c_window::OnDestroyCallback()
 	}
 }
 
-void c_window::OnUpdateCallback()
+void c_window_win32::OnUpdateCallback()
 {
 	for(UpdateCallback updateCallback : s_UpdateCallbacks)
 	{
@@ -90,14 +90,14 @@ void c_window::OnUpdateCallback()
 	}
 }
 
-LRESULT CALLBACK c_window::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK c_window_win32::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	for (WNDPROC callback : s_WndProcCallbacks)
 	{
 		callback(hwnd, msg, wParam, lParam);
 	}
 
-	c_debug_gui::WndProc(hwnd, msg, wParam, lParam);
+	// #BCSREFACTOR c_debug_gui::WndProc(hwnd, msg, wParam, lParam);
 	switch (msg)
 	{
 	case WM_SYSCOMMAND:
@@ -112,7 +112,7 @@ LRESULT CALLBACK c_window::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
 		break;
 	case WM_SIZE:
 		updateWindowSize(s_size);
-		c_render::RequestResize(c_window::get_width(), c_window::get_height());
+		// #BCSREFACTOR c_render::RequestResize(c_window_win32::get_width(), c_window_win32::get_height());
 		// #TODO: tell game to resize
 		break;
 	case WM_KILLFOCUS:
@@ -124,7 +124,7 @@ LRESULT CALLBACK c_window::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
 	return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
-void c_window::init_window(const char* pWindowTitle, const char* pConsoleTitle, const char* pApplicationName)
+void c_window_win32::init_window(const char* pWindowTitle, const char* pConsoleTitle, const char* pApplicationName)
 {
 	SetProcessDPIAware();
 
@@ -152,7 +152,7 @@ void c_window::init_window(const char* pWindowTitle, const char* pConsoleTitle, 
 	windowClass.cbClsExtra = 0;
 	windowClass.cbWndExtra = 0;
 	windowClass.hInstance = s_hInstance;
-	windowClass.hIcon = c_window::GetIcon();
+	windowClass.hIcon = c_window_win32::GetIcon();
 	windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 	windowClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	windowClass.lpszMenuName = NULL;
@@ -199,13 +199,13 @@ void c_window::init_window(const char* pWindowTitle, const char* pConsoleTitle, 
 	RegisterRawInputDevices(rawInputDevices, _countof(rawInputDevices), sizeof(rawInputDevices));
 }
 
-void c_window::deinit_window()
+void c_window_win32::deinit_window()
 {
 	CloseWindow(s_hWnd);
 	UnregisterClassA("mantle_window_class", s_hInstance);
 }
 
-void c_window::update_no_callbacks()
+void c_window_win32::update_no_callbacks()
 {
 	c_console::Update();
 
@@ -223,7 +223,7 @@ void c_window::update_no_callbacks()
 	}
 }
 
-void c_window::update_window()
+void c_window_win32::update_window()
 {
 	update_no_callbacks();
 	OnUpdateCallback();

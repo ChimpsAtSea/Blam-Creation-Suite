@@ -18,7 +18,7 @@ int WINAPI WinMain(
 
 	c_console::init_console();
 
-	c_window::SetIcon(LoadIconA(hInstance, c_resources_manager::get_resource_int_resource(_resource_type_icon)));
+	c_window_win32::SetIcon(LoadIconA(hInstance, c_resources_manager::get_resource_int_resource(_resource_type_icon)));
 	SystemPatch::PatchEnumWindows();
 
 	static bool s_running = true;
@@ -33,27 +33,27 @@ int WINAPI WinMain(
 		s_running = false;
 	};
 	
-	c_window::init_window("Opus", "OpusConsole", "opus");
+	c_window_win32::init_window("Opus", "OpusConsole", "opus");
 	c_render::init_render(hInstance);
 	c_mantle_gui::init_mantle_gui(true);
 	c_game_launcher::init_game_launcher();
 
-	c_window::register_update_callback(UpdateCallback);
-	c_window::register_destroy_callback(DestroyCallback);
+	c_window_win32::register_update_callback(UpdateCallback);
+	c_window_win32::register_destroy_callback(DestroyCallback);
 	//MantleGUI::RegisterOnCloseCallback(DestroyCallback);
 
 	c_console::show_startup_banner();
 
-	while (s_running) c_window::update_window();
+	while (s_running) c_window_win32::update_window();
 
-	c_window::unregister_update_callback(UpdateCallback);
-	c_window::unregister_destroy_callback(DestroyCallback);
+	c_window_win32::unregister_update_callback(UpdateCallback);
+	c_window_win32::unregister_destroy_callback(DestroyCallback);
 	//MantleGUI::UnregisterOnCloseCallback(DestroyCallback);
 
 	c_game_launcher::deinit_game_launcher();
 	c_mantle_gui::deinit_mantle_gui();
 	c_render::deinit_render();
-	c_window::deinit_window();
+	c_window_win32::deinit_window();
 	c_console::deinit_console();
 
 	return 0;

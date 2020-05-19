@@ -574,13 +574,13 @@ void c_halo_reach_game_option_selection_legacy::SelectSavedFilm()
 {
 	return;
 
-	static std::vector<std::string> pFilePaths = {
+	static std::vector<std::string> filepathPaths = {
 		format_string("%s/Temporary/autosave/", "haloreach"),
 		format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/", GetUserprofileVariable(), "haloreach"),
 		format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/", GetUserprofileVariable(), "haloreach")
 	};
 
-	static c_file_array fileArray = c_file_array(pFilePaths, { ".film", ".mov" }, &ReadSavedFilm);
+	static c_file_array fileArray = c_file_array(filepathPaths, { ".film", ".mov" }, &ReadSavedFilm);
 	static LPCSTR pLast = "";
 
 	if (s_launch_saved_film_filepath != fileArray.GetFileName(pLast))
@@ -622,27 +622,27 @@ void c_halo_reach_game_option_selection_legacy::load_map_variant(IDataAccess* pD
 
 	if (pVariantName[0])
 	{
-		static std::string pFileName = "";
-		if (!PathFileExists((pFileName = format_string("%s/hopper_map_variants/%s.mvar", engine_name, pVariantName)).c_str()))
+		static std::string filepath = "";
+		if (!PathFileExists((filepath = format_string("%s/hopper_map_variants/%s.mvar", engine_name, pVariantName)).c_str()))
 		{
-			if (!PathFileExists((pFileName = format_string("%s/map_variants/%s.mvar", engine_name, pVariantName)).c_str()))
+			if (!PathFileExists((filepath = format_string("%s/map_variants/%s.mvar", engine_name, pVariantName)).c_str()))
 			{
-				if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Map/%s.mvar", GetUserprofileVariable(), engine_name, pVariantName)).c_str()))
+				if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Map/%s.mvar", GetUserprofileVariable(), engine_name, pVariantName)).c_str()))
 				{
-					if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Map/%s.mvar", GetUserprofileVariable(), engine_name, pVariantName)).c_str()))
+					if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Map/%s.mvar", GetUserprofileVariable(), engine_name, pVariantName)).c_str()))
 					{
-						pFileName = "";
+						filepath = "";
 					}
 				}
 			}
 		}
 
-		c_file_reference filo(pFileName.c_str());
+		c_file_reference filo(filepath.c_str());
 		if (filo.open_file())
 		{
 			if (print)
 			{
-				write_line_verbose("Loading map variant [%s]", pFileName.c_str());
+				write_line_verbose("Loading map variant [%s]", filepath.c_str());
 			}
 
 			rMapVariant = pDataAccess->MapVariantCreateFromFile(filo.buffer, static_cast<int>(filo.buffer_size))->MapVariant;
@@ -676,27 +676,27 @@ void c_halo_reach_game_option_selection_legacy::load_game_variant(IDataAccess* p
 		return;
 	}
 
-	static std::string pFileName = "";
-	if (!PathFileExists((pFileName = format_string("%s/hopper_game_variants/%s.bin", engine_name, pVariantName)).c_str()))
+	static std::string filepath = "";
+	if (!PathFileExists((filepath = format_string("%s/hopper_game_variants/%s.bin", engine_name, pVariantName)).c_str()))
 	{
-		if (!PathFileExists((pFileName = format_string("%s/game_variants/%s.bin", engine_name, pVariantName)).c_str()))
+		if (!PathFileExists((filepath = format_string("%s/game_variants/%s.bin", engine_name, pVariantName)).c_str()))
 		{
-			if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/GameType/%s.bin", GetUserprofileVariable(), engine_name, pVariantName)).c_str()))
+			if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/GameType/%s.bin", GetUserprofileVariable(), engine_name, pVariantName)).c_str()))
 			{
-				if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/GameType/%s.bin", GetUserprofileVariable(), engine_name, pVariantName)).c_str()))
+				if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/GameType/%s.bin", GetUserprofileVariable(), engine_name, pVariantName)).c_str()))
 				{
-					pFileName = "";
+					filepath = "";
 				}
 			}
 		}
 	}
 
-	c_file_reference filo(pFileName.c_str());
+	c_file_reference filo(filepath.c_str());
 	if (filo.open_file())
 	{
 		if (print)
 		{
-			write_line_verbose("Loading game variant [%s]", pFileName.c_str());
+			write_line_verbose("Loading game variant [%s]", filepath.c_str());
 		}
 
 		IGameVariant* game_variant = pDataAccess->GameVariantCreateFromFile(filo.buffer, static_cast<int>(filo.buffer_size));
@@ -707,7 +707,7 @@ void c_halo_reach_game_option_selection_legacy::load_game_variant(IDataAccess* p
 		}
 		else
 		{
-			write_line_verbose(__FUNCTION__"> warning: failed to create game variant from file '%s'", pFileName.c_str());
+			write_line_verbose(__FUNCTION__"> warning: failed to create game variant from file '%s'", filepath.c_str());
 		}
 		filo.close_file();
 	}
@@ -716,14 +716,14 @@ void c_halo_reach_game_option_selection_legacy::load_game_variant(IDataAccess* p
 // TODO: Test, and fix if broke
 void c_halo_reach_game_option_selection_legacy::load_savegame(const char* pGamestateName, GameContext& gameContext)
 {
-	char pFileName[MAX_PATH + 1];
-	sprintf(pFileName, "%s.hdr", pGamestateName);
-	pFileName[MAX_PATH] = 0;
+	char filepath[MAX_PATH + 1];
+	sprintf(filepath, "%s.hdr", pGamestateName);
+	filepath[MAX_PATH] = 0;
 
 	char* pGameStateBuffer = {};
 	size_t gameStateSize = {};
 
-	c_file_reference filo(pFileName);
+	c_file_reference filo(filepath);
 	if (filo.open_file())
 	{
 		pGameStateBuffer = new char[filo.buffer_size];
@@ -743,30 +743,30 @@ void c_halo_reach_game_option_selection_legacy::load_savefilm(const char* pSaved
 	if (!pSavedFilmName[0])
 		return;
 
-	static std::string pFileName = "";
-	if (!PathFileExists((pFileName = format_string("%s/Temporary/autosave/%s.film", "haloreach", pSavedFilmName)).c_str()))
+	static std::string filepath = "";
+	if (!PathFileExists((filepath = format_string("%s/Temporary/autosave/%s.film", "haloreach", pSavedFilmName)).c_str()))
 	{
-		if (!PathFileExists((pFileName = format_string("%s/Temporary/autosave/%s.mov", "haloreach", pSavedFilmName)).c_str()))
+		if (!PathFileExists((filepath = format_string("%s/Temporary/autosave/%s.mov", "haloreach", pSavedFilmName)).c_str()))
 		{
-			if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Movie/%s.mov", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
+			if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Movie/%s.mov", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
 			{
-				if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/%s.mov", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
+				if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/%s.mov", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
 				{
-					if (!PathFileExists((pFileName = format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/%s.film", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
+					if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/%s.film", GetUserprofileVariable(), "haloreach", pSavedFilmName)).c_str()))
 					{
-						pFileName = "";
+						filepath = "";
 					}
 				}
 			}
 		}
 	}
 
-	if (pFileName.c_str())
+	if (filepath.c_str())
 	{
-		write_line_verbose("Loading saved film [%s]", pFileName.c_str());
+		write_line_verbose("Loading saved film [%s]", filepath.c_str());
 	}
 
-	gameContext.saved_film_path_ptr = pFileName.c_str();
+	gameContext.saved_film_path_ptr = filepath.c_str();
 }
 
 #endif

@@ -2,7 +2,6 @@
 
 #include "dds.h"
 #include "directx_helpers.h"
-#include "window.h"
 #include "debug_gui.h"
 #include "render.h"
 #include "primitive_render_manager.h"

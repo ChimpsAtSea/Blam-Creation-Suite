@@ -2,27 +2,27 @@
 
 c_file_reference::c_file_reference(LPCSTR pPath)
 {
-	pFileName = pPath;
+	filepath = pPath;
 }
 
 bool c_file_reference::open_file()
 {
-	pFile = fopen(pFileName, "rb");
-	if (pFile)
+	filepath = fopen(filepath, "rb");
+	if (filepath)
 	{
-		fseek(pFile, 0, SEEK_END);
-		buffer_size = ftell(pFile);
-		fseek(pFile, 0L, SEEK_SET);
+		fseek(filepath, 0, SEEK_END);
+		buffer_size = ftell(filepath);
+		fseek(filepath, 0L, SEEK_SET);
 		buffer = new char[buffer_size];
 		memset(buffer, 0x00, buffer_size);
 
-		fseek(pFile, 0L, SEEK_SET);
+		fseek(filepath, 0L, SEEK_SET);
 		size_t totalBytesRead = 0;
 		do
 		{
 			size_t bytesToRead = buffer_size - totalBytesRead;
-			fseek(pFile, static_cast<long>(totalBytesRead), SEEK_SET);
-			size_t bytesRead = fread(buffer + totalBytesRead, 1, bytesToRead, pFile);
+			fseek(filepath, static_cast<long>(totalBytesRead), SEEK_SET);
+			size_t bytesRead = fread(buffer + totalBytesRead, 1, bytesToRead, filepath);
 			totalBytesRead += bytesRead;
 		} while (totalBytesRead < buffer_size);
 
@@ -34,11 +34,11 @@ bool c_file_reference::open_file()
 
 void c_file_reference::close_file()
 {
-	if (pFile)
+	if (filepath)
 	{
 		buffer_size = 0;
 		free(buffer);
-		fclose(pFile);
+		fclose(filepath);
 	}
 }
 
@@ -82,13 +82,13 @@ void c_file_reference::read_uint32(unsigned __int32* value, long offset, bool sw
 
 void c_file_reference::read_string(std::string* value, size_t length, long offset)
 {
-	ASSERT(pFile != nullptr);
+	ASSERT(filepath != nullptr);
 	*value = &buffer[offset];
 }
 
 void c_file_reference::read_string_long(std::wstring* value, size_t length, long offset, bool swapEndian)
 {
-	ASSERT(pFile != nullptr);
+	ASSERT(filepath != nullptr);
 	*value = (wchar_t*)&buffer[swapEndian ? offset + 1 : offset];
 }
 

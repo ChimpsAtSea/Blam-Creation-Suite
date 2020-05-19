@@ -12,7 +12,7 @@ public:
 
 	static void load_map_variant(IDataAccess *pDataAccess, const char* engine_name, const char *pVariantName, s_map_variant &out_variant, bool print = false);
 	static void load_game_variant(IDataAccess *pDataAccess, const char* engine_name, const char *pVariantName, s_game_variant &out_variant, bool print = false);
-	static void load_savegame(const char *pFileName, GameContext &gameContext);
+	static void load_savegame(const char *filepath, GameContext &gameContext);
 	static void load_savefilm(const char *pSavedFilmName, GameContext &gameContext);
 
 	static std::string s_launch_game_variant;

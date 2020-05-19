@@ -41,12 +41,12 @@ void c_mantle_gui::render_gui()
 	if (g_mantle_running_with_game)
 	{
 		ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
-		ImGui::SetNextWindowSize(ImVec2(c_window::get_width_float() * 0.75f, c_window::get_height_float() * 0.75f), ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowSize(ImVec2(c_window_win32::get_width_float() * 0.75f, c_window_win32::get_height_float() * 0.75f), ImGuiCond_FirstUseEver);
 	}
 	else
 	{
 		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(c_window::get_width_float(), c_window::get_height_float()), ImGuiCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(c_window_win32::get_width_float(), c_window_win32::get_height_float()), ImGuiCond_Always);
 	}
 
 	// Main body of the Demo window starts here.
@@ -192,11 +192,11 @@ void c_mantle_gui::unregister_on_close_callback(on_close_callback_func callback)
 	vector_erase_by_value_helper(g_mantle_on_close_callbacks, callback);
 }
 
-void c_mantle_gui::open_cache_file_from_filepath(const wchar_t* pFilePath)
+void c_mantle_gui::open_cache_file_from_filepath(const wchar_t* filepathPath)
 {
-	if (PathFileExistsW(pFilePath))
+	if (PathFileExistsW(filepathPath))
 	{
-		add_tab(*new c_mantle_cache_file_gui_tab(pFilePath));
+		add_tab(*new c_mantle_cache_file_gui_tab(filepathPath));
 	}
 }
 
@@ -251,8 +251,8 @@ void c_mantle_gui::render_file_dialogue_gui()
 {
 	if (g_mantle_show_file_dialogue)
 	{
-		float file_browser_window_width = std::clamp(c_window::get_width_float(), 700.0f, 1200.0f);
-		float file_browser_window_height = std::clamp(c_window::get_height_float(), 310.0f, 675.0f);
+		float file_browser_window_width = std::clamp(c_window_win32::get_width_float(), 700.0f, 1200.0f);
+		float file_browser_window_height = std::clamp(c_window_win32::get_height_float(), 310.0f, 675.0f);
 		if (file_browser.show_open_file_dialog("Open File", ImVec2(file_browser_window_width, file_browser_window_height), ".map"))
 		{
 			g_mantle_show_file_dialogue = false;
