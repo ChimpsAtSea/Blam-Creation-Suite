@@ -1,16 +1,16 @@
 [submodule "llvm-project"]
-	path = llvm-project
+	path = ThirdParty/llvm
 	url = https://github.com/llvm/llvm-project.git
 	branch = release/9.x
 [submodule "tbb_clang"]
-	path = tbb
+	path = ThirdParty/tbb
 	url = https://github.com/wjakob/tbb.git
 [submodule "pugixml"]
-	path = pugixml
+	path = ThirdParty/pugixml
 	url = https://github.com/zeux/pugixml.git
 [submodule "blamlib"]
 	path = blamlib
 	url = https://github.com/Assault-on-the-Control-Room/blamlib.git
 [submodule "blamder"]
-	path = blamder/blamder
+	path = Blender/blamder/blamder
 	url = https://github.com/Assault-on-the-Control-Room/blamder.git
