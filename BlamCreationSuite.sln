@@ -39,7 +39,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HaloReachLib", "Game\HaloRe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ketchup", "Framework\Ketchup\Ketchup.vcxproj", "{AA67F836-AD2B-4181-BDDE-EFEB21D6AECC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpusResourcesPackager", "Tooling\ResourcesPackager\ResourcesPackager.vcxproj", "{F179C19E-D725-49FC-B5F6-F113287FCF7A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourcesPackager", "Tooling\ResourcesPackager\ResourcesPackager.vcxproj", "{F179C19E-D725-49FC-B5F6-F113287FCF7A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2D0BFA3C-60AD-47FD-95EE-0A2944D0687D} = {2D0BFA3C-60AD-47FD-95EE-0A2944D0687D}
 		{994A9382-A035-4981-9A50-69BBB6059F3E} = {994A9382-A035-4981-9A50-69BBB6059F3E}
@@ -195,9 +195,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SymbolsPreprocessor", "Debu
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SymbolsLib", "DebugFileTools\SymbolsLib\SymbolsLib.vcxproj", "{2D0BFA3C-60AD-47FD-95EE-0A2944D0687D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Blofeld", "Tags\Blofeld\Blofeld.vcxproj", "{5810EFB5-BA9B-454B-B6F8-411F83CF7103}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TagDefinitions", "Tags\TagDefinitions\TagDefinitions.vcxproj", "{5810EFB5-BA9B-454B-B6F8-411F83CF7103}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlofeldValidate", "Tooling\BlofeldValidate\BlofeldValidate.vcxproj", "{C511CDF9-F265-42E6-8AD6-A70A9B4A0790}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TagDefinitionsValidate", "Tooling\TagDefinitionsValidate\TagDefinitionsValidate.vcxproj", "{C511CDF9-F265-42E6-8AD6-A70A9B4A0790}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6686F215-AB57-434D-85E0-8AAA5AB68D36} = {6686F215-AB57-434D-85E0-8AAA5AB68D36}
 		{E23D8119-EA3C-4375-8CF6-8D9C915F4DBC} = {E23D8119-EA3C-4375-8CF6-8D9C915F4DBC}
@@ -207,11 +207,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlofeldValidate", "Tooling\
 		{91D344E6-BECA-4173-A875-EAE40D504152} = {91D344E6-BECA-4173-A875-EAE40D504152}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DebugFileTools", "DebugFileTools", "{81D07F60-3115-44D0-88FC-4DB51EE38D3B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "+DebugFileTools", "+DebugFileTools", "{81D07F60-3115-44D0-88FC-4DB51EE38D3B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Audio", "Audio", "{2C41680A-7E61-4F8A-8077-7F2C18728497}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tooling", "Tooling", "{34FABBE5-E272-477E-9751-592778086057}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "+Tooling", "+Tooling", "{34FABBE5-E272-477E-9751-592778086057}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blender", "Blender", "{60A4A82D-B57B-43FA-96D9-01B7829DA025}"
 EndProject
@@ -223,7 +223,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Game", "!Game", "{B35E70C6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Framework", "!Framework", "{4A13058A-BE94-491E-8094-324AD5FF9EF3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tags", "Tags", "{DF5B0EC1-874C-4D2B-A08F-52CE84AD4DBF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Tags", "!Tags", "{DF5B0EC1-874C-4D2B-A08F-52CE84AD4DBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
