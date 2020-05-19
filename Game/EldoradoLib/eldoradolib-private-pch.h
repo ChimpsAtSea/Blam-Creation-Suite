@@ -2,11 +2,11 @@
 
 #ifdef __cplusplus
 
-#include <Shared/shared-public-pch.h>
-#include <Blofeld\blofeld-public-pch.h>
+#include <Platform/platform-public-pch.h>
+#include <TagDefinitions/tagdefinitions-public-pch.h>
 #include <MantleLib/mantlelib-public-pch.h>
 #include <SymbolsLib/symbolslib-public-pch.h>
-#include <OpusFramework/opusframework-public-pch.h>
+#include <GameFramework/gameframework-public-pch.h>
 #include <Ketchup/ketchup-public-pch.h>
 
 #include "eldoradolib-public-pch.h"

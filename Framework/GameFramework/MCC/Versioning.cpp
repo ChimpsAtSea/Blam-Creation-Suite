@@ -1,4 +1,4 @@
-#include "opusframework-private-pch.h"
+#include "gameframework-private-pch.h"
 
 #define STRING_FILE_INFO_W L"StringFileInfo"
 #define PRODUCT_NAME_W L"ProductName"

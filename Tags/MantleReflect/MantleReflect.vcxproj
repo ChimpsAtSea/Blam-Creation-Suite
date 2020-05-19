@@ -89,34 +89,25 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{08C0E853-1883-4215-A74D-F151075B84D0}</ProjectGuid>
     <RootNamespace>MantleReflect</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugFast|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -156,42 +147,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Libraries\include;$(SolutionDir)tbb\include\;$(SolutionDir)llvm-project\llvm\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\tools\clang\include;$(SolutionDir)llvm-project\clang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Libraries\include;$(SolutionDir)tbb\include\;$(SolutionDir)llvm-project\llvm\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\tools\clang\include;$(SolutionDir)llvm-project\clang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Libraries\include;$(SolutionDir)tbb\include\;$(SolutionDir)llvm-project\llvm\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\tools\clang\include;$(SolutionDir)llvm-project\clang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Libraries\include;$(SolutionDir)tbb\include\;$(SolutionDir)llvm-project\llvm\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\tools\clang\include;$(SolutionDir)llvm-project\clang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\$(Configuration)\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugFast|x64'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Libraries\include;$(SolutionDir)tbb\include\;$(SolutionDir)llvm-project\llvm\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\tools\clang\include;$(SolutionDir)llvm-project\clang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\Release\;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\Release\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(PlatformName)\Debug\</OutDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugFast|Win32'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(SolutionDir)Libraries\include;$(SolutionDir)tbb\include\;$(SolutionDir)llvm-project\llvm\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\include;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\tools\clang\include;$(SolutionDir)llvm-project\clang\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\Release\;$(SolutionDir)llvm-build\cmake_$(PlatformShortName)\Release\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(PlatformName)\Debug\</OutDir>
-  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugFast|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugFast|Win32'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>

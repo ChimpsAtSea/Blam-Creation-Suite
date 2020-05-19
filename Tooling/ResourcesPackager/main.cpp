@@ -7,7 +7,7 @@ void update_resource_data(LPWSTR szExecutablePath, e_resource_type type, const c
 {
 	HANDLE hUpdateResource = BeginUpdateResourceW(szExecutablePath, FALSE);
 	ASSERT(hUpdateResource != NULL);
-	BOOL updateResourceResult = UpdateResourceA(hUpdateResource, RT_RCDATA, c_resources_manager::get_resource_int_resource(type), MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL), const_cast<char*>(data), static_cast<DWORD>(data_length));
+	BOOL updateResourceResult = UpdateResourceA(hUpdateResource, RT_RCDATA, c_resources_manager::get_resource_int_resource<LPSTR>(type), MAKELANGID(LANG_NEUTRAL, SUBLANG_NEUTRAL), const_cast<char*>(data), static_cast<DWORD>(data_length));
 	ASSERT(updateResourceResult == TRUE);
 	BOOL endUpdateResourceResult = EndUpdateResource(hUpdateResource, FALSE);
 	ASSERT(updateResourceResult == TRUE);
@@ -18,7 +18,7 @@ void update_resource(LPWSTR executable_path, LPWSTR file_path, e_resource_type r
 {
 	char* file_data = nullptr;
 	size_t file_length = 0;
-	bool succeeded = read_file_to_memory(file_path, &file_data, &file_length);
+	bool succeeded = filesystem_read_file_to_memory(file_path, &file_data, &file_length);
 	ASSERT(succeeded);
 
 	update_resource_data(executable_path, resource_type, file_data, file_length);
@@ -51,7 +51,7 @@ int WINAPI wWinMain(
 		"MantleGen",
 		"imgui",
 		"tbb_static",
-		"opusframework",
+		"gameframework",
 		"detours"
 	};
 

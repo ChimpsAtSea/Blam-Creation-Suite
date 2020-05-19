@@ -1,4 +1,4 @@
-#include "opusframework-private-pch.h"
+#include "gameframework-private-pch.h"
 
 #define IGameEngineHostCreateBarrierDefinition(index) void IGameEngineHost::Function##index() { FATAL_ERROR(L"IGameEngineHost barrier was triggered! index:" STRINGIFY(index)); }
 

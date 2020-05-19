@@ -31,7 +31,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="$(SolutionDir)\Shared\!Resources\Resource.rc">
+    <ResourceCompile Include="$(SolutionDir)\Framework\Platform\!Resources\Resource.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

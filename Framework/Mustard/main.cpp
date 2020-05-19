@@ -494,7 +494,7 @@ __declspec(dllexport) int main()
 	{
 		char* binary_data = nullptr;
 		size_t binary_data_size = 0;
-		if (read_file_to_memory("halo5forge.exe", reinterpret_cast<void**>(&binary_data), &binary_data_size))
+		if (filesystem_read_file_to_memory("halo5forge.exe", reinterpret_cast<void**>(&binary_data), &binary_data_size))
 		{
 			engine_type = _engine_type_halo5;
 

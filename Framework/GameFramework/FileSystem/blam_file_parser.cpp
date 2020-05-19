@@ -1,4 +1,4 @@
-#include "opusframework-private-pch.h"
+#include "gameframework-private-pch.h"
 
 c_blam_file_parser::c_blam_file_parser(char* pBlamFileData)
 	:m_isLittleEndian(false)

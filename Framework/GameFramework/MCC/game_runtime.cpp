@@ -1,4 +1,4 @@
-#include "opusframework-private-pch.h"
+#include "gameframework-private-pch.h"
 
 c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* pEngineName, const char* pLibFileName, bool useExistingLoadedModule, e_build build)
 	: m_engineName(pEngineName)

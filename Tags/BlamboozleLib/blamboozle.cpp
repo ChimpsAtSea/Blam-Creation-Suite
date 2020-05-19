@@ -70,7 +70,7 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 {
 	char* binary_data = nullptr;
 	size_t binary_data_size = 0;
-	if (!read_file_to_memory(binary_filepath, reinterpret_cast<void**>(&binary_data), &binary_data_size))
+	if (!filesystem_read_file_to_memory(binary_filepath, reinterpret_cast<void**>(&binary_data), &binary_data_size))
 	{
 		write_line_verbose("Failed to open binary file");
 		return 1;

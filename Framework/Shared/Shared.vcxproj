@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="!Resources\resource.h" />
     <ClInclude Include="AtomicLock.h" />
     <ClInclude Include="Blam\blamlib-public-pch.h" />
     <ClInclude Include="Blam\legacy\basic_buffer.h" />
@@ -67,7 +66,6 @@
     <ClInclude Include="Rendering\primitive_render_manager.h" />
     <ClInclude Include="Rendering\render.h" />
     <ClInclude Include="Rendering\Rendering.h" />
-    <ClInclude Include="!Resources\resources_manager.h" />
     <ClInclude Include="shared-private-pch.h" />
     <ClInclude Include="shared-public-pch.h" />
     <ClInclude Include="shared-system-pch.h" />
@@ -100,7 +98,6 @@
     <ClCompile Include="Rendering\debug_gui.cpp" />
     <ClCompile Include="Rendering\primitive_render_manager.cpp" />
     <ClCompile Include="Rendering\render.cpp" />
-    <ClCompile Include="!Resources\resources_manager.cpp" />
     <ClCompile Include="shared-private-pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -110,63 +107,28 @@
     <ClCompile Include="StringUtilities.cpp" />
     <ClCompile Include="ThreadPrimitives\thread_subroutine.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="!Resources\Resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="!Resources\HLSL\BoxShaderPS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
-    </FxCompile>
-    <FxCompile Include="!Resources\HLSL\BoxShaderVS.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="!Resources\HLSL\BoxShader.hlsli" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="!Resources\reach_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="!Resources\Cousine-Regular.ttf" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{994A9382-A035-4981-9A50-69BBB6059F3E}</ProjectGuid>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -187,28 +149,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -217,9 +167,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>shared-private-pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -238,9 +188,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>shared-private-pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -261,9 +211,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>shared-private-pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -283,9 +233,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>shared-private-pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

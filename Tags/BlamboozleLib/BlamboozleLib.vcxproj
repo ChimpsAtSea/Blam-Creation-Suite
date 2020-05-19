@@ -28,28 +28,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -71,29 +63,21 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(SolutionDir)pugixml\src\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(SolutionDir)pugixml-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(SolutionDir)pugixml\src\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(SolutionDir)pugixml-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(SolutionDir)pugixml\src\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(SolutionDir)pugixml-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
     <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(SolutionDir)pugixml\src\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(SolutionDir)pugixml-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>

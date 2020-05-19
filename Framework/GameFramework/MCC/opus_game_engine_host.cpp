@@ -1,4 +1,4 @@
-#include "opusframework-private-pch.h"
+#include "gameframework-private-pch.h"
 
 #define sign(value) (value < 0 ? -1 : 1)
 #define clamp(value, min_value, max_value) ((value) > (max_value) ? (max_value) : ((value) < (min_value) ? (min_value) : (value)))
@@ -169,7 +169,7 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 		memcpy(autosave_buffer, buffer, buffer_size);
 		*reinterpret_cast<int *>(&autosave_buffer[buffer_size]) = map_id;
 
-		result = write_file_from_memory(autosave_path, autosave_buffer, autosave_buffer_size);
+		result = filesystem_write_file_from_memory(autosave_path, autosave_buffer, autosave_buffer_size);
 		delete[] autosave_buffer;
 	}
 
@@ -246,7 +246,7 @@ bool save_variant_to_file(IVariantAccessorBase* variant, e_variant_type variant_
 			wchar_t variant_path[MAX_PATH + 1] = {};
 			_snwprintf_s(variant_path, MAX_PATH, L"%s%s%s", variant_directory, file_name, variant_extension);
 
-			return write_file_from_memory(variant_path, variant_buffer, variant_buffer_size);
+			return filesystem_write_file_from_memory(variant_path, variant_buffer, variant_buffer_size);
 		}
 	}
 

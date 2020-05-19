@@ -86,25 +86,21 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(SolutionDir)Framework\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(SolutionDir)Framework\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(SolutionDir)Framework\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(SolutionDir)Framework\;$(IncludePath)</IncludePath>
     <MultiProcFXC>true</MultiProcFXC>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>

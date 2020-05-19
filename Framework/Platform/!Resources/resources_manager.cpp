@@ -1,15 +1,30 @@
 #include "platform-private-pch.h"
 #include "resource.h"
 
+template<>
+LPWSTR c_resources_manager::get_resource_int_resource(e_resource_type type)
+{
+	switch (type)
+	{
+	case _resource_type_icon:					return MAKEINTRESOURCEW(IDI_ICON1);
+	case _resource_type_imgui_font:				return MAKEINTRESOURCEW(IDR_FONT1);
+	case _resource_type_symbols_blob:			return MAKEINTRESOURCEW(IDR_MAPDATABASE);
+	case _resource_type_box_pixel_shader:		return MAKEINTRESOURCEW(IDR_BOXSHADERPS);
+	case _resource_type_box_vertex_shader:		return MAKEINTRESOURCEW(IDR_BOXSHADERVS);
+	}
+	return NULL;
+}
+
+template<>
 LPSTR c_resources_manager::get_resource_int_resource(e_resource_type type)
 {
 	switch (type)
 	{
-	case _resource_type_icon:					return MAKEINTRESOURCE(IDI_ICON1);
-	case _resource_type_imgui_font:			return MAKEINTRESOURCE(IDR_FONT1);
-	case _resource_type_symbols_blob:			return MAKEINTRESOURCE(IDR_MAPDATABASE);
-	case _resource_type_box_pixel_shader:		return MAKEINTRESOURCE(IDR_BOXSHADERPS);
-	case _resource_type_box_vertex_shader:		return MAKEINTRESOURCE(IDR_BOXSHADERVS);
+	case _resource_type_icon:					return MAKEINTRESOURCEA(IDI_ICON1);
+	case _resource_type_imgui_font:				return MAKEINTRESOURCEA(IDR_FONT1);
+	case _resource_type_symbols_blob:			return MAKEINTRESOURCEA(IDR_MAPDATABASE);
+	case _resource_type_box_pixel_shader:		return MAKEINTRESOURCEA(IDR_BOXSHADERPS);
+	case _resource_type_box_vertex_shader:		return MAKEINTRESOURCEA(IDR_BOXSHADERVS);
 	}
 	return NULL;
 }
@@ -18,18 +33,18 @@ HRSRC c_resources_manager::get_resource_handle(e_resource_type type)
 {
 	static HMODULE instance_handle = c_runtime_util::get_current_module();
 
-	LPSTR intResource = get_resource_int_resource(type);
-	if (intResource == nullptr) return NULL;
+	LPWSTR int_resource = get_resource_int_resource(type);
+	if (int_resource == nullptr) return NULL;
 
 	switch (type)
 	{
 	case _resource_type_icon:
-		return FindResource(instance_handle, intResource, RT_ICON);
+		return FindResourceW(instance_handle, int_resource, RT_ICON);
 	case _resource_type_imgui_font:
 	case _resource_type_symbols_blob:
 	case _resource_type_box_pixel_shader:
 	case _resource_type_box_vertex_shader:
-		return FindResource(instance_handle, intResource, RT_RCDATA);
+		return FindResourceW(instance_handle, int_resource, RT_RCDATA);
 	}
 	return NULL;
 }

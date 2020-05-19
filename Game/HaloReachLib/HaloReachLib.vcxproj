@@ -14,21 +14,16 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{9D62395A-734A-44BC-8E87-FE305D52D53C}</ProjectGuid>
     <RootNamespace>HaloReach</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -43,16 +38,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir);$(SolutionDir)Libraries\include;$(ProjectDir);$(SolutionDir)tbb\include\;$(SolutionDir)blamlib\;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
-    <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

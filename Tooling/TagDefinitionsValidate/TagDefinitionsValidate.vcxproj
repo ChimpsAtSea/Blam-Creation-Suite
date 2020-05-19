@@ -69,29 +69,21 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(SolutionDir)Framework\;$(SolutionDir)Framework\blamlib\;$(SolutionDir)Tags\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(SolutionDir)Framework\;$(SolutionDir)Framework\blamlib\;$(SolutionDir)Tags\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(SolutionDir)Framework\;$(SolutionDir)Framework\blamlib\;$(SolutionDir)Tags\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir);$(SolutionDir)ThirdParty\tbb\include\;$(SolutionDir)Framework\;$(SolutionDir)Framework\blamlib\;$(SolutionDir)Tags\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(SolutionDir)$(PlatformName)\$(Configuration)\;$(SolutionDir)tbb-build\cmake_$(PlatformShortName)\$(Configuration)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(PlatformName)\$(Configuration)\</OutDir>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <IntDir>$(SolutionDir)$(PlatformName)\$(Configuration)\build_temp\$(ProjectName)\</IntDir>

@@ -1,9 +1,9 @@
-#include "opusframework-private-pch.h"
+#include "gameframework-private-pch.h"
 
 c_map_info_manager::c_map_info_manager(const char* directory_path)
 {
 	using namespace std;
-	if (DirectoryExists(directory_path))
+	if (filesystem_directory_exists(directory_path))
 	{
 		// #TODO: Automatic Windows filesystem watching
 		for (const std::filesystem::directory_entry& rDirectoryEntry : std::filesystem::directory_iterator(directory_path)) {

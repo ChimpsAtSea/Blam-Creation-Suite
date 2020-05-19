@@ -1,19 +1,19 @@
 #include "platform-private-pch.h"
 
 
-bool filepath_exists(const char* filepath)
+bool filesystem_filepath_exists(const char* filepath)
 {
 	bool path_file_exists_result = PathFileExistsA(filepath);
 	return path_file_exists_result;
 }
 
-bool filepath_exists(const wchar_t* filepath)
+bool filesystem_filepath_exists(const wchar_t* filepath)
 {
 	bool path_file_exists_result = PathFileExistsW(filepath);
 	return path_file_exists_result;
 }
 
-bool read_file_to_memory(const char* filepath, void** buffer, size_t* buffer_size)
+bool filesystem_read_file_to_memory(const char* filepath, void** buffer, size_t* buffer_size)
 {
 	ASSERT(filepath != nullptr);
 	ASSERT(buffer != nullptr);
@@ -44,7 +44,7 @@ bool read_file_to_memory(const char* filepath, void** buffer, size_t* buffer_siz
 	return false;
 }
 
-bool read_file_to_memory(const wchar_t* filepath, void** buffer, size_t* buffer_size)
+bool filesystem_read_file_to_memory(const wchar_t* filepath, void** buffer, size_t* buffer_size)
 {
 	ASSERT(filepath != nullptr);
 	ASSERT(buffer != nullptr);
@@ -75,7 +75,7 @@ bool read_file_to_memory(const wchar_t* filepath, void** buffer, size_t* buffer_
 	return false;
 }
 
-bool write_file_from_memory(const char* filepath, const void* buffer, size_t buffer_size)
+bool filesystem_write_file_from_memory(const char* filepath, const void* buffer, size_t buffer_size)
 {
 	ASSERT(!IsBadReadPtr(buffer, 1));
 	ASSERT(filepath != nullptr);
@@ -110,7 +110,7 @@ bool write_file_from_memory(const char* filepath, const void* buffer, size_t buf
 	return false;
 }
 
-bool write_file_from_memory(const wchar_t* filepath, const void* buffer, size_t buffer_size)
+bool filesystem_write_file_from_memory(const wchar_t* filepath, const void* buffer, size_t buffer_size)
 {
 	ASSERT(!IsBadReadPtr(buffer, 1));
 	ASSERT(filepath != nullptr);
@@ -145,6 +145,23 @@ bool write_file_from_memory(const wchar_t* filepath, const void* buffer, size_t 
 	return false;
 }
 
+bool filesystem_directory_exists(const char* directorypath)
+{
+	DWORD file_attributes = GetFileAttributesA(directorypath);
+
+	bool result = file_attributes != INVALID_FILE_ATTRIBUTES && file_attributes & FILE_ATTRIBUTE_DIRECTORY;
+	return result;
+}
+
+bool filesystem_directory_exists(const wchar_t* directorypath)
+{
+	DWORD file_attributes = GetFileAttributesW(directorypath);
+
+	bool result = file_attributes != INVALID_FILE_ATTRIBUTES && file_attributes & FILE_ATTRIBUTE_DIRECTORY;
+	return result;
+}
+
+
 // ------------- LEGACY -----------------
 
 void FileSystemReadToBufferImpl(FILE* filepathHandle, char* buffer, size_t readLength)
@@ -159,33 +176,6 @@ void FileSystemReadToBufferImpl(FILE* filepathHandle, char* buffer, size_t readL
 		currentPosition += fread(&buffer[currentPosition], 1, remainingDataLength, filepathHandle);
 	}
 }
-
-
-char* FileSystemReadToBuffer(const wchar_t* filepathPath, char* buffer, size_t buffer_size)
-{
-	FILE* filepathHandle = _wfopen(filepathPath, L"rb");
-	if (filepathHandle == nullptr)
-	{
-		return nullptr;
-	}
-
-	fseek(filepathHandle, 0, SEEK_END);
-	size_t fileSize = static_cast<size_t>(_ftelli64(filepathHandle));
-	fseek(filepathHandle, 0, SEEK_SET);
-
-	if (fileSize > buffer_size)
-	{
-		return nullptr;
-	}
-
-	FileSystemReadToBufferImpl(filepathHandle, buffer, buffer_size);
-
-	int fcloseResult = fclose(filepathHandle);
-	ASSERT(fcloseResult == 0);
-
-	return nullptr;
-}
-
 
 char* FileSystemReadToMemory(const wchar_t* filepathPath, size_t* pAllocatedSize)
 {
@@ -258,25 +248,12 @@ char* FileSystemReadToMemory2(const wchar_t* filepathPath, char* buffer, size_t*
 	return buffer;
 }
 
-const char* GetUserprofileVariable()
+const char* get_user_profile_environment_variable()
 {
-	static char szBuf[MAX_PATH] = { 0 };
-	GetEnvironmentVariableA("USERPROFILE", szBuf, MAX_PATH);
-	return static_cast<const char*>(szBuf);
+	static char user_profile_environment_variable[MAX_PATH] = { };
+	if (*user_profile_environment_variable = 0)
+	{
+		GetEnvironmentVariableA("USERPROFILE", user_profile_environment_variable, MAX_PATH);
+	}
+	return static_cast<const char*>(user_profile_environment_variable);
 };
-
-bool DirectoryExists(const char* szPath)
-{
-	DWORD dwAttrib = GetFileAttributes(szPath);
-
-	return (dwAttrib != INVALID_FILE_ATTRIBUTES &&
-		(dwAttrib & FILE_ATTRIBUTE_DIRECTORY));
-}
-
-bool DirectoryExists(const wchar_t* szPath)
-{
-	DWORD dwAttrib = GetFileAttributesW(szPath);
-
-	return (dwAttrib != INVALID_FILE_ATTRIBUTES &&
-		(dwAttrib & FILE_ATTRIBUTE_DIRECTORY));
-}

@@ -345,7 +345,7 @@ int c_h4_blamboozle::run()
 {
 	ASSERT(h4_data == nullptr);
 
-	if (!read_file_to_memory(binary_filepath.c_str(), reinterpret_cast<void**>(&h4_data), &data_size))
+	if (!filesystem_read_file_to_memory(binary_filepath.c_str(), reinterpret_cast<void**>(&h4_data), &data_size))
 	{
 		return 1;
 	}
@@ -356,7 +356,7 @@ int c_h4_blamboozle::run()
 
 	std::wstring mapping_filepath = c_command_line::get_command_line_warg("-blamboozle-halo4-tag-test-map");
 	std::wstring symbols_filepath = c_command_line::get_command_line_warg("-blamboozle-halo4-tag-test-sym");
-	if (!filepath_exists(symbols_filepath.c_str()))
+	if (!filesystem_filepath_exists(symbols_filepath.c_str()))
 	{
 		c_map_file_parser map_file_parser = c_map_file_parser(mapping_filepath.c_str(), nullptr, 0);
 		map_file_parser.write_output(symbols_filepath.c_str());
@@ -364,7 +364,7 @@ int c_h4_blamboozle::run()
 
 	char* symbols_buffer;
 	size_t symbols_buffer_size;
-	if (!read_file_to_memory(symbols_filepath.c_str(), &symbols_buffer, &symbols_buffer_size))
+	if (!filesystem_read_file_to_memory(symbols_filepath.c_str(), &symbols_buffer, &symbols_buffer_size))
 	{
 		return 1;
 	}

@@ -119,9 +119,9 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 		std::string header_code = hs.str();
 		std::string source_code = ss.str();
 
-		bool header_write_file_result = write_file_from_memory(source_file->full_header_output_filepath.c_str(), header_code.c_str(), header_code.size());
+		bool header_write_file_result = filesystem_write_file_from_memory(source_file->full_header_output_filepath.c_str(), header_code.c_str(), header_code.size());
 		ASSERT(header_write_file_result);
-		bool source_write_file_result = write_file_from_memory(source_file->full_source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+		bool source_write_file_result = filesystem_write_file_from_memory(source_file->full_source_output_filepath.c_str(), source_code.c_str(), source_code.size());
 		ASSERT(source_write_file_result);
 	}
 
@@ -135,7 +135,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			std::stringstream hs;
 			create_blofeld_header(hs);
 			std::string header_code = hs.str();
-			bool blofeld_header_write_file_result = write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
+			bool blofeld_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
 			ASSERT(blofeld_header_write_file_result);
 		}
 		{
@@ -143,7 +143,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			std::stringstream ss;
 			create_blofeld_source(ss);
 			std::string source_code = ss.str();
-			bool blofeld_source_write_file_result = write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
 			ASSERT(blofeld_source_write_file_result);
 		}
 		{
@@ -151,7 +151,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			std::stringstream hs;
 			create_validation_header(hs);
 			std::string header_code = hs.str();
-			bool blofeld_header_write_file_result = write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
+			bool blofeld_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
 			ASSERT(blofeld_header_write_file_result);
 		}
 		{
@@ -159,7 +159,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			std::stringstream ss;
 			create_validation_source(ss);
 			std::string source_code = ss.str();
-			bool blofeld_source_write_file_result = write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
 			ASSERT(blofeld_source_write_file_result);
 		}
 		{
@@ -181,7 +181,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			}
 			ss << std::endl;
 			std::string source_code = ss.str();
-			bool blofeld_source_write_file_result = write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
 			ASSERT(blofeld_source_write_file_result);
 		}
 		{
@@ -201,7 +201,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			ss << "} // namespace blofeld" << std::endl << std::endl;
 
 			std::string source_code = ss.str();
-			bool blofeld_source_write_file_result = write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
 			ASSERT(blofeld_source_write_file_result);
 		}
 		{
@@ -222,7 +222,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			ss << "} // namespace blofeld" << std::endl << std::endl;
 
 			std::string source_code = ss.str();
-			bool blofeld_source_write_file_result = write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
 			ASSERT(blofeld_source_write_file_result);
 		}
 	}

@@ -50,11 +50,3 @@ constexpr decltype(auto) underlying_cast(T value)
 #define static_assert_64(...)
 #define static_assert_32 static_assert
 #endif
-
-#ifdef min
-#undef min
-#endif
-#ifdef max
-#undef max
-#endif
-

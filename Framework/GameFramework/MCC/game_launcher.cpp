@@ -1,4 +1,4 @@
-#include "opusframework-private-pch.h"
+#include "gameframework-private-pch.h"
 
 e_next_launch_mode g_next_launch_mode = _next_launch_mode_none;
 std::vector<c_game_launcher::t_generic_game_event> c_game_launcher::s_game_startup_events;
@@ -514,7 +514,7 @@ void c_game_launcher::check_steam_ownership()
 #ifdef _WIN64
 	{
 		static const char k_steam_appid[] = "976730";
-		bool write_file_from_memory_result = write_file_from_memory("steam_appid.txt", k_steam_appid, strlen(k_steam_appid));
+		bool write_file_from_memory_result = filesystem_write_file_from_memory("steam_appid.txt", k_steam_appid, strlen(k_steam_appid));
 		ASSERT(write_file_from_memory_result == true);
 	}
 
@@ -881,7 +881,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 	}
 	memset(game_context_variant_buffer, 0, variant_buffer_size);
 
-	LPCSTR user_profile_path = GetUserprofileVariable();
+	LPCSTR user_profile_path = get_user_profile_environment_variable();
 	std::vector<std::string> file_paths =
 	{
 		std::string("opus/").append(type_name).append("_variants/").append(file_name).append(type_extension),
@@ -933,7 +933,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 		return true;
 	}
 
-	if (!read_file_to_memory(selected_file_path.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
+	if (!filesystem_read_file_to_memory(selected_file_path.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
 	{
 		write_line_verbose("Failed to open variant file");
 		return false;
@@ -973,7 +973,7 @@ bool c_game_launcher::load_save_from_file(GameContext *game_context, LPCSTR file
 	{
 		std::string file_path = std::string("opus/autosave/").append(file_name).append(".bin");
 		size_t game_state_header_size = 0;
-		if (read_file_to_memory(file_path.c_str(), &game_context->game_state_header_ptr, &game_state_header_size))
+		if (filesystem_read_file_to_memory(file_path.c_str(), &game_context->game_state_header_ptr, &game_state_header_size))
 		{
 			game_context->game_state_header_size = game_state_header_size;
 			if (is_valid(game_context->game_state_header_ptr) && game_context->game_state_header_size > 0)

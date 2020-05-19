@@ -1,4 +1,4 @@
-#include <Shared\shared-public-pch.h>
+#include <Platform\platform-public-pch.h>
 #include <SymbolsLib\symbolslib-public-pch.h>
 
 const char* c_console::g_console_executable_name = "SymbolsPreprocessor";

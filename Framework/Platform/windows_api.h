@@ -23,3 +23,11 @@
 #else
 #define UWP_PLATFORM
 #endif
+
+#ifdef min
+#undef min
+#endif
+#ifdef max
+#undef max
+#endif
+

@@ -455,8 +455,8 @@ void c_cache_file::generate_cache_file_data_access_data()
 
 	std::string content = "filea";
 	std::string output1 = c_command_line::get_command_line_arg("-generatecachefilememorydebug") + "\\memorydebug_" + GetFileNameChar() + ".csv";
-	write_file_from_memory(output1.c_str(), content.data(), content.size());
+	filesystem_write_file_from_memory(output1.c_str(), content.data(), content.size());
 
 	std::string output2 = c_command_line::get_command_line_arg("-generatecachefilememorydebug") + "\\memorydebug_" + GetFileNameChar() + ".bin";
-	write_file_from_memory(output2.c_str(), data_debug.data(), data_debug.size());
+	filesystem_write_file_from_memory(output2.c_str(), data_debug.data(), data_debug.size());
 }

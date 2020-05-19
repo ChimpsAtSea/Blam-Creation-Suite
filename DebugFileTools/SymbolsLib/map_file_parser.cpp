@@ -19,7 +19,7 @@ c_map_file_parser::~c_map_file_parser()
 void c_map_file_parser::parse_mapping_file_lines(const wchar_t* mapping_filepath)
 {
 	size_t map_file_size = 0;
-	if (!read_file_to_memory(mapping_filepath, &map_file, &map_file_size))
+	if (!filesystem_read_file_to_memory(mapping_filepath, &map_file, &map_file_size))
 	{
 		write_line_verbose("Failed to open input file");
 		throw;
@@ -340,7 +340,7 @@ void c_map_file_parser::create_symbols_blob()
 
 void c_map_file_parser::write_output(const wchar_t* output_filepath)
 {
-	if (!write_file_from_memory(output_filepath, symbols_blob.data(), symbols_blob.size()))
+	if (!filesystem_write_file_from_memory(output_filepath, symbols_blob.data(), symbols_blob.size()))
 	{
 		write_line_verbose("Failed to write output file");
 		throw;

@@ -476,7 +476,7 @@ int c_blamboozle_h2_guerilla::run()
 {
 	char* guerilla_data = nullptr;
 	size_t data_size = 0;
-	if (!read_file_to_memory(binary_filepath.c_str(), reinterpret_cast<void**>(&guerilla_data), &data_size))
+	if (!filesystem_read_file_to_memory(binary_filepath.c_str(), reinterpret_cast<void**>(&guerilla_data), &data_size))
 	{
 		return 1;
 	}

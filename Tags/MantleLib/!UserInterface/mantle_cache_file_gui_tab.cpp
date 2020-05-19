@@ -552,7 +552,7 @@ void c_mantle_cache_file_gui_tab::render_file_dialogue_gui()
 			const char* filename = file_browser.get_selected_file_name();
 
 			std::string stringids_export = "put data in here";
-			write_file_from_memory(filename, stringids_export.c_str(), stringids_export.size());
+			filesystem_write_file_from_memory(filename, stringids_export.c_str(), stringids_export.size());
 
 			debug_file_dialogue_gui = false;
 		}

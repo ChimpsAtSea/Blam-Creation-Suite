@@ -39,9 +39,6 @@
     <ClInclude Include="Blam\Blam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="!Resources\resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\BoxRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -183,9 +180,6 @@
     <ClInclude Include="xxhash_cx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="!Resources\resources_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="string_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -230,31 +224,8 @@
     <ClCompile Include="ImGuiAddons\imgui_text_editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="!Resources\resources_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="string_helpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="!Resources\Resource.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="!Resources\HLSL\BoxShaderVS.hlsl" />
-    <FxCompile Include="!Resources\HLSL\BoxShaderPS.hlsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="!Resources\HLSL\BoxShader.hlsli" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="!Resources\reach_icon.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="!Resources\Cousine-Regular.ttf" />
   </ItemGroup>
 </Project>

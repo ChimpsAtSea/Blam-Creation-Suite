@@ -1,4 +1,4 @@
-#include "opusframework-private-pch.h"
+#include "gameframework-private-pch.h"
 
 float c_mouse_input::s_horizontal_sensitivity = 1.0f;
 float c_mouse_input::s_vertical_sensitivity = 1.0f;

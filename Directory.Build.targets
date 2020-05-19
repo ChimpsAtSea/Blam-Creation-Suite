@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	
+  <PropertyGroup Condition="'$(MSBuildProjectName)'!='blamlib'">
+  
+  <IncludePath>$(SolutionDir);$(IncludePath)</IncludePath>
+  <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)DebugFileTools\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)Framework\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)Game\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)Runtime\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)Tags\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)ThirdParty\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)Tooling\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)Tooling\Audio\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)Tooling\Blender\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)Framework\blamlib\;$(IncludePath)</IncludePath>
+  
+  <IncludePath>$(SolutionDir)ThirdParty\tbb\include\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)ThirdParty\include\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)ThirdParty\include\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)ThirdParty\llvm\llvm\include\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)ThirdParty\llvm\clang\include\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\include\;$(IncludePath)</IncludePath>
+  <IncludePath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\tools\clang\include\;$(IncludePath)</IncludePath>
+  
+  
+  <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(LibraryPath)</LibraryPath>
+  <LibraryPath>$(SolutionDir)$(PlatformName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
+  <LibraryPath>$(SolutionDir)ThirdParty\tbb-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
+  <LibraryPath>$(SolutionDir)ThirdParty\tbb-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
+  <LibraryPath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\lib\;$(LibraryPath)</LibraryPath>
+    
+  </PropertyGroup>
+</Project>

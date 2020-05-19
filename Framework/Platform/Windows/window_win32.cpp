@@ -145,7 +145,7 @@ void c_window_win32::init_window(const char* pWindowTitle, const char* pConsoleT
 
 	// Register the window class.
 
-	WNDCLASSEX windowClass = { };
+	WNDCLASSEXA windowClass = { };
 	windowClass.cbSize = sizeof(WNDCLASSEX);
 	windowClass.style = CS_HREDRAW | CS_VREDRAW;
 	windowClass.lpfnWndProc = WndProc;
@@ -158,7 +158,7 @@ void c_window_win32::init_window(const char* pWindowTitle, const char* pConsoleT
 	windowClass.lpszMenuName = NULL;
 	windowClass.lpszClassName = pApplicationName;
 	windowClass.hCursor = NULL;
-	ATOM registerClassExResult = RegisterClassEx(&windowClass);
+	ATOM registerClassExResult = RegisterClassExA(&windowClass);
 	if (registerClassExResult == NULL)
 	{
 		int err = GetLastError();
@@ -166,7 +166,7 @@ void c_window_win32::init_window(const char* pWindowTitle, const char* pConsoleT
 	}
 
 	// Create the window.
-	s_hWnd = CreateWindowEx(
+	s_hWnd = CreateWindowExA(
 		0,                              // Optional window styles.
 		pApplicationName,               // Window class
 		pWindowTitle,					// Window text

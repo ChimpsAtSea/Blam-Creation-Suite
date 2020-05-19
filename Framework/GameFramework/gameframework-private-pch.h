@@ -1,11 +1,12 @@
 #pragma once
 
+#include <Platform/platform-public-pch.h>
 #include <Shared/shared-public-pch.h>
-#include <Blofeld/blofeld-public-pch.h>
+#include <TagDefinitions/tagdefinitions-public-pch.h>
 #include <MantleLib/mantlelib-public-pch.h>
 #include <SymbolsLib/symbolslib-public-pch.h>
 
-#include "opusframework-public-pch.h"
+#include "gameframework-public-pch.h"
 
 #include <HaloReachLib/haloreachlib-public-pch.h>
 #include <Halo1Lib/halo1lib-public-pch.h>

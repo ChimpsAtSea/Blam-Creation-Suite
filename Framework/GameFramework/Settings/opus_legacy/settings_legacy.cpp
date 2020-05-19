@@ -1,4 +1,4 @@
-#include "opusframework-private-pch.h"
+#include "gameframework-private-pch.h"
 #include "settings_legacy.h"
 
 bool c_settings_legacy::read_boolean(e_settings_section_legacy section, const char* pName, bool defaultValue /*= false*/)

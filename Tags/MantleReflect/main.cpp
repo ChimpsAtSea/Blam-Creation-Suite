@@ -2,7 +2,7 @@
 
 int main(int argc, const char** argv)
 {
-	if (argc < 2)
+	if (argc < 3)
 	{
 		printf("Incorrect number of arguments. Expected 3");
 		return 1;
@@ -15,8 +15,8 @@ int main(int argc, const char** argv)
 	std::string solution_directory = argv[1];
 	std::wstring solution_directory_wide = wargv[1];
 
-	std::string mantlelib_directory = solution_directory + "MantleGen\\";
-	std::wstring mantlelib_directory_wide = solution_directory_wide + L"MantleGen\\";
+	std::string mantlelib_directory = solution_directory + "Tags\\MantleGen\\";
+	std::wstring mantlelib_directory_wide = solution_directory_wide + L"Tags\\MantleGen\\";
 
 	std::string output_directory = mantlelib_directory + "";
 	std::wstring output_directory_wide = mantlelib_directory_wide + L"";
@@ -68,11 +68,11 @@ int main(int argc, const char** argv)
 		legacy_compiler_interface.register_ast_source_generator(&compile_time_gui_generator);
 		legacy_compiler_interface.register_ast_source_generator(&virtual_tag_interface_generator);
 		legacy_compiler_interface.add_system_include_directory(solution_directory);
-		legacy_compiler_interface.add_system_include_directory(solution_directory + "Shared\\");
-		legacy_compiler_interface.add_system_include_directory(solution_directory + "MantleLib\\");
+		legacy_compiler_interface.add_system_include_directory(solution_directory + "Framework\\Shared\\");
+		legacy_compiler_interface.add_system_include_directory(solution_directory + "Tags\\MantleLib\\");
 		legacy_compiler_interface.add_quote_include_directory(solution_directory);
-		legacy_compiler_interface.add_quote_include_directory(solution_directory + "Shared\\");
-		legacy_compiler_interface.add_quote_include_directory(solution_directory + "MantleLib\\");
+		legacy_compiler_interface.add_quote_include_directory(solution_directory + "Framework\\Shared\\");
+		legacy_compiler_interface.add_quote_include_directory(solution_directory + "Tags\\MantleLib\\");
 		legacy_compiler_interface.add_macro("__reflect_legacy__");
 		legacy_compiler_interface.add_macro("__reflect__");
 

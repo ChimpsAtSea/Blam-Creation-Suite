@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Shared\shared-public-pch.h>
-#include <Blofeld\blofeld-public-pch.h>
+#include <TagDefinitions/tagdefinitions-public-pch.h>
 #include <MantleLib\mantlelib-public-pch.h>
 #include <SymbolsLib/symbolslib-public-pch.h>
 #include <OpusFramework\opusframework-public-pch.h>
