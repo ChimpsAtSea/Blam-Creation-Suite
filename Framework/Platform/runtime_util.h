@@ -1,8 +1,9 @@
 #pragma once
-class Runtime
+
+class c_runtime_util
 {
 public:
-	static HINSTANCE GetCurrentModule();
+	static HINSTANCE get_current_module();
 private:
 	static HINSTANCE s_hInstance;
 };

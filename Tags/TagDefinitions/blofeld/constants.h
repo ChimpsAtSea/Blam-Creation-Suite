@@ -171,7 +171,7 @@ namespace blofeld
 		char data[9];
 	};
 	template<size_t x, typename type>
-	s_numberof_sizeof* numberof_sizeof_proxy(type);
+	s_numberof_sizeof* numberof_sizeof_proxy(type&);
 
 	// manually calculated don't lose difficult 
 
@@ -568,7 +568,14 @@ namespace blofeld
 	const unsigned long k_vertices_per_line_count = 2;
 	const unsigned long k_vertices_per_quadrilateral_count = 4;
 
+	constexpr int k_maximum_number_of_vertex_buffers_per_mesh = 8;
+	constexpr int k_maximum_number_of_index_buffers_per_mesh = 2;
 
+	struct s_mesh
+	{
+		short vertex_buffer_indices[k_maximum_number_of_vertex_buffers_per_mesh];
+		short index_buffer_indices[k_maximum_number_of_index_buffers_per_mesh];
+	};
 	struct s_material_postprocess_definition
 	{
 		static const unsigned long k_runtime_queryable_properties_count = 12;

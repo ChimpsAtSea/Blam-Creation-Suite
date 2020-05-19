@@ -1,4 +1,4 @@
-#include <Shared\shared-public-pch.h>
+#include <Platform\platform-public-pch.h>
 
 /* ---------- private constants */
 /* ---------- private macros */

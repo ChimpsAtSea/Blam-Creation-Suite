@@ -97,7 +97,7 @@ c_global_reference* c_global_reference::init_node(e_engine_type engine_type, e_b
 				uint64_t application_virtual_address = c_runtime_symbols::runtime().get_base_virtual_address();
 				uint64_t symbol_virtual_address = public_symbol->rva_plus_base;
 				uint64_t symbol_relative_virtual_address = symbol_virtual_address - application_virtual_address;
-				static char* current_module_base_address = reinterpret_cast<char*>(Runtime::GetCurrentModule());
+				static char* current_module_base_address = reinterpret_cast<char*>(c_runtime_util::get_current_module());
 				char* symbol_address = current_module_base_address + symbol_relative_virtual_address;
 				reference_memory_pointer = reinterpret_cast<void**>(symbol_address);
 

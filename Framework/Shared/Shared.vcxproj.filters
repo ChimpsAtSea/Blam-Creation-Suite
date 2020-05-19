@@ -36,9 +36,6 @@
     <ClInclude Include="hexrays_defs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DebugLogging.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Blam\Blam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -52,9 +49,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AtomicLock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Runtime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StringUtilities.h">
@@ -186,9 +180,6 @@
     <ClInclude Include="shared-types-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="debug_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="xxhash_cx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -196,9 +187,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="string_helpers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -210,9 +198,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\BoxRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Runtime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StringUtilities.cpp">
@@ -245,19 +230,10 @@
     <ClCompile Include="ImGuiAddons\imgui_text_editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="debug_util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugLogging.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="!Resources\resources_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="string_helpers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

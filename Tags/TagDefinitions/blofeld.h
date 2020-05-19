@@ -102,7 +102,7 @@ namespace blofeld
 		case blofeld::_field_char_integer:						return sizeof(char);
 		case blofeld::_field_short_integer:						return sizeof(short);
 		case blofeld::_field_long_integer:						return sizeof(long);
-		case blofeld::_field_int64_integer:						return sizeof(int64);
+		case blofeld::_field_int64_integer:						return sizeof(long long);
 		case blofeld::_field_angle:								return sizeof(angle);
 		case blofeld::_field_tag:								return sizeof(tag);
 		case blofeld::_field_char_enum:							return sizeof(char);

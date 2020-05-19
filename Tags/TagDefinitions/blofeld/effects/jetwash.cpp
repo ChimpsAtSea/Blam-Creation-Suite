@@ -1,4 +1,4 @@
-#include <blofeld-private-pch.h>
+#include <tagdefinitions-private-pch.h>
 #include <blofeld_field_type_override.h>
 
 namespace blofeld

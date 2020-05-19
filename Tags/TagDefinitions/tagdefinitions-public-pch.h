@@ -1,10 +1,8 @@
 #pragma once
 
-
-
 #include "blofeld.h"
-#include "constants.h"
+#include "blofeld/constants.h"
 #ifdef BLOFELD_INCLUDE_GROUPS
-#include "tag_groups.h"
+#include "blofeld/tag_groups.h"
 #endif
-#include "validation.h"
+#include "blofeld/validation.h"

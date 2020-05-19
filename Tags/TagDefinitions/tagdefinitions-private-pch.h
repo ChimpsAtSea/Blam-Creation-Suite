@@ -2,13 +2,11 @@
 
 #define BLOFELD_INCLUDE_GROUPS
 
-#include <Shared/shared-public-pch.h>
-#include <SymbolsLib/symbolslib-public-pch.h>
-#include <OpusFramework/opusframework-public-pch.h>
-#include <blamlib/cseries/cseries.h>
+#include <Platform/platform-public-pch.h>
+#include <blamlib.h>
 
-#include "blofeld-public-pch.h"
-#include "halo4_validation_data.h"
+#include "tagdefinitions-public-pch.h"
+#include "blofeld/halo4_validation_data.h"
 
 namespace blofeld
 {

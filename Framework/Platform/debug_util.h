@@ -1,6 +1,9 @@
 #pragma once
 
-#include <stdio.h>
+extern volatile uint32_t g_debug_point_value;
+
+#define debug_point _InterlockedIncrement(&g_debug_point_value)
+
 
 enum e_debug_log_mode
 {
@@ -69,4 +72,5 @@ SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7)
 #define WriteColoredPrefixVerbose(color, prefix, str, ...) \
 WriteColoredVerbose(color, "%s ", prefix); \
 write_line_verbose(str, ##__VA_ARGS__)
+
 

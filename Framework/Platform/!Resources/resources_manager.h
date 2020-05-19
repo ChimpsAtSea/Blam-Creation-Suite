@@ -14,8 +14,8 @@ class c_resources_manager
 public:
 	static LPSTR get_resource_int_resource(e_resource_type type);
 	static bool get_resource(e_resource_type type, char** out_data, size_t* out_data_size, bool null_terminate = false);
-//private:
-//	static HRSRC get_resource_handle(e_resource_type type);
+private:
+	static HRSRC get_resource_handle(e_resource_type type);
 };
 
 

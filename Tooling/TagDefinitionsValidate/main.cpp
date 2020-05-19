@@ -1,5 +1,6 @@
-#include <Shared\shared-public-pch.h>
-#include <Blofeld\blofeld-public-pch.h>
+#include <Platform\platform-public-pch.h>
+#include <blamlib.h>
+#include <TagDefinitions\tagdefinitions-public-pch.h>
 
 /* ---------- private constants */
 /* ---------- private macros */
@@ -7,7 +8,7 @@
 /* ---------- private classes */
 /* ---------- globals */
 
-const char* c_console::g_console_executable_name = "BlofeldValidate";
+const char* c_console::g_console_executable_name = "TagDefinitionsValidate";
 
 /* ---------- private prototypes */
 /* ---------- public code */
@@ -30,11 +31,9 @@ int main()
 	SetThreadErrorMode(SEM_NOGPFAULTERRORBOX, NULL);
 	SetErrorMode(SEM_NOGPFAULTERRORBOX);
 
-	HMODULE hInstance = NULL;
-	GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, (LPCTSTR)wWinMain, &hInstance);
+	HMODULE current_instance = c_runtime_util::get_current_module();
+	LPWSTR command_line_wide = GetCommandLineW();
 
-	LPWSTR lpCmdLine = GetCommandLineW();
-
-	return wWinMain(hInstance, NULL, lpCmdLine, SW_SHOWNORMAL);
+	return wWinMain(current_instance, NULL, command_line_wide, SW_SHOWNORMAL);
 }
 

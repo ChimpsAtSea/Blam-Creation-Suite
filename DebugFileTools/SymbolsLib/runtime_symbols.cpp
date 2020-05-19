@@ -126,7 +126,7 @@ s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_base_virtual_addre
 
 s_symbol_file_public* c_runtime_symbols::get_public_symbol_by_virtual_address(void* pointer)
 {
-	static HMODULE instance_handle = Runtime::GetCurrentModule();
+	static HMODULE instance_handle = c_runtime_util::get_current_module();
 
 	uint64_t virtual_address = reinterpret_cast<uintptr_t>(pointer);
 	uint64_t module_address = reinterpret_cast<uintptr_t>(instance_handle);

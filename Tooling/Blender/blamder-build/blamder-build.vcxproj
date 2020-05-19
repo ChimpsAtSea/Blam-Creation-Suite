@@ -101,7 +101,7 @@
       <Command>set BUILD_VS_LIBDIRPOST=vc15
 set BUILD_VS_SVNDIR=win64_%BUILD_VS_LIBDIRPOST%
 
-set BUILD_VS_LIBDIR="$(SolutionDir)blamder\lib\%BUILD_VS_SVNDIR%"
+set BUILD_VS_LIBDIR="$(ProjectDir)..\blamder\lib\%BUILD_VS_SVNDIR%"
 
 if NOT EXIST %BUILD_VS_LIBDIR% (
 	rem #TODO: Check for SVN
@@ -125,10 +125,10 @@ if NOT EXIST %BUILD_VS_LIBDIR% (
 )
 
 
-if exist "$(SolutionDir)blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
+if exist "$(ProjectDir)..\blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
 	echo Blender BPY up to date
 ) else (
-	$(SolutionDir)blamder\blamder\make.bat bpy $(Configuration.toLower())
+	$(ProjectDir)..\blamder\blamder\make.bat bpy $(Configuration.toLower())
 )
 </Command>
     </PostBuildEvent>
@@ -152,7 +152,7 @@ if exist "$(SolutionDir)blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\
       <Command>set BUILD_VS_LIBDIRPOST=vc15
 set BUILD_VS_SVNDIR=win64_%BUILD_VS_LIBDIRPOST%
 
-set BUILD_VS_LIBDIR="$(SolutionDir)blamder\lib\%BUILD_VS_SVNDIR%"
+set BUILD_VS_LIBDIR="$(ProjectDir)..\blamder\lib\%BUILD_VS_SVNDIR%"
 
 if NOT EXIST %BUILD_VS_LIBDIR% (
 	rem #TODO: Check for SVN
@@ -176,10 +176,10 @@ if NOT EXIST %BUILD_VS_LIBDIR% (
 )
 
 
-if exist "$(SolutionDir)blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
+if exist "$(ProjectDir)..\blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
 	echo Blender BPY up to date
 ) else (
-	$(SolutionDir)blamder\blamder\make.bat bpy $(Configuration.toLower())
+	$(ProjectDir)..\blamder\blamder\make.bat bpy $(Configuration.toLower())
 )
 </Command>
     </PostBuildEvent>
@@ -207,7 +207,7 @@ if exist "$(SolutionDir)blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\
       <Command>set BUILD_VS_LIBDIRPOST=vc15
 set BUILD_VS_SVNDIR=win64_%BUILD_VS_LIBDIRPOST%
 
-set BUILD_VS_LIBDIR="$(SolutionDir)blamder\lib\%BUILD_VS_SVNDIR%"
+set BUILD_VS_LIBDIR="$(ProjectDir)..\blamder\lib\%BUILD_VS_SVNDIR%"
 
 if NOT EXIST %BUILD_VS_LIBDIR% (
 	rem #TODO: Check for SVN
@@ -231,10 +231,10 @@ if NOT EXIST %BUILD_VS_LIBDIR% (
 )
 
 
-if exist "$(SolutionDir)blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
+if exist "$(ProjectDir)..\blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
 	echo Blender BPY up to date
 ) else (
-	$(SolutionDir)blamder\blamder\make.bat bpy $(Configuration.toLower())
+	$(ProjectDir)..\blamder\blamder\make.bat bpy $(Configuration.toLower())
 )
 </Command>
     </PostBuildEvent>
@@ -259,7 +259,7 @@ if exist "$(SolutionDir)blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\
       <Command>set BUILD_VS_LIBDIRPOST=vc15
 set BUILD_VS_SVNDIR=win64_%BUILD_VS_LIBDIRPOST%
 
-set BUILD_VS_LIBDIR="$(SolutionDir)blamder\lib\%BUILD_VS_SVNDIR%"
+set BUILD_VS_LIBDIR="$(ProjectDir)..\blamder\lib\%BUILD_VS_SVNDIR%"
 
 if NOT EXIST %BUILD_VS_LIBDIR% (
 	rem #TODO: Check for SVN
@@ -283,10 +283,10 @@ if NOT EXIST %BUILD_VS_LIBDIR% (
 )
 
 
-if exist "$(SolutionDir)blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
+if exist "$(ProjectDir)..\blamder\build_windows_Bpy_x64_vc16_$(Configuration)\bin\$(Configuration)\bpy.pyd" (
 	echo Blender BPY up to date
 ) else (
-	$(SolutionDir)blamder\blamder\make.bat bpy $(Configuration.toLower())
+	$(ProjectDir)..\blamder\blamder\make.bat bpy $(Configuration.toLower())
 )
 </Command>
     </PostBuildEvent>

@@ -17,6 +17,9 @@
 #include "platform_types.h"
 #include "threading.h"
 #include "language_runtime.h"
+#include "debug_util.h"
+#include "runtime_util.h"
+#include "filesystem_util.h"
 
 #include "Windows/window_win32.h"
 #include "Windows/command_line.h"

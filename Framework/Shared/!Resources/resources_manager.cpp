@@ -16,7 +16,7 @@ LPSTR c_resources_manager::get_resource_int_resource(e_resource_type type)
 
 HRSRC c_resources_manager::get_resource_handle(e_resource_type type)
 {
-	static HMODULE hInstance = Runtime::GetCurrentModule();
+	static HMODULE hInstance = c_runtime_util::get_current_module();
 
 	LPSTR intResource = get_resource_int_resource(type);
 	if (intResource == nullptr) return NULL;
@@ -39,7 +39,7 @@ bool c_resources_manager::get_resource(e_resource_type type, char** out_data, si
 	*out_data = nullptr;
 	*out_data_size = 0;
 
-	static HMODULE hInstance = Runtime::GetCurrentModule();
+	static HMODULE hInstance = c_runtime_util::get_current_module();
 
 	HRSRC hResource = get_resource_handle(type);
 	if (hResource == NULL) return false;
