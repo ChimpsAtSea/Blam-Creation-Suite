@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="blamlib.h" />
     <ClInclude Include="blamlib\algorithms\binary_search.h" />
     <ClInclude Include="blamlib\cache\cache_files.h" />
     <ClInclude Include="blamlib\cseries\asserts\assert_handler.h" />

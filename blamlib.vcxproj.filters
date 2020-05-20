@@ -360,6 +360,9 @@
     <ClInclude Include="blamlib\tag_files\tag_vertex_buffers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="blamlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="blamlib\cache\cache_files.cpp">
