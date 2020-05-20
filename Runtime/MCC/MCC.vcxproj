@@ -64,7 +64,7 @@
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
+      <Command>$(OutDir)ResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
@@ -100,7 +100,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>$(OutDir)OpusResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
+      <Command>$(OutDir)ResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
