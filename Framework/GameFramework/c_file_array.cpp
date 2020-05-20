@@ -1,15 +1,15 @@
 #include "gameframework-private-pch.h"
 
-c_file_array::c_file_array(std::vector<std::string> fileDirs, std::vector<std::string> pExtensions, int (*pReadInfoFunction)(LPCSTR pName, std::string* name, std::string* desc, LPCSTR path))
+c_file_array::c_file_array(std::vector<std::string> directories, std::vector<std::string> pExtensions, int (*pReadInfoFunction)(LPCSTR pName, std::string* name, std::string* desc, LPCSTR path))
 {
 	if (Files.empty() || Count == 0)
 	{
-		for (std::string& rFileDir : fileDirs)
+		for (std::string& directory : directories)
 		{
-			if (!PathFileExists(rFileDir.c_str()))
+			if (!PathFileExistsA(directory.c_str()))
 				continue;
 
-			for (const std::filesystem::directory_entry& rDirectoryEntry : std::filesystem::directory_iterator(rFileDir))
+			for (const std::filesystem::directory_entry& rDirectoryEntry : std::filesystem::directory_iterator(directory))
 			{
 				for (std::string& pExtension : pExtensions)
 				{

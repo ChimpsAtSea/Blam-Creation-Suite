@@ -1,6 +1,7 @@
 #pragma once
 
 #include <utility>
+#include <detours.h>
 
 extern const char* GetDetourResultStr(LONG detourAttachResult);
 extern void init_detours();
@@ -88,9 +89,9 @@ LONG create_hook(e_engine_type engine_type, e_build build, size_t offset, const 
 
 	}
 
-	char* const pModule = reinterpret_cast<char*>(GetEngineMemoryAddress(engine_type));
+	char* const pModule = reinterpret_cast<char*>(get_engine_memory_address(engine_type));
 	ASSERT(pModule != nullptr);
-	size_t const baseAddress = GetEngineBaseAddress(engine_type);
+	size_t const baseAddress = get_engine_base_address(engine_type);
 
 	rOriginal = (Tb)(pModule + (offset - baseAddress));
 
@@ -165,8 +166,8 @@ template<e_engine_type engine_type, size_t offset, typename T>
 void populate_function_ptr(T& dest)
 {
 	// Find the function address
-	char* const pModule = reinterpret_cast<char*>(GetEngineBaseAddress(engine_type));
-	size_t const baseAddress = GetEngineBaseAddress(engine_type);
+	char* const pModule = reinterpret_cast<char*>(get_engine_base_address(engine_type));
+	size_t const baseAddress = get_engine_base_address(engine_type);
 	char* const pFunctionAddress = pModule + (offset - baseAddress);
 
 	dest = reinterpret_cast<T>(pFunctionAddress);

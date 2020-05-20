@@ -2,8 +2,8 @@
 
 #define BLOFELD_INCLUDE_GROUPS
 
-#include <Platform/platform-public-pch.h>
-#include <blamlib.h>
+#include <Platform\platform-public-pch.h>
+#include <Shared/Blam/blamlib-public-pch.h>
 
 #include "tagdefinitions-public-pch.h"
 #include "blofeld/halo4_validation_data.h"

@@ -122,10 +122,10 @@ c_global_reference* c_global_reference::init_node(e_engine_type engine_type, e_b
 			}
 			else
 			{
-				uint64_t engine_virtual_address = GetEngineBaseAddress(engine_type);
+				uint64_t engine_virtual_address = get_engine_base_address(engine_type);
 				uint64_t data_virtual_address = static_cast<uint64_t>(target_offset);
 				uint64_t data_relative_virtual_address = data_virtual_address - engine_virtual_address;
-				char* engine_base_address = reinterpret_cast<char*>(GetEngineMemoryAddress(engine_type));
+				char* engine_base_address = reinterpret_cast<char*>(get_engine_memory_address(engine_type));
 				data_address = engine_base_address + data_relative_virtual_address;
 			}
 

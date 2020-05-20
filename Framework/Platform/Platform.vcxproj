@@ -22,6 +22,7 @@
     <ClInclude Include="!Resources\resource.h" />
     <ClInclude Include="!Resources\resources_manager.h" />
     <ClInclude Include="debug_util.h" />
+    <ClInclude Include="endianness_util.h" />
     <ClInclude Include="error_handling.h" />
     <ClInclude Include="filesystem_util.h" />
     <ClInclude Include="intrinsics.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="Windows\console.h" />
     <ClInclude Include="Windows\window_win32.h" />
     <ClInclude Include="windows_api.h" />
+    <ClInclude Include="xxhash_cx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="!Resources\resources_manager.cpp" />

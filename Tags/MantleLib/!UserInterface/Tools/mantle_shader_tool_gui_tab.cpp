@@ -57,7 +57,7 @@ c_mantle_shader_tool_gui_tab::c_mantle_shader_tool_gui_tab(const char* title, co
 
 	std::string filepath = c_command_line::get_command_line_arg("-shadertool") + "\\shader.hlsl";
 	std::wstring wfilepath(filepath.begin(), filepath.end());
-	const char* shader_code = FileSystemReadToMemory(wfilepath.c_str());
+	const char* shader_code = filesystem_read_to_memory_legacy(wfilepath.c_str());
 	if (shader_code)
 	{
 		source_code_editor_display.SetText(shader_code);

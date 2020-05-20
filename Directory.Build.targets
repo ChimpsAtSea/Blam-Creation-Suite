@@ -2,6 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	
   <PropertyGroup Condition="'$(MSBuildProjectName)'!='blamlib'">
+  <ResourcesFilepath>$(SolutionDir)\Framework\Platform\!Resources\Resource.rc</ResourcesFilepath>
   
   <IncludePath>$(SolutionDir);$(IncludePath)</IncludePath>
   <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
@@ -27,6 +28,7 @@
   
   <LibraryPath>$(SolutionDir)Libraries\lib\$(PlatformShortName)\;$(LibraryPath)</LibraryPath>
   <LibraryPath>$(SolutionDir)$(PlatformName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
+  <LibraryPath>$(SolutionDir)ThirdParty\lib\$(PlatformShortName)\;$(LibraryPath)</LibraryPath>
   <LibraryPath>$(SolutionDir)ThirdParty\tbb-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
   <LibraryPath>$(SolutionDir)ThirdParty\tbb-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\;$(LibraryPath)</LibraryPath>
   <LibraryPath>$(SolutionDir)ThirdParty\llvm-build\cmake_$(PlatformShortName)\$(CustomConfiguration)\lib\;$(LibraryPath)</LibraryPath>

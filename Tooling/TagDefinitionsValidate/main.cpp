@@ -1,5 +1,5 @@
 #include <Platform\platform-public-pch.h>
-#include <blamlib.h>
+#include <Shared/Blam/blamlib-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 
 /* ---------- private constants */

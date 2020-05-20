@@ -164,30 +164,30 @@ bool filesystem_directory_exists(const wchar_t* directorypath)
 
 // ------------- LEGACY -----------------
 
-void FileSystemReadToBufferImpl(FILE* fileHandle, char* buffer, size_t readLength)
+void filesystem_read_to_buffer_legacy_impl(FILE* file_handle, char* buffer, size_t read_length)
 {
 	uint32_t iterations = 0;
-	for (size_t currentPosition = 0; currentPosition < readLength; iterations++)
+	for (size_t current_position = 0; current_position < read_length; iterations++)
 	{
 		// prevent this from running into a madness number of iterations
 		ASSERT(iterations != UINT32_MAX);
 
-		size_t remainingDataLength = readLength - currentPosition;
-		currentPosition += fread(&buffer[currentPosition], 1, remainingDataLength, filepathHandle);
+		size_t remainingDataLength = read_length - current_position;
+		current_position += fread(&buffer[current_position], 1, remainingDataLength, file_handle);
 	}
 }
 
-char* FileSystemReadToMemory(const wchar_t* filepathPath, size_t* pAllocatedSize)
+char* filesystem_read_to_memory_legacy(const wchar_t* filepathPath, size_t* pAllocatedSize)
 {
-	FILE* fileHandle = _wfopen(filepathPath, L"rb");
-	if (filepathHandle == nullptr)
+	FILE* file_handle = _wfopen(filepathPath, L"rb");
+	if (file_handle == nullptr)
 	{
 		return nullptr;
 	}
 
-	fseek(filepathHandle, 0, SEEK_END);
-	size_t fileSize = static_cast<size_t>(_ftelli64(filepathHandle));
-	fseek(filepathHandle, 0, SEEK_SET);
+	fseek(file_handle, 0, SEEK_END);
+	size_t fileSize = static_cast<size_t>(_ftelli64(file_handle));
+	fseek(file_handle, 0, SEEK_SET);
 
 	char* buffer = new char[fileSize + 1] {};
 	if (pAllocatedSize)
@@ -195,54 +195,54 @@ char* FileSystemReadToMemory(const wchar_t* filepathPath, size_t* pAllocatedSize
 		*pAllocatedSize = fileSize;
 	}
 
-	FileSystemReadToBufferImpl(filepathHandle, buffer, fileSize);
+	filesystem_read_to_buffer_legacy_impl(file_handle, buffer, fileSize);
 
-	int fcloseResult = fclose(filepathHandle);
+	int fcloseResult = fclose(file_handle);
 	ASSERT(fcloseResult == 0);
 
 	return buffer;
 }
 
 
-size_t FileSystemGetFileSize(const wchar_t* filepathPath)
+size_t filesystem_get_file_size_legacy(const wchar_t* filepathPath)
 {
-	FILE* fileHandle = _wfopen(filepathPath, L"rb");
-	if (filepathHandle == nullptr)
+	FILE* file_handle = _wfopen(filepathPath, L"rb");
+	if (file_handle == nullptr)
 	{
 		return 0;
 	}
 
-	fseek(filepathHandle, 0, SEEK_END);
-	size_t fileSize = static_cast<size_t>(_ftelli64(filepathHandle));
-	fseek(filepathHandle, 0, SEEK_SET);
+	fseek(file_handle, 0, SEEK_END);
+	size_t fileSize = static_cast<size_t>(_ftelli64(file_handle));
+	fseek(file_handle, 0, SEEK_SET);
 
-	int fcloseResult = fclose(filepathHandle);
+	int fcloseResult = fclose(file_handle);
 	ASSERT(fcloseResult == 0);
 
 	return fileSize;
 }
 
 
-char* FileSystemReadToMemory2(const wchar_t* filepathPath, char* buffer, size_t* pAllocatedSize)
+char* filesystem_read_to_memory_legacy2(const wchar_t* filepathPath, char* buffer, size_t* pAllocatedSize)
 {
-	FILE* fileHandle = _wfopen(filepathPath, L"rb");
-	if (filepathHandle == nullptr)
+	FILE* file_handle = _wfopen(filepathPath, L"rb");
+	if (file_handle == nullptr)
 	{
 		return nullptr;
 	}
 
-	fseek(filepathHandle, 0, SEEK_END);
-	size_t fileSize = static_cast<size_t>(_ftelli64(filepathHandle));
-	fseek(filepathHandle, 0, SEEK_SET);
+	fseek(file_handle, 0, SEEK_END);
+	size_t fileSize = static_cast<size_t>(_ftelli64(file_handle));
+	fseek(file_handle, 0, SEEK_SET);
 
 	if (pAllocatedSize)
 	{
 		*pAllocatedSize = fileSize;
 	}
 
-	FileSystemReadToBufferImpl(filepathHandle, buffer, fileSize);
+	filesystem_read_to_buffer_legacy_impl(file_handle, buffer, fileSize);
 
-	int fcloseResult = fclose(filepathHandle);
+	int fcloseResult = fclose(file_handle);
 	ASSERT(fcloseResult == 0);
 
 	return buffer;

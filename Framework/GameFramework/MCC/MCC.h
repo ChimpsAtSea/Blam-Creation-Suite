@@ -2,8 +2,6 @@
 
 #define OFFSET(Engine, Build, Offset) if(engine_type == Engine && build == Build) return (Offset);
 
-#include "Versioning.h"
-
 /* LEGACY */ #include "opus_legacy\IVariantAccessorBase.h"
 /* LEGACY */ #include "opus_legacy\IGameVariant.h"
 /* LEGACY */ #include "opus_legacy\IMapVariant.h"

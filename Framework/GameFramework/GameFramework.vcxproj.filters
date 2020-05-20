@@ -60,9 +60,6 @@
     <ClCompile Include="platform_configuration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MCC\Versioning.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MCC\opus_game_engine_host.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -180,9 +177,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="platform_configuration.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MCC\Versioning.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RuntimeManipulation\FindOffsetFunction.h">

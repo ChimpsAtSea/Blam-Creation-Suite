@@ -1,13 +1,10 @@
 #pragma once
 
-#include <Platform/platform-public-pch.h>
-#include <Shared/shared-public-pch.h>
-#include <blamlib.h>
-#include <TagDefinitions/tagdefinitions-public-pch.h>
-
-#include <MantleGen/reflection_types.h>
-#include <MantleGen/legacy_reflection_types.h>
-
+#include <Platform\platform-public-pch.h>
+#include <Shared\shared-public-pch.h>
+#include <Shared/Blam/blamlib-public-pch.h>
+#include <TagDefinitions\tagdefinitions-public-pch.h>
+#include <MantleGen\mantlegen-public-pch.h>
 #include "mantlelib-public-pch.h"
 #include "VirtualMemoryContainer.h"
 

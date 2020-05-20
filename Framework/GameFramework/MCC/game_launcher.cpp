@@ -521,7 +521,7 @@ void c_game_launcher::check_steam_ownership()
 	bool steam_api_init_result = SteamAPI_Init();
 	if (!steam_api_init_result)
 	{
-		MessageBox(NULL, "Fatal Error - Steam failed to initialize", "Fatal Error", MB_OK | MB_ICONWARNING);
+		MessageBoxA(NULL, "Fatal Error - Steam failed to initialize", "Fatal Error", MB_OK | MB_ICONWARNING);
 		exit(1);
 	}
 #endif
@@ -548,7 +548,7 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 	}
 	if (!module_handle)
 	{
-		MessageBox(c_window_win32::get_window_handle(), library_name, "failed to load library", MB_ICONERROR);
+		MessageBoxA(c_window_win32::get_window_handle(), library_name, "failed to load library", MB_ICONERROR);
 	}
 	ASSERT(module_handle != NULL);
 }

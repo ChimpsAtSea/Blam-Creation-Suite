@@ -27,7 +27,7 @@ bool filesystem_directory_exists(const char* szPath);
 
 // ------------- LEGACY -----------------
 
-char* FileSystemReadToMemory2(const wchar_t* filepathPath, char* buffer, size_t* pAllocatedSize);
-size_t FileSystemGetFileSize(const wchar_t* filepathPath);
-char* FileSystemReadToMemory(const wchar_t* filepathPath, size_t* pAllocatedSize = nullptr);
+char* filesystem_read_to_memory_legacy2(const wchar_t* filepathPath, char* buffer, size_t* pAllocatedSize);
+size_t filesystem_get_file_size_legacy(const wchar_t* filepathPath);
+char* filesystem_read_to_memory_legacy(const wchar_t* filepathPath, size_t* pAllocatedSize = nullptr);
 

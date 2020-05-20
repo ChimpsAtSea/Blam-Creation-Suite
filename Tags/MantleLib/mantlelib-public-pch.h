@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Shared/Blam/blamlib-public-pch.h>
+#include <Shared/Blam/Blam.h>
 
 #include "Tags/Tags.h"
 #include "CacheInterface/CacheInterface.h"

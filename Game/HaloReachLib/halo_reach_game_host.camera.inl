@@ -4,7 +4,7 @@ uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_bu
 	if (engine_type == _engine_type_halo_reach && false)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine_type))); // 1.1350.0.0
+		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type))); // 1.1350.0.0
 
 		// .text:000000018006FE30                               sub_18006FE30   proc near               ; CODE XREF: sub_1800335E0+52↑p
 		// .text:000000018006FE30                                                                       ; sub_1800335E0+133↑p ...
@@ -72,7 +72,7 @@ uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_bu
 		if (patternOffset)
 		{
 			write_line_verbose("ketchup> SUCCEED: player_mapping_get_local_player_offset @0x%x", patternOffset);
-			return GetEngineBaseAddress(engine_type) + patternOffset;
+			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{
@@ -103,7 +103,7 @@ uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build 
 	if (engine_type == _engine_type_halo_reach && false)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine_type))); // 1.1350.0.0
+		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type))); // 1.1350.0.0
 
 		// .text:00000001800E3050                               sub_1800E3050   proc near               ; CODE XREF: sub_1800DC8D0+1D4↑p
 		// .text:00000001800E3050                                                                       ; sub_18016A970+D8↓p ...
@@ -167,7 +167,7 @@ uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build 
 		if (patternOffset)
 		{
 			write_line_verbose("ketchup> SUCCEED: observer_try_and_get_camera_offset @0x%x", patternOffset);
-			return GetEngineBaseAddress(engine_type) + patternOffset;
+			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{

@@ -12,10 +12,6 @@
 #include "shared-tbb-pch.h"
 #include "shared-types-pch.h"
 
-#include "xxhash_cx.h"
-using namespace xxhash;
-using namespace xxhash::literals;
-
 #include "string_helpers.h"
 
 #include "high_precision_timer.h"

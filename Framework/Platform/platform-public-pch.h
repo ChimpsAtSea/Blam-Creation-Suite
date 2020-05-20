@@ -13,13 +13,19 @@
 #include "macro_utils.h"
 #include "intrinsics.h"
 #include "windows_api.h"
+
 #include "error_handling.h"
 #include "platform_types.h"
+#include "xxhash_cx.h"
+using namespace xxhash;
+using namespace xxhash::literals;
+
 #include "threading.h"
 #include "language_runtime.h"
 #include "debug_util.h"
 #include "runtime_util.h"
 #include "filesystem_util.h"
+#include "endianness_util.h"
 
 #include "Windows/window_win32.h"
 #include "Windows/command_line.h"

@@ -1,28 +1,28 @@
 #include "gameframework-private-pch.h"
 
-c_file_reference::c_file_reference(LPCSTR pPath)
+c_file_reference::c_file_reference(LPCSTR filepath) :
+	filepath(filepath)
 {
-	filepath = pPath;
 }
 
 bool c_file_reference::open_file()
 {
-	filepath = fopen(filepath, "rb");
+	file = fopen(filepath, "rb");
 	if (filepath)
 	{
-		fseek(filepath, 0, SEEK_END);
-		buffer_size = ftell(filepath);
-		fseek(filepath, 0L, SEEK_SET);
+		fseek(file, 0, SEEK_END);
+		buffer_size = ftell(file);
+		fseek(file, 0L, SEEK_SET);
 		buffer = new char[buffer_size];
 		memset(buffer, 0x00, buffer_size);
 
-		fseek(filepath, 0L, SEEK_SET);
+		fseek(file, 0L, SEEK_SET);
 		size_t totalBytesRead = 0;
 		do
 		{
 			size_t bytesToRead = buffer_size - totalBytesRead;
-			fseek(filepath, static_cast<long>(totalBytesRead), SEEK_SET);
-			size_t bytesRead = fread(buffer + totalBytesRead, 1, bytesToRead, filepath);
+			fseek(file, static_cast<long>(totalBytesRead), SEEK_SET);
+			size_t bytesRead = fread(buffer + totalBytesRead, 1, bytesToRead, file);
 			totalBytesRead += bytesRead;
 		} while (totalBytesRead < buffer_size);
 
@@ -38,7 +38,7 @@ void c_file_reference::close_file()
 	{
 		buffer_size = 0;
 		free(buffer);
-		fclose(filepath);
+		fclose(file);
 	}
 }
 

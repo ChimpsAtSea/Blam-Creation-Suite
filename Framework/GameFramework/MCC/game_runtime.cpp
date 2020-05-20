@@ -22,7 +22,7 @@ c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* pEngineNam
 	}
 	else
 	{
-		hGameModule = static_cast<HINSTANCE>(GetEngineMemoryAddress(engine_type));
+		hGameModule = static_cast<HINSTANCE>(get_engine_memory_address(engine_type));
 	}
 }
 

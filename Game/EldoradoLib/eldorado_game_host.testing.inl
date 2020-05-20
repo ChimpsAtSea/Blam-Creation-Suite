@@ -56,19 +56,19 @@ c_data_patch<enable_tag_edits_patch_offset> enable_tag_edits = { [](e_engine_typ
 	switch (build)
 	{
 	case _build_eldorado_1_106708_cert_ms23:
-		patch1 = GetEngineVirtualAddress(engine_type, 0x00501A5B);
-		patch2 = GetEngineVirtualAddress(engine_type, 0x00502874);
-		patch3 = GetEngineVirtualAddress(engine_type, 0x005030AA);
+		patch1 = engine_virtual_address_to_pointer(engine_type, 0x00501A5B);
+		patch2 = engine_virtual_address_to_pointer(engine_type, 0x00502874);
+		patch3 = engine_virtual_address_to_pointer(engine_type, 0x005030AA);
 		break;
 	case _build_eldorado_1_604673_Live:
-		patch1 = GetEngineVirtualAddress(engine_type, 0x00482DB4);
-		patch2 = GetEngineVirtualAddress(engine_type, 0x004830FA);
-		patch3 = GetEngineVirtualAddress(engine_type, 0x00483AFC);
+		patch1 = engine_virtual_address_to_pointer(engine_type, 0x00482DB4);
+		patch2 = engine_virtual_address_to_pointer(engine_type, 0x004830FA);
+		patch3 = engine_virtual_address_to_pointer(engine_type, 0x00483AFC);
 		break;
 	case _build_eldorado_1_700255_cert_ms30_oct19:
-		patch1 = GetEngineVirtualAddress(engine_type, 0x00483934);
-		patch2 = GetEngineVirtualAddress(engine_type, 0x00483C9A);
-		patch3 = GetEngineVirtualAddress(engine_type, 0x004847A9);
+		patch1 = engine_virtual_address_to_pointer(engine_type, 0x00483934);
+		patch2 = engine_virtual_address_to_pointer(engine_type, 0x00483C9A);
+		patch3 = engine_virtual_address_to_pointer(engine_type, 0x004847A9);
 		break;
 	default:
 		return; // skip unknown build
@@ -98,8 +98,8 @@ c_data_patch<no_account_args_patch_offset> no_account_args_patch = { [](e_engine
 
 	if (build == _build_eldorado_1_106708_cert_ms23)
 	{
-		char* patch1 = GetEngineVirtualAddress(engine_type, 0x0083731A);
-		char* patch2 = GetEngineVirtualAddress(engine_type, 0x008373AD);
+		char* patch1 = engine_virtual_address_to_pointer(engine_type, 0x0083731A);
+		char* patch2 = engine_virtual_address_to_pointer(engine_type, 0x008373AD);
 
 		packets.push_back(MAKE_DATAPATCHPACKET(patch1, 1));
 		packets.push_back(MAKE_DATAPATCHPACKET(patch2, 2));

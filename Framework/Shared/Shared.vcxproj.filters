@@ -177,9 +177,6 @@
     <ClInclude Include="shared-types-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="xxhash_cx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="string_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>

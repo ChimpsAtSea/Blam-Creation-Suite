@@ -52,8 +52,8 @@ void memcpy_virtual(
 
 void nop_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, size_t count)
 {
-	char* pBeginning = (char*)GetEngineMemoryAddress(engine_type);
-	char* pNopAttack = pBeginning + (offset - GetEngineBaseAddress(engine_type));
+	char* pBeginning = (char*)get_engine_memory_address(engine_type);
+	char* pNopAttack = pBeginning + (offset - get_engine_base_address(engine_type));
 
 	char nop = 0x90i8;
 	for (size_t i = 0; i < count; i++)
@@ -64,16 +64,16 @@ void nop_address_legacy(e_engine_type engine_type, e_build build, intptr_t offse
 
 void copy_from_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length)
 {
-	char* pBeginning = (char*)GetEngineMemoryAddress(engine_type);
-	char* pDataAttack = pBeginning + (offset - GetEngineBaseAddress(engine_type));
+	char* pBeginning = (char*)get_engine_memory_address(engine_type);
+	char* pDataAttack = pBeginning + (offset - get_engine_base_address(engine_type));
 
 	memcpy_virtual(data, pDataAttack, length);
 }
 
 void copy_to_address_legacy(e_engine_type engine_type, e_build build, intptr_t offset, void* data, size_t length)
 {
-	char* pBeginning = (char*)GetEngineMemoryAddress(engine_type);
-	char* pDataAttack = pBeginning + (offset - GetEngineBaseAddress(engine_type));
+	char* pBeginning = (char*)get_engine_memory_address(engine_type);
+	char* pDataAttack = pBeginning + (offset - get_engine_base_address(engine_type));
 
 	memcpy_virtual(pDataAttack, data, length);
 }

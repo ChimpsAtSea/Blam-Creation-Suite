@@ -91,7 +91,7 @@ c_mantle_halo_script_editor::c_mantle_halo_script_editor(c_mantle_cache_file_gui
 	std::wstring halo_script_filew = { halo_script_file.begin(), halo_script_file.end() };
 	if (!halo_script_file.empty())
 	{
-		const char* halo_script_source = FileSystemReadToMemory(halo_script_filew.c_str());
+		const char* halo_script_source = filesystem_read_to_memory_legacy(halo_script_filew.c_str());
 		if (halo_script_source)
 		{
 			source_code_editor.SetText(halo_script_source);
@@ -121,7 +121,7 @@ void c_mantle_halo_script_editor::render_tab_contents_gui()
 			if (!halo_script_file.empty())
 			{
 				size_t halo_script_source_size = 0;
-				const char* halo_script_source = FileSystemReadToMemory(halo_script_filew.c_str());
+				const char* halo_script_source = filesystem_read_to_memory_legacy(halo_script_filew.c_str());
 				if (halo_script_source)
 				{
 					std::string editor_test = source_code_editor.GetText();

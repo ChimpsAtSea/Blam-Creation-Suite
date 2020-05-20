@@ -1,7 +1,9 @@
+#include <Platform\platform-public-pch.h>
 #include <Shared\shared-public-pch.h>
-#include <TagDefinitions/tagdefinitions-public-pch.h>
+#include <TagDefinitions\tagdefinitions-public-pch.h>
+#include <MantleGen\mantlegen-public-pch.h>
 #include <MantleLib\mantlelib-public-pch.h>
-#include <OpusFramework\opusframework-private-pch.h>
+#include <GameFramework\gameframework-private-pch.h>
 
 DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
 
@@ -18,7 +20,7 @@ int WINAPI WinMain(
 
 	c_console::init_console();
 
-	c_window_win32::SetIcon(LoadIconA(hInstance, c_resources_manager::get_resource_int_resource(_resource_type_icon)));
+	c_window_win32::SetIcon(LoadIconW(hInstance, c_resources_manager::get_resource_int_resource(_resource_type_icon)));
 	SystemPatch::PatchEnumWindows();
 
 	static bool s_running = true;

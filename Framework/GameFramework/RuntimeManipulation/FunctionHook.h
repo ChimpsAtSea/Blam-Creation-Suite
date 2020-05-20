@@ -11,8 +11,8 @@ public:
 	typedef R(base_type)(Args...);
 
 #ifndef __clang__
-	static_assert(build == _build_not_set || offset >= GetEngineBaseAddress(engine_type), "Offset is out of bounds");
-	static_assert(build == _build_not_set || offset < GetEngineTopAddress(engine_type, build), "Offset is out of bounds");
+	static_assert(build == _build_not_set || offset >= get_engine_base_address(engine_type), "Offset is out of bounds");
+	static_assert(build == _build_not_set || offset < get_engine_top_address(engine_type, build), "Offset is out of bounds");
 #endif
 
 	__forceinline decltype(auto) operator()(Args... arg)

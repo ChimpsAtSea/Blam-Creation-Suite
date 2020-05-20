@@ -40,8 +40,8 @@ c_function_hook_base* c_function_hook_base::init_node(e_engine_type engine_type,
 
 			m_offset = foundOffset;
 
-			ASSERT(m_build == _build_not_set && m_offset >= GetEngineBaseAddress(engine_type)/*, "Offset is out of bounds"*/);
-			ASSERT(m_build == _build_not_set && m_offset < GetEngineTopAddress(engine_type, build)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == _build_not_set && m_offset >= get_engine_base_address(engine_type)/*, "Offset is out of bounds"*/);
+			ASSERT(m_build == _build_not_set && m_offset < get_engine_top_address(engine_type, build)/*, "Offset is out of bounds"*/);
 		}
 		ASSERT(m_offset != 0);
 
@@ -66,7 +66,7 @@ c_function_hook_base* c_function_hook_base::init_node(e_engine_type engine_type,
 		}
 		else
 		{
-			populate_function_ptr(GetEngineModuleFileName(engine_type), GetEngineBaseAddress(engine_type), m_offset, rBase);
+			populate_function_ptr(get_engine_module_filename(engine_type), get_engine_base_address(engine_type), m_offset, rBase);
 			write_line_verbose("Created function pointer for %s", pFunctionName);
 		}
 

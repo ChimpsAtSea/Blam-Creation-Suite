@@ -76,9 +76,9 @@ void c_cache_file::loadMap(const std::wstring& mafilepathPath)
 	tbb::task::enqueue(*lambda_task([=]() {
 
 		char* pMapVirtualData = m_rVirtualMemoryContainer.GetData();
-		size_t mapSize = FileSystemGetFileSize(mafilepathPath.c_str());
+		size_t mapSize = filesystem_get_file_size_legacy(mafilepathPath.c_str());
 		m_rVirtualMemoryContainer.SetSize(mapSize);
-		char* pMapData = FileSystemReadToMemory2(mafilepathPath.c_str(), pMapVirtualData, &mapSize);
+		char* pMapData = filesystem_read_to_memory_legacy2(mafilepathPath.c_str(), pMapVirtualData, &mapSize);
 
 		if (pMapData)
 		{

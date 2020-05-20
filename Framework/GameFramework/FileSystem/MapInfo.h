@@ -10,8 +10,7 @@ private:
 
 	inline s_blamfile_level_chunk_flags getLittleEndianLevelChunkFlags() const
 	{
-		//unsigned int blamfileRawFlags = bswap_auto_endian(m_isLevelChunkIsLittleEndian, *reinterpret_cast<const unsigned int*>(&m_levelChunk.m_flags));
-		unsigned int blamfileRawFlags = *reinterpret_cast<const unsigned int*>(&m_levelChunk.m_flags.m_isCampaign);
+		unsigned int blamfileRawFlags = bswap_auto_endian(m_isLevelChunkIsLittleEndian, *reinterpret_cast<const unsigned int*>(&m_levelChunk.m_flags));
 		s_blamfile_level_chunk_flags& flags = *reinterpret_cast<s_blamfile_level_chunk_flags*>(&blamfileRawFlags);
 		return flags;
 	}

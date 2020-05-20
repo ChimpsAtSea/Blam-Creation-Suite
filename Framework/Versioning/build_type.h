@@ -1,88 +1,5 @@
 #pragma once
 
-enum e_engine_type : uint8_t
-{
-	_engine_type_not_set,
-	_engine_type_mcc,
-	_engine_type_halo_reach,
-	_engine_type_halo1,
-	_engine_type_halo2,
-	_engine_type_halo3,
-	_engine_type_halo3odst,
-	_engine_type_halo4,
-	_engine_type_groundhog,
-	_engine_type_eldorado,
-	_engine_type_halo5,
-};
-
-constexpr const char* engine_type_to_string(e_engine_type engine_type)
-{
-	switch (engine_type)
-	{
-	case _engine_type_not_set:		return "_engine_type_not_set";
-	case _engine_type_mcc:			return "_engine_type_mcc";
-	case _engine_type_halo_reach:	return "_engine_type_halo_reach";
-	case _engine_type_halo1:		return "_engine_type_halo1";
-	case _engine_type_halo2:		return "_engine_type_halo2";
-	case _engine_type_halo3:		return "_engine_type_halo3";
-	case _engine_type_halo3odst:	return "_engine_type_halo3odst";
-	case _engine_type_halo4:		return "_engine_type_halo4";
-	case _engine_type_groundhog:	return "_engine_type_groundhog";
-	case _engine_type_eldorado:		return "_engine_type_eldorado";
-	case _engine_type_halo5:	return "_engine_type_halo5";
-	}
-	FATAL_ERROR(L"unknown e_engine_type");
-}
-
-constexpr const char* engine_type_to_nice_name(e_engine_type engine_type)
-{
-	switch (engine_type)
-	{
-	case _engine_type_not_set:		return "Not Set";
-	case _engine_type_mcc:			return "Master Chief Collection";
-	case _engine_type_halo_reach:	return "Halo Reach";
-	case _engine_type_halo1:		return "Halo 1";
-	case _engine_type_halo2:		return "Halo 2";
-	case _engine_type_halo3:		return "Halo 3";
-	case _engine_type_halo3odst:	return "Halo 3: ODST";
-	case _engine_type_halo4:		return "Halo 4";
-	case _engine_type_groundhog:	return "Groundhog";
-	case _engine_type_eldorado:		return "Eldorado";
-	case _engine_type_halo5:	return "Halo 5 Forge";
-	}
-	FATAL_ERROR(L"unknown e_engine_type");
-}
-
-constexpr const char* engine_type_to_folder_name(e_engine_type engine_type)
-{
-	switch (engine_type)
-	{
-	case _engine_type_halo_reach:	return "haloreach";
-	case _engine_type_halo1:		return "halo1";
-	case _engine_type_halo2:		return "halo2";
-	case _engine_type_halo3:		return "halo3";
-	case _engine_type_halo3odst:	return "halo3odst";
-	case _engine_type_halo4:		return "halo4";
-	case _engine_type_groundhog:	return "groundhog";
-	}
-	FATAL_ERROR(L"unknown e_engine_type");
-}
-
-constexpr const wchar_t* engine_type_to_folder_name_wide(e_engine_type engine_type)
-{
-	switch (engine_type)
-	{
-	case _engine_type_halo_reach:	return L"haloreach";
-	case _engine_type_halo1:		return L"halo1";
-	case _engine_type_halo2:		return L"halo2";
-	case _engine_type_halo3:		return L"halo3";
-	case _engine_type_halo3odst:	return L"halo3odst";
-	case _engine_type_halo4:		return L"halo4";
-	case _engine_type_groundhog:	return L"groundhog";
-	}
-	FATAL_ERROR(L"unknown e_engine_type");
-}
-
 #define MAKE_FILE_VERSION(a, b, c, d) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 16) | (uint64_t(d) << 0))
 #define MAKE_PRODUCT_VERSION(a, b, c) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 0))
 #define MAKE_TOOL_VERSION(a, b, c, d, file_description, product_name) (MAKE_FILE_VERSION(a, b, c, d) ^ (file_description##product_name##_xxh64))
@@ -198,7 +115,7 @@ inline const char* build_configuration_get()
 	return build_configuration;
 }
 
-constexpr uintptr_t GetEngineBaseAddress(e_engine_type engine_type)
+constexpr uintptr_t get_engine_base_address(e_engine_type engine_type)
 {
 	switch (engine_type)
 	{
@@ -222,30 +139,7 @@ constexpr uintptr_t GetEngineBaseAddress(e_engine_type engine_type)
 	return ~uintptr_t();
 }
 
-enum e_game_context_version
-{
-	_game_context_version_1,
-	_game_context_version_2,
-	_game_context_version_3,
-};
-
-constexpr e_game_context_version get_game_context_version_from_build(e_build build)
-{
-	if (build >= _build_mcc_1_1367_0_0)
-	{
-		return _game_context_version_3;
-	}
-	if (build >= _build_mcc_1_1186_0_0)
-	{
-		return _game_context_version_2;
-	}
-	else
-	{
-		return _game_context_version_1;
-	}
-}
-
-constexpr uintptr_t GetEngineTopAddress(e_engine_type engine_type, e_build build)
+constexpr uintptr_t get_engine_top_address(e_engine_type engine_type, e_build build)
 {
 #ifdef _WIN64
 	if (engine_type == _engine_type_mcc || engine_type == _engine_type_halo5)
@@ -294,7 +188,7 @@ constexpr uintptr_t GetEngineTopAddress(e_engine_type engine_type, e_build build
 	return ~uintptr_t();
 }
 
-constexpr const char* GetEngineModuleFileName(e_engine_type engine_type)
+constexpr const char* get_engine_module_filename(e_engine_type engine_type)
 {
 	switch (engine_type)
 	{
@@ -322,17 +216,17 @@ constexpr const char* GetEngineModuleFileName(e_engine_type engine_type)
 	FATAL_ERROR(L"Unsupported GameVersion");
 }
 
-extern bool IsEngineLoaded(e_engine_type engine_type);
-extern void* GetEngineMemoryAddress(e_engine_type engine_type);
+extern bool is_engine_loaded(e_engine_type engine_type);
+extern void* get_engine_memory_address(e_engine_type engine_type);
 extern uint64_t get_library_file_version(const char* file_path);
 extern uint64_t get_library_file_version(const wchar_t* file_path);
 extern std::wstring get_library_description(const wchar_t* file_path);
 extern std::wstring get_library_product_name(const wchar_t* file_path);
 
-inline char* GetEngineVirtualAddress(e_engine_type engine_type, uintptr_t virtual_address)
+inline char* engine_virtual_address_to_pointer(e_engine_type engine_type, uintptr_t virtual_address)
 {
-	uintptr_t relative_virtual_address = virtual_address - GetEngineBaseAddress(engine_type);
-	char* engine_virtual_address = reinterpret_cast<char*>(GetEngineMemoryAddress(engine_type));
+	uintptr_t relative_virtual_address = virtual_address - get_engine_base_address(engine_type);
+	char* engine_virtual_address = reinterpret_cast<char*>(get_engine_memory_address(engine_type));
 	char* virtual_address_pointer = engine_virtual_address + relative_virtual_address;
 	return virtual_address_pointer;
 }

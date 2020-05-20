@@ -66,6 +66,12 @@
     <ClInclude Include="filesystem_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="endianness_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xxhash_cx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform-private-pch.cpp">

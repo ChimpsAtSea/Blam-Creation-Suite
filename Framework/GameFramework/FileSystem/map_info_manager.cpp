@@ -31,7 +31,7 @@ void c_map_info_manager::parse_map_info(const std::filesystem::path& filesystem_
 	const wchar_t* filepath = filesystem_filepath.c_str();
 	write_line_verbose("MapInfoManager> Parsing %S", filepath);
 
-	char* raw_map_info_data = FileSystemReadToMemory(filesystem_path.c_str()); // #TODO: FileSystemReadToMemory deprecated
+	char* raw_map_info_data = filesystem_read_to_memory_legacy(filesystem_path.c_str()); // #TODO: filesystem_read_to_memory_legacy deprecated
 	if (raw_map_info_data == nullptr)
 	{
 		write_line_verbose("MapInfoManager> Error opening %S for read", filepath);

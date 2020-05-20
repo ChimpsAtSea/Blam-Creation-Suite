@@ -22,7 +22,7 @@ bool c_fsb_validate::execute_command(const std::vector<std::string>& arguments)
 			{
 				wchar_t filepath_buffer[MAX_PATH + 1]{};
 				_swprintf(filepath_buffer, L"%S", arguments[1].c_str());
-				file_data = FileSystemReadToMemory(filepath_buffer, &file_size);
+				file_data = filesystem_read_to_memory_legacy(filepath_buffer, &file_size);
 			}
 
 			if (file_data == nullptr)

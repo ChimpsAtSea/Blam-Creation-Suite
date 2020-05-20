@@ -108,10 +108,10 @@ bool c_data_patch_base::ApplyPatch()
 	char** data_addresses = reinterpret_cast<char**>(alloca(sizeof(char*) * offsets.size()));
 	for (size_t i = 0; i < offsets.size(); i++)
 	{
-		uintptr_t const game_virtual_address = GetEngineBaseAddress(engine_type);
+		uintptr_t const game_virtual_address = get_engine_base_address(engine_type);
 		uintptr_t const data_virtual_address = static_cast<uintptr_t>(offsets[i]);
 		uintptr_t const data_relative_address = data_virtual_address - game_virtual_address;
-		char* const game_base_address = reinterpret_cast<char*>(GetEngineMemoryAddress(engine_type));
+		char* const game_base_address = reinterpret_cast<char*>(get_engine_memory_address(engine_type));
 		char* const data_address = game_base_address + data_relative_address;
 
 		data_addresses[i] = data_address;

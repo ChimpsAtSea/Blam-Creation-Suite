@@ -55,7 +55,7 @@ void _simple_pattern_match_readonly_data_copy(
 
 uintptr_t simple_pattern_match(e_engine_type engine_type, e_build build, const char pInputData[], size_t inputDataLength, const char* pInputMask)
 {
-	void* pEngineAddress = GetEngineMemoryAddress(engine_type);
+	void* pEngineAddress = get_engine_memory_address(engine_type);
 	SIZE_T sizeOfImage = 0;
 	void* pModuleData = nullptr;
 	_simple_pattern_match_readonly_data_copy(pEngineAddress, sizeOfImage, pModuleData);
@@ -88,7 +88,7 @@ uintptr_t simple_pattern_match(e_engine_type engine_type, e_build build, const c
 				}
 			}
 
-			return GetEngineBaseAddress(engine_type) + static_cast<intptr_t>(imageOffset);
+			return get_engine_base_address(engine_type) + static_cast<intptr_t>(imageOffset);
 		search_fail_im:
 			continue;
 		}
@@ -101,7 +101,7 @@ uintptr_t simple_pattern_match(e_engine_type engine_type, e_build build, const c
 
 			if (memcmp(pCurrentSearchPointer, pInputData, inputDataLength) == 0)
 			{
-				return GetEngineBaseAddress(engine_type) + static_cast<intptr_t>(imageOffset);
+				return get_engine_base_address(engine_type) + static_cast<intptr_t>(imageOffset);
 			}
 
 			//	for (size_t currentPatternIndex = 0; currentPatternIndex < inputDataLength; currentPatternIndex++)
@@ -132,7 +132,7 @@ const char* string_search_ptr(e_engine_type engine_type, e_build build, const ch
 	uintptr_t imageAddress = string_search(engine_type, build, pString);
 	if (imageAddress)
 	{
-		const char* pStringAddress = reinterpret_cast<const char*>(GetEngineMemoryAddress(engine_type)) + (imageAddress - GetEngineBaseAddress(engine_type));
+		const char* pStringAddress = reinterpret_cast<const char*>(get_engine_memory_address(engine_type)) + (imageAddress - get_engine_base_address(engine_type));
 		return pStringAddress;
 	}
 	return nullptr;
@@ -180,7 +180,7 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 	if (engine_type == _engine_type_halo_reach)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine_type))); // 1.1270.0.0
+		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type))); // 1.1270.0.0
 		ps.AddInstruction(new _push("x", 0x40, 0x57));																	//.text:0000000180011870	push		rdi
 		ps.AddInstruction(new _sub("x", 0x48, 0x83, 0xEC, 0x30));														//.text:0000000180011872	sub			rsp, 30h
 		ps.AddInstruction(new _mov("x", 0x48, 0xC7, 0x44, 0x24, 0x20, 0xFE, 0xFF, 0xFF, 0xFF));							//.text:0000000180011876	mov			[rsp+38h+var_18], 0FFFFFFFFFFFFFFFEh
@@ -212,7 +212,7 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 		if (patternOffset)
 		{
 			write_line_verbose("ketchup> SUCCEED: main_game_launch_offset @0x%x", patternOffset);
-			return GetEngineBaseAddress(engine_type) + patternOffset;
+			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{
@@ -275,7 +275,7 @@ uintptr_t mcc_map_id_parse_to_reach_offset(e_engine_type engine_type, e_build bu
 	if (engine_type == _engine_type_halo_reach)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine_type)));			// 1.1270.0.0
+		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type)));			// 1.1270.0.0
 		ps.AddInstruction(new _or("x", 0x83, 0xCA, 0xFF));																		//.text:000000018004BF10 83 CA FF                    or      edx, 0FFFFFFFFh
 		ps.AddInstruction(new _add("x", 0x81, 0xC1, 0x4E, 0xFF, 0xF, 0xFF));													//.text:000000018004BF13 81 C1 4E FF+                add     ecx, 0FFFFFF4Eh ; switch 42 cases
 		ps.AddInstruction(new _cmp("x", 0x83, 0xF9, 0x29));																		//.text:000000018004BF19 83 F9 29                    cmp     ecx, 29h
@@ -304,7 +304,7 @@ uintptr_t mcc_map_id_parse_to_reach_offset(e_engine_type engine_type, e_build bu
 		if (patternOffset)
 		{
 			write_line_verbose("ketchup> SUCCEED: mcc_map_id_parse_to_reach_offset @0x%x", patternOffset);
-			return GetEngineBaseAddress(engine_type) + patternOffset;
+			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{
@@ -333,7 +333,7 @@ uintptr_t mcc_map_id_parse_from_reach_offset(e_engine_type engine_type, e_build 
 	if (engine_type == _engine_type_halo_reach)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(GetEngineMemoryAddress(engine_type)));			// 1.1270.0.0
+		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type)));			// 1.1270.0.0
 		ps.AddInstruction(new _or("x", 0x83, 0xCA, 0xFF));																		// .text:000000018004C140 83 CA FF                    or      edx, 0FFFFFFFFh
 		ps.AddInstruction(new _cmp("x", 0x81, 0xF9, 0x8D, 0x13, 0x00, 0x00));													// .text:000000018004C143 81 F9 8D 13+                cmp     ecx, 138Dh
 		ps.AddInstruction(new _ja("x", 0x0F, 0x87, 0xEE, 0x00, 0x00, 0x00));													// .text:000000018004C149 0F 87 EE 00+                ja      loc_18004C23D
@@ -364,7 +364,7 @@ uintptr_t mcc_map_id_parse_from_reach_offset(e_engine_type engine_type, e_build 
 		if (patternOffset)
 		{
 			write_line_verbose("ketchup> SUCCEED: mcc_map_id_parse_from_reach_offset @0x%x", patternOffset);
-			return GetEngineBaseAddress(engine_type) + patternOffset;
+			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{

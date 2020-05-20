@@ -119,7 +119,7 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 
 	static e_engine_type last_engine_type = _engine_type_not_set;
 	static e_map_id map_id = _map_id_none;
-	static const wchar_t* engine_name = engine_type_to_folder_name_wide(engine_type);
+	static const wchar_t* engine_name = engine_type_to_folder_name_widechar(engine_type);
 	if (last_engine_type == _engine_type_not_set || last_engine_type != engine_type)
 	{
 		// TODO: add support for halo reach

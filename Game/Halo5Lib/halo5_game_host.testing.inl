@@ -32,9 +32,9 @@ FunctionHookEx<__scrt_common_main_seh_offset, __int64()> __scrt_common_main_seh 
 			return __scrt_common_main_seh();
 		}
 
-		_PVFV func_address = (_PVFV)GetEngineVirtualAddress(_engine_type_halo5, 0x14001D8E0);
+		_PVFV func_address = (_PVFV)engine_virtual_address_to_pointer(_engine_type_halo5, 0x14001D8E0);
 
-		char* data_address = GetEngineVirtualAddress(_engine_type_halo5, 0x14473EB88);
+		char* data_address = engine_virtual_address_to_pointer(_engine_type_halo5, 0x14473EB88);
 
 		constexpr uint32_t blacklist_indices[] =
 		{
@@ -186,7 +186,7 @@ c_data_patch<__scrt_common_main_seh_offset> __scrt_common_main_seh_patch =
 {
 	[](e_engine_type engine_type, e_build build, char*, DataPatchPackets& packets)
 	{
-		char* patch_address = GetEngineVirtualAddress(engine_type, 0x1410EB73B);
+		char* patch_address = engine_virtual_address_to_pointer(engine_type, 0x1410EB73B);
 
 		static const uint8_t patch[] = { 0xC3 };
 		packets.push_back(MAKE_DATAPATCHPACKET(patch_address, sizeof(patch)));

@@ -623,13 +623,13 @@ void c_halo_reach_game_option_selection_legacy::load_map_variant(IDataAccess* pD
 	if (pVariantName[0])
 	{
 		static std::string filepath = "";
-		if (!PathFileExists((filepath = format_string("%s/hopper_map_variants/%s.mvar", engine_name, pVariantName)).c_str()))
+		if (!PathFileExistsA((filepath = format_string("%s/hopper_map_variants/%s.mvar", engine_name, pVariantName)).c_str()))
 		{
-			if (!PathFileExists((filepath = format_string("%s/map_variants/%s.mvar", engine_name, pVariantName)).c_str()))
+			if (!PathFileExistsA((filepath = format_string("%s/map_variants/%s.mvar", engine_name, pVariantName)).c_str()))
 			{
-				if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Map/%s.mvar", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
+				if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Map/%s.mvar", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
 				{
-					if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Map/%s.mvar", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
+					if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Map/%s.mvar", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
 					{
 						filepath = "";
 					}
@@ -677,13 +677,13 @@ void c_halo_reach_game_option_selection_legacy::load_game_variant(IDataAccess* p
 	}
 
 	static std::string filepath = "";
-	if (!PathFileExists((filepath = format_string("%s/hopper_game_variants/%s.bin", engine_name, pVariantName)).c_str()))
+	if (!PathFileExistsA((filepath = format_string("%s/hopper_game_variants/%s.bin", engine_name, pVariantName)).c_str()))
 	{
-		if (!PathFileExists((filepath = format_string("%s/game_variants/%s.bin", engine_name, pVariantName)).c_str()))
+		if (!PathFileExistsA((filepath = format_string("%s/game_variants/%s.bin", engine_name, pVariantName)).c_str()))
 		{
-			if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/GameType/%s.bin", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
+			if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/GameType/%s.bin", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
 			{
-				if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/GameType/%s.bin", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
+				if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/GameType/%s.bin", get_user_profile_environment_variable(), engine_name, pVariantName)).c_str()))
 				{
 					filepath = "";
 				}
@@ -744,15 +744,15 @@ void c_halo_reach_game_option_selection_legacy::load_savefilm(const char* pSaved
 		return;
 
 	static std::string filepath = "";
-	if (!PathFileExists((filepath = format_string("%s/Temporary/autosave/%s.film", "haloreach", pSavedFilmName)).c_str()))
+	if (!PathFileExistsA((filepath = format_string("%s/Temporary/autosave/%s.film", "haloreach", pSavedFilmName)).c_str()))
 	{
-		if (!PathFileExists((filepath = format_string("%s/Temporary/autosave/%s.mov", "haloreach", pSavedFilmName)).c_str()))
+		if (!PathFileExistsA((filepath = format_string("%s/Temporary/autosave/%s.mov", "haloreach", pSavedFilmName)).c_str()))
 		{
-			if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Movie/%s.mov", get_user_profile_environment_variable(), "haloreach", pSavedFilmName)).c_str()))
+			if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/HaloMCC/Temporary/UserContent/%s/Movie/%s.mov", get_user_profile_environment_variable(), "haloreach", pSavedFilmName)).c_str()))
 			{
-				if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/%s.mov", get_user_profile_environment_variable(), "haloreach", pSavedFilmName)).c_str()))
+				if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/UserContent/%s/Movie/%s.mov", get_user_profile_environment_variable(), "haloreach", pSavedFilmName)).c_str()))
 				{
-					if (!PathFileExists((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/%s.film", get_user_profile_environment_variable(), "haloreach", pSavedFilmName)).c_str()))
+					if (!PathFileExistsA((filepath = format_string("%s/AppData/LocalLow/MCC/Temporary/%s/autosave/%s.film", get_user_profile_environment_variable(), "haloreach", pSavedFilmName)).c_str()))
 					{
 						filepath = "";
 					}

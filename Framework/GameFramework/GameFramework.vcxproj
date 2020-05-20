@@ -200,7 +200,6 @@
     <ClCompile Include="RuntimeManipulation\FunctionHookBase.cpp" />
     <ClCompile Include="MCC\game_launcher.cpp" />
     <ClCompile Include="ApplicationReflection\globalreference.cpp" />
-    <ClCompile Include="MCC\Versioning.cpp" />
     <ClCompile Include="MCC\opus_legacy\IFileAccess.cpp" />
     <ClCompile Include="MCC\opus_legacy\IGameEngine.cpp" />
     <ClCompile Include="MCC\IGameEngineHost.cpp" />
@@ -241,7 +240,6 @@
     <ClInclude Include="ApplicationReflection\globalreference.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHook.h" />
     <ClInclude Include="RuntimeManipulation\FunctionHookBase.h" />
-    <ClInclude Include="MCC\Versioning.h" />
     <ClInclude Include="MCC\opus_legacy\IDataAccess.h" />
     <ClInclude Include="MCC\opus_legacy\IFileAccess.h" />
     <ClInclude Include="MCC\opus_legacy\IGameEngine.h" />
