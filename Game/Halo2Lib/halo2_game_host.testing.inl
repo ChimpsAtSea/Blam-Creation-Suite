@@ -25,12 +25,12 @@ uintptr_t halo2_map_id_table_offset(e_engine_type engine_type, e_build build)
 }
 s_halo2_map_id_table(&halo2_map_id_table)[40] = reference_symbol<s_halo2_map_id_table[40]>("halo2_map_id_table", halo2_map_id_table_offset);
 
-uintptr_t enable_tag_edits_patch_offset(e_engine_type engine_type, e_build build)
+uintptr_t halo2_map_id_table_patch_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo2, _build_mcc_1_1477_0_0, 0x180EECE30);
 	return ~uintptr_t();
 }
-c_data_patch<enable_tag_edits_patch_offset> enable_tag_edits =
+c_data_patch<halo2_map_id_table_patch_offset> halo2_map_id_table_patch =
 {
 	[](e_engine_type engine_type, e_build build, char*, DataPatchPacket& packet)
 	{
