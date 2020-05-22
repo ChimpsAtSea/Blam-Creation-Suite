@@ -155,6 +155,7 @@ uintptr_t external_launch_individual_state_offset(e_engine_type engine_type, e_b
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x180D05EF4);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180D05EF4);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1520_0_0, 0x180D08274);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1570_0_0, 0x180D08274);
 	return ~uintptr_t();
 }
 int& external_launch_individual_state = reference_symbol<int>("external_launch_individual_state", external_launch_individual_state_offset);
@@ -176,6 +177,7 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x180012520);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180012520);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1520_0_0, 0x180012550);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1570_0_0, 0x180012550);
 
 	if (engine_type == _engine_type_halo_reach)
 	{

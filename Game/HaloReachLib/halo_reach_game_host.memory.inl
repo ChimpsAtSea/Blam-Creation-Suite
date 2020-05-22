@@ -16,6 +16,7 @@ uintptr_t tag_instances_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x182645288);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x182645288);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1520_0_0, 0x1826475F8);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1570_0_0, 0x1826475F8);
 	return ~uintptr_t();
 }
 s_cache_file_tag_instance*& tag_instances = reference_symbol<s_cache_file_tag_instance*>("tag_instances", tag_instances_offset);
@@ -37,6 +38,7 @@ uintptr_t tag_address_table_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x1838CB7E0);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1838CB7E0);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1520_0_0, 0x1838CDC20);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1570_0_0, 0x1838CDC20);
 	return ~uintptr_t();
 }
 uint32_t* (&tag_address_table)[] = reference_symbol<uint32_t * []>("tag_address_table", tag_address_table_offset);
@@ -58,6 +60,7 @@ uintptr_t g_cache_file_global_loaded_state_offset(e_engine_type engine_type, e_b
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x1825C4270);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1825C4270);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1520_0_0, 0x1825C65E0);
+	OFFSET(_engine_type_halo_reach, _build_mcc_1_1570_0_0, 0x1825C65E0);
 	return ~uintptr_t();
 }
 char*& g_cache_file_global_loaded_state = reference_symbol<char*>("g_cache_file_global_loaded_state", g_cache_file_global_loaded_state_offset);

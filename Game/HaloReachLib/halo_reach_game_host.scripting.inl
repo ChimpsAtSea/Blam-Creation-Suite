@@ -61,7 +61,8 @@ std::vector<uintptr_t> spawn_ai_with_scripts_and_effects_offsets(e_engine_type e
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return { 0x180779781, 0x18073A467 };
-		case _build_mcc_1_1520_0_0: return { 0x18077A971, 0x18073B657 };
+		case _build_mcc_1_1520_0_0:
+		case _build_mcc_1_1570_0_0: return { 0x18077A971, 0x18073B657 };
 		}
 	}
 	return {};
@@ -92,7 +93,8 @@ uintptr_t allow_night_vision_in_multiplayer_offset(e_engine_type engine_type, e_
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return 0x1805E18D7;
-		case _build_mcc_1_1520_0_0: return 0x1805E2AC7;
+		case _build_mcc_1_1520_0_0:
+		case _build_mcc_1_1570_0_0: return 0x1805E2AC7;
 		}
 	}
 	return ~uintptr_t();
@@ -150,7 +152,8 @@ uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return 0x180AB2820;
-		case _build_mcc_1_1520_0_0: return 0x180AB4850;
+		case _build_mcc_1_1520_0_0:
+		case _build_mcc_1_1570_0_0: return 0x180AB4850;
 		}
 	}
 	return ~uintptr_t();
@@ -177,7 +180,8 @@ uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return 0x1801F1610;
-		case _build_mcc_1_1520_0_0: return 0x1801F17D0;
+		case _build_mcc_1_1520_0_0:
+		case _build_mcc_1_1570_0_0: return 0x1801F17D0;
 		}
 	}
 	return ~uintptr_t();
@@ -206,7 +210,8 @@ uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return 0x1801F0D80;
-		case _build_mcc_1_1520_0_0: return 0x1801F0F40;
+		case _build_mcc_1_1520_0_0:
+		case _build_mcc_1_1570_0_0: return 0x1801F0F40;
 		}
 	}
 	return ~uintptr_t();
@@ -246,7 +251,8 @@ uintptr_t hs_inspect_str_offset(e_engine_type engine_type, e_build build)
 		case _build_mcc_1_1384_0_0:
 		case _build_mcc_1_1387_0_0:
 		case _build_mcc_1_1389_0_0: return 0x1801EEF00;
-		case _build_mcc_1_1520_0_0: return 0x1801EF0C0;
+		case _build_mcc_1_1520_0_0:
+		case _build_mcc_1_1570_0_0: return 0x1801EF0C0;
 		}
 	}
 	return ~uintptr_t();

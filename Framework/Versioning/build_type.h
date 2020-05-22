@@ -25,6 +25,7 @@ enum e_build : uint64_t
 	_build_mcc_1_1477_0_0 = MAKE_FILE_VERSION(1, 1477, 0, 0),
 	_build_mcc_1_1499_0_0 = MAKE_FILE_VERSION(1, 1499, 0, 0),
 	_build_mcc_1_1520_0_0 = MAKE_FILE_VERSION(1, 1520, 0, 0),
+	_build_mcc_1_1570_0_0 = MAKE_FILE_VERSION(1, 1570, 0, 0),
 	_build_eldorado_1_106708_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 106708), // 1.106708 cert_ms23  Mar 20 2015 17:24:42
 	_build_eldorado_1_155080_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 155080), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
 	_build_eldorado_1_171227_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 171227), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
@@ -76,6 +77,7 @@ inline const char* build_to_string(e_build build)
 	case _build_mcc_1_1477_0_0: return "MCC 1.1477.0.0";
 	case _build_mcc_1_1499_0_0: return "MCC 1.1499.0.0";
 	case _build_mcc_1_1520_0_0: return "MCC 1.1520.0.0";
+	case _build_mcc_1_1570_0_0: return "MCC 1.1570.0.0";
 	case _build_eldorado_1_106708_cert_ms23: return "Eldorado 1.106708 cert_ms23";
 	case _build_eldorado_1_155080_cert_ms23: return "Eldorado 1.155080 cert_ms23";
 	case _build_eldorado_1_171227_cert_ms23: return "Eldorado 1.171227 cert_ms23";
