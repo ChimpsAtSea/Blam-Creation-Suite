@@ -1,6 +1,6 @@
 #pragma once
 
-#define OFFSET(Engine, Build, Offset) if(engine_type == Engine && build == Build) return (Offset);
+#define OFFSET(Engine, Build, ...) if(engine_type == Engine && build == Build) return { __VA_ARGS__ };
 
 /* LEGACY */ #include "opus_legacy\IVariantAccessorBase.h"
 /* LEGACY */ #include "opus_legacy\IGameVariant.h"
