@@ -36,24 +36,25 @@ public:
 
 	long campaign_difficulty_level;
 	unsigned short campaign_insertion_point;
+	short infinity_mission_id;
 private:
-	char __padding0[10];
+	char __padding0[8];
 public:
-	unsigned long long active_game_mcc_skull_flags;
+	unsigned long long launcher_skull_mask;
 private:
 	char __padding1[8];
 public:
-	char* game_state_header_ptr;
+	char* game_state_header;
 	uint64_t game_state_header_size;
 
-	const char* saved_film_path_ptr;
+	const char* saved_film_path;
 
 	s_peer_context party;
 	s_peer_context local;
 
 	bool is_host;
-	bool is_anniversary_mode;
-	bool is_anniversary_sounds;
+	bool visual_remaster;
+	bool music_remaster;
 private:
 	char __padding2[5];
 public:
@@ -82,8 +83,8 @@ static_assert_64(k_game_context_v2_size == 0x2B7B8, "c_game_context_v2 invalid s
 struct c_game_context_v3
 {
 public:
-	bool is_anniversary_mode;
-	bool is_anniversary_sounds;
+	bool visual_remaster;
+	bool music_remaster;
 private:
 	char __padding0;
 public:
@@ -95,11 +96,12 @@ public:
 	long map_id;
 
 	long campaign_difficulty_level;
-	unsigned short campaign_insertion_point;
 private:
-	char __padding2[6];
+	char __padding2[4];
 public:
-	unsigned long long active_game_mcc_skull_flags;
+	unsigned short campaign_insertion_point;
+	short infinity_mission_id;
+	unsigned long long launcher_skull_mask;
 
 	s_peer_context party;
 	s_peer_context local;
@@ -115,8 +117,8 @@ public:
 	char map_variant_buffer[k_map_variant_buffer_size];
 
 	uint64_t game_state_header_size;
-	char* game_state_header_ptr;
-	const char* saved_film_path_ptr;
+	char* game_state_header;
+	const char* saved_film_path;
 	const wchar_t* custom_engine_name;
 };
 constexpr size_t k_game_context_v3_size = sizeof(c_game_context_v3);
@@ -134,14 +136,15 @@ private:
 public:
 	e_game_context_version const game_context_version;
 
-	bool& is_anniversary_mode;
-	bool& is_anniversary_sounds;
+	bool& visual_remaster;
+	bool& music_remaster;
 	bool& is_host;
 	long& game_mode;
 	long& map_id;
 	long& campaign_difficulty_level;
 	unsigned short& campaign_insertion_point;
-	unsigned long long& active_game_mcc_skull_flags;
+	short &infinity_mission_id;
+	unsigned long long& launcher_skull_mask;
 	s_peer_context& party;
 	s_peer_context& local;
 	s_peer_context(&peers)[17];
@@ -153,8 +156,8 @@ public:
 	char(&game_variant_buffer)[k_game_variant_buffer_size];
 	char(&map_variant_buffer)[k_map_variant_buffer_size];
 	uint64_t& game_state_header_size;
-	char*& game_state_header_ptr;
-	const char*& saved_film_path_ptr;
+	char*& game_state_header;
+	const char*& saved_film_path;
 	const wchar_t*& custom_engine_name;
 
 private:
@@ -171,14 +174,15 @@ private:
 		return nullptr; \
 	}
 
-	reference_getter(is_anniversary_mode);
-	reference_getter(is_anniversary_sounds);
+	reference_getter(visual_remaster);
+	reference_getter(music_remaster);
 	reference_getter(is_host);
 	reference_getter(game_mode);
 	reference_getter(map_id);
 	reference_getter(campaign_difficulty_level);
 	reference_getter(campaign_insertion_point);
-	reference_getter(active_game_mcc_skull_flags);
+	reference_getter(infinity_mission_id);
+	reference_getter(launcher_skull_mask);
 	reference_getter(party);
 	reference_getter(local);
 	reference_getter(peers);
@@ -189,8 +193,8 @@ private:
 	reference_getter(game_variant_buffer);
 	reference_getter(map_variant_buffer);
 	reference_getter(game_state_header_size);
-	reference_getter(game_state_header_ptr);
-	reference_getter(saved_film_path_ptr);
+	reference_getter(game_state_header);
+	reference_getter(saved_film_path);
 	reference_getter(custom_engine_name);
 
 #undef reference_getter
@@ -223,14 +227,15 @@ public:
 		//game_context_v2(),
 		//game_context_v3(),
 		game_context_version(game_context_version),
-		is_anniversary_mode(*get_is_anniversary_mode()),
-		is_anniversary_sounds(*get_is_anniversary_sounds()),
+		visual_remaster(*get_visual_remaster()),
+		music_remaster(*get_music_remaster()),
 		is_host(*get_is_host()),
 		game_mode(*get_game_mode()),
 		map_id(*get_map_id()),
 		campaign_difficulty_level(*get_campaign_difficulty_level()),
 		campaign_insertion_point(*get_campaign_insertion_point()),
-		active_game_mcc_skull_flags(*get_active_game_mcc_skull_flags()),
+		infinity_mission_id(*get_infinity_mission_id()),
+		launcher_skull_mask(*get_launcher_skull_mask()),
 		party(*get_party()),
 		local(*get_local()),
 		peers(*get_peers()),
@@ -241,8 +246,8 @@ public:
 		game_variant_buffer(*get_game_variant_buffer()),
 		map_variant_buffer(*get_map_variant_buffer()),
 		game_state_header_size(*get_game_state_header_size()),
-		game_state_header_ptr(*get_game_state_header_ptr()),
-		saved_film_path_ptr(*get_saved_film_path_ptr()),
+		game_state_header(*get_game_state_header()),
+		saved_film_path(*get_saved_film_path()),
 		custom_engine_name(*get_custom_engine_name())
 	{
 		memset(&game_context_v1, 0, sizeof(game_context_v1));

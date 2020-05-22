@@ -732,7 +732,7 @@ void c_halo_reach_game_option_selection_legacy::load_savegame(const char* pGames
 
 		gameContext.game_mode = _mcc_game_mode_campaign;
 		gameContext.game_state_header_size = filo.buffer_size;
-		gameContext.game_state_header_ptr = pGameStateBuffer;
+		gameContext.game_state_header = pGameStateBuffer;
 
 		filo.close_file();
 	}
@@ -766,7 +766,7 @@ void c_halo_reach_game_option_selection_legacy::load_savefilm(const char* pSaved
 		write_line_verbose("Loading saved film [%s]", filepath.c_str());
 	}
 
-	gameContext.saved_film_path_ptr = filepath.c_str();
+	gameContext.saved_film_path = filepath.c_str();
 }
 
 #endif

@@ -32,8 +32,8 @@ static bool k_autostart_halo_halo2 = false;
 static bool k_autostart_halo_groundhog = false;
 static bool k_autostart_halo_eldorado = false;
 static bool k_autostart_halo_online = false;
-static bool use_anniversary_graphics = true;
-static bool use_anniversary_sounds = true;
+static bool use_remastered_visuals = true;
+static bool use_remastered_music = true;
 static bool start_as_forge_mode = true;
 
 void c_game_launcher::init_game_launcher()
@@ -357,8 +357,8 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	c_session_manager::create_game_context(build, &game_context);
 	ASSERT(game_context);
 
-	game_context->is_anniversary_mode = use_anniversary_graphics;
-	game_context->is_anniversary_sounds = use_anniversary_sounds;
+	game_context->visual_remaster = use_remastered_visuals;
+	game_context->music_remaster = use_remastered_music;
 
 	if (!load_save_from_file(game_context, "5EA68E0B.halo2", false))
 	{
@@ -611,8 +611,8 @@ void c_game_launcher::render_main_menu()
 
 			if (map_id_to_game_mode(g_halo1_map_id) == _mcc_game_mode_campaign)
 			{
-				ImGui::Checkbox("Use Anniversary Graphics", &use_anniversary_graphics);
-				ImGui::Checkbox("Use Anniversary Sounds", &use_anniversary_sounds);
+				ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
+				ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
 				c_halo_reach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
 			}
 		}
@@ -638,8 +638,8 @@ void c_game_launcher::render_main_menu()
 
 			if (map_id_to_game_mode(g_halo2_map_id) == _mcc_game_mode_campaign)
 			{
-				ImGui::Checkbox("Use Anniversary Graphics", &use_anniversary_graphics);
-				ImGui::Checkbox("Use Anniversary Sounds", &use_anniversary_sounds);
+				ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
+				ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
 				c_halo_reach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
 			}
 		}
@@ -973,14 +973,14 @@ bool c_game_launcher::load_save_from_file(GameContext *game_context, LPCSTR file
 	{
 		std::string file_path = std::string("opus/autosave/").append(file_name).append(".bin");
 		size_t game_state_header_size = 0;
-		if (filesystem_read_file_to_memory(file_path.c_str(), &game_context->game_state_header_ptr, &game_state_header_size))
+		if (filesystem_read_file_to_memory(file_path.c_str(), &game_context->game_state_header, &game_state_header_size))
 		{
 			game_context->game_state_header_size = game_state_header_size;
-			if (is_valid(game_context->game_state_header_ptr) && game_context->game_state_header_size > 0)
+			if (is_valid(game_context->game_state_header) && game_context->game_state_header_size > 0)
 			{
 				// take off the last 4 bytes from the size to exclude our added map id
 				game_context->game_state_header_size -= 4;
-				e_map_id map_id = *reinterpret_cast<e_map_id *>(&game_context->game_state_header_ptr[game_context->game_state_header_size]);
+				e_map_id map_id = *reinterpret_cast<e_map_id *>(&game_context->game_state_header[game_context->game_state_header_size]);
 				game_context->game_mode = map_id_to_game_mode(map_id);
 				game_context->map_id = map_id;
 
