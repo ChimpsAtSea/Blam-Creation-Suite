@@ -335,19 +335,23 @@ ASALocalRun/
 .localhistory/
 
 #LLVM
-llvm-build/cmake
-llvm-build/cmake_x86
-llvm-build/cmake_x64
+**/llvm-build/cmake
+**/llvm-build/cmake_x86
+**/llvm-build/cmake_x64
 
 #TBB
-tbb-build/cmake
-tbb-build/cmake_x86
-tbb-build/cmake_x64
+**/tbb-build/cmake
+**/tbb-build/cmake_x86
+**/tbb-build/cmake_x64
 
 #pugixml
-pugixml-build/cmake
-pugixml-build/cmake_x86
-pugixml-build/cmake_x64
+**/pugixml-build/cmake
+**/pugixml-build/cmake_x86
+**/pugixml-build/cmake_x64
+
+#Blamder
+**/blamder/lib
+**/blamder/build*
                
 #Mantle
 MantleGen/LegacyGen/reflection_data_legacy.h
@@ -359,10 +363,6 @@ MantleGen/LegacyGen/generated_gui_legacy.h
 MantleGen/LegacyGen/virtual_tag_interfaces_legacy.cpp
 MantleGen/LegacyGen/virtual_tag_interfaces_legacy.h
 MantleGen/LegacyGen/tag_groups_legacy.h
-
-#Blamder
-blamder/lib
-blamder/build*
 
 #CommandLineOptions Plugin
 *.args.json
