@@ -33,8 +33,8 @@ c_halo_reach_game_host::c_halo_reach_game_host(e_engine_type engine_type, e_buil
 {
 	init_runtime_modifications(g_halo_reach_game_runtime.get_build());
 
-	c_mantle_gui::set_get_tag_selection_address_function(tag_address_get); // #TODO: This is kinda hacky
-	c_mantle_gui::set_get_tag_pointer_function(tag_definition_get); // #TODO: This is kinda hacky
+	c_mantle_gui::set_get_tag_selection_address_function(haloreach_tag_address_get); // #TODO: This is kinda hacky
+	c_mantle_gui::set_get_tag_pointer_function(haloreach_tag_definition_get); // #TODO: This is kinda hacky
 
 	write_line_verbose("Init HaloReachGameHost");
 

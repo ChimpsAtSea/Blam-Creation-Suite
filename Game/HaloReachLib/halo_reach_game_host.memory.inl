@@ -1,5 +1,5 @@
 
-uintptr_t tag_instances_offset(e_engine_type engine_type, e_build build)
+uintptr_t haloreach_tag_instances_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_824_0_0, 0x1837FD738);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_887_0_0, 0x183984DC8);
@@ -19,9 +19,9 @@ uintptr_t tag_instances_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1570_0_0, 0x1826475F8);
 	return ~uintptr_t();
 }
-s_cache_file_tag_instance*& tag_instances = reference_symbol<s_cache_file_tag_instance*>("tag_instances", tag_instances_offset);
+s_cache_file_tag_instance*& haloreach_tag_instances = reference_symbol<s_cache_file_tag_instance*>("haloreach_tag_instances", haloreach_tag_instances_offset);
 
-uintptr_t tag_address_table_offset(e_engine_type engine_type, e_build build)
+uintptr_t haloreach_tag_address_table_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_824_0_0, 0x18102F0E0);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_887_0_0, 0x1811EFD80);
@@ -41,9 +41,9 @@ uintptr_t tag_address_table_offset(e_engine_type engine_type, e_build build)
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1570_0_0, 0x1838CDC20);
 	return ~uintptr_t();
 }
-uint32_t* (&tag_address_table)[] = reference_symbol<uint32_t * []>("tag_address_table", tag_address_table_offset);
+uint32_t* (&haloreach_tag_address_table)[] = reference_symbol<uint32_t * []>("haloreach_tag_address_table", haloreach_tag_address_table_offset);
 
-uintptr_t g_cache_file_global_loaded_state_offset(e_engine_type engine_type, e_build build)
+uintptr_t haloreach_cache_file_global_loaded_state_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_824_0_0, 0x18377C720);
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_887_0_0, 0x183903DB0);
@@ -63,38 +63,38 @@ uintptr_t g_cache_file_global_loaded_state_offset(e_engine_type engine_type, e_b
 	OFFSET(_engine_type_halo_reach, _build_mcc_1_1570_0_0, 0x1825C65E0);
 	return ~uintptr_t();
 }
-char*& g_cache_file_global_loaded_state = reference_symbol<char*>("g_cache_file_global_loaded_state", g_cache_file_global_loaded_state_offset);
+char*& haloreach_cache_file_global_loaded_state = reference_symbol<char*>("haloreach_cache_file_global_loaded_state", haloreach_cache_file_global_loaded_state_offset);
 
-char* tag_address_get(uint32_t tag_instance_address)
+char* haloreach_tag_address_get(uint32_t tag_instance_address)
 {
-	if (!is_valid(tag_address_table))
+	if (!is_valid(haloreach_tag_address_table))
 	{
 		return nullptr;
 	}
-	uint32_t* pData = &tag_address_table[tag_instance_address >> 28][tag_instance_address];
+	uint32_t* pData = &haloreach_tag_address_table[tag_instance_address >> 28][tag_instance_address];
 	return reinterpret_cast<char*>(pData);
 }
 
-char* tag_definition_get(uint16_t index)
+char* haloreach_tag_definition_get(uint16_t index)
 {
-	if (!is_valid(tag_instances))
+	if (!is_valid(haloreach_tag_instances))
 	{
 		return nullptr;
 	}
-	uint32_t tag_instance_address = tag_instances[index].address;
-	return tag_address_get(tag_instance_address);
+	uint32_t tag_instance_address = haloreach_tag_instances[index].address;
+	return haloreach_tag_address_get(tag_instance_address);
 }
 
 template<typename T>
-T& tag_definition_get(uint16_t index)
+T& haloreach_tag_definition_get(uint16_t index)
 {
-	return *reinterpret_cast<T*>(tag_definition_get(index));
+	return *reinterpret_cast<T*>(haloreach_tag_definition_get(index));
 }
 
 template<typename T>
-T& tag_block_definition_get(s_tag_block_legacy<T>& tag_block_ref, uint16_t index)
+T& haloreach_tag_block_definition_get(s_tag_block_legacy<T>& tag_block_ref, uint16_t index)
 {
-	T* tag_block_definition_ptr = reinterpret_cast<T*>(tag_address_get(tag_block_ref.address));
+	T* tag_block_definition_ptr = reinterpret_cast<T*>(haloreach_tag_address_get(tag_block_ref.address));
 
 	for (size_t i = 0; i < tag_block_ref.count; i++)
 	{
@@ -104,14 +104,14 @@ T& tag_block_definition_get(s_tag_block_legacy<T>& tag_block_ref, uint16_t index
 	return *tag_block_definition_ptr;
 }
 
-s_reach_cache_file_header* cache_file_header_get()
+s_reach_cache_file_header* haloreach_cache_file_header_get()
 {
-	if (!is_valid(g_cache_file_global_loaded_state))
+	if (!is_valid(haloreach_cache_file_global_loaded_state))
 	{
 		return nullptr;
 	}
 
-	s_reach_cache_file_header& cache_file_header = *reinterpret_cast<s_reach_cache_file_header*>(&g_cache_file_global_loaded_state[0x10]);
+	s_reach_cache_file_header& cache_file_header = *reinterpret_cast<s_reach_cache_file_header*>(&haloreach_cache_file_global_loaded_state[0x10]);
 	return &cache_file_header;
 }
 
