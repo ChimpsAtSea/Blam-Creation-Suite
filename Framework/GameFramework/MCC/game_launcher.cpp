@@ -393,6 +393,8 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				}
 			}
 
+			bool requires_map_variant = true;
+
 			switch (engine_type)
 			{
 			case _engine_type_halo1:
@@ -401,6 +403,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				if (game_context->game_mode == _mcc_game_mode_multiplayer)
 				{
 					data_access = c_halo1_game_host::get_data_access();
+					requires_map_variant = false;
 				}
 				break;
 			case _engine_type_halo2:
@@ -409,6 +412,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				if (game_context->game_mode == _mcc_game_mode_multiplayer)
 				{
 					data_access = c_halo2_game_host::get_data_access();
+					requires_map_variant = false;
 				}
 				break;
 			case _engine_type_halo3:
@@ -438,9 +442,12 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_game,
 					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str()
 				);
-				load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_map,
-					c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str()
-				);
+				if (requires_map_variant)
+				{
+					load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_map,
+						c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str()
+					);
+				}
 			}
 		}
 	}
@@ -908,13 +915,13 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	if (!PathFileExistsA(selected_file_path.c_str()) || strstr(selected_file_path.c_str(), "/.") != 0)
 	{
-		write_line_verbose("Variant file '%s' does not exist, falling back to default", selected_file_path.c_str());
+		write_line_verbose("%s variant file '%s' does not exist, falling back to default", type_nice_name, selected_file_path.c_str());
 
+		variant_data = new char[variant_buffer_size];
+		memset(variant_data, 0, variant_buffer_size);
 		switch (variant_type)
 		{
 		case e_variant_type::_variant_type_game:
-			variant_data = new char[variant_buffer_size];
-			memset(variant_data, 0, variant_buffer_size);
 			variant_buffer = data_access->GameVariantCreateDefault(variant_data)->variant_buffer; // This is not correct
 			break;
 		case e_variant_type::_variant_type_map:
@@ -925,10 +932,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 		}
 
 		memcpy(game_context_variant_buffer, variant_buffer, variant_buffer_size);
-		if (is_valid(variant_data))
-		{
-			delete[] variant_data;
-		}
+		delete[] variant_data;
 
 		return true;
 	}
