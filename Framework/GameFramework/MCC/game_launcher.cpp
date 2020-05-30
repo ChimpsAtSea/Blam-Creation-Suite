@@ -855,50 +855,32 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	char* game_context_variant_buffer = nullptr;
 	size_t variant_buffer_size = 0;
-	const char* type_name = "";
-	const char* type_nice_name = "";
-	const char* type_extension = "";
-	const char* engine_name = engine_type_to_folder_name(engine_type);
+
+	std::vector<std::string> files;
+	variant_files_get(engine_type, variant_type, files);
 
 	switch (variant_type)
 	{
 	case _variant_type_game:
 		game_context_variant_buffer = game_context->game_variant_buffer;
 		variant_buffer_size = k_game_variant_buffer_size;
-		type_name = "game";
-		type_nice_name = "GameType";
-		type_extension = ".bin";
 		break;
 	case _variant_type_map:
 		game_context_variant_buffer = game_context->map_variant_buffer;
 		variant_buffer_size = k_map_variant_buffer_size;
-		type_name = "map";
-		type_nice_name = "Map";
-		type_extension = ".mvar";
 		break;
 	default:
 		return false;
 	}
 	memset(game_context_variant_buffer, 0, variant_buffer_size);
 
-	LPCSTR user_profile_path = get_user_profile_environment_variable();
-	std::vector<std::string> file_paths =
+	std::string selected;
+	for (std::string file : files)
 	{
-		std::string("opus/").append(type_name).append("_variants/").append(file_name).append(type_extension),
-		std::string(engine_name).append("/").append(type_name).append("_variants/").append(file_name).append(type_extension),
-		std::string(engine_name).append("/hopper_").append(type_name).append("_variants/").append(file_name).append(type_extension),
-		std::string(user_profile_path).append("/AppData/LocalLow/HaloMCC/Temporary/UserContent/").append(engine_name).append("/").append(type_nice_name).append("/").append(file_name).append(type_extension),
-		std::string(user_profile_path).append("/AppData/LocalLow/MCC/Temporary/UserContent/").append(engine_name).append("/").append(type_nice_name).append("/").append(file_name).append(type_extension),
-	};
+		if (!(*file_name) || strstr(file.c_str(), file_name) == 0)
+			continue;
 
-	std::string selected_file_path;
-	for (std::string file_path : file_paths)
-	{
-		if (PathFileExistsA(file_path.c_str()))
-		{
-			selected_file_path = file_path;
-			break;
-		}
+		selected = file;
 	}
 	
 	char* variant_data = nullptr;
@@ -906,18 +888,21 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	char* variant_buffer = nullptr;
 
-	if (!PathFileExistsA(selected_file_path.c_str()) || strstr(selected_file_path.c_str(), "/.") != 0)
+	if (selected.empty() || !PathFileExistsA(selected.c_str()) || strstr(selected.c_str(), "/.") != 0)
 	{
-		write_line_verbose("%s variant file '%s' does not exist, falling back to default", type_nice_name, selected_file_path.c_str());
+		if (!selected.empty())
+		{
+			write_line_verbose("variant file '%s' does not exist, falling back to default", selected.c_str());
+		}
 
 		variant_data = new char[variant_buffer_size];
 		memset(variant_data, 0, variant_buffer_size);
 		switch (variant_type)
 		{
-		case e_variant_type::_variant_type_game:
+		case _variant_type_game:
 			variant_buffer = data_access->GameVariantCreateDefault(variant_data)->variant_buffer; // This is not correct
 			break;
-		case e_variant_type::_variant_type_map:
+		case _variant_type_map:
 			variant_buffer = data_access->MapVariantCreateFromMapID(game_context->map_id)->variant_buffer;
 			break;
 		default:
@@ -930,7 +915,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 		return true;
 	}
 
-	if (!filesystem_read_file_to_memory(selected_file_path.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
+	if (!filesystem_read_file_to_memory(selected.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
 	{
 		write_line_verbose("Failed to open variant file");
 		return false;
@@ -943,10 +928,10 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	switch (variant_type)
 	{
-	case e_variant_type::_variant_type_game:
+	case _variant_type_game:
 		variant_buffer = data_access->GameVariantCreateFromFile(variant_data, variant_data_size)->variant_buffer;
 		break;
-	case e_variant_type::_variant_type_map:
+	case _variant_type_map:
 		variant_buffer = data_access->MapVariantCreateFromFile(variant_data, variant_data_size)->variant_buffer;
 		break;
 	default:
@@ -989,3 +974,57 @@ bool c_game_launcher::load_save_from_file(GameContext *game_context, LPCSTR file
 	}
 	return false;
 };
+
+bool c_game_launcher::variant_files_get(e_engine_type engine_type, e_variant_type variant_type, std::vector<std::string>& files)
+{
+	if (!is_valid(files))
+		return false;
+
+	const char* type_name = "";
+	const char* type_nice_name = "";
+	const char* type_extension = "";
+	const char* engine_folder_name = engine_type_to_folder_name(engine_type);
+
+	switch (variant_type)
+	{
+	case _variant_type_game:
+		type_name = "game";
+		type_nice_name = "GameType";
+		type_extension = ".bin";
+		break;
+	case _variant_type_map:
+		type_name = "map";
+		type_nice_name = "Map";
+		type_extension = ".mvar";
+		break;
+	default:
+		return false;
+	}
+
+	LPCSTR user_profile_path = get_user_profile_environment_variable();
+	std::vector<std::string> file_directories =
+	{
+		std::string("opus/").append(type_name).append("_variants/"),
+		std::string(engine_folder_name).append("/").append(type_name).append("_variants/"),
+		std::string(engine_folder_name).append("/hopper_").append(type_name).append("_variants/"),
+		std::string(user_profile_path).append("/AppData/LocalLow/HaloMCC/Temporary/UserContent/").append(engine_type == _engine_type_groundhog ? "Halo2A" : engine_folder_name).append("/").append(type_nice_name).append("/"),
+		std::string(user_profile_path).append("/AppData/LocalLow/MCC/Temporary/UserContent/").append(engine_type == _engine_type_groundhog ? "Halo2A" : engine_folder_name).append("/").append(type_nice_name).append("/")
+	};
+
+
+	for (std::string& directory : file_directories)
+	{
+		if (!PathFileExistsA(directory.c_str()))
+			continue;
+
+		for (const std::filesystem::directory_entry& directory_entry : std::filesystem::directory_iterator(directory))
+		{
+			if (directory_entry.path().extension().generic_string().compare(type_extension) != 0)
+				continue;
+
+			files.push_back(directory_entry.path().generic_string());
+		}
+	}
+
+	return true;
+}
