@@ -251,9 +251,19 @@ char* filesystem_read_to_memory_legacy2(const wchar_t* filepathPath, char* buffe
 const char* get_user_profile_environment_variable()
 {
 	static char user_profile_environment_variable[MAX_PATH] = { };
-	if (*user_profile_environment_variable = 0)
+	if (*user_profile_environment_variable == 0)
 	{
 		GetEnvironmentVariableA("USERPROFILE", user_profile_environment_variable, MAX_PATH);
 	}
 	return static_cast<const char*>(user_profile_environment_variable);
+};
+
+const wchar_t* get_user_profile_environment_variable_widechar()
+{
+	static wchar_t user_profile_environment_variable[MAX_PATH] = { };
+	if (*user_profile_environment_variable == 0)
+	{
+		GetEnvironmentVariableW(L"USERPROFILE", user_profile_environment_variable, MAX_PATH);
+	}
+	return static_cast<const wchar_t*>(user_profile_environment_variable);
 };

@@ -20,6 +20,7 @@ bool filesystem_read_file_to_memory(const wchar_t* filepath, T** buffer, size_t*
 }
 
 const char* get_user_profile_environment_variable();
+const wchar_t* get_user_profile_environment_variable_widechar();
 bool filesystem_directory_exists(const wchar_t* szPath);
 bool filesystem_directory_exists(const char* szPath);
 
