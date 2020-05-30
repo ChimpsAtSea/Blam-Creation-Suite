@@ -188,7 +188,7 @@
     <ClCompile Include="FileSystem\GameType.cpp" />
     <ClCompile Include="MCC\opus_game_engine_host.cpp" />
     <ClCompile Include="MCC\game_runtime.cpp" />
-    <ClCompile Include="MCC\halo_reach_game_option_selection_legacy.cpp" />
+    <ClCompile Include="MCC\haloreach_game_option_selection_legacy.cpp" />
     <ClCompile Include="platform_configuration.cpp" />
     <ClCompile Include="RuntimeManipulation\opus_legacy\detour_helpers.cpp" />
     <ClCompile Include="CCode\GetIDXGISwapChainPresent.c">
@@ -231,7 +231,7 @@
     <ClInclude Include="FileSystem\GameType.h" />
     <ClInclude Include="MCC\opus_game_engine_host.h" />
     <ClInclude Include="MCC\game_runtime.h" />
-    <ClInclude Include="MCC\halo_reach_game_option_selection_legacy.h" />
+    <ClInclude Include="MCC\haloreach_game_option_selection_legacy.h" />
     <ClInclude Include="MCC\MCC.h" />
     <ClInclude Include="platform_configuration.h" />
     <ClInclude Include="RuntimeManipulation\FindOffsetFunction.h" />

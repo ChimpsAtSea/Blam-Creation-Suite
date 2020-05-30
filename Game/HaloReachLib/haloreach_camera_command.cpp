@@ -58,7 +58,7 @@ void haloreach_debug_load_camera(int(__stdcall *player_mapping_get_local_player)
 // TODO: Add other build offsets
 uintptr_t g_centered_crosshair_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1829FFEB8 + 0x7C);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x1829FFEB8 + 0x7C);
 	return ~uintptr_t();
 }
 int& g_centered_crosshair = reference_symbol<int>("g_centered_crosshair", g_centered_crosshair_offset);
@@ -66,7 +66,7 @@ int& g_centered_crosshair = reference_symbol<int>("g_centered_crosshair", g_cent
 // TODO: Add other build offsets
 uintptr_t g_field_of_view_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x1829FFEB8 + 0x80);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x1829FFEB8 + 0x80);
 	return ~uintptr_t();
 }
 float& g_field_of_view = reference_symbol<float>("g_field_of_view", g_field_of_view_offset);

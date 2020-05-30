@@ -1,6 +1,6 @@
 #pragma once
 
-class c_halo_reach_game_option_selection_legacy
+class c_haloreach_game_option_selection_legacy
 {
 public:
 	static void Init();

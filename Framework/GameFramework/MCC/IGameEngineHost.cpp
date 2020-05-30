@@ -427,7 +427,7 @@ void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& playe
 		player_configuration.mouse_arcraft_controls_inverted = false;
 		player_configuration.mk_crouch_lock_enabled = false;
 
-		if (engine_type == _engine_type_halo_reach)
+		if (engine_type == _engine_type_haloreach)
 		{
 			player_configuration.helmet_index = eHaloArmor::HR_Helmet_EOD_Base;
 			player_configuration.left_shoulder_index = eHaloArmor::HR_LeftShoulder_Gungnir;

@@ -75,9 +75,6 @@
     <ClCompile Include="MCC\mouse_input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MCC\halo_reach_game_option_selection_legacy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Settings\opus_legacy\settings_legacy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -91,6 +88,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gameframework-private-pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MCC\haloreach_game_option_selection_legacy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -203,9 +203,6 @@
     <ClInclude Include="MCC\mouse_input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MCC\halo_reach_game_option_selection_legacy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Settings\opus_legacy\settings_legacy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -228,6 +225,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gameframework-public-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MCC\haloreach_game_option_selection_legacy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -46,11 +46,11 @@ using s_script_node_data_array = c_data_array<s_script_node_datum, 61440>;
 
 // BuildVersion::Build_1_1350_0_0, 0x180D2A048
 // BuildVersion::Build_1_1367_0_0, 0x180D2A048
-s_script_node_data_array*& g_script_node_data_array = reference_symbol<s_script_node_data_array*>("g_script_node_data_array", _engine_type_halo_reach, _build_mcc_1_1350_0_0, 0x180D2A048);
+s_script_node_data_array*& g_script_node_data_array = reference_symbol<s_script_node_data_array*>("g_script_node_data_array", _engine_type_haloreach, _build_mcc_1_1350_0_0, 0x180D2A048);
 
 std::vector<uintptr_t> spawn_ai_with_scripts_and_effects_offsets(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo_reach)
+	if (engine_type == _engine_type_haloreach)
 	{
 		switch (build)
 		{
@@ -83,7 +83,7 @@ c_multi_data_patch<spawn_ai_with_scripts_and_effects_offsets> spawn_ai_with_scri
 
 uintptr_t allow_night_vision_in_multiplayer_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo_reach)
+	if (engine_type == _engine_type_haloreach)
 	{
 		switch (build)
 		{
@@ -134,7 +134,7 @@ struct hs_script_op
 
 uintptr_t hs_function_table_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo_reach)
+	if (engine_type == _engine_type_haloreach)
 	{
 		switch (build)
 		{
@@ -162,7 +162,7 @@ hs_script_op *(&hs_function_table)[] = reference_symbol<hs_script_op *[]>("hs_fu
 
 uintptr_t hs_evaluate_arguments_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo_reach)
+	if (engine_type == _engine_type_haloreach)
 	{
 		switch (build)
 		{
@@ -192,7 +192,7 @@ FunctionHookEx<hs_evaluate_arguments_offset, t_parameter __fastcall (unsigned sh
 
 uintptr_t hs_return_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo_reach)
+	if (engine_type == _engine_type_haloreach)
 	{
 		switch (build)
 		{
@@ -233,7 +233,7 @@ t_parameter &hs_macro_function_evaluate(short opcode, unsigned short expression_
 
 uintptr_t hs_inspect_str_offset(e_engine_type engine_type, e_build build)
 {
-	if (engine_type == _engine_type_halo_reach)
+	if (engine_type == _engine_type_haloreach)
 	{
 		switch (build)
 		{

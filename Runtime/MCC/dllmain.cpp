@@ -10,15 +10,15 @@ bool s_isHalo1Hooked = false;
 bool initThreadIsHooked = false;
 void nullsub() {}
 
-extern void init_halo_reach(e_engine_type engine_type, e_build build);
-extern void deinit_halo_reach(e_engine_type engine_type, e_build build);
+extern void init_haloreach(e_engine_type engine_type, e_build build);
+extern void deinit_haloreach(e_engine_type engine_type, e_build build);
 
 void haloreach_dll_loaded_callback()
 {
 	write_line_verbose("Halo Reach was loaded!");
 	{
 		e_build build = c_game_runtime::get_library_file_version(MCCExecutableFileName);
-		c_halo_reach_game_host::init_runtime_modifications(build);
+		c_haloreach_game_host::init_runtime_modifications(build);
 	}
 }
 

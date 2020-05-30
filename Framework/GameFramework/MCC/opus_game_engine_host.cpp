@@ -125,8 +125,8 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 		// TODO: add support for halo reach
 		switch (engine_type)
 		{
-		//case _engine_type_halo_reach:
-		//	map_id = halo_reach_map_id;
+		//case _engine_type_haloreach:
+		//	map_id = haloreach_map_id;
 		//	engine_name = L"haloreach";
 		//	break;
 		case _engine_type_halo1:
@@ -260,7 +260,7 @@ void c_opus_game_engine_host::SaveGameVariant(IGameVariant* game_variant)
 	const wchar_t* description = L"This is a temporary test game variant for testing writing to file.";
 	switch (engine_type)
 	{
-	case _engine_type_halo_reach:
+	case _engine_type_haloreach:
 		file_name = L"temp.haloreach";
 		break;
 	case _engine_type_halo1:
@@ -287,7 +287,7 @@ void c_opus_game_engine_host::SaveMapVariant(IMapVariant* map_variant)
 	const wchar_t* description = L"This is a temporary test map variant for testing writing to file.";
 	switch (engine_type)
 	{
-	case _engine_type_halo_reach:
+	case _engine_type_haloreach:
 		file_name = L"temp.haloreach";
 		break;
 	case _engine_type_halo1:

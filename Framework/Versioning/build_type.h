@@ -1,5 +1,6 @@
 #pragma once
 
+#define OFFSET(Engine, Build, ...) if(engine_type == Engine && build == Build) return { __VA_ARGS__ };
 #define MAKE_FILE_VERSION(a, b, c, d) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 16) | (uint64_t(d) << 0))
 #define MAKE_PRODUCT_VERSION(a, b, c) ((uint64_t(a) << 48) | (uint64_t(b) << 32) | (uint64_t(c) << 0))
 #define MAKE_TOOL_VERSION(a, b, c, d, file_description, product_name) (MAKE_FILE_VERSION(a, b, c, d) ^ (file_description##product_name##_xxh64))
@@ -122,7 +123,7 @@ constexpr uintptr_t get_engine_base_address(e_engine_type engine_type)
 	switch (engine_type)
 	{
 #ifdef _WIN64
-	case _engine_type_halo_reach:
+	case _engine_type_haloreach:
 	case _engine_type_halo1:
 	case _engine_type_halo2:
 	case _engine_type_halo3:
@@ -151,26 +152,14 @@ constexpr uintptr_t get_engine_top_address(e_engine_type engine_type, e_build bu
 	}
 	else
 	{
-		if (engine_type == _engine_type_halo_reach)
-		{
-			switch (build)
-			{
-			case _build_mcc_1_887_0_0:
-				return 0x184925000;
-			case _build_mcc_1_1035_0_0:
-				return 0x18450D000;
-			case _build_mcc_1_1186_0_0:
-				return 0x183985000;
-			case _build_mcc_1_1211_0_0:
-				return 0x183986000;
-			case _build_mcc_1_1246_0_0:
-				return 0x18397F000;
-			case _build_mcc_1_1270_0_0:
-				return 0x18397F000;
-			case _build_mcc_1_1305_0_0:
-				return 0x18392F000;
-			}
-		}
+		OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0,	0x184924FFF);
+		OFFSET(_engine_type_haloreach, _build_mcc_1_1035_0_0,	0x18450CFFF);
+		OFFSET(_engine_type_haloreach, _build_mcc_1_1186_0_0,	0x183984FFF);
+		OFFSET(_engine_type_haloreach, _build_mcc_1_1211_0_0,	0x183985FFF);
+		OFFSET(_engine_type_haloreach, _build_mcc_1_1246_0_0,	0x18397EFFF);
+		OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0,	0x18397EFFF);
+		OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0,	0x18392EFFF);
+
 		if (build > _build_not_set)
 		{
 			// #TODO: Calculate the top address.
@@ -194,26 +183,16 @@ constexpr const char* get_engine_module_filename(e_engine_type engine_type)
 {
 	switch (engine_type)
 	{
-	case _engine_type_mcc:
-		return "MCC-Win64-Shipping.exe";
-	case _engine_type_halo_reach:
-		return "haloreach.dll";
-	case _engine_type_halo1:
-		return "halo1.dll";
-	case _engine_type_halo2:
-		return "halo2.dll";
-	case _engine_type_halo3:
-		return "halo3.dll";
-	case _engine_type_halo3odst:
-		return "halo3odst.dll";
-	case _engine_type_halo4:
-		return "halo4.dll";
-	case _engine_type_groundhog:
-		return "groundhog.dll";
-	case _engine_type_eldorado:
-		return "eldorado.exe";
-	case _engine_type_halo5:
-		return "halo5forge.exe";
+	case _engine_type_mcc:			return "MCC-Win64-Shipping.exe";
+	case _engine_type_haloreach:	return "haloreach.dll";
+	case _engine_type_halo1:		return "halo1.dll";
+	case _engine_type_halo2:		return "halo2.dll";
+	case _engine_type_halo3:		return "halo3.dll";
+	case _engine_type_halo3odst:	return "halo3odst.dll";
+	case _engine_type_halo4:		return "halo4.dll";
+	case _engine_type_groundhog:	return "groundhog.dll";
+	case _engine_type_eldorado:		return "eldorado.exe";
+	case _engine_type_halo5:		return "halo5forge.exe";
 	}
 	FATAL_ERROR(L"Unsupported GameVersion");
 }

@@ -524,7 +524,7 @@ static inline long map_id_to_engine_type(e_map_id map_id)
 	case _map_id_haloreach_waterfront:
 	case _map_id_haloreach_unearthed:
 	case _map_id_haloreach_installation_04:
-		return 2; // #TODO: replace hardcoded value with _engine_type_halo_reach;
+		return 2; // #TODO: replace hardcoded value with _engine_type_haloreach;
 
 	case _map_id_halo1_pillar_of_autumn:
 	case _map_id_halo1_halo:

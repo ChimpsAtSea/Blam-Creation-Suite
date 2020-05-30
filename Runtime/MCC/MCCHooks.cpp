@@ -28,7 +28,7 @@ FunctionHookEx<Function29_offset, c_player_configuration* __fastcall (void* _thi
 uintptr_t InitThread_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x180076240);
-	//OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180012920);
+	//OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x180012920);
 	return ~uintptr_t();
 }
 FunctionHookEx<InitThread_offset, HANDLE __fastcall (void*, class IGameEngineHost* pGameEngineHost, c_game_context_v3 * pGameContext)> InitThread = { "InitThread", [](void* a1, class IGameEngineHost* pGameEngineHost, c_game_context_v3* pGameContext)

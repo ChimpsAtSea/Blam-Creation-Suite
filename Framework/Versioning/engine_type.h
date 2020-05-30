@@ -4,7 +4,7 @@ enum e_engine_type : uint8_t
 {
 	_engine_type_not_set,
 	_engine_type_mcc,
-	_engine_type_halo_reach,
+	_engine_type_haloreach,
 	_engine_type_halo1,
 	_engine_type_halo2,
 	_engine_type_halo3,
@@ -21,7 +21,7 @@ constexpr const char* engine_type_to_string(e_engine_type engine_type, const cha
 	{
 	case _engine_type_not_set:		return "_engine_type_not_set";
 	case _engine_type_mcc:			return "_engine_type_mcc";
-	case _engine_type_halo_reach:	return "_engine_type_halo_reach";
+	case _engine_type_haloreach:	return "_engine_type_haloreach";
 	case _engine_type_halo1:		return "_engine_type_halo1";
 	case _engine_type_halo2:		return "_engine_type_halo2";
 	case _engine_type_halo3:		return "_engine_type_halo3";
@@ -40,7 +40,7 @@ constexpr const char* engine_type_to_nice_name(e_engine_type engine_type, const 
 	{
 	case _engine_type_not_set:		return "Not Set";
 	case _engine_type_mcc:			return "Master Chief Collection";
-	case _engine_type_halo_reach:	return "Halo Reach";
+	case _engine_type_haloreach:	return "Halo Reach";
 	case _engine_type_halo1:		return "Halo 1";
 	case _engine_type_halo2:		return "Halo 2";
 	case _engine_type_halo3:		return "Halo 3";
@@ -57,7 +57,7 @@ constexpr const char* engine_type_to_folder_name(e_engine_type engine_type, cons
 {
 	switch (engine_type)
 	{
-	case _engine_type_halo_reach:	return "haloreach";
+	case _engine_type_haloreach:	return "haloreach";
 	case _engine_type_halo1:		return "halo1";
 	case _engine_type_halo2:		return "halo2";
 	case _engine_type_halo3:		return "halo3";
@@ -67,12 +67,11 @@ constexpr const char* engine_type_to_folder_name(e_engine_type engine_type, cons
 	}
 	return fallback;
 }
-
 constexpr const wchar_t* engine_type_to_folder_name_widechar(e_engine_type engine_type, const wchar_t* fallback = nullptr)
 {
 	switch (engine_type)
 	{
-	case _engine_type_halo_reach:	return L"haloreach";
+	case _engine_type_haloreach:	return L"haloreach";
 	case _engine_type_halo1:		return L"halo1";
 	case _engine_type_halo2:		return L"halo2";
 	case _engine_type_halo3:		return L"halo3";
