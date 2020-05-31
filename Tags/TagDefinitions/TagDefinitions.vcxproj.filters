@@ -1784,6 +1784,30 @@
     <ClInclude Include="tagdefinitions-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="types\field_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_struct_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_block_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_array_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_reference_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\string_list_definition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="types\tag_field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="blofeld\sound\looping_sound_definition.inl">

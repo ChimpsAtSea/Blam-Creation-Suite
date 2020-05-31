@@ -134,10 +134,10 @@ int blamboozle_run(const wchar_t* output_directory, const wchar_t* binary_filepa
 		return 1;
 	}
 
-	const char* build_nice_name = build_to_string(build);
-	write_line_verbose("Found %s build", build_nice_name);
+	const char* build_pretty_name = build_to_string<decltype(build_pretty_name), true>(engine_type, build);
+	write_line_verbose("Found %s build", build_pretty_name);
 
-	const char* engine_type_name = engine_type_to_string(engine_type);
+	const char* engine_type_name = get_enum_string<decltype(engine_type_name)>(engine_type);
 
 	switch (engine_type)
 	{
