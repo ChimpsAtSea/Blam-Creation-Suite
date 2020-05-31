@@ -2,27 +2,27 @@
 
 SIZE c_window_win32::s_size = {};
 HICON c_window_win32::s_hIcon = NULL;
-HWND c_window_win32::s_hWnd = NULL;
-HWND c_window_win32::s_hFocusWnd = NULL;
-HWND c_window_win32::s_hForegroundWnd = NULL;
-HINSTANCE c_window_win32::s_hInstance = NULL;
+HWND c_window_win32::s_window_handle = NULL;
+HWND c_window_win32::s_focused_window_handle = NULL;
+HWND c_window_win32::s_foreground_window_handle = NULL;
+HINSTANCE c_window_win32::s_instance_handle = NULL;
 HANDLE c_window_win32::s_hPostMessageThread = NULL;
 DWORD c_window_win32::s_hPostMessageThreadId = NULL;
-std::vector<WNDPROC>  c_window_win32::s_WndProcCallbacks;
+std::vector<WNDPROC>  c_window_win32::s_window_procedure_callbacks;
 std::vector< c_window_win32::UpdateCallback>  c_window_win32::s_UpdateCallbacks;
 std::vector< c_window_win32::DestroyCallback>  c_window_win32::s_DestroyCallbacks;
 
 void c_window_win32::updateWindowSize(SIZE& rSize)
 {
 	RECT rect = {};
-	GetClientRect(s_hWnd, &rect);
+	GetClientRect(s_window_handle, &rect);
 	rSize.cx = rect.right - rect.left;
 	rSize.cy = rect.bottom - rect.top;
 }
 
 void c_window_win32::SetWindowTitle(const wchar_t* title)
 {
-	::SetWindowTextW(s_hWnd, title);
+	::SetWindowTextW(s_window_handle, title);
 }
 
 void c_window_win32::Show()
@@ -56,12 +56,12 @@ float c_window_win32::get_aspect_ratio()
 
 HWND c_window_win32::get_window_handle()
 {
-	return s_hWnd;
+	return s_window_handle;
 }
 
 bool c_window_win32::IsWindowFocused()
 {
-	return s_hWnd == s_hFocusWnd;
+	return s_window_handle == s_focused_window_handle;
 }
 
 HICON c_window_win32::GetIcon()
@@ -90,18 +90,18 @@ void c_window_win32::OnUpdateCallback()
 	}
 }
 
-LRESULT CALLBACK c_window_win32::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK c_window_win32::WndProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
-	for (WNDPROC callback : s_WndProcCallbacks)
+	for (WNDPROC window_procedure_callback : s_window_procedure_callbacks)
 	{
-		callback(hwnd, msg, wParam, lParam);
+		window_procedure_callback(hwnd, msg, w_param, l_param);
 	}
 
 	// #BCSREFACTOR c_debug_gui::WndProc(hwnd, msg, wParam, lParam);
 	switch (msg)
 	{
 	case WM_SYSCOMMAND:
-		if ((wParam & 0xfff0) == SC_KEYMENU)
+		if ((w_param & 0xfff0) == SC_KEYMENU)
 		{
 			return 0;
 		}
@@ -117,59 +117,59 @@ LRESULT CALLBACK c_window_win32::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPA
 		break;
 	case WM_KILLFOCUS:
 	case WM_SETFOCUS:
-		s_hFocusWnd = GetFocus();
-		s_hForegroundWnd = GetForegroundWindow();
+		s_focused_window_handle = GetFocus();
+		s_foreground_window_handle = GetForegroundWindow();
 		break;
 	}
-	return DefWindowProc(hwnd, msg, wParam, lParam);
+	return DefWindowProc(hwnd, msg, w_param, l_param);
 }
 
-void c_window_win32::init_window(const char* pWindowTitle, const char* pConsoleTitle, const char* pApplicationName)
+void c_window_win32::init_window(const wchar_t* window_title, const wchar_t* console_title, const wchar_t* application_name)
 {
 	SetProcessDPIAware();
 
 #ifdef _DEBUG
-	constexpr bool isDebug = true;
+	constexpr bool is_debug = true;
 #else
-	constexpr bool isDebug = false;
+	constexpr bool is_debug = false;
 #endif
-	if ((c_command_line::has_command_line_arg("-showconsole") || isDebug) && !c_command_line::has_command_line_arg("-hideconsole"))
+	if ((c_command_line::has_command_line_arg("-showconsole") || is_debug) && !c_command_line::has_command_line_arg("-hideconsole"))
 	{
 		AllocConsole();
 		FILE* pStdOut = freopen("CONOUT$", "w", stdout);
 		ASSERT(pStdOut != nullptr);
-		SetConsoleTitleA(pConsoleTitle);
+		SetConsoleTitleW(console_title);
 	}
 
-	s_hInstance = GetModuleHandle(NULL);
+	s_instance_handle = GetModuleHandle(NULL);
 
 	// Register the window class.
 
-	WNDCLASSEXA windowClass = { };
-	windowClass.cbSize = sizeof(WNDCLASSEX);
-	windowClass.style = CS_HREDRAW | CS_VREDRAW;
-	windowClass.lpfnWndProc = WndProc;
-	windowClass.cbClsExtra = 0;
-	windowClass.cbWndExtra = 0;
-	windowClass.hInstance = s_hInstance;
-	windowClass.hIcon = c_window_win32::GetIcon();
-	windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
-	windowClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	windowClass.lpszMenuName = NULL;
-	windowClass.lpszClassName = pApplicationName;
-	windowClass.hCursor = NULL;
-	ATOM registerClassExResult = RegisterClassExA(&windowClass);
-	if (registerClassExResult == NULL)
+	WNDCLASSEXW window_class = { };
+	window_class.cbSize = sizeof(WNDCLASSEX);
+	window_class.style = CS_HREDRAW | CS_VREDRAW;
+	window_class.lpfnWndProc = WndProc;
+	window_class.cbClsExtra = 0;
+	window_class.cbWndExtra = 0;
+	window_class.hInstance = s_instance_handle;
+	window_class.hIcon = c_window_win32::GetIcon();
+	window_class.hCursor = LoadCursor(NULL, IDC_ARROW);
+	window_class.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	window_class.lpszMenuName = NULL;
+	window_class.lpszClassName = application_name;
+	window_class.hCursor = NULL;
+	ATOM register_class_ex_result = RegisterClassExW(&window_class);
+	if (register_class_ex_result == NULL)
 	{
-		int err = GetLastError();
-		FATAL_ERROR(L"Failed to register window class [%i]", err);
+		int last_error = GetLastError();
+		FATAL_ERROR(L"Failed to register window class [%i]", last_error);
 	}
 
 	// Create the window.
-	s_hWnd = CreateWindowExA(
+	s_window_handle = CreateWindowExW(
 		0,                              // Optional window styles.
-		pApplicationName,               // Window class
-		pWindowTitle,					// Window text
+		application_name,               // Window class
+		window_title,					// Window text
 		WS_OVERLAPPEDWINDOW,            // Window style
 		// Size and position
 		CW_USEDEFAULT, CW_USEDEFAULT,
@@ -177,32 +177,33 @@ void c_window_win32::init_window(const char* pWindowTitle, const char* pConsoleT
 
 		NULL,							// Parent window
 		NULL,							// Menu
-		s_hInstance,					// Instance handle
+		s_instance_handle,					// Instance handle
 		NULL							// Additional application data
 	);
 
-	if (s_hWnd == NULL)
+	if (s_window_handle == NULL)
 	{
 		int err = GetLastError();
 		FATAL_ERROR(L"Failed to create window [%i]", err);
 	}
 
-	ShowWindow(s_hWnd, SW_SHOW);
-	SetFocus(s_hWnd);
+	ShowWindow(s_window_handle, SW_SHOW);
+	SetFocus(s_window_handle);
 
-	static RAWINPUTDEVICE mouseInputDevice = {};
-	mouseInputDevice.usUsagePage = HID_USAGE_PAGE_GENERIC;
-	mouseInputDevice.usUsage = HID_USAGE_GENERIC_MOUSE;
-	mouseInputDevice.dwFlags = RIDEV_INPUTSINK;
-	mouseInputDevice.hwndTarget = s_hWnd;
-	static RAWINPUTDEVICE rawInputDevices[] = { mouseInputDevice };
-	RegisterRawInputDevices(rawInputDevices, _countof(rawInputDevices), sizeof(rawInputDevices));
+	static RAWINPUTDEVICE raw_mouse_input_device = {};
+	raw_mouse_input_device.usUsagePage = HID_USAGE_PAGE_GENERIC;
+	raw_mouse_input_device.usUsage = HID_USAGE_GENERIC_MOUSE;
+	raw_mouse_input_device.dwFlags = RIDEV_INPUTSINK;
+	raw_mouse_input_device.hwndTarget = s_window_handle;
+	static RAWINPUTDEVICE raw_input_devices[] = { raw_mouse_input_device };
+	BOOL register_raw_input_devices_result = RegisterRawInputDevices(raw_input_devices, _countof(raw_input_devices), sizeof(raw_input_devices));
+	ASSERT(register_raw_input_devices_result == TRUE);
 }
 
 void c_window_win32::deinit_window()
 {
-	CloseWindow(s_hWnd);
-	UnregisterClassA("mantle_window_class", s_hInstance);
+	CloseWindow(s_window_handle);
+	UnregisterClassA("mantle_window_class", s_instance_handle);
 }
 
 void c_window_win32::update_no_callbacks()
@@ -211,7 +212,7 @@ void c_window_win32::update_no_callbacks()
 
 	MSG msg = {};
 
-	while (PeekMessage(&msg, s_hWnd, 0, 0, PM_REMOVE))
+	while (PeekMessage(&msg, s_window_handle, 0, 0, PM_REMOVE))
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);

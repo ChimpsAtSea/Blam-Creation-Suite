@@ -281,6 +281,7 @@
     <ProjectGuid>{018F5A90-5FE0-46B7-A986-C6FDDF183037}</ProjectGuid>
     <RootNamespace>MantleGen</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>MantleGen (Deprecated)</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
