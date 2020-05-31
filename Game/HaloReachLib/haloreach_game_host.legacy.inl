@@ -213,11 +213,7 @@ uintptr_t haloreach_main_game_launch_offset(e_engine_type engine_type, e_build b
 		DWORD patternOffset = ps.FindPattern(0);
 		if (patternOffset)
 		{
-<<<<<<< HEAD:Game/HaloReachLib/halo_reach_game_host.legacy.inl
-			write_line_verbose("ketchup> SUCCEED: main_game_launch_offset @0x%x", patternOffset);
-=======
 			write_line_verbose("ketchup> SUCCEED: haloreach_main_game_launch_offset @0x%x", patternOffset);
->>>>>>> master:Game/HaloReachLib/haloreach_game_host.legacy.inl
 			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else

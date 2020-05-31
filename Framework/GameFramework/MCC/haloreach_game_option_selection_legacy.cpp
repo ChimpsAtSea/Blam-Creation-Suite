@@ -766,11 +766,8 @@ void c_haloreach_game_option_selection_legacy::load_savefilm(const char* pSavedF
 		write_line_verbose("Loading saved film [%s]", filepath.c_str());
 	}
 
-<<<<<<< HEAD:Framework/GameFramework/MCC/halo_reach_game_option_selection_legacy.cpp
-	gameContext.saved_film_path_ptr = filepath.c_str();
-=======
 	gameContext.saved_film_path = filepath.c_str();
->>>>>>> master:Framework/GameFramework/MCC/haloreach_game_option_selection_legacy.cpp
+
 }
 
 #endif

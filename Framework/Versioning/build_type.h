@@ -25,6 +25,7 @@ enum e_build : uint64_t
 	_build_mcc_1_1477_0_0 = MAKE_FILE_VERSION(1, 1477, 0, 0),
 	_build_mcc_1_1499_0_0 = MAKE_FILE_VERSION(1, 1499, 0, 0),
 	_build_mcc_1_1520_0_0 = MAKE_FILE_VERSION(1, 1520, 0, 0),
+	_build_mcc_1_1570_0_0 = MAKE_FILE_VERSION(1, 1570, 0, 0),
 	_build_eldorado_1_106708_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 106708), // 1.106708 cert_ms23  Mar 20 2015 17:24:42
 	_build_eldorado_1_155080_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 155080), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
 	_build_eldorado_1_171227_cert_ms23 = MAKE_PRODUCT_VERSION(0, 1, 171227), // #TODO: If these are required for boot we must find a way to accurately find the version from the binary
@@ -75,6 +76,7 @@ constexpr string_type get_enum_string(e_build build)
 	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1477_0_0, "MCC 1.1477.0.0");
 	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1499_0_0, "MCC 1.1499.0.0");
 	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1520_0_0, "MCC 1.1520.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1570_0_0, "MCC 1.1570.0.0");
 	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_106708_cert_ms23, "Eldorado 1.106708 cert_ms23");
 	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_155080_cert_ms23, "Eldorado 1.155080 cert_ms23");
 	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_171227_cert_ms23, "Eldorado 1.171227 cert_ms23");
@@ -129,7 +131,7 @@ constexpr uintptr_t get_engine_base_address(e_engine_type engine_type)
 	switch (engine_type)
 	{
 #ifdef _WIN64
-	case _engine_type_halo_reach:
+	case _engine_type_haloreach:
 	case _engine_type_halo1:
 	case _engine_type_halo2:
 	case _engine_type_halo3:
@@ -158,7 +160,7 @@ constexpr uintptr_t get_engine_top_address(e_engine_type engine_type, e_build bu
 	}
 	else
 	{
-		if (engine_type == _engine_type_halo_reach)
+		if (engine_type == _engine_type_haloreach)
 		{
 			switch (build)
 			{
@@ -203,7 +205,7 @@ constexpr const char* get_engine_module_filename(e_engine_type engine_type)
 	{
 	case _engine_type_mcc:
 		return "MCC-Win64-Shipping.exe";
-	case _engine_type_halo_reach:
+	case _engine_type_haloreach:
 		return "haloreach.dll";
 	case _engine_type_halo1:
 		return "halo1.dll";

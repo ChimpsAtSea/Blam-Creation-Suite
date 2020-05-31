@@ -983,7 +983,7 @@ bool c_game_launcher::variant_files_get(e_engine_type engine_type, e_variant_typ
 	const char* type_name = "";
 	const char* type_nice_name = "";
 	const char* type_extension = "";
-	const char* engine_folder_name = engine_type_to_folder_name(engine_type);
+	const char* engine_folder_name = engine_type_to_folder_name<decltype(engine_folder_name)>(engine_type);
 
 	switch (variant_type)
 	{

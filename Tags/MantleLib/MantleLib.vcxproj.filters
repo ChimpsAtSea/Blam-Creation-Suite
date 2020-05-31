@@ -72,9 +72,6 @@
     <ClCompile Include="CacheInterface\CacheVersions\halo_5_cache_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CacheInterface\CacheVersions\halo_reach_cache_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CacheInterface\CacheVersions\halo3_cache_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -130,6 +127,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheInterface\CacheVersions\haloreach_cache_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -207,9 +207,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\CacheVersions\halo_5_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CacheInterface\CacheVersions\halo_reach_cache_file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\CacheVersions\halo3_cache_file.h">
@@ -462,6 +459,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheInterface\CacheVersions\haloreach_cache_file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
