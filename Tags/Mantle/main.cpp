@@ -73,7 +73,7 @@ static void init_mantle(const wchar_t* command_line)
 	const wchar_t* launch_filepath_command_line_argument = get_launch_filepath_command_line_argument(command_line);
 	
 	c_console::init_console();
-	c_window_win32::init_window("Mantle", "Mantle Console", "mantle");
+	c_window_win32::init_window(L"Mantle", L"Mantle Console", L"mantle");
 	c_render::init_render(NULL, true);
 	c_mantle_gui::init_mantle_gui(false, launch_filepath_command_line_argument);
 

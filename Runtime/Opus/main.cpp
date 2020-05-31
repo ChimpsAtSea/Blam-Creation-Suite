@@ -35,7 +35,7 @@ int WINAPI WinMain(
 		s_running = false;
 	};
 	
-	c_window_win32::init_window("Opus", "OpusConsole", "opus");
+	c_window_win32::init_window(L"Opus", L"OpusConsole", L"opus");
 	c_render::init_render(hInstance);
 	c_mantle_gui::init_mantle_gui(true);
 	c_game_launcher::init_game_launcher();

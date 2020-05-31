@@ -1,18 +1,18 @@
 #include "platform-private-pch.h"
 
 SIZE c_window_win32::s_size = {};
-HICON c_window_win32::s_hIcon = NULL;
+HICON c_window_win32::s_icon_handle = NULL;
 HWND c_window_win32::s_window_handle = NULL;
 HWND c_window_win32::s_focused_window_handle = NULL;
 HWND c_window_win32::s_foreground_window_handle = NULL;
 HINSTANCE c_window_win32::s_instance_handle = NULL;
-HANDLE c_window_win32::s_hPostMessageThread = NULL;
-DWORD c_window_win32::s_hPostMessageThreadId = NULL;
+HANDLE c_window_win32::s_post_message_thread_handle = NULL;
+DWORD c_window_win32::s_post_message_thread_id = NULL;
 std::vector<WNDPROC>  c_window_win32::s_window_procedure_callbacks;
-std::vector< c_window_win32::UpdateCallback>  c_window_win32::s_UpdateCallbacks;
-std::vector< c_window_win32::DestroyCallback>  c_window_win32::s_DestroyCallbacks;
+std::vector< c_window_win32::t_update_callback>  c_window_win32::s_update_callbacks;
+std::vector< c_window_win32::t_destroy_callback>  c_window_win32::s_destroy_callbacks;
 
-void c_window_win32::updateWindowSize(SIZE& rSize)
+void c_window_win32::update_window_size(SIZE& rSize)
 {
 	RECT rect = {};
 	GetClientRect(s_window_handle, &rect);
@@ -34,8 +34,8 @@ void c_window_win32::Show()
 
 void c_window_win32::set_post_message_thread_id(HANDLE hThread)
 {
-	s_hPostMessageThread = hThread;
-	s_hPostMessageThreadId = GetThreadId(s_hPostMessageThread);
+	s_post_message_thread_handle = hThread;
+	s_post_message_thread_id = GetThreadId(s_post_message_thread_handle);
 }
 
 int c_window_win32::get_width()
@@ -66,17 +66,17 @@ bool c_window_win32::IsWindowFocused()
 
 HICON c_window_win32::GetIcon()
 {
-	return s_hIcon;
+	return s_icon_handle;
 }
 
 void c_window_win32::SetIcon(HICON hIcon)
 {
-	s_hIcon = hIcon;
+	s_icon_handle = hIcon;
 }
 
 void c_window_win32::OnDestroyCallback()
 {
-	for (DestroyCallback destroyCallback : s_DestroyCallbacks)
+	for (t_destroy_callback destroyCallback : s_destroy_callbacks)
 	{
 		destroyCallback();
 	}
@@ -84,13 +84,13 @@ void c_window_win32::OnDestroyCallback()
 
 void c_window_win32::OnUpdateCallback()
 {
-	for(UpdateCallback updateCallback : s_UpdateCallbacks)
+	for(t_update_callback updateCallback : s_update_callbacks)
 	{
 		updateCallback();
 	}
 }
 
-LRESULT CALLBACK c_window_win32::WndProc(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
+LRESULT CALLBACK c_window_win32::window_procedure(HWND hwnd, UINT msg, WPARAM w_param, LPARAM l_param)
 {
 	for (WNDPROC window_procedure_callback : s_window_procedure_callbacks)
 	{
@@ -111,7 +111,7 @@ LRESULT CALLBACK c_window_win32::WndProc(HWND hwnd, UINT msg, WPARAM w_param, LP
 		PostQuitMessage(WM_QUIT);
 		break;
 	case WM_SIZE:
-		updateWindowSize(s_size);
+		update_window_size(s_size);
 		// #BCSREFACTOR c_render::RequestResize(c_window_win32::get_width(), c_window_win32::get_height());
 		// #TODO: tell game to resize
 		break;
@@ -148,7 +148,7 @@ void c_window_win32::init_window(const wchar_t* window_title, const wchar_t* con
 	WNDCLASSEXW window_class = { };
 	window_class.cbSize = sizeof(WNDCLASSEX);
 	window_class.style = CS_HREDRAW | CS_VREDRAW;
-	window_class.lpfnWndProc = WndProc;
+	window_class.lpfnWndProc = window_procedure;
 	window_class.cbClsExtra = 0;
 	window_class.cbWndExtra = 0;
 	window_class.hInstance = s_instance_handle;
