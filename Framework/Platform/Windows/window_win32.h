@@ -34,7 +34,7 @@ public:
 	static inline float get_width_float() { return static_cast<float>(get_width()); }
 	static inline float get_height_float() { return static_cast<float>(get_height()); }
 	static float get_aspect_ratio();
-	static void SetWindowTitle(const char* pTitle);
+	static void SetWindowTitle(const wchar_t* title);
 	static void Show();
 private:
 	static void updateWindowSize(SIZE& rSize);

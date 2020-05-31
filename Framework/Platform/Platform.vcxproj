@@ -23,6 +23,7 @@
     <ClInclude Include="!Resources\resources_manager.h" />
     <ClInclude Include="debug_util.h" />
     <ClInclude Include="endianness_util.h" />
+    <ClInclude Include="enum_util.h" />
     <ClInclude Include="error_handling.h" />
     <ClInclude Include="filesystem_util.h" />
     <ClInclude Include="intrinsics.h" />

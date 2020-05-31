@@ -26,7 +26,7 @@ int WINAPI WinMain(
 	if (mustard_module == NULL)
 	{
 		printf("failed to load Mustard.dll\n");
-		return 1;
+		return 3;
 	}
 	FARPROC mustard_entry_point_func = GetProcAddress(mustard_module, "main");
 	typedef int (main_func)();

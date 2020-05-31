@@ -30,7 +30,7 @@ const char* page_protection_to_string(DWORD protection)
 	return "<unknown protection>";
 }
 
-HINSTANCE load_executable(const char* executable_name)
+HINSTANCE load_executable(const char* executable_name, bool load_at_preferred_address = true, bool allocate_memory = false)
 {
 	HANDLE executable_file = CreateFileA(executable_name, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (executable_file == INVALID_HANDLE_VALUE)
@@ -75,20 +75,46 @@ HINSTANCE load_executable(const char* executable_name)
 		LPVOID section_virtual_address_ptr = reinterpret_cast<LPVOID>(section_virtual_address);
 		printf("loading %s @ 0x%zX\n", executable_name, raw_nt_headers->OptionalHeader.ImageBase);
 
-		char* image_data = static_cast<char*>(section_virtual_address_ptr);
-		//char* image_data = static_cast<char*>(VirtualAlloc(section_virtual_address_ptr, image_size, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE));
-		//ASSERT(image_data != nullptr);
-		//memset(image_data, 0, image_size);
-		module_handle = reinterpret_cast<HINSTANCE>(image_data);
+
 		const IMAGE_SECTION_HEADER* raw_section_header = reinterpret_cast<const IMAGE_SECTION_HEADER*>(raw_nt_headers + 1);
 		const char* raw_base_section_data = reinterpret_cast<const char*>(raw_section_header + raw_nt_headers->FileHeader.NumberOfSections);
 
-		DWORD oldProtect;
-		BOOL virtualProtectResult = VirtualProtect(image_data, raw_nt_headers->OptionalHeader.SizeOfHeaders, PAGE_READWRITE, &oldProtect);
-		ASSERT(virtualProtectResult != 0);
-		memcpy(image_data, raw_module_address, raw_nt_headers->OptionalHeader.SizeOfHeaders);
-		BOOL virtualProtectResult2 = VirtualProtect(image_data, raw_nt_headers->OptionalHeader.SizeOfHeaders, oldProtect, &oldProtect);
-		ASSERT(virtualProtectResult2 != 0);
+		char* image_data = nullptr;
+		if (allocate_memory)
+		{
+			SIZE_T image_size = 256 * 1024 * 1024; // #TODO
+			if (load_at_preferred_address)
+			{
+				image_data = static_cast<char*>(VirtualAlloc(section_virtual_address_ptr, image_size, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE));
+			}
+			else
+			{
+				image_data = static_cast<char*>(VirtualAlloc(nullptr, image_size, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE));
+			}
+			ASSERT(image_data != nullptr);
+			memset(image_data, 0, image_size);
+		}
+		else
+		{
+			ASSERT(!IsBadReadPtr(image_data, 1));
+		}
+		{
+			module_handle = reinterpret_cast<HINSTANCE>(image_data);
+
+			DWORD oldProtect;
+			if (!allocate_memory)
+			{
+				BOOL virtualProtectResult = VirtualProtect(image_data, raw_nt_headers->OptionalHeader.SizeOfHeaders, PAGE_READWRITE, &oldProtect);
+				ASSERT(virtualProtectResult != 0);
+			}
+			memcpy(image_data, raw_module_address, raw_nt_headers->OptionalHeader.SizeOfHeaders);
+			if (!allocate_memory)
+			{
+				BOOL virtualProtectResult2 = VirtualProtect(image_data, raw_nt_headers->OptionalHeader.SizeOfHeaders, oldProtect, &oldProtect);
+				ASSERT(virtualProtectResult2 != 0);
+			}
+		}
+
 		printf("Loading headers: @%p\n", image_data);
 
 		for (WORD currentSectionIndex = 0; currentSectionIndex < raw_nt_headers->FileHeader.NumberOfSections; currentSectionIndex++)
@@ -169,6 +195,7 @@ HINSTANCE load_executable(const char* executable_name)
 			const char* protection_string = page_protection_to_string(protection);
 			printf("Setting memory protection of section '%s' to %s\n", section_name_buffer, protection_string);
 
+			DWORD oldProtect;
 			BOOL virtualProtectResult = VirtualProtect(virtual_section_data, current_raw_section_header->Misc.VirtualSize, protection, &oldProtect);
 			ASSERT(virtualProtectResult != 0);
 
@@ -248,23 +275,35 @@ void parse_import_address_table(HINSTANCE module)
 			ASSERT(exported_function != nullptr); // ensure that we can find the function pointer
 			ASSERT(rva != 0);
 
-			BOOL writeProcessMemoryResult = WriteProcessMemory(current_process, const_cast<LPVOID*>(rva), &exported_function, sizeof(exported_function), NULL);
-			if (!writeProcessMemoryResult)
-			{
-				int lastError = GetLastError();
-				ASSERT(lastError == ERROR_NOACCESS);
-
-				// failed to write memory due to memory access rights
-
-				DWORD dwOldProtect;
-				BOOL virtualProtectResult = VirtualProtect(const_cast<LPVOID*>(rva), sizeof(exported_function), PAGE_WRITECOPY, &dwOldProtect);
+			{ // #TODO: Wrap this. Replaces broken code below
+				DWORD oldProtect;
+				BOOL virtualProtectResult = VirtualProtect(const_cast<LPVOID*>(rva), sizeof(exported_function), PAGE_READWRITE, &oldProtect);
 				ASSERT(virtualProtectResult != 0);
-
-				BOOL writeProcessMemoryResult2 = WriteProcessMemory(GetCurrentProcess(), const_cast<LPVOID*>(rva), &exported_function, sizeof(exported_function), NULL);
-				ASSERT(writeProcessMemoryResult2 != 0);
-
-				BOOL virtualProtectResult2 = VirtualProtect(const_cast<LPVOID*>(rva), sizeof(exported_function), dwOldProtect, &dwOldProtect);
+				memcpy(const_cast<LPVOID*>(rva), &exported_function, sizeof(exported_function));
+				BOOL virtualProtectResult2 = VirtualProtect(const_cast<LPVOID*>(rva), sizeof(exported_function), oldProtect, &oldProtect);
 				ASSERT(virtualProtectResult2 != 0);
+			}
+			if (false) // sometimes broken, no idea why
+			{
+				BOOL writeProcessMemoryResult = WriteProcessMemory(current_process, const_cast<LPVOID*>(rva), &exported_function, sizeof(exported_function), NULL);
+				if (!writeProcessMemoryResult)
+				{
+					int lastError = GetLastError();
+					ASSERT(lastError == ERROR_NOACCESS);
+
+					// failed to write memory due to memory access rights
+
+					DWORD dwOldProtect;
+					BOOL virtualProtectResult = VirtualProtect(const_cast<LPVOID*>(rva), sizeof(exported_function), PAGE_WRITECOPY, &dwOldProtect);
+					lastError = GetLastError();
+					ASSERT(virtualProtectResult != 0);
+
+					BOOL writeProcessMemoryResult2 = WriteProcessMemory(GetCurrentProcess(), const_cast<LPVOID*>(rva), &exported_function, sizeof(exported_function), NULL);
+					ASSERT(writeProcessMemoryResult2 != 0);
+
+					BOOL virtualProtectResult2 = VirtualProtect(const_cast<LPVOID*>(rva), sizeof(exported_function), dwOldProtect, &dwOldProtect);
+					ASSERT(virtualProtectResult2 != 0);
+				}
 			}
 		}
 	}
@@ -298,7 +337,10 @@ void apply_module_thread_local_storage_fixup(HINSTANCE module)
 	DWORD import_descriptor_size;
 	IMAGE_TLS_DIRECTORY* const tls_data_directory = static_cast<IMAGE_TLS_DIRECTORY*>(ImageDirectoryEntryToData(module, TRUE, IMAGE_DIRECTORY_ENTRY_TLS, &import_descriptor_size));
 
-	ASSERT(import_descriptor_size > 0);
+	if (import_descriptor_size == 0)
+	{
+		return;
+	}
 	ASSERT(tls_data_directory != nullptr);
 
 	DWORD* g_tls_index_launcher = (DWORD*)(launcher_tls_data_directory->AddressOfIndex);
@@ -524,6 +566,24 @@ __declspec(dllexport) int main()
 					FATAL_ERROR(L"Failed to load Halo 5");
 				}
 			}
+		}
+	}
+	if (loaded_executable_module == NULL)
+	{
+		char* binary_data = nullptr;
+		size_t binary_data_size = 0;
+		if (filesystem_read_file_to_memory("Noesis.dll", reinterpret_cast<void**>(&binary_data), &binary_data_size))
+		{
+			loaded_executable_module = load_executable("Noesis.dll", false, true);
+			parse_import_address_table(loaded_executable_module);
+			apply_module_thread_local_storage_fixup(loaded_executable_module);
+
+			//loaded_executable_module = LoadLibraryA("Noesis.dll");
+
+			auto x = GetProcAddress(loaded_executable_module, MAKEINTRESOURCEA(5908));
+			auto y = GetProcAddress(loaded_executable_module, "?Init@Noesis@@YAXPEBD0@Z");
+			
+			debug_point;
 		}
 	}
 #endif

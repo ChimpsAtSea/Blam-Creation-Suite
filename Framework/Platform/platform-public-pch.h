@@ -26,6 +26,7 @@ using namespace xxhash::literals;
 #include "runtime_util.h"
 #include "filesystem_util.h"
 #include "endianness_util.h"
+#include "enum_util.h"
 
 #include "Windows/window_win32.h"
 #include "Windows/command_line.h"

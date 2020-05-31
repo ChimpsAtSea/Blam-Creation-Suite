@@ -12,22 +12,21 @@ c_opus_game_engine_host::c_opus_game_engine_host(e_engine_type engine_type, e_bu
 	total_frame_cpu_time(0.0),
 	game_engine(nullptr)
 {
-	const char* engine_string = engine_type_to_nice_name(engine_type);
-	const char* build_string = build_to_string(build); //#TODO: MCC product version to string to snag build numbers we don't know about
-	const char* build_configuration = build_configuration_get();
+	const wchar_t* engine_string = get_enum_string<decltype(engine_string)>(engine_type);
+	const wchar_t* build_string = build_to_string<decltype(build_string), true>(engine_type, build); //#TODO: MCC product version to string to snag build numbers we don't know about
+	const wchar_t* build_configuration = build_configuration_string<decltype(build_configuration), true>();
 
-	std::string window_title = engine_string;
-	window_title.append(" : ");
+	std::wstring window_title = engine_string;
+	window_title.append(L" : ");
 	window_title.append(build_string);
-	window_title.append(" ");
+	window_title.append(L" ");
 	window_title.append(build_configuration);
-	c_window_win32::SetWindowTitle(window_title.c_str());
+	c_window_win32::SetWindowTitle(window_title.c_str()); // #TODO: Replace with push/pop
 }
 
 c_opus_game_engine_host::~c_opus_game_engine_host()
 {
-	std::string window_title = "Opus";
-	c_window_win32::SetWindowTitle(window_title.c_str());
+	c_window_win32::SetWindowTitle(L"Opus");
 }
 
 char c_opus_game_engine_host::FrameStart()
@@ -119,7 +118,7 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 
 	static e_engine_type last_engine_type = _engine_type_not_set;
 	static e_map_id map_id = _map_id_none;
-	static const wchar_t* engine_name = engine_type_to_folder_name_widechar(engine_type);
+	static const wchar_t* engine_name = engine_type_to_folder_name<decltype(engine_name)>(engine_type);
 	if (last_engine_type == _engine_type_not_set || last_engine_type != engine_type)
 	{
 		// TODO: add support for halo reach

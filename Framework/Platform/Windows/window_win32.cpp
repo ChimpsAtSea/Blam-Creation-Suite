@@ -20,9 +20,9 @@ void c_window_win32::updateWindowSize(SIZE& rSize)
 	rSize.cy = rect.bottom - rect.top;
 }
 
-void c_window_win32::SetWindowTitle(const char* pTitle)
+void c_window_win32::SetWindowTitle(const wchar_t* title)
 {
-	::SetWindowTextA(s_hWnd, pTitle);
+	::SetWindowTextW(s_hWnd, title);
 }
 
 void c_window_win32::Show()

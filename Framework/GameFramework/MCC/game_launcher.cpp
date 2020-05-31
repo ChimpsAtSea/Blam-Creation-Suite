@@ -575,12 +575,12 @@ void c_game_launcher::render_main_menu()
 		ImGui::Columns(2);
 		ImGui::SetColumnOffset(1, c_window_win32::get_width() * 0.5f);
 
-		const char* current_engine_name = engine_type_to_nice_name(g_engine_type);
+		const char* current_engine_name = get_enum_pretty_string<decltype(current_engine_name)>(g_engine_type);
 		if (ImGui::BeginCombo("Game", current_engine_name))
 		{
 			for (e_engine_type supported_engine_type : g_supported_engine_types)
 			{
-				const char* supported_engine_name = engine_type_to_nice_name(supported_engine_type);
+				const char* supported_engine_name = get_enum_pretty_string<decltype(supported_engine_name)>(supported_engine_type);
 				if (ImGui::Selectable(supported_engine_name))
 				{
 					g_engine_type = supported_engine_type;
@@ -858,7 +858,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 	const char* type_name = "";
 	const char* type_nice_name = "";
 	const char* type_extension = "";
-	const char* engine_name = engine_type_to_folder_name(engine_type);
+	const char* engine_name = engine_type_to_folder_name<decltype(engine_name)>(engine_type);
 
 	switch (variant_type)
 	{

@@ -54,65 +54,74 @@ enum e_build : uint64_t
 
 #undef MAKE_FILE_VERSION
 
-inline const char* build_to_string(e_build build)
+template<typename string_type, bool pretty_string>
+constexpr string_type get_enum_string(e_build build)
 {
-	switch (build)
-	{
-	case _build_not_set: return "Not set";
-	case _build_mcc_1_824_0_0: return "MCC 1.824.0.0";
-	case _build_mcc_1_887_0_0: return "MCC 1.887.0.0";
-	case _build_mcc_1_1035_0_0: return "MCC 1.1035.0.0";
-	case _build_mcc_1_1186_0_0: return "MCC 1.1186.0.0";
-	case _build_mcc_1_1211_0_0: return "MCC 1.1211.0.0";
-	case _build_mcc_1_1246_0_0: return "MCC 1.1246.0.0";
-	case _build_mcc_1_1270_0_0: return "MCC 1.1270.0.0";
-	case _build_mcc_1_1305_0_0: return "MCC 1.1305.0.0";
-	case _build_mcc_1_1350_0_0: return "MCC 1.1350.0.0";
-	case _build_mcc_1_1367_0_0: return "MCC 1.1367.0.0";
-	case _build_mcc_1_1377_0_0: return "MCC 1.1377.0.0";
-	case _build_mcc_1_1384_0_0: return "MCC 1.1384.0.0";
-	case _build_mcc_1_1387_0_0: return "MCC 1.1387.0.0";
-	case _build_mcc_1_1389_0_0: return "MCC 1.1389.0.0";
-	case _build_mcc_1_1477_0_0: return "MCC 1.1477.0.0";
-	case _build_mcc_1_1499_0_0: return "MCC 1.1499.0.0";
-	case _build_mcc_1_1520_0_0: return "MCC 1.1520.0.0";
-	case _build_eldorado_1_106708_cert_ms23: return "Eldorado 1.106708 cert_ms23";
-	case _build_eldorado_1_155080_cert_ms23: return "Eldorado 1.155080 cert_ms23";
-	case _build_eldorado_1_171227_cert_ms23: return "Eldorado 1.171227 cert_ms23";
-	case _build_eldorado_1_177150_cert_ms23: return "Eldorado 1.177150 cert_ms23";
-	case _build_eldorado_1_235640_cert_ms25: return "Eldorado 1.235640 cert_ms25";
-	case _build_eldorado_1_301003_cert_MS26_new: return "Eldorado 1.301003 cert_MS26_new";
-	case _build_eldorado_1_327043_cert_ms26: return "Eldorado 1.327043 cert_ms26";
-	case _build_eldorado_1_332089_Live: return "Eldorado 1.332089 Live";
-	case _build_eldorado_1_373869_Live: return "Eldorado 1.373869 Live";
-	case _build_eldorado_1_416138_Live: return "Eldorado 1.416138 Live";
-	case _build_eldorado_1_430653_Live: return "Eldorado 1.430653 Live";
-	case _build_eldorado_1_454665_Live: return "Eldorado 1.454665 Live";
-	case _build_eldorado_1_479394_Live: return "Eldorado 1.479394 Live";
-	case _build_eldorado_1_498295_Live: return "Eldorado 1.498295 Live";
-	case _build_eldorado_1_530945_Live: return "Eldorado 1.530945 Live";
-	case _build_eldorado_1_533032_Live: return "Eldorado 1.533032 Live";
-	case _build_eldorado_1_554482_Live: return "Eldorado 1.554482 Live";
-	case _build_eldorado_1_571698_Live: return "Eldorado 1.571698 Live";
-	case _build_eldorado_1_604673_Live: return "Eldorado 1.604673 Live";
-	case _build_eldorado_1_700255_cert_ms30_oct19: return "Eldorado 1.700255 cert_ms30_oct19";
-	case _build_halo1_guerilla: return "Halo 1 Guerilla";
-	case _build_halo2_guerilla: return "Halo 2 Guerilla";
-	case _build_halo5_forge_1_114_4592_2: return "Halo 5 Forge 1.114.4592.2_x64__8wekyb3d8bbwe";
-	case _build_midnight_tag_test_untracked_november_13_2013: return "Halo 4 midnight tag test xenon untracked Nov 13 2013 11:14:44";
-	}
-	return "<unknown e_build>";
+	enum_string_ex(string_type, pretty_string, build, _build_not_set, "Not set");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_824_0_0, "MCC 1.824.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_887_0_0, "MCC 1.887.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1035_0_0, "MCC 1.1035.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1186_0_0, "MCC 1.1186.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1211_0_0, "MCC 1.1211.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1246_0_0, "MCC 1.1246.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1270_0_0, "MCC 1.1270.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1305_0_0, "MCC 1.1305.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1350_0_0, "MCC 1.1350.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1367_0_0, "MCC 1.1367.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1377_0_0, "MCC 1.1377.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1384_0_0, "MCC 1.1384.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1387_0_0, "MCC 1.1387.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1389_0_0, "MCC 1.1389.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1477_0_0, "MCC 1.1477.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1499_0_0, "MCC 1.1499.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_mcc_1_1520_0_0, "MCC 1.1520.0.0");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_106708_cert_ms23, "Eldorado 1.106708 cert_ms23");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_155080_cert_ms23, "Eldorado 1.155080 cert_ms23");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_171227_cert_ms23, "Eldorado 1.171227 cert_ms23");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_177150_cert_ms23, "Eldorado 1.177150 cert_ms23");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_235640_cert_ms25, "Eldorado 1.235640 cert_ms25");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_301003_cert_MS26_new, "Eldorado 1.301003 cert_MS26_new");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_327043_cert_ms26, "Eldorado 1.327043 cert_ms26");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_332089_Live, "Eldorado 1.332089 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_373869_Live, "Eldorado 1.373869 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_416138_Live, "Eldorado 1.416138 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_430653_Live, "Eldorado 1.430653 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_454665_Live, "Eldorado 1.454665 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_479394_Live, "Eldorado 1.479394 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_498295_Live, "Eldorado 1.498295 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_530945_Live, "Eldorado 1.530945 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_533032_Live, "Eldorado 1.533032 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_554482_Live, "Eldorado 1.554482 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_571698_Live, "Eldorado 1.571698 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_604673_Live, "Eldorado 1.604673 Live");
+	enum_string_ex(string_type, pretty_string, build, _build_eldorado_1_700255_cert_ms30_oct19, "Eldorado 1.700255 cert_ms30_oct19");
+	enum_string_ex(string_type, pretty_string, build, _build_halo1_guerilla, "Halo 1 Guerilla");
+	enum_string_ex(string_type, pretty_string, build, _build_halo2_guerilla, "Halo 2 Guerilla");
+	enum_string_ex(string_type, pretty_string, build, _build_halo5_forge_1_114_4592_2, "Halo 5 Forge 1.114.4592.2_x64__8wekyb3d8bbwe");
+	enum_string_ex(string_type, pretty_string, build, _build_midnight_tag_test_untracked_november_13_2013, "Halo 4 midnight tag test xenon untracked Nov 13 2013 11:14:44");
+	return nullptr;
 }
 
-inline const char* build_configuration_get()
+template<typename string_type, bool pretty_string>
+constexpr string_type build_to_string(e_engine_type engine_type, e_build build)
+{
+	string_type result = get_enum_string<string_type, pretty_string>(build);
+	if (result)
+	{
+		return result;
+	}
+	// #TODO: Create a list of unknown builds but try to format something sensible
+	return auto_string_ex(string_type, pretty_string, "unknown build", "Unknown Build");
+}
+
+template<typename string_type, bool pretty_string>
+constexpr string_type build_configuration_string()
 {
 #ifdef _DEBUG
-	const char* build_configuration = "DEBUG";
+	return auto_string_ex(string_type, pretty_string, "debug", "Debug");
 #else
-	const char* build_configuration = "RELEASE";
+	return auto_string_ex(string_type, pretty_string, "release", "Release");
 #endif
-
-	return build_configuration;
 }
 
 constexpr uintptr_t get_engine_base_address(e_engine_type engine_type)
