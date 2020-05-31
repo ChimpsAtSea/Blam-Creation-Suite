@@ -46,7 +46,7 @@ void terminal_output_print_hook(void *, const char *format, ...)
 	write_line_verbose(format, argptr);
 }
 
-// TODO: get the offset for builds 1350, 1367, 1377, 1384, 1387
+// TODO: get the offset for builds 1350, 1367, 1377, 1384, 1387, 1477, 1799, 1520, 1570
 uintptr_t terminal_output_print_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18078ADF0);
@@ -55,7 +55,7 @@ uintptr_t terminal_output_print_offset(e_engine_type engine_type, e_build build)
 FunctionHookVarArgsEx<terminal_output_print_offset, void(void *, const char*, ...)> terminal_output_print 
 	= { "terminal_output_print", terminal_output_print_hook };
 
-// TODO: get the offset for builds 1350, 1367, 1377, 1384, 1387
+// TODO: get the offset for builds 1350, 1367, 1377, 1384, 1387, 1477, 1799, 1520, 1570
 uintptr_t terminal_output_print_needs_developer_mode_greater_than_or_equal_4_offset(e_engine_type engine_type, e_build build)
 {
 	OFFSET(_engine_type_halo1, _build_mcc_1_1389_0_0, 0x18078AD10);

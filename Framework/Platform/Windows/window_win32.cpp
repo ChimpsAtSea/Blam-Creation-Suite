@@ -175,7 +175,7 @@ void c_window_win32::init_window(const char* pWindowTitle, const char* pConsoleT
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		GetSystemMetrics(SM_CXSCREEN) / 4 * 3, GetSystemMetrics(SM_CYSCREEN) / 4 * 3,
 
-		NULL,							// Parent window    
+		NULL,							// Parent window
 		NULL,							// Menu
 		s_hInstance,					// Instance handle
 		NULL							// Additional application data
@@ -228,4 +228,3 @@ void c_window_win32::update_window()
 	update_no_callbacks();
 	OnUpdateCallback();
 }
-

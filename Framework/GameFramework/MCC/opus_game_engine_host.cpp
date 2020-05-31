@@ -40,7 +40,7 @@ void c_opus_game_engine_host::FrameEnd(IDXGISwapChain* swap_chain, _QWORD)
 	double frame_cpu_duration = frame_timer.get_duration<double>();
 	total_frame_cpu_time += frame_cpu_duration;
 	frame_timer.start();
-	
+
 	static const bool k_quit_after_30_seconds_test = c_command_line::get_command_line_arg("-test") == "quit_after_30_seconds";
 	if (k_quit_after_30_seconds_test && total_frame_cpu_time > 30.0f)
 	{
@@ -98,7 +98,7 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 	}
 
 	c_game_launcher::game_exited_callback();
-	
+
 	return __int64(0);
 }
 
@@ -124,8 +124,8 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 		// TODO: add support for halo reach
 		switch (engine_type)
 		{
-		//case _engine_type_halo_reach:
-		//	map_id = halo_reach_map_id;
+		//case _engine_type_haloreach:
+		//	map_id = haloreach_map_id;
 		//	engine_name = L"haloreach";
 		//	break;
 		case _engine_type_halo1:
@@ -236,7 +236,7 @@ bool save_variant_to_file(IVariantAccessorBase* variant, e_variant_type variant_
 	default:
 		return false;
 	}
-	
+
 	{
 		void *variant_buffer = 0;
 		size_t variant_buffer_size = 0;
@@ -259,7 +259,7 @@ void c_opus_game_engine_host::SaveGameVariant(IGameVariant* game_variant)
 	const wchar_t* description = L"This is a temporary test game variant for testing writing to file.";
 	switch (engine_type)
 	{
-	case _engine_type_halo_reach:
+	case _engine_type_haloreach:
 		file_name = L"temp.haloreach";
 		break;
 	case _engine_type_halo1:
@@ -286,7 +286,7 @@ void c_opus_game_engine_host::SaveMapVariant(IMapVariant* map_variant)
 	const wchar_t* description = L"This is a temporary test map variant for testing writing to file.";
 	switch (engine_type)
 	{
-	case _engine_type_halo_reach:
+	case _engine_type_haloreach:
 		file_name = L"temp.haloreach";
 		break;
 	case _engine_type_halo1:
@@ -579,7 +579,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 		input_buffer->mouseButtonBits |= BYTE(middleButtonPressed) << 1;
 		input_buffer->mouseButtonBits |= BYTE(rightButtonPressed) << 2;
 	}
-	
+
 	if (sCurrentInputSource == InputSource::Gamepad)
 	{
 		input_buffer->wButtons = xinputState.Gamepad.wButtons;
@@ -630,7 +630,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, 
 	{
 		const wchar_t* ppNames[] = { L"Player", L"Player2", L"Player3",L"Player4" };
 		const wchar_t* pName = ppNames[player_index];
-		
+
 		if (player_index == 0) // #TODO: Proper player class for interface!
 		{
 			static wchar_t player_name_configuration[16] = {};
@@ -654,7 +654,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, 
 		player_names[player_index][player_name_max_index] = 0;
 		write_line_verbose("player[%d].Name: set %ls", player_index, pName);
 	}
-	
+
 	return true;
 }
 
@@ -745,7 +745,7 @@ bool __fastcall c_opus_game_engine_host::GetWidePathByType(PathType path_type, w
 		swprintf(buffer, buffer_length, L"%S\\", pEngineName);
 		return true;
 	}
-	
+
 	return false;
 }
 

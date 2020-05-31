@@ -106,6 +106,7 @@
     <ClInclude Include="opus_legacy\local_types.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="groundhog_game_host.memory.inl" />
     <None Include="groundhog_game_host.testing.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

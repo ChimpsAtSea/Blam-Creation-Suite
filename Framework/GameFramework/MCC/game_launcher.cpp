@@ -26,19 +26,19 @@ e_map_id g_halo4_map_id = _map_id_halo4_ragnarok;
 static std::vector<e_map_id> g_groundhog_map_ids;
 e_map_id g_groundhog_map_id = _map_id_groundhog_coagulation;
 static bool has_auto_started = false;
-static bool k_autostart_halo_reach = false;
+static bool k_autostart_halo_haloreach = false;
 static bool k_autostart_halo_halo1 = false;
 static bool k_autostart_halo_halo2 = false;
 static bool k_autostart_halo_groundhog = false;
 static bool k_autostart_halo_eldorado = false;
 static bool k_autostart_halo_online = false;
-static bool use_anniversary_graphics = true;
-static bool use_anniversary_sounds = true;
+static bool use_remastered_visuals = true;
+static bool use_remastered_music = true;
 static bool start_as_forge_mode = true;
 
 void c_game_launcher::init_game_launcher()
 {
-	k_autostart_halo_reach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
+	k_autostart_halo_haloreach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
 	k_autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
 	k_autostart_halo_halo2 = c_command_line::get_command_line_arg("-autostart") == "halo2";
 	k_autostart_halo_groundhog = c_command_line::get_command_line_arg("-autostart") == "groundhog";
@@ -60,7 +60,7 @@ void c_game_launcher::init_game_launcher()
 	if (PathFileExistsA("haloreach\\haloreach.dll"))
 	{
 		is_bink2_required = true;
-		g_supported_engine_types.push_back(_engine_type_halo_reach);
+		g_supported_engine_types.push_back(_engine_type_haloreach);
 	}
 
 	if (PathFileExistsA("halo1\\halo1.dll"))
@@ -120,7 +120,7 @@ void c_game_launcher::init_game_launcher()
 		long engine_type = map_id_to_engine_type(map_id);
 		switch (engine_type)
 		{
-		case _engine_type_halo_reach:
+		case _engine_type_haloreach:
 			g_haloreach_map_ids.push_back(map_id);
 			break;
 		case _engine_type_halo1:
@@ -151,7 +151,7 @@ void c_game_launcher::init_game_launcher()
 
 	c_game_launcher::load_settings();
 #ifdef _WIN64
-	c_halo_reach_game_option_selection_legacy::Init();
+	c_haloreach_game_option_selection_legacy::Init();
 #endif
 	c_window_win32::register_window_procedure_callback(window_procedure_callback);
 	c_debug_gui::register_callback(_callback_mode_always_run, render_main_menu);
@@ -161,7 +161,7 @@ void c_game_launcher::init_game_launcher()
 
 	if (!has_auto_started)
 	{
-		if (k_autostart_halo_reach) start_game(_engine_type_halo_reach, _next_launch_mode_generic);
+		if (k_autostart_halo_haloreach) start_game(_engine_type_haloreach, _next_launch_mode_generic);
 		if (k_autostart_halo_halo1) start_game(_engine_type_halo1, _next_launch_mode_generic);
 		if (k_autostart_halo_halo2) start_game(_engine_type_halo2, _next_launch_mode_generic);
 		if (k_autostart_halo_groundhog) start_game(_engine_type_groundhog, _next_launch_mode_generic);
@@ -176,7 +176,7 @@ void c_game_launcher::deinit_game_launcher()
 	c_debug_gui::unregister_callback(_callback_mode_toggleable, render_ui);
 	c_window_win32::unregister_window_procedure_callback(window_procedure_callback);
 #ifdef _WIN64
-	c_halo_reach_game_option_selection_legacy::deinit();
+	c_haloreach_game_option_selection_legacy::deinit();
 #endif
 }
 
@@ -264,7 +264,7 @@ void c_game_launcher::start_game(e_engine_type engine_type, e_next_launch_mode n
 	g_next_launch_mode = next_launch_mode;
 
 #ifdef _WIN64
-	c_halo_reach_game_option_selection_legacy::s_launch_saved_film_filepath = "";
+	c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath = "";
 #endif
 	has_auto_started = true;
 	g_next_launch_mode = _next_launch_mode_generic;
@@ -284,13 +284,13 @@ void c_game_launcher::launch_game(e_engine_type engine_type)
 {
 	s_is_game_running = true;
 	// #TODO: We currently can't resize the game without crashing
-	// we should do this at the beginning of the frame. 
+	// we should do this at the beginning of the frame.
 
 	c_render::set_resize_enabled(false);
 	switch (engine_type)
 	{
 #ifdef _WIN64
-	case _engine_type_halo_reach:
+	case _engine_type_haloreach:
 	case _engine_type_halo1:
 	case _engine_type_halo2:
 	case _engine_type_groundhog:
@@ -314,29 +314,29 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	e_build build = _build_not_set;
 	switch (engine_type)
 	{
-	case _engine_type_halo_reach:
-		build = c_halo_reach_game_host::get_game_runtime().get_build();
-		current_game_host = new c_halo_reach_game_host(engine_type, build);
+	case _engine_type_haloreach:
+		build = c_haloreach_game_host::get_game_runtime().get_build();
+		current_game_host = new c_haloreach_game_host(engine_type, build);
 		break;
 	case _engine_type_halo1:
 		build = c_halo1_game_host::get_game_runtime().get_build();
 		current_game_host = new c_halo1_game_host(engine_type, build);
-		c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
-		c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Blood Gulch"; // map variants don't exist in Halo 1
+		c_haloreach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
+		c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Blood Gulch"; // map variants don't exist in Halo 1
 		break;
 	case _engine_type_halo2:
 		build = c_halo2_game_host::get_game_runtime().get_build();
 		current_game_host = new c_halo2_game_host(engine_type, build);
-		c_halo_reach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
-		c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // map variants don't exist in Halo 2
+		c_haloreach_game_option_selection_legacy::s_launch_game_variant = "02_team_slayer";
+		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // map variants don't exist in Halo 2
 		break;
 	case _engine_type_groundhog:
 		build = c_groundhog_game_host::get_game_runtime().get_build();
 		current_game_host = new c_groundhog_game_host(engine_type, build);
 
 		// commented out `start_as_forge_mode` checkbox due to incompatibility with normal multiplayer game modes, who doesn't want forge to be default anyway
-		c_halo_reach_game_option_selection_legacy::s_launch_game_variant = start_as_forge_mode ? "H2A_001_001_basic_editing_137" : "H2A_100_250_Slayer_BR_137";
-		//c_halo_reach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // if left blank a default map variant is created
+		c_haloreach_game_option_selection_legacy::s_launch_game_variant = start_as_forge_mode ? "H2A_001_001_basic_editing_137" : "H2A_100_250_Slayer_BR_137";
+		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // if left blank a default map variant is created
 		break;
 	default:
 		write_line_verbose(__FUNCTION__"> unknown engine_type");
@@ -357,8 +357,8 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	c_session_manager::create_game_context(build, &game_context);
 	ASSERT(game_context);
 
-	game_context->is_anniversary_mode = use_anniversary_graphics;
-	game_context->is_anniversary_sounds = use_anniversary_sounds;
+	game_context->visual_remaster = use_remastered_visuals;
+	game_context->music_remaster = use_remastered_music;
 
 	if (!load_save_from_file(game_context, "5EA68E0B.halo2", false))
 	{
@@ -369,17 +369,17 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 
 			game_context->campaign_difficulty_level = g_campaign_difficulty_level;
 
-			if (engine_type == _engine_type_halo_reach)
+			if (engine_type == _engine_type_haloreach)
 			{
-				const MapInfo *selected_map_info = c_halo_reach_game_option_selection_legacy::get_selected_map_info();
-				e_mcc_game_mode game_mode = c_halo_reach_game_option_selection_legacy::get_selected_game_mode();
+				const MapInfo *selected_map_info = c_haloreach_game_option_selection_legacy::get_selected_map_info();
+				e_mcc_game_mode game_mode = c_haloreach_game_option_selection_legacy::get_selected_game_mode();
 
 				game_context->game_mode = game_mode;
 				game_context->map_id = static_cast<e_map_id>(selected_map_info->GetMapID());
-				data_access = c_halo_reach_game_host::get_data_access();
+				data_access = c_haloreach_game_host::get_data_access();
 
-				//c_halo_reach_game_option_selection_legacy::load_savegame("gamestate", *game_context);
-				//c_halo_reach_game_option_selection_legacy::load_savefilm(c_halo_reach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_context);
+				//c_haloreach_game_option_selection_legacy::load_savegame("gamestate", *game_context);
+				//c_haloreach_game_option_selection_legacy::load_savefilm(c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_context);
 
 				{
 					// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mantle
@@ -436,10 +436,10 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 			if (data_access != nullptr)
 			{
 				load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_game,
-					c_halo_reach_game_option_selection_legacy::s_launch_game_variant.c_str()
+					c_haloreach_game_option_selection_legacy::s_launch_game_variant.c_str()
 				);
 				load_variant_from_file(data_access, game_context, engine_type, e_variant_type::_variant_type_map,
-					c_halo_reach_game_option_selection_legacy::s_launch_map_variant.c_str()
+					c_haloreach_game_option_selection_legacy::s_launch_map_variant.c_str()
 				);
 			}
 		}
@@ -534,7 +534,7 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 	{
 		module_handle = LoadLibraryA(library_name);
 
-		// use fallback if 
+		// use fallback if
 		if (!module_handle && fallback_directory[0])
 		{
 			char fallbackPath[MAX_PATH] = {};
@@ -611,14 +611,14 @@ void c_game_launcher::render_main_menu()
 
 			if (map_id_to_game_mode(g_halo1_map_id) == _mcc_game_mode_campaign)
 			{
-				ImGui::Checkbox("Use Anniversary Graphics", &use_anniversary_graphics);
-				ImGui::Checkbox("Use Anniversary Sounds", &use_anniversary_sounds);
-				c_halo_reach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
+				ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
+				ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
+				c_haloreach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
 			}
 		}
 		break;
-		case _engine_type_halo_reach:
-			c_halo_reach_game_option_selection_legacy::Render();
+		case _engine_type_haloreach:
+			c_haloreach_game_option_selection_legacy::Render();
 			break;
 		case _engine_type_halo2:
 		{
@@ -638,9 +638,9 @@ void c_game_launcher::render_main_menu()
 
 			if (map_id_to_game_mode(g_halo2_map_id) == _mcc_game_mode_campaign)
 			{
-				ImGui::Checkbox("Use Anniversary Graphics", &use_anniversary_graphics);
-				ImGui::Checkbox("Use Anniversary Sounds", &use_anniversary_sounds);
-				c_halo_reach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
+				ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
+				ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
+				c_haloreach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
 			}
 		}
 		break;
@@ -677,7 +677,7 @@ void c_game_launcher::render_main_menu()
 			start_game(g_engine_type, _next_launch_mode_generic);
 		}
 
-		if (g_engine_type == _engine_type_halo_reach)
+		if (g_engine_type == _engine_type_haloreach)
 		{
 			if (ImGui::Button("PLAY FILM"))
 			{
@@ -855,69 +855,54 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	char* game_context_variant_buffer = nullptr;
 	size_t variant_buffer_size = 0;
-	const char* type_name = "";
-	const char* type_nice_name = "";
-	const char* type_extension = "";
-	const char* engine_name = engine_type_to_folder_name<decltype(engine_name)>(engine_type);
+
+	std::vector<std::string> files;
+	variant_files_get(engine_type, variant_type, files);
 
 	switch (variant_type)
 	{
 	case _variant_type_game:
 		game_context_variant_buffer = game_context->game_variant_buffer;
 		variant_buffer_size = k_game_variant_buffer_size;
-		type_name = "game";
-		type_nice_name = "GameType";
-		type_extension = ".bin";
 		break;
 	case _variant_type_map:
 		game_context_variant_buffer = game_context->map_variant_buffer;
 		variant_buffer_size = k_map_variant_buffer_size;
-		type_name = "map";
-		type_nice_name = "Map";
-		type_extension = ".mvar";
 		break;
 	default:
 		return false;
 	}
 	memset(game_context_variant_buffer, 0, variant_buffer_size);
 
-	LPCSTR user_profile_path = get_user_profile_environment_variable();
-	std::vector<std::string> file_paths =
+	std::string selected;
+	for (std::string file : files)
 	{
-		std::string("opus/").append(type_name).append("_variants/").append(file_name).append(type_extension),
-		std::string(engine_name).append("/").append(type_name).append("_variants/").append(file_name).append(type_extension),
-		std::string(engine_name).append("/hopper_").append(type_name).append("_variants/").append(file_name).append(type_extension),
-		std::string(user_profile_path).append("/AppData/LocalLow/HaloMCC/Temporary/UserContent/").append(engine_name).append("/").append(type_nice_name).append("/").append(file_name).append(type_extension),
-		std::string(user_profile_path).append("/AppData/LocalLow/MCC/Temporary/UserContent/").append(engine_name).append("/").append(type_nice_name).append("/").append(file_name).append(type_extension),
-	};
+		if (!(*file_name) || strstr(file.c_str(), file_name) == 0)
+			continue;
 
-	std::string selected_file_path;
-	for (std::string file_path : file_paths)
-	{
-		if (PathFileExistsA(file_path.c_str()))
-		{
-			selected_file_path = file_path;
-			break;
-		}
+		selected = file;
 	}
-	
+
 	char* variant_data = nullptr;
 	size_t variant_data_size = 0;
 
 	char* variant_buffer = nullptr;
 
-	if (!PathFileExistsA(selected_file_path.c_str()) || strstr(selected_file_path.c_str(), "/.") != 0)
+	if (selected.empty() || !PathFileExistsA(selected.c_str()) || strstr(selected.c_str(), "/.") != 0)
 	{
-		write_line_verbose("Variant file '%s' does not exist, falling back to default", selected_file_path.c_str());
+		if (!selected.empty())
+		{
+			write_line_verbose("variant file '%s' does not exist, falling back to default", selected.c_str());
+		}
 
+		variant_data = new char[variant_buffer_size];
+		memset(variant_data, 0, variant_buffer_size);
 		switch (variant_type)
 		{
-		case e_variant_type::_variant_type_game:
-			variant_data = new char[variant_buffer_size];
-			memset(variant_data, 0, variant_buffer_size);
+		case _variant_type_game:
 			variant_buffer = data_access->GameVariantCreateDefault(variant_data)->variant_buffer; // This is not correct
 			break;
-		case e_variant_type::_variant_type_map:
+		case _variant_type_map:
 			variant_buffer = data_access->MapVariantCreateFromMapID(game_context->map_id)->variant_buffer;
 			break;
 		default:
@@ -925,15 +910,12 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 		}
 
 		memcpy(game_context_variant_buffer, variant_buffer, variant_buffer_size);
-		if (is_valid(variant_data))
-		{
-			delete[] variant_data;
-		}
+		delete[] variant_data;
 
 		return true;
 	}
 
-	if (!filesystem_read_file_to_memory(selected_file_path.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
+	if (!filesystem_read_file_to_memory(selected.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
 	{
 		write_line_verbose("Failed to open variant file");
 		return false;
@@ -946,10 +928,10 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	switch (variant_type)
 	{
-	case e_variant_type::_variant_type_game:
+	case _variant_type_game:
 		variant_buffer = data_access->GameVariantCreateFromFile(variant_data, variant_data_size)->variant_buffer;
 		break;
-	case e_variant_type::_variant_type_map:
+	case _variant_type_map:
 		variant_buffer = data_access->MapVariantCreateFromFile(variant_data, variant_data_size)->variant_buffer;
 		break;
 	default:
@@ -973,14 +955,14 @@ bool c_game_launcher::load_save_from_file(GameContext *game_context, LPCSTR file
 	{
 		std::string file_path = std::string("opus/autosave/").append(file_name).append(".bin");
 		size_t game_state_header_size = 0;
-		if (filesystem_read_file_to_memory(file_path.c_str(), &game_context->game_state_header_ptr, &game_state_header_size))
+		if (filesystem_read_file_to_memory(file_path.c_str(), &game_context->game_state_header, &game_state_header_size))
 		{
 			game_context->game_state_header_size = game_state_header_size;
-			if (is_valid(game_context->game_state_header_ptr) && game_context->game_state_header_size > 0)
+			if (is_valid(game_context->game_state_header) && game_context->game_state_header_size > 0)
 			{
 				// take off the last 4 bytes from the size to exclude our added map id
 				game_context->game_state_header_size -= 4;
-				e_map_id map_id = *reinterpret_cast<e_map_id *>(&game_context->game_state_header_ptr[game_context->game_state_header_size]);
+				e_map_id map_id = *reinterpret_cast<e_map_id *>(&game_context->game_state_header[game_context->game_state_header_size]);
 				game_context->game_mode = map_id_to_game_mode(map_id);
 				game_context->map_id = map_id;
 
@@ -992,3 +974,57 @@ bool c_game_launcher::load_save_from_file(GameContext *game_context, LPCSTR file
 	}
 	return false;
 };
+
+bool c_game_launcher::variant_files_get(e_engine_type engine_type, e_variant_type variant_type, std::vector<std::string>& files)
+{
+	if (!is_valid(files))
+		return false;
+
+	const char* type_name = "";
+	const char* type_nice_name = "";
+	const char* type_extension = "";
+	const char* engine_folder_name = engine_type_to_folder_name(engine_type);
+
+	switch (variant_type)
+	{
+	case _variant_type_game:
+		type_name = "game";
+		type_nice_name = "GameType";
+		type_extension = ".bin";
+		break;
+	case _variant_type_map:
+		type_name = "map";
+		type_nice_name = "Map";
+		type_extension = ".mvar";
+		break;
+	default:
+		return false;
+	}
+
+	LPCSTR user_profile_path = get_user_profile_environment_variable();
+	std::vector<std::string> file_directories =
+	{
+		std::string("opus/").append(type_name).append("_variants/"),
+		std::string(engine_folder_name).append("/").append(type_name).append("_variants/"),
+		std::string(engine_folder_name).append("/hopper_").append(type_name).append("_variants/"),
+		std::string(user_profile_path).append("/AppData/LocalLow/HaloMCC/Temporary/UserContent/").append(engine_type == _engine_type_groundhog ? "Halo2A" : engine_folder_name).append("/").append(type_nice_name).append("/"),
+		std::string(user_profile_path).append("/AppData/LocalLow/MCC/Temporary/UserContent/").append(engine_type == _engine_type_groundhog ? "Halo2A" : engine_folder_name).append("/").append(type_nice_name).append("/")
+	};
+
+
+	for (std::string& directory : file_directories)
+	{
+		if (!PathFileExistsA(directory.c_str()))
+			continue;
+
+		for (const std::filesystem::directory_entry& directory_entry : std::filesystem::directory_iterator(directory))
+		{
+			if (directory_entry.path().extension().generic_string().compare(type_extension) != 0)
+				continue;
+
+			files.push_back(directory_entry.path().generic_string());
+		}
+	}
+
+	return true;
+}

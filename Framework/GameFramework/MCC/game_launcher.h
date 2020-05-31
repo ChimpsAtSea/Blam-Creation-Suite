@@ -45,6 +45,8 @@ private:
 
 	static bool load_save_from_file(GameContext* game_context, LPCSTR file_name, bool should_run);
 
+	static bool variant_files_get(e_engine_type engine_type, e_variant_type variant_type, std::vector<std::string>& files);
+
 	// #TODO: Move these into each lib
 #ifdef _WIN64
 	static void launch_mcc_game(e_engine_type engine_type);

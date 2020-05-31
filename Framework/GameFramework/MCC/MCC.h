@@ -17,7 +17,7 @@
 #include "mouse_input.h"
 #include "game_launcher.h"
 #ifdef _WIN64
-#include "halo_reach_game_option_selection_legacy.h"
+#include "haloreach_game_option_selection_legacy.h"
 #endif
 #include "game_runtime.h"
 

@@ -1,46 +1,47 @@
 #include "gameframework-private-pch.h"
 
-c_file_array::c_file_array(std::vector<std::string> directories, std::vector<std::string> pExtensions, int (*pReadInfoFunction)(LPCSTR pName, std::string* name, std::string* desc, LPCSTR path))
+c_file_array::c_file_array(std::vector<std::string> file_directories, std::vector<std::string> file_extensions, int (*pReadInfoFunction)(LPCSTR name, std::string* name_out, std::string* description_out, LPCSTR file_path)) :
+	file_count(0)
 {
-	if (Files.empty() || Count == 0)
+	if (files.empty() || file_count == 0)
 	{
-		for (std::string& directory : directories)
+		for (std::string& directory : file_directories)
 		{
 			if (!PathFileExistsA(directory.c_str()))
 				continue;
 
-			for (const std::filesystem::directory_entry& rDirectoryEntry : std::filesystem::directory_iterator(directory))
+			for (const std::filesystem::directory_entry& directory_entry : std::filesystem::directory_iterator(directory))
 			{
-				for (std::string& pExtension : pExtensions)
+				for (std::string& pExtension : file_extensions)
 				{
-					if (rDirectoryEntry.path().extension().compare(pExtension) != 0)
+					if (directory_entry.path().extension().compare(pExtension) != 0)
 						continue;
 
 					s_file_info fileInfo;
-					fileInfo.FilePath = rDirectoryEntry.path().parent_path().string();
-					fileInfo.FileName = rDirectoryEntry.path().filename().replace_extension().string();
-					fileInfo.Type = pReadInfoFunction(fileInfo.FileName.c_str(), &fileInfo.Name, &fileInfo.Desc, rDirectoryEntry.path().string().c_str());
+					fileInfo.file_path = directory_entry.path().parent_path().string();
+					fileInfo.file_name = directory_entry.path().filename().replace_extension().string();
+					fileInfo.Type = pReadInfoFunction(fileInfo.file_name.c_str(), &fileInfo.name, &fileInfo.description, directory_entry.path().string().c_str());
 
-					while (fileInfo.Desc.find("|n") != std::string::npos)
-						fileInfo.Desc.replace(fileInfo.Desc.find("|n"), _countof("|n") - 1, "\n");
+					while (fileInfo.description.find("|n") != std::string::npos)
+						fileInfo.description.replace(fileInfo.description.find("|n"), _countof("|n") - 1, "\n");
 
-					Files.push_back(fileInfo);
+					files.push_back(fileInfo);
 
-					write_line_verbose("Reading %s", rDirectoryEntry.path().string().c_str());
+					write_line_verbose("Reading %s", directory_entry.path().string().c_str());
 				}
 			}
 		}
 
-		Count = Files.size();
+		file_count = files.size();
 	}
 }
 
 LPCSTR c_file_array::GetFilePath(size_t index)
 {
 	LPCSTR result = "";
-	if (index >= 0 && index < Count)
+	if (index >= 0 && index < file_count)
 	{
-		result = Files[index].FilePath.c_str();
+		result = files[index].file_path.c_str();
 	}
 
 	return result;
@@ -49,11 +50,11 @@ LPCSTR c_file_array::GetFilePath(size_t index)
 LPCSTR c_file_array::GetFilePath(LPCSTR pStr)
 {
 	LPCSTR result = "";
-	for (size_t i = 0; i < Count; i++)
+	for (size_t i = 0; i < file_count; i++)
 	{
-		if (Files[i].Match(pStr))
+		if (files[i]==pStr)
 		{
-			result = Files[i].FilePath.c_str();
+			result = files[i].file_path.c_str();
 		}
 	}
 
@@ -63,9 +64,9 @@ LPCSTR c_file_array::GetFilePath(LPCSTR pStr)
 LPCSTR c_file_array::GetFileName(size_t index)
 {
 	LPCSTR result = "";
-	if (index >= 0 && index < Count)
+	if (index >= 0 && index < file_count)
 	{
-		result = Files[index].FileName.c_str();
+		result = files[index].file_name.c_str();
 	}
 
 	return result;
@@ -74,11 +75,11 @@ LPCSTR c_file_array::GetFileName(size_t index)
 LPCSTR c_file_array::GetFileName(LPCSTR pStr)
 {
 	LPCSTR result = "";
-	for (size_t i = 0; i < Count; i++)
+	for (size_t i = 0; i < file_count; i++)
 	{
-		if (Files[i].Match(pStr))
+		if (files[i]==pStr)
 		{
-			result = Files[i].FileName.c_str();
+			result = files[i].file_name.c_str();
 		}
 	}
 
@@ -88,9 +89,9 @@ LPCSTR c_file_array::GetFileName(LPCSTR pStr)
 LPCSTR c_file_array::get_name(size_t index)
 {
 	LPCSTR result = "";
-	if (index >= 0 && index < Count)
+	if (index >= 0 && index < file_count)
 	{
-		result = Files[index].Name.c_str();
+		result = files[index].name.c_str();
 	}
 
 	return result;
@@ -101,11 +102,11 @@ LPCSTR c_file_array::get_name(LPCSTR pStr)
 	LPCSTR result = "";
 	if (pStr)
 	{
-		for (size_t i = 0; i < Count; i++)
+		for (size_t i = 0; i < file_count; i++)
 		{
-			if (Files[i].Match(pStr))
+			if (files[i] == pStr)
 			{
-				result = Files[i].Name.c_str();
+				result = files[i].name.c_str();
 			}
 		}
 	}
@@ -116,9 +117,9 @@ LPCSTR c_file_array::get_name(LPCSTR pStr)
 LPCSTR c_file_array::GetDesc(size_t index)
 {
 	LPCSTR result = "";
-	if (index >= 0 && index < Count)
+	if (index >= 0 && index < file_count)
 	{
-		result = Files[index].Desc.c_str();
+		result = files[index].description.c_str();
 	}
 
 	return result;
@@ -127,11 +128,11 @@ LPCSTR c_file_array::GetDesc(size_t index)
 LPCSTR c_file_array::GetDesc(LPCSTR pStr)
 {
 	LPCSTR result = "";
-	for (size_t i = 0; i < Count; i++)
+	for (size_t i = 0; i < file_count; i++)
 	{
-		if (Files[i].Match(pStr))
+		if (files[i] == pStr)
 		{
-			result = Files[i].Desc.c_str();
+			result = files[i].description.c_str();
 		}
 	}
 
@@ -141,9 +142,9 @@ LPCSTR c_file_array::GetDesc(LPCSTR pStr)
 int c_file_array::GetType(size_t index)
 {
 	int result = -1;
-	if (index >= 0 && index < Count)
+	if (index >= 0 && index < file_count)
 	{
-		result = Files[index].Type;
+		result = files[index].Type;
 	}
 
 	return result;
@@ -152,11 +153,11 @@ int c_file_array::GetType(size_t index)
 int c_file_array::GetType(LPCSTR pStr)
 {
 	int result = -1;
-	for (size_t i = 0; i < Count; i++)
+	for (size_t i = 0; i < file_count; i++)
 	{
-		if (Files[i].Match(pStr))
+		if (files[i] == pStr)
 		{
-			result = Files[i].Type;
+			result = files[i].Type;
 		}
 	}
 
@@ -166,9 +167,9 @@ int c_file_array::GetType(LPCSTR pStr)
 bool c_file_array::Match(uint32_t type)
 {
 	bool result = false;
-	for (size_t i = 0; i < Count; i++)
+	for (size_t i = 0; i < file_count; i++)
 	{
-		if (Files[i].Match(type))
+		if (files[i] == type)
 		{
 			result = true;
 		}
@@ -179,9 +180,9 @@ bool c_file_array::Match(uint32_t type)
 bool c_file_array::Match(LPCSTR pStr)
 {
 	bool result = false;
-	for (size_t i = 0; i < Count; i++)
+	for (size_t i = 0; i < file_count; i++)
 	{
-		if (Files[i].Match(pStr))
+		if (files[i] == pStr)
 		{
 			result = true;
 		}

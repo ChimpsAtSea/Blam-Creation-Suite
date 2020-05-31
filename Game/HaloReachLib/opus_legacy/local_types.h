@@ -72,7 +72,7 @@ enum e_load_state
 	_load_state_select_game_mode,
 	_load_state_saved_film,
 	_load_state_campaign,
-	_load_state_previous_game_state,
+	_load_state_save_game,
 	_load_state_multiplayer,
 	_load_state_survival,
 	_load_state_wait_for_party,

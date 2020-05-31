@@ -12,6 +12,7 @@ static c_groundhog_engine_state_command* g_groundhog_engine_state_command;
 /* ---------- private prototypes */
 /* ---------- public code */
 
+#include "groundhog_game_host.memory.inl"
 #include "groundhog_game_host.testing.inl"
 
 void register_groundhoglib()
@@ -25,6 +26,9 @@ c_groundhog_game_host::c_groundhog_game_host(e_engine_type engine_type, e_build 
 	write_line_verbose("Init GroundhogGameHost");
 
 	init_runtime_modifications(g_groundhog_game_runtime->get_build());
+
+	c_mantle_gui::set_get_tag_selection_address_function(groundhog_tag_address_get); // #TODO: This is kinda hacky
+	c_mantle_gui::set_get_tag_pointer_function(groundhog_tag_definition_get); // #TODO: This is kinda hacky
 
 	if (game_engine == nullptr)
 	{

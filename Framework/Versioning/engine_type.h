@@ -4,7 +4,7 @@ enum e_engine_type : uint8_t
 {
 	_engine_type_not_set,
 	_engine_type_mcc,
-	_engine_type_halo_reach,
+	_engine_type_haloreach,
 	_engine_type_halo1,
 	_engine_type_halo2,
 	_engine_type_halo3,
@@ -20,7 +20,7 @@ inline string_type get_enum_string(e_engine_type engine_type)
 {
 	enum_string_ex(string_type, pretty_string, engine_type, _engine_type_not_set, "Not Set");
 	enum_string_ex(string_type, pretty_string, engine_type, _engine_type_mcc, "Master Chief Collection");
-	enum_string_ex(string_type, pretty_string, engine_type, _engine_type_halo_reach, "Halo Reach");
+	enum_string_ex(string_type, pretty_string, engine_type, _engine_type_haloreach, "Halo Reach");
 	enum_string_ex(string_type, pretty_string, engine_type, _engine_type_halo1, "Halo 1");
 	enum_string_ex(string_type, pretty_string, engine_type, _engine_type_halo2, "Halo 2");
 	enum_string_ex(string_type, pretty_string, engine_type, _engine_type_halo3, "Halo 3");
@@ -35,7 +35,7 @@ inline string_type get_enum_string(e_engine_type engine_type)
 template<typename string_type>
 constexpr string_type engine_type_to_folder_name(e_engine_type engine_type) // #TODO: Create CPP files, or generate these using LLVM
 {
-	enum_string_ex(string_type, true, engine_type, _engine_type_halo_reach, "haloreach");
+	enum_string_ex(string_type, true, engine_type, _engine_type_haloreach, "haloreach");
 	enum_string_ex(string_type, true, engine_type, _engine_type_halo1, "halo1");
 	enum_string_ex(string_type, true, engine_type, _engine_type_halo2, "halo2");
 	enum_string_ex(string_type, true, engine_type, _engine_type_halo3, "halo3");

@@ -20,6 +20,7 @@ bool filesystem_read_file_to_memory(const wchar_t* filepath, T** buffer, size_t*
 }
 
 const char* get_user_profile_environment_variable();
+const wchar_t* get_user_profile_environment_variable_widechar();
 bool filesystem_directory_exists(const wchar_t* szPath);
 bool filesystem_directory_exists(const char* szPath);
 
@@ -30,4 +31,3 @@ bool filesystem_directory_exists(const char* szPath);
 char* filesystem_read_to_memory_legacy2(const wchar_t* filepathPath, char* buffer, size_t* pAllocatedSize);
 size_t filesystem_get_file_size_legacy(const wchar_t* filepathPath);
 char* filesystem_read_to_memory_legacy(const wchar_t* filepathPath, size_t* pAllocatedSize = nullptr);
-
