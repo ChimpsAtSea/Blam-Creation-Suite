@@ -1,7 +1,7 @@
 #include "haloreachlib-private-pch.h"
 
-extern void init_halo_reach(e_engine_type engine_type, e_build build);
-extern void deinit_halo_reach(e_engine_type engine_type, e_build build);
+extern void init_haloreach(e_engine_type engine_type, e_build build);
+extern void deinit_haloreach(e_engine_type engine_type, e_build build);
 
 /* ---------- private constants */
 /* ---------- private macros */
@@ -11,35 +11,35 @@ extern void deinit_halo_reach(e_engine_type engine_type, e_build build);
 
 static bool g_is_reach_script_debug_window_open = true;
 static bool g_is_reach_camera_debug_window_open = true;
-c_game_runtime c_halo_reach_game_host::g_halo_reach_game_runtime(_engine_type_halo_reach, "haloreach", "HaloReach\\haloreach.dll");
+c_game_runtime c_haloreach_game_host::g_haloreach_game_runtime(_engine_type_haloreach, "haloreach", "HaloReach\\haloreach.dll");
 static c_haloreach_engine_state_command *g_haloreach_engine_state_command;
 static c_haloreach_camera_command *g_haloreach_camera_command;
 
 /* ---------- private prototypes */
 /* ---------- public code */
 
-#include "halo_reach_game_host.camera.inl"
-#include "halo_reach_game_host.memory.inl"
-#include "halo_reach_game_host.scripting.inl"
-#include "halo_reach_game_host.legacy.inl"
+#include "haloreach_game_host.camera.inl"
+#include "haloreach_game_host.memory.inl"
+#include "haloreach_game_host.scripting.inl"
+#include "haloreach_game_host.legacy.inl"
 
 void register_haloreachlib()
 {
 
 }
 
-c_halo_reach_game_host::c_halo_reach_game_host(e_engine_type engine_type, e_build build) :
-	c_opus_game_engine_host(engine_type, build, g_halo_reach_game_runtime)
+c_haloreach_game_host::c_haloreach_game_host(e_engine_type engine_type, e_build build) :
+	c_opus_game_engine_host(engine_type, build, g_haloreach_game_runtime)
 {
-	init_runtime_modifications(g_halo_reach_game_runtime.get_build());
+	init_runtime_modifications(g_haloreach_game_runtime.get_build());
 
-	c_mantle_gui::set_get_tag_selection_address_function(tag_address_get); // #TODO: This is kinda hacky
-	c_mantle_gui::set_get_tag_pointer_function(tag_definition_get); // #TODO: This is kinda hacky
+	c_mantle_gui::set_get_tag_selection_address_function(haloreach_tag_address_get); // #TODO: This is kinda hacky
+	c_mantle_gui::set_get_tag_pointer_function(haloreach_tag_definition_get); // #TODO: This is kinda hacky
 
 	write_line_verbose("Init HaloReachGameHost");
 
 	if (game_engine == nullptr)
-		__int64 createGameEngineResult = g_halo_reach_game_runtime.CreateGameEngine(&game_engine);
+		__int64 createGameEngineResult = g_haloreach_game_runtime.CreateGameEngine(&game_engine);
 	ASSERT(game_engine != nullptr);
 
 	if (g_haloreach_engine_state_command != nullptr)
@@ -56,7 +56,7 @@ c_halo_reach_game_host::c_halo_reach_game_host(e_engine_type engine_type, e_buil
 	g_haloreach_camera_command->read_config();
 }
 
-c_halo_reach_game_host::~c_halo_reach_game_host()
+c_haloreach_game_host::~c_haloreach_game_host()
 {
 	write_line_verbose("Deinit HaloReachGameHost");
 
@@ -69,12 +69,12 @@ c_halo_reach_game_host::~c_halo_reach_game_host()
 
 	//m_pGameEngine = nullptr;
 
-	deinit_runtime_modifications(g_halo_reach_game_runtime.get_build());
-	g_halo_reach_game_runtime.~c_game_runtime();
-	new(&g_halo_reach_game_runtime) c_game_runtime(_engine_type_halo_reach, "haloreach", "HaloReach\\haloreach.dll");
+	deinit_runtime_modifications(g_haloreach_game_runtime.get_build());
+	g_haloreach_game_runtime.~c_game_runtime();
+	new(&g_haloreach_game_runtime) c_game_runtime(_engine_type_haloreach, "haloreach", "HaloReach\\haloreach.dll");
 }
 
-void c_halo_reach_game_host::FrameEnd(IDXGISwapChain* swap_chain, _QWORD unknown1)
+void c_haloreach_game_host::FrameEnd(IDXGISwapChain* swap_chain, _QWORD unknown1)
 {
 	if (GetAsyncKeyState(VK_F10))
 	{
@@ -85,13 +85,13 @@ void c_halo_reach_game_host::FrameEnd(IDXGISwapChain* swap_chain, _QWORD unknown
 	c_opus_game_engine_host::FrameEnd(swap_chain, unknown1);
 }
 
-void c_halo_reach_game_host::render_ui() const
+void c_haloreach_game_host::render_ui() const
 {
 	draw_camera_debug_ui();
 	draw_script_debug_ui();
 }
 
-void c_halo_reach_game_host::init_runtime_modifications(e_build build)
+void c_haloreach_game_host::init_runtime_modifications(e_build build)
 {
 	g_haloreach_engine_state_command = new c_haloreach_engine_state_command();
 	g_haloreach_camera_command = new c_haloreach_camera_command();
@@ -102,25 +102,25 @@ void c_halo_reach_game_host::init_runtime_modifications(e_build build)
 	enable_debug_hud_coordinates.set_enabled(c_settings_legacy::read_boolean(_settings_section_legacy_debug, "PanCamEnabled", true));
 
 	init_detours();
-	c_global_reference::init_global_reference_tree(_engine_type_halo_reach, build);
-	c_function_hook_base::init_function_hook_tree(_engine_type_halo_reach, build);
-	c_data_patch_base::init_data_patch_tree(_engine_type_halo_reach, build);
+	c_global_reference::init_global_reference_tree(_engine_type_haloreach, build);
+	c_function_hook_base::init_function_hook_tree(_engine_type_haloreach, build);
+	c_data_patch_base::init_data_patch_tree(_engine_type_haloreach, build);
 	end_detours();
 }
 
-void c_halo_reach_game_host::deinit_runtime_modifications(e_build build)
+void c_haloreach_game_host::deinit_runtime_modifications(e_build build)
 {
 	delete g_haloreach_engine_state_command;
 	delete g_haloreach_camera_command;
 
 	init_detours();
-	c_function_hook_base::deinit_function_hook_tree(_engine_type_halo_reach, build);
-	c_data_patch_base::deinit_data_patch_tree(_engine_type_halo_reach, build);
-	c_global_reference::deinit_global_reference_tree(_engine_type_halo_reach, build);
+	c_function_hook_base::deinit_function_hook_tree(_engine_type_haloreach, build);
+	c_data_patch_base::deinit_data_patch_tree(_engine_type_haloreach, build);
+	c_global_reference::deinit_global_reference_tree(_engine_type_haloreach, build);
 	end_detours();
 }
 
-void c_halo_reach_game_host::update_camera_data()
+void c_haloreach_game_host::update_camera_data()
 {
 	if (!player_mapping_get_local_player.is_hooked()) return;
 	if (!observer_try_and_get_camera.is_hooked()) return;
@@ -146,7 +146,7 @@ void c_halo_reach_game_host::update_camera_data()
 	}
 }
 
-void c_halo_reach_game_host::draw_script_debug_ui()
+void c_haloreach_game_host::draw_script_debug_ui()
 {
 	static const bool k_enable_script_debug = c_command_line::has_command_line_arg("-scriptdebug");
 	if (!k_enable_script_debug)
@@ -178,7 +178,7 @@ void c_halo_reach_game_host::draw_script_debug_ui()
 	ImGui::End();
 }
 
-void c_halo_reach_game_host::draw_camera_debug_ui()
+void c_haloreach_game_host::draw_camera_debug_ui()
 {
 	static const bool k_enable_camera_debug = c_command_line::has_command_line_arg("-cameradebug");
 	if (!k_enable_camera_debug)
@@ -220,7 +220,7 @@ void c_halo_reach_game_host::draw_camera_debug_ui()
 
 }
 
-IGameEngine* c_halo_reach_game_host::get_game_engine() const
+IGameEngine* c_haloreach_game_host::get_game_engine() const
 {
 	return game_engine;
 }

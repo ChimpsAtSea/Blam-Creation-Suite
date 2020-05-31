@@ -138,46 +138,48 @@ const char* string_search_ptr(e_engine_type engine_type, e_build build, const ch
 	return nullptr;
 }
 
-uintptr_t external_launch_individual_state_offset(e_engine_type engine_type, e_build build)
+uintptr_t haloreach_external_launch_individual_state_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_824_0_0, 0x180F2BAA4);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_887_0_0, 0x1810EC5A4);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1035_0_0, 0x180D37AB0);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1186_0_0, 0x180D4E674);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1211_0_0, 0x180D4F674);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1246_0_0, 0x180D494F4);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1270_0_0, 0x180D494F4);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x180CF8AF4);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1350_0_0, 0x180D05EF4);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1367_0_0, 0x180D05EF4);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1377_0_0, 0x180D05EF4);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1384_0_0, 0x180D05EF4);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x180D05EF4);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180D05EF4);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1520_0_0, 0x180D08274);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x180F2BAA4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x1810EC5A4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1035_0_0, 0x180D37AB0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1186_0_0, 0x180D4E674);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1211_0_0, 0x180D4F674);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1246_0_0, 0x180D494F4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x180D494F4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x180CF8AF4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1350_0_0, 0x180D05EF4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x180D05EF4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1377_0_0, 0x180D05EF4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1384_0_0, 0x180D05EF4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1387_0_0, 0x180D05EF4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x180D05EF4);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x180D08274);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x180D08274);
 	return ~uintptr_t();
 }
-int& external_launch_individual_state = reference_symbol<int>("external_launch_individual_state", external_launch_individual_state_offset);
+long& haloreach_external_launch_individual_state = reference_symbol<long>("haloreach_external_launch_individual_state", haloreach_external_launch_individual_state_offset);
 
-uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
+uintptr_t haloreach_main_game_launch_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_824_0_0, 0x180011110);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_887_0_0, 0x180013EA0);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1035_0_0, 0x1800113F0);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1186_0_0, 0x180011860);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1211_0_0, 0x180011870);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1246_0_0, 0x180011870);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1270_0_0, 0x180011870);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1305_0_0, 0x180011870);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1350_0_0, 0x180012580);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1367_0_0, 0x180012520);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1377_0_0, 0x180012520);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1384_0_0, 0x180012520);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1387_0_0, 0x180012520);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1389_0_0, 0x180012520);
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1520_0_0, 0x180012550);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x180011110);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_887_0_0, 0x180013EA0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1035_0_0, 0x1800113F0);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1186_0_0, 0x180011860);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1211_0_0, 0x180011870);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1246_0_0, 0x180011870);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1270_0_0, 0x180011870);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1305_0_0, 0x180011870);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1350_0_0, 0x180012580);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x180012520);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1377_0_0, 0x180012520);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1384_0_0, 0x180012520);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1387_0_0, 0x180012520);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1389_0_0, 0x180012520);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1520_0_0, 0x180012550);
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1570_0_0, 0x180012550);
 
-	if (engine_type == _engine_type_halo_reach)
+	if (engine_type == _engine_type_haloreach)
 	{
 		using namespace ketchup;
 		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type))); // 1.1270.0.0
@@ -211,17 +213,21 @@ uintptr_t main_game_launch_offset(e_engine_type engine_type, e_build build)
 		DWORD patternOffset = ps.FindPattern(0);
 		if (patternOffset)
 		{
+<<<<<<< HEAD:Game/HaloReachLib/halo_reach_game_host.legacy.inl
 			write_line_verbose("ketchup> SUCCEED: main_game_launch_offset @0x%x", patternOffset);
+=======
+			write_line_verbose("ketchup> SUCCEED: haloreach_main_game_launch_offset @0x%x", patternOffset);
+>>>>>>> master:Game/HaloReachLib/haloreach_game_host.legacy.inl
 			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{
-			write_line_verbose("ketchup> FAILURE: main_game_launch_offset");
+			write_line_verbose("ketchup> FAILURE: haloreach_main_game_launch_offset");
 		}
 	}
 	return ~uintptr_t();
 }
-FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)> main_game_launch = { "main_game_launch", [](__int64 a1, __int64 a2)
+FunctionHookEx<haloreach_main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)> haloreach_main_game_launch = { "haloreach_main_game_launch", [](__int64 a1, __int64 a2)
 {
 	static const char* external_launch_individual_state_names[] =
 	{
@@ -230,39 +236,39 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 		"select_game_mode",
 		"saved_film",
 		"campaign",
-		"previous_game_state",
+		"save_game",
 		"multiplayer",
 		"survival",
 		"wait_for_party",
 		"join_remote_squad",
-		"unused",
+		"",
 		"start_game",
 		"finished"
 	};
 
-	ASSERT(is_valid(main_game_launch));
-	if (is_valid(external_launch_individual_state))
+	ASSERT(is_valid(haloreach_main_game_launch));
+	if (is_valid(haloreach_external_launch_individual_state))
 	{
 		static int external_launch_individual_state_prev = k_load_state_invalid;
-		if (external_launch_individual_state != external_launch_individual_state_prev)
+		if (haloreach_external_launch_individual_state != external_launch_individual_state_prev)
 		{
-			external_launch_individual_state_prev = external_launch_individual_state;
-			printf("external_launch_individual_state changed to: %s\n", external_launch_individual_state_names[external_launch_individual_state]);
+			external_launch_individual_state_prev = haloreach_external_launch_individual_state;
+			printf("haloreach_external_launch_individual_state changed to: %s\n", external_launch_individual_state_names[haloreach_external_launch_individual_state]);
 		}
 
-		char result = main_game_launch(a1, a2);
+		char result = haloreach_main_game_launch(a1, a2);
 
-		if (external_launch_individual_state != external_launch_individual_state_prev)
+		if (haloreach_external_launch_individual_state != external_launch_individual_state_prev)
 		{
-			external_launch_individual_state_prev = external_launch_individual_state;
-			printf("external_launch_individual_state changed to: %s\n", external_launch_individual_state_names[external_launch_individual_state]);
+			external_launch_individual_state_prev = haloreach_external_launch_individual_state;
+			printf("haloreach_external_launch_individual_state changed to: %s\n", external_launch_individual_state_names[haloreach_external_launch_individual_state]);
 		}
 
 		return result;
 	}
 	else
 	{
-		char result = main_game_launch(a1, a2);
+		char result = haloreach_main_game_launch(a1, a2);
 		return result;
 	}
 
@@ -271,8 +277,8 @@ FunctionHookEx<main_game_launch_offset, char __fastcall (__int64 a1, __int64 a2)
 
 uintptr_t mcc_map_id_parse_to_reach_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1367_0_0, 0x18004CD50);
-	if (engine_type == _engine_type_halo_reach)
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x18004CD50);
+	if (engine_type == _engine_type_haloreach)
 	{
 		using namespace ketchup;
 		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type)));			// 1.1270.0.0
@@ -329,8 +335,8 @@ FunctionHookEx<mcc_map_id_parse_to_reach_offset, int __fastcall (int a1)> mcc_ma
 
 uintptr_t mcc_map_id_parse_from_reach_offset(e_engine_type engine_type, e_build build)
 {
-	OFFSET(_engine_type_halo_reach, _build_mcc_1_1367_0_0, 0x18004CF80);
-	if (engine_type == _engine_type_halo_reach)
+	OFFSET(_engine_type_haloreach, _build_mcc_1_1367_0_0, 0x18004CF80);
+	if (engine_type == _engine_type_haloreach)
 	{
 		using namespace ketchup;
 		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type)));			// 1.1270.0.0
@@ -398,7 +404,7 @@ void ReadConfig()
 	//ReadInputBindings();
 }
 
-void halo_reach_debug_callback()
+void haloreach_debug_callback()
 {
 	ImGui::SetNextWindowPos(ImVec2(17, 4), ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowSize(ImVec2(1876, 1024), ImGuiCond_FirstUseEver);
@@ -624,12 +630,12 @@ void halo_reach_debug_callback()
 	ImGui::End();
 }
 
-char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", _engine_type_halo_reach, _build_mcc_1_1035_0_0, 0x180A0EE08);
+char(&aSystemUpdate)[] = reference_symbol<char[]>("aSystemUpdate", _engine_type_haloreach, _build_mcc_1_1035_0_0, 0x180A0EE08);
 
-void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isMCC)
+void init_haloreach_with_mcc(e_engine_type engine_type, e_build build, bool isMCC)
 {
 	ReadConfig();
-	//DebugUI::RegisterCallback(halo_reach_debug_callback);
+	//DebugUI::RegisterCallback(haloreach_debug_callback);
 
 	if (hs_function_table != nullptr)
 	{
@@ -652,14 +658,14 @@ void init_halo_reach_with_mcc(e_engine_type engine_type, e_build build, bool isM
 	//LegacyGameLauncher::RegisterTerminationValue(g_termination_value);
 }
 
-void init_halo_reach(e_engine_type engine_type, e_build build)
+void init_haloreach(e_engine_type engine_type, e_build build)
 {
-	init_halo_reach_with_mcc(engine_type, build, false);
+	init_haloreach_with_mcc(engine_type, build, false);
 }
 
-void deinit_halo_reach(e_engine_type engine_type, e_build build)
+void deinit_haloreach(e_engine_type engine_type, e_build build)
 {
-	//DebugUI::UnregisterCallback(halo_reach_debug_callback);
+	//DebugUI::UnregisterCallback(haloreach_debug_callback);
 
 
 }
