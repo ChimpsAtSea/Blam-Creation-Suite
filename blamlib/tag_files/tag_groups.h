@@ -126,6 +126,12 @@ public:
 };
 static_assert(sizeof(c_typed_tag_block<long>) == sizeof(s_tag_block));
 
+template<unsigned long ... tag_groups>
+class c_typed_tag_reference : public s_tag_reference
+{
+public:
+};
+
 template <typename t_element, typename t_flags>
 class c_tag_block_flags
 {
