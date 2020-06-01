@@ -39,9 +39,6 @@
     <ClCompile Include="CacheInterface\cache_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render_method_definition_group_interface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CacheInterface\tag_group_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -75,12 +72,6 @@
     <ClCompile Include="CacheInterface\CacheVersions\halo3_cache_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VirtualResource\virtual_resource_manager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VirtualResource\virtual_bitmap_resource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -105,25 +96,10 @@
     <ClCompile Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="!UserInterface\TagEditor\mantle_shader_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CacheInterface\virtual_tag_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\cache_file_string_id_guesstimator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tags\blamlib_testing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\TagEditor\mantle_legacy_tag_editor_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\TagEditor\mantle_blamlib_tag_editor_gui_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.cpp">
@@ -138,9 +114,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mantlelib-private-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tags\Tags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="!UserInterface\UserInterface.h">
@@ -171,9 +144,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="render_method_definition_group_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\tag_group_interface.h">
@@ -210,15 +180,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\CacheVersions\halo3_cache_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VirtualResource\virtual_resource_manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VirtualResource\VirtualResource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VirtualResource\virtual_bitmap_resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tags\TagDefinitions\achievements.h">
@@ -437,25 +398,13 @@
     <ClInclude Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="!UserInterface\TagEditor\mantle_shader_gui_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CacheInterface\virtual_tag_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CacheInterface\cache_file_string_id_guesstimator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CacheInterface\cache_utilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\TagEditor\mantle_legacy_tag_editor_gui_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\TagEditor\mantle_blamlib_tag_editor_gui_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.h">

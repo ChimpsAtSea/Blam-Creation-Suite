@@ -2,7 +2,6 @@
 
 #include "cache_utilities.h"
 #include "tag_group_interface.h"
-#include "render_method_definition_group_interface.h"
 #include "tag_interface.h"
 #include "cache_file_string_id_guesstimator.h"
 #include "cache_file.h"
@@ -18,6 +17,3 @@
 #include "CacheVersions\haloreach_cache_file.h"
 #include "CacheVersions\halo_5_cache_file.h"
 #include "CacheVersions\halo_4_cache_file.h"
-
-#include <MantleGen/LegacyGen/virtual_tag_interfaces_legacy.h>
-

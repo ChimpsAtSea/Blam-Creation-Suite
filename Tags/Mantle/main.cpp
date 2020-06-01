@@ -2,7 +2,6 @@
 #include <Versioning\versioning-public-pch.h>
 #include <Shared\shared-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
-#include <MantleGen\mantlegen-public-pch.h>
 #include <MantleLib\mantlelib-public-pch.h>
 
 /* ---------- private constants */
@@ -59,8 +58,8 @@ static bool run_tests(const wchar_t* command_line)
 
 	if (c_command_line::has_command_line_arg("-generatecachefilememorydebug"))
 	{
-		c_cache_file cache_file = c_cache_file(launch_filepath_command_line_argument);
-		cache_file.generate_cache_file_data_access_data();
+		//c_cache_file cache_file = c_cache_file(launch_filepath_command_line_argument);
+		//cache_file.generate_cache_file_data_access_data();
 
 		return false;
 	}

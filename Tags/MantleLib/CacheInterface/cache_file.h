@@ -82,13 +82,13 @@ public:
 		}
 		return m_groupInterfaces;
 	}
-	inline c_legacy_tag_group_interface* get_group_interface_by_group_id(e_tag_group groupName)
+	inline c_legacy_tag_group_interface* get_group_interface_by_group_id(unsigned long tag_group)
 	{
-		if (groupName != _legacy_tag_group_invalid)
+		if (tag_group != blofeld::INVALID_TAG)
 		{
 			for (c_legacy_tag_group_interface* pGroupInterface : get_group_interfaces())
 			{
-				if (pGroupInterface->group_magic == underlying_cast(groupName))
+				if (pGroupInterface->tag_group == tag_group)
 				{
 					return pGroupInterface;
 				}
@@ -96,28 +96,16 @@ public:
 		}
 		return nullptr;
 	}
-	
-	template<typename R, typename T>
-	inline R* GetTagBlockData(s_tag_block_legacy<T>& tag_block)
-	{
-		return reinterpret_cast<R*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&tag_block)));
-	}
 
 	template<typename T>
-	inline T* GetTagBlockData(s_tag_block_legacy<T>& tag_block)
+	inline T* get_tag_block_data(c_typed_tag_block<T>& tag_block)
 	{
-		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&tag_block)));
+		return reinterpret_cast<T*>(get_tag_block_data_impl(tag_block));
 	}
 
-	template<typename T>
-	inline T* GetTagBlockData(c_typed_tag_block<T>& tag_block)
+	inline char* get_tag_data(s_tag_data& tag_data)
 	{
-		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&tag_block)));
-	}
-
-	inline char* get_data_reference_data(s_data_reference_legacy& data_reference)
-	{
-		return get_data_reference_data_internal(data_reference);
+		return get_tag_data_impl(tag_data);
 	}
 
 	inline const wchar_t* GetFilePath() const { return m_mafilepathPath.c_str(); }
@@ -131,7 +119,7 @@ public:
 		return string_id_str;
 	}
 
-	inline const char* string_id_to_cstr(string_id_legacy const id, const char* const error_value = nullptr)
+	inline const char* string_id_to_cstr(string_id const id, const char* const error_value = nullptr)
 	{
 		uint32_t index = string_id_guesstimator->string_id_to_index(id);
 
@@ -145,7 +133,7 @@ public:
 
 //private:
 
-	inline char* getTagBlockDataInternal(s_tag_block_legacy<>& tag_block)
+	inline char* get_tag_block_data_impl(s_tag_block& tag_block)
 	{
 		const SectionCache& section_info = get_section(e_cache_file_section::_cache_file_section_tags);
 		char* tags_section_data = section_info.first;
@@ -156,12 +144,12 @@ public:
 		return data_reference_data_pointer;
 	}
 
-	inline char* get_data_reference_data_internal(s_data_reference_legacy& data_reference)
+	inline char* get_tag_data_impl(s_tag_data& tag_data)
 	{
 		const SectionCache& section_info = get_section(e_cache_file_section::_cache_file_section_tags);
 		char* tags_section_data = section_info.first;
 
-		uint64_t data_offset = convert_page_offset(data_reference.address, true);
+		uint64_t data_offset = convert_page_offset(tag_data.address, true);
 		char* data_reference_data_pointer = tags_section_data + data_offset;
 
 		return data_reference_data_pointer;
@@ -199,6 +187,5 @@ public:
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_name_with_group_id;
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_path_with_group_id;
 	std::vector<c_legacy_tag_group_interface*> m_groupInterfaces;
-	void generate_cache_file_data_access_data();
 };
 

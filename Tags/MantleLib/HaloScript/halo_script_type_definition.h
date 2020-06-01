@@ -462,7 +462,7 @@ public:
 		flags_raw |= _hs_type_flag_enum;
 	}
 
-	c_hs_type_definition(const char* name, uint8_t opcode, e_hs_type type, e_hs_underlying_type underlying_type, e_tag_group tag_group, uint8_t flags = {}) :
+	c_hs_type_definition(const char* name, uint8_t opcode, e_hs_type type, e_hs_underlying_type underlying_type, unsigned long tag_group, uint8_t flags = {}) :
 		c_hs_type_definition(name, opcode, type, underlying_type, flags)
 	{
 		tag_group = tag_group;
@@ -474,7 +474,7 @@ public:
 		type(type),
 		underlying_type(underlying_type),
 		flags_raw(flags),
-		tag_group(_legacy_tag_group_invalid),
+		tag_group(blofeld::INVALID_TAG),
 		enums(nullptr),
 		enums_count(0),
 		name(name),
@@ -505,7 +505,7 @@ public:
 	e_hs_underlying_type underlying_type;
 	uint16_t cast_from_types_count;
 	uint16_t enums_count;
-	e_tag_group tag_group;
+	unsigned long tag_group;
 	const c_hs_type_definition** cast_from_types;
 	const c_hs_enum_value* enums;
 	const char* name;

@@ -22,19 +22,17 @@ public:
 	s_cache_file_tag_group* GetRawGroup() const { return cache_file_tag_group; };
 	inline const char* GetShortName() const { return short_name.c_str(); };
 	inline const char* GetFullName() const { return full_name.c_str(); };
-	inline const s_reflection_structure_type_legacy* get_reflection_data() const { return reflection_type; };
-	inline e_tag_group GetGroupMagicRaw() const { return group_magic; }
-	inline e_tag_group GetGroupMagic() const { return static_cast<e_tag_group>(group_magic); }
+	inline unsigned long get_tag_group() const { return tag_group; }
 
 protected:
 	void initTagGroupRelationship();
 	
 	uint16_t group_index;
 	s_cache_file_tag_group* cache_file_tag_group;
-	e_tag_group group_magic;
+	unsigned long tag_group;
 	std::string short_name;
 	std::string full_name;
-	const s_reflection_structure_type_legacy* reflection_type;
+	const blofeld::s_tag_group* blofeld_reflection_type;
 	std::vector<c_tag_interface*> tag_interfaces;
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_name_with_group_id;
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_path_with_group_id;

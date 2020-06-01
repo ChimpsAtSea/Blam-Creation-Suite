@@ -80,11 +80,11 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 
 	ImGui::Text("Bitmap Editor");
 	
-	c_legacy_tag_group_interface* play_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_cache_file_resource_layout_table);
+	c_legacy_tag_group_interface* play_interface = cache_file.get_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG);
 	v_tag_interface<blofeld::haloreach::s_cache_file_resource_layout_table_block_struct>* play_tag = dynamic_cast<decltype(play_tag)>(play_interface->get_tag_interfaces().front());
 	ImGui::Text("Found Play Tag: %s", play_tag ? "true" : "false");
 
-	c_legacy_tag_group_interface* zone_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_cache_file_resource_gestalt);
+	c_legacy_tag_group_interface* zone_interface = cache_file.get_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG);
 	v_tag_interface<blofeld::haloreach::s_cache_file_resource_gestalt_block_struct>* zone_tag = dynamic_cast<decltype(zone_tag)>(zone_interface->get_tag_interfaces().front());
 	ImGui::Text("Found Zone Tag: %s", zone_tag ? "true" : "false");
 
@@ -118,7 +118,7 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 
 
 
-		//	//cache_file->GetTagBlockData()
+		//	//cache_file->get_tag_block_data()
 
 		//	SectionCache& resources_section = cache_file.get_resources_section();
 		//	char* data = resources_section.first + high_res_raw_page.block_offset;

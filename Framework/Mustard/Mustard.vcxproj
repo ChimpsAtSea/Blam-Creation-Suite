@@ -94,7 +94,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;MantleLib.lib;MantleGen.lib;SymbolsLib.lib;GameFramework.lib;ketchup.lib;blamlib.lib;BlamboozleLib.lib;Shlwapi.lib;Dbghelp.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;tbb_static.lib;fsblib.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;MantleLib.lib;SymbolsLib.lib;GameFramework.lib;ketchup.lib;blamlib.lib;BlamboozleLib.lib;Shlwapi.lib;Dbghelp.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;tbb_static.lib;fsblib.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
       <GenerateMapFile>true</GenerateMapFile>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -132,7 +132,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;MantleLib.lib;MantleGen.lib;SymbolsLib.lib;GameFramework.lib;ketchup.lib;blamlib.lib;BlamboozleLib.lib;Shlwapi.lib;Dbghelp.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;tbb_static.lib;fsblib.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;MantleLib.lib;SymbolsLib.lib;GameFramework.lib;ketchup.lib;blamlib.lib;BlamboozleLib.lib;Shlwapi.lib;Dbghelp.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;tbb_static.lib;fsblib.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
       <GenerateMapFile>true</GenerateMapFile>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -173,7 +173,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;MantleLib.lib;MantleGen.lib;SymbolsLib.lib;GameFramework.lib;ketchup.lib;blamlib.lib;BlamboozleLib.lib;Shlwapi.lib;Dbghelp.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;tbb_static.lib;fsblib.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;MantleLib.lib;SymbolsLib.lib;GameFramework.lib;ketchup.lib;blamlib.lib;BlamboozleLib.lib;Shlwapi.lib;Dbghelp.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;tbb_static.lib;fsblib.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
       <GenerateMapFile>true</GenerateMapFile>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
@@ -215,7 +215,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;MantleLib.lib;MantleGen.lib;SymbolsLib.lib;GameFramework.lib;ketchup.lib;blamlib.lib;BlamboozleLib.lib;Shlwapi.lib;Dbghelp.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;tbb_static.lib;fsblib.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Platform.lib;Versioning.lib;Shared.lib;TagDefinitions.lib;TagReflection.lib;MantleLib.lib;SymbolsLib.lib;GameFramework.lib;ketchup.lib;blamlib.lib;BlamboozleLib.lib;Shlwapi.lib;Dbghelp.lib;imgui.lib;detours.lib;winmm.lib;version.lib;d3d11.lib;dxgi.lib;dinput8.lib;dxguid.lib;ws2_32.lib;shlwapi.lib;tbb_static.lib;fsblib.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
       <GenerateMapFile>true</GenerateMapFile>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>

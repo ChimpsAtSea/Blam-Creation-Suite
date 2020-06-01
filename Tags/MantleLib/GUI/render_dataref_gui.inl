@@ -50,7 +50,7 @@ void render_dataref_gui_legacy(s_data_reference_legacy* field_data, const c_refl
 			char* data_reference_data = nullptr;
 			if (field_data->size)
 			{
-				data_reference_data = data_reference_ui_data.cache_file.get_data_reference_data(*field_data);
+				data_reference_data = data_reference_ui_data.cache_file.get_tag_data(*field_data);
 			}
 			data_reference_ui_data.memory_editor.DrawContents(data_reference_data, field_data->size);
 		}

@@ -23,16 +23,7 @@
     <ClCompile Include="!UserInterface\mantle_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\mantle_gui.cpp" />
     <ClCompile Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\TagEditor\mantle_legacy_tag_editor_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\TagEditor\mantle_blamlib_tag_editor_gui_tab.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\haloreach_cache_file.cpp" />
-    <ClCompile Include="Tags\blamlib_testing.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="CacheInterface\CacheVersions\eldorado_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\groundhog_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\halo3_cache_file.cpp" />
@@ -61,18 +52,13 @@
     <ClCompile Include="!UserInterface\mantle_event_queue.cpp" />
     <ClCompile Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.cpp" />
     <ClCompile Include="!UserInterface\Tools\mantle_halo_script_editor.cpp" />
-    <ClCompile Include="!UserInterface\TagEditor\mantle_shader_gui_tab.cpp" />
-    <ClCompile Include="render_method_definition_group_interface.cpp" />
     <ClCompile Include="CacheInterface\virtual_tag_block.cpp" />
     <ClCompile Include="VirtualMemoryContainer.cpp" />
-    <ClCompile Include="VirtualResource\virtual_resource_manager.cpp" />
-    <ClCompile Include="VirtualResource\virtual_bitmap_resource.cpp" />
     <ClCompile Include="CacheInterface\virtual_tag_interface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="!UserInterface\shader_profile.h" />
     <ClInclude Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.h" />
-    <ClInclude Include="!UserInterface\TagEditor\mantle_shader_halogram_gui_tab.h" />
     <ClInclude Include="!UserInterface\UserInterface.h" />
     <ClInclude Include="CacheInterface\CacheVersions\eldorado_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\groundhog_cache_file.h" />
@@ -104,10 +90,6 @@
     <ClInclude Include="HaloScript\halo_script_globals_definition.h" />
     <ClInclude Include="HaloScript\halo_script_function_documentation.h" />
     <ClInclude Include="HaloScript\lisp_ast_parser.h" />
-    <ClInclude Include="!UserInterface\TagEditor\mantle_shader_gui_tab.h" />
-    <ClInclude Include="!UserInterface\TagEditor\mantle_legacy_tag_editor_gui_tab.h" />
-    <ClInclude Include="!UserInterface\TagEditor\mantle_blamlib_tag_editor_gui_tab.h" />
-    <ClInclude Include="render_method_definition_group_interface.h" />
     <ClInclude Include="Tags\TagDefinitions\achievements.h" />
     <ClInclude Include="Tags\TagDefinitions\airstrike.h" />
     <ClInclude Include="Tags\TagDefinitions\ai_dialogue_globals.h" />
@@ -171,14 +153,10 @@
     <ClInclude Include="Tags\TagDefinitions\dialogue.h" />
     <ClInclude Include="Tags\TagDefinitions\effect.h" />
     <ClInclude Include="Tags\TagDefinitions\effect_globals.h" />
-    <ClInclude Include="Tags\Tags.h" />
     <ClInclude Include="mantlelib-private-pch.h" />
     <ClInclude Include="mantlelib-public-pch.h" />
     <ClInclude Include="CacheInterface\virtual_tag_block.h" />
     <ClInclude Include="VirtualMemoryContainer.h" />
-    <ClInclude Include="VirtualResource\VirtualResource.h" />
-    <ClInclude Include="VirtualResource\virtual_resource_manager.h" />
-    <ClInclude Include="VirtualResource\virtual_bitmap_resource.h" />
     <ClInclude Include="CacheInterface\virtual_tag_interface.h" />
   </ItemGroup>
   <ItemGroup>

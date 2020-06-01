@@ -2,7 +2,7 @@
 
 #include "tag_group_names.inl"
 
-const char* get_known_legacy_tag_group_name(e_tag_group tag_group)
+const char* get_known_legacy_tag_group_name(unsigned long tag_group)
 {
 	for (std::pair<int, const char*>& tag_group_id_and_name_pair : tag_group_names)
 	{
@@ -17,10 +17,10 @@ const char* get_known_legacy_tag_group_name(e_tag_group tag_group)
 c_legacy_tag_group_interface::c_legacy_tag_group_interface(c_cache_file& cache_file, uint16_t group_index) :
 	group_index(group_index),
 	cache_file_tag_group(cache_file.cache_file_tag_groups + group_index),
-	group_magic(cache_file_tag_group->group_tags[0]),
+	tag_group(cache_file_tag_group->group_tags[0]),
 	short_name(),
 	full_name(),
-	reflection_type(nullptr),									 
+	blofeld_reflection_type(nullptr),
 	tag_interfaces(),
 	cache_file(cache_file)
 {
@@ -31,8 +31,8 @@ c_legacy_tag_group_interface::c_legacy_tag_group_interface(c_cache_file& cache_f
 	short_name = std::string(reversedShortName.rbegin(), reversedShortName.rend());
 
 
-	const char* cache_legacy_tag_group_name = cache_file.string_id_to_cstr(*reinterpret_cast<string_id_legacy*>(&cache_file_tag_group->name));
-	const char* known_legacy_tag_group_name = get_known_legacy_tag_group_name(group_magic);
+	const char* cache_legacy_tag_group_name = cache_file.string_id_to_cstr(cache_file_tag_group->name);
+	const char* known_legacy_tag_group_name = get_known_legacy_tag_group_name(tag_group);
 
 	if (known_legacy_tag_group_name)
 	{
@@ -52,7 +52,7 @@ c_legacy_tag_group_interface::c_legacy_tag_group_interface(c_cache_file& cache_f
 		c_console::set_text_color(_console_color_default);
 	}
 
-	reflection_type = reflection_legacy(cache_file_tag_group->group_tags[0]);
+	blofeld_reflection_type = blofeld::get_tag_group_by_group_tag(cache_file_tag_group->group_tags[0]);
 
 	ASSERT(!short_name.empty());
 	ASSERT(!full_name.empty());

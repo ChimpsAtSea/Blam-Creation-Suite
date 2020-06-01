@@ -163,7 +163,7 @@ void c_mantle_shader_tool_gui_tab::render_source_code_editor_configuration_heade
 	{
 		if (ImGui::Button("Populate from RMT2"))
 		{
-			v_tag_interface_legacy<s_render_method_definition_definition_legacy>* render_method_definition = dynamic_cast<decltype(render_method_definition)>(selected_render_method_definition_tag_interface);
+			//v_tag_interface_legacy<s_render_method_definition_definition_legacy>* render_method_definition = dynamic_cast<decltype(render_method_definition)>(selected_render_method_definition_tag_interface);
 
 			//for (s_render_method_definition_definition::s_option_definition& option : render_method_definition->options)
 			//{
@@ -257,33 +257,33 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 
 		//if (selected_cache_file_tab)
 		{
-			c_legacy_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_render_method_definition);
-			c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
-			DEBUG_ASSERT(render_method_definition_interface == tag_group_interface);
-			const std::vector<c_tag_interface*>& tag_interfaces = render_method_definition_interface->get_tag_interfaces();
+			//c_legacy_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_render_method_definition);
+			//c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
+			//DEBUG_ASSERT(render_method_definition_interface == tag_group_interface);
+			//const std::vector<c_tag_interface*>& tag_interfaces = render_method_definition_interface->get_tag_interfaces();
 
-			const char* selected_render_method_definition_tag_interface_text = selected_render_method_definition_tag_interface ? selected_render_method_definition_tag_interface->get_name_cstr() : "(select render method definition)";
-			if (render_method_definition_interface)
-			{
-				if (ImGui::BeginCombo("Definition", selected_render_method_definition_tag_interface_text))
-				{
-					for (c_tag_interface* render_method_definition_tag_interface : tag_interfaces)
-					{
-						DEBUG_ASSERT(render_method_definition_tag_interface->get_group_interface() == render_method_definition_interface);
-						DEBUG_ASSERT(render_method_definition_interface->GetGroupMagic() == _legacy_tag_group_render_method_definition);
+			//const char* selected_render_method_definition_tag_interface_text = selected_render_method_definition_tag_interface ? selected_render_method_definition_tag_interface->get_name_cstr() : "(select render method definition)";
+			//if (render_method_definition_interface)
+			//{
+			//	if (ImGui::BeginCombo("Definition", selected_render_method_definition_tag_interface_text))
+			//	{
+			//		for (c_tag_interface* render_method_definition_tag_interface : tag_interfaces)
+			//		{
+			//			DEBUG_ASSERT(render_method_definition_tag_interface->get_group_interface() == render_method_definition_interface);
+			//			DEBUG_ASSERT(render_method_definition_interface->get_tag_group() == _legacy_tag_group_render_method_definition);
 
-						if (ImGui::Selectable(render_method_definition_tag_interface->get_name_cstr(), selected_render_method_definition_tag_interface == render_method_definition_tag_interface))
-						{
-							selected_render_method_definition_tag_interface = render_method_definition_tag_interface;
-							selected_render_method_template_tag_interface = nullptr;
-							disassemble_runtime();
-						}
-					}
+			//			if (ImGui::Selectable(render_method_definition_tag_interface->get_name_cstr(), selected_render_method_definition_tag_interface == render_method_definition_tag_interface))
+			//			{
+			//				selected_render_method_definition_tag_interface = render_method_definition_tag_interface;
+			//				selected_render_method_template_tag_interface = nullptr;
+			//				disassemble_runtime();
+			//			}
+			//		}
 
-					ImGui::EndCombo();
-				}
-			}
-			else ImGui::Text("Couldn't find Render Method Definition group!");
+			//		ImGui::EndCombo();
+			//	}
+			//}
+			//else ImGui::Text("Couldn't find Render Method Definition group!");
 		}
 		//else
 		//{
@@ -315,31 +315,31 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 
 		if (selected_render_method_definition_tag_interface)
 		{
-			// #TODO: This could do with some optimization by adding a subclass to c_tag_interface to store all of this information computed upfront
+			//// #TODO: This could do with some optimization by adding a subclass to c_tag_interface to store all of this information computed upfront
 
-			c_legacy_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_render_method_definition);
-			c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
+			//c_legacy_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_render_method_definition);
+			//c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
 
 
-			DEBUG_ASSERT(render_method_definition_interface->shader_definition_and_rmt2.find(selected_render_method_definition_tag_interface) != render_method_definition_interface->shader_definition_and_rmt2.end());
-			std::vector<c_tag_interface*>& render_method_template_tags = render_method_definition_interface->shader_definition_and_rmt2[selected_render_method_definition_tag_interface];
+			//DEBUG_ASSERT(render_method_definition_interface->shader_definition_and_rmt2.find(selected_render_method_definition_tag_interface) != render_method_definition_interface->shader_definition_and_rmt2.end());
+			//std::vector<c_tag_interface*>& render_method_template_tags = render_method_definition_interface->shader_definition_and_rmt2[selected_render_method_definition_tag_interface];
 
-			const char* selected_render_method_template_tag_interface_text = selected_render_method_template_tag_interface ? selected_render_method_template_tag_interface->get_name_cstr() : "(select render method template)";
-			if (ImGui::BeginCombo("Template", selected_render_method_template_tag_interface_text))
-			{
-				for (c_tag_interface* render_method_template_tag_interface : render_method_template_tags)
-				{
-					DEBUG_ASSERT(render_method_template_tag_interface->get_group_interface()->GetGroupMagic() == _legacy_tag_group_render_method_template);
+			//const char* selected_render_method_template_tag_interface_text = selected_render_method_template_tag_interface ? selected_render_method_template_tag_interface->get_name_cstr() : "(select render method template)";
+			//if (ImGui::BeginCombo("Template", selected_render_method_template_tag_interface_text))
+			//{
+			//	for (c_tag_interface* render_method_template_tag_interface : render_method_template_tags)
+			//	{
+			//		DEBUG_ASSERT(render_method_template_tag_interface->get_group_interface()->get_tag_group() == _legacy_tag_group_render_method_template);
 
-					if (ImGui::Selectable(render_method_template_tag_interface->get_name_cstr(), selected_render_method_template_tag_interface == render_method_template_tag_interface))
-					{
-						selected_render_method_template_tag_interface = render_method_template_tag_interface;
-						disassemble_runtime();
-					}
-				}
+			//		if (ImGui::Selectable(render_method_template_tag_interface->get_name_cstr(), selected_render_method_template_tag_interface == render_method_template_tag_interface))
+			//		{
+			//			selected_render_method_template_tag_interface = render_method_template_tag_interface;
+			//			disassemble_runtime();
+			//		}
+			//	}
 
-				ImGui::EndCombo();
-			}
+			//	ImGui::EndCombo();
+			//}
 		}
 		else
 		{
@@ -569,28 +569,28 @@ void c_mantle_shader_tool_gui_tab::disassemble_runtime_subroutine() const
 {
 	if (selected_render_method_template_tag_interface)
 	{
-		s_render_method_template_definition_legacy* render_method_template = selected_render_method_template_tag_interface->get_data<s_render_method_template_definition_legacy>();
-		c_tag_interface* pixel_shader_tag_interface = cache_file.get_tag_interface(render_method_template->pixel_shader_reference.index);
-		s_pixel_shader_definition_legacy* pixel_shader = pixel_shader_tag_interface->get_data<s_pixel_shader_definition_legacy>();
+		//s_render_method_template_definition_legacy* render_method_template = selected_render_method_template_tag_interface->get_data<s_render_method_template_definition_legacy>();
+		//c_tag_interface* pixel_shader_tag_interface = cache_file.get_tag_interface(render_method_template->pixel_shader_reference.index);
+		//s_pixel_shader_definition_legacy* pixel_shader = pixel_shader_tag_interface->get_data<s_pixel_shader_definition_legacy>();
 
-		// #TODO: Remove GetTagBlockData and replace with virtual tag interface/virtual tab block data access
-		s_pixel_shader_definition_legacy::s_pixel_shaders_definition_legacy* pixel_shader2_block = cache_file.GetTagBlockData(pixel_shader->pixel_shaders_block) + 0;
+		//// #TODO: Remove get_tag_block_data and replace with virtual tag interface/virtual tab block data access
+		//s_pixel_shader_definition_legacy::s_pixel_shaders_definition_legacy* pixel_shader2_block = cache_file.get_tag_block_data(pixel_shader->pixel_shaders_block) + 0;
 
-		std::string disassemble_shader_result;
-		if (use_durango_shader_disassembly)
-		{
-			size_t __unknown4_data_reference_size = pixel_shader2_block->__unknown3.size;
-			char* __unknown4_data_reference_data = cache_file.get_data_reference_data(pixel_shader2_block->__unknown3);
-			disassemble_shader_result = disassemble_shader(__unknown4_data_reference_data, __unknown4_data_reference_size);
-		}
-		else
-		{
-			size_t __unknown3_data_reference_size = pixel_shader2_block->__unknown2.size;
-			char* __unknown3_data_reference_data = cache_file.get_data_reference_data(pixel_shader2_block->__unknown2);
-			disassemble_shader_result = disassemble_shader(__unknown3_data_reference_data, __unknown3_data_reference_size);
-		}
+		//std::string disassemble_shader_result;
+		//if (use_durango_shader_disassembly)
+		//{
+		//	size_t __unknown4_data_reference_size = pixel_shader2_block->__unknown3.size;
+		//	char* __unknown4_data_reference_data = cache_file.get_tag_data(pixel_shader2_block->__unknown3);
+		//	disassemble_shader_result = disassemble_shader(__unknown4_data_reference_data, __unknown4_data_reference_size);
+		//}
+		//else
+		//{
+		//	size_t __unknown3_data_reference_size = pixel_shader2_block->__unknown2.size;
+		//	char* __unknown3_data_reference_data = cache_file.get_tag_data(pixel_shader2_block->__unknown2);
+		//	disassemble_shader_result = disassemble_shader(__unknown3_data_reference_data, __unknown3_data_reference_size);
+		//}
 
-		new_runtime_disassembly = disassemble_shader_result;
+		//new_runtime_disassembly = disassemble_shader_result;
 	}
 	else
 	{

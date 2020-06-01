@@ -25,7 +25,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 	}
 	c_tag_interface* ps_tag_reference_legacyTagInterface = cache_file.get_tag_interface(static_cast<uint16_t>(field_data->index));
 
-	if (ImGui::BeginCombo("##tag_group_magic", pGroupShortName))
+	if (ImGui::BeginCombo("##tag_tag_group", pGroupShortName))
 	{
 		if (ImGui::Selectable("(null)", ps_tag_reference_legacyGroupInterface == nullptr))
 		{
@@ -45,7 +45,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 			{
 				if (pCurrentGroupInterface != ps_tag_reference_legacyGroupInterface) // selecting a new tag group
 				{
-					field_data->tagGroupName = pCurrentGroupInterface->GetGroupMagic();
+					field_data->tagGroupName = pCurrentGroupInterface->get_tag_group();
 					field_data->index = ~0ui16;
 					field_data->datum = ~0ui16;
 					ps_tag_reference_legacyTagInterface = nullptr;
@@ -96,7 +96,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 					{
 						ps_tag_reference_legacyTagInterface = pCurrentTagInterface;
 						ps_tag_reference_legacyGroupInterface = pCurrentTagInterface->get_group_interface();
-						field_data->tagGroupName = ps_tag_reference_legacyGroupInterface->GetGroupMagic();
+						field_data->tagGroupName = ps_tag_reference_legacyGroupInterface->get_tag_group();
 						field_data->index = pCurrentTagInterface->get_index();
 					}
 				}
@@ -135,7 +135,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 					{
 						ps_tag_reference_legacyTagInterface = pCurrentTagInterface;
 						ps_tag_reference_legacyGroupInterface = pCurrentTagInterface->get_group_interface();
-						field_data->tagGroupName = pCurrentGroupInterface->GetGroupMagic();
+						field_data->tagGroupName = pCurrentGroupInterface->get_tag_group();
 						field_data->index = pCurrentTagInterface->get_index();
 					}
 				}
@@ -151,7 +151,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 		field_data->datum = ~0ui16;
 		field_data->nameLength = 0;
 		field_data->nameOffset = 0;
-		field_data->tagGroupName = static_cast<e_tag_group>(0xFFFFFFFF);
+		field_data->tagGroupName = static_cast<unsigned long>(0xFFFFFFFF);
 	}
 	else if (ImGui::IsItemHovered()) ImGui::SetTooltip("Nulls this tag reference");
 	ImGui::NextColumn();

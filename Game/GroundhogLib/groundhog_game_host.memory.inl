@@ -56,7 +56,7 @@ T& groundhog_tag_definition_get(uint16_t index)
 }
 
 template<typename T>
-T& groundhog_tag_block_definition_get(s_tag_block_legacy<T>& tag_block_ref, uint16_t index)
+T& groundhog_tag_block_definition_get(c_typed_tag_block<T>& tag_block_ref, uint16_t index)
 {
 	T* tag_block_definition_ptr = reinterpret_cast<T*>(groundhog_tag_address_get(tag_block_ref.address));
 

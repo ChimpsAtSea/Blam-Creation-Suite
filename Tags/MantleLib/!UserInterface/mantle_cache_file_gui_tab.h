@@ -1,7 +1,6 @@
 #pragma once
 
 class c_cache_file;
-class c_virtual_resource_manager;
 class c_mantle_halo_script_editor;
 
 class c_mantle_cache_file_gui_tab : public c_mantle_gui_tab
@@ -44,9 +43,5 @@ protected:
 	std::string shader_tool_directory;
 	c_mantle_halo_script_editor* halo_script_editor;
 	ImGuiAddons::ImGuiFileBrowser file_browser;
-
-public:
-	c_virtual_resource_manager& virtual_resource_manager;
-
 };
 

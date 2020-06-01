@@ -26,7 +26,6 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_fil
 	search_selected_tag_interface(nullptr),
 	debug_file_dialogue_gui(false),
 	search_buffer(),
-	virtual_resource_manager(*new c_virtual_resource_manager(cache_file)),
 	halo_script_editor(nullptr),
 	file_browser()
 {
@@ -115,11 +114,6 @@ void c_mantle_cache_file_gui_tab::render_tab_menu_gui()
 		if (ImGui::MenuItem("Dump StringID's"))
 		{
 			debug_file_dialogue_gui = true;
-		}
-
-		if (ImGui::MenuItem("Generate memory debug data"))
-		{
-			cache_file.generate_cache_file_data_access_data();
 		}
 
 		ImGui::EndMenu();
@@ -400,81 +394,81 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 		return;
 	}
 
-	c_legacy_tag_group_interface* group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_scenario);
-	if (group_interface == nullptr)
-	{
-		return;
-	}
+	//c_legacy_tag_group_interface* group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_scenario);
+	//if (group_interface == nullptr)
+	//{
+	//	return;
+	//}
 
-	const std::vector<c_tag_interface*>& tag_interfaces = group_interface->get_tag_interfaces();
-	if (tag_interfaces.empty())
-	{
-		return;
-	}
-	// #TODO: #ELDORADO Render trigger volumes for a specific scenario
-	// #TODO: cache this value
-	c_tag_interface* tag_interface = group_interface->get_tag_interfaces().front();
+	//const std::vector<c_tag_interface*>& tag_interfaces = group_interface->get_tag_interfaces();
+	//if (tag_interfaces.empty())
+	//{
+	//	return;
+	//}
+	//// #TODO: #ELDORADO Render trigger volumes for a specific scenario
+	//// #TODO: cache this value
+	//c_tag_interface* tag_interface = group_interface->get_tag_interfaces().front();
 
-	if (tag_interface)
-	{
-		s_scenario_definition_legacy* scenario = tag_interface->get_data<s_scenario_definition_legacy>();
-		s_tag_block_legacy<s_scenario_definition_legacy::s_trigger_volumes_definition_legacy>& trigger_volumes_tag_block = scenario->trigger_volumes_block;
+	//if (tag_interface)
+	//{
+	//	s_scenario_definition_legacy* scenario = tag_interface->get_data<s_scenario_definition_legacy>();
+	//	s_tag_block_legacy<s_scenario_definition_legacy::s_trigger_volumes_definition_legacy>& trigger_volumes_tag_block = scenario->trigger_volumes_block;
 
-		static c_box_primitive& immediate_box_primitive = c_primitive_render_manager::get_immediate_box();
+	//	static c_box_primitive& immediate_box_primitive = c_primitive_render_manager::get_immediate_box();
 
-		// #TODO: Remove GetTagBlockData and replace with virtual tag interface/virtual tab block data access
-		s_scenario_definition_legacy::s_trigger_volumes_definition_legacy* trigger_volumes_tag_block_data = cache_file.GetTagBlockData(trigger_volumes_tag_block);
-		for (uint32_t trigger_volume_index = 0; trigger_volume_index < trigger_volumes_tag_block.count; trigger_volume_index++)
-		{
-			constexpr float k_line_transparency = 0.4f;
-			constexpr float k_text_transparency = 0.6f;
+	//	// #TODO: Remove get_tag_block_data and replace with virtual tag interface/virtual tab block data access
+	//	s_scenario_definition_legacy::s_trigger_volumes_definition_legacy* trigger_volumes_tag_block_data = cache_file.get_tag_block_data(trigger_volumes_tag_block);
+	//	for (uint32_t trigger_volume_index = 0; trigger_volume_index < trigger_volumes_tag_block.count; trigger_volume_index++)
+	//	{
+	//		constexpr float k_line_transparency = 0.4f;
+	//		constexpr float k_text_transparency = 0.6f;
 
-			s_scenario_definition_legacy::s_trigger_volumes_definition_legacy& trigger_volume = trigger_volumes_tag_block_data[trigger_volume_index];
+	//		s_scenario_definition_legacy::s_trigger_volumes_definition_legacy& trigger_volume = trigger_volumes_tag_block_data[trigger_volume_index];
 
-			bool is_kill_volume = trigger_volume.kill_volume != 0xFFFFi16;
-			// #REFLECTIONREFACTOR
-			//switch (trigger_volume.type)
-			//{
-			//case 0: // box (position + extents)
-			//	if (is_kill_volume) immediate_box_primitive.set_color(1.0f, 0.0f, 0.0f, k_line_transparency);
-			//	else immediate_box_primitive.set_color(0.0f, 1.0f, 0.0f, k_line_transparency);
-			//	break;
-			//case 1:
-			//	immediate_box_primitive.set_color(1.0f, 0.0f, 1.0f, k_line_transparency);
-			//	break;
-			//default:
-			immediate_box_primitive.set_color(1.0f, 1.0f, 0.0f, k_line_transparency);
-			//break;
-		//}
+	//		bool is_kill_volume = trigger_volume.kill_volume != 0xFFFFi16;
+	//		// #REFLECTIONREFACTOR
+	//		//switch (trigger_volume.type)
+	//		//{
+	//		//case 0: // box (position + extents)
+	//		//	if (is_kill_volume) immediate_box_primitive.set_color(1.0f, 0.0f, 0.0f, k_line_transparency);
+	//		//	else immediate_box_primitive.set_color(0.0f, 1.0f, 0.0f, k_line_transparency);
+	//		//	break;
+	//		//case 1:
+	//		//	immediate_box_primitive.set_color(1.0f, 0.0f, 1.0f, k_line_transparency);
+	//		//	break;
+	//		//default:
+	//		immediate_box_primitive.set_color(1.0f, 1.0f, 0.0f, k_line_transparency);
+	//		//break;
+	//	//}
 
-			int imgui_text_color;
-			if (is_kill_volume) imgui_text_color = IM_COL32(255, 0, 0, static_cast<int>(255 * k_text_transparency));
-			else imgui_text_color = IM_COL32(0, 255, 0, static_cast<int>(255 * k_text_transparency));
+	//		int imgui_text_color;
+	//		if (is_kill_volume) imgui_text_color = IM_COL32(255, 0, 0, static_cast<int>(255 * k_text_transparency));
+	//		else imgui_text_color = IM_COL32(0, 255, 0, static_cast<int>(255 * k_text_transparency));
 
-			immediate_box_primitive.update_as_corner_and_extent_box(
-				trigger_volume.position_x,
-				trigger_volume.position_y,
-				trigger_volume.position_z,
-				trigger_volume.extents_x,
-				trigger_volume.extents_y,
-				trigger_volume.extents_z
-			);
-			c_primitive_render_manager::render_immediate_box();
+	//		immediate_box_primitive.update_as_corner_and_extent_box(
+	//			trigger_volume.position_x,
+	//			trigger_volume.position_y,
+	//			trigger_volume.position_z,
+	//			trigger_volume.extents_x,
+	//			trigger_volume.extents_y,
+	//			trigger_volume.extents_z
+	//		);
+	//		c_primitive_render_manager::render_immediate_box();
 
-			render_gizmo_immediate(trigger_volume.position_x, trigger_volume.position_y, trigger_volume.position_z);
+	//		render_gizmo_immediate(trigger_volume.position_x, trigger_volume.position_y, trigger_volume.position_z);
 
-			float screen_x = 0.0f;
-			float screen_y = 0.0f;
-			if (c_render::calculate_screen_coordinates(trigger_volume.position_x, trigger_volume.position_y, trigger_volume.position_z, screen_x, screen_y))
-			{
-				const char* trigger_volume_name = cache_file.string_id_to_cstr(trigger_volume.name);
-				trigger_volume_name = trigger_volume_name ? trigger_volume_name : "<error fetching string id>";
+	//		float screen_x = 0.0f;
+	//		float screen_y = 0.0f;
+	//		if (c_render::calculate_screen_coordinates(trigger_volume.position_x, trigger_volume.position_y, trigger_volume.position_z, screen_x, screen_y))
+	//		{
+	//			const char* trigger_volume_name = cache_file.string_id_to_cstr(trigger_volume.name);
+	//			trigger_volume_name = trigger_volume_name ? trigger_volume_name : "<error fetching string id>";
 
-				ImGui::GetWindowDrawList()->AddText(ImVec2(screen_x + 1, screen_y + 1), IM_COL32(0, 0, 0, static_cast<int>(255 * k_text_transparency)), trigger_volume_name);
-				ImGui::GetWindowDrawList()->AddText(ImVec2(screen_x, screen_y), imgui_text_color, trigger_volume_name);
-			}
-		}
-	}
+	//			ImGui::GetWindowDrawList()->AddText(ImVec2(screen_x + 1, screen_y + 1), IM_COL32(0, 0, 0, static_cast<int>(255 * k_text_transparency)), trigger_volume_name);
+	//			ImGui::GetWindowDrawList()->AddText(ImVec2(screen_x, screen_y), imgui_text_color, trigger_volume_name);
+	//		}
+	//	}
+	//}
 }
 
 void c_mantle_cache_file_gui_tab::render_tab_contents_gui()

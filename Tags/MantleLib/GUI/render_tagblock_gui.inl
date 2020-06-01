@@ -65,7 +65,7 @@ void render_tagblock_gui_legacy(void* field_data, const c_reflection_field_legac
 			uint32_t tagBlockDataIndexDataOffset = tag_block_reflection_type->size_of_data * static_cast<uint32_t>(rDynamicTagBlockData.position);
 			/*	#TODO: Investigate the possibility of replacing the usage of get_cache_file with the virtual tag interface/virtual tab block data access
 				if we supply it as a template parameter to this function can we avoid it? */
-			char* tag_block_data_start = c_mantle_legacy_tag_editor_gui_tab::g_current_mantle_tag_tab->cache_file.GetTagBlockData<char>(*tag_block_definition);
+			char* tag_block_data_start = c_mantle_legacy_tag_editor_gui_tab::g_current_mantle_tag_tab->cache_file.get_tag_block_data<char>(*tag_block_definition);
 			char* tag_block_data = tag_block_data_start + tagBlockDataIndexDataOffset;
 
 			//ImGui::Text("Address 0x%p", tag_block_data);
