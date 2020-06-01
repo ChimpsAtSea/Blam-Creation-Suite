@@ -12,7 +12,8 @@ struct s_tag_reference
 	tag group_tag;
 	c_ptr32<char> name;
 	long name_length;
-	long index;
+	unsigned short index;
+	unsigned short datum;
 };
 static_assert(sizeof(s_tag_reference) == 0x10);
 
@@ -20,7 +21,7 @@ struct s_tag_block
 {
 	long count;
 	c_ptr32<byte> address;
-	long : 32; // unused definition
+	long definition_address;
 };
 static_assert(sizeof(s_tag_block) == 0xC);
 
