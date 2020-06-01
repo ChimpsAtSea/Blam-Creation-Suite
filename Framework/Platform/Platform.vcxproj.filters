@@ -75,6 +75,15 @@
     <ClInclude Include="enum_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Strings\strings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Strings\stack_string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Strings\fixed_string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform-private-pch.cpp">
@@ -102,6 +111,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="filesystem_util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Strings\stack_string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Strings\fixed_string.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

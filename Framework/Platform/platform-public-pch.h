@@ -28,6 +28,8 @@ using namespace xxhash::literals;
 #include "endianness_util.h"
 #include "enum_util.h"
 
+#include "Strings/strings.h"
+
 #include "Windows/window_win32.h"
 #include "Windows/command_line.h"
 #include "Windows/console.h"
