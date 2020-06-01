@@ -13,6 +13,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <OutDir>$(SolutionDir)$(Platform)\$(CustomConfiguration)\</OutDir>
     <IntDir>$(SolutionDir)$(Platform)\$(CustomConfiguration)\build_temp\$(MSBuildProjectName)\</IntDir>
+    <TargetName>$(MSBuildProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(MSBuildProjectName)'!='blamlib'">
   </PropertyGroup>
