@@ -110,6 +110,7 @@ c_h4_tag_block_container::c_h4_tag_block_container(c_h4_tag_block& tag_block, c_
 	// && !string_ends_with(tag_block.tag_struct.name, "_struct_definition");
 	tag_struct_container = &preprocessor.traverse_tag_structs(tag_block.tag_struct, use_tag_block_definition, tag_block.is_array, true);
 	tag_struct_container->is_block = use_tag_block_definition;
+	tag_struct_container->tag_block_container = this;
 
 	if (tag_block.is_block)
 	{
@@ -130,6 +131,7 @@ bool c_h4_tag_block_container::operator ==(const c_h4_tag_block_container& conta
 }
 
 c_h4_tag_struct_container::c_h4_tag_struct_container(c_h4_tag_struct& tag_struct, c_h4_generator_preprocessor& preprocessor, bool is_block, bool is_array) :
+	tag_block_container(nullptr),
 	tag_struct(tag_struct),
 	name(tag_struct.name),
 	symbol_name(name),

@@ -68,6 +68,7 @@ public:
 	c_h4_tag_struct_container(c_h4_tag_struct& tag_struct, c_h4_generator_preprocessor& preprocessor, bool is_block, bool is_array);
 	bool operator ==(const c_h4_tag_struct_container& container) const;
 
+	c_h4_tag_block_container* tag_block_container;
 	c_h4_tag_struct& tag_struct;
 	std::string name;
 	std::string symbol_name;

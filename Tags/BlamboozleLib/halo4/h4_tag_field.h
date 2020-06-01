@@ -123,7 +123,7 @@ using c_h4_tag_field_word_integer = t_h4_tag_field<t_h4_tag_numerical_definition
 using c_h4_tag_field_dword_integer = t_h4_tag_field<t_h4_tag_numerical_definition<uint32_t>>;
 using c_h4_tag_field_qword_integer = t_h4_tag_field<t_h4_tag_numerical_definition<uint64_t>>;
 using c_h4_tag_field_real = t_h4_tag_field<t_h4_tag_numerical_definition<float>>;
-using c_h4_tag_field_explanation = t_h4_tag_field<t_h4_tag_numerical_definition<const char*>>;
+using c_h4_tag_field_explanation = t_h4_tag_field<const char>;
 
 struct s_h4_tag_enum_definition
 {

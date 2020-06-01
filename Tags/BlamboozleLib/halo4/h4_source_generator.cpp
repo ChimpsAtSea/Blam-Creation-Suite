@@ -46,7 +46,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 		std::stringstream& ss = source_file->source_stream;
 
 		hs << "#pragma once" << std::endl << std::endl;
-		ss << "#include <blofeld-private-pch.h>" << std::endl;
+		ss << "#include <tagdefinitions-private-pch.h>" << std::endl;
 		ss << "#include <blofeld_field_type_override.h>" << std::endl << std::endl;
 
 		hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
@@ -133,7 +133,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 		{
 			std::string header_output_filepath = output_directory + "\\tag_groups.h";
 			std::stringstream hs;
-			create_blofeld_header(hs);
+			create_tag_groups_header(hs);
 			std::string header_code = hs.str();
 			bool blofeld_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
 			ASSERT(blofeld_header_write_file_result);
@@ -141,7 +141,23 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 		{
 			std::string source_output_filepath = output_directory + "\\tag_groups.cpp";
 			std::stringstream ss;
-			create_blofeld_source(ss);
+			create_tag_groups_source(ss);
+			std::string source_code = ss.str();
+			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
+			ASSERT(blofeld_source_write_file_result);
+		}
+		{
+			std::string header_output_filepath = output_directory + "\\tag_structs.h";
+			std::stringstream hs;
+			create_tag_structs_header(hs);
+			std::string header_code = hs.str();
+			bool blofeld_header_write_file_result = filesystem_write_file_from_memory(header_output_filepath.c_str(), header_code.c_str(), header_code.size());
+			ASSERT(blofeld_header_write_file_result);
+		}
+		{
+			std::string source_output_filepath = output_directory + "\\tag_structs.cpp";
+			std::stringstream ss;
+			create_tag_structs_source(ss);
 			std::string source_code = ss.str();
 			bool blofeld_source_write_file_result = filesystem_write_file_from_memory(source_output_filepath.c_str(), source_code.c_str(), source_code.size());
 			ASSERT(blofeld_source_write_file_result);
@@ -208,7 +224,7 @@ c_h4_source_generator::c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_g
 			std::string source_output_filepath = output_directory + "\\manual_tag_references.cpp";
 			std::stringstream ss;
 
-			ss << "#include <blofeld-private-pch.h>" << std::endl;
+			ss << "#include <tagdefinitions-private-pch.h>" << std::endl;
 			ss << "#include <blofeld_field_type_override.h>" << std::endl << std::endl;
 			ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 			for (c_h4_tag_reference_container* reference_container : preprocessor.tag_reference_containers)
@@ -233,7 +249,7 @@ c_h4_source_generator::~c_h4_source_generator()
 
 }
 
-void c_h4_source_generator::create_blofeld_header(std::stringstream& hs)
+void c_h4_source_generator::create_tag_groups_header(std::stringstream& hs)
 {
 	hs << "#pragma once" << std::endl << std::endl;
 
@@ -257,14 +273,16 @@ void c_h4_source_generator::create_blofeld_header(std::stringstream& hs)
 	}
 	hs << std::endl;
 	hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+
 	hs << "\textern s_tag_group* tag_groups[" << preprocessor.group_containers.size() << "];" << std::endl;
+
 	hs << "} // namespace blofeld" << std::endl << std::endl;
 	hs << std::endl;
 }
 
-void c_h4_source_generator::create_blofeld_source(std::stringstream& ss)
+void c_h4_source_generator::create_tag_groups_source(std::stringstream& ss)
 {
-	ss << "#include <blofeld-private-pch.h>" << std::endl << std::endl;
+	ss << "#include <tagdefinitions-private-pch.h>" << std::endl << std::endl;
 
 	ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 
@@ -278,6 +296,66 @@ void c_h4_source_generator::create_blofeld_source(std::stringstream& ss)
 		ss << "\t&" << group_container->tag_group.name << "_group," << std::endl;
 	}
 	ss << "};" << std::endl;
+	ss << std::endl;
+
+	ss << "} // namespace blofeld" << std::endl << std::endl;
+}
+
+void c_h4_source_generator::create_tag_structs_header(std::stringstream& hs)
+{
+	hs << "#pragma once" << std::endl << std::endl;
+
+	hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+
+	hs << "\textern const s_tag_struct_definition* tag_struct_definitions[" << preprocessor.tag_struct_containers.size() << "];" << std::endl;
+
+	hs << "} // namespace blofeld" << std::endl << std::endl;
+	hs << std::endl;
+}
+
+void c_h4_source_generator::create_tag_structs_source(std::stringstream& ss)
+{
+	ss << "#include <tagdefinitions-private-pch.h>" << std::endl << std::endl;
+
+	ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
+
+	ss << "\tconst s_tag_struct_definition* tag_struct_definitions[" << preprocessor.tag_struct_containers.size() << "] = " << std::endl;
+	ss << "\t{" << std::endl;
+	for (c_h4_tag_struct_container* tag_struct_container : preprocessor.tag_struct_containers)
+	{
+		c_h4_tag_block_container* tag_block_container = tag_struct_container->tag_block_container;
+
+		bool x = strstr(tag_struct_container->name.c_str(), "runtime_queryable_properties");
+		if(tag_struct_container->is_array)
+		{
+			if (tag_struct_container->tag_block_container)
+			{
+				ss << "\t\t&" << tag_struct_container->tag_block_container->name << "_struct_definition, // array" << std::endl;
+			}
+			else
+			{
+				ss << "\t\t&" << tag_struct_container->name << "_struct_definition, // array" << std::endl;
+			}
+		}
+		else if (tag_block_container && !tag_block_container->defined_by_tag_group && tag_block_container->use_tag_block_definition)
+		{
+			ss << "\t\t&" << tag_block_container->name << "_block_struct, // block" << std::endl;
+		}
+		else if (tag_struct_container->is_block)
+		{
+			ss << "\t\t&" << tag_struct_container->symbol_name << "_block_struct, // block" << std::endl;
+		}
+		else if (tag_struct_container->is_tag_group)
+		{
+			ss << "\t\t&" << tag_struct_container->name << "_struct_definition, // tag group" << std::endl;
+		}
+		else
+		{
+			ss << "\t\t&" << tag_struct_container->name << "_struct_definition," << std::endl;
+		}
+		debug_point;
+	}
+	ss << "\t};" << std::endl;
 	ss << std::endl;
 
 	ss << "} // namespace blofeld" << std::endl << std::endl;
@@ -297,7 +375,7 @@ void c_h4_source_generator::create_validation_header(std::stringstream& hs)
 
 void c_h4_source_generator::create_validation_source(std::stringstream& ss)
 {
-	ss << "#include <blofeld-private-pch.h>" << std::endl << std::endl;
+	ss << "#include <tagdefinitions-private-pch.h>" << std::endl << std::endl;
 
 	ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 
@@ -781,7 +859,6 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 		case _h4_field_type_data:
 		case _h4_field_type_vertex_buffer:
 		case _h4_field_type_non_cache_runtime_value:
-		case _h4_field_type_explanation:
 		case _h4_field_type_custom:
 		case _h4_field_type_pageable:
 		case _h4_field_type_api_interop:
@@ -800,6 +877,25 @@ void c_h4_source_generator::generate_tag_fields_source(std::stringstream& ss, st
 				ss << "\t\t{ " << field_generic_type_name << " }," << std::endl;
 			}
 			break;
+		case _h4_field_type_explanation:
+		{
+
+			c_h4_tag_field_explanation* explanation_field = dynamic_cast<c_h4_tag_field_explanation*>(tag_field);
+			ASSERT(explanation_field);
+			ASSERT(explanation_field->name);
+
+			if (explanation_field->definition == nullptr)
+			{
+				ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\" }," << std::endl;
+			}
+			else
+			{
+
+				std::string explanation = escape_string(explanation_field->definition);
+				ss << "\t\t{ " << field_generic_type_name << ", \"" << field_name << "\", \"" << explanation << "\" }," << std::endl;
+			}
+			break;
+		}
 		case _h4_field_type_tag_reference:
 		{
 			c_h4_tag_field_tag_reference* tag_reference_field = dynamic_cast<c_h4_tag_field_tag_reference*>(tag_field);

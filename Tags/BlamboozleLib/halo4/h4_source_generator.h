@@ -8,8 +8,10 @@ class c_h4_source_generator
 public:
 	c_h4_source_generator(c_h4_blamboozle& blamboozle, c_h4_generator_preprocessor& preprocessor);
 	~c_h4_source_generator();
-	void create_blofeld_header(std::stringstream& hs);
-	void create_blofeld_source(std::stringstream& ss);
+	void create_tag_groups_header(std::stringstream& hs);
+	void create_tag_groups_source(std::stringstream& ss);
+	void create_tag_structs_header(std::stringstream& hs);
+	void create_tag_structs_source(std::stringstream& ss);
 	void create_validation_header(std::stringstream& hs);
 	void create_validation_source(std::stringstream& ss);
 	void create_tag_group_header(std::stringstream& hs, c_h4_tag_group_container& group_container);

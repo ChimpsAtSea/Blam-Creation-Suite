@@ -282,7 +282,7 @@ public:
 	const s_h2_tag_h2_field_type_definition* fields;
 	const char* size_string;
 	const char* byte_swap_definition_name;
-	std::vector<std::unique_ptr<c_h2_tag_field>> tag_fields;
+	std::vector<c_h2_tag_field*> tag_fields;
 
 	c_h2_tag_h2_field_type_set(const char* guerilla_data, const s_h2_tag_h2_field_type_set_header* set_header)
 	{
@@ -405,7 +405,7 @@ class c_h2_tag_block_definition
 public:
 	const char* display_name;
 	const char* name;
-	std::vector<std::unique_ptr<c_h2_tag_h2_field_type_set>> tag_h2_field_type_sets;
+	std::vector<c_h2_tag_h2_field_type_set*> tag_h2_field_type_sets;
 
 	c_h2_tag_block_definition(const char* guerilla_data, const s_h2_tag_block_definition_header* definition_header, const s_h2_tag_layout_header* tag_layout_header = nullptr)
 	{
@@ -448,7 +448,7 @@ class c_h2_tag_layout
 {
 public:
 	const char* name;
-	std::unique_ptr<c_h2_tag_block_definition> tag_block_definition;
+	c_h2_tag_block_definition* tag_block_definition;
 	c_h2_tag_layout(const char* guerilla_data, const char* tag_layout_data)
 	{
 		const s_h2_tag_layout_header* layout_header = reinterpret_cast<const s_h2_tag_layout_header*>(tag_layout_data);
@@ -457,7 +457,7 @@ public:
 		const char* default_tag_path = va_to_pointer(guerilla_data, layout_header->default_tag_path_address);
 		const s_h2_tag_block_definition_header* definition_data = reinterpret_cast<const s_h2_tag_block_definition_header*>(va_to_pointer(guerilla_data, layout_header->definition_address));
 
-		tag_block_definition = std::unique_ptr<c_h2_tag_block_definition>(new c_h2_tag_block_definition(guerilla_data, definition_data, layout_header));
+		tag_block_definition = new c_h2_tag_block_definition(guerilla_data, definition_data, layout_header);
 	}
 };
 
@@ -487,7 +487,7 @@ int c_blamboozle_h2_guerilla::run()
 
 	uintptr_t(&layout_addresses)[num_tag_layouts] = *reinterpret_cast<decltype(&layout_addresses)>(guerilla_data + va_to_pa(tag_layout_table_address));
 
-	std::vector<std::unique_ptr<c_h2_tag_layout>> tag_layouts;
+	std::vector<c_h2_tag_layout*> tag_layouts;
 
 	for (uint32_t tag_layout_index = 0; tag_layout_index < num_tag_layouts; tag_layout_index++)
 	{
