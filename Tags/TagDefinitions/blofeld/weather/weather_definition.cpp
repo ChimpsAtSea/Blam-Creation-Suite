@@ -12,7 +12,7 @@ namespace blofeld
 	{
 		{ _field_long_integer, "version!#INTERNAL TAG USE ONLY DO NOT CHANGE" },
 		{ _field_real, "rain amount:[0,1]#fade control for all rain effects" },
-		{ _field_explanation, "Rain Effects" },
+		{ _field_explanation, "Rain Effects", "These effects are applied when this rain is active\n" },
 		{ _field_tag_reference, "effect", &global_effect_reference },
 		{ _field_tag_reference, "screen effect", &global_area_screen_effect_reference },
 		{ _field_tag_reference, "camera fx", &global_camera_fx_settings_reference },

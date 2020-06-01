@@ -10,13 +10,13 @@ namespace blofeld
 
 	TAG_STRUCT(simulated_input_struct_definition)
 	{
-		{ _field_explanation, "Simulated Input (SI)" },
-		{ _field_explanation, "Impulse" },
-		{ _field_explanation, "Scalers" },
-		{ _field_explanation, "Screen Space angles" },
-		{ _field_explanation, "Move" },
+		{ _field_explanation, "Simulated Input (SI)", "Adds accelerations into unit\'s movement (by simulating movement stick change) and/or view angle (by simulating camera stick change)" },
+		{ _field_explanation, "Impulse", "At SI spawn time the SI\'s angle is determined by adding the result of \'response type\' & \'mapping type\' to a random angle in given angle range.\nEach tick, this acceleration angle is multiplied by the final scaler resulting from logic below. That scaled impulse is then applied as stick input." },
+		{ _field_explanation, "Scalers", "Starting scaler value comes from damage multiplier or is set to 1.0 if SI not directly related to damage.\nThat is then scaled by the following:\n * area control falloff\n * function output y: func(SI_elapsed_time/duration) --> y)\n * 1 / zoom magnification\n * tick_delta_secs / tick_length\nresult of this is final scaler value" },
+		{ _field_explanation, "Screen Space angles", "0 - pitch up, +/-180 - pitch down\n-90 - yaw left, +90 - yaw right" },
+		{ _field_explanation, "Move", "" },
 		{ _field_struct, "move", &simulated_input_stick_struct_struct_definition },
-		{ _field_explanation, "Look" },
+		{ _field_explanation, "Look", "" },
 		{ _field_struct, "look", &simulated_input_stick_struct_struct_definition },
 		{ _field_terminator }
 	};

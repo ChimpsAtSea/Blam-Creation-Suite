@@ -23,9 +23,9 @@ namespace blofeld
 		{ _field_block, "list sphere shapes*#don\'t be an asshole, edit something else!", &spheres_block_block },
 		{ _field_block, "list shapes*#don\'t be an asshole, edit something else!", &lists_block_block },
 		{ _field_block, "list shape childInfos*#don\'t be an asshole, edit something else!", &list_shapes_block_block },
-		{ _field_explanation, "ground" },
+		{ _field_explanation, "ground", "" },
 		{ _field_struct, "ground physics", &character_physics_ground_struct_struct_definition },
-		{ _field_explanation, "flying" },
+		{ _field_explanation, "flying", "" },
 		{ _field_struct, "flying physics", &character_physics_flying_struct_struct_definition },
 		{ _field_terminator }
 	};

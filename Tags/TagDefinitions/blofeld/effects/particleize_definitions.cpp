@@ -10,7 +10,7 @@ namespace blofeld
 
 	TAG_STRUCT(particleman_struct_definition)
 	{
-		{ _field_explanation, "Particleize Settings" },
+		{ _field_explanation, "Particleize Settings", "Defines a particular particleize effect\n\nDensity modifies how many particles are made\nSize indicates how large the effect can be in world units\nShape indicates the shape of the effect\nCurve defines how the shape evolves over time\n" },
 		{ _field_enum, "Shape", &particleize_shape_enum },
 		{ _field_word_flags, "Flags", &particleize_flags },
 		{ _field_real, "Duration:sec" },

@@ -12,16 +12,16 @@ namespace blofeld
 
 	TAG_BLOCK(variant_option_block, k_maximum_variant_category_blocks)
 	{
-		{ _field_explanation, "SUB-CATEGORY" },
+		{ _field_explanation, "SUB-CATEGORY", "If this entry leads to a sub-category of UI, the tag reference to that chain of UI goes here" },
 		{ _field_tag_reference, "sub-category", &g_multiplayer_variant_settings_interface_reference },
-		{ _field_explanation, "PLAYER TRAIT" },
+		{ _field_explanation, "PLAYER TRAIT", "If this entry leads to player-trait UI, you can use a tag reference to player trait template UI and the player trait category here" },
 		{ _field_tag_reference, "player trait ui", &g_multiplayer_variant_settings_interface_reference },
 		{ _field_long_enum, "player trait category", &game_engine_settings },
-		{ _field_explanation, "CATEGORY NAME" },
+		{ _field_explanation, "CATEGORY NAME", "string_id name used for the category labelling (used for both sub-category and player-trait references)" },
 		{ _field_string_id, "category name" },
-		{ _field_explanation, "CATEGORY DESCRIPTION" },
+		{ _field_explanation, "CATEGORY DESCRIPTION", "string_id description used for the category description (used for both sub-category and player-trait references)" },
 		{ _field_string_id, "category description" },
-		{ _field_explanation, "VALUE-PAIRS" },
+		{ _field_explanation, "VALUE-PAIRS", "If this entry leads to parameter value editing UI, the tag reference to those text-value pairs goes here" },
 		{ _field_tag_reference, "value pairs", &g_text_value_pair_reference },
 		{ _field_terminator }
 	};

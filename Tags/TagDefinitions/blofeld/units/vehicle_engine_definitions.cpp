@@ -6,11 +6,11 @@ namespace blofeld
 
 	TAG_BLOCK(gear_block, s_vehicle_engine_definition::k_gear_count_max)
 	{
-		{ _field_explanation, "loaded torque" },
+		{ _field_explanation, "loaded torque", "" },
 		{ _field_struct, "loaded torque curve", &torque_curve_struct_struct_definition },
-		{ _field_explanation, "cruising torque" },
+		{ _field_explanation, "cruising torque", "" },
 		{ _field_struct, "cruising torque curve", &torque_curve_struct_struct_definition },
-		{ _field_explanation, "gearing" },
+		{ _field_explanation, "gearing", "" },
 		{ _field_real, "min time to upshift#seconds" },
 		{ _field_real, "engine up-shift scale#0-1" },
 		{ _field_real, "gear ratio" },
@@ -30,7 +30,7 @@ namespace blofeld
 
 	TAG_STRUCT(global_vehicle_engine_struct)
 	{
-		{ _field_explanation, "engine" },
+		{ _field_explanation, "engine", "" },
 		{ _field_real, "engine moment#higher moments make engine spin up slower" },
 		{ _field_real, "engine max angular velocity#higher moments make engine spin up slower" },
 		{ _field_block, "gears", &gear_block_block },

@@ -31,7 +31,7 @@ namespace blofeld
 
 	TAG_BLOCK(requisition_palette_block, k_infinity_requisition_palette_maximum_count)
 	{
-		{ _field_explanation, "CUSTOM APPS" },
+		{ _field_explanation, "CUSTOM APPS", "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\"" },
 		{ _field_tag_reference, "name", &requisition_palette_block_name_reference },
 		{ _field_string_id, "display_name^" },
 		{ _field_long_enum, "special_buy", &requisition_special_buy_enum },
@@ -41,7 +41,7 @@ namespace blofeld
 	TAG_BLOCK(requisition_constants_block, 1)
 	{
 		{ _field_real, "FTL bonus fraction#multiplier to apply to money earned by minions to also give to the fireteam leader" },
-		{ _field_explanation, "AWARD AMOUNTS" },
+		{ _field_explanation, "AWARD AMOUNTS", "These are requisition award amounts for various thing players can get money for" },
 		{ _field_long_integer, "Kill" },
 		{ _field_long_integer, "Assist" },
 		{ _field_long_integer, "Fire team leader kill" },
@@ -54,17 +54,17 @@ namespace blofeld
 		{ _field_long_integer, "served as reinforcement target#awarded to a reinforcement target when a teammate spawns on him (to encourage cooperation)" },
 		{ _field_long_integer, "uberassault gun captured#awarded on gaining ownership of a gun to every member of the new owning team" },
 		{ _field_long_integer, "uberassault gun owned#awarded every 3 seconds to the entire team that owns this gun.  Money from multiple guns stacks (so if you own all 3, you\'ll get 3x this money every 3 seconds)." },
-		{ _field_explanation, "PENALTY AMOUNTS" },
+		{ _field_explanation, "PENALTY AMOUNTS", "Requisition penalties for various discouraged actions" },
 		{ _field_long_integer, "Betrayed a teammate" },
-		{ _field_explanation, "FIRE TEAM TIER KILL REQUIREMENTS" },
+		{ _field_explanation, "FIRE TEAM TIER KILL REQUIREMENTS", "Number of kills a fireteam must have to reach each fire team tier" },
 		{ _field_long_integer, "Bronze kill minimum" },
 		{ _field_long_integer, "Silver kill minimum" },
 		{ _field_long_integer, "Gold kill minimum" },
-		{ _field_explanation, "FIRE TEAM TIER BONUS MULTIPLIERS" },
+		{ _field_explanation, "FIRE TEAM TIER BONUS MULTIPLIERS", "Applied to money earned from biped kills and assists" },
 		{ _field_real, "Bronze multiplier" },
 		{ _field_real, "Silver multiplier" },
 		{ _field_real, "Gold multiplier" },
-		{ _field_explanation, "FIRE TEAM TIER TIME REQUIREMENT" },
+		{ _field_explanation, "FIRE TEAM TIER TIME REQUIREMENT", "Game time in seconds after which everyone is promoted to at least this tier" },
 		{ _field_long_integer, "Bronze advancement time" },
 		{ _field_long_integer, "Silver advancement time" },
 		{ _field_long_integer, "Gold advancement time" },
@@ -101,13 +101,13 @@ namespace blofeld
 
 	TAG_BLOCK(multiplayer_constants_block, 1)
 	{
-		{ _field_explanation, "PLAYER SPAWN INFLUENCERS" },
+		{ _field_explanation, "PLAYER SPAWN INFLUENCERS", "These are the default spawn influencer settings which can be overridden by scenario tags" },
 		{ _field_tag_reference, "Default Spawn Settings", &g_spawnSettingsReference },
-		{ _field_explanation, "MORE MP CONSTANTS" },
+		{ _field_explanation, "MORE MP CONSTANTS", "More old Halo2 stuff follows..." },
 		{ _field_real, "teleporter recharge time:seconds" },
 		{ _field_tag_reference, "sandbox effect", &global_effect_reference },
 		{ _field_string_id, "blocked teleporter string" },
-		{ _field_explanation, "RESPAWN STRINGS" },
+		{ _field_explanation, "RESPAWN STRINGS", "These are used for respawn status message displays\nThe text comes from the in-game-text multiplayer message strings list tag\nin the multiplayer runtime globals block above" },
 		{ _field_string_id, "voluntary respawn control instructions" },
 		{ _field_string_id, "spawn allowed default respawn" },
 		{ _field_string_id, "spawn at player allowed looking at self" },

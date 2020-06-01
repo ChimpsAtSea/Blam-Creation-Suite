@@ -92,7 +92,7 @@ namespace blofeld
 	{
 		{ _field_word_flags, "compression flags*", &compression_flags },
 		{ _field_pad, "JOJOBOMO", 2 },
-		{ _field_explanation, "WARNING" },
+		{ _field_explanation, "WARNING", "The following fields are mislabeled for legacy reasons.The actual order is:\nposition_bounds.x0 position_bounds.x1 position_bounds.y0\nposition_bounds.y1 position_bounds.z0 position_bounds.z1\n\ntexcoord_bounds.x0 texcoord_bounds.x1\ntexcoord_bounds.y0 texcoord_bounds.y1\n" },
 		{ _field_real_point_3d, "position bounds 0*" },
 		{ _field_real_point_3d, "position bounds 1*" },
 		{ _field_real_point_2d, "texcoord bounds 0*" },
@@ -311,7 +311,7 @@ namespace blofeld
 
 	TAG_STRUCT(global_render_geometry_struct)
 	{
-		{ _field_explanation, "Render Geometry" },
+		{ _field_explanation, "Render Geometry", "\nAll new Halo 3 render geometry definitions!\n\n" },
 		{ _field_long_flags, "runtime flags*!", &render_geometry_flags },
 		{ _field_block, "meshes*", &global_mesh_block_block },
 		{ _field_block, "PCA Mesh Indices*", &PCAMeshIndexBlock_block },

@@ -60,7 +60,7 @@ namespace blofeld
 	TAG_STRUCT(tracer_system_struct_definition)
 	{
 		{ _field_long_flags, "tracer system flags", &tracerSystemFlags },
-		{ _field_explanation, "far lod" },
+		{ _field_explanation, "far lod", "These don\'t actually do anything unless you use \"tracer lod\" in one of your curves." },
 		{ _field_real, "far lod start" },
 		{ _field_real, "far lod end" },
 		{ _field_real, "far lod start value" },

@@ -8,7 +8,7 @@ namespace blofeld
 
 	TAG_BLOCK(multiplayer_object_type_block, k_multiplayer_object_type_maximum_count)
 	{
-		{ _field_explanation, "WARNING" },
+		{ _field_explanation, "WARNING", "This block is readonly because adding, removing, reordering, or renaming elements after we ship a map pack will completely break the game.  And I will punch you.  Hard.  In the face." },
 		{ _field_string_id, "name^" },
 		{ _field_tag_reference, "object", &object_reference$6 },
 		{ _field_terminator }
@@ -68,13 +68,13 @@ namespace blofeld
 
 	TAG_STRUCT(multiplayer_object_type_list_struct_definition)
 	{
-		{ _field_explanation, "MEGALO" },
+		{ _field_explanation, "MEGALO", "After changing this tag you will need to run the tool command multiplayer-generate-global-object-type-list (once) and rebuild the .mapinfo file for each multiplayer scenario in order to use the new objects in megalo" },
 		{ _field_block, "object types", &multiplayer_object_type_block_block },
 		{ _field_block, "weapons", &multiplayer_weapon_collection_block_block },
 		{ _field_block, "vehicles", &multiplayer_vehicle_collection_block_block },
 		{ _field_block, "grenades", &multiplayer_grenade_collection_block_block },
 		{ _field_block, "equipment", &multiplayer_equipment_collection_block_block },
-		{ _field_explanation, "REMAPPING TABLES" },
+		{ _field_explanation, "REMAPPING TABLES", "Note - if a remap table has a single element whose \'from\' is NONE, then every object will be remapped to the \'to\' object" },
 		{ _field_block, "weapon remapping", &multiplayer_weapon_remap_table_block_block },
 		{ _field_block, "vehicle remapping", &multiplayer_vehicle_remap_table_block_block },
 		{ _field_block, "equipment remapping", &multiplayer_equipment_remap_table_block_block },

@@ -29,11 +29,11 @@ namespace blofeld
 	TAG_BLOCK(emblem_front_list, s_emblem_library::k_max_front_emblem_count)
 	{
 		{ _field_string_id, "name^" },
-		{ _field_explanation, "Layer 0 (foreground)" },
+		{ _field_explanation, "Layer 0 (foreground)", "Composed of two shapes\n" },
 		{ _field_struct, "layer 0", &emblem_layer_struct_definition },
-		{ _field_explanation, "Layer 1 (midground)" },
+		{ _field_explanation, "Layer 1 (midground)", "This layer is behind the foreground, and in front of the background\n" },
 		{ _field_struct, "layer 1", &emblem_layer_struct_definition },
-		{ _field_explanation, "Misc" },
+		{ _field_explanation, "Misc", "Extra configuration\n" },
 		{ _field_char_enum, "primary layer#layer that is considered \"primary\" and which will use the primary color", &front_emblem_primary_layer },
 		{ _field_pad, "pad0", 1 },
 		{ _field_pad, "pad1", 2 },
@@ -43,7 +43,7 @@ namespace blofeld
 	TAG_BLOCK(emblem_back_list, s_emblem_library::k_max_back_emblem_count)
 	{
 		{ _field_string_id, "name^" },
-		{ _field_explanation, "Layer 2 (background)" },
+		{ _field_explanation, "Layer 2 (background)", "\n" },
 		{ _field_struct, "layer 2", &emblem_layer_struct_definition },
 		{ _field_terminator }
 	};
@@ -104,20 +104,20 @@ namespace blofeld
 
 	TAG_STRUCT(emblem_library_struct_definition)
 	{
-		{ _field_explanation, "Emblem Library" },
+		{ _field_explanation, "Emblem Library", "This library contains the definitions of all the player emblems\nAll the compositions and transformations that build an emblem are defined in this tag.\nEach emblem is composed of a number of shapes.\nAnd each shape is defined by transformations on an emblem bitmap.\n" },
 		{ _field_short_integer, "version!" },
 		{ _field_pad, "jfejkjjg", 2 },
 		{ _field_custom, "Bitmaps" },
-		{ _field_explanation, "Bitmaps" },
+		{ _field_explanation, "Bitmaps", "\n" },
 		{ _field_real, "bitmap resolution:pixels#used to calculate appropriate antialiasing settings" },
 		{ _field_real, "antialias sharpen#default 1.0, global control on antialias sharpness" },
 		{ _field_tag_reference, "emblem bitmaps", &global_bitmap_reference },
 		{ _field_tag_reference, "emblem bitmaps hi rez", &global_bitmap_reference },
 		{ _field_block, "bitmaps", &emblem_bitmap_list_block },
 		{ _field_custom },
-		{ _field_explanation, "Shapes" },
+		{ _field_explanation, "Shapes", "\n" },
 		{ _field_block, "shapes", &emblem_shape_list_block },
-		{ _field_explanation, "Emblems" },
+		{ _field_explanation, "Emblems", "\n" },
 		{ _field_block, "front emblems", &emblem_front_list_block },
 		{ _field_block, "back emblems", &emblem_back_list_block },
 		{ _field_block, "runtime front!", &emblem_runtime_front_list_block },
@@ -138,12 +138,12 @@ namespace blofeld
 
 	TAG_STRUCT(emblem_layer)
 	{
-		{ _field_explanation, "Shape 0" },
+		{ _field_explanation, "Shape 0", "Multiplier allows you to control how these shapes are combined.\nFor example, mult0= 1.0 and mult1= -1.0 causes shape 1 to be subtracted from shape 0.\n" },
 		{ _field_short_block_index, "shape 0" },
 		{ _field_pad, "fkkfkll", 2 },
 		{ _field_real, "multiplier 0" },
 		{ _field_struct, "transform 0", &emblem_transform_struct_definition },
-		{ _field_explanation, "Shape 1" },
+		{ _field_explanation, "Shape 1", "\n" },
 		{ _field_short_block_index, "shape 1" },
 		{ _field_pad, "fkkfkllf", 2 },
 		{ _field_real, "multiplier 1" },

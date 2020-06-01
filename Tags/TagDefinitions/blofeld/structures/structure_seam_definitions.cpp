@@ -92,7 +92,7 @@ namespace blofeld
 	TAG_STRUCT(structure_seams_struct_definition)
 	{
 		{ _field_struct, "structure manifest*", &structure_manifest_struct_struct_definition },
-		{ _field_explanation, "This tag defines the geometry between seam connected structures bsp." },
+		{ _field_explanation, "This tag defines the geometry between seam connected structures bsp.", "" },
 		{ _field_long_integer, "version*!" },
 		{ _field_block, "errors*!", &global_error_report_categories_block_block },
 		{ _field_block, "seams*!", &structure_seam_block_block },

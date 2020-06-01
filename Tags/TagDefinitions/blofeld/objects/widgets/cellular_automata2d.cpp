@@ -40,13 +40,13 @@ namespace blofeld
 
 	TAG_STRUCT(cellular_automata2d_struct_definition)
 	{
-		{ _field_explanation, "properties" },
+		{ _field_explanation, "properties", "" },
 		{ _field_short_integer, "updates per second:Hz" },
 		{ _field_pad, "IFJ", 2 },
 		{ _field_real, "dead cell penalty" },
 		{ _field_real, "live cell bonus" },
 		{ _field_pad, "EPTNF", 80 },
-		{ _field_explanation, "height map" },
+		{ _field_explanation, "height map", "" },
 		{ _field_short_integer, "width:cells" },
 		{ _field_short_integer, "height:cells" },
 		{ _field_real, " cell width:world units" },
@@ -58,7 +58,7 @@ namespace blofeld
 		{ _field_real_rgb_color, "base color" },
 		{ _field_real_rgb_color, "peak color" },
 		{ _field_pad, "IXKLNR", 76 },
-		{ _field_explanation, "detail map" },
+		{ _field_explanation, "detail map", "" },
 		{ _field_short_integer, "  width:cells" },
 		{ _field_short_integer, "  height:cells" },
 		{ _field_real, "  cell width:world units" },

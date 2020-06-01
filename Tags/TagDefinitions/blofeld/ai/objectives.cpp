@@ -71,7 +71,7 @@ namespace blofeld
 		{ _field_word_flags, "runtime flags*!", &task_runtime_flags },
 		{ _field_short_integer, "Kungfu count#The number of guys under this task that should be allowed to fight the player at a time" },
 		{ _field_pad, "post-kungfu-count", 2 },
-		{ _field_explanation, "UI-Controlled" },
+		{ _field_explanation, "UI-Controlled", "You don\'t need to modify these here. They are managed by the objectives ui" },
 		{ _field_string_id, "name^" },
 		{ _field_short_integer, "priority*" },
 		{ _field_short_block_index, "first_child*" },

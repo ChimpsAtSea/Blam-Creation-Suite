@@ -91,7 +91,7 @@ namespace blofeld
 		{ _field_custom, "high res flags" },
 		{ _field_array, "high res flags", &g_cinematicShotFlagArray_array },
 		{ _field_long_flags, "override creation flags", &cinematic_coop_type_flags },
-		{ _field_explanation, "Custom override creation condition" },
+		{ _field_explanation, "Custom override creation condition", "Used in combination with the override creation flags above" },
 		{ _field_struct, "custom don\'t create condition", &cinematic_custom_script_block_struct_definition },
 		{ _field_block, "attachments", &scene_object_attachment_block_block },
 		{ _field_terminator }

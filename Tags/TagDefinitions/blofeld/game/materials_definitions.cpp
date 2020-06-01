@@ -12,9 +12,9 @@ namespace blofeld
 
 	TAG_BLOCK(underwater_proxies_block, k_maximum_material_types)
 	{
-		{ _field_explanation, "when this material is encounted under a material of this type ..." },
+		{ _field_explanation, "when this material is encounted under a material of this type ...", "" },
 		{ _field_string_id, "underwater material" },
-		{ _field_explanation, "... we report it as this material" },
+		{ _field_explanation, "... we report it as this material", "" },
 		{ _field_string_id, "proxy material" },
 		{ _field_short_integer, "underwater material type*!" },
 		{ _field_short_integer, "proxy material type*!" },
@@ -61,7 +61,7 @@ namespace blofeld
 
 	TAG_STRUCT(wet_proxies_struct)
 	{
-		{ _field_explanation, "when rained on, we report this material" },
+		{ _field_explanation, "when rained on, we report this material", "" },
 		{ _field_string_id, "wet material" },
 		{ _field_short_integer, "runtime proxy material index*!" },
 		{ _field_pad, "wpb1", 2 },
@@ -74,10 +74,10 @@ namespace blofeld
 		{ _field_real, "friction" },
 		{ _field_real_fraction, "restitution" },
 		{ _field_real, "density:kg/m^3" },
-		{ _field_explanation, "Drag" },
+		{ _field_explanation, "Drag", "" },
 		{ _field_tag_reference, "water physics drag properties", &water_physics_drag_properties_reference },
 		{ _field_block, "drag overrides", &object_type_drag_properties_block_block },
-		{ _field_explanation, "Floatation" },
+		{ _field_explanation, "Floatation", "objects of this flotation category have this density relative to being in this material (1.0f==neutral)" },
 		{ _field_pad, "default", 4 },
 		{ _field_real, "super floater" },
 		{ _field_real, "floater" },
@@ -107,7 +107,7 @@ namespace blofeld
 		{ _field_tag_reference, "water ripple (small)", &render_water_ripple_reference },
 		{ _field_tag_reference, "water ripple (medium)", &render_water_ripple_reference },
 		{ _field_tag_reference, "water ripple (large)", &render_water_ripple_reference },
-		{ _field_explanation, "sweetener inheritance flags" },
+		{ _field_explanation, "sweetener inheritance flags", "when a sweetener inheritance flag is set the sound\\effect is not inherited from the parent material.  If you leave the sweetener blank and set the flag than no effect\\sound will play" },
 		{ _field_long_flags, "sweetener inheritance flags", &materials_sweeteners_inheritance_flags },
 		{ _field_terminator }
 	};

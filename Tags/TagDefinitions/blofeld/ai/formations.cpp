@@ -13,7 +13,7 @@ namespace blofeld
 
 	TAG_BLOCK(formation_point_definition, k_max_points_per_primitive)
 	{
-		{ _field_explanation, "" },
+		{ _field_explanation, "", "" },
 		{ _field_angle, "angle" },
 		{ _field_real, "offset" },
 		{ _field_terminator }
@@ -21,7 +21,7 @@ namespace blofeld
 
 	TAG_BLOCK(formation_primitive_definition, k_max_primitives_per_formation)
 	{
-		{ _field_explanation, "" },
+		{ _field_explanation, "", "" },
 		{ _field_word_flags, "flags", &formation_primitive_flags },
 		{ _field_short_integer, "priority" },
 		{ _field_short_integer, "capacity*!" },

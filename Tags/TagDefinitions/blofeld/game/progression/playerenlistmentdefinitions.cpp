@@ -30,7 +30,7 @@ namespace blofeld
 
 	TAG_STRUCT(player_enlistment_globals_definition_struct_definition)
 	{
-		{ _field_explanation, "Enlistments" },
+		{ _field_explanation, "Enlistments", "!!! DO NOT, UNDER ANY CIRCUMSTANCES, REORDER THIS BLOCK AFTER SHIP !!!" },
 		{ _field_block, "enlistments", &playerEnlistmentDefinitionBlock_block },
 		{ _field_terminator }
 	};

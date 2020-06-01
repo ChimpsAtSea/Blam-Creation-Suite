@@ -180,7 +180,7 @@ namespace blofeld
 		{ _field_tag_reference, "structure bsp^", &structure_bsp_reference_non_resolving },
 		{ _field_tag_reference, "local structure bsp^*!", &structure_bsp_reference_non_resolving },
 		{ _field_tag_reference, "structure metadata*", &Tag::Reference<struct StructureMetadata>::s_defaultDefinition },
-		{ _field_explanation, "Size Class" },
+		{ _field_explanation, "Size Class", "Tells lightmapper desired res for structure bitmaps.\nNumbers in parens are final sizes after compression" },
 		{ _field_long_enum, "size class", &scenario_structure_size_enum },
 		{ _field_long_enum, "refinement size class", &scenario_structure_refinement_size_enum },
 		{ _field_real, "hacky ambient min luminance" },
@@ -200,7 +200,7 @@ namespace blofeld
 		{ _field_custom, "floating shadows" },
 		{ _field_struct, "floating shadow settings", &scenarioFloatingShadowSettingsStruct_struct_definition },
 		{ _field_custom },
-		{ _field_explanation, "Clones" },
+		{ _field_explanation, "Clones", "Describes which other bsps are physical \'clones\' of this bsp\nThis is used to determine how to attach \'position-only\' elements, like decorators, to the bsps:\nEach clone gets a separate copy of decorators that are in both.\nNon-cloned bsps cannot split decorators this way - the decorator will be given to the lowest numbered bsp\n" },
 		{ _field_long_block_flags, "cloned bsp flags" },
 		{ _field_struct, "lightmap setting{lightmap resolution buckets}", &scenario_lightmap_setting_struct_struct_definition },
 		{ _field_real, "custom gravity scale#0==nogravity, 1==full, set the custom gravity scale flag to make this parameter active" },
@@ -772,7 +772,7 @@ namespace blofeld
 
 	TAG_BLOCK(loadScreenReferenceBlock, SHORT_MAX)
 	{
-		{ _field_explanation, "Map IDs" },
+		{ _field_explanation, "Map IDs", "These are pulled from levels_map_id_constants.h\nk_mp_z00_testchamber_map_id\t\t\t10777)\nk_mp_wraparound_map_id\t\t\t\t\t10080)  \nk_mp_z05_cliffside_map_id              10085)  // complex \nk_mp_z11_valhalla_id\t\t\t\t\t10091)\nk_mp_ca_gore_valley_map_id\t\t\t\t10200)\nk_mp_ca_tower_map_id\t\t\t\t\t10202)\nk_mp_ca_warhouse_map_id\t\t\t\t10210)\nk_mp_ca_blood_cavern_map_id\t\t\t10225)\nk_mp_ca_blood_crash_map_id\t\t\t\t10226)\nk_mp_ca_forge_erosion_map_id\t\t\t10245)\nk_mp_ca_redoubt_map_id\t\t\t\t\t10252)\nk_mp_ca_forge_bonanza_map_id\t\t\t10255)\nk_mp_ca_forge_ravine_map_id\t\t\t10256)\nk_mp_ca_canyon_map_id\t\t\t\t\t10261)\nk_mp_zd_02_grind_map_id\t\t\t\t10102)\n\nk_ff81_courtyard_map_id\t\t\t\t11081)\nk_ff82_scurve_map_id\t\t\t\t\t11071)\nk_ff83_breach_map_id\t\t\t\t\t11061)\nk_ff84_temple_map_id\t\t\t\t\t11084)\nk_ff85_island_map_id\t\t\t\t\t11091)\nk_ff86_sniperalley_map_id\t\t\t\t11101)\nk_ff87_chopperbowl_map_id\t\t\t\t11111)\nk_ff88_horseshou_map_id\t\t\t\t11121)\nk_ff89_infinity_map_id\t\t\t\t\t11131)\nk_ff90_fortsw_map_id\t\t\t\t\t11141)\n\nk_sp_intro_map_id\t\t\t\t\t\t12000)\nk_sp_m10_crash_map_id\t\t\t\t\t12010)\nk_sp_m20_haven_map_id\t\t\t\t\t12020)\nk_sp_m30_cryptum_map_id\t\t\t\t12030)\nk_sp_m40_invasion_map_id\t\t\t\t12040)\nk_sp_m60_rescue_map_id\t\t\t\t\t12060)\nk_sp_m70_liftoff_map_id\t\t\t\t12070)\nk_sp_m80_delta_map_id\t\t\t\t\t12080)\nk_sp_m90_sacrifice_map_id\t\t\t\t12090)\n\nk_sp_max_environment_solo_map_id\t\t12499)\n" },
 		{ _field_long_integer, "Map ID#Only valid for main menu - otherwise always use first reference" },
 		{ _field_tag_reference, "Load Screen Reference", &global_loadscreen_reference },
 		{ _field_real, "Tint Gradient Lookup V Coordinate#Value between 0.0 and 1.0 determines which line to use for tint.\nA negative value will choose a random tint from the palette." },
@@ -900,9 +900,9 @@ namespace blofeld
 		{ _field_block, "recorded animations", &recorded_animation_block_block },
 		{ _field_block, "zone set switch trigger volumes~", &scenario_zone_set_switch_trigger_volume_block_block },
 		{ _field_block, "named location volumes", &scenario_named_location_volume_block_block },
-		{ _field_explanation, "SPAWN INFLUENCE OVERRIDES" },
+		{ _field_explanation, "SPAWN INFLUENCE OVERRIDES", "You can use the following to override multiplayer global spawn influencers for the scenario.  Default settings are defined in multiplayer/multiplayer_globals.multiplayer_globals." },
 		{ _field_tag_reference, "Spawn Settings", &g_spawnSettingsReference },
-		{ _field_explanation, "RENDER FLUFF" },
+		{ _field_explanation, "RENDER FLUFF", "Pretty" },
 		{ _field_block, "decals", &scenario_decals_block_block },
 		{ _field_block, "decal palette", &scenario_decal_palette_block_block },
 		{ _field_long_integer, "largest zoneset static decal memory size:kilobytes#this is memory for the largest possible zoneset - default (0) is 2048" },
@@ -978,7 +978,7 @@ namespace blofeld
 		{ _field_block, "decorators", &scenario_decorator_block_block },
 		{ _field_block, "neuticle palette", &scenario_cheap_particle_system_palette_block_block },
 		{ _field_block, "neuticles", &scenario_cheap_particle_systems_block_block },
-		{ _field_explanation, "Scriptable Light Rigs" },
+		{ _field_explanation, "Scriptable Light Rigs", "" },
 		{ _field_block, "scriptable light rigs", &scriptableLightRigBlock_block },
 		{ _field_block, "cinematics", &scenario_cinematics_block_block },
 		{ _field_block, "cinematic lighting palette", &scenario_cinematic_lighting_palette_block_block },
@@ -992,14 +992,14 @@ namespace blofeld
 		{ _field_block, "thespian{performances}", &scenario_performances_block_block },
 		{ _field_block, "puppetShows", &PuppetShowsBlock_block },
 		{ _field_tag_reference, "location name globals", &global_location_name_globals_reference },
-		{ _field_explanation, "garbage collection" },
+		{ _field_explanation, "garbage collection", "specify zero for values that should use the data in the globals tag." },
 		{ _field_block, "garbage collection", &garbage_collection_block_block },
 		{ _field_tag_reference, "hud screen reference#appears for the player through the scenario", &Tag::Reference<struct CuiScreenDefinition>::s_defaultDefinition },
 		{ _field_tag_reference, "required resources", &scenario_required_resource_reference },
 		{ _field_tag_reference, "variant globals", &variant_globals_reference },
 		{ _field_tag_reference, "ordnance map bitmap", &global_bitmap_reference },
 		{ _field_real_fraction_bounds, "ordnance map depth bounds" },
-		{ _field_explanation, "Random ordnance" },
+		{ _field_explanation, "Random ordnance", "Drops randomly selected set of ordnance at positions marked by drop_point objects." },
 		{ _field_word_flags, "ordnance flags", &ordnance_flags },
 		{ _field_pad, "SRO", 2 },
 		{ _field_tag_reference, "drop pod (scenery)#if set, overrides that in progression globals", &scenery_reference$5 },
@@ -1014,7 +1014,7 @@ namespace blofeld
 		{ _field_real, "Nav marker visibility proximity:wu" },
 		{ _field_real, "Nav marker premium visibility proximity:wu" },
 		{ _field_block, "Drop sets", &scenarioRandomOrdnanceDropSetBlock_block },
-		{ _field_explanation, "Ordnance personal" },
+		{ _field_explanation, "Ordnance personal", "Ordnance personal" },
 		{ _field_tag_reference, "Scenario Ordnance List", &Tag::Reference<struct ScenarioOrdnance>::s_defaultDefinition },
 		{ _field_block, "Unit Recordings", &ScenarioUnitRecordingBlock_block },
 		{ _field_block, "Exit load screen#for non-mainmenu, we always use the first one", &loadScreenReferenceBlock_block },
@@ -1045,7 +1045,7 @@ namespace blofeld
 
 	TAG_STRUCT(scenario_lightmap_setting_struct)
 	{
-		{ _field_explanation, "Lightmap resolution for each buckets" },
+		{ _field_explanation, "Lightmap resolution for each buckets", "relative to world unit per texel. default:\n1-> 1\n2-> 4\n2-> 16\n3-> 64\n5-> 128\n6-> 256\n7-> 512" },
 		{ _field_real, "lightmap res lowest" },
 		{ _field_real, "lightmap res 2nd low" },
 		{ _field_real, "lightmap res 3rd low" },
@@ -1063,7 +1063,7 @@ namespace blofeld
 
 	TAG_STRUCT(scenario_trigger_volume_struct)
 	{
-		{ _field_explanation, "naming" },
+		{ _field_explanation, "naming", "the name of the trigger volume specifies what kind of volume it is:\n\'zone_set:\'\n\'begin_zone_set:\'\n\'kill\' (plus \'_soft\' for soft kill volume)\n\'playerkill\' (plus \'_soft\' for soft kill volume) for player only kill volume \n\'safe_zone\' (plus \'_soft\' for soft kill volume)\n\'location_\'\n\'ordnance_bounds\'\n\'unsafe_spawn\'\nappend \':*\' to zone set names to allow vehicles to teleport along with their players." },
 		{ _field_string_id, "name^" },
 		{ _field_short_block_index, "object name" },
 		{ _field_short_integer, "runtime node index!" },

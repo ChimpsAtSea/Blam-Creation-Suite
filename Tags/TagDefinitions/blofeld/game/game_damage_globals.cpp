@@ -51,7 +51,7 @@ namespace blofeld
 
 	TAG_BLOCK(shield_boost_block, 1)
 	{
-		{ _field_explanation, "shield boosting" },
+		{ _field_explanation, "shield boosting", "This feature was implemented for the engineer character in atlas. Shield dynamics overrides for when shields are being \'boosted\' by an external source" },
 		{ _field_real, "shield boost decay#amount of shield-boost to decay per second" },
 		{ _field_real, "shield boost recharge time#time to recharge full shields when getting boosted" },
 		{ _field_real, "shield boost stun time#stun time when getting boosted" },

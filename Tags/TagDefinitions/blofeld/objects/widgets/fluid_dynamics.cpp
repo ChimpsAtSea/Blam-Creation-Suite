@@ -71,7 +71,7 @@ namespace blofeld
 		{ _field_block, "inflow", &fluid_dynamics_inflow_block_block },
 		{ _field_block, "outflow", &fluid_dynamics_outflow_block_block },
 		{ _field_block, "obstacles", &fluid_dynamics_obstacle_block_block },
-		{ _field_explanation, "Cylinder map" },
+		{ _field_explanation, "Cylinder map", "" },
 		{ _field_struct, "cylindrical radius", &g_single_scalar_function_evaluation_struct_struct_definition },
 		{ _field_terminator }
 	};

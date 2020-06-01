@@ -131,7 +131,7 @@ namespace blofeld
 
 	TAG_BLOCK(cell_block, k_maximum_cells_per_squad)
 	{
-		{ _field_explanation, "Character Build" },
+		{ _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the cell sub-folders" },
 		{ _field_string_id, "name^" },
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 		{ _field_short_integer, "normal diff count#initial number of actors on normal difficulty" },
@@ -209,7 +209,7 @@ namespace blofeld
 		{ _field_struct, "place on", &ai_spawn_conditions_struct_struct_definition },
 		{ _field_short_integer, "normal diff count#initial number of actors on normal difficulty" },
 		{ _field_enum, "major upgrade", &major_upgrade_enum },
-		{ _field_explanation, "Character Build" },
+		{ _field_explanation, "Character Build", "Specify the distribution of characters and weapons in the following blocks" },
 		{ _field_block, "character type", &character_ref_choice_block_block },
 		{ _field_block, "initial weapon", &weapon_ref_choice_block_block },
 		{ _field_block, "initial secondary weapon", &weapon_ref_choice_block_block },

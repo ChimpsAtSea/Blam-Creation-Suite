@@ -8,7 +8,7 @@ namespace blofeld
 
 	TAG_BLOCK(scenario_description_block, MAXIMUM_NUMBER_OF_MULTIPLAYER_SCENARIOS)
 	{
-		{ _field_explanation, "net map info" },
+		{ _field_explanation, "net map info", "these provide the info required by the UI to load a net map" },
 		{ _field_tag_reference, "descriptive bitmap", &global_bitmap_reference },
 		{ _field_tag_reference, "displayed map name", &global_multilingual_unicode_string_list_reference },
 		{ _field_string, "scenario tag directory path#this is the path to the directory containing the scenario tag file of the same name" },

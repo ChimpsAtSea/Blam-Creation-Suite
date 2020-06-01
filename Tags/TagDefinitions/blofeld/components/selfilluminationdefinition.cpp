@@ -8,7 +8,7 @@ namespace blofeld
 
 	TAG_BLOCK(self_illumination_state, SelfIlluminationDefinition::MAX_STATES)
 	{
-		{ _field_explanation, "Self-Illumination State" },
+		{ _field_explanation, "Self-Illumination State", "An animated self-illumination controller state." },
 		{ _field_string_id, "Name^" },
 		{ _field_long_flags, "Flags", &self_illumination_flags },
 		{ _field_real, "Length #Length of illumination animation in seconds." },

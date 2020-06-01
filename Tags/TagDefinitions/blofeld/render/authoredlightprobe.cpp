@@ -6,7 +6,7 @@ namespace blofeld
 
 	TAG_GROUP(authored_light_probe, AUTHORED_LIGHT_PROBE_TAG)
 	{
-		{ _field_explanation, "Character Lighting" },
+		{ _field_explanation, "Character Lighting", "\n" },
 		{ _field_block, "Lights*", &authored_light_probe_lights_block_block },
 		{ _field_custom, "Authored Light Probe Intensity Scale!" },
 		{ _field_real, "Authored Light Probe Intensity Scale!" },
@@ -16,7 +16,7 @@ namespace blofeld
 		{ _field_char_enum, "Is Camera-space", &midnight_boolean_enum_definition },
 		{ _field_char_enum, "Apply to First Person Geometry", &midnight_boolean_enum_definition },
 		{ _field_pad, "pdd", 2 },
-		{ _field_explanation, "Object Shadows (all objects, not just characters)" },
+		{ _field_explanation, "Object Shadows (all objects, not just characters)", "\n" },
 		{ _field_custom, "IO Direct Lighting Minimum Percentage (When in Shadow)" },
 		{ _field_real, "IO Direct Lighting Minimum Percentage (When in Shadow)" },
 		{ _field_terminator }

@@ -16,9 +16,9 @@ namespace blofeld
 
 	TAG_STRUCT(rumble_definition_struct)
 	{
-		{ _field_explanation, "low frequency rumble" },
+		{ _field_explanation, "low frequency rumble", "" },
 		{ _field_struct, "low frequency rumble", &rumble_frequency_definition_struct_struct_definition },
-		{ _field_explanation, "high frequency rumble" },
+		{ _field_explanation, "high frequency rumble", "" },
 		{ _field_struct, "high frequency rumble", &rumble_frequency_definition_struct_struct_definition },
 		{ _field_terminator }
 	};

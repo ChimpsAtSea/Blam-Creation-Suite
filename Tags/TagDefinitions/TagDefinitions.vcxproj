@@ -295,6 +295,7 @@
     <ClCompile Include="blofeld\tag_files\tag_dependency_definitions.cpp" />
     <ClCompile Include="blofeld\tag_files\tag_group_definitions.cpp" />
     <ClCompile Include="blofeld\tag_groups.cpp" />
+    <ClCompile Include="blofeld\tag_structs.cpp" />
     <ClCompile Include="blofeld\text\font_list.cpp" />
     <ClCompile Include="blofeld\text\text_group.cpp" />
     <ClCompile Include="blofeld\units\biped_definitions.cpp" />
@@ -318,6 +319,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="blofeld\tag_structs.h" />
     <ClInclude Include="tagdefinitions-private-pch.h" />
     <ClInclude Include="blofeld.h" />
     <ClInclude Include="blofeld\ai\ai.h" />

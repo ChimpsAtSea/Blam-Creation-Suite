@@ -66,7 +66,7 @@ namespace blofeld
 
 	TAG_STRUCT(flock_struct_definition)
 	{
-		{ _field_explanation, "Simple flocking" },
+		{ _field_explanation, "Simple flocking", "" },
 		{ _field_real, "forward weight{forward scale}:[0..1]#weight given to boid\'s desire to fly straight ahead" },
 		{ _field_real, "leveling force weight{leveling force scale}:[0..1]#weight given to boids desire to fly level" },
 		{ _field_real, "destination weight{sink scale}:[0..1]#weight given to boid\'s desire to fly towards its sinks" },
@@ -80,10 +80,10 @@ namespace blofeld
 		{ _field_real, "target delay time:seconds#amount of time we need to be locked onto a target before we might start killing it" },
 		{ _field_real, "target kill chance:chance per second#probability of killing your target in one second" },
 		{ _field_real, "ai destroy chance:chance per second#if targetted by AI, the probability of dying in one second" },
-		{ _field_explanation, "Perlin noise parameters" },
+		{ _field_explanation, "Perlin noise parameters", "Recommended initial values: \n\trandom offset scale= 0.2 \n\toffset period bounds= 1, 3" },
 		{ _field_real, "random offset weight{random offset scale}:[0..1]#weight given to boid\'s random heading offset" },
 		{ _field_real_bounds, "random offset period:seconds" },
-		{ _field_explanation, "Complex Flocking" },
+		{ _field_explanation, "Complex Flocking", "WARNING: In flocks with a neighborhood radius of 0, creatures are not influenced by the other creatures around them. THESE ARE MUCH CHEAPER.\n" },
 		{ _field_real, "neighborhood radius:world units#distance within which one boid is affected by another" },
 		{ _field_angle, "perception angle:degrees#angle-from-forward within which one boid can perceive and react to another" },
 		{ _field_real, "avoidance weight{avoidance scale}:[0..1]#weight given to boid\'s desire to avoid collisions with other boids, when within the avoidance radius" },

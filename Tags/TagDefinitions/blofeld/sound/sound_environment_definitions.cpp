@@ -6,9 +6,9 @@ namespace blofeld
 
 	TAG_GROUP(sound_environment, SOUND_ENVIRONMENT_TAG)
 	{
-		{ _field_explanation, "Reverb Settings" },
+		{ _field_explanation, "Reverb Settings", "" },
 		{ _field_struct, "reverb settings", &global_sound_reverb_block_struct_definition },
-		{ _field_explanation, "Forced Lowpass" },
+		{ _field_explanation, "Forced Lowpass", "This will override obstruction and occlusion if you set the cutoff frequency to a non-zero value. Use the individual classes\' \"forced lowpass wet mix\" value to alter the mix." },
 		{ _field_struct, "lowpass settings", &global_sound_lowpass_block_struct_definition },
 		{ _field_terminator }
 	};

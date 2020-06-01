@@ -19,6 +19,7 @@ namespace blofeld
 			const s_tag_array_definition* const array_definition;
 			const s_string_list_definition* const string_list_definition;
 			const s_tag_reference_definition* const tag_reference_definition;
+			const char* const explanation;
 			uint32_t padding;
 			uint32_t length;
 		};

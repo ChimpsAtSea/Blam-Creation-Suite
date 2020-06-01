@@ -70,7 +70,7 @@ namespace blofeld
 
 	TAG_BLOCK(ai_trait_vision_block, k_num_ai_trait_vision-2)
 	{
-		{ _field_explanation, "Vision Traits" },
+		{ _field_explanation, "Vision Traits", "Traits that affect the AI\'s vision" },
 		{ _field_real, "vision distance scale#Scale the distance at which an AI can see their target." },
 		{ _field_real, "vision angle scale#Scale the angles of the AI\'s vision cone." },
 		{ _field_terminator }
@@ -78,14 +78,14 @@ namespace blofeld
 
 	TAG_BLOCK(ai_trait_sound_block, k_num_ai_trait_sound-2)
 	{
-		{ _field_explanation, "Sound Traits" },
+		{ _field_explanation, "Sound Traits", "Traits that affect the AI\'s sound awareness" },
 		{ _field_real, "hearing distance scale#Scale the character\'s hearing distance." },
 		{ _field_terminator }
 	};
 
 	TAG_BLOCK(ai_trait_luck_block, k_num_ai_trait_luck-2)
 	{
-		{ _field_explanation, "Luck Traits" },
+		{ _field_explanation, "Luck Traits", "Traits that affect the AI\'s luck" },
 		{ _field_real, "evasion chance scale#Scale the chance of evading fire." },
 		{ _field_real, "grenade dive chance scale#Scale the chance of diving from grenades." },
 		{ _field_real, "broken kamikaze chance scale#Scale the chance of going kamikaze when broken." },
@@ -102,7 +102,7 @@ namespace blofeld
 
 	TAG_BLOCK(ai_trait_grenade_block, k_num_ai_trait_grenade-2)
 	{
-		{ _field_explanation, "Grenade Traits" },
+		{ _field_explanation, "Grenade Traits", "Traits that affect the AI\'s grenade use" },
 		{ _field_real, "velocity scale#Scale the velocity at which AI throws grenades" },
 		{ _field_real, "throw grenade delay scale#Scale the time between grenade throws." },
 		{ _field_real, "don\'t drop grenades chance scale" },
@@ -147,7 +147,7 @@ namespace blofeld
 		{ _field_real_bounds, "hoist stand:wus" },
 		{ _field_real_bounds, "vault step:wus" },
 		{ _field_real_bounds, "vault crouch:wus" },
-		{ _field_explanation, "PATHFINDING SEARCH RANGES" },
+		{ _field_explanation, "PATHFINDING SEARCH RANGES", "The maximum ranges to which firing point evaluations will do pathfinding searches. INCREASING THESE VALUES WILL ALMOST CERTAINLY HAVE A NEGATIVE IMPACT ON PERFORMANCE." },
 		{ _field_real, "search range infantry:wus" },
 		{ _field_real, "search range flying:wus" },
 		{ _field_real, "search range vehicle:wus" },
@@ -159,12 +159,12 @@ namespace blofeld
 		{ _field_real, "berserking actor scariness" },
 		{ _field_real, "kamikazeing actor scariness" },
 		{ _field_real, "invincible scariness#when an actor\'s target is invincible, he is this much more scared" },
-		{ _field_explanation, "RESURRECTION" },
+		{ _field_explanation, "RESURRECTION", "A few properties to help define when it is safe for a mission critical character to ressurect." },
 		{ _field_real, "min death time:seconds#I will be dead for at least this long" },
 		{ _field_real, "projectile distance:wu#If there is a projectile within this distance of me, I\'ll stay dead" },
 		{ _field_real, "idle clump distance:wu#If there is any enemy clump within this distance of me, I\'ll stay dead" },
 		{ _field_real, "dangerous clump distance:wu#If there is any enemy clump with a status higher than idle within this distance of me, I\'ll stay dead" },
-		{ _field_explanation, "TELEPORTATION" },
+		{ _field_explanation, "TELEPORTATION", "A few properties to help define when it is safe for a mission critical character to teleport." },
 		{ _field_real, "cover search duration:seconds#The number of seconds that must elapse before we try to look for a firing point behind cover to teleport to." },
 		{ _field_real, "task direction search duration:seconds#The number of seconds we try to look for a firing point that aligns us with the actor\'s task direction." },
 		{ _field_block, "spawn formations", &ai_globals_formation_block_block },
@@ -172,13 +172,13 @@ namespace blofeld
 		{ _field_block, "performance template folders", &ai_globals_performance_template_folder_block_block },
 		{ _field_block, "custom stimuli", &ai_globals_custom_stimuli_block_block },
 		{ _field_block, "cue templates", &ai_cue_template_block_block },
-		{ _field_explanation, "CLUMP THROTTLING" },
+		{ _field_explanation, "CLUMP THROTTLING", "Some values to help you control how much guys will throttle when they want to stick with the rest of their squad." },
 		{ _field_real, "stop dist:wu#At this distance from the squad, stop." },
 		{ _field_real, "resume dist:wu#At this distance from the squad, start again." },
 		{ _field_real, "min dist:wu#Start throttling back at this distance" },
 		{ _field_real, "max dist:wu#Maximum trottle scale at this distance" },
 		{ _field_real, "min scale:0-1#Minimum throttle value." },
-		{ _field_explanation, "SQUAD PATROLLING" },
+		{ _field_explanation, "SQUAD PATROLLING", "Parameters related to squad patrolling." },
 		{ _field_real, "passthrough chance#Chance of passing through a patrol objective without pausing" },
 		{ _field_real, "search phase skip chance#Chance of skipping the search phase when stopped at a patrol objective" },
 		{ _field_real, "patrol transition timeout:seconds#If the squad takes more than this time to get to their new patrol point, cancel it and go on to the next." },
@@ -186,7 +186,7 @@ namespace blofeld
 		{ _field_real_bounds, "patrol search firing point time:seconds#spend this amount of time at a search firing position when in search phase" },
 		{ _field_real, "patrol isolation distance:wus#If you are more than this distance from your nearest squadmate, you are officially isolated." },
 		{ _field_real, "patrol isolation time:seconds#If you are isolated for more than this time, you get deleted." },
-		{ _field_explanation, "KUNGFU CONTROL" },
+		{ _field_explanation, "KUNGFU CONTROL", "These parameters control how the kung-fu circle works (i.e. when tasks have kungfu-count associated with them)" },
 		{ _field_real, "kungfu deactivation delay:seconds#When a task is disallowed from shooting, turn it off after this delay" },
 		{ _field_custom, "Presearch Child Counts (0 means no limit)" },
 		{ _field_short_integer, "suppressing fire count" },

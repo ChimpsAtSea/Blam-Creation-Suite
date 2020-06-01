@@ -228,7 +228,7 @@ namespace blofeld
 
 	TAG_BLOCK(movement_stationary_pause_block, 8)
 	{
-		{ _field_explanation, "Inertial pause settings" },
+		{ _field_explanation, "Inertial pause settings", "These values tell the actor to remain stationary for the specified number of ticks if he changes his direction of movement by at least \'change angle\'. Specifying an angle of 0 means pause this much every time you get to your destination." },
 		{ _field_angle, "direction change angle:degrees" },
 		{ _field_long_integer, "stationary change:ticks" },
 		{ _field_terminator }
@@ -255,7 +255,7 @@ namespace blofeld
 		{ _field_real, "pathfinding radius" },
 		{ _field_real, "avoidance radius#If 0, uses pathfinding radius." },
 		{ _field_real, "destination radius" },
-		{ _field_explanation, "Danger Zone Avoidance" },
+		{ _field_explanation, "Danger Zone Avoidance", "These values govern how we should avoid danger zones (like grenades and vehicles). If their sum is less than 1 then neither action will occur and instead we\'ll just try to walk out of the way with that remaining probability." },
 		{ _field_real, "armor lock chance#Chance the AI will use their armor lock equipment, assuming they have it" },
 		{ _field_real, "grenade stuck armor lock chance#Chance the AI will use their armor lock equipment if they have been stuck with a grenade, assuming they have it" },
 		{ _field_real, "armor lock safety duration#The number of seconds we will stay in armor lock for after danger has passed (default 1 second)" },
@@ -298,7 +298,7 @@ namespace blofeld
 		{ _field_real, "phase delay seconds#don\'t attempt again before given time since last phase" },
 		{ _field_custom },
 		{ _field_custom, "Movement Facing" },
-		{ _field_explanation, "Movement Facing" },
+		{ _field_explanation, "Movement Facing", "Characters using composite animations can choose to align their facing with their aim-target or their destination. These settings control how the facing is determined." },
 		{ _field_real, "Departure Distance Min#min distance from departure point where facing should be aligned with aim" },
 		{ _field_real, "Departure Distance Range#max distance from departure point where facing should be aligned with heading" },
 		{ _field_real, "Arrival Distance Min#min distance from destination point where facing should be aligned with aim" },
@@ -325,7 +325,7 @@ namespace blofeld
 	TAG_BLOCK(movement_mapping_block, k_max_movement_variants)
 	{
 		{ _field_real, "chance" },
-		{ _field_explanation, "MAPPING" },
+		{ _field_explanation, "MAPPING", "Movement type -> stance" },
 		{ _field_string_id, "idle" },
 		{ _field_string_id, "alert" },
 		{ _field_string_id, "engage" },
@@ -353,7 +353,7 @@ namespace blofeld
 
 	TAG_BLOCK(character_flocking_block, c_character_flocking_properties_internal::k_block_count)
 	{
-		{ _field_explanation, "Jaime, don\'t touch this" },
+		{ _field_explanation, "Jaime, don\'t touch this", "Ever." },
 		{ _field_real, "deceleration distance" },
 		{ _field_real, "normalized speed" },
 		{ _field_real, "buffer distance" },
@@ -382,7 +382,7 @@ namespace blofeld
 
 	TAG_BLOCK(evaluator_definition_block, k_fp_evaluator_count)
 	{
-		{ _field_explanation, "EVALUATOR" },
+		{ _field_explanation, "EVALUATOR", "The firing point evaluation properties for a single evaluator. Treat with great care and respect." },
 		{ _field_long_enum, "evaluator^", &evaluator_enum },
 		{ _field_custom },
 		{ _field_real, "preference weight" },
@@ -394,7 +394,7 @@ namespace blofeld
 	{
 		{ _field_long_enum, "mode^", &evaluation_modes },
 		{ _field_custom },
-		{ _field_explanation, "DESIGNERS BEWARE" },
+		{ _field_explanation, "DESIGNERS BEWARE", "If you want to screw the AI up, here\'s a great place to start. Please try not to." },
 		{ _field_block, "evaluators", &evaluator_definition_block_block },
 		{ _field_terminator }
 	};
@@ -432,7 +432,7 @@ namespace blofeld
 
 	TAG_BLOCK(character_charge_difficulty_limits_block, k_campaign_difficulty_levels_count)
 	{
-		{ _field_explanation, "Difficulty Limits" },
+		{ _field_explanation, "Difficulty Limits", "Per difficulty values to limit the number of guys in particular behaviours" },
 		{ _field_short_integer, "max kamikaze count#How many guys in a single clump can be kamikazing at one time" },
 		{ _field_short_integer, "max berserk count#How many guys in a single clump can be berserking at one time" },
 		{ _field_short_integer, "min berserk count#We\'d like at least this number of guys in a single clump can be berserking at one time (primarily combat forms)" },
@@ -495,10 +495,10 @@ namespace blofeld
 	{
 		{ _field_long_flags, "cover flags", &cover_flags },
 		{ _field_real_bounds, "hide behind cover time:seconds#how long we stay behind cover after seeking cover" },
-		{ _field_explanation, "Hologram conditions" },
+		{ _field_explanation, "Hologram conditions", "The following fields dictate how hologram equipment is used by AI in cover." },
 		{ _field_real_bounds, "hologram cover wait time:seconds#how long we wait in cover before using the hologram" },
 		{ _field_real, "hologram cooldown delay:seconds#Amount of time I will wait before trying to use hologram equipment again (0 value defaults to 5 seconds)" },
-		{ _field_explanation, "Cover conditions" },
+		{ _field_explanation, "Cover conditions", "The following fields dictate the conditions under which we will go into cover." },
 		{ _field_real, "Cover shield fraction#Only cover when shield falls below this level" },
 		{ _field_real, "Cover vitality threshold#Only cover when vitality falls below this level" },
 		{ _field_real, "Cover danger threshold#Danger must be this high to cover. " },
@@ -507,7 +507,7 @@ namespace blofeld
 		{ _field_real, "minimum defensive distance from cover:wus#If our cover point is less than this distance, we will never consider defensive covering" },
 		{ _field_real, "always defensive scary threshold#If the target has scarines bigger or equal to this, we will always cover defensively" },
 		{ _field_custom },
-		{ _field_explanation, "Other" },
+		{ _field_explanation, "Other", "" },
 		{ _field_real, "Cover check delay:seconds#Amount of time I will wait before trying again after covering (0 value defaults to 2 seconds)" },
 		{ _field_real, "Cover pinned down check delay:seconds#Amount of time I will wait before issuing a pinned down message (0 value defaults to 2 seconds)" },
 		{ _field_real, "Emerge from cover when shield fraction reaches threshold#Emerge from cover when shield fraction reaches threshold" },
@@ -548,13 +548,13 @@ namespace blofeld
 		{ _field_long_flags, "Search flags", &character_search_flags },
 		{ _field_real_bounds, "search time" },
 		{ _field_real, "Search distance#Maximum distance away from our firing positions that we are happy to search (0 value will default to 3wu). Does not affect vehicle search distance (see maxd if you want that value too)." },
-		{ _field_explanation, "Uncover" },
+		{ _field_explanation, "Uncover", "" },
 		{ _field_real_bounds, "Uncover distance bounds#Distance of uncover point from target. Hard lower limit, soft upper limit." },
-		{ _field_explanation, "Investigate" },
+		{ _field_explanation, "Investigate", "Orphan offset: Offset from the orphan pos along the orphan hint vector that we will investigate to. Positive value means we are predicting where the target is going, negative value means that we would like to stand back a bit and look along the orphan vector." },
 		{ _field_real, "Orphan offset:wu#(0 value will default to 1.8wu)" },
 		{ _field_real, "Minimum offset:wu#Minimum offset from the target point to investigate, otherwise we just use the target point itself. Not entirely sure about the justification for this one..." },
 		{ _field_real_bounds, "vocalization time" },
-		{ _field_explanation, "Performances" },
+		{ _field_explanation, "Performances", "" },
 		{ _field_real, "Performance Cool-down Time#The number of seconds that must elapse before an actor will consider a search-performance again" },
 		{ _field_terminator }
 	};
@@ -585,7 +585,7 @@ namespace blofeld
 
 	TAG_BLOCK(character_vocalization_block, c_character_vocalization_properties_internal::k_block_count)
 	{
-		{ _field_explanation, "Skip Fraction" },
+		{ _field_explanation, "Skip Fraction", "For vocalization with priority < react, multiplies the skip fraction in the dialogue globals tag.\nFor priorities > react, multiplies the vocalization WEIGHT (i.e. the desire of that character to vocalize RELATIVE to other characters in the scene).\nThus if you hurt the arbiter, say, he\'s still going to yell at you, no matter what, and if you kill somebody and nobody else is there to witness it, he will yell at you.\nAs always, 0 means speak normally, 1 means skip everything (don\'t say shit)" },
 		{ _field_real, "character skip fraction:[0,1]" },
 		{ _field_real, "look comment time:s#How long does the player look at an AI before the AI responds\?" },
 		{ _field_real, "look long comment time:s#How long does the player look at the AI before he responds with his \'long look\' comment\?" },
@@ -620,13 +620,13 @@ namespace blofeld
 
 	TAG_BLOCK(character_bunker_block, c_character_bunker_properties_internal::k_block_count)
 	{
-		{ _field_explanation, "DEFAULT TIMINGS" },
+		{ _field_explanation, "DEFAULT TIMINGS", "" },
 		{ _field_struct, "default", &character_bunker_timings_struct_struct_definition },
-		{ _field_explanation, "FIGHT TIMINGS" },
+		{ _field_explanation, "FIGHT TIMINGS", "" },
 		{ _field_struct, "fight", &character_bunker_timings_struct_struct_definition },
-		{ _field_explanation, "COVER TIMINGS" },
+		{ _field_explanation, "COVER TIMINGS", "" },
 		{ _field_struct, "cover", &character_bunker_timings_struct_struct_definition },
-		{ _field_explanation, "GUARD TIMINGS" },
+		{ _field_explanation, "GUARD TIMINGS", "" },
 		{ _field_struct, "guard", &character_bunker_timings_struct_struct_definition },
 		{ _field_terminator }
 	};
@@ -657,7 +657,7 @@ namespace blofeld
 		{ _field_real, "shield boost radius max#Boost the shields of allies within this radius during combat" },
 		{ _field_real, "shield boost period:seconds#Time between shield boost pings from the engineer" },
 		{ _field_string_id, "shield boost damage section name#The name of the damage section which will be activated by the engineer shield boost" },
-		{ _field_explanation, "Detonation Thresholds" },
+		{ _field_explanation, "Detonation Thresholds", "If shield vitality AND body vitality fall below the thresholds below, detonate" },
 		{ _field_real, "detonation shield threshold" },
 		{ _field_real, "detonation body vitality" },
 		{ _field_real, "proximity radius:wus#if target enters within this radius, either detonate or deploy equipment" },
@@ -688,18 +688,18 @@ namespace blofeld
 	{
 		{ _field_long_flags, "weapons flags", &weapon_flags },
 		{ _field_tag_reference, "weapon^", &weapon_reference$2 },
-		{ _field_explanation, "Combat ranges" },
+		{ _field_explanation, "Combat ranges", "" },
 		{ _field_real, "maximum firing range:world units#we can only fire our weapon at targets within this distance" },
 		{ _field_real, "minimum firing range#weapon will not be fired at target closer than given distance" },
 		{ _field_real_bounds, "normal combat range:world units" },
 		{ _field_real, "bombardment range#we offset our burst targets randomly by this range when firing at non-visible enemies (zero = never)" },
 		{ _field_real, "Max special target distance:world units#Specific target regions on a vehicle or unit will be fired upon only under the given distance" },
 		{ _field_real, "Max extreme target distance:world units#within this distance actor will be able to do fallback engagement firing patterns. Use for extreme range engagements not otherwise permitted." },
-		{ _field_explanation, "Ballistic Firing" },
+		{ _field_explanation, "Ballistic Firing", "" },
 		{ _field_real, "super-ballistic range#we try to aim our shots super-ballistically if target is outside this range (zero = never)" },
 		{ _field_real_bounds, "Ballistic firing bounds:world units#At the min range, the min ballistic fraction is used, at the max, the max ballistic fraction is used" },
 		{ _field_real_bounds, "Ballistic fraction bounds:[0-1]#Controls speed and degree of arc. 0 = high, slow, 1 = low, fast" },
-		{ _field_explanation, "Behavior" },
+		{ _field_explanation, "Behavior", "" },
 		{ _field_real_bounds, "first burst delay time:seconds" },
 		{ _field_real, "surprise delay time:seconds" },
 		{ _field_real, "surprise fire-wildly time:seconds" },
@@ -708,17 +708,17 @@ namespace blofeld
 		{ _field_real_vector_3d, "custom stand gun offset#custom standing gun offset for overriding the default in the base actor" },
 		{ _field_real_vector_3d, "custom crouch gun offset#custom crouching gun offset for overriding the default in the base actor" },
 		{ _field_long_integer, "Blocked Shot Count# Number of projectiles blocked before the character is considered blocked. Zero defaults to 6." },
-		{ _field_explanation, "special-case firing properties" },
+		{ _field_explanation, "special-case firing properties", "" },
 		{ _field_enum, "special-fire mode#the type of special weapon fire that we can use", &actor_special_fire_mode_enum },
 		{ _field_enum, "special-fire situation#when we will decide to use our special weapon fire mode", &actor_special_fire_situation_enum },
 		{ _field_real, "special-fire chance:[0,1]#how likely we are to use our special weapon fire mode" },
 		{ _field_real, "special-fire delay:seconds#how long we must wait between uses of our special weapon fire mode" },
 		{ _field_real, "special damage modifier:[0,1]#damage modifier for special weapon fire (applied in addition to the normal damage modifier. zero = no change)" },
 		{ _field_angle, "special projectile error:degrees#projectile error angle for special weapon fire (applied in addition to the normal error)" },
-		{ _field_explanation, "Weapon drop when killed" },
+		{ _field_explanation, "Weapon drop when killed", "" },
 		{ _field_real_bounds, "drop weapon loaded#amount of ammo loaded into the weapon that we drop (in fractions of a clip, e.g. 0.3 to 0.5)" },
 		{ _field_short_bounds, "drop weapon ammo#total number of rounds in the weapon that we drop (ignored for energy weapons)" },
-		{ _field_explanation, "Accuracy" },
+		{ _field_explanation, "Accuracy", "Parameters control how accuracy changes over the duration of a series of bursts\nAccuracy is an analog value between 0 and 1. At zero, the parameters of the first\nfiring-pattern block is used. At 1, the parameters in the second block is used. In\nbetween, all the values are linearly interpolated" },
 		{ _field_real_bounds, "normal accuracy bounds#Indicates starting and ending accuracies at normal difficulty" },
 		{ _field_real, "normal accuracy time#The amount of time it takes the accuracy to go from starting to ending" },
 		{ _field_real_bounds, "heroic accuracy bounds#Indicates starting and ending accuracies at heroic difficulty" },
@@ -734,7 +734,7 @@ namespace blofeld
 		{ _field_real, "rate of fire#how many times per second we pull the trigger (zero = continuously held down)" },
 		{ _field_real, "target tracking:[0,1]#how well our bursts track moving targets. 0.0= fire at the position they were standing when we started the burst. 1.0= fire at current position" },
 		{ _field_real, "target leading:[0,1]#how much we lead moving targets. 0.0= no prediction. 1.0= predict completely." },
-		{ _field_explanation, "burst geometry" },
+		{ _field_explanation, "burst geometry", "at the start of every burst we pick a random point near the target to fire at, on either the left or the right side.\nthe burst origin angle controls whether this error is exactly horizontal or might have some vertical component.\n\nover the course of the burst we move our projectiles back in the opposite direction towards the target. this return motion is also controlled by an angle that specifies how close to the horizontal it is.\n\nfor example if the burst origin angle and the burst return angle were both zero, and the return length was the same as the burst length, every burst would start the same amount away from the target (on either the left or right) and move back to exactly over the target at the end of the burst." },
 		{ _field_real, "burst origin radius:world units#how far away from the target the starting point is" },
 		{ _field_angle, "burst origin angle:degrees#the range from the horizontal that our starting error can be" },
 		{ _field_real_bounds, "burst return length:world units#how far the burst point moves back towards the target (could be negative)" },
@@ -772,7 +772,7 @@ namespace blofeld
 		{ _field_real, "grenade throw delay:seconds#How long we have to wait after throwing a grenade before we can throw another one" },
 		{ _field_real_fraction, "grenade uncover chance:[0,1]#how likely we are to throw a grenade to flush out a target in one second" },
 		{ _field_real_fraction, "anti-vehicle grenade chance:[0,1]#how likely we are to throw a grenade against a vehicle" },
-		{ _field_explanation, "Grenade drop when killed" },
+		{ _field_explanation, "Grenade drop when killed", "" },
 		{ _field_short_bounds, "grenade count#number of grenades that we start with" },
 		{ _field_real, "dont drop grenades chance:[0,1]#how likely we are not to drop any grenades when we die, even if we still have some" },
 		{ _field_terminator }
@@ -782,19 +782,19 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "unit^", &unit_reference$2 },
 		{ _field_tag_reference, "style^", &style_reference },
-		{ _field_explanation, "Flying Avoidance" },
+		{ _field_explanation, "Flying Avoidance", "" },
 		{ _field_real, "lookahead_time:seconds# How much in the future should we estimate a collision (affects collision ray length)" },
 		{ _field_real, "roll change magnitude:degrees#How fast to control the roll avoidance" },
 		{ _field_real, "roll decay multiplier:(0,1)#How fast roll goes back to 0- 1 means never, 0 means instantaneously" },
 		{ _field_real, "throttle grace period:seconds#How long after a collision should the vehicle keep moving at max throttle" },
 		{ _field_real, "minimum throttle:(-1,1)#Minimum throttle that the avoidance can slow down to" },
 		{ _field_real, "avoidance volume turn penalty distance:wus#The maximum distance penalty applied to an avoidance volume search path if we\'re facing away from the path. 1000 wu good for space, 5 wu good for ground." },
-		{ _field_explanation, "Vehicle flags" },
+		{ _field_explanation, "Vehicle flags", "" },
 		{ _field_long_flags, "vehicle flags", &vehicle_flags },
-		{ _field_explanation, "Hover Perturbation New" },
+		{ _field_explanation, "Hover Perturbation New", "" },
 		{ _field_real, "hover deceleration distance: wus#Distance defines a box outside of which we clamp perturbation. Value of zero causes fallback to run." },
 		{ _field_real, "hover offset distance: wus#The max radius of the XZ anchor perturbation. Value of zero causes fallback to run." },
-		{ _field_explanation, "Hover Perturbation Fallback" },
+		{ _field_explanation, "Hover Perturbation Fallback", "" },
 		{ _field_real, "hover allow perturbation speed: wu/s#The speed the vehicle must be below for it to start running hover perturbation (default=0.4)." },
 		{ _field_real, "hover random x-axis period: sec#The number of seconds for the x component of the anchor perturbation to repeat itself (default=10)." },
 		{ _field_real, "hover random y-axis period: sec#The number of seconds for the y component of the anchor perturbation to repeat itself (default=7)." },
@@ -805,17 +805,17 @@ namespace blofeld
 		{ _field_real_bounds, "hover anchor xy-throttle scale: [0,1]#The xy-throttle scale at the min and max throttle scale distances. (default=[0.0, 0.2])" },
 		{ _field_real_bounds, "hover anchor z-throttle scale: [0,1]#The z-throttle scale at the min and max throttle scale distances. (default=[1.0, 1.0])" },
 		{ _field_real, "hover throttle min z: [-1, 1]#The minimum the z component of throttle is allowed to be (default=0.2)" },
-		{ _field_explanation, "Pathfinding" },
+		{ _field_explanation, "Pathfinding", "" },
 		{ _field_real, "ai pathfinding radius:world units (Ground vehicles)" },
 		{ _field_real, "ai avoidance radius:world units (Ground vehicles)#If 0, uses pathfinding radius." },
 		{ _field_real, "ai destination radius:world units (All vehicles)#Distance within which goal is considered reached" },
 		{ _field_real, "ai deceleration distance{ai deceleration distanceworld units}:world units (All vehicles)#Distance from goal at which AI starts to decelerate" },
 		{ _field_real, "roughly, the time it would take this vehicle to stop; default is 2 seconds" },
-		{ _field_explanation, "Turning" },
+		{ _field_explanation, "Turning", "" },
 		{ _field_real, "ai turning radius:world units (Warthog, Pelican, Ghost)#Idealized average turning radius (should reflect actual vehicle physics)" },
 		{ _field_real, "ai inner turning radius (< tr): (Warthogs)#Idealized minimum turning radius (should reflect actual vehicle physics)" },
 		{ _field_real, "ai ideal turning radius (> tr): (Warthogs, ghosts)#Ideal turning radius for rounding turns (barring obstacles, etc.)" },
-		{ _field_explanation, "Steering" },
+		{ _field_explanation, "Steering", "" },
 		{ _field_angle, "ai banshee steering maximum:(banshees,avoidance steering phantoms)#" },
 		{ _field_real, "ai max steering angle:degrees (warthogs, ghosts, wraiths)#Maximum steering angle from forward (ultimately controls turning speed)" },
 		{ _field_real, "ai max steering delta:degrees (warthogs, dropships, ghosts, wraiths)#Maximum delta in steering angle from one tick to the next (ultimately controls turn acceleration)" },
@@ -828,7 +828,7 @@ namespace blofeld
 		{ _field_real, "skid scale:(warthogs)#When approaching a corner at speed, we may want to skid around that corner, by turning slightly too early. This is (roughly) how many seconds ahead we should start turning." },
 		{ _field_angle, "aiming velocity maximum:degrees per second" },
 		{ _field_angle, "aiming acceleration maximum:degrees per second squared" },
-		{ _field_explanation, "Throttle" },
+		{ _field_explanation, "Throttle", "" },
 		{ _field_real, "ai throttle maximum:(0 - 1) (all vehicles)" },
 		{ _field_real, "ai reverse throttle maximum:(0 - 1) (ground only)#If zero, default to ai throttle maximum" },
 		{ _field_real, "ai goal min throttle scale: (warthogs, dropships, ghosts)#scale on throttle when within \'ai deceleration distance\' of goal (0...1)" },
@@ -840,9 +840,9 @@ namespace blofeld
 		{ _field_real, "ai throttle blend:(0-1): (dropships, sentinels)# The degree of throttle blending between one tick and the next (0 = no blending)" },
 		{ _field_real, "theoretical max speed:wu/s (warthogs, dropships, ghosts)# About how fast I can go." },
 		{ _field_real, "error scale: (warthogs, dropships)# scale on the difference between desired and actual speed, applied to throttle" },
-		{ _field_explanation, "Combat" },
+		{ _field_explanation, "Combat", "" },
 		{ _field_angle, "ai allowable aim deviation angle" },
-		{ _field_explanation, "Behavior" },
+		{ _field_explanation, "Behavior", "" },
 		{ _field_real, "ai charge tight angle distance: (all vehicles)# The distance at which the tight angle criterion is used for deciding to vehicle charge" },
 		{ _field_real, "ai charge tight angle:[0-1] (all vehicles)# Angle cosine within which the target must be when target is closer than tight angle distance in order to charge" },
 		{ _field_real, "ai charge repeat timeout: (all vehicles)# Time delay between vehicle charges" },
@@ -872,7 +872,7 @@ namespace blofeld
 	{
 		{ _field_tag_reference, "vehicle^", &unit_reference$2 },
 		{ _field_custom },
-		{ _field_explanation, "Vector Weights" },
+		{ _field_explanation, "Vector Weights", "Think of this as firing point evaluation; how much do we want to weight each of the various vectors affecting our movement in space." },
 		{ _field_real, "facing#How much our current movement vector affects our new vector selection." },
 		{ _field_real, "perturbation#How much random deviation is applied to our vector selection." },
 		{ _field_real, "volume avoidance#How strongly we avoid our containing volume." },
@@ -881,51 +881,51 @@ namespace blofeld
 		{ _field_real, "flocking#How much of a tendancy to flock we have." },
 		{ _field_real, "target#The weight of our movement towards our current target." },
 		{ _field_real, "target tail#The weight of our movement intended to keep our target in our tail." },
-		{ _field_explanation, "Area Selection" },
+		{ _field_explanation, "Area Selection", "" },
 		{ _field_real_bounds, "area reselect time:seconds#The time bounds on how long we should stay in an area before moving to another area." },
-		{ _field_explanation, "Idle" },
+		{ _field_explanation, "Idle", "" },
 		{ _field_real_bounds, "idle time:seconds#How long before reselecting a destination while idling." },
-		{ _field_explanation, "Cover" },
+		{ _field_explanation, "Cover", "" },
 		{ _field_real_bounds, "unsafe cover reselect time:seconds#How long after being exposed in cover before we reselect new cover." },
 		{ _field_real_bounds, "cover heading reselect time:seconds#The frequency at which we pick a new cover point on our current piece of cover." },
 		{ _field_real, "max cover search distance:wu#The farthest from ourselves that we will search for cover." },
 		{ _field_real, "max cover impulse distance:wu#The farthest our target can be from us when decided if we should go to cover." },
 		{ _field_real_bounds, "spline cooldown time:wu#The number of seconds we wait after traveling a spline to travel a spline again." },
-		{ _field_explanation, "Volume Avoidance" },
+		{ _field_explanation, "Volume Avoidance", "" },
 		{ _field_real, "volume influence distance:wu#How far our volume influences our movement" },
 		{ _field_real, "volume perturbation phase:seconds#What is the frequency of oscillation of our volume perturbation vector" },
 		{ _field_real, "volume bounding distance:wu#How far we are allowed outside our volume before we started being forced to return (must be >= 0)" },
-		{ _field_explanation, "Approach" },
+		{ _field_explanation, "Approach", "" },
 		{ _field_real, "volume approach distance:wu#If our target is this close to our containing volume, then start attacking him" },
 		{ _field_real, "volume break off distance:wu#While attacking our target, if we get this far outside our containing volume, break off the attack and return home" },
 		{ _field_real, "minimum approach distance:wu#When this close to our target we will drop into the evade behaviour instead" },
 		{ _field_real_bounds, "collision avoidance range:wu#Zero collision avoidance at the high distance, Max avoidance at the low distance." },
-		{ _field_explanation, "Evasion" },
+		{ _field_explanation, "Evasion", "" },
 		{ _field_real_bounds, "evade time:seconds#Bounds on how long we should evade for" },
 		{ _field_real_fraction, "evade body damage threshold:[0,1]#The recent body damage we should sustain before trying to evade." },
 		{ _field_real_fraction, "evade shield damage threshold:[0,1]#The recent shield damage we should sustain before trying to evade." },
 		{ _field_real, "bogey retreat time:seconds#How long we tolerate a bogey in our six, before we retreat back to our area." },
 		{ _field_real, "bogey retreat distance:wu#How close a bogey has to be before we\'ll even consider retreating." },
-		{ _field_explanation, "Flocking" },
+		{ _field_explanation, "Flocking", "" },
 		{ _field_real_bounds, "flock radius:wu#Distance controls for flocking" },
 		{ _field_angle, "forward follow angle:degrees#How close we must be facing another friend to consider following him during flocking." },
 		{ _field_angle, "behind follow angle:degrees#The angle of the \'cone\' behind a friend who I am interested in following that I must be in to consider him during flocking." },
-		{ _field_explanation, "Tailing" },
+		{ _field_explanation, "Tailing", "" },
 		{ _field_real, "min tailing time:seconds#The minimum amount of time we can be tailing" },
 		{ _field_real_bounds, "tailing radius:wu#Distance controls for tailing" },
 		{ _field_angle, "tailing cone angle:degrees#The angle of the \'cone\' behind a foe who I am interested in tailing after approaching." },
-		{ _field_explanation, "Strafing" },
+		{ _field_explanation, "Strafing", "" },
 		{ _field_real, "volume strafe distance:wu#If our target is this close to our containing volume, then start strafing him" },
 		{ _field_real, "strafe min distance:wu#I need to be at least this far away from my target to consider strafing him (2D)" },
 		{ _field_real, "strafe above distance:wu#How high above our target we will aim for when strafing" },
 		{ _field_real, "strafe abort distance:wu#If I get this close to my target, stop strafing and retreat for a bit (2D)" },
 		{ _field_real, "strafe timeout:seconds#How long we go between strafes" },
-		{ _field_explanation, "Attitude Control" },
+		{ _field_explanation, "Attitude Control", "" },
 		{ _field_angle, "max descend angle:degrees#The maximum angle at which we can descend." },
 		{ _field_angle, "max ascend angle:degrees#The maximum angle at which we can ascend." },
-		{ _field_explanation, "Shooting" },
+		{ _field_explanation, "Shooting", "" },
 		{ _field_angle, "shooting cone angle:degrees#The angle of the shooting cone along the vehicle facing." },
-		{ _field_explanation, "Evasive Maneuvers" },
+		{ _field_explanation, "Evasive Maneuvers", "" },
 		{ _field_real_fraction, "missile dodge change:percentage#The chance that an AI will dodge incoming missiles." },
 		{ _field_real, "ideal missile dodge distance:wu#The ideal distance a trick should take you away from danger." },
 		{ _field_terminator }
@@ -940,7 +940,7 @@ namespace blofeld
 		{ _field_tag_reference, "ranged weapon", &weapon_reference$3 },
 		{ _field_tag_reference, "tank weapon", &weapon_reference$3 },
 		{ _field_tag_reference, "stealth weapon", &weapon_reference$3 },
-		{ _field_explanation, "Tank guy" },
+		{ _field_explanation, "Tank guy", "" },
 		{ _field_real, "distance damage outer radius#Considered damaging-outside-range when you START firing from outside this distance" },
 		{ _field_real, "distance damage inner radius#Considered damaging-outside-range when you CONTINUE firing from outside this distance" },
 		{ _field_real, "distance damage time#Damaging tank guy from outside-range for this long causes a morph" },
@@ -953,30 +953,30 @@ namespace blofeld
 		{ _field_custom },
 		{ _field_string_id, "spew marker#From whence should the infection forms cometh\?" },
 		{ _field_real_bounds, "spew frequency:seconds#Min/max time between spawning each infection form during spew. (defaults to 0.1 and 0.3)" },
-		{ _field_explanation, "Stealth dude" },
+		{ _field_explanation, "Stealth dude", "" },
 		{ _field_real, "stealth morph distance threshold#Morphing inside this range causes a tank guy, outside this range causes a ranged fella" },
 		{ _field_real, "stealth morph damage threshold#Percentage of body health he has to be taken down in order to cause a morph" },
 		{ _field_real, "stalk range min#We want to stalk our target from outside this radius" },
 		{ _field_real, "stalk range max#We want to stalk our target from inside this radius" },
 		{ _field_real, "stalk range hard max#We will never be able to pick a firing position more than this far from our target" },
 		{ _field_real, "stalk charge chance#While stalking, charge randomly with this probability per second (also will charge when on periphery, this is just some spice)" },
-		{ _field_explanation, "Ranged bloke" },
+		{ _field_explanation, "Ranged bloke", "" },
 		{ _field_real, "ranged proximity distance#Morph to tank/stalker when someone gets this close to me as a ranged form" },
 		{ _field_real, "turtle damage threshold#amount of damage necessary to trigger a turtle" },
 		{ _field_real_bounds, "turtle time#when turtling, turtle for a random time with these bounds:seconds" },
 		{ _field_real, "turtle distance#when I turtle I send out a stimulus to friends within this radius to also turtle:wus" },
 		{ _field_real, "turtle abort distance#when my target get within this range, abort turtling" },
-		{ _field_explanation, "General" },
+		{ _field_explanation, "General", "" },
 		{ _field_real, "group morph range#Follow the morph of any other form within this distance" },
 		{ _field_terminator }
 	};
 
 	TAG_BLOCK(character_equipment_usage_block, k_character_equipment_usage_when_count)
 	{
-		{ _field_explanation, "Equipment Use" },
+		{ _field_explanation, "Equipment Use", "How should I use this equipment\?" },
 		{ _field_enum, "use when^#When should we use this equipment\?", &character_equipment_usage_when_enum },
 		{ _field_enum, "use how#How should we use this equipment\?", &character_equipment_usage_how_enum },
-		{ _field_explanation, "Skip Fraction" },
+		{ _field_explanation, "Skip Fraction", "Given that we have decided to use this equipment, should we do so\? (0= always use it, 1= never use it). Heroic skip fraction is the average of normal and legendary chances." },
 		{ _field_real, "easy/normal:0-1#" },
 		{ _field_real, "legendary:0-1#" },
 		{ _field_terminator }
@@ -984,7 +984,7 @@ namespace blofeld
 
 	TAG_BLOCK(character_equipment_block, 8)
 	{
-		{ _field_explanation, "Equipment" },
+		{ _field_explanation, "Equipment", "Create one of these for each equipment type that you would like a character to be able to use. If you specify a relative drop chance of greater than zero then the character will use and drop this type of equipment with that (relative) chance. If you leave the equipment field empty, then there will be that (relative) chance of using and dropping no equipment at all." },
 		{ _field_tag_reference, "equipment#The equipment item that is to be usable", &equipment_reference },
 		{ _field_long_flags, "flags", &character_equipment_def_bits },
 		{ _field_real, "relative drop chance#The relative chance of this equipment being dropped with respect to the other pieces of equipment specified in this block" },
@@ -994,7 +994,7 @@ namespace blofeld
 
 	TAG_BLOCK(character_stimuli_response_block, k_max_character_stimuli_responses)
 	{
-		{ _field_explanation, "Stimulus Response" },
+		{ _field_explanation, "Stimulus Response", "Here you can define a character tag which will be applied on top of this one when the named stimulus is present on a character.In the case of multiple stimulus with character tag responses being present, the first listed will be used." },
 		{ _field_string_id, "stimulus name^" },
 		{ _field_tag_reference, "override character", &character_reference$3 },
 		{ _field_terminator }
@@ -1013,13 +1013,13 @@ namespace blofeld
 
 	TAG_BLOCK(character_pain_screen_block, c_character_pain_screen_properties_internal::k_block_count)
 	{
-		{ _field_explanation, "Pain Reactions" },
+		{ _field_explanation, "Pain Reactions", "" },
 		{ _field_real, "pain screen duration:seconds#The duration of the pain function\n0 defaults to 0.5" },
 		{ _field_real, "pain screen region fade out duration:seconds|CCBBAA#The time it takes to fade out a damage region that is no longer the most recent damage region to be hit" },
 		{ _field_real_fraction, "pain screen region fade out weight threshold:[0,1]#The threshold weight below which the focus channel must fall before we can cross fade to another region." },
 		{ _field_angle, "pain screen angle tolerance:degrees#The tolerance angle between next and previous damage directions, below which we randomly vary the ping direction." },
 		{ _field_angle, "pain screen angle randomness:degrees#The maximum random angle to vary the incoming ping direction by if it\'s too close to the previous ping." },
-		{ _field_explanation, "Defensive Reactions" },
+		{ _field_explanation, "Defensive Reactions", "" },
 		{ _field_real, "defensive screen duration:seconds#The duration of the defensive function\n0 defaults to 2.0" },
 		{ _field_real_fraction, "defensive screen scrub fallback fraction:[0,1]#When receiving multiple pings, this is the min percentage of the defensive screen scrub value will fallback to." },
 		{ _field_terminator }
@@ -1066,7 +1066,7 @@ namespace blofeld
 
 	TAG_BLOCK(character_combotron_parent_block, c_character_combotron_parent_properties_internal::k_block_count)
 	{
-		{ _field_explanation, "combotron parent props" },
+		{ _field_explanation, "combotron parent props", "" },
 		{ _field_real_bounds, "socket cooldown (seconds)#for each socket, this is the time to wait after desocketing before socketing something else into it" },
 		{ _field_real, "child scale#use this value to set scaling for child objects / etc..." },
 		{ _field_real, "shield scale#if a socketed child creates a shield for me, how big should it be\?" },
@@ -1079,7 +1079,7 @@ namespace blofeld
 
 	TAG_BLOCK(character_combotron_child_block, c_character_combotron_child_properties_internal::k_block_count)
 	{
-		{ _field_explanation, "combotron child props (anything that can socket into a rook)" },
+		{ _field_explanation, "combotron child props (anything that can socket into a rook)", "" },
 		{ _field_long_flags, "flags", &rook_flags },
 		{ _field_tag_reference, "socket weapon#When socketed, this guy turns into a weapon of the type referenced here", &weapon_reference$3 },
 		{ _field_tag_reference, "socket child#When socketed, this guy turns into a child of the type referenced here", &object_reference$2 },
@@ -1093,7 +1093,7 @@ namespace blofeld
 
 	TAG_BLOCK(character_handle_dismemberment_block, c_character_handle_dismemberment_properties_internal::k_block_count)
 	{
-		{ _field_explanation, "dismemberment props" },
+		{ _field_explanation, "dismemberment props", "" },
 		{ _field_string_id, "headshot freakout animation (animation string)" },
 		{ _field_string_id, "limb dismembered animation (animation string)" },
 		{ _field_tag_reference, "berserk persistent melee effect", &effect_reference },
@@ -1280,7 +1280,7 @@ namespace blofeld
 		{ _field_block, "ready properties", &character_ready_block_block },
 		{ _field_block, "engage properties", &character_engage_block_block },
 		{ _field_block, "charge properties", &character_charge_block_block },
-		{ _field_explanation, "Danger Values" },
+		{ _field_explanation, "Danger Values", "Danger values can be found in the ai-globals section of the globals tag." },
 		{ _field_block, "evasion properties", &character_evasion_block_block },
 		{ _field_block, "cover properties", &character_cover_block_block },
 		{ _field_block, "retreat properties", &character_retreat_block_block },
@@ -1350,7 +1350,7 @@ namespace blofeld
 	{
 		{ _field_custom, "Smooth Throttle" },
 		{ _field_enum, "settings options", &character_smooth_movement_settings_options },
-		{ _field_explanation, "Override Settings" },
+		{ _field_explanation, "Override Settings", "The following setting are applied when the Override option is chosen" },
 		{ _field_pad, "csts_pad_2", 2 },
 		{ _field_real, "Starting Rate:(0.0 to 1.0)#interpolation weight used for the first frame of movement from a stopped position." },
 		{ _field_real, "Stopping Rate:(0.0 to 1.0)#interpolation weight used for transitioning to a zero (stopped) throttle." },
@@ -1367,7 +1367,7 @@ namespace blofeld
 	{
 		{ _field_custom, "Smooth Stopping" },
 		{ _field_enum, "settings options", &character_smooth_movement_settings_options },
-		{ _field_explanation, "Override Settings" },
+		{ _field_explanation, "Override Settings", "The following setting are applied when the Override option is chosen" },
 		{ _field_pad, "csst_pad_2", 2 },
 		{ _field_real_bounds, "Stopping Distance:[wu]#Distance at which to begin slowing to a stop. Range provides variance." },
 		{ _field_real_bounds, "Arrival Throttle:range (0.05, 1.0)#Throttle magnitude desired upon arrival. Should be non zero, and greater than 0.1 to avoid super-slow stops" },

@@ -15,7 +15,7 @@ namespace blofeld
 		{ _field_real, "headshot aim assist{headshot magnetism}#increases autoaim for headshot weapons" },
 		{ _field_real, "melee cone" },
 		{ _field_real, "aim assist#unimplemented" },
-		{ _field_explanation, "Level Change" },
+		{ _field_explanation, "Level Change", "These fields show how many kills/deaths it takes to move between levels" },
 		{ _field_byte_flags, "flags", &g_silentAssistFlags },
 		{ _field_pad, "SXIX", 3 },
 		{ _field_long_integer, "kills to decrease level" },

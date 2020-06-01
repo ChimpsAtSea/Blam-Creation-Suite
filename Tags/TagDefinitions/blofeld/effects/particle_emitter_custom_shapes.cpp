@@ -23,7 +23,7 @@ namespace blofeld
 	TAG_STRUCT(particle_emitter_custom_points_struct_definition)
 	{
 		{ _field_custom, "import" },
-		{ _field_explanation, "PARTICLE POINTS" },
+		{ _field_explanation, "PARTICLE POINTS", "Explanation goes here.\nWoo....\n" },
 		{ _field_tag_reference, "source reference!", &particle_model_reference },
 		{ _field_real_vector_3d, "compression scale" },
 		{ _field_real_vector_3d, "compression offset" },

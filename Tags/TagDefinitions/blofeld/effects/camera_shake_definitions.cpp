@@ -17,9 +17,9 @@ namespace blofeld
 
 	TAG_STRUCT(camera_shake_struct_definition)
 	{
-		{ _field_explanation, "camera impulse" },
+		{ _field_explanation, "camera impulse", "" },
 		{ _field_struct, "camera impulse", &camera_impulse_struct_struct_definition },
-		{ _field_explanation, "camera shake" },
+		{ _field_explanation, "camera shake", "" },
 		{ _field_struct, "camera shake", &camera_shake_struct_struct_definition },
 		{ _field_terminator }
 	};
@@ -38,7 +38,7 @@ namespace blofeld
 	TAG_STRUCT(camera_shake_struct)
 	{
 		{ _field_real, "shake duration:seconds#the effect will last for this duration." },
-		{ _field_explanation, "procedural camera shake" },
+		{ _field_explanation, "procedural camera shake", "" },
 		{ _field_custom },
 		{ _field_struct, "mapping", &mapping_function_struct_definition },
 		{ _field_real, "random translation:world units#random translation in all directions" },
@@ -46,7 +46,7 @@ namespace blofeld
 		{ _field_real, "wobble function period:seconds" },
 		{ _field_real_fraction, "wobble weight#a value of 0.0 signifies that the wobble function has no effect; a value of 1.0 the wobble function completely scales the translational\n and rotational magnitudes.  The less the weight, the less the effect wobble has." },
 		{ _field_enum, "wobble function#a function to perturb the effect\'s behavior over time", &global_periodic_functions_enum },
-		{ _field_explanation, "animated camera shake" },
+		{ _field_explanation, "animated camera shake", "" },
 		{ _field_char_enum, "animated shake playback", &animated_camera_shake_playback_type_enum },
 		{ _field_char_enum, "animated shake weight", &animated_camera_shake_weight_type_enum },
 		{ _field_tag_reference, "animation graph", &global_animation_graph_reference },

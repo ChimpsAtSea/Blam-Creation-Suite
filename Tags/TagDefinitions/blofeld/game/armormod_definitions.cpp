@@ -17,17 +17,17 @@ namespace blofeld
 
 	TAG_STRUCT(armormod_globals_struct_definition)
 	{
-		{ _field_explanation, "explode on death" },
+		{ _field_explanation, "explode on death", "" },
 		{ _field_tag_reference, "projectile#spawned by Explode On Death armormod", &projectile_reference },
-		{ _field_explanation, "aural enhancement" },
+		{ _field_explanation, "aural enhancement", "" },
 		{ _field_tag_reference, "looping sound effect", &sound_looping_reference },
 		{ _field_real, "near threshold:world units#beyond this distance volume is attenuated, far audio settings are applied" },
 		{ _field_real, "attenuation pct#how much to attenuate volume" },
 		{ _field_block, "near audio settings", &aural_enhancement_audio_settings_block_block },
 		{ _field_block, "far audio settings", &aural_enhancement_audio_settings_block_block },
-		{ _field_explanation, "Enhanced HUD (battle awareness)" },
+		{ _field_explanation, "Enhanced HUD (battle awareness)", "" },
 		{ _field_real, "range:world units" },
-		{ _field_explanation, "Stealth" },
+		{ _field_explanation, "Stealth", "" },
 		{ _field_byte_flags, "flags", &stealthFlagsDefs },
 		{ _field_pad, "agspad", 3 },
 		{ _field_real, "stealth ping frequency:seconds#how often stealthed unit will ping" },

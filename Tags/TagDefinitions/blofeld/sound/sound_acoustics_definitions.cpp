@@ -47,11 +47,11 @@ namespace blofeld
 	TAG_STRUCT(scenario_acoustics_palette_block_definition_struct)
 	{
 		{ _field_string_id, "name^" },
-		{ _field_explanation, "SOUND ENVIRONMENT" },
+		{ _field_explanation, "SOUND ENVIRONMENT", "" },
 		{ _field_struct, "reverb", &scenario_acoustics_environment_definition_struct_definition },
-		{ _field_explanation, "BACKGROUND SOUND" },
+		{ _field_explanation, "BACKGROUND SOUND", "" },
 		{ _field_struct, "ambience", &scenario_acoustics_ambience_definition_struct_definition },
-		{ _field_explanation, "SOUND BANK" },
+		{ _field_explanation, "SOUND BANK", "" },
 		{ _field_tag_reference, "Sound bank tag", &global_soundbank_reference },
 		{ _field_tag_reference, "DVD Only sound bank tag", &global_soundbank_reference },
 		{ _field_terminator }

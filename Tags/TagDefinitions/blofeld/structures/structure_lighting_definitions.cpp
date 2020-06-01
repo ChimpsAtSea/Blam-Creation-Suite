@@ -11,7 +11,7 @@ namespace blofeld
 		{ _field_int64_integer, "Definition Identifier!" },
 		{ _field_struct, "Midnight_Light_Parameters", &midnight_light_struct_struct_definition },
 		{ _field_long_integer, "Source File Identifier!" },
-		{ _field_explanation, "Static Only Parameters" },
+		{ _field_explanation, "Static Only Parameters", "" },
 		{ _field_real, "indirect amplification factor" },
 		{ _field_real, "jitter sphere radius" },
 		{ _field_real, "jitter angle" },

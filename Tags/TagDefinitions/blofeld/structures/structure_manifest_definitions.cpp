@@ -25,9 +25,9 @@ namespace blofeld
 
 	TAG_STRUCT(structure_manifest_struct)
 	{
-		{ _field_explanation, "build identifer" },
+		{ _field_explanation, "build identifer", "" },
 		{ _field_struct, "build identifer*", &structure_manifest_build_identifier_struct_struct_definition },
-		{ _field_explanation, "parent build identifier" },
+		{ _field_explanation, "parent build identifier", "" },
 		{ _field_struct, "parent build identifer*#for local builds, this is the content build identifier you are based on", &structure_manifest_build_identifier_struct_struct_definition },
 		{ _field_block, "bsp manifest*", &structure_manifest_bsp_block_block },
 		{ _field_terminator }

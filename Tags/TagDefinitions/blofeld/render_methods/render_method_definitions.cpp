@@ -24,7 +24,7 @@ namespace blofeld
 		{ _field_string_id, "input name" },
 		{ _field_string_id, "range name" },
 		{ _field_real, "time period:seconds" },
-		{ _field_explanation, "FUNCTION" },
+		{ _field_explanation, "FUNCTION", "" },
 		{ _field_custom },
 		{ _field_struct, "function", &mapping_function_struct_definition },
 		{ _field_terminator }
@@ -282,7 +282,7 @@ namespace blofeld
 		{ _field_tag_reference, "shared vertex shaders*", &global_vertex_shader_reference },
 		{ _field_long_flags, "flags", &render_method_definition_flags },
 		{ _field_dword_integer, "version:bump to force recompile" },
-		{ _field_explanation, "source file location" },
+		{ _field_explanation, "source file location", "like templated\\shader ..." },
 		{ _field_long_string, "location" },
 		{ _field_terminator }
 	};

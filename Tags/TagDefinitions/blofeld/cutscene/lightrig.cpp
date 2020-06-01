@@ -22,7 +22,7 @@ namespace blofeld
 
 	TAG_BLOCK(scriptableLightRigBlock, e_scriptableLightRigMax)
 	{
-		{ _field_explanation, "Scriptable Light Rig" },
+		{ _field_explanation, "Scriptable Light Rig", "" },
 		{ _field_string_id, "string^" },
 		{ _field_tag_reference, "light rig", &global_lightRig_reference },
 		{ _field_terminator }
@@ -30,7 +30,7 @@ namespace blofeld
 
 	TAG_STRUCT(light_rig_struct_definition)
 	{
-		{ _field_explanation, "Character Light Rig" },
+		{ _field_explanation, "Character Light Rig", "" },
 		{ _field_custom, "Environment vmf lobe weight" },
 		{ _field_real, "Environment vmf lobe weight" },
 		{ _field_real_rgb_color, "Rig fill color" },

@@ -17,7 +17,7 @@ namespace blofeld
 
 	TAG_GROUP(sound_global_propagation, SOUND_GLOBAL_PROPAGATION_TAG)
 	{
-		{ _field_explanation, "underwater propagation globals" },
+		{ _field_explanation, "underwater propagation globals", "" },
 		{ _field_struct, "underwater propagation", &sound_propagation_definition_struct_struct_definition },
 		{ _field_terminator }
 	};
@@ -51,9 +51,9 @@ namespace blofeld
 		{ _field_char_enum, "import type*", &sound_import_type_enum },
 		{ _field_struct, "playback", &sound_playback_parameters_struct_struct_definition },
 		{ _field_struct, "scale", &sound_scale_modifiers_struct_struct_definition },
-		{ _field_explanation, "sub priority" },
+		{ _field_explanation, "sub priority", "Used to compare individual sounds in the same class. Higher means more important. (Negative means do not use.)" },
 		{ _field_real, "sub priority" },
-		{ _field_explanation, "import properties" },
+		{ _field_explanation, "import properties", "" },
 		{ _field_char_enum, "encoding*", &sound_encoding_enum },
 		{ _field_char_enum, "compression*", &sound_compression_enum },
 		{ _field_pad, "pad", 2 },
@@ -78,9 +78,9 @@ namespace blofeld
 		{ _field_char_enum, "import type*", &sound_import_type_enum },
 		{ _field_struct, "playback", &sound_playback_parameters_struct_struct_definition },
 		{ _field_struct, "scale", &sound_scale_modifiers_struct_struct_definition },
-		{ _field_explanation, "sub priority" },
+		{ _field_explanation, "sub priority", "Used to compare individual sounds in the same class. Higher means more important. (Negative means do not use.)" },
 		{ _field_real, "sub priority" },
-		{ _field_explanation, "import properties" },
+		{ _field_explanation, "import properties", "" },
 		{ _field_char_enum, "encoding*", &sound_encoding_enum },
 		{ _field_char_enum, "compression*", &sound_compression_enum },
 		{ _field_pad, "pad", 2 },
@@ -97,17 +97,17 @@ namespace blofeld
 	TAG_GROUP(sound_mix, SOUND_MIX_TAG)
 	{
 		{ _field_struct, "default transmission settings", &sound_transmission_definition_struct_struct_definition },
-		{ _field_explanation, "first person left side mix" },
+		{ _field_explanation, "first person left side mix", "for first person sounds to the left of you" },
 		{ _field_struct, "first person left side mix", &sound_stereo_mix_struct_struct_definition },
-		{ _field_explanation, "first person middle mix" },
+		{ _field_explanation, "first person middle mix", "for first person sounds between your ears" },
 		{ _field_struct, "first person middle mix", &sound_stereo_mix_struct_struct_definition },
-		{ _field_explanation, "first person right side mix" },
+		{ _field_explanation, "first person right side mix", "for first person sounds to the right of you" },
 		{ _field_struct, "first person right side mix", &sound_stereo_mix_struct_struct_definition },
-		{ _field_explanation, "first person surround mix" },
+		{ _field_explanation, "first person surround mix", "" },
 		{ _field_struct, "first person surround mix", &sound_surround_mix_struct_struct_definition },
-		{ _field_explanation, "ambient surround mix" },
+		{ _field_explanation, "ambient surround mix", "" },
 		{ _field_struct, "ambient surround mix", &sound_surround_mix_struct_struct_definition },
-		{ _field_explanation, "global mix" },
+		{ _field_explanation, "global mix", "" },
 		{ _field_struct, "global mix", &sound_global_mix_struct_struct_definition },
 		{ _field_terminator }
 	};
@@ -214,7 +214,7 @@ namespace blofeld
 	TAG_BLOCK(sound_pitch_range_block, MAXIMUM_PITCH_RANGES_PER_SOUND)
 	{
 		{ _field_string_id, "name*#the name of the imported pitch range directory" },
-		{ _field_explanation, "pitch control" },
+		{ _field_explanation, "pitch control", "these settings control what pitches this set of samples represents. if there is only one pitch range, all three values are ignored." },
 		{ _field_short_integer, "natural pitch:cents#the apparent pitch when these samples are played at their recorded pitch." },
 		{ _field_pad, "KCTSDWPP~", 2 },
 		{ _field_short_bounds, "bend bounds:cents#the range of pitches that will be represented using this sample." },
@@ -290,7 +290,7 @@ namespace blofeld
 
 	TAG_STRUCT(sound_distance_parameters_struct)
 	{
-		{ _field_explanation, "attenuation distances" },
+		{ _field_explanation, "attenuation distances", "these settings vary how the sound fades as you move closer or further away from it." },
 		{ _field_real, "don\'t obstruct distance:world units#don\'t obstruct below this distance" },
 		{ _field_real, "don\'t play distance:world units#don\'t play below this distance" },
 		{ _field_real, "attack distance:world units#start playing at full volume at this distance" },
@@ -338,16 +338,16 @@ namespace blofeld
 		{ _field_struct, "distance parameters{.}", &sound_distance_parameters_struct_struct_definition },
 		{ _field_custom },
 		{ _field_custom },
-		{ _field_explanation, "randomization" },
+		{ _field_explanation, "randomization", "these settings control random variation of volume and pitch.\n the second parameter gets clipped to the first." },
 		{ _field_custom },
 		{ _field_real, "gain base:dB#sound\'s random gain will start here" },
 		{ _field_real, "gain variance:dB#sound\'s gain will be randomly modulated within this range" },
 		{ _field_short_bounds, "random pitch bounds:cents#the sound\'s pitch will be modulated randomly within this range." },
-		{ _field_explanation, "directional sounds" },
+		{ _field_explanation, "directional sounds", "these settings allow sounds to be directional, fading as they turn away from the listener" },
 		{ _field_angle, "inner cone angle:degrees#within the cone defined by this angle and the sound\'s direction, the sound plays with a gain of 1.0." },
 		{ _field_angle, "outer cone angle:degrees#outside the cone defined by this angle and the sound\'s direction, the sound plays with a gain of OUTER CONE GAIN. (0 means the sound does not attenuate with direction.)" },
 		{ _field_real, "outer cone gain:dB#the gain to use when the sound is directed away from the listener" },
-		{ _field_explanation, "scripted location override" },
+		{ _field_explanation, "scripted location override", "NOTE: this will only apply when the sound is started via script\nazimuth:\n    0 => front\n    90 => left\n    180 => back\n    270 => right\n" },
 		{ _field_custom },
 		{ _field_long_flags, "flags", &sound_override_location_flags_definition },
 		{ _field_angle, "azimuth" },
@@ -358,7 +358,7 @@ namespace blofeld
 
 	TAG_STRUCT(sound_scale_modifiers_struct)
 	{
-		{ _field_explanation, "scale modifiers" },
+		{ _field_explanation, "scale modifiers", "as the sound\'s input scale changes from zero to one, these modifiers move between the two values specified here. the sound will play using the current scale modifier multiplied by the values specified above. (0 values are ignored.)" },
 		{ _field_real_bounds, "gain modifier:dB" },
 		{ _field_short_bounds, "pitch modifier:cents" },
 		{ _field_real_fraction_bounds, "skip fraction modifier" },
@@ -377,9 +377,9 @@ namespace blofeld
 
 	TAG_STRUCT(sound_transmission_definition_struct)
 	{
-		{ _field_explanation, "default obstruction settings" },
+		{ _field_explanation, "default obstruction settings", "" },
 		{ _field_struct, "obstruction settings", &global_sound_lowpass_block_struct_definition },
-		{ _field_explanation, "default occlusion settings" },
+		{ _field_explanation, "default occlusion settings", "" },
 		{ _field_struct, "occlusion settings", &global_sound_lowpass_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -403,23 +403,23 @@ namespace blofeld
 		{ _field_real, "mono unspatialized gain:dB" },
 		{ _field_real, "stereo to 3d gain:dB" },
 		{ _field_real, "rear surround to front stereo gain:dB" },
-		{ _field_explanation, "surround center mix" },
+		{ _field_explanation, "surround center mix", "for sounds that have \"use center speaker unspatialized\" checked when outputting in surround" },
 		{ _field_struct, "surround center mix", &sound_center_mix_struct_struct_definition },
-		{ _field_explanation, "stereo center mix" },
+		{ _field_explanation, "stereo center mix", "for sounds that have \"use center speaker unspatialized\" checked when outputting in stereo" },
 		{ _field_struct, "stereo center mix", &sound_center_mix_struct_struct_definition },
-		{ _field_explanation, "radio surround center mix" },
+		{ _field_explanation, "radio surround center mix", "for the radio effect when outputting in surround" },
 		{ _field_struct, "radio surround center mix", &sound_center_mix_struct_struct_definition },
-		{ _field_explanation, "radio stereo center mix" },
+		{ _field_explanation, "radio stereo center mix", "for the radio effect when outputting in stereo" },
 		{ _field_struct, "radio stereo center mix", &sound_center_mix_struct_struct_definition },
-		{ _field_explanation, "more sound lovin\'" },
+		{ _field_explanation, "more sound lovin\'", "" },
 		{ _field_real, "stereo unspatialized gain:dB" },
 		{ _field_real, "quad route to lfe gain:dB" },
-		{ _field_explanation, "last minute values" },
+		{ _field_explanation, "last minute values", "" },
 		{ _field_real, "solo player fade out delay: seconds" },
 		{ _field_real, "solo player fade out time: seconds" },
 		{ _field_real, "solo player fade in time: seconds" },
 		{ _field_real, "game music fade out time: seconds" },
-		{ _field_explanation, "debugging stuff" },
+		{ _field_explanation, "debugging stuff", "" },
 		{ _field_tag_reference, "play on unplayable sound", &global_force_sound_only_reference },
 		{ _field_real, "left/right bleed:[0 = no bleed, 1 = swap left/right, 0.5 = mono" },
 		{ _field_real, "remote voice boost: output= (1 + boost)*input" },
@@ -435,7 +435,7 @@ namespace blofeld
 
 	TAG_STRUCT(sound_dialogue_constants_struct_definition)
 	{
-		{ _field_explanation, "named playing fractions" },
+		{ _field_explanation, "named playing fractions", "these values correspond to the named play fractions in the dialogue editor (It\'s really skip fractions, but who cares\?)" },
 		{ _field_real, "almost never" },
 		{ _field_real, "rarely" },
 		{ _field_real, "somewhat" },

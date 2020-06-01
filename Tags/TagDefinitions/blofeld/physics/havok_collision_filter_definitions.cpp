@@ -16,7 +16,7 @@ namespace blofeld
 
 	TAG_STRUCT(havok_collision_filter_struct_definition)
 	{
-		{ _field_explanation, "specify what each group collides with" },
+		{ _field_explanation, "specify what each group collides with", "" },
 		{ _field_block, "groups", &havok_collision_filter_group_block_block },
 		{ _field_pad, "alignment_pad", 4 },
 		{ _field_struct, "group filter*!", &havok_group_filter_filter_struct_struct_definition },

@@ -26,7 +26,7 @@ namespace blofeld
 		{ _field_real_point_3d, "cubemap position" },
 		{ _field_enum, "cubemap resolution", &cubemap_resolution_enum },
 		{ _field_pad, "post-cubemap-resolution-pad", 2 },
-		{ _field_explanation, "bsps it could belong to" },
+		{ _field_explanation, "bsps it could belong to", "empty masks mean automatic selection." },
 		{ _field_struct, "manual bsp flags", &manualBspFlagsReferences_struct_definition },
 		{ _field_block, "reference points", &cubemap_reference_points_block_block },
 		{ _field_terminator }

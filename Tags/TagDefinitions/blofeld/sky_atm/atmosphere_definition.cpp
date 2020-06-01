@@ -18,7 +18,7 @@ namespace blofeld
 		{ _field_word_flags, "Flags", &atmosphere_flags },
 		{ _field_byte_integer, "Version!" },
 		{ _field_pad, "ABCDEFGH", 1 },
-		{ _field_explanation, "Ambient Fog Parameters" },
+		{ _field_explanation, "Ambient Fog Parameters", "All heights are absolute world space height\n" },
 		{ _field_real, "distance bias:world units#negative means into the screen" },
 		{ _field_custom, "Sky Fog" },
 		{ _field_struct, "sky fog", &solo_fog_parameters_struct_definition_struct_definition },
@@ -32,7 +32,7 @@ namespace blofeld
 		{ _field_custom, "Fog Light" },
 		{ _field_struct, "fog light", &fog_light_struct_definition_struct_definition },
 		{ _field_custom },
-		{ _field_explanation, "Patchy Fog Per-Cluster Parameters" },
+		{ _field_explanation, "Patchy Fog Per-Cluster Parameters", "Sheet density.............Intensity scaling factor applied to all sheets\nFull intensity height.....Height above 0 below which fog should be at full intensity\nHalf intensity height.....Height at which fog should be attenuated to half intensity\nWind......................Direction and intensity of fog motion due to wind\n\n" },
 		{ _field_real, "Sheet density" },
 		{ _field_real_rgb_color, "Color tint" },
 		{ _field_real_rgb_color, "Color tint inner" },
@@ -47,7 +47,7 @@ namespace blofeld
 		{ _field_custom, "Light Shafts" },
 		{ _field_struct, "light shaft", &LightShaftParametersDefinition_struct_definition },
 		{ _field_custom },
-		{ _field_explanation, "Weather effect" },
+		{ _field_explanation, "Weather effect", "Effect tag to create nearby raindrops, snowflakes, etc.\nParticle systems from this effect will follow the camera and wrap seamlessly as you turn or move.\n\n" },
 		{ _field_tag_reference, "Weather effect", &global_effect_reference },
 		{ _field_terminator }
 	};

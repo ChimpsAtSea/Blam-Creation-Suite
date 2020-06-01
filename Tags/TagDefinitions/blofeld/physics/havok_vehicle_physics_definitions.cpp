@@ -51,7 +51,7 @@ namespace blofeld
 		{ _field_custom },
 		{ _field_string_id, "collision global material name" },
 		{ _field_short_integer, "runtime global material index!" },
-		{ _field_explanation, "friction point destruction data" },
+		{ _field_explanation, "friction point destruction data", "" },
 		{ _field_enum, "model state destroyed#only need point can destroy flag set", &model_state_enum_definition },
 		{ _field_string_id, "region name#only need point can destroy flag set" },
 		{ _field_long_integer, "runtime region index!" },

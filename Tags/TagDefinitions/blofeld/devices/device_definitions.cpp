@@ -132,7 +132,7 @@ namespace blofeld
 	TAG_STRUCT(device_machine_struct_definition)
 	{
 		{ _field_struct, "device", &device_struct_definition_struct_definition },
-		{ _field_explanation, "$$$ MACHINE $$$" },
+		{ _field_explanation, "$$$ MACHINE $$$", "" },
 		{ _field_enum, "type", &machine_types },
 		{ _field_word_flags, "flags", &machine_flags },
 		{ _field_real, "door open time:seconds" },
@@ -151,7 +151,7 @@ namespace blofeld
 	TAG_STRUCT(device_terminal_struct_definition)
 	{
 		{ _field_struct, "device", &device_struct_definition_struct_definition },
-		{ _field_explanation, "$$$ TERMINAL $$$" },
+		{ _field_explanation, "$$$ TERMINAL $$$", "" },
 		{ _field_long_integer, "bah bah" },
 		{ _field_string_id, "action string" },
 		{ _field_string_id, "name#text pulled from strings tag above" },

@@ -238,7 +238,7 @@ namespace blofeld
 
 	TAG_BLOCK(structure_bsp_cluster_block, MAXIMUM_CLUSTERS_PER_STRUCTURE)
 	{
-		{ _field_explanation, "CLUSTER INFO" },
+		{ _field_explanation, "CLUSTER INFO", "" },
 		{ _field_real_bounds, "bounds x*" },
 		{ _field_real_bounds, "bounds y*" },
 		{ _field_real_bounds, "bounds z*" },

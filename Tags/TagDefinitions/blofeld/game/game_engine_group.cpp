@@ -325,7 +325,7 @@ namespace blofeld
 
 	TAG_STRUCT(game_engine_settings_definition_struct_definition)
 	{
-		{ _field_explanation, "Game Engine Settings" },
+		{ _field_explanation, "Game Engine Settings", "This contains the definitions for the built-in custom multiplayer game variants" },
 		{ _field_long_flags, "flags", &game_engine_settings_flags },
 		{ _field_block, "player traits", &game_engine_player_traits_list_block_block },
 		{ _field_block, "ai traits", &game_engine_ai_traits_list_block_block },

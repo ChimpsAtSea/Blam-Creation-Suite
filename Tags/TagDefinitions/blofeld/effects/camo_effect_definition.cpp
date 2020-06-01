@@ -10,7 +10,7 @@ namespace blofeld
 
 	TAG_STRUCT(camo_struct_definition)
 	{
-		{ _field_explanation, "Active Camo Controls" },
+		{ _field_explanation, "Active Camo Controls", "" },
 		{ _field_word_flags, "Flags", &camo_flags },
 		{ _field_pad, "KKHKKHKKL", 2 },
 		{ _field_struct, "Active Camo Amount", &camo_scalar_function_struct_struct_definition },

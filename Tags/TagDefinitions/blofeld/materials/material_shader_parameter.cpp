@@ -13,7 +13,7 @@ namespace blofeld
 		{ _field_pad, "BVCG", 3 },
 		{ _field_string_id, "Output Modifier Input!" },
 		{ _field_real, "time period:seconds" },
-		{ _field_explanation, "FUNCTION" },
+		{ _field_explanation, "FUNCTION", "" },
 		{ _field_custom },
 		{ _field_struct, "function", &mapping_function_struct_definition },
 		{ _field_terminator }

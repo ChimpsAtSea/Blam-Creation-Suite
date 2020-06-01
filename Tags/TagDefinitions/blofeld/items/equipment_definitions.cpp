@@ -117,7 +117,7 @@ namespace blofeld
 
 	TAG_BLOCK(aiEquipmentTraitAppearanceBlock, 1)
 	{
-		{ _field_explanation, "Appearance Traits" },
+		{ _field_explanation, "Appearance Traits", "Traits that affect the AI\'s appearance" },
 		{ _field_char_enum, "active camo setting", &player_trait_active_camo },
 		{ _field_pad, "pad", 3 },
 		{ _field_terminator }
@@ -149,7 +149,7 @@ namespace blofeld
 		{ _field_long_flags, "flags", &repulsor_field_flags },
 		{ _field_real, "radius:wu" },
 		{ _field_custom, "Time Dilation Values" },
-		{ _field_explanation, "Time Dilation" },
+		{ _field_explanation, "Time Dilation", "The effective rate at which time passes for objects in the field.  Values below 0.45 screw up jumping." },
 		{ _field_real, "time dilation player characters" },
 		{ _field_real, "time dilation projectiles" },
 		{ _field_real, "time dilation vehicles" },
@@ -164,7 +164,7 @@ namespace blofeld
 	{
 		{ _field_long_flags, "flags", &repulsor_field_flags },
 		{ _field_real, "start radius:wu" },
-		{ _field_explanation, "Ball Lightning" },
+		{ _field_explanation, "Ball Lightning", "Damage effect that passes from one biped to nearby bipeds, recursively" },
 		{ _field_real, "chain radius reduction multiplier^:[0.01, 1]#MUST BE GREATER THAN ZERO - each time lightning chains, this is the multiplier that controls how much the radius is reduced by" },
 		{ _field_real, "chain delay timer:seconds" },
 		{ _field_tag_reference, "lightning damage", &global_damage_reference },
@@ -255,7 +255,7 @@ namespace blofeld
 		{ _field_real, "airborne acceleration scale!" },
 		{ _field_real, "grounded acceleration magnitude#how hard to kick you upwards if you activate while grounded" },
 		{ _field_real, "landing anticipation time:s#how many seconds before landing the jetpack user enters the airborne arc" },
-		{ _field_explanation, "Zero-G jet pack" },
+		{ _field_explanation, "Zero-G jet pack", "These apply if \'Use camera and movement for thrust dir\' flag is checked" },
 		{ _field_real, "camera vs move input thrust control#Camera direction (0.0) VS movement input (1.0) interpolation" },
 		{ _field_real, "min speed#drag will be applied above this" },
 		{ _field_real, "max speed" },
@@ -323,7 +323,7 @@ namespace blofeld
 
 	TAG_BLOCK(equipmentAbilityTypeTeleporterBlock, 1)
 	{
-		{ _field_explanation, "Teleporter" },
+		{ _field_explanation, "Teleporter", "This causes you to warp forward.  It\'ll trace the path with an effect at the specified speed, then spawn you at the end of it." },
 		{ _field_byte_flags, "flags", &teleporterFlags },
 		{ _field_pad, "blurgh", 3 },
 		{ _field_real, "teleport distance" },
@@ -334,20 +334,20 @@ namespace blofeld
 		{ _field_real, "max pitch (airborne)#[-90 to 90] the pitch of the search vector will be clamped to no higher than this when starting a teleport in the air" },
 		{ _field_real, "max pitch (ground)#[-90 to 90] the pitch of the search vector will be clamped to no higher than this when starting a teleport on the ground" },
 		{ _field_custom, "Search Vector" },
-		{ _field_explanation, "Look Vector Weight" },
+		{ _field_explanation, "Look Vector Weight", "If \"force along aim vector\" isn\'t checked, the start vector will be your motion vector, plus some amount of weight for where you\'re looking, if you\'re moving along your look vector." },
 		{ _field_real, "look vector weight#value from 0 to 1 for how much we can use the look vector in place of the movement vector" },
 		{ _field_real, "look vector falloff inner#degrees, inside this angle, we use the look vector at full weight" },
 		{ _field_real, "look vector falloff outer#degrees, outside this angle, we only use the movement vector" },
 		{ _field_real, "move vector vertical offset#degrees, how much to offset the move vector vertically; positive is up, negative is down" },
 		{ _field_custom },
 		{ _field_custom, "Probes" },
-		{ _field_explanation, "Probe" },
+		{ _field_explanation, "Probe", "If \"disable extra probes\" isn\'t checked, we\'ll do a fan of rays vertically from our central vector, with one probe horizontally on either side of each of those rays." },
 		{ _field_real, "horizontal probe angle#degrees, the angle to each side of the horizontal probes" },
 		{ _field_real, "vertical probe angle#degrees, the angle up and down covered by the fan of vertical rays" },
 		{ _field_long_integer, "number of vertical probes#higher is more likely to find a good match, but more expensive" },
 		{ _field_custom },
 		{ _field_custom, "Collision" },
-		{ _field_explanation, "Collision" },
+		{ _field_explanation, "Collision", "If \"hide unit during transit\" isn\'t checked, we\'ll add a cow-catcher collision volume on the front and change the collision damage type." },
 		{ _field_block, "cow catcher parameters", &equipmentAbilityPartCowCatcherBlock_block },
 		{ _field_custom },
 		{ _field_terminator }
@@ -486,7 +486,7 @@ namespace blofeld
 		{ _field_real, "phantom volume activation time#time in seconds for the phantom volumes on this object to start accelerating things in them" },
 		{ _field_custom },
 		{ _field_custom, "Energy" },
-		{ _field_explanation, "Energy" },
+		{ _field_explanation, "Energy", "All these fields are additive, meaning a negative number will reduce energy and a positive one will increase energy.  Every piece of equipment starts at 1.0 energy" },
 		{ _field_real, "minimum activation energy#energy must be at least this high to activate\nLike activation cost, but doesn\'t actually change energy levels" },
 		{ _field_real, "low energy warning threshold#used by UI" },
 		{ _field_real, "activation energy cost" },
@@ -584,7 +584,7 @@ namespace blofeld
 		{ _field_real_argb_color, "forced primary change color#sets the primary change color on the unit to this if the flag above is checked" },
 		{ _field_real_argb_color, "forced secondary change color#sets the secondary change color on the unit to this if the flag above is checked" },
 		{ _field_custom, "AI" },
-		{ _field_explanation, "AI" },
+		{ _field_explanation, "AI", "Settings which the AI use to know how they should react to this equipment" },
 		{ _field_real, "danger radius#How large a danger zone we should create around this equipment (0 means no danger zone)" },
 		{ _field_real, "min deployment distance:wus#How far does my target have to be for me to throw this at them\?" },
 		{ _field_real, "awareness time:seconds#How long I should go unnoticed by nearby enemies" },

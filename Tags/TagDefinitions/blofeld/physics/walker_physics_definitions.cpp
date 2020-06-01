@@ -6,7 +6,7 @@ namespace blofeld
 
 	TAG_BLOCK(walker_physics_leg_block, s_walker_physics_definition::k_maximum_leg_count)
 	{
-		{ _field_explanation, "walker physics" },
+		{ _field_explanation, "walker physics", "" },
 		{ _field_char_enum, "leg group", &walker_physics_leg_group_enum },
 		{ _field_char_enum, "leg side", &walker_physics_leg_side_enum },
 		{ _field_char_integer, "leg side order#for each side order the legs from 0-n where 0 is the most forward leg" },

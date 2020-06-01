@@ -7,11 +7,11 @@ namespace blofeld
 	TAG_BLOCK(instantaneous_damage_repsonse_block, MAXIMUM_RESPONSES_PER_DAMAGE_SECTION)
 	{
 		{ _field_enum, "response type", &damage_response_type_enum_definition },
-		{ _field_explanation, "Constraint damage type" },
+		{ _field_explanation, "Constraint damage type", "* if you specify a constraint group name (see lower section of this block)\n  you can specify a constraint damage\n* loosening a constraint takes it out of the rigid state - activates it\n* destroying a constraint sets the attached body free" },
 		{ _field_enum, "constraint damage type", &damage_response_constraint_damage_type_enum_definition },
-		{ _field_explanation, "Constraint destruction" },
+		{ _field_explanation, "Constraint destruction", "- a response can destroy a single constraint by naming it explicitly.\n- alternatively it can randomly destroy a single constraint from a specified group if the \"destroy one group constraint\" flag is set\n- also it can destroy all constraints in a specified group if the \"destroy all group constraints\" flag is set\n" },
 		{ _field_string_id, "constraint/group name" },
-		{ _field_explanation, "Damage response flags" },
+		{ _field_explanation, "Damage response flags", "* kills object: when the response fires the object dies regardless of its current health\n* inhibits <x>: from halo 1 - disallows basic behaviors for a unit\n* forces drop weapon: from halo 1 - makes the unit drop its current weapon\n* kills weapon <x> trigger: destroys the <x> trigger on the unit\'s current weapon\n* destroys object: when the response fires the object is destroyed" },
 		{ _field_long_flags, "flags", &damage_response_set1 },
 		{ _field_long_flags, "flags2", &damage_response_set2 },
 		{ _field_real_fraction, "damage threshold#response fires after crossing this threshold.  1=full health" },
@@ -31,18 +31,18 @@ namespace blofeld
 		{ _field_string_id, "custom response label" },
 		{ _field_string_id, "effect marker name" },
 		{ _field_struct, "damage effect marker", &instantaneous_response_damage_effect_marker_struct_struct_definition },
-		{ _field_explanation, "Response delay" },
+		{ _field_explanation, "Response delay", "If desired, you can specify a delay until the response fires.This delay is pre-empted if another timed response for the same section fires.The delay effect plays while the timer is counting down.If the damage threshold is taken in a single hit while counting down, it will prematurely fire." },
 		{ _field_real, "response delay#in seconds" },
 		{ _field_tag_reference, "delay effect", &global_effect_reference },
 		{ _field_string_id, "delay effect marker name" },
 		{ _field_real, "response delay premature damage threshold" },
-		{ _field_explanation, "seat ejaculation" },
+		{ _field_explanation, "seat ejaculation", "" },
 		{ _field_string_id, "ejecting seat label" },
-		{ _field_explanation, "skip fraction" },
+		{ _field_explanation, "skip fraction", "0.0 always fires, 1.0 never fires" },
 		{ _field_real_fraction, "skip fraction" },
-		{ _field_explanation, "destroyed child object marker name" },
+		{ _field_explanation, "destroyed child object marker name", "when this response fires, any children objects created at the supplied marker name will be destroyed" },
 		{ _field_string_id, "destroyed child object marker name" },
-		{ _field_explanation, "total damage threshold" },
+		{ _field_explanation, "total damage threshold", "scale on total damage section vitality" },
 		{ _field_real_fraction, "total damage threshold" },
 		{ _field_terminator }
 	};
@@ -50,7 +50,7 @@ namespace blofeld
 	TAG_BLOCK(global_damage_section_block, MAXIMUM_DAMAGE_SECTIONS_PER_MODEL)
 	{
 		{ _field_string_id, "name^" },
-		{ _field_explanation, "damage section flags" },
+		{ _field_explanation, "damage section flags", "* absorbs body damage: damage to this section does not count against body vitality\n* headshottable: takes extra headshot damage when shot\n* ignores shields: damage to this section bypasses shields" },
 		{ _field_long_flags, "flags", &damage_section_flags_definition },
 		{ _field_real_fraction, "vitality percentage:[0.1]#percentage of total object vitality" },
 		{ _field_block, "instant responses", &instantaneous_damage_repsonse_block_block },
@@ -75,7 +75,7 @@ namespace blofeld
 
 	TAG_BLOCK(damage_seat_region_setting_block, 1)
 	{
-		{ _field_explanation, "region-state-specific-damage" },
+		{ _field_explanation, "region-state-specific-damage", "for fields below, 0.0==inherit from damage seat" },
 		{ _field_string_id, "damage region name" },
 		{ _field_short_integer, "runtime damage region index!*" },
 		{ _field_pad, "EOQ", 2 },
@@ -124,10 +124,10 @@ namespace blofeld
 		{ _field_char_enum, "response damage reporting type", &global_damage_reporting_enum_definition },
 		{ _field_pad, "MQ", 2 },
 		{ _field_pad, "MYON", 20 },
-		{ _field_explanation, "body" },
+		{ _field_explanation, "body", "" },
 		{ _field_struct, "body", &damage_body_parameters_struct_struct_definition },
 		{ _field_pad, "IKEIDYSCX", 64 },
-		{ _field_explanation, "shield" },
+		{ _field_explanation, "shield", "" },
 		{ _field_struct, "shield", &damage_shield_parameters_struct_struct_definition },
 		{ _field_block, "damage sections", &global_damage_section_block_block },
 		{ _field_block, "nodes*", &global_damage_nodes_block_block },
@@ -138,7 +138,7 @@ namespace blofeld
 		{ _field_real, "runtime health recharge velocity!*" },
 		{ _field_block, "damage seats", &damage_seat_info_block_block },
 		{ _field_block, "damage constraints", &damage_constraint_info_block_block },
-		{ _field_explanation, "overshield" },
+		{ _field_explanation, "overshield", "" },
 		{ _field_terminator }
 	};
 
@@ -223,10 +223,10 @@ namespace blofeld
 		{ _field_long_flags, "flags", &new_damage_section_flags_definition },
 		{ _field_real_fraction, "vitality percentage:[0.1]#percentage of total object vitality" },
 		{ _field_string_id, "shield material name#set this to make this damage section a shield" },
-		{ _field_explanation, "stun" },
+		{ _field_explanation, "stun", "" },
 		{ _field_real, "stun time:seconds" },
 		{ _field_real, "minimum stun damage#the minimum damage required to stun this object\'s health" },
-		{ _field_explanation, "recharge" },
+		{ _field_explanation, "recharge", "" },
 		{ _field_real, "recharge time:seconds" },
 		{ _field_block, "recharge speed curve", &damage_section_recharge_speed_curve_block_block },
 		{ _field_block, "recharge fractions", &damage_section_segmented_recharge_fraction_block },
@@ -236,13 +236,13 @@ namespace blofeld
 		{ _field_string_id, "pre recharge effect marker#(main shield only)" },
 		{ _field_tag_reference, "pre recharge abort effect#(main shield only) if the pre-recharge effect is aborted before the actual recharge starts, this effect plays", &global_effect_reference },
 		{ _field_string_id, "pre recharge abort effect marker#(main shield only)" },
-		{ _field_explanation, "overcharge" },
+		{ _field_explanation, "overcharge", "" },
 		{ _field_real, "overcharge time:seconds#time it takes to reach full \"overcharge fraction\"" },
 		{ _field_real, "overcharge fraction#fraction to which shields will automatically overcharge, values <= 1.0 are ignored" },
-		{ _field_explanation, "decay" },
+		{ _field_explanation, "decay", "" },
 		{ _field_real, "pre decay time:seconds#time for this section to be active before it will start to decay" },
 		{ _field_real, "decay time:seconds#time for need for this section to fully decay with full health." },
-		{ _field_explanation, "resurrection" },
+		{ _field_explanation, "resurrection", "" },
 		{ _field_string_id, "resurrection restored region name" },
 		{ _field_block, "instant responses", &new_instantaneous_damage_response_block_block },
 		{ _field_block, "section damage transfers", &damage_transfer_block_block },
@@ -294,7 +294,7 @@ namespace blofeld
 
 	TAG_STRUCT(model_damage_info_struct)
 	{
-		{ _field_explanation, "Damage Info" },
+		{ _field_explanation, "Damage Info", "" },
 		{ _field_long_flags, "flags", &new_model_damage_info_flags_definition },
 		{ _field_real, "maximum vitality#value of zero implies \'damage sections\' should be empty" },
 		{ _field_string_id, "indirect material name#absorbes AOE or child damage" },

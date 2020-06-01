@@ -31,7 +31,7 @@ namespace blofeld
 
 	TAG_BLOCK(effect_locations_block, k_maximum_effect_locations_count)
 	{
-		{ _field_explanation, "MARKER NAMES" },
+		{ _field_explanation, "MARKER NAMES", "In addition to the marker in the render model there are several special marker names:\n\nreplace\nReplace allows you to use the same effect with different markers. Damage transition effects support this for example.\n\ngravity, up\nThe direction of gravity (down) and the opposite direction (up).  Always supplied\n\nnormal\nVector pointing directly away from the surface you collided with. Supplied for effects from collision.\n\nforward\nThe \'negative incident\' vector i.e. the direction the object is moving in. Most commonly used to generated decals. Supplied for effects from collision.\n\nbackward\nThe \'incident\' vector i.e. the opposite of the direction the object is moving in. Supplied for effects from collision.\n\nreflection\nThe way the effect would reflect off the surface it hit. Supplied for effects from collision.\n\nroot\nThe object root (pivot). These can used for all effects which are associated with an object.\n\nimpact\nThe location of a havok impact.\n\nwater_surface\nPoint of the effect projected to the water surface above it. Otherwise it just returns the effect position.\n\nchild\nThe location of the last detonated projectile, in case the parent object is a weapon (tracers only)\n\n" },
 		{ _field_custom },
 		{ _field_old_string_id, "marker name^" },
 		{ _field_word_flags, "flags", &effect_location_flags },
@@ -63,7 +63,7 @@ namespace blofeld
 		{ _field_real_bounds, "radius modifier bounds" },
 		{ _field_real_point_3d, "relative offset" },
 		{ _field_real_euler_angles_2d, "relative orientation (yaw, pitch)" },
-		{ _field_explanation, "SCALE MODIFIERS" },
+		{ _field_explanation, "SCALE MODIFIERS", "" },
 		{ _field_long_flags, "A scales values:", &effect_part_scaleable_values },
 		{ _field_long_flags, "B scales values:", &effect_part_scaleable_values },
 		{ _field_tag_reference, "particleize#optional particleization effect definition, if you want this to particleize on spawn", &global_particleize_parameters_reference },
@@ -93,7 +93,7 @@ namespace blofeld
 		{ _field_real_bounds, "delay bounds:seconds#delay before this event takes place" },
 		{ _field_custom, "duration bounds:seconds#duration of this event" },
 		{ _field_real_bounds, "duration bounds:seconds#duration of this event" },
-		{ _field_explanation, "event age duration override" },
+		{ _field_explanation, "event age duration override", "Parts and particle systems can take \"event age\" as a function input.  Typically that goes from 0 to 1 over the event duration.  If you want a different time, specify it here.  0 means use the duration bounds above." },
 		{ _field_real, "event age duration override:seconds#the amount of time over which the \"event age\" function input goes from 0 to 1" },
 		{ _field_block, "parts", &effect_part_block_block },
 		{ _field_block, "accelerations", &effect_accelerations_block_block },
@@ -111,7 +111,7 @@ namespace blofeld
 
 	TAG_BLOCK(effect_conical_distribution_block, 1)
 	{
-		{ _field_explanation, "conical_projection: AKA shotgun" },
+		{ _field_explanation, "conical_projection: AKA shotgun", "projectile_count = yaw_count*pitch_count" },
 		{ _field_short_integer, "yaw count" },
 		{ _field_short_integer, "pitch count" },
 		{ _field_real, "distribution exponent#exp==.5 even distribution, exp>.5== tighter" },

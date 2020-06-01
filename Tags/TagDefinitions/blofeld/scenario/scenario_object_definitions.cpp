@@ -307,7 +307,7 @@ namespace blofeld
 
 	TAG_BLOCK(scenario_requisition_palette_block, MAXIMUM_REQUISITION_MENU_SIZE)
 	{
-		{ _field_explanation, "CUSTOM APPS" },
+		{ _field_explanation, "CUSTOM APPS", "If you want the award to be a custom app, point at globals/custom_app_globals, and match one of the names from that tag for \"display_name\"" },
 		{ _field_tag_reference, "name^", &scenario_requisition_palette_block_name_reference },
 		{ _field_tag_reference, "second name^", &scenario_requisition_palette_block_name_reference },
 		{ _field_tag_reference, "third name^", &scenario_requisition_palette_block_name_reference },
@@ -453,7 +453,7 @@ namespace blofeld
 
 	TAG_STRUCT(scenario_multiplayer_object_struct)
 	{
-		{ _field_explanation, "Multiplayer Data" },
+		{ _field_explanation, "Multiplayer Data", "object data for multiplayer game use" },
 		{ _field_string, "megalo label" },
 		{ _field_string, "megalo label 2" },
 		{ _field_string, "megalo label 3" },

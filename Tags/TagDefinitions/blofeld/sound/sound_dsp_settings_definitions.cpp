@@ -6,11 +6,11 @@ namespace blofeld
 
 	TAG_GROUP(sound_radio_settings, SOUND_RADIO_SETTINGS_TAG)
 	{
-		{ _field_explanation, "mix settings" },
+		{ _field_explanation, "mix settings", "" },
 		{ _field_long_enum, "mix", &radio_mix_setting_definition },
-		{ _field_explanation, "distortion settings" },
+		{ _field_explanation, "distortion settings", "" },
 		{ _field_struct, "distortion settings", &global_sound_look_up_table_distortion_block_struct_definition },
-		{ _field_explanation, "equalizer settings" },
+		{ _field_explanation, "equalizer settings", "" },
 		{ _field_struct, "equalizer settings", &global_sound_equalizer_block_struct_definition },
 		{ _field_terminator }
 	};
@@ -62,7 +62,7 @@ namespace blofeld
 		{ _field_real, "density" },
 		{ _field_custom, "hf reference(20 to 20,000):Hz#for hf values, what frequency defines hf, from 20 to 20,000" },
 		{ _field_real, "hf reference(20 to 20,000):Hz#for hf values, what frequency defines hf, from 20 to 20,000" },
-		{ _field_explanation, "WWise Environment" },
+		{ _field_explanation, "WWise Environment", "Use these values for WWise reverb. Above stuff will be removed eventually." },
 		{ _field_string_id, "Environment name#Name of the environment from WWise. This will be a DSP effect with Environmental Effect checked." },
 		{ _field_custom, "Dry mix value#0 to 1 with 0 being none, and 1 being full." },
 		{ _field_real, "Dry mix value#0 to 1 with 0 being none, and 1 being full." },

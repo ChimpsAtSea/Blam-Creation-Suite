@@ -6,7 +6,7 @@ namespace blofeld
 
 	TAG_BLOCK(firing_positions_block, k_max_firing_positions_per_zone)
 	{
-		{ _field_explanation, "CONTROLS~" },
+		{ _field_explanation, "CONTROLS~", "Ctrl-N: Creates a new area and assigns it to the current selection of firing points." },
 		{ _field_real_point_3d, "position (local)" },
 		{ _field_custom_long_block_index, "packedKeyOffaceref~!" },
 		{ _field_custom_long_block_index, "navMeshUIDOffaceref~!" },

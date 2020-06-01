@@ -16,10 +16,10 @@ namespace blofeld
 
 	TAG_STRUCT(weather_globals_struct_definition)
 	{
-		{ _field_explanation, "global textures" },
+		{ _field_explanation, "global textures", "0: ............... random noise\n" },
 		{ _field_block, "global textures", &global_textures_refs_block_block },
 		{ _field_tag_reference, "default rain", &global_rain_definition_reference },
-		{ _field_explanation, "ripple settings (TO BE REMOVED)" },
+		{ _field_explanation, "ripple settings (TO BE REMOVED)", "we are going to use a new method to render and control of ripple effects\n" },
 		{ _field_struct, "rain ripple setting", &rain_ripple_setting_block_struct_definition },
 		{ _field_terminator }
 	};

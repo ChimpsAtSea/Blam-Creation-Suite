@@ -891,6 +891,9 @@
     <ClCompile Include="tagdefinitions-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="blofeld\tag_structs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="blofeld.h">
@@ -1806,6 +1809,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="types\tag_field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="blofeld\tag_structs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
