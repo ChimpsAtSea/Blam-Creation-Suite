@@ -29,11 +29,11 @@ void c_virtual_tag_source_generator::generate_header()
 	//hs << "\t\t" << "class c_virtual_tag_interface { public: c_virtual_tag_interface(c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_reference& tag_reference); };" << std::endl << std::endl;
 
 
-	hs << "\t\t" << "template<typename T>" << std::endl;
-	hs << "\t\t" << "class v_tag_interface :" << std::endl;
-	hs << "\t\t" << "\tpublic c_tag_interface" << std::endl;
-	hs << "\t\t" << "{" << std::endl;
-	hs << "\t\t" << "};" << std::endl << std::endl;
+	//hs << "\t\t" << "template<typename T>" << std::endl;
+	//hs << "\t\t" << "class v_tag_interface :" << std::endl;
+	//hs << "\t\t" << "\tpublic c_tag_interface" << std::endl;
+	//hs << "\t\t" << "{" << std::endl;
+	//hs << "\t\t" << "};" << std::endl << std::endl;
 
 	hs << "\t\tc_tag_interface* create_tag_interface(c_cache_file& cache_file, uint16_t tag_index, unsigned long group_tag);" << std::endl << std::endl;
 

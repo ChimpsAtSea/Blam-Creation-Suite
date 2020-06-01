@@ -6,6 +6,14 @@ c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_inter
 	cache_file(cache_file),
 	parent_tab(parent_tab)
 {
+
+	if (v_tag_interface<blofeld::haloreach::s_bitmap_block_struct>* bitmap_tag_interface = dynamic_cast<decltype(bitmap_tag_interface)>(&tag_interface))
+	{
+		c_mantle_bitmap_gui_tab* mantle_bitmap_gui_tab = new c_mantle_bitmap_gui_tab(cache_file, this, *bitmap_tag_interface);
+		ASSERT(mantle_bitmap_gui_tab != nullptr);
+		add_tab(*mantle_bitmap_gui_tab);
+	}
+
 	const blofeld::s_tag_group* blofeld_reflection = tag_interface.get_blofeld_reflection_data();
 	if (blofeld_reflection)
 	{
@@ -21,13 +29,6 @@ c_mantle_tag_gui_tab::c_mantle_tag_gui_tab(c_cache_file& cache_file, c_tag_inter
 		c_mantle_blamlib_tag_editor_gui_tab* blamlib_tag_editor_gui_tab = new c_mantle_blamlib_tag_editor_gui_tab(cache_file, this, tag_interface);
 		ASSERT(blamlib_tag_editor_gui_tab != nullptr);
 		add_tab(*blamlib_tag_editor_gui_tab);
-	}
-
-	if (v_tag_interface_legacy<s_bitmap_definition_legacy>* bitmap_tag_interface = dynamic_cast<decltype(bitmap_tag_interface)>(&tag_interface))
-	{
-		c_mantle_bitmap_gui_tab* mantle_bitmap_gui_tab = new c_mantle_bitmap_gui_tab(cache_file, this, *bitmap_tag_interface);
-		ASSERT(mantle_bitmap_gui_tab != nullptr);
-		add_tab(*mantle_bitmap_gui_tab);
 	}
 
 	if (v_tag_interface_legacy<s_shader_definition_legacy>* shader_tag_interface = dynamic_cast<decltype(shader_tag_interface)>(&tag_interface))

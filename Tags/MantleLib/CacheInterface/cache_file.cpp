@@ -204,18 +204,32 @@ void c_cache_file::initTagInstances()
 	std::function createTagFunc = [this, ppTagInterfacesBuffer](uint32_t index)
 	{
 		uint32_t group_index = cache_file_tag_instances[index].group_index;
-		const s_reflection_structure_type_legacy* reflection_type = reflection_legacy(cache_file_tag_groups[group_index].group_tags[0]);
-		if (reflection_type)
+
+		unsigned long group_tag = cache_file_tag_groups[group_index].group_tags[0];
+
+		c_tag_interface* tag_interface = blofeld::haloreach::create_tag_interface(*this, static_cast<uint16_t>(index), group_tag);
+		if (!tag_interface)
 		{
-			//ASSERT(reflection_type != nullptr); // #TODO: All tags have a reflection type
-			ASSERT(reflection_type->virtual_tag_constructor != nullptr);
-			ppTagInterfacesBuffer[index] = reflection_type->virtual_tag_constructor(*this, static_cast<uint16_t>(index));
-			//write_line_verbose("vtag> %s", ppTagInterfacesBuffer[index]->get_path_with_group_name_cstr());
+			write_line_verbose("c_cache_file: warning unknown tag group!");
+			tag_interface = new c_tag_interface(*this, static_cast<uint16_t>(index));
 		}
-		else
-		{
-			ppTagInterfacesBuffer[index] = new c_tag_interface(*this, static_cast<uint16_t>(index));
-		}
+
+		ppTagInterfacesBuffer[index] = tag_interface;
+
+
+
+		//const s_reflection_structure_type_legacy* reflection_type = reflection_legacy(group_tag);
+		//if (reflection_type)
+		//{
+		//	//ASSERT(reflection_type != nullptr); // #TODO: All tags have a reflection type
+		//	ASSERT(reflection_type->virtual_tag_constructor != nullptr);
+		//	ppTagInterfacesBuffer[index] = reflection_type->virtual_tag_constructor(*this, static_cast<uint16_t>(index));
+		//	//write_line_verbose("vtag> %s", ppTagInterfacesBuffer[index]->get_path_with_group_name_cstr());
+		//}
+		//else
+		//{
+		//	ppTagInterfacesBuffer[index] = new c_tag_interface(*this, static_cast<uint16_t>(index));
+		//}
 	};
 	tbb::parallel_for(0u, cache_file_tags_headers->instances.count, createTagFunc);
 }
