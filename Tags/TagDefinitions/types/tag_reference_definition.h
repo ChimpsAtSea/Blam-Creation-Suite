@@ -2,7 +2,8 @@
 
 namespace blofeld
 {
-	enum e_tag_reference_flags : unsigned long
+	using t_tag_reference_flags = unsigned long;
+	enum e_tag_reference_flags : t_tag_reference_flags
 	{
 		_tag_reference_flag_not_a_dependency,
 		_tag_reference_flag_dont_resolve_in_editor,
@@ -19,23 +20,15 @@ namespace blofeld
 		unsigned long const group_tag;
 		const unsigned long* const group_tags;
 
-		s_tag_reference_definition(unsigned long group_tag, e_tag_reference_flags flags, const unsigned long group_tags[]) :
-			flags(flags),
+		s_tag_reference_definition(unsigned long group_tag, const unsigned long group_tags[], t_tag_reference_flags flags = 0) :
+			flags(static_cast<e_tag_reference_flags>(flags)),
 			group_tag(group_tag),
 			group_tags(group_tags)
 		{
 
 		}
 
-		s_tag_reference_definition(unsigned long group_tag, e_tag_reference_flags flags) :
-			flags(flags),
-			group_tag(group_tag),
-			group_tags(nullptr)
-		{
-
-		}
-
-		s_tag_reference_definition(unsigned long group_tag = INVALID_TAG, unsigned long flags = 0) :
+		s_tag_reference_definition(unsigned long group_tag = INVALID_TAG, t_tag_reference_flags flags = 0) :
 			flags(static_cast<e_tag_reference_flags>(flags)),
 			group_tag(group_tag),
 			group_tags(nullptr)

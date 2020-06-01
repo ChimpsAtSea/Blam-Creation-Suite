@@ -51,12 +51,14 @@ namespace blofeld
 		CHEAP_PARTICLE_EMITTER_TAG,
 		EFFECT_GLOBAL_FORCE_TAG,
 		DECAL_SYSTEM_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE_GROUP(object_widget_block_type_reference)
 	{
 		ANTENNA_TAG,
 		CLOTH_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(object_reference, OBJECT_TAG);
@@ -65,6 +67,7 @@ namespace blofeld
 	{
 		MATERIAL_TAG,
 		RENDER_METHOD_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(hsc_reference, HSC_TAG);
@@ -75,6 +78,7 @@ namespace blofeld
 	{
 		BIPED_TAG,
 		VEHICLE_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(damage_response_definition_reference, DAMAGE_RESPONSE_DEFINITION_TAG);
@@ -146,6 +150,7 @@ namespace blofeld
 		OBJECT_TAG,
 		SCENERY_TAG,
 		EFFECT_SCENERY_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(bitmap_reference$5, BITMAP_TAG);
@@ -157,6 +162,7 @@ namespace blofeld
 		SOUND_TAG,
 		SOUND_OLD_TAG,
 		EFFECT_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(property_tag_reference_value_value_reference);
@@ -177,6 +183,7 @@ namespace blofeld
 		VEHICLE_TAG,
 		WEAPON_TAG,
 		CRATE_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE_GROUP(effect_part_block_type_reference)
@@ -199,6 +206,7 @@ namespace blofeld
 		SOUND_TAG,
 		TRACER_SYSTEM_TAG,
 		AIRSTRIKE_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(object_reference$4, OBJECT_TAG);
@@ -223,6 +231,7 @@ namespace blofeld
 		SOUND_LOOPING_TAG,
 		SOUND_TAG,
 		EFFECT_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(effect_scenery_reference, EFFECT_SCENERY_TAG);
@@ -259,6 +268,7 @@ namespace blofeld
 	{
 		UNIT_TAG,
 		SCENERY_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(render_model_reference$4, RENDER_MODEL_TAG);
@@ -342,6 +352,7 @@ namespace blofeld
 		OBJECT_TAG,
 		VEHICLE_TAG,
 		CUSTOM_APP_GLOBALS_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(weapon_reference$5, WEAPON_TAG);
@@ -356,6 +367,7 @@ namespace blofeld
 	{
 		MATERIAL_TAG,
 		RENDER_METHOD_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(bitmap_reference$10, BITMAP_TAG);
@@ -385,6 +397,7 @@ namespace blofeld
 		EFFECT_TAG,
 		SOUND_OLD_TAG,
 		MATERIAL_EFFECTS_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(particle_model_reference$2, PARTICLE_MODEL_TAG);
@@ -396,6 +409,7 @@ namespace blofeld
 		MATERIAL_TAG,
 		MATERIAL_SHADER_TAG,
 		VERTEX_SHADER_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE_GROUP(explicit_shader_refs_block_explicit_pixel_shader_reference)
@@ -403,6 +417,7 @@ namespace blofeld
 		MATERIAL_TAG,
 		MATERIAL_SHADER_TAG,
 		PIXEL_SHADER_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(cheap_particle_type_library_reference$2, CHEAP_PARTICLE_TYPE_LIBRARY_TAG);
@@ -425,6 +440,7 @@ namespace blofeld
 	{
 		MATERIAL_TAG,
 		RENDER_METHOD_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(light_reference, LIGHT_TAG, _tag_reference_flag_resolved_by_game);
@@ -436,6 +452,7 @@ namespace blofeld
 	TAG_REFERENCE_GROUP(leaf_system_reference)
 	{
 		LEAF_SYSTEM_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(cheap_light_reference, CHEAP_LIGHT_TAG, _tag_reference_flag_resolved_by_game);
@@ -493,6 +510,7 @@ namespace blofeld
 		SCENERY_TAG,
 		DEVICE_MACHINE_TAG,
 		CUSTOM_APP_GLOBALS_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(decal_system_reference, DECAL_SYSTEM_TAG);
@@ -533,6 +551,7 @@ namespace blofeld
 		DEVICE_MACHINE_TAG,
 		SCENERY_TAG,
 		VEHICLE_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(model_animation_graph_reference$3, MODEL_ANIMATION_GRAPH_TAG, _tag_reference_flag_not_a_dependency);
@@ -543,6 +562,7 @@ namespace blofeld
 		SOUND_TAG,
 		SOUND_LOOPING_TAG,
 		AI_MISSION_DIALOGUE_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(scenario_required_resource_reference, SCENARIO_REQUIRED_RESOURCE_TAG);
@@ -557,6 +577,7 @@ namespace blofeld
 	{
 		EFFECT_TAG,
 		LENS_FLARE_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(character_reference$7, CHARACTER_TAG, _tag_reference_flag_not_a_dependency);
@@ -585,6 +606,7 @@ namespace blofeld
 	{
 		SOUND_OLD_TAG,
 		EFFECT_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(render_model_reference$10, RENDER_MODEL_TAG, _tag_reference_flag_dont_resolve_in_editor);

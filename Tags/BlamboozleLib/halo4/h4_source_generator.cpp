@@ -796,6 +796,7 @@ void c_h4_source_generator::create_tag_reference_source(std::stringstream& ss, c
 				ss << "\t\t'" << tag_group_string << "'," << std::endl;
 			}
 		}
+		ss << "\t\tINVALID_TAG," << std::endl;
 		ss << "\t};" << std::endl;
 	}
 	else

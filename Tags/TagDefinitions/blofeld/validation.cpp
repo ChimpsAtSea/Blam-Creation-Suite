@@ -12,29 +12,33 @@ namespace blofeld
 			const char* field_string = field_to_string(current_field->field_type);
 			const char* nice_field_string = field_string + 1;
 
-			// data validation
-			switch (current_field->field_type)
+			if (block_failed_validation)
 			{
-			case _field_char_enum:
-			case _field_enum:
-			case _field_long_enum:
-			case _field_long_flags:
-			case _field_word_flags:
-			case _field_byte_flags:
-				if (current_field->string_list_definition == nullptr)
+
+				// data validation
+				switch (current_field->field_type)
 				{
-					write_line_verbose("%s(%i): warning V5000: '%s' '%s':'%s' failed validation. no string list specified.", current_field->filename, current_field->line, nice_field_string, struct_definition.name, current_field->name);
-					if (block_failed_validation) *block_failed_validation |= true;
+				case _field_char_enum:
+				case _field_enum:
+				case _field_long_enum:
+				case _field_long_flags:
+				case _field_word_flags:
+				case _field_byte_flags:
+					if (current_field->string_list_definition == nullptr)
+					{
+						write_line_verbose("%s(%i): warning V5000: '%s' '%s':'%s' failed validation. no string list specified.", current_field->filename, current_field->line, nice_field_string, struct_definition.name, current_field->name);
+						*block_failed_validation |= true;
+					}
+					break;
+				case _field_struct:
+					if (current_field->struct_definition == nullptr)
+					{
+						write_line_verbose("%s(%i): warning V4000: '%s' '%s':'%s' failed validation. array is not implemented!", current_field->filename, current_field->line, nice_field_string, struct_definition.name, current_field->name);
+						*block_failed_validation |= true;
+						continue;
+					}
+					break;
 				}
-				break;
-			case _field_struct:
-				if (current_field->struct_definition == nullptr)
-				{
-					write_line_verbose("%s(%i): warning V4000: '%s' '%s':'%s' failed validation. array is not implemented!", current_field->filename, current_field->line, nice_field_string, struct_definition.name, current_field->name);
-					if (block_failed_validation) *block_failed_validation |= true;
-					continue;
-				}
-				break;
 			}
 
 			switch (current_field->field_type)

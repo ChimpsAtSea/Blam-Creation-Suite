@@ -225,6 +225,7 @@ namespace blofeld
 		SOUND_COMBINER_TAG,
 		SOUND_OLD_TAG,
 		SOUND_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE_GROUP(global_sound_and_looping_sound_reference, _tag_reference_flag_resolved_by_game)
@@ -233,6 +234,7 @@ namespace blofeld
 		SOUND_OLD_TAG,
 		SOUND_LOOPING_TAG,
 		SOUND_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(global_soundbank_reference, SOUNDBANK_TAG, _tag_reference_flag_resolved_by_game);
@@ -243,6 +245,7 @@ namespace blofeld
 	{
 		SOUND_OLD_TAG,
 		SOUND_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(global_sound_effect_collection_reference, SOUND_EFFECT_COLLECTION_TAG);

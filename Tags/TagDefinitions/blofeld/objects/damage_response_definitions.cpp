@@ -130,6 +130,7 @@ namespace blofeld
 	{
 		DAMAGE_EFFECT_TAG,
 		DAMAGE_RESPONSE_DEFINITION_TAG,
+		INVALID_TAG,
 	};
 
 	TAG_REFERENCE(global_damage_response_definition_reference, DAMAGE_RESPONSE_DEFINITION_TAG);

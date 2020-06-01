@@ -87,9 +87,9 @@ s_tag_group CONCAT(tag_group_name, _group) = { STRINGIFY(tag_group_name), group_
 s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition(__VA_ARGS__)
 
 #define TAG_REFERENCE_GROUP(tag_reference_symbolname, ...) \
-extern unsigned long CONCAT(tag_reference_symbolname, _reference)[]; \
-s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition(__VA_ARGS__); \
-unsigned long CONCAT(tag_reference_symbolname, _reference)[] =
+extern unsigned long CONCAT(tag_reference_symbolname, _tag_groups)[]; \
+s_tag_reference_definition tag_reference_symbolname = s_tag_reference_definition(INVALID_TAG, CONCAT(tag_reference_symbolname, _tag_groups), __VA_ARGS__); \
+unsigned long CONCAT(tag_reference_symbolname, _tag_groups)[] =
 
 #define STRINGS(name) \
 extern const char* CONCAT(name, _strings)[] =
