@@ -380,3 +380,4 @@ MantleGen/LegacyGen/tag_groups_legacy.h
 MantleGen/BlamlibGen/reflection_data.cpp
 MantleGen/BlamlibGen/reflection_data.h
 Blofeld/constants.txt
+Tags/TagReflection/source.h

@@ -277,12 +277,11 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 	blamboozle(blamboozle),
 	source_files()
 {
-	const char* perforce_blofeld_path = "d:\\perforce\\groundhog\\halo4\\shared\\engine\\source\\blofeld\\";
 	for (c_h4_tag_group* tag_group : blamboozle.tag_groups) // create containers for tag groups and associate with source file
 	{
-		const char* perforce_path = strstr(tag_group->tag_block.tag_struct.filepath, perforce_blofeld_path);
-		ASSERT(perforce_path != nullptr);
-		const char* filepath = perforce_path + strlen(perforce_blofeld_path);
+		const char* blofeld_path = strstr(tag_group->tag_block.tag_struct.filepath, "blofeld\\");
+		ASSERT(blofeld_path != nullptr);
+		const char* filepath = blofeld_path + strlen("blofeld\\");
 
 		c_h4_source_file& source_file = get_source_file(filepath, *this);
 		c_h4_tag_group_container* group_container = new c_h4_tag_group_container(*tag_group, *this, source_file);
@@ -300,9 +299,9 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 	{
 		c_h4_tag_block& tag_block = tag_block_container->tag_block;
 
-		const char* perforce_path = strstr(tag_block.tag_struct.filepath, perforce_blofeld_path);
+		const char* perforce_path = strstr(tag_block.tag_struct.filepath, "blofeld\\");
 		ASSERT(perforce_path != nullptr);
-		const char* filepath = perforce_path + strlen(perforce_blofeld_path);
+		const char* filepath = perforce_path + strlen("blofeld\\");
 
 		c_h4_source_file& source_file = get_source_file(filepath, *this);
 		source_file.tag_blocks.push_back(tag_block_container);
@@ -319,9 +318,9 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 	{
 		c_h4_tag_struct& tag_struct = tag_struct_container->tag_struct;
 
-		const char* perforce_path = strstr(tag_struct.filepath, perforce_blofeld_path);
+		const char* perforce_path = strstr(tag_struct.filepath, "blofeld\\");
 		ASSERT(perforce_path != nullptr);
-		const char* filepath = perforce_path + strlen(perforce_blofeld_path);
+		const char* filepath = perforce_path + strlen("blofeld\\");
 
 		c_h4_source_file& source_file = get_source_file(filepath, *this);
 		source_file.tag_structs.push_back(tag_struct_container);
@@ -342,9 +341,9 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 	{
 		c_h4_tag_enum& tag_enum = tag_enum_container->tag_enum;
 
-		const char* perforce_path = strstr(tag_enum.filepath, perforce_blofeld_path);
+		const char* perforce_path = strstr(tag_enum.filepath, "blofeld\\");
 		ASSERT(perforce_path != nullptr);
-		const char* filepath = perforce_path + strlen(perforce_blofeld_path);
+		const char* filepath = perforce_path + strlen("blofeld\\");
 
 		c_h4_source_file& source_file = get_source_file(filepath, *this);
 		source_file.tag_enums.push_back(tag_enum_container);
@@ -395,10 +394,9 @@ c_h4_generator_preprocessor::c_h4_generator_preprocessor(c_h4_blamboozle& blambo
 					if (string_ends_with(filepath, approximate_filename))
 					{
 						approximate_filename = filepath;
-
-						const char* perforce_path = strstr(filepath, perforce_blofeld_path);
-						ASSERT(perforce_path != nullptr);
-						approximate_filename = perforce_path + strlen(perforce_blofeld_path);
+						const char* blofeld_path = strstr(filepath, "blofeld\\");
+						ASSERT(blofeld_path != nullptr);
+						approximate_filename = blofeld_path + strlen("blofeld\\");
 
 						assumed_source_file = &get_source_file(approximate_filename.c_str(), *this);
 						break;
