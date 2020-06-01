@@ -98,15 +98,21 @@ public:
 	}
 	
 	template<typename R, typename T>
-	inline R* GetTagBlockData(s_tag_block_legacy<T>& rTagBlock)
+	inline R* GetTagBlockData(s_tag_block_legacy<T>& tag_block)
 	{
-		return reinterpret_cast<R*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&rTagBlock)));
+		return reinterpret_cast<R*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&tag_block)));
 	}
 
 	template<typename T>
-	inline T* GetTagBlockData(s_tag_block_legacy<T>& rTagBlock)
+	inline T* GetTagBlockData(s_tag_block_legacy<T>& tag_block)
 	{
-		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&rTagBlock)));
+		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&tag_block)));
+	}
+
+	template<typename T>
+	inline T* GetTagBlockData(c_typed_tag_block<T>& tag_block)
+	{
+		return reinterpret_cast<T*>(getTagBlockDataInternal(*reinterpret_cast<s_tag_block_legacy<>*>(&tag_block)));
 	}
 
 	inline char* get_data_reference_data(s_data_reference_legacy& data_reference)

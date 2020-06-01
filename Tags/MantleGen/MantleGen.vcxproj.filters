@@ -582,9 +582,6 @@
     <ClInclude Include="LegacyGen\TagTypes\uniclist_legacy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LegacyGen\generated_conversion_legacy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LegacyGen\generated_gui_legacy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -609,9 +606,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mantlegen-private-pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LegacyGen\generated_conversion_legacy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LegacyGen\generated_gui_legacy.cpp">

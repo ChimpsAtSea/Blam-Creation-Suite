@@ -274,7 +274,7 @@ void c_h4_source_generator::create_tag_groups_header(std::stringstream& hs)
 	hs << std::endl;
 	hs << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 
-	hs << "\textern s_tag_group* tag_groups[" << preprocessor.group_containers.size() << "];" << std::endl;
+	hs << "\textern const s_tag_group* tag_groups[" << preprocessor.group_containers.size() << "];" << std::endl;
 
 	hs << "} // namespace blofeld" << std::endl << std::endl;
 	hs << std::endl;
@@ -286,7 +286,7 @@ void c_h4_source_generator::create_tag_groups_source(std::stringstream& ss)
 
 	ss << "namespace blofeld" << std::endl << "{" << std::endl << std::endl;
 
-	ss << "s_tag_group* tag_groups[" << preprocessor.group_containers.size() << "] = " << std::endl;
+	ss << "const s_tag_group* tag_groups[" << preprocessor.group_containers.size() << "] = " << std::endl;
 	ss << "{" << std::endl;
 	for (c_h4_tag_group_container* group_container : preprocessor.group_containers)
 	{

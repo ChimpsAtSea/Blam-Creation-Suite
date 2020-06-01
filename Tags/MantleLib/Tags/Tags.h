@@ -259,7 +259,6 @@ enum noreflection e_tag_group : int32_t {};
 #ifndef BUILD_REFLECTION_DATA
 #include <MantleGen/LegacyGen/generated_gui_legacy.h>
 #include <MantleGen/LegacyGen/reflection_data_legacy.h>
-#include <MantleGen/LegacyGen/generated_conversion_legacy.h>
 //#include <MantleGen/LegacyGen/virtual_tag_interfaces_legacy.h>
 #endif
 

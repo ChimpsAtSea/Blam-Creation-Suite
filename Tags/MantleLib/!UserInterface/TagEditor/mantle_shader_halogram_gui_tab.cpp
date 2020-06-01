@@ -43,7 +43,7 @@ void c_mantle_shader_halogram_gui_tab::render_tab_contents_gui()
 			s_render_method_definition_definition_legacy::s_unknown_0_definition_legacy& rmdf_unknown0 = render_method_definition->unknown_0_block[option_index];
 
 			// #TODO: Generate code to make accessing a tag block virtual
-			c_virtual_tag_block<s_render_method_definition_definition_legacy::s_unknown_0_definition_legacy::s_unknown_1_definition_legacy> unknown_1_block(cache_file, *render_method_definition, rmdf_unknown0.unknown_1_block);
+			c_virtual_tag_block_legacy<s_render_method_definition_definition_legacy::s_unknown_0_definition_legacy::s_unknown_1_definition_legacy> unknown_1_block(cache_file, *render_method_definition, rmdf_unknown0.unknown_1_block);
 
 			//s_render_method_definition_definition::s_unknown_0_definition::s_unknown_1_definition& unknown1 = rmdf_unknown0.unknown_1_block[option_value];
 			s_render_method_definition_definition_legacy::s_unknown_0_definition_legacy::s_unknown_1_definition_legacy& unknown1 = unknown_1_block[option_value];
@@ -71,7 +71,7 @@ void c_mantle_shader_halogram_gui_tab::render_tab_contents_gui()
 
 						//c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_block_legacy<t_value>& tag_block
 
-						c_virtual_tag_block<s_shader_halogram_definition_legacy::s_shader_properties_definition_legacy::s_shader_maps_definition_legacy> shader_map_block(cache_file, shader_tag_interface, shader_properties.shader_maps_block);
+						c_virtual_tag_block_legacy<s_shader_halogram_definition_legacy::s_shader_properties_definition_legacy::s_shader_maps_definition_legacy> shader_map_block(cache_file, shader_tag_interface, shader_properties.shader_maps_block);
 
 
 						s_shader_halogram_definition_legacy::s_shader_properties_definition_legacy::s_shader_maps_definition_legacy& shader_map = shader_map_block[(size_t)shader_map_index];

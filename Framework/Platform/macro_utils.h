@@ -36,7 +36,6 @@ constexpr decltype(auto) underlying_cast(T value)
 }
 
 #define underlying(type) __underlying_type(type)
-#define unused(expression) do { (void)(expression); } while (false)
 
 #ifdef assert
 #undef assert

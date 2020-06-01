@@ -13,7 +13,7 @@ namespace blofeld
 	constexpr unsigned long INVALID_TAG = 0xFFFFFFFF;
 	extern const char* empty_string_list[];
 
-	s_tag_group* get_tag_group_by_group_tag(uint32_t group_tag);
+	const s_tag_group* get_tag_group_by_group_tag(uint32_t group_tag);
 	struct s_tag_struct_validation_data
 	{
 		const s_tag_struct_definition& struct_definition;

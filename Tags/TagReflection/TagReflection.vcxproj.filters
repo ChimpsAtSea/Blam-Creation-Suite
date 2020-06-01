@@ -21,12 +21,27 @@
     <ClInclude Include="tagreflection-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source.h">
+    <ClInclude Include="halo4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="haloreach.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halo4_virtual.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="haloreach_virtual.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tagreflection-private-pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halo4_virtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="haloreach_virtual.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

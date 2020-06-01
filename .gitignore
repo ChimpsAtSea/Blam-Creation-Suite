@@ -381,3 +381,9 @@ MantleGen/BlamlibGen/reflection_data.cpp
 MantleGen/BlamlibGen/reflection_data.h
 Blofeld/constants.txt
 Tags/TagReflection/source.h
+Tags/TagReflection/halo4.h
+Tags/TagReflection/haloreach.h
+Tags/TagReflection/haloreach_virtual.h
+Tags/TagReflection/haloreach_virtual.cpp
+Tags/TagReflection/halo4_virtual.h
+Tags/TagReflection/halo4_virtual.cpp
