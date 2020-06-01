@@ -52,10 +52,10 @@ public:
 };
 
 template <typename t_type>
-class c_ptr32 :
+class _c_ptr32 :
     public c_ptr32_no_init<t_type>
 {
-    using t_this = c_ptr32<t_type>;
+    using t_this = _c_ptr32<t_type>;
     using t_base = c_ptr32_no_init<t_type>;
 
 protected:
@@ -64,17 +64,20 @@ protected:
 public:
     using t_base::store;
 
-    c_ptr32()
+    _c_ptr32()
     {
         m_stored = 0;
     }
 
-    c_ptr32(t_type *address)
+    _c_ptr32(t_type *address)
     {
     }
 
-    c_ptr32(const t_this &other)
+    _c_ptr32(const t_this &other)
     {
         m_stored = other.m_stored;
     }
 };
+
+template<typename T>
+using c_ptr32 = unsigned long;
