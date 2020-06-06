@@ -1,4 +1,5 @@
 #include <Platform\platform-public-pch.h>
+#include <Versioning\versioning-public-pch.h>
 #include <Shared\shared-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 #include <MantleLib\mantlelib-public-pch.h>
