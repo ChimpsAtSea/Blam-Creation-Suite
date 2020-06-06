@@ -19,47 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="!UserInterface\mantle_cache_file_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\mantle_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\mantle_gui.cpp" />
-    <ClCompile Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\haloreach_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\eldorado_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\groundhog_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo3_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo_1_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo_2_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo_3_odst_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo_4_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo_5_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\cache_file.cpp" />
-    <ClCompile Include="CacheInterface\tag_group_interface.cpp" />
-    <ClCompile Include="CacheInterface\cache_file_string_id_guesstimator.cpp" />
-    <ClCompile Include="HaloScript\halo_script_type_definition.cpp" />
-    <ClCompile Include="HaloScript\halo_script_function_definition.cpp" />
-    <ClCompile Include="HaloScript\halo_script_globals_definition.cpp" />
-    <ClCompile Include="HaloScript\halo_script_function_documentation.cpp" />
-    <ClCompile Include="HaloScript\lisp_ast_parser.cpp" />
-    <ClCompile Include="mantlelib-private-pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\mantle_tag_gui_tab.cpp" />
-    <ClCompile Include="CacheInterface\tag_interface.cpp" />
-    <ClCompile Include="!UserInterface\Tools\mantle_shader_tool_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\mantle_event_queue.cpp" />
-    <ClCompile Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\Tools\mantle_halo_script_editor.cpp" />
-    <ClCompile Include="CacheInterface\virtual_tag_block.cpp" />
-    <ClCompile Include="VirtualMemoryContainer.cpp" />
-    <ClCompile Include="CacheInterface\virtual_tag_interface.cpp" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="!UserInterface\mantle_cache_file_gui_tab.h" />
+    <ClInclude Include="!UserInterface\mantle_event_queue.h" />
+    <ClInclude Include="!UserInterface\mantle_gui.h" />
+    <ClInclude Include="!UserInterface\mantle_gui_tab.h" />
+    <ClInclude Include="!UserInterface\mantle_tag_gui_tab.h" />
     <ClInclude Include="!UserInterface\shader_profile.h" />
+    <ClInclude Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.h" />
     <ClInclude Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.h" />
+    <ClInclude Include="!UserInterface\Tools\mantle_halo_script_editor.h" />
+    <ClInclude Include="!UserInterface\Tools\mantle_shader_tool_gui_tab.h" />
     <ClInclude Include="!UserInterface\UserInterface.h" />
+    <ClInclude Include="CacheInterface\CacheInterface.h" />
     <ClInclude Include="CacheInterface\CacheVersions\eldorado_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\groundhog_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo3_cache_file.h" />
@@ -70,94 +41,59 @@
     <ClInclude Include="CacheInterface\CacheVersions\halo_4_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo_5_cache_file.h" />
     <ClInclude Include="CacheInterface\cache_file.h" />
-    <ClInclude Include="CacheInterface\CacheInterface.h" />
-    <ClInclude Include="!UserInterface\mantle_cache_file_gui_tab.h" />
-    <ClInclude Include="!UserInterface\mantle_gui_tab.h" />
-    <ClInclude Include="!UserInterface\mantle_gui.h" />
-    <ClInclude Include="!UserInterface\mantle_tag_gui_tab.h" />
-    <ClInclude Include="CacheInterface\cache_utilities.h" />
-    <ClInclude Include="CacheInterface\tag_interface.h" />
-    <ClInclude Include="CacheInterface\tag_group_interface.h" />
     <ClInclude Include="CacheInterface\cache_file_string_id_guesstimator.h" />
-    <ClInclude Include="GUI\render_stringid_gui.inl" />
-    <ClInclude Include="!UserInterface\Tools\mantle_shader_tool_gui_tab.h" />
-    <ClInclude Include="!UserInterface\mantle_event_queue.h" />
-    <ClInclude Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.h" />
-    <ClInclude Include="!UserInterface\Tools\mantle_halo_script_editor.h" />
+    <ClInclude Include="CacheInterface\cache_utilities.h" />
+    <ClInclude Include="CacheInterface\tag_group_interface.h" />
+    <ClInclude Include="CacheInterface\tag_interface.h" />
+    <ClInclude Include="CacheInterface\virtual_tag_block.h" />
+    <ClInclude Include="CacheInterface\virtual_tag_interface.h" />
     <ClInclude Include="HaloScript\HaloScript.h" />
-    <ClInclude Include="HaloScript\halo_script_type_definition.h" />
     <ClInclude Include="HaloScript\halo_script_function_definition.h" />
-    <ClInclude Include="HaloScript\halo_script_globals_definition.h" />
     <ClInclude Include="HaloScript\halo_script_function_documentation.h" />
+    <ClInclude Include="HaloScript\halo_script_globals_definition.h" />
+    <ClInclude Include="HaloScript\halo_script_type_definition.h" />
     <ClInclude Include="HaloScript\lisp_ast_parser.h" />
-    <ClInclude Include="Tags\TagDefinitions\achievements.h" />
-    <ClInclude Include="Tags\TagDefinitions\airstrike.h" />
-    <ClInclude Include="Tags\TagDefinitions\ai_dialogue_globals.h" />
-    <ClInclude Include="Tags\TagDefinitions\ai_globals.h" />
-    <ClInclude Include="Tags\TagDefinitions\ai_mission_dialogue.h" />
-    <ClInclude Include="Tags\TagDefinitions\antenna.h" />
-    <ClInclude Include="Tags\TagDefinitions\area_screen_effect.h" />
-    <ClInclude Include="Tags\TagDefinitions\atmosphere_fog.h" />
-    <ClInclude Include="Tags\TagDefinitions\atmosphere_globals.h" />
-    <ClInclude Include="Tags\TagDefinitions\avatar_awards.h" />
-    <ClInclude Include="Tags\TagDefinitions\beam_system.h" />
-    <ClInclude Include="Tags\TagDefinitions\big_battle_creature.h" />
-    <ClInclude Include="Tags\TagDefinitions\biped.h" />
-    <ClInclude Include="Tags\TagDefinitions\bitmap.h" />
-    <ClInclude Include="Tags\TagDefinitions\breakable_surface.h" />
-    <ClInclude Include="Tags\TagDefinitions\cache_file_resource_gestalt.h" />
-    <ClInclude Include="Tags\TagDefinitions\cache_file_resource_layout_table.h" />
-    <ClInclude Include="Tags\TagDefinitions\camera_fx_settings.h" />
-    <ClInclude Include="Tags\TagDefinitions\camera_shake.h" />
-    <ClInclude Include="Tags\TagDefinitions\camera_track.h" />
-    <ClInclude Include="Tags\TagDefinitions\camo.h" />
-    <ClInclude Include="Tags\TagDefinitions\challenge_globals_definition.h" />
-    <ClInclude Include="Tags\TagDefinitions\character.h" />
-    <ClInclude Include="Tags\TagDefinitions\cheap_light.h" />
-    <ClInclude Include="Tags\TagDefinitions\cheap_particle_emitter.h" />
-    <ClInclude Include="Tags\TagDefinitions\cheap_particle_type_library.h" />
-    <ClInclude Include="Tags\TagDefinitions\chocolate_mountain_new.h" />
-    <ClInclude Include="Tags\TagDefinitions\chud_animation_definition.h" />
-    <ClInclude Include="Tags\TagDefinitions\chud_definition.h" />
-    <ClInclude Include="Tags\TagDefinitions\chud_globals_definition.h" />
-    <ClInclude Include="Tags\TagDefinitions\chud_widget_animation_data_template.h" />
-    <ClInclude Include="Tags\TagDefinitions\chud_widget_datasource_template.h" />
-    <ClInclude Include="Tags\TagDefinitions\chud_widget_placement_data_template.h" />
-    <ClInclude Include="Tags\TagDefinitions\chud_widget_render_data_template.h" />
-    <ClInclude Include="Tags\TagDefinitions\chud_widget_state_data_template.h" />
-    <ClInclude Include="Tags\TagDefinitions\cinematic.h" />
-    <ClInclude Include="Tags\TagDefinitions\cinematic_scene.h" />
-    <ClInclude Include="Tags\TagDefinitions\cinematic_transition.h" />
-    <ClInclude Include="Tags\TagDefinitions\cloth.h" />
-    <ClInclude Include="Tags\TagDefinitions\collision_damage.h" />
-    <ClInclude Include="Tags\TagDefinitions\collision_model.h" />
-    <ClInclude Include="Tags\TagDefinitions\color_table.h" />
-    <ClInclude Include="Tags\TagDefinitions\commendation_globals_definition.h" />
-    <ClInclude Include="Tags\TagDefinitions\communication_sounds.h" />
-    <ClInclude Include="Tags\TagDefinitions\compute_shader.h" />
-    <ClInclude Include="Tags\TagDefinitions\contrail_system.h" />
-    <ClInclude Include="Tags\TagDefinitions\cookie_purchase_globals.h" />
-    <ClInclude Include="Tags\TagDefinitions\coop_spawning_globals_definition.h" />
-    <ClInclude Include="Tags\TagDefinitions\crate.h" />
-    <ClInclude Include="Tags\TagDefinitions\creature.h" />
-    <ClInclude Include="Tags\TagDefinitions\cui_screen.h" />
-    <ClInclude Include="Tags\TagDefinitions\cui_static_data.h" />
-    <ClInclude Include="Tags\TagDefinitions\damage_effect.h" />
-    <ClInclude Include="Tags\TagDefinitions\damage_response_definition.h" />
-    <ClInclude Include="Tags\TagDefinitions\death_program_selector.h" />
-    <ClInclude Include="Tags\TagDefinitions\decal_system.h" />
-    <ClInclude Include="Tags\TagDefinitions\decorator_set.h" />
-    <ClInclude Include="Tags\TagDefinitions\device_control.h" />
-    <ClInclude Include="Tags\TagDefinitions\device_machine.h" />
-    <ClInclude Include="Tags\TagDefinitions\device_terminal.h" />
-    <ClInclude Include="Tags\TagDefinitions\dialogue.h" />
-    <ClInclude Include="Tags\TagDefinitions\effect.h" />
-    <ClInclude Include="Tags\TagDefinitions\effect_globals.h" />
     <ClInclude Include="mantlelib-private-pch.h" />
     <ClInclude Include="mantlelib-public-pch.h" />
-    <ClInclude Include="CacheInterface\virtual_tag_block.h" />
     <ClInclude Include="VirtualMemoryContainer.h" />
-    <ClInclude Include="CacheInterface\virtual_tag_interface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="!UserInterface\mantle_cache_file_gui_tab.cpp" />
+    <ClCompile Include="!UserInterface\mantle_event_queue.cpp" />
+    <ClCompile Include="!UserInterface\mantle_gui.cpp" />
+    <ClCompile Include="!UserInterface\mantle_gui_tab.cpp" />
+    <ClCompile Include="!UserInterface\mantle_tag_gui_tab.cpp" />
+    <ClCompile Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.cpp" />
+    <ClCompile Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.cpp" />
+    <ClCompile Include="!UserInterface\Tools\mantle_halo_script_editor.cpp" />
+    <ClCompile Include="!UserInterface\Tools\mantle_shader_tool_gui_tab.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\eldorado_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\groundhog_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\halo3_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\haloreach_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\halo_1_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\halo_2_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\halo_3_odst_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\halo_4_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\halo_5_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\cache_file.cpp" />
+    <ClCompile Include="CacheInterface\cache_file_string_id_guesstimator.cpp" />
+    <ClCompile Include="CacheInterface\tag_group_interface.cpp" />
+    <ClCompile Include="CacheInterface\tag_interface.cpp" />
+    <ClCompile Include="CacheInterface\virtual_tag_block.cpp" />
+    <ClCompile Include="CacheInterface\virtual_tag_interface.cpp" />
+    <ClCompile Include="HaloScript\halo_script_function_definition.cpp" />
+    <ClCompile Include="HaloScript\halo_script_function_documentation.cpp" />
+    <ClCompile Include="HaloScript\halo_script_globals_definition.cpp" />
+    <ClCompile Include="HaloScript\halo_script_type_definition.cpp" />
+    <ClCompile Include="HaloScript\lisp_ast_parser.cpp" />
+    <ClCompile Include="mantlelib-private-pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="VirtualMemoryContainer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CacheInterface\tag_group_names.inl" />
@@ -165,6 +101,7 @@
     <None Include="GUI\render_dataref_gui.inl" />
     <None Include="GUI\render_enum_gui.inl" />
     <None Include="GUI\render_primitive_gui.inl" />
+    <None Include="GUI\render_stringid_gui.inl" />
     <None Include="GUI\render_struct_gui.inl" />
     <None Include="GUI\render_tagblock_gui.inl" />
     <None Include="GUI\render_tagref_gui.inl" />

@@ -5,6 +5,8 @@
 
 namespace blofeld
 {
+	using t_tag_field_custom_version_callback = uint32_t(*)(e_engine_type, e_build);
+
 	struct s_tag_field
 	{
 		e_field const field_type;
@@ -27,6 +29,11 @@ namespace blofeld
 		//enum e_build const min_version;
 		//enum e_build const max_version;
 
+		e_engine_type _engine_type;
+		e_build _build;
+		uint32_t _version_field_skip_count;
+		t_tag_field_custom_version_callback _custom_version_callback;
+
 		template<typename A, typename B>
 		s_tag_field(
 			e_field field_type,
@@ -34,19 +41,19 @@ namespace blofeld
 			int32_t line,
 			const char* name,
 			A&& value1,
-			B&& value2/*,
-			e_build min_version = 0,
-			e_build max_version = 0*/) :
+			B&& value2) :
 			field_type(field_type),
 			name(name),
 			filename(filename),
 			line(line),
 			value1((void*)(value1)),
-			value2((void*)(value1))/*,
-			min_version(min_version),
-			max_version(max_version)*/
+			value2((void*)(value1)),
+			_engine_type(_engine_type_not_set),
+			_build(_build_not_set),
+			_version_field_skip_count(0),
+			_custom_version_callback(nullptr)
 		{
-
+			ASSERT(field_type < _field_type_non_standard);
 		}
 
 		template<typename A>
@@ -55,58 +62,141 @@ namespace blofeld
 			const char* filename,
 			int32_t line,
 			const char* name,
-			A&& value1/*,
-			e_build min_version = (e_build)0,
-			e_build max_version = (e_build)0*/) :
+			A&& value1) :
 			field_type(field_type),
 			name(name),
 			filename(filename),
 			line(line),
 			value1((void*)(value1)),
-			value2(nullptr)/*,
-			min_version(min_version),
-			max_version(max_version)*/
+			value2(nullptr),
+			_engine_type(_engine_type_not_set),
+			_build(_build_not_set),
+			_version_field_skip_count(0),
+			_custom_version_callback(nullptr)
 		{
-
+			ASSERT(field_type < _field_type_non_standard);
 		}
 
 		s_tag_field(
 			e_field field_type,
 			const char* filename,
 			int32_t line,
-			const char* name/*,
-			e_build min_version = (e_build)0,
-			e_build max_version = (e_build)0*/) :
+			const char* name) :
 			field_type(field_type),
 			name(name),
 			filename(filename),
 			line(line),
 			value1(nullptr),
-			value2(nullptr)/*,
-			min_version(min_version),
-			max_version(max_version)*/
+			value2(nullptr),
+			_engine_type(_engine_type_not_set),
+			_build(_build_not_set),
+			_version_field_skip_count(0),
+			_custom_version_callback(nullptr)
 		{
-
+			ASSERT(field_type < _field_type_non_standard);
 		}
 
 		s_tag_field(
 			e_field field_type,
 			const char* filename,
-			int32_t line/*,
-			e_build min_version = (e_build)0,
-			e_build max_version = (e_build)0*/) :
+			int32_t line) :
 			field_type(field_type),
 			name(nullptr),
 			filename(filename),
 			line(line),
 			value1(nullptr),
-			value2(nullptr)/*,
-			min_version(min_version),
-			max_version(max_version)*/
+			value2(nullptr),
+			_engine_type(_engine_type_not_set),
+			_build(_build_not_set),
+			_version_field_skip_count(0),
+			_custom_version_callback(nullptr)
 		{
+			ASSERT(field_type < _field_type_non_standard);
+		}
 
+		s_tag_field(
+			e_field field_type,
+			const char* filename,
+			int32_t line,
+			e_engine_type engine_type,
+			e_build build_type = _build_not_set,
+			uint32_t version_field_skip_count = 1) :
+			field_type(field_type),
+			name(nullptr),
+			filename(filename),
+			line(line),
+			value1(nullptr),
+			value2(nullptr),
+			_engine_type(engine_type),
+			_build(build_type),
+			_version_field_skip_count(version_field_skip_count),
+			_custom_version_callback(nullptr)
+		{
+			ASSERT(field_type > _field_type_non_standard);
+		}
+
+		s_tag_field(
+			e_field field_type,
+			const char* filename,
+			int32_t line,
+			t_tag_field_custom_version_callback custom_version_callback) :
+			field_type(field_type),
+			name(nullptr),
+			filename(filename),
+			line(line),
+			value1(nullptr),
+			value2(nullptr),
+			_engine_type(_engine_type_not_set),
+			_build(_build_not_set),
+			_version_field_skip_count(0),
+			_custom_version_callback(custom_version_callback)
+		{
+			ASSERT(field_type == _field_version_custom);
 		}
 	};
+
+	inline bool skip_tag_field_version(s_tag_field const& tag_field, e_engine_type engine_type, e_build build, uint32_t& skip_count)
+	{
+		if (tag_field.field_type > _field_type_non_standard)
+		{
+			bool run_versioning_field = false;
+			skip_count = tag_field._version_field_skip_count;
+			switch (tag_field.field_type)
+			{
+			case _field_version_equal:
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type == engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build == build;
+				return true;
+			case _field_version_not_equal:
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type != engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build != build;
+				return true;
+			case _field_version_less:
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type > engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build < build;
+				return true;
+			case _field_version_greater:
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type < engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build > build;
+				return true;
+			case _field_version_less_or_equal:
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type <= engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build <= build;
+				return true;
+			case _field_version_greater_or_equal:
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type <= engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build >= build;
+				return true;
+			case _field_version_custom:
+				run_versioning_field = true;
+				ASSERT(tag_field._custom_version_callback);
+				skip_count = tag_field._custom_version_callback(engine_type, build);
+				return true;
+			}
+		}
+		skip_count = 0;
+		return false;
+	}
 }
 
 #pragma warning( pop )

@@ -2,7 +2,7 @@
 
 namespace blofeld
 {
-	uint32_t calculate_struct_size(const s_tag_struct_definition& struct_definition, bool* block_failed_validation)
+	uint32_t calculate_struct_size(e_engine_type engine_type, e_build build, const s_tag_struct_definition& struct_definition, bool* block_failed_validation)
 	{
 		uint32_t computed_size = 0;
 
@@ -11,6 +11,13 @@ namespace blofeld
 		{
 			const char* field_string = field_to_string(current_field->field_type);
 			const char* nice_field_string = field_string + 1;
+
+			uint32_t field_skip_count;
+			if (skip_tag_field_version(*current_field, engine_type, build, field_skip_count))
+			{
+				current_field += field_skip_count;
+				continue;
+			}
 
 			if (block_failed_validation)
 			{
@@ -41,6 +48,51 @@ namespace blofeld
 				}
 			}
 
+			if (current_field->field_type > _field_type_non_standard)
+			{
+				bool run_versioning_field = false;
+				uint32_t count = current_field->_version_field_skip_count;
+				switch (current_field->field_type)
+				{
+				case _field_version_equal:
+					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type == engine_type;
+					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build == build;
+					break;
+				case _field_version_not_equal:
+					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type != engine_type;
+					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build != build;
+					break;
+				case _field_version_less:
+					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type > engine_type;
+					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build < build;
+					break;
+				case _field_version_greater:
+					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type < engine_type;
+					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build > build;
+					break;
+				case _field_version_less_or_equal:
+					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type <= engine_type;
+					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build <= build;
+					break;
+				case _field_version_greater_or_equal:
+					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type <= engine_type;
+					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build >= build;
+					break;
+				case _field_version_custom:
+					run_versioning_field = true;
+					ASSERT(current_field->_custom_version_callback);
+					count = current_field->_custom_version_callback(engine_type, build);
+					break;
+				}
+
+				if (run_versioning_field)
+				{
+					current_field += count;
+				}
+
+				continue;
+			}
+
 			switch (current_field->field_type)
 			{
 			case _field_pad:
@@ -51,7 +103,7 @@ namespace blofeld
 				computed_size += current_field->length;
 				break;
 			case _field_struct:
-				computed_size += calculate_struct_size(*current_field->struct_definition, block_failed_validation);
+				computed_size += calculate_struct_size(engine_type, build, *current_field->struct_definition, block_failed_validation);
 				break;
 			case _field_array:
 			{
@@ -59,7 +111,7 @@ namespace blofeld
 				REFERENCE_ASSERT(array_definition);
 				const s_tag_struct_definition& struct_definition = array_definition.struct_definition;
 				REFERENCE_ASSERT(struct_definition);
-				uint32_t struct_size = calculate_struct_size(struct_definition, block_failed_validation);
+				uint32_t struct_size = calculate_struct_size(engine_type, build, struct_definition, block_failed_validation);
 				uint32_t array_data_size = struct_size * array_definition.count;
 				computed_size += array_data_size;
 				break;
@@ -84,7 +136,7 @@ namespace blofeld
 			const char* const block_name = struct_definition.name;
 			uint32_t const expected_size = struct_validation_data.size;
 
-			uint32_t computed_size = calculate_struct_size(struct_definition, &block_failed_validation);
+			uint32_t computed_size = calculate_struct_size(_engine_type_halo4, _build_not_set, struct_definition, &block_failed_validation);
 
 			block_failed_validation |= computed_size != expected_size;
 			if (block_failed_validation)

@@ -1,8 +1,10 @@
 #include "tagcodegen-private-pch.h"
-#include "virtual_tag_source_generator.h"
 
-c_virtual_tag_source_generator::c_virtual_tag_source_generator(e_engine_type engine_type) :
-	engine_type(engine_type)
+using namespace blofeld;
+
+c_virtual_tag_source_generator::c_virtual_tag_source_generator(e_engine_type engine_type, e_build build) :
+	engine_type(engine_type),
+	build(build)
 {
 
 }
@@ -38,7 +40,7 @@ void c_virtual_tag_source_generator::generate_header()
 	hs << "\t\tc_tag_interface* create_tag_interface(c_cache_file& cache_file, uint16_t tag_index, unsigned long group_tag);" << std::endl << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
-	for (const blofeld::s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
+	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
 		hs << "\t\t" << "template<>" << std::endl;
 		hs << "\t\t" << "class v_tag_interface<s_" << tag_struct_definition->name << "> : " << std::endl;
@@ -48,18 +50,25 @@ void c_virtual_tag_source_generator::generate_header()
 		hs << "\t\t\t" << "v_tag_interface(c_cache_file& cache_file, uint16_t tag_index) : " << std::endl;
 		hs << "\t\t\t\t" << "c_tag_interface(cache_file, tag_index)";
 
-		for(const blofeld::s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != blofeld::_field_terminator; current_field++)
+		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
+			uint32_t field_skip_count;
+			if (skip_tag_field_version(*current_field, engine_type, build, field_skip_count))
+			{
+				current_field += field_skip_count;
+				continue;
+			}
+
 			c_field_formatter field_formatter = c_field_formatter(current_field, current_field->name, field_name_unique_counter);
 
 			switch (current_field->field_type)
 			{
-			case blofeld::_field_pad:
-			case blofeld::_field_skip:
-			case blofeld::_field_useless_pad:
-			case blofeld::_field_custom:
-			case blofeld::_field_terminator:
-			case blofeld::_field_explanation:
+			case _field_pad:
+			case _field_skip:
+			case _field_useless_pad:
+			case _field_custom:
+			case _field_terminator:
+			case _field_explanation:
 				continue;
 			default:
 				hs << "," << std::endl;
@@ -68,8 +77,8 @@ void c_virtual_tag_source_generator::generate_header()
 
 			switch (current_field->field_type)
 			{
-			case blofeld::_field_block:
-			case blofeld::_field_tag_reference:
+			case _field_block:
+			case _field_tag_reference:
 				hs << "\t\t\t\t" << field_formatter.code_name << "(cache_file, *this, get_data<s_" << tag_struct_definition->name << ">()->" << field_formatter.code_name << ")";
 				break;
 			default:
@@ -83,48 +92,60 @@ void c_virtual_tag_source_generator::generate_header()
 		hs << std::endl;
 		hs << std::endl;
 
-		for (const blofeld::s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != blofeld::_field_terminator; current_field++)
+		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
+			uint32_t field_skip_count;
+			if (skip_tag_field_version(*current_field, engine_type, build, field_skip_count))
+			{
+				current_field += field_skip_count;
+				continue;
+			}
+
 			c_field_formatter field_formatter = c_field_formatter(current_field, current_field->name, field_name_unique_counter);
 
-			switch (current_field->field_type)
+			if (current_field->field_type > _field_type_non_standard)
 			{
-			case blofeld::_field_pad:
-			case blofeld::_field_skip:
-			case blofeld::_field_useless_pad:
-			case blofeld::_field_custom:
-			case blofeld::_field_terminator:
-			case blofeld::_field_explanation:
 				continue;
 			}
 
 			switch (current_field->field_type)
 			{
-			case blofeld::_field_array:
+			case _field_pad:
+			case _field_skip:
+			case _field_useless_pad:
+			case _field_custom:
+			case _field_terminator:
+			case _field_explanation:
+				continue;
+			}
+
+			switch (current_field->field_type)
+			{
+			case _field_array:
 			{
 				const char* field_source_type = current_field->array_definition->struct_definition.name;
 				hs << "\t\t\t\t" << "s_" << field_source_type << " (&" << field_formatter.code_name << ")[" << current_field->array_definition->count << "];";
 				break;
 			}
-			case blofeld::_field_struct:
+			case _field_struct:
 			{
 				const char* field_source_type = current_field->struct_definition->name;
 				hs << "\t\t\t\t" << "s_" << field_source_type << "& " << field_formatter.code_name << ";";
 				break;
 			}
-			case blofeld::_field_block:
+			case _field_block:
 			{
 				const char* field_source_type = current_field->block_definition->struct_definition.name;
 				hs << "\t\t\t\t" << "c_virtual_tag_block<s_" << field_source_type << "> " << field_formatter.code_name << ";";
 				break;
 			}
-			case blofeld::_field_tag_reference:
+			case _field_tag_reference:
 			{
 				hs << "\t\t\t\t" << "c_virtual_tag_interface " << field_formatter.code_name << ";";
 				break;
 			}
 			default:
-			{			
+			{
 				const char* field_source_type = c_tag_source_generator::field_type_to_source_type(current_field->field_type);
 				ASSERT(field_source_type != nullptr);
 				hs << "\t\t\t\t" << field_source_type << "& " << field_formatter.code_name << ";";
@@ -135,11 +156,11 @@ void c_virtual_tag_source_generator::generate_header()
 		}
 		field_name_unique_counter.clear();
 
-	hs << "\t\t" << "};" << std::endl;
+		hs << "\t\t" << "};" << std::endl;
 
-	hs << std::endl;
+		hs << std::endl;
 
-	debug_point;
+		debug_point;
 
 	}
 
@@ -173,13 +194,13 @@ void c_virtual_tag_source_generator::generate_source()
 	ss << "\t\t\t" << "{" << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
-	for (const blofeld::s_tag_group* tag_group : blofeld::tag_groups)
+	for (const s_tag_group* tag_group : tag_groups)
 	{
 		c_fixed_string_128 tag_group_name = tag_group->name;
 		tag_group_name += "_TAG";
 		tag_group_name.uppercase();
 
-		const blofeld::s_tag_struct_definition& tag_struct_definition = tag_group->block_definition.struct_definition;
+		const s_tag_struct_definition& tag_struct_definition = tag_group->block_definition.struct_definition;
 
 		ss << "\t\t\t" << "case " << tag_group_name.data << ": return new v_tag_interface<s_" << tag_struct_definition.name << ">(cache_file, tag_index);" << std::endl;
 
