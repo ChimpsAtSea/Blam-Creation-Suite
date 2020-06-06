@@ -48,51 +48,6 @@ namespace blofeld
 				}
 			}
 
-			if (current_field->field_type > _field_type_non_standard)
-			{
-				bool run_versioning_field = false;
-				uint32_t count = current_field->_version_field_skip_count;
-				switch (current_field->field_type)
-				{
-				case _field_version_equal:
-					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type == engine_type;
-					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build == build;
-					break;
-				case _field_version_not_equal:
-					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type != engine_type;
-					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build != build;
-					break;
-				case _field_version_less:
-					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type > engine_type;
-					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build < build;
-					break;
-				case _field_version_greater:
-					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type < engine_type;
-					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build > build;
-					break;
-				case _field_version_less_or_equal:
-					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type <= engine_type;
-					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build <= build;
-					break;
-				case _field_version_greater_or_equal:
-					run_versioning_field = current_field->_engine_type == _engine_type_not_set || current_field->_engine_type <= engine_type;
-					run_versioning_field &= current_field->_build == _build_not_set || current_field->_build >= build;
-					break;
-				case _field_version_custom:
-					run_versioning_field = true;
-					ASSERT(current_field->_custom_version_callback);
-					count = current_field->_custom_version_callback(engine_type, build);
-					break;
-				}
-
-				if (run_versioning_field)
-				{
-					current_field += count;
-				}
-
-				continue;
-			}
-
 			switch (current_field->field_type)
 			{
 			case _field_pad:

@@ -5,7 +5,7 @@
 
 namespace blofeld
 {
-	using t_tag_field_custom_version_callback = uint32_t(*)(e_engine_type, e_build);
+	using t_tag_field_custom_version_callback = bool(*)(e_engine_type, e_build, uint32_t&);
 
 	struct s_tag_field
 	{
@@ -164,35 +164,41 @@ namespace blofeld
 			switch (tag_field.field_type)
 			{
 			case _field_version_equal:
-				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type == engine_type;
-				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build == build;
-				return true;
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || engine_type == tag_field._engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || build == tag_field._build;
+				break;
 			case _field_version_not_equal:
-				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type != engine_type;
-				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build != build;
-				return true;
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || engine_type != tag_field._engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || build != tag_field._build;
+				break;
 			case _field_version_less:
-				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type > engine_type;
-				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build < build;
-				return true;
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || engine_type < tag_field._engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || build < tag_field._build;
+				break;
 			case _field_version_greater:
-				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type < engine_type;
-				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build > build;
-				return true;
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || engine_type > tag_field._engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || build > tag_field._build;
+				break;
 			case _field_version_less_or_equal:
-				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type <= engine_type;
-				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build <= build;
-				return true;
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || engine_type <= tag_field._engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || build <= tag_field._build;
+				break;
 			case _field_version_greater_or_equal:
-				run_versioning_field = tag_field._engine_type == _engine_type_not_set || tag_field._engine_type <= engine_type;
-				run_versioning_field &= tag_field._build == _build_not_set || tag_field._build >= build;
-				return true;
+				run_versioning_field = tag_field._engine_type == _engine_type_not_set || engine_type >= tag_field._engine_type;
+				run_versioning_field &= tag_field._build == _build_not_set || build >= tag_field._build;
+				break;
 			case _field_version_custom:
-				run_versioning_field = true;
 				ASSERT(tag_field._custom_version_callback);
-				skip_count = tag_field._custom_version_callback(engine_type, build);
-				return true;
+				run_versioning_field = tag_field._custom_version_callback(engine_type, build, skip_count);
+				break;
 			}
+
+			if (!run_versioning_field)
+			{
+				skip_count = 0;
+			}
+
+			return true;
 		}
 		skip_count = 0;
 		return false;
