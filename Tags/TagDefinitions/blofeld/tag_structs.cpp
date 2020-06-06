@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-	const s_tag_struct_definition* tag_struct_definitions[2066] = 
+	const s_tag_struct_definition* tag_struct_definitions[] = 
 	{
 		&shader_particle_struct_definition_struct_definition, // tag group
 		&render_method_struct_definition_struct_definition, // tag group
@@ -2071,6 +2071,10 @@ namespace blofeld
 		&cache_file_tag_resource_prediction_molecule_atom_reference_block_block_struct, // block
 		&cache_file_tag_resource_prediction_molecule_block_block_struct, // block
 		&cache_file_tag_resource_prediction_molecule_keys_block_block_struct, // block
+		&compute_shader_block_struct,
+		&compute_entry_point_block_block_struct,
+		&compiled_compute_shader_block_block_struct,
+		nullptr
 	};
 
 } // namespace blofeld

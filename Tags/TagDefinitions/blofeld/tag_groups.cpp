@@ -3,7 +3,7 @@
 namespace blofeld
 {
 
-	const s_tag_group* tag_groups[262] =
+	const s_tag_group* tag_groups[] =
 	{
 		&shader_particle_group,
 		&cache_file_sound_group,
@@ -256,6 +256,7 @@ namespace blofeld
 		&vision_mode_group,
 		&variant_globals_group,
 		&vertex_shader_group,
+		&compute_shader_group,
 		&wave_template_group,
 		&weapon_group,
 		&scenario_wetness_bsp_data_group,
@@ -267,6 +268,7 @@ namespace blofeld
 		&water_physics_drag_properties_group,
 		&weather_globals_group,
 		&cache_file_resource_gestalt_group,
+		nullptr
 	};
 
 } // namespace blofeld
