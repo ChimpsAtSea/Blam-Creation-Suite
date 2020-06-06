@@ -4,15 +4,15 @@ namespace ketchup
 {
 	class Instruction;
 
-	class PatternScan
+	class c_pattern_scanner
 	{
 	public:
 #ifdef _WINDOWS_
-		PatternScan(HANDLE hProcess, HMODULE hModule);
-		DWORD FindPattern(DWORD startOffset);
+		c_pattern_scanner(HANDLE hProcess, HMODULE hModule);
+		DWORD find_pattern(DWORD startOffset);
 #endif
-		void AddInstruction(Instruction* instruction);
-		~PatternScan();
+		void add_instruction(Instruction* instruction);
+		~c_pattern_scanner();
 		unsigned char* get_data();
 
 		std::vector<Instruction*> Instructions;

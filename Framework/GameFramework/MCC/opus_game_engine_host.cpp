@@ -453,10 +453,12 @@ __int64 __fastcall c_opus_game_engine_host::UpdatePlayerConfiguration(wchar_t pl
 	return __int64(1);
 }
 
-bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuffer* input_buffer)
+bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD a1, InputBuffer* input_buffer)
 {
 	ASSERT(input_buffer);
 	memset(input_buffer, 0, sizeof(*input_buffer));
+
+	write_line_verbose("%ull", a1);
 
 	bool debugUIVisible = c_debug_gui::IsVisible();
 	bool windowFocused = c_window_win32::IsWindowFocused();
@@ -475,19 +477,19 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 		return unsigned __int8(1);
 	}
 
-	static InputSource sCurrentInputSource = InputSource::MouseAndKeyboard;
+	static InputSource s_current_input_source = InputSource::MouseAndKeyboard;
 
 	// grab controller
 	// grab mouse and keyboard
 
-	float mouseInputX = 0;
-	float mouseInputY = 0;
-	bool leftButtonPressed = 0;
-	bool rightButtonPressed = 0;
-	bool middleButtonPressed = 0;
+	float mouse_input_x = 0;
+	float mouse_input_y = 0;
+	bool left_button_pressed = 0;
+	bool right_button_pressed = 0;
+	bool middle_button_pressed = 0;
 
 	bool hasControllerInput = false;
-	bool hasMouseAndKeyboardInput = false;
+	bool has_mouse_and_keyboard_input = false;
 
 	float fThumbLX = 0;
 	float fThumbLY = 0;
@@ -533,54 +535,61 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 			if (!GetKeyboardState(keyboardState))
 				ZeroMemory(keyboardState, sizeof(keyboardState));
 
-			mouseInputX = c_mouse_input::get_mouse_x();
-			mouseInputY = c_mouse_input::get_mouse_y();
+			mouse_input_x = c_mouse_input::get_mouse_x();
+			mouse_input_y = c_mouse_input::get_mouse_y();
 
-			leftButtonPressed = c_mouse_input::get_mouse_button(_mouse_input_button_left);
-			rightButtonPressed = c_mouse_input::get_mouse_button(_mouse_input_button_right);
-			middleButtonPressed = c_mouse_input::get_mouse_button(_mouse_input_button_middle);
+			left_button_pressed = c_mouse_input::get_mouse_button(_mouse_input_button_left);
+			right_button_pressed = c_mouse_input::get_mouse_button(_mouse_input_button_right);
+			middle_button_pressed = c_mouse_input::get_mouse_button(_mouse_input_button_middle);
 
 			{
 				//for (size_t i = 0; i < sizeof(keyboardState); i++)
-				//	hasMouseAndKeyboardInput |= keyboardState[i] != 0;
+				//	has_mouse_and_keyboard_input |= keyboardState[i] != 0;
 
-				hasMouseAndKeyboardInput |= mouseInputX != 0.0f;
-				hasMouseAndKeyboardInput |= mouseInputY != 0.0f;
-				hasMouseAndKeyboardInput |= leftButtonPressed;
-				hasMouseAndKeyboardInput |= rightButtonPressed;
-				hasMouseAndKeyboardInput |= middleButtonPressed;
+				has_mouse_and_keyboard_input |= mouse_input_x != 0.0f;
+				has_mouse_and_keyboard_input |= mouse_input_y != 0.0f;
+				has_mouse_and_keyboard_input |= left_button_pressed;
+				has_mouse_and_keyboard_input |= right_button_pressed;
+				has_mouse_and_keyboard_input |= middle_button_pressed;
 
-				if (hasMouseAndKeyboardInput)
+				for (int i = 32; i < 128; i++)
 				{
-					sCurrentInputSource = InputSource::MouseAndKeyboard;
+					has_mouse_and_keyboard_input |= (keyboardState[i] & 0b10000000) != 0;
+				}
+
+				if (has_mouse_and_keyboard_input)
+				{
+					s_current_input_source = InputSource::MouseAndKeyboard;
 				}
 			}
+
+			write_line_verbose("%f %f", mouse_input_x, mouse_input_y);
 		}
 	}
 
 	if (hasControllerInput)
 	{
-		sCurrentInputSource = InputSource::Gamepad;
+		s_current_input_source = InputSource::Gamepad;
 	}
-	else if (hasMouseAndKeyboardInput)
+	else if (has_mouse_and_keyboard_input)
 	{
-		sCurrentInputSource = InputSource::MouseAndKeyboard;
+		s_current_input_source = InputSource::MouseAndKeyboard;
 	}
 
-	if (sCurrentInputSource == InputSource::MouseAndKeyboard)
+	if (s_current_input_source == InputSource::MouseAndKeyboard)
 	{
 		for (int i = 0; i < 256; i++)
 		{
 			input_buffer->keyboardState[i] = (keyboardState[i] & 0b10000000) != 0;
 		}
-		input_buffer->MouseX += mouseInputX;
-		input_buffer->MouseY += mouseInputY;
-		input_buffer->mouseButtonBits |= BYTE(leftButtonPressed) << 0;
-		input_buffer->mouseButtonBits |= BYTE(middleButtonPressed) << 1;
-		input_buffer->mouseButtonBits |= BYTE(rightButtonPressed) << 2;
+		input_buffer->MouseX += mouse_input_x;
+		input_buffer->MouseY += mouse_input_y;
+		input_buffer->mouseButtonBits |= BYTE(left_button_pressed) << 0;
+		input_buffer->mouseButtonBits |= BYTE(middle_button_pressed) << 1;
+		input_buffer->mouseButtonBits |= BYTE(right_button_pressed) << 2;
 	}
 
-	if (sCurrentInputSource == InputSource::Gamepad)
+	if (s_current_input_source == InputSource::Gamepad)
 	{
 		input_buffer->wButtons = xinputState.Gamepad.wButtons;
 		input_buffer->bLeftTrigger = xinputState.Gamepad.bLeftTrigger;
@@ -591,7 +600,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD, InputBuf
 		input_buffer->sThumbRY = fThumbRY * static_cast<float>(fThumbRY > 0 ? INT16_MAX : -INT16_MIN);
 	}
 
-	input_buffer->inputSource = sCurrentInputSource;
+	input_buffer->inputSource = s_current_input_source;
 
 	return unsigned __int8(1);
 }
