@@ -4,15 +4,17 @@ class c_tag_interface;
 class c_cache_file;
 class c_mantle_cache_file_gui_tab;
 
-class c_legacy_tag_group_interface
+const char* get_known_legacy_tag_group_name(unsigned long tag_group);
+
+class c_tag_group_interface_legacy
 {
 public:
 	friend class c_cache_file;
 	friend class c_mantle_cache_file_gui_tab;
 	friend class c_tag_interface;
 
-	c_legacy_tag_group_interface(c_cache_file& cache_file, uint16_t group_index);
-	virtual ~c_legacy_tag_group_interface();
+	c_tag_group_interface_legacy(c_cache_file& cache_file, uint16_t group_index);
+	virtual ~c_tag_group_interface_legacy();
 
 	inline c_cache_file& GetCacheFile() const { return cache_file; };
 	inline const std::vector<c_tag_interface*>& get_tag_interfaces() const { return tag_interfaces; };
@@ -25,7 +27,7 @@ public:
 	inline unsigned long get_tag_group() const { return tag_group; }
 
 protected:
-	void initTagGroupRelationship();
+	void init_tag_group_relationship();
 	
 	uint16_t group_index;
 	s_cache_file_tag_group* cache_file_tag_group;

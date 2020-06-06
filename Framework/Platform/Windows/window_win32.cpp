@@ -97,7 +97,6 @@ LRESULT CALLBACK c_window_win32::window_procedure(HWND hwnd, UINT msg, WPARAM w_
 		window_procedure_callback(hwnd, msg, w_param, l_param);
 	}
 
-	// #BCSREFACTOR c_debug_gui::WndProc(hwnd, msg, wParam, lParam);
 	switch (msg)
 	{
 	case WM_SYSCOMMAND:

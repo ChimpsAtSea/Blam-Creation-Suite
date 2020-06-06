@@ -6,11 +6,11 @@ namespace blofeld
 
 	const s_tag_group* get_tag_group_by_group_tag(uint32_t group_tag)
 	{
-		for (const s_tag_group* group : tag_groups)
+		for (const s_tag_group** group = tag_groups; *group; group++)
 		{
-			if (group->group_tag == group_tag)
+			if ((**group).group_tag == group_tag)
 			{
-				return group;
+				return *group;
 			}
 		}
 		return nullptr;

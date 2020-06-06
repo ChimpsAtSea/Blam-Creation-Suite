@@ -239,9 +239,11 @@ void c_debug_gui::ProcessWindowMessages()
 	}
 }
 
-void c_debug_gui::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT c_debug_gui::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	windowQueue.Enqueue({ hwnd, msg, wParam, lParam }); // thread safe queue
+
+	return 0;
 }
 
 void c_debug_gui::register_callback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback)

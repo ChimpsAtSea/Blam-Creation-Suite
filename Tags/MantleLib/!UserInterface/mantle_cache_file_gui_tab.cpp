@@ -149,78 +149,75 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 			ImGui::InputText("", search_buffer, 1024);
 			ImGui::Dummy(ImVec2(0, 10));
 		}
-		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<c_legacy_tag_group_interface*> rGroupInterfaces = cache_file.get_group_interfaces();
+		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<c_tag_group_interface_legacy*> group_interfaces = cache_file.get_group_interfaces();
 
 
-		bool useSearch = search_buffer[0] != 0;
-		if (useSearch)
+		bool use_search = search_buffer[0] != 0;
+		if (use_search)
 		{
 
 			const std::vector<c_tag_interface*>& tag_interfaces = c_mantle_gui::get_use_full_file_length_display()
 				? cache_file.get_tag_interfaces_sorted_by_path_with_group_id()
 				: cache_file.get_tag_interfaces_sorted_by_name_with_group_id();
-			for (c_tag_interface* pTagInterface : tag_interfaces)
+			for (c_tag_interface* tag_interface : tag_interfaces)
 			{
-				c_tag_interface& tag_interface = *pTagInterface;
-				if (tag_interface.IsNull()) continue;
+				if (tag_interface->is_null()) continue;
 
-				const char* pTagDisplayWithGroupID = c_mantle_gui::get_use_full_file_length_display()
-					? tag_interface.get_path_with_group_id_cstr()
-					: tag_interface.get_name_with_group_id_cstr();
+				const char* tag_display_with_group_id = c_mantle_gui::get_use_full_file_length_display()
+					? tag_interface->get_path_with_group_id_cstr()
+					: tag_interface->get_name_with_group_id_cstr();
 
 				if (search_buffer[0])
 				{
-					if (strstr(pTagDisplayWithGroupID, search_buffer) == nullptr)
+					if (strstr(tag_display_with_group_id, search_buffer) == nullptr)
 					{
 						continue;
 					}
 				}
 
-				if (ImGui::Selectable(pTagDisplayWithGroupID, search_selected_tag_interface == pTagInterface))
+				if (ImGui::Selectable(tag_display_with_group_id, search_selected_tag_interface == tag_interface))
 				{
-					search_selected_tag_interface = pTagInterface;
-					open_tag_interface_tab(tag_interface);
+					search_selected_tag_interface = tag_interface;
+					open_tag_interface_tab(*tag_interface);
 				}
 			}
 		}
 		else
 		{
-			for (c_legacy_tag_group_interface* pGroupInterface : rGroupInterfaces)
+			for (c_tag_group_interface_legacy* group_interface : group_interfaces)
 			{
-				c_legacy_tag_group_interface& rGroupInterface = *pGroupInterface;
 
 				const std::vector<c_tag_interface*>& tag_interfaces = c_mantle_gui::get_use_full_file_length_display()
-					? pGroupInterface->get_tag_interfacesSortedByPathWithGroupID()
-					: pGroupInterface->get_tag_interfacesSortedByNameWithGroupID();
+					? group_interface->get_tag_interfacesSortedByPathWithGroupID()
+					: group_interface->get_tag_interfacesSortedByNameWithGroupID();
 
-				const char* pGroupShortName = rGroupInterface.GetShortName();
+				const char* group_short_name = group_interface->GetShortName();
 
-				bool displayGroup = !tag_interfaces.empty() && (!useSearch || rGroupInterface.m_searchCriteriaMatchCount > 0);
+				bool displayGroup = !tag_interfaces.empty() && (!use_search || group_interface->m_searchCriteriaMatchCount > 0);
 
 				if (!displayGroup) continue;
 
-				if (ImGui::TreeNode(pGroupShortName, pGroupShortName))
+				if (ImGui::TreeNode(group_short_name, group_short_name))
 				{
-					for (c_tag_interface* pTagInterface : tag_interfaces)
+					for (c_tag_interface* tag_interface : tag_interfaces)
 					{
-						c_tag_interface& tag_interface = *pTagInterface;
-						if (tag_interface.IsNull()) continue;
+						if (tag_interface->is_null()) continue;
 
-						bool displayTag = (!useSearch || tag_interface.search_criteria_result);
+						bool display_tag = (!use_search || tag_interface->search_criteria_result);
 
-						if (!displayTag) continue;
+						if (!display_tag) continue;
 
-						const char* pTagDisplayWithGroupID = c_mantle_gui::get_use_full_file_length_display()
-							? tag_interface.get_path_with_group_id_cstr()
-							: tag_interface.get_name_with_group_id_cstr();
+						const char* tag_display_with_group_id = c_mantle_gui::get_use_full_file_length_display()
+							? tag_interface->get_path_with_group_id_cstr()
+							: tag_interface->get_name_with_group_id_cstr();
 
 						static ImGuiTreeNodeFlags base_flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
-						if (ImGui::TreeNodeEx(pTagInterface, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, pTagDisplayWithGroupID))
+						if (ImGui::TreeNodeEx(tag_interface, base_flags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, tag_display_with_group_id))
 						{
 
 							if (ImGui::IsItemClicked() && ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
 							{
-								open_tag_interface_tab(tag_interface);
+								open_tag_interface_tab(*tag_interface);
 							}
 						}
 					}
@@ -232,15 +229,15 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 		// some wip search stuff that ended up being really slow for some reason.
 		// worth investigating as it started out really fast
 		{
-			//if (useSearch) //#todo improve search. is it cleaner to go through and loop by group rather than tag?
+			//if (use_search) //#todo improve search. is it cleaner to go through and loop by group rather than tag?
 			//{
-			//	for (GroupInterface* pGroupInterface : rGroupInterfaces)
+			//	for (GroupInterface* group_interface : group_interfaces)
 			//	{
-			//		pGroupInterface->m_searchCriteriaMatchCount = 0; // reset counts
+			//		group_interface->m_searchCriteriaMatchCount = 0; // reset counts
 			//	}
 
 			//	const std::vector<TagInterface*> tag_interfaces = m_pCacheFile->get_tag_interfaces();
-			//	static void(*tagInterfaceFunc)(TagInterface*) = [](TagInterface* pTagInterface)
+			//	static void(*tagInterfaceFunc)(TagInterface*) = [](TagInterface* tag_interface)
 			//	{
 			//		/*
 			//			We do a few expensive operations in here but we're running in parallel
@@ -257,16 +254,16 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 			//			bool TagInterface::m_matchesSearchCriteria
 			//		*/
 
-			//		TagInterface& tag_interface = *pTagInterface;
-			//		GroupInterface* pGroupInterface = tag_interface.get_group_interface();
-			//		if (pGroupInterface) // not 100% sure why some tags don't have groups. is this a bug? they have an index of 0xFFFF
+			//		TagInterface& tag_interface = *tag_interface;
+			//		GroupInterface* group_interface = tag_interface.get_group_interface();
+			//		if (group_interface) // not 100% sure why some tags don't have groups. is this a bug? they have an index of 0xFFFF
 			//		{
 			//			const char* pTagPathWithGroupID = tag_interface.get_pathWithGroupID();
 			//			bool matchesCriteria = strstr(pTagPathWithGroupID, pSearchBuffer) != nullptr;
 
-			//			pGroupInterface->m_searchCriteriaMatchCount = 1;
+			//			group_interface->m_searchCriteriaMatchCount = 1;
 			//			tag_interface.m_matchesSearchCriteria = matchesCriteria;
-			//			//InterlockedIncrement(&pGroupInterface->m_searchCriteriaMatchCount);
+			//			//InterlockedIncrement(&group_interface->m_searchCriteriaMatchCount);
 			//		}
 			//		else
 			//		{
@@ -394,7 +391,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 		return;
 	}
 
-	//c_legacy_tag_group_interface* group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_scenario);
+	//c_tag_group_interface_legacy* group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_scenario);
 	//if (group_interface == nullptr)
 	//{
 	//	return;

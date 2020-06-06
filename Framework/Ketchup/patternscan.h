@@ -13,7 +13,7 @@ namespace ketchup
 #endif
 		void AddInstruction(Instruction* instruction);
 		~PatternScan();
-		unsigned char* GetData();
+		unsigned char* get_data();
 
 		std::vector<Instruction*> Instructions;
 		size_t ImageSize;

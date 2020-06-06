@@ -8,7 +8,7 @@ c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
 	cache_file_tag_group(nullptr), // #TODO: Group interface											 
 	tag_group_short_name(),
 	tag_group_full_name(),
-	tag_path(cache_file.m_pTagNameBuffer + cache_file.m_pTagNameIndices[tagIndex]),
+	tag_path(cache_file.tag_name_buffer + cache_file.tag_name_indices[tagIndex]),
 	tag_path_with_group_id(),
 	tag_path_with_group_name(),
 	tag_name(),
@@ -25,12 +25,12 @@ c_tag_interface::c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex) :
 	{
 		cache_file_tag_group = cache_file.cache_file_tag_groups + cache_file_tag_instance->group_index;
 
-		char* pTagsSection = cache_file.get_tags_section().first;
+		char* tags_section = cache_file.get_tags_section().first;
 
 		if (cache_file_tag_instance->address)
 		{
 			uint64_t tagDataOffset = cache_file.convert_page_offset(cache_file_tag_instance->address, true); // #WARN: Internal function used here as the IsLoading() flag hasn't been disabled yet
-			tag_data = reinterpret_cast<char*>(pTagsSection + tagDataOffset);
+			tag_data = reinterpret_cast<char*>(tags_section + tagDataOffset);
 			ASSERT(!IsBadReadPtr(tag_data, 1));
 			group_index = cache_file_tag_instance->group_index;
 
@@ -69,7 +69,7 @@ c_tag_interface::~c_tag_interface()
 
 }
 
-c_legacy_tag_group_interface* c_tag_interface::get_group_interface() const
+c_tag_group_interface_legacy* c_tag_interface::get_group_interface() const
 {
 	return cache_file.get_group_interfaces(true)[group_index];
 }

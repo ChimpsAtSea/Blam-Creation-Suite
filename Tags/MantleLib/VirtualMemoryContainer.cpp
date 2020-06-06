@@ -32,7 +32,7 @@ void* VirtualMemoryContainer::InsertHole(void* pPosition, size_t size)
 {
 	if (size == 0) return pPosition;
 
-	SetSize(m_currentSize + size);
+	set_size(m_currentSize + size);
 
 	intptr_t memoryOffset = reinterpret_cast<intptr_t>(pPosition) - reinterpret_cast<intptr_t>(m_pVirtualMemory);
 	ASSERT(memoryOffset > 0 && static_cast<uintptr_t>(memoryOffset) < m_addressSpaceSize);
@@ -45,7 +45,7 @@ void* VirtualMemoryContainer::InsertHole(void* pPosition, size_t size)
 	return pNewMemoryVirtualMemoryAddress;
 }
 
-void VirtualMemoryContainer::SetSize(size_t size)
+void VirtualMemoryContainer::set_size(size_t size)
 {
 	size_t alignedSize = ALIGN_MEMORY(size, PAGE_ALIGNMENT);
 	if (m_currentSizeAligned > alignedSize) // can we trim the tail of this memory region?

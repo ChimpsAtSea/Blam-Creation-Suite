@@ -1,19 +1,19 @@
 #pragma once
 
 class c_mantle_cache_file_gui_tab;
-class c_legacy_tag_group_interface;
+class c_tag_group_interface_legacy;
 
 class c_tag_interface
 {
 public:
 	friend class c_cache_file;
 	friend class c_mantle_cache_file_gui_tab;
-	friend class c_legacy_tag_group_interface;
+	friend class c_tag_group_interface_legacy;
 
 	c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex);
 	virtual ~c_tag_interface();
 
-	inline bool IsNull() const { return m_isNull; }
+	inline bool is_null() const { return m_isNull; }
 	inline c_cache_file& GetCacheFile() const { return cache_file; };
 	inline char* get_data() { return tag_data; };
 	inline char* get_data(size_t relative_offset) { return tag_data + relative_offset; };
@@ -40,9 +40,9 @@ public:
 	inline const std::string& get_name_with_group_name() const { return tag_name_with_group_name; }; // eg. globals.globals
 	inline const std::string& get_group_short_name() const { return tag_group_short_name; };
 	inline const std::string& get_group_full_name() const { return tag_group_full_name; };
-	//inline c_legacy_tag_group_interface* get_group_interface() const { return group_interface; }; // #TODO: Use this version and guarantee valid value for cache_file_legacy_tag_group_interface
+	//inline c_tag_group_interface_legacy* get_group_interface() const { return group_interface; }; // #TODO: Use this version and guarantee valid value for cache_file_legacy_tag_group_interface
 	inline const blofeld::s_tag_group* get_blofeld_reflection_data() const { return blofeld_reflection_type; }
-	c_legacy_tag_group_interface* get_group_interface() const; // { return cache_file.get_group_interfaces(true)[group_index]; } 
+	c_tag_group_interface_legacy* get_group_interface() const; // { return cache_file.get_group_interfaces(true)[group_index]; } 
 	s_cache_file_tag_instance* get_raw_instance() const { return cache_file_tag_instance; };
 	s_cache_file_tag_group* get_raw_group() const { return cache_file_tag_group; };
 
@@ -63,7 +63,7 @@ private:
 	std::string tag_name_with_group_name;
 	const blofeld::s_tag_group* blofeld_reflection_type;
 	c_cache_file& cache_file;
-	c_legacy_tag_group_interface* group_interface;
+	c_tag_group_interface_legacy* group_interface;
 
 	// !unsure
 	bool search_criteria_result; // #TODO: This is a mantle gui value and doesn't really belong here

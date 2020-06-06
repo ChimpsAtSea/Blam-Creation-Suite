@@ -91,7 +91,7 @@ DWORD PatternScan::FindPattern(DWORD startOffset)
 	return 0;
 }
 
-unsigned char* PatternScan::GetData()
+unsigned char* PatternScan::get_data()
 {
 	return (unsigned char*)Data.data();
 }

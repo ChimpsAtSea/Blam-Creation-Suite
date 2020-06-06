@@ -77,6 +77,7 @@ static void init_mantle(const wchar_t* command_line)
 	c_mantle_gui::init_mantle_gui(false, launch_filepath_command_line_argument);
 
 	c_debug_gui::register_callback(_callback_mode_always_run, application_ui_callback);
+	c_window_win32::register_window_procedure_callback(c_debug_gui::WndProc);
 	c_window_win32::register_update_callback(application_update_callback);
 	c_window_win32::register_destroy_callback(application_close_callback);
 	c_mantle_gui::register_on_close_callback(application_close_callback);
@@ -99,6 +100,7 @@ static void deinit_mantle()
 	c_mantle_gui::unregister_on_close_callback(application_close_callback);
 	c_window_win32::unregister_destroy_callback(application_close_callback);
 	c_window_win32::unregister_update_callback(application_update_callback);
+	c_window_win32::unregister_window_procedure_callback(c_debug_gui::WndProc);
 	c_debug_gui::unregister_callback(_callback_mode_always_run, application_ui_callback);
 
 	c_mantle_gui::deinit_mantle_gui();

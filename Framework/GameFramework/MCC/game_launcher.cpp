@@ -154,6 +154,7 @@ void c_game_launcher::init_game_launcher()
 	c_haloreach_game_option_selection_legacy::Init();
 #endif
 	c_window_win32::register_window_procedure_callback(window_procedure_callback);
+	c_window_win32::register_window_procedure_callback(c_debug_gui::WndProc);
 	c_debug_gui::register_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::register_callback(_callback_mode_toggleable, render_ui);
 

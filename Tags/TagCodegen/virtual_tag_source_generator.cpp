@@ -194,13 +194,13 @@ void c_virtual_tag_source_generator::generate_source()
 	ss << "\t\t\t" << "{" << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
-	for (const s_tag_group* tag_group : tag_groups)
+	for (const s_tag_group** tag_group = tag_groups; *tag_group; tag_group++)
 	{
-		c_fixed_string_128 tag_group_name = tag_group->name;
+		c_fixed_string_128 tag_group_name = (*tag_group)->name;
 		tag_group_name += "_TAG";
 		tag_group_name.uppercase();
 
-		const s_tag_struct_definition& tag_struct_definition = tag_group->block_definition.struct_definition;
+		const s_tag_struct_definition& tag_struct_definition = (*tag_group)->block_definition.struct_definition;
 
 		ss << "\t\t\t" << "case " << tag_group_name.data << ": return new v_tag_interface<s_" << tag_struct_definition.name << ">(cache_file, tag_index);" << std::endl;
 

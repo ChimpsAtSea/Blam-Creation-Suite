@@ -14,7 +14,7 @@ const char* get_known_legacy_tag_group_name(unsigned long tag_group)
 	return nullptr;
 }
 
-c_legacy_tag_group_interface::c_legacy_tag_group_interface(c_cache_file& cache_file, uint16_t group_index) :
+c_tag_group_interface_legacy::c_tag_group_interface_legacy(c_cache_file& cache_file, uint16_t group_index) :
 	group_index(group_index),
 	cache_file_tag_group(cache_file.cache_file_tag_groups + group_index),
 	tag_group(cache_file_tag_group->group_tags[0]),
@@ -57,22 +57,22 @@ c_legacy_tag_group_interface::c_legacy_tag_group_interface(c_cache_file& cache_f
 	ASSERT(!short_name.empty());
 	ASSERT(!full_name.empty());
 
-	initTagGroupRelationship();
+	init_tag_group_relationship();
 }
 
-c_legacy_tag_group_interface::~c_legacy_tag_group_interface()
+c_tag_group_interface_legacy::~c_tag_group_interface_legacy()
 {
 
 }
 
-void c_legacy_tag_group_interface::initTagGroupRelationship()
+void c_tag_group_interface_legacy::init_tag_group_relationship()
 {
-	for (c_tag_interface* pTagInterface : cache_file.get_tag_interfaces(true))
+	for (c_tag_interface* tag_interface : cache_file.get_tag_interfaces(true))
 	{
-		if (pTagInterface->get_raw_group() == cache_file_tag_group)
+		if (tag_interface->get_raw_group() == cache_file_tag_group)
 		{
-			pTagInterface->group_interface = this;
-			tag_interfaces.emplace_back(pTagInterface);
+			tag_interface->group_interface = this;
+			tag_interfaces.emplace_back(tag_interface);
 		}
 	}
 }
