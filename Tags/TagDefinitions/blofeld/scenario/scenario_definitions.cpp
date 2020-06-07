@@ -661,7 +661,7 @@ namespace blofeld
 
 	TAG_BLOCK(SoundSubtitleBlock, MAXIMUM_SUBTITLES_PER_SCENARIO)
 	{
-		{ _field_long_integer, "tagIndex" },
+		{ _field_long_integer, "tag_index" },
 		{ _field_string_id, "subtitleName" },
 		{ _field_terminator }
 	};

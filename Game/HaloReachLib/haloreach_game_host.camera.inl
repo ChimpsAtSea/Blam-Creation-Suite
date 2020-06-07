@@ -4,7 +4,7 @@ uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_bu
 	if (engine_type == _engine_type_haloreach && false)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type))); // 1.1350.0.0
+		c_pattern_scanner ps = c_pattern_scanner(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type))); // 1.1350.0.0
 
 		// .text:000000018006FE30                               sub_18006FE30   proc near               ; CODE XREF: sub_1800335E0+52↑p
 		// .text:000000018006FE30                                                                       ; sub_1800335E0+133↑p ...
@@ -41,34 +41,34 @@ uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_bu
 		// .text:000000018006FE88 C3                                            retn
 		// .text:000000018006FE88                               sub_18006FE30   endp
 
-		ps.AddInstruction(new _mov("x", 0x8B, 0x0D, 0x62, 0x7B, 0xC4, 0x00));
-		ps.AddInstruction(new _xor("x", 0x45, 0x33, 0xC9));
-		ps.AddInstruction(new _mov("x", 0x65, 0x48, 0x8B, 0x04, 0x25, 0x58, 0x00, 0x00, 0x00));
-		ps.AddInstruction(new _mov("x", 0x41, 0x8B, 0xD1));
-		ps.AddInstruction(new _mov("x", 0x41, 0xBA, 0x68, 0x01, 0x00, 0x00));
-		ps.AddInstruction(new _mov("x", 0x48, 0x8B, 0x04, 0xC8));
-		ps.AddInstruction(new _mov("x", 0x4D, 0x8B, 0x14, 0x02));
+		ps.add_instruction(new _mov("x", 0x8B, 0x0D, 0x62, 0x7B, 0xC4, 0x00));
+		ps.add_instruction(new _xor("x", 0x45, 0x33, 0xC9));
+		ps.add_instruction(new _mov("x", 0x65, 0x48, 0x8B, 0x04, 0x25, 0x58, 0x00, 0x00, 0x00));
+		ps.add_instruction(new _mov("x", 0x41, 0x8B, 0xD1));
+		ps.add_instruction(new _mov("x", 0x41, 0xBA, 0x68, 0x01, 0x00, 0x00));
+		ps.add_instruction(new _mov("x", 0x48, 0x8B, 0x04, 0xC8));
+		ps.add_instruction(new _mov("x", 0x4D, 0x8B, 0x14, 0x02));
 
 
-		ps.AddInstruction(new _cmp("x", 0x41, 0x83, 0xBC, 0x92, 0xB8, 0x00, 0x00, 0x00, 0xFF));
-		ps.AddInstruction(new _jnz("x", JumpDistance::Short, 0x75, 0x27));
-		ps.AddInstruction(new _or("x", 0x41, 0x83, 0xC8, 0xFF));
-		ps.AddInstruction(new _or("x", 0x48, 0x83, 0xC9, 0xFF));
-		ps.AddInstruction(new _inc("x", 0x41, 0xFF, 0xC1));
-		ps.AddInstruction(new _cmp("x", 0x41, 0x83, 0xF9, 0x03));
-		ps.AddInstruction(new _ja("x", 0x77, 0x07));
-		ps.AddInstruction(new _mov("x", 0x45, 0x8B, 0xC1));
-		ps.AddInstruction(new _lea("x", 0x48, 0x8D, 0x4A, 0x01));
+		ps.add_instruction(new _cmp("x", 0x41, 0x83, 0xBC, 0x92, 0xB8, 0x00, 0x00, 0x00, 0xFF));
+		ps.add_instruction(new _jnz("x", e_jump_distance::Short, 0x75, 0x27));
+		ps.add_instruction(new _or("x", 0x41, 0x83, 0xC8, 0xFF));
+		ps.add_instruction(new _or("x", 0x48, 0x83, 0xC9, 0xFF));
+		ps.add_instruction(new _inc("x", 0x41, 0xFF, 0xC1));
+		ps.add_instruction(new _cmp("x", 0x41, 0x83, 0xF9, 0x03));
+		ps.add_instruction(new _ja("x", 0x77, 0x07));
+		ps.add_instruction(new _mov("x", 0x45, 0x8B, 0xC1));
+		ps.add_instruction(new _lea("x", 0x48, 0x8D, 0x4A, 0x01));
 
 
-		ps.AddInstruction(new _mov("x", 0x45, 0x8B, 0xC8));
-		ps.AddInstruction(new _mov("x", 0x48, 0x8B, 0xD1));
-		ps.AddInstruction(new _cmp("x", 0x48, 0x83, 0xF9, 0xFF));
-		ps.AddInstruction(new _jnz("x", JumpDistance::Short, 0x75, 0xD1));
-		ps.AddInstruction(new _or("x", 0x0B, 0xC1));
-		ps.AddInstruction(new _retn("x", 0xC3));
+		ps.add_instruction(new _mov("x", 0x45, 0x8B, 0xC8));
+		ps.add_instruction(new _mov("x", 0x48, 0x8B, 0xD1));
+		ps.add_instruction(new _cmp("x", 0x48, 0x83, 0xF9, 0xFF));
+		ps.add_instruction(new _jnz("x", e_jump_distance::Short, 0x75, 0xD1));
+		ps.add_instruction(new _or("x", 0x0B, 0xC1));
+		ps.add_instruction(new _retn("x", 0xC3));
 
-		DWORD patternOffset = ps.FindPattern(0);
+		DWORD patternOffset = ps.find_pattern(0);
 		if (patternOffset)
 		{
 			write_line_verbose("ketchup> SUCCEED: player_mapping_get_local_player_offset @0x%x", patternOffset);
@@ -104,7 +104,7 @@ uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build 
 	if (engine_type == _engine_type_haloreach && false)
 	{
 		using namespace ketchup;
-		PatternScan ps = PatternScan(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type))); // 1.1350.0.0
+		c_pattern_scanner ps = c_pattern_scanner(GetCurrentProcess(), static_cast<HMODULE>(get_engine_memory_address(engine_type))); // 1.1350.0.0
 
 		// .text:00000001800E3050                               sub_1800E3050   proc near               ; CODE XREF: sub_1800DC8D0+1D4↑p
 		// .text:00000001800E3050                                                                       ; sub_18016A970+D8↓p ...
@@ -138,33 +138,33 @@ uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build 
 		// .text:00000001800E30B5 C3                                            retn
 		// .text:00000001800E30B5                               sub_1800E3050   endp
 
-		ps.AddInstruction(new _xor("x", 0x45, 0x33, 0xC0));
-		ps.AddInstruction(new _cmp("x", 0x83, 0xF9, 0x03));
-		ps.AddInstruction(new _ja("x", 0x77, 0x5A));
-		ps.AddInstruction(new _mov("x", 0x8B, 0x15, 0x3A, 0x49, 0xBD, 0x00));
-		ps.AddInstruction(new _mov("x", 0x65, 0x48, 0x8B, 0x04, 0x25, 0x58, 0x00, 0x00, 0x00));
-		ps.AddInstruction(new _mov("x", 0x4C, 0x8B, 0x0C, 0xD0));
-		ps.AddInstruction(new _mov("x", 0xB8, 0x68, 0x01, 0x00, 0x00));
-		ps.AddInstruction(new _movsxd("x", 0x48, 0x63, 0xD1));
-		ps.AddInstruction(new _mov("x", 0x4A, 0x8B, 0x04, 0x08));
-		ps.AddInstruction(new _cmp("x", 0x83, 0xBC, 0x90, 0xB8, 0x00, 0x00, 0x00, 0xFF));
-		ps.AddInstruction(new _setnz("x", 0x0F, 0x95, 0xC0));
-		ps.AddInstruction(new _test("x", 0x84, 0xC0));
-		ps.AddInstruction(new _jz("x", JumpDistance::Short, 0x74, 0x2C));
-		ps.AddInstruction(new _cmp("x", 0x44, 0x39, 0x05, 0xE7, 0xB8, 0x79, 0x03));
-		ps.AddInstruction(new _jz("x", JumpDistance::Short, 0x74, 0x23));
-		ps.AddInstruction(new _imul("x", 0x48, 0x69, 0xC2, 0x10, 0x04, 0x00, 0x00));
-		ps.AddInstruction(new _mov("x", 0xB9, 0x80, 0x06, 0x00, 0x00));
-		ps.AddInstruction(new _add("x", 0x48, 0x05, 0x54, 0x01, 0x00, 0x00));
-		ps.AddInstruction(new _mov("x", 0x4A, 0x8B, 0x0C, 0x09));
-		ps.AddInstruction(new _add("x", 0x48, 0x03, 0xC1));
-		ps.AddInstruction(new _jz("x", JumpDistance::Short, 0x74, 0x08));
-		ps.AddInstruction(new _cmp("x", 0x80, 0x78, 0x0C, 0xFF));
-		ps.AddInstruction(new _cmovnz("x", 0x4C, 0x0F, 0x45, 0xC0));
-		ps.AddInstruction(new _mov("x", 0x49, 0x8B, 0xC0));
-		ps.AddInstruction(new _retn("x", 0xC3));
+		ps.add_instruction(new _xor("x", 0x45, 0x33, 0xC0));
+		ps.add_instruction(new _cmp("x", 0x83, 0xF9, 0x03));
+		ps.add_instruction(new _ja("x", 0x77, 0x5A));
+		ps.add_instruction(new _mov("x", 0x8B, 0x15, 0x3A, 0x49, 0xBD, 0x00));
+		ps.add_instruction(new _mov("x", 0x65, 0x48, 0x8B, 0x04, 0x25, 0x58, 0x00, 0x00, 0x00));
+		ps.add_instruction(new _mov("x", 0x4C, 0x8B, 0x0C, 0xD0));
+		ps.add_instruction(new _mov("x", 0xB8, 0x68, 0x01, 0x00, 0x00));
+		ps.add_instruction(new _movsxd("x", 0x48, 0x63, 0xD1));
+		ps.add_instruction(new _mov("x", 0x4A, 0x8B, 0x04, 0x08));
+		ps.add_instruction(new _cmp("x", 0x83, 0xBC, 0x90, 0xB8, 0x00, 0x00, 0x00, 0xFF));
+		ps.add_instruction(new _setnz("x", 0x0F, 0x95, 0xC0));
+		ps.add_instruction(new _test("x", 0x84, 0xC0));
+		ps.add_instruction(new _jz("x", e_jump_distance::Short, 0x74, 0x2C));
+		ps.add_instruction(new _cmp("x", 0x44, 0x39, 0x05, 0xE7, 0xB8, 0x79, 0x03));
+		ps.add_instruction(new _jz("x", e_jump_distance::Short, 0x74, 0x23));
+		ps.add_instruction(new _imul("x", 0x48, 0x69, 0xC2, 0x10, 0x04, 0x00, 0x00));
+		ps.add_instruction(new _mov("x", 0xB9, 0x80, 0x06, 0x00, 0x00));
+		ps.add_instruction(new _add("x", 0x48, 0x05, 0x54, 0x01, 0x00, 0x00));
+		ps.add_instruction(new _mov("x", 0x4A, 0x8B, 0x0C, 0x09));
+		ps.add_instruction(new _add("x", 0x48, 0x03, 0xC1));
+		ps.add_instruction(new _jz("x", e_jump_distance::Short, 0x74, 0x08));
+		ps.add_instruction(new _cmp("x", 0x80, 0x78, 0x0C, 0xFF));
+		ps.add_instruction(new _cmovnz("x", 0x4C, 0x0F, 0x45, 0xC0));
+		ps.add_instruction(new _mov("x", 0x49, 0x8B, 0xC0));
+		ps.add_instruction(new _retn("x", 0xC3));
 
-		DWORD patternOffset = ps.FindPattern(0);
+		DWORD patternOffset = ps.find_pattern(0);
 		if (patternOffset)
 		{
 			write_line_verbose("ketchup> SUCCEED: observer_try_and_get_camera_offset @0x%x", patternOffset);

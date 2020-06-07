@@ -3,11 +3,10 @@
 template<typename T>
 class v_tag_interface;
 
-class c_virtual_tag_interface
+class c_virtual_tag
 {
 public:
-	c_virtual_tag_interface(c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_reference& tag_reference) :
-		cache_file(cache_file),
+	c_virtual_tag(c_tag_interface& tag_interface, s_tag_reference& tag_reference) :
 		tag_interface(tag_interface),
 		tag_reference(tag_reference)
 	{
@@ -16,12 +15,12 @@ public:
 
 	operator c_tag_interface* () const
 	{
-		return cache_file.get_tag_interface(tag_reference.index);
+		return tag_interface.get_cache_file().get_tag_interface(tag_reference.index);
 	}
 
 	operator const c_tag_interface* () const
 	{
-		return cache_file.get_tag_interface(tag_reference.index);
+		return tag_interface.get_cache_file().get_tag_interface(tag_reference.index);
 	}
 
 	template<typename T>
@@ -39,7 +38,6 @@ public:
 	}
 
 private:
-	c_cache_file& cache_file;
 	c_tag_interface& tag_interface;
 	s_tag_reference& tag_reference;
 };

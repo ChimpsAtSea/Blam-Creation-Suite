@@ -1,10 +1,11 @@
 #pragma once
 
+bool filesystem_read_from_file_handle(FILE* file_handle, void* destination, size_t size);
 bool filesystem_filepath_exists(const char* filepath);
 bool filesystem_filepath_exists(const wchar_t* filepath);
-bool filesystem_read_file_to_memory(const char* filepath, void** buffer, size_t* buffer_size);
+bool filesystem_read_file_to_memory(const char* filepath, void** buffer, size_t* buffer_size = nullptr);
 bool filesystem_write_file_from_memory(const char* filepath, const void* buffer, size_t buffer_size);
-bool filesystem_read_file_to_memory(const wchar_t* filepath, void** buffer, size_t* buffer_size);
+bool filesystem_read_file_to_memory(const wchar_t* filepath, void** buffer, size_t* buffer_size = nullptr);
 bool filesystem_write_file_from_memory(const wchar_t* filepath, const void* buffer, size_t buffer_size);
 
 template<typename T>

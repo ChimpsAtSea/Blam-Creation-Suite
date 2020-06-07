@@ -28,7 +28,7 @@ void c_virtual_tag_source_generator::generate_header()
 	//hs << "\t\t" << "class c_cache_file;" << std::endl << std::endl;
 	//hs << "\t\t" << "class c_tag_interface { public: c_tag_interface(c_cache_file&, uint16_t tag_index); template<typename T> T* get_data(); };" << std::endl << std::endl;
 	//hs << "\t\t" << "template<typename t_value> class c_virtual_tag_block { public: c_virtual_tag_block(c_cache_file& cache_file, c_tag_interface& tag_interface, c_typed_tag_block<t_value>& tag_block); };" << std::endl << std::endl;
-	//hs << "\t\t" << "class c_virtual_tag_interface { public: c_virtual_tag_interface(c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_reference& tag_reference); };" << std::endl << std::endl;
+	//hs << "\t\t" << "class c_virtual_tag { public: c_virtual_tag(c_cache_file& cache_file, c_tag_interface& tag_interface, s_tag_reference& tag_reference); };" << std::endl << std::endl;
 
 
 	//hs << "\t\t" << "template<typename T>" << std::endl;
@@ -37,18 +37,18 @@ void c_virtual_tag_source_generator::generate_header()
 	//hs << "\t\t" << "{" << std::endl;
 	//hs << "\t\t" << "};" << std::endl << std::endl;
 
-	hs << "\t\tc_tag_interface* create_tag_interface(c_cache_file& cache_file, uint16_t tag_index, unsigned long group_tag);" << std::endl << std::endl;
+	hs << "\t\tc_virtual_tag_interface* create_virtual_tag_interface(c_tag_interface& tag_interface, unsigned long group_tag);" << std::endl << std::endl;
 
 	std::map<std::string, int> field_name_unique_counter;
 	for (const s_tag_struct_definition* tag_struct_definition : c_structure_relationship_node::sorted_tag_struct_definitions)
 	{
 		hs << "\t\t" << "template<>" << std::endl;
 		hs << "\t\t" << "class v_tag_interface<s_" << tag_struct_definition->name << "> : " << std::endl;
-		hs << "\t\t\t" << "public c_tag_interface" << std::endl;
+		hs << "\t\t\t" << "public c_virtual_tag_interface" << std::endl;
 		hs << "\t\t" << "{" << std::endl;
 		hs << "\t\t\t" << "public:" << std::endl;
-		hs << "\t\t\t" << "v_tag_interface(c_cache_file& cache_file, uint16_t tag_index) : " << std::endl;
-		hs << "\t\t\t\t" << "c_tag_interface(cache_file, tag_index)";
+		hs << "\t\t\t" << "v_tag_interface(c_tag_interface& tag_interface) : " << std::endl;
+		hs << "\t\t\t\t" << "c_virtual_tag_interface(tag_interface)";
 
 		for (const s_tag_field* current_field = tag_struct_definition->fields; current_field->field_type != _field_terminator; current_field++)
 		{
@@ -79,10 +79,10 @@ void c_virtual_tag_source_generator::generate_header()
 			{
 			case _field_block:
 			case _field_tag_reference:
-				hs << "\t\t\t\t" << field_formatter.code_name << "(cache_file, *this, get_data<s_" << tag_struct_definition->name << ">()->" << field_formatter.code_name << ")";
+				hs << "\t\t\t\t" << field_formatter.code_name << "(tag_interface, tag_interface.get_data<s_" << tag_struct_definition->name << ">()->" << field_formatter.code_name << ")";
 				break;
 			default:
-				hs << "\t\t\t\t" << field_formatter.code_name << "(get_data<s_" << tag_struct_definition->name << ">()->" << field_formatter.code_name << ")";
+				hs << "\t\t\t\t" << field_formatter.code_name << "(tag_interface.get_data<s_" << tag_struct_definition->name << ">()->" << field_formatter.code_name << ")";
 				break;
 			}
 		}
@@ -141,7 +141,7 @@ void c_virtual_tag_source_generator::generate_header()
 			}
 			case _field_tag_reference:
 			{
-				hs << "\t\t\t\t" << "c_virtual_tag_interface " << field_formatter.code_name << ";";
+				hs << "\t\t\t\t" << "c_virtual_tag " << field_formatter.code_name << ";";
 				break;
 			}
 			default:
@@ -187,7 +187,7 @@ void c_virtual_tag_source_generator::generate_source()
 	ss << "\t{" << std::endl << std::endl;
 
 
-	ss << "\t\tc_tag_interface* create_tag_interface(c_cache_file& cache_file, uint16_t tag_index, unsigned long group_tag)" << std::endl;
+	ss << "\t\tc_virtual_tag_interface* create_virtual_tag_interface(c_tag_interface& tag_interface, unsigned long group_tag)" << std::endl;
 	ss << "\t\t{" << std::endl;
 
 	ss << "\t\t\t" << "switch (group_tag)" << std::endl;
@@ -202,7 +202,7 @@ void c_virtual_tag_source_generator::generate_source()
 
 		const s_tag_struct_definition& tag_struct_definition = (*tag_group)->block_definition.struct_definition;
 
-		ss << "\t\t\t" << "case " << tag_group_name.data << ": return new v_tag_interface<s_" << tag_struct_definition.name << ">(cache_file, tag_index);" << std::endl;
+		ss << "\t\t\t" << "case " << tag_group_name.data << ": return new v_tag_interface<s_" << tag_struct_definition.name << ">(tag_interface);" << std::endl;
 
 		debug_point;
 

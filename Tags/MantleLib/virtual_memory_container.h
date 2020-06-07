@@ -1,9 +1,9 @@
 #pragma once
-class VirtualMemoryContainer
+class c_virtual_memory_container
 {
 public:
-	VirtualMemoryContainer(size_t addressSpaceSize);
-	~VirtualMemoryContainer();
+	c_virtual_memory_container(size_t addressSpaceSize);
+	~c_virtual_memory_container();
 
 	void* InsertHole(size_t offset, size_t size);
 	void* InsertHole(void* pPosition, size_t size);

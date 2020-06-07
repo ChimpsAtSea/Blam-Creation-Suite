@@ -19,8 +19,7 @@ void c_mantle_cache_file_gui_tab::open_tag_interface_tab(c_tag_interface& tag_in
 
 c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_file) :
 	cache_file(cache_file),
-	cache_file_owned_pointer(nullptr),
-	c_mantle_gui_tab(cache_file.GetFileNameChar(), cache_file.GetFilePathChar()),
+	c_mantle_gui_tab(cache_file.get_map_path_utf8(), cache_file.get_map_filepath_utf8()),
 	render_trigger_volumes(c_command_line::has_command_line_arg("-showtriggervolumes")),
 	next_selected_mantle_gui_tab(nullptr),
 	search_selected_tag_interface(nullptr),
@@ -48,14 +47,15 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_fil
 		while (cache_file.is_loading()) { Sleep(1); };
 
 		c_tag_interface* tag_interface = nullptr;
-		for (c_tag_interface* current_tag_interface : cache_file.tag_interfaces)
+
+		for (c_tag_interface* current_tag_interface : c_range_iterator(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
 		{
-			bool isMatch = false;
-			isMatch |= load_tag_command_line == current_tag_interface->get_name_with_group_id();
-			isMatch |= load_tag_command_line == current_tag_interface->get_path_with_group_id();
-			isMatch |= load_tag_command_line == current_tag_interface->get_name_with_group_name();
-			isMatch |= load_tag_command_line == current_tag_interface->get_path_with_group_name();
-			if (isMatch)
+			bool is_match = false;
+			is_match |= load_tag_command_line == current_tag_interface->get_name_with_group_id();
+			is_match |= load_tag_command_line == current_tag_interface->get_path_with_group_id();
+			is_match |= load_tag_command_line == current_tag_interface->get_name_with_group_name();
+			is_match |= load_tag_command_line == current_tag_interface->get_path_with_group_name();
+			if (is_match)
 			{
 				tag_interface = current_tag_interface;
 				break;
@@ -72,17 +72,6 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_fil
 	{
 		open_halo_script_editor();
 	}
-}
-
-c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file* cache_file) :
-	c_mantle_cache_file_gui_tab(*cache_file)
-{
-	cache_file_owned_pointer = cache_file;
-}
-
-c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(const wchar_t* map_file_path) :
-	c_mantle_cache_file_gui_tab(new c_cache_file(map_file_path))
-{
 }
 
 c_mantle_cache_file_gui_tab::~c_mantle_cache_file_gui_tab()
@@ -149,17 +138,16 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 			ImGui::InputText("", search_buffer, 1024);
 			ImGui::Dummy(ImVec2(0, 10));
 		}
-		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	const std::vector<c_tag_group_interface_legacy*> group_interfaces = cache_file.get_group_interfaces();
+		ImGui::BeginChild("##tags", ImVec2(0, 0), true);	c_tag_group_interface*const* group_interfaces = cache_file.get_tag_group_interfaces();
 
 
 		bool use_search = search_buffer[0] != 0;
 		if (use_search)
 		{
-
-			const std::vector<c_tag_interface*>& tag_interfaces = c_mantle_gui::get_use_full_file_length_display()
+			c_tag_interface* const* tag_interfaces = c_mantle_gui::get_use_full_file_length_display()
 				? cache_file.get_tag_interfaces_sorted_by_path_with_group_id()
 				: cache_file.get_tag_interfaces_sorted_by_name_with_group_id();
-			for (c_tag_interface* tag_interface : tag_interfaces)
+			for (c_tag_interface* tag_interface : c_range_iterator(tag_interfaces, cache_file.get_tag_count()))
 			{
 				if (tag_interface->is_null()) continue;
 
@@ -184,28 +172,24 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 		}
 		else
 		{
-			for (c_tag_group_interface_legacy* group_interface : group_interfaces)
+			for (c_tag_group_interface* group_interface : c_range_iterator(group_interfaces, cache_file.get_tag_group_count()))
 			{
+				const uint32_t tag_interfaces_count = group_interface->get_tag_interfaces_count();
+				c_tag_interface*const* tag_interfaces = c_mantle_gui::get_use_full_file_length_display()
+					? group_interface->get_tag_interfaces_sorted_by_path_with_group_id()
+					: group_interface->get_tag_interfaces_sorted_by_name_with_group_id();
 
-				const std::vector<c_tag_interface*>& tag_interfaces = c_mantle_gui::get_use_full_file_length_display()
-					? group_interface->get_tag_interfacesSortedByPathWithGroupID()
-					: group_interface->get_tag_interfacesSortedByNameWithGroupID();
+				const char* group_short_name = group_interface->get_short_name();
 
-				const char* group_short_name = group_interface->GetShortName();
+				bool display_group = tag_interfaces_count > 0;
 
-				bool displayGroup = !tag_interfaces.empty() && (!use_search || group_interface->m_searchCriteriaMatchCount > 0);
-
-				if (!displayGroup) continue;
+				if (!display_group) continue;
 
 				if (ImGui::TreeNode(group_short_name, group_short_name))
 				{
-					for (c_tag_interface* tag_interface : tag_interfaces)
+					for (c_tag_interface* tag_interface : c_range_iterator(tag_interfaces, tag_interfaces_count))
 					{
 						if (tag_interface->is_null()) continue;
-
-						bool display_tag = (!use_search || tag_interface->search_criteria_result);
-
-						if (!display_tag) continue;
 
 						const char* tag_display_with_group_id = c_mantle_gui::get_use_full_file_length_display()
 							? tag_interface->get_path_with_group_id_cstr()
@@ -224,55 +208,6 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 					ImGui::TreePop();
 				}
 			}
-		}
-
-		// some wip search stuff that ended up being really slow for some reason.
-		// worth investigating as it started out really fast
-		{
-			//if (use_search) //#todo improve search. is it cleaner to go through and loop by group rather than tag?
-			//{
-			//	for (GroupInterface* group_interface : group_interfaces)
-			//	{
-			//		group_interface->m_searchCriteriaMatchCount = 0; // reset counts
-			//	}
-
-			//	const std::vector<TagInterface*> tag_interfaces = m_pCacheFile->get_tag_interfaces();
-			//	static void(*tagInterfaceFunc)(TagInterface*) = [](TagInterface* tag_interface)
-			//	{
-			//		/*
-			//			We do a few expensive operations in here but we're running in parallel
-			//			so we can avoid a lot of the cost by going wide. We should be careful as
-			//			always with how long the longest possible search time is.
-
-			//			To combat lengthy non-linear lookup times extra data has been added to
-			//			TagInterface and GroupInterface
-
-			//			* Speeds up first iteration display of empty groups without n^2 complexity*
-			//			uint32_t GroupInterface::m_searchCriteriaMatchCount
-
-			//			* Speeds up first second display of empty groups without n^2 complexity*
-			//			bool TagInterface::m_matchesSearchCriteria
-			//		*/
-
-			//		TagInterface& tag_interface = *tag_interface;
-			//		GroupInterface* group_interface = tag_interface.get_group_interface();
-			//		if (group_interface) // not 100% sure why some tags don't have groups. is this a bug? they have an index of 0xFFFF
-			//		{
-			//			const char* pTagPathWithGroupID = tag_interface.get_pathWithGroupID();
-			//			bool matchesCriteria = strstr(pTagPathWithGroupID, pSearchBuffer) != nullptr;
-
-			//			group_interface->m_searchCriteriaMatchCount = 1;
-			//			tag_interface.m_matchesSearchCriteria = matchesCriteria;
-			//			//InterlockedIncrement(&group_interface->m_searchCriteriaMatchCount);
-			//		}
-			//		else
-			//		{
-			//			tag_interface.m_matchesSearchCriteria = false;
-			//		}
-			//		
-			//	};
-			//	tbb::parallel_for_each(tag_interfaces, tagInterfaceFunc); // performance boost
-			//}
 		}
 
 		ImGui::EndChild();
@@ -391,7 +326,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 		return;
 	}
 
-	//c_tag_group_interface_legacy* group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_scenario);
+	//c_tag_group_interface* group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_scenario);
 	//if (group_interface == nullptr)
 	//{
 	//	return;
@@ -458,7 +393,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 	//		float screen_y = 0.0f;
 	//		if (c_render::calculate_screen_coordinates(trigger_volume.position_x, trigger_volume.position_y, trigger_volume.position_z, screen_x, screen_y))
 	//		{
-	//			const char* trigger_volume_name = cache_file.string_id_to_cstr(trigger_volume.name);
+	//			const char* trigger_volume_name = cache_file.get_string_id(trigger_volume.name);
 	//			trigger_volume_name = trigger_volume_name ? trigger_volume_name : "<error fetching string id>";
 
 	//			ImGui::GetWindowDrawList()->AddText(ImVec2(screen_x + 1, screen_y + 1), IM_COL32(0, 0, 0, static_cast<int>(255 * k_text_transparency)), trigger_volume_name);

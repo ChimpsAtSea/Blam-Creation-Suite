@@ -15,7 +15,7 @@ public:
 	c_mantle_gui(const c_mantle_gui&) = delete;
 	c_mantle_gui& operator=(const c_mantle_gui&) = delete;
 
-	using get_tag_pointer_func = char* (*)(uint16_t tagIndex);
+	using get_tag_pointer_func = char* (*)(uint16_t tag_index);
 	using get_tag_selection_address_func = char* (*)(uint32_t address);
 
 	using on_close_callback_func = void(*)();
@@ -28,7 +28,7 @@ public:
 	static void register_on_close_callback(on_close_callback_func callback);
 	static void unregister_on_close_callback(on_close_callback_func callback);
 
-	static void open_cache_file_from_filepath(const wchar_t* filepathPath);
+	static void open_cache_file_from_filepath(const wchar_t* map_file_path);
 	static void add_tab(c_mantle_gui_tab& mantle_gui_tab);
 	static void remove_tab(c_mantle_gui_tab& mantle_gui_tab);
 
@@ -41,7 +41,7 @@ public:
 	inline static void set_unknown_fields_visibility(bool unknown_fields_visibility) { g_unknown_fields_visibility = unknown_fields_visibility; };
 	inline static void set_use_full_file_length_display(bool use_full_file_length_display) { g_use_full_file_length_display = use_full_file_length_display; };
 
-	inline static char* get_tag_pointer(uint16_t tagIndex) { return g_get_tag_pointer_func ? g_get_tag_pointer_func(tagIndex) : nullptr; }
+	inline static char* get_tag_pointer(uint16_t tag_index) { return g_get_tag_pointer_func ? g_get_tag_pointer_func(tag_index) : nullptr; }
 	inline static char* get_tag_selection_address(uint32_t address) { return g_get_tag_selection_address_func ? g_get_tag_selection_address_func(address) : nullptr; }
 	inline static bool is_standalone() { return !g_mantle_running_with_game; };
 	inline static bool is_game() { return g_mantle_running_with_game; };

@@ -3,7 +3,7 @@
 #define PAGE_ALIGNMENT 4096
 #define ALIGN_MEMORY(value, alignment) ((((value - 1) / alignment) + 1) * alignment)
 
-VirtualMemoryContainer::VirtualMemoryContainer(size_t addressSpaceSize)
+c_virtual_memory_container::c_virtual_memory_container(size_t addressSpaceSize)
 	: m_pageSize(getPageSize())
 	, m_addressSpaceSize(ALIGN_MEMORY(addressSpaceSize, m_pageSize))
 	, m_currentSize(0)
@@ -14,13 +14,13 @@ VirtualMemoryContainer::VirtualMemoryContainer(size_t addressSpaceSize)
 	ASSERT(m_pVirtualMemory);
 }
 
-VirtualMemoryContainer::~VirtualMemoryContainer()
+c_virtual_memory_container::~c_virtual_memory_container()
 {
 	BOOL virtualFreeResult = VirtualFree(m_pVirtualMemory, 0, MEM_RELEASE);
 	ASSERT_NO_THROW(virtualFreeResult);
 }
 
-void* VirtualMemoryContainer::InsertHole(size_t offset, size_t size)
+void* c_virtual_memory_container::InsertHole(size_t offset, size_t size)
 {
 	uintptr_t virtualMemoryAddress = reinterpret_cast<uintptr_t>(m_pVirtualMemory);
 	virtualMemoryAddress += offset;
@@ -28,7 +28,7 @@ void* VirtualMemoryContainer::InsertHole(size_t offset, size_t size)
 	return InsertHole(pFreeVirtualMemoryAddress, size);
 }
 
-void* VirtualMemoryContainer::InsertHole(void* pPosition, size_t size)
+void* c_virtual_memory_container::InsertHole(void* pPosition, size_t size)
 {
 	if (size == 0) return pPosition;
 
@@ -45,7 +45,7 @@ void* VirtualMemoryContainer::InsertHole(void* pPosition, size_t size)
 	return pNewMemoryVirtualMemoryAddress;
 }
 
-void VirtualMemoryContainer::set_size(size_t size)
+void c_virtual_memory_container::set_size(size_t size)
 {
 	size_t alignedSize = ALIGN_MEMORY(size, PAGE_ALIGNMENT);
 	if (m_currentSizeAligned > alignedSize) // can we trim the tail of this memory region?
@@ -84,7 +84,7 @@ void VirtualMemoryContainer::set_size(size_t size)
 	m_currentSizeAligned = alignedSize;
 }
 
-size_t VirtualMemoryContainer::getPageSize()
+size_t c_virtual_memory_container::getPageSize()
 {
 	SYSTEM_INFO systemInfo = {};
 	GetSystemInfo(&systemInfo);

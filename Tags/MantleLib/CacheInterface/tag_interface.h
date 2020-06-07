@@ -1,20 +1,23 @@
 #pragma once
 
-class c_mantle_cache_file_gui_tab;
-class c_tag_group_interface_legacy;
+class c_tag_group_interface;
+class c_virtual_tag_interface;
 
 class c_tag_interface
 {
-public:
-	friend class c_cache_file;
-	friend class c_mantle_cache_file_gui_tab;
-	friend class c_tag_group_interface_legacy;
-
-	c_tag_interface(c_cache_file& cache_file, uint16_t tagIndex);
+	friend c_tag_group_interface;
+	friend c_virtual_tag_interface;
+protected:
+	c_tag_interface(c_cache_file& cache_file, uint16_t tag_index);
 	virtual ~c_tag_interface();
 
-	inline bool is_null() const { return m_isNull; }
-	inline c_cache_file& GetCacheFile() const { return cache_file; };
+	void associate_virtual_tag_interface(c_virtual_tag_interface& virtual_tag_interface);
+
+public:
+	static c_tag_interface* create_tag_interface(c_cache_file& cache_file, uint16_t tag_index);
+
+	inline bool is_null() const { return is_tag_null; } // #TODO: programmatic check using group and address
+	inline c_cache_file& get_cache_file() const { return cache_file; };
 	inline char* get_data() { return tag_data; };
 	inline char* get_data(size_t relative_offset) { return tag_data + relative_offset; };
 
@@ -40,19 +43,27 @@ public:
 	inline const std::string& get_name_with_group_name() const { return tag_name_with_group_name; }; // eg. globals.globals
 	inline const std::string& get_group_short_name() const { return tag_group_short_name; };
 	inline const std::string& get_group_full_name() const { return tag_group_full_name; };
-	//inline c_tag_group_interface_legacy* get_group_interface() const { return group_interface; }; // #TODO: Use this version and guarantee valid value for cache_file_legacy_tag_group_interface
+	//inline c_tag_group_interface* get_group_interface() const { return group_interface; }; // #TODO: Use this version and guarantee valid value for cache_file_legacy_tag_group_interface
 	inline const blofeld::s_tag_group* get_blofeld_reflection_data() const { return blofeld_reflection_type; }
-	c_tag_group_interface_legacy* get_group_interface() const; // { return cache_file.get_group_interfaces(true)[group_index]; } 
-	s_cache_file_tag_instance* get_raw_instance() const { return cache_file_tag_instance; };
-	s_cache_file_tag_group* get_raw_group() const { return cache_file_tag_group; };
+	c_tag_group_interface* get_group_interface() const; // { return cache_file.get_tag_group_interfaces(true)[group_index]; } 
+	inline void* get_cache_file_instance() const { return cache_file_tag_instance; };
+	inline void* get_cache_file_group() const { return cache_file_tag_group; };
 
-private:
-	bool m_isNull;
+protected:
+	bool is_tag_null;
 	char* tag_data;
 	uint16_t group_index;
 	uint16_t tag_index;
-	s_cache_file_tag_instance* cache_file_tag_instance;
-	s_cache_file_tag_group* cache_file_tag_group;
+	union
+	{
+		void* cache_file_tag_instance;
+		// s_cache_file_tag_instance* haloreach_cache_file_tag_instance;
+	};
+	union
+	{
+		void* cache_file_tag_group;
+		// s_cache_file_tag_group* haloreach_cache_file_tag_group;
+	};
 	std::string tag_group_short_name;
 	std::string tag_group_full_name;
 	std::string tag_path;
@@ -63,10 +74,8 @@ private:
 	std::string tag_name_with_group_name;
 	const blofeld::s_tag_group* blofeld_reflection_type;
 	c_cache_file& cache_file;
-	c_tag_group_interface_legacy* group_interface;
-
-	// !unsure
-	bool search_criteria_result; // #TODO: This is a mantle gui value and doesn't really belong here
+	c_tag_group_interface* group_interface;
+	c_virtual_tag_interface* virtual_tag_interface;
 public:
 	void* virtual_resource_user_data;
 };

@@ -29,10 +29,10 @@ struct s_cache_file_tags_header
 		qword address = 0;
 	};
 
-	s_section<s_cache_file_tag_group> groups;
-	s_section<s_cache_file_tag_instance> instances;
-	s_section<s_cache_file_tag_global_instance> global_instances;
-	s_section<s_cache_file_tag_interop> interop_table;
+	s_section<s_cache_file_tag_group> tag_groups;
+	s_section<s_cache_file_tag_instance> tag_instances;
+	s_section<s_cache_file_tag_global_instance> tag_global_instance;
+	s_section<s_cache_file_tag_interop> tag_interop_table;
 
 	long unknown40; // datum index?
 

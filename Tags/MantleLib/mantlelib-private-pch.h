@@ -10,4 +10,4 @@
 #include "mantlelib-public-pch.h"
 #include <TagReflection\tagreflection-public-pch.h>
 
-#include "VirtualMemoryContainer.h"
+#include "virtual_memory_container.h"

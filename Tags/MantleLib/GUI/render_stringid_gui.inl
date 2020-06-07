@@ -25,7 +25,7 @@ void render_stringid_gui_legacy(string_id_legacy* field_data, const c_reflection
 			buffer_length(0),
 			id_pointer(&id)
 		{
-			const char* id_pointer = cache_file.string_id_to_cstr(id);
+			const char* id_pointer = cache_file.get_string_id(id);
 			if (id_pointer)
 			{
 				strncpy_s(szBuffer, id_pointer, strlen(id_pointer));

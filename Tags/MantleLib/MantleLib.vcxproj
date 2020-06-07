@@ -35,18 +35,20 @@
     <ClInclude Include="CacheInterface\CacheVersions\groundhog_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo3_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\haloreach_cache_file.h" />
-    <ClInclude Include="CacheInterface\CacheVersions\halo_1_cache_file.h" />
-    <ClInclude Include="CacheInterface\CacheVersions\halo_2_cache_file.h" />
-    <ClInclude Include="CacheInterface\CacheVersions\halo_3_odst_cache_file.h" />
-    <ClInclude Include="CacheInterface\CacheVersions\halo_4_cache_file.h" />
-    <ClInclude Include="CacheInterface\CacheVersions\halo_5_cache_file.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\haloreach_tag_interface.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\halo1_cache_file.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\halo2_cache_file.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\halo3odst_cache_file.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\halo4_cache_file.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\halo5_cache_file.h" />
     <ClInclude Include="CacheInterface\cache_file.h" />
     <ClInclude Include="CacheInterface\cache_file_string_id_guesstimator.h" />
     <ClInclude Include="CacheInterface\cache_utilities.h" />
     <ClInclude Include="CacheInterface\tag_group_interface.h" />
     <ClInclude Include="CacheInterface\tag_interface.h" />
     <ClInclude Include="CacheInterface\virtual_tag_block.h" />
-    <ClInclude Include="CacheInterface\virtual_tag_interface.h" />
+    <ClInclude Include="CacheInterface\virtual_tag.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\haloreach_tag_group_interface.h" />
     <ClInclude Include="HaloScript\HaloScript.h" />
     <ClInclude Include="HaloScript\halo_script_function_definition.h" />
     <ClInclude Include="HaloScript\halo_script_function_documentation.h" />
@@ -55,7 +57,7 @@
     <ClInclude Include="HaloScript\lisp_ast_parser.h" />
     <ClInclude Include="mantlelib-private-pch.h" />
     <ClInclude Include="mantlelib-public-pch.h" />
-    <ClInclude Include="VirtualMemoryContainer.h" />
+    <ClInclude Include="virtual_memory_container.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="!UserInterface\mantle_cache_file_gui_tab.cpp" />
@@ -71,17 +73,19 @@
     <ClCompile Include="CacheInterface\CacheVersions\groundhog_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\halo3_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\haloreach_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo_1_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo_2_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo_3_odst_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo_4_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo_5_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\haloreach_tag_interface.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\halo1_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\halo2_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\halo3odst_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\halo4_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\halo5_cache_file.cpp" />
     <ClCompile Include="CacheInterface\cache_file.cpp" />
     <ClCompile Include="CacheInterface\cache_file_string_id_guesstimator.cpp" />
     <ClCompile Include="CacheInterface\tag_group_interface.cpp" />
     <ClCompile Include="CacheInterface\tag_interface.cpp" />
     <ClCompile Include="CacheInterface\virtual_tag_block.cpp" />
-    <ClCompile Include="CacheInterface\virtual_tag_interface.cpp" />
+    <ClCompile Include="CacheInterface\virtual_tag.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\haloreach_tag_group_interface.cpp" />
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp" />
     <ClCompile Include="HaloScript\halo_script_function_documentation.cpp" />
     <ClCompile Include="HaloScript\halo_script_globals_definition.cpp" />
@@ -93,7 +97,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="VirtualMemoryContainer.cpp" />
+    <ClCompile Include="virtual_memory_container.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CacheInterface\tag_group_names.inl" />

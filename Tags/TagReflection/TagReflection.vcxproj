@@ -169,6 +169,7 @@
     <ClInclude Include="haloreach_virtual.h" />
     <ClInclude Include="tagreflection-private-pch.h" />
     <ClInclude Include="tagreflection-public-pch.h" />
+    <ClInclude Include="virtual_tag_interface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="halo4_virtual.cpp" />
@@ -179,6 +180,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="virtual_tag_interface.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

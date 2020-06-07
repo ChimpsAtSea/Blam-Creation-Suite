@@ -18,10 +18,10 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 	ImGui::PushItemWidth(-1);
 
 	const char* group_short_name = "(null)";
-	c_tag_group_interface_legacy* ps_tag_reference_legacyGroupInterface = cache_file.get_group_interface_by_group_id(field_data->tag_group_name);
+	c_tag_group_interface* ps_tag_reference_legacyGroupInterface = cache_file.get_group_interface_by_group_id(field_data->tag_group_name);
 	if (ps_tag_reference_legacyGroupInterface)
 	{
-		group_short_name = ps_tag_reference_legacyGroupInterface->GetShortName();
+		group_short_name = ps_tag_reference_legacyGroupInterface->get_short_name();
 	}
 	c_tag_interface* tag_interface = cache_file.get_tag_interface(static_cast<uint16_t>(field_data->index));
 
@@ -39,9 +39,9 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 			}
 		}
 
-		for (c_tag_group_interface_legacy* current_group_interface : cache_file.get_group_interfaces())
+		for (c_tag_group_interface* current_group_interface : cache_file.get_tag_group_interfaces())
 		{
-			if (ImGui::Selectable(current_group_interface->GetShortName(), current_group_interface == ps_tag_reference_legacyGroupInterface))
+			if (ImGui::Selectable(current_group_interface->get_short_name(), current_group_interface == ps_tag_reference_legacyGroupInterface))
 			{
 				if (current_group_interface != ps_tag_reference_legacyGroupInterface) // selecting a new tag group
 				{
@@ -79,7 +79,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 				// #TODO: Figure out why get_group_interface is returning null?
 				//assert(current_tag_interface->get_group_interface() != nullptr);
 				//if (current_tag_interface->get_group_interface() != ps_tag_reference_legacyGroupInterface)
-				c_tag_group_interface_legacy* current_group_interface = cache_file.get_group_interfaces()[current_tag_interface->get_group_index()];
+				c_tag_group_interface* current_group_interface = cache_file.get_tag_group_interfaces()[current_tag_interface->get_group_index()];
 				ASSERT(current_group_interface != nullptr);
 				if (current_group_interface != ps_tag_reference_legacyGroupInterface)
 				{
@@ -118,7 +118,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 				// #TODO: Figure out why get_group_interface is returning null?
 				//assert(current_tag_interface->get_group_interface() != nullptr);
 				//if (current_tag_interface->get_group_interface() != ps_tag_reference_legacyGroupInterface)
-				c_tag_group_interface_legacy* current_group_interface = cache_file.get_group_interfaces()[current_tag_interface->get_group_index()];
+				c_tag_group_interface* current_group_interface = cache_file.get_tag_group_interfaces()[current_tag_interface->get_group_index()];
 				ASSERT(current_group_interface != nullptr);
 				if (current_group_interface != ps_tag_reference_legacyGroupInterface)
 				{
@@ -151,7 +151,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 		field_data->datum = ~0ui16;
 		field_data->name_length = 0;
 		field_data->name_offset = 0;
-		field_data->tag_group_name = static_cast<unsigned long>(0xFFFFFFFF);
+		field_data->tag_group_name = static_cast<unsigned long>(blofeld::INVALID_TAG);
 	}
 	else if (ImGui::IsItemHovered()) ImGui::SetTooltip("Nulls this tag reference");
 	ImGui::NextColumn();

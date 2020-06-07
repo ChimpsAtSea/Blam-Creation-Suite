@@ -37,7 +37,17 @@ enum e_cache_file_unknown_bits : uint32_t
 
 };
 
-struct s_reach_cache_file_header : s_cache_file_header
+enum e_haloreach_cache_file_section_index
+{
+	_haloreach_cache_file_section_index_debug,
+	_haloreach_cache_file_section_index_resource,
+	_haloreach_cache_file_section_index_tags,
+	_haloreach_cache_file_section_index_localization,
+	k_number_of_haloreach_cache_file_sections
+};
+
+
+struct s_haloreach_cache_file_header : s_cache_file_header
 {
 	//e_cache_file_magic header_signature = _cache_file_magic_header;
 	//int32_t file_version = 12;
@@ -126,8 +136,8 @@ struct s_reach_cache_file_header : s_cache_file_header
 
 	int32_t rsa[64];
 
-	int32_t section_offsets[underlying_cast(e_cache_file_section::k_number_of_cache_file_sections)];
-	s_cache_file_section_file_bounds section_bounds[underlying_cast(e_cache_file_section::k_number_of_cache_file_sections)];
+	int32_t section_offsets[k_number_of_haloreach_cache_file_sections];
+	s_haloreach_cache_file_section_index_file_bounds section_bounds[k_number_of_haloreach_cache_file_sections];
 
 	int32_t guid[4];
 
@@ -135,7 +145,7 @@ struct s_reach_cache_file_header : s_cache_file_header
 
 	e_cache_file_magic footer_signature = _cache_file_magic_footer;
 };
-static constexpr size_t k_DEPRECATED_reach_cache_file_header_size = sizeof(s_reach_cache_file_header);
+static constexpr size_t k_DEPRECATED_reach_cache_file_header_size = sizeof(s_haloreach_cache_file_header);
 static_assert(k_DEPRECATED_reach_cache_file_header_size == 0xA000);
 
 

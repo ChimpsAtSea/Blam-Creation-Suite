@@ -36,7 +36,7 @@ c_file_array::c_file_array(std::vector<std::string> file_directories, std::vecto
 	}
 }
 
-LPCSTR c_file_array::GetFilePath(size_t index)
+LPCSTR c_file_array::get_filepath(size_t index)
 {
 	LPCSTR result = "";
 	if (index >= 0 && index < file_count)
@@ -47,7 +47,7 @@ LPCSTR c_file_array::GetFilePath(size_t index)
 	return result;
 }
 
-LPCSTR c_file_array::GetFilePath(LPCSTR pStr)
+LPCSTR c_file_array::get_filepath(LPCSTR pStr)
 {
 	LPCSTR result = "";
 	for (size_t i = 0; i < file_count; i++)
@@ -61,7 +61,7 @@ LPCSTR c_file_array::GetFilePath(LPCSTR pStr)
 	return result;
 }
 
-LPCSTR c_file_array::GetFileName(size_t index)
+LPCSTR c_file_array::get_filename(size_t index)
 {
 	LPCSTR result = "";
 	if (index >= 0 && index < file_count)
@@ -72,7 +72,7 @@ LPCSTR c_file_array::GetFileName(size_t index)
 	return result;
 }
 
-LPCSTR c_file_array::GetFileName(LPCSTR pStr)
+LPCSTR c_file_array::get_filename(LPCSTR pStr)
 {
 	LPCSTR result = "";
 	for (size_t i = 0; i < file_count; i++)

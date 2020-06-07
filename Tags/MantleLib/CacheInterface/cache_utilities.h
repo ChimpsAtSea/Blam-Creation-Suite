@@ -3,7 +3,7 @@
 template<typename T>
 class v_tag_interface_legacy;
 
-class c_virtual_tag_interface_legacy;
+class c_virtual_tag_legacy;
 class c_tag_interface;
 
 #ifdef __INTELLISENSE__
@@ -17,7 +17,7 @@ v_tag_interface_legacy<T>* tag_cast(s_tag_reference* tag_interface);
 #endif
 
 template<typename T>
-v_tag_interface_legacy<T>* tag_cast(c_virtual_tag_interface_legacy* virtual_tag_interface)
+v_tag_interface_legacy<T>* tag_cast(c_virtual_tag_legacy* virtual_tag_interface)
 {
 	ASSERT(virtual_tag_interface != nullptr);
 	c_tag_interface* tag_interface = *virtual_tag_interface;
@@ -30,7 +30,7 @@ v_tag_interface_legacy<T>* tag_cast(c_virtual_tag_interface_legacy* virtual_tag_
 }
 
 template<typename T>
-const v_tag_interface_legacy<T>* tag_cast(const c_virtual_tag_interface_legacy* virtual_tag_interface)
+const v_tag_interface_legacy<T>* tag_cast(const c_virtual_tag_legacy* virtual_tag_interface)
 {
 	ASSERT(virtual_tag_interface != nullptr);
 	const c_tag_interface* tag_interface = *virtual_tag_interface;

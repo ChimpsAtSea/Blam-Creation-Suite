@@ -494,14 +494,14 @@ void c_haloreach_game_option_selection_legacy::SelectGameVariant()
 			shouldShow |= s_currentGameMode == _mcc_game_mode_campaign && fileArray.GetType(i) == _game_engine_type_campaign;
 			shouldShow |= s_currentGameMode == _mcc_game_mode_firefight && fileArray.GetType(i) == _game_engine_type_survival;
 
-			if (fileArray.GetFileName(i) && shouldShow)
+			if (fileArray.get_filename(i) && shouldShow)
 			{
-				bool selected = fileArray.GetFileName(i) == fileArray.GetFileName(pLast);
+				bool selected = fileArray.get_filename(i) == fileArray.get_filename(pLast);
 
-				std::string pSelectedGameVariantName = std::string(fileArray.get_name(i)).append(" (").append(fileArray.GetFileName(i)).append(")###").append(std::to_string(i));
+				std::string pSelectedGameVariantName = std::string(fileArray.get_name(i)).append(" (").append(fileArray.get_filename(i)).append(")###").append(std::to_string(i));
 				if (ImGui::Selectable(pSelectedGameVariantName.c_str(), &selected))
 				{
-					pLast = fileArray.GetFileName(i);
+					pLast = fileArray.get_filename(i);
 				}
 
 				RenderHoveredTooltip(fileArray.GetDesc(i));
@@ -550,14 +550,14 @@ void c_haloreach_game_option_selection_legacy::SelectMapVariant()
 		{
 			int shouldShow = fileArray.GetType(i) == pSelectedMapInfo->GetMapID();
 
-			if (fileArray.GetFileName(i) && shouldShow)
+			if (fileArray.get_filename(i) && shouldShow)
 			{
-				bool selected = fileArray.GetFileName(i) == fileArray.GetFileName(pLast);
+				bool selected = fileArray.get_filename(i) == fileArray.get_filename(pLast);
 
-				std::string pSelectedMapVariantName = std::string(fileArray.get_name(i)).append(" (").append(fileArray.GetFileName(i)).append(")###").append(std::to_string(i));
+				std::string pSelectedMapVariantName = std::string(fileArray.get_name(i)).append(" (").append(fileArray.get_filename(i)).append(")###").append(std::to_string(i));
 				if (ImGui::Selectable(pSelectedMapVariantName.c_str(), &selected) && !defaultSelected)
 				{
-					pLast = fileArray.GetFileName(i);
+					pLast = fileArray.get_filename(i);
 				}
 
 				RenderHoveredTooltip(fileArray.GetDesc(i));
@@ -583,13 +583,13 @@ void c_haloreach_game_option_selection_legacy::SelectSavedFilm()
 	static c_file_array fileArray = c_file_array(filepathPaths, { ".film", ".mov" }, &ReadSavedFilm);
 	static LPCSTR pLast = "";
 
-	if (s_launch_saved_film_filepath != fileArray.GetFileName(pLast))
+	if (s_launch_saved_film_filepath != fileArray.get_filename(pLast))
 	{
-		s_launch_saved_film_filepath = fileArray.GetFileName(pLast);
+		s_launch_saved_film_filepath = fileArray.get_filename(pLast);
 	}
-	if (pLast != fileArray.GetFileName(pLast))
+	if (pLast != fileArray.get_filename(pLast))
 	{
-		pLast = fileArray.GetFileName(pLast);
+		pLast = fileArray.get_filename(pLast);
 	}
 
 	if (ImGui::BeginCombo("###SAVED FILM", fileArray.GetDesc(pLast)))
@@ -600,10 +600,10 @@ void c_haloreach_game_option_selection_legacy::SelectSavedFilm()
 			{
 				bool selected = fileArray.get_name(i) == fileArray.get_name(pLast);
 
-				std::string pSelectedSavedFilmName = std::string(fileArray.GetDesc(i)).append(" (").append(fileArray.GetFileName(i)).append(")###").append(std::to_string(i));
+				std::string pSelectedSavedFilmName = std::string(fileArray.GetDesc(i)).append(" (").append(fileArray.get_filename(i)).append(")###").append(std::to_string(i));
 				if (ImGui::Selectable(fileArray.GetDesc(i), &selected))
 				{
-					pLast = fileArray.GetFileName(i);
+					pLast = fileArray.get_filename(i);
 				}
 
 				RenderHoveredTooltip(fileArray.get_name(i));

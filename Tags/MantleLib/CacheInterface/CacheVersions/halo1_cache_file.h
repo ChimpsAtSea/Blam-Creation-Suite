@@ -1,16 +1,13 @@
 #pragma once
-
-class c_haloreach_cache_file :
+class c_halo1_cache_file : 
 	public c_cache_file
 {
 	friend c_cache_file;
 protected:
-	c_haloreach_cache_file(const std::wstring& map_filepath);
-	virtual ~c_haloreach_cache_file();
+	c_halo1_cache_file(const std::wstring& map_filepath);
+	virtual ~c_halo1_cache_file();
 
 public:
-
-	void load_map(const std::wstring& map_filepath);
 	virtual bool save_map() final;
 	virtual bool is_loading() const final;
 	virtual uint64_t get_base_virtual_address() const final;
@@ -37,11 +34,11 @@ public:
 	inline const s_section_cache& get_debug_section() const { return get_section(_haloreach_cache_file_section_index_debug); };
 	inline const s_section_cache& get_tags_section() const { return get_section(_haloreach_cache_file_section_index_tags); };
 	inline const s_section_cache& get_resources_section() const { return get_section(_haloreach_cache_file_section_index_resource); };
-	inline const s_section_cache& get_localization_section() const { return get_section(_haloreach_cache_file_section_index_localization); };
-
-	inline s_cache_file_tag_instance* get_internal_tag_instance(uint16_t tag_index) const 
-	{ 
-		return static_cast<s_cache_file_tag_instance*>(get_internal_tag_instance_impl(tag_index)); 
+	inline const s_section_cache& get_localization_section() const { return get_section(_haloreach_cache_file_section_index_localization); };	
+	
+	inline s_cache_file_tag_instance* get_internal_tag_instance(uint16_t tag_index) const
+	{
+		return static_cast<s_cache_file_tag_instance*>(get_internal_tag_instance_impl(tag_index));
 	}
 	inline s_cache_file_tag_group* get_internal_tag_group(uint32_t group_index) const
 	{
@@ -51,21 +48,5 @@ public:
 protected:
 	virtual void* get_internal_tag_instance_impl(uint16_t tag_index) const final;
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const final;
-
-	// raw data
-	long* tag_name_indices;
-	char* tag_name_buffer;
-	long* string_id_indices;
-	char* string_id_buffer;
-	s_haloreach_cache_file_header* cache_file_header;
-	s_cache_file_tags_header* cache_file_tags_headers;
-	s_cache_file_tag_instance* cache_file_tag_instances;
-	s_cache_file_tag_group* cache_file_tag_groups;
-	s_section_cache section_cache[underlying_cast(k_number_of_haloreach_cache_file_sections)];
-	
-	volatile bool is_map_loading;
-	c_cache_file_string_id_guesstimator* string_id_guesstimator;
 };
-
-
 

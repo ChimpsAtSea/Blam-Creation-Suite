@@ -120,9 +120,6 @@
     <ClInclude Include="Blam\legacy\cache_file_magic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Blam\legacy\cache_file_section.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Blam\legacy\cache_file_section_file_bounds.h">
       <Filter>Header Files</Filter>
     </ClInclude>

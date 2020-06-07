@@ -29,7 +29,6 @@
     <ClInclude Include="Blam\legacy\blamfile_level_chunk_flags.h" />
     <ClInclude Include="Blam\legacy\cache_file_header.h" />
     <ClInclude Include="Blam\legacy\cache_file_magic.h" />
-    <ClInclude Include="Blam\legacy\cache_file_section.h" />
     <ClInclude Include="Blam\legacy\cache_file_section_file_bounds.h" />
     <ClInclude Include="Blam\legacy\cache_file_tags_header.h" />
     <ClInclude Include="Blam\legacy\cache_file_tag_group.h" />

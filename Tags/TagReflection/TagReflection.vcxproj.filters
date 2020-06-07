@@ -33,6 +33,9 @@
     <ClInclude Include="haloreach_virtual.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="virtual_tag_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tagreflection-private-pch.cpp">
@@ -42,6 +45,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="haloreach_virtual.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="virtual_tag_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

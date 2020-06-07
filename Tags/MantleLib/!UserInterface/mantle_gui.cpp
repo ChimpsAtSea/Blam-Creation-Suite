@@ -192,11 +192,20 @@ void c_mantle_gui::unregister_on_close_callback(on_close_callback_func callback)
 	vector_erase_by_value_helper(g_mantle_on_close_callbacks, callback);
 }
 
-void c_mantle_gui::open_cache_file_from_filepath(const wchar_t* filepathPath)
+void c_mantle_gui::open_cache_file_from_filepath(const wchar_t* map_file_path)
 {
-	if (PathFileExistsW(filepathPath))
+	if (PathFileExistsW(map_file_path))
 	{
-		add_tab(*new c_mantle_cache_file_gui_tab(filepathPath));
+		c_cache_file* cache_file = c_cache_file::create_cache_file(map_file_path);
+		if (cache_file)
+		{
+			c_mantle_cache_file_gui_tab* cache_file_gui_tab = new c_mantle_cache_file_gui_tab(*cache_file);
+			add_tab(*cache_file_gui_tab);
+		}
+		else
+		{
+			// #TODO: Display an error message that the map failed to open
+		}
 	}
 }
 
@@ -282,9 +291,17 @@ void c_mantle_gui::render_file_dialogue_gui()
 					wchar_t selected_file_path_widechar[MAX_PATH + 1];
 					swprintf(selected_file_path_widechar, MAX_PATH, L"%S", selected_file_path);
 
-					c_mantle_gui_tab* mantle_gui_tab = new c_mantle_cache_file_gui_tab(selected_file_path_widechar);
-					add_tab(*mantle_gui_tab);
-					g_next_selected_root_tab = mantle_gui_tab;
+					c_cache_file* cache_file = c_cache_file::create_cache_file(selected_file_path_widechar);
+					if (cache_file)
+					{
+						c_mantle_gui_tab* mantle_gui_tab = new c_mantle_cache_file_gui_tab(*cache_file);
+						add_tab(*mantle_gui_tab);
+						g_next_selected_root_tab = mantle_gui_tab;
+					}
+					else
+					{
+						// #TODO: Display an error message that the map failed to open
+					}
 				}
 			}
 		}

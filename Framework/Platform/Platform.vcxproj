@@ -26,6 +26,7 @@
     <ClInclude Include="enum_util.h" />
     <ClInclude Include="error_handling.h" />
     <ClInclude Include="filesystem_util.h" />
+    <ClInclude Include="language_util.h" />
     <ClInclude Include="Strings\fixed_string.h" />
     <ClInclude Include="intrinsics.h" />
     <ClInclude Include="language_runtime.h" />

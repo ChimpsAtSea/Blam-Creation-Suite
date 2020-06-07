@@ -89,7 +89,7 @@ void IFileAccess::FileWrite(char *buffer, size_t size)
 	}
 }
 
-LPCSTR IFileAccess::GetFilePath()
+LPCSTR IFileAccess::get_filepath()
 {
 	return s_filePath;
 }

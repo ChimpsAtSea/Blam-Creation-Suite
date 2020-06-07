@@ -20,6 +20,7 @@
 using namespace xxhash;
 using namespace xxhash::literals;
 
+#include "language_util.h"
 #include "threading.h"
 #include "language_runtime.h"
 #include "debug_util.h"

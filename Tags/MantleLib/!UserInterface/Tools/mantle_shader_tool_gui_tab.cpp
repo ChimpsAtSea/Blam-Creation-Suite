@@ -167,7 +167,7 @@ void c_mantle_shader_tool_gui_tab::render_source_code_editor_configuration_heade
 
 			//for (s_render_method_definition_definition::s_option_definition& option : render_method_definition->options)
 			//{
-			//	const char* shader_option = render_method_definition->GetCacheFile().string_id_to_cstr(option.__unknown);
+			//	const char* shader_option = render_method_definition->get_cache_file().get_string_id(option.__unknown);
 
 			//	write_line_verbose("shader_option: %s", shader_option);
 			//}
@@ -257,7 +257,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 
 		//if (selected_cache_file_tab)
 		{
-			//c_tag_group_interface_legacy* tag_group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_render_method_definition);
+			//c_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_render_method_definition);
 			//c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
 			//DEBUG_ASSERT(render_method_definition_interface == tag_group_interface);
 			//const std::vector<c_tag_interface*>& tag_interfaces = render_method_definition_interface->get_tag_interfaces();
@@ -317,7 +317,7 @@ void c_mantle_shader_tool_gui_tab::render_runtime_disassembly_configuration_head
 		{
 			//// #TODO: This could do with some optimization by adding a subclass to c_tag_interface to store all of this information computed upfront
 
-			//c_tag_group_interface_legacy* tag_group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_render_method_definition);
+			//c_tag_group_interface* tag_group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_render_method_definition);
 			//c_render_method_definition_group_interface* render_method_definition_interface = dynamic_cast<c_render_method_definition_group_interface*>(tag_group_interface);
 
 

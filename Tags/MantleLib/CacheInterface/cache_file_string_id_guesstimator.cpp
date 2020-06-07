@@ -35,9 +35,9 @@ c_cache_file_string_id_guesstimator::c_cache_file_string_id_guesstimator(c_cache
 			const char* const guesstimator_string = guesstimator_data.string;
 
 			// search for the beginning
-			for (; start_string_index < cache_file.cache_file_header->string_id_count; start_string_index++)
+			for (; start_string_index < cache_file.get_string_id_count(); start_string_index++)
 			{
-				const char* const cache_file_string = cache_file.get_string_id_by_raw_index(start_string_index);
+				const char* const cache_file_string = cache_file.get_string_id_by_index(start_string_index);
 
 				if (strcmp(cache_file_string, guesstimator_string) == 0)
 				{
@@ -60,9 +60,9 @@ c_cache_file_string_id_guesstimator::c_cache_file_string_id_guesstimator(c_cache
 			const char* const guesstimator_string = guesstimator_data.string;
 
 			// search for the beginning
-			for (; end_string_index < cache_file.cache_file_header->string_id_count; end_string_index++)
+			for (; end_string_index < cache_file.get_string_id_count(); end_string_index++)
 			{
-				const char* const cache_file_string = cache_file.get_string_id_by_raw_index(end_string_index);
+				const char* const cache_file_string = cache_file.get_string_id_by_index(end_string_index);
 
 				if (strcmp(cache_file_string, guesstimator_string) == 0)
 				{
@@ -96,7 +96,7 @@ c_cache_file_string_id_guesstimator::c_cache_file_string_id_guesstimator(c_cache
 	engine_string_id_last_set_end_index = string_id_set_end_indices[set_count - 1];
 	cache_file_string_id_start_index = engine_string_id_last_set_end_index - engine_string_id_first_set_end_index;
 
-	const char* expected_value = cache_file.get_string_id_by_raw_index(engine_string_id_last_set_end_index);
+	const char* expected_value = cache_file.get_string_id_by_index(engine_string_id_last_set_end_index);
 	if (expected_value == nullptr || strcmp(expected_value, "material") != 0)
 	{
 		write_line_verbose("string_id_guesstimator> Unexpected cache file String ID at index 0. Potential errors in the guesstimator!");
