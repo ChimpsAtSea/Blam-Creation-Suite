@@ -73,7 +73,7 @@ protected:
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_path_with_group_id;
 	std::vector<c_tag_group_interface*> tag_group_interfaces;
 
-private:
+protected:
 	/* initialize each group instance */
 	void init_group_instances();
 	/* initialize each tag instance */

@@ -87,7 +87,10 @@ bool filesystem_read_file_to_memory(const wchar_t* filepath, void** buffer, size
 	ASSERT(buffer != nullptr);
 
 	*buffer = nullptr;
-	*buffer_size = 0;
+	if (buffer_size != nullptr)
+	{
+		*buffer_size = 0;
+	}
 
 	FILE* file_handle = _wfopen(filepath, L"rb");
 	if (file_handle)
@@ -97,7 +100,10 @@ bool filesystem_read_file_to_memory(const wchar_t* filepath, void** buffer, size
 		fseek(file_handle, 0, SEEK_SET);
 
 		*buffer = new char[file_size] {};
-		*buffer_size = file_size;
+		if (buffer_size != nullptr)
+		{
+			*buffer_size = file_size;
+		}
 
 		size_t bytes_read = 0;
 		while (bytes_read < file_size)

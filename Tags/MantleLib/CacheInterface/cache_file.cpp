@@ -112,9 +112,6 @@ c_cache_file::~c_cache_file()
 	delete& virtual_memory_container;
 }
 
-#include <zlib/zlib/zlib.h>
-#pragma comment(lib, "zlib.lib")
-
 void c_cache_file::cache_file_post_load()
 {
 	init_tag_instances();
