@@ -115,12 +115,22 @@ public:
 		return *this;
 	}
 
-	operator t_char_type* ()
+	explicit operator t_char_type* ()
 	{
 		return data;
 	}
 
-	operator const t_char_type* () const
+	explicit operator const t_char_type* () const
+	{
+		return data;
+	}
+
+	t_char_type* str()
+	{
+		return data;
+	}
+
+	const t_char_type* c_str() const
 	{
 		return data;
 	}

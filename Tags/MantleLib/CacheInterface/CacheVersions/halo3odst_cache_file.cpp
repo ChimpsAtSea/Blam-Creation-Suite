@@ -71,7 +71,7 @@ c_tag_group_interface* c_halo3odst_cache_file::get_tag_group_interface(uint16_t 
 	return nullptr;
 }
 
-c_tag_group_interface* c_halo3odst_cache_file::get_group_interface_by_group_id(unsigned long tag_group) const
+c_tag_group_interface* c_halo3odst_cache_file::get_tag_group_interface_by_group_id(unsigned long tag_group) const
 {
 	return nullptr;
 }
@@ -106,7 +106,7 @@ const char* c_halo3odst_cache_file::get_tag_path(uint16_t tag_index) const
 	return nullptr;
 }
 
-unsigned long c_halo3odst_cache_file::get_tag_group_by_tag_index(uint32_t tag_index) const
+unsigned long c_halo3odst_cache_file::get_group_tag_by_tag_index(uint32_t tag_index) const
 {
 	return blofeld::INVALID_TAG;
 }

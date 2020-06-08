@@ -102,6 +102,7 @@ void c_mantle_tag_gui_tab::render_tab_contents_gui()
 {
 	if (child_tabs.empty())
 	{
+		ImGui::Text("No supported editors");
 		return;
 	}
 

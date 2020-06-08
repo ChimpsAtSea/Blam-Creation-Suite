@@ -124,19 +124,19 @@ void c_tag_source_generator::generate_source()
 			switch (current_field->field_type)
 			{
 			case _field_pad:
-				ss << "\t\t\t" << "char " << field_formatter.code_name << "[" << current_field->padding << "]; // padding" << std::endl;
+				ss << "\t\t\t" << "char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // padding" << std::endl;
 				break;
 			case _field_skip:
-				ss << "\t\t\t" << "char " << field_formatter.code_name << "[" << current_field->padding << "]; // skip" << std::endl;
+				ss << "\t\t\t" << "char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // skip" << std::endl;
 				break;
 			case _field_useless_pad:
-				ss << "\t\t\t" << "// char " << field_formatter.code_name << "[" << current_field->padding << "]; // useless padding" << std::endl;
+				ss << "\t\t\t" << "// char " << field_formatter.code_name.c_str() << "[" << current_field->padding << "]; // useless padding" << std::endl;
 				break;
 			case _field_custom:
 				ss << "\t\t\t" << "// " << field_type_string;
 				if (!field_formatter.code_name.is_empty())
 				{
-					ss << " " << field_formatter.code_name;
+					ss << " " << field_formatter.code_name.c_str();
 				}
 				ss << std::endl;
 				break;
@@ -178,19 +178,19 @@ void c_tag_source_generator::generate_source()
 			case _field_array:
 			{
 				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				ss << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name << "[" << current_field->array_definition->count << "];";
+				ss << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << "[" << current_field->array_definition->count << "];";
 				break;
 			}
 			case _field_struct:
 			{
 				const char* field_source_type = current_field->struct_definition->name;
-				ss << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name << ";";
+				ss << "\t\t\t" << "s_" << field_source_type << " " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_block:
 			{
 				const char* field_source_type = current_field->block_definition->struct_definition.name;
-				ss << "\t\t\t" << "c_typed_tag_block<s_" << field_source_type << "> " << field_formatter.code_name << ";";
+				ss << "\t\t\t" << "c_typed_tag_block<s_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_tag_reference:
@@ -221,7 +221,7 @@ void c_tag_source_generator::generate_source()
 
 				if (group_tags.empty())
 				{
-					ss << "\t\t\t" << "s_tag_reference " << field_formatter.code_name << ";";
+					ss << "\t\t\t" << "s_tag_reference " << field_formatter.code_name.c_str() << ";";
 				}
 				else
 				{
@@ -230,7 +230,7 @@ void c_tag_source_generator::generate_source()
 
 					for (size_t group_tag_index = 0; group_tag_index < group_tags.size(); group_tag_index++)
 					{
-						const s_tag_group* tag_group = get_tag_group_by_group_tag(group_tags[group_tag_index]);
+						const s_tag_group* tag_group = get_group_tag_by_group_tag(group_tags[group_tag_index]);
 						ASSERT(tag_group != nullptr);
 						if (group_tag_index > 0)
 						{
@@ -243,7 +243,7 @@ void c_tag_source_generator::generate_source()
 
 						ss << tag_group_name.data;
 					}
-					ss << "> " << field_formatter.code_name << ";";
+					ss << "> " << field_formatter.code_name.c_str() << ";";
 				}
 
 				break;

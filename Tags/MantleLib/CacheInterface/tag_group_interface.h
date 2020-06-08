@@ -3,7 +3,6 @@
 class c_tag_interface;
 class c_mantle_cache_file_gui_tab;
 class c_cache_file;
-class c_haloreach_cache_file;
 
 const char* get_known_legacy_tag_group_name(unsigned long tag_group);
 
@@ -12,15 +11,28 @@ class c_tag_group_interface
 public:
 	friend class c_tag_interface;
 protected:
-	c_tag_group_interface(c_cache_file& cache_file, uint16_t group_index);
+	c_tag_group_interface(c_cache_file& cache_file, uint16_t group_index, unsigned long group_tag = blofeld::INVALID_TAG);
 	virtual ~c_tag_group_interface();
-	void tag_group_interface_post_init();
 
 public:
-	static c_tag_group_interface* create_tag_group_interface(c_cache_file& cache_file, uint16_t group_index);
+	static c_tag_group_interface* create_tag_group_interface(c_cache_file& cache_file, uint16_t group_index, unsigned long group_tag = blofeld::INVALID_TAG);
+	virtual void add_tag_interface(c_tag_interface& tag_interface);
+
+
+
+
+
+
+
+
+
+
+
+
 
 	inline uint16_t get_index() { return group_index; };
-	inline unsigned long get_tag_group() const { return group_tag; }
+	inline unsigned long get_group_tag() const { return group_tag; }
+
 	void* get_cache_file_tag_group() const { return cache_file_tag_group; };
 	const blofeld::s_tag_group* get_blofeld_tag_group() const { return blofeld_reflection_type; };
 	inline c_tag_interface* const* get_tag_interfaces() const { return tag_interfaces.data(); };
@@ -31,9 +43,8 @@ public:
 	inline const char* get_full_name() const { return full_name.c_str(); };
 	inline c_cache_file& get_cache_file() const { return cache_file; };
 
-	void init_sorted_instance_lists();
+	virtual void init_sorted_instance_lists();
 protected:
-	void init_tag_group_relationship();
 
 	uint16_t group_index;
 	union

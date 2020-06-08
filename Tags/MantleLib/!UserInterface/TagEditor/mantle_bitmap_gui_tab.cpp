@@ -80,11 +80,11 @@ void c_mantle_bitmap_gui_tab::render_tab_contents_gui()
 
 	ImGui::Text("Bitmap Editor");
 	
-	c_tag_group_interface* play_interface = cache_file.get_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG);
+	c_tag_group_interface* play_interface = cache_file.get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_LAYOUT_TABLE_TAG);
 	v_tag_interface<blofeld::haloreach::s_cache_file_resource_layout_table_block_struct>* play_tag = dynamic_cast<decltype(play_tag)>(play_interface->get_tag_interfaces()[0]);
 	ImGui::Text("Found Play Tag: %s", play_tag ? "true" : "false");
 
-	c_tag_group_interface* zone_interface = cache_file.get_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG);
+	c_tag_group_interface* zone_interface = cache_file.get_tag_group_interface_by_group_id(blofeld::CACHE_FILE_RESOURCE_GESTALT_TAG);
 	v_tag_interface<blofeld::haloreach::s_cache_file_resource_gestalt_block_struct>* zone_tag = dynamic_cast<decltype(zone_tag)>(zone_interface->get_tag_interfaces()[0]);
 	ImGui::Text("Found Zone Tag: %s", zone_tag ? "true" : "false");
 

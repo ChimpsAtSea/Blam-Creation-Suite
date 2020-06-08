@@ -11,8 +11,8 @@ c_haloreach_tag_group_interface::c_haloreach_tag_group_interface(c_haloreach_cac
 	// #TODO: This kinda sucks figure out a better way to parse short name
 
 	uint64_t magicBuffer = cache_file_tag_group->group_tags[0]; // use little endian 0's to form null at end
-	std::string reversedShortName = reinterpret_cast<const char*>(&magicBuffer);
-	short_name = std::string(reversedShortName.rbegin(), reversedShortName.rend());
+	std::string reversed_short_name = reinterpret_cast<const char*>(&magicBuffer);
+	short_name = std::string(reversed_short_name.rbegin(), reversed_short_name.rend());
 
 
 	const char* cache_legacy_tag_group_name = cache_file.get_string_id(cache_file_tag_group->name);
@@ -36,12 +36,17 @@ c_haloreach_tag_group_interface::c_haloreach_tag_group_interface(c_haloreach_cac
 		c_console::set_text_color(_console_color_default);
 	}
 
-	blofeld_reflection_type = blofeld::get_tag_group_by_group_tag(group_tag);
-
-	tag_group_interface_post_init();
+	blofeld_reflection_type = blofeld::get_group_tag_by_group_tag(group_tag);
 }
 
 c_haloreach_tag_group_interface::~c_haloreach_tag_group_interface()
 {
 
+}
+
+void c_haloreach_tag_group_interface::add_tag_interface(c_tag_interface& tag_interface)
+{
+	c_haloreach_tag_interface* haloreach_tag_interface = dynamic_cast<c_haloreach_tag_interface*>(&tag_interface);
+	ASSERT(haloreach_tag_interface != nullptr);
+	tag_interfaces.push_back(haloreach_tag_interface);
 }

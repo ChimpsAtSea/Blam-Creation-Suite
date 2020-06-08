@@ -121,7 +121,7 @@ void c_cache_file::cache_file_post_load()
 	{
 		if (!tag_interface->is_null())
 		{
-			ASSERT(tag_interface->get_group_interface() != nullptr);
+			ASSERT(tag_interface->get_tag_group_interface() != nullptr);
 		}
 	}
 
@@ -148,7 +148,7 @@ void c_cache_file::init_tag_instances()
 	c_tag_interface** tag_interfaces_buffer = tag_interfaces.data();
 	std::function createTagFunc = [this, tag_interfaces_buffer](uint32_t index)
 	{
-		unsigned long group_tag = get_tag_group_by_tag_index(index);
+		unsigned long group_tag = get_group_tag_by_tag_index(index);
 
 		c_tag_interface* tag_interface = c_tag_interface::create_tag_interface(*this, static_cast<uint16_t>(index));
 
@@ -205,18 +205,22 @@ void c_cache_file::init_tag_instances()
 
 #pragma optimize( "t", on ) // always prefer fast code here
 
-static bool sort_tag_instance_by_name_with_group_id(c_tag_interface* pLeft, c_tag_interface* pRight)
+static bool sort_tag_instance_by_name_with_group_id(c_tag_interface* left_tag_interface, c_tag_interface* right_tag_interface)
 {
-	const std::string& left = pLeft->get_name_with_group_id();
-	const std::string& right = pRight->get_name_with_group_id();
-	return std::lexicographical_compare(left.begin(), left.end(), right.begin(), right.end(), [](char x, char y) { return toupper(static_cast<unsigned char>(x)) < toupper(static_cast<unsigned char>(y)); });
+	const char* left_begin = left_tag_interface->get_name_with_group_id_cstr();
+	const char* right_begin = right_tag_interface->get_name_with_group_id_cstr();
+	const char* left_end = left_begin + strlen(left_begin) + 1;
+	const char* right_end = right_begin + strlen(right_begin) + 1;
+	return std::lexicographical_compare(left_begin, left_end, right_begin, right_end, [](char x, char y) { return toupper(static_cast<unsigned char>(x)) < toupper(static_cast<unsigned char>(y)); });
 }
 
-static bool sort_tag_instance_by_path_with_group_id(c_tag_interface* pLeft, c_tag_interface* pRight)
+static bool sort_tag_instance_by_path_with_group_id(c_tag_interface* left_tag_interface, c_tag_interface* right_tag_interface)
 {
-	const std::string& left = pLeft->get_path_with_group_id();
-	const std::string& right = pRight->get_path_with_group_id();
-	return std::lexicographical_compare(left.begin(), left.end(), right.begin(), right.end(), [](char x, char y) { return toupper(static_cast<unsigned char>(x)) < toupper(static_cast<unsigned char>(y)); });
+	const char* left_begin = left_tag_interface->get_name_with_group_id_cstr();
+	const char* right_begin = right_tag_interface->get_name_with_group_id_cstr();
+	const char* left_end = left_begin + strlen(left_begin) + 1;
+	const char* right_end = right_begin + strlen(right_begin) + 1;
+	return std::lexicographical_compare(left_begin, left_end, right_begin, right_end, [](char x, char y) { return toupper(static_cast<unsigned char>(x)) < toupper(static_cast<unsigned char>(y)); });
 }
 
 #pragma optimize( "", on ) // restore global optimization settings

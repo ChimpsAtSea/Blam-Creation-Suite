@@ -14,7 +14,7 @@ c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath)
 	is_map_loading(true),
 	string_id_guesstimator(nullptr)
 {
-	load_map(map_filepath);
+	load_map_async(map_filepath);
 }
 
 c_haloreach_cache_file::~c_haloreach_cache_file()
@@ -26,115 +26,106 @@ c_haloreach_cache_file::~c_haloreach_cache_file()
 	}
 }
 
-void c_haloreach_cache_file::load_map(const std::wstring& map_filepath)
+void c_haloreach_cache_file::load_map_async(const std::wstring& map_filepath)
+{
+	is_map_loading = true;
+	tbb::task::enqueue(*lambda_task([=]() { load_map(); }));
+}
+
+bool c_haloreach_cache_file::read_cache_file()
+{
+	size_t map_size = filesystem_get_file_size_legacy(map_filepath.c_str());
+	virtual_memory_container.set_size(map_size);
+	char* map_virtual_data = virtual_memory_container.get_data();
+	char* map_data = filesystem_read_to_memory_legacy2(map_filepath.c_str(), map_virtual_data, &map_size);
+	char* map_data_end = map_data + map_size;
+
+	if (map_data == nullptr)
+	{
+		write_line_verbose("error: map file not found");
+		return false; // #TODO: Return an error code
+	}
+	if (map_size < sizeof(s_haloreach_cache_file_header))
+	{
+		write_line_verbose("error: map file smaller than sizeof(s_haloreach_cache_file_header)");
+		return false; // #TODO: Return an error code
+	}
+
+	cache_file_header = reinterpret_cast<s_haloreach_cache_file_header*>(map_data);
+	if (cache_file_header->header_signature != 'head' && cache_file_header->header_signature != 'daeh')
+	{
+		write_line_verbose("error: map file missing 'head' magic");
+		return false; // #TODO: Return an error code
+	}
+
+	write_line_verbose("cache file version: %i", cache_file_header->file_version);
+
+	if (cache_file_header->unknown_bits & _unknown_bits_use_absolute_addressing)
+	{
+		write_line_verbose("cache file using absolute addresses");
+	}
+	else
+	{
+		write_line_verbose("cache file using relative addresses");
+	}
+
+	return true;
+}
+
+void c_haloreach_cache_file::init_sections()
+{
+	char* map_data = virtual_memory_container.get_data();
+
+	// init section cache
+	for (underlying(e_haloreach_cache_file_section_index) cache_file_section_index = 0; cache_file_section_index < underlying_cast(k_number_of_haloreach_cache_file_sections); cache_file_section_index++)
+	{
+		e_haloreach_cache_file_section_index cache_file_section = static_cast<e_haloreach_cache_file_section_index>(cache_file_section_index);
+
+		long offset = cache_file_header->section_offsets[cache_file_section_index] + cache_file_header->section_bounds[cache_file_section_index].offset;
+		long size = cache_file_header->section_bounds[cache_file_section_index].size;
+
+		section_cache[cache_file_section_index].data = reinterpret_cast<char*>(map_data + offset);
+		section_cache[cache_file_section_index].size = size;
+	}
+}
+
+void c_haloreach_cache_file::load_map()
 {
 	is_map_loading = true;
 
-	tbb::task::enqueue(*lambda_task([=]() {
+	bool read_cache_success = read_cache_file();
+	if (!read_cache_success) return;
 
-		engine_type = get_cache_file_engine_type(map_filepath.c_str());
-		debug_point;
+	init_sections();
 
-		size_t map_size = filesystem_get_file_size_legacy(map_filepath.c_str());
-		virtual_memory_container.set_size(map_size);
-		char* map_virtual_data = virtual_memory_container.get_data();
-		char* map_data = filesystem_read_to_memory_legacy2(map_filepath.c_str(), map_virtual_data, &map_size);
-		char* map_data_end = map_data + map_size;
+	char* debug_section = get_debug_section().data;
+	char* tags_section = get_tags_section().data;
 
+	tag_name_indices = reinterpret_cast<long*>(debug_section + cache_file_header->tag_name_indices_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
+	tag_name_buffer = reinterpret_cast<char*>(debug_section + cache_file_header->tag_names_buffer_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
 
-		if (map_data == nullptr)
-		{
-			write_line_verbose("error: map file not found");
-			return; // #TODO: Return an error code
-		}
-		if (map_size < sizeof(s_haloreach_cache_file_header))
-		{
-			write_line_verbose("error: map file smaller than sizeof(s_haloreach_cache_file_header)");
-			return; // #TODO: Return an error code
-		}
+	string_id_indices = reinterpret_cast<long*>(debug_section + cache_file_header->string_id_indices_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
+	string_id_buffer = reinterpret_cast<char*>(debug_section + cache_file_header->string_ids_buffer_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
 
-		cache_file_header = reinterpret_cast<s_haloreach_cache_file_header*>(map_data);
-		if (cache_file_header->header_signature != 'head' && cache_file_header->header_signature != 'daeh')
-		{
-			write_line_verbose("error: map file missing 'head' magic");
-			return; // #TODO: Return an error code
-		}
+	cache_file_tags_headers = reinterpret_cast<s_cache_file_tags_header*>(tags_section + (cache_file_header->tags_header_address - cache_file_header->virtual_base_address));
+	cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_section + (cache_file_tags_headers->tag_instances.address - cache_file_header->virtual_base_address));
+	cache_file_tag_groups = reinterpret_cast<s_cache_file_tag_group*>(tags_section + (cache_file_tags_headers->tag_groups.address - cache_file_header->virtual_base_address));
 
-		write_line_verbose("cache file version: %i", cache_file_header->file_version);
+	string_id_guesstimator = new c_cache_file_string_id_guesstimator(*this);
 
-		if (cache_file_header->unknown_bits & _unknown_bits_use_absolute_addressing)
-		{
-			write_line_verbose("cache file using absolute addresses");
-		}
-		else
-		{
-			write_line_verbose("cache file using relative addresses");
-		}
+	for (uint32_t group_index = 0; group_index < cache_file_tags_headers->tag_groups.count; group_index++)
+	{
+		tag_group_interfaces.push_back(new c_haloreach_tag_group_interface(*this, group_index));
+	}
 
-#ifdef _DEBUG
-		{
-			/*
-				We should see one of the sections have a zero offset. This is a check
-				so we know we're reading the correct data for the cache_file_header->section_offsets
-				It would be possible to fool this test by reading empty/zero memory
-			*/
-			bool found_section_bounds_offset_zero_check = false;
-			for (underlying(e_haloreach_cache_file_section_index) cache_file_section_index = 0; cache_file_section_index < underlying_cast(k_number_of_haloreach_cache_file_sections); cache_file_section_index++)
-			{
-				if (cache_file_header->section_bounds[cache_file_section_index].offset == 0)
-				{
-					found_section_bounds_offset_zero_check = true;
-					break;
-				}
-			}
-			//DEBUG_ASSERT(found_section_bounds_offset_zero_check);
-		}
-#endif
+	for (uint32_t tag_index = 0; tag_index < cache_file_tags_headers->tag_instances.count; tag_index++)
+	{
+		tag_interfaces.push_back(new c_haloreach_tag_interface(*this, tag_index));
+	}
 
-		// init section cache
-		for (underlying(e_haloreach_cache_file_section_index) cache_file_section_index = 0; cache_file_section_index < underlying_cast(k_number_of_haloreach_cache_file_sections); cache_file_section_index++)
-		{
-			e_haloreach_cache_file_section_index cache_file_section = static_cast<e_haloreach_cache_file_section_index>(cache_file_section_index);
+	init_sorted_instance_lists();
 
-			long offset = cache_file_header->section_offsets[cache_file_section_index] + cache_file_header->section_bounds[cache_file_section_index].offset;
-			long size = cache_file_header->section_bounds[cache_file_section_index].size;
-
-			section_cache[cache_file_section_index].data = reinterpret_cast<char*>(map_data + offset);
-			section_cache[cache_file_section_index].size = size;
-		}
-
-		char* debug_section = get_debug_section().data;
-		char* tags_section = get_tags_section().data;
-
-		tag_name_indices = reinterpret_cast<long*>(debug_section + cache_file_header->tag_name_indices_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
-		tag_name_buffer = reinterpret_cast<char*>(debug_section + cache_file_header->tag_names_buffer_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
-
-		string_id_indices = reinterpret_cast<long*>(debug_section + cache_file_header->string_id_indices_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
-		string_id_buffer = reinterpret_cast<char*>(debug_section + cache_file_header->string_ids_buffer_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
-
-		cache_file_tags_headers = reinterpret_cast<s_cache_file_tags_header*>(tags_section + (cache_file_header->tags_header_address - cache_file_header->virtual_base_address));
-		cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_section + (cache_file_tags_headers->tag_instances.address - cache_file_header->virtual_base_address));
-		cache_file_tag_groups = reinterpret_cast<s_cache_file_tag_group*>(tags_section + (cache_file_tags_headers->tag_groups.address - cache_file_header->virtual_base_address));
-
-		string_id_guesstimator = new c_cache_file_string_id_guesstimator(*this);
-
-
-		for (uint32_t group_index = 0; group_index < cache_file_tags_headers->tag_groups.count; group_index++)
-		{
-			s_cache_file_tag_group& group_instance = cache_file_tag_groups[group_index];
-
-			// current. parent. grandparent.
-
-			// #TODO: Create group interface
-		}
-
-#define this_invoke(function, ...) ([&]() { this->function(##__VA_ARGS__); })
-
-		cache_file_post_load();
-
-		is_map_loading = false;
-
-		}));
+	is_map_loading = false;
 }
 
 bool c_haloreach_cache_file::save_map()
@@ -259,7 +250,7 @@ c_tag_group_interface* c_haloreach_cache_file::get_tag_group_interface(uint16_t 
 	return nullptr;
 }
 
-c_tag_group_interface* c_haloreach_cache_file::get_group_interface_by_group_id(unsigned long tag_group) const
+c_tag_group_interface* c_haloreach_cache_file::get_tag_group_interface_by_group_id(unsigned long tag_group) const
 {
 	if (tag_group == blofeld::INVALID_TAG)
 	{
@@ -268,7 +259,7 @@ c_tag_group_interface* c_haloreach_cache_file::get_group_interface_by_group_id(u
 
 	for (c_tag_group_interface* group_interface : tag_group_interfaces)
 	{
-		if (group_interface->get_tag_group() == tag_group)
+		if (group_interface->get_group_tag() == tag_group)
 		{
 			return group_interface;
 		}
@@ -337,7 +328,7 @@ const char* c_haloreach_cache_file::get_tag_path(uint16_t tag_index) const
 	return nullptr;
 }
 
-unsigned long c_haloreach_cache_file::get_tag_group_by_tag_index(uint32_t tag_index) const
+unsigned long c_haloreach_cache_file::get_group_tag_by_tag_index(uint32_t tag_index) const
 {
 	if (cache_file_tag_instances && cache_file_tag_groups)
 	{

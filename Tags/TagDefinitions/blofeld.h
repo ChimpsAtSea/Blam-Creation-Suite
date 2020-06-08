@@ -14,7 +14,7 @@ namespace blofeld
 	constexpr unsigned long ANY_TAG = 0;
 	extern const char* empty_string_list[];
 
-	const s_tag_group* get_tag_group_by_group_tag(uint32_t group_tag);
+	const s_tag_group* get_group_tag_by_group_tag(uint32_t group_tag);
 	struct s_tag_struct_validation_data
 	{
 		const s_tag_struct_definition& struct_definition;

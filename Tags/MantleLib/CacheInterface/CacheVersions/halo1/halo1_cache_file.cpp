@@ -1,8 +1,5 @@
 #include "mantlelib-private-pch.h"
 
-#include <zlib/zlib/zlib.h>
-#pragma comment(lib, "zlib.lib")
-
 struct s_halo1_compressed_map_header
 {
 	uint32_t count;
@@ -26,7 +23,7 @@ c_halo1_cache_file::~c_halo1_cache_file()
 
 }
 
-void c_halo1_cache_file::uncompress()
+void c_halo1_cache_file::read_cache_file()
 {
 	char* compressed_map_data = nullptr;
 	bool read_map_successful = filesystem_read_file_to_memory(map_filepath.c_str(), &compressed_map_data);
@@ -84,21 +81,36 @@ void c_halo1_cache_file::uncompress()
 
 void c_halo1_cache_file::load_map()
 {
-	uncompress();
+	read_cache_file();
 
 	char* map_data = virtual_memory_container.get_data();
 
-	header = reinterpret_cast<halo1::s_cache_file_header*>(map_data);
-	tags_header = reinterpret_cast<halo1::s_cache_file_tags_header*>(map_data + header->tags_header_address);
-	tag_instances = reinterpret_cast<halo1::s_cache_file_tag_instance*>(map_data + header->tags_header_address + convert_page_offset(tags_header->tags_address));
+	cache_file_header = reinterpret_cast<halo1::s_cache_file_header*>(map_data);
+	cache_file_tags_header = reinterpret_cast<halo1::s_cache_file_tags_header*>(map_data + cache_file_header->tags_header_address);
+	cache_file_tag_instances = reinterpret_cast<halo1::s_cache_file_tag_instance*>(map_data + cache_file_header->tags_header_address + convert_page_offset(cache_file_tags_header->tags_address));
 
-	for (uint32_t i = 0; i < tags_header->tag_count; i++)
+	unsigned long* group_tags = new(alloca(sizeof(unsigned long) * cache_file_tags_header->tag_count)) unsigned long[cache_file_tags_header->tag_count]{};
+	unsigned long* group_tags_end = group_tags + cache_file_tags_header->tag_count;
+	for (uint32_t tag_index = 0; tag_index < cache_file_tags_header->tag_count; tag_index++)
 	{
-		halo1::s_cache_file_tag_instance& tag_instance = tag_instances[i];
-
-		const char* name = map_data + header->tags_header_address + convert_page_offset(tag_instance.name_address);
-		debug_point;
+		halo1::s_cache_file_tag_instance& cache_file_tag_instance = cache_file_tag_instances[tag_index];
+		group_tags[tag_index] = cache_file_tag_instance.group_tags[0];
 	}
+
+	for (unsigned long* current_group_tag = group_tags; current_group_tag < group_tags_end; current_group_tag++)
+	{
+		if (get_tag_group_interface_by_group_id(*current_group_tag) == nullptr)
+		{
+			tag_group_interfaces.push_back(new c_halo1_tag_group_interface(*this, 0, *current_group_tag));
+		}
+	}
+
+	for (uint32_t tag_index = 0; tag_index < cache_file_tags_header->tag_count; tag_index++)
+	{
+		tag_interfaces.push_back(new c_halo1_tag_interface(*this, tag_index));
+	}
+
+	init_sorted_instance_lists();
 }
 
 bool c_halo1_cache_file::save_map()
@@ -113,7 +125,7 @@ bool c_halo1_cache_file::is_loading() const
 
 uint64_t c_halo1_cache_file::get_base_virtual_address() const
 {
-	uint32_t virtual_address = tags_header->tags_address - sizeof(halo1::s_cache_file_tags_header);
+	uint32_t virtual_address = cache_file_tags_header->tags_address - sizeof(halo1::s_cache_file_tags_header);
 	return virtual_address;
 }
 
@@ -124,12 +136,12 @@ uint64_t c_halo1_cache_file::convert_page_offset(uint32_t page_offset) const
 
 uint32_t c_halo1_cache_file::get_tag_count() const
 {
-	return tags_header->tag_count;
+	return cache_file_tags_header->tag_count;
 }
 
 uint32_t c_halo1_cache_file::get_tag_group_count() const
 {
-	return 0;
+	return static_cast<uint32_t>(tag_group_interfaces.size());
 }
 
 uint32_t c_halo1_cache_file::get_string_id_count() const
@@ -139,37 +151,44 @@ uint32_t c_halo1_cache_file::get_string_id_count() const
 
 c_tag_interface* c_halo1_cache_file::get_tag_interface(uint16_t tag_index) const
 {
-	return nullptr;
+	return tag_interfaces[tag_index];
 }
 
 c_tag_interface* const* c_halo1_cache_file::get_tag_interfaces() const
 {
-	return nullptr;
+	return tag_interfaces.data();
 }
 
 c_tag_interface* const* c_halo1_cache_file::get_tag_interfaces_sorted_by_name_with_group_id() const
 {
-	return nullptr;
+	return tag_interfaces.data();
 }
 
 c_tag_interface* const* c_halo1_cache_file::get_tag_interfaces_sorted_by_path_with_group_id() const
 {
-	return nullptr;
+	return tag_interfaces.data();
 }
 
 c_tag_group_interface* c_halo1_cache_file::get_tag_group_interface(uint16_t group_index) const
 {
-	return nullptr;
+	return tag_group_interfaces[group_index];
 }
 
-c_tag_group_interface* c_halo1_cache_file::get_group_interface_by_group_id(unsigned long tag_group) const
+c_tag_group_interface* c_halo1_cache_file::get_tag_group_interface_by_group_id(unsigned long tag_group) const
 {
+	for (c_tag_group_interface* group_interface : tag_group_interfaces)
+	{
+		if (group_interface->get_group_tag() == tag_group)
+		{
+			return group_interface;
+		}
+	}
 	return nullptr;
 }
 
 c_tag_group_interface* const* c_halo1_cache_file::get_tag_group_interfaces() const
 {
-	return nullptr;
+	return tag_group_interfaces.data();
 }
 
 char* c_halo1_cache_file::get_tag_data(s_tag_data& tag_data) const
@@ -194,10 +213,12 @@ const char* c_halo1_cache_file::get_string_id(string_id const id, const char* co
 
 const char* c_halo1_cache_file::get_tag_path(uint16_t tag_index) const
 {
-	return nullptr;
+	char* map_data = virtual_memory_container.get_data();
+	const char* name = map_data + cache_file_header->tags_header_address + convert_page_offset(cache_file_tag_instances[tag_index].name_address);
+	return name;
 }
 
-unsigned long c_halo1_cache_file::get_tag_group_by_tag_index(uint32_t tag_index) const
+unsigned long c_halo1_cache_file::get_group_tag_by_tag_index(uint32_t tag_index) const
 {
 	return blofeld::INVALID_TAG;
 }
@@ -205,11 +226,6 @@ unsigned long c_halo1_cache_file::get_tag_group_by_tag_index(uint32_t tag_index)
 const s_section_cache* c_halo1_cache_file::get_section(uint32_t section_index) const
 {
 	return nullptr;
-}
-
-const s_section_cache& c_halo1_cache_file::get_section(e_haloreach_cache_file_section_index cache_file_section) const
-{
-	return *get_section(0);
 }
 
 void* c_halo1_cache_file::get_internal_tag_instance_impl(uint16_t tag_index) const

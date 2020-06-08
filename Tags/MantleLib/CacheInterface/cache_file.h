@@ -36,7 +36,7 @@ public:
 	virtual c_tag_interface* const* get_tag_interfaces_sorted_by_name_with_group_id() const = 0;
 	virtual c_tag_interface* const* get_tag_interfaces_sorted_by_path_with_group_id() const = 0;
 	virtual c_tag_group_interface* get_tag_group_interface(uint16_t group_index) const = 0;
-	virtual c_tag_group_interface* get_group_interface_by_group_id(unsigned long tag_group) const = 0;
+	virtual c_tag_group_interface* get_tag_group_interface_by_group_id(unsigned long tag_group) const = 0;
 	virtual c_tag_group_interface* const* get_tag_group_interfaces() const = 0;
 	virtual char* get_tag_data(s_tag_data& tag_data) const = 0;
 	virtual char* get_tag_block_data(s_tag_block& tag_block) const = 0;
@@ -44,7 +44,7 @@ public:
 	virtual const char* get_string_id(string_id const id, const char* const error_value = nullptr) const = 0;
 	virtual void* get_internal_tag_instance_impl(uint16_t tag_index) const = 0;
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const = 0;
-	virtual unsigned long get_tag_group_by_tag_index(uint32_t tag_index) const = 0;
+	virtual unsigned long get_group_tag_by_tag_index(uint32_t tag_index) const = 0;
 	virtual const char* get_tag_path(uint16_t tag_index) const = 0;
 
 	template<typename T>

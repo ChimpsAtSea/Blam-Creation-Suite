@@ -79,10 +79,10 @@ void c_virtual_tag_source_generator::generate_header()
 			{
 			case _field_block:
 			case _field_tag_reference:
-				hs << "\t\t\t\t" << field_formatter.code_name << "(tag_interface, tag_interface.get_data<s_" << tag_struct_definition->name << ">()->" << field_formatter.code_name << ")";
+				hs << "\t\t\t\t" << field_formatter.code_name.c_str() << "(tag_interface, tag_interface.get_data<s_" << tag_struct_definition->name << ">()->" << field_formatter.code_name.c_str() << ")";
 				break;
 			default:
-				hs << "\t\t\t\t" << field_formatter.code_name << "(tag_interface.get_data<s_" << tag_struct_definition->name << ">()->" << field_formatter.code_name << ")";
+				hs << "\t\t\t\t" << field_formatter.code_name.c_str() << "(tag_interface.get_data<s_" << tag_struct_definition->name << ">()->" << field_formatter.code_name.c_str() << ")";
 				break;
 			}
 		}
@@ -124,31 +124,31 @@ void c_virtual_tag_source_generator::generate_header()
 			case _field_array:
 			{
 				const char* field_source_type = current_field->array_definition->struct_definition.name;
-				hs << "\t\t\t\t" << "s_" << field_source_type << " (&" << field_formatter.code_name << ")[" << current_field->array_definition->count << "];";
+				hs << "\t\t\t\t" << "s_" << field_source_type << " (&" << field_formatter.code_name.c_str() << ")[" << current_field->array_definition->count << "];";
 				break;
 			}
 			case _field_struct:
 			{
 				const char* field_source_type = current_field->struct_definition->name;
-				hs << "\t\t\t\t" << "s_" << field_source_type << "& " << field_formatter.code_name << ";";
+				hs << "\t\t\t\t" << "s_" << field_source_type << "& " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_block:
 			{
 				const char* field_source_type = current_field->block_definition->struct_definition.name;
-				hs << "\t\t\t\t" << "c_virtual_tag_block<s_" << field_source_type << "> " << field_formatter.code_name << ";";
+				hs << "\t\t\t\t" << "c_virtual_tag_block<s_" << field_source_type << "> " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			case _field_tag_reference:
 			{
-				hs << "\t\t\t\t" << "c_virtual_tag " << field_formatter.code_name << ";";
+				hs << "\t\t\t\t" << "c_virtual_tag " << field_formatter.code_name.c_str() << ";";
 				break;
 			}
 			default:
 			{
 				const char* field_source_type = c_tag_source_generator::field_type_to_source_type(current_field->field_type);
 				ASSERT(field_source_type != nullptr);
-				hs << "\t\t\t\t" << field_source_type << "& " << field_formatter.code_name << ";";
+				hs << "\t\t\t\t" << field_source_type << "& " << field_formatter.code_name.c_str() << ";";
 			}
 			}
 			hs << std::endl;

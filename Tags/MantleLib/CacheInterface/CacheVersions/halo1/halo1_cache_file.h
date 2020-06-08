@@ -1,13 +1,19 @@
 #pragma once
-class c_halo4_cache_file :
+
+class c_halo1_tag_interface;
+
+class c_halo1_cache_file : 
 	public c_cache_file
 {
+	friend c_halo1_tag_interface;
 	friend c_cache_file;
 protected:
-	c_halo4_cache_file(const std::wstring& map_filepath);
-	virtual ~c_halo4_cache_file();
+	c_halo1_cache_file(const std::wstring& map_filepath);
+	virtual ~c_halo1_cache_file();
 
 public:
+	void read_cache_file();
+	void load_map();
 	virtual bool save_map() final;
 	virtual bool is_loading() const final;
 	virtual uint64_t get_base_virtual_address() const final;
@@ -30,23 +36,14 @@ public:
 	virtual unsigned long get_group_tag_by_tag_index(uint32_t tag_index) const final;
 
 	virtual const s_section_cache* get_section(uint32_t section_index) const final;
-	const s_section_cache& get_section(e_haloreach_cache_file_section_index cache_file_section) const;
-	inline const s_section_cache& get_debug_section() const { return get_section(_haloreach_cache_file_section_index_debug); };
-	inline const s_section_cache& get_tags_section() const { return get_section(_haloreach_cache_file_section_index_tags); };
-	inline const s_section_cache& get_resources_section() const { return get_section(_haloreach_cache_file_section_index_resource); };
-	inline const s_section_cache& get_localization_section() const { return get_section(_haloreach_cache_file_section_index_localization); };
-
-	inline s_cache_file_tag_instance* get_internal_tag_instance(uint16_t tag_index) const
-	{
-		return static_cast<s_cache_file_tag_instance*>(get_internal_tag_instance_impl(tag_index));
-	}
-	inline s_cache_file_tag_group* get_internal_tag_group(uint32_t group_index) const
-	{
-		return static_cast<s_cache_file_tag_group*>(get_internal_tag_group_impl(group_index));
-	}
 
 protected:
 	virtual void* get_internal_tag_instance_impl(uint16_t tag_index) const final;
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const final;
+
+protected:
+	halo1::s_cache_file_header* cache_file_header;
+	halo1::s_cache_file_tags_header* cache_file_tags_header;
+	halo1::s_cache_file_tag_instance* cache_file_tag_instances;
 };
 

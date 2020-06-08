@@ -51,10 +51,10 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_fil
 		for (c_tag_interface* current_tag_interface : c_range_iterator(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
 		{
 			bool is_match = false;
-			is_match |= load_tag_command_line == current_tag_interface->get_name_with_group_id();
-			is_match |= load_tag_command_line == current_tag_interface->get_path_with_group_id();
-			is_match |= load_tag_command_line == current_tag_interface->get_name_with_group_name();
-			is_match |= load_tag_command_line == current_tag_interface->get_path_with_group_name();
+			is_match |= load_tag_command_line == current_tag_interface->get_name_with_group_id_cstr();
+			is_match |= load_tag_command_line == current_tag_interface->get_path_with_group_id_cstr();
+			is_match |= load_tag_command_line == current_tag_interface->get_name_with_group_name_cstr();
+			is_match |= load_tag_command_line == current_tag_interface->get_path_with_group_name_cstr();
 			if (is_match)
 			{
 				tag_interface = current_tag_interface;
@@ -326,7 +326,7 @@ void c_mantle_cache_file_gui_tab::render_in_game_gui()
 		return;
 	}
 
-	//c_tag_group_interface* group_interface = cache_file.get_group_interface_by_group_id(_legacy_tag_group_scenario);
+	//c_tag_group_interface* group_interface = cache_file.get_tag_group_interface_by_group_id(_legacy_tag_group_scenario);
 	//if (group_interface == nullptr)
 	//{
 	//	return;

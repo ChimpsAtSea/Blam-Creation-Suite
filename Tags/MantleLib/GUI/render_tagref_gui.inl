@@ -18,38 +18,38 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 	ImGui::PushItemWidth(-1);
 
 	const char* group_short_name = "(null)";
-	c_tag_group_interface* ps_tag_reference_legacyGroupInterface = cache_file.get_group_interface_by_group_id(field_data->tag_group_name);
-	if (ps_tag_reference_legacyGroupInterface)
+	c_tag_group_interface* tag_group_interface = cache_file.get_tag_group_interface_by_group_id(field_data->tag_group_name);
+	if (tag_group_interface)
 	{
-		group_short_name = ps_tag_reference_legacyGroupInterface->get_short_name();
+		group_short_name = tag_group_interface->get_short_name();
 	}
 	c_tag_interface* tag_interface = cache_file.get_tag_interface(static_cast<uint16_t>(field_data->index));
 
 	if (ImGui::BeginCombo("##tag_tag_group", group_short_name))
 	{
-		if (ImGui::Selectable("(null)", ps_tag_reference_legacyGroupInterface == nullptr))
+		if (ImGui::Selectable("(null)", tag_group_interface == nullptr))
 		{
-			if (ps_tag_reference_legacyGroupInterface != nullptr) // selecting a new tag group
+			if (tag_group_interface != nullptr) // selecting a new tag group
 			{
 				field_data->tag_group_name = _legacy_tag_group_invalid;
 				field_data->index = ~0ui16;
 				field_data->datum = ~0ui16;
 				tag_interface = nullptr;
-				ps_tag_reference_legacyGroupInterface = nullptr;
+				tag_group_interface = nullptr;
 			}
 		}
 
 		for (c_tag_group_interface* current_group_interface : cache_file.get_tag_group_interfaces())
 		{
-			if (ImGui::Selectable(current_group_interface->get_short_name(), current_group_interface == ps_tag_reference_legacyGroupInterface))
+			if (ImGui::Selectable(current_group_interface->get_short_name(), current_group_interface == tag_group_interface))
 			{
-				if (current_group_interface != ps_tag_reference_legacyGroupInterface) // selecting a new tag group
+				if (current_group_interface != tag_group_interface) // selecting a new tag group
 				{
-					field_data->tag_group_name = current_group_interface->get_tag_group();
+					field_data->tag_group_name = current_group_interface->get_group_tag();
 					field_data->index = ~0ui16;
 					field_data->datum = ~0ui16;
 					tag_interface = nullptr;
-					ps_tag_reference_legacyGroupInterface = cache_file.get_group_interface_by_group_id(field_data->tag_group_name);
+					tag_group_interface = cache_file.get_tag_group_interface_by_group_id(field_data->tag_group_name);
 				}
 			}
 		}
@@ -76,12 +76,12 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 					continue;
 				}
 
-				// #TODO: Figure out why get_group_interface is returning null?
-				//assert(current_tag_interface->get_group_interface() != nullptr);
-				//if (current_tag_interface->get_group_interface() != ps_tag_reference_legacyGroupInterface)
+				// #TODO: Figure out why get_tag_group_interface is returning null?
+				//assert(current_tag_interface->get_tag_group_interface() != nullptr);
+				//if (current_tag_interface->get_tag_group_interface() != tag_group_interface)
 				c_tag_group_interface* current_group_interface = cache_file.get_tag_group_interfaces()[current_tag_interface->get_group_index()];
 				ASSERT(current_group_interface != nullptr);
-				if (current_group_interface != ps_tag_reference_legacyGroupInterface)
+				if (current_group_interface != tag_group_interface)
 				{
 					continue;
 				}
@@ -95,8 +95,8 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 					if (current_tag_interface != tag_interface) // selecting a new tag group
 					{
 						tag_interface = current_tag_interface;
-						ps_tag_reference_legacyGroupInterface = current_tag_interface->get_group_interface();
-						field_data->tag_group_name = ps_tag_reference_legacyGroupInterface->get_tag_group();
+						tag_group_interface = current_tag_interface->get_tag_group_interface();
+						field_data->tag_group_name = tag_group_interface->get_group_tag();
 						field_data->index = current_tag_interface->get_index();
 					}
 				}
@@ -115,12 +115,12 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 					continue;
 				}
 
-				// #TODO: Figure out why get_group_interface is returning null?
-				//assert(current_tag_interface->get_group_interface() != nullptr);
-				//if (current_tag_interface->get_group_interface() != ps_tag_reference_legacyGroupInterface)
+				// #TODO: Figure out why get_tag_group_interface is returning null?
+				//assert(current_tag_interface->get_tag_group_interface() != nullptr);
+				//if (current_tag_interface->get_tag_group_interface() != tag_group_interface)
 				c_tag_group_interface* current_group_interface = cache_file.get_tag_group_interfaces()[current_tag_interface->get_group_index()];
 				ASSERT(current_group_interface != nullptr);
-				if (current_group_interface != ps_tag_reference_legacyGroupInterface)
+				if (current_group_interface != tag_group_interface)
 				{
 					continue;
 				}
@@ -134,8 +134,8 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 					if (current_tag_interface != tag_interface) // selecting a new tag group
 					{
 						tag_interface = current_tag_interface;
-						ps_tag_reference_legacyGroupInterface = current_tag_interface->get_group_interface();
-						field_data->tag_group_name = current_group_interface->get_tag_group();
+						tag_group_interface = current_tag_interface->get_tag_group_interface();
+						field_data->tag_group_name = current_group_interface->get_group_tag();
 						field_data->index = current_tag_interface->get_index();
 					}
 				}
