@@ -458,7 +458,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD a1, Input
 	ASSERT(input_buffer);
 	memset(input_buffer, 0, sizeof(*input_buffer));
 
-	write_line_verbose("%ull", a1);
+	write_line_verbose("%llu", a1);
 
 	bool debugUIVisible = c_debug_gui::IsVisible();
 	bool windowFocused = c_window_win32::IsWindowFocused();

@@ -91,7 +91,7 @@ void c_halo1_cache_file::load_map()
 
 	unsigned long* group_tags = new(alloca(sizeof(unsigned long) * cache_file_tags_header->tag_count)) unsigned long[cache_file_tags_header->tag_count]{};
 	unsigned long* group_tags_end = group_tags + cache_file_tags_header->tag_count;
-	for (uint32_t tag_index = 0; tag_index < cache_file_tags_header->tag_count; tag_index++)
+	for (long tag_index = 0; tag_index < cache_file_tags_header->tag_count; tag_index++)
 	{
 		halo1::s_cache_file_tag_instance& cache_file_tag_instance = cache_file_tag_instances[tag_index];
 		group_tags[tag_index] = cache_file_tag_instance.group_tags[0];
@@ -105,9 +105,9 @@ void c_halo1_cache_file::load_map()
 		}
 	}
 
-	for (uint32_t tag_index = 0; tag_index < cache_file_tags_header->tag_count; tag_index++)
+	for (long tag_index = 0; tag_index < cache_file_tags_header->tag_count; tag_index++)
 	{
-		tag_interfaces.push_back(new c_halo1_tag_interface(*this, tag_index));
+		tag_interfaces.push_back(new c_halo1_tag_interface(*this, static_cast<uint16_t>(tag_index)));
 	}
 
 	init_sorted_instance_lists();
