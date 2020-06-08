@@ -64,25 +64,20 @@ public:
 		return strcmp(data, string.data) == 0;
 	}
 
-	void format(const t_char_type* format, ...)
+	template<typename ...Args>
+	void format(const t_char_type* format, Args ...args)
 	{
-		va_list args;
-		va_start(args, format);
-
-
 		if constexpr (is_char_type)
 		{
-			vsnprintf(data, length - 1, format, args);
+			snprintf(data, length - 1, format, args...);
 		}
 		else if constexpr (is_wchar_type)
 		{
-			_vsnwprintf(data, length - 1, format, args);
+			_snwprintf(data, length - 1, format, args...);
 		}
 		static_assert(is_char_type || is_wchar_type, "Unsupported character type");
 
 		data[length - 1] = 0; // ensure null terminated
-
-		va_end(args);
 	}
 
 	void operator +=(const char* string)
