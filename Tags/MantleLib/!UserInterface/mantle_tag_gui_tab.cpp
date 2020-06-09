@@ -57,15 +57,15 @@ c_mantle_tag_gui_tab::~c_mantle_tag_gui_tab()
 //
 //					if (IsBadReadPtr(pTagBlockDataSource, tag_block_reflection_type->size_of_data))
 //					{
-//						write_line_verbose("poke> warning: failed to poke memory address 0x%p (IsBadReadPtr pTagBlockDataSource) '%s'", pTagBlockDataSource, reflection_field.name);
+//						c_console::write_line_verbose("poke> warning: failed to poke memory address 0x%p (IsBadReadPtr pTagBlockDataSource) '%s'", pTagBlockDataSource, reflection_field.name);
 //					}
 //					else if(IsBadWritePtr(pTagBlockDataDest, tag_block_reflection_type->size_of_data))
 //					{
-//						write_line_verbose("poke> warning: failed to poke memory address 0x%p (IsBadWritePtr pTagBlockDataDest) '%s'", pTagBlockDataDest, reflection_field.name);
+//						c_console::write_line_verbose("poke> warning: failed to poke memory address 0x%p (IsBadWritePtr pTagBlockDataDest) '%s'", pTagBlockDataDest, reflection_field.name);
 //					}
 //					else
 //					{
-//						write_line_verbose("poke> pushed block '%s'", reflection_field.name);
+//						c_console::write_line_verbose("poke> pushed block '%s'", reflection_field.name);
 //						for (uint32_t i = 0; i < tag_block->count; i++)
 //						{
 //							//memcpy(pTagBlockDest, pTagBlockDataSource, tag_block_reflection_type->m_size);
@@ -89,11 +89,11 @@ void c_mantle_tag_gui_tab::send_to_game()
 		//const s_reflection_structure_type_legacy* ps_reflection_structure_type_legacy = tag_interface.get_legacy_reflection_data();
 		//copy_data_recursively(*ps_reflection_structure_type_legacy, pSource, pDest);
 
-		write_line_verbose("Successfully poked tag '%s'", get_tag_interface().get_name_with_group_id_cstr());
+		c_console::write_line_verbose("Successfully poked tag '%s'", get_tag_interface().get_name_with_group_id_cstr());
 	}
 	else
 	{
-		write_line_verbose("Failed to poke tag '%s' as pDest was null", get_tag_interface().get_name_with_group_id_cstr());
+		c_console::write_line_verbose("Failed to poke tag '%s' as pDest was null", get_tag_interface().get_name_with_group_id_cstr());
 	}
 
 }

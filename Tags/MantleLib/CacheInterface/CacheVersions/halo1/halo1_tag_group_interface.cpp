@@ -17,7 +17,7 @@ c_halo1_tag_group_interface::c_halo1_tag_group_interface(c_halo1_cache_file& cac
 	{
 		full_name = short_name;
 		c_console::set_text_color(_console_color_warning);
-		write_line_verbose("Warning: Unknown tag group '%s' '%s'", short_name.c_str(), full_name.c_str());
+		c_console::write_line_verbose("Warning: Unknown tag group '%s' '%s'", short_name.c_str(), full_name.c_str());
 		c_console::set_text_color(_console_color_default);
 	}
 }

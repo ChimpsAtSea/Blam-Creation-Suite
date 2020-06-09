@@ -46,12 +46,12 @@ uintptr_t sub_1806F4000_offset(e_engine_type engine_type, e_build build)
 		DWORD pattern_offset = ps.find_pattern(0);
 		if (pattern_offset)
 		{
-			write_line_verbose("ketchup> SUCCEED: sub_1800935B0 @0x%x", pattern_offset);
+			c_console::write_line_verbose("ketchup> SUCCEED: sub_1800935B0 @0x%x", pattern_offset);
 			return get_engine_base_address(engine_type) + pattern_offset;
 		}
 		else
 		{
-			write_line_verbose("ketchup> FAILURE: sub_1800935B0");
+			c_console::write_line_verbose("ketchup> FAILURE: sub_1800935B0");
 		}
 	}
 
@@ -114,12 +114,12 @@ uintptr_t sub_1800935B0_offset(e_engine_type engine_type, e_build build)
 		DWORD pattern_offset = ps.find_pattern(0);
 		if (pattern_offset)
 		{
-			write_line_verbose("ketchup> SUCCEED: sub_1800935B0 @0x%x", pattern_offset);
+			c_console::write_line_verbose("ketchup> SUCCEED: sub_1800935B0 @0x%x", pattern_offset);
 			return get_engine_base_address(engine_type) + pattern_offset;
 		}
 		else
 		{
-			write_line_verbose("ketchup> FAILURE: sub_1800935B0");
+			c_console::write_line_verbose("ketchup> FAILURE: sub_1800935B0");
 		}
 	}
 

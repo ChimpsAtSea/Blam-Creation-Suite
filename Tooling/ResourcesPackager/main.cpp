@@ -60,7 +60,7 @@ int WINAPI wWinMain(
 	update_resource(executable_filepath, box_shader_ps_filepath, _resource_type_box_pixel_shader);
 	update_resource(executable_filepath, box_shader_vs_filepath, _resource_type_box_vertex_shader);
 
-	write_line_verbose("ResourcesPackager> Successfully updated resources");
+	c_console::write_line_verbose("ResourcesPackager> Successfully updated resources");
 
 	return 0;
 }

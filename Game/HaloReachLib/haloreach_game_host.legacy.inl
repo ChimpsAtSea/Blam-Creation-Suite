@@ -213,12 +213,12 @@ uintptr_t haloreach_main_game_launch_offset(e_engine_type engine_type, e_build b
 		DWORD patternOffset = ps.find_pattern(0);
 		if (patternOffset)
 		{
-			write_line_verbose("ketchup> SUCCEED: haloreach_main_game_launch_offset @0x%x", patternOffset);
+			c_console::write_line_verbose("ketchup> SUCCEED: haloreach_main_game_launch_offset @0x%x", patternOffset);
 			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{
-			write_line_verbose("ketchup> FAILURE: haloreach_main_game_launch_offset");
+			c_console::write_line_verbose("ketchup> FAILURE: haloreach_main_game_launch_offset");
 		}
 	}
 	return ~uintptr_t();
@@ -305,12 +305,12 @@ uintptr_t mcc_map_id_parse_to_reach_offset(e_engine_type engine_type, e_build bu
 		DWORD patternOffset = ps.find_pattern(0);
 		if (patternOffset)
 		{
-			write_line_verbose("ketchup> SUCCEED: mcc_map_id_parse_to_reach_offset @0x%x", patternOffset);
+			c_console::write_line_verbose("ketchup> SUCCEED: mcc_map_id_parse_to_reach_offset @0x%x", patternOffset);
 			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{
-			write_line_verbose("ketchup> FAILURE: mcc_map_id_parse_to_reach_offset");
+			c_console::write_line_verbose("ketchup> FAILURE: mcc_map_id_parse_to_reach_offset");
 			return ~uintptr_t();
 		}
 	}
@@ -365,12 +365,12 @@ uintptr_t mcc_map_id_parse_from_reach_offset(e_engine_type engine_type, e_build 
 		DWORD patternOffset = ps.find_pattern(0);
 		if (patternOffset)
 		{
-			write_line_verbose("ketchup> SUCCEED: mcc_map_id_parse_from_reach_offset @0x%x", patternOffset);
+			c_console::write_line_verbose("ketchup> SUCCEED: mcc_map_id_parse_from_reach_offset @0x%x", patternOffset);
 			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{
-			write_line_verbose("ketchup> FAILURE: mcc_map_id_parse_from_reach_offset");
+			c_console::write_line_verbose("ketchup> FAILURE: mcc_map_id_parse_from_reach_offset");
 			return ~uintptr_t();
 		}
 	}

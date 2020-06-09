@@ -7,7 +7,7 @@
 //}
 //FunctionHookVarArgsEx<main_game_start_offset, char __cdecl (s_game_options * game_options)> main_game_start = { "main_game_start", [](s_game_options* game_options)
 //{
-//	write_line_verbose("main_game_start called!");
+//	c_console::write_line_verbose("main_game_start called!");
 //	return main_game_start(game_options);
 //}};
 
@@ -84,7 +84,7 @@ uintptr_t GameShieldInit_offset(e_engine_type engine_type, e_build build)
 }
 FunctionHookEx<GameShieldInit_offset, void()> GameShieldInit = { "GameShieldInit", []()
 {
-	write_line_verbose("GameShieldInit");
+	c_console::write_line_verbose("GameShieldInit");
 }};
 
 //uintptr_t network_lobby_patch_offset(e_engine_type engine_type, e_build build)
@@ -161,7 +161,7 @@ uintptr_t Hf2pInit_offset(e_engine_type engine_type, e_build build)
 }
 FunctionHookEx<Hf2pInit_offset, void()> Hf2pInit = { "Hf2pInit", []()
 {
-	write_line_verbose("Hf2pInit_offset");
+	c_console::write_line_verbose("Hf2pInit_offset");
 	if (c_eldorado_game_host::get_build() == _build_eldorado_1_106708_cert_ms23)
 	{
 		// #TODO: What are these for?
@@ -180,7 +180,7 @@ uintptr_t Hf2pShutdown_offset(e_engine_type engine_type, e_build build)
 }
 FunctionHookEx<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdown", []()
 {
-	write_line_verbose("Hf2pShutdown");
+	c_console::write_line_verbose("Hf2pShutdown");
 	//ShutdownSoundSystem();
 }};
 
@@ -191,7 +191,7 @@ FunctionHookEx<Hf2pShutdown_offset, void()> Hf2pShutdown = { "Hf2pShutdown", [](
 //}
 //FunctionHookEx<GameClient__Shutdown_offset, void __cdecl()> GameClient__Shutdown = { "GameClient__Shutdown", []()
 //{
-//	write_line_verbose("GameClient__Shutdown was called");
+//	c_console::write_line_verbose("GameClient__Shutdown was called");
 //	return GameClient__Shutdown();
 //}};
 

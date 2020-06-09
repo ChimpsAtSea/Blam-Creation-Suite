@@ -61,18 +61,18 @@ void c_opus_game_engine_host::EngineStateUpdate(eEngineState state)
 {
 	/* LEGACY_REFACTOR
 	const char* pEngineStateString = engine_state_to_string(state);
-	write_line_verbose("%s (%d):%s", __FUNCTION__, state, pEngineStateString);
+	c_console::write_line_verbose("%s (%d):%s", __FUNCTION__, state, pEngineStateString);
 
 	if (state != eEngineState::Unknown16) // `Unknown16` also needs a second arg so we skip it
 	{
 		switch (state)
 		{
 		case eEngineState::PushUIPage:
-			write_line_verbose("Push UI stack");
+			c_console::write_line_verbose("Push UI stack");
 			LegacyGameLauncher::s_uiStackLength++;
 			break;
 		case eEngineState::PopUIPage:
-			write_line_verbose("Pop UI stack");
+			c_console::write_line_verbose("Pop UI stack");
 			LegacyGameLauncher::s_uiStackLength--;
 			break;
 		}
@@ -90,11 +90,11 @@ __int64 c_opus_game_engine_host::GameExited(unsigned int a1, char* a2, int a3)
 
 	if (IsBadReadPtr(a2, 1)) // #LEGACY
 	{
-		write_line_verbose("%s %u [%p]", __func__, a1, a2);
+		c_console::write_line_verbose("%s %u [%p]", __func__, a1, a2);
 	}
 	else
 	{
-		write_line_verbose("%s %u [%s]", __func__, a1, a2);
+		c_console::write_line_verbose("%s %u [%s]", __func__, a1, a2);
 	}
 
 	c_game_launcher::game_exited_callback();
@@ -114,7 +114,7 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 	{
 		return __int64(0);
 	}
-	//write_line_verbose("%s %p %016zx", __FUNCTION__, buffer, buffer_size);
+	//c_console::write_line_verbose("%s %p %016zx", __FUNCTION__, buffer, buffer_size);
 
 	static e_engine_type last_engine_type = _engine_type_not_set;
 	static e_map_id map_id = _map_id_none;
@@ -172,7 +172,7 @@ __int64 __fastcall c_opus_game_engine_host::SaveGameState(LPVOID buffer, size_t 
 		delete[] autosave_buffer;
 	}
 
-	write_line_verbose("autosave written to %S [%S]", autosave_path, (result ? L"success" : L"failure"));
+	c_console::write_line_verbose("autosave written to %S [%S]", autosave_path, (result ? L"success" : L"failure"));
 
 	return __int64(0);
 }
@@ -186,13 +186,13 @@ void c_opus_game_engine_host::Function07(unsigned int)
 	/* LEGACY_REFACTOR
 	if (LegacyGameLauncher::s_uiStackLength == 0)
 	{
-		write_line_verbose("IOpusGameEngineHost::Member07 PauseMenuOpened");
+		c_console::write_line_verbose("IOpusGameEngineHost::Member07 PauseMenuOpened");
 		DebugUI::RegisterCallback(LegacyGameLauncher::DrawPauseMenu);
 		DebugUI::Show();
 	}
 	else
 	{
-		write_line_verbose("IOpusGameEngineHost::Member07 UI Stack is %i", static_cast<int>(LegacyGameLauncher::s_uiStackLength));
+		c_console::write_line_verbose("IOpusGameEngineHost::Member07 UI Stack is %i", static_cast<int>(LegacyGameLauncher::s_uiStackLength));
 	}
 	*/
 }
@@ -382,18 +382,18 @@ void c_opus_game_engine_host::GetSessionInfo(s_session_info_part* session_info_p
 
 void __fastcall c_opus_game_engine_host::MembershipUpdate(s_session_membership* session_membership, uint32_t player_count)
 {
-	RUNONCE({ write_line_verbose(__FUNCTION__); });
+	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
 }
 
 bool __fastcall c_opus_game_engine_host::Function26()
 {
-	RUNONCE({ write_line_verbose(__FUNCTION__); });
+	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
 	return false;
 }
 
 bool __fastcall c_opus_game_engine_host::Function27()
 {
-	RUNONCE({ write_line_verbose(__FUNCTION__); });
+	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
 	return false;
 }
 
@@ -415,7 +415,7 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* upda
 	update_graphics_data->VIDEO_LodDistQualityFactor = 2;
 	update_graphics_data->VIDEO_UseEdgeAA = true;
 
-	write_line_verbose(__FUNCTION__);
+	c_console::write_line_verbose(__FUNCTION__);
 
 	// returning false effectively doubles fps when unlocked
 	return !(update_graphics_data->VIDEO_FPS_Lock || update_graphics_data->VIDEO_Wait_VSync);
@@ -423,7 +423,7 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* upda
 
 c_player_configuration* __fastcall c_opus_game_engine_host::GetPlayerConfiguration(__int64 value)
 {
-	RUNONCE({ write_line_verbose(__FUNCTION__); });
+	RUNONCE({ c_console::write_line_verbose(__FUNCTION__); });
 
 	static c_player_configuration *player_configuration = nullptr;
 	if (PlayerConfigurationFromBuild(build, &player_configuration))
@@ -458,7 +458,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD a1, Input
 	ASSERT(input_buffer);
 	memset(input_buffer, 0, sizeof(*input_buffer));
 
-	write_line_verbose("%llu", a1);
+	c_console::write_line_verbose("%llu", a1);
 
 	bool debugUIVisible = c_debug_gui::IsVisible();
 	bool windowFocused = c_window_win32::IsWindowFocused();
@@ -563,7 +563,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD a1, Input
 				}
 			}
 
-			write_line_verbose("%f %f", mouse_input_x, mouse_input_y);
+			c_console::write_line_verbose("%f %f", mouse_input_x, mouse_input_y);
 		}
 	}
 
@@ -661,7 +661,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdatePlayerNames(__int64*, 
 		}
 		wcsncpy(player_names[player_index], pName, __min(wcslen(pName) + 1, player_name_max_len));
 		player_names[player_index][player_name_max_index] = 0;
-		write_line_verbose("player[%d].Name: set %ls", player_index, pName);
+		c_console::write_line_verbose("player[%d].Name: set %ls", player_index, pName);
 	}
 
 	return true;

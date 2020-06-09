@@ -189,7 +189,7 @@ void c_game_launcher::window_destroy_callback()
 		IGameEngine* game_engine = current_game_host->get_game_engine();
 		ASSERT(game_engine != nullptr);
 		game_engine->UpdateEngineState(eEngineState::ImmediateExit);
-		write_line_verbose("Waiting for game to exit...");
+		c_console::write_line_verbose("Waiting for game to exit...");
 		while (s_is_game_running) { Sleep(1); }
 	}
 }
@@ -340,7 +340,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 		//c_haloreach_game_option_selection_legacy::s_launch_map_variant = "Bloodline"; // if left blank a default map variant is created
 		break;
 	default:
-		write_line_verbose(__FUNCTION__"> unknown engine_type");
+		c_console::write_line_verbose(__FUNCTION__"> unknown engine_type");
 		return;
 	}
 	ASSERT(current_game_host != nullptr);
@@ -385,7 +385,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				{
 					// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mantle
 					const char *map_file_name = selected_map_info->GetMafilepath();
-					write_line_verbose("Loading map '%s.map'", map_file_name);
+					c_console::write_line_verbose("Loading map '%s.map'", map_file_name);
 					{
 						wchar_t map_filepath[MAX_PATH + 1] = {};
 						_snwprintf(map_filepath, MAX_PATH, L"%S%S.map", "haloreach/maps/", map_file_name);
@@ -491,7 +491,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	//} while (waitForSingleObjectResult == WAIT_TIMEOUT);
 	//WaitForSingleObject(hMainGameThread, INFINITE);
 
-	write_line_verbose("Game has exited.");
+	c_console::write_line_verbose("Game has exited.");
 
 	for (t_generic_game_event game_event : s_game_shutdown_events)
 	{
@@ -893,7 +893,7 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 	{
 		if (!selected.empty())
 		{
-			write_line_verbose("variant file '%s' does not exist, falling back to default", selected.c_str());
+			c_console::write_line_verbose("variant file '%s' does not exist, falling back to default", selected.c_str());
 		}
 
 		variant_data = new char[variant_buffer_size];
@@ -918,12 +918,12 @@ bool c_game_launcher::load_variant_from_file(IDataAccess* data_access, GameConte
 
 	if (!filesystem_read_file_to_memory(selected.c_str(), reinterpret_cast<void **>(&variant_data), &variant_data_size))
 	{
-		write_line_verbose("Failed to open variant file");
+		c_console::write_line_verbose("Failed to open variant file");
 		return false;
 	}
 	if (variant_data_size == 0)
 	{
-		write_line_verbose("Variant file was zero sized");
+		c_console::write_line_verbose("Variant file was zero sized");
 		return false;
 	}
 

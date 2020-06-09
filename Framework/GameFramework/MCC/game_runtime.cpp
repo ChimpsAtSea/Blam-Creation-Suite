@@ -8,7 +8,7 @@ c_game_runtime::c_game_runtime(e_engine_type engine_type, const char* pEngineNam
 
 	if (m_build == _build_not_set)
 	{
-		write_line_verbose("Warning: GameRuntime initialized with BuildVersion::NotSet");
+		c_console::write_line_verbose("Warning: GameRuntime initialized with BuildVersion::NotSet");
 		return;
 	}
 
@@ -43,10 +43,10 @@ void c_game_runtime::loadLibrary(const char* pLibFileName)
 
 	if (hGameModule == NULL)
 	{
-		write_line_verbose("Failed to load %s", pLibFileName);
+		c_console::write_line_verbose("Failed to load %s", pLibFileName);
 	}
 	ASSERT(hGameModule != NULL);
-	write_line_verbose("%s: 0x%p", pLibFileName, hGameModule);
+	c_console::write_line_verbose("%s: 0x%p", pLibFileName, hGameModule);
 
 	pCreateGameEngine = (CreateGameEngineFunc*)GetProcAddress(hGameModule, "CreateGameEngine");
 	pCreateDataAccess = (CreateDataAccessFunc*)GetProcAddress(hGameModule, "CreateDataAccess");

@@ -24,7 +24,7 @@ c_haloreach_tag_group_interface::c_haloreach_tag_group_interface(c_haloreach_cac
 		if (strcmp(known_legacy_tag_group_name, cache_legacy_tag_group_name) != 0)
 		{
 			c_console::set_text_color(_console_color_warning);
-			write_line_verbose("Warning: Known tag group '%s' '%s' has invalid cache file name '%s'. String ID sets may be invalid!", short_name.c_str(), full_name.c_str(), cache_legacy_tag_group_name);
+			c_console::write_line_verbose("Warning: Known tag group '%s' '%s' has invalid cache file name '%s'. String ID sets may be invalid!", short_name.c_str(), full_name.c_str(), cache_legacy_tag_group_name);
 			c_console::set_text_color(_console_color_default);
 		}
 	}
@@ -32,7 +32,7 @@ c_haloreach_tag_group_interface::c_haloreach_tag_group_interface(c_haloreach_cac
 	{
 		full_name = cache_legacy_tag_group_name;
 		c_console::set_text_color(_console_color_warning);
-		write_line_verbose("Warning: Unknown tag group '%s' '%s'", short_name.c_str(), full_name.c_str());
+		c_console::write_line_verbose("Warning: Unknown tag group '%s' '%s'", short_name.c_str(), full_name.c_str());
 		c_console::set_text_color(_console_color_default);
 	}
 

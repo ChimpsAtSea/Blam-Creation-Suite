@@ -169,7 +169,7 @@ void c_mantle_shader_tool_gui_tab::render_source_code_editor_configuration_heade
 			//{
 			//	const char* shader_option = render_method_definition->get_cache_file().get_string_id(option.__unknown);
 
-			//	write_line_verbose("shader_option: %s", shader_option);
+			//	c_console::write_line_verbose("shader_option: %s", shader_option);
 			//}
 		}
 	}
@@ -506,12 +506,12 @@ void c_mantle_shader_tool_gui_tab::compile_source_subroutine() const
 						error_markers.emplace(static_cast<int>(line_number), error_string_str.c_str());
 					}
 
-					write_line_verbose(current_line.c_str());
+					c_console::write_line_verbose(current_line.c_str());
 				}
 			}
 
-			write_line_verbose("errors!");
-			write_line_verbose(error_string);
+			c_console::write_line_verbose("errors!");
+			c_console::write_line_verbose(error_string);
 
 			new_source_code_disassembly = error_string;
 
@@ -519,7 +519,7 @@ void c_mantle_shader_tool_gui_tab::compile_source_subroutine() const
 		}
 		else
 		{
-			write_line_verbose("no errors!");
+			c_console::write_line_verbose("no errors!");
 		}
 
 		if (code_blob)
@@ -530,7 +530,7 @@ void c_mantle_shader_tool_gui_tab::compile_source_subroutine() const
 	}
 	else if (code_blob)
 	{
-		write_line_verbose("shader compiled!");
+		c_console::write_line_verbose("shader compiled!");
 
 		SIZE_T hlsl_bytecode_size = code_blob->GetBufferSize();
 		const char* hlsl_bytecode = reinterpret_cast<char*>(code_blob->GetBufferPointer());
@@ -545,7 +545,7 @@ void c_mantle_shader_tool_gui_tab::compile_source_subroutine() const
 		}
 		else
 		{
-			write_line_verbose("shader disassembled!");
+			c_console::write_line_verbose("shader disassembled!");
 
 			const char* hlsl_disassembly = reinterpret_cast<char*>(disassembly_blob->GetBufferPointer());
 			new_source_code_disassembly = hlsl_disassembly;
@@ -559,7 +559,7 @@ void c_mantle_shader_tool_gui_tab::compile_source_subroutine() const
 		// Something went wrong... There was no error but no shader code...
 		new_source_code_disassembly = "";
 
-		write_line_verbose("shader ded!");
+		c_console::write_line_verbose("shader ded!");
 	}
 
 	new_source_code_error_markers = error_markers;

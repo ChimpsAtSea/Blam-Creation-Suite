@@ -1,7 +1,5 @@
 #pragma once
 
-#define BLOFELD_INCLUDE_STRUCTS
-
 #include <Platform\platform-public-pch.h>
 #include <Versioning\versioning-public-pch.h>
 #include <Shared\shared-public-pch.h>

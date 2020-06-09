@@ -80,6 +80,21 @@ public:
 		data[length - 1] = 0; // ensure null terminated
 	}
 
+	void vformat(const t_char_type* format, va_list args)
+	{
+		if constexpr (is_char_type)
+		{
+			vsnprintf(data, length - 1, format, args);
+		}
+		else if constexpr (is_wchar_type)
+		{
+			_vsnwprintf(data, length - 1, format, args);
+		}
+		static_assert(is_char_type || is_wchar_type, "Unsupported character type");
+
+		data[length - 1] = 0; // ensure null terminated
+	}
+
 	void operator +=(const char* string)
 	{
 		strncat(data, string, length - 1);

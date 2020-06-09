@@ -10,7 +10,7 @@
 #include "types/tag_reference_definition.h"
 #include "types/string_list_definition.h"
 #include "types/tag_field.h"
-#ifdef BLOFELD_INCLUDE_STRUCTS
+#ifndef BLOFELD_EXCLUDE_STRUCTS
 #include "blofeld/tag_groups.h"
 #include "blofeld/tag_structs.h"
 #endif

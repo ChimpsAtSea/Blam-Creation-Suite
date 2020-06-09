@@ -71,12 +71,12 @@ uintptr_t player_mapping_get_local_player_offset(e_engine_type engine_type, e_bu
 		DWORD patternOffset = ps.find_pattern(0);
 		if (patternOffset)
 		{
-			write_line_verbose("ketchup> SUCCEED: player_mapping_get_local_player_offset @0x%x", patternOffset);
+			c_console::write_line_verbose("ketchup> SUCCEED: player_mapping_get_local_player_offset @0x%x", patternOffset);
 			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{
-			write_line_verbose("ketchup> FAILURE: player_mapping_get_local_player_offset");
+			c_console::write_line_verbose("ketchup> FAILURE: player_mapping_get_local_player_offset");
 		}
 	}
 	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x1805C10B0);
@@ -167,12 +167,12 @@ uintptr_t observer_try_and_get_camera_offset(e_engine_type engine_type, e_build 
 		DWORD patternOffset = ps.find_pattern(0);
 		if (patternOffset)
 		{
-			write_line_verbose("ketchup> SUCCEED: observer_try_and_get_camera_offset @0x%x", patternOffset);
+			c_console::write_line_verbose("ketchup> SUCCEED: observer_try_and_get_camera_offset @0x%x", patternOffset);
 			return get_engine_base_address(engine_type) + patternOffset;
 		}
 		else
 		{
-			write_line_verbose("ketchup> FAILURE: observer_try_and_get_camera_offset");
+			c_console::write_line_verbose("ketchup> FAILURE: observer_try_and_get_camera_offset");
 		}
 	}
 	OFFSET(_engine_type_haloreach, _build_mcc_1_824_0_0, 0x180624D10);

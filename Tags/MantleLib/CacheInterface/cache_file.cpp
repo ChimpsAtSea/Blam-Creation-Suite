@@ -39,15 +39,15 @@ e_engine_type c_cache_file::get_cache_file_engine_type(const wchar_t* filepath)
 		switch (header_size)
 		{
 		case k_halo_reach_header_memory_footprint:
-			write_line_verbose("cache file type halo reach");
+			c_console::write_line_verbose("cache file type halo reach");
 			engine_type = _engine_type_haloreach;
 			break;
 		case k_halo3_header_memory_footprint:
-			write_line_verbose("cache file type halo 3");
+			c_console::write_line_verbose("cache file type halo 3");
 			engine_type = _engine_type_halo3;
 			break;
 		case k_halo4_header_memory_footprint:
-			write_line_verbose("cache file type halo 4");
+			c_console::write_line_verbose("cache file type halo 4");
 			engine_type = _engine_type_halo4;
 			break;
 		default:
@@ -177,11 +177,11 @@ void c_cache_file::init_tag_instances()
 			const char* tag_group_name = get_known_legacy_tag_group_name(group_tag);
 			if (tag_group_name)
 			{
-				write_line_verbose("c_cache_file: warning unknown tag group '%s' '%s'!", buffer, tag_group_name);
+				c_console::write_line_verbose("c_cache_file: warning unknown tag group '%s' '%s'!", buffer, tag_group_name);
 			}
 			else
 			{
-				write_line_verbose("c_cache_file: warning unknown tag group '%s'!", buffer);
+				c_console::write_line_verbose("c_cache_file: warning unknown tag group '%s'!", buffer);
 			}
 		}
 		
@@ -193,7 +193,7 @@ void c_cache_file::init_tag_instances()
 		//	//ASSERT(reflection_type != nullptr); // #TODO: All tags have a reflection type
 		//	ASSERT(reflection_type->virtual_tag_constructor != nullptr);
 		//	tag_interfaces_buffer[index] = reflection_type->virtual_tag_constructor(*this, static_cast<uint16_t>(index));
-		//	//write_line_verbose("vtag> %s", tag_interfaces_buffer[index]->get_path_with_group_name_cstr());
+		//	//c_console::write_line_verbose("vtag> %s", tag_interfaces_buffer[index]->get_path_with_group_name_cstr());
 		//}
 		//else
 		//{

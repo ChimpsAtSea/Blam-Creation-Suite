@@ -642,7 +642,7 @@ void c_haloreach_game_option_selection_legacy::load_map_variant(IDataAccess* pDa
 		{
 			if (print)
 			{
-				write_line_verbose("Loading map variant [%s]", filepath.c_str());
+				c_console::write_line_verbose("Loading map variant [%s]", filepath.c_str());
 			}
 
 			rMapVariant = pDataAccess->MapVariantCreateFromFile(filo.buffer, static_cast<int>(filo.buffer_size))->MapVariant;
@@ -657,7 +657,7 @@ void c_haloreach_game_option_selection_legacy::load_map_variant(IDataAccess* pDa
 
 		if (print)
 		{
-			write_line_verbose("Creating map variant for '%s'", pSelectedMapInfo->GetFriendlyName());
+			c_console::write_line_verbose("Creating map variant for '%s'", pSelectedMapInfo->GetFriendlyName());
 		}
 
 		rMapVariant = pDataAccess->MapVariantCreateFromMapID(pSelectedMapInfo->GetMapID())->MapVariant;
@@ -696,7 +696,7 @@ void c_haloreach_game_option_selection_legacy::load_game_variant(IDataAccess* pD
 	{
 		if (print)
 		{
-			write_line_verbose("Loading game variant [%s]", filepath.c_str());
+			c_console::write_line_verbose("Loading game variant [%s]", filepath.c_str());
 		}
 
 		IGameVariant* game_variant = pDataAccess->GameVariantCreateFromFile(filo.buffer, static_cast<int>(filo.buffer_size));
@@ -707,7 +707,7 @@ void c_haloreach_game_option_selection_legacy::load_game_variant(IDataAccess* pD
 		}
 		else
 		{
-			write_line_verbose(__FUNCTION__"> warning: failed to create game variant from file '%s'", filepath.c_str());
+			c_console::write_line_verbose(__FUNCTION__"> warning: failed to create game variant from file '%s'", filepath.c_str());
 		}
 		filo.close_file();
 	}
@@ -763,7 +763,7 @@ void c_haloreach_game_option_selection_legacy::load_savefilm(const char* pSavedF
 
 	if (filepath.c_str())
 	{
-		write_line_verbose("Loading saved film [%s]", filepath.c_str());
+		c_console::write_line_verbose("Loading saved film [%s]", filepath.c_str());
 	}
 
 	gameContext.saved_film_path = filepath.c_str();

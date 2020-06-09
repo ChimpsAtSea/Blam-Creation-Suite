@@ -36,7 +36,7 @@ c_haloreach_game_host::c_haloreach_game_host(e_engine_type engine_type, e_build 
 	c_mantle_gui::set_get_tag_selection_address_function(haloreach_tag_address_get); // #TODO: This is kinda hacky
 	c_mantle_gui::set_get_tag_pointer_function(haloreach_tag_definition_get); // #TODO: This is kinda hacky
 
-	write_line_verbose("Init HaloReachGameHost");
+	c_console::write_line_verbose("Init HaloReachGameHost");
 
 	if (game_engine == nullptr)
 		__int64 createGameEngineResult = g_haloreach_game_runtime.CreateGameEngine(&game_engine);
@@ -58,7 +58,7 @@ c_haloreach_game_host::c_haloreach_game_host(e_engine_type engine_type, e_build 
 
 c_haloreach_game_host::~c_haloreach_game_host()
 {
-	write_line_verbose("Deinit HaloReachGameHost");
+	c_console::write_line_verbose("Deinit HaloReachGameHost");
 
 	c_mantle_gui::set_get_tag_selection_address_function(nullptr); // #TODO: This is kinda hacky
 	c_mantle_gui::set_get_tag_pointer_function(nullptr); // #TODO: This is kinda hacky

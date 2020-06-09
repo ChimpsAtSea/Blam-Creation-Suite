@@ -67,7 +67,7 @@ c_function_hook_base* c_function_hook_base::init_node(e_engine_type engine_type,
 		else
 		{
 			populate_function_ptr(get_engine_module_filename(engine_type), get_engine_base_address(engine_type), m_offset, rBase);
-			write_line_verbose("Created function pointer for %s", pFunctionName);
+			c_console::write_line_verbose("Created function pointer for %s", pFunctionName);
 		}
 
 		m_isHooked = true;

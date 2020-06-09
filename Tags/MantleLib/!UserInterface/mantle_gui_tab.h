@@ -79,7 +79,7 @@ inline c_mantle_gui_tab::c_imgui_dynamic_data& c_mantle_gui_tab::get_dynamic_dat
 		}
 	}
 
-	//write_line_verbose("Adding new dynamic data @ %p", pPosition);
+	//c_console::write_line_verbose("Adding new dynamic data @ %p", pPosition);
 
 	rWasAllocated = true;
 	c_imgui_dynamic_data& rDynamicData = *imgui_dynamic_data.emplace_back(new c_imgui_dynamic_data{});

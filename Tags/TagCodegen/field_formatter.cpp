@@ -22,7 +22,7 @@ c_field_formatter::c_field_formatter(const blofeld::s_tag_field* field, const ch
 {
 	//name = "air reverb gain*!^{reverb gain}*!^:dB*!^[   -100  ]#how much reverb applies to this sound class";
 	static int y = 0;
-	//write_line_verbose("%i %s", y, name);
+	//c_console::write_line_verbose("%i %s", y, name);
 	if (name != nullptr)
 	{
 		// bespoke fixups

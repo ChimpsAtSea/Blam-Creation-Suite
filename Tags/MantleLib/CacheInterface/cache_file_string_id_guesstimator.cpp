@@ -22,7 +22,7 @@ c_cache_file_string_id_guesstimator::c_cache_file_string_id_guesstimator(c_cache
 		{
 			if (c_command_line::has_command_line_arg("-guesstimatordebug"))
 			{
-				write_line_verbose("string_id_guesstimator> set %u [empty]", set_index);
+				c_console::write_line_verbose("string_id_guesstimator> set %u [empty]", set_index);
 			}
 			continue;
 		}
@@ -83,7 +83,7 @@ c_cache_file_string_id_guesstimator::c_cache_file_string_id_guesstimator(c_cache
 
 		if (c_command_line::has_command_line_arg("-guesstimatordebug"))
 		{
-			write_line_verbose("string_id_guesstimator> set %u [%u - %u]", set_index, start_string_index, end_string_index);
+			c_console::write_line_verbose("string_id_guesstimator> set %u [%u - %u]", set_index, start_string_index, end_string_index);
 		}
 
 		string_id_set_start_indices[set_index] = start_string_index;
@@ -99,7 +99,7 @@ c_cache_file_string_id_guesstimator::c_cache_file_string_id_guesstimator(c_cache
 	const char* expected_value = cache_file.get_string_id_by_index(engine_string_id_last_set_end_index);
 	if (expected_value == nullptr || strcmp(expected_value, "material") != 0)
 	{
-		write_line_verbose("string_id_guesstimator> Unexpected cache file String ID at index 0. Potential errors in the guesstimator!");
+		c_console::write_line_verbose("string_id_guesstimator> Unexpected cache file String ID at index 0. Potential errors in the guesstimator!");
 	}
 }
 

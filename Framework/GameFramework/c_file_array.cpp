@@ -27,7 +27,7 @@ c_file_array::c_file_array(std::vector<std::string> file_directories, std::vecto
 
 					files.push_back(fileInfo);
 
-					write_line_verbose("Reading %s", directory_entry.path().string().c_str());
+					c_console::write_line_verbose("Reading %s", directory_entry.path().string().c_str());
 				}
 			}
 		}

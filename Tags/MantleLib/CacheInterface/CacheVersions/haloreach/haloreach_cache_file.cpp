@@ -42,31 +42,31 @@ bool c_haloreach_cache_file::read_cache_file()
 
 	if (map_data == nullptr)
 	{
-		write_line_verbose("error: map file not found");
+		c_console::write_line_verbose("error: map file not found");
 		return false; // #TODO: Return an error code
 	}
 	if (map_size < sizeof(s_haloreach_cache_file_header))
 	{
-		write_line_verbose("error: map file smaller than sizeof(s_haloreach_cache_file_header)");
+		c_console::write_line_verbose("error: map file smaller than sizeof(s_haloreach_cache_file_header)");
 		return false; // #TODO: Return an error code
 	}
 
 	cache_file_header = reinterpret_cast<s_haloreach_cache_file_header*>(map_data);
 	if (cache_file_header->header_signature != 'head' && cache_file_header->header_signature != 'daeh')
 	{
-		write_line_verbose("error: map file missing 'head' magic");
+		c_console::write_line_verbose("error: map file missing 'head' magic");
 		return false; // #TODO: Return an error code
 	}
 
-	write_line_verbose("cache file version: %i", cache_file_header->file_version);
+	c_console::write_line_verbose("cache file version: %i", cache_file_header->file_version);
 
 	if (cache_file_header->unknown_bits & _unknown_bits_use_absolute_addressing)
 	{
-		write_line_verbose("cache file using absolute addresses");
+		c_console::write_line_verbose("cache file using absolute addresses");
 	}
 	else
 	{
-		write_line_verbose("cache file using relative addresses");
+		c_console::write_line_verbose("cache file using relative addresses");
 	}
 
 	return true;

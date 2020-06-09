@@ -62,7 +62,7 @@ void render_stringid_gui_legacy(string_id_legacy* field_data, const c_reflection
 	if (ImGui::InputText("StringID", rDynamicStringIDData.szBuffer, sizeof(rDynamicStringIDData.szBuffer)))
 	{
 		rDynamicStringIDData.updateStringID();
-		write_line_verbose(rDynamicStringIDData.szBuffer);
+		c_console::write_line_verbose(rDynamicStringIDData.szBuffer);
 	}
 	if (!isValid) ImGui::PopStyleColor();
 

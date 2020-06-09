@@ -396,6 +396,38 @@ void c_console::show_startup_banner()
 	PrintLine();
 }
 
+void c_console::write_line_verbose(const char* format, ...)
+{
+	if (g_debug_log_mode >= _debug_log_mode_verbose)
+	{
+		va_list args;
+		va_start(args, format);
+		write_line_internal(format, args);
+		va_end(args);
+	}
+}
+
+void c_console::write_line(const char* format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	write_line_internal(format, args);
+	va_end(args);
+}
+
+std::mutex console_mutex;
+int (__cdecl *c_console::console_printf_impl)(const char* format, ...) = printf;
+void c_console::write_line_internal(const char* format, va_list args)
+{
+	std::lock_guard console_mutex_lockguard(console_mutex);
+
+	c_fixed_string_4096 fixed_string;
+	fixed_string.vformat(format, args);
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	console_printf_impl("%s\n", fixed_string.c_str());
+}
+
 bool c_console::DefaultConsoleCommand::execute_command(const std::vector<std::string>& Args)
 {
 	if (!Args.empty())

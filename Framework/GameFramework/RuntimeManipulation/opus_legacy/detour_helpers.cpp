@@ -45,7 +45,7 @@ void memcpy_virtual(
 	}
 	else
 	{
-		write_line_verbose("dst must not be null");
+		c_console::write_line_verbose("dst must not be null");
 		ASSERT(dst != nullptr);
 	}
 }
