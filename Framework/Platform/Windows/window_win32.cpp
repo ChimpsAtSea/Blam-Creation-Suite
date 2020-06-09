@@ -127,19 +127,6 @@ void c_window_win32::init_window(const wchar_t* window_title, const wchar_t* con
 {
 	SetProcessDPIAware();
 
-#ifdef _DEBUG
-	constexpr bool is_debug = true;
-#else
-	constexpr bool is_debug = false;
-#endif
-	if ((c_command_line::has_command_line_arg("-showconsole") || is_debug) && !c_command_line::has_command_line_arg("-hideconsole"))
-	{
-		AllocConsole();
-		FILE* pStdOut = freopen("CONOUT$", "w", stdout);
-		ASSERT(pStdOut != nullptr);
-		SetConsoleTitleW(console_title);
-	}
-
 	s_instance_handle = GetModuleHandle(NULL);
 
 	// Register the window class.
