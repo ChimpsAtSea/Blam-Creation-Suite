@@ -12,6 +12,8 @@ class c_tag_interface
 	friend c_halo1_tag_group_interface;
 	friend c_virtual_tag_interface;
 protected:
+	non_copyable(c_tag_interface);
+
 	c_tag_interface(c_cache_file& cache_file, uint16_t tag_index);
 	virtual ~c_tag_interface();
 

@@ -51,21 +51,6 @@ c_tag_interface* c_halo4_cache_file::get_tag_interface(uint16_t tag_index) const
 	return nullptr;
 }
 
-c_tag_interface* const* c_halo4_cache_file::get_tag_interfaces() const
-{
-	return nullptr;
-}
-
-c_tag_interface* const* c_halo4_cache_file::get_tag_interfaces_sorted_by_name_with_group_id() const
-{
-	return nullptr;
-}
-
-c_tag_interface* const* c_halo4_cache_file::get_tag_interfaces_sorted_by_path_with_group_id() const
-{
-	return nullptr;
-}
-
 c_tag_group_interface* c_halo4_cache_file::get_tag_group_interface(uint16_t group_index) const
 {
 	return nullptr;
@@ -109,6 +94,11 @@ const char* c_halo4_cache_file::get_tag_path(uint16_t tag_index) const
 unsigned long c_halo4_cache_file::get_group_tag_by_tag_index(uint32_t tag_index) const
 {
 	return blofeld::INVALID_TAG;
+}
+
+void c_halo4_cache_file::get_raw_tag_memory_region(uint32_t tag_index, size_t& out_size, char*& tag_data) const
+{
+
 }
 
 const s_section_cache* c_halo4_cache_file::get_section(uint32_t section_index) const

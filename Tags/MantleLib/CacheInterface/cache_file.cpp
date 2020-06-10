@@ -112,6 +112,42 @@ c_cache_file::~c_cache_file()
 	delete& virtual_memory_container;
 }
 
+c_tag_interface* const* c_cache_file::get_tag_interfaces() const
+{
+	if (get_tag_count() > 0)
+	{
+		return tag_interfaces.data();
+	}
+	return nullptr;
+}
+
+c_tag_interface* const* c_cache_file::get_tag_interfaces_sorted_by_name_with_group_id() const
+{
+	if (get_tag_count() > 0)
+	{
+		return tag_interfaces_sorted_by_name_with_group_id.data();
+	}
+	return nullptr;
+}
+
+c_tag_interface* const* c_cache_file::get_tag_interfaces_sorted_by_path_with_group_id() const
+{
+	if (get_tag_count() > 0)
+	{
+		return tag_interfaces_sorted_by_path_with_group_id.data();
+	}
+	return nullptr;
+}
+
+c_tag_interface* const* c_cache_file::get_tag_interfaces_sorted_by_data_address() const
+{
+	if (get_tag_count() > 0)
+	{
+		return tag_interfaces_sorted_by_data_address.data();
+	}
+	return nullptr;
+}
+
 void c_cache_file::cache_file_post_load()
 {
 	init_tag_instances();
@@ -223,6 +259,11 @@ static bool sort_tag_instance_by_path_with_group_id(c_tag_interface* left_tag_in
 	return std::lexicographical_compare(left_begin, left_end, right_begin, right_end, [](char x, char y) { return toupper(static_cast<unsigned char>(x)) < toupper(static_cast<unsigned char>(y)); });
 }
 
+static bool sort_tag_instance_by_data_address(c_tag_interface* left_tag_interface, c_tag_interface* right_tag_interface)
+{
+	return left_tag_interface->get_data() < right_tag_interface->get_data();
+}
+
 #pragma optimize( "", on ) // restore global optimization settings
 
 void c_cache_file::init_sorted_instance_lists()
@@ -240,4 +281,7 @@ void c_cache_file::init_sorted_instance_lists()
 
 	tag_interfaces_sorted_by_path_with_group_id.resize(tag_interfaces.size());
 	std::partial_sort_copy(tag_interfaces.begin(), tag_interfaces.end(), tag_interfaces_sorted_by_path_with_group_id.begin(), tag_interfaces_sorted_by_path_with_group_id.end(), sort_tag_instance_by_path_with_group_id);
+
+	tag_interfaces_sorted_by_data_address.resize(tag_interfaces.size());
+	std::partial_sort_copy(tag_interfaces.begin(), tag_interfaces.end(), tag_interfaces_sorted_by_data_address.begin(), tag_interfaces_sorted_by_data_address.end(), sort_tag_instance_by_data_address);
 }

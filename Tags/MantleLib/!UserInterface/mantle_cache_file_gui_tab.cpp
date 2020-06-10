@@ -48,7 +48,7 @@ c_mantle_cache_file_gui_tab::c_mantle_cache_file_gui_tab(c_cache_file& cache_fil
 
 		c_tag_interface* tag_interface = nullptr;
 
-		for (c_tag_interface* current_tag_interface : c_range_iterator(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
+		for (c_tag_interface* current_tag_interface : c_range_loop(cache_file.get_tag_interfaces(), cache_file.get_tag_count()))
 		{
 			bool is_match = false;
 			is_match |= load_tag_command_line == current_tag_interface->get_name_with_group_id_cstr();
@@ -147,7 +147,7 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 			c_tag_interface* const* tag_interfaces = c_mantle_gui::get_use_full_file_length_display()
 				? cache_file.get_tag_interfaces_sorted_by_path_with_group_id()
 				: cache_file.get_tag_interfaces_sorted_by_name_with_group_id();
-			for (c_tag_interface* tag_interface : c_range_iterator(tag_interfaces, cache_file.get_tag_count()))
+			for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, cache_file.get_tag_count()))
 			{
 				if (tag_interface->is_null()) continue;
 
@@ -172,7 +172,7 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 		}
 		else
 		{
-			for (c_tag_group_interface* group_interface : c_range_iterator(group_interfaces, cache_file.get_tag_group_count()))
+			for (c_tag_group_interface* group_interface : c_range_loop(group_interfaces, cache_file.get_tag_group_count()))
 			{
 				const uint32_t tag_interfaces_count = group_interface->get_tag_interfaces_count();
 				c_tag_interface*const* tag_interfaces = c_mantle_gui::get_use_full_file_length_display()
@@ -187,7 +187,7 @@ void c_mantle_cache_file_gui_tab::render_cache_file_gui()
 
 				if (ImGui::TreeNode(group_short_name, group_short_name))
 				{
-					for (c_tag_interface* tag_interface : c_range_iterator(tag_interfaces, tag_interfaces_count))
+					for (c_tag_interface* tag_interface : c_range_loop(tag_interfaces, tag_interfaces_count))
 					{
 						if (tag_interface->is_null()) continue;
 

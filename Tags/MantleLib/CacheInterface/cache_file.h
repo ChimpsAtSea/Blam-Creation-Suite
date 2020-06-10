@@ -5,6 +5,7 @@ class c_virtual_memory_container;
 struct s_section_cache
 {
 	char* data;
+	size_t offset;
 	size_t size;
 };
 
@@ -32,9 +33,10 @@ public:
 	virtual uint32_t get_tag_group_count() const = 0;
 	virtual uint32_t get_string_id_count() const = 0;
 	virtual c_tag_interface* get_tag_interface(uint16_t tag_index) const = 0;
-	virtual c_tag_interface* const* get_tag_interfaces() const = 0;
-	virtual c_tag_interface* const* get_tag_interfaces_sorted_by_name_with_group_id() const = 0;
-	virtual c_tag_interface* const* get_tag_interfaces_sorted_by_path_with_group_id() const = 0;
+	c_tag_interface* const* get_tag_interfaces() const;
+	c_tag_interface* const* get_tag_interfaces_sorted_by_name_with_group_id() const;
+	c_tag_interface* const* get_tag_interfaces_sorted_by_path_with_group_id() const;
+	c_tag_interface* const* get_tag_interfaces_sorted_by_data_address() const;
 	virtual c_tag_group_interface* get_tag_group_interface(uint16_t group_index) const = 0;
 	virtual c_tag_group_interface* get_tag_group_interface_by_group_id(unsigned long tag_group) const = 0;
 	virtual c_tag_group_interface* const* get_tag_group_interfaces() const = 0;
@@ -46,6 +48,8 @@ public:
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const = 0;
 	virtual unsigned long get_group_tag_by_tag_index(uint32_t tag_index) const = 0;
 	virtual const char* get_tag_path(uint16_t tag_index) const = 0;
+
+	virtual void get_raw_tag_memory_region(uint32_t tag_index, size_t& out_size, char*& tag_data) const = 0;
 
 	template<typename T>
 	inline T* get_tag_block_data(c_typed_tag_block<T>& tag_block)
@@ -71,6 +75,7 @@ protected:
 	std::vector<c_tag_interface*> tag_interfaces;
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_name_with_group_id;
 	std::vector<c_tag_interface*> tag_interfaces_sorted_by_path_with_group_id;
+	std::vector<c_tag_interface*> tag_interfaces_sorted_by_data_address;
 	std::vector<c_tag_group_interface*> tag_group_interfaces;
 
 protected:

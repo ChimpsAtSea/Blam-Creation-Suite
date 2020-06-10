@@ -39,7 +39,18 @@ namespace TagDefinitionsUnitTest
 
 		TEST_METHOD_EX(mantle_validate_halo_reach_cache_file, "Mantle | Validate Halo Reach Cache File")
 		{
-			c_console::write_line_verbose("hello world");
+			wchar_t environment_variable[0x8000u];
+			if (GetEnvironmentVariableW(L"BCS_TEST_ROOT", environment_variable, _countof(environment_variable)) == 0)
+			{
+				Assert::Fail(L"Couldn't find environment variable BCS_TEST_ROOT");
+				return;
+			}
+
+			wchar_t cache_filepath[0x8000u]{};
+			PathCombineW(cache_filepath, environment_variable, L"MCC_1.1389.0.0\\Halo The Master Chief Collection\\haloreach\\maps\\m70_a.map");
+
+			test_mantle_cache_file_blofeld_validation(cache_filepath);
+
 		}
 	};
 }

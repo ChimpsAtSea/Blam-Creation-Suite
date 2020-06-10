@@ -5,3 +5,4 @@
 #include "CacheInterface/CacheInterface.h"
 #include "!UserInterface/UserInterface.h"
 #include "HaloScript/HaloScript.h"
+#include "tests.h"

@@ -22,9 +22,6 @@ public:
 	virtual uint32_t get_tag_group_count() const final;
 	virtual uint32_t get_string_id_count() const final;
 	virtual c_tag_interface* get_tag_interface(uint16_t tag_index) const final;
-	virtual c_tag_interface* const* get_tag_interfaces() const final;
-	virtual c_tag_interface* const* get_tag_interfaces_sorted_by_name_with_group_id() const final;
-	virtual c_tag_interface* const* get_tag_interfaces_sorted_by_path_with_group_id() const final;
 	virtual c_tag_group_interface* get_tag_group_interface(uint16_t group_index) const final;
 	virtual c_tag_group_interface* get_tag_group_interface_by_group_id(unsigned long tag_group) const final;
 	virtual c_tag_group_interface* const* get_tag_group_interfaces() const final;
@@ -34,6 +31,7 @@ public:
 	virtual const char* get_string_id(string_id const id, const char* const error_value = nullptr) const final;
 	virtual const char* get_tag_path(uint16_t tag_index) const final;
 	virtual unsigned long get_group_tag_by_tag_index(uint32_t tag_index) const final;
+	virtual void get_raw_tag_memory_region(uint32_t tag_index, size_t& out_size, char*& tag_data) const final;
 
 	virtual const s_section_cache* get_section(uint32_t section_index) const final;
 	const s_section_cache& get_section(e_haloreach_cache_file_section_index cache_file_section) const;
@@ -65,7 +63,7 @@ protected:
 	long* string_id_indices;
 	char* string_id_buffer;
 	s_haloreach_cache_file_header* cache_file_header;
-	s_cache_file_tags_header* cache_file_tags_headers;
+	s_cache_file_tags_header* cache_file_tags_header;
 	s_cache_file_tag_instance* cache_file_tag_instances;
 	s_cache_file_tag_group* cache_file_tag_groups;
 	s_section_cache section_cache[underlying_cast(k_number_of_haloreach_cache_file_sections)];
