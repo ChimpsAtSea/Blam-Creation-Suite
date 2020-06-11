@@ -1,8 +1,47 @@
 #include "mantlelib-private-pch.h"
 
-c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
-	c_cache_file(map_filepath)
+bool c_halo3_cache_file::read_cache_file()
 {
+	size_t map_size = filesystem_get_file_size_legacy(map_filepath.c_str());
+	virtual_memory_container.set_size(map_size);
+	char* map_virtual_data = virtual_memory_container.get_data();
+	char* map_data = filesystem_read_to_memory_legacy2(map_filepath.c_str(), map_virtual_data, &map_size);
+	char* map_data_end = map_data + map_size;
+
+	if (map_data == nullptr)
+	{
+		c_console::write_line_verbose("error: map file not found");
+		return false; // #TODO: Return an error code
+	}
+	if (map_size < sizeof(halo3::s_cache_file_header))
+	{
+		c_console::write_line_verbose("error: map file smaller than sizeof(halo3::s_cache_file_header)");
+		return false; // #TODO: Return an error code
+	}
+
+	cache_file_header = reinterpret_cast<halo3::s_cache_file_header*>(map_data);
+	if (cache_file_header->header_signature != 'head' && cache_file_header->header_signature != 'daeh')
+	{
+		c_console::write_line_verbose("error: map file missing 'head' magic");
+		return false; // #TODO: Return an error code
+	}
+
+	c_console::write_line_verbose("cache file version: %i", cache_file_header->file_version);
+
+	return true;
+}
+
+c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
+	c_cache_file(map_filepath),
+	cache_file_header(nullptr)
+{
+	read_cache_file();
+
+
+
+
+
+
 
 }
 

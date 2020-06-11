@@ -4,6 +4,7 @@ class c_halo3_cache_file :
 {
 	friend c_cache_file;
 protected:
+	bool read_cache_file();
 	c_halo3_cache_file(const std::wstring& map_filepath);
 	virtual ~c_halo3_cache_file();
 
@@ -46,5 +47,7 @@ public:
 protected:
 	virtual void* get_internal_tag_instance_impl(uint16_t tag_index) const final;
 	virtual void* get_internal_tag_group_impl(uint32_t group_index) const final;
+
+	halo3::s_cache_file_header* cache_file_header;
 };
 
