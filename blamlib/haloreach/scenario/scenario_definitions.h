@@ -18,7 +18,7 @@ constexpr int k_maximum_number_of_scenario_structure_bsps = 32;
 
 /* ---------- types */
 
-enum e_scenario_type
+enum e_scenario_type : int16_t
 {
 	_scenario_type_none = NONE,
 	_scenario_type_campaign,
@@ -30,7 +30,7 @@ enum e_scenario_type
 	k_number_of_scenario_types
 };
 
-enum e_scenario_load_type
+enum e_scenario_load_type : int16_t
 {
 	_scenario_load_none = NONE,
 	_scenario_load_default,
