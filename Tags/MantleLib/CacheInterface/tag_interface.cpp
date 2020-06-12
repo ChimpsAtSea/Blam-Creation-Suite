@@ -84,35 +84,3 @@ c_tag_group_interface* c_tag_interface::get_tag_group_interface() const
 {
 	return nullptr;
 }
-
-c_tag_interface* c_tag_interface::create_tag_interface(c_cache_file& cache_file, uint16_t tag_index)
-{
-	if (c_halo1_cache_file* halo1_cache_file = dynamic_cast<c_halo1_cache_file*>(&cache_file))
-	{
-		return new c_halo1_tag_interface(*halo1_cache_file, tag_index);
-	}
-	if (c_halo2_cache_file* halo1_cache_file = dynamic_cast<c_halo2_cache_file*>(&cache_file))
-	{
-		//return new c_halo2_tag_interface(*halo1_cache_file, tag_index);
-		FATAL_ERROR(L"c_halo2_tag_interface not implemented");
-	}
-	if (c_halo3_cache_file* halo1_cache_file = dynamic_cast<c_halo3_cache_file*>(&cache_file))
-	{
-		return new c_halo3_tag_interface(*halo1_cache_file, tag_index);
-	}
-	if (c_halo3odst_cache_file* halo1_cache_file = dynamic_cast<c_halo3odst_cache_file*>(&cache_file))
-	{
-		//return new c_halo3odst_tag_interface(*halo1_cache_file, tag_index);
-		FATAL_ERROR(L"c_halo3odst_tag_interface not implemented");
-	}
-	if (c_haloreach_cache_file* haloreach_cache_file = dynamic_cast<c_haloreach_cache_file*>(&cache_file))
-	{
-		return new c_haloreach_tag_interface(*haloreach_cache_file, tag_index);
-	}
-	if (c_halo4_cache_file* halo1_cache_file = dynamic_cast<c_halo4_cache_file*>(&cache_file))
-	{
-		//return new c_halo4_tag_interface(*halo1_cache_file, tag_index);
-		FATAL_ERROR(L"c_halo4_tag_interface not implemented");
-	}
-	FATAL_ERROR(L"Unsupported cache file type");
-}

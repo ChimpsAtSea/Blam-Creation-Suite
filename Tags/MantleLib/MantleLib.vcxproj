@@ -32,6 +32,7 @@
     <ClInclude Include="!UserInterface\UserInterface.h" />
     <ClInclude Include="CacheInterface\CacheInterface.h" />
     <ClInclude Include="CacheInterface\CacheVersions\eldorado\eldorado_cache_file.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_cache_file_types.h" />
     <ClInclude Include="CacheInterface\CacheVersions\groundhog\groundhog_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\groundhog\groundhog_cache_file_types.h" />
@@ -40,7 +41,6 @@
     <ClInclude Include="CacheInterface\CacheVersions\halo3\halo3_cache_file_types.h" />
     <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_cache_file_types.h" />
-    <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_tag_interface.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo1\halo1_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo2\halo2_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file.h" />
@@ -53,11 +53,10 @@
     <ClInclude Include="CacheInterface\tag_interface.h" />
     <ClInclude Include="CacheInterface\virtual_tag_block.h" />
     <ClInclude Include="CacheInterface\virtual_tag.h" />
-    <ClInclude Include="CacheInterface\CacheVersions\haloreach\haloreach_tag_group_interface.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo1\halo1_tag_interface.h" />
     <ClInclude Include="CacheInterface\CacheVersions\halo1\halo1_tag_group_interface.h" />
     <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_tag_group_interface.h" />
-    <ClInclude Include="CacheInterface\CacheVersions\halo3\halo3_tag_interface.h" />
+    <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_tag_interface.h" />
     <ClInclude Include="HaloScript\HaloScript.h" />
     <ClInclude Include="HaloScript\halo_script_function_definition.h" />
     <ClInclude Include="HaloScript\halo_script_function_documentation.h" />
@@ -80,10 +79,10 @@
     <ClCompile Include="!UserInterface\Tools\mantle_halo_script_editor.cpp" />
     <ClCompile Include="!UserInterface\Tools\mantle_shader_tool_gui_tab.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\eldorado\eldorado_cache_file.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\groundhog\groundhog_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\halo3\halo3_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_cache_file.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_tag_interface.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\halo1\halo1_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\halo2\halo2_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\halo3odst\halo3odst_cache_file.cpp" />
@@ -95,11 +94,10 @@
     <ClCompile Include="CacheInterface\tag_interface.cpp" />
     <ClCompile Include="CacheInterface\virtual_tag_block.cpp" />
     <ClCompile Include="CacheInterface\virtual_tag.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\haloreach\haloreach_tag_group_interface.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\halo1\halo1_tag_interface.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\halo1\halo1_tag_group_interface.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_tag_group_interface.cpp" />
-    <ClCompile Include="CacheInterface\CacheVersions\halo3\halo3_tag_interface.cpp" />
+    <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_tag_interface.cpp" />
     <ClCompile Include="HaloScript\halo_script_function_definition.cpp" />
     <ClCompile Include="HaloScript\halo_script_function_documentation.cpp" />
     <ClCompile Include="HaloScript\halo_script_globals_definition.cpp" />

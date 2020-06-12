@@ -1,7 +1,7 @@
 #include "mantlelib-private-pch.h"
 
 c_halo4_cache_file::c_halo4_cache_file(const std::wstring& map_filepath) :
-	c_cache_file(map_filepath)
+	c_cache_file(map_filepath, _engine_type_halo4)
 {
 
 }
@@ -26,7 +26,7 @@ uint64_t c_halo4_cache_file::get_base_virtual_address() const
 	return 0;
 }
 
-uint64_t c_halo4_cache_file::convert_page_offset(uint64_t page_offset) const
+uint64_t c_halo4_cache_file::convert_page_offset(uint32_t page_offset) const
 {
 	return 0;
 }

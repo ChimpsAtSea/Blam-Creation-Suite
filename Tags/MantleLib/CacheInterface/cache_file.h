@@ -2,17 +2,9 @@
 
 class c_virtual_memory_container;
 
-struct s_section_cache
-{
-	char* data;
-	size_t offset;
-	size_t size;
-};
-
 class c_cache_file
 {
 public:
-
 	friend class c_tag_interface;
 	friend class c_tag_group_interface;
 
@@ -20,15 +12,15 @@ public:
 	static c_cache_file* create_cache_file(const std::wstring& map_filepath);
 
 protected:
-	c_cache_file(const std::wstring& map_filepath);
+	c_cache_file(const std::wstring& map_filepath, e_engine_type engine_type);
 public:
 	virtual ~c_cache_file();
 
 	virtual bool save_map() = 0;
 	virtual bool is_loading() const = 0;
 	virtual uint64_t get_base_virtual_address() const = 0;
-	virtual uint64_t convert_page_offset(uint64_t page_offset) const = 0;
-	virtual const s_section_cache* get_section(uint32_t section_index) const = 0;
+	virtual uint64_t convert_page_offset(uint32_t page_offset) const = 0;
+	uint64_t convert_virtual_address(uint64_t virtual_address) const;
 	virtual uint32_t get_tag_count() const = 0;
 	virtual uint32_t get_tag_group_count() const = 0;
 	virtual uint32_t get_string_id_count() const = 0;
@@ -66,8 +58,6 @@ public:
 	inline const char* get_map_path_utf8() const { return map_path_utf8.c_str(); }
 
 protected:
-	void cache_file_post_load();
-
 	c_virtual_memory_container& virtual_memory_container;
 	e_engine_type engine_type;
 
@@ -79,10 +69,7 @@ protected:
 	std::vector<c_tag_group_interface*> tag_group_interfaces;
 
 protected:
-	/* initialize each group instance */
-	void init_group_instances();
 	/* initialize each tag instance */
-	void init_tag_instances_deprecated();
 	void init_sorted_instance_lists();
 
 	std::wstring map_filepath;

@@ -13,7 +13,7 @@ struct s_halo1_compressed_chunk_header
 };
 
 c_halo1_cache_file::c_halo1_cache_file(const std::wstring& map_filepath) :
-	c_cache_file(map_filepath)
+	c_cache_file(map_filepath, _engine_type_halo1)
 {
 	load_map();
 }
@@ -129,7 +129,7 @@ uint64_t c_halo1_cache_file::get_base_virtual_address() const
 	return virtual_address;
 }
 
-uint64_t c_halo1_cache_file::convert_page_offset(uint64_t page_offset) const
+uint64_t c_halo1_cache_file::convert_page_offset(uint32_t page_offset) const
 {
 	return static_cast<uint64_t>(page_offset) - get_base_virtual_address();
 }
@@ -184,11 +184,6 @@ unsigned long c_halo1_cache_file::get_group_tag_by_tag_index(uint32_t tag_index)
 void c_halo1_cache_file::get_raw_tag_memory_region(uint32_t tag_index, size_t& out_size, char*& tag_data) const
 {
 
-}
-
-const s_section_cache* c_halo1_cache_file::get_section(uint32_t section_index) const
-{
-	return nullptr;
 }
 
 void* c_halo1_cache_file::get_internal_tag_instance_impl(uint16_t tag_index) const

@@ -44,8 +44,6 @@ public:
 
 	// #TODO: SORT FUNCTIONS BELOW
 
-	static c_tag_interface* create_tag_interface(c_cache_file& cache_file, uint16_t tag_index);
-
 	inline bool is_null() const { return is_tag_null; } // #TODO: programmatic check using group and address
 	inline c_cache_file& get_cache_file() const { return cache_file; };
 	inline char* get_data() { return tag_data; };

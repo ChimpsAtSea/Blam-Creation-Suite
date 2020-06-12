@@ -34,19 +34,6 @@ c_tag_group_interface::~c_tag_group_interface()
 
 }
 
-c_tag_group_interface* c_tag_group_interface::create_tag_group_interface(c_cache_file& cache_file, uint16_t group_index, unsigned long group_tag)
-{
-	if (c_haloreach_cache_file* haloreach_cache_file = dynamic_cast<c_haloreach_cache_file*>(&cache_file))
-	{
-		return new c_haloreach_tag_group_interface(*haloreach_cache_file, group_index);
-	}
-	if (c_halo1_cache_file* halo1_cache_file = dynamic_cast<c_halo1_cache_file*>(&cache_file))
-	{
-		return new c_halo1_tag_group_interface(*halo1_cache_file, group_index, group_tag);
-	}
-	return new c_tag_group_interface(cache_file, group_index, group_tag); // create a default tag interface
-}
-
 void c_tag_group_interface::add_tag_interface(c_tag_interface& tag_interface)
 {
 

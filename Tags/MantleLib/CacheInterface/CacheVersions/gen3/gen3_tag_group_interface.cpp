@@ -3,7 +3,7 @@
 using namespace gen3;
 using namespace halo3;
 
-c_gen3_tag_group_interface::c_gen3_tag_group_interface(c_cache_file& cache_file, uint16_t group_index) :
+c_gen3_tag_group_interface::c_gen3_tag_group_interface(c_gen3_cache_file& cache_file, uint16_t group_index) :
 	c_tag_group_interface(cache_file, group_index),
 	cache_file_tag_group(*static_cast<s_cache_file_tag_group*>(c_tag_group_interface::cache_file_tag_group))
 {
@@ -40,7 +40,9 @@ c_gen3_tag_group_interface::~c_gen3_tag_group_interface()
 
 void c_gen3_tag_group_interface::add_tag_interface(c_tag_interface& tag_interface)
 {
-	c_halo3_tag_interface* halo3_tag_interface = dynamic_cast<c_halo3_tag_interface*>(&tag_interface);
-	ASSERT(halo3_tag_interface != nullptr);
-	tag_interfaces.push_back(halo3_tag_interface);
+	//c_gen3_tag_interface* halo3_tag_interface = dynamic_cast<c_gen3_tag_interface*>(&tag_interface);
+	//ASSERT(halo3_tag_interface != nullptr);
+	//tag_interfaces.push_back(halo3_tag_interface);
+
+	tag_interfaces.push_back(&tag_interface);
 }

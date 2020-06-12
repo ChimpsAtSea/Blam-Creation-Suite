@@ -15,7 +15,6 @@ protected:
 	virtual ~c_tag_group_interface();
 
 public:
-	static c_tag_group_interface* create_tag_group_interface(c_cache_file& cache_file, uint16_t group_index, unsigned long group_tag = blofeld::INVALID_TAG);
 	virtual void add_tag_interface(c_tag_interface& tag_interface);
 
 

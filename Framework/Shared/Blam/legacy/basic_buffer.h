@@ -1,6 +1,7 @@
 #pragma once
-struct s_basic_buffer
+
+struct s_basic_buffer64
 {
-	intptr_t elements;
+	intptr64_t elements;
 	long long size;
 };

@@ -104,14 +104,14 @@ T& haloreach_tag_block_definition_get(c_typed_tag_block<T>& tag_block_ref, uint1
 	return *tag_block_definition_ptr;
 }
 
-haloreach::s_haloreach_cache_file_header* haloreach_cache_file_header_get()
+haloreach::s_cache_file_header* haloreach_cache_file_header_get()
 {
 	if (!is_valid(haloreach_cache_file_global_loaded_state))
 	{
 		return nullptr;
 	}
 
-	haloreach::s_haloreach_cache_file_header& cache_file_header = *reinterpret_cast<haloreach::s_haloreach_cache_file_header*>(&haloreach_cache_file_global_loaded_state[0x10]);
+	haloreach::s_cache_file_header& cache_file_header = *reinterpret_cast<haloreach::s_cache_file_header*>(&haloreach_cache_file_global_loaded_state[0x10]);
 	return &cache_file_header;
 }
 
