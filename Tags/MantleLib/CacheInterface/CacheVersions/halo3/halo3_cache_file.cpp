@@ -1,5 +1,8 @@
 #include "mantlelib-private-pch.h"
 
+using namespace gen3;
+using namespace halo3;
+
 bool c_halo3_cache_file::read_cache_file()
 {
 	size_t map_size = filesystem_get_file_size_legacy(map_filepath.c_str());
@@ -13,13 +16,13 @@ bool c_halo3_cache_file::read_cache_file()
 		c_console::write_line_verbose("error: map file not found");
 		return false; // #TODO: Return an error code
 	}
-	if (map_size < sizeof(halo3::s_cache_file_header))
+	if (map_size < sizeof(s_cache_file_header))
 	{
-		c_console::write_line_verbose("error: map file smaller than sizeof(halo3::s_cache_file_header)");
+		c_console::write_line_verbose("error: map file smaller than sizeof(s_cache_file_header)");
 		return false; // #TODO: Return an error code
 	}
 
-	cache_file_header = reinterpret_cast<halo3::s_cache_file_header*>(map_data);
+	cache_file_header = reinterpret_cast<s_cache_file_header*>(map_data);
 	if (cache_file_header->header_signature != 'head' && cache_file_header->header_signature != 'daeh')
 	{
 		c_console::write_line_verbose("error: map file missing 'head' magic");
@@ -35,14 +38,42 @@ c_halo3_cache_file::c_halo3_cache_file(const std::wstring& map_filepath) :
 	c_cache_file(map_filepath),
 	cache_file_header(nullptr)
 {
+	engine_type = _engine_type_halo3;
+
 	read_cache_file();
 
+	char* map_data = virtual_memory_container.get_data();
 
+	string_ids_buffer = map_data + cache_file_header->string_table_offset;
+	string_id_indices = reinterpret_cast<long*>(map_data + cache_file_header->string_table_indices_offset);
 
+	filenames_buffer = map_data + cache_file_header->file_table_offset;
+	filename_indices = reinterpret_cast<long*>(map_data + cache_file_header->file_table_indices_offset);
 
+	tags_buffer = map_data + cache_file_header->tag_buffer_offset;
+	cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_buffer + convert_page_offset(cache_file_header->tags_header_address));
 
+	cache_file_tag_groups = reinterpret_cast<s_cache_file_tag_group*>(tags_buffer + convert_page_offset(cache_file_tags_header->tag_groups.address));
+	for (uint32_t group_index = 0; group_index < cache_file_tags_header->tag_groups.count; group_index++)
+	{
+		s_cache_file_tag_group& cache_file_tag_group = cache_file_tag_groups[group_index];
+		debug_point;
 
+		tag_group_interfaces.push_back(new c_gen3_tag_group_interface(*this, group_index));
+	}
 
+	cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_buffer + convert_page_offset(cache_file_tags_header->tag_instances.address));
+	for (uint32_t tag_instance = 0; tag_instance < cache_file_tags_header->tag_instances.count; tag_instance++)
+	{
+		s_cache_file_tag_instance& cache_file_tag_instance = cache_file_tag_instances[tag_instance];
+		debug_point;
+
+		const char* name = string_ids_buffer + string_id_indices[0];
+
+		tag_interfaces.push_back(new c_halo3_tag_interface(*this, tag_instance));
+	}
+
+	init_sorted_instance_lists();
 }
 
 c_halo3_cache_file::~c_halo3_cache_file()
@@ -62,47 +93,34 @@ bool c_halo3_cache_file::is_loading() const
 
 uint64_t c_halo3_cache_file::get_base_virtual_address() const
 {
-	return 0;
+	return cache_file_header->virtual_base_address;
 }
 
-uint64_t c_halo3_cache_file::convert_page_offset(uint32_t page_offset) const
+uint64_t c_halo3_cache_file::convert_page_offset(uint64_t page_offset) const
 {
-	return 0;
+	// #TODO: Add support for relative addressing mode
+	DEBUG_ASSERT(cache_file_header->section_table.offset_masks[0] == 0);
+	DEBUG_ASSERT(cache_file_header->section_table.offset_masks[1] == 0);
+	DEBUG_ASSERT(cache_file_header->section_table.offset_masks[2] == 0);
+	DEBUG_ASSERT(cache_file_header->section_table.offset_masks[3] == 0);
+
+	uint64_t address = page_offset - get_base_virtual_address();;
+	return address;
 }
 
 uint32_t c_halo3_cache_file::get_tag_count() const
 {
-	return 0;
+	return cache_file_header->file_count;
 }
 
 uint32_t c_halo3_cache_file::get_tag_group_count() const
 {
-	return 0;
+	return static_cast<uint32_t>(tag_group_interfaces.size());
 }
 
 uint32_t c_halo3_cache_file::get_string_id_count() const
 {
 	return 0;
-}
-
-c_tag_interface* c_halo3_cache_file::get_tag_interface(uint16_t tag_index) const
-{
-	return nullptr;
-}
-
-c_tag_group_interface* c_halo3_cache_file::get_tag_group_interface(uint16_t group_index) const
-{
-	return nullptr;
-}
-
-c_tag_group_interface* c_halo3_cache_file::get_tag_group_interface_by_group_id(unsigned long tag_group) const
-{
-	return nullptr;
-}
-
-c_tag_group_interface* const* c_halo3_cache_file::get_tag_group_interfaces() const
-{
-	return nullptr;
 }
 
 char* c_halo3_cache_file::get_tag_data(s_tag_data& tag_data) const
@@ -127,6 +145,11 @@ const char* c_halo3_cache_file::get_string_id(string_id const id, const char* co
 
 const char* c_halo3_cache_file::get_tag_path(uint16_t tag_index) const
 {
+	if (tag_index < get_tag_count())
+	{
+		const char* tag_path = filenames_buffer + filename_indices[tag_index];
+		return tag_path;
+	}
 	return nullptr;
 }
 
@@ -142,20 +165,21 @@ void c_halo3_cache_file::get_raw_tag_memory_region(uint32_t tag_index, size_t& o
 
 const s_section_cache* c_halo3_cache_file::get_section(uint32_t section_index) const
 {
+	if (section_index < k_number_of_cache_file_sections)
+	{
+		throw;
+	}
 	return nullptr;
-}
-
-const s_section_cache& c_halo3_cache_file::get_section(e_haloreach_cache_file_section_index cache_file_section) const
-{
-	return *get_section(0);
 }
 
 void* c_halo3_cache_file::get_internal_tag_instance_impl(uint16_t tag_index) const
 {
-	return nullptr;
+	s_cache_file_tag_instance& cache_file_tag_instance = cache_file_tag_instances[tag_index];
+	return &cache_file_tag_instance;
 }
 
 void* c_halo3_cache_file::get_internal_tag_group_impl(uint32_t group_index) const
 {
-	return nullptr;
+	s_cache_file_tag_group& cache_file_tag_group = cache_file_tag_groups[group_index];
+	return &cache_file_tag_group;
 }

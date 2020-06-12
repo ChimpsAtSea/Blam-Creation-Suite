@@ -1,5 +1,8 @@
 #include "mantlelib-private-pch.h"
 
+using namespace gen3;
+using namespace haloreach;
+
 c_haloreach_cache_file::c_haloreach_cache_file(const std::wstring& map_filepath) :
 	c_cache_file(map_filepath),
 	tag_name_indices(nullptr),
@@ -60,7 +63,7 @@ bool c_haloreach_cache_file::read_cache_file()
 
 	c_console::write_line_verbose("cache file version: %i", cache_file_header->file_version);
 
-	if (cache_file_header->unknown_bits & _unknown_bits_use_absolute_addressing)
+	if (cache_file_header->unknown_bits & _cache_file_flag_use_absolute_addressing)
 	{
 		c_console::write_line_verbose("cache file using absolute addresses");
 	}
@@ -77,9 +80,9 @@ void c_haloreach_cache_file::init_sections()
 	char* map_data = virtual_memory_container.get_data();
 
 	// init section cache
-	for (underlying(e_haloreach_cache_file_section_index) cache_file_section_index = 0; cache_file_section_index < underlying_cast(k_number_of_haloreach_cache_file_sections); cache_file_section_index++)
+	for (underlying(e_cache_file_section_index) cache_file_section_index = 0; cache_file_section_index < underlying_cast(k_number_of_cache_file_sections); cache_file_section_index++)
 	{
-		e_haloreach_cache_file_section_index cache_file_section = static_cast<e_haloreach_cache_file_section_index>(cache_file_section_index);
+		e_cache_file_section_index cache_file_section = static_cast<e_cache_file_section_index>(cache_file_section_index);
 
 		long offset = cache_file_header->section_offsets[cache_file_section_index] + cache_file_header->section_bounds[cache_file_section_index].offset;
 		long size = cache_file_header->section_bounds[cache_file_section_index].size;
@@ -101,11 +104,11 @@ void c_haloreach_cache_file::load_map()
 	char* debug_section = get_debug_section().data;
 	char* tags_section = get_tags_section().data;
 
-	tag_name_indices = reinterpret_cast<long*>(debug_section + cache_file_header->tag_name_indices_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
-	tag_name_buffer = reinterpret_cast<char*>(debug_section + cache_file_header->tag_names_buffer_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
+	tag_name_indices = reinterpret_cast<long*>(debug_section + cache_file_header->tag_name_indices_offset - cache_file_header->section_bounds[underlying_cast(_cache_file_section_index_debug)].offset);
+	tag_name_buffer = reinterpret_cast<char*>(debug_section + cache_file_header->tag_names_buffer_offset - cache_file_header->section_bounds[underlying_cast(_cache_file_section_index_debug)].offset);
 
-	string_id_indices = reinterpret_cast<long*>(debug_section + cache_file_header->string_id_indices_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
-	string_id_buffer = reinterpret_cast<char*>(debug_section + cache_file_header->string_ids_buffer_offset - cache_file_header->section_bounds[underlying_cast(_haloreach_cache_file_section_index_debug)].offset);
+	string_id_indices = reinterpret_cast<long*>(debug_section + cache_file_header->string_id_indices_offset - cache_file_header->section_bounds[underlying_cast(_cache_file_section_index_debug)].offset);
+	string_id_buffer = reinterpret_cast<char*>(debug_section + cache_file_header->string_ids_buffer_offset - cache_file_header->section_bounds[underlying_cast(_cache_file_section_index_debug)].offset);
 
 	cache_file_tags_header = reinterpret_cast<s_cache_file_tags_header*>(tags_section + (cache_file_header->tags_header_address - cache_file_header->virtual_base_address));
 	cache_file_tag_instances = reinterpret_cast<s_cache_file_tag_instance*>(tags_section + (cache_file_tags_header->tag_instances.address - cache_file_header->virtual_base_address));
@@ -162,11 +165,11 @@ uint64_t c_haloreach_cache_file::get_base_virtual_address() const
 	return 0;
 }
 
-uint64_t c_haloreach_cache_file::convert_page_offset(uint32_t page_offset) const
+uint64_t c_haloreach_cache_file::convert_page_offset(uint64_t page_offset) const
 {
 	if (cache_file_header)
 	{
-		if (cache_file_header->unknown_bits & _unknown_bits_use_absolute_addressing) // #TODO: Actually detect version
+		if (cache_file_header->unknown_bits & _cache_file_flag_use_absolute_addressing) // #TODO: Actually detect version
 		{
 			return (static_cast<uint64_t>(page_offset) * 4ull) - (get_base_virtual_address() - 0x10000000ull);
 		}
@@ -205,54 +208,9 @@ uint32_t c_haloreach_cache_file::get_string_id_count() const
 	return 0;
 }
 
-c_tag_interface* c_haloreach_cache_file::get_tag_interface(uint16_t tag_index) const
-{
-	if (tag_index < get_tag_count())
-	{
-		return tag_interfaces[tag_index];
-	}
-	return nullptr;
-}
-
-c_tag_group_interface* c_haloreach_cache_file::get_tag_group_interface(uint16_t group_index) const
-{
-	if (group_index < get_tag_group_count())
-	{
-		return tag_group_interfaces[group_index];
-	}
-	return nullptr;
-}
-
-c_tag_group_interface* c_haloreach_cache_file::get_tag_group_interface_by_group_id(unsigned long tag_group) const
-{
-	if (tag_group == blofeld::INVALID_TAG)
-	{
-		return nullptr;
-	}
-
-	for (c_tag_group_interface* group_interface : tag_group_interfaces)
-	{
-		if (group_interface->get_group_tag() == tag_group)
-		{
-			return group_interface;
-		}
-	}
-
-	return nullptr;
-}
-
-c_tag_group_interface* const* c_haloreach_cache_file::get_tag_group_interfaces() const
-{
-	if (get_tag_group_count() > 0)
-	{
-		return tag_group_interfaces.data();
-	}
-	return nullptr;
-}
-
 char* c_haloreach_cache_file::get_tag_data(s_tag_data& tag_data) const
 {
-	const s_section_cache& section_info = get_section(_haloreach_cache_file_section_index_tags);
+	const s_section_cache& section_info = get_section(_cache_file_section_index_tags);
 	char* tags_section_data = section_info.data;
 
 	uint64_t data_offset = convert_page_offset(tag_data.address);
@@ -263,7 +221,7 @@ char* c_haloreach_cache_file::get_tag_data(s_tag_data& tag_data) const
 
 char* c_haloreach_cache_file::get_tag_block_data(s_tag_block& tag_block) const
 {
-	const s_section_cache& section_info = get_section(_haloreach_cache_file_section_index_tags);
+	const s_section_cache& section_info = get_section(_cache_file_section_index_tags);
 	char* tags_section_data = section_info.data;
 
 	uint64_t data_offset = convert_page_offset(tag_block.address);
@@ -346,14 +304,14 @@ void c_haloreach_cache_file::get_raw_tag_memory_region(uint32_t tag_index, size_
 
 const s_section_cache* c_haloreach_cache_file::get_section(uint32_t section_index) const
 {
-	if (section_index < k_number_of_haloreach_cache_file_sections)
+	if (section_index < k_number_of_cache_file_sections)
 	{
-		return &get_section(static_cast<e_haloreach_cache_file_section_index>(section_index));
+		return &get_section(static_cast<e_cache_file_section_index>(section_index));
 	}
 	return nullptr;
 }
 
-const s_section_cache& c_haloreach_cache_file::get_section(e_haloreach_cache_file_section_index cache_file_section) const
+const s_section_cache& c_haloreach_cache_file::get_section(e_cache_file_section_index cache_file_section) const
 {
 	return section_cache[underlying_cast(cache_file_section)];
 }

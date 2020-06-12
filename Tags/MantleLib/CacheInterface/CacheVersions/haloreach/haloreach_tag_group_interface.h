@@ -9,6 +9,6 @@ public:
 
 	virtual void add_tag_interface(c_tag_interface& tag_interface);
 
-	s_cache_file_tag_group* cache_file_tag_group;
+	gen3::s_cache_file_tag_group* cache_file_tag_group;
 };
 

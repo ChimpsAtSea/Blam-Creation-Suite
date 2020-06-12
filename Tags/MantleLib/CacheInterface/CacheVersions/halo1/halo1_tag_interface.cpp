@@ -1,5 +1,7 @@
 #include "mantlelib-private-pch.h"
 
+using namespace halo1;
+
 c_halo1_tag_interface::c_halo1_tag_interface(c_halo1_cache_file& cache_file, uint16_t tag_index) :
 	c_tag_interface(cache_file, tag_index),
 	cache_file_tag_instance(cache_file.cache_file_tag_instances[tag_index]),

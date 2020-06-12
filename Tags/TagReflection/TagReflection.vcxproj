@@ -163,6 +163,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="halo3.h" />
     <ClInclude Include="halo4.h" />
     <ClInclude Include="halo4_virtual.h" />
     <ClInclude Include="haloreach.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="virtual_tag_interface.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="halo3_virtual.cpp" />
     <ClCompile Include="halo4_virtual.cpp" />
     <ClCompile Include="haloreach_virtual.cpp" />
     <ClCompile Include="tagreflection-private-pch.cpp">

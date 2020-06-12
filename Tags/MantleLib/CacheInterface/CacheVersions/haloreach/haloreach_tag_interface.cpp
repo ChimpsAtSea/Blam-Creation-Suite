@@ -1,5 +1,8 @@
 #include "mantlelib-private-pch.h"
 
+using namespace gen3;
+using namespace haloreach;
+
 c_haloreach_tag_interface::c_haloreach_tag_interface(c_haloreach_cache_file& cache_file, uint16_t tag_index) :
 	c_tag_interface(cache_file, tag_index),
 	cache_file_tag_instance(cache_file.get_internal_tag_instance(tag_index)),
@@ -74,7 +77,7 @@ c_tag_group_interface* c_haloreach_tag_interface::get_tag_group_interface() cons
 	return tag_group_interface;
 }
 
-const char* c_haloreach_tag_interface::get_path_cstr() const { return tag_path.c_str(); };
+const char* c_haloreach_tag_interface::get_filepath() const { return tag_path.c_str(); };
 const char* c_haloreach_tag_interface::get_path_with_group_id_cstr() const { return tag_path_with_group_id.c_str(); };
 const char* c_haloreach_tag_interface::get_path_with_group_name_cstr() const { return tag_path_with_group_name.c_str(); };
 const char* c_haloreach_tag_interface::get_name_cstr() const { return tag_name.c_str(); };

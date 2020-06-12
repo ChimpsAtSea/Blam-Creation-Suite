@@ -18,19 +18,18 @@ protected:
 	virtual ~c_tag_interface();
 
 	void associate_virtual_tag_interface(c_virtual_tag_interface& virtual_tag_interface);
+	void init_virtual_tag_interface();
 	void register_with_tag_group();
 public:
 	virtual unsigned long get_group_tag() const;
 	virtual c_tag_group_interface* get_tag_group_interface() const;
 
-	virtual const char* get_filepath() const; // eg. globals/globals
-	virtual const char* get_path_with_group_id_cstr() const; // eg. globals/globals.matg
-	virtual const char* get_path_with_group_name_cstr() const; // eg. globals/globals.globals
-	virtual const char* get_name_cstr() const; // eg. globals
-	virtual const char* get_name_with_group_id_cstr() const; // eg. globals.matg
-	virtual const char* get_name_with_group_name_cstr() const; // eg. globals.globals
-
-
+	virtual const char* get_filepath() const = 0; // eg. globals/globals
+	virtual const char* get_path_with_group_id_cstr() const = 0; // eg. globals/globals.matg
+	virtual const char* get_path_with_group_name_cstr() const = 0; // eg. globals/globals.globals
+	virtual const char* get_name_cstr() const = 0; // eg. globals
+	virtual const char* get_name_with_group_id_cstr() const = 0; // eg. globals.matg
+	virtual const char* get_name_with_group_name_cstr() const = 0; // eg. globals.globals
 
 
 

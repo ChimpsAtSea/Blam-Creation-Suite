@@ -129,7 +129,7 @@ uint64_t c_halo1_cache_file::get_base_virtual_address() const
 	return virtual_address;
 }
 
-uint64_t c_halo1_cache_file::convert_page_offset(uint32_t page_offset) const
+uint64_t c_halo1_cache_file::convert_page_offset(uint64_t page_offset) const
 {
 	return static_cast<uint64_t>(page_offset) - get_base_virtual_address();
 }
@@ -147,33 +147,6 @@ uint32_t c_halo1_cache_file::get_tag_group_count() const
 uint32_t c_halo1_cache_file::get_string_id_count() const
 {
 	return 0;
-}
-
-c_tag_interface* c_halo1_cache_file::get_tag_interface(uint16_t tag_index) const
-{
-	return tag_interfaces[tag_index];
-}
-
-c_tag_group_interface* c_halo1_cache_file::get_tag_group_interface(uint16_t group_index) const
-{
-	return tag_group_interfaces[group_index];
-}
-
-c_tag_group_interface* c_halo1_cache_file::get_tag_group_interface_by_group_id(unsigned long tag_group) const
-{
-	for (c_tag_group_interface* group_interface : tag_group_interfaces)
-	{
-		if (group_interface->get_group_tag() == tag_group)
-		{
-			return group_interface;
-		}
-	}
-	return nullptr;
-}
-
-c_tag_group_interface* const* c_halo1_cache_file::get_tag_group_interfaces() const
-{
-	return tag_group_interfaces.data();
 }
 
 char* c_halo1_cache_file::get_tag_data(s_tag_data& tag_data) const

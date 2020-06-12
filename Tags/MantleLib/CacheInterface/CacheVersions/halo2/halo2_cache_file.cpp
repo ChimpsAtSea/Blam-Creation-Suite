@@ -26,7 +26,7 @@ uint64_t c_halo2_cache_file::get_base_virtual_address() const
 	return 0;
 }
 
-uint64_t c_halo2_cache_file::convert_page_offset(uint32_t page_offset) const
+uint64_t c_halo2_cache_file::convert_page_offset(uint64_t page_offset) const
 {
 	return 0;
 }
@@ -44,26 +44,6 @@ uint32_t c_halo2_cache_file::get_tag_group_count() const
 uint32_t c_halo2_cache_file::get_string_id_count() const
 {
 	return 0;
-}
-
-c_tag_interface* c_halo2_cache_file::get_tag_interface(uint16_t tag_index) const
-{
-	return nullptr;
-}
-
-c_tag_group_interface* c_halo2_cache_file::get_tag_group_interface(uint16_t group_index) const
-{
-	return nullptr;
-}
-
-c_tag_group_interface* c_halo2_cache_file::get_tag_group_interface_by_group_id(unsigned long tag_group) const
-{
-	return nullptr;
-}
-
-c_tag_group_interface* const* c_halo2_cache_file::get_tag_group_interfaces() const
-{
-	return nullptr;
 }
 
 char* c_halo2_cache_file::get_tag_data(s_tag_data& tag_data) const
@@ -104,11 +84,6 @@ void c_halo2_cache_file::get_raw_tag_memory_region(uint32_t tag_index, size_t& o
 const s_section_cache* c_halo2_cache_file::get_section(uint32_t section_index) const
 {
 	return nullptr;
-}
-
-const s_section_cache& c_halo2_cache_file::get_section(e_haloreach_cache_file_section_index cache_file_section) const
-{
-	return *get_section(0);
 }
 
 void* c_halo2_cache_file::get_internal_tag_instance_impl(uint16_t tag_index) const

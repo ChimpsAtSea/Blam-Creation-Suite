@@ -1,5 +1,8 @@
 #include "mantlelib-private-pch.h"
 
+using namespace gen3;
+using namespace halo3;
+
 c_haloreach_tag_group_interface::c_haloreach_tag_group_interface(c_haloreach_cache_file& cache_file, uint16_t group_index) :
 	c_tag_group_interface(cache_file, group_index),
 	cache_file_tag_group(static_cast<s_cache_file_tag_group*>(c_tag_group_interface::cache_file_tag_group))

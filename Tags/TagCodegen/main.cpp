@@ -16,6 +16,14 @@ void create_source_file()
 		virtual_tag_source_generator.generate_source();
 	}
 	{
+		c_tag_source_generator tag_source_generator(_engine_type_halo3, _build_not_set);
+		tag_source_generator.generate_source();
+
+		c_virtual_tag_source_generator virtual_tag_source_generator(_engine_type_halo3, _build_not_set);
+		virtual_tag_source_generator.generate_header();
+		virtual_tag_source_generator.generate_source();
+	}
+	{
 		c_tag_source_generator tag_source_generator(_engine_type_halo4, _build_not_set);
 		tag_source_generator.generate_source();
 

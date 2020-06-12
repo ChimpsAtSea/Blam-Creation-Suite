@@ -27,12 +27,7 @@
     <ClInclude Include="Blam\legacy\blamfile_header.h" />
     <ClInclude Include="Blam\legacy\blamfile_level_chunk.h" />
     <ClInclude Include="Blam\legacy\blamfile_level_chunk_flags.h" />
-    <ClInclude Include="Blam\legacy\cache_file_header.h" />
     <ClInclude Include="Blam\legacy\cache_file_magic.h" />
-    <ClInclude Include="Blam\legacy\cache_file_section_file_bounds.h" />
-    <ClInclude Include="Blam\legacy\cache_file_tags_header.h" />
-    <ClInclude Include="Blam\legacy\cache_file_tag_group.h" />
-    <ClInclude Include="Blam\legacy\cache_file_tag_instance.h" />
     <ClInclude Include="Blam\legacy\campaign_difficulty_level.h" />
     <ClInclude Include="Blam\legacy\campaign_metagame_bucket_type.h" />
     <ClInclude Include="Blam\legacy\damage_reporting_type.h" />

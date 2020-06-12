@@ -2,74 +2,119 @@
 
 namespace halo3
 {
-	struct s_cache_file_header : ::s_cache_file_header
+	struct s_cache_file_header
 	{
-		long __unknown0;
-		long __unknown1;
-		long __unknown2;
-		long __unknown3;
+		unsigned long header_signature;
 
-		char source_file[256] = "";
-		char build[32] = "";
-		c_enum<e_scenario_type, int16_t> scenario_type = _scenario_type_none;
-		c_enum<e_scenario_load_type, int16_t> load_type = _scenario_load_none;
+		unsigned long file_version;
+		unsigned long file_length;
+		unsigned long file_compressed_length;
 
-		char unknown1 = 0;
-		bool tracked_build = false;
-		char unknown2 = 0;
-		char unknown3 = 0;
+		unsigned long long tags_header_address;
 
-		uint32_t string_id_count = 0;
-		uint32_t string_ids_buffer_size = 0;
-		uint32_t string_id_indices_offset = 0;
-		uint32_t string_ids_buffer_offset = 0;
+		unsigned long tag_buffer_offset;
+		unsigned long tag_buffer_size;
 
-		// unconfirmed if bitfields, but the first bit changes when the addressing changed
-		e_cache_file_unknown_bits unknown_bits = {};
+		char source_file[256];
+		char build[32];
 
-		uint64_t timestamp = 0;
-		uint64_t mainmenu_timestamp = 0;
-		uint64_t shared_timestamp = 0;
-		uint64_t campaign_timestamp = 0;
-		uint64_t multiplayer_timestamp = 0;
+		short scenario_type;
+		short scenario_shared_type;
 
-		char name[32] = "";
+		unsigned char : 8;
+		char tracked_build;
+		unsigned char : 8;
+		unsigned char : 8;
 
-		int32_t unknown15 = 0;
+		unsigned long : 32;
+		unsigned long : 32;
+		unsigned long : 32;
+		unsigned long : 32;
+		unsigned long : 32;
 
-		char scenario_path[256] = "";
+		unsigned long string_count;
+		unsigned long string_table_length;
+		unsigned long string_table_indices_offset;
+		unsigned long string_table_offset;
 
-		int32_t minor_version = 0;
+		unsigned long dependencies;
 
-		int32_t tag_name_count = 0;
-		int32_t tag_names_buffer_offset = 0;
-		int32_t tag_names_buffer_size = 0;
-		int32_t tag_name_indices_offset = 0;
+		time64_t timestamp;
+		time64_t scenario_type_timestamps[4];
 
-		uint32_t checksum = 0;
+		char name[32];
+		unsigned long __unknown1B8;
+		char scenario_path[256];
+		long minor_version;
 
-		int32_t unknown17 = 0;
-		int32_t unknown18 = 0;
-		int32_t unknown19 = 0;
-		int32_t unknown20 = 0;
-		int32_t unknown21 = 0;
-		int32_t unknown22 = 0;
-		int32_t unknown23 = 0;
-		int32_t unknown24 = 0;
-		int32_t unknown25 = 0;
+		unsigned long file_count;
+		unsigned long file_table_offset;
+		unsigned long file_table_length;
+		unsigned long file_table_indices_offset;
 
-		uint64_t virtual_base_address = 0;
-		
+		unsigned long checksum;
+
+		unsigned long : 32;
+		unsigned long : 32;
+		unsigned long : 32;
+		unsigned long : 32;
+		unsigned long : 32;
+		unsigned long : 32;
+		unsigned long : 32;
+		unsigned long : 32;
+		unsigned long : 32;
+
+		unsigned long long virtual_base_address;
+		unsigned long xdk_version;
+		unsigned long : 32;
+
+		struct
+		{
+			unsigned long long virtual_address;
+			unsigned long long size;
+		} partitions[6];
+
+		unsigned long SHA1_A[5];
+		unsigned long SHA1_B[5];
+		unsigned long SHA1_C[5];
+		unsigned long RSA[64];
+
+		unsigned long GUID[4];
+
+		struct
+		{
+			unsigned long offset_masks[gen3::k_number_of_cache_file_sections];
+			struct
+			{
+				unsigned long offset;
+				unsigned long size;
+			} sections[gen3::k_number_of_cache_file_sections];
+		} section_table;
+
+
+		char __unknown4E4[0x2B14];
+
+		unsigned long __unknown2FFC;
+		unsigned long footer_signature;
 	};
 
-	struct s_cache_file_tag
+	struct s_cache_file_tags_header
 	{
+		template <typename t_type>
+		struct s_section
+		{
+			uint32_t count = 0;
+			uint32_t post_count_signature = k_cache_file_tags_section_signature;
+			qword address = 0;
+		};
 
-	};
+		s_section<gen3::s_cache_file_tag_group> tag_groups;
+		s_section<gen3::s_cache_file_tag_instance> tag_instances;
+		s_section<gen3::s_cache_file_tag_global_instance> tag_global_instance;
+		s_section<gen3::s_cache_file_tag_interop> tag_interop_table;
 
-	struct s_cache_file_tag_group
-	{
-
+		long : 32;
+		unsigned long tags_signature;
 	};
 
 }

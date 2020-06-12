@@ -27,19 +27,19 @@ public:
 	virtual bool save_map() = 0;
 	virtual bool is_loading() const = 0;
 	virtual uint64_t get_base_virtual_address() const = 0;
-	virtual uint64_t convert_page_offset(uint32_t page_offset) const = 0;
+	virtual uint64_t convert_page_offset(uint64_t page_offset) const = 0;
 	virtual const s_section_cache* get_section(uint32_t section_index) const = 0;
 	virtual uint32_t get_tag_count() const = 0;
 	virtual uint32_t get_tag_group_count() const = 0;
 	virtual uint32_t get_string_id_count() const = 0;
-	virtual c_tag_interface* get_tag_interface(uint16_t tag_index) const = 0;
+	c_tag_interface* get_tag_interface(uint16_t tag_index) const;
 	c_tag_interface* const* get_tag_interfaces() const;
 	c_tag_interface* const* get_tag_interfaces_sorted_by_name_with_group_id() const;
 	c_tag_interface* const* get_tag_interfaces_sorted_by_path_with_group_id() const;
 	c_tag_interface* const* get_tag_interfaces_sorted_by_data_address() const;
-	virtual c_tag_group_interface* get_tag_group_interface(uint16_t group_index) const = 0;
-	virtual c_tag_group_interface* get_tag_group_interface_by_group_id(unsigned long tag_group) const = 0;
-	virtual c_tag_group_interface* const* get_tag_group_interfaces() const = 0;
+	c_tag_group_interface* get_tag_group_interface(uint16_t group_index) const;
+	c_tag_group_interface* get_tag_group_interface_by_group_id(unsigned long tag_group) const;
+	c_tag_group_interface* const* get_tag_group_interfaces() const;
 	virtual char* get_tag_data(s_tag_data& tag_data) const = 0;
 	virtual char* get_tag_block_data(s_tag_block& tag_block) const = 0;
 	virtual const char* get_string_id_by_index(uint32_t index) const = 0;
@@ -82,7 +82,7 @@ protected:
 	/* initialize each group instance */
 	void init_group_instances();
 	/* initialize each tag instance */
-	void init_tag_instances();
+	void init_tag_instances_deprecated();
 	void init_sorted_instance_lists();
 
 	std::wstring map_filepath;

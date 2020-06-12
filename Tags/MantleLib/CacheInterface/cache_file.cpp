@@ -112,6 +112,15 @@ c_cache_file::~c_cache_file()
 	delete& virtual_memory_container;
 }
 
+c_tag_interface* c_cache_file::get_tag_interface(uint16_t tag_index) const
+{
+	if (tag_index < get_tag_count())
+	{
+		return tag_interfaces[tag_index];
+	}
+	return nullptr;
+}
+
 c_tag_interface* const* c_cache_file::get_tag_interfaces() const
 {
 	if (get_tag_count() > 0)
@@ -148,9 +157,44 @@ c_tag_interface* const* c_cache_file::get_tag_interfaces_sorted_by_data_address(
 	return nullptr;
 }
 
+c_tag_group_interface* c_cache_file::get_tag_group_interface(uint16_t group_index) const
+{
+	if (group_index < get_tag_group_count())
+	{
+		return tag_group_interfaces[group_index];
+	}
+	return nullptr;
+}
+
+c_tag_group_interface* c_cache_file::get_tag_group_interface_by_group_id(unsigned long tag_group) const
+{
+	if (tag_group == blofeld::INVALID_TAG)
+	{
+		return nullptr;
+	}
+
+	for (c_tag_group_interface* group_interface : tag_group_interfaces)
+	{
+		if (group_interface->get_group_tag() == tag_group)
+		{
+			return group_interface;
+		}
+	}
+	return nullptr;
+}
+
+c_tag_group_interface* const* c_cache_file::get_tag_group_interfaces() const
+{
+	if (get_tag_group_count() > 0)
+	{
+		return tag_group_interfaces.data();
+	}
+	return nullptr;
+}
+
 void c_cache_file::cache_file_post_load()
 {
-	init_tag_instances();
+	init_tag_instances_deprecated();
 	init_group_instances();
 
 	for (c_tag_interface* tag_interface : tag_interfaces)
@@ -177,7 +221,7 @@ void c_cache_file::init_group_instances()
 	tbb::parallel_for(0u, get_tag_group_count(), create_group);
 }
 
-void c_cache_file::init_tag_instances()
+void c_cache_file::init_tag_instances_deprecated()
 {
 	// allocate buffer space to store pointers back
 	tag_interfaces.resize(get_tag_count());
@@ -193,11 +237,14 @@ void c_cache_file::init_tag_instances()
 		{
 			switch (engine_type)
 			{
-			case _engine_type_halo4:
-				virtual_tag_interface = blofeld::halo4::create_virtual_tag_interface(*tag_interface, group_tag);
+			case _engine_type_halo3:
+				virtual_tag_interface = blofeld::halo3::create_virtual_tag_interface(*tag_interface, group_tag);
 				break;
 			case _engine_type_haloreach:
 				virtual_tag_interface = blofeld::haloreach::create_virtual_tag_interface(*tag_interface, group_tag);
+				break;
+			case _engine_type_halo4:
+				virtual_tag_interface = blofeld::halo4::create_virtual_tag_interface(*tag_interface, group_tag);
 				break;
 			}
 		}
