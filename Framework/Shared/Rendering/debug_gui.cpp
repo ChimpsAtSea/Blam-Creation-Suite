@@ -89,6 +89,7 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 			}
 
 			float font_size = floorf(15.0f * scaling);
+			float font_awesome_size = floorf(13.0f * scaling);
 
 			{
 				ImFontConfig config;
@@ -118,7 +119,7 @@ void c_debug_gui::Init(HINSTANCE hInstance, IDXGIFactory1* pFactory, IDXGISwapCh
 				ASSERT(font_resource_found);
 				ASSERT(font_size < INT_MAX);
 				static const ImWchar icon_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
-				s_imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(font_resource_data, static_cast<int>(font_resource_size), font_size, &config, icon_ranges);
+				s_imgui_font = imgui_io.Fonts->AddFontFromMemoryTTF(font_resource_data, static_cast<int>(font_resource_size), font_awesome_size, &config, icon_ranges);
 				imgui_io.Fonts->Build();
 				ImGui::SetCurrentFont(s_imgui_font);
 			}
