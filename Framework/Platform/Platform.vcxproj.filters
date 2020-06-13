@@ -142,5 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="!Resources\Cousine-Regular.ttf" />
+    <Font Include="!Resources\fa-regular-400.ttf" />
   </ItemGroup>
 </Project>

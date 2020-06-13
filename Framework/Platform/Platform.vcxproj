@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="!Resources\Cousine-Regular.ttf" />
+    <Font Include="!Resources\fa-regular-400.ttf" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

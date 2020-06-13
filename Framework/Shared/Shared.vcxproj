@@ -41,6 +41,7 @@
     <ClInclude Include="Blam\legacy\observer_camera.h" />
     <ClInclude Include="Blam\mcc_skull.h" />
     <ClInclude Include="high_precision_timer.h" />
+    <ClInclude Include="IconsFontAwesome5.h" />
     <ClInclude Include="ImGuiAddons\imgui_memory_editor.h" />
     <ClInclude Include="Rendering\directx_helpers.h" />
     <ClInclude Include="Rendering\dds.h" />

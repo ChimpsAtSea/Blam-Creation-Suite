@@ -3,10 +3,11 @@
 // Used by Resource.rc
 //
 #define IDI_ICON1                       101
-#define IDR_FONT1                       102
-#define IDR_MAPDATABASE					103
-#define IDR_BOXSHADERPS					104
-#define IDR_BOXSHADERVS					105
+#define IDR_FONT_COUSING_REGULAR        102
+#define IDR_FONT_FONT_AWESOME           103
+#define IDR_MAPDATABASE					104
+#define IDR_BOXSHADERPS					105
+#define IDR_BOXSHADERVS					106
 
 // Next default values for new objects
 // 

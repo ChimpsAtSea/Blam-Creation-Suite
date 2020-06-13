@@ -1,8 +1,5 @@
 #include <Platform\platform-public-pch.h>
-#include <Versioning\versioning-public-pch.h>
 #include <Shared\shared-public-pch.h>
-#include <TagDefinitions\tagdefinitions-public-pch.h>
-#include <MantleLib\mantlelib-public-pch.h>
 
 /* ---------- private constants */
 /* ---------- private macros */
@@ -17,15 +14,20 @@ const char* c_console::g_console_executable_name = "ImGUI UI Prototype";
 /* ---------- public code */
 /* ---------- private code */
 
+void mandrill_init();
+void mandrill_deinit();
+void mandrill();
+
 static void application_ui_callback()
 {
-	ImGui::Text("hello world");
+	mandrill();
 }
 
 static void application_update_callback()
 {
-	static float clearColor[] = { 0.25f, 0.25f, 0.25f, 1.0f };
-	c_render::begin_frame(true, clearColor);
+	constexpr float clear_shade = 33.0f / 255.0f;
+	static float clear_color[] = { clear_shade, clear_shade, clear_shade, 1.0f };
+	c_render::begin_frame(true, clear_color);
 	c_render::end_frame();
 }
 
@@ -47,6 +49,8 @@ static void init(const wchar_t* command_line)
 
 	c_debug_gui::show_ui();
 	//c_console::show_startup_banner();
+
+	mandrill_init();
 }
 
 static int run()
@@ -60,6 +64,8 @@ static int run()
 
 static void deinit()
 {
+	mandrill_deinit();
+
 	c_window_win32::unregister_destroy_callback(application_close_callback);
 	c_window_win32::unregister_update_callback(application_update_callback);
 	c_window_win32::unregister_window_procedure_callback(c_debug_gui::WndProc);
