@@ -37,7 +37,7 @@ namespace TagDefinitionsUnitTest
 			Assert::IsFalse(halo4_validated_result);
 		}
 
-		TEST_METHOD_EX(mantle_validate_halo_reach_cache_file, "Mantle | Validate Halo Reach Cache File")
+		TEST_METHOD_EX(mandrill_validate_halo_reach_cache_file, "Mandrill | Validate Halo Reach Cache File")
 		{
 			wchar_t environment_variable[0x8000u];
 			if (GetEnvironmentVariableW(L"BCS_TEST_ROOT", environment_variable, _countof(environment_variable)) == 0)
@@ -49,7 +49,7 @@ namespace TagDefinitionsUnitTest
 			wchar_t cache_filepath[0x8000u]{};
 			PathCombineW(cache_filepath, environment_variable, L"MCC_1.1389.0.0\\Halo The Master Chief Collection\\haloreach\\maps\\m70_a.map");
 
-			test_mantle_cache_file_blofeld_validation(cache_filepath);
+			test_mandrill_cache_file_blofeld_validation(cache_filepath);
 
 		}
 	};

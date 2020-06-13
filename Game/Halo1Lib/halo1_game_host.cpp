@@ -56,8 +56,8 @@ c_halo1_game_host::~c_halo1_game_host()
 {
 	c_console::write_line_verbose("Deinit Halo1GameHost");
 
-	c_mantle_gui::set_get_tag_selection_address_function(nullptr); // #TODO: This is kinda hacky
-	c_mantle_gui::set_get_tag_pointer_function(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_gui::set_get_tag_selection_address_function(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_gui::set_get_tag_pointer_function(nullptr); // #TODO: This is kinda hacky
 
 	//m_pGameEngine->Destructor();
 	//free(pHaloReachEngine);

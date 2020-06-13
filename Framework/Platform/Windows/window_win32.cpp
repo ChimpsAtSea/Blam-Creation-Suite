@@ -189,7 +189,7 @@ void c_window_win32::init_window(const wchar_t* window_title, const wchar_t* con
 void c_window_win32::deinit_window()
 {
 	CloseWindow(s_window_handle);
-	UnregisterClassA("mantle_window_class", s_instance_handle);
+	UnregisterClassA("mandrill_window_class", s_instance_handle);
 }
 
 void c_window_win32::update_no_callbacks()

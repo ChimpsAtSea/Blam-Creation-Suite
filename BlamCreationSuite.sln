@@ -50,7 +50,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourcesPackager", "Toolin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "llvm-build", "ThirdParty\llvm-build\llvm-build.vcxproj", "{01203CE0-D287-48EA-A399-9B77AA93CE7E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mantle", "Tags\Mantle\Mantle.vcxproj", "{25B5BB9E-E3CF-40A0-8E78-579B859415C2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mandrill", "Runtime\Mandrill\Mandrill.vcxproj", "{25B5BB9E-E3CF-40A0-8E78-579B859415C2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{339E1809-744A-4E62-A0C5-EE6BB85283C5} = {339E1809-744A-4E62-A0C5-EE6BB85283C5}
 		{96855E0A-51C2-4C0B-A737-D0A87975033C} = {96855E0A-51C2-4C0B-A737-D0A87975033C}
@@ -134,7 +134,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MustardLauncher", "Runtime\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageRelocateTool", "Tooling\ImageRelocateTool\ImageRelocateTool.vcxproj", "{41732B06-68E1-4E13-8FEA-EBE115934162}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MantleLib", "Tags\MantleLib\MantleLib.vcxproj", "{339E1809-744A-4E62-A0C5-EE6BB85283C5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MandrillLib", "Tags\MandrillLib\MandrillLib.vcxproj", "{339E1809-744A-4E62-A0C5-EE6BB85283C5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C2BE312F-C008-4CB6-A568-B041894AB229} = {C2BE312F-C008-4CB6-A568-B041894AB229}
 		{994A9382-A035-4981-9A50-69BBB6059F3E} = {994A9382-A035-4981-9A50-69BBB6059F3E}

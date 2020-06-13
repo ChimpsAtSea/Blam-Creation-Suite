@@ -47,8 +47,8 @@ int WINAPI wWinMain(
 	const char* excluded_symbol_libs[] =
 	{
 		"Shared",
-		"MantleLib",
-		"MantleGen",
+		"MandrillLib",
+		"MandrillGen",
 		"imgui",
 		"tbb_static",
 		"gameframework",

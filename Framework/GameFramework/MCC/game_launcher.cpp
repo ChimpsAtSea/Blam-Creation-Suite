@@ -255,7 +255,7 @@ void c_game_launcher::update()
 
 void c_game_launcher::game_render()
 {
-	c_mantle_gui::render_in_game_gui();
+	c_mandrill_gui::render_in_game_gui();
 	c_primitive_render_manager::render();
 }
 
@@ -274,7 +274,7 @@ void c_game_launcher::start_game(e_engine_type engine_type, e_next_launch_mode n
 
 void c_game_launcher::render_ui()
 {
-	c_mantle_gui::render_gui();
+	c_mandrill_gui::render_gui();
 	if (s_is_game_running)
 	{
 		current_game_host->render_ui();
@@ -383,13 +383,13 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 				//c_haloreach_game_option_selection_legacy::load_savefilm(c_haloreach_game_option_selection_legacy::s_launch_saved_film_filepath.c_str(), *game_context);
 
 				{
-					// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mantle
+					// #TODO: Move this over to a IGameEngineHost callback so when a new map is loaded we load the cache file into mandrill
 					const char *map_file_name = selected_map_info->GetMafilepath();
 					c_console::write_line_verbose("Loading map '%s.map'", map_file_name);
 					{
 						wchar_t map_filepath[MAX_PATH + 1] = {};
 						_snwprintf(map_filepath, MAX_PATH, L"%S%S.map", "haloreach/maps/", map_file_name);
-						c_mantle_gui::open_cache_file_from_filepath(map_filepath);
+						c_mandrill_gui::open_cache_file_from_filepath(map_filepath);
 					}
 				}
 			}

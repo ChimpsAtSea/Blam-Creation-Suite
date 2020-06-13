@@ -146,21 +146,21 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 	
 	Window::Init("Opus", "OpusConsole", "opus");
 	c_render::Init(hInstance);
-	MantleGUI::Init(true);
+	MandrillGUI::Init(true);
 	GameLauncher::Init();
 
 	Window::RegisterUpdateCallback(UpdateCallback);
 	Window::RegisterDestroyCallback(DestroyCallback);
-	//MantleGUI::RegisterOnCloseCallback(DestroyCallback);
+	//MandrillGUI::RegisterOnCloseCallback(DestroyCallback);
 
 	while (s_running) Window::Update();
 
 	Window::UnregisterUpdateCallback(UpdateCallback);
 	Window::UnregisterDestroyCallback(DestroyCallback);
-	//MantleGUI::UnregisterOnCloseCallback(DestroyCallback);
+	//MandrillGUI::UnregisterOnCloseCallback(DestroyCallback);
 
 	GameLauncher::Deinit();
-	MantleGUI::Deinit();
+	MandrillGUI::Deinit();
 	c_render::Deinit();
 	Window::Deinit();
 

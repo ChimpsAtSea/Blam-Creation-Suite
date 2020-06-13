@@ -5,6 +5,6 @@
 #include <blamlib\blamlib.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 
-#include <MantleLib/mantlelib-private-pch.h>
+#include <MandrillLib/mandrilllib-private-pch.h>
 
 #include "tagreflection-public-pch.h"
