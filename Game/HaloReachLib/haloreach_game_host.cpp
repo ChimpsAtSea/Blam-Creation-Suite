@@ -13,7 +13,8 @@ static bool g_is_reach_script_debug_window_open = true;
 static bool g_is_reach_camera_debug_window_open = true;
 c_game_runtime c_haloreach_game_host::g_haloreach_game_runtime(_engine_type_haloreach, "haloreach", "HaloReach\\haloreach.dll");
 static c_haloreach_engine_state_command *g_haloreach_engine_state_command;
-static c_haloreach_camera_command *g_haloreach_camera_command;
+static c_haloreach_camera_command* g_haloreach_camera_command;
+c_haloreach_game_host* c_haloreach_game_host::current_host = nullptr;
 
 /* ---------- private prototypes */
 /* ---------- public code */
@@ -31,6 +32,8 @@ void register_haloreachlib()
 c_haloreach_game_host::c_haloreach_game_host(e_engine_type engine_type, e_build build) :
 	c_opus_game_engine_host(engine_type, build, g_haloreach_game_runtime)
 {
+	current_host = this;
+
 	init_runtime_modifications(g_haloreach_game_runtime.get_build());
 
 	c_mandrill_user_interface::set_get_tag_section_address_callback(haloreach_tag_address_get); // #TODO: This is kinda hacky
@@ -72,6 +75,8 @@ c_haloreach_game_host::~c_haloreach_game_host()
 	deinit_runtime_modifications(g_haloreach_game_runtime.get_build());
 	g_haloreach_game_runtime.~c_game_runtime();
 	new(&g_haloreach_game_runtime) c_game_runtime(_engine_type_haloreach, "haloreach", "HaloReach\\haloreach.dll");
+
+	current_host = nullptr;
 }
 
 void c_haloreach_game_host::FrameEnd(IDXGISwapChain* swap_chain, _QWORD unknown1)
@@ -129,7 +134,7 @@ void c_haloreach_game_host::update_camera_data()
 	s_observer_camera* observer_camera = observer_try_and_get_camera(player_index);
 	if (observer_camera)
 	{
-		float aspect_ratio = c_window_win32::get_aspect_ratio();
+		float aspect_ratio = current_host->window.get_aspect_ratio();
 		float horizontal_field_of_view = observer_camera->field_of_view;
 		c_render::update_perspective(horizontal_field_of_view, aspect_ratio);
 		c_render::update_view(

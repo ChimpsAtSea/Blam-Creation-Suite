@@ -9,6 +9,7 @@
 
 bool g_running = true;
 const char* c_console::g_console_executable_name = "ImGUI UI Prototype";
+c_window* window = nullptr;
 
 /* ---------- private prototypes */
 /* ---------- public code */
@@ -16,11 +17,11 @@ const char* c_console::g_console_executable_name = "ImGUI UI Prototype";
 
 void mandrill_init();
 void mandrill_deinit();
-void mandrill();
+void mandrill(c_window& window);
 
 static void application_ui_callback()
 {
-	mandrill();
+	mandrill(*window);
 }
 
 static void application_update_callback()
@@ -36,19 +37,23 @@ static void application_close_callback()
 	g_running = false;
 }
 
-static void init(const wchar_t* command_line)
+static void init(HINSTANCE instance_handle, int show_cmd, const wchar_t* command_line)
 {
-	//c_console::init_console();
-	c_window_win32::init_window(L"ImGUI UI Prototype", L"ImGUI UI Prototype Console", L"imgui-ui-prototype");
-	c_render::init_render(NULL, true);
+#ifdef _DEBUG
+	const wchar_t* k_window_title = L"ImGUI UI Prototype Debug";
+#else
+	const wchar_t* k_window_title = L"ImGUI UI Prototype";
+#endif
+
+	window = new c_window(instance_handle, k_window_title, L"imgui-ui-prototype", _window_icon_default, show_cmd);
+	c_render::init_render(window, c_runtime_util::get_current_module(), true);
 
 	c_debug_gui::register_callback(_callback_mode_always_run, application_ui_callback);
-	c_window_win32::register_window_procedure_callback(c_debug_gui::WndProc);
-	c_window_win32::register_update_callback(application_update_callback);
-	c_window_win32::register_destroy_callback(application_close_callback);
+	window->on_window_procedure.register_callback(c_debug_gui::WndProc);
+	window->on_update.register_callback(application_update_callback);
+	window->on_destroy.register_callback(application_close_callback);
 
 	c_debug_gui::show_ui();
-	//c_console::show_startup_banner();
 
 	mandrill_init();
 }
@@ -57,7 +62,7 @@ static int run()
 {
 	while (g_running)
 	{
-		c_window_win32::update_window();
+		window->update();
 	}
 	return 0;
 }
@@ -66,14 +71,13 @@ static void deinit()
 {
 	mandrill_deinit();
 
-	c_window_win32::unregister_destroy_callback(application_close_callback);
-	c_window_win32::unregister_update_callback(application_update_callback);
-	c_window_win32::unregister_window_procedure_callback(c_debug_gui::WndProc);
+	window->on_destroy.unregister_callback(application_close_callback);
+	window->on_update.unregister_callback(application_update_callback);
+	window->on_window_procedure.unregister_callback(c_debug_gui::WndProc);
 	c_debug_gui::unregister_callback(_callback_mode_always_run, application_ui_callback);
 
 	c_render::deinit_render();
-	c_window_win32::deinit_window();
-	//c_console::deinit_console();
+	delete window;
 }
 
 int WINAPI wWinMain(
@@ -84,7 +88,7 @@ int WINAPI wWinMain(
 )
 {
 	int result = 0;
-	init(lpCmdLine);
+	init(hInstance, nShowCmd, lpCmdLine);
 	result = run();
 	deinit();
 	return result;

@@ -30,12 +30,12 @@ using namespace xxhash::literals;
 #include "filesystem_util.h"
 #include "endianness_util.h"
 #include "enum_util.h"
+#include "callback_util.h"
 
 #include "Strings/strings.h"
 
-#include "Windows/window_win32.h"
+#include "Windows/window.h"
 #include "Windows/command_line.h"
 #include "Windows/console.h"
 
 #include "!Resources/resources_manager.h"
-#include "callback.h"

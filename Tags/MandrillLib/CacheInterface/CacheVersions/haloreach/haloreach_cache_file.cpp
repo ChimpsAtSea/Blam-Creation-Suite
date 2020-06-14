@@ -79,7 +79,7 @@ bool c_haloreach_cache_file::save_map()
 	FILE* file = _wfopen(get_map_filepath(), L"wb");
 	if (file == nullptr)
 	{
-		MessageBoxA(c_window_win32::get_window_handle(), "Failed to save map", "File error failed to open for write", 0);
+		MessageBoxA(NULL, "Failed to save map", "File error failed to open for write", 0);
 		return false;
 	}
 

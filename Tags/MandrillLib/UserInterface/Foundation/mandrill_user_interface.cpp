@@ -3,8 +3,9 @@
 t_get_tag_game_memory_callback* c_mandrill_user_interface::s_get_tag_game_memory = nullptr;
 t_get_tag_section_address_callback* c_mandrill_user_interface::s_get_tag_section_address = nullptr;
 
-c_mandrill_user_interface::c_mandrill_user_interface(bool is_game_mode, const wchar_t* startup_file) :
+c_mandrill_user_interface::c_mandrill_user_interface(c_window& window, bool is_game_mode, const wchar_t* startup_file) :
 	c_mandrill_tab("Mandrill", "", nullptr),
+	window(window),
 	is_game_mode(is_game_mode),
 	window_open(true),
 	show_file_dialogue(false),
@@ -85,7 +86,7 @@ void c_mandrill_user_interface::render_impl()
 
 	float margin = 4.0f;
 	ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_Always);
-	ImGui::SetNextWindowSize({ c_window_win32::get_width_float() - margin * 2.0f, c_window_win32::get_height_float() - margin * 2.0f }, ImGuiCond_Always);
+	ImGui::SetNextWindowSize({ window.get_width_float() - margin * 2.0f, window.get_height_float() - margin * 2.0f }, ImGuiCond_Always);
 
 	ImGuiWindowFlags imgui_window_flags = 0;
 	imgui_window_flags |= ImGuiWindowFlags_NoCollapse;
@@ -195,8 +196,8 @@ void c_mandrill_user_interface::render_file_dialogue_gui_impl()
 {
 	if (show_file_dialogue)
 	{
-		float file_browser_window_width = std::clamp(c_window_win32::get_width_float(), 700.0f, 1200.0f);
-		float file_browser_window_height = std::clamp(c_window_win32::get_height_float(), 310.0f, 675.0f);
+		float file_browser_window_width = std::clamp(window.get_width_float(), 700.0f, 1200.0f);
+		float file_browser_window_height = std::clamp(window.get_height_float(), 310.0f, 675.0f);
 		if (file_browser.show_open_file_dialog("Open File", ImVec2(file_browser_window_width, file_browser_window_height), ".map"))
 		{
 			show_file_dialogue = false;

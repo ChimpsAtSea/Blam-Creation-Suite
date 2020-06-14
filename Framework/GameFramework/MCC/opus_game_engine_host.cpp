@@ -6,11 +6,13 @@
 
 c_opus_game_engine_host::c_opus_game_engine_host(e_engine_type engine_type, e_build build, c_game_runtime& rGameRuntime) :
 	IGameEngineHost(engine_type, build, &game_events),
+	game_engine(nullptr),
+	window(*c_game_launcher::get_window()),
+	mouse_input(*c_game_launcher::get_mouse_input()),
 	game_runtime(rGameRuntime),
 	game_events(),
 	frame_timer(),
-	total_frame_cpu_time(0.0),
-	game_engine(nullptr)
+	total_frame_cpu_time(0.0)
 {
 	const wchar_t* engine_string = get_enum_string<decltype(engine_string)>(engine_type);
 	const wchar_t* build_string = build_to_string<decltype(build_string), true>(engine_type, build); //#TODO: MCC product version to string to snag build numbers we don't know about
@@ -21,12 +23,12 @@ c_opus_game_engine_host::c_opus_game_engine_host(e_engine_type engine_type, e_bu
 	window_title.append(build_string);
 	window_title.append(L" ");
 	window_title.append(build_configuration);
-	c_window_win32::SetWindowTitle(window_title.c_str()); // #TODO: Replace with push/pop
+	window.set_title(window_title.c_str()); // #TODO: Replace with push/pop
 }
 
 c_opus_game_engine_host::~c_opus_game_engine_host()
 {
-	c_window_win32::SetWindowTitle(L"Opus");
+	window.set_title(L"Opus");
 }
 
 char c_opus_game_engine_host::FrameStart()
@@ -402,8 +404,8 @@ bool __fastcall c_opus_game_engine_host::UpdateGraphics(UpdateGraphicsData* upda
 	DEBUG_ASSERT(update_graphics_data != nullptr);
 
 	// set resolution to 4k
-	update_graphics_data->VIDEO_SizeX = c_window_win32::get_width();
-	update_graphics_data->VIDEO_SizeY = c_window_win32::get_height();
+	update_graphics_data->VIDEO_SizeX = static_cast<int>(window.get_width_integer());
+	update_graphics_data->VIDEO_SizeY = static_cast<int>(window.get_height_integer());
 
 	update_graphics_data->VIDEO_FPS_Lock = false;
 	update_graphics_data->VIDEO_Wait_VSync = false;
@@ -460,18 +462,18 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD a1, Input
 
 	c_console::write_line_verbose("%llu", a1);
 
-	bool debugUIVisible = c_debug_gui::IsVisible();
-	bool windowFocused = c_window_win32::IsWindowFocused();
+	bool is_debug_ui_visible = c_debug_gui::IsVisible();
+	bool is_window_focused = window.is_focused();
 
 	e_mouse_mode mode = _mouse_mode_none;
-	if (windowFocused)
+	if (is_window_focused)
 	{
-		mode = debugUIVisible ? _mouse_mode_ui : _mouse_mode_exclusive;
+		mode = is_debug_ui_visible ? _mouse_mode_ui : _mouse_mode_exclusive;
 	}
-	c_mouse_input::set_mode(mode);
+	mouse_input.set_mode(mode);
 
 	// don't update and return an empty zero buffer
-	if (debugUIVisible)
+	if (is_debug_ui_visible)
 	{
 		input_buffer->inputSource = InputSource::MouseAndKeyboard;
 		return unsigned __int8(1);
@@ -499,7 +501,7 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD a1, Input
 	float fThumbR_Length = 0;
 	XINPUT_STATE xinputState = {};
 
-	if (windowFocused || true)
+	if (is_window_focused || true)
 	{
 		DWORD xinputGetStateResult = XInputGetState(0, &xinputState);
 		if (xinputGetStateResult == ERROR_SUCCESS)
@@ -535,12 +537,12 @@ bool __fastcall __fastcall c_opus_game_engine_host::UpdateInput(_QWORD a1, Input
 			if (!GetKeyboardState(keyboardState))
 				ZeroMemory(keyboardState, sizeof(keyboardState));
 
-			mouse_input_x = c_mouse_input::get_mouse_x();
-			mouse_input_y = c_mouse_input::get_mouse_y();
+			mouse_input_x = mouse_input.get_mouse_x();
+			mouse_input_y = mouse_input.get_mouse_y();
 
-			left_button_pressed = c_mouse_input::get_mouse_button(_mouse_input_button_left);
-			right_button_pressed = c_mouse_input::get_mouse_button(_mouse_input_button_right);
-			middle_button_pressed = c_mouse_input::get_mouse_button(_mouse_input_button_middle);
+			left_button_pressed = mouse_input.get_mouse_button(_mouse_input_button_left);
+			right_button_pressed = mouse_input.get_mouse_button(_mouse_input_button_right);
+			middle_button_pressed = mouse_input.get_mouse_button(_mouse_input_button_middle);
 
 			{
 				//for (size_t i = 0; i < sizeof(keyboardState); i++)

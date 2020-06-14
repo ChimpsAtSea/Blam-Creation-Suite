@@ -8,6 +8,7 @@
 DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
 
 const char* c_console::g_console_executable_name = "Opus";
+c_window* window = nullptr;
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -20,7 +21,6 @@ int WINAPI WinMain(
 
 	c_console::init_console();
 
-	c_window_win32::SetIcon(LoadIconW(hInstance, c_resources_manager::get_resource_int_resource<LPCWSTR>(_resource_type_icon)));
 	SystemPatch::PatchEnumWindows();
 
 	static bool s_running = true;
@@ -34,27 +34,32 @@ int WINAPI WinMain(
 	{
 		s_running = false;
 	};
-	
-	c_window_win32::init_window(L"Opus", L"OpusConsole", L"opus");
-	c_render::init_render(hInstance);
-	c_game_launcher::init_game_launcher();
 
-	//c_debug_gui::register_callback(_callback_mode_always_run, application_ui_callback);
-	c_window_win32::register_update_callback(UpdateCallback);
-	c_window_win32::register_destroy_callback(DestroyCallback);
-	//MandrillGUI::RegisterOnCloseCallback(DestroyCallback);
+#ifdef _DEBUG
+	const wchar_t* k_window_title = L"Opus Debug";
+#else
+	const wchar_t* k_window_title = L"Opus";
+#endif
+	window = new c_window(hInstance, k_window_title, L"mandrill", _window_icon_blam_creation_suite, nShowCmd);
+	c_render::init_render(window, hInstance);
+	c_game_launcher::init_game_launcher(*window);
+
+	window->on_update.register_callback(UpdateCallback);
+	window->on_destroy.register_callback(DestroyCallback);
 
 	c_console::show_startup_banner();
 
-	while (s_running) c_window_win32::update_window();
+	while (s_running)
+	{
+		window->update();
+	}
 
-	c_window_win32::unregister_update_callback(UpdateCallback);
-	c_window_win32::unregister_destroy_callback(DestroyCallback);
-	//MandrillGUI::UnregisterOnCloseCallback(DestroyCallback);
+	window->on_update.unregister_callback(UpdateCallback);
+	window->on_destroy.unregister_callback(DestroyCallback);
 
 	c_game_launcher::deinit_game_launcher();
 	c_render::deinit_render();
-	c_window_win32::deinit_window();
+	delete window;
 	c_console::deinit_console();
 
 	return 0;

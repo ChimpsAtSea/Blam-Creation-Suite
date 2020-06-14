@@ -10,6 +10,8 @@ ID3D11RenderTargetView* c_render::s_pRenderTargetView = nullptr;
 ID3D11Texture2D* c_render::s_pDepthStencilBuffer = nullptr;
 ID3D11DepthStencilView* c_render::s_pDepthStencilView = nullptr;
 bool c_render::s_resizeEnabled = true;
+c_window* c_render::s_window = nullptr;
+
 DirectX::XMMATRIX c_render::viewMatrix = {};
 DirectX::XMMATRIX c_render::perspectiveMatrix = {};
 DirectX::XMMATRIX c_render::viewMatrixTransposed = {};
@@ -96,8 +98,8 @@ bool c_render::calculate_screen_coordinates(float positionX, float positionY, fl
 	using namespace DirectX;
 
 	XMVECTOR pV = { positionX, positionY, positionZ, 1.0f };
-	float Height = (float)c_window_win32::get_height();
-	float Width = (float)c_window_win32::get_width();
+	float Height = s_window->get_width_float();
+	float Width = s_window->get_width_float();
 
 	DirectX::XMMATRIX pWorld = DirectX::XMMatrixIdentity();
 	DirectX::XMMATRIX pProjection = perspectiveMatrix;
@@ -119,8 +121,8 @@ bool c_render::calculate_screen_coordinates(float positionX, float positionY, fl
 void c_render::CreateSwapchain(IDXGISwapChain1*& swap_chain)
 {
 	DXGI_SWAP_CHAIN_DESC1 s_SwapchainDescription = {};
-	s_SwapchainDescription.Width = c_window_win32::get_width();
-	s_SwapchainDescription.Height = c_window_win32::get_height();
+	s_SwapchainDescription.Width = s_window->get_width_integer();
+	s_SwapchainDescription.Height = s_window->get_height_integer();
 	s_SwapchainDescription.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	s_SwapchainDescription.Stereo = false;
 	s_SwapchainDescription.SampleDesc.Count = 1;
@@ -141,7 +143,7 @@ void c_render::CreateSwapchain(IDXGISwapChain1*& swap_chain)
 	}
 	else
 	{
-		HWND hWnd = c_window_win32::get_window_handle();
+		HWND hWnd = s_window->get_window_handle();
 		HRESULT createSwapChainForHwndResult = s_pFactory->CreateSwapChainForHwnd(s_pDevice, hWnd, &s_SwapchainDescription, NULL, NULL, &swap_chain);
 		ASSERT(SUCCEEDED(createSwapChainForHwndResult));
 	}
@@ -204,10 +206,12 @@ void c_render::InitDirectX()
 
 }
 
-void c_render::init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* swap_chain, bool allow_resize_at_beginning_of_frame)
+void c_render::init_render(c_window* window, HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* swap_chain, bool allow_resize_at_beginning_of_frame)
 {
 	if (hInstance == NULL)
-		hInstance = GetModuleHandle(NULL);
+	{
+		hInstance = c_runtime_util::get_current_module();
+	}
 
 	DEBUG_ASSERT(s_pDevice == nullptr);
 	DEBUG_ASSERT(s_pDeviceContext == nullptr);
@@ -215,6 +219,7 @@ void c_render::init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwap
 	DEBUG_ASSERT(pDevice != nullptr);
 	DEBUG_ASSERT(swap_chain != nullptr);
 
+	s_window = window;
 	s_directxCustomInit = true;
 	s_pDevice = pDevice;
 	s_swap_chain = swap_chain;
@@ -222,11 +227,12 @@ void c_render::init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwap
 	pDevice->GetImmediateContext(reinterpret_cast<ID3D11DeviceContext**>(&s_pDeviceContext));
 	ASSERT(s_pDeviceContext != nullptr);
 
-	init_render(hInstance, allow_resize_at_beginning_of_frame);
+	init_render(window, hInstance, allow_resize_at_beginning_of_frame);
 }
 
-void c_render::init_render(HINSTANCE hInstance, bool allow_resize_at_beginning_of_frame)
+void c_render::init_render(c_window* window, HINSTANCE hInstance, bool allow_resize_at_beginning_of_frame)
 {
+	s_window = window;
 	g_allow_resize_at_beginning_of_frame = allow_resize_at_beginning_of_frame;
 
 	if (!s_directxCustomInit)
@@ -357,8 +363,8 @@ void c_render::begin_frame(bool clear, float clearColor[4], bool settargetts)
 
 	// Set up the viewport.
 	D3D11_VIEWPORT vp;
-	vp.Width = static_cast<float>(c_window_win32::get_width());
-	vp.Height = static_cast<float>(c_window_win32::get_height());
+	vp.Width = s_window->get_width_float();
+	vp.Height = s_window->get_height_float();
 	vp.MinDepth = 0.0f;
 	vp.MaxDepth = 1.0f;
 	vp.TopLeftX = 0;

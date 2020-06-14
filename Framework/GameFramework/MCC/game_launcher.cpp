@@ -1,6 +1,9 @@
 #include "gameframework-private-pch.h"
 
 e_next_launch_mode g_next_launch_mode = _next_launch_mode_none;
+
+c_window* c_game_launcher::s_window = nullptr;
+c_mouse_input* c_game_launcher::s_mouse_input = nullptr;
 std::vector<c_game_launcher::t_generic_game_event> c_game_launcher::s_game_startup_events;
 std::vector<c_game_launcher::t_generic_game_event> c_game_launcher::s_game_shutdown_events;
 bool c_game_launcher::s_is_game_running = false;
@@ -37,8 +40,10 @@ static bool use_remastered_visuals = true;
 static bool use_remastered_music = true;
 static bool start_as_forge_mode = true;
 
-void c_game_launcher::init_game_launcher()
+void c_game_launcher::init_game_launcher(c_window& window)
 {
+	s_window = &window;
+	s_mouse_input = new c_mouse_input(*s_window);
 	k_autostart_halo_haloreach = c_command_line::get_command_line_arg("-autostart") == "haloreach";
 	k_autostart_halo_halo1 = c_command_line::get_command_line_arg("-autostart") == "halo1";
 	k_autostart_halo_halo2 = c_command_line::get_command_line_arg("-autostart") == "halo2";
@@ -154,15 +159,15 @@ void c_game_launcher::init_game_launcher()
 #ifdef _WIN64
 	c_haloreach_game_option_selection_legacy::Init();
 #endif
-	c_window_win32::register_window_procedure_callback(window_procedure_callback);
-	c_window_win32::register_window_procedure_callback(c_debug_gui::WndProc);
+	s_window->on_window_procedure.register_callback(window_procedure_callback);
+	s_window->on_window_procedure.register_callback(c_debug_gui::WndProc);
 	c_debug_gui::register_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::register_callback(_callback_mode_toggleable, render_ui);
 
-	c_window_win32::register_destroy_callback(window_destroy_callback);
+	s_window->on_destroy.register_callback(window_destroy_callback);
 
 	ASSERT(mandrill_user_interface == nullptr);
-	mandrill_user_interface = new c_mandrill_user_interface(true);
+	mandrill_user_interface = new c_mandrill_user_interface(*s_window, true);
 
 	if (!has_auto_started)
 	{
@@ -179,13 +184,16 @@ void c_game_launcher::deinit_game_launcher()
 	delete mandrill_user_interface;
 	mandrill_user_interface = nullptr;
 
-	c_window_win32::unregister_destroy_callback(window_destroy_callback);
+	s_window->on_destroy.unregister_callback(window_destroy_callback);
 	c_debug_gui::unregister_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::unregister_callback(_callback_mode_toggleable, render_ui);
-	c_window_win32::unregister_window_procedure_callback(window_procedure_callback);
+	s_window->on_window_procedure.unregister_callback(window_procedure_callback);
 #ifdef _WIN64
 	c_haloreach_game_option_selection_legacy::deinit();
 #endif
+	delete s_mouse_input;
+	s_mouse_input = nullptr;
+	s_window = nullptr;
 }
 
 void c_game_launcher::window_destroy_callback()
@@ -205,7 +213,7 @@ void c_game_launcher::load_settings()
 {
 	float horizontalSensitivity = c_settings_legacy::read_float(_settings_section_legacy_controls, "HorizontalSensitivity", 1.0f);
 	float verticalSensitivity = c_settings_legacy::read_float(_settings_section_legacy_controls, "VerticalSensitivity", 1.0f);
-	c_mouse_input::set_sensitivity(horizontalSensitivity, verticalSensitivity);
+	s_mouse_input->set_sensitivity(horizontalSensitivity, verticalSensitivity);
 }
 
 void c_game_launcher::opus_tick()
@@ -228,7 +236,7 @@ void c_game_launcher::opus_tick()
 			ImGuiWindowFlags_NoDecoration |
 			ImGuiWindowFlags_NoInputs;
 		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Always);
-		ImGui::SetNextWindowSize(ImVec2(static_cast<float>(c_window_win32::get_width()), static_cast<float>(c_window_win32::get_height())), ImGuiCond_Always);
+		ImGui::SetNextWindowSize(ImVec2(s_window->get_width_float(), s_window->get_height_float()), ImGuiCond_Always);
 		if (ImGui::Begin("##debug", NULL, k_debug_window_flags)) // render inside of the dummy imgui window for on screen text display
 		{
 			game_render();
@@ -248,7 +256,7 @@ void c_game_launcher::update()
 	if (s_is_game_running)
 	{
 		// need some place to update the launcher, might as well do it here for now
-		c_window_win32::update_no_callbacks();
+		s_window->update(false);
 	}
 	else
 	{
@@ -475,7 +483,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	game_engine->InitGraphics(c_render::s_pDevice, c_render::s_pDeviceContext, c_render::s_swap_chain, c_render::s_swap_chain);
 	game_main_thread = game_engine->InitThread(game_engine_host, game_context);
 
-	c_window_win32::set_post_message_thread_id(game_main_thread);
+	s_window->set_post_message_thread_id(game_main_thread);
 
 	// #TODO: Absolutely terrible thread sync here
 	{
@@ -557,7 +565,7 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 	}
 	if (!module_handle)
 	{
-		MessageBoxA(c_window_win32::get_window_handle(), library_name, "failed to load library", MB_ICONERROR);
+		MessageBoxA(s_window->get_window_handle(), library_name, "failed to load library", MB_ICONERROR);
 	}
 	ASSERT(module_handle != NULL);
 }
@@ -565,9 +573,9 @@ void c_game_launcher::ensure_library_loaded(const char* library_name, const char
 void c_game_launcher::render_main_menu()
 {
 	if (s_is_game_running) return;
-	c_mouse_input::set_mode(_mouse_mode_ui);
+	s_mouse_input->set_mode(_mouse_mode_ui);
 
-	ImVec2 global_window_size = ImVec2(static_cast<float>(c_window_win32::get_width()), static_cast<float>(c_window_win32::get_height()));
+	ImVec2 global_window_size = ImVec2(s_window->get_width_float(), s_window->get_height_float());
 	ImVec2 imgui_window_size = ImVec2(global_window_size.x * 0.75f, global_window_size.y * 0.75f);
 	ImVec2 imgui_window_offset = ImVec2((global_window_size.x - imgui_window_size.x) / 2.0f, (global_window_size.y - imgui_window_size.y) / 2.0f);
 	ImGui::SetNextWindowSize(imgui_window_size, ImGuiCond_Always);
@@ -582,7 +590,7 @@ void c_game_launcher::render_main_menu()
 	if (ImGui::Begin("Main Menu", nullptr, window_flags))
 	{
 		ImGui::Columns(2);
-		ImGui::SetColumnOffset(1, c_window_win32::get_width() * 0.5f);
+		ImGui::SetColumnOffset(1, s_window->get_width_float() * 0.5f);
 
 		const char* current_engine_name = get_enum_pretty_string<decltype(current_engine_name)>(g_engine_type);
 		if (ImGui::BeginCombo("Game", current_engine_name))
@@ -722,12 +730,12 @@ void c_game_launcher::render_main_menu()
 
 void c_game_launcher::render_pause_menu()
 {
-	c_mouse_input::set_mode(_mouse_mode_ui);
+	s_mouse_input->set_mode(_mouse_mode_ui);
 
 	float width = static_cast<float>(GetSystemMetrics(SM_CXSCREEN));
 	float height = static_cast<float>(GetSystemMetrics(SM_CYSCREEN));
 
-	ImVec2 global_window_size = ImVec2(static_cast<float>(c_window_win32::get_width()), static_cast<float>(c_window_win32::get_height()));
+	ImVec2 global_window_size = ImVec2(s_window->get_width_float(), s_window->get_height_float());
 	ImVec2 imgui_window_size = ImVec2(global_window_size.x * 0.75f, global_window_size.y * 0.75f);
 	ImVec2 imgui_window_offset = ImVec2((global_window_size.x - imgui_window_size.x) / 2.0f, (global_window_size.y - imgui_window_size.y) / 2.0f);
 	ImGui::SetNextWindowSize(imgui_window_size, ImGuiCond_Always);
@@ -843,10 +851,10 @@ LRESULT CALLBACK c_game_launcher::window_procedure_callback(HWND hwnd, UINT msg,
 	switch (msg)
 	{
 	case WM_INPUT:
-		c_mouse_input::handle_input_window_message(lParam);
+		s_mouse_input->handle_input_window_message(lParam);
 		break;
 	case WM_SETCURSOR:
-		if (c_mouse_input::handle_cursor_window_message(lParam))
+		if (s_mouse_input->handle_cursor_window_message(lParam))
 		{
 			return TRUE;
 		}

@@ -13,6 +13,7 @@ public:
 	static ID3D11Texture2D* s_pDepthStencilBuffer;
 	static ID3D11DepthStencilView* s_pDepthStencilView;
 	static bool s_resizeEnabled;
+	static c_window* s_window;
 
 	static DirectX::XMMATRIX viewMatrix;
 	static DirectX::XMMATRIX perspectiveMatrix;
@@ -47,8 +48,8 @@ public:
 
 
 	static void CreateSwapchain(IDXGISwapChain1*& s_swap_chain);
-	static void init_render(HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* swap_chain, bool allow_resize_at_beginning_of_frame = false);
-	static void init_render(HINSTANCE hInstance, bool allow_resize_at_beginning_of_frame = false);
+	static void init_render(c_window* window, HINSTANCE hInstance, ID3D11Device* pDevice, IDXGISwapChain1* swap_chain, bool allow_resize_at_beginning_of_frame = false);
+	static void init_render(c_window* window, HINSTANCE hInstance, bool allow_resize_at_beginning_of_frame = false);
 	static void begin_frame(bool clear, float clearColor[4], bool setTargets = true);
 	static void end_frame();
 	static void RequestResize(int width, int height);

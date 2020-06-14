@@ -24,6 +24,7 @@ public:
 	static void deinit_runtime_modifications(e_build build);
 
 private:
+	static c_haloreach_game_host* current_host;
 	static void update_camera_data();
 	static void draw_camera_debug_ui();
 	static void draw_script_debug_ui();

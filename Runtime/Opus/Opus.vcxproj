@@ -91,8 +91,7 @@
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>
-$(OutDir)ResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
+      <Command>$(OutDir)ResourcesPackager.exe -gameframework -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
@@ -125,8 +124,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>
-$(OutDir)ResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
+      <Command>$(OutDir)ResourcesPackager.exe -gameframework -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
@@ -163,8 +161,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>
-$(OutDir)ResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
+      <Command>$(OutDir)ResourcesPackager.exe -gameframework -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y
@@ -201,8 +198,7 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <MapFileName>$(TargetDir)$(TargetFileName).map</MapFileName>
     </Link>
     <PostBuildEvent>
-      <Command>
-$(OutDir)ResourcesPackager.exe "$(TargetPath)" "$(TargetDir)$(TargetFileName).map" "$(OutDir)BoxShaderPS.cso" "$(OutDir)BoxShaderVS.cso"
+      <Command>$(OutDir)ResourcesPackager.exe -gameframework -executable:$(TargetPath) -outputdir:$(OutDir) -resources:$(SolutionDir)Framework\Platform\!Resources\ -symbolfile:$(TargetDir)$(TargetFileName).map
 
 if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
   echo f|xcopy "$(TargetPath)" "\\$(RemoteDebuggerServerName)\!MCC\*" /Y

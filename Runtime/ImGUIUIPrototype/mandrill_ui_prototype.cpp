@@ -489,11 +489,11 @@ void mandrill_init()
 	mandrill_theme();
 }
 
-void mandrill()
+void mandrill(c_window& window)
 {
 	float margin = 4.0f;
 	ImGui::SetNextWindowPos({ margin, margin }, ImGuiCond_Always);
-	ImGui::SetNextWindowSize({ c_window_win32::get_width_float() - margin * 2.0f, c_window_win32::get_height_float() - margin * 2.0f }, ImGuiCond_Always);
+	ImGui::SetNextWindowSize({ window.get_width_float() - margin * 2.0f, window.get_height_float() - margin * 2.0f }, ImGuiCond_Always);
 
 	ImGuiWindowFlags imgui_window_flags = 0;
 	imgui_window_flags |= ImGuiWindowFlags_NoCollapse;

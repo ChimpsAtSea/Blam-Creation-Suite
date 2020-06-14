@@ -24,8 +24,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ResourcesFilepath)" />
-    <ResourceCompile Include="$(ResourcesFilepath)" />
-    <ResourceCompile Include="$(ResourcesFilepath)" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mustard-public-pch.h">

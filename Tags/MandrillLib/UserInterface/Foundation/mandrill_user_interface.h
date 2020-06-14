@@ -16,7 +16,7 @@ class c_mandrill_user_interface :
 public:
 	non_copyconstructable(c_mandrill_user_interface);
 
-	c_mandrill_user_interface(bool is_game_mode, const wchar_t* startup_file = nullptr);
+	c_mandrill_user_interface(c_window& window, bool is_game_mode, const wchar_t* startup_file = nullptr);
 	~c_mandrill_user_interface();
 
 	void open_cache_file(const wchar_t* filepath);
@@ -40,6 +40,7 @@ protected:
 	virtual void render_file_dialogue_gui_impl() override final;
 	virtual void render_game_layer_impl() override final;
 
+	c_window& window;
 	bool is_game_mode;
 	bool window_open;
 	bool show_file_dialogue;

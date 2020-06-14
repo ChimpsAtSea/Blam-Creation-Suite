@@ -16,7 +16,7 @@ void __fatal_error_internal(const wchar_t* reason, const wchar_t* filepath, unsi
 	}
 	else
 	{
-		int message_box_result = MessageBoxW(c_window_win32::get_window_handle(), fatal_error_buffer, L"Fatal Error", MB_ABORTRETRYIGNORE | MB_ICONERROR);
+		int message_box_result = MessageBoxW(NULL, fatal_error_buffer, L"Fatal Error", MB_ABORTRETRYIGNORE | MB_ICONERROR);
 		if (message_box_result != IDIGNORE)
 		{
 			exit(1);
