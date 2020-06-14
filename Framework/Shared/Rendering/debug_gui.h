@@ -24,7 +24,7 @@ public:
 	static void Hide();
 	static void ProcessWindowMessages();
 	static void AddMessageBreak();
-	static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+	static LRESULT window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	static void register_callback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback);
 	static void unregister_callback(DebugUICallbackMode callbackMode, DebugUICallback debug_ui_callback);
 	static bool is_rendering();

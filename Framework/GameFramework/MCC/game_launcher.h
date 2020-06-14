@@ -41,7 +41,7 @@ private:
 	static void ensure_library_loaded(const char* library_name, const char* fallback_directory);
 	static void render_pause_menu();
 #ifdef _WINDOWS_
-	static LRESULT CALLBACK window_procedure_callback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+	static LRESULT window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 #endif
 	static bool load_variant_from_file(IDataAccess* data_access, GameContext* game_context, e_engine_type engine_type, e_variant_type variant_type, LPCSTR file_name);
 

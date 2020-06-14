@@ -92,7 +92,7 @@ static void init_mandrill(HINSTANCE instance_handle, int show_cmd, const wchar_t
 	mandrill_user_interface = new c_mandrill_user_interface(*window, false, launch_filepath_command_line_argument);
 
 	c_debug_gui::register_callback(_callback_mode_always_run, application_ui_callback);
-	window->on_window_procedure.register_callback(c_debug_gui::WndProc);
+	window->on_window_procedure.register_callback(c_debug_gui::window_procedure);
 	window->on_update.register_callback(application_update_callback);
 	window->on_destroy.register_callback(application_close_callback);
 	mandrill_user_interface->on_close.register_callback(application_close_callback);
@@ -115,7 +115,7 @@ static void deinit_mandrill()
 	mandrill_user_interface->on_close.unregister_callback(application_close_callback);
 	window->on_destroy.unregister_callback(application_close_callback);
 	window->on_update.unregister_callback(application_update_callback);
-	window->on_window_procedure.unregister_callback(c_debug_gui::WndProc);
+	window->on_window_procedure.unregister_callback(c_debug_gui::window_procedure);
 	c_debug_gui::unregister_callback(_callback_mode_always_run, application_ui_callback);
 
 	delete mandrill_user_interface;

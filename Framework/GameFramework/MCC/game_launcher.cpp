@@ -159,8 +159,8 @@ void c_game_launcher::init_game_launcher(c_window& window)
 #ifdef _WIN64
 	c_haloreach_game_option_selection_legacy::Init();
 #endif
-	s_window->on_window_procedure.register_callback(window_procedure_callback);
-	s_window->on_window_procedure.register_callback(c_debug_gui::WndProc);
+	s_window->on_window_procedure.register_callback(window_procedure);
+	s_window->on_window_procedure.register_callback(c_debug_gui::window_procedure);
 	c_debug_gui::register_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::register_callback(_callback_mode_toggleable, render_ui);
 
@@ -187,7 +187,7 @@ void c_game_launcher::deinit_game_launcher()
 	s_window->on_destroy.unregister_callback(window_destroy_callback);
 	c_debug_gui::unregister_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::unregister_callback(_callback_mode_toggleable, render_ui);
-	s_window->on_window_procedure.unregister_callback(window_procedure_callback);
+	s_window->on_window_procedure.unregister_callback(window_procedure);
 #ifdef _WIN64
 	c_haloreach_game_option_selection_legacy::deinit();
 #endif
@@ -846,7 +846,7 @@ void c_game_launcher::render_pause_menu()
 	ImGui::End();
 }
 
-LRESULT CALLBACK c_game_launcher::window_procedure_callback(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT c_game_launcher::window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
 	{

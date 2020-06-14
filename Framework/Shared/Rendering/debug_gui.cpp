@@ -287,7 +287,7 @@ void c_debug_gui::ProcessWindowMessages()
 	}
 }
 
-LRESULT c_debug_gui::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT c_debug_gui::window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	windowQueue.Enqueue({ hwnd, msg, wParam, lParam }); // thread safe queue
 
