@@ -27,8 +27,8 @@ c_groundhog_game_host::c_groundhog_game_host(e_engine_type engine_type, e_build 
 
 	init_runtime_modifications(g_groundhog_game_runtime->get_build());
 
-	c_mandrill_gui::set_get_tag_selection_address_function(groundhog_tag_address_get); // #TODO: This is kinda hacky
-	c_mandrill_gui::set_get_tag_pointer_function(groundhog_tag_definition_get); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_section_address_callback(groundhog_tag_address_get); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_game_memory_callback(groundhog_tag_definition_get); // #TODO: This is kinda hacky
 
 	if (game_engine == nullptr)
 	{
@@ -46,8 +46,8 @@ c_groundhog_game_host::~c_groundhog_game_host()
 {
 	c_console::write_line_verbose("Deinit GroundhogGameHost");
 
-	c_mandrill_gui::set_get_tag_selection_address_function(nullptr); // #TODO: This is kinda hacky
-	c_mandrill_gui::set_get_tag_pointer_function(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
 
 	deinit_runtime_modifications(g_groundhog_game_runtime->get_build());
 

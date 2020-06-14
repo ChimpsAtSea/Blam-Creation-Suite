@@ -19,17 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="!UserInterface\mandrill_cache_file_gui_tab.h" />
-    <ClInclude Include="!UserInterface\mandrill_event_queue.h" />
-    <ClInclude Include="!UserInterface\mandrill_gui.h" />
-    <ClInclude Include="!UserInterface\mandrill_gui_tab.h" />
-    <ClInclude Include="!UserInterface\mandrill_tag_gui_tab.h" />
-    <ClInclude Include="!UserInterface\shader_profile.h" />
-    <ClInclude Include="!UserInterface\TagEditor\mandrill_bitmap_gui_tab.h" />
-    <ClInclude Include="!UserInterface\TagEditor\mandrill_blofeld_tag_editor_gui_tab.h" />
-    <ClInclude Include="!UserInterface\Tools\mandrill_halo_script_editor.h" />
-    <ClInclude Include="!UserInterface\Tools\mandrill_shader_tool_gui_tab.h" />
-    <ClInclude Include="!UserInterface\UserInterface.h" />
+    <ClInclude Include="CustomTools\CustomTools.h" />
+    <ClInclude Include="CustomTools\custom_tool_render_model.h" />
+    <ClInclude Include="CustomTools\custom_tool_base.h" />
+    <ClInclude Include="UserInterface\Tabs\blofeld_tag_editor_tab.h" />
+    <ClInclude Include="UserInterface\Foundation\mandrill_dynamic_data.h" />
+    <ClInclude Include="UserInterface\shader_profile.h" />
     <ClInclude Include="CacheInterface\CacheInterface.h" />
     <ClInclude Include="CacheInterface\CacheVersions\eldorado\eldorado_cache_file.h" />
     <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_cache_file.h" />
@@ -66,18 +61,20 @@
     <ClInclude Include="mandrilllib-private-pch.h" />
     <ClInclude Include="mandrilllib-public-pch.h" />
     <ClInclude Include="tests.h" />
+    <ClInclude Include="UserInterface\Foundation\mandrill_tab_container.h" />
+    <ClInclude Include="UserInterface\Tabs\cache_file_tab.h" />
+    <ClInclude Include="UserInterface\Foundation\mandrill_event_queue.h" />
+    <ClInclude Include="UserInterface\Foundation\mandrill_user_interface.h" />
+    <ClInclude Include="UserInterface\Foundation\mandrill_tab.h" />
+    <ClInclude Include="UserInterface\Tabs\tag_interface_tab.h" />
+    <ClInclude Include="UserInterface\UserInterface.h" />
     <ClInclude Include="virtual_memory_container.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="!UserInterface\mandrill_cache_file_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\mandrill_event_queue.cpp" />
-    <ClCompile Include="!UserInterface\mandrill_gui.cpp" />
-    <ClCompile Include="!UserInterface\mandrill_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\mandrill_tag_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\TagEditor\mandrill_bitmap_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\TagEditor\mandrill_blofeld_tag_editor_gui_tab.cpp" />
-    <ClCompile Include="!UserInterface\Tools\mandrill_halo_script_editor.cpp" />
-    <ClCompile Include="!UserInterface\Tools\mandrill_shader_tool_gui_tab.cpp" />
+    <ClCompile Include="CustomTools\custom_tool_render_model.cpp" />
+    <ClCompile Include="CustomTools\custom_tool_base.cpp" />
+    <ClCompile Include="UserInterface\Tabs\blofeld_tag_editor_tab.cpp" />
+    <ClCompile Include="UserInterface\Foundation\mandrill_dynamic_data.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\eldorado\eldorado_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\groundhog\groundhog_cache_file.cpp" />
@@ -110,6 +107,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="tests.cpp" />
+    <ClCompile Include="UserInterface\Foundation\mandrill_tab_container.cpp" />
+    <ClCompile Include="UserInterface\Tabs\cache_file_tab.cpp" />
+    <ClCompile Include="UserInterface\Foundation\mandrill_event_queue.cpp" />
+    <ClCompile Include="UserInterface\Foundation\mandrill_user_interface.cpp" />
+    <ClCompile Include="UserInterface\Foundation\mandrill_tab.cpp" />
+    <ClCompile Include="UserInterface\Tabs\tag_interface_tab.cpp" />
     <ClCompile Include="virtual_memory_container.cpp" />
   </ItemGroup>
   <ItemGroup>

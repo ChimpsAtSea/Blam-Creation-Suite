@@ -42,8 +42,8 @@ c_halo3_game_host::~c_halo3_game_host()
 {
 	c_console::write_line_verbose("Deinit Halo3GameHost");
 
-	c_mandrill_gui::set_get_tag_selection_address_function(nullptr); // #TODO: This is kinda hacky
-	c_mandrill_gui::set_get_tag_pointer_function(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
 
 	deinit_runtime_modifications(g_halo3_game_runtime->get_build());
 

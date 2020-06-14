@@ -18,6 +18,8 @@ enum e_variant_type
 	k_number_of_variant_types
 };
 
+class c_mandrill_user_interface;
+
 class c_game_launcher
 {
 public:
@@ -56,6 +58,7 @@ private:
 private:
 
 public:
+	static c_mandrill_user_interface* mandrill_user_interface;
 	using t_generic_game_event = void(*)(e_engine_type engine_type, e_build build);
 	inline static void register_game_startup_callback(t_generic_game_event event_callback) { s_game_startup_events.push_back(event_callback); }
 	inline static void register_game_shutdown_callback(t_generic_game_event event_callback) { s_game_shutdown_events.push_back(event_callback); }

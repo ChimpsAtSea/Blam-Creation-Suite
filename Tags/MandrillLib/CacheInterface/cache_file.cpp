@@ -91,16 +91,16 @@ c_cache_file* c_cache_file::create_cache_file(const std::wstring& map_filepath)
 
 c_cache_file::c_cache_file(const std::wstring& map_filepath, e_engine_type engine_type) :
 	virtual_memory_container(*new c_virtual_memory_container(1024 * 1024 * 1024)),
-	map_filepath(map_filepath),
+	map_filepath(map_filepath.c_str()),
 	engine_type(engine_type)
 {
-	map_path = PathFindFileNameW(map_filepath.c_str());
+	map_filename = PathFindFileNameW(map_filepath.c_str());
 
 	char buffer[MAX_PATH + 1];
 
-	snprintf(buffer, MAX_PATH, "%S", map_path.c_str());
+	snprintf(buffer, MAX_PATH, "%S", map_filename.c_str());
 	buffer[MAX_PATH] = 0;
-	map_path_utf8 = buffer;
+	map_filename_utf8 = buffer;
 
 	snprintf(buffer, MAX_PATH, "%S", map_filepath.c_str());
 	buffer[MAX_PATH] = 0;

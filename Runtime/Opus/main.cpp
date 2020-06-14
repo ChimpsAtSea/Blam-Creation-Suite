@@ -37,9 +37,9 @@ int WINAPI WinMain(
 	
 	c_window_win32::init_window(L"Opus", L"OpusConsole", L"opus");
 	c_render::init_render(hInstance);
-	c_mandrill_gui::init_mandrill_gui(true);
 	c_game_launcher::init_game_launcher();
 
+	//c_debug_gui::register_callback(_callback_mode_always_run, application_ui_callback);
 	c_window_win32::register_update_callback(UpdateCallback);
 	c_window_win32::register_destroy_callback(DestroyCallback);
 	//MandrillGUI::RegisterOnCloseCallback(DestroyCallback);
@@ -53,7 +53,6 @@ int WINAPI WinMain(
 	//MandrillGUI::UnregisterOnCloseCallback(DestroyCallback);
 
 	c_game_launcher::deinit_game_launcher();
-	c_mandrill_gui::deinit_mandrill_gui();
 	c_render::deinit_render();
 	c_window_win32::deinit_window();
 	c_console::deinit_console();

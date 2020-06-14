@@ -1,53 +1,31 @@
 #pragma once
 
-class c_mandrill_gui_tab :
-	public c_mandrill_event_queue
+class s_mandrill_dynamic_data
 {
 public:
-	c_mandrill_gui_tab() = delete;
-	c_mandrill_gui_tab(const c_mandrill_gui_tab&) = delete;
-	c_mandrill_gui_tab& operator=(const c_mandrill_gui_tab&) = delete;
+	non_copyable(s_mandrill_dynamic_data);
 
-	c_mandrill_gui_tab(const char* title, const char* description);
-	virtual ~c_mandrill_gui_tab();
+	// #WARN This structure should be kept as small as possible
+	// to avoid excessive cache misses. Maybe it is worth looking
+	// into a way to allocate these in multiples of smaller 
+	// allocations?
+	// #NOTE Make the assumption that cache lines are 64bytes
+	// (512 bits) wide. 64, 128, 192, 256, 320 etc.
 
-	virtual void render_in_game_gui();
-	virtual void render_gui(bool set_selected) final;
-	virtual void render_menu_gui() final;
-	virtual void render_file_dialogue_gui();
-
-	inline const char* get_title() const { return m_title.c_str(); }
-	inline const char* get_description() const { return m_description.c_str(); }
-
-	using on_tab_closed_callback = std::function<void(c_mandrill_gui_tab&)>;
-	void add_tab_closed_callback(on_tab_closed_callback);
-protected:
-	void add_tab(c_mandrill_gui_tab& tab);
-	void remove_tab(c_mandrill_gui_tab& tab);
-	void tab_closed_callback(c_mandrill_gui_tab& tab);
-
-	virtual void render_tab_contents_gui() = 0;
-	virtual void render_tab_menu_gui();
-
-	bool allow_close;
-	bool is_open;
-public:
-	bool is_selected;
-protected:
-	std::string m_title;
-	std::string m_description;
-	std::vector<on_tab_closed_callback> on_tab_closed_callbacks;
-	std::vector<c_mandrill_gui_tab*> child_tabs;
-
-public:
 	using c_imgui_dynamic_data = std::pair<void*, char[248]>;
+	static_assert(sizeof(c_imgui_dynamic_data) == 256);
+
+	// #TODO Replace this with a virtual memory container
+	// that allocates in 4KB pages. Most of the allocations
+	// made to this vector are in their own 4KB pages, meaning
+	// that a 256KB structure has only 6.25% efficiency
 	std::vector<c_imgui_dynamic_data*> imgui_dynamic_data;
 
 	inline c_imgui_dynamic_data& get_dynamic_data(void* pPosition, bool& rWasAllocated);
 	template<typename T>
 	inline T& get_dynamic_data(void* pPosition)
 	{
-
+	
 		bool wasAllocated = false;
 		c_imgui_dynamic_data& rDynamicData = get_dynamic_data(pPosition, wasAllocated);
 		if (wasAllocated)
@@ -68,7 +46,7 @@ public:
 	}
 };
 
-inline c_mandrill_gui_tab::c_imgui_dynamic_data& c_mandrill_gui_tab::get_dynamic_data(void* pPosition, bool& rWasAllocated)
+inline s_mandrill_dynamic_data::c_imgui_dynamic_data& s_mandrill_dynamic_data::get_dynamic_data(void* pPosition, bool& rWasAllocated)
 {
 	for (c_imgui_dynamic_data* pDynamicData : imgui_dynamic_data)
 	{
@@ -86,4 +64,3 @@ inline c_mandrill_gui_tab::c_imgui_dynamic_data& c_mandrill_gui_tab::get_dynamic
 	rDynamicData.first = pPosition;
 	return rDynamicData;
 }
-

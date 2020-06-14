@@ -1,7 +1,7 @@
 #pragma once
 
 class c_tag_interface;
-class c_mandrill_cache_file_gui_tab;
+class c_old_mandrill_cache_file_gui_tab;
 class c_cache_file;
 
 const char* get_known_legacy_tag_group_name(unsigned long tag_group);

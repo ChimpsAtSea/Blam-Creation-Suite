@@ -59,7 +59,7 @@ constexpr bool primitive_display_bitflag(e_legacy_primitive_type primitive_type)
 template<e_legacy_primitive_type primitive_type, typename T>
 void render_primitive_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field)
 {
-	bool unknownItemsVisible = c_mandrill_gui::get_unknown_fields_visibility();
+	bool unknownItemsVisible = c_old_mandrill_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	//const char* field_type_name = primitive_type_to_string(primitive_type);
 	const char* field_type_name = reflection_field.type_info.type_nice_name;

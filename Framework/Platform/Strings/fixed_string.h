@@ -2,7 +2,7 @@
 
 class c_stack_string;
 
-template<uint32_t length, typename t_char_type = char>
+template<uint32_t k_capacity, typename t_char_type = char>
 class c_fixed_string
 {
 public:
@@ -10,13 +10,13 @@ public:
 	static constexpr bool is_wchar_type = std::is_same<t_char_type, wchar_t>::value;
 
 	template<size_t S>
-	c_fixed_string(const char string[S]) :
+	c_fixed_string(const t_char_type string[S]) :
 		data(string)
 	{
 
 	}
 
-	c_fixed_string(const char* string)
+	c_fixed_string(const t_char_type* string)
 	{
 		data[0] = 0;
 		*this += string;
@@ -27,30 +27,45 @@ public:
 		data[0] = 0;
 	}
 
-	t_char_type data[length];
+	t_char_type data[k_capacity];
 
-	void operator =(const char* string)
+	void operator =(const t_char_type* string)
 	{
-		strncpy(data, string, length - 1);
-		data[length - 1] = 0;
+		if constexpr (is_char_type)
+		{
+			strncpy(data, string, k_capacity - 1);
+		}
+		else if constexpr (is_wchar_type)
+		{
+			wcsncpy(data, string, k_capacity - 1);
+		}
+
+		data[k_capacity - 1] = 0;
 	}
 
 	template<size_t S>
 	void operator =(const c_fixed_string<S>& string)
 	{
-		strncpy(data, string.data, length - 1);
-		data[length - 1] = 0;
+		strncpy(data, string.data, k_capacity - 1);
+		data[k_capacity - 1] = 0;
 	}
 
 	void operator =(const c_stack_string& string)
 	{
-		strncpy(data, string.data, length - 1);
-		data[length - 1] = 0;
+		strncpy(data, string.data, k_capacity - 1);
+		data[k_capacity - 1] = 0;
 	}
 
-	bool operator ==(const char* string) const
+	bool operator ==(const t_char_type* string) const
 	{
-		return strcmp(data, string) == 0;
+		if constexpr (is_char_type)
+		{
+			return strcmp(data, string) == 0;
+		}
+		else if constexpr (is_wchar_type)
+		{
+			return wcscmp(data, string) == 0;
+		}
 	}
 
 	template<size_t S>
@@ -69,60 +84,85 @@ public:
 	{
 		if constexpr (is_char_type)
 		{
-			snprintf(data, length - 1, format, args...);
+			snprintf(data, k_capacity - 1, format, args...);
 		}
 		else if constexpr (is_wchar_type)
 		{
-			_snwprintf(data, length - 1, format, args...);
+			_snwprintf(data, k_capacity - 1, format, args...);
 		}
 		static_assert(is_char_type || is_wchar_type, "Unsupported character type");
 
-		data[length - 1] = 0; // ensure null terminated
+		data[k_capacity - 1] = 0; // ensure null terminated
 	}
 
 	void vformat(const t_char_type* format, va_list args)
 	{
 		if constexpr (is_char_type)
 		{
-			vsnprintf(data, length - 1, format, args);
+			vsnprintf(data, k_capacity - 1, format, args);
 		}
 		else if constexpr (is_wchar_type)
 		{
-			_vsnwprintf(data, length - 1, format, args);
+			_vsnwprintf(data, k_capacity - 1, format, args);
 		}
 		static_assert(is_char_type || is_wchar_type, "Unsupported character type");
 
-		data[length - 1] = 0; // ensure null terminated
+		data[k_capacity - 1] = 0; // ensure null terminated
 	}
 
-	void operator +=(const char* string)
+	void operator +=(const t_char_type* string)
 	{
-		strncat(data, string, length - 1);
+		if constexpr (is_char_type)
+		{
+			strncat(data, string, k_capacity - 1);
+		}
+		else if constexpr (is_wchar_type)
+		{
+			wcsncat(data, string, k_capacity - 1);
+		}
 	}
 
 	template<size_t S>
 	void operator +=(const c_fixed_string<S>& string)
 	{
-		strncat(data, string.data, length - 1);
-	}
-
-	c_fixed_string& operator +(const char* string)
-	{
-		strncat(data, string, length - 1);
-		return *this;
+		if constexpr (is_char_type)
+		{
+			strncat(data, string.data, k_capacity - 1);
+		}
+		else if constexpr (is_wchar_type)
+		{
+			wcsncat(data, string.data, k_capacity - 1);
+		}
 	}
 
 	template<size_t S>
-	c_fixed_string& operator +(const c_fixed_string<S>& string)
+	c_fixed_string operator +(const c_fixed_string<S>& string)
 	{
-		strncat(data, string.data, length - 1);
-		return *this;
+		c_fixed_string result = { data };
+		strncat(result.data, string.data, k_capacity - 1);
+		return result;
 	}
 
-	c_fixed_string& operator +(const c_stack_string& string)
+	c_fixed_string operator +(const c_stack_string& string)
 	{
-		strncat(data, string.data, length - 1);
-		return *this;
+		c_fixed_string result = { data };
+		strncat(result.data, string.data, k_capacity - 1);
+		return result;
+	}
+
+	c_fixed_string operator +(const t_char_type* string)
+	{
+		c_fixed_string result = { data };
+		if constexpr (is_char_type)
+		{
+			strncat(result.data, string, k_capacity - 1);
+		}
+		else if constexpr (is_wchar_type)
+		{
+			wcsncat(result.data, string, k_capacity - 1);
+		}
+
+		return result;
 	}
 
 	explicit operator t_char_type* ()
@@ -147,7 +187,7 @@ public:
 
 	char operator [](size_t index) const
 	{
-		DEBUG_ASSERT(index < length);
+		DEBUG_ASSERT(index < k_capacity);
 		return data[index];
 	}
 
@@ -291,12 +331,12 @@ public:
 
 	bool ends_with(const char* string)
 	{
-		size_t data_length = strlen(data);
-		size_t string_length = strlen(string);
+		size_t data_k_capacity = strlen(data);
+		size_t string_k_capacity = strlen(string);
 
-		if (data_length >= string_length)
+		if (data_k_capacity >= string_k_capacity)
 		{
-			size_t offset = data_length - string_length;
+			size_t offset = data_k_capacity - string_k_capacity;
 			const char* search_position = data + offset;
 			return strcmp(search_position, string) == 0;
 		}
@@ -309,6 +349,11 @@ public:
 		return strlen(data);
 	}
 
+	constexpr size_t capacity()
+	{
+		return k_capacity;
+	}
+
 	void clear()
 	{
 
@@ -317,7 +362,7 @@ public:
 	void shrink(size_t new_size)
 	{
 		size_t current_size = size();
-		DEBUG_ASSERT(new_size < length);
+		DEBUG_ASSERT(new_size < k_capacity);
 		if (new_size == 0)
 		{
 			clear();
@@ -329,13 +374,24 @@ public:
 	}
 };
 
-using c_fixed_path = c_fixed_string<MAX_PATH + 1>;
-using c_fixed_string_16 = c_fixed_string<128>;
-using c_fixed_string_32 = c_fixed_string<128>;
-using c_fixed_string_64 = c_fixed_string<128>;
+using c_fixed_path = c_fixed_string<0x8000>;
+using c_fixed_string_16 = c_fixed_string<16>;
+using c_fixed_string_32 = c_fixed_string<32>;
+using c_fixed_string_64 = c_fixed_string<64>;
 using c_fixed_string_128 = c_fixed_string<128>;
 using c_fixed_string_256 = c_fixed_string<256>;
 using c_fixed_string_512 = c_fixed_string<512>;
 using c_fixed_string_1024 = c_fixed_string<1024>;
 using c_fixed_string_2048 = c_fixed_string<2048>;
 using c_fixed_string_4096 = c_fixed_string<4096>;
+
+using c_fixed_wide_path = c_fixed_string<0x8000, wchar_t>;
+using c_fixed_wide_string_16 = c_fixed_string<16, wchar_t>;
+using c_fixed_wide_string_32 = c_fixed_string<32, wchar_t>;
+using c_fixed_wide_string_64 = c_fixed_string<64, wchar_t>;
+using c_fixed_wide_string_128 = c_fixed_string<128, wchar_t>;
+using c_fixed_wide_string_256 = c_fixed_string<256, wchar_t>;
+using c_fixed_wide_string_512 = c_fixed_string<512, wchar_t>;
+using c_fixed_wide_string_1024 = c_fixed_string<1024, wchar_t>;
+using c_fixed_wide_string_2048 = c_fixed_string<2048, wchar_t>;
+using c_fixed_wide_string_4096 = c_fixed_string<4096, wchar_t>;

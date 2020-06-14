@@ -15,39 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\Tools\mantle_halo_script_editor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\Tools\mantle_shader_tool_gui_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\mantle_cache_file_gui_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\mantle_event_queue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\mantle_gui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\mantle_gui_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\mantle_tag_gui_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\shader_profile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="!UserInterface\UserInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CacheInterface\cache_file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -85,12 +52,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HaloScript\lisp_ast_parser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mantlelib-private-pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="mantlelib-public-pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="virtual_memory_container.h">
@@ -159,35 +120,53 @@
     <ClInclude Include="CacheInterface\CacheVersions\gen3\gen3_tag_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mandrilllib-private-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mandrilllib-public-pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\UserInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Tabs\tag_interface_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Tabs\cache_file_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Foundation\mandrill_user_interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Foundation\mandrill_event_queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Foundation\mandrill_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Foundation\mandrill_tab_container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Foundation\mandrill_dynamic_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\shader_profile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Tabs\blofeld_tag_editor_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomTools\custom_tool_render_model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomTools\CustomTools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomTools\custom_tool_base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="!UserInterface\TagEditor\mantle_bitmap_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\TagEditor\mantle_blofeld_tag_editor_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\Tools\mantle_halo_script_editor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\Tools\mantle_shader_tool_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\mantle_cache_file_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\mantle_event_queue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\mantle_gui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\mantle_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="!UserInterface\mantle_tag_gui_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CacheInterface\cache_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -216,9 +195,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HaloScript\lisp_ast_parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mantlelib-private-pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="virtual_memory_container.cpp">
@@ -270,6 +246,39 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_tag_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mandrilllib-private-pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Tabs\tag_interface_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Tabs\cache_file_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Foundation\mandrill_event_queue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Foundation\mandrill_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Foundation\mandrill_user_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Foundation\mandrill_tab_container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Foundation\mandrill_dynamic_data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Tabs\blofeld_tag_editor_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomTools\custom_tool_render_model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomTools\custom_tool_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

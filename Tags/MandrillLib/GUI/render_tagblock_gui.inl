@@ -2,7 +2,7 @@
 
 void render_tagblock_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field)
 {
-	bool unknownItemsVisible = c_mandrill_gui::get_unknown_fields_visibility();
+	bool unknownItemsVisible = c_old_mandrill_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 
 	ASSERT(c_mandrill_legacy_tag_editor_gui_tab::g_current_mandrill_tag_tab != nullptr);

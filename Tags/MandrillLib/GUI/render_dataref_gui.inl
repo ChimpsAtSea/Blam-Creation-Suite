@@ -21,7 +21,7 @@ volatile ImGuiID s_data_reference_dynamic_ui_data::s_current_unique_id = 1;
 
 void render_dataref_gui_legacy(s_data_reference_legacy* field_data, const c_reflection_field_legacy& reflection_field)
 {
-	bool unknownItemsVisible = c_mandrill_gui::get_unknown_fields_visibility();
+	bool unknownItemsVisible = c_old_mandrill_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	DEBUG_ASSERT(field_data != nullptr);
 	ImGui::PushID(field_data);
@@ -35,7 +35,7 @@ void render_dataref_gui_legacy(s_data_reference_legacy* field_data, const c_refl
 		ImGui::Text(reflection_field.nice_name);
 		ImGui::NextColumn();
 
-		static_assert(sizeof(s_data_reference_dynamic_ui_data) <= sizeof(c_mandrill_tag_gui_tab::c_imgui_dynamic_data::second), "s_data_reference_dynamic_data is too large");
+		static_assert(sizeof(s_data_reference_dynamic_ui_data) <= sizeof(c_mandrill_old_tag_gui_tab::c_imgui_dynamic_data::second), "s_data_reference_dynamic_data is too large");
 		bool wasAllocated;
 		s_data_reference_dynamic_ui_data& data_reference_ui_data = c_mandrill_legacy_tag_editor_gui_tab::g_current_mandrill_tag_tab->get_dynamic_data<s_data_reference_dynamic_ui_data>(field_data, wasAllocated);
 		if (wasAllocated)

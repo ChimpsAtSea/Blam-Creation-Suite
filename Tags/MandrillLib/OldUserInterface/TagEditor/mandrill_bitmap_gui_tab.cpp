@@ -7,8 +7,8 @@
 //#include <zlib/zopfli/zopfli.h>
 //#include <zlib/zopfli/deflate.h>
 
-c_mandrill_bitmap_gui_tab::c_mandrill_bitmap_gui_tab(c_cache_file& cache_file, c_mandrill_gui_tab* parent_tab, v_tag_interface<blofeld::haloreach::s_bitmap_block_struct>& bitmap_tag_interface) :
-	c_mandrill_gui_tab("Bitmap Editor", "Bitmap Editor"),
+c_mandrill_bitmap_gui_tab::c_mandrill_bitmap_gui_tab(c_cache_file& cache_file, c_old_mandrill_gui_tab* parent_tab, v_tag_interface<blofeld::haloreach::s_bitmap_block_struct>& bitmap_tag_interface) :
+	c_old_mandrill_gui_tab("Bitmap Editor", "Bitmap Editor"),
 	cache_file(cache_file),
 	parent_tab(parent_tab),
 	bitmap_tag_interface(bitmap_tag_interface),

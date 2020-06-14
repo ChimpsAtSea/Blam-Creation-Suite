@@ -38,3 +38,4 @@ using namespace xxhash::literals;
 #include "Windows/console.h"
 
 #include "!Resources/resources_manager.h"
+#include "callback.h"

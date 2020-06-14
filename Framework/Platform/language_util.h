@@ -21,6 +21,13 @@ non_copyable(non_copyable&&) = delete; /* redundant */ \
 non_copyable& operator=(non_copyable const&) = delete; \
 non_copyable& operator=(non_copyable&&) = delete; /* redundant */
 
+#define non_copyconstructable(non_copyconstructable) \
+non_copyconstructable() = delete; \
+non_copyconstructable(non_copyconstructable const&) = delete; \
+non_copyconstructable(non_copyconstructable&&) = delete; /* redundant */ \
+non_copyconstructable& operator=(non_copyconstructable const&) = delete; \
+non_copyconstructable& operator=(non_copyconstructable&&) = delete; /* redundant */
+
 template<typename t_value>
 class c_reference_iterator
 {

@@ -33,8 +33,8 @@ c_haloreach_game_host::c_haloreach_game_host(e_engine_type engine_type, e_build 
 {
 	init_runtime_modifications(g_haloreach_game_runtime.get_build());
 
-	c_mandrill_gui::set_get_tag_selection_address_function(haloreach_tag_address_get); // #TODO: This is kinda hacky
-	c_mandrill_gui::set_get_tag_pointer_function(haloreach_tag_definition_get); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_section_address_callback(haloreach_tag_address_get); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_game_memory_callback(haloreach_tag_definition_get); // #TODO: This is kinda hacky
 
 	c_console::write_line_verbose("Init HaloReachGameHost");
 
@@ -60,8 +60,8 @@ c_haloreach_game_host::~c_haloreach_game_host()
 {
 	c_console::write_line_verbose("Deinit HaloReachGameHost");
 
-	c_mandrill_gui::set_get_tag_selection_address_function(nullptr); // #TODO: This is kinda hacky
-	c_mandrill_gui::set_get_tag_pointer_function(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_section_address_callback(nullptr); // #TODO: This is kinda hacky
+	c_mandrill_user_interface::set_get_tag_game_memory_callback(nullptr); // #TODO: This is kinda hacky
 
 	//m_pGameEngine->Destructor();
 	//free(pHaloReachEngine);

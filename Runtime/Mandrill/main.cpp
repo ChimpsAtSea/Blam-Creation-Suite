@@ -12,6 +12,7 @@
 
 bool g_mandrill_running = true;
 const char* c_console::g_console_executable_name = "Mandrill";
+c_mandrill_user_interface* mandrill_user_interface = nullptr;
 
 /* ---------- private prototypes */
 /* ---------- public code */
@@ -37,7 +38,7 @@ static const wchar_t* get_launch_filepath_command_line_argument(const wchar_t* c
 
 static void application_ui_callback()
 {
-	c_mandrill_gui::render_gui();
+	mandrill_user_interface->render();
 }
 
 static void application_update_callback()
@@ -74,13 +75,13 @@ static void init_mandrill(const wchar_t* command_line)
 	c_console::init_console();
 	c_window_win32::init_window(L"Mandrill", L"Mandrill Console", L"mandrill");
 	c_render::init_render(NULL, true);
-	c_mandrill_gui::init_mandrill_gui(false, launch_filepath_command_line_argument);
+	mandrill_user_interface = new c_mandrill_user_interface(false, launch_filepath_command_line_argument);
 
 	c_debug_gui::register_callback(_callback_mode_always_run, application_ui_callback);
 	c_window_win32::register_window_procedure_callback(c_debug_gui::WndProc);
 	c_window_win32::register_update_callback(application_update_callback);
 	c_window_win32::register_destroy_callback(application_close_callback);
-	c_mandrill_gui::register_on_close_callback(application_close_callback);
+	mandrill_user_interface->on_close.register_callback(application_close_callback);
 
 	c_debug_gui::show_ui();
 	c_console::show_startup_banner();
@@ -97,13 +98,14 @@ static int run_mandrill()
 
 static void deinit_mandrill()
 {
-	c_mandrill_gui::unregister_on_close_callback(application_close_callback);
+	mandrill_user_interface->on_close.unregister_callback(application_close_callback);
 	c_window_win32::unregister_destroy_callback(application_close_callback);
 	c_window_win32::unregister_update_callback(application_update_callback);
 	c_window_win32::unregister_window_procedure_callback(c_debug_gui::WndProc);
 	c_debug_gui::unregister_callback(_callback_mode_always_run, application_ui_callback);
 
-	c_mandrill_gui::deinit_mandrill_gui();
+	delete mandrill_user_interface;
+	mandrill_user_interface = nullptr;
 	c_render::deinit_render();
 	c_window_win32::deinit_window();
 	c_console::deinit_console();

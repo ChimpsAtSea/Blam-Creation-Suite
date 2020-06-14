@@ -1,7 +1,7 @@
 
 void render_bitfield_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field)
 {
-	bool unknownItemsVisible = c_mandrill_gui::get_unknown_fields_visibility();
+	bool unknownItemsVisible = c_old_mandrill_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	const char* pFieldTypeName = reflection_field.enum_info.type_nice_name;
 	
@@ -54,7 +54,7 @@ void render_bitfield_gui_legacy(void* field_data, const c_reflection_field_legac
 			represented_value = value;
 		}
 	};
-	static_assert(sizeof(BitFieldDynamicData) <= sizeof(c_mandrill_tag_gui_tab::c_imgui_dynamic_data::second), "BitFieldDynamicData is too large");
+	static_assert(sizeof(BitFieldDynamicData) <= sizeof(c_mandrill_old_tag_gui_tab::c_imgui_dynamic_data::second), "BitFieldDynamicData is too large");
 	bool wasAllocated;
 	BitFieldDynamicData& rBitFieldDynamicData = c_mandrill_legacy_tag_editor_gui_tab::g_current_mandrill_tag_tab->get_dynamic_data<BitFieldDynamicData>(field_data, wasAllocated);
 	if (wasAllocated) new(&rBitFieldDynamicData) BitFieldDynamicData(current_value);

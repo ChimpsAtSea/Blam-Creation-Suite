@@ -6,8 +6,8 @@ e_shader_profile c_mandrill_shader_tool_gui_tab::accepted_shader_profiles[] =
 	_shader_profile_ps_3_0
 };
 
-c_mandrill_shader_tool_gui_tab::c_mandrill_shader_tool_gui_tab(const char* title, const char* description, c_mandrill_cache_file_gui_tab& parent_tab, c_cache_file& cache_file) :
-	c_mandrill_gui_tab(title, description),
+c_mandrill_shader_tool_gui_tab::c_mandrill_shader_tool_gui_tab(const char* title, const char* description, c_old_mandrill_cache_file_gui_tab& parent_tab, c_cache_file& cache_file) :
+	c_old_mandrill_gui_tab(title, description),
 	compile_source_thread_subroutine(&c_mandrill_shader_tool_gui_tab::compile_source_subroutine, this),
 	disassemble_runtime(&c_mandrill_shader_tool_gui_tab::disassemble_runtime_subroutine, this),
 	parent_tab(parent_tab),
@@ -204,9 +204,9 @@ void c_mandrill_shader_tool_gui_tab::render_runtime_disassembly_configuration_he
 		//		selected_cache_file_tab = nullptr;
 		//	}
 
-		//	for (c_mandrill_gui_tab* gui_tab : c_mandrill_gui::get_tabs())
+		//	for (c_old_mandrill_gui_tab* gui_tab : c_old_mandrill_gui::get_tabs())
 		//	{
-		//		c_mandrill_cache_file_gui_tab* cache_file_gui_tab = dynamic_cast<c_mandrill_cache_file_gui_tab*>(gui_tab);
+		//		c_old_mandrill_cache_file_gui_tab* cache_file_gui_tab = dynamic_cast<c_old_mandrill_cache_file_gui_tab*>(gui_tab);
 		//		if (cache_file_gui_tab == nullptr) continue;
 
 		//		if (ImGui::Selectable(cache_file_gui_tab->get_title(), selected_cache_file_tab == cache_file_gui_tab))

@@ -1,16 +1,16 @@
 #pragma once
 
 class c_mandrill_shader_tool_gui_tab :
-	public c_mandrill_gui_tab
+	public c_old_mandrill_gui_tab
 {
 public:
-	friend class c_mandrill_tag_gui_tab;
+	friend class c_mandrill_old_tag_gui_tab;
 
 	c_mandrill_shader_tool_gui_tab() = delete;
 	c_mandrill_shader_tool_gui_tab(const c_mandrill_shader_tool_gui_tab&) = delete;
 	c_mandrill_shader_tool_gui_tab& operator=(const c_mandrill_shader_tool_gui_tab&) = delete;
 
-	c_mandrill_shader_tool_gui_tab(const char* title, const char* description, c_mandrill_cache_file_gui_tab& parent_tab, c_cache_file& cache_file);
+	c_mandrill_shader_tool_gui_tab(const char* title, const char* description, c_old_mandrill_cache_file_gui_tab& parent_tab, c_cache_file& cache_file);
 	virtual ~c_mandrill_shader_tool_gui_tab();
 
 protected:
@@ -39,8 +39,8 @@ protected:
 	c_thread_subroutine disassemble_runtime;
 	mutable c_atomic_temp_value<std::string> new_runtime_disassembly;
 
-	//c_mandrill_cache_file_gui_tab* selected_cache_file_tab;
-	c_mandrill_cache_file_gui_tab& parent_tab;
+	//c_old_mandrill_cache_file_gui_tab* selected_cache_file_tab;
+	c_old_mandrill_cache_file_gui_tab& parent_tab;
 	c_cache_file& cache_file;
 	c_tag_interface* selected_render_method_definition_tag_interface;
 	c_tag_interface* selected_render_method_template_tag_interface;

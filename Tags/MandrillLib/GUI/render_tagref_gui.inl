@@ -63,7 +63,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 
 	if (tag_interface)
 	{
-		const char* ps_tag_reference_legacyDisplayName = c_mandrill_gui::get_use_full_file_length_display()
+		const char* ps_tag_reference_legacyDisplayName = c_old_mandrill_gui::get_use_full_file_length_display()
 			? tag_interface->get_path_with_group_id_cstr()
 			: tag_interface->get_name_with_group_id_cstr();
 
@@ -86,7 +86,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 					continue;
 				}
 
-				const char* current_tag_display_with_group_id = c_mandrill_gui::get_use_full_file_length_display()
+				const char* current_tag_display_with_group_id = c_old_mandrill_gui::get_use_full_file_length_display()
 					? current_tag_interface->get_path_with_group_id_cstr()
 					: current_tag_interface->get_name_with_group_id_cstr();
 
@@ -125,7 +125,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 					continue;
 				}
 
-				const char* current_tag_display_with_group_id = c_mandrill_gui::get_use_full_file_length_display()
+				const char* current_tag_display_with_group_id = c_old_mandrill_gui::get_use_full_file_length_display()
 					? current_tag_interface->get_path_with_group_id_cstr()
 					: current_tag_interface->get_name_with_group_id_cstr();
 
@@ -161,7 +161,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 		{
 			if (c_mandrill_legacy_tag_editor_gui_tab::g_current_recursion_padding)
 			{
-				c_mandrill_cache_file_gui_tab* mandrill_cache_file_gui_tab = dynamic_cast<c_mandrill_cache_file_gui_tab*>(c_mandrill_legacy_tag_editor_gui_tab::g_current_mandrill_tag_tab->GetParentTab());
+				c_old_mandrill_cache_file_gui_tab* mandrill_cache_file_gui_tab = dynamic_cast<c_old_mandrill_cache_file_gui_tab*>(c_mandrill_legacy_tag_editor_gui_tab::g_current_mandrill_tag_tab->GetParentTab());
 				if (mandrill_cache_file_gui_tab)
 				{
 					mandrill_cache_file_gui_tab->open_tag_interface_tab(*tag_interface);
@@ -177,7 +177,7 @@ void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const char* na
 
 void render_tagref_gui_legacy(s_tag_reference_legacy* field_data, const c_reflection_field_legacy& reflection_field)
 {
-	bool unknownItemsVisible = c_mandrill_gui::get_unknown_fields_visibility();
+	bool unknownItemsVisible = c_old_mandrill_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	c_cache_file& cache_file = c_mandrill_legacy_tag_editor_gui_tab::g_current_mandrill_tag_tab->cache_file;
 	render_tagref_gui_legacy(field_data, reflection_field.nice_name, cache_file);

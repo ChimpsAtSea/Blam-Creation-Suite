@@ -1,12 +1,12 @@
 #include <Platform\platform-public-pch.h>
 #include <Shared\shared-public-pch.h>
 
-#define IMGUI_THEME_HIGH(v) { 0.502f, 0.075f, 0.256f, v }
-#define IMGUI_THEME_MED(v) { 0.455f, 0.198f, 0.301f, v }
-#define IMGUI_THEME_LOW(v) { 0.232f, 0.201f, 0.271f, v }
-#define IMGUI_THEME_BG(v) { 0.200f, 0.220f, 0.270f, v }
-#define IMGUI_THEME_TEXT(v) { 0.930f, 0.965f, 0.945f, v }
-#define IMGUI_THEME_MENU(v) { 0.377f, 0.377f, 0.377f, v }
+#define MANDRILL_THEME_HIGH(v) { 0.502f, 0.075f, 0.256f, v }
+#define MANDRILL_THEME_MED(v) { 0.455f, 0.198f, 0.301f, v }
+#define MANDRILL_THEME_LOW(v) { 0.232f, 0.201f, 0.271f, v }
+#define MANDRILL_THEME_BG(v) { 0.200f, 0.220f, 0.270f, v }
+#define MANDRILL_THEME_TEXT(v) { 0.930f, 0.965f, 0.945f, v }
+#define MANDRILL_THEME_MENU(v) { 0.377f, 0.377f, 0.377f, v }
 
 int style_color_count = 0;
 int style_var_count = 0;
@@ -54,54 +54,54 @@ void mandrill_theme()
 	style_color_count = 0;
 	style_var_count = 0;
 
-	push_color(ImGuiCol_Text, IMGUI_THEME_TEXT(0.78f));
-	push_color(ImGuiCol_TextDisabled, IMGUI_THEME_TEXT(0.28f));
+	push_color(ImGuiCol_Text, MANDRILL_THEME_TEXT(0.78f));
+	push_color(ImGuiCol_TextDisabled, MANDRILL_THEME_TEXT(0.28f));
 	push_color(ImGuiCol_WindowBg, ImVec4(0.13f, 0.14f, 0.17f, 1.00f));
-	push_color(ImGuiCol_ChildBg, IMGUI_THEME_BG(0.15f));
-	push_color(ImGuiCol_PopupBg, IMGUI_THEME_BG(0.9f));
+	push_color(ImGuiCol_ChildBg, MANDRILL_THEME_BG(0.15f));
+	push_color(ImGuiCol_PopupBg, MANDRILL_THEME_BG(0.9f));
 	push_color(ImGuiCol_Border, ImVec4(0.31f, 0.31f, 1.00f, 0.00f));
 	push_color(ImGuiCol_BorderShadow, ImVec4(0.00f, 0.00f, 0.00f, 0.00f));
-	push_color(ImGuiCol_FrameBg, IMGUI_THEME_BG(1.00f));
-	push_color(ImGuiCol_FrameBgHovered, IMGUI_THEME_MED(0.78f));
-	push_color(ImGuiCol_FrameBgActive, IMGUI_THEME_MED(1.00f));
-	push_color(ImGuiCol_TitleBg, IMGUI_THEME_LOW(1.00f));
-	push_color(ImGuiCol_TitleBgActive, IMGUI_THEME_HIGH(1.00f));
-	push_color(ImGuiCol_TitleBgCollapsed, IMGUI_THEME_BG(0.75f));
-	push_color(ImGuiCol_MenuBarBg, IMGUI_THEME_BG(0.47f));
-	push_color(ImGuiCol_ScrollbarBg, IMGUI_THEME_BG(1.00f));
+	push_color(ImGuiCol_FrameBg, MANDRILL_THEME_BG(1.00f));
+	push_color(ImGuiCol_FrameBgHovered, MANDRILL_THEME_MED(0.78f));
+	push_color(ImGuiCol_FrameBgActive, MANDRILL_THEME_MED(1.00f));
+	push_color(ImGuiCol_TitleBg, MANDRILL_THEME_LOW(1.00f));
+	push_color(ImGuiCol_TitleBgActive, MANDRILL_THEME_HIGH(1.00f));
+	push_color(ImGuiCol_TitleBgCollapsed, MANDRILL_THEME_BG(0.75f));
+	push_color(ImGuiCol_MenuBarBg, MANDRILL_THEME_BG(0.47f));
+	push_color(ImGuiCol_ScrollbarBg, MANDRILL_THEME_BG(1.00f));
 	push_color(ImGuiCol_ScrollbarGrab, ImVec4(0.09f, 0.15f, 0.16f, 1.00f));
-	push_color(ImGuiCol_ScrollbarGrabHovered, IMGUI_THEME_MED(0.78f));
-	push_color(ImGuiCol_ScrollbarGrabActive, IMGUI_THEME_MED(1.00f));
+	push_color(ImGuiCol_ScrollbarGrabHovered, MANDRILL_THEME_MED(0.78f));
+	push_color(ImGuiCol_ScrollbarGrabActive, MANDRILL_THEME_MED(1.00f));
 	push_color(ImGuiCol_CheckMark, ImVec4(0.71f, 0.22f, 0.27f, 1.00f));
 	push_color(ImGuiCol_SliderGrab, ImVec4(0.47f, 0.77f, 0.83f, 0.14f));
 	push_color(ImGuiCol_SliderGrabActive, ImVec4(0.71f, 0.22f, 0.27f, 1.00f));
 	push_color(ImGuiCol_Button, ImVec4(0.47f, 0.77f, 0.83f, 0.14f));
-	push_color(ImGuiCol_ButtonHovered, IMGUI_THEME_MED(0.86f));
-	push_color(ImGuiCol_ButtonActive, IMGUI_THEME_MED(1.00f));
-	push_color(ImGuiCol_Header, IMGUI_THEME_MED(0.76f));
-	push_color(ImGuiCol_HeaderHovered, IMGUI_THEME_MED(0.86f));
-	push_color(ImGuiCol_HeaderActive, IMGUI_THEME_HIGH(1.00f));
+	push_color(ImGuiCol_ButtonHovered, MANDRILL_THEME_MED(0.86f));
+	push_color(ImGuiCol_ButtonActive, MANDRILL_THEME_MED(1.00f));
+	push_color(ImGuiCol_Header, MANDRILL_THEME_MED(0.76f));
+	push_color(ImGuiCol_HeaderHovered, MANDRILL_THEME_MED(0.86f));
+	push_color(ImGuiCol_HeaderActive, MANDRILL_THEME_HIGH(1.00f));
 	//push_color(ImGuiCol_Column, ImVec4(0.14f, 0.16f, 0.19f, 1.00f));
-	//push_color(ImGuiCol_ColumnHovered, IMGUI_THEME_MED(0.78f));
-	//push_color(ImGuiCol_ColumnActive, IMGUI_THEME_MED(1.00f));
+	//push_color(ImGuiCol_ColumnHovered, MANDRILL_THEME_MED(0.78f));
+	//push_color(ImGuiCol_ColumnActive, MANDRILL_THEME_MED(1.00f));
 	push_color(ImGuiCol_ResizeGrip, ImVec4(0.47f, 0.77f, 0.83f, 0.04f));
-	push_color(ImGuiCol_ResizeGripHovered, IMGUI_THEME_MED(0.78f));
-	push_color(ImGuiCol_ResizeGripActive, IMGUI_THEME_MED(1.00f));
-	push_color(ImGuiCol_PlotLines, IMGUI_THEME_TEXT(0.63f));
-	push_color(ImGuiCol_PlotLinesHovered, IMGUI_THEME_MED(1.00f));
-	push_color(ImGuiCol_PlotHistogram, IMGUI_THEME_TEXT(0.63f));
-	push_color(ImGuiCol_PlotHistogramHovered, IMGUI_THEME_MED(1.00f));
-	push_color(ImGuiCol_TextSelectedBg, IMGUI_THEME_MED(0.43f));
-	push_color(ImGuiCol_ModalWindowDarkening, IMGUI_THEME_BG(0.73f));
+	push_color(ImGuiCol_ResizeGripHovered, MANDRILL_THEME_MED(0.78f));
+	push_color(ImGuiCol_ResizeGripActive, MANDRILL_THEME_MED(1.00f));
+	push_color(ImGuiCol_PlotLines, MANDRILL_THEME_TEXT(0.63f));
+	push_color(ImGuiCol_PlotLinesHovered, MANDRILL_THEME_MED(1.00f));
+	push_color(ImGuiCol_PlotHistogram, MANDRILL_THEME_TEXT(0.63f));
+	push_color(ImGuiCol_PlotHistogramHovered, MANDRILL_THEME_MED(1.00f));
+	push_color(ImGuiCol_TextSelectedBg, MANDRILL_THEME_MED(0.43f));
+	push_color(ImGuiCol_ModalWindowDarkening, MANDRILL_THEME_BG(0.73f));
 
 	push_color(ImGuiCol_Tab, ImVec4(0.14f, 0.16f, 0.19f, 1.00f));
-	push_color(ImGuiCol_TabHovered, IMGUI_THEME_MED(0.78f));
-	push_color(ImGuiCol_TabActive, IMGUI_THEME_MED(1.00f));
-	push_color(ImGuiCol_TabUnfocused, IMGUI_THEME_LOW(0.78f));
+	push_color(ImGuiCol_TabHovered, MANDRILL_THEME_MED(0.78f));
+	push_color(ImGuiCol_TabActive, MANDRILL_THEME_MED(1.00f));
+	push_color(ImGuiCol_TabUnfocused, MANDRILL_THEME_LOW(0.78f));
 
 
 	//push_color3(ImGuiCol_WindowBg, 33, 33, 33);
-	push_color(ImGuiCol_MenuBarBg, IMGUI_THEME_MENU(1.0f));
+	push_color(ImGuiCol_MenuBarBg, MANDRILL_THEME_MENU(1.0f));
 
 	push_style(ImGuiStyleVar_WindowPadding, { 4, 8 });
 	push_style(ImGuiStyleVar_ScrollbarSize, { 20 });
@@ -211,7 +211,7 @@ void render_tree_node(s_node& node)
 	bool is_tree_open = ImGui::TreeNodeEx("##hiddenlavel", flags);
 	ImGui::SameLine();
 
-	//ImGui::PushStyleColor(ImGuiCol_Text, IMGUI_THEME_MED(1.00f));
+	//ImGui::PushStyleColor(ImGuiCol_Text, MANDRILL_THEME_MED(1.00f));
 	//ImGui::Text("%s ", icon_string);
 	//ImGui::PopStyleColor();
 	//ImGui::SameLine();
@@ -253,7 +253,7 @@ void search_box()
 	ImGui::InputText("##Search", search_buffer, _countof(search_buffer), input_text_flags);
 	if (!ImGui::IsItemActive() && search_buffer[0] == 0)
 	{
-		draw_list->AddText({ pos.x + 4.0f, pos.y + 4.0f }, ImGui::ColorConvertFloat4ToU32(IMGUI_THEME_TEXT(0.25)), search_reccomendation);
+		draw_list->AddText({ pos.x + 4.0f, pos.y + 4.0f }, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(0.25)), search_reccomendation);
 	}
 	ImGui::SameLine();
 	ImGui::Button(ICON_FA_TIMES);
@@ -316,222 +316,6 @@ void tag_fields()
 	}
 }
 
-class c_custom_tool_base
-{
-protected:
-	bool is_open = true;
-	float content_height = 0.0f;
-	const char* title = "custom Tool";
-	float maximum_height = 260.0f;
-public:
-	void render()
-	{
-		ImGui::PushID(this);
-
-		ImGuiWindowFlags window_flags = 0;
-		ImGui::PushStyleVar(ImGuiStyleVar_ChildBorderSize, 1);
-		//ImGui::BeginChild("ChildL", ImVec2(ImGui::GetWindowContentRegionWidth() * 0.5f, 260), false, window_flags);
-
-		content_height = __max(content_height, ImGui::GetFrameHeight());
-		if (content_height < maximum_height)
-		{
-			window_flags |= ImGuiWindowFlags_NoScrollbar;
-		}
-		else
-		{
-			content_height = maximum_height;
-		}
-		ImGui::BeginChild(title, ImVec2(ImGui::GetWindowContentRegionWidth() * 0.5f, content_height), false, window_flags);
-		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_None;
-		if (is_open)
-		{
-			flags |= ImGuiTreeNodeFlags_DefaultOpen;
-		}
-		is_open = ImGui::CollapsingHeader(title, flags);
-		content_height = ImGui::GetItemRectSize().y;
-		if (is_open)
-		{
-			ImGui::BeginGroup();
-			{
-				render_contents();
-			}
-			ImGui::EndGroup();
-			content_height = ImGui::GetFrameHeight() + ImGui::GetItemRectSize().y + ImGui::GetStyle().ItemSpacing.y;
-		}
-		else
-		{
-			content_height = ImGui::GetFrameHeight();
-		}
-		//ImGui::EndChild();
-		ImGui::EndChild();
-		ImGui::PopStyleVar();
-
-		ImGui::PopID();
-	}
-
-protected:
-	virtual void render_contents() = 0;
-};
-
-class c_custom_tool_render_model :
-	public c_custom_tool_base
-{
-public:
-	c_custom_tool_render_model() :
-		c_custom_tool_base()
-	{
-		title = "Render model";
-		maximum_height = 500.0f;
-		init_placeholder_textures();
-	}
-	~c_custom_tool_render_model()
-	{
-		placeholder_texture->Release();
-		shader_resource_view->Release();
-	}
-protected:
-	float scale = 1.0f;
-	bool show_markers = false;
-	bool show_default_variant = true;
-
-	// #TODO: Replace with Viewport system
-	ID3D11Texture2D* placeholder_texture = nullptr;
-	ID3D11ShaderResourceView* shader_resource_view = nullptr;
-
-	void init_placeholder_textures()
-	{
-		if (placeholder_texture == nullptr)
-		{
-			D3D11_TEXTURE2D_DESC texture_description = {};
-			texture_description.Width = 1;
-			texture_description.Height = 1;
-			texture_description.MipLevels = 1;
-			texture_description.ArraySize = 1;
-			texture_description.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-			texture_description.SampleDesc.Count = 1;
-			texture_description.SampleDesc.Quality = 0;
-			texture_description.Usage = D3D11_USAGE_DEFAULT;
-			texture_description.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-			texture_description.CPUAccessFlags = 0;
-			texture_description.MiscFlags = 0;
-
-			D3D11_SUBRESOURCE_DATA subresource_data = {};
-			char data[4] = { 100i8, 149i8, 237i8, 255i8 };
-			subresource_data.pSysMem = data;
-
-			size_t num_bytes;
-			size_t row_bytes;
-			HRESULT get_surface_info_result = GetSurfaceInfo(texture_description.Width, texture_description.Height, texture_description.Format, &num_bytes, &row_bytes, nullptr);
-			ASSERT(SUCCEEDED(get_surface_info_result));
-
-			subresource_data.SysMemPitch = static_cast<UINT>(row_bytes);
-			subresource_data.SysMemSlicePitch = static_cast<UINT>(num_bytes);
-
-			HRESULT create_texture_2d_result = c_render::s_pDevice->CreateTexture2D(&texture_description, &subresource_data, &placeholder_texture);
-			ASSERT(SUCCEEDED(create_texture_2d_result));
-			ASSERT(placeholder_texture);
-		}
-		if (shader_resource_view == nullptr)
-		{
-			HRESULT createShaderResourceViewResult = c_render::s_pDevice->CreateShaderResourceView(placeholder_texture, NULL, &shader_resource_view);
-			ASSERT(SUCCEEDED(createShaderResourceViewResult));
-		}
-	}
-
-	virtual void render_contents()
-	{
-		ImDrawList* draw_list = ImGui::GetWindowDrawList();
-
-		ImGui::Columns(2, nullptr, false);
-		{
-			const char* slider_format = "%.2f";
-			if (scale >= 10.0f) slider_format = "%.1f";
-			ImGui::SliderFloat("scale", &scale, 0.01f, 100.0f, slider_format, 3.0f);
-
-			float width = ImGui::GetContentRegionAvailWidth();
-			if (ImGui::GetCurrentWindow()->ScrollbarSizes.x == 0) // account for the scrollbar being added to prevent flicker
-			{
-				width -= ImGui::GetStyle().ScrollbarSize;
-			}
-
-			// viewport
-			{
-				ImVec2 start_pos = ImGui::GetCursorScreenPos();
-				ImVec2 content_region = { width, width * (9.0f / 16.0f) };
-				ImVec2 end_pos = { start_pos.x * content_region.x, start_pos.y * content_region.y };
-				//draw_list->AddRectFilled(start_pos, end_pos, ImGui::ColorConvertFloat4ToU32({ 1.0f, 0.0f, 0.0f, 1.0f }));
-
-				ImGui::Image(shader_resource_view, content_region);
-			}
-
-			// viewport controls
-			{
-				ImVec2 start_pos = ImGui::GetCursorPos();
-				ImGui::Checkbox("Markers", &show_markers);
-				ImVec2 end_pos = ImGui::GetCursorPos();
-
-				float button_width = ImGui::CalcTextSize("Refresh model").x + (ImGui::GetStyle().FramePadding.x + ImGui::GetStyle().ItemInnerSpacing.x) * 2.0f;
-				ImVec2 button_pos = { ImGui::GetContentRegionAvailWidth() - button_width, start_pos.y };
-				ImGui::SetCursorPos(button_pos);
-				ImGui::Button("Refresh model");
-				ImGui::SetCursorPos(end_pos);
-			}
-		}
-		ImGui::NextColumn();
-		{
-			ImGui::Text("Variant:");
-			ImGui::SameLine();
-			if (ImGui::BeginCombo("##variant", ""))
-			{
-				ImGui::EndCombo();
-			}
-
-			ImGui::Dummy({ 0.0f, 10.0f });
-
-			ImGui::Text("default:");
-			ImGui::SameLine();
-			ImGui::Checkbox("##default", &show_default_variant);
-
-
-			ImGui::BeginChild("##buttons", { ImGui::GetContentRegionAvailWidth(), 120.0f });
-
-			ImGui::Separator();
-
-			ImGui::Dummy({ 0.0f, 10.0f });
-
-			ImGui::Button("Drop Variant");
-			ImGui::Button("Drop Permutation");
-			ImGui::Button("Update");
-
-			ImGui::EndChild();
-		}
-		ImGui::Columns(1);
-	}
-};
-
-void custom_tool_render_model()
-{
-	ImDrawList* draw_list = ImGui::GetWindowDrawList();
-
-	float padding = 10.0f;
-#define insert_margin \
-	ImGui::Dummy({ padding, 0.0f }); \
-	ImGui::SameLine()
-
-	ImVec2 start_pos = ImGui::GetCursorScreenPos();
-
-	static c_custom_tool_render_model custom_tool;
-	custom_tool.render();
-
-	ImVec2 item_size = ImGui::GetItemRectSize();
-	ImVec2 end_pos = { start_pos.x + item_size.x + padding , start_pos.y + item_size.y + padding };
-
-
-	//draw_list->AddRect(start_pos, end_pos, ImGui::ColorConvertFloat4ToU32({ 1.0f, 0.0f, 0.0f, 1.0f }));
-
-#undef insert_margin
-}
-
 void tag_editor()
 {
 	ImDrawList* draw_list = ImGui::GetWindowDrawList();
@@ -544,13 +328,13 @@ void tag_editor()
 		ImVec2 finish_pos = start_pos;
 		finish_pos.x += ImGui::GetContentRegionAvailWidth();
 		finish_pos.y += header_height;
-		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(IMGUI_THEME_MENU(1.0f)));
+		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_MENU(1.0f)));
 
 
 		ImVec2 text_pos = start_pos;
 		text_pos.x += 10.0f;
 		text_pos.y += (header_height - line_height) / 2.0f;
-		draw_list->AddText(text_pos, ImGui::ColorConvertFloat4ToU32(IMGUI_THEME_TEXT(1.0f)), "objects\\reference\\reflection_lighting_test\\shaders\\lighting.shader");
+		draw_list->AddText(text_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(1.0f)), "objects\\reference\\reflection_lighting_test\\shaders\\lighting.shader");
 
 		finish_pos.x = start_pos.x;
 		ImGui::SetCursorScreenPos(finish_pos);
@@ -563,7 +347,7 @@ void tag_editor()
 		ImVec2 finish_pos = start_pos;
 		finish_pos.x += ImGui::GetContentRegionAvailWidth();
 		finish_pos.y += header_height;
-		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(IMGUI_THEME_MENU(0.5f)));
+		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_MENU(0.5f)));
 
 		ImVec2 text_pos = start_pos;
 		text_pos.x += 10.0f;
@@ -619,7 +403,7 @@ void tag_editor()
 		ImVec2 finish_pos = start_pos;
 		finish_pos.x += ImGui::GetContentRegionAvailWidth();
 		finish_pos.y += header_height;
-		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(IMGUI_THEME_MENU(0.5f)));
+		draw_list->AddRectFilled(start_pos, finish_pos, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_MENU(0.5f)));
 
 		ImVec2 text_pos = start_pos;
 		text_pos.x += 10.0f;
@@ -640,7 +424,8 @@ void tag_editor()
 	}
 	ImGui::Dummy({ 0.0f, ImGui::GetStyle().ItemSpacing.y });
 
-	custom_tool_render_model();
+	//static c_custom_tool_render_model custom_tool;
+	//custom_tool.render();
 
 	tag_fields();
 }

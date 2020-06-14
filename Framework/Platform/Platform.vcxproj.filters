@@ -87,6 +87,9 @@
     <ClInclude Include="language_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="callback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform-private-pch.cpp">
@@ -120,6 +123,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Strings\fixed_string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="callback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

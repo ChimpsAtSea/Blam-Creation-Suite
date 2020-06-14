@@ -2,7 +2,7 @@
 
 void render_stringid_gui_legacy(string_id_legacy* field_data, const c_reflection_field_legacy& reflection_field)
 {
-	bool unknownItemsVisible = c_mandrill_gui::get_unknown_fields_visibility();
+	bool unknownItemsVisible = c_old_mandrill_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	ImGui::PushID(field_data);
 
@@ -40,7 +40,7 @@ void render_stringid_gui_legacy(string_id_legacy* field_data, const c_reflection
 		}
 	};
 
-	static_assert(sizeof(string_id_dynamic_ui_data) <= sizeof(c_mandrill_tag_gui_tab::c_imgui_dynamic_data::second), "StringIDDynamicData is too large");
+	static_assert(sizeof(string_id_dynamic_ui_data) <= sizeof(c_mandrill_old_tag_gui_tab::c_imgui_dynamic_data::second), "StringIDDynamicData is too large");
 	bool wasAllocated;
 	string_id_dynamic_ui_data& rDynamicStringIDData = c_mandrill_legacy_tag_editor_gui_tab::g_current_mandrill_tag_tab->get_dynamic_data<string_id_dynamic_ui_data>(field_data, wasAllocated);
 	if (wasAllocated)

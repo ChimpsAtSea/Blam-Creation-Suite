@@ -36,7 +36,7 @@ ImVec2 render_struct_separator(int recursionDepth, ImVec2* pTopScreenPos = nullp
 
 void render_struct_gui_legacy(void* field_data, const c_reflection_field_legacy& reflection_field)
 {
-	bool unknownItemsVisible = c_mandrill_gui::get_unknown_fields_visibility();
+	bool unknownItemsVisible = c_old_mandrill_gui::get_unknown_fields_visibility();
 	if (!unknownItemsVisible && reflection_field.is_hidden_by_default) return; // skip hidden fields
 	DEBUG_ASSERT(field_data != nullptr);
 	ImGui::PushID(field_data);

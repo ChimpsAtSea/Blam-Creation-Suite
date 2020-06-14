@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="!Resources\resource.h" />
     <ClInclude Include="!Resources\resources_manager.h" />
+    <ClInclude Include="callback.h" />
     <ClInclude Include="debug_util.h" />
     <ClInclude Include="endianness_util.h" />
     <ClInclude Include="enum_util.h" />
@@ -46,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="!Resources\resources_manager.cpp" />
+    <ClCompile Include="callback.cpp" />
     <ClCompile Include="debug_util.cpp" />
     <ClCompile Include="error_handling.cpp" />
     <ClCompile Include="filesystem_util.cpp" />

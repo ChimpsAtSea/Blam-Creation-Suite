@@ -6,6 +6,7 @@ std::vector<c_game_launcher::t_generic_game_event> c_game_launcher::s_game_shutd
 bool c_game_launcher::s_is_game_running = false;
 c_opus_game_engine_host* current_game_host = nullptr;
 e_campaign_difficulty_level g_campaign_difficulty_level = _campaign_difficulty_level_normal; // #TODO #REFACTOR
+c_mandrill_user_interface* c_game_launcher::mandrill_user_interface = nullptr;
 
 
 
@@ -160,6 +161,9 @@ void c_game_launcher::init_game_launcher()
 
 	c_window_win32::register_destroy_callback(window_destroy_callback);
 
+	ASSERT(mandrill_user_interface == nullptr);
+	mandrill_user_interface = new c_mandrill_user_interface(true);
+
 	if (!has_auto_started)
 	{
 		if (k_autostart_halo_haloreach) start_game(_engine_type_haloreach, _next_launch_mode_generic);
@@ -172,6 +176,9 @@ void c_game_launcher::init_game_launcher()
 
 void c_game_launcher::deinit_game_launcher()
 {
+	delete mandrill_user_interface;
+	mandrill_user_interface = nullptr;
+
 	c_window_win32::unregister_destroy_callback(window_destroy_callback);
 	c_debug_gui::unregister_callback(_callback_mode_always_run, render_main_menu);
 	c_debug_gui::unregister_callback(_callback_mode_toggleable, render_ui);
@@ -255,7 +262,7 @@ void c_game_launcher::update()
 
 void c_game_launcher::game_render()
 {
-	c_mandrill_gui::render_in_game_gui();
+	mandrill_user_interface->render_game_layer();
 	c_primitive_render_manager::render();
 }
 
@@ -274,7 +281,7 @@ void c_game_launcher::start_game(e_engine_type engine_type, e_next_launch_mode n
 
 void c_game_launcher::render_ui()
 {
-	c_mandrill_gui::render_gui();
+	mandrill_user_interface->render();
 	if (s_is_game_running)
 	{
 		current_game_host->render_ui();
@@ -389,7 +396,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 					{
 						wchar_t map_filepath[MAX_PATH + 1] = {};
 						_snwprintf(map_filepath, MAX_PATH, L"%S%S.map", "haloreach/maps/", map_file_name);
-						c_mandrill_gui::open_cache_file_from_filepath(map_filepath);
+						mandrill_user_interface->open_cache_file(map_filepath);
 					}
 				}
 			}
@@ -509,6 +516,7 @@ void c_game_launcher::launch_eldorado_game()
 {
 
 }
+
 #endif
 void c_game_launcher::check_steam_ownership()
 {

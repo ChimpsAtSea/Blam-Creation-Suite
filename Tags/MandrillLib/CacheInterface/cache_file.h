@@ -54,8 +54,8 @@ public:
 	inline const wchar_t* get_map_filepath() const { return map_filepath.c_str(); }
 	inline const char* get_map_filepath_utf8() const { return map_filepath_utf8.c_str(); }
 
-	inline const wchar_t* get_map_path() const { return map_path.c_str(); }
-	inline const char* get_map_path_utf8() const { return map_path_utf8.c_str(); }
+	inline const wchar_t* get_map_path() const { return map_filename.c_str(); }
+	inline const char* get_map_path_utf8() const { return map_filename_utf8.c_str(); }
 
 protected:
 	c_virtual_memory_container& virtual_memory_container;
@@ -71,10 +71,9 @@ protected:
 protected:
 	/* initialize each tag instance */
 	void init_sorted_instance_lists();
-
-	std::wstring map_filepath;
-	std::wstring map_path;
-	std::string map_filepath_utf8;
-	std::string map_path_utf8;
+	c_fixed_wide_path map_filepath;
+	c_fixed_path map_filepath_utf8;
+	c_fixed_wide_string_256 map_filename;
+	c_fixed_string_256 map_filename_utf8;
 };
 
