@@ -307,8 +307,25 @@ void c_tag_source_generator::generate_source()
 	ss << std::endl << "\t} // end namespace " << namespace_name << std::endl;
 	ss << std::endl << "} // end namespace blofeld" << std::endl;
 
+
+
 	std::string source_code = ss.str();
 	std::string output_filepath = c_command_line::get_command_line_arg("-output") + namespace_name + ".h";
-	bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
-	ASSERT(filesystem_write_file_from_memory_result);
+	bool write_output = true;
+	size_t existing_file_size;
+	const char* existing_file_data;
+	if (filesystem_read_file_to_memory(output_filepath.c_str(), &existing_file_data, &existing_file_size))
+	{
+		if (source_code.size() == existing_file_size && strncmp(existing_file_data, source_code.c_str(), existing_file_size) == 0)
+		{
+			write_output = false;
+		}
+		delete[] existing_file_data;
+	}
+
+	if (write_output)
+	{
+		bool filesystem_write_file_from_memory_result = filesystem_write_file_from_memory(output_filepath.c_str(), source_code.data(), source_code.size());
+		ASSERT(filesystem_write_file_from_memory_result);
+	}
 }
