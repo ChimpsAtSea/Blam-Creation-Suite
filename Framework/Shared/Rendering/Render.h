@@ -52,7 +52,7 @@ public:
 	static void init_render(c_window* window, HINSTANCE hInstance, bool allow_resize_at_beginning_of_frame = false);
 	static void begin_frame(bool clear, float clearColor[4], bool setTargets = true);
 	static void end_frame();
-	static void RequestResize(int width, int height);
+	static void RequestResize(uint32_t width, uint32_t height);
 	static void ResizeBegin();
 	static void ResizeEnd();
 	static void deinit_render();

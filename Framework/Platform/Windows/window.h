@@ -36,6 +36,7 @@ public:
 	c_callback<LRESULT(HWND, UINT, WPARAM, LPARAM)> on_window_procedure;
 	c_callback<void()> on_update;
 	c_callback<void()> on_destroy;
+	c_callback<void(uint32_t width, uint32_t height)> on_resize;
 
 protected:
 

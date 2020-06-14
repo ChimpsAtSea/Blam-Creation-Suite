@@ -234,6 +234,7 @@ void c_render::init_render(c_window* window, HINSTANCE hInstance, bool allow_res
 {
 	s_window = window;
 	g_allow_resize_at_beginning_of_frame = allow_resize_at_beginning_of_frame;
+	s_window->on_resize.register_callback(RequestResize);
 
 	if (!s_directxCustomInit)
 	{
@@ -387,7 +388,7 @@ void c_render::end_frame()
 	s_swap_chain->Present(1, 0);
 }
 
-void c_render::RequestResize(int width, int height)
+void c_render::RequestResize(uint32_t width, uint32_t height)
 {
 	resize_requested = true;
 }
@@ -465,6 +466,8 @@ void c_render::deinit_render()
 		s_swap_chain->Release();
 		s_pFactory->Release();
 	}
+
+	s_window->on_resize.unregister_callback(RequestResize);
 
 	s_pDevice = nullptr;
 	s_pDeviceContext = nullptr;

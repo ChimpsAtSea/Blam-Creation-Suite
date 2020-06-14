@@ -165,7 +165,7 @@ LRESULT c_window::window_procedure_impl(HWND hwnd, UINT msg, WPARAM w_param, LPA
 		break;
 	case WM_SIZE:
 		update_window_size();
-		// #BCSREFACTOR c_render::RequestResize(c_window::get_width(), c_window::get_height());
+		on_resize(get_width_integer(), get_height_integer());
 		// #TODO: tell game to resize
 		break;
 	//case WM_KILLFOCUS:

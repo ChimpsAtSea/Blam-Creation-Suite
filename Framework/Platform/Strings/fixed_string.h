@@ -356,7 +356,7 @@ public:
 
 	void clear()
 	{
-
+		data[0] = 0;
 	}
 
 	void shrink(size_t new_size)

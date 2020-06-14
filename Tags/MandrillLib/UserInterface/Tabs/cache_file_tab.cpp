@@ -85,7 +85,10 @@ void c_cache_file_tab::render_search_box()
 		draw_list->AddText({ pos.x + 4.0f, pos.y + 4.0f }, ImGui::ColorConvertFloat4ToU32(MANDRILL_THEME_TEXT(0.25)), search_reccomendation);
 	}
 	ImGui::SameLine();
-	ImGui::Button(ICON_FA_TIMES);
+	if (ImGui::Button(ICON_FA_TIMES))
+	{
+		search_buffer.clear();
+	}
 	ImGui::SameLine();
 	ImGui::Dummy({ 10.0f, 0.0f });
 }

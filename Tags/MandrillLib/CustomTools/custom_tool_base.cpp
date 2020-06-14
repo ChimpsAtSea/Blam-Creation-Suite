@@ -17,7 +17,8 @@ void c_custom_tool_base::render()
 	{
 		content_height = maximum_height;
 	}
-	ImGui::BeginChild(title, ImVec2(ImGui::GetWindowContentRegionWidth() * 0.5f, content_height), false, window_flags);
+	float width = ImGui::GetWindowContentRegionWidth();
+	ImGui::BeginChild(title, ImVec2(width, content_height), false, window_flags);
 	ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_None;
 	if (is_open)
 	{
