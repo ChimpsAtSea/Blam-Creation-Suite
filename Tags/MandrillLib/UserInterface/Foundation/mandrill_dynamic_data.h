@@ -12,7 +12,7 @@ public:
 	// #NOTE Make the assumption that cache lines are 64bytes
 	// (512 bits) wide. 64, 128, 192, 256, 320 etc.
 
-	using c_imgui_dynamic_data = std::pair<void*, char[248]>;
+	using c_imgui_dynamic_data = std::pair<void*, char[256 - sizeof(intptr_t)]>;
 	static_assert(sizeof(c_imgui_dynamic_data) == 256);
 
 	// #TODO Replace this with a virtual memory container
