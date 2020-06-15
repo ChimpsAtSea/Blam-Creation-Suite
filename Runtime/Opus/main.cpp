@@ -4,6 +4,7 @@
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>
 #include <GameFramework\gameframework-private-pch.h>
+#include <Rhesus\rhesus-private-pch.h>
 
 DirectX::XMFLOAT4 clearColor = { 0.01f, 0.011f, 0.03f, 1.0f };
 
@@ -17,6 +18,12 @@ int WINAPI WinMain(
 	_In_ int nShowCmd
 )
 {
+	int result = 0;
+	if (rhesus_crash_reporter(result))
+	{
+		return result;
+	}
+
 	register_platforms();
 
 	c_console::init_console();

@@ -1,5 +1,7 @@
 #include "rhesus-private-pch.h"
 
+#define MS_VC_SET_THREAD_EXCEPTION 0x406D1388
+
 static bool rhesus_debugging = true;
 static PROCESS_INFORMATION rhesus_process_information = {};
 
@@ -46,6 +48,7 @@ const char* exception_code_to_string(DWORD exception_code)
 	case EXCEPTION_INVALID_DISPOSITION:				return "EXCEPTION_INVALID_DISPOSITION";
 	case EXCEPTION_GUARD_PAGE:						return "EXCEPTION_GUARD_PAGE";
 	case EXCEPTION_INVALID_HANDLE:					return "EXCEPTION_INVALID_HANDLE";
+	case MS_VC_SET_THREAD_EXCEPTION:				return "MS_VC_SET_THREAD_EXCEPTION";
 		//case EXCEPTION_POSSIBLE_DEADLOCK:				return "EXCEPTION_POSSIBLE_DEADLOCK";
 	default:	return "unknown debug_event_code";
 	}
@@ -125,9 +128,14 @@ void rhesus_debugger_loop(const DEBUG_EVENT& debug_event)
 			// Last chance: Display an appropriate error. 
 			break;
 		case EXCEPTION_ACCESS_VIOLATION:
+		case MS_VC_SET_THREAD_EXCEPTION:
 			break;
 		default:
+
 			rhesis_write_crashdump();
+
+			
+
 			break;
 		}
 		break;
