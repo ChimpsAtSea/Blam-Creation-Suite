@@ -164,6 +164,7 @@ ImGuiDataType field_to_imgui_data_type(blofeld::e_field field_type)
 	case blofeld::_field_real: return ImGuiDataType_Float;
 	case blofeld::_field_real_fraction: return ImGuiDataType_Float;
 	}
+	throw;
 }
 
 uint32_t c_blofeld_tag_editor_tab::get_struct_size(const blofeld::s_tag_struct_definition& struct_definition)
@@ -210,6 +211,7 @@ uint32_t c_blofeld_tag_editor_tab::get_field_size(const blofeld::s_tag_field& fi
 	}
 	case blofeld::_field_array:							return get_struct_size(field.array_definition->struct_definition) * field.array_definition->count;	// dynamic
 	}
+	throw;
 }
 
 uint32_t c_blofeld_tag_editor_tab::render_tag_struct_definition(char* const data, const blofeld::s_tag_struct_definition& struct_definition)

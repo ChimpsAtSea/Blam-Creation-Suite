@@ -71,6 +71,7 @@
     <ClInclude Include="ThreadPrimitives\thread_subroutine.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Blam\legacy\map_id.cpp" />
     <ClCompile Include="Rendering\directx_helpers.cpp" />
     <ClCompile Include="string_helpers.cpp" />
     <ClCompile Include="ThreadPrimitives\semaphore.cpp" />
