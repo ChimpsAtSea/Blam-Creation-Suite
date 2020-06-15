@@ -12,7 +12,7 @@ c_opus_game_engine_host::c_opus_game_engine_host(e_engine_type engine_type, e_bu
 	total_frame_cpu_time(0.0),
 	game_engine(nullptr)
 {
-	const wchar_t* engine_string = get_enum_string<decltype(engine_string)>(engine_type);
+	const wchar_t* engine_string = get_enum_string<decltype(engine_string), true>(engine_type);
 	const wchar_t* build_string = build_to_string<decltype(build_string), true>(engine_type, build); //#TODO: MCC product version to string to snag build numbers we don't know about
 	const wchar_t* build_configuration = build_configuration_string<decltype(build_configuration), true>();
 
@@ -669,11 +669,19 @@ bool __fastcall c_opus_game_engine_host::Function37(wchar_t*, __int64)
 
 __int64 __fastcall c_opus_game_engine_host::NetworkSendTo(NetworkID network_id, char* buffer, uint32_t buffer_size, int)
 {
+	if (buffer)
+	{
+		debug_point;
+	}
 	return 0;
 }
 
 __int64 __fastcall c_opus_game_engine_host::NetworkReceiveFrom(char* buffer, uint32_t buffer_size, __int64, s_transport_address* pTransportAddress)
 {
+	if (buffer)
+	{
+		debug_point;
+	}
 	return 0;
 }
 

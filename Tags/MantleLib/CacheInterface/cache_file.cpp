@@ -198,6 +198,8 @@ void c_cache_file::initGroupInstances()
 
 void c_cache_file::initTagInstances()
 {
+	return;
+
 	// allocate buffer space to store pointers back
 	tag_interfaces.resize(cache_file_tags_headers->instances.count);
 	c_tag_interface** ppTagInterfacesBuffer = tag_interfaces.data();
@@ -207,7 +209,7 @@ void c_cache_file::initTagInstances()
 
 		unsigned long group_tag = cache_file_tag_groups[group_index].group_tags[0];
 
-		c_tag_interface* tag_interface = blofeld::haloreach::create_tag_interface(*this, static_cast<uint16_t>(index), group_tag);
+		c_tag_interface* tag_interface = nullptr; // blofeld::haloreach::create_tag_interface(*this, static_cast<uint16_t>(index), group_tag);
 		if (!tag_interface)
 		{
 			write_line_verbose("c_cache_file: warning unknown tag group!");
