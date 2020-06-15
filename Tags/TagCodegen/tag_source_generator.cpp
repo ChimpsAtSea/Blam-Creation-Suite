@@ -4,7 +4,8 @@ using namespace blofeld;
 
 c_tag_source_generator::c_tag_source_generator(e_engine_type engine_type, e_build build) :
 	engine_type(engine_type),
-	build(build)
+	build(build),
+	has_error(false)
 {
 
 }
@@ -195,55 +196,61 @@ void c_tag_source_generator::generate_source()
 			}
 			case _field_tag_reference:
 			{
-				ASSERT(current_field->tag_reference_definition);
-
-				bool handled = false;
-
-				long group_tag = current_field->tag_reference_definition->group_tag;
-				uint32_t group_tag_count = current_field->tag_reference_definition->group_tag;
-
-
-
-				std::vector<unsigned long> group_tags;
-
-				if (current_field->tag_reference_definition->group_tag != INVALID_TAG)
+				if (current_field->tag_reference_definition == nullptr)
 				{
-					group_tags.emplace_back(current_field->tag_reference_definition->group_tag);
-				}
-				else if (current_field->tag_reference_definition->group_tags)
-				{
-					for (const unsigned long* current_group_tag = current_field->tag_reference_definition->group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
-					{
-						group_tags.push_back(*current_group_tag);
-					}
-				}
-
-
-				if (group_tags.empty())
-				{
-					ss << "\t\t\t" << "s_tag_reference " << field_formatter.code_name.c_str() << ";";
+					c_console::write_line("%s(%i): error TSG0001: _field_tag_reference is null", current_field->filename, current_field->line);
+					has_error = true;
 				}
 				else
 				{
+					bool handled = false;
 
-					ss << "\t\t\t" << "c_typed_tag_reference<";
+					long group_tag = current_field->tag_reference_definition->group_tag;
+					uint32_t group_tag_count = current_field->tag_reference_definition->group_tag;
 
-					for (size_t group_tag_index = 0; group_tag_index < group_tags.size(); group_tag_index++)
+
+
+					std::vector<unsigned long> group_tags;
+
+					if (current_field->tag_reference_definition->group_tag != INVALID_TAG)
 					{
-						const s_tag_group* tag_group = get_group_tag_by_group_tag(group_tags[group_tag_index]);
-						ASSERT(tag_group != nullptr);
-						if (group_tag_index > 0)
-						{
-							ss << ", ";
-						}
-
-						c_fixed_string_128 tag_group_name = tag_group->name;
-						tag_group_name += "_TAG";
-						tag_group_name.uppercase();
-
-						ss << tag_group_name.data;
+						group_tags.emplace_back(current_field->tag_reference_definition->group_tag);
 					}
-					ss << "> " << field_formatter.code_name.c_str() << ";";
+					else if (current_field->tag_reference_definition->group_tags)
+					{
+						for (const unsigned long* current_group_tag = current_field->tag_reference_definition->group_tags; *current_group_tag != INVALID_TAG; current_group_tag++)
+						{
+							group_tags.push_back(*current_group_tag);
+						}
+					}
+
+
+					if (group_tags.empty())
+					{
+						ss << "\t\t\t" << "s_tag_reference " << field_formatter.code_name.c_str() << ";";
+					}
+					else
+					{
+
+						ss << "\t\t\t" << "c_typed_tag_reference<";
+
+						for (size_t group_tag_index = 0; group_tag_index < group_tags.size(); group_tag_index++)
+						{
+							const s_tag_group* tag_group = get_group_tag_by_group_tag(group_tags[group_tag_index]);
+							ASSERT(tag_group != nullptr);
+							if (group_tag_index > 0)
+							{
+								ss << ", ";
+							}
+
+							c_fixed_string_128 tag_group_name = tag_group->name;
+							tag_group_name += "_TAG";
+							tag_group_name.uppercase();
+
+							ss << tag_group_name.data;
+						}
+						ss << "> " << field_formatter.code_name.c_str() << ";";
+					}
 				}
 
 				break;

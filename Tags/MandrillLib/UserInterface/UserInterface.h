@@ -8,6 +8,7 @@
 #include "Foundation\mandrill_tab.h"
 #include "Foundation\mandrill_user_interface.h"
 
+#include "Tabs\blofeld_tag_definition_debug_tab.h"
 #include "Tabs\blofeld_tag_editor_tab.h"
 #include "Tabs\cache_file_tab.h"
 #include "Tabs\tag_interface_tab.h"

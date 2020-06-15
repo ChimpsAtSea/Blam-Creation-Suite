@@ -2,14 +2,17 @@
 
 const char* c_console::g_console_executable_name = "TagCodegen";
 
-void create_source_file()
+int create_source_file()
 {
 	c_structure_relationship_node::create_structure_relationships();
 	c_structure_relationship_node::create_sorted_tag_struct_definitions();
 
+	int result = 0;
+
 	{
 		c_tag_source_generator tag_source_generator(_engine_type_haloreach, _build_not_set);
 		tag_source_generator.generate_source();
+		if (tag_source_generator.has_error) result++;
 
 		c_virtual_tag_source_generator virtual_tag_source_generator(_engine_type_haloreach, _build_not_set);
 		virtual_tag_source_generator.generate_header();
@@ -18,6 +21,7 @@ void create_source_file()
 	{
 		c_tag_source_generator tag_source_generator(_engine_type_halo3, _build_not_set);
 		tag_source_generator.generate_source();
+		if (tag_source_generator.has_error) result++;
 
 		c_virtual_tag_source_generator virtual_tag_source_generator(_engine_type_halo3, _build_not_set);
 		virtual_tag_source_generator.generate_header();
@@ -26,11 +30,14 @@ void create_source_file()
 	{
 		c_tag_source_generator tag_source_generator(_engine_type_halo4, _build_not_set);
 		tag_source_generator.generate_source();
+		if (tag_source_generator.has_error) result++;
 
 		c_virtual_tag_source_generator virtual_tag_source_generator(_engine_type_halo4, _build_not_set);
 		virtual_tag_source_generator.generate_header();
 		virtual_tag_source_generator.generate_source();
 	}
+
+	return result;
 }
 
 int wmain(int argc, const wchar_t** argv)
@@ -40,9 +47,7 @@ int wmain(int argc, const wchar_t** argv)
 		return 1;
 	}
 
-	create_source_file();
-
-	int result = 0;
+	int result = create_source_file();
 
 	return result;
 }

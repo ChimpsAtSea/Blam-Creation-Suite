@@ -4,11 +4,11 @@ enum e_engine_type : uint8_t
 {
 	_engine_type_not_set,
 	_engine_type_mcc,
-	_engine_type_haloreach,
 	_engine_type_halo1,
 	_engine_type_halo2,
 	_engine_type_halo3,
 	_engine_type_halo3odst,
+	_engine_type_haloreach,
 	_engine_type_halo4,
 	_engine_type_groundhog,
 	_engine_type_eldorado,

@@ -153,9 +153,6 @@
     <ClInclude Include="UserInterface\shader_profile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UserInterface\Tabs\blofeld_tag_editor_tab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CustomTools\custom_tool_render_model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -163,6 +160,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CustomTools\custom_tool_base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Tabs\blofeld_tag_editor_tab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInterface\Tabs\blofeld_tag_definition_debug_tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -272,13 +275,16 @@
     <ClCompile Include="UserInterface\Foundation\mandrill_dynamic_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UserInterface\Tabs\blofeld_tag_editor_tab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CustomTools\custom_tool_render_model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CustomTools\custom_tool_base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Tabs\blofeld_tag_editor_tab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface\Tabs\blofeld_tag_definition_debug_tab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1958,7 +1958,7 @@ namespace blofeld
 		&wave_template_block_struct, // block
 		&wave_squad_specification_struct_struct_struct_definition,
 		&weapon_block_struct, // block
-		&melee_damage_parameters_block_block_struct, // block
+		&melee_damage_parameters_block_struct_definition, // block
 		&aim_assist_struct_struct_definition,
 		&WeaponBarrelIronSightsStruct_struct_definition,
 		&globalAimAssistBlock_block_struct, // block

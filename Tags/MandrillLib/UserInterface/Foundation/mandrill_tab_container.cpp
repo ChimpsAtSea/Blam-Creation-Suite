@@ -15,6 +15,7 @@ c_mandrill_tab_container::~c_mandrill_tab_container()
 
 void c_mandrill_tab_container::add_tab(c_mandrill_tab& tab)
 {
+	REFERENCE_ASSERT(tab);
 	if (std::find(children.begin(), children.end(), &tab) == children.end())
 	{
 		children.push_back(&tab);

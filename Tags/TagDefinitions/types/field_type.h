@@ -128,7 +128,7 @@ namespace blofeld
 		case _field_short_bounds:					return sizeof(::short_bounds);
 		case _field_angle_bounds:					return sizeof(::angle_bounds);
 		case _field_real_bounds:					return sizeof(::real_bounds);
-		case _field_real_fraction_bounds:			return sizeof(::real_bounds);
+		case _field_real_fraction_bounds:			return sizeof(::real_fraction_bounds);
 		case _field_tag_reference:					return sizeof(::s_tag_reference);
 		case _field_block:							return sizeof(::s_tag_block);
 		case _field_long_block_flags:				return sizeof(long);

@@ -19,10 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="UserInterface\Tabs\blofeld_tag_editor_tab.h" />
     <ClInclude Include="CustomTools\CustomTools.h" />
     <ClInclude Include="CustomTools\custom_tool_render_model.h" />
     <ClInclude Include="CustomTools\custom_tool_base.h" />
-    <ClInclude Include="UserInterface\Tabs\blofeld_tag_editor_tab.h" />
+    <ClInclude Include="UserInterface\Tabs\blofeld_tag_definition_debug_tab.h" />
     <ClInclude Include="UserInterface\Foundation\mandrill_dynamic_data.h" />
     <ClInclude Include="UserInterface\shader_profile.h" />
     <ClInclude Include="CacheInterface\CacheInterface.h" />
@@ -71,9 +72,10 @@
     <ClInclude Include="virtual_memory_container.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="UserInterface\Tabs\blofeld_tag_editor_tab.cpp" />
     <ClCompile Include="CustomTools\custom_tool_render_model.cpp" />
     <ClCompile Include="CustomTools\custom_tool_base.cpp" />
-    <ClCompile Include="UserInterface\Tabs\blofeld_tag_editor_tab.cpp" />
+    <ClCompile Include="UserInterface\Tabs\blofeld_tag_definition_debug_tab.cpp" />
     <ClCompile Include="UserInterface\Foundation\mandrill_dynamic_data.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\eldorado\eldorado_cache_file.cpp" />
     <ClCompile Include="CacheInterface\CacheVersions\gen3\gen3_cache_file.cpp" />

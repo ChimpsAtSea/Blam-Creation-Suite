@@ -15,8 +15,10 @@ c_tag_interface_tab::c_tag_interface_tab(c_tag_interface& tag_interface, c_mandr
 	if (blofeld_reflection)
 	{
 		c_blofeld_tag_editor_tab* blofeld_tag_editor_gui_tab = new c_blofeld_tag_editor_tab(tag_interface, *this);
-		ASSERT(blofeld_tag_editor_gui_tab != nullptr);
 		add_tab(*blofeld_tag_editor_gui_tab);
+
+		c_blofeld_tag_definition_debug_tab* blofeld_tag_definition_debug_tab = new c_blofeld_tag_definition_debug_tab(tag_interface, *this);
+		add_tab(*blofeld_tag_definition_debug_tab);
 	}
 }
 

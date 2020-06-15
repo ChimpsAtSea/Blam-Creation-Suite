@@ -57,6 +57,8 @@ public:
 	inline const wchar_t* get_map_path() const { return map_filename.c_str(); }
 	inline const char* get_map_path_utf8() const { return map_filename_utf8.c_str(); }
 
+	inline e_engine_type get_engine_type() const { return engine_type; }
+
 protected:
 	c_virtual_memory_container& virtual_memory_container;
 	e_engine_type engine_type;
