@@ -775,3 +775,14 @@ char* __fastcall c_opus_game_engine_host::Function49(char* str)
 {
 	return str;
 }
+
+__int64 __fastcall c_opus_game_engine_host::Function58()
+{
+	return 0;
+}
+
+__int64 __fastcall c_opus_game_engine_host::Function59(__int64 a1, unsigned int a2)
+{
+	// appears to be skins related
+	return 0;
+}

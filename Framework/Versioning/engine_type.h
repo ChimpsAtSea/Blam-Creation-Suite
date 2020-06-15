@@ -44,3 +44,16 @@ constexpr string_type engine_type_to_folder_name(e_engine_type engine_type) // #
 	enum_string_ex(string_type, true, engine_type, _engine_type_groundhog, "groundhog");
 	return nullptr;
 }
+
+template<typename string_type>
+constexpr string_type engine_type_to_folder_nice_name(e_engine_type engine_type) // #TODO: Create CPP files, or generate these using LLVM
+{
+	enum_string_ex(string_type, true, engine_type, _engine_type_haloreach, "HaloReach");
+	enum_string_ex(string_type, true, engine_type, _engine_type_halo1, "Halo1");
+	enum_string_ex(string_type, true, engine_type, _engine_type_halo2, "Halo2");
+	enum_string_ex(string_type, true, engine_type, _engine_type_halo3, "Halo3");
+	enum_string_ex(string_type, true, engine_type, _engine_type_halo3odst, "Halo3Odst");
+	enum_string_ex(string_type, true, engine_type, _engine_type_halo4, "Halo4");
+	enum_string_ex(string_type, true, engine_type, _engine_type_groundhog, "Halo2A");
+	return nullptr;
+}

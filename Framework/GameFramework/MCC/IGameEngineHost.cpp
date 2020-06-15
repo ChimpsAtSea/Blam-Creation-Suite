@@ -83,11 +83,11 @@ bool __fastcall IGameEngineHost::Function27() { CHECK_ADDRESS_SHIFTED(); return 
 bool __fastcall IGameEngineHost::UpdateGraphics(UpdateGraphicsData* update_graphics_data) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateGraphics(update_graphics_data); }
 c_player_configuration* __fastcall IGameEngineHost::GetPlayerConfiguration(__int64 value) { CHECK_ADDRESS_SHIFTED(); return shifted_this->GetPlayerConfiguration(value); }
 __int64 __fastcall IGameEngineHost::UpdatePlayerConfiguration(wchar_t player_names[4][16], c_player_configuration* player_configuration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerConfiguration(player_names, player_configuration); }
-bool __fastcall __fastcall IGameEngineHost::UpdateInput(_QWORD a1, InputBuffer* input_buffer) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateInput(a1, input_buffer); }
+bool __fastcall IGameEngineHost::UpdateInput(_QWORD a1, InputBuffer* input_buffer) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdateInput(a1, input_buffer); }
 void IGameEngineHost::Function32(_QWORD a1, float* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function32(a1, a2); }
 void IGameEngineHost::Function33() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function33(); }
 void IGameEngineHost::XInputSetState(DWORD user_index, XINPUT_VIBRATION* xinput_vibration) { CHECK_ADDRESS_SHIFTED(); return shifted_this->XInputSetState(user_index, xinput_vibration); }
-bool __fastcall __fastcall IGameEngineHost::UpdatePlayerNames(__int64* a1, wchar_t player_names[4][16], size_t data_size) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerNames(a1, player_names, data_size); }
+bool __fastcall IGameEngineHost::UpdatePlayerNames(__int64* a1, wchar_t player_names[4][16], size_t data_size) { CHECK_ADDRESS_SHIFTED(); return shifted_this->UpdatePlayerNames(a1, player_names, data_size); }
 void __fastcall IGameEngineHost::Function36(const wchar_t* a1, const wchar_t* a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function36(a1, a2); }
 bool __fastcall IGameEngineHost::Function37(wchar_t* a1, __int64 a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function37(a1, a2); }
 __int64 __fastcall IGameEngineHost::NetworkSendTo(NetworkID network_id, char* buffer, uint32_t buffer_size, int a4) { CHECK_ADDRESS_SHIFTED(); return shifted_this->NetworkSendTo(network_id, buffer, buffer_size, a4); }
@@ -102,6 +102,8 @@ bool __fastcall IGameEngineHost::GetWidePathByType(PathType path_type, LPWSTR bu
 unsigned __int8* __fastcall IGameEngineHost::Function47(_QWORD a1, unsigned __int8* a2, _QWORD a3) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function47(a1, a2, a3); }
 __int64 __fastcall IGameEngineHost::Function48(_QWORD a1, __int64 a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function48(a1, a2); }
 char* __fastcall IGameEngineHost::Function49(char* str) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function49(str); }
+__int64 __fastcall IGameEngineHost::Function58() { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function58(); }
+__int64 __fastcall IGameEngineHost::Function59(__int64 a1, unsigned int a2) { CHECK_ADDRESS_SHIFTED(); return shifted_this->Function59(a1, a2); }
 
 void IGameEngineHost::ConfigureGameEngineHost()
 {
@@ -166,6 +168,8 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	enqueue_function(_build_mcc_1_1377_0_0, _build_not_set, __game_engine_virtual_function_function49);
 	enqueue_function(_build_mcc_1_1367_0_0, _build_not_set, __game_engine_virtual_function_update_player_names); // relocated after 1350
 	enqueue_function(_build_mcc_1_1367_0_0, _build_not_set, __game_engine_virtual_function_function36); // relocated after 1350
+	enqueue_function(_build_mcc_1_1629_0_0, _build_not_set, __game_engine_virtual_function_function50);
+	enqueue_function(_build_mcc_1_1629_0_0, _build_not_set, __game_engine_virtual_function_function51);
 
 #undef enqueue_function
 
@@ -330,6 +334,110 @@ void IGameEngineHost::ConfigureGameEngineHost()
 		DEBUG_ASSERT(__vtbl_dynamic_data[45] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_player_names]);
 		DEBUG_ASSERT(__vtbl_dynamic_data[46] == custom_game_engine_host_vtable[__game_engine_virtual_function_function36]);
 	}
+	else if (build == _build_mcc_1_1377_0_0)
+	{
+		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_start]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[2] == custom_game_engine_host_vtable[__game_engine_virtual_function_function44]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[3] == custom_game_engine_host_vtable[__game_engine_virtual_function_function2]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[4] == custom_game_engine_host_vtable[__game_engine_virtual_function_engine_state_update]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[5] == custom_game_engine_host_vtable[__game_engine_virtual_function_game_exited]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[6] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_state]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[7] == custom_game_engine_host_vtable[__game_engine_virtual_function_submit_game_results]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[8] == custom_game_engine_host_vtable[__game_engine_virtual_function_function7]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[9] == custom_game_engine_host_vtable[__game_engine_virtual_function_function8]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[10] == custom_game_engine_host_vtable[__game_engine_virtual_function_function9]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[11] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_game_events]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[12] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[13] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_map_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[14] == custom_game_engine_host_vtable[__game_engine_virtual_function_function13]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[15] == custom_game_engine_host_vtable[__game_engine_virtual_function_function14]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[16] == custom_game_engine_host_vtable[__game_engine_virtual_function_function15]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[17] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_next_level_info]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[18] == custom_game_engine_host_vtable[__game_engine_virtual_function_function17]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[19] == custom_game_engine_host_vtable[__game_engine_virtual_function_function26]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[20] == custom_game_engine_host_vtable[__game_engine_virtual_function_function18]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[21] == custom_game_engine_host_vtable[__game_engine_virtual_function_map_load_percent_status]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[22] == custom_game_engine_host_vtable[__game_engine_virtual_function_function20]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[23] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_machine_identifier]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[24] == custom_game_engine_host_vtable[__game_engine_virtual_function_function22]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[25] == custom_game_engine_host_vtable[__game_engine_virtual_function_function23]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[26] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_session_info]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[27] == custom_game_engine_host_vtable[__game_engine_virtual_function_membership_update]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[28] == custom_game_engine_host_vtable[__game_engine_virtual_function_function27]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[29] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_graphics]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[30] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_player_configuration]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[31] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_player_configuration]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[32] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_input]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[33] == custom_game_engine_host_vtable[__game_engine_virtual_function_function32]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[34] == custom_game_engine_host_vtable[__game_engine_virtual_function_function33]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[35] == custom_game_engine_host_vtable[__game_engine_virtual_function_xinput_set_state]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[36] == custom_game_engine_host_vtable[__game_engine_virtual_function_function37]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[37] == custom_game_engine_host_vtable[__game_engine_virtual_function_network_send_to]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[38] == custom_game_engine_host_vtable[__game_engine_virtual_function_network_recieve_from]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[39] == custom_game_engine_host_vtable[__game_engine_virtual_function_function41]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[40] == custom_game_engine_host_vtable[__game_engine_virtual_function_firefight_new]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[41] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_path_by_type]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[42] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_path_by_type_wide]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[43] == custom_game_engine_host_vtable[__game_engine_virtual_function_function47]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[44] == custom_game_engine_host_vtable[__game_engine_virtual_function_function48]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[45] == custom_game_engine_host_vtable[__game_engine_virtual_function_function49]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[46] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_player_names]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[47] == custom_game_engine_host_vtable[__game_engine_virtual_function_function36]);
+	}
+	else if (build == _build_mcc_1_1629_0_0)
+	{
+		DEBUG_ASSERT(__vtbl_dynamic_data[0] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_start]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[1] == custom_game_engine_host_vtable[__game_engine_virtual_function_frame_end]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[2] == custom_game_engine_host_vtable[__game_engine_virtual_function_function44]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[3] == custom_game_engine_host_vtable[__game_engine_virtual_function_function2]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[4] == custom_game_engine_host_vtable[__game_engine_virtual_function_engine_state_update]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[5] == custom_game_engine_host_vtable[__game_engine_virtual_function_game_exited]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[6] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_state]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[7] == custom_game_engine_host_vtable[__game_engine_virtual_function_submit_game_results]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[8] == custom_game_engine_host_vtable[__game_engine_virtual_function_function7]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[9] == custom_game_engine_host_vtable[__game_engine_virtual_function_function8]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[10] == custom_game_engine_host_vtable[__game_engine_virtual_function_function9]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[11] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_game_events]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[12] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_game_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[13] == custom_game_engine_host_vtable[__game_engine_virtual_function_save_map_variant]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[14] == custom_game_engine_host_vtable[__game_engine_virtual_function_function13]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[15] == custom_game_engine_host_vtable[__game_engine_virtual_function_function14]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[16] == custom_game_engine_host_vtable[__game_engine_virtual_function_function15]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[17] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_next_level_info]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[18] == custom_game_engine_host_vtable[__game_engine_virtual_function_function17]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[19] == custom_game_engine_host_vtable[__game_engine_virtual_function_function26]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[20] == custom_game_engine_host_vtable[__game_engine_virtual_function_function18]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[21] == custom_game_engine_host_vtable[__game_engine_virtual_function_map_load_percent_status]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[22] == custom_game_engine_host_vtable[__game_engine_virtual_function_function20]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[23] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_machine_identifier]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[24] == custom_game_engine_host_vtable[__game_engine_virtual_function_function22]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[25] == custom_game_engine_host_vtable[__game_engine_virtual_function_function23]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[26] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_session_info]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[27] == custom_game_engine_host_vtable[__game_engine_virtual_function_membership_update]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[28] == custom_game_engine_host_vtable[__game_engine_virtual_function_function27]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[29] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_graphics]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[30] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_player_configuration]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[31] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_player_configuration]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[32] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_input]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[33] == custom_game_engine_host_vtable[__game_engine_virtual_function_function32]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[34] == custom_game_engine_host_vtable[__game_engine_virtual_function_function33]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[35] == custom_game_engine_host_vtable[__game_engine_virtual_function_xinput_set_state]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[36] == custom_game_engine_host_vtable[__game_engine_virtual_function_function37]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[37] == custom_game_engine_host_vtable[__game_engine_virtual_function_network_send_to]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[38] == custom_game_engine_host_vtable[__game_engine_virtual_function_network_recieve_from]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[39] == custom_game_engine_host_vtable[__game_engine_virtual_function_function41]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[40] == custom_game_engine_host_vtable[__game_engine_virtual_function_firefight_new]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[41] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_path_by_type]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[42] == custom_game_engine_host_vtable[__game_engine_virtual_function_get_path_by_type_wide]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[43] == custom_game_engine_host_vtable[__game_engine_virtual_function_function47]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[44] == custom_game_engine_host_vtable[__game_engine_virtual_function_function48]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[45] == custom_game_engine_host_vtable[__game_engine_virtual_function_function49]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[46] == custom_game_engine_host_vtable[__game_engine_virtual_function_update_player_names]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[47] == custom_game_engine_host_vtable[__game_engine_virtual_function_function36]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[48] == custom_game_engine_host_vtable[__game_engine_virtual_function_function50]);
+		DEBUG_ASSERT(__vtbl_dynamic_data[49] == custom_game_engine_host_vtable[__game_engine_virtual_function_function51]);
+	}
 
 	switch (build)
 	{
@@ -349,6 +457,7 @@ void IGameEngineHost::ConfigureGameEngineHost()
 	case _build_mcc_1_1477_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1499_0_0: DEBUG_ASSERT(current_function_index == 48); break;
 	case _build_mcc_1_1520_0_0: DEBUG_ASSERT(current_function_index == 48); break;
+	case _build_mcc_1_1629_0_0: DEBUG_ASSERT(current_function_index == 50); break;
 	}
 }
 
@@ -386,8 +495,13 @@ bool IGameEngineHost::PlayerConfigurationFromBuild(e_build build, c_player_confi
 	case _build_mcc_1_1477_0_0:
 	case _build_mcc_1_1499_0_0:
 	case _build_mcc_1_1520_0_0:
-	default:
 		*player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_6);
+		break;
+	case _build_mcc_1_1629_0_0:
+		*player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_7);
+		break;
+	default:
+		*player_configuration = new c_player_configuration(e_player_configuration_version::_player_configuration_version_7);
 		break;
 	}
 
@@ -429,60 +543,68 @@ void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& playe
 
 		if (engine_type == _engine_type_haloreach)
 		{
-			player_configuration.helmet_index = eHaloArmor::HR_Helmet_EOD_Base;
-			player_configuration.left_shoulder_index = eHaloArmor::HR_LeftShoulder_Gungnir;
-			player_configuration.right_shoulder_index = eHaloArmor::HR_RightShoulder_EVA;
-			player_configuration.chest_index = eHaloArmor::HR_Chest_UABaseSecurityW;
-			player_configuration.wrist_index = eHaloArmor::HR_Wrist_Default;
-			player_configuration.utility_index = eHaloArmor::HR_Utility_Default;
-			player_configuration.knee_guards_index = eHaloArmor::HR_KneeGuards_FJPARA;
-			player_configuration.visor_color_index = eHaloArmor::HR_VisorColor_Blue;
-			player_configuration.spartan_armor_effect_index = eHaloArmor::HR_ArmorEffect_BlueFlames;
-			player_configuration.spartan_body_index = eHaloArmor::HR_Spartan_Female;
-			player_configuration.elite_armor_index = eHaloArmor::HR_Elite_FieldMarshall;
-			player_configuration.elite_armor_effect_index = eHaloArmor::HR_ArmorEffect_Pestilence;
-			player_configuration.voice_index = eHaloArmor::HR_FirefightVoice_JohnS117;
-			player_configuration.player_model_primary_color = eHaloArmor::HR_Color_Brick;
-			player_configuration.player_model_secondary_color = eHaloArmor::HR_Color_Cyan;
-			player_configuration.player_model_tertiary_color = eHaloArmor::HR_Color_Cyan;
+			player_configuration.helmet_index = underlying_cast(e_customization_item_v1::HR_Helmet_EOD_Base);
+			player_configuration.left_shoulder_index = underlying_cast(e_customization_item_v1::HR_LeftShoulder_Gungnir);
+			player_configuration.right_shoulder_index = underlying_cast(e_customization_item_v1::HR_RightShoulder_EVA);
+			player_configuration.chest_index = underlying_cast(e_customization_item_v1::HR_Chest_UABaseSecurityW);
+			player_configuration.wrist_index = underlying_cast(e_customization_item_v1::HR_Wrist_Default);
+			player_configuration.utility_index = underlying_cast(e_customization_item_v1::HR_Utility_Default);
+			player_configuration.knee_guards_index = underlying_cast(e_customization_item_v1::HR_KneeGuards_FJPARA);
+			player_configuration.visor_color_index = underlying_cast(e_customization_item_v1::HR_VisorColor_Blue);
+			player_configuration.spartan_armor_effect_index = underlying_cast(e_customization_item_v1::HR_ArmorEffect_BlueFlames);
+			player_configuration.spartan_body_index = underlying_cast(e_customization_item_v1::HR_Spartan_Female);
+			player_configuration.elite_armor_index = underlying_cast(e_customization_item_v1::HR_Elite_FieldMarshall);
+			player_configuration.elite_armor_effect_index = underlying_cast(e_customization_item_v1::HR_ArmorEffect_Pestilence);
+			player_configuration.voice_index = underlying_cast(e_customization_item_v1::HR_FirefightVoice_JohnS117);
+			player_configuration.player_model_primary_color = underlying_cast(e_customization_item_v1::HR_Color_Brick);
+			player_configuration.player_model_secondary_color = underlying_cast(e_customization_item_v1::HR_Color_Cyan);
+			player_configuration.player_model_tertiary_color = underlying_cast(e_customization_item_v1::HR_Color_Cyan);
 		}
 		else if (engine_type == _engine_type_halo1)
 		{
-			player_configuration.helmet_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.left_shoulder_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.right_shoulder_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.chest_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.wrist_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.utility_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.knee_guards_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.visor_color_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.spartan_armor_effect_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.spartan_body_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.elite_armor_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.elite_armor_effect_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.voice_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.player_model_primary_color = eHaloArmor::H1_Color_1;
-			player_configuration.player_model_secondary_color = eHaloArmor::H1_Color_1;
-			player_configuration.player_model_tertiary_color = eHaloArmor::H1_Color_1;
+			player_configuration.helmet_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.left_shoulder_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.right_shoulder_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.chest_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.wrist_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.utility_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.knee_guards_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.visor_color_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.spartan_armor_effect_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.spartan_body_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.elite_armor_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.elite_armor_effect_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.voice_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.player_model_primary_color = underlying_cast(e_customization_item_v1::H1_Color_1);
+			player_configuration.player_model_secondary_color = underlying_cast(e_customization_item_v1::H1_Color_1);
+			player_configuration.player_model_tertiary_color = underlying_cast(e_customization_item_v1::H1_Color_1);
 		}
 		else if (engine_type == _engine_type_groundhog)
 		{
-			player_configuration.helmet_index = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.left_shoulder_index = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.right_shoulder_index = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.chest_index = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.wrist_index = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.utility_index = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.knee_guards_index = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.visor_color_index = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.spartan_armor_effect_index = eHaloArmor::H2A_ARMOR0_MARKVI;
-			player_configuration.spartan_body_index = eHaloArmor::HR_Spartan_Female;
-			player_configuration.elite_armor_index = eHaloArmor::H2A_ARMOR_ELITE1;
-			player_configuration.elite_armor_effect_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.voice_index = eHaloArmor::kHaloArmorNone;
-			player_configuration.player_model_primary_color = eHaloArmor::H2A_Color_1;
-			player_configuration.player_model_secondary_color = eHaloArmor::H2A_Color_1;
-			player_configuration.player_model_tertiary_color = eHaloArmor::H2A_Color_1;
+			player_configuration.helmet_index = underlying_cast(e_customization_item_v1::H2A_ARMOR0_MARKVI);
+			player_configuration.left_shoulder_index = underlying_cast(e_customization_item_v1::H2A_ARMOR0_MARKVI);
+			player_configuration.right_shoulder_index = underlying_cast(e_customization_item_v1::H2A_ARMOR0_MARKVI);
+			player_configuration.chest_index = underlying_cast(e_customization_item_v1::H2A_ARMOR0_MARKVI);
+			player_configuration.wrist_index = underlying_cast(e_customization_item_v1::H2A_ARMOR0_MARKVI);
+			player_configuration.utility_index = underlying_cast(e_customization_item_v1::H2A_ARMOR0_MARKVI);
+			player_configuration.knee_guards_index = underlying_cast(e_customization_item_v1::H2A_ARMOR0_MARKVI);
+			player_configuration.visor_color_index = underlying_cast(e_customization_item_v1::H2A_ARMOR0_MARKVI);
+			player_configuration.spartan_armor_effect_index = underlying_cast(e_customization_item_v1::H2A_ARMOR0_MARKVI);
+			player_configuration.spartan_body_index = underlying_cast(e_customization_item_v1::HR_Spartan_Female);
+			player_configuration.elite_armor_index = underlying_cast(e_customization_item_v1::H2A_ARMOR_ELITE1);
+			player_configuration.elite_armor_effect_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.voice_index = underlying_cast(e_customization_item_v1::k_customization_item_none);
+			player_configuration.player_model_primary_color = underlying_cast(e_customization_item_v1::H2A_Color_1);
+			player_configuration.player_model_secondary_color = underlying_cast(e_customization_item_v1::H2A_Color_1);
+			player_configuration.player_model_tertiary_color = underlying_cast(e_customization_item_v1::H2A_Color_1);
+		}
+	}
+
+	if (player_configuration.users_skins_enabled && player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_7)
+	{
+		for (int i = 0; i < 15; i++)
+		{
+			player_configuration.customization_item_skins[i] = { 0, 0 };
 		}
 	}
 
@@ -543,6 +665,9 @@ void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& playe
 	case _player_configuration_version_6:
 		game_action_count = k_number_of_game_actions_v5;
 		break;
+	case _player_configuration_version_7:
+		game_action_count = k_number_of_game_actions_v6;
+		break;
 	}
 
 	for (long mapping_index = 0; mapping_index < game_action_count; mapping_index++)
@@ -550,83 +675,105 @@ void IGameEngineHost::ConfigurePlayerConfiguration(c_player_configuration& playe
 		player_configuration.game_keyboard_mouse_mappings[mapping_index].abstract_button = mapping_index;
 	}
 
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_jump].virtual_key_codes[0] = VK_SPACE;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_switch_grenade].virtual_key_codes[0] = 'G';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_context_primary].virtual_key_codes[0] = 'E';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_reload].virtual_key_codes[0] = 'R';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_switch_weapon].virtual_key_codes[0] = 'C';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_melee].virtual_key_codes[0] = 'V';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_flashlight].virtual_key_codes[0] = '4';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_throw_grenade].virtual_key_codes[0] = 'F';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_fire].virtual_key_codes[0] = VK_LBUTTON;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_crouch].virtual_key_codes[0] = VK_LCONTROL;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_zoom].virtual_key_codes[0] = VK_RBUTTON;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_zoom_in].virtual_key_codes[0] = 'Z';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_zoom_out].virtual_key_codes[0] = 'X';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_exchange_weapon].virtual_key_codes[0] = 'E';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_trick].virtual_key_codes[0] = VK_SPACE;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_brake].virtual_key_codes[0] = VK_LSHIFT;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_ebrake].virtual_key_codes[0] = VK_SPACE;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_sprint].virtual_key_codes[0] = VK_LSHIFT;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_banshee_bomb].virtual_key_codes[0] = 'F';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_forward].virtual_key_codes[0] = 'W';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_backward].virtual_key_codes[0] = 'S';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_left].virtual_key_codes[0] = 'A';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_right].virtual_key_codes[0] = 'D';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_lean_left].virtual_key_codes[0] = '8';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_lean_right].virtual_key_codes[0] = '9';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_start].virtual_key_codes[0] = '7';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_back].virtual_key_codes[0] = VK_TAB;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_show_scores].virtual_key_codes[0] = VK_TAB;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_accept].virtual_key_codes[0] = '5';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_cancel].virtual_key_codes[0] = '6';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_primary_vehicle_trick].virtual_key_codes[0] = VK_LCONTROL;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_secondary_vehicle_trick].virtual_key_codes[0] = VK_SPACE;
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_magnify_zoom].virtual_key_codes[0] = 'Z';
-	player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_equipment].virtual_key_codes[0] = VK_LSHIFT;
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_3)
+	if (game_action_count >= k_number_of_game_actions_v1)
 	{
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_fire_secondary].virtual_key_codes[0] = VK_LSHIFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_jump].virtual_key_codes[0] = VK_SPACE;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_switch_grenade].virtual_key_codes[0] = 'G';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_context_primary].virtual_key_codes[0] = 'E';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_reload].virtual_key_codes[0] = 'R';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_switch_weapon].virtual_key_codes[0] = 'C';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_melee].virtual_key_codes[0] = 'V';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_flashlight].virtual_key_codes[0] = '4';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_throw_grenade].virtual_key_codes[0] = 'F';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_fire].virtual_key_codes[0] = VK_LBUTTON;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_crouch].virtual_key_codes[0] = VK_LCONTROL;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_zoom].virtual_key_codes[0] = VK_RBUTTON;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_zoom_in].virtual_key_codes[0] = 'Z';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_zoom_out].virtual_key_codes[0] = 'X';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_exchange_weapon].virtual_key_codes[0] = 'E';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_trick].virtual_key_codes[0] = VK_SPACE;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_brake].virtual_key_codes[0] = VK_LSHIFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_ebrake].virtual_key_codes[0] = VK_SPACE;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_sprint].virtual_key_codes[0] = VK_LSHIFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_banshee_bomb].virtual_key_codes[0] = 'F';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_forward].virtual_key_codes[0] = 'W';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_backward].virtual_key_codes[0] = 'S';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_left].virtual_key_codes[0] = 'A';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_right].virtual_key_codes[0] = 'D';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_lean_left].virtual_key_codes[0] = '8';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_lean_right].virtual_key_codes[0] = '9';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_start].virtual_key_codes[0] = '7';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_back].virtual_key_codes[0] = VK_TAB;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_show_scores].virtual_key_codes[0] = VK_TAB;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_accept].virtual_key_codes[0] = '5';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_cancel].virtual_key_codes[0] = '6';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_primary_vehicle_trick].virtual_key_codes[0] = VK_LCONTROL;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_secondary_vehicle_trick].virtual_key_codes[0] = VK_SPACE;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_magnify_zoom].virtual_key_codes[0] = 'Z';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v1_equipment].virtual_key_codes[0] = VK_LSHIFT;
 	}
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_4)
+	if (game_action_count >= k_number_of_game_actions_v2)
 	{
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_lift_editor].virtual_key_codes[0] = 'R';
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_drop_editor].virtual_key_codes[0] = 'F';
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_grab_object_editor].virtual_key_codes[0] = VK_LBUTTON;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_boost_editor].virtual_key_codes[0] = VK_LSHIFT;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_crouch_editor].virtual_key_codes[0] = VK_LCONTROL;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_delete_object_editor].virtual_key_codes[0] = VK_DELETE;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_create_object_editor].virtual_key_codes[0] = VK_SPACE;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_open_tool_menu_editor].virtual_key_codes[0] = 'X';
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_switch_player_mode_editor].virtual_key_codes[0] = VK_UP;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_scope_zoom_editor].virtual_key_codes[0] = VK_RBUTTON;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_player_lock_for_manipulation_editor].virtual_key_codes[0] = VK_LMENU;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_show_hide_pannel_theater].virtual_key_codes[0] = 'X';
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_show_hide_interface_theater].virtual_key_codes[0] = 'Z';
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_toggle_first_third_person_view_theater].virtual_key_codes[0] = 'C';
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_camera_focus_theater].virtual_key_codes[0] = VK_RBUTTON;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_fast_forward_theater].virtual_key_codes[0] = VK_RIGHT;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_fast_rewind_theater].virtual_key_codes[0] = VK_LEFT;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_stop_continue_playback_theater].virtual_key_codes[0] = VK_RETURN;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_playback_speed_up_theater].virtual_key_codes[0] = VK_LMENU;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_enter_free_camera_mode_theater].virtual_key_codes[0] = VK_SPACE;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v2_fire_secondary].virtual_key_codes[0] = VK_LSHIFT;
 	}
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_5)
+	if (game_action_count >= k_number_of_game_actions_v3)
 	{
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_movement_speed_up_theater].virtual_key_codes[0] = VK_LSHIFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_lift_editor].virtual_key_codes[0] = 'R';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_drop_editor].virtual_key_codes[0] = 'F';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_grab_object_editor].virtual_key_codes[0] = VK_LBUTTON;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_boost_editor].virtual_key_codes[0] = VK_LSHIFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_crouch_editor].virtual_key_codes[0] = VK_LCONTROL;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_delete_object_editor].virtual_key_codes[0] = VK_DELETE;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_create_object_editor].virtual_key_codes[0] = VK_SPACE;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_open_tool_menu_editor].virtual_key_codes[0] = 'X';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_switch_player_mode_editor].virtual_key_codes[0] = VK_UP;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_scope_zoom_editor].virtual_key_codes[0] = VK_RBUTTON;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_player_lock_for_manipulation_editor].virtual_key_codes[0] = VK_LMENU;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_show_hide_pannel_theater].virtual_key_codes[0] = 'X';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_show_hide_interface_theater].virtual_key_codes[0] = 'Z';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_toggle_first_third_person_view_theater].virtual_key_codes[0] = 'C';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_camera_focus_theater].virtual_key_codes[0] = VK_RBUTTON;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_fast_forward_theater].virtual_key_codes[0] = VK_RIGHT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_fast_rewind_theater].virtual_key_codes[0] = VK_LEFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_stop_continue_playback_theater].virtual_key_codes[0] = VK_RETURN;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_playback_speed_up_theater].virtual_key_codes[0] = VK_LMENU;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v3_enter_free_camera_mode_theater].virtual_key_codes[0] = VK_SPACE;
 	}
-	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_6)
+	if (game_action_count >= k_number_of_game_actions_v4)
 	{
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_panning_camera_theater].virtual_key_codes[0] = VK_OEM_RESET;
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_camera_move_up_theater].virtual_key_codes[0] = 'Q';
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_camera_move_down_theater].virtual_key_codes[0] = 'E';
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_dual_wield].virtual_key_codes[0] = 'Q';
-		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_zoom_camera_theater].virtual_key_codes[0] = VK_OEM_RESET;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v4_movement_speed_up_theater].virtual_key_codes[0] = VK_LSHIFT;
+	}
+	if (game_action_count >= k_number_of_game_actions_v5)
+	{
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v5_panning_camera_theater].virtual_key_codes[0] = VK_OEM_RESET;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v5_camera_move_up_theater].virtual_key_codes[0] = 'Q';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v5_camera_move_down_theater].virtual_key_codes[0] = 'E';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v5_dual_wield].virtual_key_codes[0] = 'Q';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v5_zoom_camera_theater].virtual_key_codes[0] = VK_OEM_RESET;
+	}
+	if (game_action_count >= k_number_of_game_actions_v6)
+	{
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_toggle_rotation_axes_editor].virtual_key_codes[0] = 'O';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_show_hide_pannel_theater].virtual_key_codes[0] = 'X';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_show_hide_interface_theater].virtual_key_codes[0] = 'Z';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_toggle_first_third_person_view_theater].virtual_key_codes[0] = 'C';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_camera_focus_theater].virtual_key_codes[0] = VK_RBUTTON;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_fast_forward_theater].virtual_key_codes[0] = VK_RIGHT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_fast_rewind_theater].virtual_key_codes[0] = VK_LEFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_stop_continue_playback_theater].virtual_key_codes[0] = VK_RETURN;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_playback_speed_up_theater].virtual_key_codes[0] = VK_LMENU;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_enter_free_camera_mode_theater].virtual_key_codes[0] = VK_SPACE;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_movement_speed_up_theater].virtual_key_codes[0] = VK_LSHIFT;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_panning_camera_theater].virtual_key_codes[0] = VK_OEM_RESET;
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_camera_move_up_theater].virtual_key_codes[0] = 'Q';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_camera_move_down_theater].virtual_key_codes[0] = 'E';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_dual_wield].virtual_key_codes[0] = 'Q';
+		player_configuration.game_keyboard_mouse_mappings[e_game_action::_game_action_v6_zoom_camera_theater].virtual_key_codes[0] = VK_OEM_RESET;
 	}
 
-	player_configuration.master_volume = 0.6f;
-	player_configuration.music_volume = 0.2f;
-	player_configuration.sfx_volume = 0.8f;
+	player_configuration.master_volume = 60;
+	player_configuration.music_volume = 20;
+	player_configuration.sfx_volume = 80;
 	//player_configuration.brightness = ;
 
 	if (player_configuration.player_configuration_version >= e_player_configuration_version::_player_configuration_version_4)

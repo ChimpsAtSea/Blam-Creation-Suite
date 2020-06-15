@@ -58,6 +58,8 @@ public:
 	virtual unsigned __int8* __fastcall Function47(_QWORD, unsigned __int8*, _QWORD) override;
 	virtual __int64 __fastcall Function48(_QWORD, __int64) override;
 	virtual char* __fastcall Function49(char* str) override;
+	virtual __int64  __fastcall Function58(); /* added in 1629 */
+	virtual __int64 __fastcall Function59(__int64 a1, unsigned int a2); /* added in 1629 */
 
 	// Opus Functionality
 	virtual void render_ui() const = 0;
