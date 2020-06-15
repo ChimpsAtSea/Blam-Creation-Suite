@@ -50,7 +50,7 @@ public:
 		virtual std::string get_command_auto_complete(const std::vector<std::string>& Arguments) const override;
 	};
 
-	static void init_console();
+	static void init_console(const wchar_t* title = L"Console");
 	static void deinit_console();
 	static void Update();
 
@@ -75,7 +75,7 @@ public:
 
 
 private:
-	static bool AllocateConsole(const std::string& ConsoleTitle);
+	static bool AllocateConsole(const wchar_t* title);
 
 	static bool s_consoleAllocated;
 

@@ -385,13 +385,16 @@ using c_fixed_string_1024 = c_fixed_string<1024>;
 using c_fixed_string_2048 = c_fixed_string<2048>;
 using c_fixed_string_4096 = c_fixed_string<4096>;
 
-using c_fixed_wide_path = c_fixed_string<0x8000, wchar_t>;
-using c_fixed_wide_string_16 = c_fixed_string<16, wchar_t>;
-using c_fixed_wide_string_32 = c_fixed_string<32, wchar_t>;
-using c_fixed_wide_string_64 = c_fixed_string<64, wchar_t>;
-using c_fixed_wide_string_128 = c_fixed_string<128, wchar_t>;
-using c_fixed_wide_string_256 = c_fixed_string<256, wchar_t>;
-using c_fixed_wide_string_512 = c_fixed_string<512, wchar_t>;
-using c_fixed_wide_string_1024 = c_fixed_string<1024, wchar_t>;
-using c_fixed_wide_string_2048 = c_fixed_string<2048, wchar_t>;
-using c_fixed_wide_string_4096 = c_fixed_string<4096, wchar_t>;
+template<uint32_t k_capacity>
+using c_fixed_wide_string = c_fixed_string<k_capacity, wchar_t>;
+
+using c_fixed_wide_path = c_fixed_wide_string<0x8000>;
+using c_fixed_wide_string_16 = c_fixed_wide_string<16>;
+using c_fixed_wide_string_32 = c_fixed_wide_string<32>;
+using c_fixed_wide_string_64 = c_fixed_wide_string<64>;
+using c_fixed_wide_string_128 = c_fixed_wide_string<128>;
+using c_fixed_wide_string_256 = c_fixed_wide_string<256>;
+using c_fixed_wide_string_512 = c_fixed_wide_string<512>;
+using c_fixed_wide_string_1024 = c_fixed_wide_string<1024>;
+using c_fixed_wide_string_2048 = c_fixed_wide_string<2048>;
+using c_fixed_wide_string_4096 = c_fixed_wide_string<4096>;

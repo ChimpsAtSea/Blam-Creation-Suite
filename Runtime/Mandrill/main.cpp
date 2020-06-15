@@ -3,6 +3,7 @@
 #include <Shared\shared-public-pch.h>
 #include <TagDefinitions\tagdefinitions-public-pch.h>
 #include <MandrillLib\mandrilllib-public-pch.h>
+#include <Rhesus\rhesus-public-pch.h>
 
 /* ---------- private constants */
 /* ---------- private macros */
@@ -132,6 +133,11 @@ int WINAPI wWinMain(
 )
 {
 	int result = 0;
+	if (rhesus_crash_reporter(result))
+	{
+		return result;
+	}
+
 	if (run_tests(lpCmdLine)) // allow program to exit without running
 	{
 		init_mandrill(hInstance, nShowCmd, lpCmdLine);

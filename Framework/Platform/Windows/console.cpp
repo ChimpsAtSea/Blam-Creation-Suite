@@ -26,9 +26,9 @@ void c_console::Update()
 #define ps1beg "\xAF["
 #define ps1end "]\xAE"
 
-void c_console::init_console()
+void c_console::init_console(const wchar_t* title)
 {
-	c_console::AllocateConsole("Opus");
+	c_console::AllocateConsole(title);
 
 	CurArg = 0;
 
@@ -523,7 +523,7 @@ std::string c_console::DefaultConsoleCommand::get_command_auto_complete(const st
 	return ""; // todo;
 };
 
-bool c_console::AllocateConsole(const std::string& ConsoleTitle)
+bool c_console::AllocateConsole(const wchar_t* title)
 {
 	if (s_consoleAllocated)
 	{
@@ -537,7 +537,7 @@ bool c_console::AllocateConsole(const std::string& ConsoleTitle)
 	(void)freopen("CONOUT$", "w", stdout);
 	(void)freopen("CONOUT$", "w", stderr);
 
-	SetConsoleTitleA(ConsoleTitle.c_str());
+	SetConsoleTitleW(title);
 	EnableMenuItem(GetSystemMenu(GetConsoleWindow(), FALSE), SC_CLOSE & SC_MINIMIZE | SC_MAXIMIZE, MF_GRAYED);
 	DrawMenuBar(GetConsoleWindow());
 

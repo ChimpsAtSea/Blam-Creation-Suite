@@ -22,7 +22,8 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{0D2234CA-029E-4055-944E-DB8B67498309}</ProjectGuid>
     <RootNamespace>Opus</RootNamespace>
-    <ProjectName>Opus</ProjectName>
+    <ProjectName>Opus (Game Launcher)</ProjectName>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -112,7 +113,6 @@ if "$(DebuggerFlavor)" == "WindowsRemoteDebugger" (
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
