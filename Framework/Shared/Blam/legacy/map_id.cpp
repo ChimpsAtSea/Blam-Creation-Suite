@@ -1,4 +1,5 @@
-#include "shared-private-pch.h"
+#include <shared-private-pch.h>
+#include <Versioning\engine_type.h>
 
 long map_id_to_engine_type(e_map_id map_id)
 {
@@ -236,16 +237,13 @@ long map_id_to_engine_type(e_map_id map_id)
 		return _engine_type_groundhog;
 	}
 
-	return 0; // #TODO: replace hardcoded value with _engine_type_not_set;
+	return _engine_type_not_set;
 }
 
 long map_id_to_game_mode(e_map_id map_id)
 {
 	switch (map_id)
 	{
-	case _map_id_mainmenu:
-		return _mcc_game_mode_ui_shell;
-
 	case _map_id_haloreach_noble_actual:
 	case _map_id_haloreach_winter_contingency:
 	case _map_id_haloreach_oni_sword_base:
@@ -316,6 +314,23 @@ long map_id_to_game_mode(e_map_id map_id)
 	case _map_id_halo4_midnight:
 	case _map_id_halo4_epilogue:
 		return _mcc_game_mode_campaign;
+
+	case _map_id_halo4_ff_chopperbowl:
+	case _map_id_halo4_ff_sniperalley:
+	case _map_id_halo4_ff_fortsw:
+	case _map_id_halo4_ff_temple:
+	case _map_id_halo4_ff_scurve:
+	case _map_id_halo4_ff_courtyard:
+	case _map_id_halo4_ff_complex:
+	case _map_id_halo4_ff_valhalla:
+	case _map_id_halo4_ff_factory:
+	case _map_id_halo4_ff_mezzanie:
+	case _map_id_halo4_ff_caverns:
+	case _map_id_halo4_ff_vortex:
+	case _map_id_halo4_ff_breach:
+	case _map_id_halo4_ff_hillside:
+	case _map_id_halo4_ff_engine:
+		return _mcc_game_mode_spartan_ops;
 
 	case _map_id_halo1_battle_creek:
 	case _map_id_halo1_sidewinder:
@@ -444,6 +459,9 @@ long map_id_to_game_mode(e_map_id map_id)
 	case _map_id_groundhog_relic:
 		return _mcc_game_mode_multiplayer;
 
+	case _map_id_mainmenu:
+		return _mcc_game_mode_ui_shell;
+
 	case _map_id_haloreach_beachhead:
 	case _map_id_haloreach_corvette:
 	case _map_id_haloreach_courtyard:
@@ -453,23 +471,6 @@ long map_id_to_game_mode(e_map_id map_id)
 	case _map_id_haloreach_overlook:
 	case _map_id_haloreach_waterfront:
 		return _mcc_game_mode_firefight;
-
-	case _map_id_halo4_ff_chopperbowl:
-	case _map_id_halo4_ff_sniperalley:
-	case _map_id_halo4_ff_fortsw:
-	case _map_id_halo4_ff_temple:
-	case _map_id_halo4_ff_scurve:
-	case _map_id_halo4_ff_courtyard:
-	case _map_id_halo4_ff_complex:
-	case _map_id_halo4_ff_valhalla:
-	case _map_id_halo4_ff_factory:
-	case _map_id_halo4_ff_mezzanie:
-	case _map_id_halo4_ff_caverns:
-	case _map_id_halo4_ff_vortex:
-	case _map_id_halo4_ff_breach:
-	case _map_id_halo4_ff_hillside:
-	case _map_id_halo4_ff_engine:
-		return _mcc_game_mode_spartan_ops;
 	}
 
 	return _mcc_game_mode_none;

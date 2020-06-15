@@ -394,7 +394,7 @@ void c_game_launcher::launch_mcc_game(e_engine_type engine_type)
 	game_context->visual_remaster = use_remastered_visuals;
 	game_context->music_remaster = use_remastered_music;
 
-	if (!load_save_from_file(game_context, "5EA68E0B.halo2", false))
+	if (!load_save_from_file(game_context, "5EE59DB6.halo3", false))
 	{
 		// #TODO: Make a home for this
 		if (game_context->is_host)
@@ -630,13 +630,13 @@ void c_game_launcher::render_main_menu()
 #ifdef _WIN64
 		case _engine_type_halo1:
 		{
-			if (ImGui::BeginCombo("Map", map_id_to_string(g_halo1_map_id)))
+			if (ImGui::BeginCombo("Map", get_enum_string<const char*, true>(g_halo1_map_id)))
 			{
 				for (e_map_id map_id : g_halo1_map_ids)
 				{
 					bool is_selected = map_id == g_halo1_map_id;
 
-					if (ImGui::Selectable(map_id_to_string(map_id), is_selected))
+					if (ImGui::Selectable(get_enum_string<const char*, true>(map_id), is_selected))
 					{
 						g_halo1_map_id = map_id;
 					}
@@ -644,7 +644,7 @@ void c_game_launcher::render_main_menu()
 				ImGui::EndCombo();
 			}
 
-			if (map_id_to_game_mode(g_halo1_map_id) == _mcc_game_mode_campaign)
+			if (map_id_to_engine_type(g_halo1_map_id) == _mcc_game_mode_campaign)
 			{
 				ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
 				ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
@@ -657,13 +657,13 @@ void c_game_launcher::render_main_menu()
 			break;
 		case _engine_type_halo2:
 		{
-			if (ImGui::BeginCombo("Map", map_id_to_string(g_halo2_map_id)))
+			if (ImGui::BeginCombo("Map", get_enum_string<const char*, true>(g_halo2_map_id)))
 			{
 				for (e_map_id map_id : g_halo2_map_ids)
 				{
 					bool is_selected = map_id == g_halo2_map_id;
 
-					if (ImGui::Selectable(map_id_to_string(map_id), is_selected))
+					if (ImGui::Selectable(get_enum_string<const char*, true>(map_id), is_selected))
 					{
 						g_halo2_map_id = map_id;
 					}
@@ -671,7 +671,7 @@ void c_game_launcher::render_main_menu()
 				ImGui::EndCombo();
 			}
 
-			if (map_id_to_game_mode(g_halo2_map_id) == _mcc_game_mode_campaign)
+			if (map_id_to_engine_type(g_halo2_map_id) == _mcc_game_mode_campaign)
 			{
 				ImGui::Checkbox("Use Remastered Visuals", &use_remastered_visuals);
 				ImGui::Checkbox("Use Remastered Music", &use_remastered_music);
@@ -681,13 +681,13 @@ void c_game_launcher::render_main_menu()
 		break;
 		case _engine_type_halo3:
 		{
-			if (ImGui::BeginCombo("Map", map_id_to_string(g_halo3_map_id)))
+			if (ImGui::BeginCombo("Map", get_enum_string<const char*, true>(g_halo3_map_id)))
 			{
 				for (e_map_id map_id : g_halo3_map_ids)
 				{
 					bool is_selected = map_id == g_halo3_map_id;
 
-					if (ImGui::Selectable(map_id_to_string(map_id), is_selected))
+					if (ImGui::Selectable(get_enum_string<const char*, true>(map_id), is_selected))
 					{
 						g_halo3_map_id = map_id;
 					}
@@ -695,7 +695,7 @@ void c_game_launcher::render_main_menu()
 				ImGui::EndCombo();
 			}
 
-			if (map_id_to_game_mode(g_halo3_map_id) == _mcc_game_mode_campaign)
+			if (map_id_to_engine_type(g_halo3_map_id) == _mcc_game_mode_campaign)
 			{
 				c_haloreach_game_option_selection_legacy::SelectDifficulty(); // #TODO #REFACTOR
 			}
@@ -703,13 +703,13 @@ void c_game_launcher::render_main_menu()
 		break;
 		case _engine_type_groundhog:
 		{
-			if (ImGui::BeginCombo("Map", map_id_to_string(g_groundhog_map_id)))
+			if (ImGui::BeginCombo("Map", get_enum_string<const char*, true>(g_groundhog_map_id)))
 			{
 				for (e_map_id map_id : g_groundhog_map_ids)
 				{
 					bool is_selected = map_id == g_groundhog_map_id;
 
-					if (ImGui::Selectable(map_id_to_string(map_id), is_selected))
+					if (ImGui::Selectable(get_enum_string<const char*, true>(map_id), is_selected))
 					{
 						g_groundhog_map_id = map_id;
 					}
